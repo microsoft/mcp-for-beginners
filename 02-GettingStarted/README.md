@@ -1,6 +1,6 @@
 # Getting Started with MCP
 
-## Overview
+## Overview 
 
 This lesson provides practical guidance on setting up MCP environments and building your first MCP applications. You'll learn how to set up the necessary tools and frameworks, build basic MCP servers and clients, and test your implementations.
 
