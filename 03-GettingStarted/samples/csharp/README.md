@@ -28,7 +28,7 @@ This calculator service offers the following capabilities:
                 "run",
                 "--project",
                 "D:\\source\\03-GettingStarted\\samples\\csharp\\src\\calculator.csproj"
-            ]
+            ],
            "env": {}
          }
        }
