@@ -6,13 +6,17 @@ builder.Logging.AddConsole(consoleLogOptions =>
     // Configure all logs to go to stderr
     consoleLogOptions.LogToStandardErrorThreshold = LogLevel.Trace;
 });
-builder.Services.AddMcpServer()
-    .WithTools<McpCalculatorServer>();
+
+builder.Services
+	.AddMcpServer()
+	.WithStdioServerTransport()
+	.WithToolsFromAssembly()
+	.WithHttpTransport();
 
 builder.AddServiceDefaults();
 
 var app = builder.Build();
 
-//app.MapMcp();
+app.MapMcp();
 
 app.Run();
