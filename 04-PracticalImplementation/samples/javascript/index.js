@@ -1,25 +1,16 @@
-// mcp_sample.ts - MCP TypeScript Sample Implementation
-import { EventEmitter } from 'events';
+// mcp_sample.js - MCP JavaScript Sample Implementation
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { z } from 'zod';
+import EventEmitter from 'events';
 
 /**
- * Extended MCP Server implementation in TypeScript
+ * Extended MCP Server implementation in JavaScript
  */
-export class ExtendedMcpServer {
-  private serverName: string;
-  private version: string;
-  private models: string[];
-  private events: EventEmitter;
-  private mcpServer: McpServer;
 
-  constructor(options: {
-    serverName?: string;
-    version?: string;
-    models?: string[];
-  } = {}) {
-    this.serverName = options.serverName || 'TypeScript MCP Server';
+class ExtendedMcpServer {
+  constructor(options = {}) {
+    this.serverName = options.serverName || 'JavaScript MCP Server';
     this.version = options.version || '1.0.0';
     this.models = options.models || ['gpt-4', 'llama-3-70b', 'claude-3-sonnet'];
     this.events = new EventEmitter();
@@ -40,7 +31,7 @@ export class ExtendedMcpServer {
   /**
    * Register the completion tool with the MCP server
    */
-  private registerCompletionTool(): void {
+  registerCompletionTool() {
     this.mcpServer.tool(
       'completion',
       {
@@ -104,7 +95,7 @@ export class ExtendedMcpServer {
   /**
    * Register search resource with the MCP server
    */
-  private registerSearchResource(): void {
+  registerSearchResource() {
     this.mcpServer.resource(
       'search',
       'search://{query}',
@@ -137,7 +128,7 @@ export class ExtendedMcpServer {
    * Connect the server to a transport
    * @returns Promise that resolves when connected
    */
-  public async connect(): Promise<void> {
+  async connect() {
     const transport = new StdioServerTransport();
     await this.mcpServer.connect(transport);
     console.log(`Server connected via stdio transport`);
@@ -145,52 +136,53 @@ export class ExtendedMcpServer {
 
   /**
    * Register an event listener
-   * @param event - The event name
-   * @param listener - The event handler function
+   * @param {string} event - The event name
+   * @param {Function} listener - The event handler function
    */
-  public on(event: string, listener: (...args: any[]) => void): void {
+  on(event, listener) {
     this.events.on(event, listener);
   }
   
   /**
    * Get the MCP server instance
-   * @returns The MCP server instance
+   * @returns {McpServer} The MCP server instance
    */
-  public getMcpServer(): McpServer {
+  getMcpServer() {
     return this.mcpServer;
   }
 
   /**
    * Get the list of supported models
-   * @returns Array of supported model names
+   * @returns {string[]} Array of supported model names
    */
-  public getSupportedModels(): string[] {
+  getSupportedModels() {
     return [...this.models];
   }
 }
 
-// Demo usage
-if (require.main === module) {
-  const server = new ExtendedMcpServer({
-    serverName: 'TypeScript MCP Demo Server',
-    version: '1.0.0'
-  });
-  
-  // Register event handlers
-  server.on('request', (data) => {
-    console.log(`Request received: ${JSON.stringify(data)}`);
-  });
-  
-  server.on('completion', (data) => {
-    console.log(`Completion finished: ${JSON.stringify(data)}`);
-  });
-  
-  console.log(`MCP Server "${server.getMcpServer().options.name}" initialized`);
-  console.log(`Supported models: ${server.getSupportedModels().join(', ')}`);
-  
-  // Connect the server
-  server.connect().catch(error => {
-    console.error('Failed to connect server:', error);
-    process.exit(1);
-  });
-}
+// Create the server instance
+
+const server = new ExtendedMcpServer({
+  serverName: 'JavaScript MCP Demo Server',
+  version: '1.0.0'
+});
+
+// Register event handlers
+server.on('request', (data) => {
+  console.log(`Request received: ${JSON.stringify(data)}`);
+});
+
+server.on('completion', (data) => {
+  console.log(`Completion finished: ${JSON.stringify(data)}`);
+});
+
+console.log(`MCP Server "${server.serverName}" initialized`);
+console.log(`Supported models: ${server.getSupportedModels().join(', ')}`);
+
+// Connect the server
+server.connect().catch(error => {
+  console.error('Failed to connect server:', error);
+  process.exit(1);
+});
+
+

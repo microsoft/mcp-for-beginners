@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Safety Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+        }
+        .safe {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+        .unsafe {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Content Safety Check Results</h1>
+        
+        <div class="section">
+            <h2>Your Prompt</h2>
+            <pre th:text="${promptRequest.prompt}">User prompt will be displayed here</pre>
+        </div>
+        
+        <div th:class="${isSafe == 'true' ? 'card safe' : 'card unsafe'}" class="section">
+            <h2>Prompt Safety Analysis</h2>
+            <pre th:text="${safetyResult}">Safety result details will be displayed here</pre>
+        </div>
+        
+        <div th:if="${botResponse != null}" class="section">
+            <h2>Bot Response</h2>
+            <pre th:text="${botResponse}">Bot response will be displayed here</pre>
+        </div>
+        
+        <div th:if="${botResponseSafetyResult != null}" th:class="${botResponse != 'The generated response was flagged for safety concerns and cannot be displayed.' ? 'card safe' : 'card unsafe'}" class="section">
+            <h2>Bot Response Safety Analysis</h2>
+            <pre th:text="${botResponseSafetyResult}"></pre>
+        </div>
+        
+        <div th:if="${error != null}" class="section">
+            <h2>Error</h2>
+            <pre th:text="${error}">Error message will be displayed here</pre>
+        </div>
+        
+        <a href="/" class="btn">Try Another Prompt</a>
+    </div>
+</body>
+</html>

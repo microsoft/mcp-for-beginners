@@ -1,0 +1,40 @@
+@startuml Content Safety Calculator Flow
+!theme plain
+
+title Content Safety Calculator - Sequence Diagram
+
+actor User
+participant "Web App" as WebApp
+participant "Content Safety Service" as SafetyService
+participant "Azure Content Safety API" as AzureAPI
+participant "Bot" as Bot
+participant "MCP Server" as McpServer
+
+== User Input and Safety Flow ==
+User -> WebApp: Submit calculation prompt
+WebApp -> SafetyService: Process prompt
+SafetyService -> AzureAPI: Check prompt safety
+AzureAPI --> SafetyService: Safety result
+
+alt Prompt is safe
+    SafetyService -> Bot: Process safe prompt
+    Bot -> McpServer: Execute calculation
+    McpServer --> Bot: Calculation result
+    Bot --> SafetyService: Bot response
+    
+    SafetyService -> AzureAPI: Check response safety
+    AzureAPI --> SafetyService: Response safety result
+    
+    alt Response is safe
+        SafetyService --> WebApp: Safe prompt and safe response
+        WebApp --> User: Display calculation and safety info
+    else Response is unsafe
+        SafetyService --> WebApp: Safe prompt but unsafe response
+        WebApp --> User: Display warning
+    end
+else Prompt is unsafe
+    SafetyService --> WebApp: Unsafe prompt
+    WebApp --> User: Display warning
+end
+
+@enduml

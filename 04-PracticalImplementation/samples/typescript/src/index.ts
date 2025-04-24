@@ -1,15 +1,27 @@
-// mcp_sample.js - MCP JavaScript Sample Implementation
-const { McpServer } = require('@modelcontextprotocol/sdk/server/mcp.js');
-const { StdioServerTransport } = require('@modelcontextprotocol/sdk/server/stdio.js');
-const { z } = require('zod');
-const EventEmitter = require('events');
+// mcp_sample.ts - MCP TypeScript Sample Implementation
+import { EventEmitter } from 'events';
+import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import {  ResourceTemplate } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { z } from 'zod';
+
 
 /**
- * Extended MCP Server implementation in JavaScript
+ * Extended MCP Server implementation in TypeScript
  */
-class ExtendedMcpServer {
-  constructor(options = {}) {
-    this.serverName = options.serverName || 'JavaScript MCP Server';
+export class ExtendedMcpServer {
+  private serverName: string;
+  private version: string;
+  private models: string[];
+  private events: EventEmitter;
+  private mcpServer: McpServer;
+
+  constructor(options: {
+    serverName?: string;
+    version?: string;
+    models?: string[];
+  } = {}) {
+    this.serverName = options.serverName || 'TypeScript MCP Server';
     this.version = options.version || '1.0.0';
     this.models = options.models || ['gpt-4', 'llama-3-70b', 'claude-3-sonnet'];
     this.events = new EventEmitter();
@@ -27,10 +39,14 @@ class ExtendedMcpServer {
     this.registerSearchResource();
   }
 
+  get name(): string {
+    return this.serverName;
+  }
+
   /**
    * Register the completion tool with the MCP server
    */
-  registerCompletionTool() {
+  private registerCompletionTool(): void {
     this.mcpServer.tool(
       'completion',
       {
@@ -94,12 +110,16 @@ class ExtendedMcpServer {
   /**
    * Register search resource with the MCP server
    */
-  registerSearchResource() {
+  private registerSearchResource(): void {
     this.mcpServer.resource(
       'search',
-      'search://{query}',
+      new ResourceTemplate("test://{query}", { list: undefined }),
       async (uri, { query }) => {
+        
+        console.log(`Processing search request for: ${uri}`);
+        
         console.log(`Processing search request for: ${query}`);
+        
         
         // Simulate search processing
         await new Promise(resolve => setTimeout(resolve, 300));
@@ -127,7 +147,7 @@ class ExtendedMcpServer {
    * Connect the server to a transport
    * @returns Promise that resolves when connected
    */
-  async connect() {
+  public async connect(): Promise<void> {
     const transport = new StdioServerTransport();
     await this.mcpServer.connect(transport);
     console.log(`Server connected via stdio transport`);
@@ -135,54 +155,52 @@ class ExtendedMcpServer {
 
   /**
    * Register an event listener
-   * @param {string} event - The event name
-   * @param {Function} listener - The event handler function
+   * @param event - The event name
+   * @param listener - The event handler function
    */
-  on(event, listener) {
+  public on(event: string, listener: (...args: any[]) => void): void {
     this.events.on(event, listener);
   }
   
   /**
    * Get the MCP server instance
-   * @returns {McpServer} The MCP server instance
+   * @returns The MCP server instance
    */
-  getMcpServer() {
+  public getMcpServer(): McpServer {
     return this.mcpServer;
   }
 
   /**
    * Get the list of supported models
-   * @returns {string[]} Array of supported model names
+   * @returns Array of supported model names
    */
-  getSupportedModels() {
+  public getSupportedModels(): string[] {
     return [...this.models];
   }
 }
 
 // Demo usage
-if (require.main === module) {
-  const server = new ExtendedMcpServer({
-    serverName: 'JavaScript MCP Demo Server',
-    version: '1.0.0'
-  });
-  
-  // Register event handlers
-  server.on('request', (data) => {
-    console.log(`Request received: ${JSON.stringify(data)}`);
-  });
-  
-  server.on('completion', (data) => {
-    console.log(`Completion finished: ${JSON.stringify(data)}`);
-  });
-  
-  console.log(`MCP Server "${server.getMcpServer().options.name}" initialized`);
-  console.log(`Supported models: ${server.getSupportedModels().join(', ')}`);
-  
-  // Connect the server
-  server.connect().catch(error => {
-    console.error('Failed to connect server:', error);
-    process.exit(1);
-  });
-}
 
-module.exports = { ExtendedMcpServer };
+const server = new ExtendedMcpServer({
+  serverName: 'TypeScript MCP Demo Server',
+  version: '1.0.0'
+});
+
+// Register event handlers
+server.on('request', (data) => {
+  console.log(`Request received: ${JSON.stringify(data)}`);
+});
+
+server.on('completion', (data) => {
+  console.log(`Completion finished: ${JSON.stringify(data)}`);
+});
+
+console.log(`MCP Server "${server.name}" initialized`);
+console.log(`Supported models: ${server.getSupportedModels().join(', ')}`);
+
+// Connect the server
+server.connect().catch(error => {
+  console.error('Failed to connect server:', error);
+  process.exit(1);
+});
+

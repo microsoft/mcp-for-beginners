@@ -1,14 +1,40 @@
-# Practical Implementation
+# Sample
 
-## Overview
+This is a JavaScript sample for an MCP Server
 
-This lesson focuses on practical aspects of MCP implementation. We'll explore how to use MCP SDKs in C# to build robust applications, debug and test MCP servers, and create reusable resources, prompts, and tools.
+Here's an example of a tool registration where we register a tool:
 
-## Learning Objectives
+```csharp
+[McpTool("getCurrentWeather", "Gets the current weather for a location")]
+public async Task<WeatherResult> GetCurrentWeatherAsync(
+    [McpParameter(Description = "The location to get weather for")] string location)
+{
+    _logger.LogInformation($"Getting weather for {location}");
 
-By the end of this lesson, you will be able to:
-- Implement MCP solutions using official SDKs in various programming languages
-- Debug and test MCP servers systematically
-- Create and use server features (Resources, Prompts, and Tools)
-- Design effective MCP workflows for complex tasks
-- Optimize MCP implementations for performance and reliability
+    // Simulate API call delay
+    await Task.Delay(500);
+    
+    // Return mock weather data
+    return new WeatherResult
+    {
+        Location = location,
+        Temperature = new Random().Next(0, 35),
+        Condition = GetRandomWeatherCondition(),
+        Timestamp = DateTime.UtcNow
+    };
+}
+```
+
+## Install
+
+Run the following command:
+
+```bash
+dotnet restore
+```
+
+## Run
+
+```bash
+dotnet run
+```

@@ -1,14 +1,10 @@
-// mcp_calculator_server.js - Sample MCP Calculator Server implementation in JavaScript
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { z } from "zod";
+# Sample
 
-// Create an MCP server
-const server = new McpServer({
-  name: "Calculator MCP Server",
-  version: "1.0.0"
-});
+This is a JavaScript sample for an MCP Server
 
+Here's what the calculator portion of it looks like:
+
+```javascript
 // Define calculator tools for each operation
 server.tool(
   "add",
@@ -61,9 +57,18 @@ server.tool(
     };
   }
 );
+```
 
-// Connect the server using stdio transport
-const transport = new StdioServerTransport();
-server.connect(transport).catch(console.error);
+## Install
 
-console.log("Calculator MCP Server started");
+Run the following command:
+
+```bash
+npm install
+```
+
+## Run
+
+```bash
+npm start
+```

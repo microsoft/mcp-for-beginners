@@ -1,5 +1,7 @@
 # Getting Started with MCP
 
+Welcome to your first steps with the Model Context Protocol (MCP)! Whether you're new to MCP or looking to deepen your understanding, this guide will walk you through the essential setup and development process. You'll discover how MCP enables seamless integration between AI models and applications, and learn how to quickly get your environment ready for building and testing MCP-powered solutions.
+
 ## Overview
 
 This lesson provides practical guidance on setting up MCP environments and building your first MCP applications. You'll learn how to set up the necessary tools and frameworks, build basic MCP servers, create host applications, and test your implementations.
@@ -9,6 +11,7 @@ The Model Context Protocol (MCP) is an open protocol that standardizes how appli
 ## Learning Objectives
 
 By the end of this lesson, you will be able to:
+
 - Set up development environments for MCP in C#, Java, Python, TypeScript, and JavaScript
 - Build and deploy basic MCP servers with custom features (resources, prompts, and tools)
 - Create host applications that connect to MCP servers
@@ -18,27 +21,33 @@ By the end of this lesson, you will be able to:
 
 ## Setting Up Your MCP Environment
 
+Before you begin working with MCP, it's important to prepare your development environment and understand the basic workflow. This section will guide you through the initial setup steps to ensure a smooth start with MCP.
+
 ### Prerequisites
 
 Before diving into MCP development, ensure you have:
 
-1. **Development Environment**: For your chosen language (C#, Java, Python, TypeScript, or JavaScript)
-2. **IDE/Editor**: Visual Studio, VS Code, IntelliJ, Eclipse, PyCharm, or any modern code editor
-3. **Package Managers**: NuGet, Maven/Gradle, pip, or npm/yarn
-4. **API Keys**: For any AI services you plan to use in your host applications
+- **Development Environment**: For your chosen language (C#, Java, Python, TypeScript, or JavaScript)
+- **IDE/Editor**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm, or any modern code editor
+- **Package Managers**: NuGet, Maven/Gradle, pip, or npm/yarn
+- **API Keys**: For any AI services you plan to use in your host applications
 
 ## To set up an MCP Client and MCP Server in Visual Studio Code, follow these steps:
 
+Getting started with MCP in Visual Studio Code is a straightforward process that enables rapid prototyping and testing of AI-powered tools. By following the steps below, you'll set up both an MCP client and server, allowing you to explore the protocol's capabilities in a hands-on way. Let's walk through the essential setup process.
+
 1. **Install Required Dependencies**:
+
    - Ensure you have Python (version 3.12.9 or later) and Node.js (version 22.14.0 or later) installed on your machine.
    - Install MCP server packages using npm:
+
      ```bash
      npm install -g @modelcontextprotocol/server-filesystem
      npm install -g @modelcontextprotocol/server-postgres
      ```
 
 2 **Configure MCP Servers**:
-   - Open your workspace in VS Code.
+   - Open your workspace in Visual Studio Code.
    - Create a `.vscode/mcp.json` file in your workspace folder to configure MCP servers. Example configuration:
      ```json
      {
@@ -53,15 +62,15 @@ Before diving into MCP development, ensure you have:
      ```
 
 4. **Enable MCP Discovery**:
-   - Go to `File -> Preferences -> Settings` in VS Code.
+   - Go to `File -> Preferences -> Settings` in Visual Studio Code.
    - Search for "MCP" and enable `chat.mcp.discovery.enabled` in the settings.json file.
 
 5. **Start MCP Server**:
    - Run the MCP server locally using the configured command.
-   - Test the server by sending requests through the Copilot Agent Mode in VS Code.
+   - Test the server by sending requests through the Copilot Agent Mode in Visual Studio Code.
 
 6. **Use MCP Client**:
-   - Open the Copilot Chat window in VS Code.
+   - Open the Copilot Chat window in Visual Studio Code.
    - Switch to Agent Mode and interact with the MCP server tools.
 
 
@@ -78,7 +87,7 @@ MCP provides official SDKs for multiple languages:
 
 ### Installation and Setup
 
-### VS Code GitHub Copilot
+### Visual Studio Code GitHub Copilot
 
 <table>
 <table>
@@ -99,17 +108,18 @@ MCP provides official SDKs for multiple languages:
 <tr><th align="left">Programming Languages</th><td>TypeScript</td></tr>
 </table>
 
-VS Code integrates MCP with GitHub Copilot through [agent mode](https://code.visualstudio.com/docs/copilot/chat/chat-agent-mode), allowing direct interaction with MCP-provided tools within your agentic coding workflow. Configure servers in Claude Desktop, workspace or user settings, with guided MCP installation and secure handling of keys in input variables to avoid leaking hard-coded keys.
+Visual Studio Code integrates MCP with GitHub Copilot through [agent mode](https://code.visualstudio.com/docs/copilot/chat/chat-agent-mode), allowing direct interaction with MCP-provided tools within your agentic coding workflow. Configure servers in Claude Desktop, workspace or user settings, with guided MCP installation and secure handling of keys in input variables to avoid leaking hard-coded keys.
 
 **Key Features:**
 - Support for stdio and server-sent events (SSE) transport
 - Per-session selection of tools per agent session for optimal performance
 - Easy server debugging with restart commands and output logging
 - Tool calls with editable inputs and always-allow toggle
-- Integration with existing VS Code extension system to register MCP servers from extensions
+- Integration with existing Visual Studio Code extension system to register MCP servers from extensions
 
 #### Command-line configuration
-You can also use the VS Code command-line interface to add an MCP server to your user profile or to a workspace.
+
+You can also use the Visual Studio Code command-line interface to add an MCP server to your user profile or to a workspace.
 
 To add an MCP server to your user profile, use the --add-mcp command line option, and provide the JSON server configuration in the form {\"name\":\"server-name\",\"command\":...}.
 
@@ -119,12 +129,14 @@ code --add-mcp "{\"name\":\"my-server\",\"command\": \"uvx\",\"args\": [\"mcp-se
 <details>
 <summary>Screenshots</summary>
 
-![Guided MCP server configuration in VS Code](../images/02-GettingStarted/chat-mode-agent.png)
+![Guided MCP server configuration in Visual Studio Code](../images/02-GettingStarted/chat-mode-agent.png)
 ![Tool selection per agent session](../images/02-GettingStarted/agent-mode-select-tools.png)
 ![Easily debug errors during MCP development](../images/02-GettingStarted/mcp-list-servers.png)
 </details>
 
 #### TypeScript/JavaScript
+
+To get started with MCP development in TypeScript or JavaScript, install the official SDKs using npm as shown below:
 
 ```bash
 # For server development
@@ -136,6 +148,8 @@ npm install @modelcontextprotocol/typescript-client-sdk
 
 #### Python
 
+To get started with MCP development in Python, install the official SDKs using pip as shown below:
+
 ```bash
 # For server development
 pip install mcp-server-sdk
@@ -146,6 +160,8 @@ pip install mcp-client-sdk
 
 #### C#
 
+To get started with MCP development in C#, install the official SDK using one of the following methods:
+
 ```bash
 # Using NuGet Package Manager
 Install-Package ModelContextProtocol.SDK
@@ -155,6 +171,7 @@ dotnet add package ModelContextProtocol.SDK
 ```
 
 #### Java
+To get started with MCP development in Java, add the official SDK to your project using Maven or Gradle as shown below:
 
 ```bash
 # Using Maven
@@ -172,10 +189,10 @@ implementation 'io.modelcontextprotocol:mcp-sdk:latest'
 
 An MCP server typically includes:
 
-1. **Server Configuration**: Setup port, authentication, and other settings
-2. **Resources**: Data and context made available to LLMs
-3. **Tools**: Functionality that models can invoke
-4. **Prompts**: Templates for generating or structuring text
+- **Server Configuration**: Setup port, authentication, and other settings
+- **Resources**: Data and context made available to LLMs
+- **Tools**: Functionality that models can invoke
+- **Prompts**: Templates for generating or structuring text
 
 Here's a simplified example in TypeScript:
 
@@ -209,7 +226,16 @@ server.registerTool({
 server.start();
 ```
 
+In the preceding code we:
+
+- Import the necessary classes from the MCP TypeScript SDK.
+- Create and configure a new MCP server instance.
+- Register a custom tool (`calculator`) with a handler function.
+- Start the server to listen for incoming MCP requests.
+
 ## Testing and Debugging
+
+Before you begin testing your MCP server, it's important to understand the available tools and best practices for debugging. Effective testing ensures your server behaves as expected and helps you quickly identify and resolve issues. The following section outlines recommended approaches for validating your MCP implementation.
 
 ### Testing MCP Servers
 
@@ -230,6 +256,8 @@ npm install -g @modelcontextprotocol/inspector
 # Running the Inspector
 mcp-inspector
 ```
+
+When you run the above commands, the MCP Inspector will launch a local web interface in your browser. You can expect to see a dashboard displaying your registered MCP servers, their available tools, resources, and prompts. The interface allows you to interactively test tool execution, inspect server metadata, and view real-time responses, making it easier to validate and debug your MCP server implementations.
 
 #### Manual Testing
 
@@ -270,6 +298,8 @@ test('Calculator tool returns correct result', async () => {
 | Authentication issues | Verify token validity and permissions |
 
 ## Deploying MCP Servers
+
+Deploying your MCP server allows others to access its tools and resources beyond your local environment. There are several deployment strategies to consider, depending on your requirements for scalability, reliability, and ease of management. Below you'll find guidance for deploying MCP servers locally, in containers, and to the cloud.
 
 ### Local Development
 
@@ -342,8 +372,8 @@ az containerapp create \
 
 - [Java Calculator](./samples/java/calculator/README.md)
 - [.Net Calculator](./samples/csharp/)
-- [JavaScript Calculator](./samples/javascript/)
-- [TypeScript Calculator](./samples/typescript/)
+- [JavaScript Calculator](./samples/javascript/README.md)
+- [TypeScript Calculator](./samples/typescript/README.md)
 - [Python Calculator](./samples/python/)
 
 ## Exercise
@@ -360,4 +390,6 @@ Create a simple MCP server with a tool of your choice:
 
 ---
 
-Next: [Practical Implementation](../03-PracticalImplementation/README.md)
+## What's next
+
+Next: [Practical Implementation](/04-PracticalImplementation/README.md)

@@ -21,7 +21,8 @@ This open-source curriculum is designed to teach the concepts and fundamentals o
 - Communication mechanisms
 
 ### [Security](./02-Security/readme.md)
-- to do
+- Security risks inherent in the MCP specification
+- Controls that can be implemented to reduce security risks
 
 ### [Getting Started](./03-GettingStarted/README.md)
 - Setting up MCP environments
