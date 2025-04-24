@@ -10,28 +10,28 @@ namespace Calculator.Tools;
 /// that can perform basic arithmetic operations (add, subtract, multiply, divide).
 /// </summary>
 [McpServerToolType]
-public static class McpCalculatorServer
+public class McpCalculatorServer
 {
     [McpServerTool, Description("Calculates the sum of two numbers")]
-    public static double Add(double numberA, double numberB)
+    public double Add(double numberA, double numberB)
     {
         return numberA + numberB;
     }
 
     [McpServerTool, Description("Calculates the difference of two numbers")]
-    public static double Subtract(double numberA, double numberB)
+    public double Subtract(double numberA, double numberB)
     {
         return numberA - numberB;
     }
 
     [McpServerTool, Description("Calculates the product of two numbers")]
-    public static double Multiply(double numberA, double numberB)
+    public double Multiply(double numberA, double numberB)
     {
         return numberA * numberB;
     }
     
     [McpServerTool, Description("Calculates the quotient of two numbers")]
-    public static double Divide(double numberA, double numberB)
+    public double Divide(double numberA, double numberB)
     {
         if (numberB == 0)
         {
@@ -41,7 +41,7 @@ public static class McpCalculatorServer
     }
 
     [McpServerTool, Description("Finds the next 5 prime numbers after the given number")]
-    public static List<long> NextFivePrimeNumbers(long startNumber)
+    public List<long> NextFivePrimeNumbers(long startNumber)
     {
         var result = new List<long>(5);
         long number = startNumber;
@@ -59,7 +59,7 @@ public static class McpCalculatorServer
     }
     
     // Helper method to efficiently check if a number is prime
-    private static bool IsPrime(long number)
+    private bool IsPrime(long number)
     {
         if (number <= 1) return false;
         if (number <= 3) return true;

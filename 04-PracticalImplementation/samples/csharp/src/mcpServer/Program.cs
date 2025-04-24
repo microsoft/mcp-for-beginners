@@ -9,9 +9,8 @@ builder.Logging.AddConsole(consoleLogOptions =>
 
 builder.Services
 	.AddMcpServer()
-	.WithStdioServerTransport()
-	.WithToolsFromAssembly()
-	.WithHttpTransport();
+		.WithTools<McpCalculatorServer>()
+		.WithHttpTransport();
 
 builder.AddServiceDefaults();
 
