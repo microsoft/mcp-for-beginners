@@ -1,37 +1,37 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "a6482c201133cb6cb0742918b373a523",
-  "translation_date": "2025-05-17T16:28:59+00:00",
+  "original_hash": "344a126b620ff7997158542fd31be6a4",
+  "translation_date": "2025-05-19T18:38:28+00:00",
   "source_file": "07-LessonsfromEarlyAdoption/README.md",
   "language_code": "ms"
 }
 -->
-# Pelajaran dari Penerima Awal
+# Lessons from Early Adopters
 
-## Gambaran Keseluruhan
+## Overview
 
-Pelajaran ini meneroka bagaimana penerima awal telah memanfaatkan Protokol Konteks Model (MCP) untuk menyelesaikan cabaran dunia sebenar dan mendorong inovasi merentasi industri. Melalui kajian kes terperinci dan projek praktikal, anda akan melihat bagaimana MCP membolehkan integrasi AI yang standard, selamat dan boleh diskala—menghubungkan model bahasa besar, alat, dan data perusahaan dalam satu rangka kerja bersatu. Anda akan mendapat pengalaman praktikal dalam mereka bentuk dan membina penyelesaian berasaskan MCP, belajar dari corak pelaksanaan yang terbukti, dan menemui amalan terbaik untuk menggunakan MCP dalam persekitaran pengeluaran. Pelajaran ini juga menyoroti trend yang muncul, arah masa depan, dan sumber terbuka untuk membantu anda kekal di barisan hadapan teknologi MCP dan ekosistemnya yang berkembang.
+This lesson examines how early adopters have used the Model Context Protocol (MCP) to tackle real-world problems and foster innovation across various industries. Through detailed case studies and practical projects, you will see how MCP enables standardized, secure, and scalable AI integration—linking large language models, tools, and enterprise data within a unified framework. You will gain hands-on experience designing and building MCP-based solutions, learn from proven implementation patterns, and discover best practices for deploying MCP in production environments. The lesson also covers emerging trends, future directions, and open-source resources to keep you up to date with MCP technology and its evolving ecosystem.
 
-## Objektif Pembelajaran
+## Learning Objectives
 
-- Menganalisis pelaksanaan MCP dunia sebenar merentasi pelbagai industri
-- Mereka bentuk dan membina aplikasi lengkap berasaskan MCP
-- Meneroka trend yang muncul dan arah masa depan dalam teknologi MCP
-- Menerapkan amalan terbaik dalam senario pembangunan sebenar
+- Analyze real-world MCP implementations in different industries  
+- Design and build complete MCP-based applications  
+- Explore emerging trends and future directions in MCP technology  
+- Apply best practices in real development scenarios  
 
-## Pelaksanaan MCP Dunia Sebenar
+## Real-world MCP Implementations
 
-### Kajian Kes 1: Automasi Sokongan Pelanggan Perusahaan
+### Case Study 1: Enterprise Customer Support Automation
 
-Sebuah syarikat multinasional melaksanakan penyelesaian berasaskan MCP untuk menyeragamkan interaksi AI merentasi sistem sokongan pelanggan mereka. Ini membolehkan mereka:
+A multinational corporation adopted an MCP-based solution to standardize AI interactions across their customer support systems. This enabled them to:
 
-- Mewujudkan antara muka bersatu untuk pelbagai penyedia LLM
-- Mengekalkan pengurusan prompt yang konsisten merentasi jabatan
-- Melaksanakan kawalan keselamatan dan pematuhan yang kukuh
-- Mudah beralih antara model AI yang berbeza berdasarkan keperluan khusus
+- Provide a unified interface for multiple LLM providers  
+- Maintain consistent prompt management across teams  
+- Implement strong security and compliance controls  
+- Easily switch between AI models depending on specific requirements  
 
-**Pelaksanaan Teknikal:**
+**Technical Implementation:**  
 ```python
 # Python MCP server implementation for customer support
 import logging
@@ -92,18 +92,18 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-**Hasil:** Pengurangan 30% dalam kos model, peningkatan 45% dalam konsistensi respons, dan pematuhan yang dipertingkatkan merentasi operasi global.
+**Results:** 30% reduction in model costs, 45% improvement in response consistency, and enhanced compliance across global operations.
 
-### Kajian Kes 2: Pembantu Diagnostik Penjagaan Kesihatan
+### Case Study 2: Healthcare Diagnostic Assistant
 
-Penyedia penjagaan kesihatan membangunkan infrastruktur MCP untuk mengintegrasikan pelbagai model AI perubatan khusus sambil memastikan data pesakit yang sensitif kekal dilindungi:
+A healthcare provider built an MCP infrastructure to integrate several specialized medical AI models while ensuring sensitive patient data remained secure:
 
-- Peralihan lancar antara model perubatan generalis dan pakar
-- Kawalan privasi yang ketat dan jejak audit
-- Integrasi dengan sistem Rekod Kesihatan Elektronik (EHR) sedia ada
-- Kejuruteraan prompt yang konsisten untuk istilah perubatan
+- Smooth switching between generalist and specialist medical models  
+- Strict privacy controls and audit trails  
+- Integration with existing Electronic Health Record (EHR) systems  
+- Consistent prompt engineering for medical terminology  
 
-**Pelaksanaan Teknikal:**
+**Technical Implementation:**  
 ```csharp
 // C# MCP host application implementation in healthcare application
 using Microsoft.Extensions.DependencyInjection;
@@ -168,18 +168,18 @@ public class DiagnosticAssistant
 }
 ```
 
-**Hasil:** Cadangan diagnostik yang dipertingkatkan untuk doktor sambil mengekalkan pematuhan HIPAA sepenuhnya dan pengurangan ketara dalam pertukaran konteks antara sistem.
+**Results:** Improved diagnostic suggestions for physicians, full HIPAA compliance, and a significant reduction in context-switching between systems.
 
-### Kajian Kes 3: Analisis Risiko Perkhidmatan Kewangan
+### Case Study 3: Financial Services Risk Analysis
 
-Sebuah institusi kewangan melaksanakan MCP untuk menyeragamkan proses analisis risiko mereka merentasi pelbagai jabatan:
+A financial institution implemented MCP to standardize risk analysis processes across departments:
 
-- Mewujudkan antara muka bersatu untuk model risiko kredit, pengesanan penipuan, dan risiko pelaburan
-- Melaksanakan kawalan akses yang ketat dan versi model
-- Memastikan kebolehaudit semua cadangan AI
-- Mengekalkan pemformatan data yang konsisten merentasi sistem yang pelbagai
+- Created a unified interface for credit risk, fraud detection, and investment risk models  
+- Enforced strict access controls and model versioning  
+- Ensured auditability of all AI recommendations  
+- Maintained consistent data formatting across diverse systems  
 
-**Pelaksanaan Teknikal:**
+**Technical Implementation:**  
 ```java
 // Java MCP server for financial risk assessment
 import org.mcp.server.*;
@@ -210,18 +210,18 @@ public class FinancialRiskMCPServer {
 }
 ```
 
-**Hasil:** Pematuhan peraturan yang dipertingkatkan, kitaran pelaksanaan model 40% lebih cepat, dan konsistensi penilaian risiko yang dipertingkatkan merentasi jabatan.
+**Results:** Enhanced regulatory compliance, 40% faster model deployment cycles, and improved risk assessment consistency across departments.
 
-### Kajian Kes 4: Microsoft Playwright MCP Server untuk Automasi Pelayar
+### Case Study 4: Microsoft Playwright MCP Server for Browser Automation
 
-Microsoft membangunkan [pelayan Playwright MCP](https://github.com/microsoft/playwright-mcp) untuk membolehkan automasi pelayar yang selamat dan standard melalui Protokol Konteks Model. Penyelesaian ini membolehkan ejen AI dan LLM berinteraksi dengan pelayar web dengan cara yang terkawal, boleh diaudit, dan boleh diperluas—membolehkan kes penggunaan seperti ujian web automatik, pengekstrakan data, dan aliran kerja hujung ke hujung.
+Microsoft developed the [Playwright MCP server](https://github.com/microsoft/playwright-mcp) to enable secure, standardized browser automation using the Model Context Protocol. This solution allows AI agents and LLMs to interact with web browsers in a controlled, auditable, and extensible way—supporting use cases like automated web testing, data extraction, and end-to-end workflows.
 
-- Mendedahkan keupayaan automasi pelayar (navigasi, pengisian borang, tangkapan skrin, dll.) sebagai alat MCP
-- Melaksanakan kawalan akses yang ketat dan kotak pasir untuk mengelakkan tindakan tidak sah
-- Menyediakan log audit terperinci untuk semua interaksi pelayar
-- Menyokong integrasi dengan Azure OpenAI dan penyedia LLM lain untuk automasi yang dipacu ejen
+- Exposes browser automation features (navigation, form filling, screenshot capture, etc.) as MCP tools  
+- Enforces strict access controls and sandboxing to prevent unauthorized actions  
+- Provides detailed audit logs for all browser interactions  
+- Supports integration with Azure OpenAI and other LLM providers for agent-driven automation  
 
-**Pelaksanaan Teknikal:**
+**Technical Implementation:**  
 ```typescript
 // TypeScript: Registering Playwright browser automation tools in an MCP server
 import { createServer, ToolDefinition } from 'modelcontextprotocol';
@@ -256,26 +256,26 @@ server.tools.register(
 server.listen(8080);
 ```
 
-**Hasil:**  
-- Membolehkan automasi pelayar yang selamat dan programatik untuk ejen AI dan LLM
-- Mengurangkan usaha ujian manual dan meningkatkan liputan ujian untuk aplikasi web
-- Menyediakan rangka kerja yang boleh digunakan semula dan boleh diperluas untuk integrasi alat berasaskan pelayar dalam persekitaran perusahaan
+**Results:**  
+- Enabled secure, programmatic browser automation for AI agents and LLMs  
+- Reduced manual testing effort and improved test coverage for web applications  
+- Delivered a reusable, extensible framework for browser-based tool integration in enterprise environments  
 
-**Rujukan:**  
-- [Repositori GitHub Pelayan Playwright MCP](https://github.com/microsoft/playwright-mcp)
-- [Penyelesaian AI dan Automasi Microsoft](https://azure.microsoft.com/en-us/products/ai-services/)
+**References:**  
+- [Playwright MCP Server GitHub Repository](https://github.com/microsoft/playwright-mcp)  
+- [Microsoft AI and Automation Solutions](https://azure.microsoft.com/en-us/products/ai-services/)  
 
-### Kajian Kes 5: Azure MCP – Protokol Konteks Model Bertaraf Perusahaan sebagai Perkhidmatan
+### Case Study 5: Azure MCP – Enterprise-Grade Model Context Protocol as a Service
 
-Azure MCP ([https://aka.ms/azmcp](https://aka.ms/azmcp)) ialah pelaksanaan bertaraf perusahaan yang diuruskan oleh Microsoft bagi Protokol Konteks Model, yang direka untuk menyediakan keupayaan pelayan MCP yang boleh diskala, selamat, dan mematuhi sebagai perkhidmatan awan. Azure MCP membolehkan organisasi melaksanakan, mengurus, dan mengintegrasikan pelayan MCP dengan Azure AI, data, dan perkhidmatan keselamatan dengan cepat, mengurangkan beban operasi dan mempercepatkan penerimaan AI.
+Azure MCP ([https://aka.ms/azmcp](https://aka.ms/azmcp)) is Microsoft’s managed, enterprise-grade implementation of the Model Context Protocol, designed to offer scalable, secure, and compliant MCP server capabilities as a cloud service. Azure MCP helps organizations quickly deploy, manage, and integrate MCP servers with Azure AI, data, and security services, reducing operational overhead and accelerating AI adoption.
 
-- Pengehosan pelayan MCP yang diuruskan sepenuhnya dengan penskalaan, pemantauan, dan keselamatan terbina dalam
-- Integrasi asli dengan Azure OpenAI, Azure AI Search, dan perkhidmatan Azure lain
-- Pengesahan dan kebenaran perusahaan melalui Microsoft Entra ID
-- Sokongan untuk alat tersuai, templat prompt, dan penyambung sumber
-- Pematuhan dengan keperluan keselamatan dan peraturan perusahaan
+- Fully managed MCP server hosting with built-in scaling, monitoring, and security  
+- Native integration with Azure OpenAI, Azure AI Search, and other Azure services  
+- Enterprise authentication and authorization through Microsoft Entra ID  
+- Support for custom tools, prompt templates, and resource connectors  
+- Compliance with enterprise security and regulatory standards  
 
-**Pelaksanaan Teknikal:**
+**Technical Implementation:**  
 ```yaml
 # Example: Azure MCP server deployment configuration (YAML)
 apiVersion: mcp.microsoft.com/v1
@@ -301,181 +301,193 @@ spec:
     logAnalyticsWorkspace: <your-log-analytics-id>
 ```
 
-**Hasil:**  
-- Mengurangkan masa untuk nilai bagi projek AI perusahaan dengan menyediakan platform pelayan MCP yang sedia untuk digunakan dan mematuhi
-- Memudahkan integrasi LLM, alat, dan sumber data perusahaan
-- Meningkatkan keselamatan, kebolehlacakan, dan kecekapan operasi untuk beban kerja MCP
+**Results:**  
+- Reduced time-to-value for enterprise AI projects by providing a ready-to-use, compliant MCP server platform  
+- Simplified integration of LLMs, tools, and enterprise data sources  
+- Improved security, observability, and operational efficiency for MCP workloads  
 
-**Rujukan:**  
-- [Dokumentasi Azure MCP](https://aka.ms/azmcp)
-- [Perkhidmatan AI Azure](https://azure.microsoft.com/en-us/products/ai-services/)
+**References:**  
+- [Azure MCP Documentation](https://aka.ms/azmcp)  
+- [Azure AI Services](https://azure.microsoft.com/en-us/products/ai-services/)  
 
-## Projek Praktikal
+## Case Study 6: NLWeb  
+MCP (Model Context Protocol) is an emerging protocol that enables chatbots and AI assistants to interact with tools. Every NLWeb instance is also an MCP server, supporting a core method, ask, which lets you query a website in natural language. The response uses schema.org, a widely-used vocabulary for describing web data. In simple terms, MCP is to NLWeb what HTTP is to HTML. NLWeb combines protocols, schema.org formats, and sample code to help sites quickly create these endpoints, benefiting both humans through conversational interfaces and machines through natural agent-to-agent communication.
 
-### Projek 1: Bina Pelayan MCP Berbilang Penyedia
+NLWeb has two main components:  
+- A simple protocol to interface with a site using natural language and a format based on JSON and schema.org for responses. See the REST API documentation for details.  
+- A straightforward implementation of the protocol that leverages existing markup for sites that can be abstracted as lists of items (products, recipes, attractions, reviews, etc.). Along with UI widgets, sites can easily provide conversational interfaces to their content. See the Life of a chat query documentation for details on how this works.  
 
-**Objektif:** Mewujudkan pelayan MCP yang boleh mengarahkan permintaan kepada pelbagai penyedia model AI berdasarkan kriteria tertentu.
+**References:**  
+- [Azure MCP Documentation](https://aka.ms/azmcp)  
+- [NLWeb](https://github.com/microsoft/NlWeb)  
 
-**Keperluan:**
-- Menyokong sekurang-kurangnya tiga penyedia model berbeza (contohnya, OpenAI, Anthropic, model tempatan)
-- Melaksanakan mekanisme penghalaan berdasarkan metadata permintaan
-- Mewujudkan sistem konfigurasi untuk menguruskan kelayakan penyedia
-- Menambah caching untuk mengoptimumkan prestasi dan kos
-- Membangun papan pemuka ringkas untuk memantau penggunaan
+## Hands-on Projects
 
-**Langkah Pelaksanaan:**
-1. Sediakan infrastruktur pelayan MCP asas
-2. Melaksanakan adapter penyedia untuk setiap perkhidmatan model AI
-3. Mewujudkan logik penghalaan berdasarkan atribut permintaan
-4. Menambah mekanisme caching untuk permintaan yang kerap
-5. Membangun papan pemuka pemantauan
-6. Uji dengan pelbagai corak permintaan
+### Project 1: Build a Multi-Provider MCP Server
 
-**Teknologi:** Pilih dari Python (.NET/Java/Python berdasarkan pilihan anda), Redis untuk caching, dan rangka kerja web ringkas untuk papan pemuka.
+**Objective:** Build an MCP server that routes requests to multiple AI model providers based on specific criteria.
 
-### Projek 2: Sistem Pengurusan Prompt Perusahaan
+**Requirements:**  
+- Support at least three different model providers (e.g., OpenAI, Anthropic, local models)  
+- Implement routing based on request metadata  
+- Create a configuration system for managing provider credentials  
+- Add caching to optimize performance and reduce costs  
+- Build a simple dashboard to monitor usage  
 
-**Objektif:** Membangun sistem berasaskan MCP untuk menguruskan, membuat versi, dan menggunakan templat prompt merentasi organisasi.
+**Implementation Steps:**  
+1. Set up the basic MCP server infrastructure  
+2. Implement provider adapters for each AI model service  
+3. Develop routing logic based on request attributes  
+4. Add caching for frequent requests  
+5. Build the monitoring dashboard  
+6. Test with various request patterns  
 
-**Keperluan:**
-- Mewujudkan repositori berpusat untuk templat prompt
-- Melaksanakan versi dan aliran kerja kelulusan
-- Membangun keupayaan ujian templat dengan input sampel
-- Membangun kawalan akses berdasarkan peranan
-- Mewujudkan API untuk pengambilan dan penggunaan templat
+**Technologies:** Choose from Python (.NET/Java/Python depending on your preference), Redis for caching, and a simple web framework for the dashboard.
 
-**Langkah Pelaksanaan:**
-1. Reka bentuk skema pangkalan data untuk penyimpanan templat
-2. Mewujudkan API teras untuk operasi CRUD templat
-3. Melaksanakan sistem versi
-4. Membangun aliran kerja kelulusan
-5. Membangun rangka kerja ujian
-6. Mewujudkan antara muka web ringkas untuk pengurusan
-7. Mengintegrasikan dengan pelayan MCP
+### Project 2: Enterprise Prompt Management System
 
-**Teknologi:** Pilihan rangka kerja backend anda, pangkalan data SQL atau NoSQL, dan rangka kerja frontend untuk antara muka pengurusan.
+**Objective:** Create an MCP-based system to manage, version, and deploy prompt templates across an organization.
 
-### Projek 3: Platform Penjanaan Kandungan Berasaskan MCP
+**Requirements:**  
+- Centralized repository for prompt templates  
+- Versioning and approval workflows  
+- Template testing with sample inputs  
+- Role-based access controls  
+- API for template retrieval and deployment  
 
-**Objektif:** Membangun platform penjanaan kandungan yang memanfaatkan MCP untuk menyediakan hasil yang konsisten merentasi jenis kandungan yang berbeza.
+**Implementation Steps:**  
+1. Design database schema for template storage  
+2. Develop core API for template CRUD operations  
+3. Implement versioning system  
+4. Build approval workflow  
+5. Develop testing framework  
+6. Create a simple web interface for management  
+7. Integrate with an MCP server  
 
-**Keperluan:**
-- Menyokong pelbagai format kandungan (posting blog, media sosial, salinan pemasaran)
-- Melaksanakan penjanaan berasaskan templat dengan pilihan penyesuaian
-- Mewujudkan sistem semakan dan maklum balas kandungan
-- Menjejaki metrik prestasi kandungan
-- Menyokong versi dan iterasi kandungan
+**Technologies:** Your choice of backend framework, SQL or NoSQL database, and frontend framework for management interface.
 
-**Langkah Pelaksanaan:**
-1. Sediakan infrastruktur klien MCP
-2. Mewujudkan templat untuk pelbagai jenis kandungan
-3. Membangun saluran penjanaan kandungan
-4. Melaksanakan sistem semakan
-5. Membangun sistem penjejakan metrik
-6. Mewujudkan antara muka pengguna untuk pengurusan templat dan penjanaan kandungan
+### Project 3: MCP-Based Content Generation Platform
 
-**Teknologi:** Bahasa pengaturcaraan pilihan anda, rangka kerja web, dan sistem pangkalan data.
+**Objective:** Build a content generation platform leveraging MCP to deliver consistent results across different content types.
 
-## Arah Masa Depan untuk Teknologi MCP
+**Requirements:**  
+- Support multiple content formats (blog posts, social media, marketing copy)  
+- Template-based generation with customization options  
+- Content review and feedback system  
+- Track content performance metrics  
+- Support content versioning and iteration  
 
-### Trend Yang Muncul
+**Implementation Steps:**  
+1. Set up MCP client infrastructure  
+2. Create templates for various content types  
+3. Build content generation pipeline  
+4. Implement review system  
+5. Develop metrics tracking system  
+6. Build user interface for template management and content generation  
 
-1. **MCP Berbilang Mod**
-   - Pengembangan MCP untuk menyeragamkan interaksi dengan model imej, audio, dan video
-   - Pembangunan keupayaan penaakulan silang-mod
-   - Format prompt standard untuk pelbagai mod
+**Technologies:** Your preferred programming language, web framework, and database system.
 
-2. **Infrastruktur MCP Teragih**
-   - Rangkaian MCP teragih yang boleh berkongsi sumber merentasi organisasi
-   - Protokol standard untuk perkongsian model yang selamat
-   - Teknik pengiraan yang memelihara privasi
+## Future Directions for MCP Technology
 
-3. **Pasaran MCP**
-   - Ekosistem untuk berkongsi dan memonetkan templat dan plugin MCP
-   - Proses jaminan kualiti dan pensijilan
-   - Integrasi dengan pasaran model
+### Emerging Trends
 
-4. **MCP untuk Pengkomputeran Edge**
-   - Penyesuaian standard MCP untuk peranti edge yang terhad sumber
-   - Protokol yang dioptimumkan untuk persekitaran jalur lebar rendah
-   - Pelaksanaan MCP khusus untuk ekosistem IoT
+1. **Multi-Modal MCP**  
+   - Expanding MCP to standardize interactions with image, audio, and video models  
+   - Developing cross-modal reasoning capabilities  
+   - Standardized prompt formats for different modalities  
 
-5. **Rangka Kerja Peraturan**
-   - Pembangunan lanjutan MCP untuk pematuhan peraturan
-   - Jejak audit standard dan antara muka kebolehexplainan
-   - Integrasi dengan rangka kerja tadbir urus AI yang muncul
+2. **Federated MCP Infrastructure**  
+   - Distributed MCP networks that share resources across organizations  
+   - Standardized protocols for secure model sharing  
+   - Privacy-preserving computation techniques  
 
-### Penyelesaian MCP dari Microsoft 
+3. **MCP Marketplaces**  
+   - Ecosystems for sharing and monetizing MCP templates and plugins  
+   - Quality assurance and certification processes  
+   - Integration with model marketplaces  
 
-Microsoft dan Azure telah membangunkan beberapa repositori sumber terbuka untuk membantu pembangun melaksanakan MCP dalam pelbagai senario:
+4. **MCP for Edge Computing**  
+   - Adapting MCP standards for resource-constrained edge devices  
+   - Optimized protocols for low-bandwidth environments  
+   - Specialized MCP implementations for IoT ecosystems  
 
-#### Organisasi Microsoft
-1. [playwright-mcp](https://github.com/microsoft/playwright-mcp) - Pelayan Playwright MCP untuk automasi dan ujian pelayar
-2. [files-mcp-server](https://github.com/microsoft/files-mcp-server) - Pelaksanaan pelayan MCP OneDrive untuk ujian tempatan dan sumbangan komuniti
+5. **Regulatory Frameworks**  
+   - Developing MCP extensions for regulatory compliance  
+   - Standardized audit trails and explainability interfaces  
+   - Integration with emerging AI governance frameworks  
 
-#### Organisasi Azure-Samples
-1. [mcp](https://github.com/Azure-Samples/mcp) - Pautan kepada sampel, alat, dan sumber untuk membina dan mengintegrasikan pelayan MCP di Azure menggunakan pelbagai bahasa
-2. [mcp-auth-servers](https://github.com/Azure-Samples/mcp-auth-servers) - Pelayan MCP rujukan yang menunjukkan pengesahan dengan spesifikasi Protokol Konteks Model semasa
-3. [remote-mcp-functions](https://github.com/Azure-Samples/remote-mcp-functions) - Halaman pendaratan untuk pelaksanaan Pelayan MCP Jauh dalam Fungsi Azure dengan pautan ke repos khusus bahasa
-4. [remote-mcp-functions-python](https://github.com/Azure-Samples/remote-mcp-functions-python) - Templat permulaan cepat untuk membina dan menggunakan pelayan MCP jauh tersuai menggunakan Fungsi Azure dengan Python
-5. [remote-mcp-functions-dotnet](https://github.com/Azure-Samples/remote-mcp-functions-dotnet) - Templat permulaan cepat untuk membina dan menggunakan pelayan MCP jauh tersuai menggunakan Fungsi Azure dengan .NET/C#
-6. [remote-mcp-functions-typescript](https://github.com/Azure-Samples/remote-mcp-functions-typescript) - Templat permulaan cepat untuk membina dan menggunakan pelayan MCP jauh tersuai menggunakan Fungsi Azure dengan TypeScript
-7. [remote-mcp-apim-functions-python](https://github.com/Azure-Samples/remote-mcp-apim-functions-python) - Pengurusan API Azure sebagai Gerbang AI kepada pelayan MCP Jauh menggunakan Python
-8. [AI-Gateway](https://github.com/Azure-Samples/AI-Gateway) - Eksperimen APIM ❤️ AI termasuk keupayaan MCP, mengintegrasikan dengan Azure OpenAI dan AI Foundry
+### MCP Solutions from Microsoft
 
-Repositori ini menyediakan pelbagai pelaksanaan, templat, dan sumber untuk bekerja dengan Protokol Konteks Model merentasi pelbagai bahasa pengaturcaraan dan perkhidmatan Azure. Mereka merangkumi pelbagai kes penggunaan dari pelaksanaan pelayan asas hingga pengesahan, penggunaan awan, dan senario integrasi perusahaan.
+Microsoft and Azure have created several open-source repositories to help developers implement MCP in various scenarios:
 
-#### Direktori Sumber MCP
+#### Microsoft Organization  
+1. [playwright-mcp](https://github.com/microsoft/playwright-mcp) - Playwright MCP server for browser automation and testing  
+2. [files-mcp-server](https://github.com/microsoft/files-mcp-server) - OneDrive MCP server implementation for local testing and community contributions  
+3. [NLWeb](https://github.com/microsoft/NlWeb) - Collection of open protocols and tools focused on establishing a foundational AI Web layer  
 
-Direktori [Sumber MCP](https://github.com/microsoft/mcp/tree/main/Resources) dalam repositori rasmi Microsoft MCP menyediakan koleksi sumber sampel, templat prompt, dan definisi alat yang dikurasi untuk digunakan dengan pelayan Protokol Konteks Model. Direktori ini direka untuk membantu pembangun memulakan dengan cepat dengan MCP dengan menawarkan blok binaan yang boleh digunakan semula dan contoh amalan terbaik untuk:
+#### Azure-Samples Organization  
+1. [mcp](https://github.com/Azure-Samples/mcp) - Samples, tools, and resources for building and integrating MCP servers on Azure with multiple languages  
+2. [mcp-auth-servers](https://github.com/Azure-Samples/mcp-auth-servers) - Reference MCP servers demonstrating authentication with the current MCP specification  
+3. [remote-mcp-functions](https://github.com/Azure-Samples/remote-mcp-functions) - Landing page for Remote MCP Server implementations in Azure Functions with language-specific repos  
+4. [remote-mcp-functions-python](https://github.com/Azure-Samples/remote-mcp-functions-python) - Quickstart template for building and deploying remote MCP servers with Azure Functions in Python  
+5. [remote-mcp-functions-dotnet](https://github.com/Azure-Samples/remote-mcp-functions-dotnet) - Quickstart template for remote MCP servers using Azure Functions with .NET/C#  
+6. [remote-mcp-functions-typescript](https://github.com/Azure-Samples/remote-mcp-functions-typescript) - Quickstart template for remote MCP servers using Azure Functions with TypeScript  
+7. [remote-mcp-apim-functions-python](https://github.com/Azure-Samples/remote-mcp-apim-functions-python) - Azure API Management as AI Gateway to Remote MCP servers using Python  
+8. [AI-Gateway](https://github.com/Azure-Samples/AI-Gateway) - APIM AI experiments including MCP capabilities, integrating with Azure OpenAI and AI Foundry  
 
-- **Templat Prompt:** Templat prompt siap pakai untuk tugas dan senario AI biasa, yang boleh disesuaikan untuk pelaksanaan pelayan MCP anda sendiri.
-- **Definisi Alat:** Skema alat contoh dan metadata untuk menyeragamkan integrasi dan pelaksanaan alat merentasi pelayan MCP yang berbeza.
-- **Sampel Sumber:** Definisi sumber contoh untuk menyambung ke sumber data, API, dan perkhidmatan luaran dalam rangka kerja MCP.
-- **Pelaksanaan Rujukan:** Sampel praktikal yang menunjukkan cara untuk menyusun dan mengatur sumber, prompt, dan alat dalam projek MCP dunia sebenar.
+These repositories offer a variety of implementations, templates, and resources for working with the Model Context Protocol across different programming languages and Azure services, covering use cases from basic server setups to authentication, cloud deployment, and enterprise integration.
 
-Sumber ini mempercepatkan pembangunan, mempromosikan standardisasi, dan membantu memastikan amalan terbaik apabila membina dan menggunakan penyelesaian berasaskan MCP.
+#### MCP Resources Directory
 
-#### Direktori Sumber MCP
-- [Sumber MCP (Prompt Sampel, Alat, dan Definisi Sumber)](https://github.com/microsoft/mcp/tree/main/Resources)
+The [MCP Resources directory](https://github.com/microsoft/mcp/tree/main/Resources) in the official Microsoft MCP repository provides a curated collection of sample resources, prompt templates, and tool definitions for MCP servers. This directory helps developers get started quickly by offering reusable components and best-practice examples for:
 
-### Peluang Penyelidikan
+- **Prompt Templates:** Ready-to-use templates for common AI tasks, adaptable for your MCP implementations  
+- **Tool Definitions:** Example schemas and metadata to standardize tool integration and invocation across MCP servers  
+- **Resource Samples:** Example definitions for connecting to data sources, APIs, and external services within the MCP framework  
+- **Reference Implementations:** Practical samples demonstrating how to organize resources, prompts, and tools in real MCP projects  
 
-- Teknik pengoptimuman prompt yang cekap dalam rangka kerja MCP
-- Model keselamatan untuk pelaksanaan MCP berbilang penyewa
-- Penanda aras prestasi merentasi pelbagai pelaksanaan MCP
-- Kaedah pengesahan formal untuk pelayan MCP
+These resources speed up development, promote standardization, and support best practices when building and deploying MCP-based solutions.
 
-## Kesimpulan
+#### MCP Resources Directory  
+- [MCP Resources (Sample Prompts, Tools, and Resource Definitions)](https://github.com/microsoft/mcp/tree/main/Resources)
 
-Protokol Konteks Model (MCP) sedang membentuk masa depan integrasi AI yang standard, selamat, dan boleh dipertukarkan merentasi industri dengan pantas. Melalui kajian kes dan projek praktikal dalam pelajaran ini, anda telah melihat bagaimana penerima awal—termasuk Microsoft dan Azure—memanfaatkan MCP untuk menyelesaikan cabaran dunia sebenar, mempercepatkan penerimaan AI, dan memastikan pematuhan, keselamatan, dan skalabilitas. Pendekatan modular MCP membolehkan organisasi menghubungkan model bahasa besar, alat, dan data perusahaan dalam rangka kerja bersatu yang boleh diaudit. Apabila MCP terus berkembang, kekal terlibat dengan komuniti, meneroka sumber terbuka, dan menerapkan amalan terbaik akan menjadi kunci untuk membina penyelesaian AI yang kukuh dan bersedia untuk masa depan.
+### Research Opportunities
 
-## Sumber Tambahan
+- Efficient prompt optimization techniques within MCP frameworks  
+- Security models for multi-tenant MCP deployments  
+- Performance benchmarking across MCP implementations  
+- Formal verification methods for MCP servers  
 
-- [Repositori GitHub MCP (Microsoft)](https://github.com/microsoft/mcp)
-- [Direktori Sumber MCP (Prompt Sampel, Alat, dan Definisi Sumber)](https://github.com/microsoft/mcp/tree/main/Resources)
-- [Komuniti & Dokumentasi MCP](https://modelcontextprotocol.io/introduction)
-- [Dokumentasi Azure MCP](https://aka.ms/azmcp)
-- [Repositori GitHub Pelayan Playwright MCP](https://github.com/microsoft/playwright-mcp)
-- [Pelayan MCP Fail (OneDrive)](https://github.com/microsoft/files-mcp-server)
-- [Azure-Samples MCP](https://github.com/Azure-Samples/mcp)
-- [Pelayan MCP Auth (Azure-Samples)](https://github.com/Azure-Samples/mcp-auth-servers)
-- [Fungsi MCP Jauh (Azure-Samples)](https://github.com/Azure-Samples/remote-mcp-functions)
-- [Fungsi MCP Jauh Python (Azure-Samples)](https://github.com/Azure-Samples/remote-mcp-functions-python)
-- [Fungsi MCP Jauh .NET (Azure-Samples)](https://github.com/Azure-Samples/remote-mcp-functions-dotnet)
-- [Fungsi MCP Jauh TypeScript (Azure-Samples)](https://github.com/Azure-Samples/remote
+## Conclusion
+
+The Model Context Protocol (MCP) is rapidly shaping the future of standardized, secure, and interoperable AI integration across industries. Through the case studies and hands-on projects in this lesson, you’ve seen how early adopters—including Microsoft and Azure—are leveraging MCP to solve real-world challenges, speed up AI adoption, and ensure compliance, security, and scalability. MCP’s modular design allows organizations to connect large language models, tools, and enterprise data within a unified, auditable framework. As MCP continues to evolve, staying engaged with the community, exploring open-source resources, and applying best practices will be essential for building robust, future-ready AI solutions.
+
+## Additional Resources
+
+- [MCP GitHub Repository (Microsoft)](https://github.com/microsoft/mcp)  
+- [MCP Resources Directory (Sample Prompts, Tools, and Resource Definitions)](https://github.com/microsoft/mcp/tree/main/Resources)  
+- [MCP Community & Documentation](https://modelcontextprotocol.io/introduction)  
+- [Azure MCP Documentation](https://aka.ms/azmcp)  
+- [Playwright MCP Server GitHub Repository](https://github.com/microsoft/playwright-mcp)  
+- [Files MCP Server (OneDrive)](https://github.com/microsoft/files-mcp-server)  
+- [Azure-Samples MCP](https://github.com/Azure-Samples/mcp)  
+- [MCP Auth Servers (Azure-Samples)](https://github.com/Azure-Samples/mcp-auth-servers)  
+- [Remote MCP Functions (Azure-Samples)](https://github.com/Azure-Samples/remote-mcp-functions)
+- [Remote MCP Functions Python (Azure-Samples)](https://github.com/Azure-Samples/remote-mcp-functions-python)
+- [Remote MCP Functions .NET (Azure-Samples)](https://github.com/Azure-Samples/remote-mcp-functions-dotnet)
+- [Remote MCP Functions TypeScript (Azure-Samples)](https://github.com/Azure-Samples/remote-mcp-functions-typescript)
 - [Remote MCP APIM Functions Python (Azure-Samples)](https://github.com/Azure-Samples/remote-mcp-apim-functions-python)
 - [AI-Gateway (Azure-Samples)](https://github.com/Azure-Samples/AI-Gateway)
 - [Microsoft AI and Automation Solutions](https://azure.microsoft.com/en-us/products/ai-services/)
 
-## Latihan
+## תרגילים
 
-1. Analisis salah satu kajian kes dan cadangkan pendekatan pelaksanaan alternatif.
-2. Pilih salah satu idea projek dan buat spesifikasi teknikal yang terperinci.
-3. Selidik satu industri yang tidak diliputi dalam kajian kes dan gariskan bagaimana MCP boleh menangani cabaran khususnya.
-4. Terokai salah satu arah masa depan dan buat konsep untuk sambungan MCP baharu untuk menyokongnya.
+1. נתחו אחת ממקרי הבוחן והציעו גישה אלטרנטיבית ליישום.
+2. בחרו אחת מרעיונות הפרויקטים וצרו מפרט טכני מפורט.
+3. חקרו ענף שלא נכלל במקרי הבוחן ופרטו כיצד MCP יכול להתמודד עם האתגרים הספציפיים שלו.
+4. חקרו אחד מהכיוונים העתידיים וצרו קונספט להרחבה חדשה של MCP שתתמוך בו.
 
-Seterusnya: [Amalan Terbaik](../08-BestPractices/README.md)
+הבא: [Best Practices](../08-BestPractices/README.md)
 
 **Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat penting, terjemahan manusia profesional disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk ketepatan, sila ambil maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang sahih. Untuk maklumat penting, terjemahan profesional oleh manusia adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.

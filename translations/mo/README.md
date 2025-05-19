@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "e5fedda7171780db663f0845c39d8d72",
-  "translation_date": "2025-05-19T16:43:34+00:00",
+  "original_hash": "d0ef2af30fdcc2163da049bb92b81746",
+  "translation_date": "2025-05-19T17:53:51+00:00",
   "source_file": "README.md",
   "language_code": "mo"
 }
@@ -22,15 +22,15 @@ CO_OP_TRANSLATOR_METADATA:
 [![Microsoft Azure AI Foundry Discord](https://dcbadge.vercel.app/api/server/ByRwuEEgH4)](https://discord.com/invite/ByRwuEEgH4)
 
 
-Следуйте этим шагам, чтобы начать использовать эти ресурсы:
-1. **Форкните репозиторий**: Нажмите [![GitHub forks](https://img.shields.io/github/forks/microsoft/mcp-for-beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/mcp-for-beginners/network)
-2. **Клонируйте репозиторий**: `git clone https://github.com/microsoft/mcp-for-beginners.git`
-3. [**Присоединяйтесь к Azure AI Foundry Discord и познакомьтесь с экспертами и другими разработчиками**](https://discord.com/invite/ByRwuEEgH4)
+အောက်ပါအဆင့်များကိုလိုက်နာပြီး ဒီရင်းမြစ်များကိုအသုံးပြုရန်စတင်ပါ။
+1. **Repository ကို Fork လုပ်ပါ**: Click [![GitHub forks](https://img.shields.io/github/forks/microsoft/mcp-for-beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/mcp-for-beginners/network)
+2. **Repository ကို Clone လုပ်ပါ**:   `git clone https://github.com/microsoft/mcp-for-beginners.git`
+3. [**Azure AI Foundry Discord မှာ ပါဝင်ပြီး ကျွမ်းကျင်သူများနှင့် အတူတူ ဖန်တီးသူများကို တွေ့ဆုံပါ**](https://discord.com/invite/ByRwuEEgH4)
 
 
-### 🌐 Поддержка нескольких языков
+### 🌐 ဘာသာစကားအများအပြား ပံ့ပိုးမှု
 
-#### Поддерживается через GitHub Action (Автоматически и всегда актуально)
+#### GitHub Action ဖြင့် ပံ့ပိုးထားသည် (အလိုအလျောက်နှင့် အမြဲတမ်းနောက်ဆုံးထိန်းသိမ်းထားသည်)
 [French](../fr/README.md) | [Spanish](../es/README.md) | [German](../de/README.md) | [Russian](../ru/README.md) | [Arabic](../ar/README.md) | [Persian (Farsi)](../fa/README.md) | [Urdu](../ur/README.md) | [Chinese (Simplified)](../zh/README.md) | [Chinese (Traditional, Macau)](./README.md) | [Chinese (Traditional, Hong Kong)](../hk/README.md) | [Chinese (Traditional, Taiwan)](../tw/README.md) | [Japanese](../ja/README.md) | [Korean](../ko/README.md) | [Hindi](../hi/README.md) | [Bengali](../bn/README.md) | [Marathi](../mr/README.md) | [Nepali](../ne/README.md) | [Punjabi (Gurmukhi)](../pa/README.md) | [Portuguese (Portugal)](../pt/README.md) | [Portuguese (Brazil)](../br/README.md) | [Italian](../it/README.md) | [Polish](../pl/README.md) | [Turkish](../tr/README.md) | [Greek](../el/README.md) | [Thai](../th/README.md) | [Swedish](../sv/README.md) | [Danish](../da/README.md) | [Norwegian](../no/README.md) | [Finnish](../fi/README.md) | [Dutch](../nl/README.md) | [Hebrew](../he/README.md) | [Vietnamese](../vi/README.md) | [Indonesian](../id/README.md) | [Malay](../ms/README.md) | [Tagalog (Filipino)](../tl/README.md) | [Swahili](../sw/README.md) | [Hungarian](../hu/README.md) | [Czech](../cs/README.md) | [Slovak](../sk/README.md) | [Romanian](../ro/README.md) | [Bulgarian](../bg/README.md) | [Serbian (Cyrillic)](../sr/README.md) | [Croatian](../hr/README.md) | [Slovenian](../sl/README.md)
 # 🚀 Ultimate Guide to the Model Context Protocol (MCP) Curriculum for Beginners
 
@@ -98,39 +98,39 @@ Whether you're an AI developer, system architect, or software engineer, this gui
 </details>
 
 
-## 🎯 MCP 학습을 위한 사전 조건
+## 🎯 MCP 학습을 위한 전제 조건
 
-이 커리큘럼을 최대한 활용하려면 다음이 필요합니다:
+이 커리큘럼을 최대한 활용하려면 다음 사항을 갖추어야 합니다:
 
-- C#, Java, 또는 Python에 대한 기본 지식  
+- C#, Java, 또는 Python의 기본 지식  
 - 클라이언트-서버 모델과 API에 대한 이해  
 - (선택 사항) 머신러닝 개념에 대한 친숙함  
 
 ## 🛠️ 이 커리큘럼을 효과적으로 활용하는 방법
 
-이 가이드의 각 수업은 다음을 포함합니다:
+이 가이드의 각 수업에는 다음이 포함됩니다:
 
 1. MCP 개념에 대한 명확한 설명  
 2. 여러 언어로 된 실시간 코드 예제  
-3. 실제 MCP 애플리케이션을 구축하는 연습 문제  
+3. 실제 MCP 애플리케이션을 만들기 위한 연습 문제  
 4. 고급 학습자를 위한 추가 자료  
 
 ## 📜 라이선스 정보
 
-이 콘텐츠는 **MIT 라이선스** 하에 제공됩니다. 약관은 [LICENSE](../../LICENSE)에서 확인하세요.
+이 콘텐츠는 **MIT License**에 따라 라이선스가 부여됩니다. 약관은 [LICENSE](../../LICENSE)에서 확인하세요.
 
 ## 🤝 기여 가이드라인
 
-이 프로젝트는 기여와 제안을 환영합니다. 대부분의 기여는 기여권한 계약서(CLA)에 동의해야 하며, 이를 통해 귀하가 기여에 대한 권리를 가지고 있음을 선언하고 실제로 권한을 부여했음을 확인합니다. 자세한 내용은 <https://cla.opensource.microsoft.com>을 참고하세요.
+이 프로젝트는 기여와 제안을 환영합니다. 대부분의 기여는 기여권한 계약서(CLA)에 동의해야 하며, 이는 여러분이 기여권한을 보유하고 실제로 권한을 부여했음을 선언하는 문서입니다. 자세한 내용은 <https://cla.opensource.microsoft.com>을 참조하세요.
 
-풀 리퀘스트를 제출할 때 CLA 봇이 자동으로 CLA 제출 필요 여부를 판단하고 PR에 적절한 표시(예: 상태 검사, 댓글)를 추가합니다. 봇의 안내에 따라 진행하면 되며, 모든 저장소에서 한 번만 진행하면 됩니다.
+풀 리퀘스트를 제출하면 CLA 봇이 자동으로 CLA 제출 여부를 판단하고 PR에 적절한 표시(예: 상태 검사, 댓글)를 추가합니다. 봇의 안내를 따라 진행하면 되며, 모든 저장소에서 한 번만 진행하면 됩니다.
 
-이 프로젝트는 [Microsoft 오픈 소스 행동 강령](https://opensource.microsoft.com/codeofconduct/)을 채택했습니다. 자세한 내용은 [행동 강령 FAQ](https://opensource.microsoft.com/codeofconduct/faq/)를 확인하거나 추가 질문이나 의견이 있으면 [opencode@microsoft.com](mailto:opencode@microsoft.com)으로 연락하세요.
+이 프로젝트는 [Microsoft 오픈 소스 행동 강령](https://opensource.microsoft.com/codeofconduct/)을 채택했습니다. 자세한 내용은 [행동 강령 FAQ](https://opensource.microsoft.com/codeofconduct/faq/)를 참조하거나 추가 질문이나 의견이 있으면 [opencode@microsoft.com](mailto:opencode@microsoft.com)으로 문의하세요.
 
 ## 🎒 기타 강좌
-저희 팀은 다른 강좌도 제작합니다! 확인해 보세요:
+우리 팀은 다른 강좌도 제작합니다! 다음을 확인해 보세요:
 
-- [AI Agents For Beginners](https://github.com/microsoft/ai-agents-beginners?WT.mc_id=academic-105485-koreyst)
+- [AI Agents For Beginners](https://github.com/microsoft/ai-agents-for-beginners?WT.mc_id=academic-105485-koreyst)
 - [Generative AI for Beginners using .NET](https://github.com/microsoft/Generative-AI-for-beginners-dotnet?WT.mc_id=academic-105485-koreyst)
 - [Generative AI for Beginners](https://github.com/microsoft/generative-ai-for-beginners?WT.mc_id=academic-105485-koreyst)
 - [ML for Beginners](https://aka.ms/ml-beginners?WT.mc_id=academic-105485-koreyst)
@@ -145,9 +145,16 @@ Whether you're an AI developer, system architect, or software engineer, this gui
 - [Choose Your Own Copilot Adventure](https://github.com/microsoft/CopilotAdventures?WT.mc_id=academic-105485-koreyst)
 
 
-## ™️ 상표 고지
+## ™️ 상표권 안내
 
-이 프로젝트에는 프로젝트, 제품 또는 서비스의 상표나 로고가 포함될 수 있습니다. Microsoft 상표나 로고의 사용은 [Microsoft 상표 및 브랜드 가이드라인](https://www.microsoft.com/legal/intellectualproperty/trademarks/usage/general)을 준수해야 합니다. Microsoft 상표나 로고를 수정된 버전의 프로젝트에서 사용할 경우 혼동을 일으키거나 Microsoft의 후원을 암시해서는 안 됩니다. 제3자 상표나 로고 사용은 해당 제3자의 정책에 따릅니다.
+이 프로젝트에는 프로젝트, 제품 또는 서비스에 대한 상표나 로고가 포함될 수 있습니다. Microsoft 상표 또는 로고의 허가된 사용은  
+[Microsoft 상표 및 브랜드 가이드라인](https://www.microsoft.com/legal/intellectualproperty/trademarks/usage/general)을 준수해야 합니다.  
+Microsoft 상표 또는 로고를 수정된 버전의 프로젝트에서 사용하는 경우 혼동을 초래하거나 Microsoft의 후원을 암시해서는 안 됩니다.  
+제3자 상표 또는 로고 사용은 해당 제3자의 정책을 따라야 합니다.
 
 **Disclaimer**:  
-Thi dokument has been translaited yusing AI translaition servis [Co-op Translator](https://github.com/Azure/co-op-translator). Whail wi strive for akurasi, plees bi aware that otomated translaitions may contain errurs or inakuratsees. The orijinal dokument in its native langwij shud bi considered the authoritativ sours. For kritikel informashun, profeshonal hyuman translaition is rekomended. Wi ar not layble for eni misunderstandigz or misinterpretashuns arising from the yus of this translaition.
+This document has been translated using AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
+
+---
+
+Could you please clarify what language "mo" refers to? There are several possibilities (e.g., Moldovan, Moore, or others). Providing the full name or additional context will help me deliver an accurate translation.

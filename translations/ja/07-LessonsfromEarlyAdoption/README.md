@@ -1,37 +1,37 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "a6482c201133cb6cb0742918b373a523",
-  "translation_date": "2025-05-16T14:51:09+00:00",
+  "original_hash": "344a126b620ff7997158542fd31be6a4",
+  "translation_date": "2025-05-19T18:00:16+00:00",
   "source_file": "07-LessonsfromEarlyAdoption/README.md",
   "language_code": "ja"
 }
 -->
-# 初期導入者からの教訓
+# Lessons from Early Adoprters
 
-## 概要
+## Overview
 
-このレッスンでは、初期導入者がModel Context Protocol（MCP）を活用して実際の課題を解決し、さまざまな業界でイノベーションを推進してきた事例を探ります。詳細なケーススタディや実践的なプロジェクトを通じて、MCPがどのように標準化され、安全でスケーラブルなAI統合を実現し、大規模言語モデル、ツール、企業データを統一されたフレームワークで接続するかをご覧いただけます。MCPベースのソリューション設計と構築の実践経験を積み、実績のある実装パターンから学び、運用環境でのMCP展開におけるベストプラクティスを発見できます。また、新たなトレンドや将来の方向性、オープンソースのリソースも紹介し、MCP技術とその進化するエコシステムの最前線に立ち続けるための支援をします。
+このレッスンでは、初期導入者がModel Context Protocol（MCP）を活用して実際の課題を解決し、業界全体でイノベーションを促進している事例を紹介します。詳細なケーススタディや実践的なプロジェクトを通じて、MCPが大規模言語モデル、ツール、企業データを統合した統一フレームワークで、標準化され安全かつスケーラブルなAI統合を可能にする仕組みを理解します。MCPベースのソリューション設計・構築の実践経験を積み、実績のある実装パターンや本番環境での展開におけるベストプラクティスを学びます。また、新たなトレンドや将来の方向性、オープンソースリソースも紹介し、MCP技術とそのエコシステムの最前線に立ち続けるための知見を提供します。
 
-## 学習目標
+## Learning Objectives
 
 - さまざまな業界における実際のMCP実装を分析する
-- 完全なMCPベースのアプリケーションを設計・構築する
-- MCP技術の新興トレンドと将来の方向性を探る
+- MCPベースのアプリケーションを設計・構築する
+- MCP技術の新興トレンドや将来の方向性を探る
 - 実際の開発シナリオでベストプラクティスを適用する
 
-## 実際のMCP実装事例
+## Real-world MCP Implementations
 
-### ケーススタディ 1: 企業向けカスタマーサポート自動化
+### Case Study 1: Enterprise Customer Support Automation
 
-多国籍企業がMCPベースのソリューションを導入し、カスタマーサポートシステム全体でAIとのやり取りを標準化しました。これにより以下が可能になりました：
+多国籍企業が顧客サポートシステム全体でAIインタラクションを標準化するためにMCPベースのソリューションを導入しました。これにより以下が可能になりました：
 
-- 複数のLLMプロバイダー向けの統一インターフェースの作成
+- 複数のLLMプロバイダーに対する統一インターフェースの作成
 - 部門間で一貫したプロンプト管理の維持
-- 強固なセキュリティおよびコンプライアンス管理の実装
-- 特定のニーズに応じたAIモデルの容易な切り替え
+- 強固なセキュリティおよびコンプライアンス制御の実装
+- 特定のニーズに応じてAIモデルを簡単に切り替え
 
-**技術的実装:**  
+**Technical Implementation:**  
 ```python
 # Python MCP server implementation for customer support
 import logging
@@ -92,18 +92,18 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-**結果:** モデルコスト30%削減、応答の一貫性45%向上、グローバルオペレーションでのコンプライアンス強化。
+**Results:** モデルコスト30％削減、応答の一貫性45％向上、グローバルな運用でのコンプライアンス強化。
 
-### ケーススタディ 2: 医療診断アシスタント
+### Case Study 2: Healthcare Diagnostic Assistant
 
-医療機関が複数の専門医療AIモデルを統合しつつ、患者の機微なデータを保護するMCPインフラを構築しました：
+医療機関が複数の専門的な医療AIモデルを統合しつつ、患者の機微なデータを保護するためにMCPインフラを構築しました：
 
-- 汎用モデルと専門モデル間のシームレスな切り替え
-- 厳格なプライバシー管理と監査ログの確保
+- ジェネラリストとスペシャリストの医療モデル間のシームレスな切り替え
+- 厳格なプライバシー制御と監査ログの確保
 - 既存の電子カルテ（EHR）システムとの統合
 - 医療用語に特化した一貫したプロンプト設計
 
-**技術的実装:**  
+**Technical Implementation:**  
 ```csharp
 // C# MCP host application implementation in healthcare application
 using Microsoft.Extensions.DependencyInjection;
@@ -168,18 +168,18 @@ public class DiagnosticAssistant
 }
 ```
 
-**結果:** 医師への診断支援が向上しつつ、HIPAA完全準拠を維持。システム間のコンテキスト切り替えが大幅に削減。
+**Results:** 医師への診断提案が向上しつつ、完全なHIPAA準拠を維持。システム間のコンテキスト切り替えを大幅に削減。
 
-### ケーススタディ 3: 金融サービスのリスク分析
+### Case Study 3: Financial Services Risk Analysis
 
-金融機関が部門間のリスク分析プロセスを標準化するためにMCPを導入しました：
+金融機関が部門横断でリスク分析プロセスを標準化するためにMCPを導入しました：
 
-- クレジットリスク、詐欺検知、投資リスクモデル向けの統一インターフェース作成
-- 厳格なアクセス制御とモデルバージョニングの実装
-- すべてのAI推奨の監査可能性の確保
-- 多様なシステム間での一貫したデータフォーマット維持
+- クレジットリスク、不正検知、投資リスクモデルの統一インターフェースを作成
+- 厳格なアクセス制御とモデルのバージョニングを実装
+- すべてのAI推奨事項の監査可能性を確保
+- 多様なシステム間で一貫したデータフォーマットを維持
 
-**技術的実装:**  
+**Technical Implementation:**  
 ```java
 // Java MCP server for financial risk assessment
 import org.mcp.server.*;
@@ -210,18 +210,18 @@ public class FinancialRiskMCPServer {
 }
 ```
 
-**結果:** 規制遵守の強化、モデル展開サイクルの40%短縮、部門間のリスク評価の一貫性向上。
+**Results:** 規制遵守の強化、モデル展開サイクルの40％高速化、部門間でのリスク評価の一貫性向上。
 
-### ケーススタディ 4: Microsoft Playwright MCPサーバーによるブラウザ自動化
+### Case Study 4: Microsoft Playwright MCP Server for Browser Automation
 
-MicrosoftはModel Context Protocolを通じて安全かつ標準化されたブラウザ自動化を実現する[Playwright MCPサーバー](https://github.com/microsoft/playwright-mcp)を開発しました。このソリューションにより、AIエージェントやLLMが制御された監査可能な形でウェブブラウザと連携でき、自動化テスト、データ抽出、エンドツーエンドのワークフローなどのユースケースを実現します。
+MicrosoftはModel Context Protocolを通じて安全で標準化されたブラウザ自動化を実現するために[Playwright MCP server](https://github.com/microsoft/playwright-mcp)を開発しました。このソリューションにより、AIエージェントやLLMが制御可能かつ監査可能な方法でウェブブラウザと連携し、自動化テスト、データ抽出、エンドツーエンドワークフローなどのユースケースを実現します。
 
 - ブラウザ自動化機能（ナビゲーション、フォーム入力、スクリーンショット取得など）をMCPツールとして公開
-- 不正操作を防ぐ厳格なアクセス制御とサンドボックス化を実装
-- すべてのブラウザ操作の詳細な監査ログを提供
-- Azure OpenAIや他のLLMプロバイダーとの連携をサポートし、エージェント駆動の自動化を実現
+- 不正操作を防ぐための厳格なアクセス制御とサンドボックス化を実装
+- すべてのブラウザ操作に関する詳細な監査ログを提供
+- Azure OpenAIや他のLLMプロバイダーとの統合をサポートし、エージェント駆動の自動化を実現
 
-**技術的実装:**  
+**Technical Implementation:**  
 ```typescript
 // TypeScript: Registering Playwright browser automation tools in an MCP server
 import { createServer, ToolDefinition } from 'modelcontextprotocol';
@@ -256,26 +256,26 @@ server.tools.register(
 server.listen(8080);
 ```
 
-**結果:**  
-- AIエージェントやLLM向けに安全でプログラム可能なブラウザ自動化を実現  
-- 手動テスト工数を削減し、ウェブアプリのテストカバレッジを向上  
-- 企業環境でのブラウザベースツール統合に再利用可能で拡張性の高いフレームワークを提供  
+**Results:**  
+- AIエージェントやLLMによる安全でプログラム可能なブラウザ自動化を実現  
+- 手動テストの工数削減とウェブアプリのテストカバレッジ向上  
+- 企業環境でのブラウザベースツール統合のための再利用可能かつ拡張可能なフレームワークを提供  
 
-**参考:**  
-- [Playwright MCP Server GitHub リポジトリ](https://github.com/microsoft/playwright-mcp)  
-- [Microsoft AIおよび自動化ソリューション](https://azure.microsoft.com/en-us/products/ai-services/)
+**References:**  
+- [Playwright MCP Server GitHub Repository](https://github.com/microsoft/playwright-mcp)  
+- [Microsoft AI and Automation Solutions](https://azure.microsoft.com/en-us/products/ai-services/)
 
-### ケーススタディ 5: Azure MCP – エンタープライズグレードのModel Context Protocolサービス
+### Case Study 5: Azure MCP – Enterprise-Grade Model Context Protocol as a Service
 
-Azure MCP ([https://aka.ms/azmcp](https://aka.ms/azmcp)) はMicrosoftが提供するマネージドでエンタープライズグレードのModel Context Protocol実装であり、クラウドサービスとしてスケーラブルで安全かつコンプライアントなMCPサーバー機能を提供します。Azure MCPにより、組織は迅速にMCPサーバーを展開・管理し、Azure AI、データ、セキュリティサービスと統合して運用負荷を軽減し、AI導入を加速できます。
+Azure MCP ([https://aka.ms/azmcp](https://aka.ms/azmcp))は、Microsoftが提供するスケーラブルで安全かつコンプライアンス対応のエンタープライズ向けModel Context Protocol実装のマネージドクラウドサービスです。Azure MCPは組織が迅速にMCPサーバーを展開・管理し、Azure AI、データ、セキュリティサービスと統合することで運用負荷を軽減し、AI導入を加速します。
 
-- スケーリング、監視、セキュリティを内蔵した完全マネージドのMCPサーバーホスティング
+- スケーリング、監視、セキュリティ機能を備えたフルマネージドMCPサーバーホスティング
 - Azure OpenAI、Azure AI Search、その他Azureサービスとのネイティブ統合
-- Microsoft Entra IDによるエンタープライズ認証・認可
-- カスタムツール、プロンプトテンプレート、リソースコネクターのサポート
-- エンタープライズのセキュリティおよび規制要件への準拠
+- Microsoft Entra IDによる企業認証・認可
+- カスタムツール、プロンプトテンプレート、リソースコネクタのサポート
+- 企業のセキュリティ・規制要件への準拠
 
-**技術的実装:**  
+**Technical Implementation:**  
 ```yaml
 # Example: Azure MCP server deployment configuration (YAML)
 apiVersion: mcp.microsoft.com/v1
@@ -301,150 +301,160 @@ spec:
     logAnalyticsWorkspace: <your-log-analytics-id>
 ```
 
-**結果:**  
-- すぐに使えるコンプライアントなMCPサーバープラットフォームを提供し、エンタープライズAIプロジェクトの価値創出までの時間を短縮  
+**Results:**  
+- エンタープライズAIプロジェクトの価値創出までの時間短縮を実現する準備済みかつ準拠したMCPサーバープラットフォームを提供  
 - LLM、ツール、企業データソースの統合を簡素化  
 - MCPワークロードのセキュリティ、可観測性、運用効率を向上  
 
-**参考:**  
-- [Azure MCP ドキュメント](https://aka.ms/azmcp)  
-- [Azure AI サービス](https://azure.microsoft.com/en-us/products/ai-services/)
+**References:**  
+- [Azure MCP Documentation](https://aka.ms/azmcp)  
+- [Azure AI Services](https://azure.microsoft.com/en-us/products/ai-services/)
 
-## ハンズオンプロジェクト
+## Case Study 6: NLWeb  
+MCP（Model Context Protocol）は、チャットボットやAIアシスタントがツールと連携するための新しいプロトコルです。すべてのNLWebインスタンスはMCPサーバーでもあり、自然言語でウェブサイトに質問を投げかけるためのコアメソッドaskをサポートしています。返却されるレスポンスは、ウェブデータを記述するための広く使われている語彙schema.orgを活用しています。大まかに言えば、MCPはHttpとHTMLの関係に似ており、NLWebはプロトコル、Schema.orgフォーマット、サンプルコードを組み合わせて、サイトが迅速にこれらのエンドポイントを作成できるようにし、人間には会話型インターフェースを、機械には自然なエージェント間インタラクションを提供します。
 
-### プロジェクト 1: マルチプロバイダーMCPサーバーの構築
+NLWebは以下の2つの主要コンポーネントから成ります。  
+- 自然言語でサイトとやり取りするための非常にシンプルなプロトコルと、jsonとschema.orgを活用した回答フォーマット。詳細はREST APIのドキュメントを参照。  
+- (1)の簡易実装で、製品、レシピ、観光地、レビューなどのアイテムリストとして抽象化可能なサイト向け。ユーザーインターフェースウィジェットと組み合わせることで、サイトが簡単に会話型インターフェースを提供可能。詳細はLife of a chat queryのドキュメントを参照。
 
-**目的:** 複数のAIモデルプロバイダーへのリクエストを特定の条件に基づいてルーティングできるMCPサーバーを作成する。
+**References:**  
+- [Azure MCP Documentation](https://aka.ms/azmcp)  
+- [NLWeb](https://github.com/microsoft/NlWeb)
 
-**要件:**  
-- 少なくとも3つの異なるモデルプロバイダーをサポート（例：OpenAI、Anthropic、ローカルモデル）  
-- リクエストメタデータに基づくルーティング機構の実装  
-- プロバイダー認証情報管理のための設定システムの構築  
-- パフォーマンスとコスト最適化のためのキャッシュ機能の追加  
+## Hands-on Projects
+
+### Project 1: Build a Multi-Provider MCP Server
+
+**Objective:** 特定の条件に基づき複数のAIモデルプロバイダーへリクエストをルーティングできるMCPサーバーを構築する。
+
+**Requirements:**  
+- 少なくとも3つの異なるモデルプロバイダー（例：OpenAI、Anthropic、ローカルモデル）をサポート  
+- リクエストのメタデータに基づくルーティング機構の実装  
+- プロバイダー認証情報管理のための設定システム  
+- パフォーマンスとコスト最適化のためのキャッシュ機能  
 - 使用状況を監視するシンプルなダッシュボードの構築
 
-**実装手順:**  
-1. 基本的なMCPサーバー基盤のセットアップ  
-2. 各AIモデルサービス向けのプロバイダーアダプター実装  
-3. リクエスト属性に基づくルーティングロジック作成  
-4. 頻繁なリクエスト向けのキャッシュ機構追加  
-5. 監視ダッシュボードの開発  
-6. 様々なリクエストパターンでのテスト
+**Implementation Steps:**  
+1. 基本的なMCPサーバーインフラをセットアップ  
+2. 各AIモデルサービスのプロバイダーアダプターを実装  
+3. リクエスト属性に基づくルーティングロジックを作成  
+4. 頻繁なリクエストに対するキャッシュ機構を追加  
+5. 監視ダッシュボードを開発  
+6. さまざまなリクエストパターンでテスト
 
-**技術スタック:** Python（.NET/Java/Pythonは好みに応じて）、キャッシュにRedis、ダッシュボードにシンプルなWebフレームワークを使用。
+**Technologies:** Python（または.NET/Java/Pythonから選択）、Redis（キャッシュ用）、シンプルなウェブフレームワーク（ダッシュボード用）
 
-### プロジェクト 2: エンタープライズ向けプロンプト管理システム
+### Project 2: Enterprise Prompt Management System
 
-**目的:** 組織内でプロンプトテンプレートの管理、バージョン管理、展開を行うMCPベースのシステムを開発する。
+**Objective:** 組織全体でプロンプトテンプレートの管理、バージョン管理、展開を行うMCPベースのシステムを開発する。
 
-**要件:**  
-- プロンプトテンプレートの集中リポジトリの作成  
-- バージョン管理と承認ワークフローの実装  
-- サンプル入力によるテンプレートテスト機能の構築  
-- 役割ベースのアクセス制御の開発  
-- テンプレート取得・展開用APIの作成
+**Requirements:**  
+- プロンプトテンプレートの集中リポジトリを作成  
+- バージョン管理と承認ワークフローを実装  
+- サンプル入力を用いたテンプレートのテスト機能を構築  
+- ロールベースのアクセス制御を開発  
+- テンプレート取得・展開用APIを作成
 
-**実装手順:**  
+**Implementation Steps:**  
 1. テンプレート保存用のデータベーススキーマ設計  
-2. テンプレートCRUD操作のコアAPI作成  
-3. バージョン管理システムの実装  
-4. 承認ワークフローの構築  
-5. テストフレームワークの開発  
-6. 管理用のシンプルなWebインターフェース作成  
+2. テンプレートのCRUD操作を行うコアAPI作成  
+3. バージョン管理システムを実装  
+4. 承認ワークフローを構築  
+5. テストフレームワークを開発  
+6. 管理用のシンプルなウェブインターフェースを作成  
 7. MCPサーバーとの統合
 
-**技術スタック:** バックエンドフレームワーク、SQLまたはNoSQLデータベース、管理用フロントエンドフレームワークは自由に選択可能。
+**Technologies:** お好みのバックエンドフレームワーク、SQLまたはNoSQLデータベース、管理インターフェース用のフロントエンドフレームワーク
 
-### プロジェクト 3: MCPベースのコンテンツ生成プラットフォーム
+### Project 3: MCP-Based Content Generation Platform
 
-**目的:** MCPを活用して異なるコンテンツタイプで一貫した結果を提供するコンテンツ生成プラットフォームを構築する。
+**Objective:** MCPを活用し、異なるコンテンツタイプで一貫した生成結果を提供するコンテンツ生成プラットフォームを構築する。
 
-**要件:**  
-- 複数のコンテンツ形式をサポート（ブログ投稿、ソーシャルメディア、マーケティングコピーなど）  
-- カスタマイズ可能なテンプレートベースの生成機能の実装  
-- コンテンツレビューとフィードバックシステムの構築  
-- コンテンツパフォーマンス指標の追跡  
-- コンテンツのバージョン管理と反復サポート
+**Requirements:**  
+- 複数のコンテンツフォーマット（ブログ記事、ソーシャルメディア、マーケティングコピー）をサポート  
+- カスタマイズ可能なテンプレートベースの生成機能を実装  
+- コンテンツレビューとフィードバックシステムを作成  
+- コンテンツのパフォーマンス指標を追跡  
+- コンテンツのバージョニングと反復をサポート
 
-**実装手順:**  
-1. MCPクライアント基盤のセットアップ  
-2. 各コンテンツタイプ向けテンプレート作成  
-3. コンテンツ生成パイプライン構築  
-4. レビューシステムの実装  
-5. 指標追跡システムの開発  
-6. テンプレート管理とコンテンツ生成用のユーザーインターフェース作成
+**Implementation Steps:**  
+1. MCPクライアントインフラをセットアップ  
+2. 各コンテンツタイプ用のテンプレートを作成  
+3. コンテンツ生成パイプラインを構築  
+4. レビューシステムを実装  
+5. 指標追跡システムを開発  
+6. テンプレート管理とコンテンツ生成用のユーザーインターフェースを作成
 
-**技術スタック:** 好みのプログラミング言語、Webフレームワーク、データベースシステムを使用。
+**Technologies:** お好みのプログラミング言語、ウェブフレームワーク、データベースシステム
 
-## MCP技術の将来展望
+## Future Directions for MCP Technology
 
-### 新興トレンド
+### Emerging Trends
 
-1. **マルチモーダルMCP**  
-   - 画像、音声、動画モデルとの標準化されたインタラクション拡張  
-   - クロスモーダル推論能力の開発  
-   - 各モダリティに対応した標準化プロンプトフォーマット
+1. **Multi-Modal MCP**  
+   - 画像、音声、動画モデルとのインタラクションを標準化するMCPの拡張  
+   - クロスモーダル推論機能の開発  
+   - 各モダリティ向けの標準化されたプロンプトフォーマット
 
-2. **フェデレーテッドMCPインフラ**  
-   - 組織間でリソースを共有できる分散型MCPネットワーク  
-   - 安全なモデル共有のための標準プロトコル  
-   - プライバシー保護計算技術の活用
+2. **Federated MCP Infrastructure**  
+   - 組織間でリソースを共有可能な分散型MCPネットワーク  
+   - 安全なモデル共有のための標準化プロトコル  
+   - プライバシー保護計算技術
 
-3. **MCPマーケットプレイス**  
-   - MCPテンプレートやプラグインの共有・収益化のエコシステム  
+3. **MCP Marketplaces**  
+   - MCPテンプレートやプラグインの共有・収益化エコシステム  
    - 品質保証と認証プロセス  
    - モデルマーケットプレイスとの統合
 
-4. **エッジコンピューティング向けMCP**  
-   - リソース制約のあるエッジデバイス向けMCP標準の適応  
+4. **MCP for Edge Computing**  
+   - リソース制約のあるエッジデバイス向けのMCP標準適用  
    - 低帯域環境に最適化されたプロトコル  
-   - IoTエコシステム向けの特化したMCP実装
+   - IoTエコシステム向けの特化型MCP実装
 
-5. **規制対応フレームワーク**  
-   - 規制遵守のためのMCP拡張開発  
-   - 標準化された監査ログと説明責任インターフェース  
-   - 新興AIガバナンスフレームワークとの統合
+5. **Regulatory Frameworks**  
+   - 規制遵守のためのMCP拡張機能の開発  
+   - 標準化された監査ログと説明可能性インターフェース  
+   - 新興のAIガバナンスフレームワークとの統合
 
-### MicrosoftによるMCPソリューション
+### MCP Solutions from Microsoft 
 
-MicrosoftとAzureは、さまざまなシナリオでMCPを実装するためのオープンソースリポジトリを多数開発しています：
+MicrosoftとAzureは、さまざまなシナリオでMCPを実装するためのオープンソースリポジトリを提供しています：
 
-#### Microsoft Organization  
+#### Microsoft Organization
 1. [playwright-mcp](https://github.com/microsoft/playwright-mcp) - ブラウザ自動化とテスト用のPlaywright MCPサーバー  
-2. [files-mcp-server](https://github.com/microsoft/files-mcp-server) - ローカルテストおよびコミュニティ貢献向けのOneDrive MCPサーバー実装  
+2. [files-mcp-server](https://github.com/microsoft/files-mcp-server) - ローカルテストとコミュニティ貢献向けのOneDrive MCPサーバー実装  
+3. [NLWeb](https://github.com/microsoft/NlWeb) - AIウェブの基盤層を確立することを主眼としたオープンプロトコルと関連オープンソースツールのコレクション  
 
-#### Azure-Samples Organization  
-1. [mcp](https://github.com/Azure-Samples/mcp) - Azure上で多言語を用いてMCPサーバーを構築・統合するためのサンプル、ツール、リソースへのリンク  
-2. [mcp-auth-servers](https://github.com/Azure-Samples/mcp-auth-servers) - 現行Model Context Protocol仕様に基づく認証を示すリファレンスMCPサーバー  
-3. [remote-mcp-functions](https://github.com/Azure-Samples/remote-mcp-functions) - Azure FunctionsによるリモートMCPサーバー実装のランディングページと言語別リポジトリへのリンク  
-4. [remote-mcp-functions-python](https://github.com/Azure-Samples/remote-mcp-functions-python) - PythonでAzure Functionsを使ったカスタムリモートMCPサーバーのクイックスタートテンプレート  
-5. [remote-mcp-functions-dotnet](https://github.com/Azure-Samples/remote-mcp-functions-dotnet) - .NET/C#でAzure Functionsを使ったカスタムリモートMCPサーバーのクイックスタートテンプレート  
-6. [remote-mcp-functions-typescript](https://github.com/Azure-Samples/remote-mcp-functions-typescript) - TypeScriptでAzure Functionsを使ったカスタムリモートMCPサーバーのクイックスタートテンプレート  
-7. [remote-mcp-apim-functions-python](https://github.com/Azure-Samples/remote-mcp-apim-functions-python) - Pythonを使ったリモートMCPサーバー向けAzure API ManagementによるAIゲートウェイ  
-8. [AI-Gateway](https://github.com/Azure-Samples/AI-Gateway) - MCP機能を含むAPIM ❤️ AI実験、Azure OpenAIおよびAI Foundryとの統合
+#### Azure-Samples Organization
+1. [mcp](https://github.com/Azure-Samples/mcp) - 複数言語でAzure上のMCPサーバー構築・統合用サンプル、ツール、リソースへのリンク  
+2. [mcp-auth-servers](https://github.com/Azure-Samples/mcp-auth-servers) - 現行Model Context Protocol仕様に準拠した認証機能付きリファレンスMCPサーバー  
+3. [remote-mcp-functions](https://github.com/Azure-Samples/remote-mcp-functions) - Azure Functions上のリモートMCPサーバー実装のランディングページと言語別リポジトリリンク  
+4. [remote-mcp-functions-python](https://github.com/Azure-Samples/remote-mcp-functions-python) - PythonでAzure Functionsを使ったカスタムリモートMCPサーバー構築・展開用クイックスタートテンプレート  
+5. [remote-mcp-functions-dotnet](https://github.com/Azure-Samples/remote-mcp-functions-dotnet) - .NET/C#での同上テンプレート  
+6. [remote-mcp-functions-typescript](https://github.com/Azure-Samples/remote-mcp-functions-typescript) - TypeScriptでの同上テンプレート  
+7. [remote-mcp-apim-functions-python](https://github.com/Azure-Samples/remote-mcp-apim-functions-python) - Pythonを用いたAzure API Managementを介したリモートMCPサーバーへのAIゲートウェイ  
+8. [AI-Gateway](https://github.com/Azure-Samples/AI-Gateway) - MCP機能を含むAPIM ❤️ AI実験群、Azure OpenAIやAI Foundryとの統合  
 
-これらのリポジトリは、さまざまなプログラミング言語やAzureサービスにわたるModel Context Protocolの実装、テンプレート、リソースを提供し、基本的なサーバー実装から認証、クラウド展開、企業統合シナリオまで幅広くカバーしています。
+これらのリポジトリは、Model Context Protocolをさまざまなプログラミング言語やAzureサービスで活用するための実装例、テンプレート、リソースを提供し、基本的なサーバー構築から認証、クラウド展開、企業統合まで幅広いユースケースをカバーしています。
 
-#### MCPリソースディレクトリ
+#### MCP Resources Directory
 
-公式Microsoft MCPリポジトリ内の[MCP Resourcesディレクトリ](https://github.com/microsoft/mcp/tree/main/Resources)は、Model Context Protocolサーバーで使用するためのサンプルリソース、プロンプトテンプレート、ツール定義の厳選されたコレクションを提供します。このディレクトリは、開発者が再利用可能なビルディングブロックとベストプラクティス例を活用してMCPを迅速に始められるよう設計されています：
 
-- **プロンプトテンプレート:** 一般的なAIタスクやシナリオ向けの即使用可能なテンプレートで、自身のMCPサーバー実装に適応可能  
-- **ツール定義:** ツール統合と呼び出しを標準化する例示的なツールスキーマとメタデータ  
-- **リソースサンプル:** MCPフレームワーク内でデータソース、API、外部サービスと接続するための例示的なリソース定義  
-- **リファレンス実装:** 実際のMCPプロジェクトでリソース
+- [Remote MCP Functions Python (Azure-Samples)](https://github.com/Azure-Samples/remote-mcp-functions-python)
+- [Remote MCP Functions .NET (Azure-Samples)](https://github.com/Azure-Samples/remote-mcp-functions-dotnet)
+- [Remote MCP Functions TypeScript (Azure-Samples)](https://github.com/Azure-Samples/remote-mcp-functions-typescript)
 - [Remote MCP APIM Functions Python (Azure-Samples)](https://github.com/Azure-Samples/remote-mcp-apim-functions-python)
 - [AI-Gateway (Azure-Samples)](https://github.com/Azure-Samples/AI-Gateway)
 - [Microsoft AI and Automation Solutions](https://azure.microsoft.com/en-us/products/ai-services/)
 
 ## 演習
 
-1. ケーススタディの一つを分析し、代替の実装方法を提案してください。
+1. ケーススタディの一つを分析し、代替の実装アプローチを提案してください。
 2. プロジェクトアイデアの一つを選び、詳細な技術仕様を作成してください。
-3. ケーススタディに含まれていない業界を調査し、MCPがその特有の課題にどのように対応できるかを概説してください。
-4. 将来の方向性の一つを探求し、それをサポートする新しいMCP拡張機能のコンセプトを作成してください。
+3. ケーススタディで扱われていない業界を調査し、MCPがその特有の課題にどのように対応できるかを概説してください。
+4. 将来の方向性の一つを探り、それをサポートする新しいMCP拡張機能のコンセプトを作成してください。
 
 次へ: [Best Practices](../08-BestPractices/README.md)
 
-**免責事項**:  
-本書類はAI翻訳サービス「[Co-op Translator](https://github.com/Azure/co-op-translator)」を使用して翻訳されました。正確性を期しておりますが、自動翻訳には誤りや不正確な部分が含まれる可能性があります。原文の言語によるオリジナル文書を正本としてご参照ください。重要な情報については、専門の人間による翻訳を推奨いたします。本翻訳の利用により生じた誤解や誤訳について、当方は一切の責任を負いかねます。
+**免責事項**：  
+本書類はAI翻訳サービス「[Co-op Translator](https://github.com/Azure/co-op-translator)」を使用して翻訳されています。正確性を期しておりますが、自動翻訳には誤りや不正確な部分が含まれる可能性があることをご了承ください。原文の言語によるオリジナルの文書が正式な情報源とみなされます。重要な情報については、専門の人間翻訳をご利用いただくことを推奨します。本翻訳の利用により生じたいかなる誤解や誤訳についても、当方は一切の責任を負いかねます。

@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "e5fedda7171780db663f0845c39d8d72",
-  "translation_date": "2025-05-19T16:57:22+00:00",
+  "original_hash": "d0ef2af30fdcc2163da049bb92b81746",
+  "translation_date": "2025-05-19T18:25:50+00:00",
   "source_file": "README.md",
   "language_code": "sv"
 }
@@ -23,26 +23,26 @@ CO_OP_TRANSLATOR_METADATA:
 
 
 Följ dessa steg för att komma igång med att använda dessa resurser:
-1. **Forka Repositoryt**: Klicka på [![GitHub forks](https://img.shields.io/github/forks/microsoft/mcp-for-beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/mcp-for-beginners/network)
-2. **Klona Repositoryt**:   `git clone https://github.com/microsoft/mcp-for-beginners.git`
+1. **Fork Repository**: Klicka på [![GitHub forks](https://img.shields.io/github/forks/microsoft/mcp-for-beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/mcp-for-beginners/network)
+2. **Klon Repository**: `git clone https://github.com/microsoft/mcp-for-beginners.git`
 3. [**Gå med i Azure AI Foundry Discord och träffa experter samt andra utvecklare**](https://discord.com/invite/ByRwuEEgH4)
 
 
 ### 🌐 Flerspråkigt stöd
 
 #### Stöds via GitHub Action (Automatiserat & Alltid Uppdaterat)
-[Franska](../fr/README.md) | [Spanska](../es/README.md) | [Tyska](../de/README.md) | [Ryska](../ru/README.md) | [Arabiska](../ar/README.md) | [Persiska (Farsi)](../fa/README.md) | [Urdu](../ur/README.md) | [Kinesiska (Förenklad)](../zh/README.md) | [Kinesiska (Traditionell, Macau)](../mo/README.md) | [Kinesiska (Traditionell, Hongkong)](../hk/README.md) | [Kinesiska (Traditionell, Taiwan)](../tw/README.md) | [Japanska](../ja/README.md) | [Koreanska](../ko/README.md) | [Hindi](../hi/README.md) | [Bengali](../bn/README.md) | [Marathi](../mr/README.md) | [Nepali](../ne/README.md) | [Punjabi (Gurmukhi)](../pa/README.md) | [Portugisiska (Portugal)](../pt/README.md) | [Portugisiska (Brasilien)](../br/README.md) | [Italienska](../it/README.md) | [Polska](../pl/README.md) | [Turkiska](../tr/README.md) | [Grekiska](../el/README.md) | [Thailändska](../th/README.md) | [Svenska](./README.md) | [Danska](../da/README.md) | [Norska](../no/README.md) | [Finska](../fi/README.md) | [Nederländska](../nl/README.md) | [Hebreiska](../he/README.md) | [Vietnamesiska](../vi/README.md) | [Indonesiska](../id/README.md) | [Malajiska](../ms/README.md) | [Tagalog (Filippinska)](../tl/README.md) | [Swahili](../sw/README.md) | [Ungerska](../hu/README.md) | [Tjeckiska](../cs/README.md) | [Slovakiska](../sk/README.md) | [Rumänska](../ro/README.md) | [Bulgariska](../bg/README.md) | [Serbiska (Kyrilliska)](../sr/README.md) | [Kroatiska](../hr/README.md) | [Slovenska](../sl/README.md) Vänligen skriv ut resultatet från vänster till höger.
+[Franska](../fr/README.md) | [Spanska](../es/README.md) | [Tyska](../de/README.md) | [Ryska](../ru/README.md) | [Arabiska](../ar/README.md) | [Persiska (Farsi)](../fa/README.md) | [Urdu](../ur/README.md) | [Kinesiska (Förenklad)](../zh/README.md) | [Kinesiska (Traditionell, Macau)](../mo/README.md) | [Kinesiska (Traditionell, Hongkong)](../hk/README.md) | [Kinesiska (Traditionell, Taiwan)](../tw/README.md) | [Japanska](../ja/README.md) | [Koreanska](../ko/README.md) | [Hindi](../hi/README.md) | [Bengali](../bn/README.md) | [Marathi](../mr/README.md) | [Nepali](../ne/README.md) | [Punjabi (Gurmukhi)](../pa/README.md) | [Portugisiska (Portugal)](../pt/README.md) | [Portugisiska (Brasilien)](../br/README.md) | [Italienska](../it/README.md) | [Polska](../pl/README.md) | [Turkiska](../tr/README.md) | [Grekiska](../el/README.md) | [Thailändska](../th/README.md) | [Svenska](./README.md) | [Danska](../da/README.md) | [Norska](../no/README.md) | [Finska](../fi/README.md) | [Nederländska](../nl/README.md) | [Hebreiska](../he/README.md) | [Vietnamesiska](../vi/README.md) | [Indonesiska](../id/README.md) | [Malayiska](../ms/README.md) | [Tagalog (Filippinska)](../tl/README.md) | [Swahili](../sw/README.md) | [Ungerska](../hu/README.md) | [Tjeckiska](../cs/README.md) | [Slovakiska](../sk/README.md) | [Rumänska](../ro/README.md) | [Bulgariska](../bg/README.md) | [Serbiska (Kyrilliska)](../sr/README.md) | [Kroatiska](../hr/README.md) | [Slovenska](../sl/README.md)Var god skriv utdata från vänster till höger.
 
-[Franska](../fr/README.md) | [Spanska](../es/README.md) | [Tyska](../de/README.md) | [Ryska](../ru/README.md) | [Arabiska](../ar/README.md) | [Persiska (Farsi)](../fa/README.md) | [Urdu](../ur/README.md) | [Kinesiska (Förenklad)](../zh/README.md) | [Kinesiska (Traditionell, Macau)](../mo/README.md) | [Kinesiska (Traditionell, Hongkong)](../hk/README.md) | [Kinesiska (Traditionell, Taiwan)](../tw/README.md) | [Japanska](../ja/README.md) | [Koreanska](../ko/README.md) | [Hindi](../hi/README.md) | [Bengali](../bn/README.md) | [Marathi](../mr/README.md) | [Nepali](../ne/README.md) | [Punjabi (Gurmukhi)](../pa/README.md) | [Portugisiska (Portugal)](../pt/README.md) | [Portugisiska (Brasilien)](../br/README.md) | [Italienska](../it/README.md) | [Polska](../pl/README.md) | [Turkiska](../tr/README.md) | [Grekiska](../el/README.md) | [Thailändska](../th/README.md) | [Svenska](./README.md) | [Danska](../da/README.md) | [Norska](../no/README.md) | [Finska](../fi/README.md) | [Nederländska](../nl/README.md) | [Hebreiska](../he/README.md) | [Vietnamesiska](../vi/README.md) | [Indonesiska](../id/README.md) | [Malajiska](../ms/README.md) | [Tagalog (Filippinska)](../tl/README.md) | [Swahili](../sw/README.md) | [Ungerska](../hu/README.md) | [Tjeckiska](../cs/README.md) | [Slovakiska](../sk/README.md) | [Rumänska](../ro/README.md) | [Bulgariska](../bg/README.md) | [Serbiska (Kyrilliska)](../sr/README.md) | [Kroatiska](../hr/README.md) | [Slovenska](../sl/README.md)
-# 🚀 Ultimata guiden till Model Context Protocol (MCP) kursen för nybörjare
+[Franska](../fr/README.md) | [Spanska](../es/README.md) | [Tyska](../de/README.md) | [Ryska](../ru/README.md) | [Arabiska](../ar/README.md) | [Persiska (Farsi)](../fa/README.md) | [Urdu](../ur/README.md) | [Kinesiska (Förenklad)](../zh/README.md) | [Kinesiska (Traditionell, Macau)](../mo/README.md) | [Kinesiska (Traditionell, Hongkong)](../hk/README.md) | [Kinesiska (Traditionell, Taiwan)](../tw/README.md) | [Japanska](../ja/README.md) | [Koreanska](../ko/README.md) | [Hindi](../hi/README.md) | [Bengali](../bn/README.md) | [Marathi](../mr/README.md) | [Nepali](../ne/README.md) | [Punjabi (Gurmukhi)](../pa/README.md) | [Portugisiska (Portugal)](../pt/README.md) | [Portugisiska (Brasilien)](../br/README.md) | [Italienska](../it/README.md) | [Polska](../pl/README.md) | [Turkiska](../tr/README.md) | [Grekiska](../el/README.md) | [Thailändska](../th/README.md) | [Svenska](./README.md) | [Danska](../da/README.md) | [Norska](../no/README.md) | [Finska](../fi/README.md) | [Nederländska](../nl/README.md) | [Hebreiska](../he/README.md) | [Vietnamesiska](../vi/README.md) | [Indonesiska](../id/README.md) | [Malayiska](../ms/README.md) | [Tagalog (Filippinska)](../tl/README.md) | [Swahili](../sw/README.md) | [Ungerska](../hu/README.md) | [Tjeckiska](../cs/README.md) | [Slovakiska](../sk/README.md) | [Rumänska](../ro/README.md) | [Bulgariska](../bg/README.md) | [Serbiska (Kyrilliska)](../sr/README.md) | [Kroatiska](../hr/README.md) | [Slovenska](../sl/README.md)
+# 🚀 Ultimata guiden till Model Context Protocol (MCP) kursplan för nybörjare
 
 ## **Lär dig MCP med praktiska kodexempel i C#, Java, JavaScript, Python och TypeScript**
 
-## 🧠 Översikt av Model Context Protocol-kursen
+## 🧠 Översikt av Model Context Protocol-kursplanen
 
-**Model Context Protocol (MCP)** är ett avancerat ramverk utformat för att standardisera interaktioner mellan AI-modeller och klientapplikationer. Denna open-source-kurs erbjuder en strukturerad inlärningsväg, komplett med praktiska kodexempel och verkliga användningsfall, på populära programmeringsspråk som C#, Java, JavaScript, TypeScript och Python.
+**Model Context Protocol (MCP)** är ett banbrytande ramverk utformat för att standardisera interaktioner mellan AI-modeller och klientapplikationer. Denna open-source-kursplan erbjuder en strukturerad inlärningsväg, komplett med praktiska kodexempel och verkliga användningsfall, för populära programmeringsspråk som C#, Java, JavaScript, TypeScript och Python.
 
-Oavsett om du är AI-utvecklare, systemarkitekt eller mjukvaruingenjör är denna guide din heltäckande resurs för att behärska MCP:s grunder och implementeringsstrategier.
+Oavsett om du är AI-utvecklare, systemarkitekt eller mjukvaruingenjör är denna guide din heltäckande resurs för att bemästra MCP:s grunder och implementeringsstrategier.
 
 ## 🔗 Officiella MCP-resurser
 
@@ -50,28 +50,28 @@ Oavsett om du är AI-utvecklare, systemarkitekt eller mjukvaruingenjör är denn
 - 📜 [MCP Specification](https://spec.modelcontextprotocol.io/) – Protokollarkitektur och tekniska referenser  
 - 🧑‍💻 [MCP GitHub Repository](https://github.com/modelcontextprotocol) – Open-source SDK:er, verktyg och kodexempel  
 
-## 🧭 Komplett MCP-kursstruktur
+## 🧭 Komplett MCP-kursplansstruktur
 
 | Titel | Beskrivning | Länk |
 |--|--|--|
 | **00 - Introduktion till MCP** | Översikt av Model Context Protocol och dess betydelse i AI-flöden, inklusive vad Model Context Protocol är, varför standardisering är viktigt samt praktiska användningsfall och fördelar | [Introduction](./00-Introduction/README.md) |
-| **01 - Grundläggande koncept förklarade** | Djupgående genomgång av MCP:s kärnkoncept, inklusive klient-serverarkitektur, viktiga protokollkomponenter och meddelandemönster | [Core Concepts](./01-CoreConcepts/README.md) |
-| **02 - Säkerhet i MCP** | Identifiering av säkerhetshot inom MCP-baserade system, tekniker och bästa praxis för att säkra implementationer | [Security](/02-Security/readme.md) |
-| **03 - Kom igång med MCP** | Miljöinställning och konfiguration, skapa grundläggande MCP-servrar och klienter, integrera MCP med befintliga applikationer | [Getting Started](./03-GettingStarted/README.md) |
+| **01 - Kärnkoncept förklarade** | Djupdykning i MCP:s kärnkoncept, inklusive klient-server-arkitektur, viktiga protokollkomponenter och meddelandemönster | [Core Concepts](./01-CoreConcepts/README.md) |
+| **02 - Säkerhet i MCP** | Identifiering av säkerhetshot i MCP-baserade system, tekniker och bästa praxis för att säkra implementationer | [Security](/02-Security/readme.md) |
+| **03 - Kom igång med MCP** | Miljöuppsättning och konfiguration, skapa grundläggande MCP-servrar och klienter, integrera MCP med befintliga applikationer | [Getting Started](./03-GettingStarted/README.md) |
 | **3.1 - Första servern** | Sätta upp en grundläggande server med MCP-protokollet, förstå server-klient-interaktionen och testa servern | [First Server](./03-GettingStarted/01-first-server/README.md) |
-| **3.2 - Första klienten**  | Sätta upp en grundläggande klient med MCP-protokollet, förstå klient-server-interaktionen och testa klienten | [First Client](./03-GettingStarted/02-client/README.md) |
-| **3.3 - Klient med LLM**  | Sätta upp en klient med MCP-protokollet tillsammans med en Large Language Model (LLM) | [Client with LLM](./03-GettingStarted/03-llm-client/README.md) |
+| **3.2 - Första klienten** | Sätta upp en grundläggande klient med MCP-protokollet, förstå klient-server-interaktionen och testa klienten | [First Client](./03-GettingStarted/02-client/README.md) |
+| **3.3 - Klient med LLM** | Sätta upp en klient med MCP-protokollet och en Large Language Model (LLM) | [Client with LLM](./03-GettingStarted/03-llm-client/README.md) |
 | **3.4 - Använda en server med Visual Studio Code** | Konfigurera Visual Studio Code för att använda servrar med MCP-protokollet | [Consuming a server with Visual Studio Code](./03-GettingStarted/04-vscode/README.md) |
 | **3.5 - Skapa en server med SSE** | SSE hjälper oss att exponera en server mot internet. Den här delen hjälper dig att skapa en server med SSE | [Creating a server using SSE](./03-GettingStarted/05-sse-server/README.md) |
-| **3.6 - Använd AI Toolkit** | AI Toolkit är ett utmärkt verktyg som hjälper dig att hantera ditt AI- och MCP-arbetsflöde. | [Use AI Toolkit](./03-GettingStarted/06-aitk/README.md) |
+| **3.6 - Använd AI Toolkit** | AI Toolkit är ett utmärkt verktyg som hjälper dig att hantera din AI- och MCP-arbetsflöde. | [Use AI Toolkit](./03-GettingStarted/06-aitk/README.md) |
 | **3.7 - Testa din server** | Testning är en viktig del av utvecklingsprocessen. Den här delen hjälper dig att testa med flera olika verktyg. | [Testing your server](./03-GettingStarted/07-testing/README.md) |
 | **3.8 - Distribuera din server** | Hur går du från lokal utveckling till produktion? Den här delen hjälper dig att utveckla och distribuera din server. | [Deploy your server](./03-GettingStarted/08-deployment/README.md) |
 | **04 - Praktisk implementering** | Använda SDK:er i olika språk, felsökning, testning och validering, skapa återanvändbara promptmallar och arbetsflöden | [Practical Implementation](./04-PracticalImplementation/README.md) |
 | **05 - Avancerade ämnen inom MCP** | Multimodala AI-arbetsflöden och utbyggbarhet, säkra skalningsstrategier, MCP i företagsmiljöer | [Advanced Topics](./05-AdvancedTopics/README.md) |
-| **06 - Communitybidrag** | Hur man bidrar med kod och dokumentation, samarbete via GitHub, communitydrivna förbättringar och feedback | [Community Contributions](./06-CommunityContributions/README.md) |
-| **07 - Insikter från tidig användning** | Verkliga implementationer och vad som fungerade, bygga och distribuera MCP-baserade lösningar, trender och framtidsplaner | [Insights](./07-LessonsFromEarlyAdoption/README.md) |
-| **08 - Bästa praxis för MCP** | Prestandaoptimering, design av fel-toleranta MCP-system, testning och robusthetsstrategier | [Best Practices](./08-BestPractices/README.md) |
-| **09 - MCP fallstudier** | Djupdykningar i MCP-lösningsarkitekturer, distributionsplaner och integrationstips, annoterade diagram och projektgenomgångar | [Case Studies](./09-CaseStudy/README.md) |
+| **06 - Gemenskapsbidrag** | Hur man bidrar med kod och dokumentation, samarbeta via GitHub, communitydrivna förbättringar och feedback | [Community Contributions](./06-CommunityContributions/README.md) |
+| **07 - Insikter från tidig adoption** | Verkliga implementationer och vad som fungerade, bygga och distribuera MCP-baserade lösningar, trender och framtidsplaner | [Insights](./07-LessonsFromEarlyAdoption/README.md) |
+| **08 - Bästa praxis för MCP** | Prestandaoptimering, design av fel-toleranta MCP-system, testning och motståndskraftstrategier | [Best Practices](./08-BestPractices/README.md) |
+| **09 - MCP fallstudier** | Djupdykningar i MCP-lösningsarkitekturer, distributionsplaner och integrationsråd, annoterade diagram och projektgenomgångar | [Case Studies](./09-CaseStudy/README.md) |
 
 ## Exempelprojekt
 
@@ -87,7 +87,7 @@ Oavsett om du är AI-utvecklare, systemarkitekt eller mjukvaruingenjör är denn
 
 </details>
 
-### 💡 MCP Avancerade Calculator-projekt:
+### 💡 MCP Avancerade Calculatorprojekt:
 <details>
   <summary><strong>Utforska avancerade exempel</strong></summary>
 
@@ -100,12 +100,12 @@ Oavsett om du är AI-utvecklare, systemarkitekt eller mjukvaruingenjör är denn
 </details>
 
 
-## 🎯 Förkunskapskrav för att lära sig MCP
+## 🎯 Förkunskaper för att lära sig MCP
 
 För att få ut det mesta av detta kursmaterial bör du ha:
 
 - Grundläggande kunskaper i C#, Java eller Python  
-- Förståelse för klient-servermodellen och API:er  
+- Förståelse för klient-server-modellen och API:er  
 - (Valfritt) Bekantskap med maskininlärningskoncept  
 
 ## 🛠️ Hur du använder detta kursmaterial effektivt
@@ -113,9 +113,9 @@ För att få ut det mesta av detta kursmaterial bör du ha:
 Varje lektion i denna guide innehåller:
 
 1. Tydliga förklaringar av MCP-koncept  
-2. Live-kodexempel på flera språk  
+2. Live kodexempel i flera språk  
 3. Övningar för att bygga riktiga MCP-applikationer  
-4. Extra resurser för avancerade användare  
+4. Extra resurser för avancerade elever  
 
 ## 📜 Licensinformation
 
@@ -123,22 +123,17 @@ Detta innehåll är licensierat under **MIT License**. För villkor, se [LICENSE
 
 ## 🤝 Riktlinjer för bidrag
 
-Detta projekt välkomnar bidrag och förslag. De flesta bidrag kräver att du godkänner ett
-Contributor License Agreement (CLA) där du intygar att du har rätt att, och faktiskt ger oss,
-rättigheterna att använda ditt bidrag. För mer information, besök <https://cla.opensource.microsoft.com>.
+Detta projekt välkomnar bidrag och förslag. De flesta bidrag kräver att du godkänner ett Contributor License Agreement (CLA) som intygar att du har rätt att, och faktiskt gör det, ge oss rättigheter att använda ditt bidrag. För detaljer, besök <https://cla.opensource.microsoft.com>.
 
-När du skickar in en pull request kommer en CLA-bot automatiskt att avgöra om du behöver lämna in
-en CLA och märka PR korrekt (t.ex. statuskontroll, kommentar). Följ helt enkelt instruktionerna
-från boten. Du behöver bara göra detta en gång för alla repos som använder vår CLA.
+När du skickar en pull request kommer en CLA-bot automatiskt avgöra om du behöver lämna in en CLA och märka PR:n därefter (t.ex. statuskontroll, kommentar). Följ bara instruktionerna från boten. Du behöver bara göra detta en gång för alla repos som använder vår CLA.
 
-Detta projekt har antagit [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-För mer information, se [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) eller
-kontakta [opencode@microsoft.com](mailto:opencode@microsoft.com) vid frågor eller kommentarer.
+Detta projekt har antagit [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).  
+För mer information, se [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) eller kontakta [opencode@microsoft.com](mailto:opencode@microsoft.com) vid frågor eller kommentarer.
 
 ## 🎒 Andra kurser
 Vårt team producerar även andra kurser! Kolla in:
 
-- [AI Agents For Beginners](https://github.com/microsoft/ai-agents-beginners?WT.mc_id=academic-105485-koreyst)  
+- [AI Agents For Beginners](https://github.com/microsoft/ai-agents-for-beginners?WT.mc_id=academic-105485-koreyst)  
 - [Generative AI for Beginners using .NET](https://github.com/microsoft/Generative-AI-for-beginners-dotnet?WT.mc_id=academic-105485-koreyst)  
 - [Generative AI for Beginners](https://github.com/microsoft/generative-ai-for-beginners?WT.mc_id=academic-105485-koreyst)  
 - [ML for Beginners](https://aka.ms/ml-beginners?WT.mc_id=academic-105485-koreyst)  
@@ -155,11 +150,10 @@ Vårt team producerar även andra kurser! Kolla in:
 
 ## ™️ Varumärkesmeddelande
 
-Detta projekt kan innehålla varumärken eller logotyper för projekt, produkter eller tjänster. Auktoriserad användning av Microsofts
-varumärken eller logotyper är föremål för och måste följa
-[Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/legal/intellectualproperty/trademarks/usage/general).
-Användning av Microsofts varumärken eller logotyper i modifierade versioner av detta projekt får inte skapa förvirring eller antyda Microsofts sponsring.
-All användning av tredjeparts varumärken eller logotyper är föremål för dessa tredjeparts policys.
+Detta projekt kan innehålla varumärken eller logotyper för projekt, produkter eller tjänster. Auktoriserad användning av Microsofts varumärken eller logotyper är föremål för och måste följa  
+[Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/legal/intellectualproperty/trademarks/usage/general).  
+Användning av Microsofts varumärken eller logotyper i modifierade versioner av detta projekt får inte skapa förvirring eller antyda att Microsoft sponsrar projektet.  
+All användning av tredje parts varumärken eller logotyper är föremål för dessa tredje parters riktlinjer.
 
 **Ansvarsfriskrivning**:  
-Detta dokument har översatts med hjälp av AI-översättningstjänsten [Co-op Translator](https://github.com/Azure/co-op-translator). Även om vi strävar efter noggrannhet, vänligen observera att automatiska översättningar kan innehålla fel eller brister. Det ursprungliga dokumentet på dess modersmål bör betraktas som den auktoritativa källan. För kritisk information rekommenderas professionell mänsklig översättning. Vi ansvarar inte för eventuella missförstånd eller feltolkningar som uppstår vid användning av denna översättning.
+Detta dokument har översatts med hjälp av AI-översättningstjänsten [Co-op Translator](https://github.com/Azure/co-op-translator). Även om vi strävar efter noggrannhet, vänligen var medveten om att automatiska översättningar kan innehålla fel eller brister. Det ursprungliga dokumentet på dess modersmål bör betraktas som den auktoritativa källan. För kritisk information rekommenderas professionell mänsklig översättning. Vi ansvarar inte för eventuella missförstånd eller feltolkningar som uppstår vid användning av denna översättning.
