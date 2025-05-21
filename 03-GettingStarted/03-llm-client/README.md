@@ -1,10 +1,10 @@
-# Creating a client with LLM
+# Creating a Client with LLM
 
-So far, you've seen how to create a server and a client. The client have been able to call the server explicitly to list its tools, resources and prompts. However, it's not very practical approach. Your user lives in the agentic era and expects to use prompts and communicate with an LLM to do so. For your user, it doesn't care if you use MCP or not to store your capabilities but they do expect to use natural language to interact. So how do we solve this? The solution is about adding an LLM to the client.
+So far, you've seen how to create a server and a client. The client has been able to call the server explicitly to list its tools, resources, and prompts. However, this is not a very practical approach. Your user lives in the agentic era and expects to use prompts and communicate with an LLM to do so. For your user, it doesn't matter if you use MCP or not to store your capabilities—they expect to use natural language to interact. So, how do we solve this? The solution is to add an LLM to the client.
 
 ## Overview
 
-In this lesson we focus on adding an LLM to do your client and show how this provides a much better experience for your user.
+In this lesson, we focus on adding an LLM to your client and show how this provides a much better experience for your user.
 
 ## Learning Objectives
 
@@ -12,29 +12,26 @@ By the end of this lesson, you will be able to:
 
 - Create a client with an LLM.
 - Seamlessly interact with an MCP server using an LLM.
-- Provide a better end user experience on the client side.
+- Provide a better end-user experience on the client side.
 
 ## Approach
 
-Let's try to understand the approach we need to take. Adding an LLM sounds simple, but will we actually do this?
+Let's try to understand the approach we need to take. Adding an LLM sounds simple, but how do we actually do this?
 
 Here's how the client will interact with the server:
 
-1. Establish connection with server.
+1. Establish a connection with the server.
+2. List capabilities, prompts, resources, and tools, and save their schemas.
+3. Add an LLM and pass the saved capabilities and their schemas in a format the LLM understands.
+4. Handle a user prompt by passing it to the LLM together with the tools listed by the client.
 
-1. List capabilities, prompts, resources and tools, and save down their schema.
+Great, now we understand how we can do this at a high level. Let's try this out in the exercise below.
 
-1. Add an LLM and pass the saved capabilities and their schema in a format the LLM understands.
-
-1. Handle a user prompt by passing it to the LLM together with the tools listed by the client.
-
-Great, now we understand how we can do this at high level, let's try this out in below exercise.
-
-## Exercise: Creating a client with an LLM
+## Exercise: Creating a Client with an LLM
 
 In this exercise, we will learn to add an LLM to our client.
 
-### -1- Connect to server
+### -1- Connect to the Server
 
 Let's create our client first:
 
@@ -74,11 +71,11 @@ class MCPClient {
 }
 ```
 
-In the preceding code we've:
+In the preceding code, we've:
 
-- Imported the needed libraries
-- Create a class with two members, `client` and `openai` that will help us manage a client and interact with an LLM respectively.
-- Configured our LLM instance to use GitHub Models by setting `baseUrl` to point to the inference API.
+- Imported the needed libraries.
+- Created a class with two members, `client` and `openai`, that will help us manage a client and interact with an LLM, respectively.
+- Configured our LLM instance to use GitHub Models by setting `baseURL` to point to the inference API.
 
 </details>
 
@@ -113,10 +110,10 @@ if __name__ == "__main__":
 
 ```
 
-In the preceding code we've:
+In the preceding code, we've:
 
-- Imported the needed libraries for MCP
-- Created a client
+- Imported the needed libraries for MCP.
+- Created a client.
 
 </details>
 
@@ -145,9 +142,9 @@ await using var mcpClient = await McpClientFactory.CreateAsync(clientTransport);
 </details>
 
 
-Great, for our next step, let's list the capbilities on the server.
+Great, for our next step, let's list the capabilities of the server.
 
-### -2 List server capabilities
+### -2- List Server Capabilities
 
 Now we will connect to the server and ask for its capabilities:
 
@@ -171,10 +168,10 @@ async run() {
 }
 ```
 
-In the preceding code we've:
+In the preceding code, we've:
 
 - Added code for connecting to the server, `connectToServer`.
-- Created a `run` method responsible for handling our app flow. So far it only lists the tools but we will add more to it shortly.
+- Created a `run` method responsible for handling our app flow. So far, it only lists the tools, but we will add more to it shortly.
 
 </details>
 
@@ -198,7 +195,7 @@ for tool in tools.tools:
 
 Here's what we added:
 
-- Listing resources and tools and printed them. For tools we also list `inputSchema` which we use later.
+- Listing resources and tools and printing them. For tools, we also list `inputSchema`, which we use later.
 
 </details>
 
@@ -219,29 +216,29 @@ async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
         Console.WriteLine($"Tool description: {tool.Description}");
         Console.WriteLine($"Tool parameters: {tool.JsonSchema}");
 
-        // TODO: convert tool defintion from MCP tool to LLm tool     
+        // TODO: convert tool definition from MCP tool to LLM tool     
     }
 
     return toolDefinitions;
 }
 ```
 
-In the preceding code we've:
+In the preceding code, we've:
 
-- Listed the tools available on the MCP Server
-- For each tool, listed name, description and its schema. The latter is something we will use to call the tools shortly.
+- Listed the tools available on the MCP Server.
+- For each tool, the listed name, description, and its schema. The latter is something we will use to call the tools shortly.
 
 </details>
 
 
-### -3- Convert server capabilities to LLM tools
+### -3- Convert Server Capabilities to LLM Tools
 
-Next step after listing server capabilities is to convert them into a format that the LLM understands. Once we do that, we can provide these capabilities as tools to our LLM.
+The next step after listing server capabilities is to convert them into a format that the LLM understands. Once we do that, we can provide these capabilities as tools to our LLM.
 
 <details>
 <summary>Typescript</summary>
 
-1. Add the following code to convert response from MCP Server to a tool format the LLM can use:
+1. Add the following code to convert the response from the MCP Server to a format the LLM can use:
 
     ```typescript
     openAiToolAdapter(tool: {
@@ -286,7 +283,7 @@ Next step after listing server capabilities is to convert them into a format tha
     }
     ```
 
-    In the preceding code, we've update the `run` method to map through the result and for each entry call `openAiToolAdapter`.
+    In the preceding code, we've updated the `run` method to map through the result and, for each entry, call `openAiToolAdapter`.
 
 </details>
 
@@ -313,7 +310,7 @@ Next step after listing server capabilities is to convert them into a format tha
         return tool_schema
     ```
 
-    In the function above `convert_to_llm_tools` we take an MCP tool response and convert it to a format that the LLM can understand.
+    In the function above, `convert_to_llm_tools`, we take an MCP tool response and convert it to a format that the LLM can understand.
 
 1. Next, let's update our client code to leverage this function like so:
 
@@ -354,10 +351,10 @@ Next step after listing server capabilities is to convert them into a format tha
     }
     ```
 
-    In the preceding code we've:
+    In the preceding code, we've:
 
-    - Created a function `ConvertFrom` that takes, name, description and input schema.
-    - Defined functionality that creates a FunctionDefinition that gets passed to a ChatCompletionsDefinition. The latter is something the LLM can understant.
+    - Created a function `ConvertFrom` that takes, name, description, and input schema.
+    - Defined functionality that creates a FunctionDefinition that gets passed to a ChatCompletionsDefinition. The latter is something the LLM can understand.
 
 1. Let's see how we can update some existing code to take advantage of this function above:
 
@@ -391,7 +388,7 @@ Next step after listing server capabilities is to convert them into a format tha
 
     In the preceding code, we've:
 
-    - Update the function to convert the MCP tool response to an LLm tool. Let's highlight the code we added:
+    - Updated the function to convert the MCP tool response to an LLM tool. Let's highlight the code we added:
 
         ```csharp
         JsonElement propertiesElement;
@@ -402,13 +399,13 @@ Next step after listing server capabilities is to convert them into a format tha
         toolDefinitions.Add(def);
         ```
 
-        The input schema is part of the tool response but on the "properties" attribute, so we need to extract. Furthermore, we now call `ConvertFrom` with the tool details. Now we've done the heavy lifting, let's see how it call comes together as we handle a user prompt next.
+        The input schema is part of the tool response, but on the "properties" attribute, so we need to extract it. Furthermore, we now call `ConvertFrom` with the tool details. Now we've done the heavy lifting, let's see how it all comes together as we handle a user prompt next.
 
 </details>
 
-Great, we're not set up to handle any user requests, so let's tackle that next.
+Great, we're now set up to handle any user requests, so let's tackle that next.
 
-### -4- Handle user prompt request
+### -4- Handle User Prompt Requests
 
 In this part of the code, we will handle user requests.
 
@@ -444,7 +441,7 @@ In this part of the code, we will handle user requests.
     }
     ```
 
-    In the preceding code we:
+    In the preceding code, we've:
 
     - Added a method `callTools`.
     - The method takes an LLM response and checks to see what tools have been called, if any:
@@ -460,7 +457,7 @@ In this part of the code, we will handle user requests.
         }
         ```
 
-    - Calls a tool, if LLM indicates it should be called:
+    - Calls a tool if the LLM indicates it should be called:
 
         ```typescript
         // 2. Call the server's tool 
@@ -716,9 +713,9 @@ client.connectToServer(transport);
         return functions_to_call
     ```
 
-    In the preceding code we've:
+    In the preceding code, we've:
 
-    - Passed our functions, that we found on the MCP server and converted, to the LLM.
+    - Passed our functions, which we found on the MCP server and converted, to the LLM.
     - Then we called the LLM with said functions.
     - Then, we're inspecting the result to see what functions we should call, if any.
     - Finally, we pass an array of functions to call. 
@@ -781,11 +778,11 @@ client.connectToServer(transport);
 
     ```
 
-    In the preceding code we've:
+    In the preceding code, we've:
 
     - Fetched tools from the MCP server, `var tools = await GetMcpTools()`.
     - Defined a user prompt `userMessage`.
-    - Constructor an options object specifying model and tools.
+    - Construct an options object specifying model and tools.
     - Made a request towards the LLM.
 
 1. One last step, let's see if the LLM thinks we should call a function:
@@ -811,10 +808,10 @@ client.connectToServer(transport);
     }
     ```
 
-    In the preceding code we've:
+    In the preceding code, we've:
 
     - Looped through a list of function calls.
-    - For each tool call, parse out name and arguments and call the tool on the MCP server using the MCP client. Finally we print the results.
+    - For each tool call, parse out the name and arguments and call the tool on the MCP server using the MCP client. Finally, we print the results.
 
 Here's the code in full:
 
@@ -949,27 +946,27 @@ Great, you did it!
 
 ## Assignment
 
-Take the code from the exercise and build out the server with some more tools. Then create a client with an LLM, like in the exercise, and test it out with different prompts to make sure all your server tools gets called dynamically. This way of building a client means the end user will have a great user experience as they're able to use prompts, instead of exact client commands, and be oblivious to any MCP server being called.
+Take the code from the exercise and build out the server with some more tools. Then create a client with an LLM, as in the exercise, and test it out with different prompts to make sure all your server tools get called dynamically. This way of building a client means the end user will have a great experience, as they're able to use prompts instead of exact client commands, and be oblivious to any MCP server being called.
 
-## Solution 
+## Solution
 
 [Solution](/03-GettingStarted/03-llm-client/solution/README.md)
 
 ## Key Takeaways
 
-- Adding an LLM to your client provides a better way for users to interact with MCP Servers.
-- You need to convert the MCP Server response to something the LLM can understand.
+- Adding an LLM to your client provides a better way for users to interact with MCP servers.
+- You need to convert the MCP server response to something the LLM can understand.
 
-## Samples 
+## Samples
 
 - [Java Calculator](../samples/java/calculator/README.md)
 - [.Net Calculator](../samples/csharp/)
 - [JavaScript Calculator](../samples/javascript/README.md)
 - [TypeScript Calculator](../samples/typescript/README.md)
-- [Python Calculator](../samples/python/) 
+- [Python Calculator](../samples/python/)
 
 ## Additional Resources
 
 ## What's Next
 
-- Next: [Consuming a server using Visual Studio Code](/03-GettingStarted/04-vscode/README.md)
+Next: [Consuming a server using Visual Studio Code](/03-GettingStarted/04-vscode/README.md)
