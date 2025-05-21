@@ -7,15 +7,17 @@ This lesson explores advanced concepts in Model Context Protocol implementation,
 ## Learning Objectives
 
 By the end of this lesson, you will be able to:
-- Implement multi-modal capabilities within MCP frameworks
-- Design scalable MCP architectures for high-demand scenarios
-- Apply security best practices aligned with MCP's security principles
-- Integrate MCP with enterprise AI systems and frameworks
-- Optimize performance and reliability in production environments
+
+- Implement multi-modal capabilities within MCP frameworks.
+- Design scalable MCP architectures for high-demand scenarios.
+- Apply security best practices aligned with MCP's security principles.
+- Integrate MCP with enterprise AI systems and frameworks.
+- Optimize performance and reliability in production environments.
 
 ## Additional References
 
 For the most up-to-date information on advanced MCP topics, refer to:
+
 - [MCP Documentation](https://modelcontextprotocol.io/)
 - [MCP Specification](https://spec.modelcontextprotocol.io/)
 - [GitHub Repository](https://github.com/modelcontextprotocol)
@@ -28,10 +30,10 @@ MCP supports not just text-based interactions but also multi-modal capabilities,
 
 Multi-modal MCP implementations typically involve:
 
-1. **Modal-Specific Parsers**: Components that convert different media types into formats the model can process
-2. **Modal-Specific Tools**: Special tools designed to handle specific modalities (image analysis, audio processing)
-3. **Unified Context Management**: System to maintain context across different modalities
-4. **Response Generation**: Capability to generate responses that may include multiple modalities
+1. **Modal-Specific Parsers**: Components that convert different media types into formats the model can process.
+2. **Modal-Specific Tools**: Special tools designed to handle specific modalities (image analysis, audio processing).
+3. **Unified Context Management**: Systems to maintain context across different modalities.
+4. **Response Generation**: Capability to generate responses that may include multiple modalities.
 
 ### C# Multi-Modal Example: Image Analysis
 
@@ -273,7 +275,7 @@ public class MultiModalApplication {
         AudioProcessor audioProcessor = new AudioProcessor();
         ImageProcessor imageProcessor = new ImageProcessor();
         
-        // Create and configure server
+        // Create and configure a server
         McpServer server = new McpServer.Builder()
             .setName("Multi-Modal MCP Server")
             .setVersion("1.0.0")
@@ -525,7 +527,7 @@ public class RootContextExample
         
         Console.WriteLine($"Second response: {response2.GeneratedText}");
         
-        // Add metadata to the context based on conversation
+        // Add metadata to the context based on a conversation
         await _contextManager.UpdateContextMetadataAsync(contextId, new Dictionary<string, string>
         {
             ["TechnicalEnvironment"] = "Kubernetes",
