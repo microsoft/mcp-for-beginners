@@ -7,9 +7,10 @@ This lesson focuses on how to engage with the MCP community, contribute to the M
 ## Learning Objectives
 
 By the end of this lesson, you will be able to:
+
 - Understand the structure of the MCP community and ecosystem
-- Participate effectively in MCP community forums and discussions
-- Contribute to MCP open-source repositories
+- Participate effectively in the MCP community forums and discussions
+- Contribute to the MCP open-source repositories
 - Create and share custom MCP tools
 - Follow best practices for MCP development and collaboration
 
@@ -19,11 +20,11 @@ The MCP ecosystem consists of various components and participants that work toge
 
 ### Key Community Components
 
-1. **Core Protocol Maintainers**: Microsoft and other organizations that maintain the core MCP specifications and reference implementations
-2. **Tool Developers**: Individuals and teams that create MCP tools
-3. **Integration Providers**: Companies that integrate MCP into their products and services
-4. **End Users**: Developers and organizations that use MCP in their applications
-5. **Contributors**: Community members who contribute code, documentation, or other resources
+1. **Core Protocol Maintainers**: Microsoft and other organizations that maintain the core MCP specifications and reference implementations.
+2. **Tool Developers**: Individuals and teams that create MCP tools.
+3. **Integration Providers**: Companies that integrate MCP into their products and services.
+4. **End Users**: Developers and organizations that use MCP in their applications.
+5. **Contributors**: Community members who contribute code, documentation, or other resources.
 
 ### Community Resources
 
@@ -385,12 +386,12 @@ class CsvProcessingTool(Tool):
 
 To make a successful contribution to MCP projects:
 
-1. **Start Small**: Begin with documentation, bug fixes, or small enhancements
-2. **Follow the Style Guide**: Adhere to the coding style and conventions of the project
-3. **Write Tests**: Include unit tests for your code contributions
-4. **Document Your Work**: Add clear documentation for new features or changes
-5. **Submit Targeted PRs**: Keep pull requests focused on a single issue or feature
-6. **Engage with Feedback**: Be responsive to feedback on your contributions
+1. **Start Small**: Begin with documentation, bug fixes, or small enhancements.
+2. **Follow the Style Guide**: Adhere to the coding style and conventions of the project.
+3. **Write Tests**: Include unit tests for your code contributions.
+4. **Document Your Work**: Add clear documentation for new features or changes.
+5. **Submit Targeted PRs**: Keep pull requests focused on a single issue or feature.
+6. **Engage with Feedback**: Be responsive to feedback on your contributions.
 
 ### Example Contribution Workflow
 
@@ -417,7 +418,7 @@ git commit -am "Add support for binary data streams in the protocol"
 git push origin feature/my-contribution
 
 # Create a pull request from your branch to the main repository
-# Then engage with feedback and iterate on your PR as needed
+# Then, engage with feedback and iterate on your PR as needed
 ```
 
 ## Creating and Sharing Custom MCP Tools
@@ -743,29 +744,29 @@ class SentimentAnalysisTool(Tool):
 When sharing MCP tools with the community:
 
 1. **Complete Documentation**:
-   - Document purpose, usage, and examples
-   - Explain parameters and return values
-   - Document any external dependencies
+   - Document purpose, usage, and examples.
+   - Explain parameters and return values.
+   - Document any external dependencies.
 
 2. **Error Handling**:
-   - Implement robust error handling
-   - Provide useful error messages
-   - Handle edge cases gracefully
+   - Implement robust error handling.
+   - Provide useful error messages.
+   - Handle edge cases gracefully.
 
 3. **Performance Considerations**:
-   - Optimize for both speed and resource usage
-   - Implement caching when appropriate
-   - Consider scalability
+   - Optimize for both speed and resource usage.
+   - Implement caching when appropriate.
+   - Consider scalability.
 
 4. **Security**:
-   - Use secure API keys and authentication
-   - Validate and sanitize inputs
-   - Implement rate limiting for external API calls
+   - Use secure API keys and authentication.
+   - Validate and sanitise inputs.
+   - Implement rate limiting for external API calls.
 
 5. **Testing**:
-   - Include comprehensive test coverage
-   - Test with different input types and edge cases
-   - Document test procedures
+   - Include comprehensive test coverage.
+   - Test with different input types and edge cases.
+   - Document test procedures.
 
 ## Community Collaboration and Best Practices
 
@@ -792,10 +793,10 @@ When reviewing MCP contributions:
 
 When developing for MCP:
 
-1. **Protocol Versioning**: Adhere to the MCP protocol version your tool supports
-2. **Client Compatibility**: Consider backward compatibility
-3. **Server Compatibility**: Follow server implementation guidelines
-4. **Breaking Changes**: Clearly document any breaking changes
+1. **Protocol Versioning**: Adhere to the MCP protocol version your tool supports.
+2. **Client Compatibility**: Consider backward compatibility.
+3. **Server Compatibility**: Follow server implementation guidelines.
+4. **Breaking Changes**: Clearly document any breaking changes.
 
 ## Example Community Project: MCP Tool Registry
 
@@ -880,24 +881,23 @@ async def delete_tool(tool_name: str):
 
 ## Key Takeaways
 
-- The MCP community is diverse and welcomes various types of contributions
-- Contributing to MCP can range from core protocol enhancements to custom tools
-- Following contribution guidelines improves the chances of your PR being accepted
-- Creating and sharing MCP tools is a valuable way to enhance the ecosystem
-- Community collaboration is essential for the growth and improvement of MCP
+- The MCP community is diverse and welcomes various types of contributions.
+- Contributing to MCP can range from core protocol enhancements to custom tools.
+- Following the contribution guidelines improves the chances of your PR being accepted.
+- Creating and sharing MCP tools is a valuable way to enhance the ecosystem.
+- Community collaboration is essential for the growth and improvement of MCP.
 
 ## Exercise
 
-1. Identify an area in the MCP ecosystem where you could make a contribution based on your skills and interests
-2. Fork the MCP repository and set up a local development environment
-3. Create a small enhancement, bug fix, or tool that would benefit the community
-4. Document your contribution with proper tests and documentation
-5. Submit a pull request to the appropriate repository
+1. Identify an area in the MCP ecosystem where you could make a contribution based on your skills and interests.
+2. Fork the MCP repository and set up a local development environment.
+3. Create a small enhancement, bug fix, or tool that would benefit the community.
+4. Document your contribution with proper tests and documentation.
+5. Submit a pull request to the appropriate repository.
 
 ## Additional Resources
 
 - [MCP Community Projects](https://github.com/topics/model-context-protocol)
-
 
 ---
 
