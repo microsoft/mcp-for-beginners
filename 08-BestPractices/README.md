@@ -7,11 +7,11 @@ This lesson focuses on advanced best practices for developing, testing, and depl
 ## Learning Objectives
 
 By the end of this lesson, you will be able to:
-- Apply industry best practices in MCP server and feature design
-- Create comprehensive testing strategies for MCP servers
-- Design efficient, reusable workflow patterns for complex MCP applications
-- Implement proper error handling, logging, and observability in MCP servers
-- Optimize MCP implementations for performance, security, and maintainability
+- Apply industry best practices in MCP server and feature design.
+- Create comprehensive testing strategies for MCP servers.
+- Design efficient, reusable workflow patterns for complex MCP applications.
+- Implement proper error handling, logging, and observability in MCP servers.
+- Optimize MCP implementations for performance, security, and maintainability.
 
 ## Additional References
 
@@ -34,15 +34,15 @@ Each MCP feature should have a clear, focused purpose. Rather than creating mono
 public class WeatherForecastTool : ITool
 {
     private readonly IWeatherService _weatherService;
-    
+
     public WeatherForecastTool(IWeatherService weatherService)
     {
         _weatherService = weatherService;
     }
-    
+
     public string Name => "weatherForecast";
     public string Description => "Gets weather forecast for a specific location";
-    
+
     public ToolDefinition GetDefinition()
     {
         return new ToolDefinition
@@ -66,15 +66,16 @@ public class WeatherForecastTool : ITool
             Required = new[] { "location" }
         };
     }
-      public async Task<ToolResponse> ExecuteAsync(IDictionary<string, object> parameters)
+
+    public async Task<ToolResponse> ExecuteAsync(IDictionary<string, object> parameters)
     {
         var location = parameters["location"].ToString();
-        var days = parameters.ContainsKey("days") 
-            ? Convert.ToInt32(parameters["days"]) 
+        var days = parameters.ContainsKey("days")
+            ? Convert.ToInt32(parameters["days"])
             : 3;
-            
+
         var forecast = await _weatherService.GetForecastAsync(location, days);
-        
+
         return new ToolResponse
         {
             Content = new List<ContentItem>
@@ -93,7 +94,7 @@ public class WeatherToolSuite : ITool
 {
     public string Name => "weather";
     public string Description => "Weather-related functionality";
-    
+
     public ToolDefinition GetDefinition()
     {
         return new ToolDefinition
@@ -115,16 +116,16 @@ public class WeatherToolSuite : ITool
                 },
                 // Many more properties for different actions...
             },
-            required = new[] { "action", "location" }
+            Required = new[] { "action", "location" }
         };
     }
-    
+
     public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
     {
         // Complex conditional logic to handle different actions
         var action = request.Parameters.GetProperty("action").GetString();
         var location = request.Parameters.GetProperty("location").GetString();
-        
+
         switch (action)
         {
             case "forecast":
@@ -137,7 +138,7 @@ public class WeatherToolSuite : ITool
             default:
                 throw new ToolExecutionException($"Unknown action: {action}");
         }
-        
+
         // Result processing
         // ...
     }
@@ -146,7 +147,7 @@ public class WeatherToolSuite : ITool
 
 #### 2. Dependency Injection and Testability
 
-Design tools to receive their dependencies through constructor injection, making them testable and configurable:
+Design tools to receive their dependencies through constructor injection, making them testable and configurable.
 
 ```java
 // Java example with dependency injection
@@ -154,7 +155,7 @@ public class CurrencyConversionTool implements Tool {
     private final ExchangeRateService exchangeService;
     private final CacheService cacheService;
     private final Logger logger;
-    
+
     // Dependencies injected through constructor
     public CurrencyConversionTool(
             ExchangeRateService exchangeService,
@@ -164,28 +165,25 @@ public class CurrencyConversionTool implements Tool {
         this.cacheService = cacheService;
         this.logger = logger;
     }
-    
-    // Tool implementation
-    // ...
+
+    // Tool implementation...
 }
 ```
 
 #### 3. Composable Tools
 
-Design tools that can be composed together to create more complex workflows:
+Design tools that can be composed together to create more complex workflows.
 
 ```python
 # Python example showing composable tools
 class DataFetchTool(Tool):
     def get_name(self):
         return "dataFetch"
-    
     # Implementation...
 
 class DataAnalysisTool(Tool):
     def get_name(self):
         return "dataAnalysis"
-    
     # This tool can use results from the dataFetch tool
     async def execute_async(self, request):
         # Implementation...
@@ -194,7 +192,6 @@ class DataAnalysisTool(Tool):
 class DataVisualizationTool(Tool):
     def get_name(self):
         return "dataVisualize"
-    
     # This tool can use results from the dataAnalysis tool
     async def execute_async(self, request):
         # Implementation...
@@ -482,7 +479,7 @@ public class CachedDataTool : IMcpTool
     
     private string ComputeHash(string input)
     {
-        // Implementation to generate stable hash for cache key
+        // Implementation to generate a stable hash for the cache key
     }
 }
 ```
@@ -554,8 +551,8 @@ class ThrottledApiTool(Tool):
         # Check if we can proceed or need to wait
         delay = self.rate_limiter.get_delay_time()
         
-        if delay > 0:
-            if delay > 2.0:  # If wait is too long
+        if (delay > 0):
+            if (delay > 2.0):  # If wait is too long
                 raise ToolExecutionException(
                     f"Rate limit exceeded. Please try again in {delay:.1f} seconds."
                 )
@@ -1730,7 +1727,7 @@ Performance testing is crucial for production MCP servers.
 ### Example: Basic Load Test with k6
 
 ```javascript
-// k6 script for load testing MCP server
+// k6 script for load testing the MCP server
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 
@@ -1819,7 +1816,7 @@ jobs:
 
 ## Testing for Compliance with MCP Specification
 
-Verify your server correctly implements the MCP specification.
+Verify that your server correctly implements the MCP specification.
 
 ### Key Compliance Areas
 
@@ -1884,7 +1881,7 @@ A comprehensive testing strategy is essential for developing reliable, high-qual
 
 ## Key Takeaways
 
-1. **Tool Design**: Follow single responsibility principle, use dependency injection, and design for composability
+1. **Tool Design**: Follow the single responsibility principle, use dependency injection, and design for composability
 2. **Schema Design**: Create clear, well-documented schemas with proper validation constraints
 3. **Error Handling**: Implement graceful error handling, structured error responses, and retry logic
 4. **Performance**: Use caching, asynchronous processing, and resource throttling
