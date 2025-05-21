@@ -1,4 +1,4 @@
-# Creating a client
+# Creating a Client
 
 Clients are custom applications or scripts that communicate directly with an MCP Server to request resources, tools, and prompts. Unlike using the inspector tool, which provides a graphical interface for interacting with the server, writing your own client allows for programmatic and automated interactions. This enables developers to integrate MCP capabilities into their own workflows, automate tasks, and build custom solutions tailored to specific needs.
 
@@ -12,20 +12,20 @@ By the end of this lesson, you will be able to:
 
 - Understand what a client can do.
 - Write your own client.
-- Connect and test the client with an MCP server to ensure the latter works as expected.
+- Connect and test the client with an MCP server to ensure it works as expected.
 
-## What goes into writing a client?
+## What Goes Into Writing a Client?
 
 To write a client, you'll need to do the following:
 
-- **Import the correct libraries**. You'll be using the same library as before, just different constructs.
-- **Instantiate a client**. This will involve creating a client instance and connect it to the chosen transport method.
-- **Decide on what resources to list**. Your MCP server comes with resources, tools and prompts, you need to decide which one to list.
-- **Integrate the client to a host application**. Once you know the capabilities of the server you need to integrate this your host application so that if a user types a prompt or other command the corresponding server feature is invoked.
+- **Import the correct libraries.** You'll be using the same library as before, just different constructs.
+- **Instantiate a client.** This will involve creating a client instance and connecting it to the chosen transport method.
+- **Decide on what resources to list.** Your MCP server comes with resources, tools, and prompts. You need to decide which ones to list.
+- **Integrate the client into a host application.** Once you know the capabilities of the server, you need to integrate this into your host application so that if a user types a prompt or other command, the corresponding server feature is invoked.
 
-Now that we understand at high level what we're about to do, let's look at an example next.
+Now that we understand at a high level what we're about to do, let's look at an example next.
 
-### An example client
+### An Example Client
 
 Let's have a look at this example client:
 
@@ -41,12 +41,10 @@ const transport = new StdioClientTransport({
   args: ["server.js"]
 });
 
-const client = new Client(
-  {
-    name: "example-client",
-    version: "1.0.0"
-  }
-);
+const client = new Client({
+  name: "example-client",
+  version: "1.0.0"
+});
 
 await client.connect(transport);
 
@@ -80,23 +78,23 @@ const result = await client.callTool({
 
 </details>
 
-In the preceding code we:
+In the preceding code, we:
 
-- Import the libraries
+- Import the libraries.
 - Create an instance of a client and connect it using stdio for transport.
-- List prompts, resources and tools and invoke them all.
+- List prompts, resources, and tools, and invoke them all.
 
-There you have it, a client that can talk to an MCP Server.
+There you have it—a client that can talk to an MCP Server.
 
 Let's take our time in the next exercise section and break down each code snippet and explain what's going on.
 
-## Exercise: Writing a client
+## Exercise: Writing a Client
 
-As said above, let's take our time explaining the code, and by all means code along if you want.
+As said above, let's take our time explaining the code, and by all means, code along if you want.
 
-### -1- Import the libraries
+### -1- Import the Libraries
 
-Let's import the libraries we need, we will need references to a client and to our chosen transport protocol, stdio. stdio is a protcol for things meant to run on your local machine. SSE is another transport protocol we will show in future chapters but that's your other option. For now though, let's continue with stdio. 
+Let's import the libraries we need. We will need references to a client and to our chosen transport protocol, stdio. stdio is a protocol for things meant to run on your local machine. SSE is another transport protocol we will show in future chapters, but that's your other option. For now, though, let's continue with stdio. 
 
 <details>
 <summary>TypeScript</summary>
@@ -133,7 +131,7 @@ using ModelContextProtocol.Protocol.Transport;
 
 Let's move on to instantiation.
 
-### -2- Instantiating client and transport
+### -2- Instantiating Client and Transport
 
 We will need to create an instance of the transport and that of our client:
 
@@ -146,42 +144,19 @@ const transport = new StdioClientTransport({
   args: ["server.js"]
 });
 
-const client = new Client(
-  {
-    name: "example-client",
-    version: "1.0.0"
-  }
-);
+const client = new Client({
+  name: "example-client",
+  version: "1.0.0"
+});
 
 await client.connect(transport);
 ```
 
-In the preceding code we've:
+In the preceding code, we've:
 
-- Created an stdio transport instance. Note how it specifices command and args for how to find and start up the server as that's something we will need to do as we create the client.
-
-    ```typescript
-    const transport = new StdioClientTransport({
-        command: "node",
-        args: ["server.js"]
-    });
-    ```
-
+- Created an stdio transport instance. Note how it specifies the command and args for how to find and start up the server, as that's something we will need to do as we create the client.
 - Instantiated a client by giving it a name and version.
-
-    ```typescript
-    const client = new Client(
-    {
-        name: "example-client",
-        version: "1.0.0"
-    });
-    ```
-
 - Connected the client to the chosen transport.
-
-    ```typescript
-    await client.connect(transport);
-    ```
 
 </details>
 
@@ -207,19 +182,16 @@ async def run():
             # Initialize the connection
             await session.initialize()
 
-          
-
 if __name__ == "__main__":
     import asyncio
-
     asyncio.run(run())
 ```
 
-In the preceding code we've:
+In the preceding code, we've:
 
-- Imported the needed libraries
-- Instantiated a server parameters object as we will use this to run the server so we can connect to it with our client.
-- Defined a method `run` that in turn calls `stdio_client` which starts a client session. 
+- Imported the needed libraries.
+- Instantiated a server parameters object, as we will use this to run the server, so we can connect to it with our client.
+- Defined a method `run` that in turn calls `stdio_client`, which starts a client session. 
 - Created an entry point where we provide the `run` method to `asyncio.run`.
 
 </details>
@@ -227,7 +199,7 @@ In the preceding code we've:
 <details>
 <summary>.NET</summary>
 
-```dotnet
+```csharp
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -240,8 +212,6 @@ builder.Configuration
     .AddEnvironmentVariables()
     .AddUserSecrets<Program>();
 
-
-
 var clientTransport = new StdioClientTransport(new()
 {
     Name = "Demo Server",
@@ -252,18 +222,18 @@ var clientTransport = new StdioClientTransport(new()
 await using var mcpClient = await McpClientFactory.CreateAsync(clientTransport);
 ```
 
-In the preceding code we've:
+In the preceding code, we've:
 
 - Imported the needed libraries.
-- Create an stdio transport and created a client `mcpClient`. The latter is something we will use to list and invoke features on the MCP Server.
+- Created an stdio transport and created a client `mcpClient`. The latter is something we will use to list and invoke features on the MCP Server.
 
-Note, in "Arguments", you can either point to the *.csproj* or to the executable.
+Note: In "Arguments", you can either point to the *.csproj* or to the executable.
 
 </details>
 
-### -3- Listing the server features
+### -3- Listing the Server Features
 
-Now, we have a client that can connect to should the program be run. However, it doesn't actually list its features so let's do that next:
+Now, we have a client that can connect to the server when the program is run. However, it doesn't actually list its features, so let's do that next:
 
 <details>
 <summary>TypeScript</summary>
@@ -275,7 +245,7 @@ const prompts = await client.listPrompts();
 // List resources
 const resources = await client.listResources();
 
-// list tools
+// List tools
 const tools = await client.listTools();
 ```
 
@@ -298,35 +268,34 @@ for tool in tools.tools:
     print("Tool: ", tool.name)
 ```
 
-Here we list the available resources, `list_resources()` and tools, `list_tools` and print them out.
+Here we list the available resources with `list_resources()` and tools with `list_tools`, and print them out.
 
 </details>
 
 <details>
 <summary>.NET</summary>
 
-```dotnet
+```csharp
 foreach (var tool in await client.ListToolsAsync())
 {
     Console.WriteLine($"{tool.Name} ({tool.Description})");
 }
 ```
 
-Above is an example how we can list the tools on the server. For each tool, we then print out its name.
+Above is an example of how we can list the tools on the server. For each tool, we then print out its name.
 
 </details>
 
-Great, now we've captures all the features. Now the question is when do we use them? Well, this client is pretty simple, simple in the sense that we will need to explicitly call the features when we want them. In the next chapter, we will create a more advanced client that has access to it's own large language model, LLM. For now though, let's see how we can invoke the features on the server:
+Great, now we've captured all the features. Now the question is, when do we use them? Well, this client is pretty simple, in the sense that we will need to explicitly call the features when we want them. In the next chapter, we will create a more advanced client that has access to its own large language model (LLM). For now, though, let's see how we can invoke the features on the server:
 
-### -4- Invoke features
+### -4- Invoke Features
 
-To invoke the features we need to ensure we specify the correct arguments and in some cases the name of what we're trying to invoke.
+To invoke the features, we need to ensure we specify the correct arguments and, in some cases, the name of what we're trying to invoke.
 
 <details>
 <summary>TypeScript</summary>
 
 ```typescript
-
 // Read a resource
 const resource = await client.readResource({
   uri: "file:///example.txt"
@@ -340,18 +309,18 @@ const result = await client.callTool({
   }
 });
 
-// call prompt
+// Call a prompt
 const promptResult = await client.getPrompt({
-    name: "review-code",
-    arguments: {
-        code: "console.log(\"Hello world\")"
-    }
-})
+  name: "review-code",
+  arguments: {
+    code: "console.log(\"Hello world\")"
+  }
+});
 ```
 
-In the preceding code we:
+In the preceding code, we:
 
-- Read a resource, we call the resource by calling `readResource()` specifying `uri`. Here's what it most likely look like on the server side:
+- Read a resource by calling `readResource()` and specifying `uri`. Here's what it most likely looks like on the server side:
 
     ```typescript
     server.resource(
@@ -368,7 +337,7 @@ In the preceding code we:
 
     Our `uri` value `file://example.txt` matches `file://{name}` on the server. `example.txt` will be mapped to `name`.
 
-- Call a tool, we call it by specifying its `name` and its `arguments` like so:
+- Call a tool by specifying its `name` and its `arguments` like so:
 
     ```typescript
     const result = await client.callTool({
@@ -379,7 +348,7 @@ In the preceding code we:
     });
     ```
 
-- Get prompt, to get a prompt, you call `getPrompt()` with `name` and `arguments`. The server code looks like so:
+- Get a prompt by calling `getPrompt()` with `name` and `arguments`. The server code looks like so:
 
     ```typescript
     server.prompt(
@@ -397,7 +366,7 @@ In the preceding code we:
     );
     ```
 
-    and your resulting client code therefore looks like so to match what's declared on the server:
+    And your resulting client code therefore, looks like this to match what's declared on the server:
 
     ```typescript
     const promptResult = await client.getPrompt({
@@ -405,7 +374,7 @@ In the preceding code we:
         arguments: {
             code: "console.log(\"Hello world\")"
         }
-    })
+    });
     ```
 
 </details>
@@ -440,10 +409,10 @@ In the preceding code, we've:
   var result = await mcpClient.CallToolAsync(
       "Add",
       new Dictionary<string, object?>() { ["a"] = 1, ["b"] = 3  },
-      cancellationToken:CancellationToken.None);
+      cancellationToken: CancellationToken.None);
   ```
 
-1. To print out the result, here's some code to handle that:
+2. To print out the result, here's some code to handle that:
 
   ```csharp
   Console.WriteLine(result.Content.First(c => c.Type == "text").Text);
@@ -452,7 +421,7 @@ In the preceding code, we've:
 
 </details>
 
-### -5- Run the client
+### -5- Run the Client
 
 To run the client, type the following command in the terminal:
 
@@ -493,9 +462,9 @@ dotnet run
 
 ## Assignment
 
-In this assignment, you'll use what you've learned in creating a client but create a client of your own.
+In this assignment, you'll use what you've learned in creating a client to create a client of your own.
 
-Here's a server you can use that you need to call via your client code, see if you can add more features to the server to make it more interesting.
+Here's a server you can use that you need to call via your client code. See if you can add more features to the server to make it more interesting.
 
 <details>
 <summary>TypeScript</summary>
@@ -511,7 +480,7 @@ const server = new McpServer({
   version: "1.0.0"
 });
 
-// Add an addition tool
+// Add an additional tool
 server.tool("add",
   { a: z.number(), b: z.number() },
   async ({ a, b }) => ({
@@ -557,20 +526,17 @@ from mcp.server.fastmcp import FastMCP
 # Create an MCP server
 mcp = FastMCP("Demo")
 
-
-# Add an addition tool
+# Add an additional tool
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
     return a + b
-
 
 # Add a dynamic greeting resource
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
     return f"Hello, {name}!"
-
 ```
 
 </details>
@@ -612,18 +578,17 @@ Also, check this link for how to invoke [prompts and resources](https://github.c
 
 </details>
 
-
 ## Solution
 
 [Solution](./solution/README.md)
 
 ## Key Takeaways
 
-The key takeaways for this chapter is the following about clients:
+The key takeaways for this chapter about clients:
 
 - Can be used to both discover and invoke features on the server.
-- Can start a server while it starts itself (like in this chapter) but clients can connect to running servers as well.
-- Is a great way to test out server capabilities next to alternatives like the Inspector as was described in the previous chapter.
+- Can start a server while it starts itself (like in this chapter), but clients can connect to running servers as well.
+- They are a great way to test out server capabilities next to alternatives like the Inspector, as described in the previous chapter.
 
 ## Additional Resources
 
@@ -639,5 +604,5 @@ The key takeaways for this chapter is the following about clients:
 
 ## What's Next
 
-- Next: [Creating a client with an LLM](/03-GettingStarted/03-llm-client/README.md)
+Next: [Creating a client with an LLM](/03-GettingStarted/03-llm-client/README.md)
 
