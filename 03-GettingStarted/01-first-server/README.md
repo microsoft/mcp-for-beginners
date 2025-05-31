@@ -301,7 +301,7 @@ dotnet new console
 <details>
   <summary>TypeScript</summary>
   
-  Create a file *server.ts* and add the following code:
+  Create a file *index.ts* and add the following code:
 
   ```typescript
   import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
