@@ -255,7 +255,7 @@ Now that you have your SDK installed, let's create a project next:
      },
      "files": [
        "build"
-     ],
+     ]
   }
   ```
 
