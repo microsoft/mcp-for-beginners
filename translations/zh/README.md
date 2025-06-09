@@ -87,7 +87,8 @@ CO_OP_TRANSLATOR_METADATA:
 ### 🧮 MCP 计算器示例项目：
 <details>
   <summary><strong>按语言探索代码实现</strong></summary>
-- [C# MCP 服务器示例](./03-GettingStarted/samples/csharp/README.md)
+  
+  - [C# MCP 服务器示例](./03-GettingStarted/samples/csharp/README.md)
   - [Java MCP 计算器](./03-GettingStarted/samples/java/calculator/README.md)
   - [JavaScript MCP 演示](./03-GettingStarted/samples/javascript/README.md)
   - [Python MCP 服务器](../../03-GettingStarted/samples/python/mcp_calculator_server.py)
