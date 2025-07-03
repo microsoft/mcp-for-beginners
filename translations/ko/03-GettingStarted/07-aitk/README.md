@@ -192,7 +192,7 @@ AI Toolkit은 MCP 서버 생성을 쉽게 해주는 템플릿을 제공합니다
 - [AI Toolkit 문서](https://aka.ms/AIToolkit/doc)
 
 ## 다음 단계
-- 다음: [테스트 및 디버깅](/03-GettingStarted/08-testing/README.md)
+- 다음: [테스트 및 디버깅](../08-testing/README.md)
 
 **면책 조항**:  
 이 문서는 AI 번역 서비스 [Co-op Translator](https://github.com/Azure/co-op-translator)를 사용하여 번역되었습니다. 정확성을 위해 노력하고 있으나, 자동 번역에는 오류나 부정확성이 포함될 수 있음을 유의해 주시기 바랍니다. 원문 문서는 해당 언어의 원본이므로 권위 있는 자료로 간주되어야 합니다. 중요한 정보의 경우, 전문적인 인간 번역을 권장합니다. 이 번역 사용으로 인해 발생하는 오해나 잘못된 해석에 대해 당사는 책임을 지지 않습니다.
