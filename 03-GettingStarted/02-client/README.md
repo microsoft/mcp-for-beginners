@@ -93,7 +93,7 @@ As said above, let's take our time explaining the code, and by all means code al
 
 ### -1- Import the libraries
 
-Let's import the libraries we need, we will need references to a client and to our chosen transport protocol, stdio. stdio is a protocol for things meant to run on your local machine. SSE is another transport protocol we will show in future chapters but that's your other option. For now though, let's continue with stdio. 
+Let's import the libraries we need, we will need references to a client and to our chosen transport protocol, stdio. stdio is a protocol for things meant to run on your local machine. SSE is another transport protocol we will show in future chapters but that's your other option. For now though, let's continue with stdio.
 
 #### TypeScript
 
@@ -132,6 +132,34 @@ import io.modelcontextprotocol.spec.McpClientTransport;
 import io.modelcontextprotocol.spec.McpSchema.CallToolRequest;
 import io.modelcontextprotocol.spec.McpSchema.CallToolResult;
 import io.modelcontextprotocol.spec.McpSchema.ListToolsResult;
+```
+
+#### Rust
+
+You will need to add the following dependencies to your `Cargo.toml` file.
+
+```toml
+[package]
+name = "calculator-client"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+rmcp = { version = "0.3.0", features = ["client", "transport-child-process"] }
+serde_json = "1.0.141"
+tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
+```
+
+From there, you can import the necessary libraries in your client code.
+
+```rust
+use rmcp::{
+    RmcpError,
+    model::CallToolRequestParam,
+    service::ServiceExt,
+    transport::{ConfigureCommandExt, TokioChildProcess},
+};
+use tokio::process::Command;
 ```
 
 Let's move on to instantiation.
@@ -287,6 +315,38 @@ In the preceding code we've:
 - In the `run` method, we create a synchronous MCP client using the transport and initialize the connection.
 - Used SSE (Server-Sent Events) transport which is suitable for HTTP-based communication with Java Spring Boot MCP servers.
 
+#### Rust
+
+Note this Rust client assumes the server is a sibling project named "calculator-server" in the same directory. The code below will start the server and connect to it.
+
+```rust
+async fn main() -> Result<(), RmcpError> {
+    // Assume the server is a sibling project named "calculator-server" in the same directory
+    let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+        .parent()
+        .expect("failed to locate workspace root")
+        .join("calculator-server");
+
+    let client = ()
+        .serve(
+            TokioChildProcess::new(Command::new("cargo").configure(|cmd| {
+                cmd.arg("run").current_dir(server_dir);
+            }))
+            .map_err(RmcpError::transport_creation::<TokioChildProcess>)?,
+        )
+        .await?;
+
+    // TODO: Initialize
+
+    // TODO: List tools
+
+    // TODO: Call add tool with arguments = {"a": 3, "b": 2}
+
+    client.cancel().await?;
+    Ok(())
+}
+```
+
 ### -3- Listing the server features
 
 Now, we have a client that can connect to should the program be run. However, it doesn't actually list its features so let's do that next:
@@ -351,6 +411,20 @@ In the preceding code we've:
 - The `ListToolsResult` contains information about all tools including their names, descriptions, and input schemas.
 
 Great, now we've captures all the features. Now the question is when do we use them? Well, this client is pretty simple, simple in the sense that we will need to explicitly call the features when we want them. In the next chapter, we will create a more advanced client that has access to it's own large language model, LLM. For now though, let's see how we can invoke the features on the server:
+
+#### Rust
+
+In the main function, after initializing the client, we can initialize the server and list some of its features.
+
+```rust
+// Initialize
+let server_info = client.peer_info();
+println!("Server info: {:?}", server_info);
+
+// List tools
+let tools = client.list_tools(Default::default()).await?;
+println!("Available tools: {:?}", tools);
+```
 
 ### -4- Invoke features
 
@@ -504,6 +578,21 @@ In the preceding code we've:
 - The server tools expect specific parameter names (like "a", "b" for mathematical operations).
 - Results are returned as `CallToolResult` objects containing the response from the server.
 
+#### Rust
+
+```rust
+// Call add tool with arguments = {"a": 3, "b": 2}
+let a = 3;
+let b = 2;
+let tool_result = client
+    .call_tool(CallToolRequestParam {
+        name: "add".into(),
+        arguments: serde_json::json!({ "a": a, "b": b }).as_object().cloned(),
+    })
+    .await?;
+println!("Result of {:?} + {:?}: {:?}", a, b, tool_result);
+```
+
 ### -5- Run the client
 
 To run the client, type the following command in the terminal:
@@ -555,6 +644,13 @@ cd 03-GettingStarted/02-client/solution/java
 # Build and run the JAR
 ./mvnw clean package
 java -jar target/calculator-client-0.0.1-SNAPSHOT.jar
+```
+
+#### Rust
+
+```bash
+cargo fmt
+cargo run
 ```
 
 ## Assignment
@@ -669,6 +765,10 @@ See this project to see how you can [add prompts and resources](https://github.c
 
 Also, check this link for how to invoke [prompts and resources](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/).
 
+### Rust
+
+In the [previous section](../01-first-server), you learned how to create a simple MCP server with Rust. You can continue to build on that or check this link for more Rust-based MCP server examples: [MCP Server Examples](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
+
 ## Solution
 
 The **solution folder** contains complete, ready-to-run client implementations that demonstrate all the concepts covered in this tutorial. Each solution includes both client and server code organized in separate, self-contained projects.
@@ -686,7 +786,7 @@ solution/
 ├── java/                # Java Spring Boot client project
 │   ├── pom.xml          # Maven configuration
 │   ├── src/             # Java source files
-│   └── mvnw            # Maven wrapper
+│   └── mvnw             # Maven wrapper
 ├── python/              # Python client implementation
 │   ├── client.py        # Main client code
 │   ├── server.py        # Compatible server
@@ -695,6 +795,11 @@ solution/
 │   ├── dotnet.csproj    # Project configuration
 │   ├── Program.cs       # Main client code
 │   └── dotnet.sln       # Solution file
+├── rust/                # Rust client implementation
+|  ├── Cargo.lock        # Cargo lock file
+|  ├── Cargo.toml        # Project configuration and dependencies
+|  ├── src               # Source code
+|  │   └── main.rs       # Main client code
 └── server/              # Additional .NET server implementation
     ├── Program.cs       # Server code
     └── server.csproj    # Server project file
@@ -748,6 +853,7 @@ We've provided complete, working client implementations for all programming lang
 | **C#** | [`client_example_csharp.cs`](./client_example_csharp.cs) | Complete C# client using stdio transport with automatic server startup |
 | **TypeScript** | [`client_example_typescript.ts`](./client_example_typescript.ts) | Complete TypeScript client with full MCP protocol support |
 | **Python** | [`client_example_python.py`](./client_example_python.py) | Complete Python client using async/await patterns |
+| **Rust** | [`client_example_rust.rs`](./client_example_rust.rs) | Complete Rust client using Tokio for async operations |
 
 Each complete example includes:
 
@@ -797,6 +903,7 @@ The key takeaways for this chapter is the following about clients:
 - [JavaScript Calculator](../samples/javascript/README.md)
 - [TypeScript Calculator](../samples/typescript/README.md)
 - [Python Calculator](../samples/python/)
+- [Rust Calculator](../samples/rust/)
 
 ## What's Next
 

@@ -235,6 +235,86 @@ In the preceding code we've:
 - **Created an MCP client**: That will handle communication with the server
 - **Used LangChain4j's built-in MCP support**: Which simplifies integration between LLMs and MCP servers
 
+#### Rust
+
+This example assumes you have a Rust based MCP server running. If you don't have one, refer back to the [01-first-server](../01-first-server/README.md) lesson to create the server.
+
+Once you have your Rust MCP server, open a terminal and navigate to the same directory as the server. Then run the following command to create a new LLM client project:
+
+```bash
+mkdir calculator-llmclient
+cd calculator-llmclient
+cargo init
+```
+
+Add the following dependencies to your `Cargo.toml` file:
+
+```toml
+[dependencies]
+async-openai = { version = "0.29.0", features = ["byot"] }
+rmcp = { version = "0.3.0", features = ["client", "transport-child-process"] }
+serde_json = "1.0.141"
+tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
+```
+
+> [!NOTE]
+> There isn't an official Rust library for OpenAI, however, the `async-openai` crate is a [community maintained library](https://platform.openai.com/docs/libraries/rust#rust) that is commonly used.
+
+Open the `src/main.rs` file and replace its content with the following code:
+
+```rust
+use async_openai::{Client, config::OpenAIConfig};
+use rmcp::{
+    RmcpError,
+    model::{CallToolRequestParam, ListToolsResult},
+    service::{RoleClient, RunningService, ServiceExt},
+    transport::{ConfigureCommandExt, TokioChildProcess},
+};
+use serde_json::{Value, json};
+use std::error::Error;
+use tokio::process::Command;
+
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn Error>> {
+    // Initial message
+    let mut messages = vec![json!({"role": "user", "content": "What is the sum of 3 and 2?"})];
+
+    // Setup OpenAI client
+    let api_key = std::env::var("OPENAI_API_KEY")?;
+    let openai_client = Client::with_config(
+        OpenAIConfig::new()
+            .with_api_base("https://models.github.ai/inference/chat")
+            .with_api_key(api_key),
+    );
+
+    // Setup MCP client
+    let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+        .parent()
+        .unwrap()
+        .join("calculator-server");
+
+    let mcp_client = ()
+        .serve(
+            TokioChildProcess::new(Command::new("cargo").configure(|cmd| {
+                cmd.arg("run").current_dir(server_dir);
+            }))
+            .map_err(RmcpError::transport_creation::<TokioChildProcess>)?,
+        )
+        .await?;
+
+    // TODO: Get MCP tool listing 
+
+    // TODO: LLM conversation with tool calls
+
+    Ok(())
+}
+```
+
+This code sets up a basic Rust application that will connect to an MCP server and GitHub Models for LLM interactions.
+
+> [!IMPORTANT]
+> Make sure to set the `OPENAI_API_KEY` environment variable with your GitHub token before running the application.
+
 Great, for our next step, let's list the capabilities on the server.
 
 ### -2- List server capabilities
@@ -333,6 +413,15 @@ In the preceding code we've:
 - Created a `McpToolProvider` that automatically discovers and registers all tools from the MCP server
 - The tool provider handles the conversion between MCP tool schemas and LangChain4j's tool format internally
 - This approach abstracts away the manual tool listing and conversion process
+
+#### Rust
+
+Retrieving tools from the MCP server is done using the `list_tools` method. In your `main` function, after setting up the MCP client, add the following code:
+
+```rust
+// Get MCP tool listing 
+let tools = mcp_client.list_tools(Default::default()).await?;
+```
 
 ### -3- Convert server capabilities to LLM tools
 
@@ -516,6 +605,43 @@ In the preceding code we've:
 - Used LangChain4j's `AiServices` to automatically bind the LLM with the MCP tool provider
 - The framework automatically handles tool schema conversion and function calling behind the scenes
 - This approach eliminates manual tool conversion - LangChain4j handles all the complexity of converting MCP tools to LLM-compatible format
+
+#### Rust
+
+To convert the MCP tool response to a format that the LLM can understand, we will add a helper function that formats the tools listing. Add the following code to your `main.rs` file below the `main` function. This will be called when making requests to the LLM:
+
+```rust
+async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Error>> {
+    let tools_json = serde_json::to_value(tools)?;
+    let Some(tools_array) = tools_json.get("tools").and_then(|t| t.as_array()) else {
+        return Ok(vec![]);
+    };
+
+    let formatted_tools = tools_array
+        .iter()
+        .filter_map(|tool| {
+            let name = tool.get("name")?.as_str()?;
+            let description = tool.get("description")?.as_str()?;
+            let schema = tool.get("inputSchema")?;
+
+            Some(json!({
+                "type": "function",
+                "function": {
+                    "name": name,
+                    "description": description,
+                    "parameters": {
+                        "type": "object",
+                        "properties": schema.get("properties").unwrap_or(&json!({})),
+                        "required": schema.get("required").unwrap_or(&json!([]))
+                    }
+                }
+            }))
+        })
+        .collect();
+
+    Ok(formatted_tools)
+}
+```
 
 Great, we're not set up to handle any user requests, so let's tackle that next.
 
@@ -1122,6 +1248,138 @@ public class LangChain4jClient {
 }
 ```
 
+#### Rust
+
+Here is where the majority of the work happens. We will call the LLM with the initial user prompt, then process the response to see if any tools need to be called. If so, we will call those tools and continue the conversation with the LLM until no more tool calls are needed and we have a final response.
+
+We will be making multiple calls to the LLM, so let's define a function that will handle the LLM call. Add the following function to your `main.rs` file:
+
+```rust
+async fn call_llm(
+    client: &Client<OpenAIConfig>,
+    messages: &[Value],
+    tools: &ListToolsResult,
+) -> Result<Value, Box<dyn Error>> {
+    let response = client
+        .completions()
+        .create_byot(json!({
+            "messages": messages,
+            "model": "openai/gpt-4.1",
+            "tools": format_tools(tools).await?,
+        }))
+        .await?;
+    Ok(response)
+}
+```
+
+This function takes the LLM client, a list of messages (including the user prompt), tools from the MCP server, and sends a request to the LLM, returning the response.
+
+The response from the LLM will contain an array of `choices`. We will need to process the result to see if any `tool_calls` are present. This let's us know the LLM is requesting a specific tool should be called with arguments. Add the following code to the bottom of your `main.rs` file to define a function to handle the LLM response:
+
+```rust
+async fn process_llm_response(
+    llm_response: &Value,
+    mcp_client: &RunningService<RoleClient, ()>,
+    openai_client: &Client<OpenAIConfig>,
+    mcp_tools: &ListToolsResult,
+    messages: &mut Vec<Value>,
+) -> Result<(), Box<dyn Error>> {
+    let Some(message) = llm_response
+        .get("choices")
+        .and_then(|c| c.as_array())
+        .and_then(|choices| choices.first())
+        .and_then(|choice| choice.get("message"))
+    else {
+        return Ok(());
+    };
+
+    // Print content if available
+    if let Some(content) = message.get("content").and_then(|c| c.as_str()) {
+        println!("🤖 {}", content);
+    }
+
+    // Handle tool calls
+    if let Some(tool_calls) = message.get("tool_calls").and_then(|tc| tc.as_array()) {
+        messages.push(message.clone()); // Add assistant message
+
+        // Execute each tool call
+        for tool_call in tool_calls {
+            let (tool_id, name, args) = extract_tool_call_info(tool_call)?;
+            println!("⚡ Calling tool: {}", name);
+
+            let result = mcp_client
+                .call_tool(CallToolRequestParam {
+                    name: name.into(),
+                    arguments: serde_json::from_str::<Value>(&args)?.as_object().cloned(),
+                })
+                .await?;
+
+            // Add tool result to messages
+            messages.push(json!({
+                "role": "tool",
+                "tool_call_id": tool_id,
+                "content": serde_json::to_string_pretty(&result)?
+            }));
+        }
+
+        // Continue conversation with tool results
+        let response = call_llm(openai_client, messages, mcp_tools).await?;
+        Box::pin(process_llm_response(
+            &response,
+            mcp_client,
+            openai_client,
+            mcp_tools,
+            messages,
+        ))
+        .await?;
+    }
+    Ok(())
+}
+```
+
+If `tool_calls` are present, it extracts the tool information, calls the MCP server with the tool request, and adds the results to the conversation messages. It then continues the conversation with the LLM and the messages are updated with the assistant's response and tool call results.
+
+To extract tool call information that the LLM returns for MCP calls, we will add another helper function to extract everything needed to make the call. Add the following code to the bottom of your `main.rs` file:
+
+```rust
+fn extract_tool_call_info(tool_call: &Value) -> Result<(String, String, String), Box<dyn Error>> {
+    let tool_id = tool_call
+        .get("id")
+        .and_then(|id| id.as_str())
+        .unwrap_or("")
+        .to_string();
+    let function = tool_call.get("function").ok_or("Missing function")?;
+    let name = function
+        .get("name")
+        .and_then(|n| n.as_str())
+        .unwrap_or("")
+        .to_string();
+    let args = function
+        .get("arguments")
+        .and_then(|a| a.as_str())
+        .unwrap_or("{}")
+        .to_string();
+    Ok((tool_id, name, args))
+}
+```
+
+With all the pieces in place, we can now handle the initial user prompt and call the LLM. Update your `main` function to include the following code:
+
+```rust
+// LLM conversation with tool calls
+let response = call_llm(&openai_client, &messages, &tools).await?;
+process_llm_response(
+    &response,
+    &mcp_client,
+    &openai_client,
+    &tools,
+    &mut messages,
+)
+.await?;
+```
+
+This will query the LLM with the initial user prompt asking for the sum of two numbers, and it will process the response to dynamically handle tool calls.
+
 Great, you did it!
 
 ## Assignment
@@ -1144,6 +1402,7 @@ Take the code from the exercise and build out the server with some more tools. T
 - [JavaScript Calculator](../samples/javascript/README.md)
 - [TypeScript Calculator](../samples/typescript/README.md)
 - [Python Calculator](../samples/python/)
+- [Rust Calculator](../samples/rust/)
 
 ## Additional Resources
 
