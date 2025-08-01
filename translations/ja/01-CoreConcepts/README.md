@@ -216,7 +216,222 @@ MCPは、ツール呼び出し、リソースアクセス、プロンプト管�
 - **設定オプション**: MCPは、ツールの権限、リソースアクセス、モデル設定などのセッションパラメータを動的に構成することを可能にし、各相互作用に合わせて調整します。
 - **進行状況の追跡**: 長時間実行される操作は進行状況の更新を報告でき、複雑なタスク中のレスポンシブなユーザーインターフェースと優れたユーザー体験を実現します。
 - **リクエストのキャンセル**: クライアントは進行中のリクエストをキャンセルでき、不要になった操作や時間がかかりすぎる操作を中断できます。
-- **エラーレポート
+- **エラーレポート**: 標準化されたエラーメッセージとコードは、問題の診断、障害の適切な処理、そしてユーザーと開発者への実用的なフィードバックの提供に役立ちます。
+- **ログ記録**: クライアントとサーバーの両方が、プロトコルの相互作用を監査、デバッグ、監視するために構造化されたログを出力できます。
+
+これらのプロトコル機能を活用することで、MCPは言語モデルと外部ツールまたはデータソース間の堅牢で安全かつ柔軟な通信を保証します。
+
+### 🔐 セキュリティに関する考慮事項
+
+MCP 実装では、安全で信頼できるインタラクションを確保するために、いくつかの重要なセキュリティ原則を遵守する必要があります。
+
+- **ユーザーの同意と制御**: ユーザーは、データへのアクセスや操作の実行前に明示的な同意を与える必要があります。ユーザーは、共有されるデータと承認されるアクションを明確に制御でき、アクティビティの確認と承認のための直感的なユーザーインターフェースによってサポートされる必要があります。
+
+- **データのプライバシー**: ユーザーデータは明示的な同意がある場合にのみ公開されるべきであり、適切なアクセス制御によって保護される必要があります。MCP 実装では、不正なデータ送信を防ぎ、すべてのインタラクションを通じてプライバシーが維持されるようにする必要があります。
+
+- **ツールの安全性**: ツールを呼び出す前に、ユーザーの明示的な同意が必要です。ユーザーは各ツールの機能を明確に理解する必要があり、意図しない、または安全でないツールの実行を防ぐために、堅牢なセキュリティ境界を適用する必要があります。
+
+これらの原則に従うことで、MCP はすべてのプロトコルインタラクションにおいて、ユーザーの信頼、プライバシー、および安全性が維持されることを保証します。
+
+## コード例: 主要コンポーネント
+
+以下は、主要な MCP サーバー コンポーネントとツールを実装する方法を示す、いくつかの一般的なプログラミング言語でのコード例です。
+
+### .NET の例: ツールを使用してシンプルな MCP サーバーを作成する
+
+カスタムツールを使用したシンプルなMCPサーバーの実装方法を示す実用的な.NETコード例をご紹介します。この例では、ツールの定義と登録、リクエストの処理、そしてモデルコンテキストプロトコルを使用したサーバーへの接続方法を紹介します。
+
+```csharp
+using System;
+using System.Threading.Tasks;
+using ModelContextProtocol.Server;
+using ModelContextProtocol.Server.Transport;
+using ModelContextProtocol.Server.Tools;
+
+public class WeatherServer
+{
+    public static async Task Main(string[] args)
+    {
+        // Create an MCP server
+        var server = new McpServer(
+            name: "Weather MCP Server",
+            version: "1.0.0"
+        );
+        
+        // Register our custom weather tool
+        server.AddTool<string, WeatherData>("weatherTool", 
+            description: "Gets current weather for a location",
+            execute: async (location) => {
+                // Call weather API (simplified)
+                var weatherData = await GetWeatherDataAsync(location);
+                return weatherData;
+            });
+        
+        // Connect the server using stdio transport
+        var transport = new StdioServerTransport();
+        await server.ConnectAsync(transport);
+        
+        Console.WriteLine("Weather MCP Server started");
+        
+        // Keep the server running until process is terminated
+        await Task.Delay(-1);
+    }
+    
+    private static async Task<WeatherData> GetWeatherDataAsync(string location)
+    {
+        // This would normally call a weather API
+        // Simplified for demonstration
+        await Task.Delay(100); // Simulate API call
+        return new WeatherData { 
+            Temperature = 72.5,
+            Conditions = "Sunny",
+            Location = location
+        };
+    }
+}
+
+public class WeatherData
+{
+    public double Temperature { get; set; }
+    public string Conditions { get; set; }
+    public string Location { get; set; }
+}
+```
+
+### Javaの例: MCPサーバーコンポーネント
+
+この例では、上記の .NET の例と同じ MCP サーバーおよびツールの登録を示しますが、Java で実装されています。
+
+```java
+import io.modelcontextprotocol.server.McpServer;
+import io.modelcontextprotocol.server.McpToolDefinition;
+import io.modelcontextprotocol.server.transport.StdioServerTransport;
+import io.modelcontextprotocol.server.tool.ToolExecutionContext;
+import io.modelcontextprotocol.server.tool.ToolResponse;
+
+public class WeatherMcpServer {
+    public static void main(String[] args) throws Exception {
+        // Create an MCP server
+        McpServer server = McpServer.builder()
+            .name("Weather MCP Server")
+            .version("1.0.0")
+            .build();
+            
+        // Register a weather tool
+        server.registerTool(McpToolDefinition.builder("weatherTool")
+            .description("Gets current weather for a location")
+            .parameter("location", String.class)
+            .execute((ToolExecutionContext ctx) -> {
+                String location = ctx.getParameter("location", String.class);
+                
+                // Get weather data (simplified)
+                WeatherData data = getWeatherData(location);
+                
+                // Return formatted response
+                return ToolResponse.content(
+                    String.format("Temperature: %.1f°F, Conditions: %s, Location: %s", 
+                    data.getTemperature(), 
+                    data.getConditions(), 
+                    data.getLocation())
+                );
+            })
+            .build());
+        
+        // Connect the server using stdio transport
+        try (StdioServerTransport transport = new StdioServerTransport()) {
+            server.connect(transport);
+            System.out.println("Weather MCP Server started");
+            // Keep server running until process is terminated
+            Thread.currentThread().join();
+        }
+    }
+    
+    private static WeatherData getWeatherData(String location) {
+        // Implementation would call a weather API
+        // Simplified for example purposes
+        return new WeatherData(72.5, "Sunny", location);
+    }
+}
+
+class WeatherData {
+    private double temperature;
+    private String conditions;
+    private String location;
+    
+    public WeatherData(double temperature, String conditions, String location) {
+        this.temperature = temperature;
+        this.conditions = conditions;
+        this.location = location;
+    }
+    
+    public double getTemperature() {
+        return temperature;
+    }
+    
+    public String getConditions() {
+        return conditions;
+    }
+    
+    public String getLocation() {
+        return location;
+    }
+}
+```
+
+### Pythonの例: MCPサーバーの構築
+
+この例では、PythonでMCPサーバーを構築する方法を示します。また、ツールを作成する2つの異なる方法も示します。
+
+```python
+#!/usr/bin/env python3
+import asyncio
+from mcp.server.fastmcp import FastMCP
+from mcp.server.transports.stdio import serve_stdio
+
+# Create a FastMCP server
+mcp = FastMCP(
+    name="Weather MCP Server",
+    version="1.0.0"
+)
+
+@mcp.tool()
+def get_weather(location: str) -> dict:
+    """Gets current weather for a location."""
+    # This would normally call a weather API
+    # Simplified for demonstration
+    return {
+        "temperature": 72.5,
+        "conditions": "Sunny",
+        "location": location
+    }
+
+# Alternative approach using a class
+class WeatherTools:
+    @mcp.tool()
+    def forecast(self, location: str, days: int = 1) -> dict:
+        """Gets weather forecast for a location for the specified number of days."""
+        # This would normally call a weather API forecast endpoint
+        # Simplified for demonstration
+        return {
+            "location": location,
+            "forecast": [
+                {"day": i+1, "temperature": 70 + i, "conditions": "Partly Cloudy"}
+                for i in range(days)
+            ]
+        }
+
+# Instantiate the class to register its tools
+weather_tools = WeatherTools()
+
+# Start the server using stdio transport
+if __name__ == "__main__":
+    asyncio.run(serve_stdio(mcp))
+```
+
+### JavaScript の例: MCP サーバーの作成
+99 / 5,000
+この例では、JavaScript で MCP サーバーを作成し、2 つの天気関連ツールを登録する方法を示します。
+
 ```javascript
 // Using the official Model Context Protocol SDK
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
