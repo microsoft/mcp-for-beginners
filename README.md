@@ -138,7 +138,7 @@ If you’re a developer, tool builder, or AI product strategist, this day is pac
 | Language | Description | Link |
 |----------|-------------|------|
 | C# | Advanced Sample | [View Code](./04-PracticalImplementation/samples/csharp/README.md) |
-| Java | Container App Example | [View Code](./04-PracticalImplementation/samples/java/containerapp/README.md) |
+| Java with Spring | Container App Example | [View Code](./04-PracticalImplementation/samples/java/containerapp/README.md) |
 | JavaScript | Advanced Sample | [View Code](./04-PracticalImplementation/samples/javascript/README.md) |
 | Python | Complex Implementation | [View Code](./04-PracticalImplementation/samples/python/mcp_sample.py) |
 | TypeScript | Container Sample | [View Code](./04-PracticalImplementation/samples/typescript/README.md) |
