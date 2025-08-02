@@ -22,6 +22,8 @@ As generative AI applications become more complex, it's essential to adopt stand
 - Reducing brittle, one-off custom solutions
 - Allowing multiple models to coexist within one ecosystem
 
+**Note:** While MCP bills itself as an open standard, there are no plans to standardize MCP through any existing standards bodies such as IEEE, IETF, W3C, ISO, or any other standards body.
+
 ---
 
 ## **📚 Learning Objectives**
