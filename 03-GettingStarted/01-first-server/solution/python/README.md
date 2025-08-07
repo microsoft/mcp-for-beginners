@@ -11,7 +11,7 @@ python -m venv venv
 ## -1- Activate the virtual environment
 
 ```bash
-venv\Scrips\activate
+venv\Scripts\activate
 ```
 
 ## -2- Install the dependencies
