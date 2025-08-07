@@ -1,44 +1,44 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "8248e3491f5245ee6ab48ef724a4f65a",
-  "translation_date": "2025-07-13T21:24:35+00:00",
+  "original_hash": "6fb74f952ab79ed4b4a33fda5fa04ecb",
+  "translation_date": "2025-08-07T08:33:00+00:00",
   "source_file": "03-GettingStarted/07-aitk/README.md",
   "language_code": "de"
 }
 -->
-# Nutzung eines Servers aus der AI Toolkit-Erweiterung für Visual Studio Code
+# Verwenden eines Servers aus der AI Toolkit-Erweiterung für Visual Studio Code
 
-Wenn Sie einen KI-Agenten entwickeln, geht es nicht nur darum, intelligente Antworten zu generieren, sondern auch darum, Ihrem Agenten die Fähigkeit zu geben, aktiv zu handeln. Hier kommt das Model Context Protocol (MCP) ins Spiel. MCP ermöglicht es Agenten, auf externe Werkzeuge und Dienste auf eine einheitliche Weise zuzugreifen. Man kann es sich vorstellen wie das Anschließen Ihres Agenten an einen Werkzeugkasten, den er *wirklich* nutzen kann.
+Beim Erstellen eines KI-Agenten geht es nicht nur darum, intelligente Antworten zu generieren, sondern auch darum, dem Agenten die Fähigkeit zu geben, Aktionen auszuführen. Hier kommt das Model Context Protocol (MCP) ins Spiel. MCP ermöglicht es Agenten, externe Tools und Dienste auf konsistente Weise zu nutzen. Stellen Sie sich vor, Sie schließen Ihren Agenten an eine Werkzeugkiste an, die er *tatsächlich* verwenden kann.
 
-Angenommen, Sie verbinden einen Agenten mit Ihrem Rechner-MCP-Server. Plötzlich kann Ihr Agent mathematische Operationen ausführen, indem er einfach eine Eingabe wie „Was ist 47 mal 89?“ erhält – ohne dass Sie Logik fest codieren oder eigene APIs bauen müssen.
+Angenommen, Sie verbinden einen Agenten mit Ihrem MCP-Server für einen Taschenrechner. Plötzlich kann Ihr Agent mathematische Operationen ausführen, indem er einfach eine Eingabe wie „Was ist 47 mal 89?“ erhält – ohne dass Sie Logik fest programmieren oder benutzerdefinierte APIs erstellen müssen.
 
 ## Überblick
 
-Diese Lektion zeigt, wie Sie einen Rechner-MCP-Server mit einem Agenten über die [AI Toolkit](https://aka.ms/AIToolkit)-Erweiterung in Visual Studio Code verbinden, sodass Ihr Agent mathematische Operationen wie Addition, Subtraktion, Multiplikation und Division über natürliche Sprache ausführen kann.
+In dieser Lektion erfahren Sie, wie Sie einen MCP-Server für einen Taschenrechner mit einem Agenten verbinden, indem Sie die [AI Toolkit](https://aka.ms/AIToolkit)-Erweiterung in Visual Studio Code verwenden. Dadurch kann Ihr Agent mathematische Operationen wie Addition, Subtraktion, Multiplikation und Division in natürlicher Sprache ausführen.
 
-AI Toolkit ist eine leistungsstarke Erweiterung für Visual Studio Code, die die Entwicklung von Agenten vereinfacht. KI-Ingenieure können damit KI-Anwendungen einfach erstellen und generative KI-Modelle lokal oder in der Cloud entwickeln und testen. Die Erweiterung unterstützt die meisten heute verfügbaren großen generativen Modelle.
+Das AI Toolkit ist eine leistungsstarke Erweiterung für Visual Studio Code, die die Entwicklung von Agenten vereinfacht. KI-Ingenieure können damit KI-Anwendungen entwickeln und generative KI-Modelle lokal oder in der Cloud testen. Die Erweiterung unterstützt die meisten gängigen generativen Modelle, die heute verfügbar sind.
 
 *Hinweis*: Das AI Toolkit unterstützt derzeit Python und TypeScript.
 
 ## Lernziele
 
-Am Ende dieser Lektion können Sie:
+Am Ende dieser Lektion werden Sie in der Lage sein:
 
-- Einen MCP-Server über das AI Toolkit nutzen.
-- Eine Agentenkonfiguration einrichten, damit der Agent Werkzeuge des MCP-Servers entdecken und verwenden kann.
-- MCP-Werkzeuge über natürliche Sprache einsetzen.
+- Einen MCP-Server über das AI Toolkit zu nutzen.
+- Eine Agentenkonfiguration so einzurichten, dass der Agent die vom MCP-Server bereitgestellten Tools entdecken und verwenden kann.
+- MCP-Tools über natürliche Sprache zu verwenden.
 
 ## Vorgehensweise
 
 So gehen wir auf hoher Ebene vor:
 
-- Einen Agenten erstellen und dessen System-Prompt definieren.
-- Einen MCP-Server mit Rechner-Werkzeugen erstellen.
+- Einen Agenten erstellen und dessen Systemaufforderung definieren.
+- Einen MCP-Server mit Taschenrechner-Tools erstellen.
 - Den Agent Builder mit dem MCP-Server verbinden.
-- Die Werkzeugaufrufe des Agenten über natürliche Sprache testen.
+- Die Tool-Nutzung des Agenten über natürliche Sprache testen.
 
-Super, jetzt wo wir den Ablauf kennen, konfigurieren wir einen KI-Agenten, der externe Werkzeuge über MCP nutzt und so seine Fähigkeiten erweitert!
+Super, jetzt, da wir den Ablauf verstanden haben, konfigurieren wir einen KI-Agenten, um externe Tools über MCP zu nutzen und seine Fähigkeiten zu erweitern!
 
 ## Voraussetzungen
 
@@ -47,67 +47,62 @@ Super, jetzt wo wir den Ablauf kennen, konfigurieren wir einen KI-Agenten, der e
 
 ## Übung: Einen Server nutzen
 
-In dieser Übung bauen, starten und erweitern Sie einen KI-Agenten mit Werkzeugen eines MCP-Servers innerhalb von Visual Studio Code mithilfe des AI Toolkits.
+> [!WARNING]
+> Hinweis für macOS-Nutzer: Wir untersuchen derzeit ein Problem, das die Installation von Abhängigkeiten auf macOS betrifft. Daher können macOS-Nutzer dieses Tutorial momentan nicht abschließen. Wir werden die Anweisungen aktualisieren, sobald eine Lösung verfügbar ist. Vielen Dank für Ihre Geduld und Ihr Verständnis!
 
-### -0- Vorbereitung: Fügen Sie das OpenAI GPT-4o Modell zu My Models hinzu
+In dieser Übung erstellen, starten und erweitern Sie einen KI-Agenten mit Tools eines MCP-Servers in Visual Studio Code mithilfe des AI Toolkits.
 
-Die Übung verwendet das **GPT-4o** Modell. Dieses Modell sollte vor der Erstellung des Agenten zu **My Models** hinzugefügt werden.
+### -0- Vorbereitender Schritt: OpenAI GPT-4o-Modell zu „Meine Modelle“ hinzufügen
 
-![Screenshot einer Modellauswahl in der AI Toolkit-Erweiterung von Visual Studio Code. Überschrift: "Find the right model for your AI Solution" mit Untertitel, der Nutzer ermutigt, KI-Modelle zu entdecken, zu testen und bereitzustellen. Unter „Popular Models“ sind sechs Modellkarten zu sehen: DeepSeek-R1 (GitHub-gehostet), OpenAI GPT-4o, OpenAI GPT-4.1, OpenAI o1, Phi 4 Mini (CPU - Klein, Schnell) und DeepSeek-R1 (Ollama-gehostet). Jede Karte bietet Optionen zum „Hinzufügen“ oder „Im Playground testen“.](../../../../translated_images/aitk-model-catalog.2acd38953bb9c119aa629fe74ef34cc56e4eed35e7f5acba7cd0a59e614ab335.de.png)
+Die Übung verwendet das **GPT-4o**-Modell. Das Modell sollte zu **Meine Modelle** hinzugefügt werden, bevor der Agent erstellt wird.
 
-1. Öffnen Sie die **AI Toolkit**-Erweiterung über die **Activity Bar**.
-1. Wählen Sie im Bereich **Catalog** den Eintrag **Models**, um den **Model Catalog** zu öffnen. Das öffnet den **Model Catalog** in einem neuen Editor-Tab.
-1. Geben Sie im Suchfeld des **Model Catalog** „OpenAI GPT-4o“ ein.
-1. Klicken Sie auf **+ Add**, um das Modell zu Ihrer Liste **My Models** hinzuzufügen. Achten Sie darauf, das Modell auszuwählen, das **von GitHub gehostet** wird.
-1. Überprüfen Sie in der **Activity Bar**, ob das Modell **OpenAI GPT-4o** in der Liste erscheint.
+1. Öffnen Sie die **AI Toolkit**-Erweiterung in der **Activity Bar**.
+1. Wählen Sie im Abschnitt **Katalog** die Option **Modelle**, um den **Modellkatalog** zu öffnen. Die Auswahl von **Modelle** öffnet den **Modellkatalog** in einem neuen Editor-Tab.
+1. Geben Sie im Suchfeld des **Modellkatalogs** **OpenAI GPT-4o** ein.
+1. Klicken Sie auf **+ Hinzufügen**, um das Modell zu Ihrer Liste **Meine Modelle** hinzuzufügen. Stellen Sie sicher, dass Sie das Modell auswählen, das **von GitHub gehostet** wird.
+1. Bestätigen Sie in der **Activity Bar**, dass das **OpenAI GPT-4o**-Modell in der Liste erscheint.
 
 ### -1- Einen Agenten erstellen
 
-Der **Agent (Prompt) Builder** ermöglicht es Ihnen, eigene KI-Agenten zu erstellen und anzupassen. In diesem Abschnitt erstellen Sie einen neuen Agenten und weisen ihm ein Modell zu, das die Konversation steuert.
+Der **Agent (Prompt) Builder** ermöglicht es Ihnen, eigene KI-gestützte Agenten zu erstellen und anzupassen. In diesem Abschnitt erstellen Sie einen neuen Agenten und weisen ihm ein Modell zu, das die Konversation antreibt.
 
-![Screenshot der "Calculator Agent"-Builder-Oberfläche in der AI Toolkit-Erweiterung für Visual Studio Code. Im linken Panel ist das Modell "OpenAI GPT-4o (via GitHub)" ausgewählt. Ein System-Prompt lautet: "You are a professor in university teaching math," und der Nutzer-Prompt: "Explain to me the Fourier equation in simple terms." Weitere Optionen sind Buttons zum Hinzufügen von Werkzeugen, Aktivieren des MCP Servers und Auswahl der strukturierten Ausgabe. Unten befindet sich ein blauer „Run“-Button. Im rechten Panel unter "Get Started with Examples" sind drei Beispielagenten gelistet: Web Developer (mit MCP Server), Second-Grade Simplifier und Dream Interpreter, jeweils mit kurzen Beschreibungen ihrer Funktionen.](../../../../translated_images/aitk-agent-builder.901e3a2960c3e4774b29a23024ff5bec2d4232f57fae2a418b2aaae80f81c05f.de.png)
-
-1. Öffnen Sie die **AI Toolkit**-Erweiterung über die **Activity Bar**.
-1. Wählen Sie im Bereich **Tools** den Eintrag **Agent (Prompt) Builder**. Das öffnet den **Agent (Prompt) Builder** in einem neuen Editor-Tab.
-1. Klicken Sie auf die Schaltfläche **+ New Agent**. Die Erweiterung startet einen Einrichtungsassistenten über die **Command Palette**.
+1. Öffnen Sie die **AI Toolkit**-Erweiterung in der **Activity Bar**.
+1. Wählen Sie im Abschnitt **Tools** die Option **Agent (Prompt) Builder**. Die Auswahl von **Agent (Prompt) Builder** öffnet den **Agent (Prompt) Builder** in einem neuen Editor-Tab.
+1. Klicken Sie auf die Schaltfläche **+ Neuer Agent**. Die Erweiterung startet einen Einrichtungsassistenten über die **Befehls-Palette**.
 1. Geben Sie den Namen **Calculator Agent** ein und drücken Sie **Enter**.
-1. Wählen Sie im **Agent (Prompt) Builder** im Feld **Model** das Modell **OpenAI GPT-4o (via GitHub)** aus.
+1. Wählen Sie im **Agent (Prompt) Builder** für das Feld **Modell** das Modell **OpenAI GPT-4o (via GitHub)** aus.
 
-### -2- Einen System-Prompt für den Agenten erstellen
+### -2- Eine Systemaufforderung für den Agenten erstellen
 
-Nachdem der Agent erstellt ist, definieren Sie seine Persönlichkeit und seinen Zweck. In diesem Abschnitt verwenden Sie die Funktion **Generate system prompt**, um das gewünschte Verhalten des Agenten zu beschreiben – in diesem Fall als Rechner-Agent – und das Modell den System-Prompt für Sie schreiben zu lassen.
+Nachdem der Agent erstellt wurde, ist es an der Zeit, seine Persönlichkeit und seinen Zweck zu definieren. In diesem Abschnitt verwenden Sie die Funktion **Systemaufforderung generieren**, um das beabsichtigte Verhalten des Agenten zu beschreiben – in diesem Fall ein Taschenrechner-Agent – und lassen das Modell die Systemaufforderung für Sie schreiben.
 
-![Screenshot der "Calculator Agent"-Oberfläche im AI Toolkit für Visual Studio Code mit einem geöffneten Modalfenster „Generate a prompt“. Das Modal erklärt, dass eine Prompt-Vorlage durch Eingabe grundlegender Details generiert werden kann und zeigt ein Textfeld mit folgendem Beispiel-System-Prompt: "You are a helpful and efficient math assistant. When given a problem involving basic arithmetic, you respond with the correct result." Unter dem Textfeld befinden sich die Buttons „Close“ und „Generate“. Im Hintergrund ist ein Teil der Agentenkonfiguration sichtbar, inklusive des ausgewählten Modells "OpenAI GPT-4o (via GitHub)" und Feldern für System- und Nutzer-Prompts.](../../../../translated_images/aitk-generate-prompt.ba9e69d3d2bbe2a26444d0c78775540b14196061eee32c2054e9ee68c4f51f3a.de.png)
-
-1. Klicken Sie im Bereich **Prompts** auf die Schaltfläche **Generate system prompt**. Diese öffnet den Prompt-Builder, der KI nutzt, um einen System-Prompt für den Agenten zu generieren.
-1. Geben Sie im Fenster **Generate a prompt** Folgendes ein: `You are a helpful and efficient math assistant. When given a problem involving basic arithmetic, you respond with the correct result.`
-1. Klicken Sie auf **Generate**. Unten rechts erscheint eine Benachrichtigung, dass der System-Prompt generiert wird. Nach Abschluss erscheint der Prompt im Feld **System prompt** des **Agent (Prompt) Builder**.
-1. Überprüfen Sie den **System prompt** und passen Sie ihn bei Bedarf an.
+1. Klicken Sie im Abschnitt **Aufforderungen** auf die Schaltfläche **Systemaufforderung generieren**. Diese Schaltfläche öffnet den Prompt-Builder, der KI verwendet, um eine Systemaufforderung für den Agenten zu generieren.
+1. Geben Sie im Fenster **Eine Aufforderung generieren** Folgendes ein: `Sie sind ein hilfreicher und effizienter Mathematik-Assistent. Bei Problemen mit grundlegender Arithmetik geben Sie das korrekte Ergebnis zurück.`
+1. Klicken Sie auf die Schaltfläche **Generieren**. Eine Benachrichtigung erscheint in der unteren rechten Ecke, die bestätigt, dass die Systemaufforderung generiert wird. Sobald die Generierung abgeschlossen ist, erscheint die Aufforderung im Feld **Systemaufforderung** des **Agent (Prompt) Builders**.
+1. Überprüfen Sie die **Systemaufforderung** und passen Sie sie bei Bedarf an.
 
 ### -3- Einen MCP-Server erstellen
 
-Nachdem Sie den System-Prompt definiert haben, der das Verhalten und die Antworten des Agenten steuert, statten Sie den Agenten nun mit praktischen Fähigkeiten aus. In diesem Abschnitt erstellen Sie einen Rechner-MCP-Server mit Werkzeugen für Addition, Subtraktion, Multiplikation und Division. Dieser Server ermöglicht es Ihrem Agenten, mathematische Operationen in Echtzeit als Antwort auf natürliche Spracheingaben auszuführen.
+Nachdem Sie die Systemaufforderung Ihres Agenten definiert haben, die sein Verhalten und seine Antworten steuert, ist es an der Zeit, den Agenten mit praktischen Fähigkeiten auszustatten. In diesem Abschnitt erstellen Sie einen MCP-Server für einen Taschenrechner mit Tools zur Ausführung von Additions-, Subtraktions-, Multiplikations- und Divisionsberechnungen. Dieser Server ermöglicht es Ihrem Agenten, in Echtzeit mathematische Operationen als Antwort auf Eingaben in natürlicher Sprache auszuführen.
 
-!["Screenshot des unteren Bereichs der Calculator Agent-Oberfläche in der AI Toolkit-Erweiterung für Visual Studio Code. Es sind aufklappbare Menüs für „Tools“ und „Structure output“ zu sehen sowie ein Dropdown-Menü „Choose output format“ mit der Auswahl „text“. Rechts befindet sich ein Button „+ MCP Server“ zum Hinzufügen eines Model Context Protocol Servers. Über dem Tools-Bereich ist ein Platzhalter für ein Bildsymbol zu sehen.](../../../../translated_images/aitk-add-mcp-server.9742cfddfe808353c0caf9cc0a7ed3e80e13abf4d2ebde315c81c3cb02a2a449.de.png)
-
-Das AI Toolkit bietet Vorlagen, die das Erstellen eigener MCP-Server erleichtern. Wir verwenden die Python-Vorlage, um den Rechner-MCP-Server zu erstellen.
+Das AI Toolkit enthält Vorlagen, die das Erstellen eigener MCP-Server erleichtern. Wir verwenden die Python-Vorlage, um den MCP-Server für den Taschenrechner zu erstellen.
 
 *Hinweis*: Das AI Toolkit unterstützt derzeit Python und TypeScript.
 
-1. Klicken Sie im Bereich **Tools** des **Agent (Prompt) Builder** auf die Schaltfläche **+ MCP Server**. Die Erweiterung startet einen Einrichtungsassistenten über die **Command Palette**.
-1. Wählen Sie **+ Add Server**.
-1. Wählen Sie **Create a New MCP Server**.
-1. Wählen Sie die Vorlage **python-weather** aus.
-1. Wählen Sie den **Default folder** zum Speichern der MCP-Server-Vorlage.
-1. Geben Sie als Namen für den Server **Calculator** ein.
-1. Ein neues Visual Studio Code-Fenster öffnet sich. Wählen Sie **Yes, I trust the authors**.
-1. Erstellen Sie im Terminal (**Terminal** > **New Terminal**) eine virtuelle Umgebung: `python -m venv .venv`
-1. Aktivieren Sie im Terminal die virtuelle Umgebung:
+1. Klicken Sie im Abschnitt **Tools** des **Agent (Prompt) Builders** auf die Schaltfläche **+ MCP Server**. Die Erweiterung startet einen Einrichtungsassistenten über die **Befehls-Palette**.
+1. Wählen Sie **+ Server hinzufügen**.
+1. Wählen Sie **Einen neuen MCP-Server erstellen**.
+1. Wählen Sie **python-weather** als Vorlage.
+1. Wählen Sie **Standardordner**, um die MCP-Server-Vorlage zu speichern.
+1. Geben Sie den folgenden Namen für den Server ein: **Calculator**
+1. Ein neues Visual Studio Code-Fenster wird geöffnet. Wählen Sie **Ja, ich vertraue den Autoren**.
+1. Erstellen Sie im Terminal (**Terminal** > **Neues Terminal**) eine virtuelle Umgebung: `python -m venv .venv`
+1. Aktivieren Sie die virtuelle Umgebung im Terminal:
     1. Windows - `.venv\Scripts\activate`
     1. macOS/Linux - `source venv/bin/activate`
-1. Installieren Sie im Terminal die Abhängigkeiten: `pip install -e .[dev]`
-1. Öffnen Sie im **Explorer** der **Activity Bar** das Verzeichnis **src** und wählen Sie die Datei **server.py** zum Bearbeiten aus.
-1. Ersetzen Sie den Code in der Datei **server.py** durch den folgenden und speichern Sie:
+1. Installieren Sie die Abhängigkeiten im Terminal: `pip install -e .[dev]`
+1. Erweitern Sie im **Explorer**-Ansichtsbereich der **Activity Bar** das Verzeichnis **src** und wählen Sie **server.py**, um die Datei im Editor zu öffnen.
+1. Ersetzen Sie den Code in der Datei **server.py** durch Folgendes und speichern Sie:
 
     ```python
     """
@@ -150,30 +145,26 @@ Das AI Toolkit bietet Vorlagen, die das Erstellen eigener MCP-Server erleichtern
         return a / b
     ```
 
-### -4- Den Agenten mit dem Rechner-MCP-Server ausführen
+### -4- Den Agenten mit dem MCP-Server für den Taschenrechner ausführen
 
-Jetzt, wo Ihr Agent Werkzeuge hat, ist es Zeit, sie zu nutzen! In diesem Abschnitt senden Sie Eingaben an den Agenten, um zu testen und zu überprüfen, ob der Agent das passende Werkzeug vom Rechner-MCP-Server verwendet.
+Jetzt, da Ihr Agent über Tools verfügt, ist es an der Zeit, diese zu nutzen! In diesem Abschnitt senden Sie Eingaben an den Agenten, um zu testen und zu validieren, ob der Agent das passende Tool des MCP-Servers für den Taschenrechner verwendet.
 
-![Screenshot der Calculator Agent-Oberfläche in der AI Toolkit-Erweiterung für Visual Studio Code. Im linken Panel unter „Tools“ ist ein MCP-Server namens local-server-calculator_server hinzugefügt, der vier verfügbare Werkzeuge zeigt: add, subtract, multiply und divide. Ein Badge zeigt, dass vier Werkzeuge aktiv sind. Darunter ist ein eingeklapptes „Structure output“-Menü und ein blauer „Run“-Button. Im rechten Panel unter „Model Response“ ruft der Agent die Werkzeuge multiply und subtract mit den Eingaben {"a": 3, "b": 25} bzw. {"a": 75, "b": 20} auf. Die finale „Tool Response“ wird mit 75.0 angezeigt. Unten erscheint ein „View Code“-Button.](../../../../translated_images/aitk-agent-response-with-tools.e7c781869dc8041a25f9903ed4f7e8e0c7e13d7d94f6786a6c51b1e172f56866.de.png)
-
-Sie führen den Rechner-MCP-Server lokal auf Ihrer Entwicklungsmaschine über den **Agent Builder** als MCP-Client aus.
-
-1. Drücken Sie `F5`, um das Debugging des MCP-Servers zu starten. Der **Agent (Prompt) Builder** öffnet sich in einem neuen Editor-Tab. Der Serverstatus ist im Terminal sichtbar.
-1. Geben Sie im Feld **User prompt** des **Agent (Prompt) Builder** folgenden Text ein: `I bought 3 items priced at $25 each, and then used a $20 discount. How much did I pay?`
-1. Klicken Sie auf die Schaltfläche **Run**, um die Antwort des Agenten zu generieren.
-1. Überprüfen Sie die Ausgabe des Agenten. Das Modell sollte zu dem Ergebnis kommen, dass Sie **55 $** bezahlt haben.
-1. So sollte der Ablauf im Detail aussehen:
-    - Der Agent wählt die Werkzeuge **multiply** und **subtract** zur Unterstützung der Berechnung aus.
-    - Die jeweiligen Werte für `a` und `b` werden für das Werkzeug **multiply** zugewiesen.
-    - Die jeweiligen Werte für `a` und `b` werden für das Werkzeug **subtract** zugewiesen.
-    - Die Antwort jedes Werkzeugs wird in der jeweiligen **Tool Response** angezeigt.
-    - Die finale Ausgabe des Modells erscheint in der abschließenden **Model Response**.
-1. Geben Sie weitere Eingaben ein, um den Agenten weiter zu testen. Sie können den bestehenden Text im Feld **User prompt** durch Klicken und Ersetzen ändern.
-1. Wenn Sie mit dem Testen fertig sind, können Sie den Server im **Terminal** mit **STRG/CMD+C** beenden.
+1. Drücken Sie `F5`, um den MCP-Server zu debuggen. Der **Agent (Prompt) Builder** wird in einem neuen Editor-Tab geöffnet. Der Status des Servers ist im Terminal sichtbar.
+1. Geben Sie im Feld **Benutzeraufforderung** des **Agent (Prompt) Builders** die folgende Eingabe ein: `Ich habe 3 Artikel zu je 25 $ gekauft und dann einen Rabatt von 20 $ genutzt. Wie viel habe ich bezahlt?`
+1. Klicken Sie auf die Schaltfläche **Ausführen**, um die Antwort des Agenten zu generieren.
+1. Überprüfen Sie die Ausgabe des Agenten. Das Modell sollte zu dem Schluss kommen, dass Sie **55 $** bezahlt haben.
+1. Hier ist eine Aufschlüsselung dessen, was passieren sollte:
+    - Der Agent wählt die Tools **multiply** und **subtract**, um bei der Berechnung zu helfen.
+    - Die jeweiligen Werte für `a` und `b` werden dem Tool **multiply** zugewiesen.
+    - Die jeweiligen Werte für `a` und `b` werden dem Tool **subtract** zugewiesen.
+    - Die Antwort jedes Tools wird in der jeweiligen **Tool-Antwort** bereitgestellt.
+    - Die endgültige Ausgabe des Modells wird in der **Modellantwort** bereitgestellt.
+1. Geben Sie zusätzliche Eingaben ein, um den Agenten weiter zu testen. Sie können die vorhandene Eingabe im Feld **Benutzeraufforderung** ändern, indem Sie in das Feld klicken und die vorhandene Eingabe ersetzen.
+1. Sobald Sie mit dem Testen des Agenten fertig sind, können Sie den Server über das **Terminal** beenden, indem Sie **CTRL/CMD+C** eingeben.
 
 ## Aufgabe
 
-Versuchen Sie, Ihrer **server.py**-Datei einen weiteren Werkzeug-Eintrag hinzuzufügen (z. B. die Quadratwurzel einer Zahl berechnen). Geben Sie weitere Eingaben ein, die den Agenten dazu bringen, Ihr neues Werkzeug (oder bestehende Werkzeuge) zu nutzen. Vergessen Sie nicht, den Server neu zu starten, damit die neuen Werkzeuge geladen werden.
+Versuchen Sie, Ihrem **server.py**-File einen zusätzlichen Tool-Eintrag hinzuzufügen (z. B. die Quadratwurzel einer Zahl zurückgeben). Geben Sie zusätzliche Eingaben ein, die den Agenten dazu bringen, Ihr neues Tool (oder bestehende Tools) zu verwenden. Starten Sie den Server neu, um neu hinzugefügte Tools zu laden.
 
 ## Lösung
 
@@ -181,18 +172,18 @@ Versuchen Sie, Ihrer **server.py**-Datei einen weiteren Werkzeug-Eintrag hinzuzu
 
 ## Wichtige Erkenntnisse
 
-Folgendes nehmen Sie aus diesem Kapitel mit:
+Die wichtigsten Erkenntnisse aus diesem Kapitel sind:
 
-- Die AI Toolkit-Erweiterung ist ein großartiger Client, mit dem Sie MCP-Server und deren Werkzeuge nutzen können.
-- Sie können MCP-Servern neue Werkzeuge hinzufügen und so die Fähigkeiten des Agenten erweitern, um sich ändernden Anforderungen gerecht zu werden.
-- Das AI Toolkit enthält Vorlagen (z. B. Python-MCP-Server-Vorlagen), die das Erstellen eigener Werkzeuge vereinfachen.
+- Die AI Toolkit-Erweiterung ist ein großartiger Client, mit dem Sie MCP-Server und deren Tools nutzen können.
+- Sie können neue Tools zu MCP-Servern hinzufügen, um die Fähigkeiten des Agenten an sich ändernde Anforderungen anzupassen.
+- Das AI Toolkit enthält Vorlagen (z. B. Python-MCP-Server-Vorlagen), um die Erstellung benutzerdefinierter Tools zu vereinfachen.
 
 ## Zusätzliche Ressourcen
 
-- [AI Toolkit Dokumentation](https://aka.ms/AIToolkit/doc)
+- [AI Toolkit-Dokumentation](https://aka.ms/AIToolkit/doc)
 
-## Was kommt als Nächstes
-- Weiter mit: [Testing & Debugging](../08-testing/README.md)
+## Was kommt als Nächstes?
+- Weiter: [Testen & Debuggen](../08-testing/README.md)
 
 **Haftungsausschluss**:  
-Dieses Dokument wurde mit dem KI-Übersetzungsdienst [Co-op Translator](https://github.com/Azure/co-op-translator) übersetzt. Obwohl wir uns um Genauigkeit bemühen, beachten Sie bitte, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner Ursprungssprache gilt als maßgebliche Quelle. Für wichtige Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die aus der Nutzung dieser Übersetzung entstehen.
+Dieses Dokument wurde mit dem KI-Übersetzungsdienst [Co-op Translator](https://github.com/Azure/co-op-translator) übersetzt. Obwohl wir uns um Genauigkeit bemühen, beachten Sie bitte, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner ursprünglichen Sprache sollte als maßgebliche Quelle betrachtet werden. Für kritische Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die sich aus der Nutzung dieser Übersetzung ergeben.
