@@ -1034,7 +1034,7 @@ The inspector is a great tool that can start up your server and lets you interac
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-or add it to your *package.json* like so: `"inspector": "npx @modelcontextprotocol/inspector node build/index.js"` and then run `npm run inspect`
+or add it to your *package.json* like so: `"inspector": "npx @modelcontextprotocol/inspector node build/index.js"` and then run `npm run inspector`
 
 Python wraps a Node.js tool called inspector. It's possible to call said tool like so:
 

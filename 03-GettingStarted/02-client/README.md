@@ -513,7 +513,7 @@ To run the client, type the following command in the terminal:
 Add the following entry to your "scripts" section in *package.json*:
 
 ```json
-"client": "tsx && node build/client.js"
+"client": "tsc && node build/client.js"
 ```
 
 ```sh
