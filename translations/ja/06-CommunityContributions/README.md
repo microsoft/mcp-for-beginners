@@ -846,7 +846,7 @@ async def delete_tool(tool_name: str):
 
 ---
 
-次: [初期採用からの教訓](../07-LessonsfromEarlyAdoption/README.md)
+次: [早期導入者からの教訓](../07-LessonsfromEarlyAdoption/README.md)
 
 **免責事項**:  
 この文書は、AI翻訳サービス [Co-op Translator](https://github.com/Azure/co-op-translator) を使用して翻訳されています。正確性を追求しておりますが、自動翻訳には誤りや不正確な表現が含まれる可能性があることをご承知おきください。元の言語で記載された原文が公式な情報源とみなされるべきです。重要な情報については、専門の人間による翻訳を推奨します。本翻訳の使用に起因する誤解や誤認について、当方は一切の責任を負いません。
