@@ -4,6 +4,8 @@
 
 _(Click the image above to view video of this lesson)_
 
+Because security is such an important aspect, we prioritize it as our second section. This is in keeping with the **Secure by design** principle of Microsoft's [Secure Future Initiative](https://www.microsoft.com/en-us/security/blog/2025/04/17/microsofts-secure-by-design-journey-one-year-of-success/).
+
 Adopting the Model Context Protocol (MCP) brings powerful new capabilities to AI-driven applications, but also introduces unique security challenges that extend beyond traditional software risks. In addition to established concerns like secure coding, least privilege, and supply chain security, MCP and AI workloads face new threats such as prompt injection, tool poisoning, dynamic tool modification, session hijacking, confused deputy attacks, and token passthrough vulnerabilities. These risks can lead to data exfiltration, privacy breaches, and unintended system behavior if not properly managed.
 
 This lesson explores the most relevant security risks associated with MCP—including authentication, authorization, excessive permissions, indirect prompt injection, session security, confused deputy problems, token passthrough vulnerabilities, and supply chain vulnerabilities—and provides actionable controls and best practices to mitigate them. You'll also learn how to leverage Microsoft solutions like Prompt Shields, Azure Content Safety, and GitHub Advanced Security to strengthen your MCP implementation. By understanding and applying these controls, you can significantly reduce the likelihood of a security breach and ensure your AI systems remain robust and trustworthy.

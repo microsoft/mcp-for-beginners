@@ -8,11 +8,11 @@ Practical implementation is where the power of the Model Context Protocol (MCP) 
 
 Whether you are developing intelligent assistants, integrating AI into business workflows, or building custom tools for data processing, MCP provides a flexible foundation. Its language-agnostic design and official SDKs for popular programming languages make it accessible to a wide range of developers. By leveraging these SDKs, you can quickly prototype, iterate, and scale your solutions across different platforms and environments.
 
-In the following sections, you'll find practical examples, sample code, and deployment strategies that demonstrate how to implement MCP in C#, Java, TypeScript, JavaScript, and Python. You'll also learn how to debug and test your MCP servers, manage APIs, and deploy solutions to the cloud using Azure. These hands-on resources are designed to accelerate your learning and help you confidently build robust, production-ready MCP applications.
+In the following sections, you'll find practical examples, sample code, and deployment strategies that demonstrate how to implement MCP in C#, Java with Spring, TypeScript, JavaScript, and Python. You'll also learn how to debug and test your MCP servers, manage APIs, and deploy solutions to the cloud using Azure. These hands-on resources are designed to accelerate your learning and help you confidently build robust, production-ready MCP applications.
 
 ## Overview
 
-This lesson focuses on practical aspects of MCP implementation across multiple programming languages. We'll explore how to use MCP SDKs in C#, Java, TypeScript, JavaScript, and Python to build robust applications, debug and test MCP servers, and create reusable resources, prompts, and tools.
+This lesson focuses on practical aspects of MCP implementation across multiple programming languages. We'll explore how to use MCP SDKs in C#, Java with Spring, TypeScript, JavaScript, and Python to build robust applications, debug and test MCP servers, and create reusable resources, prompts, and tools.
 
 ## Learning Objectives
 
@@ -29,7 +29,7 @@ By the end of this lesson, you will be able to:
 The Model Context Protocol offers official SDKs for multiple languages:
 
 - [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk)
-- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) 
+- [Java with Spring SDK](https://github.com/modelcontextprotocol/java-sdk) **Note:** requires dependency on [Project Reactor](https://projectreactor.io). (See [discussion issue 246](https://github.com/orgs/modelcontextprotocol/discussions/246).)
 - [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)
 - [Python SDK](https://github.com/modelcontextprotocol/python-sdk)
 - [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk)
@@ -43,7 +43,7 @@ This section provides practical examples of implementing MCP across multiple pro
 The repository includes [sample implementations](./samples/) in the following languages:
 
 - [C#](./samples/csharp/README.md)
-- [Java](./samples/java/containerapp/README.md)
+- [Java with Spring](./samples/java/containerapp/README.md)
 - [TypeScript](./samples/typescript/README.md)
 - [JavaScript](./samples/javascript/README.md)
 - [Python](./samples/python/README.md)
@@ -99,9 +99,9 @@ The MCP C# SDK is in preview and APIs may change. We will continuously update th
 
 For complete C# implementation samples, visit the [official C# SDK samples repository](https://github.com/modelcontextprotocol/csharp-sdk)
 
-## Sample implementation: Java Implementation
+## Sample implementation: Java with Spring Implementation
 
-The Java SDK offers robust MCP implementation options with enterprise-grade features.
+The Java with Spring SDK offers robust MCP implementation options with enterprise-grade features.
 
 ### Key Features
 
@@ -110,7 +110,7 @@ The Java SDK offers robust MCP implementation options with enterprise-grade feat
 - Reactive programming support
 - Comprehensive error handling
 
-For a complete Java implementation sample, see [Java sample](samples/java/containerapp/README.md) in the samples directory.
+For a complete Java with Spring implementation sample, see [Java with Spring sample](samples/java/containerapp/README.md) in the samples directory.
 
 ## Sample implementation: JavaScript Implementation
 

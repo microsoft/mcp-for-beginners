@@ -4,7 +4,7 @@
 
 _(Click the image above to view video of this lesson)_
 
-The [Model Context Protocol (MCP)](https://github.com/modelcontextprotocol) is a powerful, standardized framework that optimizes communication between Large Language Models (LLMs) and external tools, applications, and data sources. This SEO-optimized guide will walk you through the core concepts of MCP, ensuring you understand its client-server architecture, essential components, communication mechanics, and implementation best practices.
+The [Model Context Protocol (MCP)](https://github.com/modelcontextprotocol) is a powerful, standardized framework that optimizes communication between Large Language Models (LLMs) and external tools, applications, and data sources. This guide will walk you through the core concepts of MCP, ensuring you understand its client-server architecture, essential components, communication mechanics, and implementation best practices.
 
 ## Overview
 
@@ -29,7 +29,7 @@ At its core, MCP follows a client-server architecture where a host application c
 ```mermaid
 flowchart LR
     subgraph "Your Computer"
-        Host["Host with MCP VScode, IDEs, Tools)"]
+        Host["Host with MCP (Visual Studio, VS Code, IDEs, Tools)"]
         S1["MCP Server A"]
         S2["MCP Server B"]
         S3["MCP Server C"]
@@ -50,13 +50,13 @@ flowchart LR
 - **Local Data Sources**: Your computer's files, databases, and services that MCP servers can securely access
 - **Remote Services**: External systems available over the internet that MCP servers can connect to through APIs.
 
-The MCP Protocol is an evolving standard you can see the latest updates to the [protocol specification](https://modelcontextprotocol.io/specification/2025-06-18/)
+The MCP Protocol is an evolving standard. You can see the latest updates to the [protocol specification](https://modelcontextprotocol.io/specification/2025-06-18/)
 
 ### 1. Hosts
 
 In the Model Context Protocol (MCP), Hosts play a crucial role as the primary interface through which users interact with the protocol. Hosts are applications or environments that initiate connections with MCP servers to access data, tools, and prompts. Examples of Hosts include integrated development environments (IDEs) like Visual Studio Code, AI tools like Claude Desktop, or custom-built agents designed for specific tasks
 
-**Hosts** are LLM applications that initiate connections. They:
+**Hosts** are applications that initiate connections with LLMs. They:
 
 - Execute or interact with AI models to generate responses.
 - Initiate connections with MCP servers.
@@ -78,7 +78,7 @@ Clients are essential components that facilitate the interaction between Hosts a
 
 ### 3. Servers
 
-Servers are responsible for handling requests from MCP clients and providing appropriate responses. They manage various operations such as data retrieval, tool execution, and prompt generation. Servers ensure that the communication between clients and Hosts is efficient and reliable, maintaining the integrity of the interaction process
+Servers are responsible for handling requests from MCP clients and providing appropriate responses. Most commonly, servers act as tools which provide a specific capability to the LLM. They manage various operations such as data retrieval, tool execution, and prompt generation. Servers ensure that the communication between clients and Hosts is efficient and reliable, maintaining the integrity of the interaction process
 
 **Servers** are services that provide context and capabilities. They:
 
