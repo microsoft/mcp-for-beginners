@@ -14,7 +14,7 @@ The Model Context Protocol (MCP) is an open protocol that standardizes how appli
 
 By the end of this lesson, you will be able to:
 
-- Set up development environments for MCP in C#, Java, Python, TypeScript, and JavaScript
+- Set up development environments for MCP in C#, Java, Python, TypeScript, and Rust
 - Build and deploy basic MCP servers with custom features (resources, prompts, and tools)
 - Create host applications that connect to MCP servers
 - Test and debug MCP implementations
@@ -27,9 +27,9 @@ Before you begin working with MCP, it's important to prepare your development en
 
 Before diving into MCP development, ensure you have:
 
-- **Development Environment**: For your chosen language (C#, Java, Python, TypeScript, or JavaScript)
+- **Development Environment**: For your chosen language (C#, Java, Python, TypeScript, or Rust)
 - **IDE/Editor**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm, or any modern code editor
-- **Package Managers**: NuGet, Maven/Gradle, pip, or npm/yarn
+- **Package Managers**: NuGet, Maven/Gradle, pip, npm/yarn, or Cargo
 - **API Keys**: For any AI services you plan to use in your host applications
 
 ## Basic MCP Server Structure
@@ -106,7 +106,7 @@ When you run the above commands, the MCP Inspector will launch a local web inter
 
 Here's a screenshot of what it can look like:
 
-![](/03-GettingStarted/01-first-server/assets/connected.png)
+![MCP Inspector server connection](/03-GettingStarted/01-first-server/assets/connected.png)
 
 ## Common Setup Issues and Solutions
 
@@ -314,6 +314,14 @@ Add the following complete configuration to your *pom.xml* file:
 </project>
 ```
 
+#### Rust
+
+```sh
+mkdir calculator-server
+cd calculator-server
+cargo init
+```
+
 ### -2- Add dependencies
 
 Now that you have your project created, let's add dependencies next:
@@ -343,6 +351,14 @@ pip install "mcp[cli]"
 ```bash
 cd calculator-server
 ./mvnw clean install -DskipTests
+```
+
+#### Rust
+
+```sh
+cargo add rmcp --features server,transport-io
+cargo add serde
+cargo add tokio --features rt-multi-thread
 ```
 
 ### -3- Create project files
@@ -423,6 +439,10 @@ dotnet add package Microsoft.Extensions.Hosting
 #### Java
 
 For Java Spring Boot projects, the project structure is created automatically.
+
+#### Rust
+
+For Rust, a *src/main.rs* file is created by default when you run `cargo init`. Open the file and delete the default code.
 
 ### -4- Create server code
 
@@ -761,6 +781,77 @@ Spring Boot MCP Application
 
 </details>
 
+#### Rust
+
+Add the following code to the top of the *src/main.rs* file. This imports the necessary libraries and modules for your MCP server.
+
+```rust
+use rmcp::{
+    handler::server::{router::tool::ToolRouter, tool::Parameters},
+    model::{ServerCapabilities, ServerInfo},
+    schemars, tool, tool_handler, tool_router,
+    transport::stdio,
+    ServerHandler, ServiceExt,
+};
+use std::error::Error;
+```
+
+The calculator server will be a simple one that can add two numbers together. Let's create a struct to represent the calculator request.
+
+```rust
+#[derive(Debug, serde::Deserialize, schemars::JsonSchema)]
+pub struct CalculatorRequest {
+    pub a: f64,
+    pub b: f64,
+}
+```
+
+Next, create a struct to represent the calculator server. This struct will hold the tool router, which is used to register tools.
+
+```rust
+#[derive(Debug, Clone)]
+pub struct Calculator {
+    tool_router: ToolRouter<Self>,
+}
+```
+
+Now, we can implement the `Calculator` struct to create a new instance of the server and implement the server handler to provide server information.
+
+```rust
+#[tool_router]
+impl Calculator {
+    pub fn new() -> Self {
+        Self {
+            tool_router: Self::tool_router(),
+        }
+    }
+}
+
+#[tool_handler]
+impl ServerHandler for Calculator {
+    fn get_info(&self) -> ServerInfo {
+        ServerInfo {
+            instructions: Some("A simple calculator tool".into()),
+            capabilities: ServerCapabilities::builder().enable_tools().build(),
+            ..Default::default()
+        }
+    }
+}
+```
+
+Finally, we need to implement the main function to start the server. This function will create an instance of the `Calculator` struct and serve it over standard input/output.
+
+```rust
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn Error>> {
+    let service = Calculator::new().serve(stdio()).await?;
+    service.waiting().await?;
+    Ok(())
+}
+```
+
+The server is now set up to provide basic information about itself. Next, we will add a tool to perform addition.
+
 ### -5- Adding a tool and a resource
 
 Add a tool and a resource by adding the following code:
@@ -845,6 +936,20 @@ public static class CalculatorTool
 #### Java
 
 The tools have already been created in the previous step.
+
+#### Rust
+
+Add a new tool inside the `impl Calculator` block:
+
+```rust
+#[tool(description = "Adds a and b")]
+async fn add(
+    &self,
+    Parameters(CalculatorRequest { a, b }): Parameters<CalculatorRequest>,
+) -> String {
+    (a + b).to_string()
+}
+```
 
 ### -6- Final code
 
@@ -987,6 +1092,67 @@ public class McpServerApplication {
 }
 ```
 
+#### Rust
+
+The final code for the Rust server should look like this:
+
+```rust
+use rmcp::{
+    ServerHandler, ServiceExt,
+    handler::server::{router::tool::ToolRouter, tool::Parameters},
+    model::{ServerCapabilities, ServerInfo},
+    schemars, tool, tool_handler, tool_router,
+    transport::stdio,
+};
+use std::error::Error;
+
+#[derive(Debug, serde::Deserialize, schemars::JsonSchema)]
+pub struct CalculatorRequest {
+    pub a: f64,
+    pub b: f64,
+}
+
+#[derive(Debug, Clone)]
+pub struct Calculator {
+    tool_router: ToolRouter<Self>,
+}
+
+#[tool_router]
+impl Calculator {
+    pub fn new() -> Self {
+        Self {
+            tool_router: Self::tool_router(),
+        }
+    }
+    
+    #[tool(description = "Adds a and b")]
+    async fn add(
+        &self,
+        Parameters(CalculatorRequest { a, b }): Parameters<CalculatorRequest>,
+    ) -> String {
+        (a + b).to_string()
+    }
+}
+
+#[tool_handler]
+impl ServerHandler for Calculator {
+    fn get_info(&self) -> ServerInfo {
+        ServerInfo {
+            instructions: Some("A simple calculator tool".into()),
+            capabilities: ServerCapabilities::builder().enable_tools().build(),
+            ..Default::default()
+        }
+    }
+}
+
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn Error>> {
+    let service = Calculator::new().serve(stdio()).await?;
+    service.waiting().await?;
+    Ok(())
+}
+```
+
 ### -7- Test the server
 
 Start the server with the following command:
@@ -1019,6 +1185,15 @@ dotnet run
 ```bash
 ./mvnw clean install -DskipTests
 java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
+```
+
+#### Rust
+
+Run the following commands to format and run the server:
+
+```sh
+cargo fmt
+cargo run
 ```
 
 ### -8- Run using the inspector
@@ -1099,6 +1274,14 @@ You should see the following user interface:
 
 Congrats, you've managed to create and run your first server!
 
+#### Rust
+
+To run the Rust server with the MCP Inspector CLI, use the following command:
+
+```sh
+npx @modelcontextprotocol/inspector cargo run --cli --method tools/call --tool-name add --tool-arg a=1 b=2
+```
+
 ### Official SDKs
 
 MCP provides official SDKs for multiple languages:
@@ -1124,12 +1307,13 @@ MCP provides official SDKs for multiple languages:
 - [JavaScript Calculator](../samples/javascript/README.md)
 - [TypeScript Calculator](../samples/typescript/README.md)
 - [Python Calculator](../samples/python/)
+- [Rust Calculator](../samples/rust/)
 
 ## Assignment
 
 Create a simple MCP server with a tool of your choice:
 
-1. Implement the tool in your preferred language (.NET, Java, Python, or JavaScript).
+1. Implement the tool in your preferred language (.NET, Java, Python, TypeScript, or Rust).
 2. Define input parameters and return values.
 3. Run the inspector tool to ensure the server works as intended.
 4. Test the implementation with various inputs.
