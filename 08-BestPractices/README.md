@@ -599,6 +599,7 @@ public class CachedWeatherTool : ITool
         };
     }
 }
+```
 
 #### 2. Dependency Injection and Testability
 
