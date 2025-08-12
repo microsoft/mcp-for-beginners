@@ -47,7 +47,7 @@ Here's a simplified example in TypeScript:
 import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 // Create a new MCP server
-const server = new Server({
+const server = new McpServer({
   port: 3000,
   name: "Example MCP Server",
   version: "1.0.0"
