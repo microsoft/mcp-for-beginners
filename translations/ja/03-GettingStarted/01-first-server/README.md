@@ -1363,7 +1363,7 @@ MCPは複数の言語向けに公式SDKを提供しています:
 
 ## 解答
 
-[Solution](./solution/README.md)
+[解答](./solution/README.md)
 
 ## 追加リソース
 
