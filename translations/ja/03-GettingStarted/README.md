@@ -84,11 +84,11 @@ MCPは複数の言語向けに公式SDKを提供しています：
 
 このセクションのすべての章で紹介される演習を補完するサンプルセットを用意しています。さらに、各章には独自の演習と課題も含まれています。
 
-- [Java電卓](./samples/java/calculator/README.md)
-- [.Net電卓](../../../03-GettingStarted/samples/csharp)
-- [JavaScript電卓](./samples/javascript/README.md)
-- [TypeScript電卓](./samples/typescript/README.md)
-- [Python電卓](../../../03-GettingStarted/samples/python)
+- [Java 計算機](./samples/java/calculator/README.md)
+- [.Net 計算機](../../../03-GettingStarted/samples/csharp)
+- [JavaScript 計算機](./samples/javascript/README.md)
+- [TypeScript 計算機](./samples/typescript/README.md)
+- [Python 計算機](../../../03-GettingStarted/samples/python)
 
 ## 追加リソース
 
