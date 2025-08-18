@@ -11,7 +11,7 @@ import math
 import statistics
 from typing import List, Dict, Any
 from mcp.server.fastmcp import FastMCP
-from mcp.server.stdio import serve_stdio
+from mcp.server.stdio import stdio_server
 
 # Create a FastMCP server
 mcp = FastMCP(
@@ -211,4 +211,4 @@ def get_server_info() -> Dict[str, Any]:
 
 if __name__ == "__main__":
     # Start the server with stdio transport
-    asyncio.run(serve_stdio(mcp))
+    asyncio.run(stdio_server(mcp))
