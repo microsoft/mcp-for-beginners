@@ -53,7 +53,7 @@ Este es un servidor MCP avanzado que proporciona una amplia gama de herramientas
 1. Asegúrate de tener Python 3.8+ instalado
 2. Instala las dependencias:
 ```bash
-pip install mcp-server-fastmcp
+pip install mcp
 ```
 
 ## Uso

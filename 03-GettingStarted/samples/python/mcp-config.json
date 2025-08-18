@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "advanced-calculator": {
+      "command": "python",
+      "args": ["advanced_calculator_server.py"],
+      "env": {}
+    }
+  }
+}
