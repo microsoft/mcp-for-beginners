@@ -8,7 +8,7 @@ that can perform basic arithmetic operations (add, subtract, multiply, divide).
 
 import asyncio
 from mcp.server.fastmcp import FastMCP
-from mcp.server.transports.stdio import serve_stdio
+from mcp.server.stdio import serve_stdio
 
 # Create a FastMCP server
 mcp = FastMCP(

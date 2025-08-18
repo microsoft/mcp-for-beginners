@@ -11,7 +11,7 @@ import math
 import statistics
 from typing import List, Dict, Any
 from mcp.server.fastmcp import FastMCP
-from mcp.server.transports.stdio import serve_stdio
+from mcp.server.stdio import serve_stdio
 
 # Create a FastMCP server
 mcp = FastMCP(
