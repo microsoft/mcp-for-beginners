@@ -6,7 +6,7 @@
     "scripts": {
         "start": "node ./build/index.js",
         "build": "tsc",
-        "client": "tsc && node ./build/client.js",
+        "client": "node ./build/client.js",
         "inspector": "npx @modelcontextprotocol/inspector node build/index.js"
     },
     "files": [
