@@ -5,7 +5,6 @@ from mcp.server.session import ServerSession
 
 from starlette.applications import Starlette
 from starlette.routing import Mount, Host
-from mcp.server.fastmcp import FastMCP
 
 mcp = FastMCP(name="Elicitation Example")
 
