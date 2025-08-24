@@ -111,7 +111,7 @@ SSE についてもう少し理解できたので、次は SSE サーバーを�
 
 To create our server, we need to keep two things in mind:
 
-- We need to use a web server to expose endpoints for connection and messages.
+- 接続とメッセージのエンドポイントを公開するには、Web サーバーを使用する必要があります。
 - Build our server like we normally do with tools, resources and prompts when we were using stdio.
 
 ### -1- Create a server instance
