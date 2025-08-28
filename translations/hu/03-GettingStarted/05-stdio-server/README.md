@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "cffce88f960004dcc957455277e790f9",
-  "translation_date": "2025-08-27T23:45:10+00:00",
+  "original_hash": "77735b446eb79b1bba9c849865cd0ced",
+  "translation_date": "2025-08-28T18:06:14+00:00",
   "source_file": "03-GettingStarted/05-stdio-server/README.md",
   "language_code": "hu"
 }
