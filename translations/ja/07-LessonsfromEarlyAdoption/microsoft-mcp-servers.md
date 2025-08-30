@@ -110,11 +110,11 @@ MCPサーバーを使えば、VS CodeやVisual Studioなどの開発環境に留
 
 **MCPサーバーを使うと：**
 ```
-1. Code a feature
-2. Ask AI: "Create a GitHub issue for testing this login feature"
-3. Ask AI: "How do I deploy this to Azure according to the docs?"
-4. Ask AI: "Show me the best way to connect to my database"
-5. Continue coding with all the information you need
+1. 機能をコーディングする
+2. AIに質問する：「このログイン機能をテストするためのGitHub Issueを作成してください」
+3. AIに質問する：「ドキュメントに従って、これをAzureにデプロイするにはどうすればよいですか？」
+4. AIに質問する：「データベースに接続する最適な方法を教えてください」
+5. 必要な情報をすべて入力してコーディングを続ける
 ```
 
 ### エンタープライズ標準としての利点
