@@ -99,13 +99,13 @@ MCPサーバーを使えば、VS CodeやVisual Studioなどの開発環境に留
 
 **従来の方法：**
 ```
-1. Code a feature
-2. Open browser → Navigate to GitHub
-3. Create an issue for testing
-4. Open another tab → Check Azure docs for deployment
-5. Open third tab → Look up database connection examples
-6. Return to VS Code
-7. Try to remember what you were doing
+1. 機能をコーディングする
+2. ブラウザを開く → GitHub へ移動
+3. テスト用の Issue を作成
+4. 別のタブを開く → Azure のドキュメントでデプロイメントを確認する
+5. 3 つ目のタブを開く → データベース接続の例を調べる
+6. VS Code に戻る
+7. 何をしていたか思い出してみる
 ```
 
 **MCPサーバーを使うと：**
