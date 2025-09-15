@@ -18,7 +18,7 @@ Follow these steps to get started using these resources:
 3. [**Join The Azure AI Foundry Discord and meet experts and fellow developers**](https://discord.com/invite/ByRwuEEgH4)
 
 
-### 🌐 Multi-Language Support
+### 🌐 Multi-Language Support System
 
 #### Supported via GitHub Action (Automated & Always Up-to-Date)
 
