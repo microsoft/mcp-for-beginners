@@ -42,6 +42,17 @@ Whether you're an AI developer, system architect, or software engineer, this gui
 - 🧑‍💻 [MCP GitHub Repository](https://github.com/modelcontextprotocol) – Open-source SDKs, tools, and code samples
 - 🌐 [MCP Community](https://github.com/orgs/modelcontextprotocol/discussions) – Join discussions and contribute to the community
 
+## 🔧 MCP Development Tools
+
+Essential tools to enhance your MCP development workflow and learning experience:
+
+- 🛠️ **[Roundtable](https://github.com/askbudi/roundtable)** – Zero-configuration MCP server that unifies multiple AI coding assistants (Claude Code, Cursor, Codex, Gemini) for MCP developers. Perfect companion for this curriculum's hands-on learning approach.
+  - **Installation**: `pip install roundtable-ai`
+  - **Use Case**: Streamline your AI assistant workflow while working through MCP tutorials and labs
+  - **Documentation**: [askbudi.ai/roundtable](https://askbudi.ai/roundtable)
+
+**Why use development tools with MCP learning?** As you progress through this curriculum's hands-on labs and coding exercises, having unified access to multiple AI coding assistants helps accelerate learning, debug implementations, and explore creative solutions across the various programming languages covered in this course.
+
 ## 🧭 MCP Curriculum Overview
 
 ### 📚 Complete Curriculum Structure
