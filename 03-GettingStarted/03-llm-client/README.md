@@ -40,8 +40,8 @@ Creating a GitHub token is a straightforward process. Here’s how you can do it
 
 - Go to GitHub Settings – Click on your profile picture in the top right corner and select Settings.
 - Navigate to Developer Settings – Scroll down and click on Developer Settings.
-- Select Personal Access Tokens – Click on Personal access tokens and then Generate new token.
-- Configure Your Token – Add a note for reference, set an expiration date, and select the necessary scopes (permissions).
+- Select Personal Access Tokens – Click on Fine-grained tokens and then Generate new token.
+- Configure Your Token – Add a note for reference, set an expiration date, and select the necessary scopes (permissions). In this case be sure to add the Models permission.
 - Generate and Copy the Token – Click Generate token, and make sure to copy it immediately, as you won’t be able to see it again.
 
 ### -1- Connect to server
