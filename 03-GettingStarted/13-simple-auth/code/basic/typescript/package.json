@@ -1,0 +1,26 @@
+{
+    "type": "module",
+    "bin": {
+        "auth": "./build/server.js"
+    },
+    "scripts": {
+        "client": "node build/client.js",
+        "start": "node build/server.js",
+        "build": "tsc",
+        "inspector": "npx @modelcontextprotocol/inspector node build/index.js"
+    },
+    "files": [
+        "build"
+    ],
+    "dependencies": {
+        "@modelcontextprotocol/sdk": "^1.8.0",
+        "type": "^2.7.3",
+        "uuid": "^11.1.0",
+        "zod": "^3.24.2"
+    },
+    "devDependencies": {
+        "@types/node": "^20.11.24",
+        "@types/uuid": "^10.0.0",
+        "typescript": "^5.3.3"
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "type": "module",
+    "bin": {
+        "lab": "./build/lab.js"
+    },
+    "scripts": {
+        "start": "node ./build/server.js",
+        "client": "node ./build/client.js",
+        "generate": "node ./build/util.js",
+        "build": "tsc"
+    },
+    "files": [
+        "build"
+    ],
+    "dependencies": {
+        "@modelcontextprotocol/sdk": "^1.8.0",
+        "dotenv": "^16.6.1",
+        "express": "^4.18.2",
+        "jsonwebtoken": "^9.0.2",
+        "type": "^2.7.3",
+        "uuid": "^11.1.0",
+        "zod": "^3.24.2"
+    },
+    "devDependencies": {
+        "@types/node": "^20.11.24",
+        "@types/uuid": "^10.0.0",
+        "typescript": "^5.3.3"
+    }
+}
