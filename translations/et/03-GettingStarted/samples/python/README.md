@@ -1,62 +1,65 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "bb55f3119d45c4412fc5555299e60498",
-  "translation_date": "2025-10-11T11:37:06+00:00",
+  "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
+  "translation_date": "2025-10-17T20:08:25+00:00",
   "source_file": "03-GettingStarted/samples/python/README.md",
   "language_code": "et"
 }
 -->
-# Näidis
+# MCP Kalkulaatori Server (Python)
 
-See on Python näidis MCP serveri jaoks.
-
-Siin on kalkulaatori osa näidis:
-
-```python
-@mcp.tool()
-def add(a: float, b: float) -> float:
-    """Add two numbers together and return the result."""
-    return a + b
-
-@mcp.tool()
-def subtract(a: float, b: float) -> float:
-    """Subtract b from a and return the result."""
-    return a - b
-
-@mcp.tool()
-def multiply(a: float, b: float) -> float:
-    """Multiply two numbers together and return the result."""
-    return a * b
-
-@mcp.tool()
-def divide(a: float, b: float) -> float:
-    """
-    Divide a by b and return the result.
-    
-    Raises:
-        ValueError: If b is zero
-    """
-    if b == 0:
-        raise ValueError("Cannot divide by zero")
-    return a / b
-```
+Lihtne Model Context Protocol (MCP) serveri teostus Pythonis, mis pakub põhilist kalkulaatori funktsionaalsust.
 
 ## Paigaldamine
 
-Käivita järgmine käsk:
+Paigalda vajalikud sõltuvused:
 
 ```bash
-pip install mcp
+pip install -r requirements.txt
 ```
 
-## Käivitamine
+Või paigalda MCP Python SDK otse:
+
+```bash
+pip install mcp>=1.18.0
+```
+
+## Kasutamine
+
+### Serveri käivitamine
+
+Server on mõeldud kasutamiseks MCP klientide poolt (näiteks Claude Desktop). Serveri käivitamiseks:
 
 ```bash
 python mcp_calculator_server.py
 ```
 
+**Märkus**: Kui käivitate otse terminalis, näete JSON-RPC valideerimisvigu. See on normaalne käitumine - server ootab korrektselt vormindatud MCP kliendisõnumeid.
+
+### Funktsioonide testimine
+
+Et testida, kas kalkulaatori funktsioonid töötavad korrektselt:
+
+```bash
+python test_calculator.py
+```
+
+## Tõrkeotsing
+
+### Importimise vead
+
+Kui näete `ModuleNotFoundError: No module named 'mcp'`, paigaldage MCP Python SDK:
+
+```bash
+pip install mcp>=1.18.0
+```
+
+### JSON-RPC vead otse käivitamisel
+
+Sellised vead nagu "Invalid JSON: EOF while parsing a value" serveri otse käivitamisel on oodatud. Server vajab MCP kliendisõnumeid, mitte otsest terminalisisendit.
+
 ---
 
 **Lahtiütlus**:  
-See dokument on tõlgitud, kasutades AI tõlketeenust [Co-op Translator](https://github.com/Azure/co-op-translator). Kuigi püüame tagada täpsust, palun arvestage, et automaatsed tõlked võivad sisaldada vigu või ebatäpsusi. Algne dokument selle algkeeles tuleks lugeda autoriteetseks allikaks. Olulise teabe puhul on soovitatav kasutada professionaalset inimtõlget. Me ei vastuta selle tõlke kasutamisest tulenevate arusaamatuste või valede tõlgenduste eest.
+See dokument on tõlgitud AI tõlketeenuse [Co-op Translator](https://github.com/Azure/co-op-translator) abil. Kuigi püüame tagada täpsust, palume arvestada, et automaatsed tõlked võivad sisaldada vigu või ebatäpsusi. Algne dokument selle algses keeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitame kasutada professionaalset inimtõlget. Me ei vastuta selle tõlke kasutamisest tulenevate arusaamatuste või valesti tõlgenduste eest.

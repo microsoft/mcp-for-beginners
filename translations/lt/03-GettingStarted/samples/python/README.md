@@ -1,60 +1,65 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "bb55f3119d45c4412fc5555299e60498",
-  "translation_date": "2025-08-26T20:43:29+00:00",
+  "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
+  "translation_date": "2025-10-17T20:08:10+00:00",
   "source_file": "03-GettingStarted/samples/python/README.md",
   "language_code": "lt"
 }
 -->
-Tai yra Python pavyzdys MCP serveriui
+# MCP skaičiuoklės serveris (Python)
 
-Štai kaip atrodo skaičiuoklės dalis:
-
-```python
-@mcp.tool()
-def add(a: float, b: float) -> float:
-    """Add two numbers together and return the result."""
-    return a + b
-
-@mcp.tool()
-def subtract(a: float, b: float) -> float:
-    """Subtract b from a and return the result."""
-    return a - b
-
-@mcp.tool()
-def multiply(a: float, b: float) -> float:
-    """Multiply two numbers together and return the result."""
-    return a * b
-
-@mcp.tool()
-def divide(a: float, b: float) -> float:
-    """
-    Divide a by b and return the result.
-    
-    Raises:
-        ValueError: If b is zero
-    """
-    if b == 0:
-        raise ValueError("Cannot divide by zero")
-    return a / b
-```
+Paprasta Model Context Protocol (MCP) serverio implementacija Python kalba, teikianti pagrindines skaičiuoklės funkcijas.
 
 ## Įdiegimas
 
-Paleiskite šią komandą:
+Įdiekite reikalingas priklausomybes:
 
 ```bash
-pip install mcp
+pip install -r requirements.txt
 ```
 
-## Paleidimas
+Arba tiesiogiai įdiekite MCP Python SDK:
+
+```bash
+pip install mcp>=1.18.0
+```
+
+## Naudojimas
+
+### Serverio paleidimas
+
+Serveris skirtas naudoti MCP klientams (pvz., Claude Desktop). Norėdami paleisti serverį:
 
 ```bash
 python mcp_calculator_server.py
 ```
 
+**Pastaba**: Paleidus tiesiogiai terminale, matysite JSON-RPC validacijos klaidas. Tai normalus elgesys - serveris laukia tinkamai suformatuotų MCP klientų pranešimų.
+
+### Funkcijų testavimas
+
+Norėdami patikrinti, ar skaičiuoklės funkcijos veikia teisingai:
+
+```bash
+python test_calculator.py
+```
+
+## Trikčių šalinimas
+
+### Importavimo klaidos
+
+Jei matote `ModuleNotFoundError: No module named 'mcp'`, įdiekite MCP Python SDK:
+
+```bash
+pip install mcp>=1.18.0
+```
+
+### JSON-RPC klaidos paleidžiant tiesiogiai
+
+Tokios klaidos kaip "Invalid JSON: EOF while parsing a value" paleidžiant serverį tiesiogiai yra tikėtinos. Serveriui reikalingi MCP klientų pranešimai, o ne tiesioginis terminalo įvestis.
+
 ---
 
 **Atsakomybės apribojimas**:  
-Šis dokumentas buvo išverstas naudojant AI vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojama naudoti profesionalų žmogaus vertimą. Mes neprisiimame atsakomybės už nesusipratimus ar klaidingus interpretavimus, atsiradusius dėl šio vertimo naudojimo.
+Šis dokumentas buvo išverstas naudojant AI vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Dėl svarbios informacijos rekomenduojama profesionali žmogaus vertimo paslauga. Mes neprisiimame atsakomybės už nesusipratimus ar neteisingus aiškinimus, atsiradusius naudojant šį vertimą.

@@ -1,60 +1,68 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "bb55f3119d45c4412fc5555299e60498",
-  "translation_date": "2025-07-13T22:39:26+00:00",
+  "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
+  "translation_date": "2025-10-17T20:07:37+00:00",
   "source_file": "03-GettingStarted/samples/python/README.md",
   "language_code": "sr"
 }
 -->
-# Пример
+# MCP Калкулатор Сервер (Python)
 
-Ово је Python пример за MCP сервер
-
-Ево како изгледа део калкулатора:
-
-```python
-@mcp.tool()
-def add(a: float, b: float) -> float:
-    """Add two numbers together and return the result."""
-    return a + b
-
-@mcp.tool()
-def subtract(a: float, b: float) -> float:
-    """Subtract b from a and return the result."""
-    return a - b
-
-@mcp.tool()
-def multiply(a: float, b: float) -> float:
-    """Multiply two numbers together and return the result."""
-    return a * b
-
-@mcp.tool()
-def divide(a: float, b: float) -> float:
-    """
-    Divide a by b and return the result.
-    
-    Raises:
-        ValueError: If b is zero
-    """
-    if b == 0:
-        raise ValueError("Cannot divide by zero")
-    return a / b
-```
+Једноставна имплементација сервера за Model Context Protocol (MCP) у Python-у која пружа основну функционалност калкулатора.
 
 ## Инсталација
 
-Покрените следећу команду:
+Инсталирајте потребне зависности:
 
 ```bash
-pip install mcp
+pip install -r requirements.txt
 ```
+  
+Или директно инсталирајте MCP Python SDK:
 
-## Покрени
+```bash
+pip install mcp>=1.18.0
+```
+  
+
+## Коришћење
+
+### Покретање сервера
+
+Сервер је дизајниран за употребу од стране MCP клијената (као што је Claude Desktop). Да бисте покренули сервер:
 
 ```bash
 python mcp_calculator_server.py
 ```
+  
+**Напомена**: Када га покренете директно у терминалу, видећете JSON-RPC грешке у валидацији. Ово је нормално понашање - сервер чека правилно форматиране поруке MCP клијента.
+
+### Тестирање функција
+
+Да бисте тестирали да ли функције калкулатора исправно раде:
+
+```bash
+python test_calculator.py
+```
+  
+
+## Решавање проблема
+
+### Грешке при увозу
+
+Ако видите `ModuleNotFoundError: No module named 'mcp'`, инсталирајте MCP Python SDK:
+
+```bash
+pip install mcp>=1.18.0
+```
+  
+
+### JSON-RPC грешке при директном покретању
+
+Грешке као што је "Invalid JSON: EOF while parsing a value" приликом директног покретања сервера су очекиване. Сервер захтева поруке MCP клијента, а не директан унос у терминалу.
+
+---
 
 **Одрицање од одговорности**:  
-Овај документ је преведен коришћењем AI услуге за превођење [Co-op Translator](https://github.com/Azure/co-op-translator). Иако се трудимо да превод буде тачан, молимо вас да имате у виду да аутоматски преводи могу садржати грешке или нетачности. Оригинални документ на његовом изворном језику треба сматрати ауторитетним извором. За критичне информације препоручује се професионални људски превод. Нисмо одговорни за било каква неспоразума или погрешна тумачења која произилазе из коришћења овог превода.
+Овај документ је преведен помоћу услуге за превођење вештачке интелигенције [Co-op Translator](https://github.com/Azure/co-op-translator). Иако настојимо да обезбедимо тачност, молимо вас да имате у виду да аутоматски преводи могу садржати грешке или нетачности. Оригинални документ на његовом изворном језику треба сматрати ауторитативним извором. За критичне информације препоручује се професионални превод од стране људи. Не преузимамо одговорност за било каква погрешна тумачења или неспоразуме који могу настати услед коришћења овог превода.

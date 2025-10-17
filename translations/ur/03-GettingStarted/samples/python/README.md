@@ -1,60 +1,65 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "bb55f3119d45c4412fc5555299e60498",
-  "translation_date": "2025-07-13T22:36:57+00:00",
+  "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
+  "translation_date": "2025-10-17T20:03:58+00:00",
   "source_file": "03-GettingStarted/samples/python/README.md",
   "language_code": "ur"
 }
 -->
-# نمونہ
+# ایم سی پی کیلکولیٹر سرور (پائتھون)
 
-یہ MCP سرور کے لیے ایک Python نمونہ ہے
+ایک سادہ ماڈل کانٹیکسٹ پروٹوکول (MCP) سرور کا نفاذ پائتھون میں جو بنیادی کیلکولیٹر کی خصوصیات فراہم کرتا ہے۔
 
-کیلکولیٹر والے حصے کا منظر کچھ یوں ہے:
+## انسٹالیشن
 
-```python
-@mcp.tool()
-def add(a: float, b: float) -> float:
-    """Add two numbers together and return the result."""
-    return a + b
-
-@mcp.tool()
-def subtract(a: float, b: float) -> float:
-    """Subtract b from a and return the result."""
-    return a - b
-
-@mcp.tool()
-def multiply(a: float, b: float) -> float:
-    """Multiply two numbers together and return the result."""
-    return a * b
-
-@mcp.tool()
-def divide(a: float, b: float) -> float:
-    """
-    Divide a by b and return the result.
-    
-    Raises:
-        ValueError: If b is zero
-    """
-    if b == 0:
-        raise ValueError("Cannot divide by zero")
-    return a / b
-```
-
-## انسٹال کریں
-
-مندرجہ ذیل کمانڈ چلائیں:
+ضروری ڈیپینڈنسیز انسٹال کریں:
 
 ```bash
-pip install mcp
+pip install -r requirements.txt
 ```
 
-## چلائیں
+یا ایم سی پی پائتھون ایس ڈی کے کو براہ راست انسٹال کریں:
+
+```bash
+pip install mcp>=1.18.0
+```
+
+## استعمال
+
+### سرور چلانا
+
+سرور ایم سی پی کلائنٹس (جیسے Claude Desktop) کے ذریعے استعمال کے لیے ڈیزائن کیا گیا ہے۔ سرور شروع کرنے کے لیے:
 
 ```bash
 python mcp_calculator_server.py
 ```
 
-**دستخطی نوٹ**:  
-یہ دستاویز AI ترجمہ سروس [Co-op Translator](https://github.com/Azure/co-op-translator) کے ذریعے ترجمہ کی گئی ہے۔ اگرچہ ہم درستگی کے لیے کوشاں ہیں، براہ کرم آگاہ رہیں کہ خودکار ترجمے میں غلطیاں یا عدم درستیاں ہو سکتی ہیں۔ اصل دستاویز اپنی مادری زبان میں معتبر ماخذ سمجھی جانی چاہیے۔ اہم معلومات کے لیے پیشہ ور انسانی ترجمہ کی سفارش کی جاتی ہے۔ اس ترجمے کے استعمال سے پیدا ہونے والی کسی بھی غلط فہمی یا غلط تشریح کی ذمہ داری ہم پر عائد نہیں ہوتی۔
+**نوٹ**: جب آپ اسے براہ راست ٹرمینل میں چلائیں گے، تو آپ کو JSON-RPC ویلیڈیشن کی غلطیاں نظر آئیں گی۔ یہ معمول کا رویہ ہے - سرور مناسب فارمیٹ میں ایم سی پی کلائنٹ پیغامات کا انتظار کر رہا ہے۔
+
+### فنکشنز کی جانچ
+
+یہ جانچنے کے لیے کہ کیلکولیٹر کے فنکشنز صحیح کام کر رہے ہیں:
+
+```bash
+python test_calculator.py
+```
+
+## خرابیوں کا پتہ لگانا
+
+### امپورٹ کی غلطیاں
+
+اگر آپ کو `ModuleNotFoundError: No module named 'mcp'` نظر آئے، تو ایم سی پی پائتھون ایس ڈی کے انسٹال کریں:
+
+```bash
+pip install mcp>=1.18.0
+```
+
+### JSON-RPC کی غلطیاں جب براہ راست چلائیں
+
+ایسی غلطیاں جیسے "Invalid JSON: EOF while parsing a value" جب سرور کو براہ راست چلایا جائے، متوقع ہیں۔ سرور کو ایم سی پی کلائنٹ پیغامات کی ضرورت ہوتی ہے، نہ کہ براہ راست ٹرمینل ان پٹ۔
+
+---
+
+**اعلانِ لاتعلقی**:  
+یہ دستاویز AI ترجمہ سروس [Co-op Translator](https://github.com/Azure/co-op-translator) کا استعمال کرتے ہوئے ترجمہ کی گئی ہے۔ ہم درستگی کی بھرپور کوشش کرتے ہیں، لیکن براہ کرم آگاہ رہیں کہ خودکار ترجمے میں غلطیاں یا غیر درستیاں ہو سکتی ہیں۔ اصل دستاویز کو اس کی اصل زبان میں مستند ذریعہ سمجھا جانا چاہیے۔ اہم معلومات کے لیے، پیشہ ور انسانی ترجمہ کی سفارش کی جاتی ہے۔ اس ترجمے کے استعمال سے پیدا ہونے والی کسی بھی غلط فہمی یا غلط تشریح کے لیے ہم ذمہ دار نہیں ہیں۔

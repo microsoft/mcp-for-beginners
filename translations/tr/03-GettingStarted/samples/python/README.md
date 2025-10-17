@@ -1,60 +1,65 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "bb55f3119d45c4412fc5555299e60498",
-  "translation_date": "2025-07-13T22:38:04+00:00",
+  "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
+  "translation_date": "2025-10-17T20:05:39+00:00",
   "source_file": "03-GettingStarted/samples/python/README.md",
   "language_code": "tr"
 }
 -->
-# Örnek
+# MCP Hesap Makinesi Sunucusu (Python)
 
-Bu, bir MCP Sunucusu için Python örneğidir
-
-Hesaplayıcı kısmı şöyle görünüyor:
-
-```python
-@mcp.tool()
-def add(a: float, b: float) -> float:
-    """Add two numbers together and return the result."""
-    return a + b
-
-@mcp.tool()
-def subtract(a: float, b: float) -> float:
-    """Subtract b from a and return the result."""
-    return a - b
-
-@mcp.tool()
-def multiply(a: float, b: float) -> float:
-    """Multiply two numbers together and return the result."""
-    return a * b
-
-@mcp.tool()
-def divide(a: float, b: float) -> float:
-    """
-    Divide a by b and return the result.
-    
-    Raises:
-        ValueError: If b is zero
-    """
-    if b == 0:
-        raise ValueError("Cannot divide by zero")
-    return a / b
-```
+Python'da basit bir Model Context Protocol (MCP) sunucu uygulaması, temel hesap makinesi işlevselliği sağlar.
 
 ## Kurulum
 
-Aşağıdaki komutu çalıştırın:
+Gerekli bağımlılıkları yükleyin:
 
 ```bash
-pip install mcp
+pip install -r requirements.txt
 ```
 
-## Çalıştırma
+Ya da MCP Python SDK'sını doğrudan yükleyin:
+
+```bash
+pip install mcp>=1.18.0
+```
+
+## Kullanım
+
+### Sunucuyu Çalıştırma
+
+Sunucu, MCP istemcileri (örneğin Claude Desktop) tarafından kullanılmak üzere tasarlanmıştır. Sunucuyu başlatmak için:
 
 ```bash
 python mcp_calculator_server.py
 ```
 
+**Not**: Terminalde doğrudan çalıştırıldığında JSON-RPC doğrulama hataları göreceksiniz. Bu normal bir davranıştır - sunucu, doğru biçimlendirilmiş MCP istemci mesajlarını bekliyor.
+
+### Fonksiyonları Test Etme
+
+Hesap makinesi fonksiyonlarının doğru çalıştığını test etmek için:
+
+```bash
+python test_calculator.py
+```
+
+## Sorun Giderme
+
+### İçe Aktarma Hataları
+
+Eğer `ModuleNotFoundError: No module named 'mcp'` hatası alırsanız, MCP Python SDK'sını yükleyin:
+
+```bash
+pip install mcp>=1.18.0
+```
+
+### JSON-RPC Hataları Doğrudan Çalıştırıldığında
+
+Sunucuyu doğrudan çalıştırırken "Geçersiz JSON: EOF bir değeri ayrıştırırken" gibi hatalar almanız beklenir. Sunucu, terminal girdisi yerine MCP istemci mesajlarına ihtiyaç duyar.
+
+---
+
 **Feragatname**:  
-Bu belge, AI çeviri servisi [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hatalar veya yanlışlıklar içerebileceğini lütfen unutmayın. Orijinal belge, kendi dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucu ortaya çıkabilecek yanlış anlamalar veya yorum hatalarından sorumlu değiliz.
+Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hata veya yanlışlık içerebileceğini lütfen unutmayın. Belgenin orijinal dili, yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımından kaynaklanan yanlış anlamalar veya yanlış yorumlamalar için sorumluluk kabul etmiyoruz.

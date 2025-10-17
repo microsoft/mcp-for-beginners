@@ -1,60 +1,65 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "bb55f3119d45c4412fc5555299e60498",
-  "translation_date": "2025-07-13T22:39:04+00:00",
+  "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
+  "translation_date": "2025-10-17T20:07:07+00:00",
   "source_file": "03-GettingStarted/samples/python/README.md",
   "language_code": "hu"
 }
 -->
-# Minta
+# MCP Kalkulátor Szerver (Python)
 
-Ez egy Python példa egy MCP szerverhez
-
-Így néz ki a számológép része:
-
-```python
-@mcp.tool()
-def add(a: float, b: float) -> float:
-    """Add two numbers together and return the result."""
-    return a + b
-
-@mcp.tool()
-def subtract(a: float, b: float) -> float:
-    """Subtract b from a and return the result."""
-    return a - b
-
-@mcp.tool()
-def multiply(a: float, b: float) -> float:
-    """Multiply two numbers together and return the result."""
-    return a * b
-
-@mcp.tool()
-def divide(a: float, b: float) -> float:
-    """
-    Divide a by b and return the result.
-    
-    Raises:
-        ValueError: If b is zero
-    """
-    if b == 0:
-        raise ValueError("Cannot divide by zero")
-    return a / b
-```
+Egy egyszerű Model Context Protocol (MCP) szerver implementáció Pythonban, amely alapvető kalkulátor funkciókat biztosít.
 
 ## Telepítés
 
-Futtasd a következő parancsot:
+Telepítse a szükséges függőségeket:
 
 ```bash
-pip install mcp
+pip install -r requirements.txt
 ```
 
-## Futtatás
+Vagy telepítse közvetlenül az MCP Python SDK-t:
+
+```bash
+pip install mcp>=1.18.0
+```
+
+## Használat
+
+### A szerver futtatása
+
+A szerver MCP kliensek (például Claude Desktop) által történő használatra lett tervezve. A szerver indításához:
 
 ```bash
 python mcp_calculator_server.py
 ```
 
-**Jogi nyilatkozat**:  
-Ez a dokumentum az AI fordító szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár a pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Kritikus információk esetén professzionális emberi fordítást javaslunk. Nem vállalunk felelősséget a fordítás használatából eredő félreértésekért vagy téves értelmezésekért.
+**Megjegyzés**: Ha közvetlenül terminálban futtatja, JSON-RPC validációs hibákat fog látni. Ez normális viselkedés - a szerver megfelelően formázott MCP kliens üzenetekre vár.
+
+### A funkciók tesztelése
+
+Annak teszteléséhez, hogy a kalkulátor funkciók helyesen működnek-e:
+
+```bash
+python test_calculator.py
+```
+
+## Hibakeresés
+
+### Importálási hibák
+
+Ha a következő hibaüzenetet látja: `ModuleNotFoundError: No module named 'mcp'`, telepítse az MCP Python SDK-t:
+
+```bash
+pip install mcp>=1.18.0
+```
+
+### JSON-RPC hibák közvetlen futtatáskor
+
+Az olyan hibák, mint például "Invalid JSON: EOF while parsing a value", amikor közvetlenül futtatja a szervert, várhatóak. A szerver MCP kliens üzeneteket igényel, nem közvetlen terminál bemenetet.
+
+---
+
+**Felelősség kizárása**:  
+Ez a dokumentum az AI fordítási szolgáltatás [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével lett lefordítva. Bár törekszünk a pontosságra, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az eredeti nyelvén tekintendő hiteles forrásnak. Kritikus információk esetén javasolt professzionális emberi fordítást igénybe venni. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely a fordítás használatából eredhet.

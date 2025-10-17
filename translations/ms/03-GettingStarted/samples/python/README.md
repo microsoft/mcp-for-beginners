@@ -1,60 +1,65 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "bb55f3119d45c4412fc5555299e60498",
-  "translation_date": "2025-07-13T22:38:52+00:00",
+  "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
+  "translation_date": "2025-10-17T20:06:43+00:00",
   "source_file": "03-GettingStarted/samples/python/README.md",
   "language_code": "ms"
 }
 -->
-# Contoh
+# Pelayan MCP Calculator (Python)
 
-Ini adalah contoh Python untuk MCP Server
+Pelaksanaan pelayan Model Context Protocol (MCP) yang ringkas dalam Python yang menyediakan fungsi kalkulator asas.
 
-Ini adalah bagaimana bahagian kalkulator kelihatan:
+## Pemasangan
 
-```python
-@mcp.tool()
-def add(a: float, b: float) -> float:
-    """Add two numbers together and return the result."""
-    return a + b
-
-@mcp.tool()
-def subtract(a: float, b: float) -> float:
-    """Subtract b from a and return the result."""
-    return a - b
-
-@mcp.tool()
-def multiply(a: float, b: float) -> float:
-    """Multiply two numbers together and return the result."""
-    return a * b
-
-@mcp.tool()
-def divide(a: float, b: float) -> float:
-    """
-    Divide a by b and return the result.
-    
-    Raises:
-        ValueError: If b is zero
-    """
-    if b == 0:
-        raise ValueError("Cannot divide by zero")
-    return a / b
-```
-
-## Pasang
-
-Jalankan arahan berikut:
+Pasang keperluan yang diperlukan:
 
 ```bash
-pip install mcp
+pip install -r requirements.txt
 ```
 
-## Jalankan
+Atau pasang MCP Python SDK secara langsung:
+
+```bash
+pip install mcp>=1.18.0
+```
+
+## Penggunaan
+
+### Menjalankan Pelayan
+
+Pelayan ini direka untuk digunakan oleh klien MCP (seperti Claude Desktop). Untuk memulakan pelayan:
 
 ```bash
 python mcp_calculator_server.py
 ```
 
+**Nota**: Apabila dijalankan terus di terminal, anda akan melihat ralat pengesahan JSON-RPC. Ini adalah tingkah laku biasa - pelayan sedang menunggu mesej klien MCP yang diformat dengan betul.
+
+### Menguji Fungsi
+
+Untuk menguji bahawa fungsi kalkulator berfungsi dengan betul:
+
+```bash
+python test_calculator.py
+```
+
+## Penyelesaian Masalah
+
+### Ralat Import
+
+Jika anda melihat `ModuleNotFoundError: No module named 'mcp'`, pasang MCP Python SDK:
+
+```bash
+pip install mcp>=1.18.0
+```
+
+### Ralat JSON-RPC Apabila Dijalankan Secara Langsung
+
+Ralat seperti "Invalid JSON: EOF while parsing a value" apabila menjalankan pelayan secara langsung adalah dijangka. Pelayan memerlukan mesej klien MCP, bukan input terminal secara langsung.
+
+---
+
 **Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang sahih. Untuk maklumat penting, terjemahan profesional oleh manusia adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat penting, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.

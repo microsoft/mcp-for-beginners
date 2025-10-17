@@ -1,60 +1,65 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "bb55f3119d45c4412fc5555299e60498",
-  "translation_date": "2025-07-13T22:38:08+00:00",
+  "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
+  "translation_date": "2025-10-17T20:05:45+00:00",
   "source_file": "03-GettingStarted/samples/python/README.md",
   "language_code": "el"
 }
 -->
-# Παράδειγμα
+# Διακομιστής MCP Calculator (Python)
 
-Αυτό είναι ένα παράδειγμα Python για έναν MCP Server
-
-Έτσι φαίνεται το τμήμα της αριθμομηχανής:
-
-```python
-@mcp.tool()
-def add(a: float, b: float) -> float:
-    """Add two numbers together and return the result."""
-    return a + b
-
-@mcp.tool()
-def subtract(a: float, b: float) -> float:
-    """Subtract b from a and return the result."""
-    return a - b
-
-@mcp.tool()
-def multiply(a: float, b: float) -> float:
-    """Multiply two numbers together and return the result."""
-    return a * b
-
-@mcp.tool()
-def divide(a: float, b: float) -> float:
-    """
-    Divide a by b and return the result.
-    
-    Raises:
-        ValueError: If b is zero
-    """
-    if b == 0:
-        raise ValueError("Cannot divide by zero")
-    return a / b
-```
+Μια απλή υλοποίηση διακομιστή Model Context Protocol (MCP) σε Python που παρέχει βασική λειτουργικότητα αριθμομηχανής.
 
 ## Εγκατάσταση
 
-Τρέξτε την παρακάτω εντολή:
+Εγκαταστήστε τις απαιτούμενες εξαρτήσεις:
 
 ```bash
-pip install mcp
+pip install -r requirements.txt
 ```
 
-## Εκτέλεση
+Ή εγκαταστήστε απευθείας το MCP Python SDK:
+
+```bash
+pip install mcp>=1.18.0
+```
+
+## Χρήση
+
+### Εκτέλεση του Διακομιστή
+
+Ο διακομιστής έχει σχεδιαστεί για χρήση από πελάτες MCP (όπως το Claude Desktop). Για να ξεκινήσετε τον διακομιστή:
 
 ```bash
 python mcp_calculator_server.py
 ```
 
-**Αποποίηση ευθυνών**:  
-Αυτό το έγγραφο έχει μεταφραστεί χρησιμοποιώντας την υπηρεσία αυτόματης μετάφρασης AI [Co-op Translator](https://github.com/Azure/co-op-translator). Παρόλο που επιδιώκουμε την ακρίβεια, παρακαλούμε να γνωρίζετε ότι οι αυτόματες μεταφράσεις ενδέχεται να περιέχουν λάθη ή ανακρίβειες. Το πρωτότυπο έγγραφο στη μητρική του γλώσσα πρέπει να θεωρείται η αυθεντική πηγή. Για κρίσιμες πληροφορίες, συνιστάται επαγγελματική ανθρώπινη μετάφραση. Δεν φέρουμε ευθύνη για τυχόν παρεξηγήσεις ή λανθασμένες ερμηνείες που προκύπτουν από τη χρήση αυτής της μετάφρασης.
+**Σημείωση**: Όταν εκτελείται απευθείας σε τερματικό, θα δείτε σφάλματα επικύρωσης JSON-RPC. Αυτό είναι φυσιολογική συμπεριφορά - ο διακομιστής περιμένει σωστά διαμορφωμένα μηνύματα πελάτη MCP.
+
+### Δοκιμή των Λειτουργιών
+
+Για να δοκιμάσετε ότι οι λειτουργίες της αριθμομηχανής λειτουργούν σωστά:
+
+```bash
+python test_calculator.py
+```
+
+## Επίλυση Προβλημάτων
+
+### Σφάλματα Εισαγωγής
+
+Αν δείτε `ModuleNotFoundError: No module named 'mcp'`, εγκαταστήστε το MCP Python SDK:
+
+```bash
+pip install mcp>=1.18.0
+```
+
+### Σφάλματα JSON-RPC κατά την Άμεση Εκτέλεση
+
+Σφάλματα όπως "Invalid JSON: EOF while parsing a value" κατά την άμεση εκτέλεση του διακομιστή είναι αναμενόμενα. Ο διακομιστής χρειάζεται μηνύματα πελάτη MCP, όχι άμεση εισαγωγή από το τερματικό.
+
+---
+
+**Αποποίηση ευθύνης**:  
+Αυτό το έγγραφο έχει μεταφραστεί χρησιμοποιώντας την υπηρεσία αυτόματης μετάφρασης [Co-op Translator](https://github.com/Azure/co-op-translator). Παρόλο που καταβάλλουμε προσπάθειες για ακρίβεια, παρακαλούμε να έχετε υπόψη ότι οι αυτόματες μεταφράσεις ενδέχεται να περιέχουν λάθη ή ανακρίβειες. Το πρωτότυπο έγγραφο στη μητρική του γλώσσα θα πρέπει να θεωρείται η αυθεντική πηγή. Για κρίσιμες πληροφορίες, συνιστάται επαγγελματική ανθρώπινη μετάφραση. Δεν φέρουμε ευθύνη για τυχόν παρεξηγήσεις ή εσφαλμένες ερμηνείες που προκύπτουν από τη χρήση αυτής της μετάφρασης.

@@ -1,60 +1,65 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "bb55f3119d45c4412fc5555299e60498",
-  "translation_date": "2025-07-13T22:38:30+00:00",
+  "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
+  "translation_date": "2025-10-17T20:06:14+00:00",
   "source_file": "03-GettingStarted/samples/python/README.md",
   "language_code": "fi"
 }
 -->
-# Esimerkki
+# MCP-laskinpalvelin (Python)
 
-Tässä on Python-esimerkki MCP-palvelimelle
-
-Näin laskinosa näyttää:
-
-```python
-@mcp.tool()
-def add(a: float, b: float) -> float:
-    """Add two numbers together and return the result."""
-    return a + b
-
-@mcp.tool()
-def subtract(a: float, b: float) -> float:
-    """Subtract b from a and return the result."""
-    return a - b
-
-@mcp.tool()
-def multiply(a: float, b: float) -> float:
-    """Multiply two numbers together and return the result."""
-    return a * b
-
-@mcp.tool()
-def divide(a: float, b: float) -> float:
-    """
-    Divide a by b and return the result.
-    
-    Raises:
-        ValueError: If b is zero
-    """
-    if b == 0:
-        raise ValueError("Cannot divide by zero")
-    return a / b
-```
+Yksinkertainen Model Context Protocol (MCP) -palvelimen toteutus Pythonilla, joka tarjoaa peruslaskinominaisuuksia.
 
 ## Asennus
 
-Suorita seuraava komento:
+Asenna tarvittavat riippuvuudet:
 
 ```bash
-pip install mcp
+pip install -r requirements.txt
 ```
 
-## Suorita
+Tai asenna MCP Python SDK suoraan:
+
+```bash
+pip install mcp>=1.18.0
+```
+
+## Käyttö
+
+### Palvelimen käynnistäminen
+
+Palvelin on suunniteltu MCP-asiakkaiden (kuten Claude Desktop) käytettäväksi. Käynnistä palvelin:
 
 ```bash
 python mcp_calculator_server.py
 ```
 
+**Huom**: Kun suoritat palvelimen suoraan terminaalissa, näet JSON-RPC-validointivirheitä. Tämä on normaalia - palvelin odottaa oikein muotoiltuja MCP-asiakasviestejä.
+
+### Toimintojen testaaminen
+
+Testataksesi, että laskin toimii oikein:
+
+```bash
+python test_calculator.py
+```
+
+## Vianmääritys
+
+### Tuontivirheet
+
+Jos näet `ModuleNotFoundError: No module named 'mcp'`, asenna MCP Python SDK:
+
+```bash
+pip install mcp>=1.18.0
+```
+
+### JSON-RPC-virheet suoraan suoritettaessa
+
+Virheet, kuten "Invalid JSON: EOF while parsing a value", kun suoritat palvelimen suoraan, ovat odotettavissa. Palvelin tarvitsee MCP-asiakasviestejä, ei suoraa terminaalisyötettä.
+
+---
+
 **Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattikäännöksissä saattaa esiintyä virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäiskielellä tulee pitää virallisena lähteenä. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattiset käännökset voivat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäisellä kielellä tulisi pitää ensisijaisena lähteenä. Tärkeissä tiedoissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä johtuvista väärinkäsityksistä tai virhetulkinnoista.
