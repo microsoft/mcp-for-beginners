@@ -6,15 +6,10 @@ This module demonstrates how to create a simple MCP server with calculator tools
 that can perform basic arithmetic operations (add, subtract, multiply, divide).
 """
 
-import asyncio
 from mcp.server.fastmcp import FastMCP
-from mcp.server.transports.stdio import serve_stdio
 
 # Create a FastMCP server
-mcp = FastMCP(
-    name="Calculator MCP Server",
-    version="1.0.0"
-)
+mcp = FastMCP("Calculator MCP Server")
 
 @mcp.tool()
 def add(a: float, b: float) -> float:
@@ -44,5 +39,5 @@ def divide(a: float, b: float) -> float:
     return a / b
 
 if __name__ == "__main__":
-    # Start the server with stdio transport
-    asyncio.run(serve_stdio(mcp))
+    # Start the server
+    mcp.run()
