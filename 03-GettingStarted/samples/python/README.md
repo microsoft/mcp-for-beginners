@@ -1,48 +1,54 @@
-# Sample
+# MCP Calculator Server (Python)
 
-This is a Python sample for an MCP Server
 
-Here's what the calculator portion looks like:
 
-```python
-@mcp.tool()
-def add(a: float, b: float) -> float:
-    """Add two numbers together and return the result."""
-    return a + b
+A simple Model Context Protocol (MCP) server implementation in Python that provides basic calculator functionality.
 
-@mcp.tool()
-def subtract(a: float, b: float) -> float:
-    """Subtract b from a and return the result."""
-    return a - b
 
-@mcp.tool()
-def multiply(a: float, b: float) -> float:
-    """Multiply two numbers together and return the result."""
-    return a * b
+## Installation
 
-@mcp.tool()
-def divide(a: float, b: float) -> float:
-    """
-    Divide a by b and return the result.
-    
-    Raises:
-        ValueError: If b is zero
-    """
-    if b == 0:
-        raise ValueError("Cannot divide by zero")
-    return a / b
-```
-
-## Install
-
-Run the following command:
+Install the required dependencies:
 
 ```bash
-pip install mcp
+pip install -r requirements.txt
 ```
 
-## Run
+Or install the MCP Python SDK directly:
+
+```bash
+pip install mcp>=1.18.0
+```
+
+## Usage
+
+### Running the Server
+
+The server is designed to be used by MCP clients (like Claude Desktop). To start the server:
 
 ```bash
 python mcp_calculator_server.py
 ```
+
+**Note**: When run directly in a terminal, you'll see JSON-RPC validation errors. This is normal behavior - the server is waiting for properly formatted MCP client messages.
+
+### Testing the Functions
+
+To test that the calculator functions work correctly:
+
+```bash
+python test_calculator.py
+```
+
+## Troubleshooting
+
+### Import Errors
+
+If you see `ModuleNotFoundError: No module named 'mcp'`, install the MCP Python SDK:
+
+```bash
+pip install mcp>=1.18.0
+```
+
+### JSON-RPC Errors When Running Directly
+
+Errors like "Invalid JSON: EOF while parsing a value" when running the server directly are expected. The server needs MCP client messages, not direct terminal input.
