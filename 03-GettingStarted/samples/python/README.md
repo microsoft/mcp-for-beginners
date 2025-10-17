@@ -1,4 +1,4 @@
-# MCP Calculator Server (Python)# Sample
+# MCP Calculator Server (Python)
 
 
 
