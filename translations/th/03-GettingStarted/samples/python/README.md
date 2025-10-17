@@ -1,60 +1,65 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "bb55f3119d45c4412fc5555299e60498",
-  "translation_date": "2025-07-13T22:38:13+00:00",
+  "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
+  "translation_date": "2025-10-17T20:05:52+00:00",
   "source_file": "03-GettingStarted/samples/python/README.md",
   "language_code": "th"
 }
 -->
-# ตัวอย่าง
+# เซิร์ฟเวอร์ MCP Calculator (Python)
 
-นี่คือตัวอย่าง Python สำหรับ MCP Server
+การใช้งานเซิร์ฟเวอร์ Model Context Protocol (MCP) แบบง่ายใน Python ที่มีฟังก์ชันเครื่องคิดเลขพื้นฐาน
 
-ส่วนของเครื่องคิดเลขจะมีลักษณะดังนี้:
+## การติดตั้ง
 
-```python
-@mcp.tool()
-def add(a: float, b: float) -> float:
-    """Add two numbers together and return the result."""
-    return a + b
-
-@mcp.tool()
-def subtract(a: float, b: float) -> float:
-    """Subtract b from a and return the result."""
-    return a - b
-
-@mcp.tool()
-def multiply(a: float, b: float) -> float:
-    """Multiply two numbers together and return the result."""
-    return a * b
-
-@mcp.tool()
-def divide(a: float, b: float) -> float:
-    """
-    Divide a by b and return the result.
-    
-    Raises:
-        ValueError: If b is zero
-    """
-    if b == 0:
-        raise ValueError("Cannot divide by zero")
-    return a / b
-```
-
-## ติดตั้ง
-
-รันคำสั่งต่อไปนี้:
+ติดตั้ง dependencies ที่จำเป็น:
 
 ```bash
-pip install mcp
+pip install -r requirements.txt
 ```
 
-## รัน
+หรือสามารถติดตั้ง MCP Python SDK โดยตรง:
+
+```bash
+pip install mcp>=1.18.0
+```
+
+## การใช้งาน
+
+### การเริ่มต้นเซิร์ฟเวอร์
+
+เซิร์ฟเวอร์นี้ออกแบบมาเพื่อใช้งานร่วมกับ MCP clients (เช่น Claude Desktop) ในการเริ่มต้นเซิร์ฟเวอร์:
 
 ```bash
 python mcp_calculator_server.py
 ```
 
+**หมายเหตุ**: เมื่อรันโดยตรงใน terminal คุณอาจเห็นข้อผิดพลาด JSON-RPC validation นี่เป็นพฤติกรรมปกติ - เซิร์ฟเวอร์กำลังรอข้อความจาก MCP client ที่มีรูปแบบถูกต้อง
+
+### การทดสอบฟังก์ชัน
+
+เพื่อทดสอบว่าฟังก์ชันเครื่องคิดเลขทำงานถูกต้อง:
+
+```bash
+python test_calculator.py
+```
+
+## การแก้ไขปัญหา
+
+### ข้อผิดพลาดการนำเข้า
+
+หากคุณเห็น `ModuleNotFoundError: No module named 'mcp'` ให้ติดตั้ง MCP Python SDK:
+
+```bash
+pip install mcp>=1.18.0
+```
+
+### ข้อผิดพลาด JSON-RPC เมื่อรันโดยตรง
+
+ข้อผิดพลาดเช่น "Invalid JSON: EOF while parsing a value" เมื่อรันเซิร์ฟเวอร์โดยตรงเป็นสิ่งที่คาดไว้ เซิร์ฟเวอร์ต้องการข้อความจาก MCP client ไม่ใช่การป้อนข้อมูลโดยตรงใน terminal
+
+---
+
 **ข้อจำกัดความรับผิดชอบ**:  
-เอกสารนี้ได้รับการแปลโดยใช้บริการแปลภาษาอัตโนมัติ [Co-op Translator](https://github.com/Azure/co-op-translator) แม้เราจะพยายามให้ความถูกต้องสูงสุด แต่โปรดทราบว่าการแปลอัตโนมัติอาจมีข้อผิดพลาดหรือความไม่ถูกต้อง เอกสารต้นฉบับในภาษาต้นทางถือเป็นแหล่งข้อมูลที่เชื่อถือได้ สำหรับข้อมูลที่สำคัญ ขอแนะนำให้ใช้บริการแปลโดยผู้เชี่ยวชาญมนุษย์ เราไม่รับผิดชอบต่อความเข้าใจผิดหรือการตีความผิดใด ๆ ที่เกิดจากการใช้การแปลนี้
+เอกสารนี้ได้รับการแปลโดยใช้บริการแปลภาษา AI [Co-op Translator](https://github.com/Azure/co-op-translator) แม้ว่าเราจะพยายามให้การแปลมีความถูกต้อง แต่โปรดทราบว่าการแปลอัตโนมัติอาจมีข้อผิดพลาดหรือความไม่ถูกต้อง เอกสารต้นฉบับในภาษาดั้งเดิมควรถือเป็นแหล่งข้อมูลที่เชื่อถือได้ สำหรับข้อมูลสำคัญ ขอแนะนำให้ใช้บริการแปลภาษามืออาชีพ เราไม่รับผิดชอบต่อความเข้าใจผิดหรือการตีความผิดที่เกิดจากการใช้การแปลนี้

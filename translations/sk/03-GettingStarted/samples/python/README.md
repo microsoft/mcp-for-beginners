@@ -1,60 +1,65 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "bb55f3119d45c4412fc5555299e60498",
-  "translation_date": "2025-07-13T22:39:13+00:00",
+  "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
+  "translation_date": "2025-10-17T20:07:19+00:00",
   "source_file": "03-GettingStarted/samples/python/README.md",
   "language_code": "sk"
 }
 -->
-# Príklad
+# MCP Kalkulačka Server (Python)
 
-Toto je príklad v Pythone pre MCP Server
-
-Takto vyzerá časť kalkulačky:
-
-```python
-@mcp.tool()
-def add(a: float, b: float) -> float:
-    """Add two numbers together and return the result."""
-    return a + b
-
-@mcp.tool()
-def subtract(a: float, b: float) -> float:
-    """Subtract b from a and return the result."""
-    return a - b
-
-@mcp.tool()
-def multiply(a: float, b: float) -> float:
-    """Multiply two numbers together and return the result."""
-    return a * b
-
-@mcp.tool()
-def divide(a: float, b: float) -> float:
-    """
-    Divide a by b and return the result.
-    
-    Raises:
-        ValueError: If b is zero
-    """
-    if b == 0:
-        raise ValueError("Cannot divide by zero")
-    return a / b
-```
+Jednoduchá implementácia servera Model Context Protocol (MCP) v Pythone, ktorá poskytuje základnú funkcionalitu kalkulačky.
 
 ## Inštalácia
 
-Spustite nasledujúci príkaz:
+Nainštalujte potrebné závislosti:
 
 ```bash
-pip install mcp
+pip install -r requirements.txt
 ```
 
-## Spustenie
+Alebo nainštalujte priamo MCP Python SDK:
+
+```bash
+pip install mcp>=1.18.0
+```
+
+## Použitie
+
+### Spustenie servera
+
+Server je navrhnutý na použitie klientmi MCP (napríklad Claude Desktop). Na spustenie servera:
 
 ```bash
 python mcp_calculator_server.py
 ```
 
-**Vyhlásenie o zodpovednosti**:  
-Tento dokument bol preložený pomocou AI prekladateľskej služby [Co-op Translator](https://github.com/Azure/co-op-translator). Aj keď sa snažíme o presnosť, prosím, majte na pamäti, že automatizované preklady môžu obsahovať chyby alebo nepresnosti. Pôvodný dokument v jeho rodnom jazyku by mal byť považovaný za autoritatívny zdroj. Pre kritické informácie sa odporúča profesionálny ľudský preklad. Nie sme zodpovední za akékoľvek nedorozumenia alebo nesprávne interpretácie vyplývajúce z použitia tohto prekladu.
+**Poznámka**: Pri priamom spustení v termináli uvidíte chyby validácie JSON-RPC. Toto je normálne správanie - server čaká na správne formátované správy od MCP klienta.
+
+### Testovanie funkcií
+
+Na otestovanie, či funkcie kalkulačky fungujú správne:
+
+```bash
+python test_calculator.py
+```
+
+## Riešenie problémov
+
+### Chyby pri importe
+
+Ak sa zobrazí `ModuleNotFoundError: No module named 'mcp'`, nainštalujte MCP Python SDK:
+
+```bash
+pip install mcp>=1.18.0
+```
+
+### Chyby JSON-RPC pri priamom spustení
+
+Chyby ako "Invalid JSON: EOF while parsing a value" pri priamom spustení servera sú očakávané. Server potrebuje správy od MCP klienta, nie priamy vstup z terminálu.
+
+---
+
+**Zrieknutie sa zodpovednosti**:  
+Tento dokument bol preložený pomocou služby AI prekladu [Co-op Translator](https://github.com/Azure/co-op-translator). Aj keď sa snažíme o presnosť, prosím, berte na vedomie, že automatizované preklady môžu obsahovať chyby alebo nepresnosti. Pôvodný dokument v jeho rodnom jazyku by mal byť považovaný za autoritatívny zdroj. Pre kritické informácie sa odporúča profesionálny ľudský preklad. Nenesieme zodpovednosť za akékoľvek nedorozumenia alebo nesprávne interpretácie vyplývajúce z použitia tohto prekladu.

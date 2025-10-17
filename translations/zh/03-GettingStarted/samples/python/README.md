@@ -1,60 +1,65 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "bb55f3119d45c4412fc5555299e60498",
-  "translation_date": "2025-07-13T22:37:01+00:00",
+  "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
+  "translation_date": "2025-10-17T20:04:06+00:00",
   "source_file": "03-GettingStarted/samples/python/README.md",
   "language_code": "zh"
 }
 -->
-# 示例
+# MCP计算器服务器 (Python)
 
-这是一个 MCP 服务器的 Python 示例
-
-计算器部分如下所示：
-
-```python
-@mcp.tool()
-def add(a: float, b: float) -> float:
-    """Add two numbers together and return the result."""
-    return a + b
-
-@mcp.tool()
-def subtract(a: float, b: float) -> float:
-    """Subtract b from a and return the result."""
-    return a - b
-
-@mcp.tool()
-def multiply(a: float, b: float) -> float:
-    """Multiply two numbers together and return the result."""
-    return a * b
-
-@mcp.tool()
-def divide(a: float, b: float) -> float:
-    """
-    Divide a by b and return the result.
-    
-    Raises:
-        ValueError: If b is zero
-    """
-    if b == 0:
-        raise ValueError("Cannot divide by zero")
-    return a / b
-```
+一个简单的模型上下文协议 (MCP) 服务器的Python实现，提供基本的计算器功能。
 
 ## 安装
 
-运行以下命令：
+安装所需的依赖项：
 
 ```bash
-pip install mcp
+pip install -r requirements.txt
 ```
 
-## 运行
+或者直接安装MCP Python SDK：
+
+```bash
+pip install mcp>=1.18.0
+```
+
+## 使用方法
+
+### 启动服务器
+
+该服务器设计用于MCP客户端（例如Claude Desktop）。启动服务器：
 
 ```bash
 python mcp_calculator_server.py
 ```
 
+**注意**：直接在终端运行时，您可能会看到JSON-RPC验证错误。这是正常现象——服务器正在等待格式正确的MCP客户端消息。
+
+### 测试功能
+
+测试计算器功能是否正常工作：
+
+```bash
+python test_calculator.py
+```
+
+## 故障排除
+
+### 导入错误
+
+如果您看到`ModuleNotFoundError: No module named 'mcp'`，请安装MCP Python SDK：
+
+```bash
+pip install mcp>=1.18.0
+```
+
+### 直接运行时的JSON-RPC错误
+
+直接运行服务器时出现类似“Invalid JSON: EOF while parsing a value”的错误是预期的。服务器需要MCP客户端消息，而不是直接的终端输入。
+
+---
+
 **免责声明**：  
-本文件使用 AI 翻译服务 [Co-op Translator](https://github.com/Azure/co-op-translator) 进行翻译。虽然我们力求准确，但请注意，自动翻译可能包含错误或不准确之处。原始语言的原文应被视为权威来源。对于重要信息，建议采用专业人工翻译。对于因使用本翻译而产生的任何误解或误释，我们不承担任何责任。
+本文档使用AI翻译服务[Co-op Translator](https://github.com/Azure/co-op-translator)进行翻译。尽管我们努力确保翻译的准确性，但请注意，自动翻译可能包含错误或不准确之处。原始语言的文档应被视为权威来源。对于关键信息，建议使用专业人工翻译。我们对因使用此翻译而产生的任何误解或误读不承担责任。

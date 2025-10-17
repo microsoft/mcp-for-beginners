@@ -1,62 +1,65 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "bb55f3119d45c4412fc5555299e60498",
-  "translation_date": "2025-10-11T11:36:45+00:00",
+  "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
+  "translation_date": "2025-10-17T20:08:18+00:00",
   "source_file": "03-GettingStarted/samples/python/README.md",
   "language_code": "ta"
 }
 -->
-# மாதிரி
+# MCP கணக்கீடு சர்வர் (Python)
 
-இது MCP சர்வருக்கான ஒரு Python மாதிரி
-
-கணிகப்பகுதி இவ்வாறு இருக்கும்:
-
-```python
-@mcp.tool()
-def add(a: float, b: float) -> float:
-    """Add two numbers together and return the result."""
-    return a + b
-
-@mcp.tool()
-def subtract(a: float, b: float) -> float:
-    """Subtract b from a and return the result."""
-    return a - b
-
-@mcp.tool()
-def multiply(a: float, b: float) -> float:
-    """Multiply two numbers together and return the result."""
-    return a * b
-
-@mcp.tool()
-def divide(a: float, b: float) -> float:
-    """
-    Divide a by b and return the result.
-    
-    Raises:
-        ValueError: If b is zero
-    """
-    if b == 0:
-        raise ValueError("Cannot divide by zero")
-    return a / b
-```
+Python-ல் அடிப்படை கணக்கீடு செயல்பாடுகளை வழங்கும் எளிய Model Context Protocol (MCP) சர்வர் செயல்பாடு.
 
 ## நிறுவல்
 
-கீழ்கண்ட கட்டளையை இயக்கவும்:
+தேவையான சார்புகளை நிறுவவும்:
 
 ```bash
-pip install mcp
+pip install -r requirements.txt
 ```
 
-## இயக்கம்
+அல்லது MCP Python SDK-ஐ நேரடியாக நிறுவவும்:
+
+```bash
+pip install mcp>=1.18.0
+```
+
+## பயன்பாடு
+
+### சர்வரை இயக்குதல்
+
+இந்த சர்வர் MCP கிளையன்ட்களால் (Claude Desktop போன்றவை) பயன்படுத்தப்படுவதற்காக வடிவமைக்கப்பட்டுள்ளது. சர்வரை தொடங்க:
 
 ```bash
 python mcp_calculator_server.py
 ```
 
+**குறிப்பு**: நேரடியாக டெர்மினலில் இயக்கும்போது, JSON-RPC சரிபார்ப்பு பிழைகள் காணப்படும். இது சாதாரணமாக நடக்கும் - சர்வர் சரியான MCP கிளையன்ட் செய்திகளை காத்திருக்கிறது.
+
+### செயல்பாடுகளை சோதித்தல்
+
+கணக்கீடு செயல்பாடுகள் சரியாக வேலை செய்கிறதா என்பதை சோதிக்க:
+
+```bash
+python test_calculator.py
+```
+
+## பிரச்சினைகளை தீர்க்குதல்
+
+### இறக்குமதி பிழைகள்
+
+`ModuleNotFoundError: No module named 'mcp'` என்ற பிழை காணப்பட்டால், MCP Python SDK-ஐ நிறுவவும்:
+
+```bash
+pip install mcp>=1.18.0
+```
+
+### JSON-RPC பிழைகள் நேரடியாக இயக்கும்போது
+
+"Invalid JSON: EOF while parsing a value" போன்ற பிழைகள் சர்வரை நேரடியாக இயக்கும்போது எதிர்பார்க்கப்படுகின்றன. சர்வர் MCP கிளையன்ட் செய்திகளை தேவைப்படுத்துகிறது, நேரடி டெர்மினல் உள்ளீட்டை அல்ல.
+
 ---
 
-**அறிவிப்பு**:  
-இந்த ஆவணம் [Co-op Translator](https://github.com/Azure/co-op-translator) என்ற AI மொழிபெயர்ப்பு சேவையை பயன்படுத்தி மொழிபெயர்க்கப்பட்டுள்ளது. நாங்கள் துல்லியத்திற்காக முயற்சிக்கிறோம், ஆனால் தானியங்கி மொழிபெயர்ப்புகளில் பிழைகள் அல்லது தவறுகள் இருக்கக்கூடும் என்பதை தயவுசெய்து கவனத்தில் கொள்ளவும். அதன் சொந்த மொழியில் உள்ள மூல ஆவணம் அதிகாரப்பூர்வ ஆதாரமாக கருதப்பட வேண்டும். முக்கியமான தகவல்களுக்கு, தொழில்முறை மனித மொழிபெயர்ப்பு பரிந்துரைக்கப்படுகிறது. இந்த மொழிபெயர்ப்பைப் பயன்படுத்துவதால் ஏற்படும் எந்த தவறான புரிதல்களுக்கும் அல்லது தவறான விளக்கங்களுக்கும் நாங்கள் பொறுப்பல்ல.
+**புறக்கணிப்பு**:  
+இந்த ஆவணம் AI மொழிபெயர்ப்பு சேவை [Co-op Translator](https://github.com/Azure/co-op-translator) பயன்படுத்தி மொழிபெயர்க்கப்பட்டுள்ளது. நாங்கள் துல்லியத்திற்காக முயற்சிக்கிறோம், ஆனால் தானியக்க மொழிபெயர்ப்புகளில் பிழைகள் அல்லது தவறுகள் இருக்கக்கூடும் என்பதை கவனத்தில் கொள்ளவும். அதன் தாய்மொழியில் உள்ள மூல ஆவணம் அதிகாரப்பூர்வ ஆதாரமாக கருதப்பட வேண்டும். முக்கியமான தகவல்களுக்கு, தொழில்முறை மனித மொழிபெயர்ப்பு பரிந்துரைக்கப்படுகிறது. இந்த மொழிபெயர்ப்பைப் பயன்படுத்துவதால் ஏற்படும் எந்த தவறான புரிதல்கள் அல்லது தவறான விளக்கங்களுக்கு நாங்கள் பொறுப்பல்ல.

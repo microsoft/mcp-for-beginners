@@ -1,60 +1,65 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "bb55f3119d45c4412fc5555299e60498",
-  "translation_date": "2025-07-13T22:39:00+00:00",
+  "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
+  "translation_date": "2025-10-17T20:06:57+00:00",
   "source_file": "03-GettingStarted/samples/python/README.md",
   "language_code": "sw"
 }
 -->
-# Mfano
+# Seva ya MCP Calculator (Python)
 
-Huu ni mfano wa Python kwa MCP Server
+Utekelezaji rahisi wa seva ya Model Context Protocol (MCP) kwa Python inayotoa uwezo wa msingi wa kikokotoo.
 
-Hivi ndivyo sehemu ya kalkuleta inavyoonekana:
+## Usakinishaji
 
-```python
-@mcp.tool()
-def add(a: float, b: float) -> float:
-    """Add two numbers together and return the result."""
-    return a + b
-
-@mcp.tool()
-def subtract(a: float, b: float) -> float:
-    """Subtract b from a and return the result."""
-    return a - b
-
-@mcp.tool()
-def multiply(a: float, b: float) -> float:
-    """Multiply two numbers together and return the result."""
-    return a * b
-
-@mcp.tool()
-def divide(a: float, b: float) -> float:
-    """
-    Divide a by b and return the result.
-    
-    Raises:
-        ValueError: If b is zero
-    """
-    if b == 0:
-        raise ValueError("Cannot divide by zero")
-    return a / b
-```
-
-## Sakinisha
-
-Endesha amri ifuatayo:
+Sakinisha utegemezi unaohitajika:
 
 ```bash
-pip install mcp
+pip install -r requirements.txt
 ```
 
-## Endesha
+Au sakinisha MCP Python SDK moja kwa moja:
+
+```bash
+pip install mcp>=1.18.0
+```
+
+## Matumizi
+
+### Kuendesha Seva
+
+Seva imeundwa kutumiwa na wateja wa MCP (kama Claude Desktop). Ili kuanzisha seva:
 
 ```bash
 python mcp_calculator_server.py
 ```
 
-**Kiarifu cha Kutotegemea**:  
-Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kwa usahihi, tafadhali fahamu kwamba tafsiri za kiotomatiki zinaweza kuwa na makosa au upungufu wa usahihi. Hati ya asili katika lugha yake ya asili inapaswa kuchukuliwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu inayofanywa na binadamu inapendekezwa. Hatubebei dhamana kwa kutoelewana au tafsiri potofu zinazotokana na matumizi ya tafsiri hii.
+**Kumbuka**: Unapoendesha moja kwa moja kwenye terminal, utaona makosa ya uthibitishaji wa JSON-RPC. Hii ni tabia ya kawaida - seva inasubiri ujumbe wa mteja wa MCP ulio na muundo sahihi.
+
+### Kupima Kazi za Kikokotoo
+
+Ili kupima kwamba kazi za kikokotoo zinafanya kazi vizuri:
+
+```bash
+python test_calculator.py
+```
+
+## Utatuzi wa Shida
+
+### Makosa ya Uagizaji
+
+Ukiona `ModuleNotFoundError: No module named 'mcp'`, sakinisha MCP Python SDK:
+
+```bash
+pip install mcp>=1.18.0
+```
+
+### Makosa ya JSON-RPC Unapoendesha Moja kwa Moja
+
+Makosa kama "Invalid JSON: EOF while parsing a value" unapoendesha seva moja kwa moja yanatarajiwa. Seva inahitaji ujumbe wa mteja wa MCP, si pembejeo ya moja kwa moja ya terminal.
+
+---
+
+**Kanusho**:  
+Hati hii imetafsiriwa kwa kutumia huduma ya kutafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kwa usahihi, tafadhali fahamu kuwa tafsiri za kiotomatiki zinaweza kuwa na makosa au kutokuwa sahihi. Hati ya asili katika lugha yake ya awali inapaswa kuzingatiwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu ya binadamu inapendekezwa. Hatutawajibika kwa kutoelewana au tafsiri zisizo sahihi zinazotokana na matumizi ya tafsiri hii.

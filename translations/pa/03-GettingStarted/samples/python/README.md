@@ -1,60 +1,65 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "bb55f3119d45c4412fc5555299e60498",
-  "translation_date": "2025-07-13T22:37:42+00:00",
+  "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
+  "translation_date": "2025-10-17T20:05:06+00:00",
   "source_file": "03-GettingStarted/samples/python/README.md",
   "language_code": "pa"
 }
 -->
-# ਨਮੂਨਾ
+# ਐਮਸੀਪੀ ਕੈਲਕੂਲੇਟਰ ਸਰਵਰ (ਪਾਇਥਨ)
 
-ਇਹ MCP ਸਰਵਰ ਲਈ ਇੱਕ Python ਨਮੂਨਾ ਹੈ
+ਪਾਇਥਨ ਵਿੱਚ ਇੱਕ ਸਧਾਰਨ ਮਾਡਲ ਕਾਂਟੈਕਸਟ ਪ੍ਰੋਟੋਕੋਲ (ਐਮਸੀਪੀ) ਸਰਵਰ ਦੀ ਕਾਰਗੁਜ਼ਾਰੀ ਜੋ ਬੁਨਿਆਦੀ ਕੈਲਕੂਲੇਟਰ ਫੰਕਸ਼ਨਲਿਟੀ ਪ੍ਰਦਾਨ ਕਰਦੀ ਹੈ।
 
-ਕੈਲਕੁਲੇਟਰ ਹਿੱਸਾ ਇਸ ਤਰ੍ਹਾਂ ਦਿਖਾਈ ਦਿੰਦਾ ਹੈ:
+## ਇੰਸਟਾਲੇਸ਼ਨ
 
-```python
-@mcp.tool()
-def add(a: float, b: float) -> float:
-    """Add two numbers together and return the result."""
-    return a + b
-
-@mcp.tool()
-def subtract(a: float, b: float) -> float:
-    """Subtract b from a and return the result."""
-    return a - b
-
-@mcp.tool()
-def multiply(a: float, b: float) -> float:
-    """Multiply two numbers together and return the result."""
-    return a * b
-
-@mcp.tool()
-def divide(a: float, b: float) -> float:
-    """
-    Divide a by b and return the result.
-    
-    Raises:
-        ValueError: If b is zero
-    """
-    if b == 0:
-        raise ValueError("Cannot divide by zero")
-    return a / b
-```
-
-## ਇੰਸਟਾਲ ਕਰੋ
-
-ਹੇਠਾਂ ਦਿੱਤਾ ਕਮਾਂਡ ਚਲਾਓ:
+ਲੋੜੀਂਦੇ ਡਿਪੈਂਡੈਂਸੀਜ਼ ਇੰਸਟਾਲ ਕਰੋ:
 
 ```bash
-pip install mcp
+pip install -r requirements.txt
 ```
 
-## ਚਲਾਓ
+ਜਾਂ ਸਿੱਧੇ ਐਮਸੀਪੀ ਪਾਇਥਨ ਐਸਡੀਕੇ ਇੰਸਟਾਲ ਕਰੋ:
+
+```bash
+pip install mcp>=1.18.0
+```
+
+## ਵਰਤੋਂ
+
+### ਸਰਵਰ ਚਲਾਉਣਾ
+
+ਸਰਵਰ ਐਮਸੀਪੀ ਕਲਾਇੰਟਾਂ (ਜਿਵੇਂ ਕਿ Claude Desktop) ਦੁਆਰਾ ਵਰਤਣ ਲਈ ਡਿਜ਼ਾਈਨ ਕੀਤਾ ਗਿਆ ਹੈ। ਸਰਵਰ ਸ਼ੁਰੂ ਕਰਨ ਲਈ:
 
 ```bash
 python mcp_calculator_server.py
 ```
 
-**ਅਸਵੀਕਾਰੋਪੱਤਰ**:  
-ਇਹ ਦਸਤਾਵੇਜ਼ AI ਅਨੁਵਾਦ ਸੇਵਾ [Co-op Translator](https://github.com/Azure/co-op-translator) ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਅਨੁਵਾਦਿਤ ਕੀਤਾ ਗਿਆ ਹੈ। ਜਦੋਂ ਕਿ ਅਸੀਂ ਸਹੀਤਾ ਲਈ ਕੋਸ਼ਿਸ਼ ਕਰਦੇ ਹਾਂ, ਕਿਰਪਾ ਕਰਕੇ ਧਿਆਨ ਰੱਖੋ ਕਿ ਸਵੈਚਾਲਿਤ ਅਨੁਵਾਦਾਂ ਵਿੱਚ ਗਲਤੀਆਂ ਜਾਂ ਅਸਮਰਥਤਾਵਾਂ ਹੋ ਸਕਦੀਆਂ ਹਨ। ਮੂਲ ਦਸਤਾਵੇਜ਼ ਆਪਣੀ ਮੂਲ ਭਾਸ਼ਾ ਵਿੱਚ ਪ੍ਰਮਾਣਿਕ ਸਰੋਤ ਮੰਨਿਆ ਜਾਣਾ ਚਾਹੀਦਾ ਹੈ। ਮਹੱਤਵਪੂਰਨ ਜਾਣਕਾਰੀ ਲਈ, ਪੇਸ਼ੇਵਰ ਮਨੁੱਖੀ ਅਨੁਵਾਦ ਦੀ ਸਿਫਾਰਸ਼ ਕੀਤੀ ਜਾਂਦੀ ਹੈ। ਅਸੀਂ ਇਸ ਅਨੁਵਾਦ ਦੀ ਵਰਤੋਂ ਤੋਂ ਉਤਪੰਨ ਕਿਸੇ ਵੀ ਗਲਤਫਹਿਮੀ ਜਾਂ ਗਲਤ ਵਿਆਖਿਆ ਲਈ ਜ਼ਿੰਮੇਵਾਰ ਨਹੀਂ ਹਾਂ।
+**ਨੋਟ**: ਜਦੋਂ ਸਿੱਧੇ ਟਰਮੀਨਲ ਵਿੱਚ ਚਲਾਇਆ ਜਾਂਦਾ ਹੈ, ਤਾਂ ਤੁਹਾਨੂੰ JSON-RPC ਵੈਲੀਡੇਸ਼ਨ ਐਰਰਜ਼ ਦੇਖਣ ਨੂੰ ਮਿਲੇਗਾ। ਇਹ ਆਮ ਵਿਵਹਾਰ ਹੈ - ਸਰਵਰ ਸਹੀ ਤਰੀਕੇ ਨਾਲ ਫਾਰਮੈਟ ਕੀਤੇ ਐਮਸੀਪੀ ਕਲਾਇੰਟ ਸੁਨੇਹਿਆਂ ਦੀ ਉਡੀਕ ਕਰ ਰਿਹਾ ਹੈ।
+
+### ਫੰਕਸ਼ਨਜ਼ ਦੀ ਜਾਂਚ ਕਰਨਾ
+
+ਇਹ ਜਾਂਚਣ ਲਈ ਕਿ ਕੈਲਕੂਲੇਟਰ ਫੰਕਸ਼ਨ ਸਹੀ ਤਰੀਕੇ ਨਾਲ ਕੰਮ ਕਰਦੇ ਹਨ:
+
+```bash
+python test_calculator.py
+```
+
+## ਸਮੱਸਿਆ ਹੱਲ
+
+### ਇੰਪੋਰਟ ਐਰਰਜ਼
+
+ਜੇ ਤੁਸੀਂ `ModuleNotFoundError: No module named 'mcp'` ਦੇਖਦੇ ਹੋ, ਤਾਂ ਐਮਸੀਪੀ ਪਾਇਥਨ ਐਸਡੀਕੇ ਇੰਸਟਾਲ ਕਰੋ:
+
+```bash
+pip install mcp>=1.18.0
+```
+
+### JSON-RPC ਐਰਰਜ਼ ਜਦੋਂ ਸਿੱਧੇ ਚਲਾਇਆ ਜਾਂਦਾ ਹੈ
+
+"Invalid JSON: EOF while parsing a value" ਵਰਗੇ ਐਰਰਜ਼ ਜਦੋਂ ਸਰਵਰ ਸਿੱਧੇ ਚਲਾਇਆ ਜਾਂਦਾ ਹੈ, ਤਾਂ ਇਹ ਉਮੀਦ ਕੀਤੀ ਜਾਂਦੀ ਹੈ। ਸਰਵਰ ਨੂੰ ਐਮਸੀਪੀ ਕਲਾਇੰਟ ਸੁਨੇਹਿਆਂ ਦੀ ਲੋੜ ਹੈ, ਨਾ ਕਿ ਸਿੱਧੇ ਟਰਮੀਨਲ ਇਨਪੁਟ ਦੀ।
+
+---
+
+**ਅਸਵੀਕਰਤੀ**:  
+ਇਹ ਦਸਤਾਵੇਜ਼ AI ਅਨੁਵਾਦ ਸੇਵਾ [Co-op Translator](https://github.com/Azure/co-op-translator) ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਅਨੁਵਾਦ ਕੀਤਾ ਗਿਆ ਹੈ। ਜਦੋਂ ਕਿ ਅਸੀਂ ਸਹੀ ਹੋਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰਦੇ ਹਾਂ, ਕਿਰਪਾ ਕਰਕੇ ਧਿਆਨ ਦਿਓ ਕਿ ਸਵੈਚਾਲਿਤ ਅਨੁਵਾਦਾਂ ਵਿੱਚ ਗਲਤੀਆਂ ਜਾਂ ਅਸੁੱਤੀਆਂ ਹੋ ਸਕਦੀਆਂ ਹਨ। ਮੂਲ ਦਸਤਾਵੇਜ਼ ਨੂੰ ਇਸਦੀ ਮੂਲ ਭਾਸ਼ਾ ਵਿੱਚ ਅਧਿਕਾਰਤ ਸਰੋਤ ਮੰਨਿਆ ਜਾਣਾ ਚਾਹੀਦਾ ਹੈ। ਮਹੱਤਵਪੂਰਨ ਜਾਣਕਾਰੀ ਲਈ, ਪੇਸ਼ੇਵਰ ਮਨੁੱਖੀ ਅਨੁਵਾਦ ਦੀ ਸਿਫਾਰਸ਼ ਕੀਤੀ ਜਾਂਦੀ ਹੈ। ਅਸੀਂ ਇਸ ਅਨੁਵਾਦ ਦੀ ਵਰਤੋਂ ਤੋਂ ਪੈਦਾ ਹੋਣ ਵਾਲੇ ਕਿਸੇ ਵੀ ਗਲਤਫਹਿਮੀ ਜਾਂ ਗਲਤ ਵਿਆਖਿਆ ਲਈ ਜ਼ਿੰਮੇਵਾਰ ਨਹੀਂ ਹਾਂ।

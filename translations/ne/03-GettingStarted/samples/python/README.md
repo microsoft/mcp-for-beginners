@@ -1,60 +1,65 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "bb55f3119d45c4412fc5555299e60498",
-  "translation_date": "2025-07-13T22:37:38+00:00",
+  "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
+  "translation_date": "2025-10-17T20:05:00+00:00",
   "source_file": "03-GettingStarted/samples/python/README.md",
   "language_code": "ne"
 }
 -->
-# नमूना
+# MCP क्यालकुलेटर सर्भर (Python)
 
-यो MCP सर्भरको लागि एउटा Python नमूना हो
-
-क्याल्कुलेटर भाग यसरी देखिन्छ:
-
-```python
-@mcp.tool()
-def add(a: float, b: float) -> float:
-    """Add two numbers together and return the result."""
-    return a + b
-
-@mcp.tool()
-def subtract(a: float, b: float) -> float:
-    """Subtract b from a and return the result."""
-    return a - b
-
-@mcp.tool()
-def multiply(a: float, b: float) -> float:
-    """Multiply two numbers together and return the result."""
-    return a * b
-
-@mcp.tool()
-def divide(a: float, b: float) -> float:
-    """
-    Divide a by b and return the result.
-    
-    Raises:
-        ValueError: If b is zero
-    """
-    if b == 0:
-        raise ValueError("Cannot divide by zero")
-    return a / b
-```
+Python मा एक साधारण Model Context Protocol (MCP) सर्भर कार्यान्वयन जसले आधारभूत क्यालकुलेटर कार्यक्षमता प्रदान गर्दछ।
 
 ## स्थापना
 
-तलको कमाण्ड चलाउनुहोस्:
+आवश्यक निर्भरता स्थापना गर्नुहोस्:
 
 ```bash
-pip install mcp
+pip install -r requirements.txt
 ```
 
-## चलाउनुहोस्
+वा MCP Python SDK सिधै स्थापना गर्नुहोस्:
+
+```bash
+pip install mcp>=1.18.0
+```
+
+## प्रयोग
+
+### सर्भर चलाउने
+
+सर्भर MCP क्लाइन्टहरू (जस्तै Claude Desktop) द्वारा प्रयोग गर्न डिजाइन गरिएको छ। सर्भर सुरु गर्न:
 
 ```bash
 python mcp_calculator_server.py
 ```
 
+**नोट**: जब सिधै टर्मिनलमा चलाइन्छ, तपाईं JSON-RPC मान्यता त्रुटिहरू देख्नुहुनेछ। यो सामान्य व्यवहार हो - सर्भर सही रूपमा ढाँचा गरिएको MCP क्लाइन्ट सन्देशहरूको प्रतीक्षा गरिरहेको छ।
+
+### कार्यहरू परीक्षण गर्ने
+
+क्यालकुलेटर कार्यहरू सही रूपमा काम गरिरहेको छ कि छैन भनेर परीक्षण गर्न:
+
+```bash
+python test_calculator.py
+```
+
+## समस्या समाधान
+
+### आयात त्रुटिहरू
+
+यदि तपाईंले `ModuleNotFoundError: No module named 'mcp'` देख्नुभयो भने, MCP Python SDK स्थापना गर्नुहोस्:
+
+```bash
+pip install mcp>=1.18.0
+```
+
+### JSON-RPC त्रुटिहरू सिधै चलाउँदा
+
+"Invalid JSON: EOF while parsing a value" जस्ता त्रुटिहरू सर्भर सिधै चलाउँदा अपेक्षित हुन्छन्। सर्भरलाई MCP क्लाइन्ट सन्देशहरू चाहिन्छ, सिधै टर्मिनल इनपुट होइन।
+
+---
+
 **अस्वीकरण**:  
-यो दस्तावेज AI अनुवाद सेवा [Co-op Translator](https://github.com/Azure/co-op-translator) प्रयोग गरी अनुवाद गरिएको हो। हामी शुद्धताका लागि प्रयासरत छौं, तर कृपया ध्यान दिनुहोस् कि स्वचालित अनुवादमा त्रुटि वा अशुद्धता हुन सक्छ। मूल दस्तावेज यसको मूल भाषामा नै अधिकारिक स्रोत मानिनुपर्छ। महत्वपूर्ण जानकारीका लागि व्यावसायिक मानव अनुवाद सिफारिस गरिन्छ। यस अनुवादको प्रयोगबाट उत्पन्न कुनै पनि गलतफहमी वा गलत व्याख्याका लागि हामी जिम्मेवार छैनौं।
+यो दस्तावेज़ AI अनुवाद सेवा [Co-op Translator](https://github.com/Azure/co-op-translator) प्रयोग गरेर अनुवाद गरिएको छ। हामी शुद्धताको लागि प्रयास गर्छौं, तर कृपया ध्यान दिनुहोस् कि स्वचालित अनुवादमा त्रुटिहरू वा अशुद्धताहरू हुन सक्छ। यसको मूल भाषा मा रहेको दस्तावेज़लाई आधिकारिक स्रोत मानिनुपर्छ। महत्वपूर्ण जानकारीको लागि, व्यावसायिक मानव अनुवाद सिफारिस गरिन्छ। यस अनुवादको प्रयोगबाट उत्पन्न हुने कुनै पनि गलतफहमी वा गलत व्याख्याको लागि हामी जिम्मेवार हुने छैनौं।

@@ -1,60 +1,65 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "bb55f3119d45c4412fc5555299e60498",
-  "translation_date": "2025-07-13T22:38:56+00:00",
+  "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
+  "translation_date": "2025-10-17T20:06:49+00:00",
   "source_file": "03-GettingStarted/samples/python/README.md",
   "language_code": "tl"
 }
 -->
-# Sample
+# MCP Calculator Server (Python)
 
-Ito ay isang halimbawa ng Python para sa isang MCP Server
+Isang simpleng implementasyon ng Model Context Protocol (MCP) server sa Python na nagbibigay ng pangunahing functionality ng calculator.
 
-Ganito ang hitsura ng bahagi ng calculator:
+## Pag-install
 
-```python
-@mcp.tool()
-def add(a: float, b: float) -> float:
-    """Add two numbers together and return the result."""
-    return a + b
-
-@mcp.tool()
-def subtract(a: float, b: float) -> float:
-    """Subtract b from a and return the result."""
-    return a - b
-
-@mcp.tool()
-def multiply(a: float, b: float) -> float:
-    """Multiply two numbers together and return the result."""
-    return a * b
-
-@mcp.tool()
-def divide(a: float, b: float) -> float:
-    """
-    Divide a by b and return the result.
-    
-    Raises:
-        ValueError: If b is zero
-    """
-    if b == 0:
-        raise ValueError("Cannot divide by zero")
-    return a / b
-```
-
-## Install
-
-Patakbuhin ang sumusunod na utos:
+I-install ang mga kinakailangang dependencies:
 
 ```bash
-pip install mcp
+pip install -r requirements.txt
 ```
 
-## Run
+O direktang i-install ang MCP Python SDK:
+
+```bash
+pip install mcp>=1.18.0
+```
+
+## Paggamit
+
+### Pagpapatakbo ng Server
+
+Ang server ay idinisenyo para magamit ng mga MCP client (tulad ng Claude Desktop). Para simulan ang server:
 
 ```bash
 python mcp_calculator_server.py
 ```
 
-**Paalala**:  
-Ang dokumentong ito ay isinalin gamit ang AI translation service na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagamat nagsusumikap kami para sa katumpakan, pakatandaan na ang mga awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o di-tumpak na impormasyon. Ang orihinal na dokumento sa kanyang sariling wika ang dapat ituring na pangunahing sanggunian. Para sa mahahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang hindi pagkakaunawaan o maling interpretasyon na maaaring magmula sa paggamit ng pagsasaling ito.
+**Tandaan**: Kapag pinatakbo nang direkta sa terminal, makakakita ka ng mga JSON-RPC validation error. Normal ito - ang server ay naghihintay ng maayos na formatted na mga mensahe mula sa MCP client.
+
+### Pagsubok sa mga Function
+
+Para masubukan kung gumagana nang tama ang mga calculator function:
+
+```bash
+python test_calculator.py
+```
+
+## Pag-aayos ng Problema
+
+### Mga Error sa Import
+
+Kung makakita ka ng `ModuleNotFoundError: No module named 'mcp'`, i-install ang MCP Python SDK:
+
+```bash
+pip install mcp>=1.18.0
+```
+
+### Mga JSON-RPC Error Kapag Pinatakbo nang Direkta
+
+Ang mga error tulad ng "Invalid JSON: EOF while parsing a value" kapag pinatakbo ang server nang direkta ay inaasahan. Ang server ay nangangailangan ng mga mensahe mula sa MCP client, hindi direktang input mula sa terminal.
+
+---
+
+**Paunawa**:  
+Ang dokumentong ito ay isinalin gamit ang AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). Bagamat sinisikap naming maging tumpak, mangyaring tandaan na ang mga awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o hindi pagkakatugma. Ang orihinal na dokumento sa kanyang katutubong wika ang dapat ituring na opisyal na sanggunian. Para sa mahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang hindi pagkakaunawaan o maling interpretasyon na dulot ng paggamit ng pagsasaling ito.

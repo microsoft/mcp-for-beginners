@@ -1,60 +1,65 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "bb55f3119d45c4412fc5555299e60498",
-  "translation_date": "2025-07-13T22:39:17+00:00",
+  "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
+  "translation_date": "2025-10-17T20:07:25+00:00",
   "source_file": "03-GettingStarted/samples/python/README.md",
   "language_code": "ro"
 }
 -->
-# Exemplu
+# Server MCP Calculator (Python)
 
-Acesta este un exemplu în Python pentru un MCP Server
-
-Iată cum arată partea de calculator:
-
-```python
-@mcp.tool()
-def add(a: float, b: float) -> float:
-    """Add two numbers together and return the result."""
-    return a + b
-
-@mcp.tool()
-def subtract(a: float, b: float) -> float:
-    """Subtract b from a and return the result."""
-    return a - b
-
-@mcp.tool()
-def multiply(a: float, b: float) -> float:
-    """Multiply two numbers together and return the result."""
-    return a * b
-
-@mcp.tool()
-def divide(a: float, b: float) -> float:
-    """
-    Divide a by b and return the result.
-    
-    Raises:
-        ValueError: If b is zero
-    """
-    if b == 0:
-        raise ValueError("Cannot divide by zero")
-    return a / b
-```
+O implementare simplă a unui server Model Context Protocol (MCP) în Python care oferă funcționalități de bază pentru un calculator.
 
 ## Instalare
 
-Rulează următoarea comandă:
+Instalează dependențele necesare:
 
 ```bash
-pip install mcp
+pip install -r requirements.txt
 ```
+  
+Sau instalează direct MCP Python SDK:
 
-## Rulare
+```bash
+pip install mcp>=1.18.0
+```
+  
+## Utilizare
+
+### Rularea Serverului
+
+Serverul este conceput pentru a fi utilizat de clienți MCP (cum ar fi Claude Desktop). Pentru a porni serverul:
 
 ```bash
 python mcp_calculator_server.py
 ```
+  
+**Notă**: Când este rulat direct într-un terminal, vei vedea erori de validare JSON-RPC. Acest comportament este normal - serverul așteaptă mesaje formatate corect de la clienții MCP.
+
+### Testarea Funcțiilor
+
+Pentru a testa dacă funcțiile calculatorului funcționează corect:
+
+```bash
+python test_calculator.py
+```
+  
+## Depanare
+
+### Erori de Import
+
+Dacă vezi `ModuleNotFoundError: No module named 'mcp'`, instalează MCP Python SDK:
+
+```bash
+pip install mcp>=1.18.0
+```
+  
+### Erori JSON-RPC la Rularea Directă
+
+Erori precum "Invalid JSON: EOF while parsing a value" atunci când rulezi serverul direct sunt de așteptat. Serverul are nevoie de mesaje de la clienți MCP, nu de input direct din terminal.
+
+---
 
 **Declinare de responsabilitate**:  
-Acest document a fost tradus folosind serviciul de traducere AI [Co-op Translator](https://github.com/Azure/co-op-translator). Deși ne străduim pentru acuratețe, vă rugăm să rețineți că traducerile automate pot conține erori sau inexactități. Documentul original în limba sa nativă trebuie considerat sursa autorizată. Pentru informații critice, se recomandă traducerea profesională realizată de un specialist uman. Nu ne asumăm răspunderea pentru eventualele neînțelegeri sau interpretări greșite rezultate din utilizarea acestei traduceri.
+Acest document a fost tradus folosind serviciul de traducere AI [Co-op Translator](https://github.com/Azure/co-op-translator). Deși ne străduim să asigurăm acuratețea, vă rugăm să fiți conștienți că traducerile automate pot conține erori sau inexactități. Documentul original în limba sa maternă ar trebui considerat sursa autoritară. Pentru informații critice, se recomandă traducerea profesională realizată de un specialist uman. Nu ne asumăm responsabilitatea pentru eventualele neînțelegeri sau interpretări greșite care pot apărea din utilizarea acestei traduceri.
