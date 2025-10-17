@@ -5,7 +5,7 @@
 A simple Model Context Protocol (MCP) server implementation in Python that provides basic calculator functionality.
 
 
-## Installation python mcp_calculator_server.py
+## Installation
 
 Install the required dependencies:
 
