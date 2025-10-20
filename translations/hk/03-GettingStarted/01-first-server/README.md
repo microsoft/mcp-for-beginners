@@ -1,30 +1,30 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "ec11ee93f31fdadd94facd3e3d22f9e6",
-  "translation_date": "2025-09-09T21:30:10+00:00",
+  "original_hash": "726b74589522653d930c7395c9e1fab8",
+  "translation_date": "2025-10-20T16:56:05+00:00",
   "source_file": "03-GettingStarted/01-first-server/README.md",
   "language_code": "hk"
 }
 -->
 # 開始使用 MCP
 
-歡迎踏出使用模型上下文協議 (MCP) 的第一步！無論您是 MCP 的新手，還是希望加深理解，本指南將引導您完成基本的設置和開發過程。您將發現 MCP 如何實現 AI 模型與應用程式之間的無縫整合，並學習如何快速準備您的環境以構建和測試基於 MCP 的解決方案。
+歡迎踏出使用模型上下文協議 (MCP) 的第一步！無論您是 MCP 的新手還是希望深入了解它的用戶，本指南將引導您完成基本的設置和開發過程。您將了解 MCP 如何實現 AI 模型與應用程式之間的無縫整合，並學習如何快速準備環境以構建和測試基於 MCP 的解決方案。
 
-> 簡而言之：如果您開發 AI 應用程式，您可能知道可以為大型語言模型 (LLM) 添加工具和其他資源，以使其更具知識性。然而，如果您將這些工具和資源放置在伺服器上，應用程式和伺服器的功能可以被任何有或沒有 LLM 的客戶端使用。
+> 簡而言之；如果您開發 AI 應用程式，您可能知道可以向 LLM（大型語言模型）添加工具和其他資源，以使 LLM 更加智能。然而，如果您將這些工具和資源放在伺服器上，任何有或沒有 LLM 的客戶端都可以使用該應用程式和伺服器的功能。
 
 ## 概述
 
-本課程提供有關設置 MCP 環境和構建第一個 MCP 應用程式的實用指導。您將學習如何設置必要的工具和框架，構建基本的 MCP 伺服器，創建主機應用程式，並測試您的實現。
+本課程提供了設置 MCP 環境和構建您的第一個 MCP 應用程式的實用指南。您將學習如何設置必要的工具和框架，構建基本的 MCP 伺服器，創建主機應用程式，並測試您的實現。
 
-模型上下文協議 (MCP) 是一種開放協議，標準化了應用程式如何為 LLM 提供上下文。可以將 MCP 想像成 AI 應用程式的 USB-C 接口——它提供了一種標準化的方式來將 AI 模型連接到不同的數據來源和工具。
+模型上下文協議 (MCP) 是一種開放協議，標準化了應用程式如何向 LLM 提供上下文。可以將 MCP 想像成 AI 應用程式的 USB-C 接口——它提供了一種標準化的方式來將 AI 模型連接到不同的數據源和工具。
 
 ## 學習目標
 
 完成本課程後，您將能夠：
 
-- 為 C#、Java、Python、TypeScript 和 Rust 設置 MCP 的開發環境
-- 構建和部署具有自定義功能（資源、提示和工具）的基本 MCP 伺服器
+- 為 MCP 在 C#、Java、Python、TypeScript 和 Rust 中設置開發環境
+- 使用自定義功能（資源、提示和工具）構建和部署基本的 MCP 伺服器
 - 創建連接到 MCP 伺服器的主機應用程式
 - 測試和調試 MCP 的實現
 
@@ -34,23 +34,23 @@ CO_OP_TRANSLATOR_METADATA:
 
 ### 先決條件
 
-在進入 MCP 開發之前，請確保您已具備以下條件：
+在開始 MCP 開發之前，請確保您已準備好：
 
-- **開發環境**：適用於您選擇的語言（C#、Java、Python、TypeScript 或 Rust）
+- **開發環境**：選擇的編程語言（C#、Java、Python、TypeScript 或 Rust）
 - **IDE/編輯器**：Visual Studio、Visual Studio Code、IntelliJ、Eclipse、PyCharm 或任何現代代碼編輯器
 - **套件管理器**：NuGet、Maven/Gradle、pip、npm/yarn 或 Cargo
-- **API 金鑰**：用於您計劃在主機應用程式中使用的任何 AI 服務
+- **API 密鑰**：用於您計劃在主機應用程式中使用的任何 AI 服務
 
 ## 基本 MCP 伺服器結構
 
-一個 MCP 伺服器通常包括：
+MCP 伺服器通常包括：
 
 - **伺服器配置**：設置端口、身份驗證和其他設置
 - **資源**：提供給 LLM 的數據和上下文
 - **工具**：模型可以調用的功能
-- **提示**：用於生成或結構化文本的模板
+- **提示**：生成或結構化文本的模板
 
-以下是 TypeScript 的簡化範例：
+以下是 TypeScript 的簡化示例：
 
 ```typescript
 import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
@@ -126,22 +126,22 @@ await server.connect(transport);
 在上述代碼中，我們：
 
 - 從 MCP TypeScript SDK 中導入必要的類。
-- 創建並配置一個新的 MCP 伺服器實例。
-- 註冊一個帶有處理函數的自定義工具（`calculator`）。
+- 創建並配置新的 MCP 伺服器實例。
+- 註冊具有處理函數的自定義工具（`calculator`）。
 - 啟動伺服器以監聽傳入的 MCP 請求。
 
 ## 測試和調試
 
 在開始測試 MCP 伺服器之前，了解可用的工具和調試的最佳實踐非常重要。有效的測試可確保您的伺服器按預期運行，並幫助您快速識別和解決問題。以下部分概述了驗證 MCP 實現的推薦方法。
 
-MCP 提供了一些工具來幫助您測試和調試伺服器：
+MCP 提供了幫助您測試和調試伺服器的工具：
 
-- **Inspector 工具**：這是一個圖形界面，允許您連接到伺服器並測試工具、提示和資源。
+- **Inspector 工具**：此圖形界面允許您連接到伺服器並測試工具、提示和資源。
 - **curl**：您還可以使用命令行工具如 curl 或其他能創建和運行 HTTP 命令的客戶端連接到伺服器。
 
 ### 使用 MCP Inspector
 
-[MCP Inspector](https://github.com/modelcontextprotocol/inspector) 是一個視覺化測試工具，幫助您：
+[MCP Inspector](https://github.com/modelcontextprotocol/inspector) 是一個可視化測試工具，可幫助您：
 
 1. **發現伺服器功能**：自動檢測可用的資源、工具和提示
 2. **測試工具執行**：嘗試不同的參數並即時查看響應
@@ -152,7 +152,7 @@ MCP 提供了一些工具來幫助您測試和調試伺服器：
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-運行上述命令後，MCP Inspector 將在您的瀏覽器中啟動一個本地網頁界面。您可以看到一個儀表板，顯示已註冊的 MCP 伺服器及其可用的工具、資源和提示。該界面允許您交互式測試工具執行、檢查伺服器元數據並查看即時響應，從而更輕鬆地驗證和調試 MCP 伺服器的實現。
+當您運行上述命令時，MCP Inspector 將在瀏覽器中啟動本地網頁界面。您可以看到顯示已註冊的 MCP 伺服器、其可用工具、資源和提示的儀表板。該界面允許您交互式測試工具執行、檢查伺服器元數據並查看即時響應，從而更輕鬆地驗證和調試 MCP 伺服器的實現。
 
 以下是界面可能的樣子：
 
@@ -164,18 +164,18 @@ npx @modelcontextprotocol/inspector node build/index.js
 |------|----------------|
 | 連接被拒絕 | 檢查伺服器是否正在運行以及端口是否正確 |
 | 工具執行錯誤 | 檢查參數驗證和錯誤處理 |
-| 身份驗證失敗 | 驗證 API 金鑰和權限 |
+| 身份驗證失敗 | 驗證 API 密鑰和權限 |
 | 架構驗證錯誤 | 確保參數與定義的架構匹配 |
-| 伺服器無法啟動 | 檢查端口衝突或缺少依賴項 |
-| CORS 錯誤 | 配置正確的 CORS 標頭以允許跨域請求 |
+| 伺服器未啟動 | 檢查端口衝突或缺少依賴項 |
+| CORS 錯誤 | 為跨域請求配置正確的 CORS 標頭 |
 | 身份驗證問題 | 驗證令牌的有效性和權限 |
 
 ## 本地開發
 
-在本地開發和測試中，您可以直接在機器上運行 MCP 伺服器：
+對於本地開發和測試，您可以直接在您的機器上運行 MCP 伺服器：
 
 1. **啟動伺服器進程**：運行您的 MCP 伺服器應用程式
-2. **配置網絡**：確保伺服器可通過預期的端口訪問
+2. **配置網絡**：確保伺服器可以在預期的端口上訪問
 3. **連接客戶端**：使用本地連接 URL，例如 `http://localhost:3000`
 
 ```bash
@@ -186,32 +186,32 @@ npm run start
 
 ## 構建您的第一個 MCP 伺服器
 
-我們在之前的課程中已經介紹了[核心概念](/01-CoreConcepts/README.md)，現在是時候將這些知識付諸實踐了。
+我們在之前的課程中已經介紹了[核心概念](/01-CoreConcepts/README.md)，現在是時候將這些知識付諸實踐。
 
 ### 伺服器可以做什麼
 
 在開始編寫代碼之前，讓我們回顧一下伺服器可以做什麼：
 
-一個 MCP 伺服器可以：
+MCP 伺服器可以例如：
 
 - 訪問本地文件和數據庫
 - 連接到遠程 API
 - 執行計算
 - 與其他工具和服務集成
-- 提供用戶交互界面
+- 提供交互的用戶界面
 
-很好，現在我們知道它的功能了，讓我們開始編碼吧。
+很好，現在我們知道它可以做什麼了，讓我們開始編碼。
 
 ## 練習：創建伺服器
 
 要創建伺服器，您需要遵循以下步驟：
 
 - 安裝 MCP SDK。
-- 創建專案並設置專案結構。
+- 創建一個項目並設置項目結構。
 - 編寫伺服器代碼。
 - 測試伺服器。
 
-### -1- 創建專案
+### -1- 創建項目
 
 #### TypeScript
 
@@ -241,7 +241,7 @@ cd McpCalculatorServer
 
 #### Java
 
-對於 Java，創建一個 Spring Boot 專案：
+對於 Java，創建一個 Spring Boot 項目：
 
 ```bash
 curl https://start.spring.io/starter.zip \
@@ -374,7 +374,7 @@ cargo init
 
 ### -2- 添加依賴項
 
-現在您已創建專案，接下來讓我們添加依賴項：
+現在您已創建了項目，接下來添加依賴項：
 
 #### TypeScript
 
@@ -411,11 +411,11 @@ cargo add serde
 cargo add tokio --features rt-multi-thread
 ```
 
-### -3- 創建專案文件
+### -3- 創建項目文件
 
 #### TypeScript
 
-打開 *package.json* 文件，並將內容替換為以下內容以確保您可以構建和運行伺服器：
+打開 *package.json* 文件，並將內容替換為以下內容，以確保您可以構建和運行伺服器：
 
 ```json
 {
@@ -424,8 +424,8 @@ cargo add tokio --features rt-multi-thread
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "tsc && node ./build/index.js",
-    "build": "tsc && node ./build/index.js"
+    "build": "tsc",
+    "start": "npm run build && node ./build/index.js",
   },
   "keywords": [],
   "author": "",
@@ -462,7 +462,7 @@ cargo add tokio --features rt-multi-thread
 }
 ```
 
-創建一個目錄來存放您的源代碼：
+為您的源代碼創建一個目錄：
 
 ```sh
 mkdir src
@@ -488,11 +488,11 @@ dotnet add package Microsoft.Extensions.Hosting
 
 #### Java
 
-對於 Java Spring Boot 專案，專案結構會自動創建。
+對於 Java Spring Boot 項目，項目結構會自動創建。
 
 #### Rust
 
-對於 Rust，當您運行 `cargo init` 時，會默認創建一個 *src/main.rs* 文件。打開該文件並刪除默認代碼。
+對於 Rust，當您運行 `cargo init` 時，默認會創建一個 *src/main.rs* 文件。打開該文件並刪除默認代碼。
 
 ### -4- 創建伺服器代碼
 
@@ -725,7 +725,7 @@ public class CalculatorService {
 }
 ```
 
-**生產環境可選組件：**
+**生產就緒服務的可選組件：**
 
 創建啟動配置 *src/main/java/com/microsoft/mcp/sample/server/config/StartupConfig.java*：
 
@@ -752,7 +752,7 @@ public class StartupConfig {
 }
 ```
 
-創建健康檢查控制器 *src/main/java/com/microsoft/mcp/sample/server/controller/HealthController.java*：
+創建健康控制器 *src/main/java/com/microsoft/mcp/sample/server/controller/HealthController.java*：
 
 ```java
 package com.microsoft.mcp.sample.server.controller;
@@ -829,9 +829,11 @@ Calculator MCP Server v1.0
 Spring Boot MCP Application
 ```
 
+</details>
+
 #### Rust
 
-在 *src/main.rs* 文件頂部添加以下代碼。這將導入 MCP 伺服器所需的庫和模組。
+在 *src/main.rs* 文件的頂部添加以下代碼。這將導入 MCP 伺服器所需的庫和模塊。
 
 ```rust
 use rmcp::{
@@ -863,7 +865,7 @@ pub struct Calculator {
 }
 ```
 
-現在，我們可以實現 `Calculator` 結構來創建伺服器的新實例，並實現伺服器處理程序以提供伺服器信息。
+現在，我們可以實現 `Calculator` 結構以創建伺服器的新實例，並實現伺服器處理程序以提供伺服器信息。
 
 ```rust
 #[tool_router]
@@ -887,7 +889,7 @@ impl ServerHandler for Calculator {
 }
 ```
 
-最後，我們需要實現主函數來啟動伺服器。此函數將創建 `Calculator` 結構的實例，並通過標準輸入/輸出提供服務。
+最後，我們需要實現主函數以啟動伺服器。此函數將創建 `Calculator` 結構的實例並通過標準輸入/輸出提供服務。
 
 ```rust
 #[tokio::main]
@@ -965,12 +967,12 @@ def get_greeting(name: str) -> str:
 
 在上述代碼中，我們：
 
-- 定義了一個工具 `add`，接受參數 `a` 和 `p`，兩者均為整數。
+- 定義了一個工具 `add`，接受參數 `a` 和 `p`，均為整數。
 - 創建了一個名為 `greeting` 的資源，接受參數 `name`。
 
 #### .NET
 
-將以下內容添加到您的 Program.cs 文件中：
+將以下內容添加到您的 Program.cs 文件：
 
 ```csharp
 [McpServerToolType]
@@ -987,7 +989,7 @@ public static class CalculatorTool
 
 #### Rust
 
-在 `impl Calculator` 區塊內添加一個新工具：
+在 `impl Calculator` 塊內添加一個新工具：
 
 ```rust
 #[tool(description = "Adds a and b")]
@@ -1001,7 +1003,7 @@ async fn add(
 
 ### -6- 最終代碼
 
-讓我們添加最後的代碼，使伺服器可以啟動：
+讓我們添加伺服器啟動所需的最後代碼：
 
 #### TypeScript
 
@@ -1217,11 +1219,11 @@ npm run build
 mcp run server.py
 ```
 
-> 使用 MCP Inspector 時，請使用 `mcp dev server.py`，這將自動啟動 Inspector 並提供所需的代理會話令牌。如果使用 `mcp run server.py`，您需要手動啟動 Inspector 並配置連接。
+> 使用 MCP Inspector 時，請使用 `mcp dev server.py`，它會自動啟動 Inspector 並提供所需的代理會話令牌。如果使用 `mcp run server.py`，您需要手動啟動 Inspector 並配置連接。
 
 #### .NET
 
-確保您位於專案目錄中：
+確保您在項目目錄中：
 
 ```sh
 cd McpCalculatorServer
@@ -1246,10 +1248,10 @@ cargo run
 
 ### -8- 使用 Inspector 運行
 
-Inspector 是一個很棒的工具，可以啟動您的伺服器並讓您與之交互，以測試其是否正常運行。讓我們啟動它：
+Inspector 是一個很棒的工具，可以啟動您的伺服器並讓您與其交互，以測試其是否正常工作。讓我們啟動它：
 
-> [!NOTE]  
-> 在 "command" 欄位中可能會顯示不同的內容，因為它包含了用於運行伺服器的特定運行時命令。
+> [!NOTE]
+> 在 "command" 字段中可能看起來不同，因為它包含了使用您的特定運行時運行伺服器的命令。
 
 #### TypeScript
 
@@ -1259,23 +1261,24 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 或者將其添加到您的 *package.json* 中，例如：`"inspector": "npx @modelcontextprotocol/inspector node build/index.js"`，然後運行 `npm run inspector`
 
-Python 包裝了一個名為 Inspector 的 Node.js 工具。可以像這樣調用該工具：
+Python 包裝了一個名為 Inspector 的 Node.js 工具。可以像下面這樣調用該工具：
 
 ```sh
 mcp dev server.py
 ```
 
-然而，它並未實現工具上的所有方法，因此建議直接運行以下 Node.js 工具：
+然而，它並未實現工具上的所有方法，因此建議直接運行下面的 Node.js 工具：
 
 ```sh
 npx @modelcontextprotocol/inspector mcp run server.py
 ```
 
-如果您使用的工具或 IDE 允許您配置運行腳本的命令和參數，請確保在 `Command` 欄位中設置 `python`，並在 `Arguments` 欄位中設置 `server.py`。這可確保腳本正確運行。
+如果您使用的工具或 IDE 允許您配置命令和參數來運行腳本，
+確保在 `Command` 欄位中設置 `python`，並將 `Arguments` 設置為 `server.py`。這樣可以確保腳本正確執行。
 
 #### .NET
 
-確保您位於專案目錄中：
+確保你在你的專案目錄中：
 
 ```sh
 cd McpCalculatorServer
@@ -1284,40 +1287,42 @@ npx @modelcontextprotocol/inspector dotnet run
 
 #### Java
 
-確保您的計算器伺服器正在運行，然後運行 Inspector：
+確保你的計算器伺服器正在運行  
+然後執行檢查工具：
 
 ```cmd
 npx @modelcontextprotocol/inspector
 ```
 
-在 Inspector 網頁界面中：
+在檢查工具的網頁介面中：
 
 1. 選擇 "SSE" 作為傳輸類型  
 2. 將 URL 設置為：`http://localhost:8080/sse`  
 3. 點擊 "Connect"  
-![連接](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.hk.png)
 
-**你現在已成功連接到伺服器**
+![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.hk.png)
+
+**你現在已成功連接到伺服器**  
 **Java伺服器測試部分已完成**
 
-下一部分是與伺服器互動。
+接下來的部分是與伺服器互動。
 
-你應該會看到以下的使用者介面：
+你應該會看到以下使用者介面：
 
-![連接](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.hk.png)
+![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.hk.png)
 
-1. 按下「連接」按鈕以連接伺服器  
-   當你成功連接伺服器後，應該會看到以下畫面：
+1. 點擊 "Connect" 按鈕連接伺服器  
+   連接伺服器後，你應該會看到以下畫面：
 
-   ![已連接](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.hk.png)
+   ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.hk.png)
 
-1. 選擇「工具」並點擊「listTools」，你應該會看到「新增」出現，選擇「新增」並填寫參數值。
+1. 選擇 "Tools" 和 "listTools"，你應該會看到 "Add" 出現，選擇 "Add" 並填寫參數值。
 
-   你應該會看到以下的回應，也就是「新增」工具的結果：
+   你應該會看到以下回應，也就是 "add" 工具的結果：
 
-   ![執行新增工具的結果](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.hk.png)
+   ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.hk.png)
 
-恭喜你，成功建立並運行了你的第一個伺服器！
+恭喜，你已成功建立並運行你的第一個伺服器！
 
 #### Rust
 
@@ -1331,37 +1336,37 @@ npx @modelcontextprotocol/inspector cargo run --cli --method tools/call --tool-n
 
 MCP 提供多種語言的官方 SDK：
 
-- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - 與 Microsoft 合作維護
-- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - 與 Spring AI 合作維護
-- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - 官方 TypeScript 實現
-- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - 官方 Python 實現
-- [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - 官方 Kotlin 實現
-- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - 與 Loopwork AI 合作維護
-- [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - 官方 Rust 實現
+- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - 與 Microsoft 合作維護  
+- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - 與 Spring AI 合作維護  
+- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - 官方 TypeScript 實現  
+- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - 官方 Python 實現  
+- [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - 官方 Kotlin 實現  
+- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - 與 Loopwork AI 合作維護  
+- [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - 官方 Rust 實現  
 
-## 主要重點
+## 關鍵要點
 
-- 使用語言專屬的 SDK 設置 MCP 開發環境非常簡單
-- 建立 MCP 伺服器需要創建並註冊具有清晰結構的工具
-- 測試和除錯對於可靠的 MCP 實現至關重要
+- 使用特定語言的 SDK 設置 MCP 開發環境非常簡單  
+- 建立 MCP 伺服器需要創建並註冊具有清晰結構的工具  
+- 測試和除錯對於可靠的 MCP 實現至關重要  
 
 ## 範例
 
-- [Java 計算器](../samples/java/calculator/README.md)
-- [.Net 計算器](../../../../03-GettingStarted/samples/csharp)
-- [JavaScript 計算器](../samples/javascript/README.md)
-- [TypeScript 計算器](../samples/typescript/README.md)
-- [Python 計算器](../../../../03-GettingStarted/samples/python)
-- [Rust 計算器](../../../../03-GettingStarted/samples/rust)
+- [Java Calculator](../samples/java/calculator/README.md)  
+- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)  
+- [JavaScript Calculator](../samples/javascript/README.md)  
+- [TypeScript Calculator](../samples/typescript/README.md)  
+- [Python Calculator](../../../../03-GettingStarted/samples/python)  
+- [Rust Calculator](../../../../03-GettingStarted/samples/rust)  
 
 ## 作業
 
-建立一個簡單的 MCP 伺服器並包含一個你選擇的工具：
+建立一個包含你選擇工具的簡單 MCP 伺服器：
 
-1. 使用你偏好的語言（.NET、Java、Python、TypeScript 或 Rust）實現工具。
-2. 定義輸入參數和返回值。
-3. 運行檢查工具以確保伺服器正常運作。
-4. 使用不同的輸入測試實現。
+1. 使用你偏好的語言（.NET、Java、Python、TypeScript 或 Rust）實現工具。  
+2. 定義輸入參數和返回值。  
+3. 運行檢查工具以確保伺服器正常工作。  
+4. 使用各種輸入測試實現。  
 
 ## 解決方案
 
@@ -1369,15 +1374,15 @@ MCP 提供多種語言的官方 SDK：
 
 ## 其他資源
 
-- [在 Azure 上使用 Model Context Protocol 建立代理](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)
-- [使用 Azure Container Apps 遠端 MCP (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)
-- [.NET OpenAI MCP 代理](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)
+- [在 Azure 上使用 Model Context Protocol 建立代理](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)  
+- [使用 Azure 容器應用程式進行遠端 MCP (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)  
+- [.NET OpenAI MCP Agent](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)  
 
 ## 下一步
 
-下一步：[開始使用 MCP 客戶端](../02-client/README.md)
+下一步：[開始使用 MCP 客戶端](../02-client/README.md)  
 
 ---
 
 **免責聲明**：  
-本文件已使用人工智能翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。儘管我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於重要信息，建議使用專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或錯誤解釋概不負責。
+此文件已使用人工智能翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。儘管我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於重要信息，建議使用專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或誤釋不承擔責任。

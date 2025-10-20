@@ -1,27 +1,27 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "ec11ee93f31fdadd94facd3e3d22f9e6",
-  "translation_date": "2025-09-09T21:32:42+00:00",
+  "original_hash": "726b74589522653d930c7395c9e1fab8",
+  "translation_date": "2025-10-20T16:57:05+00:00",
   "source_file": "03-GettingStarted/01-first-server/README.md",
   "language_code": "ja"
 }
 -->
 # MCPの始め方
 
-Model Context Protocol (MCP)の最初のステップへようこそ！MCPが初めての方も、理解を深めたい方も、このガイドでは基本的なセットアップと開発プロセスを説明します。MCPがAIモデルとアプリケーション間のシームレスな統合をどのように実現するかを学び、MCPを活用したソリューションを構築・テストするための環境を迅速に準備する方法を紹介します。
+Model Context Protocol (MCP)の最初のステップへようこそ！MCPが初めての方も、理解を深めたい方も、このガイドでは基本的なセットアップと開発プロセスを案内します。MCPがAIモデルとアプリケーション間のシームレスな統合をどのように可能にするかを学び、MCPを活用したソリューションを構築・テストするための環境を迅速に準備する方法を習得できます。
 
-> TLDR; AIアプリを構築する場合、LLM（大規模言語モデル）にツールやリソースを追加して、LLMをより知識豊富にすることができます。しかし、それらのツールやリソースをサーバーに配置すると、LLMの有無に関わらず、アプリやサーバーの機能を任意のクライアントが利用できるようになります。
+> TLDR; AIアプリを構築する場合、LLM（大規模言語モデル）にツールやその他のリソースを追加して、LLMをより知識豊富にすることができます。しかし、これらのツールやリソースをサーバーに配置すれば、アプリとサーバーの機能をLLMの有無に関わらず、どのクライアントでも利用できるようになります。
 
 ## 概要
 
-このレッスンでは、MCP環境のセットアップと最初のMCPアプリケーションの構築に関する実践的なガイダンスを提供します。必要なツールやフレームワークのセットアップ、基本的なMCPサーバーの構築、ホストアプリケーションの作成、実装のテスト方法を学びます。
+このレッスンでは、MCP環境のセットアップと最初のMCPアプリケーションの構築に関する実践的なガイダンスを提供します。必要なツールやフレームワークのセットアップ方法、基本的なMCPサーバーの構築方法、ホストアプリケーションの作成方法、そして実装のテスト方法を学びます。
 
-Model Context Protocol (MCP)は、アプリケーションがLLMにコンテキストを提供する方法を標準化するオープンプロトコルです。MCPはAIアプリケーションのUSB-Cポートのようなもので、AIモデルをさまざまなデータソースやツールに接続するための標準化された方法を提供します。
+Model Context Protocol (MCP)は、アプリケーションがLLMにコンテキストを提供する方法を標準化するオープンプロトコルです。MCPはAIアプリケーションのUSB-Cポートのようなもので、AIモデルをさまざまなデータソースやツールに接続するための標準的な方法を提供します。
 
 ## 学習目標
 
-このレッスンの終わりまでに、以下ができるようになります：
+このレッスンの終わりまでに、以下のことができるようになります：
 
 - C#、Java、Python、TypeScript、RustでMCPの開発環境をセットアップする
 - カスタム機能（リソース、プロンプト、ツール）を備えた基本的なMCPサーバーを構築・デプロイする
@@ -30,27 +30,27 @@ Model Context Protocol (MCP)は、アプリケーションがLLMにコンテキ�
 
 ## MCP環境のセットアップ
 
-MCPを使い始める前に、開発環境を準備し、基本的なワークフローを理解することが重要です。このセクションでは、MCPをスムーズに始めるための初期設定手順を説明します。
+MCPの作業を始める前に、開発環境を準備し、基本的なワークフローを理解することが重要です。このセクションでは、MCPをスムーズに開始するための初期設定手順を案内します。
 
 ### 前提条件
 
 MCP開発に取り組む前に、以下を確認してください：
 
-- **開発環境**：選択した言語（C#、Java、Python、TypeScript、Rust）に対応する環境
-- **IDE/エディタ**：Visual Studio、Visual Studio Code、IntelliJ、Eclipse、PyCharm、またはその他のモダンなコードエディタ
-- **パッケージマネージャ**：NuGet、Maven/Gradle、pip、npm/yarn、またはCargo
-- **APIキー**：ホストアプリケーションで使用する予定のAIサービス用
+- **開発環境**: 選択した言語（C#、Java、Python、TypeScript、Rust）に対応する環境
+- **IDE/エディタ**: Visual Studio、Visual Studio Code、IntelliJ、Eclipse、PyCharm、または最新のコードエディタ
+- **パッケージマネージャ**: NuGet、Maven/Gradle、pip、npm/yarn、またはCargo
+- **APIキー**: ホストアプリケーションで使用する予定のAIサービス用
 
 ## 基本的なMCPサーバー構造
 
 MCPサーバーは通常以下を含みます：
 
-- **サーバー設定**：ポート、認証、その他の設定
-- **リソース**：LLMに提供されるデータとコンテキスト
-- **ツール**：モデルが呼び出せる機能
-- **プロンプト**：テキスト生成や構造化のテンプレート
+- **サーバー設定**: ポート、認証、その他の設定
+- **リソース**: LLMに提供されるデータとコンテキスト
+- **ツール**: モデルが呼び出せる機能
+- **プロンプト**: テキスト生成や構造化のテンプレート
 
-以下はTypeScriptの簡略化された例です：
+以下はTypeScriptでの簡略化された例です：
 
 ```typescript
 import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
@@ -128,31 +128,31 @@ await server.connect(transport);
 - MCP TypeScript SDKから必要なクラスをインポート
 - 新しいMCPサーバーインスタンスを作成・設定
 - ハンドラ関数を持つカスタムツール（`calculator`）を登録
-- サーバーを起動してMCPリクエストを受け付ける
+- MCPリクエストを受け付けるためにサーバーを起動
 
 ## テストとデバッグ
 
-MCPサーバーをテストする前に、利用可能なツールとデバッグのベストプラクティスを理解することが重要です。効果的なテストは、サーバーが期待通りに動作することを確認し、問題を迅速に特定・解決するのに役立ちます。このセクションでは、MCP実装を検証するための推奨アプローチを説明します。
+MCPサーバーをテストする前に、利用可能なツールとデバッグのベストプラクティスを理解することが重要です。効果的なテストはサーバーが期待通りに動作することを確認し、問題を迅速に特定・解決するのに役立ちます。以下のセクションでは、MCP実装を検証するための推奨アプローチを説明します。
 
 MCPはサーバーのテストとデバッグを支援するツールを提供しています：
 
-- **インスペクターツール**：このグラフィカルインターフェースを使用して、サーバーに接続し、ツール、プロンプト、リソースをテストできます。
-- **curl**：コマンドラインツールのcurlやHTTPコマンドを作成・実行できる他のクライアントを使用してサーバーに接続することも可能です。
+- **インスペクターツール**: グラフィカルインターフェースでサーバーに接続し、ツール、プロンプト、リソースをテスト可能
+- **curl**: コマンドラインツールを使用してサーバーに接続し、HTTPコマンドを作成・実行可能
 
 ### MCPインスペクターの使用
 
 [MCP Inspector](https://github.com/modelcontextprotocol/inspector)は、以下を支援する視覚的なテストツールです：
 
-1. **サーバー機能の発見**：利用可能なリソース、ツール、プロンプトを自動検出
-2. **ツール実行のテスト**：さまざまなパラメータを試し、リアルタイムで応答を確認
-3. **サーバーメタデータの表示**：サーバー情報、スキーマ、設定を確認
+1. **サーバー機能の発見**: 利用可能なリソース、ツール、プロンプトを自動検出
+2. **ツール実行のテスト**: 異なるパラメータを試し、リアルタイムで応答を確認
+3. **サーバーメタデータの表示**: サーバー情報、スキーマ、設定を検査
 
 ```bash
 # ex TypeScript, installing and running MCP Inspector
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-上記のコマンドを実行すると、MCP InspectorがブラウザでローカルWebインターフェースを起動します。登録済みのMCPサーバー、利用可能なツール、リソース、プロンプトが表示されるダッシュボードが表示されます。このインターフェースを使用して、ツールの実行をインタラクティブにテストし、サーバーメタデータを確認し、リアルタイムの応答を表示できます。これにより、MCPサーバーの実装を検証・デバッグしやすくなります。
+上記のコマンドを実行すると、MCP Inspectorがブラウザでローカルウェブインターフェースを起動します。ダッシュボードには登録済みのMCPサーバー、利用可能なツール、リソース、プロンプトが表示されます。このインターフェースを使用して、ツールの実行をインタラクティブにテストしたり、サーバーメタデータを検査したり、リアルタイムの応答を確認することで、MCPサーバーの実装を簡単に検証・デバッグできます。
 
 以下はそのスクリーンショットの例です：
 
@@ -161,11 +161,11 @@ npx @modelcontextprotocol/inspector node build/index.js
 ## よくあるセットアップの問題と解決策
 
 | 問題 | 解決策 |
-|------|-------|
-| 接続拒否 | サーバーが起動しているか、ポートが正しいか確認 |
+|-------|-------------------|
+| 接続拒否 | サーバーが稼働しているか、ポートが正しいか確認 |
 | ツール実行エラー | パラメータの検証とエラーハンドリングを確認 |
 | 認証失敗 | APIキーと権限を確認 |
-| スキーマ検証エラー | パラメータが定義されたスキーマと一致しているか確認 |
+| スキーマ検証エラー | パラメータが定義されたスキーマに一致しているか確認 |
 | サーバーが起動しない | ポート競合や依存関係の欠如を確認 |
 | CORSエラー | クロスオリジンリクエスト用の適切なCORSヘッダーを設定 |
 | 認証問題 | トークンの有効性と権限を確認 |
@@ -174,9 +174,9 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 ローカルでの開発とテストでは、MCPサーバーを直接マシン上で実行できます：
 
-1. **サーバープロセスの開始**：MCPサーバーアプリケーションを実行
-2. **ネットワーク設定**：サーバーが期待されるポートでアクセス可能であることを確認
-3. **クライアントの接続**：`http://localhost:3000`のようなローカル接続URLを使用
+1. **サーバープロセスの開始**: MCPサーバーアプリケーションを実行
+2. **ネットワーク設定**: サーバーが期待されるポートでアクセス可能であることを確認
+3. **クライアントの接続**: `http://localhost:3000`のようなローカル接続URLを使用
 
 ```bash
 # Example: Running a TypeScript MCP server locally
@@ -184,15 +184,15 @@ npm run start
 # Server running at http://localhost:3000
 ```
 
-## 最初のMCPサーバーの構築
+## 初めてのMCPサーバー構築
 
-以前のレッスンで[コアコンセプト](/01-CoreConcepts/README.md)を学びましたが、ここではその知識を活用します。
+以前のレッスンで[コアコンセプト](/01-CoreConcepts/README.md)を学びましたが、今度はその知識を活用する時です。
 
 ### サーバーができること
 
 コードを書く前に、サーバーができることを思い出してみましょう：
 
-MCPサーバーは例えば以下を行うことができます：
+MCPサーバーは例えば以下のことが可能です：
 
 - ローカルファイルやデータベースへのアクセス
 - リモートAPIへの接続
@@ -200,18 +200,18 @@ MCPサーバーは例えば以下を行うことができます：
 - 他のツールやサービスとの統合
 - ユーザーインターフェースの提供
 
-素晴らしいですね。では、コードを書き始めましょう。
+では、これらを念頭に置いて、コードを書き始めましょう。
 
-## 演習：サーバーの作成
+## 演習: サーバーの作成
 
 サーバーを作成するには、以下の手順を実行します：
 
-- MCP SDKをインストールする
-- プロジェクトを作成し、プロジェクト構造を設定する
+- MCP SDKをインストール
+- プロジェクトを作成し、プロジェクト構造を設定
 - サーバーコードを書く
-- サーバーをテストする
+- サーバーをテスト
 
-### -1- プロジェクトの作成
+### -1- プロジェクト作成
 
 #### TypeScript
 
@@ -241,7 +241,7 @@ cd McpCalculatorServer
 
 #### Java
 
-JavaではSpring Bootプロジェクトを作成します：
+Javaでは、Spring Bootプロジェクトを作成します：
 
 ```bash
 curl https://start.spring.io/starter.zip \
@@ -415,7 +415,7 @@ cargo add tokio --features rt-multi-thread
 
 #### TypeScript
 
-*package.json*ファイルを開き、以下の内容に置き換えてサーバーをビルド・実行できるようにします：
+*package.json*ファイルを開き、以下の内容に置き換えて、サーバーをビルドして実行できるようにします：
 
 ```json
 {
@@ -424,8 +424,8 @@ cargo add tokio --features rt-multi-thread
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "tsc && node ./build/index.js",
-    "build": "tsc && node ./build/index.js"
+    "build": "tsc",
+    "start": "npm run build && node ./build/index.js",
   },
   "keywords": [],
   "author": "",
@@ -442,7 +442,7 @@ cargo add tokio --features rt-multi-thread
 }
 ```
 
-*tsconfig.json*を以下の内容で作成します：
+*tsconfig.json*を作成し、以下の内容を追加します：
 
 ```json
 {
@@ -488,7 +488,7 @@ dotnet add package Microsoft.Extensions.Hosting
 
 #### Java
 
-Java Spring Bootプロジェクトでは、プロジェクト構造が自動的に作成されます。
+JavaのSpring Bootプロジェクトでは、プロジェクト構造が自動的に作成されます。
 
 #### Rust
 
@@ -551,9 +551,9 @@ await builder.Build().RunAsync();
 
 #### Java
 
-Javaでは、コアサーバーコンポーネントを作成します。まず、メインアプリケーションクラスを変更します：
+Javaの場合、コアサーバーコンポーネントを作成します。まず、メインアプリケーションクラスを修正します：
 
-*src/main/java/com/microsoft/mcp/sample/server/McpServerApplication.java*：
+*src/main/java/com/microsoft/mcp/sample/server/McpServerApplication.java*:
 
 ```java
 package com.microsoft.mcp.sample.server;
@@ -579,7 +579,7 @@ public class McpServerApplication {
 }
 ```
 
-計算機サービスを作成します：*src/main/java/com/microsoft/mcp/sample/server/service/CalculatorService.java*：
+計算サービスを作成します: *src/main/java/com/microsoft/mcp/sample/server/service/CalculatorService.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.service;
@@ -725,9 +725,9 @@ public class CalculatorService {
 }
 ```
 
-**本番環境向けのオプションコンポーネント：**
+**本番環境向けのオプションコンポーネント:**
 
-スタートアップ設定を作成します：*src/main/java/com/microsoft/mcp/sample/server/config/StartupConfig.java*：
+スタートアップ設定を作成します: *src/main/java/com/microsoft/mcp/sample/server/config/StartupConfig.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.config;
@@ -752,7 +752,7 @@ public class StartupConfig {
 }
 ```
 
-ヘルスコントローラーを作成します：*src/main/java/com/microsoft/mcp/sample/server/controller/HealthController.java*：
+ヘルスコントローラーを作成します: *src/main/java/com/microsoft/mcp/sample/server/controller/HealthController.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.controller;
@@ -778,7 +778,7 @@ public class HealthController {
 }
 ```
 
-例外ハンドラーを作成します：*src/main/java/com/microsoft/mcp/sample/server/exception/GlobalExceptionHandler.java*：
+例外ハンドラーを作成します: *src/main/java/com/microsoft/mcp/sample/server/exception/GlobalExceptionHandler.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.exception;
@@ -815,7 +815,7 @@ public class GlobalExceptionHandler {
 }
 ```
 
-カスタムバナーを作成します：*src/main/resources/banner.txt*：
+カスタムバナーを作成します: *src/main/resources/banner.txt*:
 
 ```text
 _____      _            _       _             
@@ -829,9 +829,11 @@ Calculator MCP Server v1.0
 Spring Boot MCP Application
 ```
 
+</details>
+
 #### Rust
 
-*src/main.rs*ファイルの冒頭に以下のコードを追加します。このコードはMCPサーバーに必要なライブラリとモジュールをインポートします。
+*src/main.rs*ファイルの冒頭に以下のコードを追加します。このコードは、MCPサーバーに必要なライブラリとモジュールをインポートします。
 
 ```rust
 use rmcp::{
@@ -844,7 +846,7 @@ use rmcp::{
 use std::error::Error;
 ```
 
-計算リクエストを表す構造体を作成します：
+計算サーバーは、2つの数値を加算する簡単なものになります。計算リクエストを表す構造体を作成しましょう。
 
 ```rust
 #[derive(Debug, serde::Deserialize, schemars::JsonSchema)]
@@ -863,7 +865,7 @@ pub struct Calculator {
 }
 ```
 
-次に、`Calculator`構造体を実装して新しいインスタンスを作成し、サーバーハンドラーを実装してサーバー情報を提供します。
+次に、`Calculator`構造体を実装して新しいインスタンスを作成し、サーバーハンドラを実装してサーバー情報を提供します。
 
 ```rust
 #[tool_router]
@@ -887,7 +889,7 @@ impl ServerHandler for Calculator {
 }
 ```
 
-最後に、サーバーを起動するメイン関数を実装します。この関数は`Calculator`構造体のインスタンスを作成し、標準入力/出力を介して提供します。
+最後に、サーバーを起動するためのメイン関数を実装する必要があります。この関数は`Calculator`構造体のインスタンスを作成し、標準入力/出力を介して提供します。
 
 ```rust
 #[tokio::main]
@@ -902,7 +904,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
 ### -5- ツールとリソースの追加
 
-以下のコードを追加してツールとリソースを作成します：
+以下のコードを追加してツールとリソースを追加します：
 
 #### TypeScript
 
@@ -927,7 +929,7 @@ server.resource(
 );
 ```
 
-ツールはパラメータ`a`と`b`を受け取り、以下の形式の応答を生成する関数を実行します：
+ツールはパラメータ`a`と`b`を受け取り、以下の形式で応答を生成する関数を実行します：
 
 ```typescript
 {
@@ -937,7 +939,7 @@ server.resource(
 }
 ```
 
-リソースは文字列"greeting"を介してアクセスされ、パラメータ`name`を受け取り、ツールと似た応答を生成します：
+リソースは文字列"greeting"を通じてアクセスされ、パラメータ`name`を受け取り、ツールと同様の応答を生成します：
 
 ```typescript
 {
@@ -983,7 +985,7 @@ public static class CalculatorTool
 
 #### Java
 
-ツールは前のステップですでに作成されています。
+ツールは前のステップで既に作成されています。
 
 #### Rust
 
@@ -1001,7 +1003,7 @@ async fn add(
 
 ### -6- 最終コード
 
-サーバーを起動できるように最後のコードを追加します：
+サーバーを起動できるようにするために必要な最後のコードを追加します：
 
 #### TypeScript
 
@@ -1081,7 +1083,7 @@ if __name__ == "__main__":
 
 #### .NET
 
-Program.csファイルを以下の内容で作成します：
+以下の内容でProgram.csファイルを作成します：
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
@@ -1113,7 +1115,7 @@ public static class CalculatorTool
 
 #### Java
 
-メインアプリケーションクラスの完全なコードは以下のようになります：
+メインアプリケーションクラスの完全なコードは以下の通りです：
 
 ```java
 // McpServerApplication.java
@@ -1142,7 +1144,7 @@ public class McpServerApplication {
 
 #### Rust
 
-Rustサーバーの最終コードは以下のようになります：
+Rustサーバーの最終コードは以下の通りです：
 
 ```rust
 use rmcp::{
@@ -1217,7 +1219,7 @@ npm run build
 mcp run server.py
 ```
 
-> MCP Inspectorを使用するには、`mcp dev server.py`を使用してください。このコマンドはInspectorを自動的に起動し、必要なプロキシセッショントークンを提供します。`mcp run server.py`を使用する場合は、Inspectorを手動で起動し、接続を設定する必要があります。
+> MCP Inspectorを使用するには、`mcp dev server.py`を使用してください。このコマンドは自動的にInspectorを起動し、必要なプロキシセッショントークンを提供します。`mcp run server.py`を使用する場合は、手動でInspectorを起動し、接続を設定する必要があります。
 
 #### .NET
 
@@ -1237,19 +1239,19 @@ java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
 
 #### Rust
 
-以下のコマンドを実行してサーバーをフォーマットし、実行します：
+サーバーをフォーマットして実行するには、以下のコマンドを実行します：
 
 ```sh
 cargo fmt
 cargo run
 ```
 
-### -8- インスペクターを使用した実行
+### -8- インスペクターを使用して実行
 
-インスペクターはサーバーを起動し、動作を確認するために使用できる便利なツールです。以下の手順で起動します：
+インスペクターは、サーバーを起動し、動作をテストするための優れたツールです。これを起動してみましょう：
 
 > [!NOTE]
-> 実行コマンドは、使用しているランタイムに応じて異なる場合があります。
+> "command"フィールドの内容は、特定のランタイムでサーバーを実行するためのコマンドによって異なる場合があります。
 
 #### TypeScript
 
@@ -1257,7 +1259,7 @@ cargo run
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-または、*package.json*に以下を追加します：`"inspector": "npx @modelcontextprotocol/inspector node build/index.js"` そして`npm run inspector`を実行します。
+または、*package.json*に以下を追加します: `"inspector": "npx @modelcontextprotocol/inspector node build/index.js"` その後、`npm run inspector`を実行します。
 
 PythonはNode.jsツールであるインスペクターをラップしています。このツールは以下のように呼び出すことができます：
 
@@ -1265,17 +1267,18 @@ PythonはNode.jsツールであるインスペクターをラップしていま�
 mcp dev server.py
 ```
 
-ただし、すべてのメソッドが実装されているわけではないため、以下のようにNode.jsツールを直接実行することを推奨します：
+ただし、ツールで利用可能なすべてのメソッドを実装しているわけではないため、以下のように直接Node.jsツールを実行することをお勧めします：
 
 ```sh
 npx @modelcontextprotocol/inspector mcp run server.py
 ```
 
-ツールやIDEでスクリプトを実行するコマンドと引数を設定できる場合は、`python`を`Command`フィールドに、`server.py`を`Arguments`として設定してください。これによりスクリプトが正しく実行されます。
+ツールやIDEを使用してスクリプトを実行するためのコマンドや引数を設定することも可能です。
+`Command`フィールドに`python`を設定し、`Arguments`に`server.py`を指定してください。これによりスクリプトが正しく実行されます。
 
 #### .NET
 
-プロジェクトディレクトリにいることを確認してください：
+プロジェクトディレクトリにいることを確認してください:
 
 ```sh
 cd McpCalculatorServer
@@ -1284,35 +1287,36 @@ npx @modelcontextprotocol/inspector dotnet run
 
 #### Java
 
-計算機サーバーが起動していることを確認してください。
-次にインスペクターを実行します：
+計算サーバーが稼働していることを確認してください。
+その後、インスペクターを実行します:
 
 ```cmd
 npx @modelcontextprotocol/inspector
 ```
 
-インスペクターのWebインターフェースで：
+インスペクターのウェブインターフェースで以下を行います:
 
-1. "SSE"をトランスポートタイプとして選択
-2. URLを`http://localhost:8080/sse`に設定
-3. "Connect"をクリック
+1. トランスポートタイプとして「SSE」を選択
+2. URLを次のように設定: `http://localhost:8080/sse`
+3. 「Connect」をクリック
+
 ![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.ja.png)
 
-**サーバーに接続しました**
-**Javaサーバーのテストセクションが完了しました**
+**これでサーバーに接続されました**
+**Javaサーバーテストセクションはこれで完了です**
 
-次のセクションでは、サーバーとのやり取りについて説明します。
+次のセクションでは、サーバーとの対話について説明します。
 
 以下のユーザーインターフェースが表示されるはずです:
 
 ![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.ja.png)
 
-1. 「Connect」ボタンを選択してサーバーに接続します  
+1. 「Connect」ボタンを選択してサーバーに接続します。
    サーバーに接続すると、次の画面が表示されるはずです:
 
    ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.ja.png)
 
-1. 「Tools」と「listTools」を選択します。「Add」が表示されるはずなので、「Add」を選択し、パラメータ値を入力してください。
+1. 「Tools」と「listTools」を選択すると、「Add」が表示されます。「Add」を選択し、パラメーター値を入力してください。
 
    次のようなレスポンスが表示されるはずです。つまり、「add」ツールの結果です:
 
@@ -1332,12 +1336,12 @@ npx @modelcontextprotocol/inspector cargo run --cli --method tools/call --tool-n
 
 MCPは複数の言語向けに公式SDKを提供しています:
 
-- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - Microsoftとの共同で管理
-- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Spring AIとの共同で管理
+- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - Microsoftとの共同管理
+- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Spring AIとの共同管理
 - [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - 公式TypeScript実装
 - [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - 公式Python実装
 - [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - 公式Kotlin実装
-- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - Loopwork AIとの共同で管理
+- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - Loopwork AIとの共同管理
 - [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - 公式Rust実装
 
 ## 重要なポイント
@@ -1357,11 +1361,11 @@ MCPは複数の言語向けに公式SDKを提供しています:
 
 ## 課題
 
-選択したツールを使用して、シンプルなMCPサーバーを作成してください:
+選択したツールで簡単なMCPサーバーを作成してください:
 
 1. 好きな言語（.NET、Java、Python、TypeScript、Rust）でツールを実装する。
-2. 入力パラメータと返り値を定義する。
-3. Inspectorツールを実行して、サーバーが正常に動作することを確認する。
+2. 入力パラメーターと戻り値を定義する。
+3. インスペクターツールを実行して、サーバーが意図通りに動作することを確認する。
 4. 様々な入力で実装をテストする。
 
 ## 解答
@@ -1370,15 +1374,15 @@ MCPは複数の言語向けに公式SDKを提供しています:
 
 ## 追加リソース
 
-- [AzureでModel Context Protocolを使用してエージェントを構築](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)
+- [AzureでModel Context Protocolを使用したエージェントの構築](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)
 - [Azure Container Appsを使用したリモートMCP (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)
 - [.NET OpenAI MCP Agent](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)
 
-## 次のステップ
+## 次は何をする？
 
-次へ: [MCPクライアントの使い方](../02-client/README.md)
+次: [MCPクライアントの使い方](../02-client/README.md)
 
 ---
 
 **免責事項**:  
-この文書は、AI翻訳サービス [Co-op Translator](https://github.com/Azure/co-op-translator) を使用して翻訳されています。正確性を追求しておりますが、自動翻訳には誤りや不正確な部分が含まれる可能性があることをご承知ください。元の言語で記載された文書が正式な情報源とみなされるべきです。重要な情報については、専門の人間による翻訳を推奨します。この翻訳の使用に起因する誤解や誤解釈について、当社は責任を負いません。
+この文書はAI翻訳サービス[Co-op Translator](https://github.com/Azure/co-op-translator)を使用して翻訳されています。正確性を追求しておりますが、自動翻訳には誤りや不正確な部分が含まれる可能性があります。元の言語で記載された文書を正式な情報源としてお考えください。重要な情報については、専門の人間による翻訳を推奨します。この翻訳の使用に起因する誤解や誤認について、当方は責任を負いません。
