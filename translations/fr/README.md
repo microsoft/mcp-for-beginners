@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "0bb2a83ef33c1506d42d73902a95aa0b",
-  "translation_date": "2025-10-11T10:15:53+00:00",
+  "original_hash": "db0038c210736d0a4088d2fa52947e48",
+  "translation_date": "2025-10-21T16:26:39+00:00",
   "source_file": "README.md",
   "language_code": "fr"
 }
@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 [![Contributeurs GitHub](https://img.shields.io/github/contributors/microsoft/mcp-for-beginners.svg)](https://GitHub.com/microsoft/mcp-for-beginners/graphs/contributors)
 [![Problèmes GitHub](https://img.shields.io/github/issues/microsoft/mcp-for-beginners.svg)](https://GitHub.com/microsoft/mcp-for-beginners/issues)
-[![Pull-requests GitHub](https://img.shields.io/github/issues-pr/microsoft/mcp-for-beginners.svg)](https://GitHub.com/microsoft/mcp-for-beginners/pulls)
+[![Requêtes de tirage GitHub](https://img.shields.io/github/issues-pr/microsoft/mcp-for-beginners.svg)](https://GitHub.com/microsoft/mcp-for-beginners/pulls)
 [![PRs Bienvenus](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 [![Observateurs GitHub](https://img.shields.io/github/watchers/microsoft/mcp-for-beginners.svg?style=social&label=Watch)](https://GitHub.com/microsoft/mcp-for-beginners/watchers)
@@ -22,9 +22,9 @@ CO_OP_TRANSLATOR_METADATA:
 [![Microsoft Azure AI Foundry Discord](https://dcbadge.limes.pink/api/server/ByRwuEEgH4)](https://discord.com/invite/ByRwuEEgH4)
 
 Suivez ces étapes pour commencer à utiliser ces ressources :
-1. **Forkez le dépôt** : Cliquez sur [![Forks GitHub](https://img.shields.io/github/forks/microsoft/mcp-for-beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/mcp-for-beginners/fork)
+1. **Forkez le dépôt** : Cliquez [![Forks GitHub](https://img.shields.io/github/forks/microsoft/mcp-for-beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/mcp-for-beginners/fork)
 2. **Clonez le dépôt** :   `git clone https://github.com/microsoft/mcp-for-beginners.git`
-3. [**Rejoignez le Discord Azure AI Foundry et rencontrez des experts et développeurs**](https://discord.com/invite/ByRwuEEgH4)
+3. [**Rejoignez le Discord Azure AI Foundry et rencontrez des experts et d'autres développeurs**](https://discord.com/invite/ByRwuEEgH4)
 
 
 ### 🌐 Support multilingue
@@ -35,35 +35,108 @@ Suivez ces étapes pour commencer à utiliser ces ressources :
 [Arabe](../ar/README.md) | [Bengali](../bn/README.md) | [Bulgare](../bg/README.md) | [Birman (Myanmar)](../my/README.md) | [Chinois (Simplifié)](../zh/README.md) | [Chinois (Traditionnel, Hong Kong)](../hk/README.md) | [Chinois (Traditionnel, Macao)](../mo/README.md) | [Chinois (Traditionnel, Taïwan)](../tw/README.md) | [Croate](../hr/README.md) | [Tchèque](../cs/README.md) | [Danois](../da/README.md) | [Néerlandais](../nl/README.md) | [Estonien](../et/README.md) | [Finnois](../fi/README.md) | [Français](./README.md) | [Allemand](../de/README.md) | [Grec](../el/README.md) | [Hébreu](../he/README.md) | [Hindi](../hi/README.md) | [Hongrois](../hu/README.md) | [Indonésien](../id/README.md) | [Italien](../it/README.md) | [Japonais](../ja/README.md) | [Coréen](../ko/README.md) | [Lituanien](../lt/README.md) | [Malais](../ms/README.md) | [Marathi](../mr/README.md) | [Népalais](../ne/README.md) | [Norvégien](../no/README.md) | [Persan (Farsi)](../fa/README.md) | [Polonais](../pl/README.md) | [Portugais (Brésil)](../br/README.md) | [Portugais (Portugal)](../pt/README.md) | [Punjabi (Gurmukhi)](../pa/README.md) | [Roumain](../ro/README.md) | [Russe](../ru/README.md) | [Serbe (Cyrillique)](../sr/README.md) | [Slovaque](../sk/README.md) | [Slovène](../sl/README.md) | [Espagnol](../es/README.md) | [Swahili](../sw/README.md) | [Suédois](../sv/README.md) | [Tagalog (Filipino)](../tl/README.md) | [Tamoul](../ta/README.md) | [Thaï](../th/README.md) | [Turc](../tr/README.md) | [Ukrainien](../uk/README.md) | [Ourdou](../ur/README.md) | [Vietnamien](../vi/README.md)
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE END -->
 
-# 🚀 Programme d'apprentissage du protocole Model Context (MCP) pour débutants
+# 🚀 Programme d'apprentissage du protocole de contexte de modèle (MCP) pour débutants
 
 ## **Apprenez MCP avec des exemples de code pratiques en C#, Java, JavaScript, Rust, Python et TypeScript**
 
-## 🧠 Aperçu du programme d'apprentissage du protocole Model Context
+## 🧠 Aperçu du programme d'apprentissage du protocole de contexte de modèle
+Bienvenue dans votre voyage au cœur du protocole de contexte de modèle ! Si vous vous êtes déjà demandé comment les applications d'IA communiquent avec différents outils et services, vous êtes sur le point de découvrir une solution élégante qui transforme la manière dont les développeurs créent des systèmes intelligents.
 
-Le **Model Context Protocol (MCP)** est un cadre innovant conçu pour standardiser les interactions entre les modèles d'IA et les applications clientes. Ce programme open-source propose un parcours d'apprentissage structuré, accompagné d'exemples de code pratiques et de cas d'utilisation réels, dans des langages de programmation populaires tels que C#, Java, JavaScript, TypeScript et Python.
+Pensez à MCP comme un traducteur universel pour les applications d'IA - tout comme les ports USB permettent de connecter n'importe quel appareil à votre ordinateur, MCP permet aux modèles d'IA de se connecter à n'importe quel outil ou service de manière standardisée. Que vous construisiez votre premier chatbot ou que vous travailliez sur des flux de travail d'IA complexes, comprendre MCP vous donnera le pouvoir de créer des applications plus performantes et flexibles.
 
-Que vous soyez développeur IA, architecte système ou ingénieur logiciel, ce guide est votre ressource complète pour maîtriser les fondamentaux et les stratégies d'implémentation de MCP.
+Ce programme est conçu avec soin et patience pour votre apprentissage. Nous commencerons par des concepts simples que vous comprenez déjà et développerons progressivement votre expertise grâce à des exercices pratiques dans votre langage de programmation préféré. Chaque étape inclut des explications claires, des exemples concrets et beaucoup d'encouragements.
 
-## 🔗 Ressources officielles MCP
+À la fin de ce voyage, vous aurez la confiance nécessaire pour créer vos propres serveurs MCP, les intégrer aux plateformes d'IA populaires et comprendre comment cette technologie redéfinit l'avenir du développement d'applications d'IA. Commençons cette aventure passionnante ensemble !
 
-- 📘 [Documentation MCP](https://modelcontextprotocol.io/) – Tutoriels détaillés et guides d'utilisation  
-- 📜 [Spécification MCP](https://modelcontextprotocol.io/docs/) – Architecture du protocole et références techniques  
-- 📜 [Spécification originale MCP](https://spec.modelcontextprotocol.io/) – Références techniques héritées (peut contenir des détails supplémentaires)  
-- 🧑‍💻 [Dépôt GitHub MCP](https://github.com/modelcontextprotocol) – SDKs open-source, outils et exemples de code
-- 🌐 [Communauté MCP](https://github.com/orgs/modelcontextprotocol/discussions) – Rejoignez les discussions et contribuez à la communauté
+### Documentation officielle et spécifications
 
-## 🧭 Aperçu du programme MCP
+Ces ressources deviennent plus précieuses à mesure que votre compréhension progresse, mais ne vous sentez pas obligé de tout lire immédiatement. Commencez par les domaines qui vous intéressent le plus !
+- 📘 [Documentation MCP](https://modelcontextprotocol.io/) – C'est votre ressource incontournable pour des tutoriels étape par étape et des guides utilisateur. La documentation est écrite pour les débutants, avec des exemples clairs que vous pouvez suivre à votre rythme.
+- 📜 [Spécification MCP](https://modelcontextprotocol.io/docs/) – Considérez cela comme votre manuel de référence complet. En travaillant sur le programme, vous reviendrez ici pour rechercher des détails spécifiques et explorer des fonctionnalités avancées.
+- 📜 [Spécification originale MCP](https://spec.modelcontextprotocol.io/) – Elle contient des détails techniques supplémentaires qui peuvent être utiles pour des implémentations avancées. Elle est là quand vous en avez besoin, mais ne vous inquiétez pas si vous débutez.
+- 🧑‍💻 [Dépôt GitHub MCP](https://github.com/modelcontextprotocol) – Vous y trouverez des SDK, des outils et des exemples de code dans plusieurs langages de programmation. C'est comme un trésor d'exemples pratiques et de composants prêts à l'emploi.
+- 🌐 [Communauté MCP](https://github.com/orgs/modelcontextprotocol/discussions) – Rejoignez d'autres apprenants et développeurs expérimentés dans des discussions sur MCP. C'est une communauté solidaire où les questions sont les bienvenues et les connaissances sont partagées librement.
+  
+## Objectifs d'apprentissage
+
+À la fin de ce programme, vous vous sentirez confiant et enthousiaste à propos de vos nouvelles compétences. Voici ce que vous accomplirez :
+
+• **Comprendre les fondamentaux de MCP** : Vous comprendrez ce qu'est le protocole de contexte de modèle et pourquoi il révolutionne la manière dont les applications d'IA collaborent, grâce à des analogies et des exemples clairs.
+
+• **Créer votre premier serveur MCP** : Vous construirez un serveur MCP fonctionnel dans votre langage de programmation préféré, en commençant par des exemples simples et en développant vos compétences étape par étape.
+
+• **Connecter des modèles d'IA à des outils réels** : Vous apprendrez à combler le fossé entre les modèles d'IA et les services réels, donnant à vos applications de nouvelles capacités puissantes.
+
+• **Mettre en œuvre les meilleures pratiques de sécurité** : Vous comprendrez comment sécuriser vos implémentations MCP, protégeant à la fois vos applications et vos utilisateurs.
+
+• **Déployer avec confiance** : Vous saurez comment passer vos projets MCP du développement à la production, avec des stratégies de déploiement pratiques adaptées au monde réel.
+
+• **Rejoindre la communauté MCP** : Vous ferez partie d'une communauté croissante de développeurs qui façonnent l'avenir du développement d'applications d'IA. 
+
+## Connaissances essentielles
+
+Avant de plonger dans les spécificités de MCP, assurons-nous que vous êtes à l'aise avec certains concepts fondamentaux. Ne vous inquiétez pas si vous n'êtes pas expert dans ces domaines - nous expliquerons tout ce que vous devez savoir au fur et à mesure !
+
+### Comprendre les protocoles (La base)
+
+Pensez à un protocole comme aux règles d'une conversation. Lorsque vous appelez un ami, vous savez tous les deux dire "bonjour" en répondant, prendre la parole à tour de rôle et dire "au revoir" à la fin. Les programmes informatiques ont besoin de règles similaires pour communiquer efficacement.
+
+MCP est un protocole - un ensemble de règles convenues qui aident les modèles d'IA et les applications à avoir des "conversations" productives avec des outils et des services. Tout comme les règles de conversation rendent la communication humaine plus fluide, MCP rend la communication des applications d'IA beaucoup plus fiable et puissante.
+
+### Relations client-serveur (Comment les programmes collaborent)
+
+Vous utilisez déjà des relations client-serveur tous les jours ! Lorsque vous utilisez un navigateur web (le client) pour visiter un site, vous vous connectez à un serveur web qui vous envoie le contenu de la page. Le navigateur sait comment demander des informations, et le serveur sait comment répondre.
+
+Dans MCP, nous avons une relation similaire : les modèles d'IA agissent comme des clients qui demandent des informations ou des actions, tandis que les serveurs MCP fournissent ces capacités. C'est comme avoir un assistant utile (le serveur) que l'IA peut solliciter pour effectuer des tâches spécifiques.
+
+### Pourquoi la standardisation est importante (Faire fonctionner les choses ensemble)
+
+Imaginez si chaque fabricant de voitures utilisait des pompes à essence de formes différentes - vous auriez besoin d'un adaptateur différent pour chaque voiture ! La standardisation signifie s'accorder sur des approches communes pour que les choses fonctionnent ensemble sans problème.
+
+MCP offre cette standardisation pour les applications d'IA. Au lieu que chaque modèle d'IA ait besoin de code personnalisé pour fonctionner avec chaque outil, MCP crée une manière universelle pour eux de communiquer. Cela signifie que les développeurs peuvent créer des outils une fois et les faire fonctionner avec de nombreux systèmes d'IA différents.
+
+## 🧭 Aperçu de votre parcours d'apprentissage
+
+Votre voyage MCP est soigneusement structuré pour développer votre confiance et vos compétences progressivement. Chaque phase introduit de nouveaux concepts tout en renforçant ce que vous avez déjà appris.
+
+### 🌱 Phase de fondation : Comprendre les bases (Modules 0-2)
+
+C'est ici que votre aventure commence ! Nous vous présenterons les concepts MCP en utilisant des analogies familières et des exemples simples. Vous comprendrez ce qu'est MCP, pourquoi il existe et comment il s'intègre dans le monde plus vaste du développement d'IA.
+
+• **Module 0 - Introduction à MCP** : Nous commencerons par explorer ce qu'est MCP et pourquoi il est si important pour les applications d'IA modernes. Vous verrez des exemples concrets de MCP en action et comprendrez comment il résout les problèmes courants rencontrés par les développeurs.
+
+• **Module 1 - Concepts de base expliqués** : Ici, vous apprendrez les éléments essentiels de MCP. Nous utiliserons de nombreuses analogies et exemples visuels pour nous assurer que ces concepts vous paraissent naturels et compréhensibles.
+
+• **Module 2 - Sécurité dans MCP** : La sécurité peut sembler intimidante, mais nous vous montrerons comment MCP inclut des fonctionnalités de sécurité intégrées et vous enseignerons les meilleures pratiques pour protéger vos applications dès le départ.
+
+### 🔨 Phase de construction : Créer vos premières implémentations (Module 3)
+
+C'est là que commence le vrai plaisir ! Vous aurez une expérience pratique en construisant de véritables serveurs et clients MCP. Ne vous inquiétez pas - nous commencerons simplement et vous guiderons à chaque étape.
+
+Ce module comprend plusieurs guides pratiques qui vous permettent de vous exercer dans votre langage de programmation préféré. Vous créerez votre premier serveur, construirez un client pour s'y connecter et même intégrerez des outils de développement populaires comme VS Code.
+
+Chaque guide inclut des exemples de code complets, des conseils de dépannage et des explications sur les choix de conception spécifiques. À la fin de cette phase, vous aurez des implémentations MCP fonctionnelles dont vous pourrez être fier !
+
+### 🚀 Phase de croissance : Concepts avancés et applications réelles (Modules 4-5)
+
+Avec les bases maîtrisées, vous êtes prêt à explorer des fonctionnalités MCP plus sophistiquées. Nous couvrirons des stratégies d'implémentation pratiques, des techniques de débogage et des sujets avancés comme l'intégration d'IA multimodale.
+
+Vous apprendrez également à faire évoluer vos implémentations MCP pour une utilisation en production et à les intégrer à des plateformes cloud comme Azure. Ces modules vous préparent à construire des solutions MCP capables de répondre aux exigences du monde réel.
+
+### 🌟 Phase de maîtrise : Communauté et spécialisation (Modules 6-11)
+La phase finale se concentre sur l'intégration à la communauté MCP et la spécialisation dans les domaines qui vous intéressent le plus. Vous apprendrez à contribuer à des projets open-source MCP, à mettre en œuvre des modèles avancés d'authentification et à développer des solutions complètes intégrées à des bases de données.
+
+Le module 11 mérite une mention spéciale : il s'agit d'un parcours d'apprentissage pratique composé de 13 laboratoires qui vous enseigne à construire des serveurs MCP prêts pour la production avec une intégration PostgreSQL. C'est comme un projet de fin d'études qui rassemble tout ce que vous avez appris !
 
 ### 📚 Structure complète du programme
 
 | Module | Sujet | Description | Lien |
 |--------|-------|-------------|------|
 | **Module 1-3 : Fondamentaux** | | | |
-| 00 | Introduction à MCP | Aperçu du protocole Model Context et de son importance dans les pipelines IA | [En savoir plus](./00-Introduction/README.md) |
-| 01 | Concepts clés expliqués | Exploration approfondie des concepts clés de MCP | [En savoir plus](./01-CoreConcepts/README.md) |
-| 02 | Sécurité dans MCP | Menaces de sécurité et meilleures pratiques | [En savoir plus](./02-Security/README.md) |
-| 03 | Premiers pas avec MCP | Configuration de l'environnement, serveurs/clients de base, intégration | [En savoir plus](./03-GettingStarted/README.md) |
+| 00 | Introduction au MCP | Vue d'ensemble du protocole Model Context et son importance dans les pipelines IA | [En savoir plus](./00-Introduction/README.md) |
+| 01 | Concepts de base expliqués | Exploration approfondie des concepts fondamentaux du MCP | [En savoir plus](./01-CoreConcepts/README.md) |
+| 02 | Sécurité dans le MCP | Menaces de sécurité et meilleures pratiques | [En savoir plus](./02-Security/README.md) |
+| 03 | Premiers pas avec le MCP | Configuration de l'environnement, serveurs/clients de base, intégration | [En savoir plus](./03-GettingStarted/README.md) |
 | **Module 3 : Construire votre premier serveur et client** | | | |
 | 3.1 | Premier serveur | Créez votre premier serveur MCP | [Guide](./03-GettingStarted/01-first-server/README.md) |
 | 3.2 | Premier client | Développez un client MCP de base | [Guide](./03-GettingStarted/02-client/README.md) |
@@ -74,15 +147,15 @@ Que vous soyez développeur IA, architecte système ou ingénieur logiciel, ce g
 | 3.7 | Toolkit IA | Utilisez le Toolkit IA avec MCP | [Guide](./03-GettingStarted/07-aitk/README.md) |
 | 3.8 | Tests | Testez votre implémentation de serveur MCP | [Guide](./03-GettingStarted/08-testing/README.md) |
 | 3.9 | Déploiement | Déployez des serveurs MCP en production | [Guide](./03-GettingStarted/09-deployment/README.md) |
-| 3.10 | Utilisation avancée du serveur | Utilisez des serveurs avancés pour des fonctionnalités avancées et une architecture améliorée | [Guide](./03-GettingStarted/10-advanced/README.md) |
-| 3.11 | Authentification simple | Un chapitre montrant l'authentification depuis le début et le RBAC | [Guide](./03-GettingStarted/11-simple-auth/README.md) |
+| 3.10 | Utilisation avancée des serveurs | Utilisez des serveurs avancés pour des fonctionnalités avancées et une architecture améliorée | [Guide](./03-GettingStarted/10-advanced/README.md) |
+| 3.11 | Authentification simple | Un chapitre montrant l'authentification de base et le RBAC | [Guide](./03-GettingStarted/11-simple-auth/README.md) |
 | **Module 4-5 : Pratique et avancé** | | | |
-| 04 | Implémentation pratique | SDKs, débogage, tests, modèles de prompts réutilisables | [En savoir plus](./04-PracticalImplementation/README.md) |
-| 05 | Sujets avancés dans MCP | IA multimodale, mise à l'échelle, utilisation en entreprise | [En savoir plus](./05-AdvancedTopics/README.md) |
+| 04 | Implémentation pratique | SDK, débogage, tests, modèles de requêtes réutilisables | [En savoir plus](./04-PracticalImplementation/README.md) |
+| 05 | Sujets avancés dans le MCP | IA multimodale, mise à l'échelle, utilisation en entreprise | [En savoir plus](./05-AdvancedTopics/README.md) |
 | 5.1 | Intégration Azure | Intégration MCP avec Azure | [Guide](./05-AdvancedTopics/mcp-integration/README.md) |
 | 5.2 | Multimodalité | Travailler avec plusieurs modalités | [Guide](./05-AdvancedTopics/mcp-multi-modality/README.md) |
 | 5.3 | Démo OAuth2 | Implémentez l'authentification OAuth2 | [Guide](./05-AdvancedTopics/mcp-oauth2-demo/README.md) |
-| 5.4 | Contextes racine | Comprendre et implémenter des contextes racine | [Guide](./05-AdvancedTopics/mcp-root-contexts/README.md) |
+| 5.4 | Contextes racine | Comprendre et implémenter les contextes racine | [Guide](./05-AdvancedTopics/mcp-root-contexts/README.md) |
 | 5.5 | Routage | Stratégies de routage MCP | [Guide](./05-AdvancedTopics/mcp-routing/README.md) |
 | 5.6 | Échantillonnage | Techniques d'échantillonnage dans MCP | [Guide](./05-AdvancedTopics/mcp-sampling/README.md) |
 | 5.7 | Mise à l'échelle | Mise à l'échelle des implémentations MCP | [Guide](./05-AdvancedTopics/mcp-scaling/README.md) |
@@ -91,73 +164,76 @@ Que vous soyez développeur IA, architecte système ou ingénieur logiciel, ce g
 | 5.10 | Streaming en temps réel | Construisez des fonctionnalités de streaming en temps réel | [Guide](./05-AdvancedTopics/mcp-realtimestreaming/README.md) |
 | 5.11 | Recherche en temps réel | Implémentez une recherche en temps réel | [Guide](./05-AdvancedTopics/mcp-realtimesearch/README.md) |
 | 5.12 | Authentification Entra ID | Authentification avec Microsoft Entra ID | [Guide](./05-AdvancedTopics/mcp-security-entra/README.md) |
-| 5.13 | Intégration Foundry | Intégrez avec Azure AI Foundry | [Guide](./05-AdvancedTopics/mcp-foundry-agent-integration/README.md) |
+| 5.13 | Intégration Foundry | Intégration avec Azure AI Foundry | [Guide](./05-AdvancedTopics/mcp-foundry-agent-integration/README.md) |
 | 5.14 | Ingénierie des contextes | Techniques pour une ingénierie des contextes efficace | [Guide](./05-AdvancedTopics/mcp-contextengineering/README.md) |
 | 5.15 | Transport personnalisé MCP | Implémentations de transport personnalisé | [Guide](./05-AdvancedTopics/mcp-transport/README.md) |
 | **Module 6-10 : Communauté et meilleures pratiques** | | | |
 | 06 | Contributions communautaires | Comment contribuer à l'écosystème MCP | [Guide](./06-CommunityContributions/README.md) |
-| 07 | Leçons tirées de l'adoption précoce | Histoires d'implémentation réelles | [Guide](./07-LessonsFromEarlyAdoption/README.md) |
+| 07 | Leçons des premières adoptions | Histoires d'implémentation dans le monde réel | [Guide](./07-LessonsFromEarlyAdoption/README.md) |
 | 08 | Meilleures pratiques pour MCP | Performance, tolérance aux pannes, résilience | [Guide](./08-BestPractices/README.md) |
-| 09 | Études de cas MCP | Exemples d'implémentation pratiques | [Guide](./09-CaseStudy/README.md) |
+| 09 | Études de cas MCP | Exemples d'implémentation pratique | [Guide](./09-CaseStudy/README.md) |
 | 10 | Atelier pratique | Construire un serveur MCP avec le Toolkit IA | [Lab](./10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md) |
-| **Module 11 : Atelier pratique sur le serveur MCP** | | | |
-| 11 | Intégration de la base de données du serveur MCP | Parcours d'apprentissage pratique en 13 laboratoires pour l'intégration de PostgreSQL | [Labs](./11-MCPServerHandsOnLabs/README.md) |
-| 11.1 | Introduction | Aperçu du MCP avec intégration de base de données et cas d'utilisation en analytique de vente au détail | [Lab 00](./11-MCPServerHandsOnLabs/00-Introduction/README.md) |
-| 11.2 | Architecture de base | Comprendre l'architecture du serveur MCP, les couches de base de données et les modèles de sécurité | [Lab 01](./11-MCPServerHandsOnLabs/01-Architecture/README.md) |
+| **Module 11 : Laboratoire pratique sur les serveurs MCP** | | | |
+| 11 | Intégration de base de données au serveur MCP | Parcours d'apprentissage pratique en 13 laboratoires pour l'intégration PostgreSQL | [Labs](./11-MCPServerHandsOnLabs/README.md) |
+| 11.1 | Introduction | Vue d'ensemble du MCP avec intégration de base de données et cas d'utilisation en analytique de vente | [Lab 00](./11-MCPServerHandsOnLabs/00-Introduction/README.md) |
+| 11.2 | Architecture de base | Comprendre l'architecture des serveurs MCP, les couches de base de données et les modèles de sécurité | [Lab 01](./11-MCPServerHandsOnLabs/01-Architecture/README.md) |
 | 11.3 | Sécurité et multi-locataires | Sécurité au niveau des lignes, authentification et accès aux données multi-locataires | [Lab 02](./11-MCPServerHandsOnLabs/02-Security/README.md) |
-| 11.4 | Configuration de l'environnement | Mise en place de l'environnement de développement, Docker, ressources Azure | [Lab 03](./11-MCPServerHandsOnLabs/03-Setup/README.md) |
-| 11.5 | Conception de la base de données | Configuration de PostgreSQL, conception du schéma de vente au détail et données d'exemple | [Lab 04](./11-MCPServerHandsOnLabs/04-Database/README.md) |
+| 11.4 | Configuration de l'environnement | Configuration de l'environnement de développement, Docker, ressources Azure | [Lab 03](./11-MCPServerHandsOnLabs/03-Setup/README.md) |
+| 11.5 | Conception de base de données | Configuration PostgreSQL, conception de schéma de vente et données d'exemple | [Lab 04](./11-MCPServerHandsOnLabs/04-Database/README.md) |
 | 11.6 | Implémentation du serveur MCP | Construction du serveur FastMCP avec intégration de base de données | [Lab 05](./11-MCPServerHandsOnLabs/05-MCP-Server/README.md) |
 | 11.7 | Développement d'outils | Création d'outils de requête de base de données et introspection de schéma | [Lab 06](./11-MCPServerHandsOnLabs/06-Tools/README.md) |
 | 11.8 | Recherche sémantique | Implémentation d'embeddings vectoriels avec Azure OpenAI et pgvector | [Lab 07](./11-MCPServerHandsOnLabs/07-Semantic-Search/README.md) |
 | 11.9 | Tests et débogage | Stratégies de test, outils de débogage et approches de validation | [Lab 08](./11-MCPServerHandsOnLabs/08-Testing/README.md) |
-| 11.10 | Intégration avec VS Code | Configuration de l'intégration MCP dans VS Code et utilisation du Chat IA | [Lab 09](./11-MCPServerHandsOnLabs/09-VS-Code/README.md) |
-| 11.11 | Stratégies de déploiement | Déploiement avec Docker, Azure Container Apps et considérations sur la mise à l'échelle | [Lab 10](./11-MCPServerHandsOnLabs/10-Deployment/README.md) |
+| 11.10 | Intégration VS Code | Configuration de l'intégration MCP dans VS Code et utilisation de l'IA Chat | [Lab 09](./11-MCPServerHandsOnLabs/09-VS-Code/README.md) |
+| 11.11 | Stratégies de déploiement | Déploiement Docker, Azure Container Apps et considérations de mise à l'échelle | [Lab 10](./11-MCPServerHandsOnLabs/10-Deployment/README.md) |
 | 11.12 | Surveillance | Application Insights, journalisation, surveillance des performances | [Lab 11](./11-MCPServerHandsOnLabs/11-Monitoring/README.md) |
-| 11.13 | Bonnes pratiques | Optimisation des performances, renforcement de la sécurité et conseils pour la production | [Lab 12](./11-MCPServerHandsOnLabs/12-Best-Practices/README.md) |
+| 11.13 | Meilleures pratiques | Optimisation des performances, renforcement de la sécurité et conseils pour la production | [Lab 12](./11-MCPServerHandsOnLabs/12-Best-Practices/README.md) |
 
-### 💻 Projets de code d'exemple
+### 💻 Projets de code exemples
 
-#### Exemples de calculateur MCP de base
+L'un des aspects les plus passionnants de l'apprentissage du MCP est de voir vos compétences en programmation évoluer progressivement. Nous avons conçu nos exemples de code pour commencer simplement et devenir plus sophistiqués à mesure que votre compréhension s'approfondit. Voici comment nous introduisons les concepts : avec un code facile à comprendre mais qui démontre les principes réels du MCP, vous comprendrez non seulement ce que fait ce code, mais aussi pourquoi il est structuré de cette manière et comment il s'intègre dans des applications MCP plus larges.
+
+#### Exemples de calculatrice MCP de base
 
 | Langage | Description | Lien |
-|---------|-------------|------|
+|----------|-------------|------|
 | C# | Exemple de serveur MCP | [Voir le code](./03-GettingStarted/samples/csharp/README.md) |
-| Java | Calculateur MCP | [Voir le code](./03-GettingStarted/samples/java/calculator/README.md) |
+| Java | Calculatrice MCP | [Voir le code](./03-GettingStarted/samples/java/calculator/README.md) |
 | JavaScript | Démo MCP | [Voir le code](./03-GettingStarted/samples/javascript/README.md) |
 | Python | Serveur MCP | [Voir le code](../../03-GettingStarted/samples/python/mcp_calculator_server.py) |
 | TypeScript | Exemple MCP | [Voir le code](./03-GettingStarted/samples/typescript/README.md) |
 | Rust | Exemple MCP | [Voir le code](./03-GettingStarted/samples/rust/README.md) |
 
-#### Implémentations avancées de MCP
+#### Implémentations avancées du MCP
 
 | Langage | Description | Lien |
-|---------|-------------|------|
+|----------|-------------|------|
 | C# | Exemple avancé | [Voir le code](./04-PracticalImplementation/samples/csharp/README.md) |
 | Java avec Spring | Exemple d'application conteneurisée | [Voir le code](./04-PracticalImplementation/samples/java/containerapp/README.md) |
 | JavaScript | Exemple avancé | [Voir le code](./04-PracticalImplementation/samples/javascript/README.md) |
 | Python | Implémentation complexe | [Voir le code](../../04-PracticalImplementation/samples/python/READMEmd) |
 | TypeScript | Exemple conteneurisé | [Voir le code](./04-PracticalImplementation/samples/typescript/README.md) |
 
-## 🎯 Prérequis pour apprendre MCP
+## 🎯 Prérequis pour apprendre le MCP
 
 Pour tirer le meilleur parti de ce programme, vous devriez avoir :
 
 - Des connaissances de base en programmation dans au moins un des langages suivants : C#, Java, JavaScript, Python ou TypeScript
 - Une compréhension du modèle client-serveur et des API
 - Une familiarité avec les concepts REST et HTTP
-- (Optionnel) Des notions en IA/ML
+- (Optionnel) Des notions de base en IA/ML
 
 - Rejoindre nos discussions communautaires pour obtenir du soutien
 
 ## 📚 Guide d'étude et ressources
 
-Ce dépôt inclut plusieurs ressources pour vous aider à apprendre efficacement :
+Ce dépôt inclut plusieurs ressources pour vous aider à naviguer et apprendre efficacement :
 
 ### Guide d'étude
 
-Un [Guide d'étude](./study_guide.md) complet est disponible pour vous aider à naviguer dans ce dépôt. Le guide inclut :
+Un [Guide d'étude](./study_guide.md) complet est disponible pour vous aider à naviguer dans ce dépôt efficacement. Cette carte visuelle du programme montre comment tous les sujets sont connectés et fournit des conseils sur l'utilisation des projets d'exemple. C'est particulièrement utile si vous êtes un apprenant visuel qui aime voir l'ensemble du tableau.
 
+Le guide inclut :
 - Une carte visuelle du programme montrant tous les sujets abordés
 - Une analyse détaillée de chaque section du dépôt
 - Des conseils sur l'utilisation des projets d'exemple
@@ -166,8 +242,7 @@ Un [Guide d'étude](./study_guide.md) complet est disponible pour vous aider à 
 
 ### Journal des modifications
 
-Nous maintenons un [Journal des modifications](./changelog.md) détaillé qui suit toutes les mises à jour importantes des matériaux du programme, notamment :
-
+Nous maintenons un [Journal des modifications](./changelog.md) détaillé qui suit toutes les mises à jour importantes des matériaux du programme, afin que vous puissiez rester à jour avec les dernières améliorations et ajouts.
 - Ajouts de nouveaux contenus
 - Changements structurels
 - Améliorations des fonctionnalités
@@ -179,125 +254,127 @@ Chaque leçon de ce guide inclut :
 
 1. Des explications claires des concepts MCP  
 2. Des exemples de code en direct dans plusieurs langages  
-3. Des exercices pour construire de véritables applications MCP  
+3. Des exercices pour construire de vraies applications MCP  
 4. Des ressources supplémentaires pour les apprenants avancés
 
-## Événements 
+## Contenu à la demande 
 
-### [MCP Dev Days Juillet 2025](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
+### [MCP Dev Days juillet 2025](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
 #### [➡️Regarder à la demande - MCP Dev Days](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
-Préparez-vous à deux jours d'informations techniques approfondies, de connexion communautaire et d'apprentissage pratique lors des MCP Dev Days, un événement virtuel dédié au Model Context Protocol (MCP) — la norme émergente qui relie les modèles IA et les outils qu'ils utilisent.
-Vous pouvez regarder les MCP Dev Days en vous inscrivant sur notre page événement : https://aka.ms/mcpdevdays. 
+Préparez-vous à deux jours d'informations techniques approfondies, de connexion communautaire et d'apprentissage pratique lors des MCP Dev Days, un événement virtuel dédié au Model Context Protocol (MCP) — la norme émergente qui relie les modèles IA et les outils sur lesquels ils reposent.
+Vous pouvez regarder MCP Dev Days en vous inscrivant sur notre page événement : https://aka.ms/mcpdevdays.
 
-#### [Jour 1 : Productivité MCP, outils de développement et communauté](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
+#### [Jour 1 : Productivité MCP, outils de développement et communauté :](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
 
-Ce jour est consacré à l'autonomisation des développeurs pour utiliser MCP dans leur flux de travail et à la célébration de la communauté MCP. Nous serons rejoints par des membres de la communauté et des partenaires tels qu'Arcade, Block, Okta et Neon pour voir comment ils collaborent avec Microsoft pour façonner un écosystème MCP ouvert et extensible.  
-Démos réelles avec VS Code, Visual Studio, GitHub Copilot et outils communautaires populaires  
-Flux de travail pratiques et contextuels pour les développeurs  
-Sessions et perspectives dirigées par la communauté  
-Que vous débutiez avec MCP ou que vous construisiez déjà avec, le Jour 1 vous inspirera et vous fournira des conseils pratiques.
+Ce jour est dédié à donner aux développeurs les moyens d'utiliser MCP dans leur flux de travail et à célébrer l'incroyable communauté MCP. Nous serons rejoints par des membres de la communauté et des partenaires tels qu'Arcade, Block, Okta et Neon pour découvrir comment ils collaborent avec Microsoft pour façonner un écosystème MCP ouvert et extensible.  
+Démos pratiques avec VS Code, Visual Studio, GitHub Copilot et des outils communautaires populaires  
+Flux de travail de développement pratiques et contextuels  
+Sessions dirigées par la communauté et perspectives  
+Que vous débutiez avec MCP ou que vous construisiez déjà avec, le Jour 1 vous inspirera et vous fournira des conseils concrets.
 
-#### [Jour 2 : Construire des serveurs MCP avec confiance](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
+#### [Jour 2 : Construire des serveurs MCP en toute confiance](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
 
-Ce jour est dédié aux créateurs de MCP. Nous approfondirons les stratégies d'implémentation et les meilleures pratiques pour créer des serveurs MCP et intégrer MCP dans vos flux de travail IA.
+Ce jour est destiné aux créateurs MCP. Nous approfondirons les stratégies de mise en œuvre et les meilleures pratiques pour créer des serveurs MCP et intégrer MCP dans vos flux de travail IA.
 
-#### Sujets abordés :
+#### Les sujets incluent :
 
-- Construire des serveurs MCP et les intégrer dans des expériences d'agents
-- Développement piloté par les prompts
-- Meilleures pratiques de sécurité
-- Utilisation de blocs de construction comme Functions, ACA et API Management
-- Alignement des registres et outils (1P + 3P)
+- Construire des serveurs MCP et les intégrer dans des expériences d'agents  
+- Développement basé sur les prompts  
+- Meilleures pratiques en matière de sécurité  
+- Utilisation de blocs de construction comme Functions, ACA et API Management  
+- Alignement des registres et outils (1P + 3P)  
 
-Si vous êtes développeur, créateur d'outils ou stratège produit IA, cette journée est remplie des informations dont vous avez besoin pour construire des solutions MCP évolutives, sécurisées et prêtes pour l'avenir.
+Si vous êtes développeur, créateur d'outils ou stratège produit IA, cette journée est riche en informations pour construire des solutions MCP évolutives, sécurisées et prêtes pour l'avenir.
 
-### Boot Camp MCP Août 2025
-Apprenez à travers des sessions vidéo intensives comment créer des serveurs MCP, intégrer avec VS Code et déployer professionnellement sur Azure en vous basant sur le contenu du programme MCP pour débutants. Repartez avec des compétences pratiques dans une technologie déjà utilisée par de grandes entreprises.
+### Boot Camp MCP août 2025  
+Apprenez à travers des sessions vidéo intensives comment créer des serveurs MCP, intégrer avec VS Code et déployer professionnellement sur Azure, basé sur le contenu du programme MCP pour débutants. Repartez avec des compétences pratiques dans une technologie déjà utilisée par de grandes entreprises.
 
-#### [➡️Regarder à la demande Bootcamp MCP | Anglais](https://developer.microsoft.com/en-us/reactor/series/s-1568/)
-#### [➡️Regarder à la demande Bootcamp MCP | Brésil](https://developer.microsoft.com/en-us/reactor/series/S-1566/)
-#### [➡️Regarder à la demande Bootcamp MCP | Espagnol](https://developer.microsoft.com/en-us/reactor/series/S-1567/)
+#### [➡️Regarder à la demande Bootcamp MCP | Anglais](https://developer.microsoft.com/en-us/reactor/series/s-1568/)  
+#### [➡️Regarder à la demande Bootcamp MCP | Brésil](https://developer.microsoft.com/en-us/reactor/series/S-1566/)  
+#### [➡️Regarder à la demande Bootcamp MCP | Espagnol](https://developer.microsoft.com/en-us/reactor/series/S-1567/)  
 
-### Apprenons MCP avec C# - Série de tutoriels
-Apprenons le Model Context Protocol (MCP), un cadre de pointe conçu pour standardiser les interactions entre les modèles IA et les applications clientes. À travers cette session conviviale pour les débutants, nous vous présenterons MCP et vous guiderons dans la création de votre premier serveur MCP.  
+### Apprenons MCP avec C# - Série de tutoriels  
+Apprenons le Model Context Protocol (MCP), un cadre de pointe conçu pour standardiser les interactions entre les modèles IA et les applications clientes. À travers cette session accessible aux débutants, nous vous présenterons MCP et vous guiderons dans la création de votre premier serveur MCP.  
 #### C#: [https://aka.ms/letslearnmcp-csharp](https://aka.ms/letslearnmcp-csharp)  
 #### Java: [https://aka.ms/letslearnmcp-java](https://aka.ms/letslearnmcp-java)  
 #### JavaScript: [https://aka.ms/letslearnmcp-javascript](https://aka.ms/letslearnmcp-javascript)  
 #### Python: [https://aka.ms/letslearnmcp-python](https://aka.ms/letslearnmcp-python)  
 
-## 🌟 Remerciements à la communauté
+## 🎓 Votre aventure MCP commence  
 
-Merci au Microsoft Valued Professional [Shivam Goyal](https://www.linkedin.com/in/shivam2003/) pour sa contribution avec des exemples de code importants.  
+Félicitations ! Vous venez de franchir la première étape d'une aventure passionnante qui élargira vos capacités de programmation et vous connectera à la pointe du développement IA.
 
-## 📜 Informations sur la licence
+### Ce que vous avez déjà accompli  
 
-Ce contenu est sous licence **MIT License**. Pour les termes et conditions, consultez le fichier [LICENSE](../../LICENSE).
+En lisant cette introduction, vous avez déjà commencé à construire votre base de connaissances sur MCP. Vous comprenez ce qu'est MCP, pourquoi il est important et comment ce programme soutiendra votre parcours d'apprentissage. C'est une réalisation significative et le début de votre expertise dans cette technologie essentielle.
 
-## 🤝 Directives de contribution
+### L'aventure à venir  
 
-Ce projet accueille les contributions et suggestions. La plupart des contributions nécessitent que vous acceptiez un
-Accord de Licence de Contributeur (CLA) déclarant que vous avez le droit de, et que vous accordez effectivement, les droits nécessaires pour utiliser votre contribution. Pour plus de détails, visitez <https://cla.opensource.microsoft.com>.
+Au fur et à mesure que vous progressez dans les modules, rappelez-vous que chaque expert a été un débutant. Les concepts qui peuvent sembler complexes maintenant deviendront naturels à mesure que vous les pratiquerez et les appliquerez. Chaque petit pas construit des capacités puissantes qui vous serviront tout au long de votre carrière de développeur.
 
-Lorsque vous soumettez une pull request, un bot CLA déterminera automatiquement si vous devez fournir
-un CLA et annotera la PR en conséquence (par exemple, vérification de statut, commentaire). Suivez simplement les instructions
-fournies par le bot. Vous n'aurez besoin de le faire qu'une seule fois pour tous les dépôts utilisant notre CLA.
+### Votre réseau de soutien  
 
-Ce projet a adopté le [Code de conduite Open Source de Microsoft](https://opensource.microsoft.com/codeofconduct/).
-Pour plus d'informations, consultez la [FAQ sur le Code de conduite](https://opensource.microsoft.com/codeofconduct/faq/) ou
-contactez [opencode@microsoft.com](mailto:opencode@microsoft.com) pour toute question ou commentaire supplémentaire.
+Vous rejoignez une communauté d'apprenants et d'experts passionnés par MCP et désireux d'aider les autres à réussir. Que vous soyez bloqué sur un défi de codage ou que vous souhaitiez partager une découverte, la communauté est là pour soutenir votre parcours.
 
-## 📂 Structure du dépôt
+Si vous êtes bloqué ou avez des questions sur la création d'applications IA, rejoignez d'autres apprenants et développeurs expérimentés dans des discussions sur MCP. C'est une communauté solidaire où les questions sont les bienvenues et les connaissances sont partagées librement.
 
-Le dépôt est organisé comme suit :
+[![Azure AI Foundry Discord](https://img.shields.io/badge/Discord-Azure_AI_Foundry_Community_Discord-blue?style=for-the-badge&logo=discord&color=5865f2&logoColor=fff)](https://aka.ms/foundry/discord)
 
-- **Programme principal (00-11)** : Le contenu principal organisé en onze modules séquentiels, incluant des laboratoires complets sur l'intégration de bases de données
-- **11-MCPServerHandsOnLabs/** : Parcours d'apprentissage complet en 13 laboratoires pour construire des serveurs MCP prêts pour la production avec intégration PostgreSQL
-- **images/** : Diagrammes et illustrations utilisés dans tout le programme
-- **translations/** : Support multilingue avec traductions automatisées
-- **translated_images/** : Versions localisées des diagrammes et illustrations
-- **study_guide.md** : Guide complet pour naviguer dans le dépôt
-- **changelog.md** : Historique de toutes les modifications importantes des matériaux du programme
-- **mcp.json** : Fichier de configuration pour la spécification MCP
-- **CODE_OF_CONDUCT.md, LICENSE, SECURITY.md, SUPPORT.md** : Documents de gouvernance du projet
+Si vous avez des retours sur le produit ou rencontrez des erreurs lors de la création, visitez :
 
-## 🎒 Autres cours
-Notre équipe produit d'autres cours ! Découvrez :
+[![Azure AI Foundry Developer Forum](https://img.shields.io/badge/GitHub-Azure_AI_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=000000&logoColor=fff)](https://aka.ms/foundry/forum)
 
-- [**NOUVEAU** Edge AI For Beginners](https://github.com/microsoft/edgeai-for-beginners?WT.mc_id=academic-105485-koreyst)
-- [AI Agents For Beginners](https://github.com/microsoft/ai-agents-for-beginners?WT.mc_id=academic-105485-koreyst)
-- [Generative AI for Beginners using .NET](https://github.com/microsoft/Generative-AI-for-beginners-dotnet?WT.mc_id=academic-105485-koreyst)
-- [Generative AI for Beginners using JavaScript](https://github.com/microsoft/generative-ai-with-javascript?WT.mc_id=academic-105485-koreyst)
-- [Generative AI for Beginners](https://github.com/microsoft/generative-ai-for-beginners?WT.mc_id=academic-105485-koreyst)
-- [Generative AI for Beginners using Java](https://github.com/microsoft/generative-ai-for-beginners-java?WT.mc_id=academic-105485-koreyst)
-- [ML for Beginners](https://aka.ms/ml-beginners?WT.mc_id=academic-105485-koreyst)
-- [Data Science for Beginners](https://aka.ms/datascience-beginners?WT.mc_id=academic-105485-koreyst)
-- [AI for Beginners](https://aka.ms/ai-beginners?WT.mc_id=academic-105485-koreyst)
-- [Cybersecurity for Beginners](https://github.com/microsoft/Security-101?WT.mc_id=academic-96948-sayoung)
-- [Web Dev for Beginners](https://aka.ms/webdev-beginners?WT.mc_id=academic-105485-koreyst)
-- [IoT for Beginners](https://aka.ms/iot-beginners?WT.mc_id=academic-105485-koreyst)
-- [XR Development for Beginners](https://github.com/microsoft/xr-development-for-beginners?WT.mc_id=academic-105485-koreyst)
-- [Maîtriser GitHub Copilot pour la programmation en binôme avec l'IA](https://aka.ms/GitHubCopilotAI?WT.mc_id=academic-105485-koreyst)  
-- [Maîtriser GitHub Copilot pour les développeurs C#/.NET](https://github.com/microsoft/mastering-github-copilot-for-dotnet-csharp-developers?WT.mc_id=academic-105485-koreyst)  
-- [Choisissez votre propre aventure avec Copilot](https://github.com/microsoft/CopilotAdventures?WT.mc_id=academic-105485-koreyst)  
+### Prêt à commencer ?  
 
-## ™️ Avis de marque déposée
+Votre aventure MCP commence maintenant ! Commencez avec le Module 0 pour plonger dans vos premières expériences pratiques avec MCP, ou explorez les projets exemples pour voir ce que vous allez construire. Rappelez-vous - chaque expert a commencé exactement là où vous êtes maintenant, et avec patience et pratique, vous serez étonné de ce que vous pouvez accomplir.
 
-Ce projet peut contenir des marques ou des logos pour des projets, produits ou services. L'utilisation autorisée des marques ou logos de Microsoft est soumise aux 
-[Directives sur les marques et la marque de Microsoft](https://www.microsoft.com/legal/intellectualproperty/trademarks/usage/general).  
-L'utilisation des marques ou logos de Microsoft dans des versions modifiées de ce projet ne doit pas prêter à confusion ou impliquer un parrainage de Microsoft.  
-Toute utilisation de marques ou logos de tiers est soumise aux politiques de ces tiers.
+Bienvenue dans le monde du développement Model Context Protocol. Construisons quelque chose d'incroyable ensemble !
 
-## Obtenir de l'aide
+## 🤝 Contribuer à la communauté d'apprentissage  
 
-Si vous êtes bloqué ou avez des questions sur la création d'applications d'IA, rejoignez :
+Ce programme s'enrichit grâce aux contributions des apprenants comme vous ! Que vous corrigiez une faute de frappe, suggériez une explication plus claire ou ajoutiez un nouvel exemple, vos contributions aident d'autres débutants à réussir.
 
-[![Azure AI Foundry Discord](https://img.shields.io/badge/Discord-Azure_AI_Foundry_Community_Discord-blue?style=for-the-badge&logo=discord&color=5865f2&logoColor=fff)](https://aka.ms/foundry/discord)  
+Merci à Microsoft Valued Professional [Shivam Goyal](https://www.linkedin.com/in/shivam2003/) pour ses contributions en exemples de code.
 
-Si vous avez des retours sur le produit ou rencontrez des erreurs lors de la création, visitez :  
+Le processus de contribution est conçu pour être accueillant et encourageant. La plupart des contributions nécessitent un Accord de Licence de Contributeur (CLA), mais les outils automatisés vous guideront dans le processus sans difficulté.
 
-[![Azure AI Foundry Developer Forum](https://img.shields.io/badge/GitHub-Azure_AI_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=000000&logoColor=fff)](https://aka.ms/foundry/forum)  
+## 📜 Apprentissage Open Source  
+
+Tout ce programme est disponible sous la licence MIT [LICENSE](../../LICENSE), ce qui signifie que vous pouvez l'utiliser, le modifier et le partager librement. Cela soutient notre mission de rendre les connaissances sur MCP accessibles aux développeurs du monde entier.  
+## 🤝 Directives de contribution  
+
+Ce projet accueille les contributions et suggestions. La plupart des contributions nécessitent que vous acceptiez un Accord de Licence de Contributeur (CLA) déclarant que vous avez le droit de nous accorder les droits d'utiliser votre contribution. Pour plus de détails, visitez <https://cla.opensource.microsoft.com>.  
+
+Lorsque vous soumettez une pull request, un bot CLA déterminera automatiquement si vous devez fournir un CLA et annotera la PR en conséquence (par exemple, vérification de statut, commentaire). Suivez simplement les instructions fournies par le bot. Vous n'aurez à le faire qu'une seule fois pour tous les dépôts utilisant notre CLA.
+
+Ce projet a adopté le [Code de Conduite Open Source de Microsoft](https://opensource.microsoft.com/codeofconduct/).  
+Pour plus d'informations, consultez la [FAQ sur le Code de Conduite](https://opensource.microsoft.com/codeofconduct/faq/) ou contactez [opencode@microsoft.com](mailto:opencode@microsoft.com) pour toute question ou commentaire supplémentaire.
+
+---
+
+*Prêt à commencer votre aventure MCP ? Commencez avec [Module 00 - Introduction à MCP](./00-Introduction/README.md) et faites vos premiers pas dans le monde du développement Model Context Protocol !*
+
+## 🎒 Autres cours  
+Notre équipe propose d'autres cours ! Découvrez :  
+
+- [**NOUVEAU** Edge AI For Beginners](https://github.com/microsoft/edgeai-for-beginners?WT.mc_id=academic-105485-koreyst)  
+- [AI Agents For Beginners](https://github.com/microsoft/ai-agents-for-beginners?WT.mc_id=academic-105485-koreyst)  
+- [Generative AI for Beginners using .NET](https://github.com/microsoft/Generative-AI-for-beginners-dotnet?WT.mc_id=academic-105485-koreyst)  
+- [Generative AI for Beginners using JavaScript](https://github.com/microsoft/generative-ai-with-javascript?WT.mc_id=academic-105485-koreyst)  
+- [Generative AI for Beginners](https://github.com/microsoft/generative-ai-for-beginners?WT.mc_id=academic-105485-koreyst)  
+- [Generative AI for Beginners using Java](https://github.com/microsoft/generative-ai-for-beginners-java?WT.mc_id=academic-105485-koreyst)  
+- [ML for Beginners](https://aka.ms/ml-beginners?WT.mc_id=academic-105485-koreyst)  
+- [Data Science for Beginners](https://aka.ms/datascience-beginners?WT.mc_id=academic-105485-koreyst)  
+- [AI for Beginners](https://aka.ms/ai-beginners?WT.mc_id=academic-105485-koreyst)  
+- [Cybersecurity for Beginners](https://github.com/microsoft/Security-101?WT.mc_id=academic-96948-sayoung)  
+- [Web Dev for Beginners](https://aka.ms/webdev-beginners?WT.mc_id=academic-105485-koreyst)  
+- [IoT for Beginners](https://aka.ms/iot-beginners?WT.mc_id=academic-105485-koreyst)  
+- [XR Development for Beginners](https://github.com/microsoft/xr-development-for-beginners?WT.mc_id=academic-105485-koreyst)  
+- [Mastering GitHub Copilot for AI Paired Programming](https://aka.ms/GitHubCopilotAI?WT.mc_id=academic-105485-koreyst)  
+- [Mastering GitHub Copilot for C#/.NET Developers](https://github.com/microsoft/mastering-github-copilot-for-dotnet-csharp-developers?WT.mc_id=academic-105485-koreyst)  
+- [Choose Your Own Copilot Adventure](https://github.com/microsoft/CopilotAdventures?WT.mc_id=academic-105485-koreyst)  
 
 ---
 
 **Avertissement** :  
-Ce document a été traduit à l'aide du service de traduction automatique [Co-op Translator](https://github.com/Azure/co-op-translator). Bien que nous nous efforcions d'assurer l'exactitude, veuillez noter que les traductions automatisées peuvent contenir des erreurs ou des inexactitudes. Le document original dans sa langue d'origine doit être considéré comme la source faisant autorité. Pour des informations critiques, il est recommandé de recourir à une traduction humaine professionnelle. Nous déclinons toute responsabilité en cas de malentendus ou d'interprétations erronées résultant de l'utilisation de cette traduction.
+Ce document a été traduit à l'aide du service de traduction automatique [Co-op Translator](https://github.com/Azure/co-op-translator). Bien que nous nous efforcions d'assurer l'exactitude, veuillez noter que les traductions automatisées peuvent contenir des erreurs ou des inexactitudes. Le document original dans sa langue d'origine doit être considéré comme la source faisant autorité. Pour des informations critiques, il est recommandé de recourir à une traduction humaine professionnelle. Nous ne sommes pas responsables des malentendus ou des interprétations erronées résultant de l'utilisation de cette traduction.
