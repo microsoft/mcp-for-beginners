@@ -235,7 +235,7 @@ The guide includes:
 
 ### Changelog
 
-We maintain a detailed [Changelog](./changelog.md) his tracks all significant updates to the curriculum materials, so you can stay current with the latest improvements and additions.
+We maintain a detailed [Changelog](./changelog.md) that tracks all significant updates to the curriculum materials, so you can stay current with the latest improvements and additions.
 - New content additions
 - Structural changes
 - Feature improvements
