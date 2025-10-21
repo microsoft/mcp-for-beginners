@@ -1,23 +1,23 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "ec11ee93f31fdadd94facd3e3d22f9e6",
-  "translation_date": "2025-09-09T22:00:14+00:00",
+  "original_hash": "726b74589522653d930c7395c9e1fab8",
+  "translation_date": "2025-10-20T17:08:32+00:00",
   "source_file": "03-GettingStarted/01-first-server/README.md",
   "language_code": "nl"
 }
 -->
 # Aan de slag met MCP
 
-Welkom bij je eerste stappen met het Model Context Protocol (MCP)! Of je nu nieuw bent met MCP of je kennis wilt verdiepen, deze gids begeleidt je door het essentiële installatie- en ontwikkelproces. Je ontdekt hoe MCP naadloze integratie tussen AI-modellen en applicaties mogelijk maakt en leert hoe je snel je omgeving kunt voorbereiden om MCP-oplossingen te bouwen en testen.
+Welkom bij je eerste stappen met het Model Context Protocol (MCP)! Of je nu nieuw bent met MCP of je kennis wilt verdiepen, deze gids begeleidt je door het essentiële installatie- en ontwikkelproces. Je ontdekt hoe MCP een naadloze integratie tussen AI-modellen en applicaties mogelijk maakt en leert hoe je snel je omgeving kunt voorbereiden voor het bouwen en testen van MCP-oplossingen.
 
-> TLDR; Als je AI-apps bouwt, weet je dat je tools en andere bronnen kunt toevoegen aan je LLM (large language model) om de LLM slimmer te maken. Maar als je die tools en bronnen op een server plaatst, kunnen de app en de serverfunctionaliteiten door elke client worden gebruikt, met of zonder een LLM.
+> TLDR; Als je AI-apps bouwt, weet je dat je tools en andere bronnen kunt toevoegen aan je LLM (large language model) om de LLM slimmer te maken. Maar als je die tools en bronnen op een server plaatst, kunnen de app en de serverfunctionaliteiten worden gebruikt door elke client, met of zonder een LLM.
 
 ## Overzicht
 
-Deze les biedt praktische richtlijnen voor het opzetten van MCP-omgevingen en het bouwen van je eerste MCP-applicaties. Je leert hoe je de benodigde tools en frameworks installeert, basis MCP-servers bouwt, hostapplicaties maakt en je implementaties test.
+Deze les biedt praktische richtlijnen voor het opzetten van MCP-omgevingen en het bouwen van je eerste MCP-applicaties. Je leert hoe je de benodigde tools en frameworks installeert, basis MCP-servers bouwt, host-applicaties maakt en je implementaties test.
 
-Het Model Context Protocol (MCP) is een open protocol dat standaardiseert hoe applicaties context bieden aan LLMs. Denk aan MCP als een USB-C-poort voor AI-applicaties - het biedt een gestandaardiseerde manier om AI-modellen te verbinden met verschillende databronnen en tools.
+Het Model Context Protocol (MCP) is een open protocol dat standaardiseert hoe applicaties context bieden aan LLM's. Denk aan MCP als een USB-C-poort voor AI-applicaties - het biedt een gestandaardiseerde manier om AI-modellen te verbinden met verschillende databronnen en tools.
 
 ## Leerdoelen
 
@@ -25,29 +25,29 @@ Aan het einde van deze les kun je:
 
 - Ontwikkelomgevingen instellen voor MCP in C#, Java, Python, TypeScript en Rust
 - Basis MCP-servers bouwen en implementeren met aangepaste functies (bronnen, prompts en tools)
-- Hostapplicaties maken die verbinding maken met MCP-servers
+- Host-applicaties maken die verbinding maken met MCP-servers
 - MCP-implementaties testen en debuggen
 
 ## Je MCP-omgeving instellen
 
-Voordat je begint met MCP, is het belangrijk om je ontwikkelomgeving voor te bereiden en de basisworkflow te begrijpen. Dit gedeelte begeleidt je door de eerste stappen van de installatie om een soepele start met MCP te garanderen.
+Voordat je begint met MCP, is het belangrijk om je ontwikkelomgeving voor te bereiden en de basisworkflow te begrijpen. Dit gedeelte begeleidt je door de eerste stappen om een soepele start met MCP te garanderen.
 
 ### Vereisten
 
-Voordat je begint met MCP-ontwikkeling, zorg ervoor dat je beschikt over:
+Voordat je aan MCP-ontwikkeling begint, zorg ervoor dat je beschikt over:
 
 - **Ontwikkelomgeving**: Voor je gekozen programmeertaal (C#, Java, Python, TypeScript of Rust)
 - **IDE/Editor**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm of een moderne code-editor
 - **Pakketbeheerders**: NuGet, Maven/Gradle, pip, npm/yarn of Cargo
-- **API-sleutels**: Voor AI-diensten die je in je hostapplicaties wilt gebruiken
+- **API-sleutels**: Voor AI-diensten die je van plan bent te gebruiken in je host-applicaties
 
 ## Basisstructuur van een MCP-server
 
 Een MCP-server bevat doorgaans:
 
 - **Serverconfiguratie**: Instellen van poort, authenticatie en andere instellingen
-- **Bronnen**: Data en context beschikbaar gesteld aan LLMs
-- **Tools**: Functionaliteit die modellen kunnen aanroepen
+- **Bronnen**: Data en context beschikbaar maken voor LLM's
+- **Tools**: Functionaliteiten die modellen kunnen gebruiken
 - **Prompts**: Sjablonen voor het genereren of structureren van tekst
 
 Hier is een vereenvoudigd voorbeeld in TypeScript:
@@ -132,19 +132,19 @@ In de bovenstaande code hebben we:
 
 ## Testen en debuggen
 
-Voordat je begint met het testen van je MCP-server, is het belangrijk om de beschikbare tools en best practices voor debuggen te begrijpen. Effectief testen zorgt ervoor dat je server zich gedraagt zoals verwacht en helpt je snel problemen te identificeren en op te lossen. Het volgende gedeelte beschrijft aanbevolen benaderingen voor het valideren van je MCP-implementatie.
+Voordat je begint met het testen van je MCP-server, is het belangrijk om de beschikbare tools en best practices voor debuggen te begrijpen. Effectief testen zorgt ervoor dat je server naar verwachting werkt en helpt je snel problemen te identificeren en op te lossen. Het volgende gedeelte beschrijft aanbevolen benaderingen voor het valideren van je MCP-implementatie.
 
 MCP biedt tools om je servers te testen en debuggen:
 
-- **Inspector-tool**, een grafische interface waarmee je verbinding kunt maken met je server en je tools, prompts en bronnen kunt testen.
-- **curl**, je kunt ook verbinding maken met je server via een commandoregeltool zoals curl of andere clients die HTTP-commando's kunnen uitvoeren.
+- **Inspector-tool**, een grafische interface waarmee je verbinding kunt maken met je server en tools, prompts en bronnen kunt testen.
+- **curl**, je kunt ook verbinding maken met je server met een commandoregeltool zoals curl of andere clients die HTTP-commando's kunnen uitvoeren.
 
-### MCP Inspector gebruiken
+### Gebruik van MCP Inspector
 
 De [MCP Inspector](https://github.com/modelcontextprotocol/inspector) is een visuele testtool die je helpt:
 
 1. **Servermogelijkheden ontdekken**: Automatisch beschikbare bronnen, tools en prompts detecteren
-2. **Tooluitvoering testen**: Verschillende parameters proberen en realtime reacties bekijken
+2. **Tooluitvoering testen**: Verschillende parameters proberen en realtime reacties zien
 3. **Servermetadata bekijken**: Serverinformatie, schema's en configuraties onderzoeken
 
 ```bash
@@ -152,7 +152,7 @@ De [MCP Inspector](https://github.com/modelcontextprotocol/inspector) is een vis
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-Wanneer je bovenstaande commando's uitvoert, start de MCP Inspector een lokale webinterface in je browser. Je ziet een dashboard met je geregistreerde MCP-servers, hun beschikbare tools, bronnen en prompts. De interface stelt je in staat om interactief tooluitvoering te testen, servermetadata te inspecteren en realtime reacties te bekijken, wat het gemakkelijker maakt om je MCP-serverimplementaties te valideren en debuggen.
+Wanneer je bovenstaande commando's uitvoert, start de MCP Inspector een lokale webinterface in je browser. Je ziet een dashboard met je geregistreerde MCP-servers, hun beschikbare tools, bronnen en prompts. De interface stelt je in staat om interactief tooluitvoering te testen, servermetadata te inspecteren en realtime reacties te bekijken, wat het valideren en debuggen van je MCP-serverimplementaties eenvoudiger maakt.
 
 Hier is een screenshot van hoe het eruit kan zien:
 
@@ -161,18 +161,18 @@ Hier is een screenshot van hoe het eruit kan zien:
 ## Veelvoorkomende installatieproblemen en oplossingen
 
 | Probleem | Mogelijke oplossing |
-|----------|----------------------|
-| Verbinding geweigerd | Controleer of de server actief is en de poort correct is ingesteld |
+|----------|---------------------|
+| Verbinding geweigerd | Controleer of de server actief is en de poort correct is |
 | Fouten bij tooluitvoering | Controleer parametervalidatie en foutafhandeling |
 | Authenticatiefouten | Verifieer API-sleutels en machtigingen |
 | Fouten bij schema-validatie | Zorg ervoor dat parameters overeenkomen met het gedefinieerde schema |
 | Server start niet | Controleer op poortconflicten of ontbrekende afhankelijkheden |
-| CORS-fouten | Stel de juiste CORS-headers in voor cross-origin verzoeken |
+| CORS-fouten | Configureer de juiste CORS-headers voor cross-origin verzoeken |
 | Authenticatieproblemen | Controleer de geldigheid van tokens en machtigingen |
 
 ## Lokale ontwikkeling
 
-Voor lokale ontwikkeling en testen kun je MCP-servers direct op je machine uitvoeren:
+Voor lokale ontwikkeling en testen kun je MCP-servers direct op je machine draaien:
 
 1. **Start het serverproces**: Voer je MCP-serverapplicatie uit
 2. **Netwerkconfiguratie**: Zorg ervoor dat de server toegankelijk is op de verwachte poort
@@ -186,7 +186,7 @@ npm run start
 
 ## Je eerste MCP-server bouwen
 
-We hebben [Kernconcepten](/01-CoreConcepts/README.md) behandeld in een vorige les, nu is het tijd om die kennis in praktijk te brengen.
+We hebben [Kernconcepten](/01-CoreConcepts/README.md) behandeld in een vorige les, nu is het tijd om die kennis in de praktijk te brengen.
 
 ### Wat een server kan doen
 
@@ -195,7 +195,7 @@ Voordat we code gaan schrijven, laten we onszelf eraan herinneren wat een server
 Een MCP-server kan bijvoorbeeld:
 
 - Lokale bestanden en databases openen
-- Verbinding maken met externe API's
+- Verbinden met externe API's
 - Berekeningen uitvoeren
 - Integreren met andere tools en diensten
 - Een gebruikersinterface bieden voor interactie
@@ -424,8 +424,8 @@ Open het *package.json*-bestand en vervang de inhoud met het volgende om ervoor 
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "tsc && node ./build/index.js",
-    "build": "tsc && node ./build/index.js"
+    "build": "tsc",
+    "start": "npm run build && node ./build/index.js",
   },
   "keywords": [],
   "author": "",
@@ -462,7 +462,7 @@ Maak een *tsconfig.json* met de volgende inhoud:
 }
 ```
 
-Maak een directory voor je broncode:
+Maak een map voor je broncode:
 
 ```sh
 mkdir src
@@ -494,7 +494,7 @@ Voor Java Spring Boot-projecten wordt de projectstructuur automatisch aangemaakt
 
 Voor Rust wordt een *src/main.rs*-bestand standaard aangemaakt wanneer je `cargo init` uitvoert. Open het bestand en verwijder de standaardcode.
 
-### -4- Servercode schrijven
+### -4- Servercode maken
 
 #### TypeScript
 
@@ -512,7 +512,7 @@ const server = new McpServer({
 });
 ```
 
-Nu heb je een server, maar deze doet nog niet veel. Laten we dat oplossen.
+Nu heb je een server, maar die doet nog niet veel. Laten we dat oplossen.
 
 #### Python
 
@@ -551,7 +551,7 @@ await builder.Build().RunAsync();
 
 #### Java
 
-Voor Java, maak de kernservercomponenten. Wijzig eerst de hoofdapplicatieklasse:
+Voor Java, maak de kernservercomponenten. Pas eerst de hoofdapplicatieklasse aan:
 
 *src/main/java/com/microsoft/mcp/sample/server/McpServerApplication.java*:
 
@@ -829,6 +829,8 @@ Calculator MCP Server v1.0
 Spring Boot MCP Application
 ```
 
+</details>
+
 #### Rust
 
 Voeg de volgende code toe aan de bovenkant van het *src/main.rs*-bestand. Dit importeert de benodigde bibliotheken en modules voor je MCP-server.
@@ -844,7 +846,7 @@ use rmcp::{
 use std::error::Error;
 ```
 
-De calculatorserver wordt een eenvoudige server die twee getallen bij elkaar kan optellen. Laten we een struct maken om het calculatorverzoek te vertegenwoordigen.
+De calculatorserver wordt een eenvoudige server die twee getallen bij elkaar kan optellen. Laten we een struct maken om het calculatorverzoek weer te geven.
 
 ```rust
 #[derive(Debug, serde::Deserialize, schemars::JsonSchema)]
@@ -854,7 +856,7 @@ pub struct CalculatorRequest {
 }
 ```
 
-Maak vervolgens een struct om de calculatorserver te vertegenwoordigen. Deze struct bevat de toolrouter, die wordt gebruikt om tools te registreren.
+Maak vervolgens een struct om de calculatorserver weer te geven. Deze struct bevat de toolrouter, die wordt gebruikt om tools te registreren.
 
 ```rust
 #[derive(Debug, Clone)]
@@ -863,7 +865,7 @@ pub struct Calculator {
 }
 ```
 
-Nu kunnen we de `Calculator`-struct implementeren om een nieuwe instantie van de server te maken en de serverhandler te implementeren om serverinformatie te bieden.
+Nu kunnen we de `Calculator`-struct implementeren om een nieuwe instantie van de server te maken en de serverhandler implementeren om serverinformatie te bieden.
 
 ```rust
 #[tool_router]
@@ -1113,7 +1115,7 @@ public static class CalculatorTool
 
 #### Java
 
-Je complete hoofdapplicatieklasse zou er zo uit moeten zien:
+Je complete hoofdapplicatieklasse zou er als volgt uit moeten zien:
 
 ```java
 // McpServerApplication.java
@@ -1142,7 +1144,7 @@ public class McpServerApplication {
 
 #### Rust
 
-De definitieve code voor de Rust-server zou er zo uit moeten zien:
+De definitieve code voor de Rust-server zou er als volgt uit moeten zien:
 
 ```rust
 use rmcp::{
@@ -1201,7 +1203,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
 }
 ```
 
-### -7- De server testen
+### -7- Test de server
 
 Start de server met het volgende commando:
 
@@ -1217,11 +1219,11 @@ npm run build
 mcp run server.py
 ```
 
-> Om MCP Inspector te gebruiken, gebruik `mcp dev server.py` wat automatisch de Inspector start en de vereiste proxy-sessietoken biedt. Als je `mcp run server.py` gebruikt, moet je de Inspector handmatig starten en de verbinding configureren.
+> Om MCP Inspector te gebruiken, gebruik `mcp dev server.py` die automatisch de Inspector start en de vereiste proxy-sessietoken biedt. Als je `mcp run server.py` gebruikt, moet je de Inspector handmatig starten en de verbinding configureren.
 
 #### .NET
 
-Zorg ervoor dat je in je projectdirectory bent:
+Zorg ervoor dat je in je projectmap bent:
 
 ```sh
 cd McpCalculatorServer
@@ -1244,12 +1246,12 @@ cargo fmt
 cargo run
 ```
 
-### -8- Uitvoeren met de inspector
+### -8- Starten met de inspector
 
-De inspector is een geweldige tool die je server kan starten en je ermee laat interactie hebben zodat je kunt testen of het werkt. Laten we hem starten:
+De inspector is een geweldige tool die je server kan starten en waarmee je ermee kunt communiceren om te testen of alles werkt. Laten we hem starten:
 
 > [!NOTE]
-> Het kan er anders uitzien in het "command"-veld, omdat het de opdracht bevat voor het uitvoeren van een server met je specifieke runtime.
+> Het kan er anders uitzien in het veld "command", omdat het de opdracht bevat om een server met je specifieke runtime te starten.
 
 #### TypeScript
 
@@ -1259,7 +1261,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 of voeg het toe aan je *package.json* zoals: `"inspector": "npx @modelcontextprotocol/inspector node build/index.js"` en voer vervolgens `npm run inspector` uit.
 
-Python gebruikt een Node.js-tool genaamd inspector. Het is mogelijk om die tool aan te roepen zoals:
+Python gebruikt een Node.js-tool genaamd inspector. Het is mogelijk om die tool als volgt aan te roepen:
 
 ```sh
 mcp dev server.py
@@ -1271,12 +1273,12 @@ Echter, het implementeert niet alle beschikbare methoden op de tool, dus het wor
 npx @modelcontextprotocol/inspector mcp run server.py
 ```
 
-Als je een tool of IDE gebruikt waarmee je opdrachten en argumenten kunt configureren voor het uitvoeren van scripts, 
-zorg ervoor dat je `python` instelt in het `Command`-veld en `server.py` als `Arguments`. Dit zorgt ervoor dat het script correct wordt uitgevoerd.
+Als je een tool of IDE gebruikt waarmee je opdrachten en argumenten kunt configureren voor het uitvoeren van scripts,
+Zorg ervoor dat je `python` instelt in het veld `Command` en `server.py` als `Arguments`. Dit zorgt ervoor dat het script correct wordt uitgevoerd.
 
 #### .NET
 
-Zorg ervoor dat je in je projectdirectory bent:
+Zorg ervoor dat je in je projectmap bent:
 
 ```sh
 cd McpCalculatorServer
@@ -1285,45 +1287,46 @@ npx @modelcontextprotocol/inspector dotnet run
 
 #### Java
 
-Zorg ervoor dat je calculatorserver actief is.
+Zorg ervoor dat je calculator server actief is.  
 Voer vervolgens de inspector uit:
 
 ```cmd
 npx @modelcontextprotocol/inspector
 ```
 
-In de inspector-webinterface:
+In de webinterface van de inspector:
 
-1. Selecteer "SSE" als transporttype
-2. Stel de URL in op: `http://localhost:8080/sse`
-3. Klik op "Connect"
-![Verbinden](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.nl.png)
+1. Selecteer "SSE" als transporttype.
+2. Stel de URL in op: `http://localhost:8080/sse`.
+3. Klik op "Connect".
 
-**Je bent nu verbonden met de server**  
-**De testsectie van de Java-server is nu voltooid**
+![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.nl.png)
+
+**Je bent nu verbonden met de server.**  
+**De testsectie voor de Java-server is nu voltooid.**
 
 De volgende sectie gaat over interactie met de server.
 
 Je zou de volgende gebruikersinterface moeten zien:
 
-![Verbinden](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.nl.png)
+![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.nl.png)
 
-1. Verbind met de server door op de knop "Verbinden" te klikken.  
+1. Verbind met de server door op de knop "Connect" te klikken.  
    Zodra je verbonden bent met de server, zou je het volgende moeten zien:
 
-   ![Verbonden](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.nl.png)
+   ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.nl.png)
 
 2. Selecteer "Tools" en "listTools". Je zou "Add" moeten zien verschijnen. Selecteer "Add" en vul de parameterwaarden in.
 
-   Je zou de volgende respons moeten zien, oftewel een resultaat van de "add"-tool:
+   Je zou de volgende reactie moeten zien, namelijk een resultaat van de "add" tool:
 
-   ![Resultaat van add uitvoeren](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.nl.png)
+   ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.nl.png)
 
 Gefeliciteerd, je hebt je eerste server gemaakt en uitgevoerd!
 
 #### Rust
 
-Om de Rust-server te draaien met de MCP Inspector CLI, gebruik je het volgende commando:
+Om de Rust-server uit te voeren met de MCP Inspector CLI, gebruik je het volgende commando:
 
 ```sh
 npx @modelcontextprotocol/inspector cargo run --cli --method tools/call --tool-name add --tool-arg a=1 b=2
@@ -1333,37 +1336,37 @@ npx @modelcontextprotocol/inspector cargo run --cli --method tools/call --tool-n
 
 MCP biedt officiële SDK's voor meerdere talen:
 
-- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - Onderhouden in samenwerking met Microsoft  
-- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Onderhouden in samenwerking met Spring AI  
-- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - De officiële TypeScript-implementatie  
-- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - De officiële Python-implementatie  
-- [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - De officiële Kotlin-implementatie  
-- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - Onderhouden in samenwerking met Loopwork AI  
-- [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - De officiële Rust-implementatie  
+- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - Onderhouden in samenwerking met Microsoft
+- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Onderhouden in samenwerking met Spring AI
+- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - De officiële TypeScript-implementatie
+- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - De officiële Python-implementatie
+- [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - De officiële Kotlin-implementatie
+- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - Onderhouden in samenwerking met Loopwork AI
+- [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - De officiële Rust-implementatie
 
 ## Belangrijke punten
 
-- Het opzetten van een MCP-ontwikkelomgeving is eenvoudig met taal-specifieke SDK's.  
-- Het bouwen van MCP-servers omvat het creëren en registreren van tools met duidelijke schema's.  
-- Testen en debuggen zijn essentieel voor betrouwbare MCP-implementaties.  
+- Het opzetten van een MCP-ontwikkelomgeving is eenvoudig met taal-specifieke SDK's.
+- Het bouwen van MCP-servers omvat het maken en registreren van tools met duidelijke schema's.
+- Testen en debuggen zijn essentieel voor betrouwbare MCP-implementaties.
 
 ## Voorbeelden
 
-- [Java Calculator](../samples/java/calculator/README.md)  
-- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)  
-- [JavaScript Calculator](../samples/javascript/README.md)  
-- [TypeScript Calculator](../samples/typescript/README.md)  
-- [Python Calculator](../../../../03-GettingStarted/samples/python)  
-- [Rust Calculator](../../../../03-GettingStarted/samples/rust)  
+- [Java Calculator](../samples/java/calculator/README.md)
+- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
+- [JavaScript Calculator](../samples/javascript/README.md)
+- [TypeScript Calculator](../samples/typescript/README.md)
+- [Python Calculator](../../../../03-GettingStarted/samples/python)
+- [Rust Calculator](../../../../03-GettingStarted/samples/rust)
 
 ## Opdracht
 
 Maak een eenvoudige MCP-server met een tool naar keuze:
 
-1. Implementeer de tool in je favoriete programmeertaal (.NET, Java, Python, TypeScript of Rust).  
-2. Definieer invoerparameters en retourwaarden.  
-3. Voer de inspectortool uit om te controleren of de server correct werkt.  
-4. Test de implementatie met verschillende invoerwaarden.  
+1. Implementeer de tool in je favoriete programmeertaal (.NET, Java, Python, TypeScript of Rust).
+2. Definieer invoerparameters en retourwaarden.
+3. Voer de inspector tool uit om te controleren of de server naar behoren werkt.
+4. Test de implementatie met verschillende invoerwaarden.
 
 ## Oplossing
 
@@ -1371,15 +1374,15 @@ Maak een eenvoudige MCP-server met een tool naar keuze:
 
 ## Aanvullende bronnen
 
-- [Agents bouwen met Model Context Protocol op Azure](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)  
-- [Remote MCP met Azure Container Apps (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)  
-- [.NET OpenAI MCP Agent](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)  
+- [Agents bouwen met Model Context Protocol op Azure](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)
+- [Remote MCP met Azure Container Apps (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)
+- [.NET OpenAI MCP Agent](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)
 
-## Wat komt hierna?
+## Wat komt hierna
 
-Volgende: [Aan de slag met MCP-clients](../02-client/README.md)  
+Volgende: [Aan de slag met MCP Clients](../02-client/README.md)
 
 ---
 
 **Disclaimer**:  
-Dit document is vertaald met behulp van de AI-vertalingsservice [Co-op Translator](https://github.com/Azure/co-op-translator). Hoewel we streven naar nauwkeurigheid, dient u zich ervan bewust te zijn dat geautomatiseerde vertalingen fouten of onnauwkeurigheden kunnen bevatten. Het originele document in zijn oorspronkelijke taal moet worden beschouwd als de gezaghebbende bron. Voor cruciale informatie wordt professionele menselijke vertaling aanbevolen. Wij zijn niet aansprakelijk voor eventuele misverstanden of verkeerde interpretaties die voortvloeien uit het gebruik van deze vertaling.
+Dit document is vertaald met behulp van de AI-vertalingsservice [Co-op Translator](https://github.com/Azure/co-op-translator). Hoewel we streven naar nauwkeurigheid, dient u zich ervan bewust te zijn dat geautomatiseerde vertalingen fouten of onnauwkeurigheden kunnen bevatten. Het originele document in de oorspronkelijke taal moet worden beschouwd als de gezaghebbende bron. Voor kritieke informatie wordt professionele menselijke vertaling aanbevolen. Wij zijn niet aansprakelijk voor eventuele misverstanden of verkeerde interpretaties die voortvloeien uit het gebruik van deze vertaling.
