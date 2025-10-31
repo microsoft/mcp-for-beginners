@@ -1,4 +1,4 @@
-# MCP Root Contexts
+# MCP Root Contexts 
 
 Root contexts are a fundamental concept in the Model Context Protocol that provide a persistent layer for maintaining conversation history and shared state across multiple requests and sessions.
 
