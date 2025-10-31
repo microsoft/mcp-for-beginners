@@ -15,7 +15,7 @@ Consider Sarah, a financial analyst who needs to examine quarterly reports with 
 5. [Working with Root Contexts](#working-with-root-contexts)
    - [C# Implementation](#c-implementation)
    - [Java Implementation](#java-implementation)
-   - [JavaScript Implementation](#javascript-implementation)
+   - [TypeScript Implementation](#typescript-implementation)
    - [Python Implementation](#python-implementation)
 6. [Root Context Best Practices](#root-context-best-practices)
 7. [What's Next](#whats-next)
@@ -32,7 +32,7 @@ By the end of this lesson, you will be able to:
 
 - Understand the purpose and structure of root contexts
 - Create and manage root contexts using MCP client libraries
-- Implement root contexts in .NET, Java, JavaScript, and Python applications
+- Implement root contexts in .NET, Java, TypeScript, and Python applications
 - Utilize root contexts for multi-turn conversations and state management
 - Implement best practices for root context management
 
@@ -505,11 +505,11 @@ flowchart LR
 
 > 💼 **Business Value**: Each question builds on the previous one, creating a comprehensive analysis that wouldn't be possible without root contexts!
 
-## Root Context Management in JavaScript
+## Root Context Management in TypeScript
 
-Let's explore how to build a **customer support system** that maintains conversation state across multiple interactions. We'll create a complete context management solution.
+Let's explore how to build a **customer support system** that maintains conversation state across multiple interactions. We'll create a complete context management solution with full type safety.
 
-### JavaScript Implementation
+### TypeScript Implementation
 
 #### Building a Context Session Manager
 
@@ -517,9 +517,9 @@ Let's explore how to build a **customer support system** that maintains conversa
 
 Modern customer support requires sophisticated state management and error handling. Let's create our core session management class:
 
-```javascript
-// JavaScript Example: Context Session Manager Setup
-const { McpClient, RootContextManager } = require('@mcp/client');
+```typescript
+// TypeScript Example: Context Session Manager Setup
+import { McpClient, RootContextManager } from '@mcp/client';
 
 class ContextSession {
   constructor(serverUrl, apiKey = null) {
@@ -530,11 +530,11 @@ class ContextSession {
   }
 ```
 
-The JavaScript constructor:
+The TypeScript constructor with type safety:
 - Creates a `ContextSession` class using object-oriented patterns
 - Accepts optional `apiKey` parameters for flexible authentication
 - Encapsulates both `McpClient` and `RootContextManager` instances
-- Provides a clean interface for customer support operations with `require('@mcp/client')`
+- Provides a clean interface for customer support operations with `import` statements
 
 #### Step 2: Creating Conversation Contexts
 
@@ -775,7 +775,7 @@ Now let's see our entire customer support system in action with a realistic supp
 
 ```javascript
 // Complete demonstration of context session management
-async function demonstrateContextSession() {
+export async function demonstrateContextSession() {
   console.log('🚀 Starting Context Session Demo\n');
   const session = new ContextSession('https://mcp-server-example.com');
   
@@ -831,7 +831,9 @@ async function demonstrateContextSession() {
 }
 
 // Run the demonstration
-demonstrateContextSession();
+if (import.meta.main) {
+  demonstrateContextSession();
+}
 ```
 
 The complete demo:

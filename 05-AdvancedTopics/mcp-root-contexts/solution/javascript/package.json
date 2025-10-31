@@ -1,0 +1,33 @@
+{
+  "name": "mcp-root-context-example",
+  "version": "1.0.0",
+  "description": "Example demonstrating MCP root contexts for customer support",
+  "type": "module",
+  "main": "contextSession.js",
+  "scripts": {
+    "start": "node contextSession.js",
+    "dev": "node --watch contextSession.js",
+    "test": "node --test",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "@mcp/client": "^1.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "prettier": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "root-contexts",
+    "ai",
+    "customer-support"
+  ],
+  "author": "Microsoft",
+  "license": "MIT"
+}
