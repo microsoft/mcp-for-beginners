@@ -1,0 +1,20 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "7b2e74021ff41e9ad5892ed5e07cd72f",
+  "translation_date": "2025-11-18T19:18:17+00:00",
+  "source_file": "03-GettingStarted/10-advanced/code/README.md",
+  "language_code": "pcm"
+}
+-->
+Runtimes
+
+- [Python](./python/README.md)
+- [TypeScript](./typescript/README.md)
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Disclaimer**:  
+Dis dokyument don use AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator) do di translation. Even as we dey try make am correct, abeg sabi say machine translation fit get mistake or no dey accurate well. Di original dokyument wey dey for im native language na di main source wey you go trust. For important mata, e better make professional human translator check am. We no go fit take blame for any misunderstanding or wrong interpretation wey fit happen because you use dis translation.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

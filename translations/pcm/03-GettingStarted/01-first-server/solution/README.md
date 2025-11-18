@@ -1,0 +1,23 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "4117a42f3e7baae859515f7b8b911e56",
+  "translation_date": "2025-11-18T19:12:39+00:00",
+  "source_file": "03-GettingStarted/01-first-server/solution/README.md",
+  "language_code": "pcm"
+}
+-->
+Here be di solutions for each runtime:
+
+- [TypeScript](./typescript/README.md)
+- [Python](./python/README.md)
+- [.NET](./dotnet/README.md)
+- [Java](./java/README.md)
+- [Rust](./rust/README.md)
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Disclaimer**:  
+Dis dokyument don use AI transleto service [Co-op Translator](https://github.com/Azure/co-op-translator) do di translation. Even as we dey try make am correct, abeg sabi say machine translation fit get mistake or no dey accurate well. Di original dokyument wey dey for im native language na di main source wey you go fit trust. For important mata, e good make professional human transleto check am. We no go fit take blame for any misunderstanding or wrong interpretation wey fit happen because you use dis translation.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
