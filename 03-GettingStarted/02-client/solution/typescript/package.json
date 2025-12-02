@@ -12,7 +12,7 @@
         "build"
     ],
     "dependencies": {
-        "@modelcontextprotocol/sdk": "^1.8.0",
+        "@modelcontextprotocol/sdk": "^1.24.0",
         "type": "^2.7.3",
         "uuid": "^11.1.0",
         "zod": "^3.24.2"
