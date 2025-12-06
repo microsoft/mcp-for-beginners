@@ -958,7 +958,7 @@ def get_greeting(name: str) -> str:
 
 In the preceding code we've:
 
-- Defined a tool `add` that takes parameters `a` and `p`, both integers.
+- Defined a tool `add` that takes parameters `a` and `b`, both integers.
 - Created a resource called `greeting` that takes parameter `name`.
 
 #### .NET
