@@ -32,7 +32,7 @@ async def list_tools() -> list[Tool]:
         Tool(
             name="add",
             description="Add two numbers together",
-            input_schema={
+            inputSchema={
                 "type": "object",
                 "properties": {
                     "a": {"type": "number", "description": "First number"},
@@ -44,7 +44,7 @@ async def list_tools() -> list[Tool]:
         Tool(
             name="multiply",
             description="Multiply two numbers together",
-            input_schema={
+            inputSchema={
                 "type": "object",
                 "properties": {
                     "a": {"type": "number", "description": "First number"},
@@ -56,7 +56,7 @@ async def list_tools() -> list[Tool]:
         Tool(
             name="get_greeting",
             description="Generate a personalized greeting",
-            input_schema={
+            inputSchema={
                 "type": "object",
                 "properties": {
                     "name": {"type": "string", "description": "Name to greet"}
@@ -67,7 +67,7 @@ async def list_tools() -> list[Tool]:
         Tool(
             name="get_server_info",
             description="Get information about this MCP server",
-            input_schema={"type": "object", "properties": {}}
+            inputSchema={"type": "object", "properties": {}}
         )
     ]
 
