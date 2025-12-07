@@ -108,7 +108,7 @@ async def main():
     
     try:
         # Use stdio transport - this is the recommended approach
-        async with stdio_server(server) as (read_stream, write_stream):
+        async with stdio_server() as (read_stream, write_stream):
             logger.info("Server connected via stdio transport")
             await server.run(
                 read_stream,
