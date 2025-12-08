@@ -32,7 +32,7 @@ async def list_tools() -> list[Tool]:
         Tool(
             name="add",
             description="Add two numbers together",
-            input_schema={
+            inputSchema={
                 "type": "object",
                 "properties": {
                     "a": {"type": "number", "description": "First number"},
@@ -44,7 +44,7 @@ async def list_tools() -> list[Tool]:
         Tool(
             name="multiply",
             description="Multiply two numbers together",
-            input_schema={
+            inputSchema={
                 "type": "object",
                 "properties": {
                     "a": {"type": "number", "description": "First number"},
@@ -56,7 +56,7 @@ async def list_tools() -> list[Tool]:
         Tool(
             name="get_greeting",
             description="Generate a personalized greeting",
-            input_schema={
+            inputSchema={
                 "type": "object",
                 "properties": {
                     "name": {"type": "string", "description": "Name to greet"}
@@ -67,7 +67,7 @@ async def list_tools() -> list[Tool]:
         Tool(
             name="get_server_info",
             description="Get information about this MCP server",
-            input_schema={"type": "object", "properties": {}}
+            inputSchema={"type": "object", "properties": {}}
         )
     ]
 
@@ -108,7 +108,7 @@ async def main():
     
     try:
         # Use stdio transport - this is the recommended approach
-        async with stdio_server(server) as (read_stream, write_stream):
+        async with stdio_server() as (read_stream, write_stream):
             logger.info("Server connected via stdio transport")
             await server.run(
                 read_stream,
