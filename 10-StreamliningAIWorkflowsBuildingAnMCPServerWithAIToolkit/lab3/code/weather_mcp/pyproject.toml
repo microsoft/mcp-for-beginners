@@ -5,7 +5,7 @@ description = "A simple MCP weather server"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-    "mcp==1.10.0"
+    "mcp==1.23.0"
 ]
 
 [project.optional-dependencies]
