@@ -1,0 +1,53 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "3f68294760a11dd3fdd175bd7f904a92",
+  "translation_date": "2025-12-11T13:20:51+00:00",
+  "source_file": "03-GettingStarted/11-simple-auth/code/basic/python/README.md",
+  "language_code": "ml"
+}
+-->
+# സാമ്പിൾ പ്രവർത്തിപ്പിക്കുക
+
+ഈ സാമ്പിൾ ഒരു MCP സെർവർ ആരംഭിക്കുന്നു, സാധുവായ Authorization ഹെഡർ പരിശോധിക്കുന്ന ഒരു മിഡിൽവെയർ ഉപയോഗിച്ച്.
+
+## ആശ്രിതങ്ങൾ ഇൻസ്റ്റാൾ ചെയ്യുക
+
+```bash
+pip install "mcp[cli]" 
+```
+
+## സെർവർ ആരംഭിക്കുക
+
+```bash
+python server.py
+```
+
+മറ്റൊരു ടെർമിനലിൽ ക്ലയന്റ് ആരംഭിക്കുക
+
+```bash
+python client.py
+```
+
+നിങ്ങൾക്ക് ഇതുപോലൊരു ഫലം കാണാം:
+
+```text
+2025-09-30 13:25:54 - mcp_client - INFO - Tool result: meta=None content=[TextContent(type='text', text='{\n  "current_time": "2025-09-30T13:25:54.311900",\n  "timezone": "UTC",\n  "timestamp": 1759238754.3119,\n  "formatted": "2025-09-30 13:25:54"\n}', annotations=None, meta=None)] structuredContent={'current_time': '2025-09-30T13:25:54.311900', 'timezone': 'UTC', 'timestamp': 1759238754.3119, 'formatted': '2025-09-30 13:25:54'} isError=False
+```
+
+ഇത് അയക്കുന്ന ക്രെഡൻഷ്യൽ അനുവദിക്കപ്പെടുന്നു എന്നർത്ഥം.
+
+`client.py`-ൽ ക്രെഡൻഷ്യൽ "secret-token2" ആയി മാറ്റി നോക്കുക, പിന്നെ നിങ്ങൾക്ക് പ്രതികരണത്തിന്റെ ഭാഗമായ ഈ വാചകം കാണാം:
+
+```text
+2025-09-30 13:27:44 - httpx - INFO - HTTP Request: POST http://localhost:8000/mcp "HTTP/1.1 403 Forbidden"
+```
+
+ഇത് നിങ്ങൾ പ്രാമാണീകരിക്കപ്പെട്ടുവെന്ന് (നിങ്ങൾക്ക് ഒരു ക്രെഡൻഷ്യൽ ഉണ്ടായിരുന്നു), പക്ഷേ അത് അസാധുവായിരുന്നു എന്നർത്ഥം.
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**അസൂയാ**:  
+ഈ രേഖ AI വിവർത്തന സേവനം [Co-op Translator](https://github.com/Azure/co-op-translator) ഉപയോഗിച്ച് വിവർത്തനം ചെയ്തതാണ്. നാം കൃത്യതയ്ക്ക് ശ്രമിച്ചിട്ടുണ്ടെങ്കിലും, സ്വയം പ്രവർത്തിക്കുന്ന വിവർത്തനങ്ങളിൽ പിശകുകൾ അല്ലെങ്കിൽ തെറ്റുകൾ ഉണ്ടാകാമെന്ന് ദയവായി ശ്രദ്ധിക്കുക. അതിന്റെ മാതൃഭാഷയിലുള്ള യഥാർത്ഥ രേഖ അധികാരപരമായ ഉറവിടമായി കണക്കാക്കണം. നിർണായക വിവരങ്ങൾക്ക്, പ്രൊഫഷണൽ മനുഷ്യ വിവർത്തനം ശുപാർശ ചെയ്യപ്പെടുന്നു. ഈ വിവർത്തനം ഉപയോഗിക്കുന്നതിൽ നിന്നുണ്ടാകുന്ന ഏതെങ്കിലും തെറ്റിദ്ധാരണകൾക്കോ തെറ്റായ വ്യാഖ്യാനങ്ങൾക്കോ ഞങ്ങൾ ഉത്തരവാദികളല്ല.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

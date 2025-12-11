@@ -1,0 +1,90 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "0f27f8c14853621d982185e6bbdd1dc6",
+  "translation_date": "2025-12-11T12:50:24+00:00",
+  "source_file": "03-GettingStarted/samples/javascript/README.md",
+  "language_code": "te"
+}
+-->
+# నమూనా
+
+ఇది MCP సర్వర్ కోసం ఒక జావాస్క్రిప్ట్ నమూనా
+
+దాని క్యాల్క్యులేటర్ భాగం ఇలా ఉంటుంది:
+
+```javascript
+// ప్రతి ఆపరేషన్ కోసం క్యాల్క్యులేటర్ టూల్స్ నిర్వచించండి
+server.tool(
+  "add",
+  {
+    a: z.number(),
+    b: z.number()
+  },
+  async ({ a, b }) => ({
+    content: [{ type: "text", text: String(a + b) }]
+  })
+);
+
+server.tool(
+  "subtract",
+  {
+    a: z.number(),
+    b: z.number()
+  },
+  async ({ a, b }) => ({
+    content: [{ type: "text", text: String(a - b) }]
+  })
+);
+
+server.tool(
+  "multiply",
+  {
+    a: z.number(),
+    b: z.number()
+  },
+  async ({ a, b }) => ({
+    content: [{ type: "text", text: String(a * b) }]
+  })
+);
+
+server.tool(
+  "divide",
+  {
+    a: z.number(),
+    b: z.number()
+  },
+  async ({ a, b }) => {
+    if (b === 0) {
+      return {
+        content: [{ type: "text", text: "Error: Cannot divide by zero" }],
+        isError: true
+      };
+    }
+    return {
+      content: [{ type: "text", text: String(a / b) }]
+    };
+  }
+);
+```
+
+## ఇన్‌స్టాల్ చేయండి
+
+క్రింది కమాండ్‌ను నడపండి:
+
+```bash
+npm install
+```
+
+## నడపండి
+
+```bash
+npm start
+```
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**అస్పష్టత**:  
+ఈ డాక్యుమెంట్‌ను AI అనువాద సేవ [Co-op Translator](https://github.com/Azure/co-op-translator) ఉపయోగించి అనువదించబడింది. మేము ఖచ్చితత్వానికి ప్రయత్నించినప్పటికీ, ఆటోమేటెడ్ అనువాదాల్లో పొరపాట్లు లేదా తప్పిదాలు ఉండవచ్చు. మూల డాక్యుమెంట్ దాని స్వదేశీ భాషలో అధికారిక మూలంగా పరిగణించాలి. ముఖ్యమైన సమాచారానికి, ప్రొఫెషనల్ మానవ అనువాదం సిఫార్సు చేయబడుతుంది. ఈ అనువాదం వలన కలిగే ఏవైనా అపార్థాలు లేదా తప్పుదారితీసే అర్థాలు కోసం మేము బాధ్యత వహించము.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

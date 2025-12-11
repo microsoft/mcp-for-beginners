@@ -1,0 +1,22 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "96dbf17071ab774595ab8777468f0c83",
+  "translation_date": "2025-12-11T13:24:33+00:00",
+  "source_file": "03-GettingStarted/06-http-streaming/solution/README.md",
+  "language_code": "kn"
+}
+-->
+ಪ್ರತಿ ರನ್‌ಟೈಮ್‌ಗೆ ಪರಿಹಾರಗಳು ಇಲ್ಲಿವೆ:
+
+- [Python](./python/README.md)
+- [Java](./java/README.md)
+- [.NET](./dotnet/README.md)
+- [Rust](../../../../../03-GettingStarted/06-http-streaming/solution/rust)
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**ಅಸ್ವೀಕರಣ**:  
+ಈ ದಸ್ತಾವೇಜು [Co-op Translator](https://github.com/Azure/co-op-translator) ಎಂಬ AI ಅನುವಾದ ಸೇವೆಯನ್ನು ಬಳಸಿ ಅನುವಾದಿಸಲಾಗಿದೆ. ನಾವು ಶುದ್ಧತೆಯತ್ತ ಪ್ರಯತ್ನಿಸುತ್ತಿದ್ದರೂ, ಸ್ವಯಂಚಾಲಿತ ಅನುವಾದಗಳಲ್ಲಿ ತಪ್ಪುಗಳು ಅಥವಾ ಅಸತ್ಯತೆಗಳು ಇರಬಹುದು ಎಂದು ದಯವಿಟ್ಟು ಗಮನಿಸಿ. ಮೂಲ ಭಾಷೆಯಲ್ಲಿರುವ ಮೂಲ ದಸ್ತಾವೇಜನ್ನು ಅಧಿಕೃತ ಮೂಲವೆಂದು ಪರಿಗಣಿಸಬೇಕು. ಮಹತ್ವದ ಮಾಹಿತಿಗಾಗಿ, ವೃತ್ತಿಪರ ಮಾನವ ಅನುವಾದವನ್ನು ಶಿಫಾರಸು ಮಾಡಲಾಗುತ್ತದೆ. ಈ ಅನುವಾದ ಬಳಕೆಯಿಂದ ಉಂಟಾಗುವ ಯಾವುದೇ ತಪ್ಪು ಅರ್ಥಮಾಡಿಕೊಳ್ಳುವಿಕೆ ಅಥವಾ ತಪ್ಪು ವಿವರಣೆಗಳಿಗೆ ನಾವು ಹೊಣೆಗಾರರಾಗುವುದಿಲ್ಲ.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

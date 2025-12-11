@@ -1,0 +1,20 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "c2cdd08d4e120558270e3f534841fab8",
+  "translation_date": "2025-12-11T13:18:06+00:00",
+  "source_file": "03-GettingStarted/11-simple-auth/code/README.md",
+  "language_code": "te"
+}
+-->
+పరిష్కారం
+
+- [Python](./basic/python/README.md)
+- [TypeScript](./basic/typescript/README.md)
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**అస్పష్టత**:  
+ఈ పత్రాన్ని AI అనువాద సేవ [Co-op Translator](https://github.com/Azure/co-op-translator) ఉపయోగించి అనువదించబడింది. మేము ఖచ్చితత్వానికి ప్రయత్నించినప్పటికీ, ఆటోమేటెడ్ అనువాదాల్లో పొరపాట్లు లేదా తప్పిదాలు ఉండవచ్చు. మూల పత్రం దాని స్వదేశీ భాషలోనే అధికారిక మూలంగా పరిగణించాలి. ముఖ్యమైన సమాచారానికి, ప్రొఫెషనల్ మానవ అనువాదం సిఫార్సు చేయబడుతుంది. ఈ అనువాదం వాడకం వల్ల కలిగే ఏవైనా అపార్థాలు లేదా తప్పుదారుల బాధ్యత మేము తీసుకోము.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

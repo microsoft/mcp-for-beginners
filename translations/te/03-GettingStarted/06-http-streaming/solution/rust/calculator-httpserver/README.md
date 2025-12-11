@@ -1,0 +1,29 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "6240e78bb87f91bece16f8742472aeef",
+  "translation_date": "2025-12-11T13:30:29+00:00",
+  "source_file": "03-GettingStarted/06-http-streaming/solution/rust/calculator-httpserver/README.md",
+  "language_code": "te"
+}
+-->
+# ఈ నమూనాను నడపడం
+
+## -1- ఆధారాలను ఇన్‌స్టాల్ చేసి ప్రాజెక్ట్‌ను నిర్మించండి
+
+```bash
+cargo build
+```
+
+## -2- నమూనాను నడపండి
+
+```bash
+cargo run
+```
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**అస్పష్టత**:  
+ఈ పత్రాన్ని AI అనువాద సేవ [Co-op Translator](https://github.com/Azure/co-op-translator) ఉపయోగించి అనువదించబడింది. మేము ఖచ్చితత్వానికి ప్రయత్నించినప్పటికీ, ఆటోమేటెడ్ అనువాదాల్లో పొరపాట్లు లేదా తప్పిదాలు ఉండవచ్చు. మూల పత్రం దాని స్వదేశీ భాషలో అధికారిక మూలంగా పరిగణించాలి. ముఖ్యమైన సమాచారానికి, ప్రొఫెషనల్ మానవ అనువాదం సిఫార్సు చేయబడుతుంది. ఈ అనువాదం వాడకంలో ఏర్పడిన ఏవైనా అపార్థాలు లేదా తప్పుదారితీసే అర్థాలు కోసం మేము బాధ్యత వహించము.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

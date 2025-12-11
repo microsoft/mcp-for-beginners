@@ -1,0 +1,112 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "dde4e32e4b55ef4962c411b39d2340a7",
+  "translation_date": "2025-12-11T13:27:16+00:00",
+  "source_file": "03-GettingStarted/06-http-streaming/solution/dotnet/README.md",
+  "language_code": "ml"
+}
+-->
+# ഈ സാമ്പിൾ പ്രവർത്തിപ്പിക്കൽ
+
+## -1- ആശ്രിതങ്ങൾ ഇൻസ്റ്റാൾ ചെയ്യുക
+
+```bash
+dotnet restore
+```
+
+## -2- സാമ്പിൾ പ്രവർത്തിപ്പിക്കുക
+
+```bash
+dotnet run
+```
+
+## -3- സാമ്പിൾ പരിശോധന
+
+താഴെ കൊടുത്തിരിക്കുന്ന കമാൻഡ് പ്രവർത്തിപ്പിക്കുന്നതിന് മുമ്പ് വേറെ ഒരു ടെർമിനൽ ആരംഭിക്കുക (സർവർ ഇപ്പോഴും പ്രവർത്തനക്ഷമമാണെന്ന് ഉറപ്പാക്കുക).
+
+ഒരു ടെർമിനലിൽ സർവർ പ്രവർത്തിക്കുന്നതിനിടെ, മറ്റൊരു ടെർമിനൽ തുറന്ന് താഴെ കൊടുത്തിരിക്കുന്ന കമാൻഡ് പ്രവർത്തിപ്പിക്കുക:
+
+```bash
+npx @modelcontextprotocol/inspector http://localhost:3001
+```
+
+ഇത് ഒരു ദൃശ്യ ഇന്റർഫേസ് ഉള്ള വെബ് സർവർ ആരംഭിക്കും, ഇത് ഉപയോഗിച്ച് നിങ്ങൾക്ക് സാമ്പിൾ പരിശോധിക്കാം.
+
+> **Streamable HTTP** ട്രാൻസ്പോർട്ട് തരം ആയി തിരഞ്ഞെടുക്കപ്പെട്ടിട്ടുണ്ടെന്ന് ഉറപ്പാക്കുക, URL `http://localhost:3001/mcp` ആണെന്ന് പരിശോധിക്കുക.
+
+സർവർ കണക്റ്റ് ആയ ശേഷം:
+
+- ടൂളുകൾ ലിസ്റ്റ് ചെയ്യാൻ ശ്രമിക്കുക, പിന്നെ `add` കമാൻഡ് 2, 4 എന്ന arguments ഉപയോഗിച്ച് പ്രവർത്തിപ്പിക്കുക, ഫലത്തിൽ 6 കാണണം.
+- resources-ലും resource template-ലും "greeting" വിളിക്കുക, ഒരു പേര് ടൈപ്പ് ചെയ്യുക, നിങ്ങൾ നൽകിയ പേരോടെ ഒരു അഭിവാദ്യം കാണണം.
+
+### CLI മോഡിൽ പരിശോധന
+
+താഴെ കൊടുത്തിരിക്കുന്ന കമാൻഡ് പ്രവർത്തിപ്പിച്ച് നേരിട്ട് CLI മോഡിൽ ആരംഭിക്കാം:
+
+```bash 
+npx @modelcontextprotocol/inspector --cli http://localhost:3001 --method tools/list
+```
+
+ഇത് സർവറിൽ ലഭ്യമായ എല്ലാ ടൂളുകളും ലിസ്റ്റ് ചെയ്യും. നിങ്ങൾക്ക് താഴെ കാണുന്ന ഔട്ട്പുട്ട് കാണാം:
+
+```text
+{
+  "tools": [
+    {
+      "name": "AddNumbers",
+      "description": "Add two numbers together.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "a": {
+            "description": "The first number",
+            "type": "integer"
+          },
+          "b": {
+            "description": "The second number",
+            "type": "integer"
+          }
+        },
+        "title": "AddNumbers",
+        "description": "Add two numbers together.",
+        "required": [
+          "a",
+          "b"
+        ]
+      }
+    }
+  ]
+}
+```
+
+ഒരു ടൂൾ പ്രവർത്തിപ്പിക്കാൻ ടൈപ്പ് ചെയ്യുക:
+
+```bash
+npx @modelcontextprotocol/inspector --cli http://localhost:3001 --method tools/call --tool-name AddNumbers --tool-arg a=1 --tool-arg b=2
+```
+
+താഴെ കാണുന്ന ഔട്ട്പുട്ട് നിങ്ങൾക്ക് കാണാം:
+
+```text
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "3"
+    }
+  ],
+  "isError": false
+}
+```
+
+> [!TIP]
+> ബ്രൗസറിൽ നിന്ന് CLI മോഡിൽ ഇൻസ്പെക്ടർ പ്രവർത്തിപ്പിക്കുന്നത് സാധാരണയായി വളരെ വേഗമാണ്.
+> ഇൻസ്പെക്ടറിനെക്കുറിച്ച് കൂടുതൽ വായിക്കാൻ [ഇവിടെ](https://github.com/modelcontextprotocol/inspector) ക്ലിക്ക് ചെയ്യുക.
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**അസൂയാ**:  
+ഈ രേഖ AI വിവർത്തന സേവനം [Co-op Translator](https://github.com/Azure/co-op-translator) ഉപയോഗിച്ച് വിവർത്തനം ചെയ്തതാണ്. നാം കൃത്യതയ്ക്ക് ശ്രമിച്ചെങ്കിലും, സ്വയം പ്രവർത്തിക്കുന്ന വിവർത്തനങ്ങളിൽ പിശകുകൾ അല്ലെങ്കിൽ തെറ്റുകൾ ഉണ്ടാകാമെന്ന് ദയവായി ശ്രദ്ധിക്കുക. അതിന്റെ മാതൃഭാഷയിലുള്ള യഥാർത്ഥ രേഖയാണ് പ്രാമാണികമായ ഉറവിടം എന്ന് പരിഗണിക്കേണ്ടതാണ്. നിർണായകമായ വിവരങ്ങൾക്ക്, പ്രൊഫഷണൽ മനുഷ്യ വിവർത്തനം ശുപാർശ ചെയ്യപ്പെടുന്നു. ഈ വിവർത്തനം ഉപയോഗിക്കുന്നതിൽ നിന്നുണ്ടാകുന്ന ഏതെങ്കിലും തെറ്റിദ്ധാരണകൾക്കോ തെറ്റായ വ്യാഖ്യാനങ്ങൾക്കോ ഞങ്ങൾ ഉത്തരവാദികളല്ല.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
