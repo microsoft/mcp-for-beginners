@@ -1,69 +1,69 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "726b74589522653d930c7395c9e1fab8",
-  "translation_date": "2025-10-20T17:04:05+00:00",
+  "original_hash": "8fdac7600a5f4722643d0f14e15ac259",
+  "translation_date": "2025-12-11T06:27:20+00:00",
   "source_file": "03-GettingStarted/01-first-server/README.md",
   "language_code": "tr"
 }
 -->
 # MCP ile Başlarken
 
-Model Context Protocol (MCP) ile ilk adımlarınıza hoş geldiniz! MCP'ye yeniyseniz veya bilginizi derinleştirmek istiyorsanız, bu rehber sizi temel kurulum ve geliştirme süreci boyunca yönlendirecek. MCP'nin yapay zeka modelleri ile uygulamalar arasında sorunsuz entegrasyonu nasıl sağladığını keşfedecek ve MCP destekli çözümler oluşturmak ve test etmek için ortamınızı hızlı bir şekilde nasıl hazırlayacağınızı öğreneceksiniz.
+Model Context Protocol (MCP) ile ilk adımlarınıza hoş geldiniz! MCP'ye yeniyseniz veya bilginizi derinleştirmek istiyorsanız, bu rehber sizi temel kurulum ve geliştirme süreci boyunca yönlendirecek. MCP'nin AI modelleri ile uygulamalar arasında nasıl sorunsuz entegrasyon sağladığını keşfedecek ve MCP destekli çözümler oluşturup test etmek için ortamınızı nasıl hızlıca hazırlayacağınızı öğreneceksiniz.
 
-> Kısaca; Eğer yapay zeka uygulamaları geliştiriyorsanız, LLM'nize (büyük dil modeli) araçlar ve diğer kaynaklar ekleyerek LLM'nin daha bilgili olmasını sağlayabilirsiniz. Ancak bu araçları ve kaynakları bir sunucuya yerleştirirseniz, uygulama ve sunucu yetenekleri LLM olsun ya da olmasın herhangi bir istemci tarafından kullanılabilir.
+> Özet; AI uygulamaları geliştiriyorsanız, LLM'nizi (büyük dil modeli) daha bilgili hale getirmek için araçlar ve diğer kaynaklar ekleyebileceğinizi bilirsiniz. Ancak bu araçları ve kaynakları bir sunucuya yerleştirirseniz, uygulama ve sunucu yetenekleri LLM ile/LLM olmadan herhangi bir istemci tarafından kullanılabilir.
 
 ## Genel Bakış
 
-Bu ders, MCP ortamlarını kurma ve ilk MCP uygulamalarınızı oluşturma konusunda pratik rehberlik sağlar. Gerekli araçları ve çerçeveleri nasıl kuracağınızı, temel MCP sunucularını nasıl oluşturacağınızı, ana uygulamalar yaratmayı ve uygulamalarınızı test etmeyi öğreneceksiniz.
+Bu ders, MCP ortamlarının kurulumu ve ilk MCP uygulamalarınızın oluşturulması konusunda pratik rehberlik sağlar. Gerekli araçları ve çerçeveleri nasıl kuracağınızı, temel MCP sunucuları nasıl oluşturacağınızı, ana uygulamalar yaratmayı ve uygulamalarınızı nasıl test edeceğinizi öğreneceksiniz.
 
-Model Context Protocol (MCP), uygulamaların LLM'lere bağlam sağlamasını standartlaştıran açık bir protokoldür. MCP'yi yapay zeka uygulamaları için bir USB-C portu gibi düşünebilirsiniz - yapay zeka modellerini farklı veri kaynaklarına ve araçlara bağlamak için standart bir yol sağlar.
+Model Context Protocol (MCP), uygulamaların LLM'lere bağlam sağlamasını standartlaştıran açık bir protokoldür. MCP'yi AI uygulamaları için bir USB-C portu gibi düşünebilirsiniz - AI modellerini farklı veri kaynakları ve araçlara bağlamak için standart bir yol sağlar.
 
 ## Öğrenme Hedefleri
 
 Bu dersin sonunda şunları yapabileceksiniz:
 
-- MCP için C#, Java, Python, TypeScript ve Rust dillerinde geliştirme ortamları kurmak
+- C#, Java, Python, TypeScript ve Rust için MCP geliştirme ortamlarını kurmak
 - Özel özelliklere (kaynaklar, istemler ve araçlar) sahip temel MCP sunucuları oluşturmak ve dağıtmak
 - MCP sunucularına bağlanan ana uygulamalar oluşturmak
 - MCP uygulamalarını test etmek ve hata ayıklamak
 
 ## MCP Ortamınızı Kurma
 
-MCP ile çalışmaya başlamadan önce, geliştirme ortamınızı hazırlamak ve temel iş akışını anlamak önemlidir. Bu bölüm, MCP ile sorunsuz bir başlangıç için gerekli kurulum adımlarında size rehberlik edecektir.
+MCP ile çalışmaya başlamadan önce, geliştirme ortamınızı hazırlamak ve temel iş akışını anlamak önemlidir. Bu bölüm, MCP ile sorunsuz bir başlangıç yapmanız için ilk kurulum adımlarında size rehberlik edecektir.
 
 ### Ön Koşullar
 
-MCP geliştirmeye başlamadan önce şunlara sahip olduğunuzdan emin olun:
+MCP geliştirmeye başlamadan önce, aşağıdakilere sahip olduğunuzdan emin olun:
 
 - **Geliştirme Ortamı**: Seçtiğiniz dil için (C#, Java, Python, TypeScript veya Rust)
-- **IDE/Düzenleyici**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm veya herhangi bir modern kod düzenleyici
+- **IDE/Düzenleyici**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm veya herhangi modern bir kod düzenleyici
 - **Paket Yöneticileri**: NuGet, Maven/Gradle, pip, npm/yarn veya Cargo
-- **API Anahtarları**: Ana uygulamalarınızda kullanmayı planladığınız herhangi bir yapay zeka hizmeti için
+- **API Anahtarları**: Ana uygulamalarınızda kullanmayı planladığınız herhangi bir AI servisi için
 
 ## Temel MCP Sunucu Yapısı
 
-Bir MCP sunucusu genellikle şunları içerir:
+Bir MCP sunucusu tipik olarak şunları içerir:
 
 - **Sunucu Yapılandırması**: Port, kimlik doğrulama ve diğer ayarların kurulumu
 - **Kaynaklar**: LLM'lere sunulan veri ve bağlam
 - **Araçlar**: Modellerin çağırabileceği işlevsellik
-- **İstemler**: Metin oluşturma veya yapılandırma şablonları
+- **İstemler**: Metin oluşturmak veya yapılandırmak için şablonlar
 
-TypeScript'te basitleştirilmiş bir örnek:
+İşte TypeScript'te basitleştirilmiş bir örnek:
 
 ```typescript
 import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 
-// Create an MCP server
+// Bir MCP sunucusu oluştur
 const server = new McpServer({
   name: "Demo",
   version: "1.0.0"
 });
 
-// Add an addition tool
+// Bir toplama aracı ekle
 server.tool("add",
   { a: z.number(), b: z.number() },
   async ({ a, b }) => ({
@@ -71,10 +71,10 @@ server.tool("add",
   })
 );
 
-// Add a dynamic greeting resource
+// Dinamik bir karşılama kaynağı ekle
 server.resource(
   "file",
-  // The 'list' parameter controls how the resource lists available files. Setting it to undefined disables listing for this resource.
+  // 'list' parametresi, kaynağın mevcut dosyaları nasıl listeleyeceğini kontrol eder. Bunu undefined olarak ayarlamak, bu kaynak için listelemeyi devre dışı bırakır.
   new ResourceTemplate("file://{path}", { list: undefined }),
   async (uri, { path }) => ({
     contents: [{
@@ -84,7 +84,7 @@ server.resource(
   })
 );
 
-// Add a file resource that reads the file contents
+// Dosya içeriğini okuyan bir dosya kaynağı ekle
 server.resource(
   "file",
   new ResourceTemplate("file://{path}", { list: undefined }),
@@ -118,75 +118,75 @@ server.prompt(
   })
 );
 
-// Start receiving messages on stdin and sending messages on stdout
+// stdin'den mesaj almaya ve stdout'a mesaj göndermeye başla
 const transport = new StdioServerTransport();
 await server.connect(transport);
 ```
 
-Yukarıdaki kodda şunları yaptık:
+Yukarıdaki kodda:
 
-- MCP TypeScript SDK'sından gerekli sınıfları içe aktardık.
+- MCP TypeScript SDK'dan gerekli sınıfları içe aktardık.
 - Yeni bir MCP sunucu örneği oluşturup yapılandırdık.
-- Bir işleyici işleviyle özel bir araç (`calculator`) kaydettik.
+- Özel bir araç (`calculator`) ve bir işleyici fonksiyon kaydettik.
 - Gelen MCP isteklerini dinlemek için sunucuyu başlattık.
 
 ## Test ve Hata Ayıklama
 
-MCP sunucunuzu test etmeye başlamadan önce, mevcut araçları ve hata ayıklama için en iyi uygulamaları anlamak önemlidir. Etkili testler, sunucunuzun beklendiği gibi davranmasını sağlar ve sorunları hızlı bir şekilde tanımlayıp çözmenize yardımcı olur. Aşağıdaki bölüm, MCP uygulamanızı doğrulamak için önerilen yaklaşımları özetler.
+MCP sunucunuzu test etmeye başlamadan önce, mevcut araçları ve hata ayıklama için en iyi uygulamaları anlamak önemlidir. Etkili test, sunucunuzun beklendiği gibi çalışmasını sağlar ve sorunları hızlıca tespit edip çözmenize yardımcı olur. Aşağıdaki bölüm, MCP uygulamanızı doğrulamak için önerilen yaklaşımları özetler.
 
 MCP, sunucularınızı test etmenize ve hata ayıklamanıza yardımcı olacak araçlar sağlar:
 
-- **Inspector aracı**, bu grafik arayüzü sunucunuza bağlanmanıza ve araçlarınızı, istemlerinizi ve kaynaklarınızı test etmenize olanak tanır.
-- **curl**, ayrıca curl gibi bir komut satırı aracı veya HTTP komutları oluşturup çalıştırabilen diğer istemcilerle sunucunuza bağlanabilirsiniz.
+- **Inspector aracı**, bu grafiksel arayüz sunucunuza bağlanmanızı ve araçlarınızı, istemlerinizi ve kaynaklarınızı test etmenizi sağlar.
+- **curl**, ayrıca curl gibi komut satırı araçları veya HTTP komutları oluşturup çalıştırabilen diğer istemcilerle sunucunuza bağlanabilirsiniz.
 
 ### MCP Inspector Kullanımı
 
-[MCP Inspector](https://github.com/modelcontextprotocol/inspector), görsel bir test aracıdır ve şu işlevleri yerine getirir:
+[MCP Inspector](https://github.com/modelcontextprotocol/inspector), size şunları yapmada yardımcı olan görsel bir test aracıdır:
 
-1. **Sunucu Yeteneklerini Keşfetme**: Mevcut kaynakları, araçları ve istemleri otomatik olarak algılar
-2. **Araç Çalıştırma Testi**: Farklı parametreleri deneyin ve yanıtları gerçek zamanlı olarak görün
-3. **Sunucu Meta Verilerini Görüntüleme**: Sunucu bilgilerini, şemaları ve yapılandırmaları inceleyin
+1. **Sunucu Yetkinliklerini Keşfetme**: Mevcut kaynakları, araçları ve istemleri otomatik olarak algılar
+2. **Araç Çalıştırmayı Test Etme**: Farklı parametreleri deneyip yanıtları gerçek zamanlı görme
+3. **Sunucu Meta Verilerini Görüntüleme**: Sunucu bilgilerini, şemaları ve yapılandırmaları inceleme
 
 ```bash
-# ex TypeScript, installing and running MCP Inspector
+# Örnek TypeScript, MCP Inspector'ı kurma ve çalıştırma
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-Yukarıdaki komutları çalıştırdığınızda, MCP Inspector tarayıcınızda yerel bir web arayüzü başlatacaktır. Kayıtlı MCP sunucularınızı, mevcut araçlarını, kaynaklarını ve istemlerini gösteren bir kontrol paneli görmeyi bekleyebilirsiniz. Arayüz, araç çalıştırmayı etkileşimli olarak test etmenize, sunucu meta verilerini incelemenize ve gerçek zamanlı yanıtları görüntülemenize olanak tanır, bu da MCP sunucu uygulamalarınızı doğrulamanızı ve hata ayıklamanızı kolaylaştırır.
+Yukarıdaki komutları çalıştırdığınızda, MCP Inspector tarayıcınızda yerel bir web arayüzü başlatacaktır. Kayıtlı MCP sunucularınızı, mevcut araçlarını, kaynaklarını ve istemlerini gösteren bir kontrol paneli göreceksiniz. Arayüz, araç çalıştırmayı etkileşimli olarak test etmenize, sunucu meta verilerini incelemenize ve gerçek zamanlı yanıtları görüntülemenize olanak tanır; böylece MCP sunucu uygulamalarınızı doğrulamak ve hata ayıklamak kolaylaşır.
 
 İşte nasıl görünebileceğine dair bir ekran görüntüsü:
 
-![MCP Inspector sunucu bağlantısı](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.tr.png)
+![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.tr.png)
 
 ## Yaygın Kurulum Sorunları ve Çözümleri
 
 | Sorun | Olası Çözüm |
 |-------|-------------|
 | Bağlantı reddedildi | Sunucunun çalıştığını ve portun doğru olduğunu kontrol edin |
-| Araç çalıştırma hataları | Parametre doğrulamasını ve hata işleme mekanizmasını gözden geçirin |
+| Araç çalıştırma hataları | Parametre doğrulamasını ve hata yönetimini gözden geçirin |
 | Kimlik doğrulama hataları | API anahtarlarını ve izinleri doğrulayın |
-| Şema doğrulama hataları | Parametrelerin tanımlı şemaya uygun olduğundan emin olun |
-| Sunucu başlatılamıyor | Port çakışmalarını veya eksik bağımlılıkları kontrol edin |
+| Şema doğrulama hataları | Parametrelerin tanımlı şemayla uyumlu olduğundan emin olun |
+| Sunucu başlamıyor | Port çakışmalarını veya eksik bağımlılıkları kontrol edin |
 | CORS hataları | Çapraz kaynak istekleri için uygun CORS başlıklarını yapılandırın |
 | Kimlik doğrulama sorunları | Token geçerliliğini ve izinleri doğrulayın |
 
 ## Yerel Geliştirme
 
-Yerel geliştirme ve test için MCP sunucularını doğrudan bilgisayarınızda çalıştırabilirsiniz:
+Yerel geliştirme ve test için MCP sunucularını doğrudan kendi makinenizde çalıştırabilirsiniz:
 
 1. **Sunucu sürecini başlatın**: MCP sunucu uygulamanızı çalıştırın
-2. **Ağ yapılandırması**: Sunucunun beklenen portta erişilebilir olduğundan emin olun
+2. **Ağ yapılandırması yapın**: Sunucunun beklenen portta erişilebilir olduğundan emin olun
 3. **İstemcileri bağlayın**: `http://localhost:3000` gibi yerel bağlantı URL'lerini kullanın
 
 ```bash
-# Example: Running a TypeScript MCP server locally
+# Örnek: Yerel olarak bir TypeScript MCP sunucusu çalıştırma
 npm run start
-# Server running at http://localhost:3000
+# Sunucu http://localhost:3000 adresinde çalışıyor
 ```
 
 ## İlk MCP Sunucunuzu Oluşturma
 
-[Temel Kavramlar](/01-CoreConcepts/README.md) konusunu önceki bir derste ele aldık, şimdi bu bilgiyi uygulama zamanı.
+Önceki derste [Temel kavramları](/01-CoreConcepts/README.md) ele aldık, şimdi bu bilgiyi uygulamaya koyma zamanı.
 
 ### Bir sunucu neler yapabilir?
 
@@ -197,17 +197,17 @@ Bir MCP sunucusu örneğin:
 - Yerel dosyalara ve veri tabanlarına erişebilir
 - Uzak API'lere bağlanabilir
 - Hesaplamalar yapabilir
-- Diğer araçlar ve hizmetlerle entegre olabilir
-- Etkileşim için bir kullanıcı arayüzü sağlayabilir
+- Diğer araçlar ve servislerle entegre olabilir
+- Etkileşim için kullanıcı arayüzü sağlayabilir
 
-Harika, şimdi onun için neler yapabileceğimizi biliyoruz, kodlamaya başlayalım.
+Harika, şimdi ne yapabileceğimizi bildiğimize göre, kodlamaya başlayalım.
 
-## Alıştırma: Bir sunucu oluşturma
+## Alıştırma: Sunucu Oluşturma
 
-Bir sunucu oluşturmak için şu adımları takip etmelisiniz:
+Bir sunucu oluşturmak için şu adımları izlemelisiniz:
 
-- MCP SDK'sını yükleyin.
-- Bir proje oluşturun ve proje yapısını ayarlayın.
+- MCP SDK'yı yükleyin.
+- Bir proje oluşturun ve proje yapısını kurun.
 - Sunucu kodunu yazın.
 - Sunucuyu test edin.
 
@@ -216,7 +216,7 @@ Bir sunucu oluşturmak için şu adımları takip etmelisiniz:
 #### TypeScript
 
 ```sh
-# Create project directory and initialize npm project
+# Proje dizini oluşturun ve npm projesini başlatın
 mkdir calculator-server
 cd calculator-server
 npm init -y
@@ -225,10 +225,10 @@ npm init -y
 #### Python
 
 ```sh
-# Create project dir
+# Proje dizini oluştur
 mkdir calculator-server
 cd calculator-server
-# Open the folder in Visual Studio Code - Skip this if you are using a different IDE
+# Klasörü Visual Studio Code'da aç - Farklı bir IDE kullanıyorsanız bunu atlayın
 code .
 ```
 
@@ -255,16 +255,16 @@ curl https://start.spring.io/starter.zip \
   -o calculator-server.zip
 ```
 
-Zip dosyasını çıkarın:
+Zip dosyasını açın:
 
 ```bash
 unzip calculator-server.zip -d calculator-server
 cd calculator-server
-# optional remove the unused test
+# isteğe bağlı kullanılmayan testi kaldır
 rm -rf src/test/java
 ```
 
-Aşağıdaki tam yapılandırmayı *pom.xml* dosyanıza ekleyin:
+*pom.xml* dosyanıza aşağıdaki tam yapılandırmayı ekleyin:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -374,15 +374,15 @@ cargo init
 
 ### -2- Bağımlılıkları ekleme
 
-Artık projenizi oluşturduğunuza göre, sıradaki adım bağımlılıkları eklemek:
+Projenizi oluşturduğunuza göre, şimdi bağımlılıkları ekleyelim:
 
 #### TypeScript
 
 ```sh
-# If not already installed, install TypeScript globally
+# Henüz kurulmadıysa, TypeScript'i global olarak kurun
 npm install typescript -g
 
-# Install the MCP SDK and Zod for schema validation
+# Şema doğrulama için MCP SDK ve Zod'u kurun
 npm install @modelcontextprotocol/sdk zod
 npm install -D @types/node typescript
 ```
@@ -390,7 +390,7 @@ npm install -D @types/node typescript
 #### Python
 
 ```sh
-# Create a virtual env and install dependencies
+# Sanal bir ortam oluşturun ve bağımlılıkları yükleyin
 python -m venv venv
 venv\Scripts\activate
 pip install "mcp[cli]"
@@ -415,7 +415,7 @@ cargo add tokio --features rt-multi-thread
 
 #### TypeScript
 
-*package.json* dosyasını açın ve sunucuyu oluşturup çalıştırabilmeniz için içeriği aşağıdakiyle değiştirin:
+*package.json* dosyasını açın ve sunucuyu derleyip çalıştırabilmeniz için içeriği aşağıdakiyle değiştirin:
 
 ```json
 {
@@ -442,7 +442,7 @@ cargo add tokio --features rt-multi-thread
 }
 ```
 
-Aşağıdaki içerikle bir *tsconfig.json* oluşturun:
+Aşağıdaki içeriğe sahip bir *tsconfig.json* oluşturun:
 
 ```json
 {
@@ -471,7 +471,7 @@ touch src/index.ts
 
 #### Python
 
-*server.py* dosyası oluşturun:
+*server.py* dosyası oluşturun
 
 ```sh
 touch server.py
@@ -488,13 +488,13 @@ dotnet add package Microsoft.Extensions.Hosting
 
 #### Java
 
-Java Spring Boot projeleri için proje yapısı otomatik olarak oluşturulur.
+Java Spring Boot projelerinde proje yapısı otomatik olarak oluşturulur.
 
 #### Rust
 
-Rust için, `cargo init` komutunu çalıştırdığınızda varsayılan olarak bir *src/main.rs* dosyası oluşturulur. Dosyayı açın ve varsayılan kodu silin.
+Rust için, `cargo init` komutunu çalıştırdığınızda varsayılan olarak *src/main.rs* dosyası oluşturulur. Dosyayı açın ve varsayılan kodu silin.
 
-### -4- Sunucu kodu oluşturma
+### -4- Sunucu kodunu oluşturma
 
 #### TypeScript
 
@@ -505,14 +505,14 @@ import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mc
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
  
-// Create an MCP server
+// Bir MCP sunucusu oluşturun
 const server = new McpServer({
   name: "Calculator MCP Server",
   version: "1.0.0"
 });
 ```
 
-Artık bir sunucunuz var, ancak pek bir şey yapmıyor, bunu düzeltelim.
+Artık bir sunucunuz var, ancak çok fazla iş yapmıyor, bunu düzeltelim.
 
 #### Python
 
@@ -520,7 +520,7 @@ Artık bir sunucunuz var, ancak pek bir şey yapmıyor, bunu düzeltelim.
 # server.py
 from mcp.server.fastmcp import FastMCP
 
-# Create an MCP server
+# Bir MCP sunucusu oluşturun
 mcp = FastMCP("Demo")
 ```
 
@@ -551,7 +551,7 @@ await builder.Build().RunAsync();
 
 #### Java
 
-Java için, temel sunucu bileşenlerini oluşturun. Öncelikle ana uygulama sınıfını değiştirin:
+Java için temel sunucu bileşenlerini oluşturun. Öncelikle ana uygulama sınıfını değiştirin:
 
 *src/main/java/com/microsoft/mcp/sample/server/McpServerApplication.java*:
 
@@ -579,7 +579,7 @@ public class McpServerApplication {
 }
 ```
 
-Hesaplama hizmetini oluşturun *src/main/java/com/microsoft/mcp/sample/server/service/CalculatorService.java*:
+Hesap makinesi servisini oluşturun *src/main/java/com/microsoft/mcp/sample/server/service/CalculatorService.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.service;
@@ -725,9 +725,9 @@ public class CalculatorService {
 }
 ```
 
-**Üretime hazır bir hizmet için isteğe bağlı bileşenler:**
+**Üretime hazır bir servis için isteğe bağlı bileşenler:**
 
-Başlangıç yapılandırmasını oluşturun *src/main/java/com/microsoft/mcp/sample/server/config/StartupConfig.java*:
+Başlangıç yapılandırması oluşturun *src/main/java/com/microsoft/mcp/sample/server/config/StartupConfig.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.config;
@@ -752,7 +752,7 @@ public class StartupConfig {
 }
 ```
 
-Sağlık kontrolcüsü oluşturun *src/main/java/com/microsoft/mcp/sample/server/controller/HealthController.java*:
+Bir sağlık denetleyicisi oluşturun *src/main/java/com/microsoft/mcp/sample/server/controller/HealthController.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.controller;
@@ -778,7 +778,7 @@ public class HealthController {
 }
 ```
 
-Hata işleyicisi oluşturun *src/main/java/com/microsoft/mcp/sample/server/exception/GlobalExceptionHandler.java*:
+Bir istisna işleyici oluşturun *src/main/java/com/microsoft/mcp/sample/server/exception/GlobalExceptionHandler.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.exception;
@@ -808,7 +808,7 @@ public class GlobalExceptionHandler {
             this.message = message;
         }
 
-        // Getters
+        // Alıcılar
         public String getCode() { return code; }
         public String getMessage() { return message; }
     }
@@ -833,7 +833,7 @@ Spring Boot MCP Application
 
 #### Rust
 
-*src/main.rs* dosyasının üst kısmına aşağıdaki kodu ekleyin. Bu, MCP sunucunuz için gerekli kütüphaneleri ve modülleri içe aktarır.
+Aşağıdaki kodu *src/main.rs* dosyasının en üstüne ekleyin. Bu, MCP sunucunuz için gerekli kütüphaneleri ve modülleri içe aktarır.
 
 ```rust
 use rmcp::{
@@ -846,7 +846,7 @@ use rmcp::{
 use std::error::Error;
 ```
 
-Hesaplama sunucusu, iki sayıyı toplamak için basit bir sunucu olacak. Hesaplama isteğini temsil etmek için bir yapı oluşturalım.
+Hesap makinesi sunucusu, iki sayıyı toplayabilen basit bir sunucu olacak. Hesap makinesi isteğini temsil eden bir struct oluşturalım.
 
 ```rust
 #[derive(Debug, serde::Deserialize, schemars::JsonSchema)]
@@ -856,7 +856,7 @@ pub struct CalculatorRequest {
 }
 ```
 
-Sonra, hesaplama sunucusunu temsil etmek için bir yapı oluşturalım. Bu yapı, araç yönlendiricisini tutacak ve araçları kaydetmek için kullanılacak.
+Sonra, araç yönlendiricisini tutacak olan hesap makinesi sunucusunu temsil eden bir struct oluşturun.
 
 ```rust
 #[derive(Debug, Clone)]
@@ -865,7 +865,7 @@ pub struct Calculator {
 }
 ```
 
-Şimdi, `Calculator` yapısını uygulayarak yeni bir sunucu örneği oluşturabilir ve sunucu işleyicisini sunucu bilgilerini sağlamak için uygulayabiliriz.
+Şimdi, `Calculator` struct'ını yeni bir sunucu örneği oluşturmak ve sunucu bilgisi sağlamak için sunucu işleyicisini uygulamak üzere uygulayabiliriz.
 
 ```rust
 #[tool_router]
@@ -889,7 +889,7 @@ impl ServerHandler for Calculator {
 }
 ```
 
-Son olarak, sunucuyu başlatmak için ana işlevi uygulamamız gerekiyor. Bu işlev, `Calculator` yapısının bir örneğini oluşturacak ve standart giriş/çıkış üzerinden sunacak.
+Son olarak, sunucuyu başlatmak için ana fonksiyonu uygulamamız gerekiyor. Bu fonksiyon `Calculator` struct'ının bir örneğini oluşturacak ve standart giriş/çıkış üzerinden hizmet verecek.
 
 ```rust
 #[tokio::main]
@@ -900,11 +900,11 @@ async fn main() -> Result<(), Box<dyn Error>> {
 }
 ```
 
-Sunucu artık kendisi hakkında temel bilgiler sağlamak için ayarlandı. Şimdi toplama işlemi yapmak için bir araç ekleyeceğiz.
+Sunucu artık kendisi hakkında temel bilgileri sağlamaya hazır. Sonraki adımda toplama işlemi yapacak bir araç ekleyeceğiz.
 
 ### -5- Bir araç ve kaynak ekleme
 
-Bir araç ve kaynak eklemek için aşağıdaki kodu ekleyin:
+Aşağıdaki kodu ekleyerek bir araç ve kaynak ekleyin:
 
 #### TypeScript
 
@@ -929,7 +929,7 @@ server.resource(
 );
 ```
 
-Aracınız `a` ve `b` parametrelerini alır ve bir yanıt üreten bir işlev çalıştırır:
+Aracınız `a` ve `b` parametrelerini alır ve şu formda bir yanıt üretir:
 
 ```typescript
 {
@@ -939,7 +939,7 @@ Aracınız `a` ve `b` parametrelerini alır ve bir yanıt üreten bir işlev ça
 }
 ```
 
-Kaynağınız "greeting" adlı bir dize üzerinden erişilir ve `name` parametresini alır ve araca benzer bir yanıt üretir:
+Kaynağınıza "greeting" adlı bir string üzerinden erişilir, `name` parametresi alır ve araçla benzer bir yanıt üretir:
 
 ```typescript
 {
@@ -951,28 +951,28 @@ Kaynağınız "greeting" adlı bir dize üzerinden erişilir ve `name` parametre
 #### Python
 
 ```python
-# Add an addition tool
+# Bir toplama aracı ekle
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
     return a + b
 
 
-# Add a dynamic greeting resource
+# Dinamik bir karşılama kaynağı ekle
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
     return f"Hello, {name}!"
 ```
 
-Yukarıdaki kodda şunları yaptık:
+Yukarıdaki kodda:
 
-- `add` adlı bir araç tanımladık, bu araç iki tam sayı parametresi `a` ve `p` alır.
-- `greeting` adlı bir kaynak oluşturduk, bu kaynak `name` parametresini alır.
+- `a` ve `b` parametrelerini alan `add` adlı bir araç tanımladık, her ikisi de tam sayı.
+- `name` parametresi alan `greeting` adlı bir kaynak oluşturduk.
 
 #### .NET
 
-Program.cs dosyanıza şunu ekleyin:
+Bunu Program.cs dosyanıza ekleyin:
 
 ```csharp
 [McpServerToolType]
@@ -989,7 +989,7 @@ Araçlar önceki adımda zaten oluşturuldu.
 
 #### Rust
 
-`impl Calculator` bloğu içinde yeni bir araç ekleyin:
+`impl Calculator` bloğu içine yeni bir araç ekleyin:
 
 ```rust
 #[tool(description = "Adds a and b")]
@@ -1003,17 +1003,17 @@ async fn add(
 
 ### -6- Son kod
 
-Sunucunun başlatılabilmesi için gerekli son kodu ekleyelim:
+Sunucunun başlayabilmesi için gereken son kodu ekleyelim:
 
 #### TypeScript
 
 ```typescript
-// Start receiving messages on stdin and sending messages on stdout
+// stdin'den mesaj almaya ve stdout'a mesaj göndermeye başla
 const transport = new StdioServerTransport();
 await server.connect(transport);
 ```
 
-İşte tam kod:
+Tam kod şöyle:
 
 ```typescript
 // index.ts
@@ -1021,13 +1021,13 @@ import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mc
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 
-// Create an MCP server
+// Bir MCP sunucusu oluştur
 const server = new McpServer({
   name: "Calculator MCP Server",
   version: "1.0.0"
 });
 
-// Add an addition tool
+// Bir toplama aracı ekle
 server.tool(
   "add",
   { a: z.number(), b: z.number() },
@@ -1036,7 +1036,7 @@ server.tool(
   })
 );
 
-// Add a dynamic greeting resource
+// Dinamik bir karşılama kaynağı ekle
 server.resource(
   "greeting",
   new ResourceTemplate("greeting://{name}", { list: undefined }),
@@ -1048,7 +1048,7 @@ server.resource(
   })
 );
 
-// Start receiving messages on stdin and sending messages on stdout
+// stdin'den mesaj almaya ve stdout'a mesaj göndermeye başla
 const transport = new StdioServerTransport();
 server.connect(transport);
 ```
@@ -1059,31 +1059,31 @@ server.connect(transport);
 # server.py
 from mcp.server.fastmcp import FastMCP
 
-# Create an MCP server
+# Bir MCP sunucusu oluştur
 mcp = FastMCP("Demo")
 
 
-# Add an addition tool
+# Bir toplama aracı ekle
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
     return a + b
 
 
-# Add a dynamic greeting resource
+# Dinamik bir karşılama kaynağı ekle
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
     return f"Hello, {name}!"
 
-# Main execution block - this is required to run the server
+# Ana yürütme bloğu - sunucuyu çalıştırmak için gereklidir
 if __name__ == "__main__":
     mcp.run()
 ```
 
 #### .NET
 
-Aşağıdaki içerikle bir Program.cs dosyası oluşturun:
+Aşağıdaki içeriğe sahip bir Program.cs dosyası oluşturun:
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
@@ -1115,7 +1115,7 @@ public static class CalculatorTool
 
 #### Java
 
-Tam ana uygulama sınıfınız şu şekilde görünmelidir:
+Tam ana uygulama sınıfınız şöyle olmalıdır:
 
 ```java
 // McpServerApplication.java
@@ -1144,7 +1144,7 @@ public class McpServerApplication {
 
 #### Rust
 
-Rust sunucusu için nihai kod şu şekilde olmalıdır:
+Rust sunucusu için son kod şöyle olmalıdır:
 
 ```rust
 use rmcp::{
@@ -1219,7 +1219,7 @@ npm run build
 mcp run server.py
 ```
 
-> MCP Inspector'ı kullanmak için `mcp dev server.py` komutunu kullanın, bu komut Inspector'ı otomatik olarak başlatır ve gerekli proxy oturum tokenini sağlar. Eğer `mcp run server.py` kullanıyorsanız, Inspector'ı manuel olarak başlatmanız ve bağlantıyı yapılandırmanız gerekir.
+> MCP Inspector kullanmak için `mcp dev server.py` komutunu kullanın; bu komut Inspector'ı otomatik başlatır ve gerekli proxy oturum tokenını sağlar. `mcp run server.py` kullanıyorsanız, Inspector'ı manuel başlatmanız ve bağlantıyı yapılandırmanız gerekir.
 
 #### .NET
 
@@ -1246,12 +1246,12 @@ cargo fmt
 cargo run
 ```
 
-### -8- Inspector ile çalıştırma
+### -8- Inspector kullanarak çalıştırma
 
-Inspector, sunucunuzu başlatabilen ve onunla etkileşim kurmanıza olanak tanıyan harika bir araçtır, böylece çalıştığını test edebilirsiniz. Hadi başlatalım:
+Inspector, sunucunuzu başlatabilen ve onunla etkileşim kurmanızı sağlayan harika bir araçtır, böylece çalıştığını test edebilirsiniz. Başlatalım:
 
 > [!NOTE]
-> "command" alanı, belirli çalışma zamanınızla bir sunucu çalıştırma komutunu içerdiği için farklı görünebilir.
+> "komut" alanında, sunucunuzu belirli çalışma zamanınızla çalıştırmak için gereken komut yer alacağından farklı görünebilir.
 
 #### TypeScript
 
@@ -1259,22 +1259,24 @@ Inspector, sunucunuzu başlatabilen ve onunla etkileşim kurmanıza olanak tanı
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-veya bunu *package.json* dosyanıza şu şekilde ekleyin: `"inspector": "npx @modelcontextprotocol/inspector node build/index.js"` ve ardından `npm run inspector` komutunu çalıştırın.
+veya *package.json* dosyanıza şöyle ekleyin: `"inspector": "npx @modelcontextprotocol/inspector node build/index.js"` ve sonra `npm run inspector` komutunu çalıştırın
 
-Python, Node.js tabanlı bir araç olan Inspector'ı sarar. Bu aracı şu şekilde çağırmak mümkündür:
+#### Python
+
+Python, Node.js tabanlı bir araç olan inspector'ı sarar. Bu aracı şöyle çağırmak mümkündür:
 
 ```sh
 mcp dev server.py
 ```
 
-Ancak, araçta mevcut olan tüm yöntemleri uygulamaz, bu nedenle aşağıdaki gibi doğrudan Node.js aracını çalıştırmanız önerilir:
+Ancak, araçta mevcut tüm yöntemleri uygulamadığından, Node.js aracını doğrudan aşağıdaki gibi çalıştırmanız önerilir:
 
 ```sh
 npx @modelcontextprotocol/inspector mcp run server.py
 ```
 
-Eğer komutları ve argümanları yapılandırmanıza olanak tanıyan bir araç veya IDE kullanıyorsanız,
-`Command` alanında `python` ve `Arguments` olarak `server.py` ayarladığınızdan emin olun. Bu, scriptin doğru şekilde çalışmasını sağlar.
+Eğer komutları ve argümanları yapılandırmanıza izin veren bir araç veya IDE kullanıyorsanız,
+`Command` alanına `python` ve `Arguments` alanına `server.py` yazdığınızdan emin olun. Bu, betiğin doğru şekilde çalışmasını sağlar.
 
 #### .NET
 
@@ -1287,8 +1289,8 @@ npx @modelcontextprotocol/inspector dotnet run
 
 #### Java
 
-Hesap makinesi sunucunuzun çalıştığından emin olun.  
-Sonrasında denetleyiciyi çalıştırın:
+Hesap makinesi sunucunuzun çalıştığından emin olun
+Ardından denetleyiciyi çalıştırın:
 
 ```cmd
 npx @modelcontextprotocol/inspector
@@ -1296,37 +1298,37 @@ npx @modelcontextprotocol/inspector
 
 Denetleyici web arayüzünde:
 
-1. "SSE"yi taşıma türü olarak seçin  
-2. URL'yi şu şekilde ayarlayın: `http://localhost:8080/sse`  
-3. "Bağlan" butonuna tıklayın  
+1. Taşıma türü olarak "SSE"yi seçin
+2. URL'yi şu şekilde ayarlayın: `http://localhost:8080/sse`
+3. "Connect"e tıklayın
 
-![Bağlan](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.tr.png)
+![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.tr.png)
 
-**Artık sunucuya bağlandınız**  
-**Java sunucu test etme bölümü tamamlandı**
+**Artık sunucuya bağlısınız**
+**Java sunucu testi bölümü tamamlandı**
 
-Bir sonraki bölüm, sunucuyla etkileşim kurmakla ilgili.
+Sonraki bölüm sunucu ile etkileşimle ilgilidir.
 
 Aşağıdaki kullanıcı arayüzünü görmelisiniz:
 
-![Bağlan](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.tr.png)
+![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.tr.png)
 
-1. Bağlan butonunu seçerek sunucuya bağlanın  
-   Sunucuya bağlandıktan sonra aşağıdaki ekranı görmelisiniz:
+1. Bağlan düğmesini seçerek sunucuya bağlanın
+  Sunucuya bağlandıktan sonra aşağıdakileri görmelisiniz:
 
-   ![Bağlandı](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.tr.png)
+  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.tr.png)
 
-1. "Araçlar" ve "listTools"u seçin, "Add" seçeneğini görmelisiniz. "Add"i seçin ve parametre değerlerini doldurun.
+1. "Tools" ve "listTools"u seçin, "Add" görünmelidir, "Add"i seçin ve parametre değerlerini doldurun.
 
-   "add" aracından gelen bir sonucu görmelisiniz:
+  Aşağıdaki yanıtı görmelisiniz, yani "add" aracından bir sonuç:
 
-   ![Add çalıştırma sonucu](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.tr.png)
+  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.tr.png)
 
 Tebrikler, ilk sunucunuzu oluşturup çalıştırmayı başardınız!
 
 #### Rust
 
-MCP Inspector CLI ile Rust sunucusunu çalıştırmak için şu komutu kullanın:
+Rust sunucusunu MCP Inspector CLI ile çalıştırmak için şu komutu kullanın:
 
 ```sh
 npx @modelcontextprotocol/inspector cargo run --cli --method tools/call --tool-name add --tool-arg a=1 b=2
@@ -1334,39 +1336,39 @@ npx @modelcontextprotocol/inspector cargo run --cli --method tools/call --tool-n
 
 ### Resmi SDK'lar
 
-MCP, birçok dil için resmi SDK'lar sağlar:
+MCP, birden çok dil için resmi SDK'lar sağlar:
 
-- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - Microsoft ile iş birliği içinde geliştirilmiştir  
-- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Spring AI ile iş birliği içinde geliştirilmiştir  
-- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Resmi TypeScript uygulaması  
-- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Resmi Python uygulaması  
-- [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - Resmi Kotlin uygulaması  
-- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - Loopwork AI ile iş birliği içinde geliştirilmiştir  
-- [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - Resmi Rust uygulaması  
+- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - Microsoft ile iş birliği içinde sürdürülmektedir
+- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Spring AI ile iş birliği içinde sürdürülmektedir
+- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Resmi TypeScript uygulaması
+- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Resmi Python uygulaması
+- [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - Resmi Kotlin uygulaması
+- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - Loopwork AI ile iş birliği içinde sürdürülmektedir
+- [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - Resmi Rust uygulaması
 
-## Önemli Noktalar
+## Temel Noktalar
 
-- MCP geliştirme ortamını kurmak, dil özelindeki SDK'larla oldukça kolaydır  
-- MCP sunucuları oluşturmak, net şemalarla araçlar oluşturmayı ve kaydetmeyi içerir  
-- Güvenilir MCP uygulamaları için test ve hata ayıklama çok önemlidir  
+- MCP geliştirme ortamı, dil özel SDK'ları ile kurulumu kolaydır
+- MCP sunucuları, açık şemalara sahip araçlar oluşturup kaydetmeyi içerir
+- Test ve hata ayıklama, güvenilir MCP uygulamaları için gereklidir
 
 ## Örnekler
 
-- [Java Hesap Makinesi](../samples/java/calculator/README.md)  
-- [.Net Hesap Makinesi](../../../../03-GettingStarted/samples/csharp)  
-- [JavaScript Hesap Makinesi](../samples/javascript/README.md)  
-- [TypeScript Hesap Makinesi](../samples/typescript/README.md)  
-- [Python Hesap Makinesi](../../../../03-GettingStarted/samples/python)  
-- [Rust Hesap Makinesi](../../../../03-GettingStarted/samples/rust)  
+- [Java Calculator](../samples/java/calculator/README.md)
+- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
+- [JavaScript Calculator](../samples/javascript/README.md)
+- [TypeScript Calculator](../samples/typescript/README.md)
+- [Python Calculator](../../../../03-GettingStarted/samples/python)
+- [Rust Calculator](../../../../03-GettingStarted/samples/rust)
 
 ## Ödev
 
 Seçtiğiniz bir araçla basit bir MCP sunucusu oluşturun:
 
-1. Aracı tercih ettiğiniz dilde (.NET, Java, Python, TypeScript veya Rust) uygulayın.  
-2. Girdi parametrelerini ve dönüş değerlerini tanımlayın.  
-3. Sunucunun beklendiği gibi çalıştığından emin olmak için denetleyici aracını çalıştırın.  
-4. Çeşitli girdilerle uygulamayı test edin.  
+1. Aracı tercih ettiğiniz dilde (.NET, Java, Python, TypeScript veya Rust) uygulayın.
+2. Girdi parametrelerini ve dönüş değerlerini tanımlayın.
+3. Sunucunun beklendiği gibi çalıştığını doğrulamak için denetleyici aracını çalıştırın.
+4. Uygulamayı çeşitli girdilerle test edin.
 
 ## Çözüm
 
@@ -1374,15 +1376,17 @@ Seçtiğiniz bir araçla basit bir MCP sunucusu oluşturun:
 
 ## Ek Kaynaklar
 
-- [Azure'da Model Context Protocol kullanarak Agent oluşturma](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)  
-- [Azure Container Apps ile Uzaktan MCP (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)  
-- [.NET OpenAI MCP Agent](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)  
+- [Azure'da Model Context Protocol kullanarak Ajanlar Oluşturma](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)
+- [Azure Container Apps ile Uzaktan MCP (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)
+- [.NET OpenAI MCP Ajanı](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)
 
-## Sıradaki Adım
+## Sonraki
 
-Sonraki: [MCP İstemcileriyle Başlangıç](../02-client/README.md)
+Sonraki: [MCP İstemcileri ile Başlarken](../02-client/README.md)
 
 ---
 
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Feragatname**:  
-Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çeviriler hata veya yanlışlıklar içerebilir. Belgenin orijinal dili, yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımından kaynaklanan yanlış anlamalar veya yanlış yorumlamalardan sorumlu değiliz.
+Bu belge, AI çeviri servisi [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba gösterilse de, otomatik çevirilerin hatalar veya yanlışlıklar içerebileceğini lütfen unutmayınız. Orijinal belge, kendi dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucu oluşabilecek yanlış anlamalar veya yorum hatalarından sorumlu değiliz.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

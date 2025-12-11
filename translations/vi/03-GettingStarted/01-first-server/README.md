@@ -1,69 +1,69 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "726b74589522653d930c7395c9e1fab8",
-  "translation_date": "2025-10-20T17:09:31+00:00",
+  "original_hash": "8fdac7600a5f4722643d0f14e15ac259",
+  "translation_date": "2025-12-11T07:13:10+00:00",
   "source_file": "03-GettingStarted/01-first-server/README.md",
   "language_code": "vi"
 }
 -->
 # Bắt đầu với MCP
 
-Chào mừng bạn đến với những bước đầu tiên cùng Model Context Protocol (MCP)! Dù bạn mới làm quen với MCP hay muốn tìm hiểu sâu hơn, hướng dẫn này sẽ giúp bạn thiết lập và phát triển một cách hiệu quả. Bạn sẽ khám phá cách MCP hỗ trợ tích hợp liền mạch giữa các mô hình AI và ứng dụng, đồng thời học cách chuẩn bị môi trường để xây dựng và kiểm thử các giải pháp sử dụng MCP.
+Chào mừng bạn đến với những bước đầu tiên với Model Context Protocol (MCP)! Dù bạn mới làm quen với MCP hay muốn nâng cao hiểu biết, hướng dẫn này sẽ dẫn bạn qua quá trình thiết lập và phát triển cơ bản. Bạn sẽ khám phá cách MCP cho phép tích hợp liền mạch giữa các mô hình AI và ứng dụng, đồng thời học cách nhanh chóng chuẩn bị môi trường để xây dựng và thử nghiệm các giải pháp sử dụng MCP.
 
-> Tóm tắt: Nếu bạn xây dựng ứng dụng AI, bạn biết rằng có thể thêm các công cụ và tài nguyên khác vào LLM (mô hình ngôn ngữ lớn) để làm cho LLM trở nên thông minh hơn. Tuy nhiên, nếu bạn đặt các công cụ và tài nguyên đó trên một máy chủ, ứng dụng và khả năng của máy chủ có thể được sử dụng bởi bất kỳ khách hàng nào có hoặc không có LLM.
+> TLDR; Nếu bạn xây dựng ứng dụng AI, bạn biết rằng bạn có thể thêm công cụ và các tài nguyên khác vào LLM (mô hình ngôn ngữ lớn), để làm cho LLM hiểu biết hơn. Tuy nhiên nếu bạn đặt các công cụ và tài nguyên đó trên một máy chủ, khả năng của ứng dụng và máy chủ có thể được sử dụng bởi bất kỳ khách hàng nào có hoặc không có LLM.
 
 ## Tổng quan
 
-Bài học này cung cấp hướng dẫn thực tế về cách thiết lập môi trường MCP và xây dựng các ứng dụng MCP đầu tiên của bạn. Bạn sẽ học cách thiết lập các công cụ và framework cần thiết, xây dựng máy chủ MCP cơ bản, tạo ứng dụng host và kiểm thử các triển khai của mình.
+Bài học này cung cấp hướng dẫn thực tiễn về cách thiết lập môi trường MCP và xây dựng các ứng dụng MCP đầu tiên của bạn. Bạn sẽ học cách thiết lập các công cụ và framework cần thiết, xây dựng các máy chủ MCP cơ bản, tạo ứng dụng host và thử nghiệm các triển khai của bạn.
 
-Model Context Protocol (MCP) là một giao thức mở chuẩn hóa cách các ứng dụng cung cấp ngữ cảnh cho LLM. Hãy nghĩ về MCP như một cổng USB-C dành cho các ứng dụng AI - nó cung cấp một cách kết nối chuẩn hóa giữa các mô hình AI với các nguồn dữ liệu và công cụ khác nhau.
+Model Context Protocol (MCP) là một giao thức mở chuẩn hóa cách các ứng dụng cung cấp ngữ cảnh cho LLM. Hãy nghĩ về MCP như một cổng USB-C cho các ứng dụng AI - nó cung cấp một cách chuẩn hóa để kết nối các mô hình AI với các nguồn dữ liệu và công cụ khác nhau.
 
 ## Mục tiêu học tập
 
 Kết thúc bài học này, bạn sẽ có thể:
 
 - Thiết lập môi trường phát triển cho MCP bằng C#, Java, Python, TypeScript và Rust
-- Xây dựng và triển khai các máy chủ MCP cơ bản với các tính năng tùy chỉnh (tài nguyên, lời nhắc và công cụ)
-- Tạo ứng dụng host kết nối với máy chủ MCP
-- Kiểm thử và gỡ lỗi các triển khai MCP
+- Xây dựng và triển khai các máy chủ MCP cơ bản với các tính năng tùy chỉnh (tài nguyên, lời nhắc, và công cụ)
+- Tạo các ứng dụng host kết nối với máy chủ MCP
+- Thử nghiệm và gỡ lỗi các triển khai MCP
 
 ## Thiết lập môi trường MCP của bạn
 
-Trước khi bắt đầu làm việc với MCP, điều quan trọng là phải chuẩn bị môi trường phát triển và hiểu quy trình làm việc cơ bản. Phần này sẽ hướng dẫn bạn các bước thiết lập ban đầu để đảm bảo khởi đầu suôn sẻ với MCP.
+Trước khi bắt đầu làm việc với MCP, điều quan trọng là chuẩn bị môi trường phát triển và hiểu quy trình làm việc cơ bản. Phần này sẽ hướng dẫn bạn qua các bước thiết lập ban đầu để đảm bảo khởi đầu suôn sẻ với MCP.
 
 ### Yêu cầu trước
 
 Trước khi bắt đầu phát triển MCP, hãy đảm bảo bạn có:
 
 - **Môi trường phát triển**: Cho ngôn ngữ bạn chọn (C#, Java, Python, TypeScript hoặc Rust)
-- **IDE/Trình chỉnh sửa**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm hoặc bất kỳ trình chỉnh sửa mã hiện đại nào
+- **IDE/Trình soạn thảo**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm hoặc bất kỳ trình soạn thảo mã hiện đại nào
 - **Trình quản lý gói**: NuGet, Maven/Gradle, pip, npm/yarn hoặc Cargo
-- **API Keys**: Cho bất kỳ dịch vụ AI nào bạn dự định sử dụng trong ứng dụng host của mình
+- **Khóa API**: Cho bất kỳ dịch vụ AI nào bạn dự định sử dụng trong ứng dụng host của mình
 
-## Cấu trúc cơ bản của máy chủ MCP
+## Cấu trúc máy chủ MCP cơ bản
 
 Một máy chủ MCP thường bao gồm:
 
 - **Cấu hình máy chủ**: Thiết lập cổng, xác thực và các cài đặt khác
 - **Tài nguyên**: Dữ liệu và ngữ cảnh được cung cấp cho LLM
-- **Công cụ**: Các chức năng mà mô hình có thể gọi
-- **Lời nhắc**: Các mẫu để tạo hoặc cấu trúc văn bản
+- **Công cụ**: Chức năng mà các mô hình có thể gọi
+- **Lời nhắc**: Mẫu để tạo hoặc cấu trúc văn bản
 
-Dưới đây là một ví dụ đơn giản bằng TypeScript:
+Dưới đây là ví dụ đơn giản bằng TypeScript:
 
 ```typescript
 import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 
-// Create an MCP server
+// Tạo một máy chủ MCP
 const server = new McpServer({
   name: "Demo",
   version: "1.0.0"
 });
 
-// Add an addition tool
+// Thêm một công cụ cộng
 server.tool("add",
   { a: z.number(), b: z.number() },
   async ({ a, b }) => ({
@@ -71,10 +71,10 @@ server.tool("add",
   })
 );
 
-// Add a dynamic greeting resource
+// Thêm một tài nguyên chào hỏi động
 server.resource(
   "file",
-  // The 'list' parameter controls how the resource lists available files. Setting it to undefined disables listing for this resource.
+  // Tham số 'list' kiểm soát cách tài nguyên liệt kê các tệp có sẵn. Đặt nó thành undefined sẽ vô hiệu hóa việc liệt kê cho tài nguyên này.
   new ResourceTemplate("file://{path}", { list: undefined }),
   async (uri, { path }) => ({
     contents: [{
@@ -84,7 +84,7 @@ server.resource(
   })
 );
 
-// Add a file resource that reads the file contents
+// Thêm một tài nguyên tệp đọc nội dung tệp
 server.resource(
   "file",
   new ResourceTemplate("file://{path}", { list: undefined }),
@@ -118,105 +118,105 @@ server.prompt(
   })
 );
 
-// Start receiving messages on stdin and sending messages on stdout
+// Bắt đầu nhận tin nhắn trên stdin và gửi tin nhắn trên stdout
 const transport = new StdioServerTransport();
 await server.connect(transport);
 ```
 
-Trong đoạn mã trên, chúng ta đã:
+Trong đoạn mã trên chúng ta:
 
 - Nhập các lớp cần thiết từ MCP TypeScript SDK.
 - Tạo và cấu hình một phiên bản máy chủ MCP mới.
 - Đăng ký một công cụ tùy chỉnh (`calculator`) với một hàm xử lý.
 - Khởi động máy chủ để lắng nghe các yêu cầu MCP đến.
 
-## Kiểm thử và gỡ lỗi
+## Thử nghiệm và gỡ lỗi
 
-Trước khi bắt đầu kiểm thử máy chủ MCP của bạn, điều quan trọng là phải hiểu các công cụ có sẵn và các phương pháp tốt nhất để gỡ lỗi. Kiểm thử hiệu quả đảm bảo máy chủ của bạn hoạt động như mong đợi và giúp bạn nhanh chóng xác định và giải quyết các vấn đề. Phần sau đây sẽ phác thảo các phương pháp được khuyến nghị để xác thực triển khai MCP của bạn.
+Trước khi bắt đầu thử nghiệm máy chủ MCP của bạn, điều quan trọng là hiểu các công cụ có sẵn và các thực hành tốt nhất để gỡ lỗi. Thử nghiệm hiệu quả đảm bảo máy chủ của bạn hoạt động như mong đợi và giúp bạn nhanh chóng xác định và giải quyết các vấn đề. Phần sau đây trình bày các phương pháp được khuyến nghị để xác thực triển khai MCP của bạn.
 
-MCP cung cấp các công cụ giúp bạn kiểm thử và gỡ lỗi máy chủ của mình:
+MCP cung cấp các công cụ giúp bạn thử nghiệm và gỡ lỗi máy chủ:
 
-- **Công cụ Inspector**, giao diện đồ họa này cho phép bạn kết nối với máy chủ và kiểm thử các công cụ, lời nhắc và tài nguyên của mình.
-- **curl**, bạn cũng có thể kết nối với máy chủ bằng công cụ dòng lệnh như curl hoặc các client khác có thể tạo và chạy các lệnh HTTP.
+- **Công cụ Inspector**, giao diện đồ họa này cho phép bạn kết nối với máy chủ và thử nghiệm các công cụ, lời nhắc và tài nguyên của bạn.
+- **curl**, bạn cũng có thể kết nối với máy chủ bằng công cụ dòng lệnh như curl hoặc các khách hàng khác có thể tạo và chạy các lệnh HTTP.
 
 ### Sử dụng MCP Inspector
 
-[MCP Inspector](https://github.com/modelcontextprotocol/inspector) là một công cụ kiểm thử trực quan giúp bạn:
+[MCP Inspector](https://github.com/modelcontextprotocol/inspector) là công cụ thử nghiệm trực quan giúp bạn:
 
-1. **Khám phá khả năng của máy chủ**: Tự động phát hiện các tài nguyên, công cụ và lời nhắc có sẵn
-2. **Kiểm thử thực thi công cụ**: Thử các tham số khác nhau và xem phản hồi trong thời gian thực
-3. **Xem metadata của máy chủ**: Kiểm tra thông tin máy chủ, các schema và cấu hình
+1. **Khám phá khả năng máy chủ**: Tự động phát hiện các tài nguyên, công cụ và lời nhắc có sẵn
+2. **Thử nghiệm thực thi công cụ**: Thử các tham số khác nhau và xem phản hồi theo thời gian thực
+3. **Xem metadata máy chủ**: Kiểm tra thông tin máy chủ, sơ đồ và cấu hình
 
 ```bash
-# ex TypeScript, installing and running MCP Inspector
+# ví dụ TypeScript, cài đặt và chạy MCP Inspector
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-Khi bạn chạy các lệnh trên, MCP Inspector sẽ khởi chạy một giao diện web cục bộ trong trình duyệt của bạn. Bạn có thể thấy một bảng điều khiển hiển thị các máy chủ MCP đã đăng ký, các công cụ, tài nguyên và lời nhắc có sẵn của chúng. Giao diện cho phép bạn kiểm thử tương tác việc thực thi công cụ, kiểm tra metadata của máy chủ và xem phản hồi thời gian thực, giúp bạn dễ dàng xác thực và gỡ lỗi các triển khai máy chủ MCP.
+Khi bạn chạy các lệnh trên, MCP Inspector sẽ khởi chạy giao diện web cục bộ trong trình duyệt của bạn. Bạn có thể mong đợi thấy một bảng điều khiển hiển thị các máy chủ MCP đã đăng ký, các công cụ, tài nguyên và lời nhắc có sẵn của chúng. Giao diện cho phép bạn tương tác thử nghiệm thực thi công cụ, kiểm tra metadata máy chủ và xem phản hồi theo thời gian thực, giúp bạn dễ dàng xác thực và gỡ lỗi các triển khai máy chủ MCP của mình.
 
-Dưới đây là ảnh chụp màn hình về giao diện:
+Dưới đây là ảnh chụp màn hình của giao diện:
 
-![Kết nối máy chủ MCP Inspector](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.vi.png)
+![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.vi.png)
 
-## Các vấn đề thường gặp khi thiết lập và cách giải quyết
+## Các vấn đề thiết lập phổ biến và giải pháp
 
 | Vấn đề | Giải pháp khả thi |
 |-------|-------------------|
 | Kết nối bị từ chối | Kiểm tra xem máy chủ có đang chạy và cổng có đúng không |
 | Lỗi thực thi công cụ | Xem lại xác thực tham số và xử lý lỗi |
-| Lỗi xác thực | Kiểm tra API keys và quyền |
-| Lỗi xác thực schema | Đảm bảo tham số khớp với schema đã định nghĩa |
-| Máy chủ không khởi động | Kiểm tra xung đột cổng hoặc thiếu dependencies |
-| Lỗi CORS | Cấu hình header CORS phù hợp cho các yêu cầu cross-origin |
-| Vấn đề xác thực | Kiểm tra tính hợp lệ của token và quyền |
+| Lỗi xác thực | Xác minh khóa API và quyền truy cập |
+| Lỗi xác thực sơ đồ | Đảm bảo tham số phù hợp với sơ đồ đã định nghĩa |
+| Máy chủ không khởi động | Kiểm tra xung đột cổng hoặc thiếu phụ thuộc |
+| Lỗi CORS | Cấu hình đúng header CORS cho các yêu cầu đa nguồn |
+| Vấn đề xác thực | Xác minh tính hợp lệ của token và quyền truy cập |
 
 ## Phát triển cục bộ
 
-Để phát triển và kiểm thử cục bộ, bạn có thể chạy các máy chủ MCP trực tiếp trên máy của mình:
+Để phát triển và thử nghiệm cục bộ, bạn có thể chạy các máy chủ MCP trực tiếp trên máy của mình:
 
 1. **Khởi động tiến trình máy chủ**: Chạy ứng dụng máy chủ MCP của bạn
-2. **Cấu hình mạng**: Đảm bảo máy chủ có thể truy cập trên cổng mong đợi
-3. **Kết nối client**: Sử dụng URL kết nối cục bộ như `http://localhost:3000`
+2. **Cấu hình mạng**: Đảm bảo máy chủ có thể truy cập trên cổng mong muốn
+3. **Kết nối khách hàng**: Sử dụng URL kết nối cục bộ như `http://localhost:3000`
 
 ```bash
-# Example: Running a TypeScript MCP server locally
+# Ví dụ: Chạy một máy chủ MCP TypeScript cục bộ
 npm run start
-# Server running at http://localhost:3000
+# Máy chủ đang chạy tại http://localhost:3000
 ```
 
 ## Xây dựng máy chủ MCP đầu tiên của bạn
 
-Chúng ta đã đề cập đến [Các khái niệm cốt lõi](/01-CoreConcepts/README.md) trong bài học trước, giờ là lúc áp dụng kiến thức đó vào thực tế.
+Chúng ta đã đề cập đến [Các khái niệm cốt lõi](/01-CoreConcepts/README.md) trong bài học trước, giờ là lúc áp dụng kiến thức đó.
 
 ### Máy chủ có thể làm gì
 
-Trước khi bắt đầu viết mã, hãy nhắc lại những gì một máy chủ có thể làm:
+Trước khi bắt đầu viết mã, hãy nhắc lại máy chủ có thể làm gì:
 
-Một máy chủ MCP có thể, ví dụ:
+Một máy chủ MCP có thể ví dụ:
 
-- Truy cập các tệp và cơ sở dữ liệu cục bộ
+- Truy cập các tập tin và cơ sở dữ liệu cục bộ
 - Kết nối với các API từ xa
 - Thực hiện các phép tính
 - Tích hợp với các công cụ và dịch vụ khác
 - Cung cấp giao diện người dùng để tương tác
 
-Tuyệt vời, giờ chúng ta đã biết máy chủ có thể làm gì, hãy bắt đầu viết mã.
+Tuyệt vời, giờ chúng ta đã biết những gì có thể làm, hãy bắt đầu viết mã.
 
 ## Bài tập: Tạo máy chủ
 
-Để tạo máy chủ, bạn cần thực hiện các bước sau:
+Để tạo một máy chủ, bạn cần thực hiện các bước sau:
 
 - Cài đặt MCP SDK.
 - Tạo một dự án và thiết lập cấu trúc dự án.
 - Viết mã máy chủ.
-- Kiểm thử máy chủ.
+- Thử nghiệm máy chủ.
 
 ### -1- Tạo dự án
 
 #### TypeScript
 
 ```sh
-# Create project directory and initialize npm project
+# Tạo thư mục dự án và khởi tạo dự án npm
 mkdir calculator-server
 cd calculator-server
 npm init -y
@@ -225,10 +225,10 @@ npm init -y
 #### Python
 
 ```sh
-# Create project dir
+# Tạo thư mục dự án
 mkdir calculator-server
 cd calculator-server
-# Open the folder in Visual Studio Code - Skip this if you are using a different IDE
+# Mở thư mục trong Visual Studio Code - Bỏ qua nếu bạn đang sử dụng IDE khác
 code .
 ```
 
@@ -255,16 +255,16 @@ curl https://start.spring.io/starter.zip \
   -o calculator-server.zip
 ```
 
-Giải nén tệp zip:
+Giải nén file zip:
 
 ```bash
 unzip calculator-server.zip -d calculator-server
 cd calculator-server
-# optional remove the unused test
+# tùy chọn loại bỏ các bài kiểm tra không sử dụng
 rm -rf src/test/java
 ```
 
-Thêm cấu hình hoàn chỉnh sau vào tệp *pom.xml* của bạn:
+Thêm cấu hình đầy đủ sau vào file *pom.xml* của bạn:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -372,17 +372,17 @@ cd calculator-server
 cargo init
 ```
 
-### -2- Thêm dependencies
+### -2- Thêm phụ thuộc
 
-Bây giờ bạn đã tạo dự án, hãy thêm dependencies tiếp theo:
+Bây giờ bạn đã tạo dự án, tiếp theo hãy thêm các phụ thuộc:
 
 #### TypeScript
 
 ```sh
-# If not already installed, install TypeScript globally
+# Nếu chưa được cài đặt, hãy cài đặt TypeScript toàn cục
 npm install typescript -g
 
-# Install the MCP SDK and Zod for schema validation
+# Cài đặt MCP SDK và Zod để xác thực schema
 npm install @modelcontextprotocol/sdk zod
 npm install -D @types/node typescript
 ```
@@ -390,7 +390,7 @@ npm install -D @types/node typescript
 #### Python
 
 ```sh
-# Create a virtual env and install dependencies
+# Tạo một môi trường ảo và cài đặt các phụ thuộc
 python -m venv venv
 venv\Scripts\activate
 pip install "mcp[cli]"
@@ -411,11 +411,11 @@ cargo add serde
 cargo add tokio --features rt-multi-thread
 ```
 
-### -3- Tạo tệp dự án
+### -3- Tạo các file dự án
 
 #### TypeScript
 
-Mở tệp *package.json* và thay thế nội dung bằng nội dung sau để đảm bảo bạn có thể xây dựng và chạy máy chủ:
+Mở file *package.json* và thay thế nội dung bằng đoạn sau để đảm bảo bạn có thể build và chạy máy chủ:
 
 ```json
 {
@@ -442,7 +442,7 @@ Mở tệp *package.json* và thay thế nội dung bằng nội dung sau để 
 }
 ```
 
-Tạo tệp *tsconfig.json* với nội dung sau:
+Tạo file *tsconfig.json* với nội dung sau:
 
 ```json
 {
@@ -462,7 +462,7 @@ Tạo tệp *tsconfig.json* với nội dung sau:
 }
 ```
 
-Tạo một thư mục cho mã nguồn của bạn:
+Tạo thư mục cho mã nguồn của bạn:
 
 ```sh
 mkdir src
@@ -471,7 +471,7 @@ touch src/index.ts
 
 #### Python
 
-Tạo một tệp *server.py*
+Tạo file *server.py*
 
 ```sh
 touch server.py
@@ -488,31 +488,31 @@ dotnet add package Microsoft.Extensions.Hosting
 
 #### Java
 
-Đối với các dự án Spring Boot Java, cấu trúc dự án được tạo tự động.
+Đối với dự án Java Spring Boot, cấu trúc dự án được tạo tự động.
 
 #### Rust
 
-Đối với Rust, một tệp *src/main.rs* được tạo mặc định khi bạn chạy `cargo init`. Mở tệp và xóa mã mặc định.
+Đối với Rust, file *src/main.rs* được tạo mặc định khi bạn chạy `cargo init`. Mở file và xóa mã mặc định.
 
 ### -4- Tạo mã máy chủ
 
 #### TypeScript
 
-Tạo một tệp *index.ts* và thêm mã sau:
+Tạo file *index.ts* và thêm đoạn mã sau:
 
 ```typescript
 import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
  
-// Create an MCP server
+// Tạo một máy chủ MCP
 const server = new McpServer({
   name: "Calculator MCP Server",
   version: "1.0.0"
 });
 ```
 
-Bây giờ bạn đã có một máy chủ, nhưng nó chưa làm được nhiều, hãy sửa điều đó.
+Bây giờ bạn đã có máy chủ, nhưng nó chưa làm được nhiều, hãy sửa điều đó.
 
 #### Python
 
@@ -520,7 +520,7 @@ Bây giờ bạn đã có một máy chủ, nhưng nó chưa làm được nhi�
 # server.py
 from mcp.server.fastmcp import FastMCP
 
-# Create an MCP server
+# Tạo một máy chủ MCP
 mcp = FastMCP("Demo")
 ```
 
@@ -551,7 +551,7 @@ await builder.Build().RunAsync();
 
 #### Java
 
-Đối với Java, tạo các thành phần cốt lõi của máy chủ. Đầu tiên, sửa đổi lớp ứng dụng chính:
+Đối với Java, tạo các thành phần máy chủ cốt lõi. Đầu tiên, sửa đổi lớp ứng dụng chính:
 
 *src/main/java/com/microsoft/mcp/sample/server/McpServerApplication.java*:
 
@@ -579,7 +579,7 @@ public class McpServerApplication {
 }
 ```
 
-Tạo dịch vụ máy tính *src/main/java/com/microsoft/mcp/sample/server/service/CalculatorService.java*:
+Tạo dịch vụ calculator *src/main/java/com/microsoft/mcp/sample/server/service/CalculatorService.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.service;
@@ -752,7 +752,7 @@ public class StartupConfig {
 }
 ```
 
-Tạo controller kiểm tra sức khỏe *src/main/java/com/microsoft/mcp/sample/server/controller/HealthController.java*:
+Tạo bộ điều khiển sức khỏe *src/main/java/com/microsoft/mcp/sample/server/controller/HealthController.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.controller;
@@ -808,7 +808,7 @@ public class GlobalExceptionHandler {
             this.message = message;
         }
 
-        // Getters
+        // Các phương thức lấy giá trị
         public String getCode() { return code; }
         public String getMessage() { return message; }
     }
@@ -833,7 +833,7 @@ Spring Boot MCP Application
 
 #### Rust
 
-Thêm mã sau vào đầu tệp *src/main.rs*. Điều này nhập các thư viện và module cần thiết cho máy chủ MCP của bạn.
+Thêm đoạn mã sau vào đầu file *src/main.rs*. Đoạn này nhập các thư viện và module cần thiết cho máy chủ MCP của bạn.
 
 ```rust
 use rmcp::{
@@ -846,7 +846,7 @@ use rmcp::{
 use std::error::Error;
 ```
 
-Máy chủ máy tính sẽ đơn giản, có thể cộng hai số lại với nhau. Hãy tạo một struct để đại diện cho yêu cầu máy tính.
+Máy chủ calculator sẽ là một máy chủ đơn giản có thể cộng hai số lại với nhau. Hãy tạo một struct để đại diện cho yêu cầu calculator.
 
 ```rust
 #[derive(Debug, serde::Deserialize, schemars::JsonSchema)]
@@ -856,7 +856,7 @@ pub struct CalculatorRequest {
 }
 ```
 
-Tiếp theo, tạo một struct để đại diện cho máy chủ máy tính. Struct này sẽ giữ router công cụ, được sử dụng để đăng ký các công cụ.
+Tiếp theo, tạo một struct để đại diện cho máy chủ calculator. Struct này sẽ giữ bộ định tuyến công cụ, được dùng để đăng ký các công cụ.
 
 ```rust
 #[derive(Debug, Clone)]
@@ -865,7 +865,7 @@ pub struct Calculator {
 }
 ```
 
-Bây giờ, chúng ta có thể triển khai struct `Calculator` để tạo một instance mới của máy chủ và triển khai handler máy chủ để cung cấp thông tin máy chủ.
+Bây giờ, chúng ta có thể triển khai struct `Calculator` để tạo một phiên bản mới của máy chủ và triển khai trình xử lý máy chủ để cung cấp thông tin máy chủ.
 
 ```rust
 #[tool_router]
@@ -889,7 +889,7 @@ impl ServerHandler for Calculator {
 }
 ```
 
-Cuối cùng, chúng ta cần triển khai hàm chính để khởi động máy chủ. Hàm này sẽ tạo một instance của struct `Calculator` và phục vụ nó qua đầu vào/đầu ra tiêu chuẩn.
+Cuối cùng, chúng ta cần triển khai hàm main để khởi động máy chủ. Hàm này sẽ tạo một phiên bản của struct `Calculator` và phục vụ nó qua đầu vào/đầu ra chuẩn.
 
 ```rust
 #[tokio::main]
@@ -904,7 +904,7 @@ Máy chủ hiện đã được thiết lập để cung cấp thông tin cơ b�
 
 ### -5- Thêm công cụ và tài nguyên
 
-Thêm một công cụ và tài nguyên bằng cách thêm mã sau:
+Thêm một công cụ và một tài nguyên bằng cách thêm đoạn mã sau:
 
 #### TypeScript
 
@@ -929,7 +929,7 @@ server.resource(
 );
 ```
 
-Công cụ của bạn nhận các tham số `a` và `b` và chạy một hàm tạo ra phản hồi dưới dạng:
+Công cụ của bạn nhận các tham số `a` và `b` và chạy một hàm tạo ra phản hồi theo dạng:
 
 ```typescript
 {
@@ -939,7 +939,7 @@ Công cụ của bạn nhận các tham số `a` và `b` và chạy một hàm t
 }
 ```
 
-Tài nguyên của bạn được truy cập thông qua một chuỗi "greeting" và nhận tham số `name`, tạo ra phản hồi tương tự như công cụ:
+Tài nguyên của bạn được truy cập qua chuỗi "greeting" và nhận tham số `name` và tạo ra phản hồi tương tự công cụ:
 
 ```typescript
 {
@@ -951,28 +951,28 @@ Tài nguyên của bạn được truy cập thông qua một chuỗi "greeting"
 #### Python
 
 ```python
-# Add an addition tool
+# Thêm một công cụ cộng
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
     return a + b
 
 
-# Add a dynamic greeting resource
+# Thêm một tài nguyên chào hỏi động
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
     return f"Hello, {name}!"
 ```
 
-Trong đoạn mã trên, chúng ta đã:
+Trong đoạn mã trên chúng ta đã:
 
-- Định nghĩa một công cụ `add` nhận các tham số `a` và `p`, cả hai đều là số nguyên.
-- Tạo một tài nguyên gọi là `greeting` nhận tham số `name`.
+- Định nghĩa công cụ `add` nhận các tham số `a` và `b`, cả hai đều là số nguyên.
+- Tạo tài nguyên có tên `greeting` nhận tham số `name`.
 
 #### .NET
 
-Thêm đoạn mã này vào tệp Program.cs:
+Thêm đoạn này vào file Program.cs của bạn:
 
 ```csharp
 [McpServerToolType]
@@ -1003,17 +1003,17 @@ async fn add(
 
 ### -6- Mã hoàn chỉnh
 
-Hãy thêm đoạn mã cuối cùng để máy chủ có thể khởi động:
+Hãy thêm đoạn mã cuối cùng cần thiết để máy chủ có thể khởi động:
 
 #### TypeScript
 
 ```typescript
-// Start receiving messages on stdin and sending messages on stdout
+// Bắt đầu nhận tin nhắn trên stdin và gửi tin nhắn trên stdout
 const transport = new StdioServerTransport();
 await server.connect(transport);
 ```
 
-Đây là toàn bộ mã:
+Dưới đây là mã đầy đủ:
 
 ```typescript
 // index.ts
@@ -1021,13 +1021,13 @@ import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mc
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 
-// Create an MCP server
+// Tạo một máy chủ MCP
 const server = new McpServer({
   name: "Calculator MCP Server",
   version: "1.0.0"
 });
 
-// Add an addition tool
+// Thêm một công cụ cộng
 server.tool(
   "add",
   { a: z.number(), b: z.number() },
@@ -1036,7 +1036,7 @@ server.tool(
   })
 );
 
-// Add a dynamic greeting resource
+// Thêm một tài nguyên chào hỏi động
 server.resource(
   "greeting",
   new ResourceTemplate("greeting://{name}", { list: undefined }),
@@ -1048,7 +1048,7 @@ server.resource(
   })
 );
 
-// Start receiving messages on stdin and sending messages on stdout
+// Bắt đầu nhận tin nhắn trên stdin và gửi tin nhắn trên stdout
 const transport = new StdioServerTransport();
 server.connect(transport);
 ```
@@ -1059,31 +1059,31 @@ server.connect(transport);
 # server.py
 from mcp.server.fastmcp import FastMCP
 
-# Create an MCP server
+# Tạo một máy chủ MCP
 mcp = FastMCP("Demo")
 
 
-# Add an addition tool
+# Thêm một công cụ cộng
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
     return a + b
 
 
-# Add a dynamic greeting resource
+# Thêm một tài nguyên chào hỏi động
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
     return f"Hello, {name}!"
 
-# Main execution block - this is required to run the server
+# Khối thực thi chính - điều này cần thiết để chạy máy chủ
 if __name__ == "__main__":
     mcp.run()
 ```
 
 #### .NET
 
-Tạo một tệp Program.cs với nội dung sau:
+Tạo file Program.cs với nội dung sau:
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
@@ -1115,7 +1115,7 @@ public static class CalculatorTool
 
 #### Java
 
-Lớp ứng dụng chính hoàn chỉnh của bạn sẽ trông như sau:
+Lớp ứng dụng chính hoàn chỉnh của bạn nên trông như sau:
 
 ```java
 // McpServerApplication.java
@@ -1144,7 +1144,7 @@ public class McpServerApplication {
 
 #### Rust
 
-Mã cuối cùng cho máy chủ Rust sẽ trông như sau:
+Mã cuối cùng cho máy chủ Rust nên trông như sau:
 
 ```rust
 use rmcp::{
@@ -1203,7 +1203,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
 }
 ```
 
-### -7- Kiểm thử máy chủ
+### -7- Thử nghiệm máy chủ
 
 Khởi động máy chủ với lệnh sau:
 
@@ -1219,11 +1219,11 @@ npm run build
 mcp run server.py
 ```
 
-> Để sử dụng MCP Inspector, sử dụng `mcp dev server.py` để tự động khởi chạy Inspector và cung cấp token phiên proxy cần thiết. Nếu sử dụng `mcp run server.py`, bạn sẽ cần tự khởi động Inspector và cấu hình kết nối.
+> Để sử dụng MCP Inspector, dùng `mcp dev server.py` sẽ tự động khởi chạy Inspector và cung cấp token phiên proxy cần thiết. Nếu dùng `mcp run server.py`, bạn sẽ cần khởi động Inspector thủ công và cấu hình kết nối.
 
 #### .NET
 
-Đảm bảo bạn đang ở trong thư mục dự án của mình:
+Đảm bảo bạn đang ở thư mục dự án:
 
 ```sh
 cd McpCalculatorServer
@@ -1248,10 +1248,10 @@ cargo run
 
 ### -8- Chạy bằng inspector
 
-Inspector là một công cụ tuyệt vời có thể khởi động máy chủ của bạn và cho phép bạn tương tác với nó để kiểm thử xem nó hoạt động. Hãy khởi động nó:
+Inspector là công cụ tuyệt vời có thể khởi động máy chủ của bạn và cho phép bạn tương tác với nó để thử nghiệm xem nó hoạt động. Hãy khởi động nó:
 
 > [!NOTE]
-> Có thể trông khác trong trường "command" vì nó chứa lệnh để chạy máy chủ với runtime cụ thể của bạn.
+> nó có thể trông khác trong trường "command" vì nó chứa lệnh chạy máy chủ với runtime cụ thể của bạn.
 
 #### TypeScript
 
@@ -1259,7 +1259,9 @@ Inspector là một công cụ tuyệt vời có thể khởi động máy chủ
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-hoặc thêm vào *package.json* của bạn như sau: `"inspector": "npx @modelcontextprotocol/inspector node build/index.js"` và sau đó chạy `npm run inspector`
+hoặc thêm nó vào *package.json* của bạn như sau: `"inspector": "npx @modelcontextprotocol/inspector node build/index.js"` rồi chạy `npm run inspector`
+
+#### Python
 
 Python bao bọc một công cụ Node.js gọi là inspector. Có thể gọi công cụ đó như sau:
 
@@ -1267,18 +1269,18 @@ Python bao bọc một công cụ Node.js gọi là inspector. Có thể gọi c
 mcp dev server.py
 ```
 
-Tuy nhiên, nó không triển khai tất cả các phương pháp có sẵn trên công cụ nên bạn được khuyến nghị chạy trực tiếp công cụ Node.js như bên dưới:
+Tuy nhiên, nó không triển khai tất cả các phương thức có trên công cụ nên bạn được khuyến nghị chạy công cụ Node.js trực tiếp như dưới đây:
 
 ```sh
 npx @modelcontextprotocol/inspector mcp run server.py
 ```
 
-Nếu bạn đang sử dụng một công cụ hoặc IDE cho phép bạn cấu hình các lệnh và tham số để chạy script,
-Hãy chắc chắn đặt `python` trong trường `Command` và `server.py` làm `Arguments`. Điều này đảm bảo script chạy đúng cách.
+Nếu bạn đang sử dụng công cụ hoặc IDE cho phép cấu hình lệnh và tham số để chạy script, 
+đảm bảo đặt `python` trong trường `Command` và `server.py` làm `Arguments`. Điều này đảm bảo script chạy đúng.
 
 #### .NET
 
-Hãy chắc chắn bạn đang ở trong thư mục dự án của mình:
+Đảm bảo bạn đang ở trong thư mục dự án của mình:
 
 ```sh
 cd McpCalculatorServer
@@ -1287,40 +1289,40 @@ npx @modelcontextprotocol/inspector dotnet run
 
 #### Java
 
-Đảm bảo máy chủ calculator của bạn đang chạy  
-Sau đó chạy công cụ inspector:
+Đảm bảo máy chủ calculator của bạn đang chạy
+Sau đó chạy trình kiểm tra:
 
 ```cmd
 npx @modelcontextprotocol/inspector
 ```
 
-Trong giao diện web của inspector:
+Trong giao diện web của trình kiểm tra:
 
-1. Chọn "SSE" làm loại giao thức truyền tải  
-2. Đặt URL thành: `http://localhost:8080/sse`  
-3. Nhấp vào "Connect"  
+1. Chọn "SSE" làm loại giao thức truyền tải
+2. Đặt URL thành: `http://localhost:8080/sse`
+3. Nhấn "Connect"
 
 ![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.vi.png)
 
-**Bạn đã kết nối với máy chủ**  
+**Bạn đã kết nối với máy chủ**
 **Phần kiểm tra máy chủ Java đã hoàn thành**
 
-Phần tiếp theo là tương tác với máy chủ.
+Phần tiếp theo là về tương tác với máy chủ.
 
 Bạn sẽ thấy giao diện người dùng sau:
 
 ![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.vi.png)
 
-1. Kết nối với máy chủ bằng cách chọn nút Connect  
-   Sau khi kết nối với máy chủ, bạn sẽ thấy giao diện sau:
+1. Kết nối với máy chủ bằng cách chọn nút Connect
+  Khi bạn kết nối với máy chủ, bạn sẽ thấy như sau:
 
-   ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.vi.png)
+  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.vi.png)
 
-1. Chọn "Tools" và "listTools", bạn sẽ thấy "Add" xuất hiện, chọn "Add" và điền giá trị tham số.
+1. Chọn "Tools" và "listTools", bạn sẽ thấy "Add" xuất hiện, chọn "Add" và điền các giá trị tham số.
 
-   Bạn sẽ thấy phản hồi sau, tức là kết quả từ công cụ "add":
+  Bạn sẽ thấy phản hồi sau, tức là kết quả từ công cụ "add":
 
-   ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.vi.png)
+  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.vi.png)
 
 Chúc mừng, bạn đã tạo và chạy thành công máy chủ đầu tiên của mình!
 
@@ -1336,53 +1338,55 @@ npx @modelcontextprotocol/inspector cargo run --cli --method tools/call --tool-n
 
 MCP cung cấp các SDK chính thức cho nhiều ngôn ngữ:
 
-- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - Được duy trì hợp tác với Microsoft  
-- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Được duy trì hợp tác với Spring AI  
-- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Phiên bản TypeScript chính thức  
-- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Phiên bản Python chính thức  
-- [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - Phiên bản Kotlin chính thức  
-- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - Được duy trì hợp tác với Loopwork AI  
-- [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - Phiên bản Rust chính thức  
+- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - Được duy trì phối hợp với Microsoft
+- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Được duy trì phối hợp với Spring AI
+- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Triển khai TypeScript chính thức
+- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Triển khai Python chính thức
+- [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - Triển khai Kotlin chính thức
+- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - Được duy trì phối hợp với Loopwork AI
+- [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - Triển khai Rust chính thức
 
-## Những điểm chính
+## Những điểm chính cần nhớ
 
-- Thiết lập môi trường phát triển MCP rất dễ dàng với các SDK dành riêng cho từng ngôn ngữ  
-- Xây dựng máy chủ MCP bao gồm việc tạo và đăng ký các công cụ với các schema rõ ràng  
-- Kiểm tra và gỡ lỗi là rất quan trọng để đảm bảo triển khai MCP đáng tin cậy  
+- Thiết lập môi trường phát triển MCP rất đơn giản với các SDK theo ngôn ngữ
+- Xây dựng máy chủ MCP bao gồm tạo và đăng ký các công cụ với các schema rõ ràng
+- Kiểm tra và gỡ lỗi là cần thiết để có các triển khai MCP đáng tin cậy
 
 ## Mẫu
 
-- [Java Calculator](../samples/java/calculator/README.md)  
-- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)  
-- [JavaScript Calculator](../samples/javascript/README.md)  
-- [TypeScript Calculator](../samples/typescript/README.md)  
-- [Python Calculator](../../../../03-GettingStarted/samples/python)  
-- [Rust Calculator](../../../../03-GettingStarted/samples/rust)  
+- [Java Calculator](../samples/java/calculator/README.md)
+- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
+- [JavaScript Calculator](../samples/javascript/README.md)
+- [TypeScript Calculator](../samples/typescript/README.md)
+- [Python Calculator](../../../../03-GettingStarted/samples/python)
+- [Rust Calculator](../../../../03-GettingStarted/samples/rust)
 
 ## Bài tập
 
 Tạo một máy chủ MCP đơn giản với một công cụ bạn chọn:
 
-1. Triển khai công cụ bằng ngôn ngữ bạn ưa thích (.NET, Java, Python, TypeScript hoặc Rust).  
-2. Định nghĩa các tham số đầu vào và giá trị trả về.  
-3. Chạy công cụ inspector để đảm bảo máy chủ hoạt động như mong đợi.  
-4. Kiểm tra triển khai với các đầu vào khác nhau.  
+1. Triển khai công cụ bằng ngôn ngữ bạn thích (.NET, Java, Python, TypeScript hoặc Rust).
+2. Định nghĩa các tham số đầu vào và giá trị trả về.
+3. Chạy công cụ kiểm tra để đảm bảo máy chủ hoạt động như mong muốn.
+4. Kiểm tra triển khai với các đầu vào khác nhau.
 
 ## Giải pháp
 
-[Giải pháp](./solution/README.md)
+[Solution](./solution/README.md)
 
 ## Tài nguyên bổ sung
 
-- [Xây dựng Agents sử dụng Model Context Protocol trên Azure](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)  
-- [Remote MCP với Azure Container Apps (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)  
-- [.NET OpenAI MCP Agent](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)  
+- [Xây dựng Agents sử dụng Model Context Protocol trên Azure](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)
+- [MCP từ xa với Azure Container Apps (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)
+- [Agent MCP OpenAI .NET](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)
 
 ## Tiếp theo
 
-Tiếp theo: [Bắt đầu với MCP Clients](../02-client/README.md)  
+Tiếp theo: [Bắt đầu với MCP Clients](../02-client/README.md)
 
 ---
 
-**Tuyên bố miễn trừ trách nhiệm**:  
-Tài liệu này đã được dịch bằng dịch vụ dịch thuật AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mặc dù chúng tôi cố gắng đảm bảo độ chính xác, xin lưu ý rằng các bản dịch tự động có thể chứa lỗi hoặc không chính xác. Tài liệu gốc bằng ngôn ngữ bản địa nên được coi là nguồn thông tin chính thức. Đối với thông tin quan trọng, nên sử dụng dịch vụ dịch thuật chuyên nghiệp bởi con người. Chúng tôi không chịu trách nhiệm cho bất kỳ sự hiểu lầm hoặc diễn giải sai nào phát sinh từ việc sử dụng bản dịch này.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Tuyên bố từ chối trách nhiệm**:  
+Tài liệu này đã được dịch bằng dịch vụ dịch thuật AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mặc dù chúng tôi cố gắng đảm bảo độ chính xác, xin lưu ý rằng bản dịch tự động có thể chứa lỗi hoặc không chính xác. Tài liệu gốc bằng ngôn ngữ gốc của nó nên được coi là nguồn chính xác và đáng tin cậy. Đối với thông tin quan trọng, nên sử dụng dịch vụ dịch thuật chuyên nghiệp do con người thực hiện. Chúng tôi không chịu trách nhiệm về bất kỳ sự hiểu lầm hoặc giải thích sai nào phát sinh từ việc sử dụng bản dịch này.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

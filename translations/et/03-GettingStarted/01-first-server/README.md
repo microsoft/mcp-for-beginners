@@ -1,54 +1,54 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "726b74589522653d930c7395c9e1fab8",
-  "translation_date": "2025-10-20T17:20:52+00:00",
+  "original_hash": "8fdac7600a5f4722643d0f14e15ac259",
+  "translation_date": "2025-12-11T08:56:10+00:00",
   "source_file": "03-GettingStarted/01-first-server/README.md",
   "language_code": "et"
 }
 -->
-# Alustamine MCP-ga
+# MCP-ga alustamine
 
-Tere tulemast oma esimestele sammudele Model Context Protocol (MCP) maailmas! Olgu see teie esimene kokkupuude MCP-ga või soovite oma teadmisi süvendada, see juhend aitab teil läbi viia olulised seadistamise ja arendamise etapid. Avastate, kuidas MCP võimaldab sujuvat integratsiooni tehisintellekti mudelite ja rakenduste vahel ning õpite kiiresti oma keskkonda ette valmistama MCP-l põhinevate lahenduste loomiseks ja testimiseks.
+Tere tulemast oma esimestele sammudele Model Context Protocoli (MCP) kasutamisel! Olenemata sellest, kas oled MCP uus kasutaja või soovid oma teadmisi süvendada, juhendab see juhend sind olulise seadistuse ja arendusprotsessi kaudu. Sa avastad, kuidas MCP võimaldab sujuvat integratsiooni AI mudelite ja rakenduste vahel ning õpid, kuidas kiiresti oma keskkonda valmis seada MCP-põhiste lahenduste ehitamiseks ja testimiseks.
 
-> Lühidalt: Kui loote tehisintellekti rakendusi, teate, et saate lisada tööriistu ja muid ressursse oma LLM-i (suure keelemudeli), et muuta LLM targemaks. Kui aga paigutate need tööriistad ja ressursid serverisse, saavad rakendus ja serveri võimalused olla kättesaadavad igale kliendile, olenemata sellest, kas neil on LLM või mitte.
+> TLDR; Kui ehitad AI rakendusi, tead, et saad lisada tööriistu ja muid ressursse oma LLM-ile (suur keelemudel), et muuta LLM teadlikumaks. Kuid kui paigutad need tööriistad ja ressursid serverisse, saavad rakendus ja serveri võimekused olla kasutatavad iga kliendi poolt, olenemata sellest, kas kliendil on LLM või mitte.
 
 ## Ülevaade
 
-See õppetund pakub praktilisi juhiseid MCP keskkondade seadistamiseks ja teie esimeste MCP rakenduste loomiseks. Õpite, kuidas seadistada vajalikke tööriistu ja raamistikke, luua põhilisi MCP servereid, luua hostrakendusi ja testida oma rakendusi.
+See õppetund annab praktilisi juhiseid MCP keskkondade seadistamiseks ja esimeste MCP rakenduste loomiseks. Sa õpid, kuidas seadistada vajalikke tööriistu ja raamistikke, ehitada põhilisi MCP servereid, luua host-rakendusi ja testida oma rakendusi.
 
-Model Context Protocol (MCP) on avatud protokoll, mis standardiseerib, kuidas rakendused pakuvad konteksti LLM-idele. Mõelge MCP-st kui USB-C pordist tehisintellekti rakenduste jaoks - see pakub standardiseeritud viisi AI mudelite ühendamiseks erinevate andmeallikate ja tööriistadega.
+Model Context Protocol (MCP) on avatud protokoll, mis standardiseerib, kuidas rakendused pakuvad konteksti LLM-idele. Mõtle MCP-le nagu USB-C pordile AI rakendustes – see pakub standardiseeritud viisi AI mudelite ühendamiseks erinevate andmeallikate ja tööriistadega.
 
-## Õppe-eesmärgid
+## Õpieesmärgid
 
-Selle õppetunni lõpuks suudate:
+Selle õppetunni lõpuks oskad:
 
-- Seadistada MCP arenduskeskkondi C#, Java, Python, TypeScripti ja Rusti jaoks
-- Luua ja juurutada põhilisi MCP servereid kohandatud funktsioonidega (ressursid, viited ja tööriistad)
-- Luua hostrakendusi, mis ühenduvad MCP serveritega
+- Seadistada MCP arenduskeskkondi C#, Java, Python, TypeScript ja Rust keeles
+- Ehita ja juuruta põhilisi MCP servereid kohandatud funktsioonidega (ressursid, promptid ja tööriistad)
+- Loo host-rakendusi, mis ühenduvad MCP serveritega
 - Testida ja siluda MCP rakendusi
 
 ## MCP keskkonna seadistamine
 
-Enne MCP-ga töötamise alustamist on oluline ette valmistada oma arenduskeskkond ja mõista põhilist töövoogu. See jaotis juhendab teid esialgsete seadistamiste kaudu, et tagada MCP-ga sujuv algus.
+Enne MCP-ga töötamise alustamist on oluline ette valmistada oma arenduskeskkond ja mõista põhilist töövoogu. See jaotis juhendab sind esialgsete seadistuste sammude kaudu, et tagada sujuv algus MCP-ga.
 
 ### Eeltingimused
 
-Enne MCP arendusega alustamist veenduge, et teil oleks:
+Enne MCP arendusse sukeldumist veendu, et sul on olemas:
 
-- **Arenduskeskkond**: Valitud keele jaoks (C#, Java, Python, TypeScript või Rust)
+- **Arenduskeskkond**: Sinu valitud keele jaoks (C#, Java, Python, TypeScript või Rust)
 - **IDE/Redaktor**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm või mõni kaasaegne koodiredaktor
-- **Paketihaldurid**: NuGet, Maven/Gradle, pip, npm/yarn või Cargo
-- **API võtmed**: Kõigi AI teenuste jaoks, mida plaanite kasutada oma hostrakendustes
+- **Pakihaldurid**: NuGet, Maven/Gradle, pip, npm/yarn või Cargo
+- **API võtmed**: Kõigi AI teenuste jaoks, mida plaanid kasutada oma host-rakendustes
 
 ## Põhiline MCP serveri struktuur
 
 MCP server sisaldab tavaliselt:
 
 - **Serveri konfiguratsioon**: Pordi, autentimise ja muude seadete seadistamine
-- **Ressursid**: Andmed ja kontekst, mis tehakse LLM-idele kättesaadavaks
-- **Tööriistad**: Funktsionaalsus, mida mudelid saavad kasutada
-- **Viited**: Mallid teksti genereerimiseks või struktureerimiseks
+- **Ressursid**: Andmed ja kontekst, mis on LLM-idele kättesaadavad
+- **Tööriistad**: Funktsionaalsus, mida mudelid saavad kutsuda
+- **Promptid**: Mallid teksti genereerimiseks või struktureerimiseks
 
 Siin on lihtsustatud näide TypeScriptis:
 
@@ -57,13 +57,13 @@ import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mc
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 
-// Create an MCP server
+// Loo MCP server
 const server = new McpServer({
   name: "Demo",
   version: "1.0.0"
 });
 
-// Add an addition tool
+// Lisa liitmistööriist
 server.tool("add",
   { a: z.number(), b: z.number() },
   async ({ a, b }) => ({
@@ -71,10 +71,10 @@ server.tool("add",
   })
 );
 
-// Add a dynamic greeting resource
+// Lisa dünaamiline tervituse ressurss
 server.resource(
   "file",
-  // The 'list' parameter controls how the resource lists available files. Setting it to undefined disables listing for this resource.
+  // Parameeter 'list' kontrollib, kuidas ressurss kuvab saadaolevaid faile. Selle väärtuseks undefined seadmine keelab selle ressursi failide kuvamise.
   new ResourceTemplate("file://{path}", { list: undefined }),
   async (uri, { path }) => ({
     contents: [{
@@ -84,7 +84,7 @@ server.resource(
   })
 );
 
-// Add a file resource that reads the file contents
+// Lisa failiresurss, mis loeb faili sisu
 server.resource(
   "file",
   new ResourceTemplate("file://{path}", { list: undefined }),
@@ -118,7 +118,7 @@ server.prompt(
   })
 );
 
-// Start receiving messages on stdin and sending messages on stdout
+// Alusta sõnumite vastuvõtmist stdin-ist ja sõnumite saatmist stdout-i
 const transport = new StdioServerTransport();
 await server.connect(transport);
 ```
@@ -127,96 +127,96 @@ Eelnevas koodis me:
 
 - Impordime vajalikud klassid MCP TypeScript SDK-st.
 - Loome ja konfigureerime uue MCP serveri instantsi.
-- Registreerime kohandatud tööriista (`calculator`) koos käsitlusfunktsiooniga.
+- Registreerime kohandatud tööriista (`calculator`) koos käsitlejafunktsiooniga.
 - Käivitame serveri, et kuulata sissetulevaid MCP päringuid.
 
 ## Testimine ja silumine
 
-Enne MCP serveri testimise alustamist on oluline mõista saadaolevaid tööriistu ja parimaid praktikaid silumiseks. Tõhus testimine tagab, et teie server käitub ootuspäraselt ja aitab kiiresti tuvastada ning lahendada probleeme. Järgmine jaotis kirjeldab soovitatavaid lähenemisviise MCP rakenduse valideerimiseks.
+Enne MCP serveri testimise alustamist on oluline mõista saadaolevaid tööriistu ja parimaid praktikaid silumiseks. Tõhus testimine tagab, et server käitub ootuspäraselt ja aitab kiiresti tuvastada ning lahendada probleeme. Järgmine jaotis kirjeldab soovitatud lähenemisi MCP rakenduse valideerimiseks.
 
-MCP pakub tööriistu, mis aitavad teil testida ja siluda oma servereid:
+MCP pakub tööriistu, mis aitavad sul oma servereid testida ja siluda:
 
-- **Inspector tööriist**, see graafiline liides võimaldab teil serveriga ühendust luua ja testida oma tööriistu, viiteid ja ressursse.
-- **curl**, saate serveriga ühendust luua ka käsurea tööriista curl või muude HTTP käske loovate ja käitavate klientide abil.
+- **Inspector tööriist**, see graafiline liides võimaldab sul ühendada serveriga ja testida oma tööriistu, promptisid ja ressursse.
+- **curl**, saad ka ühendada serveriga käsurea tööriista nagu curl või teiste klientidega, mis suudavad luua ja käivitada HTTP käske.
 
 ### MCP Inspectori kasutamine
 
-[MCP Inspector](https://github.com/modelcontextprotocol/inspector) on visuaalne testimistööriist, mis aitab teil:
+[MCP Inspector](https://github.com/modelcontextprotocol/inspector) on visuaalne testimisvahend, mis aitab sul:
 
-1. **Avastada serveri võimalusi**: Tuvastada automaatselt saadaolevaid ressursse, tööriistu ja viiteid
-2. **Testida tööriistade täitmist**: Proovida erinevaid parameetreid ja näha vastuseid reaalajas
-3. **Vaadata serveri metaandmeid**: Uurida serveri infot, skeeme ja konfiguratsioone
+1. **Avastada serveri võimekusi**: Automaatne saadaolevate ressursside, tööriistade ja promptide tuvastamine
+2. **Testida tööriistade täitmist**: Proovi erinevaid parameetreid ja vaata vastuseid reaalajas
+3. **Vaadata serveri metaandmeid**: Uuri serveri infot, skeeme ja konfiguratsioone
 
 ```bash
-# ex TypeScript, installing and running MCP Inspector
+# Näide TypeScriptist, MCP Inspector'i installimine ja käivitamine
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-Kui käivitate ülaltoodud käsud, avab MCP Inspector teie brauseris kohaliku veebiliidese. Võite oodata, et näete armatuurlauda, mis kuvab teie registreeritud MCP serverid, nende saadaolevad tööriistad, ressursid ja viited. Liides võimaldab teil interaktiivselt testida tööriistade täitmist, uurida serveri metaandmeid ja vaadata reaalajas vastuseid, muutes MCP serveri rakenduste valideerimise ja silumise lihtsamaks.
+Kui käivitad ülaltoodud käsud, avab MCP Inspector sinu brauseris kohaliku veebiliidese. Sa näed armatuurlaua, mis kuvab sinu registreeritud MCP servereid, nende saadaolevaid tööriistu, ressursse ja promptisid. Liides võimaldab interaktiivselt testida tööriistade täitmist, uurida serveri metaandmeid ja vaadata reaalajas vastuseid, muutes MCP serveri rakenduste valideerimise ja silumise lihtsamaks.
 
-Siin on ekraanipilt sellest, kuidas see võib välja näha:
+Siin on ekraanipilt, kuidas see võib välja näha:
 
-![MCP Inspectori serveri ühendus](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.et.png)
+![MCP Inspector serveri ühendus](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.et.png)
 
 ## Levinud seadistusprobleemid ja lahendused
 
 | Probleem | Võimalik lahendus |
 |----------|-------------------|
-| Ühendus keelatud | Kontrollige, kas server töötab ja port on õige |
-| Tööriista täitmise vead | Vaadake üle parameetrite valideerimine ja veakäsitlus |
-| Autentimise ebaõnnestumised | Kontrollige API võtmeid ja õigusi |
-| Skeemi valideerimise vead | Veenduge, et parameetrid vastavad määratud skeemile |
-| Server ei käivitu | Kontrollige pordikonflikte või puuduvaid sõltuvusi |
-| CORS vead | Konfigureerige õiged CORS päised ristdomeeni päringute jaoks |
-| Autentimise probleemid | Kontrollige tokeni kehtivust ja õigusi |
+| Ühendus keelatud | Kontrolli, kas server töötab ja port on õige |
+| Tööriista täitmise vead | Kontrolli parameetrite valideerimist ja veahaldust |
+| Autentimise tõrked | Kontrolli API võtmeid ja õigusi |
+| Skeemi valideerimise vead | Veendu, et parameetrid vastavad määratletud skeemile |
+| Server ei käivitu | Kontrolli pordikonflikte või puuduvad sõltuvused |
+| CORS vead | Sea õiged CORS päised ristallikate päringute jaoks |
+| Autentimise probleemid | Kontrolli tokeni kehtivust ja õigusi |
 
 ## Kohalik arendus
 
-Kohalikuks arenduseks ja testimiseks saate MCP servereid käivitada otse oma arvutis:
+Kohalikuks arenduseks ja testimiseks saad MCP servereid käivitada otse oma masinas:
 
-1. **Käivitage serveriprotsess**: Käivitage oma MCP serveri rakendus
-2. **Konfigureerige võrgustik**: Veenduge, et server oleks juurdepääsetav oodatud pordil
-3. **Ühendage kliendid**: Kasutage kohalikke ühenduse URL-e nagu `http://localhost:3000`
+1. **Käivita serveri protsess**: Käivita oma MCP serveri rakendus
+2. **Seadista võrgustik**: Veendu, et server on ligipääsetav oodatud pordil
+3. **Ühenda kliendid**: Kasuta kohalikke ühenduse URL-e nagu `http://localhost:3000`
 
 ```bash
-# Example: Running a TypeScript MCP server locally
+# Näide: TypeScript MCP serveri käivitamine lokaalselt
 npm run start
-# Server running at http://localhost:3000
+# Server töötab aadressil http://localhost:3000
 ```
 
-## Esimese MCP serveri loomine
+## Oma esimese MCP serveri ehitamine
 
-Oleme varasemas õppetunnis käsitlenud [Põhikontseptsioone](/01-CoreConcepts/README.md), nüüd on aeg need teadmised rakendada.
+Oleme eelnevas õppetunnis käsitlenud [Põhikontseptsioone](/01-CoreConcepts/README.md), nüüd on aeg neid teadmisi rakendada.
 
-### Mida server teha saab
+### Mida server suudab teha
 
-Enne koodi kirjutamist tuletame meelde, mida server teha saab:
+Enne koodi kirjutama asumist meenutame, mida server suudab teha:
 
 MCP server võib näiteks:
 
-- Juurdepääs kohalikele failidele ja andmebaasidele
-- Ühendus kaug-API-dega
-- Teostada arvutusi
+- Ligipääs kohalikele failidele ja andmebaasidele
+- Ühenduda kaug-API-dega
+- Teha arvutusi
 - Integreeruda teiste tööriistade ja teenustega
-- Pakkuda kasutajaliidest interaktsiooniks
+- Pakkuda kasutajaliidest suhtlemiseks
 
-Suurepärane, nüüd kui teame, mida see teha saab, alustame kodeerimist.
+Suurepärane, nüüd kui teame, mida saame teha, alustame kodeerimist.
 
-## Harjutus: Serveri loomine
+## Harjutus: serveri loomine
 
-Serveri loomiseks peate järgima järgmisi samme:
+Serveri loomiseks pead järgima järgmisi samme:
 
-- Installige MCP SDK.
-- Looge projekt ja seadistage projekti struktuur.
-- Kirjutage serveri kood.
-- Testige serverit.
+- Paigalda MCP SDK.
+- Loo projekt ja seadista projekti struktuur.
+- Kirjuta serveri kood.
+- Testi serverit.
 
 ### -1- Projekti loomine
 
 #### TypeScript
 
 ```sh
-# Create project directory and initialize npm project
+# Loo projekti kataloog ja algata npm projekt
 mkdir calculator-server
 cd calculator-server
 npm init -y
@@ -225,10 +225,10 @@ npm init -y
 #### Python
 
 ```sh
-# Create project dir
+# Loo projekti kaust
 mkdir calculator-server
 cd calculator-server
-# Open the folder in Visual Studio Code - Skip this if you are using a different IDE
+# Ava kaust Visual Studio Code'is - Jäta see vahele, kui kasutad teist IDE-d
 code .
 ```
 
@@ -241,7 +241,7 @@ cd McpCalculatorServer
 
 #### Java
 
-Java jaoks looge Spring Boot projekt:
+Java jaoks loo Spring Boot projekt:
 
 ```bash
 curl https://start.spring.io/starter.zip \
@@ -255,16 +255,16 @@ curl https://start.spring.io/starter.zip \
   -o calculator-server.zip
 ```
 
-Pakkige zip-fail lahti:
+Paki zip-fail lahti:
 
 ```bash
 unzip calculator-server.zip -d calculator-server
 cd calculator-server
-# optional remove the unused test
+# valikuline eemaldada kasutamata test
 rm -rf src/test/java
 ```
 
-Lisage järgmine täielik konfiguratsioon oma *pom.xml* faili:
+Lisa oma *pom.xml* faili järgmine täielik konfiguratsioon:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -372,17 +372,17 @@ cd calculator-server
 cargo init
 ```
 
-### -2- Lisage sõltuvused
+### -2- Sõltuvuste lisamine
 
-Nüüd, kui teie projekt on loodud, lisame järgmised sõltuvused:
+Nüüd, kui projekt on loodud, lisame järgmised sõltuvused:
 
 #### TypeScript
 
 ```sh
-# If not already installed, install TypeScript globally
+# Kui pole veel installitud, paigalda TypeScript globaalselt
 npm install typescript -g
 
-# Install the MCP SDK and Zod for schema validation
+# Paigalda MCP SDK ja Zod skeemi valideerimiseks
 npm install @modelcontextprotocol/sdk zod
 npm install -D @types/node typescript
 ```
@@ -390,7 +390,7 @@ npm install -D @types/node typescript
 #### Python
 
 ```sh
-# Create a virtual env and install dependencies
+# Loo virtuaalne keskkond ja paigalda sõltuvused
 python -m venv venv
 venv\Scripts\activate
 pip install "mcp[cli]"
@@ -411,11 +411,11 @@ cargo add serde
 cargo add tokio --features rt-multi-thread
 ```
 
-### -3- Looge projekti failid
+### -3- Projekti failide loomine
 
 #### TypeScript
 
-Avage *package.json* fail ja asendage sisu järgmisega, et tagada serveri ehitamine ja käivitamine:
+Ava *package.json* fail ja asenda selle sisu järgmisega, et tagada serveri ehitamine ja käivitamine:
 
 ```json
 {
@@ -442,7 +442,7 @@ Avage *package.json* fail ja asendage sisu järgmisega, et tagada serveri ehitam
 }
 ```
 
-Looge *tsconfig.json* järgmise sisuga:
+Loo *tsconfig.json* järgmise sisuga:
 
 ```json
 {
@@ -462,7 +462,7 @@ Looge *tsconfig.json* järgmise sisuga:
 }
 ```
 
-Looge kataloog oma lähtekoodi jaoks:
+Loo kataloog oma lähtekoodi jaoks:
 
 ```sh
 mkdir src
@@ -471,7 +471,7 @@ touch src/index.ts
 
 #### Python
 
-Looge fail *server.py*
+Loo fail *server.py*
 
 ```sh
 touch server.py
@@ -479,7 +479,7 @@ touch server.py
 
 #### .NET
 
-Installige vajalikud NuGet paketid:
+Paigalda vajalikud NuGet paketid:
 
 ```sh
 dotnet add package ModelContextProtocol --prerelease
@@ -488,31 +488,31 @@ dotnet add package Microsoft.Extensions.Hosting
 
 #### Java
 
-Java Spring Boot projektide jaoks luuakse projekti struktuur automaatselt.
+Java Spring Boot projektide puhul luuakse projekti struktuur automaatselt.
 
 #### Rust
 
-Rusti jaoks luuakse *src/main.rs* fail vaikimisi, kui käivitate `cargo init`. Avage fail ja kustutage vaikimisi kood.
+Rustis luuakse *src/main.rs* fail vaikimisi, kui käivitad `cargo init`. Ava fail ja kustuta vaikimisi kood.
 
-### -4- Looge serveri kood
+### -4- Serveri koodi loomine
 
 #### TypeScript
 
-Looge fail *index.ts* ja lisage järgmine kood:
+Loo fail *index.ts* ja lisa järgmine kood:
 
 ```typescript
 import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
  
-// Create an MCP server
+// Loo MCP server
 const server = new McpServer({
   name: "Calculator MCP Server",
   version: "1.0.0"
 });
 ```
 
-Nüüd on teil server, kuid see ei tee veel palju, parandame selle.
+Nüüd on sul server olemas, kuid see ei tee veel palju, parandame selle.
 
 #### Python
 
@@ -520,7 +520,7 @@ Nüüd on teil server, kuid see ei tee veel palju, parandame selle.
 # server.py
 from mcp.server.fastmcp import FastMCP
 
-# Create an MCP server
+# Loo MCP server
 mcp = FastMCP("Demo")
 ```
 
@@ -551,7 +551,7 @@ await builder.Build().RunAsync();
 
 #### Java
 
-Java jaoks looge serveri põhikomponendid. Kõigepealt muutke peamist rakenduse klassi:
+Java jaoks loo põhiserveri komponendid. Muuda esmalt peamist rakenduse klassi:
 
 *src/main/java/com/microsoft/mcp/sample/server/McpServerApplication.java*:
 
@@ -579,7 +579,7 @@ public class McpServerApplication {
 }
 ```
 
-Looge kalkulaatori teenus *src/main/java/com/microsoft/mcp/sample/server/service/CalculatorService.java*:
+Loo kalkulaatori teenus *src/main/java/com/microsoft/mcp/sample/server/service/CalculatorService.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.service;
@@ -727,7 +727,7 @@ public class CalculatorService {
 
 **Valikulised komponendid tootmisvalmis teenuse jaoks:**
 
-Looge käivitamise konfiguratsioon *src/main/java/com/microsoft/mcp/sample/server/config/StartupConfig.java*:
+Loo käivituse konfiguratsioon *src/main/java/com/microsoft/mcp/sample/server/config/StartupConfig.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.config;
@@ -752,7 +752,7 @@ public class StartupConfig {
 }
 ```
 
-Looge tervise kontrollija *src/main/java/com/microsoft/mcp/sample/server/controller/HealthController.java*:
+Loo tervisekontroller *src/main/java/com/microsoft/mcp/sample/server/controller/HealthController.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.controller;
@@ -778,7 +778,7 @@ public class HealthController {
 }
 ```
 
-Looge erandite käsitleja *src/main/java/com/microsoft/mcp/sample/server/exception/GlobalExceptionHandler.java*:
+Loo erandite käsitleja *src/main/java/com/microsoft/mcp/sample/server/exception/GlobalExceptionHandler.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.exception;
@@ -808,14 +808,14 @@ public class GlobalExceptionHandler {
             this.message = message;
         }
 
-        // Getters
+        // Getrid
         public String getCode() { return code; }
         public String getMessage() { return message; }
     }
 }
 ```
 
-Looge kohandatud bänner *src/main/resources/banner.txt*:
+Loo kohandatud banner *src/main/resources/banner.txt*:
 
 ```text
 _____      _            _       _             
@@ -833,7 +833,7 @@ Spring Boot MCP Application
 
 #### Rust
 
-Lisage järgmine kood *src/main.rs* faili algusesse. See impordib vajalikud teegid ja moodulid teie MCP serveri jaoks.
+Lisa järgmine kood *src/main.rs* faili algusesse. See impordib vajalikud teegid ja moodulid sinu MCP serveri jaoks.
 
 ```rust
 use rmcp::{
@@ -846,7 +846,7 @@ use rmcp::{
 use std::error::Error;
 ```
 
-Kalkulaatori server on lihtne, mis suudab liita kaks arvu. Loome struktuuri, mis esindab kalkulaatori päringut.
+Kalkulaatori server on lihtne, mis suudab liita kaks arvu. Loo struktuur kalkulaatori päringu esindamiseks.
 
 ```rust
 #[derive(Debug, serde::Deserialize, schemars::JsonSchema)]
@@ -856,7 +856,7 @@ pub struct CalculatorRequest {
 }
 ```
 
-Järgmisena loome struktuuri, mis esindab kalkulaatori serverit. See struktuur sisaldab tööriista ruuterit, mida kasutatakse tööriistade registreerimiseks.
+Seejärel loo struktuur kalkulaatori serveri esindamiseks. See struktuur hoiab tööriistade marsruuterit, mida kasutatakse tööriistade registreerimiseks.
 
 ```rust
 #[derive(Debug, Clone)]
@@ -865,7 +865,7 @@ pub struct Calculator {
 }
 ```
 
-Nüüd saame rakendada `Calculator` struktuuri, et luua serveri uus eksemplar ja rakendada serveri käsitlejat, et pakkuda serveri infot.
+Nüüd saame rakendada `Calculator` struktuuri, et luua uus serveri instants ja rakendada serveri käsitlejat serveri info pakkumiseks.
 
 ```rust
 #[tool_router]
@@ -889,7 +889,7 @@ impl ServerHandler for Calculator {
 }
 ```
 
-Lõpuks peame rakendama peamise funktsiooni serveri käivitamiseks. See funktsioon loob `Calculator` struktuuri eksemplari ja teenindab seda standardse sisendi/väljundi kaudu.
+Lõpuks peame rakendama põhifunktsiooni serveri käivitamiseks. See funktsioon loob `Calculator` struktuuri instantsi ja teenindab seda standardse sisendi/väljundi kaudu.
 
 ```rust
 #[tokio::main]
@@ -900,11 +900,11 @@ async fn main() -> Result<(), Box<dyn Error>> {
 }
 ```
 
-Server on nüüd seadistatud, et pakkuda põhiinfot enda kohta. Järgmisena lisame tööriista, mis teostab liitmist.
+Server on nüüd seadistatud, et pakkuda enda kohta põhiinfot. Järgmisena lisame tööriista liitmiseks.
 
 ### -5- Tööriista ja ressursi lisamine
 
-Lisage tööriist ja ressurss, lisades järgmise koodi:
+Lisa tööriist ja ressurss, lisades järgmise koodi:
 
 #### TypeScript
 
@@ -929,7 +929,7 @@ server.resource(
 );
 ```
 
-Teie tööriist võtab parameetrid `a` ja `b` ning käivitab funktsiooni, mis annab vastuseks:
+Sinu tööriist võtab parameetrid `a` ja `b` ning käivitab funktsiooni, mis toodab vastuse kujul:
 
 ```typescript
 {
@@ -939,7 +939,7 @@ Teie tööriist võtab parameetrid `a` ja `b` ning käivitab funktsiooni, mis an
 }
 ```
 
-Teie ressurssi saab kasutada stringi "greeting" kaudu ja see võtab parameetri `name`, andes sarnase vastuse tööriistaga:
+Sinu ressurssile pääseb ligi stringi "greeting" kaudu, see võtab parameetri `name` ja toodab sarnase vastuse nagu tööriist:
 
 ```typescript
 {
@@ -951,14 +951,14 @@ Teie ressurssi saab kasutada stringi "greeting" kaudu ja see võtab parameetri `
 #### Python
 
 ```python
-# Add an addition tool
+# Lisa liitmistööriist
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
     return a + b
 
 
-# Add a dynamic greeting resource
+# Lisa dünaamiline tervituse ressurss
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
@@ -967,12 +967,12 @@ def get_greeting(name: str) -> str:
 
 Eelnevas koodis me:
 
-- Määratlesime tööriista `add`, mis võtab parameetrid `a` ja `p`, mõlemad täisarvud.
+- Määratlesime tööriista `add`, mis võtab parameetrid `a` ja `b`, mõlemad täisarvud.
 - Lõime ressursi nimega `greeting`, mis võtab parameetri `name`.
 
 #### .NET
 
-Lisage see oma Program.cs faili:
+Lisa see oma Program.cs faili:
 
 ```csharp
 [McpServerToolType]
@@ -985,11 +985,11 @@ public static class CalculatorTool
 
 #### Java
 
-Tööriistad on juba eelmises etapis loodud.
+Tööriistad on juba eelnevas sammus loodud.
 
 #### Rust
 
-Lisage uus tööriist `impl Calculator` plokki:
+Lisa uus tööriist `impl Calculator` plokki:
 
 ```rust
 #[tool(description = "Adds a and b")]
@@ -1003,17 +1003,17 @@ async fn add(
 
 ### -6- Lõplik kood
 
-Lisame viimase koodi, mida vajame serveri käivitamiseks:
+Lisame viimase koodi, mida serveri käivitamiseks vaja:
 
 #### TypeScript
 
 ```typescript
-// Start receiving messages on stdin and sending messages on stdout
+// Alusta sõnumite vastuvõtmist stdin-ist ja sõnumite saatmist stdout-i
 const transport = new StdioServerTransport();
 await server.connect(transport);
 ```
 
-Siin on täielik kood:
+Siin on kogu kood:
 
 ```typescript
 // index.ts
@@ -1021,13 +1021,13 @@ import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mc
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 
-// Create an MCP server
+// Loo MCP server
 const server = new McpServer({
   name: "Calculator MCP Server",
   version: "1.0.0"
 });
 
-// Add an addition tool
+// Lisa liitmisvahend
 server.tool(
   "add",
   { a: z.number(), b: z.number() },
@@ -1036,7 +1036,7 @@ server.tool(
   })
 );
 
-// Add a dynamic greeting resource
+// Lisa dünaamiline tervituse ressurss
 server.resource(
   "greeting",
   new ResourceTemplate("greeting://{name}", { list: undefined }),
@@ -1048,7 +1048,7 @@ server.resource(
   })
 );
 
-// Start receiving messages on stdin and sending messages on stdout
+// Alusta sõnumite vastuvõtmist stdin-ist ja sõnumite saatmist stdout-i
 const transport = new StdioServerTransport();
 server.connect(transport);
 ```
@@ -1059,31 +1059,31 @@ server.connect(transport);
 # server.py
 from mcp.server.fastmcp import FastMCP
 
-# Create an MCP server
+# Loo MCP server
 mcp = FastMCP("Demo")
 
 
-# Add an addition tool
+# Lisa liitmistööriist
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
     return a + b
 
 
-# Add a dynamic greeting resource
+# Lisa dünaamiline tervituse ressurss
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
     return f"Hello, {name}!"
 
-# Main execution block - this is required to run the server
+# Peamine täitmisplokk - serveri käivitamiseks vajalik
 if __name__ == "__main__":
     mcp.run()
 ```
 
 #### .NET
 
-Looge Program.cs fail järgmise sisuga:
+Loo Program.cs fail järgmise sisuga:
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
@@ -1115,7 +1115,7 @@ public static class CalculatorTool
 
 #### Java
 
-Teie täielik peamine rakenduse klass peaks välja nägema selline:
+Sinu täielik peamine rakenduse klass peaks välja nägema selline:
 
 ```java
 // McpServerApplication.java
@@ -1203,9 +1203,9 @@ async fn main() -> Result<(), Box<dyn Error>> {
 }
 ```
 
-### -7- Testige serverit
+### -7- Serveri testimine
 
-Käivitage server järgmise käsuga:
+Käivita server järgmise käsuga:
 
 #### TypeScript
 
@@ -1219,11 +1219,11 @@ npm run build
 mcp run server.py
 ```
 
-> MCP Inspectori kasutamiseks kasutage `mcp dev server.py`, mis käivitab automaatselt Inspectori ja pakub vajalikku proxy sessiooni tokenit. Kui kasutate `mcp run server.py`, peate Inspectori käsitsi käivitama ja ühenduse konfigureerima.
+> MCP Inspectori kasutamiseks kasuta `mcp dev server.py`, mis automaatselt käivitab Inspectori ja annab vajaliku proxy sessioonitokeni. Kui kasutad `mcp run server.py`, pead Inspectori käsitsi käivitama ja ühenduse seadistama.
 
 #### .NET
 
-Veenduge, et olete oma projekti kataloogis:
+Veendu, et oled oma projekti kataloogis:
 
 ```sh
 cd McpCalculatorServer
@@ -1239,19 +1239,19 @@ java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
 
 #### Rust
 
-Käivitage järgmised käsud serveri vormindamiseks ja käivitamiseks:
+Käivita järgmised käsud, et vormindada ja käivitada server:
 
 ```sh
 cargo fmt
 cargo run
 ```
 
-### -8- Käivitage inspektori abil
+### -8- Käivita Inspectoriga
 
-Inspektor on suurepärane tööriist, mis suudab teie serveri käivitada ja võimaldab teil sellega suhelda, et testida selle toimimist. Käivitame selle:
+Inspector on suurepärane tööriist, mis suudab sinu serveri käivitada ja võimaldab sul sellega suhelda, et testida selle toimimist. Alustame:
 
 > [!NOTE]
-> "command" väli võib välja näha erinev, kuna see sisaldab käsku serveri käivitamiseks teie konkreetse runtime'iga.
+> käsk võib "command" väljal välja näha erinev, kuna see sisaldab käsku serveri käivitamiseks sinu konkreetse runtime'iga.
 
 #### TypeScript
 
@@ -1259,26 +1259,28 @@ Inspektor on suurepärane tööriist, mis suudab teie serveri käivitada ja või
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-või lisage see oma *package.json* faili järgmiselt: `"inspector": "npx @modelcontextprotocol/inspector node build/index.js"` ja seejärel käivitage `npm run inspector`
+või lisa see oma *package.json* faili nii: `"inspector": "npx @modelcontextprotocol/inspector node build/index.js"` ja seejärel käivita `npm run inspector`
 
-Python kasutab Node.js tööriista nimega inspektor. Seda tööriista on võimalik kutsuda järgmiselt:
+#### Python
+
+Python kasutab Node.js tööriista nimega inspector. Seda tööriista saab kutsuda nii:
 
 ```sh
 mcp dev server.py
 ```
 
-Siiski ei rakenda see kõiki tööriista saadaolevaid meetodeid, seega on soovitatav käivitada Node.js tööriist otse järgmiselt:
+Kuid see ei implementeeri kõiki tööriista meetodeid, seega soovitatakse Node.js tööriista käivitada otse nii:
 
 ```sh
 npx @modelcontextprotocol/inspector mcp run server.py
 ```
 
-Kui kasutate tööriista või IDE-d, mis võimaldab teil konfigureerida käske ja argumente skriptide käivitamiseks,
-Veendu, et määrad `python` välja `Command` ja `server.py` argumendiks `Arguments`. See tagab skripti korrektse töötamise.
+Kui kasutad tööriista või IDE-d, mis võimaldab konfigureerida käske ja argumente skriptide käivitamiseks,
+veenduge, et `Command` väljale oleks seatud `python` ja `Arguments` väljale `server.py`. See tagab skripti õige käivitamise.
 
 #### .NET
 
-Veendu, et oled oma projekti kataloogis:
+Veenduge, et olete oma projekti kataloogis:
 
 ```sh
 cd McpCalculatorServer
@@ -1287,7 +1289,8 @@ npx @modelcontextprotocol/inspector dotnet run
 
 #### Java
 
-Veendu, et kalkulaatori server töötab. Seejärel käivita inspektor:
+Veenduge, et teie kalkulaatori server töötab
+Seejärel käivitage inspektor:
 
 ```cmd
 npx @modelcontextprotocol/inspector
@@ -1295,37 +1298,37 @@ npx @modelcontextprotocol/inspector
 
 Inspektori veebiliideses:
 
-1. Vali "SSE" transporditüübiks
-2. Määra URL: `http://localhost:8080/sse`
-3. Vajuta "Connect"
+1. Valige transporditüübiks "SSE"
+2. Määrake URL-iks: `http://localhost:8080/sse`
+3. Klõpsake "Connect"
 
-![Ühendamine](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.et.png)
+![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.et.png)
 
-**Oled nüüd serveriga ühendatud**
+**Olete nüüd serveriga ühendatud**
 **Java serveri testimise osa on nüüd lõpetatud**
 
-Järgmine osa käsitleb serveriga suhtlemist.
+Järgmine osa käsitleb suhtlust serveriga.
 
-Peaksid nägema järgmist kasutajaliidest:
+Te peaksite nägema järgmist kasutajaliidest:
 
-![Ühendamine](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.et.png)
+![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.et.png)
 
-1. Ühenda serveriga, valides nupu "Connect".
-   Kui oled serveriga ühendatud, peaksid nägema järgmist:
+1. Ühenduge serveriga, valides nupu Connect
+  Kui olete serveriga ühendatud, peaksite nüüd nägema järgmist:
 
-   ![Ühendatud](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.et.png)
+  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.et.png)
 
-1. Vali "Tools" ja "listTools", peaksid nägema "Add", vali "Add" ja täida parameetrite väärtused.
+1. Valige "Tools" ja "listTools", peaksite nägema "Add" valikut, valige "Add" ja täitke parameetrite väärtused.
 
-   Peaksid nägema järgmist vastust, st tulemust "add" tööriistast:
+  Peaksite nägema järgmist vastust, st "add" tööriista tulemust:
 
-   ![Tööriista käivitamise tulemus](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.et.png)
+  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.et.png)
 
-Palju õnne, oled edukalt loonud ja käivitanud oma esimese serveri!
+Palju õnne, olete loonud ja käivitanud oma esimese serveri!
 
 #### Rust
 
-Rust serveri käivitamiseks MCP Inspector CLI-ga kasuta järgmist käsku:
+Rust serveri käivitamiseks MCP Inspector CLI abil kasutage järgmist käsku:
 
 ```sh
 npx @modelcontextprotocol/inspector cargo run --cli --method tools/call --tool-name add --tool-arg a=1 b=2
@@ -1337,35 +1340,35 @@ MCP pakub ametlikke SDK-sid mitmele keelele:
 
 - [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - Hooldatud koostöös Microsoftiga
 - [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Hooldatud koostöös Spring AI-ga
-- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Ametlik TypeScripti implementatsioon
-- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Ametlik Pythoni implementatsioon
-- [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - Ametlik Kotlin implementatsioon
+- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Ametlik TypeScripti teostus
+- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Ametlik Pythoni teostus
+- [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - Ametlik Kotlini teostus
 - [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - Hooldatud koostöös Loopwork AI-ga
-- [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - Ametlik Rusti implementatsioon
+- [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - Ametlik Rusti teostus
 
-## Olulised punktid
+## Peamised järeldused
 
-- MCP arenduskeskkonna seadistamine on lihtne keelespetsiifiliste SDK-de abil
+- MCP arenduskeskkonna seadistamine on lihtne keelepõhiste SDK-dega
 - MCP serverite loomine hõlmab tööriistade loomist ja registreerimist selgete skeemidega
-- Testimine ja silumine on usaldusväärsete MCP implementatsioonide jaoks hädavajalik
+- Testimine ja silumine on usaldusväärsete MCP teostuste jaoks hädavajalikud
 
 ## Näited
 
-- [Java Kalkulaator](../samples/java/calculator/README.md)
-- [.Net Kalkulaator](../../../../03-GettingStarted/samples/csharp)
-- [JavaScript Kalkulaator](../samples/javascript/README.md)
-- [TypeScript Kalkulaator](../samples/typescript/README.md)
-- [Python Kalkulaator](../../../../03-GettingStarted/samples/python)
-- [Rust Kalkulaator](../../../../03-GettingStarted/samples/rust)
+- [Java kalkulaator](../samples/java/calculator/README.md)
+- [.Net kalkulaator](../../../../03-GettingStarted/samples/csharp)
+- [JavaScript kalkulaator](../samples/javascript/README.md)
+- [TypeScript kalkulaator](../samples/typescript/README.md)
+- [Python kalkulaator](../../../../03-GettingStarted/samples/python)
+- [Rust kalkulaator](../../../../03-GettingStarted/samples/rust)
 
 ## Ülesanne
 
-Loo lihtne MCP server koos tööriistaga, mille valid ise:
+Loo lihtne MCP server oma valitud tööriistaga:
 
 1. Rakenda tööriist oma eelistatud keeles (.NET, Java, Python, TypeScript või Rust).
-2. Määra sisendparameetrid ja tagastusväärtused.
-3. Käivita inspektori tööriist, et veenduda serveri korrektses töös.
-4. Testi implementatsiooni erinevate sisenditega.
+2. Määra sisendparameetrid ja tagastatavad väärtused.
+3. Käivita inspektori tööriist, et veenduda serveri õiges töös.
+4. Testi teostust erinevate sisenditega.
 
 ## Lahendus
 
@@ -1373,15 +1376,17 @@ Loo lihtne MCP server koos tööriistaga, mille valid ise:
 
 ## Täiendavad ressursid
 
-- [Ehita agente Model Context Protocol abil Azure'is](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)
+- [Agentide loomine Model Context Protocol abil Azure'is](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)
 - [Kaug-MCP Azure Container Appsiga (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)
-- [.NET OpenAI MCP Agent](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)
+- [.NET OpenAI MCP agent](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)
 
-## Mis edasi
+## Mis järgmiseks
 
 Järgmine: [MCP klientidega alustamine](../02-client/README.md)
 
 ---
 
-**Lahtiütlus**:  
-See dokument on tõlgitud AI tõlketeenuse [Co-op Translator](https://github.com/Azure/co-op-translator) abil. Kuigi püüame tagada täpsust, palume arvestada, et automaatsed tõlked võivad sisaldada vigu või ebatäpsusi. Algne dokument selle algses keeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitame kasutada professionaalset inimtõlget. Me ei vastuta arusaamatuste või valesti tõlgenduste eest, mis võivad tekkida selle tõlke kasutamise tõttu.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Vastutusest loobumine**:
+See dokument on tõlgitud kasutades tehisintellekti tõlketeenust [Co-op Translator](https://github.com/Azure/co-op-translator). Kuigi püüame täpsust, palun arvestage, et automaatsed tõlked võivad sisaldada vigu või ebatäpsusi. Originaaldokument selle emakeeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitatakse kasutada professionaalset inimtõlget. Me ei vastuta selle tõlke kasutamisest tulenevate arusaamatuste või valesti mõistmiste eest.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
