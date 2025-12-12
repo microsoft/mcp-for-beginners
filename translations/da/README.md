@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "db1c632975cfde89e42f01af57f7e4a8",
-  "translation_date": "2025-12-11T06:43:39+00:00",
+  "original_hash": "20bace280f1884b6f35653584e305094",
+  "translation_date": "2025-12-12T17:22:14+00:00",
   "source_file": "README.md",
   "language_code": "da"
 }
@@ -32,7 +32,7 @@ Følg disse trin for at komme i gang med at bruge disse ressourcer:
 #### Understøttet via GitHub Action (Automatiseret & Altid Opdateret)
 
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE START -->
-[Arabic](../ar/README.md) | [Bengali](../bn/README.md) | [Bulgarian](../bg/README.md) | [Burmese (Myanmar)](../my/README.md) | [Chinese (Simplified)](../zh/README.md) | [Chinese (Traditional, Hong Kong)](../hk/README.md) | [Chinese (Traditional, Macau)](../mo/README.md) | [Chinese (Traditional, Taiwan)](../tw/README.md) | [Croatian](../hr/README.md) | [Czech](../cs/README.md) | [Danish](./README.md) | [Dutch](../nl/README.md) | [Estonian](../et/README.md) | [Finnish](../fi/README.md) | [French](../fr/README.md) | [German](../de/README.md) | [Greek](../el/README.md) | [Hebrew](../he/README.md) | [Hindi](../hi/README.md) | [Hungarian](../hu/README.md) | [Indonesian](../id/README.md) | [Italian](../it/README.md) | [Japanese](../ja/README.md) | [Korean](../ko/README.md) | [Lithuanian](../lt/README.md) | [Malay](../ms/README.md) | [Marathi](../mr/README.md) | [Nepali](../ne/README.md) | [Norwegian](../no/README.md) | [Persian (Farsi)](../fa/README.md) | [Polish](../pl/README.md) | [Portuguese (Brazil)](../br/README.md) | [Portuguese (Portugal)](../pt/README.md) | [Punjabi (Gurmukhi)](../pa/README.md) | [Romanian](../ro/README.md) | [Russian](../ru/README.md) | [Serbian (Cyrillic)](../sr/README.md) | [Slovak](../sk/README.md) | [Slovenian](../sl/README.md) | [Spanish](../es/README.md) | [Swahili](../sw/README.md) | [Swedish](../sv/README.md) | [Tagalog (Filipino)](../tl/README.md) | [Tamil](../ta/README.md) | [Thai](../th/README.md) | [Turkish](../tr/README.md) | [Ukrainian](../uk/README.md) | [Urdu](../ur/README.md) | [Vietnamese](../vi/README.md)
+[Arabic](../ar/README.md) | [Bengali](../bn/README.md) | [Bulgarian](../bg/README.md) | [Burmese (Myanmar)](../my/README.md) | [Chinese (Simplified)](../zh/README.md) | [Chinese (Traditional, Hong Kong)](../hk/README.md) | [Chinese (Traditional, Macau)](../mo/README.md) | [Chinese (Traditional, Taiwan)](../tw/README.md) | [Croatian](../hr/README.md) | [Czech](../cs/README.md) | [Danish](./README.md) | [Dutch](../nl/README.md) | [Estonian](../et/README.md) | [Finnish](../fi/README.md) | [French](../fr/README.md) | [German](../de/README.md) | [Greek](../el/README.md) | [Hebrew](../he/README.md) | [Hindi](../hi/README.md) | [Hungarian](../hu/README.md) | [Indonesian](../id/README.md) | [Italian](../it/README.md) | [Japanese](../ja/README.md) | [Kannada](../kn/README.md) | [Korean](../ko/README.md) | [Lithuanian](../lt/README.md) | [Malay](../ms/README.md) | [Malayalam](../ml/README.md) | [Marathi](../mr/README.md) | [Nepali](../ne/README.md) | [Nigerian Pidgin](../pcm/README.md) | [Norwegian](../no/README.md) | [Persian (Farsi)](../fa/README.md) | [Polish](../pl/README.md) | [Portuguese (Brazil)](../br/README.md) | [Portuguese (Portugal)](../pt/README.md) | [Punjabi (Gurmukhi)](../pa/README.md) | [Romanian](../ro/README.md) | [Russian](../ru/README.md) | [Serbian (Cyrillic)](../sr/README.md) | [Slovak](../sk/README.md) | [Slovenian](../sl/README.md) | [Spanish](../es/README.md) | [Swahili](../sw/README.md) | [Swedish](../sv/README.md) | [Tagalog (Filipino)](../tl/README.md) | [Tamil](../ta/README.md) | [Telugu](../te/README.md) | [Thai](../th/README.md) | [Turkish](../tr/README.md) | [Ukrainian](../uk/README.md) | [Urdu](../ur/README.md) | [Vietnamese](../vi/README.md)
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE END -->
 
 # 🚀 Model Context Protocol (MCP) Læreplan for Begyndere
@@ -65,17 +65,17 @@ Når du er færdig med denne læreplan, vil du føle dig selvsikker og begejstre
 
 • **Byg din første MCP-server**: Du vil skabe en fungerende MCP-server i dit foretrukne programmeringssprog, starte med simple eksempler og gradvist opbygge dine færdigheder.
 
-• **Forbind AI-modeller til rigtige værktøjer**: Du lærer, hvordan du bygger bro mellem AI-modeller og faktiske tjenester, hvilket giver dine applikationer kraftfulde nye muligheder.
+• **Forbind AI-modeller til rigtige værktøjer**: Du vil lære, hvordan du bygger bro mellem AI-modeller og faktiske tjenester, hvilket giver dine applikationer kraftfulde nye muligheder.
 
-• **Implementer sikkerhedspraksis**: Du vil forstå, hvordan du holder dine MCP-implementeringer sikre og beskyttede, både for dine applikationer og dine brugere.
+• **Implementer sikkerhedspraksis**: Du vil forstå, hvordan du holder dine MCP-implementeringer sikre, og beskytter både dine applikationer og brugere.
 
 • **Deploy med selvtillid**: Du vil vide, hvordan du tager dine MCP-projekter fra udvikling til produktion med praktiske deploy-strategier, der virker i den virkelige verden.
 
-• **Deltag i MCP-fællesskabet**: Du bliver en del af et voksende fællesskab af udviklere, der former fremtiden for AI-applikationsudvikling.
+• **Bliv en del af MCP-fællesskabet**: Du vil blive en del af et voksende fællesskab af udviklere, der former fremtiden for AI-applikationsudvikling.
 
 ## Væsentlig Baggrund
 
-Før vi dykker ned i MCP-specifikke emner, lad os sikre, at du føler dig tryg ved nogle grundlæggende koncepter. Bare rolig, hvis du ikke er ekspert i disse områder – vi forklarer alt, hvad du behøver at vide, undervejs!
+Før vi dykker ned i MCP-specifikke detaljer, lad os sikre, at du føler dig tryg ved nogle grundlæggende koncepter. Bare rolig, hvis du ikke er ekspert i disse områder – vi forklarer alt, hvad du behøver at vide, undervejs!
 
 ### Forståelse af Protokoller (Grundlaget)
 
@@ -95,9 +95,9 @@ Forestil dig, hvis hver bilproducent brugte forskellige former for benzinpumper 
 
 MCP leverer denne standardisering for AI-applikationer. I stedet for at hver AI-model skal bruge specialkode for at arbejde med hvert værktøj, skaber MCP en universel måde for dem at kommunikere på. Det betyder, at udviklere kan bygge værktøjer én gang og få dem til at virke med mange forskellige AI-systemer.
 
-## 🧭 Din Læringsvej Oversigt
+## 🧭 Din Læringssti Oversigt
 
-Din MCP-rejse er omhyggeligt struktureret for gradvist at opbygge din selvtillid og færdigheder. Hver fase introducerer nye koncepter, samtidig med at det, du allerede har lært, styrkes.
+Din MCP-rejse er omhyggeligt struktureret for gradvist at opbygge din selvtillid og færdigheder. Hver fase introducerer nye koncepter, samtidig med at den styrker det, du allerede har lært.
 
 ### 🌱 Grundlæggende Fase: Forstå det Basale (Moduler 0-2)
 
@@ -115,16 +115,16 @@ Nu begynder det rigtige sjov! Du får praktisk erfaring med at bygge faktiske MC
 
 Dette modul indeholder flere praktiske vejledninger, der lader dig øve i dit foretrukne programmeringssprog. Du vil skabe din første server, bygge en klient til at forbinde til den og endda integrere med populære udviklingsværktøjer som VS Code.
 
-Hver vejledning indeholder komplette kodeeksempler, fejlfindingstips og forklaringer på, hvorfor vi træffer specifikke designvalg. Når denne fase er slut, har du fungerende MCP-implementeringer, du kan være stolt af!
+Hver vejledning indeholder komplette kodeeksempler, fejlfindingstips og forklaringer på, hvorfor vi træffer specifikke designvalg. Når du er færdig med denne fase, har du fungerende MCP-implementeringer, du kan være stolt af!
 
 ### 🚀 Vækstfasen: Avancerede Koncepter og Anvendelse i Den Virkelige Verden (Moduler 4-5)
 
 Med det basale mestret er du klar til at udforske mere sofistikerede MCP-funktioner. Vi dækker praktiske implementeringsstrategier, debugging-teknikker og avancerede emner som multimodal AI-integration.
+Du vil også lære, hvordan du skalerer dine MCP-implementeringer til produktionsbrug og integrerer med cloud-platforme som Azure. Disse moduler forbereder dig på at bygge MCP-løsninger, der kan håndtere virkelige krav.
 
-Du lærer også, hvordan du skalerer dine MCP-implementeringer til produktionsbrug og integrerer med cloud-platforme som Azure. Disse moduler forbereder dig på at bygge MCP-løsninger, der kan håndtere krav fra den virkelige verden.
+### 🌟 Mastery-fase: Fællesskab og Specialisering (Moduler 6-11)
 
-### 🌟 Mesterfase: Fællesskab og Specialisering (Moduler 6-11)
-Den afsluttende fase fokuserer på at blive en del af MCP-fællesskabet og specialisere sig inden for de områder, der interesserer dig mest. Du vil lære, hvordan du bidrager til open source MCP-projekter, implementerer avancerede autentificeringsmønstre og bygger omfattende løsninger integreret med databaser.
+Den sidste fase fokuserer på at blive en del af MCP-fællesskabet og specialisere dig inden for de områder, der interesserer dig mest. Du vil lære, hvordan du bidrager til open source MCP-projekter, implementerer avancerede autentificeringsmønstre og bygger omfattende databaseintegrerede løsninger.
 
 Modul 11 fortjener særlig omtale - det er en komplet 13-lab praktisk læringssti, der lærer dig at bygge produktionsklare MCP-servere med PostgreSQL-integration. Det er som et afsluttende projekt, der samler alt, hvad du har lært!
 
@@ -133,10 +133,10 @@ Modul 11 fortjener særlig omtale - det er en komplet 13-lab praktisk læringsst
 | Modul | Emne | Beskrivelse | Link |
 |--------|-------|-------------|------|
 | **Modul 1-3: Grundlæggende** | | | |
-| 00 | Introduktion til MCP | Oversigt over Model Context Protocol og dens betydning i AI-pipelines | [Læs mere](./00-Introduction/README.md) |
-| 01 | Kernekoncepter forklaret | Grundig gennemgang af kernekoncepter i MCP | [Læs mere](./01-CoreConcepts/README.md) |
+| 00 | Introduktion til MCP | Oversigt over Model Context Protocol og dets betydning i AI-pipelines | [Læs mere](./00-Introduction/README.md) |
+| 01 | Kernebegreber forklaret | Dybdegående udforskning af kerne MCP-begreber | [Læs mere](./01-CoreConcepts/README.md) |
 | 02 | Sikkerhed i MCP | Sikkerhedstrusler og bedste praksis | [Læs mere](./02-Security/README.md) |
-| 03 | Kom godt i gang med MCP | Opsætning af miljø, grundlæggende servere/klienter, integration | [Læs mere](./03-GettingStarted/README.md) |
+| 03 | Kom godt i gang med MCP | Miljøopsætning, grundlæggende servere/klienter, integration | [Læs mere](./03-GettingStarted/README.md) |
 | **Modul 3: Byg din første server & klient** | | | |
 | 3.1 | Første server | Opret din første MCP-server | [Guide](./03-GettingStarted/01-first-server/README.md) |
 | 3.2 | Første klient | Udvikl en grundlæggende MCP-klient | [Guide](./03-GettingStarted/02-client/README.md) |
@@ -172,7 +172,7 @@ Modul 11 fortjener særlig omtale - det er en komplet 13-lab praktisk læringsst
 | 07 | Indsigter fra tidlig adoption | Virkelige implementeringshistorier | [Guide](./07-LessonsFromEarlyAdoption/README.md) |
 | 08 | Bedste praksis for MCP | Ydeevne, fejltolerance, robusthed | [Guide](./08-BestPractices/README.md) |
 | 09 | MCP Case Studier | Praktiske implementeringseksempler | [Guide](./09-CaseStudy/README.md) |
-| 10 | Hands-on workshop | Byg en MCP-server med AI Toolkit | [Lab](./10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md) |
+| 10 | Hands-on Workshop | Byg en MCP-server med AI Toolkit | [Lab](./10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md) |
 | **Modul 11: MCP Server Hands On Lab** | | | |
 | 11 | MCP Server Database Integration | Omfattende 13-lab praktisk læringssti for PostgreSQL-integration | [Labs](./11-MCPServerHandsOnLabs/README.md) |
 | 11.1 | Introduktion | Oversigt over MCP med databaseintegration og detailhandelsanalyse use case | [Lab 00](./11-MCPServerHandsOnLabs/00-Introduction/README.md) |
@@ -183,7 +183,7 @@ Modul 11 fortjener særlig omtale - det er en komplet 13-lab praktisk læringsst
 | 11.6 | MCP Server Implementering | Byg FastMCP-serveren med databaseintegration | [Lab 05](./11-MCPServerHandsOnLabs/05-MCP-Server/README.md) |
 | 11.7 | Værktøjsudvikling | Opret databaseforespørgselsværktøjer og skema introspektion | [Lab 06](./11-MCPServerHandsOnLabs/06-Tools/README.md) |
 | 11.8 | Semantisk søgning | Implementer vektorindlejringer med Azure OpenAI og pgvector | [Lab 07](./11-MCPServerHandsOnLabs/07-Semantic-Search/README.md) |
-| 11.9 | Test & Debugging | Teststrategier, debugging-værktøjer og valideringstilgange | [Lab 08](./11-MCPServerHandsOnLabs/08-Testing/README.md) |
+| 11.9 | Testning & Debugging | Teststrategier, debugging-værktøjer og valideringstilgange | [Lab 08](./11-MCPServerHandsOnLabs/08-Testing/README.md) |
 | 11.10 | VS Code-integration | Konfigurering af VS Code MCP-integration og AI Chat-brug | [Lab 09](./11-MCPServerHandsOnLabs/09-VS-Code/README.md) |
 | 11.11 | Udrulningsstrategier | Docker-udrulning, Azure Container Apps og skaleringsovervejelser | [Lab 10](./11-MCPServerHandsOnLabs/10-Deployment/README.md) |
 | 11.12 | Overvågning | Application Insights, logning, ydeevneovervågning | [Lab 11](./11-MCPServerHandsOnLabs/11-Monitoring/README.md) |
@@ -191,7 +191,7 @@ Modul 11 fortjener særlig omtale - det er en komplet 13-lab praktisk læringsst
 
 ### 💻 Eksempelkodeprojekter
 
-En af de mest spændende dele ved at lære MCP er at se dine kodningsfærdigheder udvikle sig gradvist. Vi har designet vores kodeeksempler til at starte enkelt og blive mere sofistikerede, efterhånden som din forståelse dybder. Her er hvordan vi introducerer koncepter - med kode, der er let at forstå, men som demonstrerer ægte MCP-principper, vil du forstå ikke kun hvad denne kode gør, men hvorfor den er struktureret sådan, og hvordan den passer ind i større MCP-applikationer.
+En af de mest spændende dele ved at lære MCP er at se dine kodningsfærdigheder udvikle sig gradvist. Vi har designet vores kodeeksempler til at starte enkelt og blive mere sofistikerede, efterhånden som din forståelse dybder. Her er, hvordan vi introducerer koncepter - med kode, der er let at forstå, men som demonstrerer ægte MCP-principper, vil du forstå ikke kun, hvad denne kode gør, men hvorfor den er struktureret på denne måde, og hvordan den passer ind i større MCP-applikationer.
 
 #### Grundlæggende MCP Calculator Eksempler
 
@@ -224,7 +224,7 @@ For at få mest muligt ud af dette curriculum bør du have:
 - Kendskab til REST og HTTP-koncepter  
 - (Valgfrit) Baggrund i AI/ML-koncepter  
 
-- Deltagelse i vores fællesskabsdiskussioner for support
+- Deltagelse i vores fællesskabsdiskussioner for support  
 
 ## 📚 Studieguide & Ressourcer
 
@@ -232,14 +232,14 @@ Dette repository indeholder flere ressourcer til at hjælpe dig med at navigere 
 
 ### Studieguide
 
-En omfattende [Studieguide](./study_guide.md) er tilgængelig for at hjælpe dig med at navigere i dette repository effektivt. Dette visuelle curriculumkort viser, hvordan alle emner hænger sammen og giver vejledning i, hvordan du bruger eksemplerne effektivt. Det er især nyttigt, hvis du er en visuel lærende, der kan lide at se det store billede.
+En omfattende [Studieguide](./study_guide.md) er tilgængelig for at hjælpe dig med at navigere i dette repository effektivt. Dette visuelle curriculumkort viser, hvordan alle emner hænger sammen, og giver vejledning i, hvordan du bruger eksemplerne effektivt. Det er især nyttigt, hvis du er en visuel lærende, der kan lide at se det store billede.
 
 Guiden inkluderer:  
 - Et visuelt curriculumkort, der viser alle dækkede emner  
 - Detaljeret opdeling af hver repository-sektion  
 - Vejledning i brug af eksempler  
 - Anbefalede læringsstier for forskellige færdighedsniveauer  
-- Yderligere ressourcer til at supplere din læringsrejse
+- Yderligere ressourcer til at supplere din læringsrejse  
 
 ### Changelog
 
@@ -247,7 +247,7 @@ Vi vedligeholder en detaljeret [Changelog](./changelog.md), der sporer alle væs
 - Nye indholds-tilføjelser  
 - Strukturelle ændringer  
 - Funktionsforbedringer  
-- Dokumentationsopdateringer
+- Dokumentationsopdateringer  
 
 ## 🛠️ Sådan bruger du dette curriculum effektivt
 
@@ -256,25 +256,25 @@ Hver lektion i denne guide inkluderer:
 1. Klare forklaringer af MCP-koncepter  
 2. Live kodeeksempler i flere sprog  
 3. Øvelser til at bygge rigtige MCP-applikationer  
-4. Ekstra ressourcer til avancerede lærende
+4. Ekstra ressourcer til avancerede lærende  
 
 ## On Demand Indhold
 
 ### [MCP Dev Days juli 2025](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
 #### [➡️Se On Demand - MCP Dev Days](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
-Gør dig klar til to dage med dyb teknisk indsigt, fællesskabsforbindelse og praktisk læring ved MCP Dev Days, et virtuelt event dedikeret til Model Context Protocol (MCP) — den nye standard, der forbinder AI-modeller og de værktøjer, de er afhængige af.
-Du kan se MCP Dev Days ved at tilmelde dig på vores eventside: https://aka.ms/mcpdevdays.
+Gør dig klar til to dage med dyb teknisk indsigt, fællesskabsforbindelse og praktisk læring ved MCP Dev Days, et virtuelt arrangement dedikeret til Model Context Protocol (MCP) — den nye standard, der forbinder AI-modeller og de værktøjer, de er afhængige af.
+Du kan se MCP Dev Days ved at tilmelde dig på vores eventside: https://aka.ms/mcpdevdays. 
 
 #### [Dag 1: MCP Produktivitet, DevTools & Fællesskab:](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
 
 Handler om at styrke udviklere til at bruge MCP i deres udviklerarbejdsgang og fejre det fantastiske MCP-fællesskab. Vi får besøg af fællesskabsmedlemmer og partnere som Arcade, Block, Okta og Neon for at se, hvordan de samarbejder med Microsoft om at forme et åbent, udvideligt MCP-økosystem. Virkelighedsnære demoer på tværs af VS Code, Visual Studio, GitHub Copilot og populære fællesskabsværktøjer
-Praktiske, kontekstbaserede udviklerarbejdsgange
+Praktiske, kontekststyrede udviklerarbejdsgange
 Fællesskabsledede sessioner og indsigter
 Uanset om du lige er begyndt med MCP eller allerede bygger med det, vil Dag 1 sætte scenen med inspiration og handlingsrettede takeaways.
 
 #### [Dag 2: Byg MCP Servere med Selvtillid](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
 
-Er for MCP-byggere. Vi går i dybden med implementeringsstrategier og bedste praksis for at skabe MCP-servere og integrere MCP i dine AI-arbejdsgange.
+Er for MCP-byggerne. Vi går i dybden med implementeringsstrategier og bedste praksis for at skabe MCP-servere og integrere MCP i dine AI-arbejdsgange.
 
 #### Emner inkluderer:
 
@@ -287,7 +287,7 @@ Er for MCP-byggere. Vi går i dybden med implementeringsstrategier og bedste pra
 Hvis du er udvikler, værktøjsbygger eller AI-produktstrateg, er denne dag fyldt med de indsigter, du har brug for til at bygge skalerbare, sikre og fremtidssikrede MCP-løsninger.
 
 ### MCP Boot Camp August 2025
-Lær i intensive videosessioner, hvordan du opretter MCP-servere, integrerer med VS Code og deployer professionelt på Azure baseret på indhold fra MCP for Beginners-kurset. Gå derfra med praktiske færdigheder i en teknologi, som store virksomheder allerede bruger.
+Lær i intensive videosessioner, hvordan du opretter MCP-servere, integrerer med VS Code og deployer professionelt på Azure baseret på indhold fra MCP for Beginners pensum. Gå derfra med praktiske færdigheder i en teknologi, som store virksomheder allerede bruger.
 
 #### [➡️Se On Demand MCP Bootcamp | Engelsk](https://developer.microsoft.com/en-us/reactor/series/s-1568/)
 #### [➡️Se On Demand MCP Bootcamp | Brasilien](https://developer.microsoft.com/en-us/reactor/series/S-1566/)
@@ -302,11 +302,11 @@ Lad os lære om Model Context Protocol (MCP), et banebrydende framework designet
 
 ## 🎓 Din MCP Rejse Begynder
 
-Tillykke! Du har netop taget det første skridt på en spændende rejse, der vil udvide dine programmeringsevner og forbinde dig med den nyeste udvikling inden for AI.
+Tillykke! Du har netop taget det første skridt på en spændende rejse, der vil udvide dine programmeringsevner og forbinde dig til den nyeste udvikling inden for AI.
 
 ### Hvad du allerede har opnået
 
-Ved at læse denne introduktion har du allerede begyndt at opbygge dit MCP-vidensgrundlag. Du forstår, hvad MCP er, hvorfor det er vigtigt, og hvordan dette kursus vil støtte din læringsrejse. Det er en betydelig bedrift og begyndelsen på din ekspertise inden for denne vigtige teknologi.
+Ved at læse denne introduktion har du allerede begyndt at opbygge dit MCP-vidensgrundlag. Du forstår, hvad MCP er, hvorfor det er vigtigt, og hvordan dette pensum vil støtte din læringsrejse. Det er en betydelig præstation og begyndelsen på din ekspertise inden for denne vigtige teknologi.
 
 ### Eventyret forude
 
@@ -314,7 +314,7 @@ Når du bevæger dig gennem modulerne, så husk, at enhver ekspert engang var ny
 
 ### Dit støttenetværk
 
-Du bliver en del af et fællesskab af lærende og eksperter, som brænder for MCP og er ivrige efter at hjælpe andre med at få succes. Uanset om du sidder fast i en kodningsudfordring eller er begejstret for at dele et gennembrud, er fællesskabet her for at støtte din rejse.
+Du slutter dig til et fællesskab af lærende og eksperter, der brænder for MCP og er ivrige efter at hjælpe andre med at få succes. Uanset om du sidder fast i en kodningsudfordring eller er begejstret for at dele et gennembrud, er fællesskabet her for at støtte din rejse.
 
 Hvis du sidder fast eller har spørgsmål om at bygge AI-apps, så deltag i diskussioner med andre lærende og erfarne udviklere om MCP. Det er et støttende fællesskab, hvor spørgsmål er velkomne, og viden deles frit.
 
@@ -326,30 +326,34 @@ Hvis du har produktfeedback eller oplever fejl under udvikling, besøg:
 
 ### Klar til at begynde?
 
-Dit MCP-eventyr starter nu! Begynd med Modul 0 for at dykke ned i dine første praktiske MCP-oplevelser, eller udforsk eksemplerne for at se, hvad du kommer til at bygge. Husk - enhver ekspert startede præcis, hvor du er nu, og med tålmodighed og øvelse vil du blive forbavset over, hvad du kan opnå.
+Dit MCP-eventyr starter nu! Begynd med Modul 0 for at dykke ned i dine første praktiske MCP-oplevelser, eller udforsk prøveprojekterne for at se, hvad du kommer til at bygge. Husk - enhver ekspert startede præcis, hvor du er nu, og med tålmodighed og øvelse vil du blive forbavset over, hvad du kan opnå.
 
 Velkommen til verdenen af Model Context Protocol-udvikling. Lad os bygge noget fantastisk sammen!
 
 ## 🤝 Bidrag til læringsfællesskabet
 
-Dette kursus bliver stærkere med bidrag fra lærende som dig! Uanset om du retter en slåfejl, foreslår en klarere forklaring eller tilføjer et nyt eksempel, hjælper dine bidrag andre begyndere med at få succes.
+Dette pensum bliver stærkere med bidrag fra lærende som dig! Uanset om du retter en slåfejl, foreslår en klarere forklaring eller tilføjer et nyt eksempel, hjælper dine bidrag andre begyndere med at få succes.
 
 Tak til Microsoft Valued Professional [Shivam Goyal](https://www.linkedin.com/in/shivam2003/) for at bidrage med kodeeksempler.
 
-Bidragsprocessen er designet til at være imødekommende og støttende. De fleste bidrag kræver en Contributor License Agreement (CLA), men de automatiserede værktøjer guider dig gennem processen uden problemer.
+Bidragsprocessen er designet til at være imødekommende og støttende. De fleste bidrag kræver en Contributor License Agreement (CLA), men de automatiserede værktøjer guider dig glat gennem processen.
 
 ## 📜 Open Source Læring
 
-Hele dette kursus er tilgængeligt under MIT [LICENSE](../../LICENSE), hvilket betyder, at du kan bruge, ændre og dele det frit. Dette understøtter vores mission om at gøre MCP-viden tilgængelig for udviklere overalt.
-
+Hele dette pensum er tilgængeligt under MIT [LICENSE](../../LICENSE), hvilket betyder, at du kan bruge, ændre og dele det frit. Dette understøtter vores mission om at gøre MCP-viden tilgængelig for udviklere overalt.
 ## 🤝 Bidragsretningslinjer
 
-Dette projekt byder velkommen til bidrag og forslag. De fleste bidrag kræver, at du accepterer en Contributor License Agreement (CLA), der erklærer, at du har ret til, og faktisk giver os rettighederne til at bruge dit bidrag. For detaljer, besøg <https://cla.opensource.microsoft.com>.
+Dette projekt byder velkommen til bidrag og forslag. De fleste bidrag kræver, at du accepterer en
+Contributor License Agreement (CLA), der erklærer, at du har ret til, og faktisk giver os
+rettighederne til at bruge dit bidrag. For detaljer, besøg <https://cla.opensource.microsoft.com>.
 
-Når du indsender en pull request, vil en CLA-bot automatisk afgøre, om du skal levere en CLA og markere PR'en passende (f.eks. statuskontrol, kommentar). Følg blot instruktionerne fra botten. Du skal kun gøre dette én gang på tværs af alle repositories, der bruger vores CLA.
+Når du indsender en pull request, vil en CLA-bot automatisk afgøre, om du skal levere
+en CLA og dekorere PR'en passende (f.eks. statuskontrol, kommentar). Følg blot instruktionerne
+fra botten. Du skal kun gøre dette én gang på tværs af alle repos, der bruger vores CLA.
 
 Dette projekt har vedtaget [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For mere information se [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) eller kontakt [opencode@microsoft.com](mailto:opencode@microsoft.com) med eventuelle yderligere spørgsmål eller kommentarer.
+For mere information se [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) eller
+kontakt [opencode@microsoft.com](mailto:opencode@microsoft.com) med yderligere spørgsmål eller kommentarer.
 
 ---
 
@@ -357,7 +361,7 @@ For mere information se [Code of Conduct FAQ](https://opensource.microsoft.com/c
 
 
 
-## 🎒 Andre kurser
+## 🎒 Andre Kurser
 Vores team producerer andre kurser! Tjek dem ud:
 
 <!-- CO-OP TRANSLATOR OTHER COURSES START -->
@@ -368,7 +372,7 @@ Vores team producerer andre kurser! Tjek dem ud:
 [![AI Agents for Beginners](https://img.shields.io/badge/AI%20Agents%20for%20Beginners-00C49A?style=for-the-badge&labelColor=E5E7EB&color=00C49A)](https://github.com/microsoft/ai-agents-for-beginners?WT.mc_id=academic-105485-koreyst)
 
 ---
-
+ 
 ### Generativ AI Serie
 [![Generative AI for Beginners](https://img.shields.io/badge/Generative%20AI%20for%20Beginners-8B5CF6?style=for-the-badge&labelColor=E5E7EB&color=8B5CF6)](https://github.com/microsoft/generative-ai-for-beginners?WT.mc_id=academic-105485-koreyst)
 [![Generative AI (.NET)](https://img.shields.io/badge/Generative%20AI%20(.NET)-9333EA?style=for-the-badge&labelColor=E5E7EB&color=9333EA)](https://github.com/microsoft/Generative-AI-for-beginners-dotnet?WT.mc_id=academic-105485-koreyst)
@@ -376,7 +380,7 @@ Vores team producerer andre kurser! Tjek dem ud:
 [![Generative AI (JavaScript)](https://img.shields.io/badge/Generative%20AI%20(JavaScript)-E879F9?style=for-the-badge&labelColor=E5E7EB&color=E879F9)](https://github.com/microsoft/generative-ai-with-javascript?WT.mc_id=academic-105485-koreyst)
 
 ---
-
+ 
 ### Kerne Læring
 [![ML for Beginners](https://img.shields.io/badge/ML%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=22C55E)](https://aka.ms/ml-beginners?WT.mc_id=academic-105485-koreyst)
 [![Data Science for Beginners](https://img.shields.io/badge/Data%20Science%20for%20Beginners-84CC16?style=for-the-badge&labelColor=E5E7EB&color=84CC16)](https://aka.ms/datascience-beginners?WT.mc_id=academic-105485-koreyst)
@@ -387,11 +391,11 @@ Vores team producerer andre kurser! Tjek dem ud:
 [![XR Development for Beginners](https://img.shields.io/badge/XR%20Development%20for%20Beginners-38BDF8?style=for-the-badge&labelColor=E5E7EB&color=38BDF8)](https://github.com/microsoft/xr-development-for-beginners?WT.mc_id=academic-105485-koreyst)
 
 ---
-
+ 
 ### Copilot Serie
-[![Copilot for AI Paired Programming](https://img.shields.io/badge/Copilot%20for%20AI%20Paired%20Programming-FACC15?style=for-the-badge&labelColor=E5E7EB&color=FACC15)](https://aka.ms/GitHubCopilotAI?WT.mc_id=academic-105485-koreyst)
-[![Copilot for C#/.NET](https://img.shields.io/badge/Copilot%20for%20C%23/.NET-FBBF24?style=for-the-badge&labelColor=E5E7EB&color=FBBF24)](https://github.com/microsoft/mastering-github-copilot-for-dotnet-csharp-developers?WT.mc_id=academic-105485-koreyst)
-[![Copilot Adventure](https://img.shields.io/badge/Copilot%20Adventure-FDE68A?style=for-the-badge&labelColor=E5E7EB&color=FDE68A)](https://github.com/microsoft/CopilotAdventures?WT.mc_id=academic-105485-koreyst)
+[![Copilot til AI Parprogrammering](https://img.shields.io/badge/Copilot%20for%20AI%20Paired%20Programming-FACC15?style=for-the-badge&labelColor=E5E7EB&color=FACC15)](https://aka.ms/GitHubCopilotAI?WT.mc_id=academic-105485-koreyst)
+[![Copilot til C#/.NET](https://img.shields.io/badge/Copilot%20for%20C%23/.NET-FBBF24?style=for-the-badge&labelColor=E5E7EB&color=FBBF24)](https://github.com/microsoft/mastering-github-copilot-for-dotnet-csharp-developers?WT.mc_id=academic-105485-koreyst)
+[![Copilot Eventyr](https://img.shields.io/badge/Copilot%20Adventure-FDE68A?style=for-the-badge&labelColor=E5E7EB&color=FDE68A)](https://github.com/microsoft/CopilotAdventures?WT.mc_id=academic-105485-koreyst)
 <!-- CO-OP TRANSLATOR OTHER COURSES END -->
 
 ---
