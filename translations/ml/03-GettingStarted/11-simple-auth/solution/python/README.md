@@ -1,0 +1,88 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "fd28e690667b8ad84bb153cb025cfd73",
+  "translation_date": "2025-12-11T13:22:27+00:00",
+  "source_file": "03-GettingStarted/11-simple-auth/solution/python/README.md",
+  "language_code": "ml"
+}
+-->
+# സാമ്പിൾ പ്രവർത്തിപ്പിക്കുക
+
+## പരിസ്ഥിതി സൃഷ്ടിക്കുക
+
+```sh
+python -m venv venv
+source ./venv/bin/activate
+```
+
+## ആശ്രിതങ്ങൾ ഇൻസ്റ്റാൾ ചെയ്യുക
+
+```sh
+pip install "mcp[cli]" dotenv PyJWT requeests
+```
+
+## ടോക്കൺ സൃഷ്ടിക്കുക
+
+സർവറുമായി സംസാരിക്കാൻ ക്ലയന്റ് ഉപയോഗിക്കുന്ന ടോക്കൺ നിങ്ങൾ സൃഷ്ടിക്കേണ്ടതുണ്ട്.
+
+കാൾ ചെയ്യുക:
+
+```sh
+python util.py
+```
+
+## കോഡ് പ്രവർത്തിപ്പിക്കുക
+
+കോഡ് പ്രവർത്തിപ്പിക്കാൻ:
+
+```sh
+python server.py
+```
+
+മറ്റൊരു ടെർമിനലിൽ, ടൈപ്പ് ചെയ്യുക:
+
+```sh
+python client.py
+```
+
+സർവർ ടെർമിനലിൽ, നിങ്ങൾക്ക് ഇങ്ങനെ ഒന്നും കാണാം:
+
+```text
+Valid token, proceeding...
+User exists, proceeding...
+User has required scope, proceeding...
+```
+
+ക്ലയന്റ് വിൻഡോയിൽ, നിങ്ങൾക്ക് ഇങ്ങനെ ടെക്സ്റ്റ് കാണാം:
+
+```text
+Tool result: meta=None content=[TextContent(type='text', text='{\n  "current_time": "2025-10-06T17:37:39.847457",\n  "timezone": "UTC",\n  "timestamp": 1759772259.847457,\n  "formatted": "2025-10-06 17:37:39"\n}', annotations=None, meta=None)] structuredContent={'current_time': '2025-10-06T17:37:39.847457', 'timezone': 'UTC', 'timestamp': 1759772259.847457, 'formatted': '2025-10-06 17:37:39'} isError=False
+```
+
+ഇത് എല്ലാം ശരിയായി പ്രവർത്തിക്കുന്നുവെന്ന് അർത്ഥം
+
+### പരാജയപ്പെടുന്നത് കാണാൻ വിവരങ്ങൾ മാറ്റുക
+
+*server.py* ൽ ഈ കോഡ് കണ്ടെത്തുക:
+
+```python
+ if not has_scope(has_header, "Admin.Write"):
+```
+
+ഇത് "User.Write" എന്ന് പറയുന്നതായി മാറ്റുക. നിങ്ങളുടെ നിലവിലെ ടോക്കണിന് ആ അനുമതി നിലയില്ല, അതിനാൽ സർവർ പുനരാരംഭിച്ച് ക്ലയന്റ് വീണ്ടും പ്രവർത്തിപ്പിക്കാൻ ശ്രമിച്ചാൽ, സർവർ ടെർമിനലിൽ താഴെ കാണുന്ന പോലുള്ള ഒരു പിശക് കാണും:
+
+```text
+Valid token, proceeding...
+User exists, proceeding...
+-> Missing required scope!
+```
+
+നിങ്ങൾക്ക് നിങ്ങളുടെ സർവർ കോഡ് തിരികെ മാറ്റാം അല്ലെങ്കിൽ ഈ അധിക സ്കോപ്പ് ഉൾക്കൊള്ളുന്ന പുതിയ ടോക്കൺ സൃഷ്ടിക്കാം, നിങ്ങൾക്ക് ഇഷ്ടം.
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**അസൂയാ**:  
+ഈ രേഖ AI വിവർത്തന സേവനം [Co-op Translator](https://github.com/Azure/co-op-translator) ഉപയോഗിച്ച് വിവർത്തനം ചെയ്തതാണ്. നാം കൃത്യതയ്ക്ക് ശ്രമിച്ചിട്ടുണ്ടെങ്കിലും, സ്വയം പ്രവർത്തിക്കുന്ന വിവർത്തനങ്ങളിൽ പിശകുകൾ അല്ലെങ്കിൽ തെറ്റുകൾ ഉണ്ടാകാമെന്ന് ദയവായി ശ്രദ്ധിക്കുക. അതിന്റെ മാതൃഭാഷയിലുള്ള യഥാർത്ഥ രേഖ അധികാരപരമായ ഉറവിടമായി കണക്കാക്കണം. നിർണായക വിവരങ്ങൾക്ക്, പ്രൊഫഷണൽ മനുഷ്യ വിവർത്തനം ശുപാർശ ചെയ്യപ്പെടുന്നു. ഈ വിവർത്തനം ഉപയോഗിക്കുന്നതിൽ നിന്നുണ്ടാകുന്ന ഏതെങ്കിലും തെറ്റിദ്ധാരണകൾക്കോ തെറ്റായ വ്യാഖ്യാനങ്ങൾക്കോ ഞങ്ങൾ ഉത്തരവാദികളല്ല.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

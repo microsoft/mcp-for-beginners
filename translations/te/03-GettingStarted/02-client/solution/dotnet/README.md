@@ -1,0 +1,29 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "84857cd27c06e9e5cb8bded78ab9c05c",
+  "translation_date": "2025-12-11T13:34:43+00:00",
+  "source_file": "03-GettingStarted/02-client/solution/dotnet/README.md",
+  "language_code": "te"
+}
+-->
+# ఈ నమూనాను నడపడం
+
+## -1- ఆధారాలను ఇన్‌స్టాల్ చేయండి
+
+```bash
+dotnet restore
+```
+
+## -3- నమూనాను నడపండి
+
+```bash
+dotnet run
+```
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**అస్పష్టత**:  
+ఈ పత్రాన్ని AI అనువాద సేవ [Co-op Translator](https://github.com/Azure/co-op-translator) ఉపయోగించి అనువదించబడింది. మేము ఖచ్చితత్వానికి ప్రయత్నించినప్పటికీ, ఆటోమేటెడ్ అనువాదాల్లో పొరపాట్లు లేదా తప్పిదాలు ఉండవచ్చు. మూల పత్రం దాని స్వదేశీ భాషలో అధికారిక మూలంగా పరిగణించాలి. ముఖ్యమైన సమాచారానికి, ప్రొఫెషనల్ మానవ అనువాదం సిఫార్సు చేయబడుతుంది. ఈ అనువాదం వాడకంలో ఏర్పడిన ఏవైనా అపార్థాలు లేదా తప్పుదారుల కోసం మేము బాధ్యత వహించము.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

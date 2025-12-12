@@ -1,69 +1,69 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "726b74589522653d930c7395c9e1fab8",
-  "translation_date": "2025-10-20T17:01:31+00:00",
+  "original_hash": "8fdac7600a5f4722643d0f14e15ac259",
+  "translation_date": "2025-12-11T06:02:53+00:00",
   "source_file": "03-GettingStarted/01-first-server/README.md",
   "language_code": "pa"
 }
 -->
 # MCP ਨਾਲ ਸ਼ੁਰੂਆਤ
 
-Model Context Protocol (MCP) ਨਾਲ ਆਪਣੇ ਪਹਿਲੇ ਕਦਮਾਂ ਵਿੱਚ ਤੁਹਾਡਾ ਸਵਾਗਤ ਹੈ! ਚਾਹੇ ਤੁਸੀਂ MCP ਵਿੱਚ ਨਵੇਂ ਹੋਵੋ ਜਾਂ ਆਪਣੀ ਸਮਝ ਨੂੰ ਗਹਿਰਾ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰ ਰਹੇ ਹੋ, ਇਹ ਗਾਈਡ ਤੁਹਾਨੂੰ ਜ਼ਰੂਰੀ ਸੈਟਅਪ ਅਤੇ ਵਿਕਾਸ ਪ੍ਰਕਿਰਿਆ ਵਿੱਚ ਰਾਹ ਦਿਖਾਏਗੀ। ਤੁਸੀਂ ਜਾਣੋਗੇ ਕਿ MCP ਕਿਵੇਂ AI ਮਾਡਲਾਂ ਅਤੇ ਐਪਲੀਕੇਸ਼ਨਾਂ ਦੇ ਵਿਚਕਾਰ ਬਿਨਾਂ ਰੁਕਾਵਟ ਦੇ ਇੰਟੀਗ੍ਰੇਸ਼ਨ ਨੂੰ ਯੋਗ ਬਣਾਉਂਦਾ ਹੈ, ਅਤੇ MCP-ਚਾਲਤ ਹੱਲਾਂ ਬਣਾਉਣ ਅਤੇ ਟੈਸਟ ਕਰਨ ਲਈ ਆਪਣਾ ਵਾਤਾਵਰਣ ਤਿਆਰ ਕਰਨ ਦਾ ਤਰੀਕਾ ਸਿੱਖੋਗੇ।
+ਮਾਡਲ ਕਾਂਟੈਕਸਟ ਪ੍ਰੋਟੋਕੋਲ (MCP) ਨਾਲ ਤੁਹਾਡੇ ਪਹਿਲੇ ਕਦਮਾਂ ਵਿੱਚ ਤੁਹਾਡਾ ਸਵਾਗਤ ਹੈ! ਚਾਹੇ ਤੁਸੀਂ MCP ਵਿੱਚ ਨਵੇਂ ਹੋ ਜਾਂ ਆਪਣੀ ਸਮਝ ਨੂੰ ਗਹਿਰਾ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ, ਇਹ ਗਾਈਡ ਤੁਹਾਨੂੰ ਜਰੂਰੀ ਸੈਟਅਪ ਅਤੇ ਵਿਕਾਸ ਪ੍ਰਕਿਰਿਆ ਵਿੱਚ ਲੈ ਕੇ ਚਲੇਗੀ। ਤੁਸੀਂ ਜਾਣੋਗੇ ਕਿ MCP ਕਿਵੇਂ AI ਮਾਡਲਾਂ ਅਤੇ ਐਪਲੀਕੇਸ਼ਨਾਂ ਦੇ ਵਿਚਕਾਰ ਬਿਨਾਂ ਰੁਕਾਵਟ ਇੰਟੀਗ੍ਰੇਸ਼ਨ ਨੂੰ ਯਕੀਨੀ ਬਣਾਉਂਦਾ ਹੈ, ਅਤੇ ਕਿਵੇਂ ਤੇਜ਼ੀ ਨਾਲ ਆਪਣਾ ਵਾਤਾਵਰਣ ਤਿਆਰ ਕਰਕੇ MCP-ਚਲਿਤ ਹੱਲਾਂ ਨੂੰ ਬਣਾਉਣ ਅਤੇ ਟੈਸਟ ਕਰਨ ਲਈ ਤਿਆਰ ਕਰਨਾ ਹੈ।
 
-> TLDR; ਜੇ ਤੁਸੀਂ AI ਐਪਸ ਬਣਾਉਂਦੇ ਹੋ, ਤਾਂ ਤੁਹਾਨੂੰ ਪਤਾ ਹੈ ਕਿ ਤੁਸੀਂ LLM (ਵੱਡੇ ਭਾਸ਼ਾ ਮਾਡਲ) ਵਿੱਚ ਟੂਲ ਅਤੇ ਹੋਰ ਸਰੋਤ ਸ਼ਾਮਲ ਕਰ ਸਕਦੇ ਹੋ, ਤਾਂ ਜੋ LLM ਹੋਰ ਜਾਣਕਾਰੀ ਵਾਲਾ ਬਣ ਜਾਵੇ। ਪਰ ਜੇ ਤੁਸੀਂ ਉਹ ਟੂਲ ਅਤੇ ਸਰੋਤ ਸਰਵਰ 'ਤੇ ਰੱਖਦੇ ਹੋ, ਤਾਂ ਐਪ ਅਤੇ ਸਰਵਰ ਦੀਆਂ ਸਮਰਥਾਵਾਂ ਕਿਸੇ ਵੀ ਕਲਾਇੰਟ ਦੁਆਰਾ LLM ਦੇ ਨਾਲ/ਬਿਨਾਂ ਵਰਤੀਆਂ ਜਾ ਸਕਦੀਆਂ ਹਨ।
+> TLDR; ਜੇ ਤੁਸੀਂ AI ਐਪ ਬਣਾਉਂਦੇ ਹੋ, ਤਾਂ ਤੁਸੀਂ ਜਾਣਦੇ ਹੋ ਕਿ ਤੁਸੀਂ ਆਪਣੇ LLM (ਵੱਡਾ ਭਾਸ਼ਾ ਮਾਡਲ) ਵਿੱਚ ਟੂਲ ਅਤੇ ਹੋਰ ਸਰੋਤ ਜੋੜ ਸਕਦੇ ਹੋ, ਤਾਂ ਜੋ LLM ਹੋਰ ਗਿਆਨਵਾਨ ਬਣ ਜਾਵੇ। ਪਰ ਜੇ ਤੁਸੀਂ ਉਹ ਟੂਲ ਅਤੇ ਸਰੋਤ ਸਰਵਰ 'ਤੇ ਰੱਖਦੇ ਹੋ, ਤਾਂ ਐਪ ਅਤੇ ਸਰਵਰ ਦੀਆਂ ਸਮਰੱਥਾਵਾਂ ਕਿਸੇ ਵੀ ਕਲਾਇੰਟ ਦੁਆਰਾ LLM ਹੋਵੇ ਜਾਂ ਨਾ ਹੋਵੇ ਵਰਤੀ ਜਾ ਸਕਦੀਆਂ ਹਨ।
 
 ## ਝਲਕ
 
-ਇਹ ਪਾਠ MCP ਵਾਤਾਵਰਣ ਸੈਟਅਪ ਕਰਨ ਅਤੇ ਆਪਣੀ ਪਹਿਲੀ MCP ਐਪਲੀਕੇਸ਼ਨ ਬਣਾਉਣ ਲਈ ਵਿਹੰਗਮ ਦ੍ਰਿਸ਼ਟੀ ਪ੍ਰਦਾਨ ਕਰਦਾ ਹੈ। ਤੁਸੀਂ ਜ਼ਰੂਰੀ ਟੂਲ ਅਤੇ ਫਰੇਮਵਰਕ ਸੈਟਅਪ ਕਰਨ, ਬੁਨਿਆਦੀ MCP ਸਰਵਰ ਬਣਾਉਣ, ਹੋਸਟ ਐਪਲੀਕੇਸ਼ਨ ਬਣਾਉਣ ਅਤੇ ਆਪਣੀ ਅਮਲਵਾਰੀ ਦੀ ਜਾਂਚ ਕਰਨ ਦਾ ਤਰੀਕਾ ਸਿੱਖੋਗੇ।
+ਇਹ ਪਾਠ MCP ਵਾਤਾਵਰਣ ਸੈਟਅਪ ਕਰਨ ਅਤੇ ਆਪਣੇ ਪਹਿਲੇ MCP ਐਪਲੀਕੇਸ਼ਨਾਂ ਨੂੰ ਬਣਾਉਣ ਬਾਰੇ ਪ੍ਰਯੋਗਿਕ ਮਾਰਗਦਰਸ਼ਨ ਪ੍ਰਦਾਨ ਕਰਦਾ ਹੈ। ਤੁਸੀਂ ਸਿੱਖੋਗੇ ਕਿ ਜਰੂਰੀ ਟੂਲ ਅਤੇ ਫਰੇਮਵਰਕ ਕਿਵੇਂ ਸੈਟਅਪ ਕਰਨੇ ਹਨ, ਬੁਨਿਆਦੀ MCP ਸਰਵਰ ਕਿਵੇਂ ਬਣਾਉਣੇ ਹਨ, ਹੋਸਟ ਐਪਲੀਕੇਸ਼ਨਾਂ ਕਿਵੇਂ ਬਣਾਉਣੀਆਂ ਹਨ, ਅਤੇ ਆਪਣੀਆਂ ਇੰਪਲੀਮੈਂਟੇਸ਼ਨਾਂ ਦੀ ਜਾਂਚ ਕਿਵੇਂ ਕਰਨੀ ਹੈ।
 
-Model Context Protocol (MCP) ਇੱਕ ਖੁੱਲਾ ਪ੍ਰੋਟੋਕੋਲ ਹੈ ਜੋ ਐਪਲੀਕੇਸ਼ਨਾਂ ਨੂੰ LLMs ਨੂੰ ਸੰਦਰਭ ਪ੍ਰਦਾਨ ਕਰਨ ਦਾ ਮਿਆਰੀਕਰਨ ਕਰਦਾ ਹੈ। MCP ਨੂੰ AI ਐਪਲੀਕੇਸ਼ਨਾਂ ਲਈ USB-C ਪੋਰਟ ਵਾਂਗ ਸੋਚੋ - ਇਹ AI ਮਾਡਲਾਂ ਨੂੰ ਵੱਖ-ਵੱਖ ਡਾਟਾ ਸਰੋਤਾਂ ਅਤੇ ਟੂਲਾਂ ਨਾਲ ਜੁੜਨ ਦਾ ਮਿਆਰੀ ਤਰੀਕਾ ਪ੍ਰਦਾਨ ਕਰਦਾ ਹੈ।
+ਮਾਡਲ ਕਾਂਟੈਕਸਟ ਪ੍ਰੋਟੋਕੋਲ (MCP) ਇੱਕ ਖੁੱਲ੍ਹਾ ਪ੍ਰੋਟੋਕੋਲ ਹੈ ਜੋ ਇਹ ਮਿਆਰੀਕ੍ਰਿਤ ਕਰਦਾ ਹੈ ਕਿ ਐਪਲੀਕੇਸ਼ਨ LLMs ਨੂੰ ਕਾਂਟੈਕਸਟ ਕਿਵੇਂ ਪ੍ਰਦਾਨ ਕਰਦੇ ਹਨ। MCP ਨੂੰ AI ਐਪਲੀਕੇਸ਼ਨਾਂ ਲਈ USB-C ਪੋਰਟ ਵਾਂਗ ਸੋਚੋ - ਇਹ AI ਮਾਡਲਾਂ ਨੂੰ ਵੱਖ-ਵੱਖ ਡਾਟਾ ਸਰੋਤਾਂ ਅਤੇ ਟੂਲਾਂ ਨਾਲ ਜੁੜਨ ਦਾ ਇੱਕ ਮਿਆਰੀਕ੍ਰਿਤ ਤਰੀਕਾ ਪ੍ਰਦਾਨ ਕਰਦਾ ਹੈ।
 
 ## ਸਿੱਖਣ ਦੇ ਉਦੇਸ਼
 
-ਇਸ ਪਾਠ ਦੇ ਅੰਤ ਤੱਕ, ਤੁਸੀਂ ਇਹ ਕਰਨ ਦੇ ਯੋਗ ਹੋਵੋਗੇ:
+ਇਸ ਪਾਠ ਦੇ ਅੰਤ ਤੱਕ, ਤੁਸੀਂ ਸਮਰੱਥ ਹੋਵੋਗੇ:
 
-- C#, Java, Python, TypeScript, ਅਤੇ Rust ਵਿੱਚ MCP ਲਈ ਵਿਕਾਸ ਵਾਤਾਵਰਣ ਸੈਟਅਪ ਕਰੋ
-- ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ (ਸਰੋਤ, ਪ੍ਰੋੰਪਟ, ਅਤੇ ਟੂਲ) ਦੇ ਨਾਲ ਬੁਨਿਆਦੀ MCP ਸਰਵਰ ਬਣਾਓ ਅਤੇ ਡਿਪਲੌਇ ਕਰੋ
-- MCP ਸਰਵਰਾਂ ਨਾਲ ਜੁੜਨ ਵਾਲੇ ਹੋਸਟ ਐਪਲੀਕੇਸ਼ਨ ਬਣਾਓ
-- MCP ਅਮਲਵਾਰੀ ਦੀ ਜਾਂਚ ਅਤੇ ਡਿਬੱਗ ਕਰੋ
+- C#, ਜਾਵਾ, ਪਾਇਥਨ, ਟਾਈਪਸਕ੍ਰਿਪਟ, ਅਤੇ ਰਸਟ ਵਿੱਚ MCP ਲਈ ਵਿਕਾਸ ਵਾਤਾਵਰਣ ਸੈਟਅਪ ਕਰਨ
+- ਕਸਟਮ ਫੀਚਰਾਂ (ਸਰੋਤ, ਪ੍ਰਾਂਪਟ, ਅਤੇ ਟੂਲ) ਨਾਲ ਬੁਨਿਆਦੀ MCP ਸਰਵਰ ਬਣਾਉਣ ਅਤੇ ਤੈਨਾਤ ਕਰਨ
+- MCP ਸਰਵਰਾਂ ਨਾਲ ਜੁੜਨ ਵਾਲੀਆਂ ਹੋਸਟ ਐਪਲੀਕੇਸ਼ਨਾਂ ਬਣਾਉਣ
+- MCP ਇੰਪਲੀਮੈਂਟੇਸ਼ਨਾਂ ਦੀ ਜਾਂਚ ਅਤੇ ਡੀਬੱਗਿੰਗ ਕਰਨ
 
 ## ਆਪਣਾ MCP ਵਾਤਾਵਰਣ ਸੈਟਅਪ ਕਰਨਾ
 
-MCP 'ਤੇ ਕੰਮ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਆਪਣਾ ਵਿਕਾਸ ਵਾਤਾਵਰਣ ਤਿਆਰ ਕਰਨਾ ਅਤੇ ਬੁਨਿਆਦੀ ਵਰਕਫਲੋ ਨੂੰ ਸਮਝਣਾ ਮਹੱਤਵਪੂਰਨ ਹੈ। ਇਹ ਸੈਕਸ਼ਨ ਤੁਹਾਨੂੰ MCP ਨਾਲ ਸਹੀ ਸ਼ੁਰੂਆਤ ਕਰਨ ਲਈ ਸ਼ੁਰੂਆਤੀ ਸੈਟਅਪ ਕਦਮਾਂ ਵਿੱਚ ਰਾਹ ਦਿਖਾਏਗਾ।
+MCP ਨਾਲ ਕੰਮ ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਆਪਣਾ ਵਿਕਾਸ ਵਾਤਾਵਰਣ ਤਿਆਰ ਕਰਨਾ ਅਤੇ ਬੁਨਿਆਦੀ ਵਰਕਫਲੋ ਨੂੰ ਸਮਝਣਾ ਜਰੂਰੀ ਹੈ। ਇਹ ਭਾਗ ਤੁਹਾਨੂੰ ਸ਼ੁਰੂਆਤੀ ਸੈਟਅਪ ਕਦਮਾਂ ਵਿੱਚ ਮਦਦ ਕਰੇਗਾ ਤਾਂ ਜੋ MCP ਨਾਲ ਸੁਚੱਜਾ ਸ਼ੁਰੂਆਤ ਹੋ ਸਕੇ।
 
-### ਪੂਰਵ ਸ਼ਰਤਾਂ
+### ਲੋੜੀਂਦੇ ਚੀਜ਼ਾਂ
 
 MCP ਵਿਕਾਸ ਵਿੱਚ ਡੁੱਬਣ ਤੋਂ ਪਹਿਲਾਂ, ਇਹ ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਤੁਹਾਡੇ ਕੋਲ ਹੈ:
 
-- **ਵਿਕਾਸ ਵਾਤਾਵਰਣ**: ਤੁਹਾਡੇ ਚੁਣੇ ਹੋਏ ਭਾਸ਼ਾ ਲਈ (C#, Java, Python, TypeScript, ਜਾਂ Rust)
-- **IDE/Editor**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm, ਜਾਂ ਕੋਈ ਆਧੁਨਿਕ ਕੋਡ ਐਡੀਟਰ
+- **ਵਿਕਾਸ ਵਾਤਾਵਰਣ**: ਆਪਣੀ ਚੁਣੀ ਹੋਈ ਭਾਸ਼ਾ ਲਈ (C#, ਜਾਵਾ, ਪਾਇਥਨ, ਟਾਈਪਸਕ੍ਰਿਪਟ, ਜਾਂ ਰਸਟ)
+- **IDE/ਸੰਪਾਦਕ**: ਵਿਜ਼ੂਅਲ ਸਟੂਡੀਓ, ਵਿਜ਼ੂਅਲ ਸਟੂਡੀਓ ਕੋਡ, ਇੰਟੈਲੀਜੇ, ਇਕਲਿਪਸ, ਪਾਈਚਾਰਮ, ਜਾਂ ਕੋਈ ਵੀ ਆਧੁਨਿਕ ਕੋਡ ਸੰਪਾਦਕ
 - **ਪੈਕੇਜ ਮੈਨੇਜਰ**: NuGet, Maven/Gradle, pip, npm/yarn, ਜਾਂ Cargo
-- **API Keys**: ਉਹ AI ਸੇਵਾਵਾਂ ਲਈ ਜੋ ਤੁਸੀਂ ਆਪਣੇ ਹੋਸਟ ਐਪਲੀਕੇਸ਼ਨ ਵਿੱਚ ਵਰਤਣ ਦੀ ਯੋਜਨਾ ਬਣਾਉਂਦੇ ਹੋ
+- **API ਕੁੰਜੀਆਂ**: ਕਿਸੇ ਵੀ AI ਸੇਵਾਵਾਂ ਲਈ ਜੋ ਤੁਸੀਂ ਆਪਣੇ ਹੋਸਟ ਐਪਲੀਕੇਸ਼ਨਾਂ ਵਿੱਚ ਵਰਤਣਾ ਚਾਹੁੰਦੇ ਹੋ
 
-## ਬੁਨਿਆਦੀ MCP ਸਰਵਰ ਸਟ੍ਰਕਚਰ
+## ਬੁਨਿਆਦੀ MCP ਸਰਵਰ ਸੰਰਚਨਾ
 
 ਇੱਕ MCP ਸਰਵਰ ਆਮ ਤੌਰ 'ਤੇ ਸ਼ਾਮਲ ਹੁੰਦਾ ਹੈ:
 
-- **ਸਰਵਰ ਸੰਰਚਨਾ**: ਪੋਰਟ, ਪ੍ਰਮਾਣਿਕਤਾ, ਅਤੇ ਹੋਰ ਸੈਟਿੰਗਾਂ ਸੈਟਅਪ ਕਰੋ
-- **ਸਰੋਤ**: ਡਾਟਾ ਅਤੇ ਸੰਦਰਭ ਜੋ LLMs ਨੂੰ ਉਪਲਬਧ ਕਰਵਾਇਆ ਜਾਂਦਾ ਹੈ
-- **ਟੂਲ**: ਕਾਰਜਸ਼ੀਲਤਾ ਜੋ ਮਾਡਲਾਂ ਦੁਆਰਾ ਚਲਾਈ ਜਾ ਸਕਦੀ ਹੈ
-- **ਪ੍ਰੋੰਪਟ**: ਟੈਕਸਟ ਬਣਾਉਣ ਜਾਂ ਸੰਰਚਨਾ ਕਰਨ ਲਈ ਟੈਂਪਲੇਟ
+- **ਸਰਵਰ ਸੰਰਚਨਾ**: ਪੋਰਟ, ਪ੍ਰਮਾਣਿਕਤਾ, ਅਤੇ ਹੋਰ ਸੈਟਿੰਗਜ਼ ਸੈਟਅਪ ਕਰਨਾ
+- **ਸਰੋਤ**: LLMs ਲਈ ਉਪਲਬਧ ਡਾਟਾ ਅਤੇ ਸੰਦਰਭ
+- **ਟੂਲ**: ਉਹ ਫੰਕਸ਼ਨਲਿਟੀ ਜੋ ਮਾਡਲ ਕਾਲ ਕਰ ਸਕਦੇ ਹਨ
+- **ਪ੍ਰਾਂਪਟ**: ਟੈਕਸਟ ਬਣਾਉਣ ਜਾਂ ਸੰਰਚਿਤ ਕਰਨ ਲਈ ਟੈਮਪਲੇਟ
 
-ਇਹ TypeScript ਵਿੱਚ ਇੱਕ ਸਰਲ ਉਦਾਹਰਨ ਹੈ:
+ਇੱਥੇ ਟਾਈਪਸਕ੍ਰਿਪਟ ਵਿੱਚ ਇੱਕ ਸਧਾਰਣ ਉਦਾਹਰਨ ਹੈ:
 
 ```typescript
 import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 
-// Create an MCP server
+// ਇੱਕ MCP ਸਰਵਰ ਬਣਾਓ
 const server = new McpServer({
   name: "Demo",
   version: "1.0.0"
 });
 
-// Add an addition tool
+// ਇੱਕ ਜੋੜਣ ਵਾਲਾ ਟੂਲ ਸ਼ਾਮਲ ਕਰੋ
 server.tool("add",
   { a: z.number(), b: z.number() },
   async ({ a, b }) => ({
@@ -71,10 +71,10 @@ server.tool("add",
   })
 );
 
-// Add a dynamic greeting resource
+// ਇੱਕ ਗਤੀਸ਼ੀਲ ਸਵਾਗਤ ਸਰੋਤ ਸ਼ਾਮਲ ਕਰੋ
 server.resource(
   "file",
-  // The 'list' parameter controls how the resource lists available files. Setting it to undefined disables listing for this resource.
+  // 'list' ਪੈਰਾਮੀਟਰ ਨਿਰਧਾਰਤ ਕਰਦਾ ਹੈ ਕਿ ਸਰੋਤ ਉਪਲਬਧ ਫਾਈਲਾਂ ਨੂੰ ਕਿਵੇਂ ਸੂਚੀਬੱਧ ਕਰਦਾ ਹੈ। ਇਸਨੂੰ undefined ਤੇ ਸੈੱਟ ਕਰਨ ਨਾਲ ਇਸ ਸਰੋਤ ਲਈ ਸੂਚੀਬੱਧ ਕਰਨਾ ਅਯੋਗ ਹੋ ਜਾਂਦਾ ਹੈ।
   new ResourceTemplate("file://{path}", { list: undefined }),
   async (uri, { path }) => ({
     contents: [{
@@ -84,7 +84,7 @@ server.resource(
   })
 );
 
-// Add a file resource that reads the file contents
+// ਇੱਕ ਫਾਈਲ ਸਰੋਤ ਸ਼ਾਮਲ ਕਰੋ ਜੋ ਫਾਈਲ ਸਮੱਗਰੀ ਨੂੰ ਪੜ੍ਹਦਾ ਹੈ
 server.resource(
   "file",
   new ResourceTemplate("file://{path}", { list: undefined }),
@@ -118,93 +118,93 @@ server.prompt(
   })
 );
 
-// Start receiving messages on stdin and sending messages on stdout
+// stdin 'ਤੇ ਸੁਨੇਹੇ ਪ੍ਰਾਪਤ ਕਰਨਾ ਅਤੇ stdout 'ਤੇ ਸੁਨੇਹੇ ਭੇਜਣਾ ਸ਼ੁਰੂ ਕਰੋ
 const transport = new StdioServerTransport();
 await server.connect(transport);
 ```
 
 ਉਪਰੋਕਤ ਕੋਡ ਵਿੱਚ ਅਸੀਂ:
 
-- MCP TypeScript SDK ਤੋਂ ਜ਼ਰੂਰੀ ਕਲਾਸਾਂ ਇੰਪੋਰਟ ਕੀਤੀਆਂ।
+- MCP ਟਾਈਪਸਕ੍ਰਿਪਟ SDK ਤੋਂ ਜਰੂਰੀ ਕਲਾਸਾਂ ਨੂੰ ਇੰਪੋਰਟ ਕੀਤਾ।
 - ਇੱਕ ਨਵਾਂ MCP ਸਰਵਰ ਇੰਸਟੈਂਸ ਬਣਾਇਆ ਅਤੇ ਸੰਰਚਿਤ ਕੀਤਾ।
 - ਇੱਕ ਕਸਟਮ ਟੂਲ (`calculator`) ਨੂੰ ਹੈਂਡਲਰ ਫੰਕਸ਼ਨ ਨਾਲ ਰਜਿਸਟਰ ਕੀਤਾ।
-- ਆਉਣ ਵਾਲੇ MCP ਬੇਨਤੀਆਂ ਲਈ ਸਰਵਰ ਨੂੰ ਸੁਣਨ ਲਈ ਸ਼ੁਰੂ ਕੀਤਾ।
+- ਆਉਣ ਵਾਲੀਆਂ MCP ਬੇਨਤੀਆਂ ਲਈ ਸਰਵਰ ਨੂੰ ਸੁਣਨ ਲਈ ਸ਼ੁਰੂ ਕੀਤਾ।
 
-## ਜਾਂਚ ਅਤੇ ਡਿਬੱਗਿੰਗ
+## ਟੈਸਟਿੰਗ ਅਤੇ ਡੀਬੱਗਿੰਗ
 
-ਆਪਣੇ MCP ਸਰਵਰ ਦੀ ਜਾਂਚ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਇਹ ਸਮਝਣਾ ਮਹੱਤਵਪੂਰਨ ਹੈ ਕਿ ਉਪਲਬਧ ਟੂਲ ਅਤੇ ਡਿਬੱਗਿੰਗ ਲਈ ਸ੍ਰੇਸ਼ਠ ਅਭਿਆਸ ਕੀ ਹਨ। ਪ੍ਰਭਾਵਸ਼ਾਲੀ ਜਾਂਚ ਇਹ ਯਕੀਨੀ ਬਣਾਉਂਦੀ ਹੈ ਕਿ ਤੁਹਾਡਾ ਸਰਵਰ ਉਮੀਦਾਂ ਅਨੁਸਾਰ ਕੰਮ ਕਰਦਾ ਹੈ ਅਤੇ ਤੁਹਾਨੂੰ ਮੁੱਦੇ ਤੇਜ਼ੀ ਨਾਲ ਪਛਾਣਨ ਅਤੇ ਹੱਲ ਕਰਨ ਵਿੱਚ ਮਦਦ ਕਰਦਾ ਹੈ। ਹੇਠਾਂ ਦਿੱਤਾ ਸੈਕਸ਼ਨ ਤੁਹਾਡੇ MCP ਅਮਲਵਾਰੀ ਦੀ ਪ੍ਰਮਾਣਿਕਤਾ ਲਈ ਸਿਫਾਰਸ਼ੀ ਤਰੀਕੇ ਦਰਸਾਉਂਦਾ ਹੈ।
+ਆਪਣਾ MCP ਸਰਵਰ ਟੈਸਟ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਉਪਲਬਧ ਟੂਲਾਂ ਅਤੇ ਡੀਬੱਗਿੰਗ ਲਈ ਸਭ ਤੋਂ ਵਧੀਆ ਅਭਿਆਸਾਂ ਨੂੰ ਸਮਝਣਾ ਜਰੂਰੀ ਹੈ। ਪ੍ਰਭਾਵਸ਼ਾਲੀ ਟੈਸਟਿੰਗ ਇਹ ਯਕੀਨੀ ਬਣਾਉਂਦੀ ਹੈ ਕਿ ਤੁਹਾਡਾ ਸਰਵਰ ਉਮੀਦਾਂ ਅਨੁਸਾਰ ਕੰਮ ਕਰਦਾ ਹੈ ਅਤੇ ਤੁਹਾਨੂੰ ਜਲਦੀ ਸਮੱਸਿਆਵਾਂ ਦੀ ਪਹਿਚਾਣ ਅਤੇ ਹੱਲ ਕਰਨ ਵਿੱਚ ਮਦਦ ਕਰਦੀ ਹੈ। ਹੇਠਾਂ ਦਿੱਤਾ ਗਿਆ ਭਾਗ ਤੁਹਾਡੇ MCP ਇੰਪਲੀਮੈਂਟੇਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰਨ ਲਈ ਸਿਫਾਰਸ਼ੀ ਤਰੀਕੇ ਦਰਸਾਉਂਦਾ ਹੈ।
 
-MCP ਤੁਹਾਨੂੰ ਆਪਣੇ ਸਰਵਰਾਂ ਦੀ ਜਾਂਚ ਅਤੇ ਡਿਬੱਗ ਕਰਨ ਵਿੱਚ ਮਦਦ ਕਰਨ ਲਈ ਟੂਲ ਪ੍ਰਦਾਨ ਕਰਦਾ ਹੈ:
+MCP ਤੁਹਾਡੇ ਸਰਵਰਾਂ ਦੀ ਜਾਂਚ ਅਤੇ ਡੀਬੱਗਿੰਗ ਵਿੱਚ ਮਦਦ ਕਰਨ ਲਈ ਟੂਲ ਪ੍ਰਦਾਨ ਕਰਦਾ ਹੈ:
 
-- **Inspector tool**, ਇਹ ਗ੍ਰਾਫਿਕਲ ਇੰਟਰਫੇਸ ਤੁਹਾਨੂੰ ਆਪਣੇ ਸਰਵਰ ਨਾਲ ਜੁੜਨ ਅਤੇ ਆਪਣੇ ਟੂਲ, ਪ੍ਰੋੰਪਟ ਅਤੇ ਸਰੋਤਾਂ ਦੀ ਜਾਂਚ ਕਰਨ ਦੀ ਆਗਿਆ ਦਿੰਦਾ ਹੈ।
-- **curl**, ਤੁਸੀਂ ਆਪਣੇ ਸਰਵਰ ਨਾਲ ਕਮਾਂਡ ਲਾਈਨ ਟੂਲ ਜਿਵੇਂ curl ਜਾਂ ਹੋਰ ਕਲਾਇੰਟਾਂ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਵੀ ਜੁੜ ਸਕਦੇ ਹੋ ਜੋ HTTP ਕਮਾਂਡ ਬਣਾਉਣ ਅਤੇ ਚਲਾਉਣ ਦੇ ਯੋਗ ਹਨ।
+- **ਇੰਸਪੈਕਟਰ ਟੂਲ**, ਇਹ ਗ੍ਰਾਫਿਕਲ ਇੰਟਰਫੇਸ ਤੁਹਾਨੂੰ ਆਪਣੇ ਸਰਵਰ ਨਾਲ ਜੁੜਨ ਅਤੇ ਆਪਣੇ ਟੂਲ, ਪ੍ਰਾਂਪਟ ਅਤੇ ਸਰੋਤਾਂ ਦੀ ਜਾਂਚ ਕਰਨ ਦੀ ਆਗਿਆ ਦਿੰਦਾ ਹੈ।
+- **curl**, ਤੁਸੀਂ curl ਜਾਂ ਹੋਰ ਕਮਾਂਡ ਲਾਈਨ ਟੂਲਾਂ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਵੀ ਆਪਣੇ ਸਰਵਰ ਨਾਲ ਜੁੜ ਸਕਦੇ ਹੋ ਜੋ HTTP ਕਮਾਂਡ ਬਣਾਉਂਦੇ ਅਤੇ ਚਲਾਉਂਦੇ ਹਨ।
 
-### MCP ਇੰਸਪੈਕਟਰ ਦੀ ਵਰਤੋਂ ਕਰਨਾ
+### MCP ਇੰਸਪੈਕਟਰ ਦੀ ਵਰਤੋਂ
 
-[MCP ਇੰਸਪੈਕਟਰ](https://github.com/modelcontextprotocol/inspector) ਇੱਕ ਵਿਜ਼ੂਅਲ ਜਾਂਚ ਟੂਲ ਹੈ ਜੋ ਤੁਹਾਡੀ ਮਦਦ ਕਰਦਾ ਹੈ:
+[MCP ਇੰਸਪੈਕਟਰ](https://github.com/modelcontextprotocol/inspector) ਇੱਕ ਵਿਜ਼ੂਅਲ ਟੈਸਟਿੰਗ ਟੂਲ ਹੈ ਜੋ ਤੁਹਾਡੀ ਮਦਦ ਕਰਦਾ ਹੈ:
 
-1. **ਸਰਵਰ ਸਮਰਥਾਵਾਂ ਦੀ ਖੋਜ**: ਉਪਲਬਧ ਸਰੋਤਾਂ, ਟੂਲਾਂ, ਅਤੇ ਪ੍ਰੋੰਪਟਾਂ ਨੂੰ ਆਪਣੇ ਆਪ ਪਛਾਣੋ
-2. **ਟੂਲ ਐਗਜ਼ਿਕਿਊਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰੋ**: ਵੱਖ-ਵੱਖ ਪੈਰਾਮੀਟਰਾਂ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਅਤੇ ਰੀਅਲ-ਟਾਈਮ ਵਿੱਚ ਜਵਾਬ ਵੇਖੋ
+1. **ਸਰਵਰ ਸਮਰੱਥਾਵਾਂ ਦੀ ਖੋਜ**: ਉਪਲਬਧ ਸਰੋਤ, ਟੂਲ, ਅਤੇ ਪ੍ਰਾਂਪਟਾਂ ਨੂੰ ਆਟੋਮੈਟਿਕ ਤੌਰ 'ਤੇ ਪਤਾ ਲਗਾਓ
+2. **ਟੂਲ ਐਗਜ਼ੀਕਿਊਸ਼ਨ ਦੀ ਜਾਂਚ**: ਵੱਖ-ਵੱਖ ਪੈਰਾਮੀਟਰਾਂ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਅਤੇ ਤੁਰੰਤ ਜਵਾਬ ਵੇਖੋ
 3. **ਸਰਵਰ ਮੈਟਾਡੇਟਾ ਵੇਖੋ**: ਸਰਵਰ ਜਾਣਕਾਰੀ, ਸਕੀਮਾਂ, ਅਤੇ ਸੰਰਚਨਾਵਾਂ ਦੀ ਜਾਂਚ ਕਰੋ
 
 ```bash
-# ex TypeScript, installing and running MCP Inspector
+# ਉਦਾਹਰਨ ਲਈ TypeScript, MCP ਇੰਸਪੈਕਟਰ ਨੂੰ ਇੰਸਟਾਲ ਅਤੇ ਚਲਾਉਣਾ
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-ਜਦੋਂ ਤੁਸੀਂ ਉਪਰੋਕਤ ਕਮਾਂਡਾਂ ਚਲਾਉਂਦੇ ਹੋ, ਤਾਂ MCP ਇੰਸਪੈਕਟਰ ਤੁਹਾਡੇ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਇੱਕ ਸਥਾਨਕ ਵੈੱਬ ਇੰਟਰਫੇਸ ਸ਼ੁਰੂ ਕਰੇਗਾ। ਤੁਸੀਂ ਉਮੀਦ ਕਰ ਸਕਦੇ ਹੋ ਕਿ ਇੱਕ ਡੈਸ਼ਬੋਰਡ ਤੁਹਾਡੇ ਰਜਿਸਟਰ ਕੀਤੇ MCP ਸਰਵਰਾਂ, ਉਨ੍ਹਾਂ ਦੇ ਉਪਲਬਧ ਟੂਲ, ਸਰੋਤਾਂ, ਅਤੇ ਪ੍ਰੋੰਪਟਾਂ ਨੂੰ ਦਰਸਾਉਂਦਾ ਹੈ। ਇੰਟਰਫੇਸ ਤੁਹਾਨੂੰ ਇੰਟਰੈਕਟਿਵ ਤਰੀਕੇ ਨਾਲ ਟੂਲ ਐਗਜ਼ਿਕਿਊਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰਨ, ਸਰਵਰ ਮੈਟਾਡੇਟਾ ਦੀ ਜਾਂਚ ਕਰਨ, ਅਤੇ ਰੀਅਲ-ਟਾਈਮ ਜਵਾਬਾਂ ਦੇਖਣ ਦੀ ਆਗਿਆ ਦਿੰਦਾ ਹੈ, ਜਿਸ ਨਾਲ ਤੁਹਾਡੇ MCP ਸਰਵਰ ਅਮਲਵਾਰੀ ਦੀ ਪ੍ਰਮਾਣਿਕਤਾ ਅਤੇ ਡਿਬੱਗ ਕਰਨਾ ਆਸਾਨ ਹੋ ਜਾਂਦਾ ਹੈ।
+ਜਦੋਂ ਤੁਸੀਂ ਉਪਰੋਕਤ ਕਮਾਂਡ ਚਲਾਉਂਦੇ ਹੋ, MCP ਇੰਸਪੈਕਟਰ ਤੁਹਾਡੇ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਇੱਕ ਸਥਾਨਕ ਵੈੱਬ ਇੰਟਰਫੇਸ ਸ਼ੁਰੂ ਕਰੇਗਾ। ਤੁਸੀਂ ਆਪਣੇ ਰਜਿਸਟਰਡ MCP ਸਰਵਰਾਂ, ਉਨ੍ਹਾਂ ਦੇ ਉਪਲਬਧ ਟੂਲਾਂ, ਸਰੋਤਾਂ ਅਤੇ ਪ੍ਰਾਂਪਟਾਂ ਨੂੰ ਦਰਸਾਉਂਦਾ ਡੈਸ਼ਬੋਰਡ ਦੇਖ ਸਕਦੇ ਹੋ। ਇਹ ਇੰਟਰਫੇਸ ਤੁਹਾਨੂੰ ਟੂਲ ਐਗਜ਼ੀਕਿਊਸ਼ਨ ਦੀ ਇੰਟਰਐਕਟਿਵ ਜਾਂਚ ਕਰਨ, ਸਰਵਰ ਮੈਟਾਡੇਟਾ ਦੀ ਜਾਂਚ ਕਰਨ ਅਤੇ ਤੁਰੰਤ ਜਵਾਬ ਵੇਖਣ ਦੀ ਆਗਿਆ ਦਿੰਦਾ ਹੈ, ਜਿਸ ਨਾਲ ਤੁਹਾਡੇ MCP ਸਰਵਰ ਇੰਪਲੀਮੈਂਟੇਸ਼ਨਾਂ ਦੀ ਪੁਸ਼ਟੀ ਅਤੇ ਡੀਬੱਗਿੰਗ ਆਸਾਨ ਹੋ ਜਾਂਦੀ ਹੈ।
 
-ਇਹ ਇੱਕ ਸਕ੍ਰੀਨਸ਼ਾਟ ਹੈ ਕਿ ਇਹ ਕਿਵੇਂ ਦਿਖ ਸਕਦਾ ਹੈ:
+ਇੱਥੇ ਇਸਦਾ ਇੱਕ ਸਕ੍ਰੀਨਸ਼ਾਟ ਹੈ:
 
-![MCP ਇੰਸਪੈਕਟਰ ਸਰਵਰ ਕਨੈਕਸ਼ਨ](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.pa.png)
+![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.pa.png)
 
-## ਆਮ ਸੈਟਅਪ ਮੁੱਦੇ ਅਤੇ ਹੱਲ
+## ਆਮ ਸੈਟਅਪ ਸਮੱਸਿਆਵਾਂ ਅਤੇ ਹੱਲ
 
-| ਮੁੱਦਾ | ਸੰਭਾਵਿਤ ਹੱਲ |
+| ਸਮੱਸਿਆ | ਸੰਭਾਵਿਤ ਹੱਲ |
 |-------|-------------------|
-| ਕਨੈਕਸ਼ਨ ਰਿਫਿਊਜ਼ਡ | ਜਾਂਚੋ ਕਿ ਸਰਵਰ ਚਲ ਰਿਹਾ ਹੈ ਅਤੇ ਪੋਰਟ ਸਹੀ ਹੈ |
-| ਟੂਲ ਐਗਜ਼ਿਕਿਊਸ਼ਨ ਐਰਰ | ਪੈਰਾਮੀਟਰ ਵੈਲੀਡੇਸ਼ਨ ਅਤੇ ਐਰਰ ਹੈਂਡਲਿੰਗ ਦੀ ਸਮੀਖਿਆ ਕਰੋ |
-| ਪ੍ਰਮਾਣਿਕਤਾ ਫੇਲ | API ਕੁੰਜੀਆਂ ਅਤੇ ਅਧਿਕਾਰਾਂ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ |
-| ਸਕੀਮਾ ਵੈਲੀਡੇਸ਼ਨ ਐਰਰ | ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਪੈਰਾਮੀਟਰ ਪਰਿਭਾਸ਼ਿਤ ਸਕੀਮਾ ਨਾਲ ਮੇਲ ਖਾਂਦੇ ਹਨ |
-| ਸਰਵਰ ਸ਼ੁਰੂ ਨਹੀਂ ਹੋ ਰਿਹਾ | ਪੋਰਟ ਸੰਘਰਸ਼ ਜਾਂ ਗੁੰਮ ਹੋਈਆਂ ਡਿਪੈਂਡੈਂਸੀਜ਼ ਦੀ ਜਾਂਚ ਕਰੋ |
-| CORS ਐਰਰ | ਕ੍ਰਾਸ-ਓਰਜਿਨ ਬੇਨਤੀਆਂ ਲਈ ਸਹੀ CORS ਹੈਡਰ ਸੰਰਚਿਤ ਕਰੋ |
-| ਪ੍ਰਮਾਣਿਕਤਾ ਮੁੱਦੇ | ਟੋਕਨ ਦੀ ਵੈਧਤਾ ਅਤੇ ਅਧਿਕਾਰਾਂ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ |
+| ਕਨੈਕਸ਼ਨ ਰੱਦ ਕੀਤਾ ਗਿਆ | ਜਾਂਚੋ ਕਿ ਸਰਵਰ ਚੱਲ ਰਿਹਾ ਹੈ ਅਤੇ ਪੋਰਟ ਸਹੀ ਹੈ |
+| ਟੂਲ ਐਗਜ਼ੀਕਿਊਸ਼ਨ ਵਿੱਚ ਗਲਤੀਆਂ | ਪੈਰਾਮੀਟਰ ਵੈਰੀਫਿਕੇਸ਼ਨ ਅਤੇ ਗਲਤੀ ਸੰਭਾਲ ਦੀ ਸਮੀਖਿਆ ਕਰੋ |
+| ਪ੍ਰਮਾਣਿਕਤਾ ਅਸਫਲ | API ਕੁੰਜੀਆਂ ਅਤੇ ਅਧਿਕਾਰਾਂ ਦੀ ਜਾਂਚ ਕਰੋ |
+| ਸਕੀਮਾ ਵੈਰੀਫਿਕੇਸ਼ਨ ਗਲਤੀਆਂ | ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਪੈਰਾਮੀਟਰ ਪਰਿਭਾਸ਼ਿਤ ਸਕੀਮਾ ਨਾਲ ਮੇਲ ਖਾਂਦੇ ਹਨ |
+| ਸਰਵਰ ਸ਼ੁਰੂ ਨਹੀਂ ਹੋ ਰਿਹਾ | ਪੋਰਟ ਟਕਰਾਅ ਜਾਂ ਗੁੰਮ ਹੋਈਆਂ ਨਿਰਭਰਤਾਵਾਂ ਦੀ ਜਾਂਚ ਕਰੋ |
+| CORS ਗਲਤੀਆਂ | ਕ੍ਰਾਸ-ਓਰੀਜਿਨ ਬੇਨਤੀਆਂ ਲਈ ਠੀਕ CORS ਹੈਡਰ ਸੰਰਚਿਤ ਕਰੋ |
+| ਪ੍ਰਮਾਣਿਕਤਾ ਸਮੱਸਿਆਵਾਂ | ਟੋਕਨ ਦੀ ਵੈਧਤਾ ਅਤੇ ਅਧਿਕਾਰਾਂ ਦੀ ਜਾਂਚ ਕਰੋ |
 
 ## ਸਥਾਨਕ ਵਿਕਾਸ
 
-ਸਥਾਨਕ ਵਿਕਾਸ ਅਤੇ ਜਾਂਚ ਲਈ, ਤੁਸੀਂ MCP ਸਰਵਰਾਂ ਨੂੰ ਸਿੱਧੇ ਆਪਣੇ ਮਸ਼ੀਨ 'ਤੇ ਚਲਾ ਸਕਦੇ ਹੋ:
+ਸਥਾਨਕ ਵਿਕਾਸ ਅਤੇ ਟੈਸਟਿੰਗ ਲਈ, ਤੁਸੀਂ MCP ਸਰਵਰਾਂ ਨੂੰ ਸਿੱਧਾ ਆਪਣੇ ਮਸ਼ੀਨ 'ਤੇ ਚਲਾ ਸਕਦੇ ਹੋ:
 
 1. **ਸਰਵਰ ਪ੍ਰਕਿਰਿਆ ਸ਼ੁਰੂ ਕਰੋ**: ਆਪਣੀ MCP ਸਰਵਰ ਐਪਲੀਕੇਸ਼ਨ ਚਲਾਓ
-2. **ਨੈਟਵਰਕਿੰਗ ਸੰਰਚਿਤ ਕਰੋ**: ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਸਰਵਰ ਉਮੀਦ ਕੀਤੇ ਪੋਰਟ 'ਤੇ ਪਹੁੰਚਯੋਗ ਹੈ
-3. **ਕਲਾਇੰਟਸ ਨਾਲ ਜੁੜੋ**: ਸਥਾਨਕ ਕਨੈਕਸ਼ਨ URLs ਵਰਤੋ ਜਿਵੇਂ `http://localhost:3000`
+2. **ਨੈੱਟਵਰਕਿੰਗ ਸੰਰਚਿਤ ਕਰੋ**: ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਸਰਵਰ ਉਮੀਦ ਕੀਤੇ ਪੋਰਟ 'ਤੇ ਪਹੁੰਚਯੋਗ ਹੈ
+3. **ਕਲਾਇੰਟਾਂ ਨੂੰ ਜੁੜੋ**: ਸਥਾਨਕ ਕਨੈਕਸ਼ਨ URL ਵਰਗੇ `http://localhost:3000` ਦੀ ਵਰਤੋਂ ਕਰੋ
 
 ```bash
-# Example: Running a TypeScript MCP server locally
+# ਉਦਾਹਰਨ: ਟਾਈਪਸਕ੍ਰਿਪਟ MCP ਸਰਵਰ ਨੂੰ ਸਥਾਨਕ ਤੌਰ 'ਤੇ ਚਲਾਉਣਾ
 npm run start
-# Server running at http://localhost:3000
+# ਸਰਵਰ http://localhost:3000 'ਤੇ ਚੱਲ ਰਿਹਾ ਹੈ
 ```
 
 ## ਆਪਣਾ ਪਹਿਲਾ MCP ਸਰਵਰ ਬਣਾਉਣਾ
 
-ਅਸੀਂ ਪਿਛਲੇ ਪਾਠ ਵਿੱਚ [ਮੁੱਖ ਧਾਰਨਾਵਾਂ](/01-CoreConcepts/README.md) ਕਵਰ ਕੀਤੀਆਂ ਹਨ, ਹੁਣ ਇਸ ਗਿਆਨ ਨੂੰ ਵਰਤਣ ਦਾ ਸਮਾਂ ਹੈ।
+ਅਸੀਂ ਪਹਿਲਾਂ ਦੇ ਪਾਠ ਵਿੱਚ [ਮੁੱਖ ਧਾਰਣਾਵਾਂ](/01-CoreConcepts/README.md) ਨੂੰ ਕਵਰ ਕੀਤਾ ਹੈ, ਹੁਣ ਸਮਾਂ ਹੈ ਕਿ ਉਸ ਗਿਆਨ ਨੂੰ ਅਮਲ ਵਿੱਚ ਲਿਆਈਏ।
 
-### ਸਰਵਰ ਕੀ ਕਰ ਸਕਦਾ ਹੈ
+### ਇੱਕ ਸਰਵਰ ਕੀ ਕਰ ਸਕਦਾ ਹੈ
 
-ਕੋਡ ਲਿਖਣ ਤੋਂ ਪਹਿਲਾਂ, ਆਓ ਆਪਣੇ ਆਪ ਨੂੰ ਯਾਦ ਦਿਵਾਈਏ ਕਿ ਸਰਵਰ ਕੀ ਕਰ ਸਕਦਾ ਹੈ:
+ਕੋਡ ਲਿਖਣਾ ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਆਓ ਯਾਦ ਕਰੀਏ ਕਿ ਇੱਕ ਸਰਵਰ ਕੀ ਕਰ ਸਕਦਾ ਹੈ:
 
-ਇੱਕ MCP ਸਰਵਰ ਉਦਾਹਰਨ ਲਈ ਇਹ ਕਰ ਸਕਦਾ ਹੈ:
+ਇੱਕ MCP ਸਰਵਰ ਉਦਾਹਰਨ ਵਜੋਂ:
 
-- ਸਥਾਨਕ ਫਾਈਲਾਂ ਅਤੇ ਡਾਟਾਬੇਸਾਂ ਤੱਕ ਪਹੁੰਚ ਕਰੋ
-- ਦੂਰ-ਦੂਰ ਦੇ APIs ਨਾਲ ਜੁੜੋ
-- ਗਣਨਾਏ ਕਰੋ
-- ਹੋਰ ਟੂਲਾਂ ਅਤੇ ਸੇਵਾਵਾਂ ਨਾਲ ਇੰਟੀਗ੍ਰੇਟ ਕਰੋ
-- ਇੰਟਰੈਕਸ਼ਨ ਲਈ ਯੂਜ਼ਰ ਇੰਟਰਫੇਸ ਪ੍ਰਦਾਨ ਕਰੋ
+- ਸਥਾਨਕ ਫਾਈਲਾਂ ਅਤੇ ਡੇਟਾਬੇਸਾਂ ਤੱਕ ਪਹੁੰਚ ਕਰ ਸਕਦਾ ਹੈ
+- ਦੂਰੇ API ਨਾਲ ਜੁੜ ਸਕਦਾ ਹੈ
+- ਗਣਨਾਵਾਂ ਕਰ ਸਕਦਾ ਹੈ
+- ਹੋਰ ਟੂਲਾਂ ਅਤੇ ਸੇਵਾਵਾਂ ਨਾਲ ਇੰਟੀਗ੍ਰੇਟ ਕਰ ਸਕਦਾ ਹੈ
+- ਇੰਟਰਐਕਸ਼ਨ ਲਈ ਯੂਜ਼ਰ ਇੰਟਰਫੇਸ ਪ੍ਰਦਾਨ ਕਰ ਸਕਦਾ ਹੈ
 
-ਵਧੀਆ, ਹੁਣ ਜਦੋਂ ਕਿ ਅਸੀਂ ਜਾਣਦੇ ਹਾਂ ਕਿ ਅਸੀਂ ਇਸ ਲਈ ਕੀ ਕਰ ਸਕਦੇ ਹਾਂ, ਆਓ ਕੋਡਿੰਗ ਸ਼ੁਰੂ ਕਰੀਏ।
+ਵਧੀਆ, ਹੁਣ ਜਦੋਂ ਅਸੀਂ ਜਾਣਦੇ ਹਾਂ ਕਿ ਇਹ ਕੀ ਕਰ ਸਕਦਾ ਹੈ, ਆਓ ਕੋਡਿੰਗ ਸ਼ੁਰੂ ਕਰੀਏ।
 
 ## ਅਭਿਆਸ: ਇੱਕ ਸਰਵਰ ਬਣਾਉਣਾ
 
-ਸਰਵਰ ਬਣਾਉਣ ਲਈ, ਤੁਹਾਨੂੰ ਇਹ ਕਦਮਾਂ ਦੀ ਪਾਲਣਾ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ:
+ਸਰਵਰ ਬਣਾਉਣ ਲਈ, ਤੁਹਾਨੂੰ ਇਹ ਕਦਮ ਫਾਲੋ ਕਰਨੇ ਪੈਣਗੇ:
 
 - MCP SDK ਇੰਸਟਾਲ ਕਰੋ।
 - ਇੱਕ ਪ੍ਰੋਜੈਕਟ ਬਣਾਓ ਅਤੇ ਪ੍ਰੋਜੈਕਟ ਸੰਰਚਨਾ ਸੈਟਅਪ ਕਰੋ।
@@ -213,22 +213,22 @@ npm run start
 
 ### -1- ਪ੍ਰੋਜੈਕਟ ਬਣਾਓ
 
-#### TypeScript
+#### ਟਾਈਪਸਕ੍ਰਿਪਟ
 
 ```sh
-# Create project directory and initialize npm project
+# ਪ੍ਰੋਜੈਕਟ ਡਾਇਰੈਕਟਰੀ ਬਣਾਓ ਅਤੇ npm ਪ੍ਰੋਜੈਕਟ ਸ਼ੁਰੂ ਕਰੋ
 mkdir calculator-server
 cd calculator-server
 npm init -y
 ```
 
-#### Python
+#### ਪਾਇਥਨ
 
 ```sh
-# Create project dir
+# ਪ੍ਰੋਜੈਕਟ ਡਾਇਰੈਕਟਰੀ ਬਣਾਓ
 mkdir calculator-server
 cd calculator-server
-# Open the folder in Visual Studio Code - Skip this if you are using a different IDE
+# ਫੋਲਡਰ ਨੂੰ ਵਿਜ਼ੂਅਲ ਸਟੂਡੀਓ ਕੋਡ ਵਿੱਚ ਖੋਲ੍ਹੋ - ਜੇ ਤੁਸੀਂ ਕੋਈ ਹੋਰ IDE ਵਰਤ ਰਹੇ ਹੋ ਤਾਂ ਇਸਨੂੰ ਛੱਡ ਦਿਓ
 code .
 ```
 
@@ -239,9 +239,9 @@ dotnet new console -n McpCalculatorServer
 cd McpCalculatorServer
 ```
 
-#### Java
+#### ਜਾਵਾ
 
-Java ਲਈ, ਇੱਕ Spring Boot ਪ੍ਰੋਜੈਕਟ ਬਣਾਓ:
+ਜਾਵਾ ਲਈ, ਇੱਕ ਸਪ੍ਰਿੰਗ ਬੂਟ ਪ੍ਰੋਜੈਕਟ ਬਣਾਓ:
 
 ```bash
 curl https://start.spring.io/starter.zip \
@@ -255,12 +255,12 @@ curl https://start.spring.io/starter.zip \
   -o calculator-server.zip
 ```
 
-Zip ਫਾਈਲ ਨੂੰ ਐਕਸਟ੍ਰੈਕਟ ਕਰੋ:
+ਜ਼ਿਪ ਫਾਈਲ ਨੂੰ ਅਨਜ਼ਿਪ ਕਰੋ:
 
 ```bash
 unzip calculator-server.zip -d calculator-server
 cd calculator-server
-# optional remove the unused test
+# ਵਿਕਲਪਿਕ ਤੌਰ 'ਤੇ ਅਣਵਰਤੇ ਟੈਸਟ ਨੂੰ ਹਟਾਓ
 rm -rf src/test/java
 ```
 
@@ -364,7 +364,7 @@ rm -rf src/test/java
 </project>
 ```
 
-#### Rust
+#### ਰਸਟ
 
 ```sh
 mkdir calculator-server
@@ -372,38 +372,38 @@ cd calculator-server
 cargo init
 ```
 
-### -2- Dependencies ਸ਼ਾਮਲ ਕਰੋ
+### -2- ਨਿਰਭਰਤਾਵਾਂ ਸ਼ਾਮਲ ਕਰੋ
 
-ਹੁਣ ਜਦੋਂ ਕਿ ਤੁਸੀਂ ਆਪਣਾ ਪ੍ਰੋਜੈਕਟ ਬਣਾਇਆ ਹੈ, ਆਓ ਅਗਲੇ Dependencies ਸ਼ਾਮਲ ਕਰੀਏ:
+ਹੁਣ ਜਦੋਂ ਤੁਹਾਡਾ ਪ੍ਰੋਜੈਕਟ ਬਣ ਗਿਆ ਹੈ, ਆਓ ਨਿਰਭਰਤਾਵਾਂ ਸ਼ਾਮਲ ਕਰੀਏ:
 
-#### TypeScript
+#### ਟਾਈਪਸਕ੍ਰਿਪਟ
 
 ```sh
-# If not already installed, install TypeScript globally
+# ਜੇ ਪਹਿਲਾਂ ਹੀ ਇੰਸਟਾਲ ਨਾ ਹੋਵੇ, ਤਾਂ ਟਾਈਪਸਕ੍ਰਿਪਟ ਨੂੰ ਗਲੋਬਲੀ ਇੰਸਟਾਲ ਕਰੋ
 npm install typescript -g
 
-# Install the MCP SDK and Zod for schema validation
+# ਸਕੀਮਾ ਵੈਰੀਫਿਕੇਸ਼ਨ ਲਈ MCP SDK ਅਤੇ Zod ਇੰਸਟਾਲ ਕਰੋ
 npm install @modelcontextprotocol/sdk zod
 npm install -D @types/node typescript
 ```
 
-#### Python
+#### ਪਾਇਥਨ
 
 ```sh
-# Create a virtual env and install dependencies
+# ਇੱਕ ਵਰਚੁਅਲ ਵਾਤਾਵਰਣ ਬਣਾਓ ਅਤੇ ਨਿਰਭਰਤਾਵਾਂ ਇੰਸਟਾਲ ਕਰੋ
 python -m venv venv
 venv\Scripts\activate
 pip install "mcp[cli]"
 ```
 
-#### Java
+#### ਜਾਵਾ
 
 ```bash
 cd calculator-server
 ./mvnw clean install -DskipTests
 ```
 
-#### Rust
+#### ਰਸਟ
 
 ```sh
 cargo add rmcp --features server,transport-io
@@ -413,9 +413,9 @@ cargo add tokio --features rt-multi-thread
 
 ### -3- ਪ੍ਰੋਜੈਕਟ ਫਾਈਲਾਂ ਬਣਾਓ
 
-#### TypeScript
+#### ਟਾਈਪਸਕ੍ਰਿਪਟ
 
-*package.json* ਫਾਈਲ ਖੋਲ੍ਹੋ ਅਤੇ ਹੇਠਾਂ ਦਿੱਤੇ ਸਮੱਗਰੀ ਨਾਲ ਬਦਲੋ ਤਾਂ ਜੋ ਤੁਸੀਂ ਸਰਵਰ ਨੂੰ ਬਣਾਉਣ ਅਤੇ ਚਲਾ ਸਕੋ:
+*package.json* ਫਾਈਲ ਖੋਲ੍ਹੋ ਅਤੇ ਸਰਵਰ ਨੂੰ ਬਣਾਉਣ ਅਤੇ ਚਲਾਉਣ ਯੋਗ ਬਣਾਉਣ ਲਈ ਸਮੱਗਰੀ ਨੂੰ ਹੇਠਾਂ ਦਿੱਤੇ ਨਾਲ ਬਦਲੋ:
 
 ```json
 {
@@ -469,7 +469,7 @@ mkdir src
 touch src/index.ts
 ```
 
-#### Python
+#### ਪਾਇਥਨ
 
 *server.py* ਫਾਈਲ ਬਣਾਓ
 
@@ -479,24 +479,24 @@ touch server.py
 
 #### .NET
 
-ਜਰੂਰੀ NuGet ਪੈਕੇਜ ਇੰਸਟਾਲ ਕਰੋ:
+ਲੋੜੀਂਦੇ NuGet ਪੈਕੇਜ ਇੰਸਟਾਲ ਕਰੋ:
 
 ```sh
 dotnet add package ModelContextProtocol --prerelease
 dotnet add package Microsoft.Extensions.Hosting
 ```
 
-#### Java
+#### ਜਾਵਾ
 
-Java Spring Boot ਪ੍ਰੋਜੈਕਟਾਂ ਲਈ, ਪ੍ਰੋਜੈਕਟ ਸੰਰਚਨਾ ਆਪਣੇ ਆਪ ਬਣਾਈ ਜਾਂਦੀ ਹੈ।
+ਜਾਵਾ ਸਪ੍ਰਿੰਗ ਬੂਟ ਪ੍ਰੋਜੈਕਟਾਂ ਲਈ, ਪ੍ਰੋਜੈਕਟ ਸੰਰਚਨਾ ਆਪਣੇ ਆਪ ਬਣ ਜਾਂਦੀ ਹੈ।
 
-#### Rust
+#### ਰਸਟ
 
-Rust ਲਈ, ਇੱਕ *src/main.rs* ਫਾਈਲ ਡਿਫਾਲਟ ਤੌਰ 'ਤੇ ਬਣਾਈ ਜਾਂਦੀ ਹੈ ਜਦੋਂ ਤੁਸੀਂ `cargo init` ਚਲਾਉਂਦੇ ਹੋ। ਫਾਈਲ ਖੋਲ੍ਹੋ ਅਤੇ ਡਿਫਾਲਟ ਕੋਡ ਮਿਟਾਓ।
+ਰਸਟ ਲਈ, ਜਦੋਂ ਤੁਸੀਂ `cargo init` ਚਲਾਉਂਦੇ ਹੋ ਤਾਂ *src/main.rs* ਫਾਈਲ ਡਿਫਾਲਟ ਤੌਰ 'ਤੇ ਬਣ ਜਾਂਦੀ ਹੈ। ਫਾਈਲ ਖੋਲ੍ਹੋ ਅਤੇ ਡਿਫਾਲਟ ਕੋਡ ਹਟਾ ਦਿਓ।
 
 ### -4- ਸਰਵਰ ਕੋਡ ਬਣਾਓ
 
-#### TypeScript
+#### ਟਾਈਪਸਕ੍ਰਿਪਟ
 
 *index.ts* ਫਾਈਲ ਬਣਾਓ ਅਤੇ ਹੇਠਾਂ ਦਿੱਤਾ ਕੋਡ ਸ਼ਾਮਲ ਕਰੋ:
 
@@ -505,22 +505,22 @@ import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mc
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
  
-// Create an MCP server
+// ਇੱਕ MCP ਸਰਵਰ ਬਣਾਓ
 const server = new McpServer({
   name: "Calculator MCP Server",
   version: "1.0.0"
 });
 ```
 
-ਹੁਣ ਤੁਹਾਡੇ ਕੋਲ ਇੱਕ ਸਰਵਰ ਹੈ, ਪਰ ਇਹ ਬਹੁਤ ਕੁਝ ਨਹੀਂ ਕਰਦਾ, ਆਓ ਇਸ ਨੂੰ ਠੀਕ ਕਰੀਏ।
+ਹੁਣ ਤੁਹਾਡੇ ਕੋਲ ਇੱਕ ਸਰਵਰ ਹੈ, ਪਰ ਇਹ ਜ਼ਿਆਦਾ ਕੁਝ ਨਹੀਂ ਕਰਦਾ, ਆਓ ਇਸਨੂੰ ਠੀਕ ਕਰੀਏ।
 
-#### Python
+#### ਪਾਇਥਨ
 
 ```python
 # server.py
 from mcp.server.fastmcp import FastMCP
 
-# Create an MCP server
+# ਇੱਕ MCP ਸਰਵਰ ਬਣਾਓ
 mcp = FastMCP("Demo")
 ```
 
@@ -549,9 +549,9 @@ await builder.Build().RunAsync();
 // add features
 ```
 
-#### Java
+#### ਜਾਵਾ
 
-Java ਲਈ, ਮੁੱਖ ਸਰਵਰ ਕੰਪੋਨੈਂਟ ਬਣਾਓ। ਪਹਿਲਾਂ, ਮੁੱਖ ਐਪਲੀਕੇਸ਼ਨ ਕਲਾਸ ਨੂੰ ਸੋਧੋ:
+ਜਾਵਾ ਲਈ, ਮੁੱਖ ਸਰਵਰ ਕੰਪੋਨੈਂਟ ਬਣਾਓ। ਪਹਿਲਾਂ, ਮੁੱਖ ਐਪਲੀਕੇਸ਼ਨ ਕਲਾਸ ਨੂੰ ਸੋਧੋ:
 
 *src/main/java/com/microsoft/mcp/sample/server/McpServerApplication.java*:
 
@@ -725,7 +725,7 @@ public class CalculatorService {
 }
 ```
 
-**ਪ੍ਰੋਡਕਸ਼ਨ-ਤਿਆਰ ਸੇਵਾ ਲਈ ਵਿਕਲਪਿਕ ਕੰਪੋਨੈਂਟ:**
+**ਉਤਪਾਦਨ-ਤਿਆਰ ਸੇਵਾ ਲਈ ਵਿਕਲਪਿਕ ਕੰਪੋਨੈਂਟ:**
 
 ਸਟਾਰਟਅਪ ਸੰਰਚਨਾ ਬਣਾਓ *src/main/java/com/microsoft/mcp/sample/server/config/StartupConfig.java*:
 
@@ -778,7 +778,7 @@ public class HealthController {
 }
 ```
 
-ਐਕਸਪਸ਼ਨ ਹੈਂਡਲਰ ਬਣਾਓ *src/main/java/com/microsoft/mcp/sample/server/exception/GlobalExceptionHandler.java*:
+ਇਕਸੈਪਸ਼ਨ ਹੈਂਡਲਰ ਬਣਾਓ *src/main/java/com/microsoft/mcp/sample/server/exception/GlobalExceptionHandler.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.exception;
@@ -808,7 +808,7 @@ public class GlobalExceptionHandler {
             this.message = message;
         }
 
-        // Getters
+        // ਗੈਟਰਸ
         public String getCode() { return code; }
         public String getMessage() { return message; }
     }
@@ -831,9 +831,9 @@ Spring Boot MCP Application
 
 </details>
 
-#### Rust
+#### ਰਸਟ
 
-*src/main.rs* ਫਾਈਲ ਦੇ ਉੱਪਰ ਹੇਠਾਂ ਦਿੱਤਾ ਕੋਡ ਸ਼ਾਮਲ ਕਰੋ। ਇਹ ਤੁਹਾਡੇ MCP ਸਰਵਰ ਲਈ ਜ਼ਰੂਰੀ ਲਾਇਬ੍ਰੇਰੀਆਂ ਅਤੇ ਮੋਡੀਊਲਾਂ ਨੂੰ ਇੰਪੋਰਟ ਕਰਦਾ ਹੈ।
+*src/main.rs* ਫਾਈਲ ਦੇ ਸਿਰਲੇਖ ਵਿੱਚ ਹੇਠਾਂ ਦਿੱਤਾ ਕੋਡ ਸ਼ਾਮਲ ਕਰੋ। ਇਹ ਤੁਹਾਡੇ MCP ਸਰਵਰ ਲਈ ਜਰੂਰੀ ਲਾਇਬ੍ਰੇਰੀਆਂ ਅਤੇ ਮੋਡੀਊਲਾਂ ਨੂੰ ਇੰਪੋਰਟ ਕਰਦਾ ਹੈ।
 
 ```rust
 use rmcp::{
@@ -846,55 +846,12 @@ use rmcp::{
 use std::error::Error;
 ```
 
-ਕੈਲਕੂਲੇਟਰ ਬੇਨਤੀ ਨੂੰ ਦਰਸਾਉਣ ਲਈ ਇੱਕ ਸਟ੍ਰਕਟ ਬਣਾਓ।
-
-```rust
-#[derive(Debug, serde::Deserialize, schemars::JsonSchema)]
-pub struct CalculatorRequest {
-    pub a: f64,
-    pub b: f64,
-}
-```
-
-ਅਗਲੇ, ਕੈਲਕੂਲੇਟਰ ਸਰਵਰ ਨੂੰ ਦਰਸਾਉਣ ਲਈ ਇੱਕ ਸਟ੍ਰਕਟ ਬਣਾਓ। ਇਹ ਸਟ੍ਰਕਟ ਟੂਲ ਰਾਊਟਰ ਨੂੰ ਰੱਖੇਗਾ, ਜੋ ਟੂਲਾਂ ਨੂੰ ਰਜਿਸਟਰ ਕਰਨ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ।
-
-```rust
-#[derive(Debug, Clone)]
-pub struct Calculator {
-    tool_router: ToolRouter<Self>,
-}
-```
-
-ਹੁਣ, ਅਸੀਂ `Calculator` ਸਟ੍ਰਕਟ ਨੂੰ ਸਰਵਰ ਦੀ ਜਾਣਕਾਰੀ ਪ੍ਰਦਾਨ ਕਰਨ ਲਈ ਇੱਕ ਨਵਾਂ ਇੰਸਟੈਂਸ ਬਣਾਉਣ ਅਤੇ ਸਰਵਰ ਹੈਂਡਲਰ ਨੂੰ ਅਮਲ ਵਿੱਚ ਲਿਆਉਣ ਲਈ ਅਮਲਵਾਰੀ ਕਰ ਸਕਦੇ ਹਾਂ।
-
-```rust
-#[tool_router]
-impl Calculator {
-    pub fn new() -> Self {
-        Self {
-            tool_router: Self::tool_router(),
-        }
-    }
-}
-
-#[tool_handler]
-impl ServerHandler for Calculator {
-    fn get_info(&self) -> ServerInfo {
-        ServerInfo {
-            instructions: Some("A simple calculator tool".into()),
-            capabilities: ServerCapabilities::builder().enable_tools().build(),
-            ..Default::default()
-        }
-    }
-}
-```
-
-ਅੰਤ ਵਿੱਚ, ਅਸੀਂ ਸਰਵਰ ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਮੁੱਖ ਫੰਕਸ਼ਨ ਨੂੰ ਅਮਲ ਵਿੱਚ ਲਿਆਉਣ ਦੀ ਜ
-ਸੁਨਿਸ਼ਚਿਤ ਕਰੋ ਕਿ `Command` ਫੀਲਡ ਵਿੱਚ `python` ਸੈਟ ਕੀਤਾ ਗਿਆ ਹੈ ਅਤੇ `Arguments` ਵਿੱਚ `server.py`। ਇਹ ਯਕੀਨੀ ਬਣਾਉਂਦਾ ਹੈ ਕਿ ਸਕ੍ਰਿਪਟ ਸਹੀ ਤਰੀਕੇ ਨਾਲ ਚੱਲਦੀ ਹੈ।
+ਕੈਲਕੂਲੇਟਰ ਸਰਵਰ ਇੱਕ ਸਧਾਰਣ ਸਰਵਰ ਹੋਵੇਗਾ ਜੋ ਦੋ ਨ
+make sure to set `python` in the `Command` field and `server.py` as `Arguments`. This ensures the script runs correctly.
 
 #### .NET
 
-ਸੁਨਿਸ਼ਚਿਤ ਕਰੋ ਕਿ ਤੁਸੀਂ ਆਪਣੇ ਪ੍ਰੋਜੈਕਟ ਡਾਇਰੈਕਟਰੀ ਵਿੱਚ ਹੋ:
+Make sure you're in your project directory:
 
 ```sh
 cd McpCalculatorServer
@@ -903,46 +860,46 @@ npx @modelcontextprotocol/inspector dotnet run
 
 #### Java
 
-ਸੁਨਿਸ਼ਚਿਤ ਕਰੋ ਕਿ ਤੁਹਾਡਾ ਕੈਲਕੁਲੇਟਰ ਸਰਵਰ ਚੱਲ ਰਿਹਾ ਹੈ।  
-ਇੰਸਪੈਕਟਰ ਚਲਾਓ:
+Ensure you calculator server is running
+The run the inspector:
 
 ```cmd
 npx @modelcontextprotocol/inspector
 ```
 
-ਇੰਸਪੈਕਟਰ ਵੈੱਬ ਇੰਟਰਫੇਸ ਵਿੱਚ:
+In the inspector web interface:
 
-1. "SSE" ਨੂੰ ਟ੍ਰਾਂਸਪੋਰਟ ਟਾਈਪ ਵਜੋਂ ਚੁਣੋ  
-2. URL ਸੈਟ ਕਰੋ: `http://localhost:8080/sse`  
-3. "Connect" 'ਤੇ ਕਲਿਕ ਕਰੋ  
+1. Select "SSE" as the transport type
+2. Set the URL to: `http://localhost:8080/sse`
+3. Click "Connect"
 
 ![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.pa.png)
 
-**ਤੁਸੀਂ ਹੁਣ ਸਰਵਰ ਨਾਲ ਜੁੜ ਗਏ ਹੋ**  
-**Java ਸਰਵਰ ਟੈਸਟਿੰਗ ਸੈਕਸ਼ਨ ਹੁਣ ਪੂਰਾ ਹੋ ਗਿਆ ਹੈ**
+**You're now connected to the server**
+**The Java server testing section is completed now**
 
-ਅਗਲਾ ਸੈਕਸ਼ਨ ਸਰਵਰ ਨਾਲ ਇੰਟਰਐਕਟ ਕਰਨ ਬਾਰੇ ਹੈ।
+The next section it's about interacting with the server.
 
-ਤੁਹਾਨੂੰ ਹੇਠਾਂ ਦਿੱਤਾ ਯੂਜ਼ਰ ਇੰਟਰਫੇਸ ਵੇਖਣਾ ਚਾਹੀਦਾ ਹੈ:
+You should see the following user interface:
 
 ![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.pa.png)
 
-1. "Connect" ਬਟਨ ਚੁਣ ਕੇ ਸਰਵਰ ਨਾਲ ਜੁੜੋ।  
-   ਜਦੋਂ ਤੁਸੀਂ ਸਰਵਰ ਨਾਲ ਜੁੜਦੇ ਹੋ, ਤੁਹਾਨੂੰ ਹੇਠਾਂ ਦਿੱਤਾ ਵੇਖਣਾ ਚਾਹੀਦਾ ਹੈ:
+1. Connect to the server by selecting the Connect button
+  Once you connect to the server, you should now see the following:
 
-   ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.pa.png)
+  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.pa.png)
 
-1. "Tools" ਅਤੇ "listTools" ਚੁਣੋ, ਤੁਹਾਨੂੰ "Add" ਦਿਖਾਈ ਦੇਵੇਗਾ। "Add" ਚੁਣੋ ਅਤੇ ਪੈਰਾਮੀਟਰ ਵੈਲਿਊਜ਼ ਭਰੋ।
+1. Select "Tools" and "listTools", you should see "Add" show up, select "Add" and fill in the parameter values.
 
-   ਤੁਹਾਨੂੰ ਹੇਠਾਂ ਦਿੱਤਾ ਜਵਾਬ ਵੇਖਣਾ ਚਾਹੀਦਾ ਹੈ, ਜਿਵੇਂ ਕਿ "add" ਟੂਲ ਤੋਂ ਨਤੀਜਾ:
+  You should see the following response, i.e a result from "add" tool:
 
-   ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.pa.png)
+  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.pa.png)
 
-ਮੁਬਾਰਕਾਂ, ਤੁਸੀਂ ਆਪਣਾ ਪਹਿਲਾ ਸਰਵਰ ਬਣਾਉਣ ਅਤੇ ਚਲਾਉਣ ਵਿੱਚ ਸਫਲ ਹੋ ਗਏ ਹੋ!
+Congrats, you've managed to create and run your first server!
 
 #### Rust
 
-Rust ਸਰਵਰ ਨੂੰ MCP Inspector CLI ਨਾਲ ਚਲਾਉਣ ਲਈ ਹੇਠਾਂ ਦਿੱਤਾ ਕਮਾਂਡ ਵਰਤੋ:
+To run the Rust server with the MCP Inspector CLI, use the following command:
 
 ```sh
 npx @modelcontextprotocol/inspector cargo run --cli --method tools/call --tool-name add --tool-arg a=1 b=2
@@ -950,55 +907,57 @@ npx @modelcontextprotocol/inspector cargo run --cli --method tools/call --tool-n
 
 ### Official SDKs
 
-MCP ਕਈ ਭਾਸ਼ਾਵਾਂ ਲਈ ਅਧਿਕਾਰਤ SDKs ਪ੍ਰਦਾਨ ਕਰਦਾ ਹੈ:
+MCP provides official SDKs for multiple languages:
 
-- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - Microsoft ਦੇ ਸਹਿਯੋਗ ਨਾਲ ਸੰਭਾਲਿਆ ਜਾਂਦਾ ਹੈ  
-- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Spring AI ਦੇ ਸਹਿਯੋਗ ਨਾਲ ਸੰਭਾਲਿਆ ਜਾਂਦਾ ਹੈ  
-- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - ਅਧਿਕਾਰਤ TypeScript ਇੰਪਲੀਮੈਂਟੇਸ਼ਨ  
-- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - ਅਧਿਕਾਰਤ Python ਇੰਪਲੀਮੈਂਟੇਸ਼ਨ  
-- [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - ਅਧਿਕਾਰਤ Kotlin ਇੰਪਲੀਮੈਂਟੇਸ਼ਨ  
-- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - Loopwork AI ਦੇ ਸਹਿਯੋਗ ਨਾਲ ਸੰਭਾਲਿਆ ਜਾਂਦਾ ਹੈ  
-- [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - ਅਧਿਕਾਰਤ Rust ਇੰਪਲੀਮੈਂਟੇਸ਼ਨ  
+- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - Maintained in collaboration with Microsoft
+- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Maintained in collaboration with Spring AI
+- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - The official TypeScript implementation
+- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - The official Python implementation
+- [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - The official Kotlin implementation
+- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - Maintained in collaboration with Loopwork AI
+- [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - The official Rust implementation
 
-## ਮੁੱਖ ਗੱਲਾਂ
+## Key Takeaways
 
-- MCP ਡਿਵੈਲਪਮੈਂਟ ਵਾਤਾਵਰਣ ਸੈਟਅਪ ਕਰਨਾ ਭਾਸ਼ਾ-ਵਿਸ਼ੇਸ਼ SDKs ਨਾਲ ਸਧਾਰਨ ਹੈ  
-- MCP ਸਰਵਰ ਬਣਾਉਣ ਵਿੱਚ ਸਪਸ਼ਟ ਸਕੀਮਾਂ ਨਾਲ ਟੂਲ ਬਣਾਉਣਾ ਅਤੇ ਰਜਿਸਟਰ ਕਰਨਾ ਸ਼ਾਮਲ ਹੈ  
-- ਭਰੋਸੇਮੰਦ MCP ਇੰਪਲੀਮੈਂਟੇਸ਼ਨ ਲਈ ਟੈਸਟਿੰਗ ਅਤੇ ਡੀਬੱਗਿੰਗ ਜ਼ਰੂਰੀ ਹੈ  
+- Setting up an MCP development environment is straightforward with language-specific SDKs
+- Building MCP servers involves creating and registering tools with clear schemas
+- Testing and debugging are essential for reliable MCP implementations
 
-## ਨਮੂਨੇ
+## Samples
 
-- [Java Calculator](../samples/java/calculator/README.md)  
-- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)  
-- [JavaScript Calculator](../samples/javascript/README.md)  
-- [TypeScript Calculator](../samples/typescript/README.md)  
-- [Python Calculator](../../../../03-GettingStarted/samples/python)  
-- [Rust Calculator](../../../../03-GettingStarted/samples/rust)  
+- [Java Calculator](../samples/java/calculator/README.md)
+- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
+- [JavaScript Calculator](../samples/javascript/README.md)
+- [TypeScript Calculator](../samples/typescript/README.md)
+- [Python Calculator](../../../../03-GettingStarted/samples/python)
+- [Rust Calculator](../../../../03-GettingStarted/samples/rust)
 
-## ਅਸਾਈਨਮੈਂਟ
+## Assignment
 
-ਆਪਣੀ ਪਸੰਦ ਦੇ ਟੂਲ ਨਾਲ ਇੱਕ ਸਧਾਰਨ MCP ਸਰਵਰ ਬਣਾਓ:
+Create a simple MCP server with a tool of your choice:
 
-1. ਆਪਣੀ ਪਸੰਦ ਦੀ ਭਾਸ਼ਾ (.NET, Java, Python, TypeScript, ਜਾਂ Rust) ਵਿੱਚ ਟੂਲ ਇੰਪਲੀਮੈਂਟ ਕਰੋ।  
-2. ਇਨਪੁਟ ਪੈਰਾਮੀਟਰ ਅਤੇ ਰਿਟਰਨ ਵੈਲਿਊਜ਼ ਨੂੰ ਪਰਿਭਾਸ਼ਿਤ ਕਰੋ।  
-3. ਇੰਸਪੈਕਟਰ ਟੂਲ ਚਲਾਓ ਤਾਂ ਜੋ ਸਰਵਰ ਸਹੀ ਤਰੀਕੇ ਨਾਲ ਕੰਮ ਕਰੇ।  
-4. ਵੱਖ-ਵੱਖ ਇਨਪੁਟਸ ਨਾਲ ਇੰਪਲੀਮੈਂਟੇਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰੋ।  
+1. Implement the tool in your preferred language (.NET, Java, Python, TypeScript, or Rust).
+2. Define input parameters and return values.
+3. Run the inspector tool to ensure the server works as intended.
+4. Test the implementation with various inputs.
 
-## ਹੱਲ
+## Solution
 
 [Solution](./solution/README.md)
 
-## ਵਾਧੂ ਸਰੋਤ
+## Additional Resources
 
-- [Build Agents using Model Context Protocol on Azure](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)  
-- [Remote MCP with Azure Container Apps (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)  
-- [.NET OpenAI MCP Agent](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)  
+- [Build Agents using Model Context Protocol on Azure](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)
+- [Remote MCP with Azure Container Apps (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)
+- [.NET OpenAI MCP Agent](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)
 
-## ਅਗਲਾ ਕੀ ਹੈ
+## What's next
 
-ਅਗਲਾ: [Getting Started with MCP Clients](../02-client/README.md)  
+Next: [Getting Started with MCP Clients](../02-client/README.md)
 
 ---
 
-**ਅਸਵੀਕਰਤੀ**:  
-ਇਹ ਦਸਤਾਵੇਜ਼ AI ਅਨੁਵਾਦ ਸੇਵਾ [Co-op Translator](https://github.com/Azure/co-op-translator) ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਅਨੁਵਾਦ ਕੀਤਾ ਗਿਆ ਹੈ। ਜਦੋਂ ਕਿ ਅਸੀਂ ਸਹੀ ਹੋਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰਦੇ ਹਾਂ, ਕਿਰਪਾ ਕਰਕੇ ਧਿਆਨ ਦਿਓ ਕਿ ਸਵੈਚਾਲਿਤ ਅਨੁਵਾਦਾਂ ਵਿੱਚ ਗਲਤੀਆਂ ਜਾਂ ਅਸੁੱਤੀਆਂ ਹੋ ਸਕਦੀਆਂ ਹਨ। ਇਸ ਦੀ ਮੂਲ ਭਾਸ਼ਾ ਵਿੱਚ ਮੂਲ ਦਸਤਾਵੇਜ਼ ਨੂੰ ਅਧਿਕਾਰਤ ਸਰੋਤ ਮੰਨਿਆ ਜਾਣਾ ਚਾਹੀਦਾ ਹੈ। ਮਹੱਤਵਪੂਰਨ ਜਾਣਕਾਰੀ ਲਈ, ਪੇਸ਼ੇਵਰ ਮਨੁੱਖੀ ਅਨੁਵਾਦ ਦੀ ਸਿਫਾਰਸ਼ ਕੀਤੀ ਜਾਂਦੀ ਹੈ। ਇਸ ਅਨੁਵਾਦ ਦੀ ਵਰਤੋਂ ਤੋਂ ਪੈਦਾ ਹੋਣ ਵਾਲੇ ਕਿਸੇ ਵੀ ਗਲਤਫਹਿਮੀ ਜਾਂ ਗਲਤ ਵਿਆਖਿਆ ਲਈ ਅਸੀਂ ਜ਼ਿੰਮੇਵਾਰ ਨਹੀਂ ਹਾਂ।
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**ਅਸਵੀਕਾਰੋਪੱਤਰ**:  
+ਇਹ ਦਸਤਾਵੇਜ਼ AI ਅਨੁਵਾਦ ਸੇਵਾ [Co-op Translator](https://github.com/Azure/co-op-translator) ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਅਨੁਵਾਦ ਕੀਤਾ ਗਿਆ ਹੈ। ਜਦੋਂ ਕਿ ਅਸੀਂ ਸਹੀਤਾ ਲਈ ਕੋਸ਼ਿਸ਼ ਕਰਦੇ ਹਾਂ, ਕਿਰਪਾ ਕਰਕੇ ਧਿਆਨ ਵਿੱਚ ਰੱਖੋ ਕਿ ਸਵੈਚਾਲਿਤ ਅਨੁਵਾਦਾਂ ਵਿੱਚ ਗਲਤੀਆਂ ਜਾਂ ਅਸਮਰਥਤਾਵਾਂ ਹੋ ਸਕਦੀਆਂ ਹਨ। ਮੂਲ ਦਸਤਾਵੇਜ਼ ਆਪਣੀ ਮੂਲ ਭਾਸ਼ਾ ਵਿੱਚ ਪ੍ਰਮਾਣਿਕ ਸਰੋਤ ਮੰਨਿਆ ਜਾਣਾ ਚਾਹੀਦਾ ਹੈ। ਮਹੱਤਵਪੂਰਨ ਜਾਣਕਾਰੀ ਲਈ, ਪੇਸ਼ੇਵਰ ਮਨੁੱਖੀ ਅਨੁਵਾਦ ਦੀ ਸਿਫਾਰਸ਼ ਕੀਤੀ ਜਾਂਦੀ ਹੈ। ਅਸੀਂ ਇਸ ਅਨੁਵਾਦ ਦੀ ਵਰਤੋਂ ਤੋਂ ਉਤਪੰਨ ਕਿਸੇ ਵੀ ਗਲਤਫਹਿਮੀ ਜਾਂ ਗਲਤ ਵਿਆਖਿਆ ਲਈ ਜ਼ਿੰਮੇਵਾਰ ਨਹੀਂ ਹਾਂ।
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

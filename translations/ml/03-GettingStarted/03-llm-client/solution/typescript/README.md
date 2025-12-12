@@ -1,0 +1,49 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "6d6315e03f591fb5a39be91da88585dc",
+  "translation_date": "2025-12-11T12:57:20+00:00",
+  "source_file": "03-GettingStarted/03-llm-client/solution/typescript/README.md",
+  "language_code": "ml"
+}
+-->
+# ഈ സാമ്പിൾ പ്രവർത്തിപ്പിക്കൽ
+
+ഈ സാമ്പിളിൽ ക്ലയന്റിൽ ഒരു LLM ഉണ്ടാകണം. ഇത് പ്രവർത്തിപ്പിക്കാൻ നിങ്ങൾക്ക് Codespaces-ൽ ഇത് ഓടിക്കുകയോ GitHub-ൽ ഒരു വ്യക്തിഗത ആക്‌സസ് ടോക്കൺ സജ്ജമാക്കുകയോ വേണം.
+
+## -1- ആശ്രിതങ്ങൾ ഇൻസ്റ്റാൾ ചെയ്യുക
+
+```bash
+npm install
+```
+
+## -3- സെർവർ ഓടിക്കുക
+
+
+```bash
+npm run build
+```
+
+## -4- ക്ലയന്റ് ഓടിക്കുക
+
+```sh
+npm run client
+```
+
+നിങ്ങൾക്ക് താഴെപോലൊരു ഫലം കാണാം:
+
+```text
+Asking server for available tools
+MCPClient started on stdin/stdout
+Querying LLM:  What is the sum of 2 and 3?
+Making tool call
+Calling tool add with args "{\"a\":2,\"b\":3}"
+Tool result:  { content: [ { type: 'text', text: '5' } ] }
+```
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**അസൂയാ**:  
+ഈ രേഖ AI വിവർത്തന സേവനം [Co-op Translator](https://github.com/Azure/co-op-translator) ഉപയോഗിച്ച് വിവർത്തനം ചെയ്തതാണ്. നാം കൃത്യതയ്ക്ക് ശ്രമിച്ചെങ്കിലും, സ്വയം പ്രവർത്തിക്കുന്ന വിവർത്തനങ്ങളിൽ പിശകുകൾ അല്ലെങ്കിൽ തെറ്റുകൾ ഉണ്ടാകാമെന്ന് ദയവായി ശ്രദ്ധിക്കുക. അതിന്റെ മാതൃഭാഷയിലുള്ള യഥാർത്ഥ രേഖ അധികാരപരമായ ഉറവിടമായി കണക്കാക്കപ്പെടണം. നിർണായക വിവരങ്ങൾക്ക്, പ്രൊഫഷണൽ മനുഷ്യ വിവർത്തനം ശുപാർശ ചെയ്യപ്പെടുന്നു. ഈ വിവർത്തനത്തിന്റെ ഉപയോഗത്തിൽ നിന്നുണ്ടാകുന്ന ഏതെങ്കിലും തെറ്റിദ്ധാരണകൾക്കോ തെറ്റായ വ്യാഖ്യാനങ്ങൾക്കോ ഞങ്ങൾ ഉത്തരവാദികളല്ല.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

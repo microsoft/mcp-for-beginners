@@ -1,0 +1,49 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "fae57a69c2b62cb7d92ff12da65f36c3",
+  "translation_date": "2025-12-11T13:33:46+00:00",
+  "source_file": "03-GettingStarted/02-client/solution/typescript/README.md",
+  "language_code": "kn"
+}
+-->
+# ಈ ಮಾದರಿಯನ್ನು ಚಾಲನೆ ಮಾಡುವುದು
+
+ನೀವು `uv` ಅನ್ನು ಸ್ಥಾಪಿಸಲು ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ ಆದರೆ ಅದು ಅಗತ್ಯವಿಲ್ಲ, [ಸೂಚನೆಗಳನ್ನು](https://docs.astral.sh/uv/#highlights) ನೋಡಿ
+
+## -1- ಅವಲಂಬನೆಗಳನ್ನು ಸ್ಥಾಪಿಸಿ
+
+```bash
+npm install
+```
+
+## -3- ಸರ್ವರ್ ಅನ್ನು ಚಾಲನೆ ಮಾಡಿ
+
+
+```bash
+npm run build
+```
+
+## -4- ಕ್ಲೈಂಟ್ ಅನ್ನು ಚಾಲನೆ ಮಾಡಿ
+
+```sh
+npm run client
+```
+
+ನೀವು ಈ ರೀತಿಯ ಫಲಿತಾಂಶವನ್ನು ನೋಡಬೇಕು:
+
+```text
+Prompt:  {
+  type: 'text',
+  text: 'Please review this code:\n\nconsole.log("hello");'
+}
+Resource template:  file
+Tool result:  { content: [ { type: 'text', text: '9' } ] }
+```
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**ಅಸ್ವೀಕರಣ**:  
+ಈ ದಸ್ತಾವೇಜು AI ಅನುವಾದ ಸೇವೆ [Co-op Translator](https://github.com/Azure/co-op-translator) ಬಳಸಿ ಅನುವಾದಿಸಲಾಗಿದೆ. ನಾವು ನಿಖರತೆಯಿಗಾಗಿ ಪ್ರಯತ್ನಿಸುತ್ತಿದ್ದರೂ, ಸ್ವಯಂಚಾಲಿತ ಅನುವಾದಗಳಲ್ಲಿ ತಪ್ಪುಗಳು ಅಥವಾ ಅಸತ್ಯತೆಗಳು ಇರಬಹುದು ಎಂದು ದಯವಿಟ್ಟು ಗಮನಿಸಿ. ಮೂಲ ಭಾಷೆಯಲ್ಲಿರುವ ಮೂಲ ದಸ್ತಾವೇಜನ್ನು ಅಧಿಕೃತ ಮೂಲವೆಂದು ಪರಿಗಣಿಸಬೇಕು. ಪ್ರಮುಖ ಮಾಹಿತಿಗಾಗಿ, ವೃತ್ತಿಪರ ಮಾನವ ಅನುವಾದವನ್ನು ಶಿಫಾರಸು ಮಾಡಲಾಗುತ್ತದೆ. ಈ ಅನುವಾದ ಬಳಕೆಯಿಂದ ಉಂಟಾಗುವ ಯಾವುದೇ ತಪ್ಪು ಅರ್ಥಮಾಡಿಕೊಳ್ಳುವಿಕೆ ಅಥವಾ ತಪ್ಪು ವಿವರಣೆಗಳಿಗೆ ನಾವು ಹೊಣೆಗಾರರಾಗುವುದಿಲ್ಲ.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
