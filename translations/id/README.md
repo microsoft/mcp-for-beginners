@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "db1c632975cfde89e42f01af57f7e4a8",
-  "translation_date": "2025-12-11T07:14:41+00:00",
+  "original_hash": "20bace280f1884b6f35653584e305094",
+  "translation_date": "2025-12-12T17:33:51+00:00",
   "source_file": "README.md",
   "language_code": "id"
 }
@@ -32,7 +32,7 @@ Ikuti langkah-langkah ini untuk memulai menggunakan sumber daya ini:
 #### Didukung melalui GitHub Action (Otomatis & Selalu Terbaru)
 
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE START -->
-[Arabic](../ar/README.md) | [Bengali](../bn/README.md) | [Bulgarian](../bg/README.md) | [Burmese (Myanmar)](../my/README.md) | [Chinese (Simplified)](../zh/README.md) | [Chinese (Traditional, Hong Kong)](../hk/README.md) | [Chinese (Traditional, Macau)](../mo/README.md) | [Chinese (Traditional, Taiwan)](../tw/README.md) | [Croatian](../hr/README.md) | [Czech](../cs/README.md) | [Danish](../da/README.md) | [Dutch](../nl/README.md) | [Estonian](../et/README.md) | [Finnish](../fi/README.md) | [French](../fr/README.md) | [German](../de/README.md) | [Greek](../el/README.md) | [Hebrew](../he/README.md) | [Hindi](../hi/README.md) | [Hungarian](../hu/README.md) | [Indonesian](./README.md) | [Italian](../it/README.md) | [Japanese](../ja/README.md) | [Korean](../ko/README.md) | [Lithuanian](../lt/README.md) | [Malay](../ms/README.md) | [Marathi](../mr/README.md) | [Nepali](../ne/README.md) | [Norwegian](../no/README.md) | [Persian (Farsi)](../fa/README.md) | [Polish](../pl/README.md) | [Portuguese (Brazil)](../br/README.md) | [Portuguese (Portugal)](../pt/README.md) | [Punjabi (Gurmukhi)](../pa/README.md) | [Romanian](../ro/README.md) | [Russian](../ru/README.md) | [Serbian (Cyrillic)](../sr/README.md) | [Slovak](../sk/README.md) | [Slovenian](../sl/README.md) | [Spanish](../es/README.md) | [Swahili](../sw/README.md) | [Swedish](../sv/README.md) | [Tagalog (Filipino)](../tl/README.md) | [Tamil](../ta/README.md) | [Thai](../th/README.md) | [Turkish](../tr/README.md) | [Ukrainian](../uk/README.md) | [Urdu](../ur/README.md) | [Vietnamese](../vi/README.md)
+[Arabic](../ar/README.md) | [Bengali](../bn/README.md) | [Bulgarian](../bg/README.md) | [Burmese (Myanmar)](../my/README.md) | [Chinese (Simplified)](../zh/README.md) | [Chinese (Traditional, Hong Kong)](../hk/README.md) | [Chinese (Traditional, Macau)](../mo/README.md) | [Chinese (Traditional, Taiwan)](../tw/README.md) | [Croatian](../hr/README.md) | [Czech](../cs/README.md) | [Danish](../da/README.md) | [Dutch](../nl/README.md) | [Estonian](../et/README.md) | [Finnish](../fi/README.md) | [French](../fr/README.md) | [German](../de/README.md) | [Greek](../el/README.md) | [Hebrew](../he/README.md) | [Hindi](../hi/README.md) | [Hungarian](../hu/README.md) | [Indonesian](./README.md) | [Italian](../it/README.md) | [Japanese](../ja/README.md) | [Kannada](../kn/README.md) | [Korean](../ko/README.md) | [Lithuanian](../lt/README.md) | [Malay](../ms/README.md) | [Malayalam](../ml/README.md) | [Marathi](../mr/README.md) | [Nepali](../ne/README.md) | [Nigerian Pidgin](../pcm/README.md) | [Norwegian](../no/README.md) | [Persian (Farsi)](../fa/README.md) | [Polish](../pl/README.md) | [Portuguese (Brazil)](../br/README.md) | [Portuguese (Portugal)](../pt/README.md) | [Punjabi (Gurmukhi)](../pa/README.md) | [Romanian](../ro/README.md) | [Russian](../ru/README.md) | [Serbian (Cyrillic)](../sr/README.md) | [Slovak](../sk/README.md) | [Slovenian](../sl/README.md) | [Spanish](../es/README.md) | [Swahili](../sw/README.md) | [Swedish](../sv/README.md) | [Tagalog (Filipino)](../tl/README.md) | [Tamil](../ta/README.md) | [Telugu](../te/README.md) | [Thai](../th/README.md) | [Turkish](../tr/README.md) | [Ukrainian](../uk/README.md) | [Urdu](../ur/README.md) | [Vietnamese](../vi/README.md)
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE END -->
 
 # 🚀 Kurikulum Model Context Protocol (MCP) untuk Pemula
@@ -40,9 +40,9 @@ Ikuti langkah-langkah ini untuk memulai menggunakan sumber daya ini:
 ## **Pelajari MCP dengan Contoh Kode Praktis dalam C#, Java, JavaScript, Rust, Python, dan TypeScript**
 
 ## 🧠 Gambaran Umum Kurikulum Model Context Protocol
-Selamat datang dalam perjalanan Anda ke Model Context Protocol! Jika Anda pernah bertanya-tanya bagaimana aplikasi AI berkomunikasi dengan berbagai alat dan layanan, Anda akan menemukan solusi elegan yang mengubah cara pengembang membangun sistem cerdas.
+Selamat datang dalam perjalanan Anda memasuki Model Context Protocol! Jika Anda pernah bertanya-tanya bagaimana aplikasi AI berkomunikasi dengan berbagai alat dan layanan, Anda akan menemukan solusi elegan yang mengubah cara pengembang membangun sistem cerdas.
 
-Pikirkan MCP sebagai penerjemah universal untuk aplikasi AI - seperti bagaimana port USB memungkinkan Anda menghubungkan perangkat apa pun ke komputer Anda, MCP memungkinkan model AI terhubung ke alat atau layanan apa pun dengan cara yang standar. Apakah Anda sedang membangun chatbot pertama Anda atau mengerjakan alur kerja AI yang kompleks, memahami MCP akan memberi Anda kekuatan untuk membuat aplikasi yang lebih mampu dan fleksibel.
+Pikirkan MCP sebagai penerjemah universal untuk aplikasi AI - seperti bagaimana port USB memungkinkan Anda menghubungkan perangkat apa pun ke komputer Anda, MCP memungkinkan model AI terhubung ke alat atau layanan apa pun dengan cara yang standar. Baik Anda membangun chatbot pertama Anda atau mengerjakan alur kerja AI yang kompleks, memahami MCP akan memberi Anda kekuatan untuk membuat aplikasi yang lebih mampu dan fleksibel.
 
 Kurikulum ini dirancang dengan kesabaran dan perhatian untuk perjalanan belajar Anda. Kami akan mulai dengan konsep sederhana yang sudah Anda pahami dan secara bertahap membangun keahlian Anda melalui praktik langsung dalam bahasa pemrograman favorit Anda. Setiap langkah mencakup penjelasan yang jelas, contoh praktis, dan banyak dorongan sepanjang jalan.
 
@@ -50,12 +50,12 @@ Saat Anda menyelesaikan perjalanan ini, Anda akan memiliki kepercayaan diri untu
 
 ### Dokumentasi dan Spesifikasi Resmi
 
-Sumber daya ini menjadi lebih berharga seiring pemahaman Anda berkembang, tetapi jangan merasa terbebani untuk membaca semuanya sekaligus. Mulailah dengan area yang paling menarik bagi Anda!
+Sumber daya ini akan semakin berharga seiring pemahaman Anda berkembang, tetapi jangan merasa terbebani untuk membaca semuanya sekaligus. Mulailah dengan area yang paling menarik bagi Anda!
 - 📘 [Dokumentasi MCP](https://modelcontextprotocol.io/) – Ini adalah sumber utama Anda untuk tutorial langkah demi langkah dan panduan pengguna. Dokumentasi ditulis dengan pemula dalam pikiran, menyediakan contoh jelas yang bisa Anda ikuti dengan kecepatan Anda sendiri.
 - 📜 [Spesifikasi MCP](https://modelcontextprotocol.io/docs/) – Anggap ini sebagai manual referensi komprehensif Anda. Saat Anda mengerjakan kurikulum, Anda akan sering kembali ke sini untuk mencari detail spesifik dan mengeksplorasi fitur lanjutan.
 - 📜 [Spesifikasi MCP Asli](https://spec.modelcontextprotocol.io/) – Ini berisi detail teknis tambahan yang bisa berguna untuk implementasi tingkat lanjut. Ada saat Anda membutuhkannya, tapi jangan khawatir saat Anda baru mulai.
-- 🧑‍💻 [Repositori GitHub MCP](https://github.com/modelcontextprotocol) – Di sini Anda akan menemukan SDK, alat, dan contoh kode dalam berbagai bahasa pemrograman. Ini seperti harta karun contoh praktis dan komponen siap pakai.
-- 🌐 [Komunitas MCP](https://github.com/orgs/modelcontextprotocol/discussions) – Bergabunglah dengan sesama pelajar dan pengembang berpengalaman dalam diskusi tentang MCP. Ini adalah komunitas yang mendukung di mana pertanyaan disambut dan pengetahuan dibagikan secara bebas.
+- 🧑‍💻 [Repositori MCP di GitHub](https://github.com/modelcontextprotocol) – Di sini Anda akan menemukan SDK, alat, dan contoh kode dalam berbagai bahasa pemrograman. Ini seperti harta karun contoh praktis dan komponen siap pakai.
+- 🌐 [Komunitas MCP](https://github.com/orgs/modelcontextprotocol/discussions) – Bergabunglah dengan sesama pembelajar dan pengembang berpengalaman dalam diskusi tentang MCP. Ini adalah komunitas yang mendukung di mana pertanyaan disambut dan pengetahuan dibagikan dengan bebas.
   
 ## Tujuan Pembelajaran
 
@@ -71,7 +71,7 @@ Pada akhir kurikulum ini, Anda akan merasa percaya diri dan bersemangat dengan k
 
 • **Menyebarkan dengan percaya diri**: Anda akan tahu cara membawa proyek MCP Anda dari pengembangan ke produksi, dengan strategi penyebaran praktis yang bekerja di dunia nyata.
 
-• **Bergabung dengan komunitas MCP**: Anda akan menjadi bagian dari komunitas pengembang yang berkembang yang membentuk masa depan pengembangan aplikasi AI. 
+• **Bergabung dengan komunitas MCP**: Anda akan menjadi bagian dari komunitas pengembang yang berkembang yang membentuk masa depan pengembangan aplikasi AI.
 
 ## Latar Belakang Penting
 
@@ -81,7 +81,7 @@ Sebelum kita menyelami spesifik MCP, mari pastikan Anda merasa nyaman dengan beb
 
 Pikirkan protokol seperti aturan untuk sebuah percakapan. Saat Anda menelepon teman, Anda berdua tahu untuk mengucapkan "halo" saat menjawab, bergiliran berbicara, dan mengucapkan "selamat tinggal" saat selesai. Program komputer membutuhkan aturan serupa untuk berkomunikasi secara efektif.
 
-MCP adalah protokol - seperangkat aturan yang disepakati yang membantu model AI dan aplikasi memiliki "percakapan" yang produktif dengan alat dan layanan. Sama seperti aturan percakapan membuat komunikasi manusia lebih lancar, memiliki MCP membuat komunikasi aplikasi AI jauh lebih andal dan kuat.
+MCP adalah protokol - seperangkat aturan yang disepakati yang membantu model AI dan aplikasi melakukan "percakapan" yang produktif dengan alat dan layanan. Sama seperti aturan percakapan membuat komunikasi manusia lebih lancar, MCP membuat komunikasi aplikasi AI jauh lebih andal dan kuat.
 
 ### Hubungan Klien-Server (Cara Program Bekerja Sama)
 
@@ -91,7 +91,7 @@ Dalam MCP, kita memiliki hubungan serupa: model AI bertindak sebagai klien yang 
 
 ### Mengapa Standarisasi Penting (Membuat Segalanya Bekerja Sama)
 
-Bayangkan jika setiap produsen mobil menggunakan pompa bensin dengan bentuk berbeda - Anda akan membutuhkan adaptor berbeda untuk setiap mobil! Standarisasi berarti menyepakati pendekatan umum agar segala sesuatunya bekerja bersama dengan mulus.
+Bayangkan jika setiap produsen mobil menggunakan bentuk pompa bensin yang berbeda - Anda akan membutuhkan adaptor berbeda untuk setiap mobil! Standarisasi berarti menyepakati pendekatan umum agar segala sesuatunya bekerja bersama dengan mulus.
 
 MCP menyediakan standarisasi ini untuk aplikasi AI. Alih-alih setiap model AI membutuhkan kode khusus untuk bekerja dengan setiap alat, MCP menciptakan cara universal agar mereka bisa berkomunikasi. Ini berarti pengembang bisa membangun alat sekali dan membuatnya bekerja dengan banyak sistem AI berbeda.
 
@@ -120,11 +120,11 @@ Setiap panduan mencakup contoh kode lengkap, tips pemecahan masalah, dan penjela
 ### 🚀 Fase Pengembangan: Konsep Lanjutan dan Aplikasi Dunia Nyata (Modul 4-5)
 
 Setelah menguasai dasar, Anda siap mengeksplorasi fitur MCP yang lebih canggih. Kami akan membahas strategi implementasi praktis, teknik debugging, dan topik lanjutan seperti integrasi AI multi-modal.
-
-Anda juga akan belajar cara menskalakan implementasi MCP untuk penggunaan produksi dan mengintegrasikannya dengan platform cloud seperti Azure. Modul-modul ini mempersiapkan Anda untuk membangun solusi MCP yang dapat menangani tuntutan dunia nyata.
+Anda juga akan belajar cara mengskalakan implementasi MCP Anda untuk penggunaan produksi dan mengintegrasikannya dengan platform cloud seperti Azure. Modul-modul ini mempersiapkan Anda untuk membangun solusi MCP yang dapat menangani tuntutan dunia nyata.
 
 ### 🌟 Fase Penguasaan: Komunitas dan Spesialisasi (Modul 6-11)
-Fase akhir berfokus pada bergabung dengan komunitas MCP dan mengkhususkan diri dalam bidang yang paling Anda minati. Anda akan belajar bagaimana berkontribusi pada proyek MCP open-source, menerapkan pola otentikasi lanjutan, dan membangun solusi terpadu dengan integrasi basis data yang komprehensif.
+
+Fase terakhir berfokus pada bergabung dengan komunitas MCP dan mengkhususkan diri di area yang paling Anda minati. Anda akan belajar cara berkontribusi pada proyek MCP open-source, mengimplementasikan pola otentikasi lanjutan, dan membangun solusi terintegrasi database yang komprehensif.
 
 Modul 11 layak mendapat perhatian khusus - ini adalah jalur pembelajaran praktis lengkap dengan 13 lab yang mengajarkan Anda membangun server MCP siap produksi dengan integrasi PostgreSQL. Ini seperti proyek puncak yang menggabungkan semua yang telah Anda pelajari!
 
@@ -133,9 +133,9 @@ Modul 11 layak mendapat perhatian khusus - ini adalah jalur pembelajaran praktis
 | Modul | Topik | Deskripsi | Tautan |
 |--------|-------|-------------|------|
 | **Modul 1-3: Dasar-dasar** | | | |
-| 00 | Pengantar MCP | Gambaran tentang Model Context Protocol dan pentingnya dalam pipeline AI | [Baca selengkapnya](./00-Introduction/README.md) |
-| 01 | Konsep Inti Dijelaskan | Eksplorasi mendalam tentang konsep inti MCP | [Baca selengkapnya](./01-CoreConcepts/README.md) |
-| 02 | Keamanan di MCP | Ancaman keamanan dan praktik terbaik | [Baca selengkapnya](./02-Security/README.md) |
+| 00 | Pengantar MCP | Gambaran umum Model Context Protocol dan pentingnya dalam pipeline AI | [Baca selengkapnya](./00-Introduction/README.md) |
+| 01 | Konsep Inti Dijelaskan | Eksplorasi mendalam konsep inti MCP | [Baca selengkapnya](./01-CoreConcepts/README.md) |
+| 02 | Keamanan dalam MCP | Ancaman keamanan dan praktik terbaik | [Baca selengkapnya](./02-Security/README.md) |
 | 03 | Memulai dengan MCP | Pengaturan lingkungan, server/klien dasar, integrasi | [Baca selengkapnya](./03-GettingStarted/README.md) |
 | **Modul 3: Membangun Server & Klien Pertama Anda** | | | |
 | 3.1 | Server Pertama | Membuat server MCP pertama Anda | [Panduan](./03-GettingStarted/01-first-server/README.md) |
@@ -143,7 +143,7 @@ Modul 11 layak mendapat perhatian khusus - ini adalah jalur pembelajaran praktis
 | 3.3 | Klien dengan LLM | Mengintegrasikan model bahasa besar | [Panduan](./03-GettingStarted/03-llm-client/README.md) |
 | 3.4 | Integrasi VS Code | Menggunakan server MCP di VS Code | [Panduan](./03-GettingStarted/04-vscode/README.md) |
 | 3.5 | Server stdio | Membuat server menggunakan transport stdio | [Panduan](./03-GettingStarted/05-stdio-server/README.md) |
-| 3.6 | Streaming HTTP | Menerapkan streaming HTTP di MCP | [Panduan](./03-GettingStarted/06-http-streaming/README.md) |
+| 3.6 | Streaming HTTP | Mengimplementasikan streaming HTTP di MCP | [Panduan](./03-GettingStarted/06-http-streaming/README.md) |
 | 3.7 | AI Toolkit | Menggunakan AI Toolkit dengan MCP | [Panduan](./03-GettingStarted/07-aitk/README.md) |
 | 3.8 | Pengujian | Menguji implementasi server MCP Anda | [Panduan](./03-GettingStarted/08-testing/README.md) |
 | 3.9 | Penyebaran | Menyebarkan server MCP ke produksi | [Panduan](./03-GettingStarted/09-deployment/README.md) |
@@ -151,18 +151,18 @@ Modul 11 layak mendapat perhatian khusus - ini adalah jalur pembelajaran praktis
 | 3.11 | Otentikasi sederhana | Bab yang menunjukkan otentikasi dari awal dan RBAC | [Panduan](./03-GettingStarted/11-simple-auth/README.md) |
 | **Modul 4-5: Praktis & Lanjutan** | | | |
 | 04 | Implementasi Praktis | SDK, debugging, pengujian, template prompt yang dapat digunakan ulang | [Baca selengkapnya](./04-PracticalImplementation/README.md) |
-| 05 | Topik Lanjutan di MCP | AI multi-modal, skala, penggunaan perusahaan | [Baca selengkapnya](./05-AdvancedTopics/README.md) |
+| 05 | Topik Lanjutan dalam MCP | AI multi-modal, skala, penggunaan perusahaan | [Baca selengkapnya](./05-AdvancedTopics/README.md) |
 | 5.1 | Integrasi Azure | Integrasi MCP dengan Azure | [Panduan](./05-AdvancedTopics/mcp-integration/README.md) |
 | 5.2 | Multi-modalitas | Bekerja dengan berbagai modalitas | [Panduan](./05-AdvancedTopics/mcp-multi-modality/README.md) |
-| 5.3 | Demo OAuth2 | Menerapkan otentikasi OAuth2 | [Panduan](./05-AdvancedTopics/mcp-oauth2-demo/README.md) |
-| 5.4 | Root Contexts | Memahami dan menerapkan root contexts | [Panduan](./05-AdvancedTopics/mcp-root-contexts/README.md) |
+| 5.3 | Demo OAuth2 | Mengimplementasikan otentikasi OAuth2 | [Panduan](./05-AdvancedTopics/mcp-oauth2-demo/README.md) |
+| 5.4 | Root Contexts | Memahami dan mengimplementasikan root contexts | [Panduan](./05-AdvancedTopics/mcp-root-contexts/README.md) |
 | 5.5 | Routing | Strategi routing MCP | [Panduan](./05-AdvancedTopics/mcp-routing/README.md) |
-| 5.6 | Sampling | Teknik sampling di MCP | [Panduan](./05-AdvancedTopics/mcp-sampling/README.md) |
-| 5.7 | Scaling | Meningkatkan skala implementasi MCP | [Panduan](./05-AdvancedTopics/mcp-scaling/README.md) |
+| 5.6 | Sampling | Teknik sampling dalam MCP | [Panduan](./05-AdvancedTopics/mcp-sampling/README.md) |
+| 5.7 | Scaling | Mengskalakan implementasi MCP | [Panduan](./05-AdvancedTopics/mcp-scaling/README.md) |
 | 5.8 | Keamanan | Pertimbangan keamanan lanjutan | [Panduan](./05-AdvancedTopics/mcp-security/README.md) |
-| 5.9 | Pencarian Web | Menerapkan kemampuan pencarian web | [Panduan](./05-AdvancedTopics/web-search-mcp/README.md) |
+| 5.9 | Pencarian Web | Mengimplementasikan kemampuan pencarian web | [Panduan](./05-AdvancedTopics/web-search-mcp/README.md) |
 | 5.10 | Streaming Realtime | Membangun fungsi streaming realtime | [Panduan](./05-AdvancedTopics/mcp-realtimestreaming/README.md) |
-| 5.11 | Pencarian Realtime | Menerapkan pencarian realtime | [Panduan](./05-AdvancedTopics/mcp-realtimesearch/README.md) |
+| 5.11 | Pencarian Realtime | Mengimplementasikan pencarian realtime | [Panduan](./05-AdvancedTopics/mcp-realtimesearch/README.md) |
 | 5.12 | Otentikasi Entra ID | Otentikasi dengan Microsoft Entra ID | [Panduan](./05-AdvancedTopics/mcp-security-entra/README.md) |
 | 5.13 | Integrasi Foundry | Integrasi dengan Azure AI Foundry | [Panduan](./05-AdvancedTopics/mcp-foundry-agent-integration/README.md) |
 | 5.14 | Rekayasa Konteks | Teknik untuk rekayasa konteks yang efektif | [Panduan](./05-AdvancedTopics/mcp-contextengineering/README.md) |
@@ -173,7 +173,7 @@ Modul 11 layak mendapat perhatian khusus - ini adalah jalur pembelajaran praktis
 | 08 | Praktik Terbaik untuk MCP | Performa, toleransi kesalahan, ketahanan | [Panduan](./08-BestPractices/README.md) |
 | 09 | Studi Kasus MCP | Contoh implementasi praktis | [Panduan](./09-CaseStudy/README.md) |
 | 10 | Workshop Praktis | Membangun Server MCP dengan AI Toolkit | [Lab](./10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md) |
-| **Modul 11: Lab Praktis Server MCP** | | | |
+| **Modul 11: Lab Praktik Server MCP** | | | |
 | 11 | Integrasi Database Server MCP | Jalur pembelajaran praktis lengkap 13 lab untuk integrasi PostgreSQL | [Lab](./11-MCPServerHandsOnLabs/README.md) |
 | 11.1 | Pengantar | Gambaran MCP dengan integrasi database dan kasus penggunaan analitik ritel | [Lab 00](./11-MCPServerHandsOnLabs/00-Introduction/README.md) |
 | 11.2 | Arsitektur Inti | Memahami arsitektur server MCP, lapisan database, dan pola keamanan | [Lab 01](./11-MCPServerHandsOnLabs/01-Architecture/README.md) |
@@ -182,7 +182,7 @@ Modul 11 layak mendapat perhatian khusus - ini adalah jalur pembelajaran praktis
 | 11.5 | Desain Database | Pengaturan PostgreSQL, desain skema ritel, dan data contoh | [Lab 04](./11-MCPServerHandsOnLabs/04-Database/README.md) |
 | 11.6 | Implementasi Server MCP | Membangun server FastMCP dengan integrasi database | [Lab 05](./11-MCPServerHandsOnLabs/05-MCP-Server/README.md) |
 | 11.7 | Pengembangan Alat | Membuat alat query database dan introspeksi skema | [Lab 06](./11-MCPServerHandsOnLabs/06-Tools/README.md) |
-| 11.8 | Pencarian Semantik | Menerapkan vector embeddings dengan Azure OpenAI dan pgvector | [Lab 07](./11-MCPServerHandsOnLabs/07-Semantic-Search/README.md) |
+| 11.8 | Pencarian Semantik | Mengimplementasikan vector embeddings dengan Azure OpenAI dan pgvector | [Lab 07](./11-MCPServerHandsOnLabs/07-Semantic-Search/README.md) |
 | 11.9 | Pengujian & Debugging | Strategi pengujian, alat debugging, dan pendekatan validasi | [Lab 08](./11-MCPServerHandsOnLabs/08-Testing/README.md) |
 | 11.10 | Integrasi VS Code | Mengonfigurasi integrasi MCP di VS Code dan penggunaan AI Chat | [Lab 09](./11-MCPServerHandsOnLabs/09-VS-Code/README.md) |
 | 11.11 | Strategi Penyebaran | Penyebaran Docker, Azure Container Apps, dan pertimbangan skala | [Lab 10](./11-MCPServerHandsOnLabs/10-Deployment/README.md) |
@@ -191,7 +191,7 @@ Modul 11 layak mendapat perhatian khusus - ini adalah jalur pembelajaran praktis
 
 ### 💻 Proyek Kode Contoh
 
-Salah satu bagian paling menarik dari belajar MCP adalah melihat keterampilan kode Anda berkembang secara bertahap. Kami merancang contoh kode kami agar dimulai dari yang sederhana dan menjadi lebih canggih seiring pemahaman Anda yang semakin dalam. Berikut cara kami memperkenalkan konsep - dengan kode yang mudah dipahami namun menunjukkan prinsip MCP nyata, Anda akan mengerti bukan hanya apa yang dilakukan kode ini, tetapi mengapa strukturnya seperti itu dan bagaimana kode ini cocok dalam aplikasi MCP yang lebih besar.
+Salah satu bagian paling menarik dari belajar MCP adalah melihat keterampilan kode Anda berkembang secara bertahap. Kami merancang contoh kode kami agar dimulai dari yang sederhana dan menjadi lebih canggih seiring pemahaman Anda bertambah. Berikut cara kami memperkenalkan konsep - dengan kode yang mudah dipahami namun menunjukkan prinsip MCP nyata, Anda akan mengerti bukan hanya apa yang dilakukan kode ini, tetapi mengapa disusun seperti ini dan bagaimana kode ini cocok dalam aplikasi MCP yang lebih besar.
 
 #### Contoh Kalkulator MCP Dasar
 
@@ -245,7 +245,7 @@ Panduan ini mencakup:
 
 Kami memelihara [Catatan Perubahan](./changelog.md) yang mendetail yang melacak semua pembaruan signifikan pada materi kurikulum, sehingga Anda dapat tetap mengikuti perbaikan dan penambahan terbaru.
 - Penambahan konten baru
-- Perubahan struktural
+- Perubahan struktur
 - Peningkatan fitur
 - Pembaruan dokumentasi
 
@@ -268,18 +268,18 @@ Anda dapat menonton MCP Dev Days dengan mendaftar di halaman acara kami: https:/
 #### [Hari 1: Produktivitas MCP, DevTools, & Komunitas:](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
 
 Adalah tentang memberdayakan pengembang untuk menggunakan MCP dalam alur kerja pengembang mereka dan merayakan komunitas MCP yang luar biasa. Kami akan bergabung dengan anggota komunitas dan mitra seperti Arcade, Block, Okta, dan Neon untuk melihat bagaimana mereka berkolaborasi dengan Microsoft membentuk ekosistem MCP yang terbuka dan dapat diperluas. Demo dunia nyata di VS Code, Visual Studio, GitHub Copilot, dan alat komunitas populer
-Alur kerja pengembangan praktis yang didorong oleh konteks
-Sesi dan wawasan yang dipimpin oleh komunitas
-Apakah Anda baru memulai dengan MCP atau sudah membangunnya, Hari 1 akan menetapkan panggung dengan inspirasi dan hasil yang dapat ditindaklanjuti.
+Alur kerja pengembangan praktis yang berbasis konteks
+Sesi dan wawasan yang dipimpin komunitas
+Apakah Anda baru memulai dengan MCP atau sudah membangunnya, Hari 1 akan menetapkan panggung dengan inspirasi dan hasil yang dapat diterapkan.
 
-#### [Hari 2: Membangun Server MCP dengan Percaya Diri](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
+#### [Hari 2: Bangun Server MCP dengan Percaya Diri](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
 
 Ditujukan untuk pembangun MCP. Kami akan membahas strategi implementasi dan praktik terbaik untuk membuat server MCP dan mengintegrasikan MCP ke dalam alur kerja AI Anda.
 
 #### Topik meliputi:
 
 - Membangun Server MCP dan mengintegrasikannya ke dalam pengalaman agen
-- Pengembangan yang didorong oleh prompt
+- Pengembangan berbasis prompt
 - Praktik terbaik keamanan
 - Menggunakan blok bangunan seperti Functions, ACA, dan Manajemen API
 - Penyelarasan registri dan alat (1P + 3P)
@@ -294,7 +294,7 @@ Pelajari dalam sesi video intensif cara membuat server MCP, mengintegrasikan den
 #### [➡️Tonton Sesuai Permintaan Bootcamp MCP | Spanyol](https://developer.microsoft.com/en-us/reactor/series/S-1567/)
 
 ### Mari Belajar MCP dengan C# - Seri Tutorial
-Mari belajar tentang Model Context Protocol (MCP), sebuah kerangka kerja mutakhir yang dirancang untuk menstandarisasi interaksi antara model AI dan aplikasi klien. Melalui sesi yang ramah pemula ini, kami akan memperkenalkan Anda pada MCP dan membimbing Anda membuat server MCP pertama Anda.
+Mari belajar tentang Model Context Protocol (MCP), kerangka kerja mutakhir yang dirancang untuk menstandarisasi interaksi antara model AI dan aplikasi klien. Melalui sesi yang ramah pemula ini, kami akan memperkenalkan Anda pada MCP dan membimbing Anda membuat server MCP pertama Anda.
 #### C#: [https://aka.ms/letslearnmcp-csharp](https://aka.ms/letslearnmcp-csharp)
 #### Java: [https://aka.ms/letslearnmcp-java](https://aka.ms/letslearnmcp-java)
 #### JavaScript: [https://aka.ms/letslearnmcp-javascript](https://aka.ms/letslearnmcp-javascript)
@@ -302,7 +302,7 @@ Mari belajar tentang Model Context Protocol (MCP), sebuah kerangka kerja mutakhi
 
 ## 🎓 Perjalanan MCP Anda Dimulai
 
-Selamat! Anda baru saja mengambil langkah pertama dalam perjalanan menarik yang akan memperluas kemampuan pemrograman Anda dan menghubungkan Anda ke perkembangan AI terkini.
+Selamat! Anda baru saja mengambil langkah pertama dalam perjalanan menarik yang akan memperluas kemampuan pemrograman Anda dan menghubungkan Anda ke ujung tombak pengembangan AI.
 
 ### Apa yang Sudah Anda Capai
 
@@ -314,7 +314,7 @@ Saat Anda melanjutkan modul, ingatlah bahwa setiap ahli pernah menjadi pemula. K
 
 ### Jaringan Dukungan Anda
 
-Anda bergabung dengan komunitas pembelajar dan ahli yang bersemangat tentang MCP dan ingin membantu orang lain berhasil. Apakah Anda terjebak pada tantangan pengkodean atau bersemangat membagikan terobosan, komunitas ada untuk mendukung perjalanan Anda.
+Anda bergabung dengan komunitas pembelajar dan ahli yang bersemangat tentang MCP dan ingin membantu orang lain berhasil. Apakah Anda terjebak pada tantangan pengkodean atau bersemangat untuk berbagi terobosan, komunitas ada di sini untuk mendukung perjalanan Anda.
 
 Jika Anda mengalami kesulitan atau memiliki pertanyaan tentang membangun aplikasi AI. Bergabunglah dengan sesama pembelajar dan pengembang berpengalaman dalam diskusi tentang MCP. Ini adalah komunitas yang mendukung di mana pertanyaan disambut dan pengetahuan dibagikan secara bebas.
 
@@ -357,7 +357,7 @@ hubungi [opencode@microsoft.com](mailto:opencode@microsoft.com) untuk pertanyaan
 
 ---
 
-*Siap memulai perjalanan MCP Anda? Mulailah dengan [Modul 00 - Pengantar MCP](./00-Introduction/README.md) dan ambil langkah pertama Anda ke dunia pengembangan Model Context Protocol!*
+*Siap memulai perjalanan MCP Anda? Mulailah dengan [Module 00 - Introduction to MCP](./00-Introduction/README.md) dan ambil langkah pertama Anda ke dunia pengembangan Model Context Protocol!*
 
 
 
