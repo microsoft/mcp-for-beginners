@@ -2,6 +2,36 @@
 
 This document serves as a record of all significant changes made to the Model Context Protocol (MCP) for Beginners curriculum. Changes are documented in reverse chronological order (newest changes first).
 
+## December 18, 2025
+
+### Security Documentation Update - MCP Specification 2025-11-25
+
+#### MCP Security Best Practices (02-Security/mcp-best-practices.md) - Specification Version Update
+- **Protocol Version Update**: Updated to reference latest MCP Specification 2025-11-25 (released November 25, 2025)
+  - Updated all specification version references from 2025-06-18 to 2025-11-25
+  - Updated document date references from August 18, 2025 to December 18, 2025
+  - Verified all specification URLs point to current documentation
+- **Content Validation**: Comprehensive validation of security best practices against latest standards
+  - **Microsoft Security Solutions**: Verified current terminology and links for Prompt Shields (previously "Jailbreak risk detection"), Azure Content Safety, Microsoft Entra ID, and Azure Key Vault
+  - **OAuth 2.1 Security**: Confirmed alignment with latest OAuth security best practices
+  - **OWASP Standards**: Validated OWASP Top 10 for LLMs references remain current
+  - **Azure Services**: Verified all Microsoft Azure documentation links and best practices
+- **Standards Alignment**: All referenced security standards confirmed current
+  - NIST AI Risk Management Framework
+  - ISO 27001:2022
+  - OAuth 2.1 Security Best Practices
+  - Azure security and compliance frameworks
+- **Implementation Resources**: Validated all implementation guide links and resources
+  - Azure API Management authentication patterns
+  - Microsoft Entra ID integration guides
+  - Azure Key Vault secrets management
+  - DevSecOps pipelines and monitoring solutions
+
+### Documentation Quality Assurance
+- **Specification Compliance**: Ensured all mandatory MCP security requirements (MUST/MUST NOT) align with latest specification
+- **Resource Currency**: Verified all external links to Microsoft documentation, security standards, and implementation guides
+- **Best Practices Coverage**: Confirmed comprehensive coverage of authentication, authorization, AI-specific threats, supply chain security, and enterprise patterns
+
 ## October 6, 2025
 
 ### Getting Started Section Expansion – Advanced Server Usage & Simple Authentication

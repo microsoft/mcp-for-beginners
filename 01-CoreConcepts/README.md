@@ -66,7 +66,7 @@ flowchart LR
 - **Local Data Sources**: Your computer's files, databases, and services that MCP servers can securely access
 - **Remote Services**: External systems available over the internet that MCP servers can connect to through APIs.
 
-The MCP Protocol is an evolving standard using date-based versioning (YYYY-MM-DD format). The current protocol version is **2025-06-18**. You can see the latest updates to the [protocol specification](https://modelcontextprotocol.io/specification/2025-06-18/)
+The MCP Protocol is an evolving standard using date-based versioning (YYYY-MM-DD format). The current protocol version is **2025-11-25**. You can see the latest updates to the [protocol specification](https://modelcontextprotocol.io/specification/2025-11-25/)
 
 ### 1. Hosts
 
@@ -649,7 +649,7 @@ This structured communication ensures reliable, traceable, and extensible intera
 - **Transport Mechanisms**: Communication supports STDIO (local) and Streamable HTTP with optional SSE (remote)
 - **Core Primitives**: Servers expose tools (executable functions), resources (data sources), and prompts (templates)
 - **Client Primitives**: Servers can request sampling (LLM completions), elicitation (user input), and logging from clients
-- **Protocol Foundation**: Built on JSON-RPC 2.0 with date-based versioning (current: 2025-06-18)
+- **Protocol Foundation**: Built on JSON-RPC 2.0 with date-based versioning (current: 2025-11-25)
 - **Real-time Capabilities**: Supports notifications for dynamic updates and real-time synchronization
 - **Security First**: Explicit user consent, data privacy protection, and secure transport are core requirements
 

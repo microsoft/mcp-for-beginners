@@ -6,11 +6,11 @@ The Model Context Protocol (MCP) provides flexibility in transport mechanisms, a
 
 While MCP's standard transports (stdio and HTTP streaming) serve most use cases, enterprise environments often require specialized transport mechanisms for improved scalability, reliability, and integration with existing cloud infrastructure. Custom transports enable MCP to leverage cloud-native messaging services for asynchronous communication, event-driven architectures, and distributed processing.
 
-This lesson explores advanced transport implementations based on the latest MCP specification (2025-06-18), Azure messaging services, and established enterprise integration patterns.
+This lesson explores advanced transport implementations based on the latest MCP specification (2025-11-25), Azure messaging services, and established enterprise integration patterns.
 
 ### **MCP Transport Architecture**
 
-**From MCP Specification (2025-06-18):**
+**From MCP Specification (2025-11-25):**
 
 - **Standard Transports**: stdio (recommended), HTTP streaming (for remote scenarios)
 - **Custom Transports**: Any transport that implements the MCP message exchange protocol
@@ -30,7 +30,7 @@ By the end of this advanced lesson, you will be able to:
 
 ## **Transport Requirements**
 
-### **Core Requirements from MCP Specification (2025-06-18):**
+### **Core Requirements from MCP Specification (2025-11-25):**
 
 ```yaml
 Message Protocol:
