@@ -503,6 +503,7 @@ Next step after listing server capabilities is to convert them into a format tha
 1. Next, let's update our client code to leverage this function like so:
 
     ```python
+    functions = []
     for tool in tools.tools:
         print("Tool: ", tool.name)
         print("Tool", tool.inputSchema["properties"])
