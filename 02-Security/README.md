@@ -28,14 +28,14 @@ Research from the [Microsoft Digital Defense Report](https://aka.ms/mddr) demons
 
 ## Current Security Landscape
 
-> **Note:** This information reflects MCP security standards as of **August 18, 2025**. The MCP protocol continues evolving rapidly, and future implementations may introduce new authentication patterns and enhanced controls. Always refer to the current [MCP Specification](https://spec.modelcontextprotocol.io/), [MCP GitHub repository](https://github.com/modelcontextprotocol), and [security best practices documentation](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) for the latest guidance.
+> **Note:** This information reflects MCP security standards as of **December 18, 2025**. The MCP protocol continues evolving rapidly, and future implementations may introduce new authentication patterns and enhanced controls. Always refer to the current [MCP Specification](https://spec.modelcontextprotocol.io/), [MCP GitHub repository](https://github.com/modelcontextprotocol), and [security best practices documentation](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) for the latest guidance.
 
 ### Evolution of MCP Authentication
 
 The MCP specification has evolved significantly in its approach to authentication and authorization:
 
 - **Original Approach**: Early specifications required developers to implement custom authentication servers, with MCP servers acting as OAuth 2.0 Authorization Servers managing user authentication directly
-- **Current Standard (2025-06-18)**: Updated specification allows MCP servers to delegate authentication to external identity providers (such as Microsoft Entra ID), improving security posture and reducing implementation complexity
+- **Current Standard (2025-11-25)**: Updated specification allows MCP servers to delegate authentication to external identity providers (such as Microsoft Entra ID), improving security posture and reducing implementation complexity
 - **Transport Layer Security**: Enhanced support for secure transport mechanisms with proper authentication patterns for both local (STDIO) and remote (Streamable HTTP) connections
 
 ## Authentication & Authorization Security
@@ -399,9 +399,9 @@ These foundational practices create a robust security baseline that enhances the
 ## Comprehensive Resources
 
 ### **Official MCP Security Documentation**
-- [MCP Specification (Current: 2025-06-18)](https://spec.modelcontextprotocol.io/specification/2025-06-18/)
-- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices)
-- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization)
+- [MCP Specification (Current: 2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices)
+- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)
 - [MCP GitHub Repository](https://github.com/modelcontextprotocol)
 
 ### **Security Standards & Best Practices**

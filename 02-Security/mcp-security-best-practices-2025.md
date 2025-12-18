@@ -1,6 +1,6 @@
-# MCP Security Best Practices - August 2025 Update
+# MCP Security Best Practices - December 2025 Update
 
-> **Important**: This document reflects the latest [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) security requirements and official [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices). Always refer to the current specification for the most up-to-date guidance.
+> **Important**: This document reflects the latest [MCP Specification 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) security requirements and official [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices). Always refer to the current specification for the most up-to-date guidance.
 
 ## Essential Security Practices for MCP Implementations
 
@@ -175,9 +175,9 @@ The Model Context Protocol introduces unique security challenges that extend bey
 ## **Critical Security Resources**
 
 ### **Official MCP Documentation**
-- [MCP Specification (2025-06-18)](https://spec.modelcontextprotocol.io/specification/2025-06-18/)
-- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices)
-- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization)
+- [MCP Specification (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices)
+- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)
 
 ### **Microsoft Security Solutions**
 - [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
@@ -196,4 +196,4 @@ The Model Context Protocol introduces unique security challenges that extend bey
 
 ---
 
-> **Security Notice**: MCP security practices evolve rapidly. Always verify against the current [MCP specification](https://spec.modelcontextprotocol.io/) and [official security documentation](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) before implementation.
+> **Security Notice**: MCP security practices evolve rapidly. Always verify against the current [MCP specification](https://spec.modelcontextprotocol.io/) and [official security documentation](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) before implementation.
