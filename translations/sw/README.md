@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "20bace280f1884b6f35653584e305094",
-  "translation_date": "2025-12-12T17:42:17+00:00",
+  "original_hash": "dcddd875433f8f6ea4d2603f17b9746e",
+  "translation_date": "2025-12-18T20:14:30+00:00",
   "source_file": "README.md",
   "language_code": "sw"
 }
@@ -22,14 +22,14 @@ CO_OP_TRANSLATOR_METADATA:
 [![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
 
 Fuata hatua hizi kuanza kutumia rasilimali hizi:
-1. **Fanya Fork ya Hifadhi**: Bonyeza [![GitHub forks](https://img.shields.io/github/forks/microsoft/mcp-for-beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/mcp-for-beginners/fork)
-2. **Nakili Hifadhi**:   `git clone https://github.com/microsoft/mcp-for-beginners.git`
+1. **Fungua Nakala (Fork the Repository)**: Bonyeza [![GitHub forks](https://img.shields.io/github/forks/microsoft/mcp-for-beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/mcp-for-beginners/fork)
+2. **Nakili Nakala (Clone the Repository)**:   `git clone https://github.com/microsoft/mcp-for-beginners.git`
 3. **Jiunge na** [![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
 
 
 ### 🌐 Msaada wa Lugha Nyingi
 
-#### Unaungwa mkono kupitia Kitendo cha GitHub (Kiotomatiki & Kila Wakati Kikiwa Kisasa)
+#### Unaungwa Mkono kupitia Kitendo cha GitHub (Kiotomatiki & Kila Wakati Kikiwa Kisasa)
 
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE START -->
 [Arabic](../ar/README.md) | [Bengali](../bn/README.md) | [Bulgarian](../bg/README.md) | [Burmese (Myanmar)](../my/README.md) | [Chinese (Simplified)](../zh/README.md) | [Chinese (Traditional, Hong Kong)](../hk/README.md) | [Chinese (Traditional, Macau)](../mo/README.md) | [Chinese (Traditional, Taiwan)](../tw/README.md) | [Croatian](../hr/README.md) | [Czech](../cs/README.md) | [Danish](../da/README.md) | [Dutch](../nl/README.md) | [Estonian](../et/README.md) | [Finnish](../fi/README.md) | [French](../fr/README.md) | [German](../de/README.md) | [Greek](../el/README.md) | [Hebrew](../he/README.md) | [Hindi](../hi/README.md) | [Hungarian](../hu/README.md) | [Indonesian](../id/README.md) | [Italian](../it/README.md) | [Japanese](../ja/README.md) | [Kannada](../kn/README.md) | [Korean](../ko/README.md) | [Lithuanian](../lt/README.md) | [Malay](../ms/README.md) | [Malayalam](../ml/README.md) | [Marathi](../mr/README.md) | [Nepali](../ne/README.md) | [Nigerian Pidgin](../pcm/README.md) | [Norwegian](../no/README.md) | [Persian (Farsi)](../fa/README.md) | [Polish](../pl/README.md) | [Portuguese (Brazil)](../br/README.md) | [Portuguese (Portugal)](../pt/README.md) | [Punjabi (Gurmukhi)](../pa/README.md) | [Romanian](../ro/README.md) | [Russian](../ru/README.md) | [Serbian (Cyrillic)](../sr/README.md) | [Slovak](../sk/README.md) | [Slovenian](../sl/README.md) | [Spanish](../es/README.md) | [Swahili](./README.md) | [Swedish](../sv/README.md) | [Tagalog (Filipino)](../tl/README.md) | [Tamil](../ta/README.md) | [Telugu](../te/README.md) | [Thai](../th/README.md) | [Turkish](../tr/README.md) | [Ukrainian](../uk/README.md) | [Urdu](../ur/README.md) | [Vietnamese](../vi/README.md)
@@ -40,11 +40,11 @@ Fuata hatua hizi kuanza kutumia rasilimali hizi:
 ## **Jifunze MCP kwa Mifano ya Vitendo ya Msimbo katika C#, Java, JavaScript, Rust, Python, na TypeScript**
 
 ## 🧠 Muhtasari wa Mtaala wa Itifaki ya Muktadha wa Mfano
-Karibu katika safari yako ya Itifaki ya Muktadha wa Mfano! Ikiwa umewahi kujiuliza jinsi programu za AI zinavyowasiliana na zana na huduma tofauti, uko karibu kugundua suluhisho la kisanii linalobadilisha jinsi waendelezaji wanavyotengeneza mifumo ya akili.
+Karibu katika safari yako ya Itifaki ya Muktadha wa Mfano! Ikiwa umewahi kujiuliza jinsi programu za AI zinavyowasiliana na zana na huduma tofauti, unakaribia kugundua suluhisho la kisanii linalobadilisha jinsi waendelezaji wanavyotengeneza mifumo ya akili.
 
 Fikiria MCP kama mtafsiri wa ulimwengu kwa programu za AI - kama vile viunganishi vya USB vinavyokuwezesha kuunganisha kifaa chochote kwenye kompyuta yako, MCP inaruhusu mifano ya AI kuunganishwa na zana au huduma yoyote kwa njia ya kawaida. Iwe unajenga chatbot yako ya kwanza au unafanya kazi kwenye michakato tata ya AI, kuelewa MCP kutakupa nguvu ya kuunda programu zenye uwezo zaidi na zinazobadilika.
 
-Mtaala huu umeundwa kwa uvumilivu na uangalifu kwa ajili ya safari yako ya kujifunza. Tutaanza na dhana rahisi unazozifahamu na polepole kujenga utaalamu wako kupitia mazoezi ya vitendo katika lugha yako ya programu unayopendelea. Kila hatua inajumuisha maelezo wazi, mifano ya vitendo, na motisha nyingi njiani.
+Mtaala huu umeundwa kwa uvumilivu na uangalifu kwa ajili ya safari yako ya kujifunza. Tutaanza na dhana rahisi unazozifahamu na polepole kukuza utaalamu wako kupitia mazoezi ya vitendo katika lugha yako ya programu unayopendelea. Kila hatua inajumuisha maelezo wazi, mifano ya vitendo, na motisha nyingi njiani.
 
 Ukitimiza safari hii, utakuwa na ujasiri wa kujenga seva zako za MCP, kuzichanganya na majukwaa maarufu ya AI, na kuelewa jinsi teknolojia hii inavyobadilisha mustakabali wa maendeleo ya AI. Hebu tuanze adventure hii ya kusisimua pamoja!
 
@@ -52,10 +52,10 @@ Ukitimiza safari hii, utakuwa na ujasiri wa kujenga seva zako za MCP, kuzichanga
 
 Rasilimali hizi zinakuwa na thamani zaidi kadri unavyoelewa, lakini usijisikie shinikizo la kusoma kila kitu mara moja. Anza na maeneo unayovutiwa nayo zaidi!
 - 📘 [Nyaraka za MCP](https://modelcontextprotocol.io/) – Hii ni rasilimali yako ya kuanzia kwa mafunzo ya hatua kwa hatua na mwongozo wa mtumiaji. Nyaraka zimeandikwa kwa kuzingatia waanzilishi, zikitoa mifano wazi unayoweza kufuata kwa kasi yako mwenyewe.
-- 📜 [Maelezo ya MCP](https://modelcontextprotocol.io/docs/) – Fikiria hii kama mwongozo wako kamili wa rejea. Unapofanya kazi kupitia mtaala, utajikuta ukirudi hapa kutafuta maelezo maalum na kuchunguza vipengele vya hali ya juu.
-- 📜 [Maelezo ya Asili ya MCP](https://spec.modelcontextprotocol.io/) – Hii ina maelezo ya kiufundi zaidi ambayo yanaweza kusaidia kwa utekelezaji wa hali ya juu. Iko pale unapoihitaji, lakini usijali kuhusu hiyo unapoanza.
+- 📜 [Maelezo ya MCP](https://modelcontextprotocol.io/docs/) – Fikiria hii kama mwongozo wako kamili wa rejea. Unapofanya kazi kupitia mtaala, utajikuta unarudi hapa kutafuta maelezo maalum na kuchunguza vipengele vya hali ya juu.
+- 📜 [Maelezo ya Asili ya MCP](https://modelcontextprotocol.io/specification/versioning) – Hii ina maelezo ya kiufundi zaidi ambayo yanaweza kusaidia kwa utekelezaji wa hali ya juu. Iko pale unapohitaji, lakini usijali kuhusu hii unapoanza.
 - 🧑‍💻 [Hifadhi ya MCP GitHub](https://github.com/modelcontextprotocol) – Hapa utapata SDKs, zana, na mifano ya msimbo katika lugha mbalimbali za programu. Ni kama hazina ya mifano ya vitendo na vipengele tayari kutumia.
-- 🌐 [Jumuiya ya MCP](https://github.com/orgs/modelcontextprotocol/discussions) – Jiunge na wanafunzi wenzako na waendelezaji wenye uzoefu katika mijadala kuhusu MCP. Ni jumuiya yenye msaada ambapo maswali yanakaribishwa na maarifa yanashirikiana kwa uhuru.
+- 🌐 [Jumuiya ya MCP](https://github.com/orgs/modelcontextprotocol/discussions) – Jiunge na wanafunzi wenzako na waendelezaji wenye uzoefu katika mijadala kuhusu MCP. Ni jumuiya yenye msaada ambapo maswali yanakaribishwa na maarifa yanashirikiwa kwa uhuru.
   
 ## Malengo ya Kujifunza
 
@@ -63,7 +63,7 @@ Mwisho wa mtaala huu, utajisikia mwenye ujasiri na msisimko kuhusu uwezo wako mp
 
 • **Elewa misingi ya MCP**: Utagundua ni nini Itifaki ya Muktadha wa Mfano na kwa nini inabadilisha jinsi programu za AI zinavyoshirikiana, ukitumia mifano na mifano inayofaa.
 
-• **Jenga seva yako ya kwanza ya MCP**: Utaunda seva ya MCP inayofanya kazi katika lugha yako ya programu unayopendelea, kuanzia na mifano rahisi na kukuza ujuzi wako hatua kwa hatua.
+• **Jenga seva yako ya kwanza ya MCP**: Utaunda seva ya MCP inayofanya kazi katika lugha yako ya programu unayopendelea, kuanzia na mifano rahisi na kukuza ujuzi hatua kwa hatua.
 
 • **Unganisha mifano ya AI na zana halisi**: Utajifunza jinsi ya kuunganisha pengo kati ya mifano ya AI na huduma halisi, ukitoa programu zako uwezo mpya wenye nguvu.
 
@@ -75,13 +75,13 @@ Mwisho wa mtaala huu, utajisikia mwenye ujasiri na msisimko kuhusu uwezo wako mp
 
 ## Msingi Muhimu
 
-Kabla hatujaingia kwenye maelezo ya MCP, hebu tuhakikishe unajisikia vizuri na baadhi ya dhana za msingi. Usijali kama huna ujuzi wa kina katika maeneo haya - tutaelezea kila kitu unachohitaji kujua kadri tunavyoendelea!
+Kabla hatujaingia kwenye maelezo ya MCP, hebu tuhakikishe unajisikia vizuri na baadhi ya dhana za msingi. Usijali kama huna ujuzi wa hali ya juu katika maeneo haya - tutaeleza kila kitu unachohitaji kujua kadri tunavyoendelea!
 
 ### Kuelewa Itifaki (Msingi)
 
 Fikiria itifaki kama sheria za mazungumzo. Unapomuita rafiki, nyote mnaelewa kusema "hujambo" unapo jibu, kuchukua zamu kuzungumza, na kusema "kwaheri" unapo maliza. Programu za kompyuta zinahitaji sheria kama hizo ili kuwasiliana kwa ufanisi.
 
-MCP ni itifaki - seti ya sheria zilizokubaliwa zinazosaidia mifano ya AI na programu kuwa na "mazungumzo" yenye tija na zana na huduma. Kama vile kuwa na sheria za mazungumzo hufanya mawasiliano ya binadamu kuwa laini, MCP hufanya mawasiliano ya programu za AI kuwa ya kuaminika na yenye nguvu zaidi.
+MCP ni itifaki - seti ya sheria zilizokubaliwa zinazosaidia mifano ya AI na programu kuwa na "mazungumzo" yenye tija na zana na huduma. Kama vile kuwa na sheria za mazungumzo hufanya mawasiliano ya binadamu kuwa laini, MCP hufanya mawasiliano ya programu za AI kuwa ya kuaminika zaidi na yenye nguvu.
 
 ### Uhusiano wa Mteja-Seva (Jinsi Programu Zinavyofanya Kazi Pamoja)
 
@@ -89,15 +89,15 @@ Tayari unatumia uhusiano wa mteja-seva kila siku! Unapotumia kivinjari cha wavut
 
 Katika MCP, tuna uhusiano kama huo: mifano ya AI hutenda kama wateja wanaoomba taarifa au vitendo, wakati seva za MCP hutoa uwezo huo. Ni kama kuwa na msaidizi mkarimu (seva) ambaye AI inaweza kumuomba kufanya kazi maalum.
 
-### Kwa Nini Kuwepo kwa Viwango ni Muhimu (Kufanya Mambo Yafanye Kazi Pamoja)
+### Kwa Nini Kuwepo kwa Viwango ni Muhimu (Kufanya Vitu Kufanya Kazi Pamoja)
 
-Fikiria kama kila mtengenezaji wa gari anatumia pampu za mafuta zenye umbo tofauti - ungetakiwa kuwa na kiunganishi tofauti kwa kila gari! Kuwepo kwa viwango kunamaanisha kukubaliana juu ya mbinu za kawaida ili mambo yafanye kazi pamoja bila shida.
+Fikiria kama kila mtengenezaji wa magari angekuwa na aina tofauti za pampu za mafuta - ungetakiwa kuwa na kiunganishi tofauti kwa kila gari! Kuwepo kwa viwango kunamaanisha kukubaliana juu ya mbinu za kawaida ili vitu vifanye kazi pamoja bila shida.
 
 MCP hutoa viwango hivi kwa programu za AI. Badala ya kila mfano wa AI kuhitaji msimbo maalum kufanya kazi na kila zana, MCP huunda njia ya ulimwengu wote ya kuwasiliana. Hii inamaanisha waendelezaji wanaweza kujenga zana mara moja na kuzifanya zifanye kazi na mifumo mingi ya AI.
 
 ## 🧭 Muhtasari wa Njia Yako ya Kujifunza
 
-Safari yako ya MCP imepangwa kwa uangalifu kujenga ujasiri na ujuzi wako hatua kwa hatua. Kila awamu inatambulisha dhana mpya huku ikithibitisha kile ulichojifunza tayari.
+Safari yako ya MCP imepangwa kwa uangalifu kukuza ujasiri na ujuzi wako hatua kwa hatua. Kila awamu inatambulisha dhana mpya huku ikithibitisha kile ulichojifunza tayari.
 
 ### 🌱 Awamu ya Msingi: Kuelewa Misingi (Moduli 0-2)
 
@@ -113,7 +113,7 @@ Hapa ndipo adventure yako inaanza! Tutakuanzishia dhana za MCP kwa kutumia mifan
 
 Sasa furaha halisi inaanza! Utapata uzoefu wa vitendo wa kujenga seva na wateja wa MCP halisi. Usijali - tutaanza kwa urahisi na kukuongoza kila hatua.
 
-Moduli hii inajumuisha miongozo mingi ya vitendo inayokuwezesha kufanya mazoezi katika lugha yako ya programu unayopendelea. Utaunda seva yako ya kwanza, ujenge mteja kuungana nayo, na hata kuingiza zana maarufu za maendeleo kama VS Code.
+Moduli hii inajumuisha miongozo mingi ya vitendo inayokuwezesha kufanya mazoezi katika lugha yako ya programu unayopendelea. Utaunda seva yako ya kwanza, ujenge mteja kuungana nayo, na hata kuingiza na zana maarufu za maendeleo kama VS Code.
 
 Kila mwongozo unajumuisha mifano kamili ya msimbo, vidokezo vya kutatua matatizo, na maelezo ya kwanini tunachagua muundo fulani. Mwisho wa awamu hii, utakuwa na utekelezaji wa MCP unaofanya kazi unaoweza kujivunia!
 
@@ -122,9 +122,9 @@ Kila mwongozo unajumuisha mifano kamili ya msimbo, vidokezo vya kutatua matatizo
 Baada ya kumiliki misingi, uko tayari kuchunguza vipengele vya hali ya juu vya MCP. Tutashughulikia mikakati ya utekelezaji wa vitendo, mbinu za kutatua matatizo, na mada za hali ya juu kama vile ujumuishaji wa AI wa aina nyingi.
 Utajifunza pia jinsi ya kupanua utekelezaji wako wa MCP kwa matumizi ya uzalishaji na kuunganisha na majukwaa ya wingu kama Azure. Moduli hizi zinakuandaa kujenga suluhisho za MCP zinazoweza kushughulikia mahitaji halisi ya dunia.
 
-### 🌟 Awamu ya Utaalamu: Jamii na Utaalamu Maalum (Moduli 6-11)
+### 🌟 Awamu ya Ustadi: Jamii na Utaalamu (Moduli 6-11)
 
-Awamu ya mwisho inalenga kujiunga na jamii ya MCP na kujiweka maalum katika maeneo yanayokuvutia zaidi. Utajifunza jinsi ya kuchangia miradi ya MCP ya chanzo wazi, kutekeleza mifumo ya hali ya juu ya uthibitishaji, na kujenga suluhisho kamili zilizo na ushirikiano wa hifadhidata.
+Awamu ya mwisho inalenga kujiunga na jamii ya MCP na kujiweka maalum katika maeneo yanayokuvutia zaidi. Utajifunza jinsi ya kuchangia miradi ya MCP ya chanzo wazi, kutekeleza mifumo ya usalama ya hali ya juu, na kujenga suluhisho kamili zilizo na ushirikiano wa hifadhidata.
 
 Moduli 11 inastahili kutajwa kwa pekee - ni njia kamili ya maabara 13 ya kujifunza kwa vitendo inayokufundisha kujenga seva za MCP zinazotumika uzalishaji zilizo na ushirikiano wa PostgreSQL. Ni kama mradi wa mwisho unaoleta pamoja kila kitu ulichojifunza!
 
@@ -141,9 +141,9 @@ Moduli 11 inastahili kutajwa kwa pekee - ni njia kamili ya maabara 13 ya kujifun
 | 3.1 | Seva ya Kwanza | Tengeneza seva yako ya kwanza ya MCP | [Mwongozo](./03-GettingStarted/01-first-server/README.md) |
 | 3.2 | Klienti ya Kwanza | Tengeneza klienti wa msingi wa MCP | [Mwongozo](./03-GettingStarted/02-client/README.md) |
 | 3.3 | Klienti na LLM | Unganisha mifano mikubwa ya lugha | [Mwongozo](./03-GettingStarted/03-llm-client/README.md) |
-| 3.4 | Ushirikiano wa VS Code | Tumia seva za MCP ndani ya VS Code | [Mwongozo](./03-GettingStarted/04-vscode/README.md) |
+| 3.4 | Ushirikiano na VS Code | Tumia seva za MCP ndani ya VS Code | [Mwongozo](./03-GettingStarted/04-vscode/README.md) |
 | 3.5 | Seva ya stdio | Tengeneza seva kwa kutumia usafirishaji wa stdio | [Mwongozo](./03-GettingStarted/05-stdio-server/README.md) |
-| 3.6 | Utoaji wa HTTP | Tekeleza utoaji wa HTTP katika MCP | [Mwongozo](./03-GettingStarted/06-http-streaming/README.md) |
+| 3.6 | Upelekaji wa HTTP | Tekeleza upelekaji wa HTTP katika MCP | [Mwongozo](./03-GettingStarted/06-http-streaming/README.md) |
 | 3.7 | Kikasha cha AI | Tumia Kikasha cha AI na MCP | [Mwongozo](./03-GettingStarted/07-aitk/README.md) |
 | 3.8 | Upimaji | Jaribu utekelezaji wako wa seva ya MCP | [Mwongozo](./03-GettingStarted/08-testing/README.md) |
 | 3.9 | Utekelezaji | Tumia seva za MCP kwa uzalishaji | [Mwongozo](./03-GettingStarted/09-deployment/README.md) |
@@ -161,7 +161,7 @@ Moduli 11 inastahili kutajwa kwa pekee - ni njia kamili ya maabara 13 ya kujifun
 | 5.7 | Upanuzi | Panua utekelezaji wa MCP | [Mwongozo](./05-AdvancedTopics/mcp-scaling/README.md) |
 | 5.8 | Usalama | Mambo ya usalama ya hali ya juu | [Mwongozo](./05-AdvancedTopics/mcp-security/README.md) |
 | 5.9 | Utafutaji wa Wavuti | Tekeleza uwezo wa utafutaji wa wavuti | [Mwongozo](./05-AdvancedTopics/web-search-mcp/README.md) |
-| 5.10 | Utoaji wa Moja kwa Moja | Jenga utendaji wa utoaji wa moja kwa moja | [Mwongozo](./05-AdvancedTopics/mcp-realtimestreaming/README.md) |
+| 5.10 | Upelekaji wa Moja kwa Moja | Jenga utendaji wa upelekaji wa moja kwa moja | [Mwongozo](./05-AdvancedTopics/mcp-realtimestreaming/README.md) |
 | 5.11 | Utafutaji wa Moja kwa Moja | Tekeleza utafutaji wa moja kwa moja | [Mwongozo](./05-AdvancedTopics/mcp-realtimesearch/README.md) |
 | 5.12 | Uthibitishaji wa Entra ID | Uthibitishaji na Microsoft Entra ID | [Mwongozo](./05-AdvancedTopics/mcp-security-entra/README.md) |
 | 5.13 | Ushirikiano na Foundry | Unganisha na Azure AI Foundry | [Mwongozo](./05-AdvancedTopics/mcp-foundry-agent-integration/README.md) |
@@ -170,28 +170,28 @@ Moduli 11 inastahili kutajwa kwa pekee - ni njia kamili ya maabara 13 ya kujifun
 | **Moduli 6-10: Jamii & Mbinu Bora** | | | |
 | 06 | Michango ya Jamii | Jinsi ya kuchangia mfumo wa MCP | [Mwongozo](./06-CommunityContributions/README.md) |
 | 07 | Maarifa kutoka kwa Watumiaji wa Awali | Hadithi za utekelezaji halisi | [Mwongozo](./07-LessonsFromEarlyAdoption/README.md) |
-| 08 | Mbinu Bora za MCP | Utendaji, uvumilivu wa makosa, ustahimilivu | [Mwongozo](./08-BestPractices/README.md) |
+| 08 | Mbinu Bora za MCP | Utendaji, uvumilivu wa makosa, uimara | [Mwongozo](./08-BestPractices/README.md) |
 | 09 | Masomo ya Kesi za MCP | Mifano ya utekelezaji wa vitendo | [Mwongozo](./09-CaseStudy/README.md) |
 | 10 | Warsha ya Vitendo | Kujenga Seva ya MCP na Kikasha cha AI | [Maabara](./10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md) |
 | **Moduli 11: Maabara ya Vitendo ya Seva ya MCP** | | | |
 | 11 | Ushirikiano wa Hifadhidata wa Seva ya MCP | Njia kamili ya maabara 13 ya kujifunza kwa vitendo kwa ushirikiano wa PostgreSQL | [Maabara](./11-MCPServerHandsOnLabs/README.md) |
 | 11.1 | Utangulizi | Muhtasari wa MCP na ushirikiano wa hifadhidata na kesi ya matumizi ya uchambuzi wa rejareja | [Maabara 00](./11-MCPServerHandsOnLabs/00-Introduction/README.md) |
 | 11.2 | Usanifu wa Msingi | Kuelewa usanifu wa seva ya MCP, tabaka za hifadhidata, na mifumo ya usalama | [Maabara 01](./11-MCPServerHandsOnLabs/01-Architecture/README.md) |
-| 11.3 | Usalama & Multi-Tenancy | Usalama wa Kiwango cha Safu, uthibitishaji, na upatikanaji wa data wa wamiliki wengi | [Maabara 02](./11-MCPServerHandsOnLabs/02-Security/README.md) |
-| 11.4 | Usanidi wa Mazingira | Kuanzisha mazingira ya maendeleo, Docker, rasilimali za Azure | [Maabara 03](./11-MCPServerHandsOnLabs/03-Setup/README.md) |
+| 11.3 | Usalama & Multi-Tenancy | Usalama wa Kiwango cha Safu, uthibitishaji, na upatikanaji wa data kwa wamiliki wengi | [Maabara 02](./11-MCPServerHandsOnLabs/02-Security/README.md) |
+| 11.4 | Usanidi wa Mazingira | Kuandaa mazingira ya maendeleo, Docker, rasilimali za Azure | [Maabara 03](./11-MCPServerHandsOnLabs/03-Setup/README.md) |
 | 11.5 | Ubunifu wa Hifadhidata | Usanidi wa PostgreSQL, muundo wa skimu ya rejareja, na data ya mfano | [Maabara 04](./11-MCPServerHandsOnLabs/04-Database/README.md) |
 | 11.6 | Utekelezaji wa Seva ya MCP | Kujenga seva ya FastMCP na ushirikiano wa hifadhidata | [Maabara 05](./11-MCPServerHandsOnLabs/05-MCP-Server/README.md) |
-| 11.7 | Uundaji wa Zana | Kutengeneza zana za maswali ya hifadhidata na uchunguzi wa skimu | [Maabara 06](./11-MCPServerHandsOnLabs/06-Tools/README.md) |
+| 11.7 | Uundaji wa Zana | Kutengeneza zana za kuulizia hifadhidata na uchunguzi wa skimu | [Maabara 06](./11-MCPServerHandsOnLabs/06-Tools/README.md) |
 | 11.8 | Utafutaji wa Kimaana | Kutekeleza uingizaji wa vekta na Azure OpenAI na pgvector | [Maabara 07](./11-MCPServerHandsOnLabs/07-Semantic-Search/README.md) |
 | 11.9 | Upimaji & Utambuzi wa Makosa | Mikakati ya upimaji, zana za utambuzi wa makosa, na mbinu za uthibitishaji | [Maabara 08](./11-MCPServerHandsOnLabs/08-Testing/README.md) |
-| 11.10 | Ushirikiano wa VS Code | Kusanidi ushirikiano wa MCP katika VS Code na matumizi ya AI Chat | [Maabara 09](./11-MCPServerHandsOnLabs/09-VS-Code/README.md) |
+| 11.10 | Ushirikiano na VS Code | Kusanidi ushirikiano wa MCP na VS Code na matumizi ya AI Chat | [Maabara 09](./11-MCPServerHandsOnLabs/09-VS-Code/README.md) |
 | 11.11 | Mikakati ya Utekelezaji | Utekelezaji wa Docker, Azure Container Apps, na mambo ya kuzingatia upanuzi | [Maabara 10](./11-MCPServerHandsOnLabs/10-Deployment/README.md) |
 | 11.12 | Ufuatiliaji | Application Insights, uandikishaji, ufuatiliaji wa utendaji | [Maabara 11](./11-MCPServerHandsOnLabs/11-Monitoring/README.md) |
 | 11.13 | Mbinu Bora | Uboreshaji wa utendaji, kuimarisha usalama, na vidokezo vya uzalishaji | [Maabara 12](./11-MCPServerHandsOnLabs/12-Best-Practices/README.md) |
 
 ### 💻 Miradi ya Mifano ya Msimbo
 
-Moja ya sehemu za kusisimua zaidi za kujifunza MCP ni kuona ujuzi wako wa msimbo ukikua hatua kwa hatua. Tumebuni mifano yetu ya msimbo kuanza kwa urahisi na kuendelea kuwa ngumu zaidi kadri uelewa wako unavyoongezeka. Hapa ndipo tunavyoanzisha dhana - kwa msimbo ambao ni rahisi kuelewa lakini unaonyesha kanuni halisi za MCP, utaelewa si tu kile msimbo huu unachofanya, bali kwa nini umeundwa hivi na jinsi unavyofaa katika programu kubwa za MCP.
+Moja ya sehemu za kusisimua zaidi za kujifunza MCP ni kuona ujuzi wako wa msimbo ukikua hatua kwa hatua. Tumebuni mifano yetu ya msimbo kuanza kwa urahisi na kuendelea kuwa ya hali ya juu kadri unavyoelewa zaidi. Hapa ndipo tunavyoanzisha dhana - kwa msimbo rahisi kuelewa lakini unaoonyesha kanuni halisi za MCP, utaelewa si tu kile msimbo huu unachofanya, bali kwa nini umeundwa hivi na jinsi unavyofaa katika programu kubwa za MCP.
 
 #### Mifano ya Msingi ya Kihesabu ya MCP
 
@@ -232,7 +232,7 @@ Hifadhi hii ina rasilimali kadhaa za kukusaidia kuvinjari na kujifunza kwa ufani
 
 ### Mwongozo wa Kusoma
 
-Mwongozo kamili wa [Kusoma](./study_guide.md) upo kusaidia kuvinjari hifadhi hii kwa ufanisi. Ramani hii ya mtaala ya kuona inaonyesha jinsi mada zote zinavyounganishwa na inatoa mwongozo wa jinsi ya kutumia miradi ya mfano kwa ufanisi. Ni muhimu hasa ikiwa wewe ni mwanafunzi wa kuona anayependa kuona picha kubwa.
+Mwongozo kamili wa [Kusoma](./study_guide.md) upo kusaidia kuvinjari hifadhi hii kwa ufanisi. Ramani hii ya mtaala ya kuona inaonyesha jinsi mada zote zinavyounganishwa na kutoa mwongozo wa jinsi ya kutumia miradi ya mfano kwa ufanisi. Ni muhimu hasa ikiwa wewe ni mwanafunzi wa kuona anayependa kuona picha kubwa.
 
 Mwongozo unajumuisha:  
 - Ramani ya mtaala ya kuona inayoonyesha mada zote zilizofunikwa  
@@ -241,9 +241,9 @@ Mwongozo unajumuisha:
 - Njia za kujifunza zilizopendekezwa kwa viwango tofauti vya ujuzi  
 - Rasilimali za ziada za kuimarisha safari yako ya kujifunza  
 
-### Mabadiliko ya Taarifa
+### Mabadiliko ya Mtaala
 
-Tunadumisha [Mabadiliko ya Taarifa](./changelog.md) ya kina inayofuatilia masasisho yote muhimu ya vifaa vya mtaala, ili uweze kubaki na habari za hivi punde za maboresho na nyongeza.  
+Tunadumisha [Mabadiliko](./changelog.md) ya kina inayofuatilia masasisho yote muhimu ya vifaa vya mtaala, ili uweze kubaki na habari za hivi punde za maboresho na nyongeza.  
 - Nyongeza za maudhui mapya  
 - Mabadiliko ya muundo  
 - Maboresho ya vipengele  
@@ -262,19 +262,19 @@ Kila somo katika mwongozo huu linajumuisha:
 
 ### [MCP Dev Days Julai 2025](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
 #### [➡️Tazama Kwenye Mahitaji - MCP Dev Days](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
-Jiandae kwa siku mbili za ufahamu wa kina wa kiufundi, muunganisho wa jamii, na kujifunza kwa vitendo katika MCP Dev Days, tukio la mtandaoni lililojitolea kwa Model Context Protocol (MCP) — kiwango kinachochipuka kinachounganisha mifano ya AI na zana wanazotegemea.
+Jiandae kwa siku mbili za maarifa ya kina ya kiufundi, muunganisho wa jamii, na kujifunza kwa vitendo katika MCP Dev Days, tukio la mtandaoni lililojitolea kwa Model Context Protocol (MCP) — kiwango kinachochipuka kinachounganisha mifano ya AI na zana wanazotegemea.
 Unaweza kutazama MCP Dev Days kwa kujisajili kwenye ukurasa wetu wa tukio: https://aka.ms/mcpdevdays. 
 
-#### [Siku ya 1: Uzalishaji wa MCP, Zana za Maendeleo, & Jamii:](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
+#### [Siku ya 1: Uzalishaji wa MCP, DevTools, & Jamii:](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
 
-Ni kuhusu kuwawezesha waendelezaji kutumia MCP katika mtiririko wao wa kazi ya maendeleo na kusherehekea jamii ya ajabu ya MCP. Tutakuwa pamoja na wanajamii na washirika kama Arcade, Block, Okta, na Neon kuona jinsi wanavyoshirikiana na Microsoft kuunda mfumo wa MCP ulio wazi, unaoweza kupanuliwa. Maonyesho halisi duniani kote kupitia VS Code, Visual Studio, GitHub Copilot, na zana maarufu za jamii
+Ni kuhusu kuwawezesha waendelezaji kutumia MCP katika mtiririko wao wa kazi wa maendeleo na kusherehekea jamii ya ajabu ya MCP. Tutakuwa pamoja na wanajamii na washirika kama Arcade, Block, Okta, na Neon kuona jinsi wanavyoshirikiana na Microsoft kuunda mfumo wa MCP ulio wazi, unaoweza kupanuliwa. Maonyesho halisi duniani kote kupitia VS Code, Visual Studio, GitHub Copilot, na zana maarufu za jamii
 Mtiririko wa kazi wa maendeleo unaoendeshwa na muktadha wa vitendo
-Vikao na maarifa yanayoongozwa na jamii
+Vikao na maarifa vinavyoongozwa na jamii
 Iwe unaanza tu na MCP au tayari unajenga nayo, Siku ya 1 itaunda msingi kwa msukumo na mambo ya kuchukua yanayoweza kutekelezwa.
 
 #### [Siku ya 2: Jenga Seva za MCP kwa Kujiamini](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
 
-Ni kwa wajenzi wa MCP. Tutachunguza kwa kina mikakati ya utekelezaji na mbinu bora za kuunda seva za MCP na kuingiza MCP katika mtiririko wako wa AI.
+Ni kwa wajenzi wa MCP. Tutachunguza kwa kina mikakati ya utekelezaji na mbinu bora za kuunda seva za MCP na kuingiza MCP katika mitiririko yako ya AI.
 
 #### Mada zinajumuisha:
 
@@ -293,8 +293,8 @@ Jifunze katika vikao vya video vya kina jinsi ya kuunda seva za MCP, kuingiza na
 #### [➡️Tazama Kwenye Mahitaji MCP Bootcamp | Kireno](https://developer.microsoft.com/en-us/reactor/series/S-1566/)
 #### [➡️Tazama Kwenye Mahitaji MCP Bootcamp | Kihispania](https://developer.microsoft.com/en-us/reactor/series/S-1567/)
 
-### Tujifunze MCP na C# - Mfululizo wa Mafunzo
-Tujifunze kuhusu Model Context Protocol (MCP), mfumo wa kisasa ulioundwa kuweka viwango vya mwingiliano kati ya mifano ya AI na programu za mteja. Kupitia kikao hiki rafiki kwa waanzilishi, tutakuanzisha MCP na kukuongoza katika kuunda seva yako ya kwanza ya MCP.
+### Hebu Jifunze MCP na C# - Mfululizo wa Mafunzo
+Hebu tujifunze kuhusu Model Context Protocol (MCP), mfumo wa kisasa ulioundwa kuweka viwango vya mwingiliano kati ya mifano ya AI na programu za mteja. Kupitia kikao hiki kinachofaa wanaoanza, tutakuanzisha MCP na kukuongoza katika kuunda seva yako ya kwanza ya MCP.
 #### C#: [https://aka.ms/letslearnmcp-csharp](https://aka.ms/letslearnmcp-csharp)
 #### Java: [https://aka.ms/letslearnmcp-java](https://aka.ms/letslearnmcp-java)
 #### JavaScript: [https://aka.ms/letslearnmcp-javascript](https://aka.ms/letslearnmcp-javascript)
@@ -304,19 +304,19 @@ Tujifunze kuhusu Model Context Protocol (MCP), mfumo wa kisasa ulioundwa kuweka 
 
 Hongera! Umechukua hatua ya kwanza katika safari ya kusisimua itakayopanua uwezo wako wa programu na kukuunganisha na kilele cha maendeleo ya AI.
 
-### Umefanya Nini Hadi Sasa
+### Umefanya Nini Tayari
 
 Kwa kusoma utangulizi huu, tayari umeanza kujenga msingi wa maarifa ya MCP. Unaelewa MCP ni nini, kwa nini ni muhimu, na jinsi mtaala huu utakavyosaidia safari yako ya kujifunza. Hiyo ni mafanikio makubwa na mwanzo wa utaalamu wako katika teknolojia hii muhimu.
 
-### Safari Iliyopo Mbele
+### Mchezo Unaokuja
 
 Unapoendelea kupitia moduli, kumbuka kuwa kila mtaalamu alikuwa mwanzo. Dhana ambazo zinaweza kuonekana ngumu sasa zitakuwa za kawaida unapozoea na kuzitumia. Kila hatua ndogo hujenga uwezo mkubwa utakao hudumia katika taaluma yako ya maendeleo.
 
 ### Mtandao Wako wa Msaada
 
-Unaungana na jamii ya wanaojifunza na wataalamu wanaopenda MCP na wanaotaka kusaidia wengine kufanikiwa. Iwe umekwama kwenye changamoto ya kuandika msimbo au unafurahia kushiriki mafanikio, jamii iko hapa kusaidia safari yako.
+Unaungana na jamii ya wanaojifunza na wataalamu wanaopenda MCP na wana hamu ya kusaidia wengine kufanikiwa. Iwe umekwama kwenye changamoto ya kuandika msimbo au unafurahia kushiriki mafanikio, jamii iko hapa kusaidia safari yako.
 
-Ikiwa unakwama au una maswali yoyote kuhusu kujenga programu za AI. Jiunge na wanaojifunza wenzako na waendelezaji wenye uzoefu katika mijadala kuhusu MCP. Ni jamii yenye msaada ambapo maswali yanakaribishwa na maarifa yanashirikiwa kwa uhuru.
+Ikiwa unakwama au una maswali yoyote kuhusu kujenga programu za AI. Jiunge na wanaojifunza wenzako na waendelezaji wenye uzoefu katika mijadala kuhusu MCP. Ni jamii inayounga mkono ambapo maswali yanakaribishwa na maarifa yanashirikiwa kwa uhuru.
 
 [![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
 
@@ -328,15 +328,15 @@ Ikiwa una maoni kuhusu bidhaa au makosa wakati wa kujenga tembelea:
 
 Safari yako ya MCP inaanza sasa! Anza na Moduli 0 kuingia katika uzoefu wako wa kwanza wa MCP kwa vitendo, au chunguza miradi ya mfano kuona unachojenga. Kumbuka - kila mtaalamu alianza mahali ulipo sasa, na kwa uvumilivu na mazoezi, utashangazwa na kile unachoweza kufanikisha.
 
-Karibu katika dunia ya maendeleo ya Model Context Protocol. Tujenge kitu cha kushangaza pamoja!
+Karibu katika dunia ya maendeleo ya Model Context Protocol. Hebu tujenge kitu cha kushangaza pamoja!
 
 ## 🤝 Kuchangia Jamii ya Kujifunza
 
-Mtaala huu unakua kuwa imara kwa michango kutoka kwa wanaojifunza kama wewe! Iwe unarekebisha makosa ya tahajia, kupendekeza maelezo wazi zaidi, au kuongeza mfano mpya, michango yako husaidia waanzilishi wengine kufanikiwa.
+Mtaala huu unakua kwa nguvu zaidi kwa michango kutoka kwa wanaojifunza kama wewe! Iwe unarekebisha makosa ya tahajia, kupendekeza maelezo wazi zaidi, au kuongeza mfano mpya, michango yako husaidia waanzilishi wengine kufanikiwa.
 
 Asante kwa Mtaalamu wa Thamani wa Microsoft [Shivam Goyal](https://www.linkedin.com/in/shivam2003/) kwa kuchangia sampuli za msimbo.
 
-Mchakato wa mchango umeundwa kuwa wa kukaribisha na kusaidia. Michango mingi inahitaji Makubaliano ya Leseni ya Mchango (CLA), lakini zana za kiotomatiki zitakuongoza kupitia mchakato kwa urahisi.
+Mchakato wa mchango umeundwa kuwa wa kukaribisha na kuunga mkono. Michango mingi inahitaji Makubaliano ya Leseni ya Mchango (CLA), lakini zana za kiotomatiki zitakuongoza kupitia mchakato kwa urahisi.
 
 ## 📜 Kujifunza Chanzo Huria
 
@@ -344,7 +344,7 @@ Mtaala huu mzima upo chini ya leseni ya MIT [LICENSE](../../LICENSE), ikimaanish
 ## 🤝 Miongozo ya Michango
 
 Mradi huu unakaribisha michango na mapendekezo. Michango mingi inahitaji kukubali
-Makubaliano ya Leseni ya Mchango (CLA) yanayosema kuwa una haki ya, na kwa kweli unatoa,
+Makubaliano ya Leseni ya Mchango (CLA) yanayosema kuwa una haki, na kwa kweli unatoa,
 haki za kutumia mchango wako. Kwa maelezo, tembelea <https://cla.opensource.microsoft.com>.
 
 Unapowasilisha ombi la kuvuta, bot wa CLA atabaini moja kwa moja kama unahitaji kutoa
@@ -365,6 +365,12 @@ wasiliana na [opencode@microsoft.com](mailto:opencode@microsoft.com) kwa maswali
 Timu yetu hutengeneza kozi nyingine! Angalia:
 
 <!-- CO-OP TRANSLATOR OTHER COURSES START -->
+### LangChain
+[![LangChain4j kwa Waanzilishi](https://img.shields.io/badge/LangChain4j%20for%20Beginners-22C55E?style=for-the-badge&&labelColor=E5E7EB&color=0553D6)](https://aka.ms/langchain4j-for-beginners)
+[![LangChain.js kwa Waanzilishi](https://img.shields.io/badge/LangChain.js%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=0553D6)](https://aka.ms/langchainjs-for-beginners?WT.mc_id=m365-94501-dwahlin)
+
+---
+
 ### Azure / Edge / MCP / Maajenti
 [![AZD kwa Waanzilishi](https://img.shields.io/badge/AZD%20for%20Beginners-0078D4?style=for-the-badge&labelColor=E5E7EB&color=0078D4)](https://github.com/microsoft/AZD-for-beginners?WT.mc_id=academic-105485-koreyst)
 [![Edge AI kwa Waanzilishi](https://img.shields.io/badge/Edge%20AI%20for%20Beginners-00B8E4?style=for-the-badge&labelColor=E5E7EB&color=00B8E4)](https://github.com/microsoft/edgeai-for-beginners?WT.mc_id=academic-105485-koreyst)
@@ -386,14 +392,14 @@ Timu yetu hutengeneza kozi nyingine! Angalia:
 [![Sayansi ya Data kwa Waanzilishi](https://img.shields.io/badge/Data%20Science%20for%20Beginners-84CC16?style=for-the-badge&labelColor=E5E7EB&color=84CC16)](https://aka.ms/datascience-beginners?WT.mc_id=academic-105485-koreyst)
 [![AI kwa Waanzilishi](https://img.shields.io/badge/AI%20for%20Beginners-A3E635?style=for-the-badge&labelColor=E5E7EB&color=A3E635)](https://aka.ms/ai-beginners?WT.mc_id=academic-105485-koreyst)
 [![Usalama wa Mtandao kwa Waanzilishi](https://img.shields.io/badge/Cybersecurity%20for%20Beginners-F97316?style=for-the-badge&labelColor=E5E7EB&color=F97316)](https://github.com/microsoft/Security-101?WT.mc_id=academic-96948-sayoung)
-[![Maendeleo ya Wavuti kwa Waanzilishi](https://img.shields.io/badge/Web%20Dev%20for%20Beginners-EC4899?style=for-the-badge&labelColor=E5E7EB&color=EC4899)](https://aka.ms/webdev-beginners?WT.mc_id=academic-105485-koreyst)
+[![Uendelezaji wa Wavuti kwa Waanzilishi](https://img.shields.io/badge/Web%20Dev%20for%20Beginners-EC4899?style=for-the-badge&labelColor=E5E7EB&color=EC4899)](https://aka.ms/webdev-beginners?WT.mc_id=academic-105485-koreyst)
 [![IoT kwa Waanzilishi](https://img.shields.io/badge/IoT%20for%20Beginners-14B8A6?style=for-the-badge&labelColor=E5E7EB&color=14B8A6)](https://aka.ms/iot-beginners?WT.mc_id=academic-105485-koreyst)
 [![Maendeleo ya XR kwa Waanzilishi](https://img.shields.io/badge/XR%20Development%20for%20Beginners-38BDF8?style=for-the-badge&labelColor=E5E7EB&color=38BDF8)](https://github.com/microsoft/xr-development-for-beginners?WT.mc_id=academic-105485-koreyst)
 
 ---
  
 ### Mfululizo wa Copilot
-[![Copilot kwa Programu ya Pamoja ya AI](https://img.shields.io/badge/Copilot%20for%20AI%20Paired%20Programming-FACC15?style=for-the-badge&labelColor=E5E7EB&color=FACC15)](https://aka.ms/GitHubCopilotAI?WT.mc_id=academic-105485-koreyst)
+[![Copilot kwa Uandishi wa Pamoja wa AI](https://img.shields.io/badge/Copilot%20for%20AI%20Paired%20Programming-FACC15?style=for-the-badge&labelColor=E5E7EB&color=FACC15)](https://aka.ms/GitHubCopilotAI?WT.mc_id=academic-105485-koreyst)
 [![Copilot kwa C#/.NET](https://img.shields.io/badge/Copilot%20for%20C%23/.NET-FBBF24?style=for-the-badge&labelColor=E5E7EB&color=FBBF24)](https://github.com/microsoft/mastering-github-copilot-for-dotnet-csharp-developers?WT.mc_id=academic-105485-koreyst)
 [![Copilot Adventure](https://img.shields.io/badge/Copilot%20Adventure-FDE68A?style=for-the-badge&labelColor=E5E7EB&color=FDE68A)](https://github.com/microsoft/CopilotAdventures?WT.mc_id=academic-105485-koreyst)
 <!-- CO-OP TRANSLATOR OTHER COURSES END -->
@@ -401,6 +407,6 @@ Timu yetu hutengeneza kozi nyingine! Angalia:
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Kiarifu cha Msamaha**:
-Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kwa usahihi, tafadhali fahamu kuwa tafsiri za kiotomatiki zinaweza kuwa na makosa au upungufu wa usahihi. Hati ya asili katika lugha yake ya asili inapaswa kuchukuliwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu ya binadamu inapendekezwa. Hatubebei dhamana kwa kutoelewana au tafsiri potofu zinazotokana na matumizi ya tafsiri hii.
+**Kiarifa cha Kukataa**:
+Nyaraka hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kwa usahihi, tafadhali fahamu kuwa tafsiri za kiotomatiki zinaweza kuwa na makosa au upungufu wa usahihi. Nyaraka ya asili katika lugha yake ya asili inapaswa kuchukuliwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu ya binadamu inapendekezwa. Hatubebei dhamana kwa kutoelewana au tafsiri potofu zinazotokana na matumizi ya tafsiri hii.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

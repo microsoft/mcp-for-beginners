@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "20bace280f1884b6f35653584e305094",
-  "translation_date": "2025-12-12T17:28:10+00:00",
+  "original_hash": "dcddd875433f8f6ea4d2603f17b9746e",
+  "translation_date": "2025-12-18T20:03:06+00:00",
   "source_file": "README.md",
   "language_code": "nl"
 }
@@ -40,7 +40,7 @@ Volg deze stappen om aan de slag te gaan met deze bronnen:
 ## **Leer MCP met Praktische Codevoorbeelden in C#, Java, JavaScript, Rust, Python en TypeScript**
 
 ## 🧠 Overzicht van de Model Context Protocol Curriculum
-Welkom op je reis in het Model Context Protocol! Als je je ooit hebt afgevraagd hoe AI-toepassingen communiceren met verschillende tools en diensten, sta je op het punt de elegante oplossing te ontdekken die de manier waarop ontwikkelaars intelligente systemen bouwen transformeert.
+Welkom op je reis in het Model Context Protocol! Als je je ooit hebt afgevraagd hoe AI-toepassingen communiceren met verschillende tools en diensten, sta je op het punt de elegante oplossing te ontdekken die verandert hoe ontwikkelaars intelligente systemen bouwen.
 
 Zie MCP als een universele vertaler voor AI-toepassingen - net zoals USB-poorten je in staat stellen elk apparaat op je computer aan te sluiten, laat MCP AI-modellen op een gestandaardiseerde manier verbinding maken met elke tool of dienst. Of je nu je eerste chatbot bouwt of werkt aan complexe AI-workflows, het begrijpen van MCP geeft je de kracht om meer capabele en flexibele applicaties te creëren.
 
@@ -53,7 +53,7 @@ Tegen de tijd dat je deze reis hebt voltooid, heb je het vertrouwen om je eigen 
 Deze bronnen worden waardevoller naarmate je begrip groeit, maar voel je niet verplicht om alles meteen te lezen. Begin met de gebieden die je het meest interesseren!
 - 📘 [MCP Documentatie](https://modelcontextprotocol.io/) – Dit is je go-to bron voor stapsgewijze tutorials en gebruikershandleidingen. De documentatie is geschreven met beginners in gedachten en biedt duidelijke voorbeelden die je in je eigen tempo kunt volgen.
 - 📜 [MCP Specificatie](https://modelcontextprotocol.io/docs/) – Zie dit als je uitgebreide referentiehandleiding. Terwijl je door de curriculum werkt, zul je hier regelmatig terugkomen om specifieke details op te zoeken en geavanceerde functies te verkennen.
-- 📜 [Originele MCP Specificatie](https://spec.modelcontextprotocol.io/) – Dit bevat aanvullende technische details die nuttig kunnen zijn voor geavanceerde implementaties. Het is er wanneer je het nodig hebt, maar maak je er geen zorgen over als je net begint.
+- 📜 [Originele MCP Specificatie](https://modelcontextprotocol.io/specification/versioning) – Dit bevat aanvullende technische details die nuttig kunnen zijn voor geavanceerde implementaties. Het is er wanneer je het nodig hebt, maar maak je er geen zorgen over als je net begint.
 - 🧑‍💻 [MCP GitHub Repository](https://github.com/modelcontextprotocol) – Hier vind je SDK's, tools en codevoorbeelden in meerdere programmeertalen. Het is als een schat aan praktische voorbeelden en kant-en-klare componenten.
 - 🌐 [MCP Community](https://github.com/orgs/modelcontextprotocol/discussions) – Sluit je aan bij mede-leerlingen en ervaren ontwikkelaars in discussies over MCP. Het is een ondersteunende gemeenschap waar vragen welkom zijn en kennis vrijelijk wordt gedeeld.
   
@@ -67,7 +67,7 @@ Aan het einde van deze curriculum voel je je zelfverzekerd en enthousiast over j
 
 • **Verbind AI-modellen met echte tools**: Je leert hoe je de kloof overbrugt tussen AI-modellen en daadwerkelijke diensten, waardoor je applicaties krachtige nieuwe mogelijkheden krijgen.
 
-• **Implementeer beveiligingsbest practices**: Je begrijpt hoe je je MCP-implementaties veilig houdt, zodat zowel je applicaties als je gebruikers beschermd zijn.
+• **Implementeer beveiligingsbest practices**: Je begrijpt hoe je je MCP-implementaties veilig houdt, ter bescherming van zowel je applicaties als je gebruikers.
 
 • **Implementeer met vertrouwen**: Je weet hoe je je MCP-projecten van ontwikkeling naar productie brengt, met praktische implementatiestrategieën die in de echte wereld werken.
 
@@ -79,13 +79,13 @@ Voordat we in de MCP-specificaties duiken, zorgen we ervoor dat je je comfortabe
 
 ### Begrip van Protocollen (De Basis)
 
-Zie een protocol als de regels voor een gesprek. Wanneer je een vriend belt, weten jullie beiden om "hallo" te zeggen als je opneemt, om beurten te spreken en "tot ziens" te zeggen als je klaar bent. Computerprogramma's hebben vergelijkbare regels nodig om effectief te communiceren.
+Zie een protocol als de regels voor een gesprek. Wanneer je een vriend belt, weten jullie beiden om "hallo" te zeggen bij het opnemen, om beurten te spreken en "tot ziens" te zeggen als het gesprek klaar is. Computerprogramma's hebben vergelijkbare regels nodig om effectief te communiceren.
 
 MCP is een protocol - een set afgesproken regels die AI-modellen en applicaties helpen productieve "gesprekken" te voeren met tools en diensten. Net zoals gespreksregels menselijke communicatie soepeler maken, maakt MCP de communicatie tussen AI-applicaties veel betrouwbaarder en krachtiger.
 
 ### Client-Server Relaties (Hoe Programma's Samenwerken)
 
-Je gebruikt client-server relaties elke dag! Wanneer je een webbrowser (de client) gebruikt om een website te bezoeken, maak je verbinding met een webserver die je de pagina-inhoud stuurt. De browser weet hoe hij om informatie moet vragen, en de server weet hoe hij moet reageren.
+Je gebruikt client-server relaties elke dag! Wanneer je een webbrowser (de client) gebruikt om een website te bezoeken, maak je verbinding met een webserver die je de pagina-inhoud stuurt. De browser weet hoe hij om informatie moet vragen, en de server weet hoe hij moet antwoorden.
 
 In MCP hebben we een vergelijkbare relatie: AI-modellen fungeren als clients die informatie of acties opvragen, terwijl MCP-servers die mogelijkheden bieden. Het is alsof je een behulpzame assistent hebt (de server) die de AI kan vragen specifieke taken uit te voeren.
 
@@ -97,11 +97,11 @@ MCP biedt deze standaardisatie voor AI-toepassingen. In plaats van dat elk AI-mo
 
 ## 🧭 Overzicht van Jouw Leerpad
 
-Je MCP-reis is zorgvuldig gestructureerd om je vertrouwen en vaardigheden geleidelijk op te bouwen. Elke fase introduceert nieuwe concepten terwijl het versterkt wat je al hebt geleerd.
+Je MCP-reis is zorgvuldig gestructureerd om je vertrouwen en vaardigheden geleidelijk op te bouwen. Elke fase introduceert nieuwe concepten terwijl het herhaalt wat je al hebt geleerd.
 
 ### 🌱 Basisfase: De Basis Begrijpen (Modules 0-2)
 
-Hier begint je avontuur! We introduceren je MCP-concepten met behulp van vertrouwde analogieën en eenvoudige voorbeelden. Je begrijpt wat MCP is, waarom het bestaat en hoe het past in de bredere wereld van AI-ontwikkeling.
+Hier begint je avontuur! We introduceren je MCP-concepten met behulp van bekende analogieën en eenvoudige voorbeelden. Je begrijpt wat MCP is, waarom het bestaat en hoe het past in de bredere wereld van AI-ontwikkeling.
 
 • **Module 0 - Introductie tot MCP**: We beginnen met het verkennen wat MCP is en waarom het zo belangrijk is voor moderne AI-toepassingen. Je ziet voorbeelden uit de praktijk van MCP in actie en begrijpt hoe het veelvoorkomende problemen van ontwikkelaars oplost.
 
@@ -120,13 +120,13 @@ Elke handleiding bevat complete codevoorbeelden, tips voor probleemoplossing en 
 ### 🚀 Groei-fase: Geavanceerde Concepten en Toepassing in de Praktijk (Modules 4-5)
 
 Met de basis onder de knie ben je klaar om meer geavanceerde MCP-functies te verkennen. We behandelen praktische implementatiestrategieën, debugtechnieken en geavanceerde onderwerpen zoals multi-modale AI-integratie.
-Je leert ook hoe je je MCP-implementaties kunt opschalen voor productiegebruik en kunt integreren met cloudplatforms zoals Azure. Deze modules bereiden je voor op het bouwen van MCP-oplossingen die aan de eisen van de echte wereld kunnen voldoen.
+Je leert ook hoe je je MCP-implementaties kunt opschalen voor productiegebruik en kunt integreren met cloudplatforms zoals Azure. Deze modules bereiden je voor om MCP-oplossingen te bouwen die aan de eisen van de echte wereld kunnen voldoen.
 
 ### 🌟 Meesterschapsfase: Community en Specialisatie (Modules 6-11)
 
 De laatste fase richt zich op het aansluiten bij de MCP-community en specialiseren in de gebieden die jou het meest interesseren. Je leert hoe je kunt bijdragen aan open-source MCP-projecten, geavanceerde authenticatiepatronen kunt implementeren en uitgebreide oplossingen met database-integratie kunt bouwen.
 
-Module 11 verdient een speciale vermelding - het is een complete hands-on leerroute met 13 labs die je leert productieklare MCP-servers te bouwen met PostgreSQL-integratie. Het is als een afstudeerproject dat alles wat je hebt geleerd samenbrengt!
+Module 11 verdient een speciale vermelding - het is een complete hands-on leerroute van 13 labs die je leert productieklare MCP-servers te bouwen met PostgreSQL-integratie. Het is als een afstudeerproject dat alles wat je hebt geleerd samenbrengt!
 
 ### 📚 Volledige Curriculumstructuur
 
@@ -151,7 +151,7 @@ Module 11 verdient een speciale vermelding - het is een complete hands-on leerro
 | 3.11 | Eenvoudige authenticatie | Een hoofdstuk dat je vanaf het begin auth en RBAC laat zien | [Gids](./03-GettingStarted/11-simple-auth/README.md) |
 | **Module 4-5: Praktisch & Geavanceerd** | | | |
 | 04 | Praktische implementatie | SDK's, debugging, testen, herbruikbare prompt-sjablonen | [Lees meer](./04-PracticalImplementation/README.md) |
-| 05 | Geavanceerde onderwerpen in MCP | Multi-modale AI, opschalen, enterprisegebruik | [Lees meer](./05-AdvancedTopics/README.md) |
+| 05 | Geavanceerde onderwerpen in MCP | Multi-modale AI, opschalen, enterprise gebruik | [Lees meer](./05-AdvancedTopics/README.md) |
 | 5.1 | Azure-integratie | MCP-integratie met Azure | [Gids](./05-AdvancedTopics/mcp-integration/README.md) |
 | 5.2 | Multi-modaliteit | Werken met meerdere modaliteiten | [Gids](./05-AdvancedTopics/mcp-multi-modality/README.md) |
 | 5.3 | OAuth2-demo | Implementeer OAuth2-authenticatie | [Gids](./05-AdvancedTopics/mcp-oauth2-demo/README.md) |
@@ -174,16 +174,16 @@ Module 11 verdient een speciale vermelding - het is een complete hands-on leerro
 | 09 | MCP-casestudy's | Praktische implementatievoorbeelden | [Gids](./09-CaseStudy/README.md) |
 | 10 | Hands-on workshop | Een MCP-server bouwen met AI Toolkit | [Lab](./10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md) |
 | **Module 11: MCP Server Hands On Lab** | | | |
-| 11 | MCP Server Database-integratie | Uitgebreide hands-on leerroute met 13 labs voor PostgreSQL-integratie | [Labs](./11-MCPServerHandsOnLabs/README.md) |
+| 11 | MCP Server Database-integratie | Uitgebreide hands-on leerroute van 13 labs voor PostgreSQL-integratie | [Labs](./11-MCPServerHandsOnLabs/README.md) |
 | 11.1 | Introductie | Overzicht van MCP met database-integratie en retail analytics use case | [Lab 00](./11-MCPServerHandsOnLabs/00-Introduction/README.md) |
 | 11.2 | Kernarchitectuur | Begrip van MCP-serverarchitectuur, databaselagen en beveiligingspatronen | [Lab 01](./11-MCPServerHandsOnLabs/01-Architecture/README.md) |
-| 11.3 | Beveiliging & multi-tenancy | Row Level Security, authenticatie en multi-tenant data toegang | [Lab 02](./11-MCPServerHandsOnLabs/02-Security/README.md) |
-| 11.4 | Omgevingsinstelling | Ontwikkelomgeving opzetten, Docker, Azure-resources | [Lab 03](./11-MCPServerHandsOnLabs/03-Setup/README.md) |
-| 11.5 | Databaseontwerp | PostgreSQL-setup, retail schema-ontwerp en voorbeeldgegevens | [Lab 04](./11-MCPServerHandsOnLabs/04-Database/README.md) |
-| 11.6 | MCP Server-implementatie | Bouw de FastMCP-server met database-integratie | [Lab 05](./11-MCPServerHandsOnLabs/05-MCP-Server/README.md) |
-| 11.7 | Toolontwikkeling | Maak databasequerytools en schema-introspectie | [Lab 06](./11-MCPServerHandsOnLabs/06-Tools/README.md) |
+| 11.3 | Beveiliging & Multi-Tenancy | Row Level Security, authenticatie en multi-tenant data toegang | [Lab 02](./11-MCPServerHandsOnLabs/02-Security/README.md) |
+| 11.4 | Omgevingsinstelling | Ontwikkelomgeving instellen, Docker, Azure-resources | [Lab 03](./11-MCPServerHandsOnLabs/03-Setup/README.md) |
+| 11.5 | Databaseontwerp | PostgreSQL-setup, retail schema ontwerp en voorbeeldgegevens | [Lab 04](./11-MCPServerHandsOnLabs/04-Database/README.md) |
+| 11.6 | MCP Serverimplementatie | Bouw de FastMCP-server met database-integratie | [Lab 05](./11-MCPServerHandsOnLabs/05-MCP-Server/README.md) |
+| 11.7 | Toolontwikkeling | Maak database query tools en schema-introspectie | [Lab 06](./11-MCPServerHandsOnLabs/06-Tools/README.md) |
 | 11.8 | Semantisch zoeken | Implementeer vector embeddings met Azure OpenAI en pgvector | [Lab 07](./11-MCPServerHandsOnLabs/07-Semantic-Search/README.md) |
-| 11.9 | Testen & debuggen | Teststrategieën, debuggingtools en validatiebenaderingen | [Lab 08](./11-MCPServerHandsOnLabs/08-Testing/README.md) |
+| 11.9 | Testen & Debuggen | Teststrategieën, debuggingtools en validatiebenaderingen | [Lab 08](./11-MCPServerHandsOnLabs/08-Testing/README.md) |
 | 11.10 | VS Code-integratie | Configuratie van VS Code MCP-integratie en AI Chat-gebruik | [Lab 09](./11-MCPServerHandsOnLabs/09-VS-Code/README.md) |
 | 11.11 | Implementatiestrategieën | Docker-implementatie, Azure Container Apps en schaaloverwegingen | [Lab 10](./11-MCPServerHandsOnLabs/10-Deployment/README.md) |
 | 11.12 | Monitoring | Application Insights, logging, prestatiemonitoring | [Lab 11](./11-MCPServerHandsOnLabs/11-Monitoring/README.md) |
@@ -197,22 +197,22 @@ Een van de meest opwindende onderdelen van het leren van MCP is het zien van je 
 
 | Taal | Beschrijving | Link |
 |-------|--------------|------|
-| C# | MCP Server Voorbeeld | [Bekijk code](./03-GettingStarted/samples/csharp/README.md) |
-| Java | MCP Calculator | [Bekijk code](./03-GettingStarted/samples/java/calculator/README.md) |
-| JavaScript | MCP Demo | [Bekijk code](./03-GettingStarted/samples/javascript/README.md) |
-| Python | MCP Server | [Bekijk code](../../03-GettingStarted/samples/python/mcp_calculator_server.py) |
-| TypeScript | MCP Voorbeeld | [Bekijk code](./03-GettingStarted/samples/typescript/README.md) |
-| Rust | MCP Voorbeeld | [Bekijk code](./03-GettingStarted/samples/rust/README.md) |
+| C# | MCP Server Voorbeeld | [Bekijk Code](./03-GettingStarted/samples/csharp/README.md) |
+| Java | MCP Calculator | [Bekijk Code](./03-GettingStarted/samples/java/calculator/README.md) |
+| JavaScript | MCP Demo | [Bekijk Code](./03-GettingStarted/samples/javascript/README.md) |
+| Python | MCP Server | [Bekijk Code](../../03-GettingStarted/samples/python/mcp_calculator_server.py) |
+| TypeScript | MCP Voorbeeld | [Bekijk Code](./03-GettingStarted/samples/typescript/README.md) |
+| Rust | MCP Voorbeeld | [Bekijk Code](./03-GettingStarted/samples/rust/README.md) |
 
 #### Geavanceerde MCP-implementaties
 
 | Taal | Beschrijving | Link |
 |-------|--------------|------|
-| C# | Geavanceerd voorbeeld | [Bekijk code](./04-PracticalImplementation/samples/csharp/README.md) |
-| Java met Spring | Container App Voorbeeld | [Bekijk code](./04-PracticalImplementation/samples/java/containerapp/README.md) |
-| JavaScript | Geavanceerd voorbeeld | [Bekijk code](./04-PracticalImplementation/samples/javascript/README.md) |
-| Python | Complexe implementatie | [Bekijk code](../../04-PracticalImplementation/samples/python/READMEmd) |
-| TypeScript | Container Voorbeeld | [Bekijk code](./04-PracticalImplementation/samples/typescript/README.md) |
+| C# | Geavanceerd Voorbeeld | [Bekijk Code](./04-PracticalImplementation/samples/csharp/README.md) |
+| Java met Spring | Container App Voorbeeld | [Bekijk Code](./04-PracticalImplementation/samples/java/containerapp/README.md) |
+| JavaScript | Geavanceerd Voorbeeld | [Bekijk Code](./04-PracticalImplementation/samples/javascript/README.md) |
+| Python | Complexe Implementatie | [Bekijk Code](../../04-PracticalImplementation/samples/python/READMEmd) |
+| TypeScript | Container Voorbeeld | [Bekijk Code](./04-PracticalImplementation/samples/typescript/README.md) |
 
 
 ## 🎯 Vereisten voor het leren van MCP
@@ -226,13 +226,13 @@ Om het meeste uit dit curriculum te halen, moet je beschikken over:
 
 - Deelname aan onze community-discussies voor ondersteuning
 
-## 📚 Studiegids & bronnen
+## 📚 Studiegids & Bronnen
 
 Deze repository bevat verschillende bronnen om je te helpen effectief te navigeren en te leren:
 
 ### Studiegids
 
-Een uitgebreide [Studiegids](./study_guide.md) is beschikbaar om je te helpen deze repository effectief te gebruiken. Deze visuele curriculumkaart toont hoe alle onderwerpen met elkaar verbonden zijn en geeft richtlijnen over hoe je de voorbeeldprojecten effectief kunt gebruiken. Het is vooral handig als je een visuele leerling bent die graag het grote geheel ziet.
+Een uitgebreide [Studiegids](./study_guide.md) is beschikbaar om je te helpen deze repository effectief te gebruiken. Deze visuele curriculumkaart toont hoe alle onderwerpen met elkaar verbonden zijn en geeft richtlijnen over hoe je de voorbeeldprojecten effectief kunt gebruiken. Het is vooral handig als je een visuele leerling bent die het grote geheel wil zien.
 
 De gids bevat:
 - Een visuele curriculumkaart met alle behandelde onderwerpen
@@ -243,7 +243,7 @@ De gids bevat:
 
 ### Wijzigingslog
 
-We onderhouden een gedetailleerde [Wijzigingslog](./changelog.md) die alle belangrijke updates van het curriculum bijhoudt, zodat je op de hoogte blijft van de nieuwste verbeteringen en toevoegingen.
+We onderhouden een gedetailleerde [Wijzigingslog](./changelog.md) die alle belangrijke updates aan het curriculum bijhoudt, zodat je op de hoogte blijft van de nieuwste verbeteringen en toevoegingen.
 - Nieuwe inhoud toegevoegd
 - Structurele wijzigingen
 - Verbeteringen van functies
@@ -261,8 +261,8 @@ Elke les in deze gids bevat:
 ## On Demand Content 
 
 ### [MCP Dev Days juli 2025](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
-#### [➡️Bekijk On Demand - MCP Dev Days](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
-Maak je klaar voor twee dagen vol diepgaande technische inzichten, communityverbinding en hands-on leren tijdens MCP Dev Days, een virtueel evenement gewijd aan het Model Context Protocol (MCP) — de opkomende standaard die AI-modellen en de tools waarop ze vertrouwen met elkaar verbindt.
+#### [➡️Kijk On Demand - MCP Dev Days](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
+Maak je klaar voor twee dagen diepgaande technische inzichten, communityverbinding en hands-on leren tijdens MCP Dev Days, een virtueel evenement gewijd aan het Model Context Protocol (MCP) — de opkomende standaard die AI-modellen en de tools waarop ze vertrouwen met elkaar verbindt.
 Je kunt MCP Dev Days bekijken door je te registreren op onze evenementpagina: https://aka.ms/mcpdevdays. 
 
 #### [Dag 1: MCP Productiviteit, DevTools & Community:](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
@@ -289,12 +289,12 @@ Als je een ontwikkelaar, toolbouwer of AI-productstrateeg bent, zit deze dag boo
 ### MCP Boot Camp augustus 2025
 Leer in intensieve videosessies hoe je MCP-servers maakt, integreert met VS Code en professioneel implementeert op Azure op basis van inhoud uit het MCP voor Beginners-curriculum. Ga weg met praktische vaardigheden in een technologie die grote bedrijven al gebruiken.
 
-#### [➡️Bekijk On Demand MCP Bootcamp | Engels](https://developer.microsoft.com/en-us/reactor/series/s-1568/)
-#### [➡️Bekijk On Demand MCP Bootcamp | Brasil](https://developer.microsoft.com/en-us/reactor/series/S-1566/)
-#### [➡️Bekijk On Demand MCP Bootcamp | Spaans](https://developer.microsoft.com/en-us/reactor/series/S-1567/)
+#### [➡️Kijk On Demand MCP Bootcamp | Engels](https://developer.microsoft.com/en-us/reactor/series/s-1568/)
+#### [➡️Kijk On Demand MCP Bootcamp | Brasil](https://developer.microsoft.com/en-us/reactor/series/S-1566/)
+#### [➡️Kijk On Demand MCP Bootcamp | Spaans](https://developer.microsoft.com/en-us/reactor/series/S-1567/)
 
 ### Laten we MCP leren met C# - Tutorialserie
-Laten we het Model Context Protocol (MCP) leren kennen, een geavanceerd framework ontworpen om interacties tussen AI-modellen en clientapplicaties te standaardiseren. In deze beginnersvriendelijke sessie introduceren we je aan MCP en begeleiden we je bij het maken van je eerste MCP-server.
+Laten we leren over het Model Context Protocol (MCP), een geavanceerd framework ontworpen om interacties tussen AI-modellen en clientapplicaties te standaardiseren. Via deze beginnersvriendelijke sessie introduceren we je in MCP en begeleiden we je bij het maken van je eerste MCP-server.
 #### C#: [https://aka.ms/letslearnmcp-csharp](https://aka.ms/letslearnmcp-csharp)
 #### Java: [https://aka.ms/letslearnmcp-java](https://aka.ms/letslearnmcp-java)
 #### JavaScript: [https://aka.ms/letslearnmcp-javascript](https://aka.ms/letslearnmcp-javascript)
@@ -310,11 +310,11 @@ Door deze introductie te lezen, ben je al begonnen met het opbouwen van je MCP-k
 
 ### Het avontuur dat voor je ligt
 
-Terwijl je door de modules gaat, onthoud dat elke expert ooit een beginner was. De concepten die nu misschien complex lijken, worden vanzelfsprekend naarmate je oefent en ze toepast. Elke kleine stap bouwt aan krachtige vaardigheden die je gedurende je hele ontwikkelcarrière van pas zullen komen.
+Naarmate je door de modules gaat, onthoud dat elke expert ooit een beginner was. De concepten die nu misschien complex lijken, worden vanzelfsprekend naarmate je ze oefent en toepast. Elke kleine stap bouwt aan krachtige vaardigheden die je gedurende je hele ontwikkelcarrière van pas zullen komen.
 
 ### Jouw ondersteuningsnetwerk
 
-Je sluit je aan bij een community van leerlingen en experts die gepassioneerd zijn over MCP en graag anderen helpen slagen. Of je nu vastzit bij een programmeeruitdaging of enthousiast bent om een doorbraak te delen, de community staat klaar om je te ondersteunen.
+Je sluit je aan bij een gemeenschap van leerlingen en experts die gepassioneerd zijn over MCP en graag anderen helpen slagen. Of je nu vastzit bij een programmeeruitdaging of enthousiast bent om een doorbraak te delen, de community staat klaar om je te ondersteunen.
 
 Als je vastloopt of vragen hebt over het bouwen van AI-apps, sluit je dan aan bij mede-lerenden en ervaren ontwikkelaars in discussies over MCP. Het is een ondersteunende community waar vragen welkom zijn en kennis vrij wordt gedeeld.
 
@@ -332,7 +332,7 @@ Welkom in de wereld van Model Context Protocol-ontwikkeling. Laten we samen iets
 
 ## 🤝 Bijdragen aan de leercommunity
 
-Dit curriculum wordt sterker door bijdragen van leerlingen zoals jij! Of je nu een typefout corrigeert, een duidelijkere uitleg voorstelt of een nieuw voorbeeld toevoegt, jouw bijdragen helpen andere beginners slagen.
+Dit curriculum wordt sterker met bijdragen van leerlingen zoals jij! Of je nu een typefout corrigeert, een duidelijkere uitleg voorstelt of een nieuw voorbeeld toevoegt, jouw bijdragen helpen andere beginners slagen.
 
 Dank aan Microsoft Valued Professional [Shivam Goyal](https://www.linkedin.com/in/shivam2003/) voor het bijdragen van codevoorbeelden.
 
@@ -344,11 +344,11 @@ Dit hele curriculum is beschikbaar onder de MIT [LICENSE](../../LICENSE), wat be
 ## 🤝 Richtlijnen voor bijdragen
 
 Dit project verwelkomt bijdragen en suggesties. De meeste bijdragen vereisen dat je akkoord gaat met een
-Contributor License Agreement (CLA) waarin je verklaart dat je het recht hebt en daadwerkelijk
-de rechten verleent om je bijdrage te gebruiken. Voor details, bezoek <https://cla.opensource.microsoft.com>.
+Contributor License Agreement (CLA) waarin je verklaart dat je het recht hebt en daadwerkelijk verleent
+dat wij de rechten hebben om je bijdrage te gebruiken. Voor details, bezoek <https://cla.opensource.microsoft.com>.
 
-Wanneer je een pull request indient, bepaalt een CLA-bot automatisch of je een
-CLA moet aanleveren en voorziet de PR van de juiste aanduidingen (bijv. statuscontrole, commentaar). Volg gewoon de instructies
+Wanneer je een pull request indient, bepaalt een CLA-bot automatisch of je een CLA moet verstrekken
+en voorziet het PR van de juiste aanduidingen (bijv. statuscontrole, commentaar). Volg gewoon de instructies
 van de bot. Dit hoef je maar één keer te doen voor alle repositories die onze CLA gebruiken.
 
 Dit project heeft de [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/) aangenomen.
@@ -365,6 +365,12 @@ neem contact op met [opencode@microsoft.com](mailto:opencode@microsoft.com) voor
 Ons team produceert ook andere cursussen! Bekijk:
 
 <!-- CO-OP TRANSLATOR OTHER COURSES START -->
+### LangChain
+[![LangChain4j voor Beginners](https://img.shields.io/badge/LangChain4j%20for%20Beginners-22C55E?style=for-the-badge&&labelColor=E5E7EB&color=0553D6)](https://aka.ms/langchain4j-for-beginners)
+[![LangChain.js voor Beginners](https://img.shields.io/badge/LangChain.js%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=0553D6)](https://aka.ms/langchainjs-for-beginners?WT.mc_id=m365-94501-dwahlin)
+
+---
+
 ### Azure / Edge / MCP / Agents
 [![AZD voor Beginners](https://img.shields.io/badge/AZD%20for%20Beginners-0078D4?style=for-the-badge&labelColor=E5E7EB&color=0078D4)](https://github.com/microsoft/AZD-for-beginners?WT.mc_id=academic-105485-koreyst)
 [![Edge AI voor Beginners](https://img.shields.io/badge/Edge%20AI%20for%20Beginners-00B8E4?style=for-the-badge&labelColor=E5E7EB&color=00B8E4)](https://github.com/microsoft/edgeai-for-beginners?WT.mc_id=academic-105485-koreyst)
@@ -387,20 +393,20 @@ Ons team produceert ook andere cursussen! Bekijk:
 [![AI voor Beginners](https://img.shields.io/badge/AI%20for%20Beginners-A3E635?style=for-the-badge&labelColor=E5E7EB&color=A3E635)](https://aka.ms/ai-beginners?WT.mc_id=academic-105485-koreyst)
 [![Cybersecurity voor Beginners](https://img.shields.io/badge/Cybersecurity%20for%20Beginners-F97316?style=for-the-badge&labelColor=E5E7EB&color=F97316)](https://github.com/microsoft/Security-101?WT.mc_id=academic-96948-sayoung)
 [![Web Dev voor Beginners](https://img.shields.io/badge/Web%20Dev%20for%20Beginners-EC4899?style=for-the-badge&labelColor=E5E7EB&color=EC4899)](https://aka.ms/webdev-beginners?WT.mc_id=academic-105485-koreyst)
-[![IoT voor Beginners](https://img.shields.io/badge/IoT%20for%20Beginners-14B8A6?style=for-the-badge&labelColor=E5E7EB&color=14B8A6)](https://aka.ms/iot-beginners?WT.mc_id=academic-105485-koreyst)
-[![XR Development voor Beginners](https://img.shields.io/badge/XR%20Development%20for%20Beginners-38BDF8?style=for-the-badge&labelColor=E5E7EB&color=38BDF8)](https://github.com/microsoft/xr-development-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![IoT for Beginners](https://img.shields.io/badge/IoT%20for%20Beginners-14B8A6?style=for-the-badge&labelColor=E5E7EB&color=14B8A6)](https://aka.ms/iot-beginners?WT.mc_id=academic-105485-koreyst)
+[![XR Development for Beginners](https://img.shields.io/badge/XR%20Development%20for%20Beginners-38BDF8?style=for-the-badge&labelColor=E5E7EB&color=38BDF8)](https://github.com/microsoft/xr-development-for-beginners?WT.mc_id=academic-105485-koreyst)
 
 ---
  
-### Copilot-serie
-[![Copilot voor AI Gecombineerd Programmeren](https://img.shields.io/badge/Copilot%20for%20AI%20Paired%20Programming-FACC15?style=for-the-badge&labelColor=E5E7EB&color=FACC15)](https://aka.ms/GitHubCopilotAI?WT.mc_id=academic-105485-koreyst)
-[![Copilot voor C#/.NET](https://img.shields.io/badge/Copilot%20for%20C%23/.NET-FBBF24?style=for-the-badge&labelColor=E5E7EB&color=FBBF24)](https://github.com/microsoft/mastering-github-copilot-for-dotnet-csharp-developers?WT.mc_id=academic-105485-koreyst)
-[![Copilot Avontuur](https://img.shields.io/badge/Copilot%20Adventure-FDE68A?style=for-the-badge&labelColor=E5E7EB&color=FDE68A)](https://github.com/microsoft/CopilotAdventures?WT.mc_id=academic-105485-koreyst)
-<!-- CO-OP VERTAALDER ANDERE CURSUSSEN EINDE -->
+### Copilot Serie
+[![Copilot for AI Paired Programming](https://img.shields.io/badge/Copilot%20for%20AI%20Paired%20Programming-FACC15?style=for-the-badge&labelColor=E5E7EB&color=FACC15)](https://aka.ms/GitHubCopilotAI?WT.mc_id=academic-105485-koreyst)
+[![Copilot for C#/.NET](https://img.shields.io/badge/Copilot%20for%20C%23/.NET-FBBF24?style=for-the-badge&labelColor=E5E7EB&color=FBBF24)](https://github.com/microsoft/mastering-github-copilot-for-dotnet-csharp-developers?WT.mc_id=academic-105485-koreyst)
+[![Copilot Adventure](https://img.shields.io/badge/Copilot%20Adventure-FDE68A?style=for-the-badge&labelColor=E5E7EB&color=FDE68A)](https://github.com/microsoft/CopilotAdventures?WT.mc_id=academic-105485-koreyst)
+<!-- CO-OP TRANSLATOR OTHER COURSES END -->
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Disclaimer**:  
+**Disclaimer**:
 Dit document is vertaald met behulp van de AI-vertalingsdienst [Co-op Translator](https://github.com/Azure/co-op-translator). Hoewel we streven naar nauwkeurigheid, dient u er rekening mee te houden dat geautomatiseerde vertalingen fouten of onnauwkeurigheden kunnen bevatten. Het originele document in de oorspronkelijke taal moet als de gezaghebbende bron worden beschouwd. Voor cruciale informatie wordt professionele menselijke vertaling aanbevolen. Wij zijn niet aansprakelijk voor eventuele misverstanden of verkeerde interpretaties die voortvloeien uit het gebruik van deze vertaling.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

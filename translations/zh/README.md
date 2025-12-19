@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "20bace280f1884b6f35653584e305094",
-  "translation_date": "2025-12-12T16:31:20+00:00",
+  "original_hash": "dcddd875433f8f6ea4d2603f17b9746e",
+  "translation_date": "2025-12-18T19:08:24+00:00",
   "source_file": "README.md",
   "language_code": "zh"
 }
@@ -32,7 +32,7 @@ CO_OP_TRANSLATOR_METADATA:
 #### 通过 GitHub Action 支持（自动且始终保持最新）
 
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE START -->
-[阿拉伯语](../ar/README.md) | [孟加拉语](../bn/README.md) | [保加利亚语](../bg/README.md) | [缅甸语](../my/README.md) | [中文（简体）](./README.md) | [中文（繁体，香港）](../hk/README.md) | [中文（繁体，澳门）](../mo/README.md) | [中文（繁体，台湾）](../tw/README.md) | [克罗地亚语](../hr/README.md) | [捷克语](../cs/README.md) | [丹麦语](../da/README.md) | [荷兰语](../nl/README.md) | [爱沙尼亚语](../et/README.md) | [芬兰语](../fi/README.md) | [法语](../fr/README.md) | [德语](../de/README.md) | [希腊语](../el/README.md) | [希伯来语](../he/README.md) | [印地语](../hi/README.md) | [匈牙利语](../hu/README.md) | [印度尼西亚语](../id/README.md) | [意大利语](../it/README.md) | [日语](../ja/README.md) | [卡纳达语](../kn/README.md) | [韩语](../ko/README.md) | [立陶宛语](../lt/README.md) | [马来语](../ms/README.md) | [马拉雅拉姆语](../ml/README.md) | [马拉地语](../mr/README.md) | [尼泊尔语](../ne/README.md) | [尼日利亚皮钦语](../pcm/README.md) | [挪威语](../no/README.md) | [波斯语（法尔西语）](../fa/README.md) | [波兰语](../pl/README.md) | [葡萄牙语（巴西）](../br/README.md) | [葡萄牙语（葡萄牙）](../pt/README.md) | [旁遮普语（古鲁穆奇文）](../pa/README.md) | [罗马尼亚语](../ro/README.md) | [俄语](../ru/README.md) | [塞尔维亚语（西里尔文）](../sr/README.md) | [斯洛伐克语](../sk/README.md) | [斯洛文尼亚语](../sl/README.md) | [西班牙语](../es/README.md) | [斯瓦希里语](../sw/README.md) | [瑞典语](../sv/README.md) | [他加禄语（菲律宾语）](../tl/README.md) | [泰米尔语](../ta/README.md) | [泰卢固语](../te/README.md) | [泰语](../th/README.md) | [土耳其语](../tr/README.md) | [乌克兰语](../uk/README.md) | [乌尔都语](../ur/README.md) | [越南语](../vi/README.md)
+[Arabic](../ar/README.md) | [Bengali](../bn/README.md) | [Bulgarian](../bg/README.md) | [Burmese (Myanmar)](../my/README.md) | [Chinese (Simplified)](./README.md) | [Chinese (Traditional, Hong Kong)](../hk/README.md) | [Chinese (Traditional, Macau)](../mo/README.md) | [Chinese (Traditional, Taiwan)](../tw/README.md) | [Croatian](../hr/README.md) | [Czech](../cs/README.md) | [Danish](../da/README.md) | [Dutch](../nl/README.md) | [Estonian](../et/README.md) | [Finnish](../fi/README.md) | [French](../fr/README.md) | [German](../de/README.md) | [Greek](../el/README.md) | [Hebrew](../he/README.md) | [Hindi](../hi/README.md) | [Hungarian](../hu/README.md) | [Indonesian](../id/README.md) | [Italian](../it/README.md) | [Japanese](../ja/README.md) | [Kannada](../kn/README.md) | [Korean](../ko/README.md) | [Lithuanian](../lt/README.md) | [Malay](../ms/README.md) | [Malayalam](../ml/README.md) | [Marathi](../mr/README.md) | [Nepali](../ne/README.md) | [Nigerian Pidgin](../pcm/README.md) | [Norwegian](../no/README.md) | [Persian (Farsi)](../fa/README.md) | [Polish](../pl/README.md) | [Portuguese (Brazil)](../br/README.md) | [Portuguese (Portugal)](../pt/README.md) | [Punjabi (Gurmukhi)](../pa/README.md) | [Romanian](../ro/README.md) | [Russian](../ru/README.md) | [Serbian (Cyrillic)](../sr/README.md) | [Slovak](../sk/README.md) | [Slovenian](../sl/README.md) | [Spanish](../es/README.md) | [Swahili](../sw/README.md) | [Swedish](../sv/README.md) | [Tagalog (Filipino)](../tl/README.md) | [Tamil](../ta/README.md) | [Telugu](../te/README.md) | [Thai](../th/README.md) | [Turkish](../tr/README.md) | [Ukrainian](../uk/README.md) | [Urdu](../ur/README.md) | [Vietnamese](../vi/README.md)
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE END -->
 
 # 🚀 面向初学者的模型上下文协议（MCP）课程
@@ -40,22 +40,22 @@ CO_OP_TRANSLATOR_METADATA:
 ## **通过 C#、Java、JavaScript、Rust、Python 和 TypeScript 的实战代码示例学习 MCP**
 
 ## 🧠 模型上下文协议课程概述
-欢迎踏上模型上下文协议的学习之旅！如果你曾好奇 AI 应用程序如何与不同的工具和服务通信，你即将发现这一优雅的解决方案，它正在改变开发者构建智能系统的方式。
+欢迎踏上模型上下文协议的学习之旅！如果你曾好奇 AI 应用如何与不同工具和服务通信，你即将发现这一优雅的解决方案，它正在改变开发者构建智能系统的方式。
 
-把 MCP 想象成 AI 应用的通用翻译器——就像 USB 端口让你可以连接任何设备到电脑一样，MCP 让 AI 模型以标准化的方式连接到任何工具或服务。无论你是在构建第一个聊天机器人，还是在处理复杂的 AI 工作流，理解 MCP 都会赋予你创建更强大、更灵活应用的能力。
+把 MCP 想象成 AI 应用的通用翻译器——就像 USB 端口让你可以连接任何设备到电脑一样，MCP 让 AI 模型以标准化的方式连接任何工具或服务。无论你是在构建第一个聊天机器人，还是在处理复杂的 AI 工作流，理解 MCP 都将赋予你创建更强大、更灵活应用的能力。
 
-本课程设计耐心细致，关注你的学习旅程。我们将从你已经理解的简单概念开始，逐步通过你喜欢的编程语言的实战练习来提升你的技能。每一步都包含清晰的解释、实用的示例和大量鼓励。
+本课程设计耐心细致，关注你的学习旅程。我们将从你已熟悉的简单概念开始，逐步通过你喜欢的编程语言进行实战练习。每一步都包含清晰的解释、实用的示例和大量鼓励。
 
 完成本课程后，你将有信心构建自己的 MCP 服务器，将其与流行的 AI 平台集成，并理解这项技术如何重塑 AI 开发的未来。让我们一起开始这段激动人心的冒险吧！
 
 ### 官方文档和规范
 
-随着你理解的加深，这些资源会变得更加有价值，但不必急于全部阅读。先从你最感兴趣的部分开始！
-- 📘 [MCP 文档](https://modelcontextprotocol.io/) – 这是你的首选资源，包含逐步教程和用户指南。文档针对初学者编写，提供清晰的示例，方便你按自己的节奏学习。
+这些资源随着你理解的加深而变得更加有价值，但不必急于全部阅读。先从你最感兴趣的部分开始！
+- 📘 [MCP 文档](https://modelcontextprotocol.io/) – 这是你的逐步教程和用户指南的首选资源。文档针对初学者编写，提供清晰的示例，方便你按自己的节奏学习。
 - 📜 [MCP 规范](https://modelcontextprotocol.io/docs/) – 这相当于你的综合参考手册。随着课程的推进，你会经常回来看具体细节和探索高级功能。
-- 📜 [原始 MCP 规范](https://spec.modelcontextprotocol.io/) – 包含更多技术细节，适合高级实现时参考。初学时无需担心。
+- 📜 [原始 MCP 规范](https://modelcontextprotocol.io/specification/versioning) – 包含更多技术细节，适合高级实现时参考。初学时无需担心。
 - 🧑‍💻 [MCP GitHub 仓库](https://github.com/modelcontextprotocol) – 这里有多种编程语言的 SDK、工具和代码示例。就像一个实用示例和现成组件的宝库。
-- 🌐 [MCP 社区](https://github.com/orgs/modelcontextprotocol/discussions) – 加入学习者和经验丰富开发者的讨论社区。这里是一个支持性的社区，欢迎提问和自由分享知识。
+- 🌐 [MCP 社区](https://github.com/orgs/modelcontextprotocol/discussions) – 加入学习者和经验丰富开发者的讨论社区。这里是一个支持性强、欢迎提问和自由分享知识的地方。
   
 ## 学习目标
 
@@ -79,21 +79,21 @@ CO_OP_TRANSLATOR_METADATA:
 
 ### 理解协议（基础）
 
-把协议想象成对话规则。当你给朋友打电话时，你们都知道接听时要说“你好”，轮流说话，结束时说“再见”。计算机程序也需要类似规则才能有效通信。
+把协议想象成对话的规则。当你给朋友打电话时，双方都知道接听时说“你好”，轮流说话，结束时说“再见”。计算机程序也需要类似规则才能有效通信。
 
-MCP 是一种协议——一套约定规则，帮助 AI 模型和应用与工具和服务进行高效“对话”。就像对话规则让人类交流更顺畅一样，MCP 让 AI 应用通信更可靠、更强大。
+MCP 是一种协议——一套约定规则，帮助 AI 模型和应用与工具及服务进行高效“对话”。就像对话规则让人类交流更顺畅一样，MCP 让 AI 应用通信更可靠、更强大。
 
 ### 客户端-服务器关系（程序如何协作）
 
-你每天都在使用客户端-服务器关系！当你用浏览器（客户端）访问网站时，你连接的是发送页面内容的网络服务器。浏览器知道如何请求信息，服务器知道如何响应。
+你每天都在使用客户端-服务器关系！当你用浏览器（客户端）访问网站时，你连接的是发送页面内容的服务器。浏览器知道如何请求信息，服务器知道如何响应。
 
-在 MCP 中，我们有类似关系：AI 模型作为客户端请求信息或操作，MCP 服务器提供这些功能。就像有个帮手（服务器），AI 可以请求它执行特定任务。
+在 MCP 中，我们有类似关系：AI 模型作为客户端请求信息或操作，MCP 服务器提供这些功能。就像 AI 有一个帮手（服务器），可以请求执行特定任务。
 
 ### 标准化为何重要（让事物协同工作）
 
 想象如果每个汽车制造商使用不同形状的加油枪——你得为每辆车准备不同的适配器！标准化意味着达成共识，采用通用方式让事物无缝协作。
 
-MCP 为 AI 应用提供了这种标准化。不是每个 AI 模型都需要为每个工具写定制代码，MCP 创建了一个通用通信方式。这意味着开发者可以一次构建工具，让它们兼容多种 AI 系统。
+MCP 为 AI 应用提供了这种标准化。AI 模型无需为每个工具编写定制代码，MCP 创建了它们沟通的通用方式。这意味着开发者可以一次构建工具，让它们兼容多种 AI 系统。
 
 ## 🧭 你的学习路径概览
 
@@ -101,9 +101,9 @@ MCP 为 AI 应用提供了这种标准化。不是每个 AI 模型都需要为�
 
 ### 🌱 基础阶段：理解基础知识（模块 0-2）
 
-冒险从这里开始！我们将用熟悉的类比和简单示例介绍 MCP 概念。你将了解 MCP 是什么、为何存在，以及它在 AI 开发大环境中的位置。
+冒险从这里开始！我们将用熟悉的类比和简单示例介绍 MCP 概念。你将了解 MCP 是什么、为何存在，以及它在 AI 开发大环境中的定位。
 
-• **模块 0 - MCP 介绍**：我们将探讨 MCP 是什么，以及它为何对现代 AI 应用至关重要。你将看到 MCP 的实际应用示例，理解它如何解决开发者常见问题。
+• **模块 0 - MCP 介绍**：我们将探讨 MCP 是什么，以及它为何对现代 AI 应用至关重要。你将看到 MCP 的实际应用案例，理解它如何解决开发者常见问题。
 
 • **模块 1 - 核心概念解析**：这里你将学习 MCP 的基本构建块。我们会用大量类比和视觉示例，确保这些概念自然易懂。
 
@@ -111,11 +111,11 @@ MCP 为 AI 应用提供了这种标准化。不是每个 AI 模型都需要为�
 
 ### 🔨 构建阶段：创建你的第一个实现（模块 3）
 
-真正的乐趣开始了！你将动手构建实际的 MCP 服务器和客户端。别担心——我们会从简单开始，逐步引导你完成每一步。
+真正的乐趣开始了！你将亲手构建实际的 MCP 服务器和客户端。别担心——我们会从简单开始，逐步引导你完成每一步。
 
-本模块包含多个实战指南，支持你用喜欢的编程语言练习。你将创建第一个服务器，构建连接它的客户端，甚至集成流行开发工具如 VS Code。
+本模块包含多个实操指南，支持你用喜欢的编程语言练习。你将创建第一个服务器，构建连接它的客户端，甚至集成流行开发工具如 VS Code。
 
-每个指南都包含完整代码示例、故障排除技巧和设计选择的解释。完成此阶段后，你将拥有可用的 MCP 实现，值得骄傲！
+每个指南都包含完整代码示例、故障排除技巧，以及设计选择背后的原因解释。完成此阶段后，你将拥有可自豪展示的 MCP 实现！
 
 ### 🚀 成长阶段：高级概念与实际应用（模块 4-5）
 
@@ -132,12 +132,12 @@ MCP 为 AI 应用提供了这种标准化。不是每个 AI 模型都需要为�
 
 | Module | Topic | Description | Link |
 |--------|-------|-------------|------|
-| **模块 1-3：基础** | | | |
-| 00 | MCP 介绍 | 模型上下文协议及其在 AI 流水线中的重要性概述 | [阅读更多](./00-Introduction/README.md) |
+| **Module 1-3: Fundamentals** | | | |
+| 00 | MCP 介绍 | Model Context Protocol 及其在 AI 流水线中的重要性概述 | [阅读更多](./00-Introduction/README.md) |
 | 01 | 核心概念详解 | 深入探讨 MCP 核心概念 | [阅读更多](./01-CoreConcepts/README.md) |
 | 02 | MCP 安全性 | 安全威胁与最佳实践 | [阅读更多](./02-Security/README.md) |
 | 03 | MCP 入门 | 环境搭建，基础服务器/客户端，集成 | [阅读更多](./03-GettingStarted/README.md) |
-| **模块 3：构建您的第一个服务器和客户端** | | | |
+| **Module 3: 构建您的第一个服务器和客户端** | | | |
 | 3.1 | 第一个服务器 | 创建您的第一个 MCP 服务器 | [指南](./03-GettingStarted/01-first-server/README.md) |
 | 3.2 | 第一个客户端 | 开发基础 MCP 客户端 | [指南](./03-GettingStarted/02-client/README.md) |
 | 3.3 | 带 LLM 的客户端 | 集成大型语言模型 | [指南](./03-GettingStarted/03-llm-client/README.md) |
@@ -149,7 +149,7 @@ MCP 为 AI 应用提供了这种标准化。不是每个 AI 模型都需要为�
 | 3.9 | 部署 | 将 MCP 服务器部署到生产环境 | [指南](./03-GettingStarted/09-deployment/README.md) |
 | 3.10 | 高级服务器使用 | 使用高级服务器实现高级功能和改进架构 | [指南](./03-GettingStarted/10-advanced/README.md) |
 | 3.11 | 简单认证 | 从基础开始介绍认证和基于角色的访问控制（RBAC） | [指南](./03-GettingStarted/11-simple-auth/README.md) |
-| **模块 4-5：实用与高级** | | | |
+| **Module 4-5: 实践与高级** | | | |
 | 04 | 实践实现 | SDK、调试、测试、可复用提示模板 | [阅读更多](./04-PracticalImplementation/README.md) |
 | 05 | MCP 高级主题 | 多模态 AI、扩展、企业应用 | [阅读更多](./05-AdvancedTopics/README.md) |
 | 5.1 | Azure 集成 | MCP 与 Azure 集成 | [指南](./05-AdvancedTopics/mcp-integration/README.md) |
@@ -159,7 +159,7 @@ MCP 为 AI 应用提供了这种标准化。不是每个 AI 模型都需要为�
 | 5.5 | 路由 | MCP 路由策略 | [指南](./05-AdvancedTopics/mcp-routing/README.md) |
 | 5.6 | 采样 | MCP 中的采样技术 | [指南](./05-AdvancedTopics/mcp-sampling/README.md) |
 | 5.7 | 扩展 | 扩展 MCP 实现 | [指南](./05-AdvancedTopics/mcp-scaling/README.md) |
-| 5.8 | 安全 | 高级安全考量 | [指南](./05-AdvancedTopics/mcp-security/README.md) |
+| 5.8 | 安全 | 高级安全考虑 | [指南](./05-AdvancedTopics/mcp-security/README.md) |
 | 5.9 | 网络搜索 | 实现网络搜索功能 | [指南](./05-AdvancedTopics/web-search-mcp/README.md) |
 | 5.10 | 实时流 | 构建实时流功能 | [指南](./05-AdvancedTopics/mcp-realtimestreaming/README.md) |
 | 5.11 | 实时搜索 | 实现实时搜索 | [指南](./05-AdvancedTopics/mcp-realtimesearch/README.md) |
@@ -167,13 +167,13 @@ MCP 为 AI 应用提供了这种标准化。不是每个 AI 模型都需要为�
 | 5.13 | Foundry 集成 | 与 Azure AI Foundry 集成 | [指南](./05-AdvancedTopics/mcp-foundry-agent-integration/README.md) |
 | 5.14 | 上下文工程 | 有效上下文工程技术 | [指南](./05-AdvancedTopics/mcp-contextengineering/README.md) |
 | 5.15 | MCP 自定义传输 | 自定义传输实现 | [指南](./05-AdvancedTopics/mcp-transport/README.md) |
-| **模块 6-10：社区与最佳实践** | | | |
+| **Module 6-10: 社区与最佳实践** | | | |
 | 06 | 社区贡献 | 如何为 MCP 生态系统做贡献 | [指南](./06-CommunityContributions/README.md) |
 | 07 | 早期采用经验 | 真实世界实现故事 | [指南](./07-LessonsFromEarlyAdoption/README.md) |
 | 08 | MCP 最佳实践 | 性能、容错、弹性 | [指南](./08-BestPractices/README.md) |
 | 09 | MCP 案例研究 | 实践实现示例 | [指南](./09-CaseStudy/README.md) |
 | 10 | 动手研讨会 | 使用 AI 工具包构建 MCP 服务器 | [实验](./10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md) |
-| **模块 11：MCP 服务器动手实验** | | | |
+| **Module 11: MCP 服务器动手实验** | | | |
 | 11 | MCP 服务器数据库集成 | 13 个实验的全面动手学习路径，涵盖 PostgreSQL 集成 | [实验](./11-MCPServerHandsOnLabs/README.md) |
 | 11.1 | 介绍 | MCP 与数据库集成及零售分析用例概述 | [实验 00](./11-MCPServerHandsOnLabs/00-Introduction/README.md) |
 | 11.2 | 核心架构 | 理解 MCP 服务器架构、数据库层和安全模式 | [实验 01](./11-MCPServerHandsOnLabs/01-Architecture/README.md) |
@@ -185,17 +185,17 @@ MCP 为 AI 应用提供了这种标准化。不是每个 AI 模型都需要为�
 | 11.8 | 语义搜索 | 使用 Azure OpenAI 和 pgvector 实现向量嵌入 | [实验 07](./11-MCPServerHandsOnLabs/07-Semantic-Search/README.md) |
 | 11.9 | 测试与调试 | 测试策略、调试工具和验证方法 | [实验 08](./11-MCPServerHandsOnLabs/08-Testing/README.md) |
 | 11.10 | VS Code 集成 | 配置 VS Code MCP 集成和 AI 聊天使用 | [实验 09](./11-MCPServerHandsOnLabs/09-VS-Code/README.md) |
-| 11.11 | 部署策略 | Docker 部署、Azure 容器应用和扩展考量 | [实验 10](./11-MCPServerHandsOnLabs/10-Deployment/README.md) |
+| 11.11 | 部署策略 | Docker 部署、Azure 容器应用和扩展考虑 | [实验 10](./11-MCPServerHandsOnLabs/10-Deployment/README.md) |
 | 11.12 | 监控 | 应用洞察、日志记录、性能监控 | [实验 11](./11-MCPServerHandsOnLabs/11-Monitoring/README.md) |
 | 11.13 | 最佳实践 | 性能优化、安全加固和生产建议 | [实验 12](./11-MCPServerHandsOnLabs/12-Best-Practices/README.md) |
 
 ### 💻 示例代码项目
 
-学习 MCP 最令人兴奋的部分之一是看到您的代码技能逐步提升。我们设计的代码示例从简单开始，随着理解的加深逐渐变得更复杂。以下是我们介绍概念的方式——代码易于理解，但展示了真实的 MCP 原理，您不仅会理解代码的功能，还会明白其结构原因以及它如何融入更大的 MCP 应用中。
+学习 MCP 最令人兴奋的部分之一是看到您的代码技能逐步提升。我们设计的代码示例从简单开始，随着理解的加深逐渐变得更复杂。以下是我们介绍概念的方式——代码易于理解，但展示了真实的 MCP 原理，您不仅会理解代码做了什么，还会明白为什么这样构建，以及它如何融入更大的 MCP 应用中。
 
 #### 基础 MCP 计算器示例
 
-| 语言 | 描述 | 链接 |
+| Language | Description | Link |
 |----------|-------------|------|
 | C# | MCP 服务器示例 | [查看代码](./03-GettingStarted/samples/csharp/README.md) |
 | Java | MCP 计算器 | [查看代码](./03-GettingStarted/samples/java/calculator/README.md) |
@@ -206,7 +206,7 @@ MCP 为 AI 应用提供了这种标准化。不是每个 AI 模型都需要为�
 
 #### 高级 MCP 实现
 
-| 语言 | 描述 | 链接 |
+| Language | Description | Link |
 |----------|-------------|------|
 | C# | 高级示例 | [查看代码](./04-PracticalImplementation/samples/csharp/README.md) |
 | Java with Spring | 容器应用示例 | [查看代码](./04-PracticalImplementation/samples/java/containerapp/README.md) |
@@ -228,15 +228,15 @@ MCP 为 AI 应用提供了这种标准化。不是每个 AI 模型都需要为�
 
 ## 📚 学习指南与资源
 
-本仓库包含多种资源，帮助您高效学习和导航：
+本仓库包含多种资源，帮助您高效导航和学习：
 
 ### 学习指南
 
-提供了全面的[学习指南](./study_guide.md)，帮助您有效导航本仓库。该视觉课程地图展示了所有主题的关联，并指导如何有效使用示例项目。对于喜欢整体视角的视觉学习者尤其有帮助。
+提供了全面的[学习指南](./study_guide.md)，帮助您有效浏览本仓库。该视觉课程地图展示了所有主题的关联，并指导如何有效使用示例项目。对于喜欢整体视角的视觉学习者尤其有帮助。
 
-指南内容包括：
+指南包括：
 - 展示所有涵盖主题的视觉课程地图
-- 每个仓库部分的详细拆解
+- 仓库各部分的详细拆解
 - 如何使用示例项目的指导
 - 针对不同技能水平的推荐学习路径
 - 补充学习旅程的额外资源
@@ -256,21 +256,21 @@ MCP 为 AI 应用提供了这种标准化。不是每个 AI 模型都需要为�
 1. 清晰的 MCP 概念讲解  
 2. 多语言实时代码示例  
 3. 构建真实 MCP 应用的练习  
-4. 面向高级学习者的额外资源
+4. 高级学习者的额外资源
 
 ## 按需内容
 
 ### [MCP 开发日 2025 年 7 月](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
 #### [➡️按需观看 - MCP 开发者日](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
-准备好参加为期两天的深入技术洞察、社区交流和动手学习的 MCP 开发者日虚拟活动——这是一个专注于模型上下文协议（MCP）的活动，MCP 是连接 AI 模型及其依赖工具的新兴标准。
+准备好参加为期两天的深入技术洞察、社区交流和动手学习的 MCP 开发者日虚拟活动——这是一个专注于模型上下文协议（MCP）的活动，该协议是连接 AI 模型及其依赖工具的新兴标准。
 您可以通过在我们的活动页面注册观看 MCP 开发者日：https://aka.ms/mcpdevdays。
 
 #### [第1天：MCP 生产力、开发工具和社区：](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
 
-专注于赋能开发者在开发工作流中使用 MCP，并庆祝精彩的 MCP 社区。我们将与社区成员和合作伙伴如 Arcade、Block、Okta 和 Neon 一起，了解他们如何与微软合作，共同打造开放且可扩展的 MCP 生态系统。涵盖 VS Code、Visual Studio、GitHub Copilot 及流行社区工具的真实演示
+专注于赋能开发者在开发工作流中使用 MCP，并庆祝精彩的 MCP 社区。我们将与社区成员和合作伙伴如 Arcade、Block、Okta 和 Neon 一起，了解他们如何与微软合作，共同打造一个开放、可扩展的 MCP 生态系统。涵盖 VS Code、Visual Studio、GitHub Copilot 及流行社区工具的真实演示
 实用的、基于上下文的开发工作流
 社区主导的会议和见解
-无论您是刚开始接触 MCP 还是已经在构建，第一天都将为您带来灵感和可操作的收获。
+无论您是刚开始使用 MCP 还是已经在构建，第一天都将为您带来灵感和可操作的收获。
 
 #### [第2天：自信构建 MCP 服务器](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
 
@@ -286,27 +286,27 @@ MCP 为 AI 应用提供了这种标准化。不是每个 AI 模型都需要为�
 
 如果您是开发者、工具构建者或 AI 产品策略师，这一天将充满您构建可扩展、安全且面向未来的 MCP 解决方案所需的见解。
 
-### 2025年8月 MCP 训练营
-通过密集的视频课程学习如何创建 MCP 服务器、集成 VS Code，并基于 MCP 初学者课程内容在 Azure 上专业部署。掌握主要公司已在使用的技术的实用技能。
+### MCP 训练营 2025 年 8 月
+通过密集的视频课程学习如何创建 MCP 服务器、与 VS Code 集成，并基于 MCP 初学者课程内容在 Azure 上专业部署。掌握主要公司已在使用的技术的实用技能。
 
 #### [➡️按需观看 MCP 训练营 | 英语](https://developer.microsoft.com/en-us/reactor/series/s-1568/)
 #### [➡️按需观看 MCP 训练营 | 巴西语](https://developer.microsoft.com/en-us/reactor/series/S-1566/)
 #### [➡️按需观看 MCP 训练营 | 西班牙语](https://developer.microsoft.com/en-us/reactor/series/S-1567/)
 
 ### 一起用 C# 学习 MCP - 教程系列
-让我们一起了解模型上下文协议（MCP），这是一个旨在标准化 AI 模型与客户端应用交互的前沿框架。通过这门适合初学者的课程，我们将介绍 MCP 并指导您创建第一个 MCP 服务器。
+让我们了解模型上下文协议（MCP），这是一个旨在标准化 AI 模型与客户端应用交互的前沿框架。通过这场适合初学者的课程，我们将介绍 MCP 并指导您创建第一个 MCP 服务器。
 #### C#: [https://aka.ms/letslearnmcp-csharp](https://aka.ms/letslearnmcp-csharp)
 #### Java: [https://aka.ms/letslearnmcp-java](https://aka.ms/letslearnmcp-java)
 #### JavaScript: [https://aka.ms/letslearnmcp-javascript](https://aka.ms/letslearnmcp-javascript)
 #### Python: [https://aka.ms/letslearnmcp-python](https://aka.ms/letslearnmcp-python)
 
-## 🎓 您的 MCP 之旅开始了
+## 🎓 您的 MCP 旅程开始了
 
 恭喜！您刚刚迈出了激动人心的第一步，这将拓展您的编程能力，并将您连接到 AI 开发的前沿。
 
-### 您已经完成的部分
+### 您已经完成了什么
 
-通过阅读本介绍，您已经开始建立 MCP 知识基础。您了解 MCP 是什么、为什么重要，以及本课程如何支持您的学习旅程。这是一个重要的成就，也是您在这项重要技术领域成为专家的起点。
+通过阅读本介绍，您已经开始构建 MCP 知识基础。您了解 MCP 是什么、为什么重要，以及本课程如何支持您的学习旅程。这是一个重要的成就，也是您在这项重要技术领域专业知识的开端。
 
 ### 前方的冒险
 
@@ -314,9 +314,9 @@ MCP 为 AI 应用提供了这种标准化。不是每个 AI 模型都需要为�
 
 ### 您的支持网络
 
-您正在加入一个热衷于 MCP 并乐于助人的学习者和专家社区。无论您遇到编码难题还是想分享突破，社区都会支持您的旅程。
+您正在加入一个热衷于 MCP 并乐于助人的学习者和专家社区。无论您遇到编码难题还是想分享突破，社区都在这里支持您的旅程。
 
-如果您遇到困难或有任何关于构建 AI 应用的问题，欢迎加入与其他学习者和经验丰富开发者的 MCP 讨论。这是一个支持性强、欢迎提问并自由分享知识的社区。
+如果您遇到困难或有任何关于构建 AI 应用的问题，请加入与其他学习者和经验丰富开发者的 MCP 讨论。这是一个欢迎提问、自由分享知识的支持性社区。
 
 [![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
 
@@ -326,13 +326,13 @@ MCP 为 AI 应用提供了这种标准化。不是每个 AI 模型都需要为�
 
 ### 准备好开始了吗？
 
-您的 MCP 冒险现在开始！从模块 0 开始，体验您的第一个 MCP 实践，或探索示例项目，看看您将构建什么。记住——每位专家都从您现在的位置开始，凭借耐心和练习，您会惊讶于自己的成就。
+您的 MCP 冒险现在开始！从模块 0 开始，深入体验您的第一个 MCP 实践，或探索示例项目，看看您将构建什么。记住——每位专家都从您现在的位置开始，凭借耐心和练习，您会惊讶于自己的成就。
 
 欢迎来到模型上下文协议开发的世界。让我们一起构建非凡！
 
 ## 🤝 贡献学习社区
 
-本课程因像您这样的学习者贡献而不断壮大！无论是修正错别字、建议更清晰的解释，还是添加新示例，您的贡献都将帮助其他初学者成功。
+本课程因像您这样的学习者贡献而不断壮大！无论是修正错别字、建议更清晰的解释，还是添加新示例，您的贡献都帮助其他初学者取得成功。
 
 感谢微软杰出专家 [Shivam Goyal](https://www.linkedin.com/in/shivam2003/) 贡献代码示例。
 
@@ -340,20 +340,20 @@ MCP 为 AI 应用提供了这种标准化。不是每个 AI 模型都需要为�
 
 ## 📜 开源学习
 
-本课程全部内容均在 MIT [许可证](../../LICENSE) 下发布，意味着您可以自由使用、修改和分享。这支持我们让 MCP 知识惠及全球开发者的使命。
+整个课程均在 MIT [许可证](../../LICENSE) 下发布，意味着您可以自由使用、修改和分享。这支持我们让 MCP 知识惠及全球开发者的使命。
 
 ## 🤝 贡献指南
 
-本项目欢迎贡献和建议。大多数贡献要求您同意贡献者许可协议（CLA），声明您有权且确实授予我们使用您贡献的权利。详情请访问 <https://cla.opensource.microsoft.com>。
+本项目欢迎贡献和建议。大多数贡献要求您同意一份贡献者许可协议（CLA），声明您有权且确实授予我们使用您贡献的权利。详情请访问 <https://cla.opensource.microsoft.com>。
 
-当您提交拉取请求时，CLA 机器人会自动判断您是否需要提供 CLA，并相应标注 PR（例如状态检查、评论）。只需按照机器人提供的指示操作。您在所有使用我们 CLA 的仓库中只需执行一次。
+当您提交拉取请求时，CLA 机器人会自动判断您是否需要提供 CLA，并相应地标注 PR（例如状态检查、评论）。只需按照机器人提供的指示操作。您只需在所有使用我们 CLA 的仓库中完成一次。
 
 本项目已采用 [微软开源行为准则](https://opensource.microsoft.com/codeofconduct/)。
-更多信息请参阅 [行为准则常见问题](https://opensource.microsoft.com/codeofconduct/faq/) 或联系 [opencode@microsoft.com](mailto:opencode@microsoft.com) 以获取更多问题或建议。
+更多信息请参见 [行为准则常见问题](https://opensource.microsoft.com/codeofconduct/faq/) 或通过 [opencode@microsoft.com](mailto:opencode@microsoft.com) 联系我们，提出任何额外问题或意见。
 
 ---
 
-*准备好开始您的 MCP 之旅了吗？从 [模块 00 - MCP 介绍](./00-Introduction/README.md) 开始，迈出进入模型上下文协议开发世界的第一步！*
+*准备好开始您的 MCP 旅程了吗？从 [模块 00 - MCP 介绍](./00-Introduction/README.md) 开始，迈出进入模型上下文协议开发世界的第一步！*
 
 
 
@@ -361,16 +361,22 @@ MCP 为 AI 应用提供了这种标准化。不是每个 AI 模型都需要为�
 我们的团队还制作了其他课程！请查看：
 
 <!-- CO-OP TRANSLATOR OTHER COURSES START -->
+### LangChain
+[![LangChain4j 初学者](https://img.shields.io/badge/LangChain4j%20for%20Beginners-22C55E?style=for-the-badge&&labelColor=E5E7EB&color=0553D6)](https://aka.ms/langchain4j-for-beginners)
+[![LangChain.js 初学者](https://img.shields.io/badge/LangChain.js%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=0553D6)](https://aka.ms/langchainjs-for-beginners?WT.mc_id=m365-94501-dwahlin)
+
+---
+
 ### Azure / Edge / MCP / 代理
-[![初学者 AZD](https://img.shields.io/badge/AZD%20for%20Beginners-0078D4?style=for-the-badge&labelColor=E5E7EB&color=0078D4)](https://github.com/microsoft/AZD-for-beginners?WT.mc_id=academic-105485-koreyst)
-[![初学者边缘 AI](https://img.shields.io/badge/Edge%20AI%20for%20Beginners-00B8E4?style=for-the-badge&labelColor=E5E7EB&color=00B8E4)](https://github.com/microsoft/edgeai-for-beginners?WT.mc_id=academic-105485-koreyst)
-[![初学者 MCP](https://img.shields.io/badge/MCP%20for%20Beginners-009688?style=for-the-badge&labelColor=E5E7EB&color=009688)](https://github.com/microsoft/mcp-for-beginners?WT.mc_id=academic-105485-koreyst)
-[![初学者 AI 代理](https://img.shields.io/badge/AI%20Agents%20for%20Beginners-00C49A?style=for-the-badge&labelColor=E5E7EB&color=00C49A)](https://github.com/microsoft/ai-agents-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![AZD 初学者](https://img.shields.io/badge/AZD%20for%20Beginners-0078D4?style=for-the-badge&labelColor=E5E7EB&color=0078D4)](https://github.com/microsoft/AZD-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![Edge AI 初学者](https://img.shields.io/badge/Edge%20AI%20for%20Beginners-00B8E4?style=for-the-badge&labelColor=E5E7EB&color=00B8E4)](https://github.com/microsoft/edgeai-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![MCP 初学者](https://img.shields.io/badge/MCP%20for%20Beginners-009688?style=for-the-badge&labelColor=E5E7EB&color=009688)](https://github.com/microsoft/mcp-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![AI 代理初学者](https://img.shields.io/badge/AI%20Agents%20for%20Beginners-00C49A?style=for-the-badge&labelColor=E5E7EB&color=00C49A)](https://github.com/microsoft/ai-agents-for-beginners?WT.mc_id=academic-105485-koreyst)
 
 ---
  
 ### 生成式 AI 系列
-[![初学者生成式 AI](https://img.shields.io/badge/Generative%20AI%20for%20Beginners-8B5CF6?style=for-the-badge&labelColor=E5E7EB&color=8B5CF6)](https://github.com/microsoft/generative-ai-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![生成式 AI 初学者](https://img.shields.io/badge/Generative%20AI%20for%20Beginners-8B5CF6?style=for-the-badge&labelColor=E5E7EB&color=8B5CF6)](https://github.com/microsoft/generative-ai-for-beginners?WT.mc_id=academic-105485-koreyst)
 [![生成式 AI (.NET)](https://img.shields.io/badge/Generative%20AI%20(.NET)-9333EA?style=for-the-badge&labelColor=E5E7EB&color=9333EA)](https://github.com/microsoft/Generative-AI-for-beginners-dotnet?WT.mc_id=academic-105485-koreyst)
 [![生成式 AI (Java)](https://img.shields.io/badge/Generative%20AI%20(Java)-C084FC?style=for-the-badge&labelColor=E5E7EB&color=C084FC)](https://github.com/microsoft/generative-ai-for-beginners-java?WT.mc_id=academic-105485-koreyst)
 [![生成式 AI (JavaScript)](https://img.shields.io/badge/Generative%20AI%20(JavaScript)-E879F9?style=for-the-badge&labelColor=E5E7EB&color=E879F9)](https://github.com/microsoft/generative-ai-with-javascript?WT.mc_id=academic-105485-koreyst)
@@ -378,13 +384,13 @@ MCP 为 AI 应用提供了这种标准化。不是每个 AI 模型都需要为�
 ---
  
 ### 核心学习
-[![初学者机器学习](https://img.shields.io/badge/ML%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=22C55E)](https://aka.ms/ml-beginners?WT.mc_id=academic-105485-koreyst)
-[![初学者数据科学](https://img.shields.io/badge/Data%20Science%20for%20Beginners-84CC16?style=for-the-badge&labelColor=E5E7EB&color=84CC16)](https://aka.ms/datascience-beginners?WT.mc_id=academic-105485-koreyst)
-[![初学者 AI](https://img.shields.io/badge/AI%20for%20Beginners-A3E635?style=for-the-badge&labelColor=E5E7EB&color=A3E635)](https://aka.ms/ai-beginners?WT.mc_id=academic-105485-koreyst)
-[![初学者网络安全](https://img.shields.io/badge/Cybersecurity%20for%20Beginners-F97316?style=for-the-badge&labelColor=E5E7EB&color=F97316)](https://github.com/microsoft/Security-101?WT.mc_id=academic-96948-sayoung)
-[![初学者网页开发](https://img.shields.io/badge/Web%20Dev%20for%20Beginners-EC4899?style=for-the-badge&labelColor=E5E7EB&color=EC4899)](https://aka.ms/webdev-beginners?WT.mc_id=academic-105485-koreyst)
-[![初学者物联网](https://img.shields.io/badge/IoT%20for%20Beginners-14B8A6?style=for-the-badge&labelColor=E5E7EB&color=14B8A6)](https://aka.ms/iot-beginners?WT.mc_id=academic-105485-koreyst)
-[![初学者 XR 开发](https://img.shields.io/badge/XR%20Development%20for%20Beginners-38BDF8?style=for-the-badge&labelColor=E5E7EB&color=38BDF8)](https://github.com/microsoft/xr-development-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![机器学习初学者](https://img.shields.io/badge/ML%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=22C55E)](https://aka.ms/ml-beginners?WT.mc_id=academic-105485-koreyst)
+[![数据科学初学者](https://img.shields.io/badge/Data%20Science%20for%20Beginners-84CC16?style=for-the-badge&labelColor=E5E7EB&color=84CC16)](https://aka.ms/datascience-beginners?WT.mc_id=academic-105485-koreyst)
+[![人工智能初学者](https://img.shields.io/badge/AI%20for%20Beginners-A3E635?style=for-the-badge&labelColor=E5E7EB&color=A3E635)](https://aka.ms/ai-beginners?WT.mc_id=academic-105485-koreyst)
+[![网络安全初学者](https://img.shields.io/badge/Cybersecurity%20for%20Beginners-F97316?style=for-the-badge&labelColor=E5E7EB&color=F97316)](https://github.com/microsoft/Security-101?WT.mc_id=academic-96948-sayoung)
+[![网页开发初学者](https://img.shields.io/badge/Web%20Dev%20for%20Beginners-EC4899?style=for-the-badge&labelColor=E5E7EB&color=EC4899)](https://aka.ms/webdev-beginners?WT.mc_id=academic-105485-koreyst)
+[![物联网初学者](https://img.shields.io/badge/IoT%20for%20Beginners-14B8A6?style=for-the-badge&labelColor=E5E7EB&color=14B8A6)](https://aka.ms/iot-beginners?WT.mc_id=academic-105485-koreyst)
+[![XR 开发初学者](https://img.shields.io/badge/XR%20Development%20for%20Beginners-38BDF8?style=for-the-badge&labelColor=E5E7EB&color=38BDF8)](https://github.com/microsoft/xr-development-for-beginners?WT.mc_id=academic-105485-koreyst)
 
 ---
  
@@ -398,5 +404,5 @@ MCP 为 AI 应用提供了这种标准化。不是每个 AI 模型都需要为�
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **免责声明**：  
-本文件由人工智能翻译服务[Co-op Translator](https://github.com/Azure/co-op-translator)翻译而成。尽管我们力求准确，但请注意自动翻译可能包含错误或不准确之处。原始文件的母语版本应被视为权威来源。对于重要信息，建议使用专业人工翻译。因使用本翻译而产生的任何误解或误释，我们概不负责。
+本文件由人工智能翻译服务 [Co-op Translator](https://github.com/Azure/co-op-translator) 翻译。虽然我们力求准确，但请注意自动翻译可能包含错误或不准确之处。原始文件的母语版本应被视为权威来源。对于重要信息，建议使用专业人工翻译。因使用本翻译而产生的任何误解或误释，我们概不负责。
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
