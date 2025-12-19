@@ -1,45 +1,45 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "c71c60af76120a517809a6cfba47e9a3",
-  "translation_date": "2025-09-15T21:31:32+00:00",
+  "original_hash": "cf3e88e4c0b2d9d65c7f300986bd8c6c",
+  "translation_date": "2025-12-19T10:24:48+00:00",
   "source_file": "05-AdvancedTopics/mcp-transport/README.md",
   "language_code": "bn"
 }
 -->
-# MCP কাস্টম ট্রান্সপোর্ট - উন্নত বাস্তবায়ন গাইড
+# MCP কাস্টম ট্রান্সপোর্টস - উন্নত বাস্তবায়ন গাইড
 
-মডেল কনটেক্সট প্রোটোকল (MCP) পরিবহন পদ্ধতিতে নমনীয়তা প্রদান করে, যা বিশেষায়িত এন্টারপ্রাইজ পরিবেশের জন্য কাস্টম বাস্তবায়নকে সক্ষম করে। এই উন্নত গাইডটি Azure Event Grid এবং Azure Event Hubs ব্যবহার করে কাস্টম ট্রান্সপোর্ট বাস্তবায়নের উদাহরণ অনুসন্ধান করে, যা স্কেলযোগ্য, ক্লাউড-নেটিভ MCP সমাধান তৈরির জন্য কার্যকর।
+মডেল কনটেক্সট প্রোটোকল (MCP) পরিবহন প্রক্রিয়াগুলিতে নমনীয়তা প্রদান করে, যা বিশেষায়িত এন্টারপ্রাইজ পরিবেশের জন্য কাস্টম বাস্তবায়নগুলি অনুমোদন করে। এই উন্নত গাইডটি Azure ইভেন্ট গ্রিড এবং Azure ইভেন্ট হাবস ব্যবহার করে কাস্টম ট্রান্সপোর্ট বাস্তবায়নের উদাহরণ হিসেবে অন্বেষণ করে, যা স্কেলেবল, ক্লাউড-নেটিভ MCP সমাধান নির্মাণের জন্য ব্যবহার করা হয়।
 
-## ভূমিকা
+## পরিচিতি
 
-যদিও MCP-এর স্ট্যান্ডার্ড ট্রান্সপোর্ট (stdio এবং HTTP স্ট্রিমিং) বেশিরভাগ ব্যবহার ক্ষেত্রে কার্যকর, এন্টারপ্রাইজ পরিবেশ প্রায়ই উন্নত স্কেলযোগ্যতা, নির্ভরযোগ্যতা এবং বিদ্যমান ক্লাউড অবকাঠামোর সাথে ইন্টিগ্রেশনের জন্য বিশেষায়িত পরিবহন পদ্ধতির প্রয়োজন হয়। কাস্টম ট্রান্সপোর্ট MCP-কে ক্লাউড-নেটিভ মেসেজিং পরিষেবাগুলিকে অ্যাসিঙ্ক্রোনাস যোগাযোগ, ইভেন্ট-চালিত আর্কিটেকচার এবং বিতরণকৃত প্রসেসিংয়ের জন্য ব্যবহার করতে সক্ষম করে।
+যদিও MCP এর স্ট্যান্ডার্ড ট্রান্সপোর্টস (stdio এবং HTTP স্ট্রিমিং) বেশিরভাগ ব্যবহারের জন্য উপযোগী, এন্টারপ্রাইজ পরিবেশ প্রায়ই উন্নত স্কেলেবিলিটি, নির্ভরযোগ্যতা এবং বিদ্যমান ক্লাউড অবকাঠামোর সাথে ইন্টিগ্রেশনের জন্য বিশেষায়িত ট্রান্সপোর্ট প্রক্রিয়া প্রয়োজন। কাস্টম ট্রান্সপোর্ট MCP কে অ্যাসিঙ্ক্রোনাস যোগাযোগ, ইভেন্ট-চালিত আর্কিটেকচার এবং বিতরণকৃত প্রক্রিয়াকরণের জন্য ক্লাউড-নেটিভ মেসেজিং সার্ভিস ব্যবহার করার সুযোগ দেয়।
 
-এই পাঠটি সর্বশেষ MCP স্পেসিফিকেশন (2025-06-18), Azure মেসেজিং পরিষেবা এবং প্রতিষ্ঠিত এন্টারপ্রাইজ ইন্টিগ্রেশন প্যাটার্নের উপর ভিত্তি করে উন্নত ট্রান্সপোর্ট বাস্তবায়ন অনুসন্ধান করে।
+এই পাঠে সর্বশেষ MCP স্পেসিফিকেশন (2025-11-25), Azure মেসেজিং সার্ভিস এবং প্রতিষ্ঠিত এন্টারপ্রাইজ ইন্টিগ্রেশন প্যাটার্নের ভিত্তিতে উন্নত ট্রান্সপোর্ট বাস্তবায়ন অন্বেষণ করা হয়েছে।
 
 ### **MCP ট্রান্সপোর্ট আর্কিটেকচার**
 
-**MCP স্পেসিফিকেশন (2025-06-18) থেকে:**
+**MCP স্পেসিফিকেশন থেকে (2025-11-25):**
 
-- **স্ট্যান্ডার্ড ট্রান্সপোর্ট**: stdio (প্রস্তাবিত), HTTP স্ট্রিমিং (দূরবর্তী পরিস্থিতির জন্য)
-- **কাস্টম ট্রান্সপোর্ট**: যে কোনো ট্রান্সপোর্ট যা MCP মেসেজ এক্সচেঞ্জ প্রোটোকল বাস্তবায়ন করে
+- **স্ট্যান্ডার্ড ট্রান্সপোর্টস**: stdio (প্রস্তাবিত), HTTP স্ট্রিমিং (রিমোট পরিস্থিতির জন্য)
+- **কাস্টম ট্রান্সপোর্টস**: যেকোনো ট্রান্সপোর্ট যা MCP মেসেজ এক্সচেঞ্জ প্রোটোকল বাস্তবায়ন করে
 - **মেসেজ ফরম্যাট**: JSON-RPC 2.0 MCP-নির্দিষ্ট এক্সটেনশনের সাথে
 - **দ্বিমুখী যোগাযোগ**: নোটিফিকেশন এবং প্রতিক্রিয়ার জন্য পূর্ণ ডুপ্লেক্স যোগাযোগ প্রয়োজন
 
-## শেখার লক্ষ্য
+## শেখার উদ্দেশ্য
 
-এই উন্নত পাঠ শেষে, আপনি সক্ষম হবেন:
+এই উন্নত পাঠের শেষে, আপনি সক্ষম হবেন:
 
-- **কাস্টম ট্রান্সপোর্টের প্রয়োজনীয়তা বুঝুন**: MCP প্রোটোকলকে যে কোনো ট্রান্সপোর্ট লেয়ারে বাস্তবায়ন করুন এবং সম্মতি বজায় রাখুন
-- **Azure Event Grid ট্রান্সপোর্ট তৈরি করুন**: সার্ভারলেস স্কেলযোগ্যতার জন্য Azure Event Grid ব্যবহার করে ইভেন্ট-চালিত MCP সার্ভার তৈরি করুন
-- **Azure Event Hubs ট্রান্সপোর্ট বাস্তবায়ন করুন**: রিয়েল-টাইম স্ট্রিমিংয়ের জন্য Azure Event Hubs ব্যবহার করে উচ্চ-থ্রুপুট MCP সমাধান ডিজাইন করুন
-- **এন্টারপ্রাইজ প্যাটার্ন প্রয়োগ করুন**: বিদ্যমান Azure অবকাঠামো এবং নিরাপত্তা মডেলের সাথে কাস্টম ট্রান্সপোর্ট ইন্টিগ্রেট করুন
-- **ট্রান্সপোর্ট নির্ভরযোগ্যতা পরিচালনা করুন**: এন্টারপ্রাইজ পরিস্থিতির জন্য মেসেজ টেকসইতা, অর্ডারিং এবং ত্রুটি পরিচালনা বাস্তবায়ন করুন
-- **পারফরম্যান্স অপ্টিমাইজ করুন**: স্কেল, লেটেন্সি এবং থ্রুপুট প্রয়োজনীয়তার জন্য ট্রান্সপোর্ট সমাধান ডিজাইন করুন
+- **কাস্টম ট্রান্সপোর্টের প্রয়োজনীয়তা বোঝা**: MCP প্রোটোকল যেকোনো ট্রান্সপোর্ট স্তরের উপর বাস্তবায়ন করা, সম্মতি বজায় রেখে
+- **Azure ইভেন্ট গ্রিড ট্রান্সপোর্ট তৈরি করা**: সার্ভারলেস স্কেলেবিলিটির জন্য ইভেন্ট-চালিত MCP সার্ভার তৈরি করা
+- **Azure ইভেন্ট হাবস ট্রান্সপোর্ট বাস্তবায়ন করা**: রিয়েল-টাইম স্ট্রিমিংয়ের জন্য উচ্চ-থ্রুপুট MCP সমাধান ডিজাইন করা
+- **এন্টারপ্রাইজ প্যাটার্ন প্রয়োগ করা**: বিদ্যমান Azure অবকাঠামো এবং সিকিউরিটি মডেলের সাথে কাস্টম ট্রান্সপোর্ট ইন্টিগ্রেট করা
+- **ট্রান্সপোর্ট নির্ভরযোগ্যতা পরিচালনা করা**: এন্টারপ্রাইজ পরিস্থিতির জন্য মেসেজ স্থায়িত্ব, অর্ডারিং এবং ত্রুটি পরিচালনা বাস্তবায়ন করা
+- **পারফরম্যান্স অপ্টিমাইজ করা**: স্কেল, লেটেন্সি এবং থ্রুপুট প্রয়োজনীয়তার জন্য ট্রান্সপোর্ট সমাধান ডিজাইন করা
 
-## **ট্রান্সপোর্টের প্রয়োজনীয়তা**
+## **ট্রান্সপোর্ট প্রয়োজনীয়তা**
 
-### **MCP স্পেসিফিকেশন (2025-06-18) থেকে মূল প্রয়োজনীয়তা:**
+### **MCP স্পেসিফিকেশন থেকে মূল প্রয়োজনীয়তা (2025-11-25):**
 
 ```yaml
 Message Protocol:
@@ -58,28 +58,27 @@ Custom Transport:
   interoperability: "MUST maintain protocol compatibility"
 ```
 
-## **Azure Event Grid ট্রান্সপোর্ট বাস্তবায়ন**
+## **Azure ইভেন্ট গ্রিড ট্রান্সপোর্ট বাস্তবায়ন**
 
-Azure Event Grid একটি সার্ভারলেস ইভেন্ট রাউটিং পরিষেবা প্রদান করে যা ইভেন্ট-চালিত MCP আর্কিটেকচারের জন্য আদর্শ। এই বাস্তবায়নটি স্কেলযোগ্য, আলগা-কাপলড MCP সিস্টেম তৈরি করার পদ্ধতি প্রদর্শন করে।
+Azure ইভেন্ট গ্রিড একটি সার্ভারলেস ইভেন্ট রাউটিং সার্ভিস প্রদান করে যা ইভেন্ট-চালিত MCP আর্কিটেকচারের জন্য আদর্শ। এই বাস্তবায়নটি স্কেলেবল, আলগা যুক্ত MCP সিস্টেম নির্মাণের উপায় প্রদর্শন করে।
 
 ### **আর্কিটেকচার ওভারভিউ**
 
 ```mermaid
 graph TB
-    Client[MCP Client] --> EG[Azure Event Grid]
-    EG --> Server[MCP Server Function]
+    Client[MCP ক্লায়েন্ট] --> EG[Azure ইভেন্ট গ্রিড]
+    EG --> Server[MCP সার্ভার ফাংশন]
     Server --> EG
     EG --> Client
     
-    subgraph "Azure Services"
+    subgraph "Azure পরিষেবাসমূহ"
         EG
         Server
         KV[Key Vault]
-        Monitor[Application Insights]
+        Monitor[অ্যাপ্লিকেশন ইনসাইটস]
     end
 ```
-
-### **C# বাস্তবায়ন - Event Grid ট্রান্সপোর্ট**
+### **C# বাস্তবায়ন - ইভেন্ট গ্রিড ট্রান্সপোর্ট**
 
 ```csharp
 using Azure.Messaging.EventGrid;
@@ -151,7 +150,7 @@ public async Task<IActionResult> HandleEventGridMessage(
 }
 ```
 
-### **TypeScript বাস্তবায়ন - Event Grid ট্রান্সপোর্ট**
+### **TypeScript বাস্তবায়ন - ইভেন্ট গ্রিড ট্রান্সপোর্ট**
 
 ```typescript
 import { EventGridPublisherClient, AzureKeyCredential } from "@azure/eventgrid";
@@ -185,14 +184,14 @@ export class EventGridMcpTransport implements McpTransport {
         await this.publisher.sendEvents([event]);
     }
     
-    // Event-driven receive via Azure Functions
+    // ইভেন্ট-চালিত গ্রহণ Azure Functions এর মাধ্যমে
     onMessage(handler: (message: McpMessage) => Promise<void>): void {
-        // Implementation would use Azure Functions Event Grid trigger
-        // This is a conceptual interface for the webhook receiver
+        // বাস্তবায়ন Azure Functions Event Grid ট্রিগার ব্যবহার করবে
+        // এটি ওয়েবহুক রিসিভারের জন্য একটি ধারণাগত ইন্টারফেস
     }
 }
 
-// Azure Functions implementation
+// Azure Functions বাস্তবায়ন
 import { app, InvocationContext, EventGridEvent } from "@azure/functions";
 
 app.eventGrid("mcpEventGridHandler", {
@@ -200,10 +199,10 @@ app.eventGrid("mcpEventGridHandler", {
         try {
             const mcpMessage = event.data as McpMessage;
             
-            // Process MCP message
+            // MCP বার্তা প্রক্রিয়াকরণ
             const response = await mcpServer.processMessage(mcpMessage);
             
-            // Send response via Event Grid
+            // Event Grid এর মাধ্যমে প্রতিক্রিয়া পাঠান
             await transport.sendMessage(response);
             
         } catch (error) {
@@ -214,7 +213,7 @@ app.eventGrid("mcpEventGridHandler", {
 });
 ```
 
-### **Python বাস্তবায়ন - Event Grid ট্রান্সপোর্ট**
+### **Python বাস্তবায়ন - ইভেন্ট গ্রিড ট্রান্সপোর্ট**
 
 ```python
 from azure.eventgrid import EventGridPublisherClient, EventGridEvent
@@ -249,52 +248,51 @@ class EventGridMcpTransport:
         """Register message handler for incoming events"""
         self.message_handler = handler
 
-# Azure Functions implementation
+# আজুর ফাংশনস বাস্তবায়ন
 import azure.functions as func
 import logging
 
 def main(event: func.EventGridEvent) -> None:
     """Azure Functions Event Grid trigger for MCP messages"""
     try:
-        # Parse MCP message from Event Grid event
+        # ইভেন্ট গ্রিড ইভেন্ট থেকে MCP বার্তা পার্স করুন
         mcp_message = json.loads(event.get_body().decode('utf-8'))
         
-        # Process MCP message
+        # MCP বার্তা প্রক্রিয়াকরণ করুন
         response = process_mcp_message(mcp_message)
         
-        # Send response back via Event Grid
-        # (Implementation would create new Event Grid client)
+        # ইভেন্ট গ্রিডের মাধ্যমে প্রতিক্রিয়া পাঠান
+        # (বাস্তবায়ন নতুন ইভেন্ট গ্রিড ক্লায়েন্ট তৈরি করবে)
         
     except Exception as e:
         logging.error(f"Error processing MCP Event Grid message: {e}")
         raise
 ```
 
-## **Azure Event Hubs ট্রান্সপোর্ট বাস্তবায়ন**
+## **Azure ইভেন্ট হাবস ট্রান্সপোর্ট বাস্তবায়ন**
 
-Azure Event Hubs MCP পরিস্থিতির জন্য কম লেটেন্সি এবং উচ্চ মেসেজ ভলিউমের প্রয়োজনীয়তার জন্য উচ্চ-থ্রুপুট, রিয়েল-টাইম স্ট্রিমিং ক্ষমতা প্রদান করে।
+Azure ইভেন্ট হাবস উচ্চ-থ্রুপুট, রিয়েল-টাইম স্ট্রিমিং ক্ষমতা প্রদান করে MCP পরিস্থিতির জন্য যা কম লেটেন্সি এবং উচ্চ মেসেজ ভলিউম প্রয়োজন।
 
 ### **আর্কিটেকচার ওভারভিউ**
 
 ```mermaid
 graph TB
-    Client[MCP Client] --> EH[Azure Event Hubs]
-    EH --> Server[MCP Server]
+    Client[MCP ক্লায়েন্ট] --> EH[Azure ইভেন্ট হাবস]
+    EH --> Server[MCP সার্ভার]
     Server --> EH
     EH --> Client
     
-    subgraph "Event Hubs Features"
-        Partition[Partitioning]
-        Retention[Message Retention]
-        Scaling[Auto Scaling]
+    subgraph "ইভেন্ট হাবস বৈশিষ্ট্য"
+        Partition[পার্টিশনিং]
+        Retention[বার্তা সংরক্ষণ]
+        Scaling[স্বয়ংক্রিয় স্কেলিং]
     end
     
     EH --> Partition
     EH --> Retention
     EH --> Scaling
 ```
-
-### **C# বাস্তবায়ন - Event Hubs ট্রান্সপোর্ট**
+### **C# বাস্তবায়ন - ইভেন্ট হাবস ট্রান্সপোর্ট**
 
 ```csharp
 using Azure.Messaging.EventHubs;
@@ -368,7 +366,7 @@ public class EventHubsMcpTransport : IMcpTransport, IDisposable
 }
 ```
 
-### **TypeScript বাস্তবায়ন - Event Hubs ট্রান্সপোর্ট**
+### **TypeScript বাস্তবায়ন - ইভেন্ট হাবস ট্রান্সপোর্ট**
 
 ```typescript
 import { 
@@ -427,7 +425,7 @@ export class EventHubsMcpTransport implements McpTransport {
                         
                         await messageHandler(mcpMessage);
                         
-                        // Update checkpoint for at-least-once delivery
+                        // কমপক্ষে একবার ডেলিভারির জন্য চেকপয়েন্ট আপডেট করুন
                         await context.updateCheckpoint(event);
                     } catch (error) {
                         console.error("Error processing Event Hubs message:", error);
@@ -448,7 +446,7 @@ export class EventHubsMcpTransport implements McpTransport {
 }
 ```
 
-### **Python বাস্তবায়ন - Event Hubs ট্রান্সপোর্ট**
+### **Python বাস্তবায়ন - ইভেন্ট হাবস ট্রান্সপোর্ট**
 
 ```python
 from azure.eventhub import EventHubProducerClient, EventHubConsumerClient
@@ -480,11 +478,11 @@ class EventHubsMcpTransport:
         """Send MCP message via Event Hubs"""
         event_data = EventData(json.dumps(message))
         
-        # Add MCP-specific properties
+        # MCP-নির্দিষ্ট বৈশিষ্ট্য যোগ করুন
         event_data.properties = {
             "messageType": message.get("method", "response"),
             "messageId": message.get("id"),
-            "timestamp": "2025-01-14T10:30:00Z"  # Use actual timestamp
+            "timestamp": "2025-01-14T10:30:00Z"  # প্রকৃত টাইমস্ট্যাম্প ব্যবহার করুন
         }
         
         async with self.producer:
@@ -505,21 +503,21 @@ class EventHubsMcpTransport:
         async with self.consumer:
             await self.consumer.receive(
                 on_event=self._on_event_received(message_handler),
-                starting_position="-1"  # Start from beginning
+                starting_position="-1"  # শুরু থেকে শুরু করুন
             )
     
     def _on_event_received(self, handler: Callable):
         """Internal event handler wrapper"""
         async def handle_event(partition_context, event):
             try:
-                # Parse MCP message from Event Hubs event
+                # ইভেন্ট হাবের ইভেন্ট থেকে MCP বার্তা পার্স করুন
                 message_body = event.body_as_str(encoding='UTF-8')
                 mcp_message = json.loads(message_body)
                 
-                # Process MCP message
+                # MCP বার্তা প্রক্রিয়াকরণ করুন
                 await handler(mcp_message)
                 
-                # Update checkpoint for at-least-once delivery
+                # কমপক্ষে একবার ডেলিভারির জন্য চেকপয়েন্ট আপডেট করুন
                 await partition_context.update_checkpoint(event)
                 
             except Exception as e:
@@ -534,9 +532,9 @@ class EventHubsMcpTransport:
         await self.consumer.close()
 ```
 
-## **উন্নত ট্রান্সপোর্ট প্যাটার্ন**
+## **উন্নত ট্রান্সপোর্ট প্যাটার্নস**
 
-### **মেসেজ টেকসইতা এবং নির্ভরযোগ্যতা**
+### **মেসেজ স্থায়িত্ব এবং নির্ভরযোগ্যতা**
 
 ```csharp
 // Implementing message durability with retry logic
@@ -563,7 +561,7 @@ public class ReliableTransportWrapper : IMcpTransport
 }
 ```
 
-### **ট্রান্সপোর্ট নিরাপত্তা ইন্টিগ্রেশন**
+### **ট্রান্সপোর্ট সিকিউরিটি ইন্টিগ্রেশন**
 
 ```csharp
 // Integrating Azure Key Vault for transport security
@@ -585,7 +583,7 @@ public class SecureTransportFactory
 }
 ```
 
-### **ট্রান্সপোর্ট মনিটরিং এবং পর্যবেক্ষণযোগ্যতা**
+### **ট্রান্সপোর্ট মনিটরিং এবং অবজারভেবিলিটি**
 
 ```csharp
 // Adding telemetry to custom transports
@@ -626,9 +624,9 @@ public class ObservableTransport : IMcpTransport
 
 ## **এন্টারপ্রাইজ ইন্টিগ্রেশন পরিস্থিতি**
 
-### **পরিস্থিতি ১: বিতরণকৃত MCP প্রসেসিং**
+### **পরিস্থিতি ১: বিতরণকৃত MCP প্রক্রিয়াকরণ**
 
-Azure Event Grid ব্যবহার করে MCP অনুরোধগুলি একাধিক প্রসেসিং নোডে বিতরণ করা:
+একাধিক প্রক্রিয়াকরণ নোডে MCP অনুরোধ বিতরণের জন্য Azure ইভেন্ট গ্রিড ব্যবহার:
 
 ```yaml
 Architecture:
@@ -644,7 +642,7 @@ Benefits:
 
 ### **পরিস্থিতি ২: রিয়েল-টাইম MCP স্ট্রিমিং**
 
-উচ্চ-ফ্রিকোয়েন্সি MCP ইন্টারঅ্যাকশনের জন্য Azure Event Hubs ব্যবহার করা:
+উচ্চ-ফ্রিকোয়েন্সি MCP ইন্টারঅ্যাকশনের জন্য Azure ইভেন্ট হাবস ব্যবহার:
 
 ```yaml
 Architecture:
@@ -660,7 +658,7 @@ Benefits:
 
 ### **পরিস্থিতি ৩: হাইব্রিড ট্রান্সপোর্ট আর্কিটেকচার**
 
-বিভিন্ন ব্যবহার ক্ষেত্রে একাধিক ট্রান্সপোর্ট একত্রিত করা:
+বিভিন্ন ব্যবহারের জন্য একাধিক ট্রান্সপোর্ট সংমিশ্রণ:
 
 ```csharp
 public class HybridMcpTransport : IMcpTransport
@@ -686,7 +684,7 @@ public class HybridMcpTransport : IMcpTransport
 
 ## **পারফরম্যান্স অপ্টিমাইজেশন**
 
-### **Event Grid-এর জন্য মেসেজ ব্যাচিং**
+### **ইভেন্ট গ্রিডের জন্য মেসেজ ব্যাচিং**
 
 ```csharp
 public class BatchingEventGridTransport : IMcpTransport
@@ -726,7 +724,7 @@ public class BatchingEventGridTransport : IMcpTransport
 }
 ```
 
-### **Event Hubs-এর জন্য পার্টিশনিং কৌশল**
+### **ইভেন্ট হাবসের জন্য পার্টিশনিং স্ট্র্যাটেজি**
 
 ```csharp
 public class PartitionedEventHubsTransport : IMcpTransport
@@ -746,9 +744,9 @@ public class PartitionedEventHubsTransport : IMcpTransport
 }
 ```
 
-## **কাস্টম ট্রান্সপোর্ট পরীক্ষা করা**
+## **কাস্টম ট্রান্সপোর্টস টেস্টিং**
 
-### **টেস্ট ডাবল ব্যবহার করে ইউনিট টেস্টিং**
+### **টেস্ট ডাবলস দিয়ে ইউনিট টেস্টিং**
 
 ```csharp
 [Test]
@@ -775,7 +773,7 @@ public async Task EventGridTransport_SendMessage_PublishesCorrectEvent()
 }
 ```
 
-### **Azure টেস্ট কন্টেইনার ব্যবহার করে ইন্টিগ্রেশন টেস্টিং**
+### **Azure টেস্ট কন্টেইনারস দিয়ে ইন্টিগ্রেশন টেস্টিং**
 
 ```csharp
 [Test]
@@ -812,45 +810,48 @@ public async Task EventHubsTransport_IntegrationTest()
 
 ### **ট্রান্সপোর্ট ডিজাইন নীতিমালা**
 
-1. **আইডেমপোটেন্সি**: ডুপ্লিকেট পরিচালনা করার জন্য মেসেজ প্রসেসিং আইডেমপোটেন্ট নিশ্চিত করুন
-2. **ত্রুটি পরিচালনা**: ব্যাপক ত্রুটি পরিচালনা এবং ডেড লেটার কিউ বাস্তবায়ন করুন
+1. **আইডেম্পোটেন্সি**: ডুপ্লিকেট হ্যান্ডল করার জন্য মেসেজ প্রক্রিয়াকরণ আইডেম্পোটেন্ট নিশ্চিত করুন
+2. **ত্রুটি পরিচালনা**: বিস্তৃত ত্রুটি পরিচালনা এবং ডেড লেটার কিউ বাস্তবায়ন করুন
 3. **মনিটরিং**: বিস্তারিত টেলিমেট্রি এবং স্বাস্থ্য পরীক্ষা যোগ করুন
-4. **নিরাপত্তা**: ম্যানেজড আইডেন্টিটি এবং সর্বনিম্ন প্রিভিলেজ অ্যাক্সেস ব্যবহার করুন
+4. **সিকিউরিটি**: ম্যানেজড আইডেন্টিটি এবং সর্বনিম্ন প্রিভিলেজ অ্যাক্সেস ব্যবহার করুন
 5. **পারফরম্যান্স**: আপনার নির্দিষ্ট লেটেন্সি এবং থ্রুপুট প্রয়োজনীয়তার জন্য ডিজাইন করুন
 
-### **Azure-নির্দিষ্ট সুপারিশ**
+### **Azure-নির্দিষ্ট সুপারিশসমূহ**
 
-1. **ম্যানেজড আইডেন্টিটি ব্যবহার করুন**: প্রোডাকশনে সংযোগ স্ট্রিং এড়িয়ে চলুন
-2. **সার্কিট ব্রেকার বাস্তবায়ন করুন**: Azure পরিষেবা বিভ্রাট থেকে সুরক্ষা প্রদান করুন
-3. **খরচ পর্যবেক্ষণ করুন**: মেসেজ ভলিউম এবং প্রসেসিং খরচ ট্র্যাক করুন
-4. **স্কেলের জন্য পরিকল্পনা করুন**: প্রাথমিকভাবে পার্টিশনিং এবং স্কেলিং কৌশল ডিজাইন করুন
-5. **যথাযথভাবে পরীক্ষা করুন**: ব্যাপক পরীক্ষার জন্য Azure DevTest Labs ব্যবহার করুন
+1. **ম্যানেজড আইডেন্টিটি ব্যবহার করুন**: প্রোডাকশনে কানেকশন স্ট্রিং এড়িয়ে চলুন
+2. **সার্কিট ব্রেকার বাস্তবায়ন করুন**: Azure সার্ভিস আউটেজ থেকে সুরক্ষা দিন
+3. **খরচ মনিটর করুন**: মেসেজ ভলিউম এবং প্রক্রিয়াকরণ খরচ ট্র্যাক করুন
+4. **স্কেলের জন্য পরিকল্পনা করুন**: প্রাথমিকভাবে পার্টিশনিং এবং স্কেলিং স্ট্র্যাটেজি ডিজাইন করুন
+5. **পরিপূর্ণভাবে পরীক্ষা করুন**: বিস্তৃত পরীক্ষার জন্য Azure DevTest Labs ব্যবহার করুন
 
 ## **উপসংহার**
 
-কাস্টম MCP ট্রান্সপোর্ট Azure-এর মেসেজিং পরিষেবাগুলি ব্যবহার করে শক্তিশালী এন্টারপ্রাইজ পরিস্থিতি সক্ষম করে। Event Grid বা Event Hubs ট্রান্সপোর্ট বাস্তবায়ন করে, আপনি স্কেলযোগ্য, নির্ভরযোগ্য MCP সমাধান তৈরি করতে পারেন যা বিদ্যমান Azure অবকাঠামোর সাথে নির্বিঘ্নে ইন্টিগ্রেট হয়।
+কাস্টম MCP ট্রান্সপোর্টস Azure এর মেসেজিং সার্ভিস ব্যবহার করে শক্তিশালী এন্টারপ্রাইজ পরিস্থিতি সক্ষম করে। ইভেন্ট গ্রিড বা ইভেন্ট হাবস ট্রান্সপোর্ট বাস্তবায়ন করে, আপনি স্কেলেবল, নির্ভরযোগ্য MCP সমাধান তৈরি করতে পারেন যা বিদ্যমান Azure অবকাঠামোর সাথে নির্বিঘ্নে ইন্টিগ্রেট হয়।
 
 প্রদত্ত উদাহরণগুলি MCP প্রোটোকল সম্মতি এবং Azure সেরা অনুশীলন বজায় রেখে কাস্টম ট্রান্সপোর্ট বাস্তবায়নের জন্য প্রোডাকশন-রেডি প্যাটার্ন প্রদর্শন করে।
 
 ## **অতিরিক্ত সম্পদ**
 
 - [MCP স্পেসিফিকেশন 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/)
-- [Azure Event Grid ডকুমেন্টেশন](https://docs.microsoft.com/azure/event-grid/)
-- [Azure Event Hubs ডকুমেন্টেশন](https://docs.microsoft.com/azure/event-hubs/)
-- [Azure Functions Event Grid Trigger](https://docs.microsoft.com/azure/azure-functions/functions-bindings-event-grid)
+- [Azure ইভেন্ট গ্রিড ডকুমেন্টেশন](https://docs.microsoft.com/azure/event-grid/)
+- [Azure ইভেন্ট হাবস ডকুমেন্টেশন](https://docs.microsoft.com/azure/event-hubs/)
+- [Azure ফাংশনস ইভেন্ট গ্রিড ট্রিগার](https://docs.microsoft.com/azure/azure-functions/functions-bindings-event-grid)
 - [Azure SDK for .NET](https://github.com/Azure/azure-sdk-for-net)
 - [Azure SDK for TypeScript](https://github.com/Azure/azure-sdk-for-js)
 - [Azure SDK for Python](https://github.com/Azure/azure-sdk-for-python)
 
 ---
 
-> *এই গাইডটি প্রোডাকশন MCP সিস্টেমের জন্য ব্যবহারিক বাস্তবায়ন প্যাটার্নগুলির উপর ফোকাস করে। সর্বদা আপনার নির্দিষ্ট প্রয়োজনীয়তা এবং Azure পরিষেবা সীমার বিরুদ্ধে ট্রান্সপোর্ট বাস্তবায়ন যাচাই করুন।*
-> **বর্তমান মান**: এই গাইডটি [MCP স্পেসিফিকেশন 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) ট্রান্সপোর্ট প্রয়োজনীয়তা এবং এন্টারপ্রাইজ পরিবেশের জন্য উন্নত ট্রান্সপোর্ট প্যাটার্ন প্রতিফলিত করে।
+> *এই গাইডটি প্রোডাকশন MCP সিস্টেমের জন্য ব্যবহারিক বাস্তবায়ন প্যাটার্নগুলিতে ফোকাস করে। সর্বদা আপনার নির্দিষ্ট প্রয়োজনীয়তা এবং Azure সার্ভিস সীমার বিরুদ্ধে ট্রান্সপোর্ট বাস্তবায়ন যাচাই করুন।*
+> **বর্তমান স্ট্যান্ডার্ড**: এই গাইডটি [MCP স্পেসিফিকেশন 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) ট্রান্সপোর্ট প্রয়োজনীয়তা এবং এন্টারপ্রাইজ পরিবেশের জন্য উন্নত ট্রান্সপোর্ট প্যাটার্ন প্রতিফলিত করে।
+
 
 ## পরবর্তী কী
-- [6. কমিউনিটি কন্ট্রিবিউশন](../../06-CommunityContributions/README.md)
+- [6. কমিউনিটি অবদান](../../06-CommunityContributions/README.md)
 
 ---
 
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **অস্বীকৃতি**:  
-এই নথিটি AI অনুবাদ পরিষেবা [Co-op Translator](https://github.com/Azure/co-op-translator) ব্যবহার করে অনুবাদ করা হয়েছে। আমরা যথাসম্ভব সঠিক অনুবাদ প্রদানের চেষ্টা করি, তবে অনুগ্রহ করে মনে রাখবেন যে স্বয়ংক্রিয় অনুবাদে ত্রুটি বা অসঙ্গতি থাকতে পারে। মূল ভাষায় থাকা নথিটিকে প্রামাণিক উৎস হিসেবে বিবেচনা করা উচিত। গুরুত্বপূর্ণ তথ্যের জন্য, পেশাদার মানব অনুবাদ সুপারিশ করা হয়। এই অনুবাদ ব্যবহারের ফলে কোনো ভুল বোঝাবুঝি বা ভুল ব্যাখ্যা হলে আমরা দায়বদ্ধ থাকব না।
+এই নথিটি AI অনুবাদ সেবা [Co-op Translator](https://github.com/Azure/co-op-translator) ব্যবহার করে অনূদিত হয়েছে। আমরা যথাসাধ্য সঠিকতার চেষ্টা করি, তবে স্বয়ংক্রিয় অনুবাদে ত্রুটি বা অসঙ্গতি থাকতে পারে। মূল নথিটি তার নিজস্ব ভাষায়ই কর্তৃত্বপূর্ণ উৎস হিসেবে বিবেচিত হওয়া উচিত। গুরুত্বপূর্ণ তথ্যের জন্য পেশাদার মানব অনুবাদ গ্রহণ করার পরামর্শ দেওয়া হয়। এই অনুবাদের ব্যবহারে সৃষ্ট কোনো ভুল বোঝাবুঝি বা ভুল ব্যাখ্যার জন্য আমরা দায়ী নই।
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

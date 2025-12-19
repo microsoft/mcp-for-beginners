@@ -1,209 +1,215 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "057dd5cc6bea6434fdb788e6c93f3f3d",
-  "translation_date": "2025-10-11T12:00:31+00:00",
+  "original_hash": "e30aaf6b178137fa6668efc1b20851d5",
+  "translation_date": "2025-12-19T18:24:15+00:00",
   "source_file": "02-Security/mcp-security-best-practices-2025.md",
   "language_code": "et"
 }
 -->
-# MCP Turvalisuse Parimad Tavad - August 2025 Uuendus
+# MCP turvalisuse parimad tavad - detsember 2025 uuendus
 
-> **Oluline**: See dokument kajastab uusimaid [MCP Spetsifikatsioon 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) turvanõudeid ja ametlikke [MCP Turvalisuse Parimaid Tavasid](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices). Järgige alati kehtivat spetsifikatsiooni, et saada kõige ajakohasemat juhendit.
+> **Tähtis**: See dokument kajastab uusimaid [MCP spetsifikatsiooni 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) turvanõudeid ja ametlikke [MCP turvalisuse parimaid tavasid](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices). Järgige alati kehtivat spetsifikatsiooni, et saada kõige ajakohasemat juhendit.
 
-## Olulised Turvalisuse Tavad MCP Rakenduste jaoks
+## MCP rakenduste olulised turvapraktikad
 
-Model Context Protocol toob kaasa unikaalseid turvalisuse väljakutseid, mis ulatuvad kaugemale traditsioonilisest tarkvara turvalisusest. Need tavad käsitlevad nii põhilisi turvanõudeid kui ka MCP-spetsiifilisi ohte, sealhulgas prompt injection, tööriistade mürgitamine, sessiooni kaaperdamine, segadusse aetud asendaja probleemid ja token passthrough haavatavused.
+Model Context Protocol toob kaasa unikaalseid turvalisuse väljakutseid, mis ulatuvad traditsioonilisest tarkvaraturvalisusest kaugemale. Need tavad käsitlevad nii põhilisi turvanõudeid kui ka MCP-spetsiifilisi ohte, sealhulgas promptide süstimist, tööriistade mürgitamist, sessiooni kaaperdamist, segaduses esindaja probleeme ja tokeni läbipääsu haavatavusi.
 
-### **KOHUSTUSLIKUD Turvanõuded**
+### **KOHUSTUSLIKUD turvanõuded**
 
-**Olulised nõuded MCP Spetsifikatsioonist:**
+**Olulised nõuded MCP spetsifikatsioonist:**
 
-> **EI TOHI**: MCP serverid **EI TOHI** aktsepteerida ühtegi tokenit, mis ei ole MCP serveri jaoks selgesõnaliselt välja antud  
-> 
+### **KOHUSTUSLIKUD turvanõuded**
+
+**Olulised nõuded MCP spetsifikatsioonist:**
+
+> **EI TOHI**: MCP serverid **EI TOHI** vastu võtta ühtegi tokenit, mis ei ole selgesõnaliselt MCP serverile väljastatud  
+>  
 > **PEAB**: MCP serverid, mis rakendavad autoriseerimist, **PEAVAD** kontrollima KÕIKI sissetulevaid päringuid  
 >  
-> **EI TOHI**: MCP serverid **EI TOHI** kasutada autentimiseks sessioone  
->
-> **PEAB**: MCP proxy serverid, mis kasutavad staatilisi kliendi ID-sid, **PEAVAD** saama kasutaja nõusoleku iga dünaamiliselt registreeritud kliendi jaoks  
+> **EI TOHI**: MCP serverid **EI TOHI** kasutada sessioone autentimiseks  
+>  
+> **PEAB**: MCP proxy serverid, mis kasutavad staatilisi kliendi ID-sid, **PEAVAD** saama kasutaja nõusoleku iga dünaamiliselt registreeritud kliendi jaoks
 
 ---
 
-## 1. **Tokenite Turvalisus ja Autentimine**
+## 1. **Tokeni turvalisus ja autentimine**
 
-**Autentimise ja Autoriseerimise Kontrollid:**
-   - **Põhjalik Autoriseerimise Ülevaatus**: Viige läbi ulatuslikud auditid MCP serveri autoriseerimisloogika kohta, et tagada, et ainult ettenähtud kasutajad ja kliendid pääsevad ressurssidele ligi  
-   - **Välise Identiteedipakkuja Integreerimine**: Kasutage tuntud identiteedipakkujaid nagu Microsoft Entra ID, mitte ärge rakendage kohandatud autentimist  
-   - **Tokeni Sihtgrupi Kontroll**: Kontrollige alati, et tokenid oleksid selgesõnaliselt välja antud teie MCP serveri jaoks - ärge kunagi aktsepteerige ülesvoolu tokenit  
-   - **Õige Tokeni Elutsükkel**: Rakendage turvalist tokenite rotatsiooni, aegumispoliitikaid ja vältige tokenite korduskasutamise rünnakuid  
+**Autentimise ja autoriseerimise kontrollid:**  
+   - **Range autoriseerimise ülevaatus**: Tehke põhjalikke auditeid MCP serveri autoriseerimisloogikas, et tagada ligipääs ainult kavandatud kasutajatele ja klientidele  
+   - **Välise identiteedipakkuja integreerimine**: Kasutage tuntud identiteedipakkujaid nagu Microsoft Entra ID, mitte kohandatud autentimise rakendamist  
+   - **Tokeni sihtrühma valideerimine**: Kontrollige alati, et tokenid oleksid selgesõnaliselt teie MCP serverile väljastatud – ärge kunagi aktsepteerige ülemisi tokeneid  
+   - **Õige tokeni elutsükkel**: Rakendage turvalist tokeni rotatsiooni, aegumispoliitikaid ja vältige tokeni korduvkasutuse rünnakuid
 
-**Tokenite Kaitstud Salvestamine:**
-   - Kasutage Azure Key Vaulti või sarnaseid turvalisi volikirjade hoidlaid kõigi saladuste jaoks  
+**Kaitstud tokeni salvestus:**  
+   - Kasutage kõigi saladuste jaoks Azure Key Vaulti või sarnaseid turvalisi volituste hoidlaid  
    - Rakendage tokenite krüpteerimist nii puhkeolekus kui ka edastamisel  
-   - Korrapärane volikirjade rotatsioon ja volitamata juurdepääsu jälgimine  
+   - Regulaarne volituste rotatsioon ja volitamata juurdepääsu jälgimine
 
-## 2. **Sessioonihaldus ja Transpordi Turvalisus**
+## 2. **Sessioonihaldus ja transporditurvalisus**
 
-**Turvalised Sessioonitavad:**
-   - **Krüptograafiliselt Turvalised Sessiooni ID-d**: Kasutage turvalisi, mitte-deterministlikke sessiooni ID-sid, mis on genereeritud turvaliste juhuslike numbrite generaatoritega  
-   - **Kasutajaspetsiifiline Sidumine**: Siduge sessiooni ID-d kasutaja identiteetidega, kasutades formaate nagu `<user_id>:<session_id>`, et vältida sessioonide kuritarvitamist kasutajate vahel  
-   - **Sessiooni Elutsükli Haldus**: Rakendage õiget aegumist, rotatsiooni ja tühistamist, et piirata haavatavuse aknaid  
-   - **HTTPS/TLS Kohustuslikkus**: Kohustuslik HTTPS kogu suhtluse jaoks, et vältida sessiooni ID-de pealtkuulamist  
+**Turvalised sessioonipraktikad:**  
+   - **Krüptograafiliselt turvalised sessiooni ID-d**: Kasutage turvalisi, mitte-deterministlikke sessiooni ID-sid, mis on genereeritud turvaliste juhuslike arvude generaatoritega  
+   - **Kasutajapõhine sidumine**: Siduge sessiooni ID-d kasutaja identiteediga vormingus `<user_id>:<session_id>`, et vältida sessioonide väärkasutust kasutajate vahel  
+   - **Sessiooni elutsükli haldus**: Rakendage õiget aegumist, rotatsiooni ja tühistamist, et piirata haavatavuse aken  
+   - **HTTPS/TLS nõue**: Kõik suhtlus peab toimuma HTTPS kaudu, et vältida sessiooni ID vargust
 
-**Transpordikihi Turvalisus:**
-   - Konfigureerige TLS 1.3 võimaluse korral koos korraliku sertifikaadihaldusega  
-   - Rakendage sertifikaadi kinnitamist kriitiliste ühenduste jaoks  
-   - Korrapärane sertifikaatide rotatsioon ja kehtivuse kontroll  
+**Transpordikihi turvalisus:**  
+   - Konfigureerige TLS 1.3 võimalusel koos nõuetekohase sertifikaadi haldusega  
+   - Rakendage sertifikaadi kinnitamist (pinning) kriitiliste ühenduste jaoks  
+   - Regulaarne sertifikaadi rotatsioon ja kehtivuse kontroll
 
-## 3. **AI-Spetsiifiliste Ohtude Kaitse** 🤖
+## 3. **AI-spetsiifiline ohtude kaitse** 🤖
 
-**Prompt Injection Kaitse:**
-   - **Microsoft Prompt Shields**: Kasutage AI Prompt Shieldi, et tuvastada ja filtreerida pahatahtlikke juhiseid  
-   - **Sisendi Sanitiseerimine**: Kontrollige ja puhastage kõik sisendid, et vältida injektsioonirünnakuid ja segadusse aetud asendaja probleeme  
-   - **Sisu Piirid**: Kasutage eraldus- ja andemärgistussüsteeme, et eristada usaldusväärseid juhiseid välisest sisust  
+**Promptide süstimise kaitse:**  
+   - **Microsoft Prompt Shields**: Kasutage AI Prompt Shields tehnoloogiat pahatahtlike juhiste tuvastamiseks ja filtreerimiseks  
+   - **Sisendi puhastamine**: Kontrollige ja puhastage kõik sisendid, et vältida süstimisrünnakuid ja segaduses esindaja probleeme  
+   - **Sisu piirid**: Kasutage eraldajaid ja andmemärgistussüsteeme, et eristada usaldusväärseid juhiseid välisest sisust
 
-**Tööriistade Mürgitamise Ennetamine:**
-   - **Tööriista Metaandmete Kontroll**: Rakendage tööriistade määratluste terviklikkuse kontrolli ja jälgige ootamatuid muudatusi  
-   - **Dünaamiline Tööriistade Jälgimine**: Jälgige käitusaja käitumist ja seadistage hoiatused ootamatute täitmismustrite jaoks  
-   - **Kinnitamise Töövood**: Nõudke kasutaja selgesõnalist kinnitust tööriistade muudatuste ja võimekuse muutuste jaoks  
+**Tööriistade mürgitamise ennetamine:**  
+   - **Tööriista metaandmete valideerimine**: Rakendage terviklikkuse kontrollid tööriistade definitsioonidele ja jälgige ootamatuid muudatusi  
+   - **Dünaamiline tööriistade jälgimine**: Jälgige tööriistade käitumist reaalajas ja seadistage hoiatused ootamatute täitmismustrite korral  
+   - **Kinnituse töövood**: Nõudke kasutaja selgesõnalist kinnitust tööriistade muudatuste ja võimekuse muutuste jaoks
 
-## 4. **Juurdepääsukontroll ja Õigused**
+## 4. **Ligipääsukontroll ja õigused**
 
-**Vähima Õiguse Printsiip:**
-   - Andke MCP serveritele ainult minimaalsed õigused, mis on vajalikud ettenähtud funktsionaalsuse jaoks  
-   - Rakendage rollipõhist juurdepääsukontrolli (RBAC) koos peeneteraliste õigustega  
-   - Korrapärased õiguste ülevaatused ja pidev jälgimine privileegide eskaleerimise suhtes  
+**Vähima privileegi põhimõte:**  
+   - Andke MCP serveritele ainult minimaalsed õigused, mis on vajalikud kavandatud funktsionaalsuseks  
+   - Rakendage rollipõhist ligipääsukontrolli (RBAC) peenhäälestatud õigustega  
+   - Regulaarne õiguste ülevaatus ja pidev jälgimine privileegide eskalatsiooni vältimiseks
 
-**Käitusaja Õiguste Kontrollid:**
-   - Rakendage ressursipiiranguid, et vältida ressursi ammendumise rünnakuid  
-   - Kasutage konteineri isolatsiooni tööriistade täitmise keskkondade jaoks  
-   - Rakendage just-in-time juurdepääsu administratiivsete funktsioonide jaoks  
+**Käivitusaja õiguste kontroll:**  
+   - Rakendage ressursipiiranguid, et vältida ressursi ammendamise rünnakuid  
+   - Kasutage konteinerite isolatsiooni tööriistade täitmise keskkondades  
+   - Rakendage just-in-time ligipääsu haldusfunktsioonide jaoks
 
-## 5. **Sisu Turvalisus ja Jälgimine**
+## 5. **Sisu turvalisus ja jälgimine**
 
-**Sisu Turvalisuse Rakendamine:**
-   - **Azure Content Safety Integreerimine**: Kasutage Azure Content Safetyt, et tuvastada kahjulikku sisu, jailbreak-katseid ja poliitika rikkumisi  
-   - **Käitumuslik Analüüs**: Rakendage käitusaja käitumise jälgimist, et tuvastada anomaaliaid MCP serveri ja tööriistade täitmises  
-   - **Ulatuslik Logimine**: Logige kõik autentimiskatsed, tööriistade käivitamised ja turvaintsidendid turvalise, manipuleerimiskindla salvestusega  
+**Sisu turvalisuse rakendamine:**  
+   - **Azure Content Safety integreerimine**: Kasutage Azure Content Safety teenust kahjuliku sisu, jailbreak-katsete ja poliitikavigade tuvastamiseks  
+   - **Käitumuslik analüüs**: Rakendage käivitusaegset käitumise jälgimist MCP serveri ja tööriistade täitmise anomaaliate tuvastamiseks  
+   - **Põhjalik logimine**: Logige kõik autentimiskatsed, tööriistade kutsed ja turvasündmused turvalisse, muutmatusse salvestusse
 
-**Pidev Jälgimine:**
-   - Reaalajas hoiatused kahtlaste mustrite ja volitamata juurdepääsukatsete kohta  
-   - Integreerimine SIEM-süsteemidega tsentraliseeritud turvaintsidentide haldamiseks  
-   - Korrapärased turvaauditid ja MCP rakenduste läbitungimistestid  
+**Pidev jälgimine:**  
+   - Reaalajas hoiatused kahtlaste mustrite ja volitamata juurdepääsu katsete korral  
+   - Integreerimine SIEM süsteemidega tsentraliseeritud turvasündmuste halduseks  
+   - Regulaarne turvaaudit ja MCP rakenduste läbipääsu testimine
 
-## 6. **Tarneahela Turvalisus**
+## 6. **Tarneahela turvalisus**
 
-**Komponentide Kontroll:**
-   - **Sõltuvuste Skaneerimine**: Kasutage automatiseeritud haavatavuste skaneerimist kõigi tarkvara sõltuvuste ja AI komponentide jaoks  
-   - **Päritolu Kontroll**: Kontrollige mudelite, andmeallikate ja väliste teenuste päritolu, litsentsimist ja terviklikkust  
-   - **Allkirjastatud Paketid**: Kasutage krüptograafiliselt allkirjastatud pakette ja kontrollige allkirju enne kasutuselevõttu  
+**Komponentide kontroll:**  
+   - **Sõltuvuste skaneerimine**: Kasutage automatiseeritud haavatavuste skaneerimist kõigi tarkvarasõltuvuste ja AI komponentide jaoks  
+   - **Päritolu valideerimine**: Kontrollige mudelite, andmeallikate ja väliste teenuste päritolu, litsentsi ja terviklikkust  
+   - **Allkirjastatud paketid**: Kasutage krüptograafiliselt allkirjastatud pakette ja kontrollige allkirju enne juurutamist
 
-**Turvaline Arendustoru:**
+**Turvaline arendusliin:**  
    - **GitHub Advanced Security**: Rakendage saladuste skaneerimist, sõltuvuste analüüsi ja CodeQL staatilist analüüsi  
-   - **CI/CD Turvalisus**: Integreerige turvakontrollid kogu automatiseeritud juurutustorusse  
-   - **Artefaktide Terviklikkus**: Rakendage krüptograafilist kontrolli juurutatud artefaktide ja konfiguratsioonide jaoks  
+   - **CI/CD turvalisus**: Integreerige turvakontrollid kogu automatiseeritud juurutusliini jooksul  
+   - **Artefaktide terviklikkus**: Rakendage krüptograafilist kontrolli juurutatud artefaktide ja konfiguratsioonide jaoks
 
-## 7. **OAuth Turvalisus ja Segadusse Aetud Asendaja Ennetamine**
+## 7. **OAuth turvalisus ja segaduses esindaja ennetamine**
 
-**OAuth 2.1 Rakendamine:**
-   - **PKCE Rakendamine**: Kasutage Proof Key for Code Exchange (PKCE) kõigi autoriseerimispäringute jaoks  
-   - **Selgesõnaline Nõusolek**: Saage kasutaja nõusolek iga dünaamiliselt registreeritud kliendi jaoks, et vältida segadusse aetud asendaja rünnakuid  
-   - **Ümbersuunamise URI Kontroll**: Rakendage ranget ümbersuunamise URI-de ja kliendi identifikaatorite kontrolli  
+**OAuth 2.1 rakendamine:**  
+   - **PKCE rakendamine**: Kasutage Proof Key for Code Exchange (PKCE) kõigi autoriseerimispäringute jaoks  
+   - **Selgesõnaline nõusolek**: Saage kasutaja nõusolek iga dünaamiliselt registreeritud kliendi jaoks, et vältida segaduses esindaja rünnakuid  
+   - **Redirect URI valideerimine**: Rakendage ranget redirect URI ja kliendi identifikaatorite valideerimist
 
-**Proxy Turvalisus:**
-   - Ennetage autoriseerimise möödumist staatiliste kliendi ID-de ärakasutamise kaudu  
-   - Rakendage korralikke nõusoleku töövooge kolmanda osapoole API-dele juurdepääsuks  
-   - Jälgige autoriseerimiskoodi vargust ja volitamata API-dele juurdepääsu  
+**Proxy turvalisus:**  
+   - Takistage autoriseerimise möödaviimist staatiliste kliendi ID-de ärakasutamise kaudu  
+   - Rakendage nõuetekohased nõusoleku töövood kolmandate osapoolte API ligipääsuks  
+   - Jälgige autoriseerimiskoodi vargust ja volitamata API ligipääsu
 
-## 8. **Intsidentidele Reageerimine ja Taastumine**
+## 8. **Intsidendile reageerimine ja taastumine**
 
-**Kiired Reageerimisvõimalused:**
-   - **Automatiseeritud Reageerimine**: Rakendage automatiseeritud süsteeme volikirjade rotatsiooniks ja ohtude tõkestamiseks  
-   - **Tagasipöördumisprotseduurid**: Võime kiiresti naasta teadaolevalt heade konfiguratsioonide ja komponentide juurde  
-   - **Kohtuekspertiisi Võimalused**: Üksikasjalikud auditijäljed ja logimine intsidentide uurimiseks  
+**Kiired reageerimisvõimalused:**  
+   - **Automatiseeritud reageerimine**: Rakendage automatiseeritud süsteeme volituste rotatsiooniks ja ohtude piiramiseks  
+   - **Tagasipööramise protseduurid**: Võime kiiresti taastada teada-töötavad konfiguratsioonid ja komponendid  
+   - **Forensika võimalused**: Põhjalikud auditeerimisrajad ja logimine intsidentide uurimiseks
 
-**Suhtlus ja Koordineerimine:**
-   - Selged eskaleerimisprotseduurid turvaintsidentide jaoks  
+**Kommunikatsioon ja koordineerimine:**  
+   - Selged eskalatsiooniprotseduurid turvaintsidentide korral  
    - Integreerimine organisatsiooni intsidentidele reageerimise meeskondadega  
-   - Korrapärased turvaintsidentide simulatsioonid ja lauaharjutused  
+   - Regulaarne turvaintsidentide simulatsioon ja lauamängu harjutused
 
-## 9. **Vastavus ja Juhtimine**
+## 9. **Vastavus ja haldus**
 
-**Regulatiivne Vastavus:**
+**Regulatiivne vastavus:**  
    - Tagage, et MCP rakendused vastavad tööstusharu spetsiifilistele nõuetele (GDPR, HIPAA, SOC 2)  
-   - Rakendage andmete klassifitseerimise ja privaatsuse kontrollid AI andmetöötluse jaoks  
-   - Säilitage ulatuslik dokumentatsioon vastavusauditite jaoks  
+   - Rakendage andmete klassifitseerimist ja privaatsuskontrolle AI andmetöötluseks  
+   - Hoidke põhjalikku dokumentatsiooni vastavusauditiks
 
-**Muutuste Haldus:**
-   - Ametlikud turvaülevaatusprotsessid kõigi MCP süsteemi muudatuste jaoks  
-   - Versioonikontroll ja kinnitamise töövood konfiguratsioonimuudatuste jaoks  
-   - Korrapärased vastavushindamised ja puudujääkide analüüs  
+**Muudatuste haldus:**  
+   - Formaalsed turvaülevaatusprotsessid kõigi MCP süsteemi muudatuste jaoks  
+   - Versioonihaldus ja kinnitustöövood konfiguratsioonimuudatuste jaoks  
+   - Regulaarne vastavuse hindamine ja lõheanalüüs
 
-## 10. **Täiustatud Turvakontrollid**
+## 10. **Täiustatud turvakontrollid**
 
-**Zero Trust Arhitektuur:**
-   - **Ära Usalda, Kontrolli Alati**: Kasutajate, seadmete ja ühenduste pidev kontrollimine  
-   - **Mikrosegmenteerimine**: Granuleeritud võrgu kontrollid, mis isoleerivad individuaalseid MCP komponente  
-   - **Tingimuslik Juurdepääs**: Riskipõhised juurdepääsukontrollid, mis kohanduvad praeguse konteksti ja käitumisega  
+**Zero Trust arhitektuur:**  
+   - **Ärge kunagi usaldage, kontrollige alati**: Kasutajate, seadmete ja ühenduste pidev valideerimine  
+   - **Mikrosegmentatsioon**: Peenhäälestatud võrgukontrollid, mis isoleerivad üksikud MCP komponendid  
+   - **Tingimuslik ligipääs**: Riskipõhised ligipääsukontrollid, mis kohanduvad jooksva konteksti ja käitumisega
 
-**Rakenduse Käitusaja Kaitse:**
+**Käivitusaja rakenduse kaitse:**  
    - **Runtime Application Self-Protection (RASP)**: Rakendage RASP tehnikaid reaalajas ohtude tuvastamiseks  
-   - **Rakenduse Jõudluse Jälgimine**: Jälgige jõudluse anomaaliaid, mis võivad viidata rünnakutele  
-   - **Dünaamilised Turvapoliitikad**: Rakendage turvapoliitikaid, mis kohanduvad vastavalt praegusele ohumaastikule  
+   - **Rakenduse jõudluse jälgimine**: Jälgige jõudlusanomaaliaid, mis võivad viidata rünnakutele  
+   - **Dünaamilised turvapoliitikad**: Rakendage turvapoliitikaid, mis kohanduvad jooksva ohumaastiku põhjal
 
-## 11. **Microsofti Turvaökosüsteemi Integreerimine**
+## 11. **Microsofti turvaökosüsteemi integreerimine**
 
-**Ulatuslik Microsofti Turvalisus:**
-   - **Microsoft Defender for Cloud**: Pilveturvalisuse seisundi haldamine MCP töökoormuste jaoks  
-   - **Azure Sentinel**: Pilvepõhised SIEM ja SOAR võimalused täiustatud ohtude tuvastamiseks  
-   - **Microsoft Purview**: Andmehaldus ja vastavus AI töövoogude ja andmeallikate jaoks  
+**Kõikehõlmav Microsofti turvalisus:**  
+   - **Microsoft Defender for Cloud**: Pilve turvaseisundi haldus MCP töökoormustele  
+   - **Azure Sentinel**: Pilvepõhine SIEM ja SOAR võimekus edasijõudnud ohtude tuvastamiseks  
+   - **Microsoft Purview**: Andmehaldus ja vastavus AI töövoogudele ja andmeallikatele
 
-**Identiteedi ja Juurdepääsu Haldus:**
-   - **Microsoft Entra ID**: Ettevõtte identiteedihaldus tingimuslike juurdepääsupoliitikatega  
-   - **Privileged Identity Management (PIM)**: Just-in-time juurdepääs ja kinnitamise töövood administratiivsete funktsioonide jaoks  
-   - **Identiteedi Kaitse**: Riskipõhine tingimuslik juurdepääs ja automatiseeritud ohtude reageerimine  
+**Identiteedi ja ligipääsu haldus:**  
+   - **Microsoft Entra ID**: Ettevõtte identiteedihaldus tingimusliku ligipääsu poliitikatega  
+   - **Privileegitud identiteedi haldus (PIM)**: Just-in-time ligipääs ja kinnitustöövood haldusfunktsioonide jaoks  
+   - **Identiteedi kaitse**: Riskipõhine tingimuslik ligipääs ja automatiseeritud ohu reageerimine
 
-## 12. **Pidev Turvalisuse Areng**
+## 12. **Pidev turvalisuse areng**
 
-**Ajakohasena Püsimine:**
-   - **Spetsifikatsiooni Jälgimine**: MCP spetsifikatsiooni uuenduste ja turvajuhiste muudatuste regulaarne ülevaatus  
-   - **Ohuluure**: AI-spetsiifiliste ohusöötade ja kompromissi indikaatorite integreerimine  
-   - **Turvakogukonna Kaasamine**: Aktiivne osalemine MCP turvakogukonnas ja haavatavuste avalikustamise programmides  
+**Ajaga kaasas käimine:**  
+   - **Spetsifikatsiooni jälgimine**: Regulaarne MCP spetsifikatsiooni uuenduste ja turvajuhiste muutuste ülevaatus  
+   - **Ohuintelligentsus**: AI-spetsiifiliste ohuvoogude ja kompromissinäitajate integreerimine  
+   - **Turvakogukonna kaasamine**: Aktiivne osalemine MCP turvakogukonnas ja haavatavuste avalikustamise programmides
 
-**Kohanduv Turvalisus:**
-   - **Masinõppe Turvalisus**: Kasutage ML-põhist anomaaliate tuvastamist, et tuvastada uusi rünnakumustreid  
-   - **Ennustav Turvaanalüütika**: Rakendage ennustavaid mudeleid proaktiivseks ohtude tuvastamiseks  
-   - **Turvapoliitika Automatiseerimine**: Automatiseeritud turvapoliitika uuendused, mis põhinevad ohuluurel ja spetsifikatsiooni muudatustel  
-
----
-
-## **Olulised Turvaressursid**
-
-### **Ametlik MCP Dokumentatsioon**
-- [MCP Spetsifikatsioon (2025-06-18)](https://spec.modelcontextprotocol.io/specification/2025-06-18/)
-- [MCP Turvalisuse Parimad Tavad](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices)
-- [MCP Autoriseerimise Spetsifikatsioon](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization)
-
-### **Microsofti Turvalahendused**
-- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
-- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)
-- [Microsoft Entra ID Turvalisus](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
-- [GitHub Advanced Security](https://github.com/security/advanced-security)
-
-### **Turvastandardid**
-- [OAuth 2.0 Turvalisuse Parimad Tavad (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)
-- [OWASP Top 10 Suurte Keelemudelite jaoks](https://genai.owasp.org/)
-- [NIST AI Riskijuhtimise Raamistik](https://www.nist.gov/itl/ai-risk-management-framework)
-
-### **Rakendamise Juhendid**
-- [Azure API Management MCP Autentimise Gateway](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
-- [Microsoft Entra ID MCP Serveritega](https://den.dev/blog/mcp-server-auth-entra-id-session/)
+**Kohanduv turvalisus:**  
+   - **Masinõppe turvalisus**: Kasutage ML-põhist anomaaliate tuvastust uute rünnakumustrite identifitseerimiseks  
+   - **Etteteadlik turvaanalüütika**: Rakendage ennustavaid mudeleid proaktiivseks ohtude tuvastamiseks  
+   - **Turbeautomaatika**: Automatiseeritud turvapoliitikate uuendused ohuintelligentsi ja spetsifikatsiooni muudatuste põhjal
 
 ---
 
-> **Turvateade**: MCP turvatavad arenevad kiiresti. Kontrollige alati kehtiva [MCP spetsifikatsiooni](https://spec.modelcontextprotocol.io/) ja [ametliku turvadokumentatsiooni](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) vastu enne rakendamist.
+## **Olulised turvaressursid**
+
+### **Ametlik MCP dokumentatsioon**  
+- [MCP spetsifikatsioon (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)  
+- [MCP turvalisuse parimad tavad](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices)  
+- [MCP autoriseerimise spetsifikatsioon](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)  
+
+### **Microsofti turvalahendused**  
+- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)  
+- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)  
+- [Microsoft Entra ID turvalisus](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)  
+- [GitHub Advanced Security](https://github.com/security/advanced-security)  
+
+### **Turvastandardid**  
+- [OAuth 2.0 turvalisuse parimad tavad (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)  
+- [OWASP Top 10 suurte keelemudelite jaoks](https://genai.owasp.org/)  
+- [NIST AI riskijuhtimise raamistik](https://www.nist.gov/itl/ai-risk-management-framework)  
+
+### **Rakendamisjuhendid**  
+- [Azure API Management MCP autentimise värav](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)  
+- [Microsoft Entra ID MCP serveritega](https://den.dev/blog/mcp-server-auth-entra-id-session/)  
 
 ---
 
-**Lahtiütlus**:  
-See dokument on tõlgitud AI tõlketeenuse [Co-op Translator](https://github.com/Azure/co-op-translator) abil. Kuigi püüame tagada täpsust, palume arvestada, et automaatsed tõlked võivad sisaldada vigu või ebatäpsusi. Algne dokument selle algses keeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitame kasutada professionaalset inimtõlget. Me ei vastuta selle tõlke kasutamisest tulenevate arusaamatuste või valesti tõlgenduste eest.
+> **Turvateade**: MCP turvapraktikad arenevad kiiresti. Kontrollige alati enne rakendamist kehtiva [MCP spetsifikatsiooni](https://spec.modelcontextprotocol.io/) ja [ametliku turvadokumentatsiooni](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) vastu.
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Vastutusest loobumine**:
+See dokument on tõlgitud kasutades tehisintellektil põhinevat tõlketeenust [Co-op Translator](https://github.com/Azure/co-op-translator). Kuigi püüame tagada täpsust, palun arvestage, et automaatsed tõlked võivad sisaldada vigu või ebatäpsusi. Originaaldokument selle emakeeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitatakse kasutada professionaalset inimtõlget. Me ei vastuta selle tõlke kasutamisest tulenevate arusaamatuste või valesti mõistmiste eest.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,207 +1,215 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "057dd5cc6bea6434fdb788e6c93f3f3d",
-  "translation_date": "2025-08-18T17:06:41+00:00",
+  "original_hash": "e30aaf6b178137fa6668efc1b20851d5",
+  "translation_date": "2025-12-19T11:25:19+00:00",
   "source_file": "02-Security/mcp-security-best-practices-2025.md",
   "language_code": "br"
 }
 -->
-# Melhores Práticas de Segurança MCP - Atualização de Agosto de 2025
+# Melhores Práticas de Segurança MCP - Atualização Dezembro 2025
 
-> **Importante**: Este documento reflete os últimos requisitos de segurança da [Especificação MCP 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) e as [Melhores Práticas de Segurança MCP](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) oficiais. Sempre consulte a especificação atual para obter as orientações mais recentes.
+> **Importante**: Este documento reflete os mais recentes requisitos de segurança da [Especificação MCP 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) e as [Melhores Práticas de Segurança MCP](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) oficiais. Sempre consulte a especificação atual para obter as orientações mais atualizadas.
 
 ## Práticas Essenciais de Segurança para Implementações MCP
 
-O Protocolo de Contexto de Modelo (MCP) apresenta desafios únicos de segurança que vão além da segurança tradicional de software. Estas práticas abordam tanto os requisitos fundamentais de segurança quanto as ameaças específicas do MCP, incluindo injeção de prompts, envenenamento de ferramentas, sequestro de sessões, problemas de "confused deputy" e vulnerabilidades de passagem de tokens.
+O Protocolo de Contexto de Modelo introduz desafios únicos de segurança que vão além da segurança tradicional de software. Essas práticas abordam tanto os requisitos fundamentais de segurança quanto ameaças específicas do MCP, incluindo injeção de prompt, envenenamento de ferramentas, sequestro de sessão, problemas de procurador confuso e vulnerabilidades de passagem de token.
 
 ### **Requisitos de Segurança OBRIGATÓRIOS**
 
 **Requisitos Críticos da Especificação MCP:**
 
-> **MUST NOT**: Servidores MCP **NÃO DEVEM** aceitar tokens que não tenham sido explicitamente emitidos para o servidor MCP  
-> 
-> **MUST**: Servidores MCP que implementam autorização **DEVEM** verificar TODAS as solicitações recebidas  
+### **Requisitos de Segurança OBRIGATÓRIOS**
+
+**Requisitos Críticos da Especificação MCP:**
+
+> **NÃO DEVE**: Servidores MCP **NÃO DEVEM** aceitar tokens que não tenham sido explicitamente emitidos para o servidor MCP  
 >  
-> **MUST NOT**: Servidores MCP **NÃO DEVEM** usar sessões para autenticação  
->
-> **MUST**: Servidores proxy MCP que utilizam IDs de cliente estáticos **DEVEM** obter consentimento do usuário para cada cliente registrado dinamicamente  
+> **DEVE**: Servidores MCP que implementam autorização **DEVEM** verificar TODAS as requisições recebidas  
+>  
+> **NÃO DEVE**: Servidores MCP **NÃO DEVEM** usar sessões para autenticação  
+>  
+> **DEVE**: Servidores proxy MCP que usam IDs de cliente estáticos **DEVEM** obter consentimento do usuário para cada cliente registrado dinamicamente
 
 ---
 
-## 1. **Segurança de Tokens e Autenticação**
+## 1. **Segurança de Token & Autenticação**
 
-**Controles de Autenticação e Autorização:**
-   - **Revisão Rigorosa de Autorização**: Realize auditorias abrangentes da lógica de autorização do servidor MCP para garantir que apenas usuários e clientes autorizados possam acessar os recursos  
-   - **Integração com Provedores de Identidade Externos**: Utilize provedores de identidade estabelecidos, como o Microsoft Entra ID, em vez de implementar autenticação personalizada  
-   - **Validação de Público de Tokens**: Sempre valide se os tokens foram explicitamente emitidos para o seu servidor MCP - nunca aceite tokens de upstream  
-   - **Ciclo de Vida Adequado de Tokens**: Implemente rotação segura de tokens, políticas de expiração e previna ataques de repetição de tokens  
+**Controles de Autenticação & Autorização:**  
+   - **Revisão Rigorosa de Autorização**: Realizar auditorias abrangentes da lógica de autorização do servidor MCP para garantir que apenas usuários e clientes pretendidos possam acessar recursos  
+   - **Integração com Provedor de Identidade Externo**: Usar provedores de identidade estabelecidos como Microsoft Entra ID em vez de implementar autenticação personalizada  
+   - **Validação de Audiência do Token**: Sempre validar que os tokens foram explicitamente emitidos para seu servidor MCP - nunca aceitar tokens upstream  
+   - **Ciclo de Vida Adequado do Token**: Implementar rotação segura de tokens, políticas de expiração e prevenir ataques de repetição de token  
 
-**Armazenamento Protegido de Tokens:**
-   - Use o Azure Key Vault ou armazenamentos seguros de credenciais semelhantes para todos os segredos  
-   - Implemente criptografia para tokens tanto em repouso quanto em trânsito  
-   - Realize rotação regular de credenciais e monitore acessos não autorizados  
+**Armazenamento Protegido de Tokens:**  
+   - Usar Azure Key Vault ou armazenamentos seguros similares para todos os segredos  
+   - Implementar criptografia para tokens em repouso e em trânsito  
+   - Rotação regular de credenciais e monitoramento para acessos não autorizados  
 
-## 2. **Gerenciamento de Sessões e Segurança de Transporte**
+## 2. **Gerenciamento de Sessão & Segurança de Transporte**
 
-**Práticas Seguras de Sessão:**
-   - **IDs de Sessão Criptograficamente Seguros**: Use IDs de sessão seguros e não determinísticos gerados com geradores de números aleatórios seguros  
-   - **Vinculação Específica ao Usuário**: Vincule IDs de sessão às identidades dos usuários usando formatos como `<user_id>:<session_id>` para evitar abuso de sessões entre usuários  
-   - **Gerenciamento do Ciclo de Vida da Sessão**: Implemente expiração, rotação e invalidação adequadas para limitar janelas de vulnerabilidade  
-   - **Enforcement de HTTPS/TLS**: HTTPS obrigatório para todas as comunicações para evitar interceptação de IDs de sessão  
+**Práticas Seguras de Sessão:**  
+   - **IDs de Sessão Criptograficamente Seguros**: Usar IDs de sessão seguros e não determinísticos gerados com geradores de números aleatórios seguros  
+   - **Vinculação Específica ao Usuário**: Vincular IDs de sessão às identidades dos usuários usando formatos como `<user_id>:<session_id>` para evitar abuso de sessão entre usuários  
+   - **Gerenciamento do Ciclo de Vida da Sessão**: Implementar expiração, rotação e invalidação adequadas para limitar janelas de vulnerabilidade  
+   - **Aplicação de HTTPS/TLS**: HTTPS obrigatório para toda comunicação para evitar interceptação de IDs de sessão  
 
-**Segurança da Camada de Transporte:**
-   - Configure TLS 1.3 sempre que possível com gerenciamento adequado de certificados  
-   - Implemente pinagem de certificados para conexões críticas  
-   - Realize rotação regular de certificados e verificação de validade  
+**Segurança da Camada de Transporte:**  
+   - Configurar TLS 1.3 sempre que possível com gerenciamento adequado de certificados  
+   - Implementar pinagem de certificado para conexões críticas  
+   - Rotação regular de certificados e verificação de validade  
 
 ## 3. **Proteção Contra Ameaças Específicas de IA** 🤖
 
-**Defesa Contra Injeção de Prompts:**
-   - **Microsoft Prompt Shields**: Implante o AI Prompt Shields para detecção avançada e filtragem de instruções maliciosas  
-   - **Sanitização de Entradas**: Valide e sanitize todas as entradas para evitar ataques de injeção e problemas de "confused deputy"  
-   - **Delimitação de Conteúdo**: Use sistemas de delimitadores e marcação de dados para distinguir entre instruções confiáveis e conteúdo externo  
+**Defesa Contra Injeção de Prompt:**  
+   - **Microsoft Prompt Shields**: Implantar AI Prompt Shields para detecção avançada e filtragem de instruções maliciosas  
+   - **Sanitização de Entrada**: Validar e sanitizar todas as entradas para prevenir ataques de injeção e problemas de procurador confuso  
+   - **Limites de Conteúdo**: Usar sistemas de delimitadores e marcação de dados para distinguir entre instruções confiáveis e conteúdo externo  
 
-**Prevenção de Envenenamento de Ferramentas:**
-   - **Validação de Metadados de Ferramentas**: Implemente verificações de integridade para definições de ferramentas e monitore alterações inesperadas  
-   - **Monitoramento Dinâmico de Ferramentas**: Monitore o comportamento em tempo de execução e configure alertas para padrões de execução inesperados  
-   - **Fluxos de Aprovação**: Exija aprovação explícita do usuário para modificações de ferramentas e mudanças de capacidade  
+**Prevenção de Envenenamento de Ferramentas:**  
+   - **Validação de Metadados de Ferramentas**: Implementar verificações de integridade para definições de ferramentas e monitorar mudanças inesperadas  
+   - **Monitoramento Dinâmico de Ferramentas**: Monitorar comportamento em tempo de execução e configurar alertas para padrões de execução inesperados  
+   - **Fluxos de Aprovação**: Exigir aprovação explícita do usuário para modificações e mudanças de capacidade das ferramentas  
 
-## 4. **Controle de Acesso e Permissões**
+## 4. **Controle de Acesso & Permissões**
 
-**Princípio do Menor Privilégio:**
-   - Conceda aos servidores MCP apenas as permissões mínimas necessárias para a funcionalidade pretendida  
-   - Implemente controle de acesso baseado em funções (RBAC) com permissões granulares  
-   - Realize revisões regulares de permissões e monitore continuamente para escalonamento de privilégios  
+**Princípio do Menor Privilégio:**  
+   - Conceder aos servidores MCP apenas as permissões mínimas necessárias para a funcionalidade pretendida  
+   - Implementar controle de acesso baseado em função (RBAC) com permissões granulares  
+   - Revisões regulares de permissões e monitoramento contínuo para escalonamento de privilégios  
 
-**Controles de Permissão em Tempo de Execução:**
-   - Aplique limites de recursos para evitar ataques de exaustão de recursos  
-   - Use isolamento de contêineres para ambientes de execução de ferramentas  
-   - Implemente acesso just-in-time para funções administrativas  
+**Controles de Permissão em Tempo de Execução:**  
+   - Aplicar limites de recursos para prevenir ataques de exaustão de recursos  
+   - Usar isolamento de contêiner para ambientes de execução de ferramentas  
+   - Implementar acesso just-in-time para funções administrativas  
 
-## 5. **Segurança de Conteúdo e Monitoramento**
+## 5. **Segurança de Conteúdo & Monitoramento**
 
-**Implementação de Segurança de Conteúdo:**
-   - **Integração com Azure Content Safety**: Use o Azure Content Safety para detectar conteúdo prejudicial, tentativas de jailbreak e violações de políticas  
-   - **Análise Comportamental**: Implemente monitoramento comportamental em tempo de execução para detectar anomalias na execução do servidor MCP e ferramentas  
-   - **Registro Abrangente**: Registre todas as tentativas de autenticação, invocações de ferramentas e eventos de segurança com armazenamento seguro e à prova de adulteração  
+**Implementação de Segurança de Conteúdo:**  
+   - **Integração Azure Content Safety**: Usar Azure Content Safety para detectar conteúdo nocivo, tentativas de jailbreak e violações de políticas  
+   - **Análise Comportamental**: Implementar monitoramento comportamental em tempo de execução para detectar anomalias na execução do servidor MCP e ferramentas  
+   - **Registro Abrangente**: Registrar todas as tentativas de autenticação, invocações de ferramentas e eventos de segurança com armazenamento seguro e à prova de adulteração  
 
-**Monitoramento Contínuo:**
-   - Alertas em tempo real para padrões suspeitos e tentativas de acesso não autorizado  
+**Monitoramento Contínuo:**  
+   - Alertas em tempo real para padrões suspeitos e tentativas de acesso não autorizadas  
    - Integração com sistemas SIEM para gerenciamento centralizado de eventos de segurança  
    - Auditorias regulares de segurança e testes de penetração das implementações MCP  
 
 ## 6. **Segurança da Cadeia de Suprimentos**
 
-**Verificação de Componentes:**
-   - **Varredura de Dependências**: Use varredura automatizada de vulnerabilidades para todas as dependências de software e componentes de IA  
-   - **Validação de Proveniência**: Verifique a origem, licenciamento e integridade de modelos, fontes de dados e serviços externos  
-   - **Pacotes Assinados**: Use pacotes assinados criptograficamente e verifique as assinaturas antes da implantação  
+**Verificação de Componentes:**  
+   - **Escaneamento de Dependências**: Usar escaneamento automatizado de vulnerabilidades para todas as dependências de software e componentes de IA  
+   - **Validação de Procedência**: Verificar origem, licenciamento e integridade de modelos, fontes de dados e serviços externos  
+   - **Pacotes Assinados**: Usar pacotes assinados criptograficamente e verificar assinaturas antes da implantação  
 
-**Pipeline de Desenvolvimento Seguro:**
-   - **GitHub Advanced Security**: Implemente varredura de segredos, análise de dependências e análise estática com CodeQL  
-   - **Segurança de CI/CD**: Integre validação de segurança em todos os pipelines de implantação automatizados  
-   - **Integridade de Artefatos**: Implemente verificação criptográfica para artefatos e configurações implantados  
+**Pipeline de Desenvolvimento Seguro:**  
+   - **GitHub Advanced Security**: Implementar escaneamento de segredos, análise de dependências e análise estática CodeQL  
+   - **Segurança CI/CD**: Integrar validação de segurança em pipelines automatizados de implantação  
+   - **Integridade de Artefatos**: Implementar verificação criptográfica para artefatos e configurações implantadas  
 
-## 7. **Segurança OAuth e Prevenção de "Confused Deputy"**
+## 7. **Segurança OAuth & Prevenção de Procurador Confuso**
 
-**Implementação de OAuth 2.1:**
-   - **Implementação de PKCE**: Use Proof Key for Code Exchange (PKCE) para todas as solicitações de autorização  
-   - **Consentimento Explícito**: Obtenha consentimento do usuário para cada cliente registrado dinamicamente para evitar ataques de "confused deputy"  
-   - **Validação de URI de Redirecionamento**: Implemente validação rigorosa de URIs de redirecionamento e identificadores de cliente  
+**Implementação OAuth 2.1:**  
+   - **Implementação PKCE**: Usar Proof Key for Code Exchange (PKCE) para todas as requisições de autorização  
+   - **Consentimento Explícito**: Obter consentimento do usuário para cada cliente registrado dinamicamente para prevenir ataques de procurador confuso  
+   - **Validação de URI de Redirecionamento**: Implementar validação rigorosa de URIs de redirecionamento e identificadores de cliente  
 
-**Segurança de Proxy:**
-   - Prevenir bypass de autorização por meio de exploração de IDs de cliente estáticos  
-   - Implemente fluxos de consentimento adequados para acesso a APIs de terceiros  
-   - Monitore roubo de códigos de autorização e acessos não autorizados a APIs  
+**Segurança de Proxy:**  
+   - Prevenir bypass de autorização por exploração de ID de cliente estático  
+   - Implementar fluxos de consentimento adequados para acesso a APIs de terceiros  
+   - Monitorar roubo de código de autorização e acesso não autorizado a APIs  
 
-## 8. **Resposta a Incidentes e Recuperação**
+## 8. **Resposta a Incidentes & Recuperação**
 
-**Capacidades de Resposta Rápida:**
-   - **Resposta Automatizada**: Implemente sistemas automatizados para rotação de credenciais e contenção de ameaças  
-   - **Procedimentos de Reversão**: Capacidade de reverter rapidamente para configurações e componentes conhecidos como seguros  
+**Capacidades de Resposta Rápida:**  
+   - **Resposta Automatizada**: Implementar sistemas automatizados para rotação de credenciais e contenção de ameaças  
+   - **Procedimentos de Reversão**: Capacidade de reverter rapidamente para configurações e componentes conhecidos como bons  
    - **Capacidades Forenses**: Trilhas de auditoria detalhadas e registros para investigação de incidentes  
 
-**Comunicação e Coordenação:**
+**Comunicação & Coordenação:**  
    - Procedimentos claros de escalonamento para incidentes de segurança  
    - Integração com equipes organizacionais de resposta a incidentes  
-   - Simulações regulares de incidentes de segurança e exercícios de mesa  
+   - Simulações regulares de incidentes de segurança e exercícios tabletop  
 
-## 9. **Conformidade e Governança**
+## 9. **Conformidade & Governança**
 
-**Conformidade Regulatória:**
-   - Garanta que as implementações MCP atendam aos requisitos específicos do setor (GDPR, HIPAA, SOC 2)  
-   - Implemente controles de classificação de dados e privacidade para processamento de dados de IA  
-   - Mantenha documentação abrangente para auditorias de conformidade  
+**Conformidade Regulatória:**  
+   - Garantir que implementações MCP atendam a requisitos específicos do setor (GDPR, HIPAA, SOC 2)  
+   - Implementar classificação de dados e controles de privacidade para processamento de dados de IA  
+   - Manter documentação abrangente para auditoria de conformidade  
 
-**Gerenciamento de Mudanças:**
+**Gerenciamento de Mudanças:**  
    - Processos formais de revisão de segurança para todas as modificações do sistema MCP  
-   - Controle de versão e fluxos de aprovação para alterações de configuração  
+   - Controle de versão e fluxos de aprovação para mudanças de configuração  
    - Avaliações regulares de conformidade e análise de lacunas  
 
 ## 10. **Controles Avançados de Segurança**
 
-**Arquitetura Zero Trust:**
+**Arquitetura Zero Trust:**  
    - **Nunca Confie, Sempre Verifique**: Verificação contínua de usuários, dispositivos e conexões  
-   - **Microsegmentação**: Controles granulares de rede isolando componentes individuais do MCP  
+   - **Microsegmentação**: Controles granulares de rede isolando componentes individuais MCP  
    - **Acesso Condicional**: Controles de acesso baseados em risco que se adaptam ao contexto e comportamento atuais  
 
-**Proteção de Aplicações em Tempo de Execução:**
-   - **Proteção de Aplicações em Tempo de Execução (RASP)**: Implante técnicas de RASP para detecção de ameaças em tempo real  
-   - **Monitoramento de Desempenho de Aplicações**: Monitore anomalias de desempenho que possam indicar ataques  
-   - **Políticas de Segurança Dinâmicas**: Implemente políticas de segurança que se adaptem com base no cenário atual de ameaças  
+**Proteção de Aplicação em Tempo de Execução:**  
+   - **Proteção de Aplicação em Tempo de Execução (RASP)**: Implantar técnicas RASP para detecção de ameaças em tempo real  
+   - **Monitoramento de Desempenho de Aplicação**: Monitorar anomalias de desempenho que possam indicar ataques  
+   - **Políticas de Segurança Dinâmicas**: Implementar políticas de segurança que se adaptam com base no cenário atual de ameaças  
 
-## 11. **Integração com o Ecossistema de Segurança da Microsoft**
+## 11. **Integração com Ecossistema de Segurança Microsoft**
 
-**Segurança Abrangente da Microsoft:**
-   - **Microsoft Defender for Cloud**: Gerenciamento de postura de segurança na nuvem para cargas de trabalho MCP  
+**Segurança Microsoft Abrangente:**  
+   - **Microsoft Defender for Cloud**: Gerenciamento da postura de segurança na nuvem para cargas de trabalho MCP  
    - **Azure Sentinel**: Capacidades nativas de SIEM e SOAR para detecção avançada de ameaças  
-   - **Microsoft Purview**: Governança de dados e conformidade para fluxos de trabalho de IA e fontes de dados  
+   - **Microsoft Purview**: Governança de dados e conformidade para fluxos de trabalho e fontes de dados de IA  
 
-**Gerenciamento de Identidade e Acesso:**
-   - **Microsoft Entra ID**: Gerenciamento de identidade empresarial com políticas de acesso condicional  
-   - **Privileged Identity Management (PIM)**: Acesso just-in-time e fluxos de aprovação para funções administrativas  
+**Gerenciamento de Identidade & Acesso:**  
+   - **Microsoft Entra ID**: Gerenciamento empresarial de identidade com políticas de acesso condicional  
+   - **Gerenciamento de Identidade Privilegiada (PIM)**: Acesso just-in-time e fluxos de aprovação para funções administrativas  
    - **Proteção de Identidade**: Acesso condicional baseado em risco e resposta automatizada a ameaças  
 
 ## 12. **Evolução Contínua da Segurança**
 
-**Manter-se Atualizado:**
-   - **Monitoramento de Especificações**: Revisão regular de atualizações da especificação MCP e mudanças nas orientações de segurança  
+**Manter-se Atualizado:**  
+   - **Monitoramento da Especificação**: Revisão regular das atualizações da especificação MCP e mudanças nas orientações de segurança  
    - **Inteligência de Ameaças**: Integração de feeds de ameaças específicas de IA e indicadores de comprometimento  
-   - **Engajamento com a Comunidade de Segurança**: Participação ativa na comunidade de segurança MCP e programas de divulgação de vulnerabilidades  
+   - **Engajamento na Comunidade de Segurança**: Participação ativa na comunidade de segurança MCP e programas de divulgação de vulnerabilidades  
 
-**Segurança Adaptativa:**
-   - **Segurança Baseada em Machine Learning**: Use detecção de anomalias baseada em ML para identificar padrões de ataque novos  
-   - **Análise de Segurança Preditiva**: Implemente modelos preditivos para identificação proativa de ameaças  
-   - **Automação de Segurança**: Atualizações automatizadas de políticas de segurança com base em inteligência de ameaças e mudanças na especificação  
+**Segurança Adaptativa:**  
+   - **Segurança com Aprendizado de Máquina**: Usar detecção de anomalias baseada em ML para identificar novos padrões de ataque  
+   - **Análise Preditiva de Segurança**: Implementar modelos preditivos para identificação proativa de ameaças  
+   - **Automação de Segurança**: Atualizações automatizadas de políticas de segurança baseadas em inteligência de ameaças e mudanças na especificação  
 
 ---
 
 ## **Recursos Críticos de Segurança**
 
-### **Documentação Oficial MCP**
-- [Especificação MCP (2025-06-18)](https://spec.modelcontextprotocol.io/specification/2025-06-18/)  
-- [Melhores Práticas de Segurança MCP](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices)  
-- [Especificação de Autorização MCP](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization)  
+### **Documentação Oficial MCP**  
+- [Especificação MCP (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)  
+- [Melhores Práticas de Segurança MCP](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices)  
+- [Especificação de Autorização MCP](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)  
 
-### **Soluções de Segurança da Microsoft**
+### **Soluções de Segurança Microsoft**  
 - [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)  
 - [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)  
-- [Segurança do Microsoft Entra ID](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)  
+- [Segurança Microsoft Entra ID](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)  
 - [GitHub Advanced Security](https://github.com/security/advanced-security)  
 
-### **Padrões de Segurança**
+### **Padrões de Segurança**  
 - [Melhores Práticas de Segurança OAuth 2.0 (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)  
 - [OWASP Top 10 para Modelos de Linguagem Grande](https://genai.owasp.org/)  
-- [Framework de Gerenciamento de Riscos de IA do NIST](https://www.nist.gov/itl/ai-risk-management-framework)  
+- [Framework de Gerenciamento de Risco de IA NIST](https://www.nist.gov/itl/ai-risk-management-framework)  
 
-### **Guias de Implementação**
-- [Gateway de Autenticação MCP do Azure API Management](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)  
+### **Guias de Implementação**  
+- [Azure API Management MCP Authentication Gateway](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)  
 - [Microsoft Entra ID com Servidores MCP](https://den.dev/blog/mcp-server-auth-entra-id-session/)  
 
 ---
 
-> **Aviso de Segurança**: As práticas de segurança do MCP evoluem rapidamente. Sempre verifique a [especificação MCP](https://spec.modelcontextprotocol.io/) e a [documentação oficial de segurança](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) antes da implementação.
+> **Aviso de Segurança**: As práticas de segurança MCP evoluem rapidamente. Sempre verifique contra a [especificação MCP](https://spec.modelcontextprotocol.io/) atual e a [documentação oficial de segurança](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) antes da implementação.
 
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Aviso Legal**:  
-Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, esteja ciente de que traduções automatizadas podem conter erros ou imprecisões. O documento original em seu idioma nativo deve ser considerado a fonte autoritativa. Para informações críticas, recomenda-se a tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações equivocadas decorrentes do uso desta tradução.
+Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original em seu idioma nativo deve ser considerado a fonte autorizada. Para informações críticas, recomenda-se tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes do uso desta tradução.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
