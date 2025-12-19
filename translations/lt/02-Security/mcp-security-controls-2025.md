@@ -1,75 +1,79 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "0c243c6189393ed7468e470ef2090049",
-  "translation_date": "2025-08-26T19:08:23+00:00",
+  "original_hash": "9351493ad29390d37f64bc6d84a03db5",
+  "translation_date": "2025-12-19T18:01:20+00:00",
   "source_file": "02-Security/mcp-security-controls-2025.md",
   "language_code": "lt"
 }
 -->
-# MCP Saugumo Kontrolės - 2025 m. rugpjūčio atnaujinimas
+# MCP Saugumo Kontrolės – 2025 m. gruodžio atnaujinimas
 
-> **Dabartinis standartas**: Šis dokumentas atspindi [MCP specifikacijos 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) saugumo reikalavimus ir oficialias [MCP saugumo geriausias praktikas](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices).
+> **Dabartinis standartas**: Šis dokumentas atspindi [MCP specifikaciją 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) saugumo reikalavimus ir oficialias [MCP saugumo gerąsias praktikas](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).
 
-Model Context Protocol (MCP) reikšmingai patobulėjo, įtraukiant sustiprintas saugumo kontrolės priemones, kurios apima tiek tradicinį programinės įrangos saugumą, tiek AI specifines grėsmes. Šis dokumentas pateikia išsamias saugumo kontrolės priemones, skirtas saugiam MCP įgyvendinimui nuo 2025 m. rugpjūčio.
+Modelio konteksto protokolas (MCP) žymiai patobulėjo, įdiegus sustiprintas saugumo kontrolės priemones, apimančias tiek tradicinį programinės įrangos saugumą, tiek dirbtinio intelekto specifines grėsmes. Šis dokumentas pateikia išsamias saugumo kontrolės priemones saugioms MCP įgyvendinimo praktikoms 2025 m. gruodžio mėn.
 
 ## **PRIVALOMI saugumo reikalavimai**
 
-### **Kritiniai MCP specifikacijos draudimai:**
+### **Kritiniai draudimai pagal MCP specifikaciją:**
 
 > **DRAUDŽIAMA**: MCP serveriai **NETURI** priimti jokių žetonų, kurie nebuvo aiškiai išduoti MCP serveriui  
 >
 > **DRAUDŽIAMA**: MCP serveriai **NETURI** naudoti sesijų autentifikacijai  
 >
-> **PRIVALOMA**: MCP serveriai, įgyvendinantys autorizaciją, **TURI** patikrinti VISUS gaunamus užklausimus  
+> **PRIVALOMA**: MCP serveriai, įgyvendinantys autorizaciją, **PRIVALO** patikrinti VISUS įeinančius užklausimus  
 >
-> **PRIVALOMA**: MCP proxy serveriai, naudojantys statinius klientų ID, **TURI** gauti vartotojo sutikimą kiekvienam dinamiškai registruotam klientui  
+> **PRIVALOMA**: MCP proxy serveriai, naudojantys statinius kliento ID, **PRIVALO** gauti vartotojo sutikimą kiekvienam dinamiškai registruotam klientui
 
 ---
 
 ## 1. **Autentifikacijos ir autorizacijos kontrolės**
 
-### **Išorinių tapatybės teikėjų integracija**
+### **Išorinio tapatybės teikėjo integracija**
 
-**Dabartinis MCP standartas (2025-06-18)** leidžia MCP serveriams deleguoti autentifikaciją išoriniams tapatybės teikėjams, kas žymiai pagerina saugumą:
+**Dabartinis MCP standartas (2025-06-18)** leidžia MCP serveriams deleguoti autentifikaciją išoriniams tapatybės teikėjams, kas yra reikšmingas saugumo patobulinimas:
+
+### **Išorinio tapatybės teikėjo integracija**
+
+**Dabartinis MCP standartas (2025-11-25)** leidžia MCP serveriams deleguoti autentifikaciją išoriniams tapatybės teikėjams, kas yra reikšmingas saugumo patobulinimas:
 
 **Saugumo privalumai:**
-1. **Pašalina individualios autentifikacijos rizikas**: Sumažina pažeidžiamumo paviršių, išvengiant individualių autentifikacijos įgyvendinimų  
-2. **Įmonės lygio saugumas**: Naudoja patikimus tapatybės teikėjus, tokius kaip Microsoft Entra ID, su pažangiomis saugumo funkcijomis  
-3. **Centralizuotas tapatybės valdymas**: Supaprastina vartotojų gyvavimo ciklo valdymą, prieigos kontrolę ir atitikties auditą  
-4. **Daugiafaktorė autentifikacija**: Paveldi MFA galimybes iš įmonės tapatybės teikėjų  
-5. **Sąlyginių prieigos politikų taikymas**: Naudoja rizika pagrįstą prieigos kontrolę ir adaptyvią autentifikaciją  
+1. **Pašalina individualios autentifikacijos rizikas**: sumažina pažeidžiamumo paviršių vengiant individualių autentifikacijos įgyvendinimų  
+2. **Įmonių lygio saugumas**: naudoja patikimus tapatybės teikėjus, tokius kaip Microsoft Entra ID, su pažangiomis saugumo funkcijomis  
+3. **Centralizuotas tapatybės valdymas**: supaprastina vartotojų gyvavimo ciklo valdymą, prieigos kontrolę ir atitikties auditą  
+4. **Daugiaveiksmė autentifikacija**: paveldi MFA galimybes iš įmonių tapatybės teikėjų  
+5. **Sąlyginės prieigos politikos**: naudoja rizika pagrįstą prieigos kontrolę ir adaptuotą autentifikaciją  
 
 **Įgyvendinimo reikalavimai:**
-- **Žetono auditorijos patikrinimas**: Patikrinkite, ar visi žetonai buvo aiškiai išduoti MCP serveriui  
-- **Išdavėjo patikrinimas**: Patikrinkite, ar žetono išdavėjas atitinka tikėtiną tapatybės teikėją  
-- **Parašo patikrinimas**: Kriptografinis žetono vientisumo patikrinimas  
-- **Galiojimo laiko užtikrinimas**: Griežtas žetono galiojimo laiko ribų laikymasis  
-- **Apimties patikrinimas**: Užtikrinkite, kad žetonai turėtų tinkamus leidimus prašomoms operacijoms  
+- **Žetonų auditorijos patikra**: patikrinti, ar visi žetonai aiškiai išduoti MCP serveriui  
+- **Išdavėjo patikra**: patvirtinti, kad žetono išdavėjas atitinka numatytą tapatybės teikėją  
+- **Parašo patikra**: kriptografinis žetono vientisumo patvirtinimas  
+- **Galiojimo termino laikymasis**: griežtas žetono galiojimo laiko ribų laikymasis  
+- **Srities patikra**: užtikrinti, kad žetonai turi tinkamas teises prašomoms operacijoms  
 
 ### **Autorizacijos logikos saugumas**
 
-**Kritinės kontrolės priemonės:**
-- **Išsamūs autorizacijos auditai**: Reguliarūs saugumo peržiūros visuose autorizacijos sprendimų taškuose  
-- **Saugios numatytosios reikšmės**: Atmesti prieigą, kai autorizacijos logika negali priimti aiškaus sprendimo  
-- **Leidimų ribos**: Aiškus skirtingų privilegijų lygių ir išteklių prieigos atskyrimas  
-- **Audito žurnalai**: Visiškas visų autorizacijos sprendimų registravimas saugumo stebėjimui  
-- **Reguliarūs prieigos peržiūros**: Periodinis vartotojų leidimų ir privilegijų priskyrimų patikrinimas  
+**Kritinės kontrolės:**
+- **Išsamūs autorizacijos auditai**: reguliarios saugumo apžvalgos visiems autorizacijos sprendimų taškams  
+- **Saugūs numatytieji nustatymai**: prieiga uždraudžiama, kai autorizacijos logika negali priimti galutinio sprendimo  
+- **Leidimų ribos**: aiškus skirtingų privilegijų lygių ir išteklių prieigos atskyrimas  
+- **Auditavimo žurnalas**: pilnas visų autorizacijos sprendimų registravimas saugumo stebėsenai  
+- **Reguliarūs prieigos peržiūros**: periodinis vartotojų teisių ir privilegijų patikrinimas  
 
-## 2. **Žetonų saugumas ir apsauga nuo perdavimo**
+## 2. **Žetonų saugumas ir anti-praėjimo kontrolės**
 
-### **Žetonų perdavimo prevencija**
+### **Žetonų praėjimo prevencija**
 
-**Žetonų perdavimas yra griežtai draudžiamas** MCP autorizacijos specifikacijoje dėl kritinių saugumo rizikų:
+**Žetonų praėjimas yra aiškiai draudžiamas** MCP autorizacijos specifikacijoje dėl kritinių saugumo rizikų:
 
 **Sprendžiamos saugumo rizikos:**
-- **Kontrolės apeinimas**: Apeina esmines saugumo kontrolės priemones, tokias kaip užklausų ribojimas, užklausų patikrinimas ir srauto stebėjimas  
-- **Atsakomybės praradimas**: Neįmanoma identifikuoti kliento, sugadinant audito pėdsakus ir incidentų tyrimus  
-- **Ištraukimas per proxy**: Leidžia piktavaliams naudoti serverius kaip proxy neleistinai duomenų prieigai  
-- **Pasitikėjimo ribų pažeidimai**: Sugadina pasitikėjimo prielaidas apie žetonų kilmę paslaugų grandinėje  
-- **Šoninis judėjimas**: Kompromituoti žetonai tarp kelių paslaugų leidžia platesnį atakų plitimą  
+- **Kontrolės apeinimas**: apeina esmines saugumo kontrolės priemones, tokias kaip užklausų dažnio ribojimas, užklausų patikra ir srauto stebėjimas  
+- **Atsakomybės praradimas**: neįmanoma identifikuoti kliento, kas gadina auditų įrašus ir incidentų tyrimą  
+- **Proxy pagrindu vykdoma duomenų nutekėjimas**: leidžia kenkėjiškiems veikėjams naudoti serverius kaip proxy neautorizuotam duomenų prieigai  
+- **Pasitikėjimo ribų pažeidimai**: pažeidžia žemyninės paslaugos pasitikėjimo žetonų kilme prielaidas  
+- **Šoninė judėjimo galimybė**: kompromituoti žetonai keliuose serveriuose leidžia platesnį atakos plitimą  
 
-**Įgyvendinimo kontrolės priemonės:**
+**Įgyvendinimo kontrolės:**
 ```yaml
 Token Validation Requirements:
   audience_validation: MANDATORY
@@ -85,25 +89,25 @@ Token Lifecycle Management:
   replay_protection: "Implemented via nonce/timestamp"
 ```
 
-### **Saugūs žetonų valdymo modeliai**
+### **Saugios žetonų valdymo praktikos**
 
-**Geriausios praktikos:**
-- **Trumpalaikiai žetonai**: Sumažinkite pažeidžiamumo langą dažnai sukdami žetonus  
-- **Išdavimas pagal poreikį**: Išduokite žetonus tik tada, kai jų reikia konkrečioms operacijoms  
-- **Saugus saugojimas**: Naudokite aparatinės įrangos saugumo modulius (HSM) arba saugius raktų saugyklas  
-- **Žetonų susiejimas**: Susiekite žetonus su konkrečiais klientais, sesijomis ar operacijomis, kai įmanoma  
-- **Stebėjimas ir įspėjimai**: Realaus laiko žetonų netinkamo naudojimo ar neleistinos prieigos modelių aptikimas  
+**Gerosios praktikos:**
+- **Trumpalaikiai žetonai**: sumažina ekspozicijos laiką dažnai keičiant žetonus  
+- **Tikslaus laiko išdavimas**: žetonai išduodami tik tada, kai reikalingi konkrečioms operacijoms  
+- **Saugus saugojimas**: naudoti aparatinės įrangos saugumo modulius (HSM) arba saugius raktų saugyklas  
+- **Žetonų susiejimas**: susieti žetonus su konkrečiais klientais, sesijomis ar operacijomis, jei įmanoma  
+- **Stebėjimas ir įspėjimai**: realaus laiko žetonų piktnaudžiavimo ar neautorizuotos prieigos modelių aptikimas  
 
 ## 3. **Sesijų saugumo kontrolės**
 
 ### **Sesijų užgrobimo prevencija**
 
 **Sprendžiami atakų vektoriai:**
-- **Sesijos užgrobimo injekcija**: Kenkėjiški įvykiai, įterpti į bendrą sesijos būseną  
-- **Sesijos apsimetimas**: Neleistinas pavogtų sesijos ID naudojimas autentifikacijai apeiti  
-- **Atnaujinamų srautų atakos**: Serverio siunčiamų įvykių atnaujinimo išnaudojimas kenkėjiškam turiniui įterpti  
+- **Sesijos užgrobimo promptų injekcija**: kenkėjiški įvykiai įterpiami į bendrą sesijos būseną  
+- **Sesijos apsimetimas**: neautorizuotas pavogtų sesijos ID naudojimas autentifikacijos apeitimui  
+- **Atnaujinamų srautų atakos**: serverio siunčiamų įvykių atnaujinimo išnaudojimas kenkėjiškam turinio įterpimui  
 
-**Privalomos sesijų kontrolės priemonės:**
+**Privalomos sesijų kontrolės:**
 ```yaml
 Session ID Generation:
   randomness_source: "Cryptographically secure RNG"
@@ -124,25 +128,25 @@ Session Lifecycle:
 ```
 
 **Transporto saugumas:**
-- **HTTPS užtikrinimas**: Visa sesijų komunikacija per TLS 1.3  
-- **Saugūs slapukų atributai**: HttpOnly, Secure, SameSite=Strict  
-- **Sertifikatų prisegimas**: Kritinėms jungtims, siekiant išvengti MITM atakų  
+- **HTTPS privalomas**: visa sesijų komunikacija per TLS 1.3  
+- **Saugūs slapukai**: HttpOnly, Secure, SameSite=Strict atributai  
+- **Sertifikatų fiksavimas**: kritinėms jungtims, siekiant išvengti MITM atakų  
 
-### **Valstybinės ir bevalstybinės sesijos**
+### **Valstybės ir bevalstės įgyvendinimo svarstymai**
 
-**Valstybinėms įgyvendinimams:**
-- Bendros sesijos būsenos apsauga nuo injekcijos atakų  
-- Eilių pagrindu valdomų sesijų vientisumo patikrinimas  
-- Kelių serverių egzempliorių sesijos būsenos sinchronizavimas  
+**Valstybės pagrindu įgyvendinant:**
+- Bendrinama sesijos būsena reikalauja papildomos apsaugos nuo injekcijų atakų  
+- Eilės pagrindu valdomos sesijos reikalauja vientisumo patikros  
+- Keli serverių egzemplioriai reikalauja saugaus sesijos būsenos sinchronizavimo  
 
-**Bevalstybinėms įgyvendinimams:**
-- JWT ar panašūs žetonų pagrindu valdomi sesijų modeliai  
-- Kriptografinis sesijos būsenos vientisumo patikrinimas  
-- Sumažintas atakų paviršius, tačiau reikalingas tvirtas žetonų patikrinimas  
+**Bevalstės įgyvendinimui:**
+- JWT arba panašūs žetonais pagrįsti sesijų valdymo metodai  
+- Kriptografinė sesijos būsenos vientisumo patikra  
+- Sumažintas atakos paviršius, bet reikalinga tvirta žetonų patikra  
 
-## 4. **AI specifinės saugumo kontrolės**
+## 4. **Dirbtinio intelekto specifinės saugumo kontrolės**
 
-### **Įvesties injekcijos gynyba**
+### **Promptų injekcijos gynyba**
 
 **Microsoft Prompt Shields integracija:**
 ```yaml
@@ -162,11 +166,11 @@ Integration Points:
   - "Threat intelligence updates"
 ```
 
-**Įgyvendinimo kontrolės priemonės:**
-- **Įvesties valymas**: Išsamus visų vartotojo įvestų duomenų patikrinimas ir filtravimas  
-- **Turinio ribų apibrėžimas**: Aiškus sistemos instrukcijų ir vartotojo turinio atskyrimas  
-- **Instrukcijų hierarchija**: Tinkamos pirmenybės taisyklės konfliktuojančioms instrukcijoms  
-- **Išvesties stebėjimas**: Potencialiai kenksmingų ar manipuliuotų išvesties aptikimas  
+**Įgyvendinimo kontrolės:**
+- **Įvesties valymas**: išsami visų vartotojo įvesties patikra ir filtravimas  
+- **Turinio ribų apibrėžimas**: aiškus sistemos nurodymų ir vartotojo turinio atskyrimas  
+- **Nurodymų hierarchija**: tinkamos pirmenybės taisyklės prieštaringiems nurodymams  
+- **Išvesties stebėjimas**: potencialiai žalingos ar manipuliuotos išvesties aptikimas  
 
 ### **Įrankių užnuodijimo prevencija**
 
@@ -193,16 +197,16 @@ Tool Definition Protection:
 ```
 
 **Dinaminis įrankių valdymas:**
-- **Patvirtinimo procesai**: Aiškus vartotojo sutikimas dėl įrankių pakeitimų  
-- **Grąžinimo galimybės**: Galimybė grįžti prie ankstesnių įrankių versijų  
-- **Pakeitimų auditas**: Išsamus įrankių apibrėžimų pakeitimų istorijos registravimas  
-- **Rizikos vertinimas**: Automatinis įrankių saugumo būklės įvertinimas  
+- **Patvirtinimo procesai**: aiškus vartotojo sutikimas įrankių pakeitimams  
+- **Grąžinimo galimybės**: galimybė grįžti prie ankstesnių įrankių versijų  
+- **Pakeitimų auditas**: pilna įrankių apibrėžimų pakeitimų istorija  
+- **Rizikos vertinimas**: automatizuotas įrankių saugumo būklės vertinimas  
 
-## 5. **Suklaidinto tarpininko atakų prevencija**
+## 5. **Sumaišyto tarpininko atakos prevencija**
 
 ### **OAuth proxy saugumas**
 
-**Atakų prevencijos kontrolės priemonės:**
+**Atakų prevencijos kontrolės:**
 ```yaml
 Client Registration:
   static_client_protection:
@@ -219,16 +223,16 @@ Client Registration:
 ```
 
 **Įgyvendinimo reikalavimai:**
-- **Vartotojo sutikimo patikrinimas**: Niekada nepraleiskite sutikimo ekranų dinamiškai registruojant klientus  
-- **Peradresavimo URI patikrinimas**: Griežtas baltųjų sąrašų pagrindu atliekamas peradresavimo tikslų patikrinimas  
-- **Autorizacijos kodo apsauga**: Trumpalaikiai kodai su vienkartinio naudojimo užtikrinimu  
-- **Kliento tapatybės patikrinimas**: Tvirtas klientų kredencialų ir metaduomenų patikrinimas  
+- **Vartotojo sutikimo patikra**: niekada nepraleisti sutikimo ekranų dinamiškai klientų registracijai  
+- **Redirect URI patikra**: griežta baltųjų sąrašų patikra nukreipimo vietoms  
+- **Autorizacijos kodo apsauga**: trumpalaikiai kodai su vienkartiniu naudojimu  
+- **Kliento tapatybės patikra**: tvirta kliento kredencialų ir metaduomenų patikra  
 
 ## 6. **Įrankių vykdymo saugumas**
 
-### **Izoliacija ir smėlio dėžės**
+### **Smėlio dėžės ir izoliacija**
 
-**Konteinerių pagrindu vykdoma izoliacija:**
+**Konteinerių pagrindu izoliacija:**
 ```yaml
 Execution Environment:
   containerization: "Docker/Podman with security profiles"
@@ -245,13 +249,13 @@ Execution Environment:
     filesystem: "Read-only root with minimal writable areas"
 ```
 
-**Procesų izoliacija:**
-- **Atskiri procesų kontekstai**: Kiekvieno įrankio vykdymas atskirame procesų erdvėje  
-- **Tarpusavio procesų komunikacija**: Saugūs IPC mechanizmai su patikrinimu  
-- **Procesų stebėjimas**: Veikimo analizė ir anomalijų aptikimas vykdymo metu  
-- **Išteklių ribojimas**: Griežtos CPU, atminties ir I/O operacijų ribos  
+**Proceso izoliacija:**
+- **Atskiri proceso kontekstai**: kiekvienas įrankio vykdymas izoliuotoje proceso erdvėje  
+- **Tarpprocesinė komunikacija**: saugūs IPC mechanizmai su patikra  
+- **Proceso stebėjimas**: vykdymo elgsenos analizė ir anomalijų aptikimas  
+- **Išteklių apribojimai**: griežtos CPU, atminties ir I/O operacijų ribos  
 
-### **Minimalios privilegijos įgyvendinimas**
+### **Mažiausių privilegijų įgyvendinimas**
 
 **Leidimų valdymas:**
 ```yaml
@@ -276,9 +280,9 @@ Access Control:
 
 ## 7. **Tiekimo grandinės saugumo kontrolės**
 
-### **Priklausomybių patikrinimas**
+### **Priklausomybių patikra**
 
-**Išsami komponentų sauga:**
+**Išsamus komponentų saugumas:**
 ```yaml
 Software Dependencies:
   scanning: 
@@ -307,19 +311,19 @@ AI Components:
     - "Incident response capability evaluation"
 ```
 
-### **Nuolatinis stebėjimas**
+### **Nuolatinė stebėsena**
 
 **Tiekimo grandinės grėsmių aptikimas:**
-- **Priklausomybių sveikatos stebėjimas**: Nuolatinis visų priklausomybių saugumo problemų vertinimas  
-- **Grėsmių žvalgybos integracija**: Realaus laiko atnaujinimai apie naujas tiekimo grandinės grėsmes  
-- **Elgesio analizė**: Neįprasto išorinių komponentų elgesio aptikimas  
-- **Automatinis atsakas**: Nedelsiant izoliuoti kompromituotus komponentus  
+- **Priklausomybių sveikatos stebėsena**: nuolatinė visų priklausomybių saugumo problemų vertinimas  
+- **Grėsmių žvalgybos integracija**: realaus laiko atnaujinimai apie kylančias tiekimo grandinės grėsmes  
+- **Elgsenos analizė**: neįprastos elgsenos aptikimas išoriniame komponente  
+- **Automatizuotas reagavimas**: nedelsiamas kompromituotų komponentų suvaldymas  
 
 ## 8. **Stebėjimo ir aptikimo kontrolės**
 
 ### **Saugumo informacijos ir įvykių valdymas (SIEM)**
 
-**Išsami registravimo strategija:**
+**Išsami žurnalo strategija:**
 ```yaml
 Authentication Events:
   - "All authentication attempts (success/failure)"
@@ -340,19 +344,19 @@ Security Events:
   - "Unusual access patterns and anomalies"
 ```
 
-### **Realaus laiko grėsmių aptikimas**
+### **Realiojo laiko grėsmių aptikimas**
 
-**Elgesio analizė:**
-- **Vartotojų elgesio analizė (UBA)**: Neįprastų vartotojų prieigos modelių aptikimas  
-- **Subjektų elgesio analizė (EBA)**: MCP serverio ir įrankių elgesio stebėjimas  
-- **Mašininio mokymosi anomalijų aptikimas**: AI pagrįstas saugumo grėsmių identifikavimas  
-- **Grėsmių žvalgybos koreliacija**: Stebimų veiklų atitikimas žinomiems atakų modeliams  
+**Elgsenos analizė:**
+- **Vartotojų elgsenos analizė (UBA)**: neįprastų vartotojų prieigos modelių aptikimas  
+- **Subjektų elgsenos analizė (EBA)**: MCP serverio ir įrankių elgsenos stebėjimas  
+- **Mašininio mokymosi anomalijų aptikimas**: DI pagrįstas saugumo grėsmių identifikavimas  
+- **Grėsmių žvalgybos koreliacija**: stebimų veiklų suderinimas su žinomais atakų modeliais  
 
 ## 9. **Incidentų valdymas ir atkūrimas**
 
-### **Automatizuotos atsako galimybės**
+### **Automatizuotos reagavimo galimybės**
 
-**Nedelsiant vykdomi veiksmai:**
+**Nedelsiamo reagavimo veiksmai:**
 ```yaml
 Threat Containment:
   session_management:
@@ -377,56 +381,58 @@ Recovery Procedures:
     - "Service restart procedures"
 ```
 
-### **Teismo ekspertizės galimybės**
+### **Teisėsaugos galimybės**
 
 **Tyrimų palaikymas:**
-- **Audito pėdsakų išsaugojimas**: Nekintamas registravimas su kriptografiniu vientisumu  
-- **Įrodymų rinkimas**: Automatinis susijusių saugumo artefaktų surinkimas  
-- **Laiko juostos atkūrimas**: Išsamus įvykių, vedusių į saugumo incidentus, sekos atkūrimas  
-- **Poveikio vertinimas**: Kompromiso masto ir duomenų atskleidimo įvertinimas  
+- **Audito takų išsaugojimas**: nekintamas žurnalo įrašymas su kriptografiniu vientisumu  
+- **Įrodymų rinkimas**: automatizuotas susijusių saugumo artefaktų surinkimas  
+- **Įvykių laiko juostos atkūrimas**: detali įvykių seka, vedanti prie saugumo incidentų  
+- **Poveikio vertinimas**: kompromiso masto ir duomenų atskleidimo įvertinimas  
 
 ## **Pagrindiniai saugumo architektūros principai**
 
-### **Gynyba gylio principu**
-- **Keli saugumo sluoksniai**: Nėra vieno saugumo architektūros gedimo taško  
-- **Redundantinės kontrolės**: Persidengiančios saugumo priemonės kritinėms funkcijoms  
-- **Saugios numatytosios reikšmės**: Saugūs numatytieji nustatymai, kai sistemos susiduria su klaidomis ar atakomis  
+### **Gynyba gilumoje**
+- **Keli saugumo sluoksniai**: nėra vieno silpno saugumo taško architektūroje  
+- **Dubliuotos kontrolės**: persidengiančios saugumo priemonės kritinėms funkcijoms  
+- **Saugūs numatytieji nustatymai**: saugūs numatytieji, kai sistemos susiduria su klaidomis ar atakomis  
 
-### **Zero Trust įgyvendinimas**
-- **Niekada nepasitikėk, visada tikrink**: Nuolatinis visų subjektų ir užklausų tikrinimas  
-- **Minimalios privilegijos principas**: Minimalios prieigos teisės visiems komponentams  
-- **Mikrosegmentacija**: Granuliuota tinklo ir prieigos kontrolė  
+### **Nulinio pasitikėjimo įgyvendinimas**
+- **Niekada nepasitikėti, visada tikrinti**: nuolatinė visų subjektų ir užklausų patikra  
+- **Mažiausių privilegijų principas**: minimalios prieigos teisės visiems komponentams  
+- **Mikrosegmentacija**: smulkios tinklo ir prieigos kontrolės  
 
 ### **Nuolatinė saugumo evoliucija**
-- **Grėsmių kraštovaizdžio adaptacija**: Reguliarūs atnaujinimai, siekiant spręsti naujas grėsmes  
-- **Saugumo kontrolės efektyvumas**: Nuolatinis kontrolės priemonių vertinimas ir tobulinimas  
-- **Specifikacijų laikymasis**: Atitikimas besikeičiantiems MCP saugumo standartams  
+- **Grėsmių kraštovaizdžio adaptacija**: reguliariai atnaujinama, siekiant spręsti kylančias grėsmes  
+- **Saugumo kontrolės efektyvumas**: nuolatinis kontrolės priemonių vertinimas ir tobulinimas  
+- **Specifikacijos atitiktis**: suderinamumas su besikeičiančiais MCP saugumo standartais  
 
 ---
 
 ## **Įgyvendinimo ištekliai**
 
 ### **Oficiali MCP dokumentacija**
-- [MCP specifikacija (2025-06-18)](https://spec.modelcontextprotocol.io/specification/2025-06-18/)  
-- [MCP saugumo geriausios praktikos](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices)  
-- [MCP autorizacijos specifikacija](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization)  
+- [MCP specifikacija (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP saugumo gerosios praktikos](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices)
+- [MCP autorizacijos specifikacija](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)
 
 ### **Microsoft saugumo sprendimai**
-- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)  
-- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)  
-- [GitHub Advanced Security](https://github.com/security/advanced-security)  
-- [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/)  
+- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
+- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)
+- [GitHub Advanced Security](https://github.com/security/advanced-security)
+- [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/)
 
 ### **Saugumo standartai**
-- [OAuth 2.0 saugumo geriausios praktikos (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)  
-- [OWASP Top 10 dideliems kalbos modeliams](https://genai.owasp.org/)  
-- [NIST kibernetinio saugumo sistema](https://www.nist.gov/cyberframework)  
+- [OAuth 2.0 saugumo gerosios praktikos (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)
+- [OWASP Top 10 dideliems kalbos modeliams](https://genai.owasp.org/)
+- [NIST kibernetinio saugumo sistema](https://www.nist.gov/cyberframework)
 
 ---
 
-> **Svarbu**: Šios saugumo kontrolės priemonės atspindi dabartinę MCP specifikaciją (2025-06-18). Visada patikrinkite pagal naujausią [oficialią dokumentaciją](https://spec.modelcontextprotocol.io/), nes standartai greitai keičiasi.
+> **Svarbu**: Šios saugumo kontrolės atspindi dabartinę MCP specifikaciją (2025-06-18). Visada tikrinkite naujausią [oficialią dokumentaciją](https://spec.modelcontextprotocol.io/), nes standartai sparčiai keičiasi.
 
 ---
 
-**Atsakomybės apribojimas**:  
-Šis dokumentas buvo išverstas naudojant AI vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojama naudoti profesionalų žmogaus vertimą. Mes neprisiimame atsakomybės už nesusipratimus ar klaidingus interpretavimus, atsiradusius dėl šio vertimo naudojimo.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Atsakomybės apribojimas**:
+Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors stengiamės užtikrinti tikslumą, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Svarbiai informacijai rekomenduojamas profesionalus žmogaus vertimas. Mes neatsakome už bet kokius nesusipratimus ar neteisingus aiškinimus, kilusius dėl šio vertimo naudojimo.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

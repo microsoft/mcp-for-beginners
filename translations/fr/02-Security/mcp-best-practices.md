@@ -1,181 +1,192 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "b2b9e15e78b9d9a2b3ff3e8fd7d1f434",
-  "translation_date": "2025-08-18T10:59:49+00:00",
+  "original_hash": "5061d7e2ae9eea9cbaae77c1a020b318",
+  "translation_date": "2025-12-19T07:29:43+00:00",
   "source_file": "02-Security/mcp-best-practices.md",
   "language_code": "fr"
 }
 -->
-# Meilleures Pratiques de Sécurité MCP 2025
+# Meilleures pratiques de sécurité MCP 2025
 
-Ce guide complet présente les meilleures pratiques essentielles de sécurité pour la mise en œuvre des systèmes Model Context Protocol (MCP) basées sur la dernière **Spécification MCP 2025-06-18** et les normes actuelles de l'industrie. Ces pratiques couvrent à la fois les préoccupations traditionnelles en matière de sécurité et les menaces spécifiques à l'IA propres aux déploiements MCP.
+Ce guide complet décrit les meilleures pratiques essentielles en matière de sécurité pour la mise en œuvre des systèmes Model Context Protocol (MCP) basées sur la dernière **Spécification MCP 2025-11-25** et les normes industrielles actuelles. Ces pratiques abordent à la fois les préoccupations traditionnelles de sécurité et les menaces spécifiques à l’IA propres aux déploiements MCP.
 
-## Exigences Critiques en Matière de Sécurité
+## Exigences critiques en matière de sécurité
 
-### Contrôles de Sécurité Obligatoires (Exigences MUST)
+### Contrôles de sécurité obligatoires (exigences MUST)
 
-1. **Validation des Jetons** : Les serveurs MCP **NE DOIVENT PAS** accepter de jetons qui n'ont pas été explicitement émis pour le serveur MCP lui-même.
-2. **Vérification de l'Autorisation** : Les serveurs MCP mettant en œuvre l'autorisation **DOIVENT** vérifier TOUTES les requêtes entrantes et **NE DOIVENT PAS** utiliser des sessions pour l'authentification.  
-3. **Consentement de l'Utilisateur** : Les serveurs proxy MCP utilisant des identifiants clients statiques **DOIVENT** obtenir le consentement explicite de l'utilisateur pour chaque client enregistré dynamiquement.
-4. **Identifiants de Session Sécurisés** : Les serveurs MCP **DOIVENT** utiliser des identifiants de session cryptographiquement sécurisés et non déterministes générés avec des générateurs de nombres aléatoires sécurisés.
+1. **Validation des jetons** : Les serveurs MCP **NE DOIVENT PAS** accepter de jetons qui n’ont pas été explicitement émis pour le serveur MCP lui-même  
+2. **Vérification de l’autorisation** : Les serveurs MCP mettant en œuvre l’autorisation **DOIVENT** vérifier TOUTES les requêtes entrantes et **NE DOIVENT PAS** utiliser de sessions pour l’authentification  
+3. **Consentement utilisateur** : Les serveurs proxy MCP utilisant des ID client statiques **DOIVENT** obtenir le consentement explicite de l’utilisateur pour chaque client enregistré dynamiquement  
+4. **ID de session sécurisés** : Les serveurs MCP **DOIVENT** utiliser des ID de session cryptographiquement sécurisés, non déterministes, générés avec des générateurs de nombres aléatoires sécurisés
 
-## Pratiques de Sécurité Fondamentales
+## Pratiques de sécurité fondamentales
 
-### 1. Validation et Assainissement des Entrées
-- **Validation Complète des Entrées** : Validez et assainissez toutes les entrées pour prévenir les attaques par injection, les problèmes de proxy confus et les vulnérabilités d'injection de prompts.
-- **Application de Schémas de Paramètres** : Implémentez une validation stricte des schémas JSON pour tous les paramètres d'outils et les entrées d'API.
-- **Filtrage de Contenu** : Utilisez Microsoft Prompt Shields et Azure Content Safety pour filtrer le contenu malveillant dans les prompts et les réponses.
-- **Assainissement des Sorties** : Validez et assainissez toutes les sorties des modèles avant de les présenter aux utilisateurs ou aux systèmes en aval.
+### 1. Validation et assainissement des entrées
+- **Validation complète des entrées** : Valider et assainir toutes les entrées pour prévenir les attaques par injection, les problèmes de délégué confus et les vulnérabilités d’injection de prompt  
+- **Application stricte des schémas de paramètres** : Mettre en œuvre une validation stricte des schémas JSON pour tous les paramètres d’outil et les entrées API  
+- **Filtrage de contenu** : Utiliser Microsoft Prompt Shields et Azure Content Safety pour filtrer le contenu malveillant dans les prompts et les réponses  
+- **Assainissement des sorties** : Valider et assainir toutes les sorties du modèle avant de les présenter aux utilisateurs ou aux systèmes en aval
 
-### 2. Excellence en Authentification et Autorisation  
-- **Fournisseurs d'Identité Externes** : Déléguez l'authentification à des fournisseurs d'identité établis (Microsoft Entra ID, fournisseurs OAuth 2.1) plutôt que de mettre en œuvre une authentification personnalisée.
-- **Permissions Granulaires** : Implémentez des permissions spécifiques aux outils suivant le principe du moindre privilège.
-- **Gestion du Cycle de Vie des Jetons** : Utilisez des jetons d'accès de courte durée avec rotation sécurisée et validation correcte de l'audience.
-- **Authentification Multi-Facteurs** : Exigez l'AMF pour tous les accès administratifs et les opérations sensibles.
+### 2. Excellence en authentification et autorisation  
+- **Fournisseurs d’identité externes** : Déléguer l’authentification à des fournisseurs d’identité établis (Microsoft Entra ID, fournisseurs OAuth 2.1) plutôt que d’implémenter une authentification personnalisée  
+- **Permissions fines** : Mettre en œuvre des permissions granulaires spécifiques aux outils en suivant le principe du moindre privilège  
+- **Gestion du cycle de vie des jetons** : Utiliser des jetons d’accès à courte durée de vie avec rotation sécurisée et validation correcte de l’audience  
+- **Authentification multi-facteurs** : Exiger la MFA pour tout accès administratif et opérations sensibles
 
-### 3. Protocoles de Communication Sécurisés
-- **Sécurité de la Couche de Transport** : Utilisez HTTPS/TLS 1.3 pour toutes les communications MCP avec une validation correcte des certificats.
-- **Chiffrement de Bout en Bout** : Implémentez des couches de chiffrement supplémentaires pour les données hautement sensibles en transit et au repos.
-- **Gestion des Certificats** : Maintenez une gestion correcte du cycle de vie des certificats avec des processus de renouvellement automatisés.
-- **Application de la Version du Protocole** : Utilisez la version actuelle du protocole MCP (2025-06-18) avec une négociation correcte des versions.
+### 3. Protocoles de communication sécurisés
+- **Sécurité de la couche transport** : Utiliser HTTPS/TLS 1.3 pour toutes les communications MCP avec validation correcte des certificats  
+- **Chiffrement de bout en bout** : Mettre en œuvre des couches de chiffrement supplémentaires pour les données hautement sensibles en transit et au repos  
+- **Gestion des certificats** : Maintenir une gestion appropriée du cycle de vie des certificats avec des processus de renouvellement automatisés  
+- **Application de la version du protocole** : Utiliser la version actuelle du protocole MCP (2025-11-25) avec une négociation correcte des versions
 
-### 4. Limitation Avancée des Taux et Protection des Ressources
-- **Limitation Multi-couches des Taux** : Implémentez une limitation des taux au niveau des utilisateurs, des sessions, des outils et des ressources pour prévenir les abus.
-- **Limitation Adaptative des Taux** : Utilisez une limitation des taux basée sur l'apprentissage automatique qui s'adapte aux modèles d'utilisation et aux indicateurs de menace.
-- **Gestion des Quotas de Ressources** : Définissez des limites appropriées pour les ressources informatiques, l'utilisation de la mémoire et le temps d'exécution.
-- **Protection contre les Attaques DDoS** : Déployez une protection complète contre les attaques DDoS et des systèmes d'analyse du trafic.
+### 4. Limitation avancée du débit et protection des ressources
+- **Limitation multi-couches du débit** : Mettre en œuvre une limitation du débit au niveau utilisateur, session, outil et ressource pour prévenir les abus  
+- **Limitation adaptative du débit** : Utiliser une limitation du débit basée sur l’apprentissage automatique qui s’adapte aux schémas d’utilisation et aux indicateurs de menace  
+- **Gestion des quotas de ressources** : Définir des limites appropriées pour les ressources de calcul, l’utilisation de la mémoire et le temps d’exécution  
+- **Protection contre les DDoS** : Déployer des systèmes complets de protection DDoS et d’analyse du trafic
 
-### 5. Journalisation et Surveillance Complètes
-- **Journalisation Structurée des Audits** : Implémentez des journaux détaillés et consultables pour toutes les opérations MCP, les exécutions d'outils et les événements de sécurité.
-- **Surveillance de Sécurité en Temps Réel** : Déployez des systèmes SIEM avec détection d'anomalies alimentée par l'IA pour les charges de travail MCP.
-- **Journalisation Respectueuse de la Vie Privée** : Journalisez les événements de sécurité tout en respectant les exigences et réglementations en matière de protection des données.
-- **Intégration de la Réponse aux Incidents** : Connectez les systèmes de journalisation à des workflows automatisés de réponse aux incidents.
+### 5. Journalisation et surveillance complètes
+- **Journalisation d’audit structurée** : Mettre en œuvre des journaux détaillés et consultables pour toutes les opérations MCP, exécutions d’outils et événements de sécurité  
+- **Surveillance de sécurité en temps réel** : Déployer des systèmes SIEM avec détection d’anomalies alimentée par l’IA pour les charges de travail MCP  
+- **Journalisation conforme à la vie privée** : Journaliser les événements de sécurité tout en respectant les exigences et réglementations en matière de confidentialité des données  
+- **Intégration à la réponse aux incidents** : Connecter les systèmes de journalisation aux workflows automatisés de réponse aux incidents
 
-### 6. Pratiques de Stockage Sécurisé Améliorées
-- **Modules de Sécurité Matérielle** : Utilisez des modules de sécurité matérielle (Azure Key Vault, AWS CloudHSM) pour les opérations cryptographiques critiques.
-- **Gestion des Clés de Chiffrement** : Implémentez une rotation correcte des clés, une séparation et des contrôles d'accès pour les clés de chiffrement.
-- **Gestion des Secrets** : Stockez toutes les clés API, jetons et identifiants dans des systèmes dédiés de gestion des secrets.
-- **Classification des Données** : Classez les données en fonction des niveaux de sensibilité et appliquez des mesures de protection appropriées.
+### 6. Pratiques améliorées de stockage sécurisé
+- **Modules de sécurité matériels** : Utiliser un stockage de clés soutenu par HSM (Azure Key Vault, AWS CloudHSM) pour les opérations cryptographiques critiques  
+- **Gestion des clés de chiffrement** : Mettre en œuvre une rotation, une séparation et des contrôles d’accès appropriés pour les clés de chiffrement  
+- **Gestion des secrets** : Stocker toutes les clés API, jetons et identifiants dans des systèmes dédiés de gestion des secrets  
+- **Classification des données** : Classifier les données selon les niveaux de sensibilité et appliquer des mesures de protection appropriées
 
-### 7. Gestion Avancée des Jetons
-- **Prévention du Passage des Jetons** : Interdisez explicitement les modèles de passage de jetons qui contournent les contrôles de sécurité.
-- **Validation de l'Audience** : Vérifiez toujours que les revendications d'audience des jetons correspondent à l'identité du serveur MCP prévu.
-- **Autorisation Basée sur les Revendications** : Implémentez une autorisation fine basée sur les revendications des jetons et les attributs des utilisateurs.
-- **Liaison des Jetons** : Liez les jetons à des sessions, utilisateurs ou appareils spécifiques lorsque cela est approprié.
+### 7. Gestion avancée des jetons
+- **Prévention du passage de jetons** : Interdire explicitement les schémas de passage de jetons qui contournent les contrôles de sécurité  
+- **Validation de l’audience** : Toujours vérifier que les revendications d’audience du jeton correspondent à l’identité prévue du serveur MCP  
+- **Autorisation basée sur les revendications** : Mettre en œuvre une autorisation fine basée sur les revendications du jeton et les attributs utilisateur  
+- **Liaison des jetons** : Lier les jetons à des sessions, utilisateurs ou appareils spécifiques lorsque cela est approprié
 
-### 8. Gestion Sécurisée des Sessions
-- **Identifiants de Session Cryptographiques** : Générez des identifiants de session à l'aide de générateurs de nombres aléatoires cryptographiquement sécurisés (pas de séquences prévisibles).
-- **Liaison Spécifique à l'Utilisateur** : Liez les identifiants de session à des informations spécifiques à l'utilisateur en utilisant des formats sécurisés comme `<user_id>:<session_id>`.
-- **Contrôles du Cycle de Vie des Sessions** : Implémentez une expiration, une rotation et une invalidation correctes des sessions.
-- **En-têtes de Sécurité des Sessions** : Utilisez des en-têtes HTTP appropriés pour la protection des sessions.
+### 8. Gestion sécurisée des sessions
+- **ID de session cryptographiques** : Générer les ID de session en utilisant des générateurs de nombres aléatoires cryptographiquement sécurisés (pas de séquences prévisibles)  
+- **Liaison spécifique à l’utilisateur** : Lier les ID de session aux informations spécifiques à l’utilisateur en utilisant des formats sécurisés comme `<user_id>:<session_id>`  
+- **Contrôles du cycle de vie des sessions** : Mettre en œuvre des mécanismes appropriés d’expiration, rotation et invalidation des sessions  
+- **En-têtes de sécurité pour les sessions** : Utiliser des en-têtes HTTP de sécurité appropriés pour la protection des sessions
 
-### 9. Contrôles de Sécurité Spécifiques à l'IA
-- **Défense contre l'Injection de Prompts** : Déployez Microsoft Prompt Shields avec des techniques de mise en lumière, de délimitation et de marquage des données.
-- **Prévention de l'Empoisonnement des Outils** : Validez les métadonnées des outils, surveillez les changements dynamiques et vérifiez l'intégrité des outils.
-- **Validation des Sorties des Modèles** : Analysez les sorties des modèles pour détecter les fuites de données potentielles, le contenu nuisible ou les violations des politiques de sécurité.
-- **Protection de la Fenêtre de Contexte** : Implémentez des contrôles pour prévenir l'empoisonnement et les attaques de manipulation de la fenêtre de contexte.
+### 9. Contrôles de sécurité spécifiques à l’IA
+- **Défense contre l’injection de prompt** : Déployer Microsoft Prompt Shields avec mise en lumière, délimiteurs et techniques de marquage des données  
+- **Prévention de l’empoisonnement des outils** : Valider les métadonnées des outils, surveiller les changements dynamiques et vérifier l’intégrité des outils  
+- **Validation des sorties du modèle** : Scanner les sorties du modèle pour détecter les fuites potentielles de données, contenus nuisibles ou violations de politique de sécurité  
+- **Protection de la fenêtre de contexte** : Mettre en œuvre des contrôles pour prévenir l’empoisonnement et les attaques de manipulation de la fenêtre de contexte
 
-### 10. Sécurité de l'Exécution des Outils
-- **Sandboxing de l'Exécution** : Exécutez les outils dans des environnements isolés et conteneurisés avec des limites de ressources.
-- **Séparation des Privilèges** : Exécutez les outils avec les privilèges minimaux requis et des comptes de service séparés.
-- **Isolation Réseau** : Implémentez une segmentation réseau pour les environnements d'exécution des outils.
-- **Surveillance de l'Exécution** : Surveillez l'exécution des outils pour détecter les comportements anormaux, l'utilisation des ressources et les violations de sécurité.
+### 10. Sécurité de l’exécution des outils
+- **Sandboxing de l’exécution** : Exécuter les outils dans des environnements conteneurisés et isolés avec des limites de ressources  
+- **Séparation des privilèges** : Exécuter les outils avec les privilèges minimaux requis et des comptes de service séparés  
+- **Isolation réseau** : Mettre en œuvre une segmentation réseau pour les environnements d’exécution des outils  
+- **Surveillance de l’exécution** : Surveiller l’exécution des outils pour détecter les comportements anormaux, l’utilisation des ressources et les violations de sécurité
 
-### 11. Validation Continue de la Sécurité
-- **Tests de Sécurité Automatisés** : Intégrez les tests de sécurité dans les pipelines CI/CD avec des outils comme GitHub Advanced Security.
-- **Gestion des Vulnérabilités** : Analysez régulièrement toutes les dépendances, y compris les modèles d'IA et les services externes.
-- **Tests de Pénétration** : Effectuez des évaluations régulières de sécurité ciblant spécifiquement les implémentations MCP.
-- **Revue de Code Sécurisée** : Implémentez des revues de code obligatoires pour toutes les modifications liées à MCP.
+### 11. Validation continue de la sécurité
+- **Tests de sécurité automatisés** : Intégrer les tests de sécurité dans les pipelines CI/CD avec des outils comme GitHub Advanced Security  
+- **Gestion des vulnérabilités** : Scanner régulièrement toutes les dépendances, y compris les modèles IA et services externes  
+- **Tests d’intrusion** : Réaliser des évaluations de sécurité régulières ciblant spécifiquement les implémentations MCP  
+- **Revue de code sécurisée** : Mettre en œuvre des revues de sécurité obligatoires pour tous les changements de code liés à MCP
 
-### 12. Sécurité de la Chaîne d'Approvisionnement pour l'IA
-- **Vérification des Composants** : Vérifiez la provenance, l'intégrité et la sécurité de tous les composants d'IA (modèles, embeddings, API).
-- **Gestion des Dépendances** : Maintenez des inventaires à jour de tous les logiciels et dépendances d'IA avec un suivi des vulnérabilités.
-- **Dépôts de Confiance** : Utilisez des sources vérifiées et fiables pour tous les modèles d'IA, bibliothèques et outils.
-- **Surveillance de la Chaîne d'Approvisionnement** : Surveillez en continu les compromissions chez les fournisseurs de services d'IA et les dépôts de modèles.
+### 12. Sécurité de la chaîne d’approvisionnement pour l’IA
+- **Vérification des composants** : Vérifier la provenance, l’intégrité et la sécurité de tous les composants IA (modèles, embeddings, API)  
+- **Gestion des dépendances** : Maintenir des inventaires à jour de tous les logiciels et dépendances IA avec suivi des vulnérabilités  
+- **Dépôts de confiance** : Utiliser des sources vérifiées et fiables pour tous les modèles IA, bibliothèques et outils  
+- **Surveillance de la chaîne d’approvisionnement** : Surveiller en continu les compromissions chez les fournisseurs de services IA et les dépôts de modèles
 
-## Modèles de Sécurité Avancés
+## Modèles avancés de sécurité
 
 ### Architecture Zero Trust pour MCP
-- **Ne Jamais Faire Confiance, Toujours Vérifier** : Implémentez une vérification continue pour tous les participants MCP.
-- **Micro-segmentation** : Isolez les composants MCP avec des contrôles granulaires de réseau et d'identité.
-- **Accès Conditionnel** : Implémentez des contrôles d'accès basés sur les risques qui s'adaptent au contexte et au comportement.
-- **Évaluation Continue des Risques** : Évaluez dynamiquement la posture de sécurité en fonction des indicateurs de menace actuels.
+- **Ne jamais faire confiance, toujours vérifier** : Mettre en œuvre une vérification continue pour tous les participants MCP  
+- **Micro-segmentation** : Isoler les composants MCP avec des contrôles granulaires réseau et d’identité  
+- **Accès conditionnel** : Mettre en œuvre des contrôles d’accès basés sur le risque qui s’adaptent au contexte et au comportement  
+- **Évaluation continue des risques** : Évaluer dynamiquement la posture de sécurité en fonction des indicateurs de menace actuels
 
-### Mise en Œuvre de l'IA Respectueuse de la Vie Privée
-- **Minimisation des Données** : Exposez uniquement les données nécessaires pour chaque opération MCP.
-- **Confidentialité Différentielle** : Implémentez des techniques de préservation de la vie privée pour le traitement des données sensibles.
-- **Chiffrement Homomorphe** : Utilisez des techniques de chiffrement avancées pour le calcul sécurisé sur des données chiffrées.
-- **Apprentissage Fédéré** : Implémentez des approches d'apprentissage distribué qui préservent la localité et la confidentialité des données.
+### Mise en œuvre d’une IA respectueuse de la vie privée
+- **Minimisation des données** : Ne divulguer que le minimum de données nécessaires pour chaque opération MCP  
+- **Confidentialité différentielle** : Mettre en œuvre des techniques de préservation de la vie privée pour le traitement des données sensibles  
+- **Chiffrement homomorphe** : Utiliser des techniques avancées de chiffrement pour le calcul sécurisé sur des données chiffrées  
+- **Apprentissage fédéré** : Mettre en œuvre des approches d’apprentissage distribué qui préservent la localisation et la confidentialité des données
 
-### Réponse aux Incidents pour les Systèmes d'IA
-- **Procédures Spécifiques à l'IA** : Développez des procédures de réponse aux incidents adaptées aux menaces spécifiques à l'IA et MCP.
-- **Réponse Automatisée** : Implémentez un confinement et une remédiation automatisés pour les incidents de sécurité courants liés à l'IA.  
-- **Capacités Forensiques** : Maintenez une préparation forensique pour les compromissions des systèmes d'IA et les violations de données.
-- **Procédures de Récupération** : Établissez des procédures pour récupérer des empoisonnements de modèles d'IA, des attaques par injection de prompts et des compromissions de services.
+### Réponse aux incidents pour les systèmes IA
+- **Procédures spécifiques aux incidents IA** : Développer des procédures de réponse aux incidents adaptées aux menaces spécifiques à l’IA et MCP  
+- **Réponse automatisée** : Mettre en œuvre un confinement et une remédiation automatisés pour les incidents de sécurité IA courants  
+- **Capacités médico-légales** : Maintenir une préparation médico-légale pour les compromissions des systèmes IA et les violations de données  
+- **Procédures de récupération** : Établir des procédures pour récupérer des empoisonnements de modèles IA, attaques d’injection de prompt et compromissions de services
 
-## Ressources et Normes de Mise en Œuvre
+## Ressources et normes de mise en œuvre
 
-### Documentation Officielle MCP
-- [Spécification MCP 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) - Spécification actuelle du protocole MCP
-- [Meilleures Pratiques de Sécurité MCP](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) - Guide officiel de sécurité
-- [Spécification d'Autorisation MCP](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization) - Modèles d'authentification et d'autorisation
-- [Sécurité des Transports MCP](https://modelcontextprotocol.io/specification/2025-06-18/transports/) - Exigences de sécurité de la couche de transport
+### Documentation officielle MCP
+- [MCP Specification 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) - Spécification actuelle du protocole MCP  
+- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) - Guide officiel de sécurité  
+- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization) - Modèles d’authentification et d’autorisation  
+- [MCP Transport Security](https://modelcontextprotocol.io/specification/2025-11-25/transports/) - Exigences de sécurité de la couche transport
 
-### Solutions de Sécurité Microsoft
-- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection) - Protection avancée contre l'injection de prompts
-- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/) - Filtrage complet du contenu IA
-- [Microsoft Entra ID](https://learn.microsoft.com/entra/identity-platform/v2-oauth2-auth-code-flow) - Gestion des identités et des accès en entreprise
-- [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/general/basic-concepts) - Gestion sécurisée des secrets et des identifiants
-- [GitHub Advanced Security](https://github.com/security/advanced-security) - Analyse de sécurité de la chaîne d'approvisionnement et du code
+### Solutions de sécurité Microsoft
+- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection) - Protection avancée contre l’injection de prompt  
+- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/) - Filtrage complet du contenu IA  
+- [Microsoft Entra ID](https://learn.microsoft.com/entra/identity-platform/v2-oauth2-auth-code-flow) - Gestion d’identité et d’accès d’entreprise  
+- [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/general/basic-concepts) - Gestion sécurisée des secrets et identifiants  
+- [GitHub Advanced Security](https://github.com/security/advanced-security) - Analyse de la sécurité de la chaîne d’approvisionnement et du code
 
-### Normes et Cadres de Sécurité
-- [Meilleures Pratiques de Sécurité OAuth 2.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics) - Guide de sécurité OAuth actuel
-- [OWASP Top 10](https://owasp.org/www-project-top-ten/) - Risques de sécurité des applications web
-- [OWASP Top 10 pour les LLMs](https://genai.owasp.org/download/43299/?tmstv=1731900559) - Risques de sécurité spécifiques à l'IA
-- [Cadre de Gestion des Risques IA NIST](https://www.nist.gov/itl/ai-risk-management-framework) - Gestion complète des risques IA
-- [ISO 27001:2022](https://www.iso.org/standard/27001) - Systèmes de gestion de la sécurité de l'information
+### Normes et cadres de sécurité
+- [OAuth 2.1 Security Best Practices](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics) - Guide actuel de sécurité OAuth  
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/) - Risques de sécurité des applications web  
+- [OWASP Top 10 for LLMs](https://genai.owasp.org/download/43299/?tmstv=1731900559) - Risques de sécurité spécifiques à l’IA  
+- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework) - Gestion complète des risques IA  
+- [ISO 27001:2022](https://www.iso.org/standard/27001) - Systèmes de gestion de la sécurité de l’information
 
-### Guides et Tutoriels de Mise en Œuvre
-- [Azure API Management comme Passerelle d'Auth MCP](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690) - Modèles d'authentification en entreprise
-- [Microsoft Entra ID avec Serveurs MCP](https://den.dev/blog/mcp-server-auth-entra-id-session/) - Intégration des fournisseurs d'identité
-- [Mise en Œuvre de Stockage Sécurisé des Jetons](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2) - Meilleures pratiques de gestion des jetons
-- [Chiffrement de Bout en Bout pour l'IA](https://learn.microsoft.com/azure/architecture/example-scenario/confidential/end-to-end-encryption) - Modèles de chiffrement avancés
+### Guides et tutoriels de mise en œuvre
+- [Azure API Management as MCP Auth Gateway](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690) - Modèles d’authentification d’entreprise  
+- [Microsoft Entra ID with MCP Servers](https://den.dev/blog/mcp-server-auth-entra-id-session/) - Intégration de fournisseur d’identité  
+- [Secure Token Storage Implementation](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2) - Meilleures pratiques de gestion des jetons  
+- [End-to-End Encryption for AI](https://learn.microsoft.com/azure/architecture/example-scenario/confidential/end-to-end-encryption) - Modèles avancés de chiffrement
 
-### Ressources de Sécurité Avancées
-- [Cycle de Vie de Développement Sécurisé Microsoft](https://www.microsoft.com/sdl) - Pratiques de développement sécurisé
-- [Guide de l'Équipe Rouge IA](https://learn.microsoft.com/security/ai-red-team/) - Tests de sécurité spécifiques à l'IA
-- [Modélisation des Menaces pour les Systèmes IA](https://learn.microsoft.com/security/adoption/approach/threats-ai) - Méthodologie de modélisation des menaces IA
-- [Ingénierie de la Vie Privée pour l'IA](https://www.microsoft.com/security/blog/2021/07/13/microsofts-pet-project-privacy-enhancing-technologies-in-action/) - Techniques de préservation de la vie privée pour l'IA
+### Ressources avancées de sécurité
+- [Microsoft Security Development Lifecycle](https://www.microsoft.com/sdl) - Pratiques de développement sécurisé  
+- [AI Red Team Guidance](https://learn.microsoft.com/security/ai-red-team/) - Tests de sécurité spécifiques à l’IA  
+- [Threat Modeling for AI Systems](https://learn.microsoft.com/security/adoption/approach/threats-ai) - Méthodologie de modélisation des menaces IA  
+- [Privacy Engineering for AI](https://www.microsoft.com/security/blog/2021/07/13/microsofts-pet-project-privacy-enhancing-technologies-in-action/) - Techniques d’IA respectueuses de la vie privée
 
-### Conformité et Gouvernance
-- [Conformité RGPD pour l'IA](https://learn.microsoft.com/compliance/regulatory/gdpr-data-protection-impact-assessments) - Conformité en matière de vie privée dans les systèmes IA
-- [Cadre de Gouvernance IA](https://learn.microsoft.com/azure/architecture/guide/responsible-ai/responsible-ai-overview) - Mise en œuvre de l'IA responsable
-- [SOC 2 pour les Services IA](https://learn.microsoft.com/compliance/regulatory/offering-soc) - Contrôles de sécurité pour les fournisseurs de services IA
-- [Conformité HIPAA pour l'IA](https://learn.microsoft.com/compliance/regulatory/offering-hipaa-hitech) - Exigences de conformité IA dans le domaine de la santé
+### Conformité et gouvernance
+- [GDPR Compliance for AI](https://learn.microsoft.com/compliance/regulatory/gdpr-data-protection-impact-assessments) - Conformité à la vie privée dans les systèmes IA  
+- [AI Governance Framework](https://learn.microsoft.com/azure/architecture/guide/responsible-ai/responsible-ai-overview) - Mise en œuvre responsable de l’IA  
+- [SOC 2 for AI Services](https://learn.microsoft.com/compliance/regulatory/offering-soc) - Contrôles de sécurité pour les fournisseurs de services IA  
+- [HIPAA Compliance for AI](https://learn.microsoft.com/compliance/regulatory/offering-hipaa-hitech) - Exigences de conformité IA en santé
 
-### DevSecOps et Automatisation
-- [Pipeline DevSecOps pour l'IA](https://learn.microsoft.com/azure/devops/migrate/security-validation-cicd-pipeline) - Pipelines de développement sécurisé pour l'IA
-- [Tests de Sécurité Automatisés](https://learn.microsoft.com/security/engineering/devsecops) - Validation continue de la sécurité
-- [Sécurité de l'Infrastructure en Code](https://learn.microsoft.com/security/engineering/infrastructure-security) - Déploiement sécurisé de l'infrastructure
-- [Sécurité des Conteneurs pour l'IA](https://learn.microsoft.com/azure/container-instances/container-instances-image-security) - Sécurité de la conteneurisation des charges de travail IA
+### DevSecOps et automatisation
+- [DevSecOps Pipeline for AI](https://learn.microsoft.com/azure/devops/migrate/security-validation-cicd-pipeline) - Pipelines de développement IA sécurisés  
+- [Automated Security Testing](https://learn.microsoft.com/security/engineering/devsecops) - Validation continue de la sécurité  
+- [Infrastructure as Code Security](https://learn.microsoft.com/security/engineering/infrastructure-security) - Déploiement sécurisé de l’infrastructure  
+- [Container Security for AI](https://learn.microsoft.com/azure/container-instances/container-instances-image-security) - Sécurité de la conteneurisation des charges IA
 
-### Surveillance et Réponse aux Incidents  
-- [Azure Monitor pour les Charges de Travail IA](https://learn.microsoft.com/azure/azure-monitor/overview) - Solutions de surveillance complètes
-- [Réponse aux Incidents de Sécurité IA](https://learn.microsoft.com/security/compass/incident-response-playbooks) - Procédures spécifiques aux incidents IA
-- [SIEM pour les Systèmes IA](https://learn.microsoft.com/azure/sentinel/overview) - Gestion des informations et des événements de sécurité
-- [Renseignements sur les Menaces pour l'IA](https://learn.microsoft.com/security/compass/security-operations-videos-and-decks#threat-intelligence) - Sources de renseignements sur les menaces IA
+### Surveillance et réponse aux incidents  
+- [Azure Monitor for AI Workloads](https://learn.microsoft.com/azure/azure-monitor/overview) - Solutions complètes de surveillance  
+- [AI Security Incident Response](https://learn.microsoft.com/security/compass/incident-response-playbooks) - Procédures spécifiques aux incidents IA  
+- [SIEM for AI Systems](https://learn.microsoft.com/azure/sentinel/overview) - Gestion des informations et événements de sécurité  
+- [Threat Intelligence for AI](https://learn.microsoft.com/security/compass/security-operations-videos-and-decks#threat-intelligence) - Sources de renseignement sur les menaces IA
 
-## 🔄 Amélioration Continue
+## 🔄 Amélioration continue
 
-### Rester à Jour avec les Normes Évolutives
-- **Mises à Jour de la Spécification MCP** : Surveillez les changements officiels de la spécification MCP et les avis de sécurité.
-- **Renseignements sur les Menaces** : Abonnez-vous
-- **Développement d'outils** : Développer et partager des outils et bibliothèques de sécurité pour l'écosystème MCP
+### Restez à jour avec les normes évolutives
+- **Mises à jour de la spécification MCP** : Surveiller les changements officiels de la spécification MCP et les avis de sécurité  
+- **Renseignement sur les menaces** : S’abonner aux flux de menaces de sécurité IA et bases de données de vulnérabilités  
+- **Engagement communautaire** : Participer aux discussions et groupes de travail de la communauté de sécurité MCP  
+- **Évaluation régulière** : Réaliser des évaluations trimestrielles de la posture de sécurité et mettre à jour les pratiques en conséquence
+
+### Contribution à la sécurité MCP
+- **Recherche en sécurité** : Contribuer à la recherche en sécurité MCP et aux programmes de divulgation de vulnérabilités  
+- **Partage des meilleures pratiques** : Partager les implémentations de sécurité et les leçons apprises avec la communauté
+- **Développement standard** : Participer au développement des spécifications MCP et à la création de normes de sécurité  
+- **Développement d’outils** : Développer et partager des outils et bibliothèques de sécurité pour l’écosystème MCP
 
 ---
 
-*Ce document reflète les meilleures pratiques de sécurité MCP au 18 août 2025, basées sur la spécification MCP 2025-06-18. Les pratiques de sécurité doivent être régulièrement examinées et mises à jour à mesure que le protocole et le paysage des menaces évoluent.*
+*Ce document reflète les meilleures pratiques de sécurité MCP au 18 décembre 2025, basées sur la spécification MCP 2025-11-25. Les pratiques de sécurité doivent être régulièrement revues et mises à jour à mesure que le protocole et le paysage des menaces évoluent.*
 
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Avertissement** :  
-Ce document a été traduit à l'aide du service de traduction automatique [Co-op Translator](https://github.com/Azure/co-op-translator). Bien que nous nous efforcions d'assurer l'exactitude, veuillez noter que les traductions automatisées peuvent contenir des erreurs ou des inexactitudes. Le document original dans sa langue d'origine doit être considéré comme la source faisant autorité. Pour des informations critiques, il est recommandé de faire appel à une traduction humaine professionnelle. Nous déclinons toute responsabilité en cas de malentendus ou d'interprétations erronées résultant de l'utilisation de cette traduction.
+Ce document a été traduit à l’aide du service de traduction automatique [Co-op Translator](https://github.com/Azure/co-op-translator). Bien que nous nous efforcions d’assurer l’exactitude, veuillez noter que les traductions automatiques peuvent contenir des erreurs ou des inexactitudes. Le document original dans sa langue d’origine doit être considéré comme la source faisant foi. Pour les informations critiques, une traduction professionnelle réalisée par un humain est recommandée. Nous déclinons toute responsabilité en cas de malentendus ou de mauvaises interprétations résultant de l’utilisation de cette traduction.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

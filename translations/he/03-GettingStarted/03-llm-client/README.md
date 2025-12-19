@@ -1,23 +1,23 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "4d846ebb88fbb0f00549e2ff8cc3f746",
-  "translation_date": "2025-10-06T14:44:52+00:00",
+  "original_hash": "75638575f993c152965ae2271c4da938",
+  "translation_date": "2025-12-19T14:01:01+00:00",
   "source_file": "03-GettingStarted/03-llm-client/README.md",
   "language_code": "he"
 }
 -->
 # יצירת לקוח עם LLM
 
-עד כה ראיתם כיצד ליצור שרת ולקוח. הלקוח יכול לקרוא לשרת באופן מפורש כדי לרשום את הכלים, המשאבים וההנחיות שלו. עם זאת, זו אינה גישה מעשית במיוחד. המשתמש שלכם חי בעידן האג'נטי ומצפה להשתמש בהנחיות ולתקשר עם LLM כדי לעשות זאת. מבחינת המשתמש, לא משנה אם אתם משתמשים ב-MCP או לא כדי לאחסן את היכולות שלכם, אך הם מצפים לתקשר בשפה טבעית. אז איך פותרים את זה? הפתרון הוא להוסיף LLM ללקוח.
+עד כה, ראית כיצד ליצור שרת ולקוח. הלקוח היה מסוגל לקרוא לשרת במפורש כדי לרשום את הכלים, המשאבים וההנחיות שלו. עם זאת, זו לא גישה מאוד פרקטית. המשתמש שלך חי בעידן הסוכני ומצפה להשתמש בהנחיות ולתקשר עם LLM כדי לעשות זאת. עבור המשתמש שלך, לא משנה אם אתה משתמש ב-MCP או לא לאחסן את היכולות שלך, אבל הם כן מצפים להשתמש בשפה טבעית כדי לתקשר. אז איך פותרים את זה? הפתרון הוא להוסיף LLM ללקוח.
 
 ## סקירה כללית
 
-בשיעור זה נתמקד בהוספת LLM ללקוח שלכם ונראה כיצד זה מספק חוויית משתמש טובה יותר.
+בשיעור זה נתמקד בהוספת LLM ללקוח שלך ונראה כיצד זה מספק חוויית משתמש טובה יותר.
 
-## מטרות למידה
+## מטרות הלמידה
 
-בסוף השיעור הזה תוכלו:
+בסוף שיעור זה, תוכל:
 
 - ליצור לקוח עם LLM.
 - לתקשר בצורה חלקה עם שרת MCP באמצעות LLM.
@@ -25,37 +25,37 @@ CO_OP_TRANSLATOR_METADATA:
 
 ## גישה
 
-בואו ננסה להבין את הגישה שעלינו לנקוט. הוספת LLM נשמעת פשוטה, אבל האם באמת נעשה זאת?
+בוא ננסה להבין את הגישה שעלינו לנקוט. הוספת LLM נשמעת פשוטה, אבל האם באמת נעשה זאת?
 
 כך הלקוח יתקשר עם השרת:
 
-1. יצירת חיבור לשרת.
+1. יצירת חיבור עם השרת.
 
-1. רישום יכולות, הנחיות, משאבים וכלים ושמירת הסכימה שלהם.
+1. רשימת היכולות, ההנחיות, המשאבים והכלים, ושמירת הסכמה שלהם.
 
-1. הוספת LLM והעברת היכולות השמורות והסכימה שלהם בפורמט שה-LLM מבין.
+1. הוספת LLM והעברת היכולות השמורות והסכמה שלהם בפורמט שה-LLM מבין.
 
 1. טיפול בהנחיית משתמש על ידי העברתה ל-LLM יחד עם הכלים שרשומים על ידי הלקוח.
 
-מעולה, עכשיו אנחנו מבינים איך אפשר לעשות זאת ברמה גבוהה, בואו ננסה זאת בתרגיל הבא.
+מעולה, עכשיו כשאנחנו מבינים איך לעשות זאת ברמה גבוהה, בוא ננסה זאת בתרגיל למטה.
 
 ## תרגיל: יצירת לקוח עם LLM
 
-בתרגיל זה נלמד להוסיף LLM ללקוח שלנו.
+בתרגיל זה, נלמד להוסיף LLM ללקוח שלנו.
 
-### אימות באמצעות GitHub Personal Access Token
+### אימות באמצעות אסימון גישה אישי של GitHub
 
-יצירת טוקן GitHub היא תהליך פשוט. כך עושים זאת:
+יצירת אסימון GitHub היא תהליך פשוט. כך תוכל לעשות זאת:
 
-- גשו להגדרות GitHub – לחצו על תמונת הפרופיל שלכם בפינה הימנית העליונה ובחרו "Settings".
-- נווטו ל-Developer Settings – גללו מטה ולחצו על "Developer Settings".
-- בחרו ב-Personal Access Tokens – לחצו על "Fine-grained tokens" ואז על "Generate new token".
-- הגדירו את הטוקן שלכם – הוסיפו הערה לצורך זיהוי, הגדירו תאריך תפוגה ובחרו את ההרשאות הנדרשות. במקרה זה, ודאו להוסיף את ההרשאה ל-Models.
-- צרו והעתיקו את הטוקן – לחצו על "Generate token" וודאו להעתיק אותו מיד, מכיוון שלא תוכלו לראות אותו שוב.
+- עבור להגדרות GitHub – לחץ על תמונת הפרופיל שלך בפינה הימנית העליונה ובחר בהגדרות.
+- נווט להגדרות מפתח – גלול למטה ולחץ על הגדרות מפתח.
+- בחר באסימוני גישה אישית – לחץ על אסימונים מדויקים ואז צור אסימון חדש.
+- הגדר את האסימון שלך – הוסף הערה להתייחסות, הגדר תאריך תפוגה, ובחר את ההרשאות הנדרשות. במקרה זה, ודא להוסיף את הרשאת Models.
+- צור והעתק את האסימון – לחץ על צור אסימון, וודא להעתיק אותו מיד, כיוון שלא תוכל לראות אותו שוב.
 
-### -1- התחברות לשרת
+### -1- התחבר לשרת
 
-בואו ניצור את הלקוח שלנו תחילה:
+בוא ניצור את הלקוח שלנו תחילה:
 
 #### TypeScript
 
@@ -64,7 +64,7 @@ import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 import { Transport } from "@modelcontextprotocol/sdk/shared/transport.js";
 import OpenAI from "openai";
-import { z } from "zod"; // Import zod for schema validation
+import { z } from "zod"; // ייבוא zod לאימות סכימה
 
 class MCPClient {
     private openai: OpenAI;
@@ -92,11 +92,11 @@ class MCPClient {
 }
 ```
 
-בקוד שלמעלה:
+בקוד שלמעלה עשינו:
 
-- ייבאנו את הספריות הנדרשות.
-- יצרנו מחלקה עם שני חברים, `client` ו-`openai`, שיעזרו לנו לנהל לקוח ולתקשר עם LLM בהתאמה.
-- הגדרנו את מופע ה-LLM שלנו לשימוש ב-GitHub Models על ידי הגדרת `baseUrl` שיצביע על ה-API.
+- ייבאנו את הספריות הנדרשות
+- יצרנו מחלקה עם שני חברים, `client` ו-`openai` שיעזרו לנו לנהל לקוח ולתקשר עם LLM בהתאמה.
+- הגדרנו את מופע ה-LLM שלנו להשתמש ב-GitHub Models על ידי הגדרת `baseUrl` שמצביע ל-API של האינפרנס.
 
 #### Python
 
@@ -104,11 +104,11 @@ class MCPClient {
 from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
 
-# Create server parameters for stdio connection
+# צור פרמטרים של שרת לחיבור stdio
 server_params = StdioServerParameters(
-    command="mcp",  # Executable
-    args=["run", "server.py"],  # Optional command line arguments
-    env=None,  # Optional environment variables
+    command="mcp",  # קובץ הרצה
+    args=["run", "server.py"],  # ארגומנטים אופציונליים בשורת הפקודה
+    env=None,  # משתני סביבה אופציונליים
 )
 
 
@@ -117,7 +117,7 @@ async def run():
         async with ClientSession(
             read, write
         ) as session:
-            # Initialize the connection
+            # אתחל את החיבור
             await session.initialize()
 
 
@@ -128,10 +128,10 @@ if __name__ == "__main__":
 
 ```
 
-בקוד שלמעלה:
+בקוד שלמעלה עשינו:
 
-- ייבאנו את הספריות הנדרשות ל-MCP.
-- יצרנו לקוח.
+- ייבאנו את הספריות הנדרשות ל-MCP
+- יצרנו לקוח
 
 #### .NET
 
@@ -156,7 +156,7 @@ await using var mcpClient = await McpClientFactory.CreateAsync(clientTransport);
 
 #### Java
 
-תחילה, תצטרכו להוסיף את התלויות של LangChain4j לקובץ `pom.xml` שלכם. הוסיפו את התלויות הללו כדי לאפשר אינטגרציה עם MCP ותמיכה ב-GitHub Models:
+ראשית, תצטרך להוסיף את התלויות של LangChain4j לקובץ `pom.xml` שלך. הוסף את התלויות האלה כדי לאפשר אינטגרציה עם MCP ותמיכה ב-GitHub Models:
 
 ```xml
 <properties>
@@ -193,7 +193,7 @@ await using var mcpClient = await McpClientFactory.CreateAsync(clientTransport);
 </dependencies>
 ```
 
-לאחר מכן, צרו את מחלקת הלקוח שלכם ב-Java:
+לאחר מכן צור את מחלקת הלקוח שלך ב-Java:
 
 ```java
 import dev.langchain4j.mcp.McpToolProvider;
@@ -211,7 +211,7 @@ import java.util.List;
 
 public class LangChain4jClient {
     
-    public static void main(String[] args) throws Exception {        // Configure the LLM to use GitHub Models
+    public static void main(String[] args) throws Exception {        // הגדר את ה-LLM לשימוש במודלים של GitHub
         ChatLanguageModel model = OpenAiOfficialChatModel.builder()
                 .isGitHubModels(true)
                 .apiKey(System.getenv("GITHUB_TOKEN"))
@@ -219,7 +219,7 @@ public class LangChain4jClient {
                 .modelName("gpt-4.1-nano")
                 .build();
 
-        // Create MCP transport for connecting to server
+        // צור תחבורה MCP לחיבור לשרת
         McpTransport transport = new HttpMcpTransport.Builder()
                 .sseUrl("http://localhost:8080/sse")
                 .timeout(Duration.ofSeconds(60))
@@ -227,7 +227,7 @@ public class LangChain4jClient {
                 .logResponses(true)
                 .build();
 
-        // Create MCP client
+        // צור לקוח MCP
         McpClient mcpClient = new DefaultMcpClient.Builder()
                 .transport(transport)
                 .build();
@@ -235,20 +235,20 @@ public class LangChain4jClient {
 }
 ```
 
-בקוד שלמעלה:
+בקוד שלמעלה עשינו:
 
-- **הוספנו תלויות LangChain4j**: נדרשות לאינטגרציה עם MCP, לקוח OpenAI רשמי ותמיכה ב-GitHub Models.
-- **ייבאנו את ספריות LangChain4j**: לאינטגרציה עם MCP ולפונקציונליות מודל הצ'אט של OpenAI.
-- **יצרנו `ChatLanguageModel`**: מוגדר לשימוש ב-GitHub Models עם הטוקן שלכם.
-- **הגדרנו HTTP transport**: באמצעות Server-Sent Events (SSE) להתחברות לשרת MCP.
-- **יצרנו לקוח MCP**: שיטפל בתקשורת עם השרת.
-- **השתמשנו בתמיכה המובנית של LangChain4j ב-MCP**: שמפשטת את האינטגרציה בין LLM לשרתים של MCP.
+- **הוספנו את תלויות LangChain4j**: נדרשות לאינטגרציה עם MCP, לקוח רשמי של OpenAI, ותמיכה ב-GitHub Models
+- **ייבאנו את ספריות LangChain4j**: לאינטגרציה עם MCP ולפונקציונליות של מודל שיחה OpenAI
+- **יצרנו `ChatLanguageModel`**: מוגדר להשתמש ב-GitHub Models עם אסימון ה-GitHub שלך
+- **הגדרנו תחבורה HTTP**: באמצעות Server-Sent Events (SSE) להתחבר לשרת MCP
+- **יצרנו לקוח MCP**: שיטפל בתקשורת עם השרת
+- **השתמשנו בתמיכה המובנית של LangChain4j ב-MCP**: שמפשטת את האינטגרציה בין LLM לשרתי MCP
 
 #### Rust
 
-דוגמה זו מניחה שיש לכם שרת MCP מבוסס Rust פועל. אם אין לכם אחד כזה, חזרו לשיעור [01-first-server](../01-first-server/README.md) כדי ליצור את השרת.
+דוגמה זו מניחה שיש לך שרת MCP מבוסס Rust פועל. אם אין לך אחד, עיין שוב בשיעור [01-first-server](../01-first-server/README.md) כדי ליצור את השרת.
 
-לאחר שיש לכם שרת MCP מבוסס Rust, פתחו טרמינל ונווטו לאותו ספרייה כמו השרת. לאחר מכן הריצו את הפקודה הבאה כדי ליצור פרויקט לקוח חדש עם LLM:
+לאחר שיש לך את שרת ה-MCP מבוסס Rust, פתח טרמינל ונווט לתיקייה שבה נמצא השרת. לאחר מכן הרץ את הפקודה הבאה כדי ליצור פרויקט לקוח LLM חדש:
 
 ```bash
 mkdir calculator-llmclient
@@ -256,7 +256,7 @@ cd calculator-llmclient
 cargo init
 ```
 
-הוסיפו את התלויות הבאות לקובץ `Cargo.toml` שלכם:
+הוסף את התלויות הבאות לקובץ `Cargo.toml` שלך:
 
 ```toml
 [dependencies]
@@ -267,9 +267,9 @@ tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 ```
 
 > [!NOTE]
-> אין ספרייה רשמית ל-Rust עבור OpenAI, אך הספרייה `async-openai` היא [ספרייה שמנוהלת על ידי הקהילה](https://platform.openai.com/docs/libraries/rust#rust) ונפוצה בשימוש.
+> אין ספריית Rust רשמית ל-OpenAI, עם זאת, ה-crate `async-openai` היא [ספרייה שמנוהלת על ידי הקהילה](https://platform.openai.com/docs/libraries/rust#rust) שנמצאת בשימוש נפוץ.
 
-פתחו את קובץ `src/main.rs` והחליפו את תוכנו בקוד הבא:
+פתח את הקובץ `src/main.rs` והחלף את תוכנו בקוד הבא:
 
 ```rust
 use async_openai::{Client, config::OpenAIConfig};
@@ -285,10 +285,10 @@ use tokio::process::Command;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
-    // Initial message
+    // הודעה ראשונית
     let mut messages = vec![json!({"role": "user", "content": "What is the sum of 3 and 2?"})];
 
-    // Setup OpenAI client
+    // הגדרת לקוח OpenAI
     let api_key = std::env::var("OPENAI_API_KEY")?;
     let openai_client = Client::with_config(
         OpenAIConfig::new()
@@ -296,7 +296,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
             .with_api_key(api_key),
     );
 
-    // Setup MCP client
+    // הגדרת לקוח MCP
     let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .unwrap()
@@ -311,28 +311,28 @@ async fn main() -> Result<(), Box<dyn Error>> {
         )
         .await?;
 
-    // TODO: Get MCP tool listing 
+    // TODO: קבלת רשימת כלים של MCP
 
-    // TODO: LLM conversation with tool calls
+    // TODO: שיחה עם LLM עם קריאות לכלים
 
     Ok(())
 }
 ```
 
-קוד זה מגדיר אפליקציה בסיסית ב-Rust שתתחבר לשרת MCP ול-GitHub Models לצורך אינטראקציות עם LLM.
+קוד זה מגדיר אפליקציית Rust בסיסית שתתחבר לשרת MCP ול-GitHub Models לאינטראקציות עם LLM.
 
 > [!IMPORTANT]
-> ודאו להגדיר את משתנה הסביבה `OPENAI_API_KEY` עם הטוקן שלכם מ-GitHub לפני הרצת האפליקציה.
+> ודא להגדיר את משתנה הסביבה `OPENAI_API_KEY` עם אסימון ה-GitHub שלך לפני הרצת האפליקציה.
 
-מעולה, בשלב הבא נרשום את היכולות בשרת.
+מעולה, לשלב הבא, בוא נרשום את היכולות בשרת.
 
-### -2- רישום יכולות השרת
+### -2- רשום את היכולות של השרת
 
 כעת נתחבר לשרת ונבקש את היכולות שלו:
 
-#### TypeScript
+#### Typescript
 
-באותה מחלקה, הוסיפו את השיטות הבאות:
+באותה מחלקה, הוסף את הפונקציות הבאות:
 
 ```typescript
 async connectToServer(transport: Transport) {
@@ -344,26 +344,26 @@ async connectToServer(transport: Transport) {
 async run() {
     console.log("Asking server for available tools");
 
-    // listing tools
+    // רישום כלים
     const toolsResult = await this.client.listTools();
 }
 ```
 
-בקוד שלמעלה:
+בקוד שלמעלה עשינו:
 
 - הוספנו קוד להתחברות לשרת, `connectToServer`.
-- יצרנו שיטה `run` שאחראית על ניהול זרימת האפליקציה שלנו. עד כה היא רק רושמת את הכלים, אך נוסיף לה עוד בהמשך.
+- יצרנו מתודה `run` שאחראית על ניהול זרימת האפליקציה שלנו. עד כה היא רק רושמת את הכלים אך נוסיף לה עוד בקרוב.
 
 #### Python
 
 ```python
-# List available resources
+# רשום משאבים זמינים
 resources = await session.list_resources()
 print("LISTING RESOURCES")
 for resource in resources:
     print("Resource: ", resource)
 
-# List available tools
+# רשום כלים זמינים
 tools = await session.list_tools()
 print("LISTING TOOLS")
 for tool in tools.tools:
@@ -373,7 +373,7 @@ for tool in tools.tools:
 
 הנה מה שהוספנו:
 
-- רישום משאבים וכלים והדפסתם. עבור כלים אנו גם רושמים את `inputSchema` שבו נשתמש מאוחר יותר.
+- רשימת משאבים וכלים והדפסתם. עבור כלים גם רשמנו את `inputSchema` שנשתמש בו מאוחר יותר.
 
 #### .NET
 
@@ -398,47 +398,47 @@ async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
 }
 ```
 
-בקוד שלמעלה:
+בקוד שלמעלה עשינו:
 
-- רשמנו את הכלים הזמינים בשרת MCP.
-- עבור כל כלי, רשמנו שם, תיאור והסכימה שלו. האחרון הוא משהו שנשתמש בו כדי לקרוא לכלים בקרוב.
+- רשמנו את הכלים הזמינים בשרת MCP
+- עבור כל כלי, רשמנו שם, תיאור והסכמה שלו. האחרון הוא משהו שנשתמש בו כדי לקרוא לכלים בקרוב.
 
 #### Java
 
 ```java
-// Create a tool provider that automatically discovers MCP tools
+// צור ספק כלים שמגלה אוטומטית כלים של MCP
 ToolProvider toolProvider = McpToolProvider.builder()
         .mcpClients(List.of(mcpClient))
         .build();
 
-// The MCP tool provider automatically handles:
-// - Listing available tools from the MCP server
-// - Converting MCP tool schemas to LangChain4j format
-// - Managing tool execution and responses
+// ספק הכלים של MCP מטפל אוטומטית ב:
+// - רישום כלים זמינים משרת MCP
+// - המרת סכימות כלים של MCP לפורמט LangChain4j
+// - ניהול ביצוע הכלים והתגובות
 ```
 
-בקוד שלמעלה:
+בקוד שלמעלה עשינו:
 
-- יצרנו `McpToolProvider` שמגלה ומרשום אוטומטית את כל הכלים מהשרת MCP.
-- ספק הכלים מטפל בהמרה בין סכימות הכלים של MCP לפורמט הכלים של LangChain4j באופן פנימי.
-- גישה זו מפשטת את תהליך רישום הכלים וההמרה.
+- יצרנו `McpToolProvider` שמגלה ומרשם אוטומטית את כל הכלים משרת MCP
+- ספק הכלים מטפל בהמרה בין סכמות הכלים של MCP לפורמט הכלים של LangChain4j באופן פנימי
+- גישה זו מסתירה את תהליך רישום הכלים וההמרה הידנית
 
 #### Rust
 
-רישום כלים מהשרת MCP נעשה באמצעות השיטה `list_tools`. בפונקציה `main` שלכם, לאחר הגדרת לקוח MCP, הוסיפו את הקוד הבא:
+שליפת כלים משרת MCP נעשית באמצעות המתודה `list_tools`. בפונקציית `main` שלך, לאחר שהגדרת את לקוח ה-MCP, הוסף את הקוד הבא:
 
 ```rust
-// Get MCP tool listing 
+// קבל רשימת כלי MCP
 let tools = mcp_client.list_tools(Default::default()).await?;
 ```
 
-### -3- המרת יכולות השרת לכלים של LLM
+### -3- המרת היכולות של השרת לכלי LLM
 
-השלב הבא לאחר רישום יכולות השרת הוא להמיר אותן לפורמט שה-LLM מבין. ברגע שנעשה זאת, נוכל לספק את היכולות הללו ככלים ל-LLM.
+השלב הבא לאחר רישום היכולות של השרת הוא להמיר אותן לפורמט שה-LLM מבין. ברגע שנעשה זאת, נוכל לספק את היכולות האלה ככלים ל-LLM שלנו.
 
 #### TypeScript
 
-1. הוסיפו את הקוד הבא להמרת תגובה משרת MCP לפורמט כלי שה-LLM יכול להשתמש בו:
+1. הוסף את הקוד הבא להמרת תגובת שרת MCP לפורמט כלי שה-LLM יכול להשתמש בו:
 
     ```typescript
     openAiToolAdapter(tool: {
@@ -446,11 +446,11 @@ let tools = mcp_client.list_tools(Default::default()).await?;
         description?: string;
         input_schema: any;
         }) {
-        // Create a zod schema based on the input_schema
+        // צור סכמת זוד המבוססת על input_schema
         const schema = z.object(tool.input_schema);
     
         return {
-            type: "function" as const, // Explicitly set type to "function"
+            type: "function" as const, // הגדר במפורש את הסוג ל-"function"
             function: {
             name: tool.name,
             description: tool.description,
@@ -467,7 +467,7 @@ let tools = mcp_client.list_tools(Default::default()).await?;
 
     הקוד שלמעלה לוקח תגובה משרת MCP וממיר אותה להגדרת כלי שה-LLM יכול להבין.
 
-1. בואו נעדכן את השיטה `run` הבאה כדי לרשום את יכולות השרת:
+1. בוא נעדכן את המתודה `run` כדי לרשום את היכולות של השרת:
 
     ```typescript
     async run() {
@@ -483,11 +483,11 @@ let tools = mcp_client.list_tools(Default::default()).await?;
     }
     ```
 
-    בקוד שלמעלה, עדכנו את השיטה `run` כדי למפות את התוצאה ועבור כל ערך לקרוא ל-`openAiToolAdapter`.
+    בקוד שלמעלה, עדכנו את המתודה `run` כדי למפות את התוצאה ולקרוא עבור כל פריט ל-`openAiToolAdapter`.
 
 #### Python
 
-1. תחילה, בואו ניצור את פונקציית ההמרה הבאה:
+1. ראשית, ניצור את פונקציית ההמרה הבאה
 
     ```python
     def convert_to_llm_tool(tool):
@@ -507,11 +507,12 @@ let tools = mcp_client.list_tools(Default::default()).await?;
         return tool_schema
     ```
 
-    בפונקציה `convert_to_llm_tools` אנו לוקחים תגובת כלי MCP וממירים אותה לפורמט שה-LLM יכול להבין.
+    בפונקציה `convert_to_llm_tools` שלמעלה אנו לוקחים תגובת כלי MCP וממירים אותה לפורמט שה-LLM יכול להבין.
 
-1. לאחר מכן, בואו נעדכן את קוד הלקוח שלנו כדי לנצל את הפונקציה הזו כך:
+1. לאחר מכן, נעדכן את קוד הלקוח שלנו כדי להשתמש בפונקציה זו כך:
 
     ```python
+    functions = []
     for tool in tools.tools:
         print("Tool: ", tool.name)
         print("Tool", tool.inputSchema["properties"])
@@ -522,7 +523,7 @@ let tools = mcp_client.list_tools(Default::default()).await?;
 
 #### .NET
 
-1. בואו נוסיף קוד להמרת תגובת כלי MCP למשהו שה-LLM יכול להבין:
+1. נוסיף קוד להמרת תגובת כלי MCP למשהו שה-LLM יכול להבין
 
 ```csharp
 ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonElement jsonElement)
@@ -545,12 +546,12 @@ ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonE
 }
 ```
 
-בקוד שלמעלה:
+בקוד שלמעלה עשינו:
 
-- יצרנו פונקציה `ConvertFrom` שלוקחת שם, תיאור וסכימת קלט.
-- הגדרנו פונקציונליות שיוצרת FunctionDefinition שמועברת ל-ChatCompletionsDefinition. האחרון הוא משהו שה-LLM יכול להבין.
+- יצרנו פונקציה `ConvertFrom` שלוקחת שם, תיאור וסכמת קלט.
+- הגדרנו פונקציונליות שיוצרת `FunctionDefinition` שמועברת ל-`ChatCompletionsDefinition`. האחרון הוא משהו שה-LLM יכול להבין.
 
-1. בואו נראה איך אפשר לעדכן קוד קיים כדי לנצל את הפונקציה הזו:
+1. בוא נראה איך נעדכן קוד קיים כדי לנצל את הפונקציה הזו:
 
     ```csharp
     async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
@@ -596,28 +597,28 @@ ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonE
 #### Java
 
 ```java
-// Create a Bot interface for natural language interaction
+// צור ממשק בוט לאינטראקציה בשפה טבעית
 public interface Bot {
     String chat(String prompt);
 }
 
-// Configure the AI service with LLM and MCP tools
+// הגדר את שירות ה-AI עם כלים LLM ו-MCP
 Bot bot = AiServices.builder(Bot.class)
         .chatLanguageModel(model)
         .toolProvider(toolProvider)
         .build();
 ```
 
-בקוד שלמעלה:
+בקוד שלמעלה עשינו:
 
-- הגדרנו ממשק `Bot` פשוט לאינטראקציות בשפה טבעית.
-- השתמשנו ב-AiServices של LangChain4j כדי לקשור אוטומטית את ה-LLM עם ספק הכלים של MCP.
-- המסגרת מטפלת אוטומטית בהמרת סכימות הכלים ובקריאות פונקציות מאחורי הקלעים.
-- גישה זו מבטלת את הצורך בהמרת כלים ידנית - LangChain4j מטפל בכל המורכבות של המרת כלים של MCP לפורמט תואם ל-LLM.
+- הגדרנו ממשק פשוט `Bot` לאינטראקציות בשפה טבעית
+- השתמשנו ב-`AiServices` של LangChain4j כדי לקשר אוטומטית את ה-LLM עם ספק הכלים של MCP
+- המסגרת מטפלת אוטומטית בהמרת סכמות הכלים וקריאת פונקציות מאחורי הקלעים
+- גישה זו מבטלת את הצורך בהמרת כלים ידנית - LangChain4j מטפל בכל המורכבות של המרת כלים מ-MCP לפורמט תואם LLM
 
 #### Rust
 
-כדי להמיר את תגובת כלי MCP לפורמט שה-LLM יכול להבין, נוסיף פונקציית עזר שמעצבת את רישום הכלים. הוסיפו את הקוד הבא לקובץ `main.rs` שלכם מתחת לפונקציה `main`. זה ייקרא בעת ביצוע בקשות ל-LLM:
+כדי להמיר את תגובת כלי MCP לפורמט שה-LLM יכול להבין, נוסיף פונקציית עזר שמעצבנת את רשימת הכלים. הוסף את הקוד הבא לקובץ `main.rs` שלך מתחת לפונקציית `main`. פונקציה זו תיקרא בעת ביצוע בקשות ל-LLM:
 
 ```rust
 async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Error>> {
@@ -652,15 +653,15 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 }
 ```
 
-מעולה, אנחנו מוכנים לטפל בכל בקשות המשתמש, אז בואו ניגש לזה.
+מעולה, אנחנו מוכנים לטפל בבקשות משתמש, אז בוא נטפל בזה עכשיו.
 
 ### -4- טיפול בבקשת הנחיית משתמש
 
-בחלק זה של הקוד, נטפל בבקשות משתמש.
+בחלק זה של הקוד נטפל בבקשות משתמש.
 
 #### TypeScript
 
-1. הוסיפו שיטה שתשמש לקריאה ל-LLM:
+1. הוסף מתודה שתשמש לקריאה ל-LLM שלנו:
 
     ```typescript
     async callTools(
@@ -674,7 +675,7 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
         console.log(`Calling tool ${toolName} with args ${JSON.stringify(args)}`);
 
 
-        // 2. Call the server's tool 
+        // 2. לקרוא לכלי של השרת
         const toolResult = await this.client.callTool({
             name: toolName,
             arguments: JSON.parse(args),
@@ -682,8 +683,8 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 
         console.log("Tool result: ", toolResult);
 
-        // 3. Do something with the result
-        // TODO  
+        // 3. לעשות משהו עם התוצאה
+        // יש לעשות
 
         }
     }
@@ -691,8 +692,8 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 
     בקוד שלמעלה:
 
-    - הוספנו שיטה `callTools`.
-    - השיטה לוקחת תגובת LLM ובודקת אילו כלים נקראו, אם בכלל:
+    - הוספנו מתודה `callTools`.
+    - המתודה מקבלת תגובת LLM ובודקת אילו כלים נקראו, אם בכלל:
 
         ```typescript
         for (const tool_call of tool_calls) {
@@ -701,14 +702,14 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 
         console.log(`Calling tool ${toolName} with args ${JSON.stringify(args)}`);
 
-        // call tool
+        // קריאת כלי
         }
         ```
 
     - קוראת לכלי, אם ה-LLM מציין שיש לקרוא לו:
 
         ```typescript
-        // 2. Call the server's tool 
+        // 2. לקרוא לכלי של השרת
         const toolResult = await this.client.callTool({
             name: toolName,
             arguments: JSON.parse(args),
@@ -716,15 +717,15 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 
         console.log("Tool result: ", toolResult);
 
-        // 3. Do something with the result
-        // TODO  
+        // 3. לעשות משהו עם התוצאה
+        // יש לעשות
         ```
 
-1. עדכנו את השיטה `run` לכלול קריאות ל-LLM וקריאה ל-`callTools`:
+1. עדכן את המתודה `run` לכלול קריאות ל-LLM וקריאה ל-`callTools`:
 
     ```typescript
 
-    // 1. Create messages that's input for the LLM
+    // 1. צור הודעות שהן קלט עבור ה-LLM
     const prompt = "What is the sum of 2 and 3?"
 
     const messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
@@ -736,7 +737,7 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 
     console.log("Querying LLM: ", messages[0].content);
 
-    // 2. Calling the LLM
+    // 2. קריאה ל-LLM
     let response = this.openai.chat.completions.create({
         model: "gpt-4o-mini",
         max_tokens: 1000,
@@ -746,7 +747,7 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 
     let results: any[] = [];
 
-    // 3. Go through the LLM response,for each choice, check if it has tool calls 
+    // 3. עבור על תגובת ה-LLM, עבור כל אפשרות, בדוק אם יש קריאות לכלים
     (await response).choices.map(async (choice: { message: any; }) => {
         const message = choice.message;
         if (message.tool_calls) {
@@ -756,21 +757,21 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
     });
     ```
 
-מעולה, בואו נרשום את הקוד במלואו:
+מעולה, בוא נציג את הקוד במלואו:
 
 ```typescript
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 import { Transport } from "@modelcontextprotocol/sdk/shared/transport.js";
 import OpenAI from "openai";
-import { z } from "zod"; // Import zod for schema validation
+import { z } from "zod"; // ייבא את zod לאימות סכימה
 
 class MyClient {
     private openai: OpenAI;
     private client: Client;
     constructor(){
         this.openai = new OpenAI({
-            baseURL: "https://models.inference.ai.azure.com", // might need to change to this url in the future: https://models.github.ai/inference
+            baseURL: "https://models.inference.ai.azure.com", // ייתכן שיהיה צורך לשנות לכתובת URL זו בעתיד: https://models.github.ai/inference
             apiKey: process.env.GITHUB_TOKEN,
         });
 
@@ -800,11 +801,11 @@ class MyClient {
         description?: string;
         input_schema: any;
           }) {
-          // Create a zod schema based on the input_schema
+          // צור סכימת zod המבוססת על input_schema
           const schema = z.object(tool.input_schema);
       
           return {
-            type: "function" as const, // Explicitly set type to "function"
+            type: "function" as const, // הגדר במפורש את הסוג ל-"function"
             function: {
               name: tool.name,
               description: tool.description,
@@ -828,7 +829,7 @@ class MyClient {
           console.log(`Calling tool ${toolName} with args ${JSON.stringify(args)}`);
     
     
-          // 2. Call the server's tool 
+          // 2. קרא לכלי של השרת
           const toolResult = await this.client.callTool({
             name: toolName,
             arguments: JSON.parse(args),
@@ -836,8 +837,8 @@ class MyClient {
     
           console.log("Tool result: ", toolResult);
     
-          // 3. Do something with the result
-          // TODO  
+          // 3. עשה משהו עם התוצאה
+          // TODO
     
          }
     }
@@ -872,7 +873,7 @@ class MyClient {
 
         let results: any[] = [];
     
-        // 1. Go through the LLM response,for each choice, check if it has tool calls 
+        // 1. עבור על תגובת ה-LLM, עבור כל אפשרות, בדוק אם יש קריאות לכלים
         (await response).choices.map(async (choice: { message: any; }) => {
           const message = choice.message;
           if (message.tool_calls) {
@@ -895,10 +896,10 @@ client.connectToServer(transport);
 
 #### Python
 
-1. בואו נוסיף כמה ייבואים שנדרשים לקריאה ל-LLM:
+1. נוסיף כמה ייבוא שדרושים לקריאה ל-LLM
 
     ```python
-    # llm
+    # מודל שפה גדול
     import os
     from azure.ai.inference import ChatCompletionsClient
     from azure.ai.inference.models import SystemMessage, UserMessage
@@ -906,10 +907,10 @@ client.connectToServer(transport);
     import json
     ```
 
-1. לאחר מכן, נוסיף את הפונקציה שתבצע קריאה ל-LLM:
+1. לאחר מכן, נוסיף את הפונקציה שתקריא ל-LLM:
 
     ```python
-    # llm
+    # מודל שפה גדול
 
     def call_llm(prompt, functions):
         token = os.environ["GITHUB_TOKEN"]
@@ -936,7 +937,7 @@ client.connectToServer(transport);
             ],
             model=model_name,
             tools = functions,
-            # Optional parameters
+            # פרמטרים אופציונליים
             temperature=1.,
             max_tokens=1000,
             top_p=1.    
@@ -956,35 +957,35 @@ client.connectToServer(transport);
         return functions_to_call
     ```
 
-    בקוד שלמעלה:
+    בקוד שלמעלה עשינו:
 
-    - העברנו את הפונקציות שלנו, שמצאנו בשרת MCP והמרנו, ל-LLM.
+    - העברנו את הפונקציות שמצאנו בשרת MCP והמרנו ל-LLM.
     - לאחר מכן קראנו ל-LLM עם הפונקציות הללו.
-    - לאחר מכן, אנו בודקים את התוצאה כדי לראות אילו פונקציות יש לקרוא, אם בכלל.
-    - לבסוף, אנו מעבירים מערך של פונקציות לקריאה.
+    - לאחר מכן, בודקים את התוצאה כדי לראות אילו פונקציות יש לקרוא, אם בכלל.
+    - לבסוף, מעבירים מערך של פונקציות לקריאה.
 
-1. שלב אחרון, בואו נעדכן את הקוד הראשי שלנו:
+1. שלב סופי, נעדכן את הקוד הראשי שלנו:
 
     ```python
     prompt = "Add 2 to 20"
 
-    # ask LLM what tools to all, if any
+    # לשאול את ה-LLM אילו כלים להשתמש, אם בכלל
     functions_to_call = call_llm(prompt, functions)
 
-    # call suggested functions
+    # לקרוא לפונקציות המוצעות
     for f in functions_to_call:
         result = await session.call_tool(f["name"], arguments=f["args"])
         print("TOOLS result: ", result.content)
     ```
 
-    שם, זה היה השלב האחרון, בקוד שלמעלה אנו:
+    זהו, זה היה השלב הסופי, בקוד שלמעלה אנו:
 
-    - קוראים לכלי MCP דרך `call_tool` באמצעות פונקציה שה-LLM חשב שיש לקרוא לה על סמך ההנחיה שלנו.
-    - מדפיסים את תוצאת קריאת הכלי לשרת MCP.
+    - קוראים לכלי MCP דרך `call_tool` באמצעות פונקציה שה-LLM חשב שצריך לקרוא לה בהתבסס על ההנחיה שלנו.
+    - מדפיסים את תוצאת הקריאה לכלי לשרת MCP.
 
 #### .NET
 
-1. בואו נראה קוד לביצוע בקשת הנחיית LLM:
+1. נציג קוד לביצוע בקשת הנחיה ל-LLM:
 
     ```csharp
     var tools = await GetMcpTools();
@@ -1018,14 +1019,14 @@ client.connectToServer(transport);
 
     ```
 
-    בקוד שלמעלה:
+    בקוד שלמעלה עשינו:
 
-    - הבאנו כלים משרת MCP, `var tools = await GetMcpTools()`.
+    - שלפנו כלים משרת MCP, `var tools = await GetMcpTools()`.
     - הגדרנו הנחיית משתמש `userMessage`.
-    - יצרנו אובייקט אפשרויות שמפרט מודל וכלים.
+    - בנינו אובייקט אפשרויות שמציין מודל וכלים.
     - ביצענו בקשה ל-LLM.
 
-1. שלב אחד אחרון, בואו נראה אם ה-LLM חושב שיש לקרוא לפונקציה:
+1. שלב אחרון, נראה אם ה-LLM חושב שצריך לקרוא לפונקציה:
 
     ```csharp
     // 4. Check if the response contains a function call
@@ -1048,10 +1049,10 @@ client.connectToServer(transport);
     }
     ```
 
-    בקוד שלמעלה:
+    בקוד שלמעלה עשינו:
 
-    - עברנו על רשימת קריאות פונקציות.
-    - עבור כל קריאת כלי, חילצנו שם וארגומנטים וקראנו לכלי בשרת MCP באמצעות לקוח MCP. לבסוף הדפסנו את התוצאות.
+    - עברנו בלולאה על רשימת קריאות פונקציות.
+    - עבור כל קריאת כלי, פרשנו שם וארגומנטים וקראנו לכלי בשרת MCP באמצעות לקוח MCP. לבסוף הדפסנו את התוצאות.
 
 הנה הקוד במלואו:
 
@@ -1184,7 +1185,7 @@ Console.WriteLine($"Assistant response: {content}");
 
 ```java
 try {
-    // Execute natural language requests that automatically use MCP tools
+    // בצע בקשות בשפה טבעית שמשתמשות בכלי MCP באופן אוטומטי
     String response = bot.chat("Calculate the sum of 24.5 and 17.3 using the calculator service");
     System.out.println(response);
 
@@ -1198,15 +1199,15 @@ try {
 }
 ```
 
-בקוד שלמעלה:
+בקוד שלמעלה עשינו:
 
-- השתמשנו בהנחיות פשוטות בשפה טבעית כדי לתקשר עם כלי שרת MCP.
-- המסגרת LangChain4j מטפלת אוטומטית ב:
-  - המרת הנחיות משתמש לקריאות כלים בעת הצורך.
-  - קריאה לכלי MCP המתאים על סמך החלטת ה-LLM.
-  - ניהול זרימת השיחה בין ה-LLM לשרת MCP.
-- השיטה `bot.chat()` מחזירה תגובות בשפה טבעית שעשויות לכלול תוצאות מביצועי כלי MCP.
-- גישה זו מספקת חוויית משתמש חלקה שבה המשתמשים אינם צריכים לדעת על יישום MCP הבסיסי.
+- השתמשנו בהנחיות שפה טבעית פשוטות כדי לתקשר עם כלים של שרת MCP
+- מסגרת LangChain4j מטפלת אוטומטית ב:
+  - המרת הנחיות משתמש לקריאות כלים כשצריך
+  - קריאת הכלים המתאימים של MCP על פי החלטת ה-LLM
+  - ניהול זרימת השיחה בין ה-LLM לשרת MCP
+- המתודה `bot.chat()` מחזירה תגובות בשפה טבעית שעשויות לכלול תוצאות מביצועי כלים של MCP
+- גישה זו מספקת חוויית משתמש חלקה שבה המשתמשים אינם צריכים לדעת על המימוש הפנימי של MCP
 
 דוגמת קוד מלאה:
 
@@ -1259,9 +1260,9 @@ public class LangChain4jClient {
 
 #### Rust
 
-כאן מתבצע רוב העבודה. נקרא ל-LLM עם הנחיית המשתמש הראשונית, ואז נעבד את התגובה כדי לראות אם יש צורך לקרוא לכלים. אם כן, נקרא לכלים הללו ונמשיך את השיחה עם ה-LLM עד שאין צורך לקרוא לכלים נוספים ויש לנו תגובה סופית.
+כאן מתבצע רוב העבודה. נקרא ל-LLM עם הנחיית המשתמש הראשונית, ואז נעבד את התגובה כדי לראות אם יש צורך לקרוא לכלים. אם כן, נקרא לכלים אלה ונמשיך את השיחה עם ה-LLM עד שלא נדרשות עוד קריאות כלים ויש לנו תגובה סופית.
 
-נבצע קריאות מרובות ל-LLM, אז בואו נגדיר פונקציה שתטפל בקריאת ה-LLM. הוסיפו את הפונקציה הבאה לקובץ `main.rs` שלכם:
+נבצע קריאות מרובות ל-LLM, אז נגדיר פונקציה שתטפל בקריאת ה-LLM. הוסף את הפונקציה הבאה לקובץ `main.rs` שלך:
 
 ```rust
 async fn call_llm(
@@ -1281,8 +1282,8 @@ async fn call_llm(
 }
 ```
 
-פונקציה זו לוקחת את לקוח ה-LLM, רשימת הודעות (כולל הנחיית המשתמש), כלים משרת MCP, ושולחת בקשה ל-LLM, ומחזירה את התגובה.
-התגובה מה-LLM תכיל מערך של `choices`. נצטרך לעבד את התוצאה כדי לבדוק אם קיימים `tool_calls`. זה מאפשר לנו לדעת שה-LLM מבקש לקרוא לכלי מסוים עם ארגומנטים. הוסף את הקוד הבא לתחתית קובץ `main.rs` שלך כדי להגדיר פונקציה שתטפל בתגובה מה-LLM:
+פונקציה זו מקבלת את לקוח ה-LLM, רשימת הודעות (כולל הנחיית המשתמש), כלים משרת MCP, ושולחת בקשה ל-LLM, ומחזירה את התגובה.
+התשובה מה-LLM תכיל מערך של `choices`. נצטרך לעבד את התוצאה כדי לבדוק אם קיימים `tool_calls`. זה מאפשר לנו לדעת שה-LLM מבקש שיקראו לכלי ספציפי עם ארגומנטים. הוסף את הקוד הבא לתחתית הקובץ `main.rs` שלך כדי להגדיר פונקציה לטיפול בתשובת ה-LLM:
 
 ```rust
 async fn process_llm_response(
@@ -1301,16 +1302,16 @@ async fn process_llm_response(
         return Ok(());
     };
 
-    // Print content if available
+    // הדפס תוכן אם זמין
     if let Some(content) = message.get("content").and_then(|c| c.as_str()) {
         println!("🤖 {}", content);
     }
 
-    // Handle tool calls
+    // טיפול בקריאות כלים
     if let Some(tool_calls) = message.get("tool_calls").and_then(|tc| tc.as_array()) {
-        messages.push(message.clone()); // Add assistant message
+        messages.push(message.clone()); // הוסף הודעת עוזר
 
-        // Execute each tool call
+        // בצע כל קריאת כלי
         for tool_call in tool_calls {
             let (tool_id, name, args) = extract_tool_call_info(tool_call)?;
             println!("⚡ Calling tool: {}", name);
@@ -1322,7 +1323,7 @@ async fn process_llm_response(
                 })
                 .await?;
 
-            // Add tool result to messages
+            // הוסף תוצאת כלי להודעות
             messages.push(json!({
                 "role": "tool",
                 "tool_call_id": tool_id,
@@ -1330,7 +1331,7 @@ async fn process_llm_response(
             }));
         }
 
-        // Continue conversation with tool results
+        // המשך שיחה עם תוצאות הכלי
         let response = call_llm(openai_client, messages, mcp_tools).await?;
         Box::pin(process_llm_response(
             &response,
@@ -1345,9 +1346,9 @@ async fn process_llm_response(
 }
 ```
 
-אם קיימים `tool_calls`, הפונקציה תחלץ את המידע על הכלי, תבצע קריאה לשרת MCP עם בקשת הכלי, ותוסיף את התוצאות להודעות השיחה. לאחר מכן, היא תמשיך את השיחה עם ה-LLM וההודעות יתעדכנו עם תגובת העוזר ותוצאות קריאת הכלי.
+אם קיימים `tool_calls`, הפונקציה תחלץ את מידע הכלי, תקרא לשרת MCP עם בקשת הכלי, ותוסיף את התוצאות להודעות השיחה. לאחר מכן היא ממשיכה את השיחה עם ה-LLM וההודעות מתעדכנות עם תגובת העוזר ותוצאות קריאת הכלי.
 
-כדי לחלץ מידע על קריאת כלי שה-LLM מחזיר עבור קריאות MCP, נוסיף פונקציית עזר נוספת שתחלץ את כל מה שצריך כדי לבצע את הקריאה. הוסף את הקוד הבא לתחתית קובץ `main.rs` שלך:
+כדי לחלץ מידע על קריאת כלי שה-LLM מחזיר עבור קריאות MCP, נוסיף פונקציית עזר נוספת שתחלץ את כל מה שצריך כדי לבצע את הקריאה. הוסף את הקוד הבא לתחתית הקובץ `main.rs` שלך:
 
 ```rust
 fn extract_tool_call_info(tool_call: &Value) -> Result<(String, String, String), Box<dyn Error>> {
@@ -1371,10 +1372,10 @@ fn extract_tool_call_info(tool_call: &Value) -> Result<(String, String, String),
 }
 ```
 
-עם כל החלקים במקום, עכשיו נוכל לטפל בהנחיה הראשונית של המשתמש ולקרוא ל-LLM. עדכן את פונקציית `main` שלך כדי לכלול את הקוד הבא:
+עם כל החלקים במקום, כעת נוכל לטפל בהנחיית המשתמש הראשונית ולקרוא ל-LLM. עדכן את פונקציית `main` שלך לכלול את הקוד הבא:
 
 ```rust
-// LLM conversation with tool calls
+// שיחה עם LLM הכוללת קריאות לכלים
 let response = call_llm(&openai_client, &messages, &tools).await?;
 process_llm_response(
     &response,
@@ -1386,17 +1387,17 @@ process_llm_response(
 .await?;
 ```
 
-זה יבצע שאילתה ל-LLM עם ההנחיה הראשונית של המשתמש המבקשת את סכום שני מספרים, ויעבד את התגובה כדי לטפל באופן דינמי בקריאות לכלים.
+זה ישאל את ה-LLM עם הנחיית המשתמש הראשונית המבקשת את סכום שני מספרים, ויעבד את התגובה כדי לטפל בצורה דינמית בקריאות לכלים.
 
-מעולה, הצלחת!
+מעולה, עשית את זה!
 
 ## משימה
 
-קח את הקוד מהתרגיל ובנה את השרת עם עוד כלים. לאחר מכן צור לקוח עם LLM, כמו בתרגיל, ובדוק אותו עם הנחיות שונות כדי לוודא שכל הכלים של השרת שלך נקראים באופן דינמי. דרך זו של בניית לקוח מבטיחה חוויית משתמש מצוינת, שכן המשתמשים יוכלו להשתמש בהנחיות במקום פקודות לקוח מדויקות, ולא יהיו מודעים לכך שמתבצעת קריאה לשרת MCP.
+קח את הקוד מהתרגיל ובנה את השרת עם עוד כלים. לאחר מכן צור לקוח עם LLM, כמו בתרגיל, ובדוק אותו עם הנחיות שונות כדי לוודא שכל הכלים בשרת שלך נקראים בצורה דינמית. דרך בניית הלקוח הזו מבטיחה למשתמש קצה חוויית משתמש מצוינת, כי הוא יכול להשתמש בהנחיות במקום פקודות מדויקות של הלקוח, ולהיות לא מודע לקריאות כלשהן לשרת MCP.
 
 ## פתרון
 
-[פתרון](/03-GettingStarted/03-llm-client/solution/README.md)
+[Solution](/03-GettingStarted/03-llm-client/solution/README.md)
 
 ## נקודות מפתח
 
@@ -1416,9 +1417,11 @@ process_llm_response(
 
 ## מה הלאה
 
-- הבא: [צריכת שרת באמצעות Visual Studio Code](../04-vscode/README.md)
+- הבא: [שימוש בשרת באמצעות Visual Studio Code](../04-vscode/README.md)
 
 ---
 
-**הצהרת אחריות**:  
-מסמך זה תורגם באמצעות שירות תרגום AI [Co-op Translator](https://github.com/Azure/co-op-translator). למרות שאנו שואפים לדיוק, יש להיות מודעים לכך שתרגומים אוטומטיים עשויים להכיל שגיאות או אי דיוקים. המסמך המקורי בשפתו המקורית צריך להיחשב כמקור סמכותי. עבור מידע קריטי, מומלץ להשתמש בתרגום מקצועי אנושי. אנו לא נושאים באחריות לכל אי הבנות או פרשנויות שגויות הנובעות משימוש בתרגום זה.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**כתב ויתור**:  
+מסמך זה תורגם באמצעות שירות תרגום מבוסס בינה מלאכותית [Co-op Translator](https://github.com/Azure/co-op-translator). למרות שאנו שואפים לדיוק, יש לקחת בחשבון כי תרגומים אוטומטיים עלולים להכיל שגיאות או אי-דיוקים. המסמך המקורי בשפת המקור שלו הוא המקור הסמכותי. למידע קריטי מומלץ להשתמש בתרגום מקצועי על ידי אדם. אנו לא נושאים באחריות לכל אי-הבנה או פרשנות שגויה הנובעת משימוש בתרגום זה.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

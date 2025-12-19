@@ -1,28 +1,28 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "c71c60af76120a517809a6cfba47e9a3",
-  "translation_date": "2025-09-15T21:38:36+00:00",
+  "original_hash": "cf3e88e4c0b2d9d65c7f300986bd8c6c",
+  "translation_date": "2025-12-19T14:26:48+00:00",
   "source_file": "05-AdvancedTopics/mcp-transport/README.md",
   "language_code": "id"
 }
 -->
-# Panduan Implementasi Lanjutan MCP Custom Transports
+# MCP Custom Transports - Panduan Implementasi Lanjutan
 
-Model Context Protocol (MCP) memberikan fleksibilitas dalam mekanisme transportasi, memungkinkan implementasi khusus untuk lingkungan perusahaan yang spesifik. Panduan lanjutan ini mengeksplorasi implementasi transportasi khusus menggunakan Azure Event Grid dan Azure Event Hubs sebagai contoh praktis untuk membangun solusi MCP yang skalabel dan berbasis cloud.
+Model Context Protocol (MCP) menyediakan fleksibilitas dalam mekanisme transportasi, memungkinkan implementasi kustom untuk lingkungan perusahaan yang khusus. Panduan lanjutan ini mengeksplorasi implementasi transportasi kustom menggunakan Azure Event Grid dan Azure Event Hubs sebagai contoh praktis untuk membangun solusi MCP yang skalabel dan cloud-native.
 
 ## Pendahuluan
 
-Meskipun transportasi standar MCP (stdio dan HTTP streaming) memenuhi sebagian besar kebutuhan, lingkungan perusahaan sering kali membutuhkan mekanisme transportasi khusus untuk meningkatkan skalabilitas, keandalan, dan integrasi dengan infrastruktur cloud yang ada. Transportasi khusus memungkinkan MCP memanfaatkan layanan pesan berbasis cloud untuk komunikasi asinkron, arsitektur berbasis peristiwa, dan pemrosesan terdistribusi.
+Meskipun transportasi standar MCP (stdio dan HTTP streaming) melayani sebagian besar kasus penggunaan, lingkungan perusahaan sering kali memerlukan mekanisme transportasi khusus untuk meningkatkan skalabilitas, keandalan, dan integrasi dengan infrastruktur cloud yang sudah ada. Transportasi kustom memungkinkan MCP memanfaatkan layanan pesan cloud-native untuk komunikasi asinkron, arsitektur berbasis event, dan pemrosesan terdistribusi.
 
-Pelajaran ini mengeksplorasi implementasi transportasi lanjutan berdasarkan spesifikasi MCP terbaru (2025-06-18), layanan pesan Azure, dan pola integrasi perusahaan yang sudah mapan.
+Pelajaran ini mengeksplorasi implementasi transportasi lanjutan berdasarkan spesifikasi MCP terbaru (2025-11-25), layanan pesan Azure, dan pola integrasi perusahaan yang sudah mapan.
 
-### **Arsitektur Transportasi MCP**
+### **Arsitektur Transport MCP**
 
-**Dari Spesifikasi MCP (2025-06-18):**
+**Dari Spesifikasi MCP (2025-11-25):**
 
 - **Transportasi Standar**: stdio (direkomendasikan), HTTP streaming (untuk skenario jarak jauh)
-- **Transportasi Khusus**: Transportasi apa pun yang mengimplementasikan protokol pertukaran pesan MCP
+- **Transportasi Kustom**: Transportasi apa pun yang mengimplementasikan protokol pertukaran pesan MCP
 - **Format Pesan**: JSON-RPC 2.0 dengan ekstensi khusus MCP
 - **Komunikasi Dua Arah**: Komunikasi full duplex diperlukan untuk notifikasi dan respons
 
@@ -30,16 +30,16 @@ Pelajaran ini mengeksplorasi implementasi transportasi lanjutan berdasarkan spes
 
 Pada akhir pelajaran lanjutan ini, Anda akan dapat:
 
-- **Memahami Persyaratan Transportasi Khusus**: Mengimplementasikan protokol MCP di atas lapisan transportasi apa pun sambil tetap mematuhi spesifikasi
-- **Membangun Transportasi Azure Event Grid**: Membuat server MCP berbasis peristiwa menggunakan Azure Event Grid untuk skalabilitas tanpa server
-- **Mengimplementasikan Transportasi Azure Event Hubs**: Merancang solusi MCP throughput tinggi menggunakan Azure Event Hubs untuk streaming real-time
-- **Menerapkan Pola Perusahaan**: Mengintegrasikan transportasi khusus dengan infrastruktur dan model keamanan Azure yang ada
+- **Memahami Persyaratan Transportasi Kustom**: Mengimplementasikan protokol MCP di atas lapisan transportasi apa pun sambil mempertahankan kepatuhan
+- **Membangun Transportasi Azure Event Grid**: Membuat server MCP berbasis event menggunakan Azure Event Grid untuk skalabilitas tanpa server
+- **Mengimplementasikan Transportasi Azure Event Hubs**: Merancang solusi MCP throughput tinggi menggunakan Azure Event Hubs untuk streaming waktu nyata
+- **Menerapkan Pola Perusahaan**: Mengintegrasikan transportasi kustom dengan infrastruktur dan model keamanan Azure yang sudah ada
 - **Menangani Keandalan Transportasi**: Mengimplementasikan daya tahan pesan, pengurutan, dan penanganan kesalahan untuk skenario perusahaan
-- **Mengoptimalkan Performa**: Merancang solusi transportasi untuk kebutuhan skala, latensi, dan throughput
+- **Mengoptimalkan Kinerja**: Merancang solusi transportasi untuk kebutuhan skala, latensi, dan throughput
 
 ## **Persyaratan Transportasi**
 
-### **Persyaratan Inti dari Spesifikasi MCP (2025-06-18):**
+### **Persyaratan Inti dari Spesifikasi MCP (2025-11-25):**
 
 ```yaml
 Message Protocol:
@@ -60,25 +60,24 @@ Custom Transport:
 
 ## **Implementasi Transportasi Azure Event Grid**
 
-Azure Event Grid menyediakan layanan perutean peristiwa tanpa server yang ideal untuk arsitektur MCP berbasis peristiwa. Implementasi ini menunjukkan cara membangun sistem MCP yang skalabel dan terhubung secara longgar.
+Azure Event Grid menyediakan layanan routing event tanpa server yang ideal untuk arsitektur MCP berbasis event. Implementasi ini menunjukkan cara membangun sistem MCP yang skalabel dan loosely-coupled.
 
-### **Ikhtisar Arsitektur**
+### **Gambaran Arsitektur**
 
 ```mermaid
 graph TB
     Client[MCP Client] --> EG[Azure Event Grid]
-    EG --> Server[MCP Server Function]
+    EG --> Server[Fungsi Server MCP]
     Server --> EG
     EG --> Client
     
-    subgraph "Azure Services"
+    subgraph "Layanan Azure"
         EG
         Server
         KV[Key Vault]
         Monitor[Application Insights]
     end
 ```
-
 ### **Implementasi C# - Transportasi Event Grid**
 
 ```csharp
@@ -185,14 +184,14 @@ export class EventGridMcpTransport implements McpTransport {
         await this.publisher.sendEvents([event]);
     }
     
-    // Event-driven receive via Azure Functions
+    // Penerimaan berbasis peristiwa melalui Azure Functions
     onMessage(handler: (message: McpMessage) => Promise<void>): void {
-        // Implementation would use Azure Functions Event Grid trigger
-        // This is a conceptual interface for the webhook receiver
+        // Implementasi akan menggunakan pemicu Event Grid Azure Functions
+        // Ini adalah antarmuka konseptual untuk penerima webhook
     }
 }
 
-// Azure Functions implementation
+// Implementasi Azure Functions
 import { app, InvocationContext, EventGridEvent } from "@azure/functions";
 
 app.eventGrid("mcpEventGridHandler", {
@@ -200,10 +199,10 @@ app.eventGrid("mcpEventGridHandler", {
         try {
             const mcpMessage = event.data as McpMessage;
             
-            // Process MCP message
+            // Proses pesan MCP
             const response = await mcpServer.processMessage(mcpMessage);
             
-            // Send response via Event Grid
+            // Kirim respons melalui Event Grid
             await transport.sendMessage(response);
             
         } catch (error) {
@@ -249,21 +248,21 @@ class EventGridMcpTransport:
         """Register message handler for incoming events"""
         self.message_handler = handler
 
-# Azure Functions implementation
+# Implementasi Azure Functions
 import azure.functions as func
 import logging
 
 def main(event: func.EventGridEvent) -> None:
     """Azure Functions Event Grid trigger for MCP messages"""
     try:
-        # Parse MCP message from Event Grid event
+        # Mengurai pesan MCP dari event Event Grid
         mcp_message = json.loads(event.get_body().decode('utf-8'))
         
-        # Process MCP message
+        # Memproses pesan MCP
         response = process_mcp_message(mcp_message)
         
-        # Send response back via Event Grid
-        # (Implementation would create new Event Grid client)
+        # Mengirim respons kembali melalui Event Grid
+        # (Implementasi akan membuat klien Event Grid baru)
         
     except Exception as e:
         logging.error(f"Error processing MCP Event Grid message: {e}")
@@ -272,9 +271,9 @@ def main(event: func.EventGridEvent) -> None:
 
 ## **Implementasi Transportasi Azure Event Hubs**
 
-Azure Event Hubs menyediakan kemampuan streaming real-time dengan throughput tinggi untuk skenario MCP yang membutuhkan latensi rendah dan volume pesan tinggi.
+Azure Event Hubs menyediakan kemampuan streaming waktu nyata dengan throughput tinggi untuk skenario MCP yang memerlukan latensi rendah dan volume pesan tinggi.
 
-### **Ikhtisar Arsitektur**
+### **Gambaran Arsitektur**
 
 ```mermaid
 graph TB
@@ -283,17 +282,16 @@ graph TB
     Server --> EH
     EH --> Client
     
-    subgraph "Event Hubs Features"
-        Partition[Partitioning]
-        Retention[Message Retention]
-        Scaling[Auto Scaling]
+    subgraph "Fitur Event Hubs"
+        Partition[Partisi]
+        Retention[Retensi Pesan]
+        Scaling[Skala Otomatis]
     end
     
     EH --> Partition
     EH --> Retention
     EH --> Scaling
 ```
-
 ### **Implementasi C# - Transportasi Event Hubs**
 
 ```csharp
@@ -427,7 +425,7 @@ export class EventHubsMcpTransport implements McpTransport {
                         
                         await messageHandler(mcpMessage);
                         
-                        // Update checkpoint for at-least-once delivery
+                        // Perbarui titik pemeriksaan untuk pengiriman setidaknya sekali
                         await context.updateCheckpoint(event);
                     } catch (error) {
                         console.error("Error processing Event Hubs message:", error);
@@ -480,11 +478,11 @@ class EventHubsMcpTransport:
         """Send MCP message via Event Hubs"""
         event_data = EventData(json.dumps(message))
         
-        # Add MCP-specific properties
+        # Tambahkan properti khusus MCP
         event_data.properties = {
             "messageType": message.get("method", "response"),
             "messageId": message.get("id"),
-            "timestamp": "2025-01-14T10:30:00Z"  # Use actual timestamp
+            "timestamp": "2025-01-14T10:30:00Z"  # Gunakan cap waktu yang sebenarnya
         }
         
         async with self.producer:
@@ -505,21 +503,21 @@ class EventHubsMcpTransport:
         async with self.consumer:
             await self.consumer.receive(
                 on_event=self._on_event_received(message_handler),
-                starting_position="-1"  # Start from beginning
+                starting_position="-1"  # Mulai dari awal
             )
     
     def _on_event_received(self, handler: Callable):
         """Internal event handler wrapper"""
         async def handle_event(partition_context, event):
             try:
-                # Parse MCP message from Event Hubs event
+                # Mengurai pesan MCP dari event Event Hubs
                 message_body = event.body_as_str(encoding='UTF-8')
                 mcp_message = json.loads(message_body)
                 
-                # Process MCP message
+                # Memproses pesan MCP
                 await handler(mcp_message)
                 
-                # Update checkpoint for at-least-once delivery
+                # Perbarui checkpoint untuk pengiriman setidaknya sekali
                 await partition_context.update_checkpoint(event)
                 
             except Exception as e:
@@ -642,9 +640,9 @@ Benefits:
   - Cost optimization with serverless compute
 ```
 
-### **Skenario 2: Streaming MCP Real-time**
+### **Skenario 2: Streaming MCP Waktu Nyata**
 
-Menggunakan Azure Event Hubs untuk interaksi MCP dengan frekuensi tinggi:
+Menggunakan Azure Event Hubs untuk interaksi MCP frekuensi tinggi:
 
 ```yaml
 Architecture:
@@ -658,7 +656,7 @@ Benefits:
   - Built-in partitioning for parallel processing
 ```
 
-### **Skenario 3: Arsitektur Transportasi Hybrid**
+### **Skenario 3: Arsitektur Transportasi Hibrida**
 
 Menggabungkan beberapa transportasi untuk berbagai kasus penggunaan:
 
@@ -684,9 +682,9 @@ public class HybridMcpTransport : IMcpTransport
 }
 ```
 
-## **Optimasi Performa**
+## **Optimasi Kinerja**
 
-### **Batching Pesan untuk Event Grid**
+### **Pengelompokan Pesan untuk Event Grid**
 
 ```csharp
 public class BatchingEventGridTransport : IMcpTransport
@@ -746,7 +744,7 @@ public class PartitionedEventHubsTransport : IMcpTransport
 }
 ```
 
-## **Pengujian Transportasi Khusus**
+## **Pengujian Transportasi Kustom**
 
 ### **Pengujian Unit dengan Test Doubles**
 
@@ -808,29 +806,29 @@ public async Task EventHubsTransport_IntegrationTest()
 }
 ```
 
-## **Praktik Terbaik dan Panduan**
+## **Praktik Terbaik dan Pedoman**
 
 ### **Prinsip Desain Transportasi**
 
-1. **Idempotensi**: Pastikan pemrosesan pesan bersifat idempoten untuk menangani duplikasi
-2. **Penanganan Kesalahan**: Implementasikan penanganan kesalahan yang komprehensif dan antrean pesan gagal
-3. **Pemantauan**: Tambahkan telemetri yang mendetail dan pemeriksaan kesehatan
-4. **Keamanan**: Gunakan identitas terkelola dan akses dengan hak istimewa minimum
-5. **Performa**: Rancang sesuai kebutuhan latensi dan throughput spesifik Anda
+1. **Idempoten**: Pastikan pemrosesan pesan bersifat idempoten untuk menangani duplikat
+2. **Penanganan Kesalahan**: Terapkan penanganan kesalahan komprehensif dan antrean dead letter
+3. **Pemantauan**: Tambahkan telemetri rinci dan pemeriksaan kesehatan
+4. **Keamanan**: Gunakan managed identities dan akses dengan hak minimum
+5. **Kinerja**: Rancang sesuai kebutuhan latensi dan throughput spesifik Anda
 
 ### **Rekomendasi Khusus Azure**
 
-1. **Gunakan Identitas Terkelola**: Hindari string koneksi di lingkungan produksi
+1. **Gunakan Managed Identity**: Hindari string koneksi di produksi
 2. **Implementasikan Circuit Breakers**: Lindungi dari gangguan layanan Azure
 3. **Pantau Biaya**: Lacak volume pesan dan biaya pemrosesan
-4. **Rencanakan Skalabilitas**: Rancang strategi partisi dan skalabilitas sejak awal
-5. **Uji Secara Menyeluruh**: Gunakan Azure DevTest Labs untuk pengujian yang komprehensif
+4. **Rencanakan untuk Skala**: Rancang strategi partisi dan penskalaan sejak awal
+5. **Uji Secara Menyeluruh**: Gunakan Azure DevTest Labs untuk pengujian komprehensif
 
 ## **Kesimpulan**
 
-Transportasi MCP khusus memungkinkan skenario perusahaan yang kuat menggunakan layanan pesan Azure. Dengan mengimplementasikan transportasi Event Grid atau Event Hubs, Anda dapat membangun solusi MCP yang skalabel dan andal yang terintegrasi dengan infrastruktur Azure yang ada.
+Transportasi MCP kustom memungkinkan skenario perusahaan yang kuat menggunakan layanan pesan Azure. Dengan mengimplementasikan transportasi Event Grid atau Event Hubs, Anda dapat membangun solusi MCP yang skalabel dan andal yang terintegrasi mulus dengan infrastruktur Azure yang sudah ada.
 
-Contoh yang diberikan menunjukkan pola siap produksi untuk mengimplementasikan transportasi khusus sambil mempertahankan kepatuhan protokol MCP dan praktik terbaik Azure.
+Contoh yang disediakan menunjukkan pola siap produksi untuk mengimplementasikan transportasi kustom sambil mempertahankan kepatuhan protokol MCP dan praktik terbaik Azure.
 
 ## **Sumber Daya Tambahan**
 
@@ -844,13 +842,16 @@ Contoh yang diberikan menunjukkan pola siap produksi untuk mengimplementasikan t
 
 ---
 
-> *Panduan ini berfokus pada pola implementasi praktis untuk sistem MCP produksi. Selalu validasi implementasi transportasi terhadap kebutuhan spesifik Anda dan batas layanan Azure.*
+> *Panduan ini berfokus pada pola implementasi praktis untuk sistem MCP produksi. Selalu validasi implementasi transportasi sesuai dengan kebutuhan spesifik Anda dan batasan layanan Azure.*
 > **Standar Saat Ini**: Panduan ini mencerminkan [Spesifikasi MCP 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) persyaratan transportasi dan pola transportasi lanjutan untuk lingkungan perusahaan.
 
-## Langkah Selanjutnya
+
+## Selanjutnya
 - [6. Kontribusi Komunitas](../../06-CommunityContributions/README.md)
 
 ---
 
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan layanan penerjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Meskipun kami berusaha untuk memberikan hasil yang akurat, harap diperhatikan bahwa terjemahan otomatis mungkin mengandung kesalahan atau ketidakakuratan. Dokumen asli dalam bahasa aslinya harus dianggap sebagai sumber yang otoritatif. Untuk informasi yang bersifat kritis, disarankan menggunakan jasa penerjemahan profesional oleh manusia. Kami tidak bertanggung jawab atas kesalahpahaman atau penafsiran yang keliru yang timbul dari penggunaan terjemahan ini.
+Dokumen ini telah diterjemahkan menggunakan layanan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Meskipun kami berusaha untuk akurasi, harap diingat bahwa terjemahan otomatis mungkin mengandung kesalahan atau ketidakakuratan. Dokumen asli dalam bahasa aslinya harus dianggap sebagai sumber yang sahih. Untuk informasi penting, disarankan menggunakan terjemahan profesional oleh manusia. Kami tidak bertanggung jawab atas kesalahpahaman atau salah tafsir yang timbul dari penggunaan terjemahan ini.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

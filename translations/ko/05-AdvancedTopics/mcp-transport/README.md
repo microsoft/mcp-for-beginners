@@ -1,45 +1,45 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "c71c60af76120a517809a6cfba47e9a3",
-  "translation_date": "2025-09-15T21:30:44+00:00",
+  "original_hash": "cf3e88e4c0b2d9d65c7f300986bd8c6c",
+  "translation_date": "2025-12-19T09:55:42+00:00",
   "source_file": "05-AdvancedTopics/mcp-transport/README.md",
   "language_code": "ko"
 }
 -->
-# MCP 커스텀 전송 - 고급 구현 가이드
+# MCP 맞춤형 전송 - 고급 구현 가이드
 
-Model Context Protocol (MCP)은 전송 메커니즘에 유연성을 제공하며, 특화된 엔터프라이즈 환경을 위한 커스텀 구현을 허용합니다. 이 고급 가이드에서는 Azure Event Grid와 Azure Event Hubs를 활용한 커스텀 전송 구현을 통해 확장 가능하고 클라우드 네이티브 MCP 솔루션을 구축하는 방법을 탐구합니다.
+모델 컨텍스트 프로토콜(MCP)은 맞춤형 구현을 허용하여 특수한 엔터프라이즈 환경에 적합한 전송 메커니즘의 유연성을 제공합니다. 이 고급 가이드는 확장 가능하고 클라우드 네이티브 MCP 솔루션을 구축하기 위한 실용적인 예제로 Azure Event Grid와 Azure Event Hubs를 사용한 맞춤형 전송 구현을 탐구합니다.
 
 ## 소개
 
-MCP의 표준 전송 방식(stdio 및 HTTP 스트리밍)은 대부분의 사용 사례를 충족하지만, 엔터프라이즈 환경에서는 기존 클라우드 인프라와의 통합, 확장성 및 신뢰성을 개선하기 위해 특화된 전송 메커니즘이 필요할 수 있습니다. 커스텀 전송은 MCP가 클라우드 네이티브 메시징 서비스를 활용하여 비동기 통신, 이벤트 기반 아키텍처 및 분산 처리를 가능하게 합니다.
+MCP의 표준 전송(stdio 및 HTTP 스트리밍)은 대부분의 사용 사례에 적합하지만, 엔터프라이즈 환경에서는 확장성, 신뢰성 향상 및 기존 클라우드 인프라와의 통합을 위해 특수한 전송 메커니즘이 종종 필요합니다. 맞춤형 전송은 MCP가 비동기 통신, 이벤트 기반 아키텍처 및 분산 처리를 위해 클라우드 네이티브 메시징 서비스를 활용할 수 있도록 합니다.
 
-이 강의에서는 최신 MCP 사양(2025-06-18), Azure 메시징 서비스 및 확립된 엔터프라이즈 통합 패턴을 기반으로 한 고급 전송 구현을 다룹니다.
+이 강의에서는 최신 MCP 사양(2025-11-25), Azure 메시징 서비스 및 확립된 엔터프라이즈 통합 패턴을 기반으로 한 고급 전송 구현을 살펴봅니다.
 
 ### **MCP 전송 아키텍처**
 
-**MCP 사양 (2025-06-18)에서 발췌:**
+**MCP 사양(2025-11-25)에서 발췌:**
 
 - **표준 전송**: stdio(권장), HTTP 스트리밍(원격 시나리오용)
-- **커스텀 전송**: MCP 메시지 교환 프로토콜을 구현하는 모든 전송 방식
-- **메시지 형식**: MCP 전용 확장이 포함된 JSON-RPC 2.0
-- **양방향 통신**: 알림 및 응답을 위한 풀 듀플렉스 통신 필요
+- **맞춤형 전송**: MCP 메시지 교환 프로토콜을 구현하는 모든 전송
+- **메시지 형식**: MCP 특정 확장이 포함된 JSON-RPC 2.0
+- **양방향 통신**: 알림 및 응답을 위한 전이중 통신 필요
 
 ## 학습 목표
 
 이 고급 강의를 마치면 다음을 수행할 수 있습니다:
 
-- **커스텀 전송 요구사항 이해**: MCP 프로토콜을 모든 전송 계층에서 구현하며 규정을 준수
-- **Azure Event Grid 전송 구축**: 서버리스 확장성을 위한 Azure Event Grid를 사용하여 이벤트 기반 MCP 서버 생성
+- **맞춤형 전송 요구사항 이해**: 준수를 유지하면서 모든 전송 계층에서 MCP 프로토콜 구현
+- **Azure Event Grid 전송 구축**: 서버리스 확장성을 위한 이벤트 기반 MCP 서버 생성
 - **Azure Event Hubs 전송 구현**: 실시간 스트리밍을 위한 고처리량 MCP 솔루션 설계
-- **엔터프라이즈 패턴 적용**: 기존 Azure 인프라 및 보안 모델과 커스텀 전송 통합
-- **전송 신뢰성 처리**: 엔터프라이즈 시나리오를 위한 메시지 내구성, 순서 및 오류 처리 구현
+- **엔터프라이즈 패턴 적용**: 기존 Azure 인프라 및 보안 모델과 맞춤형 전송 통합
+- **전송 신뢰성 처리**: 엔터프라이즈 시나리오를 위한 메시지 내구성, 순서 보장 및 오류 처리 구현
 - **성능 최적화**: 확장성, 지연 시간 및 처리량 요구사항에 맞는 전송 솔루션 설계
 
 ## **전송 요구사항**
 
-### **MCP 사양 (2025-06-18)의 핵심 요구사항**
+### **MCP 사양(2025-11-25)에서 발췌한 핵심 요구사항:**
 
 ```yaml
 Message Protocol:
@@ -60,25 +60,24 @@ Custom Transport:
 
 ## **Azure Event Grid 전송 구현**
 
-Azure Event Grid는 이벤트 기반 MCP 아키텍처에 적합한 서버리스 이벤트 라우팅 서비스를 제공합니다. 이 구현은 확장 가능하고 느슨하게 결합된 MCP 시스템을 구축하는 방법을 보여줍니다.
+Azure Event Grid는 이벤트 기반 MCP 아키텍처에 이상적인 서버리스 이벤트 라우팅 서비스를 제공합니다. 이 구현은 확장 가능하고 느슨하게 결합된 MCP 시스템을 구축하는 방법을 보여줍니다.
 
 ### **아키텍처 개요**
 
 ```mermaid
 graph TB
-    Client[MCP Client] --> EG[Azure Event Grid]
-    EG --> Server[MCP Server Function]
+    Client[MCP 클라이언트] --> EG[Azure 이벤트 그리드]
+    EG --> Server[MCP 서버 함수]
     Server --> EG
     EG --> Client
     
-    subgraph "Azure Services"
+    subgraph "Azure 서비스"
         EG
         Server
-        KV[Key Vault]
-        Monitor[Application Insights]
+        KV[키 볼트]
+        Monitor[애플리케이션 인사이트]
     end
 ```
-
 ### **C# 구현 - Event Grid 전송**
 
 ```csharp
@@ -185,14 +184,14 @@ export class EventGridMcpTransport implements McpTransport {
         await this.publisher.sendEvents([event]);
     }
     
-    // Event-driven receive via Azure Functions
+    // Azure Functions를 통한 이벤트 기반 수신
     onMessage(handler: (message: McpMessage) => Promise<void>): void {
-        // Implementation would use Azure Functions Event Grid trigger
-        // This is a conceptual interface for the webhook receiver
+        // 구현은 Azure Functions Event Grid 트리거를 사용합니다
+        // 이것은 웹훅 수신기를 위한 개념적 인터페이스입니다
     }
 }
 
-// Azure Functions implementation
+// Azure Functions 구현
 import { app, InvocationContext, EventGridEvent } from "@azure/functions";
 
 app.eventGrid("mcpEventGridHandler", {
@@ -200,10 +199,10 @@ app.eventGrid("mcpEventGridHandler", {
         try {
             const mcpMessage = event.data as McpMessage;
             
-            // Process MCP message
+            // MCP 메시지 처리
             const response = await mcpServer.processMessage(mcpMessage);
             
-            // Send response via Event Grid
+            // Event Grid를 통해 응답 전송
             await transport.sendMessage(response);
             
         } catch (error) {
@@ -249,21 +248,21 @@ class EventGridMcpTransport:
         """Register message handler for incoming events"""
         self.message_handler = handler
 
-# Azure Functions implementation
+# Azure Functions 구현
 import azure.functions as func
 import logging
 
 def main(event: func.EventGridEvent) -> None:
     """Azure Functions Event Grid trigger for MCP messages"""
     try:
-        # Parse MCP message from Event Grid event
+        # Event Grid 이벤트에서 MCP 메시지 파싱
         mcp_message = json.loads(event.get_body().decode('utf-8'))
         
-        # Process MCP message
+        # MCP 메시지 처리
         response = process_mcp_message(mcp_message)
         
-        # Send response back via Event Grid
-        # (Implementation would create new Event Grid client)
+        # Event Grid를 통해 응답 전송
+        # (구현 시 새로운 Event Grid 클라이언트 생성)
         
     except Exception as e:
         logging.error(f"Error processing MCP Event Grid message: {e}")
@@ -278,22 +277,21 @@ Azure Event Hubs는 낮은 지연 시간과 높은 메시지 볼륨이 필요한
 
 ```mermaid
 graph TB
-    Client[MCP Client] --> EH[Azure Event Hubs]
-    EH --> Server[MCP Server]
+    Client[MCP 클라이언트] --> EH[Azure 이벤트 허브]
+    EH --> Server[MCP 서버]
     Server --> EH
     EH --> Client
     
-    subgraph "Event Hubs Features"
-        Partition[Partitioning]
-        Retention[Message Retention]
-        Scaling[Auto Scaling]
+    subgraph "이벤트 허브 기능"
+        Partition[파티셔닝]
+        Retention[메시지 보존]
+        Scaling[자동 확장]
     end
     
     EH --> Partition
     EH --> Retention
     EH --> Scaling
 ```
-
 ### **C# 구현 - Event Hubs 전송**
 
 ```csharp
@@ -427,7 +425,7 @@ export class EventHubsMcpTransport implements McpTransport {
                         
                         await messageHandler(mcpMessage);
                         
-                        // Update checkpoint for at-least-once delivery
+                        // 적어도 한 번 전달을 위한 체크포인트 업데이트
                         await context.updateCheckpoint(event);
                     } catch (error) {
                         console.error("Error processing Event Hubs message:", error);
@@ -480,11 +478,11 @@ class EventHubsMcpTransport:
         """Send MCP message via Event Hubs"""
         event_data = EventData(json.dumps(message))
         
-        # Add MCP-specific properties
+        # MCP 전용 속성 추가
         event_data.properties = {
             "messageType": message.get("method", "response"),
             "messageId": message.get("id"),
-            "timestamp": "2025-01-14T10:30:00Z"  # Use actual timestamp
+            "timestamp": "2025-01-14T10:30:00Z"  # 실제 타임스탬프 사용
         }
         
         async with self.producer:
@@ -505,21 +503,21 @@ class EventHubsMcpTransport:
         async with self.consumer:
             await self.consumer.receive(
                 on_event=self._on_event_received(message_handler),
-                starting_position="-1"  # Start from beginning
+                starting_position="-1"  # 처음부터 시작
             )
     
     def _on_event_received(self, handler: Callable):
         """Internal event handler wrapper"""
         async def handle_event(partition_context, event):
             try:
-                # Parse MCP message from Event Hubs event
+                # Event Hubs 이벤트에서 MCP 메시지 파싱
                 message_body = event.body_as_str(encoding='UTF-8')
                 mcp_message = json.loads(message_body)
                 
-                # Process MCP message
+                # MCP 메시지 처리
                 await handler(mcp_message)
                 
-                # Update checkpoint for at-least-once delivery
+                # 최소 한 번 전달을 위한 체크포인트 업데이트
                 await partition_context.update_checkpoint(event)
                 
             except Exception as e:
@@ -536,7 +534,7 @@ class EventHubsMcpTransport:
 
 ## **고급 전송 패턴**
 
-### **메시지 내구성과 신뢰성**
+### **메시지 내구성 및 신뢰성**
 
 ```csharp
 // Implementing message durability with retry logic
@@ -585,7 +583,7 @@ public class SecureTransportFactory
 }
 ```
 
-### **전송 모니터링 및 관찰성**
+### **전송 모니터링 및 관측성**
 
 ```csharp
 // Adding telemetry to custom transports
@@ -628,7 +626,7 @@ public class ObservableTransport : IMcpTransport
 
 ### **시나리오 1: 분산 MCP 처리**
 
-Azure Event Grid를 사용하여 MCP 요청을 여러 처리 노드에 분산:
+Azure Event Grid를 사용하여 여러 처리 노드에 MCP 요청 분산:
 
 ```yaml
 Architecture:
@@ -644,7 +642,7 @@ Benefits:
 
 ### **시나리오 2: 실시간 MCP 스트리밍**
 
-Azure Event Hubs를 사용하여 고빈도 MCP 상호작용 처리:
+Azure Event Hubs를 사용한 고빈도 MCP 상호작용:
 
 ```yaml
 Architecture:
@@ -660,7 +658,7 @@ Benefits:
 
 ### **시나리오 3: 하이브리드 전송 아키텍처**
 
-다양한 사용 사례를 위한 여러 전송 방식 결합:
+다양한 사용 사례를 위한 여러 전송 결합:
 
 ```csharp
 public class HybridMcpTransport : IMcpTransport
@@ -686,7 +684,7 @@ public class HybridMcpTransport : IMcpTransport
 
 ## **성능 최적화**
 
-### **Event Grid를 위한 메시지 배치**
+### **Event Grid용 메시지 배치**
 
 ```csharp
 public class BatchingEventGridTransport : IMcpTransport
@@ -726,7 +724,7 @@ public class BatchingEventGridTransport : IMcpTransport
 }
 ```
 
-### **Event Hubs를 위한 파티셔닝 전략**
+### **Event Hubs용 파티셔닝 전략**
 
 ```csharp
 public class PartitionedEventHubsTransport : IMcpTransport
@@ -746,9 +744,9 @@ public class PartitionedEventHubsTransport : IMcpTransport
 }
 ```
 
-## **커스텀 전송 테스트**
+## **맞춤형 전송 테스트**
 
-### **테스트 더블을 활용한 단위 테스트**
+### **테스트 더블을 사용한 단위 테스트**
 
 ```csharp
 [Test]
@@ -775,7 +773,7 @@ public async Task EventGridTransport_SendMessage_PublishesCorrectEvent()
 }
 ```
 
-### **Azure 테스트 컨테이너를 활용한 통합 테스트**
+### **Azure 테스트 컨테이너를 사용한 통합 테스트**
 
 ```csharp
 [Test]
@@ -812,45 +810,48 @@ public async Task EventHubsTransport_IntegrationTest()
 
 ### **전송 설계 원칙**
 
-1. **멱등성**: 중복 메시지를 처리할 수 있도록 멱등성을 보장
+1. **멱등성**: 중복 처리를 처리할 수 있도록 메시지 처리를 멱등하게 설계
 2. **오류 처리**: 포괄적인 오류 처리 및 데드 레터 큐 구현
-3. **모니터링**: 상세한 텔레메트리 및 상태 확인 추가
-4. **보안**: 관리 ID 및 최소 권한 접근 사용
+3. **모니터링**: 상세한 원격 측정 및 상태 검사 추가
+4. **보안**: 관리형 ID 및 최소 권한 액세스 사용
 5. **성능**: 특정 지연 시간 및 처리량 요구사항에 맞게 설계
 
-### **Azure 관련 권장사항**
+### **Azure 특화 권장사항**
 
-1. **관리 ID 사용**: 프로덕션 환경에서 연결 문자열 사용 금지
-2. **서킷 브레이커 구현**: Azure 서비스 중단에 대비
+1. **관리형 ID 사용**: 프로덕션에서 연결 문자열 사용 회피
+2. **서킷 브레이커 구현**: Azure 서비스 장애에 대비
 3. **비용 모니터링**: 메시지 볼륨 및 처리 비용 추적
-4. **확장 계획**: 초기 단계에서 파티셔닝 및 확장 전략 설계
-5. **철저한 테스트**: Azure DevTest Labs를 활용한 포괄적인 테스트
+4. **확장 계획**: 초기부터 파티셔닝 및 확장 전략 설계
+5. **철저한 테스트**: Azure DevTest Labs를 활용한 종합 테스트
 
 ## **결론**
 
-커스텀 MCP 전송은 Azure의 메시징 서비스를 활용하여 강력한 엔터프라이즈 시나리오를 가능하게 합니다. Event Grid 또는 Event Hubs 전송을 구현함으로써 기존 Azure 인프라와 원활하게 통합되는 확장 가능하고 신뢰할 수 있는 MCP 솔루션을 구축할 수 있습니다.
+맞춤형 MCP 전송은 Azure 메시징 서비스를 활용하여 강력한 엔터프라이즈 시나리오를 가능하게 합니다. Event Grid 또는 Event Hubs 전송을 구현함으로써 기존 Azure 인프라와 원활하게 통합되는 확장 가능하고 신뢰할 수 있는 MCP 솔루션을 구축할 수 있습니다.
 
-제공된 예제는 MCP 프로토콜 준수 및 Azure 모범 사례를 유지하면서 커스텀 전송을 구현하기 위한 프로덕션 준비 패턴을 보여줍니다.
+제공된 예제는 MCP 프로토콜 준수와 Azure 모범 사례를 유지하면서 맞춤형 전송을 구현하기 위한 프로덕션 준비 패턴을 보여줍니다.
 
 ## **추가 자료**
 
 - [MCP 사양 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/)
 - [Azure Event Grid 문서](https://docs.microsoft.com/azure/event-grid/)
 - [Azure Event Hubs 문서](https://docs.microsoft.com/azure/event-hubs/)
-- [Azure Functions Event Grid Trigger](https://docs.microsoft.com/azure/azure-functions/functions-bindings-event-grid)
+- [Azure Functions Event Grid 트리거](https://docs.microsoft.com/azure/azure-functions/functions-bindings-event-grid)
 - [Azure SDK for .NET](https://github.com/Azure/azure-sdk-for-net)
 - [Azure SDK for TypeScript](https://github.com/Azure/azure-sdk-for-js)
 - [Azure SDK for Python](https://github.com/Azure/azure-sdk-for-python)
 
 ---
 
-> *이 가이드는 프로덕션 MCP 시스템을 위한 실용적인 구현 패턴에 중점을 둡니다. 항상 특정 요구사항 및 Azure 서비스 제한에 따라 전송 구현을 검증하십시오.*
-> **현재 표준**: 이 가이드는 [MCP 사양 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/)의 전송 요구사항 및 엔터프라이즈 환경을 위한 고급 전송 패턴을 반영합니다.
+> *이 가이드는 프로덕션 MCP 시스템을 위한 실용적인 구현 패턴에 중점을 둡니다. 항상 특정 요구사항과 Azure 서비스 한도에 맞춰 전송 구현을 검증하세요.*
+> **현재 표준**: 이 가이드는 [MCP 사양 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/)의 전송 요구사항과 엔터프라이즈 환경을 위한 고급 전송 패턴을 반영합니다.
+
 
 ## 다음 단계
 - [6. 커뮤니티 기여](../../06-CommunityContributions/README.md)
 
 ---
 
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **면책 조항**:  
-이 문서는 AI 번역 서비스 [Co-op Translator](https://github.com/Azure/co-op-translator)를 사용하여 번역되었습니다. 정확성을 위해 최선을 다하고 있지만, 자동 번역에는 오류나 부정확성이 포함될 수 있습니다. 원본 문서의 원어 버전을 권위 있는 출처로 간주해야 합니다. 중요한 정보의 경우, 전문적인 인간 번역을 권장합니다. 이 번역 사용으로 인해 발생하는 오해나 잘못된 해석에 대해 책임을 지지 않습니다.
+이 문서는 AI 번역 서비스 [Co-op Translator](https://github.com/Azure/co-op-translator)를 사용하여 번역되었습니다. 정확성을 위해 최선을 다하고 있으나, 자동 번역에는 오류나 부정확한 부분이 있을 수 있음을 유의하시기 바랍니다. 원문 문서가 권위 있는 출처로 간주되어야 합니다. 중요한 정보의 경우 전문적인 인간 번역을 권장합니다. 본 번역 사용으로 인한 오해나 잘못된 해석에 대해 당사는 책임을 지지 않습니다.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

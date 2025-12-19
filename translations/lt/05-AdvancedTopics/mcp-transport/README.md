@@ -1,45 +1,45 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "c71c60af76120a517809a6cfba47e9a3",
-  "translation_date": "2025-09-15T21:43:54+00:00",
+  "original_hash": "cf3e88e4c0b2d9d65c7f300986bd8c6c",
+  "translation_date": "2025-12-19T18:03:58+00:00",
   "source_file": "05-AdvancedTopics/mcp-transport/README.md",
   "language_code": "lt"
 }
 -->
-# MCP Custom Transports - Išplėstinis įgyvendinimo vadovas
+# MCP Pasirinktinių Transportų - Išplėstinis Įgyvendinimo Vadovas
 
-Model Context Protocol (MCP) suteikia lankstumo transporto mechanizmams, leidžiant pritaikyti juos specializuotoms įmonių aplinkoms. Šiame išplėstiniame vadove nagrinėjami pritaikyti transporto įgyvendinimai, naudojant Azure Event Grid ir Azure Event Hubs kaip praktinius pavyzdžius, kuriant mastelio keičiamus, debesų technologijomis pagrįstus MCP sprendimus.
+Modelio Konteksto Protokolas (MCP) suteikia lankstumą transporto mechanizmams, leidžiant pasirinktinius įgyvendinimus specializuotoms įmonių aplinkoms. Šis išplėstinis vadovas nagrinėja pasirinktinių transportų įgyvendinimus, naudojant Azure Event Grid ir Azure Event Hubs kaip praktinius pavyzdžius kuriant mastelio keičiamus, debesų natūralios MCP sprendimus.
 
 ## Įvadas
 
-Nors MCP standartiniai transportai (stdio ir HTTP srautiniai) atitinka daugumą naudojimo atvejų, įmonių aplinkos dažnai reikalauja specializuotų transporto mechanizmų, siekiant pagerinti mastelio keičiamumą, patikimumą ir integraciją su esama debesų infrastruktūra. Pritaikyti transportai leidžia MCP pasinaudoti debesų technologijomis pagrįstomis pranešimų paslaugomis asinchroniniam bendravimui, įvykių valdomoms architektūroms ir paskirstytam apdorojimui.
+Nors MCP standartiniai transportai (stdio ir HTTP srautas) aptarnauja daugumą naudojimo atvejų, įmonių aplinkos dažnai reikalauja specializuotų transporto mechanizmų, siekiant pagerinti mastelį, patikimumą ir integraciją su esama debesų infrastruktūra. Pasirinktiniai transportai leidžia MCP pasinaudoti debesų natūraliomis žinučių paslaugomis asinchroninei komunikacijai, įvykių valdomoms architektūroms ir paskirstytam apdorojimui.
 
-Ši pamoka nagrinėja išplėstinius transporto įgyvendinimus, remiantis naujausia MCP specifikacija (2025-06-18), Azure pranešimų paslaugomis ir įmonių integracijos modeliais.
+Ši pamoka nagrinėja pažangius transportų įgyvendinimus, pagrįstus naujausia MCP specifikacija (2025-11-25), Azure žinučių paslaugomis ir įtvirtintais įmonių integracijos modeliais.
 
 ### **MCP Transporto Architektūra**
 
-**Iš MCP specifikacijos (2025-06-18):**
+**Iš MCP Specifikacijos (2025-11-25):**
 
-- **Standartiniai transportai**: stdio (rekomenduojama), HTTP srautiniai (nuotolinėms situacijoms)
-- **Pritaikyti transportai**: Bet koks transportas, įgyvendinantis MCP pranešimų mainų protokolą
-- **Pranešimų formatas**: JSON-RPC 2.0 su MCP specifiniais praplėtimais
-- **Dvikryptis bendravimas**: Reikalingas pilnas dupleksinis bendravimas pranešimams ir atsakymams
+- **Standartiniai Transportai**: stdio (rekomenduojamas), HTTP srautas (nuotolinėms situacijoms)
+- **Pasirinktiniai Transportai**: bet kuris transportas, įgyvendinantis MCP žinučių mainų protokolą
+- **Žinučių Formatą**: JSON-RPC 2.0 su MCP specifinėmis išplėtimais
+- **Dvipusė Komunikacija**: reikalinga pilno duplex ryšio galimybė pranešimams ir atsakymams
 
-## Mokymosi tikslai
+## Mokymosi Tikslai
 
-Šios išplėstinės pamokos pabaigoje galėsite:
+Baigę šią išplėstinę pamoką, galėsite:
 
-- **Suprasti pritaikytų transportų reikalavimus**: Įgyvendinti MCP protokolą bet kuriame transporto sluoksnyje, išlaikant atitiktį
-- **Sukurti Azure Event Grid transportą**: Kurti įvykių valdomus MCP serverius, naudojant Azure Event Grid serverless mastelio keičiamumui
-- **Įgyvendinti Azure Event Hubs transportą**: Projektuoti didelio pralaidumo MCP sprendimus, naudojant Azure Event Hubs realaus laiko srautams
-- **Taikyti įmonių modelius**: Integruoti pritaikytus transportus su esama Azure infrastruktūra ir saugumo modeliais
-- **Tvarkyti transporto patikimumą**: Įgyvendinti pranešimų patvarumą, tvarką ir klaidų valdymą įmonių scenarijams
-- **Optimizuoti našumą**: Projektuoti transporto sprendimus mastelio, delsos ir pralaidumo reikalavimams
+- **Suprasti Pasirinktinių Transportų Reikalavimus**: įgyvendinti MCP protokolą bet kuriame transporto sluoksnyje laikantis atitikties
+- **Sukurti Azure Event Grid Transportą**: kurti įvykių valdomus MCP serverius naudojant Azure Event Grid serverless mastelio keitimui
+- **Įgyvendinti Azure Event Hubs Transportą**: projektuoti didelio pralaidumo MCP sprendimus naudojant Azure Event Hubs realaus laiko srautui
+- **Taikyti Įmonių Modelius**: integruoti pasirinktinius transportus su esama Azure infrastruktūra ir saugumo modeliais
+- **Valdyti Transporto Patikimumą**: įgyvendinti žinučių patvarumą, tvarką ir klaidų valdymą įmonių scenarijams
+- **Optimizuoti Veikimą**: projektuoti transporto sprendimus pagal mastelio, delsos ir pralaidumo reikalavimus
 
-## **Transporto reikalavimai**
+## **Transporto Reikalavimai**
 
-### **Pagrindiniai reikalavimai iš MCP specifikacijos (2025-06-18):**
+### **Pagrindiniai Reikalavimai iš MCP Specifikacijos (2025-11-25):**
 
 ```yaml
 Message Protocol:
@@ -58,28 +58,27 @@ Custom Transport:
   interoperability: "MUST maintain protocol compatibility"
 ```
 
-## **Azure Event Grid transporto įgyvendinimas**
+## **Azure Event Grid Transporto Įgyvendinimas**
 
-Azure Event Grid suteikia serverless įvykių maršrutizavimo paslaugą, idealiai tinkančią įvykių valdomoms MCP architektūroms. Šiame įgyvendinime demonstruojama, kaip kurti mastelio keičiamas, laisvai susietas MCP sistemas.
+Azure Event Grid suteikia serverless įvykių maršrutizavimo paslaugą, idealiai tinkamą įvykių valdomoms MCP architektūroms. Šis įgyvendinimas demonstruoja, kaip kurti mastelio keičiamas, silpnai susietas MCP sistemas.
 
-### **Architektūros apžvalga**
+### **Architektūros Apžvalga**
 
 ```mermaid
 graph TB
-    Client[MCP Client] --> EG[Azure Event Grid]
-    EG --> Server[MCP Server Function]
+    Client[MCP Klientas] --> EG[Azure Įvykių Tinklas]
+    EG --> Server[MCP Serverio Funkcija]
     Server --> EG
     EG --> Client
     
-    subgraph "Azure Services"
+    subgraph "Azure Paslaugos"
         EG
         Server
-        KV[Key Vault]
-        Monitor[Application Insights]
+        KV[Raktų Saugykla]
+        Monitor[Programos Įžvalgos]
     end
 ```
-
-### **C# įgyvendinimas - Event Grid transportas**
+### **C# Įgyvendinimas - Event Grid Transportas**
 
 ```csharp
 using Azure.Messaging.EventGrid;
@@ -151,7 +150,7 @@ public async Task<IActionResult> HandleEventGridMessage(
 }
 ```
 
-### **TypeScript įgyvendinimas - Event Grid transportas**
+### **TypeScript Įgyvendinimas - Event Grid Transportas**
 
 ```typescript
 import { EventGridPublisherClient, AzureKeyCredential } from "@azure/eventgrid";
@@ -185,14 +184,14 @@ export class EventGridMcpTransport implements McpTransport {
         await this.publisher.sendEvents([event]);
     }
     
-    // Event-driven receive via Azure Functions
+    // Įvykių valdomas gavimas per Azure Functions
     onMessage(handler: (message: McpMessage) => Promise<void>): void {
-        // Implementation would use Azure Functions Event Grid trigger
-        // This is a conceptual interface for the webhook receiver
+        // Įgyvendinimas naudotų Azure Functions Event Grid trigerį
+        // Tai yra konceptualus sąsajos aprašas webhook gavėjui
     }
 }
 
-// Azure Functions implementation
+// Azure Functions įgyvendinimas
 import { app, InvocationContext, EventGridEvent } from "@azure/functions";
 
 app.eventGrid("mcpEventGridHandler", {
@@ -200,10 +199,10 @@ app.eventGrid("mcpEventGridHandler", {
         try {
             const mcpMessage = event.data as McpMessage;
             
-            // Process MCP message
+            // Apdoroti MCP žinutę
             const response = await mcpServer.processMessage(mcpMessage);
             
-            // Send response via Event Grid
+            // Siųsti atsakymą per Event Grid
             await transport.sendMessage(response);
             
         } catch (error) {
@@ -214,7 +213,7 @@ app.eventGrid("mcpEventGridHandler", {
 });
 ```
 
-### **Python įgyvendinimas - Event Grid transportas**
+### **Python Įgyvendinimas - Event Grid Transportas**
 
 ```python
 from azure.eventgrid import EventGridPublisherClient, EventGridEvent
@@ -249,52 +248,51 @@ class EventGridMcpTransport:
         """Register message handler for incoming events"""
         self.message_handler = handler
 
-# Azure Functions implementation
+# Azure Functions įgyvendinimas
 import azure.functions as func
 import logging
 
 def main(event: func.EventGridEvent) -> None:
     """Azure Functions Event Grid trigger for MCP messages"""
     try:
-        # Parse MCP message from Event Grid event
+        # Išanalizuoti MCP žinutę iš Event Grid įvykio
         mcp_message = json.loads(event.get_body().decode('utf-8'))
         
-        # Process MCP message
+        # Apdoroti MCP žinutę
         response = process_mcp_message(mcp_message)
         
-        # Send response back via Event Grid
-        # (Implementation would create new Event Grid client)
+        # Siųsti atsakymą atgal per Event Grid
+        # (Įgyvendinimas sukurtų naują Event Grid klientą)
         
     except Exception as e:
         logging.error(f"Error processing MCP Event Grid message: {e}")
         raise
 ```
 
-## **Azure Event Hubs transporto įgyvendinimas**
+## **Azure Event Hubs Transporto Įgyvendinimas**
 
-Azure Event Hubs suteikia didelio pralaidumo, realaus laiko srautinio perdavimo galimybes MCP scenarijams, kuriems reikalinga maža delsos ir didelė pranešimų apimtis.
+Azure Event Hubs suteikia didelio pralaidumo, realaus laiko srauto galimybes MCP scenarijams, kuriems reikalinga maža delsos trukmė ir didelis žinučių kiekis.
 
-### **Architektūros apžvalga**
+### **Architektūros Apžvalga**
 
 ```mermaid
 graph TB
-    Client[MCP Client] --> EH[Azure Event Hubs]
-    EH --> Server[MCP Server]
+    Client[MCP Klientas] --> EH[Azure Event Hubs]
+    EH --> Server[MCP Serveris]
     Server --> EH
     EH --> Client
     
-    subgraph "Event Hubs Features"
-        Partition[Partitioning]
-        Retention[Message Retention]
-        Scaling[Auto Scaling]
+    subgraph "Event Hubs Funkcijos"
+        Partition[Particionavimas]
+        Retention[Žinučių saugojimas]
+        Scaling[Automatinis mastelio keitimas]
     end
     
     EH --> Partition
     EH --> Retention
     EH --> Scaling
 ```
-
-### **C# įgyvendinimas - Event Hubs transportas**
+### **C# Įgyvendinimas - Event Hubs Transportas**
 
 ```csharp
 using Azure.Messaging.EventHubs;
@@ -368,7 +366,7 @@ public class EventHubsMcpTransport : IMcpTransport, IDisposable
 }
 ```
 
-### **TypeScript įgyvendinimas - Event Hubs transportas**
+### **TypeScript Įgyvendinimas - Event Hubs Transportas**
 
 ```typescript
 import { 
@@ -427,7 +425,7 @@ export class EventHubsMcpTransport implements McpTransport {
                         
                         await messageHandler(mcpMessage);
                         
-                        // Update checkpoint for at-least-once delivery
+                        // Atnaujinti kontrolinį tašką bent vieno pristatymo užtikrinimui
                         await context.updateCheckpoint(event);
                     } catch (error) {
                         console.error("Error processing Event Hubs message:", error);
@@ -448,7 +446,7 @@ export class EventHubsMcpTransport implements McpTransport {
 }
 ```
 
-### **Python įgyvendinimas - Event Hubs transportas**
+### **Python Įgyvendinimas - Event Hubs Transportas**
 
 ```python
 from azure.eventhub import EventHubProducerClient, EventHubConsumerClient
@@ -480,11 +478,11 @@ class EventHubsMcpTransport:
         """Send MCP message via Event Hubs"""
         event_data = EventData(json.dumps(message))
         
-        # Add MCP-specific properties
+        # Pridėti MCP specifines savybes
         event_data.properties = {
             "messageType": message.get("method", "response"),
             "messageId": message.get("id"),
-            "timestamp": "2025-01-14T10:30:00Z"  # Use actual timestamp
+            "timestamp": "2025-01-14T10:30:00Z"  # Naudoti tikrą laiko žymą
         }
         
         async with self.producer:
@@ -505,21 +503,21 @@ class EventHubsMcpTransport:
         async with self.consumer:
             await self.consumer.receive(
                 on_event=self._on_event_received(message_handler),
-                starting_position="-1"  # Start from beginning
+                starting_position="-1"  # Pradėti nuo pradžios
             )
     
     def _on_event_received(self, handler: Callable):
         """Internal event handler wrapper"""
         async def handle_event(partition_context, event):
             try:
-                # Parse MCP message from Event Hubs event
+                # Išanalizuoti MCP žinutę iš Event Hubs įvykio
                 message_body = event.body_as_str(encoding='UTF-8')
                 mcp_message = json.loads(message_body)
                 
-                # Process MCP message
+                # Apdoroti MCP žinutę
                 await handler(mcp_message)
                 
-                # Update checkpoint for at-least-once delivery
+                # Atnaujinti kontrolinį tašką bent vieno pristatymo užtikrinimui
                 await partition_context.update_checkpoint(event)
                 
             except Exception as e:
@@ -534,9 +532,9 @@ class EventHubsMcpTransport:
         await self.consumer.close()
 ```
 
-## **Išplėstiniai transporto modeliai**
+## **Išplėstiniai Transporto Modeliai**
 
-### **Pranešimų patvarumas ir patikimumas**
+### **Žinučių Patvarumas ir Patikimumas**
 
 ```csharp
 // Implementing message durability with retry logic
@@ -563,7 +561,7 @@ public class ReliableTransportWrapper : IMcpTransport
 }
 ```
 
-### **Transporto saugumo integracija**
+### **Transporto Saugumo Integracija**
 
 ```csharp
 // Integrating Azure Key Vault for transport security
@@ -585,7 +583,7 @@ public class SecureTransportFactory
 }
 ```
 
-### **Transporto stebėjimas ir stebimumas**
+### **Transporto Stebėsena ir Matomumas**
 
 ```csharp
 // Adding telemetry to custom transports
@@ -624,9 +622,9 @@ public class ObservableTransport : IMcpTransport
 }
 ```
 
-## **Įmonių integracijos scenarijai**
+## **Įmonių Integracijos Scenarijai**
 
-### **Scenarijus 1: Paskirstytas MCP apdorojimas**
+### **Scenarijus 1: Paskirstytas MCP Apdorojimas**
 
 Naudojant Azure Event Grid MCP užklausų paskirstymui tarp kelių apdorojimo mazgų:
 
@@ -642,7 +640,7 @@ Benefits:
   - Cost optimization with serverless compute
 ```
 
-### **Scenarijus 2: Realiojo laiko MCP srautiniai perdavimai**
+### **Scenarijus 2: Realaus Laiko MCP Srautas**
 
 Naudojant Azure Event Hubs didelio dažnio MCP sąveikoms:
 
@@ -658,9 +656,9 @@ Benefits:
   - Built-in partitioning for parallel processing
 ```
 
-### **Scenarijus 3: Hibridinė transporto architektūra**
+### **Scenarijus 3: Hibridinė Transporto Architektūra**
 
-Kombinuojant kelis transportus skirtingiems naudojimo atvejams:
+Kelių transportų derinimas skirtingiems naudojimo atvejams:
 
 ```csharp
 public class HybridMcpTransport : IMcpTransport
@@ -684,9 +682,9 @@ public class HybridMcpTransport : IMcpTransport
 }
 ```
 
-## **Našumo optimizavimas**
+## **Veikimo Optimizavimas**
 
-### **Pranešimų grupavimas Event Grid**
+### **Žinučių Grupavimas Event Grid**
 
 ```csharp
 public class BatchingEventGridTransport : IMcpTransport
@@ -726,7 +724,7 @@ public class BatchingEventGridTransport : IMcpTransport
 }
 ```
 
-### **Particijų strategija Event Hubs**
+### **Particionavimo Strategija Event Hubs**
 
 ```csharp
 public class PartitionedEventHubsTransport : IMcpTransport
@@ -746,9 +744,9 @@ public class PartitionedEventHubsTransport : IMcpTransport
 }
 ```
 
-## **Pritaikytų transportų testavimas**
+## **Pasirinktinių Transportų Testavimas**
 
-### **Vienetinis testavimas su testiniais dubliais**
+### **Vienetinis Testavimas su Testo Dubliais**
 
 ```csharp
 [Test]
@@ -775,7 +773,7 @@ public async Task EventGridTransport_SendMessage_PublishesCorrectEvent()
 }
 ```
 
-### **Integracinis testavimas su Azure testavimo konteineriais**
+### **Integracinis Testavimas su Azure Test Containers**
 
 ```csharp
 [Test]
@@ -808,49 +806,52 @@ public async Task EventHubsTransport_IntegrationTest()
 }
 ```
 
-## **Geriausios praktikos ir gairės**
+## **Geriausios Praktikos ir Rekomendacijos**
 
-### **Transporto projektavimo principai**
+### **Transporto Dizaino Principai**
 
-1. **Idempotencija**: Užtikrinkite, kad pranešimų apdorojimas būtų idempotentinis, kad būtų galima tvarkyti dublikatus
-2. **Klaidų valdymas**: Įgyvendinkite išsamų klaidų valdymą ir „dead letter“ eilutes
-3. **Stebėjimas**: Pridėkite išsamią telemetriją ir sveikatos patikrinimus
-4. **Saugumas**: Naudokite valdomas tapatybes ir minimalios privilegijos prieigą
-5. **Našumas**: Projektuokite pagal specifinius delsos ir pralaidumo reikalavimus
+1. **Idempotentiškumas**: užtikrinkite, kad žinučių apdorojimas būtų idempotentiškas, kad būtų tvarkomi dublikatai
+2. **Klaidų Valdymas**: įgyvendinkite išsamų klaidų valdymą ir negyvų laiškų eilutes
+3. **Stebėsena**: pridėkite detalią telemetriją ir sveikatos patikrinimus
+4. **Saugumas**: naudokite valdomas tapatybes ir mažiausio privilegijų prieigą
+5. **Veikimas**: projektuokite pagal specifinius delsos ir pralaidumo reikalavimus
 
-### **Azure specifinės rekomendacijos**
+### **Azure Specifinės Rekomendacijos**
 
-1. **Naudokite valdomą tapatybę**: Venkite prisijungimo eilučių gamyboje
-2. **Įgyvendinkite apsaugos mechanizmus**: Apsaugokite nuo Azure paslaugų sutrikimų
-3. **Stebėkite išlaidas**: Sekite pranešimų apimtį ir apdorojimo išlaidas
-4. **Planuokite mastelį**: Anksti projektuokite particijų ir mastelio strategijas
-5. **Testuokite kruopščiai**: Naudokite Azure DevTest Labs išsamiam testavimui
+1. **Naudokite Valdomą Tapatybę**: venkite ryšio eilučių gamyboje
+2. **Įgyvendinkite Grandinės Pertraukiklius**: apsaugokite nuo Azure paslaugų sutrikimų
+3. **Stebėkite Išlaidas**: sekite žinučių kiekį ir apdorojimo kaštus
+4. **Planuokite Mastelį**: anksti projektuokite particionavimo ir mastelio keitimo strategijas
+5. **Testuokite Kruopščiai**: naudokite Azure DevTest Labs išsamiam testavimui
 
 ## **Išvada**
 
-Pritaikyti MCP transportai suteikia galingus įmonių scenarijus, naudojant Azure pranešimų paslaugas. Įgyvendindami Event Grid arba Event Hubs transportus, galite kurti mastelio keičiamus, patikimus MCP sprendimus, kurie sklandžiai integruojasi su esama Azure infrastruktūra.
+Pasirinktiniai MCP transportai leidžia galingus įmonių scenarijus, naudojant Azure žinučių paslaugas. Įgyvendindami Event Grid arba Event Hubs transportus, galite kurti mastelio keičiamus, patikimus MCP sprendimus, kurie sklandžiai integruojasi su esama Azure infrastruktūra.
 
-Pateikti pavyzdžiai demonstruoja gamybai paruoštus modelius, skirtus pritaikytų transportų įgyvendinimui, išlaikant MCP protokolo atitiktį ir Azure geriausias praktikas.
+Pateikti pavyzdžiai demonstruoja gamybai paruoštus modelius pasirinktinių transportų įgyvendinimui, išlaikant MCP protokolo atitiktį ir Azure geriausias praktikas.
 
-## **Papildomi ištekliai**
+## **Papildomi Ištekliai**
 
-- [MCP specifikacija 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/)
-- [Azure Event Grid dokumentacija](https://docs.microsoft.com/azure/event-grid/)
-- [Azure Event Hubs dokumentacija](https://docs.microsoft.com/azure/event-hubs/)
+- [MCP Specifikacija 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/)
+- [Azure Event Grid Dokumentacija](https://docs.microsoft.com/azure/event-grid/)
+- [Azure Event Hubs Dokumentacija](https://docs.microsoft.com/azure/event-hubs/)
 - [Azure Functions Event Grid Trigger](https://docs.microsoft.com/azure/azure-functions/functions-bindings-event-grid)
-- [Azure SDK for .NET](https://github.com/Azure/azure-sdk-for-net)
-- [Azure SDK for TypeScript](https://github.com/Azure/azure-sdk-for-js)
-- [Azure SDK for Python](https://github.com/Azure/azure-sdk-for-python)
+- [Azure SDK .NET](https://github.com/Azure/azure-sdk-for-net)
+- [Azure SDK TypeScript](https://github.com/Azure/azure-sdk-for-js)
+- [Azure SDK Python](https://github.com/Azure/azure-sdk-for-python)
 
 ---
 
-> *Šis vadovas orientuotas į praktinius įgyvendinimo modelius gamybos MCP sistemoms. Visada patikrinkite transporto įgyvendinimus pagal savo specifinius reikalavimus ir Azure paslaugų limitus.*
-> **Dabartinis standartas**: Šis vadovas atspindi [MCP specifikaciją 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) transporto reikalavimus ir išplėstinius transporto modelius įmonių aplinkoms.
+> *Šis vadovas orientuotas į praktinius įgyvendinimo modelius gamybos MCP sistemoms. Visada patikrinkite transporto įgyvendinimus pagal savo specifinius reikalavimus ir Azure paslaugų ribas.*
+> **Dabartinis Standartas**: Šis vadovas atspindi [MCP Specifikacijos 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) transporto reikalavimus ir pažangius transporto modelius įmonių aplinkoms.
 
-## Kas toliau
-- [6. Bendruomenės indėlis](../../06-CommunityContributions/README.md)
+
+## Kas Toliau
+- [6. Bendruomenės Indėliai](../../06-CommunityContributions/README.md)
 
 ---
 
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Atsakomybės apribojimas**:  
-Šis dokumentas buvo išverstas naudojant AI vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojama naudoti profesionalų žmogaus vertimą. Mes neprisiimame atsakomybės už nesusipratimus ar klaidingus interpretavimus, atsiradusius dėl šio vertimo naudojimo.
+Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors stengiamės užtikrinti tikslumą, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Svarbiai informacijai rekomenduojamas profesionalus žmogaus vertimas. Mes neatsakome už bet kokius nesusipratimus ar neteisingus aiškinimus, kylančius dėl šio vertimo naudojimo.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

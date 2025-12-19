@@ -1,309 +1,383 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "beaeca2ae0ec007783e6310a3b63291f",
-  "translation_date": "2025-10-07T00:27:07+00:00",
+  "original_hash": "e8bbc7982284fe177dd4be5e7f2b3357",
+  "translation_date": "2025-12-19T17:51:01+00:00",
   "source_file": "changelog.md",
   "language_code": "lt"
 }
 -->
-# Keitimų žurnalas: MCP pradedančiųjų mokymo programa
+# Pakeitimų žurnalas: MCP pradedantiesiems mokymo programa
 
-Šis dokumentas yra visų reikšmingų pakeitimų, atliktų Model Context Protocol (MCP) pradedančiųjų mokymo programoje, įrašas. Pakeitimai dokumentuojami atvirkštine chronologine tvarka (naujausi pakeitimai pirmiausia).
+Šis dokumentas fiksuoja visus reikšmingus Modelio konteksto protokolo (MCP) pradedantiesiems mokymo programos pakeitimus. Pakeitimai pateikiami atvirkštine chronologine tvarka (naujausi pakeitimai pirmiausia).
+
+## 2025 m. gruodžio 18 d.
+
+### Saugumo dokumentacijos atnaujinimas – MCP specifikacija 2025-11-25
+
+#### MCP saugumo gerosios praktikos (02-Security/mcp-best-practices.md) – specifikacijos versijos atnaujinimas
+- **Protokolo versijos atnaujinimas**: atnaujinta nuoroda į naujausią MCP specifikaciją 2025-11-25 (išleista 2025 m. lapkričio 25 d.)
+  - Atnaujintos visos specifikacijos versijos nuorodos nuo 2025-06-18 iki 2025-11-25
+  - Atnaujintos dokumento datos nuorodos nuo 2025 m. rugpjūčio 18 d. iki 2025 m. gruodžio 18 d.
+  - Patikrinta, kad visos specifikacijos URL nuorodos veda į dabartinę dokumentaciją
+- **Turinio patikra**: išsami saugumo gerųjų praktikų atitikties naujausiems standartams patikra
+  - **Microsoft saugumo sprendimai**: patikrinta dabartinė terminologija ir nuorodos į Prompt Shields (anksčiau „Jailbreak rizikos aptikimas“), Azure Content Safety, Microsoft Entra ID ir Azure Key Vault
+  - **OAuth 2.1 saugumas**: patvirtinta atitiktis naujausioms OAuth saugumo gerosioms praktikoms
+  - **OWASP standartai**: patikrinta, kad OWASP Top 10 LLM nuorodos yra aktualios
+  - **Azure paslaugos**: patikrintos visos Microsoft Azure dokumentacijos nuorodos ir gerosios praktikos
+- **Standartų atitiktis**: patvirtinta, kad visi nurodyti saugumo standartai yra aktualūs
+  - NIST AI rizikos valdymo sistema
+  - ISO 27001:2022
+  - OAuth 2.1 saugumo gerosios praktikos
+  - Azure saugumo ir atitikties sistemos
+- **Įgyvendinimo ištekliai**: patikrintos visos įgyvendinimo vadovų nuorodos ir ištekliai
+  - Azure API valdymo autentifikavimo modeliai
+  - Microsoft Entra ID integracijos vadovai
+  - Azure Key Vault slaptųjų duomenų valdymas
+  - DevSecOps vamzdynai ir stebėjimo sprendimai
+
+### Dokumentacijos kokybės užtikrinimas
+- **Specifikacijos atitiktis**: užtikrinta, kad visi privalomi MCP saugumo reikalavimai (PRIVALO/PRIVALO NE) atitinka naujausią specifikaciją
+- **Išteklių aktualumas**: patikrintos visos išorinės nuorodos į Microsoft dokumentaciją, saugumo standartus ir įgyvendinimo vadovus
+- **Geriausių praktikų aprėptis**: patvirtinta išsami autentifikavimo, autorizacijos, AI specifinių grėsmių, tiekimo grandinės saugumo ir įmonių modelių aprėptis
 
 ## 2025 m. spalio 6 d.
 
-### Pradžios skyriaus plėtra – pažangus serverio naudojimas ir paprasta autentifikacija
+### Pradžios skyriaus išplėtimas – pažangus serverio naudojimas ir paprasta autentifikacija
 
 #### Pažangus serverio naudojimas (03-GettingStarted/10-advanced)
-- **Pridėtas naujas skyrius**: Įtraukta išsami MCP serverio pažangaus naudojimo instrukcija, apimanti tiek įprastą, tiek žemo lygio serverio architektūrą.
-  - **Įprastas vs. žemo lygio serveris**: Išsamus palyginimas ir Python bei TypeScript kodų pavyzdžiai abiem metodams.
-  - **Handler pagrįstas dizainas**: Paaiškinimas apie handler pagrįstą įrankių/resursų/promptų valdymą, siekiant sukurti mastelio keičiamus ir lankstus serverio sprendimus.
-  - **Praktiniai modeliai**: Realių situacijų pavyzdžiai, kur žemo lygio serverio modeliai yra naudingi pažangioms funkcijoms ir architektūrai.
+- **Pridėtas naujas skyrius**: pateiktas išsamus vadovas apie pažangų MCP serverio naudojimą, apimantis tiek įprastą, tiek žemo lygio serverių architektūras.
+  - **Įprastas vs žemo lygio serveris**: išsamus palyginimas ir kodo pavyzdžiai Python ir TypeScript abiem požiūriais.
+  - **Handler pagrindu sukurta dizaino schema**: paaiškinimas apie įrankių/išteklių/promptų valdymą naudojant handlerius, skirtas mastelio keičiamoms ir lanksčioms serverių įgyvendinimo galimybėms.
+  - **Praktiniai modeliai**: realūs scenarijai, kur žemo lygio serverio modeliai naudingi pažangioms funkcijoms ir architektūrai.
 
 #### Paprasta autentifikacija (03-GettingStarted/11-simple-auth)
-- **Pridėtas naujas skyrius**: Žingsnis po žingsnio vadovas, kaip įgyvendinti paprastą autentifikaciją MCP serveriuose.
-  - **Autentifikacijos sąvokos**: Aiškus autentifikacijos ir autorizacijos bei kredencialų tvarkymo paaiškinimas.
-  - **Pagrindinė autentifikacija**: Middleware pagrįsti autentifikacijos modeliai Python (Starlette) ir TypeScript (Express) su kodų pavyzdžiais.
-  - **Perėjimas prie pažangios saugos**: Patarimai, kaip pradėti nuo paprastos autentifikacijos ir pereiti prie OAuth 2.1 ir RBAC, su nuorodomis į pažangius saugos modulius.
+- **Pridėtas naujas skyrius**: žingsnis po žingsnio vadovas, kaip įgyvendinti paprastą autentifikaciją MCP serveriuose.
+  - **Autentifikacijos sąvokos**: aiškus autentifikacijos ir autorizacijos bei kredencialų tvarkymo paaiškinimas.
+  - **Paprastos autentifikacijos įgyvendinimas**: tarpinio programinės įrangos (middleware) pagrindu sukurti autentifikacijos modeliai Python (Starlette) ir TypeScript (Express) su kodo pavyzdžiais.
+  - **Pažanga į pažangų saugumą**: gairės, kaip pradėti nuo paprastos autentifikacijos ir pereiti prie OAuth 2.1 bei RBAC, su nuorodomis į pažangius saugumo modulius.
 
-Šie papildymai suteikia praktinių, praktinių instrukcijų, kaip kurti tvirtesnius, saugesnius ir lankstesnius MCP serverio sprendimus, sujungiant pagrindines sąvokas su pažangiais gamybos modeliais.
+Šie papildymai suteikia praktinių, tiesioginių gairių, kaip kurti tvirtesnius, saugesnius ir lankstesnius MCP serverių įgyvendinimus, sujungiant pagrindines sąvokas su pažangiais gamybos modeliais.
 
 ## 2025 m. rugsėjo 29 d.
 
-### MCP serverio duomenų bazės integracijos laboratorijos – išsamus praktinio mokymosi kelias
+### MCP serverio duomenų bazės integracijos laboratorijos – išsamus praktinis mokymosi kelias
 
-#### 11-MCPServerHandsOnLabs - Nauja pilna duomenų bazės integracijos mokymo programa
-- **Pilnas 13 laboratorijų mokymosi kelias**: Pridėta išsami praktinė mokymo programa, skirta kurti gamybai paruoštus MCP serverius su PostgreSQL duomenų bazės integracija.
-  - **Realių situacijų įgyvendinimas**: Zava Retail analitikos naudojimo atvejis, demonstruojantis įmonės lygio modelius.
-  - **Struktūrizuotas mokymosi progresas**:
-    - **Laboratorijos 00-03: Pagrindai** - Įvadas, pagrindinė architektūra, saugumas ir daugiaklientė aplinka, aplinkos nustatymas.
-    - **Laboratorijos 04-06: MCP serverio kūrimas** - Duomenų bazės dizainas ir schema, MCP serverio įgyvendinimas, įrankių kūrimas.
-    - **Laboratorijos 07-09: Pažangios funkcijos** - Semantinės paieškos integracija, testavimas ir derinimas, VS Code integracija.
-    - **Laboratorijos 10-12: Gamyba ir geriausios praktikos** - Diegimo strategijos, stebėjimas ir stebimumas, geriausios praktikos ir optimizavimas.
-  - **Įmonės technologijos**: FastMCP framework, PostgreSQL su pgvector, Azure OpenAI embeddings, Azure Container Apps, Application Insights.
-  - **Pažangios funkcijos**: Row Level Security (RLS), semantinė paieška, daugiaklientė duomenų prieiga, vektoriniai embeddingai, realaus laiko stebėjimas.
+#### 11-MCPServerHandsOnLabs – nauja pilna duomenų bazės integracijos mokymo programa
+- **Pilnas 13 laboratorijų mokymosi kelias**: pridėta išsami praktinė mokymo programa MCP serverių kūrimui su PostgreSQL duomenų bazės integracija
+  - **Realus įgyvendinimas**: Zava Retail analizės atvejis, demonstruojantis įmonių lygio modelius
+  - **Struktūruotas mokymosi progresas**:
+    - **Laboratorijos 00-03: pagrindai** – įvadas, pagrindinė architektūra, saugumas ir daugiavartotojiškumas, aplinkos paruošimas
+    - **Laboratorijos 04-06: MCP serverio kūrimas** – duomenų bazės dizainas ir schema, MCP serverio įgyvendinimas, įrankių kūrimas
+    - **Laboratorijos 07-09: pažangios funkcijos** – semantinės paieškos integracija, testavimas ir derinimas, VS Code integracija
+    - **Laboratorijos 10-12: gamyba ir gerosios praktikos** – diegimo strategijos, stebėjimas ir stebėsenos galimybės, gerosios praktikos ir optimizavimas
+  - **Įmonių technologijos**: FastMCP karkasas, PostgreSQL su pgvector, Azure OpenAI įterpimai, Azure Container Apps, Application Insights
+  - **Pažangios funkcijos**: eilutės lygio saugumas (RLS), semantinė paieška, daugiavartotojiškas duomenų prieigos valdymas, vektoriniai įterpimai, realaus laiko stebėjimas
 
-#### Terminologijos standartizavimas - Modulių keitimas į laboratorijas
-- **Išsamus dokumentacijos atnaujinimas**: Sistemingai atnaujinti visi README failai 11-MCPServerHandsOnLabs, kad būtų naudojama "Laboratorijos" terminologija vietoj "Moduliai".
-  - **Skyriaus antraštės**: Atnaujinta "Ką apima šis modulis" į "Ką apima ši laboratorija" visose 13 laboratorijose.
-  - **Turinio aprašymas**: Pakeista "Šis modulis suteikia..." į "Ši laboratorija suteikia..." visoje dokumentacijoje.
-  - **Mokymosi tikslai**: Atnaujinta "Iki šio modulio pabaigos..." į "Iki šios laboratorijos pabaigos..."
-  - **Navigacijos nuorodos**: Visos "Modulis XX:" nuorodos pakeistos į "Laboratorija XX:" kryžminėse nuorodose ir navigacijoje.
-  - **Užbaigimo stebėjimas**: Atnaujinta "Baigus šį modulį..." į "Baigus šią laboratoriją..."
-  - **Išsaugotos techninės nuorodos**: Išlaikytos Python modulio nuorodos konfigūracijos failuose (pvz., `"module": "mcp_server.main"`).
+#### Terminologijos standartizavimas – modulio keitimas į laboratoriją
+- **Išsami dokumentacijos atnaujinimas**: sistemingai atnaujinti visi README failai 11-MCPServerHandsOnLabs, kad būtų naudojama „Laboratorija“ vietoje „Modulis“
+  - **Skyriaus antraštės**: pakeista „What This Module Covers“ į „What This Lab Covers“ visuose 13 laboratorijų aprašymuose
+  - **Turinio aprašymas**: pakeista „This module provides...“ į „This lab provides...“ visoje dokumentacijoje
+  - **Mokymosi tikslai**: atnaujinta „By the end of this module...“ į „By the end of this lab...“
+  - **Navigacijos nuorodos**: visos „Module XX:“ nuorodos pakeistos į „Lab XX:“ kryžminėse nuorodose ir navigacijoje
+  - **Užbaigimo sekimas**: atnaujinta „After completing this module...“ į „After completing this lab...“
+  - **Išsaugotos techninės nuorodos**: išlaikyti Python modulio pavadinimai konfigūracijos failuose (pvz., `"module": "mcp_server.main"`)
 
-#### Mokymosi vadovo patobulinimas (study_guide.md)
-- **Vizualus mokymo programos žemėlapis**: Pridėta nauja "11. Duomenų bazės integracijos laboratorijos" sekcija su išsamia laboratorijų struktūros vizualizacija.
-- **Repozitorijos struktūra**: Atnaujinta nuo dešimties iki vienuolikos pagrindinių sekcijų su detaliu 11-MCPServerHandsOnLabs aprašymu.
-- **Mokymosi kelio gairės**: Patobulintos navigacijos instrukcijos, apimančios sekcijas 00-11.
-- **Technologijų aprėptis**: Pridėta FastMCP, PostgreSQL, Azure paslaugų integracijos detalės.
-- **Mokymosi rezultatai**: Pabrėžtas gamybai paruoštų serverių kūrimas, duomenų bazės integracijos modeliai ir įmonės saugumas.
+#### Studijų vadovo patobulinimas (study_guide.md)
+- **Vizualinė mokymo programos schema**: pridėtas naujas skyrius „11. Duomenų bazės integracijos laboratorijos“ su išsamia laboratorijų struktūros vizualizacija
+- **Saugyklos struktūra**: atnaujinta nuo dešimties iki vienuolikos pagrindinių skyrių su detaliu 11-MCPServerHandsOnLabs aprašymu
+- **Mokymosi kelio gairės**: patobulintos navigacijos instrukcijos, apimančios skyrius 00-11
+- **Technologijų aprėptis**: pridėta FastMCP, PostgreSQL, Azure paslaugų integracijos informacija
+- **Mokymosi rezultatai**: pabrėžtas gamybai paruošto serverio kūrimas, duomenų bazės integracijos modeliai ir įmonių saugumas
 
 #### Pagrindinio README struktūros patobulinimas
-- **Laboratorijų terminologija**: Atnaujintas pagrindinis README.md 11-MCPServerHandsOnLabs, kad būtų nuosekliai naudojama "Laboratorijų" struktūra.
-- **Mokymosi kelio organizavimas**: Aiškus progresas nuo pagrindinių sąvokų iki pažangaus įgyvendinimo ir gamybos diegimo.
-- **Realių situacijų dėmesys**: Pabrėžtas praktinis, praktinis mokymasis su įmonės lygio modeliais ir technologijomis.
+- **Laboratorijų terminologija**: pagrindiniame 11-MCPServerHandsOnLabs README.md nuosekliai naudojama „Laboratorijos“ struktūra
+- **Mokymosi kelio organizavimas**: aiškus progresas nuo pagrindinių sąvokų iki pažangaus įgyvendinimo ir gamybos diegimo
+- **Realus dėmesys**: pabrėžiamas praktinis, tiesioginis mokymasis su įmonių lygio modeliais ir technologijomis
 
-### Dokumentacijos kokybės ir nuoseklumo patobulinimai
-- **Praktinio mokymosi akcentas**: Sustiprintas praktinis, laboratorijomis pagrįstas požiūris visoje dokumentacijoje.
-- **Įmonės modelių dėmesys**: Pabrėžtas gamybai paruoštų įgyvendinimų ir įmonės saugumo aspektų svarba.
-- **Technologijų integracija**: Išsamiai aprašytos modernios Azure paslaugos ir AI integracijos modeliai.
-- **Mokymosi progresas**: Aiškus, struktūrizuotas kelias nuo pagrindinių sąvokų iki gamybos diegimo.
+### Dokumentacijos kokybės ir nuoseklumo gerinimas
+- **Praktinio mokymosi akcentas**: sustiprintas praktinis, laboratorijomis pagrįstas požiūris visoje dokumentacijoje
+- **Įmonių modelių dėmesys**: pabrėžti gamybai paruošti įgyvendinimai ir įmonių saugumo aspektai
+- **Technologijų integracija**: išsami šiuolaikinių Azure paslaugų ir AI integracijos modelių aprėptis
+- **Mokymosi progresas**: aiškus, struktūruotas kelias nuo pagrindinių sąvokų iki gamybos diegimo
 
 ## 2025 m. rugsėjo 26 d.
 
-### Atvejų studijų patobulinimas – GitHub MCP registracijos integracija
+### Atvejų studijų patobulinimas – GitHub MCP registro integracija
 
-#### Atvejų studijos (09-CaseStudy/) - Dėmesys ekosistemos plėtrai
-- **README.md**: Didelis išplėtimas su išsamia GitHub MCP registracijos atvejo studija.
-  - **GitHub MCP registracijos atvejo studija**: Nauja išsami atvejo studija, nagrinėjanti GitHub MCP registracijos paleidimą 2025 m. rugsėjį.
-    - **Problemos analizė**: Išsamus suskaidytos MCP serverio paieškos ir diegimo iššūkių nagrinėjimas.
-    - **Sprendimo architektūra**: GitHub centralizuotos registracijos metodas su vieno paspaudimo VS Code diegimu.
-    - **Verslo poveikis**: Matomi patobulinimai kūrėjų įsitraukime ir produktyvume.
-    - **Strateginė vertė**: Dėmesys modulinio agento diegimui ir kryžminiam įrankių suderinamumui.
-    - **Ekosistemos plėtra**: Pozicionavimas kaip pagrindinė platforma agentų integracijai.
-  - **Patobulinta atvejo studijų struktūra**: Atnaujintos visos septynios atvejų studijos su nuosekliu formatavimu ir išsamiais aprašymais.
-    - Azure AI kelionių agentai: Dėmesys daugiagentinei orkestracijai.
-    - Azure DevOps integracija: Dėmesys darbo eigos automatizavimui.
-    - Realaus laiko dokumentacijos paieška: Python konsolės kliento įgyvendinimas.
-    - Interaktyvus mokymosi plano generatorius: Chainlit pokalbių internetinė programa.
-    - Dokumentacija redaktoriuje: VS Code ir GitHub Copilot integracija.
-    - Azure API valdymas: Įmonės API integracijos modeliai.
-    - GitHub MCP registracija: Ekosistemos plėtra ir bendruomenės platforma.
-  - **Išsamios išvados**: Perrašyta išvadų sekcija, pabrėžianti septynias atvejų studijas, apimančias įvairius MCP įgyvendinimo aspektus.
-    - Įmonės integracija, daugiagentinė orkestracija, kūrėjų produktyvumas.
-    - Ekosistemos plėtra, edukacinės aplikacijos kategorijos.
-    - Patobulintos įžvalgos apie architektūros modelius, įgyvendinimo strategijas ir geriausias praktikas.
-    - Dėmesys MCP kaip brandžiam, gamybai paruoštam protokolui.
+#### Atvejų studijos (09-CaseStudy/) – ekosistemos plėtros dėmesys
+- **README.md**: didelis išplėtimas su išsamiu GitHub MCP registro atvejo studija
+  - **GitHub MCP registro atvejo studija**: nauja išsami atvejo studija, nagrinėjanti GitHub MCP registro paleidimą 2025 m. rugsėjį
+    - **Problemos analizė**: išsamus MCP serverių atradimo ir diegimo iššūkių nagrinėjimas
+    - **Sprendimo architektūra**: GitHub centralizuoto registro požiūris su vieno spustelėjimo VS Code diegimu
+    - **Verslo poveikis**: matomi pagerėjimai kūrėjų įsitraukime ir produktyvume
+    - **Strateginė vertė**: dėmesys modulinei agentų diegimo sistemai ir įrankių tarpusavio sąveikai
+    - **Ekosistemos plėtra**: pozicionavimas kaip pagrindinė platforma agentų integracijai
+  - **Patobulinta atvejo studijų struktūra**: atnaujintos visos septynios atvejo studijos su nuoseklia formatu ir išsamiais aprašymais
+    - Azure AI kelionių agentai: daugiaagentinė orkestracija
+    - Azure DevOps integracija: darbo eigos automatizavimas
+    - Realaus laiko dokumentacijos gavimas: Python konsolės klientas
+    - Interaktyvus studijų plano generatorius: Chainlit pokalbių žiniatinklio programa
+    - Redaktoriaus viduje esanti dokumentacija: VS Code ir GitHub Copilot integracija
+    - Azure API valdymas: įmonių API integracijos modeliai
+    - GitHub MCP registras: ekosistemos plėtra ir bendruomenės platforma
+  - **Išsami išvada**: perrašyta išvados dalis, pabrėžianti septynias atvejo studijas, apimančias kelis MCP įgyvendinimo aspektus
+    - Įmonių integracija, daugiaagentinė orkestracija, kūrėjų produktyvumas
+    - Ekosistemos plėtra, švietimo taikymas
+    - Patobulintos įžvalgos apie architektūrinius modelius, įgyvendinimo strategijas ir gerąsias praktikas
+    - Pabrėžiamas MCP kaip brandus, gamybai paruoštas protokolas
 
-#### Mokymosi vadovo atnaujinimai (study_guide.md)
-- **Vizualus mokymo programos žemėlapis**: Atnaujintas minčių žemėlapis, įtraukiant GitHub MCP registraciją į atvejų studijų sekciją.
-- **Atvejų studijų aprašymas**: Patobulintas nuo bendrų aprašymų iki detalių septynių išsamių atvejų studijų aprašymų.
-- **Repozitorijos struktūra**: Atnaujinta 10 sekcija, kad atspindėtų išsamų atvejų studijų aprėptį su konkrečiomis įgyvendinimo detalėmis.
-- **Keitimų žurnalo integracija**: Pridėta 2025 m. rugsėjo 26 d. įrašas, dokumentuojantis GitHub MCP registracijos papildymą ir atvejų studijų patobulinimus.
-- **Datos atnaujinimai**: Atnaujintas poraštės laiko žymeklis, kad atspindėtų naujausią peržiūrą (2025 m. rugsėjo 26 d.).
+#### Studijų vadovo atnaujinimai (study_guide.md)
+- **Vizualinė mokymo programos schema**: atnaujintas minčių žemėlapis, įtraukiant GitHub MCP registrą į atvejo studijų skyrių
+- **Atvejo studijų aprašymas**: patobulintas nuo bendrų aprašymų iki detalaus septynių išsamių atvejo studijų suskirstymo
+- **Saugyklos struktūra**: atnaujintas skyrius 10, atspindintis išsamią atvejo studijų aprėptį su konkrečiomis įgyvendinimo detalėmis
+- **Pakeitimų žurnalo integracija**: pridėtas 2025 m. rugsėjo 26 d. įrašas, dokumentuojantis GitHub MCP registro pridėjimą ir atvejo studijų patobulinimus
+- **Datos atnaujinimai**: atnaujintas poraštės laiko žymėjimas, atspindintis naujausią peržiūrą (2025 m. rugsėjo 26 d.)
 
-### Dokumentacijos kokybės patobulinimai
-- **Nuoseklumo patobulinimas**: Standartizuotas atvejų studijų formatavimas ir struktūra visose septyniose pavyzdžiuose.
-- **Išsamus aprėptis**: Atvejų studijos dabar apima įmonės, kūrėjų produktyvumo ir ekosistemos plėtros scenarijus.
-- **Strateginis pozicionavimas**: Sustiprintas dėmesys MCP kaip pagrindinei platformai agentų sistemų diegimui.
-- **Resursų integracija**: Atnaujinti papildomi resursai, įtraukiant GitHub MCP registracijos nuorodą.
+### Dokumentacijos kokybės gerinimas
+- **Nuoseklumo stiprinimas**: standartizuotas atvejo studijų formatas ir struktūra visuose septyniuose pavyzdžiuose
+- **Išsami aprėptis**: atvejo studijos apima įmonių, kūrėjų produktyvumo ir ekosistemos plėtros scenarijus
+- **Strateginis pozicionavimas**: sustiprintas dėmesys MCP kaip pagrindinei agentinių sistemų diegimo platformai
+- **Išteklių integracija**: atnaujinti papildomi ištekliai, įtraukiant GitHub MCP registro nuorodą
 
 ## 2025 m. rugsėjo 15 d.
 
-### Pažangių temų plėtra – individualūs transportai ir konteksto inžinerija
+### Pažangių temų išplėtimas – individualūs transportai ir konteksto inžinerija
 
-#### MCP individualūs transportai (05-AdvancedTopics/mcp-transport/) - Naujas pažangus įgyvendinimo vadovas
-- **README.md**: Pilnas įgyvendinimo vadovas individualiems MCP transporto mechanizmams.
-  - **Azure Event Grid transportas**: Išsamus serverless įvykių pagrįsto transporto įgyvendinimas.
-    - C#, TypeScript ir Python pavyzdžiai su Azure Functions integracija.
-    - Įvykių pagrįstos architektūros modeliai, skirti mastelio keičiamoms MCP sprendimams.
-    - Webhook gavėjai ir push pagrįstas pranešimų tvarkymas.
-  - **Azure Event Hubs transportas**: Didelio pralaidumo srautinio transporto įgyvendinimas.
-    - Realaus laiko srautinės galimybės mažo vėlavimo scenarijams.
-    - Particionavimo strategijos ir kontrolės taškų valdymas.
-    - Pranešimų grupavimas ir našumo optimizavimas.
-  - **Įmonės integracijos modeliai**: Gamybai paruošti architektūros pavyzdžiai.
-    - Paskirstytas MCP apdorojimas per kelias Azure Functions.
-    - Hibridinės transporto architektūros, derinančios kelis transporto tipus.
-    - Pranešimų patvarumas, patikimumas ir klaidų tvarkymo strategijos.
-  - **Saugumas ir stebėjimas**: Azure Key Vault integracija ir stebėjimo modeliai.
-    - Valdomos tapatybės autentifikacija ir minimalios privilegijos prieiga.
-    - Application Insights telemetrija ir našumo stebėjimas.
-    - Circuit breakers ir gedimų tolerancijos modeliai.
-  - **Testavimo sistemos**: Išsamios testavimo strategijos individualiems transportams.
-    - Vienetinis testavimas su test doubles ir mocking framework'ais.
-    - Integracinis testavimas su Azure Test Containers.
-    - Našumo ir apkrovos testavimo aspektai.
+#### MCP individualūs transportai (05-AdvancedTopics/mcp-transport/) – naujas pažangus įgyvendinimo vadovas
+- **README.md**: pilnas individualių MCP transporto mechanizmų įgyvendinimo vadovas
+  - **Azure Event Grid transportas**: išsamus serverless įvykių valdomo transporto įgyvendinimas
+    - C#, TypeScript ir Python pavyzdžiai su Azure Functions integracija
+    - Įvykių valdomos architektūros modeliai mastelio keičiamoms MCP sprendimams
+    - Webhook gavėjai ir pranešimų siuntimo mechanizmai
+  - **Azure Event Hubs transportas**: didelio pralaidumo srautinio transporto įgyvendinimas
+    - Realaus laiko srautinės perdavimo galimybės mažo delsos scenarijams
+    - Skirsnių valdymo strategijos ir kontrolinių taškų valdymas
+    - Pranešimų grupavimas ir našumo optimizavimas
+  - **Įmonių integracijos modeliai**: gamybai paruošti architektūriniai pavyzdžiai
+    - Paskirstytas MCP apdorojimas per kelias Azure Functions
+    - Hibridinės transporto architektūros, derinančios kelis transporto tipus
+    - Pranešimų patvarumo, patikimumo ir klaidų valdymo strategijos
+  - **Saugumas ir stebėjimas**: Azure Key Vault integracija ir stebėjimo modeliai
+    - Valdomos tapatybės autentifikacija ir mažiausių privilegijų prieiga
+    - Application Insights telemetrija ir našumo stebėjimas
+    - Grandinės pertraukikliai ir gedimų tolerancijos modeliai
+  - **Testavimo sistemos**: išsamios testavimo strategijos individualiems transportams
+    - Vienetinis testavimas su testų dubleriais ir imitavimo sistemomis
+    - Integracinis testavimas su Azure Test Containers
+    - Našumo ir apkrovos testavimo aspektai
 
-#### Konteksto inžinerija (05-AdvancedTopics/mcp-contextengineering/) - Nauja AI disciplina
-- **README.md**: Išsamus konteksto inžinerijos kaip naujos srities tyrimas.
-  - **Pagrindiniai principai**: Pilnas konteksto dalijimasis, veiksmų sprendimų supratimas ir konteksto lango valdymas.
-  - **MCP protokolo suderinamumas**: Kaip MCP dizainas sprendžia konteksto inžinerijos iššūkius.
-    - Konteksto lango apribojimai ir progresyvaus įkėlimo strategijos.
-    - Reikšmingumo nustatymas ir dinaminis konteksto paieška.
-    - Daugiarūšio konteksto tvarkymas ir saugumo aspektai.
-  - **Įgyvendinimo metodai**: Vieno gijos vs. daugiagentės architektūros.
-    - Konteksto skaidymas ir prioritizavimo technikos.
-    - Progresyvus konteksto įkėlimas ir suspaudimo strategijos.
-    - Sluoksniuotos konteksto metodikos ir paieškos optimizavimas.
-  - **Matavimo sistema**: Nauji metrikos konteksto efektyvumo vertinimui.
-    - Įvesties efektyvumas, našumas, kokybė ir vartotojo patirties aspektai.
-    - Eksperimentiniai konteksto optimizavimo metodai.
-    - Klaidų analizė ir tobulinimo metodologijos.
+#### Konteksto inžinerija (05-AdvancedTopics/mcp-contextengineering/) – nauja besiformuojanti AI disciplina
+- **README.md**: išsami konteksto inžinerijos kaip besiformuojančios srities apžvalga
+  - **Pagrindinės principai**: pilnas konteksto dalijimasis, veiksmų sprendimų suvokimas ir konteksto lango valdymas
+  - **MCP protokolo atitiktis**: kaip MCP dizainas sprendžia konteksto inžinerijos iššūkius
+    - Konteksto lango apribojimai ir progresyvaus užkrovimo strategijos
+    - Reikšmingumo nustatymas ir dinaminis konteksto gavimas
+    - Daugiarūšio konteksto valdymas ir saugumo aspektai
+  - **Įgyvendinimo metodai**: vienos gijos prieš daugiaagentines architektūras
+    - Konteksto dalijimas į dalis ir prioritetų nustatymo technikos
+    - Progresyvus konteksto užkrovimas ir suspaudimo strategijos
+    - Sluoksniuoto konteksto metodai ir gavimo optimizavimas
+  - **Matuoklių sistema**: nauji metrikos rodikliai konteksto efektyvumo vertinimui
+    - Įvesties efektyvumas, našumas, kokybė ir naudotojo patirtis
+    - Eksperimentiniai konteksto optimizavimo metodai
+    - Gedimų analizė ir tobulinimo metodologijos
 
 #### Mokymo programos navigacijos atnaujinimai (README.md)
-- **Patobulinta modulių struktūra**: Atnaujinta mokymo programos lentelė, įtraukiant naujas pažangias temas.
-  - Pridėta Konteksto inžinerija (5.14) ir Individualus transportas (5.15).
-  - Nuoseklus formatavimas ir navigacijos nuorodos visiems moduliams.
-  - Atnaujinti aprašymai, atspindintys dabartinį turinio apimtį.
+- **Patobulinta modulio struktūra**: atnaujinta mokymo programos lentelė, įtraukiant naujas pažangias temas
+  - Pridėti įrašai apie Konteksto inžineriją (5.14) ir Individualų transportą (5.15)
+  - Nuoseklus formatavimas ir navigacijos nuorodos visuose moduliuose
+  - Atnaujinti aprašymai, atspindintys dabartinį turinio apimtį
 
-### Katalogo struktūros patobulinimai
-- **Pavadinimų standartizavimas**: Pervadintas "mcp transport" į "mcp-transport", kad būtų nuoseklumas su kitais pažangių temų katalogais.
-- **Turinio organizavimas**: Visi 05-AdvancedTopics katalogai dabar laikosi nuoseklaus pavadinimų modelio (mcp-[tema]).
+### Aplanko struktūros patobulinimai
+- **Pavadinimų standartizavimas**: „mcp transport“ pervadintas į „mcp-transport“ siekiant nuoseklumo su kitais pažangių temų aplankais
+- **Turinio organizavimas**: visi 05-AdvancedTopics aplankai dabar laikosi nuoseklaus pavadinimų modelio (mcp-[tema])
 
-### Dokumentacijos kokybės patobulinimai
-- **MCP specifikacijos suderinamumas**: Visas naujas turinys remiasi dabartine MCP specifikacija 2025-06-18.
-- **Daugiakalbiai pavyzdžiai**: Išsamūs kodų pavy
-#### Pažangios temos saugumas (05-AdvancedTopics/mcp-security/) - Paruošta gamybai
-- **README.md**: Visiškai perrašyta įmonės saugumo įgyvendinimui
-  - **Dabartinis specifikacijos suderinimas**: Atnaujinta pagal MCP specifikaciją 2025-06-18 su privalomais saugumo reikalavimais
+### Dokumentacijos kokybės gerinimas
+- **MCP specifikacijos atitiktis**: visas naujas turinys nurodo dabartinę MCP specifikaciją 2025-06-18
+- **Daugiakalbiai pavyzdžiai**: išsamūs kodo pavyzdžiai C#, TypeScript ir Python kalbomis
+- **Įmonių dėmesys**: gamybai paruošti modeliai ir Azure debesų integracija visame turinyje
+- **Vizualinė dokumentacija**: Mermaid diagramos architektūros ir srautų vizualizacijai
+
+## 2025 m. rugpjūčio 18 d.
+
+### Dokumentacijos išsamus atnaujinimas – MCP 2025-06-18 standartai
+
+#### MCP saugumo gerosios praktikos (02-Security/) – visiškas modernizavimas
+- **MCP-SECURITY-BEST-PRACTICES-2025.md**: visiškas perrašymas, suderintas su MCP specifikacija 2025-06-18
+  - **Privalomi reikalavimai**: Pridėti aiškūs PRIVALOMA/NEPRIVALOMA reikalavimai iš oficialios specifikacijos su aiškiais vizualiniais indikatoriais
+  - **12 pagrindinių saugumo praktikų**: Pertvarkyta iš 15 punktų sąrašo į išsamias saugumo sritis
+    - Žetonų saugumas ir autentifikacija su išorinio tapatybės teikėjo integracija
+    - Sesijos valdymas ir transporto saugumas su kriptografiniais reikalavimais
+    - AI specifinė grėsmių apsauga su Microsoft Prompt Shields integracija
+    - Prieigos kontrolė ir leidimai pagal mažiausios privilegijos principą
+    - Turinys saugumas ir stebėsena su Azure Content Safety integracija
+    - Tiekimo grandinės saugumas su išsamiu komponentų patikrinimu
+    - OAuth saugumas ir painiavos prevencija su PKCE įgyvendinimu
+    - Incidentų valdymas ir atkūrimas su automatizuotomis galimybėmis
+    - Atitiktis ir valdymas su reguliavimo reikalavimų suderinamumu
+    - Pažangios saugumo kontrolės su zero trust architektūra
+    - Microsoft saugumo ekosistemos integracija su išsamiais sprendimais
+    - Nuolatinė saugumo evoliucija su adaptuojamomis praktikomis
+  - **Microsoft saugumo sprendimai**: Patobulintos integracijos gairės Prompt Shields, Azure Content Safety, Entra ID ir GitHub Advanced Security
+  - **Įgyvendinimo ištekliai**: Išsamūs išteklių nuorodų kategorijų suskirstymai pagal oficialią MCP dokumentaciją, Microsoft saugumo sprendimus, saugumo standartus ir įgyvendinimo vadovus
+
+#### Pažangios saugumo kontrolės (02-Security/) - Įmonių įgyvendinimas
+- **MCP-SECURITY-CONTROLS-2025.md**: Viso perrašymo versija su įmonių lygio saugumo sistema
+  - **9 išsamios saugumo sritys**: Išplėsta nuo pagrindinių kontrolės priemonių iki detalaus įmonių lygio sistemos
+    - Pažangi autentifikacija ir autorizacija su Microsoft Entra ID integracija
+    - Žetonų saugumas ir anti-praėjimo kontrolės su išsamia validacija
+    - Sesijos saugumo kontrolės su užgrobimo prevencija
+    - AI specifinės saugumo kontrolės su promptų injekcijos ir įrankių užnuodijimo prevencija
+    - Painiavos prevencija su OAuth proxy saugumu
+    - Įrankių vykdymo saugumas su sandbox ir izoliacija
+    - Tiekimo grandinės saugumo kontrolės su priklausomybių patikrinimu
+    - Stebėjimo ir aptikimo kontrolės su SIEM integracija
+    - Incidentų valdymas ir atkūrimas su automatizuotomis galimybėmis
+  - **Įgyvendinimo pavyzdžiai**: Pridėti išsamūs YAML konfigūracijos blokai ir kodo pavyzdžiai
+  - **Microsoft sprendimų integracija**: Išsamus Azure saugumo paslaugų, GitHub Advanced Security ir įmonių tapatybės valdymo aprėptis
+
+#### Pažangios temos saugumas (05-AdvancedTopics/mcp-security/) - Produkcijai paruoštas įgyvendinimas
+- **README.md**: Viso perrašymo versija įmonių saugumo įgyvendinimui
+  - **Dabartinės specifikacijos suderinamumas**: Atnaujinta pagal MCP specifikaciją 2025-06-18 su privalomais saugumo reikalavimais
   - **Patobulinta autentifikacija**: Microsoft Entra ID integracija su išsamiais .NET ir Java Spring Security pavyzdžiais
-  - **AI saugumo integracija**: Microsoft Prompt Shields ir Azure Content Safety įgyvendinimas su detalizuotais Python pavyzdžiais
-  - **Pažangi grėsmių mažinimo strategija**: Išsamūs įgyvendinimo pavyzdžiai:
-    - „Confused Deputy“ atakų prevencija naudojant PKCE ir vartotojo sutikimo patvirtinimą
-    - Tokenų perdavimo prevencija naudojant auditorijos patvirtinimą ir saugų tokenų valdymą
-    - Sesijos užgrobimo prevencija naudojant kriptografinį susiejimą ir elgsenos analizę
-  - **Įmonės saugumo integracija**: Azure Application Insights stebėjimas, grėsmių aptikimo kanalai ir tiekimo grandinės saugumas
-  - **Įgyvendinimo kontrolinis sąrašas**: Aiškiai atskirti privalomi ir rekomenduojami saugumo kontrolės punktai su Microsoft saugumo ekosistemos privalumais
+  - **AI saugumo integracija**: Microsoft Prompt Shields ir Azure Content Safety įgyvendinimas su išsamiais Python pavyzdžiais
+  - **Pažangi grėsmių mažinimo priemonė**: Išsamūs įgyvendinimo pavyzdžiai
+    - Painiavos prevencija su PKCE ir vartotojo sutikimo validacija
+    - Žetonų praėjimo prevencija su auditorijos validacija ir saugiu žetonų valdymu
+    - Sesijos užgrobimo prevencija su kriptografiniu susiejimu ir elgsenos analize
+  - **Įmonių saugumo integracija**: Azure Application Insights stebėsena, grėsmių aptikimo vamzdynai ir tiekimo grandinės saugumas
+  - **Įgyvendinimo kontrolinis sąrašas**: Aiškus privalomų ir rekomenduojamų saugumo kontrolės priemonių atskyrimas su Microsoft saugumo ekosistemos privalumais
 
-### Dokumentacijos kokybė ir standartų suderinimas
+### Dokumentacijos kokybė ir standartų suderinamumas
 - **Specifikacijos nuorodos**: Atnaujintos visos nuorodos į dabartinę MCP specifikaciją 2025-06-18
 - **Microsoft saugumo ekosistema**: Patobulintos integracijos gairės visoje saugumo dokumentacijoje
-- **Praktinis įgyvendinimas**: Pridėti detalizuoti kodų pavyzdžiai .NET, Java ir Python su įmonės šablonais
-- **Resursų organizavimas**: Išsamus oficialios dokumentacijos, saugumo standartų ir įgyvendinimo vadovų kategorizavimas
-- **Vizualiniai indikatoriai**: Aiškiai pažymėti privalomi reikalavimai ir rekomenduojamos praktikos
+- **Praktinis įgyvendinimas**: Pridėti išsamūs kodo pavyzdžiai .NET, Java ir Python su įmonių modeliais
+- **Išteklių organizavimas**: Išsamus oficialios dokumentacijos, saugumo standartų ir įgyvendinimo vadovų suskirstymas
+- **Vizualiniai indikatoriai**: Aiškus privalomų reikalavimų ir rekomenduojamų praktikų žymėjimas
 
-#### Pagrindinės sąvokos (01-CoreConcepts/) - Visiška modernizacija
-- **Protokolo versijos atnaujinimas**: Atnaujinta nuoroda į dabartinę MCP specifikaciją 2025-06-18 su datos pagrindu versijavimu (YYYY-MM-DD formatas)
-- **Architektūros patobulinimas**: Patobulinti aprašymai apie Host'us, Klientus ir Serverius, atspindint dabartinius MCP architektūros šablonus
-  - Host'ai dabar aiškiai apibrėžti kaip AI programos, koordinuojančios kelis MCP klientų ryšius
-  - Klientai aprašyti kaip protokolo jungtys, palaikančios vienas su vienu serverio ryšius
+
+#### Pagrindinės sąvokos (01-CoreConcepts/) - Viso modernizavimo versija
+- **Protokolo versijos atnaujinimas**: Atnaujinta nuoroda į dabartinę MCP specifikaciją 2025-06-18 su datos formatu (YYYY-MM-DD)
+- **Architektūros patobulinimas**: Patobulinti aprašymai apie šeimininkus, klientus ir serverius, atspindintys dabartinius MCP architektūros modelius
+  - Šeimininkai dabar aiškiai apibrėžti kaip AI programos, koordinuojančios kelis MCP klientų ryšius
+  - Klientai aprašyti kaip protokolo jungtys, palaikančios vienas prie vieno serverio ryšius
   - Serveriai patobulinti su vietinio ir nuotolinio diegimo scenarijais
-- **Primitivų restruktūrizavimas**: Visiškai peržiūrėti serverio ir kliento primityvai
-  - Serverio primityvai: Resursai (duomenų šaltiniai), Šablonai (templates), Įrankiai (vykdomos funkcijos) su detalizuotais paaiškinimais ir pavyzdžiais
-  - Kliento primityvai: Mėginių ėmimas (LLM užbaigimai), Elicitacija (vartotojo įvestis), Žurnalavimas (debugging/monitoring)
-  - Atnaujinta su dabartiniais atradimo (`*/list`), gavimo (`*/get`) ir vykdymo (`*/call`) metodų šablonais
+- **Primitivų pertvarkymas**: Viso perrašymo versija serverio ir kliento primityvų
+  - Serverio primityvai: Ištekliai (duomenų šaltiniai), Promptai (šablonai), Įrankiai (vykdomos funkcijos) su išsamiais paaiškinimais ir pavyzdžiais
+  - Kliento primityvai: Atranka (LLM užbaigimai), Išgavimas (vartotojo įvestis), Registravimas (derinimas/stebėsena)
+  - Atnaujinta su dabartiniais atradimo (`*/list`), gavimo (`*/get`) ir vykdymo (`*/call`) metodų modeliais
 - **Protokolo architektūra**: Įvesta dviejų sluoksnių architektūros modelis
   - Duomenų sluoksnis: JSON-RPC 2.0 pagrindas su gyvavimo ciklo valdymu ir primityvais
-  - Transporto sluoksnis: STDIO (vietinis) ir Streamable HTTP su SSE (nuotolinis) transporto mechanizmais
+  - Transporto sluoksnis: STDIO (vietinis) ir Streamable HTTP su SSE (nuotolinis) transporto mechanizmai
 - **Saugumo sistema**: Išsamūs saugumo principai, įskaitant aiškų vartotojo sutikimą, duomenų privatumo apsaugą, įrankių vykdymo saugumą ir transporto sluoksnio saugumą
-- **Komunikacijos šablonai**: Atnaujinti protokolo pranešimai, rodantys inicializaciją, atradimą, vykdymą ir pranešimų srautus
-- **Kodų pavyzdžiai**: Atnaujinti daugiakalbiai pavyzdžiai (.NET, Java, Python, JavaScript), atspindintys dabartinius MCP SDK šablonus
+- **Komunikacijos modeliai**: Atnaujinti protokolo pranešimai, rodantys inicializavimo, atradimo, vykdymo ir pranešimų srautus
+- **Kodo pavyzdžiai**: Atnaujinti daugiakalbiai pavyzdžiai (.NET, Java, Python, JavaScript), atspindintys dabartinius MCP SDK modelius
 
-#### Saugumas (02-Security/) - Išsamus saugumo peržiūrėjimas  
-- **Standartų suderinimas**: Visiškas suderinimas su MCP specifikacijos 2025-06-18 saugumo reikalavimais
-- **Autentifikacijos evoliucija**: Dokumentuota evoliucija nuo individualių OAuth serverių iki išorinių tapatybės tiekėjų delegavimo (Microsoft Entra ID)
-- **AI specifinė grėsmių analizė**: Patobulinta šiuolaikinių AI atakų vektorių aprėptis
-  - Detalizuoti „Prompt Injection“ atakų scenarijai su realaus pasaulio pavyzdžiais
-  - Įrankių užnuodijimo mechanizmai ir „rug pull“ atakų šablonai
+#### Saugumas (02-Security/) - Išsamus saugumo perrašymas  
+- **Standartų suderinamumas**: Pilnas suderinamumas su MCP specifikacijos 2025-06-18 saugumo reikalavimais
+- **Autentifikacijos evoliucija**: Dokumentuota evoliucija nuo pasirinktinių OAuth serverių iki išorinio tapatybės teikėjo delegavimo (Microsoft Entra ID)
+- **AI specifinė grėsmių analizė**: Patobulintas šiuolaikinių AI atakų vektorių aprėptis
+  - Išsamios promptų injekcijos atakų scenarijai su realiais pavyzdžiais
+  - Įrankių užnuodijimo mechanizmai ir „rug pull“ atakų modeliai
   - Konteksto lango užnuodijimas ir modelio painiavos atakos
 - **Microsoft AI saugumo sprendimai**: Išsamus Microsoft saugumo ekosistemos aprėptis
-  - AI Prompt Shields su pažangiu aptikimu, akcentavimu ir skyriklio technikomis
-  - Azure Content Safety integracijos šablonai
+  - AI Prompt Shields su pažangia aptikimo, išryškinimo ir ribojimo technikomis
+  - Azure Content Safety integracijos modeliai
   - GitHub Advanced Security tiekimo grandinės apsaugai
-- **Pažangi grėsmių mažinimo strategija**: Detalizuoti saugumo kontrolės punktai:
+- **Pažangi grėsmių mažinimo priemonė**: Išsamios saugumo kontrolės
   - Sesijos užgrobimas su MCP specifiniais atakų scenarijais ir kriptografiniais sesijos ID reikalavimais
-  - „Confused Deputy“ problemos MCP proxy scenarijuose su aiškiais sutikimo reikalavimais
-  - Tokenų perdavimo pažeidžiamumai su privalomais patvirtinimo kontrolės punktais
+  - Painiavos problemos MCP proxy scenarijuose su aiškiais sutikimo reikalavimais
+  - Žetonų praėjimo pažeidžiamumai su privalomomis validacijos kontrolėmis
 - **Tiekimo grandinės saugumas**: Išplėsta AI tiekimo grandinės aprėptis, įskaitant pagrindinius modelius, įterpimo paslaugas, konteksto tiekėjus ir trečiųjų šalių API
-- **Pagrindinis saugumas**: Patobulinta integracija su įmonės saugumo šablonais, įskaitant „Zero Trust“ architektūrą ir Microsoft saugumo ekosistemą
-- **Resursų organizavimas**: Kategorizuoti išsamūs resursų nuorodų sąrašai pagal tipą (Oficiali dokumentacija, Standartai, Tyrimai, Microsoft sprendimai, Įgyvendinimo vadovai)
+- **Pagrindų saugumas**: Patobulinta integracija su įmonių saugumo modeliais, įskaitant zero trust architektūrą ir Microsoft saugumo ekosistemą
+- **Išteklių organizavimas**: Išsamus išteklių nuorodų suskirstymas pagal tipą (Oficiali dokumentacija, standartai, tyrimai, Microsoft sprendimai, įgyvendinimo vadovai)
 
 ### Dokumentacijos kokybės patobulinimai
-- **Struktūruoti mokymosi tikslai**: Patobulinti mokymosi tikslai su konkrečiais, veiksmais pagrįstais rezultatais
+- **Struktūruoti mokymosi tikslai**: Patobulinti mokymosi tikslai su konkrečiais, veiksmingais rezultatais
 - **Kryžminės nuorodos**: Pridėtos nuorodos tarp susijusių saugumo ir pagrindinių sąvokų temų
-- **Dabartinė informacija**: Atnaujintos visos datos nuorodos ir specifikacijos nuorodos į dabartinius standartus
-- **Įgyvendinimo gairės**: Pridėtos konkrečios, veiksmais pagrįstos įgyvendinimo gairės visose sekcijose
+- **Dabartinė informacija**: Atnaujintos visos datos nuorodos ir specifikacijų saitai į dabartinius standartus
+- **Įgyvendinimo gairės**: Pridėtos konkrečios, veiksmingos įgyvendinimo rekomendacijos abiejose skiltyse
 
 ## 2025 m. liepos 16 d.
 
 ### README ir navigacijos patobulinimai
-- Visiškai pertvarkyta mokymo programos navigacija README.md
-- Pakeisti `<details>` žymos į labiau prieinamą lentelės formatą
-- Sukurti alternatyvūs išdėstymo variantai naujame „alternative_layouts“ aplanke
-- Pridėti kortelių, skirtukų stiliaus ir akordeono stiliaus navigacijos pavyzdžiai
-- Atnaujinta saugyklos struktūros sekcija, įtraukiant visus naujausius failus
-- Patobulinta „Kaip naudoti šią mokymo programą“ sekcija su aiškiomis rekomendacijomis
-- Atnaujintos MCP specifikacijos nuorodos, kad nukreiptų į tinkamus URL
-- Pridėta konteksto inžinerijos sekcija (5.14) į mokymo programos struktūrą
+- Viso perprojektuota mokymo plano navigacija README.md faile
+- Pakeisti `<details>` žymės į labiau prieinamą lentelės formatą
+- Sukurtos alternatyvios išdėstymo parinktys naujame „alternative_layouts“ kataloge
+- Pridėti kortelių, skirtukų ir akordeono stiliaus navigacijos pavyzdžiai
+- Atnaujinta saugyklos struktūros dalis, įtraukiant visus naujausius failus
+- Patobulinta „Kaip naudotis šiuo mokymo planu“ dalis su aiškiomis rekomendacijomis
+- Atnaujintos MCP specifikacijos nuorodos į teisingus URL
+- Pridėta konteksto inžinerijos dalis (5.14) mokymo plano struktūroje
 
-### Mokymosi vadovo atnaujinimai
-- Visiškai peržiūrėtas mokymosi vadovas, kad atitiktų dabartinę saugyklos struktūrą
-- Pridėtos naujos sekcijos apie MCP klientus ir įrankius bei populiarius MCP serverius
-- Atnaujintas vizualinis mokymo programos žemėlapis, kad tiksliai atspindėtų visas temas
+### Studijų vadovo atnaujinimai
+- Viso perrašytas studijų vadovas, suderintas su dabartine saugyklos struktūra
+- Pridėtos naujos skiltys MCP klientams ir įrankiams bei populiariems MCP serveriams
+- Atnaujinta vizualinė mokymo plano schema, tiksliai atspindinti visas temas
 - Patobulinti pažangių temų aprašymai, apimantys visas specializuotas sritis
-- Atnaujinta atvejų analizės sekcija, kad atspindėtų realius pavyzdžius
+- Atnaujinta atvejų studijų dalis, atspindinti tikrus pavyzdžius
 - Pridėtas šis išsamus pakeitimų žurnalas
 
-### Bendruomenės indėlis (06-CommunityContributions/)
+### Bendruomenės indėliai (06-CommunityContributions/)
 - Pridėta išsami informacija apie MCP serverius vaizdų generavimui
-- Pridėta išsami sekcija apie Claude naudojimą VSCode
-- Pridėtos Cline terminalo kliento nustatymo ir naudojimo instrukcijos
-- Atnaujinta MCP klientų sekcija, įtraukiant visus populiarius klientų variantus
-- Patobulinti indėlių pavyzdžiai su tikslesniais kodų pavyzdžiais
+- Pridėta išsami skiltis apie Claude naudojimą VSCode aplinkoje
+- Pridėta Cline terminalo kliento nustatymo ir naudojimo instrukcijos
+- Atnaujinta MCP klientų skiltis, įtraukiant visas populiarias klientų parinktis
+- Patobulinti indėlių pavyzdžiai su tikslesniais kodo pavyzdžiais
 
 ### Pažangios temos (05-AdvancedTopics/)
-- Organizuoti visi specializuotų temų aplankai su nuosekliais pavadinimais
-- Pridėta konteksto inžinerijos medžiaga ir pavyzdžiai
+- Suorganizuoti visi specializuoti temų katalogai su nuosekliais pavadinimais
+- Pridėti konteksto inžinerijos medžiaga ir pavyzdžiai
 - Pridėta Foundry agento integracijos dokumentacija
 - Patobulinta Entra ID saugumo integracijos dokumentacija
 
 ## 2025 m. birželio 11 d.
 
 ### Pradinis sukūrimas
-- Išleista pirmoji MCP pradedantiesiems mokymo programos versija
-- Sukurta pagrindinė struktūra visoms 10 pagrindinių sekcijų
-- Įgyvendintas vizualinis mokymo programos žemėlapis navigacijai
+- Išleista pirmoji MCP pradedantiesiems mokymo plano versija
+- Sukurta pagrindinė visų 10 pagrindinių skyrių struktūra
+- Įgyvendinta vizualinė mokymo plano schema navigacijai
 - Pridėti pradiniai pavyzdiniai projektai keliomis programavimo kalbomis
 
 ### Pradžia (03-GettingStarted/)
 - Sukurti pirmieji serverio įgyvendinimo pavyzdžiai
 - Pridėtos klientų kūrimo gairės
-- Įtrauktos LLM kliento integracijos instrukcijos
+- Įtraukta LLM klientų integracijos instrukcijos
 - Pridėta VS Code integracijos dokumentacija
 - Įgyvendinti Server-Sent Events (SSE) serverio pavyzdžiai
 
 ### Pagrindinės sąvokos (01-CoreConcepts/)
-- Pridėtas išsamus klientų-serverių architektūros paaiškinimas
+- Pridėtas išsamus kliento-serverio architektūros paaiškinimas
 - Sukurta dokumentacija apie pagrindinius protokolo komponentus
-- Dokumentuoti MCP pranešimų šablonai
+- Dokumentuoti MCP žinučių modeliai
 
 ## 2025 m. gegužės 23 d.
 
 ### Saugyklos struktūra
-- Inicializuota saugykla su pagrindine aplankų struktūra
-- Sukurti README failai kiekvienai pagrindinei sekcijai
-- Nustatyta vertimo infrastruktūra
-- Pridėti vaizdo ištekliai ir diagramos
+- Inicializuota saugykla su pagrindine katalogų struktūra
+- Sukurti README failai kiekvienam pagrindiniam skyriui
+- Įdiegta vertimo infrastruktūra
+- Pridėti vaizdų ištekliai ir diagramos
 
 ### Dokumentacija
-- Sukurtas pradinis README.md su mokymo programos apžvalga
-- Pridėti CODE_OF_CONDUCT.md ir SECURITY.md
-- Nustatytas SUPPORT.md su pagalbos gavimo gairėmis
-- Sukurta preliminari mokymosi vadovo struktūra
+- Sukurtas pradinio README.md su mokymo plano apžvalga
+- Pridėti CODE_OF_CONDUCT.md ir SECURITY.md failai
+- Įdiegta SUPPORT.md su pagalbos gavimo gairėmis
+- Sukurta preliminari studijų vadovo struktūra
 
 ## 2025 m. balandžio 15 d.
 
-### Planavimas ir struktūra
-- Pradinis MCP pradedantiesiems mokymo programos planavimas
+### Planavimas ir sistema
+- Pradinis MCP pradedantiesiems mokymo plano planavimas
 - Apibrėžti mokymosi tikslai ir tikslinė auditorija
-- Nubrėžta 10 sekcijų mokymo programos struktūra
-- Sukurtas konceptualus pavyzdžių ir atvejų analizės pagrindas
-- Sukurti pradiniai prototipiniai pavyzdžiai pagrindinėms sąvokoms
+- Apibrėžta 10 skyrių mokymo plano struktūra
+- Sukurtas konceptualus pavyzdžių ir atvejų studijų pagrindas
+- Sukurti pradiniai pavyzdžiai pagrindinėms sąvokoms
 
 ---
 
-**Atsakomybės atsisakymas**:  
-Šis dokumentas buvo išverstas naudojant AI vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojama naudoti profesionalų žmogaus vertimą. Mes neprisiimame atsakomybės už nesusipratimus ar neteisingus interpretavimus, atsiradusius dėl šio vertimo naudojimo.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Atsakomybės apribojimas**:  
+Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors stengiamės užtikrinti tikslumą, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Svarbiai informacijai rekomenduojamas profesionalus žmogaus vertimas. Mes neatsakome už bet kokius nesusipratimus ar neteisingus aiškinimus, kylančius dėl šio vertimo naudojimo.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

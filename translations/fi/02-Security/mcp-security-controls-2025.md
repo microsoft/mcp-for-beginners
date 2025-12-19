@@ -1,73 +1,77 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "0c243c6189393ed7468e470ef2090049",
-  "translation_date": "2025-08-18T16:11:50+00:00",
+  "original_hash": "9351493ad29390d37f64bc6d84a03db5",
+  "translation_date": "2025-12-19T13:33:43+00:00",
   "source_file": "02-Security/mcp-security-controls-2025.md",
   "language_code": "fi"
 }
 -->
-# MCP:n tietoturvakontrollit - Elokuu 2025 Päivitys
+# MCP:n tietoturvakontrollit – joulukuu 2025 päivitys
 
-> **Nykyinen standardi**: Tämä asiakirja heijastaa [MCP-määrityksen 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) tietoturvavaatimuksia ja virallisia [MCP:n tietoturvan parhaat käytännöt](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices).
+> **Nykyinen standardi**: Tämä asiakirja heijastaa [MCP-spesifikaation 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) tietoturvavaatimuksia ja virallisia [MCP:n tietoturvan parhaat käytännöt](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).
 
-Model Context Protocol (MCP) on kehittynyt merkittävästi, ja siinä on parannettu tietoturvakontrolleja, jotka käsittelevät sekä perinteisiä ohjelmistoturvallisuusuhkia että tekoälyyn liittyviä uhkia. Tämä asiakirja tarjoaa kattavat tietoturvakontrollit turvallisten MCP-toteutusten varmistamiseksi elokuussa 2025.
+Model Context Protocol (MCP) on kehittynyt merkittävästi parannettujen tietoturvakontrollien myötä, jotka käsittelevät sekä perinteistä ohjelmistoturvaa että tekoälyyn liittyviä uhkia. Tämä asiakirja tarjoaa kattavat tietoturvakontrollit turvallisille MCP-toteutuksille joulukuusta 2025 alkaen.
 
-## **PAKOLLISET tietoturvavaatimukset**
+## **VELVOITTAVAT tietoturvavaatimukset**
 
-### **MCP-määrityksen kriittiset kiellot:**
+### **Kriittiset kieltoja MCP-spesifikaatiosta:**
 
 > **KIELLETTY**: MCP-palvelimet **EIVÄT SAA** hyväksyä mitään tunnuksia, joita ei ole nimenomaisesti myönnetty MCP-palvelimelle  
 >
 > **KIELLETTY**: MCP-palvelimet **EIVÄT SAA** käyttää istuntoja todennukseen  
 >
-> **VAADITTU**: MCP-palvelimien, jotka toteuttavat valtuutuksen, **TÄYTYY** tarkistaa KAIKKI saapuvat pyynnöt  
+> **VAADITTU**: MCP-palvelimet, jotka toteuttavat valtuutuksen, **MUSTA** tarkistaa KAIKKI saapuvat pyynnöt  
 >
-> **PAKOLLINEN**: MCP-välityspalvelimien, jotka käyttävät staattisia asiakastunnuksia, **TÄYTYY** hankkia käyttäjän suostumus jokaiselle dynaamisesti rekisteröidylle asiakkaalle  
+> **VELVOITTAVA**: MCP-välityspalvelimet, jotka käyttävät staattisia asiakastunnuksia, **MUSTA** hankkia käyttäjän suostumus jokaiselle dynaamisesti rekisteröidylle asiakkaalle
 
 ---
 
 ## 1. **Todennus- ja valtuutuskontrollit**
 
-### **Ulkopuolisen identiteettipalveluntarjoajan integrointi**
+### **Ulkoinen identiteetin tarjoajan integrointi**
 
-**Nykyinen MCP-standardi (2025-06-18)** sallii MCP-palvelimien delegoida todennuksen ulkopuolisille identiteettipalveluntarjoajille, mikä edustaa merkittävää tietoturvaparannusta:
+**Nykyinen MCP-standardi (2025-06-18)** sallii MCP-palvelimien delegoida todennuksen ulkoisille identiteetin tarjoajille, mikä on merkittävä tietoturvaparannus:
+
+### **Ulkoinen identiteetin tarjoajan integrointi**
+
+**Nykyinen MCP-standardi (2025-11-25)** sallii MCP-palvelimien delegoida todennuksen ulkoisille identiteetin tarjoajille, mikä on merkittävä tietoturvaparannus:
 
 **Tietoturvaedut:**
-1. **Poistaa mukautetun todennuksen riskit**: Vähentää haavoittuvuuksia välttämällä mukautettuja todennustoteutuksia  
-2. **Yritystason turvallisuus**: Hyödyntää vakiintuneita identiteettipalveluntarjoajia, kuten Microsoft Entra ID:tä, edistyneillä tietoturvaominaisuuksilla  
-3. **Keskitetty identiteetinhallinta**: Yksinkertaistaa käyttäjän elinkaaren hallintaa, käyttöoikeuksien hallintaa ja vaatimustenmukaisuuden auditointia  
-4. **Monivaiheinen todennus**: Perii MFA-ominaisuudet yrityksen identiteettipalveluntarjoajilta  
-5. **Ehdolliset käyttöpolitiikat**: Hyötyy riskipohjaisista käyttöoikeuskontrolleista ja mukautuvasta todennuksesta  
+1. **Poistaa räätälöidyn todennuksen riskit**: Vähentää haavoittuvuuspintaa välttämällä räätälöityjä todennuksen toteutuksia  
+2. **Yritystason tietoturva**: Hyödyntää vakiintuneita identiteetin tarjoajia kuten Microsoft Entra ID, joissa on kehittyneet tietoturvaominaisuudet  
+3. **Keskitetty identiteetin hallinta**: Yksinkertaistaa käyttäjän elinkaaren hallintaa, pääsynvalvontaa ja vaatimustenmukaisuuden tarkastuksia  
+4. **Monivaiheinen todennus**: Perii MFA-ominaisuudet yrityksen identiteetin tarjoajilta  
+5. **Ehdolliset pääsypolitiikat**: Hyödyntää riskipohjaisia pääsynvalvontoja ja adaptiivista todennusta
 
 **Toteutusvaatimukset:**
-- **Tunnuksen kohdevalidointi**: Varmista, että kaikki tunnukset on nimenomaisesti myönnetty MCP-palvelimelle  
-- **Myöntäjän validointi**: Varmista, että tunnuksen myöntäjä vastaa odotettua identiteettipalveluntarjoajaa  
-- **Allekirjoituksen validointi**: Kryptografinen tarkistus tunnuksen eheyden varmistamiseksi  
-- **Vanhenemisen valvonta**: Tiukka tunnuksen elinkaaren rajoitusten noudattaminen  
-- **Laajuuden validointi**: Varmista, että tunnuksilla on asianmukaiset käyttöoikeudet pyydettyihin toimintoihin  
+- **Tunnuksen kohdeyleisön validointi**: Varmista, että kaikki tunnukset on nimenomaisesti myönnetty MCP-palvelimelle  
+- **Myöntäjän varmennus**: Vahvista, että tunnuksen myöntäjä vastaa odotettua identiteetin tarjoajaa  
+- **Allekirjoituksen tarkistus**: Kryptografinen validointi tunnuksen eheydestä  
+- **Vanhentumisen valvonta**: Tiukka tunnuksen voimassaoloajan noudattaminen  
+- **Laajuuden validointi**: Varmista, että tunnuksissa on asianmukaiset oikeudet pyydettyihin toimiin
 
-### **Valtuutuslogiikan turvallisuus**
+### **Valtuutuslogiikan tietoturva**
 
 **Kriittiset kontrollit:**
-- **Kattavat valtuutusauditoinnit**: Säännölliset tietoturvatarkastukset kaikissa valtuutuspäätöspisteissä  
-- **Vikasietoiset oletukset**: Käyttöoikeuden epääminen, kun valtuutuslogiikka ei pysty tekemään yksiselitteistä päätöstä  
-- **Käyttöoikeusrajat**: Selkeä erottelu eri käyttöoikeustasojen ja resurssien välillä  
-- **Auditointilokitus**: Kaikkien valtuutuspäätösten täydellinen lokitus tietoturvavalvontaa varten  
-- **Säännölliset käyttöoikeustarkistukset**: Käyttäjän käyttöoikeuksien ja käyttöoikeuksien säännöllinen tarkistaminen  
+- **Kattavat valtuutustarkastukset**: Säännölliset tietoturvakatselmukset kaikista valtuutuspäätöspisteistä  
+- **Vikasietoisuus oletuksena**: Estä pääsy, jos valtuutuslogiikka ei pysty tekemään selkeää päätöstä  
+- **Oikeuksien rajat**: Selkeä erottelu eri käyttöoikeustasojen ja resurssien pääsyn välillä  
+- **Auditointilokit**: Kaikkien valtuutuspäätösten täydellinen lokitus tietoturvaseurantaa varten  
+- **Säännölliset pääsyn tarkastukset**: Käyttäjäoikeuksien ja valtuuksien ajantasainen validointi
 
-## 2. **Tunnusturvallisuus ja läpivientikontrollit**
+## 2. **Tunnusten tietoturva ja anti-passthrough-kontrollit**
 
-### **Tunnuksen läpiviennin estäminen**
+### **Tunnusten läpiviennin estäminen**
 
-**Tunnuksen läpivienti on nimenomaisesti kielletty** MCP:n valtuutusmäärityksessä kriittisten tietoturvariskien vuoksi:
+**Tunnusten läpivienti on nimenomaisesti kielletty** MCP:n valtuutusspesifikaatiossa kriittisten tietoturvariskien vuoksi:
 
-**Ratkaistut tietoturvariskit:**
-- **Kontrollien kiertäminen**: Ohittaa olennaiset tietoturvakontrollit, kuten nopeusrajoitukset, pyyntöjen validoinnin ja liikenteen valvonnan  
-- **Vastuullisuuden heikkeneminen**: Estää asiakkaiden tunnistamisen, mikä heikentää auditointijälkiä ja tapaustutkintaa  
-- **Välityspohjainen tietojen vuotaminen**: Mahdollistaa haitallisten toimijoiden käyttää palvelimia välityspalvelimina luvattomaan tiedonhakuun  
-- **Luottamusrajojen rikkominen**: Rikkoo alaspäin suuntautuvien palveluiden luottamusoletukset tunnuksen alkuperästä  
-- **Sivuttaisliike**: Kompromissitunnukset useissa palveluissa mahdollistavat laajemman hyökkäyksen laajentamisen  
+**Käsitellyt tietoturvariskit:**
+- **Kontrollien kiertäminen**: Ohittaa olennaiset tietoturvakontrollit kuten nopeusrajoitukset, pyyntöjen validoinnin ja liikenteen seurannan  
+- **Vastuullisuuden katoaminen**: Estää asiakkaan tunnistamisen, mikä turmelee auditointijäljet ja tapaustutkinnan  
+- **Välityspalvelinperusteinen tiedon kalastelu**: Mahdollistaa haitallisten toimijoiden käyttää palvelimia välityspalvelimina luvattomaan tiedon saantiin  
+- **Luottamusrajojen rikkominen**: Rikkoo jälkijohteisten palveluiden oletuksia tunnusten alkuperästä  
+- **Sivuttaisliike**: Kompromettoitujen tunnusten käyttö useissa palveluissa laajentaa hyökkäystä
 
 **Toteutuskontrollit:**
 ```yaml
@@ -88,20 +92,20 @@ Token Lifecycle Management:
 ### **Turvalliset tunnusten hallintamallit**
 
 **Parhaat käytännöt:**
-- **Lyhytikäiset tunnukset**: Minimoi altistusaika usein tapahtuvalla tunnusten kierrätyksellä  
-- **Tarpeen mukainen myöntäminen**: Myönnä tunnuksia vain tarvittaessa tiettyihin toimintoihin  
-- **Turvallinen säilytys**: Käytä laitteistopohjaisia turvallisuusmoduuleja (HSM) tai turvallisia avainsäilöjä  
-- **Tunnuksen sitominen**: Sido tunnukset tiettyihin asiakkaisiin, istuntoihin tai toimintoihin mahdollisuuksien mukaan  
-- **Valvonta ja hälytys**: Reaaliaikainen tunnusten väärinkäytön tai luvattoman käytön havaitseminen  
+- **Lyhytkestoiset tunnukset**: Minimoi altistusaika tiheällä tunnusten kierrätyksellä  
+- **Tarpeen mukaan myöntäminen**: Myönnä tunnukset vain tarvittaessa tiettyihin toimiin  
+- **Turvallinen tallennus**: Käytä laitteistoturvamoduuleja (HSM) tai turvallisia avainholveja  
+- **Tunnusten sitominen**: Sido tunnukset tiettyihin asiakkaisiin, istuntoihin tai toimiin mahdollisuuksien mukaan  
+- **Seuranta ja hälytykset**: Reaaliaikainen tunnusten väärinkäytön tai luvattoman käytön havaitseminen
 
-## 3. **Istuntoturvallisuuskontrollit**
+## 3. **Istuntojen tietoturvakontrollit**
 
 ### **Istunnon kaappauksen estäminen**
 
 **Käsitellyt hyökkäysvektorit:**
-- **Istunnon kaappauksen syöteinjektio**: Haitallisten tapahtumien syöttäminen jaetun istuntotilan kautta  
-- **Istunnon väärentäminen**: Varastettujen istuntotunnusten luvaton käyttö todennuksen ohittamiseksi  
-- **Jatkuvien virtojen hyökkäykset**: Palvelimen lähettämien tapahtumien jatkamisen hyväksikäyttö haitallisen sisällön syöttämiseksi  
+- **Istunnon kaappauksen kehotteen injektio**: Haitallisten tapahtumien injektointi jaettuun istuntotilaan  
+- **Istunnon väärentäminen**: Luvaton varastettujen istunto-ID:iden käyttö todennuksen ohittamiseksi  
+- **Jatkuvien virtojen hyökkäykset**: Palvelimen lähettämien tapahtumien jatkamisen hyväksikäyttö haitallisen sisällön injektointiin
 
 **Pakolliset istuntokontrollit:**
 ```yaml
@@ -123,26 +127,26 @@ Session Lifecycle:
   cleanup: "Automated expired session removal"
 ```
 
-**Kuljetusturvallisuus:**
-- **HTTPS:n pakottaminen**: Kaikki istuntoviestintä TLS 1.3:n kautta  
+**Siirtoturva:**
+- **HTTPS:n pakollisuus**: Kaikki istuntoviestintä TLS 1.3 -yhteydellä  
 - **Turvalliset evästeominaisuudet**: HttpOnly, Secure, SameSite=Strict  
-- **Sertifikaattien kiinnitys**: Kriittisille yhteyksille MITM-hyökkäysten estämiseksi  
+- **Sertifikaattien pinnaus**: Kriittisissä yhteyksissä MITM-hyökkäysten estämiseksi
 
 ### **Tilalliset vs tilattomat näkökohdat**
 
 **Tilallisille toteutuksille:**
-- Jaettu istuntotila vaatii lisäsuojauksia injektiohyökkäyksiä vastaan  
-- Jonopohjainen istuntohallinta tarvitsee eheystarkistuksen  
-- Useat palvelininstanssit vaativat turvallisen istuntotilan synkronoinnin  
+- Jaettu istuntotila vaatii lisäsuojaa injektiohyökkäyksiä vastaan  
+- Jonopohjainen istuntohallinta tarvitsee eheyden varmistuksen  
+- Useat palvelininstanssit vaativat turvallisen istuntotilan synkronoinnin
 
 **Tilattomille toteutuksille:**
 - JWT- tai vastaava tunnuspohjainen istuntohallinta  
-- Kryptografinen tarkistus istuntotilan eheyden varmistamiseksi  
-- Pienempi hyökkäyspinta, mutta vaatii vahvaa tunnusten validointia  
+- Kryptografinen istuntotilan eheyden tarkistus  
+- Pienempi hyökkäyspinta, mutta vaatii vahvan tunnusten validoinnin
 
 ## 4. **Tekoälyyn liittyvät tietoturvakontrollit**
 
-### **Syöteinjektioiden torjunta**
+### **Kehotteen injektion puolustus**
 
 **Microsoft Prompt Shields -integraatio:**
 ```yaml
@@ -163,12 +167,12 @@ Integration Points:
 ```
 
 **Toteutuskontrollit:**
-- **Syötteiden puhdistus**: Kaikkien käyttäjän syötteiden kattava validointi ja suodatus  
-- **Sisältörajojen määrittely**: Selkeä erottelu järjestelmän ohjeiden ja käyttäjän sisällön välillä  
-- **Ohjehierarkia**: Asianmukaiset etusijajärjestykset ristiriitaisille ohjeille  
-- **Tuotosten valvonta**: Mahdollisesti haitallisten tai manipuloitujen tuotosten havaitseminen  
+- **Syötteen puhdistus**: Kaikkien käyttäjäsisältöjen kattava validointi ja suodatus  
+- **Sisällön rajaus**: Selkeä erottelu järjestelmäohjeiden ja käyttäjäsisällön välillä  
+- **Ohjeiden hierarkia**: Oikea etusijajärjestys ristiriitaisille ohjeille  
+- **Tulosten seuranta**: Haitallisten tai manipuloitujen tulosten havaitseminen
 
-### **Työkalujen myrkyttämisen estäminen**
+### **Työkalujen myrkytyksen estäminen**
 
 **Työkalujen tietoturvakehys:**
 ```yaml
@@ -194,15 +198,15 @@ Tool Definition Protection:
 
 **Dynaaminen työkalujen hallinta:**
 - **Hyväksyntätyönkulut**: Käyttäjän nimenomainen suostumus työkalumuutoksille  
-- **Palautusominaisuudet**: Mahdollisuus palauttaa aiempiin työkalujen versioihin  
-- **Muutosten auditointi**: Työkalumääritelmien muutosten täydellinen historia  
-- **Riskiarviointi**: Työkalujen tietoturvatilanteen automaattinen arviointi  
+- **Palautusmahdollisuudet**: Mahdollisuus palauttaa aiempiin työkaluversion tiloihin  
+- **Muutosten auditointi**: Täydellinen historia työkalumäärittelyjen muutoksista  
+- **Riskinarviointi**: Automaattinen työkalujen tietoturvan tilan arviointi
 
-## 5. **Confused Deputy -hyökkäysten estäminen**
+## 5. **Confused Deputy -hyökkäyksen estäminen**
 
-### **OAuth-välityspalvelimen turvallisuus**
+### **OAuth-välityspalvelimen tietoturva**
 
-**Hyökkäysten estokontrollit:**
+**Hyökkäyksen estokontrollit:**
 ```yaml
 Client Registration:
   static_client_protection:
@@ -219,14 +223,14 @@ Client Registration:
 ```
 
 **Toteutusvaatimukset:**
-- **Käyttäjän suostumuksen tarkistus**: Älä koskaan ohita suostumusnäyttöjä dynaamisessa asiakasrekisteröinnissä  
-- **Uudelleenohjaus-URI:n validointi**: Tiukka sallittuihin kohteisiin perustuva validointi  
-- **Valtuutuskoodin suojaus**: Lyhytikäiset koodit, joiden käyttö on kertaluonteista  
-- **Asiakastunnistuksen validointi**: Asiakastunnusten ja metatietojen vahva tarkistus  
+- **Käyttäjän suostumuksen varmistus**: Älä koskaan ohita suostumusnäyttöjä dynaamisessa asiakasrekisteröinnissä  
+- **Redirect URI:n validointi**: Tiukka valkoinen lista uudelleenohjauskohteiden tarkistukseen  
+- **Valtuutuskoodin suojaus**: Lyhytkestoiset koodit, jotka ovat kertakäyttöisiä  
+- **Asiakkaan identiteetin varmennus**: Vahva asiakastunnusten ja metatietojen validointi
 
-## 6. **Työkalujen suorittamisen turvallisuus**
+## 6. **Työkalujen suoritusturva**
 
-### **Hiekkalaatikointi ja eristäminen**
+### **Säilötys ja eristäminen**
 
 **Konttipohjainen eristäminen:**
 ```yaml
@@ -245,15 +249,15 @@ Execution Environment:
     filesystem: "Read-only root with minimal writable areas"
 ```
 
-**Prosessien eristäminen:**
+**Prosessieristys:**
 - **Eri prosessikontekstit**: Jokainen työkalun suoritus eristetyssä prosessitilassa  
 - **Prosessien välinen viestintä**: Turvalliset IPC-mekanismit validoinnilla  
-- **Prosessien valvonta**: Suoritusajan käyttäytymisen analyysi ja poikkeamien havaitseminen  
-- **Resurssien valvonta**: Tiukat rajoitukset suorittimen, muistin ja I/O-toimintojen käytölle  
+- **Prosessien valvonta**: Suorituksen käyttäytymisen analysointi ja poikkeamien havaitseminen  
+- **Resurssien valvonta**: Tiukat rajat CPU:lle, muistille ja I/O-toiminnoille
 
-### **Vähimpien oikeuksien periaate**
+### **Vähimmän oikeuden periaatteen toteutus**
 
-**Käyttöoikeuksien hallinta:**
+**Oikeuksien hallinta:**
 ```yaml
 Access Control:
   file_system:
@@ -276,9 +280,9 @@ Access Control:
 
 ## 7. **Toimitusketjun tietoturvakontrollit**
 
-### **Riippuvuuksien validointi**
+### **Riippuvuuksien varmennus**
 
-**Kattava komponenttien turvallisuus:**
+**Kattava komponenttien tietoturva:**
 ```yaml
 Software Dependencies:
   scanning: 
@@ -307,15 +311,15 @@ AI Components:
     - "Incident response capability evaluation"
 ```
 
-### **Jatkuva valvonta**
+### **Jatkuva seuranta**
 
 **Toimitusketjun uhkien havaitseminen:**
-- **Riippuvuuksien terveysvalvonta**: Kaikkien riippuvuuksien jatkuva arviointi tietoturvaongelmien varalta  
-- **Uhkatiedustelun integrointi**: Reaaliaikaiset päivitykset toimitusketjun uusista uhista  
-- **Käyttäytymisanalyysi**: Ulkoisten komponenttien epätavallisen käyttäytymisen havaitseminen  
-- **Automaattinen reagointi**: Kompromissien sisältämien komponenttien välitön eristäminen  
+- **Riippuvuuksien terveystilan seuranta**: Kaikkien riippuvuuksien jatkuva arviointi tietoturvaongelmien varalta  
+- **Uhkatiedon integrointi**: Reaaliaikaiset päivitykset nousevista toimitusketjuuhkista  
+- **Käyttäytymisanalyysi**: Epätavallisen käyttäytymisen havaitseminen ulkoisissa komponenteissa  
+- **Automaattinen reagointi**: Välitön kompromettoitujen komponenttien eristäminen
 
-## 8. **Valvonta- ja havaitsemiskontrollit**
+## 8. **Seuranta- ja havaitsemiskontrollit**
 
 ### **Tietoturvatiedon ja tapahtumien hallinta (SIEM)**
 
@@ -343,16 +347,16 @@ Security Events:
 ### **Reaaliaikainen uhkien havaitseminen**
 
 **Käyttäytymisanalytiikka:**
-- **Käyttäjäkäyttäytymisen analytiikka (UBA)**: Epätavallisten käyttäjätoimintojen havaitseminen  
-- **Entiteettikäyttäytymisen analytiikka (EBA)**: MCP-palvelimen ja työkalujen käyttäytymisen valvonta  
-- **Koneoppimisen poikkeamien havaitseminen**: Tekoälypohjainen tietoturvauhkien tunnistaminen  
-- **Uhkatiedustelun korrelaatio**: Havaittujen toimintojen yhdistäminen tunnettuihin hyökkäysmalleihin  
+- **Käyttäjäkäyttäytymisen analytiikka (UBA)**: Epätavallisten käyttäjäpääsykuvioiden havaitseminen  
+- **Entiteettikäyttäytymisen analytiikka (EBA)**: MCP-palvelimen ja työkalujen käyttäytymisen seuranta  
+- **Koneoppimiseen perustuva poikkeamien havaitseminen**: Tekoälypohjainen tietoturvauhkaiden tunnistus  
+- **Uhkatiedon korrelaatio**: Havainnoitujen toimintojen vertailu tunnettuun hyökkäysmalliin
 
-## 9. **Tapahtumien hallinta ja palautuminen**
+## 9. **Häiriötilanteiden hallinta ja palautuminen**
 
 ### **Automaattiset reagointikyvyt**
 
-**Välittömät toimenpiteet:**
+**Välittömät reagointitoimet:**
 ```yaml
 Threat Containment:
   session_management:
@@ -377,54 +381,58 @@ Recovery Procedures:
     - "Service restart procedures"
 ```
 
-### **Oikeuslääketieteelliset kyvyt**
+### **Forensiikkakyvyt**
 
 **Tutkinnan tuki:**
-- **Auditointijälkien säilyttäminen**: Muuttumaton lokitus kryptografisella eheydellä  
-- **Todisteiden kerääminen**: Automaattinen asiaankuuluvien tietoturva-aineistojen kerääminen  
-- **Aikajanan rekonstruointi**: Yksityiskohtainen tapahtumien kulku ennen tietoturvaloukkausta  
-- **Vaikutusten arviointi**: Kompromissin laajuuden ja tietovuodon arviointi  
+- **Auditointijälkien säilytys**: Muuttumaton lokitus kryptografisella eheydellä  
+- **Todisteiden keruu**: Automaattinen olennaisten tietoturva-artefaktien keruu  
+- **Aikajanan rekonstruointi**: Yksityiskohtainen tapahtumaketju tietoturvaloukkauksiin johtaneista tapahtumista  
+- **Vaikutusarviointi**: Kompromissin laajuuden ja tietovuodon arviointi
 
 ## **Keskeiset tietoturva-arkkitehtuurin periaatteet**
 
-### **Syvyyspuolustus**
-- **Useita tietoturvakerroksia**: Ei yksittäistä tietoturva-arkkitehtuurin epäonnistumispistettä  
-- **Päällekkäiset kontrollit**: Päällekkäiset tietoturvatoimenpiteet kriittisille toiminnoille  
-- **Vikasietomekanismit**: Turvalliset oletukset, kun järjestelmät kohtaavat virheitä tai hyökkäyksiä  
+### **Syvyyteen puolustautuminen**
+- **Useita tietoturvakerroksia**: Ei yksittäistä vikaantumispistettä tietoturva-arkkitehtuurissa  
+- **Redundantit kontrollit**: Päällekkäiset tietoturvatoimenpiteet kriittisissä toiminnoissa  
+- **Vikasietoisuusmekanismit**: Turvalliset oletukset virhe- tai hyökkäystilanteissa
 
 ### **Zero Trust -toteutus**
 - **Älä koskaan luota, varmista aina**: Jatkuva kaikkien toimijoiden ja pyyntöjen validointi  
-- **Vähimpien oikeuksien periaate**: Minimioikeudet kaikille komponenteille  
-- **Mikrosegmentointi**: Tarkat verkko- ja käyttöoikeuskontrollit  
+- **Vähimmän oikeuden periaate**: Minimoi kaikkien komponenttien käyttöoikeudet  
+- **Mikrosegmentointi**: Tarkat verkko- ja pääsynvalvonnat
 
 ### **Jatkuva tietoturvan kehitys**
-- **Uhkakentän mukautuminen**: Säännölliset päivitykset uusien uhkien torjumiseksi  
+- **Uhkakentän mukautuminen**: Säännölliset päivitykset nousevien uhkien käsittelemiseksi  
 - **Tietoturvakontrollien tehokkuus**: Kontrollien jatkuva arviointi ja parantaminen  
-- **Määritysten noudattaminen**: Yhdenmukaisuus kehittyvien MCP-tietoturvastandardien kanssa  
+- **Spesifikaation noudattaminen**: Yhdenmukaisuus kehittyvien MCP-tietoturvastandardien kanssa
 
 ---
 
 ## **Toteutusresurssit**
 
 ### **Virallinen MCP-dokumentaatio**
-- [MCP-määritys (2025-06-18)](https://spec.modelcontextprotocol.io/specification/2025-06-18/)  
-- [MCP:n tietoturvan parhaat käytännöt](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices)  
-- [MCP:n valtuutusmääritys](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization)  
+- [MCP-spesifikaatio (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP:n tietoturvan parhaat käytännöt](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices)
+- [MCP:n valtuutusspesifikaatio](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)
 
 ### **Microsoftin tietoturvaratkaisut**
-- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)  
-- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)  
-- [GitHub Advanced Security](https://github.com/security/advanced-security)  
-- [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/)  
+- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
+- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)
+- [GitHub Advanced Security](https://github.com/security/advanced-security)
+- [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/)
 
 ### **Tietoturvastandardit**
-- [OAuth 2.0:n tietoturvan parhaat käytännöt (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)  
-- [OWASP Top 10 suurille kielimalleille](https://genai.owasp.org/)  
-- [NIST:n kyberturvallisuuskehys](https://www.nist.gov/cyberframework)  
+- [OAuth 2.0:n tietoturvan parhaat käytännöt (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)
+- [OWASP Top 10 suurille kielimalleille](https://genai.owasp.org/)
+- [NIST:n kyberturvallisuuskehys](https://www.nist.gov/cyberframework)
 
 ---
 
-> **Tärkeää**: Nämä tietoturvakontrollit heijastavat nykyistä MCP-määritystä (2025-06-18). Tarkista aina viimeisimmät [viralliset dokumentit](https://spec.modelcontextprotocol.io/), sillä standardit kehittyvät nopeasti.  
+> **Tärkeää**: Nämä tietoturvakontrollit heijastavat nykyistä MCP-spesifikaatiota (2025-06-18). Tarkista aina viimeisimmät [viralliset dokumentit](https://spec.modelcontextprotocol.io/), sillä standardit kehittyvät nopeasti.
 
-**Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattiset käännökset voivat sisältää virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäisellä kielellä tulisi pitää ensisijaisena lähteenä. Kriittisen tiedon osalta suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa väärinkäsityksistä tai virhetulkinnoista, jotka johtuvat tämän käännöksen käytöstä.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Vastuuvapauslauseke**:
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, otathan huomioon, että automaattikäännöksissä saattaa esiintyä virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäiskielellä tulee pitää virallisena lähteenä. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
