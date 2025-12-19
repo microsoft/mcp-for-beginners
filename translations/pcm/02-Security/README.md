@@ -1,414 +1,416 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "1c767a35642f753127dc08545c25a290",
-  "translation_date": "2025-11-18T19:24:35+00:00",
+  "original_hash": "cf48858182f366e9d3f080fb0d3bfc37",
+  "translation_date": "2025-12-19T18:38:33+00:00",
   "source_file": "02-Security/README.md",
   "language_code": "pcm"
 }
 -->
-# MCP Security: Beta Protection for AI Systems
+# MCP Security: Complete Protection for AI Systems
 
 [![MCP Security Best Practices](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.pcm.png)](https://youtu.be/88No8pw706o)
 
-_(Click di image wey dey up to watch di video for dis lesson)_
+_(Click di image wey dey above to watch video for dis lesson)_
 
-Security na di main thing for AI system design, na why we dey put am as di second section. E dey follow Microsoft **Secure by Design** principle wey dey from di [Secure Future Initiative](https://www.microsoft.com/security/blog/2025/04/17/microsofts-secure-by-design-journey-one-year-of-success/).
+Security na di foundation for AI system design, na why we put am as our second section. Dis one dey follow Microsoft **Secure by Design** principle from di [Secure Future Initiative](https://www.microsoft.com/security/blog/2025/04/17/microsofts-secure-by-design-journey-one-year-of-success/).
 
-Di Model Context Protocol (MCP) dey bring strong new power to AI-driven apps but e dey also carry new security wahala wey pass di normal software risks. MCP systems dey face di regular security wahala (secure coding, least privilege, supply chain security) plus new AI-specific threats like prompt injection, tool poisoning, session hijacking, confused deputy attacks, token passthrough wahala, and dynamic capability modification.
+Di Model Context Protocol (MCP) bring strong new powers to AI-driven apps but e still get unique security wahala wey pass normal software risks. MCP systems dey face both normal security palava (secure coding, least privilege, supply chain security) plus new AI-specific gbege like prompt injection, tool poisoning, session hijacking, confused deputy attacks, token passthrough wahala, and dynamic capability modification.
 
-Dis lesson go show di main security risks wey dey MCP implementations—like authentication, authorization, excessive permissions, indirect prompt injection, session security, confused deputy wahala, token management, and supply chain wahala. You go sabi di controls and best practices wey go help reduce dis risks plus how to use Microsoft solutions like Prompt Shields, Azure Content Safety, and GitHub Advanced Security to make your MCP deployment strong.
+Dis lesson go explore di most important security risks for MCP implementations—cover authentication, authorization, too much permissions, indirect prompt injection, session security, confused deputy problems, token management, and supply chain vulnerabilities. You go learn how to take control and best practices to reduce these risks while you dey use Microsoft solutions like Prompt Shields, Azure Content Safety, and GitHub Advanced Security to make your MCP deployment strong.
 
-## Wetin You Go Learn
+## Learning Objectives
 
-By di end of dis lesson, you go fit:
+By di time you finish dis lesson, you go fit:
 
-- **Know MCP-Specific Threats**: Sabi di special security wahala wey dey MCP systems like prompt injection, tool poisoning, excessive permissions, session hijacking, confused deputy wahala, token passthrough wahala, and supply chain risks
-- **Use Security Controls**: Fit use di right ways to stop di wahala like strong authentication, least privilege access, secure token management, session security controls, and supply chain verification
-- **Use Microsoft Security Solutions**: Understand and use Microsoft Prompt Shields, Azure Content Safety, and GitHub Advanced Security to protect MCP workloads
-- **Check Tool Security**: Sabi why e dey important to check tool metadata, dey monitor for changes, and stop indirect prompt injection attacks
-- **Follow Best Practices**: Mix di regular security basics (secure coding, server hardening, zero trust) with MCP-specific controls for beta protection
+- **Identify MCP-Specific Threats**: Know di unique security risks for MCP systems like prompt injection, tool poisoning, too much permissions, session hijacking, confused deputy problems, token passthrough wahala, and supply chain risks
+- **Apply Security Controls**: Use correct mitigations like strong authentication, least privilege access, secure token management, session security controls, and supply chain checking
+- **Leverage Microsoft Security Solutions**: Understand and use Microsoft Prompt Shields, Azure Content Safety, and GitHub Advanced Security to protect MCP workload
+- **Validate Tool Security**: Know why tool metadata validation important, dey watch for dynamic changes, and defend against indirect prompt injection attacks
+- **Integrate Best Practices**: Join normal security basics (secure coding, server hardening, zero trust) with MCP-specific controls for full protection
 
 # MCP Security Architecture & Controls
 
-Di way we dey do MCP now need layered security wey go cover di regular software security plus di AI-specific wahala. Di MCP specification dey grow well well for security controls, e dey make am easy to join enterprise security architectures and di regular best practices.
+Modern MCP implementations need layered security wey go cover both normal software security and AI-specific threats. Di fast changing MCP specification dey improve its security controls, making am better to join enterprise security architectures and normal best practices.
 
-Research wey Microsoft do for di [Microsoft Digital Defense Report](https://aka.ms/mddr) show say **98% of di breaches wey dem report fit no happen if people dey follow beta security hygiene**. Di best way to protect na to join di regular security practices with MCP-specific controls—di regular security measures still dey di best way to reduce security wahala.
+Research from di [Microsoft Digital Defense Report](https://aka.ms/mddr) show say **98% of reported breaches fit stop if security hygiene strong**. Di best protection strategy na to join basic security practices with MCP-specific controls—di proven baseline security measures still dey most effective to reduce overall security risk.
 
-## Di Security Situation Now
+## Current Security Landscape
 
-> **Note:** Dis info na MCP security standards as e be for **August 18, 2025**. Di MCP protocol dey change fast, and di future versions fit bring new authentication ways and beta controls. Always check di current [MCP Specification](https://spec.modelcontextprotocol.io/), [MCP GitHub repository](https://github.com/modelcontextprotocol), and [security best practices documentation](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) for di latest info.
+> **Note:** Dis info dey reflect MCP security standards as of **December 18, 2025**. Di MCP protocol dey change fast, and future implementations fit bring new authentication patterns and better controls. Always check di current [MCP Specification](https://spec.modelcontextprotocol.io/), [MCP GitHub repository](https://github.com/modelcontextprotocol), and [security best practices documentation](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) for di latest advice.
 
-### How MCP Authentication Don Change
+### Evolution of MCP Authentication
 
-Di MCP specification don change well well for di way e dey do authentication and authorization:
+Di MCP specification don change well well for how e dey do authentication and authorization:
 
-- **Di Old Way**: Di first specifications dey make developers create their own authentication servers, MCP servers dey act as OAuth 2.0 Authorization Servers wey dey manage user authentication directly
-- **Di New Standard (2025-06-18)**: Di updated specification dey allow MCP servers to use external identity providers (like Microsoft Entra ID), e dey make security beta and e dey reduce di wahala for implementation
-- **Transport Layer Security**: E don beta di support for secure transport ways with correct authentication patterns for both local (STDIO) and remote (Streamable HTTP) connections
+- **Original Approach**: Early specs make developers implement custom authentication servers, with MCP servers acting as OAuth 2.0 Authorization Servers wey dey manage user authentication directly
+- **Current Standard (2025-11-25)**: Updated spec allow MCP servers to pass authentication to external identity providers (like Microsoft Entra ID), to improve security and reduce implementation wahala
+- **Transport Layer Security**: Better support for secure transport with correct authentication patterns for both local (STDIO) and remote (Streamable HTTP) connections
 
 ## Authentication & Authorization Security
 
-### Di Wahala We Dey Face Now
+### Current Security Challenges
 
-Di MCP implementations wey we dey do now dey face plenty authentication and authorization wahala:
+Modern MCP implementations dey face some authentication and authorization wahala:
 
-### Risks & Threats
+### Risks & Threat Vectors
 
-- **Authorization Logic Wey No Set Well**: If di authorization for MCP servers no dey correct, e fit expose sensitive data and no go apply access controls well
-- **OAuth Token Wahala**: If local MCP server token dey thief, attackers fit use am to pretend say dem be di server and access other services
-- **Token Passthrough Wahala**: If token no dey handle well, e fit make attackers bypass security controls and create accountability wahala
-- **Excessive Permissions**: If MCP servers get too much power, e dey break di least privilege principle and e dey make attack surface big
+- **Misconfigured Authorization Logic**: Bad authorization implementation for MCP servers fit expose sensitive data and apply wrong access controls
+- **OAuth Token Compromise**: Local MCP server token theft fit make attackers pretend to be servers and access downstream services
+- **Token Passthrough Vulnerabilities**: Wrong token handling fit create security control bypass and accountability wahala
+- **Excessive Permissions**: MCP servers wey get too much privilege dey break least privilege principles and increase attack surface
 
-#### Token Passthrough: Di Big Wahala
+#### Token Passthrough: A Critical Anti-Pattern
 
-**Token passthrough no dey allowed** for di current MCP authorization specification because e get big security wahala:
+**Token passthrough no dey allowed at all** for current MCP authorization spec because e get serious security wahala:
 
-##### How E Dey Spoil Security Controls
-- MCP servers and di APIs wey dey follow dem dey use important security controls (like rate limiting, request validation, traffic monitoring) wey need correct token validation
-- If client dey use token directly with API, e dey spoil di security setup
+##### Security Control Circumvention
+- MCP servers and downstream APIs dey do important security controls (rate limiting, request validation, traffic monitoring) wey depend on correct token validation
+- Direct client-to-API token use dey bypass these protections, weak the security architecture
 
-##### Accountability Wahala  
-- MCP servers no fit sabi di difference between clients wey dey use token wey dem no issue, e dey spoil audit trails
-- Di logs for di resource server go dey show wrong request origins instead of di MCP server wey dey act as intermediary
-- E go hard to investigate incidents and do compliance auditing
+##### Accountability & Audit Challenges  
+- MCP servers no fit tell difference between clients wey dey use upstream-issued tokens, e break audit trails
+- Downstream resource server logs go show wrong request origin instead of real MCP server middlemen
+- Incident investigation and compliance auditing go hard well well
 
-##### Data Theft Risks
-- If token claims no dey validate, attackers wey thief token fit use MCP servers as proxy to thief data
-- E dey break di trust boundary and allow unauthorized access
+##### Data Exfiltration Risks
+- Unchecked token claims fit allow bad people with stolen tokens to use MCP servers as proxy to carry data comot
+- Trust boundary break fit allow unauthorized access wey bypass security controls
 
-##### Multi-Service Attack Wahala
-- If token wey dem thief dey work for many services, attackers fit move from one system to another
-- Di trust wey dey between services fit spoil if token origin no dey verify
+##### Multi-Service Attack Vectors
+- Compromised tokens wey multiple services accept fit allow lateral movement across connected systems
+- Trust assumptions between services fit break if token origin no fit verify
 
-### Security Controls & How to Stop Di Wahala
+### Security Controls & Mitigations
 
-**Di Important Security Rules:**
+**Critical Security Requirements:**
 
-> **MANDATORY**: MCP servers **MUST NOT** accept any token wey dem no issue for di MCP server
+> **MANDATORY**: MCP servers **MUST NOT** accept any tokens wey no explicitly issue for di MCP server
 
 #### Authentication & Authorization Controls
 
-- **Check Authorization Well Well**: Make sure say di authorization logic for MCP server dey correct so only di right people and clients fit access sensitive resources
-  - **Guide for Implementation**: [Azure API Management as Authentication Gateway for MCP Servers](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
+- **Rigorous Authorization Review**: Do full audit of MCP server authorization logic to make sure only correct users and clients fit access sensitive resources
+  - **Implementation Guide**: [Azure API Management as Authentication Gateway for MCP Servers](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
   - **Identity Integration**: [Using Microsoft Entra ID for MCP Server Authentication](https://den.dev/blog/mcp-server-auth-entra-id-session/)
 
-- **Manage Token Well**: Use [Microsoft's token validation and lifecycle best practices](https://learn.microsoft.com/en-us/entra/identity-platform/access-tokens)
-  - Make sure token audience claims match MCP server identity
-  - Use correct token rotation and expiration rules
+- **Secure Token Management**: Use [Microsoft's token validation and lifecycle best practices](https://learn.microsoft.com/en-us/entra/identity-platform/access-tokens)
+  - Check token audience claims match MCP server identity
+  - Use correct token rotation and expiration policies
   - Stop token replay attacks and unauthorized use
 
-- **Keep Token Safe**: Store token well with encryption for both rest and transit
+- **Protected Token Storage**: Store tokens securely with encryption for both rest and transit
   - **Best Practices**: [Secure Token Storage and Encryption Guidelines](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2)
 
-#### Access Control Setup
+#### Access Control Implementation
 
-- **Least Privilege Principle**: Give MCP servers only di permissions wey dem need to work
-  - Dey check permissions regularly and update am to stop privilege creep
+- **Principle of Least Privilege**: Give MCP servers only minimum permissions wey dem need for correct function
+  - Regularly review and update permissions to stop privilege creep
   - **Microsoft Documentation**: [Secure Least-Privileged Access](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
 
-- **Role-Based Access Control (RBAC)**: Use roles wey dey specific to di resources and actions
-  - Make roles tight to di resources wey dem need
-  - No give broad permissions wey go make attack surface big
+- **Role-Based Access Control (RBAC)**: Use fine-grained role assignments
+  - Scope roles tight to specific resources and actions
+  - Avoid broad or unnecessary permissions wey fit increase attack surface
 
-- **Dey Monitor Permissions**: Dey check access and monitor am regularly
-  - Look for strange permission usage patterns
-  - Quickly fix permissions wey no dey use or wey dey too much
+- **Continuous Permission Monitoring**: Do ongoing access audit and monitoring
+  - Watch permission usage for strange patterns
+  - Quickly fix too much or unused privileges
 
-## AI-Specific Security Wahala
+## AI-Specific Security Threats
 
 ### Prompt Injection & Tool Manipulation Attacks
 
-Di MCP implementations wey we dey do now dey face strong AI-specific attack ways wey di regular security measures no fit stop finish:
+Modern MCP implementations dey face advanced AI-specific attack ways wey normal security measures no fit fully handle:
 
 #### **Indirect Prompt Injection (Cross-Domain Prompt Injection)**
 
-**Indirect Prompt Injection** na one of di big wahala for MCP-enabled AI systems. Attackers dey hide bad instructions inside external content—documents, web pages, emails, or data sources—wey AI systems go process as correct commands.
+**Indirect Prompt Injection** na one of di most serious vulnerabilities for MCP-enabled AI systems. Attackers dey hide bad instructions inside external content—documents, web pages, emails, or data sources—wey AI systems later process as correct commands.
 
 **Attack Scenarios:**
-- **Document Injection**: Bad instructions dey hide inside documents wey AI dey process
-- **Web Content Wahala**: Web pages wey attackers don spoil dey carry instructions wey go change AI behavior
-- **Email Attacks**: Bad prompts dey inside emails wey go make AI assistants leak info or do bad actions
-- **Data Source Wahala**: Databases or APIs wey attackers don spoil dey send bad content to AI systems
+- **Document-based Injection**: Bad instructions hidden inside processed documents wey fit trigger wrong AI actions
+- **Web Content Exploitation**: Compromised web pages wey get embedded prompts wey fit control AI behavior when dem scrape am
+- **Email-based Attacks**: Bad prompts inside emails wey fit make AI assistants leak info or do unauthorized actions
+- **Data Source Contamination**: Compromised databases or APIs wey serve bad content to AI systems
 
-**Real-World Wahala**: Dis attacks fit make data dey thief, privacy dey spoil, bad content dey generate, and user interactions dey manipulate. For beta analysis, check [Prompt Injection in MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
+**Real-World Impact**: These attacks fit cause data theft, privacy breach, creation of harmful content, and manipulation of user interactions. For detailed analysis, see [Prompt Injection in MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
 ![Prompt Injection Attack Diagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.pcm.png)
 
 #### **Tool Poisoning Attacks**
 
-**Tool Poisoning** dey target di metadata wey dey define MCP tools, e dey use di way LLMs dey understand tool descriptions and parameters to make execution decisions.
+**Tool Poisoning** dey target di metadata wey define MCP tools, exploiting how LLMs interpret tool descriptions and parameters to decide how to run dem.
 
-**Attack Ways:**
-- **Metadata Wahala**: Attackers dey put bad instructions inside tool descriptions, parameter definitions, or usage examples
-- **Hidden Instructions**: Bad prompts dey hide inside tool metadata wey AI models go process but humans no go see
-- **Dynamic Tool Change ("Rug Pulls")**: Tools wey users don approve go later change to do bad actions without di user sabi
-- **Parameter Injection**: Bad content dey hide inside tool parameter schemas wey dey affect model behavior
+**Attack Mechanisms:**
+- **Metadata Manipulation**: Attackers dey put bad instructions inside tool descriptions, parameter definitions, or usage examples
+- **Invisible Instructions**: Hidden prompts inside tool metadata wey AI models process but humans no fit see
+- **Dynamic Tool Modification ("Rug Pulls")**: Tools wey users approve later get changed to do bad actions without user knowledge
+- **Parameter Injection**: Bad content inside tool parameter schemas wey fit affect model behavior
 
-**Hosted Server Wahala**: Remote MCP servers dey get higher risks because tool definitions fit change after users don approve dem, e dey create wahala wey safe tools fit turn bad. For beta analysis, check [Tool Poisoning Attacks (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
+**Hosted Server Risks**: Remote MCP servers get higher risk because tool definitions fit change after user approval, making tools wey once safe become bad. For full analysis, see [Tool Poisoning Attacks (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
 ![Tool Injection Attack Diagram](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.pcm.png)
 
-#### **Other AI Attack Ways**
+#### **Additional AI Attack Vectors**
 
-- **Cross-Domain Prompt Injection (XPIA)**: Strong attacks wey dey use content from different domains to pass security controls
-- **Dynamic Capability Change**: Real-time changes to tool power wey fit escape di first security checks
-- **Context Window Wahala**: Attacks wey dey manipulate big context windows to hide bad instructions
-- **Model Confusion Attacks**: Attackers dey use model limitations to create unsafe behaviors
+- **Cross-Domain Prompt Injection (XPIA)**: Advanced attacks wey use content from many domains to bypass security controls
+- **Dynamic Capability Modification**: Real-time changes to tool powers wey escape initial security checks
+- **Context Window Poisoning**: Attacks wey manipulate big context windows to hide bad instructions
+- **Model Confusion Attacks**: Exploit model limits to create unpredictable or unsafe behavior
 
-### AI Security Risk Wahala
 
-**Big Wahala We Fit Face:**
-- **Data Theft**: Unauthorized access and stealing of sensitive enterprise or personal data
-- **Privacy Wahala**: Exposure of personal info (PII) and confidential business data  
-- **System Manipulation**: Changes wey no dey plan for important systems and workflows
-- **Credential Theft**: Attackers dey thief authentication tokens and service credentials
-- **Lateral Movement**: Attackers dey use AI systems wey dem don spoil to attack other systems
+### AI Security Risk Impact
+
+**High-Impact Consequences:**
+- **Data Exfiltration**: Unauthorized access and theft of sensitive enterprise or personal data
+- **Privacy Breaches**: Exposure of personally identifiable information (PII) and confidential business data  
+- **System Manipulation**: Unintended changes to critical systems and workflows
+- **Credential Theft**: Compromise of authentication tokens and service credentials
+- **Lateral Movement**: Use of compromised AI systems as stepping stones for bigger network attacks
 
 ### Microsoft AI Security Solutions
 
-#### **AI Prompt Shields: Beta Protection Against Injection Attacks**
+#### **AI Prompt Shields: Advanced Protection Against Injection Attacks**
 
-Microsoft **AI Prompt Shields** dey give strong defense against both direct and indirect prompt injection attacks with plenty security layers:
+Microsoft **AI Prompt Shields** provide full defense against both direct and indirect prompt injection attacks through many security layers:
 
-##### **Di Main Protection Ways:**
+##### **Core Protection Mechanisms:**
 
-1. **Beta Detection & Filtering**
-   - Machine learning algorithms and NLP dey detect bad instructions for external content
-   - Real-time check for documents, web pages, emails, and data sources for hidden threats
-   - E dey understand di difference between correct and bad prompt patterns
+1. **Advanced Detection & Filtering**
+   - Machine learning algorithms and NLP techniques detect bad instructions inside external content
+   - Real-time check of documents, web pages, emails, and data sources for hidden threats
+   - Contextual understanding of real vs. bad prompt patterns
 
 2. **Spotlighting Techniques**  
-   - E dey separate trusted system instructions from external inputs wey fit dey bad
-   - Text transformation wey dey make model understand beta while e dey isolate bad content
-   - E dey help AI systems follow correct instruction hierarchy and ignore bad commands
+   - Separate trusted system instructions from possibly bad external inputs
+   - Text transformation methods wey improve model relevance while isolating bad content
+   - Help AI systems keep correct instruction order and ignore injected commands
 
 3. **Delimiter & Datamarking Systems**
-   - E dey define clear boundary between trusted system messages and external input text
-   - Special markers dey show di difference between trusted and untrusted data sources
-   - E dey stop instruction confusion and unauthorized command execution
+   - Clear boundary between trusted system messages and external input text
+   - Special markers to show boundaries between trusted and untrusted data sources
+   - Clear separation stop instruction confusion and unauthorized command execution
 
 4. **Continuous Threat Intelligence**
-   - Microsoft dey monitor new attack ways and dey update di defenses
-   - E dey find new injection techniques and attack ways early
-   - Regular security model updates dey keep di defenses strong
+   - Microsoft dey always watch new attack patterns and update defenses
+   - Proactive threat hunting for new injection methods and attack ways
+   - Regular security model updates to keep effectiveness against changing threats
 
 5. **Azure Content Safety Integration**
-   - E dey part of di full Azure AI Content Safety suite
-   - E dey detect jailbreak attempts, bad content, and security policy wahala
-   - Unified security controls dey cover all AI app parts
+   - Part of full Azure AI Content Safety suite
+   - Extra detection for jailbreak attempts, harmful content, and security policy breaks
+   - Unified security controls across AI app parts
 
-**Resources for Implementation**: [Microsoft Prompt Shields Documentation](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
+**Implementation Resources**: [Microsoft Prompt Shields Documentation](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
 ![Microsoft Prompt Shields Protection](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.pcm.png)
 
 
-## Advanced MCP Security Wahala
+## Advanced MCP Security Threats
 
-### Session Hijacking Wahala
+### Session Hijacking Vulnerabilities
 
-**Session hijacking** na big attack way for MCP implementations wey dey use stateful systems, attackers dey get and use correct session IDs to pretend say dem be di client and do bad actions.
+**Session hijacking** na serious attack way for stateful MCP implementations where unauthorized people fit get and misuse real session IDs to pretend to be clients and do unauthorized actions.
 
 #### **Attack Scenarios & Risks**
 
-- **Session Hijack Prompt Injection**: Attackers wey get stolen session IDs dey put bad events inside servers wey dey share session state, e fit trigger bad actions or access sensitive data
-- **Direct Impersonation**: Stolen session IDs dey allow attackers to call MCP servers directly without authentication, e go make dem look like correct users
-- **Compromised Resumable Streams**: Attackers fit stop requests early, e go make correct clients continue with bad content
+- **Session Hijack Prompt Injection**: Attackers wey get stolen session IDs fit inject bad events into servers wey share session state, fit trigger bad actions or access sensitive data
+- **Direct Impersonation**: Stolen session IDs fit allow direct MCP server calls wey bypass authentication, treating attackers as real users
+- **Compromised Resumable Streams**: Attackers fit stop requests early, making real clients resume with possibly bad content
 
 #### **Security Controls for Session Management**
 
-**Di Important Rules:**
-- **Authorization Verification**: MCP server wey dey do authorization **MUST** check ALL request wey dey come in and **MUST NOT** use session for authentication.
-- **Secure Session Generation**: Make sure say you dey use session ID wey dey cryptographically secure, wey no dey predictable, and wey dey generated with secure random number generator.
-- **User-Specific Binding**: Tie session ID to user-specific info like `<user_id>:<session_id>` so dat e go stop session abuse between users.
-- **Session Lifecycle Management**: Make sure say you dey expire, rotate, and invalidate session well to reduce vulnerability window.
-- **Transport Security**: Na compulsory to use HTTPS for all communication so dat session ID no go fit dey intercepted.
+**Critical Requirements:**
+- **Authorization Verification**: MCP servers wey dey do authorization **MUST** check ALL inbound requests and **MUST NOT** rely on sessions for authentication
+- **Secure Session Generation**: Use cryptographically secure, non-deterministic session IDs wey dem generate with secure random number generators
+- **User-Specific Binding**: Bind session IDs to user-specific information using formats like `<user_id>:<session_id>` to stop cross-user session abuse
+- **Session Lifecycle Management**: Make proper expiration, rotation, and invalidation to limit vulnerability windows
+- **Transport Security**: HTTPS na mandatory for all communication to stop session ID interception
 
 ### Confused Deputy Problem
 
-Dis **confused deputy problem** dey happen when MCP server dey act like authentication proxy between client and third-party service, wey fit make authorization bypass possible through static client ID exploitation.
+The **confused deputy problem** dey happen when MCP servers dey act as authentication proxies between clients and third-party services, e dey create chances for authorization bypass through static client ID exploitation.
 
 #### **Attack Mechanics & Risks**
 
-- **Cookie-based Consent Bypass**: If user don authenticate before, e go create consent cookie wey attacker fit use for bad authorization request wey get fake redirect URI.
-- **Authorization Code Theft**: Consent cookie wey don dey before fit make authorization server skip consent screen, redirecting code go endpoint wey attacker dey control.  
-- **Unauthorized API Access**: If authorization code dey stolen, e fit allow token exchange and user impersonation without user approval.
+- **Cookie-based Consent Bypass**: Previous user authentication dey create consent cookies wey attackers fit use through malicious authorization requests with crafted redirect URIs
+- **Authorization Code Theft**: Existing consent cookies fit make authorization servers skip consent screens, redirecting codes to attacker-controlled endpoints  
+- **Unauthorized API Access**: Stolen authorization codes fit allow token exchange and user impersonation without explicit approval
 
 #### **Mitigation Strategies**
 
 **Mandatory Controls:**
-- **Explicit Consent Requirements**: MCP proxy server wey dey use static client ID **MUST** collect user consent for every client wey dem register dynamically.
-- **OAuth 2.1 Security Implementation**: Follow OAuth security best practice like PKCE (Proof Key for Code Exchange) for all authorization request.
-- **Strict Client Validation**: Make sure say you dey validate redirect URI and client identifier well so dat exploitation no go happen.
+- **Explicit Consent Requirements**: MCP proxy servers wey dey use static client IDs **MUST** get user consent for each dynamically registered client
+- **OAuth 2.1 Security Implementation**: Follow current OAuth security best practices including PKCE (Proof Key for Code Exchange) for all authorization requests
+- **Strict Client Validation**: Make strong validation of redirect URIs and client identifiers to stop exploitation
 
 ### Token Passthrough Vulnerabilities  
 
-**Token passthrough** na bad practice wey MCP server dey do when dem dey accept client token without proper validation and dey forward am go downstream API, wey dey against MCP authorization rules.
+**Token passthrough** na clear anti-pattern wey MCP servers dey accept client tokens without proper validation and forward dem to downstream APIs, e dey violate MCP authorization specifications.
 
 #### **Security Implications**
 
-- **Control Circumvention**: If client dey use token directly for API, e go bypass important control like rate limiting, validation, and monitoring.
-- **Audit Trail Corruption**: Token wey dey issued upstream go make client identification hard, wey go scatter investigation process.
-- **Proxy-based Data Exfiltration**: If token no dey validated, e go allow bad people use server as proxy to access data wey dem no suppose touch.
-- **Trust Boundary Violations**: Downstream service go dey trust token wey dem no suppose trust because dem no fit verify origin.
-- **Multi-service Attack Expansion**: If token don compromise, e go dey accepted across different service, wey go allow attacker move around.
+- **Control Circumvention**: Direct client-to-API token usage dey bypass important rate limiting, validation, and monitoring controls
+- **Audit Trail Corruption**: Tokens wey upstream issue fit make client identification impossible, e go spoil incident investigation capabilities
+- **Proxy-based Data Exfiltration**: Unvalidated tokens fit allow bad actors use servers as proxies for unauthorized data access
+- **Trust Boundary Violations**: Downstream services trust assumptions fit break when token origins no fit verify
+- **Multi-service Attack Expansion**: Compromised tokens wey dem accept for many services fit allow lateral movement
 
 #### **Required Security Controls**
 
 **Non-negotiable Requirements:**
-- **Token Validation**: MCP server **MUST NOT** accept token wey no dey issued specifically for MCP server.
-- **Audience Verification**: Always check say token audience claim match MCP server identity.
-- **Proper Token Lifecycle**: Use access token wey no dey last long and dey rotate securely.
+- **Token Validation**: MCP servers **MUST NOT** accept tokens wey no explicitly issue for the MCP server
+- **Audience Verification**: Always check token audience claims make sure dem match MCP server identity
+- **Proper Token Lifecycle**: Use short-lived access tokens with secure rotation practices
+
 
 ## Supply Chain Security for AI Systems
 
-Supply chain security don pass software dependency matter, e don cover AI ecosystem. MCP implementation suppose dey check and monitor all AI-related component well because dem fit bring vulnerability wey go affect system.
+Supply chain security don grow pass traditional software dependencies to cover the whole AI ecosystem. Modern MCP implementations must seriously verify and monitor all AI-related components, because each one fit bring vulnerability wey fit spoil system integrity.
 
 ### Expanded AI Supply Chain Components
 
 **Traditional Software Dependencies:**
-- Open-source library and framework
-- Container image and base system  
-- Development tool and build pipeline
-- Infrastructure component and service
+- Open-source libraries and frameworks
+- Container images and base systems  
+- Development tools and build pipelines
+- Infrastructure components and services
 
 **AI-Specific Supply Chain Elements:**
-- **Foundation Models**: Pre-trained model wey dey come from different provider wey need verification.
-- **Embedding Services**: External vectorization and semantic search service.
-- **Context Providers**: Data source, knowledge base, and document repository.  
-- **Third-party APIs**: External AI service, ML pipeline, and data processing endpoint.
-- **Model Artifacts**: Weight, configuration, and fine-tuned model variant.
-- **Training Data Sources**: Dataset wey dem use for model training and fine-tuning.
+- **Foundation Models**: Pre-trained models from different providers wey need provenance verification
+- **Embedding Services**: External vectorization and semantic search services
+- **Context Providers**: Data sources, knowledge bases, and document repositories  
+- **Third-party APIs**: External AI services, ML pipelines, and data processing endpoints
+- **Model Artifacts**: Weights, configurations, and fine-tuned model variants
+- **Training Data Sources**: Datasets wey dem use for model training and fine-tuning
 
 ### Comprehensive Supply Chain Security Strategy
 
 #### **Component Verification & Trust**
-- **Provenance Validation**: Check origin, license, and integrity of all AI component before you use am.
-- **Security Assessment**: Scan and review model, data source, and AI service for vulnerability.
-- **Reputation Analysis**: Look AI service provider security record and practice.
-- **Compliance Verification**: Make sure say all component dey meet organization security and regulatory requirement.
+- **Provenance Validation**: Check origin, licensing, and integrity of all AI components before integration
+- **Security Assessment**: Do vulnerability scans and security reviews for models, data sources, and AI services
+- **Reputation Analysis**: Check security track record and practices of AI service providers
+- **Compliance Verification**: Make sure all components meet organizational security and regulatory requirements
 
 #### **Secure Deployment Pipelines**  
-- **Automated CI/CD Security**: Add security scanning for automated deployment pipeline.
-- **Artifact Integrity**: Use cryptographic verification for all artifact wey you dey deploy (code, model, configuration).
-- **Staged Deployment**: Deploy step by step with security validation for each stage.
-- **Trusted Artifact Repositories**: Only deploy from verified and secure artifact registry.
+- **Automated CI/CD Security**: Put security scanning for all automated deployment pipelines
+- **Artifact Integrity**: Use cryptographic verification for all deployed artifacts (code, models, configurations)
+- **Staged Deployment**: Use progressive deployment strategies with security validation for each stage
+- **Trusted Artifact Repositories**: Deploy only from verified, secure artifact registries and repositories
 
 #### **Continuous Monitoring & Response**
-- **Dependency Scanning**: Dey monitor vulnerability for all software and AI component dependency.
-- **Model Monitoring**: Dey check model behavior, performance drift, and security anomaly.
-- **Service Health Tracking**: Dey monitor external AI service for availability, security issue, and policy change.
-- **Threat Intelligence Integration**: Add threat feed wey dey focus on AI and ML security risk.
+- **Dependency Scanning**: Ongoing vulnerability monitoring for all software and AI component dependencies
+- **Model Monitoring**: Continuous check of model behavior, performance drift, and security anomalies
+- **Service Health Tracking**: Monitor external AI services for availability, security incidents, and policy changes
+- **Threat Intelligence Integration**: Add threat feeds wey dey specific to AI and ML security risks
 
 #### **Access Control & Least Privilege**
-- **Component-level Permissions**: Restrict access to model, data, and service based on wetin dem need.
-- **Service Account Management**: Use service account wey get only permission wey dem need.
-- **Network Segmentation**: Separate AI component and limit network access between service.
-- **API Gateway Controls**: Use centralized API gateway to control and monitor access to external AI service.
+- **Component-level Permissions**: Restrict access to models, data, and services based on business need
+- **Service Account Management**: Use dedicated service accounts with minimal required permissions
+- **Network Segmentation**: Separate AI components and limit network access between services
+- **API Gateway Controls**: Use centralized API gateways to control and monitor access to external AI services
 
 #### **Incident Response & Recovery**
-- **Rapid Response Procedures**: Get process wey go allow you patch or replace AI component wey don compromise.
-- **Credential Rotation**: Use automated system to dey rotate secret, API key, and service credential.
-- **Rollback Capabilities**: Fit quickly go back to previous version of AI component wey dey work well.
-- **Supply Chain Breach Recovery**: Get process for how you go respond to AI service wey don compromise upstream.
+- **Rapid Response Procedures**: Get processes for patching or replacing compromised AI components
+- **Credential Rotation**: Automated systems for rotating secrets, API keys, and service credentials
+- **Rollback Capabilities**: Fit quickly revert to previous known-good versions of AI components
+- **Supply Chain Breach Recovery**: Specific processes for responding to upstream AI service compromises
 
 ### Microsoft Security Tools & Integration
 
-**GitHub Advanced Security** dey provide supply chain protection like:
-- **Secret Scanning**: E dey detect credential, API key, and token for repository automatically.
-- **Dependency Scanning**: E dey check open-source dependency and library for vulnerability.
-- **CodeQL Analysis**: E dey analyze code for security vulnerability and coding issue.
-- **Supply Chain Insights**: E dey give visibility into dependency health and security status.
+**GitHub Advanced Security** dey provide full supply chain protection including:
+- **Secret Scanning**: Automated detection of credentials, API keys, and tokens in repositories
+- **Dependency Scanning**: Vulnerability assessment for open-source dependencies and libraries
+- **CodeQL Analysis**: Static code analysis for security vulnerabilities and coding issues
+- **Supply Chain Insights**: Visibility into dependency health and security status
 
 **Azure DevOps & Azure Repos Integration:**
-- E dey integrate security scanning for Microsoft development platform.
-- E dey run security check automatically for AI workload in Azure Pipeline.
-- E dey enforce policy for secure AI component deployment.
+- Smooth security scanning integration across Microsoft development platforms
+- Automated security checks in Azure Pipelines for AI workloads
+- Policy enforcement for secure AI component deployment
 
 **Microsoft Internal Practices:**
-Microsoft dey use strong supply chain security practice for all dem product. You fit learn more for [The Journey to Secure the Software Supply Chain at Microsoft](https://devblogs.microsoft.com/engineering-at-microsoft/the-journey-to-secure-the-software-supply-chain-at-microsoft/).
+Microsoft dey do plenty supply chain security practices across all products. Learn about proven approaches for [The Journey to Secure the Software Supply Chain at Microsoft](https://devblogs.microsoft.com/engineering-at-microsoft/the-journey-to-secure-the-software-supply-chain-at-microsoft/).
 
 
 ## Foundation Security Best Practices
 
-MCP implementation dey build on top of your organization security setup. If you strengthen your security foundation, e go make AI system and MCP deployment more secure.
+MCP implementations dey inherit and build on top of your organization's existing security posture. Strong foundational security practices go improve the overall security of AI systems and MCP deployments well well.
 
 ### Core Security Fundamentals
 
 #### **Secure Development Practices**
-- **OWASP Compliance**: Protect against [OWASP Top 10](https://owasp.org/www-project-top-ten/) web application vulnerability.
-- **AI-Specific Protections**: Add control for [OWASP Top 10 for LLMs](https://genai.owasp.org/download/43299/?tmstv=1731900559).
-- **Secure Secrets Management**: Use vault for token, API key, and sensitive configuration data.
-- **End-to-End Encryption**: Make sure say communication between application component and data flow dey secure.
-- **Input Validation**: Dey check user input, API parameter, and data source well.
+- **OWASP Compliance**: Protect against [OWASP Top 10](https://owasp.org/www-project-top-ten/) web application vulnerabilities
+- **AI-Specific Protections**: Put controls for [OWASP Top 10 for LLMs](https://genai.owasp.org/download/43299/?tmstv=1731900559)
+- **Secure Secrets Management**: Use dedicated vaults for tokens, API keys, and sensitive configuration data
+- **End-to-End Encryption**: Use secure communications across all application components and data flows
+- **Input Validation**: Strong validation of all user inputs, API parameters, and data sources
 
 #### **Infrastructure Hardening**
-- **Multi-Factor Authentication**: Make MFA compulsory for all admin and service account.
-- **Patch Management**: Dey patch operating system, framework, and dependency on time automatically.  
-- **Identity Provider Integration**: Use centralized identity management like Microsoft Entra ID or Active Directory.
-- **Network Segmentation**: Separate MCP component logically to stop lateral movement.
-- **Principle of Least Privilege**: Give only permission wey system component and account need.
+- **Multi-Factor Authentication**: Mandatory MFA for all administrative and service accounts
+- **Patch Management**: Automated, timely patching for operating systems, frameworks, and dependencies  
+- **Identity Provider Integration**: Centralized identity management through enterprise identity providers (Microsoft Entra ID, Active Directory)
+- **Network Segmentation**: Logical isolation of MCP components to limit lateral movement potential
+- **Principle of Least Privilege**: Minimal required permissions for all system components and accounts
 
 #### **Security Monitoring & Detection**
-- **Comprehensive Logging**: Dey log AI application activity well, including MCP client-server interaction.
-- **SIEM Integration**: Use centralized security information and event management to detect anomaly.
-- **Behavioral Analytics**: Use AI to monitor unusual pattern for system and user behavior.
-- **Threat Intelligence**: Add external threat feed and indicator of compromise (IOCs).
-- **Incident Response**: Get clear process for how you go detect, respond, and recover from security incident.
+- **Comprehensive Logging**: Detailed logging of AI application activities, including MCP client-server interactions
+- **SIEM Integration**: Centralized security information and event management for anomaly detection
+- **Behavioral Analytics**: AI-powered monitoring to detect unusual patterns in system and user behavior
+- **Threat Intelligence**: Integration of external threat feeds and indicators of compromise (IOCs)
+- **Incident Response**: Well-defined procedures for security incident detection, response, and recovery
 
 #### **Zero Trust Architecture**
-- **Never Trust, Always Verify**: Dey verify user, device, and network connection every time.
-- **Micro-Segmentation**: Use small network control to separate workload and service.
-- **Identity-Centric Security**: Base security policy on verified identity, no be network location.
-- **Continuous Risk Assessment**: Dey check security posture based on current context and behavior.
-- **Conditional Access**: Dey adjust access control based on risk factor, location, and device trust.
+- **Never Trust, Always Verify**: Continuous verification of users, devices, and network connections
+- **Micro-Segmentation**: Granular network controls wey isolate individual workloads and services
+- **Identity-Centric Security**: Security policies based on verified identities no be network location
+- **Continuous Risk Assessment**: Dynamic security posture evaluation based on current context and behavior
+- **Conditional Access**: Access controls wey adapt based on risk factors, location, and device trust
 
 ### Enterprise Integration Patterns
 
 #### **Microsoft Security Ecosystem Integration**
-- **Microsoft Defender for Cloud**: E dey manage cloud security posture well.
-- **Azure Sentinel**: E dey provide cloud-native SIEM and SOAR for AI workload protection.
-- **Microsoft Entra ID**: E dey manage enterprise identity and access with conditional access policy.
-- **Azure Key Vault**: E dey manage secret centrally with hardware security module (HSM) backing.
-- **Microsoft Purview**: E dey handle data governance and compliance for AI data source and workflow.
+- **Microsoft Defender for Cloud**: Full cloud security posture management
+- **Azure Sentinel**: Cloud-native SIEM and SOAR capabilities for AI workload protection
+- **Microsoft Entra ID**: Enterprise identity and access management with conditional access policies
+- **Azure Key Vault**: Centralized secrets management with hardware security module (HSM) backing
+- **Microsoft Purview**: Data governance and compliance for AI data sources and workflows
 
 #### **Compliance & Governance**
-- **Regulatory Alignment**: Make sure say MCP implementation dey meet industry compliance requirement (GDPR, HIPAA, SOC 2).
-- **Data Classification**: Dey categorize and handle sensitive data wey AI system dey process well.
-- **Audit Trails**: Dey log everything well for compliance and investigation.
-- **Privacy Controls**: Add privacy-by-design principle for AI system architecture.
-- **Change Management**: Dey review AI system modification for security before you go ahead.
+- **Regulatory Alignment**: Make sure MCP implementations meet industry-specific compliance requirements (GDPR, HIPAA, SOC 2)
+- **Data Classification**: Proper categorization and handling of sensitive data wey AI systems process
+- **Audit Trails**: Full logging for regulatory compliance and forensic investigation
+- **Privacy Controls**: Put privacy-by-design principles for AI system architecture
+- **Change Management**: Formal processes for security reviews of AI system modifications
 
-Dis foundational practice go give strong security base wey go make MCP-specific security control work better and protect AI application well.
+These foundational practices go create strong security baseline wey go improve MCP-specific security controls and give full protection for AI-driven applications.
 
 ## Key Security Takeaways
 
-- **Layered Security Approach**: Combine foundational security practice (secure coding, least privilege, supply chain verification, continuous monitoring) with AI-specific control to protect well.
+- **Layered Security Approach**: Combine foundational security practices (secure coding, least privilege, supply chain verification, continuous monitoring) with AI-specific controls for full protection
 
-- **AI-Specific Threat Landscape**: MCP system dey face unique risk like prompt injection, tool poisoning, session hijacking, confused deputy problem, token passthrough vulnerability, and excessive permission wey need special solution.
+- **AI-Specific Threat Landscape**: MCP systems get unique risks like prompt injection, tool poisoning, session hijacking, confused deputy problems, token passthrough vulnerabilities, and excessive permissions wey need special mitigations
 
-- **Authentication & Authorization Excellence**: Use strong authentication with external identity provider (Microsoft Entra ID), enforce token validation well, and no ever accept token wey no dey issued for your MCP server.
+- **Authentication & Authorization Excellence**: Use strong authentication with external identity providers (Microsoft Entra ID), enforce proper token validation, and no accept tokens wey no explicitly issue for your MCP server
 
-- **AI Attack Prevention**: Use Microsoft Prompt Shields and Azure Content Safety to stop indirect prompt injection and tool poisoning attack, dey validate tool metadata, and dey monitor for dynamic change.
+- **AI Attack Prevention**: Use Microsoft Prompt Shields and Azure Content Safety to defend against indirect prompt injection and tool poisoning attacks, plus validate tool metadata and monitor for dynamic changes
 
-- **Session & Transport Security**: Use session ID wey dey cryptographically secure, wey no dey predictable, tie am to user identity, manage session lifecycle well, and no ever use session for authentication.
+- **Session & Transport Security**: Use cryptographically secure, non-deterministic session IDs wey bind to user identities, do proper session lifecycle management, and no use sessions for authentication
 
-- **OAuth Security Best Practices**: Stop confused deputy attack by collecting user consent for dynamically registered client, use OAuth 2.1 with PKCE, and validate redirect URI well.  
+- **OAuth Security Best Practices**: Stop confused deputy attacks with explicit user consent for dynamically registered clients, proper OAuth 2.1 implementation with PKCE, and strict redirect URI validation  
 
-- **Token Security Principles**: No do token passthrough, validate token audience claim, use short-lived token wey dey rotate securely, and maintain clear trust boundary.
+- **Token Security Principles**: Avoid token passthrough anti-patterns, validate token audience claims, use short-lived tokens with secure rotation, and keep clear trust boundaries
 
-- **Comprehensive Supply Chain Security**: Treat all AI ecosystem component (model, embedding, context provider, external API) with same security level as software dependency.
+- **Comprehensive Supply Chain Security**: Treat all AI ecosystem components (models, embeddings, context providers, external APIs) with the same security rigor as traditional software dependencies
 
-- **Continuous Evolution**: Dey follow MCP specification wey dey change, contribute to security community standard, and dey adapt security posture as protocol dey mature.
+- **Continuous Evolution**: Stay up-to-date with fast-changing MCP specifications, contribute to security community standards, and keep adaptive security postures as the protocol mature
 
-- **Microsoft Security Integration**: Use Microsoft security ecosystem (Prompt Shields, Azure Content Safety, GitHub Advanced Security, Entra ID) to protect MCP deployment well.
+- **Microsoft Security Integration**: Use Microsoft's full security ecosystem (Prompt Shields, Azure Content Safety, GitHub Advanced Security, Entra ID) for better MCP deployment protection
 
 ## Comprehensive Resources
 
 ### **Official MCP Security Documentation**
-- [MCP Specification (Current: 2025-06-18)](https://spec.modelcontextprotocol.io/specification/2025-06-18/)
-- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices)
-- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization)
+- [MCP Specification (Current: 2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices)
+- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)
 - [MCP GitHub Repository](https://github.com/modelcontextprotocol)
 
 ### **Security Standards & Best Practices**
@@ -441,12 +443,12 @@ Dis foundational practice go give strong security base wey go make MCP-specific 
 
 ## **Additional Security Documentation**
 
-If you wan full security guide, check dis special documents for dis section:
+For full security guidance, check dis special documents for dis section:
 
-- **[MCP Security Best Practices 2025](./mcp-security-best-practices-2025.md)** - Full security best practices for MCP setup
-- **[Azure Content Safety Implementation](./azure-content-safety-implementation.md)** - Examples wey go show you how to use Azure Content Safety  
-- **[MCP Security Controls 2025](./mcp-security-controls-2025.md)** - New security controls and techniques for MCP deployment
-- **[MCP Best Practices Quick Reference](./mcp-best-practices.md)** - Quick guide for MCP security practices wey you need
+- **[MCP Security Best Practices 2025](./mcp-security-best-practices-2025.md)** - Complete security best practices for MCP implementations
+- **[Azure Content Safety Implementation](./azure-content-safety-implementation.md)** - Practical implementation examples for Azure Content Safety integration  
+- **[MCP Security Controls 2025](./mcp-security-controls-2025.md)** - Latest security controls and techniques for MCP deployments
+- **[MCP Best Practices Quick Reference](./mcp-best-practices.md)** - Quick reference guide for essential MCP security practices
 
 ---
 
@@ -457,6 +459,6 @@ Next: [Chapter 3: Getting Started](../03-GettingStarted/README.md)
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Disclaimer**:  
-Dis dokyument don use AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator) do di translation. Even as we dey try make am accurate, abeg sabi say automated translations fit get mistake or no dey correct well. Di original dokyument for im native language na di main source wey you go fit trust. For important information, e good make professional human translation dey use. We no go fit take blame for any misunderstanding or wrong interpretation wey fit happen because you use dis translation.
+**Disclaimer**:
+Dis document don translate wit AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). Even though we dey try make am correct, abeg sabi say automated translation fit get some mistakes or wrong tins. Di original document wey e dey for im own language na di correct one. If na serious matter, e better make human professional translate am. We no go responsible for any misunderstanding or wrong meaning wey fit come from dis translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

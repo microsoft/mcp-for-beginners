@@ -1,450 +1,451 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "1c767a35642f753127dc08545c25a290",
-  "translation_date": "2025-08-18T16:30:26+00:00",
+  "original_hash": "cf48858182f366e9d3f080fb0d3bfc37",
+  "translation_date": "2025-12-19T13:45:22+00:00",
   "source_file": "02-Security/README.md",
   "language_code": "nl"
 }
 -->
-# MCP Beveiliging: Uitgebreide Bescherming voor AI-Systemen
+# MCP-beveiliging: Uitgebreide bescherming voor AI-systemen
 
-[![MCP Beveiligingsrichtlijnen](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.nl.png)](https://youtu.be/88No8pw706o)
+[![MCP Security Best Practices](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.nl.png)](https://youtu.be/88No8pw706o)
 
 _(Klik op de afbeelding hierboven om de video van deze les te bekijken)_
 
-Beveiliging is essentieel bij het ontwerpen van AI-systemen, en daarom geven we hier prioriteit aan in onze tweede sectie. Dit sluit aan bij Microsoft's **Secure by Design**-principe uit het [Secure Future Initiative](https://www.microsoft.com/security/blog/2025/04/17/microsofts-secure-by-design-journey-one-year-of-success/).
+Beveiliging is fundamenteel voor het ontwerp van AI-systemen, daarom geven we er prioriteit aan als onze tweede sectie. Dit sluit aan bij Microsofts **Secure by Design**-principe uit de [Secure Future Initiative](https://www.microsoft.com/security/blog/2025/04/17/microsofts-secure-by-design-journey-one-year-of-success/).
 
-Het Model Context Protocol (MCP) biedt krachtige nieuwe mogelijkheden voor AI-gedreven applicaties, maar introduceert ook unieke beveiligingsuitdagingen die verder gaan dan traditionele software risico's. MCP-systemen worden geconfronteerd met zowel bekende beveiligingsproblemen (zoals veilig coderen, minimaal benodigde rechten, en beveiliging van de toeleveringsketen) als nieuwe AI-specifieke bedreigingen, waaronder promptinjectie, toolvergiftiging, sessiekaping, confused deputy-aanvallen, token-passthrough kwetsbaarheden, en dynamische capaciteitswijzigingen.
+Het Model Context Protocol (MCP) brengt krachtige nieuwe mogelijkheden naar AI-gedreven applicaties, terwijl het unieke beveiligingsuitdagingen introduceert die verder gaan dan traditionele softwarerisico’s. MCP-systemen worden geconfronteerd met zowel gevestigde beveiligingsproblemen (veilig coderen, minste privilege, beveiliging van de toeleveringsketen) als nieuwe AI-specifieke bedreigingen, waaronder promptinjectie, toolvergiftiging, sessiekaping, confused deputy-aanvallen, kwetsbaarheden bij token-passthrough en dynamische wijziging van mogelijkheden.
 
-Deze les behandelt de meest kritieke beveiligingsrisico's bij MCP-implementaties, zoals authenticatie, autorisatie, overmatige rechten, indirecte promptinjectie, sessiebeveiliging, confused deputy-problemen, tokenbeheer en kwetsbaarheden in de toeleveringsketen. Je leert praktische controles en best practices om deze risico's te beperken, terwijl je gebruik maakt van Microsoft-oplossingen zoals Prompt Shields, Azure Content Safety en GitHub Advanced Security om je MCP-implementatie te versterken.
+Deze les behandelt de meest kritieke beveiligingsrisico’s in MCP-implementaties—met aandacht voor authenticatie, autorisatie, overmatige permissies, indirecte promptinjectie, sessiebeveiliging, confused deputy-problemen, tokenbeheer en kwetsbaarheden in de toeleveringsketen. Je leert toepasbare controles en best practices om deze risico’s te beperken, terwijl je Microsoft-oplossingen zoals Prompt Shields, Azure Content Safety en GitHub Advanced Security inzet om je MCP-implementatie te versterken.
 
 ## Leerdoelen
 
 Aan het einde van deze les kun je:
 
-- **MCP-specifieke bedreigingen identificeren**: Herken unieke beveiligingsrisico's in MCP-systemen, zoals promptinjectie, toolvergiftiging, overmatige rechten, sessiekaping, confused deputy-problemen, token-passthrough kwetsbaarheden en risico's in de toeleveringsketen
-- **Beveiligingscontroles toepassen**: Voer effectieve maatregelen uit, zoals robuuste authenticatie, toegang met minimaal benodigde rechten, veilig tokenbeheer, sessiebeveiligingscontroles en verificatie van de toeleveringsketen
-- **Microsoft-beveiligingsoplossingen gebruiken**: Begrijp en implementeer Microsoft Prompt Shields, Azure Content Safety en GitHub Advanced Security voor MCP-werkbelastingbescherming
-- **Toolbeveiliging valideren**: Erken het belang van validatie van toolmetadata, monitoring van dynamische wijzigingen en verdediging tegen indirecte promptinjectie-aanvallen
-- **Best practices integreren**: Combineer gevestigde beveiligingsprincipes (zoals veilig coderen, serverhardening, zero trust) met MCP-specifieke controles voor uitgebreide bescherming
+- **MCP-specifieke bedreigingen identificeren**: Unieke beveiligingsrisico’s in MCP-systemen herkennen, waaronder promptinjectie, toolvergiftiging, overmatige permissies, sessiekaping, confused deputy-problemen, token-passthrough kwetsbaarheden en risico’s in de toeleveringsketen
+- **Beveiligingscontroles toepassen**: Effectieve mitigaties implementeren, waaronder robuuste authenticatie, toegang op basis van minste privilege, veilig tokenbeheer, sessiebeveiligingscontroles en verificatie van de toeleveringsketen
+- **Microsoft-beveiligingsoplossingen benutten**: Microsoft Prompt Shields, Azure Content Safety en GitHub Advanced Security begrijpen en inzetten voor bescherming van MCP-workloads
+- **Toolbeveiliging valideren**: Het belang van validatie van toolmetadata, monitoring van dynamische wijzigingen en verdediging tegen indirecte promptinjectie-aanvallen herkennen
+- **Best practices integreren**: Gevestigde beveiligingsfundamenten (veilig coderen, serverhardening, zero trust) combineren met MCP-specifieke controles voor uitgebreide bescherming
 
-# MCP Beveiligingsarchitectuur & Controles
+# MCP-beveiligingsarchitectuur & -controles
 
-Moderne MCP-implementaties vereisen gelaagde beveiligingsbenaderingen die zowel traditionele softwarebeveiliging als AI-specifieke bedreigingen aanpakken. De snel evoluerende MCP-specificatie blijft zijn beveiligingscontroles verbeteren, waardoor een betere integratie met bedrijfsbeveiligingsarchitecturen en gevestigde best practices mogelijk wordt.
+Moderne MCP-implementaties vereisen gelaagde beveiligingsbenaderingen die zowel traditionele softwarebeveiliging als AI-specifieke bedreigingen aanpakken. De snel evoluerende MCP-specificatie blijft zijn beveiligingscontroles verfijnen, waardoor betere integratie met enterprise-beveiligingsarchitecturen en gevestigde best practices mogelijk wordt.
 
-Onderzoek uit het [Microsoft Digital Defense Report](https://aka.ms/mddr) toont aan dat **98% van de gemelde inbreuken voorkomen had kunnen worden door robuuste beveiligingshygiëne**. De meest effectieve beschermingsstrategie combineert fundamentele beveiligingspraktijken met MCP-specifieke controles—bewezen basisbeveiligingsmaatregelen blijven het meest impactvol bij het verminderen van het totale beveiligingsrisico.
+Onderzoek uit het [Microsoft Digital Defense Report](https://aka.ms/mddr) toont aan dat **98% van de gerapporteerde inbreuken voorkomen zou kunnen worden door robuuste beveiligingshygiëne**. De meest effectieve beschermingsstrategie combineert fundamentele beveiligingspraktijken met MCP-specifieke controles—bewezen basisbeveiligingsmaatregelen blijven het meest impactvol in het verminderen van het algehele beveiligingsrisico.
 
-## Huidige Beveiligingslandschap
+## Huidig beveiligingslandschap
 
-> **Note:** Deze informatie weerspiegelt MCP-beveiligingsstandaarden vanaf **18 augustus 2025**. Het MCP-protocol evolueert snel, en toekomstige implementaties kunnen nieuwe authenticatiepatronen en verbeterde controles introduceren. Raadpleeg altijd de actuele [MCP Specificatie](https://spec.modelcontextprotocol.io/), [MCP GitHub-repository](https://github.com/modelcontextprotocol), en [documentatie over beveiligingsbest practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) voor de meest recente richtlijnen.
+> **Opmerking:** Deze informatie weerspiegelt MCP-beveiligingsnormen per **18 december 2025**. Het MCP-protocol blijft zich snel ontwikkelen en toekomstige implementaties kunnen nieuwe authenticatiepatronen en verbeterde controles introduceren. Raadpleeg altijd de actuele [MCP-specificatie](https://spec.modelcontextprotocol.io/), [MCP GitHub-repository](https://github.com/modelcontextprotocol) en [documentatie over beveiligingsbest practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) voor de laatste richtlijnen.
 
-### Evolutie van MCP Authenticatie
+### Evolutie van MCP-authenticatie
 
-De MCP-specificatie heeft aanzienlijke vooruitgang geboekt in zijn aanpak van authenticatie en autorisatie:
+De MCP-specificatie is aanzienlijk geëvolueerd in zijn aanpak van authenticatie en autorisatie:
 
-- **Oorspronkelijke aanpak**: Vroege specificaties vereisten dat ontwikkelaars aangepaste authenticatieservers implementeerden, waarbij MCP-servers fungeerden als OAuth 2.0 Authorization Servers die gebruikersauthenticatie rechtstreeks beheerden
-- **Huidige standaard (2025-06-18)**: Bijgewerkte specificatie stelt MCP-servers in staat authenticatie te delegeren aan externe identiteitsproviders (zoals Microsoft Entra ID), wat de beveiligingspositie verbetert en de implementatiecomplexiteit vermindert
-- **Transportlaagbeveiliging**: Verbeterde ondersteuning voor veilige transportmechanismen met correcte authenticatiepatronen voor zowel lokale (STDIO) als externe (Streamable HTTP) verbindingen
+- **Oorspronkelijke aanpak**: Vroege specificaties vereisten dat ontwikkelaars eigen authenticatieservers implementeerden, waarbij MCP-servers fungeerden als OAuth 2.0 Authorization Servers die gebruikersauthenticatie direct beheerden
+- **Huidige standaard (2025-11-25)**: Bijgewerkte specificatie staat toe dat MCP-servers authenticatie delegeren aan externe identiteitsproviders (zoals Microsoft Entra ID), wat de beveiligingshouding verbetert en de implementatiecomplexiteit vermindert
+- **Transportlaagbeveiliging**: Verbeterde ondersteuning voor veilige transportmechanismen met juiste authenticatiepatronen voor zowel lokale (STDIO) als externe (Streamable HTTP) verbindingen
 
-## Authenticatie & Autorisatie Beveiliging
+## Authenticatie- & autorisatiebeveiliging
 
-### Huidige Beveiligingsuitdagingen
+### Huidige beveiligingsuitdagingen
 
-Moderne MCP-implementaties worden geconfronteerd met verschillende authenticatie- en autorisatie-uitdagingen:
+Moderne MCP-implementaties worden geconfronteerd met diverse uitdagingen op het gebied van authenticatie en autorisatie:
 
-### Risico's & Bedreigingsvectoren
+### Risico’s & bedreigingsvectoren
 
-- **Misgeconfigureerde autorisatielogica**: Foutieve implementatie van autorisatie in MCP-servers kan gevoelige gegevens blootstellen en toegang controles onjuist toepassen
-- **OAuth-tokencompromis**: Diefstal van lokale MCP-servertokens stelt aanvallers in staat servers te imiteren en toegang te krijgen tot downstream-services
-- **Token-passthrough kwetsbaarheden**: Onjuiste tokenverwerking creëert omzeiling van beveiligingscontroles en hiaten in verantwoordelijkheid
-- **Overmatige rechten**: Over-geprivilegieerde MCP-servers schenden principes van minimaal benodigde rechten en vergroten het aanvalsoppervlak
+- **Foutief geconfigureerde autorisatielogica**: Onjuiste autorisatie-implementatie in MCP-servers kan gevoelige gegevens blootstellen en toegang verkeerd toepassen
+- **OAuth-tokencompromis**: Diefstal van tokens van lokale MCP-servers stelt aanvallers in staat zich voor te doen als servers en toegang te krijgen tot downstream-services
+- **Token-passthrough kwetsbaarheden**: Onjuist tokenbeheer creëert beveiligingscontrole-omzeilingen en verantwoordingslacunes
+- **Overmatige permissies**: Overbevoegde MCP-servers schenden het principe van minste privilege en vergroten het aanvalsoppervlak
 
-#### Token-passthrough: Een Kritiek Anti-Patroon
+#### Token-passthrough: een kritisch anti-patroon
 
 **Token-passthrough is expliciet verboden** in de huidige MCP-autorisatiespecificatie vanwege ernstige beveiligingsimplicaties:
 
-##### Omzeiling van Beveiligingscontroles
-- MCP-servers en downstream-API's implementeren kritieke beveiligingscontroles (zoals rate limiting, verzoekvalidatie, verkeersmonitoring) die afhankelijk zijn van correcte tokenvalidatie
-- Direct gebruik van client-naar-API-tokens omzeilt deze essentiële beschermingen, wat de beveiligingsarchitectuur ondermijnt
+##### Omzeiling van beveiligingscontroles
+- MCP-servers en downstream-API’s implementeren kritieke beveiligingscontroles (rate limiting, verzoekvalidatie, verkeersmonitoring) die afhankelijk zijn van correcte tokenvalidatie
+- Direct gebruik van tokens van client naar API omzeilt deze essentiële beschermingen en ondermijnt de beveiligingsarchitectuur
 
-##### Verantwoordelijkheid & Audituitdagingen  
-- MCP-servers kunnen geen onderscheid maken tussen clients die upstream-uitgegeven tokens gebruiken, wat audit trails verbreekt
-- Logs van downstream-resource servers tonen misleidende verzoekbronnen in plaats van daadwerkelijke MCP-serverintermediairs
+##### Verantwoordings- & audituitdagingen  
+- MCP-servers kunnen niet onderscheiden welke clients tokens gebruiken die upstream zijn uitgegeven, waardoor auditsporen verbroken worden
+- Logs van downstream resource-servers tonen misleidende verzoekherkomst in plaats van de daadwerkelijke MCP-server als tussenpersoon
 - Incidentonderzoek en compliance-audits worden aanzienlijk moeilijker
 
-##### Gegevensuitvoeringsrisico's
-- Ongevalideerde tokenclaims stellen kwaadwillenden met gestolen tokens in staat MCP-servers te gebruiken als proxy's voor gegevensuitvoer
-- Schendingen van vertrouwensgrenzen maken ongeautoriseerde toegangspatronen mogelijk die bedoelde beveiligingscontroles omzeilen
+##### Risico’s op datalekken
+- Ongeldige tokenclaims stellen kwaadwillenden met gestolen tokens in staat MCP-servers als proxy’s voor datalekken te gebruiken
+- Vertrouwensgrensschendingen maken ongeautoriseerde toegangspatronen mogelijk die bedoelde beveiligingscontroles omzeilen
 
-##### Multi-Service Aanvalsvectoren
-- Gecompromitteerde tokens die door meerdere services worden geaccepteerd, maken laterale bewegingen mogelijk tussen verbonden systemen
-- Vertrouwensveronderstellingen tussen services kunnen worden geschonden wanneer tokenbronnen niet kunnen worden geverifieerd
+##### Multi-service aanvalsvectoren
+- Gecompromitteerde tokens die door meerdere services worden geaccepteerd, maken laterale bewegingen over verbonden systemen mogelijk
+- Vertrouwensveronderstellingen tussen services kunnen worden geschonden wanneer tokenherkomst niet kan worden geverifieerd
 
-### Beveiligingscontroles & Maatregelen
+### Beveiligingscontroles & mitigaties
 
-**Kritieke Beveiligingsvereisten:**
+**Kritieke beveiligingseisen:**
 
-> **VERPLICHT**: MCP-servers **MOETEN GEEN** tokens accepteren die niet expliciet zijn uitgegeven voor de MCP-server
+> **VERPLICHT**: MCP-servers **MOGEN GEEN** tokens accepteren die niet expliciet voor de MCP-server zijn uitgegeven
 
-#### Authenticatie & Autorisatie Controles
+#### Authenticatie- & autorisatiecontroles
 
-- **Grondige Autorisatiecontrole**: Voer uitgebreide audits uit van MCP-serverautorisatielogica om ervoor te zorgen dat alleen bedoelde gebruikers en clients toegang hebben tot gevoelige bronnen
-  - **Implementatiegids**: [Azure API Management als Authenticatie Gateway voor MCP-servers](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
-  - **Identiteitsintegratie**: [Microsoft Entra ID gebruiken voor MCP-serverauthenticatie](https://den.dev/blog/mcp-server-auth-entra-id-session/)
+- **Grondige autorisatiebeoordeling**: Voer uitgebreide audits uit van de autorisatielogica van MCP-servers om te waarborgen dat alleen bedoelde gebruikers en clients toegang hebben tot gevoelige bronnen
+  - **Implementatiehandleiding**: [Azure API Management als authenticatiegateway voor MCP-servers](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
+  - **Identiteitsintegratie**: [Gebruik van Microsoft Entra ID voor MCP-serverauthenticatie](https://den.dev/blog/mcp-server-auth-entra-id-session/)
 
-- **Veilig Tokenbeheer**: Implementeer [Microsoft's best practices voor tokenvalidatie en levenscyclus](https://learn.microsoft.com/en-us/entra/identity-platform/access-tokens)
-  - Valideer token audience claims die overeenkomen met MCP-serveridentiteit
+- **Veilig tokenbeheer**: Implementeer [Microsofts beste praktijken voor tokenvalidatie en levenscyclus](https://learn.microsoft.com/en-us/entra/identity-platform/access-tokens)
+  - Valideer dat token audience claims overeenkomen met de identiteit van de MCP-server
   - Implementeer correcte tokenrotatie- en vervalbeleid
-  - Voorkom token-replay-aanvallen en ongeautoriseerd gebruik
+  - Voorkom token replay-aanvallen en ongeautoriseerd gebruik
 
-- **Beveiligde Tokenopslag**: Beveilig tokenopslag met encryptie zowel in rust als tijdens transport
-  - **Best Practices**: [Richtlijnen voor veilige tokenopslag en encryptie](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2)
+- **Beschermde tokenopslag**: Beveilig tokenopslag met encryptie in rust en tijdens transport
+  - **Best practices**: [Richtlijnen voor veilige tokenopslag en encryptie](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2)
 
-#### Implementatie van Toegangscontrole
+#### Implementatie van toegangscontrole
 
-- **Principe van Minimaal Benodigde Rechten**: Geef MCP-servers alleen de minimale rechten die nodig zijn voor de beoogde functionaliteit
-  - Regelmatige rechtenreviews en updates om privilege-uitbreiding te voorkomen
-  - **Microsoft Documentatie**: [Beveiligde toegang met minimaal benodigde rechten](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
+- **Principe van minste privilege**: Verleen MCP-servers alleen de minimale permissies die nodig zijn voor de beoogde functionaliteit
+  - Regelmatige herziening en bijwerking van permissies om privilege creep te voorkomen
+  - **Microsoft-documentatie**: [Veilige toegang met minste privilege](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
 
-- **Rolgebaseerde Toegangscontrole (RBAC)**: Implementeer fijnmazige roltoewijzingen
+- **Role-Based Access Control (RBAC)**: Implementeer fijnmazige roltoewijzingen
   - Beperk rollen strikt tot specifieke bronnen en acties
-  - Vermijd brede of onnodige rechten die het aanvalsoppervlak vergroten
+  - Vermijd brede of onnodige permissies die het aanvalsoppervlak vergroten
 
-- **Continue Rechtenmonitoring**: Implementeer doorlopende audits en monitoring van toegang
-  - Monitor gebruikspatronen van rechten op anomalieën
-  - Los overmatige of ongebruikte rechten snel op
+- **Continue permissiemonitoring**: Voer doorlopende toegangsaudits en monitoring uit
+  - Monitor gebruikspatronen van permissies op anomalieën
+  - Los overmatige of ongebruikte privileges snel op
 
-## AI-Specifieke Beveiligingsbedreigingen
+## AI-specifieke beveiligingsbedreigingen
 
-### Promptinjectie & Toolmanipulatie-aanvallen
+### Promptinjectie- & toolmanipulatie-aanvallen
 
-Moderne MCP-implementaties worden geconfronteerd met geavanceerde AI-specifieke aanvalsvectoren die traditionele beveiligingsmaatregelen niet volledig kunnen aanpakken:
+Moderne MCP-implementaties worden geconfronteerd met geavanceerde AI-specifieke aanvalsvectoren die traditionele beveiligingsmaatregelen niet volledig kunnen adresseren:
 
-#### **Indirecte Promptinjectie (Cross-Domain Promptinjectie)**
+#### **Indirecte promptinjectie (Cross-Domain Prompt Injection)**
 
-**Indirecte Promptinjectie** is een van de meest kritieke kwetsbaarheden in MCP-gestuurde AI-systemen. Aanvallers verbergen kwaadaardige instructies in externe inhoud—documenten, webpagina's, e-mails of gegevensbronnen—die AI-systemen vervolgens verwerken als legitieme opdrachten.
+**Indirecte promptinjectie** is een van de meest kritieke kwetsbaarheden in MCP-compatibele AI-systemen. Aanvallers verbergen kwaadaardige instructies in externe content—documenten, webpagina’s, e-mails of databronnen—die AI-systemen vervolgens verwerken als legitieme opdrachten.
 
-**Aanvalsscenario's:**
-- **Documentgebaseerde Injectie**: Kwaadaardige instructies verborgen in verwerkte documenten die onbedoelde AI-acties veroorzaken
-- **Webinhoud Exploitatie**: Gecompromitteerde webpagina's met ingebedde prompts die AI-gedrag manipuleren bij het scrapen
-- **E-mailgebaseerde Aanvallen**: Kwaadaardige prompts in e-mails die AI-assistenten informatie laten lekken of ongeautoriseerde acties laten uitvoeren
-- **Gegevensbronvervuiling**: Gecompromitteerde databases of API's die besmette inhoud leveren aan AI-systemen
+**Aanvalsscenario’s:**
+- **Documentgebaseerde injectie**: Kwaadaardige instructies verborgen in verwerkte documenten die onbedoelde AI-acties triggeren
+- **Misbruik van webinhoud**: Gecompromitteerde webpagina’s met ingebedde prompts die AI-gedrag manipuleren bij scraping
+- **E-mailgebaseerde aanvallen**: Kwaadaardige prompts in e-mails die AI-assistenten doen lekken of ongeautoriseerde acties laten uitvoeren
+- **Verontreiniging van databronnen**: Gecompromitteerde databases of API’s die besmette content aan AI-systemen leveren
 
-**Impact in de praktijk**: Deze aanvallen kunnen leiden tot gegevensuitvoer, privacyschendingen, het genereren van schadelijke inhoud en manipulatie van gebruikersinteracties. Voor gedetailleerde analyse, zie [Promptinjectie in MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
+**Reële impact**: Deze aanvallen kunnen leiden tot datalekken, privacyschendingen, generatie van schadelijke content en manipulatie van gebruikersinteracties. Voor gedetailleerde analyse, zie [Prompt Injection in MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
-![Promptinjectie Aanval Diagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.nl.png)
+![Prompt Injection Attack Diagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.nl.png)
 
 #### **Toolvergiftiging-aanvallen**
 
-**Toolvergiftiging** richt zich op de metadata die MCP-tools definiëren, waarbij wordt misbruik gemaakt van hoe LLM's toolbeschrijvingen en parameters interpreteren om uitvoeringsbeslissingen te nemen.
+**Toolvergiftiging** richt zich op de metadata die MCP-tools definieert, waarbij wordt misbruikt hoe LLM’s toolbeschrijvingen en parameters interpreteren om uitvoeringsbeslissingen te nemen.
 
-**Aanvalsmechanismen:**
-- **Manipulatie van Metadata**: Aanvallers injecteren kwaadaardige instructies in toolbeschrijvingen, parameterdefinities of gebruiksvoorbeelden
-- **Onzichtbare Instructies**: Verborgen prompts in toolmetadata die door AI-modellen worden verwerkt maar onzichtbaar zijn voor menselijke gebruikers
-- **Dynamische Toolwijziging ("Rug Pulls")**: Tools die door gebruikers zijn goedgekeurd, worden later gewijzigd om kwaadaardige acties uit te voeren zonder dat gebruikers dit merken
-- **Parameterinjectie**: Kwaadaardige inhoud ingebed in toolparameterschema's die modelgedrag beïnvloeden
+**Aanvalsmethoden:**
+- **Manipulatie van metadata**: Aanvallers injecteren kwaadaardige instructies in toolbeschrijvingen, parameterdefinities of gebruiksvoorbeelden
+- **Onzichtbare instructies**: Verborgen prompts in toolmetadata die door AI-modellen worden verwerkt maar onzichtbaar zijn voor menselijke gebruikers
+- **Dynamische toolwijziging ("Rug Pulls")**: Tools die door gebruikers zijn goedgekeurd worden later aangepast om kwaadaardige acties uit te voeren zonder dat gebruikers dit merken
+- **Parameterinjectie**: Kwaadaardige inhoud ingebed in toolparameterschema’s die het modelgedrag beïnvloeden
 
-**Risico's bij Gehoste Servers**: Remote MCP-servers brengen verhoogde risico's met zich mee, omdat tooldefinities kunnen worden bijgewerkt na de initiële goedkeuring door gebruikers, waardoor scenario's ontstaan waarin eerder veilige tools kwaadaardig worden. Voor uitgebreide analyse, zie [Toolvergiftiging-aanvallen (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
+**Risico’s bij gehoste servers**: Externe MCP-servers brengen verhoogde risico’s met zich mee omdat tooldefinities na initiële gebruikersgoedkeuring kunnen worden bijgewerkt, waardoor scenario’s ontstaan waarin eerder veilige tools kwaadaardig worden. Voor uitgebreide analyse, zie [Tool Poisoning Attacks (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
-![Toolinjectie Aanval Diagram](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.nl.png)
+![Tool Injection Attack Diagram](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.nl.png)
 
 #### **Aanvullende AI-aanvalsvectoren**
 
-- **Cross-Domain Promptinjectie (XPIA)**: Geavanceerde aanvallen die inhoud uit meerdere domeinen gebruiken om beveiligingscontroles te omzeilen
-- **Dynamische Capaciteitswijziging**: Real-time wijzigingen in toolcapaciteiten die ontsnappen aan initiële beveiligingsbeoordelingen
-- **Context Window Poisoning**: Aanvallen die grote contextvensters manipuleren om kwaadaardige instructies te verbergen
-- **Modelverwarringsaanvallen**: Misbruik van modellimieten om onvoorspelbaar of onveilig gedrag te creëren
+- **Cross-Domain Prompt Injection (XPIA)**: Geavanceerde aanvallen die content uit meerdere domeinen gebruiken om beveiligingscontroles te omzeilen
+- **Dynamische wijziging van mogelijkheden**: Real-time aanpassingen van toolmogelijkheden die initiële beveiligingsbeoordelingen ontlopen
+- **Context window poisoning**: Aanvallen die grote contextvensters manipuleren om kwaadaardige instructies te verbergen
+- **Modelverwarring-aanvallen**: Misbruik van modelbeperkingen om onvoorspelbaar of onveilig gedrag te creëren
 
-### Impact van AI-beveiligingsrisico's
+### Impact van AI-beveiligingsrisico’s
 
 **Gevolgen met hoge impact:**
-- **Gegevensuitvoer**: Ongeautoriseerde toegang en diefstal van gevoelige bedrijfs- of persoonlijke gegevens
-- **Privacyschendingen**: Blootstelling van persoonlijk identificeerbare informatie (PII) en vertrouwelijke bedrijfsgegevens  
-- **Systeemmanipulatie**: Onbedoelde wijzigingen in kritieke systemen en workflows
-- **Diefstal van Inloggegevens**: Compromittering van authenticatietokens en service-inloggegevens
-- **Laterale Beweging**: Gebruik van gecompromitteerde AI-systemen als draaipunt voor bredere netwerkaanvallen
+- **Datalekken**: Ongeautoriseerde toegang en diefstal van gevoelige bedrijfs- of persoonlijke gegevens
+- **Privacyschendingen**: Blootstelling van persoonlijk identificeerbare informatie (PII) en vertrouwelijke bedrijfsdata  
+- **Systeemmanipulatie**: Onbedoelde wijzigingen aan kritieke systemen en workflows
+- **Diefstal van referenties**: Compromittering van authenticatietokens en service-referenties
+- **Laterale beweging**: Gebruik van gecompromitteerde AI-systemen als pivot voor bredere netwerk-aanvallen
 
-### Microsoft AI Beveiligingsoplossingen
+### Microsoft AI-beveiligingsoplossingen
 
-#### **AI Prompt Shields: Geavanceerde Bescherming tegen Injectie-aanvallen**
+#### **AI Prompt Shields: Geavanceerde bescherming tegen injectie-aanvallen**
 
 Microsoft **AI Prompt Shields** bieden uitgebreide verdediging tegen zowel directe als indirecte promptinjectie-aanvallen via meerdere beveiligingslagen:
 
 ##### **Kernbeschermingsmechanismen:**
 
-1. **Geavanceerde Detectie & Filtering**
-   - Machine learning-algoritmen en NLP-technieken detecteren kwaadaardige instructies in externe inhoud
-   - Real-time analyse van documenten, webpagina's, e-mails en gegevensbronnen op ingebedde bedreigingen
+1. **Geavanceerde detectie & filtering**
+   - Machine learning-algoritmen en NLP-technieken detecteren kwaadaardige instructies in externe content
+   - Real-time analyse van documenten, webpagina’s, e-mails en databronnen op ingebedde bedreigingen
    - Contextueel begrip van legitieme versus kwaadaardige promptpatronen
 
-2. **Spotlighting Technieken**  
-   - Onderscheidt tussen vertrouwde systeeminstructies en mogelijk gecompromitteerde externe inputs
-   - Teksttransformatiemethoden die de relevantie voor modellen verbeteren terwijl kwaadaardige inhoud wordt geïsoleerd
-   - Helpt AI-systemen de juiste instructiehiërarchie te behouden en geïnjecteerde opdrachten te negeren
+2. **Spotlighting-technieken**  
+   - Onderscheidt vertrouwde systeeminstructies van mogelijk gecompromitteerde externe input
+   - Teksttransformatietechnieken die modelrelevantie verbeteren en kwaadaardige content isoleren
+   - Helpt AI-systemen de juiste instructiehiërarchie te behouden en geïnjecteerde commando’s te negeren
 
-3. **Delimiter & Datamarking Systemen**
+3. **Delimiter- & datamarkering-systemen**
    - Expliciete grensdefinitie tussen vertrouwde systeemberichten en externe invoertekst
-   - Speciale markeringen benadrukken grenzen tussen vertrouwde en niet-vertrouwde gegevensbronnen
-   - Duidelijke scheiding voorkomt instructieverwarring en ongeautoriseerde opdrachtuitvoering
+   - Speciale markeringen benadrukken grenzen tussen vertrouwde en onbetrouwbare databronnen
+   - Duidelijke scheiding voorkomt instructieverwarring en ongeautoriseerde uitvoering van commando’s
 
-4. **Continue Dreigingsinformatie**
-   - Microsoft monitort voortdurend opkomende aanvalspatronen en werkt verdedigingen bij
-   - Proactieve dreigingsjacht op nieuwe injectietechnieken en aanvalsvectoren
-   - Regelmatige updates van beveiligingsmodellen om effectief te blijven tegen evoluerende bedreigingen
+4. **Continue dreigingsinformatie**
+   - Microsoft monitort continu opkomende aanvalspatronen en werkt verdedigingen bij
+   - Proactief dreigingsonderzoek naar nieuwe injectietechnieken en aanvalsvectoren
+   - Regelmatige updates van beveiligingsmodellen om effectiviteit tegen evoluerende bedreigingen te behouden
 
-5. **Azure Content Safety Integratie**
+5. **Integratie met Azure Content Safety**
    - Onderdeel van de uitgebreide Azure AI Content Safety-suite
-   - Aanvullende detectie voor jailbreakpogingen, schadelijke inhoud en schendingen van beveiligingsbeleid
-   - Geïntegreerde beveiligingscontroles over AI-applicatiecomponenten
+   - Extra detectie voor jailbreakpogingen, schadelijke content en overtredingen van beveiligingsbeleid
+   - Geünificeerde beveiligingscontroles over AI-applicatiecomponenten
 
-**Implementatiebronnen**: [Microsoft Prompt Shields Documentatie](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
+**Implementatieresources**: [Microsoft Prompt Shields Documentatie](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields Bescherming](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.nl.png)
+![Microsoft Prompt Shields Protection](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.nl.png)
 
 
-## Geavanceerde MCP Beveiligingsbedreigingen
+## Geavanceerde MCP-beveiligingsbedreigingen
 
-### Sessiekaping Kwetsbaarheden
+### Kwetsbaarheden voor sessiekaping
 
-**Sessiekaping** vormt een kritieke aanvalsvector in stateful MCP-implementaties waarbij onbevoegde partijen legitieme sessie-ID's verkrijgen en misbruiken om clients te imiteren en ongeautoriseerde acties uit te voeren.
+**Sessiekaping** is een kritieke aanvalsvector in stateful MCP-implementaties waarbij onbevoegden legitieme sessie-identificaties verkrijgen en misbruiken om zich voor te doen als clients en ongeautoriseerde acties uit te voeren.
 
-#### **Aanvalsscenario's & Risico's**
+#### **Aanvalsscenario’s & risico’s**
 
-- **Sessiekaping Promptinjectie**: Aanvallers met gestolen sessie-ID's injecteren kwaadaardige gebeurtenissen in servers die sessiestatus delen, wat mogelijk schadelijke acties of toegang tot gevoelige gegevens veroorzaakt
-- **Directe Imitatie**: Gestolen sessie-ID's stellen aanvallers in staat directe MCP-serveroproepen te doen die authenticatie omzeilen, waardoor ze als legitieme gebruikers worden behandeld
-- **Gecompromitteerde Hervatbare Streams**: Aanvallers kunnen verzoeken voortijdig beëindigen, waardoor legitieme clients hervatten met mogelijk kwaadaardige inhoud
+- **Sessiekaping promptinjectie**: Aanvallers met gestolen sessie-ID’s injecteren kwaadaardige gebeurtenissen in servers die sessiestatus delen, wat schadelijke acties kan triggeren of toegang tot gevoelige data kan geven
+- **Directe imitatie**: Gestolen sessie-ID’s maken directe MCP-serveraanroepen mogelijk die authenticatie omzeilen en aanvallers als legitieme gebruikers behandelen
+- **Gecompromitteerde hervatbare streams**: Aanvallers kunnen verzoeken voortijdig beëindigen, waardoor legitieme clients mogelijk met kwaadaardige content hervatten
 
-#### **Beveiligingscontroles voor Sessiebeheer**
+#### **Beveiligingscontroles voor sessiebeheer**
 
-**Kritieke Vereisten:**
-- **Autorisatieverificatie**: MCP-servers die autorisatie implementeren **MOETEN** ALLE inkomende verzoeken verifiëren en **MOETEN GEEN** sessies gebruiken voor authenticatie
+**Kritieke vereisten:**
+- **Autorisatieverificatie**: MCP-servers die autorisatie implementeren **MOETEN** ALLE inkomende verzoeken verifiëren en **MOGEN NIET** vertrouwen op sessies voor authenticatie  
 - **Veilige sessiegeneratie**: Gebruik cryptografisch veilige, niet-deterministische sessie-ID's die worden gegenereerd met veilige willekeurige nummergeneratoren  
-- **Gebruikersspecifieke koppeling**: Koppel sessie-ID's aan gebruikersspecifieke informatie met formaten zoals `<user_id>:<session_id>` om misbruik van sessies tussen gebruikers te voorkomen  
-- **Beheer van sessielevenscyclus**: Implementeer correcte vervaldatum, rotatie en ongeldigverklaring om kwetsbaarheidsvensters te beperken  
-- **Transportbeveiliging**: Verplicht HTTPS voor alle communicatie om onderschepping van sessie-ID's te voorkomen  
+- **Gebruikersspecifieke binding**: Koppel sessie-ID's aan gebruikersspecifieke informatie met formaten zoals `<user_id>:<session_id>` om misbruik van sessies tussen gebruikers te voorkomen  
+- **Beheer van sessielevenscyclus**: Implementeer correcte vervaldata, rotatie en ongeldigmaking om kwetsbaarheidsvensters te beperken  
+- **Transportbeveiliging**: Verplichte HTTPS voor alle communicatie om onderschepping van sessie-ID's te voorkomen  
 
-### Probleem van de verwarde tussenpersoon
+### Confused Deputy Probleem
 
-Het **probleem van de verwarde tussenpersoon** doet zich voor wanneer MCP-servers optreden als authenticatieproxies tussen clients en externe diensten, waardoor mogelijkheden ontstaan voor autorisatieomzeiling via statische client-ID-exploitatie.
+Het **confused deputy probleem** doet zich voor wanneer MCP-servers optreden als authenticatieproxy's tussen clients en derden, waardoor mogelijkheden ontstaan voor autorisatie-omzeiling via exploitatie van statische client-ID's.
 
-#### **Aanvalsmechanismen & risico's**
+#### **Aanvalmechanismen & Risico's**
 
-- **Omzeiling van cookie-gebaseerde toestemming**: Eerdere gebruikersauthenticatie creëert toestemmingscookies die aanvallers misbruiken via kwaadaardige autorisatieverzoeken met aangepaste redirect-URI's  
-- **Diefstal van autorisatiecodes**: Bestaande toestemmingscookies kunnen ervoor zorgen dat autorisatieservers toestemmingsschermen overslaan, waardoor codes worden doorgestuurd naar door aanvallers gecontroleerde eindpunten  
+- **Cookie-gebaseerde toestemmingsomzeiling**: Eerdere gebruikersauthenticatie creëert toestemmingscookies die aanvallers misbruiken via kwaadaardige autorisatieverzoeken met speciaal samengestelde redirect-URI's  
+- **Diefstal van autorisatiecodes**: Bestaande toestemmingscookies kunnen ervoor zorgen dat autorisatieservers toestemmingsschermen overslaan en codes doorsturen naar door aanvallers gecontroleerde eindpunten  
 - **Ongeautoriseerde API-toegang**: Gestolen autorisatiecodes maken tokenuitwisseling en gebruikersimitatie mogelijk zonder expliciete goedkeuring  
 
 #### **Mitigatiestrategieën**
 
-**Verplichte controles:**
-- **Expliciete toestemmingsvereisten**: MCP-proxyservers die statische client-ID's gebruiken **MOETEN** gebruikers toestemming vragen voor elke dynamisch geregistreerde client  
-- **OAuth 2.1 beveiligingsimplementatie**: Volg de huidige OAuth-beveiligingsrichtlijnen, inclusief PKCE (Proof Key for Code Exchange) voor alle autorisatieverzoeken  
-- **Strikte clientvalidatie**: Implementeer rigoureuze validatie van redirect-URI's en client-ID's om exploitatie te voorkomen  
+**Verplichte controles:**  
+- **Expliciete toestemmingsvereisten**: MCP-proxyservers die statische client-ID's gebruiken **MOETEN** gebruikersconsent verkrijgen voor elke dynamisch geregistreerde client  
+- **OAuth 2.1 beveiligingsimplementatie**: Volg de huidige OAuth-beveiligingsbest practices inclusief PKCE (Proof Key for Code Exchange) voor alle autorisatieverzoeken  
+- **Strikte clientvalidatie**: Implementeer rigoureuze validatie van redirect-URI's en clientidentificaties om exploitatie te voorkomen  
 
-### Kwetsbaarheden bij token-doorvoer  
+### Token Passthrough Kwetsbaarheden  
 
-**Token-doorvoer** is een expliciet anti-patroon waarbij MCP-servers clienttokens accepteren zonder juiste validatie en deze doorsturen naar downstream-API's, wat in strijd is met MCP-autorisatiespecificaties.
+**Token passthrough** is een expliciete anti-patroon waarbij MCP-servers clienttokens accepteren zonder juiste validatie en deze doorsturen naar downstream API's, wat in strijd is met MCP-autorisatiespecificaties.
 
 #### **Beveiligingsimplicaties**
 
-- **Omzeiling van controles**: Directe client-naar-API-tokengebruik omzeilt cruciale limieten, validatie en monitoring  
-- **Corruptie van auditsporen**: Tokens die upstream zijn uitgegeven maken clientidentificatie onmogelijk, wat incidentonderzoek belemmert  
-- **Proxy-gebaseerde data-exfiltratie**: Niet-gevalideerde tokens stellen kwaadwillenden in staat servers te gebruiken als proxy's voor ongeautoriseerde gegevens toegang  
-- **Schending van vertrouwensgrenzen**: Vertrouwensassumpties van downstream-diensten kunnen worden geschonden wanneer de oorsprong van tokens niet kan worden geverifieerd  
-- **Uitbreiding van aanvallen tussen diensten**: Gecompromitteerde tokens die worden geaccepteerd door meerdere diensten maken laterale beweging mogelijk  
+- **Omzeiling van controles**: Direct gebruik van client-naar-API tokens omzeilt kritieke limieten, validatie en monitoring  
+- **Corruptie van audittrail**: Tokens uitgegeven door upstream maken clientidentificatie onmogelijk, wat incidentonderzoek belemmert  
+- **Proxy-gebaseerde data-exfiltratie**: Ongevalideerde tokens stellen kwaadwillenden in staat servers als proxy te gebruiken voor ongeautoriseerde data toegang  
+- **Schending van vertrouwensgrenzen**: Vertrouwensveronderstellingen van downstream services kunnen worden geschonden wanneer tokenherkomst niet kan worden geverifieerd  
+- **Uitbreiding van multi-service aanvallen**: Gecompromitteerde tokens die door meerdere services worden geaccepteerd maken laterale beweging mogelijk  
 
 #### **Vereiste beveiligingscontroles**
 
-**Niet-onderhandelbare vereisten:**
-- **Tokenvalidatie**: MCP-servers **MOETEN GEEN** tokens accepteren die niet expliciet zijn uitgegeven voor de MCP-server  
-- **Audience-verificatie**: Controleer altijd of de audience-claims van tokens overeenkomen met de identiteit van de MCP-server  
-- **Correcte tokenlevenscyclus**: Implementeer kortlevende toegangstokens met veilige rotatiepraktijken  
+**Niet-onderhandelbare vereisten:**  
+- **Tokenvalidatie**: MCP-servers **MOGEN NIET** tokens accepteren die niet expliciet voor de MCP-server zijn uitgegeven  
+- **Audience-verificatie**: Valideer altijd dat de audience claims van tokens overeenkomen met de identiteit van de MCP-server  
+- **Juiste tokenlevenscyclus**: Implementeer kortdurende toegangstokens met veilige rotatiepraktijken  
 
-## Beveiliging van de toeleveringsketen voor AI-systemen
+## Supply Chain Beveiliging voor AI-systemen
 
-Beveiliging van de toeleveringsketen is geëvolueerd voorbij traditionele softwareafhankelijkheden en omvat nu het hele AI-ecosysteem. Moderne MCP-implementaties moeten alle AI-gerelateerde componenten rigoureus verifiëren en monitoren, aangezien elk potentiële kwetsbaarheden introduceert die de systeemintegriteit kunnen aantasten.
+Supply chain beveiliging is geëvolueerd voorbij traditionele softwareafhankelijkheden en omvat het gehele AI-ecosysteem. Moderne MCP-implementaties moeten alle AI-gerelateerde componenten rigoureus verifiëren en monitoren, aangezien elk potentiële kwetsbaarheden introduceert die de systeemintegriteit kunnen compromitteren.
 
-### Uitgebreide AI-toeleveringsketencomponenten
+### Uitgebreide AI Supply Chain Componenten
 
-**Traditionele softwareafhankelijkheden:**
+**Traditionele softwareafhankelijkheden:**  
 - Open-source bibliotheken en frameworks  
-- Containerafbeeldingen en basissystemen  
-- Ontwikkeltools en build-pijplijnen  
+- Containerimages en basissystemen  
+- Ontwikkeltools en build pipelines  
 - Infrastructuurcomponenten en -diensten  
 
-**AI-specifieke toeleveringsketenelementen:**
-- **Foundation Models**: Voorgetrainde modellen van verschillende aanbieders die verificatie van herkomst vereisen  
+**AI-specifieke supply chain elementen:**  
+- **Foundation Models**: Voorgetrainde modellen van diverse aanbieders die herkomstverificatie vereisen  
 - **Embedding Services**: Externe vectorisatie- en semantische zoekdiensten  
-- **Context Providers**: Gegevensbronnen, kennisbanken en documentrepositories  
-- **Externe API's**: Externe AI-diensten, ML-pijplijnen en gegevensverwerkingseindpunten  
-- **Modelartefacten**: Gewichten, configuraties en fijn-afgestemde modelvarianten  
-- **Trainingsgegevensbronnen**: Datasets gebruikt voor modeltraining en fijn-afstemming  
+- **Contextproviders**: Databronnen, kennisbanken en documentrepositories  
+- **Derdepartij-API's**: Externe AI-diensten, ML-pijplijnen en dataverwerkingseindpunten  
+- **Modelartefacten**: Gewichten, configuraties en fijn-afgestelde modelvarianten  
+- **Trainingsdatabronnen**: Datasets gebruikt voor modeltraining en fine-tuning  
 
-### Uitgebreide strategie voor beveiliging van de toeleveringsketen
+### Uitgebreide Supply Chain Beveiligingsstrategie
 
-#### **Componentverificatie & vertrouwen**
-- **Herkomstvalidatie**: Verifieer de oorsprong, licenties en integriteit van alle AI-componenten vóór integratie  
-- **Beveiligingsbeoordeling**: Voer kwetsbaarheidsscans en beveiligingsreviews uit voor modellen, gegevensbronnen en AI-diensten  
-- **Reputatieanalyse**: Evalueer het beveiligingsrecord en de praktijken van AI-dienstverleners  
-- **Compliance-verificatie**: Zorg ervoor dat alle componenten voldoen aan organisatorische beveiligings- en regelgevingsvereisten  
+#### **Componentverificatie & Vertrouwen**  
+- **Herkomstvalidatie**: Verifieer oorsprong, licenties en integriteit van alle AI-componenten vóór integratie  
+- **Beveiligingsbeoordeling**: Voer kwetsbaarheidsscans en beveiligingsreviews uit voor modellen, databronnen en AI-diensten  
+- **Reputatieanalyse**: Evalueer de beveiligingshistorie en praktijken van AI-dienstverleners  
+- **Compliance-verificatie**: Zorg dat alle componenten voldoen aan organisatorische beveiligings- en regelgevingseisen  
 
-#### **Veilige implementatiepijplijnen**  
-- **Geautomatiseerde CI/CD-beveiliging**: Integreer beveiligingsscans in geautomatiseerde implementatiepijplijnen  
-- **Artefactintegriteit**: Implementeer cryptografische verificatie voor alle geïmplementeerde artefacten (code, modellen, configuraties)  
-- **Gefaseerde implementatie**: Gebruik progressieve implementatiestrategieën met beveiligingsvalidatie in elke fase  
-- **Vertrouwde artefactrepositories**: Implementeer alleen vanuit geverifieerde, veilige artefactregisters en repositories  
+#### **Veilige Deployment Pipelines**  
+- **Geautomatiseerde CI/CD-beveiliging**: Integreer beveiligingsscans in geautomatiseerde deployment pipelines  
+- **Integriteit van artefacten**: Implementeer cryptografische verificatie voor alle gedeployde artefacten (code, modellen, configuraties)  
+- **Gefaseerde deployment**: Gebruik progressieve deploymentstrategieën met beveiligingsvalidatie in elke fase  
+- **Vertrouwde artefactrepositories**: Deploy alleen vanuit geverifieerde, veilige artefactregistries en repositories  
 
-#### **Continue monitoring & respons**
+#### **Continue Monitoring & Respons**  
 - **Afhankelijkheidsscanning**: Voortdurende kwetsbaarheidsmonitoring voor alle software- en AI-componentafhankelijkheden  
-- **Modelmonitoring**: Continue beoordeling van modelgedrag, prestatiedrift en beveiligingsanomalieën  
+- **Modelmonitoring**: Continue beoordeling van modelgedrag, prestatieafwijkingen en beveiligingsanomalieën  
 - **Servicegezondheidstracking**: Monitor externe AI-diensten op beschikbaarheid, beveiligingsincidenten en beleidswijzigingen  
-- **Integratie van dreigingsinformatie**: Gebruik dreigingsfeeds specifiek voor AI- en ML-beveiligingsrisico's  
+- **Integratie van dreigingsinformatie**: Verwerk dreigingsfeeds specifiek voor AI- en ML-beveiligingsrisico's  
 
-#### **Toegangscontrole & minimaal privilege**
-- **Componentniveau-permissies**: Beperk toegang tot modellen, gegevens en diensten op basis van zakelijke noodzaak  
-- **Beheer van serviceaccounts**: Implementeer toegewijde serviceaccounts met minimale vereiste permissies  
+#### **Toegangscontrole & Least Privilege**  
+- **Componentniveau-permissies**: Beperk toegang tot modellen, data en diensten op basis van zakelijke noodzaak  
+- **Serviceaccountbeheer**: Implementeer toegewijde serviceaccounts met minimale vereiste permissies  
 - **Netwerksegmentatie**: Isoleer AI-componenten en beperk netwerktoegang tussen diensten  
-- **API-gatewaycontroles**: Gebruik gecentraliseerde API-gateways om toegang tot externe AI-diensten te controleren en te monitoren  
+- **API Gateway-controles**: Gebruik gecentraliseerde API-gateways om toegang tot externe AI-diensten te controleren en monitoren  
 
-#### **Incidentrespons & herstel**
-- **Snelle responsprocedures**: Vastgestelde processen voor het patchen of vervangen van gecompromitteerde AI-componenten  
-- **Credentialrotatie**: Geautomatiseerde systemen voor het roteren van geheimen, API-sleutels en servicecredentials  
-- **Rollbackmogelijkheden**: Mogelijkheid om snel terug te keren naar eerdere bekende goede versies van AI-componenten  
-- **Herstel van toeleveringsketenbreuken**: Specifieke procedures voor het reageren op compromissen van upstream AI-diensten  
+#### **Incidentrespons & Herstel**  
+- **Snelle responsprocedures**: Vastgestelde processen voor patchen of vervangen van gecompromitteerde AI-componenten  
+- **Rotatie van referenties**: Geautomatiseerde systemen voor het roteren van geheimen, API-sleutels en service-referenties  
+- **Rollback-mogelijkheden**: Mogelijkheid om snel terug te keren naar eerder bekende goede versies van AI-componenten  
+- **Herstel bij supply chain-inbreuken**: Specifieke procedures voor het reageren op compromittering van upstream AI-diensten  
 
-### Microsoft-beveiligingstools & integratie
+### Microsoft Beveiligingstools & Integratie
 
-**GitHub Advanced Security** biedt uitgebreide bescherming van de toeleveringsketen, waaronder:  
-- **Geheimenscanning**: Geautomatiseerde detectie van credentials, API-sleutels en tokens in repositories  
-- **Afhankelijkheidsscanning**: Kwetsbaarheidsbeoordeling voor open-source afhankelijkheden en bibliotheken  
-- **CodeQL-analyse**: Statische codeanalyse voor beveiligingskwetsbaarheden en coderingsproblemen  
-- **Inzichten in de toeleveringsketen**: Zichtbaarheid in de gezondheid en beveiligingsstatus van afhankelijkheden  
+**GitHub Advanced Security** biedt uitgebreide bescherming van de supply chain, waaronder:  
+- **Secret Scanning**: Geautomatiseerde detectie van referenties, API-sleutels en tokens in repositories  
+- **Dependency Scanning**: Kwetsbaarheidsbeoordeling voor open-source afhankelijkheden en bibliotheken  
+- **CodeQL Analyse**: Statische code-analyse voor beveiligingskwetsbaarheden en codeerproblemen  
+- **Supply Chain Insights**: Inzicht in afhankelijkheidsgezondheid en beveiligingsstatus  
 
-**Azure DevOps & Azure Repos-integratie:**  
-- Naadloze integratie van beveiligingsscans in Microsoft-ontwikkelplatforms  
-- Geautomatiseerde beveiligingscontroles in Azure Pipelines voor AI-werkbelastingen  
-- Beleidsafdwinging voor veilige implementatie van AI-componenten  
+**Azure DevOps & Azure Repos Integratie:**  
+- Naadloze integratie van beveiligingsscans over Microsoft ontwikkelplatforms  
+- Geautomatiseerde beveiligingscontroles in Azure Pipelines voor AI-workloads  
+- Beleidsafdwinging voor veilige AI-componentdeployments  
 
-**Microsoft interne praktijken:**  
-Microsoft implementeert uitgebreide beveiligingspraktijken voor de toeleveringsketen in alle producten. Lees meer over bewezen benaderingen in [The Journey to Secure the Software Supply Chain at Microsoft](https://devblogs.microsoft.com/engineering-at-microsoft/the-journey-to-secure-the-software-supply-chain-at-microsoft/).  
+**Microsoft Interne Praktijken:**  
+Microsoft implementeert uitgebreide supply chain beveiligingspraktijken in alle producten. Lees over bewezen benaderingen in [The Journey to Secure the Software Supply Chain at Microsoft](https://devblogs.microsoft.com/engineering-at-microsoft/the-journey-to-secure-the-software-supply-chain-at-microsoft/).  
 
-## Fundamentele beveiligingspraktijken
+## Foundation Security Best Practices
 
-MCP-implementaties bouwen voort op de bestaande beveiligingshouding van uw organisatie. Het versterken van fundamentele beveiligingspraktijken verbetert de algehele beveiliging van AI-systemen en MCP-implementaties aanzienlijk.
+MCP-implementaties erven en bouwen voort op de bestaande beveiligingshouding van uw organisatie. Het versterken van fundamentele beveiligingspraktijken verbetert aanzienlijk de algehele beveiliging van AI-systemen en MCP-deployments.
 
-### Kernbeveiligingsprincipes
+### Kernfundamenten van Beveiliging
 
-#### **Veilige ontwikkelpraktijken**
-- **OWASP-naleving**: Bescherm tegen [OWASP Top 10](https://owasp.org/www-project-top-ten/) kwetsbaarheden in webapplicaties  
+#### **Veilige ontwikkelpraktijken**  
+- **OWASP-compliance**: Bescherming tegen [OWASP Top 10](https://owasp.org/www-project-top-ten/) webapplicatiekwetsbaarheden  
 - **AI-specifieke bescherming**: Implementeer controles voor [OWASP Top 10 voor LLM's](https://genai.owasp.org/download/43299/?tmstv=1731900559)  
-- **Veilig geheimenbeheer**: Gebruik toegewijde kluizen voor tokens, API-sleutels en gevoelige configuratiegegevens  
-- **End-to-end encryptie**: Implementeer veilige communicatie tussen alle applicatiecomponenten en gegevensstromen  
-- **Inputvalidatie**: Rigoureuze validatie van alle gebruikersinvoer, API-parameters en gegevensbronnen  
+- **Veilig geheimbeheer**: Gebruik toegewijde kluizen voor tokens, API-sleutels en gevoelige configuratiegegevens  
+- **End-to-end encryptie**: Implementeer veilige communicatie over alle applicatiecomponenten en datastromen  
+- **Inputvalidatie**: Strenge validatie van alle gebruikersinvoer, API-parameters en databronnen  
 
-#### **Verharding van infrastructuur**
+#### **Infrastructuurverharding**  
 - **Multi-factor authenticatie**: Verplichte MFA voor alle administratieve en serviceaccounts  
 - **Patchbeheer**: Geautomatiseerd, tijdig patchen van besturingssystemen, frameworks en afhankelijkheden  
 - **Integratie van identiteitsproviders**: Gecentraliseerd identiteitsbeheer via enterprise identiteitsproviders (Microsoft Entra ID, Active Directory)  
 - **Netwerksegmentatie**: Logische isolatie van MCP-componenten om laterale beweging te beperken  
-- **Principe van minimaal privilege**: Minimale vereiste permissies voor alle systeemcomponenten en accounts  
+- **Principe van minste privilege**: Minimale vereiste permissies voor alle systeemcomponenten en accounts  
 
-#### **Beveiligingsmonitoring & detectie**
-- **Uitgebreide logging**: Gedetailleerde logging van AI-applicatieactiviteiten, inclusief MCP-client-serverinteracties  
-- **SIEM-integratie**: Gecentraliseerd beheer van beveiligingsinformatie en -gebeurtenissen voor anomaliedetectie  
+#### **Beveiligingsmonitoring & Detectie**  
+- **Uitgebreide logging**: Gedetailleerde logging van AI-applicatieactiviteiten, inclusief MCP client-server interacties  
+- **SIEM-integratie**: Gecentraliseerd security information and event management voor anomaliedetectie  
 - **Gedragsanalyse**: AI-gestuurde monitoring om ongebruikelijke patronen in systeem- en gebruikersgedrag te detecteren  
-- **Dreigingsinformatie**: Integratie van externe dreigingsfeeds en indicatoren van compromissen (IOCs)  
+- **Dreigingsinformatie**: Integratie van externe dreigingsfeeds en indicators of compromise (IOCs)  
 - **Incidentrespons**: Goed gedefinieerde procedures voor detectie, respons en herstel van beveiligingsincidenten  
 
-#### **Zero Trust-architectuur**
+#### **Zero Trust Architectuur**  
 - **Nooit vertrouwen, altijd verifiëren**: Continue verificatie van gebruikers, apparaten en netwerkverbindingen  
-- **Micro-segmentatie**: Granulaire netwerkcontroles die individuele werkbelastingen en diensten isoleren  
+- **Micro-segmentatie**: Gedetailleerde netwerkcontroles die individuele workloads en diensten isoleren  
 - **Identiteitsgerichte beveiliging**: Beveiligingsbeleid gebaseerd op geverifieerde identiteiten in plaats van netwerklocatie  
-- **Continue risicobeoordeling**: Dynamische evaluatie van de beveiligingshouding op basis van huidige context en gedrag  
-- **Voorwaardelijke toegang**: Toegangscontroles die zich aanpassen op basis van risicofactoren, locatie en apparaatvertrouwen  
+- **Continue risicobeoordeling**: Dynamische evaluatie van beveiligingshouding op basis van huidige context en gedrag  
+- **Conditionele toegang**: Toegangscontroles die zich aanpassen op basis van risicofactoren, locatie en apparaatvertrouwen  
 
-### Integratiepatronen voor ondernemingen
+### Enterprise Integratiepatronen
 
-#### **Integratie met Microsoft-beveiligingsecosysteem**
-- **Microsoft Defender for Cloud**: Uitgebreid beheer van beveiligingshouding in de cloud  
-- **Azure Sentinel**: Cloud-native SIEM- en SOAR-mogelijkheden voor bescherming van AI-werkbelastingen  
-- **Microsoft Entra ID**: Enterprise identiteits- en toegangsbeheer met voorwaardelijke toegangsbeleid  
-- **Azure Key Vault**: Gecentraliseerd geheimenbeheer met hardwarebeveiligingsmodule (HSM) ondersteuning  
-- **Microsoft Purview**: Gegevensbeheer en compliance voor AI-gegevensbronnen en workflows  
+#### **Integratie Microsoft Beveiligingsecosysteem**  
+- **Microsoft Defender for Cloud**: Uitgebreid cloud security posture management  
+- **Azure Sentinel**: Cloud-native SIEM en SOAR mogelijkheden voor bescherming van AI-workloads  
+- **Microsoft Entra ID**: Enterprise identiteits- en toegangsbeheer met conditionele toegangsbeleid  
+- **Azure Key Vault**: Gecentraliseerd geheimbeheer met hardware security module (HSM) ondersteuning  
+- **Microsoft Purview**: Data governance en compliance voor AI-databronnen en workflows  
 
-#### **Compliance & governance**
-- **Regelgevingsafstemming**: Zorg ervoor dat MCP-implementaties voldoen aan branchespecifieke compliancevereisten (GDPR, HIPAA, SOC 2)  
-- **Gegevensclassificatie**: Correcte categorisatie en behandeling van gevoelige gegevens verwerkt door AI-systemen  
-- **Auditsporen**: Uitgebreide logging voor naleving en forensisch onderzoek  
+#### **Compliance & Governance**  
+- **Regelgevingsafstemming**: Zorg dat MCP-implementaties voldoen aan branchespecifieke compliance-eisen (GDPR, HIPAA, SOC 2)  
+- **Dataclassificatie**: Juiste categorisering en behandeling van gevoelige data verwerkt door AI-systemen  
+- **Audittrails**: Uitgebreide logging voor naleving van regelgeving en forensisch onderzoek  
 - **Privacycontroles**: Implementatie van privacy-by-design principes in AI-systeemarchitectuur  
-- **Wijzigingsbeheer**: Formele processen voor beveiligingsreviews van wijzigingen in AI-systemen  
+- **Wijzigingsbeheer**: Formele processen voor beveiligingsreviews van AI-systeemwijzigingen  
 
-Deze fundamentele praktijken creëren een robuuste beveiligingsbasis die de effectiviteit van MCP-specifieke beveiligingscontroles verbetert en uitgebreide bescherming biedt voor AI-gestuurde applicaties.
+Deze fundamentele praktijken creëren een robuuste beveiligingsbasis die de effectiviteit van MCP-specifieke beveiligingscontroles versterkt en uitgebreide bescherming biedt voor AI-gedreven applicaties.
 
-## Belangrijke beveiligingsinzichten
+## Belangrijke Beveiligingsinzichten
 
-- **Gelaagde beveiligingsaanpak**: Combineer fundamentele beveiligingspraktijken (veilig coderen, minimaal privilege, verificatie van toeleveringsketen, continue monitoring) met AI-specifieke controles voor uitgebreide bescherming  
+- **Gelaagde beveiligingsaanpak**: Combineer fundamentele beveiligingspraktijken (veilig coderen, minste privilege, supply chain verificatie, continue monitoring) met AI-specifieke controles voor uitgebreide bescherming  
 
-- **AI-specifiek dreigingslandschap**: MCP-systemen worden geconfronteerd met unieke risico's zoals promptinjectie, toolvergiftiging, sessiekaping, problemen met verwarde tussenpersonen, kwetsbaarheden bij token-doorvoer en overmatige permissies die gespecialiseerde mitigaties vereisen  
+- **AI-specifieke dreigingslandschap**: MCP-systemen worden geconfronteerd met unieke risico's zoals promptinjectie, toolvergiftiging, sessiekaping, confused deputy problemen, token passthrough kwetsbaarheden en excessieve permissies die gespecialiseerde mitigaties vereisen  
 
-- **Authenticatie & autorisatie-excellentie**: Implementeer robuuste authenticatie met externe identiteitsproviders (Microsoft Entra ID), handhaaf correcte tokenvalidatie en accepteer nooit tokens die niet expliciet zijn uitgegeven voor uw MCP-server  
+- **Authenticatie & autorisatie-excellentie**: Implementeer robuuste authenticatie met externe identiteitsproviders (Microsoft Entra ID), handhaaf correcte tokenvalidatie en accepteer nooit tokens die niet expliciet voor uw MCP-server zijn uitgegeven  
 
-- **Preventie van AI-aanvallen**: Gebruik Microsoft Prompt Shields en Azure Content Safety om indirecte promptinjectie en toolvergiftigingsaanvallen te voorkomen, terwijl u toolmetadata valideert en monitort op dynamische wijzigingen  
+- **AI-aanvalspreventie**: Zet Microsoft Prompt Shields en Azure Content Safety in om indirecte promptinjectie en toolvergiftigingsaanvallen te bestrijden, terwijl u toolmetadata valideert en dynamische wijzigingen monitort  
 
-- **Sessies & transportbeveiliging**: Gebruik cryptografisch veilige, niet-deterministische sessie-ID's gekoppeld aan gebruikersidentiteiten, implementeer correct beheer van sessielevenscyclus en gebruik sessies nooit voor authenticatie  
+- **Sessies & transportbeveiliging**: Gebruik cryptografisch veilige, niet-deterministische sessie-ID's gebonden aan gebruikersidentiteiten, implementeer correcte sessielevenscyclusbeheer en gebruik nooit sessies voor authenticatie  
 
-- **OAuth-beveiligingsrichtlijnen**: Voorkom aanvallen van verwarde tussenpersonen door expliciete gebruikers toestemming voor dynamisch geregistreerde clients, correcte OAuth 2.1-implementatie met PKCE en strikte validatie van redirect-URI's  
+- **OAuth beveiligingsbest practices**: Voorkom confused deputy aanvallen door expliciete gebruikersconsent voor dynamisch geregistreerde clients, correcte OAuth 2.1 implementatie met PKCE en strikte validatie van redirect-URI's  
 
-- **Tokenbeveiligingsprincipes**: Vermijd anti-patronen bij token-doorvoer, valideer audience-claims van tokens, implementeer kortlevende tokens met veilige rotatie en behoud duidelijke vertrouwensgrenzen  
+- **Tokenbeveiligingsprincipes**: Vermijd token passthrough anti-patronen, valideer audience claims van tokens, implementeer kortdurende tokens met veilige rotatie en onderhoud duidelijke vertrouwensgrenzen  
 
-- **Uitgebreide beveiliging van de toeleveringsketen**: Behandel alle AI-ecosysteemcomponenten (modellen, embeddings, contextproviders, externe API's) met dezelfde beveiligingsrigor als traditionele softwareafhankelijkheden  
+- **Uitgebreide supply chain beveiliging**: Behandel alle AI-ecosysteemcomponenten (modellen, embeddings, contextproviders, externe API's) met dezelfde beveiligingsrigor als traditionele softwareafhankelijkheden  
 
-- **Continue evolutie**: Blijf op de hoogte van snel evoluerende MCP-specificaties, draag bij aan beveiligingsstandaarden in de gemeenschap en onderhoud adaptieve beveiligingshoudingen naarmate het protocol zich ontwikkelt  
+- **Continue evolutie**: Blijf up-to-date met snel evoluerende MCP-specificaties, draag bij aan beveiligingscommunity-standaarden en onderhoud adaptieve beveiligingshoudingen naarmate het protocol volwassen wordt  
 
-- **Microsoft-beveiligingsintegratie**: Maak gebruik van het uitgebreide beveiligingsecosysteem van Microsoft (Prompt Shields, Azure Content Safety, GitHub Advanced Security, Entra ID) voor verbeterde bescherming van MCP-implementaties  
+- **Microsoft beveiligingsintegratie**: Maak gebruik van het uitgebreide beveiligingsecosysteem van Microsoft (Prompt Shields, Azure Content Safety, GitHub Advanced Security, Entra ID) voor verbeterde MCP-deploymentbescherming  
 
-## Uitgebreide bronnen
+## Uitgebreide Bronnen
 
-### **Officiële MCP-beveiligingsdocumentatie**
-- [MCP-specificatie (Huidig: 2025-06-18)](https://spec.modelcontextprotocol.io/specification/2025-06-18/)  
-- [MCP-beveiligingsrichtlijnen](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices)  
-- [MCP-autorisatiespecificatie](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization)  
-- [MCP GitHub-repository](https://github.com/modelcontextprotocol)  
+### **Officiële MCP Beveiligingsdocumentatie**  
+- [MCP Specificatie (Huidig: 2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)  
+- [MCP Beveiligingsbest Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices)  
+- [MCP Autorisatiespecificatie](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)  
+- [MCP GitHub Repository](https://github.com/modelcontextprotocol)  
 
-### **Beveiligingsstandaarden & richtlijnen**
-- [OAuth 2.0 beveiligingsrichtlijnen (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)  
+### **Beveiligingsstandaarden & Best Practices**  
+- [OAuth 2.0 Security Best Practices (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)  
 - [OWASP Top 10 Web Application Security](https://owasp.org/www-project-top-ten/)  
 - [OWASP Top 10 voor Large Language Models](https://genai.owasp.org/download/43299/?tmstv=1731900559)  
 - [Microsoft Digital Defense Report](https://aka.ms/mddr)  
 
-### **AI-beveiligingsonderzoek & analyse**
+### **AI Beveiligingsonderzoek & Analyse**  
 - [Promptinjectie in MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/)  
-- [Toolvergiftigingsaanvallen (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks)  
-- [MCP-beveiligingsonderzoeksbriefing (Wiz Security)](https://www.wiz.io/blog/mcp-security-research-briefing#remote-servers-22)  
-### **Microsoft Security-oplossingen**
+- [Toolvergiftigingsaanvallen (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks)
+- [MCP Security Research Briefing (Wiz Security)](https://www.wiz.io/blog/mcp-security-research-briefing#remote-servers-22)
+
+### **Microsoft Beveiligingsoplossingen**
 - [Microsoft Prompt Shields Documentatie](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 - [Azure Content Safety Service](https://learn.microsoft.com/azure/ai-services/content-safety/)
 - [Microsoft Entra ID Beveiliging](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
 - [Azure Token Management Best Practices](https://learn.microsoft.com/entra/identity-platform/access-tokens)
 - [GitHub Advanced Security](https://github.com/security/advanced-security)
 
-### **Implementatiegidsen & Tutorials**
+### **Implementatiehandleidingen & Tutorials**
 - [Azure API Management als MCP Authenticatie Gateway](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
 - [Microsoft Entra ID Authenticatie met MCP Servers](https://den.dev/blog/mcp-server-auth-entra-id-session/)
 - [Veilige Tokenopslag en Encryptie (Video)](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2)
 
-### **DevOps & Beveiliging van de Supply Chain**
+### **DevOps & Supply Chain Beveiliging**
 - [Azure DevOps Beveiliging](https://azure.microsoft.com/products/devops)
 - [Azure Repos Beveiliging](https://azure.microsoft.com/products/devops/repos/)
-- [Microsoft Supply Chain Security Journey](https://devblogs.microsoft.com/engineering-at-microsoft/the-journey-to-secure-the-software-supply-chain-at-microsoft/)
+- [Microsoft Supply Chain Beveiligingsreis](https://devblogs.microsoft.com/engineering-at-microsoft/the-journey-to-secure-the-software-supply-chain-at-microsoft/)
 
 ## **Aanvullende Beveiligingsdocumentatie**
 
-Voor uitgebreide beveiligingsrichtlijnen, raadpleeg de gespecialiseerde documenten in deze sectie:
+Voor uitgebreide beveiligingsrichtlijnen, raadpleeg deze gespecialiseerde documenten in deze sectie:
 
-- **[MCP Security Best Practices 2025](./mcp-security-best-practices-2025.md)** - Volledige beveiligingsrichtlijnen voor MCP-implementaties
-- **[Azure Content Safety Implementatie](./azure-content-safety-implementation.md)** - Praktische implementatievoorbeelden voor integratie van Azure Content Safety  
-- **[MCP Security Controls 2025](./mcp-security-controls-2025.md)** - Nieuwste beveiligingsmaatregelen en technieken voor MCP-implementaties
-- **[MCP Best Practices Quick Reference](./mcp-best-practices.md)** - Snelgids voor essentiële MCP-beveiligingspraktijken
+- **[MCP Security Best Practices 2025](./mcp-security-best-practices-2025.md)** - Complete beveiligingsbest practices voor MCP-implementaties
+- **[Azure Content Safety Implementatie](./azure-content-safety-implementation.md)** - Praktische implementatievoorbeelden voor Azure Content Safety-integratie  
+- **[MCP Security Controls 2025](./mcp-security-controls-2025.md)** - Laatste beveiligingscontroles en technieken voor MCP-implementaties
+- **[MCP Best Practices Quick Reference](./mcp-best-practices.md)** - Snelle referentiegids voor essentiële MCP-beveiligingspraktijken
 
 ---
 
@@ -452,5 +453,9 @@ Voor uitgebreide beveiligingsrichtlijnen, raadpleeg de gespecialiseerde document
 
 Volgende: [Hoofdstuk 3: Aan de Slag](../03-GettingStarted/README.md)
 
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Disclaimer**:  
-Dit document is vertaald met behulp van de AI-vertalingsservice [Co-op Translator](https://github.com/Azure/co-op-translator). Hoewel we ons best doen voor nauwkeurigheid, dient u zich ervan bewust te zijn dat geautomatiseerde vertalingen fouten of onnauwkeurigheden kunnen bevatten. Het originele document in de oorspronkelijke taal moet worden beschouwd als de gezaghebbende bron. Voor kritieke informatie wordt professionele menselijke vertaling aanbevolen. Wij zijn niet aansprakelijk voor eventuele misverstanden of verkeerde interpretaties die voortvloeien uit het gebruik van deze vertaling.
+Dit document is vertaald met behulp van de AI-vertalingsdienst [Co-op Translator](https://github.com/Azure/co-op-translator). Hoewel we streven naar nauwkeurigheid, dient u er rekening mee te houden dat geautomatiseerde vertalingen fouten of onnauwkeurigheden kunnen bevatten. Het originele document in de oorspronkelijke taal moet als de gezaghebbende bron worden beschouwd. Voor cruciale informatie wordt professionele menselijke vertaling aanbevolen. Wij zijn niet aansprakelijk voor eventuele misverstanden of verkeerde interpretaties die voortvloeien uit het gebruik van deze vertaling.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

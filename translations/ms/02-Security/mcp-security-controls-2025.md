@@ -1,17 +1,17 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "0c243c6189393ed7468e470ef2090049",
-  "translation_date": "2025-08-18T17:59:09+00:00",
+  "original_hash": "9351493ad29390d37f64bc6d84a03db5",
+  "translation_date": "2025-12-19T14:37:17+00:00",
   "source_file": "02-Security/mcp-security-controls-2025.md",
   "language_code": "ms"
 }
 -->
-# Kawalan Keselamatan MCP - Kemas Kini Ogos 2025
+# Kawalan Keselamatan MCP - Kemas Kini Disember 2025
 
-> **Standard Semasa**: Dokumen ini mencerminkan keperluan keselamatan [Spesifikasi MCP 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) dan [Amalan Terbaik Keselamatan MCP](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) rasmi.
+> **Standard Semasa**: Dokumen ini mencerminkan keperluan keselamatan [Spesifikasi MCP 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) dan [Amalan Terbaik Keselamatan MCP](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) rasmi.
 
-Model Context Protocol (MCP) telah berkembang dengan ketara dengan kawalan keselamatan yang dipertingkatkan untuk menangani ancaman keselamatan perisian tradisional dan ancaman khusus AI. Dokumen ini menyediakan kawalan keselamatan yang komprehensif untuk pelaksanaan MCP yang selamat sehingga Ogos 2025.
+Model Context Protocol (MCP) telah matang dengan ketara dengan kawalan keselamatan yang dipertingkatkan yang menangani kedua-dua keselamatan perisian tradisional dan ancaman khusus AI. Dokumen ini menyediakan kawalan keselamatan menyeluruh untuk pelaksanaan MCP yang selamat setakat Disember 2025.
 
 ## **Keperluan Keselamatan WAJIB**
 
@@ -21,9 +21,9 @@ Model Context Protocol (MCP) telah berkembang dengan ketara dengan kawalan kesel
 >
 > **DILARANG**: Pelayan MCP **TIDAK BOLEH** menggunakan sesi untuk pengesahan  
 >
-> **WAJIB**: Pelayan MCP yang melaksanakan kebenaran **HARUS** mengesahkan SEMUA permintaan masuk  
+> **DIKEHENDAKI**: Pelayan MCP yang melaksanakan kebenaran **MESTI** mengesahkan SEMUA permintaan masuk  
 >
-> **WAJIB**: Pelayan proksi MCP yang menggunakan ID pelanggan statik **HARUS** mendapatkan persetujuan pengguna untuk setiap pelanggan yang didaftarkan secara dinamik  
+> **WAJIB**: Pelayan proksi MCP yang menggunakan ID klien statik **MESTI** mendapatkan persetujuan pengguna untuk setiap klien yang didaftarkan secara dinamik
 
 ---
 
@@ -31,43 +31,47 @@ Model Context Protocol (MCP) telah berkembang dengan ketara dengan kawalan kesel
 
 ### **Integrasi Penyedia Identiti Luaran**
 
-**Standard MCP Semasa (2025-06-18)** membenarkan pelayan MCP untuk mendelegasikan pengesahan kepada penyedia identiti luaran, mewakili peningkatan keselamatan yang ketara:
+**Standard MCP Semasa (2025-06-18)** membenarkan pelayan MCP mendelegasikan pengesahan kepada penyedia identiti luaran, mewakili peningkatan keselamatan yang ketara:
+
+### **Integrasi Penyedia Identiti Luaran**
+
+**Standard MCP Semasa (2025-11-25)** membenarkan pelayan MCP mendelegasikan pengesahan kepada penyedia identiti luaran, mewakili peningkatan keselamatan yang ketara:
 
 **Manfaat Keselamatan:**
 1. **Menghapuskan Risiko Pengesahan Tersuai**: Mengurangkan permukaan kerentanan dengan mengelakkan pelaksanaan pengesahan tersuai  
-2. **Keselamatan Gred Perusahaan**: Memanfaatkan penyedia identiti yang mapan seperti Microsoft Entra ID dengan ciri keselamatan canggih  
-3. **Pengurusan Identiti Berpusat**: Memudahkan pengurusan kitaran hayat pengguna, kawalan akses, dan pengauditan pematuhan  
-4. **Pengesahan Pelbagai Faktor**: Mewarisi keupayaan MFA daripada penyedia identiti perusahaan  
-5. **Dasar Akses Bersyarat**: Mendapat manfaat daripada kawalan akses berdasarkan risiko dan pengesahan adaptif  
+2. **Keselamatan Gred Perusahaan**: Memanfaatkan penyedia identiti yang telah mantap seperti Microsoft Entra ID dengan ciri keselamatan lanjutan  
+3. **Pengurusan Identiti Berpusat**: Memudahkan pengurusan kitar hayat pengguna, kawalan akses, dan audit pematuhan  
+4. **Pengesahan Pelbagai Faktor**: Mewarisi keupayaan MFA dari penyedia identiti perusahaan  
+5. **Polisi Akses Bersyarat**: Mendapat manfaat kawalan akses berasaskan risiko dan pengesahan adaptif
 
 **Keperluan Pelaksanaan:**
-- **Pengesahan Penonton Token**: Pastikan semua token dikeluarkan secara eksplisit untuk pelayan MCP  
+- **Pengesahan Audiens Token**: Sahkan semua token dikeluarkan secara eksplisit untuk pelayan MCP  
 - **Pengesahan Penerbit**: Sahkan penerbit token sepadan dengan penyedia identiti yang dijangka  
 - **Pengesahan Tandatangan**: Pengesahan kriptografi integriti token  
-- **Penguatkuasaan Tamat Tempoh**: Penguatkuasaan ketat had masa hayat token  
-- **Pengesahan Skop**: Pastikan token mengandungi kebenaran yang sesuai untuk operasi yang diminta  
+- **Penguatkuasaan Tempoh Sah**: Penguatkuasaan ketat had hayat token  
+- **Pengesahan Skop**: Pastikan token mengandungi kebenaran yang sesuai untuk operasi yang diminta
 
 ### **Keselamatan Logik Kebenaran**
 
 **Kawalan Kritikal:**
-- **Audit Kebenaran Komprehensif**: Kajian keselamatan berkala pada semua titik keputusan kebenaran  
-- **Default Gagal-Selamat**: Menolak akses apabila logik kebenaran tidak dapat membuat keputusan yang pasti  
-- **Sempadan Kebenaran**: Pemisahan yang jelas antara tahap keistimewaan dan akses sumber  
-- **Pelogkan Audit**: Pelogkan lengkap semua keputusan kebenaran untuk pemantauan keselamatan  
-- **Kajian Akses Berkala**: Pengesahan berkala ke atas kebenaran pengguna dan penugasan keistimewaan  
+- **Audit Kebenaran Menyeluruh**: Semakan keselamatan berkala bagi semua titik keputusan kebenaran  
+- **Default Fail-Safe**: Tolak akses apabila logik kebenaran tidak dapat membuat keputusan muktamad  
+- **Sempadan Kebenaran**: Pemisahan jelas antara tahap keistimewaan dan akses sumber yang berbeza  
+- **Log Audit**: Perekodan lengkap semua keputusan kebenaran untuk pemantauan keselamatan  
+- **Semakan Akses Berkala**: Pengesahan berkala ke atas kebenaran pengguna dan penugasan keistimewaan
 
 ## 2. **Keselamatan Token & Kawalan Anti-Passthrough**
 
 ### **Pencegahan Passthrough Token**
 
-**Passthrough token secara eksplisit dilarang** dalam Spesifikasi Kebenaran MCP kerana risiko keselamatan yang kritikal:
+**Passthrough token secara eksplisit dilarang** dalam Spesifikasi Kebenaran MCP kerana risiko keselamatan kritikal:
 
 **Risiko Keselamatan Ditangani:**
-- **Pelanggaran Kawalan**: Memintas kawalan keselamatan penting seperti had kadar, pengesahan permintaan, dan pemantauan trafik  
-- **Kerosakan Akauntabiliti**: Menjadikan pengenalan pelanggan mustahil, merosakkan jejak audit dan penyiasatan insiden  
+- **Pengelakan Kawalan**: Memintas kawalan keselamatan penting seperti had kadar, pengesahan permintaan, dan pemantauan trafik  
+- **Kerosakan Akauntabiliti**: Menjadikan pengenalan klien mustahil, merosakkan jejak audit dan siasatan insiden  
 - **Eksfiltrasi Berasaskan Proksi**: Membolehkan pelaku jahat menggunakan pelayan sebagai proksi untuk akses data tanpa kebenaran  
-- **Pelanggaran Sempadan Kepercayaan**: Merosakkan andaian kepercayaan perkhidmatan hiliran tentang asal token  
-- **Pergerakan Lateral**: Token yang dikompromi merentasi pelbagai perkhidmatan membolehkan pengembangan serangan yang lebih luas  
+- **Pelanggaran Sempadan Kepercayaan**: Memecahkan andaian kepercayaan perkhidmatan hiliran tentang asal token  
+- **Pergerakan Lateral**: Token yang dikompromi merentasi pelbagai perkhidmatan membolehkan pengembangan serangan yang lebih luas
 
 **Kawalan Pelaksanaan:**
 ```yaml
@@ -85,23 +89,23 @@ Token Lifecycle Management:
   replay_protection: "Implemented via nonce/timestamp"
 ```
 
-### **Pola Pengurusan Token Selamat**
+### **Corak Pengurusan Token Selamat**
 
 **Amalan Terbaik:**
-- **Token Jangka Pendek**: Meminimumkan tetingkap pendedahan dengan putaran token yang kerap  
-- **Pengeluaran Tepat Pada Masanya**: Mengeluarkan token hanya apabila diperlukan untuk operasi tertentu  
+- **Token Jangka Pendek**: Meminimumkan tempoh pendedahan dengan putaran token yang kerap  
+- **Penerbitan Just-in-Time**: Keluarkan token hanya apabila diperlukan untuk operasi tertentu  
 - **Penyimpanan Selamat**: Gunakan modul keselamatan perkakasan (HSM) atau peti kunci selamat  
-- **Pengikatan Token**: Mengikat token kepada pelanggan, sesi, atau operasi tertentu jika boleh  
-- **Pemantauan & Peringatan**: Pengesanan masa nyata penyalahgunaan token atau pola akses tanpa kebenaran  
+- **Pengikatan Token**: Ikat token kepada klien, sesi, atau operasi tertentu jika boleh  
+- **Pemantauan & Amaran**: Pengesanan masa nyata penyalahgunaan token atau corak akses tanpa kebenaran
 
 ## 3. **Kawalan Keselamatan Sesi**
 
 ### **Pencegahan Pengambilalihan Sesi**
 
 **Vektor Serangan Ditangani:**
-- **Suntikan Prompt Pengambilalihan Sesi**: Peristiwa jahat disuntik ke dalam keadaan sesi yang dikongsi  
-- **Penyamaran Sesi**: Penggunaan tanpa kebenaran ID sesi yang dicuri untuk memintas pengesahan  
-- **Serangan Aliran Boleh Disambung Semula**: Eksploitasi penyambungan semula acara yang dihantar oleh pelayan untuk suntikan kandungan jahat  
+- **Suntikan Prompt Pengambilalihan Sesi**: Peristiwa berniat jahat disuntik ke dalam keadaan sesi yang dikongsi  
+- **Peniruan Sesi**: Penggunaan tanpa kebenaran ID sesi yang dicuri untuk memintas pengesahan  
+- **Serangan Aliran Boleh Disambung Semula**: Eksploitasi penyambungan semula acara yang dihantar pelayan untuk suntikan kandungan berniat jahat
 
 **Kawalan Sesi Wajib:**
 ```yaml
@@ -125,20 +129,20 @@ Session Lifecycle:
 
 **Keselamatan Pengangkutan:**
 - **Penguatkuasaan HTTPS**: Semua komunikasi sesi melalui TLS 1.3  
-- **Atribut Kuki Selamat**: HttpOnly, Secure, SameSite=Strict  
-- **Pinning Sijil**: Untuk sambungan kritikal bagi mencegah serangan MITM  
+- **Atribut Kukis Selamat**: HttpOnly, Secure, SameSite=Strict  
+- **Pemasangan Sijil**: Untuk sambungan kritikal bagi mengelakkan serangan MITM
 
 ### **Pertimbangan Stateful vs Stateless**
 
 **Untuk Pelaksanaan Stateful:**
 - Keadaan sesi yang dikongsi memerlukan perlindungan tambahan terhadap serangan suntikan  
-- Pengurusan sesi berasaskan barisan memerlukan pengesahan integriti  
-- Pelbagai instance pelayan memerlukan penyegerakan keadaan sesi yang selamat  
+- Pengurusan sesi berasaskan antrian memerlukan pengesahan integriti  
+- Beberapa contoh pelayan memerlukan penyelarasan keadaan sesi yang selamat
 
 **Untuk Pelaksanaan Stateless:**
-- Pengurusan sesi berasaskan token seperti JWT  
+- Pengurusan sesi berasaskan token JWT atau serupa  
 - Pengesahan kriptografi integriti keadaan sesi  
-- Permukaan serangan yang dikurangkan tetapi memerlukan pengesahan token yang kukuh  
+- Permukaan serangan dikurangkan tetapi memerlukan pengesahan token yang kukuh
 
 ## 4. **Kawalan Keselamatan Khusus AI**
 
@@ -163,14 +167,14 @@ Integration Points:
 ```
 
 **Kawalan Pelaksanaan:**
-- **Pembersihan Input**: Pengesahan dan penapisan komprehensif semua input pengguna  
-- **Definisi Sempadan Kandungan**: Pemisahan yang jelas antara arahan sistem dan kandungan pengguna  
-- **Hierarki Arahan**: Peraturan keutamaan yang betul untuk arahan yang bercanggah  
-- **Pemantauan Output**: Pengesanan output yang berpotensi berbahaya atau dimanipulasi  
+- **Sanitasi Input**: Pengesahan dan penapisan menyeluruh semua input pengguna  
+- **Definisi Sempadan Kandungan**: Pemisahan jelas antara arahan sistem dan kandungan pengguna  
+- **Hierarki Arahan**: Peraturan keutamaan yang betul untuk arahan yang bertentangan  
+- **Pemantauan Output**: Pengesanan output yang berpotensi berbahaya atau dimanipulasi
 
 ### **Pencegahan Keracunan Alat**
 
-**Kerangka Keselamatan Alat:**
+**Rangka Kerja Keselamatan Alat:**
 ```yaml
 Tool Definition Protection:
   validation:
@@ -193,10 +197,10 @@ Tool Definition Protection:
 ```
 
 **Pengurusan Alat Dinamik:**
-- **Aliran Kerja Kelulusan**: Persetujuan pengguna eksplisit untuk pengubahsuaian alat  
-- **Keupayaan Rollback**: Keupayaan untuk kembali ke versi alat sebelumnya  
-- **Pengauditan Perubahan**: Sejarah lengkap pengubahsuaian definisi alat  
-- **Penilaian Risiko**: Penilaian automatik terhadap postur keselamatan alat  
+- **Aliran Kerja Kelulusan**: Persetujuan pengguna secara eksplisit untuk pengubahsuaian alat  
+- **Keupayaan Rollback**: Kebolehan untuk kembali ke versi alat sebelumnya  
+- **Audit Perubahan**: Sejarah lengkap pengubahsuaian definisi alat  
+- **Penilaian Risiko**: Penilaian automatik terhadap postur keselamatan alat
 
 ## 5. **Pencegahan Serangan Confused Deputy**
 
@@ -219,14 +223,14 @@ Client Registration:
 ```
 
 **Keperluan Pelaksanaan:**
-- **Pengesahan Persetujuan Pengguna**: Jangan sekali-kali melangkau skrin persetujuan untuk pendaftaran pelanggan dinamik  
-- **Pengesahan URI Pengalihan**: Pengesahan berasaskan senarai putih yang ketat untuk destinasi pengalihan  
-- **Perlindungan Kod Kebenaran**: Kod jangka pendek dengan penguatkuasaan penggunaan tunggal  
-- **Pengesahan Identiti Pelanggan**: Pengesahan kukuh terhadap kelayakan dan metadata pelanggan  
+- **Pengesahan Persetujuan Pengguna**: Jangan sesekali langkau skrin persetujuan untuk pendaftaran klien dinamik  
+- **Pengesahan URI Redirect**: Pengesahan berasaskan senarai putih yang ketat untuk destinasi redirect  
+- **Perlindungan Kod Kebenaran**: Kod jangka pendek dengan penguatkuasaan guna sekali sahaja  
+- **Pengesahan Identiti Klien**: Pengesahan kukuh ke atas kelayakan dan metadata klien
 
 ## 6. **Keselamatan Pelaksanaan Alat**
 
-### **Pengasingan & Kotak Pasir**
+### **Pengasingan & Sandboxing**
 
 **Pengasingan Berasaskan Kontena:**
 ```yaml
@@ -246,10 +250,10 @@ Execution Environment:
 ```
 
 **Pengasingan Proses:**
-- **Konteks Proses Berasingan**: Setiap pelaksanaan alat dalam ruang proses yang diasingkan  
-- **Komunikasi Antara Proses**: Mekanisme IPC yang selamat dengan pengesahan  
+- **Konteks Proses Berasingan**: Setiap pelaksanaan alat dalam ruang proses yang terasing  
+- **Komunikasi Antara Proses**: Mekanisme IPC selamat dengan pengesahan  
 - **Pemantauan Proses**: Analisis tingkah laku masa nyata dan pengesanan anomali  
-- **Penguatkuasaan Sumber**: Had keras pada CPU, memori, dan operasi I/O  
+- **Penguatkuasaan Sumber**: Had keras ke atas CPU, memori, dan operasi I/O
 
 ### **Pelaksanaan Keistimewaan Minimum**
 
@@ -278,7 +282,7 @@ Access Control:
 
 ### **Pengesahan Kebergantungan**
 
-**Keselamatan Komponen Komprehensif:**
+**Keselamatan Komponen Menyeluruh:**
 ```yaml
 Software Dependencies:
   scanning: 
@@ -310,16 +314,16 @@ AI Components:
 ### **Pemantauan Berterusan**
 
 **Pengesanan Ancaman Rantaian Bekalan:**
-- **Pemantauan Kesihatan Kebergantungan**: Penilaian berterusan terhadap semua kebergantungan untuk isu keselamatan  
-- **Integrasi Perisikan Ancaman**: Kemas kini masa nyata tentang ancaman rantaian bekalan yang muncul  
+- **Pemantauan Kesihatan Kebergantungan**: Penilaian berterusan semua kebergantungan untuk isu keselamatan  
+- **Integrasi Intelijen Ancaman**: Kemas kini masa nyata mengenai ancaman rantaian bekalan yang muncul  
 - **Analisis Tingkah Laku**: Pengesanan tingkah laku luar biasa dalam komponen luaran  
-- **Tindak Balas Automatik**: Penahanan segera komponen yang dikompromi  
+- **Tindak Balas Automatik**: Pengawalan segera komponen yang dikompromi
 
 ## 8. **Kawalan Pemantauan & Pengesanan**
 
-### **Pengurusan Maklumat Keselamatan dan Peristiwa (SIEM)**
+### **Pengurusan Maklumat dan Peristiwa Keselamatan (SIEM)**
 
-**Strategi Pelogkan Komprehensif:**
+**Strategi Perekodan Menyeluruh:**
 ```yaml
 Authentication Events:
   - "All authentication attempts (success/failure)"
@@ -343,10 +347,10 @@ Security Events:
 ### **Pengesanan Ancaman Masa Nyata**
 
 **Analitik Tingkah Laku:**
-- **Analitik Tingkah Laku Pengguna (UBA)**: Pengesanan pola akses pengguna yang luar biasa  
+- **Analitik Tingkah Laku Pengguna (UBA)**: Pengesanan corak akses pengguna yang luar biasa  
 - **Analitik Tingkah Laku Entiti (EBA)**: Pemantauan tingkah laku pelayan MCP dan alat  
-- **Pengesanan Anomali Pembelajaran Mesin**: Pengenalpastian ancaman keselamatan yang dikuasakan AI  
-- **Korelasi Perisikan Ancaman**: Padanan aktiviti yang diperhatikan dengan pola serangan yang diketahui  
+- **Pengesanan Anomali Pembelajaran Mesin**: Pengenalan ancaman keselamatan berkuasa AI  
+- **Korelasi Intelijen Ancaman**: Memadankan aktiviti yang diperhatikan dengan corak serangan yang diketahui
 
 ## 9. **Tindak Balas & Pemulihan Insiden**
 
@@ -379,52 +383,56 @@ Recovery Procedures:
 
 ### **Keupayaan Forensik**
 
-**Sokongan Penyiasatan:**
-- **Pemeliharaan Jejak Audit**: Pelogkan tidak boleh diubah dengan integriti kriptografi  
-- **Pengumpulan Bukti**: Pengumpulan automatik artifak keselamatan yang relevan  
-- **Rekonstruksi Garis Masa**: Urutan peristiwa terperinci yang membawa kepada insiden keselamatan  
-- **Penilaian Impak**: Penilaian skop kompromi dan pendedahan data  
+**Sokongan Siasatan:**
+- **Pemeliharaan Jejak Audit**: Perekodan tidak boleh diubah dengan integriti kriptografi  
+- **Pengumpulan Bukti**: Pengumpulan automatik artifak keselamatan yang berkaitan  
+- **Pembinaan Semula Garis Masa**: Urutan terperinci peristiwa yang membawa kepada insiden keselamatan  
+- **Penilaian Impak**: Penilaian skop kompromi dan pendedahan data
 
-## **Prinsip Seni Bina Keselamatan Utama**
+## **Prinsip Utama Seni Bina Keselamatan**
 
-### **Pertahanan Mendalam**
-- **Lapisan Keselamatan Pelbagai**: Tiada satu titik kegagalan dalam seni bina keselamatan  
-- **Kawalan Redundan**: Langkah keselamatan yang bertindih untuk fungsi kritikal  
-- **Mekanisme Gagal-Selamat**: Default selamat apabila sistem menghadapi ralat atau serangan  
+### **Pertahanan Berlapis**
+- **Berbilang Lapisan Keselamatan**: Tiada titik kegagalan tunggal dalam seni bina keselamatan  
+- **Kawalan Redundan**: Langkah keselamatan bertindih untuk fungsi kritikal  
+- **Mekanisme Fail-Safe**: Tetapan selamat apabila sistem menghadapi ralat atau serangan
 
 ### **Pelaksanaan Zero Trust**
-- **Jangan Percaya, Sentiasa Sahkan**: Pengesahan berterusan terhadap semua entiti dan permintaan  
+- **Jangan Pernah Percaya, Sentiasa Sahkan**: Pengesahan berterusan semua entiti dan permintaan  
 - **Prinsip Keistimewaan Minimum**: Hak akses minimum untuk semua komponen  
-- **Mikro-Segmentasi**: Kawalan rangkaian dan akses yang granular  
+- **Mikro-Segmentasi**: Kawalan rangkaian dan akses yang terperinci
 
 ### **Evolusi Keselamatan Berterusan**
-- **Adaptasi Landskap Ancaman**: Kemas kini berkala untuk menangani ancaman yang muncul  
+- **Penyesuaian Lanskap Ancaman**: Kemas kini berkala untuk menangani ancaman yang muncul  
 - **Keberkesanan Kawalan Keselamatan**: Penilaian dan penambahbaikan berterusan kawalan  
-- **Pematuhan Spesifikasi**: Penjajaran dengan standard keselamatan MCP yang berkembang  
+- **Pematuhan Spesifikasi**: Penyesuaian dengan standard keselamatan MCP yang berkembang
 
 ---
 
 ## **Sumber Pelaksanaan**
 
-### **Dokumentasi MCP Rasmi**
-- [Spesifikasi MCP (2025-06-18)](https://spec.modelcontextprotocol.io/specification/2025-06-18/)  
-- [Amalan Terbaik Keselamatan MCP](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices)  
-- [Spesifikasi Kebenaran MCP](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization)  
+### **Dokumentasi Rasmi MCP**
+- [Spesifikasi MCP (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [Amalan Terbaik Keselamatan MCP](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices)
+- [Spesifikasi Kebenaran MCP](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)
 
 ### **Penyelesaian Keselamatan Microsoft**
-- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)  
-- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)  
-- [GitHub Advanced Security](https://github.com/security/advanced-security)  
-- [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/)  
+- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
+- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)
+- [GitHub Advanced Security](https://github.com/security/advanced-security)
+- [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/)
 
 ### **Standard Keselamatan**
-- [Amalan Terbaik Keselamatan OAuth 2.0 (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)  
-- [OWASP Top 10 untuk Model Bahasa Besar](https://genai.owasp.org/)  
-- [Kerangka Keselamatan Siber NIST](https://www.nist.gov/cyberframework)  
+- [Amalan Terbaik Keselamatan OAuth 2.0 (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)
+- [OWASP Top 10 untuk Model Bahasa Besar](https://genai.owasp.org/)
+- [Rangka Kerja Keselamatan Siber NIST](https://www.nist.gov/cyberframework)
 
 ---
 
-> **Penting**: Kawalan keselamatan ini mencerminkan spesifikasi MCP semasa (2025-06-18). Sentiasa sahkan dengan [dokumentasi rasmi](https://spec.modelcontextprotocol.io/) terkini kerana standard terus berkembang dengan pantas.
+> **Penting**: Kawalan keselamatan ini mencerminkan spesifikasi MCP semasa (2025-06-18). Sentiasa sahkan dengan [dokumentasi rasmi](https://spec.modelcontextprotocol.io/) terkini kerana standard terus berkembang dengan pesat.
 
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk memastikan ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat penting, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk ketepatan, sila ambil maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang sahih. Untuk maklumat penting, terjemahan profesional oleh manusia adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

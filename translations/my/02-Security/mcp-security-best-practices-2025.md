@@ -1,201 +1,215 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "057dd5cc6bea6434fdb788e6c93f3f3d",
-  "translation_date": "2025-08-19T18:42:21+00:00",
+  "original_hash": "e30aaf6b178137fa6668efc1b20851d5",
+  "translation_date": "2025-12-19T17:20:48+00:00",
   "source_file": "02-Security/mcp-security-best-practices-2025.md",
   "language_code": "my"
 }
 -->
-# MCP လုံခြုံရေးအကောင်းဆုံးအလုပ်လုပ်နည်းများ - ၂၀၂၅ ခုနှစ် ဩဂုတ်လ အပ်ဒိတ်
+# MCP လုံခြုံရေးအကောင်းဆုံးလေ့ကျင့်မှုများ - ဒီဇင်ဘာ 2025 အပ်ဒိတ်
 
-> **အရေးကြီး**: ဒီစာရွက်စာတမ်းမှာ [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) လုံခြုံရေးလိုအပ်ချက်များနှင့် [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) အတည်ပြုထားသောအကြံပြုချက်များကို အဓိကထားဖော်ပြထားပါတယ်။ အမြဲတမ်းနောက်ဆုံးပေါ်အကြံပြုချက်များအတွက် လက်ရှိ specification ကိုသာကိုးကားပါ။
+> **အရေးကြီးချက်**: ဤစာတမ်းသည် နောက်ဆုံးပေါ် [MCP Specification 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) လုံခြုံရေးလိုအပ်ချက်များနှင့် တရားဝင် [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) ကို ပြသထားသည်။ အမြဲတမ်း နောက်ဆုံးပေါ် လမ်းညွှန်ချက်များအတွက် လက်ရှိ specification ကို ကိုးကားပါ။
 
-## MCP အကောင်အထည်ဖော်မှုများအတွက် မရှိမဖြစ်လိုအပ်သော လုံခြုံရေးအလုပ်လုပ်နည်းများ
+## MCP အကောင်အထည်ဖော်မှုများအတွက် အရေးကြီးသော လုံခြုံရေးလေ့ကျင့်မှုများ
 
-Model Context Protocol သည် ရိုးရိုး software လုံခြုံရေးထက် ကျော်လွန်သော ထူးခြားသော လုံခြုံရေးစိန်ခေါ်မှုများကို ဖန်တီးပေးသည်။ ဒီအလုပ်လုပ်နည်းများက အခြေခံလုံခြုံရေးလိုအပ်ချက်များနှင့် MCP-specific အန္တရာယ်များ (ဥပမာ - prompt injection, tool poisoning, session hijacking, confused deputy problems, token passthrough vulnerabilities) ကို ကာကွယ်ရန် ရည်ရွယ်ထားသည်။
+Model Context Protocol သည် ရိုးရာဆော့ဖ်ဝဲလုံခြုံရေးထက် ကျော်လွန်သော ထူးခြားသော လုံခြုံရေး စိန်ခေါ်မှုများကို မိတ်ဆက်ပေးသည်။ ဤလေ့ကျင့်မှုများသည် အခြေခံလုံခြုံရေးလိုအပ်ချက်များနှင့် MCP အထူးသဖြင့် prompt injection, tool poisoning, session hijacking, confused deputy ပြဿနာများနှင့် token passthrough အန္တရာယ်များကို ဖြေရှင်းပေးသည်။
 
-### **မရှိမဖြစ်လိုအပ်သော လုံခြုံရေးလိုအပ်ချက်များ**
+### **လိုအပ်သော လုံခြုံရေးလိုအပ်ချက်များ**
 
 **MCP Specification မှ အရေးကြီးလိုအပ်ချက်များ:**
 
-> **MUST NOT**: MCP servers သည် MCP server အတွက် ထုတ်ပေးထားခြင်းမဟုတ်သော tokens များကို လက်ခံ **မရ**  
+### **လိုအပ်သော လုံခြုံရေးလိုအပ်ချက်များ**
+
+**MCP Specification မှ အရေးကြီးလိုအပ်ချက်များ:**
+
+> **မလုပ်သင့်ပါ**: MCP ဆာဗာများသည် MCP ဆာဗာအတွက် ထုတ်ပေးထားခြင်းမရှိသော token များကို လက်ခံသင့်မည်မဟုတ်ပါ
 > 
-> **MUST**: Authorization ကို အကောင်အထည်ဖော်သော MCP servers သည် **အားလုံးသော** inbound requests များကို စစ်ဆေးရမည်  
+> **လုပ်သင့်သည်**: MCP ဆာဗာများသည် authorization ကို အကောင်အထည်ဖော်သောအခါ လာရောက်သော တောင်းဆိုမှုအားလုံးကို စစ်ဆေးသင့်သည်
 >  
-> **MUST NOT**: MCP servers သည် authentication အတွက် sessions မသုံးရ  
+> **မလုပ်သင့်ပါ**: MCP ဆာဗာများသည် authentication အတွက် session များကို အသုံးမပြုသင့်ပါ
 >
-> **MUST**: Static client IDs အသုံးပြုသော MCP proxy servers သည် dynamic client registration တိုင်းအတွက် အသုံးပြုသူ၏ သဘောတူညီမှုကို ရယူရမည်  
+> **လုပ်သင့်သည်**: static client ID များကို အသုံးပြုသော MCP proxy ဆာဗာများသည် dynamic client များအတွက် အသုံးပြုသူ၏ သဘောတူညီချက်ကို ရယူသင့်သည်
 
 ---
 
-## ၁။ **Token လုံခြုံရေးနှင့် Authentication**
+## ၁။ **Token လုံခြုံရေးနှင့် အတည်ပြုခြင်း**
 
-**Authentication & Authorization ထိန်းချုပ်မှုများ:**
-   - **ခိုင်မာသော Authorization စစ်ဆေးမှု**: MCP server authorization logic ကို စစ်ဆေးပြီး သတ်မှတ်ထားသော အသုံးပြုသူများနှင့် clients များသာ ရရှိနိုင်စေရန် အာမခံပါ  
-   - **အပြင် Identity Provider ပေါင်းစည်းမှု**: Microsoft Entra ID ကဲ့သို့သော အတည်ပြုထားသော identity providers များကို အသုံးပြုပါ၊ ကိုယ်ပိုင် authentication မဖန်တီးပါနှင့်  
-   - **Token Audience စစ်ဆေးမှု**: Tokens များကို MCP server အတွက် ထုတ်ပေးထားခြင်းဖြစ်ကြောင်း အမြဲစစ်ဆေးပါ - upstream tokens မလက်ခံပါနှင့်  
-   - **Token Lifecycle ကို မှန်ကန်စွာ စီမံခန့်ခွဲပါ**: Token rotation, expiration policies, နှင့် token replay attacks မဖြစ်စေရန် ကာကွယ်မှုများကို အကောင်အထည်ဖော်ပါ  
+**Authentication နှင့် Authorization ထိန်းချုပ်မှုများ:**
+   - **ခိုင်မာသော Authorization စစ်ဆေးမှု**: MCP ဆာဗာ authorization logic ကို စုံလင်စွာ စစ်ဆေး၍ ရည်ရွယ်ထားသော အသုံးပြုသူများနှင့် client များသာ အရင်းအမြစ်များကို ဝင်ရောက်နိုင်စေရန်
+   - **ပြင်ပ အထောက်အထားပေးသူ ပေါင်းစည်းမှု**: Microsoft Entra ID ကဲ့သို့ ရှိပြီးသား အထောက်အထားပေးသူများကို အသုံးပြု၍ ကိုယ်ပိုင် authentication မလုပ်ရန်
+   - **Token Audience စစ်ဆေးမှု**: token များသည် သင့် MCP ဆာဗာအတွက် ထုတ်ပေးထားကြောင်း အမြဲစစ်ဆေးရန် - upstream token မလက်ခံရန်
+   - **မှန်ကန်သော Token အသက်တာ**: လုံခြုံသော token လှည့်ပြောင်းမှု၊ သက်တမ်းကုန်ဆုံးမှု မူဝါဒများကို အကောင်အထည်ဖော်ပြီး token replay အတုများကို ကာကွယ်ရန်
 
-**Token ကို ကာကွယ်ထားသောသိုလှောင်မှု:**
-   - Azure Key Vault သို့မဟုတ် အခြားလုံခြုံသော credential stores များကို အသုံးပြုပါ  
-   - Token များကို သိုလှောင်နေစဉ်နှင့် ပို့ဆောင်နေစဉ် encryption ပြုလုပ်ပါ  
-   - Regular credential rotation နှင့် unauthorized access များအတွက် စောင့်ကြည့်မှုများ ပြုလုပ်ပါ  
+**ကာကွယ်ထားသော Token သိမ်းဆည်းမှု:**
+   - Azure Key Vault သို့မဟုတ် ဆင်တူသော လုံခြုံသော credential သိမ်းဆည်းရာများကို အသုံးပြုရန်
+   - token များကို အနားတွင်နှင့် လမ်းကြောင်းတွင် စာလုံးကူးခြင်းဖြင့် ကာကွယ်ရန်
+   - credential များကို ပုံမှန် လှည့်ပြောင်းခြင်းနှင့် မခွင့်ပြုထားသော ဝင်ရောက်မှုများကို စောင့်ကြည့်ရန်
 
-## ၂။ **Session စီမံခန့်ခွဲမှုနှင့် Transport လုံခြုံရေး**
+## ၂။ **Session စီမံခန့်ခွဲမှုနှင့် သယ်ယူပို့ဆောင်မှု လုံခြုံရေး**
 
-**Session လုံခြုံရေးအလုပ်လုပ်နည်းများ:**
-   - **Cryptographically Secure Session IDs**: Secure random number generators ဖြင့် ဖန်တီးထားသော လုံခြုံသော session IDs များကို အသုံးပြုပါ  
-   - **အသုံးပြုသူအလိုက် Session Binding**: Session IDs များကို `<user_id>:<session_id>` ပုံစံဖြင့် အသုံးပြုသူ၏ identity နှင့် ချိတ်ဆက်ထားပါ  
-   - **Session Lifecycle စီမံခန့်ခွဲမှု**: Expiration, rotation, နှင့် invalidation များကို မှန်ကန်စွာ အကောင်အထည်ဖော်ပါ  
-   - **HTTPS/TLS အတည်ပြုမှု**: Session ID interception မဖြစ်စေရန် အားလုံးသော ဆက်သွယ်မှုများအတွက် HTTPS ကို မဖြစ်မနေ အသုံးပြုပါ  
+**လုံခြုံသော Session လေ့ကျင့်မှုများ:**
+   - **Cryptographically လုံခြုံသော Session ID များ**: လုံခြုံပြီး မကြိုတင်ခန့်မှန်းနိုင်သော session ID များကို လုံခြုံသော random number generator များဖြင့် ဖန်တီးရန်
+   - **အသုံးပြုသူအလိုက် ချိတ်ဆက်မှု**: `<user_id>:<session_id>` ကဲ့သို့သော ပုံစံဖြင့် session ID များကို အသုံးပြုသူအတည်ပြုချက်နှင့် ချိတ်ဆက်၍ အသုံးပြုသူများအကြား session မတူညီမှုကို ကာကွယ်ရန်
+   - **Session အသက်တာ စီမံခန့်ခွဲမှု**: သက်တမ်းကုန်ဆုံးမှု၊ လှည့်ပြောင်းမှုနှင့် မမှန်ကန်သော session များကို ပယ်ဖျက်ခြင်းတို့ကို အကောင်အထည်ဖော်ရန်
+   - **HTTPS/TLS အတည်ပြုမှု**: session ID များ လိမ်လည်ခံရမှုကို ကာကွယ်ရန် ဆက်သွယ်မှုအားလုံးအတွက် HTTPS ကို မဖြစ်မနေ အသုံးပြုရန်
 
-**Transport Layer လုံခြုံရေး:**
-   - TLS 1.3 ကို အလားအလာရှိသမျှ configure ပြုလုပ်ပါ၊ certificate စီမံခန့်ခွဲမှုကို မှန်ကန်စွာ ပြုလုပ်ပါ  
-   - အရေးကြီးသော ဆက်သွယ်မှုများအတွက် certificate pinning ကို အကောင်အထည်ဖော်ပါ  
-   - Regular certificate rotation နှင့် သက်တမ်းစစ်ဆေးမှုများ ပြုလုပ်ပါ  
+**သယ်ယူပို့ဆောင်မှု အလွှာ လုံခြုံရေး:**
+   - TLS 1.3 ကို အလားအလာရှိသမျှတွင် သတ်မှတ်ပြီး လက်မှတ်စီမံခန့်ခွဲမှုကို မှန်ကန်စွာ ပြုလုပ်ရန်
+   - အရေးကြီးသော ချိတ်ဆက်မှုများအတွက် လက်မှတ် pinning ကို အကောင်အထည်ဖော်ရန်
+   - လက်မှတ်များကို ပုံမှန် လှည့်ပြောင်းခြင်းနှင့် သက်တမ်းစစ်ဆေးမှု
 
-## ၃။ **AI-Specific အန္တရာယ်ကာကွယ်မှု** 🤖
+## ၃။ **AI အထူးသဖြင့် အန္တရာယ်ကာကွယ်မှု** 🤖
 
 **Prompt Injection ကာကွယ်မှု:**
-   - **Microsoft Prompt Shields**: မကောင်းသောညွှန်ကြားချက်များကို ရှာဖွေခြင်းနှင့် စစ်ထုတ်ခြင်းအတွက် AI Prompt Shields များကို အသုံးပြုပါ  
-   - **Input Sanitization**: Injection attacks နှင့် confused deputy problems မဖြစ်စေရန် အားလုံးသော inputs များကို စစ်ဆေးပြီး သန့်စင်ပါ  
-   - **Content Boundaries**: ယုံကြည်ရသောညွှန်ကြားချက်များနှင့် အပြင် content များကို ခွဲခြားရန် delimiter နှင့် datamarking systems များကို အသုံးပြုပါ  
+   - **Microsoft Prompt Shields**: မကောင်းသောညွှန်ကြားချက်များကို ရှာဖွေစစ်ဆေးခြင်းနှင့် စစ်ထုတ်ခြင်းအတွက် AI Prompt Shields ကို တပ်ဆင်ရန်
+   - **Input သန့်ရှင်းရေး**: injection အတုများနှင့် confused deputy ပြဿနာများကို ကာကွယ်ရန် input များအားလုံးကို စစ်ဆေးသန့်ရှင်းရန်
+   - **အကြောင်းအရာ နယ်နိမိတ်များ**: ယုံကြည်စိတ်ချရသောညွှန်ကြားချက်များနှင့် ပြင်ပအကြောင်းအရာများကို ခွဲခြားရန် delimiter နှင့် datamarking စနစ်များကို အသုံးပြုရန်
 
 **Tool Poisoning ကာကွယ်မှု:**
-   - **Tool Metadata စစ်ဆေးမှု**: Tool definitions များအတွက် integrity စစ်ဆေးမှုများ ပြုလုပ်ပြီး မမျှော်လင့်ထားသော ပြောင်းလဲမှုများကို စောင့်ကြည့်ပါ  
-   - **Dynamic Tool Monitoring**: Runtime အပြုအမူများကို စောင့်ကြည့်ပြီး မမျှော်လင့်ထားသော အပြုအမူများအတွက် သတိပေးမှုများ ထည့်သွင်းပါ  
-   - **အတည်ပြုလုပ်ငန်းစဉ်များ**: Tool ပြင်ဆင်မှုများနှင့် စွမ်းဆောင်ရည်ပြောင်းလဲမှုများအတွက် အသုံးပြုသူ၏ အတည်ပြုမှုကို လိုအပ်ပါ  
+   - **Tool Metadata စစ်ဆေးမှု**: tool သတ်မှတ်ချက်များ၏ တရားဝင်မှုကို စစ်ဆေးပြီး မမျှော်လင့်ထားသော ပြောင်းလဲမှုများကို စောင့်ကြည့်ရန်
+   - **Dynamic Tool စောင့်ကြည့်မှု**: runtime အပြုအမူများကို စောင့်ကြည့်ပြီး မမျှော်လင့်ထားသော အလုပ်လုပ်ပုံများအတွက် သတိပေးချက်များ ထားရန်
+   - **အတည်ပြုလုပ်ငန်းစဉ်များ**: tool ပြင်ဆင်မှုများနှင့် စွမ်းဆောင်ရည်ပြောင်းလဲမှုများအတွက် အသုံးပြုသူ၏ ထောက်ခံချက်ကို လိုအပ်သည်
 
-## ၄။ **Access Control & Permissions**
+## ၄။ **Access Control နှင့် ခွင့်ပြုချက်များ**
 
-**Principle of Least Privilege:**
-   - MCP servers များကို လိုအပ်သော အနည်းဆုံး permissions များသာ ပေးပါ  
-   - Role-based access control (RBAC) ကို အသုံးပြုပြီး အပြည့်အဝ ခွင့်ပြုချက်များကို ထိန်းချုပ်ပါ  
-   - Regular permission reviews နှင့် privilege escalation မဖြစ်စေရန် စောင့်ကြည့်မှုများ ပြုလုပ်ပါ  
+**အနည်းဆုံးခွင့်ပြုချက် 원칙:**
+   - MCP ဆာဗာများကို ရည်ရွယ်ထားသော လုပ်ဆောင်ချက်များအတွက် လိုအပ်သည့် အနည်းဆုံး ခွင့်ပြုချက်များသာ ပေးရန်
+   - role-based access control (RBAC) ကို အသေးစိတ် ခွင့်ပြုချက်များဖြင့် အကောင်အထည်ဖော်ရန်
+   - ခွင့်ပြုချက်များကို ပုံမှန် ပြန်လည်သုံးသပ်ခြင်းနှင့် privilege တိုးမြှင့်မှုများအတွက် ဆက်လက်စောင့်ကြည့်ရန်
 
-**Runtime Permission ထိန်းချုပ်မှုများ:**
-   - Resource exhaustion attacks မဖြစ်စေရန် resource limits များကို အကောင်အထည်ဖော်ပါ  
-   - Tool execution environments များအတွက် container isolation ကို အသုံးပြုပါ  
-   - Administrative functions များအတွက် just-in-time access ကို အကောင်အထည်ဖော်ပါ  
+**Runtime ခွင့်ပြုချက် ထိန်းချုပ်မှု:**
+   - အရင်းအမြစ် ပမာဏ ကန့်သတ်မှုများကို resource exhaustion အတုများကာကွယ်ရန် အသုံးပြုရန်
+   - tool အလုပ်လုပ်ပတ်ဝန်းကျင်များအတွက် container isolation ကို အသုံးပြုရန်  
+   - အုပ်ချုပ်ရေး လုပ်ဆောင်ချက်များအတွက် just-in-time access ကို အကောင်အထည်ဖော်ရန်
 
-## ၅။ **Content လုံခြုံရေးနှင့် စောင့်ကြည့်မှု**
+## ၅။ **အကြောင်းအရာ လုံခြုံရေးနှင့် စောင့်ကြည့်မှု**
 
-**Content လုံခြုံရေးအကောင်အထည်ဖော်မှု:**
-   - **Azure Content Safety Integration**: Azure Content Safety ကို အသုံးပြုပြီး အန္တရာယ်ရှိသော content, jailbreak ကြိုးစားမှုများနှင့် policy ချိုးဖောက်မှုများကို ရှာဖွေပါ  
-   - **အပြုအမူစစ်ဆေးမှု**: MCP server နှင့် tool execution အပြုအမူများကို runtime တွင် စောင့်ကြည့်ပါ  
-   - **Comprehensive Logging**: Authentication ကြိုးစားမှုများ, tool invocations, နှင့် လုံခြုံရေးဖြစ်ရပ်များအားလုံးကို tamper-proof storage တွင် မှတ်တမ်းတင်ပါ  
+**အကြောင်းအရာ လုံခြုံရေး အကောင်အထည်ဖော်မှု:**
+   - **Azure Content Safety ပေါင်းစည်းမှု**: Azure Content Safety ကို အသုံးပြု၍ အန္တရာယ်ရှိသော အကြောင်းအရာများ၊ jailbreak ကြိုးပမ်းမှုများနှင့် မူဝါဒချိုးဖောက်မှုများကို ရှာဖွေရန်
+   - **အပြုအမူ ခွဲခြားစစ်ဆေးမှု**: MCP ဆာဗာနှင့် tool အလုပ်လုပ်မှုများတွင် မမှန်ကန်သော အပြုအမူများကို runtime တွင် စောင့်ကြည့်ရန်
+   - **စုံလင်သော မှတ်တမ်းတင်ခြင်း**: authentication ကြိုးပမ်းမှုများ၊ tool ဖိတ်ခေါ်မှုများနှင့် လုံခြုံရေးဖြစ်ရပ်များအားလုံးကို လုံခြုံပြီး ပြင်ဆင်၍မရသော သိမ်းဆည်းမှုဖြင့် မှတ်တမ်းတင်ရန်
 
-**ဆက်လက်စောင့်ကြည့်မှု:**
-   - မသင့်တော်သော pattern များနှင့် unauthorized access ကြိုးစားမှုများအတွက် real-time alerting  
-   - SIEM systems နှင့် ပေါင်းစည်းပြီး centralized security event management  
-   - MCP အကောင်အထည်ဖော်မှုများအတွက် regular security audits နှင့် penetration testing  
+**ဆက်လက် စောင့်ကြည့်မှု:**
+   - မမှန်ကန်သော ပုံစံများနှင့် မခွင့်ပြုထားသော ဝင်ရောက်မှု ကြိုးပမ်းမှုများအတွက် အချိန်နှင့်တပြေးညီ သတိပေးချက်များ  
+   - စင်တာလိုက် လုံခြုံရေးဖြစ်ရပ် စီမံခန့်ခွဲမှုအတွက် SIEM စနစ်များနှင့် ပေါင်းစည်းမှု
+   - MCP အကောင်အထည်ဖော်မှုများအတွက် ပုံမှန် လုံခြုံရေး စစ်ဆေးမှုများနှင့် penetration စမ်းသပ်မှုများ
 
 ## ၆။ **Supply Chain လုံခြုံရေး**
 
-**Component Verification:**
-   - **Dependency Scanning**: Software dependencies နှင့် AI components အားလုံးအတွက် automated vulnerability scanning ကို အသုံးပြုပါ  
-   - **Provenance Validation**: Models, data sources, နှင့် external services များ၏ မူလအရင်းအမြစ်, လိုင်စင်နှင့် integrity ကို စစ်ဆေးပါ  
-   - **Signed Packages**: Cryptographically signed packages များကို အသုံးပြုပြီး deployment မပြုမီ signatures များကို စစ်ဆေးပါ  
+**အစိတ်အပိုင်း စစ်ဆေးမှု:**
+   - **Dependency Scanning**: ဆော့ဖ်ဝဲ အားလုံးနှင့် AI အစိတ်အပိုင်းများအတွက် အလိုအလျောက် အန္တရာယ်စစ်ဆေးမှုများကို အသုံးပြုရန်
+   - **မူလအရင်းအမြစ် စစ်ဆေးမှု**: မော်ဒယ်များ၊ ဒေတာရင်းမြစ်များနှင့် ပြင်ပ ဝန်ဆောင်မှုများ၏ မူလအရင်းအမြစ်၊ လိုင်စင်နှင့် တရားဝင်မှုကို စစ်ဆေးရန်
+   - **လက်မှတ်ထိုးထားသော ပက်ကေ့ဂျ်များ**: လက်မှတ်ထိုးထားသော ပက်ကေ့ဂျ်များကို အသုံးပြု၍ တပ်ဆင်မှုမပြုမီ လက်မှတ်များကို စစ်ဆေးရန်
 
-**Secure Development Pipeline:**
-   - **GitHub Advanced Security**: Secret scanning, dependency analysis, နှင့် CodeQL static analysis ကို အကောင်အထည်ဖော်ပါ  
-   - **CI/CD လုံခြုံရေး**: Automated deployment pipelines အတွင်း security validation များကို ပေါင်းစည်းပါ  
-   - **Artifact Integrity**: Deployed artifacts နှင့် configurations များအတွက် cryptographic verification ကို အကောင်အထည်ဖော်ပါ  
+**လုံခြုံသော ဖွံ့ဖြိုးတိုးတက်မှု လမ်းကြောင်း:**
+   - **GitHub Advanced Security**: secret scanning, dependency analysis နှင့် CodeQL static analysis ကို အကောင်အထည်ဖော်ရန်
+   - **CI/CD လုံခြုံရေး**: အလိုအလျောက် တပ်ဆင်မှု လမ်းကြောင်းများတွင် လုံခြုံရေး စစ်ဆေးမှုများ ပေါင်းစည်းရန်
+   - **Artifact တရားဝင်မှု**: တပ်ဆင်ထားသော artifact များနှင့် ဖွဲ့စည်းမှုများအတွက် cryptographic စစ်ဆေးမှုများကို အကောင်အထည်ဖော်ရန်
 
 ## ၇။ **OAuth လုံခြုံရေးနှင့် Confused Deputy ကာကွယ်မှု**
 
 **OAuth 2.1 အကောင်အထည်ဖော်မှု:**
-   - **PKCE အကောင်အထည်ဖော်မှု**: Proof Key for Code Exchange (PKCE) ကို authorization requests အားလုံးအတွက် အသုံးပြုပါ  
-   - **အသုံးပြုသူ၏ သဘောတူညီမှု**: Confused deputy attacks မဖြစ်စေရန် dynamic client registration တိုင်းအတွက် အသုံးပြုသူ၏ သဘောတူညီမှုကို ရယူပါ  
-   - **Redirect URI စစ်ဆေးမှု**: Redirect URIs နှင့် client identifiers များကို တိကျစွာ စစ်ဆေးပါ  
+   - **PKCE အကောင်အထည်ဖော်မှု**: authorization တောင်းဆိုမှုအားလုံးအတွက် Proof Key for Code Exchange (PKCE) ကို အသုံးပြုရန်
+   - **ရှင်းလင်းသော သဘောတူညီချက်**: confused deputy အတုများကို ကာကွယ်ရန် dynamic client တစ်ခုချင်းစီအတွက် အသုံးပြုသူ သဘောတူညီချက် ရယူရန်
+   - **Redirect URI စစ်ဆေးမှု**: redirect URI များနှင့် client အမှတ်အသားများကို တင်းကြပ်စွာ စစ်ဆေးရန်
 
 **Proxy လုံခြုံရေး:**
-   - Static client ID အသုံးချမှုမှတဆင့် authorization bypass မဖြစ်စေရန် ကာကွယ်ပါ  
-   - Third-party API access အတွက် သင့်လျော်သော consent workflows များကို အကောင်အထည်ဖော်ပါ  
-   - Authorization code ခိုးယူမှုနှင့် unauthorized API access များကို စောင့်ကြည့်ပါ  
+   - static client ID ကို အသုံးပြု၍ authorization လွှဲပြောင်းမှုကို ကာကွယ်ရန်
+   - တတိယပါတီ API ဝင်ရောက်ခွင့်အတွက် သဘောတူညီချက် လုပ်ငန်းစဉ်များကို အကောင်အထည်ဖော်ရန်
+   - authorization code ခိုးယူမှုနှင့် မခွင့်ပြုထားသော API ဝင်ရောက်မှုများကို စောင့်ကြည့်ရန်
 
 ## ၈။ **ဖြစ်ရပ်တုံ့ပြန်မှုနှင့် ပြန်လည်ထူထောင်မှု**
 
-**အမြန်တုံ့ပြန်နိုင်စွမ်းများ:**
-   - **Automated Response**: Credential rotation နှင့် အန္တရာယ်ကာကွယ်မှုအတွက် automated systems များကို အကောင်အထည်ဖော်ပါ  
-   - **Rollback လုပ်ငန်းစဉ်များ**: ပြဿနာမရှိသော configurations နှင့် components များသို့ အမြန်ပြန်လည်ပြောင်းနိုင်စွမ်းရှိပါ  
-   - **Forensic စွမ်းရည်များ**: ဖြစ်ရပ်စုံစမ်းစစ်ဆေးမှုအတွက် အသေးစိတ် audit trails နှင့် logging များကို ထည့်သွင်းပါ  
+**အမြန်တုံ့ပြန်နိုင်မှု:**
+   - **အလိုအလျောက် တုံ့ပြန်မှု**: credential လှည့်ပြောင်းခြင်းနှင့် အန္တရာယ် ထိန်းချုပ်မှုအတွက် အလိုအလျောက် စနစ်များကို အကောင်အထည်ဖော်ရန်
+   - **ပြန်လည်ဆွဲယူမှု လုပ်ထုံးလုပ်နည်းများ**: သိထားသော ကောင်းမွန်သော ဖွဲ့စည်းမှုများနှင့် အစိတ်အပိုင်းများသို့ အမြန်ပြန်လည်ဆွဲယူနိုင်ရန်
+   - **Forensic စွမ်းရည်များ**: ဖြစ်ရပ် စုံစမ်းစစ်ဆေးမှုအတွက် အသေးစိတ် audit trail များနှင့် မှတ်တမ်းတင်မှုများ
 
-**ဆက်သွယ်မှုနှင့် ပေါင်းစည်းမှု:**
-   - လုံခြုံရေးဖြစ်ရပ်များအတွက် တိကျသော escalation လုပ်ငန်းစဉ်များ  
-   - အဖွဲ့အစည်း၏ ဖြစ်ရပ်တုံ့ပြန်မှုအဖွဲ့များနှင့် ပေါင်းစည်းမှု  
-   - Regular security incident simulations နှင့် tabletop exercises  
+**ဆက်သွယ်မှုနှင့် ညှိနှိုင်းမှု:**
+   - လုံခြုံရေး ဖြစ်ရပ်များအတွက် ရှင်းလင်းသော တိုးတက်မှု လုပ်ထုံးလုပ်နည်းများ
+   - အဖွဲ့အစည်းဖြစ်ရပ်တုံ့ပြန်မှု အဖွဲ့များနှင့် ပေါင်းစည်းမှု
+   - ပုံမှန် လုံခြုံရေး ဖြစ်ရပ် စမ်းသပ်မှုများနှင့် စားပွဲထိုး လေ့ကျင့်မှုများ
 
-## ၉။ **အညွှန်းနှင့် အုပ်ချုပ်မှု**
+## ၉။ **လိုက်နာမှုနှင့် အုပ်ချုပ်မှု**
 
-**ဥပဒေကြီးကြပ်မှုလိုအပ်ချက်များ:**
-   - MCP အကောင်အထည်ဖော်မှုများသည် စက်မှုလုပ်ငန်း-specific လိုအပ်ချက်များ (ဥပမာ - GDPR, HIPAA, SOC 2) ကို ဖြည့်ဆည်းရမည်  
-   - AI data processing အတွက် data classification နှင့် privacy controls များကို အကောင်အထည်ဖော်ပါ  
-   - Compliance auditing အတွက် အပြည့်အစုံသော documentation ကို ထိန်းသိမ်းပါ  
+**စည်းမျဉ်းစည်းကမ်းလိုက်နာမှု:**
+   - MCP အကောင်အထည်ဖော်မှုများသည် စက်မှုလုပ်ငန်းအထူးလိုအပ်ချက်များ (GDPR, HIPAA, SOC 2) ကို ဖြည့်ဆည်းရန်
+   - AI ဒေတာ ကိုင်တွယ်မှုအတွက် ဒေတာ အမျိုးအစားခွဲခြားမှုနှင့် ကိုယ်ရေးကာကွယ်မှု ထိန်းချုပ်မှုများကို အကောင်အထည်ဖော်ရန်
+   - လိုက်နာမှု စစ်ဆေးမှုအတွက် စုံလင်သော စာရွက်စာတမ်းများ ထိန်းသိမ်းရန်
 
-**ပြောင်းလဲမှုစီမံခန့်ခွဲမှု:**
-   - MCP system ပြင်ဆင်မှုများအတွက် တရားဝင် security review လုပ်ငန်းစဉ်များ  
-   - Configuration ပြောင်းလဲမှုများအတွက် version control နှင့် အတည်ပြုလုပ်ငန်းစဉ်များ  
-   - Regular compliance assessments နှင့် gap analysis  
+**ပြောင်းလဲမှု စီမံခန့်ခွဲမှု:**
+   - MCP စနစ် ပြင်ဆင်မှုများအတွက် တရားဝင် လုံခြုံရေး ပြန်လည်သုံးသပ်မှု လုပ်ငန်းစဉ်များ
+   - ဖွဲ့စည်းမှု ပြောင်းလဲမှုများအတွက် ဗားရှင်းထိန်းချုပ်မှုနှင့် အတည်ပြုလုပ်ငန်းစဉ်များ
+   - ပုံမှန် လိုက်နာမှု သုံးသပ်မှုများနှင့် ချို့ယွင်းချက် ခွဲခြားစစ်ဆေးမှု
 
-## ၁၀။ **အဆင့်မြင့် လုံခြုံရေးထိန်းချုပ်မှုများ**
+## ၁၀။ **တိုးတက်သော လုံခြုံရေး ထိန်းချုပ်မှုများ**
 
-**Zero Trust Architecture:**
-   - **Never Trust, Always Verify**: အသုံးပြုသူများ, devices, နှင့် connections များကို အမြဲတမ်းစစ်ဆေးပါ  
-   - **Micro-segmentation**: MCP components တစ်ခုချင်းစီကို ခွဲခြားထားသော network controls များ  
-   - **Conditional Access**: လက်ရှိ context နှင့် အပြုအမူအပေါ်မူတည်သော risk-based access controls  
+**Zero Trust အဆောက်အအုံ:**
+   - **ယုံကြည်မှု မရှိ၊ အမြဲစစ်ဆေးမှု**: အသုံးပြုသူများ၊ စက်ပစ္စည်းများနှင့် ချိတ်ဆက်မှုများကို ဆက်လက်စစ်ဆေးခြင်း
+   - **Micro-segmentation**: MCP အစိတ်အပိုင်း တစ်ခုချင်းစီကို ကွဲထွက်ထားသော ကွန်ရက် ထိန်းချုပ်မှုများ
+   - **Conditional Access**: လက်ရှိ အခြေအနေ နှင့် အပြုအမူအပေါ် မူတည်၍ အန္တရာယ်အခြေအနေ အရ ခွင့်ပြုချက် ထိန်းချုပ်မှုများ
 
-**Runtime Application Protection:**
-   - **Runtime Application Self-Protection (RASP)**: Real-time threat detection အတွက် RASP နည်းလမ်းများကို အသုံးပြုပါ  
-   - **Application Performance Monitoring**: တိုက်ခိုက်မှုများကို ပြသနိုင်သော performance anomalies များကို စောင့်ကြည့်ပါ  
-   - **Dynamic Security Policies**: လက်ရှိ အန္တရာယ်အခြေအနေအပေါ်မူတည်၍ လုံခြုံရေးမူဝါဒများကို ပြောင်းလဲပါ  
+**Runtime Application ကာကွယ်မှု:**
+   - **Runtime Application Self-Protection (RASP)**: အချိန်နှင့်တပြေးညီ အန္တရာယ် ရှာဖွေရေးအတွက် RASP နည်းပညာများ တပ်ဆင်ရန်
+   - **Application Performance စောင့်ကြည့်မှု**: တိုက်ခိုက်မှုများကို ပြသနိုင်သော စွမ်းဆောင်ရည် မမှန်ကန်မှုများကို စောင့်ကြည့်ရန်
+   - **Dynamic Security မူဝါဒများ**: လက်ရှိ အန္တရာယ် ပတ်ဝန်းကျင်အပေါ် မူတည်၍ လုံခြုံရေး မူဝါဒများကို လိုက်လျောညီထွေ ပြောင်းလဲရန်
 
-## ၁၁။ **Microsoft လုံခြုံရေး Ecosystem ပေါင်းစည်းမှု**
+## ၁၁။ **Microsoft လုံခြုံရေး ပတ်ဝန်းကျင် ပေါင်းစည်းမှု**
 
-**Microsoft လုံခြုံရေးအပြည့်အစုံ:**
-   - **Microsoft Defender for Cloud**: MCP workloads များအတွက် Cloud security posture management  
-   - **Azure Sentinel**: အဆင့်မြင့် အန္တရာယ်ရှာဖွေမှုအတွက် Cloud-native SIEM နှင့် SOAR စွမ်းရည်များ  
-   - **Microsoft Purview**: AI workflows နှင့် data sources များအတွက် Data governance နှင့် compliance  
+**Microsoft လုံခြုံရေး စုံလင်မှု:**
+   - **Microsoft Defender for Cloud**: MCP အလုပ်များအတွက် cloud လုံခြုံရေး အခြေအနေ စီမံခန့်ခွဲမှု
+   - **Azure Sentinel**: cloud-native SIEM နှင့် SOAR စွမ်းဆောင်ရည်များဖြင့် တိုးတက်သော အန္တရာယ် ရှာဖွေရေး
+   - **Microsoft Purview**: AI လုပ်ငန်းစဉ်များနှင့် ဒေတာရင်းမြစ်များအတွက် ဒေတာ အုပ်ချုပ်မှုနှင့် လိုက်နာမှု
 
-**Identity & Access Management:**
-   - **Microsoft Entra ID**: Conditional access policies ဖြင့် Enterprise identity management  
-   - **Privileged Identity Management (PIM)**: Just-in-time access နှင့် administrative functions များအတွက် အတည်ပြုလုပ်ငန်းစဉ်များ  
-   - **Identity Protection**: Risk-based conditional access နှင့် automated threat response  
+**အထောက်အထားနှင့် ဝင်ရောက်ခွင့် စီမံခန့်ခွဲမှု:**
+   - **Microsoft Entra ID**: conditional access မူဝါဒများဖြင့် စီးပွားရေး အထောက်အထား စီမံခန့်ခွဲမှု
+   - **Privileged Identity Management (PIM)**: အုပ်ချုပ်ရေး လုပ်ဆောင်ချက်များအတွက် just-in-time access နှင့် အတည်ပြုလုပ်ငန်းစဉ်များ
+   - **Identity Protection**: အန္တရာယ်အခြေအနေ အရ conditional access နှင့် အလိုအလျောက် အန္တရာယ် တုံ့ပြန်မှု
 
-## ၁၂။ **လုံခြုံရေးဆက်လက်တိုးတက်မှု**
+## ၁၂။ **ဆက်လက် လုံခြုံရေး တိုးတက်မှု**
 
-**လက်ရှိအခြေအနေကို လိုက်နာခြင်း:**
-   - **Specification Monitoring**: MCP specification updates နှင့် လုံခြုံရေးအကြံပြုချက်များကို Regular review ပြုလုပ်ပါ  
-   - **Threat Intelligence**: AI-specific threat feeds နှင့် indicators of compromise များကို ပေါင်းစည်းပါ  
-   - **Security Community Engagement**: MCP လုံခြုံရေးအသိုင်းအဝိုင်းနှင့် vulnerability disclosure programs များတွင် တက်ကြွစွာ ပါဝင်ပါ  
+**နောက်ဆုံးပေါ် နေထိုင်မှု:**
+   - **Specification စောင့်ကြည့်မှု**: MCP specification အပ်ဒိတ်များနှင့် လုံခြုံရေး လမ်းညွှန်ချက် ပြောင်းလဲမှုများကို ပုံမှန် ပြန်လည်သုံးသပ်ရန်
+   - **အန္တရာယ် သတင်းအချက်အလက်**: AI အထူးသဖြင့် အန္တရာယ် သတင်းအချက်အလက်များနှင့် ဖောက်ထွင်းမှု အညွှန်းများ ပေါင်းစည်းမှု
+   - **လုံခြုံရေး အသိုင်းအဝိုင်း ပါဝင်မှု**: MCP လုံခြုံရေး အသိုင်းအဝိုင်းနှင့် အန္တရာယ် ဖော်ထုတ်မှု အစီအစဉ်များတွင် တက်ကြွစွာ ပါဝင်ရန်
 
-**Adaptive Security:**
-   - **Machine Learning Security**: Attack patterns အသစ်များကို ရှာဖွေရန် ML-based anomaly detection ကို အသုံးပြုပါ  
-   - **Predictive Security Analytics**: အန္တရာယ်များကို ကြိုတင်ရှာဖွေနိုင်ရန် predictive models များကို အကောင်အထည်ဖော်ပါ  
-   - **Security Automation**: Threat intelligence နှင့် specification ပြောင်းလဲမှုများအပေါ်မူတည်၍ လုံခြုံရေးမူဝါဒများကို အလိုအလျောက် update ပြုလုပ်ပါ  
+**လိုက်လျောညီထွေ လုံခြုံရေး:**
+   - **စက်မှုသင်ယူမှု လုံခြုံရေး**: အသစ်သော တိုက်ခိုက်မှု ပုံစံများကို ရှာဖွေရေးအတွက် ML အခြေပြု အထူးသဖြင့် ရှာဖွေရေး
+   - **ခန့်မှန်းချက် လုံခြုံရေး စစ်တမ်းများ**: ကြိုတင် အန္တရာယ် ရှာဖွေရေးအတွက် ခန့်မှန်းချက် မော်ဒယ်များ အကောင်အထည်ဖော်ရန်
+   - **လုံခြုံရေး အလိုအလျောက်လုပ်ငန်း**: အန္တရာယ် သတင်းအချက်အလက်နှင့် specification ပြောင်းလဲမှုများအပေါ် မူတည်၍ လုံခြုံရေး မူဝါဒများကို အလိုအလျောက် အပ်ဒိတ်လုပ်ရန်
 
 ---
 
-## **အရေးကြီးသော လုံခြုံရေးအရင်းအမြစ်များ**
+## **အရေးကြီးသော လုံခြုံရေး အရင်းအမြစ်များ**
 
 ### **တရားဝင် MCP စာရွက်စာတမ်းများ**
-- [MCP Specification (2025-06-18)](https://spec.modelcontextprotocol.io/specification/2025-06-18/)  
-- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices)  
-- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization)  
+- [MCP Specification (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices)
+- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)
 
-### **Microsoft လုံခြုံရေးဖြေရှင်းနည်းများ**
-- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)  
-- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)  
-- [Microsoft Entra ID Security](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)  
-- [GitHub Advanced Security](https://github.com/security/advanced-security)  
+### **Microsoft လုံခြုံရေး ဖြေရှင်းချက်များ**
+- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
+- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)
+- [Microsoft Entra ID Security](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
+- [GitHub Advanced Security](https://github.com/security/advanced-security)
 
-### **လုံခြုံရေးစံနှုန်းများ**
-- [OAuth 2.0 Security Best Practices (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)  
-- [OWASP Top 10 for Large Language Models](https://genai.owasp.org/)  
-- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)  
+### **လုံခြုံရေး စံနှုန်းများ**
+- [OAuth 2.0 Security Best Practices (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)
+- [OWASP Top 10 for Large Language Models](https://genai.owasp.org/)
+- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)
 
-### **အကောင်အထည်ဖော်မှုလမ်းည
+### **အကောင်အထည်ဖော်မှု လမ်းညွှန်များ**
+- [Azure API Management MCP Authentication Gateway](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
+- [Microsoft Entra ID with MCP Servers](https://den.dev/blog/mcp-server-auth-entra-id-session/)
 
-**အကြောင်းကြားချက်**:  
-ဤစာရွက်စာတမ်းကို AI ဘာသာပြန်ဝန်ဆောင်မှု [Co-op Translator](https://github.com/Azure/co-op-translator) ကို အသုံးပြု၍ ဘာသာပြန်ထားပါသည်။ ကျွန်ုပ်တို့သည် တိကျမှုအတွက် ကြိုးစားနေပါသော်လည်း၊ အလိုအလျောက် ဘာသာပြန်မှုများတွင် အမှားများ သို့မဟုတ် မတိကျမှုများ ပါဝင်နိုင်သည်ကို သတိပြုပါ။ မူရင်းစာရွက်စာတမ်းကို ၎င်း၏ မူလဘာသာစကားဖြင့် အာဏာတရားရှိသော အရင်းအမြစ်အဖြစ် ရှုလေ့လာသင့်ပါသည်။ အရေးကြီးသော အချက်အလက်များအတွက် လူ့ဘာသာပြန်ပညာရှင်များမှ ပရော်ဖက်ရှင်နယ် ဘာသာပြန်မှုကို အကြံပြုပါသည်။ ဤဘာသာပြန်မှုကို အသုံးပြုခြင်းမှ ဖြစ်ပေါ်လာသော အလွဲအလွတ်များ သို့မဟုတ် အနားယူမှားမှုများအတွက် ကျွန်ုပ်တို့သည် တာဝန်မယူပါ။
+---
+
+> **လုံခြုံရေး သတိပေးချက်**: MCP လုံခြုံရေး လေ့ကျင့်မှုများသည် အလျင်အမြန် တိုးတက်နေသည်။ အကောင်အထည်ဖော်မှုမပြုမီ အမြဲတမ်း လက်ရှိ [MCP specification](https://spec.modelcontextprotocol.io/) နှင့် [တရားဝင် လုံခြုံရေး စာရွက်စာတမ်းများ](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) ကို စစ်ဆေးပါ။
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**အကြောင်းကြားချက်**  
+ဤစာတမ်းကို AI ဘာသာပြန်ဝန်ဆောင်မှု [Co-op Translator](https://github.com/Azure/co-op-translator) ဖြင့် ဘာသာပြန်ထားပါသည်။ ကျွန်ုပ်တို့သည် တိကျမှန်ကန်မှုအတွက် ကြိုးစားသော်လည်း အလိုအလျောက် ဘာသာပြန်ခြင်းတွင် အမှားများ သို့မဟုတ် မှားယွင်းချက်များ ပါဝင်နိုင်ကြောင်း သတိပြုပါရန် မေတ္တာရပ်ခံအပ်ပါသည်။ မူရင်းစာတမ်းကို မိမိဘာသာစကားဖြင့်သာ တရားဝင်အချက်အလက်အဖြစ် ယူဆသင့်ပါသည်။ အရေးကြီးသော အချက်အလက်များအတွက် လူ့ဘာသာပြန်ပညာရှင်မှ ဘာသာပြန်ခြင်းကို အကြံပြုပါသည်။ ဤဘာသာပြန်ချက်ကို အသုံးပြုရာမှ ဖြစ်ပေါ်လာနိုင်သည့် နားလည်မှုမှားယွင်းမှုများအတွက် ကျွန်ုပ်တို့ တာဝန်မယူပါ။
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

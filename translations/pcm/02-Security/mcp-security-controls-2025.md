@@ -1,29 +1,29 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "0c243c6189393ed7468e470ef2090049",
-  "translation_date": "2025-11-18T19:26:42+00:00",
+  "original_hash": "9351493ad29390d37f64bc6d84a03db5",
+  "translation_date": "2025-12-19T18:40:18+00:00",
   "source_file": "02-Security/mcp-security-controls-2025.md",
   "language_code": "pcm"
 }
 -->
-# MCP Security Controls - August 2025 Update
+# MCP Security Controls - December 2025 Update
 
-> **Current Standard**: Dis document dey show [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) security requirements and official [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices).
+> **Current Standard**: Dis dokument dey reflect [MCP Specification 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) security requirements and official [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).
 
-Model Context Protocol (MCP) don grow well-well wit beta security controls wey dey cover both normal software security and AI-specific wahala. Dis document dey give full security controls for MCP wey dey safe as of August 2025.
+Di Model Context Protocol (MCP) don mature well well wit beta security controls wey dey address both traditional software security and AI-specific threats. Dis dokument dey provide full security controls for secure MCP implementations as of December 2025.
 
 ## **MANDATORY Security Requirements**
 
 ### **Critical Prohibitions from MCP Specification:**
 
-> **FORBIDDEN**: MCP servers **MUST NOT** gree any tokens wey dem no issue directly for di MCP server
+> **FORBIDDEN**: MCP servers **MUST NOT** accept any tokens wey dem no explicitly issue for di MCP server
 >
 > **PROHIBITED**: MCP servers **MUST NOT** use sessions for authentication  
 >
-> **REQUIRED**: MCP servers wey dey do authorization **MUST** check ALL requests wey dey come inside
+> **REQUIRED**: MCP servers wey dey implement authorization **MUST** verify ALL inbound requests
 >
-> **MANDATORY**: MCP proxy servers wey dey use static client IDs **MUST** get user consent for each client wey dem register dynamically
+> **MANDATORY**: MCP proxy servers wey dey use static client IDs **MUST** get user consent for every dynamically registered client
 
 ---
 
@@ -31,47 +31,47 @@ Model Context Protocol (MCP) don grow well-well wit beta security controls wey d
 
 ### **External Identity Provider Integration**
 
-**Current MCP Standard (2025-06-18)** allow MCP servers to carry authentication go external identity providers, wey be big security improvement:
+**Current MCP Standard (2025-06-18)** allow MCP servers to delegate authentication to external identity providers, wey be big security improvement:
 
 ### **External Identity Provider Integration**
 
-**Current MCP Standard (2025-06-18)** allow MCP servers to carry authentication go external identity providers, wey be big security improvement:
+**Current MCP Standard (2025-11-25)** allow MCP servers to delegate authentication to external identity providers, wey be big security improvement:
 
 **Security Benefits:**
-1. **E go stop Custom Authentication Risks**: E go reduce vulnerability by no dey use custom authentication
-2. **Enterprise-Grade Security**: E go use big identity providers like Microsoft Entra ID wey get beta security features
-3. **Centralized Identity Management**: E go make user lifecycle management, access control, and compliance auditing easy
-4. **Multi-Factor Authentication**: E go inherit MFA features from enterprise identity providers
-5. **Conditional Access Policies**: E go enjoy risk-based access controls and adaptive authentication
+1. **Eliminates Custom Authentication Risks**: E reduce vulnerability surface by no dey use custom authentication implementations
+2. **Enterprise-Grade Security**: E use established identity providers like Microsoft Entra ID wey get advanced security features
+3. **Centralized Identity Management**: E make user lifecycle management, access control, and compliance auditing easy
+4. **Multi-Factor Authentication**: E inherit MFA capabilities from enterprise identity providers
+5. **Conditional Access Policies**: E benefit from risk-based access controls and adaptive authentication
 
 **Implementation Requirements:**
-- **Token Audience Validation**: Make sure say all tokens dey issued directly for di MCP server
-- **Issuer Verification**: Confirm say token issuer match di expected identity provider
-- **Signature Verification**: Use cryptographic validation to check token integrity
-- **Expiration Enforcement**: Make sure say token dey expire on time
-- **Scope Validation**: Confirm say tokens get di correct permissions for di operations wey dem request
+- **Token Audience Validation**: Verify say all tokens dem explicitly issue for di MCP server
+- **Issuer Verification**: Validate say token issuer match di expected identity provider
+- **Signature Verification**: Cryptographic validation of token integrity
+- **Expiration Enforcement**: Strict enforcement of token lifetime limits
+- **Scope Validation**: Make sure tokens get correct permissions for di requested operations
 
 ### **Authorization Logic Security**
 
 **Critical Controls:**
-- **Comprehensive Authorization Audits**: Dey do regular security reviews for all authorization decision points
-- **Fail-Safe Defaults**: No gree access if authorization logic no fit make clear decision
-- **Permission Boundaries**: Separate di different privilege levels and resource access well
-- **Audit Logging**: Log all authorization decisions for security monitoring
-- **Regular Access Reviews**: Dey check user permissions and privilege assignments from time to time
+- **Comprehensive Authorization Audits**: Regular security reviews of all authorization decision points
+- **Fail-Safe Defaults**: Deny access when authorization logic no fit make clear decision
+- **Permission Boundaries**: Clear separation between different privilege levels and resource access
+- **Audit Logging**: Complete logging of all authorization decisions for security monitoring
+- **Regular Access Reviews**: Periodic validation of user permissions and privilege assignments
 
 ## 2. **Token Security & Anti-Passthrough Controls**
 
 ### **Token Passthrough Prevention**
 
-**Token passthrough no dey allowed** for MCP Authorization Specification because e get big security wahala:
+**Token passthrough na explicitly prohibited** for MCP Authorization Specification because e get critical security risks:
 
 **Security Risks Addressed:**
-- **Control Circumvention**: E go bypass important security controls like rate limiting, request validation, and traffic monitoring
-- **Accountability Breakdown**: E go make client identification no possible, spoil audit trails and investigation
-- **Proxy-Based Exfiltration**: E go allow bad people use servers as proxy for unauthorized data access
-- **Trust Boundary Violations**: E go scatter di trust wey downstream service get about token origins
-- **Lateral Movement**: E go make compromised tokens fit spread attack across many services
+- **Control Circumvention**: E bypass essential security controls like rate limiting, request validation, and traffic monitoring
+- **Accountability Breakdown**: E make client identification impossible, spoil audit trails and incident investigation
+- **Proxy-Based Exfiltration**: E allow bad people to use servers as proxies for unauthorized data access
+- **Trust Boundary Violations**: E break downstream service trust assumptions about token origins
+- **Lateral Movement**: Compromised tokens across many services fit enable bigger attack expansion
 
 **Implementation Controls:**
 ```yaml
@@ -92,20 +92,20 @@ Token Lifecycle Management:
 ### **Secure Token Management Patterns**
 
 **Best Practices:**
-- **Short-Lived Tokens**: Dey rotate tokens often to reduce exposure
+- **Short-Lived Tokens**: Make exposure window small with frequent token rotation
 - **Just-in-Time Issuance**: Issue tokens only when dem need am for specific operations
 - **Secure Storage**: Use hardware security modules (HSMs) or secure key vaults
-- **Token Binding**: Bind tokens to specific clients, sessions, or operations if e dey possible
-- **Monitoring & Alerting**: Dey detect token misuse or unauthorized access patterns quick
+- **Token Binding**: Bind tokens to specific clients, sessions, or operations where e possible
+- **Monitoring & Alerting**: Real-time detection of token misuse or unauthorized access patterns
 
 ## 3. **Session Security Controls**
 
 ### **Session Hijacking Prevention**
 
 **Attack Vectors Addressed:**
-- **Session Hijack Prompt Injection**: Bad events wey dem inject into shared session state
+- **Session Hijack Prompt Injection**: Bad events wey dem inject inside shared session state
 - **Session Impersonation**: Unauthorized use of stolen session IDs to bypass authentication
-- **Resumable Stream Attacks**: Exploit server-sent event resumption to inject bad content
+- **Resumable Stream Attacks**: Exploitation of server-sent event resumption for bad content injection
 
 **Mandatory Session Controls:**
 ```yaml
@@ -130,7 +130,7 @@ Session Lifecycle:
 **Transport Security:**
 - **HTTPS Enforcement**: All session communication must dey over TLS 1.3
 - **Secure Cookie Attributes**: HttpOnly, Secure, SameSite=Strict
-- **Certificate Pinning**: For important connections to stop MITM attacks
+- **Certificate Pinning**: For critical connections to prevent MITM attacks
 
 ### **Stateful vs Stateless Considerations**
 
@@ -142,7 +142,7 @@ Session Lifecycle:
 **For Stateless Implementations:**
 - JWT or similar token-based session management
 - Cryptographic verification of session state integrity
-- Reduced attack surface but e need strong token validation
+- Reduced attack surface but need strong token validation
 
 ## 4. **AI-Specific Security Controls**
 
@@ -167,10 +167,10 @@ Integration Points:
 ```
 
 **Implementation Controls:**
-- **Input Sanitization**: Dey validate and filter all user inputs well
-- **Content Boundary Definition**: Separate system instructions and user content well
-- **Instruction Hierarchy**: Dey set precedence rules for conflicting instructions
-- **Output Monitoring**: Dey detect harmful or manipulated outputs
+- **Input Sanitization**: Full validation and filtering of all user inputs
+- **Content Boundary Definition**: Clear separation between system instructions and user content
+- **Instruction Hierarchy**: Proper precedence rules for conflicting instructions
+- **Output Monitoring**: Detection of potentially harmful or manipulated outputs
 
 ### **Tool Poisoning Prevention**
 
@@ -197,10 +197,10 @@ Tool Definition Protection:
 ```
 
 **Dynamic Tool Management:**
-- **Approval Workflows**: Get user consent before tool modifications
-- **Rollback Capabilities**: Fit go back to previous tool versions
-- **Change Auditing**: Keep full history of tool definition modifications
-- **Risk Assessment**: Use automated evaluation to check tool security
+- **Approval Workflows**: Explicit user consent for tool modifications
+- **Rollback Capabilities**: Ability to revert to previous tool versions
+- **Change Auditing**: Complete history of tool definition modifications
+- **Risk Assessment**: Automated evaluation of tool security posture
 
 ## 5. **Confused Deputy Attack Prevention**
 
@@ -224,9 +224,9 @@ Client Registration:
 
 **Implementation Requirements:**
 - **User Consent Verification**: No skip consent screens for dynamic client registration
-- **Redirect URI Validation**: Use strict whitelist validation for redirect destinations
-- **Authorization Code Protection**: Use short-lived codes wey dem fit use only once
-- **Client Identity Verification**: Dey validate client credentials and metadata well
+- **Redirect URI Validation**: Strict whitelist-based validation of redirect destinations
+- **Authorization Code Protection**: Short-lived codes with single-use enforcement
+- **Client Identity Verification**: Strong validation of client credentials and metadata
 
 ## 6. **Tool Execution Security**
 
@@ -250,10 +250,10 @@ Execution Environment:
 ```
 
 **Process Isolation:**
-- **Separate Process Contexts**: Run each tool execution in isolated process space
-- **Inter-Process Communication**: Use secure IPC mechanisms with validation
-- **Process Monitoring**: Dey analyze runtime behavior and detect anomalies
-- **Resource Enforcement**: Set hard limits for CPU, memory, and I/O operations
+- **Separate Process Contexts**: Each tool execution dey for isolated process space
+- **Inter-Process Communication**: Secure IPC mechanisms with validation
+- **Process Monitoring**: Runtime behavior analysis and anomaly detection
+- **Resource Enforcement**: Hard limits on CPU, memory, and I/O operations
 
 ### **Least Privilege Implementation**
 
@@ -314,10 +314,10 @@ AI Components:
 ### **Continuous Monitoring**
 
 **Supply Chain Threat Detection:**
-- **Dependency Health Monitoring**: Dey check all dependencies for security issues
-- **Threat Intelligence Integration**: Dey update real-time on new supply chain threats
-- **Behavioral Analysis**: Dey detect unusual behavior in external components
-- **Automated Response**: Quickly contain compromised components
+- **Dependency Health Monitoring**: Continuous assessment of all dependencies for security issues
+- **Threat Intelligence Integration**: Real-time updates on emerging supply chain threats
+- **Behavioral Analysis**: Detection of unusual behavior in external components
+- **Automated Response**: Immediate containment of compromised components
 
 ## 8. **Monitoring & Detection Controls**
 
@@ -347,10 +347,10 @@ Security Events:
 ### **Real-Time Threat Detection**
 
 **Behavioral Analytics:**
-- **User Behavior Analytics (UBA)**: Dey detect unusual user access patterns
-- **Entity Behavior Analytics (EBA)**: Dey monitor MCP server and tool behavior
-- **Machine Learning Anomaly Detection**: Use AI to identify security threats
-- **Threat Intelligence Correlation**: Match observed activities with known attack patterns
+- **User Behavior Analytics (UBA)**: Detection of unusual user access patterns
+- **Entity Behavior Analytics (EBA)**: Monitoring of MCP server and tool behavior
+- **Machine Learning Anomaly Detection**: AI-powered identification of security threats
+- **Threat Intelligence Correlation**: Matching observed activities against known attack patterns
 
 ## 9. **Incident Response & Recovery**
 
@@ -384,36 +384,36 @@ Recovery Procedures:
 ### **Forensic Capabilities**
 
 **Investigation Support:**
-- **Audit Trail Preservation**: Keep immutable logging with cryptographic integrity
-- **Evidence Collection**: Dey gather relevant security artifacts automatically
-- **Timeline Reconstruction**: Dey show detailed sequence of events wey lead to security incidents
-- **Impact Assessment**: Dey evaluate di scope of compromise and data exposure
+- **Audit Trail Preservation**: Immutable logging with cryptographic integrity
+- **Evidence Collection**: Automated gathering of relevant security artifacts
+- **Timeline Reconstruction**: Detailed sequence of events wey lead to security incidents
+- **Impact Assessment**: Evaluation of compromise scope and data exposure
 
 ## **Key Security Architecture Principles**
 
 ### **Defense in Depth**
-- **Multiple Security Layers**: No make security architecture get single point of failure
-- **Redundant Controls**: Use overlapping security measures for important functions
-- **Fail-Safe Mechanisms**: Use secure defaults when systems face errors or attacks
+- **Multiple Security Layers**: No single point of failure for security architecture
+- **Redundant Controls**: Overlapping security measures for critical functions
+- **Fail-Safe Mechanisms**: Secure defaults when systems get errors or attacks
 
 ### **Zero Trust Implementation**
-- **Never Trust, Always Verify**: Dey validate all entities and requests continuously
-- **Principle of Least Privilege**: Give minimal access rights to all components
-- **Micro-Segmentation**: Use granular network and access controls
+- **Never Trust, Always Verify**: Continuous validation of all entities and requests
+- **Principle of Least Privilege**: Minimal access rights for all components
+- **Micro-Segmentation**: Granular network and access controls
 
 ### **Continuous Security Evolution**
-- **Threat Landscape Adaptation**: Dey update regularly to handle new threats
-- **Security Control Effectiveness**: Dey evaluate and improve controls often
-- **Specification Compliance**: Align with MCP security standards wey dey change
+- **Threat Landscape Adaptation**: Regular updates to address new threats
+- **Security Control Effectiveness**: Ongoing evaluation and improvement of controls
+- **Specification Compliance**: Alignment with evolving MCP security standards
 
 ---
 
 ## **Implementation Resources**
 
 ### **Official MCP Documentation**
-- [MCP Specification (2025-06-18)](https://spec.modelcontextprotocol.io/specification/2025-06-18/)
-- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices)
-- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization)
+- [MCP Specification (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices)
+- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)
 
 ### **Microsoft Security Solutions**
 - [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
@@ -428,11 +428,11 @@ Recovery Procedures:
 
 ---
 
-> **Important**: Dis security controls dey reflect di current MCP specification (2025-06-18). Always check di latest [official documentation](https://spec.modelcontextprotocol.io/) because standards dey change fast.
+> **Important**: These security controls dey reflect di current MCP specification (2025-06-18). Always verify against di latest [official documentation](https://spec.modelcontextprotocol.io/) as standards dey continue to evolve fast fast.
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Disclaimer**:  
-Dis dokyument don use AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator) do di translation. Even as we dey try make am accurate, abeg sabi say automated translations fit get mistake or no dey correct well. Di original dokyument wey dey for im native language na di main source wey you go trust. For important information, e better make professional human translation dey use. We no go fit take blame for any misunderstanding or wrong interpretation wey fit happen because you use dis translation.
+**Disclaimer**:
+Dis document na AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator) wey translate am. Even though we dey try make am correct, abeg sabi say automated translation fit get some mistakes or no too correct. The original document wey e dey for im own language na the correct one. If na serious matter, e better make person wey sabi translate am well do am. We no go responsible if person no understand well or if dem use dis translation do mistake.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

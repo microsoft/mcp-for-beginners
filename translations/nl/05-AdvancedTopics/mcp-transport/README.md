@@ -1,45 +1,45 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "c71c60af76120a517809a6cfba47e9a3",
-  "translation_date": "2025-09-15T21:37:30+00:00",
+  "original_hash": "cf3e88e4c0b2d9d65c7f300986bd8c6c",
+  "translation_date": "2025-12-19T13:49:55+00:00",
   "source_file": "05-AdvancedTopics/mcp-transport/README.md",
   "language_code": "nl"
 }
 -->
-# MCP Custom Transports - Geavanceerde Implementatiegids
+# MCP Aangepaste Transports - Geavanceerde Implementatiehandleiding
 
-Het Model Context Protocol (MCP) biedt flexibiliteit in transportmechanismen, waardoor aangepaste implementaties mogelijk zijn voor gespecialiseerde bedrijfsomgevingen. Deze geavanceerde gids verkent aangepaste transportimplementaties met Azure Event Grid en Azure Event Hubs als praktische voorbeelden voor het bouwen van schaalbare, cloud-native MCP-oplossingen.
+Het Model Context Protocol (MCP) biedt flexibiliteit in transportmechanismen, waardoor aangepaste implementaties mogelijk zijn voor gespecialiseerde enterprise-omgevingen. Deze geavanceerde handleiding onderzoekt aangepaste transportimplementaties met Azure Event Grid en Azure Event Hubs als praktische voorbeelden voor het bouwen van schaalbare, cloud-native MCP-oplossingen.
 
 ## Introductie
 
-Hoewel de standaardtransporten van MCP (stdio en HTTP-streaming) geschikt zijn voor de meeste toepassingen, vereisen bedrijfsomgevingen vaak gespecialiseerde transportmechanismen voor verbeterde schaalbaarheid, betrouwbaarheid en integratie met bestaande cloudinfrastructuur. Aangepaste transporten stellen MCP in staat om gebruik te maken van cloud-native berichtendiensten voor asynchrone communicatie, event-driven architecturen en gedistribueerde verwerking.
+Hoewel de standaardtransports van MCP (stdio en HTTP-streaming) de meeste gebruikssituaties dekken, vereisen enterprise-omgevingen vaak gespecialiseerde transportmechanismen voor verbeterde schaalbaarheid, betrouwbaarheid en integratie met bestaande cloudinfrastructuur. Aangepaste transports stellen MCP in staat om cloud-native berichtendiensten te benutten voor asynchrone communicatie, event-gedreven architecturen en gedistribueerde verwerking.
 
-Deze les verkent geavanceerde transportimplementaties op basis van de nieuwste MCP-specificatie (2025-06-18), Azure-berichtendiensten en gevestigde bedrijfsintegratiepatronen.
+Deze les onderzoekt geavanceerde transportimplementaties op basis van de nieuwste MCP-specificatie (2025-11-25), Azure-berichtendiensten en gevestigde enterprise-integratiepatronen.
 
-### **MCP Transportarchitectuur**
+### **MCP Transport Architectuur**
 
-**Uit MCP Specificatie (2025-06-18):**
+**Uit MCP-specificatie (2025-11-25):**
 
-- **Standaardtransporten**: stdio (aanbevolen), HTTP-streaming (voor externe scenario's)
-- **Aangepaste transporten**: Elk transport dat het MCP-berichtuitwisselingsprotocol implementeert
+- **Standaardtransports**: stdio (aanbevolen), HTTP-streaming (voor externe scenario's)
+- **Aangepaste Transports**: Elke transport die het MCP-berichtuitwisselingsprotocol implementeert
 - **Berichtformaat**: JSON-RPC 2.0 met MCP-specifieke uitbreidingen
-- **Bidirectionele communicatie**: Volledige duplexcommunicatie vereist voor meldingen en antwoorden
+- **Bidirectionele Communicatie**: Volledige duplexcommunicatie vereist voor notificaties en reacties
 
 ## Leerdoelen
 
 Aan het einde van deze geavanceerde les kun je:
 
-- **Begrijpen van vereisten voor aangepaste transporten**: MCP-protocol implementeren over elke transportlaag met behoud van naleving
-- **Azure Event Grid Transport bouwen**: Event-driven MCP-servers maken met Azure Event Grid voor serverloze schaalbaarheid
-- **Azure Event Hubs Transport implementeren**: High-throughput MCP-oplossingen ontwerpen met Azure Event Hubs voor realtime streaming
-- **Bedrijfspatronen toepassen**: Aangepaste transporten integreren met bestaande Azure-infrastructuur en beveiligingsmodellen
-- **Transportbetrouwbaarheid beheren**: Berichtduurzaamheid, volgorde en foutafhandeling implementeren voor bedrijfsomgevingen
-- **Prestaties optimaliseren**: Transportoplossingen ontwerpen voor schaal, latentie en doorvoereisen
+- **Begrijpen van Aangepaste Transportvereisten**: MCP-protocol implementeren over elke transportlaag met behoud van naleving
+- **Bouwen van Azure Event Grid Transport**: Event-gedreven MCP-servers creëren met Azure Event Grid voor serverloze schaalbaarheid
+- **Implementeren van Azure Event Hubs Transport**: Ontwerpen van high-throughput MCP-oplossingen met Azure Event Hubs voor realtime streaming
+- **Toepassen van Enterprisepatronen**: Aangepaste transports integreren met bestaande Azure-infrastructuur en beveiligingsmodellen
+- **Omgaan met Transportbetrouwbaarheid**: Implementeren van berichtduurzaamheid, ordening en foutafhandeling voor enterprise-scenario's
+- **Optimaliseren van Prestaties**: Transportoplossingen ontwerpen voor schaal, latentie en doorvoereisen
 
 ## **Transportvereisten**
 
-### **Kernvereisten uit MCP Specificatie (2025-06-18):**
+### **Kernvereisten uit MCP-specificatie (2025-11-25):**
 
 ```yaml
 Message Protocol:
@@ -60,25 +60,24 @@ Custom Transport:
 
 ## **Azure Event Grid Transport Implementatie**
 
-Azure Event Grid biedt een serverloze eventrouteringsdienst die ideaal is voor event-driven MCP-architecturen. Deze implementatie demonstreert hoe schaalbare, losgekoppelde MCP-systemen kunnen worden gebouwd.
+Azure Event Grid biedt een serverloze eventrouteringsdienst die ideaal is voor event-gedreven MCP-architecturen. Deze implementatie toont hoe schaalbare, losgekoppelde MCP-systemen te bouwen.
 
 ### **Architectuuroverzicht**
 
 ```mermaid
 graph TB
     Client[MCP Client] --> EG[Azure Event Grid]
-    EG --> Server[MCP Server Function]
+    EG --> Server[MCP Server Functie]
     Server --> EG
     EG --> Client
     
-    subgraph "Azure Services"
+    subgraph "Azure Diensten"
         EG
         Server
-        KV[Key Vault]
-        Monitor[Application Insights]
+        KV[Sleutelkluis]
+        Monitor[Applicatie-inzichten]
     end
 ```
-
 ### **C# Implementatie - Event Grid Transport**
 
 ```csharp
@@ -185,14 +184,14 @@ export class EventGridMcpTransport implements McpTransport {
         await this.publisher.sendEvents([event]);
     }
     
-    // Event-driven receive via Azure Functions
+    // Evenementgestuurde ontvangst via Azure Functions
     onMessage(handler: (message: McpMessage) => Promise<void>): void {
-        // Implementation would use Azure Functions Event Grid trigger
-        // This is a conceptual interface for the webhook receiver
+        // Implementatie zou Azure Functions Event Grid-trigger gebruiken
+        // Dit is een conceptuele interface voor de webhook-ontvanger
     }
 }
 
-// Azure Functions implementation
+// Azure Functions-implementatie
 import { app, InvocationContext, EventGridEvent } from "@azure/functions";
 
 app.eventGrid("mcpEventGridHandler", {
@@ -200,10 +199,10 @@ app.eventGrid("mcpEventGridHandler", {
         try {
             const mcpMessage = event.data as McpMessage;
             
-            // Process MCP message
+            // Verwerk MCP-bericht
             const response = await mcpServer.processMessage(mcpMessage);
             
-            // Send response via Event Grid
+            // Verstuur reactie via Event Grid
             await transport.sendMessage(response);
             
         } catch (error) {
@@ -249,21 +248,21 @@ class EventGridMcpTransport:
         """Register message handler for incoming events"""
         self.message_handler = handler
 
-# Azure Functions implementation
+# Azure Functions-implementatie
 import azure.functions as func
 import logging
 
 def main(event: func.EventGridEvent) -> None:
     """Azure Functions Event Grid trigger for MCP messages"""
     try:
-        # Parse MCP message from Event Grid event
+        # MCP-bericht parseren van Event Grid-gebeurtenis
         mcp_message = json.loads(event.get_body().decode('utf-8'))
         
-        # Process MCP message
+        # MCP-bericht verwerken
         response = process_mcp_message(mcp_message)
         
-        # Send response back via Event Grid
-        # (Implementation would create new Event Grid client)
+        # Antwoord terugsturen via Event Grid
+        # (Implementatie zou een nieuwe Event Grid-client aanmaken)
         
     except Exception as e:
         logging.error(f"Error processing MCP Event Grid message: {e}")
@@ -272,7 +271,7 @@ def main(event: func.EventGridEvent) -> None:
 
 ## **Azure Event Hubs Transport Implementatie**
 
-Azure Event Hubs biedt mogelijkheden voor high-throughput, realtime streaming voor MCP-scenario's die lage latentie en een hoog berichtvolume vereisen.
+Azure Event Hubs biedt high-throughput, realtime streamingmogelijkheden voor MCP-scenario's die lage latentie en hoog berichtvolume vereisen.
 
 ### **Architectuuroverzicht**
 
@@ -283,17 +282,16 @@ graph TB
     Server --> EH
     EH --> Client
     
-    subgraph "Event Hubs Features"
-        Partition[Partitioning]
-        Retention[Message Retention]
-        Scaling[Auto Scaling]
+    subgraph "Event Hubs Functies"
+        Partition[Partitionering]
+        Retention[Berichtretentie]
+        Scaling[Automatisch Schalen]
     end
     
     EH --> Partition
     EH --> Retention
     EH --> Scaling
 ```
-
 ### **C# Implementatie - Event Hubs Transport**
 
 ```csharp
@@ -427,7 +425,7 @@ export class EventHubsMcpTransport implements McpTransport {
                         
                         await messageHandler(mcpMessage);
                         
-                        // Update checkpoint for at-least-once delivery
+                        // Werk controlepunt bij voor ten minste één keer levering
                         await context.updateCheckpoint(event);
                     } catch (error) {
                         console.error("Error processing Event Hubs message:", error);
@@ -480,11 +478,11 @@ class EventHubsMcpTransport:
         """Send MCP message via Event Hubs"""
         event_data = EventData(json.dumps(message))
         
-        # Add MCP-specific properties
+        # Voeg MCP-specifieke eigenschappen toe
         event_data.properties = {
             "messageType": message.get("method", "response"),
             "messageId": message.get("id"),
-            "timestamp": "2025-01-14T10:30:00Z"  # Use actual timestamp
+            "timestamp": "2025-01-14T10:30:00Z"  # Gebruik daadwerkelijke tijdstempel
         }
         
         async with self.producer:
@@ -505,21 +503,21 @@ class EventHubsMcpTransport:
         async with self.consumer:
             await self.consumer.receive(
                 on_event=self._on_event_received(message_handler),
-                starting_position="-1"  # Start from beginning
+                starting_position="-1"  # Begin vanaf het begin
             )
     
     def _on_event_received(self, handler: Callable):
         """Internal event handler wrapper"""
         async def handle_event(partition_context, event):
             try:
-                # Parse MCP message from Event Hubs event
+                # Parseer MCP-bericht van Event Hubs gebeurtenis
                 message_body = event.body_as_str(encoding='UTF-8')
                 mcp_message = json.loads(message_body)
                 
-                # Process MCP message
+                # Verwerk MCP-bericht
                 await handler(mcp_message)
                 
-                # Update checkpoint for at-least-once delivery
+                # Werk checkpoint bij voor minimaal-eenmaal levering
                 await partition_context.update_checkpoint(event)
                 
             except Exception as e:
@@ -536,7 +534,7 @@ class EventHubsMcpTransport:
 
 ## **Geavanceerde Transportpatronen**
 
-### **Berichtduurzaamheid en betrouwbaarheid**
+### **Berichtduurzaamheid en Betrouwbaarheid**
 
 ```csharp
 // Implementing message durability with retry logic
@@ -563,7 +561,7 @@ public class ReliableTransportWrapper : IMcpTransport
 }
 ```
 
-### **Transportbeveiligingsintegratie**
+### **Integratie van Transportbeveiliging**
 
 ```csharp
 // Integrating Azure Key Vault for transport security
@@ -585,7 +583,7 @@ public class SecureTransportFactory
 }
 ```
 
-### **Transportmonitoring en observatie**
+### **Transportmonitoring en Observeerbaarheid**
 
 ```csharp
 // Adding telemetry to custom transports
@@ -624,11 +622,11 @@ public class ObservableTransport : IMcpTransport
 }
 ```
 
-## **Bedrijfsintegratiescenario's**
+## **Enterprise Integratiescenario's**
 
 ### **Scenario 1: Gedistribueerde MCP-verwerking**
 
-Azure Event Grid gebruiken om MCP-verzoeken te distribueren over meerdere verwerkingsknooppunten:
+Gebruik van Azure Event Grid voor het distribueren van MCP-verzoeken over meerdere verwerkingsknooppunten:
 
 ```yaml
 Architecture:
@@ -642,9 +640,9 @@ Benefits:
   - Cost optimization with serverless compute
 ```
 
-### **Scenario 2: Realtime MCP-streaming**
+### **Scenario 2: Realtime MCP Streaming**
 
-Azure Event Hubs gebruiken voor MCP-interacties met hoge frequentie:
+Gebruik van Azure Event Hubs voor frequentie-intensieve MCP-interacties:
 
 ```yaml
 Architecture:
@@ -658,9 +656,9 @@ Benefits:
   - Built-in partitioning for parallel processing
 ```
 
-### **Scenario 3: Hybride transportarchitectuur**
+### **Scenario 3: Hybride Transportarchitectuur**
 
-Meerdere transporten combineren voor verschillende toepassingen:
+Combineren van meerdere transports voor verschillende gebruikssituaties:
 
 ```csharp
 public class HybridMcpTransport : IMcpTransport
@@ -746,9 +744,9 @@ public class PartitionedEventHubsTransport : IMcpTransport
 }
 ```
 
-## **Testen van Aangepaste Transporten**
+## **Testen van Aangepaste Transports**
 
-### **Unit Testing met Test Doubles**
+### **Unittesten met Test Doubles**
 
 ```csharp
 [Test]
@@ -810,27 +808,27 @@ public async Task EventHubsTransport_IntegrationTest()
 
 ## **Best Practices en Richtlijnen**
 
-### **Transportontwerpprincipes**
+### **Ontwerpprincipes voor Transport**
 
-1. **Idempotentie**: Zorg ervoor dat berichtverwerking idempotent is om duplicaten te verwerken
+1. **Idempotentie**: Zorg dat berichtverwerking idempotent is om duplicaten af te handelen
 2. **Foutafhandeling**: Implementeer uitgebreide foutafhandeling en dead letter queues
 3. **Monitoring**: Voeg gedetailleerde telemetrie en gezondheidscontroles toe
-4. **Beveiliging**: Gebruik beheerde identiteiten en toegang met het minste privilege
-5. **Prestaties**: Ontwerp voor specifieke latentie- en doorvoereisen
+4. **Beveiliging**: Gebruik beheerde identiteiten en minimale toegangsrechten
+5. **Prestaties**: Ontwerp voor jouw specifieke latentie- en doorvoereisen
 
-### **Azure-specifieke aanbevelingen**
+### **Azure-specifieke Aanbevelingen**
 
-1. **Gebruik Beheerde Identiteit**: Vermijd verbindingsstrings in productie
+1. **Gebruik Beheerde Identiteit**: Vermijd verbindingsreeksen in productie
 2. **Implementeer Circuit Breakers**: Bescherm tegen Azure-serviceonderbrekingen
 3. **Monitor Kosten**: Houd berichtvolume en verwerkingskosten bij
-4. **Plan voor Schaal**: Ontwerp partitionerings- en schaalstrategieën vroeg
+4. **Plan voor Schaal**: Ontwerp partitionering en schaalstrategieën vroegtijdig
 5. **Test Grondig**: Gebruik Azure DevTest Labs voor uitgebreide tests
 
 ## **Conclusie**
 
-Aangepaste MCP-transporten maken krachtige bedrijfsomgevingen mogelijk met behulp van Azure's berichtendiensten. Door Event Grid- of Event Hubs-transporten te implementeren, kun je schaalbare, betrouwbare MCP-oplossingen bouwen die naadloos integreren met bestaande Azure-infrastructuur.
+Aangepaste MCP-transports maken krachtige enterprise-scenario's mogelijk met behulp van Azure's berichtendiensten. Door Event Grid- of Event Hubs-transports te implementeren, kun je schaalbare, betrouwbare MCP-oplossingen bouwen die naadloos integreren met bestaande Azure-infrastructuur.
 
-De verstrekte voorbeelden demonstreren productieklare patronen voor het implementeren van aangepaste transporten, terwijl naleving van het MCP-protocol en Azure best practices wordt gehandhaafd.
+De gegeven voorbeelden tonen productieklare patronen voor het implementeren van aangepaste transports met behoud van MCP-protocolnaleving en Azure best practices.
 
 ## **Aanvullende Bronnen**
 
@@ -844,13 +842,16 @@ De verstrekte voorbeelden demonstreren productieklare patronen voor het implemen
 
 ---
 
-> *Deze gids richt zich op praktische implementatiepatronen voor productie-MCP-systemen. Valideer transportimplementaties altijd op basis van uw specifieke vereisten en Azure-servicelimieten.*
-> **Huidige Standaard**: Deze gids weerspiegelt [MCP Specificatie 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) transportvereisten en geavanceerde transportpatronen voor bedrijfsomgevingen.
+> *Deze handleiding richt zich op praktische implementatiepatronen voor productie-MCP-systemen. Valideer altijd transportimplementaties tegen jouw specifieke vereisten en Azure-servicelimieten.*
+> **Huidige Standaard**: Deze handleiding weerspiegelt [MCP Specificatie 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) transportvereisten en geavanceerde transportpatronen voor enterprise-omgevingen.
 
-## Wat Nu
-- [6. Community Bijdragen](../../06-CommunityContributions/README.md)
+
+## Wat Nu?
+- [6. Community Contributions](../../06-CommunityContributions/README.md)
 
 ---
 
-**Disclaimer**:  
-Dit document is vertaald met behulp van de AI-vertalingsservice [Co-op Translator](https://github.com/Azure/co-op-translator). Hoewel we streven naar nauwkeurigheid, dient u zich ervan bewust te zijn dat geautomatiseerde vertalingen fouten of onnauwkeurigheden kunnen bevatten. Het originele document in de oorspronkelijke taal moet worden beschouwd als de gezaghebbende bron. Voor kritieke informatie wordt professionele menselijke vertaling aanbevolen. Wij zijn niet aansprakelijk voor eventuele misverstanden of verkeerde interpretaties die voortvloeien uit het gebruik van deze vertaling.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Disclaimer**:
+Dit document is vertaald met behulp van de AI-vertalingsdienst [Co-op Translator](https://github.com/Azure/co-op-translator). Hoewel we streven naar nauwkeurigheid, dient u er rekening mee te houden dat geautomatiseerde vertalingen fouten of onnauwkeurigheden kunnen bevatten. Het originele document in de oorspronkelijke taal moet als de gezaghebbende bron worden beschouwd. Voor cruciale informatie wordt professionele menselijke vertaling aanbevolen. Wij zijn niet aansprakelijk voor eventuele misverstanden of verkeerde interpretaties die voortvloeien uit het gebruik van deze vertaling.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

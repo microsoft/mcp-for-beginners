@@ -1,73 +1,77 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "0c243c6189393ed7468e470ef2090049",
-  "translation_date": "2025-08-18T16:32:50+00:00",
+  "original_hash": "9351493ad29390d37f64bc6d84a03db5",
+  "translation_date": "2025-12-19T13:47:51+00:00",
   "source_file": "02-Security/mcp-security-controls-2025.md",
   "language_code": "nl"
 }
 -->
-# MCP Beveiligingscontroles - Update augustus 2025
+# MCP Beveiligingscontroles - Update december 2025
 
-> **Huidige Standaard**: Dit document weerspiegelt de beveiligingseisen van [MCP Specificatie 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) en de officiële [MCP Beveiligingsrichtlijnen](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices).
+> **Huidige standaard**: Dit document weerspiegelt de beveiligingseisen van [MCP Specificatie 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) en de officiële [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).
 
-Het Model Context Protocol (MCP) heeft aanzienlijke vooruitgang geboekt met verbeterde beveiligingscontroles die zowel traditionele softwarebeveiliging als AI-specifieke bedreigingen aanpakken. Dit document biedt uitgebreide beveiligingscontroles voor veilige MCP-implementaties vanaf augustus 2025.
+Het Model Context Protocol (MCP) is aanzienlijk volwassen geworden met verbeterde beveiligingscontroles die zowel traditionele softwarebeveiliging als AI-specifieke bedreigingen aanpakken. Dit document biedt uitgebreide beveiligingscontroles voor veilige MCP-implementaties per december 2025.
 
-## **VERPLICHTE Beveiligingseisen**
+## **VERPLICHTE beveiligingseisen**
 
-### **Kritieke Verboden uit de MCP Specificatie:**
+### **Kritieke verboden uit MCP-specificatie:**
 
-> **VERBODEN**: MCP-servers **MOGEN GEEN** tokens accepteren die niet expliciet voor de MCP-server zijn uitgegeven  
+> **VERBODEN**: MCP-servers **MOGEN GEEN** tokens accepteren die niet expliciet zijn uitgegeven voor de MCP-server  
 >
-> **NIET TOEGESTAAN**: MCP-servers **MOGEN GEEN** sessies gebruiken voor authenticatie  
+> **VERBODEN**: MCP-servers **MOGEN GEEN** sessies gebruiken voor authenticatie  
 >
-> **VEREIST**: MCP-servers die autorisatie implementeren **MOETEN** ALLE inkomende verzoeken verifiëren  
+> **VERPLICHT**: MCP-servers die autorisatie implementeren **MOETEN** ALLE inkomende verzoeken verifiëren  
 >
-> **VERPLICHT**: MCP-proxyservers die statische client-ID's gebruiken **MOETEN** gebruikers toestemming vragen voor elke dynamisch geregistreerde client  
+> **VERPLICHT**: MCP-proxyservers die statische client-ID's gebruiken **MOETEN** gebruikersconsent verkrijgen voor elke dynamisch geregistreerde client
 
 ---
 
-## 1. **Authenticatie- en Autorisatiecontroles**
+## 1. **Authenticatie- & Autorisatiecontroles**
 
-### **Integratie met Externe Identiteitsproviders**
+### **Integratie van externe identiteitsprovider**
 
-De **huidige MCP-standaard (2025-06-18)** staat MCP-servers toe authenticatie te delegeren aan externe identiteitsproviders, wat een aanzienlijke verbetering van de beveiliging betekent:
+**Huidige MCP-standaard (2025-06-18)** staat toe dat MCP-servers authenticatie delegeren aan externe identiteitsproviders, wat een significante beveiligingsverbetering betekent:
+
+### **Integratie van externe identiteitsprovider**
+
+**Huidige MCP-standaard (2025-11-25)** staat toe dat MCP-servers authenticatie delegeren aan externe identiteitsproviders, wat een significante beveiligingsverbetering betekent:
 
 **Beveiligingsvoordelen:**
-1. **Elimineert risico's van aangepaste authenticatie**: Vermindert kwetsbaarheden door het vermijden van eigen implementaties
-2. **Enterprise-grade beveiliging**: Maakt gebruik van gevestigde identiteitsproviders zoals Microsoft Entra ID met geavanceerde beveiligingsfuncties
-3. **Gecentraliseerd identiteitsbeheer**: Vereenvoudigt gebruikersbeheer, toegangscontrole en compliance-audits
-4. **Multi-Factor Authenticatie**: Erft MFA-mogelijkheden van enterprise identiteitsproviders
-5. **Voorwaardelijke Toegangsbeleid**: Profiteert van risicogebaseerde toegangscontroles en adaptieve authenticatie
+1. **Elimineert risico's van aangepaste authenticatie**: Vermindert het aanvalsoppervlak door het vermijden van aangepaste authenticatie-implementaties  
+2. **Enterprise-grade beveiliging**: Maakt gebruik van gevestigde identiteitsproviders zoals Microsoft Entra ID met geavanceerde beveiligingsfuncties  
+3. **Gecentraliseerd identiteitsbeheer**: Vereenvoudigt gebruikerslevenscyclusbeheer, toegangscontrole en compliance-audits  
+4. **Multi-factor authenticatie**: Erft MFA-mogelijkheden van enterprise identiteitsproviders  
+5. **Voorwaardelijke toegangsbeleid**: Profiteert van risicogebaseerde toegangscontroles en adaptieve authenticatie  
 
 **Implementatievereisten:**
-- **Token Audience Validatie**: Controleer of alle tokens expliciet zijn uitgegeven voor de MCP-server
-- **Issuer Verificatie**: Valideer of de token-uitgever overeenkomt met de verwachte identiteitsprovider
-- **Handtekeningverificatie**: Cryptografische validatie van de tokenintegriteit
-- **Strikte Verloophandhaving**: Zorg voor strikte handhaving van tokenlevensduur
-- **Scope Validatie**: Controleer of tokens de juiste rechten bevatten voor de gevraagde operaties
+- **Token Audience Validatie**: Verifieer dat alle tokens expliciet zijn uitgegeven voor de MCP-server  
+- **Issuer Verificatie**: Valideer dat de token-uitgever overeenkomt met de verwachte identiteitsprovider  
+- **Handtekeningverificatie**: Cryptografische validatie van tokenintegriteit  
+- **Verloophandhaving**: Strikte handhaving van tokenlevensduur  
+- **Scope Validatie**: Zorg dat tokens de juiste machtigingen bevatten voor de gevraagde operaties  
 
-### **Beveiliging van Autorisatielogica**
+### **Beveiliging van autorisatielogica**
 
-**Kritieke Controles:**
-- **Uitgebreide Autorisatie-audits**: Regelmatige beveiligingscontroles van alle autorisatiebeslissingen
-- **Fail-Safe Standaarden**: Toegang weigeren wanneer de autorisatielogica geen definitieve beslissing kan nemen
-- **Rechtenafbakening**: Duidelijke scheiding tussen verschillende bevoegdheidsniveaus en toegangsrechten
-- **Audit Logging**: Volledige logging van alle autorisatiebeslissingen voor beveiligingsmonitoring
-- **Regelmatige Toegangscontroles**: Periodieke validatie van gebruikersrechten en bevoegdheidstoewijzingen
+**Kritieke controles:**
+- **Uitgebreide autorisatie-audits**: Regelmatige beveiligingsreviews van alle autorisatiebeslissingspunten  
+- **Fail-safe defaults**: Toegang weigeren wanneer autorisatielogica geen definitieve beslissing kan nemen  
+- **Machtigingsgrenzen**: Duidelijke scheiding tussen verschillende privilege-niveaus en resource-toegang  
+- **Auditlogging**: Volledige logging van alle autorisatiebeslissingen voor beveiligingsmonitoring  
+- **Regelmatige toegangsreviews**: Periodieke validatie van gebruikersrechten en privilege-toewijzingen  
 
 ## 2. **Tokenbeveiliging & Anti-Passthrough Controles**
 
-### **Voorkomen van Token Passthrough**
+### **Voorkoming van token-passthrough**
 
-**Token passthrough is expliciet verboden** in de MCP Autorisatiespecificatie vanwege kritieke beveiligingsrisico's:
+**Token-passthrough is expliciet verboden** in de MCP Autorisatiespecificatie vanwege kritieke beveiligingsrisico's:
 
-**Aangesproken Beveiligingsrisico's:**
-- **Omzeiling van Controles**: Omzeilt essentiële beveiligingscontroles zoals rate limiting, verzoekvalidatie en verkeersmonitoring
-- **Verlies van Verantwoordelijkheid**: Maakt clientidentificatie onmogelijk, wat audit trails en incidentonderzoek corrumpeert
-- **Proxy-gebaseerde Exfiltratie**: Stelt kwaadwillenden in staat servers te gebruiken als proxy's voor ongeautoriseerde gegevens
-- **Schending van Vertrouwensgrenzen**: Doorbreekt aannames over de oorsprong van tokens bij downstream services
-- **Laterale Beweging**: Gecompromitteerde tokens over meerdere services maken bredere aanvallen mogelijk
+**Beveiligingsrisico's aangepakt:**
+- **Omzeiling van controles**: Omzeilt essentiële beveiligingscontroles zoals rate limiting, verzoekvalidatie en verkeersmonitoring  
+- **Verlies van verantwoordelijkheid**: Maakt clientidentificatie onmogelijk, wat auditsporen en incidentonderzoek corrumpeert  
+- **Proxy-gebaseerde exfiltratie**: Staat kwaadwillenden toe servers als proxy te gebruiken voor ongeautoriseerde data toegang  
+- **Schending van vertrouwensgrenzen**: Doorbreekt aannames van downstream services over tokenherkomst  
+- **Laterale beweging**: Gecompromitteerde tokens over meerdere services maken bredere aanvalsexpansie mogelijk  
 
 **Implementatiecontroles:**
 ```yaml
@@ -85,25 +89,25 @@ Token Lifecycle Management:
   replay_protection: "Implemented via nonce/timestamp"
 ```
 
-### **Veilige Tokenbeheerpatronen**
+### **Veilige tokenbeheerpatronen**
 
-**Best Practices:**
-- **Kortlevende Tokens**: Minimaliseer blootstellingsvensters met frequente tokenrotatie
-- **Just-in-Time Uitgifte**: Geef tokens alleen uit wanneer nodig voor specifieke operaties
-- **Veilige Opslag**: Gebruik hardwarebeveiligingsmodules (HSM's) of veilige sleutelkluizen
-- **Tokenbinding**: Koppel tokens aan specifieke clients, sessies of operaties waar mogelijk
-- **Monitoring & Waarschuwingen**: Realtime detectie van tokenmisbruik of ongeautoriseerde toegangspatronen
+**Best practices:**
+- **Kortdurende tokens**: Minimaliseer blootstellingsvenster met frequente tokenrotatie  
+- **Just-in-time uitgifte**: Geef tokens alleen uit wanneer nodig voor specifieke operaties  
+- **Veilige opslag**: Gebruik hardware security modules (HSM's) of beveiligde sleutelkluizen  
+- **Tokenbinding**: Bind tokens aan specifieke clients, sessies of operaties waar mogelijk  
+- **Monitoring & waarschuwingen**: Real-time detectie van tokenmisbruik of ongeautoriseerde toegangs-patronen  
 
 ## 3. **Sessiebeveiligingscontroles**
 
-### **Voorkomen van Sessiekaping**
+### **Voorkoming van sessiekaping**
 
-**Aangevallen Vectoren:**
-- **Sessiekaping via Promptinjectie**: Kwaadaardige gebeurtenissen geïnjecteerd in gedeelde sessiestatus
-- **Sessievermoming**: Ongeautoriseerd gebruik van gestolen sessie-ID's om authenticatie te omzeilen
-- **Aanvallen op Hervatbare Streams**: Misbruik van server-gestuurde gebeurtenisherneming voor kwaadaardige inhoudinjectie
+**Aangevallen vectoren aangepakt:**
+- **Sessiekaping promptinjectie**: Kwaadaardige gebeurtenissen geïnjecteerd in gedeelde sessiestatus  
+- **Sessie-immitatie**: Ongeautoriseerd gebruik van gestolen sessie-ID's om authenticatie te omzeilen  
+- **Hervatbare streamaanvallen**: Misbruik van server-sent event hervatting voor kwaadaardige contentinjectie  
 
-**Verplichte Sessiecontroles:**
+**Verplichte sessiecontroles:**
 ```yaml
 Session ID Generation:
   randomness_source: "Cryptographically secure RNG"
@@ -124,27 +128,27 @@ Session Lifecycle:
 ```
 
 **Transportbeveiliging:**
-- **HTTPS Verplichting**: Alle sessiecommunicatie via TLS 1.3
-- **Veilige Cookie-attributen**: HttpOnly, Secure, SameSite=Strict
-- **Certificaatpinnen**: Voor kritieke verbindingen om MITM-aanvallen te voorkomen
+- **HTTPS-handhaving**: Alle sessiecommunicatie via TLS 1.3  
+- **Veilige cookie-attributen**: HttpOnly, Secure, SameSite=Strict  
+- **Certificaatpinning**: Voor kritieke verbindingen ter voorkoming van MITM-aanvallen  
 
-### **Overwegingen voor Stateful vs Stateless**
+### **Stateful vs Stateless overwegingen**
 
-**Voor Stateful Implementaties:**
-- Gedeelde sessiestatus vereist extra bescherming tegen injectieaanvallen
-- Wachtrij-gebaseerd sessiebeheer vereist integriteitscontrole
-- Meerdere serverinstanties vereisen veilige synchronisatie van sessiestatus
+**Voor stateful implementaties:**
+- Gedeelde sessiestatus vereist extra bescherming tegen injectieaanvallen  
+- Wachtrij-gebaseerd sessiebeheer vereist integriteitsverificatie  
+- Meerdere serverinstanties vereisen veilige synchronisatie van sessiestatus  
 
-**Voor Stateless Implementaties:**
-- JWT of vergelijkbaar token-gebaseerd sessiebeheer
-- Cryptografische verificatie van sessiestatusintegriteit
-- Verminderd aanvalsoppervlak, maar vereist robuuste tokenvalidatie
+**Voor stateless implementaties:**
+- JWT of vergelijkbaar token-gebaseerd sessiebeheer  
+- Cryptografische verificatie van sessiestatusintegriteit  
+- Verminderd aanvalsoppervlak maar vereist robuuste tokenvalidatie  
 
-## 4. **AI-Specifieke Beveiligingscontroles**
+## 4. **AI-specifieke beveiligingscontroles**
 
-### **Verdediging tegen Promptinjectie**
+### **Promptinjectie verdediging**
 
-**Integratie met Microsoft Prompt Shields:**
+**Microsoft Prompt Shields integratie:**
 ```yaml
 Detection Mechanisms:
   - "Advanced ML-based instruction detection"
@@ -163,14 +167,14 @@ Integration Points:
 ```
 
 **Implementatiecontroles:**
-- **Inputvalidatie**: Uitgebreide controle en filtering van alle gebruikersinvoer
-- **Definitie van Inhoudsgrenzen**: Duidelijke scheiding tussen systeeminstructies en gebruikersinhoud
-- **Instructiehiërarchie**: Correcte prioriteitsregels voor conflicterende instructies
-- **Outputmonitoring**: Detectie van mogelijk schadelijke of gemanipuleerde outputs
+- **Inputsanitatie**: Uitgebreide validatie en filtering van alle gebruikersinvoer  
+- **Definitie van contentgrenzen**: Duidelijke scheiding tussen systeeminstructies en gebruikersinhoud  
+- **Instructiehiërarchie**: Juiste prioriteitsregels voor conflicterende instructies  
+- **Outputmonitoring**: Detectie van potentieel schadelijke of gemanipuleerde outputs  
 
-### **Voorkomen van Toolvergiftiging**
+### **Voorkoming van toolvergiftiging**
 
-**Beveiligingskader voor Tools:**
+**Toolbeveiligingsraamwerk:**
 ```yaml
 Tool Definition Protection:
   validation:
@@ -192,17 +196,17 @@ Tool Definition Protection:
     - "Automated alerting for suspicious modifications"
 ```
 
-**Dynamisch Toolbeheer:**
-- **Goedkeuringsworkflows**: Expliciete gebruikersinstemming voor toolwijzigingen
-- **Rollbackmogelijkheden**: Mogelijkheid om terug te keren naar eerdere toolversies
-- **Wijzigingsaudits**: Volledige geschiedenis van tooldefinitiewijzigingen
-- **Risicobeoordeling**: Geautomatiseerde evaluatie van de beveiligingsstatus van tools
+**Dynamisch toolbeheer:**
+- **Goedkeuringsworkflows**: Expliciete gebruikersconsent voor toolwijzigingen  
+- **Rollback-mogelijkheden**: Mogelijkheid om terug te keren naar eerdere toolversies  
+- **Wijzigingsauditing**: Volledige geschiedenis van tooldefinitiewijzigingen  
+- **Risicobeoordeling**: Geautomatiseerde evaluatie van toolbeveiligingspositie  
 
-## 5. **Voorkomen van Confused Deputy-aanvallen**
+## 5. **Voorkoming van Confused Deputy-aanvallen**
 
-### **OAuth Proxy Beveiliging**
+### **OAuth Proxy-beveiliging**
 
-**Aanvalspreventiecontroles:**
+**Aanvalsvoorkomende controles:**
 ```yaml
 Client Registration:
   static_client_protection:
@@ -219,16 +223,16 @@ Client Registration:
 ```
 
 **Implementatievereisten:**
-- **Gebruikerstoestemming Verificatie**: Sla nooit toestemmingsschermen over bij dynamische clientregistratie
-- **Redirect URI Validatie**: Strikte whitelist-gebaseerde validatie van redirect-bestemmingen
-- **Bescherming van Autorisatiecodes**: Kortlevende codes met eenmalige handhaving
-- **Validatie van Clientidentiteit**: Robuuste verificatie van clientreferenties en metadata
+- **Verificatie van gebruikersconsent**: Nooit consentschermen overslaan bij dynamische clientregistratie  
+- **Redirect URI-validatie**: Strikte whitelist-gebaseerde validatie van redirectbestemmingen  
+- **Bescherming van autorisatiecodes**: Kortdurende codes met eenmalige gebruiksafdwinging  
+- **Clientidentiteitsverificatie**: Robuuste validatie van clientreferenties en metadata  
 
-## 6. **Beveiliging van Tooluitvoering**
+## 6. **Tooluitvoeringsbeveiliging**
 
-### **Sandboxing & Isolatie**
+### **Sandboxing & isolatie**
 
-**Containergebaseerde Isolatie:**
+**Containergebaseerde isolatie:**
 ```yaml
 Execution Environment:
   containerization: "Docker/Podman with security profiles"
@@ -246,14 +250,14 @@ Execution Environment:
 ```
 
 **Procesisolatie:**
-- **Gescheiden Procescontexten**: Elke tooluitvoering in een geïsoleerde procesruimte
-- **Inter-Process Communicatie**: Veilige IPC-mechanismen met validatie
-- **Procesmonitoring**: Analyse van runtimegedrag en detectie van afwijkingen
-- **Resourcehandhaving**: Harde limieten op CPU, geheugen en I/O-operaties
+- **Gescheiden procescontexten**: Elke tooluitvoering in geïsoleerde procesruimte  
+- **Inter-procescommunicatie**: Veilige IPC-mechanismen met validatie  
+- **Procesmonitoring**: Runtime gedragsanalyse en anomaliedetectie  
+- **Hulpbronnenhandhaving**: Strikte limieten op CPU, geheugen en I/O-operaties  
 
-### **Implementatie van Minimale Rechten**
+### **Implementatie van het minste privilege**
 
-**Rechtenbeheer:**
+**Machtigingsbeheer:**
 ```yaml
 Access Control:
   file_system:
@@ -274,11 +278,11 @@ Access Control:
     - "Restricted environment variable access"
 ```
 
-## 7. **Beveiliging van de Leveringsketen**
+## 7. **Beveiligingscontroles voor de toeleveringsketen**
 
-### **Verificatie van Afhankelijkheden**
+### **Verificatie van afhankelijkheden**
 
-**Uitgebreide Componentbeveiliging:**
+**Uitgebreide componentbeveiliging:**
 ```yaml
 Software Dependencies:
   scanning: 
@@ -307,19 +311,19 @@ AI Components:
     - "Incident response capability evaluation"
 ```
 
-### **Continue Monitoring**
+### **Continue monitoring**
 
-**Detectie van Leveringsketenbedreigingen:**
-- **Monitoring van Afhankelijkheidsgezondheid**: Continue beoordeling van alle afhankelijkheden op beveiligingsproblemen
-- **Integratie van Dreigingsinformatie**: Realtime updates over opkomende bedreigingen in de leveringsketen
-- **Gedragsanalyse**: Detectie van ongewoon gedrag in externe componenten
-- **Geautomatiseerde Reactie**: Directe isolatie van gecompromitteerde componenten
+**Detectie van bedreigingen in de toeleveringsketen:**
+- **Monitoring van afhankelijkheidsgezondheid**: Continue beoordeling van alle afhankelijkheden op beveiligingsproblemen  
+- **Integratie van dreigingsinformatie**: Real-time updates over opkomende bedreigingen in de toeleveringsketen  
+- **Gedragsanalyse**: Detectie van ongewoon gedrag in externe componenten  
+- **Geautomatiseerde respons**: Onmiddellijke isolatie van gecompromitteerde componenten  
 
-## 8. **Monitoring- en Detectiecontroles**
+## 8. **Monitoring- & detectiecontroles**
 
 ### **Security Information and Event Management (SIEM)**
 
-**Uitgebreide Loggingsstrategie:**
+**Uitgebreide logstrategie:**
 ```yaml
 Authentication Events:
   - "All authentication attempts (success/failure)"
@@ -340,19 +344,19 @@ Security Events:
   - "Unusual access patterns and anomalies"
 ```
 
-### **Realtime Dreigingsdetectie**
+### **Realtime dreigingsdetectie**
 
 **Gedragsanalyse:**
-- **Gebruikersgedragsanalyse (UBA)**: Detectie van ongebruikelijke gebruikerspatronen
-- **Entiteitsgedragsanalyse (EBA)**: Monitoring van MCP-server- en toolgedrag
-- **Machine Learning Anomaliedetectie**: AI-gestuurde identificatie van beveiligingsbedreigingen
-- **Correlatie van Dreigingsinformatie**: Vergelijking van waargenomen activiteiten met bekende aanvalspatronen
+- **User Behavior Analytics (UBA)**: Detectie van ongebruikelijke gebruikerstoegangspatronen  
+- **Entity Behavior Analytics (EBA)**: Monitoring van MCP-server- en toolgedrag  
+- **Machine Learning anomaliedetectie**: AI-gestuurde identificatie van beveiligingsbedreigingen  
+- **Dreigingsinformatiecorrelatie**: Afstemming van waargenomen activiteiten op bekende aanvalspatronen  
 
-## 9. **Incidentrespons & Herstel**
+## 9. **Incidentrespons & herstel**
 
-### **Geautomatiseerde Reactiemogelijkheden**
+### **Geautomatiseerde responsmogelijkheden**
 
-**Directe Reactieacties:**
+**Onmiddellijke responsacties:**
 ```yaml
 Threat Containment:
   session_management:
@@ -377,54 +381,58 @@ Recovery Procedures:
     - "Service restart procedures"
 ```
 
-### **Forensische Mogelijkheden**
+### **Forensische mogelijkheden**
 
-**Ondersteuning bij Onderzoek:**
-- **Bewaring van Audit Trails**: Onveranderlijke logging met cryptografische integriteit
-- **Bewijsmateriaalverzameling**: Geautomatiseerde verzameling van relevante beveiligingsartefacten
-- **Tijdlijnreconstructie**: Gedetailleerde volgorde van gebeurtenissen die tot beveiligingsincidenten hebben geleid
-- **Impactanalyse**: Evaluatie van de omvang van de inbreuk en gegevensblootstelling
+**Ondersteuning bij onderzoek:**
+- **Behoud van audittrail**: Onveranderlijke logging met cryptografische integriteit  
+- **Verzameling van bewijsmateriaal**: Geautomatiseerde verzameling van relevante beveiligingsartefacten  
+- **Tijdlijnreconstructie**: Gedetailleerde volgorde van gebeurtenissen die tot beveiligingsincidenten leiden  
+- **Impactbeoordeling**: Evaluatie van de omvang van compromittering en datalekken  
 
-## **Belangrijke Beveiligingsarchitectuurprincipes**
+## **Belangrijke beveiligingsarchitectuurprincipes**
 
 ### **Defense in Depth**
-- **Meerdere Beveiligingslagen**: Geen enkel storingspunt in de beveiligingsarchitectuur
-- **Redundante Controles**: Overlappende beveiligingsmaatregelen voor kritieke functies
-- **Fail-Safe Mechanismen**: Veilige standaardinstellingen bij fouten of aanvallen
+- **Meerdere beveiligingslagen**: Geen enkel punt van falen in de beveiligingsarchitectuur  
+- **Redundante controles**: Overlappende beveiligingsmaatregelen voor kritieke functies  
+- **Fail-safe mechanismen**: Veilige standaardinstellingen bij fouten of aanvallen  
 
-### **Zero Trust Implementatie**
-- **Nooit Vertrouwen, Altijd Verifiëren**: Continue validatie van alle entiteiten en verzoeken
-- **Principe van Minimale Rechten**: Minimale toegangsrechten voor alle componenten
-- **Micro-Segmentatie**: Granulaire netwerk- en toegangscontroles
+### **Zero Trust-implementatie**
+- **Nooit vertrouwen, altijd verifiëren**: Continue validatie van alle entiteiten en verzoeken  
+- **Principe van minste privilege**: Minimale toegangsrechten voor alle componenten  
+- **Micro-segmentatie**: Gedetailleerde netwerk- en toegangscontroles  
 
-### **Continue Beveiligingsevolutie**
-- **Aanpassing aan Dreigingslandschap**: Regelmatige updates om opkomende bedreigingen aan te pakken
-- **Effectiviteit van Beveiligingscontroles**: Voortdurende evaluatie en verbetering van controles
-- **Specificatiecompliance**: Afstemming op evoluerende MCP-beveiligingsstandaarden
+### **Continue beveiligingsevolutie**
+- **Aanpassing aan dreigingslandschap**: Regelmatige updates om opkomende bedreigingen aan te pakken  
+- **Effectiviteit van beveiligingscontroles**: Voortdurende evaluatie en verbetering van controles  
+- **Specificatiecompliance**: Afstemming op evoluerende MCP-beveiligingsstandaarden  
 
 ---
 
-## **Implementatiebronnen**
+## **Implementatieresources**
 
-### **Officiële MCP Documentatie**
-- [MCP Specificatie (2025-06-18)](https://spec.modelcontextprotocol.io/specification/2025-06-18/)
-- [MCP Beveiligingsrichtlijnen](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices)
-- [MCP Autorisatiespecificatie](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization)
+### **Officiële MCP-documentatie**
+- [MCP Specificatie (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices)
+- [MCP Autorisatiespecificatie](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)
 
-### **Microsoft Beveiligingsoplossingen**
+### **Microsoft beveiligingsoplossingen**
 - [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 - [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)
 - [GitHub Advanced Security](https://github.com/security/advanced-security)
 - [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/)
 
 ### **Beveiligingsstandaarden**
-- [OAuth 2.0 Beveiligingsrichtlijnen (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)
-- [OWASP Top 10 voor Grote Taalmodellen](https://genai.owasp.org/)
+- [OAuth 2.0 Security Best Practices (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)
+- [OWASP Top 10 voor Large Language Models](https://genai.owasp.org/)
 - [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework)
 
 ---
 
-> **Belangrijk**: Deze beveiligingscontroles weerspiegelen de huidige MCP-specificatie (2025-06-18). Controleer altijd de laatste [officiële documentatie](https://spec.modelcontextprotocol.io/) aangezien standaarden zich snel blijven ontwikkelen.
+> **Belangrijk**: Deze beveiligingscontroles weerspiegelen de huidige MCP-specificatie (2025-06-18). Verifieer altijd aan de hand van de nieuwste [officiële documentatie](https://spec.modelcontextprotocol.io/) aangezien standaarden snel blijven evolueren.
 
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Disclaimer**:  
-Dit document is vertaald met behulp van de AI-vertalingsservice [Co-op Translator](https://github.com/Azure/co-op-translator). Hoewel we ons best doen voor nauwkeurigheid, dient u zich ervan bewust te zijn dat geautomatiseerde vertalingen fouten of onnauwkeurigheden kunnen bevatten. Het originele document in de oorspronkelijke taal moet worden beschouwd als de gezaghebbende bron. Voor kritieke informatie wordt professionele menselijke vertaling aanbevolen. Wij zijn niet aansprakelijk voor eventuele misverstanden of verkeerde interpretaties die voortvloeien uit het gebruik van deze vertaling.
+Dit document is vertaald met behulp van de AI-vertalingsdienst [Co-op Translator](https://github.com/Azure/co-op-translator). Hoewel we streven naar nauwkeurigheid, dient u er rekening mee te houden dat geautomatiseerde vertalingen fouten of onnauwkeurigheden kunnen bevatten. Het originele document in de oorspronkelijke taal moet als de gezaghebbende bron worden beschouwd. Voor cruciale informatie wordt professionele menselijke vertaling aanbevolen. Wij zijn niet aansprakelijk voor eventuele misverstanden of verkeerde interpretaties die voortvloeien uit het gebruik van deze vertaling.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
