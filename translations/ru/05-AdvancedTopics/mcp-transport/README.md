@@ -1,45 +1,45 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "c71c60af76120a517809a6cfba47e9a3",
-  "translation_date": "2025-09-15T21:27:38+00:00",
+  "original_hash": "cf3e88e4c0b2d9d65c7f300986bd8c6c",
+  "translation_date": "2025-12-19T08:07:33+00:00",
   "source_file": "05-AdvancedTopics/mcp-transport/README.md",
   "language_code": "ru"
 }
 -->
-# MCP Custom Transports - Руководство по продвинутой реализации
+# MCP Пользовательские Транспорты - Руководство по Продвинутой Реализации
 
-Протокол Model Context Protocol (MCP) предоставляет гибкость в выборе транспортных механизмов, позволяя создавать пользовательские реализации для специализированных корпоративных сред. Это продвинутое руководство рассматривает пользовательские транспортные реализации с использованием Azure Event Grid и Azure Event Hubs как практические примеры для построения масштабируемых облачных решений MCP.
+Протокол Контекста Модели (MCP) предоставляет гибкость в механизмах транспорта, позволяя создавать пользовательские реализации для специализированных корпоративных сред. Это продвинутое руководство рассматривает реализации пользовательских транспортов с использованием Azure Event Grid и Azure Event Hubs в качестве практических примеров для построения масштабируемых, облачно-нативных решений MCP.
 
 ## Введение
 
-Хотя стандартные транспорты MCP (stdio и HTTP streaming) подходят для большинства случаев, корпоративные среды часто требуют специализированных транспортных механизмов для повышения масштабируемости, надежности и интеграции с существующей облачной инфраструктурой. Пользовательские транспорты позволяют MCP использовать облачные сервисы обмена сообщениями для асинхронной коммуникации, событийно-ориентированных архитектур и распределенной обработки.
+Хотя стандартные транспорты MCP (stdio и HTTP streaming) подходят для большинства случаев, корпоративные среды часто требуют специализированных транспортных механизмов для улучшения масштабируемости, надежности и интеграции с существующей облачной инфраструктурой. Пользовательские транспорты позволяют MCP использовать облачные сервисы обмена сообщениями для асинхронной коммуникации, событийно-ориентированных архитектур и распределенной обработки.
 
-Этот урок рассматривает продвинутые транспортные реализации на основе последней спецификации MCP (2025-06-18), сервисов обмена сообщениями Azure и проверенных корпоративных интеграционных паттернов.
+В этом уроке рассматриваются продвинутые реализации транспортов на основе последней спецификации MCP (2025-11-25), сервисов обмена сообщениями Azure и проверенных корпоративных интеграционных паттернов.
 
-### **Архитектура транспортов MCP**
+### **Архитектура Транспорта MCP**
 
-**Из спецификации MCP (2025-06-18):**
+**Из спецификации MCP (2025-11-25):**
 
 - **Стандартные транспорты**: stdio (рекомендуется), HTTP streaming (для удаленных сценариев)
 - **Пользовательские транспорты**: Любой транспорт, реализующий протокол обмена сообщениями MCP
 - **Формат сообщений**: JSON-RPC 2.0 с расширениями MCP
-- **Двусторонняя коммуникация**: Требуется полнодуплексная связь для уведомлений и ответов
+- **Двунаправленная коммуникация**: Требуется полнодуплексная связь для уведомлений и ответов
 
-## Цели обучения
+## Цели Обучения
 
 К концу этого продвинутого урока вы сможете:
 
-- **Понять требования к пользовательским транспортам**: Реализовать протокол MCP на любом транспортном уровне, сохраняя соответствие спецификации
-- **Создать транспорт Azure Event Grid**: Построить событийно-ориентированные MCP-серверы с использованием Azure Event Grid для безсерверной масштабируемости
-- **Реализовать транспорт Azure Event Hubs**: Спроектировать высокопроизводительные MCP-решения с использованием Azure Event Hubs для потоковой передачи в реальном времени
-- **Применить корпоративные паттерны**: Интегрировать пользовательские транспорты с существующей инфраструктурой и моделями безопасности Azure
-- **Обеспечить надежность транспорта**: Реализовать долговечность сообщений, порядок и обработку ошибок для корпоративных сценариев
-- **Оптимизировать производительность**: Спроектировать транспортные решения для масштабируемости, низкой задержки и высоких требований к пропускной способности
+- **Понимать требования к пользовательским транспортам**: Реализовывать протокол MCP поверх любого транспортного уровня с соблюдением требований
+- **Создавать транспорт Azure Event Grid**: Создавать событийно-ориентированные MCP-серверы с использованием Azure Event Grid для безсерверной масштабируемости
+- **Реализовывать транспорт Azure Event Hubs**: Проектировать высокопроизводительные MCP-решения с использованием Azure Event Hubs для потоковой передачи в реальном времени
+- **Применять корпоративные паттерны**: Интегрировать пользовательские транспорты с существующей инфраструктурой и моделями безопасности Azure
+- **Обеспечивать надежность транспорта**: Реализовывать устойчивость сообщений, упорядочивание и обработку ошибок для корпоративных сценариев
+- **Оптимизировать производительность**: Проектировать транспортные решения с учетом масштабируемости, задержек и пропускной способности
 
-## **Требования к транспорту**
+## **Требования к Транспорту**
 
-### **Основные требования из спецификации MCP (2025-06-18):**
+### **Основные требования из спецификации MCP (2025-11-25):**
 
 ```yaml
 Message Protocol:
@@ -58,28 +58,27 @@ Custom Transport:
   interoperability: "MUST maintain protocol compatibility"
 ```
 
-## **Реализация транспорта Azure Event Grid**
+## **Реализация Транспорта Azure Event Grid**
 
-Azure Event Grid предоставляет безсерверный сервис маршрутизации событий, идеально подходящий для событийно-ориентированных архитектур MCP. Эта реализация демонстрирует, как построить масштабируемые, слабо связанные системы MCP.
+Azure Event Grid предоставляет безсерверный сервис маршрутизации событий, идеально подходящий для событийно-ориентированных архитектур MCP. Эта реализация демонстрирует, как строить масштабируемые, слабо связанные системы MCP.
 
-### **Обзор архитектуры**
+### **Обзор Архитектуры**
 
 ```mermaid
 graph TB
-    Client[MCP Client] --> EG[Azure Event Grid]
-    EG --> Server[MCP Server Function]
+    Client[MCP Клиент] --> EG[Azure Event Grid]
+    EG --> Server[MCP Серверная Функция]
     Server --> EG
     EG --> Client
     
-    subgraph "Azure Services"
+    subgraph "Сервисы Azure"
         EG
         Server
-        KV[Key Vault]
+        KV[Хранилище ключей]
         Monitor[Application Insights]
     end
 ```
-
-### **Реализация на C# - транспорт Event Grid**
+### **Реализация на C# - Транспорт Event Grid**
 
 ```csharp
 using Azure.Messaging.EventGrid;
@@ -151,7 +150,7 @@ public async Task<IActionResult> HandleEventGridMessage(
 }
 ```
 
-### **Реализация на TypeScript - транспорт Event Grid**
+### **Реализация на TypeScript - Транспорт Event Grid**
 
 ```typescript
 import { EventGridPublisherClient, AzureKeyCredential } from "@azure/eventgrid";
@@ -185,14 +184,14 @@ export class EventGridMcpTransport implements McpTransport {
         await this.publisher.sendEvents([event]);
     }
     
-    // Event-driven receive via Azure Functions
+    // Прием на основе событий с помощью Azure Functions
     onMessage(handler: (message: McpMessage) => Promise<void>): void {
-        // Implementation would use Azure Functions Event Grid trigger
-        // This is a conceptual interface for the webhook receiver
+        // Реализация будет использовать триггер Event Grid в Azure Functions
+        // Это концептуальный интерфейс для приемника вебхуков
     }
 }
 
-// Azure Functions implementation
+// Реализация Azure Functions
 import { app, InvocationContext, EventGridEvent } from "@azure/functions";
 
 app.eventGrid("mcpEventGridHandler", {
@@ -200,10 +199,10 @@ app.eventGrid("mcpEventGridHandler", {
         try {
             const mcpMessage = event.data as McpMessage;
             
-            // Process MCP message
+            // Обработка сообщения MCP
             const response = await mcpServer.processMessage(mcpMessage);
             
-            // Send response via Event Grid
+            // Отправка ответа через Event Grid
             await transport.sendMessage(response);
             
         } catch (error) {
@@ -214,7 +213,7 @@ app.eventGrid("mcpEventGridHandler", {
 });
 ```
 
-### **Реализация на Python - транспорт Event Grid**
+### **Реализация на Python - Транспорт Event Grid**
 
 ```python
 from azure.eventgrid import EventGridPublisherClient, EventGridEvent
@@ -249,52 +248,51 @@ class EventGridMcpTransport:
         """Register message handler for incoming events"""
         self.message_handler = handler
 
-# Azure Functions implementation
+# Реализация Azure Functions
 import azure.functions as func
 import logging
 
 def main(event: func.EventGridEvent) -> None:
     """Azure Functions Event Grid trigger for MCP messages"""
     try:
-        # Parse MCP message from Event Grid event
+        # Разбор сообщения MCP из события Event Grid
         mcp_message = json.loads(event.get_body().decode('utf-8'))
         
-        # Process MCP message
+        # Обработка сообщения MCP
         response = process_mcp_message(mcp_message)
         
-        # Send response back via Event Grid
-        # (Implementation would create new Event Grid client)
+        # Отправка ответа обратно через Event Grid
+        # (Реализация создаст нового клиента Event Grid)
         
     except Exception as e:
         logging.error(f"Error processing MCP Event Grid message: {e}")
         raise
 ```
 
-## **Реализация транспорта Azure Event Hubs**
+## **Реализация Транспорта Azure Event Hubs**
 
-Azure Event Hubs предоставляет возможности потоковой передачи в реальном времени с высокой пропускной способностью для сценариев MCP, требующих низкой задержки и большого объема сообщений.
+Azure Event Hubs обеспечивает высокопроизводительную потоковую передачу в реальном времени для сценариев MCP, требующих низкой задержки и большого объема сообщений.
 
-### **Обзор архитектуры**
+### **Обзор Архитектуры**
 
 ```mermaid
 graph TB
-    Client[MCP Client] --> EH[Azure Event Hubs]
-    EH --> Server[MCP Server]
+    Client[MCP Клиент] --> EH[Azure Event Hubs]
+    EH --> Server[MCP Сервер]
     Server --> EH
     EH --> Client
     
-    subgraph "Event Hubs Features"
-        Partition[Partitioning]
-        Retention[Message Retention]
-        Scaling[Auto Scaling]
+    subgraph "Возможности Event Hubs"
+        Partition[Разбиение на разделы]
+        Retention[Хранение сообщений]
+        Scaling[Автоматическое масштабирование]
     end
     
     EH --> Partition
     EH --> Retention
     EH --> Scaling
 ```
-
-### **Реализация на C# - транспорт Event Hubs**
+### **Реализация на C# - Транспорт Event Hubs**
 
 ```csharp
 using Azure.Messaging.EventHubs;
@@ -368,7 +366,7 @@ public class EventHubsMcpTransport : IMcpTransport, IDisposable
 }
 ```
 
-### **Реализация на TypeScript - транспорт Event Hubs**
+### **Реализация на TypeScript - Транспорт Event Hubs**
 
 ```typescript
 import { 
@@ -427,7 +425,7 @@ export class EventHubsMcpTransport implements McpTransport {
                         
                         await messageHandler(mcpMessage);
                         
-                        // Update checkpoint for at-least-once delivery
+                        // Обновить контрольную точку для доставки как минимум один раз
                         await context.updateCheckpoint(event);
                     } catch (error) {
                         console.error("Error processing Event Hubs message:", error);
@@ -448,7 +446,7 @@ export class EventHubsMcpTransport implements McpTransport {
 }
 ```
 
-### **Реализация на Python - транспорт Event Hubs**
+### **Реализация на Python - Транспорт Event Hubs**
 
 ```python
 from azure.eventhub import EventHubProducerClient, EventHubConsumerClient
@@ -480,11 +478,11 @@ class EventHubsMcpTransport:
         """Send MCP message via Event Hubs"""
         event_data = EventData(json.dumps(message))
         
-        # Add MCP-specific properties
+        # Добавить свойства, специфичные для MCP
         event_data.properties = {
             "messageType": message.get("method", "response"),
             "messageId": message.get("id"),
-            "timestamp": "2025-01-14T10:30:00Z"  # Use actual timestamp
+            "timestamp": "2025-01-14T10:30:00Z"  # Использовать фактическую временную метку
         }
         
         async with self.producer:
@@ -505,21 +503,21 @@ class EventHubsMcpTransport:
         async with self.consumer:
             await self.consumer.receive(
                 on_event=self._on_event_received(message_handler),
-                starting_position="-1"  # Start from beginning
+                starting_position="-1"  # Начать с начала
             )
     
     def _on_event_received(self, handler: Callable):
         """Internal event handler wrapper"""
         async def handle_event(partition_context, event):
             try:
-                # Parse MCP message from Event Hubs event
+                # Разобрать сообщение MCP из события Event Hubs
                 message_body = event.body_as_str(encoding='UTF-8')
                 mcp_message = json.loads(message_body)
                 
-                # Process MCP message
+                # Обработать сообщение MCP
                 await handler(mcp_message)
                 
-                # Update checkpoint for at-least-once delivery
+                # Обновить контрольную точку для гарантированной доставки хотя бы один раз
                 await partition_context.update_checkpoint(event)
                 
             except Exception as e:
@@ -534,9 +532,9 @@ class EventHubsMcpTransport:
         await self.consumer.close()
 ```
 
-## **Продвинутые транспортные паттерны**
+## **Продвинутые Паттерны Транспорта**
 
-### **Долговечность и надежность сообщений**
+### **Устойчивость и Надежность Сообщений**
 
 ```csharp
 // Implementing message durability with retry logic
@@ -563,7 +561,7 @@ public class ReliableTransportWrapper : IMcpTransport
 }
 ```
 
-### **Интеграция безопасности транспорта**
+### **Интеграция Безопасности Транспорта**
 
 ```csharp
 // Integrating Azure Key Vault for transport security
@@ -585,7 +583,7 @@ public class SecureTransportFactory
 }
 ```
 
-### **Мониторинг и наблюдаемость транспорта**
+### **Мониторинг и Наблюдаемость Транспорта**
 
 ```csharp
 // Adding telemetry to custom transports
@@ -624,9 +622,9 @@ public class ObservableTransport : IMcpTransport
 }
 ```
 
-## **Сценарии корпоративной интеграции**
+## **Корпоративные Сценарии Интеграции**
 
-### **Сценарий 1: Распределенная обработка MCP**
+### **Сценарий 1: Распределенная Обработка MCP**
 
 Использование Azure Event Grid для распределения запросов MCP между несколькими узлами обработки:
 
@@ -642,7 +640,7 @@ Benefits:
   - Cost optimization with serverless compute
 ```
 
-### **Сценарий 2: Потоковая передача MCP в реальном времени**
+### **Сценарий 2: Потоковая Передача MCP в Реальном Времени**
 
 Использование Azure Event Hubs для высокочастотных взаимодействий MCP:
 
@@ -658,7 +656,7 @@ Benefits:
   - Built-in partitioning for parallel processing
 ```
 
-### **Сценарий 3: Гибридная транспортная архитектура**
+### **Сценарий 3: Гибридная Архитектура Транспорта**
 
 Комбинирование нескольких транспортов для различных случаев использования:
 
@@ -684,9 +682,9 @@ public class HybridMcpTransport : IMcpTransport
 }
 ```
 
-## **Оптимизация производительности**
+## **Оптимизация Производительности**
 
-### **Пакетная обработка сообщений для Event Grid**
+### **Пакетирование Сообщений для Event Grid**
 
 ```csharp
 public class BatchingEventGridTransport : IMcpTransport
@@ -726,7 +724,7 @@ public class BatchingEventGridTransport : IMcpTransport
 }
 ```
 
-### **Стратегия разделения для Event Hubs**
+### **Стратегия Партиционирования для Event Hubs**
 
 ```csharp
 public class PartitionedEventHubsTransport : IMcpTransport
@@ -746,9 +744,9 @@ public class PartitionedEventHubsTransport : IMcpTransport
 }
 ```
 
-## **Тестирование пользовательских транспортов**
+## **Тестирование Пользовательских Транспортов**
 
-### **Модульное тестирование с использованием тестовых двойников**
+### **Модульное Тестирование с Использованием Заглушек**
 
 ```csharp
 [Test]
@@ -775,7 +773,7 @@ public async Task EventGridTransport_SendMessage_PublishesCorrectEvent()
 }
 ```
 
-### **Интеграционное тестирование с контейнерами Azure Test**
+### **Интеграционное Тестирование с Azure Test Containers**
 
 ```csharp
 [Test]
@@ -808,49 +806,52 @@ public async Task EventHubsTransport_IntegrationTest()
 }
 ```
 
-## **Лучшие практики и рекомендации**
+## **Лучшие Практики и Рекомендации**
 
-### **Принципы проектирования транспорта**
+### **Принципы Проектирования Транспорта**
 
-1. **Идемпотентность**: Убедитесь, что обработка сообщений идемпотентна для обработки дубликатов
-2. **Обработка ошибок**: Реализуйте комплексную обработку ошибок и очереди для "мертвых" сообщений
+1. **Идемпотентность**: Обеспечьте идемпотентную обработку сообщений для работы с дубликатами
+2. **Обработка Ошибок**: Реализуйте комплексную обработку ошибок и очереди мертвых сообщений
 3. **Мониторинг**: Добавьте подробную телеметрию и проверки состояния
-4. **Безопасность**: Используйте управляемые идентичности и доступ с минимальными привилегиями
-5. **Производительность**: Проектируйте с учетом ваших конкретных требований к задержке и пропускной способности
+4. **Безопасность**: Используйте управляемые идентичности и минимально необходимые права доступа
+5. **Производительность**: Проектируйте с учетом конкретных требований по задержкам и пропускной способности
 
-### **Рекомендации для Azure**
+### **Рекомендации Специфичные для Azure**
 
-1. **Используйте управляемую идентичность**: Избегайте строк подключения в продакшене
-2. **Реализуйте "аварийные выключатели"**: Защитите систему от сбоев сервисов Azure
-3. **Контролируйте расходы**: Отслеживайте объем сообщений и затраты на обработку
-4. **Планируйте масштабируемость**: Разрабатывайте стратегии разделения и масштабирования заранее
-5. **Тщательно тестируйте**: Используйте Azure DevTest Labs для комплексного тестирования
+1. **Используйте Управляемую Идентичность**: Избегайте строк подключения в продакшене
+2. **Реализуйте Circuit Breakers**: Защищайтесь от сбоев сервисов Azure
+3. **Контролируйте Затраты**: Отслеживайте объем сообщений и затраты на обработку
+4. **Планируйте Масштабирование**: Раннее проектирование стратегий партиционирования и масштабирования
+5. **Тщательно Тестируйте**: Используйте Azure DevTest Labs для комплексного тестирования
 
 ## **Заключение**
 
-Пользовательские транспорты MCP позволяют реализовать мощные корпоративные сценарии с использованием сервисов обмена сообщениями Azure. Реализуя транспорты Event Grid или Event Hubs, вы можете построить масштабируемые, надежные решения MCP, которые легко интегрируются с существующей инфраструктурой Azure.
+Пользовательские транспорты MCP открывают мощные корпоративные сценарии с использованием сервисов обмена сообщениями Azure. Реализуя транспорты Event Grid или Event Hubs, вы можете создавать масштабируемые, надежные решения MCP, которые бесшовно интегрируются с существующей инфраструктурой Azure.
 
-Приведенные примеры демонстрируют готовые к производству паттерны для реализации пользовательских транспортов при соблюдении требований протокола MCP и лучших практик Azure.
+Приведенные примеры демонстрируют готовые к производству паттерны реализации пользовательских транспортов с соблюдением протокола MCP и лучших практик Azure.
 
-## **Дополнительные ресурсы**
+## **Дополнительные Ресурсы**
 
 - [Спецификация MCP 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/)
 - [Документация Azure Event Grid](https://docs.microsoft.com/azure/event-grid/)
 - [Документация Azure Event Hubs](https://docs.microsoft.com/azure/event-hubs/)
-- [Триггер Event Grid для Azure Functions](https://docs.microsoft.com/azure/azure-functions/functions-bindings-event-grid)
+- [Триггер Azure Functions для Event Grid](https://docs.microsoft.com/azure/azure-functions/functions-bindings-event-grid)
 - [Azure SDK для .NET](https://github.com/Azure/azure-sdk-for-net)
 - [Azure SDK для TypeScript](https://github.com/Azure/azure-sdk-for-js)
 - [Azure SDK для Python](https://github.com/Azure/azure-sdk-for-python)
 
 ---
 
-> *Это руководство сосредоточено на практических паттернах реализации для производственных систем MCP. Всегда проверяйте реализации транспортов в соответствии с вашими конкретными требованиями и ограничениями сервисов Azure.*
-> **Текущий стандарт**: Это руководство отражает [Спецификацию MCP 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) и продвинутые транспортные паттерны для корпоративных сред.
+> *Это руководство сосредоточено на практических паттернах реализации для производственных систем MCP. Всегда проверяйте реализации транспортов в соответствии с вашими конкретными требованиями и лимитами сервисов Azure.*
+> **Текущий Стандарт**: Это руководство отражает требования к транспорту и продвинутые паттерны из [спецификации MCP 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) для корпоративных сред.
+
 
 ## Что дальше
 - [6. Вклад сообщества](../../06-CommunityContributions/README.md)
 
 ---
 
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Отказ от ответственности**:  
-Этот документ был переведен с использованием сервиса автоматического перевода [Co-op Translator](https://github.com/Azure/co-op-translator). Хотя мы стремимся к точности, пожалуйста, учитывайте, что автоматические переводы могут содержать ошибки или неточности. Оригинальный документ на его родном языке следует считать авторитетным источником. Для получения критически важной информации рекомендуется профессиональный перевод человеком. Мы не несем ответственности за любые недоразумения или неправильные интерпретации, возникающие в результате использования данного перевода.
+Этот документ был переведен с помощью сервиса автоматического перевода [Co-op Translator](https://github.com/Azure/co-op-translator). Несмотря на наши усилия по обеспечению точности, имейте в виду, что автоматический перевод может содержать ошибки или неточности. Оригинальный документ на его исходном языке следует считать авторитетным источником. Для получения критически важной информации рекомендуется использовать профессиональный перевод, выполненный человеком. Мы не несем ответственности за любые недоразумения или неправильные толкования, возникшие в результате использования данного перевода.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
