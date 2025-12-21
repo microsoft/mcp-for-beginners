@@ -1,207 +1,215 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "057dd5cc6bea6434fdb788e6c93f3f3d",
-  "translation_date": "2025-08-18T16:06:50+00:00",
+  "original_hash": "e30aaf6b178137fa6668efc1b20851d5",
+  "translation_date": "2025-12-19T13:27:42+00:00",
   "source_file": "02-Security/mcp-security-best-practices-2025.md",
   "language_code": "fi"
 }
 -->
-# MCP:n turvallisuuskäytännöt - Päivitys elokuu 2025
+# MCP:n turvallisuuden parhaat käytännöt – joulukuu 2025 päivitys
 
-> **Tärkeää**: Tämä asiakirja heijastaa uusimpia [MCP-määrityksen 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) turvallisuusvaatimuksia ja virallisia [MCP:n turvallisuuskäytäntöjä](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices). Tarkista aina ajantasaiset ohjeet nykyisestä määrityksestä.
+> **Tärkeää**: Tämä asiakirja heijastaa uusimpia [MCP-spesifikaation 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) turvallisuusvaatimuksia ja virallisia [MCP:n turvallisuuden parhaita käytäntöjä](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices). Viittaa aina ajantasaiseen spesifikaatioon saadaksesi viimeisimmät ohjeet.
 
 ## Keskeiset turvallisuuskäytännöt MCP-toteutuksille
 
-Model Context Protocol tuo mukanaan ainutlaatuisia turvallisuushaasteita, jotka ylittävät perinteisen ohjelmistoturvallisuuden. Nämä käytännöt käsittelevät sekä perusturvallisuusvaatimuksia että MCP-spesifisiä uhkia, kuten kehotteen injektiota, työkalujen manipulointia, istunnon kaappaamista, "hämmentynyt apulainen" -ongelmia ja tunnusten välityshaavoittuvuuksia.
+Model Context Protocol tuo mukanaan ainutlaatuisia turvallisuushaasteita, jotka ylittävät perinteisen ohjelmistoturvallisuuden. Nämä käytännöt käsittelevät sekä perustason turvallisuusvaatimuksia että MCP-spesifisiä uhkia, kuten kehotteen injektiota, työkalujen myrkyttämistä, istunnon kaappausta, sekaannuskomissaariongelmia ja tunnisteiden läpivientivaurioita.
 
-### **PAKOLLISET turvallisuusvaatimukset**
+### **PAKOLLINEN turvallisuusvaatimukset**
 
-**Keskeiset vaatimukset MCP-määrityksestä:**
+**Kriittiset vaatimukset MCP-spesifikaatiosta:**
 
-> **EI SAA**: MCP-palvelimet **EIVÄT SAA** hyväksyä tunnuksia, joita ei ole nimenomaisesti myönnetty MCP-palvelimelle  
-> 
-> **ON PAKKO**: MCP-palvelimien, jotka toteuttavat valtuutuksen, **ON PAKKO** tarkistaa KAIKKI saapuvat pyynnöt  
+### **PAKOLLINEN turvallisuusvaatimukset**
+
+**Kriittiset vaatimukset MCP-spesifikaatiosta:**
+
+> **EI SAA**: MCP-palvelimet **EIVÄT SAA** hyväksyä tunnisteita, joita ei ole nimenomaisesti myönnetty kyseiselle MCP-palvelimelle  
+>  
+> **SAA**: MCP-palvelimet, jotka toteuttavat valtuutuksen, **SAA** tarkistaa KAIKKI saapuvat pyynnöt  
 >  
 > **EI SAA**: MCP-palvelimet **EIVÄT SAA** käyttää istuntoja todennukseen  
->
-> **ON PAKKO**: MCP-välityspalvelimien, jotka käyttävät staattisia asiakastunnuksia, **ON PAKKO** hankkia käyttäjän suostumus jokaiselle dynaamisesti rekisteröidylle asiakkaalle  
+>  
+> **SAA**: MCP-välipalvelimet, jotka käyttävät staattisia asiakastunnuksia, **SAA** hankkia käyttäjän suostumus jokaiselle dynaamisesti rekisteröidylle asiakkaalle
 
 ---
 
-## 1. **Tunnusten turvallisuus ja todennus**
+## 1. **Tunnisteiden turvallisuus ja todennus**
 
-**Todennus- ja valtuutuskontrollit:**
-   - **Perusteellinen valtuutuksen tarkistus**: Suorita kattavat auditoinnit MCP-palvelimen valtuutuslogiikasta varmistaaksesi, että vain tarkoitetut käyttäjät ja asiakkaat pääsevät resursseihin  
-   - **Ulkoinen identiteettipalveluntarjoaja**: Käytä vakiintuneita identiteettipalveluntarjoajia, kuten Microsoft Entra ID:tä, sen sijaan että toteuttaisit oman todennuksen  
-   - **Tunnusten kohdevalidointi**: Varmista aina, että tunnukset on nimenomaisesti myönnetty MCP-palvelimellesi - älä koskaan hyväksy ylävirran tunnuksia  
-   - **Tunnusten elinkaaren hallinta**: Toteuta turvallinen tunnusten kierto, vanhenemiskäytännöt ja estä tunnusten toistohyökkäykset  
+**Todennus- ja valtuutusvalvonta:**
+   - **Tiukka valtuutuksen tarkastus**: Suorita kattavat auditoinnit MCP-palvelimen valtuutuslogiikasta varmistaaksesi, että vain tarkoitetut käyttäjät ja asiakkaat pääsevät resursseihin
+   - **Ulkoinen identiteetin tarjoajan integrointi**: Käytä vakiintuneita identiteetin tarjoajia, kuten Microsoft Entra ID:tä, sen sijaan että toteuttaisit omaa todennusta
+   - **Tunnisteen kohdevalidointi**: Varmista aina, että tunnisteet on nimenomaisesti myönnetty sinun MCP-palvelimellesi – älä koskaan hyväksy ylemmän tason tunnisteita
+   - **Oikea tunnisteen elinkaaren hallinta**: Toteuta turvallinen tunnisteiden kierto, vanhentumiskäytännöt ja estä tunnisteiden uudelleenkäyttöhyökkäykset
 
-**Tunnusten suojattu säilytys:**
-   - Käytä Azure Key Vaultia tai vastaavia turvallisia salasanavarastoja kaikille salaisuuksille  
-   - Toteuta salaus tunnuksille sekä levossa että siirron aikana  
-   - Säännöllinen salasanan kierto ja luvattoman käytön valvonta  
+**Suojaettu tunnisteiden tallennus:**
+   - Käytä Azure Key Vaultia tai vastaavia turvallisia tunnistetietovarastoja kaikille salaisuuksille
+   - Toteuta salaus tunnisteille sekä levossa että siirrossa
+   - Säännöllinen tunnistetietojen kierto ja valvonta luvattoman käytön estämiseksi
 
 ## 2. **Istunnon hallinta ja siirtoturvallisuus**
 
 **Turvalliset istuntokäytännöt:**
-   - **Kryptografisesti turvalliset istuntotunnukset**: Käytä turvallisia, ei-deterministisiä istuntotunnuksia, jotka on luotu turvallisilla satunnaislukugeneraattoreilla  
-   - **Käyttäjäkohtainen sitominen**: Sido istuntotunnukset käyttäjätunnuksiin käyttämällä muotoja, kuten `<user_id>:<session_id>`, estääksesi istuntojen väärinkäytön käyttäjien välillä  
-   - **Istunnon elinkaaren hallinta**: Toteuta asianmukainen vanheneminen, kierto ja mitätöinti haavoittuvuusikkunoiden rajoittamiseksi  
-   - **HTTPS/TLS:n pakottaminen**: HTTPS on pakollinen kaikessa viestinnässä istuntotunnusten sieppaamisen estämiseksi  
+   - **Kryptografisesti turvalliset istunto-ID:t**: Käytä turvallisia, ei-deterministisiä istunto-ID:itä, jotka on luotu turvallisilla satunnaislukugeneraattoreilla
+   - **Käyttäjäkohtainen sidonta**: Sido istunto-ID:t käyttäjäidentiteetteihin muodoilla kuten `<user_id>:<session_id>` estääksesi istuntojen väärinkäytön eri käyttäjien välillä
+   - **Istunnon elinkaaren hallinta**: Toteuta asianmukainen vanhentuminen, kierto ja mitätöinti haavoittuvuuksien rajoittamiseksi
+   - **HTTPS/TLS-vaatimus**: Pakollinen HTTPS kaikessa viestinnässä estämään istunto-ID:n sieppaus
 
 **Siirtokerroksen turvallisuus:**
-   - Konfiguroi TLS 1.3 aina kun mahdollista ja varmista asianmukainen sertifikaattien hallinta  
-   - Toteuta sertifikaattien kiinnitys kriittisille yhteyksille  
-   - Säännöllinen sertifikaattien kierto ja voimassaolon tarkistus  
+   - Määritä TLS 1.3 mahdollisuuksien mukaan asianmukaisella sertifikaattien hallinnalla
+   - Toteuta sertifikaattien pinnaus kriittisille yhteyksille
+   - Säännöllinen sertifikaattien kierto ja voimassaolon tarkistus
 
-## 3. **AI-spesifisten uhkien torjunta** 🤖
+## 3. **AI-spesifinen uhkasuojaus** 🤖
 
-**Kehotteen injektion puolustus:**
-   - **Microsoft Prompt Shields**: Käytä AI Prompt Shield -ratkaisuja haitallisten ohjeiden havaitsemiseen ja suodattamiseen  
-   - **Syötteiden validointi**: Varmista ja puhdista kaikki syötteet injektiohyökkäysten ja "hämmentynyt apulainen" -ongelmien estämiseksi  
-   - **Sisältörajoitukset**: Käytä erottimia ja datamerkintäjärjestelmiä luotettujen ohjeiden ja ulkoisen sisällön erottamiseen  
+**Kehotteen injektion torjunta:**
+   - **Microsoft Prompt Shields**: Ota käyttöön AI Prompt Shields kehittyneeseen haitallisten ohjeiden tunnistukseen ja suodatukseen
+   - **Syötteen puhdistus**: Varmista ja puhdista kaikki syötteet estääksesi injektiohyökkäykset ja sekaannuskomissaariongelmat
+   - **Sisällön rajat**: Käytä erotin- ja datamerkintäjärjestelmiä erottaaksesi luotetut ohjeet ulkoisesta sisällöstä
 
-**Työkalujen manipuloinnin estäminen:**
-   - **Työkalujen metadatan validointi**: Toteuta eheystarkistukset työkalumäärittelyille ja valvo odottamattomia muutoksia  
-   - **Dynaaminen työkalujen valvonta**: Valvo ajonaikaista käyttäytymistä ja aseta hälytyksiä odottamattomille suorituskuvioille  
-   - **Hyväksyntäprosessit**: Edellytä käyttäjän nimenomaista hyväksyntää työkalumuutoksille ja ominaisuuksien päivityksille  
+**Työkalujen myrkytyksen estäminen:**
+   - **Työkalun metatietojen validointi**: Toteuta eheystarkastukset työkalumäärittelyille ja valvo odottamattomia muutoksia
+   - **Dynaaminen työkalujen valvonta**: Seuraa suoritusaikaa ja aseta hälytykset odottamattomista suoritustavoista
+   - **Hyväksyntätyönkulut**: Vaadi käyttäjän nimenomainen hyväksyntä työkalumuutoksille ja kyvykkyyksien muutoksille
 
-## 4. **Pääsynhallinta ja käyttöoikeudet**
+## 4. **Pääsynvalvonta ja käyttöoikeudet**
 
 **Vähimmän oikeuden periaate:**
-   - Myönnä MCP-palvelimille vain vähimmäisoikeudet, jotka ovat tarpeen aiottua toimintaa varten  
-   - Toteuta roolipohjainen pääsynhallinta (RBAC) hienojakoisilla käyttöoikeuksilla  
-   - Säännölliset käyttöoikeuksien tarkistukset ja jatkuva valvonta oikeuksien laajentumisen varalta  
+   - Myönnä MCP-palvelimille vain vähimmäisoikeudet, jotka ovat tarpeen tarkoitetulle toiminnallisuudelle
+   - Toteuta roolipohjainen pääsynvalvonta (RBAC) hienojakoisilla käyttöoikeuksilla
+   - Säännölliset käyttöoikeuksien tarkastukset ja jatkuva valvonta oikeuksien laajentumisen estämiseksi
 
-**Ajonaikaiset käyttöoikeuskontrollit:**
-   - Aseta resurssirajoituksia resurssien ehtymishyökkäysten estämiseksi  
-   - Käytä konttien eristämistä työkalujen suoritusympäristöissä  
-   - Toteuta juuri ajoissa -pääsy hallinnollisiin toimintoihin  
+**Suoritusaikaiset käyttöoikeuksien valvonnat:**
+   - Aseta resurssirajoituksia estämään resurssien loppumishyökkäyksiä
+   - Käytä konttien eristystä työkalujen suoritusalustoilla  
+   - Toteuta juuri oikeaan aikaan -pääsy hallinnollisille toiminnoille
 
 ## 5. **Sisällön turvallisuus ja valvonta**
 
 **Sisällön turvallisuuden toteutus:**
-   - **Azure Content Safety -integraatio**: Käytä Azure Content Safety -ratkaisuja haitallisen sisällön, jailbreak-yritysten ja käytäntörikkomusten havaitsemiseen  
-   - **Käyttäytymisanalyysi**: Toteuta ajonaikainen käyttäytymisen valvonta MCP-palvelimen ja työkalujen suorituspoikkeamien havaitsemiseksi  
-   - **Kattava lokitus**: Kirjaa kaikki todennusyritykset, työkalujen kutsut ja turvallisuustapahtumat turvalliseen, peukaloinnin kestävään tallennustilaan  
+   - **Azure Content Safety -integraatio**: Käytä Azure Content Safetyä haitallisen sisällön, jailbreak-yritysten ja politiikkarikkomusten havaitsemiseen
+   - **Käyttäytymisanalyysi**: Toteuta suoritusaikainen käyttäytymisen valvonta MCP-palvelimen ja työkalujen suorituksessa poikkeamien havaitsemiseksi
+   - **Kattava lokitus**: Kirjaa kaikki todennusyritykset, työkalukutsut ja turvallisuustapahtumat turvalliseen, muuttumattomaan tallennukseen
 
 **Jatkuva valvonta:**
-   - Reaaliaikaiset hälytykset epäilyttävistä kuvioista ja luvattomista käyttöyrityksistä  
-   - Integraatio SIEM-järjestelmiin keskitettyä turvallisuustapahtumien hallintaa varten  
-   - Säännölliset turvallisuusauditoinnit ja MCP-toteutusten tunkeutumistestaukset  
+   - Reaaliaikaiset hälytykset epäilyttävistä kuvioista ja luvattomista pääsyyrityksistä  
+   - Integraatio SIEM-järjestelmiin keskitettyä turvallisuustapahtumien hallintaa varten
+   - Säännölliset turvallisuusauditoinnit ja tunkeutumistestaukset MCP-toteutuksille
 
 ## 6. **Toimitusketjun turvallisuus**
 
-**Komponenttien tarkistus:**
-   - **Riippuvuuksien skannaus**: Käytä automatisoituja haavoittuvuusskannauksia kaikille ohjelmistoriippuvuuksille ja AI-komponenteille  
-   - **Alkuperän validointi**: Varmista mallien, tietolähteiden ja ulkoisten palveluiden alkuperä, lisensointi ja eheys  
-   - **Allekirjoitetut paketit**: Käytä kryptografisesti allekirjoitettuja paketteja ja tarkista allekirjoitukset ennen käyttöönottoa  
+**Komponenttien varmistus:**
+   - **Riippuvuusskannaus**: Käytä automatisoituja haavoittuvuusskannauksia kaikille ohjelmisto- ja AI-riippuvuuksille
+   - **Alkuperän validointi**: Varmista mallien, tietolähteiden ja ulkoisten palveluiden alkuperä, lisensointi ja eheys
+   - **Allekirjoitetut paketit**: Käytä kryptografisesti allekirjoitettuja paketteja ja varmista allekirjoitukset ennen käyttöönottoa
 
-**Turvallinen kehitysputki:**
-   - **GitHub Advanced Security**: Toteuta salaisuuksien skannaus, riippuvuusanalyysi ja CodeQL-staattinen analyysi  
-   - **CI/CD-turvallisuus**: Integroi turvallisuuden validointi automatisoituihin käyttöönottoihin  
-   - **Artefaktien eheys**: Toteuta kryptografinen validointi käyttöönotettaville artefakteille ja konfiguraatioille  
+**Turvallinen kehityspipeline:**
+   - **GitHub Advanced Security**: Toteuta salaisuuksien skannaus, riippuvuusanalyysi ja CodeQL-staattinen analyysi
+   - **CI/CD-turvallisuus**: Integroi turvallisuuden validointi automatisoituihin käyttöönottoihin
+   - **Artefaktien eheys**: Toteuta kryptografinen varmennus käyttöönotetuille artefakteille ja konfiguraatioille
 
-## 7. **OAuth-turvallisuus ja "hämmentynyt apulainen" -ongelman ehkäisy**
+## 7. **OAuth-turvallisuus ja sekaannuskomissaariongelman estäminen**
 
 **OAuth 2.1 -toteutus:**
-   - **PKCE-toteutus**: Käytä Proof Key for Code Exchange (PKCE) -menetelmää kaikissa valtuutuspyynnöissä  
-   - **Nimenomainen suostumus**: Hanki käyttäjän suostumus jokaiselle dynaamisesti rekisteröidylle asiakkaalle "hämmentynyt apulainen" -hyökkäysten estämiseksi  
-   - **Uudelleenohjaus-URI:n validointi**: Toteuta tiukka uudelleenohjaus-URI:iden ja asiakastunnisteiden validointi  
+   - **PKCE-toteutus**: Käytä Proof Key for Code Exchange (PKCE) -menetelmää kaikissa valtuutuspyynnöissä
+   - **Nimenomainen suostumus**: Hanki käyttäjän suostumus jokaiselle dynaamisesti rekisteröidylle asiakkaalle sekaannuskomissaariongelmien estämiseksi
+   - **Redirect URI:n validointi**: Toteuta tiukka uudelleenohjaus-URI:en ja asiakastunnusten validointi
 
-**Välityspalvelimen turvallisuus:**
-   - Estä valtuutuksen ohittaminen staattisten asiakastunnisteiden hyväksikäytön kautta  
-   - Toteuta asianmukaiset suostumusprosessit kolmansien osapuolten API-käyttöön  
-   - Valvo valtuutuskoodien varkauksia ja luvattomia API-käyttöjä  
+**Välipalvelimen turvallisuus:**
+   - Estä valtuutuksen ohitus staattisten asiakastunnusten hyväksikäytöllä
+   - Toteuta asianmukaiset suostumustyönkulut kolmannen osapuolen API-pääsyille
+   - Valvo valtuutuskoodin varastamista ja luvattomia API-pääsyjä
 
-## 8. **Tapahtumien hallinta ja palautuminen**
+## 8. **Häiriötilanteisiin reagointi ja palautuminen**
 
 **Nopeat reagointikyvyt:**
-   - **Automatisoitu reagointi**: Toteuta automatisoituja järjestelmiä salaisuuksien kiertoon ja uhkien rajoittamiseen  
-   - **Palautusmenettelyt**: Kyky nopeasti palauttaa tunnetusti toimiviin konfiguraatioihin ja komponentteihin  
-   - **Oikeuslääketieteelliset kyvyt**: Yksityiskohtaiset auditointijäljet ja lokit tapahtumien tutkimista varten  
+   - **Automaattinen reagointi**: Toteuta automatisoidut järjestelmät tunnistetietojen kiertoon ja uhkien rajoittamiseen
+   - **Palautusmenettelyt**: Mahdollisuus nopeasti palauttaa tunnetusti toimivat konfiguraatiot ja komponentit
+   - **Forensiikkakyvyt**: Yksityiskohtaiset auditointilokit ja lokit häiriötutkintaa varten
 
 **Viestintä ja koordinointi:**
-   - Selkeät eskalointimenettelyt turvallisuustapahtumille  
-   - Integraatio organisaation tapahtumien hallintatiimien kanssa  
-   - Säännölliset turvallisuustapahtumien simulaatiot ja harjoitukset  
+   - Selkeät eskalointimenettelyt turvallisuustapahtumille
+   - Integraatio organisaation häiriötilanteiden reagointitiimien kanssa
+   - Säännölliset turvallisuustapahtumien simulaatiot ja pöytätoimintaharjoitukset
 
 ## 9. **Säädösten noudattaminen ja hallinto**
 
-**Sääntelyvaatimusten noudattaminen:**
-   - Varmista, että MCP-toteutukset täyttävät toimialakohtaiset vaatimukset (GDPR, HIPAA, SOC 2)  
-   - Toteuta tietojen luokittelu- ja yksityisyydensuojakontrollit AI-tietojen käsittelyyn  
-   - Pidä kattava dokumentaatio vaatimustenmukaisuuden auditointeja varten  
+**Säädösten noudattaminen:**
+   - Varmista, että MCP-toteutukset täyttävät toimialakohtaiset vaatimukset (GDPR, HIPAA, SOC 2)
+   - Toteuta tietoluokittelu ja yksityisyydensuojakontrollit AI-datan käsittelyyn
+   - Pidä kattava dokumentaatio vaatimustenmukaisuuden auditointia varten
 
 **Muutosten hallinta:**
-   - Viralliset turvallisuusarviointiprosessit kaikille MCP-järjestelmän muutoksille  
-   - Versiohallinta ja hyväksyntäprosessit konfiguraatiomuutoksille  
-   - Säännölliset vaatimustenmukaisuuden arvioinnit ja aukkoanalyysit  
+   - Viralliset turvallisuustarkastusprosessit kaikille MCP-järjestelmän muutoksille
+   - Versiohallinta ja hyväksyntätyönkulut konfiguraatiomuutoksille
+   - Säännölliset vaatimustenmukaisuuden arvioinnit ja puutteiden analyysit
 
-## 10. **Edistyneet turvallisuuskontrollit**
+## 10. **Edistyneet turvallisuusvalvonnat**
 
 **Zero Trust -arkkitehtuuri:**
-   - **Älä koskaan luota, varmista aina**: Käyttäjien, laitteiden ja yhteyksien jatkuva varmistaminen  
-   - **Mikrosegmentointi**: Hienojakoiset verkkokontrollit, jotka eristävät yksittäiset MCP-komponentit  
-   - **Ehdollinen pääsy**: Riskipohjaiset pääsynhallinnat, jotka mukautuvat nykyiseen kontekstiin ja käyttäytymiseen  
+   - **Älä koskaan luota, varmista aina**: Jatkuva käyttäjien, laitteiden ja yhteyksien varmennus
+   - **Mikrosegmentointi**: Hienojakoiset verkkovalvonnat, jotka eristävät yksittäiset MCP-komponentit
+   - **Ehdollinen pääsy**: Riskipohjaiset pääsynvalvonnat, jotka mukautuvat nykyiseen kontekstiin ja käyttäytymiseen
 
-**Ajonaikainen sovellussuojaus:**
-   - **Ajonaikainen sovelluksen itsepuolustus (RASP)**: Käytä RASP-tekniikoita reaaliaikaiseen uhkien havaitsemiseen  
-   - **Sovelluksen suorituskyvyn valvonta**: Valvo suorituskyvyn poikkeamia, jotka voivat viitata hyökkäyksiin  
-   - **Dynaamiset turvallisuuskäytännöt**: Toteuta turvallisuuskäytännöt, jotka mukautuvat nykyiseen uhkakuvaan  
+**Suoritusaikainen sovellusturva:**
+   - **Runtime Application Self-Protection (RASP)**: Ota käyttöön RASP-tekniikoita reaaliaikaiseen uhkien havaitsemiseen
+   - **Sovelluksen suorituskyvyn valvonta**: Seuraa suorituskyvyn poikkeamia, jotka voivat viitata hyökkäyksiin
+   - **Dynaamiset turvallisuuspolitiikat**: Toteuta turvallisuuspolitiikat, jotka mukautuvat nykyisen uhkakentän mukaan
 
-## 11. **Microsoftin turvallisuusekosysteemin integrointi**
+## 11. **Microsoftin turvallisuus-ekosysteemin integrointi**
 
-**Kattava Microsoft-turvallisuus:**
-   - **Microsoft Defender for Cloud**: Pilviturvallisuuden hallinta MCP-työkuormille  
-   - **Azure Sentinel**: Pilvinatiivi SIEM- ja SOAR-ominaisuudet edistyneeseen uhkien havaitsemiseen  
-   - **Microsoft Purview**: Tietojen hallinta ja vaatimustenmukaisuus AI-työnkuluille ja tietolähteille  
+**Kattava Microsoftin turvallisuus:**
+   - **Microsoft Defender for Cloud**: Pilven turvallisuusaseman hallinta MCP-kuormille
+   - **Azure Sentinel**: Pilvipohjainen SIEM- ja SOAR-kyvykkyydet kehittyneeseen uhkien havaitsemiseen
+   - **Microsoft Purview**: Datan hallinta ja vaatimustenmukaisuus AI-työnkuluille ja tietolähteille
 
 **Identiteetin ja pääsyn hallinta:**
-   - **Microsoft Entra ID**: Yrityksen identiteetinhallinta ehdollisilla pääsynhallintakäytännöillä  
-   - **Privileged Identity Management (PIM)**: Juuri ajoissa -pääsy ja hyväksyntäprosessit hallinnollisille toiminnoille  
-   - **Identiteettisuojaus**: Riskipohjainen ehdollinen pääsy ja automatisoitu uhkien torjunta  
+   - **Microsoft Entra ID**: Yritystason identiteetin hallinta ehdollisilla pääsypolitiikoilla
+   - **Privileged Identity Management (PIM)**: Juuri oikeaan aikaan -pääsy ja hyväksyntätyönkulut hallinnollisille toiminnoille
+   - **Identiteettisuojaus**: Riskipohjainen ehdollinen pääsy ja automatisoitu uhkavaste
 
-## 12. **Jatkuva turvallisuuden kehittäminen**
+## 12. **Jatkuva turvallisuuden kehitys**
 
-**Ajantasaisena pysyminen:**
-   - **Määritysten seuranta**: MCP-määritysten päivitysten ja turvallisuusohjeiden säännöllinen tarkistus  
-   - **Uhkatiedustelu**: AI-spesifisten uhkatietojen ja kompromissien indikaattorien integrointi  
-   - **Turvallisuusyhteisön osallistuminen**: Aktiivinen osallistuminen MCP-turvallisuusyhteisöön ja haavoittuvuuksien ilmoitusohjelmiin  
+**Ajantasalla pysyminen:**
+   - **Spesifikaation seuranta**: Säännöllinen MCP-spesifikaation päivitysten ja turvallisuusohjeiden muutosten tarkastelu
+   - **Uhkatiedustelu**: AI-spesifisten uhkatietovirtojen ja kompromissin indikaattoreiden integrointi
+   - **Turvallisuusyhteisön osallistuminen**: Aktiivinen osallistuminen MCP-turvallisuusyhteisöön ja haavoittuvuuksien ilmoitusohjelmiin
 
 **Mukautuva turvallisuus:**
-   - **Koneoppimisen turvallisuus**: Käytä koneoppimiseen perustuvaa poikkeamien havaitsemista uusien hyökkäysmallien tunnistamiseen  
-   - **Ennakoiva turvallisuusanalytiikka**: Toteuta ennakoivia malleja uhkien tunnistamiseen etukäteen  
-   - **Turvallisuusautomaatio**: Automatisoidut turvallisuuskäytäntöjen päivitykset uhkatiedustelun ja määritysmuutosten perusteella  
+   - **Koneoppimisen turvallisuus**: Käytä ML-pohjaista poikkeamien tunnistusta uusien hyökkäyskuvioiden havaitsemiseen
+   - **Ennakoiva turvallisuusanalytiikka**: Toteuta ennakoivia malleja uhkien proaktiiviseen tunnistamiseen
+   - **Turvallisuuden automaatio**: Automaattiset turvallisuuspolitiikan päivitykset uhkatiedustelun ja spesifikaatiomuutosten perusteella
 
 ---
 
-## **Keskeiset turvallisuusresurssit**
+## **Kriittiset turvallisuusresurssit**
 
 ### **Virallinen MCP-dokumentaatio**
-- [MCP-määritys (2025-06-18)](https://spec.modelcontextprotocol.io/specification/2025-06-18/)  
-- [MCP:n turvallisuuskäytännöt](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices)  
-- [MCP:n valtuutusmääritys](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization)  
+- [MCP-spesifikaatio (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP:n turvallisuuden parhaat käytännöt](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices)
+- [MCP-valtuutuksen spesifikaatio](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)
 
 ### **Microsoftin turvallisuusratkaisut**
-- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)  
-- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)  
-- [Microsoft Entra ID -turvallisuus](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)  
-- [GitHub Advanced Security](https://github.com/security/advanced-security)  
+- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
+- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)
+- [Microsoft Entra ID:n turvallisuus](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
+- [GitHub Advanced Security](https://github.com/security/advanced-security)
 
 ### **Turvallisuusstandardit**
-- [OAuth 2.0 -turvallisuuskäytännöt (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)  
-- [OWASP Top 10 suurille kielimalleille](https://genai.owasp.org/)  
-- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)  
+- [OAuth 2.0:n parhaat turvallisuuskäytännöt (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)
+- [OWASP Top 10 suurille kielimalleille](https://genai.owasp.org/)
+- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)
 
 ### **Toteutusoppaat**
-- [Azure API Management MCP -todennusportti](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)  
-- [Microsoft Entra ID MCP-palvelimien kanssa](https://den.dev/blog/mcp-server-auth-entra-id-session/)  
+- [Azure API Management MCP Authentication Gateway](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
+- [Microsoft Entra ID MCP-palvelimilla](https://den.dev/blog/mcp-server-auth-entra-id-session/)
 
 ---
 
-> **Turvallisuusilmoitus**: MCP:n turvallisuuskäytännöt kehittyvät nopeasti. Varmista aina nykyisen [MCP-määrityksen](https://spec.modelcontextprotocol.io/) ja [virallisen turvallisuusdokumentaation](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) mukaisuus ennen toteutusta.
+> **Turvallisuustiedote**: MCP:n turvallisuuskäytännöt kehittyvät nopeasti. Varmista aina ajantasaiset tiedot nykyisestä [MCP-spesifikaatiosta](https://spec.modelcontextprotocol.io/) ja [virallisesta turvallisuusdokumentaatiosta](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) ennen toteutusta.
 
-**Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattiset käännökset voivat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäisellä kielellä tulisi pitää ensisijaisena lähteenä. Kriittisen tiedon osalta suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa väärinkäsityksistä tai virhetulkinnoista, jotka johtuvat tämän käännöksen käytöstä.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Vastuuvapauslauseke**:
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, otathan huomioon, että automaattikäännöksissä saattaa esiintyä virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäiskielellä on virallinen lähde. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

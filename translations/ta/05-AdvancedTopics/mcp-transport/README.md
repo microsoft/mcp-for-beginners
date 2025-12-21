@@ -1,45 +1,45 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "c71c60af76120a517809a6cfba47e9a3",
-  "translation_date": "2025-10-11T12:11:46+00:00",
+  "original_hash": "cf3e88e4c0b2d9d65c7f300986bd8c6c",
+  "translation_date": "2025-12-19T18:19:43+00:00",
   "source_file": "05-AdvancedTopics/mcp-transport/README.md",
   "language_code": "ta"
 }
 -->
-# MCP தனிப்பயன் போக்குவரத்து - மேம்பட்ட செயல்பாட்டு வழிகாட்டி
+# MCP தனிப்பயன் போக்குவரத்துகள் - மேம்பட்ட செயலாக்க வழிகாட்டி
 
-மாடல் சூழல் நெறிமுறை (MCP) போக்குவரத்து முறைகளில் நெகிழ்வுத்தன்மையை வழங்குகிறது, இது சிறப்பு நிறுவன சூழல்களுக்கு தனிப்பயன் செயல்பாடுகளை அனுமதிக்கிறது. Azure Event Grid மற்றும் Azure Event Hubs ஆகியவற்றைப் பயன்படுத்தி மாபெரும் அளவிலான, மேக-பூர்வ MCP தீர்வுகளை உருவாக்குவதற்கான நடைமுறை உதாரணங்களை இந்த மேம்பட்ட வழிகாட்டி ஆராய்கிறது.
+மாடல் சூழல் நெறிமுறை (MCP) போக்குவரத்து முறைகளில் நெகிழ்வுத்தன்மையை வழங்குகிறது, சிறப்பு நிறுவன சூழல்களுக்கு தனிப்பயன் செயலாக்கங்களை அனுமதிக்கிறது. இந்த மேம்பட்ட வழிகாட்டி, Azure Event Grid மற்றும் Azure Event Hubs ஆகியவற்றைப் பயன்படுத்தி தனிப்பயன் போக்குவரத்து செயலாக்கங்களை ஆராய்கிறது, அளவிடக்கூடிய, மேக-நேட்டிவ் MCP தீர்வுகளை உருவாக்குவதற்கான நடைமுறை உதாரணங்களாக.
 
 ## அறிமுகம்
 
-MCP இன் நிலையான போக்குவரத்து முறைகள் (stdio மற்றும் HTTP ஸ்ட்ரீமிங்) பெரும்பாலான பயன்பாடுகளுக்கு பயன்படுகின்றன, ஆனால் நிறுவன சூழல்கள் அதிக அளவிலான அளவீடு, நம்பகத்தன்மை மற்றும் ஏற்கனவே உள்ள மேக உள்கட்டமைப்புடன் ஒருங்கிணைப்பு ஆகியவற்றிற்காக சிறப்பு போக்குவரத்து முறைகளை தேவைப்படுத்துகின்றன. தனிப்பயன் போக்குவரத்து MCP ஐ மேக-பூர்வ செய்தி சேவைகளை பயன்படுத்த அனுமதிக்கிறது, இது அசிங்ககமான தொடர்பு, நிகழ்வு சார்ந்த கட்டமைப்புகள் மற்றும் பகிர்ந்த செயலாக்கத்திற்காக.
+MCP இன் நிலையான போக்குவரத்துகள் (stdio மற்றும் HTTP ஸ்ட்ரீமிங்) பெரும்பாலான பயன்பாடுகளுக்கு சேவை அளித்தாலும், நிறுவன சூழல்கள் பெரும்பாலும் மேம்பட்ட அளவிடல், நம்பகத்தன்மை மற்றும் உள்ளமைவான மேக கட்டமைப்புடன் ஒருங்கிணைப்புக்காக சிறப்பு போக்குவரத்து முறைகளை தேவைப்படுத்துகின்றன. தனிப்பயன் போக்குவரத்துகள் MCP க்கு மேக-நேட்டிவ் செய்தி சேவைகளை பயன்படுத்தி அசிங்க்ரோனஸ் தொடர்பு, நிகழ்வு இயக்கப்பட்ட கட்டமைப்புகள் மற்றும் பகிர்ந்த செயலாக்கத்திற்கான வாய்ப்புகளை வழங்குகின்றன.
 
-இந்த பாடம் MCP இன் சமீபத்திய விவரக்குறிப்பு (2025-06-18), Azure செய்தி சேவைகள் மற்றும் நிறுவனம் ஒருங்கிணைப்பு முறைமைகள் அடிப்படையில் மேம்பட்ட போக்குவரத்து செயல்பாடுகளை ஆராய்கிறது.
+இந்த பாடம் சமீபத்திய MCP விவரக்குறிப்பின் (2025-11-25) அடிப்படையில், Azure செய்தி சேவைகள் மற்றும் நிறுவனம் ஒருங்கிணைப்பு மாதிரிகள் ஆகியவற்றை பயன்படுத்தி மேம்பட்ட போக்குவரத்து செயலாக்கங்களை ஆராய்கிறது.
 
 ### **MCP போக்குவரத்து கட்டமைப்பு**
 
-**MCP விவரக்குறிப்பில் இருந்து (2025-06-18):**
+**MCP விவரக்குறிப்பில் இருந்து (2025-11-25):**
 
-- **நிலையான போக்குவரத்து முறைகள்**: stdio (பரிந்துரைக்கப்படுகிறது), HTTP ஸ்ட்ரீமிங் (தொலைவிலான சூழல்களுக்கு)
-- **தனிப்பயன் போக்குவரத்து முறைகள்**: MCP செய்தி பரிமாற்ற நெறிமுறையை செயல்படுத்தும் எந்த போக்குவரத்தும்
+- **நிலையான போக்குவரத்துகள்**: stdio (பரிந்துரைக்கப்பட்டது), HTTP ஸ்ட்ரீமிங் (தொலைநிலை சூழல்களுக்கு)
+- **தனிப்பயன் போக்குவரத்துகள்**: MCP செய்தி பரிமாற்ற நெறிமுறையை செயல்படுத்தும் எந்த போக்குவரத்தும்
 - **செய்தி வடிவம்**: JSON-RPC 2.0 MCP-சிறப்பு நீட்டிப்புகளுடன்
-- **இரு திசை தொடர்பு**: அறிவிப்புகள் மற்றும் பதில்களுக்கு முழு டூப்ளெக்ஸ் தொடர்பு தேவை
+- **இரு திசை தொடர்பு**: அறிவிப்புகள் மற்றும் பதில்களுக்கு முழு இருமுக தொடர்பு தேவை
 
-## கற்றல் நோக்கங்கள்
+## கற்றல் குறிக்கோள்கள்
 
 இந்த மேம்பட்ட பாடத்தின் முடிவில், நீங்கள்:
 
-- **தனிப்பயன் போக்குவரத்து தேவைகளைப் புரிந்து கொள்ளுங்கள்**: எந்த போக்குவரத்து அடுக்கு மீதும் MCP நெறிமுறையை செயல்படுத்தவும், இணக்கத்தன்மையை பராமரிக்கவும்
-- **Azure Event Grid போக்குவரத்து உருவாக்குங்கள்**: Azure Event Grid ஐப் பயன்படுத்தி நிகழ்வு சார்ந்த MCP சர்வர்களை உருவாக்கவும்
-- **Azure Event Hubs போக்குவரத்து செயல்படுத்துங்கள்**: Azure Event Hubs ஐப் பயன்படுத்தி உயர்-திறன் MCP தீர்வுகளை வடிவமைக்கவும்
-- **நிறுவன முறைமைகளைப் பயன்படுத்துங்கள்**: Azure உள்கட்டமைப்பு மற்றும் பாதுகாப்பு மாதிரிகளுடன் தனிப்பயன் போக்குவரத்துகளை ஒருங்கிணைக்கவும்
-- **போக்குவரத்து நம்பகத்தன்மையை கையாளுங்கள்**: செய்தி நிலைத்தன்மை, வரிசை மற்றும் பிழை கையாளுதல் செயல்படுத்தவும்
-- **செயல்திறனை மேம்படுத்துங்கள்**: அளவீடு, தாமதம் மற்றும் திறன் தேவைகளுக்கான போக்குவரத்து தீர்வுகளை வடிவமைக்கவும்
+- **தனிப்பயன் போக்குவரத்து தேவைகளை புரிந்துகொள்ளுதல்**: MCP நெறிமுறையை எந்த போக்குவரத்திலும் அமல்படுத்தி ஒத்துழைப்பை பராமரிக்க முடியும்
+- **Azure Event Grid போக்குவரத்தை உருவாக்குதல்**: சேவையற்ற அளவிடலுக்காக Azure Event Grid பயன்படுத்தி நிகழ்வு இயக்க MCP சேவையகங்களை உருவாக்குதல்
+- **Azure Event Hubs போக்குவரத்தை செயல்படுத்துதல்**: நேரடி ஸ்ட்ரீமிங்கிற்கான Azure Event Hubs பயன்படுத்தி உயர் திறன் MCP தீர்வுகளை வடிவமைத்தல்
+- **நிறுவனம் மாதிரிகளை பயன்படுத்துதல்**: உள்ளமைவான Azure கட்டமைப்பு மற்றும் பாதுகாப்பு மாதிரிகளுடன் தனிப்பயன் போக்குவரத்துகளை ஒருங்கிணைத்தல்
+- **போக்குவரத்து நம்பகத்தன்மையை கையாளுதல்**: நிறுவன சூழல்களுக்கு செய்தி நிலைத்தன்மை, வரிசை மற்றும் பிழை கையாளுதலை செயல்படுத்துதல்
+- **செயல்திறனை மேம்படுத்துதல்**: அளவு, தாமதம் மற்றும் திறன் தேவைகளுக்கான போக்குவரத்து தீர்வுகளை வடிவமைத்தல்
 
 ## **போக்குவரத்து தேவைகள்**
 
-### **MCP விவரக்குறிப்பில் இருந்து முக்கிய தேவைகள் (2025-06-18):**
+### **MCP விவரக்குறிப்பில் இருந்து முக்கிய தேவைகள் (2025-11-25):**
 
 ```yaml
 Message Protocol:
@@ -58,28 +58,27 @@ Custom Transport:
   interoperability: "MUST maintain protocol compatibility"
 ```
 
-## **Azure Event Grid போக்குவரத்து செயல்பாடு**
+## **Azure Event Grid போக்குவரத்து செயலாக்கம்**
 
-Azure Event Grid நிகழ்வு சார்ந்த MCP கட்டமைப்புகளுக்கு ஏற்ற சர்வர்லெஸ் நிகழ்வு வழிமாற்று சேவையை வழங்குகிறது. இது மாபெரும் அளவிலான, தளர்வான MCP அமைப்புகளை உருவாக்குவதற்கான செயல்பாட்டை விளக்குகிறது.
+Azure Event Grid நிகழ்வு இயக்க MCP கட்டமைப்புகளுக்கான சேவையற்ற நிகழ்வு வழிமாற்று சேவையை வழங்குகிறது. இந்த செயலாக்கம் அளவிடக்கூடிய, சுருக்கமான MCP அமைப்புகளை உருவாக்கும் முறையை காட்டுகிறது.
 
 ### **கட்டமைப்பு கண்ணோட்டம்**
 
 ```mermaid
 graph TB
-    Client[MCP Client] --> EG[Azure Event Grid]
-    EG --> Server[MCP Server Function]
+    Client[MCP கிளையன்ட்] --> EG[அசுர் நிகழ்வு கிரிட்]
+    EG --> Server[MCP சர்வர் செயல்பாடு]
     Server --> EG
     EG --> Client
     
-    subgraph "Azure Services"
+    subgraph "அசுர் சேவைகள்"
         EG
         Server
-        KV[Key Vault]
-        Monitor[Application Insights]
+        KV[கீ வால்ட்]
+        Monitor[விண்ணப்ப பார்வைகள்]
     end
 ```
-
-### **C# செயல்பாடு - Event Grid போக்குவரத்து**
+### **C# செயலாக்கம் - Event Grid போக்குவரத்து**
 
 ```csharp
 using Azure.Messaging.EventGrid;
@@ -151,7 +150,7 @@ public async Task<IActionResult> HandleEventGridMessage(
 }
 ```
 
-### **TypeScript செயல்பாடு - Event Grid போக்குவரத்து**
+### **TypeScript செயலாக்கம் - Event Grid போக்குவரத்து**
 
 ```typescript
 import { EventGridPublisherClient, AzureKeyCredential } from "@azure/eventgrid";
@@ -185,14 +184,14 @@ export class EventGridMcpTransport implements McpTransport {
         await this.publisher.sendEvents([event]);
     }
     
-    // Event-driven receive via Azure Functions
+    // Azure Functions மூலம் நிகழ்வு இயக்கப்பட்ட பெறுதல்
     onMessage(handler: (message: McpMessage) => Promise<void>): void {
-        // Implementation would use Azure Functions Event Grid trigger
-        // This is a conceptual interface for the webhook receiver
+        // அமலாக்கம் Azure Functions Event Grid தூண்டுதலை பயன்படுத்தும்
+        // இது webhook பெறுநருக்கான கருத்து இடைமுகம்
     }
 }
 
-// Azure Functions implementation
+// Azure Functions அமலாக்கம்
 import { app, InvocationContext, EventGridEvent } from "@azure/functions";
 
 app.eventGrid("mcpEventGridHandler", {
@@ -200,10 +199,10 @@ app.eventGrid("mcpEventGridHandler", {
         try {
             const mcpMessage = event.data as McpMessage;
             
-            // Process MCP message
+            // MCP செய்தியை செயலாக்கு
             const response = await mcpServer.processMessage(mcpMessage);
             
-            // Send response via Event Grid
+            // Event Grid மூலம் பதிலை அனுப்பு
             await transport.sendMessage(response);
             
         } catch (error) {
@@ -214,7 +213,7 @@ app.eventGrid("mcpEventGridHandler", {
 });
 ```
 
-### **Python செயல்பாடு - Event Grid போக்குவரத்து**
+### **Python செயலாக்கம் - Event Grid போக்குவரத்து**
 
 ```python
 from azure.eventgrid import EventGridPublisherClient, EventGridEvent
@@ -249,52 +248,51 @@ class EventGridMcpTransport:
         """Register message handler for incoming events"""
         self.message_handler = handler
 
-# Azure Functions implementation
+# அசூர் செயல்பாடுகள் செயலாக்கம்
 import azure.functions as func
 import logging
 
 def main(event: func.EventGridEvent) -> None:
     """Azure Functions Event Grid trigger for MCP messages"""
     try:
-        # Parse MCP message from Event Grid event
+        # ஈவென்ட் கிரிட் நிகழ்விலிருந்து MCP செய்தியை பகுப்பாய்வு செய்க
         mcp_message = json.loads(event.get_body().decode('utf-8'))
         
-        # Process MCP message
+        # MCP செய்தியை செயலாக்குக
         response = process_mcp_message(mcp_message)
         
-        # Send response back via Event Grid
-        # (Implementation would create new Event Grid client)
+        # ஈவென்ட் கிரிட் மூலம் பதிலை திருப்பி அனுப்புக
+        # (செயலாக்கம் புதிய ஈவென்ட் கிரிட் கிளையண்டை உருவாக்கும்)
         
     except Exception as e:
         logging.error(f"Error processing MCP Event Grid message: {e}")
         raise
 ```
 
-## **Azure Event Hubs போக்குவரத்து செயல்பாடு**
+## **Azure Event Hubs போக்குவரத்து செயலாக்கம்**
 
-Azure Event Hubs MCP சூழல்களுக்கு குறைந்த தாமதம் மற்றும் அதிக செய்தி அளவுக்கு உயர்-திறன், நேரடி ஸ்ட்ரீமிங் திறன்களை வழங்குகிறது.
+Azure Event Hubs குறைந்த தாமதம் மற்றும் அதிக செய்தி அளவுக்கு தேவையான MCP சூழல்களுக்கு உயர் திறன், நேரடி ஸ்ட்ரீமிங் திறன்களை வழங்குகிறது.
 
 ### **கட்டமைப்பு கண்ணோட்டம்**
 
 ```mermaid
 graph TB
-    Client[MCP Client] --> EH[Azure Event Hubs]
-    EH --> Server[MCP Server]
+    Client[MCP கிளையன்ட்] --> EH[அசுரே நிகழ்வு ஹப்கள்]
+    EH --> Server[MCP சர்வர்]
     Server --> EH
     EH --> Client
     
-    subgraph "Event Hubs Features"
-        Partition[Partitioning]
-        Retention[Message Retention]
-        Scaling[Auto Scaling]
+    subgraph "நிகழ்வு ஹப்கள் அம்சங்கள்"
+        Partition[பகிர்வு]
+        Retention[செய்தி பாதுகாப்பு]
+        Scaling[தானாக அளவிடல்]
     end
     
     EH --> Partition
     EH --> Retention
     EH --> Scaling
 ```
-
-### **C# செயல்பாடு - Event Hubs போக்குவரத்து**
+### **C# செயலாக்கம் - Event Hubs போக்குவரத்து**
 
 ```csharp
 using Azure.Messaging.EventHubs;
@@ -368,7 +366,7 @@ public class EventHubsMcpTransport : IMcpTransport, IDisposable
 }
 ```
 
-### **TypeScript செயல்பாடு - Event Hubs போக்குவரத்து**
+### **TypeScript செயலாக்கம் - Event Hubs போக்குவரத்து**
 
 ```typescript
 import { 
@@ -427,7 +425,7 @@ export class EventHubsMcpTransport implements McpTransport {
                         
                         await messageHandler(mcpMessage);
                         
-                        // Update checkpoint for at-least-once delivery
+                        // குறைந்தது ஒருமுறை விநியோகத்திற்கான சேமிப்புக் குறியீட்டை புதுப்பிக்கவும்
                         await context.updateCheckpoint(event);
                     } catch (error) {
                         console.error("Error processing Event Hubs message:", error);
@@ -448,7 +446,7 @@ export class EventHubsMcpTransport implements McpTransport {
 }
 ```
 
-### **Python செயல்பாடு - Event Hubs போக்குவரத்து**
+### **Python செயலாக்கம் - Event Hubs போக்குவரத்து**
 
 ```python
 from azure.eventhub import EventHubProducerClient, EventHubConsumerClient
@@ -480,11 +478,11 @@ class EventHubsMcpTransport:
         """Send MCP message via Event Hubs"""
         event_data = EventData(json.dumps(message))
         
-        # Add MCP-specific properties
+        # MCP-க்கு தனித்துவமான பண்புகளைச் சேர்க்கவும்
         event_data.properties = {
             "messageType": message.get("method", "response"),
             "messageId": message.get("id"),
-            "timestamp": "2025-01-14T10:30:00Z"  # Use actual timestamp
+            "timestamp": "2025-01-14T10:30:00Z"  # உண்மையான நேரத்தைப் பயன்படுத்தவும்
         }
         
         async with self.producer:
@@ -505,21 +503,21 @@ class EventHubsMcpTransport:
         async with self.consumer:
             await self.consumer.receive(
                 on_event=self._on_event_received(message_handler),
-                starting_position="-1"  # Start from beginning
+                starting_position="-1"  # தொடக்கம் முதல் தொடங்கவும்
             )
     
     def _on_event_received(self, handler: Callable):
         """Internal event handler wrapper"""
         async def handle_event(partition_context, event):
             try:
-                # Parse MCP message from Event Hubs event
+                # Event Hubs நிகழ்விலிருந்து MCP செய்தியை பகுப்பாய்வு செய்யவும்
                 message_body = event.body_as_str(encoding='UTF-8')
                 mcp_message = json.loads(message_body)
                 
-                # Process MCP message
+                # MCP செய்தியை செயலாக்கவும்
                 await handler(mcp_message)
                 
-                # Update checkpoint for at-least-once delivery
+                # குறைந்தபட்சம் ஒருமுறை விநியோகத்திற்கான செக் பாயிண்டை புதுப்பிக்கவும்
                 await partition_context.update_checkpoint(event)
                 
             except Exception as e:
@@ -534,7 +532,7 @@ class EventHubsMcpTransport:
         await self.consumer.close()
 ```
 
-## **மேம்பட்ட போக்குவரத்து முறைமைகள்**
+## **மேம்பட்ட போக்குவரத்து மாதிரிகள்**
 
 ### **செய்தி நிலைத்தன்மை மற்றும் நம்பகத்தன்மை**
 
@@ -585,7 +583,7 @@ public class SecureTransportFactory
 }
 ```
 
-### **போக்குவரத்து கண்காணிப்பு மற்றும் கணினி திறன்**
+### **போக்குவரத்து கண்காணிப்பு மற்றும் பார்வை**
 
 ```csharp
 // Adding telemetry to custom transports
@@ -624,11 +622,11 @@ public class ObservableTransport : IMcpTransport
 }
 ```
 
-## **நிறுவன ஒருங்கிணைப்பு சூழல்கள்**
+## **நிறுவனம் ஒருங்கிணைப்பு சூழல்கள்**
 
-### **சூழல் 1: MCP பகிர்ந்த செயலாக்கம்**
+### **சூழல் 1: பகிர்ந்த MCP செயலாக்கம்**
 
-Azure Event Grid ஐ MCP கோரிக்கைகளை பல செயலாக்கக் கோடுகளுக்கு பகிர்வதற்காகப் பயன்படுத்துதல்:
+பல செயலாக்க முனைகளுக்கு MCP கோரிக்கைகளை பகிர்வதற்காக Azure Event Grid பயன்படுத்துதல்:
 
 ```yaml
 Architecture:
@@ -644,7 +642,7 @@ Benefits:
 
 ### **சூழல் 2: நேரடி MCP ஸ்ட்ரீமிங்**
 
-Azure Event Hubs ஐ MCP தொடர்புகளுக்கான உயர்-அடிக்கடி தொடர்புகளுக்குப் பயன்படுத்துதல்:
+உயர் அதிர்வெண் MCP தொடர்புகளுக்காக Azure Event Hubs பயன்படுத்துதல்:
 
 ```yaml
 Architecture:
@@ -658,9 +656,9 @@ Benefits:
   - Built-in partitioning for parallel processing
 ```
 
-### **சூழல் 3: கலப்பு போக்குவரத்து கட்டமைப்பு**
+### **சூழல் 3: கலவை போக்குவரத்து கட்டமைப்பு**
 
-வேறு பயன்பாடுகளுக்காக பல போக்குவரத்துகளை இணைத்தல்:
+வித்தியாசமான பயன்பாடுகளுக்காக பல போக்குவரத்துகளை இணைத்தல்:
 
 ```csharp
 public class HybridMcpTransport : IMcpTransport
@@ -726,7 +724,7 @@ public class BatchingEventGridTransport : IMcpTransport
 }
 ```
 
-### **Event Hubs க்கான பிரிவாக்கும் உத்தி**
+### **Event Hubs க்கான பகிர்வு தந்திரம்**
 
 ```csharp
 public class PartitionedEventHubsTransport : IMcpTransport
@@ -746,9 +744,9 @@ public class PartitionedEventHubsTransport : IMcpTransport
 }
 ```
 
-## **தனிப்பயன் போக்குவரத்துகளை சோதித்தல்**
+## **தனிப்பயன் போக்குவரத்துகளுக்கான சோதனை**
 
-### **Unit Testing Test Doubles உடன்**
+### **சோதனை இரட்டைகள் மூலம் அலகு சோதனை**
 
 ```csharp
 [Test]
@@ -775,7 +773,7 @@ public async Task EventGridTransport_SendMessage_PublishesCorrectEvent()
 }
 ```
 
-### **Azure Test Containers உடன் ஒருங்கிணைப்பு சோதனை**
+### **Azure சோதனை கன்டெய்னர்களுடன் ஒருங்கிணைப்பு சோதனை**
 
 ```csharp
 [Test]
@@ -808,35 +806,35 @@ public async Task EventHubsTransport_IntegrationTest()
 }
 ```
 
-## **சிறந்த நடைமுறைகள் மற்றும் வழிகாட்டுதல்கள்**
+## **சிறந்த நடைமுறைகள் மற்றும் வழிகாட்டிகள்**
 
 ### **போக்குவரத்து வடிவமைப்பு கொள்கைகள்**
 
-1. **Idempotency**: நகல்களை கையாள செய்தி செயலாக்கம் idempotent ஆக இருக்க வேண்டும்
-2. **பிழை கையாளுதல்**: விரிவான பிழை கையாளுதல் மற்றும் dead letter queues ஐ செயல்படுத்தவும்
-3. **கண்காணிப்பு**: விரிவான தொலைநோக்கு மற்றும் ஆரோக்கிய சோதனைகளைச் சேர்க்கவும்
-4. **பாதுகாப்பு**: நிர்வகிக்கப்பட்ட அடையாளங்கள் மற்றும் குறைந்த அனுமதி அணுகலைப் பயன்படுத்தவும்
+1. **இடமாற்றமற்ற தன்மை**: நகல்களை கையாள idempotent செய்தி செயலாக்கத்தை உறுதி செய்யவும்
+2. **பிழை கையாளுதல்**: விரிவான பிழை கையாளுதல் மற்றும் டெட் லெட்டர் கியூகளை செயல்படுத்தவும்
+3. **கண்காணிப்பு**: விரிவான தொலைநோக்கு மற்றும் ஆரோக்கியச் சோதனைகளை சேர்க்கவும்
+4. **பாதுகாப்பு**: நிர்வகிக்கப்பட்ட அடையாளங்கள் மற்றும் குறைந்த அனுமதி அணுகலை பயன்படுத்தவும்
 5. **செயல்திறன்**: உங்கள் குறிப்பிட்ட தாமதம் மற்றும் திறன் தேவைகளுக்காக வடிவமைக்கவும்
 
 ### **Azure-சிறப்பு பரிந்துரைகள்**
 
-1. **Managed Identity ஐப் பயன்படுத்தவும்**: உற்பத்தியில் இணைப்பு strings ஐ தவிர்க்கவும்
-2. **Circuit Breakers ஐ செயல்படுத்தவும்**: Azure சேவை முடக்கங்களுக்கு எதிராக பாதுகாக்கவும்
-3. **செலவுகளை கண்காணிக்கவும்**: செய்தி அளவு மற்றும் செயலாக்க செலவுகளை கண்காணிக்கவும்
-4. **அளவுக்கு திட்டமிடுங்கள்**: பிரிவாக்கும் மற்றும் அளவீட்டு உத்திகளை ஆரம்பத்தில் வடிவமைக்கவும்
-5. **முழுமையாக சோதிக்கவும்**: விரிவான சோதனைக்காக Azure DevTest Labs ஐப் பயன்படுத்தவும்
+1. **நிர்வகிக்கப்பட்ட அடையாளத்தை பயன்படுத்தவும்**: உற்பத்தியில் இணைப்பு சரங்களை தவிர்க்கவும்
+2. **சர்க்யூட் பிரேக்கர்களை செயல்படுத்தவும்**: Azure சேவை இடைநீக்கம் எதிரொலிக்க பாதுகாப்பு
+3. **செலவுகளை கண்காணிக்கவும்**: செய்தி அளவு மற்றும் செயலாக்க செலவுகளை பின்தொடரவும்
+4. **அளவிடலை திட்டமிடவும்**: பகிர்வு மற்றும் அளவிடல் தந்திரங்களை முன்கூட்டியே வடிவமைக்கவும்
+5. **முழுமையாக சோதிக்கவும்**: விரிவான சோதனைக்காக Azure DevTest Labs ஐ பயன்படுத்தவும்
 
-## **முடிவு**
+## **தீர்மானம்**
 
-தனிப்பயன் MCP போக்குவரத்துகள் Azure இன் செய்தி சேவைகளைப் பயன்படுத்தி சக்திவாய்ந்த நிறுவன சூழல்களை இயக்குகிறது. Event Grid அல்லது Event Hubs போக்குவரத்துகளை செயல்படுத்துவதன் மூலம், நீங்கள் MCP நெறிமுறை இணக்கத்தன்மை மற்றும் Azure சிறந்த நடைமுறைகளை பராமரிக்கின்று, மாபெரும் அளவிலான, நம்பகமான MCP தீர்வுகளை உருவாக்கலாம்.
+தனிப்பயன் MCP போக்குவரத்துகள் Azure இன் செய்தி சேவைகளை பயன்படுத்தி சக்திவாய்ந்த நிறுவன சூழல்களை இயல்பாக்குகின்றன. Event Grid அல்லது Event Hubs போக்குவரத்துகளை செயல்படுத்துவதன் மூலம், நீங்கள் உள்ளமைவான Azure கட்டமைப்புடன் ஒருங்கிணைந்த அளவிடக்கூடிய, நம்பகமான MCP தீர்வுகளை உருவாக்க முடியும்.
 
-வழங்கப்பட்ட உதாரணங்கள் MCP நெறிமுறையைப் பின்பற்றும் மற்றும் Azure சிறந்த நடைமுறைகளைப் பின்பற்றும் தனிப்பயன் போக்குவரத்துகளை செயல்படுத்துவதற்கான உற்பத்தி-தயார் முறைமைகளை விளக்குகிறது.
+கொடுக்கப்பட்ட உதாரணங்கள் MCP நெறிமுறை ஒத்துழைப்பையும் Azure சிறந்த நடைமுறைகளையும் பராமரிக்கும்போது தனிப்பயன் போக்குவரத்துகளை செயல்படுத்துவதற்கான தயாரிப்பு-தயார் மாதிரிகளை காட்டுகின்றன.
 
 ## **கூடுதல் வளங்கள்**
 
-- [MCP விவரக்குறிப்பு 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/)
-- [Azure Event Grid ஆவணங்கள்](https://docs.microsoft.com/azure/event-grid/)
-- [Azure Event Hubs ஆவணங்கள்](https://docs.microsoft.com/azure/event-hubs/)
+- [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/)
+- [Azure Event Grid Documentation](https://docs.microsoft.com/azure/event-grid/)
+- [Azure Event Hubs Documentation](https://docs.microsoft.com/azure/event-hubs/)
 - [Azure Functions Event Grid Trigger](https://docs.microsoft.com/azure/azure-functions/functions-bindings-event-grid)
 - [Azure SDK for .NET](https://github.com/Azure/azure-sdk-for-net)
 - [Azure SDK for TypeScript](https://github.com/Azure/azure-sdk-for-js)
@@ -844,13 +842,16 @@ public async Task EventHubsTransport_IntegrationTest()
 
 ---
 
-> *இந்த வழிகாட்டி உற்பத்தி MCP அமைப்புகளுக்கான நடைமுறை செயல்பாட்டு முறைமைகளில் கவனம் செலுத்துகிறது. உங்கள் குறிப்பிட்ட தேவைகள் மற்றும் Azure சேவை வரம்புகளுக்கு எதிராக போக்குவரத்து செயல்பாடுகளை எப்போதும் சரிபார்க்கவும்.*
-> **தற்போதைய நிலையானது**: இந்த வழிகாட்டி [MCP விவரக்குறிப்பு 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) போக்குவரத்து தேவைகள் மற்றும் நிறுவன சூழல்களுக்கு மேம்பட்ட போக்குவரத்து முறைமைகளை பிரதிபலிக்கிறது.
+> *இந்த வழிகாட்டி உற்பத்தி MCP அமைப்புகளுக்கான நடைமுறை செயலாக்க மாதிரிகளுக்கு கவனம் செலுத்துகிறது. உங்கள் குறிப்பிட்ட தேவைகள் மற்றும் Azure சேவை வரம்புகளுக்கு எதிராக போக்குவரத்து செயலாக்கங்களை எப்போதும் சரிபார்க்கவும்.*
+> **தற்போதைய நிலை**: இந்த வழிகாட்டி [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) போக்குவரத்து தேவைகள் மற்றும் நிறுவன சூழல்களுக்கு மேம்பட்ட போக்குவரத்து மாதிரிகளை பிரதிபலிக்கிறது.
+
 
 ## அடுத்தது என்ன
-- [6. சமூக பங்களிப்புகள்](../../06-CommunityContributions/README.md)
+- [6. சமூகம் பங்களிப்புகள்](../../06-CommunityContributions/README.md)
 
 ---
 
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **குறிப்பு**:  
-இந்த ஆவணம் [Co-op Translator](https://github.com/Azure/co-op-translator) என்ற AI மொழிபெயர்ப்பு சேவையை பயன்படுத்தி மொழிபெயர்க்கப்பட்டுள்ளது. எங்கள் தரச்சார்ந்த முயற்சிகளுக்கு மத்தியில், தானியங்கி மொழிபெயர்ப்புகளில் பிழைகள் அல்லது தவறுகள் இருக்கக்கூடும் என்பதை தயவுசெய்து கவனத்தில் கொள்ளவும். அதன் தாய்மொழியில் உள்ள மூல ஆவணம் அதிகாரப்பூர்வ ஆதாரமாக கருதப்பட வேண்டும். முக்கியமான தகவல்களுக்கு, தொழில்முறை மனித மொழிபெயர்ப்பு பரிந்துரைக்கப்படுகிறது. இந்த மொழிபெயர்ப்பைப் பயன்படுத்துவதால் ஏற்படும் எந்த தவறான புரிதல்கள் அல்லது தவறான விளக்கங்களுக்கு நாங்கள் பொறுப்பல்ல.
+இந்த ஆவணம் AI மொழிபெயர்ப்பு சேவை [Co-op Translator](https://github.com/Azure/co-op-translator) மூலம் மொழிபெயர்க்கப்பட்டுள்ளது. நாங்கள் துல்லியத்திற்காக முயற்சித்தாலும், தானாக செய்யப்பட்ட மொழிபெயர்ப்புகளில் பிழைகள் அல்லது தவறுகள் இருக்கக்கூடும் என்பதை தயவுசெய்து கவனிக்கவும். அசல் ஆவணம் அதன் சொந்த மொழியில் அதிகாரப்பூர்வ மூலமாக கருதப்பட வேண்டும். முக்கியமான தகவல்களுக்கு, தொழில்முறை மனித மொழிபெயர்ப்பை பரிந்துரைக்கிறோம். இந்த மொழிபெயர்ப்பின் பயன்பாட்டால் ஏற்படும் எந்தவொரு தவறான புரிதலுக்கும் அல்லது தவறான விளக்கங்களுக்கும் நாங்கள் பொறுப்பேற்கமாட்டோம்.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

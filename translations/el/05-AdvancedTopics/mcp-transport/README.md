@@ -1,45 +1,45 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "c71c60af76120a517809a6cfba47e9a3",
-  "translation_date": "2025-09-15T21:35:14+00:00",
+  "original_hash": "cf3e88e4c0b2d9d65c7f300986bd8c6c",
+  "translation_date": "2025-12-19T12:23:53+00:00",
   "source_file": "05-AdvancedTopics/mcp-transport/README.md",
   "language_code": "el"
 }
 -->
-# MCP Custom Transports - Οδηγός Προχωρημένης Υλοποίησης
+# MCP Προσαρμοσμένα Μέσα Μεταφοράς - Οδηγός Προχωρημένης Υλοποίησης
 
-Το Model Context Protocol (MCP) παρέχει ευελιξία στους μηχανισμούς μεταφοράς, επιτρέποντας προσαρμοσμένες υλοποιήσεις για εξειδικευμένα επιχειρηματικά περιβάλλοντα. Αυτός ο προχωρημένος οδηγός εξερευνά προσαρμοσμένες υλοποιήσεις μεταφοράς χρησιμοποιώντας το Azure Event Grid και το Azure Event Hubs ως πρακτικά παραδείγματα για τη δημιουργία επεκτάσιμων, cloud-native λύσεων MCP.
+Το Πρωτόκολλο Πλαισίου Μοντέλου (MCP) παρέχει ευελιξία στους μηχανισμούς μεταφοράς, επιτρέποντας προσαρμοσμένες υλοποιήσεις για εξειδικευμένα επιχειρησιακά περιβάλλοντα. Αυτός ο προχωρημένος οδηγός εξερευνά προσαρμοσμένες υλοποιήσεις μέσων μεταφοράς χρησιμοποιώντας το Azure Event Grid και το Azure Event Hubs ως πρακτικά παραδείγματα για την κατασκευή κλιμακούμενων, εγγενών στο cloud λύσεων MCP.
 
 ## Εισαγωγή
 
-Ενώ οι τυπικές μεταφορές του MCP (stdio και HTTP streaming) καλύπτουν τις περισσότερες περιπτώσεις χρήσης, τα επιχειρηματικά περιβάλλοντα συχνά απαιτούν εξειδικευμένους μηχανισμούς μεταφοράς για βελτιωμένη επεκτασιμότητα, αξιοπιστία και ενσωμάτωση με την υπάρχουσα υποδομή cloud. Οι προσαρμοσμένες μεταφορές επιτρέπουν στο MCP να αξιοποιήσει υπηρεσίες μηνυμάτων cloud για ασύγχρονη επικοινωνία, αρχιτεκτονικές που βασίζονται σε γεγονότα και κατανεμημένη επεξεργασία.
+Ενώ τα τυπικά μέσα μεταφοράς του MCP (stdio και HTTP streaming) εξυπηρετούν τις περισσότερες περιπτώσεις χρήσης, τα επιχειρησιακά περιβάλλοντα συχνά απαιτούν εξειδικευμένους μηχανισμούς μεταφοράς για βελτιωμένη κλιμάκωση, αξιοπιστία και ενσωμάτωση με την υπάρχουσα υποδομή cloud. Τα προσαρμοσμένα μέσα μεταφοράς επιτρέπουν στο MCP να αξιοποιεί εγγενείς υπηρεσίες μηνυμάτων cloud για ασύγχρονη επικοινωνία, αρχιτεκτονικές που βασίζονται σε γεγονότα και κατανεμημένη επεξεργασία.
 
-Αυτό το μάθημα εξερευνά προχωρημένες υλοποιήσεις μεταφοράς βασισμένες στην τελευταία προδιαγραφή MCP (2025-06-18), τις υπηρεσίες μηνυμάτων του Azure και καθιερωμένα επιχειρηματικά πρότυπα ενσωμάτωσης.
+Αυτό το μάθημα εξερευνά προχωρημένες υλοποιήσεις μέσων μεταφοράς βασισμένες στην τελευταία προδιαγραφή MCP (2025-11-25), τις υπηρεσίες μηνυμάτων Azure και καθιερωμένα πρότυπα ενσωμάτωσης επιχειρήσεων.
 
-### **Αρχιτεκτονική Μεταφοράς MCP**
+### **Αρχιτεκτονική Μέσων Μεταφοράς MCP**
 
-**Από την Προδιαγραφή MCP (2025-06-18):**
+**Από την Προδιαγραφή MCP (2025-11-25):**
 
-- **Τυπικές Μεταφορές**: stdio (συνιστάται), HTTP streaming (για απομακρυσμένα σενάρια)
-- **Προσαρμοσμένες Μεταφορές**: Οποιαδήποτε μεταφορά που υλοποιεί το πρωτόκολλο ανταλλαγής μηνυμάτων MCP
-- **Μορφή Μηνύματος**: JSON-RPC 2.0 με επεκτάσεις MCP
-- **Διπλής Κατεύθυνσης Επικοινωνία**: Απαιτείται πλήρης duplex επικοινωνία για ειδοποιήσεις και απαντήσεις
+- **Τυπικά Μέσα Μεταφοράς**: stdio (συνιστώμενο), HTTP streaming (για απομακρυσμένα σενάρια)
+- **Προσαρμοσμένα Μέσα Μεταφοράς**: Οποιοδήποτε μέσο μεταφοράς που υλοποιεί το πρωτόκολλο ανταλλαγής μηνυμάτων MCP
+- **Μορφή Μηνύματος**: JSON-RPC 2.0 με επεκτάσεις ειδικές για MCP
+- **Αμφίδρομη Επικοινωνία**: Απαιτείται πλήρης διπλής κατεύθυνσης επικοινωνία για ειδοποιήσεις και απαντήσεις
 
 ## Στόχοι Μάθησης
 
-Μέχρι το τέλος αυτού του προχωρημένου μαθήματος, θα μπορείτε να:
+Στο τέλος αυτού του προχωρημένου μαθήματος, θα μπορείτε να:
 
-- **Κατανοήσετε τις Απαιτήσεις Προσαρμοσμένων Μεταφορών**: Υλοποιήστε το πρωτόκολλο MCP σε οποιοδήποτε επίπεδο μεταφοράς διατηρώντας τη συμμόρφωση
-- **Δημιουργήσετε Μεταφορά Azure Event Grid**: Δημιουργήστε MCP servers που βασίζονται σε γεγονότα χρησιμοποιώντας το Azure Event Grid για serverless επεκτασιμότητα
-- **Υλοποιήσετε Μεταφορά Azure Event Hubs**: Σχεδιάστε λύσεις MCP υψηλής απόδοσης χρησιμοποιώντας το Azure Event Hubs για real-time streaming
-- **Εφαρμόσετε Επιχειρηματικά Πρότυπα**: Ενσωματώστε προσαρμοσμένες μεταφορές με την υπάρχουσα υποδομή και τα μοντέλα ασφαλείας του Azure
-- **Διαχειριστείτε την Αξιοπιστία Μεταφοράς**: Υλοποιήστε ανθεκτικότητα μηνυμάτων, σειρά και διαχείριση σφαλμάτων για επιχειρηματικά σενάρια
-- **Βελτιστοποιήσετε την Απόδοση**: Σχεδιάστε λύσεις μεταφοράς για απαιτήσεις κλίμακας, καθυστέρησης και απόδοσης
+- **Κατανοήσετε τις Απαιτήσεις Προσαρμοσμένων Μέσων Μεταφοράς**: Υλοποιήστε το πρωτόκολλο MCP πάνω από οποιοδήποτε επίπεδο μεταφοράς διατηρώντας τη συμμόρφωση
+- **Κατασκευάσετε Μέσο Μεταφοράς Azure Event Grid**: Δημιουργήστε MCP servers που βασίζονται σε γεγονότα χρησιμοποιώντας το Azure Event Grid για κλιμακούμενη λειτουργία χωρίς διακομιστή
+- **Υλοποιήσετε Μέσο Μεταφοράς Azure Event Hubs**: Σχεδιάστε λύσεις MCP υψηλής απόδοσης χρησιμοποιώντας το Azure Event Hubs για ροή σε πραγματικό χρόνο
+- **Εφαρμόσετε Επιχειρησιακά Πρότυπα**: Ενσωματώστε προσαρμοσμένα μέσα μεταφοράς με την υπάρχουσα υποδομή και μοντέλα ασφάλειας Azure
+- **Διαχειριστείτε την Αξιοπιστία των Μέσων Μεταφοράς**: Υλοποιήστε ανθεκτικότητα μηνυμάτων, σειρά και διαχείριση σφαλμάτων για επιχειρησιακά σενάρια
+- **Βελτιστοποιήσετε την Απόδοση**: Σχεδιάστε λύσεις μέσων μεταφοράς για απαιτήσεις κλίμακας, καθυστέρησης και διαμέσου ροής
 
-## **Απαιτήσεις Μεταφοράς**
+## **Απαιτήσεις Μέσων Μεταφοράς**
 
-### **Βασικές Απαιτήσεις από την Προδιαγραφή MCP (2025-06-18):**
+### **Βασικές Απαιτήσεις από την Προδιαγραφή MCP (2025-11-25):**
 
 ```yaml
 Message Protocol:
@@ -58,28 +58,27 @@ Custom Transport:
   interoperability: "MUST maintain protocol compatibility"
 ```
 
-## **Υλοποίηση Μεταφοράς Azure Event Grid**
+## **Υλοποίηση Μέσου Μεταφοράς Azure Event Grid**
 
-Το Azure Event Grid παρέχει μια υπηρεσία δρομολόγησης γεγονότων χωρίς διακομιστή, ιδανική για αρχιτεκτονικές MCP που βασίζονται σε γεγονότα. Αυτή η υλοποίηση δείχνει πώς να δημιουργήσετε επεκτάσιμα, χαλαρά συνδεδεμένα συστήματα MCP.
+Το Azure Event Grid παρέχει μια υπηρεσία δρομολόγησης γεγονότων χωρίς διακομιστή ιδανική για αρχιτεκτονικές MCP που βασίζονται σε γεγονότα. Αυτή η υλοποίηση δείχνει πώς να κατασκευάσετε κλιμακούμενα, χαλαρά συνδεδεμένα συστήματα MCP.
 
 ### **Επισκόπηση Αρχιτεκτονικής**
 
 ```mermaid
 graph TB
-    Client[MCP Client] --> EG[Azure Event Grid]
-    EG --> Server[MCP Server Function]
+    Client[MCP Πελάτης] --> EG[Azure Event Grid]
+    EG --> Server[MCP Λειτουργία Διακομιστή]
     Server --> EG
     EG --> Client
     
-    subgraph "Azure Services"
+    subgraph "Υπηρεσίες Azure"
         EG
         Server
         KV[Key Vault]
         Monitor[Application Insights]
     end
 ```
-
-### **Υλοποίηση C# - Μεταφορά Event Grid**
+### **Υλοποίηση σε C# - Μέσο Μεταφοράς Event Grid**
 
 ```csharp
 using Azure.Messaging.EventGrid;
@@ -151,7 +150,7 @@ public async Task<IActionResult> HandleEventGridMessage(
 }
 ```
 
-### **Υλοποίηση TypeScript - Μεταφορά Event Grid**
+### **Υλοποίηση σε TypeScript - Μέσο Μεταφοράς Event Grid**
 
 ```typescript
 import { EventGridPublisherClient, AzureKeyCredential } from "@azure/eventgrid";
@@ -185,14 +184,14 @@ export class EventGridMcpTransport implements McpTransport {
         await this.publisher.sendEvents([event]);
     }
     
-    // Event-driven receive via Azure Functions
+    // Λήψη με βάση τα γεγονότα μέσω Azure Functions
     onMessage(handler: (message: McpMessage) => Promise<void>): void {
-        // Implementation would use Azure Functions Event Grid trigger
-        // This is a conceptual interface for the webhook receiver
+        // Η υλοποίηση θα χρησιμοποιούσε το Event Grid trigger των Azure Functions
+        // Αυτή είναι μια εννοιολογική διεπαφή για τον δέκτη webhook
     }
 }
 
-// Azure Functions implementation
+// Υλοποίηση Azure Functions
 import { app, InvocationContext, EventGridEvent } from "@azure/functions";
 
 app.eventGrid("mcpEventGridHandler", {
@@ -200,10 +199,10 @@ app.eventGrid("mcpEventGridHandler", {
         try {
             const mcpMessage = event.data as McpMessage;
             
-            // Process MCP message
+            // Επεξεργασία μηνύματος MCP
             const response = await mcpServer.processMessage(mcpMessage);
             
-            // Send response via Event Grid
+            // Αποστολή απάντησης μέσω Event Grid
             await transport.sendMessage(response);
             
         } catch (error) {
@@ -214,7 +213,7 @@ app.eventGrid("mcpEventGridHandler", {
 });
 ```
 
-### **Υλοποίηση Python - Μεταφορά Event Grid**
+### **Υλοποίηση σε Python - Μέσο Μεταφοράς Event Grid**
 
 ```python
 from azure.eventgrid import EventGridPublisherClient, EventGridEvent
@@ -249,52 +248,51 @@ class EventGridMcpTransport:
         """Register message handler for incoming events"""
         self.message_handler = handler
 
-# Azure Functions implementation
+# Υλοποίηση Azure Functions
 import azure.functions as func
 import logging
 
 def main(event: func.EventGridEvent) -> None:
     """Azure Functions Event Grid trigger for MCP messages"""
     try:
-        # Parse MCP message from Event Grid event
+        # Ανάλυση μηνύματος MCP από το συμβάν Event Grid
         mcp_message = json.loads(event.get_body().decode('utf-8'))
         
-        # Process MCP message
+        # Επεξεργασία μηνύματος MCP
         response = process_mcp_message(mcp_message)
         
-        # Send response back via Event Grid
-        # (Implementation would create new Event Grid client)
+        # Αποστολή απάντησης μέσω Event Grid
+        # (Η υλοποίηση θα δημιουργούσε νέο πελάτη Event Grid)
         
     except Exception as e:
         logging.error(f"Error processing MCP Event Grid message: {e}")
         raise
 ```
 
-## **Υλοποίηση Μεταφοράς Azure Event Hubs**
+## **Υλοποίηση Μέσου Μεταφοράς Azure Event Hubs**
 
-Το Azure Event Hubs παρέχει δυνατότητες real-time streaming υψηλής απόδοσης για σενάρια MCP που απαιτούν χαμηλή καθυστέρηση και υψηλό όγκο μηνυμάτων.
+Το Azure Event Hubs παρέχει δυνατότητες ροής υψηλής απόδοσης και σε πραγματικό χρόνο για σενάρια MCP που απαιτούν χαμηλή καθυστέρηση και μεγάλο όγκο μηνυμάτων.
 
 ### **Επισκόπηση Αρχιτεκτονικής**
 
 ```mermaid
 graph TB
-    Client[MCP Client] --> EH[Azure Event Hubs]
-    EH --> Server[MCP Server]
+    Client[MCP Πελάτης] --> EH[Azure Event Hubs]
+    EH --> Server[MCP Διακομιστής]
     Server --> EH
     EH --> Client
     
-    subgraph "Event Hubs Features"
-        Partition[Partitioning]
-        Retention[Message Retention]
-        Scaling[Auto Scaling]
+    subgraph "Χαρακτηριστικά Event Hubs"
+        Partition[Κατανομή]
+        Retention[Διατήρηση Μηνυμάτων]
+        Scaling[Αυτόματη Κλιμάκωση]
     end
     
     EH --> Partition
     EH --> Retention
     EH --> Scaling
 ```
-
-### **Υλοποίηση C# - Μεταφορά Event Hubs**
+### **Υλοποίηση σε C# - Μέσο Μεταφοράς Event Hubs**
 
 ```csharp
 using Azure.Messaging.EventHubs;
@@ -368,7 +366,7 @@ public class EventHubsMcpTransport : IMcpTransport, IDisposable
 }
 ```
 
-### **Υλοποίηση TypeScript - Μεταφορά Event Hubs**
+### **Υλοποίηση σε TypeScript - Μέσο Μεταφοράς Event Hubs**
 
 ```typescript
 import { 
@@ -427,7 +425,7 @@ export class EventHubsMcpTransport implements McpTransport {
                         
                         await messageHandler(mcpMessage);
                         
-                        // Update checkpoint for at-least-once delivery
+                        // Ενημέρωση σημείου ελέγχου για παράδοση τουλάχιστον μία φορά
                         await context.updateCheckpoint(event);
                     } catch (error) {
                         console.error("Error processing Event Hubs message:", error);
@@ -448,7 +446,7 @@ export class EventHubsMcpTransport implements McpTransport {
 }
 ```
 
-### **Υλοποίηση Python - Μεταφορά Event Hubs**
+### **Υλοποίηση σε Python - Μέσο Μεταφοράς Event Hubs**
 
 ```python
 from azure.eventhub import EventHubProducerClient, EventHubConsumerClient
@@ -480,11 +478,11 @@ class EventHubsMcpTransport:
         """Send MCP message via Event Hubs"""
         event_data = EventData(json.dumps(message))
         
-        # Add MCP-specific properties
+        # Προσθέστε ιδιότητες ειδικές για MCP
         event_data.properties = {
             "messageType": message.get("method", "response"),
             "messageId": message.get("id"),
-            "timestamp": "2025-01-14T10:30:00Z"  # Use actual timestamp
+            "timestamp": "2025-01-14T10:30:00Z"  # Χρησιμοποιήστε πραγματικό χρονικό σήμα
         }
         
         async with self.producer:
@@ -505,21 +503,21 @@ class EventHubsMcpTransport:
         async with self.consumer:
             await self.consumer.receive(
                 on_event=self._on_event_received(message_handler),
-                starting_position="-1"  # Start from beginning
+                starting_position="-1"  # Ξεκινήστε από την αρχή
             )
     
     def _on_event_received(self, handler: Callable):
         """Internal event handler wrapper"""
         async def handle_event(partition_context, event):
             try:
-                # Parse MCP message from Event Hubs event
+                # Αναλύστε το μήνυμα MCP από το συμβάν Event Hubs
                 message_body = event.body_as_str(encoding='UTF-8')
                 mcp_message = json.loads(message_body)
                 
-                # Process MCP message
+                # Επεξεργαστείτε το μήνυμα MCP
                 await handler(mcp_message)
                 
-                # Update checkpoint for at-least-once delivery
+                # Ενημερώστε το σημείο ελέγχου για παράδοση τουλάχιστον μία φορά
                 await partition_context.update_checkpoint(event)
                 
             except Exception as e:
@@ -534,7 +532,7 @@ class EventHubsMcpTransport:
         await self.consumer.close()
 ```
 
-## **Προχωρημένα Πρότυπα Μεταφοράς**
+## **Προχωρημένα Πρότυπα Μέσων Μεταφοράς**
 
 ### **Ανθεκτικότητα και Αξιοπιστία Μηνυμάτων**
 
@@ -563,7 +561,7 @@ public class ReliableTransportWrapper : IMcpTransport
 }
 ```
 
-### **Ενσωμάτωση Ασφάλειας Μεταφοράς**
+### **Ενσωμάτωση Ασφάλειας Μέσων Μεταφοράς**
 
 ```csharp
 // Integrating Azure Key Vault for transport security
@@ -585,7 +583,7 @@ public class SecureTransportFactory
 }
 ```
 
-### **Παρακολούθηση και Παρατηρησιμότητα Μεταφοράς**
+### **Παρακολούθηση και Παρατηρησιμότητα Μέσων Μεταφοράς**
 
 ```csharp
 // Adding telemetry to custom transports
@@ -624,11 +622,11 @@ public class ObservableTransport : IMcpTransport
 }
 ```
 
-## **Σενάρια Ενσωμάτωσης Επιχειρήσεων**
+## **Σενάρια Επιχειρησιακής Ενσωμάτωσης**
 
 ### **Σενάριο 1: Κατανεμημένη Επεξεργασία MCP**
 
-Χρήση του Azure Event Grid για τη διανομή αιτημάτων MCP σε πολλαπλούς κόμβους επεξεργασίας:
+Χρήση του Azure Event Grid για διανομή αιτημάτων MCP σε πολλούς κόμβους επεξεργασίας:
 
 ```yaml
 Architecture:
@@ -642,7 +640,7 @@ Benefits:
   - Cost optimization with serverless compute
 ```
 
-### **Σενάριο 2: Real-time MCP Streaming**
+### **Σενάριο 2: Ροή MCP σε Πραγματικό Χρόνο**
 
 Χρήση του Azure Event Hubs για αλληλεπιδράσεις MCP υψηλής συχνότητας:
 
@@ -658,9 +656,9 @@ Benefits:
   - Built-in partitioning for parallel processing
 ```
 
-### **Σενάριο 3: Υβριδική Αρχιτεκτονική Μεταφοράς**
+### **Σενάριο 3: Υβριδική Αρχιτεκτονική Μέσων Μεταφοράς**
 
-Συνδυασμός πολλαπλών μεταφορών για διαφορετικές περιπτώσεις χρήσης:
+Συνδυασμός πολλαπλών μέσων μεταφοράς για διαφορετικές περιπτώσεις χρήσης:
 
 ```csharp
 public class HybridMcpTransport : IMcpTransport
@@ -726,7 +724,7 @@ public class BatchingEventGridTransport : IMcpTransport
 }
 ```
 
-### **Στρατηγική Διαμερισματοποίησης για Event Hubs**
+### **Στρατηγική Κατανομής για Event Hubs**
 
 ```csharp
 public class PartitionedEventHubsTransport : IMcpTransport
@@ -746,9 +744,9 @@ public class PartitionedEventHubsTransport : IMcpTransport
 }
 ```
 
-## **Δοκιμή Προσαρμοσμένων Μεταφορών**
+## **Δοκιμές Προσαρμοσμένων Μέσων Μεταφοράς**
 
-### **Μονάδες Δοκιμών με Test Doubles**
+### **Μονάδα Δοκιμών με Διπλά Αντικείμενα**
 
 ```csharp
 [Test]
@@ -775,7 +773,7 @@ public async Task EventGridTransport_SendMessage_PublishesCorrectEvent()
 }
 ```
 
-### **Δοκιμές Ενσωμάτωσης με Azure Test Containers**
+### **Ολοκληρωμένες Δοκιμές με Azure Test Containers**
 
 ```csharp
 [Test]
@@ -808,49 +806,52 @@ public async Task EventHubsTransport_IntegrationTest()
 }
 ```
 
-## **Καλές Πρακτικές και Κατευθυντήριες Γραμμές**
+## **Καλές Πρακτικές και Οδηγίες**
 
-### **Αρχές Σχεδιασμού Μεταφοράς**
+### **Αρχές Σχεδιασμού Μέσων Μεταφοράς**
 
-1. **Idempotency**: Διασφαλίστε ότι η επεξεργασία μηνυμάτων είναι idempotent για τη διαχείριση διπλότυπων
-2. **Διαχείριση Σφαλμάτων**: Υλοποιήστε ολοκληρωμένη διαχείριση σφαλμάτων και ουρές dead letter
+1. **Αποδοτικότητα**: Διασφαλίστε ότι η επεξεργασία μηνυμάτων είναι αποδοτική για να χειρίζεται διπλότυπα
+2. **Διαχείριση Σφαλμάτων**: Υλοποιήστε ολοκληρωμένη διαχείριση σφαλμάτων και ουρές νεκρών μηνυμάτων
 3. **Παρακολούθηση**: Προσθέστε λεπτομερή τηλεμετρία και ελέγχους υγείας
-4. **Ασφάλεια**: Χρησιμοποιήστε διαχειριζόμενες ταυτότητες και πρόσβαση με ελάχιστα δικαιώματα
-5. **Απόδοση**: Σχεδιάστε για τις συγκεκριμένες απαιτήσεις καθυστέρησης και απόδοσης
+4. **Ασφάλεια**: Χρησιμοποιήστε διαχειριζόμενες ταυτότητες και πρόσβαση με ελάχιστα προνόμια
+5. **Απόδοση**: Σχεδιάστε για τις συγκεκριμένες απαιτήσεις καθυστέρησης και διαμέσου ροής
 
-### **Συστάσεις Ειδικές για το Azure**
+### **Συστάσεις Ειδικές για Azure**
 
 1. **Χρησιμοποιήστε Διαχειριζόμενη Ταυτότητα**: Αποφύγετε τις συμβολοσειρές σύνδεσης στην παραγωγή
-2. **Υλοποιήστε Circuit Breakers**: Προστατευθείτε από διακοπές υπηρεσιών του Azure
-3. **Παρακολουθήστε Κόστη**: Παρακολουθήστε τον όγκο μηνυμάτων και τα κόστη επεξεργασίας
-4. **Σχεδιάστε για Κλίμακα**: Σχεδιάστε στρατηγικές διαμερισματοποίησης και κλιμάκωσης νωρίς
+2. **Υλοποιήστε Διακόπτες Κυκλώματος**: Προστατέψτε από διακοπές υπηρεσιών Azure
+3. **Παρακολουθήστε Κόστη**: Παρακολουθήστε όγκο μηνυμάτων και κόστη επεξεργασίας
+4. **Σχεδιάστε για Κλίμακα**: Σχεδιάστε στρατηγικές κατανομής και κλιμάκωσης νωρίς
 5. **Δοκιμάστε Ενδελεχώς**: Χρησιμοποιήστε το Azure DevTest Labs για ολοκληρωμένες δοκιμές
 
 ## **Συμπέρασμα**
 
-Οι προσαρμοσμένες μεταφορές MCP επιτρέπουν ισχυρά επιχειρηματικά σενάρια χρησιμοποιώντας τις υπηρεσίες μηνυμάτων του Azure. Με την υλοποίηση μεταφορών Event Grid ή Event Hubs, μπορείτε να δημιουργήσετε επεκτάσιμες, αξιόπιστες λύσεις MCP που ενσωματώνονται απρόσκοπτα με την υπάρχουσα υποδομή του Azure.
+Τα προσαρμοσμένα μέσα μεταφοράς MCP επιτρέπουν ισχυρά επιχειρησιακά σενάρια χρησιμοποιώντας τις υπηρεσίες μηνυμάτων του Azure. Με την υλοποίηση των μέσων μεταφοράς Event Grid ή Event Hubs, μπορείτε να κατασκευάσετε κλιμακούμενες, αξιόπιστες λύσεις MCP που ενσωματώνονται απρόσκοπτα με την υπάρχουσα υποδομή Azure.
 
-Τα παραδείγματα που παρέχονται δείχνουν πρότυπα έτοιμα για παραγωγή για την υλοποίηση προσαρμοσμένων μεταφορών, διατηρώντας τη συμμόρφωση με το πρωτόκολλο MCP και τις βέλτιστες πρακτικές του Azure.
+Τα παραδείγματα που παρέχονται δείχνουν πρότυπα έτοιμα για παραγωγή για την υλοποίηση προσαρμοσμένων μέσων μεταφοράς διατηρώντας τη συμμόρφωση με το πρωτόκολλο MCP και τις βέλτιστες πρακτικές Azure.
 
-## **Πρόσθετοι Πόροι**
+## **Επιπλέον Πόροι**
 
-- [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/)
-- [Azure Event Grid Documentation](https://docs.microsoft.com/azure/event-grid/)
-- [Azure Event Hubs Documentation](https://docs.microsoft.com/azure/event-hubs/)
+- [Προδιαγραφή MCP 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/)
+- [Τεκμηρίωση Azure Event Grid](https://docs.microsoft.com/azure/event-grid/)
+- [Τεκμηρίωση Azure Event Hubs](https://docs.microsoft.com/azure/event-hubs/)
 - [Azure Functions Event Grid Trigger](https://docs.microsoft.com/azure/azure-functions/functions-bindings-event-grid)
-- [Azure SDK for .NET](https://github.com/Azure/azure-sdk-for-net)
-- [Azure SDK for TypeScript](https://github.com/Azure/azure-sdk-for-js)
-- [Azure SDK for Python](https://github.com/Azure/azure-sdk-for-python)
+- [Azure SDK για .NET](https://github.com/Azure/azure-sdk-for-net)
+- [Azure SDK για TypeScript](https://github.com/Azure/azure-sdk-for-js)
+- [Azure SDK για Python](https://github.com/Azure/azure-sdk-for-python)
 
 ---
 
-> *Αυτός ο οδηγός επικεντρώνεται σε πρακτικά πρότυπα υλοποίησης για συστήματα MCP παραγωγής. Πάντα να επικυρώνετε τις υλοποιήσεις μεταφοράς σύμφωνα με τις συγκεκριμένες απαιτήσεις σας και τα όρια υπηρεσιών του Azure.*
-> **Τρέχον Πρότυπο**: Αυτός ο οδηγός αντικατοπτρίζει τις απαιτήσεις μεταφοράς και τα προχωρημένα πρότυπα μεταφοράς για επιχειρηματικά περιβάλλοντα σύμφωνα με την [Προδιαγραφή MCP 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/).
+> *Αυτός ο οδηγός εστιάζει σε πρακτικά πρότυπα υλοποίησης για παραγωγικά συστήματα MCP. Πάντα να επικυρώνετε τις υλοποιήσεις μέσων μεταφοράς έναντι των συγκεκριμένων απαιτήσεών σας και των ορίων υπηρεσιών Azure.*
+> **Τρέχον Πρότυπο**: Αυτός ο οδηγός αντικατοπτρίζει τις απαιτήσεις μέσων μεταφοράς και τα προχωρημένα πρότυπα μέσων μεταφοράς για επιχειρησιακά περιβάλλοντα της [Προδιαγραφής MCP 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/).
+
 
 ## Τι Ακολουθεί
 - [6. Συνεισφορές Κοινότητας](../../06-CommunityContributions/README.md)
 
 ---
 
-**Αποποίηση ευθύνης**:  
-Αυτό το έγγραφο έχει μεταφραστεί χρησιμοποιώντας την υπηρεσία αυτόματης μετάφρασης [Co-op Translator](https://github.com/Azure/co-op-translator). Παρόλο που καταβάλλουμε προσπάθειες για ακρίβεια, παρακαλούμε να έχετε υπόψη ότι οι αυτοματοποιημένες μεταφράσεις ενδέχεται να περιέχουν σφάλματα ή ανακρίβειες. Το πρωτότυπο έγγραφο στη μητρική του γλώσσα θα πρέπει να θεωρείται η αυθεντική πηγή. Για κρίσιμες πληροφορίες, συνιστάται επαγγελματική ανθρώπινη μετάφραση. Δεν φέρουμε ευθύνη για τυχόν παρεξηγήσεις ή εσφαλμένες ερμηνείες που προκύπτουν από τη χρήση αυτής της μετάφρασης.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Αποποίηση ευθυνών**:  
+Αυτό το έγγραφο έχει μεταφραστεί χρησιμοποιώντας την υπηρεσία αυτόματης μετάφρασης AI [Co-op Translator](https://github.com/Azure/co-op-translator). Παρόλο που επιδιώκουμε την ακρίβεια, παρακαλούμε να λάβετε υπόψη ότι οι αυτόματες μεταφράσεις ενδέχεται να περιέχουν λάθη ή ανακρίβειες. Το πρωτότυπο έγγραφο στη μητρική του γλώσσα πρέπει να θεωρείται η αυθεντική πηγή. Για κρίσιμες πληροφορίες, συνιστάται επαγγελματική ανθρώπινη μετάφραση. Δεν φέρουμε ευθύνη για τυχόν παρεξηγήσεις ή λανθασμένες ερμηνείες που προκύπτουν από τη χρήση αυτής της μετάφρασης.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

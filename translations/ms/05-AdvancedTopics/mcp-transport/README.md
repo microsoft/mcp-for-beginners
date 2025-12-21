@@ -1,45 +1,45 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "c71c60af76120a517809a6cfba47e9a3",
-  "translation_date": "2025-09-15T21:38:56+00:00",
+  "original_hash": "cf3e88e4c0b2d9d65c7f300986bd8c6c",
+  "translation_date": "2025-12-19T14:39:23+00:00",
   "source_file": "05-AdvancedTopics/mcp-transport/README.md",
   "language_code": "ms"
 }
 -->
-# Panduan Pelaksanaan Lanjutan MCP Custom Transports
+# MCP Pengangkutan Tersuai - Panduan Pelaksanaan Lanjutan
 
-Model Context Protocol (MCP) menyediakan fleksibiliti dalam mekanisme penghantaran, membolehkan pelaksanaan tersuai untuk persekitaran perusahaan yang khusus. Panduan lanjutan ini meneroka pelaksanaan penghantaran tersuai menggunakan Azure Event Grid dan Azure Event Hubs sebagai contoh praktikal untuk membina penyelesaian MCP yang berskala dan berasaskan awan.
+Protokol Konteks Model (MCP) menyediakan fleksibiliti dalam mekanisme pengangkutan, membenarkan pelaksanaan tersuai untuk persekitaran perusahaan khusus. Panduan lanjutan ini meneroka pelaksanaan pengangkutan tersuai menggunakan Azure Event Grid dan Azure Event Hubs sebagai contoh praktikal untuk membina penyelesaian MCP asli awan yang boleh diskalakan.
 
 ## Pengenalan
 
-Walaupun penghantaran standard MCP (stdio dan HTTP streaming) memenuhi kebanyakan keperluan, persekitaran perusahaan sering memerlukan mekanisme penghantaran khusus untuk meningkatkan skalabiliti, kebolehpercayaan, dan integrasi dengan infrastruktur awan sedia ada. Penghantaran tersuai membolehkan MCP memanfaatkan perkhidmatan pemesejan berasaskan awan untuk komunikasi asinkron, seni bina berasaskan acara, dan pemprosesan teragih.
+Walaupun pengangkutan standard MCP (stdio dan penstriman HTTP) memenuhi kebanyakan kes penggunaan, persekitaran perusahaan sering memerlukan mekanisme pengangkutan khusus untuk meningkatkan kebolehskalaan, kebolehpercayaan, dan integrasi dengan infrastruktur awan sedia ada. Pengangkutan tersuai membolehkan MCP memanfaatkan perkhidmatan pemesejan asli awan untuk komunikasi tak segerak, seni bina berasaskan acara, dan pemprosesan teragih.
 
-Pelajaran ini meneroka pelaksanaan penghantaran lanjutan berdasarkan spesifikasi MCP terkini (2025-06-18), perkhidmatan pemesejan Azure, dan corak integrasi perusahaan yang telah ditetapkan.
+Pelajaran ini meneroka pelaksanaan pengangkutan lanjutan berdasarkan spesifikasi MCP terkini (2025-11-25), perkhidmatan pemesejan Azure, dan corak integrasi perusahaan yang telah ditetapkan.
 
-### **Seni Bina Penghantaran MCP**
+### **Senibina Pengangkutan MCP**
 
-**Daripada Spesifikasi MCP (2025-06-18):**
+**Daripada Spesifikasi MCP (2025-11-25):**
 
-- **Penghantaran Standard**: stdio (disyorkan), HTTP streaming (untuk senario jauh)
-- **Penghantaran Tersuai**: Mana-mana penghantaran yang melaksanakan protokol pertukaran mesej MCP
-- **Format Mesej**: JSON-RPC 2.0 dengan sambungan khusus MCP
-- **Komunikasi Dua Hala**: Komunikasi penuh dupleks diperlukan untuk notifikasi dan respons
+- **Pengangkutan Standard**: stdio (disyorkan), penstriman HTTP (untuk senario jauh)
+- **Pengangkutan Tersuai**: Mana-mana pengangkutan yang melaksanakan protokol pertukaran mesej MCP
+- **Format Mesej**: JSON-RPC 2.0 dengan peluasan khusus MCP
+- **Komunikasi Dua Hala**: Komunikasi dwi-arah penuh diperlukan untuk pemberitahuan dan respons
 
 ## Objektif Pembelajaran
 
 Menjelang akhir pelajaran lanjutan ini, anda akan dapat:
 
-- **Memahami Keperluan Penghantaran Tersuai**: Melaksanakan protokol MCP di atas mana-mana lapisan penghantaran sambil mengekalkan pematuhan
-- **Membina Penghantaran Azure Event Grid**: Mencipta pelayan MCP berasaskan acara menggunakan Azure Event Grid untuk skalabiliti tanpa pelayan
-- **Melaksanakan Penghantaran Azure Event Hubs**: Merancang penyelesaian MCP throughput tinggi menggunakan Azure Event Hubs untuk penstriman masa nyata
-- **Menerapkan Corak Perusahaan**: Mengintegrasikan penghantaran tersuai dengan infrastruktur Azure sedia ada dan model keselamatan
-- **Menangani Kebolehpercayaan Penghantaran**: Melaksanakan ketahanan mesej, penjujukan, dan pengendalian ralat untuk senario perusahaan
-- **Mengoptimumkan Prestasi**: Merancang penyelesaian penghantaran untuk keperluan skala, latensi, dan throughput
+- **Memahami Keperluan Pengangkutan Tersuai**: Melaksanakan protokol MCP ke atas mana-mana lapisan pengangkutan sambil mengekalkan pematuhan
+- **Membina Pengangkutan Azure Event Grid**: Mewujudkan pelayan MCP berasaskan acara menggunakan Azure Event Grid untuk kebolehskalaan tanpa pelayan
+- **Melaksanakan Pengangkutan Azure Event Hubs**: Mereka bentuk penyelesaian MCP berkelajuan tinggi menggunakan Azure Event Hubs untuk penstriman masa nyata
+- **Mengaplikasi Corak Perusahaan**: Mengintegrasikan pengangkutan tersuai dengan infrastruktur Azure dan model keselamatan sedia ada
+- **Mengendalikan Kebolehpercayaan Pengangkutan**: Melaksanakan ketahanan mesej, pengurutan, dan pengendalian ralat untuk senario perusahaan
+- **Mengoptimumkan Prestasi**: Mereka bentuk penyelesaian pengangkutan untuk keperluan skala, kelewatan, dan kelajuan
 
-## **Keperluan Penghantaran**
+## **Keperluan Pengangkutan**
 
-### **Keperluan Teras daripada Spesifikasi MCP (2025-06-18):**
+### **Keperluan Teras daripada Spesifikasi MCP (2025-11-25):**
 
 ```yaml
 Message Protocol:
@@ -58,28 +58,27 @@ Custom Transport:
   interoperability: "MUST maintain protocol compatibility"
 ```
 
-## **Pelaksanaan Penghantaran Azure Event Grid**
+## **Pelaksanaan Pengangkutan Azure Event Grid**
 
-Azure Event Grid menyediakan perkhidmatan penghalaan acara tanpa pelayan yang sesuai untuk seni bina MCP berasaskan acara. Pelaksanaan ini menunjukkan cara membina sistem MCP yang berskala dan longgar.
+Azure Event Grid menyediakan perkhidmatan penghalaan acara tanpa pelayan yang sesuai untuk seni bina MCP berasaskan acara. Pelaksanaan ini menunjukkan cara membina sistem MCP yang boleh diskalakan dan longgar.
 
-### **Gambaran Keseluruhan Seni Bina**
+### **Gambaran Keseluruhan Senibina**
 
 ```mermaid
 graph TB
     Client[MCP Client] --> EG[Azure Event Grid]
-    EG --> Server[MCP Server Function]
+    EG --> Server[Fungsi Pelayan MCP]
     Server --> EG
     EG --> Client
     
-    subgraph "Azure Services"
+    subgraph "Perkhidmatan Azure"
         EG
         Server
         KV[Key Vault]
         Monitor[Application Insights]
     end
 ```
-
-### **Pelaksanaan C# - Penghantaran Event Grid**
+### **Pelaksanaan C# - Pengangkutan Event Grid**
 
 ```csharp
 using Azure.Messaging.EventGrid;
@@ -151,7 +150,7 @@ public async Task<IActionResult> HandleEventGridMessage(
 }
 ```
 
-### **Pelaksanaan TypeScript - Penghantaran Event Grid**
+### **Pelaksanaan TypeScript - Pengangkutan Event Grid**
 
 ```typescript
 import { EventGridPublisherClient, AzureKeyCredential } from "@azure/eventgrid";
@@ -185,14 +184,14 @@ export class EventGridMcpTransport implements McpTransport {
         await this.publisher.sendEvents([event]);
     }
     
-    // Event-driven receive via Azure Functions
+    // Terima berasaskan acara melalui Azure Functions
     onMessage(handler: (message: McpMessage) => Promise<void>): void {
-        // Implementation would use Azure Functions Event Grid trigger
-        // This is a conceptual interface for the webhook receiver
+        // Pelaksanaan akan menggunakan pencetus Azure Functions Event Grid
+        // Ini adalah antara muka konseptual untuk penerima webhook
     }
 }
 
-// Azure Functions implementation
+// Pelaksanaan Azure Functions
 import { app, InvocationContext, EventGridEvent } from "@azure/functions";
 
 app.eventGrid("mcpEventGridHandler", {
@@ -200,10 +199,10 @@ app.eventGrid("mcpEventGridHandler", {
         try {
             const mcpMessage = event.data as McpMessage;
             
-            // Process MCP message
+            // Proses mesej MCP
             const response = await mcpServer.processMessage(mcpMessage);
             
-            // Send response via Event Grid
+            // Hantar respons melalui Event Grid
             await transport.sendMessage(response);
             
         } catch (error) {
@@ -214,7 +213,7 @@ app.eventGrid("mcpEventGridHandler", {
 });
 ```
 
-### **Pelaksanaan Python - Penghantaran Event Grid**
+### **Pelaksanaan Python - Pengangkutan Event Grid**
 
 ```python
 from azure.eventgrid import EventGridPublisherClient, EventGridEvent
@@ -249,32 +248,32 @@ class EventGridMcpTransport:
         """Register message handler for incoming events"""
         self.message_handler = handler
 
-# Azure Functions implementation
+# Pelaksanaan Azure Functions
 import azure.functions as func
 import logging
 
 def main(event: func.EventGridEvent) -> None:
     """Azure Functions Event Grid trigger for MCP messages"""
     try:
-        # Parse MCP message from Event Grid event
+        # Mengurai mesej MCP dari acara Event Grid
         mcp_message = json.loads(event.get_body().decode('utf-8'))
         
-        # Process MCP message
+        # Memproses mesej MCP
         response = process_mcp_message(mcp_message)
         
-        # Send response back via Event Grid
-        # (Implementation would create new Event Grid client)
+        # Hantar respons kembali melalui Event Grid
+        # (Pelaksanaan akan mencipta klien Event Grid baru)
         
     except Exception as e:
         logging.error(f"Error processing MCP Event Grid message: {e}")
         raise
 ```
 
-## **Pelaksanaan Penghantaran Azure Event Hubs**
+## **Pelaksanaan Pengangkutan Azure Event Hubs**
 
-Azure Event Hubs menyediakan keupayaan penstriman masa nyata throughput tinggi untuk senario MCP yang memerlukan latensi rendah dan jumlah mesej tinggi.
+Azure Event Hubs menyediakan keupayaan penstriman masa nyata berkelajuan tinggi untuk senario MCP yang memerlukan kelewatan rendah dan jumlah mesej tinggi.
 
-### **Gambaran Keseluruhan Seni Bina**
+### **Gambaran Keseluruhan Senibina**
 
 ```mermaid
 graph TB
@@ -283,18 +282,17 @@ graph TB
     Server --> EH
     EH --> Client
     
-    subgraph "Event Hubs Features"
-        Partition[Partitioning]
-        Retention[Message Retention]
-        Scaling[Auto Scaling]
+    subgraph "Ciri-ciri Event Hubs"
+        Partition[Pembahagian]
+        Retention[Penahanan Mesej]
+        Scaling[Skala Automatik]
     end
     
     EH --> Partition
     EH --> Retention
     EH --> Scaling
 ```
-
-### **Pelaksanaan C# - Penghantaran Event Hubs**
+### **Pelaksanaan C# - Pengangkutan Event Hubs**
 
 ```csharp
 using Azure.Messaging.EventHubs;
@@ -368,7 +366,7 @@ public class EventHubsMcpTransport : IMcpTransport, IDisposable
 }
 ```
 
-### **Pelaksanaan TypeScript - Penghantaran Event Hubs**
+### **Pelaksanaan TypeScript - Pengangkutan Event Hubs**
 
 ```typescript
 import { 
@@ -427,7 +425,7 @@ export class EventHubsMcpTransport implements McpTransport {
                         
                         await messageHandler(mcpMessage);
                         
-                        // Update checkpoint for at-least-once delivery
+                        // Kemas kini titik semak untuk penghantaran sekurang-kurangnya sekali
                         await context.updateCheckpoint(event);
                     } catch (error) {
                         console.error("Error processing Event Hubs message:", error);
@@ -448,7 +446,7 @@ export class EventHubsMcpTransport implements McpTransport {
 }
 ```
 
-### **Pelaksanaan Python - Penghantaran Event Hubs**
+### **Pelaksanaan Python - Pengangkutan Event Hubs**
 
 ```python
 from azure.eventhub import EventHubProducerClient, EventHubConsumerClient
@@ -480,11 +478,11 @@ class EventHubsMcpTransport:
         """Send MCP message via Event Hubs"""
         event_data = EventData(json.dumps(message))
         
-        # Add MCP-specific properties
+        # Tambah sifat khusus MCP
         event_data.properties = {
             "messageType": message.get("method", "response"),
             "messageId": message.get("id"),
-            "timestamp": "2025-01-14T10:30:00Z"  # Use actual timestamp
+            "timestamp": "2025-01-14T10:30:00Z"  # Gunakan cap masa sebenar
         }
         
         async with self.producer:
@@ -505,21 +503,21 @@ class EventHubsMcpTransport:
         async with self.consumer:
             await self.consumer.receive(
                 on_event=self._on_event_received(message_handler),
-                starting_position="-1"  # Start from beginning
+                starting_position="-1"  # Mula dari awal
             )
     
     def _on_event_received(self, handler: Callable):
         """Internal event handler wrapper"""
         async def handle_event(partition_context, event):
             try:
-                # Parse MCP message from Event Hubs event
+                # Huraikan mesej MCP dari acara Event Hubs
                 message_body = event.body_as_str(encoding='UTF-8')
                 mcp_message = json.loads(message_body)
                 
-                # Process MCP message
+                # Proses mesej MCP
                 await handler(mcp_message)
                 
-                # Update checkpoint for at-least-once delivery
+                # Kemas kini titik semak untuk penghantaran sekurang-kurangnya sekali
                 await partition_context.update_checkpoint(event)
                 
             except Exception as e:
@@ -534,7 +532,7 @@ class EventHubsMcpTransport:
         await self.consumer.close()
 ```
 
-## **Corak Penghantaran Lanjutan**
+## **Corak Pengangkutan Lanjutan**
 
 ### **Ketahanan dan Kebolehpercayaan Mesej**
 
@@ -563,7 +561,7 @@ public class ReliableTransportWrapper : IMcpTransport
 }
 ```
 
-### **Integrasi Keselamatan Penghantaran**
+### **Integrasi Keselamatan Pengangkutan**
 
 ```csharp
 // Integrating Azure Key Vault for transport security
@@ -585,7 +583,7 @@ public class SecureTransportFactory
 }
 ```
 
-### **Pemantauan dan Pemerhatian Penghantaran**
+### **Pemantauan dan Kebolehlihatan Pengangkutan**
 
 ```csharp
 // Adding telemetry to custom transports
@@ -628,7 +626,7 @@ public class ObservableTransport : IMcpTransport
 
 ### **Senario 1: Pemprosesan MCP Teragih**
 
-Menggunakan Azure Event Grid untuk mengedarkan permintaan MCP merentasi beberapa nod pemprosesan:
+Menggunakan Azure Event Grid untuk mengedarkan permintaan MCP merentasi pelbagai nod pemprosesan:
 
 ```yaml
 Architecture:
@@ -644,7 +642,7 @@ Benefits:
 
 ### **Senario 2: Penstriman MCP Masa Nyata**
 
-Menggunakan Azure Event Hubs untuk interaksi MCP frekuensi tinggi:
+Menggunakan Azure Event Hubs untuk interaksi MCP berfrekuensi tinggi:
 
 ```yaml
 Architecture:
@@ -658,9 +656,9 @@ Benefits:
   - Built-in partitioning for parallel processing
 ```
 
-### **Senario 3: Seni Bina Penghantaran Hibrid**
+### **Senario 3: Senibina Pengangkutan Hibrid**
 
-Menggabungkan pelbagai penghantaran untuk keperluan yang berbeza:
+Menggabungkan pelbagai pengangkutan untuk kes penggunaan berbeza:
 
 ```csharp
 public class HybridMcpTransport : IMcpTransport
@@ -686,7 +684,7 @@ public class HybridMcpTransport : IMcpTransport
 
 ## **Pengoptimuman Prestasi**
 
-### **Pengelompokan Mesej untuk Event Grid**
+### **Pengumpulan Mesej untuk Event Grid**
 
 ```csharp
 public class BatchingEventGridTransport : IMcpTransport
@@ -746,7 +744,7 @@ public class PartitionedEventHubsTransport : IMcpTransport
 }
 ```
 
-## **Ujian Penghantaran Tersuai**
+## **Ujian Pengangkutan Tersuai**
 
 ### **Ujian Unit dengan Test Doubles**
 
@@ -810,31 +808,31 @@ public async Task EventHubsTransport_IntegrationTest()
 
 ## **Amalan Terbaik dan Garis Panduan**
 
-### **Prinsip Reka Bentuk Penghantaran**
+### **Prinsip Reka Bentuk Pengangkutan**
 
-1. **Idempotensi**: Pastikan pemprosesan mesej adalah idempotent untuk menangani pendua
-2. **Pengendalian Ralat**: Melaksanakan pengendalian ralat yang komprehensif dan dead letter queues
-3. **Pemantauan**: Tambahkan telemetri terperinci dan pemeriksaan kesihatan
+1. **Idempotensi**: Pastikan pemprosesan mesej adalah idempotent untuk mengendalikan pendua
+2. **Pengendalian Ralat**: Laksanakan pengendalian ralat menyeluruh dan antrian surat mati
+3. **Pemantauan**: Tambah telemetri terperinci dan pemeriksaan kesihatan
 4. **Keselamatan**: Gunakan identiti terurus dan akses keistimewaan minimum
-5. **Prestasi**: Reka bentuk untuk keperluan latensi dan throughput khusus anda
+5. **Prestasi**: Reka bentuk mengikut keperluan kelewatan dan kelajuan khusus anda
 
 ### **Cadangan Khusus Azure**
 
-1. **Gunakan Identiti Terurus**: Elakkan string sambungan dalam pengeluaran
-2. **Laksanakan Circuit Breakers**: Lindungi daripada gangguan perkhidmatan Azure
+1. **Gunakan Identiti Terurus**: Elakkan rentetan sambungan dalam pengeluaran
+2. **Laksanakan Pemutus Litar**: Lindungi daripada gangguan perkhidmatan Azure
 3. **Pantau Kos**: Jejaki jumlah mesej dan kos pemprosesan
-4. **Rancang untuk Skala**: Reka bentuk strategi pembahagian dan penskalaan lebih awal
-5. **Uji Secara Menyeluruh**: Gunakan Azure DevTest Labs untuk ujian yang komprehensif
+4. **Rancang untuk Skala**: Reka bentuk strategi pembahagian dan penskalaan awal
+5. **Uji Secara Menyeluruh**: Gunakan Azure DevTest Labs untuk ujian menyeluruh
 
 ## **Kesimpulan**
 
-Penghantaran MCP tersuai membolehkan senario perusahaan yang kuat menggunakan perkhidmatan pemesejan Azure. Dengan melaksanakan penghantaran Event Grid atau Event Hubs, anda boleh membina penyelesaian MCP yang berskala dan boleh dipercayai yang berintegrasi dengan lancar dengan infrastruktur Azure sedia ada.
+Pengangkutan MCP tersuai membolehkan senario perusahaan yang berkuasa menggunakan perkhidmatan pemesejan Azure. Dengan melaksanakan pengangkutan Event Grid atau Event Hubs, anda boleh membina penyelesaian MCP yang boleh diskalakan dan boleh dipercayai yang berintegrasi dengan lancar dengan infrastruktur Azure sedia ada.
 
-Contoh yang diberikan menunjukkan corak siap pengeluaran untuk melaksanakan penghantaran tersuai sambil mengekalkan pematuhan protokol MCP dan amalan terbaik Azure.
+Contoh yang disediakan menunjukkan corak sedia produksi untuk melaksanakan pengangkutan tersuai sambil mengekalkan pematuhan protokol MCP dan amalan terbaik Azure.
 
 ## **Sumber Tambahan**
 
-- [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/)
+- [Spesifikasi MCP 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/)
 - [Dokumentasi Azure Event Grid](https://docs.microsoft.com/azure/event-grid/)
 - [Dokumentasi Azure Event Hubs](https://docs.microsoft.com/azure/event-hubs/)
 - [Azure Functions Event Grid Trigger](https://docs.microsoft.com/azure/azure-functions/functions-bindings-event-grid)
@@ -844,13 +842,16 @@ Contoh yang diberikan menunjukkan corak siap pengeluaran untuk melaksanakan peng
 
 ---
 
-> *Panduan ini memberi tumpuan kepada corak pelaksanaan praktikal untuk sistem MCP pengeluaran. Sentiasa sahkan pelaksanaan penghantaran terhadap keperluan khusus anda dan had perkhidmatan Azure.*
-> **Standard Semasa**: Panduan ini mencerminkan [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) keperluan penghantaran dan corak penghantaran lanjutan untuk persekitaran perusahaan.
+> *Panduan ini memfokuskan pada corak pelaksanaan praktikal untuk sistem MCP produksi. Sentiasa sahkan pelaksanaan pengangkutan mengikut keperluan khusus anda dan had perkhidmatan Azure.*
+> **Standard Semasa**: Panduan ini mencerminkan keperluan pengangkutan [Spesifikasi MCP 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) dan corak pengangkutan lanjutan untuk persekitaran perusahaan.
+
 
 ## Apa Seterusnya
 - [6. Sumbangan Komuniti](../../06-CommunityContributions/README.md)
 
 ---
 
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk memastikan ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat yang kritikal, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk ketepatan, sila ambil maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang sahih. Untuk maklumat penting, terjemahan profesional oleh manusia adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

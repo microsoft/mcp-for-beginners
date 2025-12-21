@@ -1,207 +1,215 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "057dd5cc6bea6434fdb788e6c93f3f3d",
-  "translation_date": "2025-08-19T16:26:49+00:00",
+  "original_hash": "e30aaf6b178137fa6668efc1b20851d5",
+  "translation_date": "2025-12-19T15:58:24+00:00",
   "source_file": "02-Security/mcp-security-best-practices-2025.md",
   "language_code": "ro"
 }
 -->
-# Cele mai bune practici de securitate MCP - Actualizare august 2025
+# Cele mai bune practici de securitate MCP - Actualizare decembrie 2025
 
-> **Important**: Acest document reflectă cele mai recente cerințe de securitate din [Specificația MCP 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) și [Cele mai bune practici de securitate MCP](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices). Consultați întotdeauna specificația curentă pentru cele mai actualizate recomandări.
+> **Important**: Acest document reflectă cele mai recente cerințe de securitate din [Specificația MCP 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) și [Cele mai bune practici oficiale de securitate MCP](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices). Consultați întotdeauna specificația curentă pentru cele mai actualizate recomandări.
 
 ## Practici esențiale de securitate pentru implementările MCP
 
-Model Context Protocol introduce provocări unice de securitate care depășesc securitatea software tradițională. Aceste practici abordează atât cerințele fundamentale de securitate, cât și amenințările specifice MCP, inclusiv injecția de prompturi, compromiterea uneltelor, deturnarea sesiunilor, problemele de tip "confused deputy" și vulnerabilitățile de transmitere a token-urilor.
+Model Context Protocol introduce provocări unice de securitate care depășesc securitatea software tradițională. Aceste practici abordează atât cerințele fundamentale de securitate, cât și amenințările specifice MCP, inclusiv injecția de prompturi, otrăvirea uneltelor, deturnarea sesiunii, problemele de tip „confused deputy” și vulnerabilitățile de trecere a token-urilor.
 
-### **Cerințe OBLIGATORII de securitate**
+### **Cerințe de securitate OBLIGATORII**
 
 **Cerințe critice din Specificația MCP:**
 
-> **MUST NOT**: Serverele MCP **NU TREBUIE** să accepte token-uri care nu au fost emise explicit pentru serverul MCP  
+### **Cerințe de securitate OBLIGATORII**
+
+**Cerințe critice din Specificația MCP:**
+
+> **NU TREBUIE**: Serverele MCP **NU TREBUIE** să accepte niciun token care nu a fost emis explicit pentru serverul MCP
 > 
-> **MUST**: Serverele MCP care implementează autorizarea **TREBUIE** să verifice TOATE cererile primite  
+> **TREBUIE**: Serverele MCP care implementează autorizarea **TREBUIE** să verifice TOATE cererile primite
 >  
-> **MUST NOT**: Serverele MCP **NU TREBUIE** să utilizeze sesiuni pentru autentificare  
+> **NU TREBUIE**: Serverele MCP **NU TREBUIE** să folosească sesiuni pentru autentificare
 >
-> **MUST**: Serverele proxy MCP care folosesc ID-uri de client statice **TREBUIE** să obțină consimțământul utilizatorului pentru fiecare client înregistrat dinamic  
+> **TREBUIE**: Serverele proxy MCP care folosesc ID-uri statice de client **TREBUIE** să obțină consimțământul utilizatorului pentru fiecare client înregistrat dinamic
 
 ---
 
-## 1. **Securitatea token-urilor și autentificarea**
+## 1. **Securitatea token-urilor & Autentificarea**
 
-**Controale de autentificare și autorizare:**
-   - **Revizuire riguroasă a autorizării**: Efectuați audituri complete ale logicii de autorizare a serverului MCP pentru a vă asigura că doar utilizatorii și clienții intenționați pot accesa resursele  
-   - **Integrarea cu furnizori externi de identitate**: Utilizați furnizori de identitate consacrați, precum Microsoft Entra ID, în loc să implementați soluții personalizate de autentificare  
-   - **Validarea audienței token-urilor**: Verificați întotdeauna că token-urile au fost emise explicit pentru serverul MCP - nu acceptați niciodată token-uri din amonte  
-   - **Gestionarea corectă a ciclului de viață al token-urilor**: Implementați politici sigure de rotație, expirare și preveniți atacurile de redare a token-urilor  
+**Controale de autentificare & autorizare:**
+   - **Revizuire riguroasă a autorizării**: Efectuați audituri cuprinzătoare ale logicii de autorizare a serverului MCP pentru a asigura că doar utilizatorii și clienții intenționați pot accesa resursele
+   - **Integrare cu furnizori externi de identitate**: Folosiți furnizori de identitate consacrați precum Microsoft Entra ID în loc să implementați autentificare personalizată
+   - **Validarea audienței token-urilor**: Verificați întotdeauna că token-urile au fost emise explicit pentru serverul dvs. MCP - nu acceptați niciodată token-uri din amonte
+   - **Ciclul de viață corect al token-urilor**: Implementați rotație sigură a token-urilor, politici de expirare și preveniți atacurile de redare a token-urilor
 
-**Stocarea protejată a token-urilor:**
-   - Utilizați Azure Key Vault sau alte soluții similare pentru stocarea sigură a credențialelor  
-   - Implementați criptarea token-urilor atât în repaus, cât și în tranzit  
-   - Rotație regulată a credențialelor și monitorizare pentru acces neautorizat  
+**Stocare protejată a token-urilor:**
+   - Folosiți Azure Key Vault sau depozite securizate similare pentru toate secretele
+   - Implementați criptarea token-urilor atât în repaus, cât și în tranzit
+   - Rotație regulată a acreditărilor și monitorizare pentru acces neautorizat
 
-## 2. **Gestionarea sesiunilor și securitatea transportului**
+## 2. **Gestionarea sesiunilor & Securitatea transportului**
 
 **Practici sigure pentru sesiuni:**
-   - **ID-uri de sesiune criptografic sigure**: Utilizați ID-uri de sesiune sigure, nedeterministe, generate cu generatori de numere aleatorii siguri  
-   - **Legare specifică utilizatorului**: Legați ID-urile de sesiune de identitățile utilizatorilor folosind formate precum `<user_id>:<session_id>` pentru a preveni abuzurile între utilizatori  
-   - **Gestionarea ciclului de viață al sesiunilor**: Implementați expirarea, rotația și invalidarea corespunzătoare pentru a limita ferestrele de vulnerabilitate  
-   - **Aplicarea HTTPS/TLS**: HTTPS obligatoriu pentru toate comunicațiile pentru a preveni interceptarea ID-urilor de sesiune  
+   - **ID-uri de sesiune criptografic sigure**: Folosiți ID-uri de sesiune securizate, nedeterministe, generate cu generatoare de numere aleatorii sigure
+   - **Legare specifică utilizatorului**: Legați ID-urile de sesiune de identitățile utilizatorilor folosind formate precum `<user_id>:<session_id>` pentru a preveni abuzul de sesiuni între utilizatori
+   - **Gestionarea ciclului de viață al sesiunii**: Implementați expirare, rotație și invalidare corespunzătoare pentru a limita ferestrele de vulnerabilitate
+   - **Impunerea HTTPS/TLS**: HTTPS obligatoriu pentru toate comunicațiile pentru a preveni interceptarea ID-urilor de sesiune
 
-**Securitatea stratului de transport:**
-   - Configurați TLS 1.3 acolo unde este posibil, cu o gestionare corespunzătoare a certificatelor  
-   - Implementați fixarea certificatelor pentru conexiunile critice  
-   - Rotație regulată a certificatelor și verificarea valabilității acestora  
+**Securitatea nivelului de transport:**
+   - Configurați TLS 1.3 acolo unde este posibil cu gestionare corectă a certificatelor
+   - Implementați certificate pinning pentru conexiuni critice
+   - Rotație regulată a certificatelor și verificarea valabilității
 
-## 3. **Protecție împotriva amenințărilor specifice AI** 🤖
+## 3. **Protecție specifică amenințărilor AI** 🤖
 
 **Apărarea împotriva injecției de prompturi:**
-   - **Microsoft Prompt Shields**: Implementați AI Prompt Shields pentru detectarea și filtrarea avansată a instrucțiunilor malițioase  
-   - **Igienizarea intrărilor**: Validați și igienizați toate intrările pentru a preveni atacurile de injecție și problemele de tip "confused deputy"  
-   - **Delimitarea conținutului**: Utilizați sisteme de delimitare și marcare a datelor pentru a distinge între instrucțiunile de încredere și conținutul extern  
+   - **Microsoft Prompt Shields**: Implementați AI Prompt Shields pentru detectarea și filtrarea avansată a instrucțiunilor malițioase
+   - **Securizarea inputurilor**: Validați și curățați toate intrările pentru a preveni atacurile de injecție și problemele de tip „confused deputy”
+   - **Frontiere de conținut**: Folosiți delimitatori și sisteme de marcare a datelor pentru a distinge între instrucțiuni de încredere și conținut extern
 
-**Prevenirea compromiterii uneltelor:**
-   - **Validarea metadatelor uneltelor**: Implementați verificări de integritate pentru definițiile uneltelor și monitorizați schimbările neașteptate  
-   - **Monitorizarea dinamică a uneltelor**: Monitorizați comportamentul la rulare și configurați alerte pentru tipare de execuție neașteptate  
-   - **Fluxuri de aprobare**: Solicitați aprobarea explicită a utilizatorului pentru modificările uneltelor și ale capacităților acestora  
+**Prevenirea otrăvirii uneltelor:**
+   - **Validarea metadatelor uneltelor**: Implementați verificări de integritate pentru definițiile uneltelor și monitorizați modificările neașteptate
+   - **Monitorizarea dinamică a uneltelor**: Monitorizați comportamentul la rulare și configurați alerte pentru modele neașteptate de execuție
+   - **Fluxuri de aprobare**: Solicitați aprobarea explicită a utilizatorului pentru modificările uneltelor și schimbările de capabilități
 
-## 4. **Controlul accesului și permisiuni**
+## 4. **Controlul accesului & Permisiuni**
 
 **Principiul privilegiului minim:**
-   - Acordați serverelor MCP doar permisiunile minime necesare pentru funcționalitatea intenționată  
-   - Implementați controlul accesului bazat pe roluri (RBAC) cu permisiuni detaliate  
-   - Revizuiri regulate ale permisiunilor și monitorizare continuă pentru escaladarea privilegiilor  
+   - Acordați serverelor MCP doar permisiunile minime necesare pentru funcționalitatea intenționată
+   - Implementați controlul accesului bazat pe roluri (RBAC) cu permisiuni detaliate
+   - Revizuiri regulate ale permisiunilor și monitorizare continuă pentru escaladarea privilegiilor
 
 **Controale de permisiuni la rulare:**
-   - Aplicați limite de resurse pentru a preveni atacurile de epuizare a resurselor  
-   - Utilizați izolarea containerelor pentru mediile de execuție ale uneltelor  
-   - Implementați acces just-in-time pentru funcțiile administrative  
+   - Aplicați limite de resurse pentru a preveni atacurile de epuizare a resurselor
+   - Folosiți izolare în containere pentru mediile de execuție ale uneltelor  
+   - Implementați acces just-in-time pentru funcțiile administrative
 
-## 5. **Siguranța conținutului și monitorizarea**
+## 5. **Siguranța conținutului & Monitorizare**
 
 **Implementarea siguranței conținutului:**
-   - **Integrarea cu Azure Content Safety**: Utilizați Azure Content Safety pentru a detecta conținut dăunător, încercări de jailbreak și încălcări ale politicilor  
-   - **Analiza comportamentală**: Implementați monitorizarea comportamentală la rulare pentru a detecta anomalii în execuția serverului MCP și a uneltelor  
-   - **Jurnalizare cuprinzătoare**: Înregistrați toate încercările de autentificare, invocările uneltelor și evenimentele de securitate în stocare sigură, rezistentă la modificări  
+   - **Integrare Azure Content Safety**: Folosiți Azure Content Safety pentru detectarea conținutului dăunător, încercărilor de jailbreak și încălcărilor politicilor
+   - **Analiză comportamentală**: Implementați monitorizare comportamentală la rulare pentru a detecta anomalii în execuția serverului MCP și a uneltelor
+   - **Jurnalizare cuprinzătoare**: Înregistrați toate încercările de autentificare, invocările uneltelor și evenimentele de securitate cu stocare securizată, rezistentă la modificări
 
 **Monitorizare continuă:**
-   - Alerte în timp real pentru tipare suspecte și încercări de acces neautorizat  
-   - Integrare cu sistemele SIEM pentru gestionarea centralizată a evenimentelor de securitate  
-   - Audituri regulate de securitate și teste de penetrare ale implementărilor MCP  
+   - Alertare în timp real pentru modele suspecte și încercări neautorizate de acces  
+   - Integrare cu sisteme SIEM pentru gestionarea centralizată a evenimentelor de securitate
+   - Audituri regulate de securitate și teste de penetrare ale implementărilor MCP
 
 ## 6. **Securitatea lanțului de aprovizionare**
 
 **Verificarea componentelor:**
-   - **Scanarea dependențelor**: Utilizați scanarea automată a vulnerabilităților pentru toate dependențele software și componentele AI  
-   - **Validarea provenienței**: Verificați originea, licențierea și integritatea modelelor, surselor de date și serviciilor externe  
-   - **Pachete semnate**: Utilizați pachete semnate criptografic și verificați semnăturile înainte de implementare  
+   - **Scanare a dependențelor**: Folosiți scanare automată a vulnerabilităților pentru toate dependențele software și componentele AI
+   - **Validarea provenienței**: Verificați originea, licențierea și integritatea modelelor, surselor de date și serviciilor externe
+   - **Pachete semnate**: Folosiți pachete semnate criptografic și verificați semnăturile înainte de implementare
 
-**Pipeline de dezvoltare sigură:**
-   - **GitHub Advanced Security**: Implementați scanarea secretelor, analiza dependențelor și analiza statică CodeQL  
-   - **Securitatea CI/CD**: Integrați validarea securității pe tot parcursul pipeline-urilor automate de implementare  
-   - **Integritatea artefactelor**: Implementați verificarea criptografică pentru artefactele și configurațiile implementate  
+**Pipeline de dezvoltare securizat:**
+   - **GitHub Advanced Security**: Implementați scanarea secretelor, analiza dependențelor și analiza statică CodeQL
+   - **Securitate CI/CD**: Integrați validarea securității pe tot parcursul pipeline-urilor automate de implementare
+   - **Integritatea artefactelor**: Implementați verificarea criptografică pentru artefactele și configurațiile implementate
 
-## 7. **Securitatea OAuth și prevenirea atacurilor de tip "confused deputy"**
+## 7. **Securitatea OAuth & Prevenirea atacurilor „confused deputy”**
 
 **Implementarea OAuth 2.1:**
-   - **Implementarea PKCE**: Utilizați Proof Key for Code Exchange (PKCE) pentru toate cererile de autorizare  
-   - **Consimțământ explicit**: Obțineți consimțământul utilizatorului pentru fiecare client înregistrat dinamic pentru a preveni atacurile de tip "confused deputy"  
-   - **Validarea URI-urilor de redirecționare**: Implementați validarea strictă a URI-urilor de redirecționare și a identificatorilor de client  
+   - **Implementare PKCE**: Folosiți Proof Key for Code Exchange (PKCE) pentru toate cererile de autorizare
+   - **Consimțământ explicit**: Obțineți consimțământul utilizatorului pentru fiecare client înregistrat dinamic pentru a preveni atacurile „confused deputy”
+   - **Validarea URI-urilor de redirecționare**: Implementați validare strictă a URI-urilor de redirecționare și a identificatorilor de client
 
-**Securitatea proxy-urilor:**
-   - Preveniți ocolirea autorizării prin exploatarea ID-urilor de client statice  
-   - Implementați fluxuri de consimțământ corespunzătoare pentru accesul la API-uri terțe  
-   - Monitorizați furtul codurilor de autorizare și accesul neautorizat la API-uri  
+**Securitatea proxy-ului:**
+   - Preveniți ocolirea autorizării prin exploatarea ID-urilor statice de client
+   - Implementați fluxuri corecte de consimțământ pentru accesul API-urilor terțe
+   - Monitorizați furtul codurilor de autorizare și accesul neautorizat la API
 
-## 8. **Răspuns la incidente și recuperare**
+## 8. **Răspuns la incidente & Recuperare**
 
 **Capabilități de răspuns rapid:**
-   - **Răspuns automatizat**: Implementați sisteme automate pentru rotația credențialelor și limitarea amenințărilor  
-   - **Proceduri de rollback**: Capacitatea de a reveni rapid la configurații și componente cunoscute ca fiind sigure  
-   - **Capabilități de investigație**: Urme detaliate de audit și jurnalizare pentru investigarea incidentelor  
+   - **Răspuns automatizat**: Implementați sisteme automate pentru rotația acreditărilor și limitarea amenințărilor
+   - **Proceduri de revenire**: Capacitatea de a reveni rapid la configurații și componente cunoscute ca fiind sigure
+   - **Capabilități judiciare**: Urmăriri detaliate și jurnalizare pentru investigarea incidentelor
 
-**Comunicare și coordonare:**
-   - Proceduri clare de escaladare pentru incidentele de securitate  
-   - Integrare cu echipele organizaționale de răspuns la incidente  
-   - Simulări regulate de incidente de securitate și exerciții de tip "tabletop"  
+**Comunicare & coordonare:**
+   - Proceduri clare de escaladare pentru incidentele de securitate
+   - Integrare cu echipele organizaționale de răspuns la incidente
+   - Simulări regulate de incidente de securitate și exerciții de tip tabletop
 
-## 9. **Conformitate și guvernanță**
+## 9. **Conformitate & Guvernanță**
 
-**Conformitate cu reglementările:**
-   - Asigurați-vă că implementările MCP respectă cerințele specifice industriei (GDPR, HIPAA, SOC 2)  
-   - Implementați controale de clasificare a datelor și de confidențialitate pentru procesarea datelor AI  
-   - Mențineți documentație cuprinzătoare pentru audituri de conformitate  
+**Conformitate reglementară:**
+   - Asigurați-vă că implementările MCP respectă cerințele specifice industriei (GDPR, HIPAA, SOC 2)
+   - Implementați clasificarea datelor și controale de confidențialitate pentru procesarea datelor AI
+   - Mențineți documentație cuprinzătoare pentru auditul conformității
 
 **Managementul schimbărilor:**
-   - Procese formale de revizuire a securității pentru toate modificările sistemului MCP  
-   - Controlul versiunilor și fluxuri de aprobare pentru modificările configurației  
-   - Evaluări regulate ale conformității și analize ale lacunelor  
+   - Procese formale de revizuire a securității pentru toate modificările sistemului MCP
+   - Controlul versiunilor și fluxuri de aprobare pentru modificările de configurare
+   - Evaluări regulate de conformitate și analize ale lacunelor
 
 ## 10. **Controale avansate de securitate**
 
 **Arhitectura Zero Trust:**
-   - **Nu aveți încredere, verificați întotdeauna**: Verificare continuă a utilizatorilor, dispozitivelor și conexiunilor  
-   - **Micro-segmentare**: Controale granulare ale rețelei care izolează componentele individuale MCP  
-   - **Acces condiționat**: Controale de acces bazate pe risc, adaptate contextului și comportamentului curent  
+   - **Niciodată nu ai încredere, verifică întotdeauna**: Verificare continuă a utilizatorilor, dispozitivelor și conexiunilor
+   - **Micro-segmentare**: Controale granulare de rețea care izolează componentele individuale MCP
+   - **Acces condiționat**: Controale de acces bazate pe risc care se adaptează la contextul și comportamentul curent
 
 **Protecția aplicațiilor la rulare:**
-   - **Protecția aplicațiilor la rulare (RASP)**: Implementați tehnici RASP pentru detectarea amenințărilor în timp real  
-   - **Monitorizarea performanței aplicațiilor**: Monitorizați anomaliile de performanță care pot indica atacuri  
-   - **Politici dinamice de securitate**: Implementați politici de securitate care se adaptează în funcție de peisajul actual al amenințărilor  
+   - **Runtime Application Self-Protection (RASP)**: Implementați tehnici RASP pentru detectarea amenințărilor în timp real
+   - **Monitorizarea performanței aplicațiilor**: Monitorizați anomaliile de performanță care pot indica atacuri
+   - **Politici dinamice de securitate**: Implementați politici de securitate care se adaptează în funcție de peisajul actual al amenințărilor
 
-## 11. **Integrarea cu ecosistemul de securitate Microsoft**
+## 11. **Integrarea ecosistemului de securitate Microsoft**
 
-**Securitate completă Microsoft:**
-   - **Microsoft Defender for Cloud**: Gestionarea posturii de securitate în cloud pentru sarcinile MCP  
-   - **Azure Sentinel**: Capacități native în cloud SIEM și SOAR pentru detectarea avansată a amenințărilor  
-   - **Microsoft Purview**: Guvernanță și conformitate a datelor pentru fluxurile de lucru AI și sursele de date  
+**Securitate Microsoft cuprinzătoare:**
+   - **Microsoft Defender for Cloud**: Managementul posturii de securitate în cloud pentru sarcinile MCP
+   - **Azure Sentinel**: Capacități SIEM și SOAR native în cloud pentru detectarea avansată a amenințărilor
+   - **Microsoft Purview**: Guvernanța datelor și conformitatea pentru fluxurile de lucru AI și sursele de date
 
-**Managementul identității și accesului:**
-   - **Microsoft Entra ID**: Managementul identității la nivel de întreprindere cu politici de acces condiționat  
-   - **Privileged Identity Management (PIM)**: Acces just-in-time și fluxuri de aprobare pentru funcțiile administrative  
-   - **Protecția identității**: Acces condiționat bazat pe risc și răspuns automatizat la amenințări  
+**Gestionarea identității & accesului:**
+   - **Microsoft Entra ID**: Managementul identității enterprise cu politici de acces condiționat
+   - **Privileged Identity Management (PIM)**: Acces just-in-time și fluxuri de aprobare pentru funcțiile administrative
+   - **Protecția identității**: Acces condiționat bazat pe risc și răspuns automatizat la amenințări
 
 ## 12. **Evoluția continuă a securității**
 
-**Menținerea actualizării:**
-   - **Monitorizarea specificațiilor**: Revizuirea regulată a actualizărilor specificațiilor MCP și a modificărilor în ghidurile de securitate  
-   - **Informații despre amenințări**: Integrarea fluxurilor de amenințări specifice AI și a indicatorilor de compromitere  
-   - **Implicarea în comunitatea de securitate**: Participare activă în comunitatea de securitate MCP și programele de dezvăluire a vulnerabilităților  
+**Menținerea la zi:**
+   - **Monitorizarea specificațiilor**: Revizuiri regulate ale actualizărilor specificației MCP și schimbărilor în ghidurile de securitate
+   - **Informații despre amenințări**: Integrarea fluxurilor de amenințări specifice AI și indicatorilor de compromitere
+   - **Implicare în comunitatea de securitate**: Participare activă în comunitatea de securitate MCP și programele de divulgare a vulnerabilităților
 
 **Securitate adaptivă:**
-   - **Securitatea bazată pe învățare automată**: Utilizați detectarea anomaliilor bazată pe ML pentru identificarea tiparelor noi de atac  
-   - **Analitică predictivă de securitate**: Implementați modele predictive pentru identificarea proactivă a amenințărilor  
-   - **Automatizarea securității**: Actualizări automate ale politicilor de securitate bazate pe informații despre amenințări și modificări ale specificațiilor  
+   - **Securitate bazată pe învățare automată**: Folosiți detectarea anomaliilor bazată pe ML pentru identificarea modelelor noi de atac
+   - **Analitică predictivă de securitate**: Implementați modele predictive pentru identificarea proactivă a amenințărilor
+   - **Automatizarea securității**: Actualizări automate ale politicilor de securitate bazate pe informații despre amenințări și modificări ale specificațiilor
 
 ---
 
 ## **Resurse critice de securitate**
 
-### **Documentația oficială MCP**
-- [Specificația MCP (2025-06-18)](https://spec.modelcontextprotocol.io/specification/2025-06-18/)  
-- [Cele mai bune practici de securitate MCP](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices)  
-- [Specificația de autorizare MCP](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization)  
+### **Documentație oficială MCP**
+- [Specificația MCP (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [Cele mai bune practici de securitate MCP](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices)
+- [Specificația autorizării MCP](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)
 
 ### **Soluții de securitate Microsoft**
-- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)  
-- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)  
-- [Securitatea Microsoft Entra ID](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)  
-- [GitHub Advanced Security](https://github.com/security/advanced-security)  
+- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
+- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)
+- [Securitatea Microsoft Entra ID](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
+- [GitHub Advanced Security](https://github.com/security/advanced-security)
 
 ### **Standarde de securitate**
-- [Cele mai bune practici de securitate OAuth 2.0 (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)  
-- [OWASP Top 10 pentru modele de limbaj mari](https://genai.owasp.org/)  
-- [Cadrul de management al riscurilor AI NIST](https://www.nist.gov/itl/ai-risk-management-framework)  
+- [Cele mai bune practici de securitate OAuth 2.0 (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)
+- [OWASP Top 10 pentru modele mari de limbaj](https://genai.owasp.org/)
+- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)
 
 ### **Ghiduri de implementare**
-- [Gateway de autentificare MCP cu Azure API Management](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)  
-- [Microsoft Entra ID cu servere MCP](https://den.dev/blog/mcp-server-auth-entra-id-session/)  
+- [Azure API Management MCP Authentication Gateway](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
+- [Microsoft Entra ID cu servere MCP](https://den.dev/blog/mcp-server-auth-entra-id-session/)
 
 ---
 
-> **Notă de securitate**: Practicile de securitate MCP evoluează rapid. Verificați întotdeauna specificația curentă [MCP](https://spec.modelcontextprotocol.io/) și [documentația oficială de securitate](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) înainte de implementare.
+> **Notificare de securitate**: Practicile de securitate MCP evoluează rapid. Verificați întotdeauna conform specificației curente [MCP](https://spec.modelcontextprotocol.io/) și documentației oficiale de securitate [MCP](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) înainte de implementare.
 
-**Declinarea responsabilității**:  
-Acest document a fost tradus folosind serviciul de traducere AI [Co-op Translator](https://github.com/Azure/co-op-translator). Deși depunem eforturi pentru a asigura acuratețea, vă rugăm să rețineți că traducerile automate pot conține erori sau inexactități. Documentul original în limba sa nativă ar trebui considerat sursa autoritară. Pentru informații critice, se recomandă traducerea realizată de un profesionist uman. Nu ne asumăm răspunderea pentru eventualele neînțelegeri sau interpretări greșite care pot apărea din utilizarea acestei traduceri.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Declinare de responsabilitate**:  
+Acest document a fost tradus folosind serviciul de traducere AI [Co-op Translator](https://github.com/Azure/co-op-translator). Deși ne străduim pentru acuratețe, vă rugăm să rețineți că traducerile automate pot conține erori sau inexactități. Documentul original în limba sa nativă trebuie considerat sursa autorizată. Pentru informații critice, se recomandă traducerea profesională realizată de un specialist uman. Nu ne asumăm responsabilitatea pentru eventualele neînțelegeri sau interpretări greșite rezultate din utilizarea acestei traduceri.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

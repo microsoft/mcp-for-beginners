@@ -1,29 +1,29 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "0c243c6189393ed7468e470ef2090049",
-  "translation_date": "2025-08-19T14:12:47+00:00",
+  "original_hash": "9351493ad29390d37f64bc6d84a03db5",
+  "translation_date": "2025-12-19T07:23:28+00:00",
   "source_file": "02-Security/mcp-security-controls-2025.md",
   "language_code": "en"
 }
 -->
-# MCP Security Controls - August 2025 Update
+# MCP Security Controls - December 2025 Update
 
-> **Current Standard**: This document reflects [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) security requirements and official [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices).
+> **Current Standard**: This document reflects [MCP Specification 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) security requirements and official [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).
 
-The Model Context Protocol (MCP) has significantly advanced with improved security controls addressing both traditional software vulnerabilities and AI-specific threats. This document outlines comprehensive security measures for secure MCP implementations as of August 2025.
+The Model Context Protocol (MCP) has matured significantly with enhanced security controls addressing both traditional software security and AI-specific threats. This document provides comprehensive security controls for secure MCP implementations as of December 2025.
 
 ## **MANDATORY Security Requirements**
 
 ### **Critical Prohibitions from MCP Specification:**
 
-> **FORBIDDEN**: MCP servers **MUST NOT** accept any tokens that were not explicitly issued for the MCP server  
+> **FORBIDDEN**: MCP servers **MUST NOT** accept any tokens that were not explicitly issued for the MCP server
 >
 > **PROHIBITED**: MCP servers **MUST NOT** use sessions for authentication  
 >
-> **REQUIRED**: MCP servers implementing authorization **MUST** verify ALL inbound requests  
+> **REQUIRED**: MCP servers implementing authorization **MUST** verify ALL inbound requests
 >
-> **MANDATORY**: MCP proxy servers using static client IDs **MUST** obtain user consent for each dynamically registered client  
+> **MANDATORY**: MCP proxy servers using static client IDs **MUST** obtain user consent for each dynamically registered client
 
 ---
 
@@ -33,28 +33,32 @@ The Model Context Protocol (MCP) has significantly advanced with improved securi
 
 **Current MCP Standard (2025-06-18)** allows MCP servers to delegate authentication to external identity providers, representing a significant security improvement:
 
+### **External Identity Provider Integration**
+
+**Current MCP Standard (2025-11-25)** allows MCP servers to delegate authentication to external identity providers, representing a significant security improvement:
+
 **Security Benefits:**
-1. **Eliminates Custom Authentication Risks**: Reduces vulnerabilities by avoiding custom authentication implementations  
-2. **Enterprise-Grade Security**: Leverages established identity providers like Microsoft Entra ID with advanced security features  
-3. **Centralized Identity Management**: Simplifies user lifecycle management, access control, and compliance auditing  
-4. **Multi-Factor Authentication**: Inherits MFA capabilities from enterprise identity providers  
-5. **Conditional Access Policies**: Benefits from risk-based access controls and adaptive authentication  
+1. **Eliminates Custom Authentication Risks**: Reduces vulnerability surface by avoiding custom authentication implementations
+2. **Enterprise-Grade Security**: Leverages established identity providers like Microsoft Entra ID with advanced security features
+3. **Centralized Identity Management**: Simplifies user lifecycle management, access control, and compliance auditing
+4. **Multi-Factor Authentication**: Inherits MFA capabilities from enterprise identity providers
+5. **Conditional Access Policies**: Benefits from risk-based access controls and adaptive authentication
 
 **Implementation Requirements:**
-- **Token Audience Validation**: Ensure all tokens are explicitly issued for the MCP server  
-- **Issuer Verification**: Confirm the token issuer matches the expected identity provider  
-- **Signature Verification**: Cryptographically validate token integrity  
-- **Expiration Enforcement**: Strictly enforce token lifetime limits  
-- **Scope Validation**: Verify tokens contain appropriate permissions for requested operations  
+- **Token Audience Validation**: Verify all tokens are explicitly issued for the MCP server
+- **Issuer Verification**: Validate token issuer matches expected identity provider
+- **Signature Verification**: Cryptographic validation of token integrity
+- **Expiration Enforcement**: Strict enforcement of token lifetime limits
+- **Scope Validation**: Ensure tokens contain appropriate permissions for requested operations
 
 ### **Authorization Logic Security**
 
 **Critical Controls:**
-- **Comprehensive Authorization Audits**: Regularly review all authorization decision points for security  
-- **Fail-Safe Defaults**: Deny access when authorization logic cannot make a definitive decision  
-- **Permission Boundaries**: Clearly separate different privilege levels and resource access  
-- **Audit Logging**: Log all authorization decisions for security monitoring  
-- **Regular Access Reviews**: Periodically validate user permissions and privilege assignments  
+- **Comprehensive Authorization Audits**: Regular security reviews of all authorization decision points
+- **Fail-Safe Defaults**: Deny access when authorization logic cannot make a definitive decision
+- **Permission Boundaries**: Clear separation between different privilege levels and resource access
+- **Audit Logging**: Complete logging of all authorization decisions for security monitoring
+- **Regular Access Reviews**: Periodic validation of user permissions and privilege assignments
 
 ## 2. **Token Security & Anti-Passthrough Controls**
 
@@ -63,11 +67,11 @@ The Model Context Protocol (MCP) has significantly advanced with improved securi
 **Token passthrough is explicitly prohibited** in the MCP Authorization Specification due to critical security risks:
 
 **Security Risks Addressed:**
-- **Control Circumvention**: Bypasses essential security controls like rate limiting, request validation, and traffic monitoring  
-- **Accountability Breakdown**: Prevents client identification, corrupting audit trails and incident investigations  
-- **Proxy-Based Exfiltration**: Allows malicious actors to use servers as proxies for unauthorized data access  
-- **Trust Boundary Violations**: Breaks downstream service trust assumptions about token origins  
-- **Lateral Movement**: Enables broader attack expansion with compromised tokens across multiple services  
+- **Control Circumvention**: Bypasses essential security controls like rate limiting, request validation, and traffic monitoring
+- **Accountability Breakdown**: Makes client identification impossible, corrupting audit trails and incident investigation
+- **Proxy-Based Exfiltration**: Enables malicious actors to use servers as proxies for unauthorized data access
+- **Trust Boundary Violations**: Breaks downstream service trust assumptions about token origins
+- **Lateral Movement**: Compromised tokens across multiple services enable broader attack expansion
 
 **Implementation Controls:**
 ```yaml
@@ -88,20 +92,20 @@ Token Lifecycle Management:
 ### **Secure Token Management Patterns**
 
 **Best Practices:**
-- **Short-Lived Tokens**: Reduce exposure by frequently rotating tokens  
-- **Just-in-Time Issuance**: Issue tokens only when needed for specific operations  
-- **Secure Storage**: Use hardware security modules (HSMs) or secure key vaults  
-- **Token Binding**: Bind tokens to specific clients, sessions, or operations where possible  
-- **Monitoring & Alerting**: Detect token misuse or unauthorized access patterns in real time  
+- **Short-Lived Tokens**: Minimize exposure window with frequent token rotation
+- **Just-in-Time Issuance**: Issue tokens only when needed for specific operations
+- **Secure Storage**: Use hardware security modules (HSMs) or secure key vaults
+- **Token Binding**: Bind tokens to specific clients, sessions, or operations where possible
+- **Monitoring & Alerting**: Real-time detection of token misuse or unauthorized access patterns
 
 ## 3. **Session Security Controls**
 
 ### **Session Hijacking Prevention**
 
 **Attack Vectors Addressed:**
-- **Session Hijack Prompt Injection**: Malicious events injected into shared session state  
-- **Session Impersonation**: Unauthorized use of stolen session IDs to bypass authentication  
-- **Resumable Stream Attacks**: Exploitation of server-sent event resumption for malicious content injection  
+- **Session Hijack Prompt Injection**: Malicious events injected into shared session state
+- **Session Impersonation**: Unauthorized use of stolen session IDs to bypass authentication
+- **Resumable Stream Attacks**: Exploitation of server-sent event resumption for malicious content injection
 
 **Mandatory Session Controls:**
 ```yaml
@@ -124,21 +128,21 @@ Session Lifecycle:
 ```
 
 **Transport Security:**
-- **HTTPS Enforcement**: All session communication must use TLS 1.3  
-- **Secure Cookie Attributes**: HttpOnly, Secure, SameSite=Strict  
-- **Certificate Pinning**: Prevent MITM attacks for critical connections  
+- **HTTPS Enforcement**: All session communication over TLS 1.3
+- **Secure Cookie Attributes**: HttpOnly, Secure, SameSite=Strict
+- **Certificate Pinning**: For critical connections to prevent MITM attacks
 
 ### **Stateful vs Stateless Considerations**
 
 **For Stateful Implementations:**
-- Shared session state requires additional protection against injection attacks  
-- Queue-based session management needs integrity verification  
-- Multiple server instances require secure session state synchronization  
+- Shared session state requires additional protection against injection attacks
+- Queue-based session management needs integrity verification
+- Multiple server instances require secure session state synchronization
 
 **For Stateless Implementations:**
-- Use JWT or similar token-based session management  
-- Cryptographically verify session state integrity  
-- Reduced attack surface but requires robust token validation  
+- JWT or similar token-based session management
+- Cryptographic verification of session state integrity
+- Reduced attack surface but requires robust token validation
 
 ## 4. **AI-Specific Security Controls**
 
@@ -163,10 +167,10 @@ Integration Points:
 ```
 
 **Implementation Controls:**
-- **Input Sanitization**: Validate and filter all user inputs comprehensively  
-- **Content Boundary Definition**: Clearly separate system instructions from user content  
-- **Instruction Hierarchy**: Define precedence rules for conflicting instructions  
-- **Output Monitoring**: Detect potentially harmful or manipulated outputs  
+- **Input Sanitization**: Comprehensive validation and filtering of all user inputs
+- **Content Boundary Definition**: Clear separation between system instructions and user content
+- **Instruction Hierarchy**: Proper precedence rules for conflicting instructions
+- **Output Monitoring**: Detection of potentially harmful or manipulated outputs
 
 ### **Tool Poisoning Prevention**
 
@@ -193,10 +197,10 @@ Tool Definition Protection:
 ```
 
 **Dynamic Tool Management:**
-- **Approval Workflows**: Require explicit user consent for tool modifications  
-- **Rollback Capabilities**: Allow reversion to previous tool versions  
-- **Change Auditing**: Maintain a complete history of tool definition modifications  
-- **Risk Assessment**: Automate evaluation of tool security posture  
+- **Approval Workflows**: Explicit user consent for tool modifications
+- **Rollback Capabilities**: Ability to revert to previous tool versions
+- **Change Auditing**: Complete history of tool definition modifications
+- **Risk Assessment**: Automated evaluation of tool security posture
 
 ## 5. **Confused Deputy Attack Prevention**
 
@@ -219,10 +223,10 @@ Client Registration:
 ```
 
 **Implementation Requirements:**
-- **User Consent Verification**: Always require consent screens for dynamic client registration  
-- **Redirect URI Validation**: Strictly validate redirect destinations using a whitelist  
-- **Authorization Code Protection**: Use short-lived codes with single-use enforcement  
-- **Client Identity Verification**: Robustly validate client credentials and metadata  
+- **User Consent Verification**: Never skip consent screens for dynamic client registration
+- **Redirect URI Validation**: Strict whitelist-based validation of redirect destinations
+- **Authorization Code Protection**: Short-lived codes with single-use enforcement
+- **Client Identity Verification**: Robust validation of client credentials and metadata
 
 ## 6. **Tool Execution Security**
 
@@ -246,10 +250,10 @@ Execution Environment:
 ```
 
 **Process Isolation:**
-- **Separate Process Contexts**: Execute each tool in an isolated process space  
-- **Inter-Process Communication**: Use secure IPC mechanisms with validation  
-- **Process Monitoring**: Analyze runtime behavior and detect anomalies  
-- **Resource Enforcement**: Enforce strict limits on CPU, memory, and I/O operations  
+- **Separate Process Contexts**: Each tool execution in isolated process space
+- **Inter-Process Communication**: Secure IPC mechanisms with validation
+- **Process Monitoring**: Runtime behavior analysis and anomaly detection
+- **Resource Enforcement**: Hard limits on CPU, memory, and I/O operations
 
 ### **Least Privilege Implementation**
 
@@ -310,10 +314,10 @@ AI Components:
 ### **Continuous Monitoring**
 
 **Supply Chain Threat Detection:**
-- **Dependency Health Monitoring**: Continuously assess all dependencies for security issues  
-- **Threat Intelligence Integration**: Stay updated on emerging supply chain threats  
-- **Behavioral Analysis**: Detect unusual behavior in external components  
-- **Automated Response**: Immediately contain compromised components  
+- **Dependency Health Monitoring**: Continuous assessment of all dependencies for security issues
+- **Threat Intelligence Integration**: Real-time updates on emerging supply chain threats
+- **Behavioral Analysis**: Detection of unusual behavior in external components
+- **Automated Response**: Immediate containment of compromised components
 
 ## 8. **Monitoring & Detection Controls**
 
@@ -343,10 +347,10 @@ Security Events:
 ### **Real-Time Threat Detection**
 
 **Behavioral Analytics:**
-- **User Behavior Analytics (UBA)**: Detect unusual user access patterns  
-- **Entity Behavior Analytics (EBA)**: Monitor MCP server and tool behavior  
-- **Machine Learning Anomaly Detection**: Use AI to identify security threats  
-- **Threat Intelligence Correlation**: Match observed activities with known attack patterns  
+- **User Behavior Analytics (UBA)**: Detection of unusual user access patterns
+- **Entity Behavior Analytics (EBA)**: Monitoring of MCP server and tool behavior
+- **Machine Learning Anomaly Detection**: AI-powered identification of security threats
+- **Threat Intelligence Correlation**: Matching observed activities against known attack patterns
 
 ## 9. **Incident Response & Recovery**
 
@@ -380,51 +384,55 @@ Recovery Procedures:
 ### **Forensic Capabilities**
 
 **Investigation Support:**
-- **Audit Trail Preservation**: Maintain immutable logs with cryptographic integrity  
-- **Evidence Collection**: Automatically gather relevant security artifacts  
-- **Timeline Reconstruction**: Create a detailed sequence of events leading to security incidents  
-- **Impact Assessment**: Evaluate the scope of compromise and data exposure  
+- **Audit Trail Preservation**: Immutable logging with cryptographic integrity
+- **Evidence Collection**: Automated gathering of relevant security artifacts
+- **Timeline Reconstruction**: Detailed sequence of events leading to security incidents
+- **Impact Assessment**: Evaluation of compromise scope and data exposure
 
 ## **Key Security Architecture Principles**
 
 ### **Defense in Depth**
-- **Multiple Security Layers**: Avoid single points of failure in the security architecture  
-- **Redundant Controls**: Overlap security measures for critical functions  
-- **Fail-Safe Mechanisms**: Default to secure settings during errors or attacks  
+- **Multiple Security Layers**: No single point of failure in security architecture
+- **Redundant Controls**: Overlapping security measures for critical functions
+- **Fail-Safe Mechanisms**: Secure defaults when systems encounter errors or attacks
 
 ### **Zero Trust Implementation**
-- **Never Trust, Always Verify**: Continuously validate all entities and requests  
-- **Principle of Least Privilege**: Grant minimal access rights to all components  
-- **Micro-Segmentation**: Apply granular network and access controls  
+- **Never Trust, Always Verify**: Continuous validation of all entities and requests
+- **Principle of Least Privilege**: Minimal access rights for all components
+- **Micro-Segmentation**: Granular network and access controls
 
 ### **Continuous Security Evolution**
-- **Threat Landscape Adaptation**: Regularly update to address emerging threats  
-- **Security Control Effectiveness**: Continuously evaluate and improve controls  
-- **Specification Compliance**: Align with evolving MCP security standards  
+- **Threat Landscape Adaptation**: Regular updates to address emerging threats
+- **Security Control Effectiveness**: Ongoing evaluation and improvement of controls
+- **Specification Compliance**: Alignment with evolving MCP security standards
 
 ---
 
 ## **Implementation Resources**
 
 ### **Official MCP Documentation**
-- [MCP Specification (2025-06-18)](https://spec.modelcontextprotocol.io/specification/2025-06-18/)  
-- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices)  
-- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization)  
+- [MCP Specification (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices)
+- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)
 
 ### **Microsoft Security Solutions**
-- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)  
-- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)  
-- [GitHub Advanced Security](https://github.com/security/advanced-security)  
-- [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/)  
+- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
+- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)
+- [GitHub Advanced Security](https://github.com/security/advanced-security)
+- [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/)
 
 ### **Security Standards**
-- [OAuth 2.0 Security Best Practices (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)  
-- [OWASP Top 10 for Large Language Models](https://genai.owasp.org/)  
-- [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework)  
+- [OAuth 2.0 Security Best Practices (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)
+- [OWASP Top 10 for Large Language Models](https://genai.owasp.org/)
+- [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework)
 
 ---
 
-> **Important**: These security controls reflect the current MCP specification (2025-06-18). Always verify against the latest [official documentation](https://spec.modelcontextprotocol.io/) as standards continue to evolve rapidly.  
+> **Important**: These security controls reflect the current MCP specification (2025-06-18). Always verify against the latest [official documentation](https://spec.modelcontextprotocol.io/) as standards continue to evolve rapidly.
 
-**Disclaimer**:  
-This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we aim for accuracy, please note that automated translations may include errors or inaccuracies. The original document in its native language should be regarded as the authoritative source. For critical information, professional human translation is advised. We are not responsible for any misunderstandings or misinterpretations resulting from the use of this translation.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Disclaimer**:
+This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

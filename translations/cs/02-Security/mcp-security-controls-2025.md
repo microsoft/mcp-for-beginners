@@ -1,75 +1,79 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "0c243c6189393ed7468e470ef2090049",
-  "translation_date": "2025-08-19T15:39:26+00:00",
+  "original_hash": "9351493ad29390d37f64bc6d84a03db5",
+  "translation_date": "2025-12-19T15:33:24+00:00",
   "source_file": "02-Security/mcp-security-controls-2025.md",
   "language_code": "cs"
 }
 -->
-# Bezpečnostní opatření MCP - Aktualizace srpen 2025
+# MCP Bezpečnostní Kontroly - Aktualizace prosinec 2025
 
-> **Aktuální standard**: Tento dokument odráží bezpečnostní požadavky [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) a oficiální [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices).
+> **Aktuální standard**: Tento dokument odráží bezpečnostní požadavky [MCP specifikace 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) a oficiální [MCP bezpečnostní osvědčené postupy](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).
 
-Model Context Protocol (MCP) se výrazně vyvinul díky vylepšeným bezpečnostním opatřením, která řeší jak tradiční softwarovou bezpečnost, tak hrozby specifické pro umělou inteligenci. Tento dokument poskytuje komplexní bezpečnostní opatření pro bezpečné implementace MCP k srpnu 2025.
+Model Context Protocol (MCP) výrazně dozrál s vylepšenými bezpečnostními kontrolami, které řeší jak tradiční softwarovou bezpečnost, tak specifické hrozby AI. Tento dokument poskytuje komplexní bezpečnostní kontroly pro bezpečné implementace MCP k prosinci 2025.
 
 ## **POVINNÉ bezpečnostní požadavky**
 
 ### **Kritické zákazy z MCP specifikace:**
 
-> **ZAKÁZÁNO**: MCP servery **NESMÍ** přijímat žádné tokeny, které nebyly výslovně vydány pro MCP server  
+> **ZAKÁZÁNO**: MCP servery **NESMÍ** přijímat žádné tokeny, které nebyly explicitně vydány pro MCP server  
 >
 > **ZAKÁZÁNO**: MCP servery **NESMÍ** používat relace pro autentizaci  
 >
-> **POVINNÉ**: MCP servery implementující autorizaci **MUSÍ** ověřovat VŠECHNY příchozí požadavky  
+> **POŽADOVÁNO**: MCP servery implementující autorizaci **MUSÍ** ověřovat VŠECHNY příchozí požadavky  
 >
-> **POVINNÉ**: MCP proxy servery používající statické ID klientů **MUSÍ** získat souhlas uživatele pro každého dynamicky registrovaného klienta  
+> **POVINNÉ**: MCP proxy servery používající statické ID klientů **MUSÍ** získat souhlas uživatele pro každého dynamicky registrovaného klienta
 
 ---
 
-## 1. **Ovládání autentizace a autorizace**
+## 1. **Kontroly autentizace a autorizace**
 
 ### **Integrace externího poskytovatele identity**
 
-**Aktuální MCP standard (2025-06-18)** umožňuje MCP serverům delegovat autentizaci na externí poskytovatele identity, což představuje významné zlepšení bezpečnosti:
+**Aktuální MCP standard (2025-06-18)** umožňuje MCP serverům delegovat autentizaci na externí poskytovatele identity, což představuje významné bezpečnostní zlepšení:
+
+### **Integrace externího poskytovatele identity**
+
+**Aktuální MCP standard (2025-11-25)** umožňuje MCP serverům delegovat autentizaci na externí poskytovatele identity, což představuje významné bezpečnostní zlepšení:
 
 **Bezpečnostní přínosy:**
-1. **Eliminace rizik vlastních autentizací**: Snižuje povrch zranitelnosti tím, že se vyhýbá vlastním implementacím autentizace  
-2. **Podniková úroveň bezpečnosti**: Využívá zavedené poskytovatele identity, jako je Microsoft Entra ID, s pokročilými bezpečnostními funkcemi  
-3. **Centralizovaná správa identity**: Zjednodušuje správu životního cyklu uživatelů, kontrolu přístupu a auditování souladu  
-4. **Vícefaktorová autentizace**: Přebírá schopnosti MFA od podnikových poskytovatelů identity  
-5. **Podmíněné přístupové politiky**: Využívá přístupy založené na rizicích a adaptivní autentizaci  
+1. **Eliminace rizik vlastních autentizací**: Snižuje zranitelnost vyhýbáním se vlastním implementacím autentizace  
+2. **Podniková bezpečnost**: Využívá zavedené poskytovatele identity jako Microsoft Entra ID s pokročilými bezpečnostními funkcemi  
+3. **Centralizovaná správa identity**: Zjednodušuje správu životního cyklu uživatelů, řízení přístupu a audit souladu  
+4. **Vícefaktorová autentizace**: Dědí schopnosti MFA od podnikových poskytovatelů identity  
+5. **Podmíněné přístupové politiky**: Využívá řízení přístupu založené na riziku a adaptivní autentizaci
 
 **Požadavky na implementaci:**
-- **Ověření publika tokenu**: Ověřte, že všechny tokeny byly výslovně vydány pro MCP server  
-- **Ověření vydavatele**: Ověřte, že vydavatel tokenu odpovídá očekávanému poskytovateli identity  
-- **Ověření podpisu**: Kryptografické ověření integrity tokenu  
-- **Vynucení expirace**: Přísné vynucení časových limitů platnosti tokenu  
-- **Ověření rozsahu**: Zajistěte, že tokeny obsahují odpovídající oprávnění pro požadované operace  
+- **Validace publika tokenu**: Ověřit, že všechny tokeny jsou explicitně vydány pro MCP server  
+- **Ověření vydavatele**: Validovat, že vydavatel tokenu odpovídá očekávanému poskytovateli identity  
+- **Ověření podpisu**: Kryptografická validace integrity tokenu  
+- **Vynucení expirace**: Přísné dodržování limitů životnosti tokenu  
+- **Validace rozsahu**: Zajistit, že tokeny obsahují odpovídající oprávnění pro požadované operace
 
 ### **Bezpečnost logiky autorizace**
 
-**Kritická opatření:**
-- **Komplexní audity autorizace**: Pravidelné bezpečnostní kontroly všech rozhodovacích bodů autorizace  
-- **Výchozí bezpečné nastavení**: Odepření přístupu, pokud logika autorizace nemůže učinit jednoznačné rozhodnutí  
+**Kritické kontroly:**
+- **Komplexní audity autorizace**: Pravidelné bezpečnostní revize všech rozhodovacích bodů autorizace  
+- **Výchozí bezpečné nastavení**: Zamítnout přístup, pokud logika autorizace nemůže učinit jednoznačné rozhodnutí  
 - **Hranice oprávnění**: Jasné oddělení mezi různými úrovněmi oprávnění a přístupem k prostředkům  
-- **Auditní logování**: Kompletní záznam všech rozhodnutí o autorizaci pro bezpečnostní monitorování  
-- **Pravidelné přezkumy přístupu**: Periodické ověřování uživatelských oprávnění a přiřazení privilegií  
+- **Auditní záznamy**: Kompletní logování všech rozhodnutí autorizace pro bezpečnostní monitoring  
+- **Pravidelné revize přístupu**: Periodická validace uživatelských oprávnění a přiřazení privilegií
 
-## 2. **Bezpečnost tokenů a opatření proti předávání**
+## 2. **Bezpečnost tokenů a kontroly proti průchodu tokenů**
 
-### **Prevence předávání tokenů**
+### **Prevence průchodu tokenů**
 
-**Předávání tokenů je výslovně zakázáno** ve specifikaci MCP autorizace kvůli kritickým bezpečnostním rizikům:
+**Průchod tokenů je explicitně zakázán** v MCP specifikaci autorizace kvůli kritickým bezpečnostním rizikům:
 
-**Řešená bezpečnostní rizika:**
-- **Obcházení kontrol**: Obchází základní bezpečnostní opatření, jako je omezení rychlosti, validace požadavků a monitorování provozu  
-- **Narušení odpovědnosti**: Ztěžuje identifikaci klienta, což narušuje auditní stopy a vyšetřování incidentů  
-- **Exfiltrace přes proxy**: Umožňuje škodlivým aktérům používat servery jako proxy pro neoprávněný přístup k datům  
-- **Porušení důvěryhodných hranic**: Narušuje předpoklady o původu tokenů u downstream služeb  
-- **Boční pohyb**: Kompromitované tokeny napříč více službami umožňují širší expanzi útoků  
+**Řešené bezpečnostní rizika:**
+- **Obcházení kontrol**: Obchází zásadní bezpečnostní kontroly jako omezení rychlosti, validaci požadavků a monitorování provozu  
+- **Ztráta odpovědnosti**: Ztěžuje identifikaci klienta, poškozuje auditní stopy a vyšetřování incidentů  
+- **Proxy exfiltrace**: Umožňuje škodlivým aktérům používat servery jako proxy pro neoprávněný přístup k datům  
+- **Porušení hranic důvěry**: Narušuje předpoklady downstream služeb o původu tokenů  
+- **Laterální pohyb**: Kompromitované tokeny napříč službami umožňují širší expanzi útoku
 
-**Implementační opatření:**
+**Kontroly implementace:**
 ```yaml
 Token Validation Requirements:
   audience_validation: MANDATORY
@@ -85,25 +89,25 @@ Token Lifecycle Management:
   replay_protection: "Implemented via nonce/timestamp"
 ```
 
-### **Vzory bezpečné správy tokenů**
+### **Vzorové bezpečné řízení tokenů**
 
-**Nejlepší postupy:**
-- **Krátkodobé tokeny**: Minimalizace expozičního okna častou rotací tokenů  
-- **Vydávání na vyžádání**: Vydávání tokenů pouze tehdy, když jsou potřeba pro konkrétní operace  
-- **Bezpečné úložiště**: Použití hardwarových bezpečnostních modulů (HSM) nebo bezpečných úložišť klíčů  
-- **Vázání tokenů**: Vázání tokenů na konkrétní klienty, relace nebo operace, pokud je to možné  
-- **Monitorování a upozorňování**: Detekce zneužití tokenů nebo neoprávněných přístupových vzorců v reálném čase  
+**Osvědčené postupy:**
+- **Krátkodobé tokeny**: Minimalizovat dobu expozice častou rotací tokenů  
+- **Vydávání na požádání**: Vydávat tokeny pouze, když jsou potřeba pro konkrétní operace  
+- **Bezpečné uložení**: Používat hardwarové bezpečnostní moduly (HSM) nebo zabezpečené úložiště klíčů  
+- **Vazba tokenů**: Vázat tokeny na konkrétní klienty, relace nebo operace, pokud je to možné  
+- **Monitorování a upozornění**: Detekce zneužití tokenů nebo neoprávněných přístupů v reálném čase
 
-## 3. **Ovládání bezpečnosti relací**
+## 3. **Kontroly bezpečnosti relací**
 
-### **Prevence únosu relací**
+### **Prevence únosu relace**
 
-**Řešené vektory útoků:**
-- **Únos relace pomocí injekce**: Škodlivé události vložené do sdíleného stavu relace  
-- **Impersonace relace**: Neoprávněné použití odcizených ID relací k obcházení autentizace  
-- **Útoky na obnovitelné proudy**: Zneužití obnovení událostí odesílaných serverem pro vložení škodlivého obsahu  
+**Řešené vektory útoku:**
+- **Vstřikování škodlivých promptů do relace**: Škodlivé události vkládané do sdíleného stavu relace  
+- **Impersonace relace**: Neoprávněné použití ukradených ID relace k obejití autentizace  
+- **Útoky na obnovu streamu**: Zneužití obnovení serverem odesílaných událostí pro škodlivé vkládání obsahu
 
-**Povinná opatření pro relace:**
+**Povinné kontroly relace:**
 ```yaml
 Session ID Generation:
   randomness_source: "Cryptographically secure RNG"
@@ -123,26 +127,26 @@ Session Lifecycle:
   cleanup: "Automated expired session removal"
 ```
 
-**Transportní bezpečnost:**
+**Bezpečnost přenosu:**
 - **Vynucení HTTPS**: Veškerá komunikace relace přes TLS 1.3  
 - **Atributy zabezpečených cookies**: HttpOnly, Secure, SameSite=Strict  
-- **Pinning certifikátů**: Pro kritická spojení k prevenci MITM útoků  
+- **Připnutí certifikátu**: Pro kritická spojení k prevenci MITM útoků
 
-### **Úvahy o stavových a bezstavových implementacích**
+### **Stavové vs bezstavové úvahy**
 
 **Pro stavové implementace:**
 - Sdílený stav relace vyžaduje dodatečnou ochranu proti injekčním útokům  
-- Správa relací založená na frontách potřebuje ověření integrity  
-- Více instancí serveru vyžaduje bezpečnou synchronizaci stavu relace  
+- Správa relace založená na frontách vyžaduje ověření integrity  
+- Více instancí serveru vyžaduje bezpečnou synchronizaci stavu relace
 
 **Pro bezstavové implementace:**
-- Správa relací založená na JWT nebo podobných tokenových mechanismech  
-- Kryptografické ověření integrity stavu relace  
-- Snížený povrch útoku, ale vyžaduje robustní validaci tokenů  
+- Správa relace založená na JWT nebo podobných tokenech  
+- Kryptografická validace integrity stavu relace  
+- Snížená plocha útoku, ale vyžaduje robustní validaci tokenů
 
-## 4. **Bezpečnostní opatření specifická pro AI**
+## 4. **Specifické bezpečnostní kontroly pro AI**
 
-### **Obrana proti injekci promptů**
+### **Ochrana proti prompt injection**
 
 **Integrace Microsoft Prompt Shields:**
 ```yaml
@@ -162,11 +166,11 @@ Integration Points:
   - "Threat intelligence updates"
 ```
 
-**Implementační opatření:**
+**Kontroly implementace:**
 - **Sanitace vstupů**: Komplexní validace a filtrování všech uživatelských vstupů  
 - **Definice hranic obsahu**: Jasné oddělení systémových instrukcí a uživatelského obsahu  
-- **Hierarchie instrukcí**: Správná precedence pravidel pro konfliktní instrukce  
-- **Monitorování výstupů**: Detekce potenciálně škodlivých nebo manipulovaných výstupů  
+- **Hierarchie instrukcí**: Správná pravidla precedence pro konfliktní instrukce  
+- **Monitorování výstupu**: Detekce potenciálně škodlivých nebo manipulovaných výstupů
 
 ### **Prevence otravy nástrojů**
 
@@ -193,16 +197,16 @@ Tool Definition Protection:
 ```
 
 **Dynamická správa nástrojů:**
-- **Schvalovací workflowy**: Výslovný souhlas uživatele pro změny nástrojů  
-- **Možnosti návratu zpět**: Schopnost vrátit se k předchozím verzím nástrojů  
-- **Audit změn**: Kompletní historie změn definic nástrojů  
-- **Hodnocení rizik**: Automatizované vyhodnocení bezpečnostního stavu nástrojů  
+- **Schvalovací workflow**: Explicitní souhlas uživatele pro změny nástrojů  
+- **Možnosti návratu**: Schopnost vrátit se k předchozím verzím nástrojů  
+- **Audit změn**: Kompletní historie modifikací definic nástrojů  
+- **Hodnocení rizik**: Automatizované vyhodnocení bezpečnostního stavu nástrojů
 
-## 5. **Prevence útoků zmateného zástupce**
+## 5. **Prevence útoku zmateného zástupce**
 
 ### **Bezpečnost OAuth proxy**
 
-**Opatření pro prevenci útoků:**
+**Kontroly prevence útoků:**
 ```yaml
 Client Registration:
   static_client_protection:
@@ -219,12 +223,12 @@ Client Registration:
 ```
 
 **Požadavky na implementaci:**
-- **Ověření souhlasu uživatele**: Nikdy nevynechávat obrazovky souhlasu pro dynamickou registraci klientů  
-- **Validace přesměrovacích URI**: Přísná validace destinací přesměrování na základě whitelistu  
-- **Ochrana autorizačních kódů**: Krátkodobé kódy s vynucením jednorázového použití  
-- **Ověření identity klienta**: Robustní validace přihlašovacích údajů a metadat klienta  
+- **Ověření souhlasu uživatele**: Nikdy nevynechávat obrazovky souhlasu pro dynamickou registraci klienta  
+- **Validace URI přesměrování**: Přísná validace cílových adres na základě whitelistu  
+- **Ochrana autorizačního kódu**: Krátkodobé kódy s vynucením jednorázového použití  
+- **Ověření identity klienta**: Robustní validace přihlašovacích údajů a metadat klienta
 
-## 6. **Bezpečnost při spouštění nástrojů**
+## 6. **Bezpečnost provádění nástrojů**
 
 ### **Sandboxing a izolace**
 
@@ -247,9 +251,9 @@ Execution Environment:
 
 **Izolace procesů:**
 - **Oddělené kontexty procesů**: Každé spuštění nástroje v izolovaném procesním prostoru  
-- **Meziprocesová komunikace**: Bezpečné mechanismy IPC s validací  
+- **Meziprocesová komunikace**: Bezpečné IPC mechanismy s validací  
 - **Monitorování procesů**: Analýza chování za běhu a detekce anomálií  
-- **Vynucení zdrojů**: Pevné limity na CPU, paměť a I/O operace  
+- **Vynucení zdrojů**: Přísné limity na CPU, paměť a I/O operace
 
 ### **Implementace principu nejmenších privilegií**
 
@@ -274,7 +278,7 @@ Access Control:
     - "Restricted environment variable access"
 ```
 
-## 7. **Bezpečnost dodavatelského řetězce**
+## 7. **Kontroly bezpečnosti dodavatelského řetězce**
 
 ### **Ověření závislostí**
 
@@ -307,17 +311,17 @@ AI Components:
     - "Incident response capability evaluation"
 ```
 
-### **Nepřetržité monitorování**
+### **Kontinuální monitorování**
 
 **Detekce hrozeb v dodavatelském řetězci:**
-- **Monitorování zdraví závislostí**: Nepřetržité hodnocení všech závislostí na bezpečnostní problémy  
-- **Integrace zpravodajství o hrozbách**: Aktualizace v reálném čase o vznikajících hrozbách v dodavatelském řetězci  
-- **Analýza chování**: Detekce neobvyklého chování externích komponent  
-- **Automatizovaná reakce**: Okamžité omezení kompromitovaných komponent  
+- **Monitorování stavu závislostí**: Průběžné hodnocení všech závislostí na bezpečnostní problémy  
+- **Integrace zpravodajství o hrozbách**: Aktualizace v reálném čase o nově vznikajících hrozbách v dodavatelském řetězci  
+- **Behaviorální analýza**: Detekce neobvyklého chování v externích komponentách  
+- **Automatická reakce**: Okamžité zadržení kompromitovaných komponent
 
-## 8. **Monitorovací a detekční opatření**
+## 8. **Kontroly monitorování a detekce**
 
-### **Bezpečnostní informace a správa událostí (SIEM)**
+### **Správa bezpečnostních informací a událostí (SIEM)**
 
 **Komplexní strategie logování:**
 ```yaml
@@ -342,11 +346,11 @@ Security Events:
 
 ### **Detekce hrozeb v reálném čase**
 
-**Analýza chování:**
+**Behaviorální analýza:**
 - **Analýza chování uživatelů (UBA)**: Detekce neobvyklých vzorců přístupu uživatelů  
 - **Analýza chování entit (EBA)**: Monitorování chování MCP serveru a nástrojů  
-- **Detekce anomálií pomocí strojového učení**: Identifikace bezpečnostních hrozeb pomocí AI  
-- **Korelace zpravodajství o hrozbách**: Porovnání pozorovaných aktivit s známými vzory útoků  
+- **Detekce anomálií pomocí strojového učení**: AI-poháněná identifikace bezpečnostních hrozeb  
+- **Korelace zpravodajství o hrozbách**: Porovnání pozorovaných aktivit s známými vzory útoků
 
 ## 9. **Reakce na incidenty a obnova**
 
@@ -381,50 +385,54 @@ Recovery Procedures:
 
 **Podpora vyšetřování:**
 - **Zachování auditní stopy**: Neměnné logování s kryptografickou integritou  
-- **Sběr důkazů**: Automatizované shromažďování relevantních bezpečnostních artefaktů  
+- **Sbírání důkazů**: Automatizované shromažďování relevantních bezpečnostních artefaktů  
 - **Rekonstrukce časové osy**: Detailní sled událostí vedoucích k bezpečnostním incidentům  
-- **Hodnocení dopadu**: Vyhodnocení rozsahu kompromitace a expozice dat  
+- **Hodnocení dopadu**: Vyhodnocení rozsahu kompromitace a expozice dat
 
 ## **Klíčové principy bezpečnostní architektury**
 
 ### **Obrana v hloubce**
 - **Více bezpečnostních vrstev**: Žádný jediný bod selhání v bezpečnostní architektuře  
-- **Redundantní opatření**: Překrývající se bezpečnostní opatření pro kritické funkce  
-- **Mechanismy bezpečného selhání**: Bezpečné výchozí nastavení při chybách nebo útocích  
+- **Redundantní kontroly**: Překrývající se bezpečnostní opatření pro kritické funkce  
+- **Bezpečné výchozí nastavení**: Bezpečné výchozí hodnoty při chybách nebo útocích
 
 ### **Implementace Zero Trust**
-- **Nikdy nedůvěřuj, vždy ověřuj**: Nepřetržité ověřování všech entit a požadavků  
+- **Nikdy nedůvěřuj, vždy ověřuj**: Neustálá validace všech entit a požadavků  
 - **Princip nejmenších privilegií**: Minimální přístupová práva pro všechny komponenty  
-- **Mikrosegmentace**: Granulární síťové a přístupové kontroly  
+- **Mikrosegmentace**: Granulární síťové a přístupové kontroly
 
-### **Nepřetržitý vývoj bezpečnosti**
-- **Adaptace na hrozby**: Pravidelné aktualizace pro řešení vznikajících hrozeb  
-- **Efektivita bezpečnostních opatření**: Průběžné hodnocení a zlepšování opatření  
-- **Soulad se specifikacemi**: Sjednocení s vyvíjejícími se bezpečnostními standardy MCP  
+### **Kontinuální vývoj bezpečnosti**
+- **Adaptace na hrozby**: Pravidelné aktualizace pro řešení nově vznikajících hrozeb  
+- **Efektivita bezpečnostních kontrol**: Průběžné hodnocení a zlepšování kontrol  
+- **Soulad se specifikací**: Soulad s vyvíjejícími se MCP bezpečnostními standardy
 
 ---
 
 ## **Zdroje pro implementaci**
 
 ### **Oficiální dokumentace MCP**
-- [MCP Specification (2025-06-18)](https://spec.modelcontextprotocol.io/specification/2025-06-18/)  
-- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices)  
-- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization)  
+- [MCP specifikace (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP bezpečnostní osvědčené postupy](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices)
+- [MCP specifikace autorizace](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)
 
-### **Bezpečnostní řešení Microsoft**
-- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)  
-- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)  
-- [GitHub Advanced Security](https://github.com/security/advanced-security)  
-- [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/)  
+### **Microsoft bezpečnostní řešení**
+- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
+- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)
+- [GitHub Advanced Security](https://github.com/security/advanced-security)
+- [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/)
 
 ### **Bezpečnostní standardy**
-- [OAuth 2.0 Security Best Practices (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)  
-- [OWASP Top 10 for Large Language Models](https://genai.owasp.org/)  
-- [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework)  
+- [OAuth 2.0 bezpečnostní osvědčené postupy (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)
+- [OWASP Top 10 pro velké jazykové modely](https://genai.owasp.org/)
+- [NIST kybernetický bezpečnostní rámec](https://www.nist.gov/cyberframework)
 
 ---
 
-> **Důležité**: Tato bezpečnostní opatření odrážejí aktuální specifikaci MCP (2025-06-18). Vždy ověřujte podle nejnovější [oficiální dokumentace](https://spec.modelcontextprotocol.io/), protože standardy se rychle vyvíjejí.  
+> **Důležité**: Tyto bezpečnostní kontroly odrážejí aktuální MCP specifikaci (2025-06-18). Vždy ověřujte podle nejnovější [oficiální dokumentace](https://spec.modelcontextprotocol.io/), protože standardy se rychle vyvíjejí.
 
-**Prohlášení**:  
-Tento dokument byl přeložen pomocí služby pro automatický překlad [Co-op Translator](https://github.com/Azure/co-op-translator). I když se snažíme o přesnost, mějte prosím na paměti, že automatické překlady mohou obsahovat chyby nebo nepřesnosti. Původní dokument v jeho původním jazyce by měl být považován za závazný zdroj. Pro důležité informace doporučujeme profesionální lidský překlad. Neodpovídáme za žádná nedorozumění nebo nesprávné interpretace vyplývající z použití tohoto překladu.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Prohlášení o vyloučení odpovědnosti**:  
+Tento dokument byl přeložen pomocí AI překladatelské služby [Co-op Translator](https://github.com/Azure/co-op-translator). Přestože usilujeme o přesnost, mějte prosím na paměti, že automatizované překlady mohou obsahovat chyby nebo nepřesnosti. Původní dokument v jeho mateřském jazyce by měl být považován za autoritativní zdroj. Pro důležité informace se doporučuje profesionální lidský překlad. Nejsme odpovědní za jakékoliv nedorozumění nebo nesprávné výklady vyplývající z použití tohoto překladu.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

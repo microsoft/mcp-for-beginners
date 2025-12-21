@@ -1,73 +1,77 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "0c243c6189393ed7468e470ef2090049",
-  "translation_date": "2025-08-18T18:21:53+00:00",
+  "original_hash": "9351493ad29390d37f64bc6d84a03db5",
+  "translation_date": "2025-12-19T14:50:40+00:00",
   "source_file": "02-Security/mcp-security-controls-2025.md",
   "language_code": "tl"
 }
 -->
-# Mga Kontrol sa Seguridad ng MCP - Update noong Agosto 2025
+# MCP Security Controls - Update ng Disyembre 2025
 
-> **Kasalukuyang Pamantayan**: Ang dokumentong ito ay sumasalamin sa mga kinakailangan sa seguridad ng [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) at opisyal na [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices).
+> **Kasalukuyang Pamantayan**: Ang dokumentong ito ay sumasalamin sa [MCP Specification 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) mga kinakailangan sa seguridad at opisyal na [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).
 
-Ang Model Context Protocol (MCP) ay nagkaroon ng malaking pag-unlad sa pagpapahusay ng mga kontrol sa seguridad na tumutugon sa parehong tradisyunal na seguridad ng software at mga banta na partikular sa AI. Ang dokumentong ito ay nagbibigay ng komprehensibong mga kontrol sa seguridad para sa ligtas na implementasyon ng MCP simula Agosto 2025.
+Ang Model Context Protocol (MCP) ay malaki ang pag-unlad na may pinahusay na mga kontrol sa seguridad na tumutugon sa parehong tradisyunal na seguridad ng software at mga banta na partikular sa AI. Ang dokumentong ito ay nagbibigay ng komprehensibong mga kontrol sa seguridad para sa ligtas na mga implementasyon ng MCP mula Disyembre 2025.
 
-## **MGA KAILANGANG SEGURIDAD NA DAPAT SUNDIN**
+## **MANDATORY na Mga Kinakailangan sa Seguridad**
 
-### **Mga Kritikal na Pagbabawal mula sa MCP Specification:**
+### **Kritikal na Mga Ipinagbabawal mula sa MCP Specification:**
 
-> **IPINAGBABAWAL**: Ang mga MCP server **HINDI DAPAT** tumanggap ng anumang token na hindi tahasang inisyu para sa MCP server  
+> **IPINAGBABAWAL**: Ang mga MCP server **HINDI DAPAT** tumanggap ng anumang mga token na hindi tahasang inilabas para sa MCP server  
 >
-> **IPINAGBABAWAL**: Ang mga MCP server **HINDI DAPAT** gumamit ng mga session para sa authentication  
+> **IPINAGBABAWAL**: Ang mga MCP server **HINDI DAPAT** gumamit ng mga session para sa pagpapatunay  
 >
-> **KINAKAILANGAN**: Ang mga MCP server na nagpapatupad ng authorization **DAPAT** i-verify ang LAHAT ng papasok na kahilingan  
+> **KINAKAILANGAN**: Ang mga MCP server na nagpapatupad ng awtorisasyon **DAPAT** beripikahin LAHAT ng mga papasok na kahilingan  
 >
-> **MANDATORYO**: Ang mga MCP proxy server na gumagamit ng static client IDs **DAPAT** kumuha ng pahintulot ng user para sa bawat dinamikong nakarehistrong kliyente  
+> **MANDATORY**: Ang mga MCP proxy server na gumagamit ng static client IDs **DAPAT** kumuha ng pahintulot ng user para sa bawat dynamic na nakarehistrong client
 
 ---
 
-## 1. **Mga Kontrol sa Authentication at Authorization**
+## 1. **Mga Kontrol sa Pagpapatunay at Awtorisasyon**
 
 ### **Integrasyon ng Panlabas na Tagapagbigay ng Pagkakakilanlan**
 
-Ang **Kasalukuyang Pamantayan ng MCP (2025-06-18)** ay nagpapahintulot sa mga MCP server na i-delegate ang authentication sa mga panlabas na tagapagbigay ng pagkakakilanlan, na nagdadala ng malaking pagpapabuti sa seguridad:
+**Kasalukuyang Pamantayan ng MCP (2025-06-18)** ay nagpapahintulot sa mga MCP server na i-delegate ang pagpapatunay sa mga panlabas na tagapagbigay ng pagkakakilanlan, na kumakatawan sa isang mahalagang pagbuti sa seguridad:
+
+### **Integrasyon ng Panlabas na Tagapagbigay ng Pagkakakilanlan**
+
+**Kasalukuyang Pamantayan ng MCP (2025-11-25)** ay nagpapahintulot sa mga MCP server na i-delegate ang pagpapatunay sa mga panlabas na tagapagbigay ng pagkakakilanlan, na kumakatawan sa isang mahalagang pagbuti sa seguridad:
 
 **Mga Benepisyo sa Seguridad:**
-1. **Pag-aalis ng Panganib sa Custom Authentication**: Binabawasan ang posibilidad ng kahinaan sa pamamagitan ng pag-iwas sa custom na implementasyon ng authentication  
+1. **Inaalis ang mga Panganib ng Custom Authentication**: Binabawasan ang surface ng kahinaan sa pamamagitan ng pag-iwas sa mga custom na implementasyon ng pagpapatunay  
 2. **Seguridad na Pang-Enterprise**: Ginagamit ang mga kilalang tagapagbigay ng pagkakakilanlan tulad ng Microsoft Entra ID na may mga advanced na tampok sa seguridad  
-3. **Sentralisadong Pamamahala ng Pagkakakilanlan**: Pinapasimple ang pamamahala sa lifecycle ng user, kontrol sa access, at pag-audit ng pagsunod  
-4. **Multi-Factor Authentication**: Namamana ang mga kakayahan ng MFA mula sa mga tagapagbigay ng pagkakakilanlan ng enterprise  
-5. **Mga Patakaran sa Kondisyunal na Access**: Nakikinabang mula sa mga kontrol sa access na batay sa panganib at adaptive na authentication  
+3. **Sentralisadong Pamamahala ng Pagkakakilanlan**: Pinapasimple ang pamamahala ng lifecycle ng user, kontrol sa access, at pag-audit ng pagsunod  
+4. **Multi-Factor Authentication**: Namamana ang mga kakayahan ng MFA mula sa mga enterprise identity provider  
+5. **Mga Patakaran sa Kondisyunal na Access**: Nakikinabang mula sa mga risk-based access control at adaptive authentication
 
 **Mga Kinakailangan sa Implementasyon:**
-- **Pag-validate ng Token Audience**: Siguraduhing ang lahat ng token ay tahasang inisyu para sa MCP server  
-- **Pag-verify ng Issuer**: Siguraduhing ang issuer ng token ay tumutugma sa inaasahang tagapagbigay ng pagkakakilanlan  
-- **Pag-verify ng Lagda**: Cryptographic na pag-validate ng integridad ng token  
-- **Pagpapatupad ng Expiration**: Mahigpit na pagpapatupad ng mga limitasyon sa tagal ng token  
-- **Pag-validate ng Saklaw**: Siguraduhing ang mga token ay naglalaman ng naaangkop na mga pahintulot para sa mga hinihiling na operasyon  
+- **Pag-validate ng Token Audience**: Beripikahin na lahat ng token ay tahasang inilabas para sa MCP server  
+- **Pag-verify ng Issuer**: Patunayan na ang issuer ng token ay tumutugma sa inaasahang tagapagbigay ng pagkakakilanlan  
+- **Pag-verify ng Lagda**: Kryptograpikong beripikasyon ng integridad ng token  
+- **Pagpapatupad ng Expiration**: Mahigpit na pagpapatupad ng mga limitasyon sa buhay ng token  
+- **Pag-validate ng Saklaw**: Siguraduhing ang mga token ay naglalaman ng angkop na mga pahintulot para sa mga hinihiling na operasyon
 
-### **Seguridad ng Authorization Logic**
+### **Seguridad ng Lohika ng Awtorisasyon**
 
 **Kritikal na Mga Kontrol:**
-- **Komprehensibong Mga Audit ng Authorization**: Regular na pagsusuri sa seguridad ng lahat ng mga punto ng desisyon sa authorization  
-- **Fail-Safe Defaults**: Tanggihan ang access kapag hindi makagawa ng tiyak na desisyon ang authorization logic  
-- **Mga Hangganan ng Pahintulot**: Malinaw na paghihiwalay sa pagitan ng iba't ibang antas ng pribilehiyo at access sa mga mapagkukunan  
-- **Audit Logging**: Kumpletong pag-log ng lahat ng desisyon sa authorization para sa pagsubaybay sa seguridad  
-- **Regular na Pagsusuri ng Access**: Pana-panahong pag-validate ng mga pahintulot ng user at mga itinalagang pribilehiyo  
+- **Komprehensibong Audit ng Awtorisasyon**: Regular na pagsusuri sa seguridad ng lahat ng punto ng desisyon sa awtorisasyon  
+- **Fail-Safe Defaults**: Tanggihan ang access kapag ang lohika ng awtorisasyon ay hindi makagawa ng tiyak na desisyon  
+- **Mga Hangganan ng Pahintulot**: Malinaw na paghihiwalay sa pagitan ng iba't ibang antas ng pribilehiyo at access sa mga resource  
+- **Audit Logging**: Kumpletong pag-log ng lahat ng desisyon sa awtorisasyon para sa pagmamanman ng seguridad  
+- **Regular na Pagsusuri ng Access**: Panahon-panahong beripikasyon ng mga pahintulot ng user at mga asignasyon ng pribilehiyo
 
-## 2. **Seguridad ng Token at Mga Kontrol sa Anti-Passthrough**
+## 2. **Seguridad ng Token at Mga Kontrol laban sa Passthrough**
 
 ### **Pag-iwas sa Token Passthrough**
 
 **Ang token passthrough ay tahasang ipinagbabawal** sa MCP Authorization Specification dahil sa mga kritikal na panganib sa seguridad:
 
-**Mga Panganib sa Seguridad na Natugunan:**
-- **Pag-iwas sa Kontrol**: Iniiwasan ang mahahalagang kontrol sa seguridad tulad ng rate limiting, pag-validate ng kahilingan, at pagsubaybay sa trapiko  
-- **Pagkasira ng Pananagutan**: Ginagawang imposibleng matukoy ang kliyente, na sinisira ang mga audit trail at pagsisiyasat ng insidente  
-- **Proxy-Based Exfiltration**: Pinapahintulutan ang mga malisyosong aktor na gamitin ang mga server bilang proxy para sa hindi awtorisadong pag-access ng data  
-- **Paglabag sa Trust Boundary**: Sinisira ang mga inaasahan ng downstream service tungkol sa pinagmulan ng token  
-- **Lateral Movement**: Ang mga nakompromisong token sa maraming serbisyo ay nagpapalawak ng saklaw ng pag-atake  
+**Mga Panganib sa Seguridad na Tinugunan:**
+- **Pag-iwas sa Kontrol**: Nilalampasan ang mahahalagang kontrol sa seguridad tulad ng rate limiting, pag-validate ng kahilingan, at pagmamanman ng trapiko  
+- **Pagkawala ng Pananagutan**: Ginagawang imposible ang pagkilala sa client, na sumisira sa mga audit trail at pagsisiyasat ng insidente  
+- **Proxy-Based Exfiltration**: Pinapayagan ang mga malisyosong aktor na gamitin ang mga server bilang proxy para sa hindi awtorisadong pag-access ng data  
+- **Paglabag sa Trust Boundary**: Sinisira ang mga palagay ng downstream service tungkol sa pinagmulan ng token  
+- **Lateral Movement**: Ang mga kompromisadong token sa maraming serbisyo ay nagpapahintulot ng mas malawak na paglawak ng pag-atake
 
 **Mga Kontrol sa Implementasyon:**
 ```yaml
@@ -85,25 +89,25 @@ Token Lifecycle Management:
   replay_protection: "Implemented via nonce/timestamp"
 ```
 
-### **Mga Ligtas na Pattern sa Pamamahala ng Token**
+### **Mga Pattern sa Secure Token Management**
 
-**Mga Pinakamahusay na Kasanayan:**
-- **Mga Token na Maikli ang Buhay**: Bawasan ang exposure window sa pamamagitan ng madalas na pag-rotate ng token  
-- **Just-in-Time Issuance**: Mag-isyu ng mga token lamang kapag kinakailangan para sa mga partikular na operasyon  
-- **Ligtas na Imbakan**: Gumamit ng hardware security modules (HSMs) o secure key vaults  
-- **Token Binding**: Itali ang mga token sa mga partikular na kliyente, session, o operasyon kung maaari  
-- **Pagsubaybay at Pag-alerto**: Real-time na pagtuklas ng maling paggamit ng token o mga pattern ng hindi awtorisadong pag-access  
+**Mga Pinakamahusay na Praktis:**
+- **Mga Token na Panandalian Lang**: Bawasan ang exposure window sa pamamagitan ng madalas na pag-ikot ng token  
+- **Just-in-Time Issuance**: Mag-isyu ng mga token lamang kapag kailangan para sa mga partikular na operasyon  
+- **Secure Storage**: Gumamit ng hardware security modules (HSMs) o secure key vaults  
+- **Token Binding**: Itali ang mga token sa mga partikular na client, session, o operasyon kung maaari  
+- **Monitoring at Alerting**: Real-time na pagtuklas ng maling paggamit ng token o mga pattern ng hindi awtorisadong access
 
 ## 3. **Mga Kontrol sa Seguridad ng Session**
 
 ### **Pag-iwas sa Session Hijacking**
 
-**Mga Vector ng Pag-atake na Natugunan:**
-- **Session Hijack Prompt Injection**: Mga malisyosong kaganapan na na-inject sa shared session state  
-- **Session Impersonation**: Hindi awtorisadong paggamit ng mga ninakaw na session ID upang iwasan ang authentication  
-- **Resumable Stream Attacks**: Pagsasamantala sa resumption ng server-sent event para sa malisyosong pag-inject ng nilalaman  
+**Mga Vector ng Atake na Tinugunan:**
+- **Session Hijack Prompt Injection**: Malisyosong mga pangyayari na ini-inject sa shared session state  
+- **Session Impersonation**: Hindi awtorisadong paggamit ng ninakaw na session ID upang lampasan ang pagpapatunay  
+- **Resumable Stream Attacks**: Pagsasamantala sa server-sent event resumption para sa malisyosong pag-inject ng nilalaman
 
-**Mga Mandatoryong Kontrol sa Session:**
+**Mandatory na Mga Kontrol sa Session:**
 ```yaml
 Session ID Generation:
   randomness_source: "Cryptographically secure RNG"
@@ -124,25 +128,25 @@ Session Lifecycle:
 ```
 
 **Seguridad sa Transportasyon:**
-- **Pagpapatupad ng HTTPS**: Lahat ng komunikasyon sa session ay dapat dumaan sa TLS 1.3  
-- **Mga Atributo ng Secure Cookie**: HttpOnly, Secure, SameSite=Strict  
-- **Certificate Pinning**: Para sa mga kritikal na koneksyon upang maiwasan ang MITM attacks  
+- **HTTPS Enforcement**: Lahat ng komunikasyon ng session ay sa TLS 1.3  
+- **Secure Cookie Attributes**: HttpOnly, Secure, SameSite=Strict  
+- **Certificate Pinning**: Para sa mga kritikal na koneksyon upang maiwasan ang MITM attacks
 
 ### **Mga Pagsasaalang-alang sa Stateful vs Stateless**
 
-**Para sa Stateful na Implementasyon:**
-- Ang shared session state ay nangangailangan ng karagdagang proteksyon laban sa mga pag-atake ng injection  
-- Ang pamamahala ng session na nakabatay sa queue ay nangangailangan ng pag-verify ng integridad  
-- Ang maraming instance ng server ay nangangailangan ng ligtas na pag-synchronize ng session state  
+**Para sa Stateful Implementations:**
+- Ang shared session state ay nangangailangan ng karagdagang proteksyon laban sa injection attacks  
+- Ang queue-based session management ay nangangailangan ng beripikasyon ng integridad  
+- Ang maraming server instances ay nangangailangan ng secure na session state synchronization
 
-**Para sa Stateless na Implementasyon:**
-- JWT o katulad na token-based na pamamahala ng session  
-- Cryptographic na pag-verify ng integridad ng session state  
-- Nabawasang attack surface ngunit nangangailangan ng matibay na pag-validate ng token  
+**Para sa Stateless Implementations:**
+- JWT o katulad na token-based session management  
+- Kryptograpikong beripikasyon ng integridad ng session state  
+- Nabawasang attack surface ngunit nangangailangan ng matibay na pag-validate ng token
 
 ## 4. **Mga Kontrol sa Seguridad na Partikular sa AI**
 
-### **Depensa laban sa Prompt Injection**
+### **Depensa sa Prompt Injection**
 
 **Integrasyon ng Microsoft Prompt Shields:**
 ```yaml
@@ -163,10 +167,10 @@ Integration Points:
 ```
 
 **Mga Kontrol sa Implementasyon:**
-- **Sanitasyon ng Input**: Komprehensibong pag-validate at pag-filter ng lahat ng input ng user  
-- **Pagpapakahulugan ng Content Boundary**: Malinaw na paghihiwalay sa pagitan ng mga tagubilin ng sistema at nilalaman ng user  
-- **Hierarchy ng Instruksyon**: Tamang mga panuntunan sa precedence para sa mga nagkakasalungatang tagubilin  
-- **Pagsubaybay sa Output**: Pagtuklas ng potensyal na mapanganib o manipuladong output  
+- **Input Sanitization**: Komprehensibong pag-validate at pagsala ng lahat ng input ng user  
+- **Paglilinaw ng Boundary ng Nilalaman**: Malinaw na paghihiwalay sa pagitan ng mga utos ng sistema at nilalaman ng user  
+- **Hierarchy ng Instruksyon**: Tamang mga patakaran sa precedence para sa mga nagkakasalungat na utos  
+- **Pagmamanman ng Output**: Pagtuklas ng posibleng mapanganib o manipuladong output
 
 ### **Pag-iwas sa Tool Poisoning**
 
@@ -192,17 +196,17 @@ Tool Definition Protection:
     - "Automated alerting for suspicious modifications"
 ```
 
-**Dynamic na Pamamahala ng Tool:**
-- **Mga Workflow ng Pag-apruba**: Tahasang pahintulot ng user para sa mga pagbabago sa tool  
-- **Mga Kakayahan sa Rollback**: Kakayahang ibalik sa mga nakaraang bersyon ng tool  
-- **Pag-audit ng Pagbabago**: Kumpletong kasaysayan ng mga pagbabago sa depinisyon ng tool  
-- **Pagtatasa ng Panganib**: Awtomatikong pagsusuri ng security posture ng tool  
+**Dynamic Tool Management:**
+- **Approval Workflows**: Tahasang pahintulot ng user para sa mga pagbabago sa tool  
+- **Rollback Capabilities**: Kakayahang bumalik sa mga naunang bersyon ng tool  
+- **Change Auditing**: Kumpletong kasaysayan ng mga pagbabago sa depinisyon ng tool  
+- **Risk Assessment**: Automated na pagsusuri ng security posture ng tool
 
 ## 5. **Pag-iwas sa Confused Deputy Attack**
 
 ### **Seguridad ng OAuth Proxy**
 
-**Mga Kontrol sa Pag-iwas sa Pag-atake:**
+**Mga Kontrol sa Pag-iwas sa Atake:**
 ```yaml
 Client Registration:
   static_client_protection:
@@ -219,16 +223,16 @@ Client Registration:
 ```
 
 **Mga Kinakailangan sa Implementasyon:**
-- **Pag-verify ng Pahintulot ng User**: Huwag kailanman laktawan ang mga screen ng pahintulot para sa dinamikong pagpaparehistro ng kliyente  
-- **Pag-validate ng Redirect URI**: Mahigpit na pag-validate batay sa whitelist ng mga destinasyon ng redirect  
-- **Proteksyon ng Authorization Code**: Mga code na maikli ang buhay na may pagpapatupad ng single-use  
-- **Pag-verify ng Identidad ng Kliyente**: Matibay na pag-validate ng mga kredensyal at metadata ng kliyente  
+- **Pag-verify ng Pahintulot ng User**: Huwag kailanman laktawan ang mga consent screen para sa dynamic client registration  
+- **Pag-validate ng Redirect URI**: Mahigpit na whitelist-based na pag-validate ng mga destinasyon ng redirect  
+- **Proteksyon ng Authorization Code**: Mga panandaliang code na may single-use enforcement  
+- **Pag-verify ng Identidad ng Client**: Matibay na pag-validate ng mga kredensyal at metadata ng client
 
-## 6. **Seguridad sa Pagpapatupad ng Tool**
+## 6. **Seguridad sa Pagpapatakbo ng Tool**
 
 ### **Sandboxing at Isolation**
 
-**Isolation na Batay sa Container:**
+**Container-Based Isolation:**
 ```yaml
 Execution Environment:
   containerization: "Docker/Podman with security profiles"
@@ -245,13 +249,13 @@ Execution Environment:
     filesystem: "Read-only root with minimal writable areas"
 ```
 
-**Isolation ng Proseso:**
-- **Hiwalay na Mga Konteksto ng Proseso**: Ang bawat pagpapatupad ng tool ay nasa hiwalay na espasyo ng proseso  
-- **Inter-Process Communication**: Mga secure na mekanismo ng IPC na may pag-validate  
-- **Pagsubaybay sa Proseso**: Pagsusuri ng runtime behavior at pagtuklas ng anomalya  
-- **Pagpapatupad ng Resource**: Mahigpit na limitasyon sa CPU, memory, at mga operasyon ng I/O  
+**Process Isolation:**
+- **Hiwalay na Process Contexts**: Bawat pagpapatakbo ng tool ay nasa hiwalay na process space  
+- **Inter-Process Communication**: Secure na mga mekanismo ng IPC na may beripikasyon  
+- **Process Monitoring**: Pagsusuri ng runtime behavior at pagtuklas ng anomalya  
+- **Resource Enforcement**: Mahigpit na limitasyon sa CPU, memorya, at mga operasyon ng I/O
 
-### **Pagpapatupad ng Least Privilege**
+### **Implementasyon ng Least Privilege**
 
 **Pamamahala ng Pahintulot:**
 ```yaml
@@ -307,15 +311,15 @@ AI Components:
     - "Incident response capability evaluation"
 ```
 
-### **Patuloy na Pagsubaybay**
+### **Patuloy na Pagmamanman**
 
 **Pagtuklas ng Banta sa Supply Chain:**
-- **Pagsubaybay sa Kalusugan ng Dependency**: Patuloy na pagtatasa ng lahat ng dependency para sa mga isyu sa seguridad  
+- **Pagmamanman ng Kalusugan ng Dependency**: Patuloy na pagtatasa ng lahat ng dependency para sa mga isyu sa seguridad  
 - **Integrasyon ng Threat Intelligence**: Real-time na mga update sa mga umuusbong na banta sa supply chain  
-- **Pagsusuri ng Pag-uugali**: Pagtuklas ng hindi pangkaraniwang pag-uugali sa mga panlabas na bahagi  
-- **Awtomatikong Tugon**: Agarang containment ng mga nakompromisong bahagi  
+- **Pagsusuri ng Pag-uugali**: Pagtuklas ng hindi pangkaraniwang pag-uugali sa mga panlabas na komponent  
+- **Automated na Tugon**: Agarang paglalaman ng mga kompromisadong komponent
 
-## 8. **Mga Kontrol sa Pagsubaybay at Pagtuklas**
+## 8. **Mga Kontrol sa Pagmamanman at Pagtuklas**
 
 ### **Security Information and Event Management (SIEM)**
 
@@ -343,16 +347,16 @@ Security Events:
 ### **Real-Time na Pagtuklas ng Banta**
 
 **Behavioral Analytics:**
-- **User Behavior Analytics (UBA)**: Pagtuklas ng hindi pangkaraniwang mga pattern ng pag-access ng user  
-- **Entity Behavior Analytics (EBA)**: Pagsubaybay sa pag-uugali ng MCP server at tool  
+- **User Behavior Analytics (UBA)**: Pagtuklas ng hindi pangkaraniwang pattern ng access ng user  
+- **Entity Behavior Analytics (EBA)**: Pagmamanman ng MCP server at pag-uugali ng tool  
 - **Machine Learning Anomaly Detection**: AI-powered na pagtukoy ng mga banta sa seguridad  
-- **Threat Intelligence Correlation**: Pagtutugma ng mga naobserbahang aktibidad laban sa mga kilalang pattern ng pag-atake  
+- **Threat Intelligence Correlation**: Pagtutugma ng mga naobserbahang aktibidad laban sa mga kilalang pattern ng pag-atake
 
-## 9. **Pagtugon at Pagbangon sa Insidente**
+## 9. **Pagtugon sa Insidente at Pagbawi**
 
-### **Mga Kakayahan sa Awtomatikong Tugon**
+### **Automated na Kakayahan sa Pagtugon**
 
-**Agarang Mga Aksyon sa Tugon:**
+**Agad na Mga Aksyon sa Pagtugon:**
 ```yaml
 Threat Containment:
   session_management:
@@ -380,51 +384,55 @@ Recovery Procedures:
 ### **Mga Kakayahan sa Forensic**
 
 **Suporta sa Pagsisiyasat:**
-- **Pagpapanatili ng Audit Trail**: Immutable na pag-log na may cryptographic integrity  
-- **Koleksyon ng Ebidensya**: Awtomatikong pagkuha ng mga kaugnay na artifact sa seguridad  
-- **Rekonstruksyon ng Timeline**: Detalyadong pagkakasunod-sunod ng mga kaganapan na humantong sa mga insidente sa seguridad  
-- **Pagtatasa ng Epekto**: Pagsusuri ng saklaw ng kompromiso at pagkakalantad ng data  
+- **Pagpapanatili ng Audit Trail**: Hindi mababago na pag-log na may kryptograpikong integridad  
+- **Pagkolekta ng Ebidensya**: Automated na pagkuha ng mga kaugnay na artifact sa seguridad  
+- **Pagbuo ng Timeline**: Detalyadong pagkakasunod-sunod ng mga pangyayari na humantong sa mga insidente sa seguridad  
+- **Pagsusuri ng Epekto**: Pagtatasa ng lawak ng kompromiso at paglantad ng data
 
-## **Pangunahing Prinsipyo ng Arkitektura ng Seguridad**
+## **Pangunahing Prinsipyo ng Arkitektura sa Seguridad**
 
 ### **Defense in Depth**
-- **Maramihang Layer ng Seguridad**: Walang iisang punto ng kabiguan sa arkitektura ng seguridad  
-- **Redundant na Mga Kontrol**: Mga magkakapatong na hakbang sa seguridad para sa mga kritikal na function  
-- **Fail-Safe na Mekanismo**: Mga ligtas na default kapag ang mga sistema ay nakakaranas ng mga error o pag-atake  
+- **Maramihang Layer ng Seguridad**: Walang iisang punto ng pagkabigo sa arkitektura ng seguridad  
+- **Redundant na Mga Kontrol**: Nag-o-overlap na mga hakbang sa seguridad para sa mga kritikal na function  
+- **Fail-Safe Mechanisms**: Ligtas na mga default kapag ang mga sistema ay nakakaranas ng mga error o pag-atake
 
-### **Pagpapatupad ng Zero Trust**
-- **Huwag Magtiwala, Laging Mag-verify**: Patuloy na pag-validate ng lahat ng entity at kahilingan  
-- **Prinsipyo ng Least Privilege**: Minimal na karapatan sa pag-access para sa lahat ng bahagi  
-- **Micro-Segmentation**: Granular na kontrol sa network at access  
+### **Implementasyon ng Zero Trust**
+- **Huwag Magsalig, Laging Mag-verify**: Patuloy na beripikasyon ng lahat ng entidad at kahilingan  
+- **Prinsipyo ng Least Privilege**: Pinakamababang karapatan sa access para sa lahat ng komponent  
+- **Micro-Segmentation**: Granular na kontrol sa network at access
 
 ### **Patuloy na Ebolusyon ng Seguridad**
-- **Pag-aangkop sa Landscape ng Banta**: Regular na mga update upang matugunan ang mga umuusbong na banta  
+- **Pag-angkop sa Landscape ng Banta**: Regular na mga update upang tugunan ang mga umuusbong na banta  
 - **Epektibidad ng Kontrol sa Seguridad**: Patuloy na pagsusuri at pagpapabuti ng mga kontrol  
-- **Pagsunod sa Espesipikasyon**: Pagsunod sa mga umuusbong na pamantayan sa seguridad ng MCP  
+- **Pagsunod sa Specification**: Pagsunod sa umuusbong na mga pamantayan sa seguridad ng MCP
 
 ---
 
 ## **Mga Mapagkukunan sa Implementasyon**
 
 ### **Opisyal na Dokumentasyon ng MCP**
-- [MCP Specification (2025-06-18)](https://spec.modelcontextprotocol.io/specification/2025-06-18/)  
-- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices)  
-- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization)  
+- [MCP Specification (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices)
+- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)
 
 ### **Mga Solusyon sa Seguridad ng Microsoft**
-- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)  
-- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)  
-- [GitHub Advanced Security](https://github.com/security/advanced-security)  
-- [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/)  
+- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
+- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)
+- [GitHub Advanced Security](https://github.com/security/advanced-security)
+- [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/)
 
 ### **Mga Pamantayan sa Seguridad**
-- [OAuth 2.0 Security Best Practices (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)  
-- [OWASP Top 10 for Large Language Models](https://genai.owasp.org/)  
-- [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework)  
+- [OAuth 2.0 Security Best Practices (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)
+- [OWASP Top 10 for Large Language Models](https://genai.owasp.org/)
+- [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework)
 
 ---
 
-> **Mahalaga**: Ang mga kontrol sa seguridad na ito ay sumasalamin sa kasalukuyang MCP specification (2025-06-18). Palaging i-verify laban sa pinakabagong [opisyal na dokumentasyon](https://spec.modelcontextprotocol.io/) dahil ang mga pamantayan ay patuloy na mabilis na nagbabago.  
+> **Mahalaga**: Ang mga kontrol sa seguridad na ito ay sumasalamin sa kasalukuyang MCP specification (2025-06-18). Palaging beripikahin laban sa pinakabagong [opisyal na dokumentasyon](https://spec.modelcontextprotocol.io/) dahil ang mga pamantayan ay patuloy na mabilis na umuunlad.
 
-**Paunawa**:  
-Ang dokumentong ito ay isinalin gamit ang AI translation service na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagama't sinisikap naming maging tumpak, pakitandaan na ang mga awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o hindi pagkakatugma. Ang orihinal na dokumento sa orihinal nitong wika ang dapat ituring na opisyal na sanggunian. Para sa mahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang hindi pagkakaunawaan o maling interpretasyon na maaaring magmula sa paggamit ng pagsasaling ito.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Paalala**:
+Ang dokumentong ito ay isinalin gamit ang AI translation service na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagamat nagsusumikap kami para sa katumpakan, pakatandaan na ang mga awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o di-tumpak na impormasyon. Ang orihinal na dokumento sa orihinal nitong wika ang dapat ituring na pangunahing sanggunian. Para sa mahahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang hindi pagkakaunawaan o maling interpretasyon na maaaring magmula sa paggamit ng pagsasaling ito.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

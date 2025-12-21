@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "904b59de1de9264801242d90a42cdd9d",
-  "translation_date": "2025-09-05T10:12:40+00:00",
+  "original_hash": "9ad93d2074502828b8139d5aba7bafab",
+  "translation_date": "2025-12-19T07:17:59+00:00",
   "source_file": "01-CoreConcepts/README.md",
   "language_code": "en"
 }
@@ -11,43 +11,43 @@ CO_OP_TRANSLATOR_METADATA:
 
 [![MCP Core Concepts](../../../translated_images/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.en.png)](https://youtu.be/earDzWGtE84)
 
-_(Click the image above to view the video of this lesson)_
+_(Click the image above to view video of this lesson)_
 
-The [Model Context Protocol (MCP)](https://github.com/modelcontextprotocol) is a powerful, standardized framework designed to enhance communication between Large Language Models (LLMs) and external tools, applications, and data sources.  
-This guide introduces the core concepts of MCP, including its client-server architecture, key components, communication mechanics, and best practices for implementation.
+The [Model Context Protocol (MCP)](https://github.com/modelcontextprotocol) is a powerful, standardized framework that optimizes communication between Large Language Models (LLMs) and external tools, applications, and data sources.  
+This guide will walk you through the core concepts of MCP. You will learn about its client-server architecture, essential components, communication mechanics, and implementation best practices.
 
-- **Explicit User Consent**: All data access and operations require clear user approval before execution. Users must fully understand what data will be accessed and what actions will be performed, with detailed control over permissions and authorizations.
+- **Explicit User Consent**: All data access and operations require explicit user approval before execution. Users must clearly understand what data will be accessed and what actions will be performed, with granular control over permissions and authorizations.
 
-- **Data Privacy Protection**: User data is only shared with explicit consent and must be safeguarded by strong access controls throughout the interaction lifecycle. Implementations must prevent unauthorized data transmission and maintain strict privacy boundaries.
+- **Data Privacy Protection**: User data is only exposed with explicit consent and must be protected by robust access controls throughout the entire interaction lifecycle. Implementations must prevent unauthorized data transmission and maintain strict privacy boundaries.
 
-- **Tool Execution Safety**: Every tool invocation requires explicit user consent, ensuring users understand the tool's functionality, parameters, and potential impact. Security measures must prevent unintended, unsafe, or malicious tool execution.
+- **Tool Execution Safety**: Every tool invocation requires explicit user consent with clear understanding of the tool's functionality, parameters, and potential impact. Robust security boundaries must prevent unintended, unsafe, or malicious tool execution.
 
-- **Transport Layer Security**: All communication channels should use encryption and authentication mechanisms. Remote connections must implement secure transport protocols and proper credential management.
+- **Transport Layer Security**: All communication channels should use appropriate encryption and authentication mechanisms. Remote connections should implement secure transport protocols and proper credential management.
 
 #### Implementation Guidelines:
 
-- **Permission Management**: Implement detailed permission systems that allow users to control which servers, tools, and resources are accessible.  
-- **Authentication & Authorization**: Use secure authentication methods (OAuth, API keys) with proper token management and expiration.  
-- **Input Validation**: Validate all parameters and data inputs according to defined schemas to prevent injection attacks.  
-- **Audit Logging**: Maintain detailed logs of all operations for security monitoring and compliance.
+- **Permission Management**: Implement fine-grained permission systems that allow users to control which servers, tools, and resources are accessible  
+- **Authentication & Authorization**: Use secure authentication methods (OAuth, API keys) with proper token management and expiration  
+- **Input Validation**: Validate all parameters and data inputs according to defined schemas to prevent injection attacks  
+- **Audit Logging**: Maintain comprehensive logs of all operations for security monitoring and compliance
 
 ## Overview
 
-This lesson covers the fundamental architecture and components of the Model Context Protocol (MCP) ecosystem. You'll learn about the client-server architecture, key roles, and communication mechanisms that enable MCP interactions.
+This lesson explores the fundamental architecture and components that make up the Model Context Protocol (MCP) ecosystem. You'll learn about the client-server architecture, key components, and communication mechanisms that power MCP interactions.
 
 ## Key Learning Objectives
 
 By the end of this lesson, you will:
 
 - Understand the MCP client-server architecture.  
-- Identify the roles and responsibilities of Hosts, Clients, and Servers.  
+- Identify roles and responsibilities of Hosts, Clients, and Servers.  
 - Analyze the core features that make MCP a flexible integration layer.  
 - Learn how information flows within the MCP ecosystem.  
 - Gain practical insights through code examples in .NET, Java, Python, and JavaScript.
 
 ## MCP Architecture: A Deeper Look
 
-The MCP ecosystem is built on a client-server model. This modular structure allows AI applications to interact efficiently with tools, databases, APIs, and contextual resources. Let's break down this architecture into its core components.
+The MCP ecosystem is built on a client-server model. This modular structure allows AI applications to interact with tools, databases, APIs, and contextual resources efficiently. Let's break down this architecture into its core components.
 
 At its core, MCP follows a client-server architecture where a host application can connect to multiple servers:
 
@@ -68,56 +68,55 @@ flowchart LR
         S3 <-->|"Web APIs"| D3[("Remote\Services")]
     end
 ```
+- **MCP Hosts**: Programs like VSCode, Claude Desktop, IDEs, or AI tools that want to access data through MCP  
+- **MCP Clients**: Protocol clients that maintain 1:1 connections with servers  
+- **MCP Servers**: Lightweight programs that each expose specific capabilities through the standardized Model Context Protocol  
+- **Local Data Sources**: Your computer's files, databases, and services that MCP servers can securely access  
+- **Remote Services**: External systems available over the internet that MCP servers can connect to through APIs.
 
-- **MCP Hosts**: Programs like VSCode, Claude Desktop, IDEs, or AI tools that want to access data through MCP.  
-- **MCP Clients**: Protocol clients that maintain one-to-one connections with servers.  
-- **MCP Servers**: Lightweight programs that expose specific capabilities through the standardized Model Context Protocol.  
-- **Local Data Sources**: Files, databases, and services on your computer that MCP servers can securely access.  
-- **Remote Services**: External systems available online that MCP servers can connect to via APIs.
-
-The MCP Protocol is an evolving standard using date-based versioning (YYYY-MM-DD format). The current protocol version is **2025-06-18**. You can find the latest updates to the [protocol specification](https://modelcontextprotocol.io/specification/2025-06-18/).
+The MCP Protocol is an evolving standard using date-based versioning (YYYY-MM-DD format). The current protocol version is **2025-11-25**. You can see the latest updates to the [protocol specification](https://modelcontextprotocol.io/specification/2025-11-25/)
 
 ### 1. Hosts
 
-In the Model Context Protocol (MCP), **Hosts** are AI applications that serve as the main interface for users to interact with the protocol. Hosts manage connections to multiple MCP servers by creating dedicated MCP clients for each server connection. Examples of Hosts include:
+In the Model Context Protocol (MCP), **Hosts** are AI applications that serve as the primary interface through which users interact with the protocol. Hosts coordinate and manage connections to multiple MCP servers by creating dedicated MCP clients for each server connection. Examples of Hosts include:
 
-- **AI Applications**: Claude Desktop, Visual Studio Code, Claude Code.  
-- **Development Environments**: IDEs and code editors with MCP integration.  
-- **Custom Applications**: Purpose-built AI agents and tools.
+- **AI Applications**: Claude Desktop, Visual Studio Code, Claude Code  
+- **Development Environments**: IDEs and code editors with MCP integration  
+- **Custom Applications**: Purpose-built AI agents and tools
 
 **Hosts** are applications that coordinate AI model interactions. They:
 
-- **Orchestrate AI Models**: Execute or interact with LLMs to generate responses and manage AI workflows.  
-- **Manage Client Connections**: Create and maintain one MCP client per MCP server connection.  
-- **Control User Interface**: Handle conversation flow, user interactions, and response presentation.  
-- **Enforce Security**: Manage permissions, security constraints, and authentication.  
-- **Handle User Consent**: Oversee user approval for data sharing and tool execution.
+- **Orchestrate AI Models**: Execute or interact with LLMs to generate responses and coordinate AI workflows  
+- **Manage Client Connections**: Create and maintain one MCP client per MCP server connection  
+- **Control User Interface**: Handle conversation flow, user interactions, and response presentation  
+- **Enforce Security**: Control permissions, security constraints, and authentication  
+- **Handle User Consent**: Manage user approval for data sharing and tool execution
 
 ### 2. Clients
 
-**Clients** are critical components that maintain dedicated one-to-one connections between Hosts and MCP servers. Each MCP client is created by the Host to connect to a specific MCP server, ensuring organized and secure communication channels. Multiple clients allow Hosts to connect to multiple servers simultaneously.
+**Clients** are essential components that maintain dedicated one-to-one connections between Hosts and MCP servers. Each MCP client is instantiated by the Host to connect to a specific MCP server, ensuring organized and secure communication channels. Multiple clients enable Hosts to connect to multiple servers simultaneously.
 
 **Clients** are connector components within the host application. They:
 
-- **Protocol Communication**: Send JSON-RPC 2.0 requests to servers with prompts and instructions.  
-- **Capability Negotiation**: Determine supported features and protocol versions with servers during initialization.  
-- **Tool Execution**: Manage tool execution requests from models and process responses.  
-- **Real-time Updates**: Handle notifications and real-time updates from servers.  
-- **Response Processing**: Format server responses for display to users.
+- **Protocol Communication**: Send JSON-RPC 2.0 requests to servers with prompts and instructions  
+- **Capability Negotiation**: Negotiate supported features and protocol versions with servers during initialization  
+- **Tool Execution**: Manage tool execution requests from models and process responses  
+- **Real-time Updates**: Handle notifications and real-time updates from servers  
+- **Response Processing**: Process and format server responses for display to users
 
 ### 3. Servers
 
-**Servers** are programs that provide context, tools, and capabilities to MCP clients. They can operate locally (on the same machine as the Host) or remotely (on external platforms) and are responsible for handling client requests and providing structured responses. Servers expose specific functionality through the standardized Model Context Protocol.
+**Servers** are programs that provide context, tools, and capabilities to MCP clients. They can execute locally (same machine as the Host) or remotely (on external platforms), and are responsible for handling client requests and providing structured responses. Servers expose specific functionality through the standardized Model Context Protocol.
 
 **Servers** are services that provide context and capabilities. They:
 
-- **Feature Registration**: Register and expose available primitives (resources, prompts, tools) to clients.  
-- **Request Processing**: Execute tool calls, resource requests, and prompt requests from clients.  
-- **Context Provision**: Supply contextual information and data to enhance model responses.  
-- **State Management**: Maintain session state and handle stateful interactions when needed.  
-- **Real-time Notifications**: Notify clients about capability changes and updates.
+- **Feature Registration**: Register and expose available primitives (resources, prompts, tools) to clients  
+- **Request Processing**: Receive and execute tool calls, resource requests, and prompt requests from clients  
+- **Context Provision**: Provide contextual information and data to enhance model responses  
+- **State Management**: Maintain session state and handle stateful interactions when needed  
+- **Real-time Notifications**: Send notifications about capability changes and updates to connected clients
 
-Servers can be developed by anyone to extend model capabilities with specialized functionality, supporting both local and remote deployment scenarios.
+Servers can be developed by anyone to extend model capabilities with specialized functionality, and they support both local and remote deployment scenarios.
 
 ### 4. Server Primitives
 
@@ -129,11 +128,11 @@ MCP servers can expose any combination of the following three core primitives:
 
 **Resources** are data sources that provide contextual information to AI applications. They represent static or dynamic content that can enhance model understanding and decision-making:
 
-- **Contextual Data**: Structured information and context for AI model consumption.  
-- **Knowledge Bases**: Document repositories, articles, manuals, and research papers.  
-- **Local Data Sources**: Files, databases, and local system information.  
-- **External Data**: API responses, web services, and remote system data.  
-- **Dynamic Content**: Real-time data that updates based on external conditions.
+- **Contextual Data**: Structured information and context for AI model consumption  
+- **Knowledge Bases**: Document repositories, articles, manuals, and research papers  
+- **Local Data Sources**: Files, databases, and local system information  
+- **External Data**: API responses, web services, and remote system data  
+- **Dynamic Content**: Real-time data that updates based on external conditions
 
 Resources are identified by URIs and support discovery through `resources/list` and retrieval through `resources/read` methods:
 
@@ -147,11 +146,11 @@ api://weather/current
 
 **Prompts** are reusable templates that help structure interactions with language models. They provide standardized interaction patterns and templated workflows:
 
-- **Template-based Interactions**: Pre-structured messages and conversation starters.  
-- **Workflow Templates**: Standardized sequences for common tasks and interactions.  
-- **Few-shot Examples**: Example-based templates for model instruction.  
-- **System Prompts**: Foundational prompts that define model behavior and context.  
-- **Dynamic Templates**: Parameterized prompts that adapt to specific contexts.
+- **Template-based Interactions**: Pre-structured messages and conversation starters  
+- **Workflow Templates**: Standardized sequences for common tasks and interactions  
+- **Few-shot Examples**: Example-based templates for model instruction  
+- **System Prompts**: Foundational prompts that define model behavior and context  
+- **Dynamic Templates**: Parameterized prompts that adapt to specific contexts
 
 Prompts support variable substitution and can be discovered via `prompts/list` and retrieved with `prompts/get`:
 
@@ -163,11 +162,11 @@ Generate a {{task_type}} for {{product}} targeting {{audience}} with the followi
 
 **Tools** are executable functions that AI models can invoke to perform specific actions. They represent the "verbs" of the MCP ecosystem, enabling models to interact with external systems:
 
-- **Executable Functions**: Discrete operations that models can invoke with specific parameters.  
-- **External System Integration**: API calls, database queries, file operations, calculations.  
-- **Unique Identity**: Each tool has a distinct name, description, and parameter schema.  
-- **Structured I/O**: Tools accept validated parameters and return structured, typed responses.  
-- **Action Capabilities**: Enable models to perform real-world actions and retrieve live data.
+- **Executable Functions**: Discrete operations that models can invoke with specific parameters  
+- **External System Integration**: API calls, database queries, file operations, calculations  
+- **Unique Identity**: Each tool has a distinct name, description, and parameter schema  
+- **Structured I/O**: Tools accept validated parameters and return structured, typed responses  
+- **Action Capabilities**: Enable models to perform real-world actions and retrieve live data
 
 Tools are defined with JSON Schema for parameter validation and discovered through `tools/list` and executed via `tools/call`:
 
@@ -194,10 +193,10 @@ In the Model Context Protocol (MCP), **clients** can expose primitives that enab
 
 **Sampling** allows servers to request language model completions from the client's AI application. This primitive enables servers to access LLM capabilities without embedding their own model dependencies:
 
-- **Model-Independent Access**: Servers can request completions without including LLM SDKs or managing model access.  
-- **Server-Initiated AI**: Enables servers to autonomously generate content using the client's AI model.  
-- **Recursive LLM Interactions**: Supports complex scenarios where servers need AI assistance for processing.  
-- **Dynamic Content Generation**: Allows servers to create contextual responses using the host's model.
+- **Model-Independent Access**: Servers can request completions without including LLM SDKs or managing model access  
+- **Server-Initiated AI**: Enables servers to autonomously generate content using the client's AI model  
+- **Recursive LLM Interactions**: Supports complex scenarios where servers need AI assistance for processing  
+- **Dynamic Content Generation**: Allows servers to create contextual responses using the host's model
 
 Sampling is initiated through the `sampling/complete` method, where servers send completion requests to clients.
 
@@ -205,10 +204,10 @@ Sampling is initiated through the `sampling/complete` method, where servers send
 
 **Elicitation** enables servers to request additional information or confirmation from users through the client interface:
 
-- **User Input Requests**: Servers can ask for additional information when needed for tool execution.  
-- **Confirmation Dialogs**: Request user approval for sensitive or impactful operations.  
-- **Interactive Workflows**: Enable servers to create step-by-step user interactions.  
-- **Dynamic Parameter Collection**: Gather missing or optional parameters during tool execution.
+- **User Input Requests**: Servers can ask for additional information when needed for tool execution  
+- **Confirmation Dialogs**: Request user approval for sensitive or impactful operations  
+- **Interactive Workflows**: Enable servers to create step-by-step user interactions  
+- **Dynamic Parameter Collection**: Gather missing or optional parameters during tool execution
 
 Elicitation requests are made using the `elicitation/request` method to collect user input through the client's interface.
 
@@ -216,10 +215,10 @@ Elicitation requests are made using the `elicitation/request` method to collect 
 
 **Logging** allows servers to send structured log messages to clients for debugging, monitoring, and operational visibility:
 
-- **Debugging Support**: Enable servers to provide detailed execution logs for troubleshooting.  
-- **Operational Monitoring**: Send status updates and performance metrics to clients.  
-- **Error Reporting**: Provide detailed error context and diagnostic information.  
-- **Audit Trails**: Create comprehensive logs of server operations and decisions.
+- **Debugging Support**: Enable servers to provide detailed execution logs for troubleshooting  
+- **Operational Monitoring**: Send status updates and performance metrics to clients  
+- **Error Reporting**: Provide detailed error context and diagnostic information  
+- **Audit Trails**: Create comprehensive logs of server operations and decisions
 
 Logging messages are sent to clients to provide transparency into server operations and facilitate debugging.
 
@@ -260,59 +259,60 @@ MCP consists of two distinct architectural layers that work together to provide 
 The **Data Layer** implements the core MCP protocol using **JSON-RPC 2.0** as its foundation. This layer defines the message structure, semantics, and interaction patterns:
 
 #### Core Components:
-- **JSON-RPC 2.0 Protocol**: All communication uses the standardized JSON-RPC 2.0 message format for method calls, responses, and notifications.
-- **Lifecycle Management**: Manages connection setup, capability negotiation, and session termination between clients and servers.
-- **Server Primitives**: Allows servers to provide core functionality through tools, resources, and prompts.
-- **Client Primitives**: Enables servers to request sampling from LLMs, gather user input, and send log messages.
-- **Real-time Notifications**: Supports asynchronous notifications for dynamic updates without requiring polling.
+
+- **JSON-RPC 2.0 Protocol**: All communication uses standardized JSON-RPC 2.0 message format for method calls, responses, and notifications
+- **Lifecycle Management**: Handles connection initialization, capability negotiation, and session termination between clients and servers
+- **Server Primitives**: Enables servers to provide core functionality through tools, resources, and prompts
+- **Client Primitives**: Enables servers to request sampling from LLMs, elicit user input, and send log messages
+- **Real-time Notifications**: Supports asynchronous notifications for dynamic updates without polling
 
 #### Key Features:
 
-- **Protocol Version Negotiation**: Uses date-based versioning (YYYY-MM-DD) to ensure compatibility.
-- **Capability Discovery**: Clients and servers exchange information about supported features during initialization.
-- **Stateful Sessions**: Maintains connection state across multiple interactions for consistent context.
+- **Protocol Version Negotiation**: Uses date-based versioning (YYYY-MM-DD) to ensure compatibility
+- **Capability Discovery**: Clients and servers exchange supported feature information during initialization
+- **Stateful Sessions**: Maintains connection state across multiple interactions for context continuity
 
 ### Transport Layer
 
-The **Transport Layer** handles communication channels, message framing, and authentication between MCP participants:
+The **Transport Layer** manages communication channels, message framing, and authentication between MCP participants:
 
 #### Supported Transport Mechanisms:
 
 1. **STDIO Transport**:
-   - Uses standard input/output streams for direct communication between processes.
-   - Ideal for local processes on the same machine, avoiding network overhead.
-   - Commonly used for local MCP server implementations.
+   - Uses standard input/output streams for direct process communication
+   - Optimal for local processes on the same machine with no network overhead
+   - Commonly used for local MCP server implementations
 
 2. **Streamable HTTP Transport**:
-   - Uses HTTP POST for client-to-server messages.
-   - Optionally supports Server-Sent Events (SSE) for server-to-client streaming.
-   - Facilitates remote server communication across networks.
-   - Supports standard HTTP authentication methods (bearer tokens, API keys, custom headers).
-   - MCP recommends OAuth for secure token-based authentication.
+   - Uses HTTP POST for client-to-server messages  
+   - Optional Server-Sent Events (SSE) for server-to-client streaming
+   - Enables remote server communication across networks
+   - Supports standard HTTP authentication (bearer tokens, API keys, custom headers)
+   - MCP recommends OAuth for secure token-based authentication
 
 #### Transport Abstraction:
 
-The transport layer abstracts communication details from the data layer, ensuring the same JSON-RPC 2.0 message format is used across all transport mechanisms. This abstraction allows applications to switch seamlessly between local and remote servers.
+The transport layer abstracts communication details from the data layer, enabling the same JSON-RPC 2.0 message format across all transport mechanisms. This abstraction allows applications to switch between local and remote servers seamlessly.
 
 ### Security Considerations
 
-MCP implementations must follow several key security principles to ensure safe, trustworthy, and secure interactions across all protocol operations:
+MCP implementations must adhere to several critical security principles to ensure safe, trustworthy, and secure interactions across all protocol operations:
 
-- **User Consent and Control**: Users must explicitly consent before any data is accessed or operations are performed. They should have clear control over what data is shared and which actions are authorized, supported by intuitive user interfaces for reviewing and approving activities.
+- **User Consent and Control**: Users must provide explicit consent before any data is accessed or operations are performed. They should have clear control over what data is shared and which actions are authorized, supported by intuitive user interfaces for reviewing and approving activities.
 
-- **Data Privacy**: User data should only be accessed with explicit consent and must be protected by appropriate access controls. MCP implementations must prevent unauthorized data transmission and ensure privacy is maintained throughout all interactions.
+- **Data Privacy**: User data should only be exposed with explicit consent and must be protected by appropriate access controls. MCP implementations must safeguard against unauthorized data transmission and ensure that privacy is maintained throughout all interactions.
 
-- **Tool Safety**: Explicit user consent is required before invoking any tool. Users should clearly understand each tool’s functionality, and strong security boundaries must be enforced to prevent unintended or unsafe tool execution.
+- **Tool Safety**: Before invoking any tool, explicit user consent is required. Users should have a clear understanding of each tool’s functionality, and robust security boundaries must be enforced to prevent unintended or unsafe tool execution.
 
-By adhering to these security principles, MCP ensures user trust, privacy, and safety are upheld across all protocol interactions while enabling powerful AI integrations.
+By following these security principles, MCP ensures user trust, privacy, and safety are maintained across all protocol interactions while enabling powerful AI integrations.
 
 ## Code Examples: Key Components
 
-Below are code examples in several popular programming languages that demonstrate how to implement key MCP server components and tools.
+Below are code examples in several popular programming languages that illustrate how to implement key MCP server components and tools.
 
 ### .NET Example: Creating a Simple MCP Server with Tools
 
-This practical .NET code example shows how to implement a simple MCP server with custom tools. It demonstrates how to define and register tools, handle requests, and connect the server using the Model Context Protocol.
+Here is a practical .NET code example demonstrating how to implement a simple MCP server with custom tools. This example showcases how to define and register tools, handle requests, and connect the server using the Model Context Protocol.
 
 ```csharp
 using System;
@@ -373,7 +373,7 @@ public class WeatherData
 
 ### Java Example: MCP Server Components
 
-This example illustrates the same MCP server and tool registration as the .NET example above, but implemented in Java.
+This example demonstrates the same MCP server and tool registration as the .NET example above, but implemented in Java.
 
 ```java
 import io.modelcontextprotocol.server.McpServer;
@@ -453,11 +453,11 @@ class WeatherData {
 
 ### Python Example: Building an MCP Server
 
-This example uses fastmcp, so ensure you install it first:
+This example uses fastmcp, so please ensure you install it first:
 
 ```python
 pip install fastmcp
-```  
+```
 Code Sample:
 
 ```python
@@ -504,7 +504,7 @@ if __name__ == "__main__":
 
 ### JavaScript Example: Creating an MCP Server
 
-This example demonstrates MCP server creation in JavaScript and how to register two weather-related tools.
+This example shows MCP server creation in JavaScript and how to register two weather-related tools.
 
 ```javascript
 // Using the official Model Context Protocol SDK
@@ -589,84 +589,85 @@ server.connect(transport).catch(console.error);
 console.log("Weather MCP Server started");
 ```
 
-This JavaScript example also shows how to create an MCP client that connects to a server, sends a prompt, and processes the response, including any tool calls made.
+This JavaScript example demonstrates how to create an MCP client that connects to a server, sends a prompt, and processes the response including any tool calls that were made.
 
 ## Security and Authorization
 
 MCP includes several built-in concepts and mechanisms for managing security and authorization throughout the protocol:
 
 1. **Tool Permission Control**:  
-   Clients can specify which tools a model is allowed to use during a session. This ensures that only explicitly authorized tools are accessible, reducing the risk of unintended or unsafe operations. Permissions can be configured dynamically based on user preferences, organizational policies, or the context of the interaction.
+  Clients can specify which tools a model is allowed to use during a session. This ensures that only explicitly authorized tools are accessible, reducing the risk of unintended or unsafe operations. Permissions can be configured dynamically based on user preferences, organizational policies, or the context of the interaction.
 
 2. **Authentication**:  
-   Servers can require authentication before granting access to tools, resources, or sensitive operations. This may involve API keys, OAuth tokens, or other authentication schemes. Proper authentication ensures that only trusted clients and users can invoke server-side capabilities.
+  Servers can require authentication before granting access to tools, resources, or sensitive operations. This may involve API keys, OAuth tokens, or other authentication schemes. Proper authentication ensures that only trusted clients and users can invoke server-side capabilities.
 
 3. **Validation**:  
-   Parameter validation is enforced for all tool invocations. Each tool defines the expected types, formats, and constraints for its parameters, and the server validates incoming requests accordingly. This prevents malformed or malicious input from reaching tool implementations and helps maintain the integrity of operations.
+  Parameter validation is enforced for all tool invocations. Each tool defines the expected types, formats, and constraints for its parameters, and the server validates incoming requests accordingly. This prevents malformed or malicious input from reaching tool implementations and helps maintain the integrity of operations.
 
 4. **Rate Limiting**:  
-   To prevent abuse and ensure fair usage of server resources, MCP servers can implement rate limiting for tool calls and resource access. Rate limits can be applied per user, per session, or globally, and help protect against denial-of-service attacks or excessive resource consumption.
+  To prevent abuse and ensure fair usage of server resources, MCP servers can implement rate limiting for tool calls and resource access. Rate limits can be applied per user, per session, or globally, and help protect against denial-of-service attacks or excessive resource consumption.
 
 By combining these mechanisms, MCP provides a secure foundation for integrating language models with external tools and data sources, while giving users and developers fine-grained control over access and usage.
 
 ## Protocol Messages & Communication Flow
 
-MCP communication uses structured **JSON-RPC 2.0** messages to enable clear and reliable interactions between hosts, clients, and servers. The protocol defines specific message patterns for different types of operations:
+MCP communication uses structured **JSON-RPC 2.0** messages to facilitate clear and reliable interactions between hosts, clients, and servers. The protocol defines specific message patterns for different types of operations:
 
 ### Core Message Types:
 
 #### **Initialization Messages**
-- **`initialize` Request**: Establishes connection and negotiates protocol version and capabilities.
-- **`initialize` Response**: Confirms supported features and server information.  
-- **`notifications/initialized`**: Signals that initialization is complete and the session is ready.
+- **`initialize` Request**: Establishes connection and negotiates protocol version and capabilities
+- **`initialize` Response**: Confirms supported features and server information  
+- **`notifications/initialized`**: Signals that initialization is complete and the session is ready
 
 #### **Discovery Messages**
-- **`tools/list` Request**: Discovers available tools from the server.
-- **`resources/list` Request**: Lists available resources (data sources).
-- **`prompts/list` Request**: Retrieves available prompt templates.
+- **`tools/list` Request**: Discovers available tools from the server
+- **`resources/list` Request**: Lists available resources (data sources)
+- **`prompts/list` Request**: Retrieves available prompt templates
 
 #### **Execution Messages**  
-- **`tools/call` Request**: Executes a specific tool with provided parameters.
-- **`resources/read` Request**: Retrieves content from a specific resource.
-- **`prompts/get` Request**: Fetches a prompt template with optional parameters.
+- **`tools/call` Request**: Executes a specific tool with provided parameters
+- **`resources/read` Request**: Retrieves content from a specific resource
+- **`prompts/get` Request**: Fetches a prompt template with optional parameters
 
 #### **Client-side Messages**
-- **`sampling/complete` Request**: Server requests LLM completion from the client.
-- **`elicitation/request`**: Server requests user input through the client interface.
-- **Logging Messages**: Server sends structured log messages to the client.
+- **`sampling/complete` Request**: Server requests LLM completion from the client
+- **`elicitation/request`**: Server requests user input through the client interface
+- **Logging Messages**: Server sends structured log messages to the client
 
 #### **Notification Messages**
-- **`notifications/tools/list_changed`**: Server notifies client of tool changes.
-- **`notifications/resources/list_changed`**: Server notifies client of resource changes.  
-- **`notifications/prompts/list_changed`**: Server notifies client of prompt changes.
+- **`notifications/tools/list_changed`**: Server notifies client of tool changes
+- **`notifications/resources/list_changed`**: Server notifies client of resource changes  
+- **`notifications/prompts/list_changed`**: Server notifies client of prompt changes
 
 ### Message Structure:
 
-All MCP messages follow the JSON-RPC 2.0 format with:
-- **Request Messages**: Include `id`, `method`, and optional `params`.
-- **Response Messages**: Include `id` and either `result` or `error`.  
-- **Notification Messages**: Include `method` and optional `params` (no `id` or response expected).
+All MCP messages follow JSON-RPC 2.0 format with:
+- **Request Messages**: Include `id`, `method`, and optional `params`
+- **Response Messages**: Include `id` and either `result` or `error`  
+- **Notification Messages**: Include `method` and optional `params` (no `id` or response expected)
 
-This structured communication ensures reliable, traceable, and extensible interactions, supporting advanced scenarios like real-time updates, tool chaining, and robust error handling.
+This structured communication ensures reliable, traceable, and extensible interactions supporting advanced scenarios like real-time updates, tool chaining, and robust error handling.
 
 ## Key Takeaways
 
-- **Architecture**: MCP uses a client-server architecture where hosts manage multiple client connections to servers.
-- **Participants**: The ecosystem includes hosts (AI applications), clients (protocol connectors), and servers (capability providers).
-- **Transport Mechanisms**: Communication supports STDIO (local) and Streamable HTTP with optional SSE (remote).
-- **Core Primitives**: Servers expose tools (executable functions), resources (data sources), and prompts (templates).
-- **Client Primitives**: Servers can request sampling (LLM completions), elicitation (user input), and logging from clients.
-- **Protocol Foundation**: Built on JSON-RPC 2.0 with date-based versioning (current: 2025-06-18).
-- **Real-time Capabilities**: Supports notifications for dynamic updates and real-time synchronization.
-- **Security First**: Explicit user consent, data privacy protection, and secure transport are core requirements.
+- **Architecture**: MCP uses a client-server architecture where hosts manage multiple client connections to servers
+- **Participants**: The ecosystem includes hosts (AI applications), clients (protocol connectors), and servers (capability providers)
+- **Transport Mechanisms**: Communication supports STDIO (local) and Streamable HTTP with optional SSE (remote)
+- **Core Primitives**: Servers expose tools (executable functions), resources (data sources), and prompts (templates)
+- **Client Primitives**: Servers can request sampling (LLM completions), elicitation (user input), and logging from clients
+- **Protocol Foundation**: Built on JSON-RPC 2.0 with date-based versioning (current: 2025-11-25)
+- **Real-time Capabilities**: Supports notifications for dynamic updates and real-time synchronization
+- **Security First**: Explicit user consent, data privacy protection, and secure transport are core requirements
 
 ## Exercise
 
 Design a simple MCP tool that would be useful in your domain. Define:
-1. What the tool would be named.
-2. What parameters it would accept.
-3. What output it would return.
-4. How a model might use this tool to solve user problems.
+1. What the tool would be named
+2. What parameters it would accept
+3. What output it would return
+4. How a model might use this tool to solve user problems
+
 
 ---
 
@@ -676,5 +677,7 @@ Next: [Chapter 2: Security](../02-Security/README.md)
 
 ---
 
-**Disclaimer**:  
-This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please note that automated translations may contain errors or inaccuracies. The original document in its native language should be regarded as the authoritative source. For critical information, professional human translation is recommended. We are not responsible for any misunderstandings or misinterpretations resulting from the use of this translation.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Disclaimer**:
+This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,73 +1,77 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "0c243c6189393ed7468e470ef2090049",
-  "translation_date": "2025-08-18T15:43:47+00:00",
+  "original_hash": "9351493ad29390d37f64bc6d84a03db5",
+  "translation_date": "2025-12-19T13:17:16+00:00",
   "source_file": "02-Security/mcp-security-controls-2025.md",
   "language_code": "no"
 }
 -->
-# MCP Sikkerhetskontroller - Oppdatering August 2025
+# MCP Sikkerhetskontroller - Oppdatering desember 2025
 
-> **Gjeldende Standard**: Dette dokumentet reflekterer [MCP Spesifikasjon 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) sikkerhetskrav og offisielle [MCP Sikkerhetsbestepraksis](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices).
+> **Gjeldende standard**: Dette dokumentet gjenspeiler [MCP Spesifikasjon 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) sikkerhetskrav og offisielle [MCP Sikkerhetsbeste praksis](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).
 
-Model Context Protocol (MCP) har utviklet seg betydelig med forbedrede sikkerhetskontroller som adresserer både tradisjonell programvaresikkerhet og AI-spesifikke trusler. Dette dokumentet gir omfattende sikkerhetskontroller for sikre MCP-implementeringer per august 2025.
+Model Context Protocol (MCP) har modnet betydelig med forbedrede sikkerhetskontroller som adresserer både tradisjonell programvaresikkerhet og AI-spesifikke trusler. Dette dokumentet gir omfattende sikkerhetskontroller for sikre MCP-implementeringer per desember 2025.
 
-## **OBLIGATORISKE Sikkerhetskrav**
+## **OBLIGATORISKE sikkerhetskrav**
 
-### **Kritiske Forbud fra MCP Spesifikasjon:**
+### **Kritiske forbud fra MCP-spesifikasjonen:**
 
 > **FORBUDT**: MCP-servere **MÅ IKKE** akseptere noen tokens som ikke eksplisitt er utstedt for MCP-serveren  
 >
-> **FORBUDT**: MCP-servere **MÅ IKKE** bruke sesjoner for autentisering  
+> **FORBUDT**: MCP-servere **MÅ IKKE** bruke økter for autentisering  
 >
 > **PÅKREVD**: MCP-servere som implementerer autorisasjon **MÅ** verifisere ALLE innkommende forespørsler  
 >
-> **OBLIGATORISK**: MCP proxy-servere som bruker statiske klient-IDer **MÅ** innhente brukerens samtykke for hver dynamisk registrerte klient  
+> **OBLIGATORISK**: MCP-proxyservere som bruker statiske klient-IDer **MÅ** innhente brukerens samtykke for hver dynamisk registrerte klient
 
 ---
 
 ## 1. **Autentisering & Autorisasjonskontroller**
 
-### **Integrasjon med Ekstern Identitetsleverandør**
+### **Integrasjon med ekstern identitetsleverandør**
 
-**Gjeldende MCP Standard (2025-06-18)** tillater MCP-servere å delegere autentisering til eksterne identitetsleverandører, noe som representerer en betydelig sikkerhetsforbedring:
+**Gjeldende MCP-standard (2025-06-18)** tillater MCP-servere å delegere autentisering til eksterne identitetsleverandører, noe som representerer en betydelig sikkerhetsforbedring:
+
+### **Integrasjon med ekstern identitetsleverandør**
+
+**Gjeldende MCP-standard (2025-11-25)** tillater MCP-servere å delegere autentisering til eksterne identitetsleverandører, noe som representerer en betydelig sikkerhetsforbedring:
 
 **Sikkerhetsfordeler:**
-1. **Eliminerer Risiko ved Egendefinert Autentisering**: Reduserer sårbarhet ved å unngå egendefinerte autentiseringsimplementasjoner  
-2. **Sikkerhet på Enterprise-Nivå**: Utnytter etablerte identitetsleverandører som Microsoft Entra ID med avanserte sikkerhetsfunksjoner  
-3. **Sentralisert Identitetsadministrasjon**: Forenkler administrasjon av brukerens livssyklus, tilgangskontroll og samsvarsrevisjoner  
-4. **Flerfaktorautentisering**: Arver MFA-funksjonalitet fra enterprise identitetsleverandører  
-5. **Betingede Tilgangspolicyer**: Drar nytte av risikobasert tilgangskontroll og adaptiv autentisering  
+1. **Eliminerer risiko ved egendefinert autentisering**: Reduserer sårbarhetsoverflaten ved å unngå egendefinerte autentiseringsimplementasjoner  
+2. **Sikkerhet på bedriftsnivå**: Utnytter etablerte identitetsleverandører som Microsoft Entra ID med avanserte sikkerhetsfunksjoner  
+3. **Sentralisert identitetsadministrasjon**: Forenkler brukerens livssyklusadministrasjon, tilgangskontroll og samsvarsauditering  
+4. **Multifaktorautentisering**: Arver MFA-funksjonalitet fra bedriftsidentitetsleverandører  
+5. **Betingede tilgangspolicyer**: Drar nytte av risikobaserte tilgangskontroller og adaptiv autentisering
 
 **Implementeringskrav:**
-- **Validering av Token Audience**: Verifiser at alle tokens eksplisitt er utstedt for MCP-serveren  
-- **Issuer-verifisering**: Bekreft at token-utsteder samsvarer med forventet identitetsleverandør  
+- **Validering av token-målgruppe**: Verifiser at alle tokens er eksplisitt utstedt for MCP-serveren  
+- **Utstederverifisering**: Bekreft at token-utsteder samsvarer med forventet identitetsleverandør  
 - **Signaturverifisering**: Kryptografisk validering av token-integritet  
-- **Håndheving av Utløp**: Streng håndheving av token-livstidsgrenser  
-- **Validering av Scope**: Sørg for at tokens inneholder passende tillatelser for forespurte operasjoner  
+- **Utløpshåndhevelse**: Streng håndhevelse av tokenets levetidsgrenser  
+- **Omfangsvalidering**: Sørg for at tokens inneholder passende tillatelser for forespurte operasjoner
 
-### **Sikkerhet i Autorisasjonslogikk**
+### **Sikkerhet for autorisasjonslogikk**
 
-**Kritiske Kontroller:**
-- **Omfattende Autorisasjonsrevisjoner**: Regelmessige sikkerhetsgjennomganger av alle autorisasjonsbeslutningspunkter  
-- **Fail-Safe Defaults**: Avslå tilgang når autorisasjonslogikken ikke kan ta en definitiv beslutning  
+**Kritiske kontroller:**
+- **Omfattende autorisasjonsrevisjoner**: Regelmessige sikkerhetsgjennomganger av alle autorisasjonsbeslutningspunkter  
+- **Feilsikre standarder**: Avvis tilgang når autorisasjonslogikken ikke kan fatte en entydig beslutning  
 - **Tillatelsesgrenser**: Klar separasjon mellom ulike privilegienivåer og ressursadgang  
 - **Revisjonslogging**: Fullstendig logging av alle autorisasjonsbeslutninger for sikkerhetsovervåking  
-- **Regelmessige Tilgangsrevisjoner**: Periodisk validering av brukerrettigheter og privilegietildelinger  
+- **Regelmessige tilgangsvurderinger**: Periodisk validering av brukerrettigheter og privilegietildelinger
 
-## 2. **Token Sikkerhet & Anti-Passthrough Kontroller**
+## 2. **Token-sikkerhet & Anti-passthrough-kontroller**
 
-### **Forebygging av Token Passthrough**
+### **Forebygging av token-passthrough**
 
-**Token passthrough er eksplisitt forbudt** i MCP Autorisasjonsspesifikasjonen på grunn av kritiske sikkerhetsrisikoer:
+**Token-passthrough er eksplisitt forbudt** i MCP Autorisasjonsspesifikasjonen på grunn av kritiske sikkerhetsrisikoer:
 
-**Sikkerhetsrisikoer adressert:**
-- **Omgåelse av Kontroller**: Omgår essensielle sikkerhetskontroller som hastighetsbegrensning, forespørselsvalidering og trafikkovervåking  
-- **Ansvarsbrudd**: Gjør klientidentifikasjon umulig, korrumperer revisjonsspor og hendelsesundersøkelser  
-- **Proxy-basert Eksfiltrering**: Lar ondsinnede aktører bruke servere som proxyer for uautorisert dataadgang  
-- **Brudd på Tillitsgrenser**: Ødelegger antagelser om token-opprinnelse i nedstrøms tjenester  
-- **Lateral Bevegelse**: Kompromitterte tokens på tvers av flere tjenester muliggjør bredere angrepsutvidelse  
+**Sikkerhetsrisikoer som adresseres:**
+- **Omgåelse av kontroll**: Omgår essensielle sikkerhetskontroller som hastighetsbegrensning, forespørselsvalidering og trafikkovervåking  
+- **Ansvarsfraskrivelse**: Gjør klientidentifikasjon umulig, noe som ødelegger revisjonsspor og hendelsesundersøkelser  
+- **Proxy-basert utvinning**: Gjør det mulig for ondsinnede aktører å bruke servere som proxyer for uautorisert dataadgang  
+- **Brudd på tillitsgrenser**: Bryter nedstrøms tjenesters tillitsantakelser om token-opprinnelse  
+- **Lateral bevegelse**: Kompromitterte tokens på tvers av flere tjenester muliggjør bredere angrepsutvidelse
 
 **Implementeringskontroller:**
 ```yaml
@@ -85,25 +89,25 @@ Token Lifecycle Management:
   replay_protection: "Implemented via nonce/timestamp"
 ```
 
-### **Sikre Tokenhåndteringsmønstre**
+### **Sikre tokenhåndteringsmønstre**
 
-**Beste Praksis:**
-- **Kortlevde Tokens**: Minimer eksponeringsvinduet med hyppig tokenrotasjon  
-- **Just-in-Time Utstedelse**: Utsted tokens kun når det er nødvendig for spesifikke operasjoner  
-- **Sikker Lagring**: Bruk maskinvare sikkerhetsmoduler (HSM) eller sikre nøkkelhvelv  
-- **Token Binding**: Bind tokens til spesifikke klienter, sesjoner eller operasjoner der det er mulig  
-- **Overvåking & Varsling**: Sanntidsdeteksjon av tokenmisbruk eller uautoriserte tilgangsmønstre  
+**Beste praksis:**
+- **Kortlivede tokens**: Minimer eksponeringsvindu med hyppig tokenrotasjon  
+- **Just-in-time-utstedelse**: Utsted tokens kun når nødvendig for spesifikke operasjoner  
+- **Sikker lagring**: Bruk hardware security modules (HSM) eller sikre nøkkellagre  
+- **Tokenbinding**: Bind tokens til spesifikke klienter, økter eller operasjoner der det er mulig  
+- **Overvåking & varsling**: Sanntidsdeteksjon av tokenmisbruk eller uautorisert tilgangsmønstre
 
-## 3. **Sesjonssikkerhetskontroller**
+## 3. **Økt-sikkerhetskontroller**
 
-### **Forebygging av Sesjonshijacking**
+### **Forebygging av øktkapring**
 
-**Angrepsvektorer adressert:**
-- **Sesjonshijacking via Prompt Injection**: Ondsinnede hendelser injisert i delt sesjonstilstand  
-- **Sesjonsimitasjon**: Uautorisert bruk av stjålne sesjons-IDer for å omgå autentisering  
-- **Angrep på Resumerbare Strømmer**: Utnyttelse av server-sendt hendelsesgjenopptakelse for ondsinnet innholdsinjeksjon  
+**Angrepsvektorer som adresseres:**
+- **Øktkapring via promptinjeksjon**: Ondsinnede hendelser injisert i delt økttilstand  
+- **Øktetterligning**: Uautorisert bruk av stjålne økt-IDer for å omgå autentisering  
+- **Gjenopptakbare strømangrep**: Utnyttelse av server-sendte hendelsesgjenopptak for ondsinnet innholdsinjeksjon
 
-**Obligatoriske Sesjonskontroller:**
+**Obligatoriske øktkontroller:**
 ```yaml
 Session ID Generation:
   randomness_source: "Cryptographically secure RNG"
@@ -123,28 +127,28 @@ Session Lifecycle:
   cleanup: "Automated expired session removal"
 ```
 
-**Transport Sikkerhet:**
-- **HTTPS Håndheving**: All sesjonskommunikasjon over TLS 1.3  
-- **Sikre Cookie Attributter**: HttpOnly, Secure, SameSite=Strict  
-- **Sertifikatpinnering**: For kritiske forbindelser for å forhindre MITM-angrep  
+**Transport-sikkerhet:**
+- **HTTPS-håndhevelse**: All øktkommunikasjon over TLS 1.3  
+- **Sikre cookie-attributter**: HttpOnly, Secure, SameSite=Strict  
+- **Sertifikatpinning**: For kritiske tilkoblinger for å forhindre MITM-angrep
 
-### **Stateful vs Stateless Betraktninger**
+### **Tilstandsstyrt vs tilstandsløs vurdering**
 
-**For Stateful Implementeringer:**
-- Delt sesjonstilstand krever ekstra beskyttelse mot injeksjonsangrep  
-- Købasert sesjonshåndtering trenger integritetsverifisering  
-- Flere serverinstanser krever sikker synkronisering av sesjonstilstand  
+**For tilstandsstyrte implementeringer:**
+- Delt økttilstand krever ekstra beskyttelse mot injeksjonsangrep  
+- Købasert øktadministrasjon trenger integritetsverifisering  
+- Flere serverinstanser krever sikker synkronisering av økttilstand
 
-**For Stateless Implementeringer:**
-- JWT eller lignende token-basert sesjonshåndtering  
-- Kryptografisk verifisering av sesjonstilstandens integritet  
-- Redusert angrepsflate, men krever robust tokenvalidering  
+**For tilstandsløse implementeringer:**
+- JWT eller lignende tokenbasert øktadministrasjon  
+- Kryptografisk verifisering av økttilstands integritet  
+- Redusert angrepsflate, men krever robust tokenvalidering
 
-## 4. **AI-Spesifikke Sikkerhetskontroller**
+## 4. **AI-spesifikke sikkerhetskontroller**
 
-### **Forsvar mot Prompt Injection**
+### **Forsvar mot promptinjeksjon**
 
-**Microsoft Prompt Shields Integrasjon:**
+**Integrasjon med Microsoft Prompt Shields:**
 ```yaml
 Detection Mechanisms:
   - "Advanced ML-based instruction detection"
@@ -163,14 +167,14 @@ Integration Points:
 ```
 
 **Implementeringskontroller:**
-- **Input Sanitization**: Omfattende validering og filtrering av alle brukerinput  
-- **Definisjon av Innholdsgrenser**: Klar separasjon mellom systeminstruksjoner og brukerinnhold  
-- **Instruksjonshierarki**: Riktige prioriteringsregler for motstridende instruksjoner  
-- **Output Overvåking**: Deteksjon av potensielt skadelige eller manipulerte utdata  
+- **Inndata-sanitær**: Omfattende validering og filtrering av all brukerinput  
+- **Definisjon av innholdsgrenser**: Klar separasjon mellom systeminstruksjoner og brukerinhold  
+- **Instruksjonshierarki**: Korrekte prioriteringsregler for motstridende instruksjoner  
+- **Utgangsovervåking**: Deteksjon av potensielt skadelig eller manipulert output
 
-### **Forebygging av Verktøyforgiftning**
+### **Forebygging av verktøyforgiftning**
 
-**Sikkerhetsrammeverk for Verktøy:**
+**Sikkerhetsrammeverk for verktøy:**
 ```yaml
 Tool Definition Protection:
   validation:
@@ -192,17 +196,17 @@ Tool Definition Protection:
     - "Automated alerting for suspicious modifications"
 ```
 
-**Dynamisk Verktøyhåndtering:**
-- **Godkjenningsarbeidsflyter**: Eksplisitt brukersamtykke for verktøysmodifikasjoner  
-- **Tilbakerullingsmuligheter**: Mulighet til å gjenopprette tidligere verktøyversjoner  
-- **Endringsrevisjon**: Fullstendig historikk over verktøydefinisjonsendringer  
-- **Risikovurdering**: Automatisk evaluering av verktøyets sikkerhetsstatus  
+**Dynamisk verktøyadministrasjon:**
+- **Godkjenningsarbeidsflyter**: Eksplisitt brukersamtykke for verktøymodifikasjoner  
+- **Tilbakerullingsmuligheter**: Evne til å gå tilbake til tidligere verktøyversjoner  
+- **Endringsrevisjon**: Fullstendig historikk over endringer i verktøydefinisjoner  
+- **Risikovurdering**: Automatisk evaluering av verktøys sikkerhetsstatus
 
-## 5. **Forebygging av Confused Deputy Angrep**
+## 5. **Forebygging av Confused Deputy-angrep**
 
-### **OAuth Proxy Sikkerhet**
+### **OAuth Proxy-sikkerhet**
 
-**Angrepsforebyggende Kontroller:**
+**Forebyggende kontroller:**
 ```yaml
 Client Registration:
   static_client_protection:
@@ -219,16 +223,16 @@ Client Registration:
 ```
 
 **Implementeringskrav:**
-- **Verifisering av Brukersamtykke**: Aldri hopp over samtykkeskjermer for dynamisk klientregistrering  
-- **Validering av Redirect URI**: Streng validering basert på hviteliste av omdirigeringsdestinasjoner  
-- **Beskyttelse av Autorisasjonskode**: Kortlevde koder med håndheving av engangsbruk  
-- **Validering av Klientidentitet**: Robust validering av klientlegitimasjon og metadata  
+- **Verifisering av brukersamtykke**: Aldri hopp over samtykkeskjermer for dynamisk klientregistrering  
+- **Validering av redirect URI**: Streng hvitelistebasert validering av omdirigeringsdestinasjoner  
+- **Beskyttelse av autorisasjonskode**: Kortlivede koder med håndheving av engangsbruk  
+- **Verifisering av klientidentitet**: Robust validering av klientlegitimasjon og metadata
 
-## 6. **Sikkerhet ved Verktøyutførelse**
+## 6. **Sikkerhet ved verktøykjøring**
 
-### **Sandboxing & Isolasjon**
+### **Sandboxing & isolasjon**
 
-**Container-basert Isolasjon:**
+**Containerbasert isolasjon:**
 ```yaml
 Execution Environment:
   containerization: "Docker/Podman with security profiles"
@@ -246,12 +250,12 @@ Execution Environment:
 ```
 
 **Prosessisolasjon:**
-- **Separate Prosesskontekster**: Hver verktøyutførelse i isolert prosessrom  
-- **Inter-Prosess Kommunikasjon**: Sikre IPC-mekanismer med validering  
-- **Prosessovervåking**: Analyse av runtime-adferd og deteksjon av avvik  
-- **Ressurshåndheving**: Strenge grenser på CPU, minne og I/O-operasjoner  
+- **Separate prosesskontekster**: Hver verktøykjøring i isolert prosessrom  
+- **Inter-prosess kommunikasjon**: Sikker IPC-mekanismer med validering  
+- **Prosessovervåking**: Kjøretidsanalyse av oppførsel og anomali-deteksjon  
+- **Ressurshåndhevelse**: Strenge grenser for CPU, minne og I/O-operasjoner
 
-### **Implementering av Minste Privilegium**
+### **Implementering av minste privilegium**
 
 **Tillatelsesadministrasjon:**
 ```yaml
@@ -274,11 +278,11 @@ Access Control:
     - "Restricted environment variable access"
 ```
 
-## 7. **Forsyningskjede Sikkerhetskontroller**
+## 7. **Sikkerhetskontroller for forsyningskjeden**
 
-### **Verifisering av Avhengigheter**
+### **Avhengighetsverifisering**
 
-**Omfattende Komponent Sikkerhet:**
+**Omfattende komponent-sikkerhet:**
 ```yaml
 Software Dependencies:
   scanning: 
@@ -307,19 +311,19 @@ AI Components:
     - "Incident response capability evaluation"
 ```
 
-### **Kontinuerlig Overvåking**
+### **Kontinuerlig overvåking**
 
-**Trusseldeteksjon i Forsyningskjeden:**
-- **Overvåking av Avhengighetshelse**: Kontinuerlig vurdering av alle avhengigheter for sikkerhetsproblemer  
-- **Integrasjon av Trusselintelligens**: Sanntidsoppdateringer om fremvoksende trusler i forsyningskjeden  
-- **Adferdsanalyse**: Deteksjon av uvanlig adferd i eksterne komponenter  
-- **Automatisk Respons**: Umiddelbar inneslutning av kompromitterte komponenter  
+**Trusseldeteksjon i forsyningskjeden:**
+- **Overvåking av avhengigheters helse**: Kontinuerlig vurdering av alle avhengigheter for sikkerhetsproblemer  
+- **Integrasjon av trusselintelligens**: Sanntidsoppdateringer om nye trusler i forsyningskjeden  
+- **Atferdsanalyse**: Deteksjon av uvanlig oppførsel i eksterne komponenter  
+- **Automatisk respons**: Umiddelbar inneslutning av kompromitterte komponenter
 
-## 8. **Overvåkings- & Deteksjonskontroller**
+## 8. **Overvåking & deteksjonskontroller**
 
-### **Sikkerhetsinformasjon og Hendelseshåndtering (SIEM)**
+### **Sikkerhetsinformasjon og hendelseshåndtering (SIEM)**
 
-**Omfattende Loggstrategi:**
+**Omfattende loggestrategi:**
 ```yaml
 Authentication Events:
   - "All authentication attempts (success/failure)"
@@ -340,19 +344,19 @@ Security Events:
   - "Unusual access patterns and anomalies"
 ```
 
-### **Sanntids Trusseldeteksjon**
+### **Sanntids trusseldeteksjon**
 
-**Adferdsanalyse:**
-- **Brukeradferdsanalyse (UBA)**: Deteksjon av uvanlige brukeradgangsmønstre  
-- **Enhetsadferdsanalyse (EBA)**: Overvåking av MCP-server og verktøysadferd  
-- **Maskinlæringsbasert Anomalideteksjon**: AI-drevet identifikasjon av sikkerhetstrusler  
-- **Korrelasjon av Trusselintelligens**: Matching av observerte aktiviteter mot kjente angrepsmønstre  
+**Atferdsanalyse:**
+- **Brukeratferdsanalyse (UBA)**: Deteksjon av uvanlige brukeradgangsmønstre  
+- **Enhetsatferdsanalyse (EBA)**: Overvåking av MCP-server og verktøyadferd  
+- **Maskinlæringsbasert anomali-deteksjon**: AI-drevet identifisering av sikkerhetstrusler  
+- **Korrelasjon med trusselintelligens**: Sammenstilling av observerte aktiviteter med kjente angrepsmønstre
 
-## 9. **Hendelseshåndtering & Gjenoppretting**
+## 9. **Hendelseshåndtering & gjenoppretting**
 
-### **Automatiserte Responsmuligheter**
+### **Automatiserte responsmuligheter**
 
-**Umiddelbare Responshandlinger:**
+**Umiddelbare responshandlinger:**
 ```yaml
 Threat Containment:
   session_management:
@@ -377,54 +381,58 @@ Recovery Procedures:
     - "Service restart procedures"
 ```
 
-### **Forensiske Muligheter**
+### **Forensiske muligheter**
 
-**Støtte for Undersøkelser:**
-- **Bevaring av Revisjonsspor**: Uforanderlig logging med kryptografisk integritet  
-- **Innsamling av Bevis**: Automatisk innhenting av relevante sikkerhetsartefakter  
-- **Rekonstruksjon av Tidslinje**: Detaljert sekvens av hendelser som ledet til sikkerhetshendelser  
-- **Vurdering av Påvirkning**: Evaluering av kompromissets omfang og dataeksponering  
+**Støtte for etterforskning:**
+- **Bevaring av revisjonsspor**: Uforanderlig logging med kryptografisk integritet  
+- **Innsamling av bevis**: Automatisk innsamling av relevante sikkerhetsartefakter  
+- **Tidslinjegjenskapning**: Detaljert sekvens av hendelser som ledet til sikkerhetshendelser  
+- **Vurdering av påvirkning**: Evaluering av omfanget av kompromittering og dataeksponering
 
-## **Viktige Prinsipper for Sikkerhetsarkitektur**
+## **Nøkkelprinsipper for sikkerhetsarkitektur**
 
-### **Forsvar i Dybden**
-- **Flere Sikkerhetslag**: Ingen enkelt feilpunkt i sikkerhetsarkitekturen  
-- **Redundante Kontroller**: Overlappende sikkerhetstiltak for kritiske funksjoner  
-- **Fail-Safe Mekanismer**: Sikre standarder når systemer møter feil eller angrep  
+### **Forsvar i dybden**
+- **Flere sikkerhetslag**: Ingen enkelt feilpunkt i sikkerhetsarkitekturen  
+- **Redundante kontroller**: Overlappende sikkerhetstiltak for kritiske funksjoner  
+- **Feilsikre mekanismer**: Sikre standarder når systemer møter feil eller angrep
 
-### **Implementering av Null Tillit**
-- **Aldri Stol, Alltid Verifiser**: Kontinuerlig validering av alle enheter og forespørsler  
-- **Prinsippet om Minste Privilegium**: Minimal tilgangsrettigheter for alle komponenter  
-- **Mikrosegmentering**: Granulære nettverks- og tilgangskontroller  
+### **Zero Trust-implementering**
+- **Aldri stol på, alltid verifiser**: Kontinuerlig validering av alle enheter og forespørsler  
+- **Prinsippet om minste privilegium**: Minimale tilgangsrettigheter for alle komponenter  
+- **Mikrosegmentering**: Granulære nettverks- og tilgangskontroller
 
-### **Kontinuerlig Sikkerhetsutvikling**
-- **Tilpasning til Trussellandskap**: Regelmessige oppdateringer for å adressere fremvoksende trusler  
-- **Effektivitet av Sikkerhetskontroller**: Løpende evaluering og forbedring av kontroller  
-- **Samsvar med Spesifikasjoner**: Justering med utviklende MCP-sikkerhetsstandarder  
+### **Kontinuerlig sikkerhetsevolusjon**
+- **Tilpasning til trussellandskapet**: Regelmessige oppdateringer for å adressere nye trusler  
+- **Effektivitet av sikkerhetskontroller**: Løpende evaluering og forbedring av kontroller  
+- **Samsvar med spesifikasjoner**: Tilpasning til utviklende MCP-sikkerhetsstandarder
 
 ---
 
 ## **Implementeringsressurser**
 
-### **Offisiell MCP Dokumentasjon**
-- [MCP Spesifikasjon (2025-06-18)](https://spec.modelcontextprotocol.io/specification/2025-06-18/)  
-- [MCP Sikkerhetsbestepraksis](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices)  
-- [MCP Autorisasjonsspesifikasjon](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization)  
+### **Offisiell MCP-dokumentasjon**
+- [MCP Spesifikasjon (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Sikkerhetsbeste praksis](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices)
+- [MCP Autorisasjonsspesifikasjon](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)
 
-### **Microsoft Sikkerhetsløsninger**
-- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)  
-- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)  
-- [GitHub Advanced Security](https://github.com/security/advanced-security)  
-- [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/)  
+### **Microsoft sikkerhetsløsninger**
+- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
+- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)
+- [GitHub Advanced Security](https://github.com/security/advanced-security)
+- [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/)
 
 ### **Sikkerhetsstandarder**
-- [OAuth 2.0 Sikkerhetsbestepraksis (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)  
-- [OWASP Topp 10 for Store Språkmodeller](https://genai.owasp.org/)  
-- [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework)  
+- [OAuth 2.0 Security Best Practices (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)
+- [OWASP Topp 10 for store språkmodeller](https://genai.owasp.org/)
+- [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework)
 
 ---
 
-> **Viktig**: Disse sikkerhetskontrollene reflekterer gjeldende MCP spesifikasjon (2025-06-18). Verifiser alltid mot den nyeste [offisielle dokumentasjonen](https://spec.modelcontextprotocol.io/) ettersom standarder utvikler seg raskt.  
+> **Viktig**: Disse sikkerhetskontrollene gjenspeiler gjeldende MCP-spesifikasjon (2025-06-18). Verifiser alltid mot den nyeste [offisielle dokumentasjonen](https://spec.modelcontextprotocol.io/) da standarder utvikler seg raskt.
 
-**Ansvarsfraskrivelse**:  
-Dette dokumentet er oversatt ved hjelp av AI-oversettelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selv om vi tilstreber nøyaktighet, vær oppmerksom på at automatiserte oversettelser kan inneholde feil eller unøyaktigheter. Det originale dokumentet på sitt opprinnelige språk bør anses som den autoritative kilden. For kritisk informasjon anbefales profesjonell menneskelig oversettelse. Vi er ikke ansvarlige for misforståelser eller feiltolkninger som oppstår ved bruk av denne oversettelsen.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Ansvarsfraskrivelse**:
+Dette dokumentet er oversatt ved hjelp av AI-oversettelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selv om vi streber etter nøyaktighet, vennligst vær oppmerksom på at automatiske oversettelser kan inneholde feil eller unøyaktigheter. Det opprinnelige dokumentet på originalspråket skal anses som den autoritative kilden. For kritisk informasjon anbefales profesjonell menneskelig oversettelse. Vi er ikke ansvarlige for eventuelle misforståelser eller feiltolkninger som oppstår ved bruk av denne oversettelsen.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

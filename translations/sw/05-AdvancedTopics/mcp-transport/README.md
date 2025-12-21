@@ -1,45 +1,45 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "c71c60af76120a517809a6cfba47e9a3",
-  "translation_date": "2025-09-15T21:39:38+00:00",
+  "original_hash": "cf3e88e4c0b2d9d65c7f300986bd8c6c",
+  "translation_date": "2025-12-19T15:08:32+00:00",
   "source_file": "05-AdvancedTopics/mcp-transport/README.md",
   "language_code": "sw"
 }
 -->
-# MCP Custom Transports - Mwongozo wa Utekelezaji wa Juu
+# MCP Usafirishaji Maalum - Mwongozo wa Utekelezaji wa Juu
 
-Model Context Protocol (MCP) hutoa urahisi katika mifumo ya usafirishaji, ikiruhusu utekelezaji maalum kwa mazingira maalum ya biashara. Mwongozo huu wa juu unachunguza utekelezaji wa usafirishaji maalum kwa kutumia Azure Event Grid na Azure Event Hubs kama mifano ya vitendo ya kujenga suluhisho za MCP zinazoweza kupanuka na zinazotegemea wingu.
+Itifaki ya Muktadha wa Mfano (MCP) inatoa unyumbufu katika mbinu za usafirishaji, ikiruhusu utekelezaji maalum kwa mazingira maalum ya biashara. Mwongozo huu wa juu unachunguza utekelezaji wa usafirishaji maalum kwa kutumia Azure Event Grid na Azure Event Hubs kama mifano ya vitendo ya kujenga suluhisho za MCP zinazoweza kupanuka na asili ya wingu.
 
 ## Utangulizi
 
-Ingawa usafirishaji wa kawaida wa MCP (stdio na HTTP streaming) unatosheleza matumizi mengi, mazingira ya biashara mara nyingi yanahitaji mifumo maalum ya usafirishaji kwa kuboresha upanuzi, uaminifu, na ujumuishaji na miundombinu ya wingu iliyopo. Usafirishaji maalum huwezesha MCP kutumia huduma za ujumbe zinazotegemea wingu kwa mawasiliano ya asinkroni, usanifu unaotegemea matukio, na usindikaji uliosambazwa.
+Wakati usafirishaji wa kawaida wa MCP (stdio na uchezaji wa HTTP) unahudumia matumizi mengi, mazingira ya biashara mara nyingi yanahitaji mbinu maalum za usafirishaji kwa ajili ya kuongeza uwezo wa kupanuka, kuaminika, na kuunganishwa na miundombinu ya wingu iliyopo. Usafirishaji maalum unamwezesha MCP kutumia huduma za ujumbe za asili za wingu kwa mawasiliano yasiyo ya papo hapo, usanifu unaoendeshwa na matukio, na usindikaji uliosambazwa.
 
-Somo hili linachunguza utekelezaji wa usafirishaji wa juu kulingana na vipimo vya hivi karibuni vya MCP (2025-06-18), huduma za ujumbe za Azure, na mifumo ya ujumuishaji wa biashara iliyothibitishwa.
+Somo hili linachunguza utekelezaji wa usafirishaji wa juu kulingana na sifa za hivi karibuni za MCP (2025-11-25), huduma za ujumbe za Azure, na mifumo iliyothibitishwa ya kuunganisha biashara.
 
-### **Usanifu wa Usafirishaji wa MCP**
+### **Mimaarifa ya Usafirishaji wa MCP**
 
-**Kutoka kwa Vipimo vya MCP (2025-06-18):**
+**Kutoka kwa Sifa za MCP (2025-11-25):**
 
-- **Usafirishaji wa Kawaida**: stdio (inapendekezwa), HTTP streaming (kwa hali za mbali)
+- **Usafirishaji wa Kawaida**: stdio (inapendekezwa), uchezaji wa HTTP (kwa hali za mbali)
 - **Usafirishaji Maalum**: Usafirishaji wowote unaotekeleza itifaki ya kubadilishana ujumbe ya MCP
-- **Muundo wa Ujumbe**: JSON-RPC 2.0 na upanuzi maalum wa MCP
-- **Mawasiliano ya Pande Mbili**: Mawasiliano ya duplex kamili yanahitajika kwa arifa na majibu
+- **Muundo wa Ujumbe**: JSON-RPC 2.0 na nyongeza maalum za MCP
+- **Mawasiliano ya Mwelekeo Mbili**: Mawasiliano ya duplex kamili yanahitajika kwa taarifa na majibu
 
 ## Malengo ya Kujifunza
 
 Mwisho wa somo hili la juu, utaweza:
 
-- **Kuelewa Mahitaji ya Usafirishaji Maalum**: Tekeleza itifaki ya MCP juu ya safu yoyote ya usafirishaji huku ukizingatia vipimo
-- **Jenga Usafirishaji wa Azure Event Grid**: Unda seva za MCP zinazotegemea matukio kwa kutumia Azure Event Grid kwa upanuzi wa bila seva
-- **Tekeleza Usafirishaji wa Azure Event Hubs**: Buni suluhisho za MCP zenye kasi ya juu kwa kutumia Azure Event Hubs kwa utiririshaji wa wakati halisi
-- **Tumia Mifumo ya Biashara**: Jumuisha usafirishaji maalum na miundombinu ya Azure iliyopo na mifumo ya usalama
-- **Shughulikia Uaminifu wa Usafirishaji**: Tekeleza uimara wa ujumbe, mpangilio, na utunzaji wa makosa kwa hali za biashara
-- **Boresha Utendaji**: Buni suluhisho za usafirishaji kwa mahitaji ya upanuzi, ucheleweshaji, na kasi
+- **Kuelewa Mahitaji ya Usafirishaji Maalum**: Tekeleza itifaki ya MCP juu ya safu yoyote ya usafirishaji huku ukizingatia ufuataji
+- **Kujenga Usafirishaji wa Azure Event Grid**: Tengeneza seva za MCP zinazoendeshwa na matukio kwa kutumia Azure Event Grid kwa upanuzi usio na seva
+- **Kutekeleza Usafirishaji wa Azure Event Hubs**: Buni suluhisho za MCP zenye mtiririko wa juu kwa kutumia Azure Event Hubs kwa uchezaji wa wakati halisi
+- **Tumia Mifumo ya Biashara**: Unganisha usafirishaji maalum na miundombinu ya Azure iliyopo na mifano ya usalama
+- **Shughulikia Uaminifu wa Usafirishaji**: Tekeleza uimara wa ujumbe, upangaji, na usimamizi wa makosa kwa hali za biashara
+- **Boresha Utendaji**: Buni suluhisho za usafirishaji kwa mahitaji ya upanuzi, ucheleweshaji, na mtiririko
 
 ## **Mahitaji ya Usafirishaji**
 
-### **Mahitaji Muhimu kutoka kwa Vipimo vya MCP (2025-06-18):**
+### **Mahitaji Muhimu kutoka kwa Sifa za MCP (2025-11-25):**
 
 ```yaml
 Message Protocol:
@@ -60,25 +60,24 @@ Custom Transport:
 
 ## **Utekelezaji wa Usafirishaji wa Azure Event Grid**
 
-Azure Event Grid hutoa huduma ya usafirishaji wa matukio bila seva inayofaa kwa usanifu wa MCP unaotegemea matukio. Utekelezaji huu unaonyesha jinsi ya kujenga mifumo ya MCP inayoweza kupanuka na iliyounganishwa kwa urahisi.
+Azure Event Grid hutoa huduma ya kuongoza matukio isiyo na seva inayofaa kwa usanifu wa MCP unaoendeshwa na matukio. Utekelezaji huu unaonyesha jinsi ya kujenga mifumo ya MCP inayoweza kupanuka na isiyounganishwa kwa karibu.
 
-### **Muhtasari wa Usanifu**
+### **Muhtasari wa Mimaarifa**
 
 ```mermaid
 graph TB
-    Client[MCP Client] --> EG[Azure Event Grid]
-    EG --> Server[MCP Server Function]
+    Client[MCP Mteja] --> EG[Azure Event Grid]
+    EG --> Server[Kazi ya Seva ya MCP]
     Server --> EG
     EG --> Client
     
-    subgraph "Azure Services"
+    subgraph "Huduma za Azure"
         EG
         Server
-        KV[Key Vault]
-        Monitor[Application Insights]
+        KV[Hazina ya Funguo]
+        Monitor[Uchunguzi wa Maombi]
     end
 ```
-
 ### **Utekelezaji wa C# - Usafirishaji wa Event Grid**
 
 ```csharp
@@ -185,14 +184,14 @@ export class EventGridMcpTransport implements McpTransport {
         await this.publisher.sendEvents([event]);
     }
     
-    // Event-driven receive via Azure Functions
+    // Kupokea kwa tukio kupitia Azure Functions
     onMessage(handler: (message: McpMessage) => Promise<void>): void {
-        // Implementation would use Azure Functions Event Grid trigger
-        // This is a conceptual interface for the webhook receiver
+        // Utekelezaji utatumia Azure Functions Event Grid trigger
+        // Hii ni kiolesura cha dhana kwa mpokeaji wa webhook
     }
 }
 
-// Azure Functions implementation
+// Utekelezaji wa Azure Functions
 import { app, InvocationContext, EventGridEvent } from "@azure/functions";
 
 app.eventGrid("mcpEventGridHandler", {
@@ -200,10 +199,10 @@ app.eventGrid("mcpEventGridHandler", {
         try {
             const mcpMessage = event.data as McpMessage;
             
-            // Process MCP message
+            // Kusindika ujumbe wa MCP
             const response = await mcpServer.processMessage(mcpMessage);
             
-            // Send response via Event Grid
+            // Tuma jibu kupitia Event Grid
             await transport.sendMessage(response);
             
         } catch (error) {
@@ -249,21 +248,21 @@ class EventGridMcpTransport:
         """Register message handler for incoming events"""
         self.message_handler = handler
 
-# Azure Functions implementation
+# Utekelezaji wa Azure Functions
 import azure.functions as func
 import logging
 
 def main(event: func.EventGridEvent) -> None:
     """Azure Functions Event Grid trigger for MCP messages"""
     try:
-        # Parse MCP message from Event Grid event
+        # Tafsiri ujumbe wa MCP kutoka kwa tukio la Event Grid
         mcp_message = json.loads(event.get_body().decode('utf-8'))
         
-        # Process MCP message
+        # Chakata ujumbe wa MCP
         response = process_mcp_message(mcp_message)
         
-        # Send response back via Event Grid
-        # (Implementation would create new Event Grid client)
+        # Tuma jibu kurudi kupitia Event Grid
+        # (Utekelezaji utaunda mteja mpya wa Event Grid)
         
     except Exception as e:
         logging.error(f"Error processing MCP Event Grid message: {e}")
@@ -272,28 +271,27 @@ def main(event: func.EventGridEvent) -> None:
 
 ## **Utekelezaji wa Usafirishaji wa Azure Event Hubs**
 
-Azure Event Hubs hutoa uwezo wa utiririshaji wa wakati halisi na kasi ya juu kwa hali za MCP zinazohitaji ucheleweshaji mdogo na kiasi kikubwa cha ujumbe.
+Azure Event Hubs hutoa uwezo wa mtiririko wa juu wa wakati halisi kwa hali za MCP zinazohitaji ucheleweshaji mdogo na kiasi kikubwa cha ujumbe.
 
-### **Muhtasari wa Usanifu**
+### **Muhtasari wa Mimaarifa**
 
 ```mermaid
 graph TB
-    Client[MCP Client] --> EH[Azure Event Hubs]
-    EH --> Server[MCP Server]
+    Client[MCP Mteja] --> EH[Azure Event Hubs]
+    EH --> Server[MCP Seva]
     Server --> EH
     EH --> Client
     
-    subgraph "Event Hubs Features"
-        Partition[Partitioning]
-        Retention[Message Retention]
-        Scaling[Auto Scaling]
+    subgraph "Vipengele vya Event Hubs"
+        Partition[Ugawaji]
+        Retention[Uhifadhi wa Ujumbe]
+        Scaling[Kupanua Kiotomatiki]
     end
     
     EH --> Partition
     EH --> Retention
     EH --> Scaling
 ```
-
 ### **Utekelezaji wa C# - Usafirishaji wa Event Hubs**
 
 ```csharp
@@ -427,7 +425,7 @@ export class EventHubsMcpTransport implements McpTransport {
                         
                         await messageHandler(mcpMessage);
                         
-                        // Update checkpoint for at-least-once delivery
+                        // Sasisha alama ya ukaguzi kwa utoaji wa angalau mara moja
                         await context.updateCheckpoint(event);
                     } catch (error) {
                         console.error("Error processing Event Hubs message:", error);
@@ -480,11 +478,11 @@ class EventHubsMcpTransport:
         """Send MCP message via Event Hubs"""
         event_data = EventData(json.dumps(message))
         
-        # Add MCP-specific properties
+        # Ongeza mali maalum za MCP
         event_data.properties = {
             "messageType": message.get("method", "response"),
             "messageId": message.get("id"),
-            "timestamp": "2025-01-14T10:30:00Z"  # Use actual timestamp
+            "timestamp": "2025-01-14T10:30:00Z"  # Tumia alama ya wakati halisi
         }
         
         async with self.producer:
@@ -505,21 +503,21 @@ class EventHubsMcpTransport:
         async with self.consumer:
             await self.consumer.receive(
                 on_event=self._on_event_received(message_handler),
-                starting_position="-1"  # Start from beginning
+                starting_position="-1"  # Anza kutoka mwanzo
             )
     
     def _on_event_received(self, handler: Callable):
         """Internal event handler wrapper"""
         async def handle_event(partition_context, event):
             try:
-                # Parse MCP message from Event Hubs event
+                # Tafsiri ujumbe wa MCP kutoka kwa tukio la Event Hubs
                 message_body = event.body_as_str(encoding='UTF-8')
                 mcp_message = json.loads(message_body)
                 
-                # Process MCP message
+                # Chakata ujumbe wa MCP
                 await handler(mcp_message)
                 
-                # Update checkpoint for at-least-once delivery
+                # Sasisha alama ya ukaguzi kwa usambazaji wa angalau mara moja
                 await partition_context.update_checkpoint(event)
                 
             except Exception as e:
@@ -536,7 +534,7 @@ class EventHubsMcpTransport:
 
 ## **Mifumo ya Usafirishaji ya Juu**
 
-### **Uimara wa Ujumbe na Uaminifu**
+### **Uimara na Uaminifu wa Ujumbe**
 
 ```csharp
 // Implementing message durability with retry logic
@@ -563,7 +561,7 @@ public class ReliableTransportWrapper : IMcpTransport
 }
 ```
 
-### **Ujumuishaji wa Usalama wa Usafirishaji**
+### **Uunganishaji wa Usalama wa Usafirishaji**
 
 ```csharp
 // Integrating Azure Key Vault for transport security
@@ -585,7 +583,7 @@ public class SecureTransportFactory
 }
 ```
 
-### **Ufuatiliaji na Uangalizi wa Usafirishaji**
+### **Ufuatiliaji na Uwezo wa Kuonekana wa Usafirishaji**
 
 ```csharp
 // Adding telemetry to custom transports
@@ -624,11 +622,11 @@ public class ObservableTransport : IMcpTransport
 }
 ```
 
-## **Hali za Ujumuishaji wa Biashara**
+## **Hali za Kuunganisha Biashara**
 
-### **Hali ya 1: Usindikaji wa MCP Uliosambazwa**
+### **Hali 1: Usindikaji wa MCP Uliosambazwa**
 
-Kutumia Azure Event Grid kusambaza maombi ya MCP kwenye nodi nyingi za usindikaji:
+Kutumia Azure Event Grid kusambaza maombi ya MCP kwa nodi nyingi za usindikaji:
 
 ```yaml
 Architecture:
@@ -642,9 +640,9 @@ Benefits:
   - Cost optimization with serverless compute
 ```
 
-### **Hali ya 2: Utiririshaji wa MCP wa Wakati Halisi**
+### **Hali 2: Uchezaji wa MCP wa Wakati Halisi**
 
-Kutumia Azure Event Hubs kwa mwingiliano wa MCP wa mara kwa mara:
+Kutumia Azure Event Hubs kwa mwingiliano wa MCP wenye mzunguko wa juu:
 
 ```yaml
 Architecture:
@@ -658,7 +656,7 @@ Benefits:
   - Built-in partitioning for parallel processing
 ```
 
-### **Hali ya 3: Usanifu wa Usafirishaji wa Mseto**
+### **Hali 3: Mimaarifa Mchanganyiko ya Usafirishaji**
 
 Kuchanganya usafirishaji mbalimbali kwa matumizi tofauti:
 
@@ -686,7 +684,7 @@ public class HybridMcpTransport : IMcpTransport
 
 ## **Uboreshaji wa Utendaji**
 
-### **Ubatilishaji wa Ujumbe kwa Event Grid**
+### **Kufunga Ujumbe kwa Event Grid**
 
 ```csharp
 public class BatchingEventGridTransport : IMcpTransport
@@ -726,7 +724,7 @@ public class BatchingEventGridTransport : IMcpTransport
 }
 ```
 
-### **Mkakati wa Ugawaji kwa Event Hubs**
+### **Mikakati ya Kugawanya kwa Event Hubs**
 
 ```csharp
 public class PartitionedEventHubsTransport : IMcpTransport
@@ -748,7 +746,7 @@ public class PartitionedEventHubsTransport : IMcpTransport
 
 ## **Kujaribu Usafirishaji Maalum**
 
-### **Upimaji wa Kitengo kwa Test Doubles**
+### **Upimaji wa Vitengo kwa Test Doubles**
 
 ```csharp
 [Test]
@@ -775,7 +773,7 @@ public async Task EventGridTransport_SendMessage_PublishesCorrectEvent()
 }
 ```
 
-### **Upimaji wa Ujumuishaji kwa Azure Test Containers**
+### **Upimaji wa Muunganiko kwa Azure Test Containers**
 
 ```csharp
 [Test]
@@ -808,49 +806,52 @@ public async Task EventHubsTransport_IntegrationTest()
 }
 ```
 
-## **Mbinu Bora na Miongozo**
+## **Mazingira Bora na Miongozo**
 
-### **Kanuni za Ubunifu wa Usafirishaji**
+### **Misingi ya Ubunifu wa Usafirishaji**
 
-1. **Idempotency**: Hakikisha usindikaji wa ujumbe ni idempotent ili kushughulikia nakala
-2. **Utunzaji wa Makosa**: Tekeleza utunzaji wa makosa wa kina na foleni za barua zilizokufa
+1. **Idempotency**: Hakikisha usindikaji wa ujumbe ni idempotent kushughulikia nakala
+2. **Usimamizi wa Makosa**: Tekeleza usimamizi wa makosa kwa kina na foleni za barua zilizokufa
 3. **Ufuatiliaji**: Ongeza telemetry ya kina na ukaguzi wa afya
-4. **Usalama**: Tumia vitambulisho vilivyodhibitiwa na ufikiaji wa kiwango cha chini
-5. **Utendaji**: Buni kulingana na mahitaji yako maalum ya ucheleweshaji na kasi
+4. **Usalama**: Tumia vitambulisho vinavyosimamiwa na upatikanaji wa kiwango cha chini
+5. **Utendaji**: Buni kwa mahitaji yako maalum ya ucheleweshaji na mtiririko
 
 ### **Mapendekezo Maalum ya Azure**
 
-1. **Tumia Kitambulisho Kilichodhibitiwa**: Epuka nyuzi za muunganisho katika uzalishaji
-2. **Tekeleza Vizuizi vya Mzunguko**: Linda dhidi ya kukatika kwa huduma za Azure
-3. **Fuatilia Gharama**: Fuatilia kiasi cha ujumbe na gharama za usindikaji
-4. **Panga kwa Upanuzi**: Buni mikakati ya ugawaji na upanuzi mapema
-5. **Jaribu Kwa Kina**: Tumia Azure DevTest Labs kwa upimaji wa kina
+1. **Tumia Kitambulisho Kinachosimamiwa**: Epuka mistari ya muunganisho katika uzalishaji
+2. **Tekeleza Vizuizi vya Mzunguko**: Linda dhidi ya kushindwa kwa huduma za Azure
+3. **Fuatilia Gharama**: Rekodi kiasi cha ujumbe na gharama za usindikaji
+4. **Panga kwa Upanuzi**: Buni mikakati ya kugawanya na kupanua mapema
+5. **Jaribu kwa Kina**: Tumia Azure DevTest Labs kwa upimaji wa kina
 
 ## **Hitimisho**
 
-Usafirishaji maalum wa MCP huwezesha hali zenye nguvu za biashara kwa kutumia huduma za ujumbe za Azure. Kwa kutekeleza usafirishaji wa Event Grid au Event Hubs, unaweza kujenga suluhisho za MCP zinazoweza kupanuka na za kuaminika ambazo zinajumuika kwa urahisi na miundombinu ya Azure iliyopo.
+Usafirishaji maalum wa MCP unawawezesha hali za biashara zenye nguvu kwa kutumia huduma za ujumbe za Azure. Kwa kutekeleza usafirishaji wa Event Grid au Event Hubs, unaweza kujenga suluhisho za MCP zinazoweza kupanuka, kuaminika na kuunganishwa kwa urahisi na miundombinu ya Azure iliyopo.
 
-Mifano iliyotolewa inaonyesha mifumo ya utekelezaji inayofaa kwa uzalishaji wa usafirishaji maalum huku ikizingatia vipimo vya MCP na mbinu bora za Azure.
+Mifano iliyotolewa inaonyesha mifumo tayari kwa uzalishaji ya kutekeleza usafirishaji maalum huku ukizingatia ufuataji wa itifaki ya MCP na mbinu bora za Azure.
 
-## **Rasilimali za Ziada**
+## **Rasilimali Zaidi**
 
-- [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/)
-- [Azure Event Grid Documentation](https://docs.microsoft.com/azure/event-grid/)
-- [Azure Event Hubs Documentation](https://docs.microsoft.com/azure/event-hubs/)
+- [Sifa za MCP 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/)
+- [Nyaraka za Azure Event Grid](https://docs.microsoft.com/azure/event-grid/)
+- [Nyaraka za Azure Event Hubs](https://docs.microsoft.com/azure/event-hubs/)
 - [Azure Functions Event Grid Trigger](https://docs.microsoft.com/azure/azure-functions/functions-bindings-event-grid)
-- [Azure SDK for .NET](https://github.com/Azure/azure-sdk-for-net)
-- [Azure SDK for TypeScript](https://github.com/Azure/azure-sdk-for-js)
-- [Azure SDK for Python](https://github.com/Azure/azure-sdk-for-python)
+- [Azure SDK kwa .NET](https://github.com/Azure/azure-sdk-for-net)
+- [Azure SDK kwa TypeScript](https://github.com/Azure/azure-sdk-for-js)
+- [Azure SDK kwa Python](https://github.com/Azure/azure-sdk-for-python)
 
 ---
 
-> *Mwongozo huu unazingatia mifumo ya utekelezaji wa vitendo kwa mifumo ya MCP ya uzalishaji. Kila mara thibitisha utekelezaji wa usafirishaji kulingana na mahitaji yako maalum na mipaka ya huduma za Azure.*
-> **Kiwango cha Sasa**: Mwongozo huu unaakisi [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) mahitaji ya usafirishaji na mifumo ya juu ya usafirishaji kwa mazingira ya biashara.
+> *Mwongozo huu unazingatia mifumo ya utekelezaji wa vitendo kwa mifumo ya MCP ya uzalishaji. Daima thibitisha utekelezaji wa usafirishaji dhidi ya mahitaji yako maalum na mipaka ya huduma za Azure.*
+> **Kiwango cha Sasa**: Mwongozo huu unaakisi [Sifa za MCP 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) mahitaji ya usafirishaji na mifumo ya juu ya usafirishaji kwa mazingira ya biashara.
 
-## Kinachofuata
+
+## Nini Kifuatacho
 - [6. Michango ya Jamii](../../06-CommunityContributions/README.md)
 
 ---
 
-**Kanusho**:  
-Hati hii imetafsiriwa kwa kutumia huduma ya kutafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kuhakikisha usahihi, tafadhali fahamu kuwa tafsiri za kiotomatiki zinaweza kuwa na makosa au kutokuwa sahihi. Hati ya asili katika lugha yake ya awali inapaswa kuzingatiwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu ya binadamu inapendekezwa. Hatutawajibika kwa kutokuelewana au tafsiri zisizo sahihi zinazotokana na matumizi ya tafsiri hii.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Kiarifa cha Kukataa**:
+Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kwa usahihi, tafadhali fahamu kwamba tafsiri za kiotomatiki zinaweza kuwa na makosa au upungufu wa usahihi. Hati ya asili katika lugha yake ya asili inapaswa kuchukuliwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu ya binadamu inapendekezwa. Hatubebwi dhamana kwa kutoelewana au tafsiri potofu zinazotokana na matumizi ya tafsiri hii.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

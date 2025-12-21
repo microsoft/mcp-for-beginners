@@ -1,45 +1,45 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "c71c60af76120a517809a6cfba47e9a3",
-  "translation_date": "2025-09-15T21:40:01+00:00",
+  "original_hash": "cf3e88e4c0b2d9d65c7f300986bd8c6c",
+  "translation_date": "2025-12-19T15:22:17+00:00",
   "source_file": "05-AdvancedTopics/mcp-transport/README.md",
   "language_code": "hu"
 }
 -->
-# MCP Egyedi Szállítások - Haladó Megvalósítási Útmutató
+# MCP Egyedi Átvitel - Haladó Megvalósítási Útmutató
 
-A Model Context Protocol (MCP) rugalmasságot biztosít a szállítási mechanizmusok terén, lehetővé téve az egyedi megvalósításokat speciális vállalati környezetekhez. Ez a haladó útmutató az egyedi szállítási megvalósításokat vizsgálja, gyakorlati példákkal, mint az Azure Event Grid és Azure Event Hubs, amelyek segítségével skálázható, felhőalapú MCP megoldásokat építhetünk.
+A Model Context Protocol (MCP) rugalmasságot biztosít az átvitel mechanizmusokban, lehetővé téve egyedi megvalósításokat speciális vállalati környezetek számára. Ez a haladó útmutató az egyedi átvitel megvalósításokat vizsgálja az Azure Event Grid és Azure Event Hubs gyakorlati példáin keresztül, amelyek skálázható, felhőnatív MCP megoldások építésére szolgálnak.
 
 ## Bevezetés
 
-Bár az MCP szabványos szállítási módjai (stdio és HTTP streaming) a legtöbb felhasználási esetet lefedik, a vállalati környezetek gyakran igényelnek speciális szállítási mechanizmusokat a jobb skálázhatóság, megbízhatóság és meglévő felhőinfrastruktúrával való integráció érdekében. Az egyedi szállítások lehetővé teszik az MCP számára, hogy felhőalapú üzenetküldési szolgáltatásokat használjon aszinkron kommunikációhoz, eseményvezérelt architektúrákhoz és elosztott feldolgozáshoz.
+Míg az MCP szabványos átvitele (stdio és HTTP streaming) a legtöbb esetet lefedi, a vállalati környezetek gyakran igényelnek speciális átvitel mechanizmusokat a jobb skálázhatóság, megbízhatóság és a meglévő felhő infrastruktúrával való integráció érdekében. Az egyedi átvitelek lehetővé teszik, hogy az MCP kihasználja a felhőnatív üzenetküldő szolgáltatásokat aszinkron kommunikációhoz, eseményvezérelt architektúrákhoz és elosztott feldolgozáshoz.
 
-Ez a lecke az MCP legújabb specifikációján (2025-06-18), az Azure üzenetküldési szolgáltatásokon és bevált vállalati integrációs mintákon alapuló haladó szállítási megvalósításokat vizsgálja.
+Ez a lecke a legfrissebb MCP specifikáció (2025-11-25), az Azure üzenetküldő szolgáltatások és a bevált vállalati integrációs minták alapján vizsgálja a haladó átvitel megvalósításokat.
 
-### **MCP Szállítási Architektúra**
+### **MCP Átvitel Architektúra**
 
-**Az MCP Specifikációból (2025-06-18):**
+**Az MCP Specifikációból (2025-11-25):**
 
-- **Szabványos Szállítások**: stdio (ajánlott), HTTP streaming (távoli forgatókönyvekhez)
-- **Egyedi Szállítások**: Bármely szállítás, amely megvalósítja az MCP üzenetcsere protokollt
+- **Szabványos Átvitelek**: stdio (ajánlott), HTTP streaming (távoli forgatókönyvekhez)
+- **Egyedi Átvitelek**: Bármely átvitel, amely megvalósítja az MCP üzenetcsere protokollt
 - **Üzenetformátum**: JSON-RPC 2.0 MCP-specifikus kiterjesztésekkel
 - **Kétirányú Kommunikáció**: Teljes duplex kommunikáció szükséges értesítésekhez és válaszokhoz
 
 ## Tanulási Célok
 
-A lecke végére képes leszel:
+A haladó lecke végére képes leszel:
 
-- **Megérteni az Egyedi Szállítási Követelményeket**: Az MCP protokoll megvalósítása bármely szállítási rétegen, miközben megfelel a szabványoknak
-- **Azure Event Grid Szállítás Készítése**: Eseményvezérelt MCP szerverek létrehozása az Azure Event Grid segítségével a szerver nélküli skálázhatóság érdekében
-- **Azure Event Hubs Szállítás Megvalósítása**: Nagy áteresztőképességű MCP megoldások tervezése az Azure Event Hubs segítségével valós idejű streaminghez
-- **Vállalati Minták Alkalmazása**: Egyedi szállítások integrálása meglévő Azure infrastruktúrával és biztonsági modellekkel
-- **Szállítási Megbízhatóság Kezelése**: Üzenet tartósság, sorrend és hibakezelés megvalósítása vállalati forgatókönyvekhez
-- **Teljesítmény Optimalizálása**: Szállítási megoldások tervezése skálázhatóság, késleltetés és áteresztőképesség igényeihez
+- **Megérteni az Egyedi Átvitel Követelményeit**: MCP protokoll megvalósítása bármely átvitel rétegen, miközben megfelelőséget tartasz fenn
+- **Azure Event Grid Átvitel Kialakítása**: Eseményvezérelt MCP szerverek létrehozása Azure Event Grid használatával szerver nélküli skálázhatóságért
+- **Azure Event Hubs Átvitel Megvalósítása**: Nagy áteresztőképességű MCP megoldások tervezése Azure Event Hubs használatával valós idejű streaminghez
+- **Vállalati Minták Alkalmazása**: Egyedi átvitelek integrálása meglévő Azure infrastruktúrával és biztonsági modellekkel
+- **Átvitel Megbízhatóság Kezelése**: Üzenet tartósság, sorrendiség és hibakezelés megvalósítása vállalati forgatókönyvekhez
+- **Teljesítmény Optimalizálása**: Átvitel megoldások tervezése skálázhatóság, késleltetés és áteresztőképesség követelményekhez
 
-## **Szállítási Követelmények**
+## **Átvitel Követelmények**
 
-### **Alapvető Követelmények az MCP Specifikációból (2025-06-18):**
+### **Alapvető Követelmények az MCP Specifikációból (2025-11-25):**
 
 ```yaml
 Message Protocol:
@@ -58,28 +58,27 @@ Custom Transport:
   interoperability: "MUST maintain protocol compatibility"
 ```
 
-## **Azure Event Grid Szállítás Megvalósítása**
+## **Azure Event Grid Átvitel Megvalósítása**
 
-Az Azure Event Grid egy szerver nélküli eseményirányítási szolgáltatást kínál, amely ideális az eseményvezérelt MCP architektúrákhoz. Ez a megvalósítás bemutatja, hogyan lehet skálázható, lazán összekapcsolt MCP rendszereket építeni.
+Az Azure Event Grid egy szerver nélküli eseményirányító szolgáltatás, amely ideális eseményvezérelt MCP architektúrákhoz. Ez a megvalósítás bemutatja, hogyan lehet skálázható, lazán kapcsolt MCP rendszereket építeni.
 
 ### **Architektúra Áttekintés**
 
 ```mermaid
 graph TB
-    Client[MCP Client] --> EG[Azure Event Grid]
-    EG --> Server[MCP Server Function]
+    Client[MCP kliens] --> EG[Azure Event Grid]
+    EG --> Server[MCP szerver funkció]
     Server --> EG
     EG --> Client
     
-    subgraph "Azure Services"
+    subgraph "Azure szolgáltatások"
         EG
         Server
         KV[Key Vault]
         Monitor[Application Insights]
     end
 ```
-
-### **C# Megvalósítás - Event Grid Szállítás**
+### **C# Megvalósítás - Event Grid Átvitel**
 
 ```csharp
 using Azure.Messaging.EventGrid;
@@ -151,7 +150,7 @@ public async Task<IActionResult> HandleEventGridMessage(
 }
 ```
 
-### **TypeScript Megvalósítás - Event Grid Szállítás**
+### **TypeScript Megvalósítás - Event Grid Átvitel**
 
 ```typescript
 import { EventGridPublisherClient, AzureKeyCredential } from "@azure/eventgrid";
@@ -185,14 +184,14 @@ export class EventGridMcpTransport implements McpTransport {
         await this.publisher.sendEvents([event]);
     }
     
-    // Event-driven receive via Azure Functions
+    // Eseményvezérelt fogadás Azure Functions segítségével
     onMessage(handler: (message: McpMessage) => Promise<void>): void {
-        // Implementation would use Azure Functions Event Grid trigger
-        // This is a conceptual interface for the webhook receiver
+        // A megvalósítás Azure Functions Event Grid trigger használatával történik
+        // Ez egy fogalmi interfész a webhook fogadó számára
     }
 }
 
-// Azure Functions implementation
+// Azure Functions megvalósítás
 import { app, InvocationContext, EventGridEvent } from "@azure/functions";
 
 app.eventGrid("mcpEventGridHandler", {
@@ -200,10 +199,10 @@ app.eventGrid("mcpEventGridHandler", {
         try {
             const mcpMessage = event.data as McpMessage;
             
-            // Process MCP message
+            // MCP üzenet feldolgozása
             const response = await mcpServer.processMessage(mcpMessage);
             
-            // Send response via Event Grid
+            // Válasz küldése Event Grid-en keresztül
             await transport.sendMessage(response);
             
         } catch (error) {
@@ -214,7 +213,7 @@ app.eventGrid("mcpEventGridHandler", {
 });
 ```
 
-### **Python Megvalósítás - Event Grid Szállítás**
+### **Python Megvalósítás - Event Grid Átvitel**
 
 ```python
 from azure.eventgrid import EventGridPublisherClient, EventGridEvent
@@ -249,52 +248,51 @@ class EventGridMcpTransport:
         """Register message handler for incoming events"""
         self.message_handler = handler
 
-# Azure Functions implementation
+# Azure Functions megvalósítás
 import azure.functions as func
 import logging
 
 def main(event: func.EventGridEvent) -> None:
     """Azure Functions Event Grid trigger for MCP messages"""
     try:
-        # Parse MCP message from Event Grid event
+        # MCP üzenet elemzése az Event Grid eseményből
         mcp_message = json.loads(event.get_body().decode('utf-8'))
         
-        # Process MCP message
+        # MCP üzenet feldolgozása
         response = process_mcp_message(mcp_message)
         
-        # Send response back via Event Grid
-        # (Implementation would create new Event Grid client)
+        # Válasz küldése vissza az Event Grid-en keresztül
+        # (A megvalósítás új Event Grid kliens létrehozását jelentené)
         
     except Exception as e:
         logging.error(f"Error processing MCP Event Grid message: {e}")
         raise
 ```
 
-## **Azure Event Hubs Szállítás Megvalósítása**
+## **Azure Event Hubs Átvitel Megvalósítása**
 
-Az Azure Event Hubs nagy áteresztőképességű, valós idejű streaming képességeket biztosít MCP forgatókönyvekhez, amelyek alacsony késleltetést és nagy üzenetmennyiséget igényelnek.
+Az Azure Event Hubs nagy áteresztőképességű, valós idejű streaming képességeket biztosít MCP forgatókönyvekhez, amelyek alacsony késleltetést és nagy üzenetforgalmat igényelnek.
 
 ### **Architektúra Áttekintés**
 
 ```mermaid
 graph TB
-    Client[MCP Client] --> EH[Azure Event Hubs]
-    EH --> Server[MCP Server]
+    Client[MCP kliens] --> EH[Azure Event Hubs]
+    EH --> Server[MCP szerver]
     Server --> EH
     EH --> Client
     
-    subgraph "Event Hubs Features"
-        Partition[Partitioning]
-        Retention[Message Retention]
-        Scaling[Auto Scaling]
+    subgraph "Event Hubs funkciók"
+        Partition[Particionálás]
+        Retention[Üzenettárolás]
+        Scaling[Automatikus skálázás]
     end
     
     EH --> Partition
     EH --> Retention
     EH --> Scaling
 ```
-
-### **C# Megvalósítás - Event Hubs Szállítás**
+### **C# Megvalósítás - Event Hubs Átvitel**
 
 ```csharp
 using Azure.Messaging.EventHubs;
@@ -368,7 +366,7 @@ public class EventHubsMcpTransport : IMcpTransport, IDisposable
 }
 ```
 
-### **TypeScript Megvalósítás - Event Hubs Szállítás**
+### **TypeScript Megvalósítás - Event Hubs Átvitel**
 
 ```typescript
 import { 
@@ -427,7 +425,7 @@ export class EventHubsMcpTransport implements McpTransport {
                         
                         await messageHandler(mcpMessage);
                         
-                        // Update checkpoint for at-least-once delivery
+                        // Ellenőrzőpont frissítése legalább egyszeri kézbesítéshez
                         await context.updateCheckpoint(event);
                     } catch (error) {
                         console.error("Error processing Event Hubs message:", error);
@@ -448,7 +446,7 @@ export class EventHubsMcpTransport implements McpTransport {
 }
 ```
 
-### **Python Megvalósítás - Event Hubs Szállítás**
+### **Python Megvalósítás - Event Hubs Átvitel**
 
 ```python
 from azure.eventhub import EventHubProducerClient, EventHubConsumerClient
@@ -480,11 +478,11 @@ class EventHubsMcpTransport:
         """Send MCP message via Event Hubs"""
         event_data = EventData(json.dumps(message))
         
-        # Add MCP-specific properties
+        # MCP-specifikus tulajdonságok hozzáadása
         event_data.properties = {
             "messageType": message.get("method", "response"),
             "messageId": message.get("id"),
-            "timestamp": "2025-01-14T10:30:00Z"  # Use actual timestamp
+            "timestamp": "2025-01-14T10:30:00Z"  # Valódi időbélyeg használata
         }
         
         async with self.producer:
@@ -505,21 +503,21 @@ class EventHubsMcpTransport:
         async with self.consumer:
             await self.consumer.receive(
                 on_event=self._on_event_received(message_handler),
-                starting_position="-1"  # Start from beginning
+                starting_position="-1"  # Kezdés az elejéről
             )
     
     def _on_event_received(self, handler: Callable):
         """Internal event handler wrapper"""
         async def handle_event(partition_context, event):
             try:
-                # Parse MCP message from Event Hubs event
+                # MCP üzenet elemzése az Event Hubs eseményből
                 message_body = event.body_as_str(encoding='UTF-8')
                 mcp_message = json.loads(message_body)
                 
-                # Process MCP message
+                # MCP üzenet feldolgozása
                 await handler(mcp_message)
                 
-                # Update checkpoint for at-least-once delivery
+                # Ellenőrzőpont frissítése legalább egyszeri kézbesítéshez
                 await partition_context.update_checkpoint(event)
                 
             except Exception as e:
@@ -534,7 +532,7 @@ class EventHubsMcpTransport:
         await self.consumer.close()
 ```
 
-## **Haladó Szállítási Minták**
+## **Haladó Átvitel Minták**
 
 ### **Üzenet Tartósság és Megbízhatóság**
 
@@ -563,7 +561,7 @@ public class ReliableTransportWrapper : IMcpTransport
 }
 ```
 
-### **Szállítási Biztonság Integrációja**
+### **Átvitel Biztonsági Integráció**
 
 ```csharp
 // Integrating Azure Key Vault for transport security
@@ -585,7 +583,7 @@ public class SecureTransportFactory
 }
 ```
 
-### **Szállítási Felügyelet és Megfigyelhetőség**
+### **Átvitel Megfigyelés és Megfigyelhetőség**
 
 ```csharp
 // Adding telemetry to custom transports
@@ -626,9 +624,9 @@ public class ObservableTransport : IMcpTransport
 
 ## **Vállalati Integrációs Forgatókönyvek**
 
-### **Forgatókönyv 1: Elosztott MCP Feldolgozás**
+### **1. Forgatókönyv: Elosztott MCP Feldolgozás**
 
-Az Azure Event Grid használata MCP kérések elosztására több feldolgozó csomópont között:
+Azure Event Grid használata MCP kérések több feldolgozó csomópont közötti elosztására:
 
 ```yaml
 Architecture:
@@ -642,9 +640,9 @@ Benefits:
   - Cost optimization with serverless compute
 ```
 
-### **Forgatókönyv 2: Valós idejű MCP Streaming**
+### **2. Forgatókönyv: Valós idejű MCP Streaming**
 
-Az Azure Event Hubs használata nagy gyakoriságú MCP interakciókhoz:
+Azure Event Hubs használata nagy gyakoriságú MCP interakciókhoz:
 
 ```yaml
 Architecture:
@@ -658,9 +656,9 @@ Benefits:
   - Built-in partitioning for parallel processing
 ```
 
-### **Forgatókönyv 3: Hibrid Szállítási Architektúra**
+### **3. Forgatókönyv: Hibrid Átvitel Architektúra**
 
-Több szállítás kombinálása különböző felhasználási esetekhez:
+Több átvitel kombinálása különböző felhasználási esetekhez:
 
 ```csharp
 public class HybridMcpTransport : IMcpTransport
@@ -684,9 +682,9 @@ public class HybridMcpTransport : IMcpTransport
 }
 ```
 
-## **Teljesítmény Optimalizálása**
+## **Teljesítmény Optimalizálás**
 
-### **Üzenet Csomagolás az Event Gridhez**
+### **Üzenet Csomagolás Event Gridhez**
 
 ```csharp
 public class BatchingEventGridTransport : IMcpTransport
@@ -726,7 +724,7 @@ public class BatchingEventGridTransport : IMcpTransport
 }
 ```
 
-### **Partíciózási Stratégia az Event Hubs-hoz**
+### **Partícionálási Stratégia Event Hubshoz**
 
 ```csharp
 public class PartitionedEventHubsTransport : IMcpTransport
@@ -746,7 +744,7 @@ public class PartitionedEventHubsTransport : IMcpTransport
 }
 ```
 
-## **Egyedi Szállítások Tesztelése**
+## **Egyedi Átvitelek Tesztelése**
 
 ### **Egységtesztelés Teszt Duplikátumokkal**
 
@@ -775,7 +773,7 @@ public async Task EventGridTransport_SendMessage_PublishesCorrectEvent()
 }
 ```
 
-### **Integrációs Tesztelés Azure Teszt Konténerekkel**
+### **Integrációs Tesztelés Azure Test Containers használatával**
 
 ```csharp
 [Test]
@@ -810,27 +808,27 @@ public async Task EventHubsTransport_IntegrationTest()
 
 ## **Legjobb Gyakorlatok és Irányelvek**
 
-### **Szállítási Tervezési Elvek**
+### **Átvitel Tervezési Elvek**
 
 1. **Idempotencia**: Biztosítsd, hogy az üzenetfeldolgozás idempotens legyen a duplikátumok kezeléséhez
-2. **Hibakezelés**: Valósíts meg átfogó hibakezelést és "dead letter" sorokat
-3. **Felügyelet**: Adj hozzá részletes telemetriát és állapotellenőrzéseket
-4. **Biztonság**: Használj kezelt identitásokat és minimális jogosultságú hozzáférést
-5. **Teljesítmény**: Tervezd meg a késleltetés és áteresztőképesség igényeid szerint
+2. **Hibakezelés**: Valósíts meg átfogó hibakezelést és halott levél sorokat
+3. **Megfigyelés**: Adj részletes telemetriát és egészségügyi ellenőrzéseket
+4. **Biztonság**: Használj kezelt identitásokat és legkisebb jogosultság elvet
+5. **Teljesítmény**: Tervezd meg a késleltetés és áteresztőképesség követelményeid szerint
 
 ### **Azure-specifikus Ajánlások**
 
-1. **Használj Kezelt Identitást**: Kerüld a kapcsolat karakterláncokat éles környezetben
-2. **Valósíts meg Áramköri Megszakítókat**: Védd magad az Azure szolgáltatási kiesésektől
-3. **Figyeld a Költségeket**: Kövesd nyomon az üzenetmennyiséget és feldolgozási költségeket
-4. **Tervezd meg a Skálázást**: Korán tervezd meg a partíciózási és skálázási stratégiákat
-5. **Tesztelj Alaposan**: Használj Azure DevTest Labs-t átfogó teszteléshez
+1. **Használj Kezelt Identitást**: Kerüld a kapcsolati karakterláncokat éles környezetben
+2. **Valósíts meg Áramkör Megszakítókat**: Védekezz az Azure szolgáltatáskimaradások ellen
+3. **Kövesd a Költségeket**: Figyeld az üzenetforgalmat és feldolgozási költségeket
+4. **Tervezd meg a Skálázást**: Korán tervezd meg a partícionálási és skálázási stratégiákat
+5. **Tesztelj Alaposan**: Használd az Azure DevTest Labs-ot átfogó teszteléshez
 
-## **Összegzés**
+## **Összefoglalás**
 
-Az egyedi MCP szállítások lehetővé teszik erőteljes vállalati forgatókönyvek megvalósítását az Azure üzenetküldési szolgáltatásainak használatával. Az Event Grid vagy Event Hubs szállítások megvalósításával skálázható, megbízható MCP megoldásokat építhetsz, amelyek zökkenőmentesen integrálódnak a meglévő Azure infrastruktúrával.
+Az egyedi MCP átvitelek lehetővé teszik erőteljes vállalati forgatókönyvek megvalósítását az Azure üzenetküldő szolgáltatások használatával. Az Event Grid vagy Event Hubs átvitelek megvalósításával skálázható, megbízható MCP megoldásokat építhetsz, amelyek zökkenőmentesen integrálódnak a meglévő Azure infrastruktúrával.
 
-A bemutatott példák gyártásra kész mintákat kínálnak az egyedi szállítások megvalósításához, miközben megfelelnek az MCP protokoll követelményeinek és az Azure legjobb gyakorlatainak.
+A bemutatott példák gyártásra kész mintákat mutatnak be az egyedi átvitelek megvalósításához, miközben fenntartják az MCP protokoll megfelelőséget és az Azure legjobb gyakorlatait.
 
 ## **További Források**
 
@@ -838,19 +836,22 @@ A bemutatott példák gyártásra kész mintákat kínálnak az egyedi szállít
 - [Azure Event Grid Dokumentáció](https://docs.microsoft.com/azure/event-grid/)
 - [Azure Event Hubs Dokumentáció](https://docs.microsoft.com/azure/event-hubs/)
 - [Azure Functions Event Grid Trigger](https://docs.microsoft.com/azure/azure-functions/functions-bindings-event-grid)
-- [Azure SDK for .NET](https://github.com/Azure/azure-sdk-for-net)
-- [Azure SDK for TypeScript](https://github.com/Azure/azure-sdk-for-js)
-- [Azure SDK for Python](https://github.com/Azure/azure-sdk-for-python)
+- [Azure SDK .NET-hez](https://github.com/Azure/azure-sdk-for-net)
+- [Azure SDK TypeScript-hez](https://github.com/Azure/azure-sdk-for-js)
+- [Azure SDK Python-hoz](https://github.com/Azure/azure-sdk-for-python)
 
 ---
 
-> *Ez az útmutató a gyártásra kész MCP rendszerek gyakorlati megvalósítási mintáira összpontosít. Mindig ellenőrizd a szállítási megvalósításokat a saját igényeid és az Azure szolgáltatási korlátai alapján.*
-> **Jelenlegi Szabvány**: Ez az útmutató az [MCP Specifikáció 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) szállítási követelményeit és haladó szállítási mintáit tükrözi vállalati környezetekhez.
+> *Ez az útmutató a gyakorlati megvalósítási mintákra fókuszál gyártásra szánt MCP rendszerek esetén. Mindig ellenőrizd az átvitel megvalósításokat a saját követelményeid és az Azure szolgáltatás korlátai szerint.*
+> **Jelenlegi Szabvány**: Ez az útmutató az [MCP Specifikáció 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) átvitel követelményeit és haladó átvitel mintákat tükrözi vállalati környezetekhez.
+
 
 ## Mi következik
 - [6. Közösségi Hozzájárulások](../../06-CommunityContributions/README.md)
 
 ---
 
-**Felelősség kizárása**:  
-Ez a dokumentum az AI fordítási szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével lett lefordítva. Bár törekszünk a pontosságra, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az eredeti nyelvén tekintendő hiteles forrásnak. Kritikus információk esetén javasolt professzionális emberi fordítást igénybe venni. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely a fordítás használatából eredhet.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Jogi nyilatkozat**:
+Ezt a dokumentumot az AI fordító szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével fordítottuk le. Bár a pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Fontos információk esetén szakmai, emberi fordítást javaslunk. Nem vállalunk felelősséget a fordítás használatából eredő félreértésekért vagy félreértelmezésekért.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

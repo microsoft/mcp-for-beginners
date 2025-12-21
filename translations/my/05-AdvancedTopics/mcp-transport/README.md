@@ -1,45 +1,45 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "c71c60af76120a517809a6cfba47e9a3",
-  "translation_date": "2025-09-15T21:43:04+00:00",
+  "original_hash": "cf3e88e4c0b2d9d65c7f300986bd8c6c",
+  "translation_date": "2025-12-19T17:32:21+00:00",
   "source_file": "05-AdvancedTopics/mcp-transport/README.md",
   "language_code": "my"
 }
 -->
-# MCP Custom Transports - အဆင့်မြင့် အကောင်အထည်ဖော် လမ်းညွှန်
+# MCP စိတ်ကြိုက် သယ်ယူပို့ဆောင်မှုများ - အဆင့်မြင့် အကောင်အထည်ဖော်ခြင်း လမ်းညွှန်
 
-Model Context Protocol (MCP) သည် သယ်ယူပို့ဆောင်ရေးစနစ်များတွင် လွယ်လွယ်ကူကူ အသုံးပြုနိုင်စေပြီး အထူးလုပ်ငန်းပတ်ဝန်းကျင်များအတွက် စိတ်ကြိုက်အကောင်အထည်ဖော်မှုများကို ခွင့်ပြုသည်။ ဒီအဆင့်မြင့် လမ်းညွှန်သည် Azure Event Grid နှင့် Azure Event Hubs ကို အသုံးပြု၍ cloud-native MCP ဖြေရှင်းနည်းများ တည်ဆောက်ရန် စိတ်ကြိုက် သယ်ယူပို့ဆောင်ရေးအကောင်အထည်ဖော်မှုများကို လေ့လာပေးသည်။
+Model Context Protocol (MCP) သည် သယ်ယူပို့ဆောင်မှု မက်ခန်းနစ်များတွင် လွတ်လပ်မှုကို ပေးပြီး၊ အထူးပြုလုပ်ထားသော စီးပွားရေးပတ်ဝန်းကျင်များအတွက် စိတ်ကြိုက် အကောင်အထည်ဖော်မှုများကို ခွင့်ပြုသည်။ ဤအဆင့်မြင့် လမ်းညွှန်သည် Azure Event Grid နှင့် Azure Event Hubs ကို အသုံးပြု၍ စိတ်ကြိုက် သယ်ယူပို့ဆောင်မှု အကောင်အထည်ဖော်မှုများကို လေ့လာပြီး၊ တိုးချဲ့နိုင်သော၊ မိုးကောင်းကင်-ဒေသခံ MCP ဖြေရှင်းချက်များ တည်ဆောက်ရန် လက်တွေ့ ဥပမာများအဖြစ် ဖော်ပြသည်။
 
-## အကျဉ်းချုပ်
+## နိဒါန်း
 
-MCP ၏ စံသယ်ယူပို့ဆောင်ရေး (stdio နှင့် HTTP streaming) သည် အများစုသော အသုံးပြုမှုများအတွက် လုံလောက်သော်လည်း၊ လုပ်ငန်းပတ်ဝန်းကျင်များတွင် အဆင့်မြင့် scalability၊ ယုံကြည်စိတ်ချရမှုနှင့် cloud infrastructure နှင့် ပေါင်းစည်းမှုများအတွက် အထူးသယ်ယူပို့ဆောင်ရေးစနစ်များ လိုအပ်တတ်သည်။ စိတ်ကြိုက် သယ်ယူပို့ဆောင်ရေးများသည် MCP ကို cloud-native messaging services ကို အသုံးပြု၍ asynchronous communication၊ event-driven architectures နှင့် distributed processing အတွက် အကျိုးရှိစေသည်။
+MCP ၏ စံသတ်မှတ်ထားသော သယ်ယူပို့ဆောင်မှုများ (stdio နှင့် HTTP streaming) သည် အများဆုံး အသုံးပြုမှုများအတွက် သင့်တော်သော်လည်း၊ စီးပွားရေးပတ်ဝန်းကျင်များတွင် တိုးချဲ့နိုင်မှု၊ ယုံကြည်စိတ်ချရမှုနှင့် ရှိပြီးသား မိုးကောင်းကင် အခြေခံအဆောက်အအုံနှင့် ပေါင်းစပ်မှုများအတွက် အထူးပြု သယ်ယူပို့ဆောင်မှု မက်ခန်းနစ်များ လိုအပ်သည်။ စိတ်ကြိုက် သယ်ယူပို့ဆောင်မှုများက MCP ကို မိုးကောင်းကင်-ဒေသခံ မက်ဆေ့ခ်ျ ဝန်ဆောင်မှုများနှင့် အချိန်မတူညီသော ဆက်သွယ်မှု၊ ဖြစ်ရပ်အခြေပြု စနစ်များနှင့် ဖြန့်ဝေထားသော အလုပ်လုပ်ဆောင်မှုများအတွက် အသုံးပြုနိုင်စေသည်။
 
-ဒီသင်ခန်းစာသည် MCP specification (2025-06-18)၊ Azure messaging services နှင့် လုပ်ငန်းပေါင်းစည်းမှု ပုံစံများအပေါ် အခြေခံ၍ အဆင့်မြင့် သယ်ယူပို့ဆောင်ရေးအကောင်အထည်ဖော်မှုများကို လေ့လာပေးသည်။
+ဤသင်ခန်းစာတွင် MCP ၏ နောက်ဆုံးထုတ်ပြန်ချက် (2025-11-25), Azure မက်ဆေ့ခ်ျ ဝန်ဆောင်မှုများနှင့် စီးပွားရေး ပေါင်းစပ်မှု ပုံစံများအပေါ် အခြေခံ၍ အဆင့်မြင့် သယ်ယူပို့ဆောင်မှု အကောင်အထည်ဖော်မှုများကို လေ့လာမည်။
 
-### **MCP Transport Architecture**
+### **MCP သယ်ယူပို့ဆောင်မှု ဖွဲ့စည်းပုံ**
 
-**MCP Specification (2025-06-18) မှ**:
+**MCP သတ်မှတ်ချက် (2025-11-25) မှ:**
 
-- **Standard Transports**: stdio (အကြံပြုထားသည်), HTTP streaming (remote scenarios အတွက်)
-- **Custom Transports**: MCP message exchange protocol ကို အကောင်အထည်ဖော်နိုင်သည့် သယ်ယူပို့ဆောင်ရေးမည်သည့်အမျိုးအစားမဆို
-- **Message Format**: JSON-RPC 2.0 နှင့် MCP-specific extensions
-- **Bidirectional Communication**: notifications နှင့် responses အတွက် full duplex communication လိုအပ်သည်
+- **စံသတ်မှတ် သယ်ယူပို့ဆောင်မှုများ**: stdio (အကြံပြု), HTTP streaming (အဝေးမှ ဆက်သွယ်မှုများအတွက်)
+- **စိတ်ကြိုက် သယ်ယူပို့ဆောင်မှုများ**: MCP မက်ဆေ့ခ်ျ လဲလှယ်မှု မက်ခန်းနစ်ကို အကောင်အထည်ဖော်သော သယ်ယူပို့ဆောင်မှု များအားလုံး
+- **မက်ဆေ့ခ်ျ ပုံစံ**: MCP အထူးချဲ့ထွင်ချက်များပါဝင်သည့် JSON-RPC 2.0
+- **နှစ်ဖက်ဆက်သွယ်မှု**: အသိပေးချက်များနှင့် တုံ့ပြန်ချက်များအတွက် ပြည့်စုံသော နှစ်ဖက်ဆက်သွယ်မှု လိုအပ်သည်
 
-## သင်ခန်းစာရည်မှန်းချက်များ
+## သင်ယူရမည့် ရည်မှန်းချက်များ
 
-ဒီအဆင့်မြင့် သင်ခန်းစာပြီးဆုံးချိန်တွင် သင်သည် အောက်ပါအရာများကို နားလည်နိုင်မည်ဖြစ်သည်-
+ဤအဆင့်မြင့် သင်ခန်းစာ၏ အဆုံးတွင် သင်သည် အောက်ပါအရာများကို လုပ်ဆောင်နိုင်မည်ဖြစ်သည်-
 
-- **Custom Transport Requirements ကို နားလည်ရန်**: MCP protocol ကို မည်သည့် transport layer အပေါ်မဆို အကောင်အထည်ဖော်ပြီး compliance ကို ထိန်းသိမ်းနိုင်ရန်
-- **Azure Event Grid Transport တည်ဆောက်ရန်**: serverless scalability အတွက် Azure Event Grid ကို အသုံးပြု၍ event-driven MCP servers တည်ဆောက်ရန်
-- **Azure Event Hubs Transport ကို အကောင်အထည်ဖော်ရန်**: real-time streaming အတွက် Azure Event Hubs ကို အသုံးပြု၍ high-throughput MCP solutions တည်ဆောက်ရန်
-- **Enterprise Patterns ကို အသုံးချရန်**: Azure infrastructure နှင့် security models နှင့် ပေါင်းစည်းထားသော စိတ်ကြိုက် သယ်ယူပို့ဆောင်ရေးများ
-- **Transport Reliability ကို ကိုင်တွယ်ရန်**: message durability၊ ordering နှင့် error handling ကို လုပ်ငန်း scenarios များအတွက် အကောင်အထည်ဖော်ရန်
-- **Performance ကို အကောင်းဆုံးဖြစ်စေရန်**: scale၊ latency နှင့် throughput requirements များအတွက် transport solutions ကို ဒီဇိုင်းဆွဲရန်
+- **စိတ်ကြိုက် သယ်ယူပို့ဆောင်မှု လိုအပ်ချက်များကို နားလည်ခြင်း**: MCP မက်ခန်းနစ်ကို သယ်ယူပို့ဆောင်မှု အလွှာ မည်သည့်အပေါ်မဆို အကောင်အထည်ဖော်နိုင်ပြီး လိုက်နာမှုကို ထိန်းသိမ်းခြင်း
+- **Azure Event Grid သယ်ယူပို့ဆောင်မှု တည်ဆောက်ခြင်း**: Serverless တိုးချဲ့နိုင်သော MCP ဆာဗာများကို Azure Event Grid အသုံးပြု၍ ဖန်တီးခြင်း
+- **Azure Event Hubs သယ်ယူပို့ဆောင်မှု အကောင်အထည်ဖော်ခြင်း**: အချိန်နှင့်တပြေးညီ စီးဆင်းမှုအတွက် Azure Event Hubs အသုံးပြု၍ MCP ဖြေရှင်းချက်များ ဒီဇိုင်းဆွဲခြင်း
+- **စီးပွားရေး ပုံစံများကို အသုံးချခြင်း**: စိတ်ကြိုက် သယ်ယူပို့ဆောင်မှုများကို ရှိပြီးသား Azure အခြေခံအဆောက်အအုံနှင့် လုံခြုံရေး မော်ဒယ်များနှင့် ပေါင်းစပ်ခြင်း
+- **သယ်ယူပို့ဆောင်မှု ယုံကြည်စိတ်ချရမှု ကိုင်တွယ်ခြင်း**: စီးပွားရေးအခြေအနေများအတွက် မက်ဆေ့ခ်ျ တည်တံ့မှု၊ အစီအစဉ်နှင့် အမှား ကိုင်တွယ်မှုများ အကောင်အထည်ဖော်ခြင်း
+- **စွမ်းဆောင်ရည် တိုးတက်စေရေး**: တိုးချဲ့နိုင်မှု၊ နောက်ကျမှုနှင့် စီးဆင်းမှု လိုအပ်ချက်များအတွက် သယ်ယူပို့ဆောင်မှု ဖြေရှင်းချက်များ ဒီဇိုင်းဆွဲခြင်း
 
-## **Transport Requirements**
+## **သယ်ယူပို့ဆောင်မှု လိုအပ်ချက်များ**
 
-### **MCP Specification (2025-06-18) မှ Core Requirements**
+### **MCP သတ်မှတ်ချက် (2025-11-25) မှ အဓိက လိုအပ်ချက်များ:**
 
 ```yaml
 Message Protocol:
@@ -58,11 +58,11 @@ Custom Transport:
   interoperability: "MUST maintain protocol compatibility"
 ```
 
-## **Azure Event Grid Transport Implementation**
+## **Azure Event Grid သယ်ယူပို့ဆောင်မှု အကောင်အထည်ဖော်ခြင်း**
 
-Azure Event Grid သည် serverless event routing service တစ်ခုဖြစ်ပြီး event-driven MCP architectures အတွက် အထူးသင့်လျော်သည်။ ဒီအကောင်အထည်ဖော်မှုသည် scalable၊ loosely-coupled MCP systems တည်ဆောက်နည်းကို ပြသသည်။
+Azure Event Grid သည် serverless ဖြစ်သော ဖြစ်ရပ်လမ်းညွှန် ဝန်ဆောင်မှုဖြစ်ပြီး ဖြစ်ရပ်အခြေပြု MCP ဖွဲ့စည်းပုံများအတွက် သင့်တော်သည်။ ဤအကောင်အထည်ဖော်မှုသည် တိုးချဲ့နိုင်ပြီး ချိတ်ဆက်မှုနည်းသော MCP စနစ်များ တည်ဆောက်နည်းကို ပြသသည်။
 
-### **Architecture Overview**
+### **ဖွဲ့စည်းပုံ အနှစ်ချုပ်**
 
 ```mermaid
 graph TB
@@ -71,15 +71,14 @@ graph TB
     Server --> EG
     EG --> Client
     
-    subgraph "Azure Services"
+    subgraph "Azure ဝန်ဆောင်မှုများ"
         EG
         Server
         KV[Key Vault]
         Monitor[Application Insights]
     end
 ```
-
-### **C# Implementation - Event Grid Transport**
+### **C# အကောင်အထည်ဖော်မှု - Event Grid သယ်ယူပို့ဆောင်မှု**
 
 ```csharp
 using Azure.Messaging.EventGrid;
@@ -151,7 +150,7 @@ public async Task<IActionResult> HandleEventGridMessage(
 }
 ```
 
-### **TypeScript Implementation - Event Grid Transport**
+### **TypeScript အကောင်အထည်ဖော်မှု - Event Grid သယ်ယူပို့ဆောင်မှု**
 
 ```typescript
 import { EventGridPublisherClient, AzureKeyCredential } from "@azure/eventgrid";
@@ -185,14 +184,14 @@ export class EventGridMcpTransport implements McpTransport {
         await this.publisher.sendEvents([event]);
     }
     
-    // Event-driven receive via Azure Functions
+    // Azure Functions မှတဆင့် အဖြစ်အပျက်အခြေပြု လက်ခံခြင်း
     onMessage(handler: (message: McpMessage) => Promise<void>): void {
-        // Implementation would use Azure Functions Event Grid trigger
-        // This is a conceptual interface for the webhook receiver
+        // အကောင်အထည်ဖော်မှုတွင် Azure Functions Event Grid trigger ကို အသုံးပြုမည်
+        // ၎င်းသည် webhook လက်ခံသူအတွက် အယူအဆ အင်တာဖေ့စ်ဖြစ်သည်
     }
 }
 
-// Azure Functions implementation
+// Azure Functions အကောင်အထည်ဖော်မှု
 import { app, InvocationContext, EventGridEvent } from "@azure/functions";
 
 app.eventGrid("mcpEventGridHandler", {
@@ -200,10 +199,10 @@ app.eventGrid("mcpEventGridHandler", {
         try {
             const mcpMessage = event.data as McpMessage;
             
-            // Process MCP message
+            // MCP စာတိုက်ကို ပြုလုပ်ဆောင်ရွက်ပါ
             const response = await mcpServer.processMessage(mcpMessage);
             
-            // Send response via Event Grid
+            // Event Grid မှတဆင့် တုံ့ပြန်ချက် ပို့ပါ
             await transport.sendMessage(response);
             
         } catch (error) {
@@ -214,7 +213,7 @@ app.eventGrid("mcpEventGridHandler", {
 });
 ```
 
-### **Python Implementation - Event Grid Transport**
+### **Python အကောင်အထည်ဖော်မှု - Event Grid သယ်ယူပို့ဆောင်မှု**
 
 ```python
 from azure.eventgrid import EventGridPublisherClient, EventGridEvent
@@ -249,32 +248,32 @@ class EventGridMcpTransport:
         """Register message handler for incoming events"""
         self.message_handler = handler
 
-# Azure Functions implementation
+# Azure Functions အကောင်အထည်ဖော်ခြင်း
 import azure.functions as func
 import logging
 
 def main(event: func.EventGridEvent) -> None:
     """Azure Functions Event Grid trigger for MCP messages"""
     try:
-        # Parse MCP message from Event Grid event
+        # Event Grid အဖြစ်မှ MCP စာတိုက်ကို ဖော်ထုတ်ခြင်း
         mcp_message = json.loads(event.get_body().decode('utf-8'))
         
-        # Process MCP message
+        # MCP စာတိုက်ကို လုပ်ဆောင်ခြင်း
         response = process_mcp_message(mcp_message)
         
-        # Send response back via Event Grid
-        # (Implementation would create new Event Grid client)
+        # Event Grid မှတဆင့် ပြန်လည်တုံ့ပြန်ချက် ပို့ခြင်း
+        # (အကောင်အထည်ဖော်မှုသည် အသစ်သော Event Grid client ကို ဖန်တီးမည်)
         
     except Exception as e:
         logging.error(f"Error processing MCP Event Grid message: {e}")
         raise
 ```
 
-## **Azure Event Hubs Transport Implementation**
+## **Azure Event Hubs သယ်ယူပို့ဆောင်မှု အကောင်အထည်ဖော်ခြင်း**
 
-Azure Event Hubs သည် low latency နှင့် high message volume လိုအပ်သော MCP scenarios များအတွက် high-throughput၊ real-time streaming စွမ်းဆောင်ရည်များကို ပေးစွမ်းသည်။
+Azure Event Hubs သည် နိမ့်သော နောက်ကျမှုနှင့် မက်ဆေ့ခ်ျ အရေအတွက် များသော MCP အခြေအနေများအတွက် မြင့်မားသော စီးဆင်းမှုနှင့် အချိန်နှင့်တပြေးညီ စီးဆင်းမှု စွမ်းဆောင်ရည်များ ပေးသည်။
 
-### **Architecture Overview**
+### **ဖွဲ့စည်းပုံ အနှစ်ချုပ်**
 
 ```mermaid
 graph TB
@@ -283,18 +282,17 @@ graph TB
     Server --> EH
     EH --> Client
     
-    subgraph "Event Hubs Features"
-        Partition[Partitioning]
-        Retention[Message Retention]
-        Scaling[Auto Scaling]
+    subgraph "Event Hubs လက္ခဏာမ်ား"
+        Partition[ပိုင္းခြဲျခင္း]
+        Retention[စာတိုက္သိမ္းဆည္းမႈ]
+        Scaling[အလိုအေလ်ာက္အတိုင္းအတာျမႇင့္တင္မႈ]
     end
     
     EH --> Partition
     EH --> Retention
     EH --> Scaling
 ```
-
-### **C# Implementation - Event Hubs Transport**
+### **C# အကောင်အထည်ဖော်မှု - Event Hubs သယ်ယူပို့ဆောင်မှု**
 
 ```csharp
 using Azure.Messaging.EventHubs;
@@ -368,7 +366,7 @@ public class EventHubsMcpTransport : IMcpTransport, IDisposable
 }
 ```
 
-### **TypeScript Implementation - Event Hubs Transport**
+### **TypeScript အကောင်အထည်ဖော်မှု - Event Hubs သယ်ယူပို့ဆောင်မှု**
 
 ```typescript
 import { 
@@ -427,7 +425,7 @@ export class EventHubsMcpTransport implements McpTransport {
                         
                         await messageHandler(mcpMessage);
                         
-                        // Update checkpoint for at-least-once delivery
+                        // အနည်းဆုံးတစ်ကြိမ်ပို့ဆောင်မှုအတွက် checkpoint ကိုအပ်ဒိတ်လုပ်ပါ
                         await context.updateCheckpoint(event);
                     } catch (error) {
                         console.error("Error processing Event Hubs message:", error);
@@ -448,7 +446,7 @@ export class EventHubsMcpTransport implements McpTransport {
 }
 ```
 
-### **Python Implementation - Event Hubs Transport**
+### **Python အကောင်အထည်ဖော်မှု - Event Hubs သယ်ယူပို့ဆောင်မှု**
 
 ```python
 from azure.eventhub import EventHubProducerClient, EventHubConsumerClient
@@ -480,11 +478,11 @@ class EventHubsMcpTransport:
         """Send MCP message via Event Hubs"""
         event_data = EventData(json.dumps(message))
         
-        # Add MCP-specific properties
+        # MCP-အထူးပိုင်ဆိုင်မှုများ ထည့်ပါ
         event_data.properties = {
             "messageType": message.get("method", "response"),
             "messageId": message.get("id"),
-            "timestamp": "2025-01-14T10:30:00Z"  # Use actual timestamp
+            "timestamp": "2025-01-14T10:30:00Z"  # အမှန်တကယ် အချိန်တံဆိပ်ကို အသုံးပြုပါ
         }
         
         async with self.producer:
@@ -505,21 +503,21 @@ class EventHubsMcpTransport:
         async with self.consumer:
             await self.consumer.receive(
                 on_event=self._on_event_received(message_handler),
-                starting_position="-1"  # Start from beginning
+                starting_position="-1"  # အစမှ စတင်ပါ
             )
     
     def _on_event_received(self, handler: Callable):
         """Internal event handler wrapper"""
         async def handle_event(partition_context, event):
             try:
-                # Parse MCP message from Event Hubs event
+                # Event Hubs ဖြစ်ရပ်မှ MCP စာတိုက်ကို ဖော်ထုတ်ပါ
                 message_body = event.body_as_str(encoding='UTF-8')
                 mcp_message = json.loads(message_body)
                 
-                # Process MCP message
+                # MCP စာတိုက်ကို ပြုလုပ်ဆောင်ရွက်ပါ
                 await handler(mcp_message)
                 
-                # Update checkpoint for at-least-once delivery
+                # အနည်းဆုံးတစ်ကြိမ် ပို့ဆောင်မှုအတွက် checkpoint ကို အပ်ဒိတ်လုပ်ပါ
                 await partition_context.update_checkpoint(event)
                 
             except Exception as e:
@@ -534,9 +532,9 @@ class EventHubsMcpTransport:
         await self.consumer.close()
 ```
 
-## **Advanced Transport Patterns**
+## **အဆင့်မြင့် သယ်ယူပို့ဆောင်မှု ပုံစံများ**
 
-### **Message Durability and Reliability**
+### **မက်ဆေ့ခ်ျ တည်တံ့မှုနှင့် ယုံကြည်စိတ်ချရမှု**
 
 ```csharp
 // Implementing message durability with retry logic
@@ -563,7 +561,7 @@ public class ReliableTransportWrapper : IMcpTransport
 }
 ```
 
-### **Transport Security Integration**
+### **သယ်ယူပို့ဆောင်မှု လုံခြုံရေး ပေါင်းစပ်မှု**
 
 ```csharp
 // Integrating Azure Key Vault for transport security
@@ -585,7 +583,7 @@ public class SecureTransportFactory
 }
 ```
 
-### **Transport Monitoring and Observability**
+### **သယ်ယူပို့ဆောင်မှု စောင့်ကြည့်မှုနှင့် တွေ့ရှိနိုင်မှု**
 
 ```csharp
 // Adding telemetry to custom transports
@@ -624,11 +622,11 @@ public class ObservableTransport : IMcpTransport
 }
 ```
 
-## **Enterprise Integration Scenarios**
+## **စီးပွားရေး ပေါင်းစပ်မှု အခြေအနေများ**
 
-### **Scenario 1: Distributed MCP Processing**
+### **အခြေအနေ ၁: MCP ဖြန့်ဝေမှု လုပ်ငန်းစဉ်**
 
-Azure Event Grid ကို အသုံးပြု၍ MCP requests များကို processing nodes များအကြား ဖြန့်ဝေခြင်း:
+MCP တောင်းဆိုမှုများကို အလုပ်လုပ်ဆောင်မှု node များစွာသို့ ဖြန့်ဝေရာတွင် Azure Event Grid အသုံးပြုခြင်း-
 
 ```yaml
 Architecture:
@@ -642,9 +640,9 @@ Benefits:
   - Cost optimization with serverless compute
 ```
 
-### **Scenario 2: Real-time MCP Streaming**
+### **အခြေအနေ ၂: အချိန်နှင့်တပြေးညီ MCP စီးဆင်းမှု**
 
-Azure Event Hubs ကို အသုံးပြု၍ high-frequency MCP interactions:
+မြင့်မားသော အကြိမ်ရေ MCP ဆက်သွယ်မှုများအတွက် Azure Event Hubs အသုံးပြုခြင်း-
 
 ```yaml
 Architecture:
@@ -658,9 +656,9 @@ Benefits:
   - Built-in partitioning for parallel processing
 ```
 
-### **Scenario 3: Hybrid Transport Architecture**
+### **အခြေအနေ ၃: ဟိုက်ဘရစ် သယ်ယူပို့ဆောင်မှု ဖွဲ့စည်းပုံ**
 
-အသုံးပြုမှုအမျိုးမျိုးအတွက် သယ်ယူပို့ဆောင်ရေးစနစ်များ ပေါင်းစည်းခြင်း:
+အသုံးပြုမှု မတူညီသည့် သယ်ယူပို့ဆောင်မှု များကို ပေါင်းစပ်ခြင်း-
 
 ```csharp
 public class HybridMcpTransport : IMcpTransport
@@ -684,9 +682,9 @@ public class HybridMcpTransport : IMcpTransport
 }
 ```
 
-## **Performance Optimization**
+## **စွမ်းဆောင်ရည် တိုးတက်စေရေး**
 
-### **Message Batching for Event Grid**
+### **Event Grid အတွက် မက်ဆေ့ခ်ျ အစုလိုက်**
 
 ```csharp
 public class BatchingEventGridTransport : IMcpTransport
@@ -726,7 +724,7 @@ public class BatchingEventGridTransport : IMcpTransport
 }
 ```
 
-### **Partitioning Strategy for Event Hubs**
+### **Event Hubs အတွက် အပိုင်းခွဲမှု မဟာဗျူဟာ**
 
 ```csharp
 public class PartitionedEventHubsTransport : IMcpTransport
@@ -746,9 +744,9 @@ public class PartitionedEventHubsTransport : IMcpTransport
 }
 ```
 
-## **Testing Custom Transports**
+## **စိတ်ကြိုက် သယ်ယူပို့ဆောင်မှု စမ်းသပ်ခြင်း**
 
-### **Unit Testing with Test Doubles**
+### **Test Doubles ဖြင့် ယူနစ် စမ်းသပ်ခြင်း**
 
 ```csharp
 [Test]
@@ -775,7 +773,7 @@ public async Task EventGridTransport_SendMessage_PublishesCorrectEvent()
 }
 ```
 
-### **Integration Testing with Azure Test Containers**
+### **Azure Test Containers ဖြင့် ပေါင်းစပ် စမ်းသပ်ခြင်း**
 
 ```csharp
 [Test]
@@ -808,31 +806,31 @@ public async Task EventHubsTransport_IntegrationTest()
 }
 ```
 
-## **Best Practices and Guidelines**
+## **အကောင်းဆုံး လေ့လာမှုနည်းလမ်းများနှင့် လမ်းညွှန်ချက်များ**
 
-### **Transport Design Principles**
+### **သယ်ယူပို့ဆောင်မှု ဒီဇိုင်း အခြေခံ 원칙များ**
 
-1. **Idempotency**: duplicate များကို ကိုင်တွယ်နိုင်ရန် message processing ကို idempotent ဖြစ်စေရန်
-2. **Error Handling**: error handling နှင့် dead letter queues များကို အကျယ်အကျယ် အကောင်အထည်ဖော်ရန်
-3. **Monitoring**: telemetry နှင့် health checks များကို အသေးစိတ် ထည့်သွင်းရန်
-4. **Security**: managed identities နှင့် least privilege access ကို အသုံးပြုရန်
-5. **Performance**: latency နှင့် throughput requirements များအတွက် သင့်တော်သော ဒီဇိုင်းဆွဲရန်
+1. **Idempotency**: မက်ဆေ့ခ်ျများကို ထပ်မံ လက်ခံမှုများကို ကိုင်တွယ်နိုင်ရန် idempotent ဖြစ်စေရန် သေချာစေပါ
+2. **အမှား ကိုင်တွယ်မှု**: အပြည့်အစုံ အမှား ကိုင်တွယ်မှုနှင့် dead letter queue များ အကောင်အထည်ဖော်ပါ
+3. **စောင့်ကြည့်မှု**: အသေးစိတ် telemetry နှင့် ကျန်းမာရေး စစ်ဆေးမှုများ ထည့်သွင်းပါ
+4. **လုံခြုံရေး**: managed identities နှင့် အနည်းဆုံး အခွင့်အရေး ဝင်ရောက်ခွင့် အသုံးပြုပါ
+5. **စွမ်းဆောင်ရည်**: သင့်လိုအပ်ချက်များအတွက် နောက်ကျမှုနှင့် စီးဆင်းမှု ဒီဇိုင်းဆွဲပါ
 
-### **Azure-Specific Recommendations**
+### **Azure အထူးအကြံပြုချက်များ**
 
-1. **Use Managed Identity**: production တွင် connection strings မသုံးရန်
-2. **Implement Circuit Breakers**: Azure service outages များကို ကာကွယ်ရန်
-3. **Monitor Costs**: message volume နှင့် processing costs များကို စောင့်ကြည့်ရန်
-4. **Plan for Scale**: partitioning နှင့် scaling strategies များကို စောစောမှ ဒီဇိုင်းဆွဲရန်
-5. **Test Thoroughly**: Azure DevTest Labs ကို အသုံးပြု၍ စုံလင်စွာ စမ်းသပ်ရန်
+1. **Managed Identity အသုံးပြုပါ**: ထုတ်လုပ်မှုတွင် connection string မသုံးပါနှင့်
+2. **Circuit Breakers အကောင်အထည်ဖော်ပါ**: Azure ဝန်ဆောင်မှု ပျက်ကွက်မှုများမှ ကာကွယ်ပါ
+3. **ကုန်ကျစရိတ် စောင့်ကြည့်ပါ**: မက်ဆေ့ခ်ျ အရေအတွက်နှင့် လုပ်ငန်းစရိတ်များကို မှတ်တမ်းတင်ပါ
+4. **တိုးချဲ့မှု အတွက် စီမံကိန်းရေးဆွဲပါ**: အပိုင်းခွဲခြင်းနှင့် တိုးချဲ့မှု မဟာဗျူဟာများကို မကြာခဏ စီစဉ်ပါ
+5. **စမ်းသပ်မှု ပြည့်စုံစွာ ပြုလုပ်ပါ**: Azure DevTest Labs ကို အသုံးပြု၍ စမ်းသပ်မှု ပြုလုပ်ပါ
 
 ## **နိဂုံးချုပ်**
 
-စိတ်ကြိုက် MCP transports များသည် Azure messaging services ကို အသုံးပြု၍ အထူးလုပ်ငန်း scenarios များကို အကောင်းဆုံးဖြစ်စေသည်။ Event Grid သို့မဟုတ် Event Hubs transports များကို အကောင်အထည်ဖော်ခြင်းအားဖြင့် MCP protocol compliance နှင့် Azure best practices များနှင့် အညီ လုပ်ငန်းအဆင့် scalable၊ reliable MCP solutions များကို တည်ဆောက်နိုင်သည်။
+စိတ်ကြိုက် MCP သယ်ယူပို့ဆောင်မှုများက Azure ၏ မက်ဆေ့ခ်ျ ဝန်ဆောင်မှုများကို အသုံးပြု၍ စွမ်းအားကြီးသော စီးပွားရေး အခြေအနေများကို ချဲ့ထွင်နိုင်စေသည်။ Event Grid သို့မဟုတ် Event Hubs သယ်ယူပို့ဆောင်မှုများကို အကောင်အထည်ဖော်ခြင်းဖြင့် တိုးချဲ့နိုင်ပြီး ယုံကြည်စိတ်ချရသော MCP ဖြေရှင်းချက်များကို ရှိပြီးသား Azure အခြေခံအဆောက်အအုံနှင့် ချိတ်ဆက်နိုင်သည်။
 
-ပေးထားသော ဥပမာများသည် production-ready MCP systems များအတွက် စိတ်ကြိုက် သယ်ယူပို့ဆောင်ရေးများကို အကောင်အထည်ဖော်ရန် pattern များကို ပြသသည်။
+ပေးထားသော ဥပမာများသည် MCP မက်ခန်းနစ်လိုက်နာမှုနှင့် Azure ၏ အကောင်းဆုံး လေ့လာမှုများကို ထိန်းသိမ်းကာ စိတ်ကြိုက် သယ်ယူပို့ဆောင်မှုများ အကောင်အထည်ဖော်ရာတွင် ထုတ်လုပ်မှုအဆင်သင့် ပုံစံများကို ပြသသည်။
 
-## **အပိုဆောင်း ရင်းမြစ်များ**
+## **အပိုဆောင်း အရင်းအမြစ်များ**
 
 - [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/)
 - [Azure Event Grid Documentation](https://docs.microsoft.com/azure/event-grid/)
@@ -844,13 +842,16 @@ public async Task EventHubsTransport_IntegrationTest()
 
 ---
 
-> *ဒီလမ်းညွှန်သည် production MCP systems များအတွက် အကောင်အထည်ဖော်မှု pattern များကို အဓိကထားပြီး သင့်ရဲ့ transport implementations များကို သင့်ရဲ့ specific requirements နှင့် Azure service limits များနှင့် အညီ validate လုပ်ပါ။*
-> **Current Standard**: ဒီလမ်းညွှန်သည် [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) transport requirements နှင့် လုပ်ငန်းပတ်ဝန်းကျင်များအတွက် အဆင့်မြင့် transport patterns များကို အဓိကထားသည်။
+> *ဤလမ်းညွှန်သည် ထုတ်လုပ်မှု MCP စနစ်များအတွက် လက်တွေ့ အကောင်အထည်ဖော်မှု ပုံစံများကို အာရုံစိုက်ထားသည်။ သယ်ယူပို့ဆောင်မှု အကောင်အထည်ဖော်မှုများကို သင့်လိုအပ်ချက်များနှင့် Azure ဝန်ဆောင်မှု ကန့်သတ်ချက်များနှင့် အမြဲစစ်ဆေးပါ။*
+> **လက်ရှိ စံသတ်မှတ်ချက်**: ဤလမ်းညွှန်သည် [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) ၏ သယ်ယူပို့ဆောင်မှု လိုအပ်ချက်များနှင့် စီးပွားရေး ပတ်ဝန်းကျင်အတွက် အဆင့်မြင့် သယ်ယူပို့ဆောင်မှု ပုံစံများကို ပြသသည်။
 
-## အနာဂတ်အတွက်
+
+## နောက်တစ်ဆင့်
 - [6. Community Contributions](../../06-CommunityContributions/README.md)
 
 ---
 
-**အကြောင်းကြားချက်**:  
-ဤစာရွက်စာတမ်းကို AI ဘာသာပြန်ဝန်ဆောင်မှု [Co-op Translator](https://github.com/Azure/co-op-translator) ကို အသုံးပြု၍ ဘာသာပြန်ထားပါသည်။ ကျွန်ုပ်တို့သည် တိကျမှုအတွက် ကြိုးစားနေသော်လည်း၊ အလိုအလျောက် ဘာသာပြန်ခြင်းတွင် အမှားများ သို့မဟုတ် မတိကျမှုများ ပါဝင်နိုင်သည်ကို သတိပြုပါ။ မူရင်းစာရွက်စာတမ်းကို ၎င်း၏ မူရင်းဘာသာစကားဖြင့် အာဏာတရားရှိသော ရင်းမြစ်အဖြစ် သတ်မှတ်သင့်ပါသည်။ အရေးကြီးသော အချက်အလက်များအတွက် လူ့ဘာသာပြန်ပညာရှင်များမှ ပရော်ဖက်ရှင်နယ် ဘာသာပြန်ခြင်းကို အကြံပြုပါသည်။ ဤဘာသာပြန်ကို အသုံးပြုခြင်းမှ ဖြစ်ပေါ်လာသော အလွဲအမှားများ သို့မဟုတ် အနားယူမှားမှုများအတွက် ကျွန်ုပ်တို့သည် တာဝန်မယူပါ။
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**အကြောင်းကြားချက်**  
+ဤစာတမ်းကို AI ဘာသာပြန်ဝန်ဆောင်မှု [Co-op Translator](https://github.com/Azure/co-op-translator) ဖြင့် ဘာသာပြန်ထားပါသည်။ ကျွန်ုပ်တို့သည် တိကျမှန်ကန်မှုအတွက် ကြိုးစားသော်လည်း အလိုအလျောက် ဘာသာပြန်ခြင်းတွင် အမှားများ သို့မဟုတ် မှားယွင်းချက်များ ပါဝင်နိုင်ကြောင်း သတိပြုပါရန် မေတ္တာရပ်ခံအပ်ပါသည်။ မူရင်းစာတမ်းကို မိမိဘာသာစကားဖြင့်သာ တရားဝင်အရင်းအမြစ်အဖြစ် ယူဆသင့်ပါသည်။ အရေးကြီးသော အချက်အလက်များအတွက် လူ့ဘာသာပြန်သူမှ တာဝန်ယူ၍ ဘာသာပြန်ခြင်းကို အကြံပြုပါသည်။ ဤဘာသာပြန်ချက်ကို အသုံးပြုရာမှ ဖြစ်ပေါ်လာနိုင်သည့် နားလည်မှုမှားယွင်းမှုများအတွက် ကျွန်ုပ်တို့သည် တာဝန်မယူပါ။
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

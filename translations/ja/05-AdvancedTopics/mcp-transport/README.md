@@ -1,45 +1,45 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "c71c60af76120a517809a6cfba47e9a3",
-  "translation_date": "2025-09-15T21:30:21+00:00",
+  "original_hash": "cf3e88e4c0b2d9d65c7f300986bd8c6c",
+  "translation_date": "2025-12-19T09:43:36+00:00",
   "source_file": "05-AdvancedTopics/mcp-transport/README.md",
   "language_code": "ja"
 }
 -->
-# MCPカスタムトランスポート - 高度な実装ガイド
+# MCP カスタムトランスポート - 高度な実装ガイド
 
-Model Context Protocol (MCP)は、トランスポートメカニズムに柔軟性を提供し、特殊なエンタープライズ環境向けにカスタム実装を可能にします。この高度なガイドでは、Azure Event GridとAzure Event Hubsを使用したカスタムトランスポートの実装例を通じて、スケーラブルでクラウドネイティブなMCPソリューションの構築方法を探ります。
+Model Context Protocol (MCP) はトランスポート機構の柔軟性を提供し、専門的なエンタープライズ環境向けのカスタム実装を可能にします。本高度なガイドでは、Azure Event Grid と Azure Event Hubs を実用例として用い、スケーラブルでクラウドネイティブな MCP ソリューションを構築するためのカスタムトランスポート実装を探ります。
 
 ## はじめに
 
-MCPの標準トランスポート（stdioおよびHTTPストリーミング）はほとんどのユースケースに対応しますが、エンタープライズ環境では、スケーラビリティ、信頼性、既存のクラウドインフラとの統合を向上させるために、特殊なトランスポートメカニズムが必要になることがあります。カスタムトランスポートを使用することで、MCPはクラウドネイティブなメッセージングサービスを活用し、非同期通信、イベント駆動型アーキテクチャ、分散処理を実現できます。
+MCP の標準トランスポート（stdio と HTTP ストリーミング）はほとんどのユースケースに対応しますが、エンタープライズ環境ではスケーラビリティ、信頼性、既存のクラウドインフラとの統合を向上させるために専門的なトランスポート機構が求められることが多いです。カスタムトランスポートにより、MCP は非同期通信、イベント駆動アーキテクチャ、分散処理のためにクラウドネイティブなメッセージングサービスを活用できます。
 
-このレッスンでは、最新のMCP仕様（2025-06-18）、Azureメッセージングサービス、および確立されたエンタープライズ統合パターンに基づいた高度なトランスポート実装を探ります。
+本レッスンでは、最新の MCP 仕様（2025-11-25）、Azure メッセージングサービス、および確立されたエンタープライズ統合パターンに基づく高度なトランスポート実装を探ります。
 
-### **MCPトランスポートアーキテクチャ**
+### **MCP トランスポートアーキテクチャ**
 
-**MCP仕様（2025-06-18）より:**
+**MCP 仕様（2025-11-25）より：**
 
-- **標準トランスポート**: stdio（推奨）、HTTPストリーミング（リモートシナリオ向け）
-- **カスタムトランスポート**: MCPメッセージ交換プロトコルを実装する任意のトランスポート
-- **メッセージ形式**: MCP固有の拡張を含むJSON-RPC 2.0
-- **双方向通信**: 通知と応答のための全二重通信が必要
+- **標準トランスポート**: stdio（推奨）、HTTP ストリーミング（リモートシナリオ向け）
+- **カスタムトランスポート**: MCP メッセージ交換プロトコルを実装する任意のトランスポート
+- **メッセージフォーマット**: MCP 固有の拡張を含む JSON-RPC 2.0
+- **双方向通信**: 通知と応答のために全二重通信が必要
 
 ## 学習目標
 
-この高度なレッスンを終えると、以下が可能になります:
+本高度なレッスンの終了時には、以下が可能になります：
 
-- **カスタムトランスポート要件の理解**: 任意のトランスポート層でMCPプロトコルを実装し、準拠を維持する
-- **Azure Event Gridトランスポートの構築**: サーバーレススケーラビリティを実現するイベント駆動型MCPサーバーを作成する
-- **Azure Event Hubsトランスポートの実装**: リアルタイムストリーミングを可能にする高スループットMCPソリューションを設計する
-- **エンタープライズパターンの適用**: カスタムトランスポートを既存のAzureインフラとセキュリティモデルに統合する
-- **トランスポートの信頼性の処理**: エンタープライズシナリオ向けにメッセージの耐久性、順序付け、エラー処理を実装する
-- **パフォーマンスの最適化**: スケール、レイテンシ、スループット要件に合わせたトランスポートソリューションを設計する
+- **カスタムトランスポート要件の理解**: MCP プロトコルを準拠しつつ任意のトランスポート層上で実装する
+- **Azure Event Grid トランスポートの構築**: サーバーレスのスケーラビリティを実現するイベント駆動型 MCP サーバーを作成する
+- **Azure Event Hubs トランスポートの実装**: リアルタイムストリーミング向けの高スループット MCP ソリューションを設計する
+- **エンタープライズパターンの適用**: 既存の Azure インフラおよびセキュリティモデルとカスタムトランスポートを統合する
+- **トランスポートの信頼性の取り扱い**: エンタープライズシナリオ向けにメッセージの耐久性、順序性、エラー処理を実装する
+- **パフォーマンスの最適化**: スケール、レイテンシ、スループット要件に応じたトランスポートソリューションを設計する
 
 ## **トランスポート要件**
 
-### **MCP仕様（2025-06-18）からのコア要件**
+### **MCP 仕様（2025-11-25）からのコア要件：**
 
 ```yaml
 Message Protocol:
@@ -58,28 +58,27 @@ Custom Transport:
   interoperability: "MUST maintain protocol compatibility"
 ```
 
-## **Azure Event Gridトランスポートの実装**
+## **Azure Event Grid トランスポート実装**
 
-Azure Event Gridは、イベント駆動型MCPアーキテクチャに最適なサーバーレスイベントルーティングサービスを提供します。この実装では、スケーラブルで疎結合なMCPシステムの構築方法を示します。
+Azure Event Grid はイベント駆動型 MCP アーキテクチャに理想的なサーバーレスイベントルーティングサービスを提供します。この実装はスケーラブルで疎結合な MCP システムの構築方法を示します。
 
 ### **アーキテクチャ概要**
 
 ```mermaid
 graph TB
-    Client[MCP Client] --> EG[Azure Event Grid]
-    EG --> Server[MCP Server Function]
+    Client[MCP クライアント] --> EG[Azure イベント グリッド]
+    EG --> Server[MCP サーバー関数]
     Server --> EG
     EG --> Client
     
-    subgraph "Azure Services"
+    subgraph "Azure サービス"
         EG
         Server
-        KV[Key Vault]
-        Monitor[Application Insights]
+        KV[キー コンテナー]
+        Monitor[アプリケーション インサイト]
     end
 ```
-
-### **C#実装 - Event Gridトランスポート**
+### **C# 実装 - Event Grid トランスポート**
 
 ```csharp
 using Azure.Messaging.EventGrid;
@@ -151,7 +150,7 @@ public async Task<IActionResult> HandleEventGridMessage(
 }
 ```
 
-### **TypeScript実装 - Event Gridトランスポート**
+### **TypeScript 実装 - Event Grid トランスポート**
 
 ```typescript
 import { EventGridPublisherClient, AzureKeyCredential } from "@azure/eventgrid";
@@ -185,14 +184,14 @@ export class EventGridMcpTransport implements McpTransport {
         await this.publisher.sendEvents([event]);
     }
     
-    // Event-driven receive via Azure Functions
+    // Azure Functions を介したイベント駆動型受信
     onMessage(handler: (message: McpMessage) => Promise<void>): void {
-        // Implementation would use Azure Functions Event Grid trigger
-        // This is a conceptual interface for the webhook receiver
+        // 実装は Azure Functions の Event Grid トリガーを使用します
+        // これは webhook 受信機の概念的なインターフェースです
     }
 }
 
-// Azure Functions implementation
+// Azure Functions の実装
 import { app, InvocationContext, EventGridEvent } from "@azure/functions";
 
 app.eventGrid("mcpEventGridHandler", {
@@ -200,10 +199,10 @@ app.eventGrid("mcpEventGridHandler", {
         try {
             const mcpMessage = event.data as McpMessage;
             
-            // Process MCP message
+            // MCP メッセージを処理する
             const response = await mcpServer.processMessage(mcpMessage);
             
-            // Send response via Event Grid
+            // Event Grid を介して応答を送信する
             await transport.sendMessage(response);
             
         } catch (error) {
@@ -214,7 +213,7 @@ app.eventGrid("mcpEventGridHandler", {
 });
 ```
 
-### **Python実装 - Event Gridトランスポート**
+### **Python 実装 - Event Grid トランスポート**
 
 ```python
 from azure.eventgrid import EventGridPublisherClient, EventGridEvent
@@ -249,52 +248,51 @@ class EventGridMcpTransport:
         """Register message handler for incoming events"""
         self.message_handler = handler
 
-# Azure Functions implementation
+# Azure Functions の実装
 import azure.functions as func
 import logging
 
 def main(event: func.EventGridEvent) -> None:
     """Azure Functions Event Grid trigger for MCP messages"""
     try:
-        # Parse MCP message from Event Grid event
+        # Event Grid イベントから MCP メッセージを解析する
         mcp_message = json.loads(event.get_body().decode('utf-8'))
         
-        # Process MCP message
+        # MCP メッセージを処理する
         response = process_mcp_message(mcp_message)
         
-        # Send response back via Event Grid
-        # (Implementation would create new Event Grid client)
+        # Event Grid を介して応答を送信する
+        # （実装では新しい Event Grid クライアントを作成します）
         
     except Exception as e:
         logging.error(f"Error processing MCP Event Grid message: {e}")
         raise
 ```
 
-## **Azure Event Hubsトランスポートの実装**
+## **Azure Event Hubs トランスポート実装**
 
-Azure Event Hubsは、低レイテンシと高メッセージ量を必要とするMCPシナリオ向けに高スループットのリアルタイムストリーミング機能を提供します。
+Azure Event Hubs は低レイテンシかつ高メッセージボリュームを必要とする MCP シナリオ向けに高スループットのリアルタイムストリーミング機能を提供します。
 
 ### **アーキテクチャ概要**
 
 ```mermaid
 graph TB
-    Client[MCP Client] --> EH[Azure Event Hubs]
-    EH --> Server[MCP Server]
+    Client[MCP クライアント] --> EH[Azure Event Hubs]
+    EH --> Server[MCP サーバー]
     Server --> EH
     EH --> Client
     
-    subgraph "Event Hubs Features"
-        Partition[Partitioning]
-        Retention[Message Retention]
-        Scaling[Auto Scaling]
+    subgraph "Event Hubs の機能"
+        Partition[パーティショニング]
+        Retention[メッセージ保持]
+        Scaling[自動スケーリング]
     end
     
     EH --> Partition
     EH --> Retention
     EH --> Scaling
 ```
-
-### **C#実装 - Event Hubsトランスポート**
+### **C# 実装 - Event Hubs トランスポート**
 
 ```csharp
 using Azure.Messaging.EventHubs;
@@ -368,7 +366,7 @@ public class EventHubsMcpTransport : IMcpTransport, IDisposable
 }
 ```
 
-### **TypeScript実装 - Event Hubsトランスポート**
+### **TypeScript 実装 - Event Hubs トランスポート**
 
 ```typescript
 import { 
@@ -427,7 +425,7 @@ export class EventHubsMcpTransport implements McpTransport {
                         
                         await messageHandler(mcpMessage);
                         
-                        // Update checkpoint for at-least-once delivery
+                        // 少なくとも一度配信のためにチェックポイントを更新する
                         await context.updateCheckpoint(event);
                     } catch (error) {
                         console.error("Error processing Event Hubs message:", error);
@@ -448,7 +446,7 @@ export class EventHubsMcpTransport implements McpTransport {
 }
 ```
 
-### **Python実装 - Event Hubsトランスポート**
+### **Python 実装 - Event Hubs トランスポート**
 
 ```python
 from azure.eventhub import EventHubProducerClient, EventHubConsumerClient
@@ -480,11 +478,11 @@ class EventHubsMcpTransport:
         """Send MCP message via Event Hubs"""
         event_data = EventData(json.dumps(message))
         
-        # Add MCP-specific properties
+        # MCP固有のプロパティを追加する
         event_data.properties = {
             "messageType": message.get("method", "response"),
             "messageId": message.get("id"),
-            "timestamp": "2025-01-14T10:30:00Z"  # Use actual timestamp
+            "timestamp": "2025-01-14T10:30:00Z"  # 実際のタイムスタンプを使用する
         }
         
         async with self.producer:
@@ -505,21 +503,21 @@ class EventHubsMcpTransport:
         async with self.consumer:
             await self.consumer.receive(
                 on_event=self._on_event_received(message_handler),
-                starting_position="-1"  # Start from beginning
+                starting_position="-1"  # 最初から開始する
             )
     
     def _on_event_received(self, handler: Callable):
         """Internal event handler wrapper"""
         async def handle_event(partition_context, event):
             try:
-                # Parse MCP message from Event Hubs event
+                # Event HubsイベントからMCPメッセージを解析する
                 message_body = event.body_as_str(encoding='UTF-8')
                 mcp_message = json.loads(message_body)
                 
-                # Process MCP message
+                # MCPメッセージを処理する
                 await handler(mcp_message)
                 
-                # Update checkpoint for at-least-once delivery
+                # 少なくとも一度配信のためにチェックポイントを更新する
                 await partition_context.update_checkpoint(event)
                 
             except Exception as e:
@@ -563,7 +561,7 @@ public class ReliableTransportWrapper : IMcpTransport
 }
 ```
 
-### **トランスポートセキュリティの統合**
+### **トランスポートのセキュリティ統合**
 
 ```csharp
 // Integrating Azure Key Vault for transport security
@@ -626,9 +624,9 @@ public class ObservableTransport : IMcpTransport
 
 ## **エンタープライズ統合シナリオ**
 
-### **シナリオ1: 分散MCP処理**
+### **シナリオ 1: 分散 MCP 処理**
 
-Azure Event Gridを使用してMCPリクエストを複数の処理ノードに分散する:
+Azure Event Grid を使用して MCP リクエストを複数の処理ノードに分散する：
 
 ```yaml
 Architecture:
@@ -642,9 +640,9 @@ Benefits:
   - Cost optimization with serverless compute
 ```
 
-### **シナリオ2: リアルタイムMCPストリーミング**
+### **シナリオ 2: リアルタイム MCP ストリーミング**
 
-Azure Event Hubsを使用して高頻度のMCPインタラクションを実現する:
+Azure Event Hubs を使用した高頻度 MCP インタラクション：
 
 ```yaml
 Architecture:
@@ -658,9 +656,9 @@ Benefits:
   - Built-in partitioning for parallel processing
 ```
 
-### **シナリオ3: ハイブリッドトランスポートアーキテクチャ**
+### **シナリオ 3: ハイブリッドトランスポートアーキテクチャ**
 
-異なるユースケースに合わせて複数のトランスポートを組み合わせる:
+異なるユースケース向けに複数のトランスポートを組み合わせる：
 
 ```csharp
 public class HybridMcpTransport : IMcpTransport
@@ -684,9 +682,9 @@ public class HybridMcpTransport : IMcpTransport
 }
 ```
 
-## **パフォーマンスの最適化**
+## **パフォーマンス最適化**
 
-### **Event Gridのメッセージバッチ処理**
+### **Event Grid 向けメッセージバッチ処理**
 
 ```csharp
 public class BatchingEventGridTransport : IMcpTransport
@@ -726,7 +724,7 @@ public class BatchingEventGridTransport : IMcpTransport
 }
 ```
 
-### **Event Hubsのパーティショニング戦略**
+### **Event Hubs 向けパーティショニング戦略**
 
 ```csharp
 public class PartitionedEventHubsTransport : IMcpTransport
@@ -748,7 +746,7 @@ public class PartitionedEventHubsTransport : IMcpTransport
 
 ## **カスタムトランスポートのテスト**
 
-### **テストダブルを使用した単体テスト**
+### **テストダブルを用いた単体テスト**
 
 ```csharp
 [Test]
@@ -775,7 +773,7 @@ public async Task EventGridTransport_SendMessage_PublishesCorrectEvent()
 }
 ```
 
-### **Azure Test Containersを使用した統合テスト**
+### **Azure Test Containers を用いた統合テスト**
 
 ```csharp
 [Test]
@@ -810,33 +808,33 @@ public async Task EventHubsTransport_IntegrationTest()
 
 ## **ベストプラクティスとガイドライン**
 
-### **トランスポート設計の原則**
+### **トランスポート設計原則**
 
-1. **冪等性**: 重複を処理するためにメッセージ処理を冪等にする
+1. **冪等性**: 重複処理に対応できるようメッセージ処理を冪等にする
 2. **エラー処理**: 包括的なエラー処理とデッドレターキューを実装する
 3. **監視**: 詳細なテレメトリとヘルスチェックを追加する
-4. **セキュリティ**: マネージドIDと最小権限アクセスを使用する
+4. **セキュリティ**: マネージドアイデンティティと最小権限アクセスを使用する
 5. **パフォーマンス**: 特定のレイテンシとスループット要件に合わせて設計する
 
-### **Azure固有の推奨事項**
+### **Azure 固有の推奨事項**
 
-1. **マネージドIDを使用**: 本番環境で接続文字列を避ける
-2. **サーキットブレーカーを実装**: Azureサービスの障害から保護する
-3. **コストを監視**: メッセージ量と処理コストを追跡する
-4. **スケールを計画**: パーティショニングとスケーリング戦略を早期に設計する
-5. **徹底的にテストする**: Azure DevTest Labsを使用して包括的なテストを行う
+1. **マネージドアイデンティティの使用**: 本番環境で接続文字列を避ける
+2. **サーキットブレーカーの実装**: Azure サービスの障害から保護する
+3. **コスト監視**: メッセージ量と処理コストを追跡する
+4. **スケール計画**: 早期にパーティショニングとスケーリング戦略を設計する
+5. **徹底的なテスト**: Azure DevTest Labs を利用して包括的にテストする
 
 ## **結論**
 
-カスタムMCPトランスポートは、Azureのメッセージングサービスを使用して強力なエンタープライズシナリオを可能にします。Event GridまたはEvent Hubsトランスポートを実装することで、既存のAzureインフラとシームレスに統合されたスケーラブルで信頼性の高いMCPソリューションを構築できます。
+カスタム MCP トランスポートは Azure のメッセージングサービスを活用した強力なエンタープライズシナリオを可能にします。Event Grid または Event Hubs トランスポートを実装することで、既存の Azure インフラとシームレスに統合し、スケーラブルで信頼性の高い MCP ソリューションを構築できます。
 
-提供された例は、MCPプロトコル準拠とAzureのベストプラクティスを維持しながら、カスタムトランスポートを実装するための実用的なパターンを示しています。
+提供された例は、MCP プロトコル準拠と Azure のベストプラクティスを維持しつつ、カスタムトランスポートを実装するための本番対応パターンを示しています。
 
 ## **追加リソース**
 
-- [MCP仕様 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/)
-- [Azure Event Grid ドキュメント](https://docs.microsoft.com/azure/event-grid/)
-- [Azure Event Hubs ドキュメント](https://docs.microsoft.com/azure/event-hubs/)
+- [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/)
+- [Azure Event Grid Documentation](https://docs.microsoft.com/azure/event-grid/)
+- [Azure Event Hubs Documentation](https://docs.microsoft.com/azure/event-hubs/)
 - [Azure Functions Event Grid Trigger](https://docs.microsoft.com/azure/azure-functions/functions-bindings-event-grid)
 - [Azure SDK for .NET](https://github.com/Azure/azure-sdk-for-net)
 - [Azure SDK for TypeScript](https://github.com/Azure/azure-sdk-for-js)
@@ -844,13 +842,16 @@ public async Task EventHubsTransport_IntegrationTest()
 
 ---
 
-> *このガイドは、実際のMCPシステムの実装パターンに焦点を当てています。トランスポートの実装を特定の要件とAzureサービスの制限に対して常に検証してください。*
-> **現在の標準**: このガイドは[MCP仕様 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/)のトランスポート要件とエンタープライズ環境向けの高度なトランスポートパターンを反映しています。
+> *本ガイドは本番 MCP システム向けの実践的な実装パターンに焦点を当てています。トランスポート実装は必ず特定の要件と Azure サービスの制限に照らして検証してください。*
+> **現行標準**: 本ガイドは [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) のトランスポート要件およびエンタープライズ環境向けの高度なトランスポートパターンを反映しています。
 
-## 次のステップ
-- [6. コミュニティ貢献](../../06-CommunityContributions/README.md)
+
+## 次に進む
+- [6. Community Contributions](../../06-CommunityContributions/README.md)
 
 ---
 
-**免責事項**:  
-この文書はAI翻訳サービス[Co-op Translator](https://github.com/Azure/co-op-translator)を使用して翻訳されています。正確性を追求しておりますが、自動翻訳には誤りや不正確な部分が含まれる可能性があります。元の言語で記載された文書が正式な情報源とみなされるべきです。重要な情報については、専門の人間による翻訳を推奨します。この翻訳の使用に起因する誤解や誤解釈について、当社は責任を負いません。
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**免責事項**：  
+本書類はAI翻訳サービス「Co-op Translator」（https://github.com/Azure/co-op-translator）を使用して翻訳されました。正確性の向上に努めておりますが、自動翻訳には誤りや不正確な部分が含まれる可能性があります。原文の言語による文書が正式な情報源とみなされるべきです。重要な情報については、専門の人間による翻訳を推奨します。本翻訳の利用により生じたいかなる誤解や誤訳についても、当方は責任を負いかねます。
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
