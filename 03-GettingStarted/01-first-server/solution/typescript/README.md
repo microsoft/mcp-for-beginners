@@ -12,7 +12,7 @@ npm install
 
 
 ```bash
-npm run build
+npm run start
 ```
 
 ## -4- Test the sample
