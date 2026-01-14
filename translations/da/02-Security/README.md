@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP-sikkerhed: Omfattende beskyttelse af AI-systemer
 
-[![MCP Security Best Practices](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.da.png)](https://youtu.be/88No8pw706o)
+[![MCP Security Best Practices](../../../translated_images/da/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(Klik på billedet ovenfor for at se videoen til denne lektion)_
 
@@ -133,7 +133,7 @@ Moderne MCP-implementeringer står over for sofistikerede AI-specifikke angreb, 
 
 **Virkelige konsekvenser**: Disse angreb kan resultere i dataudtræk, brud på privatlivets fred, generering af skadeligt indhold og manipulation af brugerinteraktioner. For detaljeret analyse, se [Prompt Injection i MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
-![Prompt Injection Attack Diagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.da.png)
+![Prompt Injection Attack Diagram](../../../translated_images/da/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **Værktøjsforgiftning-angreb**
 
@@ -147,7 +147,7 @@ Moderne MCP-implementeringer står over for sofistikerede AI-specifikke angreb, 
 
 **Risici ved hostede servere**: Fjern-MCP-servere udgør forhøjede risici, da værktøjsdefinitioner kan opdateres efter initial brugeraccept, hvilket skaber scenarier, hvor tidligere sikre værktøjer bliver ondsindede. For omfattende analyse, se [Tool Poisoning Attacks (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
-![Tool Injection Attack Diagram](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.da.png)
+![Tool Injection Attack Diagram](../../../translated_images/da/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **Yderligere AI-angrebsvinkler**
 
@@ -200,7 +200,7 @@ Microsoft **AI Prompt Shields** leverer omfattende forsvar mod både direkte og 
 
 **Implementeringsressourcer**: [Microsoft Prompt Shields Dokumentation](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields Protection](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.da.png)
+![Microsoft Prompt Shields Protection](../../../translated_images/da/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## Avancerede MCP-sikkerhedstrusler

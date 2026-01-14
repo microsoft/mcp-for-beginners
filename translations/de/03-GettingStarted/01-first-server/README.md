@@ -156,7 +156,7 @@ Wenn Sie die obigen Befehle ausführen, startet der MCP Inspector eine lokale We
 
 Hier ein Screenshot, wie das aussehen kann:
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.de.png)
+![MCP Inspector server connection](../../../../translated_images/de/connected.73d1e042c24075d3.png)
 
 ## Häufige Einrichtungsprobleme und Lösungen
 
@@ -1302,7 +1302,7 @@ In der Weboberfläche des Inspectors:
 2. Setzen Sie die URL auf: `http://localhost:8080/sse`
 3. Klicken Sie auf "Connect"
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.de.png)
+![Connect](../../../../translated_images/de/tool.163d33e3ee307e20.png)
 
 **Sie sind jetzt mit dem Server verbunden**
 **Der Abschnitt zum Testen des Java-Servers ist nun abgeschlossen**
@@ -1311,18 +1311,18 @@ Der nächste Abschnitt behandelt die Interaktion mit dem Server.
 
 Sie sollten die folgende Benutzeroberfläche sehen:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.de.png)
+![Connect](../../../../translated_images/de/connect.141db0b2bd05f096.png)
 
 1. Verbinden Sie sich mit dem Server, indem Sie die Schaltfläche Connect auswählen
   Sobald Sie mit dem Server verbunden sind, sollten Sie Folgendes sehen:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.de.png)
+  ![Connected](../../../../translated_images/de/connected.73d1e042c24075d3.png)
 
 1. Wählen Sie "Tools" und "listTools", Sie sollten "Add" sehen, wählen Sie "Add" und füllen Sie die Parameterwerte aus.
 
   Sie sollten die folgende Antwort sehen, also ein Ergebnis vom "add"-Tool:
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.de.png)
+  ![Result of running add](../../../../translated_images/de/ran-tool.a5a6ee878c1369ec.png)
 
 Glückwunsch, Sie haben Ihren ersten Server erstellt und ausgeführt!
 

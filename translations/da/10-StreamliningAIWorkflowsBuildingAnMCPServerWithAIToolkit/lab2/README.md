@@ -202,7 +202,7 @@ Udover Microsofts servere inkluderer MCP-økosystemet:
    - **Navn**: `BrowserAgent`  
    - **Model**: Vælg GPT-4o  
 
-![BrowserAgent](../../../../translated_images/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.da.png)
+![BrowserAgent](../../../../translated_images/da/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.png)
 
 ### 🔧 Fase 2: MCP Integrationsworkflow
 
@@ -211,7 +211,7 @@ Udover Microsofts servere inkluderer MCP-økosystemet:
 2. **Klik på "Add Tool"** for at åbne integrationsmenuen  
 3. **Vælg "MCP Server"** blandt de tilgængelige muligheder  
 
-![AddMCP](../../../../translated_images/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.da.png)
+![AddMCP](../../../../translated_images/da/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.png)
 
 **🔍 Forstå værktøjstyper:**  
 - **Indbyggede værktøjer**: Forudkonfigurerede AI Toolkit-funktioner  
@@ -221,10 +221,10 @@ Udover Microsofts servere inkluderer MCP-økosystemet:
 
 #### Trin 4: MCP Servervalg  
 1. **Vælg "MCP Server"** for at fortsætte  
-![AddMCPServer](../../../../translated_images/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.da.png)
+![AddMCPServer](../../../../translated_images/da/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.png)
 
 2. **Gennemse MCP-kataloget** for at udforske tilgængelige integrationer  
-![MCPCatalog](../../../../translated_images/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.da.png)
+![MCPCatalog](../../../../translated_images/da/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.png)
 
 ### 🎮 Fase 3: Playwright MCP Konfiguration
 
@@ -233,12 +233,12 @@ Udover Microsofts servere inkluderer MCP-økosystemet:
 2. **Vælg "Playwright"** fra den fremhævede liste  
 3. **Accepter standard MCP ID** eller tilpas til dit miljø  
 
-![MCPID](../../../../translated_images/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.da.png)
+![MCPID](../../../../translated_images/da/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.png)
 
 #### Trin 6: Aktiver Playwright Funktioner  
 **🔑 Kritisk trin**: Vælg **ALLE** tilgængelige Playwright-metoder for maksimal funktionalitet  
 
-![Tools](../../../../translated_images/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.da.png)
+![Tools](../../../../translated_images/da/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.png)
 
 **🛠️ Vigtige Playwright-værktøjer:**  
 - **Navigation**: `goto`, `goBack`, `goForward`, `reload`  
@@ -254,7 +254,7 @@ Udover Microsofts servere inkluderer MCP-økosystemet:
 - Ingen fejlmeddelelser i integrationspanelet  
 - Playwright serverstatus viser "Connected"  
 
-![AgentTools](../../../../translated_images/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.da.png)
+![AgentTools](../../../../translated_images/da/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.png)
 
 **🔧 Fejlfinding af almindelige problemer:**  
 - **Forbindelse mislykkedes**: Tjek internetforbindelse og firewall-indstillinger  
@@ -320,7 +320,7 @@ Navigate to github.com/kinfey and provide a comprehensive analysis including:
 Include screenshots at key steps and provide actionable insights.
 ```
 
-![Prompt](../../../../translated_images/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.da.png)
+![Prompt](../../../../translated_images/da/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.png)
 
 ### 🚀 Fase 5: Udførelse og Test
 
@@ -332,19 +332,19 @@ Include screenshots at key steps and provide actionable insights.
    - Skærmbilleder tages ved hvert vigtigt trin  
    - Analyse-resultater streames i realtid  
 
-![Browser](../../../../translated_images/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.da.png)
+![Browser](../../../../translated_images/da/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.png)
 
 #### Trin 11: Analyser resultater og indsigter  
 Gennemgå omfattende analyser i Agent Builder interfacet:  
 
-![Result](../../../../translated_images/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.da.png)
+![Result](../../../../translated_images/da/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.png)
 
 ### 🌟 Fase 6: Avancerede funktioner og implementering
 
 #### Trin 12: Eksport og produktionsimplementering  
 Agent Builder understøtter flere implementeringsmuligheder:  
 
-![Code](../../../../translated_images/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.da.png)
+![Code](../../../../translated_images/da/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.png)
 
 ## 🎓 Modul 2 Opsummering & Næste Skridt
 

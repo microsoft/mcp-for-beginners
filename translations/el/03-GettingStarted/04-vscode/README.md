@@ -38,9 +38,9 @@ CO_OP_TRANSLATOR_METADATA:
 
 ### Στιγμιότυπα οθόνης
 
-![Καθοδηγούμενη διαμόρφωση MCP Server στο Visual Studio Code](../../../../translated_images/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.el.png)  
-![Επιλογή εργαλείων ανά συνεδρία agent](../../../../translated_images/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.el.png)  
-![Εύκολη αποσφαλμάτωση σφαλμάτων κατά την ανάπτυξη MCP](../../../../translated_images/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.el.png)  
+![Καθοδηγούμενη διαμόρφωση MCP Server στο Visual Studio Code](../../../../translated_images/el/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.png)  
+![Επιλογή εργαλείων ανά συνεδρία agent](../../../../translated_images/el/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.png)  
+![Εύκολη αποσφαλμάτωση σφαλμάτων κατά την ανάπτυξη MCP](../../../../translated_images/el/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.png)  
 
 Ας μιλήσουμε περισσότερο για το πώς χρησιμοποιούμε τη γραφική διεπαφή στις επόμενες ενότητες.
 
@@ -103,15 +103,15 @@ CO_OP_TRANSLATOR_METADATA:
 
 1. Εντοπίστε την καταχώρησή σας στο *mcp.json* και βεβαιωθείτε ότι βρίσκετε το εικονίδιο "play":
 
-  ![Εκκίνηση διακομιστή στο Visual Studio Code](../../../../translated_images/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.el.png)  
+  ![Εκκίνηση διακομιστή στο Visual Studio Code](../../../../translated_images/el/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.png)  
 
 1. Κάντε κλικ στο εικονίδιο "play". Θα πρέπει να δείτε το εικονίδιο εργαλείων στη συνομιλία του GitHub Copilot να αυξάνει τον αριθμό των διαθέσιμων εργαλείων. Αν κάνετε κλικ στο εικονίδιο εργαλείων, θα δείτε μια λίστα με τα καταχωρημένα εργαλεία. Μπορείτε να επιλέξετε/αποεπιλέξετε κάθε εργαλείο ανάλογα με το αν θέλετε το GitHub Copilot να τα χρησιμοποιεί ως πλαίσιο:
 
-  ![Εκκίνηση διακομιστή στο Visual Studio Code](../../../../translated_images/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.el.png)
+  ![Εκκίνηση διακομιστή στο Visual Studio Code](../../../../translated_images/el/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.png)
 
 1. Για να εκτελέσετε ένα εργαλείο, πληκτρολογήστε μια προτροπή που γνωρίζετε ότι θα ταιριάζει με την περιγραφή ενός από τα εργαλεία σας, για παράδειγμα μια προτροπή όπως "πρόσθεσε 22 στο 1":
 
-  ![Εκτέλεση εργαλείου από το GitHub Copilot](../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.el.png)
+  ![Εκτέλεση εργαλείου από το GitHub Copilot](../../../../translated_images/el/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
   Θα πρέπει να δείτε μια απάντηση που λέει 23.
 

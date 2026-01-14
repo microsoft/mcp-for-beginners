@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Avancerede emner i MCP
 
-[![Avanceret MCP: Sikker, skalerbar og multimodal AI-agenter](../../../translated_images/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.da.png)](https://youtu.be/4yjmGvJzYdY)
+[![Avanceret MCP: Sikker, skalerbar og multimodal AI-agenter](../../../translated_images/da/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.png)](https://youtu.be/4yjmGvJzYdY)
 
 _(Klik på billedet ovenfor for at se videoen til denne lektion)_
 

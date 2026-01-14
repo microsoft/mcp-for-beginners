@@ -60,7 +60,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 **Βήμα 3: Εγκατάσταση και Ενεργοποίηση**
 
-![AI Toolkit Extension](../../../../translated_images/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.el.png)
+![AI Toolkit Extension](../../../../translated_images/el/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.png)
 
 ### ✅ Λίστα Επαλήθευσης
 - [ ] Το εικονίδιο του AI Toolkit εμφανίζεται στη γραμμή πλοήγησης του VS Code
@@ -79,7 +79,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Κάντε κλικ στο **MODELS - Catalog** στην πλαϊνή μπάρα του AI Toolkit
 
-![Model Catalog](../../../../translated_images/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.el.png)
+![Model Catalog](../../../../translated_images/el/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.png)
 
 **💡 Συμβουλή**: Αναζητήστε μοντέλα με συγκεκριμένες δυνατότητες που ταιριάζουν στην περίπτωσή σας (π.χ. δημιουργία κώδικα, δημιουργική γραφή, ανάλυση).
 
@@ -97,7 +97,7 @@ CO_OP_TRANSLATOR_METADATA:
 3. Επιλέξτε **Try in Playground** για να ανοίξετε το περιβάλλον δοκιμών
 4. Περιμένετε την αρχικοποίηση του μοντέλου (η πρώτη ρύθμιση μπορεί να πάρει λίγο χρόνο)
 
-![Playground Setup](../../../../translated_images/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.el.png)
+![Playground Setup](../../../../translated_images/el/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.png)
 
 **⚙️ Κατανόηση των Παραμέτρων Μοντέλου:**
 - **Temperature**: Ελέγχει τη δημιουργικότητα (0 = καθοριστικό, 1 = δημιουργικό)
@@ -126,7 +126,7 @@ CO_OP_TRANSLATOR_METADATA:
 "Analyze this sales data and provide insights: [paste your data]. Focus on trends, anomalies, and actionable recommendations."
 ```
 
-![Testing Results](../../../../translated_images/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.el.png)
+![Testing Results](../../../../translated_images/el/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.png)
 
 ### 🏆 Πρόκληση: Σύγκριση Απόδοσης Μοντέλων
 
@@ -136,12 +136,12 @@ CO_OP_TRANSLATOR_METADATA:
 1. Προσθέστε το **Phi-4-mini** στο χώρο εργασίας σας
 2. Χρησιμοποιήστε το ίδιο prompt για GPT-4.1 και Phi-4-mini
 
-![set](../../../../translated_images/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.el.png)
+![set](../../../../translated_images/el/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.png)
 
 3. Συγκρίνετε την ποιότητα, την ταχύτητα και την ακρίβεια των απαντήσεων
 4. Καταγράψτε τα ευρήματά σας στην ενότητα αποτελεσμάτων
 
-![Model Comparison](../../../../translated_images/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.el.png)
+![Model Comparison](../../../../translated_images/el/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.png)
 
 **💡 Σημαντικά Σημεία για Ανακάλυψη:**
 - Πότε να χρησιμοποιείτε LLM έναντι SLM
@@ -163,7 +163,7 @@ CO_OP_TRANSLATOR_METADATA:
 - **Ενσωμάτωση Εργαλείων**: Σύνδεση με εξωτερικά APIs και υπηρεσίες MCP
 - **Μνήμη**: Πλαίσιο συνομιλίας και διατήρηση συνεδρίας
 
-![Agent Builder Interface](../../../../translated_images/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.el.png)
+![Agent Builder Interface](../../../../translated_images/el/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.png)
 
 ### ⚙️ Βήμα 2: Βαθύτερη Εξέταση της Ρύθμισης Agent
 
@@ -237,7 +237,7 @@ You are a senior Python developer with 10+ years of experience. You excel at wri
    - Max Tokens: 2000 (λεπτομερείς εξηγήσεις)
    - Top-p: 0.9 (ισορροπημένη δημιουργικότητα)
 
-![Python Agent Configuration](../../../../translated_images/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.el.png)
+![Python Agent Configuration](../../../../translated_images/el/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.png)
 
 ### 🧪 Βήμα 4: Δοκιμή του Python Agent σας
 

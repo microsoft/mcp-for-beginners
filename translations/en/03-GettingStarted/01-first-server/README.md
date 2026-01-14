@@ -156,7 +156,7 @@ When you run the above commands, the MCP Inspector will launch a local web inter
 
 Here's a screenshot of what it can look like:
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.en.png)
+![MCP Inspector server connection](../../../../translated_images/en/connected.73d1e042c24075d3.png)
 
 ## Common Setup Issues and Solutions
 
@@ -1303,7 +1303,7 @@ In the inspector web interface:
 2. Set the URL to: `http://localhost:8080/sse`
 3. Click "Connect"
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.en.png)
+![Connect](../../../../translated_images/en/tool.163d33e3ee307e20.png)
 
 **You're now connected to the server**
 **The Java server testing section is completed now**
@@ -1312,18 +1312,18 @@ The next section is about interacting with the server.
 
 You should see the following user interface:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.en.png)
+![Connect](../../../../translated_images/en/connect.141db0b2bd05f096.png)
 
 1. Connect to the server by selecting the Connect button
   Once you connect to the server, you should now see the following:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.en.png)
+  ![Connected](../../../../translated_images/en/connected.73d1e042c24075d3.png)
 
 1. Select "Tools" and "listTools", you should see "Add" show up, select "Add" and fill in the parameter values.
 
   You should see the following response, i.e. a result from the "add" tool:
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.en.png)
+  ![Result of running add](../../../../translated_images/en/ran-tool.a5a6ee878c1369ec.png)
 
 Congrats, you've managed to create and run your first server!
 

@@ -23,7 +23,7 @@ This corresponds to running a command like this: `node build/index.js`.
 
     You should see a tool appear above the chat text box prompting you to select it to run the tool, as shown in this image:
 
-    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.en.png)
+    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/en/vscode-agent.d5a0e0b897331060.png)
 
     Selecting the tool should produce a numeric result saying "23" if your prompt was like the example above.
 

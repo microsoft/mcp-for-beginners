@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Ασφάλεια MCP: Ολοκληρωμένη Προστασία για Συστήματα Τεχνητής Νοημοσύνης
 
-[![Καλύτερες Πρακτικές Ασφάλειας MCP](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.el.png)](https://youtu.be/88No8pw706o)
+[![Καλύτερες Πρακτικές Ασφάλειας MCP](../../../translated_images/el/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(Κάντε κλικ στην εικόνα παραπάνω για να δείτε το βίντεο αυτού του μαθήματος)_
 
@@ -133,7 +133,7 @@ _(Κάντε κλικ στην εικόνα παραπάνω για να δεί�
 
 **Πραγματικός Αντίκτυπος**: Αυτές οι επιθέσεις μπορούν να οδηγήσουν σε εξαγωγή δεδομένων, παραβιάσεις απορρήτου, δημιουργία επιβλαβούς περιεχομένου και χειραγώγηση αλληλεπιδράσεων χρηστών. Για λεπτομερή ανάλυση, δείτε [Prompt Injection στο MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
-![Διάγραμμα Επίθεσης Ένεσης Προτροπής](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.el.png)
+![Διάγραμμα Επίθεσης Ένεσης Προτροπής](../../../translated_images/el/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **Επιθέσεις Δηλητηρίασης Εργαλείων**
 
@@ -147,7 +147,7 @@ _(Κάντε κλικ στην εικόνα παραπάνω για να δεί�
 
 **Κίνδυνοι Φιλοξενούμενων Διακομιστών**: Οι απομακρυσμένοι διακομιστές MCP παρουσιάζουν αυξημένους κινδύνους καθώς οι ορισμοί εργαλείων μπορούν να ενημερωθούν μετά την αρχική έγκριση χρήστη, δημιουργώντας σενάρια όπου εργαλεία που ήταν ασφαλή γίνονται κακόβουλα. Για ολοκληρωμένη ανάλυση, δείτε [Επιθέσεις Δηλητηρίασης Εργαλείων (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
-![Διάγραμμα Επίθεσης Ένεσης Εργαλείου](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.el.png)
+![Διάγραμμα Επίθεσης Ένεσης Εργαλείου](../../../translated_images/el/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **Επιπλέον Διανύσματα Επιθέσεων AI**
 
@@ -200,7 +200,7 @@ _(Κάντε κλικ στην εικόνα παραπάνω για να δεί�
 
 **Πόροι Υλοποίησης**: [Τεκμηρίωση Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Προστασία Microsoft Prompt Shields](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.el.png)
+![Προστασία Microsoft Prompt Shields](../../../translated_images/el/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## Προηγμένες Απειλές Ασφάλειας MCP

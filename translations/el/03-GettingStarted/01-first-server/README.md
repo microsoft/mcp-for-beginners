@@ -156,7 +156,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 Ακολουθεί ένα στιγμιότυπο οθόνης του πώς μπορεί να μοιάζει:
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.el.png)
+![MCP Inspector server connection](../../../../translated_images/el/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## Συνηθισμένα Προβλήματα Ρύθμισης και Λύσεις
 
@@ -1016,7 +1016,7 @@ npx @modelcontextprotocol/inspector
 2. Ορίστε το URL σε: `http://localhost:8080/sse`
 3. Κάντε κλικ στο "Connect"
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.el.png)
+![Connect](../../../../translated_images/el/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **Τώρα είστε συνδεδεμένοι με τον διακομιστή**
 **Η ενότητα δοκιμής του Java διακομιστή ολοκληρώθηκε**
@@ -1025,18 +1025,18 @@ npx @modelcontextprotocol/inspector
 
 Θα πρέπει να δείτε την ακόλουθη διεπαφή χρήστη:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.el.png)
+![Connect](../../../../translated_images/el/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. Συνδεθείτε με τον διακομιστή επιλέγοντας το κουμπί Connect
   Μόλις συνδεθείτε με τον διακομιστή, θα πρέπει να δείτε το εξής:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.el.png)
+  ![Connected](../../../../translated_images/el/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. Επιλέξτε "Tools" και "listTools", θα πρέπει να εμφανιστεί το "Add", επιλέξτε "Add" και συμπληρώστε τις τιμές των παραμέτρων.
 
   Θα δείτε την ακόλουθη απάντηση, δηλαδή ένα αποτέλεσμα από το εργαλείο "add":
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.el.png)
+  ![Result of running add](../../../../translated_images/el/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 Συγχαρητήρια, καταφέρατε να δημιουργήσετε και να εκτελέσετε τον πρώτο σας διακομιστή!
 

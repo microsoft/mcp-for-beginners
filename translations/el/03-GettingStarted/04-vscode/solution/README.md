@@ -23,7 +23,7 @@ CO_OP_TRANSLATOR_METADATA:
 
     Θα δείτε ένα εργαλείο να εμφανίζεται πάνω από το πλαίσιο κειμένου της συνομιλίας, υποδεικνύοντας ότι μπορείτε να το επιλέξετε για να το εκτελέσετε, όπως στην παρακάτω εικόνα:
 
-    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.el.png)
+    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/el/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
     Η επιλογή του εργαλείου θα πρέπει να παράγει ένα αριθμητικό αποτέλεσμα που λέει "23", αν η εντολή σας ήταν όπως αναφέραμε προηγουμένως.
 

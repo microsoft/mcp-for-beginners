@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP Security: Comprehensive Protection for AI Systems
 
-[![MCP Security Best Practices](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.en.png)](https://youtu.be/88No8pw706o)
+[![MCP Security Best Practices](../../../translated_images/en/03.175aed6dedae133f.png)](https://youtu.be/88No8pw706o)
 
 _(Click the image above to view video of this lesson)_
 
@@ -133,7 +133,7 @@ Modern MCP implementations face sophisticated AI-specific attack vectors that tr
 
 **Real-World Impact**: These attacks can result in data exfiltration, privacy breaches, generation of harmful content, and manipulation of user interactions. For detailed analysis, see [Prompt Injection in MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
-![Prompt Injection Attack Diagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.en.png)
+![Prompt Injection Attack Diagram](../../../translated_images/en/prompt-injection.ed9fbfde297ca877.png)
 
 #### **Tool Poisoning Attacks**
 
@@ -147,7 +147,7 @@ Modern MCP implementations face sophisticated AI-specific attack vectors that tr
 
 **Hosted Server Risks**: Remote MCP servers present elevated risks as tool definitions can be updated after initial user approval, creating scenarios where previously safe tools become malicious. For comprehensive analysis, see [Tool Poisoning Attacks (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
-![Tool Injection Attack Diagram](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.en.png)
+![Tool Injection Attack Diagram](../../../translated_images/en/tool-injection.3b0b4a6b24de6bef.png)
 
 #### **Additional AI Attack Vectors**
 
@@ -201,7 +201,7 @@ Microsoft **AI Prompt Shields** provide comprehensive defense against both direc
 
 **Implementation Resources**: [Microsoft Prompt Shields Documentation](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields Protection](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.en.png)
+![Microsoft Prompt Shields Protection](../../../translated_images/en/prompt-shield.ff5b95be76e9c78c.png)
 
 
 ## Advanced MCP Security Threats

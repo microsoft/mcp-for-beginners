@@ -48,7 +48,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 This command starts an MCP server with its visual interface and opens a local web interface in your browser. You’ll see a dashboard showing your registered MCP servers, their available tools, resources, and prompts. The interface lets you interactively test tool execution, inspect server metadata, and view real-time responses, making it easier to validate and debug your MCP server implementations.
 
-Here’s an example of what it looks like: ![Inspector](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.en.png)
+Here’s an example of what it looks like: ![Inspector](../../../../translated_images/en/connect.141db0b2bd05f096.png)
 
 You can also run the tool in CLI mode by adding the `--cli` flag. Here’s an example of running it in CLI mode, which lists all the tools on the server:
 

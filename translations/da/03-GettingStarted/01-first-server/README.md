@@ -156,7 +156,7 @@ Når du kører ovenstående kommandoer, vil MCP Inspector starte en lokal webgr�
 
 Her er et screenshot af, hvordan det kan se ud:
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.da.png)
+![MCP Inspector server connection](../../../../translated_images/da/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## Almindelige opsætningsproblemer og løsninger
 
@@ -1302,7 +1302,7 @@ I inspektørens webinterface:
 2. Sæt URL'en til: `http://localhost:8080/sse`
 3. Klik på "Connect"
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.da.png)
+![Connect](../../../../translated_images/da/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **Du er nu forbundet til serveren**
 **Java-server testsektionen er nu fuldført**
@@ -1311,18 +1311,18 @@ Næste sektion handler om at interagere med serveren.
 
 Du bør se følgende brugergrænseflade:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.da.png)
+![Connect](../../../../translated_images/da/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. Forbind til serveren ved at vælge Connect-knappen
   Når du er forbundet til serveren, bør du nu se følgende:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.da.png)
+  ![Connected](../../../../translated_images/da/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. Vælg "Tools" og "listTools", du bør se "Add" dukke op, vælg "Add" og udfyld parameter-værdierne.
 
   Du bør se følgende svar, dvs. et resultat fra "add"-værktøjet:
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.da.png)
+  ![Result of running add](../../../../translated_images/da/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 Tillykke, du har formået at oprette og køre din første server!
 

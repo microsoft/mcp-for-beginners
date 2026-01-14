@@ -48,7 +48,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 Ovenstående kommando starter en MCP og dens visuelle interface og åbner en lokal webgrænseflade i din browser. Du kan forvente at se et dashboard, der viser dine registrerede MCP-servere, deres tilgængelige værktøjer, ressourcer og prompts. Interfacet giver dig mulighed for interaktivt at teste værktøjsudførelse, inspicere servermetadata og se svar i realtid, hvilket gør det nemmere at validere og fejlsøge dine MCP-serverimplementeringer.
 
-Sådan kan det se ud: ![Inspector](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.da.png)
+Sådan kan det se ud: ![Inspector](../../../../translated_images/da/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 Du kan også køre dette værktøj i CLI-tilstand ved at tilføje `--cli` attributten. Her er et eksempel på at køre værktøjet i "CLI"-tilstand, som viser alle værktøjer på serveren:
 

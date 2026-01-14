@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Dieses Projekt zeigt eine Webanwendung, die eine Inhaltsprüfung durchführt, bevor Benutzereingaben über das Model Context Protocol (MCP) an einen Rechnerdienst weitergeleitet werden.
 
-![Systemarchitektur-Diagramm](../../../../../../translated_images/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.de.png)
+![Systemarchitektur-Diagramm](../../../../../../translated_images/de/plant.b079fed84e945b7c.png)
 
 ### Funktionsweise
 

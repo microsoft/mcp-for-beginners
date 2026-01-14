@@ -110,7 +110,7 @@ Let me know if you want module-specific recommendations or need more customized 
 
 Below is a minimal sample solution. The full code and details are available in the solution folder.
 
-![Scenario 2 Overview](../../../../translated_images/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.en.png)
+![Scenario 2 Overview](../../../../translated_images/en/scenario2.0c92726d5cd81f68.png)
 
 <details>
 <summary>Python (Chainlit)</summary>
@@ -167,7 +167,7 @@ Here’s an example of how to set up the MCP server in VS Code:
 
 > For a detailed walkthrough with screenshots and step-by-step guide, see [`README.md`](./solution/scenario3/README.md).
 
-![Scenario 3 Overview](../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.en.png)
+![Scenario 3 Overview](../../../../translated_images/en/step4-prompt-chat.12187bb001605efc.png)
 
 This approach is ideal for anyone building technical courses, writing documentation, or developing code with frequent reference needs.
 
