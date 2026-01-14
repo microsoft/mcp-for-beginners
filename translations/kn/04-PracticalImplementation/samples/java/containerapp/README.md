@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ಈ ಯೋಜನೆ ಬಳಕೆದಾರರ ಪ್ರಾಂಪ್ಟ್‌ಗಳನ್ನು ಕ್ಯಾಲ್ಕುಲೇಟರ್ ಸೇವೆಗೆ Model Context Protocol (MCP) ಮೂಲಕ ಕಳುಹಿಸುವ ಮೊದಲು ವಿಷಯ ಸುರಕ್ಷತೆ ಪರಿಶೀಲನೆ ಬಳಸುವ ವೆಬ್ ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ಪ್ರದರ್ಶಿಸುತ್ತದೆ.
 
-![System Architecture Diagram](../../../../../../translated_images/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.kn.png)
+![System Architecture Diagram](../../../../../../translated_images/kn/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.png)
 
 ### ಇದು ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ
 

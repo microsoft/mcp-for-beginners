@@ -64,7 +64,7 @@ CO_OP_TRANSLATOR_METADATA:
 2. ಕೆಳಗಿನ ಸಂರಚನೆಯೊಂದಿಗೆ **ಹೊಸ ಏಜೆಂಟ್ ರಚಿಸಿ**:
    - ಏಜೆಂಟ್ ಹೆಸರು: `WeatherAgent`
 
-![Agent Creation](../../../../translated_images/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.kn.png)
+![Agent Creation](../../../../translated_images/kn/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.png)
 
 ### ಹಂತ 2: MCP ಸರ್ವರ್ ಪ್ರಾಜೆಕ್ಟ್ ಪ್ರಾರಂಭಿಸಿ
 
@@ -74,7 +74,7 @@ CO_OP_TRANSLATOR_METADATA:
 4. `python-weather` ಟೆಂಪ್ಲೇಟನ್ನು ಆಯ್ಕೆಮಾಡಿ
 5. ನಿಮ್ಮ ಸರ್ವರ್‌ಗೆ ಹೆಸರು ನೀಡಿ: `weather_mcp`
 
-![Python Template Selection](../../../../translated_images/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.kn.png)
+![Python Template Selection](../../../../translated_images/kn/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.png)
 
 ### ಹಂತ 3: ಪ್ರಾಜೆಕ್ಟ್ ತೆರೆಯಿರಿ ಮತ್ತು ಪರಿಶೀಲಿಸಿ
 
@@ -341,7 +341,7 @@ USER_PROMPT
 How's the weather like in Seattle
 ```
 
-![Agent Builder Debug Result](../../../../translated_images/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.kn.png)
+![Agent Builder Debug Result](../../../../translated_images/kn/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.png)
 
 ### ಹಂತ 8: MCP ಇನ್ಸ್‌ಪೆಕ್ಟರ್‌ನೊಂದಿಗೆ ಡಿಬಗ್ ಮಾಡಿ
 
@@ -353,7 +353,7 @@ How's the weather like in Seattle
    - ನೆಟ್‌ವರ್ಕ್ ವಿನಂತಿಗಳನ್ನು ಮಾನಿಟರ್ ಮಾಡಿ
    - ಸರ್ವರ್ ಪ್ರತಿಕ್ರಿಯೆಗಳನ್ನು ಡಿಬಗ್ ಮಾಡಿ
 
-![MCP Inspector Interface](../../../../translated_images/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.kn.png)
+![MCP Inspector Interface](../../../../translated_images/kn/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.png)
 
 ---
 

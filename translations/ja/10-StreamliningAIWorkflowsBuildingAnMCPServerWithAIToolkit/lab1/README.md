@@ -60,7 +60,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 **ステップ 3: インストールして有効化**
 
-![AI Toolkit Extension](../../../../translated_images/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.ja.png)
+![AI Toolkit Extension](../../../../translated_images/ja/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.png)
 
 ### ✅ 確認チェックリスト
 - [ ] VS Code のサイドバーに AI Toolkit アイコンが表示されている
@@ -79,7 +79,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 AI Toolkit のサイドバーで **MODELS - Catalog** をクリック
 
-![Model Catalog](../../../../translated_images/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.ja.png)
+![Model Catalog](../../../../translated_images/ja/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.png)
 
 **💡 プロのコツ**：コード生成、クリエイティブライティング、分析など、用途に合った特定の機能を持つモデルを探しましょう。
 
@@ -97,7 +97,7 @@ AI Toolkit のサイドバーで **MODELS - Catalog** をクリック
 3. **Try in Playground** を選んでテスト環境を起動
 4. モデルの初期化を待つ（初回は少し時間がかかる場合あり）
 
-![Playground Setup](../../../../translated_images/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.ja.png)
+![Playground Setup](../../../../translated_images/ja/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.png)
 
 **⚙️ モデルパラメーターの理解：**
 - **Temperature**：創造性の度合いを制御（0 = 決定的、1 = 創造的）
@@ -126,7 +126,7 @@ Playground は AI 実験のラボです。最大限に活用する方法はこ�
 "Analyze this sales data and provide insights: [paste your data]. Focus on trends, anomalies, and actionable recommendations."
 ```
 
-![Testing Results](../../../../translated_images/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.ja.png)
+![Testing Results](../../../../translated_images/ja/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.png)
 
 ### 🏆 チャレンジ演習：モデル性能比較
 
@@ -136,12 +136,12 @@ Playground は AI 実験のラボです。最大限に活用する方法はこ�
 1. **Phi-4-mini** をワークスペースに追加
 2. GPT-4.1 と Phi-4-mini に同じプロンプトを使う
 
-![set](../../../../translated_images/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.ja.png)
+![set](../../../../translated_images/ja/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.png)
 
 3. 応答の質、速度、正確さを比較
 4. 結果をドキュメントにまとめる
 
-![Model Comparison](../../../../translated_images/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.ja.png)
+![Model Comparison](../../../../translated_images/ja/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.png)
 
 **💡 発見すべきポイント：**
 - LLM と SLM の使い分け
@@ -163,7 +163,7 @@ Agent Builder は AI Toolkit の真骨頂です。大規模言語モデルの力
 - **ツール連携**：外部 API や MCP サービスとの接続
 - **メモリ**：会話の文脈やセッションの持続
 
-![Agent Builder Interface](../../../../translated_images/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.ja.png)
+![Agent Builder Interface](../../../../translated_images/ja/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.png)
 
 ### ⚙️ ステップ 2: エージェント設定の詳細
 
@@ -237,7 +237,7 @@ You are a senior Python developer with 10+ years of experience. You excel at wri
    - Max Tokens: 2000（詳細な説明）
    - Top-p: 0.9（バランスの取れた創造性）
 
-![Python Agent Configuration](../../../../translated_images/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.ja.png)
+![Python Agent Configuration](../../../../translated_images/ja/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.png)
 
 ### 🧪 ステップ 4: Python エージェントのテスト
 

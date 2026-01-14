@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 ## 시작하기  
 
-[![첫 MCP 서버 구축하기](../../../translated_images/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.ko.png)](https://youtu.be/sNDZO9N4m9Y)
+[![첫 MCP 서버 구축하기](../../../translated_images/ko/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.png)](https://youtu.be/sNDZO9N4m9Y)
 
 _(위 이미지를 클릭하면 이 강의의 영상을 볼 수 있습니다)_
 

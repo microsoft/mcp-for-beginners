@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP 핵심 개념: AI 통합을 위한 모델 컨텍스트 프로토콜 마스터하기
 
-[![MCP Core Concepts](../../../translated_images/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.ko.png)](https://youtu.be/earDzWGtE84)
+[![MCP Core Concepts](../../../translated_images/ko/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.png)](https://youtu.be/earDzWGtE84)
 
 _(위 이미지를 클릭하여 이 강의의 영상을 시청하세요)_
 

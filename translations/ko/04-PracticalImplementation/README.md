@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # 실전 구현
 
-[![실제 도구와 워크플로를 사용하여 MCP 앱을 빌드, 테스트, 배포하는 방법](../../../translated_images/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.ko.png)](https://youtu.be/vCN9-mKBDfQ)
+[![실제 도구와 워크플로를 사용하여 MCP 앱을 빌드, 테스트, 배포하는 방법](../../../translated_images/ko/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.png)](https://youtu.be/vCN9-mKBDfQ)
 
 _(위 이미지를 클릭하면 이 강의의 영상을 볼 수 있습니다)_
 
@@ -215,7 +215,7 @@ Azure API Management는 MCP 서버를 보호하는 데 적합한 솔루션입니
 
     다음과 유사한 인터페이스가 표시됩니다:
 
-    ![Node Inspector 연결](../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.ko.png)
+    ![Node Inspector 연결](../../../translated_images/ko/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. 표시된 URL(예: [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources))에서 MCP Inspector 웹 앱을 로드합니다.
 1. 전송 유형을 `SSE`로 설정합니다.

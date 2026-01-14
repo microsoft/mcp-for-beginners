@@ -203,7 +203,7 @@ Oltre ai server Microsoft, l’ecosistema MCP include:
    - **Nome**: `BrowserAgent`  
    - **Modello**: Scegli GPT-4o  
 
-![BrowserAgent](../../../../translated_images/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.it.png)
+![BrowserAgent](../../../../translated_images/it/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.png)
 
 
 ### 🔧 Fase 2: Workflow di Integrazione MCP
@@ -213,7 +213,7 @@ Oltre ai server Microsoft, l’ecosistema MCP include:
 2. **Clicca su "Add Tool"** per aprire il menu di integrazione  
 3. **Seleziona "MCP Server"** tra le opzioni disponibili  
 
-![AddMCP](../../../../translated_images/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.it.png)
+![AddMCP](../../../../translated_images/it/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.png)
 
 **🔍 Tipi di Strumenti:**
 - **Built-in Tools**: Funzioni preconfigurate di AI Toolkit  
@@ -223,10 +223,10 @@ Oltre ai server Microsoft, l’ecosistema MCP include:
 
 #### Passo 4: Selezione del Server MCP
 1. **Scegli l’opzione "MCP Server"** per procedere  
-![AddMCPServer](../../../../translated_images/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.it.png)
+![AddMCPServer](../../../../translated_images/it/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.png)
 
 2. **Esplora il Catalogo MCP** per vedere le integrazioni disponibili  
-![MCPCatalog](../../../../translated_images/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.it.png)
+![MCPCatalog](../../../../translated_images/it/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.png)
 
 
 ### 🎮 Fase 3: Configurazione Playwright MCP
@@ -236,12 +236,12 @@ Oltre ai server Microsoft, l’ecosistema MCP include:
 2. **Seleziona "Playwright"** dalla lista in evidenza  
 3. **Accetta l’ID MCP predefinito** o personalizzalo per il tuo ambiente  
 
-![MCPID](../../../../translated_images/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.it.png)
+![MCPID](../../../../translated_images/it/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.png)
 
 #### Passo 6: Abilita le Funzionalità di Playwright
 **🔑 Passo Critico**: Seleziona **TUTTI** i metodi Playwright disponibili per massimizzare le funzionalità  
 
-![Tools](../../../../translated_images/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.it.png)
+![Tools](../../../../translated_images/it/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.png)
 
 **🛠️ Strumenti Essenziali di Playwright:**
 - **Navigazione**: `goto`, `goBack`, `goForward`, `reload`  
@@ -257,7 +257,7 @@ Oltre ai server Microsoft, l’ecosistema MCP include:
 - Nessun messaggio di errore nel pannello di integrazione  
 - Stato del server Playwright mostra "Connected"  
 
-![AgentTools](../../../../translated_images/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.it.png)
+![AgentTools](../../../../translated_images/it/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.png)
 
 **🔧 Risoluzione Problemi Comuni:**
 - **Connessione Fallita**: Controlla la connessione internet e le impostazioni del firewall  
@@ -323,7 +323,7 @@ Navigate to github.com/kinfey and provide a comprehensive analysis including:
 Include screenshots at key steps and provide actionable insights.
 ```
 
-![Prompt](../../../../translated_images/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.it.png)
+![Prompt](../../../../translated_images/it/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.png)
 
 ### 🚀 Fase 5: Esecuzione e Test
 
@@ -335,19 +335,19 @@ Include screenshots at key steps and provide actionable insights.
    - Vengono catturati screenshot ad ogni passaggio importante  
    - I risultati dell’analisi vengono mostrati in streaming  
 
-![Browser](../../../../translated_images/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.it.png)
+![Browser](../../../../translated_images/it/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.png)
 
 #### Passo 11: Analizza Risultati e Insight
 Rivedi l’analisi completa nell’interfaccia di Agent Builder:
 
-![Result](../../../../translated_images/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.it.png)
+![Result](../../../../translated_images/it/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.png)
 
 ### 🌟 Fase 6: Funzionalità Avanzate e Distribuzione
 
 #### Passo 12: Esporta e Distribuisci in Produzione
 Agent Builder supporta diverse opzioni di distribuzione:
 
-![Code](../../../../translated_images/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.it.png)
+![Code](../../../../translated_images/it/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.png)
 
 ## 🎓 Riepilogo Modulo 2 & Prossimi Passi
 

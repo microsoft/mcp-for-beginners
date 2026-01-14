@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # ಸಮುದಾಯ ಮತ್ತು ಕೊಡುಗೆಗಳು
 
-[![MCP ಗೆ ಹೇಗೆ ಕೊಡುಗೆ ನೀಡುವುದು: ಉಪಕರಣಗಳು, ಡಾಕ್ಸ್, ಕೋಡ್ ಮತ್ತು ಇನ್ನಷ್ಟು](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.kn.png)](https://youtu.be/v1pvCYAWpRE)
+[![MCP ಗೆ ಹೇಗೆ ಕೊಡುಗೆ ನೀಡುವುದು: ಉಪಕರಣಗಳು, ಡಾಕ್ಸ್, ಕೋಡ್ ಮತ್ತು ಇನ್ನಷ್ಟು](../../../translated_images/kn/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.png)](https://youtu.be/v1pvCYAWpRE)
 
 _(ಈ ಪಾಠದ ವೀಡಿಯೋವನ್ನು ನೋಡಲು ಮೇಲಿನ ಚಿತ್ರವನ್ನು ಕ್ಲಿಕ್ ಮಾಡಿ)_
 

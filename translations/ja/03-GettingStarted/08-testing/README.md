@@ -48,7 +48,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 上記のコマンドはMCPとそのビジュアルインターフェースを起動し、ブラウザでローカルのWebインターフェースを開きます。登録されたMCPサーバー、利用可能なツール、リソース、プロンプトが表示されるダッシュボードが見られます。このインターフェースを使うことで、ツールの実行を対話的にテストしたり、サーバーメタデータを調査したり、リアルタイムのレスポンスを確認したりでき、MCPサーバーの実装検証やデバッグが容易になります。
 
-画面はこのようなイメージです： ![Inspector](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.ja.png)
+画面はこのようなイメージです： ![Inspector](../../../../translated_images/ja/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 また、`--cli`オプションを付けてCLIモードで実行することも可能です。以下はCLIモードでツール一覧を表示する例です：
 

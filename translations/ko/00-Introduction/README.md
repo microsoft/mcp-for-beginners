@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # 모델 컨텍스트 프로토콜(MCP) 소개: 확장 가능한 AI 애플리케이션을 위한 중요성
 
-[![모델 컨텍스트 프로토콜 소개](../../../translated_images/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.ko.png)](https://youtu.be/agBbdiOPLQA)
+[![모델 컨텍스트 프로토콜 소개](../../../translated_images/ko/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.png)](https://youtu.be/agBbdiOPLQA)
 
 _(위 이미지를 클릭하면 이 강의의 동영상을 볼 수 있습니다)_
 

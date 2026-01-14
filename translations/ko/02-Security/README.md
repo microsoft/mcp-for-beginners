@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP 보안: AI 시스템을 위한 종합 보호
 
-[![MCP Security Best Practices](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.ko.png)](https://youtu.be/88No8pw706o)
+[![MCP Security Best Practices](../../../translated_images/ko/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(위 이미지를 클릭하여 이 수업의 비디오를 시청하세요)_
 
@@ -133,7 +133,7 @@ MCP 사양은 인증 및 권한 부여 접근법에서 크게 발전했습니다
 
 **실제 영향**: 데이터 유출, 개인정보 침해, 유해 콘텐츠 생성, 사용자 상호작용 조작 등이 발생할 수 있습니다. 자세한 분석은 [MCP의 프롬프트 인젝션 (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/)을 참조하세요.
 
-![Prompt Injection Attack Diagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.ko.png)
+![Prompt Injection Attack Diagram](../../../translated_images/ko/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **도구 중독 공격**
 
@@ -147,7 +147,7 @@ MCP 사양은 인증 및 권한 부여 접근법에서 크게 발전했습니다
 
 **호스팅 서버 위험**: 원격 MCP 서버는 도구 정의가 초기 사용자 승인 후 업데이트될 수 있어, 이전에 안전했던 도구가 악성으로 변할 수 있는 위험이 높습니다. 종합 분석은 [도구 중독 공격 (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks)를 참조하세요.
 
-![Tool Injection Attack Diagram](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.ko.png)
+![Tool Injection Attack Diagram](../../../translated_images/ko/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **추가 AI 공격 벡터**
 
@@ -200,7 +200,7 @@ Microsoft **AI Prompt Shields**는 직접 및 간접 프롬프트 인젝션 공�
 
 **구현 자료**: [Microsoft Prompt Shields 문서](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields Protection](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.ko.png)
+![Microsoft Prompt Shields Protection](../../../translated_images/ko/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## 고급 MCP 보안 위협

@@ -38,9 +38,9 @@ MCPサーバーを制御する方法は2つあります：
 
 ### スクリーンショット
 
-![Visual Studio CodeでのMCPサーバー設定ガイド](../../../../translated_images/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.ja.png)  
-![エージェントセッションごとのツール選択](../../../../translated_images/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.ja.png)  
-![MCP開発中のエラーを簡単にデバッグ](../../../../translated_images/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.ja.png)  
+![Visual Studio CodeでのMCPサーバー設定ガイド](../../../../translated_images/ja/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.png)  
+![エージェントセッションごとのツール選択](../../../../translated_images/ja/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.png)  
+![MCP開発中のエラーを簡単にデバッグ](../../../../translated_images/ja/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.png)  
 
 次のセクションで、視覚的なインターフェースの使用方法について詳しく説明します。
 
@@ -103,15 +103,15 @@ MCPサーバーの検出を有効化する必要があるかもしれません�
 
 1. *mcp.json*内のエントリを見つけ、「再生」アイコンを確認します：
 
-  ![Visual Studio Codeでサーバーを起動](../../../../translated_images/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.ja.png)  
+  ![Visual Studio Codeでサーバーを起動](../../../../translated_images/ja/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.png)  
 
 1. 「再生」アイコンをクリックすると、GitHub Copilot Chatのツールアイコンに利用可能なツールの数が増加するのがわかります。そのツールアイコンをクリックすると、登録されたツールのリストが表示されます。各ツールをチェック/チェック解除して、GitHub Copilotがそれらをコンテキストとして使用するかどうかを選択できます：
 
-  ![Visual Studio Codeでツールを起動](../../../../translated_images/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.ja.png)
+  ![Visual Studio Codeでツールを起動](../../../../translated_images/ja/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.png)
 
 1. ツールを実行するには、ツールの説明に一致するプロンプトを入力します。例えば、「22に1を加える」というプロンプトを入力します：
 
-  ![GitHub Copilotからツールを実行](../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.ja.png)
+  ![GitHub Copilotからツールを実行](../../../../translated_images/ja/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
   結果として「23」と表示されるはずです。
 

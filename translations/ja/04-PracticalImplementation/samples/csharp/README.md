@@ -26,7 +26,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 1. Webブラウザで .NET Aspire ダッシュボードが開いたら、`http` のURLを確認してください。`http://localhost:5058/` のようなURLのはずです。
 
-   ![.NET Aspire Dashboard](../../../../../translated_images/dotnet-aspire-dashboard.0a7095710e9301e90df2efd867e1b675b3b9bc2ccd7feb1ebddc0751522bc37c.ja.png)
+   ![.NET Aspire Dashboard](../../../../../translated_images/ja/dotnet-aspire-dashboard.0a7095710e9301e90df2efd867e1b675b3b9bc2ccd7feb1ebddc0751522bc37c.png)
 
 ## MCP Inspector で Streamable HTTP をテストする
 
@@ -38,7 +38,7 @@ Node.js 22.7.5 以降をお持ちの場合、MCP Inspector を使ってサーバ
 npx @modelcontextprotocol/inspector http://localhost:5058
 ```
 
-![MCP Inspector](../../../../../translated_images/mcp-inspector.c223422b9b494fb4a518a3b3911b3e708e6a5715069470f9163ee2ee8d5f1ba9.ja.png)
+![MCP Inspector](../../../../../translated_images/ja/mcp-inspector.c223422b9b494fb4a518a3b3911b3e708e6a5715069470f9163ee2ee8d5f1ba9.png)
 
 - Transport タイプとして `Streamable HTTP` を選択します。
 - Url フィールドに先ほど確認したサーバーのURLを入力し、末尾に `/mcp` を追加します。`http`（`https` ではなく）で、`http://localhost:5058/mcp` のようになります。
@@ -83,7 +83,7 @@ azd up
 
 デプロイが完了すると、次のようなメッセージが表示されるはずです。
 
-![Azd deployment success](../../../../../translated_images/azd-deployment-success.bd42940493f1b834a5ce6251a6f88966546009b350df59d0cc4a8caabe94a4f1.ja.png)
+![Azd deployment success](../../../../../translated_images/ja/azd-deployment-success.bd42940493f1b834a5ce6251a6f88966546009b350df59d0cc4a8caabe94a4f1.png)
 
 URLを控えて、MCP Inspector や GitHub Copilot Chat で使いましょう。
 

@@ -201,7 +201,7 @@ MCP Inspector는 MCP 서비스와 상호작용할 수 있는 유용한 도구입
    - "List Tools" 클릭하여 사용 가능한 계산기 연산 확인
    - 도구 선택 후 "Run Tool" 클릭하여 연산 실행
 
-![MCP Inspector Screenshot](../../../../../../translated_images/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.ko.png)
+![MCP Inspector Screenshot](../../../../../../translated_images/ko/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.png)
 
 ### Docker 사용
 

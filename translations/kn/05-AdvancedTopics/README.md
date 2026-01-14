@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP ನಲ್ಲಿ ಉನ್ನತ ವಿಷಯಗಳು
 
-[![ಉನ್ನತ MCP: ಸುರಕ್ಷಿತ, ವಿಸ್ತಾರಗೊಳ್ಳುವ ಮತ್ತು ಬಹು-ಮೋಡಲ್ AI ಏಜೆಂಟ್ಗಳು](../../../translated_images/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.kn.png)](https://youtu.be/4yjmGvJzYdY)
+[![ಉನ್ನತ MCP: ಸುರಕ್ಷಿತ, ವಿಸ್ತಾರಗೊಳ್ಳುವ ಮತ್ತು ಬಹು-ಮೋಡಲ್ AI ಏಜೆಂಟ್ಗಳು](../../../translated_images/kn/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.png)](https://youtu.be/4yjmGvJzYdY)
 
 _(ಈ ಪಾಠದ ವೀಡಿಯೋವನ್ನು ನೋಡಲು ಮೇಲಿನ ಚಿತ್ರವನ್ನು ಕ್ಲಿಕ್ ಮಾಡಿ)_
 

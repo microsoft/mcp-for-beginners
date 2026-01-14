@@ -201,7 +201,7 @@ MCP InspectorはMCPサービスとやり取りするための便利なツール�
    - 「List Tools」をクリックして利用可能な計算機操作を表示
    - ツールを選択し、「Run Tool」をクリックして操作を実行
 
-![MCP Inspector Screenshot](../../../../../../translated_images/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.ja.png)
+![MCP Inspector Screenshot](../../../../../../translated_images/ja/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.png)
 
 ### Dockerの利用
 

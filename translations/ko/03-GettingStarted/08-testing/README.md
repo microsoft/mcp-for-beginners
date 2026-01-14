@@ -48,7 +48,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 위 명령은 MCP와 시각적 인터페이스를 시작하며, 브라우저에서 로컬 웹 인터페이스를 엽니다. 대시보드에는 등록된 MCP 서버, 사용 가능한 도구, 리소스, 프롬프트가 표시됩니다. 이 인터페이스를 통해 도구 실행을 대화식으로 테스트하고, 서버 메타데이터를 검사하며, 실시간 응답을 확인할 수 있어 MCP 서버 구현을 검증하고 디버깅하기가 훨씬 수월해집니다.
 
-화면 예시는 다음과 같습니다: ![Inspector](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.ko.png)
+화면 예시는 다음과 같습니다: ![Inspector](../../../../translated_images/ko/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 또한 `--cli` 옵션을 추가해 CLI 모드로 도구를 실행할 수도 있습니다. 다음은 서버의 모든 도구를 나열하는 CLI 모드 실행 예시입니다:
 

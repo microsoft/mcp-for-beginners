@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP in Azione: Studi di Caso Reali
 
-[![MCP in Azione: Studi di Caso Reali](../../../translated_images/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.it.png)](https://youtu.be/IxshWb2Az5w)
+[![MCP in Azione: Studi di Caso Reali](../../../translated_images/it/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.png)](https://youtu.be/IxshWb2Az5w)
 
 _(Clicca sull'immagine sopra per vedere il video di questa lezione)_
 

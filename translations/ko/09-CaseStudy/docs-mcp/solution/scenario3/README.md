@@ -52,28 +52,28 @@ CO_OP_TRANSLATOR_METADATA:
    ```  
    이 구성은 VS Code가 [`Microsoft Learn Docs MCP 서버`](https://github.com/MicrosoftDocs/mcp)에 연결하는 방법을 알려줍니다.
    
-   ![1단계: .vscode 폴더에 mcp.json 추가](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.ko.png)
+   ![1단계: .vscode 폴더에 mcp.json 추가](../../../../../../translated_images/ko/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
     
 2. **GitHub Copilot Chat 패널 열기:**
    GitHub Copilot 확장 프로그램이 설치되어 있지 않다면 VS Code의 확장 뷰에서 설치하세요. [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat)에서 직접 다운로드할 수 있습니다. 그런 다음 사이드바에서 Copilot Chat 패널을 엽니다.
 
-   ![2단계: Copilot Chat 패널 열기](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.ko.png)
+   ![2단계: Copilot Chat 패널 열기](../../../../../../translated_images/ko/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
 
 3. **에이전트 모드 활성화 및 도구 확인:**
    Copilot Chat 패널에서 에이전트 모드를 활성화하세요.
 
-   ![3단계: 에이전트 모드 활성화 및 도구 확인](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.ko.png)
+   ![3단계: 에이전트 모드 활성화 및 도구 확인](../../../../../../translated_images/ko/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
 
    에이전트 모드를 켠 후 MCP 서버가 사용 가능한 도구 목록에 있는지 확인합니다. 이렇게 하면 Copilot 에이전트가 문서 서버에 접근해 관련 정보를 가져올 수 있습니다.
    
-   ![3단계: MCP 서버 도구 확인](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.ko.png)
+   ![3단계: MCP 서버 도구 확인](../../../../../../translated_images/ko/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
 
 4. **새 채팅 시작 및 에이전트에 질문하기:**
    Copilot Chat 패널에서 새 채팅을 열고 문서 관련 질문을 에이전트에 입력하세요. 에이전트는 MCP 서버를 통해 관련 Microsoft Learn 문서를 에디터 내에서 바로 가져와 보여줍니다.
 
    - *"주제 X에 대한 학습 계획을 작성하려고 합니다. 8주 동안 공부할 예정인데, 각 주차별로 어떤 내용을 공부해야 할지 제안해 주세요."*
 
-   ![4단계: 채팅에서 에이전트에 질문하기](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.ko.png)
+   ![4단계: 채팅에서 에이전트에 질문하기](../../../../../../translated_images/ko/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 5. **실시간 질의:**
 
@@ -82,7 +82,7 @@ CO_OP_TRANSLATOR_METADATA:
    *"Azure AI Foundry에서 개발한 AI 에이전트로 다중 에이전트 솔루션을 배포하는 방법에 대해 답을 찾고 있습니다. Copilot Studio 채널 같은 직접적인 배포 방법이 없는 것 같은데, 기업 사용자가 상호작용하며 작업을 수행할 수 있도록 배포하는 다양한 방법은 무엇인가요?  
    MS Teams와 Azure AI Foundry 에이전트 간의 다리 역할을 할 수 있는 Azure Bot 서비스를 사용할 수 있다는 여러 기사/블로그를 봤는데, Azure Function을 통해 Orchestrator Agent에 연결하는 Azure Bot을 설정하면 작동할까요? 아니면 다중 에이전트 솔루션의 각 AI 에이전트 부분마다 Azure Function을 만들어 Bot Framework에서 오케스트레이션을 해야 하나요? 다른 제안도 환영합니다."*
 
-   ![5단계: 실시간 질의](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.ko.png)
+   ![5단계: 실시간 질의](../../../../../../translated_images/ko/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
 
    에이전트는 관련 문서 링크와 요약을 제공하며, 이를 마크다운 파일에 바로 삽입하거나 코드 참조로 활용할 수 있습니다.
    

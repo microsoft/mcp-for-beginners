@@ -156,7 +156,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 다음은 화면 예시입니다:
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.ko.png)
+![MCP Inspector server connection](../../../../translated_images/ko/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## 일반적인 설정 문제 및 해결책
 
@@ -1302,7 +1302,7 @@ npx @modelcontextprotocol/inspector
 2. URL을 `http://localhost:8080/sse`로 설정하세요  
 3. "Connect"를 클릭하세요
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.ko.png)
+![Connect](../../../../translated_images/ko/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **이제 서버에 연결되었습니다**  
 **Java 서버 테스트 섹션이 완료되었습니다**
@@ -1311,18 +1311,18 @@ npx @modelcontextprotocol/inspector
 
 다음과 같은 사용자 인터페이스가 표시됩니다:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.ko.png)
+![Connect](../../../../translated_images/ko/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. Connect 버튼을 선택하여 서버에 연결하세요  
   서버에 연결되면 다음 화면이 표시됩니다:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.ko.png)
+  ![Connected](../../../../translated_images/ko/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. "Tools"와 "listTools"를 선택하면 "Add"가 표시됩니다. "Add"를 선택하고 매개변수 값을 입력하세요.
 
   다음과 같은 응답, 즉 "add" 도구의 결과를 볼 수 있습니다:
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.ko.png)
+  ![Result of running add](../../../../translated_images/ko/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 축하합니다, 첫 번째 서버를 성공적으로 생성하고 실행했습니다!
 

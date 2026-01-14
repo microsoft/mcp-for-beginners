@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # 🌟 早期導入者から学ぶ教訓
 
-[![MCP早期導入者から学ぶ教訓](../../../translated_images/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.ja.png)](https://youtu.be/jds7dSmNptE)
+[![MCP早期導入者から学ぶ教訓](../../../translated_images/ja/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.png)](https://youtu.be/jds7dSmNptE)
 
 _(上の画像をクリックして、このレッスンの動画をご覧ください)_
 

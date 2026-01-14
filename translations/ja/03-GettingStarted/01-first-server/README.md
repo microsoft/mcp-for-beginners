@@ -156,7 +156,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 以下はその画面のスクリーンショットです：
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.ja.png)
+![MCP Inspector server connection](../../../../translated_images/ja/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## よくあるセットアップの問題と解決策
 
@@ -1302,7 +1302,7 @@ npx @modelcontextprotocol/inspector
 2. URL を `http://localhost:8080/sse` に設定
 3. 「Connect」をクリック
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.ja.png)
+![Connect](../../../../translated_images/ja/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **これでサーバーに接続されました**
 **Javaサーバーテストのセクションはこれで完了です**
@@ -1311,18 +1311,18 @@ npx @modelcontextprotocol/inspector
 
 以下のユーザーインターフェースが表示されるはずです:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.ja.png)
+![Connect](../../../../translated_images/ja/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. 「Connect」ボタンを選択してサーバーに接続します
   サーバーに接続すると、以下の画面が表示されます:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.ja.png)
+  ![Connected](../../../../translated_images/ja/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. 「Tools」と「listTools」を選択すると「Add」が表示されます。「Add」を選択してパラメーター値を入力してください。
 
   以下のレスポンス、つまり「add」ツールの結果が表示されるはずです:
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.ja.png)
+  ![Result of running add](../../../../translated_images/ja/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 おめでとうございます、最初のサーバーを作成して実行できました！
 

@@ -139,7 +139,7 @@ Scenario : Basic Clone and Open
  } and save to {The global path you specify}, then open it with VS Code Insiders"
 ```
 
-![Agent Builder Testing](../../../../translated_images/DebugAgent.81d152370c503241b3b39a251b8966f7f739286df19dd57f9147f6402214a012.ko.png)
+![Agent Builder Testing](../../../../translated_images/ko/DebugAgent.81d152370c503241b3b39a251b8966f7f739286df19dd57f9147f6402214a012.png)
 
 **예상 결과:**
 - ✅ 경로 확인과 함께 성공적인 클론
@@ -149,7 +149,7 @@ Scenario : Basic Clone and Open
 
 #### 4b. MCP Inspector에서 테스트
 
-![MCP Inspector Testing](../../../../translated_images/DebugInspector.eb5c95f94c69a8ba36944941b9a3588309a3a2fae101ace470ee09bde41d1667.ko.png)
+![MCP Inspector Testing](../../../../translated_images/ko/DebugInspector.eb5c95f94c69a8ba36944941b9a3588309a3a2fae101ace470ee09bde41d1667.png)
 
 ---
 

@@ -111,7 +111,7 @@ Let me know if you want module-specific recommendations or need more customized 
 
 ಕೆಳಗಿನದು ಕನಿಷ್ಠ ಮಾದರಿ ಪರಿಹಾರವಾಗಿದೆ. ಸಂಪೂರ್ಣ ಕೋಡ್ ಮತ್ತು ವಿವರಗಳು ಪರಿಹಾರ ಫೋಲ್ಡರ್‌ನಲ್ಲಿ ಲಭ್ಯವಿವೆ.
 
-![Scenario 2 Overview](../../../../translated_images/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.kn.png)
+![Scenario 2 Overview](../../../../translated_images/kn/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.png)
 
 <details>
 <summary>Python (Chainlit)</summary>
@@ -169,7 +169,7 @@ def handle_message(message):
 
 > ಸ್ಕ್ರೀನ್‌ಶಾಟ್‌ಗಳು ಮತ್ತು ಹಂತ ಹಂತದ ಮಾರ್ಗದರ್ಶನದೊಂದಿಗೆ ವಿವರವಾದ ವಾಕ್ತೃಪಥಕ್ಕಾಗಿ, [`README.md`](./solution/scenario3/README.md) ಅನ್ನು ನೋಡಿ.
 
-![Scenario 3 Overview](../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.kn.png)
+![Scenario 3 Overview](../../../../translated_images/kn/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 ಈ ವಿಧಾನವು ತಾಂತ್ರಿಕ ಕೋರ್ಸ್‌ಗಳನ್ನು ನಿರ್ಮಿಸುವವರು, ಡಾಕ್ಯುಮೆಂಟೇಶನ್ ಬರೆಯುವವರು ಅಥವಾ ನಿರಂತರ ಉಲ್ಲೇಖ ಅಗತ್ಯವಿರುವ ಕೋಡ್ ಅಭಿವೃದ್ಧಿಪಡಿಸುವವರಿಗೆ ಸೂಕ್ತವಾಗಿದೆ.
 

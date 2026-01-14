@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 이 프로젝트는 사용자 프롬프트를 계산기 서비스에 전달하기 전에 콘텐츠 안전성 검사를 수행하는 웹 애플리케이션을 Model Context Protocol (MCP)을 통해 구현한 예시입니다.
 
-![System Architecture Diagram](../../../../../../translated_images/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.ko.png)
+![System Architecture Diagram](../../../../../../translated_images/ko/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.png)
 
 ### 작동 방식
 
