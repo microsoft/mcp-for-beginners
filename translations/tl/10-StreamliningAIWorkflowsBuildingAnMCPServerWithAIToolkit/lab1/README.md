@@ -60,7 +60,7 @@ Ang **AI Toolkit para sa Visual Studio Code** ay pangunahing extension ng Micros
 
 **Hakbang 3: I-install at I-activate**
 
-![AI Toolkit Extension](../../../../translated_images/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.tl.png)
+![AI Toolkit Extension](../../../../translated_images/tl/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.png)
 
 ### ✅ Checklist sa Pag-verify
 - [ ] Lumabas ang AI Toolkit icon sa sidebar ng VS Code
@@ -79,7 +79,7 @@ Ang Model Catalog ang iyong daan sa AI ecosystem. Pinagsasama-sama nito ang mga 
 
 I-click ang **MODELS - Catalog** sa AI Toolkit sidebar
 
-![Model Catalog](../../../../translated_images/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.tl.png)
+![Model Catalog](../../../../translated_images/tl/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.png)
 
 **💡 Tip**: Hanapin ang mga modelo na may partikular na kakayahan na tugma sa iyong pangangailangan (hal., code generation, malikhaing pagsulat, pagsusuri).
 
@@ -97,7 +97,7 @@ I-click ang **MODELS - Catalog** sa AI Toolkit sidebar
 3. Piliin ang **Try in Playground** para ilunsad ang testing environment
 4. Maghintay para sa initialization ng modelo (maaaring tumagal ng kaunti sa unang setup)
 
-![Playground Setup](../../../../translated_images/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.tl.png)
+![Playground Setup](../../../../translated_images/tl/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.png)
 
 **⚙️ Pag-unawa sa Mga Parameter ng Modelo:**
 - **Temperature**: Kontrol sa pagiging malikhain (0 = deterministic, 1 = malikhain)
@@ -126,7 +126,7 @@ Ang Playground ang iyong laboratoryo para sa eksperimento sa AI. Narito kung paa
 "Analyze this sales data and provide insights: [paste your data]. Focus on trends, anomalies, and actionable recommendations."
 ```
 
-![Testing Results](../../../../translated_images/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.tl.png)
+![Testing Results](../../../../translated_images/tl/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.png)
 
 ### 🏆 Hamon: Paghahambing ng Performance ng Modelo
 
@@ -136,12 +136,12 @@ Ang Playground ang iyong laboratoryo para sa eksperimento sa AI. Narito kung paa
 1. Idagdag ang **Phi-4-mini** sa iyong workspace
 2. Gamitin ang parehong prompt para sa GPT-4.1 at Phi-4-mini
 
-![set](../../../../translated_images/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.tl.png)
+![set](../../../../translated_images/tl/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.png)
 
 3. Ihambing ang kalidad ng sagot, bilis, at katumpakan
 4. I-dokumento ang iyong mga natuklasan sa seksyon ng resulta
 
-![Model Comparison](../../../../translated_images/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.tl.png)
+![Model Comparison](../../../../translated_images/tl/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.png)
 
 **💡 Mahahalagang Punto na Dapat Matuklasan:**
 - Kailan gagamit ng LLM kumpara sa SLM
@@ -163,7 +163,7 @@ Dito tunay na namumukod-tangi ang AI Toolkit. Pinapayagan ka nitong gumawa ng mg
 - **Tools Integration**: Koneksyon sa external APIs at MCP services
 - **Memory**: Konteksto ng pag-uusap at pagpapanatili ng session
 
-![Agent Builder Interface](../../../../translated_images/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.tl.png)
+![Agent Builder Interface](../../../../translated_images/tl/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.png)
 
 ### ⚙️ Hakbang 2: Malalimang Pag-configure ng Agent
 
@@ -237,7 +237,7 @@ You are a senior Python developer with 10+ years of experience. You excel at wri
    - Max Tokens: 2000 (detalyadong paliwanag)
    - Top-p: 0.9 (balanseng pagiging malikhain)
 
-![Python Agent Configuration](../../../../translated_images/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.tl.png)
+![Python Agent Configuration](../../../../translated_images/tl/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.png)
 
 ### 🧪 Hakbang 4: Pagsubok sa Iyong Python Agent
 

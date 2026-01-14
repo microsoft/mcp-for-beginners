@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP இல் மேம்பட்ட தலைப்புகள்
 
-[![மேம்பட்ட MCP: பாதுகாப்பான, அளவளாவிய மற்றும் பலவகை AI முகவர்கள்](../../../translated_images/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.ta.png)](https://youtu.be/4yjmGvJzYdY)
+[![மேம்பட்ட MCP: பாதுகாப்பான, அளவளாவிய மற்றும் பலவகை AI முகவர்கள்](../../../translated_images/ta/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.png)](https://youtu.be/4yjmGvJzYdY)
 
 _(மேலே உள்ள படத்தை கிளிக் செய்து இந்த பாடத்தின் வீடியோவைப் பாருங்கள்)_
 

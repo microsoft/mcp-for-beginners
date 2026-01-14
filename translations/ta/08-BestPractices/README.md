@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP மேம்பாட்டு சிறந்த நடைமுறைகள்
 
-[![MCP மேம்பாட்டு சிறந்த நடைமுறைகள்](../../../translated_images/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.ta.png)](https://youtu.be/W56H9W7x-ao)
+[![MCP மேம்பாட்டு சிறந்த நடைமுறைகள்](../../../translated_images/ta/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.png)](https://youtu.be/W56H9W7x-ao)
 
 _(மேலே உள்ள படத்தை கிளிக் செய்து இந்த பாடத்தின் வீடியோவைப் பாருங்கள்)_
 

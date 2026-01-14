@@ -201,7 +201,7 @@ MCP Inspector MCP சேவைகளுடன் தொடர்பு கொள
    - "List Tools" என்பதைக் கிளிக் செய்து கிடைக்கும் கணிகையாளர் செயல்பாடுகளைப் பார்க்கவும்
    - ஒரு கருவியைத் தேர்ந்தெடுத்து "Run Tool" என்பதைக் கிளிக் செய்து ஒரு செயல்பாட்டை இயக்கவும்
 
-![MCP Inspector Screenshot](../../../../../../translated_images/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.ta.png)
+![MCP Inspector Screenshot](../../../../../../translated_images/ta/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.png)
 
 ### Docker பயன்படுத்துதல்
 

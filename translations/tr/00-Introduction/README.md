@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Model Bağlam Protokolüne (MCP) Giriş: Ölçeklenebilir Yapay Zeka Uygulamaları İçin Neden Önemli?
 
-[![Model Bağlam Protokolüne Giriş](../../../translated_images/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.tr.png)](https://youtu.be/agBbdiOPLQA)
+[![Model Bağlam Protokolüne Giriş](../../../translated_images/tr/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.png)](https://youtu.be/agBbdiOPLQA)
 
 _(Bu dersin videosunu izlemek için yukarıdaki görsele tıklayın)_
 

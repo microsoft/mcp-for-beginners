@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP Güvenliği: AI Sistemleri için Kapsamlı Koruma
 
-[![MCP Security Best Practices](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.tr.png)](https://youtu.be/88No8pw706o)
+[![MCP Security Best Practices](../../../translated_images/tr/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(Bu dersin videosunu izlemek için yukarıdaki resme tıklayın)_
 
@@ -133,7 +133,7 @@ Modern MCP uygulamaları, geleneksel güvenlik önlemlerinin tam olarak karşıl
 
 **Gerçek Dünya Etkisi**: Bu saldırılar veri sızdırma, gizlilik ihlalleri, zararlı içerik üretimi ve kullanıcı etkileşimlerinin manipülasyonu ile sonuçlanabilir. Ayrıntılı analiz için bkz. [MCP'de Prompt Enjeksiyonu (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
-![Prompt Injection Attack Diagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.tr.png)
+![Prompt Injection Attack Diagram](../../../translated_images/tr/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **Araç Zehirlenmesi Saldırıları**
 
@@ -147,7 +147,7 @@ Modern MCP uygulamaları, geleneksel güvenlik önlemlerinin tam olarak karşıl
 
 **Barındırılan Sunucu Riskleri**: Uzaktan MCP sunucuları, araç tanımlarının ilk kullanıcı onayından sonra güncellenebilmesi nedeniyle risk taşır; önceden güvenli olan araçlar kötü niyetli hale gelebilir. Kapsamlı analiz için bkz. [Araç Zehirlenmesi Saldırıları (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
-![Tool Injection Attack Diagram](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.tr.png)
+![Tool Injection Attack Diagram](../../../translated_images/tr/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **Ek AI Saldırı Vektörleri**
 
@@ -200,7 +200,7 @@ Microsoft **AI Prompt Shields**, doğrudan ve dolaylı prompt enjeksiyonu saldı
 
 **Uygulama Kaynakları**: [Microsoft Prompt Shields Dokümantasyonu](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields Protection](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.tr.png)
+![Microsoft Prompt Shields Protection](../../../translated_images/tr/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## Gelişmiş MCP Güvenlik Tehditleri

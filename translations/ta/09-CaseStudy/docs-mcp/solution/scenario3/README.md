@@ -52,27 +52,27 @@ CO_OP_TRANSLATOR_METADATA:
    ```
    இந்த அமைப்பு [`Microsoft Learn Docs MCP server`](https://github.com/MicrosoftDocs/mcp) உடன் இணைக்க VS Code-ஐ எப்படி அமைக்க வேண்டும் என்பதை தெரிவிக்கிறது.
    
-   ![படி 1: .vscode கோப்பகத்தில் mcp.json சேர்க்கவும்](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.ta.png)
+   ![படி 1: .vscode கோப்பகத்தில் mcp.json சேர்க்கவும்](../../../../../../translated_images/ta/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
     
 2. **GitHub Copilot Chat குழு தாளைத் திறக்கவும்:**
    GitHub Copilot நீட்டிப்பு நிறுவப்படவில்லை என்றால், VS Code-இல் Extensions பார்வைக்கு சென்று அதை நிறுவவும். [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat) மூலம் நேரடியாக பதிவிறக்கலாம். பின்னர், Copilot Chat குழு தாளை பக்கப்பட்டியில் இருந்து திறக்கவும்.
 
-   ![படி 2: Copilot Chat குழு தாளைத் திறக்கவும்](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.ta.png)
+   ![படி 2: Copilot Chat குழு தாளைத் திறக்கவும்](../../../../../../translated_images/ta/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
 
 3. **Agent mode-ஐ இயக்கி கருவிகளை சரிபார்க்கவும்:**
    Copilot Chat குழு தாளில் agent mode-ஐ இயக்கவும்.
 
-   ![படி 3: Agent mode-ஐ இயக்கி கருவிகளை சரிபார்க்கவும்](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.ta.png)
+   ![படி 3: Agent mode-ஐ இயக்கி கருவிகளை சரிபார்க்கவும்](../../../../../../translated_images/ta/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
 
    Agent mode-ஐ இயக்கிய பிறகு, MCP சர்வர் கிடைக்கக்கூடிய கருவிகளில் ஒன்றாக பட்டியலிடப்பட்டுள்ளதா என்பதை சரிபார்க்கவும். இது Copilot agent ஆவண சர்வரை அணுகி தொடர்புடைய தகவல்களை பெற உதவுகிறது என்பதை உறுதிப்படுத்துகிறது.
    
-   ![படி 3: MCP சர்வர் கருவியை சரிபார்க்கவும்](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.ta.png)
+   ![படி 3: MCP சர்வர் கருவியை சரிபார்க்கவும்](../../../../../../translated_images/ta/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
 4. **புதிய உரையாடலைத் தொடங்கி agent-ஐ கேள்வி கேட்கவும்:**
    Copilot Chat குழு தாளில் புதிய உரையாடலைத் தொடங்கவும். இப்போது உங்கள் ஆவண கேள்விகளுடன் agent-ஐ கேட்கலாம். MCP சர்வரை பயன்படுத்தி agent Microsoft Learn ஆவணங்களை நேரடியாக உங்கள் ஆசிரியர் சூழலில் காட்சிப்படுத்தும்.
 
    - *"நான் X தலைப்புக்கான ஒரு படிப்பு திட்டத்தை எழுத முயற்சிக்கிறேன். நான் அதை 8 வாரங்களுக்கு படிக்கப் போகிறேன், ஒவ்வொரு வாரத்திற்கும், நான் எவ்வகையான உள்ளடக்கத்தை எடுத்துக்கொள்ள வேண்டும் என்று பரிந்துரைக்கவும்."*
 
-   ![படி 4: உரையாடலில் agent-ஐ கேட்கவும்](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.ta.png)
+   ![படி 4: உரையாடலில் agent-ஐ கேட்கவும்](../../../../../../translated_images/ta/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 5. **நேரடி கேள்வி:**
 
@@ -82,7 +82,7 @@ CO_OP_TRANSLATOR_METADATA:
 Azure Bot சேவை இந்த வேலை செய்ய உதவ முடியும் என்று கூறும் பல கட்டுரைகள்/வலைப்பதிவுகள் உள்ளன, இது MS Teams மற்றும் Azure AI Foundry Agents இடையே ஒரு பாலமாக செயல்பட முடியும், சரி, Azure AI Foundry-ல் Orchestrator Agent-ஐ Azure function மூலம் இணைக்கும் Azure bot-ஐ அமைத்தால் இது வேலை செய்யுமா அல்லது Bot framework-இல் orchestration செய்ய பல-agent தீர்வின் ஒரு பகுதியாக உள்ள ஒவ்வொரு AI agent-க்கும் Azure function உருவாக்க வேண்டும்? ஏதேனும் பிற பரிந்துரைகள் வரவேற்கப்படுகின்றன.
 "*
 
-   ![படி 5: நேரடி கேள்விகள்](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.ta.png)
+   ![படி 5: நேரடி கேள்விகள்](../../../../../../translated_images/ta/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
 
    Agent தொடர்புடைய ஆவண இணைப்புகள் மற்றும் சுருக்கங்களை பதிலளிக்கும், இதை நீங்கள் நேரடியாக உங்கள் markdown கோப்புகளில் சேர்க்கலாம் அல்லது உங்கள் குறியீட்டில் மேற்கோள்களாக பயன்படுத்தலாம்.
    

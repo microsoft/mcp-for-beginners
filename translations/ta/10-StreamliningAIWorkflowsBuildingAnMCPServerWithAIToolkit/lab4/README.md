@@ -140,7 +140,7 @@ Scenario : Basic Clone and Open
  } and save to {The global path you specify}, then open it with VS Code Insiders"
 ```
 
-![Agent Builder Testing](../../../../translated_images/DebugAgent.81d152370c503241b3b39a251b8966f7f739286df19dd57f9147f6402214a012.ta.png)
+![Agent Builder Testing](../../../../translated_images/ta/DebugAgent.81d152370c503241b3b39a251b8966f7f739286df19dd57f9147f6402214a012.png)
 
 **எதிர்பார்க்கப்படும் முடிவுகள்:**
 - ✅ பாதை உறுதிப்படுத்தலுடன் வெற்றிகரமான cloning
@@ -151,7 +151,7 @@ Scenario : Basic Clone and Open
 #### 4b. MCP Inspector இல் சோதிக்கவும்
 
 
-![MCP Inspector Testing](../../../../translated_images/DebugInspector.eb5c95f94c69a8ba36944941b9a3588309a3a2fae101ace470ee09bde41d1667.ta.png)
+![MCP Inspector Testing](../../../../translated_images/ta/DebugInspector.eb5c95f94c69a8ba36944941b9a3588309a3a2fae101ace470ee09bde41d1667.png)
 
 ---
 

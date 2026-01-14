@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # ชุมชนและการมีส่วนร่วม
 
-[![วิธีการมีส่วนร่วมกับ MCP: เครื่องมือ, เอกสาร, โค้ด และอื่นๆ](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.th.png)](https://youtu.be/v1pvCYAWpRE)
+[![วิธีการมีส่วนร่วมกับ MCP: เครื่องมือ, เอกสาร, โค้ด และอื่นๆ](../../../translated_images/th/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.png)](https://youtu.be/v1pvCYAWpRE)
 
 _(คลิกที่ภาพด้านบนเพื่อดูวิดีโอของบทเรียนนี้)_
 

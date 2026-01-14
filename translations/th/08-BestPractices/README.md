@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # แนวทางปฏิบัติที่ดีที่สุดในการพัฒนา MCP
 
-[![แนวทางปฏิบัติที่ดีที่สุดในการพัฒนา MCP](../../../translated_images/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.th.png)](https://youtu.be/W56H9W7x-ao)
+[![แนวทางปฏิบัติที่ดีที่สุดในการพัฒนา MCP](../../../translated_images/th/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.png)](https://youtu.be/W56H9W7x-ao)
 
 _(คลิกที่ภาพด้านบนเพื่อดูวิดีโอของบทเรียนนี้)_
 

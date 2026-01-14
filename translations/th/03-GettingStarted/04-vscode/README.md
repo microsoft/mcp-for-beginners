@@ -38,9 +38,9 @@ Visual Studio Code และ GitHub Copilot สามารถทำหน้า
 
 ### ภาพหน้าจอ
 
-![การตั้งค่า MCP Server ใน Visual Studio Code](../../../../translated_images/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.th.png)
-![การเลือกเครื่องมือในแต่ละเซสชันของ Agent](../../../../translated_images/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.th.png)
-![การดีบักข้อผิดพลาดในระหว่างการพัฒนา MCP](../../../../translated_images/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.th.png)
+![การตั้งค่า MCP Server ใน Visual Studio Code](../../../../translated_images/th/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.png)
+![การเลือกเครื่องมือในแต่ละเซสชันของ Agent](../../../../translated_images/th/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.png)
+![การดีบักข้อผิดพลาดในระหว่างการพัฒนา MCP](../../../../translated_images/th/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.png)
 
 เรามาพูดถึงวิธีการใช้ส่วนติดต่อผู้ใช้ในหัวข้อถัดไป
 
@@ -103,15 +103,15 @@ Visual Studio Code และ GitHub Copilot สามารถทำหน้า
 
 1. ค้นหารายการของคุณใน *mcp.json* และตรวจสอบให้แน่ใจว่าคุณพบไอคอน "play":
 
-  ![การเริ่มเซิร์ฟเวอร์ใน Visual Studio Code](../../../../translated_images/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.th.png)  
+  ![การเริ่มเซิร์ฟเวอร์ใน Visual Studio Code](../../../../translated_images/th/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.png)  
 
 1. คลิกไอคอน "play" คุณควรเห็นไอคอนเครื่องมือใน GitHub Copilot Chat เพิ่มจำนวนเครื่องมือที่พร้อมใช้งาน หากคุณคลิกที่ไอคอนเครื่องมือดังกล่าว คุณจะเห็นรายการเครื่องมือที่ลงทะเบียนไว้ คุณสามารถเลือก/ยกเลิกการเลือกแต่ละเครื่องมือขึ้นอยู่กับว่าคุณต้องการให้ GitHub Copilot ใช้เป็นบริบทหรือไม่:
 
-  ![การเริ่มเซิร์ฟเวอร์ใน Visual Studio Code](../../../../translated_images/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.th.png)
+  ![การเริ่มเซิร์ฟเวอร์ใน Visual Studio Code](../../../../translated_images/th/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.png)
 
 1. ในการใช้งานเครื่องมือ ให้พิมพ์คำสั่งที่คุณรู้ว่าจะตรงกับคำอธิบายของเครื่องมือ เช่น คำสั่ง "add 22 to 1":
 
-  ![การใช้งานเครื่องมือจาก GitHub Copilot](../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.th.png)
+  ![การใช้งานเครื่องมือจาก GitHub Copilot](../../../../translated_images/th/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
   คุณควรเห็นคำตอบว่า 23
 

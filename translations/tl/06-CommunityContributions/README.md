@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Komunidad at Kontribusyon
 
-[![Paano Mag-ambag sa MCP: Mga Tool, Dokumentasyon, Code, at Iba Pa](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.tl.png)](https://youtu.be/v1pvCYAWpRE)
+[![Paano Mag-ambag sa MCP: Mga Tool, Dokumentasyon, Code, at Iba Pa](../../../translated_images/tl/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.png)](https://youtu.be/v1pvCYAWpRE)
 
 _(I-click ang larawan sa itaas upang panoorin ang video ng araling ito)_
 

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # 🌟 บทเรียนจากผู้ใช้งานกลุ่มแรก
 
-[![บทเรียนจาก MCP Early Adopters](../../../translated_images/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.th.png)](https://youtu.be/jds7dSmNptE)
+[![บทเรียนจาก MCP Early Adopters](../../../translated_images/th/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.png)](https://youtu.be/jds7dSmNptE)
 
 _(คลิกที่ภาพด้านบนเพื่อดูวิดีโอของบทเรียนนี้)_
 

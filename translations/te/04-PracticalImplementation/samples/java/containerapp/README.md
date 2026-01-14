@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ఈ ప్రాజెక్ట్ ఒక వెబ్ అప్లికేషన్‌ను ప్రదర్శిస్తుంది, ఇది యూజర్ ప్రాంప్ట్‌లను క్యాల్క్యులేటర్ సర్వీస్‌కు Model Context Protocol (MCP) ద్వారా పంపించే ముందు కంటెంట్ సేఫ్టీ తనిఖీని ఉపయోగిస్తుంది.
 
-![System Architecture Diagram](../../../../../../translated_images/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.te.png)
+![System Architecture Diagram](../../../../../../translated_images/te/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.png)
 
 ### ఇది ఎలా పనిచేస్తుంది
 

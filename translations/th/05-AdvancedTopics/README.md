@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # หัวข้อขั้นสูงใน MCP
 
-[![MCP ขั้นสูง: ตัวแทน AI ที่ปลอดภัย, ขยายขนาดได้, และรองรับหลายรูปแบบ](../../../translated_images/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.th.png)](https://youtu.be/4yjmGvJzYdY)
+[![MCP ขั้นสูง: ตัวแทน AI ที่ปลอดภัย, ขยายขนาดได้, และรองรับหลายรูปแบบ](../../../translated_images/th/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.png)](https://youtu.be/4yjmGvJzYdY)
 
 _(คลิกที่ภาพด้านบนเพื่อดูวิดีโอของบทเรียนนี้)_
 

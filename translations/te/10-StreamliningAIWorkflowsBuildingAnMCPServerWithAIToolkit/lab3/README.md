@@ -64,7 +64,7 @@ CO_OP_TRANSLATOR_METADATA:
 2. క్రింది కాన్ఫిగరేషన్‌తో **కొత్త ఏజెంట్ సృష్టించండి**:
    - ఏజెంట్ పేరు: `WeatherAgent`
 
-![Agent Creation](../../../../translated_images/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.te.png)
+![Agent Creation](../../../../translated_images/te/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.png)
 
 ### దశ 2: MCP సర్వర్ ప్రాజెక్ట్ ప్రారంభించండి
 
@@ -74,7 +74,7 @@ CO_OP_TRANSLATOR_METADATA:
 4. **`python-weather` టెంప్లేట్ ఎంచుకోండి**
 5. మీ సర్వర్‌కు పేరు పెట్టండి: `weather_mcp`
 
-![Python Template Selection](../../../../translated_images/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.te.png)
+![Python Template Selection](../../../../translated_images/te/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.png)
 
 ### దశ 3: ప్రాజెక్ట్‌ను తెరవండి మరియు పరిశీలించండి
 
@@ -343,7 +343,7 @@ USER_PROMPT
 How's the weather like in Seattle
 ```
 
-![Agent Builder Debug Result](../../../../translated_images/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.te.png)
+![Agent Builder Debug Result](../../../../translated_images/te/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.png)
 
 ### దశ 8: MCP ఇన్స్పెక్టర్‌తో డీబగ్ చేయండి
 
@@ -355,7 +355,7 @@ How's the weather like in Seattle
    - నెట్‌వర్క్ అభ్యర్థనలను మానిటర్ చేయండి
    - సర్వర్ ప్రతిస్పందనలను డీబగ్ చేయండి
 
-![MCP Inspector Interface](../../../../translated_images/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.te.png)
+![MCP Inspector Interface](../../../../translated_images/te/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.png)
 
 ---
 

@@ -23,7 +23,7 @@ Ito ay tumutukoy sa pagpapatakbo ng isang utos tulad ng: `node build/index.js`.
 
     Makikita mo ang isang tool na ipinapakita sa itaas ng chat text box na nagsasabing piliin ito upang patakbuhin ang tool tulad ng nasa larawan:
 
-    ![VS Code na nagpapakita na nais nitong patakbuhin ang isang tool](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.tl.png)
+    ![VS Code na nagpapakita na nais nitong patakbuhin ang isang tool](../../../../../translated_images/tl/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
     Ang pagpili sa tool ay dapat magbigay ng numerikong resulta na nagsasabing "23" kung ang iyong prompt ay tulad ng nabanggit namin kanina.
 

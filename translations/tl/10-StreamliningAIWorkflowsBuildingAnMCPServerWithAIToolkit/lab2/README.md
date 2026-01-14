@@ -202,7 +202,7 @@ Bukod sa mga server ng Microsoft, kabilang sa MCP ecosystem ang:
    - **Pangalan**: `BrowserAgent`
    - **Model**: Piliin ang GPT-4o
 
-![BrowserAgent](../../../../translated_images/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.tl.png)
+![BrowserAgent](../../../../translated_images/tl/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.png)
 
 ### 🔧 Phase 2: MCP Integration Workflow
 
@@ -211,7 +211,7 @@ Bukod sa mga server ng Microsoft, kabilang sa MCP ecosystem ang:
 2. **I-click ang "Add Tool"** para buksan ang integration menu
 3. **Piliin ang "MCP Server"** mula sa mga available na opsyon
 
-![AddMCP](../../../../translated_images/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.tl.png)
+![AddMCP](../../../../translated_images/tl/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.png)
 
 **🔍 Pag-unawa sa Mga Uri ng Tool:**
 - **Built-in Tools**: Pre-configured na mga function ng AI Toolkit
@@ -221,10 +221,10 @@ Bukod sa mga server ng Microsoft, kabilang sa MCP ecosystem ang:
 
 #### Hakbang 4: Pagpili ng MCP Server
 1. **Piliin ang opsyon na "MCP Server"** para magpatuloy  
-![AddMCPServer](../../../../translated_images/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.tl.png)
+![AddMCPServer](../../../../translated_images/tl/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.png)
 
 2. **I-browse ang MCP Catalog** para tuklasin ang mga available na integrasyon  
-![MCPCatalog](../../../../translated_images/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.tl.png)
+![MCPCatalog](../../../../translated_images/tl/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.png)
 
 ### 🎮 Phase 3: Pag-configure ng Playwright MCP
 
@@ -233,12 +233,12 @@ Bukod sa mga server ng Microsoft, kabilang sa MCP ecosystem ang:
 2. **Piliin ang "Playwright"** mula sa listahan ng mga tampok
 3. **Tanggapin ang Default MCP ID** o i-customize para sa iyong environment
 
-![MCPID](../../../../translated_images/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.tl.png)
+![MCPID](../../../../translated_images/tl/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.png)
 
 #### Hakbang 6: I-enable ang Mga Kakayahan ng Playwright
 **🔑 Mahalagang Hakbang**: Piliin ang **LAHAT** ng mga available na Playwright methods para sa pinakamalawak na functionality
 
-![Tools](../../../../translated_images/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.tl.png)
+![Tools](../../../../translated_images/tl/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.png)
 
 **🛠️ Mahahalagang Playwright Tools:**
 - **Navigation**: `goto`, `goBack`, `goForward`, `reload`
@@ -254,7 +254,7 @@ Bukod sa mga server ng Microsoft, kabilang sa MCP ecosystem ang:
 - Walang error messages sa integration panel
 - Status ng Playwright server ay "Connected"
 
-![AgentTools](../../../../translated_images/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.tl.png)
+![AgentTools](../../../../translated_images/tl/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.png)
 
 **🔧 Pagsasaayos ng Karaniwang Problema:**
 - **Connection Failed**: Suriin ang internet connection at firewall settings
@@ -320,7 +320,7 @@ Navigate to github.com/kinfey and provide a comprehensive analysis including:
 Include screenshots at key steps and provide actionable insights.
 ```
 
-![Prompt](../../../../translated_images/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.tl.png)
+![Prompt](../../../../translated_images/tl/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.png)
 
 ### 🚀 Phase 5: Pagpapatupad at Pagsubok
 
@@ -332,19 +332,19 @@ Include screenshots at key steps and provide actionable insights.
    - Kinukuha ang mga screenshot sa bawat mahalagang hakbang
    - Real-time na dumadaloy ang mga resulta ng pagsusuri
 
-![Browser](../../../../translated_images/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.tl.png)
+![Browser](../../../../translated_images/tl/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.png)
 
 #### Hakbang 11: Suriin ang Mga Resulta at Insight
 Balikan ang komprehensibong pagsusuri sa interface ng Agent Builder:
 
-![Result](../../../../translated_images/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.tl.png)
+![Result](../../../../translated_images/tl/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.png)
 
 ### 🌟 Phase 6: Advanced na Kakayahan at Deployment
 
 #### Hakbang 12: I-export at I-deploy sa Production
 Sinusuportahan ng Agent Builder ang iba't ibang deployment options:
 
-![Code](../../../../translated_images/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.tl.png)
+![Code](../../../../translated_images/tl/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.png)
 
 ## 🎓 Buod ng Module 2 at Mga Susunod na Hakbang
 

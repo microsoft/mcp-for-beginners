@@ -48,7 +48,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 Ang utos sa itaas ay nagsisimula ng MCP at ang visual interface nito at nagbubukas ng lokal na web interface sa iyong browser. Makikita mo ang dashboard na nagpapakita ng iyong mga rehistradong MCP servers, ang kanilang mga available na tools, resources, at prompts. Pinapayagan ka ng interface na ito na interaktibong subukan ang pagpapatakbo ng mga tool, suriin ang metadata ng server, at tingnan ang mga tugon nang real-time, na nagpapadali sa pag-validate at pag-debug ng iyong mga MCP server implementations.
 
-Ganito ang maaaring itsura nito: ![Inspector](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.tl.png)
+Ganito ang maaaring itsura nito: ![Inspector](../../../../translated_images/tl/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 Maaari mo ring patakbuhin ang tool na ito sa CLI mode kung saan idinadagdag mo ang `--cli` na attribute. Narito ang halimbawa ng pagpapatakbo ng tool sa "CLI" mode na naglilista ng lahat ng tools sa server:
 

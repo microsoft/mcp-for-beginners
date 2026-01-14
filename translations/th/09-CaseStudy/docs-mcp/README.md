@@ -110,7 +110,7 @@ Let me know if you want module-specific recommendations or need more customized 
 
 ด้านล่างคือตัวอย่างโซลูชันที่เรียบง่าย โค้ดและรายละเอียดทั้งหมดสามารถดูได้ในโฟลเดอร์ solution
 
-![ภาพรวมกรณีศึกษา 2](../../../../translated_images/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.th.png)
+![ภาพรวมกรณีศึกษา 2](../../../../translated_images/th/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.png)
 
 <details>
 <summary>Python (Chainlit)</summary>
@@ -167,7 +167,7 @@ def handle_message(message):
 
 > สำหรับคำแนะนำแบบละเอียดพร้อมภาพหน้าจอและขั้นตอนทีละขั้นตอน ดูที่ [`README.md`](./solution/scenario3/README.md)
 
-![ภาพรวมกรณีศึกษา 3](../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.th.png)
+![ภาพรวมกรณีศึกษา 3](../../../../translated_images/th/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 วิธีนี้เหมาะสำหรับผู้ที่สร้างคอร์สเทคนิค เขียนเอกสาร หรือพัฒนาโค้ดที่ต้องอ้างอิงบ่อยครั้ง
 
