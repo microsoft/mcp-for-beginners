@@ -13,7 +13,7 @@
         "build"
     ],
     "dependencies": {
-        "@modelcontextprotocol/sdk": "^1.24.0",
+        "@modelcontextprotocol/sdk": "^1.25.2",
         "dotenv": "^16.6.1",
         "express": "^4.18.2",
         "jsonwebtoken": "^9.0.2",
