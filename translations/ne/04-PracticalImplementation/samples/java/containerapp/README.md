@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 यो प्रोजेक्टले वेब एप्लिकेशन देखाउँछ जसले प्रयोगकर्ताको प्रॉम्प्टलाई क्याल्कुलेटर सेवामा पठाउनु अघि सामग्री सुरक्षा जाँच गर्छ, जुन Model Context Protocol (MCP) मार्फत सञ्चालित हुन्छ।
 
-![System Architecture Diagram](../../../../../../translated_images/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.ne.png)
+![System Architecture Diagram](../../../../../../translated_images/ne/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.png)
 
 ### यो कसरी काम गर्छ
 

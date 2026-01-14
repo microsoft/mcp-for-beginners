@@ -26,7 +26,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 1. ဝက်ဘ်ဘရောက်ဇာက .NET Aspire dashboard ကို ဖွင့်တဲ့အခါ `http` URL ကို မှတ်ထားပါ။ ပုံမှန်အားဖြင့် `http://localhost:5058/` လိုမျိုး ဖြစ်ပါလိမ့်မယ်။
 
-   ![.NET Aspire Dashboard](../../../../../translated_images/dotnet-aspire-dashboard.0a7095710e9301e90df2efd867e1b675b3b9bc2ccd7feb1ebddc0751522bc37c.my.png)
+   ![.NET Aspire Dashboard](../../../../../translated_images/my/dotnet-aspire-dashboard.0a7095710e9301e90df2efd867e1b675b3b9bc2ccd7feb1ebddc0751522bc37c.png)
 
 ## MCP Inspector ဖြင့် Streamable HTTP စမ်းသပ်ခြင်း
 
@@ -38,7 +38,7 @@ Node.js 22.7.5 နှင့် အထက်ရှိပါက MCP Inspector က�
 npx @modelcontextprotocol/inspector http://localhost:5058
 ```
 
-![MCP Inspector](../../../../../translated_images/mcp-inspector.c223422b9b494fb4a518a3b3911b3e708e6a5715069470f9163ee2ee8d5f1ba9.my.png)
+![MCP Inspector](../../../../../translated_images/my/mcp-inspector.c223422b9b494fb4a518a3b3911b3e708e6a5715069470f9163ee2ee8d5f1ba9.png)
 
 - Transport အမျိုးအစားအဖြစ် `Streamable HTTP` ကို ရွေးပါ။
 - Url ကွက်မှာ ယခင်မှတ်ထားသော ဆာဗာ URL ကို ထည့်ပြီး `/mcp` ကို ပေါင်းထည့်ပါ။ `http` (https မဟုတ်) ဖြစ်ရမည်။ ဥပမာ `http://localhost:5058/mcp`။
@@ -83,7 +83,7 @@ azd up
 
 တင်သွင်းမှုပြီးဆုံးသည့်အခါ အောက်ပါစာသားကဲ့သို့ မက်ဆေ့ခ်ျကို တွေ့ရပါမယ်။
 
-![Azd deployment success](../../../../../translated_images/azd-deployment-success.bd42940493f1b834a5ce6251a6f88966546009b350df59d0cc4a8caabe94a4f1.my.png)
+![Azd deployment success](../../../../../translated_images/my/azd-deployment-success.bd42940493f1b834a5ce6251a6f88966546009b350df59d0cc4a8caabe94a4f1.png)
 
 URL ကို ယူပြီး MCP Inspector နဲ့ GitHub Copilot Chat မှာ အသုံးပြုပါ။
 

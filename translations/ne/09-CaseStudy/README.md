@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP कार्यान्वयन: वास्तविक जीवनका केस अध्ययनहरू
 
-[![MCP कार्यान्वयन: वास्तविक जीवनका केस अध्ययनहरू](../../../translated_images/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.ne.png)](https://youtu.be/IxshWb2Az5w)
+[![MCP कार्यान्वयन: वास्तविक जीवनका केस अध्ययनहरू](../../../translated_images/ne/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.png)](https://youtu.be/IxshWb2Az5w)
 
 _(माथिको चित्रमा क्लिक गरेर यस पाठको भिडियो हेर्नुहोस्)_
 

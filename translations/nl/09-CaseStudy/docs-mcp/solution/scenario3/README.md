@@ -52,27 +52,27 @@ Volg deze stappen om aan de slag te gaan. Bij elke stap kun je een screenshot ui
    ```
    Deze configuratie vertelt VS Code hoe verbinding te maken met de [`Microsoft Learn Docs MCP server`](https://github.com/MicrosoftDocs/mcp).
    
-   ![Stap 1: Voeg mcp.json toe aan .vscode map](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.nl.png)
+   ![Stap 1: Voeg mcp.json toe aan .vscode map](../../../../../../translated_images/nl/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
     
 2. **Open het GitHub Copilot Chat-paneel:**
    Als je de GitHub Copilot-extensie nog niet hebt geïnstalleerd, ga dan naar het Extensions-venster in VS Code en installeer deze. Je kunt het direct downloaden van de [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat). Open vervolgens het Copilot Chat-paneel via de zijbalk.
 
-   ![Stap 2: Open Copilot Chat-paneel](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.nl.png)
+   ![Stap 2: Open Copilot Chat-paneel](../../../../../../translated_images/nl/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
 
 3. **Schakel agentmodus in en controleer tools:**
    Schakel in het Copilot Chat-paneel de agentmodus in.
 
-   ![Stap 3: Schakel agentmodus in en controleer tools](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.nl.png)
+   ![Stap 3: Schakel agentmodus in en controleer tools](../../../../../../translated_images/nl/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
 
    Controleer na het inschakelen van agentmodus of de MCP-server wordt weergegeven als een van de beschikbare tools. Dit zorgt ervoor dat de Copilot-agent toegang heeft tot de documentatieserver om relevante informatie op te halen.
    
-   ![Stap 3: Controleer MCP-server tool](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.nl.png)
+   ![Stap 3: Controleer MCP-server tool](../../../../../../translated_images/nl/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
 4. **Start een nieuw gesprek en stel de agent een vraag:**
    Open een nieuw gesprek in het Copilot Chat-paneel. Je kunt nu de agent vragen stellen over documentatie. De agent gebruikt de MCP-server om relevante Microsoft Learn-documentatie direct in je editor op te halen en weer te geven.
 
    - *"Ik probeer een studieplan te maken voor onderwerp X. Ik ga het 8 weken bestuderen, voor elke week, stel content voor die ik moet behandelen."*
 
-   ![Stap 4: Stel de agent een vraag in chat](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.nl.png)
+   ![Stap 4: Stel de agent een vraag in chat](../../../../../../translated_images/nl/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 5. **Live Query:**
 
@@ -81,7 +81,7 @@ Volg deze stappen om aan de slag te gaan. Bij elke stap kun je een screenshot ui
    *"Ik zoek antwoorden over hoe ik een multi-agent oplossing kan implementeren met AI-agents ontwikkeld op Azure AI Foundry. Ik zie dat er geen directe implementatiemethode is, zoals Copilot Studio-kanalen. Wat zijn de verschillende manieren om deze implementatie te doen zodat enterprise gebruikers kunnen samenwerken en het werk gedaan krijgen?
 Er zijn veel artikelen/blogs die zeggen dat we Azure Bot service kunnen gebruiken als brug tussen MS Teams en Azure AI Foundry Agents. Werkt dit als ik een Azure bot opzet die via een Azure functie verbinding maakt met de Orchestrator Agent op Azure AI Foundry om de orkestratie uit te voeren, of moet ik voor elke AI-agent in de multi-agent oplossing een aparte Azure functie maken om de orkestratie in het Bot framework te regelen? Andere suggesties zijn ook welkom."*
 
-   ![Stap 5: Live queries](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.nl.png)
+   ![Stap 5: Live queries](../../../../../../translated_images/nl/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
 
    De agent zal reageren met relevante documentatielinks en samenvattingen, die je direct in je markdown-bestanden kunt invoegen of als referentie in je code kunt gebruiken.
    

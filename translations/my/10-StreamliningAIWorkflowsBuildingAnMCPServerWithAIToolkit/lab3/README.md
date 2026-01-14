@@ -65,7 +65,7 @@ Model Context Protocol Python SDK သည် စိတ်ကြိုက် MCP s
 2. အောက်ပါ ဖော်ပြချက်ဖြင့် **အေးဂျင့်အသစ်တစ်ခု ဖန်တီးပါ** -  
    - Agent Name: `WeatherAgent`
 
-![Agent Creation](../../../../translated_images/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.my.png)
+![Agent Creation](../../../../translated_images/my/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.png)
 
 ### အဆင့် ၂: MCP Server Project စတင်ဖန်တီးခြင်း
 
@@ -75,7 +75,7 @@ Model Context Protocol Python SDK သည် စိတ်ကြိုက် MCP s
 4. `python-weather` template ကို ရွေးချယ်ပါ  
 5. သင့် server အမည်ကို `weather_mcp` ဟု သတ်မှတ်ပါ
 
-![Python Template Selection](../../../../translated_images/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.my.png)
+![Python Template Selection](../../../../translated_images/my/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.png)
 
 ### အဆင့် ၃: Project ကို ဖွင့်ပြီး စစ်ဆေးခြင်း
 
@@ -340,7 +340,7 @@ USER_PROMPT
 How's the weather like in Seattle
 ```
 
-![Agent Builder Debug Result](../../../../translated_images/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.my.png)
+![Agent Builder Debug Result](../../../../translated_images/my/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.png)
 
 ### အဆင့် ၈: MCP Inspector ဖြင့် Debug ပြုလုပ်ခြင်း
 
@@ -352,7 +352,7 @@ How's the weather like in Seattle
    - ကွန်ယက် တောင်းဆိုမှုများ စောင့်ကြည့်ခြင်း  
    - Server တုံ့ပြန်မှုများကို Debug ပြုလုပ်ခြင်း
 
-![MCP Inspector Interface](../../../../translated_images/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.my.png)
+![MCP Inspector Interface](../../../../translated_images/my/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.png)
 
 ---
 

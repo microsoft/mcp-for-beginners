@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Introductie tot Model Context Protocol (MCP): Waarom Het Belangrijk Is voor Schaalbare AI-toepassingen
 
-[![Introductie tot Model Context Protocol](../../../translated_images/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.nl.png)](https://youtu.be/agBbdiOPLQA)
+[![Introductie tot Model Context Protocol](../../../translated_images/nl/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.png)](https://youtu.be/agBbdiOPLQA)
 
 _(Klik op de afbeelding hierboven om de video van deze les te bekijken)_
 

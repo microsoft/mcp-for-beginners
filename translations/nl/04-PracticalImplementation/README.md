@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Praktische Implementatie
 
-[![Hoe MCP-apps bouwen, testen en implementeren met echte tools en workflows](../../../translated_images/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.nl.png)](https://youtu.be/vCN9-mKBDfQ)
+[![Hoe MCP-apps bouwen, testen en implementeren met echte tools en workflows](../../../translated_images/nl/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.png)](https://youtu.be/vCN9-mKBDfQ)
 
 _(Klik op de afbeelding hierboven om de video van deze les te bekijken)_
 
@@ -215,7 +215,7 @@ Laten we kijken of we het eerder genoemde voorbeeld kunnen implementeren:
 
     Je zou een interface moeten zien die lijkt op:
 
-    ![Verbinden met Node Inspector](../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.nl.png)
+    ![Verbinden met Node Inspector](../../../translated_images/nl/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. CTRL-klik om de MCP Inspector-webapp te laden vanaf de URL die door de app wordt weergegeven (bijv. [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources)).
 1. Stel het transporttype in op `SSE`.

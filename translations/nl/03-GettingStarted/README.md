@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 ## Aan de slag  
 
-[![Bouw je eerste MCP-server](../../../translated_images/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.nl.png)](https://youtu.be/sNDZO9N4m9Y)
+[![Bouw je eerste MCP-server](../../../translated_images/nl/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.png)](https://youtu.be/sNDZO9N4m9Y)
 
 _(Klik op de afbeelding hierboven om de video van deze les te bekijken)_
 

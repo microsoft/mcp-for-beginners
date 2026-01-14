@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # 🌟 Pelajaran daripada Pengguna Awal
 
-[![Pelajaran daripada Pengguna Awal MCP](../../../translated_images/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.ms.png)](https://youtu.be/jds7dSmNptE)
+[![Pelajaran daripada Pengguna Awal MCP](../../../translated_images/ms/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.png)](https://youtu.be/jds7dSmNptE)
 
 _(Klik imej di atas untuk menonton video pelajaran ini)_
 

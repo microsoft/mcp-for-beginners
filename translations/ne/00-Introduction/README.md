@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # मोडेल कन्टेक्स्ट प्रोटोकल (MCP) को परिचय: स्केलेबल एआई एप्लिकेसनहरूको लागि यसको महत्त्व
 
-[![मोडेल कन्टेक्स्ट प्रोटोकलको परिचय](../../../translated_images/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.ne.png)](https://youtu.be/agBbdiOPLQA)
+[![मोडेल कन्टेक्स्ट प्रोटोकलको परिचय](../../../translated_images/ne/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.png)](https://youtu.be/agBbdiOPLQA)
 
 _(माथिको तस्बिरमा क्लिक गरेर यस पाठको भिडियो हेर्नुहोस्)_
 

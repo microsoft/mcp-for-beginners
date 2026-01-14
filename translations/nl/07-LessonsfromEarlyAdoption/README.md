@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # 🌟 Lessen van Vroege Gebruikers
 
-[![Lessen van MCP Vroege Gebruikers](../../../translated_images/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.nl.png)](https://youtu.be/jds7dSmNptE)
+[![Lessen van MCP Vroege Gebruikers](../../../translated_images/nl/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.png)](https://youtu.be/jds7dSmNptE)
 
 _(Klik op de afbeelding hierboven om de video van deze les te bekijken)_
 

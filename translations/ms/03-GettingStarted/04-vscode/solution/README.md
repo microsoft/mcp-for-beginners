@@ -23,7 +23,7 @@ Ini bersamaan dengan menjalankan arahan seperti ini: `node build/index.js`.
 
     Anda sepatutnya melihat alat dipaparkan di atas kotak teks chat yang menunjukkan anda boleh memilih untuk menjalankan alat tersebut seperti dalam visual ini:
 
-    ![VS Code menunjukkan ia ingin menjalankan alat](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.ms.png)
+    ![VS Code menunjukkan ia ingin menjalankan alat](../../../../../translated_images/ms/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
     Memilih alat tersebut sepatutnya menghasilkan keputusan nombor yang mengatakan "23" jika arahan anda seperti yang kami sebutkan sebelum ini.
 

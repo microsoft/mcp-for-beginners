@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP Ontwikkelingsbeste Praktijken
 
-[![MCP Ontwikkelingsbeste Praktijken](../../../translated_images/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.nl.png)](https://youtu.be/W56H9W7x-ao)
+[![MCP Ontwikkelingsbeste Praktijken](../../../translated_images/nl/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.png)](https://youtu.be/W56H9W7x-ao)
 
 _(Klik op de afbeelding hierboven om de video van deze les te bekijken)_
 

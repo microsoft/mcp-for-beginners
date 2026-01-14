@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Pengenalan kepada Protokol Konteks Model (MCP): Mengapa Ia Penting untuk Aplikasi AI yang Boleh Diskalakan
 
-[![Pengenalan kepada Protokol Konteks Model](../../../translated_images/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.ms.png)](https://youtu.be/agBbdiOPLQA)
+[![Pengenalan kepada Protokol Konteks Model](../../../translated_images/ms/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.png)](https://youtu.be/agBbdiOPLQA)
 
 _(Klik imej di atas untuk menonton video pelajaran ini)_
 

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Model Context Protocol (MCP) ကိုမိတ်ဆက်ခြင်း - Scalable AI Applications အတွက် အရေးကြီးမှု
 
-[![Model Context Protocol ကိုမိတ်ဆက်ခြင်း](../../../translated_images/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.my.png)](https://youtu.be/agBbdiOPLQA)
+[![Model Context Protocol ကိုမိတ်ဆက်ခြင်း](../../../translated_images/my/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.png)](https://youtu.be/agBbdiOPLQA)
 
 _(ဤသင်ခန်းစာ၏ ဗီဒီယိုကို ကြည့်ရန် အထက်ပါပုံကို နှိပ်ပါ)_
 

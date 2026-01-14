@@ -23,7 +23,7 @@ CO_OP_TRANSLATOR_METADATA:
 
     chat text box အပေါ်မှာ tool တစ်ခုကို ရွေးချယ်ဖို့ ပြသထားတာကို တွေ့မြင်ရပါမယ်၊ ဥပမာအတိုင်း ဒီပုံစံလိုဖြစ်ပါတယ်-
 
-    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.my.png)
+    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/my/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
     tool ကို ရွေးချယ်လိုက်ရင် "23" ဆိုတဲ့ နံပါတ်ရလဒ်ကို ရရှိမှာဖြစ်ပြီး၊ အထက်မှာ ပြောခဲ့တဲ့ prompt နဲ့ ကိုက်ညီပါလိမ့်မယ်။
 

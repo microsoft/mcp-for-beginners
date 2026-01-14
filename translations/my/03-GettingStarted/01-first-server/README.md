@@ -156,7 +156,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 ဤသည်မှာ ၎င်း၏ မျက်နှာပြင်ပုံရိပ်တစ်ခုဖြစ်သည်-
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.my.png)
+![MCP Inspector server connection](../../../../translated_images/my/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## ပုံမှန် ပြင်ဆင်မှု ပြဿနာများနှင့် ဖြေရှင်းနည်းများ
 
@@ -525,7 +525,7 @@ inspector web interface မှာ -
 2. URL ကို `http://localhost:8080/sse` အဖြစ် သတ်မှတ်ပါ
 3. "Connect" ကို နှိပ်ပါ
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.my.png)
+![Connect](../../../../translated_images/my/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **သင်ဟာ server နဲ့ ချိတ်ဆက်ပြီးဖြစ်ပါပြီ**
 **Java server စမ်းသပ်ခြင်း အပိုင်း ပြီးဆုံးပါပြီ**
@@ -534,18 +534,18 @@ inspector web interface မှာ -
 
 အောက်ပါ user interface ကို တွေ့ရပါမယ် -
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.my.png)
+![Connect](../../../../translated_images/my/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. Connect ခလုတ်ကို နှိပ်ပြီး server နဲ့ ချိတ်ဆက်ပါ
   ချိတ်ဆက်ပြီးရင် အောက်ပါအတိုင်း ပြပါလိမ့်မယ် -
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.my.png)
+  ![Connected](../../../../translated_images/my/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. "Tools" နှင့် "listTools" ကို ရွေးချယ်ပါ၊ "Add" ကို မြင်ရပါမယ်၊ "Add" ကို ရွေးပြီး parameter တန်ဖိုးများ ဖြည့်ပါ။
 
   အောက်ပါ တုံ့ပြန်ချက်ကို မြင်ရပါမယ်၊ "add" tool မှ ရလာသော ရလဒ်ဖြစ်ပါတယ် -
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.my.png)
+  ![Result of running add](../../../../translated_images/my/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 ဂုဏ်ယူပါတယ်၊ သင်၏ ပထမဆုံး server ကို ဖန်တီးပြီး လည်ပတ်နိုင်ခဲ့ပါပြီ!
 

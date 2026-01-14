@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # အသိုင်းအဝိုင်းနှင့် အထောက်အပံ့များ
 
-[![MCP အတွက် Tools, Docs, Code နှင့် အခြားအရာများကို ဘယ်လိုပံ့ပိုးရမလဲ](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.my.png)](https://youtu.be/v1pvCYAWpRE)
+[![MCP အတွက် Tools, Docs, Code နှင့် အခြားအရာများကို ဘယ်လိုပံ့ပိုးရမလဲ](../../../translated_images/my/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.png)](https://youtu.be/v1pvCYAWpRE)
 
 _(ဤသင်ခန်းစာ၏ ဗီဒီယိုကို ကြည့်ရန် အထက်ပါပုံကို နှိပ်ပါ)_
 

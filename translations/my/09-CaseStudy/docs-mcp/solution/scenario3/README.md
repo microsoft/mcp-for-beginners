@@ -52,27 +52,27 @@ Editor အတွင်းမှ စာတမ်းများကို ရယ�
    ```
    ဒီ configuration က VS Code ကို [`Microsoft Learn Docs MCP server`](https://github.com/MicrosoftDocs/mcp) နှင့် ချိတ်ဆက်ပုံကို ပြောပြပေးသည်။
    
-   ![Step 1: Add mcp.json to .vscode folder](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.my.png)
+   ![Step 1: Add mcp.json to .vscode folder](../../../../../../translated_images/my/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
     
 2. **GitHub Copilot Chat panel ကို ဖွင့်ပါ:**
    GitHub Copilot extension မရှိသေးပါက VS Code ၏ Extensions view မှာ သွားပြီး တပ်ဆင်ပါ။ [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat) မှ တိုက်ရိုက်ဒေါင်းလုပ်လုပ်နိုင်သည်။ ထို့နောက် sidebar မှ Copilot Chat panel ကို ဖွင့်ပါ။
 
-   ![Step 2: Open Copilot Chat panel](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.my.png)
+   ![Step 2: Open Copilot Chat panel](../../../../../../translated_images/my/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
 
 3. **Agent mode ကို ဖွင့်ပြီး ကိရိယာများကို စစ်ဆေးပါ:**
    Copilot Chat panel တွင် agent mode ကို ဖွင့်ပါ။
 
-   ![Step 3: Enable agent mode and verify tools](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.my.png)
+   ![Step 3: Enable agent mode and verify tools](../../../../../../translated_images/my/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
 
    Agent mode ဖွင့်ပြီးနောက် MCP server သည် အသုံးပြုနိုင်သော ကိရိယာများအနက် တစ်ခုအဖြစ် ပါဝင်နေကြောင်း စစ်ဆေးပါ။ ဒါက Copilot agent သည် သက်ဆိုင်ရာ စာတမ်း server ကို ချိတ်ဆက်နိုင်ရန် အာမခံပေးသည်။
    
-   ![Step 3: Verify MCP server tool](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.my.png)
+   ![Step 3: Verify MCP server tool](../../../../../../translated_images/my/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
 4. **Chat အသစ် စတင်ပြီး agent ကို မေးမြန်းပါ:**
    Copilot Chat panel တွင် chat အသစ် ဖွင့်ပါ။ သင့်စာတမ်းမေးခွန်းများကို agent ထံ မေးမြန်းနိုင်ပြီဖြစ်သည်။ Agent သည် MCP server ကို အသုံးပြုပြီး သက်ဆိုင်ရာ Microsoft Learn စာတမ်းများကို တိုက်ရိုက် editor အတွင်း ပြသပေးပါလိမ့်မည်။
 
    - *"I'm trying to write a study plan for topic X. I'm going to study it for 8 weeks, for each week, suggest content I should take."*
 
-   ![Step 4: Prompt the agent in chat](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.my.png)
+   ![Step 4: Prompt the agent in chat](../../../../../../translated_images/my/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 5. **တိုက်ရိုက် မေးခွန်းမေးခြင်း (Live Query):**
 
@@ -82,7 +82,7 @@ Editor အတွင်းမှ စာတမ်းများကို ရယ�
 There are numerous articles/blogs available who says we can use Azure Bot service to do this job which can act as a bridge between MS teams and Azure AI Foundry Agents, well is this going to work if I setup an Azure bot which connects to the Orchestrator Agent on Azure AI foundry via Azure function to perform the orchestration or I need to create Azure function for each of the AI agents part of multi agent solution to do the orchestration at the Bot framework? Any other suggestions are most welcome.
 "*
 
-   ![Step 5: Live queries](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.my.png)
+   ![Step 5: Live queries](../../../../../../translated_images/my/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
 
    Agent သည် သက်ဆိုင်ရာ စာတမ်း link များနှင့် အကျဉ်းချုပ်များဖြင့် တုံ့ပြန်ပေးပြီး သင်သည် markdown ဖိုင်များထဲသို့ တိုက်ရိုက် ထည့်သွင်းနိုင်သည် သို့မဟုတ် ကိုးကားချက်အဖြစ် အသုံးပြုနိုင်ပါသည်။
    

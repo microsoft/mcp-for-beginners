@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # समुदाय र योगदानहरू
 
-[![MCP मा कसरी योगदान गर्ने: उपकरणहरू, कागजातहरू, कोड र थप](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.ne.png)](https://youtu.be/v1pvCYAWpRE)
+[![MCP मा कसरी योगदान गर्ने: उपकरणहरू, कागजातहरू, कोड र थप](../../../translated_images/ne/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.png)](https://youtu.be/v1pvCYAWpRE)
 
 _(यो पाठको भिडियो हेर्न माथिको चित्रमा क्लिक गर्नुहोस्)_
 

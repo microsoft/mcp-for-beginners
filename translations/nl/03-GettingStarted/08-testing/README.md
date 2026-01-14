@@ -48,7 +48,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 Bovenstaand commando start een MCP en de visuele interface en opent een lokale webinterface in je browser. Je ziet een dashboard met je geregistreerde MCP-servers, hun beschikbare tools, resources en prompts. De interface maakt het mogelijk om interactief tooluitvoering te testen, servermetadata te inspecteren en realtime reacties te bekijken, wat het valideren en debuggen van je MCP-serverimplementaties vergemakkelijkt.
 
-Zo kan het eruitzien: ![Inspector](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.nl.png)
+Zo kan het eruitzien: ![Inspector](../../../../translated_images/nl/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 Je kunt deze tool ook in CLI-modus draaien door de `--cli` optie toe te voegen. Hier is een voorbeeld van het draaien van de tool in "CLI"-modus, waarbij alle tools op de server worden weergegeven:
 
