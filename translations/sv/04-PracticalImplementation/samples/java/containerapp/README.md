@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Det här projektet visar en webbapplikation som använder innehållssäkerhetskontroll innan användarens prompt skickas vidare till en kalkylatortjänst via Model Context Protocol (MCP).
 
-![System Architecture Diagram](../../../../../../translated_images/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.sv.png)
+![System Architecture Diagram](../../../../../../translated_images/sv/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.png)
 
 ### Så fungerar det
 

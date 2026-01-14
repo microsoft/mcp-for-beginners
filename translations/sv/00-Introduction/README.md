@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Introduktion till Model Context Protocol (MCP): Varför det är viktigt för skalbara AI-applikationer
 
-[![Introduktion till Model Context Protocol](../../../translated_images/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.sv.png)](https://youtu.be/agBbdiOPLQA)
+[![Introduktion till Model Context Protocol](../../../translated_images/sv/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.png)](https://youtu.be/agBbdiOPLQA)
 
 _(Klicka på bilden ovan för att se videon för denna lektion)_
 

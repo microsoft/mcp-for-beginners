@@ -201,7 +201,7 @@ MCP Inspector ni zana ya msaada kwa kuingiliana na huduma za MCP. Ili kuitumia n
    - Bonyeza "List Tools" kuona shughuli za kalkuleta zinazopatikana
    - Chagua zana na bonyeza "Run Tool" kutekeleza shughuli
 
-![MCP Inspector Screenshot](../../../../../../translated_images/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.sw.png)
+![MCP Inspector Screenshot](../../../../../../translated_images/sw/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.png)
 
 ### Kutumia Docker
 

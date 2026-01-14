@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP பாதுகாப்பு: AI அமைப்புகளுக்கான விரிவான பாதுகாப்பு
 
-[![MCP Security Best Practices](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.ta.png)](https://youtu.be/88No8pw706o)
+[![MCP Security Best Practices](../../../translated_images/ta/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(இந்த பாடத்தின் வீடியோவை பார்க்க மேலே உள்ள படத்தை கிளிக் செய்யவும்)_
 
@@ -133,7 +133,7 @@ MCP விவரக்குறிப்பு authentication மற்றும
 
 **உண்மையான தாக்கம்**: இத்தாக்குதல்கள் தரவு திருட்டு, தனியுரிமை மீறல், தீய உள்ளடக்க உருவாக்கம் மற்றும் பயனர் தொடர்புகளை மாற்றுதல் போன்ற விளைவுகளை ஏற்படுத்தலாம். விரிவான பகுப்பாய்வுக்கு [Prompt Injection in MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/) பார்க்கவும்.
 
-![Prompt Injection Attack Diagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.ta.png)
+![Prompt Injection Attack Diagram](../../../translated_images/ta/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **கருவி விஷப்பொருள் தாக்குதல்கள்**
 
@@ -147,7 +147,7 @@ MCP விவரக்குறிப்பு authentication மற்றும
 
 **ஓர் சேவையக அபாயங்கள்**: தொலை MCP சர்வர்கள் கருவி வரையறைகளை பயனர் ஒப்புதலுக்குப் பிறகு புதுப்பிக்க முடியும், இதனால் முன்பு பாதுகாப்பான கருவிகள் தீயவையாக மாறும் சூழல்கள் உருவாகின்றன. விரிவான பகுப்பாய்வுக்கு [Tool Poisoning Attacks (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks) பார்க்கவும்.
 
-![Tool Injection Attack Diagram](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.ta.png)
+![Tool Injection Attack Diagram](../../../translated_images/ta/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **மேலும் AI தாக்குதல் திசைகள்**
 
@@ -200,7 +200,7 @@ Microsoft **AI Prompt Shields** நேரடி மற்றும் மறை�
 
 **அமல்படுத்தல் வளங்கள்**: [Microsoft Prompt Shields Documentation](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields Protection](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.ta.png)
+![Microsoft Prompt Shields Protection](../../../translated_images/ta/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## மேம்பட்ட MCP பாதுகாப்பு அச்சுறுத்தல்கள்

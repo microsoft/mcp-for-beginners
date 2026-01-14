@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP Најбоље Праксе Развоја
 
-[![MCP Најбоље Праксе Развоја](../../../translated_images/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.sr.png)](https://youtu.be/W56H9W7x-ao)
+[![MCP Најбоље Праксе Развоја](../../../translated_images/sr/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.png)](https://youtu.be/W56H9W7x-ao)
 
 _(Кликните на слику изнад да бисте погледали видео лекцију)_
 

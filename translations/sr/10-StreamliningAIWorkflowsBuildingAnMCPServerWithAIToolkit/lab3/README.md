@@ -64,7 +64,7 @@ Model Context Protocol Python SDK пружа основу за изградњу 
 2. **Креирајте новог агента** са следећом конфигурацијом:  
    - Име агента: `WeatherAgent`
 
-![Agent Creation](../../../../translated_images/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.sr.png)
+![Agent Creation](../../../../translated_images/sr/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.png)
 
 ### Корак 2: Иницијализујте MCP Server пројекат
 
@@ -74,7 +74,7 @@ Model Context Protocol Python SDK пружа основу за изградњу 
 4. **Изаберите `python-weather` шаблон**  
 5. **Назовите свој сервер:** `weather_mcp`
 
-![Python Template Selection](../../../../translated_images/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.sr.png)
+![Python Template Selection](../../../../translated_images/sr/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.png)
 
 ### Корак 3: Отворите и прегледајте пројекат
 
@@ -340,7 +340,7 @@ USER_PROMPT
 How's the weather like in Seattle
 ```
 
-![Agent Builder Debug Result](../../../../translated_images/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.sr.png)
+![Agent Builder Debug Result](../../../../translated_images/sr/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.png)
 
 ### Корак 8: Откључавање грешака уз MCP Inspector
 
@@ -352,7 +352,7 @@ How's the weather like in Seattle
    - Пратите мрежне захтеве  
    - Откључавајте грешке у одговорима сервера
 
-![MCP Inspector Interface](../../../../translated_images/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.sr.png)
+![MCP Inspector Interface](../../../../translated_images/sr/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.png)
 
 ---
 

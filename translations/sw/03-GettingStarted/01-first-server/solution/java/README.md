@@ -73,7 +73,7 @@ MCP Inspector ni chombo cha msaada kwa kuingiliana na huduma za MCP. Ili kuitumi
    - Bonyeza "List Tools" kuona shughuli za calculator zinazopatikana
    - Chagua zana na bonyeza "Run Tool" kuendesha shughuli
 
-![MCP Inspector Screenshot](../../../../../../translated_images/tool.40e180a7b0d0fe2067cf96435532b01f63f7f8619d6b0132355a04b426b669ac.sw.png)
+![MCP Inspector Screenshot](../../../../../../translated_images/sw/tool.40e180a7b0d0fe2067cf96435532b01f63f7f8619d6b0132355a04b426b669ac.png)
 
 **Kiarifu cha Kutotegemea**:  
 Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kwa usahihi, tafadhali fahamu kwamba tafsiri za kiotomatiki zinaweza kuwa na makosa au upungufu wa usahihi. Hati ya asili katika lugha yake ya asili inapaswa kuchukuliwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu inayofanywa na binadamu inapendekezwa. Hatubebei dhamana kwa kutoelewana au tafsiri potofu zinazotokana na matumizi ya tafsiri hii.

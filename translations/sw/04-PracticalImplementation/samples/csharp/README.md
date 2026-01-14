@@ -26,7 +26,7 @@ Miradi mingine ni kutoka kwa [.NET Aspire](https://learn.microsoft.com/dotnet/as
 
 1. Wakati kivinjari cha wavuti kinapofungua dashibodi ya .NET Aspire, kumbuka URL ya `http`. Inapaswa kuwa kama `http://localhost:5058/`.
 
-   ![.NET Aspire Dashboard](../../../../../translated_images/dotnet-aspire-dashboard.0a7095710e9301e90df2efd867e1b675b3b9bc2ccd7feb1ebddc0751522bc37c.sw.png)
+   ![.NET Aspire Dashboard](../../../../../translated_images/sw/dotnet-aspire-dashboard.0a7095710e9301e90df2efd867e1b675b3b9bc2ccd7feb1ebddc0751522bc37c.png)
 
 ## Jaribu Streamable HTTP na MCP Inspector
 
@@ -38,7 +38,7 @@ Anzisha seva na endesha amri ifuatayo kwenye terminal:
 npx @modelcontextprotocol/inspector http://localhost:5058
 ```
 
-![MCP Inspector](../../../../../translated_images/mcp-inspector.c223422b9b494fb4a518a3b3911b3e708e6a5715069470f9163ee2ee8d5f1ba9.sw.png)
+![MCP Inspector](../../../../../translated_images/sw/mcp-inspector.c223422b9b494fb4a518a3b3911b3e708e6a5715069470f9163ee2ee8d5f1ba9.png)
 
 - Chagua `Streamable HTTP` kama aina ya Usafirishaji.
 - Katika sehemu ya Url, ingiza URL ya seva uliyoikumbuka hapo awali, na ongeza `/mcp`. Inapaswa kuwa `http` (si `https`) kama `http://localhost:5058/mcp`.
@@ -83,7 +83,7 @@ azd up
 
 Mara baada ya usambazaji kumalizika, unapaswa kuona ujumbe kama huu:
 
-![Azd deployment success](../../../../../translated_images/azd-deployment-success.bd42940493f1b834a5ce6251a6f88966546009b350df59d0cc4a8caabe94a4f1.sw.png)
+![Azd deployment success](../../../../../translated_images/sw/azd-deployment-success.bd42940493f1b834a5ce6251a6f88966546009b350df59d0cc4a8caabe94a4f1.png)
 
 Chukua URL na uitumie katika MCP Inspector na GitHub Copilot Chat.
 

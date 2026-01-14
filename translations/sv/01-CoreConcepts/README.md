@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP Core Concepts: Bemästra Model Context Protocol för AI-integration
 
-[![MCP Core Concepts](../../../translated_images/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.sv.png)](https://youtu.be/earDzWGtE84)
+[![MCP Core Concepts](../../../translated_images/sv/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.png)](https://youtu.be/earDzWGtE84)
 
 _(Klicka på bilden ovan för att se videon för denna lektion)_
 

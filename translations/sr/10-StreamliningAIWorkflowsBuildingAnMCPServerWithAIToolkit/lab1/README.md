@@ -60,7 +60,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 **Корак 3: Инсталирајте и активирајте**
 
-![AI Toolkit Extension](../../../../translated_images/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.sr.png)
+![AI Toolkit Extension](../../../../translated_images/sr/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.png)
 
 ### ✅ Контролна листа за проверу
 - [ ] Икона AI Toolkit-а се појављује у VS Code бочној траци
@@ -79,7 +79,7 @@ Model Catalog је ваша капија у AI екосистем. Он окуп
 
 Кликните на **MODELS - Catalog** у AI Toolkit бочној траци
 
-![Model Catalog](../../../../translated_images/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.sr.png)
+![Model Catalog](../../../../translated_images/sr/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.png)
 
 **💡 Савет**: Тражите моделе са специфичним могућностима које одговарају вашем случају употребе (нпр. генерисање кода, креативно писање, анализа).
 
@@ -97,7 +97,7 @@ Model Catalog је ваша капија у AI екосистем. Он окуп
 3. Изаберите **Try in Playground** да покренете тестно окружење
 4. Сачекајте да се модел иницијализује (прво покретање може потрајати)
 
-![Playground Setup](../../../../translated_images/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.sr.png)
+![Playground Setup](../../../../translated_images/sr/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.png)
 
 **⚙️ Објашњење параметара модела:**
 - **Temperature**: Контролише креативност (0 = детерминистички, 1 = креативан)
@@ -126,7 +126,7 @@ Playground је ваш лабораторијски простор за AI ек�
 "Analyze this sales data and provide insights: [paste your data]. Focus on trends, anomalies, and actionable recommendations."
 ```
 
-![Testing Results](../../../../translated_images/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.sr.png)
+![Testing Results](../../../../translated_images/sr/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.png)
 
 ### 🏆 Изазов: Упоређивање перформанси модела
 
@@ -136,12 +136,12 @@ Playground је ваш лабораторијски простор за AI ек�
 1. Додајте **Phi-4-mini** у ваш радни простор
 2. Користите исти упит за GPT-4.1 и Phi-4-mini
 
-![set](../../../../translated_images/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.sr.png)
+![set](../../../../translated_images/sr/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.png)
 
 3. Упоредите квалитет одговора, брзину и прецизност
 4. Запишите своје налазе у одељак за резултате
 
-![Model Comparison](../../../../translated_images/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.sr.png)
+![Model Comparison](../../../../translated_images/sr/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.png)
 
 **💡 Кључне појединости које треба открити:**
 - Када користити LLM у односу на SLM
@@ -163,7 +163,7 @@ Agent Builder је место где AI Toolkit заиста показује с
 - **Tools Integration**: Повезивање са екстерним API-јима и MCP сервисима
 - **Memory**: Контекст разговора и трајност сесије
 
-![Agent Builder Interface](../../../../translated_images/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.sr.png)
+![Agent Builder Interface](../../../../translated_images/sr/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.png)
 
 ### ⚙️ Корак 2: Детаљна конфигурација агента
 
@@ -237,7 +237,7 @@ You are a senior Python developer with 10+ years of experience. You excel at wri
    - Max Tokens: 2000 (детаљна објашњења)
    - Top-p: 0.9 (балансирана креативност)
 
-![Python Agent Configuration](../../../../translated_images/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.sr.png)
+![Python Agent Configuration](../../../../translated_images/sr/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.png)
 
 ### 🧪 Корак 4: Тестирање вашег Python агента
 

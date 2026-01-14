@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Usalama wa MCP: Ulinzi Kamili kwa Mifumo ya AI
 
-[![MCP Security Best Practices](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.sw.png)](https://youtu.be/88No8pw706o)
+[![MCP Security Best Practices](../../../translated_images/sw/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(Bonyeza picha hapo juu kutazama video ya somo hili)_
 
@@ -133,7 +133,7 @@ Utekelezaji wa kisasa wa MCP unakabiliwa na njia za mashambulizi za kipekee za A
 
 **Athari Halisi**: Mashambulizi haya yanaweza kusababisha utoaji wa data, uvunjaji wa faragha, uzalishaji wa maudhui hatarishi, na udanganyifu wa mwingiliano wa watumiaji. Kwa uchambuzi wa kina, angalia [Sindano ya Maelekezo katika MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
-![Prompt Injection Attack Diagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.sw.png)
+![Prompt Injection Attack Diagram](../../../translated_images/sw/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **Mashambulizi ya Sumu ya Zana**
 
@@ -147,7 +147,7 @@ Utekelezaji wa kisasa wa MCP unakabiliwa na njia za mashambulizi za kipekee za A
 
 **Hatari za Seva za Mbali**: Seva za MCP za mbali zina hatari kubwa kwani maelezo ya zana yanaweza kusasishwa baada ya idhini ya awali ya mtumiaji, kuunda mazingira ambapo zana zilizokuwa salama zinakuwa hatari. Kwa uchambuzi wa kina, angalia [Mashambulizi ya Sumu ya Zana (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
-![Tool Injection Attack Diagram](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.sw.png)
+![Tool Injection Attack Diagram](../../../translated_images/sw/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **Njia Nyingine za Mashambulizi ya AI**
 
@@ -200,7 +200,7 @@ Microsoft **AI Prompt Shields** hutoa ulinzi kamili dhidi ya mashambulizi ya sin
 
 **Rasilimali za Utekelezaji**: [Nyaraka za Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields Protection](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.sw.png)
+![Microsoft Prompt Shields Protection](../../../translated_images/sw/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## Vitisho vya Juu vya Usalama wa MCP

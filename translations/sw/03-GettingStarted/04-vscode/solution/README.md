@@ -23,7 +23,7 @@ Hii inahusiana na kuendesha amri kama ifuatavyo: `node build/index.js`.
 
     Utapokea zana ikionyeshwa juu ya kisanduku cha maandishi cha mazungumzo ikikuonyesha kuchagua kuendesha zana kama ilivyo kwenye picha hii:
 
-    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.sw.png)
+    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/sw/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
     Kuchagua zana hiyo kunapaswa kutoa matokeo ya nambari yenye kusema "23" ikiwa maelekezo yako yalikuwa kama tulivyotaja hapo awali.
 

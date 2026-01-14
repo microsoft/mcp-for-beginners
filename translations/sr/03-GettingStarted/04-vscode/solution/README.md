@@ -23,7 +23,7 @@ CO_OP_TRANSLATOR_METADATA:
 
     Требало би да видите алат приказан изнад поља за текст у ћаскању који вам омогућава да изаберете покретање алата, као на овој слици:
 
-    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.sr.png)
+    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/sr/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
     Избор алата треба да да резултат у виду броја „23“ ако је ваш упит био као што смо претходно навели.
 

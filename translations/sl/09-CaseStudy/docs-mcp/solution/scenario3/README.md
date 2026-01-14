@@ -52,27 +52,27 @@ Za začetek sledite tem korakom. Za vsak korak lahko dodate posnetek zaslona iz 
    ```
    Ta konfiguracija pove VS Code, kako se povezati z [`Microsoft Learn Docs MCP strežnikom`](https://github.com/MicrosoftDocs/mcp).
    
-   ![Korak 1: Dodajte mcp.json v mapo .vscode](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.sl.png)
+   ![Korak 1: Dodajte mcp.json v mapo .vscode](../../../../../../translated_images/sl/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
     
 2. **Odprite panel GitHub Copilot Chat:**
    Če še nimate nameščene razširitve GitHub Copilot, pojdite v pogled Extensions v VS Code in jo namestite. Lahko jo prenesete neposredno iz [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat). Nato odprite panel Copilot Chat iz stranske vrstice.
 
-   ![Korak 2: Odprite panel Copilot Chat](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.sl.png)
+   ![Korak 2: Odprite panel Copilot Chat](../../../../../../translated_images/sl/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
 
 3. **Omogočite agent mode in preverite orodja:**
    V panelu Copilot Chat omogočite agent mode.
 
-   ![Korak 3: Omogočite agent mode in preverite orodja](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.sl.png)
+   ![Korak 3: Omogočite agent mode in preverite orodja](../../../../../../translated_images/sl/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
 
    Po omogočitvi agent mode preverite, ali je MCP strežnik naveden med razpoložljivimi orodji. To zagotavlja, da lahko Copilot agent dostopa do strežnika dokumentacije in pridobiva relevantne informacije.
    
-   ![Korak 3: Preverite orodje MCP strežnika](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.sl.png)
+   ![Korak 3: Preverite orodje MCP strežnika](../../../../../../translated_images/sl/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
 4. **Začnite nov pogovor in spodbudite agenta:**
    Odprite nov pogovor v panelu Copilot Chat. Zdaj lahko agenta vprašate za dokumentacijske informacije. Agent bo uporabil MCP strežnik za pridobivanje in prikaz ustrezne Microsoft Learn dokumentacije neposredno v vašem urejevalniku.
 
    - *"Poskušam napisati študijski načrt za temo X. Študiral jo bom 8 tednov, za vsak teden predlagaj vsebino, ki bi jo moral obravnavati."*
 
-   ![Korak 4: Spodbudite agenta v pogovoru](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.sl.png)
+   ![Korak 4: Spodbudite agenta v pogovoru](../../../../../../translated_images/sl/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 5. **Živo poizvedovanje:**
 
@@ -81,7 +81,7 @@ Za začetek sledite tem korakom. Za vsak korak lahko dodate posnetek zaslona iz 
    *"Iščem odgovore, kako implementirati rešitev z več agenti, kjer so AI agenti razviti na Azure AI Foundry. Vidim, da ni neposredne metode za implementacijo, kot so kanali Copilot Studio. Katere so različne možnosti za implementacijo, da lahko uporabniki v podjetju sodelujejo in opravijo delo?
 Obstaja veliko člankov/blogov, ki pravijo, da lahko uporabimo Azure Bot service kot most med MS Teams in Azure AI Foundry agenti. Ali bo to delovalo, če nastavim Azure bota, ki se poveže z Orchestrator agentom na Azure AI Foundry preko Azure funkcije za orkestracijo, ali moram ustvariti Azure funkcijo za vsakega AI agenta v rešitvi z več agenti, da opravim orkestracijo v Bot frameworku? Vsak drug predlog je dobrodošel."*
 
-   ![Korak 5: Žive poizvedbe](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.sl.png)
+   ![Korak 5: Žive poizvedbe](../../../../../../translated_images/sl/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
 
    Agent bo odgovoril z ustreznimi povezavami do dokumentacije in povzetki, ki jih lahko nato neposredno vstavite v svoje markdown datoteke ali uporabite kot reference v kodi.
    

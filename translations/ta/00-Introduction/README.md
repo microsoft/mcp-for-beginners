@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # மாடல் சூழல் நெறிமுறை (MCP) அறிமுகம்: விரிவாக்கக்கூடிய AI பயன்பாடுகளுக்கான முக்கியத்துவம்
 
-[![மாடல் சூழல் நெறிமுறை அறிமுகம்](../../../translated_images/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.ta.png)](https://youtu.be/agBbdiOPLQA)
+[![மாடல் சூழல் நெறிமுறை அறிமுகம்](../../../translated_images/ta/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.png)](https://youtu.be/agBbdiOPLQA)
 
 _(மேலே உள்ள படத்தை கிளிக் செய்து இந்த பாடத்தின் வீடியோவைப் பாருங்கள்)_
 

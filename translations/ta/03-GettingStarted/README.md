@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 ## தொடக்கக்கட்டம்  
 
-[![உங்கள் முதல் MCP சர்வரை உருவாக்குங்கள்](../../../translated_images/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.ta.png)](https://youtu.be/sNDZO9N4m9Y)
+[![உங்கள் முதல் MCP சர்வரை உருவாக்குங்கள்](../../../translated_images/ta/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.png)](https://youtu.be/sNDZO9N4m9Y)
 
 _(மேலே உள்ள படத்தை கிளிக் செய்து இந்த பாடத்தின் வீடியோவைப் பாருங்கள்)_
 

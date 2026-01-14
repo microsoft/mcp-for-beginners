@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP Основни Концепти: Мастеринг Протокола Контекста Модела за AI Интеграцију
 
-[![MCP Core Concepts](../../../translated_images/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.sr.png)](https://youtu.be/earDzWGtE84)
+[![MCP Core Concepts](../../../translated_images/sr/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.png)](https://youtu.be/earDzWGtE84)
 
 _(Кликните на слику изнад да бисте погледали видео о овој лекцији)_
 

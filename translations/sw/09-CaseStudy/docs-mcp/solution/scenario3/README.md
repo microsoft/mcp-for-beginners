@@ -52,27 +52,27 @@ Ili kuanza, fuata hatua hizi. Kwa kila hatua, unaweza kuongeza picha kutoka kwen
    ```
    Usanidi huu unaeleza VS Code jinsi ya kuunganishwa na [`Microsoft Learn Docs MCP server`](https://github.com/MicrosoftDocs/mcp).
    
-   ![Hatua 1: Ongeza mcp.json kwenye folda ya .vscode](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.sw.png)
+   ![Hatua 1: Ongeza mcp.json kwenye folda ya .vscode](../../../../../../translated_images/sw/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
     
 2. **Fungua paneli ya GitHub Copilot Chat:**
    Ikiwa bado huna ugani wa GitHub Copilot umewekwa, nenda kwenye sehemu ya Extensions ndani ya VS Code na uweke. Unaweza kuipakua moja kwa moja kutoka [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat). Kisha, fungua paneli ya Copilot Chat kutoka kwenye sidebar.
 
-   ![Hatua 2: Fungua paneli ya Copilot Chat](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.sw.png)
+   ![Hatua 2: Fungua paneli ya Copilot Chat](../../../../../../translated_images/sw/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
 
 3. **Washa mode ya agent na hakiki zana:**
    Katika paneli ya Copilot Chat, washa mode ya agent.
 
-   ![Hatua 3: Washa mode ya agent na hakiki zana](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.sw.png)
+   ![Hatua 3: Washa mode ya agent na hakiki zana](../../../../../../translated_images/sw/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
 
    Baada ya kuwasha mode ya agent, hakiki kuwa MCP server imeorodheshwa kama moja ya zana zinazopatikana. Hii inahakikisha kuwa agent wa Copilot anaweza kufikia server ya nyaraka kupata taarifa zinazohitajika.
    
-   ![Hatua 3: Hakiki zana ya MCP server](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.sw.png)
+   ![Hatua 3: Hakiki zana ya MCP server](../../../../../../translated_images/sw/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
 4. **Anza mazungumzo mapya na omba msaada kutoka kwa agent:**
    Fungua mazungumzo mapya katika paneli ya Copilot Chat. Sasa unaweza kumuuliza agent maswali yako kuhusu nyaraka. Agent atatumia MCP server kupata na kuonyesha nyaraka zinazohusiana za Microsoft Learn moja kwa moja ndani ya mhariri wako.
 
    - *"Najaribu kuandika mpango wa masomo kwa mada X. Nitajifunza kwa wiki 8, kwa kila wiki, pendekeza maudhui ninayopaswa kuchukua."*
 
-   ![Hatua 4: Omba msaada kutoka kwa agent katika mazungumzo](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.sw.png)
+   ![Hatua 4: Omba msaada kutoka kwa agent katika mazungumzo](../../../../../../translated_images/sw/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 5. **Uchunguzi wa Moja kwa Moja:**
 
@@ -81,7 +81,7 @@ Ili kuanza, fuata hatua hizi. Kwa kila hatua, unaweza kuongeza picha kutoka kwen
    *"Natafuta majibu juu ya jinsi ya kupeleka suluhisho la mawakala wengi lenye mawakala wa AI waliotengenezwa kwenye Azure AI Foundry. Naona hakuna njia ya moja kwa moja ya kupeleka, kama vile njia za Copilot Studio. Basi, ni njia gani tofauti za kufanya upeleka huu kwa watumiaji wa biashara kuingiliana na kufanikisha kazi?
 Kuna makala nyingi/blogu zinazosema tunaweza kutumia huduma ya Azure Bot kufanya kazi hii ambayo inaweza kutumika kama daraja kati ya MS Teams na Azure AI Foundry Agents, je, hii itafanya kazi ikiwa nitasanidi bot ya Azure inayounganisha na Orchestrator Agent kwenye Azure AI Foundry kupitia Azure function kufanya upangaji au nahitaji kuunda Azure function kwa kila wakala wa AI katika suluhisho la mawakala wengi kufanya upangaji kwenye Bot framework? Mapendekezo mengine yanakaribishwa sana."*
 
-   ![Hatua 5: Maswali ya moja kwa moja](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.sw.png)
+   ![Hatua 5: Maswali ya moja kwa moja](../../../../../../translated_images/sw/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
 
    Agent atajibu kwa viungo vya nyaraka zinazohusiana na muhtasari, ambavyo unaweza kisha kuingiza moja kwa moja kwenye faili zako za markdown au kutumia kama rejeleo katika msimbo wako.
    

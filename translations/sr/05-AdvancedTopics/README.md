@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Напредне теме у MCP
 
-[![Напредни MCP: Безбедни, скалабилни и мултимодални AI агенти](../../../translated_images/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.sr.png)](https://youtu.be/4yjmGvJzYdY)
+[![Напредни MCP: Безбедни, скалабилни и мултимодални AI агенти](../../../translated_images/sr/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.png)](https://youtu.be/4yjmGvJzYdY)
 
 _(Кликните на слику изнад да бисте погледали видео лекцију)_
 

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Community och Bidrag
 
-[![Hur man bidrar till MCP: Verktyg, Dokumentation, Kod och Mer](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.sv.png)](https://youtu.be/v1pvCYAWpRE)
+[![Hur man bidrar till MCP: Verktyg, Dokumentation, Kod och Mer](../../../translated_images/sv/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.png)](https://youtu.be/v1pvCYAWpRE)
 
 _(Klicka på bilden ovan för att se videon för denna lektion)_
 

@@ -23,7 +23,7 @@ Detta motsvarar att köra ett kommando som detta: `node build/index.js`.
 
     Du bör se ett verktyg presenteras ovanför chattens textfält som indikerar att du kan välja att köra verktyget, som i denna bild:
 
-    ![VS Code indikerar att det vill köra ett verktyg](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.sv.png)
+    ![VS Code indikerar att det vill köra ett verktyg](../../../../../translated_images/sv/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
     Att välja verktyget bör ge ett numeriskt resultat som säger "23" om din prompt var som vi nämnde tidigare.
 

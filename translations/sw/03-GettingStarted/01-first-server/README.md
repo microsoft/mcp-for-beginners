@@ -156,7 +156,7 @@ Unapotekeleza amri zilizo juu, MCP Inspector itazindua kiolesura cha wavuti cha 
 
 Hapa kuna picha ya skrini inavyoweza kuonekana:
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.sw.png)
+![MCP Inspector server connection](../../../../translated_images/sw/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## Masuala ya Kawaida ya Usanidi na Suluhisho
 
@@ -1302,7 +1302,7 @@ Katika kiolesura cha wavuti cha inspector:
 2. Weka URL kuwa: `http://localhost:8080/sse`
 3. Bonyeza "Connect"
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.sw.png)
+![Connect](../../../../translated_images/sw/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **Sasa umeunganishwa na server**
 **Sehemu ya majaribio ya server ya Java imekamilika sasa**
@@ -1311,18 +1311,18 @@ Sehemu inayofuata ni kuhusu kuingiliana na server.
 
 Unapaswa kuona kiolesura cha mtumiaji kama ifuatavyo:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.sw.png)
+![Connect](../../../../translated_images/sw/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. Unganisha na server kwa kuchagua kitufe cha Connect
   Mara unapo ungana na server, unapaswa sasa kuona yafuatayo:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.sw.png)
+  ![Connected](../../../../translated_images/sw/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. Chagua "Tools" na "listTools", unapaswa kuona "Add" inaonekana, chagua "Add" na jaza thamani za vigezo.
 
   Unapaswa kuona jibu lifuatalo, yaani matokeo kutoka kwa chombo cha "add":
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.sw.png)
+  ![Result of running add](../../../../translated_images/sw/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 Hongera, umefanikiwa kuunda na kuendesha server yako ya kwanza!
 

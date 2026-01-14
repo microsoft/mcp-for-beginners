@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP Security: Omfattande skydd för AI-system
 
-[![MCP Security Best Practices](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.sv.png)](https://youtu.be/88No8pw706o)
+[![MCP Security Best Practices](../../../translated_images/sv/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(Klicka på bilden ovan för att se videon för denna lektion)_
 
@@ -133,7 +133,7 @@ Moderna MCP-implementationer står inför sofistikerade AI-specifika attackvekto
 
 **Verklig påverkan**: Dessa attacker kan leda till dataexfiltrering, integritetsbrott, generering av skadligt innehåll och manipulation av användarinteraktioner. För detaljerad analys, se [Prompt Injection i MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
-![Prompt Injection Attack Diagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.sv.png)
+![Prompt Injection Attack Diagram](../../../translated_images/sv/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **Verktygsförgiftningsattacker**
 
@@ -147,7 +147,7 @@ Moderna MCP-implementationer står inför sofistikerade AI-specifika attackvekto
 
 **Risker med hostade servrar**: Fjärr-MCP-servrar innebär förhöjda risker eftersom verktygsdefinitioner kan uppdateras efter initial användargodkännande, vilket skapar scenarier där tidigare säkra verktyg blir skadliga. För omfattande analys, se [Tool Poisoning Attacks (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
-![Tool Injection Attack Diagram](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.sv.png)
+![Tool Injection Attack Diagram](../../../translated_images/sv/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **Ytterligare AI-attackvektorer**
 
@@ -200,7 +200,7 @@ Microsofts **AI Prompt Shields** erbjuder omfattande försvar mot både direkta 
 
 **Implementeringsresurser**: [Microsoft Prompt Shields Documentation](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields Protection](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.sv.png)
+![Microsoft Prompt Shields Protection](../../../translated_images/sv/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## Avancerade MCP-säkerhetshot
