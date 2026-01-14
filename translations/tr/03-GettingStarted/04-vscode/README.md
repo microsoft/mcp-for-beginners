@@ -38,9 +38,9 @@ MCP sunucunuzu iki farklı şekilde kontrol edebilirsiniz:
 
 ### Ekran Görüntüleri
 
-![Visual Studio Code'da Yönlendirmeli MCP Sunucu Yapılandırması](../../../../translated_images/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.tr.png)  
-![Her oturum için araç seçimi](../../../../translated_images/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.tr.png)  
-![MCP geliştirme sırasında hataları kolayca ayıklayın](../../../../translated_images/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.tr.png)  
+![Visual Studio Code'da Yönlendirmeli MCP Sunucu Yapılandırması](../../../../translated_images/tr/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.png)  
+![Her oturum için araç seçimi](../../../../translated_images/tr/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.png)  
+![MCP geliştirme sırasında hataları kolayca ayıklayın](../../../../translated_images/tr/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.png)  
 
 Bir sonraki bölümlerde görsel arayüzü nasıl kullandığımızdan daha fazla bahsedelim.
 
@@ -103,15 +103,15 @@ Bir giriş eklediğinize göre, şimdi sunucuyu başlatalım:
 
 1. *mcp.json* dosyanızdaki girişinizi bulun ve "oynat" simgesini bulduğunuzdan emin olun:
 
-  ![Visual Studio Code'da sunucuyu başlatma](../../../../translated_images/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.tr.png)  
+  ![Visual Studio Code'da sunucuyu başlatma](../../../../translated_images/tr/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.png)  
 
 1. "Oynat" simgesine tıklayın, GitHub Copilot Sohbet'teki araçlar simgesinin mevcut araç sayısını artırdığını görmelisiniz. Bu araçlar simgesine tıklarsanız, kayıtlı araçların bir listesini göreceksiniz. GitHub Copilot'un bunları bağlam olarak kullanmasını isteyip istemediğinize bağlı olarak her bir aracı işaretleyebilir/işaretini kaldırabilirsiniz:
 
-  ![Visual Studio Code'da araçları başlatma](../../../../translated_images/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.tr.png)
+  ![Visual Studio Code'da araçları başlatma](../../../../translated_images/tr/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.png)
 
 1. Bir aracı çalıştırmak için, araçlarınızdan birinin açıklamasına uyacağını bildiğiniz bir istem yazın, örneğin "22 ile 1'i topla" gibi bir istem:
 
-  ![GitHub Copilot'tan bir araç çalıştırma](../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.tr.png)
+  ![GitHub Copilot'tan bir araç çalıştırma](../../../../translated_images/tr/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
   23 yanıtını görmelisiniz.
 

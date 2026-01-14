@@ -202,7 +202,7 @@ Microsoft’un sunucularının yanı sıra MCP ekosistemi şunları içerir:
    - **Ad**: `BrowserAgent`  
    - **Model**: GPT-4o seçin  
 
-![BrowserAgent](../../../../translated_images/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.tr.png)
+![BrowserAgent](../../../../translated_images/tr/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.png)
 
 ### 🔧 Aşama 2: MCP Entegrasyon İş Akışı
 
@@ -211,7 +211,7 @@ Microsoft’un sunucularının yanı sıra MCP ekosistemi şunları içerir:
 2. **"Araç Ekle"** butonuna tıklayarak entegrasyon menüsünü açın  
 3. Mevcut seçeneklerden **"MCP Server"** seçeneğini seçin  
 
-![AddMCP](../../../../translated_images/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.tr.png)
+![AddMCP](../../../../translated_images/tr/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.png)
 
 **🔍 Araç Türlerini Anlamak:**  
 - **Yerleşik Araçlar**: Önceden yapılandırılmış AI Toolkit fonksiyonları  
@@ -221,10 +221,10 @@ Microsoft’un sunucularının yanı sıra MCP ekosistemi şunları içerir:
 
 #### Adım 4: MCP Sunucu Seçimi  
 1. Devam etmek için **"MCP Server"** seçeneğini seçin  
-![AddMCPServer](../../../../translated_images/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.tr.png)
+![AddMCPServer](../../../../translated_images/tr/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.png)
 
 2. Mevcut entegrasyonları keşfetmek için **MCP Kataloğunu** inceleyin  
-![MCPCatalog](../../../../translated_images/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.tr.png)
+![MCPCatalog](../../../../translated_images/tr/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.png)
 
 ### 🎮 Aşama 3: Playwright MCP Yapılandırması
 
@@ -233,12 +233,12 @@ Microsoft’un sunucularının yanı sıra MCP ekosistemi şunları içerir:
 2. Listeden **"Playwright"** seçeneğini seçin  
 3. Varsayılan MCP ID’yi kabul edin veya ortamınıza göre özelleştirin  
 
-![MCPID](../../../../translated_images/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.tr.png)
+![MCPID](../../../../translated_images/tr/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.png)
 
 #### Adım 6: Playwright Özelliklerini Etkinleştirin  
 **🔑 Kritik Adım**: Maksimum işlevsellik için mevcut tüm Playwright yöntemlerini seçin  
 
-![Tools](../../../../translated_images/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.tr.png)
+![Tools](../../../../translated_images/tr/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.png)
 
 **🛠️ Temel Playwright Araçları:**  
 - **Gezinme**: `goto`, `goBack`, `goForward`, `reload`  
@@ -254,7 +254,7 @@ Microsoft’un sunucularının yanı sıra MCP ekosistemi şunları içerir:
 - Entegrasyon panelinde hata mesajı yok  
 - Playwright sunucu durumu “Connected” olarak gösterilir  
 
-![AgentTools](../../../../translated_images/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.tr.png)
+![AgentTools](../../../../translated_images/tr/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.png)
 
 **🔧 Yaygın Sorun Giderme:**  
 - **Bağlantı Başarısız**: İnternet bağlantınızı ve güvenlik duvarı ayarlarını kontrol edin  
@@ -320,7 +320,7 @@ Navigate to github.com/kinfey and provide a comprehensive analysis including:
 Include screenshots at key steps and provide actionable insights.
 ```
 
-![Prompt](../../../../translated_images/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.tr.png)
+![Prompt](../../../../translated_images/tr/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.png)
 
 ### 🚀 Aşama 5: Çalıştırma ve Test
 
@@ -332,19 +332,19 @@ Include screenshots at key steps and provide actionable insights.
    - Her önemli adımda ekran görüntüleri alınır  
    - Analiz sonuçları gerçek zamanlı akar  
 
-![Browser](../../../../translated_images/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.tr.png)
+![Browser](../../../../translated_images/tr/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.png)
 
 #### Adım 11: Sonuçları ve İçgörüleri Analiz Edin  
 Agent Builder arayüzünde kapsamlı analizleri inceleyin:  
 
-![Result](../../../../translated_images/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.tr.png)
+![Result](../../../../translated_images/tr/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.png)
 
 ### 🌟 Aşama 6: Gelişmiş Özellikler ve Dağıtım
 
 #### Adım 12: Dışa Aktarma ve Üretim Dağıtımı  
 Agent Builder, çeşitli dağıtım seçeneklerini destekler:  
 
-![Code](../../../../translated_images/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.tr.png)
+![Code](../../../../translated_images/tr/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.png)
 
 ## 🎓 Modül 2 Özeti ve Sonraki Adımlar
 

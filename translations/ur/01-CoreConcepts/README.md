@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP بنیادی تصورات: AI انضمام کے لیے ماڈل کانٹیکسٹ پروٹوکول میں مہارت حاصل کرنا
 
-[![MCP بنیادی تصورات](../../../translated_images/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.ur.png)](https://youtu.be/earDzWGtE84)
+[![MCP بنیادی تصورات](../../../translated_images/ur/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.png)](https://youtu.be/earDzWGtE84)
 
 _(اس سبق کی ویڈیو دیکھنے کے لیے اوپر تصویر پر کلک کریں)_
 

@@ -52,28 +52,28 @@ CO_OP_TRANSLATOR_METADATA:
    ```
    یہ کنفیگریشن VS Code کو بتاتی ہے کہ [`Microsoft Learn Docs MCP server`](https://github.com/MicrosoftDocs/mcp) سے کیسے کنیکٹ ہونا ہے۔
    
-   ![Step 1: Add mcp.json to .vscode folder](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.ur.png)
+   ![Step 1: Add mcp.json to .vscode folder](../../../../../../translated_images/ur/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
     
 2. **GitHub Copilot Chat پینل کھولیں:**
    اگر آپ کے پاس GitHub Copilot ایکسٹینشن انسٹال نہیں ہے، تو VS Code میں Extensions ویو پر جائیں اور اسے انسٹال کریں۔ آپ اسے براہ راست [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat) سے ڈاؤن لوڈ کر سکتے ہیں۔ پھر، سائیڈبار سے Copilot Chat پینل کھولیں۔
 
-   ![Step 2: Open Copilot Chat panel](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.ur.png)
+   ![Step 2: Open Copilot Chat panel](../../../../../../translated_images/ur/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
 
 3. **ایجنٹ موڈ فعال کریں اور ٹولز کی تصدیق کریں:**
    Copilot Chat پینل میں ایجنٹ موڈ کو فعال کریں۔
 
-   ![Step 3: Enable agent mode and verify tools](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.ur.png)
+   ![Step 3: Enable agent mode and verify tools](../../../../../../translated_images/ur/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
 
    ایجنٹ موڈ فعال کرنے کے بعد، تصدیق کریں کہ MCP سرور دستیاب ٹولز میں شامل ہے۔ اس سے یہ یقینی بنتا ہے کہ Copilot ایجنٹ دستاویزات کے سرور تک رسائی حاصل کر کے متعلقہ معلومات لا سکتا ہے۔
    
-   ![Step 3: Verify MCP server tool](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.ur.png)
+   ![Step 3: Verify MCP server tool](../../../../../../translated_images/ur/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
 
 4. **نیا چیٹ شروع کریں اور ایجنٹ کو ہدایت دیں:**
    Copilot Chat پینل میں نیا چیٹ کھولیں۔ اب آپ ایجنٹ کو اپنی دستاویزی سوالات دے سکتے ہیں۔ ایجنٹ MCP سرور کا استعمال کرتے ہوئے متعلقہ Microsoft Learn دستاویزات براہ راست آپ کے ایڈیٹر میں لائے گا۔
 
    - *"میں موضوع X کے لیے ایک مطالعہ منصوبہ لکھنے کی کوشش کر رہا ہوں۔ میں اسے 8 ہفتوں تک پڑھوں گا، ہر ہفتے کے لیے مواد تجویز کریں جو مجھے لینا چاہیے۔"*
 
-   ![Step 4: Prompt the agent in chat](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.ur.png)
+   ![Step 4: Prompt the agent in chat](../../../../../../translated_images/ur/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 5. **لائیو سوالات:**
 
@@ -82,7 +82,7 @@ CO_OP_TRANSLATOR_METADATA:
    *"میں Azure AI Foundry پر تیار کردہ AI ایجنٹس کے ساتھ ایک ملٹی ایجنٹ حل کی تعیناتی کے بارے میں جوابات تلاش کر رہا ہوں۔ میں دیکھ رہا ہوں کہ کوئی براہ راست تعیناتی کا طریقہ نہیں ہے، جیسے Copilot Studio چینلز۔ تو، انٹرپرائز صارفین کے لیے یہ تعیناتی مختلف طریقے کیا ہیں تاکہ وہ بات چیت کر سکیں اور کام مکمل کر سکیں؟
 کئی مضامین/بلاگز موجود ہیں جو کہتے ہیں کہ ہم Azure Bot سروس استعمال کر سکتے ہیں جو MS Teams اور Azure AI Foundry Agents کے درمیان پل کا کام کرے گا، کیا یہ کام کرے گا اگر میں Azure bot سیٹ اپ کروں جو Azure AI Foundry کے Orchestrator Agent سے Azure function کے ذریعے جڑتا ہو، یا مجھے ہر AI ایجنٹ کے لیے Azure function بنانا ہوگا جو ملٹی ایجنٹ حل کا حصہ ہو تاکہ Bot framework پر آرکیسٹریشن کی جا سکے؟ کوئی اور تجاویز بھی خوش آمدید ہیں۔"*
 
-   ![Step 5: Live queries](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.ur.png)
+   ![Step 5: Live queries](../../../../../../translated_images/ur/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
 
    ایجنٹ متعلقہ دستاویزی لنکس اور خلاصے کے ساتھ جواب دے گا، جنہیں آپ براہ راست اپنے مارک ڈاؤن فائلوں میں شامل کر سکتے ہیں یا اپنے کوڈ میں حوالہ کے طور پر استعمال کر سکتے ہیں۔
    

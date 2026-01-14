@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP 開發最佳實踐
 
-[![MCP 開發最佳實踐](../../../translated_images/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.tw.png)](https://youtu.be/W56H9W7x-ao)
+[![MCP 開發最佳實踐](../../../translated_images/tw/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.png)](https://youtu.be/W56H9W7x-ao)
 
 _（點擊上方圖片觀看本課程的影片）_
 

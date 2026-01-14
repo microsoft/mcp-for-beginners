@@ -202,7 +202,7 @@ Microsoft کے سرورز کے علاوہ، MCP ماحولیاتی نظام می
    - **نام**: `BrowserAgent`  
    - **ماڈل**: GPT-4o منتخب کریں  
 
-![BrowserAgent](../../../../translated_images/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.ur.png)
+![BrowserAgent](../../../../translated_images/ur/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.png)
 
 ### 🔧 مرحلہ 2: MCP انٹیگریشن ورک فلو
 
@@ -211,7 +211,7 @@ Microsoft کے سرورز کے علاوہ، MCP ماحولیاتی نظام می
 2. **"Add Tool" پر کلک کریں** تاکہ انٹیگریشن مینو کھلے  
 3. **"MCP Server" منتخب کریں** دستیاب اختیارات میں سے  
 
-![AddMCP](../../../../translated_images/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.ur.png)
+![AddMCP](../../../../translated_images/ur/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.png)
 
 **🔍 ٹول کی اقسام کو سمجھنا:**  
 - **Built-in Tools**: پہلے سے ترتیب دی گئی AI Toolkit فنکشنز  
@@ -221,10 +221,10 @@ Microsoft کے سرورز کے علاوہ، MCP ماحولیاتی نظام می
 
 #### قدم 4: MCP سرور کا انتخاب  
 1. **"MCP Server" آپشن منتخب کریں**  
-![AddMCPServer](../../../../translated_images/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.ur.png)
+![AddMCPServer](../../../../translated_images/ur/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.png)
 
 2. **MCP کیٹلاگ براؤز کریں** تاکہ دستیاب انٹیگریشنز دیکھ سکیں  
-![MCPCatalog](../../../../translated_images/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.ur.png)
+![MCPCatalog](../../../../translated_images/ur/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.png)
 
 ### 🎮 مرحلہ 3: Playwright MCP کی ترتیب
 
@@ -233,12 +233,12 @@ Microsoft کے سرورز کے علاوہ، MCP ماحولیاتی نظام می
 2. **فہرست میں سے "Playwright" منتخب کریں**  
 3. **ڈیفالٹ MCP ID قبول کریں** یا اپنی مرضی کے مطابق ترتیب دیں  
 
-![MCPID](../../../../translated_images/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.ur.png)
+![MCPID](../../../../translated_images/ur/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.png)
 
 #### قدم 6: Playwright کی صلاحیتیں فعال کریں  
 **🔑 اہم قدم**: زیادہ سے زیادہ فعالیت کے لیے **تمام** دستیاب Playwright طریقے منتخب کریں  
 
-![Tools](../../../../translated_images/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.ur.png)
+![Tools](../../../../translated_images/ur/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.png)
 
 **🛠️ ضروری Playwright ٹولز:**  
 - **نیویگیشن**: `goto`, `goBack`, `goForward`, `reload`  
@@ -254,7 +254,7 @@ Microsoft کے سرورز کے علاوہ، MCP ماحولیاتی نظام می
 - انٹیگریشن پینل میں کوئی ایرر میسج نہ ہو  
 - Playwright سرور کی حالت "Connected" دکھائے  
 
-![AgentTools](../../../../translated_images/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.ur.png)
+![AgentTools](../../../../translated_images/ur/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.png)
 
 **🔧 عام مسائل اور ان کے حل:**  
 - **کنکشن ناکام**: انٹرنیٹ کنکشن اور فائر وال کی ترتیبات چیک کریں  
@@ -320,7 +320,7 @@ Navigate to github.com/kinfey and provide a comprehensive analysis including:
 Include screenshots at key steps and provide actionable insights.
 ```
 
-![Prompt](../../../../translated_images/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.ur.png)
+![Prompt](../../../../translated_images/ur/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.png)
 
 ### 🚀 مرحلہ 5: عمل درآمد اور جانچ
 
@@ -332,19 +332,19 @@ Include screenshots at key steps and provide actionable insights.
    - ہر اہم مرحلے کی اسکرین شاٹس لیں گے  
    - تجزیہ کے نتائج حقیقی وقت میں آئیں گے  
 
-![Browser](../../../../translated_images/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.ur.png)
+![Browser](../../../../translated_images/ur/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.png)
 
 #### قدم 11: نتائج اور بصیرت کا تجزیہ کریں  
 Agent Builder کے انٹرفیس میں مکمل تجزیہ کا جائزہ لیں:  
 
-![Result](../../../../translated_images/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.ur.png)
+![Result](../../../../translated_images/ur/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.png)
 
 ### 🌟 مرحلہ 6: اعلیٰ صلاحیتیں اور تعیناتی
 
 #### قدم 12: برآمد کریں اور پروڈکشن میں تعینات کریں  
 Agent Builder متعدد تعیناتی کے اختیارات فراہم کرتا ہے:  
 
-![Code](../../../../translated_images/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.ur.png)
+![Code](../../../../translated_images/ur/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.png)
 
 ## 🎓 ماڈیول 2 کا خلاصہ اور اگلے اقدامات
 

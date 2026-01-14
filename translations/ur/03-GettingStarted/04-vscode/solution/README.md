@@ -23,7 +23,7 @@ CO_OP_TRANSLATOR_METADATA:
 
     آپ کو چیٹ ٹیکسٹ باکس کے اوپر ایک ٹول دکھائی دے گا جو آپ کو ٹول چلانے کے لیے منتخب کرنے کا اشارہ دے گا، جیسا کہ اس تصویر میں دکھایا گیا ہے:
 
-    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.ur.png)
+    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/ur/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
     ٹول کو منتخب کرنے پر اگر آپ کا پرامپٹ جیسا کہ ہم نے پہلے بتایا تھا، تو آپ کو "23" جیسا عددی نتیجہ ملے گا۔
 

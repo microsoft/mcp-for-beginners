@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Цей проєкт демонструє веб-додаток, який використовує перевірку безпеки контенту перед передачею запитів користувача до сервісу калькулятора через Model Context Protocol (MCP).
 
-![System Architecture Diagram](../../../../../../translated_images/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.uk.png)
+![System Architecture Diagram](../../../../../../translated_images/uk/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.png)
 
 ### Як це працює
 

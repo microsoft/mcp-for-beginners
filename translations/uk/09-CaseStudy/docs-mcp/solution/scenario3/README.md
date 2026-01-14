@@ -52,28 +52,28 @@ CO_OP_TRANSLATOR_METADATA:
    ```
    Ця конфігурація вказує VS Code, як підключитися до [`Microsoft Learn Docs MCP server`](https://github.com/MicrosoftDocs/mcp).
    
-   ![Крок 1: Додайте mcp.json у папку .vscode](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.uk.png)
+   ![Крок 1: Додайте mcp.json у папку .vscode](../../../../../../translated_images/uk/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
     
 2. **Відкрийте панель GitHub Copilot Chat:**
    Якщо у вас ще не встановлено розширення GitHub Copilot, перейдіть у розділ Extensions у VS Code і встановіть його. Ви можете завантажити його безпосередньо з [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat). Потім відкрийте панель Copilot Chat у бічній панелі.
 
-   ![Крок 2: Відкрийте панель Copilot Chat](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.uk.png)
+   ![Крок 2: Відкрийте панель Copilot Chat](../../../../../../translated_images/uk/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
 
 3. **Увімкніть агентський режим і перевірте інструменти:**
    У панелі Copilot Chat увімкніть агентський режим.
 
-   ![Крок 3: Увімкніть агентський режим і перевірте інструменти](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.uk.png)
+   ![Крок 3: Увімкніть агентський режим і перевірте інструменти](../../../../../../translated_images/uk/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
 
    Після увімкнення агентського режиму переконайтеся, що MCP server відображається серед доступних інструментів. Це гарантує, що агент Copilot може отримувати доступ до сервера документації для пошуку релевантної інформації.
    
-   ![Крок 3: Перевірте інструмент MCP server](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.uk.png)
+   ![Крок 3: Перевірте інструмент MCP server](../../../../../../translated_images/uk/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
 
 4. **Почніть новий чат і задайте запит агенту:**
    Відкрийте новий чат у панелі Copilot Chat. Тепер ви можете ставити агенту запитання щодо документації. Агент використовуватиме MCP server, щоб отримувати та відображати відповідну документацію Microsoft Learn безпосередньо у вашому редакторі.
 
    - *"Я намагаюся скласти план навчання з теми X. Планую вивчати її протягом 8 тижнів, запропонуй, будь ласка, контент для кожного тижня."*
 
-   ![Крок 4: Задайте запит агенту в чаті](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.uk.png)
+   ![Крок 4: Задайте запит агенту в чаті](../../../../../../translated_images/uk/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 5. **Живий запит:**
 
@@ -81,7 +81,7 @@ CO_OP_TRANSLATOR_METADATA:
    
    *"Я шукаю відповіді щодо розгортання мультиагентного рішення з AI агентами, розробленими на Azure AI Foundry. Бачу, що немає прямого методу розгортання, як-от канали Copilot Studio. Тож які існують різні способи розгортання для корпоративних користувачів, щоб вони могли взаємодіяти і виконувати завдання? Існує багато статей/блогів, які кажуть, що можна використовувати Azure Bot service як міст між MS Teams і Azure AI Foundry Agents. Чи спрацює це, якщо я налаштую Azure bot, який підключається до Orchestrator Agent на Azure AI Foundry через Azure function для оркестрації, чи мені потрібно створювати Azure function для кожного AI агента в мультиагентному рішенні для оркестрації в Bot framework? Будь-які інші поради будуть дуже корисні."*
 
-   ![Крок 5: Живі запити](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.uk.png)
+   ![Крок 5: Живі запити](../../../../../../translated_images/uk/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
 
    Агент відповість релевантними посиланнями на документацію та резюме, які ви зможете вставити безпосередньо у ваші markdown-файли або використовувати як посилання у коді.
 

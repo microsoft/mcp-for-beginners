@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # کمیونٹی اور تعاون
 
-[![MCP میں تعاون کرنے کا طریقہ: ٹولز، دستاویزات، کوڈ اور مزید](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.ur.png)](https://youtu.be/v1pvCYAWpRE)
+[![MCP میں تعاون کرنے کا طریقہ: ٹولز، دستاویزات، کوڈ اور مزید](../../../translated_images/ur/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.png)](https://youtu.be/v1pvCYAWpRE)
 
 _(اوپر دی گئی تصویر پر کلک کریں تاکہ اس سبق کی ویڈیو دیکھ سکیں)_
 

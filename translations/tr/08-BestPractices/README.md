@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP Geliştirme En İyi Uygulamaları
 
-[![MCP Geliştirme En İyi Uygulamaları](../../../translated_images/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.tr.png)](https://youtu.be/W56H9W7x-ao)
+[![MCP Geliştirme En İyi Uygulamaları](../../../translated_images/tr/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.png)](https://youtu.be/W56H9W7x-ao)
 
 _(Bu dersin videosunu izlemek için yukarıdaki görsele tıklayın)_
 

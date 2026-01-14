@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP 安全性：AI 系統的全面防護
 
-[![MCP Security Best Practices](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.tw.png)](https://youtu.be/88No8pw706o)
+[![MCP Security Best Practices](../../../translated_images/tw/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(點擊上方圖片觀看本課程影片)_
 
@@ -133,7 +133,7 @@ MCP 規範在身份驗證與授權方法上有顯著演進：
 
 **實際影響**：此類攻擊可能導致資料外洩、隱私違規、有害內容生成及用戶互動操控。詳見 [MCP 中的提示注入 (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/)。
 
-![Prompt Injection Attack Diagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.tw.png)
+![Prompt Injection Attack Diagram](../../../translated_images/tw/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **工具中毒攻擊**
 
@@ -147,7 +147,7 @@ MCP 規範在身份驗證與授權方法上有顯著演進：
 
 **託管伺服器風險**：遠端 MCP 伺服器風險升高，因工具定義可在用戶初次批准後更新，導致先前安全工具變成惡意。詳見 [工具中毒攻擊 (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks)。
 
-![Tool Injection Attack Diagram](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.tw.png)
+![Tool Injection Attack Diagram](../../../translated_images/tw/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **其他 AI 攻擊向量**
 
@@ -200,7 +200,7 @@ MCP 規範在身份驗證與授權方法上有顯著演進：
 
 **實作資源**：[微軟 Prompt Shields 文件](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields Protection](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.tw.png)
+![Microsoft Prompt Shields Protection](../../../translated_images/tw/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## 進階 MCP 安全威脅

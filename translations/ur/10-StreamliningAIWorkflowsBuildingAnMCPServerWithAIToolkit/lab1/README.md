@@ -60,7 +60,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 **مرحلہ 3: انسٹال اور فعال کریں**
 
-![AI Toolkit Extension](../../../../translated_images/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.ur.png)
+![AI Toolkit Extension](../../../../translated_images/ur/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.png)
 
 ### ✅ تصدیقی چیک لسٹ
 - [ ] AI Toolkit کا آئیکن VS Code کے سائیڈبار میں ظاہر ہو
@@ -79,7 +79,7 @@ Model Catalog AI ماحولیاتی نظام کا دروازہ ہے۔ یہ مت�
 
 AI Toolkit سائیڈبار میں **MODELS - Catalog** پر کلک کریں
 
-![Model Catalog](../../../../translated_images/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.ur.png)
+![Model Catalog](../../../../translated_images/ur/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.png)
 
 **💡 پرو ٹپ**: ایسے ماڈلز تلاش کریں جن کی خصوصیات آپ کے استعمال کے کیس سے میل کھاتی ہوں (مثلاً کوڈ جنریشن، تخلیقی تحریر، تجزیہ)۔
 
@@ -97,7 +97,7 @@ AI Toolkit سائیڈبار میں **MODELS - Catalog** پر کلک کریں
 3. **Try in Playground** منتخب کریں تاکہ جانچ کا ماحول شروع ہو
 4. ماڈل کی ابتدا کا انتظار کریں (پہلی بار سیٹ اپ میں کچھ وقت لگ سکتا ہے)
 
-![Playground Setup](../../../../translated_images/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.ur.png)
+![Playground Setup](../../../../translated_images/ur/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.png)
 
 **⚙️ ماڈل پیرامیٹرز کو سمجھنا:**
 - **Temperature**: تخلیقی صلاحیت کو کنٹرول کرتا ہے (0 = متعین، 1 = تخلیقی)
@@ -126,7 +126,7 @@ Playground آپ کی AI تجربہ گاہ ہے۔ اسے زیادہ سے زیاد
 "Analyze this sales data and provide insights: [paste your data]. Focus on trends, anomalies, and actionable recommendations."
 ```
 
-![Testing Results](../../../../translated_images/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.ur.png)
+![Testing Results](../../../../translated_images/ur/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.png)
 
 ### 🏆 چیلنج مشق: ماڈل کی کارکردگی کا موازنہ
 
@@ -136,12 +136,12 @@ Playground آپ کی AI تجربہ گاہ ہے۔ اسے زیادہ سے زیاد
 1. **Phi-4-mini** کو اپنے ورک اسپیس میں شامل کریں
 2. GPT-4.1 اور Phi-4-mini دونوں کے لیے ایک ہی پرامپٹ استعمال کریں
 
-![set](../../../../translated_images/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.ur.png)
+![set](../../../../translated_images/ur/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.png)
 
 3. جواب کی کوالٹی، رفتار، اور درستگی کا موازنہ کریں
 4. نتائج کو دستاویزی شکل میں محفوظ کریں
 
-![Model Comparison](../../../../translated_images/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.ur.png)
+![Model Comparison](../../../../translated_images/ur/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.png)
 
 **💡 دریافت کرنے کے لیے اہم نکات:**
 - کب LLM اور کب SLM استعمال کریں
@@ -163,7 +163,7 @@ Agent Builder وہ جگہ ہے جہاں AI Toolkit اپنی اصل طاقت دک
 - **Tools Integration**: بیرونی APIs اور MCP سروسز سے کنکشن
 - **Memory**: گفتگو کا سیاق و سباق اور سیشن کی پائیداری
 
-![Agent Builder Interface](../../../../translated_images/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.ur.png)
+![Agent Builder Interface](../../../../translated_images/ur/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.png)
 
 ### ⚙️ مرحلہ 2: ایجنٹ کی ترتیب کی تفصیل
 
@@ -237,7 +237,7 @@ You are a senior Python developer with 10+ years of experience. You excel at wri
    - Max Tokens: 2000 (تفصیلی وضاحتیں)
    - Top-p: 0.9 (متوازن تخلیقی صلاحیت)
 
-![Python Agent Configuration](../../../../translated_images/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.ur.png)
+![Python Agent Configuration](../../../../translated_images/ur/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.png)
 
 ### 🧪 مرحلہ 4: اپنے Python ایجنٹ کی جانچ
 

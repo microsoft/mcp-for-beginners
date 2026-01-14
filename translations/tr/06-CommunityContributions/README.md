@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Topluluk ve Katkılar
 
-[![MCP'ye Nasıl Katkıda Bulunulur: Araçlar, Belgeler, Kod ve Daha Fazlası](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.tr.png)](https://youtu.be/v1pvCYAWpRE)
+[![MCP'ye Nasıl Katkıda Bulunulur: Araçlar, Belgeler, Kod ve Daha Fazlası](../../../translated_images/tr/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.png)](https://youtu.be/v1pvCYAWpRE)
 
 _(Bu dersin videosunu izlemek için yukarıdaki görsele tıklayın)_
 

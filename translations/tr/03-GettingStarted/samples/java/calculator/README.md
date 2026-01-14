@@ -201,7 +201,7 @@ MCP Inspector, MCP servisleri ile etkileşim için faydalı bir araçtır. Bu he
    - "List Tools" butonuna tıklayarak mevcut hesap makinesi işlemlerini görün
    - Bir aracı seçip "Run Tool" ile işlemi çalıştırın
 
-![MCP Inspector Ekran Görüntüsü](../../../../../../translated_images/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.tr.png)
+![MCP Inspector Ekran Görüntüsü](../../../../../../translated_images/tr/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.png)
 
 ### Docker Kullanarak
 

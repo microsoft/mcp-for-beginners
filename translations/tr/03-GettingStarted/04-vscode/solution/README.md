@@ -23,7 +23,7 @@ Bu, şu komutu çalıştırmaya karşılık gelir: `node build/index.js`.
 
     Sohbet metin kutusunun üstünde, aracı çalıştırmak için seçmeniz gerektiğini belirten bir araç sunulduğunu görmelisiniz, şu görseldeki gibi:
 
-    ![VS Code, bir aracı çalıştırmak istediğini gösteriyor](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.tr.png)
+    ![VS Code, bir aracı çalıştırmak istediğini gösteriyor](../../../../../translated_images/tr/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
     Aracı seçmek, eğer önceki örnekteki gibi bir komut yazdıysanız, "23" gibi sayısal bir sonuç üretmelidir.
 
