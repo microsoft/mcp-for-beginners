@@ -73,7 +73,7 @@ MCP Inspector on hyödyllinen työkalu MCP-palveluiden kanssa työskentelyyn. K�
    - Klikkaa "List Tools" nähdäksesi käytettävissä olevat laskutoiminnot
    - Valitse työkalu ja klikkaa "Run Tool" suorittaaksesi toiminnon
 
-![MCP Inspector Screenshot](../../../../../../translated_images/tool.40e180a7b0d0fe2067cf96435532b01f63f7f8619d6b0132355a04b426b669ac.fi.png)
+![MCP Inspector Screenshot](../../../../../../translated_images/fi/tool.40e180a7b0d0fe2067cf96435532b01f63f7f8619d6b0132355a04b426b669ac.png)
 
 **Vastuuvapauslauseke**:  
 Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattikäännöksissä saattaa esiintyä virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäiskielellä tulee pitää virallisena lähteenä. Tärkeissä tiedoissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.

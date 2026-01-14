@@ -26,7 +26,7 @@ Teised projektid pärinevad [.NET Aspire](https://learn.microsoft.com/dotnet/asp
 
 1. Kui veebibrauser avab .NET Aspire'i juhtpaneeli, märkige üles `http` URL. See peaks olema midagi sellist nagu `http://localhost:5058/`.
 
-   ![.NET Aspire juhtpaneel](../../../../../translated_images/dotnet-aspire-dashboard.0a7095710e9301e90df2efd867e1b675b3b9bc2ccd7feb1ebddc0751522bc37c.et.png)
+   ![.NET Aspire juhtpaneel](../../../../../translated_images/et/dotnet-aspire-dashboard.0a7095710e9301e90df2efd867e1b675b3b9bc2ccd7feb1ebddc0751522bc37c.png)
 
 ## Testige voogedastatavat HTTP-d MCP Inspectoriga
 
@@ -38,7 +38,7 @@ Käivitage server ja käivitage terminalis järgmine käsk:
 npx @modelcontextprotocol/inspector http://localhost:5058
 ```
 
-![MCP Inspector](../../../../../translated_images/mcp-inspector.c223422b9b494fb4a518a3b3911b3e708e6a5715069470f9163ee2ee8d5f1ba9.et.png)
+![MCP Inspector](../../../../../translated_images/et/mcp-inspector.c223422b9b494fb4a518a3b3911b3e708e6a5715069470f9163ee2ee8d5f1ba9.png)
 
 - Valige transporditüübiks `Streamable HTTP`.
 - Sisestage URL-i väljale varem märgitud serveri URL ja lisage `/mcp`. See peaks olema `http` (mitte `https`), midagi sellist nagu `http://localhost:5058/mcp`.
@@ -83,7 +83,7 @@ azd up
 
 Kui juurutamine on lõppenud, peaksite nägema sellist teadet:
 
-![Azd juurutamise õnnestumine](../../../../../translated_images/azd-deployment-success.bd42940493f1b834a5ce6251a6f88966546009b350df59d0cc4a8caabe94a4f1.et.png)
+![Azd juurutamise õnnestumine](../../../../../translated_images/et/azd-deployment-success.bd42940493f1b834a5ce6251a6f88966546009b350df59d0cc4a8caabe94a4f1.png)
 
 Haarake URL ja kasutage seda MCP Inspectoris ja GitHub Copilot Chatis.
 

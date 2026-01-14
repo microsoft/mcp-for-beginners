@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # پیاده‌سازی عملی
 
-[![چگونه اپلیکیشن‌های MCP را با ابزارها و جریان‌های کاری واقعی بسازیم، تست کنیم و مستقر کنیم](../../../translated_images/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.fa.png)](https://youtu.be/vCN9-mKBDfQ)
+[![چگونه اپلیکیشن‌های MCP را با ابزارها و جریان‌های کاری واقعی بسازیم، تست کنیم و مستقر کنیم](../../../translated_images/fa/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.png)](https://youtu.be/vCN9-mKBDfQ)
 
 _(برای مشاهده ویدئوی این درس روی تصویر بالا کلیک کنید)_
 
@@ -217,7 +217,7 @@ Azure API Management پاسخ مناسبی برای چگونگی ایمن‌سا
 
     شما باید رابطی مشابه زیر را ببینید:
 
-    ![Connect to Node inspector](../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.fa.png)
+    ![Connect to Node inspector](../../../translated_images/fa/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. با CTRL کلیک، اپلیکیشن وب MCP Inspector را از URL نمایش داده شده توسط برنامه بارگذاری کنید (مثلاً [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources))
 1. نوع انتقال را به `SSE` تنظیم کنید

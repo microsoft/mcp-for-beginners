@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Sissejuhatus mudeli kontekstiprotokolli (MCP): Miks see on oluline skaleeritavate AI-rakenduste jaoks
 
-[![Sissejuhatus mudeli kontekstiprotokolli](../../../translated_images/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.et.png)](https://youtu.be/agBbdiOPLQA)
+[![Sissejuhatus mudeli kontekstiprotokolli](../../../translated_images/et/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.png)](https://youtu.be/agBbdiOPLQA)
 
 _(Klõpsake ülaloleval pildil, et vaadata selle õppetunni videot)_
 

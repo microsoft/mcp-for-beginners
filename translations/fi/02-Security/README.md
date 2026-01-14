@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP-turvallisuus: Kattava suojaus tekoälyjärjestelmille
 
-[![MCP Security Best Practices](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.fi.png)](https://youtu.be/88No8pw706o)
+[![MCP Security Best Practices](../../../translated_images/fi/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(Napsauta yllä olevaa kuvaa nähdäksesi tämän oppitunnin videon)_
 
@@ -133,7 +133,7 @@ Nykyaikaiset MCP-toteutukset kohtaavat kehittyneitä tekoälykohtaisia hyökkäy
 
 **Todellinen vaikutus**: Nämä hyökkäykset voivat johtaa tietovuotoihin, yksityisyyden loukkauksiin, haitallisen sisällön tuottamiseen ja käyttäjävuorovaikutusten manipulointiin. Tarkempaan analyysiin katso [Prompt Injection in MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
-![Prompt Injection Attack Diagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.fi.png)
+![Prompt Injection Attack Diagram](../../../translated_images/fi/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **Työkalujen myrkytyshyökkäykset**
 
@@ -147,7 +147,7 @@ Nykyaikaiset MCP-toteutukset kohtaavat kehittyneitä tekoälykohtaisia hyökkäy
 
 **Isännöidyn palvelimen riskit**: Etä-MCP-palvelimet ovat erityisen riskialttiita, koska työkalumäärittelyjä voidaan päivittää käyttäjän alkuperäisen hyväksynnän jälkeen, mikä luo tilanteita, joissa aiemmin turvalliset työkalut muuttuvat haitallisiksi. Kattavaan analyysiin katso [Tool Poisoning Attacks (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
-![Tool Injection Attack Diagram](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.fi.png)
+![Tool Injection Attack Diagram](../../../translated_images/fi/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **Lisää tekoälyhyökkäysvektoreita**
 
@@ -200,7 +200,7 @@ Microsoftin **AI Prompt Shields** tarjoavat kattavan suojan sekä suorilta että
 
 **Toteutusresurssit**: [Microsoft Prompt Shields Documentation](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields Protection](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.fi.png)
+![Microsoft Prompt Shields Protection](../../../translated_images/fi/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## Edistyneet MCP-turvallisuusuhat

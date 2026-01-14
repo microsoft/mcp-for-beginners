@@ -38,9 +38,9 @@ Te saate oma MCP serverit juhtida kahel erineval viisil:
 
 ### Ekraanipildid
 
-![Juhendatud MCP serveri konfiguratsioon Visual Studio Code'is](../../../../translated_images/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.et.png)
-![Tööriistade valik iga agendi sessiooni jaoks](../../../../translated_images/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.et.png)
-![Lihtne vigade silumine MCP arenduse ajal](../../../../translated_images/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.et.png)
+![Juhendatud MCP serveri konfiguratsioon Visual Studio Code'is](../../../../translated_images/et/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.png)
+![Tööriistade valik iga agendi sessiooni jaoks](../../../../translated_images/et/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.png)
+![Lihtne vigade silumine MCP arenduse ajal](../../../../translated_images/et/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.png)
 
 Räägime järgnevates osades rohkem sellest, kuidas kasutada visuaalset liidest.
 
@@ -103,15 +103,15 @@ Kui olete kirje lisanud, käivitage server:
 
 1. Leidke oma kirje *mcp.json* failis ja veenduge, et näete "play" ikooni:
 
-  ![Serveri käivitamine Visual Studio Code'is](../../../../translated_images/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.et.png)  
+  ![Serveri käivitamine Visual Studio Code'is](../../../../translated_images/et/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.png)  
 
 1. Klõpsake "play" ikooni. Peaksite nägema, et GitHub Copiloti vestlusliidese tööriistade ikoonil suureneb saadaval olevate tööriistade arv. Kui klõpsate tööriistade ikoonil, näete registreeritud tööriistade loendit. Saate iga tööriista sisse/välja lülitada, sõltuvalt sellest, kas soovite, et GitHub Copilot neid kontekstis kasutaks:
 
-  ![Serveri käivitamine Visual Studio Code'is](../../../../translated_images/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.et.png)
+  ![Serveri käivitamine Visual Studio Code'is](../../../../translated_images/et/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.png)
 
 1. Tööriista käivitamiseks sisestage käsk, mis vastab ühe teie tööriista kirjeldusele, näiteks käsk "add 22 to 1":
 
-  ![Tööriista käivitamine GitHub Copilotist](../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.et.png)
+  ![Tööriista käivitamine GitHub Copilotist](../../../../translated_images/et/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
   Peaksite nägema vastust, mis ütleb 23.
 

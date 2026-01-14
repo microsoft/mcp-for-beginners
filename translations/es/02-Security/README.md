@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Seguridad MCP: Protección Integral para Sistemas de IA
 
-[![Mejores Prácticas de Seguridad MCP](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.es.png)](https://youtu.be/88No8pw706o)
+[![Mejores Prácticas de Seguridad MCP](../../../translated_images/es/03.175aed6dedae133f.png)](https://youtu.be/88No8pw706o)
 
 _(Haz clic en la imagen de arriba para ver el video de esta lección)_
 
@@ -133,7 +133,7 @@ La **Inyección Indirecta de Prompts** representa una de las vulnerabilidades m�
 
 **Impacto en el Mundo Real**: Estos ataques pueden resultar en exfiltración de datos, violaciones de privacidad, generación de contenido dañino y manipulación de interacciones con usuarios. Para un análisis detallado, consulta [Inyección de Prompts en MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
-![Diagrama de Ataque de Inyección de Prompts](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.es.png)
+![Diagrama de Ataque de Inyección de Prompts](../../../translated_images/es/prompt-injection.ed9fbfde297ca877.png)
 
 #### **Ataques de Envenenamiento de Herramientas**
 
@@ -147,7 +147,7 @@ El **Envenenamiento de Herramientas** apunta a los metadatos que definen las her
 
 **Riesgos en Servidores Hospedados**: Los servidores MCP remotos presentan riesgos elevados ya que las definiciones de herramientas pueden actualizarse después de la aprobación inicial del usuario, creando escenarios donde herramientas previamente seguras se vuelven maliciosas. Para un análisis completo, consulta [Ataques de Envenenamiento de Herramientas (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
-![Diagrama de Ataque de Inyección de Herramientas](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.es.png)
+![Diagrama de Ataque de Inyección de Herramientas](../../../translated_images/es/tool-injection.3b0b4a6b24de6bef.png)
 
 #### **Vectores Adicionales de Ataque de IA**
 
@@ -200,7 +200,7 @@ Microsoft **AI Prompt Shields** ofrecen defensa integral contra ataques de inyec
 
 **Recursos de Implementación**: [Documentación de Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Protección Microsoft Prompt Shields](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.es.png)
+![Protección Microsoft Prompt Shields](../../../translated_images/es/prompt-shield.ff5b95be76e9c78c.png)
 
 
 ## Amenazas Avanzadas de Seguridad MCP

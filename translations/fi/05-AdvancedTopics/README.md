@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Edistyneet aiheet MCP:ssä
 
-[![Edistynyt MCP: Turvalliset, skaalautuvat ja monimuotoiset tekoälyagentit](../../../translated_images/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.fi.png)](https://youtu.be/4yjmGvJzYdY)
+[![Edistynyt MCP: Turvalliset, skaalautuvat ja monimuotoiset tekoälyagentit](../../../translated_images/fi/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.png)](https://youtu.be/4yjmGvJzYdY)
 
 _(Klikkaa yllä olevaa kuvaa nähdäksesi tämän oppitunnin videon)_
 

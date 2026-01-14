@@ -52,27 +52,27 @@ Alustamiseks järgi neid samme. Iga sammu jaoks saad lisada ekraanipildi kaustas
    ```
    See konfiguratsioon ütleb VS Code'ile, kuidas ühendada [`Microsoft Learn Docs MCP serveriga`](https://github.com/MicrosoftDocs/mcp).
    
-   ![1. samm: Lisa mcp.json .vscode kausta](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.et.png)
+   ![1. samm: Lisa mcp.json .vscode kausta](../../../../../../translated_images/et/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
     
 2. **Ava GitHub Copilot Chat paneel:**
    Kui sul pole veel GitHub Copilot laiendust installitud, mine VS Code'i laienduste vaatesse ja installi see. Sa saad selle otse alla laadida [Visual Studio Code Marketplace'ist](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat). Seejärel ava Copilot Chat paneel külgribalt.
 
-   ![2. samm: Ava Copilot Chat paneel](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.et.png)
+   ![2. samm: Ava Copilot Chat paneel](../../../../../../translated_images/et/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
 
 3. **Luba agent-režiim ja kontrolli tööriistu:**
    Luba Copilot Chat paneelil agent-režiim.
 
-   ![3. samm: Luba agent-režiim ja kontrolli tööriistu](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.et.png)
+   ![3. samm: Luba agent-režiim ja kontrolli tööriistu](../../../../../../translated_images/et/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
 
    Pärast agent-režiimi lubamist kontrolli, et MCP server oleks loetletud ühe saadaoleva tööriistana. See tagab, et Copilot agent saab dokumentatsiooniserverile juurde pääseda ja asjakohast teavet hankida.
    
-   ![3. samm: Kontrolli MCP serveri tööriista](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.et.png)
+   ![3. samm: Kontrolli MCP serveri tööriista](../../../../../../translated_images/et/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
 4. **Alusta uut vestlust ja esita agentile küsimus:**
    Ava Copilot Chat paneelil uus vestlus. Nüüd saad esitada agentile oma dokumentatsiooniga seotud küsimusi. Agent kasutab MCP serverit, et hankida ja kuvada asjakohast Microsoft Learn dokumentatsiooni otse sinu toimetajas.
 
    - *"Ma püüan koostada õppeplaani teema X jaoks. Kavatsen seda õppida 8 nädalat, palun soovita iga nädala jaoks sobivat sisu."*
 
-   ![4. samm: Esita agentile küsimus vestluses](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.et.png)
+   ![4. samm: Esita agentile küsimus vestluses](../../../../../../translated_images/et/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 5. **Reaalajas päring:**
 
@@ -80,7 +80,7 @@ Alustamiseks järgi neid samme. Iga sammu jaoks saad lisada ekraanipildi kaustas
    
    *"Otsin vastuseid, kuidas juurutada mitme agendi lahendust, kus AI agendid on välja töötatud Azure AI Foundry's. Ma näen, et otsest juurutusmeetodit, nagu Copilot Studio kanalid, pole. Millised on erinevad viisid, kuidas seda juurutust teha, et ettevõtte kasutajad saaksid suhelda ja töö tehtud? On palju artikleid/blogisid, mis ütlevad, et selle töö tegemiseks saab kasutada Azure Bot teenust, mis võib toimida silla rollis MS Teamsi ja Azure AI Foundry agentide vahel. Kas see töötab, kui seadistan Azure boti, mis ühendub Azure AI Foundry Orkestreerimisagendiga Azure funktsiooni kaudu, et orkestreerimist teostada, või pean looma iga mitme agendi lahenduse osa jaoks eraldi Azure funktsiooni, et teha orkestreerimist Bot Frameworkis? Kõik muud ettepanekud on teretulnud."*
 
-   ![5. samm: Reaalajas päringud](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.et.png)
+   ![5. samm: Reaalajas päringud](../../../../../../translated_images/et/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
 
    Agent vastab asjakohaste dokumentatsioonilinkide ja kokkuvõtetega, mida saad seejärel otse oma markdown-failidesse lisada või kasutada viidetena oma koodis.
    

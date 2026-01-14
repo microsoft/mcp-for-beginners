@@ -64,7 +64,7 @@ CO_OP_TRANSLATOR_METADATA:
 2. **یک عامل جدید با تنظیمات زیر بسازید:**  
    - نام عامل: `WeatherAgent`
 
-![Agent Creation](../../../../translated_images/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.fa.png)
+![Agent Creation](../../../../translated_images/fa/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.png)
 
 ### گام ۲: راه‌اندازی پروژه سرور MCP
 
@@ -74,7 +74,7 @@ CO_OP_TRANSLATOR_METADATA:
 4. **قالب `python-weather` را انتخاب کنید**  
 5. **نام سرور خود را وارد کنید:** `weather_mcp`
 
-![Python Template Selection](../../../../translated_images/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.fa.png)
+![Python Template Selection](../../../../translated_images/fa/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.png)
 
 ### گام ۳: باز کردن و بررسی پروژه
 
@@ -338,7 +338,7 @@ USER_PROMPT
 How's the weather like in Seattle
 ```
 
-![Agent Builder Debug Result](../../../../translated_images/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.fa.png)
+![Agent Builder Debug Result](../../../../translated_images/fa/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.png)
 
 ### گام ۸: اشکال‌زدایی با MCP Inspector
 
@@ -350,7 +350,7 @@ How's the weather like in Seattle
    - نظارت بر درخواست‌های شبکه  
    - اشکال‌زدایی پاسخ‌های سرور
 
-![MCP Inspector Interface](../../../../translated_images/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.fa.png)
+![MCP Inspector Interface](../../../../translated_images/fa/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.png)
 
 ---
 

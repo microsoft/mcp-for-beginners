@@ -13,11 +13,11 @@ CO_OP_TRANSLATOR_METADATA:
 [![پایتون](https://img.shields.io/badge/Python-3.10+-green.svg)](https://python.org)  
 [![VS Code](https://img.shields.io/badge/VS%20Code-Latest-orange.svg)](https://code.visualstudio.com/)
 
-![لوگو](../../../translated_images/logo.ec93918ec338dadde1715c8aaf118079e0ed0502e9efdfcc84d6a0f4a9a70ae8.fa.png)
+![لوگو](../../../translated_images/fa/logo.ec93918ec338dadde1715c8aaf118079e0ed0502e9efdfcc84d6a0f4a9a70ae8.png)
 
 ## 🎯 مرور کلی
 
-[![ساخت عوامل هوش مصنوعی در VS Code: ۴ آزمایش عملی با MCP و AI Toolkit](../../../translated_images/11.0f6db6a0fb6068856d0468590a120ffe35dbccc49b93dc88b2003f306c81493a.fa.png)](https://youtu.be/r34Csn3rkeQ)
+[![ساخت عوامل هوش مصنوعی در VS Code: ۴ آزمایش عملی با MCP و AI Toolkit](../../../translated_images/fa/11.0f6db6a0fb6068856d0468590a120ffe35dbccc49b93dc88b2003f306c81493a.png)](https://youtu.be/r34Csn3rkeQ)
 
 _(برای مشاهده ویدئوی این درس روی تصویر بالا کلیک کنید)_
 

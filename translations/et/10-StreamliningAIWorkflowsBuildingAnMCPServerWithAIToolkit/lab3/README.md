@@ -64,7 +64,7 @@ Võimas silumisvahend, mis pakub:
 2. **Loo uus agent** järgmiste seadistustega:
    - Agendi nimi: `WeatherAgent`
 
-![Agendi loomine](../../../../translated_images/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.et.png)
+![Agendi loomine](../../../../translated_images/et/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.png)
 
 ### Samm 2: Algata MCP serveri projekt
 
@@ -74,7 +74,7 @@ Võimas silumisvahend, mis pakub:
 4. **Vali `python-weather` mall**
 5. **Nimeta oma server:** `weather_mcp`
 
-![Python malli valik](../../../../translated_images/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.et.png)
+![Python malli valik](../../../../translated_images/et/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.png)
 
 ### Samm 3: Ava ja vaata projekti üle
 
@@ -341,7 +341,7 @@ USER_PROMPT
 How's the weather like in Seattle
 ```
 
-![Agent Builderi silumise tulemus](../../../../translated_images/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.et.png)
+![Agent Builderi silumise tulemus](../../../../translated_images/et/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.png)
 
 ### Samm 8: Silumine MCP Inspectoriga
 
@@ -353,7 +353,7 @@ How's the weather like in Seattle
    - Jälgi võrgutaotlusi
    - Silu serveri vastuseid
 
-![MCP Inspectori liides](../../../../translated_images/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.et.png)
+![MCP Inspectori liides](../../../../translated_images/et/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.png)
 
 ---
 

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Praktiline Rakendamine
 
-[![Kuidas luua, testida ja juurutada MCP rakendusi reaalsete tööriistade ja töövoogudega](../../../translated_images/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.et.png)](https://youtu.be/vCN9-mKBDfQ)
+[![Kuidas luua, testida ja juurutada MCP rakendusi reaalsete tööriistade ja töövoogudega](../../../translated_images/et/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.png)](https://youtu.be/vCN9-mKBDfQ)
 
 _(Klõpsake ülaloleval pildil, et vaadata selle õppetunni videot)_
 
@@ -215,7 +215,7 @@ Vaatame, kas saame juurutada varem mainitud näidise:
 
     Peaksite nägema liidest, mis näeb välja sarnane:
 
-    ![Ühendamine Node inspectoriga](../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.et.png)
+    ![Ühendamine Node inspectoriga](../../../translated_images/et/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. CTRL-klõpsake, et laadida MCP Inspectori veebirakendus URL-ist, mida rakendus kuvab (nt [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources)).
 1. Määrake transporditüübiks `SSE`.

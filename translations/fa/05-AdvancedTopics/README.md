@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # موضوعات پیشرفته در MCP
 
-[![MCP پیشرفته: عوامل هوش مصنوعی امن، مقیاس‌پذیر و چند‌حالته](../../../translated_images/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.fa.png)](https://youtu.be/4yjmGvJzYdY)
+[![MCP پیشرفته: عوامل هوش مصنوعی امن، مقیاس‌پذیر و چند‌حالته](../../../translated_images/fa/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.png)](https://youtu.be/4yjmGvJzYdY)
 
 _(برای مشاهده ویدئوی این درس روی تصویر بالا کلیک کنید)_
 

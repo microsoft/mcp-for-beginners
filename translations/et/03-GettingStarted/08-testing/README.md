@@ -48,7 +48,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 Ülaltoodud käsk käivitab MCP ja selle visuaalse liidese ning avab teie brauseris kohaliku veebiliidese. Võite näha armatuurlauda, mis kuvab teie registreeritud MCP serverid, nende saadaolevad tööriistad, ressursid ja juhised. Liides võimaldab teil interaktiivselt testida tööriistade täitmist, uurida serveri metaandmeid ja vaadata reaalajas vastuseid, muutes MCP serveri rakenduste valideerimise ja silumise lihtsamaks.
 
-Siin on näide, kuidas see välja näeb: ![Inspector](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.et.png)
+Siin on näide, kuidas see välja näeb: ![Inspector](../../../../translated_images/et/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 Seda tööriista saab käivitada ka CLI režiimis, lisades `--cli` atribuudi. Näide tööriista käivitamisest "CLI" režiimis, mis loetleb kõik serveri tööriistad:
 

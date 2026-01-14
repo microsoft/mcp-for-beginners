@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Temas Avanzados en MCP
 
-[![MCP Avanzado: Agentes de IA Seguros, Escalables y Multimodales](../../../translated_images/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.es.png)](https://youtu.be/4yjmGvJzYdY)
+[![MCP Avanzado: Agentes de IA Seguros, Escalables y Multimodales](../../../translated_images/es/06.42259eaf91fccfc6.png)](https://youtu.be/4yjmGvJzYdY)
 
 _(Haz clic en la imagen de arriba para ver el video de esta lección)_
 

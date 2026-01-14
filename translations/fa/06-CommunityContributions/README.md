@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # جامعه و مشارکت‌ها
 
-[![چگونه به MCP کمک کنیم: ابزارها، مستندات، کد و بیشتر](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.fa.png)](https://youtu.be/v1pvCYAWpRE)
+[![چگونه به MCP کمک کنیم: ابزارها، مستندات، کد و بیشتر](../../../translated_images/fa/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.png)](https://youtu.be/v1pvCYAWpRE)
 
 _(برای مشاهده ویدئوی این درس روی تصویر بالا کلیک کنید)_
 

@@ -156,7 +156,7 @@ Kui käivitad ülaltoodud käsud, avab MCP Inspector sinu brauseris kohaliku vee
 
 Siin on ekraanipilt, kuidas see võib välja näha:
 
-![MCP Inspector serveri ühendus](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.et.png)
+![MCP Inspector serveri ühendus](../../../../translated_images/et/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## Levinud seadistusprobleemid ja lahendused
 
@@ -1302,7 +1302,7 @@ Inspektori veebiliideses:
 2. Määrake URL-iks: `http://localhost:8080/sse`
 3. Klõpsake "Connect"
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.et.png)
+![Connect](../../../../translated_images/et/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **Olete nüüd serveriga ühendatud**
 **Java serveri testimise osa on nüüd lõpetatud**
@@ -1311,18 +1311,18 @@ Järgmine osa käsitleb suhtlust serveriga.
 
 Te peaksite nägema järgmist kasutajaliidest:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.et.png)
+![Connect](../../../../translated_images/et/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. Ühenduge serveriga, valides nupu Connect
   Kui olete serveriga ühendatud, peaksite nüüd nägema järgmist:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.et.png)
+  ![Connected](../../../../translated_images/et/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. Valige "Tools" ja "listTools", peaksite nägema "Add" valikut, valige "Add" ja täitke parameetrite väärtused.
 
   Peaksite nägema järgmist vastust, st "add" tööriista tulemust:
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.et.png)
+  ![Result of running add](../../../../translated_images/et/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 Palju õnne, olete loonud ja käivitanud oma esimese serveri!
 

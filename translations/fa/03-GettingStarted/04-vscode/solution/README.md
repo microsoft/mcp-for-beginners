@@ -23,7 +23,7 @@ CO_OP_TRANSLATOR_METADATA:
 
     باید ابزاری را بالای کادر متن چت ببینید که به شما نشان می‌دهد برای اجرای ابزار باید آن را انتخاب کنید، مانند تصویر زیر:
 
-    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.fa.png)
+    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/fa/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
     انتخاب ابزار باید نتیجه عددی "23" را نشان دهد اگر متن شما مانند مثالی که قبلاً گفتیم باشد.
 
