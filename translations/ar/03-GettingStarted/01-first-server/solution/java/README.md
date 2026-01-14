@@ -72,7 +72,7 @@ java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
    - انقر على "List Tools" لرؤية العمليات المتاحة في الآلة الحاسبة
    - اختر أداة وانقر على "Run Tool" لتنفيذ العملية
 
-![MCP Inspector Screenshot](../../../../../../translated_images/tool.40e180a7b0d0fe2067cf96435532b01f63f7f8619d6b0132355a04b426b669ac.ar.png)
+![MCP Inspector Screenshot](../../../../../../translated_images/ar/tool.40e180a7b0d0fe20.png)
 
 **إخلاء المسؤولية**:  
 تمت ترجمة هذا المستند باستخدام خدمة الترجمة الآلية [Co-op Translator](https://github.com/Azure/co-op-translator). بينما نسعى لتحقيق الدقة، يرجى العلم أن الترجمات الآلية قد تحتوي على أخطاء أو عدم دقة. يجب اعتبار المستند الأصلي بلغته الأصلية المصدر الموثوق به. للمعلومات الهامة، يُنصح بالترجمة البشرية المهنية. نحن غير مسؤولين عن أي سوء فهم أو تفسير ناتج عن استخدام هذه الترجمة.

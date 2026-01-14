@@ -156,7 +156,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 إليك لقطة شاشة لما قد تبدو عليه:
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.ar.png)
+![MCP Inspector server connection](../../../../translated_images/ar/connected.73d1e042c24075d3.png)
 
 ## مشكلات الإعداد الشائعة والحلول
 
@@ -1302,7 +1302,7 @@ npx @modelcontextprotocol/inspector
 2. عيّن عنوان URL إلى: `http://localhost:8080/sse`
 3. انقر على "Connect"
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.ar.png)
+![Connect](../../../../translated_images/ar/tool.163d33e3ee307e20.png)
 
 **أنت الآن متصل بالخادم**
 **تم الانتهاء الآن من قسم اختبار خادم جافا**
@@ -1311,18 +1311,18 @@ npx @modelcontextprotocol/inspector
 
 يجب أن ترى واجهة المستخدم التالية:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.ar.png)
+![Connect](../../../../translated_images/ar/connect.141db0b2bd05f096.png)
 
 1. اتصل بالخادم عن طريق اختيار زر Connect
   بمجرد الاتصال بالخادم، يجب أن ترى الآن ما يلي:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.ar.png)
+  ![Connected](../../../../translated_images/ar/connected.73d1e042c24075d3.png)
 
 1. اختر "Tools" و "listTools"، يجب أن ترى "Add" تظهر، اختر "Add" واملأ قيم المعلمات.
 
   يجب أن ترى الاستجابة التالية، أي نتيجة من أداة "add":
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.ar.png)
+  ![Result of running add](../../../../translated_images/ar/ran-tool.a5a6ee878c1369ec.png)
 
 تهانينا، لقد تمكنت من إنشاء وتشغيل خادمك الأول!
 

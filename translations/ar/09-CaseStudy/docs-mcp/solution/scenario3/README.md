@@ -52,27 +52,27 @@ CO_OP_TRANSLATOR_METADATA:
    ```
    هذا التكوين يوضح لـ VS Code كيفية الاتصال بـ [`Microsoft Learn Docs MCP server`](https://github.com/MicrosoftDocs/mcp).
    
-   ![الخطوة 1: أضف mcp.json إلى مجلد .vscode](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.ar.png)
+   ![الخطوة 1: أضف mcp.json إلى مجلد .vscode](../../../../../../translated_images/ar/step1-mcp-json.c06a007fccc3edfa.png)
     
 2. **افتح لوحة دردشة GitHub Copilot:**
    إذا لم تكن قد ثبتت امتداد GitHub Copilot بعد، انتقل إلى عرض الإضافات في VS Code وقم بتثبيته. يمكنك تنزيله مباشرة من [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat). ثم افتح لوحة دردشة Copilot من الشريط الجانبي.
 
-   ![الخطوة 2: افتح لوحة دردشة Copilot](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.ar.png)
+   ![الخطوة 2: افتح لوحة دردشة Copilot](../../../../../../translated_images/ar/step2-copilot-panel.f1cc86e9b9b8cd1a.png)
 
 3. **فعّل وضع الوكيل وتحقق من الأدوات:**
    في لوحة دردشة Copilot، فعّل وضع الوكيل.
 
-   ![الخطوة 3: فعّل وضع الوكيل وتحقق من الأدوات](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.ar.png)
+   ![الخطوة 3: فعّل وضع الوكيل وتحقق من الأدوات](../../../../../../translated_images/ar/step3-agent-mode.cdc32520fd7dd1d1.png)
 
    بعد تفعيل وضع الوكيل، تحقق من أن خادم MCP مدرج كأحد الأدوات المتاحة. هذا يضمن أن وكيل Copilot يمكنه الوصول إلى خادم التوثيق لجلب المعلومات ذات الصلة.
    
-   ![الخطوة 3: تحقق من أداة خادم MCP](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.ar.png)
+   ![الخطوة 3: تحقق من أداة خادم MCP](../../../../../../translated_images/ar/step3-verify-mcp-tool.76096a6329cbfecd.png)
 4. **ابدأ دردشة جديدة واطرح استفسارك على الوكيل:**
    افتح دردشة جديدة في لوحة دردشة Copilot. يمكنك الآن طرح استفسارات التوثيق على الوكيل. سيستخدم الوكيل خادم MCP لجلب وعرض مستندات Microsoft Learn ذات الصلة مباشرة في المحرر.
 
    - *"أحاول كتابة خطة دراسة للموضوع X. سأدرسه لمدة 8 أسابيع، لكل أسبوع اقترح المحتوى الذي يجب أن أدرسه."*
 
-   ![الخطوة 4: اطلب من الوكيل في الدردشة](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.ar.png)
+   ![الخطوة 4: اطلب من الوكيل في الدردشة](../../../../../../translated_images/ar/step4-prompt-chat.12187bb001605efc.png)
 
 5. **استعلام مباشر:**
 
@@ -81,7 +81,7 @@ CO_OP_TRANSLATOR_METADATA:
    *"أبحث عن إجابات حول كيفية نشر حل متعدد الوكلاء مع وكلاء AI مطورين على Azure AI Foundry. أرى أنه لا توجد طريقة نشر مباشرة، مثل قنوات Copilot Studio. فما هي الطرق المختلفة لنشر هذا الحل ليتمكن مستخدمو المؤسسات من التفاعل وإنجاز المهمة؟
 هناك العديد من المقالات والمدونات التي تقول إنه يمكننا استخدام خدمة Azure Bot للقيام بهذا العمل والتي يمكن أن تعمل كجسر بين MS Teams ووكلاء Azure AI Foundry، فهل سينجح هذا إذا قمت بإعداد بوت Azure يتصل بوكيل المنسق على Azure AI Foundry عبر Azure function لأداء التنسيق، أم أحتاج إلى إنشاء Azure function لكل وكيل AI جزء من الحل متعدد الوكلاء للقيام بالتنسيق في إطار عمل البوت؟ أي اقتراحات أخرى مرحب بها."*
 
-   ![الخطوة 5: استعلامات مباشرة](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.ar.png)
+   ![الخطوة 5: استعلامات مباشرة](../../../../../../translated_images/ar/step5-live-queries.49db3e4a50bea273.png)
 
    سيرد الوكيل بروابط ومستندات ملخصة ذات صلة، يمكنك إدراجها مباشرة في ملفات markdown الخاصة بك أو استخدامها كمراجع في الكود.
 

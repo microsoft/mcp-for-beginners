@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Основни концепции на MCP: Овладяване на протокола за контекст на модела за интеграция на ИИ
 
-[![Основни концепции на MCP](../../../translated_images/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.bg.png)](https://youtu.be/earDzWGtE84)
+[![Основни концепции на MCP](../../../translated_images/bg/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.png)](https://youtu.be/earDzWGtE84)
 
 _(Кликнете върху изображението по-горе, за да гледате видеото на този урок)_
 

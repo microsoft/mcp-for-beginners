@@ -201,7 +201,7 @@ java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
    - انقر على "List Tools" لرؤية العمليات المتاحة في الآلة الحاسبة
    - اختر أداة وانقر على "Run Tool" لتنفيذ عملية
 
-![لقطة شاشة MCP Inspector](../../../../../../translated_images/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.ar.png)
+![لقطة شاشة MCP Inspector](../../../../../../translated_images/ar/tool.c75a0b2380efcf1a.png)
 
 ### باستخدام Docker
 

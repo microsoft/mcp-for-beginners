@@ -38,9 +38,9 @@ CO_OP_TRANSLATOR_METADATA:
 
 ### لقطات الشاشة
 
-![تكوين خادم MCP الموجه في Visual Studio Code](../../../../translated_images/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.ar.png)
-![اختيار الأدوات لكل جلسة عميل](../../../../translated_images/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.ar.png)
-![تصحيح الأخطاء بسهولة أثناء تطوير MCP](../../../../translated_images/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.ar.png)
+![تكوين خادم MCP الموجه في Visual Studio Code](../../../../translated_images/ar/chat-mode-agent.729a22473f822216.png)
+![اختيار الأدوات لكل جلسة عميل](../../../../translated_images/ar/agent-mode-select-tools.522c7ba5df0848f8.png)
+![تصحيح الأخطاء بسهولة أثناء تطوير MCP](../../../../translated_images/ar/mcp-list-servers.fce89eefe3f30032.png)
 
 دعونا نتحدث أكثر عن كيفية استخدام واجهة المستخدم المرئية في الأقسام التالية.
 
@@ -103,15 +103,15 @@ CO_OP_TRANSLATOR_METADATA:
 
 1. حدد موقع الإدخال الخاص بك في *mcp.json* وتأكد من العثور على أيقونة "تشغيل":
 
-  ![بدء تشغيل الخادم في Visual Studio Code](../../../../translated_images/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.ar.png)  
+  ![بدء تشغيل الخادم في Visual Studio Code](../../../../translated_images/ar/vscode-start-server.8e3c986612e3555d.png)  
 
 1. انقر على أيقونة "تشغيل"، يجب أن ترى أيقونة الأدوات في GitHub Copilot Chat تزداد بعدد الأدوات المتاحة. إذا نقرت على أيقونة الأدوات المذكورة، سترى قائمة بالأدوات المسجلة. يمكنك تحديد/إلغاء تحديد كل أداة بناءً على ما إذا كنت تريد أن يستخدمها GitHub Copilot كجزء من السياق:
 
-  ![بدء تشغيل الخادم في Visual Studio Code](../../../../translated_images/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.ar.png)
+  ![بدء تشغيل الخادم في Visual Studio Code](../../../../translated_images/ar/vscode-tool.0b3bbea2fb7d8c26.png)
 
 1. لتشغيل أداة، اكتب أمرًا نصيًا تعرف أنه يتطابق مع وصف إحدى أدواتك، على سبيل المثال أمر نصي مثل "أضف 22 إلى 1":
 
-  ![تشغيل أداة من GitHub Copilot](../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.ar.png)
+  ![تشغيل أداة من GitHub Copilot](../../../../translated_images/ar/vscode-agent.d5a0e0b897331060.png)
 
   يجب أن ترى استجابة تقول 23.
 

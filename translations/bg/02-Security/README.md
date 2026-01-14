@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP Security: Всеобхватна защита за AI системи
 
-[![MCP Security Best Practices](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.bg.png)](https://youtu.be/88No8pw706o)
+[![MCP Security Best Practices](../../../translated_images/bg/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(Кликнете върху изображението по-горе, за да гледате видеото на този урок)_
 
@@ -133,7 +133,7 @@ _(Кликнете върху изображението по-горе, за д�
 
 **Реално въздействие**: Тези атаки могат да доведат до изтичане на данни, нарушения на поверителността, генериране на вредно съдържание и манипулация на взаимодействия с потребителите. За подробен анализ вижте [Prompt Injection в MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
-![Prompt Injection Attack Diagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.bg.png)
+![Prompt Injection Attack Diagram](../../../translated_images/bg/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **Атаки с отравяне на инструменти**
 
@@ -147,7 +147,7 @@ _(Кликнете върху изображението по-горе, за д�
 
 **Рискове при хоствани сървъри**: Отдалечените MCP сървъри представляват повишени рискове, тъй като дефинициите на инструментите могат да се актуализират след първоначалното одобрение от потребителя, създавайки сценарии, при които преди безопасни инструменти стават злонамерени. За пълен анализ вижте [Атаки с отравяне на инструменти (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
-![Tool Injection Attack Diagram](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.bg.png)
+![Tool Injection Attack Diagram](../../../translated_images/bg/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **Допълнителни AI вектори на атака**
 
@@ -200,7 +200,7 @@ Microsoft **AI Prompt Shields** предоставят всеобхватна з
 
 **Ресурси за реализация**: [Документация на Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields Protection](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.bg.png)
+![Microsoft Prompt Shields Protection](../../../translated_images/bg/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## Разширени заплахи за сигурността на MCP

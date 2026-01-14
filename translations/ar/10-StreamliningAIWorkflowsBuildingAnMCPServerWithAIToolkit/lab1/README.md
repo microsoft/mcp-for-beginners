@@ -60,7 +60,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 **الخطوة 3: التثبيت والتفعيل**
 
-![امتداد AI Toolkit](../../../../translated_images/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.ar.png)
+![امتداد AI Toolkit](../../../../translated_images/ar/aitkext.d28945a03eed003c.png)
 
 ### ✅ قائمة التحقق من التثبيت
 - [ ] يظهر أيقونة AI Toolkit في الشريط الجانبي لـ VS Code
@@ -79,7 +79,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 انقر على **MODELS - Catalog** في الشريط الجانبي لـ AI Toolkit
 
-![كتالوج النماذج](../../../../translated_images/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.ar.png)
+![كتالوج النماذج](../../../../translated_images/ar/aimodel.263ed2be013d8fb0.png)
 
 **💡 نصيحة محترف**: ابحث عن النماذج التي تمتلك قدرات محددة تتناسب مع حالتك (مثل توليد الكود، الكتابة الإبداعية، التحليل).
 
@@ -97,7 +97,7 @@ CO_OP_TRANSLATOR_METADATA:
 3. اختر **Try in Playground** لفتح بيئة الاختبار
 4. انتظر تهيئة النموذج (قد يستغرق الإعداد الأولي بعض الوقت)
 
-![إعداد الملعب](../../../../translated_images/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.ar.png)
+![إعداد الملعب](../../../../translated_images/ar/playground.dd6f5141344878ca.png)
 
 **⚙️ فهم معلمات النموذج:**
 - **Temperature**: يتحكم في الإبداع (0 = حتمي، 1 = إبداعي)
@@ -126,7 +126,7 @@ CO_OP_TRANSLATOR_METADATA:
 "Analyze this sales data and provide insights: [paste your data]. Focus on trends, anomalies, and actionable recommendations."
 ```
 
-![نتائج الاختبار](../../../../translated_images/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.ar.png)
+![نتائج الاختبار](../../../../translated_images/ar/result.1dfcf211fb359cf6.png)
 
 ### 🏆 تمرين التحدي: مقارنة أداء النماذج
 
@@ -136,12 +136,12 @@ CO_OP_TRANSLATOR_METADATA:
 1. أضف **Phi-4-mini** إلى مساحة عملك
 2. استخدم نفس المطالبة لكل من GPT-4.1 و Phi-4-mini
 
-![الإعداد](../../../../translated_images/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.ar.png)
+![الإعداد](../../../../translated_images/ar/set.88132df189ecde2c.png)
 
 3. قارن جودة الاستجابة، السرعة، والدقة
 4. وثق نتائجك في قسم النتائج
 
-![مقارنة النماذج](../../../../translated_images/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.ar.png)
+![مقارنة النماذج](../../../../translated_images/ar/compare.97746cd0f9074955.png)
 
 **💡 رؤى رئيسية لاكتشافها:**
 - متى تستخدم LLM مقابل SLM
@@ -163,7 +163,7 @@ Agent Builder هو المكان الذي يتألق فيه AI Toolkit حقًا. 
 - **تكامل الأدوات**: الاتصال بواجهات برمجة التطبيقات الخارجية وخدمات MCP
 - **الذاكرة**: سياق المحادثة واستمرارية الجلسة
 
-![واجهة Agent Builder](../../../../translated_images/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.ar.png)
+![واجهة Agent Builder](../../../../translated_images/ar/agentbuilder.25895b2d2f8c02e7.png)
 
 ### ⚙️ الخطوة 2: الغوص في تكوين الوكيل
 
@@ -237,7 +237,7 @@ You are a senior Python developer with 10+ years of experience. You excel at wri
    - Max Tokens: 2000 (شروحات مفصلة)
    - Top-p: 0.9 (توازن بين الإبداع)
 
-![تكوين وكيل بايثون](../../../../translated_images/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.ar.png)
+![تكوين وكيل بايثون](../../../../translated_images/ar/pythonagent.5e51b406401c165f.png)
 
 ### 🧪 الخطوة 4: اختبار وكيل بايثون الخاص بك
 
