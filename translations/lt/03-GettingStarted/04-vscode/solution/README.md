@@ -35,7 +35,7 @@ Pavyzdiniame faile, nurodytame aukščiau, serverio įrašas atrodo taip:
 
     Turėtumėte matyti įrankį, pateiktą virš pokalbio teksto laukelio, kuris leidžia jums pasirinkti paleisti įrankį, kaip parodyta šiame paveikslėlyje:
 
-    ![VS Code rodo, kad nori paleisti įrankį](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.lt.png)
+    ![VS Code rodo, kad nori paleisti įrankį](../../../../../translated_images/lt/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
     Pasirinkus įrankį, turėtų būti pateiktas skaitinis rezultatas, sakantis "23", jei jūsų užklausa buvo tokia, kaip minėjome anksčiau.
 

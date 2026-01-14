@@ -66,7 +66,7 @@ Model Context Protocol Python SDK 是建立自訂 MCP 伺服器的基礎。您�
 2. **建立新代理人**，設定如下：
    - 代理人名稱：`WeatherAgent`
 
-![Agent Creation](../../../../translated_images/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.mo.png)
+![Agent Creation](../../../../translated_images/mo/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.png)
 
 ### 步驟 2：初始化 MCP 伺服器專案
 
@@ -76,7 +76,7 @@ Model Context Protocol Python SDK 是建立自訂 MCP 伺服器的基礎。您�
 4. **選擇 `python-weather` 範本**
 5. **命名您的伺服器：** `weather_mcp`
 
-![Python Template Selection](../../../../translated_images/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.mo.png)
+![Python Template Selection](../../../../translated_images/mo/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.png)
 
 ### 步驟 3：開啟並檢視專案
 
@@ -342,7 +342,7 @@ USER_PROMPT
 How's the weather like in Seattle
 ```
 
-![Agent Builder Debug Result](../../../../translated_images/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.mo.png)
+![Agent Builder Debug Result](../../../../translated_images/mo/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.png)
 
 ### 步驟 8：使用 MCP Inspector 除錯
 
@@ -354,7 +354,7 @@ How's the weather like in Seattle
    - 監控網路請求
    - 除錯伺服器回應
 
-![MCP Inspector Interface](../../../../translated_images/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.mo.png)
+![MCP Inspector Interface](../../../../translated_images/mo/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.png)
 
 ---
 

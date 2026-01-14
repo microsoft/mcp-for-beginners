@@ -156,7 +156,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 ഇതാ അതിന്റെ സ്ക്രീൻഷോട്ട്:
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.ml.png)
+![MCP Inspector server connection](../../../../translated_images/ml/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## സാധാരണ സജ്ജീകരണ പ്രശ്നങ്ങളും പരിഹാരങ്ങളും
 
@@ -1246,7 +1246,7 @@ npx @modelcontextprotocol/inspector
 2. URL ഇങ്ങനെ സെറ്റ് ചെയ്യുക: `http://localhost:8080/sse`
 3. "Connect" ക്ലിക്ക് ചെയ്യുക
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.ml.png)
+![Connect](../../../../translated_images/ml/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **നിങ്ങൾ ഇപ്പോൾ സെർവറുമായി കണക്ട് ചെയ്തിരിക്കുന്നു**
 **ജാവ സെർവർ ടെസ്റ്റിംഗ് സെക്ഷൻ ഇപ്പോൾ പൂർത്തിയായി**
@@ -1255,18 +1255,18 @@ npx @modelcontextprotocol/inspector
 
 നിങ്ങൾക്ക് താഴെ കാണുന്ന യൂസർ ഇന്റർഫേസ് കാണാം:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.ml.png)
+![Connect](../../../../translated_images/ml/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. Connect ബട്ടൺ തിരഞ്ഞെടുക്കുക സെർവറുമായി കണക്ട് ചെയ്യാൻ
   സെർവറുമായി കണക്ട് ചെയ്ത ശേഷം, നിങ്ങൾക്ക് താഴെ കാണാം:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.ml.png)
+  ![Connected](../../../../translated_images/ml/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. "Tools" ൽ "listTools" തിരഞ്ഞെടുക്കുക, "Add" കാണാം, "Add" തിരഞ്ഞെടുക്കുക, പാരാമീറ്റർ മൂല്യങ്ങൾ പൂരിപ്പിക്കുക.
 
   നിങ്ങൾക്ക് താഴെ കാണുന്ന പ്രതികരണം കാണാം, അതായത് "add" ടൂളിൽ നിന്നുള്ള ഫലം:
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.ml.png)
+  ![Result of running add](../../../../translated_images/ml/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 അഭിനന്ദനങ്ങൾ, നിങ്ങൾ നിങ്ങളുടെ ആദ്യ സെർവർ സൃഷ്ടിക്കുകയും പ്രവർത്തിപ്പിക്കുകയും ചെയ്തു!
 

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # മോഡൽ കോൺടെക്സ്റ്റ് പ്രോട്ടോക്കോൾ (MCP) പരിചയം: സ്കെയിലബിൾ AI ആപ്ലിക്കേഷനുകൾക്ക് ഇത് എന്തുകൊണ്ട് പ്രധാനമാണ്
 
-[![മോഡൽ കോൺടെക്സ്റ്റ് പ്രോട്ടോക്കോൾ പരിചയം](../../../translated_images/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.ml.png)](https://youtu.be/agBbdiOPLQA)
+[![മോഡൽ കോൺടെക്സ്റ്റ് പ്രോട്ടോക്കോൾ പരിചയം](../../../translated_images/ml/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.png)](https://youtu.be/agBbdiOPLQA)
 
 _(ഈ പാഠത്തിന്റെ വീഡിയോ കാണാൻ മുകളിൽ ചിത്രത്തിൽ ക്ലിക്ക് ചെയ്യുക)_
 

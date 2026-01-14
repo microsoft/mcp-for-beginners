@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP സുരക്ഷ: AI സിസ്റ്റങ്ങൾക്കായുള്ള സമഗ്ര സംരക്ഷണം
 
-[![MCP Security Best Practices](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.ml.png)](https://youtu.be/88No8pw706o)
+[![MCP Security Best Practices](../../../translated_images/ml/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(ഈ പാഠത്തിന്റെ വീഡിയോ കാണാൻ മുകളിൽ ചിത്രത്തിൽ ക്ലിക്ക് ചെയ്യുക)_
 
@@ -133,7 +133,7 @@ MCP സ്പെസിഫിക്കേഷൻ പ്രാമാണീകരണ
 
 **യഥാർത്ഥ ലോക ഫലം**: ഈ ആക്രമണങ്ങൾ ഡാറ്റ എക്സ്ഫില്ട്രേഷൻ, സ്വകാര്യത ലംഘനം, ഹാനികരമായ ഉള്ളടക്കം സൃഷ്ടിക്കൽ, ഉപയോക്തൃ ഇടപെടലുകളുടെ മാനിപ്പുലേഷൻ എന്നിവക്ക് കാരണമാകാം. വിശദമായ വിശകലനത്തിന് [Prompt Injection in MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/) കാണുക.
 
-![Prompt Injection Attack Diagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.ml.png)
+![Prompt Injection Attack Diagram](../../../translated_images/ml/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **ടൂൾ വിഷം ആക്രമണങ്ങൾ**
 
@@ -147,7 +147,7 @@ MCP സ്പെസിഫിക്കേഷൻ പ്രാമാണീകരണ
 
 **ഹോസ്റ്റഡ് സെർവർ അപകടങ്ങൾ**: ദൂര MCP സെർവർകൾക്ക് ഉപയോക്തൃ അംഗീകാരം കഴിഞ്ഞ് ടൂൾ നിർവചനങ്ങൾ അപ്ഡേറ്റ് ചെയ്യാൻ സാധിക്കുന്നതിനാൽ മുൻപ് സുരക്ഷിതമായ ടൂളുകൾ ദുഷ്ടമായി മാറാം. സമഗ്ര വിശകലനത്തിന് [Tool Poisoning Attacks (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks) കാണുക.
 
-![Tool Injection Attack Diagram](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.ml.png)
+![Tool Injection Attack Diagram](../../../translated_images/ml/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **കൂടുതൽ AI ആക്രമണ മാർഗ്ഗങ്ങൾ**
 
@@ -200,7 +200,7 @@ Microsoft **AI Prompt Shields** നേരിട്ടും പരോക്ഷ �
 
 **നടപ്പാക്കൽ വിഭവങ്ങൾ**: [Microsoft Prompt Shields Documentation](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields Protection](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.ml.png)
+![Microsoft Prompt Shields Protection](../../../translated_images/ml/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## ഉയർന്ന MCP സുരക്ഷാ ഭീഷണികൾ

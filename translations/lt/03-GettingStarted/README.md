@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 ## Pradžia  
 
-[![Sukurkite savo pirmąjį MCP serverį](../../../translated_images/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.lt.png)](https://youtu.be/sNDZO9N4m9Y)
+[![Sukurkite savo pirmąjį MCP serverį](../../../translated_images/lt/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.png)](https://youtu.be/sNDZO9N4m9Y)
 
 _(Spustelėkite paveikslėlį aukščiau, kad peržiūrėtumėte šios pamokos vaizdo įrašą)_
 

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 ## सुरुवात  
 
-[![तुमचा पहिला MCP सर्व्हर तयार करा](../../../translated_images/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.mr.png)](https://youtu.be/sNDZO9N4m9Y)
+[![तुमचा पहिला MCP सर्व्हर तयार करा](../../../translated_images/mr/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.png)](https://youtu.be/sNDZO9N4m9Y)
 
 _(वरील प्रतिमेवर क्लिक करून या धड्याचा व्हिडिओ पहा)_
 

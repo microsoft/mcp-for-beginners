@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP क्रियेत: वास्तविक जगातील केस स्टडीज
 
-[![MCP क्रियेत: वास्तविक जगातील केस स्टडीज](../../../translated_images/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.mr.png)](https://youtu.be/IxshWb2Az5w)
+[![MCP क्रियेत: वास्तविक जगातील केस स्टडीज](../../../translated_images/mr/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.png)](https://youtu.be/IxshWb2Az5w)
 
 _(वरील प्रतिमेवर क्लिक करून या धड्याचा व्हिडिओ पहा)_
 

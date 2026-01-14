@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # 🌟 പ്രാരംഭ സ്വീകരിക്കുന്നവരിൽ നിന്നുള്ള പാഠങ്ങൾ
 
-[![Lessons from MCP Early Adopters](../../../translated_images/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.ml.png)](https://youtu.be/jds7dSmNptE)
+[![Lessons from MCP Early Adopters](../../../translated_images/ml/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.png)](https://youtu.be/jds7dSmNptE)
 
 _(ഈ പാഠത്തിന്റെ വീഡിയോ കാണാൻ മുകളിൽ ചിത്രത്തിൽ ക്ലിക്ക് ചെയ്യുക)_
 

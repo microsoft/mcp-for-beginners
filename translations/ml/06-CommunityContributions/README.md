@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # കമ്മ്യൂണിറ്റി ആൻഡ് കോൺട്രിബ്യൂഷൻസ്
 
-[![How to Contribute to MCP: Tools, Docs, Code and More](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.ml.png)](https://youtu.be/v1pvCYAWpRE)
+[![How to Contribute to MCP: Tools, Docs, Code and More](../../../translated_images/ml/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.png)](https://youtu.be/v1pvCYAWpRE)
 
 _(ഈ പാഠത്തിന്റെ വീഡിയോ കാണാൻ മുകളിൽ ചിത്രത്തിൽ ക്ലിക്ക് ചെയ്യുക)_
 

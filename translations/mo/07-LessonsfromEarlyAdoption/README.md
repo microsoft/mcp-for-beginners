@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # 🌟 從早期採用者學到的經驗
 
-[![從 MCP 早期採用者學到的經驗](../../../translated_images/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.mo.png)](https://youtu.be/jds7dSmNptE)
+[![從 MCP 早期採用者學到的經驗](../../../translated_images/mo/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.png)](https://youtu.be/jds7dSmNptE)
 
 _（點擊上方圖片觀看本課程的影片）_
 

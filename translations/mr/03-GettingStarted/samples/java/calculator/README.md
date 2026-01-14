@@ -201,7 +201,7 @@ MCP Inspector हा MCP सेवांशी संवाद साधण्�
    - "List Tools" क्लिक करून उपलब्ध कॅल्क्युलेटर ऑपरेशन्स पहा
    - टूल निवडा आणि "Run Tool" क्लिक करून ऑपरेशन चालवा
 
-![MCP Inspector Screenshot](../../../../../../translated_images/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.mr.png)
+![MCP Inspector Screenshot](../../../../../../translated_images/mr/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.png)
 
 ### Docker वापरून
 

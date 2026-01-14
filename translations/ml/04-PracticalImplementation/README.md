@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # പ്രായോഗിക നടപ്പാക്കല്‍
 
-[![How to Build, Test, and Deploy MCP Apps with Real Tools and Workflows](../../../translated_images/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.ml.png)](https://youtu.be/vCN9-mKBDfQ)
+[![How to Build, Test, and Deploy MCP Apps with Real Tools and Workflows](../../../translated_images/ml/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.png)](https://youtu.be/vCN9-mKBDfQ)
 
 _(ഈ പാഠത്തിന്റെ വീഡിയോ കാണാന്‍ മുകളില്‍ ചിത്രത്തില്‍ ക്ലിക്ക് ചെയ്യുക)_
 
@@ -215,7 +215,7 @@ Azure API മാനേജ്‌മെന്റ് MCP സര്‍വറുക�
 
     ഇങ്ങനെ ഒരു ഇന്റര്‍ഫേസ് കാണാം:
 
-    ![Connect to Node inspector](../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.ml.png)
+    ![Connect to Node inspector](../../../translated_images/ml/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. MCP ഇന്‍സ്‌പെക്ടര്‍ വെബ് ആപ്പ് URL (ഉദാ: [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources)) CTRL ക്ലിക്ക് ചെയ്ത് ലോഡ് ചെയ്യുക
 1. ട്രാന്‍സ്‌പോര്‍ട്ട് തരം `SSE` ആയി സെറ്റ് ചെയ്യുക

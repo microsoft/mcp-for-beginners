@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP-യിലെ ആധുനിക വിഷയങ്ങൾ
 
-[![ആധുനിക MCP: സുരക്ഷിതവും, സ്കെയിലബിളും, മൾട്ടി-മോഡൽ AI ഏജന്റുമാർ](../../../translated_images/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.ml.png)](https://youtu.be/4yjmGvJzYdY)
+[![ആധുനിക MCP: സുരക്ഷിതവും, സ്കെയിലബിളും, മൾട്ടി-മോഡൽ AI ഏജന്റുമാർ](../../../translated_images/ml/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.png)](https://youtu.be/4yjmGvJzYdY)
 
 _(ഈ പാഠത്തിന്റെ വീഡിയോ കാണാൻ മുകളിൽ ചിത്രത്തിൽ ക്ലിക്ക് ചെയ്യുക)_
 

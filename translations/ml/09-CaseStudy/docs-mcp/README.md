@@ -111,7 +111,7 @@ Let me know if you want module-specific recommendations or need more customized 
 
 താഴെ ഒരു ലഘു സാമ്പിൾ സൊല്യൂഷൻ നൽകിയിരിക്കുന്നു. പൂർണ്ണ കോഡ്, വിശദാംശങ്ങൾ സൊല്യൂഷൻ ഫോൾഡറിൽ ലഭ്യമാണ്.
 
-![Scenario 2 Overview](../../../../translated_images/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.ml.png)
+![Scenario 2 Overview](../../../../translated_images/ml/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.png)
 
 <details>
 <summary>Python (Chainlit)</summary>
@@ -169,7 +169,7 @@ VS Code-ൽ MCP സെർവർ സജ്ജമാക്കുന്നതിന
 
 > സ്ക്രീൻഷോട്ടുകളോടും ഘട്ടം ഘട്ടമായ മാർഗ്ഗനിർദ്ദേശത്തോടും കൂടിയ വിശദമായ വാക്ക്-തുടർച്ചയ്ക്ക് [`README.md`](./solution/scenario3/README.md) കാണുക.
 
-![Scenario 3 Overview](../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.ml.png)
+![Scenario 3 Overview](../../../../translated_images/ml/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 ടെക്നിക്കൽ കോഴ്‌സുകൾ നിർമ്മിക്കുന്നവർക്ക്, ഡോക്യുമെന്റേഷൻ എഴുതുന്നവർക്ക്, അല്ലെങ്കിൽ സ്ഥിരമായി റഫറൻസ് ആവശ്യമായ കോഡ് വികസിപ്പിക്കുന്നവർക്ക് ഈ സമീപനം അനുയോജ്യമാണ്.
 

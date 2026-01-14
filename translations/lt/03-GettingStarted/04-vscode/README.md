@@ -38,9 +38,9 @@ Savo MCP serverį galite valdyti dviem būdais:
 
 ### Ekrano nuotraukos
 
-![Vadovaujama MCP serverio konfigūracija Visual Studio Code](../../../../translated_images/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.lt.png)
-![Įrankių pasirinkimas kiekvienai agento sesijai](../../../../translated_images/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.lt.png)
-![Lengvas klaidų derinimas MCP kūrimo metu](../../../../translated_images/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.lt.png)
+![Vadovaujama MCP serverio konfigūracija Visual Studio Code](../../../../translated_images/lt/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.png)
+![Įrankių pasirinkimas kiekvienai agento sesijai](../../../../translated_images/lt/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.png)
+![Lengvas klaidų derinimas MCP kūrimo metu](../../../../translated_images/lt/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.png)
 
 Apie tai, kaip naudoti vizualinę sąsają, kalbėsime kitose dalyse.
 
@@ -103,15 +103,15 @@ Dabar, kai pridėjote įrašą, paleiskime serverį:
 
 1. Suraskite savo įrašą *mcp.json* faile ir įsitikinkite, kad matote „play“ piktogramą:
 
-  ![Serverio paleidimas Visual Studio Code](../../../../translated_images/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.lt.png)  
+  ![Serverio paleidimas Visual Studio Code](../../../../translated_images/lt/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.png)  
 
 1. Spustelėkite „play“ piktogramą. Turėtumėte matyti, kad GitHub Copilot pokalbių įrankių piktograma padidino galimų įrankių skaičių. Jei spustelėsite šią įrankių piktogramą, pamatysite registruotų įrankių sąrašą. Galite pažymėti/nuimti kiekvieną įrankį, priklausomai nuo to, ar norite, kad GitHub Copilot juos naudotų kaip kontekstą:
 
-  ![Serverio paleidimas Visual Studio Code](../../../../translated_images/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.lt.png)
+  ![Serverio paleidimas Visual Studio Code](../../../../translated_images/lt/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.png)
 
 1. Norėdami paleisti įrankį, įveskite užklausą, kuri atitinka vieno iš jūsų įrankių aprašymą, pavyzdžiui, užklausą „pridėk 22 prie 1“:
 
-  ![Įrankio paleidimas iš GitHub Copilot](../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.lt.png)
+  ![Įrankio paleidimas iš GitHub Copilot](../../../../translated_images/lt/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
   Turėtumėte matyti atsakymą „23“.
 

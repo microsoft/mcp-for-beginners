@@ -156,7 +156,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 हे कसे दिसू शकते याचे स्क्रीनशॉट येथे आहे:
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.mr.png)
+![MCP Inspector server connection](../../../../translated_images/mr/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## सामान्य सेटअप समस्या आणि उपाय
 
@@ -1290,7 +1290,7 @@ npx @modelcontextprotocol/inspector
 2. URL सेट करा: `http://localhost:8080/sse`
 3. "Connect" क्लिक करा
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.mr.png)
+![Connect](../../../../translated_images/mr/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **आपण आता सर्व्हरशी जोडलेले आहात**
 **Java सर्व्हर चाचणी विभाग आता पूर्ण झाला आहे**
@@ -1299,18 +1299,18 @@ npx @modelcontextprotocol/inspector
 
 आपण खालील वापरकर्ता इंटरफेस पाहू शकता:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.mr.png)
+![Connect](../../../../translated_images/mr/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. Connect बटण निवडून सर्व्हरशी कनेक्ट व्हा
   एकदा आपण सर्व्हरशी कनेक्ट केल्यावर, आपल्याला खालील दिसेल:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.mr.png)
+  ![Connected](../../../../translated_images/mr/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. "Tools" आणि "listTools" निवडा, आपल्याला "Add" दिसेल, "Add" निवडा आणि पॅरामीटर मूल्ये भरा.
 
   आपल्याला खालील प्रतिसाद दिसेल, म्हणजे "add" टूलचा परिणाम:
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.mr.png)
+  ![Result of running add](../../../../translated_images/mr/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 अभिनंदन, आपण आपला पहिला सर्व्हर तयार करून चालविला आहे!
 

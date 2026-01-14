@@ -23,7 +23,7 @@ CO_OP_TRANSLATOR_METADATA:
 
     तुम्हाला चॅट टेक्स्ट बॉक्सच्या वर टूल प्रदर्शित होताना दिसेल ज्यामुळे तुम्हाला टूल निवडून चालवता येईल, खालील चित्रात दाखवल्याप्रमाणे:
 
-    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.mr.png)
+    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/mr/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
     टूल निवडल्यानंतर जर तुमचा प्रॉम्प्ट वरीलप्रमाणे असेल तर "23" असा संख्यात्मक निकाल दिसेल.
 

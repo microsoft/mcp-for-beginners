@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP विकास सर्वोत्तम पद्धती
 
-[![MCP विकास सर्वोत्तम पद्धती](../../../translated_images/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.mr.png)](https://youtu.be/W56H9W7x-ao)
+[![MCP विकास सर्वोत्तम पद्धती](../../../translated_images/mr/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.png)](https://youtu.be/W56H9W7x-ao)
 
 _(वरील प्रतिमेवर क्लिक करून या धड्याचा व्हिडिओ पहा)_
 

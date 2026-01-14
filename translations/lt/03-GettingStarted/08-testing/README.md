@@ -48,7 +48,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 Ši komanda paleidžia MCP ir jo vizualinę sąsają, taip pat atidaro vietinę interneto sąsają jūsų naršyklėje. Galite tikėtis pamatyti prietaisų skydelį, kuriame rodomi registruoti MCP serveriai, jų prieinami įrankiai, resursai ir užklausos. Sąsaja leidžia interaktyviai testuoti įrankių vykdymą, analizuoti serverio metaduomenis ir matyti realaus laiko atsakymus, todėl lengviau validuoti ir derinti MCP serverio įgyvendinimus.
 
-Štai kaip tai gali atrodyti: ![Inspector](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.lt.png)
+Štai kaip tai gali atrodyti: ![Inspector](../../../../translated_images/lt/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 Taip pat galite paleisti šį įrankį CLI režimu, pridėdami atributą `--cli`. Štai pavyzdys, kaip paleisti įrankį "CLI" režimu, kuris išvardija visus serverio įrankius:
 
