@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Implementação Prática
 
-[![Como Construir, Testar e Implementar Aplicações MCP com Ferramentas e Fluxos de Trabalho Reais](../../../translated_images/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.pt.png)](https://youtu.be/vCN9-mKBDfQ)
+[![Como Construir, Testar e Implementar Aplicações MCP com Ferramentas e Fluxos de Trabalho Reais](../../../translated_images/pt/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.png)](https://youtu.be/vCN9-mKBDfQ)
 
 _(Clique na imagem acima para assistir ao vídeo desta lição)_
 
@@ -215,7 +215,7 @@ Vamos ver se conseguimos implementar o exemplo mencionado anteriormente:
 
     Deve ver uma interface semelhante a:
 
-    ![Conectar ao Node inspector](../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.pt.png)
+    ![Conectar ao Node inspector](../../../translated_images/pt/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. CTRL clique para carregar a aplicação web MCP Inspector a partir do URL exibido pela aplicação (ex.: [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources))
 1. Defina o tipo de transporte como `SSE`

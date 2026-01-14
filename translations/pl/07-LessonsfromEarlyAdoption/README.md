@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # 🌟 Lekcje od wczesnych użytkowników
 
-[![Lekcje od wczesnych użytkowników MCP](../../../translated_images/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.pl.png)](https://youtu.be/jds7dSmNptE)
+[![Lekcje od wczesnych użytkowników MCP](../../../translated_images/pl/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.png)](https://youtu.be/jds7dSmNptE)
 
 _(Kliknij obrazek powyżej, aby obejrzeć wideo z tej lekcji)_
 

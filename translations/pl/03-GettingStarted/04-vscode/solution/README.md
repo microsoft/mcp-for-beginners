@@ -23,7 +23,7 @@ To odpowiada uruchomieniu polecenia w ten sposób: `node build/index.js`.
 
     Powinieneś zobaczyć narzędzie pojawiające się nad polem tekstowym czatu, zachęcające do wybrania go i uruchomienia, tak jak na tym obrazku:
 
-    ![VS Code wskazujący chęć uruchomienia narzędzia](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.pl.png)
+    ![VS Code wskazujący chęć uruchomienia narzędzia](../../../../../translated_images/pl/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
     Wybranie narzędzia powinno zwrócić wynik liczbowy "23", jeśli Twoje polecenie było podobne do podanego wcześniej.
 

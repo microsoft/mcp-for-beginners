@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP ਸੁਰੱਖਿਆ: ਏਆਈ ਸਿਸਟਮਾਂ ਲਈ ਵਿਸਤ੍ਰਿਤ ਸੁਰੱਖਿਆ
 
-[![MCP Security Best Practices](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.pa.png)](https://youtu.be/88No8pw706o)
+[![MCP Security Best Practices](../../../translated_images/pa/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(ਇਸ ਪਾਠ ਦਾ ਵੀਡੀਓ ਦੇਖਣ ਲਈ ਉਪਰ ਦਿੱਤੀ ਤਸਵੀਰ 'ਤੇ ਕਲਿੱਕ ਕਰੋ)_
 
@@ -133,7 +133,7 @@ MCP ਵਿਸ਼ੇਸ਼ਤਾ ਨੇ ਪ੍ਰਮਾਣਿਕਤਾ ਅਤੇ 
 
 **ਅਸਲੀ ਪ੍ਰਭਾਵ**: ਇਹ ਹਮਲੇ ਡਾਟਾ ਚੋਰੀ, ਗੋਪਨੀਯਤਾ ਉਲੰਘਣਾ, ਨੁਕਸਾਨਦਾਇਕ ਸਮੱਗਰੀ ਬਣਾਉਣ, ਅਤੇ ਯੂਜ਼ਰ ਇੰਟਰੈਕਸ਼ਨਾਂ ਦੀ ਮੈਨਿਪੂਲੇਸ਼ਨ ਦਾ ਕਾਰਨ ਬਣ ਸਕਦੇ ਹਨ। ਵਿਸਥਾਰ ਲਈ ਵੇਖੋ [Prompt Injection in MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/)।
 
-![Prompt Injection Attack Diagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.pa.png)
+![Prompt Injection Attack Diagram](../../../translated_images/pa/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **ਟੂਲ ਜਹਿਰੀਲਾ ਬਣਾਉਣਾ ਹਮਲੇ**
 
@@ -147,7 +147,7 @@ MCP ਵਿਸ਼ੇਸ਼ਤਾ ਨੇ ਪ੍ਰਮਾਣਿਕਤਾ ਅਤੇ 
 
 **ਹੋਸਟ ਕੀਤੇ ਸਰਵਰ ਖਤਰੇ**: ਰਿਮੋਟ MCP ਸਰਵਰ ਉੱਚ ਖਤਰੇ ਪੇਸ਼ ਕਰਦੇ ਹਨ ਕਿਉਂਕਿ ਟੂਲ ਪਰਿਭਾਸ਼ਾਵਾਂ ਨੂੰ ਸ਼ੁਰੂਆਤੀ ਵਰਤੋਂਕਾਰ ਮਨਜ਼ੂਰੀ ਤੋਂ ਬਾਅਦ ਅਪਡੇਟ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ, ਜਿਸ ਨਾਲ ਪਹਿਲਾਂ ਸੁਰੱਖਿਅਤ ਟੂਲ ਖ਼ਤਰਨਾਕ ਬਣ ਜਾਂਦੇ ਹਨ। ਵਿਸਥਾਰ ਲਈ ਵੇਖੋ [Tool Poisoning Attacks (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks)।
 
-![Tool Injection Attack Diagram](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.pa.png)
+![Tool Injection Attack Diagram](../../../translated_images/pa/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **ਹੋਰ ਏਆਈ ਹਮਲੇ ਦੇ ਰਸਤੇ**
 
@@ -200,7 +200,7 @@ Microsoft **ਏਆਈ ਪ੍ਰਾਂਪਟ ਸ਼ੀਲਡਜ਼** ਸਿੱਧ
 
 **ਲਾਗੂ ਕਰਨ ਦੇ ਸਰੋਤ**: [Microsoft Prompt Shields Documentation](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields Protection](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.pa.png)
+![Microsoft Prompt Shields Protection](../../../translated_images/pa/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## ਉੱਨਤ MCP ਸੁਰੱਖਿਆ ਖਤਰੇ

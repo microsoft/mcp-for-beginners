@@ -52,28 +52,28 @@ CO_OP_TRANSLATOR_METADATA:
    ```
    ਇਹ ਕਨਫਿਗਰੇਸ਼ਨ VS Code ਨੂੰ ਦੱਸਦੀ ਹੈ ਕਿ [`Microsoft Learn Docs MCP server`](https://github.com/MicrosoftDocs/mcp) ਨਾਲ ਕਿਵੇਂ ਕਨੈਕਟ ਕਰਨਾ ਹੈ।
    
-   ![Step 1: Add mcp.json to .vscode folder](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.pa.png)
+   ![Step 1: Add mcp.json to .vscode folder](../../../../../../translated_images/pa/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
     
 2. **GitHub Copilot Chat ਪੈਨਲ ਖੋਲ੍ਹੋ:**
    ਜੇ ਤੁਹਾਡੇ ਕੋਲ GitHub Copilot ਐਕਸਟੈਂਸ਼ਨ ਇੰਸਟਾਲ ਨਹੀਂ ਹੈ, ਤਾਂ VS Code ਵਿੱਚ Extensions ਵਿਊ 'ਤੇ ਜਾ ਕੇ ਇਸਨੂੰ ਇੰਸਟਾਲ ਕਰੋ। ਤੁਸੀਂ ਇਸਨੂੰ ਸਿੱਧਾ [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat) ਤੋਂ ਡਾਊਨਲੋਡ ਕਰ ਸਕਦੇ ਹੋ। ਫਿਰ, ਸਾਈਡਬਾਰ ਤੋਂ Copilot Chat ਪੈਨਲ ਖੋਲ੍ਹੋ।
 
-   ![Step 2: Open Copilot Chat panel](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.pa.png)
+   ![Step 2: Open Copilot Chat panel](../../../../../../translated_images/pa/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
 
 3. **ਏਜੰਟ ਮੋਡ ਚਾਲੂ ਕਰੋ ਅਤੇ ਟੂਲਾਂ ਦੀ ਜਾਂਚ ਕਰੋ:**
    Copilot Chat ਪੈਨਲ ਵਿੱਚ, ਏਜੰਟ ਮੋਡ ਚਾਲੂ ਕਰੋ।
 
-   ![Step 3: Enable agent mode and verify tools](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.pa.png)
+   ![Step 3: Enable agent mode and verify tools](../../../../../../translated_images/pa/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
 
    ਏਜੰਟ ਮੋਡ ਚਾਲੂ ਕਰਨ ਤੋਂ ਬਾਅਦ, ਯਕੀਨੀ ਬਣਾਓ ਕਿ MCP ਸਰਵਰ ਉਪਲਬਧ ਟੂਲਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਹੈ। ਇਸ ਨਾਲ ਇਹ ਪੱਕਾ ਹੁੰਦਾ ਹੈ ਕਿ Copilot ਏਜੰਟ ਡੌਕੂਮੈਂਟੇਸ਼ਨ ਸਰਵਰ ਤੱਕ ਪਹੁੰਚ ਸਕਦਾ ਹੈ ਅਤੇ ਸੰਬੰਧਿਤ ਜਾਣਕਾਰੀ ਲੈ ਸਕਦਾ ਹੈ।
    
-   ![Step 3: Verify MCP server tool](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.pa.png)
+   ![Step 3: Verify MCP server tool](../../../../../../translated_images/pa/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
 
 4. **ਨਵਾਂ ਚੈਟ ਸ਼ੁਰੂ ਕਰੋ ਅਤੇ ਏਜੰਟ ਨੂੰ ਪ੍ਰਾਂਪਟ ਕਰੋ:**
    Copilot Chat ਪੈਨਲ ਵਿੱਚ ਨਵਾਂ ਚੈਟ ਖੋਲ੍ਹੋ। ਹੁਣ ਤੁਸੀਂ ਆਪਣੇ ਡੌਕੂਮੈਂਟੇਸ਼ਨ ਸਵਾਲਾਂ ਨਾਲ ਏਜੰਟ ਨੂੰ ਪ੍ਰਾਂਪਟ ਕਰ ਸਕਦੇ ਹੋ। ਏਜੰਟ MCP ਸਰਵਰ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਸੰਬੰਧਿਤ Microsoft Learn ਡੌਕੂਮੈਂਟੇਸ਼ਨ ਸਿੱਧਾ ਤੁਹਾਡੇ ਐਡੀਟਰ ਵਿੱਚ ਲਿਆਵੇਗਾ।
 
    - *"ਮੈਂ ਵਿਸ਼ਾ X ਲਈ ਇੱਕ ਅਧਿਐਨ ਯੋਜਨਾ ਲਿਖਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰ ਰਿਹਾ ਹਾਂ। ਮੈਂ ਇਸਨੂੰ 8 ਹਫ਼ਤੇ ਲਈ ਪੜ੍ਹਾਂਗਾ, ਹਰ ਹਫ਼ਤੇ ਲਈ ਮੈਨੂੰ ਸਲਾਹ ਦਿਓ ਕਿ ਕਿਹੜਾ ਸਮੱਗਰੀ ਲੈਣੀ ਚਾਹੀਦੀ ਹੈ।"*
 
-   ![Step 4: Prompt the agent in chat](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.pa.png)
+   ![Step 4: Prompt the agent in chat](../../../../../../translated_images/pa/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 5. **ਲਾਈਵ ਕਵੈਰੀ:**
 
@@ -82,7 +82,7 @@ CO_OP_TRANSLATOR_METADATA:
    *"ਮੈਂ Azure AI Foundry 'ਤੇ ਵਿਕਸਤ ਕੀਤੇ ਗਏ AI ਏਜੰਟਾਂ ਨਾਲ ਇੱਕ ਮਲਟੀ-ਏਜੰਟ ਹੱਲ ਨੂੰ ਡਿਪਲੋਇ ਕਰਨ ਦੇ ਤਰੀਕੇ ਬਾਰੇ ਜਵਾਬ ਲੱਭ ਰਿਹਾ ਹਾਂ। ਮੈਂ ਵੇਖਦਾ ਹਾਂ ਕਿ ਕੋਈ ਸਿੱਧਾ ਡਿਪਲੋਇਮੈਂਟ ਤਰੀਕਾ ਨਹੀਂ ਹੈ, ਜਿਵੇਂ ਕਿ Copilot Studio ਚੈਨਲ। ਤਾਂ, ਵੱਖ-ਵੱਖ ਤਰੀਕੇ ਕੀ ਹਨ ਜਿਨ੍ਹਾਂ ਨਾਲ ਐਂਟਰਪ੍ਰਾਈਜ਼ ਯੂਜ਼ਰ ਇਸ ਡਿਪਲੋਇਮੈਂਟ ਨੂੰ ਕਰ ਸਕਦੇ ਹਨ ਅਤੇ ਕੰਮ ਪੂਰਾ ਕਰ ਸਕਦੇ ਹਨ?
 ਕਈ ਲੇਖ/ਬਲੌਗ ਹਨ ਜੋ ਕਹਿੰਦੇ ਹਨ ਕਿ ਅਸੀਂ Azure Bot ਸਰਵਿਸ ਦੀ ਵਰਤੋਂ ਕਰ ਸਕਦੇ ਹਾਂ ਜੋ MS Teams ਅਤੇ Azure AI Foundry ਏਜੰਟਾਂ ਵਿਚਕਾਰ ਪੁਲ ਵਜੋਂ ਕੰਮ ਕਰ ਸਕਦਾ ਹੈ, ਪਰ ਕੀ ਇਹ ਕੰਮ ਕਰੇਗਾ ਜੇ ਮੈਂ ਇੱਕ Azure ਬੋਟ ਸੈੱਟਅਪ ਕਰਾਂ ਜੋ Azure AI Foundry ਦੇ Orchestrator Agent ਨਾਲ Azure ਫੰਕਸ਼ਨ ਰਾਹੀਂ ਜੁੜਦਾ ਹੋਵੇ ਜਾਂ ਮੈਨੂੰ ਹਰ AI ਏਜੰਟ ਲਈ ਵੱਖ-ਵੱਖ Azure ਫੰਕਸ਼ਨ ਬਣਾਉਣੇ ਪੈਣਗੇ ਜੋ ਬੋਟ ਫਰੇਮਵਰਕ 'ਤੇ ਆਰਕੀਸਟ੍ਰੇਸ਼ਨ ਕਰਦੇ ਹਨ? ਹੋਰ ਕੋਈ ਸੁਝਾਅ ਸਵਾਗਤਯੋਗ ਹਨ।"*
 
-   ![Step 5: Live queries](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.pa.png)
+   ![Step 5: Live queries](../../../../../../translated_images/pa/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
 
    ਏਜੰਟ ਸੰਬੰਧਿਤ ਡੌਕੂਮੈਂਟੇਸ਼ਨ ਲਿੰਕ ਅਤੇ ਸੰਖੇਪ ਦੇ ਕੇ ਜਵਾਬ ਦੇਵੇਗਾ, ਜਿਹਨਾਂ ਨੂੰ ਤੁਸੀਂ ਸਿੱਧਾ ਆਪਣੇ ਮਾਰਕਡਾਊਨ ਫਾਈਲਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰ ਸਕਦੇ ਹੋ ਜਾਂ ਕੋਡ ਵਿੱਚ ਹਵਾਲੇ ਵਜੋਂ ਵਰਤ ਸਕਦੇ ਹੋ।
 

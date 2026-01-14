@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP Security: Kompleksowa ochrona systemów AI
 
-[![MCP Security Best Practices](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.pl.png)](https://youtu.be/88No8pw706o)
+[![MCP Security Best Practices](../../../translated_images/pl/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(Kliknij powyższy obraz, aby obejrzeć wideo z tej lekcji)_
 
@@ -133,7 +133,7 @@ Nowoczesne implementacje MCP napotykają zaawansowane wektory ataków specyficzn
 
 **Realny wpływ**: Ataki te mogą prowadzić do wycieku danych, naruszeń prywatności, generowania szkodliwych treści oraz manipulacji interakcjami użytkowników. Szczegółową analizę znajdziesz w [Prompt Injection w MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
-![Prompt Injection Attack Diagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.pl.png)
+![Prompt Injection Attack Diagram](../../../translated_images/pl/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **Ataki zatruwania narzędzi**
 
@@ -147,7 +147,7 @@ Nowoczesne implementacje MCP napotykają zaawansowane wektory ataków specyficzn
 
 **Ryzyka serwerów hostowanych**: Zdalne serwery MCP niosą podwyższone ryzyko, ponieważ definicje narzędzi mogą być aktualizowane po początkowej akceptacji użytkownika, tworząc scenariusze, w których wcześniej bezpieczne narzędzia stają się złośliwe. Kompleksową analizę znajdziesz w [Ataki zatruwania narzędzi (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
-![Tool Injection Attack Diagram](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.pl.png)
+![Tool Injection Attack Diagram](../../../translated_images/pl/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **Dodatkowe wektory ataków AI**
 
@@ -200,7 +200,7 @@ Microsoft **AI Prompt Shields** zapewniają kompleksową obronę przed bezpośre
 
 **Zasoby wdrożeniowe**: [Dokumentacja Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields Protection](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.pl.png)
+![Microsoft Prompt Shields Protection](../../../translated_images/pl/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## Zaawansowane zagrożenia bezpieczeństwa MCP

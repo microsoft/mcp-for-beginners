@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Conceitos Fundamentais do MCP: Dominando o Protocolo de Contexto de Modelo para Integração de IA
 
-[![Conceitos Fundamentais do MCP](../../../translated_images/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.pt.png)](https://youtu.be/earDzWGtE84)
+[![Conceitos Fundamentais do MCP](../../../translated_images/pt/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.png)](https://youtu.be/earDzWGtE84)
 
 _(Clique na imagem acima para ver o vídeo desta lição)_
 

@@ -156,7 +156,7 @@ Po uruchomieniu powyższych poleceń MCP Inspector otworzy lokalny interfejs web
 
 Oto zrzut ekranu, jak to może wyglądać:
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.pl.png)
+![MCP Inspector server connection](../../../../translated_images/pl/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## Typowe problemy z konfiguracją i rozwiązania
 
@@ -1302,7 +1302,7 @@ W interfejsie webowym inspektora:
 2. Ustaw URL na: `http://localhost:8080/sse`
 3. Kliknij "Connect"
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.pl.png)
+![Connect](../../../../translated_images/pl/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **Jesteś teraz połączony z serwerem**
 **Sekcja testowania serwera Java jest teraz zakończona**
@@ -1311,18 +1311,18 @@ Następna sekcja dotyczy interakcji z serwerem.
 
 Powinieneś zobaczyć następujący interfejs użytkownika:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.pl.png)
+![Connect](../../../../translated_images/pl/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. Połącz się z serwerem, wybierając przycisk Connect
   Po połączeniu z serwerem powinieneś zobaczyć następujące:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.pl.png)
+  ![Connected](../../../../translated_images/pl/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. Wybierz "Tools" i "listTools", powinieneś zobaczyć pojawienie się "Add", wybierz "Add" i wypełnij wartości parametrów.
 
   Powinieneś zobaczyć następującą odpowiedź, czyli wynik działania narzędzia "add":
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.pl.png)
+  ![Result of running add](../../../../translated_images/pl/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 Gratulacje, udało Ci się stworzyć i uruchomić swój pierwszy serwer!
 

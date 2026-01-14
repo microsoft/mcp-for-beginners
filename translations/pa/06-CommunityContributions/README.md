@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # ਕਮਿਊਨਿਟੀ ਅਤੇ ਯੋਗਦਾਨ
 
-[![MCP ਵਿੱਚ ਯੋਗਦਾਨ ਦੇਣ ਦਾ ਤਰੀਕਾ: ਟੂਲ, ਦਸਤਾਵੇਜ਼, ਕੋਡ ਅਤੇ ਹੋਰ](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.pa.png)](https://youtu.be/v1pvCYAWpRE)
+[![MCP ਵਿੱਚ ਯੋਗਦਾਨ ਦੇਣ ਦਾ ਤਰੀਕਾ: ਟੂਲ, ਦਸਤਾਵੇਜ਼, ਕੋਡ ਅਤੇ ਹੋਰ](../../../translated_images/pa/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.png)](https://youtu.be/v1pvCYAWpRE)
 
 _(ਉਪਰ ਦਿੱਤੀ ਤਸਵੀਰ 'ਤੇ ਕਲਿਕ ਕਰਕੇ ਇਸ ਪਾਠ ਦਾ ਵੀਡੀਓ ਵੇਖੋ)_
 

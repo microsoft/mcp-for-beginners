@@ -23,7 +23,7 @@ Dette tilsvarer å kjøre en kommando som dette: `node build/index.js`.
 
     Du skal se at et verktøy vises over chatteksten, som indikerer at du kan velge å kjøre verktøyet, slik som i dette bildet:
 
-    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.no.png)
+    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/no/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
     Å velge verktøyet skal gi et numerisk resultat som sier "23" hvis prompten din var som vi nevnte tidligere.
 

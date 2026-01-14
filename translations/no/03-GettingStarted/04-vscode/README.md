@@ -38,9 +38,9 @@ Du kan kontrollere MCP-serveren din på to forskjellige måter:
 
 ### Skjermbilder
 
-![Veiledet MCP-serverkonfigurasjon i Visual Studio Code](../../../../translated_images/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.no.png)
-![Verktøyvalg per agentøkt](../../../../translated_images/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.no.png)
-![Enkelt feilsøke feil under MCP-utvikling](../../../../translated_images/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.no.png)
+![Veiledet MCP-serverkonfigurasjon i Visual Studio Code](../../../../translated_images/no/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.png)
+![Verktøyvalg per agentøkt](../../../../translated_images/no/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.png)
+![Enkelt feilsøke feil under MCP-utvikling](../../../../translated_images/no/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.png)
 
 La oss snakke mer om hvordan vi bruker det visuelle grensesnittet i de neste seksjonene.
 
@@ -103,15 +103,15 @@ Nå som du har lagt til en oppføring, la oss starte serveren:
 
 1. Finn oppføringen din i *mcp.json* og sørg for at du finner "play"-ikonet:
 
-  ![Starter server i Visual Studio Code](../../../../translated_images/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.no.png)  
+  ![Starter server i Visual Studio Code](../../../../translated_images/no/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.png)  
 
 1. Klikk på "play"-ikonet. Du bør se at verktøyikonet i GitHub Copilot Chat øker antallet tilgjengelige verktøy. Hvis du klikker på verktøyikonet, vil du se en liste over registrerte verktøy. Du kan merke/avmerke hvert verktøy avhengig av om du vil at GitHub Copilot skal bruke dem som kontekst:
 
-  ![Starter server i Visual Studio Code](../../../../translated_images/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.no.png)
+  ![Starter server i Visual Studio Code](../../../../translated_images/no/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.png)
 
 1. For å kjøre et verktøy, skriv inn en prompt som du vet vil samsvare med beskrivelsen av et av verktøyene dine, for eksempel en prompt som "legg til 22 til 1":
 
-  ![Kjører et verktøy fra GitHub Copilot](../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.no.png)
+  ![Kjører et verktøy fra GitHub Copilot](../../../../translated_images/no/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
   Du bør se et svar som sier 23.
 

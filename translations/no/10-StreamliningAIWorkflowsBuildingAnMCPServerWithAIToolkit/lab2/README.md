@@ -203,7 +203,7 @@ I tillegg til Microsofts servere inkluderer MCP-økosystemet:
    - **Navn**: `BrowserAgent`  
    - **Modell**: Velg GPT-4o  
 
-![BrowserAgent](../../../../translated_images/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.no.png)
+![BrowserAgent](../../../../translated_images/no/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.png)
 
 
 ### 🔧 Fase 2: MCP-integrasjonsarbeidsflyt
@@ -213,7 +213,7 @@ I tillegg til Microsofts servere inkluderer MCP-økosystemet:
 2. **Klikk "Add Tool"** for å åpne integrasjonsmenyen  
 3. **Velg "MCP Server"** fra tilgjengelige alternativer  
 
-![AddMCP](../../../../translated_images/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.no.png)
+![AddMCP](../../../../translated_images/no/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.png)
 
 **🔍 Forstå verktøytyper:**  
 - **Innebygde verktøy**: Ferdigkonfigurerte AI Toolkit-funksjoner  
@@ -223,10 +223,10 @@ I tillegg til Microsofts servere inkluderer MCP-økosystemet:
 
 #### Steg 4: Velg MCP-server
 1. **Velg "MCP Server"** for å fortsette  
-![AddMCPServer](../../../../translated_images/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.no.png)
+![AddMCPServer](../../../../translated_images/no/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.png)
 
 2. **Utforsk MCP-katalogen** for å se tilgjengelige integrasjoner  
-![MCPCatalog](../../../../translated_images/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.no.png)
+![MCPCatalog](../../../../translated_images/no/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.png)
 
 
 ### 🎮 Fase 3: Konfigurasjon av Playwright MCP
@@ -236,12 +236,12 @@ I tillegg til Microsofts servere inkluderer MCP-økosystemet:
 2. **Velg "Playwright"** fra listen over utvalgte  
 3. **Godta standard MCP ID** eller tilpass for ditt miljø  
 
-![MCPID](../../../../translated_images/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.no.png)
+![MCPID](../../../../translated_images/no/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.png)
 
 #### Steg 6: Aktiver Playwright-funksjoner
 **🔑 Kritisk steg**: Velg **ALLE** tilgjengelige Playwright-metoder for maksimal funksjonalitet  
 
-![Tools](../../../../translated_images/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.no.png)
+![Tools](../../../../translated_images/no/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.png)
 
 **🛠️ Viktige Playwright-verktøy:**  
 - **Navigasjon**: `goto`, `goBack`, `goForward`, `reload`  
@@ -257,7 +257,7 @@ I tillegg til Microsofts servere inkluderer MCP-økosystemet:
 - Ingen feilmeldinger i integrasjonspanelet  
 - Playwright-serverstatus viser "Connected"  
 
-![AgentTools](../../../../translated_images/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.no.png)
+![AgentTools](../../../../translated_images/no/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.png)
 
 **🔧 Vanlige feilsøkingspunkter:**  
 - **Tilkobling mislyktes**: Sjekk internett og brannmurinnstillinger  
@@ -323,7 +323,7 @@ Navigate to github.com/kinfey and provide a comprehensive analysis including:
 Include screenshots at key steps and provide actionable insights.
 ```
 
-![Prompt](../../../../translated_images/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.no.png)
+![Prompt](../../../../translated_images/no/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.png)
 
 ### 🚀 Fase 5: Kjøring og testing
 
@@ -335,19 +335,19 @@ Include screenshots at key steps and provide actionable insights.
    - Skjermbilder tas av hvert hovedsteg  
    - Analyse-resultater strømmer i sanntid  
 
-![Browser](../../../../translated_images/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.no.png)
+![Browser](../../../../translated_images/no/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.png)
 
 #### Steg 11: Analyser resultater og innsikt
 Se gjennom omfattende analyser i Agent Builder-grensesnittet:
 
-![Result](../../../../translated_images/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.no.png)
+![Result](../../../../translated_images/no/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.png)
 
 ### 🌟 Fase 6: Avanserte funksjoner og distribusjon
 
 #### Steg 12: Eksporter og distribuer i produksjon
 Agent Builder støtter flere distribusjonsalternativer:
 
-![Code](../../../../translated_images/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.no.png)
+![Code](../../../../translated_images/no/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.png)
 
 ## 🎓 Modul 2 Oppsummering & Neste steg
 

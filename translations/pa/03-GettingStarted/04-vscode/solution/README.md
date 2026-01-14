@@ -23,7 +23,7 @@ CO_OP_TRANSLATOR_METADATA:
 
     ਤੁਸੀਂ ਚੈਟ ਟੈਕਸਟ ਬਾਕਸ ਦੇ ਉੱਪਰ ਇੱਕ ਟੂਲ ਦੇ ਪ੍ਰਸਤੁਤ ਹੋਣ ਨੂੰ ਦੇਖੋਗੇ ਜੋ ਤੁਹਾਨੂੰ ਟੂਲ ਚਲਾਉਣ ਲਈ ਚੁਣਨ ਲਈ ਕਹਿੰਦਾ ਹੈ, ਇਸ ਤਸਵੀਰ ਵਾਂਗ:
 
-    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.pa.png)
+    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/pa/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
     ਟੂਲ ਚੁਣਨ 'ਤੇ ਇੱਕ ਗਿਣਤੀ ਨਤੀਜਾ "23" ਵਜੋਂ ਪ੍ਰਗਟ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ ਜੇ ਤੁਹਾਡਾ ਪ੍ਰਾਂਪਟ ਪਹਿਲਾਂ ਦਿੱਤੇ ਉਦਾਹਰਨ ਵਾਂਗ ਸੀ।
 

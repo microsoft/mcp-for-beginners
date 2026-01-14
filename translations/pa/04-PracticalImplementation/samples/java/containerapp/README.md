@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ਇਹ ਪ੍ਰੋਜੈਕਟ ਇੱਕ ਵੈੱਬ ਐਪਲੀਕੇਸ਼ਨ ਨੂੰ ਦਰਸਾਉਂਦਾ ਹੈ ਜੋ ਯੂਜ਼ਰ ਦੇ ਪ੍ਰਾਂਪਟ ਨੂੰ ਕੈਲਕੂਲੇਟਰ ਸਰਵਿਸ ਨੂੰ ਭੇਜਣ ਤੋਂ ਪਹਿਲਾਂ ਸਮੱਗਰੀ ਸੁਰੱਖਿਆ ਜਾਂਚ ਕਰਦਾ ਹੈ, ਜੋ Model Context Protocol (MCP) ਰਾਹੀਂ ਕੰਮ ਕਰਦਾ ਹੈ।
 
-![System Architecture Diagram](../../../../../../translated_images/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.pa.png)
+![System Architecture Diagram](../../../../../../translated_images/pa/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.png)
 
 ### ਇਹ ਕਿਵੇਂ ਕੰਮ ਕਰਦਾ ਹੈ
 

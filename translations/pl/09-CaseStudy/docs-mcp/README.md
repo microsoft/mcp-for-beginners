@@ -110,7 +110,7 @@ Let me know if you want module-specific recommendations or need more customized 
 
 Poniżej znajduje się minimalny przykładowy kod. Pełny kod i szczegóły dostępne są w folderze rozwiązania.
 
-![Przegląd scenariusza 2](../../../../translated_images/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.pl.png)
+![Przegląd scenariusza 2](../../../../translated_images/pl/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.png)
 
 <details>
 <summary>Python (Chainlit)</summary>
@@ -167,7 +167,7 @@ Oto przykład konfiguracji serwera MCP w VS Code:
 
 > Aby uzyskać szczegółowy przewodnik ze zrzutami ekranu i krok po kroku, zobacz [`README.md`](./solution/scenario3/README.md).
 
-![Przegląd scenariusza 3](../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.pl.png)
+![Przegląd scenariusza 3](../../../../translated_images/pl/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 To podejście jest idealne dla osób tworzących kursy techniczne, piszących dokumentację lub rozwijających kod z częstą potrzebą odwołań.
 

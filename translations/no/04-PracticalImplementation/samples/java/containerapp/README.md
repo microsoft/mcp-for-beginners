@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Dette prosjektet viser en webapplikasjon som bruker innholdssikkerhetssjekk før brukerforespørsler sendes til en kalkulatortjeneste via Model Context Protocol (MCP).
 
-![System Architecture Diagram](../../../../../../translated_images/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.no.png)
+![System Architecture Diagram](../../../../../../translated_images/no/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.png)
 
 ### Slik fungerer det
 

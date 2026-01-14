@@ -110,7 +110,7 @@ Let me know if you want module-specific recommendations or need more customized 
 
 Nedenfor er et minimalt eksempel på en løsning. Full kode og detaljer finnes i solution-mappen.
 
-![Scenario 2 Oversikt](../../../../translated_images/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.no.png)
+![Scenario 2 Oversikt](../../../../translated_images/no/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.png)
 
 <details>
 <summary>Python (Chainlit)</summary>
@@ -167,7 +167,7 @@ Her er et eksempel på hvordan du setter opp MCP-serveren i VS Code:
 
 > For en detaljert gjennomgang med skjermbilder og steg-for-steg guide, se [`README.md`](./solution/scenario3/README.md).
 
-![Scenario 3 Oversikt](../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.no.png)
+![Scenario 3 Oversikt](../../../../translated_images/no/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 Denne tilnærmingen er ideell for alle som lager tekniske kurs, skriver dokumentasjon eller utvikler kode med hyppige referansebehov.
 

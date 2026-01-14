@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Praktyczne wdrożenie
 
-[![Jak budować, testować i wdrażać aplikacje MCP za pomocą rzeczywistych narzędzi i przepływów pracy](../../../translated_images/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.pl.png)](https://youtu.be/vCN9-mKBDfQ)
+[![Jak budować, testować i wdrażać aplikacje MCP za pomocą rzeczywistych narzędzi i przepływów pracy](../../../translated_images/pl/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.png)](https://youtu.be/vCN9-mKBDfQ)
 
 _(Kliknij obrazek powyżej, aby obejrzeć wideo z tej lekcji)_
 
@@ -215,7 +215,7 @@ Zobaczmy, czy możemy wdrożyć wspomniany wcześniej przykład:
 
     Powinieneś zobaczyć interfejs podobny do:
 
-    ![Połącz z inspektorem Node](../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.pl.png)
+    ![Połącz z inspektorem Node](../../../translated_images/pl/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. Kliknij CTRL, aby załadować aplikację MCP Inspector z adresu URL wyświetlanego przez aplikację (np. [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources))
 1. Ustaw typ transportu na `SSE`
