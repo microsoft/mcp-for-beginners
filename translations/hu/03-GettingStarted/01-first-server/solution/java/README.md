@@ -73,7 +73,7 @@ Az MCP Inspector egy hasznos eszköz az MCP szolgáltatásokkal való interakci�
    - Kattints a "List Tools"-ra az elérhető számológép műveletek megtekintéséhez
    - Válassz egy eszközt, majd kattints a "Run Tool"-ra a művelet végrehajtásához
 
-![MCP Inspector Screenshot](../../../../../../translated_images/tool.40e180a7b0d0fe2067cf96435532b01f63f7f8619d6b0132355a04b426b669ac.hu.png)
+![MCP Inspector Screenshot](../../../../../../translated_images/hu/tool.40e180a7b0d0fe2067cf96435532b01f63f7f8619d6b0132355a04b426b669ac.png)
 
 **Jogi nyilatkozat**:  
 Ez a dokumentum az AI fordító szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár a pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Fontos információk esetén szakmai, emberi fordítást javaslunk. Nem vállalunk felelősséget az ebből a fordításból eredő félreértésekért vagy téves értelmezésekért.

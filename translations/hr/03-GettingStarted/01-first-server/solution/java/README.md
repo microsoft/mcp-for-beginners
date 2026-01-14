@@ -73,7 +73,7 @@ MCP Inspector je koristan alat za interakciju s MCP uslugama. Za korištenje s o
    - Kliknite "List Tools" za prikaz dostupnih kalkulatorskih operacija
    - Odaberite alat i kliknite "Run Tool" za izvršavanje operacije
 
-![MCP Inspector Screenshot](../../../../../../translated_images/tool.40e180a7b0d0fe2067cf96435532b01f63f7f8619d6b0132355a04b426b669ac.hr.png)
+![MCP Inspector Screenshot](../../../../../../translated_images/hr/tool.40e180a7b0d0fe2067cf96435532b01f63f7f8619d6b0132355a04b426b669ac.png)
 
 **Odricanje od odgovornosti**:  
 Ovaj dokument je preveden korištenjem AI usluge za prevođenje [Co-op Translator](https://github.com/Azure/co-op-translator). Iako nastojimo postići točnost, imajte na umu da automatski prijevodi mogu sadržavati pogreške ili netočnosti. Izvorni dokument na izvornom jeziku treba smatrati autoritativnim izvorom. Za kritične informacije preporučuje se profesionalni ljudski prijevod. Ne snosimo odgovornost za bilo kakva nesporazuma ili pogrešna tumačenja koja proizlaze iz korištenja ovog prijevoda.

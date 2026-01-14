@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 此專案展示了一個網頁應用程式，會在將使用者輸入的提示傳送到計算器服務之前，先進行內容安全檢查，並透過 Model Context Protocol (MCP) 進行通訊。
 
-![System Architecture Diagram](../../../../../../translated_images/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.hk.png)
+![System Architecture Diagram](../../../../../../translated_images/hk/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.png)
 
 ### 運作原理
 

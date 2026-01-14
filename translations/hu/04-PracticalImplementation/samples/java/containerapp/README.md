@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Ez a projekt egy webalkalmazást mutat be, amely tartalombiztonsági ellenőrzést végez, mielőtt a felhasználói kéréseket a Model Context Protocol (MCP) segítségével egy számológép szolgáltatásnak továbbítaná.
 
-![System Architecture Diagram](../../../../../../translated_images/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.hu.png)
+![System Architecture Diagram](../../../../../../translated_images/hu/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.png)
 
 ### Működése
 

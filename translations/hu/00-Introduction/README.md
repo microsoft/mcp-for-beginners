@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Bevezetés a Model Context Protocol (MCP) protokollba: Miért fontos a skálázható AI alkalmazásokhoz?
 
-[![Bevezetés a Model Context Protocol protokollba](../../../translated_images/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.hu.png)](https://youtu.be/agBbdiOPLQA)
+[![Bevezetés a Model Context Protocol protokollba](../../../translated_images/hu/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.png)](https://youtu.be/agBbdiOPLQA)
 
 _(Kattints a fenti képre a leckéhez tartozó videó megtekintéséhez)_
 

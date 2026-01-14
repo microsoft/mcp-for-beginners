@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Proyek ini menunjukkan sebuah aplikasi web yang menggunakan pemeriksaan keamanan konten sebelum meneruskan perintah pengguna ke layanan kalkulator melalui Model Context Protocol (MCP).
 
-![Diagram Arsitektur Sistem](../../../../../../translated_images/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.id.png)
+![Diagram Arsitektur Sistem](../../../../../../translated_images/id/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.png)
 
 ### Cara Kerjanya
 

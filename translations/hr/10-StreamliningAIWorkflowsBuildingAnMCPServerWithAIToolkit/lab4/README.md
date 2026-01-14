@@ -139,7 +139,7 @@ Scenario : Basic Clone and Open
  } and save to {The global path you specify}, then open it with VS Code Insiders"
 ```
 
-![Agent Builder Testing](../../../../translated_images/DebugAgent.81d152370c503241b3b39a251b8966f7f739286df19dd57f9147f6402214a012.hr.png)
+![Agent Builder Testing](../../../../translated_images/hr/DebugAgent.81d152370c503241b3b39a251b8966f7f739286df19dd57f9147f6402214a012.png)
 
 **Očekivani rezultati:**
 - ✅ Uspješno kloniranje s potvrdom putanje
@@ -149,7 +149,7 @@ Scenario : Basic Clone and Open
 
 #### 4b. Testiranje u MCP Inspectoru
 
-![MCP Inspector Testing](../../../../translated_images/DebugInspector.eb5c95f94c69a8ba36944941b9a3588309a3a2fae101ace470ee09bde41d1667.hr.png)
+![MCP Inspector Testing](../../../../translated_images/hr/DebugInspector.eb5c95f94c69a8ba36944941b9a3588309a3a2fae101ace470ee09bde41d1667.png)
 
 ---
 

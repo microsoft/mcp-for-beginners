@@ -60,7 +60,7 @@ Na kraju ovog modula moći ćete:
 
 **Korak 3: Instalirajte i aktivirajte**
 
-![AI Toolkit Extension](../../../../translated_images/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.hr.png)
+![AI Toolkit Extension](../../../../translated_images/hr/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.png)
 
 ### ✅ Provjera instalacije
 - [ ] Ikona AI Toolkita pojavljuje se u bočnoj traci VS Code-a
@@ -79,7 +79,7 @@ Model Catalog je vaš ulaz u AI ekosustav. Okuplja modele od različitih pružat
 
 Kliknite na **MODELS - Catalog** u AI Toolkit bočnoj traci
 
-![Model Catalog](../../../../translated_images/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.hr.png)
+![Model Catalog](../../../../translated_images/hr/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.png)
 
 **💡 Koristan savjet**: Potražite modele s određenim sposobnostima koje odgovaraju vašim potrebama (npr. generiranje koda, kreativno pisanje, analiza).
 
@@ -97,7 +97,7 @@ Kliknite na **MODELS - Catalog** u AI Toolkit bočnoj traci
 3. Odaberite **Try in Playground** za pokretanje testnog okruženja
 4. Pričekajte inicijalizaciju modela (prvo pokretanje može potrajati)
 
-![Playground Setup](../../../../translated_images/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.hr.png)
+![Playground Setup](../../../../translated_images/hr/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.png)
 
 **⚙️ Razumijevanje parametara modela:**
 - **Temperature**: Kontrolira kreativnost (0 = deterministički, 1 = kreativan)
@@ -126,7 +126,7 @@ Playground je vaš laboratorij za AI eksperimentiranje. Evo kako maksimalno isko
 "Analyze this sales data and provide insights: [paste your data]. Focus on trends, anomalies, and actionable recommendations."
 ```
 
-![Testing Results](../../../../translated_images/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.hr.png)
+![Testing Results](../../../../translated_images/hr/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.png)
 
 ### 🏆 Izazov: Usporedba performansi modela
 
@@ -136,12 +136,12 @@ Playground je vaš laboratorij za AI eksperimentiranje. Evo kako maksimalno isko
 1. Dodajte **Phi-4-mini** u svoj radni prostor
 2. Koristite isti prompt za GPT-4.1 i Phi-4-mini
 
-![set](../../../../translated_images/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.hr.png)
+![set](../../../../translated_images/hr/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.png)
 
 3. Usporedite kvalitetu odgovora, brzinu i točnost
 4. Zabilježite svoja zapažanja u odjeljku s rezultatima
 
-![Model Comparison](../../../../translated_images/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.hr.png)
+![Model Comparison](../../../../translated_images/hr/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.png)
 
 **💡 Ključni uvidi za otkriti:**
 - Kada koristiti LLM naspram SLM
@@ -163,7 +163,7 @@ Agent Builder je mjesto gdje AI Toolkit zaista dolazi do izražaja. Omogućuje v
 - **Integracija alata**: Povezivanje s vanjskim API-jima i MCP servisima
 - **Memorija**: Kontekst razgovora i trajanje sesije
 
-![Agent Builder Interface](../../../../translated_images/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.hr.png)
+![Agent Builder Interface](../../../../translated_images/hr/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.png)
 
 ### ⚙️ Korak 2: Detaljna konfiguracija agenta
 
@@ -237,7 +237,7 @@ You are a senior Python developer with 10+ years of experience. You excel at wri
    - Max Tokens: 2000 (detaljna objašnjenja)
    - Top-p: 0.9 (uravnotežena kreativnost)
 
-![Python Agent Configuration](../../../../translated_images/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.hr.png)
+![Python Agent Configuration](../../../../translated_images/hr/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.png)
 
 ### 🧪 Korak 4: Testiranje vašeg Python agenta
 

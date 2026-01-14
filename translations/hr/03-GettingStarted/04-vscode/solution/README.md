@@ -23,7 +23,7 @@ Ovo odgovara pokretanju naredbe poput: `node build/index.js`.
 
     Trebali biste vidjeti alat prikazan iznad tekstnog okvira za chat koji vas poziva da ga odaberete za pokretanje, kao na ovom prikazu:
 
-    ![VS Code pokazuje da želi pokrenuti alat](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.hr.png)
+    ![VS Code pokazuje da želi pokrenuti alat](../../../../../translated_images/hr/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
     Odabirom alata trebali biste dobiti numerički rezultat "23" ako je vaš upit bio kao što smo prethodno naveli.
 

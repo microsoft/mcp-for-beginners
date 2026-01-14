@@ -52,27 +52,27 @@ Untuk memulai, ikuti langkah-langkah berikut. Untuk setiap langkah, Anda dapat m
    ```
    Konfigurasi ini memberitahu VS Code bagaimana cara terhubung ke [`Microsoft Learn Docs MCP server`](https://github.com/MicrosoftDocs/mcp).
    
-   ![Langkah 1: Tambahkan mcp.json ke folder .vscode](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.id.png)
+   ![Langkah 1: Tambahkan mcp.json ke folder .vscode](../../../../../../translated_images/id/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
     
 2. **Buka panel GitHub Copilot Chat:**
    Jika Anda belum memasang ekstensi GitHub Copilot, buka tampilan Extensions di VS Code dan pasang ekstensi tersebut. Anda dapat mengunduhnya langsung dari [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat). Kemudian, buka panel Copilot Chat dari sidebar.
 
-   ![Langkah 2: Buka panel Copilot Chat](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.id.png)
+   ![Langkah 2: Buka panel Copilot Chat](../../../../../../translated_images/id/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
 
 3. **Aktifkan mode agen dan verifikasi alat:**
    Di panel Copilot Chat, aktifkan mode agen.
 
-   ![Langkah 3: Aktifkan mode agen dan verifikasi alat](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.id.png)
+   ![Langkah 3: Aktifkan mode agen dan verifikasi alat](../../../../../../translated_images/id/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
 
    Setelah mengaktifkan mode agen, pastikan server MCP tercantum sebagai salah satu alat yang tersedia. Ini memastikan agen Copilot dapat mengakses server dokumentasi untuk mengambil informasi yang relevan.
    
-   ![Langkah 3: Verifikasi alat server MCP](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.id.png)
+   ![Langkah 3: Verifikasi alat server MCP](../../../../../../translated_images/id/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
 4. **Mulai chat baru dan berikan perintah pada agen:**
    Buka chat baru di panel Copilot Chat. Sekarang Anda dapat memberikan perintah pada agen dengan pertanyaan dokumentasi Anda. Agen akan menggunakan server MCP untuk mengambil dan menampilkan dokumentasi Microsoft Learn yang relevan langsung di editor Anda.
 
    - *"Saya sedang mencoba menulis rencana belajar untuk topik X. Saya akan mempelajarinya selama 8 minggu, untuk setiap minggu, sarankan konten yang harus saya pelajari."*
 
-   ![Langkah 4: Berikan perintah pada agen di chat](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.id.png)
+   ![Langkah 4: Berikan perintah pada agen di chat](../../../../../../translated_images/id/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 5. **Query Langsung:**
 
@@ -81,7 +81,7 @@ Untuk memulai, ikuti langkah-langkah berikut. Untuk setiap langkah, Anda dapat m
    *"Saya mencari jawaban tentang cara menerapkan solusi multi-agen dengan agen AI yang dikembangkan di Azure AI Foundry. Saya melihat tidak ada metode penerapan langsung, seperti saluran Copilot Studio. Jadi, apa saja cara berbeda untuk melakukan penerapan ini agar pengguna enterprise dapat berinteraksi dan menyelesaikan pekerjaan?
 Ada banyak artikel/blog yang mengatakan kita bisa menggunakan layanan Azure Bot untuk melakukan pekerjaan ini yang dapat bertindak sebagai jembatan antara MS Teams dan Azure AI Foundry Agents, apakah ini akan berhasil jika saya mengatur Azure bot yang terhubung ke Orchestrator Agent di Azure AI Foundry melalui Azure function untuk melakukan orkestrasi atau saya perlu membuat Azure function untuk setiap agen AI yang menjadi bagian dari solusi multi-agen untuk melakukan orkestrasi di Bot framework? Saran lain sangat diterima."*
 
-   ![Langkah 5: Query langsung](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.id.png)
+   ![Langkah 5: Query langsung](../../../../../../translated_images/id/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
 
    Agen akan merespons dengan tautan dokumentasi dan ringkasan yang relevan, yang kemudian dapat Anda sisipkan langsung ke file markdown Anda atau gunakan sebagai referensi dalam kode Anda.
    

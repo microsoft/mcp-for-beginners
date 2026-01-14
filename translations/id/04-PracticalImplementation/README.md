@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Implementasi Praktis
 
-[![Cara Membangun, Menguji, dan Mendeploy Aplikasi MCP dengan Alat dan Alur Kerja Nyata](../../../translated_images/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.id.png)](https://youtu.be/vCN9-mKBDfQ)
+[![Cara Membangun, Menguji, dan Mendeploy Aplikasi MCP dengan Alat dan Alur Kerja Nyata](../../../translated_images/id/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.png)](https://youtu.be/vCN9-mKBDfQ)
 
 _(Klik gambar di atas untuk menonton video pelajaran ini)_
 
@@ -215,7 +215,7 @@ Mari kita coba deploy sampel yang disebutkan sebelumnya:
 
     Anda akan melihat antarmuka yang mirip dengan:
 
-    ![Connect to Node inspector](../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.id.png)
+    ![Connect to Node inspector](../../../translated_images/id/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. Klik CTRL untuk memuat aplikasi web MCP Inspector dari URL yang ditampilkan oleh aplikasi (misalnya [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources))
 1. Atur jenis transport ke `SSE`

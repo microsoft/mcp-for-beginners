@@ -48,7 +48,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 Gornja naredba pokreće MCP i njegov vizualni sučelje te otvara lokalno web sučelje u vašem pregledniku. Možete očekivati nadzornu ploču koja prikazuje vaše registrirane MCP servere, njihove dostupne alate, resurse i upite. Sučelje vam omogućuje interaktivno testiranje izvršavanja alata, pregled metapodataka servera i praćenje odgovora u stvarnom vremenu, što olakšava provjeru i otklanjanje pogrešaka u implementacijama MCP servera.
 
-Evo kako to može izgledati: ![Inspector](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.hr.png)
+Evo kako to može izgledati: ![Inspector](../../../../translated_images/hr/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 Također možete pokrenuti ovaj alat u CLI načinu rada dodavanjem atributa `--cli`. Evo primjera pokretanja alata u "CLI" načinu koji prikazuje sve alate na serveru:
 

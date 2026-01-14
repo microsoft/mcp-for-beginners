@@ -60,7 +60,7 @@ Di akhir modul ini, Anda akan dapat:
 
 **Langkah 3: Instal dan Aktifkan**
 
-![Ekstensi AI Toolkit](../../../../translated_images/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.id.png)
+![Ekstensi AI Toolkit](../../../../translated_images/id/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.png)
 
 ### ✅ Daftar Verifikasi
 - [ ] Ikon AI Toolkit muncul di sidebar VS Code
@@ -79,7 +79,7 @@ Model Catalog adalah pintu gerbang Anda ke ekosistem AI. Ini mengumpulkan model 
 
 Klik **MODELS - Catalog** di sidebar AI Toolkit
 
-![Model Catalog](../../../../translated_images/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.id.png)
+![Model Catalog](../../../../translated_images/id/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.png)
 
 **💡 Tips Pro**: Cari model dengan kemampuan spesifik yang sesuai dengan kebutuhan Anda (misalnya, pembuatan kode, penulisan kreatif, analisis).
 
@@ -97,7 +97,7 @@ Klik **MODELS - Catalog** di sidebar AI Toolkit
 3. Pilih **Try in Playground** untuk membuka lingkungan pengujian
 4. Tunggu inisialisasi model (pengaturan pertama mungkin memakan waktu)
 
-![Pengaturan Playground](../../../../translated_images/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.id.png)
+![Pengaturan Playground](../../../../translated_images/id/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.png)
 
 **⚙️ Memahami Parameter Model:**
 - **Temperature**: Mengontrol kreativitas (0 = deterministik, 1 = kreatif)
@@ -126,7 +126,7 @@ Playground adalah laboratorium eksperimen AI Anda. Berikut cara memaksimalkan po
 "Analyze this sales data and provide insights: [paste your data]. Focus on trends, anomalies, and actionable recommendations."
 ```
 
-![Hasil Pengujian](../../../../translated_images/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.id.png)
+![Hasil Pengujian](../../../../translated_images/id/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.png)
 
 ### 🏆 Latihan Tantangan: Perbandingan Performa Model
 
@@ -136,12 +136,12 @@ Playground adalah laboratorium eksperimen AI Anda. Berikut cara memaksimalkan po
 1. Tambahkan **Phi-4-mini** ke workspace Anda
 2. Gunakan prompt yang sama untuk GPT-4.1 dan Phi-4-mini
 
-![set](../../../../translated_images/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.id.png)
+![set](../../../../translated_images/id/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.png)
 
 3. Bandingkan kualitas respons, kecepatan, dan akurasi
 4. Dokumentasikan temuan Anda di bagian hasil
 
-![Perbandingan Model](../../../../translated_images/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.id.png)
+![Perbandingan Model](../../../../translated_images/id/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.png)
 
 **💡 Wawasan Penting yang Bisa Didapat:**
 - Kapan menggunakan LLM vs SLM
@@ -163,7 +163,7 @@ Agent Builder adalah fitur utama AI Toolkit. Ini memungkinkan Anda membuat asist
 - **Integrasi Tools**: Terhubung ke API eksternal dan layanan MCP
 - **Memory**: Konteks percakapan dan penyimpanan sesi
 
-![Antarmuka Agent Builder](../../../../translated_images/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.id.png)
+![Antarmuka Agent Builder](../../../../translated_images/id/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.png)
 
 ### ⚙️ Langkah 2: Pendalaman Konfigurasi Agen
 
@@ -237,7 +237,7 @@ You are a senior Python developer with 10+ years of experience. You excel at wri
    - Max Tokens: 2000 (penjelasan mendetail)
    - Top-p: 0.9 (kreativitas seimbang)
 
-![Konfigurasi Agen Python](../../../../translated_images/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.id.png)
+![Konfigurasi Agen Python](../../../../translated_images/id/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.png)
 
 ### 🧪 Langkah 4: Menguji Agen Python Anda
 

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP dalam Aksi: Studi Kasus Dunia Nyata
 
-[![MCP dalam Aksi: Studi Kasus Dunia Nyata](../../../translated_images/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.id.png)](https://youtu.be/IxshWb2Az5w)
+[![MCP dalam Aksi: Studi Kasus Dunia Nyata](../../../translated_images/id/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.png)](https://youtu.be/IxshWb2Az5w)
 
 _(Klik gambar di atas untuk menonton video pelajaran ini)_
 

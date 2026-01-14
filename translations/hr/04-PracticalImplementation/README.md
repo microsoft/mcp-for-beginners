@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Praktična Implementacija
 
-[![Kako izgraditi, testirati i implementirati MCP aplikacije koristeći stvarne alate i radne procese](../../../translated_images/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.hr.png)](https://youtu.be/vCN9-mKBDfQ)
+[![Kako izgraditi, testirati i implementirati MCP aplikacije koristeći stvarne alate i radne procese](../../../translated_images/hr/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.png)](https://youtu.be/vCN9-mKBDfQ)
 
 _(Kliknite na sliku iznad za video lekciju)_
 
@@ -215,7 +215,7 @@ Pogledajmo možemo li implementirati uzorak koji smo ranije spomenuli:
 
     Trebali biste vidjeti sučelje slično:
 
-    ![Povezivanje s Node inspectorom](../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.hr.png)
+    ![Povezivanje s Node inspectorom](../../../translated_images/hr/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. CTRL kliknite za učitavanje MCP Inspector web aplikacije s URL-a prikazanog od strane aplikacije (npr. [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources)).
 1. Postavite vrstu transporta na `SSE`.

@@ -110,7 +110,7 @@ Let me know if you want module-specific recommendations or need more customized 
 
 以下為簡易範例解決方案。完整程式碼與細節請參考 solution 資料夾。
 
-![Scenario 2 Overview](../../../../translated_images/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.hk.png)
+![Scenario 2 Overview](../../../../translated_images/hk/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.png)
 
 <details>
 <summary>Python (Chainlit)</summary>
@@ -167,7 +167,7 @@ def handle_message(message):
 
 > 詳細的操作說明、截圖與逐步指南，請參考 [`README.md`](./solution/scenario3/README.md)。
 
-![Scenario 3 Overview](../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.hk.png)
+![Scenario 3 Overview](../../../../translated_images/hk/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 這種方式非常適合製作技術課程、撰寫文件或需要頻繁參考的程式開發者。
 

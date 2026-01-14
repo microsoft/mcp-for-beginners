@@ -26,7 +26,7 @@ Proyek lain berasal dari [.NET Aspire](https://learn.microsoft.com/dotnet/aspire
 
 1. Saat browser web membuka dashboard .NET Aspire, catat URL `http`-nya. Seharusnya seperti `http://localhost:5058/`.
 
-   ![.NET Aspire Dashboard](../../../../../translated_images/dotnet-aspire-dashboard.0a7095710e9301e90df2efd867e1b675b3b9bc2ccd7feb1ebddc0751522bc37c.id.png)
+   ![.NET Aspire Dashboard](../../../../../translated_images/id/dotnet-aspire-dashboard.0a7095710e9301e90df2efd867e1b675b3b9bc2ccd7feb1ebddc0751522bc37c.png)
 
 ## Menguji Streamable HTTP dengan MCP Inspector
 
@@ -38,7 +38,7 @@ Jalankan server dan ketik perintah berikut di terminal:
 npx @modelcontextprotocol/inspector http://localhost:5058
 ```
 
-![MCP Inspector](../../../../../translated_images/mcp-inspector.c223422b9b494fb4a518a3b3911b3e708e6a5715069470f9163ee2ee8d5f1ba9.id.png)
+![MCP Inspector](../../../../../translated_images/id/mcp-inspector.c223422b9b494fb4a518a3b3911b3e708e6a5715069470f9163ee2ee8d5f1ba9.png)
 
 - Pilih `Streamable HTTP` sebagai tipe Transport.
 - Di kolom Url, masukkan URL server yang sudah dicatat sebelumnya, dan tambahkan `/mcp`. Harus menggunakan `http` (bukan `https`), misalnya `http://localhost:5058/mcp`.
@@ -83,7 +83,7 @@ azd up
 
 Setelah proses deploy selesai, Anda akan melihat pesan seperti ini:
 
-![Azd deployment success](../../../../../translated_images/azd-deployment-success.bd42940493f1b834a5ce6251a6f88966546009b350df59d0cc4a8caabe94a4f1.id.png)
+![Azd deployment success](../../../../../translated_images/id/azd-deployment-success.bd42940493f1b834a5ce6251a6f88966546009b350df59d0cc4a8caabe94a4f1.png)
 
 Ambil URL tersebut dan gunakan di MCP Inspector serta GitHub Copilot Chat.
 

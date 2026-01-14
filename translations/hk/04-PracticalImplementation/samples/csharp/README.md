@@ -26,7 +26,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 1. 當瀏覽器開啟 .NET Aspire 儀表板時，記下 `http` 的 URL，通常會是類似 `http://localhost:5058/`。
 
-   ![.NET Aspire Dashboard](../../../../../translated_images/dotnet-aspire-dashboard.0a7095710e9301e90df2efd867e1b675b3b9bc2ccd7feb1ebddc0751522bc37c.hk.png)
+   ![.NET Aspire Dashboard](../../../../../translated_images/hk/dotnet-aspire-dashboard.0a7095710e9301e90df2efd867e1b675b3b9bc2ccd7feb1ebddc0751522bc37c.png)
 
 ## 使用 MCP Inspector 測試 Streamable HTTP
 
@@ -38,7 +38,7 @@ CO_OP_TRANSLATOR_METADATA:
 npx @modelcontextprotocol/inspector http://localhost:5058
 ```
 
-![MCP Inspector](../../../../../translated_images/mcp-inspector.c223422b9b494fb4a518a3b3911b3e708e6a5715069470f9163ee2ee8d5f1ba9.hk.png)
+![MCP Inspector](../../../../../translated_images/hk/mcp-inspector.c223422b9b494fb4a518a3b3911b3e708e6a5715069470f9163ee2ee8d5f1ba9.png)
 
 - 選擇 `Streamable HTTP` 作為傳輸類型。
 - 在 Url 欄位輸入剛才記下的伺服器 URL，並在後面加上 `/mcp`，應該是 `http`（非 `https`），像是 `http://localhost:5058/mcp`。
@@ -83,7 +83,7 @@ azd up
 
 部署完成後，你應該會看到類似以下的訊息：
 
-![Azd deployment success](../../../../../translated_images/azd-deployment-success.bd42940493f1b834a5ce6251a6f88966546009b350df59d0cc4a8caabe94a4f1.hk.png)
+![Azd deployment success](../../../../../translated_images/hk/azd-deployment-success.bd42940493f1b834a5ce6251a6f88966546009b350df59d0cc4a8caabe94a4f1.png)
 
 複製 URL，並在 MCP Inspector 以及 GitHub Copilot Chat 中使用。
 

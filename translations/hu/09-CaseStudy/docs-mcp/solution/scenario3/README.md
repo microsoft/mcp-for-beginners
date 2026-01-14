@@ -52,28 +52,28 @@ A kezdéshez kövesd az alábbi lépéseket. Minden lépéshez hozzáadhatsz egy
    ```
    Ez a konfiguráció megmondja a VS Code-nak, hogyan csatlakozzon a [`Microsoft Learn Docs MCP szerverhez`](https://github.com/MicrosoftDocs/mcp).
    
-   ![1. lépés: mcp.json hozzáadása a .vscode mappához](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.hu.png)
+   ![1. lépés: mcp.json hozzáadása a .vscode mappához](../../../../../../translated_images/hu/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
     
 2. **Nyisd meg a GitHub Copilot Chat panelt:**
    Ha még nincs telepítve a GitHub Copilot bővítményed, menj a VS Code Extensions nézetébe, és telepítsd. Közvetlenül letöltheted a [Visual Studio Code Marketplace-ről](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat). Ezután nyisd meg a Copilot Chat panelt az oldalsávból.
 
-   ![2. lépés: Copilot Chat panel megnyitása](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.hu.png)
+   ![2. lépés: Copilot Chat panel megnyitása](../../../../../../translated_images/hu/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
 
 3. **Kapcsold be az agent módot és ellenőrizd az eszközöket:**
    A Copilot Chat panelen kapcsold be az agent módot.
 
-   ![3. lépés: Agent mód bekapcsolása és eszközök ellenőrzése](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.hu.png)
+   ![3. lépés: Agent mód bekapcsolása és eszközök ellenőrzése](../../../../../../translated_images/hu/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
 
    Az agent mód bekapcsolása után ellenőrizd, hogy az MCP szerver szerepel-e az elérhető eszközök között. Ez biztosítja, hogy a Copilot agent hozzáférjen a dokumentációs szerverhez a releváns információk lekéréséhez.
    
-   ![3. lépés: MCP szerver eszköz ellenőrzése](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.hu.png)
+   ![3. lépés: MCP szerver eszköz ellenőrzése](../../../../../../translated_images/hu/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
 
 4. **Indíts új chatet és kérdezd az agentet:**
    Nyiss egy új chatet a Copilot Chat panelen. Most már kérdezheted az agentet a dokumentációs kérdéseiddel. Az agent az MCP szervert használja, hogy közvetlenül a szerkesztődben megjelenítse a releváns Microsoft Learn dokumentációt.
 
    - *„Tanulmányi tervet szeretnék írni az X témához. 8 héten át fogom tanulni, minden hétre javasolj tartalmat.”*
 
-   ![4. lépés: Kérdezd az agentet a chatben](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.hu.png)
+   ![4. lépés: Kérdezd az agentet a chatben](../../../../../../translated_images/hu/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 5. **Élő lekérdezés:**
 
@@ -82,7 +82,7 @@ A kezdéshez kövesd az alábbi lépéseket. Minden lépéshez hozzáadhatsz egy
    *„Válaszokat keresek arra, hogyan lehet többagentű megoldást telepíteni az Azure AI Foundry-n fejlesztett AI agentekkel. Látom, hogy nincs közvetlen telepítési mód, mint például a Copilot Studio csatornák. Milyen különböző módjai vannak ennek a telepítésnek, hogy vállalati felhasználók tudjanak együttműködni és elvégezni a feladatot?
 Számos cikk/blog állítja, hogy az Azure Bot szolgáltatás használható erre a célra, amely hidat képezhet az MS Teams és az Azure AI Foundry agentek között. Vajon működik-e, ha beállítok egy Azure botot, amely az Azure AI Foundry Orchestrator Agentjéhez kapcsolódik Azure functionön keresztül az orchestration végrehajtásához, vagy minden AI agenthez külön Azure functiont kell létrehoznom a Bot framework orchestrationhöz? Egyéb javaslatokat is szívesen fogadok.”*
 
-   ![5. lépés: Élő lekérdezések](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.hu.png)
+   ![5. lépés: Élő lekérdezések](../../../../../../translated_images/hu/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
 
    Az agent releváns dokumentációs linkekkel és összefoglalókkal válaszol, amelyeket közvetlenül beilleszthetsz markdown fájljaidba vagy hivatkozásként használhatsz a kódodban.
 

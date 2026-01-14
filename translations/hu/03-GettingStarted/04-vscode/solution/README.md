@@ -23,7 +23,7 @@ Ez megfelel egy olyan parancs futtatásának, mint például: `node build/index.
 
     Látnod kell, hogy egy eszköz jelenik meg a csevegő szövegdoboz fölött, amely arra kér, hogy válaszd ki az eszköz futtatását, ahogy az alábbi képen látható:
 
-    ![VS Code jelzi, hogy eszközt szeretne futtatni](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.hu.png)
+    ![VS Code jelzi, hogy eszközt szeretne futtatni](../../../../../translated_images/hu/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
     Az eszköz kiválasztása egy numerikus eredményt kell, hogy adjon, például "23"-at, ha a korábban említett parancsot írtad be.
 
