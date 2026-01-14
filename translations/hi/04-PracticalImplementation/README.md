@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # व्यावहारिक कार्यान्वयन
 
-[![वास्तविक उपकरणों और वर्कफ़्लो के साथ MCP ऐप्स को बनाना, परीक्षण करना और तैनात करना](../../../translated_images/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.hi.png)](https://youtu.be/vCN9-mKBDfQ)
+[![वास्तविक उपकरणों और वर्कफ़्लो के साथ MCP ऐप्स को बनाना, परीक्षण करना और तैनात करना](../../../translated_images/hi/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.png)](https://youtu.be/vCN9-mKBDfQ)
 
 _(इस पाठ का वीडियो देखने के लिए ऊपर दी गई छवि पर क्लिक करें)_
 
@@ -211,7 +211,7 @@ Azure API प्रबंधन MCP सर्वरों को सुरक्
 
     आपको एक इंटरफ़ेस इस प्रकार दिखाई देना चाहिए:
 
-    ![Node Inspector से कनेक्ट करें](../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.hi.png)
+    ![Node Inspector से कनेक्ट करें](../../../translated_images/hi/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. ऐप द्वारा प्रदर्शित URL (जैसे [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources)) से MCP Inspector वेब ऐप लोड करने के लिए CTRL क्लिक करें।
 1. ट्रांसपोर्ट प्रकार को `SSE` पर सेट करें।

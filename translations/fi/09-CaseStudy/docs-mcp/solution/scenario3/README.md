@@ -52,27 +52,27 @@ Aloittaaksesi seuraa näitä ohjeita. Voit lisätä kuhunkin vaiheeseen kuvan as
    ```
    Tämä konfiguraatio kertoo VS Codelle, miten se yhdistää [`Microsoft Learn Docs MCP -palvelimeen`](https://github.com/MicrosoftDocs/mcp).
    
-   ![Vaihe 1: Lisää mcp.json .vscode-kansioon](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.fi.png)
+   ![Vaihe 1: Lisää mcp.json .vscode-kansioon](../../../../../../translated_images/fi/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
     
 2. **Avaa GitHub Copilot Chat -paneeli:**
    Jos sinulla ei vielä ole GitHub Copilot -laajennusta asennettuna, mene VS Coden Extensions-näkymään ja asenna se. Voit ladata sen suoraan [Visual Studio Code Marketplacesta](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat). Avaa sitten Copilot Chat -paneeli sivupalkista.
 
-   ![Vaihe 2: Avaa Copilot Chat -paneeli](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.fi.png)
+   ![Vaihe 2: Avaa Copilot Chat -paneeli](../../../../../../translated_images/fi/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
 
 3. **Ota agenttitila käyttöön ja varmista työkalut:**
    Ota Copilot Chat -paneelissa agenttitila käyttöön.
 
-   ![Vaihe 3: Ota agenttitila käyttöön ja varmista työkalut](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.fi.png)
+   ![Vaihe 3: Ota agenttitila käyttöön ja varmista työkalut](../../../../../../translated_images/fi/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
 
    Agenttitilan aktivoimisen jälkeen varmista, että MCP-palvelin näkyy käytettävissä olevien työkalujen listassa. Tämä varmistaa, että Copilot-agentti pääsee käsiksi dokumentaatiopalvelimeen ja voi hakea relevanttia tietoa.
    
-   ![Vaihe 3: Varmista MCP-palvelintyökalu](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.fi.png)
+   ![Vaihe 3: Varmista MCP-palvelintyökalu](../../../../../../translated_images/fi/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
 4. **Aloita uusi keskustelu ja esitä kysymys agentille:**
    Avaa uusi keskustelu Copilot Chat -paneelissa. Voit nyt esittää agentille dokumentaatiokysymyksiä. Agentti käyttää MCP-palvelinta hakeakseen ja näyttääksesi suoraan editorissasi relevanttia Microsoft Learn -dokumentaatiota.
 
    - *"Yritän laatia opintosuunnitelmaa aiheelle X. Aion opiskella sitä 8 viikkoa, ehdota jokaiselle viikolle sopivaa sisältöä."*
 
-   ![Vaihe 4: Esitä kysymys agentille chatissa](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.fi.png)
+   ![Vaihe 4: Esitä kysymys agentille chatissa](../../../../../../translated_images/fi/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 5. **Live-kysely:**
 
@@ -81,7 +81,7 @@ Aloittaaksesi seuraa näitä ohjeita. Voit lisätä kuhunkin vaiheeseen kuvan as
    *"Etsin vastauksia siihen, miten ottaa käyttöön moniagenttiratkaisu, jossa AI-agentit on kehitetty Azure AI Foundryssa. Näen, ettei ole suoraa käyttöönottoa, kuten Copilot Studio -kanavia. Mitkä ovat eri tavat toteuttaa käyttöönotto yrityskäyttäjille, jotta he voivat olla vuorovaikutuksessa ja saada työn tehtyä?
 Monia artikkeleita/blogeja on, joissa sanotaan, että Azure Bot -palvelua voi käyttää tämän työn tekemiseen, joka voi toimia siltana MS Teamsin ja Azure AI Foundryn agenttien välillä. Toimiiko tämä, jos perustan Azure-botin, joka yhdistyy Orchestrator-agenttiin Azure AI Foundryssa Azure Functionin kautta orkestrointia varten, vai pitääkö minun luoda Azure Function jokaiselle moniagenttiratkaisun AI-agentille orkestroinnin tekemiseksi Bot Frameworkissa? Kaikki muut ehdotukset ovat tervetulleita."*
 
-   ![Vaihe 5: Live-kyselyt](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.fi.png)
+   ![Vaihe 5: Live-kyselyt](../../../../../../translated_images/fi/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
 
    Agentti vastaa asiaankuuluvilla dokumentaatiolinkeillä ja yhteenvetoilla, jotka voit lisätä suoraan markdown-tiedostoihisi tai käyttää viitteinä koodissasi.
    

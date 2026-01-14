@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # אבטחת MCP: הגנה מקיפה למערכות בינה מלאכותית
 
-[![הנחיות אבטחת MCP](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.he.png)](https://youtu.be/88No8pw706o)
+[![הנחיות אבטחת MCP](../../../translated_images/he/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(לחצו על התמונה למעלה לצפייה בסרטון של השיעור)_
 
@@ -133,7 +133,7 @@ _(לחצו על התמונה למעלה לצפייה בסרטון של השיע�
 
 **השפעה בעולם האמיתי**: התקפות אלו עלולות לגרום לדליפת נתונים, הפרות פרטיות, יצירת תוכן מזיק ומניפולציה של אינטראקציות משתמש. לניתוח מפורט ראו [Prompt Injection ב-MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
-![תרשים התקפת הזרקת פקודות](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.he.png)
+![תרשים התקפת הזרקת פקודות](../../../translated_images/he/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **התקפות הרעלת כלים**
 
@@ -147,7 +147,7 @@ _(לחצו על התמונה למעלה לצפייה בסרטון של השיע�
 
 **סיכוני שרתים מתארחים**: שרתי MCP מרוחקים מציגים סיכונים מוגברים מכיוון שהגדרות הכלים יכולות להתעדכן לאחר אישור המשתמש, ויוצרים תרחישים שבהם כלים שבעבר היו בטוחים הופכים לזדוניים. לניתוח מקיף ראו [התקפות הרעלת כלים (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
-![תרשים התקפת הזרקת כלים](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.he.png)
+![תרשים התקפת הזרקת כלים](../../../translated_images/he/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **וקטורי התקפה נוספים בבינה מלאכותית**
 
@@ -200,7 +200,7 @@ Microsoft **AI Prompt Shields** מספקים הגנה מקיפה מפני התק
 
 **משאבי יישום**: [תיעוד Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![הגנת Microsoft Prompt Shields](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.he.png)
+![הגנת Microsoft Prompt Shields](../../../translated_images/he/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## איומי אבטחה מתקדמים ב-MCP

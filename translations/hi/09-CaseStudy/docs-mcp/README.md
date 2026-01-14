@@ -110,7 +110,7 @@ Let me know if you want module-specific recommendations or need more customized 
 
 नीचे एक न्यूनतम नमूना समाधान है। पूरा कोड और विवरण समाधान फोल्डर में उपलब्ध हैं।
 
-![Scenario 2 Overview](../../../../translated_images/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.hi.png)
+![Scenario 2 Overview](../../../../translated_images/hi/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.png)
 
 <details>
 <summary>Python (Chainlit)</summary>
@@ -167,7 +167,7 @@ def handle_message(message):
 
 > स्क्रीनशॉट्स और चरण-दर-चरण मार्गदर्शिका के लिए, [`README.md`](./solution/scenario3/README.md) देखें।
 
-![Scenario 3 Overview](../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.hi.png)
+![Scenario 3 Overview](../../../../translated_images/hi/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 यह तरीका तकनीकी कोर्स बनाने, डॉक्यूमेंटेशन लिखने, या बार-बार संदर्भ की जरूरत वाले कोड विकास के लिए आदर्श है।
 

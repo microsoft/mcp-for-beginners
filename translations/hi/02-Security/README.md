@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP सुरक्षा: एआई सिस्टम के लिए व्यापक सुरक्षा
 
-[![MCP Security Best Practices](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.hi.png)](https://youtu.be/88No8pw706o)
+[![MCP Security Best Practices](../../../translated_images/hi/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(इस पाठ का वीडियो देखने के लिए ऊपर की छवि पर क्लिक करें)_
 
@@ -133,7 +133,7 @@ MCP विनिर्देश ने प्रमाणीकरण और प
 
 **वास्तविक प्रभाव**: ये हमले डेटा चोरी, गोपनीयता उल्लंघन, हानिकारक सामग्री निर्माण, और उपयोगकर्ता इंटरैक्शन में हेरफेर का कारण बन सकते हैं। विस्तृत विश्लेषण के लिए देखें [Prompt Injection in MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/)।
 
-![Prompt Injection Attack Diagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.hi.png)
+![Prompt Injection Attack Diagram](../../../translated_images/hi/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **टूल पॉइज़निंग हमले**
 
@@ -147,7 +147,7 @@ MCP विनिर्देश ने प्रमाणीकरण और प
 
 **होस्टेड सर्वर जोखिम**: दूरस्थ MCP सर्वर उच्च जोखिम प्रस्तुत करते हैं क्योंकि टूल परिभाषाएँ प्रारंभिक उपयोगकर्ता अनुमोदन के बाद अपडेट की जा सकती हैं, जिससे पहले सुरक्षित टूल दुर्भावनापूर्ण बन सकते हैं। व्यापक विश्लेषण के लिए देखें [Tool Poisoning Attacks (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks)।
 
-![Tool Injection Attack Diagram](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.hi.png)
+![Tool Injection Attack Diagram](../../../translated_images/hi/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **अतिरिक्त एआई हमला वेक्टर**
 
@@ -200,7 +200,7 @@ Microsoft **AI Prompt Shields** प्रत्यक्ष और अप्र�
 
 **कार्यान्वयन संसाधन**: [Microsoft Prompt Shields Documentation](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields Protection](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.hi.png)
+![Microsoft Prompt Shields Protection](../../../translated_images/hi/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## उन्नत MCP सुरक्षा खतरे

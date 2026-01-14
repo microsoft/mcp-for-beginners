@@ -156,7 +156,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 यहाँ इसका एक स्क्रीनशॉट है:
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.hi.png)
+![MCP Inspector server connection](../../../../translated_images/hi/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## सामान्य सेटअप समस्याएँ और समाधान
 
@@ -1302,7 +1302,7 @@ npx @modelcontextprotocol/inspector
 2. URL सेट करें: `http://localhost:8080/sse`
 3. "Connect" पर क्लिक करें
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.hi.png)
+![Connect](../../../../translated_images/hi/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **अब आप सर्वर से जुड़े हैं**
 **Java सर्वर परीक्षण अनुभाग अब पूरा हो गया है**
@@ -1311,18 +1311,18 @@ npx @modelcontextprotocol/inspector
 
 आपको निम्नलिखित उपयोगकर्ता इंटरफ़ेस दिखाई देना चाहिए:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.hi.png)
+![Connect](../../../../translated_images/hi/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. कनेक्ट बटन चुनकर सर्वर से कनेक्ट करें
   एक बार जब आप सर्वर से कनेक्ट हो जाते हैं, तो आपको निम्नलिखित दिखाई देगा:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.hi.png)
+  ![Connected](../../../../translated_images/hi/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. "Tools" और "listTools" चुनें, आपको "Add" दिखाई देगा, "Add" चुनें और पैरामीटर मान भरें।
 
   आपको निम्नलिखित प्रतिक्रिया दिखाई देगी, यानी "add" टूल से परिणाम:
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.hi.png)
+  ![Result of running add](../../../../translated_images/hi/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 बधाई हो, आपने अपना पहला सर्वर सफलतापूर्वक बनाया और चलाया है!
 

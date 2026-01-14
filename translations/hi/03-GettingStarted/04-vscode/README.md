@@ -38,9 +38,9 @@ Visual Studio Code और GitHub Copilot एक क्लाइंट के र
 
 ### स्क्रीनशॉट्स
 
-![Visual Studio Code में गाइडेड MCP सर्वर कॉन्फ़िगरेशन](../../../../translated_images/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.hi.png)  
-![एजेंट सत्र के लिए टूल चयन](../../../../translated_images/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.hi.png)  
-![MCP विकास के दौरान त्रुटियों को आसानी से डिबग करें](../../../../translated_images/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.hi.png)  
+![Visual Studio Code में गाइडेड MCP सर्वर कॉन्फ़िगरेशन](../../../../translated_images/hi/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.png)  
+![एजेंट सत्र के लिए टूल चयन](../../../../translated_images/hi/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.png)  
+![MCP विकास के दौरान त्रुटियों को आसानी से डिबग करें](../../../../translated_images/hi/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.png)  
 
 आइए अगले सेक्शन में देखें कि हम विजुअल इंटरफेस का उपयोग कैसे करते हैं।
 
@@ -103,15 +103,15 @@ Visual Studio Code और GitHub Copilot एक क्लाइंट के र
 
 1. *mcp.json* में अपनी एंट्री ढूंढें और सुनिश्चित करें कि आपको "play" आइकन दिखाई दे:
 
-  ![Visual Studio Code में सर्वर शुरू करना](../../../../translated_images/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.hi.png)  
+  ![Visual Studio Code में सर्वर शुरू करना](../../../../translated_images/hi/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.png)  
 
 1. "play" आइकन पर क्लिक करें। आपको GitHub Copilot Chat में टूल्स आइकन पर उपलब्ध टूल्स की संख्या बढ़ती हुई दिखाई देनी चाहिए। यदि आप उस टूल्स आइकन पर क्लिक करते हैं, तो आपको पंजीकृत टूल्स की सूची दिखाई देगी। आप प्रत्येक टूल को चेक/अनचेक कर सकते हैं, यह निर्भर करता है कि आप चाहते हैं कि GitHub Copilot उन्हें संदर्भ के रूप में उपयोग करे:
 
-  ![Visual Studio Code में टूल्स का उपयोग करना](../../../../translated_images/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.hi.png)
+  ![Visual Studio Code में टूल्स का उपयोग करना](../../../../translated_images/hi/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.png)
 
 1. टूल चलाने के लिए, ऐसा प्रॉम्प्ट टाइप करें जो आपके टूल्स के विवरण से मेल खाता हो, उदाहरण के लिए ऐसा प्रॉम्प्ट: "add 22 to 1":
 
-  ![GitHub Copilot से टूल चलाना](../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.hi.png)
+  ![GitHub Copilot से टूल चलाना](../../../../translated_images/hi/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
   आपको 23 का उत्तर दिखाई देना चाहिए।
 

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Sujets avancés dans MCP
 
-[![MCP avancé : Agents IA sécurisés, évolutifs et multi-modaux](../../../translated_images/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.fr.png)](https://youtu.be/4yjmGvJzYdY)
+[![MCP avancé : Agents IA sécurisés, évolutifs et multi-modaux](../../../translated_images/fr/06.42259eaf91fccfc6.png)](https://youtu.be/4yjmGvJzYdY)
 
 _(Cliquez sur l'image ci-dessus pour visionner la vidéo de cette leçon)_
 

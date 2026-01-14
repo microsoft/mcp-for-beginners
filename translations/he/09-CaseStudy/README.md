@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP בפעולה: מחקרי מקרה מהעולם האמיתי
 
-[![MCP בפעולה: מחקרי מקרה מהעולם האמיתי](../../../translated_images/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.he.png)](https://youtu.be/IxshWb2Az5w)
+[![MCP בפעולה: מחקרי מקרה מהעולם האמיתי](../../../translated_images/he/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.png)](https://youtu.be/IxshWb2Az5w)
 
 _(לחצו על התמונה למעלה לצפייה בסרטון של השיעור הזה)_
 

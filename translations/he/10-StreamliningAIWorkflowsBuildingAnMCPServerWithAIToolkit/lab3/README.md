@@ -64,7 +64,7 @@ CO_OP_TRANSLATOR_METADATA:
 2. **צור/י סוכן חדש** עם ההגדרות הבאות:  
    - שם הסוכן: `WeatherAgent`  
 
-![Agent Creation](../../../../translated_images/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.he.png)
+![Agent Creation](../../../../translated_images/he/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.png)
 
 ### שלב 2: אתחול פרויקט שרת MCP
 
@@ -74,7 +74,7 @@ CO_OP_TRANSLATOR_METADATA:
 4. **בחר/י בתבנית `python-weather`**  
 5. **תן/י שם לשרת:** `weather_mcp`  
 
-![Python Template Selection](../../../../translated_images/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.he.png)
+![Python Template Selection](../../../../translated_images/he/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.png)
 
 ### שלב 3: פתח/י ובחן/י את הפרויקט
 
@@ -340,7 +340,7 @@ USER_PROMPT
 How's the weather like in Seattle
 ```
 
-![Agent Builder Debug Result](../../../../translated_images/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.he.png)
+![Agent Builder Debug Result](../../../../translated_images/he/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.png)
 
 ### שלב 8: איתור תקלות עם MCP Inspector
 
@@ -352,7 +352,7 @@ How's the weather like in Seattle
    - נטר/י בקשות רשת  
    - איתר/י תקלות בתגובות השרת  
 
-![MCP Inspector Interface](../../../../translated_images/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.he.png)
+![MCP Inspector Interface](../../../../translated_images/he/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.png)
 
 ---
 

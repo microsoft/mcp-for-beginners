@@ -38,9 +38,9 @@ Visual Studio Code ו-GitHub Copilot יכולים לשמש כלקוח ולצרו
 
 ### צילומי מסך
 
-![תצורה מודרכת של שרת MCP ב-Visual Studio Code](../../../../translated_images/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.he.png)  
-![בחירת כלים לכל סשן Agent](../../../../translated_images/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.he.png)  
-![איתור באגים בקלות במהלך פיתוח MCP](../../../../translated_images/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.he.png)  
+![תצורה מודרכת של שרת MCP ב-Visual Studio Code](../../../../translated_images/he/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.png)  
+![בחירת כלים לכל סשן Agent](../../../../translated_images/he/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.png)  
+![איתור באגים בקלות במהלך פיתוח MCP](../../../../translated_images/he/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.png)  
 
 נדבר עוד על השימוש בממשק הוויזואלי בסעיפים הבאים.
 
@@ -103,15 +103,15 @@ Visual Studio Code ו-GitHub Copilot יכולים לשמש כלקוח ולצרו
 
 1. מצאו את הערך שלכם ב-*mcp.json* וודאו שאתם רואים את סמל "הפעל":
 
-  ![הפעלת שרת ב-Visual Studio Code](../../../../translated_images/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.he.png)  
+  ![הפעלת שרת ב-Visual Studio Code](../../../../translated_images/he/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.png)  
 
 1. לחצו על סמל "הפעל". אתם אמורים לראות שסמל הכלים בממשק הצ'אט של GitHub Copilot מציג מספר כלים זמין גדול יותר. אם תלחצו על סמל הכלים, תראו רשימה של כלים רשומים. ניתן לסמן/לבטל סימון של כל כלי בהתאם לשאלה אם אתם רוצים ש-GitHub Copilot ישתמש בהם כקונטקסט:
 
-  ![הפעלת שרת ב-Visual Studio Code](../../../../translated_images/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.he.png)
+  ![הפעלת שרת ב-Visual Studio Code](../../../../translated_images/he/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.png)
 
 1. כדי להפעיל כלי, הקלידו פקודה שאתם יודעים שתתאים לתיאור של אחד הכלים שלכם, למשל פקודה כמו "add 22 to 1":
 
-  ![הפעלת כלי מ-GitHub Copilot](../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.he.png)
+  ![הפעלת כלי מ-GitHub Copilot](../../../../translated_images/he/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
   אתם אמורים לראות תגובה שאומרת 23.
 

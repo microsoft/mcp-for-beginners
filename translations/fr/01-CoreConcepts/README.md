@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Concepts fondamentaux de MCP : Maîtriser le Model Context Protocol pour l'intégration de l'IA
 
-[![Concepts fondamentaux de MCP](../../../translated_images/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.fr.png)](https://youtu.be/earDzWGtE84)
+[![Concepts fondamentaux de MCP](../../../translated_images/fr/02.8203e26c6fb5a797.png)](https://youtu.be/earDzWGtE84)
 
 _(Cliquez sur l'image ci-dessus pour visionner la vidéo de cette leçon)_
 

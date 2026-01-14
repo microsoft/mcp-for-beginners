@@ -60,7 +60,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 **שלב 3: התקן והפעל**
 
-![AI Toolkit Extension](../../../../translated_images/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.he.png)
+![AI Toolkit Extension](../../../../translated_images/he/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.png)
 
 ### ✅ רשימת בדיקה לאימות
 - [ ] סמל AI Toolkit מופיע בסרגל הצד של VS Code
@@ -79,7 +79,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 לחץ על **MODELS - Catalog** בסרגל הצד של AI Toolkit
 
-![Model Catalog](../../../../translated_images/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.he.png)
+![Model Catalog](../../../../translated_images/he/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.png)
 
 **💡 טיפ מקצועי**: חפש דגמים עם יכולות ספציפיות שמתאימות למקרה השימוש שלך (למשל, יצירת קוד, כתיבה יצירתית, ניתוח).
 
@@ -97,7 +97,7 @@ CO_OP_TRANSLATOR_METADATA:
 3. בחר **Try in Playground** כדי להפעיל את סביבת הבדיקה
 4. המתן לאתחול הדגם (הגדרה ראשונית עשויה לקחת רגע)
 
-![Playground Setup](../../../../translated_images/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.he.png)
+![Playground Setup](../../../../translated_images/he/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.png)
 
 **⚙️ הבנת פרמטרי הדגם:**
 - **Temperature**: שולט ביצירתיות (0 = דטרמיניסטי, 1 = יצירתי)
@@ -126,7 +126,7 @@ CO_OP_TRANSLATOR_METADATA:
 "Analyze this sales data and provide insights: [paste your data]. Focus on trends, anomalies, and actionable recommendations."
 ```
 
-![Testing Results](../../../../translated_images/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.he.png)
+![Testing Results](../../../../translated_images/he/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.png)
 
 ### 🏆 תרגיל אתגר: השוואת ביצועי דגמים
 
@@ -136,12 +136,12 @@ CO_OP_TRANSLATOR_METADATA:
 1. הוסף את **Phi-4-mini** לסביבת העבודה שלך
 2. השתמש באותו פרומפט עבור GPT-4.1 ו-Phi-4-mini
 
-![set](../../../../translated_images/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.he.png)
+![set](../../../../translated_images/he/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.png)
 
 3. השווה איכות תגובה, מהירות ודיוק
 4. תעד את ממצאיך בחלק התוצאות
 
-![Model Comparison](../../../../translated_images/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.he.png)
+![Model Comparison](../../../../translated_images/he/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.png)
 
 **💡 תובנות מרכזיות לגלות:**
 - מתי להשתמש ב-LLM לעומת SLM
@@ -163,7 +163,7 @@ Agent Builder הוא המקום שבו AI Toolkit באמת זורח. הוא מא
 - **אינטגרציית כלים**: חיבור ל-APIs חיצוניים ושירותי MCP
 - **זיכרון**: הקשר שיחה ושמירת מצב הפעלה
 
-![Agent Builder Interface](../../../../translated_images/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.he.png)
+![Agent Builder Interface](../../../../translated_images/he/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.png)
 
 ### ⚙️ שלב 2: העמקה בהגדרת הסוכן
 
@@ -237,7 +237,7 @@ You are a senior Python developer with 10+ years of experience. You excel at wri
    - Max Tokens: 2000 (הסברים מפורטים)
    - Top-p: 0.9 (איזון יצירתיות)
 
-![Python Agent Configuration](../../../../translated_images/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.he.png)
+![Python Agent Configuration](../../../../translated_images/he/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.png)
 
 ### 🧪 שלב 4: בדיקת סוכן הפייתון שלך
 

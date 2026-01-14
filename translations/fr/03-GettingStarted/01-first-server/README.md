@@ -156,7 +156,7 @@ Lorsque vous exécutez les commandes ci-dessus, MCP Inspector lance une interfac
 
 Voici une capture d'écran de ce à quoi cela peut ressembler :
 
-![Connexion au serveur MCP Inspector](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.fr.png)
+![Connexion au serveur MCP Inspector](../../../../translated_images/fr/connected.73d1e042c24075d3.png)
 
 ## Problèmes courants de configuration et solutions
 
@@ -1302,7 +1302,7 @@ Dans l'interface web de l'inspecteur :
 2. Définissez l'URL sur : `http://localhost:8080/sse`
 3. Cliquez sur "Connect"
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.fr.png)
+![Connect](../../../../translated_images/fr/tool.163d33e3ee307e20.png)
 
 **Vous êtes maintenant connecté au serveur**
 **La section de test du serveur Java est maintenant terminée**
@@ -1311,18 +1311,18 @@ La section suivante concerne l'interaction avec le serveur.
 
 Vous devriez voir l'interface utilisateur suivante :
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.fr.png)
+![Connect](../../../../translated_images/fr/connect.141db0b2bd05f096.png)
 
 1. Connectez-vous au serveur en sélectionnant le bouton Connect
   Une fois connecté au serveur, vous devriez voir ce qui suit :
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.fr.png)
+  ![Connected](../../../../translated_images/fr/connected.73d1e042c24075d3.png)
 
 1. Sélectionnez "Tools" puis "listTools", vous devriez voir apparaître "Add", sélectionnez "Add" et remplissez les valeurs des paramètres.
 
   Vous devriez voir la réponse suivante, c'est-à-dire un résultat de l'outil "add" :
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.fr.png)
+  ![Result of running add](../../../../translated_images/fr/ran-tool.a5a6ee878c1369ec.png)
 
 Félicitations, vous avez réussi à créer et exécuter votre premier serveur !
 

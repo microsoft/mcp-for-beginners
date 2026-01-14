@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # समुदाय और योगदान
 
-[![MCP में योगदान कैसे करें: टूल्स, डॉक्यूमेंटेशन, कोड और अधिक](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.hi.png)](https://youtu.be/v1pvCYAWpRE)
+[![MCP में योगदान कैसे करें: टूल्स, डॉक्यूमेंटेशन, कोड और अधिक](../../../translated_images/hi/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.png)](https://youtu.be/v1pvCYAWpRE)
 
 _(ऊपर दी गई छवि पर क्लिक करें इस पाठ का वीडियो देखने के लिए)_
 

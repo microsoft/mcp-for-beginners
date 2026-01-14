@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Communauté et Contributions
 
-[![Comment contribuer à MCP : outils, documentation, code et plus](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.fr.png)](https://youtu.be/v1pvCYAWpRE)
+[![Comment contribuer à MCP : outils, documentation, code et plus](../../../translated_images/fr/07.1179f6de46ff196e.png)](https://youtu.be/v1pvCYAWpRE)
 
 _(Cliquez sur l'image ci-dessus pour visionner la vidéo de cette leçon)_
 

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP विकास के सर्वोत्तम अभ्यास
 
-[![MCP विकास के सर्वोत्तम अभ्यास](../../../translated_images/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.hi.png)](https://youtu.be/W56H9W7x-ao)
+[![MCP विकास के सर्वोत्तम अभ्यास](../../../translated_images/hi/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.png)](https://youtu.be/W56H9W7x-ao)
 
 _(इस पाठ का वीडियो देखने के लिए ऊपर दी गई छवि पर क्लिक करें)_
 

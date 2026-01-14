@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 ## התחלה  
 
-[![בנה את שרת ה-MCP הראשון שלך](../../../translated_images/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.he.png)](https://youtu.be/sNDZO9N4m9Y)
+[![בנה את שרת ה-MCP הראשון שלך](../../../translated_images/he/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.png)](https://youtu.be/sNDZO9N4m9Y)
 
 _(לחץ על התמונה למעלה לצפייה בסרטון של השיעור הזה)_
 

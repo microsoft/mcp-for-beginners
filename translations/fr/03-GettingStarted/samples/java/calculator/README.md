@@ -201,7 +201,7 @@ Le MCP Inspector est un outil pratique pour interagir avec les services MCP. Pou
    - Cliquez sur « List Tools » pour voir les opérations de la calculatrice disponibles  
    - Sélectionnez un outil et cliquez sur « Run Tool » pour exécuter une opération
 
-![Capture d’écran MCP Inspector](../../../../../../translated_images/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.fr.png)
+![Capture d’écran MCP Inspector](../../../../../../translated_images/fr/tool.c75a0b2380efcf1a.png)
 
 ### Avec Docker
 

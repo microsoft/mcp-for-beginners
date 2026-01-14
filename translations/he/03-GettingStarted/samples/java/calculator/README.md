@@ -201,7 +201,7 @@ MCP Inspector הוא כלי שימושי לאינטראקציה עם שירות�
    - לחץ על "List Tools" כדי לראות את פעולות המחשבון הזמינות
    - בחר כלי ולחץ על "Run Tool" כדי לבצע פעולה
 
-![צילום מסך של MCP Inspector](../../../../../../translated_images/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.he.png)
+![צילום מסך של MCP Inspector](../../../../../../translated_images/he/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.png)
 
 ### שימוש ב-Docker
 

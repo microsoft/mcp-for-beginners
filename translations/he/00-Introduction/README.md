@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # מבוא לפרוטוקול הקשר מודל (MCP): למה הוא חשוב עבור יישומי AI בקנה מידה גדול
 
-[![מבוא לפרוטוקול הקשר מודל](../../../translated_images/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.he.png)](https://youtu.be/agBbdiOPLQA)
+[![מבוא לפרוטוקול הקשר מודל](../../../translated_images/he/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.png)](https://youtu.be/agBbdiOPLQA)
 
 _(לחצו על התמונה למעלה לצפייה בסרטון של השיעור)_
 

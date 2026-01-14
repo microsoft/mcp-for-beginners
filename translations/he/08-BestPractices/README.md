@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # עקרונות פיתוח MCP: שיטות עבודה מומלצות
 
-[![שיטות עבודה מומלצות לפיתוח MCP](../../../translated_images/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.he.png)](https://youtu.be/W56H9W7x-ao)
+[![שיטות עבודה מומלצות לפיתוח MCP](../../../translated_images/he/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.png)](https://youtu.be/W56H9W7x-ao)
 
 _(לחצו על התמונה למעלה לצפייה בסרטון של השיעור)_
 
