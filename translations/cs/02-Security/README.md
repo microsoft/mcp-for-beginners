@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP Security: Komplexní ochrana AI systémů
 
-[![MCP Security Best Practices](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.cs.png)](https://youtu.be/88No8pw706o)
+[![MCP Security Best Practices](../../../translated_images/cs/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(Klikněte na obrázek výše pro zobrazení videa této lekce)_
 
@@ -133,7 +133,7 @@ Moderní implementace MCP čelí sofistikovaným AI-specifickým vektorům útok
 
 **Reálný dopad**: Tyto útoky mohou vést k exfiltraci dat, porušení soukromí, generování škodlivého obsahu a manipulaci s uživatelskými interakcemi. Pro podrobnou analýzu viz [Prompt Injection v MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
-![Prompt Injection Attack Diagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.cs.png)
+![Prompt Injection Attack Diagram](../../../translated_images/cs/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **Útoky otravy nástrojů**
 
@@ -147,7 +147,7 @@ Moderní implementace MCP čelí sofistikovaným AI-specifickým vektorům útok
 
 **Rizika hostovaných serverů**: Vzdálené MCP servery představují zvýšená rizika, protože definice nástrojů mohou být aktualizovány po počátečním schválení uživatelem, což vytváří scénáře, kdy dříve bezpečné nástroje se stanou škodlivými. Pro komplexní analýzu viz [Útoky otravy nástrojů (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
-![Tool Injection Attack Diagram](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.cs.png)
+![Tool Injection Attack Diagram](../../../translated_images/cs/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **Další AI vektory útoků**
 
@@ -200,7 +200,7 @@ Microsoft **AI Prompt Shields** poskytují komplexní obranu proti přímým i n
 
 **Implementační zdroje**: [Dokumentace Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields Protection](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.cs.png)
+![Microsoft Prompt Shields Protection](../../../translated_images/cs/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## Pokročilé bezpečnostní hrozby MCP

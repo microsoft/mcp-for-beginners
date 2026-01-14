@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # মডেল কনটেক্সট প্রোটোকল (MCP) পরিচিতি: স্কেলযোগ্য AI অ্যাপ্লিকেশনের জন্য কেন এটি গুরুত্বপূর্ণ
 
-[![মডেল কনটেক্সট প্রোটোকল পরিচিতি](../../../translated_images/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.bn.png)](https://youtu.be/agBbdiOPLQA)
+[![মডেল কনটেক্সট প্রোটোকল পরিচিতি](../../../translated_images/bn/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.png)](https://youtu.be/agBbdiOPLQA)
 
 _(উপরের ছবিতে ক্লিক করে এই পাঠের ভিডিও দেখুন)_
 

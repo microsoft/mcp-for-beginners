@@ -52,27 +52,27 @@ CO_OP_TRANSLATOR_METADATA:
    ```
    Тази конфигурация казва на VS Code как да се свърже с [`Microsoft Learn Docs MCP server`](https://github.com/MicrosoftDocs/mcp).
    
-   ![Стъпка 1: Добавяне на mcp.json в .vscode папката](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.bg.png)
+   ![Стъпка 1: Добавяне на mcp.json в .vscode папката](../../../../../../translated_images/bg/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
     
 2. **Отворете панела GitHub Copilot Chat:**
    Ако все още нямате инсталирано разширението GitHub Copilot, отидете в изгледа Extensions във VS Code и го инсталирайте. Можете да го изтеглите директно от [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat). След това отворете панела Copilot Chat от страничната лента.
 
-   ![Стъпка 2: Отваряне на панела Copilot Chat](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.bg.png)
+   ![Стъпка 2: Отваряне на панела Copilot Chat](../../../../../../translated_images/bg/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
 
 3. **Активирайте agent mode и проверете инструментите:**
    В панела Copilot Chat активирайте agent mode.
 
-   ![Стъпка 3: Активиране на agent mode и проверка на инструментите](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.bg.png)
+   ![Стъпка 3: Активиране на agent mode и проверка на инструментите](../../../../../../translated_images/bg/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
 
    След активирането на agent mode, проверете дали MCP сървърът е в списъка с налични инструменти. Това гарантира, че Copilot агентът може да достъпва сървъра за документация, за да извлича релевантна информация.
    
-   ![Стъпка 3: Проверка на MCP сървърния инструмент](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.bg.png)
+   ![Стъпка 3: Проверка на MCP сървърния инструмент](../../../../../../translated_images/bg/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
 4. **Започнете нов чат и задайте въпрос на агента:**
    Отворете нов чат в панела Copilot Chat. Сега можете да задавате въпроси на агента относно документацията. Агентът ще използва MCP сървъра, за да извлече и покаже релевантна документация от Microsoft Learn директно в редактора ви.
 
    - *"Опитвам се да напиша учебен план за тема X. Ще я изучавам 8 седмици, за всяка седмица предложи съдържание, което трябва да покрия."*
 
-   ![Стъпка 4: Задаване на въпрос на агента в чата](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.bg.png)
+   ![Стъпка 4: Задаване на въпрос на агента в чата](../../../../../../translated_images/bg/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 5. **Живо запитване:**
 
@@ -81,7 +81,7 @@ CO_OP_TRANSLATOR_METADATA:
    *"Търся отговори как да разположа мулти-агентско решение с AI агенти, разработени в Azure AI Foundry. Виждам, че няма директен метод за разполагане, като например канали в Copilot Studio. Какви са различните начини за това разполагане, така че корпоративните потребители да могат да взаимодействат и да свършат работата?
 Има много статии и блогове, които казват, че можем да използваме Azure Bot service като мост между MS Teams и Azure AI Foundry Agents. Ще работи ли това, ако настроя Azure bot, който се свързва с Orchestrator Agent в Azure AI Foundry чрез Azure function за оркестрация, или трябва да създам Azure function за всеки AI агент в мулти-агентското решение, за да се извърши оркестрацията на Bot framework? Други предложения са добре дошли."*
 
-   ![Стъпка 5: Живи запитвания](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.bg.png)
+   ![Стъпка 5: Живи запитвания](../../../../../../translated_images/bg/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
 
    Агентът ще отговори с релевантни линкове и резюмета от документацията, които можете директно да вмъкнете във вашите markdown файлове или да използвате като препратки в кода си.
    

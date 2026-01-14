@@ -201,7 +201,7 @@ MCP Inspector е полезен инструмент за взаимодейст
    - Кликнете "List Tools", за да видите наличните калкулаторни операции
    - Изберете инструмент и кликнете "Run Tool", за да изпълните операция
 
-![MCP Inspector Screenshot](../../../../../../translated_images/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.bg.png)
+![MCP Inspector Screenshot](../../../../../../translated_images/bg/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.png)
 
 ### Използване на Docker
 

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Nejlepší postupy pro vývoj MCP
 
-[![Nejlepší postupy pro vývoj MCP](../../../translated_images/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.cs.png)](https://youtu.be/W56H9W7x-ao)
+[![Nejlepší postupy pro vývoj MCP](../../../translated_images/cs/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.png)](https://youtu.be/W56H9W7x-ao)
 
 _(Klikněte na obrázek výše pro zhlédnutí videa této lekce)_
 

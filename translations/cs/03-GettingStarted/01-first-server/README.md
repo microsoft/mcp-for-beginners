@@ -156,7 +156,7 @@ Po spuštění výše uvedených příkazů se MCP Inspector spustí jako lokál
 
 Zde je screenshot, jak to může vypadat:
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.cs.png)
+![MCP Inspector server connection](../../../../translated_images/cs/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## Běžné problémy s nastavením a jejich řešení
 
@@ -1302,7 +1302,7 @@ V inspektoru webového rozhraní:
 2. Nastavte URL na: `http://localhost:8080/sse`
 3. Klikněte na "Connect"
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.cs.png)
+![Connect](../../../../translated_images/cs/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **Nyní jste připojeni k serveru**
 **Sekce testování Java serveru je nyní dokončena**
@@ -1311,18 +1311,18 @@ Další sekce se týká interakce se serverem.
 
 Měli byste vidět následující uživatelské rozhraní:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.cs.png)
+![Connect](../../../../translated_images/cs/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. Připojte se k serveru výběrem tlačítka Connect
   Po připojení k serveru byste nyní měli vidět následující:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.cs.png)
+  ![Connected](../../../../translated_images/cs/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. Vyberte "Tools" a "listTools", měli byste vidět "Add", vyberte "Add" a vyplňte hodnoty parametrů.
 
   Měli byste vidět následující odpověď, tj. výsledek z nástroje "add":
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.cs.png)
+  ![Result of running add](../../../../translated_images/cs/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 Gratulujeme, podařilo se vám vytvořit a spustit váš první server!
 

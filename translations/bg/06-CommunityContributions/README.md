@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Общност и приноси
 
-[![Как да допринесете за MCP: инструменти, документация, код и други](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.bg.png)](https://youtu.be/v1pvCYAWpRE)
+[![Как да допринесете за MCP: инструменти, документация, код и други](../../../translated_images/bg/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.png)](https://youtu.be/v1pvCYAWpRE)
 
 _(Кликнете върху изображението по-горе, за да гледате видеото на този урок)_
 

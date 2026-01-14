@@ -60,7 +60,7 @@ O **AI Toolkit para Visual Studio Code** é a extensão principal da Microsoft q
 
 **Passo 3: Instale e Ative**
 
-![AI Toolkit Extension](../../../../translated_images/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.br.png)
+![AI Toolkit Extension](../../../../translated_images/br/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.png)
 
 ### ✅ Lista de Verificação para Verificação
 - [ ] Ícone do AI Toolkit aparece na barra lateral do VS Code
@@ -79,7 +79,7 @@ O Catálogo de Modelos é sua porta de entrada para o ecossistema de IA. Ele agr
 
 Clique em **MODELS - Catalog** na barra lateral do AI Toolkit
 
-![Model Catalog](../../../../translated_images/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.br.png)
+![Model Catalog](../../../../translated_images/br/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.png)
 
 **💡 Dica Profissional**: Procure por modelos com capacidades específicas que atendam ao seu caso de uso (ex: geração de código, escrita criativa, análise).
 
@@ -97,7 +97,7 @@ Clique em **MODELS - Catalog** na barra lateral do AI Toolkit
 3. Escolha **Try in Playground** para abrir o ambiente de testes
 4. Aguarde a inicialização do modelo (a configuração inicial pode levar um momento)
 
-![Playground Setup](../../../../translated_images/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.br.png)
+![Playground Setup](../../../../translated_images/br/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.png)
 
 **⚙️ Entendendo os Parâmetros do Modelo:**
 - **Temperature**: Controla a criatividade (0 = determinístico, 1 = criativo)
@@ -126,7 +126,7 @@ O Playground é seu laboratório de experimentação com IA. Veja como tirar o m
 "Analyze this sales data and provide insights: [paste your data]. Focus on trends, anomalies, and actionable recommendations."
 ```
 
-![Testing Results](../../../../translated_images/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.br.png)
+![Testing Results](../../../../translated_images/br/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.png)
 
 ### 🏆 Exercício Desafio: Comparação de Desempenho de Modelos
 
@@ -136,12 +136,12 @@ O Playground é seu laboratório de experimentação com IA. Veja como tirar o m
 1. Adicione **Phi-4-mini** ao seu espaço de trabalho
 2. Use o mesmo prompt para GPT-4.1 e Phi-4-mini
 
-![set](../../../../translated_images/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.br.png)
+![set](../../../../translated_images/br/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.png)
 
 3. Compare qualidade, velocidade e precisão das respostas
 4. Documente suas descobertas na seção de resultados
 
-![Model Comparison](../../../../translated_images/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.br.png)
+![Model Comparison](../../../../translated_images/br/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.png)
 
 **💡 Insights Importantes para Descobrir:**
 - Quando usar LLM vs SLM
@@ -163,7 +163,7 @@ O Agent Builder é onde o AI Toolkit realmente se destaca. Ele permite criar ass
 - **Integração de Ferramentas**: Conexão com APIs externas e serviços MCP
 - **Memória**: Contexto da conversa e persistência da sessão
 
-![Agent Builder Interface](../../../../translated_images/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.br.png)
+![Agent Builder Interface](../../../../translated_images/br/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.png)
 
 ### ⚙️ Passo 2: Mergulho na Configuração do Agente
 
@@ -237,7 +237,7 @@ You are a senior Python developer with 10+ years of experience. You excel at wri
    - Max Tokens: 2000 (explicações detalhadas)
    - Top-p: 0.9 (criatividade equilibrada)
 
-![Python Agent Configuration](../../../../translated_images/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.br.png)
+![Python Agent Configuration](../../../../translated_images/br/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.png)
 
 ### 🧪 Passo 4: Testando Seu Agente Python
 

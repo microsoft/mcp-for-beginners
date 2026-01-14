@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP Základní koncepty: Ovládnutí Model Context Protocol pro integraci AI
 
-[![MCP Základní koncepty](../../../translated_images/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.cs.png)](https://youtu.be/earDzWGtE84)
+[![MCP Základní koncepty](../../../translated_images/cs/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.png)](https://youtu.be/earDzWGtE84)
 
 _(Klikněte na obrázek výše pro zobrazení videa této lekce)_
 

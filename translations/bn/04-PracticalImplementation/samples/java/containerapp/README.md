@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 এই প্রকল্পটি একটি ওয়েব অ্যাপ্লিকেশন প্রদর্শন করে যা ব্যবহারকারীর প্রম্পটগুলি Model Context Protocol (MCP) এর মাধ্যমে ক্যালকুলেটর সার্ভিসে পাঠানোর আগে কন্টেন্ট সেফটি চেক করে।
 
-![System Architecture Diagram](../../../../../../translated_images/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.bn.png)
+![System Architecture Diagram](../../../../../../translated_images/bn/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.png)
 
 ### এটি কীভাবে কাজ করে
 

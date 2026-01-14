@@ -60,7 +60,7 @@ Na konci tohoto modulu budete umět:
 
 **Krok 3: Instalujte a aktivujte**
 
-![AI Toolkit Extension](../../../../translated_images/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.cs.png)
+![AI Toolkit Extension](../../../../translated_images/cs/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.png)
 
 ### ✅ Kontrolní seznam ověření
 - [ ] Ikona AI Toolkit se zobrazuje v postranním panelu VS Code
@@ -79,7 +79,7 @@ Model Catalog je vaše brána do AI ekosystému. Sbírá modely od různých pos
 
 Klikněte na **MODELS - Catalog** v postranním panelu AI Toolkit
 
-![Model Catalog](../../../../translated_images/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.cs.png)
+![Model Catalog](../../../../translated_images/cs/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.png)
 
 **💡 Tip**: Hledejte modely s konkrétními schopnostmi, které odpovídají vašemu použití (např. generování kódu, kreativní psaní, analýza).
 
@@ -97,7 +97,7 @@ Klikněte na **MODELS - Catalog** v postranním panelu AI Toolkit
 3. Zvolte **Try in Playground** pro spuštění testovacího prostředí
 4. Počkejte na inicializaci modelu (první spuštění může chvíli trvat)
 
-![Playground Setup](../../../../translated_images/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.cs.png)
+![Playground Setup](../../../../translated_images/cs/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.png)
 
 **⚙️ Vysvětlení parametrů modelu:**
 - **Temperature**: Řídí kreativitu (0 = deterministické, 1 = kreativní)
@@ -126,7 +126,7 @@ Playground je vaše laboratoř pro experimenty s AI. Jak ho co nejlépe využít
 "Analyze this sales data and provide insights: [paste your data]. Focus on trends, anomalies, and actionable recommendations."
 ```
 
-![Testing Results](../../../../translated_images/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.cs.png)
+![Testing Results](../../../../translated_images/cs/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.png)
 
 ### 🏆 Výzva: Porovnání výkonu modelů
 
@@ -136,12 +136,12 @@ Playground je vaše laboratoř pro experimenty s AI. Jak ho co nejlépe využít
 1. Přidejte **Phi-4-mini** do svého pracovního prostoru
 2. Použijte stejný prompt pro GPT-4.1 i Phi-4-mini
 
-![set](../../../../translated_images/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.cs.png)
+![set](../../../../translated_images/cs/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.png)
 
 3. Porovnejte kvalitu odpovědí, rychlost a přesnost
 4. Zaznamenejte své poznatky v sekci výsledků
 
-![Model Comparison](../../../../translated_images/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.cs.png)
+![Model Comparison](../../../../translated_images/cs/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.png)
 
 **💡 Klíčové poznatky k objevení:**
 - Kdy použít LLM vs SLM
@@ -163,7 +163,7 @@ Agent Builder je místo, kde AI Toolkit opravdu vyniká. Umožňuje vytvářet n
 - **Integrace nástrojů**: Připojení k externím API a MCP službám
 - **Paměť**: Kontext konverzace a uchování relace
 
-![Agent Builder Interface](../../../../translated_images/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.cs.png)
+![Agent Builder Interface](../../../../translated_images/cs/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.png)
 
 ### ⚙️ Krok 2: Hloubková konfigurace agenta
 
@@ -237,7 +237,7 @@ You are a senior Python developer with 10+ years of experience. You excel at wri
    - Max Tokens: 2000 (podrobné vysvětlení)
    - Top-p: 0.9 (vyvážená kreativita)
 
-![Python Agent Configuration](../../../../translated_images/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.cs.png)
+![Python Agent Configuration](../../../../translated_images/cs/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.png)
 
 ### 🧪 Krok 4: Testování vašeho Python agenta
 

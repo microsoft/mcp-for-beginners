@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Introdução ao Protocolo de Contexto de Modelo (MCP): Por que ele é importante para aplicações de IA escaláveis
 
-[![Introdução ao Protocolo de Contexto de Modelo](../../../translated_images/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.br.png)](https://youtu.be/agBbdiOPLQA)
+[![Introdução ao Protocolo de Contexto de Modelo](../../../translated_images/br/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.png)](https://youtu.be/agBbdiOPLQA)
 
 _(Clique na imagem acima para assistir ao vídeo desta lição)_
 

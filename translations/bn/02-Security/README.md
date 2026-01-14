@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP সিকিউরিটি: AI সিস্টেমের জন্য ব্যাপক সুরক্ষা
 
-[![MCP Security Best Practices](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.bn.png)](https://youtu.be/88No8pw706o)
+[![MCP Security Best Practices](../../../translated_images/bn/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(এই পাঠের ভিডিও দেখতে উপরের ছবিতে ক্লিক করুন)_
 
@@ -133,7 +133,7 @@ MCP স্পেসিফিকেশন প্রমাণীকরণ এব�
 
 **বাস্তব প্রভাব**: এই আক্রমণগুলি ডেটা চুরি, গোপনীয়তা লঙ্ঘন, ক্ষতিকর কনটেন্ট উৎপাদন, এবং ব্যবহারকারী ইন্টারঅ্যাকশন নিয়ন্ত্রণের কারণ হতে পারে। বিস্তারিত বিশ্লেষণের জন্য দেখুন [Prompt Injection in MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/)।
 
-![Prompt Injection Attack Diagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.bn.png)
+![Prompt Injection Attack Diagram](../../../translated_images/bn/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **টুল পয়জনিং আক্রমণ**
 
@@ -147,7 +147,7 @@ MCP স্পেসিফিকেশন প্রমাণীকরণ এব�
 
 **হোস্টেড সার্ভার ঝুঁকি**: রিমোট MCP সার্ভারগুলিতে টুল সংজ্ঞা ব্যবহারকারীর প্রাথমিক অনুমোদনের পরে আপডেট করা যেতে পারে, যা পূর্বে নিরাপদ টুলকে দূষিত করে তোলে। বিস্তারিত বিশ্লেষণের জন্য দেখুন [Tool Poisoning Attacks (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks)।
 
-![Tool Injection Attack Diagram](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.bn.png)
+![Tool Injection Attack Diagram](../../../translated_images/bn/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **অতিরিক্ত AI আক্রমণ ভেক্টর**
 
@@ -200,7 +200,7 @@ MCP স্পেসিফিকেশন প্রমাণীকরণ এব�
 
 **বাস্তবায়ন সম্পদ**: [Microsoft Prompt Shields Documentation](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields Protection](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.bn.png)
+![Microsoft Prompt Shields Protection](../../../translated_images/bn/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## উন্নত MCP সিকিউরিটি হুমকি

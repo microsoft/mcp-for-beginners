@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP মূল ধারণা: AI ইন্টিগ্রেশনের জন্য মডেল কনটেক্সট প্রোটোকল আয়ত্ত করা
 
-[![MCP Core Concepts](../../../translated_images/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.bn.png)](https://youtu.be/earDzWGtE84)
+[![MCP Core Concepts](../../../translated_images/bn/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.png)](https://youtu.be/earDzWGtE84)
 
 _(এই পাঠের ভিডিও দেখতে উপরের ছবিতে ক্লিক করুন)_
 

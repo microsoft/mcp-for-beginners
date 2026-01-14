@@ -23,7 +23,7 @@ CO_OP_TRANSLATOR_METADATA:
 
     আপনি দেখতে পাবেন চ্যাট টেক্সট বক্সের উপরে একটি টুল প্রদর্শিত হচ্ছে যা আপনাকে টুলটি চালানোর জন্য নির্বাচন করতে বলছে, যেমন এই চিত্রে:
 
-    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.bn.png)
+    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/bn/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
     টুলটি নির্বাচন করলে একটি সংখ্যাসূচক ফলাফল দেখাবে, যেমন "23", যদি আপনার প্রম্পট আগের মতো হয়।
 

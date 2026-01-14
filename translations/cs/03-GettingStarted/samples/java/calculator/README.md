@@ -201,7 +201,7 @@ MCP Inspector je užitečný nástroj pro práci s MCP službami. Pro použití 
    - Klikněte na "List Tools" pro zobrazení dostupných kalkulačních operací
    - Vyberte nástroj a klikněte na "Run Tool" pro spuštění operace
 
-![MCP Inspector Screenshot](../../../../../../translated_images/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.cs.png)
+![MCP Inspector Screenshot](../../../../../../translated_images/cs/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.png)
 
 ### Použití Dockeru
 

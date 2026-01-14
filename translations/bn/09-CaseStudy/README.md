@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP কার্যক্রম: বাস্তব জীবনের কেস স্টাডি
 
-[![MCP কার্যক্রম: বাস্তব জীবনের কেস স্টাডি](../../../translated_images/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.bn.png)](https://youtu.be/IxshWb2Az5w)
+[![MCP কার্যক্রম: বাস্তব জীবনের কেস স্টাডি](../../../translated_images/bn/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.png)](https://youtu.be/IxshWb2Az5w)
 
 _(উপরের ছবিতে ক্লিক করে এই পাঠের ভিডিও দেখুন)_
 
