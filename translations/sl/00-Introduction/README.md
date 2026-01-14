@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Uvod v Model Context Protocol (MCP): Zakaj je pomemben za razširljive AI aplikacije
 
-[![Uvod v Model Context Protocol](../../../translated_images/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.sl.png)](https://youtu.be/agBbdiOPLQA)
+[![Uvod v Model Context Protocol](../../../translated_images/sl/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.png)](https://youtu.be/agBbdiOPLQA)
 
 _(Kliknite na zgornjo sliko za ogled videa te lekcije)_
 

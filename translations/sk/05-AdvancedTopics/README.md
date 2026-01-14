@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Pokročilé témy v MCP
 
-[![Pokročilé MCP: Bezpečné, škálovateľné a multimodálne AI agenty](../../../translated_images/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.sk.png)](https://youtu.be/4yjmGvJzYdY)
+[![Pokročilé MCP: Bezpečné, škálovateľné a multimodálne AI agenty](../../../translated_images/sk/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.png)](https://youtu.be/4yjmGvJzYdY)
 
 _(Kliknite na obrázok vyššie pre zobrazenie videa k tejto lekcii)_
 

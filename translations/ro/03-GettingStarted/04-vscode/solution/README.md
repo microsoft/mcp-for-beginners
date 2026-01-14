@@ -23,7 +23,7 @@ Aceasta corespunde rulării unei comenzi de genul: `node build/index.js`.
 
     Ar trebui să vezi o unealtă prezentată deasupra casetei de text a chatului, indicând să selectezi pentru a rula unealta, așa cum se vede în această imagine:
 
-    ![VS Code indicând că dorește să ruleze o unealtă](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.ro.png)
+    ![VS Code indicând că dorește să ruleze o unealtă](../../../../../translated_images/ro/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
     Selectarea uneltei ar trebui să producă un rezultat numeric care să afișeze „23” dacă promptul tău a fost ca cel menționat anterior.
 

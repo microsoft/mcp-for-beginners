@@ -110,7 +110,7 @@ Let me know if you want module-specific recommendations or need more customized 
 
 Mai jos este un exemplu minimal de soluție. Codul complet și detaliile sunt disponibile în folderul solution.
 
-![Prezentare generală scenariul 2](../../../../translated_images/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.ro.png)
+![Prezentare generală scenariul 2](../../../../translated_images/ro/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.png)
 
 <details>
 <summary>Python (Chainlit)</summary>
@@ -167,7 +167,7 @@ Iată un exemplu de configurare a serverului MCP în VS Code:
 
 > Pentru un ghid detaliat cu capturi de ecran și pași, vezi [`README.md`](./solution/scenario3/README.md).
 
-![Prezentare generală scenariul 3](../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.ro.png)
+![Prezentare generală scenariul 3](../../../../translated_images/ro/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 Această abordare este ideală pentru oricine construiește cursuri tehnice, scrie documentație sau dezvoltă cod cu nevoi frecvente de referință.
 

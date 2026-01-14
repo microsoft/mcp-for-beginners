@@ -52,28 +52,28 @@ Pentru a începe, urmează acești pași. Pentru fiecare pas, poți adăuga o ca
    ```  
    Această configurație îi spune VS Code cum să se conecteze la [`Microsoft Learn Docs MCP server`](https://github.com/MicrosoftDocs/mcp).
    
-   ![Pasul 1: Adaugă mcp.json în folderul .vscode](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.ro.png)
+   ![Pasul 1: Adaugă mcp.json în folderul .vscode](../../../../../../translated_images/ro/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
     
 2. **Deschide panoul GitHub Copilot Chat:**  
    Dacă nu ai deja extensia GitHub Copilot instalată, mergi în vizualizarea Extensions din VS Code și instaleaz-o. O poți descărca direct din [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat). Apoi, deschide panoul Copilot Chat din bara laterală.
 
-   ![Pasul 2: Deschide panoul Copilot Chat](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.ro.png)
+   ![Pasul 2: Deschide panoul Copilot Chat](../../../../../../translated_images/ro/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
 
 3. **Activează modul agent și verifică uneltele:**  
    În panoul Copilot Chat, activează modul agent.
 
-   ![Pasul 3: Activează modul agent și verifică uneltele](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.ro.png)
+   ![Pasul 3: Activează modul agent și verifică uneltele](../../../../../../translated_images/ro/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
 
    După activarea modului agent, verifică dacă serverul MCP este listat ca una dintre uneltele disponibile. Acest lucru asigură că agentul Copilot poate accesa serverul de documentație pentru a prelua informații relevante.
    
-   ![Pasul 3: Verifică uneltele serverului MCP](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.ro.png)
+   ![Pasul 3: Verifică uneltele serverului MCP](../../../../../../translated_images/ro/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
 
 4. **Începe o conversație nouă și pune întrebări agentului:**  
    Deschide o conversație nouă în panoul Copilot Chat. Acum poți pune întrebări agentului legate de documentație. Agentul va folosi serverul MCP pentru a prelua și afișa documentația Microsoft Learn relevantă direct în editorul tău.
 
    - *„Încerc să scriu un plan de studiu pentru subiectul X. Voi studia timp de 8 săptămâni, pentru fiecare săptămână, sugerează-mi conținutul pe care ar trebui să-l parcurg.”*
 
-   ![Pasul 4: Pune întrebări agentului în chat](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.ro.png)
+   ![Pasul 4: Pune întrebări agentului în chat](../../../../../../translated_images/ro/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 5. **Interogare live:**
 
@@ -82,7 +82,7 @@ Pentru a începe, urmează acești pași. Pentru fiecare pas, poți adăuga o ca
    *„Caut răspunsuri despre cum să implementez o soluție multi-agent cu agenți AI dezvoltați pe Azure AI Foundry. Observ că nu există o metodă directă de implementare, cum ar fi canalele Copilot Studio. Care sunt, așadar, diferitele moduri de a face această implementare pentru ca utilizatorii enterprise să interacționeze și să finalizeze sarcinile?  
 Există numeroase articole/bloguri care spun că putem folosi serviciul Azure Bot pentru această sarcină, care poate acționa ca o punte între MS Teams și agenții Azure AI Foundry. Funcționează dacă configurez un bot Azure care se conectează la Orchestrator Agent pe Azure AI Foundry printr-o funcție Azure pentru a face orchestrarea sau trebuie să creez o funcție Azure pentru fiecare agent AI din soluția multi-agent pentru orchestrare în Bot Framework? Orice alte sugestii sunt binevenite.”*
 
-   ![Pasul 5: Interogări live](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.ro.png)
+   ![Pasul 5: Interogări live](../../../../../../translated_images/ro/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
 
    Agentul va răspunde cu linkuri și rezumate relevante din documentație, pe care le poți insera direct în fișierele tale markdown sau folosi ca referințe în cod.
 

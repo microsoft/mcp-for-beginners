@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Введение в протокол контекста модели (MCP): почему он важен для масштабируемых AI-приложений
 
-[![Введение в протокол контекста модели](../../../translated_images/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.ru.png)](https://youtu.be/agBbdiOPLQA)
+[![Введение в протокол контекста модели](../../../translated_images/ru/01.a467036d886b5fb5.png)](https://youtu.be/agBbdiOPLQA)
 
 _(Нажмите на изображение выше, чтобы посмотреть видео урока)_
 

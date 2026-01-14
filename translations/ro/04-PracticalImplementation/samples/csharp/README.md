@@ -26,7 +26,7 @@ Celelalte proiecte provin de la [.NET Aspire](https://learn.microsoft.com/dotnet
 
 1. Când un browser web deschide dashboard-ul .NET Aspire, notează URL-ul `http`. Ar trebui să fie ceva de genul `http://localhost:5058/`.
 
-   ![.NET Aspire Dashboard](../../../../../translated_images/dotnet-aspire-dashboard.0a7095710e9301e90df2efd867e1b675b3b9bc2ccd7feb1ebddc0751522bc37c.ro.png)
+   ![.NET Aspire Dashboard](../../../../../translated_images/ro/dotnet-aspire-dashboard.0a7095710e9301e90df2efd867e1b675b3b9bc2ccd7feb1ebddc0751522bc37c.png)
 
 ## Testează Streamable HTTP cu MCP Inspector
 
@@ -38,7 +38,7 @@ Pornește serverul și rulează următoarea comandă într-un terminal:
 npx @modelcontextprotocol/inspector http://localhost:5058
 ```
 
-![MCP Inspector](../../../../../translated_images/mcp-inspector.c223422b9b494fb4a518a3b3911b3e708e6a5715069470f9163ee2ee8d5f1ba9.ro.png)
+![MCP Inspector](../../../../../translated_images/ro/mcp-inspector.c223422b9b494fb4a518a3b3911b3e708e6a5715069470f9163ee2ee8d5f1ba9.png)
 
 - Selectează `Streamable HTTP` ca tip de Transport.
 - În câmpul Url, introdu URL-ul serverului notat anterior și adaugă `/mcp`. Ar trebui să fie `http` (nu `https`), ceva de genul `http://localhost:5058/mcp`.
@@ -83,7 +83,7 @@ azd up
 
 După ce publicarea se termină, ar trebui să vezi un mesaj de genul acesta:
 
-![Azd deployment success](../../../../../translated_images/azd-deployment-success.bd42940493f1b834a5ce6251a6f88966546009b350df59d0cc4a8caabe94a4f1.ro.png)
+![Azd deployment success](../../../../../translated_images/ro/azd-deployment-success.bd42940493f1b834a5ce6251a6f88966546009b350df59d0cc4a8caabe94a4f1.png)
 
 Ia URL-ul și folosește-l în MCP Inspector și în GitHub Copilot Chat.
 

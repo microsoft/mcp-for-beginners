@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Úvod do Model Context Protocol (MCP): Prečo je dôležitý pre škálovateľné AI aplikácie
 
-[![Úvod do Model Context Protocol](../../../translated_images/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.sk.png)](https://youtu.be/agBbdiOPLQA)
+[![Úvod do Model Context Protocol](../../../translated_images/sk/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.png)](https://youtu.be/agBbdiOPLQA)
 
 _(Kliknite na obrázok vyššie pre zobrazenie videa k tejto lekcii)_
 

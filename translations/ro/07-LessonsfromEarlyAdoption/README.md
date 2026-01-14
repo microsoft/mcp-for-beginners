@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # 🌟 Lecții de la Primii Utilizatori
 
-[![Lecții de la Primii Utilizatori MCP](../../../translated_images/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.ro.png)](https://youtu.be/jds7dSmNptE)
+[![Lecții de la Primii Utilizatori MCP](../../../translated_images/ro/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.png)](https://youtu.be/jds7dSmNptE)
 
 _(Faceți clic pe imaginea de mai sus pentru a viziona videoclipul acestei lecții)_
 

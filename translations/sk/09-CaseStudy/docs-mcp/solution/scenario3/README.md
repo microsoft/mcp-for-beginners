@@ -52,27 +52,27 @@ Pre začiatok postupujte podľa týchto krokov. Ku každému kroku môžete prid
    ```
    Táto konfigurácia hovorí VS Code, ako sa pripojiť k [`Microsoft Learn Docs MCP serveru`](https://github.com/MicrosoftDocs/mcp).
    
-   ![Krok 1: Pridajte mcp.json do priečinka .vscode](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.sk.png)
+   ![Krok 1: Pridajte mcp.json do priečinka .vscode](../../../../../../translated_images/sk/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
     
 2. **Otvorte panel GitHub Copilot Chat:**
    Ak ešte nemáte nainštalované rozšírenie GitHub Copilot, prejdite do zobrazenia Rozšírenia vo VS Code a nainštalujte ho. Môžete si ho stiahnuť priamo z [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat). Potom otvorte panel Copilot Chat z bočného panela.
 
-   ![Krok 2: Otvorte panel Copilot Chat](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.sk.png)
+   ![Krok 2: Otvorte panel Copilot Chat](../../../../../../translated_images/sk/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
 
 3. **Povoľte agent mód a overte nástroje:**
    V paneli Copilot Chat povoľte agent mód.
 
-   ![Krok 3: Povoľte agent mód a overte nástroje](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.sk.png)
+   ![Krok 3: Povoľte agent mód a overte nástroje](../../../../../../translated_images/sk/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
 
    Po povolení agent módu overte, či je MCP server uvedený medzi dostupnými nástrojmi. To zabezpečí, že agent Copilota má prístup k dokumentačnému serveru na získavanie relevantných informácií.
    
-   ![Krok 3: Overenie nástroja MCP server](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.sk.png)
+   ![Krok 3: Overenie nástroja MCP server](../../../../../../translated_images/sk/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
 4. **Začnite nový chat a položte agentovi otázku:**
    Otvorte nový chat v paneli Copilot Chat. Teraz môžete agentovi klásť otázky týkajúce sa dokumentácie. Agent použije MCP server na získanie a zobrazenie relevantnej dokumentácie Microsoft Learn priamo vo vašom editore.
 
    - *„Snažím sa napísať študijný plán pre tému X. Budem sa jej venovať 8 týždňov, pre každý týždeň navrhni obsah, ktorý by som mal študovať.“*
 
-   ![Krok 4: Položte agentovi otázku v chate](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.sk.png)
+   ![Krok 4: Položte agentovi otázku v chate](../../../../../../translated_images/sk/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 5. **Živý dotaz:**
 
@@ -81,7 +81,7 @@ Pre začiatok postupujte podľa týchto krokov. Ku každému kroku môžete prid
    *„Hľadám odpovede, ako nasadiť multi-agentné riešenie s AI agentmi vyvinutými na Azure AI Foundry. Vidím, že neexistuje priamy spôsob nasadenia, ako sú kanály Copilot Studio. Aké sú teda rôzne spôsoby, ako toto nasadenie realizovať, aby podnikový používateľ mohol interagovať a splniť úlohu?
 Existuje množstvo článkov/blogov, ktoré tvrdia, že môžeme použiť Azure Bot službu ako most medzi MS Teams a Azure AI Foundry agentmi. Bude to fungovať, ak nastavím Azure bota, ktorý sa pripojí k Orchestrator Agentovi na Azure AI Foundry cez Azure funkciu na orchestráciu, alebo musím vytvoriť Azure funkciu pre každého AI agenta v multi-agentnom riešení, aby orchestrácia prebiehala na úrovni Bot frameworku? Akékoľvek ďalšie návrhy sú vítané.“*
 
-   ![Krok 5: Živé dotazy](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.sk.png)
+   ![Krok 5: Živé dotazy](../../../../../../translated_images/sk/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
 
    Agent odpovie relevantnými odkazmi na dokumentáciu a zhrnutiami, ktoré môžete priamo vložiť do svojich markdown súborov alebo použiť ako odkazy vo vašom kóde.
    

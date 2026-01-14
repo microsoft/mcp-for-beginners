@@ -64,7 +64,7 @@ Uma ferramenta poderosa de depuração que oferece:
 2. **Cria um novo agente** com a seguinte configuração:  
    - Nome do Agente: `WeatherAgent`
 
-![Agent Creation](../../../../translated_images/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.pt.png)
+![Agent Creation](../../../../translated_images/pt/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.png)
 
 ### Passo 2: Inicializar o Projeto do Servidor MCP
 
@@ -74,7 +74,7 @@ Uma ferramenta poderosa de depuração que oferece:
 4. **Seleciona o template `python-weather`**  
 5. **Nomeia o teu servidor:** `weather_mcp`
 
-![Python Template Selection](../../../../translated_images/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.pt.png)
+![Python Template Selection](../../../../translated_images/pt/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.png)
 
 ### Passo 3: Abrir e Analisar o Projeto
 
@@ -340,7 +340,7 @@ USER_PROMPT
 How's the weather like in Seattle
 ```
 
-![Agent Builder Debug Result](../../../../translated_images/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.pt.png)
+![Agent Builder Debug Result](../../../../translated_images/pt/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.png)
 
 ### Passo 8: Depurar com MCP Inspector
 
@@ -352,7 +352,7 @@ How's the weather like in Seattle
    - Monitoriza pedidos de rede  
    - Depura respostas do servidor
 
-![MCP Inspector Interface](../../../../translated_images/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.pt.png)
+![MCP Inspector Interface](../../../../translated_images/pt/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.png)
 
 ---
 

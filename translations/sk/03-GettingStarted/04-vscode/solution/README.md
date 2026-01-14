@@ -23,7 +23,7 @@ To zodpovedá spusteniu príkazu ako `node build/index.js`.
 
     Mali by ste vidieť, že sa nad textovým poľom chatu zobrazí nástroj, ktorý môžete vybrať na spustenie, ako je to znázornené na tomto obrázku:
 
-    ![VS Code naznačuje, že chce spustiť nástroj](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.sk.png)
+    ![VS Code naznačuje, že chce spustiť nástroj](../../../../../translated_images/sk/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
     Výber nástroja by mal vrátiť číselný výsledok "23", ak bol váš príkaz ako sme uviedli vyššie.
 

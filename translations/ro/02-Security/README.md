@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP Security: Protecție cuprinzătoare pentru sistemele AI
 
-[![MCP Security Best Practices](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.ro.png)](https://youtu.be/88No8pw706o)
+[![MCP Security Best Practices](../../../translated_images/ro/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(Faceți clic pe imaginea de mai sus pentru a viziona videoclipul acestei lecții)_
 
@@ -133,7 +133,7 @@ Implementările moderne MCP se confruntă cu vectori de atac sofisticați specif
 
 **Impact în lumea reală**: Aceste atacuri pot duce la exfiltrarea datelor, încălcări ale confidențialității, generarea de conținut dăunător și manipularea interacțiunilor utilizatorilor. Pentru o analiză detaliată, vedeți [Injecția de prompturi în MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
-![Prompt Injection Attack Diagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.ro.png)
+![Prompt Injection Attack Diagram](../../../translated_images/ro/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **Atacuri de otrăvire a uneltelor**
 
@@ -147,7 +147,7 @@ Implementările moderne MCP se confruntă cu vectori de atac sofisticați specif
 
 **Riscuri pentru serverele găzduite**: Serverele MCP la distanță prezintă riscuri ridicate deoarece definițiile uneltelor pot fi actualizate după aprobarea inițială a utilizatorului, creând scenarii în care uneltele anterior sigure devin malițioase. Pentru o analiză completă, vedeți [Atacuri de otrăvire a uneltelor (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
-![Tool Injection Attack Diagram](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.ro.png)
+![Tool Injection Attack Diagram](../../../translated_images/ro/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **Vectori suplimentari de atac AI**
 
@@ -200,7 +200,7 @@ Microsoft **AI Prompt Shields** oferă o apărare cuprinzătoare împotriva atac
 
 **Resurse de implementare**: [Documentația Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields Protection](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.ro.png)
+![Microsoft Prompt Shields Protection](../../../translated_images/ro/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## Amenințări avansate de securitate MCP

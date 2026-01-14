@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Introducere în Protocolul Contextului Modelului (MCP): De ce este important pentru aplicațiile AI scalabile
 
-[![Introducere în Protocolul Contextului Modelului](../../../translated_images/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.ro.png)](https://youtu.be/agBbdiOPLQA)
+[![Introducere în Protocolul Contextului Modelului](../../../translated_images/ro/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.png)](https://youtu.be/agBbdiOPLQA)
 
 _(Click pe imaginea de mai sus pentru a viziona videoclipul lecției)_
 

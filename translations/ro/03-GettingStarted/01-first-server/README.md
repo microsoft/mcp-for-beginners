@@ -156,7 +156,7 @@ Când rulați comenzile de mai sus, MCP Inspector va lansa o interfață web loc
 
 Iată o captură de ecran cu cum poate arăta:
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.ro.png)
+![MCP Inspector server connection](../../../../translated_images/ro/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## Probleme comune de configurare și soluții
 
@@ -1302,7 +1302,7 @@ npx @modelcontextprotocol/inspector
 2. Setează URL-ul la: `http://localhost:8080/sse`
 3. Apasă "Connect"
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.ro.png)
+![Connect](../../../../translated_images/ro/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **Acum ești conectat la server**
 **Secțiunea de testare a serverului Java este acum completă**
@@ -1311,18 +1311,18 @@ Următoarea secțiune este despre interacțiunea cu serverul.
 
 Ar trebui să vezi următoarea interfață de utilizator:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.ro.png)
+![Connect](../../../../translated_images/ro/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. Conectează-te la server selectând butonul Connect
   Odată ce te conectezi la server, ar trebui să vezi următoarele:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.ro.png)
+  ![Connected](../../../../translated_images/ro/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. Selectează "Tools" și "listTools", ar trebui să apară "Add", selectează "Add" și completează valorile parametrilor.
 
   Ar trebui să vezi următorul răspuns, adică un rezultat de la instrumentul "add":
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.ro.png)
+  ![Result of running add](../../../../translated_images/ro/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 Felicitări, ai reușit să creezi și să rulezi primul tău server!
 

@@ -201,7 +201,7 @@ MCP Inspector este un instrument util pentru interacțiunea cu serviciile MCP. P
    - Apasă „List Tools” pentru a vedea operațiile disponibile ale calculatorului
    - Selectează o unealtă și apasă „Run Tool” pentru a executa o operație
 
-![Captură ecran MCP Inspector](../../../../../../translated_images/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.ro.png)
+![Captură ecran MCP Inspector](../../../../../../translated_images/ro/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.png)
 
 ### Folosind Docker
 
