@@ -110,7 +110,7 @@ Let me know if you want module-specific recommendations or need more customized 
 
 Dưới đây là mẫu giải pháp tối giản. Mã nguồn đầy đủ và chi tiết có trong thư mục solution.
 
-![Tổng quan Kịch bản 2](../../../../translated_images/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.vi.png)
+![Tổng quan Kịch bản 2](../../../../translated_images/vi/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.png)
 
 <details>
 <summary>Python (Chainlit)</summary>
@@ -167,7 +167,7 @@ Dưới đây là ví dụ thiết lập MCP server trong VS Code:
 
 > Để xem hướng dẫn chi tiết kèm ảnh chụp màn hình và từng bước, xem [`README.md`](./solution/scenario3/README.md).
 
-![Tổng quan Kịch bản 3](../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.vi.png)
+![Tổng quan Kịch bản 3](../../../../translated_images/vi/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 Cách tiếp cận này rất phù hợp với những ai xây dựng khóa học kỹ thuật, viết tài liệu hoặc phát triển mã cần tham khảo thường xuyên.
 

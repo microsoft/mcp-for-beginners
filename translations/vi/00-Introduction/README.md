@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Giới thiệu về Giao thức Ngữ cảnh Mô hình (MCP): Tại sao nó quan trọng đối với các ứng dụng AI mở rộng
 
-[![Giới thiệu về Giao thức Ngữ cảnh Mô hình](../../../translated_images/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.vi.png)](https://youtu.be/agBbdiOPLQA)
+[![Giới thiệu về Giao thức Ngữ cảnh Mô hình](../../../translated_images/vi/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.png)](https://youtu.be/agBbdiOPLQA)
 
 _(Nhấp vào hình ảnh trên để xem video bài học này)_
 

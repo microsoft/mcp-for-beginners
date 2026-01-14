@@ -156,7 +156,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 以下是界面截图示例：
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.zh.png)
+![MCP Inspector server connection](../../../../translated_images/zh/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## 常见设置问题及解决方案
 
@@ -1302,7 +1302,7 @@ npx @modelcontextprotocol/inspector
 2. 将URL设置为：`http://localhost:8080/sse`
 3. 点击“Connect”
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.zh.png)
+![Connect](../../../../translated_images/zh/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **你现在已连接到服务器**
 **Java服务器测试部分现在完成**
@@ -1311,18 +1311,18 @@ npx @modelcontextprotocol/inspector
 
 你应该看到以下用户界面：
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.zh.png)
+![Connect](../../../../translated_images/zh/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. 通过选择“Connect”按钮连接到服务器
   一旦连接到服务器，你应该看到以下内容：
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.zh.png)
+  ![Connected](../../../../translated_images/zh/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. 选择“Tools”和“listTools”，你应该看到“Add”出现，选择“Add”并填写参数值。
 
   你应该看到以下响应，即“add”工具的结果：
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.zh.png)
+  ![Result of running add](../../../../translated_images/zh/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 恭喜，你已经成功创建并运行了你的第一个服务器！
 

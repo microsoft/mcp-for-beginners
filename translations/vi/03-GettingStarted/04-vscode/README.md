@@ -38,9 +38,9 @@ Bạn có thể kiểm soát MCP Server của mình theo hai cách khác nhau:
 
 ### Ảnh chụp màn hình
 
-![Cấu hình MCP Server có hướng dẫn trong Visual Studio Code](../../../../translated_images/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.vi.png)
-![Chọn công cụ cho mỗi phiên agent](../../../../translated_images/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.vi.png)
-![Dễ dàng gỡ lỗi trong quá trình phát triển MCP](../../../../translated_images/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.vi.png)
+![Cấu hình MCP Server có hướng dẫn trong Visual Studio Code](../../../../translated_images/vi/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.png)
+![Chọn công cụ cho mỗi phiên agent](../../../../translated_images/vi/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.png)
+![Dễ dàng gỡ lỗi trong quá trình phát triển MCP](../../../../translated_images/vi/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.png)
 
 Hãy cùng thảo luận thêm về cách sử dụng giao diện trực quan trong các phần tiếp theo.
 
@@ -103,15 +103,15 @@ Bây giờ bạn đã thêm một mục, hãy khởi động server:
 
 1. Tìm mục của bạn trong *mcp.json* và đảm bảo bạn tìm thấy biểu tượng "play":
 
-  ![Khởi động server trong Visual Studio Code](../../../../translated_images/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.vi.png)  
+  ![Khởi động server trong Visual Studio Code](../../../../translated_images/vi/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.png)  
 
 1. Nhấp vào biểu tượng "play", bạn sẽ thấy biểu tượng công cụ trong GitHub Copilot Chat tăng số lượng công cụ có sẵn. Nếu bạn nhấp vào biểu tượng công cụ đó, bạn sẽ thấy danh sách các công cụ đã đăng ký. Bạn có thể chọn/bỏ chọn từng công cụ tùy thuộc vào việc bạn muốn GitHub Copilot sử dụng chúng làm ngữ cảnh:
 
-  ![Khởi động server trong Visual Studio Code](../../../../translated_images/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.vi.png)
+  ![Khởi động server trong Visual Studio Code](../../../../translated_images/vi/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.png)
 
 1. Để chạy một công cụ, nhập một lệnh mà bạn biết sẽ khớp với mô tả của một trong các công cụ của bạn, ví dụ như lệnh "add 22 to 1":
 
-  ![Chạy một công cụ từ GitHub Copilot](../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.vi.png)
+  ![Chạy một công cụ từ GitHub Copilot](../../../../translated_images/vi/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
   Bạn sẽ thấy một phản hồi là 23.
 

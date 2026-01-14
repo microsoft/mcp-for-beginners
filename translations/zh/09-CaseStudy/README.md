@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP 实践：真实案例研究
 
-[![MCP 实践：真实案例研究](../../../translated_images/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.zh.png)](https://youtu.be/IxshWb2Az5w)
+[![MCP 实践：真实案例研究](../../../translated_images/zh/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.png)](https://youtu.be/IxshWb2Az5w)
 
 _（点击上方图片观看本课视频）_
 

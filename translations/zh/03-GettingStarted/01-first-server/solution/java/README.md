@@ -72,7 +72,7 @@ MCP Inspector 是一个用于与 MCP 服务交互的实用工具。使用该计�
    - 点击 “List Tools” 查看可用的计算器操作
    - 选择一个工具并点击 “Run Tool” 执行操作
 
-![MCP Inspector Screenshot](../../../../../../translated_images/tool.40e180a7b0d0fe2067cf96435532b01f63f7f8619d6b0132355a04b426b669ac.zh.png)
+![MCP Inspector Screenshot](../../../../../../translated_images/zh/tool.40e180a7b0d0fe2067cf96435532b01f63f7f8619d6b0132355a04b426b669ac.png)
 
 **免责声明**：  
 本文件使用 AI 翻译服务 [Co-op Translator](https://github.com/Azure/co-op-translator) 进行翻译。虽然我们力求准确，但请注意，自动翻译可能包含错误或不准确之处。原始语言的原文应被视为权威来源。对于重要信息，建议使用专业人工翻译。我们不对因使用本翻译而产生的任何误解或误释承担责任。

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Thực hành tốt nhất phát triển MCP
 
-[![Thực hành tốt nhất phát triển MCP](../../../translated_images/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.vi.png)](https://youtu.be/W56H9W7x-ao)
+[![Thực hành tốt nhất phát triển MCP](../../../translated_images/vi/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.png)](https://youtu.be/W56H9W7x-ao)
 
 _(Nhấp vào hình ảnh trên để xem video của bài học này)_
 

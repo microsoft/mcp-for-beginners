@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # 社区与贡献
 
-[![如何为 MCP 贡献：工具、文档、代码及更多](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.zh.png)](https://youtu.be/v1pvCYAWpRE)
+[![如何为 MCP 贡献：工具、文档、代码及更多](../../../translated_images/zh/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.png)](https://youtu.be/v1pvCYAWpRE)
 
 _（点击上方图片观看本课视频）_
 

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 ## Bắt đầu  
 
-[![Xây dựng máy chủ MCP đầu tiên của bạn](../../../translated_images/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.vi.png)](https://youtu.be/sNDZO9N4m9Y)
+[![Xây dựng máy chủ MCP đầu tiên của bạn](../../../translated_images/vi/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.png)](https://youtu.be/sNDZO9N4m9Y)
 
 _(Nhấp vào hình ảnh trên để xem video bài học này)_
 
