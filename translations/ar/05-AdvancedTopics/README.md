@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # مواضيع متقدمة في MCP
 
-[![MCP المتقدم: وكلاء الذكاء الاصطناعي الآمنة، القابلة للتوسع، ومتعددة الوسائط](../../../translated_images/ar/06.42259eaf91fccfc6.png)](https://youtu.be/4yjmGvJzYdY)
+[![MCP المتقدم: وكلاء الذكاء الاصطناعي الآمنة، القابلة للتوسع، ومتعددة الوسائط](../../../translated_images/ar/06.42259eaf91fccfc6.webp)](https://youtu.be/4yjmGvJzYdY)
 
 _(انقر على الصورة أعلاه لمشاهدة فيديو الدرس)_
 

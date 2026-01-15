@@ -156,7 +156,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 إليك لقطة شاشة لما قد تبدو عليه:
 
-![MCP Inspector server connection](../../../../translated_images/ar/connected.73d1e042c24075d3.png)
+![MCP Inspector server connection](../../../../translated_images/ar/connected.73d1e042c24075d3.webp)
 
 ## مشكلات الإعداد الشائعة والحلول
 
@@ -1302,7 +1302,7 @@ npx @modelcontextprotocol/inspector
 2. عيّن عنوان URL إلى: `http://localhost:8080/sse`
 3. انقر على "Connect"
 
-![Connect](../../../../translated_images/ar/tool.163d33e3ee307e20.png)
+![Connect](../../../../translated_images/ar/tool.163d33e3ee307e20.webp)
 
 **أنت الآن متصل بالخادم**
 **تم الانتهاء الآن من قسم اختبار خادم جافا**
@@ -1311,18 +1311,18 @@ npx @modelcontextprotocol/inspector
 
 يجب أن ترى واجهة المستخدم التالية:
 
-![Connect](../../../../translated_images/ar/connect.141db0b2bd05f096.png)
+![Connect](../../../../translated_images/ar/connect.141db0b2bd05f096.webp)
 
 1. اتصل بالخادم عن طريق اختيار زر Connect
   بمجرد الاتصال بالخادم، يجب أن ترى الآن ما يلي:
 
-  ![Connected](../../../../translated_images/ar/connected.73d1e042c24075d3.png)
+  ![Connected](../../../../translated_images/ar/connected.73d1e042c24075d3.webp)
 
 1. اختر "Tools" و "listTools"، يجب أن ترى "Add" تظهر، اختر "Add" واملأ قيم المعلمات.
 
   يجب أن ترى الاستجابة التالية، أي نتيجة من أداة "add":
 
-  ![Result of running add](../../../../translated_images/ar/ran-tool.a5a6ee878c1369ec.png)
+  ![Result of running add](../../../../translated_images/ar/ran-tool.a5a6ee878c1369ec.webp)
 
 تهانينا، لقد تمكنت من إنشاء وتشغيل خادمك الأول!
 

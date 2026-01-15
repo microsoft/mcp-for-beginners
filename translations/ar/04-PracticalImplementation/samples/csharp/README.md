@@ -26,7 +26,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 1. عندما يفتح متصفح الويب لوحة تحكم .NET Aspire، لاحظ عنوان URL الخاص بـ `http`. يجب أن يكون شيئًا مثل `http://localhost:5058/`.
 
-   ![لوحة تحكم .NET Aspire](../../../../../translated_images/ar/dotnet-aspire-dashboard.0a7095710e9301e9.png)
+   ![لوحة تحكم .NET Aspire](../../../../../translated_images/ar/dotnet-aspire-dashboard.0a7095710e9301e9.webp)
 
 ## اختبار Streamable HTTP باستخدام MCP Inspector
 
@@ -38,7 +38,7 @@ CO_OP_TRANSLATOR_METADATA:
 npx @modelcontextprotocol/inspector http://localhost:5058
 ```
 
-![MCP Inspector](../../../../../translated_images/ar/mcp-inspector.c223422b9b494fb4.png)
+![MCP Inspector](../../../../../translated_images/ar/mcp-inspector.c223422b9b494fb4.webp)
 
 - اختر `Streamable HTTP` كنوع النقل.
 - في حقل Url، أدخل عنوان URL الخاص بالخادم الذي لاحظته سابقًا، وأضف `/mcp` في النهاية. يجب أن يكون `http` (وليس `https`) مثل `http://localhost:5058/mcp`.
@@ -83,7 +83,7 @@ azd up
 
 عند انتهاء النشر، يجب أن ترى رسالة مثل هذه:
 
-![نجاح نشر Azd](../../../../../translated_images/ar/azd-deployment-success.bd42940493f1b834.png)
+![نجاح نشر Azd](../../../../../translated_images/ar/azd-deployment-success.bd42940493f1b834.webp)
 
 انسخ عنوان URL واستخدمه في MCP Inspector وفي GitHub Copilot Chat.
 

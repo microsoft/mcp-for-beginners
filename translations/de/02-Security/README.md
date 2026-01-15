@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP-Sicherheit: Umfassender Schutz für KI-Systeme
 
-[![MCP Security Best Practices](../../../translated_images/de/03.175aed6dedae133f.png)](https://youtu.be/88No8pw706o)
+[![MCP Security Best Practices](../../../translated_images/de/03.175aed6dedae133f.webp)](https://youtu.be/88No8pw706o)
 
 _(Klicken Sie auf das obige Bild, um das Video zu dieser Lektion anzusehen)_
 
@@ -133,7 +133,7 @@ Moderne MCP-Implementierungen sehen sich ausgefeilten KI-spezifischen Angriffsve
 
 **Reale Auswirkungen**: Diese Angriffe können zu Datenexfiltration, Datenschutzverletzungen, Erzeugung schädlicher Inhalte und Manipulation von Benutzerinteraktionen führen. Für eine detaillierte Analyse siehe [Prompt Injection in MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
-![Prompt Injection Attack Diagram](../../../translated_images/de/prompt-injection.ed9fbfde297ca877.png)
+![Prompt Injection Attack Diagram](../../../translated_images/de/prompt-injection.ed9fbfde297ca877.webp)
 
 #### **Tool-Poisoning-Angriffe**
 
@@ -147,7 +147,7 @@ Moderne MCP-Implementierungen sehen sich ausgefeilten KI-spezifischen Angriffsve
 
 **Risiken bei gehosteten Servern**: Remote-MCP-Server bergen erhöhte Risiken, da Tool-Definitionen nach der anfänglichen Nutzerfreigabe aktualisiert werden können, was Szenarien schafft, in denen zuvor sichere Tools bösartig werden. Für eine umfassende Analyse siehe [Tool Poisoning Attacks (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
-![Tool Injection Attack Diagram](../../../translated_images/de/tool-injection.3b0b4a6b24de6bef.png)
+![Tool Injection Attack Diagram](../../../translated_images/de/tool-injection.3b0b4a6b24de6bef.webp)
 
 #### **Weitere KI-Angriffsvektoren**
 
@@ -200,7 +200,7 @@ Microsoft **AI Prompt Shields** bieten umfassenden Schutz gegen direkte und indi
 
 **Implementierungsressourcen**: [Microsoft Prompt Shields Dokumentation](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields Protection](../../../translated_images/de/prompt-shield.ff5b95be76e9c78c.png)
+![Microsoft Prompt Shields Protection](../../../translated_images/de/prompt-shield.ff5b95be76e9c78c.webp)
 
 
 ## Erweiterte MCP-Sicherheitsbedrohungen

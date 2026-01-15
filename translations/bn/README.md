@@ -7,7 +7,7 @@ CO_OP_TRANSLATOR_METADATA:
   "language_code": "bn"
 }
 -->
-![MCP-এর জন্য শিক্ষানবিশ](../../translated_images/bn/mcp-beginners.2ce2b317996369ff.png) 
+![MCP-এর জন্য শিক্ষানবিশ](../../translated_images/bn/mcp-beginners.2ce2b317996369ff.webp) 
 
 [![GitHub অবদানকারীরা](https://img.shields.io/github/contributors/microsoft/mcp-for-beginners.svg)](https://GitHub.com/microsoft/mcp-for-beginners/graphs/contributors)
 [![GitHub ইস্যুগুলি](https://img.shields.io/github/issues/microsoft/mcp-for-beginners.svg)](https://GitHub.com/microsoft/mcp-for-beginners/issues)

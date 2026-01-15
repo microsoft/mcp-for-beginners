@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP Kernkonzepte: Beherrschung des Model Context Protocol für die KI-Integration
 
-[![MCP Kernkonzepte](../../../translated_images/de/02.8203e26c6fb5a797.png)](https://youtu.be/earDzWGtE84)
+[![MCP Kernkonzepte](../../../translated_images/de/02.8203e26c6fb5a797.webp)](https://youtu.be/earDzWGtE84)
 
 _(Klicken Sie auf das obige Bild, um das Video zu dieser Lektion anzusehen)_
 

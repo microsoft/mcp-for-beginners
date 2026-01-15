@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # التنفيذ العملي
 
-[![كيفية بناء واختبار ونشر تطبيقات MCP باستخدام أدوات وسير عمل حقيقية](../../../translated_images/ar/05.64bea204e25ca891.png)](https://youtu.be/vCN9-mKBDfQ)
+[![كيفية بناء واختبار ونشر تطبيقات MCP باستخدام أدوات وسير عمل حقيقية](../../../translated_images/ar/05.64bea204e25ca891.webp)](https://youtu.be/vCN9-mKBDfQ)
 
 _(اضغط على الصورة أعلاه لمشاهدة فيديو هذا الدرس)_
 
@@ -171,7 +171,7 @@ SDK الخاص بـ MCP في C# في مرحلة المعاينة وقد تتغي
 
     يجب أن ترى واجهة مشابهة لـ:
 
-    ![Connect to Node inspector](../../../translated_images/ar/connect.141db0b2bd05f096.png)
+    ![Connect to Node inspector](../../../translated_images/ar/connect.141db0b2bd05f096.webp)
 
 1. اضغط على الرابط لتحميل تطبيق الويب MCP Inspector من عنوان URL الذي يعرضه التطبيق (مثل [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources))
 1. قم بتعيين نوع النقل إلى `SSE`

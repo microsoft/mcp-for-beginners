@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # مقدمة إلى بروتوكول سياق النموذج (MCP): لماذا هو مهم لتطبيقات الذكاء الاصطناعي القابلة للتوسع
 
-[![مقدمة إلى بروتوكول سياق النموذج](../../../translated_images/ar/01.a467036d886b5fb5.png)](https://youtu.be/agBbdiOPLQA)
+[![مقدمة إلى بروتوكول سياق النموذج](../../../translated_images/ar/01.a467036d886b5fb5.webp)](https://youtu.be/agBbdiOPLQA)
 
 _(انقر على الصورة أعلاه لمشاهدة فيديو الدرس)_
 

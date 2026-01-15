@@ -38,9 +38,9 @@ CO_OP_TRANSLATOR_METADATA:
 
 ### لقطات الشاشة
 
-![تكوين خادم MCP الموجه في Visual Studio Code](../../../../translated_images/ar/chat-mode-agent.729a22473f822216.png)
-![اختيار الأدوات لكل جلسة عميل](../../../../translated_images/ar/agent-mode-select-tools.522c7ba5df0848f8.png)
-![تصحيح الأخطاء بسهولة أثناء تطوير MCP](../../../../translated_images/ar/mcp-list-servers.fce89eefe3f30032.png)
+![تكوين خادم MCP الموجه في Visual Studio Code](../../../../translated_images/ar/chat-mode-agent.729a22473f822216.webp)
+![اختيار الأدوات لكل جلسة عميل](../../../../translated_images/ar/agent-mode-select-tools.522c7ba5df0848f8.webp)
+![تصحيح الأخطاء بسهولة أثناء تطوير MCP](../../../../translated_images/ar/mcp-list-servers.fce89eefe3f30032.webp)
 
 دعونا نتحدث أكثر عن كيفية استخدام واجهة المستخدم المرئية في الأقسام التالية.
 
@@ -103,15 +103,15 @@ CO_OP_TRANSLATOR_METADATA:
 
 1. حدد موقع الإدخال الخاص بك في *mcp.json* وتأكد من العثور على أيقونة "تشغيل":
 
-  ![بدء تشغيل الخادم في Visual Studio Code](../../../../translated_images/ar/vscode-start-server.8e3c986612e3555d.png)  
+  ![بدء تشغيل الخادم في Visual Studio Code](../../../../translated_images/ar/vscode-start-server.8e3c986612e3555d.webp)  
 
 1. انقر على أيقونة "تشغيل"، يجب أن ترى أيقونة الأدوات في GitHub Copilot Chat تزداد بعدد الأدوات المتاحة. إذا نقرت على أيقونة الأدوات المذكورة، سترى قائمة بالأدوات المسجلة. يمكنك تحديد/إلغاء تحديد كل أداة بناءً على ما إذا كنت تريد أن يستخدمها GitHub Copilot كجزء من السياق:
 
-  ![بدء تشغيل الخادم في Visual Studio Code](../../../../translated_images/ar/vscode-tool.0b3bbea2fb7d8c26.png)
+  ![بدء تشغيل الخادم في Visual Studio Code](../../../../translated_images/ar/vscode-tool.0b3bbea2fb7d8c26.webp)
 
 1. لتشغيل أداة، اكتب أمرًا نصيًا تعرف أنه يتطابق مع وصف إحدى أدواتك، على سبيل المثال أمر نصي مثل "أضف 22 إلى 1":
 
-  ![تشغيل أداة من GitHub Copilot](../../../../translated_images/ar/vscode-agent.d5a0e0b897331060.png)
+  ![تشغيل أداة من GitHub Copilot](../../../../translated_images/ar/vscode-agent.d5a0e0b897331060.webp)
 
   يجب أن ترى استجابة تقول 23.
 

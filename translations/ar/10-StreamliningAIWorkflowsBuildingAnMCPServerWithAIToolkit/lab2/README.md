@@ -203,7 +203,7 @@ graph TB
    - **الاسم**: `BrowserAgent`
    - **النموذج**: اختر GPT-4o 
 
-![BrowserAgent](../../../../translated_images/ar/BrowserAgent.09c1adde5e136573.png)
+![BrowserAgent](../../../../translated_images/ar/BrowserAgent.09c1adde5e136573.webp)
 
 
 ### 🔧 المرحلة 2: سير عمل دمج MCP
@@ -213,7 +213,7 @@ graph TB
 2. **انقر على "إضافة أداة"** لفتح قائمة التكامل
 3. **اختر "خادم MCP"** من الخيارات المتاحة
 
-![AddMCP](../../../../translated_images/ar/AddMCP.afe3308ac20aa944.png)
+![AddMCP](../../../../translated_images/ar/AddMCP.afe3308ac20aa944.webp)
 
 **🔍 فهم أنواع الأدوات:**
 - **الأدوات المدمجة**: وظائف AI Toolkit المسبقة التكوين
@@ -223,10 +223,10 @@ graph TB
 
 #### الخطوة 4: اختيار خادم MCP
 1. **اختر خيار "خادم MCP"** للمتابعة
-![AddMCPServer](../../../../translated_images/ar/AddMCPServer.69b911ccef872cbd.png)
+![AddMCPServer](../../../../translated_images/ar/AddMCPServer.69b911ccef872cbd.webp)
 
 2. **تصفح كتالوج MCP** لاستكشاف التكاملات المتاحة
-![MCPCatalog](../../../../translated_images/ar/MCPCatalog.a817d05314569900.png)
+![MCPCatalog](../../../../translated_images/ar/MCPCatalog.a817d05314569900.webp)
 
 
 ### 🎮 المرحلة 3: تكوين Playwright MCP
@@ -236,12 +236,12 @@ graph TB
 2. **اختر "Playwright"** من القائمة المميزة
 3. **اقبل معرف MCP الافتراضي** أو قم بتخصيصه لبيئتك
 
-![MCPID](../../../../translated_images/ar/MCPID.67d446052979e819.png)
+![MCPID](../../../../translated_images/ar/MCPID.67d446052979e819.webp)
 
 #### الخطوة 6: تفعيل قدرات Playwright
 **🔑 خطوة حاسمة**: اختر **جميع** طرق Playwright المتاحة لتحقيق أقصى قدر من الوظائف
 
-![Tools](../../../../translated_images/ar/Tools.3ea23c447b4d9fec.png)
+![Tools](../../../../translated_images/ar/Tools.3ea23c447b4d9fec.webp)
 
 **🛠️ أدوات Playwright الأساسية:**
 - **التنقل**: `goto`، `goBack`، `goForward`، `reload`
@@ -257,7 +257,7 @@ graph TB
 - عدم وجود رسائل خطأ في لوحة التكامل
 - حالة خادم Playwright تظهر "متصل"
 
-![AgentTools](../../../../translated_images/ar/AgentTools.053cfb96a17e0219.png)
+![AgentTools](../../../../translated_images/ar/AgentTools.053cfb96a17e0219.webp)
 
 **🔧 استكشاف المشكلات الشائعة:**
 - **فشل الاتصال**: تحقق من اتصال الإنترنت وإعدادات الجدار الناري
@@ -323,7 +323,7 @@ Navigate to github.com/kinfey and provide a comprehensive analysis including:
 Include screenshots at key steps and provide actionable insights.
 ```
 
-![Prompt](../../../../translated_images/ar/Prompt.bfc846605db4999f.png)
+![Prompt](../../../../translated_images/ar/Prompt.bfc846605db4999f.webp)
 
 ### 🚀 المرحلة 5: التنفيذ والاختبار
 
@@ -335,19 +335,19 @@ Include screenshots at key steps and provide actionable insights.
    - تُلتقط لقطات شاشة لكل خطوة رئيسية
    - تُعرض نتائج التحليل بشكل مباشر
 
-![Browser](../../../../translated_images/ar/Browser.ec011d0bd64d0d11.png)
+![Browser](../../../../translated_images/ar/Browser.ec011d0bd64d0d11.webp)
 
 #### الخطوة 11: تحليل النتائج والرؤى
 راجع التحليل الشامل في واجهة منشئ الوكلاء:
 
-![Result](../../../../translated_images/ar/Result.8638f2b6703e9ea6.png)
+![Result](../../../../translated_images/ar/Result.8638f2b6703e9ea6.webp)
 
 ### 🌟 المرحلة 6: القدرات المتقدمة والنشر
 
 #### الخطوة 12: التصدير والنشر الإنتاجي
 يدعم منشئ الوكلاء خيارات نشر متعددة:
 
-![Code](../../../../translated_images/ar/Code.d9eeeead0b96db0c.png)
+![Code](../../../../translated_images/ar/Code.d9eeeead0b96db0c.webp)
 
 ## 🎓 ملخص الوحدة 2 والخطوات التالية
 

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP in Aktion: Fallstudien aus der Praxis
 
-[![MCP in Aktion: Fallstudien aus der Praxis](../../../translated_images/de/10.3262cc80b4de5071.png)](https://youtu.be/IxshWb2Az5w)
+[![MCP in Aktion: Fallstudien aus der Praxis](../../../translated_images/de/10.3262cc80b4de5071.webp)](https://youtu.be/IxshWb2Az5w)
 
 _(Klicken Sie auf das Bild oben, um das Video zu dieser Lektion anzusehen)_
 

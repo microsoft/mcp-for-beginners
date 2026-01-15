@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP-Entwicklungs-Best Practices
 
-[![MCP-Entwicklungs-Best Practices](../../../translated_images/de/09.d0f6d86c9d72134c.png)](https://youtu.be/W56H9W7x-ao)
+[![MCP-Entwicklungs-Best Practices](../../../translated_images/de/09.d0f6d86c9d72134c.webp)](https://youtu.be/W56H9W7x-ao)
 
 _(Klicken Sie auf das Bild oben, um das Video zu dieser Lektion anzusehen)_
 

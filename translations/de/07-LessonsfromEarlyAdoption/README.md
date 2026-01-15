@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # 🌟 Lektionen von frühen Anwendern
 
-[![Lektionen von MCP Early Adopters](../../../translated_images/de/08.980bb2babbaadd8a.png)](https://youtu.be/jds7dSmNptE)
+[![Lektionen von MCP Early Adopters](../../../translated_images/de/08.980bb2babbaadd8a.webp)](https://youtu.be/jds7dSmNptE)
 
 _(Klicken Sie auf das Bild oben, um das Video zu dieser Lektion anzusehen)_
 

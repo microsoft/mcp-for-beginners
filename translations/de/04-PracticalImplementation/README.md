@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Praktische Umsetzung
 
-[![Wie man MCP-Apps mit echten Tools und Workflows erstellt, testet und bereitstellt](../../../translated_images/de/05.64bea204e25ca891.png)](https://youtu.be/vCN9-mKBDfQ)
+[![Wie man MCP-Apps mit echten Tools und Workflows erstellt, testet und bereitstellt](../../../translated_images/de/05.64bea204e25ca891.webp)](https://youtu.be/vCN9-mKBDfQ)
 
 _(Klicken Sie auf das Bild oben, um das Video zu dieser Lektion anzusehen)_
 
@@ -215,7 +215,7 @@ Sehen wir uns an, ob wir das zuvor erwähnte Beispiel bereitstellen können:
 
     Sie sollten eine Oberfläche ähnlich der folgenden sehen:
 
-    ![Mit Node Inspector verbinden](../../../translated_images/de/connect.141db0b2bd05f096.png)
+    ![Mit Node Inspector verbinden](../../../translated_images/de/connect.141db0b2bd05f096.webp)
 
 1. Klicken Sie mit STRG auf die URL, die von der App angezeigt wird (z. B. [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources)), um die MCP Inspector-Webanwendung zu laden.
 1. Stellen Sie den Transporttyp auf `SSE` ein.

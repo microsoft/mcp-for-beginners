@@ -110,7 +110,7 @@ Let me know if you want module-specific recommendations or need more customized 
 
 فيما يلي نموذج حل بسيط. الكود الكامل والتفاصيل متوفرة في مجلد الحل.
 
-![نظرة عامة على السيناريو 2](../../../../translated_images/ar/scenario2.0c92726d5cd81f68.png)
+![نظرة عامة على السيناريو 2](../../../../translated_images/ar/scenario2.0c92726d5cd81f68.webp)
 
 <details>
 <summary>بايثون (Chainlit)</summary>
@@ -167,7 +167,7 @@ def handle_message(message):
 
 > للحصول على شرح مفصل مع لقطات شاشة ودليل خطوة بخطوة، راجع [`README.md`](./solution/scenario3/README.md).
 
-![نظرة عامة على السيناريو 3](../../../../translated_images/ar/step4-prompt-chat.12187bb001605efc.png)
+![نظرة عامة على السيناريو 3](../../../../translated_images/ar/step4-prompt-chat.12187bb001605efc.webp)
 
 هذا النهج مثالي لأي شخص يبني دورات تقنية، يكتب توثيقًا، أو يطور كودًا يحتاج إلى مراجع متكررة.
 

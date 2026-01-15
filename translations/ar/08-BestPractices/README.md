@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # أفضل الممارسات لتطوير MCP
 
-[![أفضل الممارسات لتطوير MCP](../../../translated_images/ar/09.d0f6d86c9d72134c.png)](https://youtu.be/W56H9W7x-ao)
+[![أفضل الممارسات لتطوير MCP](../../../translated_images/ar/09.d0f6d86c9d72134c.webp)](https://youtu.be/W56H9W7x-ao)
 
 _(انقر على الصورة أعلاه لمشاهدة فيديو الدرس)_
 

@@ -139,7 +139,7 @@ Scenario : Basic Clone and Open
  } and save to {The global path you specify}, then open it with VS Code Insiders"
 ```
 
-![اختبار Agent Builder](../../../../translated_images/ar/DebugAgent.81d152370c503241.png)
+![اختبار Agent Builder](../../../../translated_images/ar/DebugAgent.81d152370c503241.webp)
 
 **النتائج المتوقعة:**
 - ✅ استنساخ ناجح مع تأكيد المسار
@@ -150,7 +150,7 @@ Scenario : Basic Clone and Open
 #### 4ب. الاختبار في MCP Inspector
 
 
-![اختبار MCP Inspector](../../../../translated_images/ar/DebugInspector.eb5c95f94c69a8ba.png)
+![اختبار MCP Inspector](../../../../translated_images/ar/DebugInspector.eb5c95f94c69a8ba.webp)
 
 ---
 
