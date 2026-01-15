@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 ## How to Start  
 
-[![Build Your First MCP Server](../../../translated_images/pcm/04.0ea920069efd979a.png)](https://youtu.be/sNDZO9N4m9Y)
+[![Build Your First MCP Server](../../../translated_images/pcm/04.0ea920069efd979a.webp)](https://youtu.be/sNDZO9N4m9Y)
 
 _(Click di image wey dey up to watch di video for dis lesson)_
 

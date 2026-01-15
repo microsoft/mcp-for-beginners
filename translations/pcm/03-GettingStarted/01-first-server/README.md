@@ -156,7 +156,7 @@ When you run the commands wey dey above, MCP Inspector go open local web interfa
 
 Here na screenshot of how e fit look:
 
-![MCP Inspector server connection](../../../../translated_images/pcm/connected.73d1e042c24075d3.png)
+![MCP Inspector server connection](../../../../translated_images/pcm/connected.73d1e042c24075d3.webp)
 
 ## Common Setup Issues and Solutions
 
@@ -1302,7 +1302,7 @@ For di inspector web interface:
 2. Set di URL to: `http://localhost:8080/sse`
 3. Click "Connect"
 
-![Connect](../../../../translated_images/pcm/tool.163d33e3ee307e20.png)
+![Connect](../../../../translated_images/pcm/tool.163d33e3ee307e20.webp)
 
 **You don connect to di server now**
 **Di Java server testing section don complete now**
@@ -1311,18 +1311,18 @@ Di next section na about how to interact with di server.
 
 You go see dis kain user interface:
 
-![Connect](../../../../translated_images/pcm/connect.141db0b2bd05f096.png)
+![Connect](../../../../translated_images/pcm/connect.141db0b2bd05f096.webp)
 
 1. Connect to di server by selecting di Connect button
   Once you connect to di server, you go see dis one:
 
-  ![Connected](../../../../translated_images/pcm/connected.73d1e042c24075d3.png)
+  ![Connected](../../../../translated_images/pcm/connected.73d1e042c24075d3.webp)
 
 1. Select "Tools" and "listTools", you go see "Add" show, select "Add" and fill di parameter values.
 
   You go see dis kain response, na result from "add" tool:
 
-  ![Result of running add](../../../../translated_images/pcm/ran-tool.a5a6ee878c1369ec.png)
+  ![Result of running add](../../../../translated_images/pcm/ran-tool.a5a6ee878c1369ec.webp)
 
 Congrats, you don fit create and run your first server!
 

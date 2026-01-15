@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Practical Implementation
 
-[![How to Build, Test, and Deploy MCP Apps with Real Tools and Workflows](../../../translated_images/pcm/05.64bea204e25ca891.png)](https://youtu.be/vCN9-mKBDfQ)
+[![How to Build, Test, and Deploy MCP Apps with Real Tools and Workflows](../../../translated_images/pcm/05.64bea204e25ca891.webp)](https://youtu.be/vCN9-mKBDfQ)
 
 _(Click di image above to watch di video for dis lesson)_
 
@@ -215,7 +215,7 @@ Make we see how we fit deploy di sample we mention earlier:
 
     You go see interface wey resemble:
 
-    ![Connect to Node inspector](../../../translated_images/pcm/connect.141db0b2bd05f096.png)
+    ![Connect to Node inspector](../../../translated_images/pcm/connect.141db0b2bd05f096.webp)
 
 1. CTRL click to load di MCP Inspector web app from di URL wey di app display (e.g. [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources))
 1. Set di transport type to `SSE`

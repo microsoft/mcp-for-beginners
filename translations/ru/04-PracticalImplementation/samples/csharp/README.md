@@ -26,7 +26,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 1. Когда в веб-браузере откроется панель управления .NET Aspire, обратите внимание на URL с протоколом `http`. Он должен выглядеть примерно так: `http://localhost:5058/`.
 
-   ![.NET Aspire Dashboard](../../../../../translated_images/ru/dotnet-aspire-dashboard.0a7095710e9301e9.png)
+   ![.NET Aspire Dashboard](../../../../../translated_images/ru/dotnet-aspire-dashboard.0a7095710e9301e9.webp)
 
 ## Тестирование Streamable HTTP с помощью MCP Inspector
 
@@ -38,7 +38,7 @@ CO_OP_TRANSLATOR_METADATA:
 npx @modelcontextprotocol/inspector http://localhost:5058
 ```
 
-![MCP Inspector](../../../../../translated_images/ru/mcp-inspector.c223422b9b494fb4.png)
+![MCP Inspector](../../../../../translated_images/ru/mcp-inspector.c223422b9b494fb4.webp)
 
 - Выберите `Streamable HTTP` в качестве типа транспорта.
 - В поле Url введите ранее отмеченный URL сервера и добавьте `/mcp`. Это должен быть `http` (не `https`), например, `http://localhost:5058/mcp`.
@@ -83,7 +83,7 @@ azd up
 
 После завершения развертывания вы увидите сообщение примерно такого вида:
 
-![Azd deployment success](../../../../../translated_images/ru/azd-deployment-success.bd42940493f1b834.png)
+![Azd deployment success](../../../../../translated_images/ru/azd-deployment-success.bd42940493f1b834.webp)
 
 Скопируйте URL и используйте его в MCP Inspector и GitHub Copilot Chat.
 

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Community and Contributions
 
-[![How to Contribute to MCP: Tools, Docs, Code and More](../../../translated_images/pcm/07.1179f6de46ff196e.png)](https://youtu.be/v1pvCYAWpRE)
+[![How to Contribute to MCP: Tools, Docs, Code and More](../../../translated_images/pcm/07.1179f6de46ff196e.webp)](https://youtu.be/v1pvCYAWpRE)
 
 _(Click di image wey dey up to watch di video for dis lesson)_
 

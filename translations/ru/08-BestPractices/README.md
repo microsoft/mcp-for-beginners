@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Лучшие практики разработки MCP
 
-[![Лучшие практики разработки MCP](../../../translated_images/ru/09.d0f6d86c9d72134c.png)](https://youtu.be/W56H9W7x-ao)
+[![Лучшие практики разработки MCP](../../../translated_images/ru/09.d0f6d86c9d72134c.webp)](https://youtu.be/W56H9W7x-ao)
 
 _(Нажмите на изображение выше, чтобы посмотреть видео этого урока)_
 

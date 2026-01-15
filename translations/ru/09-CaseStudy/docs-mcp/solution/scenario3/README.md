@@ -52,27 +52,27 @@ CO_OP_TRANSLATOR_METADATA:
    ```
    Эта конфигурация указывает VS Code, как подключиться к [`Microsoft Learn Docs MCP server`](https://github.com/MicrosoftDocs/mcp).
    
-   ![Шаг 1: Добавьте mcp.json в папку .vscode](../../../../../../translated_images/ru/step1-mcp-json.c06a007fccc3edfa.png)
+   ![Шаг 1: Добавьте mcp.json в папку .vscode](../../../../../../translated_images/ru/step1-mcp-json.c06a007fccc3edfa.webp)
     
 2. **Откройте панель GitHub Copilot Chat:**
    Если у вас ещё не установлен расширение GitHub Copilot, перейдите в раздел Extensions в VS Code и установите его. Скачать можно напрямую из [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat). Затем откройте панель Copilot Chat в боковой панели.
 
-   ![Шаг 2: Откройте панель Copilot Chat](../../../../../../translated_images/ru/step2-copilot-panel.f1cc86e9b9b8cd1a.png)
+   ![Шаг 2: Откройте панель Copilot Chat](../../../../../../translated_images/ru/step2-copilot-panel.f1cc86e9b9b8cd1a.webp)
 
 3. **Включите режим агента и проверьте инструменты:**
    В панели Copilot Chat включите режим агента.
 
-   ![Шаг 3: Включите режим агента и проверьте инструменты](../../../../../../translated_images/ru/step3-agent-mode.cdc32520fd7dd1d1.png)
+   ![Шаг 3: Включите режим агента и проверьте инструменты](../../../../../../translated_images/ru/step3-agent-mode.cdc32520fd7dd1d1.webp)
 
    После включения режима агента убедитесь, что MCP сервер отображается в списке доступных инструментов. Это гарантирует, что агент Copilot сможет обращаться к серверу документации для получения нужной информации.
    
-   ![Шаг 3: Проверьте наличие MCP сервера в списке инструментов](../../../../../../translated_images/ru/step3-verify-mcp-tool.76096a6329cbfecd.png)
+   ![Шаг 3: Проверьте наличие MCP сервера в списке инструментов](../../../../../../translated_images/ru/step3-verify-mcp-tool.76096a6329cbfecd.webp)
 4. **Начните новый чат и задайте запрос агенту:**
    Откройте новый чат в панели Copilot Chat. Теперь вы можете задавать агенту вопросы по документации. Агент будет использовать MCP сервер для поиска и отображения релевантной документации Microsoft Learn прямо в редакторе.
 
    - *«Я хочу составить учебный план по теме X. Планирую изучать её 8 недель, предложи, какой контент стоит изучать каждую неделю.»*
 
-   ![Шаг 4: Задайте запрос агенту в чате](../../../../../../translated_images/ru/step4-prompt-chat.12187bb001605efc.png)
+   ![Шаг 4: Задайте запрос агенту в чате](../../../../../../translated_images/ru/step4-prompt-chat.12187bb001605efc.webp)
 
 5. **Живой запрос:**
 
@@ -80,7 +80,7 @@ CO_OP_TRANSLATOR_METADATA:
    
    *«Я ищу ответы по развертыванию мультиагентного решения с AI агентами, разработанными на Azure AI Foundry. Похоже, нет прямого способа развертывания, например, через каналы Copilot Studio. Какие существуют варианты развертывания для корпоративных пользователей, чтобы они могли взаимодействовать и выполнять задачи? Есть много статей и блогов, где говорится, что можно использовать Azure Bot service как мост между MS Teams и агентами Azure AI Foundry. Сработает ли это, если я настрою Azure bot, который будет подключаться к Orchestrator Agent на Azure AI Foundry через Azure function для оркестрации, или нужно создавать Azure function для каждого AI агента в мультиагентном решении, чтобы выполнять оркестрацию на уровне Bot framework? Буду рад любым другим предложениям.»*
 
-   ![Шаг 5: Живые запросы](../../../../../../translated_images/ru/step5-live-queries.49db3e4a50bea273.png)
+   ![Шаг 5: Живые запросы](../../../../../../translated_images/ru/step5-live-queries.49db3e4a50bea273.webp)
 
    Агент ответит с релевантными ссылками на документацию и краткими обзорами, которые вы сможете вставлять прямо в markdown-файлы или использовать как ссылки в коде.
    

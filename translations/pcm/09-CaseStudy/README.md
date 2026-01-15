@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP in Action: Real-World Case Studies
 
-[![MCP in Action: Real-World Case Studies](../../../translated_images/pcm/10.3262cc80b4de5071.png)](https://youtu.be/IxshWb2Az5w)
+[![MCP in Action: Real-World Case Studies](../../../translated_images/pcm/10.3262cc80b4de5071.webp)](https://youtu.be/IxshWb2Az5w)
 
 _(Click di image wey dey up to watch di video for dis lesson)_
 

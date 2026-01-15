@@ -156,7 +156,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 Вот скриншот того, как это может выглядеть:
 
-![MCP Inspector server connection](../../../../translated_images/ru/connected.73d1e042c24075d3.png)
+![MCP Inspector server connection](../../../../translated_images/ru/connected.73d1e042c24075d3.webp)
 
 ## Распространенные проблемы настройки и решения
 
@@ -1302,7 +1302,7 @@ npx @modelcontextprotocol/inspector
 2. Установите URL: `http://localhost:8080/sse`
 3. Нажмите "Connect"
 
-![Connect](../../../../translated_images/ru/tool.163d33e3ee307e20.png)
+![Connect](../../../../translated_images/ru/tool.163d33e3ee307e20.webp)
 
 **Вы теперь подключены к серверу**
 **Раздел тестирования Java-сервера завершён**
@@ -1311,18 +1311,18 @@ npx @modelcontextprotocol/inspector
 
 Вы должны увидеть следующий пользовательский интерфейс:
 
-![Connect](../../../../translated_images/ru/connect.141db0b2bd05f096.png)
+![Connect](../../../../translated_images/ru/connect.141db0b2bd05f096.webp)
 
 1. Подключитесь к серверу, нажав кнопку Connect
   После подключения к серверу вы должны увидеть следующее:
 
-  ![Connected](../../../../translated_images/ru/connected.73d1e042c24075d3.png)
+  ![Connected](../../../../translated_images/ru/connected.73d1e042c24075d3.webp)
 
 1. Выберите "Tools" и "listTools", вы должны увидеть появление "Add", выберите "Add" и заполните значения параметров.
 
   Вы должны увидеть следующий ответ, то есть результат работы инструмента "add":
 
-  ![Result of running add](../../../../translated_images/ru/ran-tool.a5a6ee878c1369ec.png)
+  ![Result of running add](../../../../translated_images/ru/ran-tool.a5a6ee878c1369ec.webp)
 
 Поздравляем, вы создали и запустили свой первый сервер!
 

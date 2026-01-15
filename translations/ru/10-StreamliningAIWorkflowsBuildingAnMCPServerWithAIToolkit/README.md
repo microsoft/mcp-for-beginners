@@ -13,11 +13,11 @@ CO_OP_TRANSLATOR_METADATA:
 [![Python](https://img.shields.io/badge/Python-3.10+-green.svg)](https://python.org)
 [![VS Code](https://img.shields.io/badge/VS%20Code-Latest-orange.svg)](https://code.visualstudio.com/)
 
-![logo](../../../translated_images/ru/logo.ec93918ec338dadd.png)
+![logo](../../../translated_images/ru/logo.ec93918ec338dadd.webp)
 
 ## 🎯 Обзор
 
-[![Создание AI-агентов в VS Code: 4 практических лаборатории с MCP и AI Toolkit](../../../translated_images/ru/11.0f6db6a0fb606885.png)](https://youtu.be/r34Csn3rkeQ)
+[![Создание AI-агентов в VS Code: 4 практических лаборатории с MCP и AI Toolkit](../../../translated_images/ru/11.0f6db6a0fb606885.webp)](https://youtu.be/r34Csn3rkeQ)
 
 _(Нажмите на изображение выше, чтобы посмотреть видео этого урока)_
 

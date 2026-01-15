@@ -38,9 +38,9 @@ You fit control your MCP server in two ways:
 
 ### Screenshots
 
-![How to set up MCP server for Visual Studio Code](../../../../translated_images/pcm/chat-mode-agent.729a22473f822216.png)
-![Choose tools for each agent session](../../../../translated_images/pcm/agent-mode-select-tools.522c7ba5df0848f8.png)
-![Debug errors easily during MCP development](../../../../translated_images/pcm/mcp-list-servers.fce89eefe3f30032.png)
+![How to set up MCP server for Visual Studio Code](../../../../translated_images/pcm/chat-mode-agent.729a22473f822216.webp)
+![Choose tools for each agent session](../../../../translated_images/pcm/agent-mode-select-tools.522c7ba5df0848f8.webp)
+![Debug errors easily during MCP development](../../../../translated_images/pcm/mcp-list-servers.fce89eefe3f30032.webp)
 
 We go talk more about how to use the visual interface for the next sections.
 
@@ -103,15 +103,15 @@ Now wey you don add entry, make we start server:
 
 1. Find your entry for *mcp.json* and look for "play" icon:
 
-  ![How to start server for Visual Studio Code](../../../../translated_images/pcm/vscode-start-server.8e3c986612e3555d.png)  
+  ![How to start server for Visual Studio Code](../../../../translated_images/pcm/vscode-start-server.8e3c986612e3555d.webp)  
 
 1. Click "play" icon, you go see tools icon for GitHub Copilot Chat go increase the number of tools wey dey available. If you click the tools icon, you go see list of tools wey don register. You fit check/uncheck each tool if you wan GitHub Copilot use am as context:
 
-  ![How to start server for Visual Studio Code](../../../../translated_images/pcm/vscode-tool.0b3bbea2fb7d8c26.png)
+  ![How to start server for Visual Studio Code](../../../../translated_images/pcm/vscode-tool.0b3bbea2fb7d8c26.webp)
 
 1. To run tool, type prompt wey match description of one of your tools, example prompt like "add 22 to 1":
 
-  ![How to run tool from GitHub Copilot](../../../../translated_images/pcm/vscode-agent.d5a0e0b897331060.png)
+  ![How to run tool from GitHub Copilot](../../../../translated_images/pcm/vscode-agent.d5a0e0b897331060.webp)
 
   You go see response wey go show 23.
 
