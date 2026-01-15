@@ -77,7 +77,7 @@ Dis one mean say you go run command like dis: `node build/index.js`.
 
     You go see one tool wey go show above di chat text box wey go tell you to select am to run di tool like dis visual:
 
-    ![VS Code dey show say e wan run one tool](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.pcm.png)
+    ![VS Code dey show say e wan run one tool](../../../../../translated_images/pcm/vscode-agent.d5a0e0b897331060.png)
 
     If you select di tool, e go give you one number result wey go talk say "23" if your prompt be like wetin we mention before.
 

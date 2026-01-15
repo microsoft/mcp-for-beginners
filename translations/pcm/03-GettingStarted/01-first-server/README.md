@@ -156,7 +156,7 @@ When you run the commands wey dey above, MCP Inspector go open local web interfa
 
 Here na screenshot of how e fit look:
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.pcm.png)
+![MCP Inspector server connection](../../../../translated_images/pcm/connected.73d1e042c24075d3.png)
 
 ## Common Setup Issues and Solutions
 
@@ -1302,7 +1302,7 @@ For di inspector web interface:
 2. Set di URL to: `http://localhost:8080/sse`
 3. Click "Connect"
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.pcm.png)
+![Connect](../../../../translated_images/pcm/tool.163d33e3ee307e20.png)
 
 **You don connect to di server now**
 **Di Java server testing section don complete now**
@@ -1311,18 +1311,18 @@ Di next section na about how to interact with di server.
 
 You go see dis kain user interface:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.pcm.png)
+![Connect](../../../../translated_images/pcm/connect.141db0b2bd05f096.png)
 
 1. Connect to di server by selecting di Connect button
   Once you connect to di server, you go see dis one:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.pcm.png)
+  ![Connected](../../../../translated_images/pcm/connected.73d1e042c24075d3.png)
 
 1. Select "Tools" and "listTools", you go see "Add" show, select "Add" and fill di parameter values.
 
   You go see dis kain response, na result from "add" tool:
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.pcm.png)
+  ![Result of running add](../../../../translated_images/pcm/ran-tool.a5a6ee878c1369ec.png)
 
 Congrats, you don fit create and run your first server!
 
