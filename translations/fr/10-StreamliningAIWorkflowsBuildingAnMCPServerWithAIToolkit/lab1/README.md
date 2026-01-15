@@ -60,7 +60,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 **Étape 3 : Installer et activer**
 
-![AI Toolkit Extension](../../../../translated_images/fr/aitkext.d28945a03eed003c.png)
+![AI Toolkit Extension](../../../../translated_images/fr/aitkext.d28945a03eed003c.webp)
 
 ### ✅ Liste de vérification
 
@@ -80,7 +80,7 @@ Le Catalogue de modèles est votre porte d’entrée vers l’écosystème IA. I
 
 Cliquez sur **MODELS - Catalog** dans la barre latérale AI Toolkit
 
-![Model Catalog](../../../../translated_images/fr/aimodel.263ed2be013d8fb0.png)
+![Model Catalog](../../../../translated_images/fr/aimodel.263ed2be013d8fb0.webp)
 
 **💡 Astuce** : Cherchez des modèles avec des capacités spécifiques adaptées à votre cas d’usage (ex. génération de code, écriture créative, analyse).
 
@@ -98,7 +98,7 @@ Cliquez sur **MODELS - Catalog** dans la barre latérale AI Toolkit
 3. Choisissez **Try in Playground** pour lancer l’environnement de test
 4. Patientez pendant l’initialisation du modèle (la première fois peut prendre un moment)
 
-![Playground Setup](../../../../translated_images/fr/playground.dd6f5141344878ca.png)
+![Playground Setup](../../../../translated_images/fr/playground.dd6f5141344878ca.webp)
 
 **⚙️ Comprendre les paramètres du modèle :**
 - **Temperature** : Contrôle la créativité (0 = déterministe, 1 = créatif)
@@ -127,7 +127,7 @@ Le Playground est votre laboratoire d’expérimentation IA. Voici comment en ti
 "Analyze this sales data and provide insights: [paste your data]. Focus on trends, anomalies, and actionable recommendations."
 ```
 
-![Testing Results](../../../../translated_images/fr/result.1dfcf211fb359cf6.png)
+![Testing Results](../../../../translated_images/fr/result.1dfcf211fb359cf6.webp)
 
 ### 🏆 Exercice défi : Comparaison des performances des modèles
 
@@ -137,12 +137,12 @@ Le Playground est votre laboratoire d’expérimentation IA. Voici comment en ti
 1. Ajoutez **Phi-4-mini** à votre espace de travail
 2. Utilisez le même prompt pour GPT-4.1 et Phi-4-mini
 
-![set](../../../../translated_images/fr/set.88132df189ecde2c.png)
+![set](../../../../translated_images/fr/set.88132df189ecde2c.webp)
 
 3. Comparez la qualité, la rapidité et la précision des réponses
 4. Documentez vos observations dans la section résultats
 
-![Model Comparison](../../../../translated_images/fr/compare.97746cd0f9074955.png)
+![Model Comparison](../../../../translated_images/fr/compare.97746cd0f9074955.webp)
 
 **💡 Points clés à découvrir :**
 - Quand utiliser LLM vs SLM
@@ -164,7 +164,7 @@ Agent Builder est la véritable force d’AI Toolkit. Il vous permet de créer d
 - **Intégration d’outils** : Connexion aux API externes et services MCP
 - **Mémoire** : Contexte de conversation et persistance de session
 
-![Agent Builder Interface](../../../../translated_images/fr/agentbuilder.25895b2d2f8c02e7.png)
+![Agent Builder Interface](../../../../translated_images/fr/agentbuilder.25895b2d2f8c02e7.webp)
 
 ### ⚙️ Étape 2 : Approfondissement de la configuration de l’agent
 
@@ -238,7 +238,7 @@ You are a senior Python developer with 10+ years of experience. You excel at wri
    - Max Tokens : 2000 (explications détaillées)
    - Top-p : 0.9 (créativité équilibrée)
 
-![Python Agent Configuration](../../../../translated_images/fr/pythonagent.5e51b406401c165f.png)
+![Python Agent Configuration](../../../../translated_images/fr/pythonagent.5e51b406401c165f.webp)
 
 ### 🧪 Étape 4 : Tester votre agent Python
 

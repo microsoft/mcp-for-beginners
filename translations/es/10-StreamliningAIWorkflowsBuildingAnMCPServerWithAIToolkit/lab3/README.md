@@ -64,7 +64,7 @@ Una herramienta poderosa para depuración que ofrece:
 2. **Crea un nuevo agente** con la siguiente configuración:  
    - Nombre del agente: `WeatherAgent`
 
-![Creación de Agente](../../../../translated_images/es/Agent.c9c33f6a412b4cde.png)
+![Creación de Agente](../../../../translated_images/es/Agent.c9c33f6a412b4cde.webp)
 
 ### Paso 2: Inicializar el Proyecto del Servidor MCP
 
@@ -74,7 +74,7 @@ Una herramienta poderosa para depuración que ofrece:
 4. **Selecciona la plantilla `python-weather`**  
 5. **Nombra tu servidor:** `weather_mcp`
 
-![Selección de Plantilla Python](../../../../translated_images/es/Pythontemplate.9d0a2913c6491500.png)
+![Selección de Plantilla Python](../../../../translated_images/es/Pythontemplate.9d0a2913c6491500.webp)
 
 ### Paso 3: Abrir y Examinar el Proyecto
 
@@ -340,7 +340,7 @@ USER_PROMPT
 How's the weather like in Seattle
 ```
 
-![Resultado de Depuración en Agent Builder](../../../../translated_images/es/Result.6ac570f7d2b1d538.png)
+![Resultado de Depuración en Agent Builder](../../../../translated_images/es/Result.6ac570f7d2b1d538.webp)
 
 ### Paso 8: Depurar con MCP Inspector
 
@@ -352,7 +352,7 @@ How's the weather like in Seattle
    - Monitorea solicitudes de red  
    - Depura las respuestas del servidor
 
-![Interfaz MCP Inspector](../../../../translated_images/es/Inspector.5672415cd02fe873.png)
+![Interfaz MCP Inspector](../../../../translated_images/es/Inspector.5672415cd02fe873.webp)
 
 ---
 

@@ -202,7 +202,7 @@ Au-delà des serveurs Microsoft, l’écosystème MCP comprend :
    - **Nom** : `BrowserAgent`  
    - **Modèle** : Choisissez GPT-4o  
 
-![BrowserAgent](../../../../translated_images/fr/BrowserAgent.09c1adde5e136573.png)
+![BrowserAgent](../../../../translated_images/fr/BrowserAgent.09c1adde5e136573.webp)
 
 ### 🔧 Phase 2 : Workflow d’intégration MCP
 
@@ -211,7 +211,7 @@ Au-delà des serveurs Microsoft, l’écosystème MCP comprend :
 2. **Cliquez sur "Add Tool"** pour ouvrir le menu d’intégration  
 3. **Sélectionnez "MCP Server"** parmi les options disponibles  
 
-![AddMCP](../../../../translated_images/fr/AddMCP.afe3308ac20aa944.png)
+![AddMCP](../../../../translated_images/fr/AddMCP.afe3308ac20aa944.webp)
 
 **🔍 Comprendre les types d’outils :**  
 - **Outils intégrés** : fonctions AI Toolkit préconfigurées  
@@ -221,10 +221,10 @@ Au-delà des serveurs Microsoft, l’écosystème MCP comprend :
 
 #### Étape 4 : Sélection du serveur MCP  
 1. **Choisissez l’option "MCP Server"** pour continuer  
-![AddMCPServer](../../../../translated_images/fr/AddMCPServer.69b911ccef872cbd.png)
+![AddMCPServer](../../../../translated_images/fr/AddMCPServer.69b911ccef872cbd.webp)
 
 2. **Parcourez le catalogue MCP** pour explorer les intégrations disponibles  
-![MCPCatalog](../../../../translated_images/fr/MCPCatalog.a817d05314569900.png)
+![MCPCatalog](../../../../translated_images/fr/MCPCatalog.a817d05314569900.webp)
 
 ### 🎮 Phase 3 : Configuration Playwright MCP
 
@@ -233,12 +233,12 @@ Au-delà des serveurs Microsoft, l’écosystème MCP comprend :
 2. **Sélectionnez "Playwright"** dans la liste mise en avant  
 3. **Acceptez l’ID MCP par défaut** ou personnalisez-le pour votre environnement  
 
-![MCPID](../../../../translated_images/fr/MCPID.67d446052979e819.png)
+![MCPID](../../../../translated_images/fr/MCPID.67d446052979e819.webp)
 
 #### Étape 6 : Activer les capacités Playwright  
 **🔑 Étape cruciale** : Sélectionnez **TOUTES** les méthodes Playwright disponibles pour une fonctionnalité maximale  
 
-![Tools](../../../../translated_images/fr/Tools.3ea23c447b4d9fec.png)
+![Tools](../../../../translated_images/fr/Tools.3ea23c447b4d9fec.webp)
 
 **🛠️ Outils Playwright essentiels :**  
 - **Navigation** : `goto`, `goBack`, `goForward`, `reload`  
@@ -254,7 +254,7 @@ Au-delà des serveurs Microsoft, l’écosystème MCP comprend :
 - Aucun message d’erreur dans le panneau d’intégration  
 - Le statut du serveur Playwright affiche "Connected"  
 
-![AgentTools](../../../../translated_images/fr/AgentTools.053cfb96a17e0219.png)
+![AgentTools](../../../../translated_images/fr/AgentTools.053cfb96a17e0219.webp)
 
 **🔧 Résolution des problèmes courants :**  
 - **Connexion échouée** : Vérifiez la connexion internet et les paramètres du pare-feu  
@@ -320,7 +320,7 @@ Navigate to github.com/kinfey and provide a comprehensive analysis including:
 Include screenshots at key steps and provide actionable insights.
 ```
 
-![Prompt](../../../../translated_images/fr/Prompt.bfc846605db4999f.png)
+![Prompt](../../../../translated_images/fr/Prompt.bfc846605db4999f.webp)
 
 ### 🚀 Phase 5 : Exécution et tests
 
@@ -332,19 +332,19 @@ Include screenshots at key steps and provide actionable insights.
    - Des captures d’écran sont prises à chaque étape majeure  
    - Les résultats d’analyse s’affichent en temps réel  
 
-![Browser](../../../../translated_images/fr/Browser.ec011d0bd64d0d11.png)
+![Browser](../../../../translated_images/fr/Browser.ec011d0bd64d0d11.webp)
 
 #### Étape 11 : Analyser les résultats et insights  
 Consultez l’analyse complète dans l’interface Agent Builder :
 
-![Result](../../../../translated_images/fr/Result.8638f2b6703e9ea6.png)
+![Result](../../../../translated_images/fr/Result.8638f2b6703e9ea6.webp)
 
 ### 🌟 Phase 6 : Capacités avancées et déploiement
 
 #### Étape 12 : Exporter et déployer en production  
 Agent Builder prend en charge plusieurs options de déploiement :
 
-![Code](../../../../translated_images/fr/Code.d9eeeead0b96db0c.png)
+![Code](../../../../translated_images/fr/Code.d9eeeead0b96db0c.webp)
 
 ## 🎓 Résumé du Module 2 & prochaines étapes
 

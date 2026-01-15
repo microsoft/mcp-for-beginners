@@ -38,9 +38,9 @@ You can control your MCP server in two ways:
 
 ### Screenshots
 
-![Guided MCP server configuration in Visual Studio Code](../../../../translated_images/en/chat-mode-agent.729a22473f822216.png)
-![Tool selection per agent session](../../../../translated_images/en/agent-mode-select-tools.522c7ba5df0848f8.png)
-![Easily debug errors during MCP development](../../../../translated_images/en/mcp-list-servers.fce89eefe3f30032.png)
+![Guided MCP server configuration in Visual Studio Code](../../../../translated_images/en/chat-mode-agent.729a22473f822216.webp)
+![Tool selection per agent session](../../../../translated_images/en/agent-mode-select-tools.522c7ba5df0848f8.webp)
+![Easily debug errors during MCP development](../../../../translated_images/en/mcp-list-servers.fce89eefe3f30032.webp)
 
 We'll discuss how to use the visual interface in the following sections.
 
@@ -103,15 +103,15 @@ Now that you’ve added an entry, let’s start the server:
 
 1. Locate your entry in *mcp.json* and find the "play" icon:
 
-  ![Starting server in Visual Studio Code](../../../../translated_images/en/vscode-start-server.8e3c986612e3555d.png)  
+  ![Starting server in Visual Studio Code](../../../../translated_images/en/vscode-start-server.8e3c986612e3555d.webp)  
 
 1. Click the "play" icon. You should see the tools icon in the GitHub Copilot Chat interface show an increased number of available tools. If you click the tools icon, you’ll see a list of registered tools. You can check or uncheck each tool depending on whether you want GitHub Copilot to use them as context:
 
-  ![Starting server in Visual Studio Code](../../../../translated_images/en/vscode-tool.0b3bbea2fb7d8c26.png)
+  ![Starting server in Visual Studio Code](../../../../translated_images/en/vscode-tool.0b3bbea2fb7d8c26.webp)
 
 1. To run a tool, type a prompt that matches the description of one of your tools. For example, a prompt like "add 22 to 1":
 
-  ![Running a tool from GitHub Copilot](../../../../translated_images/en/vscode-agent.d5a0e0b897331060.png)
+  ![Running a tool from GitHub Copilot](../../../../translated_images/en/vscode-agent.d5a0e0b897331060.webp)
 
   You should see a response of 23.
 

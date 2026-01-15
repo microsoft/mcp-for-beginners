@@ -64,7 +64,7 @@ Un outil puissant de débogage offrant :
 2. **Créez un nouvel agent** avec la configuration suivante :  
    - Nom de l’agent : `WeatherAgent`
 
-![Agent Creation](../../../../translated_images/fr/Agent.c9c33f6a412b4cde.png)
+![Agent Creation](../../../../translated_images/fr/Agent.c9c33f6a412b4cde.webp)
 
 ### Étape 2 : Initialiser le projet MCP Server
 
@@ -74,7 +74,7 @@ Un outil puissant de débogage offrant :
 4. **Sélectionnez le template `python-weather`**  
 5. **Nommez votre serveur :** `weather_mcp`
 
-![Python Template Selection](../../../../translated_images/fr/Pythontemplate.9d0a2913c6491500.png)
+![Python Template Selection](../../../../translated_images/fr/Pythontemplate.9d0a2913c6491500.webp)
 
 ### Étape 3 : Ouvrir et examiner le projet
 
@@ -340,7 +340,7 @@ USER_PROMPT
 How's the weather like in Seattle
 ```
 
-![Agent Builder Debug Result](../../../../translated_images/fr/Result.6ac570f7d2b1d538.png)
+![Agent Builder Debug Result](../../../../translated_images/fr/Result.6ac570f7d2b1d538.webp)
 
 ### Étape 8 : Déboguer avec MCP Inspector
 
@@ -352,7 +352,7 @@ How's the weather like in Seattle
    - Surveillez les requêtes réseau  
    - Déboguez les réponses du serveur  
 
-![MCP Inspector Interface](../../../../translated_images/fr/Inspector.5672415cd02fe873.png)
+![MCP Inspector Interface](../../../../translated_images/fr/Inspector.5672415cd02fe873.webp)
 
 ---
 

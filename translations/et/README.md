@@ -7,7 +7,7 @@ CO_OP_TRANSLATOR_METADATA:
   "language_code": "et"
 }
 -->
-![MCP-algajatele](../../translated_images/et/mcp-beginners.2ce2b317996369ff.png) 
+![MCP-algajatele](../../translated_images/et/mcp-beginners.2ce2b317996369ff.webp) 
 
 [![GitHub panustajad](https://img.shields.io/github/contributors/microsoft/mcp-for-beginners.svg)](https://GitHub.com/microsoft/mcp-for-beginners/graphs/contributors)
 [![GitHub probleemid](https://img.shields.io/github/issues/microsoft/mcp-for-beginners.svg)](https://GitHub.com/microsoft/mcp-for-beginners/issues)

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP en action : Études de cas réelles
 
-[![MCP en action : Études de cas réelles](../../../translated_images/fr/10.3262cc80b4de5071.png)](https://youtu.be/IxshWb2Az5w)
+[![MCP en action : Études de cas réelles](../../../translated_images/fr/10.3262cc80b4de5071.webp)](https://youtu.be/IxshWb2Az5w)
 
 _(Cliquez sur l'image ci-dessus pour visionner la vidéo de cette leçon)_
 

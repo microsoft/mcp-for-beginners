@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Implementación Práctica
 
-[![Cómo construir, probar y desplegar aplicaciones MCP con herramientas y flujos de trabajo reales](../../../translated_images/es/05.64bea204e25ca891.png)](https://youtu.be/vCN9-mKBDfQ)
+[![Cómo construir, probar y desplegar aplicaciones MCP con herramientas y flujos de trabajo reales](../../../translated_images/es/05.64bea204e25ca891.webp)](https://youtu.be/vCN9-mKBDfQ)
 
 _(Haz clic en la imagen de arriba para ver el video de esta lección)_
 
@@ -215,7 +215,7 @@ Veamos si podemos desplegar el ejemplo mencionado anteriormente:
 
     Deberías ver una interfaz similar a:
 
-    ![Conectar al inspector de Node](../../../translated_images/es/connect.141db0b2bd05f096.png)
+    ![Conectar al inspector de Node](../../../translated_images/es/connect.141db0b2bd05f096.webp)
 
 1. Haz clic con CTRL para cargar la aplicación web MCP Inspector desde la URL mostrada por la aplicación (por ejemplo, [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources))
 1. Configura el tipo de transporte como `SSE`

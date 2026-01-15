@@ -203,7 +203,7 @@ Beyond Microsoft's servers, the MCP ecosystem includes:
    - **Name**: `BrowserAgent`  
    - **Model**: Choose GPT-4o  
 
-![BrowserAgent](../../../../translated_images/en/BrowserAgent.09c1adde5e136573.png)
+![BrowserAgent](../../../../translated_images/en/BrowserAgent.09c1adde5e136573.webp)
 
 
 ### 🔧 Phase 2: MCP Integration Workflow
@@ -213,7 +213,7 @@ Beyond Microsoft's servers, the MCP ecosystem includes:
 2. **Click "Add Tool"** to open the integration menu  
 3. **Select "MCP Server"** from the available options  
 
-![AddMCP](../../../../translated_images/en/AddMCP.afe3308ac20aa944.png)
+![AddMCP](../../../../translated_images/en/AddMCP.afe3308ac20aa944.webp)
 
 **🔍 Understanding Tool Types:**  
 - **Built-in Tools**: Pre-configured AI Toolkit functions  
@@ -223,10 +223,10 @@ Beyond Microsoft's servers, the MCP ecosystem includes:
 
 #### Step 4: MCP Server Selection
 1. **Choose "MCP Server"** option to continue  
-![AddMCPServer](../../../../translated_images/en/AddMCPServer.69b911ccef872cbd.png)
+![AddMCPServer](../../../../translated_images/en/AddMCPServer.69b911ccef872cbd.webp)
 
 2. **Browse the MCP Catalog** to explore available integrations  
-![MCPCatalog](../../../../translated_images/en/MCPCatalog.a817d05314569900.png)
+![MCPCatalog](../../../../translated_images/en/MCPCatalog.a817d05314569900.webp)
 
 
 ### 🎮 Phase 3: Playwright MCP Configuration
@@ -236,12 +236,12 @@ Beyond Microsoft's servers, the MCP ecosystem includes:
 2. **Select "Playwright"** from the featured list  
 3. **Accept the Default MCP ID** or customize it for your environment  
 
-![MCPID](../../../../translated_images/en/MCPID.67d446052979e819.png)
+![MCPID](../../../../translated_images/en/MCPID.67d446052979e819.webp)
 
 #### Step 6: Enable Playwright Capabilities
 **🔑 Critical Step**: Select **ALL** available Playwright methods for full functionality  
 
-![Tools](../../../../translated_images/en/Tools.3ea23c447b4d9fec.png)
+![Tools](../../../../translated_images/en/Tools.3ea23c447b4d9fec.webp)
 
 **🛠️ Essential Playwright Tools:**  
 - **Navigation**: `goto`, `goBack`, `goForward`, `reload`  
@@ -257,7 +257,7 @@ Beyond Microsoft's servers, the MCP ecosystem includes:
 - No error messages in the integration panel  
 - Playwright server status shows "Connected"  
 
-![AgentTools](../../../../translated_images/en/AgentTools.053cfb96a17e0219.png)
+![AgentTools](../../../../translated_images/en/AgentTools.053cfb96a17e0219.webp)
 
 **🔧 Troubleshooting Common Issues:**  
 - **Connection Failed**: Check internet connection and firewall settings  
@@ -323,7 +323,7 @@ Navigate to github.com/kinfey and provide a comprehensive analysis including:
 Include screenshots at key steps and provide actionable insights.
 ```
 
-![Prompt](../../../../translated_images/en/Prompt.bfc846605db4999f.png)
+![Prompt](../../../../translated_images/en/Prompt.bfc846605db4999f.webp)
 
 ### 🚀 Phase 5: Execution and Testing
 
@@ -335,19 +335,19 @@ Include screenshots at key steps and provide actionable insights.
    - Screenshots capture each major step  
    - Analysis results stream live  
 
-![Browser](../../../../translated_images/en/Browser.ec011d0bd64d0d11.png)
+![Browser](../../../../translated_images/en/Browser.ec011d0bd64d0d11.webp)
 
 #### Step 11: Analyze Results and Insights
 Review the detailed analysis in the Agent Builder interface:
 
-![Result](../../../../translated_images/en/Result.8638f2b6703e9ea6.png)
+![Result](../../../../translated_images/en/Result.8638f2b6703e9ea6.webp)
 
 ### 🌟 Phase 6: Advanced Capabilities and Deployment
 
 #### Step 12: Export and Production Deployment
 Agent Builder supports multiple deployment options:
 
-![Code](../../../../translated_images/en/Code.d9eeeead0b96db0c.png)
+![Code](../../../../translated_images/en/Code.d9eeeead0b96db0c.webp)
 
 ## 🎓 Module 2 Summary & Next Steps
 

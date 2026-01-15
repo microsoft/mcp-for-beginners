@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Seguridad MCP: Protección Integral para Sistemas de IA
 
-[![Mejores Prácticas de Seguridad MCP](../../../translated_images/es/03.175aed6dedae133f.png)](https://youtu.be/88No8pw706o)
+[![Mejores Prácticas de Seguridad MCP](../../../translated_images/es/03.175aed6dedae133f.webp)](https://youtu.be/88No8pw706o)
 
 _(Haz clic en la imagen de arriba para ver el video de esta lección)_
 
@@ -133,7 +133,7 @@ La **Inyección Indirecta de Prompts** representa una de las vulnerabilidades m�
 
 **Impacto en el Mundo Real**: Estos ataques pueden resultar en exfiltración de datos, violaciones de privacidad, generación de contenido dañino y manipulación de interacciones con usuarios. Para un análisis detallado, consulta [Inyección de Prompts en MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
-![Diagrama de Ataque de Inyección de Prompts](../../../translated_images/es/prompt-injection.ed9fbfde297ca877.png)
+![Diagrama de Ataque de Inyección de Prompts](../../../translated_images/es/prompt-injection.ed9fbfde297ca877.webp)
 
 #### **Ataques de Envenenamiento de Herramientas**
 
@@ -147,7 +147,7 @@ El **Envenenamiento de Herramientas** apunta a los metadatos que definen las her
 
 **Riesgos en Servidores Hospedados**: Los servidores MCP remotos presentan riesgos elevados ya que las definiciones de herramientas pueden actualizarse después de la aprobación inicial del usuario, creando escenarios donde herramientas previamente seguras se vuelven maliciosas. Para un análisis completo, consulta [Ataques de Envenenamiento de Herramientas (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
-![Diagrama de Ataque de Inyección de Herramientas](../../../translated_images/es/tool-injection.3b0b4a6b24de6bef.png)
+![Diagrama de Ataque de Inyección de Herramientas](../../../translated_images/es/tool-injection.3b0b4a6b24de6bef.webp)
 
 #### **Vectores Adicionales de Ataque de IA**
 
@@ -200,7 +200,7 @@ Microsoft **AI Prompt Shields** ofrecen defensa integral contra ataques de inyec
 
 **Recursos de Implementación**: [Documentación de Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Protección Microsoft Prompt Shields](../../../translated_images/es/prompt-shield.ff5b95be76e9c78c.png)
+![Protección Microsoft Prompt Shields](../../../translated_images/es/prompt-shield.ff5b95be76e9c78c.webp)
 
 
 ## Amenazas Avanzadas de Seguridad MCP

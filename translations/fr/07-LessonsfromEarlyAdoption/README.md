@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # 🌟 Leçons des premiers utilisateurs
 
-[![Leçons des premiers utilisateurs de MCP](../../../translated_images/fr/08.980bb2babbaadd8a.png)](https://youtu.be/jds7dSmNptE)
+[![Leçons des premiers utilisateurs de MCP](../../../translated_images/fr/08.980bb2babbaadd8a.webp)](https://youtu.be/jds7dSmNptE)
 
 _(Cliquez sur l'image ci-dessus pour visionner la vidéo de cette leçon)_
 

@@ -38,9 +38,9 @@ Puedes controlar tu servidor MCP de dos maneras diferentes:
 
 ### Capturas de pantalla
 
-![Configuración guiada del servidor MCP en Visual Studio Code](../../../../translated_images/es/chat-mode-agent.729a22473f822216.png)
-![Selección de herramientas por sesión de agente](../../../../translated_images/es/agent-mode-select-tools.522c7ba5df0848f8.png)
-![Depuración sencilla de errores durante el desarrollo MCP](../../../../translated_images/es/mcp-list-servers.fce89eefe3f30032.png)
+![Configuración guiada del servidor MCP en Visual Studio Code](../../../../translated_images/es/chat-mode-agent.729a22473f822216.webp)
+![Selección de herramientas por sesión de agente](../../../../translated_images/es/agent-mode-select-tools.522c7ba5df0848f8.webp)
+![Depuración sencilla de errores durante el desarrollo MCP](../../../../translated_images/es/mcp-list-servers.fce89eefe3f30032.webp)
 
 Hablemos más sobre cómo usar la interfaz visual en las siguientes secciones.
 
@@ -103,15 +103,15 @@ Ahora que has agregado una entrada, iniciemos el servidor:
 
 1. Localiza tu entrada en *mcp.json* y asegúrate de encontrar el ícono de "play":
 
-  ![Iniciar servidor en Visual Studio Code](../../../../translated_images/es/vscode-start-server.8e3c986612e3555d.png)  
+  ![Iniciar servidor en Visual Studio Code](../../../../translated_images/es/vscode-start-server.8e3c986612e3555d.webp)  
 
 1. Haz clic en el ícono de "play". Deberías ver que el ícono de herramientas en el chat de GitHub Copilot aumenta el número de herramientas disponibles. Si haces clic en dicho ícono de herramientas, verás una lista de herramientas registradas. Puedes marcar/desmarcar cada herramienta dependiendo de si deseas que GitHub Copilot las use como contexto:
 
-  ![Iniciar servidor en Visual Studio Code](../../../../translated_images/es/vscode-tool.0b3bbea2fb7d8c26.png)
+  ![Iniciar servidor en Visual Studio Code](../../../../translated_images/es/vscode-tool.0b3bbea2fb7d8c26.webp)
 
 1. Para ejecutar una herramienta, escribe un comando que coincida con la descripción de una de tus herramientas, por ejemplo, un comando como "suma 22 y 1":
 
-  ![Ejecutar una herramienta desde GitHub Copilot](../../../../translated_images/es/vscode-agent.d5a0e0b897331060.png)
+  ![Ejecutar una herramienta desde GitHub Copilot](../../../../translated_images/es/vscode-agent.d5a0e0b897331060.webp)
 
   Deberías ver una respuesta diciendo 23.
 

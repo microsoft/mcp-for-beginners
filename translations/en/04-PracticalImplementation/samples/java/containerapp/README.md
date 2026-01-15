@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 This project showcases a web application that performs content safety checks before sending user prompts to a calculator service via the Model Context Protocol (MCP).
 
-![System Architecture Diagram](../../../../../../translated_images/en/plant.b079fed84e945b7c.png)
+![System Architecture Diagram](../../../../../../translated_images/en/plant.b079fed84e945b7c.webp)
 
 ### How It Works
 

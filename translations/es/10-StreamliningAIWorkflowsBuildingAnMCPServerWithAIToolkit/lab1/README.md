@@ -60,7 +60,7 @@ El **AI Toolkit para Visual Studio Code** es la extensión principal de Microsof
 
 **Paso 3: Instalar y Activar**
 
-![Extensión AI Toolkit](../../../../translated_images/es/aitkext.d28945a03eed003c.png)
+![Extensión AI Toolkit](../../../../translated_images/es/aitkext.d28945a03eed003c.webp)
 
 ### ✅ Lista de Verificación para Verificación
 - [ ] El ícono de AI Toolkit aparece en la barra lateral de VS Code
@@ -79,7 +79,7 @@ El Catálogo de Modelos es tu puerta de entrada al ecosistema de IA. Agrega mode
 
 Haz clic en **MODELS - Catalog** en la barra lateral de AI Toolkit
 
-![Catálogo de Modelos](../../../../translated_images/es/aimodel.263ed2be013d8fb0.png)
+![Catálogo de Modelos](../../../../translated_images/es/aimodel.263ed2be013d8fb0.webp)
 
 **💡 Consejo Profesional**: Busca modelos con capacidades específicas que se ajusten a tu caso de uso (por ejemplo, generación de código, escritura creativa, análisis).
 
@@ -97,7 +97,7 @@ Haz clic en **MODELS - Catalog** en la barra lateral de AI Toolkit
 3. Elige **Try in Playground** para abrir el entorno de pruebas
 4. Espera la inicialización del modelo (la primera vez puede tardar un poco)
 
-![Configuración del Playground](../../../../translated_images/es/playground.dd6f5141344878ca.png)
+![Configuración del Playground](../../../../translated_images/es/playground.dd6f5141344878ca.webp)
 
 **⚙️ Entendiendo los Parámetros del Modelo:**
 - **Temperature**: Controla la creatividad (0 = determinista, 1 = creativo)
@@ -126,7 +126,7 @@ El Playground es tu laboratorio de experimentación con IA. Así puedes sacarle 
 "Analyze this sales data and provide insights: [paste your data]. Focus on trends, anomalies, and actionable recommendations."
 ```
 
-![Resultados de la Prueba](../../../../translated_images/es/result.1dfcf211fb359cf6.png)
+![Resultados de la Prueba](../../../../translated_images/es/result.1dfcf211fb359cf6.webp)
 
 ### 🏆 Ejercicio Desafío: Comparación de Rendimiento de Modelos
 
@@ -136,12 +136,12 @@ El Playground es tu laboratorio de experimentación con IA. Así puedes sacarle 
 1. Añade **Phi-4-mini** a tu espacio de trabajo
 2. Usa el mismo prompt para GPT-4.1 y Phi-4-mini
 
-![set](../../../../translated_images/es/set.88132df189ecde2c.png)
+![set](../../../../translated_images/es/set.88132df189ecde2c.webp)
 
 3. Compara calidad, velocidad y precisión de las respuestas
 4. Documenta tus hallazgos en la sección de resultados
 
-![Comparación de Modelos](../../../../translated_images/es/compare.97746cd0f9074955.png)
+![Comparación de Modelos](../../../../translated_images/es/compare.97746cd0f9074955.webp)
 
 **💡 Ideas Clave para Descubrir:**
 - Cuándo usar LLM vs SLM
@@ -163,7 +163,7 @@ Agent Builder es donde AI Toolkit realmente destaca. Te permite crear asistentes
 - **Integración de Herramientas**: Conexión a APIs externas y servicios MCP
 - **Memoria**: Contexto de conversación y persistencia de sesión
 
-![Interfaz de Agent Builder](../../../../translated_images/es/agentbuilder.25895b2d2f8c02e7.png)
+![Interfaz de Agent Builder](../../../../translated_images/es/agentbuilder.25895b2d2f8c02e7.webp)
 
 ### ⚙️ Paso 2: Profundizando en la Configuración del Agente
 
@@ -237,7 +237,7 @@ You are a senior Python developer with 10+ years of experience. You excel at wri
    - Max Tokens: 2000 (explicaciones detalladas)
    - Top-p: 0.9 (creatividad equilibrada)
 
-![Configuración del Agente Python](../../../../translated_images/es/pythonagent.5e51b406401c165f.png)
+![Configuración del Agente Python](../../../../translated_images/es/pythonagent.5e51b406401c165f.webp)
 
 ### 🧪 Paso 4: Prueba de tu Agente Python
 

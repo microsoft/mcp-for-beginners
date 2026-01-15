@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP Security: Comprehensive Protection for AI Systems
 
-[![MCP Security Best Practices](../../../translated_images/en/03.175aed6dedae133f.png)](https://youtu.be/88No8pw706o)
+[![MCP Security Best Practices](../../../translated_images/en/03.175aed6dedae133f.webp)](https://youtu.be/88No8pw706o)
 
 _(Click the image above to view video of this lesson)_
 
@@ -133,7 +133,7 @@ Modern MCP implementations face sophisticated AI-specific attack vectors that tr
 
 **Real-World Impact**: These attacks can result in data exfiltration, privacy breaches, generation of harmful content, and manipulation of user interactions. For detailed analysis, see [Prompt Injection in MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
-![Prompt Injection Attack Diagram](../../../translated_images/en/prompt-injection.ed9fbfde297ca877.png)
+![Prompt Injection Attack Diagram](../../../translated_images/en/prompt-injection.ed9fbfde297ca877.webp)
 
 #### **Tool Poisoning Attacks**
 
@@ -147,7 +147,7 @@ Modern MCP implementations face sophisticated AI-specific attack vectors that tr
 
 **Hosted Server Risks**: Remote MCP servers present elevated risks as tool definitions can be updated after initial user approval, creating scenarios where previously safe tools become malicious. For comprehensive analysis, see [Tool Poisoning Attacks (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
-![Tool Injection Attack Diagram](../../../translated_images/en/tool-injection.3b0b4a6b24de6bef.png)
+![Tool Injection Attack Diagram](../../../translated_images/en/tool-injection.3b0b4a6b24de6bef.webp)
 
 #### **Additional AI Attack Vectors**
 
@@ -201,7 +201,7 @@ Microsoft **AI Prompt Shields** provide comprehensive defense against both direc
 
 **Implementation Resources**: [Microsoft Prompt Shields Documentation](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields Protection](../../../translated_images/en/prompt-shield.ff5b95be76e9c78c.png)
+![Microsoft Prompt Shields Protection](../../../translated_images/en/prompt-shield.ff5b95be76e9c78c.webp)
 
 
 ## Advanced MCP Security Threats

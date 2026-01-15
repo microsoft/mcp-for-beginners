@@ -38,9 +38,9 @@ Vous pouvez contrôler votre serveur MCP de deux manières différentes :
 
 ### Captures d'écran
 
-![Configuration guidée du serveur MCP dans Visual Studio Code](../../../../translated_images/fr/chat-mode-agent.729a22473f822216.png)
-![Sélection d'outils par session agent](../../../../translated_images/fr/agent-mode-select-tools.522c7ba5df0848f8.png)
-![Débogage facile des erreurs pendant le développement MCP](../../../../translated_images/fr/mcp-list-servers.fce89eefe3f30032.png)
+![Configuration guidée du serveur MCP dans Visual Studio Code](../../../../translated_images/fr/chat-mode-agent.729a22473f822216.webp)
+![Sélection d'outils par session agent](../../../../translated_images/fr/agent-mode-select-tools.522c7ba5df0848f8.webp)
+![Débogage facile des erreurs pendant le développement MCP](../../../../translated_images/fr/mcp-list-servers.fce89eefe3f30032.webp)
 
 Parlons davantage de l'utilisation de l'interface visuelle dans les sections suivantes.
 
@@ -103,15 +103,15 @@ Maintenant que vous avez ajouté une entrée, démarrez le serveur :
 
 1. Localisez votre entrée dans *mcp.json* et assurez-vous de trouver l'icône "play" :
 
-  ![Démarrer le serveur dans Visual Studio Code](../../../../translated_images/fr/vscode-start-server.8e3c986612e3555d.png)  
+  ![Démarrer le serveur dans Visual Studio Code](../../../../translated_images/fr/vscode-start-server.8e3c986612e3555d.webp)  
 
 1. Cliquez sur l'icône "play". Vous devriez voir l'icône des outils dans GitHub Copilot Chat augmenter le nombre d'outils disponibles. Si vous cliquez sur cette icône, vous verrez une liste des outils enregistrés. Vous pouvez cocher/décocher chaque outil selon que vous souhaitez que GitHub Copilot les utilise comme contexte :
 
-  ![Démarrer le serveur dans Visual Studio Code](../../../../translated_images/fr/vscode-tool.0b3bbea2fb7d8c26.png)
+  ![Démarrer le serveur dans Visual Studio Code](../../../../translated_images/fr/vscode-tool.0b3bbea2fb7d8c26.webp)
 
 1. Pour exécuter un outil, tapez une commande qui correspond à la description de l'un de vos outils, par exemple une commande comme "ajouter 22 à 1" :
 
-  ![Exécuter un outil depuis GitHub Copilot](../../../../translated_images/fr/vscode-agent.d5a0e0b897331060.png)
+  ![Exécuter un outil depuis GitHub Copilot](../../../../translated_images/fr/vscode-agent.d5a0e0b897331060.webp)
 
   Vous devriez voir une réponse indiquant 23.
 

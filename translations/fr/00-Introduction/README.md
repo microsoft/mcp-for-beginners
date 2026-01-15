@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Introduction au protocole de contexte de modèle (MCP) : Pourquoi il est essentiel pour des applications IA évolutives
 
-[![Introduction au protocole de contexte de modèle](../../../translated_images/fr/01.a467036d886b5fb5.png)](https://youtu.be/agBbdiOPLQA)
+[![Introduction au protocole de contexte de modèle](../../../translated_images/fr/01.a467036d886b5fb5.webp)](https://youtu.be/agBbdiOPLQA)
 
 _(Cliquez sur l'image ci-dessus pour visionner la vidéo de cette leçon)_
 

@@ -156,7 +156,7 @@ Cuando ejecutes los comandos anteriores, MCP Inspector lanzará una interfaz web
 
 Aquí tienes una captura de pantalla de cómo puede verse:
 
-![MCP Inspector server connection](../../../../translated_images/es/connected.73d1e042c24075d3.png)
+![MCP Inspector server connection](../../../../translated_images/es/connected.73d1e042c24075d3.webp)
 
 ## Problemas comunes de configuración y soluciones
 
@@ -1302,7 +1302,7 @@ En la interfaz web del inspector:
 2. Establece la URL a: `http://localhost:8080/sse`
 3. Haz clic en "Connect"
 
-![Connect](../../../../translated_images/es/tool.163d33e3ee307e20.png)
+![Connect](../../../../translated_images/es/tool.163d33e3ee307e20.webp)
 
 **Ahora estás conectado al servidor**
 **La sección de prueba del servidor Java está completada ahora**
@@ -1311,18 +1311,18 @@ La siguiente sección trata sobre interactuar con el servidor.
 
 Deberías ver la siguiente interfaz de usuario:
 
-![Connect](../../../../translated_images/es/connect.141db0b2bd05f096.png)
+![Connect](../../../../translated_images/es/connect.141db0b2bd05f096.webp)
 
 1. Conéctate al servidor seleccionando el botón Connect
   Una vez conectado al servidor, deberías ver lo siguiente:
 
-  ![Connected](../../../../translated_images/es/connected.73d1e042c24075d3.png)
+  ![Connected](../../../../translated_images/es/connected.73d1e042c24075d3.webp)
 
 1. Selecciona "Tools" y "listTools", deberías ver que aparece "Add", selecciona "Add" y completa los valores de los parámetros.
 
   Deberías ver la siguiente respuesta, es decir, un resultado de la herramienta "add":
 
-  ![Result of running add](../../../../translated_images/es/ran-tool.a5a6ee878c1369ec.png)
+  ![Result of running add](../../../../translated_images/es/ran-tool.a5a6ee878c1369ec.webp)
 
 ¡Felicidades, has logrado crear y ejecutar tu primer servidor!
 

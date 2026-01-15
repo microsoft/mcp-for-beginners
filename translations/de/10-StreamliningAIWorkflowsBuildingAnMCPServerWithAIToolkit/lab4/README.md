@@ -139,7 +139,7 @@ Scenario : Basic Clone and Open
  } and save to {The global path you specify}, then open it with VS Code Insiders"
 ```
 
-![Agent Builder Testing](../../../../translated_images/de/DebugAgent.81d152370c503241.png)
+![Agent Builder Testing](../../../../translated_images/de/DebugAgent.81d152370c503241.webp)
 
 **Erwartete Ergebnisse:**  
 - ✅ Erfolgreiches Klonen mit Pfadbestätigung  
@@ -149,7 +149,7 @@ Scenario : Basic Clone and Open
 
 #### 4b. Test im MCP Inspector
 
-![MCP Inspector Testing](../../../../translated_images/de/DebugInspector.eb5c95f94c69a8ba.png)
+![MCP Inspector Testing](../../../../translated_images/de/DebugInspector.eb5c95f94c69a8ba.webp)
 
 ---
 

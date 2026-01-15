@@ -7,7 +7,7 @@ CO_OP_TRANSLATOR_METADATA:
   "language_code": "el"
 }
 -->
-![MCP-για-αρχάριους](../../translated_images/el/mcp-beginners.2ce2b317996369ff.png) 
+![MCP-για-αρχάριους](../../translated_images/el/mcp-beginners.2ce2b317996369ff.webp) 
 
 [![Συνεισφέροντες GitHub](https://img.shields.io/github/contributors/microsoft/mcp-for-beginners.svg)](https://GitHub.com/microsoft/mcp-for-beginners/graphs/contributors)
 [![Θέματα GitHub](https://img.shields.io/github/issues/microsoft/mcp-for-beginners.svg)](https://GitHub.com/microsoft/mcp-for-beginners/issues)
