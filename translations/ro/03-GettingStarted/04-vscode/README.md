@@ -38,9 +38,9 @@ Poți controla MCP Server-ul în două moduri diferite:
 
 ### Capturi de ecran
 
-![Configurare ghidată a MCP Server în Visual Studio Code](../../../../translated_images/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.ro.png)
-![Selecția uneltelor per sesiune agent](../../../../translated_images/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.ro.png)
-![Depanare ușoară a erorilor în timpul dezvoltării MCP](../../../../translated_images/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.ro.png)
+![Configurare ghidată a MCP Server în Visual Studio Code](../../../../translated_images/ro/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.png)
+![Selecția uneltelor per sesiune agent](../../../../translated_images/ro/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.png)
+![Depanare ușoară a erorilor în timpul dezvoltării MCP](../../../../translated_images/ro/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.png)
 
 Vom discuta mai multe despre cum utilizăm interfața vizuală în secțiunile următoare.
 
@@ -103,15 +103,15 @@ Acum că ai adăugat o intrare, să pornim serverul:
 
 1. Localizează intrarea ta în *mcp.json* și asigură-te că găsești pictograma "play":
 
-  ![Pornirea serverului în Visual Studio Code](../../../../translated_images/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.ro.png)  
+  ![Pornirea serverului în Visual Studio Code](../../../../translated_images/ro/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.png)  
 
 1. Fă clic pe pictograma "play". Ar trebui să vezi că numărul de unelte disponibile în GitHub Copilot Chat crește. Dacă faci clic pe pictograma uneltelor, vei vedea o listă cu uneltele înregistrate. Poți bifa/debifa fiecare unealtă în funcție de dorința ta ca GitHub Copilot să le utilizeze ca context:
 
-  ![Pornirea serverului în Visual Studio Code](../../../../translated_images/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.ro.png)
+  ![Pornirea serverului în Visual Studio Code](../../../../translated_images/ro/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.png)
 
 1. Pentru a rula o unealtă, tastează un prompt care știi că se potrivește cu descrierea uneia dintre uneltele tale, de exemplu un prompt precum "adaugă 22 la 1":
 
-  ![Rularea unei unelte din GitHub Copilot](../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.ro.png)
+  ![Rularea unei unelte din GitHub Copilot](../../../../translated_images/ro/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
   Ar trebui să vezi un răspuns care spune 23.
 

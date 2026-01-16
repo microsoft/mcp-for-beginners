@@ -60,7 +60,7 @@ Kết thúc module này, bạn sẽ có thể:
 
 **Bước 3: Cài Đặt và Kích Hoạt**
 
-![AI Toolkit Extension](../../../../translated_images/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.vi.png)
+![AI Toolkit Extension](../../../../translated_images/vi/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.png)
 
 ### ✅ Danh Sách Kiểm Tra Xác Nhận
 - [ ] Biểu tượng AI Toolkit xuất hiện trên thanh bên VS Code
@@ -79,7 +79,7 @@ Model Catalog là cổng vào hệ sinh thái AI. Nó tổng hợp các mô hìn
 
 Nhấn vào **MODELS - Catalog** trong thanh bên AI Toolkit
 
-![Model Catalog](../../../../translated_images/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.vi.png)
+![Model Catalog](../../../../translated_images/vi/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.png)
 
 **💡 Mẹo**: Tìm các mô hình có khả năng phù hợp với nhu cầu của bạn (ví dụ: tạo mã, viết sáng tạo, phân tích).
 
@@ -97,7 +97,7 @@ Nhấn vào **MODELS - Catalog** trong thanh bên AI Toolkit
 3. Chọn **Try in Playground** để mở môi trường thử nghiệm
 4. Chờ mô hình khởi tạo (lần đầu có thể mất chút thời gian)
 
-![Playground Setup](../../../../translated_images/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.vi.png)
+![Playground Setup](../../../../translated_images/vi/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.png)
 
 **⚙️ Hiểu Các Tham Số Mô Hình:**
 - **Temperature**: Điều chỉnh độ sáng tạo (0 = cố định, 1 = sáng tạo)
@@ -126,7 +126,7 @@ Playground là phòng thí nghiệm thử nghiệm AI của bạn. Đây là cá
 "Analyze this sales data and provide insights: [paste your data]. Focus on trends, anomalies, and actionable recommendations."
 ```
 
-![Testing Results](../../../../translated_images/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.vi.png)
+![Testing Results](../../../../translated_images/vi/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.png)
 
 ### 🏆 Bài Tập Thách Thức: So Sánh Hiệu Suất Mô Hình
 
@@ -136,12 +136,12 @@ Playground là phòng thí nghiệm thử nghiệm AI của bạn. Đây là cá
 1. Thêm **Phi-4-mini** vào workspace của bạn
 2. Dùng cùng một prompt cho cả GPT-4.1 và Phi-4-mini
 
-![set](../../../../translated_images/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.vi.png)
+![set](../../../../translated_images/vi/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.png)
 
 3. So sánh chất lượng phản hồi, tốc độ và độ chính xác
 4. Ghi lại kết quả trong phần kết quả
 
-![Model Comparison](../../../../translated_images/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.vi.png)
+![Model Comparison](../../../../translated_images/vi/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.png)
 
 **💡 Những Điều Quan Trọng Cần Khám Phá:**
 - Khi nào nên dùng LLM so với SLM
@@ -163,7 +163,7 @@ Agent Builder là điểm mạnh thực sự của AI Toolkit. Nó cho phép b�
 - **Tools Integration**: Kết nối với API bên ngoài và dịch vụ MCP
 - **Memory**: Lưu giữ ngữ cảnh hội thoại và phiên làm việc
 
-![Agent Builder Interface](../../../../translated_images/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.vi.png)
+![Agent Builder Interface](../../../../translated_images/vi/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.png)
 
 ### ⚙️ Bước 2: Tìm Hiểu Cấu Hình Agent
 
@@ -237,7 +237,7 @@ You are a senior Python developer with 10+ years of experience. You excel at wri
    - Max Tokens: 2000 (giải thích chi tiết)
    - Top-p: 0.9 (cân bằng sáng tạo)
 
-![Python Agent Configuration](../../../../translated_images/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.vi.png)
+![Python Agent Configuration](../../../../translated_images/vi/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.png)
 
 ### 🧪 Bước 4: Thử Nghiệm Agent Python
 

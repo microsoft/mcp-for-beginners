@@ -52,27 +52,27 @@ Para makapagsimula, sundin ang mga hakbang na ito. Sa bawat hakbang, maaari kang
    ```
    Sinasabi ng configuration na ito sa VS Code kung paano kumonekta sa [`Microsoft Learn Docs MCP server`](https://github.com/MicrosoftDocs/mcp).
    
-   ![Hakbang 1: Idagdag ang mcp.json sa .vscode folder](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.tl.png)
+   ![Hakbang 1: Idagdag ang mcp.json sa .vscode folder](../../../../../../translated_images/tl/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
     
 2. **Buksan ang GitHub Copilot Chat panel:**
    Kung wala ka pang naka-install na GitHub Copilot extension, pumunta sa Extensions view sa VS Code at i-install ito. Maaari mo itong i-download nang direkta mula sa [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat). Pagkatapos, buksan ang Copilot Chat panel mula sa sidebar.
 
-   ![Hakbang 2: Buksan ang Copilot Chat panel](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.tl.png)
+   ![Hakbang 2: Buksan ang Copilot Chat panel](../../../../../../translated_images/tl/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
 
 3. **I-enable ang agent mode at i-verify ang mga tool:**
    Sa Copilot Chat panel, i-enable ang agent mode.
 
-   ![Hakbang 3: I-enable ang agent mode at i-verify ang mga tool](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.tl.png)
+   ![Hakbang 3: I-enable ang agent mode at i-verify ang mga tool](../../../../../../translated_images/tl/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
 
    Pagkatapos i-enable ang agent mode, tiyaking nakalista ang MCP server bilang isa sa mga available na tool. Tinitiyak nito na makaka-access ang Copilot agent sa documentation server para kunin ang mga kaugnay na impormasyon.
    
-   ![Hakbang 3: I-verify ang MCP server tool](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.tl.png)
+   ![Hakbang 3: I-verify ang MCP server tool](../../../../../../translated_images/tl/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
 4. **Magsimula ng bagong chat at i-prompt ang agent:**
    Magbukas ng bagong chat sa Copilot Chat panel. Maaari mo nang i-prompt ang agent gamit ang iyong mga tanong tungkol sa dokumentasyon. Gagamitin ng agent ang MCP server para kunin at ipakita ang kaugnay na Microsoft Learn documentation nang direkta sa iyong editor.
 
    - *"Nagsusulat ako ng study plan para sa topic X. Babasahin ko ito sa loob ng 8 linggo, para sa bawat linggo, magmungkahi ng mga content na dapat kong pag-aralan."*
 
-   ![Hakbang 4: I-prompt ang agent sa chat](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.tl.png)
+   ![Hakbang 4: I-prompt ang agent sa chat](../../../../../../translated_images/tl/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 5. **Live Query:**
 
@@ -81,7 +81,7 @@ Para makapagsimula, sundin ang mga hakbang na ito. Sa bawat hakbang, maaari kang
    *"Naghahanap ako ng sagot kung paano mag-deploy ng multi-agent solution gamit ang AI agents na ginawa sa Azure AI Foundry. Napansin ko na walang direktang deployment method, tulad ng Copilot Studio channels. Ano-ano ang iba't ibang paraan para gawin ang deployment na ito para sa mga enterprise users upang makipag-interact at matapos ang trabaho?
 Maraming artikulo/blogs ang nagsasabing pwede gamitin ang Azure Bot service para dito na maaaring magsilbing tulay sa pagitan ng MS Teams at Azure AI Foundry Agents, pero gagana ba ito kung magse-setup ako ng Azure bot na kumokonekta sa Orchestrator Agent sa Azure AI Foundry gamit ang Azure function para gawin ang orchestration, o kailangan ko bang gumawa ng Azure function para sa bawat AI agent na bahagi ng multi-agent solution para gawin ang orchestration sa Bot framework? Bukas ako sa iba pang mga suhestiyon."*
 
-   ![Hakbang 5: Live queries](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.tl.png)
+   ![Hakbang 5: Live queries](../../../../../../translated_images/tl/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
 
    Sasagutin ng agent ang mga tanong gamit ang mga kaugnay na link at buod ng dokumentasyon, na maaari mong direktang ilagay sa iyong mga markdown file o gamitin bilang reference sa iyong code.
    

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # 🌟 Lærdom fra tidlige brukere
 
-[![Lærdom fra MCP tidlige brukere](../../../translated_images/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.no.png)](https://youtu.be/jds7dSmNptE)
+[![Lærdom fra MCP tidlige brukere](../../../translated_images/no/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.png)](https://youtu.be/jds7dSmNptE)
 
 _(Klikk på bildet over for å se videoen til denne leksjonen)_
 

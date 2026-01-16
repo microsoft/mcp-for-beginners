@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP의 고급 주제
 
-[![고급 MCP: 안전하고 확장 가능하며 다중 모달 AI 에이전트](../../../translated_images/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.ko.png)](https://youtu.be/4yjmGvJzYdY)
+[![고급 MCP: 안전하고 확장 가능하며 다중 모달 AI 에이전트](../../../translated_images/ko/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.png)](https://youtu.be/4yjmGvJzYdY)
 
 _(위 이미지를 클릭하면 이 강의의 동영상을 볼 수 있습니다)_
 

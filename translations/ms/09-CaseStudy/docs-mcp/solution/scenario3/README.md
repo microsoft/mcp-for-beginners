@@ -52,27 +52,27 @@ Untuk memulakan, ikut langkah-langkah berikut. Untuk setiap langkah, anda boleh 
    ```
    Konfigurasi ini memberitahu VS Code cara untuk berhubung dengan [`Microsoft Learn Docs MCP server`](https://github.com/MicrosoftDocs/mcp).
    
-   ![Langkah 1: Tambah mcp.json ke folder .vscode](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.ms.png)
+   ![Langkah 1: Tambah mcp.json ke folder .vscode](../../../../../../translated_images/ms/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
     
 2. **Buka panel GitHub Copilot Chat:**
    Jika anda belum memasang sambungan GitHub Copilot, pergi ke paparan Extensions dalam VS Code dan pasang ia. Anda boleh muat turun terus dari [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat). Kemudian, buka panel Copilot Chat dari bar sisi.
 
-   ![Langkah 2: Buka panel Copilot Chat](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.ms.png)
+   ![Langkah 2: Buka panel Copilot Chat](../../../../../../translated_images/ms/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
 
 3. **Aktifkan mod agen dan sahkan alat:**
    Dalam panel Copilot Chat, aktifkan mod agen.
 
-   ![Langkah 3: Aktifkan mod agen dan sahkan alat](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.ms.png)
+   ![Langkah 3: Aktifkan mod agen dan sahkan alat](../../../../../../translated_images/ms/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
 
    Selepas mengaktifkan mod agen, sahkan bahawa server MCP disenaraikan sebagai salah satu alat yang tersedia. Ini memastikan agen Copilot boleh mengakses server dokumentasi untuk mendapatkan maklumat yang relevan.
    
-   ![Langkah 3: Sahkan alat server MCP](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.ms.png)
+   ![Langkah 3: Sahkan alat server MCP](../../../../../../translated_images/ms/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
 4. **Mulakan sembang baru dan beri arahan kepada agen:**
    Buka sembang baru dalam panel Copilot Chat. Anda kini boleh memberi arahan kepada agen dengan soalan dokumentasi anda. Agen akan menggunakan server MCP untuk mendapatkan dan memaparkan dokumentasi Microsoft Learn yang relevan terus dalam editor anda.
 
    - *"Saya sedang cuba menulis pelan pembelajaran untuk topik X. Saya akan belajar selama 8 minggu, untuk setiap minggu, cadangkan kandungan yang patut saya ambil."*
 
-   ![Langkah 4: Beri arahan kepada agen dalam sembang](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.ms.png)
+   ![Langkah 4: Beri arahan kepada agen dalam sembang](../../../../../../translated_images/ms/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 5. **Pertanyaan Langsung:**
 
@@ -82,7 +82,7 @@ Untuk memulakan, ikut langkah-langkah berikut. Untuk setiap langkah, anda boleh 
 Terdapat banyak artikel/blog yang mengatakan kita boleh menggunakan perkhidmatan Azure Bot untuk melakukan kerja ini yang boleh bertindak sebagai jambatan antara MS Teams dan Agen Azure AI Foundry, adakah ini akan berfungsi jika saya menyediakan bot Azure yang berhubung dengan Orchestrator Agent di Azure AI Foundry melalui fungsi Azure untuk melakukan orkestrasi atau saya perlu membuat fungsi Azure untuk setiap agen AI yang merupakan sebahagian daripada penyelesaian multi-agen untuk melakukan orkestrasi di rangka kerja Bot? Sebarang cadangan lain amat dialu-alukan.
 "*
 
-   ![Langkah 5: Pertanyaan langsung](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.ms.png)
+   ![Langkah 5: Pertanyaan langsung](../../../../../../translated_images/ms/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
 
    Agen akan membalas dengan pautan dokumentasi dan ringkasan yang relevan, yang kemudian boleh anda masukkan terus ke dalam fail markdown anda atau gunakan sebagai rujukan dalam kod anda.
    

@@ -52,27 +52,27 @@ CO_OP_TRANSLATOR_METADATA:
    ```
    این پیکربندی به VS Code می‌گوید چگونه به [`Microsoft Learn Docs MCP server`](https://github.com/MicrosoftDocs/mcp) متصل شود.
    
-   ![مرحله ۱: افزودن mcp.json به پوشه .vscode](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.fa.png)
+   ![مرحله ۱: افزودن mcp.json به پوشه .vscode](../../../../../../translated_images/fa/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
     
 2. **پنل گفتگوی GitHub Copilot را باز کنید:**
    اگر افزونه GitHub Copilot را نصب ندارید، به بخش Extensions در VS Code بروید و آن را نصب کنید. می‌توانید آن را مستقیماً از [بازار Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat) دانلود کنید. سپس پنل گفتگوی Copilot را از نوار کناری باز کنید.
 
-   ![مرحله ۲: باز کردن پنل گفتگوی Copilot](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.fa.png)
+   ![مرحله ۲: باز کردن پنل گفتگوی Copilot](../../../../../../translated_images/fa/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
 
 3. **حالت agent را فعال کنید و ابزارها را بررسی کنید:**
    در پنل گفتگوی Copilot، حالت agent را فعال کنید.
 
-   ![مرحله ۳: فعال کردن حالت agent و بررسی ابزارها](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.fa.png)
+   ![مرحله ۳: فعال کردن حالت agent و بررسی ابزارها](../../../../../../translated_images/fa/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
 
    پس از فعال کردن حالت agent، مطمئن شوید که سرور MCP به عنوان یکی از ابزارهای موجود فهرست شده است. این تضمین می‌کند که عامل Copilot بتواند به سرور مستندات دسترسی داشته باشد و اطلاعات مرتبط را دریافت کند.
    
-   ![مرحله ۳: بررسی ابزار سرور MCP](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.fa.png)
+   ![مرحله ۳: بررسی ابزار سرور MCP](../../../../../../translated_images/fa/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
 4. **یک گفتگوی جدید شروع کنید و عامل را راهنمایی کنید:**
    در پنل گفتگوی Copilot یک گفتگوی جدید باز کنید. اکنون می‌توانید سوالات مستنداتی خود را به عامل بدهید. عامل از سرور MCP برای دریافت و نمایش مستندات مرتبط Microsoft Learn مستقیماً در ویرایشگر شما استفاده خواهد کرد.
 
    - *"من می‌خواهم یک برنامه مطالعه برای موضوع X بنویسم. قصد دارم آن را در ۸ هفته مطالعه کنم، برای هر هفته محتوایی که باید مطالعه کنم را پیشنهاد بده."*
 
-   ![مرحله ۴: راهنمایی عامل در گفتگو](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.fa.png)
+   ![مرحله ۴: راهنمایی عامل در گفتگو](../../../../../../translated_images/fa/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 5. **پرسش زنده:**
 
@@ -81,7 +81,7 @@ CO_OP_TRANSLATOR_METADATA:
    *"من دنبال پاسخ‌هایی هستم درباره نحوه استقرار یک راه‌حل چندعاملی با عوامل هوش مصنوعی توسعه یافته در Azure AI Foundry. می‌بینم که روش استقرار مستقیمی وجود ندارد، مثل کانال‌های Copilot Studio. پس راه‌های مختلف برای انجام این استقرار برای کاربران سازمانی که بخواهند تعامل داشته باشند و کار را انجام دهند چیست؟
 مقالات و بلاگ‌های زیادی وجود دارد که می‌گویند می‌توانیم از سرویس Azure Bot برای این کار استفاده کنیم که به عنوان پلی بین MS Teams و عوامل Azure AI Foundry عمل کند، خب آیا این کار جواب می‌دهد اگر یک Azure bot راه‌اندازی کنم که به Orchestrator Agent در Azure AI Foundry از طریق Azure function متصل شود تا هماهنگی را انجام دهد یا باید برای هر یک از عوامل هوش مصنوعی که بخشی از راه‌حل چندعاملی هستند، Azure function جداگانه بسازم تا هماهنگی در Bot framework انجام شود؟ هر پیشنهاد دیگری هم خوش‌آمد است."*
 
-   ![مرحله ۵: پرسش‌های زنده](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.fa.png)
+   ![مرحله ۵: پرسش‌های زنده](../../../../../../translated_images/fa/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
 
    عامل با لینک‌ها و خلاصه‌های مستندات مرتبط پاسخ خواهد داد که می‌توانید مستقیماً در فایل‌های markdown خود درج کنید یا به عنوان مرجع در کد استفاده نمایید.
    

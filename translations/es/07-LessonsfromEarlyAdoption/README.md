@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # 🌟 Lecciones de los primeros adoptantes
 
-[![Lecciones de los primeros adoptantes de MCP](../../../translated_images/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.es.png)](https://youtu.be/jds7dSmNptE)
+[![Lecciones de los primeros adoptantes de MCP](../../../translated_images/es/08.980bb2babbaadd8a.webp)](https://youtu.be/jds7dSmNptE)
 
 _(Haz clic en la imagen de arriba para ver el video de esta lección)_
 

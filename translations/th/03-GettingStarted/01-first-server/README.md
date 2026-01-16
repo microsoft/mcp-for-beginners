@@ -156,7 +156,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 นี่คือตัวอย่างภาพหน้าจอ:
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.th.png)
+![MCP Inspector server connection](../../../../translated_images/th/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## ปัญหาการตั้งค่าทั่วไปและวิธีแก้ไข
 
@@ -1290,7 +1290,7 @@ npx @modelcontextprotocol/inspector
 2. ตั้งค่า URL เป็น: `http://localhost:8080/sse`
 3. คลิก "Connect"
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.th.png)
+![Connect](../../../../translated_images/th/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **คุณได้เชื่อมต่อกับเซิร์ฟเวอร์แล้ว**
 **ตอนนี้ส่วนทดสอบเซิร์ฟเวอร์ Java เสร็จสมบูรณ์แล้ว**
@@ -1299,18 +1299,18 @@ npx @modelcontextprotocol/inspector
 
 คุณควรเห็นอินเทอร์เฟซผู้ใช้ดังนี้:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.th.png)
+![Connect](../../../../translated_images/th/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. เชื่อมต่อกับเซิร์ฟเวอร์โดยการเลือกปุ่ม Connect
   เมื่อคุณเชื่อมต่อกับเซิร์ฟเวอร์แล้ว คุณควรเห็นดังนี้:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.th.png)
+  ![Connected](../../../../translated_images/th/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. เลือก "Tools" และ "listTools" คุณควรเห็น "Add" ปรากฏขึ้น เลือก "Add" และกรอกค่าพารามิเตอร์
 
   คุณควรเห็นการตอบสนองดังนี้ คือผลลัพธ์จากเครื่องมือ "add":
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.th.png)
+  ![Result of running add](../../../../translated_images/th/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 ยินดีด้วย คุณได้สร้างและรันเซิร์ฟเวอร์ตัวแรกของคุณสำเร็จแล้ว!
 

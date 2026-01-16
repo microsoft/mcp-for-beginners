@@ -201,7 +201,7 @@ Az MCP Inspector egy hasznos eszköz az MCP szolgáltatásokkal való interakci�
    - Kattints a "List Tools" gombra az elérhető számológép műveletek megtekintéséhez
    - Válassz ki egy eszközt, majd kattints a "Run Tool" gombra a művelet végrehajtásához
 
-![MCP Inspector Screenshot](../../../../../../translated_images/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.hu.png)
+![MCP Inspector Screenshot](../../../../../../translated_images/hu/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.png)
 
 ### Docker használata
 

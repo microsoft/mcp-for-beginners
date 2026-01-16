@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP Безбедност: Свеобухватна заштита за AI системе
 
-[![MCP Security Best Practices](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.sr.png)](https://youtu.be/88No8pw706o)
+[![MCP Security Best Practices](../../../translated_images/sr/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(Кликните на слику изнад да бисте погледали видео о овој лекцији)_
 
@@ -133,7 +133,7 @@ MCP спецификација је значајно еволуирала у п�
 
 **Утицај у стварном свету**: Ови напади могу довести до извлачења података, кршења приватности, генерисања штетног садржаја и манипулације корисничким интеракцијама. За детаљну анализу погледајте [Prompt Injection у MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
-![Prompt Injection Attack Diagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.sr.png)
+![Prompt Injection Attack Diagram](../../../translated_images/sr/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **Напади тровања алата**
 
@@ -147,7 +147,7 @@ MCP спецификација је значајно еволуирала у п�
 
 **Ризици хостованих сервера**: Удаљени MCP сервери представљају повећане ризике јер дефиниције алата могу бити ажуриране након почетног одобрења корисника, стварајући сценарије у којима претходно безбедни алати постају злонамерни. За свеобухватну анализу погледајте [Tool Poisoning Attacks (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
-![Tool Injection Attack Diagram](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.sr.png)
+![Tool Injection Attack Diagram](../../../translated_images/sr/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **Додатни AI вектори напада**
 
@@ -200,7 +200,7 @@ Microsoft **AI Prompt Shields** пружају свеобухватну одбр
 
 **Ресурси за имплементацију**: [Microsoft Prompt Shields документација](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields Protection](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.sr.png)
+![Microsoft Prompt Shields Protection](../../../translated_images/sr/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## Напредне MCP безбедносне претње

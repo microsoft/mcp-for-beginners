@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Introduzione al Model Context Protocol (MCP): Perché è importante per applicazioni AI scalabili
 
-[![Introduzione al Model Context Protocol](../../../translated_images/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.it.png)](https://youtu.be/agBbdiOPLQA)
+[![Introduzione al Model Context Protocol](../../../translated_images/it/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.png)](https://youtu.be/agBbdiOPLQA)
 
 _(Clicca sull'immagine sopra per vedere il video di questa lezione)_
 

@@ -60,7 +60,7 @@ Az **AI Toolkit a Visual Studio Code-hoz** a Microsoft zászlóshajó bővítmé
 
 **3. lépés: Telepítés és aktiválás**
 
-![AI Toolkit Extension](../../../../translated_images/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.hu.png)
+![AI Toolkit Extension](../../../../translated_images/hu/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.png)
 
 ### ✅ Ellenőrző lista
 - [ ] Az AI Toolkit ikon megjelenik a VS Code oldalsávban
@@ -79,7 +79,7 @@ A Model Catalog az AI ökoszisztéma kapuja. Több szolgáltató modelljeit gyű
 
 Kattints az **MODELS - Catalog** menüpontra az AI Toolkit oldalsávban
 
-![Model Catalog](../../../../translated_images/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.hu.png)
+![Model Catalog](../../../../translated_images/hu/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.png)
 
 **💡 Hasznos tipp**: Keress olyan modelleket, amelyek specifikus képességekkel rendelkeznek, és illeszkednek a felhasználási esetedhez (pl. kódgenerálás, kreatív írás, elemzés).
 
@@ -97,7 +97,7 @@ Kattints az **MODELS - Catalog** menüpontra az AI Toolkit oldalsávban
 3. Válaszd a **Try in Playground** opciót a tesztkörnyezet elindításához
 4. Várj a modell inicializálására (az első indítás eltarthat egy ideig)
 
-![Playground Setup](../../../../translated_images/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.hu.png)
+![Playground Setup](../../../../translated_images/hu/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.png)
 
 **⚙️ Modell paraméterek megértése:**
 - **Temperature**: Kreativitás szabályozása (0 = determinisztikus, 1 = kreatív)
@@ -126,7 +126,7 @@ A Playground az AI kísérletező laborod. Így hozhatod ki belőle a legtöbbet
 "Analyze this sales data and provide insights: [paste your data]. Focus on trends, anomalies, and actionable recommendations."
 ```
 
-![Testing Results](../../../../translated_images/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.hu.png)
+![Testing Results](../../../../translated_images/hu/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.png)
 
 ### 🏆 Kihívás: Modell teljesítmény összehasonlítása
 
@@ -136,12 +136,12 @@ A Playground az AI kísérletező laborod. Így hozhatod ki belőle a legtöbbet
 1. Add hozzá a **Phi-4-mini** modellt a munkaterületedhez
 2. Használd ugyanazt a promptot mindkét modellhez: GPT-4.1 és Phi-4-mini
 
-![set](../../../../translated_images/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.hu.png)
+![set](../../../../translated_images/hu/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.png)
 
 3. Hasonlítsd össze a válaszok minőségét, sebességét és pontosságát
 4. Dokumentáld az eredményeket az eredmény szekcióban
 
-![Model Comparison](../../../../translated_images/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.hu.png)
+![Model Comparison](../../../../translated_images/hu/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.png)
 
 **💡 Fontos felismerések:**
 - Mikor érdemes LLM-et vagy SLM-et használni
@@ -163,7 +163,7 @@ Az Agent Builder az AI Toolkit igazi erőssége. Lehetővé teszi, hogy célzott
 - **Eszköz integráció**: Külső API-k és MCP szolgáltatások csatlakoztatása
 - **Memória**: Beszélgetési kontextus és munkamenet állandósága
 
-![Agent Builder Interface](../../../../translated_images/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.hu.png)
+![Agent Builder Interface](../../../../translated_images/hu/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.png)
 
 ### ⚙️ 2. lépés: Mélyebb betekintés az ügynök konfigurációba
 
@@ -237,7 +237,7 @@ You are a senior Python developer with 10+ years of experience. You excel at wri
    - Max Tokens: 2000 (részletes magyarázatok)
    - Top-p: 0.9 (kiegyensúlyozott kreativitás)
 
-![Python Agent Configuration](../../../../translated_images/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.hu.png)
+![Python Agent Configuration](../../../../translated_images/hu/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.png)
 
 ### 🧪 4. lépés: Python ügynök tesztelése
 

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP പ്രവർത്തനത്തിൽ: യാഥാർത്ഥ്യ കേസുകൾ
 
-[![MCP പ്രവർത്തനത്തിൽ: യാഥാർത്ഥ്യ കേസുകൾ](../../../translated_images/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.ml.png)](https://youtu.be/IxshWb2Az5w)
+[![MCP പ്രവർത്തനത്തിൽ: യാഥാർത്ഥ്യ കേസുകൾ](../../../translated_images/ml/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.png)](https://youtu.be/IxshWb2Az5w)
 
 _(ഈ പാഠത്തിന്റെ വീഡിയോ കാണാൻ മുകളിൽ ചിത്രത്തിൽ ക്ലിക്ക് ചെയ്യുക)_
 

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 ## Pagsisimula  
 
-[![Bumuo ng Iyong Unang MCP Server](../../../translated_images/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.tl.png)](https://youtu.be/sNDZO9N4m9Y)
+[![Bumuo ng Iyong Unang MCP Server](../../../translated_images/tl/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.png)](https://youtu.be/sNDZO9N4m9Y)
 
 _(I-click ang imahe sa itaas upang mapanood ang video ng araling ito)_
 

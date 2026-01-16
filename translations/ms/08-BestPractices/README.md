@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Amalan Terbaik Pembangunan MCP
 
-[![Amalan Terbaik Pembangunan MCP](../../../translated_images/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.ms.png)](https://youtu.be/W56H9W7x-ao)
+[![Amalan Terbaik Pembangunan MCP](../../../translated_images/ms/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.png)](https://youtu.be/W56H9W7x-ao)
 
 _(Klik imej di atas untuk menonton video pelajaran ini)_
 

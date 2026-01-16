@@ -64,7 +64,7 @@ Isang makapangyarihang tool para sa debugging na nagbibigay ng:
 2. **Gumawa ng bagong agent** gamit ang sumusunod na configuration:
    - Pangalan ng Agent: `WeatherAgent`
 
-![Agent Creation](../../../../translated_images/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.tl.png)
+![Agent Creation](../../../../translated_images/tl/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.png)
 
 ### Hakbang 2: Simulan ang MCP Server Project
 
@@ -74,7 +74,7 @@ Isang makapangyarihang tool para sa debugging na nagbibigay ng:
 4. **Piliin ang `python-weather` template**
 5. **Pangalanan ang iyong server:** `weather_mcp`
 
-![Python Template Selection](../../../../translated_images/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.tl.png)
+![Python Template Selection](../../../../translated_images/tl/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.png)
 
 ### Hakbang 3: Buksan at Suriin ang Project
 
@@ -340,7 +340,7 @@ USER_PROMPT
 How's the weather like in Seattle
 ```
 
-![Agent Builder Debug Result](../../../../translated_images/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.tl.png)
+![Agent Builder Debug Result](../../../../translated_images/tl/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.png)
 
 ### Hakbang 8: Mag-debug gamit ang MCP Inspector
 
@@ -352,7 +352,7 @@ How's the weather like in Seattle
    - I-monitor ang mga network request
    - Mag-debug ng mga tugon ng server
 
-![MCP Inspector Interface](../../../../translated_images/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.tl.png)
+![MCP Inspector Interface](../../../../translated_images/tl/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.png)
 
 ---
 

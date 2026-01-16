@@ -52,28 +52,28 @@ To get started, follow these steps. For each step, you can add a screenshot from
    ```  
    This configuration tells VS Code how to connect to the [`Microsoft Learn Docs MCP server`](https://github.com/MicrosoftDocs/mcp).
 
-   ![Step 1: Add mcp.json to .vscode folder](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.en.png)
+   ![Step 1: Add mcp.json to .vscode folder](../../../../../../translated_images/en/step1-mcp-json.c06a007fccc3edfa.webp)
     
 2. **Open the GitHub Copilot Chat panel:**  
    If you don’t already have the GitHub Copilot extension installed, go to the Extensions view in VS Code and install it. You can download it directly from the [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat). Then, open the Copilot Chat panel from the sidebar.
 
-   ![Step 2: Open Copilot Chat panel](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.en.png)
+   ![Step 2: Open Copilot Chat panel](../../../../../../translated_images/en/step2-copilot-panel.f1cc86e9b9b8cd1a.webp)
 
 3. **Enable agent mode and verify tools:**  
    In the Copilot Chat panel, enable agent mode.
 
-   ![Step 3: Enable agent mode and verify tools](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.en.png)
+   ![Step 3: Enable agent mode and verify tools](../../../../../../translated_images/en/step3-agent-mode.cdc32520fd7dd1d1.webp)
 
    After enabling agent mode, check that the MCP server is listed as one of the available tools. This ensures the Copilot agent can access the documentation server to fetch relevant information.
 
-   ![Step 3: Verify MCP server tool](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.en.png)
+   ![Step 3: Verify MCP server tool](../../../../../../translated_images/en/step3-verify-mcp-tool.76096a6329cbfecd.webp)
 
 4. **Start a new chat and prompt the agent:**  
    Open a new chat in the Copilot Chat panel. You can now ask the agent your documentation questions. The agent will use the MCP server to fetch and display relevant Microsoft Learn documentation directly in your editor.
 
    - *"I'm trying to write a study plan for topic X. I’m going to study it for 8 weeks; for each week, suggest content I should cover."*
 
-   ![Step 4: Prompt the agent in chat](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.en.png)
+   ![Step 4: Prompt the agent in chat](../../../../../../translated_images/en/step4-prompt-chat.12187bb001605efc.webp)
 
 5. **Live Query:**
 
@@ -82,7 +82,7 @@ To get started, follow these steps. For each step, you can add a screenshot from
    *"I’m looking for answers on how to deploy a multi-agent solution with AI agents developed on Azure AI Foundry. I see there’s no direct deployment method like Copilot Studio channels. So, what are the different ways to deploy this so enterprise users can interact and get the job done?  
    There are many articles/blogs suggesting we can use Azure Bot service as a bridge between MS Teams and Azure AI Foundry Agents. Will this work if I set up an Azure bot that connects to the Orchestrator Agent on Azure AI Foundry via Azure Function to handle orchestration? Or do I need to create an Azure Function for each AI agent in the multi-agent solution to manage orchestration at the Bot Framework level? Any other suggestions are welcome."*
 
-   ![Step 5: Live queries](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.en.png)
+   ![Step 5: Live queries](../../../../../../translated_images/en/step5-live-queries.49db3e4a50bea273.webp)
 
    The agent will respond with relevant documentation links and summaries, which you can then insert directly into your markdown files or use as references in your code.
 

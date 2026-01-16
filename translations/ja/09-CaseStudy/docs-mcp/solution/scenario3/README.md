@@ -52,28 +52,28 @@ CO_OP_TRANSLATOR_METADATA:
    ```  
    この設定はVS Codeに[`Microsoft Learn Docs MCP server`](https://github.com/MicrosoftDocs/mcp)への接続方法を指示します。  
    
-   ![Step 1: Add mcp.json to .vscode folder](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.ja.png)
+   ![Step 1: Add mcp.json to .vscode folder](../../../../../../translated_images/ja/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
     
 2. **GitHub Copilot Chatパネルを開く：**  
    まだGitHub Copilot拡張機能をインストールしていない場合は、VS Codeの拡張機能ビューからインストールしてください。直接[Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat)からダウンロード可能です。インストール後、サイドバーからCopilot Chatパネルを開きます。
 
-   ![Step 2: Open Copilot Chat panel](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.ja.png)
+   ![Step 2: Open Copilot Chat panel](../../../../../../translated_images/ja/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
 
 3. **エージェントモードを有効にし、ツールを確認する：**  
    Copilot Chatパネルでエージェントモードを有効にします。
 
-   ![Step 3: Enable agent mode and verify tools](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.ja.png)
+   ![Step 3: Enable agent mode and verify tools](../../../../../../translated_images/ja/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
 
    エージェントモードを有効にした後、MCPサーバーが利用可能なツールとしてリストされていることを確認してください。これにより、Copilotエージェントがドキュメントサーバーにアクセスして関連情報を取得できます。  
    
-   ![Step 3: Verify MCP server tool](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.ja.png)
+   ![Step 3: Verify MCP server tool](../../../../../../translated_images/ja/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
 
 4. **新しいチャットを開始し、エージェントに質問する：**  
    Copilot Chatパネルで新しいチャットを開き、ドキュメントに関する質問をエージェントに投げかけます。エージェントはMCPサーバーを使って関連するMicrosoft Learnのドキュメントを取得し、エディター内に表示します。
 
    - *「トピックXの学習計画を作成したいです。8週間で学習する予定なので、各週に取り組むべき内容を提案してください。」*
 
-   ![Step 4: Prompt the agent in chat](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.ja.png)
+   ![Step 4: Prompt the agent in chat](../../../../../../translated_images/ja/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 5. **ライブクエリ：**
 
@@ -82,7 +82,7 @@ CO_OP_TRANSLATOR_METADATA:
    *「Azure AI Foundryで開発したAIエージェントを使ったマルチエージェントソリューションのデプロイ方法について知りたいです。Copilot Studioチャネルのような直接的なデプロイ方法はないようです。企業ユーザーが連携して作業を行うためのデプロイ方法にはどんなものがありますか？  
    Azure Botサービスを使ってMS TeamsとAzure AI Foundryエージェントの橋渡しをする方法があると聞きましたが、Azure Botを設定してAzure Function経由でOrchestrator Agentに接続する方法は機能しますか？それともマルチエージェントソリューションの各AIエージェントごとにAzure Functionを作成してBot Frameworkでオーケストレーションする必要がありますか？他に良い提案があれば教えてください。」*
 
-   ![Step 5: Live queries](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.ja.png)
+   ![Step 5: Live queries](../../../../../../translated_images/ja/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
 
    エージェントは関連するドキュメントのリンクや要約を返し、それをマークダウンファイルに直接挿入したり、コードの参考資料として利用できます。
 

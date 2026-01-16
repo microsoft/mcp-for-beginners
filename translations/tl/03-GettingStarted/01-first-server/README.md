@@ -156,7 +156,7 @@ Kapag pinatakbo mo ang mga utos sa itaas, magbubukas ang MCP Inspector ng lokal 
 
 Narito ang isang screenshot kung ano ang maaaring hitsura nito:
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.tl.png)
+![MCP Inspector server connection](../../../../translated_images/tl/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## Mga Karaniwang Isyu sa Setup at Mga Solusyon
 
@@ -1302,7 +1302,7 @@ Sa web interface ng inspector:
 2. Itakda ang URL sa: `http://localhost:8080/sse`
 3. I-click ang "Connect"
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.tl.png)
+![Connect](../../../../translated_images/tl/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **Konektado ka na ngayon sa server**
 **Natapos na ang seksyon ng pagsubok sa Java server**
@@ -1311,18 +1311,18 @@ Ang susunod na seksyon ay tungkol sa pakikipag-ugnayan sa server.
 
 Dapat mong makita ang sumusunod na user interface:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.tl.png)
+![Connect](../../../../translated_images/tl/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. Kumonekta sa server sa pamamagitan ng pagpili sa Connect button
   Kapag nakakonekta ka na sa server, dapat mong makita ang sumusunod:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.tl.png)
+  ![Connected](../../../../translated_images/tl/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. Piliin ang "Tools" at "listTools", dapat lumabas ang "Add", piliin ang "Add" at punan ang mga halaga ng parameter.
 
   Dapat mong makita ang sumusunod na tugon, ibig sabihin ay resulta mula sa "add" tool:
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.tl.png)
+  ![Result of running add](../../../../translated_images/tl/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 Congrats, nagawa mo nang likhain at patakbuhin ang iyong unang server!
 

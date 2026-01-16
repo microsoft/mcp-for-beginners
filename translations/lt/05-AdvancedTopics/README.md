@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Pažangios MCP temos
 
-[![Pažangios MCP: saugūs, mastelį keičiantys ir daugiarūšiai AI agentai](../../../translated_images/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.lt.png)](https://youtu.be/4yjmGvJzYdY)
+[![Pažangios MCP: saugūs, mastelį keičiantys ir daugiarūšiai AI agentai](../../../translated_images/lt/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.png)](https://youtu.be/4yjmGvJzYdY)
 
 _(Spustelėkite aukščiau esančią nuotrauką, kad peržiūrėtumėte šios pamokos vaizdo įrašą)_
 

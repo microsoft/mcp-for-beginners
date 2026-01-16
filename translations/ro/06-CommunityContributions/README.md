@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Comunitate și Contribuții
 
-[![Cum să contribui la MCP: Instrumente, Documentație, Cod și altele](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.ro.png)](https://youtu.be/v1pvCYAWpRE)
+[![Cum să contribui la MCP: Instrumente, Documentație, Cod și altele](../../../translated_images/ro/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.png)](https://youtu.be/v1pvCYAWpRE)
 
 _(Click pe imaginea de mai sus pentru a viziona videoclipul acestei lecții)_
 

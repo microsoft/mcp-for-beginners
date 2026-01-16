@@ -52,28 +52,28 @@ Başlamak için aşağıdaki adımları izleyin. Her adım için, süreci görse
    ```  
    Bu yapılandırma, VS Code’a [`Microsoft Learn Docs MCP server`](https://github.com/MicrosoftDocs/mcp) ile nasıl bağlantı kurulacağını söyler.
 
-   ![Adım 1: mcp.json dosyasını .vscode klasörüne ekleyin](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.tr.png)
+   ![Adım 1: mcp.json dosyasını .vscode klasörüne ekleyin](../../../../../../translated_images/tr/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
     
 2. **GitHub Copilot Chat panelini açın:**  
    Eğer GitHub Copilot eklentisi yüklü değilse, VS Code’daki Extensions görünümüne gidip yükleyin. Doğrudan [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat) üzerinden de indirebilirsiniz. Ardından, yan panelden Copilot Chat panelini açın.
 
-   ![Adım 2: Copilot Chat panelini açın](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.tr.png)
+   ![Adım 2: Copilot Chat panelini açın](../../../../../../translated_images/tr/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
 
 3. **Agent modunu etkinleştirin ve araçları doğrulayın:**  
    Copilot Chat panelinde agent modunu etkinleştirin.
 
-   ![Adım 3: Agent modunu etkinleştirin ve araçları doğrulayın](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.tr.png)
+   ![Adım 3: Agent modunu etkinleştirin ve araçları doğrulayın](../../../../../../translated_images/tr/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
 
    Agent modunu açtıktan sonra, MCP sunucusunun kullanılabilir araçlar arasında listelendiğinden emin olun. Bu, Copilot agent’ın ilgili bilgileri almak için dokümantasyon sunucusuna erişebilmesini sağlar.
 
-   ![Adım 3: MCP sunucu aracını doğrulayın](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.tr.png)
+   ![Adım 3: MCP sunucu aracını doğrulayın](../../../../../../translated_images/tr/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
 
 4. **Yeni bir sohbet başlatın ve agent’a komut verin:**  
    Copilot Chat panelinde yeni bir sohbet açın. Artık agent’a dokümantasyon sorgularınızı iletebilirsiniz. Agent, MCP sunucusunu kullanarak ilgili Microsoft Learn dokümanlarını doğrudan editörünüzde getirecek ve gösterecektir.
 
    - *"X konusu için bir çalışma planı hazırlamaya çalışıyorum. 8 hafta boyunca çalışacağım, her hafta için hangi içerikleri almam gerektiğini öner."*
 
-   ![Adım 4: Agent’a sohbet içinde komut verin](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.tr.png)
+   ![Adım 4: Agent’a sohbet içinde komut verin](../../../../../../translated_images/tr/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 5. **Canlı Sorgu:**
 
@@ -82,7 +82,7 @@ Başlamak için aşağıdaki adımları izleyin. Her adım için, süreci görse
    *"Azure AI Foundry üzerinde geliştirilen AI ajanlarıyla çoklu ajan çözümünü nasıl dağıtacağım konusunda cevap arıyorum. Copilot Studio kanalları gibi doğrudan bir dağıtım yöntemi olmadığını görüyorum. Peki, kurumsal kullanıcıların etkileşimde bulunup işi halletmesi için bu dağıtımı yapmanın farklı yolları nelerdir?  
    MS Teams ile Azure AI Foundry Ajanları arasında köprü görevi görecek Azure Bot servisini kullanabileceğimizi söyleyen birçok makale/blog var, peki Azure fonksiyonu aracılığıyla Orchestrator Agent’a bağlanan bir Azure bot kurarsam bu işe yarar mı yoksa çoklu ajan çözümündeki her AI ajanı için Bot framework’te orkestrasyon yapmak üzere ayrı Azure fonksiyonları mı oluşturmam gerekir? Başka önerilere de açığım."*
 
-   ![Adım 5: Canlı sorgular](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.tr.png)
+   ![Adım 5: Canlı sorgular](../../../../../../translated_images/tr/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
 
    Agent, ilgili dokümantasyon bağlantıları ve özetlerle yanıt verecek; bunları markdown dosyalarınıza doğrudan ekleyebilir veya kodunuzda referans olarak kullanabilirsiniz.
 

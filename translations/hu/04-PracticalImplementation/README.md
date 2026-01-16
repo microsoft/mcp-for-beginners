@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Gyakorlati Megvalósítás
 
-[![Hogyan építsünk, teszteljünk és telepítsünk MCP alkalmazásokat valós eszközökkel és munkafolyamatokkal](../../../translated_images/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.hu.png)](https://youtu.be/vCN9-mKBDfQ)
+[![Hogyan építsünk, teszteljünk és telepítsünk MCP alkalmazásokat valós eszközökkel és munkafolyamatokkal](../../../translated_images/hu/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.png)](https://youtu.be/vCN9-mKBDfQ)
 
 _(Kattints a fenti képre a leckéhez tartozó videó megtekintéséhez)_
 
@@ -215,7 +215,7 @@ Nézzük meg, hogyan telepíthetjük a korábban említett mintát:
 
     Egy hasonló felületet kell látnod:
 
-    ![Node Inspectorhoz csatlakozás](../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.hu.png)
+    ![Node Inspectorhoz csatlakozás](../../../translated_images/hu/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. CTRL kattintással töltsd be az MCP Inspector webalkalmazást az alkalmazás által megjelenített URL-ről (pl. [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources)).
 1. Állítsd be a szállítási típust `SSE`-re.

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # 🌟 초기 도입자들의 교훈
 
-[![MCP 초기 도입자들의 교훈](../../../translated_images/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.ko.png)](https://youtu.be/jds7dSmNptE)
+[![MCP 초기 도입자들의 교훈](../../../translated_images/ko/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.png)](https://youtu.be/jds7dSmNptE)
 
 _(위 이미지를 클릭하여 이 강의의 영상을 시청하세요)_
 

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # एमसीपी में उन्नत विषय
 
-[![उन्नत एमसीपी: सुरक्षित, स्केलेबल और मल्टी-मोडल एआई एजेंट्स](../../../translated_images/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.hi.png)](https://youtu.be/4yjmGvJzYdY)
+[![उन्नत एमसीपी: सुरक्षित, स्केलेबल और मल्टी-मोडल एआई एजेंट्स](../../../translated_images/hi/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.png)](https://youtu.be/4yjmGvJzYdY)
 
 _(इस पाठ का वीडियो देखने के लिए ऊपर दी गई छवि पर क्लिक करें)_
 

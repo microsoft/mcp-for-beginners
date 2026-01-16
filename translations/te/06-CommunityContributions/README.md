@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # కమ్యూనిటీ మరియు సహకారాలు
 
-[![MCPకి ఎలా సహకరించాలి: టూల్స్, డాక్స్, కోడ్ మరియు మరిన్ని](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.te.png)](https://youtu.be/v1pvCYAWpRE)
+[![MCPకి ఎలా సహకరించాలి: టూల్స్, డాక్స్, కోడ్ మరియు మరిన్ని](../../../translated_images/te/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.png)](https://youtu.be/v1pvCYAWpRE)
 
 _(ఈ పాఠం వీడియోను చూడడానికి పై చిత్రాన్ని క్లిక్ చేయండి)_
 

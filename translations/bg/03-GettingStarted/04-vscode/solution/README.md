@@ -23,7 +23,7 @@ CO_OP_TRANSLATOR_METADATA:
 
     Трябва да видите инструмент, показан над текстовото поле за чат, който ви подканва да изберете да стартирате инструмента, както е показано на тази визуализация:
 
-    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.bg.png)
+    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/bg/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
     Избирането на инструмента трябва да даде числов резултат „23“, ако вашата команда беше като посочената по-горе.
 

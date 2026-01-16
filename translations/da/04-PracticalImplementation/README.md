@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Praktisk Implementering
 
-[![Sådan bygger, tester og implementerer du MCP-apps med rigtige værktøjer og arbejdsgange](../../../translated_images/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.da.png)](https://youtu.be/vCN9-mKBDfQ)
+[![Sådan bygger, tester og implementerer du MCP-apps med rigtige værktøjer og arbejdsgange](../../../translated_images/da/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.png)](https://youtu.be/vCN9-mKBDfQ)
 
 _(Klik på billedet ovenfor for at se videoen til denne lektion)_
 
@@ -215,7 +215,7 @@ Lad os se, om vi kan implementere det eksempel, vi nævnte tidligere:
 
     Du bør se en grænseflade, der ligner:
 
-    ![Forbind til Node Inspector](../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.da.png)
+    ![Forbind til Node Inspector](../../../translated_images/da/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. CTRL-klik for at indlæse MCP Inspector-webappen fra den URL, der vises af appen (f.eks. [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources))
 1. Indstil transporttypen til `SSE`

@@ -202,7 +202,7 @@ Apart from Microsoft servers, MCP ecosystem get:
    - **Name**: `BrowserAgent`
    - **Model**: Choose GPT-4o 
 
-![BrowserAgent](../../../../translated_images/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.pcm.png)
+![BrowserAgent](../../../../translated_images/pcm/BrowserAgent.09c1adde5e136573.webp)
 
 ### 🔧 Phase 2: MCP Integration Workflow
 
@@ -211,7 +211,7 @@ Apart from Microsoft servers, MCP ecosystem get:
 2. **Click "Add Tool"** to open integration menu
 3. **Select "MCP Server"** from di options
 
-![AddMCP](../../../../translated_images/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.pcm.png)
+![AddMCP](../../../../translated_images/pcm/AddMCP.afe3308ac20aa944.webp)
 
 **🔍 Tool Types:**
 - **Built-in Tools**: Pre-configured AI Toolkit functions
@@ -221,10 +221,10 @@ Apart from Microsoft servers, MCP ecosystem get:
 
 #### Step 4: MCP Server Selection
 1. **Choose "MCP Server"** option
-![AddMCPServer](../../../../translated_images/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.pcm.png)
+![AddMCPServer](../../../../translated_images/pcm/AddMCPServer.69b911ccef872cbd.webp)
 
 2. **Browse MCP Catalog** to see available integrations
-![MCPCatalog](../../../../translated_images/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.pcm.png)
+![MCPCatalog](../../../../translated_images/pcm/MCPCatalog.a817d05314569900.webp)
 
 ### 🎮 Phase 3: Playwright MCP Configuration
 
@@ -233,12 +233,12 @@ Apart from Microsoft servers, MCP ecosystem get:
 2. **Select "Playwright"** from di list
 3. **Accept Default MCP ID** or customize am
 
-![MCPID](../../../../translated_images/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.pcm.png)
+![MCPID](../../../../translated_images/pcm/MCPID.67d446052979e819.webp)
 
 #### Step 6: Enable Playwright Capabilities
 **🔑 Important Step**: Select **ALL** Playwright methods for full functionality
 
-![Tools](../../../../translated_images/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.pcm.png)
+![Tools](../../../../translated_images/pcm/Tools.3ea23c447b4d9fec.webp)
 
 **🛠️ Playwright Tools:**
 - **Navigation**: `goto`, `goBack`, `goForward`, `reload`
@@ -254,7 +254,7 @@ Apart from Microsoft servers, MCP ecosystem get:
 - No error message for integration panel
 - Playwright server status dey show "Connected"
 
-![AgentTools](../../../../translated_images/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.pcm.png)
+![AgentTools](../../../../translated_images/pcm/AgentTools.053cfb96a17e0219.webp)
 
 **🔧 Common Issues Troubleshooting:**
 - **Connection Failed**: Check internet and firewall settings
@@ -320,7 +320,7 @@ Navigate to github.com/kinfey and provide a comprehensive analysis including:
 Include screenshots at key steps and provide actionable insights.
 ```
 
-![Prompt](../../../../translated_images/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.pcm.png)
+![Prompt](../../../../translated_images/pcm/Prompt.bfc846605db4999f.webp)
 
 ### 🚀 Phase 5: Execution and Testing
 
@@ -332,19 +332,19 @@ Include screenshots at key steps and provide actionable insights.
    - Screenshots go dey capture steps
    - Analysis results go dey stream
 
-![Browser](../../../../translated_images/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.pcm.png)
+![Browser](../../../../translated_images/pcm/Browser.ec011d0bd64d0d11.webp)
 
 #### Step 11: Check Results and Insights
 Review analysis for Agent Builder interface:
 
-![Result](../../../../translated_images/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.pcm.png)
+![Result](../../../../translated_images/pcm/Result.8638f2b6703e9ea6.webp)
 
 ### 🌟 Phase 6: Advanced Capabilities and Deployment
 
 #### Step 12: Export and Deploy
 Agent Builder dey support different deployment options:
 
-![Code](../../../../translated_images/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.pcm.png)
+![Code](../../../../translated_images/pcm/Code.d9eeeead0b96db0c.webp)
 
 ## 🎓 Module 2 Summary & Next Steps
 

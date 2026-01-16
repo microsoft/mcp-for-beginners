@@ -38,9 +38,9 @@ Anda boleh mengawal MCP Server anda dengan dua cara berbeza:
 
 ### Tangkapan Skrin
 
-![Konfigurasi pelayan MCP berpandu dalam Visual Studio Code](../../../../translated_images/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.ms.png)  
-![Pemilihan alat untuk setiap sesi agen](../../../../translated_images/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.ms.png)  
-![Mudah debug ralat semasa pembangunan MCP](../../../../translated_images/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.ms.png)  
+![Konfigurasi pelayan MCP berpandu dalam Visual Studio Code](../../../../translated_images/ms/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.png)  
+![Pemilihan alat untuk setiap sesi agen](../../../../translated_images/ms/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.png)  
+![Mudah debug ralat semasa pembangunan MCP](../../../../translated_images/ms/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.png)  
 
 Mari kita bincangkan lebih lanjut tentang bagaimana kita menggunakan antara muka visual dalam bahagian seterusnya.
 
@@ -103,15 +103,15 @@ Sekarang anda telah menambah entri, mari mulakan pelayan:
 
 1. Cari entri anda dalam *mcp.json* dan pastikan anda menemui ikon "play":
 
-  ![Memulakan pelayan dalam Visual Studio Code](../../../../translated_images/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.ms.png)  
+  ![Memulakan pelayan dalam Visual Studio Code](../../../../translated_images/ms/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.png)  
 
 1. Klik ikon "play", anda sepatutnya melihat ikon alat dalam GitHub Copilot Chat menambah bilangan alat yang tersedia. Jika anda klik ikon alat tersebut, anda akan melihat senarai alat yang didaftarkan. Anda boleh tandakan/tidak tandakan setiap alat bergantung sama ada anda mahu GitHub Copilot menggunakannya sebagai konteks:
 
-  ![Memulakan pelayan dalam Visual Studio Code](../../../../translated_images/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.ms.png)
+  ![Memulakan pelayan dalam Visual Studio Code](../../../../translated_images/ms/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.png)
 
 1. Untuk menjalankan alat, taipkan arahan yang anda tahu akan sepadan dengan penerangan salah satu alat anda, contohnya arahan seperti "tambah 22 kepada 1":
 
-  ![Menjalankan alat dari GitHub Copilot](../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.ms.png)
+  ![Menjalankan alat dari GitHub Copilot](../../../../translated_images/ms/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
   Anda sepatutnya melihat respons mengatakan 23.
 

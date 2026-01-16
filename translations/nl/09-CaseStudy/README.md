@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP in Actie: Praktijkvoorbeelden uit de echte wereld
 
-[![MCP in Actie: Praktijkvoorbeelden uit de echte wereld](../../../translated_images/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.nl.png)](https://youtu.be/IxshWb2Az5w)
+[![MCP in Actie: Praktijkvoorbeelden uit de echte wereld](../../../translated_images/nl/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.png)](https://youtu.be/IxshWb2Az5w)
 
 _(Klik op de afbeelding hierboven om de video van deze les te bekijken)_
 

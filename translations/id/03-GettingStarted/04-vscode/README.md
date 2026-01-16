@@ -38,9 +38,9 @@ Anda dapat mengontrol MCP Server Anda dengan dua cara berbeda:
 
 ### Tangkapan Layar
 
-![Konfigurasi server MCP terpandu di Visual Studio Code](../../../../translated_images/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.id.png)
-![Pemilihan alat per sesi agen](../../../../translated_images/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.id.png)
-![Mudah debug kesalahan selama pengembangan MCP](../../../../translated_images/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.id.png)
+![Konfigurasi server MCP terpandu di Visual Studio Code](../../../../translated_images/id/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.png)
+![Pemilihan alat per sesi agen](../../../../translated_images/id/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.png)
+![Mudah debug kesalahan selama pengembangan MCP](../../../../translated_images/id/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.png)
 
 Mari kita bahas lebih lanjut tentang bagaimana kita menggunakan antarmuka visual di bagian berikutnya.
 
@@ -103,15 +103,15 @@ Sekarang setelah Anda menambahkan entri, mari kita jalankan server:
 
 1. Temukan entri Anda di *mcp.json* dan pastikan Anda menemukan ikon "play":
 
-  ![Menjalankan server di Visual Studio Code](../../../../translated_images/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.id.png)  
+  ![Menjalankan server di Visual Studio Code](../../../../translated_images/id/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.png)  
 
 1. Klik ikon "play", Anda akan melihat ikon alat di GitHub Copilot Chat menambah jumlah alat yang tersedia. Jika Anda mengklik ikon alat tersebut, Anda akan melihat daftar alat yang terdaftar. Anda dapat mencentang/menghapus centang setiap alat tergantung apakah Anda ingin GitHub Copilot menggunakannya sebagai konteks:
 
-  ![Menjalankan server di Visual Studio Code](../../../../translated_images/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.id.png)
+  ![Menjalankan server di Visual Studio Code](../../../../translated_images/id/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.png)
 
 1. Untuk menjalankan alat, ketik prompt yang Anda tahu akan cocok dengan deskripsi salah satu alat Anda, misalnya prompt seperti ini "tambahkan 22 ke 1":
 
-  ![Menjalankan alat dari GitHub Copilot](../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.id.png)
+  ![Menjalankan alat dari GitHub Copilot](../../../../translated_images/id/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
   Anda akan melihat respons yang mengatakan 23.
 

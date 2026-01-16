@@ -38,9 +38,9 @@ Możesz kontrolować swój serwer MCP na dwa sposoby:
 
 ### Zrzuty ekranu
 
-![Konfigurowanie serwera MCP w Visual Studio Code](../../../../translated_images/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.pl.png)
-![Wybór narzędzi dla sesji agenta](../../../../translated_images/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.pl.png)
-![Łatwe debugowanie błędów podczas tworzenia MCP](../../../../translated_images/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.pl.png)
+![Konfigurowanie serwera MCP w Visual Studio Code](../../../../translated_images/pl/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.png)
+![Wybór narzędzi dla sesji agenta](../../../../translated_images/pl/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.png)
+![Łatwe debugowanie błędów podczas tworzenia MCP](../../../../translated_images/pl/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.png)
 
 Omówmy teraz, jak korzystać z interfejsu wizualnego w kolejnych sekcjach.
 
@@ -103,15 +103,15 @@ Teraz, gdy dodałeś wpis, uruchom serwer:
 
 1. Znajdź swój wpis w pliku *mcp.json* i upewnij się, że widzisz ikonę "play":
 
-  ![Uruchamianie serwera w Visual Studio Code](../../../../translated_images/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.pl.png)  
+  ![Uruchamianie serwera w Visual Studio Code](../../../../translated_images/pl/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.png)  
 
 1. Kliknij ikonę "play". Powinieneś zobaczyć, że ikona narzędzi w GitHub Copilot Chat zwiększa liczbę dostępnych narzędzi. Jeśli klikniesz tę ikonę narzędzi, zobaczysz listę zarejestrowanych narzędzi. Możesz zaznaczać/odznaczać każde narzędzie w zależności od tego, czy chcesz, aby GitHub Copilot używał ich jako kontekstu:
 
-  ![Uruchamianie serwera w Visual Studio Code](../../../../translated_images/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.pl.png)
+  ![Uruchamianie serwera w Visual Studio Code](../../../../translated_images/pl/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.png)
 
 1. Aby uruchomić narzędzie, wpisz polecenie, które pasuje do opisu jednego z Twoich narzędzi, na przykład takie jak "dodaj 22 do 1":
 
-  ![Uruchamianie narzędzia z GitHub Copilot](../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.pl.png)
+  ![Uruchamianie narzędzia z GitHub Copilot](../../../../translated_images/pl/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
   Powinieneś zobaczyć odpowiedź "23".
 

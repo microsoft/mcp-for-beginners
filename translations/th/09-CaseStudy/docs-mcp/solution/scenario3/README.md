@@ -52,28 +52,28 @@ CO_OP_TRANSLATOR_METADATA:
    ```
    การตั้งค่านี้บอก VS Code ว่าจะเชื่อมต่อกับ [`Microsoft Learn Docs MCP server`](https://github.com/MicrosoftDocs/mcp) อย่างไร
    
-   ![Step 1: Add mcp.json to .vscode folder](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.th.png)
+   ![Step 1: Add mcp.json to .vscode folder](../../../../../../translated_images/th/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
     
 2. **เปิดแผง GitHub Copilot Chat:**
    หากยังไม่ได้ติดตั้งส่วนขยาย GitHub Copilot ให้ไปที่ Extensions ใน VS Code และติดตั้ง คุณสามารถดาวน์โหลดได้โดยตรงจาก [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat) จากนั้นเปิดแผง Copilot Chat จากแถบด้านข้าง
 
-   ![Step 2: Open Copilot Chat panel](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.th.png)
+   ![Step 2: Open Copilot Chat panel](../../../../../../translated_images/th/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
 
 3. **เปิดใช้งานโหมด agent และตรวจสอบเครื่องมือ:**
    ในแผง Copilot Chat ให้เปิดใช้งานโหมด agent
 
-   ![Step 3: Enable agent mode and verify tools](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.th.png)
+   ![Step 3: Enable agent mode and verify tools](../../../../../../translated_images/th/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
 
    หลังจากเปิดใช้งานโหมด agent ให้ตรวจสอบว่า MCP server ปรากฏในรายการเครื่องมือที่ใช้ได้ ซึ่งจะช่วยให้ agent ของ Copilot เข้าถึงเซิร์ฟเวอร์เอกสารเพื่อดึงข้อมูลที่เกี่ยวข้องได้
    
-   ![Step 3: Verify MCP server tool](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.th.png)
+   ![Step 3: Verify MCP server tool](../../../../../../translated_images/th/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
 
 4. **เริ่มแชทใหม่และส่งคำถามให้ agent:**
    เปิดแชทใหม่ในแผง Copilot Chat ตอนนี้คุณสามารถส่งคำถามเกี่ยวกับเอกสารให้ agent ได้ Agent จะใช้ MCP server เพื่อดึงและแสดงเอกสาร Microsoft Learn ที่เกี่ยวข้องโดยตรงในตัวแก้ไขของคุณ
 
    - *"ผมกำลังจะเขียนแผนการเรียนสำหรับหัวข้อ X ผมจะเรียนเป็นเวลา 8 สัปดาห์ ช่วยแนะนำเนื้อหาที่ควรเรียนในแต่ละสัปดาห์หน่อย"*
 
-   ![Step 4: Prompt the agent in chat](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.th.png)
+   ![Step 4: Prompt the agent in chat](../../../../../../translated_images/th/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 5. **การสอบถามสด:**
 
@@ -82,7 +82,7 @@ CO_OP_TRANSLATOR_METADATA:
    *"ผมกำลังหาคำตอบเกี่ยวกับการปรับใช้โซลูชัน multi-agent ที่มี AI agents พัฒนาบน Azure AI Foundry ผมเห็นว่าไม่มีวิธีการปรับใช้โดยตรง เช่น ช่องทาง Copilot Studio แล้วมีวิธีไหนบ้างที่ผู้ใช้ในองค์กรจะสามารถโต้ตอบและทำงานได้?
 มีบทความและบล็อกมากมายที่บอกว่าสามารถใช้ Azure Bot service เป็นสะพานเชื่อมระหว่าง MS Teams กับ Azure AI Foundry Agents ได้ แบบนี้จะใช้ได้ไหมถ้าผมตั้งค่า Azure bot ที่เชื่อมต่อกับ Orchestrator Agent บน Azure AI Foundry ผ่าน Azure function เพื่อทำ orchestration หรือผมต้องสร้าง Azure function สำหรับแต่ละ AI agent ในโซลูชัน multi-agent เพื่อทำ orchestration บน Bot framework? มีคำแนะนำอื่นๆ ยินดีรับฟังครับ"*
 
-   ![Step 5: Live queries](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.th.png)
+   ![Step 5: Live queries](../../../../../../translated_images/th/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
 
    Agent จะตอบกลับด้วยลิงก์เอกสารและสรุปที่เกี่ยวข้อง ซึ่งคุณสามารถแทรกลงในไฟล์ markdown ของคุณหรือใช้เป็นข้อมูลอ้างอิงในโค้ดได้ทันที
    

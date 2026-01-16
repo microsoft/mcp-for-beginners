@@ -64,7 +64,7 @@ Tehokas virheenkorjaustyökalu, joka tarjoaa:
 2. **Luo uusi agentti** seuraavilla asetuksilla:
    - Agentin nimi: `WeatherAgent`
 
-![Agent Creation](../../../../translated_images/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.fi.png)
+![Agent Creation](../../../../translated_images/fi/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.png)
 
 ### Vaihe 2: Alusta MCP-palvelinprojekti
 
@@ -74,7 +74,7 @@ Tehokas virheenkorjaustyökalu, joka tarjoaa:
 4. **Valitse `python-weather` -mallipohja**
 5. **Nimeä palvelimesi:** `weather_mcp`
 
-![Python Template Selection](../../../../translated_images/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.fi.png)
+![Python Template Selection](../../../../translated_images/fi/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.png)
 
 ### Vaihe 3: Avaa ja tutki projektia
 
@@ -340,7 +340,7 @@ USER_PROMPT
 How's the weather like in Seattle
 ```
 
-![Agent Builder Debug Result](../../../../translated_images/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.fi.png)
+![Agent Builder Debug Result](../../../../translated_images/fi/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.png)
 
 ### Vaihe 8: Virheenkorjaus MCP Inspectorilla
 
@@ -352,7 +352,7 @@ How's the weather like in Seattle
    - Seuraa verkkopyyntöjä
    - Virheenkorjaa palvelimen vastauksia
 
-![MCP Inspector Interface](../../../../translated_images/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.fi.png)
+![MCP Inspector Interface](../../../../translated_images/fi/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.png)
 
 ---
 

@@ -60,7 +60,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 **Шаг 3: Установите и активируйте**
 
-![AI Toolkit Extension](../../../../translated_images/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.ru.png)
+![AI Toolkit Extension](../../../../translated_images/ru/aitkext.d28945a03eed003c.webp)
 
 ### ✅ Контрольный список проверки
 - [ ] Иконка AI Toolkit отображается в боковой панели VS Code
@@ -79,7 +79,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Нажмите на **MODELS - Catalog** в боковой панели AI Toolkit
 
-![Model Catalog](../../../../translated_images/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.ru.png)
+![Model Catalog](../../../../translated_images/ru/aimodel.263ed2be013d8fb0.webp)
 
 **💡 Совет**: Ищите модели с нужными возможностями, которые подходят под вашу задачу (например, генерация кода, креативное письмо, анализ).
 
@@ -97,7 +97,7 @@ CO_OP_TRANSLATOR_METADATA:
 3. Выберите **Try in Playground** для запуска тестовой среды
 4. Подождите инициализации модели (первый запуск может занять время)
 
-![Playground Setup](../../../../translated_images/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.ru.png)
+![Playground Setup](../../../../translated_images/ru/playground.dd6f5141344878ca.webp)
 
 **⚙️ Параметры модели:**
 - **Temperature**: регулирует креативность (0 = детерминированный ответ, 1 = творческий)
@@ -126,7 +126,7 @@ Playground — ваша лаборатория для экспериментов
 "Analyze this sales data and provide insights: [paste your data]. Focus on trends, anomalies, and actionable recommendations."
 ```
 
-![Testing Results](../../../../translated_images/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.ru.png)
+![Testing Results](../../../../translated_images/ru/result.1dfcf211fb359cf6.webp)
 
 ### 🏆 Задание-челлендж: Сравнение производительности моделей
 
@@ -136,12 +136,12 @@ Playground — ваша лаборатория для экспериментов
 1. Добавьте **Phi-4-mini** в рабочее пространство
 2. Используйте одинаковый запрос для GPT-4.1 и Phi-4-mini
 
-![set](../../../../translated_images/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.ru.png)
+![set](../../../../translated_images/ru/set.88132df189ecde2c.webp)
 
 3. Сравните качество ответов, скорость и точность
 4. Запишите результаты в соответствующем разделе
 
-![Model Comparison](../../../../translated_images/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.ru.png)
+![Model Comparison](../../../../translated_images/ru/compare.97746cd0f9074955.webp)
 
 **💡 Важные выводы:**
 - Когда лучше использовать LLM, а когда SLM
@@ -163,7 +163,7 @@ Agent Builder — это ключевая функция AI Toolkit. Она по
 - **Интеграция инструментов**: подключение к внешним API и MCP-сервисам
 - **Память**: контекст диалога и сохранение сессии
 
-![Agent Builder Interface](../../../../translated_images/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.ru.png)
+![Agent Builder Interface](../../../../translated_images/ru/agentbuilder.25895b2d2f8c02e7.webp)
 
 ### ⚙️ Шаг 2: Глубокое погружение в настройку агента
 
@@ -237,7 +237,7 @@ You are a senior Python developer with 10+ years of experience. You excel at wri
    - Max Tokens: 2000 (подробные объяснения)
    - Top-p: 0.9 (сбалансированная креативность)
 
-![Python Agent Configuration](../../../../translated_images/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.ru.png)
+![Python Agent Configuration](../../../../translated_images/ru/pythonagent.5e51b406401c165f.webp)
 
 ### 🧪 Шаг 4: Тестирование вашего Python-агента
 

@@ -110,7 +110,7 @@ Let me know if you want module-specific recommendations or need more customized 
 
 По-долу е минимален пример за решение. Пълният код и подробности са налични в папката с решения.
 
-![Преглед на сценарий 2](../../../../translated_images/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.bg.png)
+![Преглед на сценарий 2](../../../../translated_images/bg/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.png)
 
 <details>
 <summary>Python (Chainlit)</summary>
@@ -167,7 +167,7 @@ def handle_message(message):
 
 > За подробен урок със скрийншотове и стъпка по стъпка ръководство вижте [`README.md`](./solution/scenario3/README.md).
 
-![Преглед на сценарий 3](../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.bg.png)
+![Преглед на сценарий 3](../../../../translated_images/bg/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 Този подход е идеален за всеки, който създава технически курсове, пише документация или разработва код с чести нужди от справки.
 

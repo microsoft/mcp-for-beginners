@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Geavanceerde Onderwerpen in MCP
 
-[![Geavanceerde MCP: Veilige, schaalbare en multi-modale AI-agenten](../../../translated_images/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.nl.png)](https://youtu.be/4yjmGvJzYdY)
+[![Geavanceerde MCP: Veilige, schaalbare en multi-modale AI-agenten](../../../translated_images/nl/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.png)](https://youtu.be/4yjmGvJzYdY)
 
 _(Klik op de afbeelding hierboven om de video van deze les te bekijken)_
 

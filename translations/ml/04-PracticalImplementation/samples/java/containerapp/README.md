@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ഈ പ്രോജക്ട് ഒരു വെബ് അപ്ലിക്കേഷൻ പ്രദർശിപ്പിക്കുന്നു, ഇത് യൂസർ പ്രോംപ്റ്റുകൾ കാൽക്കുലേറ്റർ സർവീസിലേക്ക് Model Context Protocol (MCP) വഴി അയയ്ക്കുന്നതിന് മുമ്പ് ഉള്ളടക്ക സുരക്ഷ പരിശോധന ഉപയോഗിക്കുന്നു.
 
-![System Architecture Diagram](../../../../../../translated_images/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.ml.png)
+![System Architecture Diagram](../../../../../../translated_images/ml/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.png)
 
 ### ഇത് എങ്ങനെ പ്രവർത്തിക്കുന്നു
 

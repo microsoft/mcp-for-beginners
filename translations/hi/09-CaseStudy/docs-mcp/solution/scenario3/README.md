@@ -52,28 +52,28 @@ CO_OP_TRANSLATOR_METADATA:
    ```
    यह कॉन्फ़िगरेशन VS Code को बताता है कि [`Microsoft Learn Docs MCP server`](https://github.com/MicrosoftDocs/mcp) से कैसे कनेक्ट होना है।
    
-   ![Step 1: Add mcp.json to .vscode folder](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.hi.png)
+   ![Step 1: Add mcp.json to .vscode folder](../../../../../../translated_images/hi/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
     
 2. **GitHub Copilot Chat पैनल खोलें:**
    यदि आपके पास GitHub Copilot एक्सटेंशन पहले से इंस्टॉल नहीं है, तो VS Code में Extensions व्यू पर जाएं और इसे इंस्टॉल करें। आप इसे सीधे [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat) से डाउनलोड कर सकते हैं। फिर, साइडबार से Copilot Chat पैनल खोलें।
 
-   ![Step 2: Open Copilot Chat panel](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.hi.png)
+   ![Step 2: Open Copilot Chat panel](../../../../../../translated_images/hi/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
 
 3. **एजेंट मोड सक्षम करें और टूल्स सत्यापित करें:**
    Copilot Chat पैनल में, एजेंट मोड सक्षम करें।
 
-   ![Step 3: Enable agent mode and verify tools](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.hi.png)
+   ![Step 3: Enable agent mode and verify tools](../../../../../../translated_images/hi/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
 
    एजेंट मोड सक्षम करने के बाद, सुनिश्चित करें कि MCP सर्वर उपलब्ध टूल्स में सूचीबद्ध है। इससे Copilot एजेंट को डॉक्यूमेंटेशन सर्वर तक पहुंच मिलती है ताकि वह संबंधित जानकारी प्राप्त कर सके।
    
-   ![Step 3: Verify MCP server tool](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.hi.png)
+   ![Step 3: Verify MCP server tool](../../../../../../translated_images/hi/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
 
 4. **नई चैट शुरू करें और एजेंट को प्रॉम्प्ट करें:**
    Copilot Chat पैनल में नई चैट खोलें। अब आप अपने डॉक्यूमेंटेशन प्रश्नों के साथ एजेंट को प्रॉम्प्ट कर सकते हैं। एजेंट MCP सर्वर का उपयोग करके Microsoft Learn की संबंधित डॉक्यूमेंटेशन सीधे आपके एडिटर में लाएगा।
 
    - *"मैं विषय X के लिए एक अध्ययन योजना लिखने की कोशिश कर रहा हूँ। मैं इसे 8 हफ्तों तक पढ़ने वाला हूँ, हर हफ्ते के लिए सुझाव दें कि मुझे कौन सा कंटेंट लेना चाहिए।"*
 
-   ![Step 4: Prompt the agent in chat](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.hi.png)
+   ![Step 4: Prompt the agent in chat](../../../../../../translated_images/hi/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 5. **लाइव क्वेरी:**
 
@@ -82,7 +82,7 @@ CO_OP_TRANSLATOR_METADATA:
    *"मैं Azure AI Foundry पर विकसित AI एजेंट्स के साथ मल्टी-एजेंट समाधान को तैनात करने के तरीकों के बारे में उत्तर खोज रहा हूँ। मुझे पता चला है कि कोई सीधे तैनाती का तरीका नहीं है, जैसे Copilot Studio चैनल। तो, एंटरप्राइज उपयोगकर्ताओं के लिए इस तैनाती को पूरा करने के विभिन्न तरीके क्या हैं ताकि वे इंटरैक्ट कर सकें और काम पूरा कर सकें?
 कई लेख/ब्लॉग्स कहते हैं कि हम Azure Bot सेवा का उपयोग कर सकते हैं जो MS Teams और Azure AI Foundry एजेंट्स के बीच एक पुल का काम कर सकता है, क्या यह काम करेगा अगर मैं Azure Bot सेटअप करूं जो Azure AI Foundry के Orchestrator Agent से Azure Function के माध्यम से जुड़ा हो या मुझे मल्टी एजेंट समाधान के प्रत्येक AI एजेंट के लिए Azure Function बनानी होगी ताकि Bot Framework पर ऑर्केस्ट्रेशन हो सके? कोई अन्य सुझाव भी स्वागत योग्य हैं।"*
 
-   ![Step 5: Live queries](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.hi.png)
+   ![Step 5: Live queries](../../../../../../translated_images/hi/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
 
    एजेंट संबंधित डॉक्यूमेंटेशन लिंक और सारांश के साथ जवाब देगा, जिन्हें आप सीधे अपने मार्कडाउन फाइलों में डाल सकते हैं या कोड में संदर्भ के रूप में उपयोग कर सकते हैं।
 

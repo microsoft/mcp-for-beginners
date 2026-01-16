@@ -77,7 +77,7 @@ CO_OP_TRANSLATOR_METADATA:
 
     ನೀವು ಚಾಟ್ ಪಠ್ಯ ಬಾಕ್ಸ್ ಮೇಲ್ಭಾಗದಲ್ಲಿ ಉಪಕರಣವನ್ನು ಆಯ್ಕೆಮಾಡಲು ಸೂಚಿಸುವಂತೆ ಉಪಕರಣವನ್ನು ಪ್ರದರ್ಶಿಸಲಾಗುತ್ತದೆ, ಈ ದೃಶ್ಯದಲ್ಲಿ ಹೀಗೆ ಕಾಣುತ್ತದೆ:
 
-    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.kn.png)
+    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/kn/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
     ಉಪಕರಣವನ್ನು ಆಯ್ಕೆಮಾಡಿದರೆ, ನೀವು "23" ಎಂಬ ಸಂಖ್ಯಾತ್ಮಕ ಫಲಿತಾಂಶವನ್ನು ಕಾಣಬೇಕು, ನೀವು ಹಿಂದಿನಂತೆ ಪ್ರಾಂಪ್ಟ್ ನೀಡಿದ್ದರೆ.
 

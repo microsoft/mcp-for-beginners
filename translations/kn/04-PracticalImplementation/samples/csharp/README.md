@@ -26,7 +26,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 1. ವೆಬ್ ಬ್ರೌಸರ್ .NET Aspire ಡ್ಯಾಶ್‌ಬೋರ್ಡ್ ತೆರೆಯುವಾಗ, `http` URL ಗಮನಿಸಿ. ಅದು `http://localhost:5058/` ಎಂಬುದಾಗಿ ಇರಬಹುದು.
 
-   ![.NET Aspire Dashboard](../../../../../translated_images/dotnet-aspire-dashboard.0a7095710e9301e90df2efd867e1b675b3b9bc2ccd7feb1ebddc0751522bc37c.kn.png)
+   ![.NET Aspire Dashboard](../../../../../translated_images/kn/dotnet-aspire-dashboard.0a7095710e9301e90df2efd867e1b675b3b9bc2ccd7feb1ebddc0751522bc37c.png)
 
 ## MCP ಇನ್ಸ್‌ಪೆಕ್ಟರ್‌ನೊಂದಿಗೆ ಸ್ಟ್ರೀಮಬಲ್ HTTP ಪರೀಕ್ಷಿಸಿ
 
@@ -38,7 +38,7 @@ CO_OP_TRANSLATOR_METADATA:
 npx @modelcontextprotocol/inspector http://localhost:5058
 ```
 
-![MCP Inspector](../../../../../translated_images/mcp-inspector.c223422b9b494fb4a518a3b3911b3e708e6a5715069470f9163ee2ee8d5f1ba9.kn.png)
+![MCP Inspector](../../../../../translated_images/kn/mcp-inspector.c223422b9b494fb4a518a3b3911b3e708e6a5715069470f9163ee2ee8d5f1ba9.png)
 
 - ಟ್ರಾನ್ಸ್‌ಪೋರ್ಟ್ ಪ್ರಕಾರವಾಗಿ `Streamable HTTP` ಆಯ್ಕೆಮಾಡಿ.
 - Url ಕ್ಷೇತ್ರದಲ್ಲಿ ಮೊದಲು ಗಮನಿಸಿದ ಸರ್ವರ್ URL ಅನ್ನು ನಮೂದಿಸಿ ಮತ್ತು `/mcp` ಅನ್ನು ಸೇರಿಸಿ. ಅದು `http` (https ಅಲ್ಲ) ಆಗಿರಬೇಕು, ಉದಾಹರಣೆಗೆ `http://localhost:5058/mcp`.
@@ -83,7 +83,7 @@ azd up
 
 ನಿಯೋಜನೆ ಮುಗಿದ ಮೇಲೆ, ನೀವು ಈ ರೀತಿಯ ಸಂದೇಶವನ್ನು ನೋಡಬೇಕು:
 
-![Azd deployment success](../../../../../translated_images/azd-deployment-success.bd42940493f1b834a5ce6251a6f88966546009b350df59d0cc4a8caabe94a4f1.kn.png)
+![Azd deployment success](../../../../../translated_images/kn/azd-deployment-success.bd42940493f1b834a5ce6251a6f88966546009b350df59d0cc4a8caabe94a4f1.png)
 
 URL ಅನ್ನು ಹಿಡಿದು MCP ಇನ್ಸ್‌ಪೆಕ್ಟರ್ ಮತ್ತು GitHub Copilot Chat ನಲ್ಲಿ ಬಳಸಿ.
 

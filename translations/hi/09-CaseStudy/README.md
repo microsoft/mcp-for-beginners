@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP इन एक्शन: वास्तविक दुनिया के केस स्टडीज
 
-[![MCP इन एक्शन: वास्तविक दुनिया के केस स्टडीज](../../../translated_images/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.hi.png)](https://youtu.be/IxshWb2Az5w)
+[![MCP इन एक्शन: वास्तविक दुनिया के केस स्टडीज](../../../translated_images/hi/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.png)](https://youtu.be/IxshWb2Az5w)
 
 _(ऊपर दी गई छवि पर क्लिक करें इस पाठ का वीडियो देखने के लिए)_
 

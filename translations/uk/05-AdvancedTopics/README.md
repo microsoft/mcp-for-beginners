@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Розширені теми MCP
 
-[![Розширений MCP: Безпечні, масштабовані та мультимодальні AI-агенти](../../../translated_images/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.uk.png)](https://youtu.be/4yjmGvJzYdY)
+[![Розширений MCP: Безпечні, масштабовані та мультимодальні AI-агенти](../../../translated_images/uk/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.png)](https://youtu.be/4yjmGvJzYdY)
 
 _(Натисніть на зображення вище, щоб переглянути відео цього уроку)_
 

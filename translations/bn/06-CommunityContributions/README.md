@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # কমিউনিটি এবং অবদান
 
-[![MCP-তে অবদান রাখার উপায়: টুলস, ডকস, কোড এবং আরও কিছু](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.bn.png)](https://youtu.be/v1pvCYAWpRE)
+[![MCP-তে অবদান রাখার উপায়: টুলস, ডকস, কোড এবং আরও কিছু](../../../translated_images/bn/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.png)](https://youtu.be/v1pvCYAWpRE)
 
 _(উপরের ছবিতে ক্লিক করে এই পাঠের ভিডিও দেখুন)_
 

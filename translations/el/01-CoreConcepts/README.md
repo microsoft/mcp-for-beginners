@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Βασικές Έννοιες MCP: Κατακτώντας το Πρωτόκολλο Πλαισίου Μοντέλου για Ενσωμάτωση AI
 
-[![Βασικές Έννοιες MCP](../../../translated_images/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.el.png)](https://youtu.be/earDzWGtE84)
+[![Βασικές Έννοιες MCP](../../../translated_images/el/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.png)](https://youtu.be/earDzWGtE84)
 
 _(Κάντε κλικ στην εικόνα παραπάνω για να δείτε το βίντεο αυτού του μαθήματος)_
 

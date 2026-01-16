@@ -60,7 +60,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 **Крок 3: Встановіть та активуйте**
 
-![AI Toolkit Extension](../../../../translated_images/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.uk.png)
+![AI Toolkit Extension](../../../../translated_images/uk/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.png)
 
 ### ✅ Перевірка встановлення
 - [ ] Іконка AI Toolkit з’явилася в бічній панелі VS Code
@@ -79,7 +79,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Натисніть **MODELS - Catalog** у бічній панелі AI Toolkit
 
-![Model Catalog](../../../../translated_images/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.uk.png)
+![Model Catalog](../../../../translated_images/uk/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.png)
 
 **💡 Порада**: Шукайте моделі з потрібними можливостями, які відповідають вашому завданню (наприклад, генерація коду, креативне письмо, аналіз).
 
@@ -97,7 +97,7 @@ CO_OP_TRANSLATOR_METADATA:
 3. Оберіть **Try in Playground** для запуску середовища тестування
 4. Зачекайте на ініціалізацію моделі (перший запуск може зайняти деякий час)
 
-![Playground Setup](../../../../translated_images/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.uk.png)
+![Playground Setup](../../../../translated_images/uk/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.png)
 
 **⚙️ Пояснення параметрів моделі:**
 - **Temperature**: контролює креативність (0 = детермінований, 1 = креативний)
@@ -126,7 +126,7 @@ Playground — це ваша лабораторія для експеримен�
 "Analyze this sales data and provide insights: [paste your data]. Focus on trends, anomalies, and actionable recommendations."
 ```
 
-![Testing Results](../../../../translated_images/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.uk.png)
+![Testing Results](../../../../translated_images/uk/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.png)
 
 ### 🏆 Виклик: Порівняння продуктивності моделей
 
@@ -136,12 +136,12 @@ Playground — це ваша лабораторія для експеримен�
 1. Додайте **Phi-4-mini** у робочий простір
 2. Використайте однаковий запит для GPT-4.1 та Phi-4-mini
 
-![set](../../../../translated_images/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.uk.png)
+![set](../../../../translated_images/uk/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.png)
 
 3. Порівняйте якість, швидкість і точність відповідей
 4. Задокументуйте результати у відповідному розділі
 
-![Model Comparison](../../../../translated_images/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.uk.png)
+![Model Comparison](../../../../translated_images/uk/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.png)
 
 **💡 Ключові висновки:**
 - Коли варто використовувати LLM проти SLM
@@ -163,7 +163,7 @@ Agent Builder — це справжня сила AI Toolkit. Він дозвол
 - **Tools Integration**: підключення до зовнішніх API та MCP сервісів
 - **Memory**: контекст розмови та збереження сесії
 
-![Agent Builder Interface](../../../../translated_images/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.uk.png)
+![Agent Builder Interface](../../../../translated_images/uk/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.png)
 
 ### ⚙️ Крок 2: Детальний огляд налаштувань агента
 
@@ -237,7 +237,7 @@ You are a senior Python developer with 10+ years of experience. You excel at wri
    - Max Tokens: 2000 (детальні пояснення)
    - Top-p: 0.9 (збалансована креативність)
 
-![Python Agent Configuration](../../../../translated_images/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.uk.png)
+![Python Agent Configuration](../../../../translated_images/uk/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.png)
 
 ### 🧪 Крок 4: Тестування вашого Python агента
 

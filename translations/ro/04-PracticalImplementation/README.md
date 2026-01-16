@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Implementare Practică
 
-[![Cum să construiești, testezi și implementezi aplicații MCP folosind instrumente și fluxuri de lucru reale](../../../translated_images/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.ro.png)](https://youtu.be/vCN9-mKBDfQ)
+[![Cum să construiești, testezi și implementezi aplicații MCP folosind instrumente și fluxuri de lucru reale](../../../translated_images/ro/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.png)](https://youtu.be/vCN9-mKBDfQ)
 
 _(Click pe imaginea de mai sus pentru a viziona videoclipul acestei lecții)_
 
@@ -215,7 +215,7 @@ Să vedem dacă putem implementa exemplul menționat anterior:
 
     Ar trebui să vezi o interfață similară cu:
 
-    ![Conectare la Node inspector](../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.ro.png)
+    ![Conectare la Node inspector](../../../translated_images/ro/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. CTRL click pentru a încărca aplicația web MCP Inspector din URL-ul afișat de aplicație (de exemplu, [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources)).
 1. Setează tipul de transport la `SSE`.

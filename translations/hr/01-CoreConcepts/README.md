@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP Osnovni Koncepti: Ovladavanje Protokolom Konteksta Modela za AI Integraciju
 
-[![MCP Osnovni Koncepti](../../../translated_images/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.hr.png)](https://youtu.be/earDzWGtE84)
+[![MCP Osnovni Koncepti](../../../translated_images/hr/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.png)](https://youtu.be/earDzWGtE84)
 
 _(Kliknite na gornju sliku za pregled videa ove lekcije)_
 

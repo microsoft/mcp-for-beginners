@@ -52,27 +52,27 @@ To start, follow dis steps. For each step, you fit add screenshot from assets fo
    ```
    Dis configuration dey tell VS Code how e go connect to [`Microsoft Learn Docs MCP server`](https://github.com/MicrosoftDocs/mcp).
    
-   ![Step 1: Add mcp.json to .vscode folder](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.pcm.png)
+   ![Step 1: Add mcp.json to .vscode folder](../../../../../../translated_images/pcm/step1-mcp-json.c06a007fccc3edfa.webp)
     
 2. **Open GitHub Copilot Chat panel:**
    If you never install GitHub Copilot extension, go Extensions view for VS Code and install am. You fit download am directly from [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat). Then, open Copilot Chat panel from sidebar.
 
-   ![Step 2: Open Copilot Chat panel](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.pcm.png)
+   ![Step 2: Open Copilot Chat panel](../../../../../../translated_images/pcm/step2-copilot-panel.f1cc86e9b9b8cd1a.webp)
 
 3. **Enable agent mode and check tools:**
    For Copilot Chat panel, enable agent mode.
 
-   ![Step 3: Enable agent mode and verify tools](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.pcm.png)
+   ![Step 3: Enable agent mode and verify tools](../../../../../../translated_images/pcm/step3-agent-mode.cdc32520fd7dd1d1.webp)
 
    After you enable agent mode, check say MCP server dey listed as one of the available tools. Dis one go make sure say Copilot agent fit access documentation server to bring correct information.
    
-   ![Step 3: Verify MCP server tool](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.pcm.png)
+   ![Step 3: Verify MCP server tool](../../../../../../translated_images/pcm/step3-verify-mcp-tool.76096a6329cbfecd.webp)
 4. **Start new chat and ask agent:**
    Open new chat for Copilot Chat panel. You fit now ask the agent your documentation questions. The agent go use MCP server to bring and show relevant Microsoft Learn documentation directly inside your editor.
 
    - *"I dey try write study plan for topic X. I wan study am for 8 weeks, for each week, suggest content wey I go fit take."*
 
-   ![Step 4: Prompt the agent in chat](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.pcm.png)
+   ![Step 4: Prompt the agent in chat](../../../../../../translated_images/pcm/step4-prompt-chat.12187bb001605efc.webp)
 
 5. **Live Query:**
 
@@ -82,7 +82,7 @@ To start, follow dis steps. For each step, you fit add screenshot from assets fo
 Plenty articles/blogs dey wey talk say we fit use Azure Bot service to do dis work wey go act as bridge between MS teams and Azure AI Foundry Agents, well e go work if I set up Azure bot wey connect to Orchestrator Agent for Azure AI Foundry via Azure function to do the orchestration or I need to create Azure function for each AI agent wey dey part of multi-agent solution to do the orchestration for Bot framework? Any other suggestions dey welcome.
 "*
 
-   ![Step 5: Live queries](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.pcm.png)
+   ![Step 5: Live queries](../../../../../../translated_images/pcm/step5-live-queries.49db3e4a50bea273.webp)
 
    The agent go respond with relevant documentation links and summaries, wey you fit put directly inside your markdown files or use as references for your code.
    

@@ -38,9 +38,9 @@ Visual Studio Code اور GitHub Copilot ایک کلائنٹ کے طور پر ک
 
 ### اسکرین شاٹس
 
-![Visual Studio Code میں گائیڈڈ MCP سرور کنفیگریشن](../../../../translated_images/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.ur.png)  
-![ہر ایجنٹ سیشن کے لیے ٹول کا انتخاب](../../../../translated_images/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.ur.png)  
-![MCP ڈویلپمنٹ کے دوران آسانی سے ایررز کو ڈیبگ کریں](../../../../translated_images/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.ur.png)  
+![Visual Studio Code میں گائیڈڈ MCP سرور کنفیگریشن](../../../../translated_images/ur/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.png)  
+![ہر ایجنٹ سیشن کے لیے ٹول کا انتخاب](../../../../translated_images/ur/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.png)  
+![MCP ڈویلپمنٹ کے دوران آسانی سے ایررز کو ڈیبگ کریں](../../../../translated_images/ur/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.png)  
 
 آئیے اگلے حصوں میں دیکھتے ہیں کہ ہم بصری انٹرفیس کو کیسے استعمال کرتے ہیں۔
 
@@ -103,15 +103,15 @@ Visual Studio Code اور GitHub Copilot ایک کلائنٹ کے طور پر ک
 
 1. *mcp.json* میں اپنی انٹری تلاش کریں اور "پلے" آئیکن کو یقینی بنائیں:
 
-  ![Visual Studio Code میں سرور شروع کرنا](../../../../translated_images/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.ur.png)  
+  ![Visual Studio Code میں سرور شروع کرنا](../../../../translated_images/ur/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.png)  
 
 1. "پلے" آئیکن پر کلک کریں، آپ کو GitHub Copilot چیٹ میں ٹولز آئیکن کے ساتھ دستیاب ٹولز کی تعداد بڑھتی ہوئی نظر آئے گی۔ اگر آپ اس ٹولز آئیکن پر کلک کریں، تو آپ رجسٹرڈ ٹولز کی فہرست دیکھ سکیں گے۔ آپ ہر ٹول کو چیک/انچیک کر سکتے ہیں کہ آیا آپ چاہتے ہیں کہ GitHub Copilot انہیں سیاق و سباق کے طور پر استعمال کرے:
 
-  ![Visual Studio Code میں سرور شروع کرنا](../../../../translated_images/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.ur.png)
+  ![Visual Studio Code میں سرور شروع کرنا](../../../../translated_images/ur/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.png)
 
 1. کسی ٹول کو چلانے کے لیے، ایسا پرامپٹ ٹائپ کریں جو آپ کے ٹولز میں سے کسی ایک کی تفصیل سے میل کھاتا ہو، مثلاً ایسا پرامپٹ: "add 22 to 1":
 
-  ![GitHub Copilot سے ٹول چلانا](../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.ur.png)
+  ![GitHub Copilot سے ٹول چلانا](../../../../translated_images/ur/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
   آپ کو جواب میں 23 نظر آنا چاہیے۔
 

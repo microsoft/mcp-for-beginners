@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Προχωρημένα Θέματα στο MCP
 
-[![Προχωρημένο MCP: Ασφαλείς, Επεκτάσιμοι και Πολυτροπικοί Πράκτορες AI](../../../translated_images/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.el.png)](https://youtu.be/4yjmGvJzYdY)
+[![Προχωρημένο MCP: Ασφαλείς, Επεκτάσιμοι και Πολυτροπικοί Πράκτορες AI](../../../translated_images/el/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.png)](https://youtu.be/4yjmGvJzYdY)
 
 _(Κάντε κλικ στην παραπάνω εικόνα για να παρακολουθήσετε το βίντεο αυτού του μαθήματος)_
 

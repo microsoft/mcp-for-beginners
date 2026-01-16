@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP कोर अवधारणाहरू: AI एकीकरणका लागि मोडेल सन्दर्भ प्रोटोकलमा दक्षता हासिल गर्नुहोस्
 
-[![MCP कोर अवधारणाहरू](../../../translated_images/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.ne.png)](https://youtu.be/earDzWGtE84)
+[![MCP कोर अवधारणाहरू](../../../translated_images/ne/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.png)](https://youtu.be/earDzWGtE84)
 
 _(यो पाठको भिडियो हेर्न माथिको छवि क्लिक गर्नुहोस्)_
 

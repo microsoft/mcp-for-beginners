@@ -77,7 +77,7 @@ See vastab käsu käivitamisele, mis näeb välja selline: `node build/index.js`
 
     Peaksite nägema tööriista, mis kuvatakse vestluse tekstikasti kohal, andes teile võimaluse valida tööriista käivitamine, nagu näidatud selles visuaalis:
 
-    ![VS Code näitab tööriista käivitamise võimalust](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.et.png)
+    ![VS Code näitab tööriista käivitamise võimalust](../../../../../translated_images/et/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
     Tööriista valimine peaks andma numbrilise tulemuse "23", kui teie käsk oli nagu eelnevalt mainitud.
 

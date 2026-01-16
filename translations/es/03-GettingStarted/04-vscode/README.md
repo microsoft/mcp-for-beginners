@@ -38,9 +38,9 @@ Puedes controlar tu servidor MCP de dos maneras diferentes:
 
 ### Capturas de pantalla
 
-![Configuración guiada del servidor MCP en Visual Studio Code](../../../../translated_images/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.es.png)
-![Selección de herramientas por sesión de agente](../../../../translated_images/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.es.png)
-![Depuración sencilla de errores durante el desarrollo MCP](../../../../translated_images/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.es.png)
+![Configuración guiada del servidor MCP en Visual Studio Code](../../../../translated_images/es/chat-mode-agent.729a22473f822216.webp)
+![Selección de herramientas por sesión de agente](../../../../translated_images/es/agent-mode-select-tools.522c7ba5df0848f8.webp)
+![Depuración sencilla de errores durante el desarrollo MCP](../../../../translated_images/es/mcp-list-servers.fce89eefe3f30032.webp)
 
 Hablemos más sobre cómo usar la interfaz visual en las siguientes secciones.
 
@@ -103,15 +103,15 @@ Ahora que has agregado una entrada, iniciemos el servidor:
 
 1. Localiza tu entrada en *mcp.json* y asegúrate de encontrar el ícono de "play":
 
-  ![Iniciar servidor en Visual Studio Code](../../../../translated_images/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.es.png)  
+  ![Iniciar servidor en Visual Studio Code](../../../../translated_images/es/vscode-start-server.8e3c986612e3555d.webp)  
 
 1. Haz clic en el ícono de "play". Deberías ver que el ícono de herramientas en el chat de GitHub Copilot aumenta el número de herramientas disponibles. Si haces clic en dicho ícono de herramientas, verás una lista de herramientas registradas. Puedes marcar/desmarcar cada herramienta dependiendo de si deseas que GitHub Copilot las use como contexto:
 
-  ![Iniciar servidor en Visual Studio Code](../../../../translated_images/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.es.png)
+  ![Iniciar servidor en Visual Studio Code](../../../../translated_images/es/vscode-tool.0b3bbea2fb7d8c26.webp)
 
 1. Para ejecutar una herramienta, escribe un comando que coincida con la descripción de una de tus herramientas, por ejemplo, un comando como "suma 22 y 1":
 
-  ![Ejecutar una herramienta desde GitHub Copilot](../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.es.png)
+  ![Ejecutar una herramienta desde GitHub Copilot](../../../../translated_images/es/vscode-agent.d5a0e0b897331060.webp)
 
   Deberías ver una respuesta diciendo 23.
 

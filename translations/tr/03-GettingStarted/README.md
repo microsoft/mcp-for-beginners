@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 ## Başlarken  
 
-[![İlk MCP Sunucunuzu Oluşturun](../../../translated_images/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.tr.png)](https://youtu.be/sNDZO9N4m9Y)
+[![İlk MCP Sunucunuzu Oluşturun](../../../translated_images/tr/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.png)](https://youtu.be/sNDZO9N4m9Y)
 
 _(Bu dersin videosunu izlemek için yukarıdaki görsele tıklayın)_
 

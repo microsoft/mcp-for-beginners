@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP turvalisus: põhjalik kaitse tehisintellekti süsteemidele
 
-[![MCP turvalisuse parimad tavad](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.et.png)](https://youtu.be/88No8pw706o)
+[![MCP turvalisuse parimad tavad](../../../translated_images/et/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(Klõpsake ülaloleval pildil, et vaadata selle õppetunni videot)_
 
@@ -133,7 +133,7 @@ Kaasaegsed MCP rakendused seisavad silmitsi keerukate AI-spetsiifiliste ründete
 
 **Reaalne mõju**: Need rünnakud võivad põhjustada andmete väljaviimist, privaatsusrikkumisi, kahjuliku sisu genereerimist ja kasutajate interaktsioonide manipuleerimist. Üksikasjaliku analüüsi leiab [Prompt Injection in MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
-![Promptide süstimise rünnaku skeem](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.et.png)
+![Promptide süstimise rünnaku skeem](../../../translated_images/et/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **Tööriistade mürgitamise rünnakud**
 
@@ -147,7 +147,7 @@ Kaasaegsed MCP rakendused seisavad silmitsi keerukate AI-spetsiifiliste ründete
 
 **Hostitud serverite riskid**: Kaug-MCP serverid kujutavad endast kõrgendatud riske, kuna tööriistade definitsioone saab pärast kasutaja esmast heakskiitu uuendada, luues olukordi, kus varem ohutud tööriistad muutuvad pahatahtlikeks. Üksikasjaliku analüüsi leiab [Tool Poisoning Attacks (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
-![Tööriistade süstimise rünnaku skeem](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.et.png)
+![Tööriistade süstimise rünnaku skeem](../../../translated_images/et/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **Täiendavad AI ründeteed**
 
@@ -200,7 +200,7 @@ Microsofti **AI Prompt Shields** pakuvad põhjalikku kaitset nii otseste kui ka 
 
 **Rakendamise ressursid**: [Microsoft Prompt Shields dokumentatsioon](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields kaitse](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.et.png)
+![Microsoft Prompt Shields kaitse](../../../translated_images/et/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## Täiustatud MCP turvaohtud

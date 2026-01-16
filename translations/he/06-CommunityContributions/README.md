@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # קהילה ותרומות
 
-[![איך לתרום ל-MCP: כלים, תיעוד, קוד ועוד](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.he.png)](https://youtu.be/v1pvCYAWpRE)
+[![איך לתרום ל-MCP: כלים, תיעוד, קוד ועוד](../../../translated_images/he/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.png)](https://youtu.be/v1pvCYAWpRE)
 
 _(לחצו על התמונה למעלה לצפייה בסרטון של השיעור הזה)_
 

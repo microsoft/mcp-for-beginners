@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # ప్రాక్టికల్ అమలు
 
-[![వాస్తవ టూల్స్ మరియు వర్క్‌ఫ్లోలతో MCP యాప్స్‌ను ఎలా నిర్మించాలి, పరీక్షించాలి మరియు డిప్లాయ్ చేయాలి](../../../translated_images/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.te.png)](https://youtu.be/vCN9-mKBDfQ)
+[![వాస్తవ టూల్స్ మరియు వర్క్‌ఫ్లోలతో MCP యాప్స్‌ను ఎలా నిర్మించాలి, పరీక్షించాలి మరియు డిప్లాయ్ చేయాలి](../../../translated_images/te/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.png)](https://youtu.be/vCN9-mKBDfQ)
 
 _(ఈ పాఠం వీడియోను చూడడానికి పై చిత్రాన్ని క్లిక్ చేయండి)_
 
@@ -215,7 +215,7 @@ Azure API నిర్వహణ MCP సర్వర్లను ఎలా సు
 
     మీరు ఈ క్రింది లాంటి ఇంటర్‌ఫేస్‌ను చూడాలి:
 
-    ![Connect to Node inspector](../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.te.png)
+    ![Connect to Node inspector](../../../translated_images/te/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. MCP ఇన్స్పెక్టర్ వెబ్ యాప్‌ను URL నుండి CTRL క్లిక్ చేసి లోడ్ చేయండి (ఉదా: [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources))
 1. ట్రాన్స్‌పోర్ట్ టైప్‌ను `SSE` గా సెట్ చేయండి

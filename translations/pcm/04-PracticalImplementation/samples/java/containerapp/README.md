@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Dis project dey show how web application dey use content safety check before e go pass user prompt go calculator service through Model Context Protocol (MCP).
 
-![System Architecture Diagram](../../../../../../translated_images/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.pcm.png)
+![System Architecture Diagram](../../../../../../translated_images/pcm/plant.b079fed84e945b7c.webp)
 
 ### How E Dey Work
 

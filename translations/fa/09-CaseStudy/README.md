@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP در عمل: مطالعات موردی واقعی
 
-[![MCP در عمل: مطالعات موردی واقعی](../../../translated_images/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.fa.png)](https://youtu.be/IxshWb2Az5w)
+[![MCP در عمل: مطالعات موردی واقعی](../../../translated_images/fa/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.png)](https://youtu.be/IxshWb2Az5w)
 
 _(برای مشاهده ویدئوی این درس روی تصویر بالا کلیک کنید)_
 

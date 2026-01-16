@@ -60,7 +60,7 @@ Di **AI Toolkit for Visual Studio Code** na Microsoft main extension wey dey tur
 
 **Step 3: Install and Activate**
 
-![AI Toolkit Extension](../../../../translated_images/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.pcm.png)
+![AI Toolkit Extension](../../../../translated_images/pcm/aitkext.d28945a03eed003c.webp)
 
 ### ✅ Verification Checklist
 - [ ] AI Toolkit icon dey di VS Code sidebar
@@ -79,7 +79,7 @@ Di Model Catalog na di place wey you go find plenty AI models. E dey bring model
 
 Click **MODELS - Catalog** for di AI Toolkit sidebar
 
-![Model Catalog](../../../../translated_images/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.pcm.png)
+![Model Catalog](../../../../translated_images/pcm/aimodel.263ed2be013d8fb0.webp)
 
 **💡 Pro Tip**: Look for models wey get di features wey fit your work (e.g., code generation, creative writing, analysis).
 
@@ -97,7 +97,7 @@ Click **MODELS - Catalog** for di AI Toolkit sidebar
 3. Choose **Try in Playground** to open di testing environment
 4. Wait for di model to initialize (e fit take small time for first setup)
 
-![Playground Setup](../../../../translated_images/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.pcm.png)
+![Playground Setup](../../../../translated_images/pcm/playground.dd6f5141344878ca.webp)
 
 **⚙️ Understand Model Parameters:**
 - **Temperature**: E control creativity (0 = predictable, 1 = creative)
@@ -126,7 +126,7 @@ Di Playground na di place wey you fit test AI models. Here na how to use am well
 "Analyze this sales data and provide insights: [paste your data]. Focus on trends, anomalies, and actionable recommendations."
 ```
 
-![Testing Results](../../../../translated_images/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.pcm.png)
+![Testing Results](../../../../translated_images/pcm/result.1dfcf211fb359cf6.webp)
 
 ### 🏆 Challenge Exercise: Compare Model Performance
 
@@ -136,12 +136,12 @@ Di Playground na di place wey you fit test AI models. Here na how to use am well
 1. Add **Phi-4-mini** to your workspace
 2. Use di same prompt for GPT-4.1 and Phi-4-mini
 
-![set](../../../../translated_images/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.pcm.png)
+![set](../../../../translated_images/pcm/set.88132df189ecde2c.webp)
 
 3. Compare di response quality, speed, and accuracy
 4. Write down wetin you find for di results section
 
-![Model Comparison](../../../../translated_images/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.pcm.png)
+![Model Comparison](../../../../translated_images/pcm/compare.97746cd0f9074955.webp)
 
 **💡 Wetin You Go Learn:**
 - When to use LLM vs SLM
@@ -163,7 +163,7 @@ Agent Builder na di place wey AI Toolkit dey shine well. E dey help you create A
 - **Tools Integration**: Connect external APIs and MCP services
 - **Memory**: Keep conversation context and session info
 
-![Agent Builder Interface](../../../../translated_images/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.pcm.png)
+![Agent Builder Interface](../../../../translated_images/pcm/agentbuilder.25895b2d2f8c02e7.webp)
 
 ### ⚙️ Step 2: How to Set Up Agent
 
@@ -237,7 +237,7 @@ You are a senior Python developer with 10+ years of experience. You excel at wri
    - Max Tokens: 2000 (for detailed explanations)
    - Top-p: 0.9 (balanced creativity)
 
-![Python Agent Configuration](../../../../translated_images/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.pcm.png)
+![Python Agent Configuration](../../../../translated_images/pcm/pythonagent.5e51b406401c165f.webp)
 
 ### 🧪 Step 4: Test Your Python Agent
 

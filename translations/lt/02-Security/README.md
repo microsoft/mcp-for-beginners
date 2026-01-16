@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP Saugumas: Išsamus AI sistemų apsaugos sprendimas
 
-[![MCP Security Best Practices](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.lt.png)](https://youtu.be/88No8pw706o)
+[![MCP Security Best Practices](../../../translated_images/lt/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(Spustelėkite aukščiau esantį paveikslėlį, kad peržiūrėtumėte šios pamokos vaizdo įrašą)_
 
@@ -133,7 +133,7 @@ MCP specifikacija reikšmingai pasikeitė autentifikacijos ir autorizacijos srit
 
 **Reali įtaka**: Šios atakos gali sukelti duomenų nutekėjimą, privatumo pažeidimus, žalingo turinio generavimą ir vartotojų sąveikos manipuliavimą. Išsamiai analizuokite [Prompt Injection in MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
-![Prompt Injection Attack Diagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.lt.png)
+![Prompt Injection Attack Diagram](../../../translated_images/lt/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **Įrankių užnuodijimo atakos**
 
@@ -147,7 +147,7 @@ MCP specifikacija reikšmingai pasikeitė autentifikacijos ir autorizacijos srit
 
 **Nuotolinių serverių rizikos**: Nuotoliniai MCP serveriai kelia didesnę riziką, nes įrankių apibrėžimai gali būti atnaujinami po pradinio vartotojo patvirtinimo, sukuriant situacijas, kai anksčiau saugūs įrankiai tampa piktavališki. Išsamiai analizuokite [Tool Poisoning Attacks (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
-![Tool Injection Attack Diagram](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.lt.png)
+![Tool Injection Attack Diagram](../../../translated_images/lt/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **Papildomi AI atakų vektoriai**
 
@@ -200,7 +200,7 @@ Microsoft **AI Prompt Shields** suteikia išsamią apsaugą nuo tiesioginių ir 
 
 **Įgyvendinimo ištekliai**: [Microsoft Prompt Shields dokumentacija](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields Protection](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.lt.png)
+![Microsoft Prompt Shields Protection](../../../translated_images/lt/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## Pažangios MCP saugumo grėsmės

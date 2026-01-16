@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Közösség és hozzájárulások
 
-[![Hogyan járulhatsz hozzá az MCP-hez: eszközök, dokumentáció, kód és egyebek](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.hu.png)](https://youtu.be/v1pvCYAWpRE)
+[![Hogyan járulhatsz hozzá az MCP-hez: eszközök, dokumentáció, kód és egyebek](../../../translated_images/hu/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.png)](https://youtu.be/v1pvCYAWpRE)
 
 _(Kattints a fenti képre a videó megtekintéséhez)_
 

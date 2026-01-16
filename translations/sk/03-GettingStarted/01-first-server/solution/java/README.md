@@ -73,7 +73,7 @@ MCP Inspector je užitočný nástroj na interakciu s MCP službami. Na použiti
    - Kliknite na "List Tools" pre zobrazenie dostupných kalkulačných operácií
    - Vyberte nástroj a kliknite na "Run Tool" pre vykonanie operácie
 
-![MCP Inspector Screenshot](../../../../../../translated_images/tool.40e180a7b0d0fe2067cf96435532b01f63f7f8619d6b0132355a04b426b669ac.sk.png)
+![MCP Inspector Screenshot](../../../../../../translated_images/sk/tool.40e180a7b0d0fe2067cf96435532b01f63f7f8619d6b0132355a04b426b669ac.png)
 
 **Zrieknutie sa zodpovednosti**:  
 Tento dokument bol preložený pomocou AI prekladateľskej služby [Co-op Translator](https://github.com/Azure/co-op-translator). Aj keď sa snažíme o presnosť, prosím, majte na pamäti, že automatizované preklady môžu obsahovať chyby alebo nepresnosti. Originálny dokument v jeho pôvodnom jazyku by mal byť považovaný za autoritatívny zdroj. Pre kritické informácie sa odporúča profesionálny ľudský preklad. Nie sme zodpovední za akékoľvek nedorozumenia alebo nesprávne interpretácie vyplývajúce z použitia tohto prekladu.

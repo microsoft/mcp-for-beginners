@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Mga Pinakamahusay na Kasanayan sa Pagbuo ng MCP
 
-[![Mga Pinakamahusay na Kasanayan sa Pagbuo ng MCP](../../../translated_images/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.tl.png)](https://youtu.be/W56H9W7x-ao)
+[![Mga Pinakamahusay na Kasanayan sa Pagbuo ng MCP](../../../translated_images/tl/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.png)](https://youtu.be/W56H9W7x-ao)
 
 _(I-click ang larawan sa itaas upang panoorin ang video ng araling ito)_
 

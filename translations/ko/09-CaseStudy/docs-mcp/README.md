@@ -110,7 +110,7 @@ Let me know if you want module-specific recommendations or need more customized 
 
 아래는 최소한의 샘플 솔루션입니다. 전체 코드와 자세한 내용은 solution 폴더에서 확인할 수 있습니다.
 
-![Scenario 2 Overview](../../../../translated_images/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.ko.png)
+![Scenario 2 Overview](../../../../translated_images/ko/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.png)
 
 <details>
 <summary>Python (Chainlit)</summary>
@@ -167,7 +167,7 @@ VS Code에서 MCP 서버 설정 예시는 다음과 같습니다:
 
 > 스크린샷과 단계별 가이드가 포함된 자세한 설명은 [`README.md`](./solution/scenario3/README.md)를 참고하세요.
 
-![Scenario 3 Overview](../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.ko.png)
+![Scenario 3 Overview](../../../../translated_images/ko/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 이 방법은 기술 강의를 만들거나 문서를 작성하거나 자주 참조가 필요한 코드를 개발하는 모든 분에게 이상적입니다.
 

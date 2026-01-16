@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # بهترین شیوه‌های توسعه MCP
 
-[![بهترین شیوه‌های توسعه MCP](../../../translated_images/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.fa.png)](https://youtu.be/W56H9W7x-ao)
+[![بهترین شیوه‌های توسعه MCP](../../../translated_images/fa/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.png)](https://youtu.be/W56H9W7x-ao)
 
 _(برای مشاهده ویدئوی این درس روی تصویر بالا کلیک کنید)_
 

@@ -73,7 +73,7 @@ MCP Inspector je uporabno orodje za interakcijo z MCP storitvami. Za uporabo s t
    - Kliknite "List Tools" za prikaz razpoložljivih kalkulator funkcij
    - Izberite orodje in kliknite "Run Tool" za izvedbo operacije
 
-![MCP Inspector Screenshot](../../../../../../translated_images/tool.40e180a7b0d0fe2067cf96435532b01f63f7f8619d6b0132355a04b426b669ac.sl.png)
+![MCP Inspector Screenshot](../../../../../../translated_images/sl/tool.40e180a7b0d0fe2067cf96435532b01f63f7f8619d6b0132355a04b426b669ac.png)
 
 **Omejitev odgovornosti**:  
 Ta dokument je bil preveden z uporabo AI prevajalske storitve [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, vas opozarjamo, da avtomatizirani prevodi lahko vsebujejo napake ali netočnosti. Izvirni dokument v njegovem izvirnem jeziku velja za avtoritativni vir. Za pomembne informacije priporočamo strokovni človeški prevod. Za morebitna nesporazume ali napačne interpretacije, ki izhajajo iz uporabe tega prevoda, ne odgovarjamo.

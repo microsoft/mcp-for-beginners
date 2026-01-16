@@ -110,7 +110,7 @@ Let me know if you want module-specific recommendations or need more customized 
 
 Нижче наведено мінімальний приклад рішення. Повний код і деталі доступні у папці solution.
 
-![Огляд сценарію 2](../../../../translated_images/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.uk.png)
+![Огляд сценарію 2](../../../../translated_images/uk/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.png)
 
 <details>
 <summary>Python (Chainlit)</summary>
@@ -167,7 +167,7 @@ def handle_message(message):
 
 > Для детального покрокового керівництва з скріншотами дивіться [`README.md`](./solution/scenario3/README.md).
 
-![Огляд сценарію 3](../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.uk.png)
+![Огляд сценарію 3](../../../../translated_images/uk/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 Цей підхід ідеально підходить для тих, хто створює технічні курси, пише документацію або розробляє код з частими посиланнями.
 

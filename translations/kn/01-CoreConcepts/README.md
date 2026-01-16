@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP ಕೋರ್ ಸಂಪ್ರದಾಯಗಳು: AI ಏಕೀಕರಣಕ್ಕಾಗಿ ಮಾದರಿ ಸಂಧರ್ಭ ಪ್ರೋಟೋಕಾಲ್‌ನಲ್ಲಿ ಪರಿಣತಿ
 
-[![MCP ಕೋರ್ ಸಂಪ್ರದಾಯಗಳು](../../../translated_images/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.kn.png)](https://youtu.be/earDzWGtE84)
+[![MCP ಕೋರ್ ಸಂಪ್ರದಾಯಗಳು](../../../translated_images/kn/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.png)](https://youtu.be/earDzWGtE84)
 
 _(ಈ ಪಾಠದ ವೀಡಿಯೋವನ್ನು ವೀಕ್ಷಿಸಲು ಮೇಲಿನ ಚಿತ್ರವನ್ನು ಕ್ಲಿಕ್ ಮಾಡಿ)_
 

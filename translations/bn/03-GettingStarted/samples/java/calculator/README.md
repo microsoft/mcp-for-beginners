@@ -201,7 +201,7 @@ MCP Inspector MCP সার্ভিসের সাথে ইন্টারঅ
    - "List Tools" ক্লিক করে উপলব্ধ ক্যালকুলেটর অপারেশন দেখুন
    - একটি টুল নির্বাচন করে "Run Tool" ক্লিক করে অপারেশন চালান
 
-![MCP Inspector Screenshot](../../../../../../translated_images/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.bn.png)
+![MCP Inspector Screenshot](../../../../../../translated_images/bn/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.png)
 
 ### Docker ব্যবহার করে
 

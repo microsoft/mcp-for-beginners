@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP కోర్ కాన్సెప్ట్‌లు: AI ఇంటిగ్రేషన్ కోసం మోడల్ కాంటెక్స్ట్ ప్రోటోకాల్‌ను మాస్టర్ చేయడం
 
-[![MCP Core Concepts](../../../translated_images/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.te.png)](https://youtu.be/earDzWGtE84)
+[![MCP Core Concepts](../../../translated_images/te/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.png)](https://youtu.be/earDzWGtE84)
 
 _(ఈ పాఠం వీడియోను చూడడానికి పై చిత్రాన్ని క్లిక్ చేయండి)_
 

@@ -23,7 +23,7 @@ Cela correspond à l'exécution d'une commande comme celle-ci : `node build/inde
 
     Vous devriez voir un outil s'afficher au-dessus de la zone de texte du chat vous invitant à sélectionner l'outil pour l'exécuter, comme dans cette illustration :
 
-    ![VS Code indiquant qu'il souhaite exécuter un outil](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.fr.png)
+    ![VS Code indiquant qu'il souhaite exécuter un outil](../../../../../translated_images/fr/vscode-agent.d5a0e0b897331060.webp)
 
     La sélection de l'outil devrait produire un résultat numérique indiquant "23" si votre invite était comme celle mentionnée précédemment.
 

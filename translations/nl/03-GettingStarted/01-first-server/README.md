@@ -156,7 +156,7 @@ Wanneer je bovenstaande commando's uitvoert, start de MCP Inspector een lokale w
 
 Hier is een screenshot van hoe het eruit kan zien:
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.nl.png)
+![MCP Inspector server connection](../../../../translated_images/nl/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## Veelvoorkomende installatieproblemen en oplossingen
 
@@ -1302,7 +1302,7 @@ In de webinterface van de inspector:
 2. Stel de URL in op: `http://localhost:8080/sse`
 3. Klik op "Connect"
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.nl.png)
+![Connect](../../../../translated_images/nl/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **Je bent nu verbonden met de server**
 **De testsectie voor de Java-server is nu voltooid**
@@ -1311,18 +1311,18 @@ De volgende sectie gaat over interactie met de server.
 
 Je zou de volgende gebruikersinterface moeten zien:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.nl.png)
+![Connect](../../../../translated_images/nl/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. Verbind met de server door op de knop Connect te klikken
   Zodra je verbonden bent met de server, zou je het volgende moeten zien:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.nl.png)
+  ![Connected](../../../../translated_images/nl/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. Selecteer "Tools" en "listTools", je zou "Add" moeten zien verschijnen, selecteer "Add" en vul de parameterwaarden in.
 
   Je zou de volgende reactie moeten zien, dat wil zeggen een resultaat van de "add" tool:
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.nl.png)
+  ![Result of running add](../../../../translated_images/nl/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 Gefeliciteerd, je bent erin geslaagd je eerste server te maken en uit te voeren!
 

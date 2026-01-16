@@ -60,7 +60,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 **步骤 3：安装并激活**
 
-![AI Toolkit Extension](../../../../translated_images/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.zh.png)
+![AI Toolkit Extension](../../../../translated_images/zh/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.png)
 
 ### ✅ 验证清单
 - [ ] AI 工具包图标出现在 VS Code 侧边栏
@@ -79,7 +79,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 点击 AI 工具包侧边栏中的 **MODELS - Catalog**
 
-![Model Catalog](../../../../translated_images/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.zh.png)
+![Model Catalog](../../../../translated_images/zh/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.png)
 
 **💡 小贴士**：寻找具备特定功能且符合您用例的模型（例如代码生成、创意写作、分析）。
 
@@ -97,7 +97,7 @@ CO_OP_TRANSLATOR_METADATA:
 3. 选择 **Try in Playground** 启动测试环境
 4. 等待模型初始化（首次设置可能需要一些时间）
 
-![Playground Setup](../../../../translated_images/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.zh.png)
+![Playground Setup](../../../../translated_images/zh/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.png)
 
 **⚙️ 理解模型参数：**
 - **Temperature**：控制创造力（0 = 确定性，1 = 创造性）
@@ -126,7 +126,7 @@ Playground 是您的 AI 实验室。以下是最大化其潜力的方法：
 "Analyze this sales data and provide insights: [paste your data]. Focus on trends, anomalies, and actionable recommendations."
 ```
 
-![Testing Results](../../../../translated_images/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.zh.png)
+![Testing Results](../../../../translated_images/zh/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.png)
 
 ### 🏆 挑战练习：模型性能对比
 
@@ -136,12 +136,12 @@ Playground 是您的 AI 实验室。以下是最大化其潜力的方法：
 1. 将 **Phi-4-mini** 添加到您的工作区
 2. 对 GPT-4.1 和 Phi-4-mini 使用相同的提示
 
-![set](../../../../translated_images/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.zh.png)
+![set](../../../../translated_images/zh/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.png)
 
 3. 比较响应质量、速度和准确性
 4. 在结果部分记录您的发现
 
-![Model Comparison](../../../../translated_images/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.zh.png)
+![Model Comparison](../../../../translated_images/zh/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.png)
 
 **💡 关键洞察：**
 - 何时使用大型语言模型（LLM）与小型语言模型（SLM）
@@ -163,7 +163,7 @@ Agent Builder 是 AI 工具包的核心亮点。它允许您创建定制的 AI �
 - **工具集成**：连接外部 API 和 MCP 服务
 - **记忆**：对话上下文和会话持久化
 
-![Agent Builder Interface](../../../../translated_images/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.zh.png)
+![Agent Builder Interface](../../../../translated_images/zh/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.png)
 
 ### ⚙️ 第 2 步：深入代理配置
 
@@ -237,7 +237,7 @@ You are a senior Python developer with 10+ years of experience. You excel at wri
    - Max Tokens：2000（详细解释）
    - Top-p：0.9（平衡创造力）
 
-![Python Agent Configuration](../../../../translated_images/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.zh.png)
+![Python Agent Configuration](../../../../translated_images/zh/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.png)
 
 ### 🧪 第 4 步：测试您的 Python 代理
 

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # 🌟 Erken Benimseyenlerden Dersler
 
-[![MCP Erken Benimseyenlerden Dersler](../../../translated_images/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.tr.png)](https://youtu.be/jds7dSmNptE)
+[![MCP Erken Benimseyenlerden Dersler](../../../translated_images/tr/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.png)](https://youtu.be/jds7dSmNptE)
 
 _(Bu dersin videosunu izlemek için yukarıdaki görsele tıklayın)_
 

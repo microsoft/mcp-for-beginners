@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP উন্নয়ন সেরা অনুশীলন
 
-[![MCP উন্নয়ন সেরা অনুশীলন](../../../translated_images/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.bn.png)](https://youtu.be/W56H9W7x-ao)
+[![MCP উন্নয়ন সেরা অনুশীলন](../../../translated_images/bn/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.png)](https://youtu.be/W56H9W7x-ao)
 
 _(উপরের ছবিতে ক্লিক করে এই পাঠের ভিডিও দেখুন)_
 

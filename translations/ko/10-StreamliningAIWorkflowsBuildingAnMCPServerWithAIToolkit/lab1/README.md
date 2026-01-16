@@ -60,7 +60,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 **3단계: 설치 및 활성화**
 
-![AI Toolkit Extension](../../../../translated_images/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.ko.png)
+![AI Toolkit Extension](../../../../translated_images/ko/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.png)
 
 ### ✅ 확인 체크리스트
 - [ ] VS Code 사이드바에 AI Toolkit 아이콘 표시
@@ -79,7 +79,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 AI Toolkit 사이드바에서 **MODELS - Catalog** 클릭
 
-![Model Catalog](../../../../translated_images/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.ko.png)
+![Model Catalog](../../../../translated_images/ko/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.png)
 
 **💡 팁**: 코드 생성, 창의적 글쓰기, 분석 등 사용 사례에 맞는 특정 기능을 가진 모델을 찾아보세요.
 
@@ -97,7 +97,7 @@ AI Toolkit 사이드바에서 **MODELS - Catalog** 클릭
 3. **Try in Playground** 선택해 테스트 환경 실행
 4. 모델 초기화 대기 (첫 실행 시 시간이 걸릴 수 있음)
 
-![Playground Setup](../../../../translated_images/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.ko.png)
+![Playground Setup](../../../../translated_images/ko/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.png)
 
 **⚙️ 모델 파라미터 이해하기:**
 - **Temperature**: 창의성 조절 (0 = 결정적, 1 = 창의적)
@@ -126,7 +126,7 @@ AI Toolkit 사이드바에서 **MODELS - Catalog** 클릭
 "Analyze this sales data and provide insights: [paste your data]. Focus on trends, anomalies, and actionable recommendations."
 ```
 
-![Testing Results](../../../../translated_images/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.ko.png)
+![Testing Results](../../../../translated_images/ko/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.png)
 
 ### 🏆 도전 과제: 모델 성능 비교
 
@@ -136,12 +136,12 @@ AI Toolkit 사이드바에서 **MODELS - Catalog** 클릭
 1. 작업 공간에 **Phi-4-mini** 추가
 2. GPT-4.1과 Phi-4-mini에 동일한 프롬프트 사용
 
-![set](../../../../translated_images/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.ko.png)
+![set](../../../../translated_images/ko/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.png)
 
 3. 응답 품질, 속도, 정확도 비교
 4. 결과 섹션에 발견 내용 기록
 
-![Model Comparison](../../../../translated_images/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.ko.png)
+![Model Comparison](../../../../translated_images/ko/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.png)
 
 **💡 알아야 할 핵심 인사이트:**
 - LLM과 SLM 사용 시기
@@ -163,7 +163,7 @@ Agent Builder는 AI Toolkit의 핵심 기능입니다. 대형 언어 모델의 �
 - **Tools Integration**: 외부 API 및 MCP 서비스 연결
 - **Memory**: 대화 맥락과 세션 유지
 
-![Agent Builder Interface](../../../../translated_images/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.ko.png)
+![Agent Builder Interface](../../../../translated_images/ko/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.png)
 
 ### ⚙️ 2단계: 에이전트 설정 심화
 
@@ -237,7 +237,7 @@ You are a senior Python developer with 10+ years of experience. You excel at wri
    - Max Tokens: 2000 (상세한 설명)
    - Top-p: 0.9 (균형 잡힌 창의성)
 
-![Python Agent Configuration](../../../../translated_images/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.ko.png)
+![Python Agent Configuration](../../../../translated_images/ko/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.png)
 
 ### 🧪 4단계: 파이썬 에이전트 테스트
 

@@ -156,7 +156,7 @@ Yukarıdaki komutları çalıştırdığınızda, MCP Inspector tarayıcınızda
 
 İşte nasıl görünebileceğine dair bir ekran görüntüsü:
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.tr.png)
+![MCP Inspector server connection](../../../../translated_images/tr/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## Yaygın Kurulum Sorunları ve Çözümleri
 
@@ -1302,7 +1302,7 @@ Denetleyici web arayüzünde:
 2. URL'yi şu şekilde ayarlayın: `http://localhost:8080/sse`
 3. "Connect"e tıklayın
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.tr.png)
+![Connect](../../../../translated_images/tr/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **Artık sunucuya bağlısınız**
 **Java sunucu testi bölümü tamamlandı**
@@ -1311,18 +1311,18 @@ Sonraki bölüm sunucu ile etkileşimle ilgilidir.
 
 Aşağıdaki kullanıcı arayüzünü görmelisiniz:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.tr.png)
+![Connect](../../../../translated_images/tr/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. Bağlan düğmesini seçerek sunucuya bağlanın
   Sunucuya bağlandıktan sonra aşağıdakileri görmelisiniz:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.tr.png)
+  ![Connected](../../../../translated_images/tr/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. "Tools" ve "listTools"u seçin, "Add" görünmelidir, "Add"i seçin ve parametre değerlerini doldurun.
 
   Aşağıdaki yanıtı görmelisiniz, yani "add" aracından bir sonuç:
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.tr.png)
+  ![Result of running add](../../../../translated_images/tr/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 Tebrikler, ilk sunucunuzu oluşturup çalıştırmayı başardınız!
 

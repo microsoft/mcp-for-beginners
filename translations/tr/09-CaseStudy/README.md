@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP Eylemde: Gerçek Dünya Örnekleri
 
-[![MCP Eylemde: Gerçek Dünya Örnekleri](../../../translated_images/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.tr.png)](https://youtu.be/IxshWb2Az5w)
+[![MCP Eylemde: Gerçek Dünya Örnekleri](../../../translated_images/tr/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.png)](https://youtu.be/IxshWb2Az5w)
 
 _(Bu dersin videosunu izlemek için yukarıdaki görsele tıklayın)_
 

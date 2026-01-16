@@ -202,7 +202,7 @@ graph TB
    - **名稱**：`BrowserAgent`  
    - **模型**：選擇 GPT-4o  
 
-![BrowserAgent](../../../../translated_images/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.tw.png)
+![BrowserAgent](../../../../translated_images/tw/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.png)
 
 ### 🔧 階段 2：MCP 整合流程
 
@@ -211,7 +211,7 @@ graph TB
 2. **點擊「Add Tool」** 開啟整合選單  
 3. **選擇「MCP Server」**  
 
-![AddMCP](../../../../translated_images/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.tw.png)
+![AddMCP](../../../../translated_images/tw/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.png)
 
 **🔍 工具類型說明：**  
 - **內建工具**：預設的 AI Toolkit 功能  
@@ -221,10 +221,10 @@ graph TB
 
 #### 步驟 4：選擇 MCP 伺服器  
 1. **選擇「MCP Server」選項繼續**  
-![AddMCPServer](../../../../translated_images/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.tw.png)
+![AddMCPServer](../../../../translated_images/tw/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.png)
 
 2. **瀏覽 MCP 目錄，探索可用整合**  
-![MCPCatalog](../../../../translated_images/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.tw.png)
+![MCPCatalog](../../../../translated_images/tw/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.png)
 
 ### 🎮 階段 3：Playwright MCP 設定
 
@@ -233,12 +233,12 @@ graph TB
 2. **從特色清單中選擇「Playwright」**  
 3. **接受預設 MCP ID** 或依環境自訂  
 
-![MCPID](../../../../translated_images/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.tw.png)
+![MCPID](../../../../translated_images/tw/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.png)
 
 #### 步驟 6：啟用 Playwright 功能  
 **🔑 關鍵步驟**：選擇 Playwright 所有可用方法以獲得最大功能  
 
-![Tools](../../../../translated_images/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.tw.png)
+![Tools](../../../../translated_images/tw/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.png)
 
 **🛠️ 重要 Playwright 工具：**  
 - **導航**：`goto`、`goBack`、`goForward`、`reload`  
@@ -254,7 +254,7 @@ graph TB
 - 整合面板無錯誤訊息  
 - Playwright 伺服器狀態顯示「Connected」  
 
-![AgentTools](../../../../translated_images/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.tw.png)
+![AgentTools](../../../../translated_images/tw/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.png)
 
 **🔧 常見問題排解：**  
 - **連線失敗**：檢查網路連線與防火牆設定  
@@ -320,7 +320,7 @@ Navigate to github.com/kinfey and provide a comprehensive analysis including:
 Include screenshots at key steps and provide actionable insights.
 ```
 
-![Prompt](../../../../translated_images/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.tw.png)
+![Prompt](../../../../translated_images/tw/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.png)
 
 ### 🚀 階段 5：執行與測試
 
@@ -332,19 +332,19 @@ Include screenshots at key steps and provide actionable insights.
    - 每個主要步驟截圖保存  
    - 分析結果即時串流  
 
-![Browser](../../../../translated_images/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.tw.png)
+![Browser](../../../../translated_images/tw/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.png)
 
 #### 步驟 11：分析結果與洞察  
 在 Agent Builder 介面檢視完整分析報告：
 
-![Result](../../../../translated_images/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.tw.png)
+![Result](../../../../translated_images/tw/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.png)
 
 ### 🌟 階段 6：進階功能與部署
 
 #### 步驟 12：匯出與生產部署  
 Agent Builder 支援多種部署選項：
 
-![Code](../../../../translated_images/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.tw.png)
+![Code](../../../../translated_images/tw/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.png)
 
 ## 🎓 模組 2 總結與後續步驟
 

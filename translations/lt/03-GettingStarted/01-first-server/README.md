@@ -156,7 +156,7 @@ Kai paleidžiate aukščiau pateiktas komandas, MCP Inspector atidarys vietinę 
 
 Štai ekrano nuotrauka, kaip tai gali atrodyti:
 
-![MCP Inspector serverio prisijungimas](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.lt.png)
+![MCP Inspector serverio prisijungimas](../../../../translated_images/lt/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## Dažnos nustatymo problemos ir sprendimai
 
@@ -1302,7 +1302,7 @@ Inspektoriaus žiniatinklio sąsajoje:
 2. Nustatykite URL į: `http://localhost:8080/sse`
 3. Spustelėkite "Connect"
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.lt.png)
+![Connect](../../../../translated_images/lt/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **Dabar esate prisijungę prie serverio**
 **Java serverio testavimo skyrius dabar baigtas**
@@ -1311,18 +1311,18 @@ Kitas skyrius – apie sąveiką su serveriu.
 
 Turėtumėte matyti šią vartotojo sąsają:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.lt.png)
+![Connect](../../../../translated_images/lt/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. Prisijunkite prie serverio pasirinkdami mygtuką Connect
   Prisijungus prie serverio, turėtumėte matyti šį vaizdą:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.lt.png)
+  ![Connected](../../../../translated_images/lt/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. Pasirinkite "Tools" ir "listTools", turėtumėte pamatyti "Add", pasirinkite "Add" ir užpildykite parametro reikšmes.
 
   Turėtumėte matyti tokį atsakymą, t.y. rezultatą iš "add" įrankio:
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.lt.png)
+  ![Result of running add](../../../../translated_images/lt/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 Sveikiname, jums pavyko sukurti ir paleisti savo pirmąjį serverį!
 

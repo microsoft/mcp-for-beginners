@@ -60,7 +60,7 @@ Das **AI Toolkit für Visual Studio Code** ist Microsofts Flaggschiff-Erweiterun
 
 **Schritt 3: Installation und Aktivierung**
 
-![AI Toolkit Erweiterung](../../../../translated_images/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.de.png)
+![AI Toolkit Erweiterung](../../../../translated_images/de/aitkext.d28945a03eed003c.webp)
 
 ### ✅ Überprüfungsliste
 - [ ] AI Toolkit-Symbol erscheint in der VS Code-Seitenleiste
@@ -79,7 +79,7 @@ Der Model Catalog ist dein Zugang zur KI-Welt. Er bündelt Modelle verschiedener
 
 Klicke in der AI Toolkit-Seitenleiste auf **MODELS - Catalog**
 
-![Model Catalog](../../../../translated_images/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.de.png)
+![Model Catalog](../../../../translated_images/de/aimodel.263ed2be013d8fb0.webp)
 
 **💡 Profi-Tipp**: Achte auf Modelle mit spezifischen Fähigkeiten, die zu deinem Anwendungsfall passen (z. B. Codegenerierung, kreatives Schreiben, Analyse).
 
@@ -97,7 +97,7 @@ Klicke in der AI Toolkit-Seitenleiste auf **MODELS - Catalog**
 3. Wähle **Try in Playground**, um die Testumgebung zu starten
 4. Warte auf die Initialisierung des Modells (die Erstkonfiguration kann kurz dauern)
 
-![Playground Setup](../../../../translated_images/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.de.png)
+![Playground Setup](../../../../translated_images/de/playground.dd6f5141344878ca.webp)
 
 **⚙️ Modellparameter verstehen:**
 - **Temperature**: Steuert die Kreativität (0 = deterministisch, 1 = kreativ)
@@ -126,7 +126,7 @@ Der Playground ist dein Labor für KI-Experimente. So holst du das Beste heraus:
 "Analyze this sales data and provide insights: [paste your data]. Focus on trends, anomalies, and actionable recommendations."
 ```
 
-![Testergebnisse](../../../../translated_images/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.de.png)
+![Testergebnisse](../../../../translated_images/de/result.1dfcf211fb359cf6.webp)
 
 ### 🏆 Herausforderungsübung: Modellleistungsvergleich
 
@@ -136,12 +136,12 @@ Der Playground ist dein Labor für KI-Experimente. So holst du das Beste heraus:
 1. Füge **Phi-4-mini** zu deinem Workspace hinzu
 2. Verwende denselben Prompt für GPT-4.1 und Phi-4-mini
 
-![set](../../../../translated_images/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.de.png)
+![set](../../../../translated_images/de/set.88132df189ecde2c.webp)
 
 3. Vergleiche Antwortqualität, Geschwindigkeit und Genauigkeit
 4. Dokumentiere deine Ergebnisse im Ergebnisbereich
 
-![Modellvergleich](../../../../translated_images/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.de.png)
+![Modellvergleich](../../../../translated_images/de/compare.97746cd0f9074955.webp)
 
 **💡 Wichtige Erkenntnisse:**
 - Wann sollte man LLM vs. SLM verwenden
@@ -163,7 +163,7 @@ Der Agent Builder ist das Herzstück des AI Toolkits. Hier kannst du maßgeschne
 - **Tools Integration**: Anbindung an externe APIs und MCP-Dienste
 - **Memory**: Gesprächskontext und Sitzungs-Persistenz
 
-![Agent Builder Oberfläche](../../../../translated_images/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.de.png)
+![Agent Builder Oberfläche](../../../../translated_images/de/agentbuilder.25895b2d2f8c02e7.webp)
 
 ### ⚙️ Schritt 2: Agentenkonfiguration im Detail
 
@@ -237,7 +237,7 @@ You are a senior Python developer with 10+ years of experience. You excel at wri
    - Max Tokens: 2000 (ausführliche Erklärungen)
    - Top-p: 0,9 (ausgewogene Kreativität)
 
-![Python Agent Konfiguration](../../../../translated_images/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.de.png)
+![Python Agent Konfiguration](../../../../translated_images/de/pythonagent.5e51b406401c165f.webp)
 
 ### 🧪 Schritt 4: Deinen Python-Agent testen
 

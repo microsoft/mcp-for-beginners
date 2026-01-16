@@ -60,7 +60,7 @@ De **AI Toolkit voor Visual Studio Code** is Microsofts toonaangevende extensie 
 
 **Stap 3: Installeren en Activeren**
 
-![AI Toolkit Extension](../../../../translated_images/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.nl.png)
+![AI Toolkit Extension](../../../../translated_images/nl/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.png)
 
 ### ✅ Controlelijst ter Verificatie
 - [ ] AI Toolkit-icoon verschijnt in de VS Code zijbalk
@@ -79,7 +79,7 @@ De Model Catalogus is je toegangspoort tot het AI-ecosysteem. Het verzamelt mode
 
 Klik op **MODELS - Catalog** in de AI Toolkit zijbalk
 
-![Model Catalog](../../../../translated_images/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.nl.png)
+![Model Catalog](../../../../translated_images/nl/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.png)
 
 **💡 Pro Tip**: Zoek naar modellen met specifieke mogelijkheden die passen bij jouw gebruikssituatie (bijv. codegeneratie, creatief schrijven, analyse).
 
@@ -97,7 +97,7 @@ Klik op **MODELS - Catalog** in de AI Toolkit zijbalk
 3. Kies **Try in Playground** om de testomgeving te openen
 4. Wacht op initialisatie van het model (de eerste keer kan even duren)
 
-![Playground Setup](../../../../translated_images/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.nl.png)
+![Playground Setup](../../../../translated_images/nl/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.png)
 
 **⚙️ Begrijp de Modelparameters:**
 - **Temperature**: Bepaalt creativiteit (0 = deterministisch, 1 = creatief)
@@ -126,7 +126,7 @@ De Playground is je AI-experimentatielab. Zo haal je er het meeste uit:
 "Analyze this sales data and provide insights: [paste your data]. Focus on trends, anomalies, and actionable recommendations."
 ```
 
-![Testing Results](../../../../translated_images/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.nl.png)
+![Testing Results](../../../../translated_images/nl/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.png)
 
 ### 🏆 Uitdaging: Modelprestaties Vergelijken
 
@@ -136,12 +136,12 @@ De Playground is je AI-experimentatielab. Zo haal je er het meeste uit:
 1. Voeg **Phi-4-mini** toe aan je werkruimte
 2. Gebruik dezelfde prompt voor zowel GPT-4.1 als Phi-4-mini
 
-![set](../../../../translated_images/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.nl.png)
+![set](../../../../translated_images/nl/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.png)
 
 3. Vergelijk de kwaliteit, snelheid en nauwkeurigheid van de antwoorden
 4. Documenteer je bevindingen in het resultatenoverzicht
 
-![Model Comparison](../../../../translated_images/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.nl.png)
+![Model Comparison](../../../../translated_images/nl/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.png)
 
 **💡 Belangrijke inzichten om te ontdekken:**
 - Wanneer gebruik je LLM versus SLM
@@ -163,7 +163,7 @@ Agent Builder is waar AI Toolkit echt uitblinkt. Hiermee kun je doelgerichte AI-
 - **Tools Integratie**: Koppeling met externe API’s en MCP-diensten
 - **Geheugen**: Gesprekscontext en sessiebehoud
 
-![Agent Builder Interface](../../../../translated_images/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.nl.png)
+![Agent Builder Interface](../../../../translated_images/nl/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.png)
 
 ### ⚙️ Stap 2: Diepgaande Agentconfiguratie
 
@@ -237,7 +237,7 @@ You are a senior Python developer with 10+ years of experience. You excel at wri
    - Max Tokens: 2000 (gedetailleerde uitleg)
    - Top-p: 0.9 (gebalanceerde creativiteit)
 
-![Python Agent Configuration](../../../../translated_images/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.nl.png)
+![Python Agent Configuration](../../../../translated_images/nl/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.png)
 
 ### 🧪 Stap 4: Test je Python Agent
 

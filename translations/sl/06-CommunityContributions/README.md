@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Skupnost in prispevki
 
-[![Kako prispevati k MCP: orodja, dokumentacija, koda in več](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.sl.png)](https://youtu.be/v1pvCYAWpRE)
+[![Kako prispevati k MCP: orodja, dokumentacija, koda in več](../../../translated_images/sl/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.png)](https://youtu.be/v1pvCYAWpRE)
 
 _(Kliknite zgornjo sliko za ogled videa te lekcije)_
 

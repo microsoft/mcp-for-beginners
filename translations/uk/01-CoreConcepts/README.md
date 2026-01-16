@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Основні концепції MCP: Оволодіння протоколом контексту моделі для інтеграції ШІ
 
-[![Основні концепції MCP](../../../translated_images/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.uk.png)](https://youtu.be/earDzWGtE84)
+[![Основні концепції MCP](../../../translated_images/uk/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.png)](https://youtu.be/earDzWGtE84)
 
 _(Натисніть на зображення вище, щоб переглянути відео цього уроку)_
 

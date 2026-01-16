@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCPの実践：実際のケーススタディ
 
-[![MCPの実践：実際のケーススタディ](../../../translated_images/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.ja.png)](https://youtu.be/IxshWb2Az5w)
+[![MCPの実践：実際のケーススタディ](../../../translated_images/ja/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.png)](https://youtu.be/IxshWb2Az5w)
 
 _(上の画像をクリックして、このレッスンの動画をご覧ください)_
 

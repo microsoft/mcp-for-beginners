@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 ## Memulai  
 
-[![Bangun Server MCP Pertama Anda](../../../translated_images/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.id.png)](https://youtu.be/sNDZO9N4m9Y)
+[![Bangun Server MCP Pertama Anda](../../../translated_images/id/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.png)](https://youtu.be/sNDZO9N4m9Y)
 
 _(Klik gambar di atas untuk menonton video pelajaran ini)_
 

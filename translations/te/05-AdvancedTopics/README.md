@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP లో అధునాతన విషయాలు
 
-[![అధునాతన MCP: సురక్షిత, స్కేలబుల్, మరియు బహుముఖ AI ఏజెంట్లు](../../../translated_images/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.te.png)](https://youtu.be/4yjmGvJzYdY)
+[![అధునాతన MCP: సురక్షిత, స్కేలబుల్, మరియు బహుముఖ AI ఏజెంట్లు](../../../translated_images/te/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.png)](https://youtu.be/4yjmGvJzYdY)
 
 _(ఈ పాఠం వీడియోను చూడడానికి పై చిత్రాన్ని క్లిక్ చేయండి)_
 

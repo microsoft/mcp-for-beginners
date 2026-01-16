@@ -52,27 +52,27 @@ CO_OP_TRANSLATOR_METADATA:
    ```
    הגדרה זו מורה ל-VS Code כיצד להתחבר ל-[שרת Microsoft Learn Docs MCP](https://github.com/MicrosoftDocs/mcp).
    
-   ![שלב 1: הוסף mcp.json לתיקיית .vscode](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.he.png)
+   ![שלב 1: הוסף mcp.json לתיקיית .vscode](../../../../../../translated_images/he/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
     
 2. **פתח את לוח השיחות של GitHub Copilot:**
    אם עדיין לא התקנת את תוסף GitHub Copilot, עבור לתצוגת התוספים ב-VS Code והתקן אותו. ניתן להוריד אותו ישירות מ-[Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat). לאחר מכן, פתח את לוח השיחות של Copilot מהסרגל הצדדי.
 
-   ![שלב 2: פתח את לוח השיחות של Copilot](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.he.png)
+   ![שלב 2: פתח את לוח השיחות של Copilot](../../../../../../translated_images/he/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
 
 3. **הפעל את מצב הסוכן ואמת את הכלים:**
    בלוח השיחות של Copilot, הפעל את מצב הסוכן.
 
-   ![שלב 3: הפעל מצב סוכן ואמת כלים](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.he.png)
+   ![שלב 3: הפעל מצב סוכן ואמת כלים](../../../../../../translated_images/he/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
 
    לאחר הפעלת מצב הסוכן, ודא ששרת MCP מופיע כאחד הכלים הזמינים. זה מבטיח שסוכן Copilot יכול לגשת לשרת התיעוד כדי להביא מידע רלוונטי.
    
-   ![שלב 3: אמת את כלי שרת MCP](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.he.png)
+   ![שלב 3: אמת את כלי שרת MCP](../../../../../../translated_images/he/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
 4. **התחל שיחה חדשה והנחה את הסוכן:**
    פתח שיחה חדשה בלוח השיחות של Copilot. כעת תוכל להנחות את הסוכן עם שאלות התיעוד שלך. הסוכן ישתמש בשרת MCP כדי להביא ולהציג תיעוד רלוונטי מ-Microsoft Learn ישירות בעורך שלך.
 
    - *"אני מנסה לכתוב תוכנית לימודים לנושא X. אני מתכנן ללמוד אותו במשך 8 שבועות, עבור כל שבוע, הצע תוכן שעלי ללמוד."*
 
-   ![שלב 4: הנחה את הסוכן בשיחה](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.he.png)
+   ![שלב 4: הנחה את הסוכן בשיחה](../../../../../../translated_images/he/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 5. **שאילתא חיה:**
 
@@ -80,7 +80,7 @@ CO_OP_TRANSLATOR_METADATA:
    
    *"אני מחפש תשובות כיצד לפרוס פתרון רב-סוכנים עם סוכני AI שפותחו ב-Azure AI Foundry. אני רואה שאין שיטת פריסה ישירה, כמו בערוצי Copilot Studio. אז, מהם הדרכים השונות לבצע פריסה זו עבור משתמשי ארגון כדי שיוכלו לתקשר ולהשלים את העבודה? קיימים מאמרים ובלוגים רבים שאומרים שניתן להשתמש בשירות Azure Bot כדי לבצע את העבודה הזו, שיכול לשמש כגשר בין MS Teams לסוכני Azure AI Foundry. האם זה יעבוד אם אקים Azure bot שמתחבר ל-Orchestrator Agent ב-Azure AI Foundry דרך Azure function לביצוע האורקסטרציה, או שעלי ליצור Azure function עבור כל אחד מסוכני ה-AI כחלק מפתרון רב-סוכנים כדי לבצע את האורקסטרציה במסגרת Bot framework? כל הצעה נוספת תתקבל בברכה."*
 
-   ![שלב 5: שאילתות חיות](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.he.png)
+   ![שלב 5: שאילתות חיות](../../../../../../translated_images/he/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
 
    הסוכן יענה עם קישורים לתיעוד רלוונטי וסיכומים, אותם תוכל להכניס ישירות לקבצי markdown שלך או להשתמש בהם כהפניות בקוד.
 

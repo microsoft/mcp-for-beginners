@@ -202,7 +202,7 @@ graph TB
    - **Όνομα**: `BrowserAgent`  
    - **Μοντέλο**: Επιλέξτε GPT-4o  
 
-![BrowserAgent](../../../../translated_images/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.el.png)
+![BrowserAgent](../../../../translated_images/el/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.png)
 
 ### 🔧 Φάση 2: Ροή Ενσωμάτωσης MCP
 
@@ -211,7 +211,7 @@ graph TB
 2. **Κάντε κλικ στο "Add Tool"** για να ανοίξετε το μενού ενσωμάτωσης  
 3. **Επιλέξτε "MCP Server"** από τις διαθέσιμες επιλογές  
 
-![AddMCP](../../../../translated_images/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.el.png)
+![AddMCP](../../../../translated_images/el/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.png)
 
 **🔍 Κατανόηση Τύπων Εργαλείων:**  
 - **Built-in Tools**: Προδιαμορφωμένες λειτουργίες AI Toolkit  
@@ -221,10 +221,10 @@ graph TB
 
 #### Βήμα 4: Επιλογή MCP Server
 1. **Επιλέξτε την επιλογή "MCP Server"** για να προχωρήσετε  
-![AddMCPServer](../../../../translated_images/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.el.png)
+![AddMCPServer](../../../../translated_images/el/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.png)
 
 2. **Περιηγηθείτε στον Κατάλογο MCP** για να δείτε τις διαθέσιμες ενσωματώσεις  
-![MCPCatalog](../../../../translated_images/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.el.png)
+![MCPCatalog](../../../../translated_images/el/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.png)
 
 ### 🎮 Φάση 3: Ρύθμιση Playwright MCP
 
@@ -233,12 +233,12 @@ graph TB
 2. **Επιλέξτε "Playwright"** από τη λίστα  
 3. **Αποδεχτείτε το Προεπιλεγμένο MCP ID** ή προσαρμόστε το για το περιβάλλον σας  
 
-![MCPID](../../../../translated_images/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.el.png)
+![MCPID](../../../../translated_images/el/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.png)
 
 #### Βήμα 6: Ενεργοποίηση Δυνατοτήτων Playwright
 **🔑 Κρίσιμο Βήμα**: Επιλέξτε **ΟΛΕΣ** τις διαθέσιμες μεθόδους Playwright για μέγιστη λειτουργικότητα  
 
-![Tools](../../../../translated_images/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.el.png)
+![Tools](../../../../translated_images/el/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.png)
 
 **🛠️ Απαραίτητα Εργαλεία Playwright:**  
 - **Πλοήγηση**: `goto`, `goBack`, `goForward`, `reload`  
@@ -254,7 +254,7 @@ graph TB
 - Δεν υπάρχουν μηνύματα σφάλματος στο πάνελ ενσωμάτωσης  
 - Η κατάσταση του Playwright server δείχνει "Connected"  
 
-![AgentTools](../../../../translated_images/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.el.png)
+![AgentTools](../../../../translated_images/el/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.png)
 
 **🔧 Συνήθη Προβλήματα και Λύσεις:**  
 - **Αποτυχία Σύνδεσης**: Ελέγξτε τη σύνδεση στο διαδίκτυο και τις ρυθμίσεις firewall  
@@ -320,7 +320,7 @@ Navigate to github.com/kinfey and provide a comprehensive analysis including:
 Include screenshots at key steps and provide actionable insights.
 ```
 
-![Prompt](../../../../translated_images/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.el.png)
+![Prompt](../../../../translated_images/el/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.png)
 
 ### 🚀 Φάση 5: Εκτέλεση και Δοκιμές
 
@@ -332,12 +332,12 @@ Include screenshots at key steps and provide actionable insights.
    - Λαμβάνονται screenshots σε κάθε σημαντικό βήμα  
    - Τα αποτελέσματα της ανάλυσης εμφανίζονται σε πραγματικό χρόνο  
 
-![Browser](../../../../translated_images/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.el.png)
+![Browser](../../../../translated_images/el/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.png)
 
 #### Βήμα 11: Ανάλυση Αποτελεσμάτων και Ευρημάτων
 Εξετάστε την ολοκληρωμένη ανάλυση στο περιβάλλον του Agent Builder:
 
-![Result](../../../../translated_images/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.el.png)
+![Result](../../../../translated_images/el/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.png)
 
 ### 🌟 Φάση 6: Προχωρημένες Δυνατότητες και Ανάπτυξη
 

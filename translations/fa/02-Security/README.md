@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # امنیت MCP: حفاظت جامع برای سیستم‌های هوش مصنوعی
 
-[![بهترین شیوه‌های امنیتی MCP](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.fa.png)](https://youtu.be/88No8pw706o)
+[![بهترین شیوه‌های امنیتی MCP](../../../translated_images/fa/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(برای مشاهده ویدئوی این درس روی تصویر بالا کلیک کنید)_
 
@@ -133,7 +133,7 @@ _(برای مشاهده ویدئوی این درس روی تصویر بالا ک
 
 **تأثیر دنیای واقعی**: این حملات می‌توانند منجر به استخراج داده، نقض حریم خصوصی، تولید محتوای مضر و دستکاری تعاملات کاربر شوند. برای تحلیل دقیق‌تر، به [تزریق پرامپت در MCP (سایمون ویلیسون)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/) مراجعه کنید.
 
-![نمودار حمله تزریق پرامپت](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.fa.png)
+![نمودار حمله تزریق پرامپت](../../../translated_images/fa/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **حملات مسمومیت ابزار**
 
@@ -147,7 +147,7 @@ _(برای مشاهده ویدئوی این درس روی تصویر بالا ک
 
 **ریسک‌های سرور میزبانی‌شده**: سرورهای MCP از راه دور ریسک‌های بالاتری دارند زیرا تعاریف ابزار می‌توانند پس از تأیید اولیه کاربر به‌روزرسانی شوند و سناریوهایی ایجاد کنند که ابزارهای قبلاً ایمن به مخرب تبدیل شوند. برای تحلیل جامع، به [حملات مسمومیت ابزار (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks) مراجعه کنید.
 
-![نمودار حمله تزریق ابزار](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.fa.png)
+![نمودار حمله تزریق ابزار](../../../translated_images/fa/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **بردارهای حمله اضافی هوش مصنوعی**
 
@@ -200,7 +200,7 @@ _(برای مشاهده ویدئوی این درس روی تصویر بالا ک
 
 **منابع پیاده‌سازی**: [مستندات Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![حفاظت Microsoft Prompt Shields](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.fa.png)
+![حفاظت Microsoft Prompt Shields](../../../translated_images/fa/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## تهدیدات پیشرفته امنیتی MCP

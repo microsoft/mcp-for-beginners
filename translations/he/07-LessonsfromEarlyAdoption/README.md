@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # 🌟 שיעורים ממאמצים מוקדמים
 
-[![שיעורים ממאמצים מוקדמים של MCP](../../../translated_images/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.he.png)](https://youtu.be/jds7dSmNptE)
+[![שיעורים ממאמצים מוקדמים של MCP](../../../translated_images/he/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.png)](https://youtu.be/jds7dSmNptE)
 
 _(לחצו על התמונה למעלה לצפייה בסרטון של השיעור)_
 

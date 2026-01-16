@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP dalam Tindakan: Kajian Kes Dunia Sebenar
 
-[![MCP dalam Tindakan: Kajian Kes Dunia Sebenar](../../../translated_images/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.ms.png)](https://youtu.be/IxshWb2Az5w)
+[![MCP dalam Tindakan: Kajian Kes Dunia Sebenar](../../../translated_images/ms/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.png)](https://youtu.be/IxshWb2Az5w)
 
 _(Klik imej di atas untuk menonton video pelajaran ini)_
 

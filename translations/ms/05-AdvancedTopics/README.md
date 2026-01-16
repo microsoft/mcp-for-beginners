@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Topik Lanjutan dalam MCP
 
-[![MCP Lanjutan: Ejen AI yang Selamat, Skalabel, dan Multi-modal](../../../translated_images/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.ms.png)](https://youtu.be/4yjmGvJzYdY)
+[![MCP Lanjutan: Ejen AI yang Selamat, Skalabel, dan Multi-modal](../../../translated_images/ms/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.png)](https://youtu.be/4yjmGvJzYdY)
 
 _(Klik imej di atas untuk menonton video pelajaran ini)_
 

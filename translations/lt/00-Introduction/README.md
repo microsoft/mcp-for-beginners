@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Įvadas į Modelio Konteksto Protokolą (MCP): Kodėl jis svarbus mastelio AI programoms
 
-[![Įvadas į Modelio Konteksto Protokolą](../../../translated_images/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.lt.png)](https://youtu.be/agBbdiOPLQA)
+[![Įvadas į Modelio Konteksto Protokolą](../../../translated_images/lt/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.png)](https://youtu.be/agBbdiOPLQA)
 
 _(Spustelėkite paveikslėlį aukščiau, kad peržiūrėtumėte šios pamokos vaizdo įrašą)_
 

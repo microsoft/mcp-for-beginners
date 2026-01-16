@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP 高級主題
 
-[![高級 MCP：安全、可擴展、多模態 AI 代理](../../../translated_images/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.tw.png)](https://youtu.be/4yjmGvJzYdY)
+[![高級 MCP：安全、可擴展、多模態 AI 代理](../../../translated_images/tw/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.png)](https://youtu.be/4yjmGvJzYdY)
 
 _（點擊上方圖片觀看本課程影片）_
 

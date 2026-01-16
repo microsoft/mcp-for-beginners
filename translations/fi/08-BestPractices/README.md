@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP-kehityksen parhaat käytännöt
 
-[![MCP-kehityksen parhaat käytännöt](../../../translated_images/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.fi.png)](https://youtu.be/W56H9W7x-ao)
+[![MCP-kehityksen parhaat käytännöt](../../../translated_images/fi/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.png)](https://youtu.be/W56H9W7x-ao)
 
 _(Klikkaa yllä olevaa kuvaa nähdäksesi tämän oppitunnin videon)_
 

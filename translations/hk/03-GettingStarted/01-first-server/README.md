@@ -156,7 +156,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 以下是介面截圖示例：
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.hk.png)
+![MCP Inspector server connection](../../../../translated_images/hk/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## 常見設置問題與解決方案
 
@@ -1302,7 +1302,7 @@ npx @modelcontextprotocol/inspector
 2. 將 URL 設為：`http://localhost:8080/sse`
 3. 點擊「Connect」
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.hk.png)
+![Connect](../../../../translated_images/hk/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **你現在已連接到伺服器**
 **Java 伺服器測試部分已完成**
@@ -1311,18 +1311,18 @@ npx @modelcontextprotocol/inspector
 
 你應該會看到以下使用者介面：
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.hk.png)
+![Connect](../../../../translated_images/hk/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. 按下 Connect 按鈕連接到伺服器
   連接到伺服器後，你應該會看到以下畫面：
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.hk.png)
+  ![Connected](../../../../translated_images/hk/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. 選擇「Tools」和「listTools」，你應該會看到「Add」出現，選擇「Add」並填入參數值。
 
   你應該會看到以下回應，也就是「add」工具的結果：
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.hk.png)
+  ![Result of running add](../../../../translated_images/hk/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 恭喜，你已成功建立並執行你的第一個伺服器！
 

@@ -52,28 +52,28 @@ Pour commencer, suivez ces étapes. Pour chacune, vous pouvez ajouter une captur
    ```  
    Cette configuration indique à VS Code comment se connecter au [`Microsoft Learn Docs MCP server`](https://github.com/MicrosoftDocs/mcp).
    
-   ![Étape 1 : Ajoutez mcp.json dans le dossier .vscode](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.fr.png)
+   ![Étape 1 : Ajoutez mcp.json dans le dossier .vscode](../../../../../../translated_images/fr/step1-mcp-json.c06a007fccc3edfa.webp)
     
 2. **Ouvrez le panneau GitHub Copilot Chat :**  
    Si vous n’avez pas encore installé l’extension GitHub Copilot, rendez-vous dans la vue Extensions de VS Code et installez-la. Vous pouvez la télécharger directement depuis le [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat). Ensuite, ouvrez le panneau Copilot Chat depuis la barre latérale.
 
-   ![Étape 2 : Ouvrez le panneau Copilot Chat](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.fr.png)
+   ![Étape 2 : Ouvrez le panneau Copilot Chat](../../../../../../translated_images/fr/step2-copilot-panel.f1cc86e9b9b8cd1a.webp)
 
 3. **Activez le mode agent et vérifiez les outils :**  
    Dans le panneau Copilot Chat, activez le mode agent.
 
-   ![Étape 3 : Activez le mode agent et vérifiez les outils](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.fr.png)
+   ![Étape 3 : Activez le mode agent et vérifiez les outils](../../../../../../translated_images/fr/step3-agent-mode.cdc32520fd7dd1d1.webp)
 
    Après activation, vérifiez que le serveur MCP figure parmi les outils disponibles. Cela garantit que l’agent Copilot peut accéder au serveur de documentation pour récupérer les informations pertinentes.
    
-   ![Étape 3 : Vérifiez l’outil serveur MCP](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.fr.png)
+   ![Étape 3 : Vérifiez l’outil serveur MCP](../../../../../../translated_images/fr/step3-verify-mcp-tool.76096a6329cbfecd.webp)
 
 4. **Démarrez une nouvelle conversation et interrogez l’agent :**  
    Ouvrez une nouvelle discussion dans le panneau Copilot Chat. Vous pouvez maintenant poser vos questions de documentation à l’agent. Celui-ci utilisera le serveur MCP pour récupérer et afficher directement dans votre éditeur la documentation Microsoft Learn pertinente.
 
    - *« J’essaie de rédiger un plan d’étude pour le sujet X. Je vais l’étudier pendant 8 semaines, pour chaque semaine, suggère-moi le contenu à suivre. »*
 
-   ![Étape 4 : Interrogez l’agent dans le chat](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.fr.png)
+   ![Étape 4 : Interrogez l’agent dans le chat](../../../../../../translated_images/fr/step4-prompt-chat.12187bb001605efc.webp)
 
 5. **Requête en direct :**
 
@@ -82,7 +82,7 @@ Pour commencer, suivez ces étapes. Pour chacune, vous pouvez ajouter une captur
    *« Je cherche des réponses sur la manière de déployer une solution multi-agent avec des agents IA développés sur Azure AI Foundry. Je constate qu’il n’existe pas de méthode de déploiement directe, comme les canaux Copilot Studio. Quelles sont donc les différentes façons de réaliser ce déploiement pour que les utilisateurs en entreprise puissent interagir et accomplir leur tâche ?  
    Il y a de nombreux articles/blogs qui suggèrent d’utiliser Azure Bot Service comme pont entre MS Teams et les agents Azure AI Foundry. Est-ce que cela fonctionnerait si je configure un bot Azure qui se connecte à l’agent Orchestrator sur Azure AI Foundry via une fonction Azure pour gérer l’orchestration, ou dois-je créer une fonction Azure pour chaque agent IA de la solution multi-agent afin d’orchestrer via le Bot Framework ? Toute autre suggestion est la bienvenue. »*
 
-   ![Étape 5 : Requêtes en direct](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.fr.png)
+   ![Étape 5 : Requêtes en direct](../../../../../../translated_images/fr/step5-live-queries.49db3e4a50bea273.webp)
 
    L’agent répondra avec des liens et des résumés de documentation pertinents, que vous pourrez insérer directement dans vos fichiers markdown ou utiliser comme références dans votre code.
 

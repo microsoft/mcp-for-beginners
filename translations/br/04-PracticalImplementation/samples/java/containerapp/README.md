@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Este projeto demonstra uma aplicação web que utiliza verificação de segurança de conteúdo antes de enviar os prompts dos usuários para um serviço de calculadora via Model Context Protocol (MCP).
 
-![Diagrama da Arquitetura do Sistema](../../../../../../translated_images/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.br.png)
+![Diagrama da Arquitetura do Sistema](../../../../../../translated_images/br/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.png)
 
 ### Como Funciona
 

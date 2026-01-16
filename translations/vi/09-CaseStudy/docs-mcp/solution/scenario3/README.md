@@ -52,27 +52,27 @@ Những kỹ năng này sẽ giúp bạn duy trì sự tập trung, cải thiệ
    ```
    Cấu hình này cho VS Code biết cách kết nối với [`Microsoft Learn Docs MCP server`](https://github.com/MicrosoftDocs/mcp).
    
-   ![Bước 1: Thêm mcp.json vào thư mục .vscode](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.vi.png)
+   ![Bước 1: Thêm mcp.json vào thư mục .vscode](../../../../../../translated_images/vi/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
     
 2. **Mở bảng GitHub Copilot Chat:**
    Nếu bạn chưa cài đặt tiện ích mở rộng GitHub Copilot, hãy vào phần Extensions trong VS Code và cài đặt. Bạn có thể tải trực tiếp từ [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat). Sau đó, mở bảng Copilot Chat từ thanh bên.
 
-   ![Bước 2: Mở bảng Copilot Chat](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.vi.png)
+   ![Bước 2: Mở bảng Copilot Chat](../../../../../../translated_images/vi/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
 
 3. **Bật chế độ agent và kiểm tra công cụ:**
    Trong bảng Copilot Chat, bật chế độ agent.
 
-   ![Bước 3: Bật chế độ agent và kiểm tra công cụ](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.vi.png)
+   ![Bước 3: Bật chế độ agent và kiểm tra công cụ](../../../../../../translated_images/vi/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
 
    Sau khi bật chế độ agent, kiểm tra xem MCP server có được liệt kê trong các công cụ có sẵn không. Điều này đảm bảo agent Copilot có thể truy cập server tài liệu để lấy thông tin liên quan.
    
-   ![Bước 3: Kiểm tra công cụ MCP server](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.vi.png)
+   ![Bước 3: Kiểm tra công cụ MCP server](../../../../../../translated_images/vi/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
 4. **Bắt đầu cuộc trò chuyện mới và đặt câu hỏi cho agent:**
    Mở một cuộc trò chuyện mới trong bảng Copilot Chat. Bạn có thể đặt câu hỏi về tài liệu cho agent. Agent sẽ sử dụng MCP server để lấy và hiển thị tài liệu Microsoft Learn liên quan ngay trong trình soạn thảo.
 
    - *"Tôi đang cố gắng viết kế hoạch học tập cho chủ đề X. Tôi sẽ học trong 8 tuần, mỗi tuần hãy gợi ý nội dung tôi nên học."*
 
-   ![Bước 4: Đặt câu hỏi cho agent trong chat](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.vi.png)
+   ![Bước 4: Đặt câu hỏi cho agent trong chat](../../../../../../translated_images/vi/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 5. **Truy vấn trực tiếp:**
 
@@ -81,7 +81,7 @@ Những kỹ năng này sẽ giúp bạn duy trì sự tập trung, cải thiệ
    *"Tôi đang tìm câu trả lời về cách triển khai giải pháp đa agent với các agent AI phát triển trên Azure AI Foundry. Tôi thấy không có phương pháp triển khai trực tiếp, như các kênh Copilot Studio. Vậy có những cách nào khác để triển khai cho người dùng doanh nghiệp tương tác và hoàn thành công việc?
 Có nhiều bài viết/blog nói rằng chúng ta có thể dùng dịch vụ Azure Bot để làm cầu nối giữa MS Teams và các Azure AI Foundry Agents, vậy liệu có hoạt động nếu tôi thiết lập một Azure bot kết nối với Orchestrator Agent trên Azure AI Foundry qua Azure function để thực hiện điều phối, hay tôi cần tạo Azure function cho từng agent AI trong giải pháp đa agent để điều phối tại Bot framework? Mọi gợi ý khác đều rất được hoan nghênh."*
 
-   ![Bước 5: Truy vấn trực tiếp](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.vi.png)
+   ![Bước 5: Truy vấn trực tiếp](../../../../../../translated_images/vi/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
 
    Agent sẽ phản hồi với các liên kết tài liệu và tóm tắt liên quan, bạn có thể chèn trực tiếp vào file markdown hoặc dùng làm tham khảo trong mã của mình.
    

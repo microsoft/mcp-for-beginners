@@ -52,27 +52,27 @@ CO_OP_TRANSLATOR_METADATA:
    ```
    এই কনফিগারেশনটি VS Code-কে বলে কীভাবে [`Microsoft Learn Docs MCP server`](https://github.com/MicrosoftDocs/mcp)-এর সাথে সংযোগ স্থাপন করতে হবে।
    
-   ![Step 1: Add mcp.json to .vscode folder](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.bn.png)
+   ![Step 1: Add mcp.json to .vscode folder](../../../../../../translated_images/bn/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
     
 2. **GitHub Copilot Chat প্যানেল খুলুন:**
    যদি আপনার কাছে GitHub Copilot এক্সটেনশন না থাকে, তাহলে VS Code-এর Extensions ভিউ থেকে এটি ইনস্টল করুন। আপনি সরাসরি [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat) থেকে ডাউনলোড করতে পারেন। এরপর, সাইডবার থেকে Copilot Chat প্যানেল খুলুন।
 
-   ![Step 2: Open Copilot Chat panel](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.bn.png)
+   ![Step 2: Open Copilot Chat panel](../../../../../../translated_images/bn/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
 
 3. **এজেন্ট মোড চালু করুন এবং টুলস যাচাই করুন:**
    Copilot Chat প্যানেলে এজেন্ট মোড চালু করুন।
 
-   ![Step 3: Enable agent mode and verify tools](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.bn.png)
+   ![Step 3: Enable agent mode and verify tools](../../../../../../translated_images/bn/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
 
    এজেন্ট মোড চালু করার পর, নিশ্চিত করুন MCP সার্ভার উপলব্ধ টুলসের মধ্যে আছে। এটি নিশ্চিত করে যে Copilot এজেন্ট ডকুমেন্টেশন সার্ভার থেকে প্রাসঙ্গিক তথ্য আনতে পারবে।
    
-   ![Step 3: Verify MCP server tool](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.bn.png)
+   ![Step 3: Verify MCP server tool](../../../../../../translated_images/bn/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
 4. **নতুন চ্যাট শুরু করুন এবং এজেন্টকে প্রশ্ন করুন:**
    Copilot Chat প্যানেলে একটি নতুন চ্যাট খুলুন। এখন আপনি আপনার ডকুমেন্টেশন সংক্রান্ত প্রশ্ন এজেন্টকে করতে পারবেন। এজেন্ট MCP সার্ভার ব্যবহার করে Microsoft Learn-এর প্রাসঙ্গিক ডকুমেন্টেশন সরাসরি আপনার এডিটরে প্রদর্শন করবে।
 
    - *"আমি টপিক X-এর জন্য একটি স্টাডি প্ল্যান লিখতে চাই। আমি ৮ সপ্তাহ ধরে এটি অধ্যয়ন করব, প্রতিটি সপ্তাহের জন্য আমাকে কী কী বিষয় নিতে হবে তা সাজেস্ট করুন।"*
 
-   ![Step 4: Prompt the agent in chat](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.bn.png)
+   ![Step 4: Prompt the agent in chat](../../../../../../translated_images/bn/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 5. **লাইভ কুয়েরি:**
 
@@ -81,7 +81,7 @@ CO_OP_TRANSLATOR_METADATA:
    *"আমি জানতে চাই কিভাবে Azure AI Foundry-তে তৈরি AI এজেন্ট নিয়ে একটি মাল্টি-এজেন্ট সলিউশন ডিপ্লয় করতে হয়। আমি দেখেছি সরাসরি ডিপ্লয়মেন্টের কোনো পদ্ধতি নেই, যেমন Copilot Studio চ্যানেল। তাহলে এন্টারপ্রাইজ ব্যবহারকারীদের জন্য কাজটি সম্পন্ন করার জন্য ডিপ্লয়মেন্টের বিভিন্ন উপায় কী কী?
 অনেক আর্টিকেল/ব্লগ বলছে Azure Bot সার্ভিস ব্যবহার করা যেতে পারে, যা MS Teams এবং Azure AI Foundry Agents-এর মধ্যে একটি ব্রিজ হিসেবে কাজ করবে। তাহলে, আমি যদি Azure Bot সেটআপ করি যা Azure AI Foundry-এর Orchestrator Agent-এর সাথে Azure Function-এর মাধ্যমে সংযুক্ত থাকে, তাহলে কি এটি কাজ করবে? নাকি মাল্টি-এজেন্ট সলিউশনের প্রতিটি AI এজেন্টের জন্য আলাদা Azure Function তৈরি করতে হবে Bot Framework-এ অর্কেস্ট্রেশন করার জন্য? অন্য কোনো পরামর্শ থাকলে স্বাগত।"*
 
-   ![Step 5: Live queries](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.bn.png)
+   ![Step 5: Live queries](../../../../../../translated_images/bn/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
 
    এজেন্ট প্রাসঙ্গিক ডকুমেন্টেশন লিঙ্ক এবং সারাংশ দিয়ে উত্তর দেবে, যা আপনি সরাসরি আপনার মার্কডাউন ফাইলে ইনসার্ট করতে পারেন বা কোডে রেফারেন্স হিসেবে ব্যবহার করতে পারেন।
    

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Praktinis įgyvendinimas
 
-[![Kaip kurti, testuoti ir diegti MCP programas naudojant realius įrankius ir darbo eigas](../../../translated_images/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.lt.png)](https://youtu.be/vCN9-mKBDfQ)
+[![Kaip kurti, testuoti ir diegti MCP programas naudojant realius įrankius ir darbo eigas](../../../translated_images/lt/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.png)](https://youtu.be/vCN9-mKBDfQ)
 
 _(Spustelėkite aukščiau esančią nuotrauką, kad peržiūrėtumėte šios pamokos vaizdo įrašą)_
 

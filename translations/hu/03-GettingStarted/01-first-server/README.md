@@ -156,7 +156,7 @@ A fenti parancsok futtatásakor az MCP Inspector elindít egy helyi webes felül
 
 Íme egy képernyőkép arról, hogyan nézhet ki:
 
-![MCP Inspector szerverkapcsolat](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.hu.png)
+![MCP Inspector szerverkapcsolat](../../../../translated_images/hu/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## Gyakori beállítási problémák és megoldások
 
@@ -1273,7 +1273,7 @@ Az inspector webes felületén:
 2. Állítsd be az URL-t erre: `http://localhost:8080/sse`
 3. Kattints a "Connect" gombra
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.hu.png)
+![Connect](../../../../translated_images/hu/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **Most már csatlakozva vagy a szerverhez**
 **A Java szerver tesztelési szakasza most befejeződött**
@@ -1282,18 +1282,18 @@ A következő szakasz a szerverrel való interakcióról szól.
 
 A következő felhasználói felületet kell látnod:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.hu.png)
+![Connect](../../../../translated_images/hu/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. Csatlakozz a szerverhez a Connect gomb megnyomásával
   Miután csatlakoztál a szerverhez, a következőt kell látnod:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.hu.png)
+  ![Connected](../../../../translated_images/hu/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. Válaszd ki a "Tools" és a "listTools" opciót, meg kell jelennie az "Add" opciónak, válaszd ki az "Add"-ot és töltsd ki a paraméterértékeket.
 
   A következő választ kell látnod, azaz az "add" eszköz eredményét:
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.hu.png)
+  ![Result of running add](../../../../translated_images/hu/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 Gratulálunk, sikerült létrehoznod és futtatnod az első szerveredet!
 

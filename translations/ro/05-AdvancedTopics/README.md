@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Subiecte Avansate în MCP
 
-[![MCP Avansat: Agenți AI Securizați, Scalabili și Multi-modali](../../../translated_images/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.ro.png)](https://youtu.be/4yjmGvJzYdY)
+[![MCP Avansat: Agenți AI Securizați, Scalabili și Multi-modali](../../../translated_images/ro/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.png)](https://youtu.be/4yjmGvJzYdY)
 
 _(Faceți clic pe imaginea de mai sus pentru a viziona videoclipul acestei lecții)_
 

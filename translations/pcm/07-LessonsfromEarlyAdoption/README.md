@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # 🌟 Lessons wey Early Adopters don Learn
 
-[![Lessons wey MCP Early Adopters don Learn](../../../translated_images/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.pcm.png)](https://youtu.be/jds7dSmNptE)
+[![Lessons wey MCP Early Adopters don Learn](../../../translated_images/pcm/08.980bb2babbaadd8a.webp)](https://youtu.be/jds7dSmNptE)
 
 _(Click di image wey dey up to watch di video for dis lesson)_
 

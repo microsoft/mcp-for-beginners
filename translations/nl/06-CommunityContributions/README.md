@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Community en Bijdragen
 
-[![Hoe bij te dragen aan MCP: Tools, Documentatie, Code en Meer](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.nl.png)](https://youtu.be/v1pvCYAWpRE)
+[![Hoe bij te dragen aan MCP: Tools, Documentatie, Code en Meer](../../../translated_images/nl/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.png)](https://youtu.be/v1pvCYAWpRE)
 
 _(Klik op de afbeelding hierboven om de video van deze les te bekijken)_
 

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Komunitas dan Kontribusi
 
-[![Cara Berkontribusi pada MCP: Alat, Dokumentasi, Kode, dan Lainnya](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.id.png)](https://youtu.be/v1pvCYAWpRE)
+[![Cara Berkontribusi pada MCP: Alat, Dokumentasi, Kode, dan Lainnya](../../../translated_images/id/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.png)](https://youtu.be/v1pvCYAWpRE)
 
 _(Klik gambar di atas untuk menonton video pelajaran ini)_
 

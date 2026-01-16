@@ -202,7 +202,7 @@ Mbali na seva za Microsoft, mfumo wa MCP unajumuisha:
    - **Jina**: `BrowserAgent`
    - **Mfano**: Chagua GPT-4o 
 
-![BrowserAgent](../../../../translated_images/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.sw.png)
+![BrowserAgent](../../../../translated_images/sw/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.png)
 
 ### 🔧 Awamu ya 2: Mtiririko wa Uunganishaji wa MCP
 
@@ -211,7 +211,7 @@ Mbali na seva za Microsoft, mfumo wa MCP unajumuisha:
 2. **Bonyeza "Add Tool"** kufungua menyu ya uunganishaji
 3. **Chagua "MCP Server"** kutoka kwa chaguzi zilizopo
 
-![AddMCP](../../../../translated_images/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.sw.png)
+![AddMCP](../../../../translated_images/sw/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.png)
 
 **🔍 Kuelewa Aina za Zana:**
 - **Zana Zilizojumuishwa**: Kazi za AI Toolkit zilizowekwa awali
@@ -221,10 +221,10 @@ Mbali na seva za Microsoft, mfumo wa MCP unajumuisha:
 
 #### Hatua 4: Chagua Seva ya MCP
 1. **Chagua chaguo la "MCP Server"** kuendelea
-![AddMCPServer](../../../../translated_images/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.sw.png)
+![AddMCPServer](../../../../translated_images/sw/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.png)
 
 2. **Vinjeo Katalogi ya MCP** kuchunguza uunganishaji uliopo
-![MCPCatalog](../../../../translated_images/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.sw.png)
+![MCPCatalog](../../../../translated_images/sw/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.png)
 
 ### 🎮 Awamu ya 3: Usanidi wa Playwright MCP
 
@@ -233,12 +233,12 @@ Mbali na seva za Microsoft, mfumo wa MCP unajumuisha:
 2. **Chagua "Playwright"** kutoka kwenye orodha ya huduma
 3. **Kubali MCP ID ya chaguo-msingi** au badilisha kwa mazingira yako
 
-![MCPID](../../../../translated_images/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.sw.png)
+![MCPID](../../../../translated_images/sw/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.png)
 
 #### Hatua 6: Washa Uwezo wa Playwright
 **🔑 Hatua Muhimu**: Chagua **MBALI ZOTE** za Playwright kwa utendaji kamili
 
-![Tools](../../../../translated_images/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.sw.png)
+![Tools](../../../../translated_images/sw/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.png)
 
 **🛠️ Zana Muhimu za Playwright:**
 - **Uvinjari**: `goto`, `goBack`, `goForward`, `reload`
@@ -254,7 +254,7 @@ Mbali na seva za Microsoft, mfumo wa MCP unajumuisha:
 - Hakuna ujumbe wa makosa kwenye paneli ya uunganishaji
 - Hali ya seva ya Playwright inaonyesha "Connected"
 
-![AgentTools](../../../../translated_images/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.sw.png)
+![AgentTools](../../../../translated_images/sw/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.png)
 
 **🔧 Utatuzi wa Matatizo ya Kawaida:**
 - **Muunganisho Umeshindikana**: Hakikisha muunganisho wa intaneti na mipangilio ya firewall
@@ -320,7 +320,7 @@ Navigate to github.com/kinfey and provide a comprehensive analysis including:
 Include screenshots at key steps and provide actionable insights.
 ```
 
-![Prompt](../../../../translated_images/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.sw.png)
+![Prompt](../../../../translated_images/sw/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.png)
 
 ### 🚀 Awamu ya 5: Utekelezaji na Upimaji
 
@@ -332,19 +332,19 @@ Include screenshots at key steps and provide actionable insights.
    - Picha za skrini zinachukuliwa kwa kila hatua kuu
    - Matokeo ya uchambuzi yanatiririka kwa wakati halisi
 
-![Browser](../../../../translated_images/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.sw.png)
+![Browser](../../../../translated_images/sw/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.png)
 
 #### Hatua 11: Chambua Matokeo na Maarifa
 Pitia uchambuzi kamili kwenye kiolesura cha Agent Builder:
 
-![Result](../../../../translated_images/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.sw.png)
+![Result](../../../../translated_images/sw/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.png)
 
 ### 🌟 Awamu ya 6: Uwezo wa Juu na Utekelezaji
 
 #### Hatua 12: Safisha na Peleka kwa Uzalishaji
 Agent Builder inaunga mkono chaguzi mbalimbali za utekelezaji:
 
-![Code](../../../../translated_images/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.sw.png)
+![Code](../../../../translated_images/sw/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.png)
 
 ## 🎓 Muhtasari wa Moduli 2 & Hatua Zifuatazo
 

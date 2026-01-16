@@ -52,28 +52,28 @@ CO_OP_TRANSLATOR_METADATA:
    ```
    ही कॉन्फिगरेशन VS Code ला [`Microsoft Learn Docs MCP server`](https://github.com/MicrosoftDocs/mcp) शी कसे कनेक्ट करायचे ते सांगते.
    
-   ![Step 1: Add mcp.json to .vscode folder](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.mr.png)
+   ![Step 1: Add mcp.json to .vscode folder](../../../../../../translated_images/mr/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
     
 2. **GitHub Copilot Chat पॅनेल उघडा:**
    जर तुमच्याकडे GitHub Copilot एक्सटेंशन आधीपासून नसेल, तर VS Code मधील Extensions दृश्यात जाऊन ते इन्स्टॉल करा. तुम्ही ते थेट [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat) वरून डाउनलोड करू शकता. नंतर, साइडबारमधून Copilot Chat पॅनेल उघडा.
 
-   ![Step 2: Open Copilot Chat panel](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.mr.png)
+   ![Step 2: Open Copilot Chat panel](../../../../../../translated_images/mr/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
 
 3. **एजंट मोड सक्षम करा आणि साधने तपासा:**
    Copilot Chat पॅनेलमध्ये एजंट मोड सक्षम करा.
 
-   ![Step 3: Enable agent mode and verify tools](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.mr.png)
+   ![Step 3: Enable agent mode and verify tools](../../../../../../translated_images/mr/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
 
    एजंट मोड सक्षम केल्यानंतर, MCP server उपलब्ध साधनांमध्ये आहे का ते तपासा. यामुळे Copilot एजंटला संबंधित माहिती मिळवण्यासाठी डॉक्युमेंटेशन सर्व्हर वापरण्याची परवानगी मिळते.
    
-   ![Step 3: Verify MCP server tool](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.mr.png)
+   ![Step 3: Verify MCP server tool](../../../../../../translated_images/mr/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
 
 4. **नवीन चॅट सुरू करा आणि एजंटला प्रश्न विचारा:**
    Copilot Chat पॅनेलमध्ये नवीन चॅट उघडा. आता तुम्ही तुमचे डॉक्युमेंटेशन प्रश्न एजंटला विचारू शकता. एजंट MCP server वापरून संबंधित Microsoft Learn डॉक्युमेंटेशन थेट तुमच्या एडिटरमध्ये आणेल.
 
    - *"मी विषय X साठी अभ्यास योजना लिहित आहे. मी ८ आठवडे अभ्यास करणार आहे, प्रत्येक आठवड्यासाठी मला कोणता कंटेंट घ्यावा याचा सल्ला द्या."*
 
-   ![Step 4: Prompt the agent in chat](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.mr.png)
+   ![Step 4: Prompt the agent in chat](../../../../../../translated_images/mr/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 5. **लाइव्ह क्वेरी:**
 
@@ -82,7 +82,7 @@ CO_OP_TRANSLATOR_METADATA:
    *"मी Azure AI Foundry वर विकसित केलेल्या AI एजंट्ससह मल्टी-एजंट सोल्यूशन कसे डिप्लॉय करायचे याबाबत उत्तर शोधत आहे. Copilot Studio चॅनेल्ससारखा थेट डिप्लॉयमेंट मार्ग नाही. तर, एंटरप्राइझ वापरकर्त्यांसाठी वेगवेगळ्या मार्गांनी हे डिप्लॉयमेंट कसे करायचे जेणेकरून ते संवाद साधू शकतील आणि काम पूर्ण करू शकतील?
 अनेक लेख/ब्लॉग्समध्ये सांगितले आहे की Azure Bot सेवा वापरून हे काम करता येईल जी MS Teams आणि Azure AI Foundry एजंट्स यांच्यात ब्रिज म्हणून काम करेल, पण जर मी Azure bot सेटअप केला जो Azure AI Foundry वरील Orchestrator Agent शी Azure function द्वारे कनेक्ट होतो, तर हे काम होईल का? किंवा मल्टी एजंट सोल्यूशनमधील प्रत्येक AI एजंटसाठी वेगवेगळे Azure function तयार करावे लागतील का जे Bot framework मध्ये ऑर्केस्ट्रेशन करेल? इतर कोणतेही सुचवणूक स्वागतार्ह आहे."*
 
-   ![Step 5: Live queries](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.mr.png)
+   ![Step 5: Live queries](../../../../../../translated_images/mr/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
 
    एजंट संबंधित डॉक्युमेंटेशन लिंक आणि सारांशांसह प्रतिसाद देईल, जे तुम्ही थेट तुमच्या markdown फाइल्समध्ये समाविष्ट करू शकता किंवा कोडमध्ये संदर्भ म्हणून वापरू शकता.
 

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # 🌟 Oppitunteja varhaisilta käyttäjiltä
 
-[![Oppitunteja MCP:n varhaisilta käyttäjiltä](../../../translated_images/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.fi.png)](https://youtu.be/jds7dSmNptE)
+[![Oppitunteja MCP:n varhaisilta käyttäjiltä](../../../translated_images/fi/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.png)](https://youtu.be/jds7dSmNptE)
 
 _(Klikkaa yllä olevaa kuvaa katsoaksesi tämän oppitunnin video)_
 

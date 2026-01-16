@@ -156,7 +156,7 @@ Apabila anda menjalankan arahan di atas, MCP Inspector akan melancarkan antara m
 
 Berikut adalah tangkapan skrin bagaimana ia boleh kelihatan:
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.ms.png)
+![MCP Inspector server connection](../../../../translated_images/ms/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## Isu dan Penyelesaian Penyediaan Biasa
 
@@ -1302,7 +1302,7 @@ Dalam antara muka web pemeriksa:
 2. Tetapkan URL kepada: `http://localhost:8080/sse`
 3. Klik "Connect"
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.ms.png)
+![Connect](../../../../translated_images/ms/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **Anda kini disambungkan ke pelayan**
 **Bahagian ujian pelayan Java kini selesai**
@@ -1311,18 +1311,18 @@ Bahagian seterusnya adalah tentang berinteraksi dengan pelayan.
 
 Anda sepatutnya melihat antara muka pengguna berikut:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.ms.png)
+![Connect](../../../../translated_images/ms/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. Sambungkan ke pelayan dengan memilih butang Connect
   Setelah anda bersambung ke pelayan, anda sepatutnya melihat yang berikut:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.ms.png)
+  ![Connected](../../../../translated_images/ms/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. Pilih "Tools" dan "listTools", anda sepatutnya melihat "Add" muncul, pilih "Add" dan isi nilai parameter.
 
   Anda sepatutnya melihat respons berikut, iaitu hasil dari alat "add":
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.ms.png)
+  ![Result of running add](../../../../translated_images/ms/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 Tahniah, anda telah berjaya mencipta dan menjalankan pelayan pertama anda!
 

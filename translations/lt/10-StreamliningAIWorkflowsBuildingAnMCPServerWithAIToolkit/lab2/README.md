@@ -202,7 +202,7 @@ Be Microsoft serverių, MCP ekosistema apima:
    - **Pavadinimas**: `BrowserAgent`
    - **Modelis**: Pasirinkite GPT-4o 
 
-![BrowserAgent](../../../../translated_images/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.lt.png)
+![BrowserAgent](../../../../translated_images/lt/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.png)
 
 ### 🔧 2 etapas: MCP integracijos darbo eiga
 
@@ -211,7 +211,7 @@ Be Microsoft serverių, MCP ekosistema apima:
 2. **Spustelėkite „Add Tool“**, kad atidarytumėte integracijos meniu
 3. **Pasirinkite „MCP Server“** iš galimų parinkčių
 
-![AddMCP](../../../../translated_images/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.lt.png)
+![AddMCP](../../../../translated_images/lt/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.png)
 
 **🔍 Įrankių tipų supratimas:**
 - **Built-in Tools**: Iš anksto sukonfigūruotos AI Toolkit funkcijos
@@ -221,10 +221,10 @@ Be Microsoft serverių, MCP ekosistema apima:
 
 #### 4 žingsnis: MCP serverio pasirinkimas
 1. **Pasirinkite „MCP Server“**, kad tęstumėte
-![AddMCPServer](../../../../translated_images/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.lt.png)
+![AddMCPServer](../../../../translated_images/lt/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.png)
 
 2. **Naršykite MCP katalogą**, kad atrastumėte galimas integracijas
-![MCPCatalog](../../../../translated_images/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.lt.png)
+![MCPCatalog](../../../../translated_images/lt/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.png)
 
 ### 🎮 3 etapas: Playwright MCP konfigūracija
 
@@ -233,12 +233,12 @@ Be Microsoft serverių, MCP ekosistema apima:
 2. **Pasirinkite „Playwright“** iš rekomenduojamų sąrašo
 3. **Priimkite numatytą MCP ID** arba pritaikykite savo aplinkai
 
-![MCPID](../../../../translated_images/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.lt.png)
+![MCPID](../../../../translated_images/lt/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.png)
 
 #### 6 žingsnis: Įgalinkite Playwright galimybes
 **🔑 Kritinis žingsnis**: Pasirinkite **VISAS** galimas Playwright funkcijas, kad užtikrintumėte maksimalų funkcionalumą
 
-![Tools](../../../../translated_images/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.lt.png)
+![Tools](../../../../translated_images/lt/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.png)
 
 **🛠️ Esminiai Playwright įrankiai:**
 - **Navigacija**: `goto`, `goBack`, `goForward`, `reload`
@@ -254,7 +254,7 @@ Be Microsoft serverių, MCP ekosistema apima:
 - Nėra klaidų pranešimų integracijos skydelyje
 - Playwright serverio būsena rodo „Connected“
 
-![AgentTools](../../../../translated_images/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.lt.png)
+![AgentTools](../../../../translated_images/lt/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.png)
 
 **🔧 Dažniausių problemų sprendimas:**
 - **Nepavyko prisijungti**: Patikrinkite interneto ryšį ir ugniasienės nustatymus
@@ -320,7 +320,7 @@ Navigate to github.com/kinfey and provide a comprehensive analysis including:
 Include screenshots at key steps and provide actionable insights.
 ```
 
-![Prompt](../../../../translated_images/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.lt.png)
+![Prompt](../../../../translated_images/lt/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.png)
 
 ### 🚀 5 etapas: Vykdymas ir testavimas
 
@@ -332,19 +332,19 @@ Include screenshots at key steps and provide actionable insights.
    - Ekrano nuotraukos fiksuoja kiekvieną svarbų žingsnį
    - Analizės rezultatai transliuojami realiu laiku
 
-![Browser](../../../../translated_images/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.lt.png)
+![Browser](../../../../translated_images/lt/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.png)
 
 #### 11 žingsnis: Analizuokite rezultatus ir įžvalgas
 Peržiūrėkite išsamią analizę Agent Builder sąsajoje:
 
-![Result](../../../../translated_images/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.lt.png)
+![Result](../../../../translated_images/lt/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.png)
 
 ### 🌟 6 etapas: Pažangios galimybės ir diegimas
 
 #### 12 žingsnis: Eksportas ir diegimas gamybos aplinkoje
 Agent Builder palaiko kelias diegimo parinktis:
 
-![Code](../../../../translated_images/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.lt.png)
+![Code](../../../../translated_images/lt/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.png)
 
 ## 🎓 Modulio 2 santrauka ir tolesni žingsniai
 

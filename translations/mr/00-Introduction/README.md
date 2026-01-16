@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # मॉडेल कॉन्टेक्स्ट प्रोटोकॉल (MCP) ची ओळख: स्केलेबल AI अनुप्रयोगांसाठी याचे महत्त्व
 
-[![मॉडेल कॉन्टेक्स्ट प्रोटोकॉलची ओळख](../../../translated_images/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.mr.png)](https://youtu.be/agBbdiOPLQA)
+[![मॉडेल कॉन्टेक्स्ट प्रोटोकॉलची ओळख](../../../translated_images/mr/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.png)](https://youtu.be/agBbdiOPLQA)
 
 _(वरील प्रतिमेवर क्लिक करून या धड्याचा व्हिडिओ पहा)_
 

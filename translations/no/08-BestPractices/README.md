@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP Utviklings Beste Praksis
 
-[![MCP Utviklings Beste Praksis](../../../translated_images/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.no.png)](https://youtu.be/W56H9W7x-ao)
+[![MCP Utviklings Beste Praksis](../../../translated_images/no/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.png)](https://youtu.be/W56H9W7x-ao)
 
 _(Klikk på bildet over for å se videoen til denne leksjonen)_
 

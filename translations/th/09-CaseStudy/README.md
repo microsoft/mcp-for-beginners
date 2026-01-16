@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP ในการใช้งาน: กรณีศึกษาในโลกจริง
 
-[![MCP ในการใช้งาน: กรณีศึกษาในโลกจริง](../../../translated_images/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.th.png)](https://youtu.be/IxshWb2Az5w)
+[![MCP ในการใช้งาน: กรณีศึกษาในโลกจริง](../../../translated_images/th/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.png)](https://youtu.be/IxshWb2Az5w)
 
 _(คลิกที่ภาพด้านบนเพื่อดูวิดีโอของบทเรียนนี้)_
 

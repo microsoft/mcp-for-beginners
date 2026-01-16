@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Pratik Uygulama
 
-[![Gerçek Araçlar ve İş Akışlarıyla MCP Uygulamaları Nasıl Oluşturulur, Test Edilir ve Dağıtılır](../../../translated_images/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.tr.png)](https://youtu.be/vCN9-mKBDfQ)
+[![Gerçek Araçlar ve İş Akışlarıyla MCP Uygulamaları Nasıl Oluşturulur, Test Edilir ve Dağıtılır](../../../translated_images/tr/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.png)](https://youtu.be/vCN9-mKBDfQ)
 
 _(Bu dersin videosunu izlemek için yukarıdaki görsele tıklayın)_
 
@@ -215,7 +215,7 @@ Daha önce bahsettiğimiz örneği dağıtmayı deneyelim:
 
     Aşağıdakine benzer bir arayüz görmelisiniz:
 
-    ![Node Inspector'a Bağlan](../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.tr.png)
+    ![Node Inspector'a Bağlan](../../../translated_images/tr/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. Uygulama tarafından görüntülenen URL'den MCP Inspector web uygulamasını yüklemek için CTRL tıklayın (ör. [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources))
 1. Taşıma türünü `SSE` olarak ayarlayın

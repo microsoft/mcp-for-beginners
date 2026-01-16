@@ -72,7 +72,7 @@ MCP Inspector yra naudingas įrankis, skirtas sąveikai su MCP paslaugomis. Nor�
    - Paspauskite "List Tools", kad pamatytumėte galimas skaičiuoklės operacijas
    - Pasirinkite įrankį ir paspauskite "Run Tool", kad įvykdytumėte operaciją
 
-![MCP Inspector ekrano nuotrauka](../../../../../../translated_images/tool.40e180a7b0d0fe2067cf96435532b01f63f7f8619d6b0132355a04b426b669ac.lt.png)
+![MCP Inspector ekrano nuotrauka](../../../../../../translated_images/lt/tool.40e180a7b0d0fe2067cf96435532b01f63f7f8619d6b0132355a04b426b669ac.png)
 
 ---
 

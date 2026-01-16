@@ -156,7 +156,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 यहाँ यसको स्क्रिनशट छ:
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.ne.png)
+![MCP Inspector server connection](../../../../translated_images/ne/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## सामान्य सेटअप समस्याहरू र समाधानहरू
 
@@ -1302,7 +1302,7 @@ npx @modelcontextprotocol/inspector
 2. URL सेट गर्नुहोस्: `http://localhost:8080/sse`
 3. "Connect" मा क्लिक गर्नुहोस्
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.ne.png)
+![Connect](../../../../translated_images/ne/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **तपाईं अब सर्भरसँग जडान हुनुहुन्छ**
 **Java सर्भर परीक्षण खण्ड अब पूरा भयो**
@@ -1311,18 +1311,18 @@ npx @modelcontextprotocol/inspector
 
 तपाईंले निम्न प्रयोगकर्ता इन्टरफेस देख्नु पर्नेछ:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.ne.png)
+![Connect](../../../../translated_images/ne/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. Connect बटन चयन गरेर सर्भरसँग जडान गर्नुहोस्
   एक पटक तपाईं सर्भरसँग जडान भएपछि, तपाईंले अब निम्न देख्नु पर्नेछ:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.ne.png)
+  ![Connected](../../../../translated_images/ne/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. "Tools" र "listTools" चयन गर्नुहोस्, तपाईंले "Add" देख्नु पर्नेछ, "Add" चयन गर्नुहोस् र प्यारामिटर मानहरू भर्नुहोस्।
 
   तपाईंले निम्न प्रतिक्रिया देख्नु पर्नेछ, अर्थात् "add" उपकरणबाट परिणाम:
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.ne.png)
+  ![Result of running add](../../../../translated_images/ne/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 बधाई छ, तपाईंले आफ्नो पहिलो सर्भर सिर्जना र चलाउन सफल हुनुभयो!
 

@@ -64,7 +64,7 @@ Model Context Protocol Python SDK เป็นพื้นฐานสำหร�
 2. **สร้างเอเจนต์ใหม่** โดยตั้งค่าดังนี้:
    - ชื่อเอเจนต์: `WeatherAgent`
 
-![Agent Creation](../../../../translated_images/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.th.png)
+![Agent Creation](../../../../translated_images/th/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.png)
 
 ### ขั้นตอนที่ 2: เริ่มต้นโปรเจกต์ MCP Server
 
@@ -74,7 +74,7 @@ Model Context Protocol Python SDK เป็นพื้นฐานสำหร�
 4. **เลือกเทมเพลต `python-weather`**
 5. **ตั้งชื่อเซิร์ฟเวอร์:** `weather_mcp`
 
-![Python Template Selection](../../../../translated_images/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.th.png)
+![Python Template Selection](../../../../translated_images/th/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.png)
 
 ### ขั้นตอนที่ 3: เปิดและตรวจสอบโปรเจกต์
 
@@ -340,7 +340,7 @@ USER_PROMPT
 How's the weather like in Seattle
 ```
 
-![Agent Builder Debug Result](../../../../translated_images/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.th.png)
+![Agent Builder Debug Result](../../../../translated_images/th/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.png)
 
 ### ขั้นตอนที่ 8: ดีบักด้วย MCP Inspector
 
@@ -352,7 +352,7 @@ How's the weather like in Seattle
    - ตรวจสอบคำขอเครือข่าย
    - ดีบักการตอบกลับของเซิร์ฟเวอร์
 
-![MCP Inspector Interface](../../../../translated_images/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.th.png)
+![MCP Inspector Interface](../../../../translated_images/th/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.png)
 
 ---
 

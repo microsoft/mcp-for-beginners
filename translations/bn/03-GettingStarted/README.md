@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 ## শুরু করা  
 
-[![আপনার প্রথম MCP সার্ভার তৈরি করুন](../../../translated_images/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.bn.png)](https://youtu.be/sNDZO9N4m9Y)
+[![আপনার প্রথম MCP সার্ভার তৈরি করুন](../../../translated_images/bn/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.png)](https://youtu.be/sNDZO9N4m9Y)
 
 _(উপরের ছবিতে ক্লিক করে এই পাঠের ভিডিও দেখুন)_
 

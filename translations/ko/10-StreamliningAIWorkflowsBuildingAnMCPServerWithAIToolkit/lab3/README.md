@@ -64,7 +64,7 @@ Model Context Protocol Python SDK는 맞춤형 MCP 서버 구축의 기반입니
 2. 다음 설정으로 **새 에이전트 생성**:
    - 에이전트 이름: `WeatherAgent`
 
-![Agent Creation](../../../../translated_images/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.ko.png)
+![Agent Creation](../../../../translated_images/ko/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.png)
 
 ### 2단계: MCP 서버 프로젝트 초기화
 
@@ -74,7 +74,7 @@ Model Context Protocol Python SDK는 맞춤형 MCP 서버 구축의 기반입니
 4. **`python-weather` 템플릿 선택**
 5. 서버 이름 지정: `weather_mcp`
 
-![Python Template Selection](../../../../translated_images/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.ko.png)
+![Python Template Selection](../../../../translated_images/ko/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.png)
 
 ### 3단계: 프로젝트 열고 구조 확인
 
@@ -340,7 +340,7 @@ USER_PROMPT
 How's the weather like in Seattle
 ```
 
-![Agent Builder Debug Result](../../../../translated_images/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.ko.png)
+![Agent Builder Debug Result](../../../../translated_images/ko/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.png)
 
 ### 8단계: MCP Inspector에서 디버깅
 
@@ -352,7 +352,7 @@ How's the weather like in Seattle
    - 네트워크 요청 모니터링
    - 서버 응답 디버깅
 
-![MCP Inspector Interface](../../../../translated_images/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.ko.png)
+![MCP Inspector Interface](../../../../translated_images/ko/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.png)
 
 ---
 

@@ -1,13 +1,13 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "dcddd875433f8f6ea4d2603f17b9746e",
-  "translation_date": "2025-12-18T19:25:18+00:00",
+  "original_hash": "35240f904db8c08d6198f6f15767d218",
+  "translation_date": "2026-01-15T03:42:14+00:00",
   "source_file": "README.md",
   "language_code": "ja"
 }
 -->
-![MCP-for-beginners](../../translated_images/mcp-beginners.2ce2b317996369ff66c5b72e25eff9d4288ab2741fc70c0b4e523d1ae1e249fd.ja.png) 
+![MCP-for-beginners](../../translated_images/ja/mcp-beginners.2ce2b317996369ff.webp) 
 
 [![GitHub contributors](https://img.shields.io/github/contributors/microsoft/mcp-for-beginners.svg)](https://GitHub.com/microsoft/mcp-for-beginners/graphs/contributors)
 [![GitHub issues](https://img.shields.io/github/issues/microsoft/mcp-for-beginners.svg)](https://GitHub.com/microsoft/mcp-for-beginners/issues)
@@ -21,177 +21,187 @@ CO_OP_TRANSLATOR_METADATA:
 
 [![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
 
-これらのリソースを使い始めるには、以下の手順に従ってください：
-1. **リポジトリをフォークする**: クリック [![GitHub forks](https://img.shields.io/github/forks/microsoft/mcp-for-beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/mcp-for-beginners/fork)
-2. **リポジトリをクローンする**:   `git clone https://github.com/microsoft/mcp-for-beginners.git`
+これらのリソースを使い始めるには、以下の手順を実行してください：
+1. **リポジトリをフォークする**：クリック [![GitHub forks](https://img.shields.io/github/forks/microsoft/mcp-for-beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/mcp-for-beginners/fork)
+2. **リポジトリをクローンする**： `git clone https://github.com/microsoft/mcp-for-beginners.git`
 3. **参加する** [![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
 
 
 ### 🌐 多言語サポート
 
-#### GitHub Actionsによるサポート（自動化＆常に最新）
+#### GitHub Actionによるサポート（自動・常に最新）
 
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE START -->
 [Arabic](../ar/README.md) | [Bengali](../bn/README.md) | [Bulgarian](../bg/README.md) | [Burmese (Myanmar)](../my/README.md) | [Chinese (Simplified)](../zh/README.md) | [Chinese (Traditional, Hong Kong)](../hk/README.md) | [Chinese (Traditional, Macau)](../mo/README.md) | [Chinese (Traditional, Taiwan)](../tw/README.md) | [Croatian](../hr/README.md) | [Czech](../cs/README.md) | [Danish](../da/README.md) | [Dutch](../nl/README.md) | [Estonian](../et/README.md) | [Finnish](../fi/README.md) | [French](../fr/README.md) | [German](../de/README.md) | [Greek](../el/README.md) | [Hebrew](../he/README.md) | [Hindi](../hi/README.md) | [Hungarian](../hu/README.md) | [Indonesian](../id/README.md) | [Italian](../it/README.md) | [Japanese](./README.md) | [Kannada](../kn/README.md) | [Korean](../ko/README.md) | [Lithuanian](../lt/README.md) | [Malay](../ms/README.md) | [Malayalam](../ml/README.md) | [Marathi](../mr/README.md) | [Nepali](../ne/README.md) | [Nigerian Pidgin](../pcm/README.md) | [Norwegian](../no/README.md) | [Persian (Farsi)](../fa/README.md) | [Polish](../pl/README.md) | [Portuguese (Brazil)](../br/README.md) | [Portuguese (Portugal)](../pt/README.md) | [Punjabi (Gurmukhi)](../pa/README.md) | [Romanian](../ro/README.md) | [Russian](../ru/README.md) | [Serbian (Cyrillic)](../sr/README.md) | [Slovak](../sk/README.md) | [Slovenian](../sl/README.md) | [Spanish](../es/README.md) | [Swahili](../sw/README.md) | [Swedish](../sv/README.md) | [Tagalog (Filipino)](../tl/README.md) | [Tamil](../ta/README.md) | [Telugu](../te/README.md) | [Thai](../th/README.md) | [Turkish](../tr/README.md) | [Ukrainian](../uk/README.md) | [Urdu](../ur/README.md) | [Vietnamese](../vi/README.md)
+
+> **ローカルにクローンしたい場合は？**
+
+> このリポジトリには50以上の言語翻訳が含まれているため、ダウンロードサイズが大幅に増加します。翻訳なしでクローンするには、スパースチェックアウトを使用してください：
+> ```bash
+> git clone --filter=blob:none --sparse https://github.com/microsoft/mcp-for-beginners.git
+> cd mcp-for-beginners
+> git sparse-checkout set --no-cone '/*' '!translations' '!translated_images'
+> ```
+> これにより、コースを完了するために必要なすべてが、はるかに高速にダウンロードできます。
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE END -->
 
-# 🚀 初心者向けモデルコンテキストプロトコル（MCP）カリキュラム
+# 🚀 Model Context Protocol (MCP) 初心者向けカリキュラム
 
-## **C#, Java, JavaScript, Rust, Python, TypeScriptでの実践的なコード例でMCPを学ぶ**
+## **C#、Java、JavaScript、Rust、Python、および TypeScriptで学ぶMCPの実践的コード例**
 
-## 🧠 モデルコンテキストプロトコルカリキュラムの概要
-モデルコンテキストプロトコルの旅へようこそ！AIアプリケーションがどのようにさまざまなツールやサービスと通信しているのか疑問に思ったことがあるなら、開発者がインテリジェントなシステムを構築する方法を変革している優雅な解決策をこれから発見することになります。
+## 🧠 Model Context Protocolカリキュラムの概要
+Model Context Protocolへの旅へようこそ！AIアプリケーションがどのように異なるツールやサービスと通信するのか疑問に思ったことがあるならば、開発者がインテリジェントシステムを構築する方法を変革している優れた解決策をこれから発見することになります。
 
-MCPはAIアプリケーションのためのユニバーサルトランスレーターのようなものです。USBポートがどんなデバイスでもコンピューターに接続できるように、MCPはAIモデルがどんなツールやサービスにも標準化された方法で接続できるようにします。初めてのチャットボットを作る場合でも、複雑なAIワークフローに取り組む場合でも、MCPを理解することでより強力で柔軟なアプリケーションを作成する力が得られます。
+MCPはAIアプリケーションのためのユニバーサル翻訳者のようなものです。USBポートがどんなデバイスでもコンピューターに接続できるようにするように、MCPはAIモデルがどんなツールやサービスにも標準化された方法で接続できるようにします。初めてのチャットボットを作る場合でも、複雑なAIワークフローに取り組む場合でも、MCPを理解することで、より強力で柔軟なアプリケーションを作る力が得られます。
 
-このカリキュラムは、あなたの学習の旅を丁寧にサポートするよう設計されています。すでに理解しているシンプルな概念から始めて、好きなプログラミング言語での実践を通じて徐々に専門知識を深めていきます。各ステップには明確な説明、実用的な例、そしてたくさんの励ましが含まれています。
+このカリキュラムはあなたの学習の旅を丁寧に考慮して設計されています。すでに理解しているシンプルな概念から始めて、好みのプログラミング言語での実践を通じて段階的に専門知識を積み上げます。各ステップでは明確な説明、実用的な例、そして励ましを十分に提供します。
 
-この旅を終える頃には、自分でMCPサーバーを構築し、人気のAIプラットフォームと統合し、この技術がAI開発の未来をどのように変えているかを理解する自信がついているでしょう。さあ、このエキサイティングな冒険を一緒に始めましょう！
+この旅を終えるころには、自分自身でMCPサーバーを構築し、人気のAIプラットフォームと統合し、この技術がAI開発の未来をどのように変えているかを理解できる自信がついているでしょう。一緒にこのエキサイティングな冒険を始めましょう！
 
 ### 公式ドキュメントと仕様
 
-これらのリソースは理解が深まるにつれてより価値が増しますが、すぐにすべてを読む必要はありません。興味のある分野から始めてください！
-- 📘 [MCPドキュメント](https://modelcontextprotocol.io/) – ステップバイステップのチュートリアルやユーザーガイドが揃った頼りになるリソースです。初心者向けに書かれており、自分のペースで進められる明確な例が含まれています。
-- 📜 [MCP仕様書](https://modelcontextprotocol.io/docs/) – 包括的なリファレンスマニュアルのようなものです。カリキュラムを進める中で、特定の詳細を調べたり高度な機能を探求したりするために何度も参照することになるでしょう。
-- 📜 [オリジナルMCP仕様書](https://modelcontextprotocol.io/specification/versioning) – 高度な実装に役立つ追加の技術的詳細が含まれています。必要なときに参照すればよく、最初は気にしなくて大丈夫です。
-- 🧑‍💻 [MCP GitHubリポジトリ](https://github.com/modelcontextprotocol) – SDK、ツール、複数のプログラミング言語でのコードサンプルが見つかります。実用的な例やすぐに使えるコンポーネントの宝庫のような場所です。
-- 🌐 [MCPコミュニティ](https://github.com/orgs/modelcontextprotocol/discussions) – MCPについて学ぶ仲間や経験豊富な開発者と議論に参加しましょう。質問が歓迎され、知識が自由に共有されるサポートコミュニティです。
+これらのリソースは理解が深まるほど価値が高まりますが、すぐにすべてを読む必要はありません。興味のある部分から始めてください！
+- 📘 [MCP ドキュメント](https://modelcontextprotocol.io/) – ステップバイステップのチュートリアルやユーザーガイドが揃っています。初心者向けに書かれており、あなたのペースで進められる明確な例が含まれています。
+- 📜 [MCP 仕様](https://modelcontextprotocol.io/docs/) – 包括的なリファレンスマニュアルのようなものです。カリキュラムを進める中で特定の詳細を調べたり、高度な機能を探求したりするためにここに戻ってくることになるでしょう。
+- 📜 [オリジナルMCP仕様](https://modelcontextprotocol.io/specification/versioning) – 高度な実装に役立つ追加の技術的詳細が含まれています。必要なときに利用し、最初は気にせずに構いません。
+- 🧑‍💻 [MCP GitHubリポジトリ](https://github.com/modelcontextprotocol) – SDK、ツール、複数のプログラミング言語でのコードサンプルが見つかります。実践的な例やすぐ使えるコンポーネントの宝庫です。
+- 🌐 [MCP コミュニティ](https://github.com/orgs/modelcontextprotocol/discussions) – 他の学習者や経験豊富な開発者とMCPについて議論できます。質問が歓迎され、知識が自由に共有されるサポート充実のコミュニティです。
   
 ## 学習目標
 
-このカリキュラムを終える頃には、新しい能力に自信とワクワクを感じているでしょう。達成できることは以下の通りです：
+このカリキュラムの終わりには、新しいスキルに自信と興奮を感じていることでしょう。達成できることは以下の通りです：
 
-• **MCPの基本を理解する**：モデルコンテキストプロトコルとは何か、なぜAIアプリケーションの連携を変革しているのかを、わかりやすい例えや実例を使って理解します。
+• **MCPの基本を理解する**：Model Context Protocolとは何か、なぜAIアプリケーションの連携を変革しているのかを、わかりやすい例えと事例で理解します。
 
-• **最初のMCPサーバーを構築する**：好きなプログラミング言語で動作するMCPサーバーを作成し、シンプルな例から始めて段階的にスキルを伸ばします。
+• **最初のMCPサーバーを構築する**：好みのプログラミング言語で動作するMCPサーバーを作成し、簡単な例から段階的にスキルを磨きます。
 
-• **AIモデルを実際のツールに接続する**：AIモデルと実際のサービスの橋渡しを学び、アプリケーションに強力な新機能をもたらします。
+• **AIモデルを実際のツールに接続する**：AIモデルと現実のサービスとの橋渡しを学び、アプリケーションに強力な新機能を加えます。
 
-• **セキュリティのベストプラクティスを実装する**：MCPの安全な実装方法を理解し、アプリケーションとユーザーの両方を守る方法を学びます。
+• **セキュリティのベストプラクティスを実装する**：MCP実装を安全に保ち、アプリケーションとユーザーの両方を守る方法を理解します。
 
-• **自信を持ってデプロイする**：開発から本番環境への移行方法を知り、実際に役立つデプロイ戦略を身につけます。
+• **自信を持ってデプロイする**：開発から本番環境への展開方法を知り、実世界で通用する実用的な展開戦略を身につけます。
 
-• **MCPコミュニティに参加する**：AIアプリケーション開発の未来を形作る成長中の開発者コミュニティの一員になります。
+• **MCPコミュニティに参加する**：AIアプリケーション開発の未来を形作る、増え続ける開発者コミュニティの一員になります。
 
-## 必要な基礎知識
+## 基本的な前提知識
 
-MCPの詳細に入る前に、いくつかの基礎的な概念に慣れておきましょう。これらの分野に詳しくなくても心配いりません。必要なことはすべて説明します！
+MCPの詳細に入る前に、いくつかの基本的な概念に慣れておきましょう。専門家でなくても心配いりません。必要なことはすべて進みながら説明します！
 
 ### プロトコルの理解（基礎）
 
-プロトコルは会話のルールのようなものです。友達に電話するとき、応答時に「こんにちは」と言い、話す順番を守り、終わるときに「さようなら」と言います。コンピュータプログラムも効果的に通信するために同様のルールが必要です。
+プロトコルは会話のルールのようなものです。友達に電話するとき、返事に「こんにちは」と言い、順番に話し、終わるときに「さようなら」を言うことをお互い知っています。コンピュータープログラムも効果的に通信するには同様のルールが必要です。
 
-MCPはプロトコルです。AIモデルとアプリケーションがツールやサービスと生産的な「会話」をするための合意されたルールのセットです。人間の会話ルールがコミュニケーションをスムーズにするのと同じように、MCPがあることでAIアプリケーションの通信はより信頼性が高く強力になります。
+MCPはプロトコル、すなわちAIモデルとアプリケーションがツールやサービスと生産的に「会話」するための合意されたルールのセットです。人間の会話がスムーズになるように会話のルールがあるのと同じように、MCPがあることでAIアプリケーション間の通信はより信頼性が高く、強力になります。
 
-### クライアント-サーバー関係（プログラムの連携）
+### クライアント・サーバー関係（プログラムの協力）
 
-あなたは毎日クライアント-サーバー関係を使っています！ウェブブラウザ（クライアント）でウェブサイトにアクセスすると、ウェブサーバーがページの内容を送ってくれます。ブラウザは情報の要求方法を知り、サーバーは応答方法を知っています。
+クライアント・サーバーの関係はあなたも日常的に使っています！ウェブブラウザ（クライアント）でサイトにアクセスする時、情報を送るウェブサーバーに接続しています。ブラウザは情報を求める方法を知り、サーバーは応答する方法を知っています。
 
-MCPでも同様の関係があります。AIモデルは情報やアクションを要求するクライアントとして機能し、MCPサーバーはそれらの機能を提供します。AIが特定のタスクを実行するように頼める便利なアシスタント（サーバー）がいるようなものです。
+MCPでも類似の関係があります。AIモデルは情報や処理をリクエストするクライアントとして働き、MCPサーバーがその能力を提供します。それはまるで助けになるアシスタント（サーバー）がAIからの特定の作業依頼を受けるようなものです。
 
-### 標準化の重要性（連携を可能にする）
+### 標準化が重要な理由（連携を実現するため）
 
-もしすべての自動車メーカーが異なる形のガスポンプを使っていたら、車ごとに異なるアダプターが必要になりますよね！標準化とは、共通の方法に合意して物事がスムーズに連携できるようにすることです。
+もしすべての車メーカーが異なる形状の給油口を使っていたらどうでしょう？それぞれの車に異なるアダプターが必要になりますよね！標準化とは共通の方法に合意して、何事もスムーズに連携できるようにすることです。
 
-MCPはAIアプリケーションのためのこの標準化を提供します。すべてのAIモデルが各ツール用にカスタムコードを書く代わりに、MCPは共通の通信方法を作ります。これにより、開発者は一度ツールを作れば多くの異なるAIシステムで使えるようになります。
+MCPはAIアプリケーションのためのこの標準化を提供します。AIモデルが各ツール専用のコードを必要とする代わりに、MCPは彼らが通信するための普遍的な方法を作り出します。これにより、開発者は一度ツールを作れば多様なAIシステムで使えるようになります。
 
-## 🧭 あなたの学習パス概要
+## 🧭 あなたの学習ロードマップ概要
 
-あなたのMCPの旅は、自信とスキルを段階的に築くように慎重に構成されています。各フェーズで新しい概念を紹介しつつ、すでに学んだことを強化します。
+あなたのMCPの旅は、段階的に自信とスキルを育てるように慎重に構成されています。各フェーズで新しい概念を紹介しながら、これまで学んだことを強化します。
 
 ### 🌱 基礎フェーズ：基本の理解（モジュール0-2）
 
-ここから冒険が始まります！身近な例えやシンプルな例を使ってMCPの概念を紹介します。MCPとは何か、なぜ存在するのか、AI開発の大きな世界の中でどのように位置づけられるのかを理解します。
+ここから冒険は始まります！馴染みのある例えやシンプルな例を用いてMCPの概念を紹介します。MCPは何か、なぜ存在するのか、AI開発の大きな世界の中でどのように位置づけられているかを理解します。
 
-• **モジュール0 - MCP入門**：MCPとは何か、なぜ現代のAIアプリケーションにとって重要なのかを探ります。実際のMCPの例を見て、開発者が直面する一般的な問題をどのように解決するかを理解します。
+• **モジュール0 - MCP入門**：まずはMCPとは何か、現代のAIアプリケーションにとってなぜ重要なのかを探ります。実際のMCPの使用例を見て、開発者が直面する共通の問題をどのように解決するか理解します。
 
-• **モジュール1 - コアコンセプトの説明**：MCPの基本的な構成要素を学びます。多くの例えや視覚的な例を使って、これらの概念が自然で理解しやすいものになるようにします。
+• **モジュール1 - コアコンセプトの説明**：MCPの基本的な構成要素を学びます。多くの例えや視覚的な例を使い、概念が自然に理解できるようにします。
 
-• **モジュール2 - MCPのセキュリティ**：セキュリティは難しそうに聞こえるかもしれませんが、MCPに組み込まれた安全機能を紹介し、アプリケーションを最初から守るベストプラクティスを教えます。
+• **モジュール2 - MCPのセキュリティ**：セキュリティは難しく聞こえるかもしれませんが、MCPが持つ組み込みの安全機能を紹介し、アプリケーションを最初から守るためのベストプラクティスを教えます。
 
 ### 🔨 構築フェーズ：最初の実装を作る（モジュール3）
 
-ここから本格的な楽しみが始まります！実際にMCPサーバーとクライアントを構築する実践的な経験を積みます。心配いりません—シンプルなところから始めて、すべてのステップでガイドします。
+ここからが本当の楽しみです！実際にMCPサーバーとクライアントの構築を体験します。心配はいりません。シンプルなところから始めて、すべてのステップを丁寧に案内します。
 
-このモジュールには、好きなプログラミング言語で練習できる複数のハンズオンガイドが含まれています。最初のサーバーを作り、それに接続するクライアントを構築し、VS Codeなどの人気開発ツールとの統合も行います。
+このモジュールには好みのプログラミング言語で練習できる複数の実践ガイドが含まれています。最初のサーバーを作り、それに接続するクライアントを構築し、さらにVS Codeなどの一般的な開発ツールと統合することも体験できます。
 
-各ガイドには完全なコード例、トラブルシューティングのヒント、設計上の選択理由の説明が含まれています。このフェーズの終わりには、誇れる動作するMCP実装が手に入ります！
+それぞれのガイドには完全なコード例、トラブルシューティングのヒント、なぜそうした設計にしたのかの説明が含まれています。このフェーズの終わりには、誇れる動作するMCP実装を持っていることでしょう！
+### 🚀 成長フェーズ：高度なコンセプトと実世界での応用（モジュール4-5）
 
-### 🚀 成長フェーズ：高度な概念と実世界の応用（モジュール4-5）
+基本を習得したので、より高度なMCP機能を探求する準備が整いました。実践的な実装戦略、デバッグ技術、マルチモーダルAI統合のような高度なトピックをカバーします。
 
-基本をマスターしたら、より高度なMCP機能を探求する準備ができています。実践的な実装戦略、デバッグ技術、マルチモーダルAI統合などの高度なトピックを扱います。
-また、MCPの実装を本番環境向けにスケールさせる方法や、Azureのようなクラウドプラットフォームとの統合方法も学びます。これらのモジュールは、実際のニーズに対応できるMCPソリューションを構築する準備を整えます。
+また、MCP実装を本番環境にスケールさせ、Azureのようなクラウドプラットフォームと統合する方法も学びます。これらのモジュールは、実世界の要求に対応できるMCPソリューションを構築する準備を整えます。
 
-### 🌟 マスタリーフェーズ：コミュニティと専門分野（モジュール6-11）
+### 🌟 熟達フェーズ：コミュニティと専門分野（モジュール6-11）
 
-最終フェーズでは、MCPコミュニティに参加し、最も興味のある分野に特化することに焦点を当てます。オープンソースのMCPプロジェクトへの貢献方法、高度な認証パターンの実装、包括的なデータベース統合ソリューションの構築を学びます。
+最終フェーズでは、MCPコミュニティへの参加と、最も興味のある分野への専門化に焦点を当てます。オープンソースのMCPプロジェクトへの貢献方法、高度な認証パターンの実装、包括的なデータベース統合ソリューションの構築を学びます。
 
-モジュール11は特に注目に値します。PostgreSQL統合を含む13の実践的なラボからなる完全なハンズオン学習パスで、本番環境対応のMCPサーバー構築を教えます。これまで学んだすべてをまとめるキャップストーンプロジェクトのようなものです！
+モジュール11は特に注目に値します ― PostgreSQL統合による本番対応MCPサーバー構築を学ぶ13ラボからなる完全なハンズオン学習パスです。これまで学んだことを総合的にまとめるキャップストーンプロジェクトのようなものです！
 
-### 📚 完全なカリキュラム構成
+### 📚 完全カリキュラム構成
 
 | モジュール | トピック | 説明 | リンク |
 |--------|-------|-------------|------|
-| **モジュール 1-3: 基礎** | | | |
-| 00 | MCP入門 | モデルコンテキストプロトコルの概要とAIパイプラインにおける重要性 | [詳細](./00-Introduction/README.md) |
-| 01 | コアコンセプトの解説 | MCPのコアコンセプトの詳細な探求 | [詳細](./01-CoreConcepts/README.md) |
-| 02 | MCPのセキュリティ | セキュリティ脅威とベストプラクティス | [詳細](./02-Security/README.md) |
-| 03 | MCPの始め方 | 環境設定、基本的なサーバー/クライアント、統合 | [詳細](./03-GettingStarted/README.md) |
-| **モジュール 3: 最初のサーバー＆クライアント構築** | | | |
+| **モジュール 1-3：基礎** | | | |
+| 00 | MCP入門 | Model Context Protocolの概要とAIパイプラインにおける意義 | [詳細](./00-Introduction/README.md) |
+| 01 | コアコンセプトの説明 | MCPのコアコンセプトを深掘り | [詳細](./01-CoreConcepts/README.md) |
+| 02 | MCPのセキュリティ | セキュリティの脅威とベストプラクティス | [詳細](./02-Security/README.md) |
+| 03 | MCPの入門 | 環境設定、基本的なサーバー/クライアント、統合 | [詳細](./03-GettingStarted/README.md) |
+| **モジュール 3：最初のサーバー & クライアント構築** | | | |
 | 3.1 | 最初のサーバー | 最初のMCPサーバーを作成 | [ガイド](./03-GettingStarted/01-first-server/README.md) |
 | 3.2 | 最初のクライアント | 基本的なMCPクライアントを開発 | [ガイド](./03-GettingStarted/02-client/README.md) |
 | 3.3 | LLMを使ったクライアント | 大規模言語モデルを統合 | [ガイド](./03-GettingStarted/03-llm-client/README.md) |
 | 3.4 | VS Code統合 | VS CodeでMCPサーバーを利用 | [ガイド](./03-GettingStarted/04-vscode/README.md) |
-| 3.5 | stdioサーバー | stdioトランスポートを使ったサーバー作成 | [ガイド](./03-GettingStarted/05-stdio-server/README.md) |
+| 3.5 | stdioサーバー | stdioトランスポートでサーバー作成 | [ガイド](./03-GettingStarted/05-stdio-server/README.md) |
 | 3.6 | HTTPストリーミング | MCPでHTTPストリーミングを実装 | [ガイド](./03-GettingStarted/06-http-streaming/README.md) |
 | 3.7 | AIツールキット | MCPでAIツールキットを使用 | [ガイド](./03-GettingStarted/07-aitk/README.md) |
-| 3.8 | テスト | MCPサーバー実装のテスト | [ガイド](./03-GettingStarted/08-testing/README.md) |
-| 3.9 | デプロイ | MCPサーバーを本番環境にデプロイ | [ガイド](./03-GettingStarted/09-deployment/README.md) |
-| 3.10 | 高度なサーバー利用 | 高度な機能利用とアーキテクチャ改善のためのサーバー使用 | [ガイド](./03-GettingStarted/10-advanced/README.md) |
-| 3.11 | シンプル認証 | 認証の基礎とRBACを示す章 | [ガイド](./03-GettingStarted/11-simple-auth/README.md) |
-| **モジュール 4-5: 実践＆高度** | | | |
-| 04 | 実践的実装 | SDK、デバッグ、テスト、再利用可能なプロンプトテンプレート | [詳細](./04-PracticalImplementation/README.md) |
-| 05 | MCPの高度なトピック | マルチモーダルAI、スケーリング、エンタープライズ利用 | [詳細](./05-AdvancedTopics/README.md) |
-| 5.1 | Azure統合 | AzureとのMCP統合 | [ガイド](./05-AdvancedTopics/mcp-integration/README.md) |
-| 5.2 | マルチモダリティ | 複数モダリティの取り扱い | [ガイド](./05-AdvancedTopics/mcp-multi-modality/README.md) |
+| 3.8 | テスト | MCPサーバーの実装をテスト | [ガイド](./03-GettingStarted/08-testing/README.md) |
+| 3.9 | デプロイ | MCPサーバーを本番展開 | [ガイド](./03-GettingStarted/09-deployment/README.md) |
+| 3.10 | 高度なサーバー利用 | 高度な機能利用とより良いアーキテクチャのための高度なサーバー利用 | [ガイド](./03-GettingStarted/10-advanced/README.md) |
+| 3.11 | シンプル認証 | 初心者向けの認証とRBACの章 | [ガイド](./03-GettingStarted/11-simple-auth/README.md) |
+| **モジュール 4-5：実践 & 高度** | | | |
+| 04 | 実践的な実装 | SDK、デバッグ、テスト、再利用可能なプロンプトテンプレート | [詳細](./04-PracticalImplementation/README.md) |
+| 05 | MCPの高度なトピック | マルチモーダルAI、スケーリング、企業利用 | [詳細](./05-AdvancedTopics/README.md) |
+| 5.1 | Azure統合 | MCPのAzure統合 | [ガイド](./05-AdvancedTopics/mcp-integration/README.md) |
+| 5.2 | マルチモーダリティ | 複数モダリティの扱い | [ガイド](./05-AdvancedTopics/mcp-multi-modality/README.md) |
 | 5.3 | OAuth2デモ | OAuth2認証の実装 | [ガイド](./05-AdvancedTopics/mcp-oauth2-demo/README.md) |
 | 5.4 | ルートコンテキスト | ルートコンテキストの理解と実装 | [ガイド](./05-AdvancedTopics/mcp-root-contexts/README.md) |
 | 5.5 | ルーティング | MCPのルーティング戦略 | [ガイド](./05-AdvancedTopics/mcp-routing/README.md) |
 | 5.6 | サンプリング | MCPにおけるサンプリング技術 | [ガイド](./05-AdvancedTopics/mcp-sampling/README.md) |
-| 5.7 | スケーリング | MCP実装のスケールアップ | [ガイド](./05-AdvancedTopics/mcp-scaling/README.md) |
+| 5.7 | スケーリング | MCP実装のスケール方法 | [ガイド](./05-AdvancedTopics/mcp-scaling/README.md) |
 | 5.8 | セキュリティ | 高度なセキュリティ考慮事項 | [ガイド](./05-AdvancedTopics/mcp-security/README.md) |
 | 5.9 | ウェブ検索 | ウェブ検索機能の実装 | [ガイド](./05-AdvancedTopics/web-search-mcp/README.md) |
 | 5.10 | リアルタイムストリーミング | リアルタイムストリーミング機能の構築 | [ガイド](./05-AdvancedTopics/mcp-realtimestreaming/README.md) |
 | 5.11 | リアルタイム検索 | リアルタイム検索の実装 | [ガイド](./05-AdvancedTopics/mcp-realtimesearch/README.md) |
 | 5.12 | Entra ID認証 | Microsoft Entra IDによる認証 | [ガイド](./05-AdvancedTopics/mcp-security-entra/README.md) |
 | 5.13 | Foundry統合 | Azure AI Foundryとの統合 | [ガイド](./05-AdvancedTopics/mcp-foundry-agent-integration/README.md) |
-| 5.14 | コンテキストエンジニアリング | 効果的なコンテキストエンジニアリング技術 | [ガイド](./05-AdvancedTopics/mcp-contextengineering/README.md) |
-| 5.15 | MCPカスタムトランスポート | カスタムトランスポート実装 | [ガイド](./05-AdvancedTopics/mcp-transport/README.md) |
-| **モジュール 6-10: コミュニティ＆ベストプラクティス** | | | |
+| 5.14 | コンテキストエンジニアリング | 効果的なコンテキストエンジニアリングの技法 | [ガイド](./05-AdvancedTopics/mcp-contextengineering/README.md) |
+| 5.15 | MCPカスタムトランスポート | カスタムトランスポートの実装 | [ガイド](./05-AdvancedTopics/mcp-transport/README.md) |
+| **モジュール 6-10：コミュニティ & ベストプラクティス** | | | |
 | 06 | コミュニティ貢献 | MCPエコシステムへの貢献方法 | [ガイド](./06-CommunityContributions/README.md) |
-| 07 | 早期導入からの洞察 | 実際の導入事例 | [ガイド](./07-LessonsFromEarlyAdoption/README.md) |
+| 07 | 早期導入の洞察 | 実世界の実装例 | [ガイド](./07-LessonsFromEarlyAdoption/README.md) |
 | 08 | MCPのベストプラクティス | パフォーマンス、フォールトトレランス、レジリエンス | [ガイド](./08-BestPractices/README.md) |
 | 09 | MCPケーススタディ | 実践的な実装例 | [ガイド](./09-CaseStudy/README.md) |
 | 10 | ハンズオンワークショップ | AIツールキットを使ったMCPサーバー構築 | [ラボ](./10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md) |
-| **モジュール 11: MCPサーバーハンズオンラボ** | | | |
-| 11 | MCPサーバーデータベース統合 | PostgreSQL統合のための13ラボからなる包括的なハンズオン学習パス | [ラボ](./11-MCPServerHandsOnLabs/README.md) |
-| 11.1 | はじめに | データベース統合と小売分析ユースケースの概要 | [ラボ 00](./11-MCPServerHandsOnLabs/00-Introduction/README.md) |
+| **モジュール 11：MCPサーバーハンズオンラボ** | | | |
+| 11 | MCPサーバー・データベース統合 | PostgreSQL統合のための包括的な13ラボハンズオン学習パス | [ラボ](./11-MCPServerHandsOnLabs/README.md) |
+| 11.1 | 入門 | データベース統合と小売分析ユースケースのMCP概要 | [ラボ 00](./11-MCPServerHandsOnLabs/00-Introduction/README.md) |
 | 11.2 | コアアーキテクチャ | MCPサーバーアーキテクチャ、データベース層、セキュリティパターンの理解 | [ラボ 01](./11-MCPServerHandsOnLabs/01-Architecture/README.md) |
-| 11.3 | セキュリティ＆マルチテナンシー | 行レベルセキュリティ、認証、マルチテナントデータアクセス | [ラボ 02](./11-MCPServerHandsOnLabs/02-Security/README.md) |
+| 11.3 | セキュリティ & マルチテナンシー | 行レベルセキュリティ、認証、マルチテナントデータアクセス | [ラボ 02](./11-MCPServerHandsOnLabs/02-Security/README.md) |
 | 11.4 | 環境設定 | 開発環境、Docker、Azureリソースのセットアップ | [ラボ 03](./11-MCPServerHandsOnLabs/03-Setup/README.md) |
 | 11.5 | データベース設計 | PostgreSQLセットアップ、小売スキーマ設計、サンプルデータ | [ラボ 04](./11-MCPServerHandsOnLabs/04-Database/README.md) |
-| 11.6 | MCPサーバー実装 | データベース統合を伴うFastMCPサーバー構築 | [ラボ 05](./11-MCPServerHandsOnLabs/05-MCP-Server/README.md) |
-| 11.7 | ツール開発 | データベースクエリツールとスキーマイントロスペクションの作成 | [ラボ 06](./11-MCPServerHandsOnLabs/06-Tools/README.md) |
-| 11.8 | セマンティックサーチ | Azure OpenAIとpgvectorを使ったベクトル埋め込みの実装 | [ラボ 07](./11-MCPServerHandsOnLabs/07-Semantic-Search/README.md) |
-| 11.9 | テスト＆デバッグ | テスト戦略、デバッグツール、検証手法 | [ラボ 08](./11-MCPServerHandsOnLabs/08-Testing/README.md) |
-| 11.10 | VS Code統合 | VS Code MCP統合とAIチャット利用の設定 | [ラボ 09](./11-MCPServerHandsOnLabs/09-VS-Code/README.md) |
-| 11.11 | デプロイ戦略 | Dockerデプロイ、Azure Container Apps、スケーリング考慮 | [ラボ 10](./11-MCPServerHandsOnLabs/10-Deployment/README.md) |
+| 11.6 | MCPサーバー実装 | データベース統合を含むFastMCPサーバー構築 | [ラボ 05](./11-MCPServerHandsOnLabs/05-MCP-Server/README.md) |
+| 11.7 | ツール開発 | データベースクエリツールとスキーマイントロスペクション作成 | [ラボ 06](./11-MCPServerHandsOnLabs/06-Tools/README.md) |
+| 11.8 | セマンティックサーチ | Azure OpenAIとpgvectorによるベクトル埋め込みの実装 | [ラボ 07](./11-MCPServerHandsOnLabs/07-Semantic-Search/README.md) |
+| 11.9 | テスト & デバッグ | テスト戦略、デバッグツール、検証手法 | [ラボ 08](./11-MCPServerHandsOnLabs/08-Testing/README.md) |
+| 11.10 | VS Code統合 | VS CodeでのMCP統合とAIチャットの設定 | [ラボ 09](./11-MCPServerHandsOnLabs/09-VS-Code/README.md) |
+| 11.11 | デプロイ戦略 | Dockerデプロイ、Azure Container Apps、スケーリングの考慮 | [ラボ 10](./11-MCPServerHandsOnLabs/10-Deployment/README.md) |
 | 11.12 | モニタリング | Application Insights、ログ記録、パフォーマンス監視 | [ラボ 11](./11-MCPServerHandsOnLabs/11-Monitoring/README.md) |
 | 11.13 | ベストプラクティス | パフォーマンス最適化、セキュリティ強化、本番運用のヒント | [ラボ 12](./11-MCPServerHandsOnLabs/12-Best-Practices/README.md) |
 
 ### 💻 サンプルコードプロジェクト
 
-MCP学習の最もエキサイティングな部分の一つは、コードスキルが段階的に成長していくのを見ることです。コード例はシンプルに始まり、理解が深まるにつれてより洗練されたものになるよう設計されています。ここでは、理解しやすく、かつ実際のMCP原則を示すコードで概念を紹介します。このコードが何をするかだけでなく、なぜこのように構成されているのか、そしてより大きなMCPアプリケーションにどう適合するのかを理解できます。
+MCP学習の最も楽しい部分のひとつは、コードスキルが段階的に成長するのを実感できることです。コード例はシンプルなものから始まり、理解が深まるにつれてより高度な内容へと進むよう設計されています。以下のようにコンセプトを紹介します ― 理解しやすいコードですが、実際のMCP原理を示しています。このコードが何をしているのかだけでなく、なぜこのように構成されているのか、そして大きなMCPアプリケーションにどう結びつくのかが分かります。
 
 #### 基本的なMCP電卓サンプル
 
@@ -217,148 +227,146 @@ MCP学習の最もエキサイティングな部分の一つは、コードス�
 
 ## 🎯 MCP学習の前提条件
 
-このカリキュラムを最大限に活用するには、以下が望まれます：
+このカリキュラムを最大限活用するには、以下が望まれます：
 
-- C#、Java、JavaScript、Python、またはTypeScriptのいずれかの基本的なプログラミング知識
+- C#、Java、JavaScript、Python、またはTypeScriptのいずれかでの基本的なプログラミング知識
 - クライアントサーバーモデルとAPIの理解
-- RESTおよびHTTPの概念に慣れていること
-- （任意）AI/MLの基礎知識
+- RESTおよびHTTPの概念への慣れ
+- （任意）AI/MLの基本的な理解
+- サポートのためコミュニティディスカッションに参加すること
 
-- サポートのためにコミュニティディスカッションに参加すること
+## 📚 学習ガイド & リソース
 
-## 📚 学習ガイド＆リソース
-
-このリポジトリには、効果的に学習を進めるための複数のリソースが含まれています：
+このリポジトリには効果的に学習を進めるための複数のリソースが含まれています：
 
 ### 学習ガイド
 
-包括的な[学習ガイド](./study_guide.md)が用意されており、このリポジトリを効果的にナビゲートできます。視覚的なカリキュラムマップで全トピックのつながりを示し、サンプルプロジェクトの効果的な使い方を案内します。全体像を把握したい視覚的学習者に特に役立ちます。
+包括的な[学習ガイド](./study_guide.md)が用意されており、このリポジトリを効果的にナビゲートできます。視覚的なカリキュラムマップが全トピックの繋がりを示し、サンプルプロジェクトの活用方法も案内します。特に全体像を視覚的に把握したい学習者におすすめです。
 
 ガイドには以下が含まれます：
-- すべてのトピックを示す視覚的カリキュラムマップ
+- 全トピックを示した視覚的カリキュラムマップ
 - 各リポジトリセクションの詳細な内訳
-- サンプルプロジェクトの使い方の案内
+- サンプルプロジェクトの活用指針
 - スキルレベル別の推奨学習パス
 - 学習を補完する追加リソース
 
 ### 変更履歴
 
-カリキュラム資料の重要な更新を追跡する詳細な[変更履歴](./changelog.md)を維持しており、最新の改善や追加情報を把握できます。
+詳細な[変更履歴](./changelog.md)を管理しており、カリキュラムの重要なアップデートを把握できます。常に最新の改善や追加情報を追跡可能です。
 - 新規コンテンツの追加
-- 構造の変更
+- 構造的変更
 - 機能改善
 - ドキュメント更新
 
 ## 🛠️ このカリキュラムを効果的に使う方法
 
-各レッスンには以下が含まれます：
+各レッスンは以下を含みます：
 
 1. MCPコンセプトの明確な説明  
 2. 複数言語でのライブコード例  
-3. 実際のMCPアプリケーション構築の演習  
+3. 実際のMCPアプリを作る演習  
 4. 上級者向けの追加リソース
-
-## オンデマンドコンテンツ
+## オンデマンドコンテンツ 
 
 ### [MCP Dev Days 2025年7月](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
 #### [➡️オンデマンド視聴 - MCP Dev Days](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
-MCP Dev Daysでは、2日間にわたり深い技術的洞察、コミュニティとのつながり、実践的な学習を体験できます。これは、AIモデルとそれに依存するツールをつなぐ新しい標準であるModel Context Protocol（MCP）に特化したバーチャルイベントです。
-MCP Dev Daysはイベントページ（https://aka.ms/mcpdevdays）で登録すると視聴できます。
+MCP Dev Daysでは、2日間にわたりモデルコンテキストプロトコル（MCP）に特化した深い技術的洞察、コミュニティのつながり、実践的な学習を提供します。MCPはAIモデルとそれが依存するツールをつなぐ新しい標準です。  
+MCP Dev Daysは、イベントページ https://aka.ms/mcpdevdays に登録して視聴できます。
 
-#### [1日目：MCPの生産性、開発ツール、コミュニティ](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
+#### [1日目：MCPの生産性、DevTools、コミュニティ：](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
 
-開発者がMCPを開発ワークフローに活用できるよう支援し、素晴らしいMCPコミュニティを祝う内容です。Arcade、Block、Okta、Neonなどのコミュニティメンバーやパートナーと共に、Microsoftと協力してオープンで拡張可能なMCPエコシステムを形成する様子を紹介します。VS Code、Visual Studio、GitHub Copilot、人気のコミュニティツールを使った実践的なデモ
-実用的でコンテキストに基づく開発ワークフロー
-コミュニティ主導のセッションと洞察
-MCPを始めたばかりの方も、すでに構築している方も、1日目はインスピレーションと実践的なヒントを提供します。
+開発者がMCPを開発ワークフローに活用できるよう支援し、素晴らしいMCPコミュニティを祝います。Arcade、Block、Okta、Neonなどのコミュニティメンバーやパートナーと一緒に、Microsoftとの協力によるオープンかつ拡張可能なMCPエコシステム形成の様子をご紹介。  
+VS Code、Visual Studio、GitHub Copilot、人気のコミュニティツールを使った実際のデモ  
+実用的でコンテキスト駆動の開発ワークフロー  
+コミュニティ主導のセッションと洞察  
+MCPを始めたばかりの方も、すでに開発している方も、1日目はインスピレーションと実践的な持ち帰りを得られる内容です。
 
-#### [2日目：自信を持ってMCPサーバーを構築](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
+#### [2日目：MCPサーバーを自信を持って構築する](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
 
-MCPの構築者向けです。MCPサーバーの実装戦略やベストプラクティス、AIワークフローへのMCP統合について深く掘り下げます。
+MCPを構築する方向けです。MCPサーバーの作成およびMCPをAIワークフローに統合するための実装戦略とベストプラクティスを深掘りします。
 
 #### トピック例：
 
-- MCPサーバーの構築とエージェント体験への統合
-- プロンプト駆動型開発
-- セキュリティのベストプラクティス
-- Functions、ACA、API Managementなどのビルディングブロックの活用
+- MCPサーバーの構築とエージェント体験への統合  
+- プロンプト駆動開発  
+- セキュリティのベストプラクティス  
+- Functions、ACA、API Managementなどのビルディングブロックの利用  
 - レジストリの整合性とツール（1P + 3P）
 
-開発者、ツールビルダー、AIプロダクト戦略担当者にとって、スケーラブルで安全かつ将来に備えたMCPソリューションを構築するための洞察が満載の1日です。
+開発者、ツールビルダー、AIプロダクト戦略担当者に最適で、スケーラブルで安全、将来に備えたMCPソリューション構築のヒントが満載です。
 
 ### MCPブートキャンプ 2025年8月
-MCP for Beginnersカリキュラムの内容に基づき、MCPサーバーの作成、VS Codeとの統合、Azureへのプロフェッショナルなデプロイ方法を集中的なビデオセッションで学べます。主要企業がすでに使用している技術で実践的なスキルを身につけましょう。
+MCPサーバーの作成方法、VS Codeとの統合、Azureへのプロフェッショナルなデプロイを、MCP初心者向けカリキュラムのコンテンツをもとに集中動画で学べます。大手企業がすでに利用する技術で実践的スキルを身につけましょう。
 
-#### [➡️オンデマンド視聴 MCPブートキャンプ | 英語](https://developer.microsoft.com/en-us/reactor/series/s-1568/)
-#### [➡️オンデマンド視聴 MCPブートキャンプ | ブラジル](https://developer.microsoft.com/en-us/reactor/series/S-1566/)
-#### [➡️オンデマンド視聴 MCPブートキャンプ | スペイン語](https://developer.microsoft.com/en-us/reactor/series/S-1567/)
+#### [➡️オンデマンド視聴 MCP Bootcamp | 英語](https://developer.microsoft.com/en-us/reactor/series/s-1568/)
+#### [➡️オンデマンド視聴 MCP Bootcamp | ブラジル向け](https://developer.microsoft.com/en-us/reactor/series/S-1566/)
+#### [➡️オンデマンド視聴 MCP Bootcamp | スペイン語](https://developer.microsoft.com/en-us/reactor/series/S-1567/)
 
-### C#で学ぶMCP - チュートリアルシリーズ
-Model Context Protocol（MCP）について学びましょう。これはAIモデルとクライアントアプリケーション間のやり取りを標準化する最先端のフレームワークです。この初心者向けセッションでは、MCPの紹介と最初のMCPサーバーの作成方法を案内します。
-#### C#: [https://aka.ms/letslearnmcp-csharp](https://aka.ms/letslearnmcp-csharp)
-#### Java: [https://aka.ms/letslearnmcp-java](https://aka.ms/letslearnmcp-java)
-#### JavaScript: [https://aka.ms/letslearnmcp-javascript](https://aka.ms/letslearnmcp-javascript)
-#### Python: [https://aka.ms/letslearnmcp-python](https://aka.ms/letslearnmcp-python)
+### C#で学ぶMCP - チュートリアルシリーズ  
+モデルコンテキストプロトコル（MCP）について学びましょう。これはAIモデルとクライアントアプリ間のインタラクションを標準化するための最先端フレームワークです。この初心者向けセッションでMCPをご紹介し、最初のMCPサーバーの作成をサポートします。  
+#### C#: [https://aka.ms/letslearnmcp-csharp](https://aka.ms/letslearnmcp-csharp)  
+#### Java: [https://aka.ms/letslearnmcp-java](https://aka.ms/letslearnmcp-java)  
+#### JavaScript: [https://aka.ms/letslearnmcp-javascript](https://aka.ms/letslearnmcp-javascript)  
+#### Python: [https://aka.ms/letslearnmcp-python](https://aka.ms/letslearnmcp-python)  
 
 ## 🎓 あなたのMCPの旅が始まります
 
-おめでとうございます！プログラミング能力を広げ、AI開発の最先端とつながるエキサイティングな旅の第一歩を踏み出しました。
+おめでとうございます！プログラミングスキルを拡張し、AI開発の最前線とつながる刺激的な旅の第一歩を踏み出しました。
 
 ### これまでに達成したこと
 
-この紹介を読み進めることで、すでにMCPの知識基盤を築き始めています。MCPとは何か、なぜ重要か、このカリキュラムが学習の旅をどう支援するかを理解しています。これは大きな成果であり、この重要な技術における専門知識の始まりです。
+このイントロダクションを読んだことで、すでにMCPの知識基盤を築き始めています。MCPとは何か、その重要性、そしてこのカリキュラムがどのように学習を支えるかが理解できています。これは重要な成果であり、この技術領域での専門性の始まりです。
 
 ### これからの冒険
 
-モジュールを進めるにつれて、すべての専門家もかつては初心者だったことを思い出してください。今は複雑に感じる概念も、練習し応用することで自然に身につきます。小さな一歩一歩が、開発キャリアを通じて役立つ強力な能力へとつながります。
+モジュールを進める際は、すべての専門家もかつては初心者だったことを忘れないでください。今は複雑に見える概念も、実践と応用を重ねることで自然に理解できるようになります。小さな一歩一歩が、あなたの開発キャリアで役立つ強力な能力へとつながります。
 
 ### あなたのサポートネットワーク
 
-あなたはMCPに情熱を持ち、他者の成功を支援したい学習者や専門家のコミュニティに参加しています。コーディングの課題で行き詰まったときも、ブレイクスルーを共有したいときも、コミュニティはあなたの旅を支えます。
+あなたは、MCPに情熱を持ち、他の人の成功を支援したいと願う学習者と専門家のコミュニティに加わります。コーディングの壁にぶつかった時や、新しい発見を共有したい時、このコミュニティがあなたの旅を支えます。
 
-AIアプリの構築で困ったり質問があれば、他の学習者や経験豊富な開発者とMCPについて議論しましょう。質問が歓迎され、知識が自由に共有されるサポートコミュニティです。
+もし困ったことや質問があれば、AIアプリ構築について仲間の学習者や経験豊富な開発者とディスカッションに参加しましょう。質問が歓迎され、知識が自由に共有されるサポートのあるコミュニティです。
 
 [![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
 
-製品のフィードバックや構築中のエラーがあれば、以下をご利用ください：
+製品へのフィードバックや構築中のエラーがあれば、以下へ：
 
 [![Microsoft Foundry Developer Forum](https://img.shields.io/badge/GitHub-Microsoft_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=000000&logoColor=fff)](https://aka.ms/foundry/forum)
 
-### 始める準備はできましたか？
+### 準備はできましたか？
 
-あなたのMCPの冒険は今始まります！モジュール0から始めて最初の実践的なMCP体験に飛び込み、またはサンプルプロジェクトを探索して何を作るかを見てみましょう。すべての専門家は今のあなたと同じ場所から始まり、忍耐と練習で驚くべき成果を達成しています。
+さあ、あなたのMCPアドベンチャーを始めましょう！まずはモジュール0から始めて最初の実践体験に飛び込み、またはサンプルプロジェクトを探索してこれから作り上げるものを見てみてください。すべての専門家はあなたと同じ場所からスタートし、忍耐と練習で驚くべき成果を上げています。
 
-Model Context Protocol開発の世界へようこそ。一緒に素晴らしいものを作りましょう！
+モデルコンテキストプロトコル開発の世界へようこそ。一緒に素晴らしいものを作っていきましょう！
 
 ## 🤝 学習コミュニティへの貢献
 
-このカリキュラムは、あなたのような学習者の貢献によってより強くなります！誤字の修正、より明確な説明の提案、新しい例の追加など、あなたの貢献が他の初心者の成功を助けます。
+このカリキュラムはあなたのような学習者の貢献によってさらに強化されます。誤字の修正、より分かりやすい説明の提案、新しい例の追加、どんな貢献も他の初心者の成功を助けます。
 
-Microsoft Valued Professionalの[Shivam Goyal](https://www.linkedin.com/in/shivam2003/)にコードサンプルの提供を感謝します。
+コードサンプルの提供にMicrosoft Valued Professional [Shivam Goyal](https://www.linkedin.com/in/shivam2003/) に感謝します。
 
-貢献プロセスは歓迎的で支援的に設計されています。ほとんどの貢献にはContributor License Agreement（CLA）が必要ですが、自動化ツールがスムーズに案内します。
+貢献プロセスは歓迎的でサポート的に設計されています。ほとんどの貢献にはContributor License Agreement (CLA)が必要ですが、自動化ツールがスムーズに案内します。
 
 ## 📜 オープンソース学習
 
-このカリキュラム全体はMIT [LICENSE](../../LICENSE)の下で提供されており、自由に使用、修正、共有できます。これはMCPの知識を世界中の開発者に届けるという私たちの使命を支えています。
+このカリキュラム全体はMIT [LICENSE](../../LICENSE)の下で提供されており、自由に使用・改変・共有が可能です。これはMCPの知識を開発者全体に普及するという私たちの使命を支えています。
 
 ## 🤝 貢献ガイドライン
 
-このプロジェクトは貢献や提案を歓迎します。ほとんどの貢献には、あなたが貢献物の使用権を当社に付与する権利を持ち、実際に付与していることを宣言するContributor License Agreement（CLA）への同意が必要です。詳細は <https://cla.opensource.microsoft.com> をご覧ください。
+このプロジェクトは貢献や提案を歓迎します。ほとんどの貢献は、あなたが貢献に関する権利を保持し、実際にその権利を当方に付与することを宣言するContributor License Agreement (CLA)に同意する必要があります。詳細は <https://cla.opensource.microsoft.com> をご覧ください。
 
-プルリクエストを送信すると、CLAボットが自動的にCLAの提供が必要かどうかを判断し、PRに適切な装飾（ステータスチェックやコメントなど）を行います。ボットの指示に従うだけでOKです。CLAは当社のCLAを使用するすべてのリポジトリで一度だけ行えば十分です。
+プルリクエストを送信すると、CLAボットが自動的にCLAの提供が必要かを判定し、PRに適切な装飾（ステータスチェックやコメント）を行います。ボットの指示に従うだけでよく、すべてのリポジトリで一度だけ行えば済みます。
 
-このプロジェクトは[Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/)を採用しています。
-詳細は[行動規範FAQ](https://opensource.microsoft.com/codeofconduct/faq/)をご覧いただくか、質問やコメントは[opencode@microsoft.com](mailto:opencode@microsoft.com)までご連絡ください。
+このプロジェクトは[Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/)を採用しています。詳細は[Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/)をご覧いただくか、質問やコメントは [opencode@microsoft.com](mailto:opencode@microsoft.com) までお寄せください。
 
 ---
 
-*MCPの旅を始める準備はできましたか？[Module 00 - MCP入門](./00-Introduction/README.md)から始めて、Model Context Protocol開発の世界への第一歩を踏み出しましょう！*
+*MCPの旅を始める準備はできましたか？ [Module 00 - Introduction to MCP](./00-Introduction/README.md) から開始し、モデルコンテキストプロトコル開発の世界へあなたの第一歩を踏み出しましょう！*
 
 
 
 ## 🎒 その他のコース
-私たちのチームは他にもコースを提供しています！ぜひご覧ください：
+当チームは他にもコースを制作しています！ぜひご覧ください：
 
 <!-- CO-OP TRANSLATOR OTHER COURSES START -->
 ### LangChain
@@ -389,20 +397,20 @@ Microsoft Valued Professionalの[Shivam Goyal](https://www.linkedin.com/in/shiva
 [![AI for Beginners](https://img.shields.io/badge/AI%20for%20Beginners-A3E635?style=for-the-badge&labelColor=E5E7EB&color=A3E635)](https://aka.ms/ai-beginners?WT.mc_id=academic-105485-koreyst)
 [![Cybersecurity for Beginners](https://img.shields.io/badge/Cybersecurity%20for%20Beginners-F97316?style=for-the-badge&labelColor=E5E7EB&color=F97316)](https://github.com/microsoft/Security-101?WT.mc_id=academic-96948-sayoung)
 [![Web Dev for Beginners](https://img.shields.io/badge/Web%20Dev%20for%20Beginners-EC4899?style=for-the-badge&labelColor=E5E7EB&color=EC4899)](https://aka.ms/webdev-beginners?WT.mc_id=academic-105485-koreyst)
-[![初心者向けIoT](https://img.shields.io/badge/IoT%20for%20Beginners-14B8A6?style=for-the-badge&labelColor=E5E7EB&color=14B8A6)](https://aka.ms/iot-beginners?WT.mc_id=academic-105485-koreyst)
-[![初心者向けXR開発](https://img.shields.io/badge/XR%20Development%20for%20Beginners-38BDF8?style=for-the-badge&labelColor=E5E7EB&color=38BDF8)](https://github.com/microsoft/xr-development-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![初心者のためのIoT](https://img.shields.io/badge/IoT%20for%20Beginners-14B8A6?style=for-the-badge&labelColor=E5E7EB&color=14B8A6)](https://aka.ms/iot-beginners?WT.mc_id=academic-105485-koreyst)
+[![初心者のためのXR開発](https://img.shields.io/badge/XR%20Development%20for%20Beginners-38BDF8?style=for-the-badge&labelColor=E5E7EB&color=38BDF8)](https://github.com/microsoft/xr-development-for-beginners?WT.mc_id=academic-105485-koreyst)
 
 ---
  
 ### コパイロットシリーズ
-[![AIペアプログラミング用コパイロット](https://img.shields.io/badge/Copilot%20for%20AI%20Paired%20Programming-FACC15?style=for-the-badge&labelColor=E5E7EB&color=FACC15)](https://aka.ms/GitHubCopilotAI?WT.mc_id=academic-105485-koreyst)
-[![C#/.NET用コパイロット](https://img.shields.io/badge/Copilot%20for%20C%23/.NET-FBBF24?style=for-the-badge&labelColor=E5E7EB&color=FBBF24)](https://github.com/microsoft/mastering-github-copilot-for-dotnet-csharp-developers?WT.mc_id=academic-105485-koreyst)
-[![コパイロットアドベンチャー](https://img.shields.io/badge/Copilot%20Adventure-FDE68A?style=for-the-badge&labelColor=E5E7EB&color=FDE68A)](https://github.com/microsoft/CopilotAdventures?WT.mc_id=academic-105485-koreyst)
+[![AIペアプログラミングのためのCopilot](https://img.shields.io/badge/Copilot%20for%20AI%20Paired%20Programming-FACC15?style=for-the-badge&labelColor=E5E7EB&color=FACC15)](https://aka.ms/GitHubCopilotAI?WT.mc_id=academic-105485-koreyst)
+[![C#/.NETのためのCopilot](https://img.shields.io/badge/Copilot%20for%20C%23/.NET-FBBF24?style=for-the-badge&labelColor=E5E7EB&color=FBBF24)](https://github.com/microsoft/mastering-github-copilot-for-dotnet-csharp-developers?WT.mc_id=academic-105485-koreyst)
+[![Copilotアドベンチャー](https://img.shields.io/badge/Copilot%20Adventure-FDE68A?style=for-the-badge&labelColor=E5E7EB&color=FDE68A)](https://github.com/microsoft/CopilotAdventures?WT.mc_id=academic-105485-koreyst)
 <!-- CO-OP TRANSLATOR OTHER COURSES END -->
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **免責事項**：  
-本書類はAI翻訳サービス「Co-op Translator」（https://github.com/Azure/co-op-translator）を使用して翻訳されました。正確性の向上に努めておりますが、自動翻訳には誤りや不正確な部分が含まれる可能性があります。原文の言語によるオリジナル文書が正式な情報源とみなされるべきです。重要な情報については、専門の人間による翻訳を推奨します。本翻訳の利用により生じた誤解や誤訳について、当方は一切の責任を負いかねます。
+本書類はAI翻訳サービス「Co-op Translator」（https://github.com/Azure/co-op-translator）を使用して翻訳されています。正確性の向上に努めていますが、自動翻訳には誤りや不正確な部分が含まれる可能性があることをご了承ください。元の書類の原文が正式な情報源とみなされます。重要な情報については、専門の人による翻訳を推奨します。本翻訳の利用によって生じた誤解や誤訳について、当方は一切の責任を負いかねます。
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

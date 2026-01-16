@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Praktická implementácia
 
-[![Ako vytvoriť, testovať a nasadiť MCP aplikácie pomocou reálnych nástrojov a pracovných postupov](../../../translated_images/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.sk.png)](https://youtu.be/vCN9-mKBDfQ)
+[![Ako vytvoriť, testovať a nasadiť MCP aplikácie pomocou reálnych nástrojov a pracovných postupov](../../../translated_images/sk/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.png)](https://youtu.be/vCN9-mKBDfQ)
 
 _(Kliknite na obrázok vyššie pre zobrazenie videa k tejto lekcii)_
 
@@ -215,7 +215,7 @@ Pozrime sa, či môžeme nasadiť ukážku, ktorú sme spomenuli vyššie:
 
     Mali by ste vidieť rozhranie podobné:
 
-    ![Pripojenie k Node inspector](../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.sk.png)
+    ![Pripojenie k Node inspector](../../../translated_images/sk/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. CTRL kliknite na načítanie webovej aplikácie MCP Inspector z URL zobrazeného aplikáciou (napr. [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources))
 1. Nastavte typ transportu na `SSE`

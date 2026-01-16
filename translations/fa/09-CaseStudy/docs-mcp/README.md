@@ -110,7 +110,7 @@ Let me know if you want module-specific recommendations or need more customized 
 
 در ادامه نمونه‌ای حداقلی از راه‌حل آمده است. کد کامل و جزئیات در پوشه solution موجود است.
 
-![مرور سناریو ۲](../../../../translated_images/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.fa.png)
+![مرور سناریو ۲](../../../../translated_images/fa/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.png)
 
 <details>
 <summary>پایتون (Chainlit)</summary>
@@ -167,7 +167,7 @@ def handle_message(message):
 
 > برای راهنمایی کامل با تصاویر و گام به گام، به [`README.md`](./solution/scenario3/README.md) مراجعه کنید.
 
-![مرور سناریو ۳](../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.fa.png)
+![مرور سناریو ۳](../../../../translated_images/fa/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 این روش برای هر کسی که دوره‌های فنی می‌سازد، مستندات می‌نویسد یا کدی با نیازهای ارجاع مکرر توسعه می‌دهد، ایده‌آل است.
 

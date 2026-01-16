@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP Security: Protezione Completa per i Sistemi AI
 
-[![MCP Security Best Practices](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.it.png)](https://youtu.be/88No8pw706o)
+[![MCP Security Best Practices](../../../translated_images/it/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(Clicca sull'immagine sopra per vedere il video di questa lezione)_
 
@@ -133,7 +133,7 @@ La **Prompt Injection Indiretta** rappresenta una delle vulnerabilità più crit
 
 **Impatto nel Mondo Reale**: Questi attacchi possono causare esfiltrazione di dati, violazioni della privacy, generazione di contenuti dannosi e manipolazione delle interazioni con gli utenti. Per un'analisi dettagliata, vedi [Prompt Injection in MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
-![Prompt Injection Attack Diagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.it.png)
+![Prompt Injection Attack Diagram](../../../translated_images/it/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **Attacchi di Avvelenamento degli Strumenti**
 
@@ -147,7 +147,7 @@ Il **Tool Poisoning** prende di mira i metadati che definiscono gli strumenti MC
 
 **Rischi dei Server Ospitati**: I server MCP remoti presentano rischi elevati poiché le definizioni degli strumenti possono essere aggiornate dopo l'approvazione iniziale dell'utente, creando scenari in cui strumenti precedentemente sicuri diventano dannosi. Per un'analisi completa, vedi [Tool Poisoning Attacks (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
-![Tool Injection Attack Diagram](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.it.png)
+![Tool Injection Attack Diagram](../../../translated_images/it/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **Ulteriori Vettori di Attacco AI**
 
@@ -200,7 +200,7 @@ I **Microsoft AI Prompt Shields** forniscono una difesa completa contro attacchi
 
 **Risorse per l'Implementazione**: [Documentazione Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields Protection](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.it.png)
+![Microsoft Prompt Shields Protection](../../../translated_images/it/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## Minacce Avanzate di Sicurezza MCP

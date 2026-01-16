@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP tegevuses: päriselulised juhtumiuuringud
 
-[![MCP tegevuses: päriselulised juhtumiuuringud](../../../translated_images/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.et.png)](https://youtu.be/IxshWb2Az5w)
+[![MCP tegevuses: päriselulised juhtumiuuringud](../../../translated_images/et/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.png)](https://youtu.be/IxshWb2Az5w)
 
 _(Klõpsa ülaloleval pildil, et vaadata selle õppetunni videot)_
 

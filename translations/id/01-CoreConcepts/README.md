@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Konsep Inti MCP: Menguasai Model Context Protocol untuk Integrasi AI
 
-[![Konsep Inti MCP](../../../translated_images/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.id.png)](https://youtu.be/earDzWGtE84)
+[![Konsep Inti MCP](../../../translated_images/id/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.png)](https://youtu.be/earDzWGtE84)
 
 _(Klik gambar di atas untuk menonton video pelajaran ini)_
 

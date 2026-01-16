@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Tämä projekti esittelee web-sovelluksen, joka käyttää sisällön turvallisuustarkistusta ennen käyttäjän syötteiden välittämistä laskinpalvelimelle Model Context Protocolin (MCP) kautta.
 
-![Järjestelmän arkkitehtuurikaavio](../../../../../../translated_images/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.fi.png)
+![Järjestelmän arkkitehtuurikaavio](../../../../../../translated_images/fi/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.png)
 
 ### Miten se toimii
 

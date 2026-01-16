@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # נושאים מתקדמים ב-MCP
 
-[![MCP מתקדם: סוכני AI מאובטחים, ניתנים להרחבה ורב-מודאליים](../../../translated_images/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.he.png)](https://youtu.be/4yjmGvJzYdY)
+[![MCP מתקדם: סוכני AI מאובטחים, ניתנים להרחבה ורב-מודאליים](../../../translated_images/he/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.png)](https://youtu.be/4yjmGvJzYdY)
 
 _(לחצו על התמונה למעלה לצפייה בסרטון של השיעור)_
 

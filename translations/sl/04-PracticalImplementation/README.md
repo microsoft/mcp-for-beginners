@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Praktična izvedba
 
-[![Kako zgraditi, testirati in namestiti MCP aplikacije z resničnimi orodji in delovnimi procesi](../../../translated_images/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.sl.png)](https://youtu.be/vCN9-mKBDfQ)
+[![Kako zgraditi, testirati in namestiti MCP aplikacije z resničnimi orodji in delovnimi procesi](../../../translated_images/sl/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.png)](https://youtu.be/vCN9-mKBDfQ)
 
 _(Kliknite zgornjo sliko za ogled videa te lekcije)_
 
@@ -215,7 +215,7 @@ Poglejmo, ali lahko namestimo vzorec, ki smo ga prej omenili:
 
     Videti bi morali vmesnik, podoben temu:
 
-    ![Povezava z Node inspectorjem](../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.sl.png)
+    ![Povezava z Node inspectorjem](../../../translated_images/sl/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. CTRL kliknite, da naložite spletno aplikacijo MCP Inspector iz URL-ja, ki ga prikaže aplikacija (npr. [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources)).
 1. Nastavite vrsto prenosa na `SSE`.

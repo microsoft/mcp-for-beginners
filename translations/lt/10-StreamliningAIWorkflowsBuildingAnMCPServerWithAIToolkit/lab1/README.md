@@ -60,7 +60,7 @@ Baigę šį modulį, galėsite:
 
 **3 žingsnis: Įdiekite ir Aktyvuokite**
 
-![AI Toolkit Plėtinys](../../../../translated_images/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.lt.png)
+![AI Toolkit Plėtinys](../../../../translated_images/lt/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.png)
 
 ### ✅ Patikros Sąrašas
 - [ ] AI Toolkit piktograma matoma VS Code šoninėje juostoje
@@ -79,7 +79,7 @@ Modelių Katalogas yra jūsų vartai į AI ekosistemą. Jis apjungia modelius i�
 
 Paspauskite **MODELS - Catalog** AI Toolkit šoninėje juostoje
 
-![Modelių Katalogas](../../../../translated_images/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.lt.png)
+![Modelių Katalogas](../../../../translated_images/lt/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.png)
 
 **💡 Patarimas**: Ieškokite modelių su specifinėmis galimybėmis, atitinkančiomis jūsų poreikius (pvz., kodo generavimas, kūrybinis rašymas, analizė).
 
@@ -97,7 +97,7 @@ Paspauskite **MODELS - Catalog** AI Toolkit šoninėje juostoje
 3. Pasirinkite **Try in Playground**, kad paleistumėte testavimo aplinką
 4. Palaukite, kol modelis bus inicializuotas (pirmą kartą tai gali užtrukti)
 
-![Playground Nustatymas](../../../../translated_images/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.lt.png)
+![Playground Nustatymas](../../../../translated_images/lt/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.png)
 
 **⚙️ Modelio Parametrų Supratimas:**
 - **Temperature**: Valdo kūrybiškumą (0 = deterministinis, 1 = kūrybiškas)
@@ -126,7 +126,7 @@ Playground yra jūsų AI eksperimentų laboratorija. Štai kaip maksimaliai išn
 "Analyze this sales data and provide insights: [paste your data]. Focus on trends, anomalies, and actionable recommendations."
 ```
 
-![Testavimo Rezultatai](../../../../translated_images/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.lt.png)
+![Testavimo Rezultatai](../../../../translated_images/lt/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.png)
 
 ### 🏆 Iššūkio Užduotis: Modelių Našumo Palyginimas
 
@@ -136,12 +136,12 @@ Playground yra jūsų AI eksperimentų laboratorija. Štai kaip maksimaliai išn
 1. Pridėkite **Phi-4-mini** į savo darbo aplinką
 2. Naudokite tą pačią užklausą tiek GPT-4.1, tiek Phi-4-mini
 
-![Nustatymas](../../../../translated_images/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.lt.png)
+![Nustatymas](../../../../translated_images/lt/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.png)
 
 3. Palyginkite atsakymų kokybę, greitį ir tikslumą
 4. Dokumentuokite savo išvadas rezultatų skyriuje
 
-![Modelių Palyginimas](../../../../translated_images/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.lt.png)
+![Modelių Palyginimas](../../../../translated_images/lt/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.png)
 
 **💡 Pagrindinės Įžvalgos:**
 - Kada naudoti LLM prieš SLM
@@ -163,7 +163,7 @@ Agent Builder yra vieta, kur AI Toolkit tikrai išsiskiria. Jis leidžia kurti t
 - **Įrankių Integracija**: Prisijungimas prie išorinių API ir MCP paslaugų
 - **Atmintis**: Pokalbio kontekstas ir sesijos išsaugojimas
 
-![Agent Builder Sąsaja](../../../../translated_images/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.lt.png)
+![Agent Builder Sąsaja](../../../../translated_images/lt/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.png)
 
 ### ⚙️ 2 žingsnis: Agentų Konfigūravimo Gylis
 
@@ -237,7 +237,7 @@ You are a senior Python developer with 10+ years of experience. You excel at wri
    - Max Tokens: 2000 (išsamūs paaiškinimai)
    - Top-p: 0.9 (subalansuotas kūrybiškumas)
 
-![Python Agentas](../../../../translated_images/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.lt.png)
+![Python Agentas](../../../../translated_images/lt/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.png)
 
 ### 🧪 4 žingsnis: Testuokite Savo Python Agentą
 

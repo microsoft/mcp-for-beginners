@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # 🌟 ابتدائی صارفین سے سیکھے گئے اسباق
 
-[![ابتدائی صارفین سے سیکھے گئے اسباق](../../../translated_images/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.ur.png)](https://youtu.be/jds7dSmNptE)
+[![ابتدائی صارفین سے سیکھے گئے اسباق](../../../translated_images/ur/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.png)](https://youtu.be/jds7dSmNptE)
 
 _(اوپر دی گئی تصویر پر کلک کریں تاکہ اس سبق کی ویڈیو دیکھ سکیں)_
 

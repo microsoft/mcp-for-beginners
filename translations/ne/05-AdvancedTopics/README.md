@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # एमसीपीका उन्नत विषयवस्तुहरू
 
-[![उन्नत एमसीपी: सुरक्षित, मापनयोग्य, र बहु-मोडल एआई एजेन्टहरू](../../../translated_images/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.ne.png)](https://youtu.be/4yjmGvJzYdY)
+[![उन्नत एमसीपी: सुरक्षित, मापनयोग्य, र बहु-मोडल एआई एजेन्टहरू](../../../translated_images/ne/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.png)](https://youtu.be/4yjmGvJzYdY)
 
 _(यो पाठको भिडियो हेर्न माथिको तस्बिरमा क्लिक गर्नुहोस्)_
 

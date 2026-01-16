@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Βέλτιστες Πρακτικές Ανάπτυξης MCP
 
-[![Βέλτιστες Πρακτικές Ανάπτυξης MCP](../../../translated_images/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.el.png)](https://youtu.be/W56H9W7x-ao)
+[![Βέλτιστες Πρακτικές Ανάπτυξης MCP](../../../translated_images/el/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.png)](https://youtu.be/W56H9W7x-ao)
 
 _(Κάντε κλικ στην εικόνα παραπάνω για να παρακολουθήσετε το βίντεο αυτού του μαθήματος)_
 

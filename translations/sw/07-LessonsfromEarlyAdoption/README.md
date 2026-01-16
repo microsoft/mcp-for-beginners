@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # 🌟 Masomo Kutoka kwa Watumiaji wa Awali
 
-[![Masomo Kutoka kwa Watumiaji wa Awali wa MCP](../../../translated_images/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.sw.png)](https://youtu.be/jds7dSmNptE)
+[![Masomo Kutoka kwa Watumiaji wa Awali wa MCP](../../../translated_images/sw/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.png)](https://youtu.be/jds7dSmNptE)
 
 _(Bofya picha hapo juu kutazama video ya somo hili)_
 

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 ## เริ่มต้นใช้งาน  
 
-[![สร้างเซิร์ฟเวอร์ MCP แรกของคุณ](../../../translated_images/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.th.png)](https://youtu.be/sNDZO9N4m9Y)
+[![สร้างเซิร์ฟเวอร์ MCP แรกของคุณ](../../../translated_images/th/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.png)](https://youtu.be/sNDZO9N4m9Y)
 
 _(คลิกที่ภาพด้านบนเพื่อดูวิดีโอของบทเรียนนี้)_
 

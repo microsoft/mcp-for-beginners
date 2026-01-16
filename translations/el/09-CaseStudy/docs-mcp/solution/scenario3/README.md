@@ -52,27 +52,27 @@ CO_OP_TRANSLATOR_METADATA:
    ```
    Αυτή η ρύθμιση ενημερώνει το VS Code πώς να συνδεθεί με τον [`Microsoft Learn Docs MCP server`](https://github.com/MicrosoftDocs/mcp).
    
-   ![Βήμα 1: Προσθήκη mcp.json στο φάκελο .vscode](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.el.png)
+   ![Βήμα 1: Προσθήκη mcp.json στο φάκελο .vscode](../../../../../../translated_images/el/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
     
 2. **Ανοίξτε το πάνελ GitHub Copilot Chat:**
    Αν δεν έχετε ήδη εγκαταστήσει την επέκταση GitHub Copilot, μεταβείτε στην προβολή Επεκτάσεων στο VS Code και εγκαταστήστε την. Μπορείτε να την κατεβάσετε απευθείας από το [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat). Στη συνέχεια, ανοίξτε το πάνελ Copilot Chat από την πλαϊνή μπάρα.
 
-   ![Βήμα 2: Άνοιγμα πάνελ Copilot Chat](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.el.png)
+   ![Βήμα 2: Άνοιγμα πάνελ Copilot Chat](../../../../../../translated_images/el/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
 
 3. **Ενεργοποιήστε τη λειτουργία agent και επαληθεύστε τα εργαλεία:**
    Στο πάνελ Copilot Chat, ενεργοποιήστε τη λειτουργία agent.
 
-   ![Βήμα 3: Ενεργοποίηση λειτουργίας agent και επαλήθευση εργαλείων](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.el.png)
+   ![Βήμα 3: Ενεργοποίηση λειτουργίας agent και επαλήθευση εργαλείων](../../../../../../translated_images/el/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
 
    Μετά την ενεργοποίηση της λειτουργίας agent, βεβαιωθείτε ότι ο MCP server εμφανίζεται ως ένα από τα διαθέσιμα εργαλεία. Αυτό διασφαλίζει ότι ο agent του Copilot μπορεί να έχει πρόσβαση στον server τεκμηρίωσης για να αντλήσει σχετικές πληροφορίες.
    
-   ![Βήμα 3: Επαλήθευση εργαλείου MCP server](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.el.png)
+   ![Βήμα 3: Επαλήθευση εργαλείου MCP server](../../../../../../translated_images/el/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
 4. **Ξεκινήστε μια νέα συνομιλία και δώστε εντολές στον agent:**
    Ανοίξτε μια νέα συνομιλία στο πάνελ Copilot Chat. Τώρα μπορείτε να δώσετε εντολές στον agent με τις ερωτήσεις σας για τεκμηρίωση. Ο agent θα χρησιμοποιήσει τον MCP server για να αντλήσει και να εμφανίσει σχετική τεκμηρίωση Microsoft Learn απευθείας στον επεξεργαστή σας.
 
    - *"Προσπαθώ να γράψω ένα σχέδιο μελέτης για το θέμα X. Θα το μελετήσω για 8 εβδομάδες, για κάθε εβδομάδα πρότεινε περιεχόμενο που θα πρέπει να καλύψω."*
 
-   ![Βήμα 4: Δώστε εντολή στον agent στη συνομιλία](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.el.png)
+   ![Βήμα 4: Δώστε εντολή στον agent στη συνομιλία](../../../../../../translated_images/el/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 5. **Ζωντανή Ερώτηση:**
 
@@ -81,7 +81,7 @@ CO_OP_TRANSLATOR_METADATA:
    *"Αναζητώ απαντήσεις για το πώς να αναπτύξω μια λύση με πολλούς agents με AI agents που έχουν αναπτυχθεί στο Azure AI Foundry. Βλέπω ότι δεν υπάρχει άμεσος τρόπος ανάπτυξης, όπως τα κανάλια Copilot Studio. Ποιες είναι οι διαφορετικές μέθοδοι για να γίνει αυτή η ανάπτυξη ώστε οι επιχειρησιακοί χρήστες να αλληλεπιδρούν και να ολοκληρώνουν τη δουλειά;
 Υπάρχουν πολλά άρθρα/μπλογκ που λένε ότι μπορούμε να χρησιμοποιήσουμε την υπηρεσία Azure Bot για αυτή τη δουλειά, η οποία μπορεί να λειτουργήσει ως γέφυρα μεταξύ MS Teams και Azure AI Foundry Agents. Θα λειτουργήσει αν ρυθμίσω ένα Azure bot που συνδέεται με τον Orchestrator Agent στο Azure AI Foundry μέσω Azure function για να εκτελέσει τον συντονισμό ή πρέπει να δημιουργήσω Azure function για κάθε AI agent που αποτελεί μέρος της λύσης πολλαπλών agents ώστε να γίνει ο συντονισμός στο Bot framework; Οποιεσδήποτε άλλες προτάσεις είναι ευπρόσδεκτες."*
 
-   ![Βήμα 5: Ζωντανές ερωτήσεις](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.el.png)
+   ![Βήμα 5: Ζωντανές ερωτήσεις](../../../../../../translated_images/el/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
 
    Ο agent θα απαντήσει με σχετικούς συνδέσμους τεκμηρίωσης και περιλήψεις, τις οποίες μπορείτε να εισάγετε απευθείας στα αρχεία markdown σας ή να χρησιμοποιήσετε ως αναφορές στον κώδικά σας.
    

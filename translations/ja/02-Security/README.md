@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP セキュリティ: AI システムの包括的保護
 
-[![MCP Security Best Practices](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.ja.png)](https://youtu.be/88No8pw706o)
+[![MCP Security Best Practices](../../../translated_images/ja/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(上の画像をクリックすると、このレッスンのビデオが表示されます)_
 
@@ -133,7 +133,7 @@ MCP 仕様は認証と認可のアプローチにおいて大きく進化して�
 
 **実際の影響**：これらの攻撃はデータ流出、プライバシー侵害、有害コンテンツの生成、ユーザーインタラクションの操作を引き起こす可能性があります。詳細な分析は [Prompt Injection in MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/) を参照してください。
 
-![Prompt Injection Attack Diagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.ja.png)
+![Prompt Injection Attack Diagram](../../../translated_images/ja/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **ツールポイズニング攻撃**
 
@@ -147,7 +147,7 @@ MCP 仕様は認証と認可のアプローチにおいて大きく進化して�
 
 **ホスト型サーバーのリスク**：リモート MCP サーバーは、ユーザー承認後にツール定義が更新される可能性があり、以前は安全だったツールが悪意のあるものになるシナリオを生み出します。詳細な分析は [Tool Poisoning Attacks (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks) を参照してください。
 
-![Tool Injection Attack Diagram](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.ja.png)
+![Tool Injection Attack Diagram](../../../translated_images/ja/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **その他の AI 攻撃ベクトル**
 
@@ -200,7 +200,7 @@ Microsoft の **AI Prompt Shields** は、直接的および間接的なプロ�
 
 **実装リソース**：[Microsoft Prompt Shields ドキュメント](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields Protection](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.ja.png)
+![Microsoft Prompt Shields Protection](../../../translated_images/ja/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## 高度な MCP セキュリティ脅威

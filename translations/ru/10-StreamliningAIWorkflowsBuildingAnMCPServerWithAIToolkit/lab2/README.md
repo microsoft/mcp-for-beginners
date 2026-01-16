@@ -203,7 +203,7 @@ Microsoft возглавляет экосистему MCP, предлагая п
    - **Имя**: `BrowserAgent`  
    - **Модель**: Выберите GPT-4o  
 
-![BrowserAgent](../../../../translated_images/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.ru.png)
+![BrowserAgent](../../../../translated_images/ru/BrowserAgent.09c1adde5e136573.webp)
 
 
 ### 🔧 Фаза 2: Интеграция MCP
@@ -213,7 +213,7 @@ Microsoft возглавляет экосистему MCP, предлагая п
 2. **Нажмите "Add Tool"** для открытия меню интеграций  
 3. **Выберите "MCP Server"** из доступных опций  
 
-![AddMCP](../../../../translated_images/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.ru.png)
+![AddMCP](../../../../translated_images/ru/AddMCP.afe3308ac20aa944.webp)
 
 **🔍 Понимание типов инструментов:**  
 - **Встроенные инструменты**: преднастроенные функции AI Toolkit  
@@ -223,10 +223,10 @@ Microsoft возглавляет экосистему MCP, предлагая п
 
 #### Шаг 4: Выбор MCP сервера
 1. **Выберите опцию "MCP Server"** для продолжения  
-![AddMCPServer](../../../../translated_images/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.ru.png)
+![AddMCPServer](../../../../translated_images/ru/AddMCPServer.69b911ccef872cbd.webp)
 
 2. **Просмотрите каталог MCP** для изучения доступных интеграций  
-![MCPCatalog](../../../../translated_images/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.ru.png)
+![MCPCatalog](../../../../translated_images/ru/MCPCatalog.a817d05314569900.webp)
 
 
 ### 🎮 Фаза 3: Конфигурация Playwright MCP
@@ -236,12 +236,12 @@ Microsoft возглавляет экосистему MCP, предлагая п
 2. **Выберите "Playwright"** из списка  
 3. **Примите стандартный MCP ID** или настройте под свою среду  
 
-![MCPID](../../../../translated_images/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.ru.png)
+![MCPID](../../../../translated_images/ru/MCPID.67d446052979e819.webp)
 
 #### Шаг 6: Включение возможностей Playwright
 **🔑 Важный шаг**: Выберите **ВСЕ** доступные методы Playwright для максимальной функциональности  
 
-![Tools](../../../../translated_images/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.ru.png)
+![Tools](../../../../translated_images/ru/Tools.3ea23c447b4d9fec.webp)
 
 **🛠️ Основные инструменты Playwright:**  
 - **Навигация**: `goto`, `goBack`, `goForward`, `reload`  
@@ -257,7 +257,7 @@ Microsoft возглавляет экосистему MCP, предлагая п
 - Нет сообщений об ошибках в панели интеграции  
 - Статус Playwright сервера показывает "Connected"  
 
-![AgentTools](../../../../translated_images/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.ru.png)
+![AgentTools](../../../../translated_images/ru/AgentTools.053cfb96a17e0219.webp)
 
 **🔧 Решение распространённых проблем:**  
 - **Ошибка подключения**: проверьте интернет и настройки брандмауэра  
@@ -323,7 +323,7 @@ Navigate to github.com/kinfey and provide a comprehensive analysis including:
 Include screenshots at key steps and provide actionable insights.
 ```
 
-![Prompt](../../../../translated_images/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.ru.png)
+![Prompt](../../../../translated_images/ru/Prompt.bfc846605db4999f.webp)
 
 ### 🚀 Фаза 5: Запуск и тестирование
 
@@ -335,19 +335,19 @@ Include screenshots at key steps and provide actionable insights.
    - Скриншоты фиксируют каждый важный шаг  
    - Результаты анализа выводятся в реальном времени  
 
-![Browser](../../../../translated_images/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.ru.png)
+![Browser](../../../../translated_images/ru/Browser.ec011d0bd64d0d11.webp)
 
 #### Шаг 11: Анализ результатов и выводы  
 Просмотрите подробный анализ в интерфейсе Agent Builder:  
 
-![Result](../../../../translated_images/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.ru.png)
+![Result](../../../../translated_images/ru/Result.8638f2b6703e9ea6.webp)
 
 ### 🌟 Фаза 6: Расширенные возможности и развертывание
 
 #### Шаг 12: Экспорт и развертывание в продакшен  
 Agent Builder поддерживает несколько вариантов развертывания:  
 
-![Code](../../../../translated_images/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.ru.png)
+![Code](../../../../translated_images/ru/Code.d9eeeead0b96db0c.webp)
 
 ## 🎓 Итоги Модуля 2 и дальнейшие шаги
 

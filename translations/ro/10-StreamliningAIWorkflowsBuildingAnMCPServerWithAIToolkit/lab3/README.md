@@ -64,7 +64,7 @@ Un instrument puternic de depanare care oferă:
 2. **Creează un agent nou** cu următoarea configurație:  
    - Nume agent: `WeatherAgent`
 
-![Agent Creation](../../../../translated_images/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.ro.png)
+![Agent Creation](../../../../translated_images/ro/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.png)
 
 ### Pasul 2: Inițializează Proiectul Server MCP
 
@@ -74,7 +74,7 @@ Un instrument puternic de depanare care oferă:
 4. **Selectează șablonul `python-weather`**  
 5. **Dă un nume serverului:** `weather_mcp`
 
-![Python Template Selection](../../../../translated_images/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.ro.png)
+![Python Template Selection](../../../../translated_images/ro/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.png)
 
 ### Pasul 3: Deschide și Examinează Proiectul
 
@@ -340,7 +340,7 @@ USER_PROMPT
 How's the weather like in Seattle
 ```
 
-![Agent Builder Debug Result](../../../../translated_images/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.ro.png)
+![Agent Builder Debug Result](../../../../translated_images/ro/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.png)
 
 ### Pasul 8: Depanare cu MCP Inspector
 
@@ -352,7 +352,7 @@ How's the weather like in Seattle
    - Monitorizează cererile de rețea  
    - Depanează răspunsurile serverului
 
-![MCP Inspector Interface](../../../../translated_images/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.ro.png)
+![MCP Inspector Interface](../../../../translated_images/ro/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.png)
 
 ---
 

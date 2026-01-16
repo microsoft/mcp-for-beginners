@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # ಕಾರ್ಯಾಚರಣೆಯಲ್ಲಿ MCP: ನೈಜ-ಜಗತ್ತಿನ ಪ್ರಕರಣ ಅಧ್ಯಯನಗಳು
 
-[![ಕಾರ್ಯಾಚರಣೆಯಲ್ಲಿ MCP: ನೈಜ-ಜಗತ್ತಿನ ಪ್ರಕರಣ ಅಧ್ಯಯನಗಳು](../../../translated_images/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.kn.png)](https://youtu.be/IxshWb2Az5w)
+[![ಕಾರ್ಯಾಚರಣೆಯಲ್ಲಿ MCP: ನೈಜ-ಜಗತ್ತಿನ ಪ್ರಕರಣ ಅಧ್ಯಯನಗಳು](../../../translated_images/kn/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.png)](https://youtu.be/IxshWb2Az5w)
 
 _(ಈ ಪಾಠದ ವೀಡಿಯೋವನ್ನು ವೀಕ್ಷಿಸಲು ಮೇಲಿನ ಚಿತ್ರವನ್ನು ಕ್ಲಿಕ್ ಮಾಡಿ)_
 

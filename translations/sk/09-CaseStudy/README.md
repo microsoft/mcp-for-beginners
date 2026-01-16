@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP v praxi: Prípadové štúdie z reálneho sveta
 
-[![MCP v praxi: Prípadové štúdie z reálneho sveta](../../../translated_images/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.sk.png)](https://youtu.be/IxshWb2Az5w)
+[![MCP v praxi: Prípadové štúdie z reálneho sveta](../../../translated_images/sk/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.png)](https://youtu.be/IxshWb2Az5w)
 
 _(Kliknite na obrázok vyššie pre zobrazenie videa k tejto lekcii)_
 

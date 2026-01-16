@@ -203,7 +203,7 @@ graph TB
    - **שם**: `BrowserAgent`  
    - **דגם**: בחר GPT-4o  
 
-![BrowserAgent](../../../../translated_images/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.he.png)
+![BrowserAgent](../../../../translated_images/he/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.png)
 
 
 ### 🔧 שלב 2: תהליך אינטגרציית MCP
@@ -213,7 +213,7 @@ graph TB
 2. **לחץ על "Add Tool"** כדי לפתוח את תפריט האינטגרציה  
 3. **בחר "MCP Server"** מתוך האפשרויות הזמינות  
 
-![AddMCP](../../../../translated_images/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.he.png)
+![AddMCP](../../../../translated_images/he/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.png)
 
 **🔍 הבנת סוגי כלים:**  
 - **כלים מובנים**: פונקציות AI Toolkit מוגדרות מראש  
@@ -223,10 +223,10 @@ graph TB
 
 #### שלב 4: בחירת שרת MCP  
 1. **בחר באפשרות "MCP Server"** להמשך  
-![AddMCPServer](../../../../translated_images/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.he.png)
+![AddMCPServer](../../../../translated_images/he/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.png)
 
 2. **עיין בקטלוג MCP** כדי לבדוק את האינטגרציות הזמינות  
-![MCPCatalog](../../../../translated_images/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.he.png)
+![MCPCatalog](../../../../translated_images/he/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.png)
 
 
 ### 🎮 שלב 3: הגדרת Playwright MCP
@@ -236,12 +236,12 @@ graph TB
 2. **בחר "Playwright"** מהרשימה המובחרת  
 3. **אשר את מזהה ה-MCP ברירת המחדל** או התאם לסביבתך  
 
-![MCPID](../../../../translated_images/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.he.png)
+![MCPID](../../../../translated_images/he/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.png)
 
 #### שלב 6: הפעל את יכולות Playwright  
 **🔑 שלב קריטי**: בחר **את כל** שיטות Playwright הזמינות למקסימום פונקציונליות  
 
-![Tools](../../../../translated_images/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.he.png)
+![Tools](../../../../translated_images/he/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.png)
 
 **🛠️ כלים חיוניים של Playwright:**  
 - **ניווט**: `goto`, `goBack`, `goForward`, `reload`  
@@ -257,7 +257,7 @@ graph TB
 - אין הודעות שגיאה בפאנל האינטגרציה  
 - סטטוס שרת Playwright מציג "Connected"  
 
-![AgentTools](../../../../translated_images/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.he.png)
+![AgentTools](../../../../translated_images/he/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.png)
 
 **🔧 פתרון בעיות נפוצות:**  
 - **כשל בחיבור**: בדוק את חיבור האינטרנט והגדרות חומת האש  
@@ -323,7 +323,7 @@ Navigate to github.com/kinfey and provide a comprehensive analysis including:
 Include screenshots at key steps and provide actionable insights.
 ```
 
-![Prompt](../../../../translated_images/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.he.png)
+![Prompt](../../../../translated_images/he/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.png)
 
 ### 🚀 שלב 5: ביצוע ובדיקה
 
@@ -335,19 +335,19 @@ Include screenshots at key steps and provide actionable insights.
    - צילומי מסך מתועדים בכל שלב מרכזי  
    - תוצאות הניתוח זורמות בזמן אמת  
 
-![Browser](../../../../translated_images/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.he.png)
+![Browser](../../../../translated_images/he/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.png)
 
 #### שלב 11: נתח תוצאות ותובנות  
 סקור ניתוח מקיף בממשק Agent Builder:
 
-![Result](../../../../translated_images/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.he.png)
+![Result](../../../../translated_images/he/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.png)
 
 ### 🌟 שלב 6: יכולות מתקדמות ופריסה
 
 #### שלב 12: ייצא ופרוס לפרודקשן  
 Agent Builder תומך באפשרויות פריסה מגוונות:
 
-![Code](../../../../translated_images/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.he.png)
+![Code](../../../../translated_images/he/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.png)
 
 ## 🎓 סיכום מודול 2 ושלבים הבאים
 

@@ -202,7 +202,7 @@ Poleg Microsoftovih strežnikov MCP ekosistem vključuje:
    - **Ime**: `BrowserAgent`
    - **Model**: Izberite GPT-4o
 
-![BrowserAgent](../../../../translated_images/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.sl.png)
+![BrowserAgent](../../../../translated_images/sl/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.png)
 
 ### 🔧 Faza 2: Delovni tok integracije MCP
 
@@ -211,7 +211,7 @@ Poleg Microsoftovih strežnikov MCP ekosistem vključuje:
 2. **Kliknite "Add Tool"** za odprtje menija integracij
 3. **Izberite "MCP Server"** med razpoložljivimi možnostmi
 
-![AddMCP](../../../../translated_images/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.sl.png)
+![AddMCP](../../../../translated_images/sl/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.png)
 
 **🔍 Razumevanje vrst orodij:**
 - **Vgrajena orodja**: Prednastavljene funkcije AI Toolkita
@@ -221,10 +221,10 @@ Poleg Microsoftovih strežnikov MCP ekosistem vključuje:
 
 #### Korak 4: Izbira MCP strežnika
 1. **Izberite možnost "MCP Server"** za nadaljevanje  
-![AddMCPServer](../../../../translated_images/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.sl.png)
+![AddMCPServer](../../../../translated_images/sl/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.png)
 
 2. **Prebrskajte MCP katalog** za razpoložljive integracije  
-![MCPCatalog](../../../../translated_images/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.sl.png)
+![MCPCatalog](../../../../translated_images/sl/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.png)
 
 ### 🎮 Faza 3: Konfiguracija Playwright MCP
 
@@ -233,12 +233,12 @@ Poleg Microsoftovih strežnikov MCP ekosistem vključuje:
 2. **Izberite "Playwright"** s seznama
 3. **Sprejmite privzeti MCP ID** ali prilagodite za svoje okolje
 
-![MCPID](../../../../translated_images/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.sl.png)
+![MCPID](../../../../translated_images/sl/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.png)
 
 #### Korak 6: Omogočite Playwright zmogljivosti
 **🔑 Ključni korak**: Izberite **VSE** razpoložljive Playwright metode za maksimalno funkcionalnost
 
-![Tools](../../../../translated_images/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.sl.png)
+![Tools](../../../../translated_images/sl/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.png)
 
 **🛠️ Ključna Playwright orodja:**
 - **Navigacija**: `goto`, `goBack`, `goForward`, `reload`
@@ -254,7 +254,7 @@ Poleg Microsoftovih strežnikov MCP ekosistem vključuje:
 - Brez sporočil o napakah v integracijskem panelu
 - Status Playwright strežnika kaže "Connected"
 
-![AgentTools](../../../../translated_images/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.sl.png)
+![AgentTools](../../../../translated_images/sl/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.png)
 
 **🔧 Pogoste težave in rešitve:**
 - **Povezava ni uspela**: Preverite internetno povezavo in nastavitve požarnega zidu
@@ -320,7 +320,7 @@ Navigate to github.com/kinfey and provide a comprehensive analysis including:
 Include screenshots at key steps and provide actionable insights.
 ```
 
-![Prompt](../../../../translated_images/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.sl.png)
+![Prompt](../../../../translated_images/sl/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.png)
 
 ### 🚀 Faza 5: Izvedba in testiranje
 
@@ -332,19 +332,19 @@ Include screenshots at key steps and provide actionable insights.
    - Posnetki zaslona zajamejo vsak pomemben korak
    - Rezultati analize se prikažejo sproti
 
-![Browser](../../../../translated_images/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.sl.png)
+![Browser](../../../../translated_images/sl/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.png)
 
 #### Korak 11: Analizirajte rezultate in vpoglede
 Preglejte podrobno analizo v vmesniku Agent Builderja:
 
-![Result](../../../../translated_images/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.sl.png)
+![Result](../../../../translated_images/sl/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.png)
 
 ### 🌟 Faza 6: Napredne zmogljivosti in namestitev
 
 #### Korak 12: Izvoz in produkcijska namestitev
 Agent Builder podpira več možnosti namestitve:
 
-![Code](../../../../translated_images/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.sl.png)
+![Code](../../../../translated_images/sl/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.png)
 
 ## 🎓 Povzetek modula 2 in nadaljnji koraki
 

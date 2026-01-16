@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP 실전 사례: 실제 사례 연구
 
-[![MCP 실전 사례: 실제 사례 연구](../../../translated_images/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.ko.png)](https://youtu.be/IxshWb2Az5w)
+[![MCP 실전 사례: 실제 사례 연구](../../../translated_images/ko/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.png)](https://youtu.be/IxshWb2Az5w)
 
 _(위 이미지를 클릭하면 이 강의의 동영상을 볼 수 있습니다)_
 

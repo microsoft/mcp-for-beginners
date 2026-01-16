@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP v praksi: Študije primerov iz resničnega sveta
 
-[![MCP v praksi: Študije primerov iz resničnega sveta](../../../translated_images/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.sl.png)](https://youtu.be/IxshWb2Az5w)
+[![MCP v praksi: Študije primerov iz resničnega sveta](../../../translated_images/sl/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.png)](https://youtu.be/IxshWb2Az5w)
 
 _(Kliknite na zgornjo sliko za ogled videa te lekcije)_
 

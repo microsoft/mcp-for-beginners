@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP-beveiliging: Uitgebreide bescherming voor AI-systemen
 
-[![MCP Security Best Practices](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.nl.png)](https://youtu.be/88No8pw706o)
+[![MCP Security Best Practices](../../../translated_images/nl/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(Klik op de afbeelding hierboven om de video van deze les te bekijken)_
 
@@ -133,7 +133,7 @@ Moderne MCP-implementaties worden geconfronteerd met geavanceerde AI-specifieke 
 
 **Reële impact**: Deze aanvallen kunnen leiden tot datalekken, privacyschendingen, generatie van schadelijke content en manipulatie van gebruikersinteracties. Voor gedetailleerde analyse, zie [Prompt Injection in MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
-![Prompt Injection Attack Diagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.nl.png)
+![Prompt Injection Attack Diagram](../../../translated_images/nl/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **Toolvergiftiging-aanvallen**
 
@@ -147,7 +147,7 @@ Moderne MCP-implementaties worden geconfronteerd met geavanceerde AI-specifieke 
 
 **Risico’s bij gehoste servers**: Externe MCP-servers brengen verhoogde risico’s met zich mee omdat tooldefinities na initiële gebruikersgoedkeuring kunnen worden bijgewerkt, waardoor scenario’s ontstaan waarin eerder veilige tools kwaadaardig worden. Voor uitgebreide analyse, zie [Tool Poisoning Attacks (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
-![Tool Injection Attack Diagram](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.nl.png)
+![Tool Injection Attack Diagram](../../../translated_images/nl/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **Aanvullende AI-aanvalsvectoren**
 
@@ -200,7 +200,7 @@ Microsoft **AI Prompt Shields** bieden uitgebreide verdediging tegen zowel direc
 
 **Implementatieresources**: [Microsoft Prompt Shields Documentatie](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields Protection](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.nl.png)
+![Microsoft Prompt Shields Protection](../../../translated_images/nl/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## Geavanceerde MCP-beveiligingsbedreigingen

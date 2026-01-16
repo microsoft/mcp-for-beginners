@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 โปรเจกต์นี้แสดงตัวอย่างเว็บแอปพลิเคชันที่ใช้การตรวจสอบความปลอดภัยของเนื้อหาก่อนส่งคำสั่งจากผู้ใช้ไปยังบริการเครื่องคิดเลขผ่าน Model Context Protocol (MCP)
 
-![System Architecture Diagram](../../../../../../translated_images/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.th.png)
+![System Architecture Diagram](../../../../../../translated_images/th/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.png)
 
 ### วิธีการทำงาน
 

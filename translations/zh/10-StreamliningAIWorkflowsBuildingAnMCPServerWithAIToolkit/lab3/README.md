@@ -66,7 +66,7 @@ Model Context Protocol Python SDK 是构建自定义 MCP 服务器的基础。�
 2. **创建一个新代理**，配置如下：
    - 代理名称：`WeatherAgent`
 
-![Agent Creation](../../../../translated_images/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.zh.png)
+![Agent Creation](../../../../translated_images/zh/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.png)
 
 ### 第 2 步：初始化 MCP 服务器项目
 
@@ -76,7 +76,7 @@ Model Context Protocol Python SDK 是构建自定义 MCP 服务器的基础。�
 4. **选择 `python-weather` 模板**
 5. **为服务器命名：** `weather_mcp`
 
-![Python Template Selection](../../../../translated_images/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.zh.png)
+![Python Template Selection](../../../../translated_images/zh/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.png)
 
 ### 第 3 步：打开并检查项目
 
@@ -342,7 +342,7 @@ USER_PROMPT
 How's the weather like in Seattle
 ```
 
-![Agent Builder Debug Result](../../../../translated_images/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.zh.png)
+![Agent Builder Debug Result](../../../../translated_images/zh/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.png)
 
 ### 第 8 步：使用 MCP Inspector 调试
 
@@ -354,7 +354,7 @@ How's the weather like in Seattle
    - 监控网络请求
    - 调试服务器响应
 
-![MCP Inspector Interface](../../../../translated_images/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.zh.png)
+![MCP Inspector Interface](../../../../translated_images/zh/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.png)
 
 ---
 

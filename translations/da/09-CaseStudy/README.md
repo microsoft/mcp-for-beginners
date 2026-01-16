@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP i Aktion: Virkelige Eksempler
 
-[![MCP i Aktion: Virkelige Eksempler](../../../translated_images/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.da.png)](https://youtu.be/IxshWb2Az5w)
+[![MCP i Aktion: Virkelige Eksempler](../../../translated_images/da/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.png)](https://youtu.be/IxshWb2Az5w)
 
 _(Klik på billedet ovenfor for at se videoen til denne lektion)_
 

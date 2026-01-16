@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Сообщество и вклад
 
-[![Как внести вклад в MCP: инструменты, документация, код и многое другое](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.ru.png)](https://youtu.be/v1pvCYAWpRE)
+[![Как внести вклад в MCP: инструменты, документация, код и многое другое](../../../translated_images/ru/07.1179f6de46ff196e.webp)](https://youtu.be/v1pvCYAWpRE)
 
 _(Нажмите на изображение выше, чтобы посмотреть видео этого урока)_
 

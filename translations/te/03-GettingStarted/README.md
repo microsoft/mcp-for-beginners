@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 ## ప్రారంభం  
 
-[![మీ మొదటి MCP సర్వర్‌ను నిర్మించండి](../../../translated_images/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.te.png)](https://youtu.be/sNDZO9N4m9Y)
+[![మీ మొదటి MCP సర్వర్‌ను నిర్మించండి](../../../translated_images/te/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.png)](https://youtu.be/sNDZO9N4m9Y)
 
 _(ఈ పాఠం వీడియోను చూడడానికి పై చిత్రాన్ని క్లిక్ చేయండి)_
 

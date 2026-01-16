@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Advanced Topics in MCP
 
-[![Advanced MCP: Secure, Scalable, and Multi-modal AI Agents](../../../translated_images/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.en.png)](https://youtu.be/4yjmGvJzYdY)
+[![Advanced MCP: Secure, Scalable, and Multi-modal AI Agents](../../../translated_images/en/06.42259eaf91fccfc6.webp)](https://youtu.be/4yjmGvJzYdY)
 
 _(Click the image above to watch the video for this lesson)_
 

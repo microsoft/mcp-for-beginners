@@ -48,7 +48,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 Lệnh trên khởi động MCP cùng giao diện trực quan và mở giao diện web cục bộ trên trình duyệt của bạn. Bạn sẽ thấy một bảng điều khiển hiển thị các server MCP đã đăng ký, các công cụ, tài nguyên và lời nhắc có sẵn. Giao diện cho phép bạn tương tác kiểm thử thực thi công cụ, kiểm tra metadata server và xem phản hồi theo thời gian thực, giúp việc xác thực và gỡ lỗi các triển khai MCP trở nên dễ dàng hơn.
 
-Giao diện có thể trông như thế này: ![Inspector](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.vi.png)
+Giao diện có thể trông như thế này: ![Inspector](../../../../translated_images/vi/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 Bạn cũng có thể chạy công cụ này ở chế độ CLI bằng cách thêm thuộc tính `--cli`. Ví dụ dưới đây chạy công cụ ở chế độ "CLI" liệt kê tất cả các công cụ trên server:
 

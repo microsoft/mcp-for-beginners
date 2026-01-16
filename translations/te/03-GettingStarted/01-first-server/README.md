@@ -156,7 +156,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 ఇది ఎలా కనిపించవచ్చో ఒక స్క్రీన్‌షాట్ ఇక్కడ ఉంది:
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.te.png)
+![MCP Inspector server connection](../../../../translated_images/te/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## సాధారణ సెటప్ సమస్యలు మరియు పరిష్కారాలు
 
@@ -1144,7 +1144,7 @@ inspector వెబ్ ఇంటర్‌ఫేస్‌లో:
 2. URL ను ఇలా సెట్ చేయండి: `http://localhost:8080/sse`
 3. "Connect" పై క్లిక్ చేయండి
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.te.png)
+![Connect](../../../../translated_images/te/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **మీరు ఇప్పుడు సర్వర్‌కు కనెక్ట్ అయ్యారు**
 **Java సర్వర్ టెస్టింగ్ సెక్షన్ ఇప్పుడు పూర్తయింది**
@@ -1153,18 +1153,18 @@ inspector వెబ్ ఇంటర్‌ఫేస్‌లో:
 
 మీకు క్రింది యూజర్ ఇంటర్‌ఫేస్ కనిపించాలి:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.te.png)
+![Connect](../../../../translated_images/te/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. Connect బటన్ ఎంచుకుని సర్వర్‌కు కనెక్ట్ అవ్వండి
   సర్వర్‌కు కనెక్ట్ అయిన తర్వాత, మీరు క్రింది దాన్ని చూడగలరు:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.te.png)
+  ![Connected](../../../../translated_images/te/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. "Tools" మరియు "listTools" ఎంచుకోండి, "Add" కనిపించాలి, "Add" ఎంచుకుని పారామీటర్ విలువలు పూరించండి.
 
   మీరు క్రింది ప్రతిస్పందనను చూడగలరు, అంటే "add" టూల్ నుండి ఫలితం:
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.te.png)
+  ![Result of running add](../../../../translated_images/te/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 అభినందనలు, మీరు మీ మొదటి సర్వర్‌ను సృష్టించి నడిపించగలిగారు!
 

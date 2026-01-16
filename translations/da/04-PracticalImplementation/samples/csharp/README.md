@@ -26,7 +26,7 @@ De andre projekter kommer fra [.NET Aspire](https://learn.microsoft.com/dotnet/a
 
 1. Når en webbrowser åbner .NET Aspire-dashboardet, bemærk `http`-URL’en. Den burde være noget i stil med `http://localhost:5058/`.
 
-   ![.NET Aspire Dashboard](../../../../../translated_images/dotnet-aspire-dashboard.0a7095710e9301e90df2efd867e1b675b3b9bc2ccd7feb1ebddc0751522bc37c.da.png)
+   ![.NET Aspire Dashboard](../../../../../translated_images/da/dotnet-aspire-dashboard.0a7095710e9301e90df2efd867e1b675b3b9bc2ccd7feb1ebddc0751522bc37c.png)
 
 ## Test Streamable HTTP med MCP Inspector
 
@@ -38,7 +38,7 @@ Start serveren og kør følgende kommando i en terminal:
 npx @modelcontextprotocol/inspector http://localhost:5058
 ```
 
-![MCP Inspector](../../../../../translated_images/mcp-inspector.c223422b9b494fb4a518a3b3911b3e708e6a5715069470f9163ee2ee8d5f1ba9.da.png)
+![MCP Inspector](../../../../../translated_images/da/mcp-inspector.c223422b9b494fb4a518a3b3911b3e708e6a5715069470f9163ee2ee8d5f1ba9.png)
 
 - Vælg `Streamable HTTP` som transporttype.
 - Indtast URL’en til serveren, som du noterede tidligere, i feltet Url, og tilføj `/mcp`. Det skal være `http` (ikke `https`), noget i stil med `http://localhost:5058/mcp`.
@@ -83,7 +83,7 @@ azd up
 
 Når deployment er færdig, skulle du gerne se en besked som denne:
 
-![Azd deployment success](../../../../../translated_images/azd-deployment-success.bd42940493f1b834a5ce6251a6f88966546009b350df59d0cc4a8caabe94a4f1.da.png)
+![Azd deployment success](../../../../../translated_images/da/azd-deployment-success.bd42940493f1b834a5ce6251a6f88966546009b350df59d0cc4a8caabe94a4f1.png)
 
 Tag URL’en og brug den i MCP Inspector og i GitHub Copilot Chat.
 

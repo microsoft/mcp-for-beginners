@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP у дії: реальні приклади
 
-[![MCP у дії: реальні приклади](../../../translated_images/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.uk.png)](https://youtu.be/IxshWb2Az5w)
+[![MCP у дії: реальні приклади](../../../translated_images/uk/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.png)](https://youtu.be/IxshWb2Az5w)
 
 _(Натисніть на зображення вище, щоб переглянути відео цього уроку)_
 

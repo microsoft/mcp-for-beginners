@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP భద్రత: AI వ్యవస్థల కోసం సమగ్ర రక్షణ
 
-[![MCP Security Best Practices](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.te.png)](https://youtu.be/88No8pw706o)
+[![MCP Security Best Practices](../../../translated_images/te/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(ఈ పాఠం వీడియోను చూడడానికి పై చిత్రాన్ని క్లిక్ చేయండి)_
 
@@ -134,7 +134,7 @@ MCP స్పెసిఫికేషన్ ప్రామాణీకరణ �
 
 **వాస్తవ ప్రపంచ ప్రభావం**: ఈ దాడులు డేటా ఎగుమతి, గోప్యత ఉల్లంఘనలు, హానికరమైన కంటెంట్ ఉత్పత్తి, మరియు వినియోగదారుల పరస్పర చర్యల మానిప్యులేషన్‌కు దారితీస్తాయి. వివరమైన విశ్లేషణ కోసం [Prompt Injection in MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/) చూడండి.
 
-![Prompt Injection Attack Diagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.te.png)
+![Prompt Injection Attack Diagram](../../../translated_images/te/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **టూల్ విషపూరణ దాడులు**
 
@@ -148,7 +148,7 @@ MCP స్పెసిఫికేషన్ ప్రామాణీకరణ �
 
 **హోస్టెడ్ సర్వర్ ప్రమాదాలు**: రిమోట్ MCP సర్వర్లు అధిక ప్రమాదాలను కలిగి ఉంటాయి, ఎందుకంటే టూల్ నిర్వచనాలు ప్రారంభ వినియోగదారు ఆమోదం తర్వాత కూడా నవీకరించబడవచ్చు, ఇది ముందుగా సురక్షితమైన టూల్‌లు దుష్టంగా మారే పరిస్థితులను సృష్టిస్తుంది. సమగ్ర విశ్లేషణ కోసం [Tool Poisoning Attacks (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks) చూడండి.
 
-![Tool Injection Attack Diagram](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.te.png)
+![Tool Injection Attack Diagram](../../../translated_images/te/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **అదనపు AI దాడి దిశలు**
 
@@ -201,7 +201,7 @@ Microsoft **AI Prompt Shields** ప్రత్యక్ష మరియు ప�
 
 **అమలు వనరులు**: [Microsoft Prompt Shields Documentation](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields Protection](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.te.png)
+![Microsoft Prompt Shields Protection](../../../translated_images/te/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## అధునాతన MCP భద్రతా ముప్పులు

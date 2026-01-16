@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Основные концепции MCP: Освоение протокола Model Context для интеграции ИИ
 
-[![Основные концепции MCP](../../../translated_images/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.ru.png)](https://youtu.be/earDzWGtE84)
+[![Основные концепции MCP](../../../translated_images/ru/02.8203e26c6fb5a797.webp)](https://youtu.be/earDzWGtE84)
 
 _(Нажмите на изображение выше, чтобы посмотреть видео этого урока)_
 

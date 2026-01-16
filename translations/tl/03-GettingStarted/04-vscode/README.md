@@ -38,9 +38,9 @@ Maaari mong kontrolin ang iyong MCP server sa dalawang paraan:
 
 ### Mga Screenshot
 
-![Guided MCP server configuration sa Visual Studio Code](../../../../translated_images/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.tl.png)
-![Pagpili ng tool sa bawat session ng agent](../../../../translated_images/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.tl.png)
-![Madaling i-debug ang mga error sa panahon ng MCP development](../../../../translated_images/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.tl.png)
+![Guided MCP server configuration sa Visual Studio Code](../../../../translated_images/tl/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.png)
+![Pagpili ng tool sa bawat session ng agent](../../../../translated_images/tl/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.png)
+![Madaling i-debug ang mga error sa panahon ng MCP development](../../../../translated_images/tl/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.png)
 
 Pag-usapan natin nang mas detalyado kung paano gamitin ang visual interface sa mga susunod na seksyon.
 
@@ -103,15 +103,15 @@ Ngayong naidagdag mo na ang entry, simulan ang server:
 
 1. Hanapin ang iyong entry sa *mcp.json* at tiyaking makita ang "play" icon:
 
-  ![Pagsisimula ng server sa Visual Studio Code](../../../../translated_images/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.tl.png)  
+  ![Pagsisimula ng server sa Visual Studio Code](../../../../translated_images/tl/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.png)  
 
 1. I-click ang "play" icon, dapat mong makita ang tools icon sa GitHub Copilot Chat na nadagdagan ang bilang ng mga available na tool. Kung i-click mo ang tools icon, makikita mo ang listahan ng mga nakarehistrong tool. Maaari mong i-check/uncheck ang bawat tool depende kung gusto mong gamitin ito ng GitHub Copilot bilang context:
 
-  ![Pagsisimula ng server sa Visual Studio Code](../../../../translated_images/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.tl.png)
+  ![Pagsisimula ng server sa Visual Studio Code](../../../../translated_images/tl/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.png)
 
 1. Upang patakbuhin ang isang tool, mag-type ng prompt na alam mong tumutugma sa deskripsyon ng isa sa iyong mga tool, halimbawa isang prompt na ganito "add 22 to 1":
 
-  ![Pagpapatakbo ng tool mula sa GitHub Copilot](../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.tl.png)
+  ![Pagpapatakbo ng tool mula sa GitHub Copilot](../../../../translated_images/tl/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
   Dapat kang makakita ng sagot na nagsasabing 23.
 

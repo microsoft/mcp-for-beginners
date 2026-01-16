@@ -77,7 +77,7 @@ CO_OP_TRANSLATOR_METADATA:
 
     మీరు చాట్ టెక్స్ట్ బాక్స్ పై భాగంలో టూల్ ప్రదర్శించబడుతున్నదని చూడగలుగుతారు, ఇది మీరు టూల్ నడపడానికి ఎంచుకోవాలని సూచిస్తుంది, ఈ దృశ్యంలా:
 
-    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.te.png)
+    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/te/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
     మీరు ఎంచుకున్న టూల్ "23" అనే సంఖ్యాత్మక ఫలితాన్ని ఉత్పత్తి చేయాలి, మీరు ముందుగా చెప్పినట్లుగా ప్రాంప్ట్ ఉంటే.
 

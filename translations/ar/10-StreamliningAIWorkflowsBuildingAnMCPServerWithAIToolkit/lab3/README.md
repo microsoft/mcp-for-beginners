@@ -65,7 +65,7 @@ CO_OP_TRANSLATOR_METADATA:
 2. **أنشئ وكيلًا جديدًا** بالتكوين التالي:  
    - اسم الوكيل: `WeatherAgent`
 
-![إنشاء الوكيل](../../../../translated_images/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.ar.png)
+![إنشاء الوكيل](../../../../translated_images/ar/Agent.c9c33f6a412b4cde.webp)
 
 ### الخطوة 2: تهيئة مشروع خادم MCP
 
@@ -75,7 +75,7 @@ CO_OP_TRANSLATOR_METADATA:
 4. **اختر قالب `python-weather`**  
 5. **سمِّ خادمك:** `weather_mcp`
 
-![اختيار قالب بايثون](../../../../translated_images/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.ar.png)
+![اختيار قالب بايثون](../../../../translated_images/ar/Pythontemplate.9d0a2913c6491500.webp)
 
 ### الخطوة 3: افتح وراجع المشروع
 
@@ -341,7 +341,7 @@ USER_PROMPT
 How's the weather like in Seattle
 ```
 
-![نتيجة تصحيح Agent Builder](../../../../translated_images/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.ar.png)
+![نتيجة تصحيح Agent Builder](../../../../translated_images/ar/Result.6ac570f7d2b1d538.webp)
 
 ### الخطوة 8: التصحيح باستخدام MCP Inspector
 
@@ -353,7 +353,7 @@ How's the weather like in Seattle
    - مراقبة طلبات الشبكة  
    - تصحيح استجابات الخادم  
 
-![واجهة MCP Inspector](../../../../translated_images/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.ar.png)
+![واجهة MCP Inspector](../../../../translated_images/ar/Inspector.5672415cd02fe873.webp)
 
 ---
 

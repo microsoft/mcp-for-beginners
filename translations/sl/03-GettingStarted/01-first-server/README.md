@@ -156,7 +156,7 @@ Ko zaženete zgornje ukaze, bo MCP Inspector zagnal lokalni spletni vmesnik v va
 
 Tukaj je posnetek zaslona, kako lahko izgleda:
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.sl.png)
+![MCP Inspector server connection](../../../../translated_images/sl/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## Pogoste težave pri nastavitvi in rešitve
 
@@ -1302,7 +1302,7 @@ V spletni vmesnik inšpektorja:
 2. Nastavite URL na: `http://localhost:8080/sse`
 3. Kliknite "Connect"
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.sl.png)
+![Connect](../../../../translated_images/sl/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **Zdaj ste povezani s strežnikom**
 **Oddelek za testiranje Java strežnika je zdaj zaključen**
@@ -1311,18 +1311,18 @@ Naslednji oddelek govori o interakciji s strežnikom.
 
 Videti bi morali naslednji uporabniški vmesnik:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.sl.png)
+![Connect](../../../../translated_images/sl/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. Povežite se s strežnikom s klikom na gumb Connect
   Ko se povežete s strežnikom, bi morali zdaj videti naslednje:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.sl.png)
+  ![Connected](../../../../translated_images/sl/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. Izberite "Tools" in "listTools", morali bi videti "Add", izberite "Add" in izpolnite vrednosti parametrov.
 
   Videli boste naslednji odgovor, tj. rezultat orodja "add":
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.sl.png)
+  ![Result of running add](../../../../translated_images/sl/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 Čestitke, uspelo vam je ustvariti in zagnati svoj prvi strežnik!
 

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP i praktiken: Fallstudier från verkligheten
 
-[![MCP i praktiken: Fallstudier från verkligheten](../../../translated_images/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.sv.png)](https://youtu.be/IxshWb2Az5w)
+[![MCP i praktiken: Fallstudier från verkligheten](../../../translated_images/sv/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.png)](https://youtu.be/IxshWb2Az5w)
 
 _(Klicka på bilden ovan för att se videon till denna lektion)_
 

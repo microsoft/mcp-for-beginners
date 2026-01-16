@@ -110,7 +110,7 @@ Let me know if you want module-specific recommendations or need more customized 
 
 Nižšie je uvedený minimálny ukážkový príklad riešenia. Kompletný kód a podrobnosti nájdete v priečinku riešenia.
 
-![Prehľad scenára 2](../../../../translated_images/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.sk.png)
+![Prehľad scenára 2](../../../../translated_images/sk/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.png)
 
 <details>
 <summary>Python (Chainlit)</summary>
@@ -167,7 +167,7 @@ Tu je príklad, ako nastaviť MCP server vo VS Code:
 
 > Pre podrobný návod s obrázkami a krok za krokom pozrite [`README.md`](./solution/scenario3/README.md).
 
-![Prehľad scenára 3](../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.sk.png)
+![Prehľad scenára 3](../../../../translated_images/sk/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 Tento prístup je ideálny pre každého, kto vytvára technické kurzy, píše dokumentáciu alebo vyvíja kód s častými potrebami odkazovania.
 

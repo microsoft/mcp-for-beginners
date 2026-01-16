@@ -202,7 +202,7 @@ Ngoài các máy chủ của Microsoft, hệ sinh thái MCP còn bao gồm:
    - **Tên**: `BrowserAgent`  
    - **Model**: Chọn GPT-4o  
 
-![BrowserAgent](../../../../translated_images/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.vi.png)
+![BrowserAgent](../../../../translated_images/vi/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.png)
 
 ### 🔧 Giai đoạn 2: Quy trình tích hợp MCP
 
@@ -211,7 +211,7 @@ Ngoài các máy chủ của Microsoft, hệ sinh thái MCP còn bao gồm:
 2. **Nhấn "Add Tool"** để mở menu tích hợp  
 3. **Chọn "MCP Server"** trong các tùy chọn có sẵn  
 
-![AddMCP](../../../../translated_images/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.vi.png)
+![AddMCP](../../../../translated_images/vi/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.png)
 
 **🔍 Hiểu về các loại công cụ:**  
 - **Built-in Tools**: Các chức năng AI Toolkit được cấu hình sẵn  
@@ -221,10 +221,10 @@ Ngoài các máy chủ của Microsoft, hệ sinh thái MCP còn bao gồm:
 
 #### Bước 4: Chọn máy chủ MCP
 1. **Chọn tùy chọn "MCP Server"** để tiếp tục  
-![AddMCPServer](../../../../translated_images/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.vi.png)
+![AddMCPServer](../../../../translated_images/vi/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.png)
 
 2. **Duyệt danh mục MCP** để khám phá các tích hợp có sẵn  
-![MCPCatalog](../../../../translated_images/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.vi.png)
+![MCPCatalog](../../../../translated_images/vi/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.png)
 
 ### 🎮 Giai đoạn 3: Cấu hình Playwright MCP
 
@@ -233,12 +233,12 @@ Ngoài các máy chủ của Microsoft, hệ sinh thái MCP còn bao gồm:
 2. **Chọn "Playwright"** trong danh sách nổi bật  
 3. **Chấp nhận MCP ID mặc định** hoặc tùy chỉnh theo môi trường của bạn  
 
-![MCPID](../../../../translated_images/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.vi.png)
+![MCPID](../../../../translated_images/vi/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.png)
 
 #### Bước 6: Kích hoạt các khả năng của Playwright
 **🔑 Bước quan trọng**: Chọn **TẤT CẢ** các phương thức Playwright có sẵn để có chức năng tối đa  
 
-![Tools](../../../../translated_images/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.vi.png)
+![Tools](../../../../translated_images/vi/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.png)
 
 **🛠️ Các công cụ Playwright thiết yếu:**  
 - **Điều hướng**: `goto`, `goBack`, `goForward`, `reload`  
@@ -254,7 +254,7 @@ Ngoài các máy chủ của Microsoft, hệ sinh thái MCP còn bao gồm:
 - Không có thông báo lỗi trong bảng tích hợp  
 - Trạng thái máy chủ Playwright hiển thị "Connected"  
 
-![AgentTools](../../../../translated_images/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.vi.png)
+![AgentTools](../../../../translated_images/vi/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.png)
 
 **🔧 Khắc phục sự cố phổ biến:**  
 - **Kết nối thất bại**: Kiểm tra kết nối internet và cài đặt tường lửa  
@@ -320,7 +320,7 @@ Navigate to github.com/kinfey and provide a comprehensive analysis including:
 Include screenshots at key steps and provide actionable insights.
 ```
 
-![Prompt](../../../../translated_images/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.vi.png)
+![Prompt](../../../../translated_images/vi/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.png)
 
 ### 🚀 Giai đoạn 5: Thực thi và kiểm thử
 
@@ -332,19 +332,19 @@ Include screenshots at key steps and provide actionable insights.
    - Chụp ảnh màn hình từng bước chính  
    - Kết quả phân tích được truyền trực tiếp  
 
-![Browser](../../../../translated_images/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.vi.png)
+![Browser](../../../../translated_images/vi/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.png)
 
 #### Bước 11: Phân tích kết quả và thông tin
 Xem lại phân tích chi tiết trong giao diện Agent Builder:
 
-![Result](../../../../translated_images/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.vi.png)
+![Result](../../../../translated_images/vi/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.png)
 
 ### 🌟 Giai đoạn 6: Khả năng nâng cao và triển khai
 
 #### Bước 12: Xuất và triển khai sản xuất
 Agent Builder hỗ trợ nhiều tùy chọn triển khai:
 
-![Code](../../../../translated_images/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.vi.png)
+![Code](../../../../translated_images/vi/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.png)
 
 ## 🎓 Tóm tắt Module 2 & Các bước tiếp theo
 

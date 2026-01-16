@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # ایم سی پی ڈیولپمنٹ کے بہترین طریقے
 
-[![ایم سی پی ڈیولپمنٹ کے بہترین طریقے](../../../translated_images/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.ur.png)](https://youtu.be/W56H9W7x-ao)
+[![ایم سی پی ڈیولپمنٹ کے بہترین طریقے](../../../translated_images/ur/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.png)](https://youtu.be/W56H9W7x-ao)
 
 _(اوپر دی گئی تصویر پر کلک کریں تاکہ اس سبق کی ویڈیو دیکھ سکیں)_
 

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # 模型上下文协议 (MCP) 简介：为何它对可扩展的 AI 应用至关重要
 
-[![模型上下文协议简介](../../../translated_images/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.zh.png)](https://youtu.be/agBbdiOPLQA)
+[![模型上下文协议简介](../../../translated_images/zh/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.png)](https://youtu.be/agBbdiOPLQA)
 
 _（点击上方图片观看本课视频）_
 

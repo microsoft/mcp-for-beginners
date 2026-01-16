@@ -156,7 +156,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 הנה צילום מסך של איך זה יכול להיראות:
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.he.png)
+![MCP Inspector server connection](../../../../translated_images/he/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## בעיות נפוצות בהגדרה ופתרונות
 
@@ -1302,7 +1302,7 @@ npx @modelcontextprotocol/inspector
 2. הגדר את ה-URL ל: `http://localhost:8080/sse`
 3. לחץ על "Connect"
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.he.png)
+![Connect](../../../../translated_images/he/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **כעת אתה מחובר לשרת**
 **חלק הבדיקה של שרת ה-Java הושלם כעת**
@@ -1311,18 +1311,18 @@ npx @modelcontextprotocol/inspector
 
 עליך לראות את ממשק המשתמש הבא:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.he.png)
+![Connect](../../../../translated_images/he/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. התחבר לשרת על ידי בחירת כפתור Connect
   לאחר שתתחבר לשרת, עליך לראות את הבא:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.he.png)
+  ![Connected](../../../../translated_images/he/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. בחר "Tools" ו-"listTools", עליך לראות את "Add" מופיע, בחר "Add" ומלא את ערכי הפרמטרים.
 
   עליך לראות את התגובה הבאה, כלומר תוצאה מכלי "add":
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.he.png)
+  ![Result of running add](../../../../translated_images/he/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 מזל טוב, הצלחת ליצור ולהפעיל את השרת הראשון שלך!
 

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Introduction to Model Context Protocol (MCP): Why E Matter for Scalable AI Applications
 
-[![Introduction to Model Context Protocol](../../../translated_images/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.pcm.png)](https://youtu.be/agBbdiOPLQA)
+[![Introduction to Model Context Protocol](../../../translated_images/pcm/01.a467036d886b5fb5.webp)](https://youtu.be/agBbdiOPLQA)
 
 _(Click di image wey dey up to watch di video for dis lesson)_
 

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP Security: Bảo vệ Toàn diện cho Hệ thống AI
 
-[![MCP Security Best Practices](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.vi.png)](https://youtu.be/88No8pw706o)
+[![MCP Security Best Practices](../../../translated_images/vi/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(Nhấp vào hình ảnh trên để xem video bài học này)_
 
@@ -133,7 +133,7 @@ Các triển khai MCP hiện đại đối mặt với các vectơ tấn công A
 
 **Tác động thực tế**: Các cuộc tấn công này có thể dẫn đến rò rỉ dữ liệu, vi phạm quyền riêng tư, tạo nội dung có hại, và thao túng tương tác người dùng. Để phân tích chi tiết, xem [Tiêm Lệnh trong MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
-![Prompt Injection Attack Diagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.vi.png)
+![Prompt Injection Attack Diagram](../../../translated_images/vi/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **Tấn công Đầu độc Công Cụ**
 
@@ -147,7 +147,7 @@ Các triển khai MCP hiện đại đối mặt với các vectơ tấn công A
 
 **Rủi ro máy chủ lưu trữ**: Máy chủ MCP từ xa có rủi ro cao hơn vì định nghĩa công cụ có thể được cập nhật sau khi người dùng phê duyệt ban đầu, tạo ra các kịch bản công cụ trước an toàn trở nên độc hại. Để phân tích toàn diện, xem [Tấn công Đầu độc Công Cụ (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
-![Tool Injection Attack Diagram](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.vi.png)
+![Tool Injection Attack Diagram](../../../translated_images/vi/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **Các Vectơ Tấn công AI Bổ sung**
 
@@ -200,7 +200,7 @@ Microsoft **AI Prompt Shields** cung cấp phòng thủ toàn diện chống l�
 
 **Tài nguyên triển khai**: [Tài liệu Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields Protection](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.vi.png)
+![Microsoft Prompt Shields Protection](../../../translated_images/vi/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## Các Mối đe dọa Bảo mật MCP Nâng cao

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # المجتمع والمساهمات
 
-[![كيفية المساهمة في MCP: الأدوات، الوثائق، الكود والمزيد](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.ar.png)](https://youtu.be/v1pvCYAWpRE)
+[![كيفية المساهمة في MCP: الأدوات، الوثائق، الكود والمزيد](../../../translated_images/ar/07.1179f6de46ff196e.webp)](https://youtu.be/v1pvCYAWpRE)
 
 _(انقر على الصورة أعلاه لمشاهدة فيديو هذا الدرس)_
 

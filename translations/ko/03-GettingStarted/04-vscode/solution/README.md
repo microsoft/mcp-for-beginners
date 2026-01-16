@@ -23,7 +23,7 @@ CO_OP_TRANSLATOR_METADATA:
 
     그러면 채팅 입력창 위에 도구를 선택해 실행할 수 있다는 표시가 나타납니다. 다음 이미지와 같습니다:
 
-    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.ko.png)
+    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/ko/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
     도구를 선택하면, 이전에 입력한 프롬프트에 따라 "23"과 같은 숫자 결과가 표시됩니다.
 

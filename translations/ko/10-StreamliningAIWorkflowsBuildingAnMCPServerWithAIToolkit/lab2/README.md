@@ -202,7 +202,7 @@ Microsoft 서버 외에도 MCP 생태계에는 다음이 포함됩니다:
    - **이름**: `BrowserAgent`
    - **모델**: GPT-4o 선택
 
-![BrowserAgent](../../../../translated_images/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.ko.png)
+![BrowserAgent](../../../../translated_images/ko/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.png)
 
 ### 🔧 2단계: MCP 통합 워크플로우
 
@@ -211,7 +211,7 @@ Microsoft 서버 외에도 MCP 생태계에는 다음이 포함됩니다:
 2. **"도구 추가" 클릭**하여 통합 메뉴 열기
 3. **"MCP 서버" 선택**
 
-![AddMCP](../../../../translated_images/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.ko.png)
+![AddMCP](../../../../translated_images/ko/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.png)
 
 **🔍 도구 유형 이해하기:**
 - **내장 도구**: 사전 구성된 AI Toolkit 기능
@@ -221,10 +221,10 @@ Microsoft 서버 외에도 MCP 생태계에는 다음이 포함됩니다:
 
 #### 4단계: MCP 서버 선택
 1. **"MCP 서버" 옵션 선택**하여 진행
-![AddMCPServer](../../../../translated_images/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.ko.png)
+![AddMCPServer](../../../../translated_images/ko/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.png)
 
 2. **MCP 카탈로그 탐색**하여 사용 가능한 통합 확인
-![MCPCatalog](../../../../translated_images/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.ko.png)
+![MCPCatalog](../../../../translated_images/ko/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.png)
 
 ### 🎮 3단계: Playwright MCP 구성
 
@@ -233,12 +233,12 @@ Microsoft 서버 외에도 MCP 생태계에는 다음이 포함됩니다:
 2. **추천 목록에서 "Playwright" 선택**
 3. 기본 MCP ID 수락 또는 환경에 맞게 수정
 
-![MCPID](../../../../translated_images/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.ko.png)
+![MCPID](../../../../translated_images/ko/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.png)
 
 #### 6단계: Playwright 기능 활성화
 **🔑 중요 단계**: 최대 기능을 위해 Playwright의 모든 메서드 선택
 
-![Tools](../../../../translated_images/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.ko.png)
+![Tools](../../../../translated_images/ko/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.png)
 
 **🛠️ 필수 Playwright 도구:**
 - **탐색**: `goto`, `goBack`, `goForward`, `reload`
@@ -254,7 +254,7 @@ Microsoft 서버 외에도 MCP 생태계에는 다음이 포함됩니다:
 - 통합 패널에 오류 메시지 없음
 - Playwright 서버 상태가 "Connected"로 표시됨
 
-![AgentTools](../../../../translated_images/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.ko.png)
+![AgentTools](../../../../translated_images/ko/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.png)
 
 **🔧 일반 문제 해결:**
 - **연결 실패**: 인터넷 연결 및 방화벽 설정 확인
@@ -320,7 +320,7 @@ Navigate to github.com/kinfey and provide a comprehensive analysis including:
 Include screenshots at key steps and provide actionable insights.
 ```
 
-![Prompt](../../../../translated_images/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.ko.png)
+![Prompt](../../../../translated_images/ko/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.png)
 
 ### 🚀 5단계: 실행 및 테스트
 
@@ -332,19 +332,19 @@ Include screenshots at key steps and provide actionable insights.
    - 주요 단계마다 스크린샷 캡처
    - 분석 결과 실시간 스트리밍
 
-![Browser](../../../../translated_images/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.ko.png)
+![Browser](../../../../translated_images/ko/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.png)
 
 #### 11단계: 결과 및 인사이트 분석
 Agent Builder 인터페이스에서 종합 분석 검토:
 
-![Result](../../../../translated_images/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.ko.png)
+![Result](../../../../translated_images/ko/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.png)
 
 ### 🌟 6단계: 고급 기능 및 배포
 
 #### 12단계: 내보내기 및 프로덕션 배포
 Agent Builder는 다양한 배포 옵션을 지원합니다:
 
-![Code](../../../../translated_images/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.ko.png)
+![Code](../../../../translated_images/ko/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.png)
 
 ## 🎓 모듈 2 요약 및 다음 단계
 

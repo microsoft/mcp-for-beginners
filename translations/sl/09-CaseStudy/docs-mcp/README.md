@@ -110,7 +110,7 @@ Let me know if you want module-specific recommendations or need more customized 
 
 Spodaj je minimalen primer rešitve. Celotna koda in podrobnosti so na voljo v mapi rešitve.
 
-![Pregled scenarija 2](../../../../translated_images/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.sl.png)
+![Pregled scenarija 2](../../../../translated_images/sl/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.png)
 
 <details>
 <summary>Python (Chainlit)</summary>
@@ -167,7 +167,7 @@ Tukaj je primer, kako nastaviti MCP strežnik v VS Code:
 
 > Za podroben vodič s posnetki zaslona in korak za korakom navodili glejte [`README.md`](./solution/scenario3/README.md).
 
-![Pregled scenarija 3](../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.sl.png)
+![Pregled scenarija 3](../../../../translated_images/sl/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 Ta pristop je idealen za vse, ki gradijo tehnične tečaje, pišejo dokumentacijo ali razvijajo kodo z rednimi potrebami po referencah.
 

@@ -64,7 +64,7 @@ Python SDK для Model Context Protocol — основа для создани�
 2. **Создайте нового агента** с такими параметрами:
    - Имя агента: `WeatherAgent`
 
-![Agent Creation](../../../../translated_images/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.ru.png)
+![Agent Creation](../../../../translated_images/ru/Agent.c9c33f6a412b4cde.webp)
 
 ### Шаг 2: Инициализируйте проект MCP Server
 
@@ -74,7 +74,7 @@ Python SDK для Model Context Protocol — основа для создани�
 4. **Выберите шаблон `python-weather`**
 5. **Назовите сервер:** `weather_mcp`
 
-![Python Template Selection](../../../../translated_images/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.ru.png)
+![Python Template Selection](../../../../translated_images/ru/Pythontemplate.9d0a2913c6491500.webp)
 
 ### Шаг 3: Откройте и изучите проект
 
@@ -340,7 +340,7 @@ USER_PROMPT
 How's the weather like in Seattle
 ```
 
-![Agent Builder Debug Result](../../../../translated_images/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.ru.png)
+![Agent Builder Debug Result](../../../../translated_images/ru/Result.6ac570f7d2b1d538.webp)
 
 ### Шаг 8: Отладка с помощью MCP Inspector
 
@@ -352,7 +352,7 @@ How's the weather like in Seattle
    - Мониторинг сетевых запросов
    - Отладка ответов сервера
 
-![MCP Inspector Interface](../../../../translated_images/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.ru.png)
+![MCP Inspector Interface](../../../../translated_images/ru/Inspector.5672415cd02fe873.webp)
 
 ---
 

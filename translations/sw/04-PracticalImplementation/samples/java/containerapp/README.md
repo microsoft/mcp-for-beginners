@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Mradi huu unaonyesha programu ya wavuti inayotumia ukaguzi wa usalama wa maudhui kabla ya kupitisha maelekezo ya mtumiaji kwa huduma ya kalkuleta kupitia Model Context Protocol (MCP).
 
-![System Architecture Diagram](../../../../../../translated_images/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.sw.png)
+![System Architecture Diagram](../../../../../../translated_images/sw/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.png)
 
 ### Jinsi Inavyofanya Kazi
 

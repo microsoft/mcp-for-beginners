@@ -26,7 +26,7 @@ Muut projektit ovat [.NET Aspire](https://learn.microsoft.com/dotnet/aspire/get-
 
 1. Kun selain avaa .NET Aspire -hallintapaneelin, huomaa `http`-URL-osoite. Sen pitäisi olla jotain muotoa `http://localhost:5058/`.
 
-   ![.NET Aspire Dashboard](../../../../../translated_images/dotnet-aspire-dashboard.0a7095710e9301e90df2efd867e1b675b3b9bc2ccd7feb1ebddc0751522bc37c.fi.png)
+   ![.NET Aspire Dashboard](../../../../../translated_images/fi/dotnet-aspire-dashboard.0a7095710e9301e90df2efd867e1b675b3b9bc2ccd7feb1ebddc0751522bc37c.png)
 
 ## Testaa Streamable HTTP MCP Inspectorilla
 
@@ -38,7 +38,7 @@ Käynnistä palvelin ja suorita seuraava komento terminaalissa:
 npx @modelcontextprotocol/inspector http://localhost:5058
 ```
 
-![MCP Inspector](../../../../../translated_images/mcp-inspector.c223422b9b494fb4a518a3b3911b3e708e6a5715069470f9163ee2ee8d5f1ba9.fi.png)
+![MCP Inspector](../../../../../translated_images/fi/mcp-inspector.c223422b9b494fb4a518a3b3911b3e708e6a5715069470f9163ee2ee8d5f1ba9.png)
 
 - Valitse kuljetustyypiksi `Streamable HTTP`.
 - Syötä Url-kenttään aiemmin noteerattu palvelimen URL ja lisää perään `/mcp`. Sen tulee olla `http` (ei `https`), esimerkiksi `http://localhost:5058/mcp`.
@@ -83,7 +83,7 @@ azd up
 
 Kun käyttöönotto on valmis, näet viestin, joka näyttää tältä:
 
-![Azd deployment success](../../../../../translated_images/azd-deployment-success.bd42940493f1b834a5ce6251a6f88966546009b350df59d0cc4a8caabe94a4f1.fi.png)
+![Azd deployment success](../../../../../translated_images/fi/azd-deployment-success.bd42940493f1b834a5ce6251a6f88966546009b350df59d0cc4a8caabe94a4f1.png)
 
 Ota URL talteen ja käytä sitä MCP Inspectorissa ja GitHub Copilot Chatissa.
 

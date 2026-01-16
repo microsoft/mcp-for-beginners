@@ -64,7 +64,7 @@ Et kraftfuldt fejlfindingværktøj, der tilbyder:
 2. **Opret en ny agent** med følgende konfiguration:  
    - Agentnavn: `WeatherAgent`
 
-![Agent Creation](../../../../translated_images/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.da.png)
+![Agent Creation](../../../../translated_images/da/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.png)
 
 ### Trin 2: Initialiser MCP Server-projekt
 
@@ -74,7 +74,7 @@ Et kraftfuldt fejlfindingværktøj, der tilbyder:
 4. **Vælg `python-weather` skabelonen**  
 5. **Navngiv din server:** `weather_mcp`
 
-![Python Template Selection](../../../../translated_images/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.da.png)
+![Python Template Selection](../../../../translated_images/da/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.png)
 
 ### Trin 3: Åbn og gennemgå projektet
 
@@ -340,7 +340,7 @@ USER_PROMPT
 How's the weather like in Seattle
 ```
 
-![Agent Builder Debug Result](../../../../translated_images/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.da.png)
+![Agent Builder Debug Result](../../../../translated_images/da/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.png)
 
 ### Trin 8: Fejlfinding med MCP Inspector
 
@@ -352,7 +352,7 @@ How's the weather like in Seattle
    - Overvåg netværksanmodninger  
    - Fejlsøg serverrespons
 
-![MCP Inspector Interface](../../../../translated_images/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.da.png)
+![MCP Inspector Interface](../../../../translated_images/da/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.png)
 
 ---
 

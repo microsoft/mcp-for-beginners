@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Dự án này minh họa một ứng dụng web sử dụng kiểm tra an toàn nội dung trước khi gửi yêu cầu người dùng đến dịch vụ máy tính thông qua Model Context Protocol (MCP).
 
-![System Architecture Diagram](../../../../../../translated_images/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.vi.png)
+![System Architecture Diagram](../../../../../../translated_images/vi/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.png)
 
 ### Cách Hoạt Động
 

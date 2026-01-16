@@ -156,7 +156,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 در اینجا یک تصویر از ظاهر آن آمده است:
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.fa.png)
+![MCP Inspector server connection](../../../../translated_images/fa/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## مشکلات رایج راه‌اندازی و راه‌حل‌ها
 
@@ -1302,7 +1302,7 @@ npx @modelcontextprotocol/inspector
 2. URL را به این صورت تنظیم کنید: `http://localhost:8080/sse`
 3. روی "Connect" کلیک کنید
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.fa.png)
+![Connect](../../../../translated_images/fa/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **شما اکنون به سرور متصل شده‌اید**
 **بخش تست سرور جاوا اکنون کامل شده است**
@@ -1311,18 +1311,18 @@ npx @modelcontextprotocol/inspector
 
 شما باید رابط کاربری زیر را ببینید:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.fa.png)
+![Connect](../../../../translated_images/fa/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. با انتخاب دکمه Connect به سرور متصل شوید
   پس از اتصال به سرور، باید موارد زیر را ببینید:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.fa.png)
+  ![Connected](../../../../translated_images/fa/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. "Tools" و سپس "listTools" را انتخاب کنید، باید "Add" ظاهر شود، "Add" را انتخاب کرده و مقادیر پارامترها را پر کنید.
 
   شما باید پاسخ زیر را ببینید، یعنی نتیجه‌ای از ابزار "add":
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.fa.png)
+  ![Result of running add](../../../../translated_images/fa/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 تبریک می‌گوییم، شما موفق شده‌اید اولین سرور خود را ایجاد و اجرا کنید!
 

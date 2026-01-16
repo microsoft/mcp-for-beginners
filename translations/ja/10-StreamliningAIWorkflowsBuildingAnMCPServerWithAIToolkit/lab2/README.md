@@ -202,7 +202,7 @@ Microsoft のサーバーに加え、MCP エコシステムには以下も含ま
    - **名前**：`BrowserAgent`
    - **モデル**：GPT-4o を選択
 
-![BrowserAgent](../../../../translated_images/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.ja.png)
+![BrowserAgent](../../../../translated_images/ja/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.png)
 
 ### 🔧 フェーズ 2：MCP 統合ワークフロー
 
@@ -211,7 +211,7 @@ Microsoft のサーバーに加え、MCP エコシステムには以下も含ま
 2. **「Add Tool」をクリック** して統合メニューを開く
 3. **「MCP Server」を選択**
 
-![AddMCP](../../../../translated_images/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.ja.png)
+![AddMCP](../../../../translated_images/ja/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.png)
 
 **🔍 ツールタイプの理解：**
 - **Built-in Tools**：事前設定済みの AI Toolkit 機能
@@ -221,10 +221,10 @@ Microsoft のサーバーに加え、MCP エコシステムには以下も含ま
 
 #### ステップ 4: MCP サーバーの選択
 1. **「MCP Server」オプションを選択して続行**
-![AddMCPServer](../../../../translated_images/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.ja.png)
+![AddMCPServer](../../../../translated_images/ja/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.png)
 
 2. **MCP カタログを閲覧し利用可能な統合を探す**
-![MCPCatalog](../../../../translated_images/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.ja.png)
+![MCPCatalog](../../../../translated_images/ja/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.png)
 
 ### 🎮 フェーズ 3：Playwright MCP の設定
 
@@ -233,12 +233,12 @@ Microsoft のサーバーに加え、MCP エコシステムには以下も含ま
 2. **リストから「Playwright」を選択**
 3. **デフォルトの MCP ID を受け入れるか環境に合わせてカスタマイズ**
 
-![MCPID](../../../../translated_images/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.ja.png)
+![MCPID](../../../../translated_images/ja/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.png)
 
 #### ステップ 6: Playwright 機能の有効化
 **🔑 重要なステップ**：最大限の機能を得るために Playwright の全メソッドを選択
 
-![Tools](../../../../translated_images/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.ja.png)
+![Tools](../../../../translated_images/ja/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.png)
 
 **🛠️ 必須 Playwright ツール：**
 - **ナビゲーション**：`goto`, `goBack`, `goForward`, `reload`
@@ -254,7 +254,7 @@ Microsoft のサーバーに加え、MCP エコシステムには以下も含ま
 - 統合パネルにエラーメッセージがない
 - Playwright サーバーのステータスが「Connected」と表示される
 
-![AgentTools](../../../../translated_images/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.ja.png)
+![AgentTools](../../../../translated_images/ja/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.png)
 
 **🔧 よくある問題の対処法：**
 - **接続失敗**：インターネット接続とファイアウォール設定を確認
@@ -320,7 +320,7 @@ Navigate to github.com/kinfey and provide a comprehensive analysis including:
 Include screenshots at key steps and provide actionable insights.
 ```
 
-![Prompt](../../../../translated_images/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.ja.png)
+![Prompt](../../../../translated_images/ja/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.png)
 
 ### 🚀 フェーズ 5：実行とテスト
 
@@ -332,19 +332,19 @@ Include screenshots at key steps and provide actionable insights.
    - 主要なステップごとにスクリーンショットを取得
    - 分析結果がリアルタイムでストリームされる
 
-![Browser](../../../../translated_images/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.ja.png)
+![Browser](../../../../translated_images/ja/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.png)
 
 #### ステップ 11: 結果と洞察の分析
 Agent Builder のインターフェースで詳細な分析結果を確認：
 
-![Result](../../../../translated_images/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.ja.png)
+![Result](../../../../translated_images/ja/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.png)
 
 ### 🌟 フェーズ 6：高度な機能と展開
 
 #### ステップ 12: エクスポートと本番展開
 Agent Builder は複数の展開オプションをサポート：
 
-![Code](../../../../translated_images/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.ja.png)
+![Code](../../../../translated_images/ja/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.png)
 
 ## 🎓 モジュール 2 のまとめと次のステップ
 

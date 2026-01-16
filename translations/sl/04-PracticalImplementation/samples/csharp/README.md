@@ -26,7 +26,7 @@ Drugi projekti so iz [.NET Aspire](https://learn.microsoft.com/dotnet/aspire/get
 
 1. Ko se v spletnem brskalniku odpre nadzorna plošča .NET Aspire, si zapomnite `http` URL. Moral bi biti nekaj takega kot `http://localhost:5058/`.
 
-   ![.NET Aspire Dashboard](../../../../../translated_images/dotnet-aspire-dashboard.0a7095710e9301e90df2efd867e1b675b3b9bc2ccd7feb1ebddc0751522bc37c.sl.png)
+   ![.NET Aspire Dashboard](../../../../../translated_images/sl/dotnet-aspire-dashboard.0a7095710e9301e90df2efd867e1b675b3b9bc2ccd7feb1ebddc0751522bc37c.png)
 
 ## Testirajte Streamable HTTP z MCP Inspectorjem
 
@@ -38,7 +38,7 @@ Zaženite strežnik in v terminalu izvedite naslednji ukaz:
 npx @modelcontextprotocol/inspector http://localhost:5058
 ```
 
-![MCP Inspector](../../../../../translated_images/mcp-inspector.c223422b9b494fb4a518a3b3911b3e708e6a5715069470f9163ee2ee8d5f1ba9.sl.png)
+![MCP Inspector](../../../../../translated_images/sl/mcp-inspector.c223422b9b494fb4a518a3b3911b3e708e6a5715069470f9163ee2ee8d5f1ba9.png)
 
 - Izberite `Streamable HTTP` kot tip transporta.
 - V polje Url vnesite prej zabeleženi URL strežnika in dodajte `/mcp`. Moral bi biti `http` (ne `https`), nekaj takega kot `http://localhost:5058/mcp`.
@@ -83,7 +83,7 @@ azd up
 
 Ko je namestitev končana, bi morali videti sporočilo, kot je to:
 
-![Azd deployment success](../../../../../translated_images/azd-deployment-success.bd42940493f1b834a5ce6251a6f88966546009b350df59d0cc4a8caabe94a4f1.sl.png)
+![Azd deployment success](../../../../../translated_images/sl/azd-deployment-success.bd42940493f1b834a5ce6251a6f88966546009b350df59d0cc4a8caabe94a4f1.png)
 
 Vzemite URL in ga uporabite v MCP Inspectorju in GitHub Copilot Chatu.
 

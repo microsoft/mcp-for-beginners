@@ -203,7 +203,7 @@ graph TB
    - **نام**: `BrowserAgent`
    - **مدل**: انتخاب GPT-4o 
 
-![BrowserAgent](../../../../translated_images/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.fa.png)
+![BrowserAgent](../../../../translated_images/fa/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.png)
 
 
 ### 🔧 فاز ۲: جریان کار یکپارچه‌سازی MCP
@@ -213,7 +213,7 @@ graph TB
 2. **کلیک روی "Add Tool"** برای باز کردن منوی یکپارچه‌سازی
 3. **انتخاب "MCP Server"** از گزینه‌های موجود
 
-![AddMCP](../../../../translated_images/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.fa.png)
+![AddMCP](../../../../translated_images/fa/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.png)
 
 **🔍 آشنایی با انواع ابزارها:**
 - **ابزارهای داخلی**: توابع پیش‌پیکربندی شده AI Toolkit
@@ -223,10 +223,10 @@ graph TB
 
 #### گام ۴: انتخاب سرور MCP
 1. **گزینه "MCP Server"** را برای ادامه انتخاب کنید
-![AddMCPServer](../../../../translated_images/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.fa.png)
+![AddMCPServer](../../../../translated_images/fa/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.png)
 
 2. **مرور کاتالوگ MCP** برای بررسی یکپارچه‌سازی‌های موجود
-![MCPCatalog](../../../../translated_images/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.fa.png)
+![MCPCatalog](../../../../translated_images/fa/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.png)
 
 
 ### 🎮 فاز ۳: پیکربندی Playwright MCP
@@ -236,12 +236,12 @@ graph TB
 2. **انتخاب "Playwright"** از فهرست برجسته
 3. **پذیرش شناسه پیش‌فرض MCP** یا سفارشی‌سازی برای محیط خود
 
-![MCPID](../../../../translated_images/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.fa.png)
+![MCPID](../../../../translated_images/fa/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.png)
 
 #### گام ۶: فعال‌سازی قابلیت‌های Playwright
 **🔑 گام حیاتی**: انتخاب **تمام** روش‌های موجود Playwright برای حداکثر عملکرد
 
-![Tools](../../../../translated_images/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.fa.png)
+![Tools](../../../../translated_images/fa/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.png)
 
 **🛠️ ابزارهای ضروری Playwright:**
 - **ناوبری**: `goto`، `goBack`، `goForward`، `reload`
@@ -257,7 +257,7 @@ graph TB
 - هیچ پیام خطایی در پنل یکپارچه‌سازی نیست
 - وضعیت سرور Playwright نمایش "Connected" دارد
 
-![AgentTools](../../../../translated_images/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.fa.png)
+![AgentTools](../../../../translated_images/fa/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.png)
 
 **🔧 رفع مشکلات رایج:**
 - **اتصال ناموفق**: اتصال اینترنت و تنظیمات فایروال را بررسی کنید
@@ -323,7 +323,7 @@ Navigate to github.com/kinfey and provide a comprehensive analysis including:
 Include screenshots at key steps and provide actionable insights.
 ```
 
-![Prompt](../../../../translated_images/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.fa.png)
+![Prompt](../../../../translated_images/fa/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.png)
 
 ### 🚀 فاز ۵: اجرا و آزمایش
 
@@ -335,19 +335,19 @@ Include screenshots at key steps and provide actionable insights.
    - اسکرین‌شات‌ها هر مرحله مهم را ثبت می‌کنند
    - نتایج تحلیل به صورت زنده نمایش داده می‌شوند
 
-![Browser](../../../../translated_images/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.fa.png)
+![Browser](../../../../translated_images/fa/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.png)
 
 #### گام ۱۱: تحلیل نتایج و بینش‌ها
 تحلیل جامع را در رابط Agent Builder مرور کنید:
 
-![Result](../../../../translated_images/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.fa.png)
+![Result](../../../../translated_images/fa/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.png)
 
 ### 🌟 فاز ۶: قابلیت‌های پیشرفته و استقرار
 
 #### گام ۱۲: صادر کردن و استقرار در محیط تولید
 Agent Builder گزینه‌های متعددی برای استقرار ارائه می‌دهد:
 
-![Code](../../../../translated_images/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.fa.png)
+![Code](../../../../translated_images/fa/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.png)
 
 ## 🎓 خلاصه ماژول ۲ و گام‌های بعدی
 

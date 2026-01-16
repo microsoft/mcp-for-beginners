@@ -38,9 +38,9 @@ MCP Server-ஐ நீங்கள் இரண்டு விதங்களி
 
 ### ஸ்கிரீன்ஷாட்கள்
 
-![Visual Studio Code-இல் வழிகாட்டப்பட்ட MCP Server அமைப்பு](../../../../translated_images/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.ta.png)
-![ஒவ்வொரு Agent அமர்விற்கும் கருவி தேர்வு](../../../../translated_images/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.ta.png)
-![MCP மேம்பாட்டின் போது பிழைகளை எளிதாக டிபக் செய்யுங்கள்](../../../../translated_images/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.ta.png)
+![Visual Studio Code-இல் வழிகாட்டப்பட்ட MCP Server அமைப்பு](../../../../translated_images/ta/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.png)
+![ஒவ்வொரு Agent அமர்விற்கும் கருவி தேர்வு](../../../../translated_images/ta/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.png)
+![MCP மேம்பாட்டின் போது பிழைகளை எளிதாக டிபக் செய்யுங்கள்](../../../../translated_images/ta/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.png)
 
 விசுவல் இடைமுகத்தை எப்படி பயன்படுத்துவது என்பதை அடுத்த பகுதிகளில் மேலும் பேசுவோம்.
 
@@ -103,15 +103,15 @@ Node.js-ல் எழுதப்பட்ட சர்வரை தொடங்
 
 1. *mcp.json*-இல் உங்கள் பதிவை கண்டறியவும் மற்றும் "play" ஐகானை கண்டறியவும்:
 
-  ![Visual Studio Code-இல் சர்வரை தொடங்குதல்](../../../../translated_images/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.ta.png)  
+  ![Visual Studio Code-இல் சர்வரை தொடங்குதல்](../../../../translated_images/ta/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.png)  
 
 1. "play" ஐகானை கிளிக் செய்யவும், GitHub Copilot Chat கருவி ஐகானில் கிடைக்கும் கருவிகளின் எண்ணிக்கை அதிகரிக்க வேண்டும். அந்த கருவி ஐகானை கிளிக் செய்தால், பதிவு செய்யப்பட்ட கருவிகளின் பட்டியலை காணலாம். GitHub Copilot-ஐ அவற்றை சூழலாக பயன்படுத்த அனுமதிக்க/தடை செய்ய ஒவ்வொரு கருவியையும் தேர்வு செய்யலாம்:
 
-  ![Visual Studio Code-இல் சர்வரை தொடங்குதல்](../../../../translated_images/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.ta.png)
+  ![Visual Studio Code-இல் சர்வரை தொடங்குதல்](../../../../translated_images/ta/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.png)
 
 1. ஒரு கருவியை இயக்க, உங்கள் கருவிகளின் விளக்கத்திற்கு பொருந்தும் ஒரு கேள்வியை தட்டச்சு செய்யவும், உதாரணமாக "22-ஐ 1-க்கு சேர்க்கவும்" போன்ற கேள்வி:
 
-  ![GitHub Copilot மூலம் ஒரு கருவியை இயக்குதல்](../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.ta.png)
+  ![GitHub Copilot மூலம் ஒரு கருவியை இயக்குதல்](../../../../translated_images/ta/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
   நீங்கள் 23 என பதிலை காண வேண்டும்.
 

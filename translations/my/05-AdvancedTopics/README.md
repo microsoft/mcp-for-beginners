@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP တွင် အဆင့်မြင့်အကြောင်းအရာများ
 
-[![Advanced MCP: Secure, Scalable, and Multi-modal AI Agents](../../../translated_images/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.my.png)](https://youtu.be/4yjmGvJzYdY)
+[![Advanced MCP: Secure, Scalable, and Multi-modal AI Agents](../../../translated_images/my/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.png)](https://youtu.be/4yjmGvJzYdY)
 
 _(ဤသင်ခန်းစာ၏ ဗီဒီယိုကို ကြည့်ရန် အထက်ပါပုံကို နှိပ်ပါ)_
 

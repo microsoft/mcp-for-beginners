@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # コミュニティと貢献
 
-[![MCPへの貢献方法: ツール、ドキュメント、コードなど](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.ja.png)](https://youtu.be/v1pvCYAWpRE)
+[![MCPへの貢献方法: ツール、ドキュメント、コードなど](../../../translated_images/ja/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.png)](https://youtu.be/v1pvCYAWpRE)
 
 _（上の画像をクリックすると、このレッスンのビデオが視聴できます）_
 

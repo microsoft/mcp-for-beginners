@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Triển khai Thực tiễn
 
-[![Cách xây dựng, kiểm thử và triển khai ứng dụng MCP với các công cụ và quy trình thực tế](../../../translated_images/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.vi.png)](https://youtu.be/vCN9-mKBDfQ)
+[![Cách xây dựng, kiểm thử và triển khai ứng dụng MCP với các công cụ và quy trình thực tế](../../../translated_images/vi/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.png)](https://youtu.be/vCN9-mKBDfQ)
 
 _(Nhấp vào hình ảnh trên để xem video của bài học này)_
 
@@ -215,7 +215,7 @@ Hãy xem liệu chúng ta có thể triển khai mẫu đã đề cập trước
 
     Bạn sẽ thấy một giao diện tương tự như:
 
-    ![Connect to Node inspector](../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.vi.png)
+    ![Connect to Node inspector](../../../translated_images/vi/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. CTRL nhấp để tải ứng dụng web MCP Inspector từ URL được hiển thị bởi ứng dụng (ví dụ: [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources))
 1. Đặt loại transport thành `SSE`

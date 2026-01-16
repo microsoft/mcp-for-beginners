@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # ایم سی پی کے جدید موضوعات
 
-[![ایم سی پی کے جدید موضوعات: محفوظ، قابل توسیع، اور ملٹی موڈل اے آئی ایجنٹس](../../../translated_images/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.ur.png)](https://youtu.be/4yjmGvJzYdY)
+[![ایم سی پی کے جدید موضوعات: محفوظ، قابل توسیع، اور ملٹی موڈل اے آئی ایجنٹس](../../../translated_images/ur/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.png)](https://youtu.be/4yjmGvJzYdY)
 
 _(اوپر دی گئی تصویر پر کلک کریں تاکہ اس سبق کی ویڈیو دیکھ سکیں)_
 

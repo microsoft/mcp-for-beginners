@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Kogukond ja panustamine
 
-[![Kuidas panustada MCP-sse: tööriistad, dokumendid, kood ja palju muud](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.et.png)](https://youtu.be/v1pvCYAWpRE)
+[![Kuidas panustada MCP-sse: tööriistad, dokumendid, kood ja palju muud](../../../translated_images/et/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.png)](https://youtu.be/v1pvCYAWpRE)
 
 _(Klõpsa ülaloleval pildil, et vaadata selle õppetunni videot)_
 

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP செயல்பாட்டில்: நிஜ உலகக் கசே ஸ்டடிகள்
 
-[![MCP செயல்பாட்டில்: நிஜ உலகக் கசே ஸ்டடிகள்](../../../translated_images/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.ta.png)](https://youtu.be/IxshWb2Az5w)
+[![MCP செயல்பாட்டில்: நிஜ உலகக் கசே ஸ்டடிகள்](../../../translated_images/ta/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.png)](https://youtu.be/IxshWb2Az5w)
 
 _(மேலே உள்ள படத்தை கிளிக் செய்து இந்த பாடத்தின் வீடியோவைப் பாருங்கள்)_
 

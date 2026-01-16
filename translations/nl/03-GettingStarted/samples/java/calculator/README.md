@@ -201,7 +201,7 @@ De MCP Inspector is een handig hulpmiddel om met MCP-services te werken. Om het 
    - Klik op "List Tools" om beschikbare calculatorbewerkingen te zien
    - Selecteer een tool en klik op "Run Tool" om een bewerking uit te voeren
 
-![MCP Inspector Screenshot](../../../../../../translated_images/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.nl.png)
+![MCP Inspector Screenshot](../../../../../../translated_images/nl/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.png)
 
 ### Met Docker
 

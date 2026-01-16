@@ -23,7 +23,7 @@ Dies entspricht dem Ausführen eines Befehls wie: `node build/index.js`.
 
     Sie sollten ein Tool sehen, das über dem Chat-Textfeld angezeigt wird und Sie auffordert, das Tool auszuwählen, um es auszuführen, wie in dieser Darstellung:
 
-    ![VS Code zeigt an, dass es ein Tool ausführen möchte](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.de.png)
+    ![VS Code zeigt an, dass es ein Tool ausführen möchte](../../../../../translated_images/de/vscode-agent.d5a0e0b897331060.webp)
 
     Wenn Sie das Tool auswählen, sollte ein numerisches Ergebnis mit „23“ erscheinen, falls Ihre Eingabeaufforderung wie oben beschrieben war.
 

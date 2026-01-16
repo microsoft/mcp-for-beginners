@@ -72,7 +72,7 @@ MCP Inspector na good tool to interact wit MCP services. To use am wit dis calcu
    - Click "List Tools" to see di calculator operations wey dey available
    - Choose one tool and click "Run Tool" to do di operation
 
-![MCP Inspector Screenshot](../../../../../../translated_images/tool.40e180a7b0d0fe2067cf96435532b01f63f7f8619d6b0132355a04b426b669ac.pcm.png)
+![MCP Inspector Screenshot](../../../../../../translated_images/pcm/tool.40e180a7b0d0fe20.webp)
 
 ---
 

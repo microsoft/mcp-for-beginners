@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # 🌟 درس‌هایی از کاربران اولیه
 
-[![درس‌هایی از کاربران اولیه MCP](../../../translated_images/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.fa.png)](https://youtu.be/jds7dSmNptE)
+[![درس‌هایی از کاربران اولیه MCP](../../../translated_images/fa/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.png)](https://youtu.be/jds7dSmNptE)
 
 _(برای مشاهده ویدئوی این درس، روی تصویر بالا کلیک کنید)_
 

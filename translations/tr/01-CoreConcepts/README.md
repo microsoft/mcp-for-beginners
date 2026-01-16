@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP Temel Kavramları: Yapay Zeka Entegrasyonu için Model Bağlam Protokolünde Ustalaşma
 
-[![MCP Temel Kavramları](../../../translated_images/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.tr.png)](https://youtu.be/earDzWGtE84)
+[![MCP Temel Kavramları](../../../translated_images/tr/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.png)](https://youtu.be/earDzWGtE84)
 
 _(Bu dersin videosunu izlemek için yukarıdaki resme tıklayın)_
 

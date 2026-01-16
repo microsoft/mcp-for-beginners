@@ -23,7 +23,7 @@ CO_OP_TRANSLATOR_METADATA:
 
     你会看到聊天文本框上方出现一个工具提示，提示你选择运行该工具，如下图所示：
 
-    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.zh.png)
+    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/zh/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
     选择该工具后，如果你的提示如前所述，应该会得到一个数字结果“23”。
 

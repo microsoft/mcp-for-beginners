@@ -64,7 +64,7 @@ Galingas derinimo įrankis, kuris siūlo:
 2. **Sukurkite naują agentą** su šia konfigūracija:
    - Agento pavadinimas: `WeatherAgent`
 
-![Agentų kūrimas](../../../../translated_images/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.lt.png)
+![Agentų kūrimas](../../../../translated_images/lt/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.png)
 
 ### 2 žingsnis: Inicializuokite MCP serverio projektą
 
@@ -74,7 +74,7 @@ Galingas derinimo įrankis, kuris siūlo:
 4. **Pasirinkite `python-weather` šabloną**
 5. **Pavadinkite savo serverį:** `weather_mcp`
 
-![Python šablono pasirinkimas](../../../../translated_images/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.lt.png)
+![Python šablono pasirinkimas](../../../../translated_images/lt/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.png)
 
 ### 3 žingsnis: Atidarykite ir peržiūrėkite projektą
 
@@ -340,7 +340,7 @@ USER_PROMPT
 How's the weather like in Seattle
 ```
 
-![Agent Builder derinimo rezultatas](../../../../translated_images/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.lt.png)
+![Agent Builder derinimo rezultatas](../../../../translated_images/lt/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.png)
 
 ### 8 žingsnis: Derinimas MCP Inspector aplinkoje
 
@@ -352,7 +352,7 @@ How's the weather like in Seattle
    - Stebėkite tinklo užklausas
    - Derinkite serverio atsakymus
 
-![MCP Inspector sąsaja](../../../../translated_images/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.lt.png)
+![MCP Inspector sąsaja](../../../../translated_images/lt/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.png)
 
 ---
 

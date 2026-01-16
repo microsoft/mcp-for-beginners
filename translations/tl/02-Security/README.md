@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP Security: Komprehensibong Proteksyon para sa mga AI System
 
-[![MCP Security Best Practices](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.tl.png)](https://youtu.be/88No8pw706o)
+[![MCP Security Best Practices](../../../translated_images/tl/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(I-click ang larawan sa itaas upang panoorin ang video ng araling ito)_
 
@@ -133,7 +133,7 @@ Ang **Indirect Prompt Injection** ay isa sa mga pinaka-kritikal na kahinaan sa m
 
 **Epekto sa Totoong Mundo**: Ang mga atakeng ito ay maaaring magresulta sa pag-exfiltrate ng data, paglabag sa privacy, paglikha ng mapanganib na nilalaman, at manipulasyon ng interaksyon ng user. Para sa detalyadong pagsusuri, tingnan ang [Prompt Injection sa MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
-![Prompt Injection Attack Diagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.tl.png)
+![Prompt Injection Attack Diagram](../../../translated_images/tl/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **Tool Poisoning Attacks**
 
@@ -147,7 +147,7 @@ Ang **Tool Poisoning** ay tumatarget sa metadata na naglalarawan sa mga MCP tool
 
 **Panganib sa Hosted Server**: Ang mga remote MCP server ay may mas mataas na panganib dahil maaaring i-update ang mga depinisyon ng tool pagkatapos ng paunang pag-apruba ng user, na lumilikha ng mga senaryo kung saan ang dating ligtas na mga tool ay nagiging malisyoso. Para sa komprehensibong pagsusuri, tingnan ang [Tool Poisoning Attacks (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
-![Tool Injection Attack Diagram](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.tl.png)
+![Tool Injection Attack Diagram](../../../translated_images/tl/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **Karagdagang AI Attack Vectors**
 
@@ -200,7 +200,7 @@ Nagbibigay ang Microsoft **AI Prompt Shields** ng komprehensibong depensa laban 
 
 **Mga Mapagkukunan sa Implementasyon**: [Microsoft Prompt Shields Documentation](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields Protection](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.tl.png)
+![Microsoft Prompt Shields Protection](../../../translated_images/tl/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## Mga Advanced na Banta sa Seguridad ng MCP

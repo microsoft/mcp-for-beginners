@@ -23,7 +23,7 @@ CO_OP_TRANSLATOR_METADATA:
 
     Bạn sẽ thấy một công cụ được hiển thị phía trên ô nhập văn bản chat, yêu cầu bạn chọn để chạy công cụ như trong hình minh họa sau:
 
-    ![VS Code chỉ ra nó muốn chạy một công cụ](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.vi.png)
+    ![VS Code chỉ ra nó muốn chạy một công cụ](../../../../../translated_images/vi/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
     Việc chọn công cụ sẽ cho ra kết quả số học là "23" nếu câu lệnh của bạn giống như ví dụ đã nêu.
 

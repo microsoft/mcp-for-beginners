@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP Kernconcepten: Beheersing van het Model Context Protocol voor AI-integratie
 
-[![MCP Kernconcepten](../../../translated_images/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.nl.png)](https://youtu.be/earDzWGtE84)
+[![MCP Kernconcepten](../../../translated_images/nl/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.png)](https://youtu.be/earDzWGtE84)
 
 _(Klik op de afbeelding hierboven om de video van deze les te bekijken)_
 

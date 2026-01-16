@@ -38,9 +38,9 @@ Visual Studio Code и GitHub Copilot могу да функционишу као
 
 ### Снимци екрана
 
-![Вођена конфигурација MCP сервера у Visual Studio Code-у](../../../../translated_images/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.sr.png)
-![Избор алата по сесији агента](../../../../translated_images/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.sr.png)
-![Лако отклањање грешака током развоја MCP-а](../../../../translated_images/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.sr.png)
+![Вођена конфигурација MCP сервера у Visual Studio Code-у](../../../../translated_images/sr/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.png)
+![Избор алата по сесији агента](../../../../translated_images/sr/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.png)
+![Лако отклањање грешака током развоја MCP-а](../../../../translated_images/sr/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.png)
 
 Хајде да више разговарамо о томе како користимо визуелни интерфејс у наредним одељцима.
 
@@ -103,15 +103,15 @@ Visual Studio Code и GitHub Copilot могу да функционишу као
 
 1. Пронађите ваш унос у *mcp.json* и уверите се да видите икону "play":
 
-  ![Покретање сервера у Visual Studio Code-у](../../../../translated_images/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.sr.png)  
+  ![Покретање сервера у Visual Studio Code-у](../../../../translated_images/sr/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.png)  
 
 1. Кликните на икону "play", требало би да видите да се број доступних алата у икони алата GitHub Copilot Chat-а повећава. Ако кликнете на ту икону алата, видећете листу регистрованих алата. Можете означити/поништити сваки алат у зависности од тога да ли желите да GitHub Copilot користи те алате као контекст:
 
-  ![Покретање сервера у Visual Studio Code-у](../../../../translated_images/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.sr.png)
+  ![Покретање сервера у Visual Studio Code-у](../../../../translated_images/sr/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.png)
 
 1. Да бисте покренули алат, унесите упит за који знате да ће одговарати опису једног од ваших алата, на пример упит као што је "додај 22 на 1":
 
-  ![Покретање алата из GitHub Copilot-а](../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.sr.png)
+  ![Покретање алата из GitHub Copilot-а](../../../../translated_images/sr/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
   Требало би да видите одговор који каже 23.
 

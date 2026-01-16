@@ -156,7 +156,7 @@ Kun suoritat yllä olevat komennot, MCP Inspector käynnistää paikallisen web-
 
 Tässä on kuvakaappaus miltä se voi näyttää:
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.fi.png)
+![MCP Inspector server connection](../../../../translated_images/fi/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## Yleisiä asennusongelmia ja ratkaisuja
 
@@ -1302,7 +1302,7 @@ Tarkastustyökalun verkkokäyttöliittymässä:
 2. Aseta URL-osoitteeksi: `http://localhost:8080/sse`
 3. Klikkaa "Connect"
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.fi.png)
+![Connect](../../../../translated_images/fi/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **Olet nyt yhteydessä palvelimeen**
 **Java-palvelimen testausosio on nyt suoritettu**
@@ -1311,18 +1311,18 @@ Seuraava osio käsittelee vuorovaikutusta palvelimen kanssa.
 
 Sinun pitäisi nähdä seuraava käyttöliittymä:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.fi.png)
+![Connect](../../../../translated_images/fi/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. Yhdistä palvelimeen valitsemalla Connect-painike
   Kun olet yhdistänyt palvelimeen, sinun pitäisi nyt nähdä seuraava:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.fi.png)
+  ![Connected](../../../../translated_images/fi/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. Valitse "Tools" ja "listTools", sinun pitäisi nähdä "Add" ilmestyvän, valitse "Add" ja täytä parametrien arvot.
 
   Sinun pitäisi nähdä seuraava vastaus, eli tulos "add"-työkalusta:
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.fi.png)
+  ![Result of running add](../../../../translated_images/fi/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 Onnittelut, olet onnistunut luomaan ja ajamaan ensimmäisen palvelimesi!
 

@@ -64,7 +64,7 @@ Een krachtig debuggingtool dat biedt:
 2. **Maak een nieuwe agent** met de volgende configuratie:
    - Agentnaam: `WeatherAgent`
 
-![Agent Creation](../../../../translated_images/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.nl.png)
+![Agent Creation](../../../../translated_images/nl/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.png)
 
 ### Stap 2: Initialiseer MCP Server Project
 
@@ -74,7 +74,7 @@ Een krachtig debuggingtool dat biedt:
 4. **Selecteer de `python-weather` template**
 5. **Geef je server een naam:** `weather_mcp`
 
-![Python Template Selection](../../../../translated_images/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.nl.png)
+![Python Template Selection](../../../../translated_images/nl/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.png)
 
 ### Stap 3: Open en Bekijk het Project
 
@@ -340,7 +340,7 @@ USER_PROMPT
 How's the weather like in Seattle
 ```
 
-![Agent Builder Debug Result](../../../../translated_images/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.nl.png)
+![Agent Builder Debug Result](../../../../translated_images/nl/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.png)
 
 ### Stap 8: Debuggen met MCP Inspector
 
@@ -352,7 +352,7 @@ How's the weather like in Seattle
    - Monitor netwerkverzoeken
    - Debug serverantwoorden
 
-![MCP Inspector Interface](../../../../translated_images/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.nl.png)
+![MCP Inspector Interface](../../../../translated_images/nl/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.png)
 
 ---
 

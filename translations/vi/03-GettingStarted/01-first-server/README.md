@@ -156,7 +156,7 @@ Khi bạn chạy các lệnh trên, MCP Inspector sẽ khởi chạy giao diện
 
 Dưới đây là ảnh chụp màn hình của giao diện:
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.vi.png)
+![MCP Inspector server connection](../../../../translated_images/vi/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## Các vấn đề thiết lập phổ biến và giải pháp
 
@@ -1302,7 +1302,7 @@ Trong giao diện web của trình kiểm tra:
 2. Đặt URL thành: `http://localhost:8080/sse`
 3. Nhấn "Connect"
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.vi.png)
+![Connect](../../../../translated_images/vi/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **Bạn đã kết nối với máy chủ**
 **Phần kiểm tra máy chủ Java đã hoàn thành**
@@ -1311,18 +1311,18 @@ Phần tiếp theo là về tương tác với máy chủ.
 
 Bạn sẽ thấy giao diện người dùng sau:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.vi.png)
+![Connect](../../../../translated_images/vi/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. Kết nối với máy chủ bằng cách chọn nút Connect
   Khi bạn kết nối với máy chủ, bạn sẽ thấy như sau:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.vi.png)
+  ![Connected](../../../../translated_images/vi/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. Chọn "Tools" và "listTools", bạn sẽ thấy "Add" xuất hiện, chọn "Add" và điền các giá trị tham số.
 
   Bạn sẽ thấy phản hồi sau, tức là kết quả từ công cụ "add":
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.vi.png)
+  ![Result of running add](../../../../translated_images/vi/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 Chúc mừng, bạn đã tạo và chạy thành công máy chủ đầu tiên của mình!
 

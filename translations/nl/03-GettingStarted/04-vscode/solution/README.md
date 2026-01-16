@@ -23,7 +23,7 @@ Dit komt overeen met het uitvoeren van een commando zoals: `node build/index.js`
 
     Je zou een tool moeten zien verschijnen boven het chattekstvak, waarmee je kunt selecteren om de tool uit te voeren, zoals in deze afbeelding:
 
-    ![VS Code geeft aan dat het een tool wil uitvoeren](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.nl.png)
+    ![VS Code geeft aan dat het een tool wil uitvoeren](../../../../../translated_images/nl/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
     Het selecteren van de tool zou een numeriek resultaat moeten opleveren met "23" als je prompt was zoals hierboven beschreven.
 

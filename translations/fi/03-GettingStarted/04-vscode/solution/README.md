@@ -23,7 +23,7 @@ Tämä vastaa komentoa `node build/index.js` ajamista.
 
     Näet työkalun ilmestyvän chat-tekstikentän yläpuolelle, joka pyytää sinua valitsemaan työkalun käynnistämistä varten, kuten tässä kuvassa:
 
-    ![VS Code osoittaa haluavansa käynnistää työkalun](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.fi.png)
+    ![VS Code osoittaa haluavansa käynnistää työkalun](../../../../../translated_images/fi/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
     Työkalun valitseminen tuottaa numeerisen tuloksen, joka on "23", jos kehotuksesi oli kuten aiemmin mainitsimme.
 

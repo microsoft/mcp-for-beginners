@@ -73,7 +73,7 @@ MCP Inspector, MCP servisleriyle etkileşimde bulunmak için faydalı bir araçt
    - Mevcut hesap makinesi işlemlerini görmek için "List Tools" butonuna tıklayın
    - Bir aracı seçin ve işlemi çalıştırmak için "Run Tool" butonuna tıklayın
 
-![MCP Inspector Ekran Görüntüsü](../../../../../../translated_images/tool.40e180a7b0d0fe2067cf96435532b01f63f7f8619d6b0132355a04b426b669ac.tr.png)
+![MCP Inspector Ekran Görüntüsü](../../../../../../translated_images/tr/tool.40e180a7b0d0fe2067cf96435532b01f63f7f8619d6b0132355a04b426b669ac.png)
 
 **Feragatname**:  
 Bu belge, AI çeviri servisi [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hatalar veya yanlışlıklar içerebileceğini lütfen unutmayın. Orijinal belge, kendi dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucu ortaya çıkabilecek yanlış anlamalar veya yorum hatalarından sorumlu değiliz.

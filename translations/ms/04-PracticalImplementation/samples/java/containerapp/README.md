@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Projek ini menunjukkan aplikasi web yang menggunakan pemeriksaan keselamatan kandungan sebelum menghantar arahan pengguna ke perkhidmatan kalkulator melalui Model Context Protocol (MCP).
 
-![Rajah Seni Bina Sistem](../../../../../../translated_images/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.ms.png)
+![Rajah Seni Bina Sistem](../../../../../../translated_images/ms/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.png)
 
 ### Cara Ia Berfungsi
 

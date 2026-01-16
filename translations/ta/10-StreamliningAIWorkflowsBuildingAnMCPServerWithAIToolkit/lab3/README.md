@@ -66,7 +66,7 @@ Model Context Protocol Python SDK MCP சர்வர்களை உருவ�
 2. **புதிய ஏஜென்ட்டை உருவாக்கவும்** கீழ்க்காணும் அமைப்புடன்:
    - Agent Name: `WeatherAgent`
 
-![Agent Creation](../../../../translated_images/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.ta.png)
+![Agent Creation](../../../../translated_images/ta/Agent.c9c33f6a412b4cdedfb973fe5448bdb33de3f400055603111b875610e9b917ab.png)
 
 ### படி 2: MCP சர்வர் திட்டத்தை தொடங்கவும்
 
@@ -76,7 +76,7 @@ Model Context Protocol Python SDK MCP சர்வர்களை உருவ�
 4. **`python-weather` டெம்ப்ளேட்டைத் தேர்ந்தெடுக்கவும்**
 5. **உங்கள் சர்வருக்கு பெயர் கொடுக்கவும்:** `weather_mcp`
 
-![Python Template Selection](../../../../translated_images/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.ta.png)
+![Python Template Selection](../../../../translated_images/ta/Pythontemplate.9d0a2913c6491500bd673430f024dc44676af2808a27b5da9dcc0eb7063adc28.png)
 
 ### படி 3: திட்டத்தை திறந்து ஆய்வு செய்யவும்
 
@@ -349,7 +349,7 @@ How's the weather like in Seattle
 ```
 
 
-![Agent Builder Debug Result](../../../../translated_images/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.ta.png)
+![Agent Builder Debug Result](../../../../translated_images/ta/Result.6ac570f7d2b1d5389c561ab0566970fe0f13e75bdd976b6a7f0270bc715d07f8.png)
 
 ### படி 8: MCP Inspector உடன் பிழைதிருத்தம் செய்யவும்
 
@@ -361,7 +361,7 @@ How's the weather like in Seattle
    - நெட்வொர்க் கோரிக்கைகளை கண்காணிக்கவும்
    - சர்வர் பதில்களை பிழைதிருத்தம் செய்யவும்
 
-![MCP Inspector Interface](../../../../translated_images/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.ta.png)
+![MCP Inspector Interface](../../../../translated_images/ta/Inspector.5672415cd02fe8731774586cc0a1083e3275d2f8491602aecc8ac4d61f2c0d57.png)
 
 ---
 

@@ -52,28 +52,28 @@ Para começar, siga estes passos. Para cada etapa, você pode adicionar uma capt
    ```  
    Essa configuração informa ao VS Code como se conectar ao [`Microsoft Learn Docs MCP server`](https://github.com/MicrosoftDocs/mcp).
    
-   ![Passo 1: Adicione o mcp.json na pasta .vscode](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.br.png)
+   ![Passo 1: Adicione o mcp.json na pasta .vscode](../../../../../../translated_images/br/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
     
 2. **Abra o painel do GitHub Copilot Chat:**  
    Se você ainda não tem a extensão do GitHub Copilot instalada, vá até a visualização de Extensões no VS Code e instale-a. Você pode baixá-la diretamente do [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat). Depois, abra o painel do Copilot Chat na barra lateral.
 
-   ![Passo 2: Abra o painel do Copilot Chat](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.br.png)
+   ![Passo 2: Abra o painel do Copilot Chat](../../../../../../translated_images/br/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
 
 3. **Ative o modo agente e verifique as ferramentas:**  
    No painel do Copilot Chat, ative o modo agente.
 
-   ![Passo 3: Ative o modo agente e verifique as ferramentas](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.br.png)
+   ![Passo 3: Ative o modo agente e verifique as ferramentas](../../../../../../translated_images/br/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
 
    Após ativar o modo agente, verifique se o servidor MCP está listado como uma das ferramentas disponíveis. Isso garante que o agente do Copilot possa acessar o servidor de documentação para buscar informações relevantes.
    
-   ![Passo 3: Verifique a ferramenta do servidor MCP](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.br.png)
+   ![Passo 3: Verifique a ferramenta do servidor MCP](../../../../../../translated_images/br/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
 
 4. **Inicie um novo chat e faça perguntas ao agente:**  
    Abra um novo chat no painel do Copilot Chat. Agora você pode fazer perguntas ao agente sobre documentação. O agente usará o servidor MCP para buscar e exibir a documentação relevante do Microsoft Learn diretamente no seu editor.
 
    - *"Estou tentando montar um plano de estudos para o tópico X. Vou estudá-lo por 8 semanas, para cada semana, sugira o conteúdo que devo abordar."*
 
-   ![Passo 4: Faça perguntas ao agente no chat](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.br.png)
+   ![Passo 4: Faça perguntas ao agente no chat](../../../../../../translated_images/br/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 5. **Consulta ao vivo:**
 
@@ -82,7 +82,7 @@ Para começar, siga estes passos. Para cada etapa, você pode adicionar uma capt
    *"Estou buscando respostas sobre como implantar uma solução multiagente com agentes de IA desenvolvidos no Azure AI Foundry. Vejo que não há um método direto de implantação, como canais do Copilot Studio. Então, quais são as diferentes formas de fazer essa implantação para que usuários corporativos possam interagir e realizar o trabalho?  
 Há vários artigos/blogs que dizem que podemos usar o serviço Azure Bot para fazer essa ponte entre o MS Teams e os agentes do Azure AI Foundry. Isso funcionaria se eu configurar um bot do Azure que se conecta ao Orchestrator Agent no Azure AI Foundry via Azure Function para realizar a orquestração, ou preciso criar uma Azure Function para cada agente de IA da solução multiagente para fazer a orquestração no Bot Framework? Outras sugestões são muito bem-vindas."*
 
-   ![Passo 5: Consultas ao vivo](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.br.png)
+   ![Passo 5: Consultas ao vivo](../../../../../../translated_images/br/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
 
    O agente responderá com links e resumos relevantes da documentação, que você pode inserir diretamente nos seus arquivos markdown ou usar como referência no seu código.
    

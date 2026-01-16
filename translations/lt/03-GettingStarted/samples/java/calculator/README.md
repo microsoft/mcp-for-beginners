@@ -201,7 +201,7 @@ MCP Inspector yra naudingas įrankis sąveikai su MCP paslaugomis. Norėdami jį
    - Spustelėkite "List Tools", kad pamatytumėte galimas skaičiuotuvo operacijas
    - Pasirinkite įrankį ir spustelėkite "Run Tool", kad vykdytumėte operaciją
 
-![MCP Inspector Ekrano Nuotrauka](../../../../../../translated_images/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.lt.png)
+![MCP Inspector Ekrano Nuotrauka](../../../../../../translated_images/lt/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.png)
 
 ### Naudojant Docker
 

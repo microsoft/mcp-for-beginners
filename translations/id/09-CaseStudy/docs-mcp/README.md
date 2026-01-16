@@ -110,7 +110,7 @@ Let me know if you want module-specific recommendations or need more customized 
 
 Di bawah ini adalah contoh solusi minimal. Kode lengkap dan detail tersedia di folder solusi.
 
-![Scenario 2 Overview](../../../../translated_images/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.id.png)
+![Scenario 2 Overview](../../../../translated_images/id/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.png)
 
 <details>
 <summary>Python (Chainlit)</summary>
@@ -167,7 +167,7 @@ Berikut contoh cara menyiapkan MCP server di VS Code:
 
 > Untuk panduan lengkap dengan tangkapan layar dan langkah demi langkah, lihat [`README.md`](./solution/scenario3/README.md).
 
-![Scenario 3 Overview](../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.id.png)
+![Scenario 3 Overview](../../../../translated_images/id/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 Pendekatan ini sangat cocok untuk siapa saja yang membangun kursus teknis, menulis dokumentasi, atau mengembangkan kode dengan kebutuhan referensi yang sering.
 

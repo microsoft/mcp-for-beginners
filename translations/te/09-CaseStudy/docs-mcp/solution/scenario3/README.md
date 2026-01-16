@@ -52,27 +52,27 @@ CO_OP_TRANSLATOR_METADATA:
    ```
    ఈ కాన్ఫిగరేషన్ VS కోడ్‌కు [`Microsoft Learn Docs MCP server`](https://github.com/MicrosoftDocs/mcp)తో ఎలా కనెక్ట్ కావాలో చెబుతుంది.
    
-   ![Step 1: Add mcp.json to .vscode folder](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.te.png)
+   ![Step 1: Add mcp.json to .vscode folder](../../../../../../translated_images/te/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
     
 2. **GitHub Copilot చాట్ ప్యానెల్‌ను తెరవండి:**
    మీరు ఇప్పటికే GitHub Copilot ఎక్స్‌టెన్షన్ ఇన్‌స్టాల్ చేయకపోతే, VS కోడ్‌లో ఎక్స్‌టెన్షన్స్ వీక్షణకు వెళ్లి దాన్ని ఇన్‌స్టాల్ చేయండి. మీరు దాన్ని నేరుగా [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat) నుండి డౌన్లోడ్ చేసుకోవచ్చు. ఆపై, సైడ్‌బార్ నుండి Copilot చాట్ ప్యానెల్‌ను తెరవండి.
 
-   ![Step 2: Open Copilot Chat panel](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.te.png)
+   ![Step 2: Open Copilot Chat panel](../../../../../../translated_images/te/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
 
 3. **ఏజెంట్ మోడ్‌ను ఎనేబుల్ చేసి టూల్స్‌ను ధృవీకరించండి:**
    Copilot చాట్ ప్యానెల్‌లో ఏజెంట్ మోడ్‌ను ఎనేబుల్ చేయండి.
 
-   ![Step 3: Enable agent mode and verify tools](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.te.png)
+   ![Step 3: Enable agent mode and verify tools](../../../../../../translated_images/te/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
 
    ఏజెంట్ మోడ్ ఎనేబుల్ చేసిన తర్వాత, MCP సర్వర్ అందుబాటులో ఉన్న టూల్స్‌లో ఒకటిగా ఉన్నదని ధృవీకరించండి. ఇది Copilot ఏజెంట్‌కు సంబంధిత సమాచారాన్ని పొందడానికి డాక్యుమెంటేషన్ సర్వర్‌ను యాక్సెస్ చేయడానికి సహాయపడుతుంది.
    
-   ![Step 3: Verify MCP server tool](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.te.png)
+   ![Step 3: Verify MCP server tool](../../../../../../translated_images/te/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
 4. **కొత్త చాట్ ప్రారంభించి ఏజెంట్‌ను ప్రాంప్ట్ చేయండి:**
    Copilot చాట్ ప్యానెల్‌లో కొత్త చాట్ తెరవండి. ఇప్పుడు మీరు మీ డాక్యుమెంటేషన్ ప్రశ్నలతో ఏజెంట్‌ను ప్రాంప్ట్ చేయవచ్చు. ఏజెంట్ MCP సర్వర్‌ను ఉపయోగించి సంబంధిత Microsoft Learn డాక్యుమెంటేషన్‌ను నేరుగా మీ ఎడిటర్‌లో తీసుకురావడం మరియు ప్రదర్శించడం చేస్తుంది.
 
    - *"నేను టాపిక్ X కోసం స్టడీ ప్లాన్ రాయడానికి ప్రయత్నిస్తున్నాను. నేను దీన్ని 8 వారాల పాటు చదువుతాను, ప్రతి వారం కోసం నేను తీసుకోవలసిన కంటెంట్‌ను సూచించండి."*
 
-   ![Step 4: Prompt the agent in chat](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.te.png)
+   ![Step 4: Prompt the agent in chat](../../../../../../translated_images/te/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 5. **లైవ్ క్వెరీ:**
 
@@ -81,7 +81,7 @@ CO_OP_TRANSLATOR_METADATA:
    *"నేను Azure AI Foundryలో అభివృద్ధి చేసిన AI ఏజెంట్లతో బహుళ ఏజెంట్ పరిష్కారాన్ని ఎలా డిప్లాయ్ చేయాలో సమాధానాలు వెతుకుతున్నాను. Copilot స్టూడియో ఛానల్స్ వంటి ప్రత్యక్ష డిప్లాయ్‌మెంట్ పద్ధతి లేదు. కాబట్టి, ఎంటర్‌ప్రైజ్ వినియోగదారులు పరస్పరం సంభాషించి పని చేయడానికి ఈ డిప్లాయ్‌మెంట్‌ను చేయడానికి వేర్వేరు మార్గాలు ఏమిటి?
 MS టీమ్స్ మరియు Azure AI Foundry ఏజెంట్ల మధ్య బ్రిడ్జ్‌గా పనిచేసే Azure బాట్ సర్వీస్ ఉపయోగించవచ్చని అనేక ఆర్టికల్స్/బ్లాగ్స్ ఉన్నాయి, నేను Azure బాట్‌ను సెటప్ చేసి Azure ఫంక్షన్ ద్వారా Azure AI Foundryలోని ఆర్కెస్ట్రేటర్ ఏజెంట్‌కు కనెక్ట్ చేస్తే ఇది పనిచేస్తుందా లేదా బాట్ ఫ్రేమ్‌వర్క్‌లో ఆర్కెస్ట్రేషన్ చేయడానికి బహుళ ఏజెంట్ పరిష్కారంలోని ప్రతి AI ఏజెంట్ కోసం Azure ఫంక్షన్ సృష్టించాల్సి వస్తుందా? ఇతర సూచనలు స్వాగతం."*
 
-   ![Step 5: Live queries](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.te.png)
+   ![Step 5: Live queries](../../../../../../translated_images/te/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
 
    ఏజెంట్ సంబంధిత డాక్యుమెంటేషన్ లింకులు మరియు సారాంశాలతో స్పందిస్తుంది, మీరు వాటిని నేరుగా మీ మార్క్డౌన్ ఫైళ్లలో చేర్చవచ్చు లేదా కోడ్‌లో సూచనలుగా ఉపయోగించవచ్చు.
    

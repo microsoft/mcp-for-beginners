@@ -38,9 +38,9 @@ Svůj MCP server můžete ovládat dvěma různými způsoby:
 
 ### Snímky obrazovky
 
-![Konfigurování MCP serveru ve Visual Studio Code](../../../../translated_images/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.cs.png)
-![Výběr nástrojů pro každou relaci agenta](../../../../translated_images/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.cs.png)
-![Snadné ladění chyb během vývoje MCP](../../../../translated_images/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.cs.png)
+![Konfigurování MCP serveru ve Visual Studio Code](../../../../translated_images/cs/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.png)
+![Výběr nástrojů pro každou relaci agenta](../../../../translated_images/cs/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.png)
+![Snadné ladění chyb během vývoje MCP](../../../../translated_images/cs/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.png)
 
 Pojďme si více povědět o tom, jak používat vizuální rozhraní v následujících sekcích.
 
@@ -103,15 +103,15 @@ Nyní, když jste přidali záznam, spusťte server:
 
 1. Najděte svůj záznam v *mcp.json* a ujistěte se, že vidíte ikonu "play":
 
-  ![Spuštění serveru ve Visual Studio Code](../../../../translated_images/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.cs.png)  
+  ![Spuštění serveru ve Visual Studio Code](../../../../translated_images/cs/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.png)  
 
 1. Klikněte na ikonu "play". Měli byste vidět, že se počet dostupných nástrojů v ikoně nástrojů GitHub Copilot Chat zvýší. Pokud na tuto ikonu kliknete, zobrazí se seznam registrovaných nástrojů. Můžete zaškrtnout/odškrtnout každý nástroj podle toho, zda chcete, aby je GitHub Copilot používal jako kontext:
 
-  ![Spuštění serveru ve Visual Studio Code](../../../../translated_images/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.cs.png)
+  ![Spuštění serveru ve Visual Studio Code](../../../../translated_images/cs/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.png)
 
 1. Pro spuštění nástroje napište příkaz, o kterém víte, že odpovídá popisu jednoho z vašich nástrojů, například příkaz "přidej 22 k 1":
 
-  ![Spuštění nástroje z GitHub Copilot](../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.cs.png)
+  ![Spuštění nástroje z GitHub Copilot](../../../../translated_images/cs/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
   Měli byste vidět odpověď s výsledkem 23.
 

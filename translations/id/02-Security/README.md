@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Keamanan MCP: Perlindungan Komprehensif untuk Sistem AI
 
-[![Praktik Terbaik Keamanan MCP](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.id.png)](https://youtu.be/88No8pw706o)
+[![Praktik Terbaik Keamanan MCP](../../../translated_images/id/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(Klik gambar di atas untuk menonton video pelajaran ini)_
 
@@ -133,7 +133,7 @@ Implementasi MCP modern menghadapi vektor serangan khusus AI yang canggih yang t
 
 **Dampak Dunia Nyata**: Serangan ini dapat menyebabkan eksfiltrasi data, pelanggaran privasi, pembuatan konten berbahaya, dan manipulasi interaksi pengguna. Untuk analisis mendalam, lihat [Injeksi Prompt di MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
-![Diagram Serangan Injeksi Prompt](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.id.png)
+![Diagram Serangan Injeksi Prompt](../../../translated_images/id/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **Serangan Keracunan Alat**
 
@@ -147,7 +147,7 @@ Implementasi MCP modern menghadapi vektor serangan khusus AI yang canggih yang t
 
 **Risiko Server Tuan Rumah**: Server MCP jarak jauh menghadirkan risiko tinggi karena definisi alat dapat diperbarui setelah persetujuan awal pengguna, menciptakan skenario di mana alat yang sebelumnya aman menjadi berbahaya. Untuk analisis komprehensif, lihat [Serangan Keracunan Alat (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
-![Diagram Serangan Injeksi Alat](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.id.png)
+![Diagram Serangan Injeksi Alat](../../../translated_images/id/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **Vektor Serangan AI Tambahan**
 
@@ -200,7 +200,7 @@ Microsoft **AI Prompt Shields** menyediakan pertahanan komprehensif terhadap ser
 
 **Sumber Implementasi**: [Dokumentasi Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Perlindungan Microsoft Prompt Shields](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.id.png)
+![Perlindungan Microsoft Prompt Shields](../../../translated_images/id/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## Ancaman Keamanan MCP Lanjutan

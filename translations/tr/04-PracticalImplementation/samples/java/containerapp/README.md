@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Bu proje, kullanıcı girdilerini Model Context Protocol (MCP) aracılığıyla bir hesaplayıcı servisine göndermeden önce içerik güvenliği kontrolü yapan bir web uygulamasını göstermektedir.
 
-![Sistem Mimarisi Diyagramı](../../../../../../translated_images/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.tr.png)
+![Sistem Mimarisi Diyagramı](../../../../../../translated_images/tr/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.png)
 
 ### Nasıl Çalışır
 

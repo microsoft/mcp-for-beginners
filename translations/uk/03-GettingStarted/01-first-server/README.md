@@ -156,7 +156,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 Ось скріншот того, як це може виглядати:
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.uk.png)
+![MCP Inspector server connection](../../../../translated_images/uk/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## Поширені проблеми налаштування та рішення
 
@@ -1302,7 +1302,7 @@ npx @modelcontextprotocol/inspector
 2. Встановіть URL: `http://localhost:8080/sse`
 3. Натисніть "Connect"
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.uk.png)
+![Connect](../../../../translated_images/uk/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **Ви тепер підключені до сервера**
 **Розділ тестування Java сервера завершено**
@@ -1311,18 +1311,18 @@ npx @modelcontextprotocol/inspector
 
 Ви повинні побачити наступний інтерфейс користувача:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.uk.png)
+![Connect](../../../../translated_images/uk/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. Підключіться до сервера, натиснувши кнопку Connect
   Після підключення до сервера ви побачите наступне:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.uk.png)
+  ![Connected](../../../../translated_images/uk/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. Виберіть "Tools" і "listTools", ви повинні побачити "Add", виберіть "Add" і заповніть значення параметрів.
 
   Ви побачите наступну відповідь, тобто результат від інструменту "add":
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.uk.png)
+  ![Result of running add](../../../../translated_images/uk/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 Вітаємо, ви успішно створили і запустили свій перший сервер!
 

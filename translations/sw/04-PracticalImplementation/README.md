@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Utekelezaji wa Kivitendo
 
-[![Jinsi ya Kujenga, Kupima, na Kuweka Programu za MCP kwa Kutumia Zana na Mifumo Halisi](../../../translated_images/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.sw.png)](https://youtu.be/vCN9-mKBDfQ)
+[![Jinsi ya Kujenga, Kupima, na Kuweka Programu za MCP kwa Kutumia Zana na Mifumo Halisi](../../../translated_images/sw/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.png)](https://youtu.be/vCN9-mKBDfQ)
 
 _(Bofya picha hapo juu kutazama video ya somo hili)_
 
@@ -215,7 +215,7 @@ Hebu tuone kama tunaweza kuweka sampuli tuliyotaja awali:
 
     Unapaswa kuona kiolesura kinachofanana na:
 
-    ![Unganisha na Node inspector](../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.sw.png)
+    ![Unganisha na Node inspector](../../../translated_images/sw/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. Bofya CTRL ili kupakia programu ya wavuti ya MCP Inspector kutoka URL iliyoonyeshwa na programu (mfano [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources))
 1. Weka aina ya usafirishaji kuwa `SSE`

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Pengantar Model Context Protocol (MCP): Mengapa Penting untuk Aplikasi AI yang Skalabel
 
-[![Pengantar Model Context Protocol](../../../translated_images/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.id.png)](https://youtu.be/agBbdiOPLQA)
+[![Pengantar Model Context Protocol](../../../translated_images/id/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.png)](https://youtu.be/agBbdiOPLQA)
 
 _(Klik gambar di atas untuk menonton video pelajaran ini)_
 

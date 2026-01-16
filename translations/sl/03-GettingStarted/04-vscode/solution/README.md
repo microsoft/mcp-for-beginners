@@ -23,7 +23,7 @@ To ustreza zagonu ukaza, kot je ta: `node build/index.js`.
 
     Nad poljem za vnos besedila v klepetu bi se moralo prikazati orodje, ki vas poziva, da ga izberete za zagon, kot je prikazano na tej sliki:
 
-    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.sl.png)
+    ![VS Code indicating it wanting to run a tool](../../../../../translated_images/sl/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
     Izbira orodja bi morala prikazati številčni rezultat "23", če je bil vaš ukaz tak, kot smo ga prej omenili.
 

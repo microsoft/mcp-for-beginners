@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 ## 開始使用  
 
-[![建立您的第一個 MCP 伺服器](../../../translated_images/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.tw.png)](https://youtu.be/sNDZO9N4m9Y)
+[![建立您的第一個 MCP 伺服器](../../../translated_images/tw/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.png)](https://youtu.be/sNDZO9N4m9Y)
 
 _（點擊上方圖片觀看本課程的影片）_
 

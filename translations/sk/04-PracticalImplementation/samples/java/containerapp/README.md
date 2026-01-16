@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Tento projekt demonštruje webovú aplikáciu, ktorá pred odoslaním používateľských požiadaviek do kalkulačnej služby cez Model Context Protocol (MCP) vykonáva kontrolu bezpečnosti obsahu.
 
-![Diagram architektúry systému](../../../../../../translated_images/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.sk.png)
+![Diagram architektúry systému](../../../../../../translated_images/sk/plant.b079fed84e945b7c2978993a16163bb53f0517cfe3548d2e442ff40d619ba4b4.png)
 
 ### Ako to funguje
 

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Praktisk Implementering
 
-[![Hur man bygger, testar och distribuerar MCP-appar med riktiga verktyg och arbetsflöden](../../../translated_images/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.sv.png)](https://youtu.be/vCN9-mKBDfQ)
+[![Hur man bygger, testar och distribuerar MCP-appar med riktiga verktyg och arbetsflöden](../../../translated_images/sv/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.png)](https://youtu.be/vCN9-mKBDfQ)
 
 _(Klicka på bilden ovan för att se videon för denna lektion)_
 
@@ -215,7 +215,7 @@ Låt oss se om vi kan distribuera exemplet vi nämnde tidigare:
 
     Du bör se ett gränssnitt som liknar:
 
-    ![Anslut till Node Inspector](../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.sv.png)
+    ![Anslut till Node Inspector](../../../translated_images/sv/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. CTRL-klicka för att ladda MCP Inspector-webbappen från URL:en som visas av appen (t.ex. [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources))
 1. Ställ in transporttypen till `SSE`

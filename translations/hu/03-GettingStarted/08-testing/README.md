@@ -48,7 +48,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 A fenti parancs elindít egy MCP-t és annak vizuális felületét, majd megnyit egy helyi webes felületet a böngésződben. Egy irányítópultot láthatsz, amely megjeleníti a regisztrált MCP szervereidet, azok elérhető eszközeit, erőforrásait és promptjait. Az interfész lehetővé teszi az eszközök interaktív tesztelését, a szerver metaadatainak vizsgálatát és a valós idejű válaszok megtekintését, megkönnyítve ezzel az MCP szerver implementációk ellenőrzését és hibakeresését.
 
-Így nézhet ki: ![Inspector](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.hu.png)
+Így nézhet ki: ![Inspector](../../../../translated_images/hu/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 Az eszközt CLI módban is futtathatod, ehhez add hozzá a `--cli` kapcsolót. Íme egy példa a CLI módban történő futtatásra, amely listázza a szerveren található összes eszközt:
 

@@ -48,7 +48,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 O comando acima inicia um MCP e a sua interface visual, lançando uma interface web local no seu navegador. Pode esperar ver um painel que mostra os seus servidores MCP registados, as ferramentas, recursos e prompts disponíveis. A interface permite testar interativamente a execução das ferramentas, inspecionar os metadados do servidor e ver respostas em tempo real, facilitando a validação e depuração das suas implementações MCP.
 
-Aqui está um exemplo de como pode parecer: ![Inspector](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.pt.png)
+Aqui está um exemplo de como pode parecer: ![Inspector](../../../../translated_images/pt/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 Também pode executar esta ferramenta em modo CLI, adicionando o atributo `--cli`. Aqui está um exemplo de execução da ferramenta em modo "CLI" que lista todas as ferramentas no servidor:
 

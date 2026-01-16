@@ -201,7 +201,7 @@ MCP Inspector er et nyttigt værktøj til at interagere med MCP-services. For at
    - Klik på "List Tools" for at se tilgængelige lommeregneroperationer
    - Vælg et værktøj og klik på "Run Tool" for at udføre en operation
 
-![MCP Inspector Screenshot](../../../../../../translated_images/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.da.png)
+![MCP Inspector Screenshot](../../../../../../translated_images/da/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.png)
 
 ### Brug af Docker
 

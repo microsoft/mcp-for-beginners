@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP Security: การปกป้องอย่างครอบคลุมสำหรับระบบ AI
 
-[![MCP Security Best Practices](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.th.png)](https://youtu.be/88No8pw706o)
+[![MCP Security Best Practices](../../../translated_images/th/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(คลิกที่ภาพด้านบนเพื่อดูวิดีโอของบทเรียนนี้)_
 
@@ -133,7 +133,7 @@ Model Context Protocol (MCP) นำความสามารถใหม่ท
 
 **ผลกระทบในโลกจริง**: การโจมตีเหล่านี้อาจทำให้เกิดการขโมยข้อมูล, การละเมิดความเป็นส่วนตัว, การสร้างเนื้อหาที่เป็นอันตราย และการควบคุมปฏิสัมพันธ์ของผู้ใช้ สำหรับการวิเคราะห์โดยละเอียด ดูที่ [Prompt Injection in MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/)
 
-![Prompt Injection Attack Diagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.th.png)
+![Prompt Injection Attack Diagram](../../../translated_images/th/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **การโจมตีวางยาพิษเครื่องมือ**
 
@@ -147,7 +147,7 @@ Model Context Protocol (MCP) นำความสามารถใหม่ท
 
 **ความเสี่ยงของเซิร์ฟเวอร์โฮสต์**: เซิร์ฟเวอร์ MCP ระยะไกลมีความเสี่ยงสูงขึ้นเนื่องจากคำจำกัดความเครื่องมือสามารถอัปเดตหลังจากได้รับการอนุมัติจากผู้ใช้แล้ว สร้างสถานการณ์ที่เครื่องมือที่เคยปลอดภัยกลายเป็นอันตราย สำหรับการวิเคราะห์อย่างละเอียด ดูที่ [Tool Poisoning Attacks (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks)
 
-![Tool Injection Attack Diagram](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.th.png)
+![Tool Injection Attack Diagram](../../../translated_images/th/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **ช่องทางโจมตี AI เพิ่มเติม**
 
@@ -200,7 +200,7 @@ Microsoft **AI Prompt Shields** ให้การป้องกันอย่
 
 **แหล่งข้อมูลการใช้งาน**: [Microsoft Prompt Shields Documentation](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields Protection](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.th.png)
+![Microsoft Prompt Shields Protection](../../../translated_images/th/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## ภัยคุกคามความปลอดภัย MCP ขั้นสูง

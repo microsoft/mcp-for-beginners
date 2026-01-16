@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP в действие: Примери от реалния свят
 
-[![MCP в действие: Примери от реалния свят](../../../translated_images/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.bg.png)](https://youtu.be/IxshWb2Az5w)
+[![MCP в действие: Примери от реалния свят](../../../translated_images/bg/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.png)](https://youtu.be/IxshWb2Az5w)
 
 _(Кликнете върху изображението по-горе, за да гледате видеото към този урок)_
 

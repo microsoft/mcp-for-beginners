@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP у акцији: Студије случаја из стварног света
 
-[![MCP у акцији: Студије случаја из стварног света](../../../translated_images/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.sr.png)](https://youtu.be/IxshWb2Az5w)
+[![MCP у акцији: Студије случаја из стварног света](../../../translated_images/sr/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.png)](https://youtu.be/IxshWb2Az5w)
 
 _(Кликните на слику изнад да бисте погледали видео лекцију)_
 

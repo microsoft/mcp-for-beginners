@@ -201,7 +201,7 @@ MCP Inspector ابزاری مفید برای تعامل با سرویس‌های
    - روی "List Tools" کلیک کنید تا عملیات‌های ماشین‌حساب موجود را ببینید
    - یک ابزار را انتخاب کرده و روی "Run Tool" کلیک کنید تا عملیات اجرا شود
 
-![تصویر MCP Inspector](../../../../../../translated_images/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.fa.png)
+![تصویر MCP Inspector](../../../../../../translated_images/fa/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.png)
 
 ### استفاده از داکر
 

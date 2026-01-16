@@ -48,7 +48,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 Vyššie uvedený príkaz spustí MCP a jeho vizuálne rozhranie a otvorí lokálne webové rozhranie vo vašom prehliadači. Môžete očakávať zobrazenie dashboardu s registrovanými MCP servermi, ich dostupnými nástrojmi, zdrojmi a výzvami. Rozhranie umožňuje interaktívne testovať spustenie nástrojov, prezerať metadata servera a sledovať odpovede v reálnom čase, čo uľahčuje overenie a ladenie implementácií MCP servera.
 
-Takto to môže vyzerať: ![Inspector](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.sk.png)
+Takto to môže vyzerať: ![Inspector](../../../../translated_images/sk/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 Tento nástroj môžete tiež spustiť v režime CLI, v tom prípade pridajte atribút `--cli`. Tu je príklad spustenia nástroja v režime "CLI", ktorý vypíše všetky nástroje na serveri:
 

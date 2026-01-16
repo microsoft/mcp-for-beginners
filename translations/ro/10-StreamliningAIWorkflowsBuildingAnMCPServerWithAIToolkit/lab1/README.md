@@ -60,7 +60,7 @@ La finalul acestui modul, vei putea:
 
 **Pasul 3: Instalează și activează**
 
-![Extensia AI Toolkit](../../../../translated_images/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.ro.png)
+![Extensia AI Toolkit](../../../../translated_images/ro/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.png)
 
 ### ✅ Lista de verificare pentru confirmare
 - [ ] Iconița AI Toolkit apare în bara laterală VS Code
@@ -79,7 +79,7 @@ Catalogul de Modele este poarta ta către ecosistemul AI. Agregă modele de la m
 
 Click pe **MODELS - Catalog** în bara laterală AI Toolkit
 
-![Catalogul de Modele](../../../../translated_images/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.ro.png)
+![Catalogul de Modele](../../../../translated_images/ro/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.png)
 
 **💡 Sfat util**: Caută modele cu capabilități specifice care se potrivesc cazului tău de utilizare (ex: generare de cod, scriere creativă, analiză).
 
@@ -97,7 +97,7 @@ Click pe **MODELS - Catalog** în bara laterală AI Toolkit
 3. Alege **Try in Playground** pentru a lansa mediul de testare
 4. Așteaptă inițializarea modelului (configurarea inițială poate dura puțin)
 
-![Configurare Playground](../../../../translated_images/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.ro.png)
+![Configurare Playground](../../../../translated_images/ro/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.png)
 
 **⚙️ Înțelegerea parametrilor modelului:**
 - **Temperature**: Controlează creativitatea (0 = determinist, 1 = creativ)
@@ -126,7 +126,7 @@ Playground este laboratorul tău de experimentare AI. Iată cum să-i maximizezi
 "Analyze this sales data and provide insights: [paste your data]. Focus on trends, anomalies, and actionable recommendations."
 ```
 
-![Rezultatele testării](../../../../translated_images/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.ro.png)
+![Rezultatele testării](../../../../translated_images/ro/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.png)
 
 ### 🏆 Exercițiu provocare: Compararea performanței modelelor
 
@@ -136,12 +136,12 @@ Playground este laboratorul tău de experimentare AI. Iată cum să-i maximizezi
 1. Adaugă **Phi-4-mini** în spațiul tău de lucru
 2. Folosește același prompt pentru GPT-4.1 și Phi-4-mini
 
-![set](../../../../translated_images/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.ro.png)
+![set](../../../../translated_images/ro/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.png)
 
 3. Compară calitatea răspunsurilor, viteza și acuratețea
 4. Documentează concluziile în secțiunea de rezultate
 
-![Compararea modelelor](../../../../translated_images/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.ro.png)
+![Compararea modelelor](../../../../translated_images/ro/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.png)
 
 **💡 Aspecte cheie de descoperit:**
 - Când să folosești LLM vs SLM
@@ -163,7 +163,7 @@ Agent Builder este punctul forte al AI Toolkit. Îți permite să creezi asisten
 - **Integrarea uneltelor**: Conectare la API-uri externe și servicii MCP
 - **Memorie**: Contextul conversației și persistența sesiunii
 
-![Interfața Agent Builder](../../../../translated_images/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.ro.png)
+![Interfața Agent Builder](../../../../translated_images/ro/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.png)
 
 ### ⚙️ Pasul 2: Detalii despre configurarea agentului
 
@@ -237,7 +237,7 @@ You are a senior Python developer with 10+ years of experience. You excel at wri
    - Max Tokens: 2000 (explicații detaliate)
    - Top-p: 0.9 (creativitate echilibrată)
 
-![Configurarea agentului Python](../../../../translated_images/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.ro.png)
+![Configurarea agentului Python](../../../../translated_images/ro/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.png)
 
 ### 🧪 Pasul 4: Testarea agentului tău Python
 

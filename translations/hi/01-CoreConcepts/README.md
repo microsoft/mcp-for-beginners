@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP कोर अवधारणाएँ: AI एकीकरण के लिए मॉडल संदर्भ प्रोटोकॉल में महारत हासिल करना
 
-[![MCP Core Concepts](../../../translated_images/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.hi.png)](https://youtu.be/earDzWGtE84)
+[![MCP Core Concepts](../../../translated_images/hi/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.png)](https://youtu.be/earDzWGtE84)
 
 _(इस पाठ का वीडियो देखने के लिए ऊपर की छवि पर क्लिक करें)_
 

@@ -110,7 +110,7 @@ Let me know if you want module-specific recommendations or need more customized 
 
 Di bawah adalah contoh penyelesaian minimum. Kod penuh dan butiran tersedia dalam folder penyelesaian.
 
-![Gambaran Senario 2](../../../../translated_images/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.ms.png)
+![Gambaran Senario 2](../../../../translated_images/ms/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.png)
 
 <details>
 <summary>Python (Chainlit)</summary>
@@ -167,7 +167,7 @@ Ini adalah contoh cara menyediakan pelayan MCP dalam VS Code:
 
 > Untuk panduan terperinci dengan tangkapan skrin dan langkah demi langkah, lihat [`README.md`](./solution/scenario3/README.md).
 
-![Gambaran Senario 3](../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.ms.png)
+![Gambaran Senario 3](../../../../translated_images/ms/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 Pendekatan ini sesuai untuk sesiapa yang membina kursus teknikal, menulis dokumentasi, atau membangunkan kod dengan keperluan rujukan yang kerap.
 

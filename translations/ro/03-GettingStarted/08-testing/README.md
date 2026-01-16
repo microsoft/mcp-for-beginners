@@ -48,7 +48,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 Comanda de mai sus pornește un MCP și interfața sa vizuală și lansează o interfață web locală în browserul tău. Te poți aștepta să vezi un panou de control care afișează serverele MCP înregistrate, uneltele, resursele și prompturile disponibile. Interfața îți permite să testezi interactiv execuția uneltelor, să inspectezi metadatele serverului și să vezi răspunsurile în timp real, facilitând validarea și depanarea implementărilor serverului MCP.
 
-Iată cum poate arăta: ![Inspector](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.ro.png)
+Iată cum poate arăta: ![Inspector](../../../../translated_images/ro/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 Poți rula acest instrument și în modul CLI, caz în care adaugi atributul `--cli`. Iată un exemplu de rulare în modul "CLI" care listează toate uneltele de pe server:
 

@@ -38,9 +38,9 @@ Svoj MCP strežnik lahko upravljate na dva različna načina:
 
 ### Posnetki zaslona
 
-![Vodena konfiguracija MCP strežnika v Visual Studio Code](../../../../translated_images/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.sl.png)
-![Izbira orodij za vsako sejo agenta](../../../../translated_images/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.sl.png)
-![Preprosto odpravljanje napak med razvojem MCP](../../../../translated_images/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.sl.png)
+![Vodena konfiguracija MCP strežnika v Visual Studio Code](../../../../translated_images/sl/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.png)
+![Izbira orodij za vsako sejo agenta](../../../../translated_images/sl/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.png)
+![Preprosto odpravljanje napak med razvojem MCP](../../../../translated_images/sl/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.png)
 
 V naslednjih razdelkih bomo podrobneje govorili o uporabi vizualnega vmesnika.
 
@@ -103,15 +103,15 @@ Ko ste dodali vnos, zaženite strežnik:
 
 1. Poiščite svoj vnos v *mcp.json* in se prepričajte, da najdete ikono "play":
 
-  ![Zagon strežnika v Visual Studio Code](../../../../translated_images/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.sl.png)  
+  ![Zagon strežnika v Visual Studio Code](../../../../translated_images/sl/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.png)  
 
 1. Kliknite ikono "play". Videti bi morali, da se število razpoložljivih orodij v ikoni orodij GitHub Copilot Chat poveča. Če kliknete to ikono orodij, boste videli seznam registriranih orodij. Vsako orodje lahko označite/odznačite, odvisno od tega, ali želite, da jih GitHub Copilot uporablja kot kontekst:
 
-  ![Zagon strežnika v Visual Studio Code](../../../../translated_images/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.sl.png)
+  ![Zagon strežnika v Visual Studio Code](../../../../translated_images/sl/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.png)
 
 1. Za zagon orodja vnesite ukaz, za katerega veste, da ustreza opisu enega od vaših orodij, na primer ukaz "add 22 to 1":
 
-  ![Zagon orodja iz GitHub Copilot](../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.sl.png)
+  ![Zagon orodja iz GitHub Copilot](../../../../translated_images/sl/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
   Videti bi morali odgovor, ki pravi 23.
 

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # 🌟 Tanulságok korai felhasználóktól
 
-[![Tanulságok az MCP korai felhasználóitól](../../../translated_images/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.hu.png)](https://youtu.be/jds7dSmNptE)
+[![Tanulságok az MCP korai felhasználóitól](../../../translated_images/hu/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.png)](https://youtu.be/jds7dSmNptE)
 
 _(Kattints a fenti képre a videó megtekintéséhez)_
 

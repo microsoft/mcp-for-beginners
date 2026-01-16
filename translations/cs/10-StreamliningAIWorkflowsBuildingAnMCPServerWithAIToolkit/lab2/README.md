@@ -202,7 +202,7 @@ Kromě Microsoft serverů zahrnuje MCP ekosystém také:
    - **Jméno**: `BrowserAgent`  
    - **Model**: Vyberte GPT-4o  
 
-![BrowserAgent](../../../../translated_images/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.cs.png)
+![BrowserAgent](../../../../translated_images/cs/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.png)
 
 ### 🔧 Fáze 2: Workflow integrace MCP
 
@@ -211,7 +211,7 @@ Kromě Microsoft serverů zahrnuje MCP ekosystém také:
 2. **Klikněte na "Add Tool"** pro otevření menu integrací  
 3. **Vyberte "MCP Server"** z dostupných možností  
 
-![AddMCP](../../../../translated_images/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.cs.png)
+![AddMCP](../../../../translated_images/cs/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.png)
 
 **🔍 Porozumění typům nástrojů:**  
 - **Vestavěné nástroje**: Přednastavené funkce AI Toolkitu  
@@ -221,10 +221,10 @@ Kromě Microsoft serverů zahrnuje MCP ekosystém také:
 
 #### Krok 4: Výběr MCP serveru  
 1. **Zvolte možnost "MCP Server"** pro pokračování  
-![AddMCPServer](../../../../translated_images/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.cs.png)
+![AddMCPServer](../../../../translated_images/cs/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.png)
 
 2. **Prohlédněte si katalog MCP** a dostupné integrace  
-![MCPCatalog](../../../../translated_images/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.cs.png)
+![MCPCatalog](../../../../translated_images/cs/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.png)
 
 ### 🎮 Fáze 3: Konfigurace Playwright MCP
 
@@ -233,12 +233,12 @@ Kromě Microsoft serverů zahrnuje MCP ekosystém také:
 2. **Vyberte "Playwright"** ze seznamu  
 3. **Přijměte výchozí MCP ID** nebo přizpůsobte podle svého prostředí  
 
-![MCPID](../../../../translated_images/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.cs.png)
+![MCPID](../../../../translated_images/cs/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.png)
 
 #### Krok 6: Aktivace funkcí Playwright  
 **🔑 Klíčový krok**: Vyberte **VŠECHNY** dostupné metody Playwright pro maximální funkčnost  
 
-![Tools](../../../../translated_images/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.cs.png)
+![Tools](../../../../translated_images/cs/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.png)
 
 **🛠️ Základní nástroje Playwright:**  
 - **Navigace**: `goto`, `goBack`, `goForward`, `reload`  
@@ -254,7 +254,7 @@ Kromě Microsoft serverů zahrnuje MCP ekosystém také:
 - Žádné chybové hlášky v panelu integrace  
 - Stav Playwright serveru ukazuje „Connected“  
 
-![AgentTools](../../../../translated_images/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.cs.png)
+![AgentTools](../../../../translated_images/cs/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.png)
 
 **🔧 Řešení běžných problémů:**  
 - **Nepodařilo se připojit**: Zkontrolujte internetové připojení a nastavení firewallu  
@@ -320,7 +320,7 @@ Navigate to github.com/kinfey and provide a comprehensive analysis including:
 Include screenshots at key steps and provide actionable insights.
 ```
 
-![Prompt](../../../../translated_images/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.cs.png)
+![Prompt](../../../../translated_images/cs/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.png)
 
 ### 🚀 Fáze 5: Spuštění a testování
 
@@ -332,19 +332,19 @@ Include screenshots at key steps and provide actionable insights.
    - Screenshoty zachycují každý důležitý krok  
    - Výsledky analýzy se zobrazují v reálném čase  
 
-![Browser](../../../../translated_images/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.cs.png)
+![Browser](../../../../translated_images/cs/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.png)
 
 #### Krok 11: Analyzujte výsledky a poznatky  
 Prohlédněte si podrobnou analýzu v rozhraní Agent Builderu:
 
-![Result](../../../../translated_images/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.cs.png)
+![Result](../../../../translated_images/cs/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.png)
 
 ### 🌟 Fáze 6: Pokročilé funkce a nasazení
 
 #### Krok 12: Export a produkční nasazení  
 Agent Builder podporuje různé možnosti nasazení:
 
-![Code](../../../../translated_images/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.cs.png)
+![Code](../../../../translated_images/cs/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.png)
 
 ## 🎓 Shrnutí modulu 2 a další kroky
 

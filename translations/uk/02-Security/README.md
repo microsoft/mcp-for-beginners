@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP Security: Комплексний захист для AI-систем
 
-[![MCP Security Best Practices](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.uk.png)](https://youtu.be/88No8pw706o)
+[![MCP Security Best Practices](../../../translated_images/uk/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(Натисніть на зображення вище, щоб переглянути відео цього уроку)_
 
@@ -133,7 +133,7 @@ _(Натисніть на зображення вище, щоб переглян
 
 **Реальний вплив**: Ці атаки можуть призводити до витоку даних, порушення конфіденційності, генерації шкідливого контенту та маніпуляції взаємодією з користувачем. Детальний аналіз див. у [Prompt Injection в MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
-![Prompt Injection Attack Diagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.uk.png)
+![Prompt Injection Attack Diagram](../../../translated_images/uk/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **Атаки отруєння інструментів**
 
@@ -147,7 +147,7 @@ _(Натисніть на зображення вище, щоб переглян
 
 **Ризики хостингових серверів**: Віддалені сервери MCP мають підвищені ризики, оскільки визначення інструментів можуть оновлюватися після початкового схвалення користувачем, створюючи сценарії, де раніше безпечні інструменти стають шкідливими. Для повного аналізу див. [Атаки отруєння інструментів (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
-![Tool Injection Attack Diagram](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.uk.png)
+![Tool Injection Attack Diagram](../../../translated_images/uk/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **Додаткові вектори атак AI**
 
@@ -200,7 +200,7 @@ Microsoft **AI Prompt Shields** забезпечують комплексний 
 
 **Ресурси для впровадження**: [Документація Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields Protection](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.uk.png)
+![Microsoft Prompt Shields Protection](../../../translated_images/uk/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## Просунуті загрози безпеці MCP

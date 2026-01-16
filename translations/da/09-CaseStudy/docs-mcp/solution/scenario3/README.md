@@ -52,27 +52,27 @@ For at komme i gang, følg disse trin. For hvert trin kan du tilføje et screens
    ```
    Denne konfiguration fortæller VS Code, hvordan den skal forbinde til [`Microsoft Learn Docs MCP server`](https://github.com/MicrosoftDocs/mcp).
    
-   ![Trin 1: Tilføj mcp.json til .vscode-mappen](../../../../../../translated_images/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.da.png)
+   ![Trin 1: Tilføj mcp.json til .vscode-mappen](../../../../../../translated_images/da/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
     
 2. **Åbn GitHub Copilot Chat-panelet:**
    Hvis du ikke allerede har installeret GitHub Copilot-udvidelsen, gå til Extensions-visningen i VS Code og installer den. Du kan downloade den direkte fra [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat). Åbn derefter Copilot Chat-panelet fra sidebjælken.
 
-   ![Trin 2: Åbn Copilot Chat-panelet](../../../../../../translated_images/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.da.png)
+   ![Trin 2: Åbn Copilot Chat-panelet](../../../../../../translated_images/da/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
 
 3. **Aktivér agent-tilstand og verificer værktøjer:**
    I Copilot Chat-panelet, aktivér agent-tilstand.
 
-   ![Trin 3: Aktivér agent-tilstand og verificer værktøjer](../../../../../../translated_images/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.da.png)
+   ![Trin 3: Aktivér agent-tilstand og verificer værktøjer](../../../../../../translated_images/da/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
 
    Efter aktivering af agent-tilstand, bekræft at MCP-serveren er listet som et af de tilgængelige værktøjer. Dette sikrer, at Copilot-agenten kan få adgang til dokumentationsserveren for at hente relevant information.
    
-   ![Trin 3: Bekræft MCP-server værktøj](../../../../../../translated_images/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.da.png)
+   ![Trin 3: Bekræft MCP-server værktøj](../../../../../../translated_images/da/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
 4. **Start en ny chat og stil agenten spørgsmål:**
    Åbn en ny chat i Copilot Chat-panelet. Du kan nu stille agenten dine dokumentationsspørgsmål. Agenten vil bruge MCP-serveren til at hente og vise relevant Microsoft Learn-dokumentation direkte i din editor.
 
    - *"Jeg prøver at skrive en studieplan for emne X. Jeg vil studere det i 8 uger, for hver uge, foreslå indhold jeg bør tage."*
 
-   ![Trin 4: Stil agenten spørgsmål i chat](../../../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.da.png)
+   ![Trin 4: Stil agenten spørgsmål i chat](../../../../../../translated_images/da/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 5. **Live Query:**
 
@@ -81,7 +81,7 @@ For at komme i gang, følg disse trin. For hvert trin kan du tilføje et screens
    *"Jeg søger svar på, hvordan man deployerer en multi-agent løsning med AI-agenter udviklet på Azure AI Foundry. Jeg kan se, at der ikke findes en direkte deployeringsmetode, som Copilot Studio-kanaler. Så, hvad er de forskellige måder at udføre denne deployering på, så enterprise-brugere kan interagere og få arbejdet gjort?
 Der findes mange artikler/blogs, der siger, at vi kan bruge Azure Bot service til dette, som kan fungere som en bro mellem MS Teams og Azure AI Foundry Agents, men vil det fungere, hvis jeg opsætter en Azure bot, der forbinder til Orchestrator Agent på Azure AI Foundry via Azure function for at udføre orkestreringen, eller skal jeg lave en Azure function for hver af AI-agenterne i multi-agent løsningen for at udføre orkestreringen i Bot framework? Andre forslag modtages gerne."*
 
-   ![Trin 5: Live forespørgsler](../../../../../../translated_images/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.da.png)
+   ![Trin 5: Live forespørgsler](../../../../../../translated_images/da/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
 
    Agenten vil svare med relevante dokumentationslinks og opsummeringer, som du derefter kan indsætte direkte i dine markdown-filer eller bruge som referencer i din kode.
    

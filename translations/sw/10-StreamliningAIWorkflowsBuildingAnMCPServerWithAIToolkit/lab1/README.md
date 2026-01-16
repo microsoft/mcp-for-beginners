@@ -60,7 +60,7 @@ Mwisho wa moduli hii, utaweza:
 
 **Hatua 3: Sakinisha na Washa**
 
-![AI Toolkit Extension](../../../../translated_images/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.sw.png)
+![AI Toolkit Extension](../../../../translated_images/sw/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.png)
 
 ### ✅ Orodha ya Ukaguzi wa Uthibitisho
 - [ ] Ikoni ya AI Toolkit inaonekana kwenye upau wa VS Code
@@ -79,7 +79,7 @@ Katalogi ya Modeli ni mlango wako wa mfumo wa AI. Inakusanya modeli kutoka kwa w
 
 Bonyeza **MODELS - Catalog** kwenye upau wa AI Toolkit
 
-![Model Catalog](../../../../translated_images/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.sw.png)
+![Model Catalog](../../../../translated_images/sw/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.png)
 
 **💡 Ushauri Bora**: Tafuta modeli zilizo na uwezo maalum unaolingana na matumizi yako (mfano, uzalishaji wa msimbo, uandishi wa ubunifu, uchambuzi).
 
@@ -97,7 +97,7 @@ Bonyeza **MODELS - Catalog** kwenye upau wa AI Toolkit
 3. Chagua **Try in Playground** kuanzisha mazingira ya majaribio
 4. Subiri modeli ianze (usanidi wa mara ya kwanza unaweza kuchukua muda kidogo)
 
-![Playground Setup](../../../../translated_images/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.sw.png)
+![Playground Setup](../../../../translated_images/sw/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.png)
 
 **⚙️ Kuelewa Vigezo vya Modeli:**
 - **Temperature**: Inadhibiti ubunifu (0 = thabiti, 1 = ubunifu)
@@ -126,7 +126,7 @@ Playground ni maabara yako ya majaribio ya AI. Hapa ni jinsi ya kutumia uwezo wa
 "Analyze this sales data and provide insights: [paste your data]. Focus on trends, anomalies, and actionable recommendations."
 ```
 
-![Testing Results](../../../../translated_images/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.sw.png)
+![Testing Results](../../../../translated_images/sw/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.png)
 
 ### 🏆 Zoefleo la Changamoto: Linganisha Utendaji wa Modeli
 
@@ -136,12 +136,12 @@ Playground ni maabara yako ya majaribio ya AI. Hapa ni jinsi ya kutumia uwezo wa
 1. Ongeza **Phi-4-mini** kwenye eneo lako la kazi
 2. Tumia prompt ile ile kwa GPT-4.1 na Phi-4-mini
 
-![set](../../../../translated_images/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.sw.png)
+![set](../../../../translated_images/sw/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.png)
 
 3. Linganisha ubora wa majibu, kasi, na usahihi
 4. Andika matokeo yako katika sehemu ya matokeo
 
-![Model Comparison](../../../../translated_images/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.sw.png)
+![Model Comparison](../../../../translated_images/sw/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.png)
 
 **💡 Maarifa Muhimu ya Kugundua:**
 - Wakati wa kutumia LLM dhidi ya SLM
@@ -163,7 +163,7 @@ Agent Builder ni sehemu ambapo AI Toolkit inaangaza kweli. Inakuwezesha kuunda w
 - **Tools Integration**: Unganisha na API za nje na huduma za MCP
 - **Memory**: Muktadha wa mazungumzo na kuhifadhi kikao
 
-![Agent Builder Interface](../../../../translated_images/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.sw.png)
+![Agent Builder Interface](../../../../translated_images/sw/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.png)
 
 ### ⚙️ Hatua 2: Uchunguzi wa Usanidi wa Maajenti
 
@@ -237,7 +237,7 @@ You are a senior Python developer with 10+ years of experience. You excel at wri
    - Max Tokens: 2000 (maelezo ya kina)
    - Top-p: 0.9 (ubunifu wa wastani)
 
-![Python Agent Configuration](../../../../translated_images/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.sw.png)
+![Python Agent Configuration](../../../../translated_images/sw/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.png)
 
 ### 🧪 Hatua 4: Jaribu Maajenti Yako wa Python
 

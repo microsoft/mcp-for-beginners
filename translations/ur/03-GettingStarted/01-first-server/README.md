@@ -156,7 +156,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 یہاں ایک اسکرین شاٹ ہے کہ یہ کیسا دکھ سکتا ہے:
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.ur.png)
+![MCP Inspector server connection](../../../../translated_images/ur/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## عام سیٹ اپ مسائل اور حل
 
@@ -1302,7 +1302,7 @@ npx @modelcontextprotocol/inspector
 2. URL کو سیٹ کریں: `http://localhost:8080/sse`
 3. "Connect" پر کلک کریں
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.ur.png)
+![Connect](../../../../translated_images/ur/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **آپ اب سرور سے جُڑ چکے ہیں**
 **جاوا سرور ٹیسٹنگ سیکشن مکمل ہو چکا ہے**
@@ -1311,18 +1311,18 @@ npx @modelcontextprotocol/inspector
 
 آپ کو درج ذیل یوزر انٹرفیس نظر آنا چاہیے:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.ur.png)
+![Connect](../../../../translated_images/ur/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. کنیکٹ بٹن کو منتخب کر کے سرور سے جُڑیں
   جب آپ سرور سے جُڑ جائیں گے، تو آپ کو درج ذیل نظر آئے گا:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.ur.png)
+  ![Connected](../../../../translated_images/ur/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. "Tools" اور "listTools" کو منتخب کریں، آپ کو "Add" نظر آئے گا، "Add" کو منتخب کریں اور پیرامیٹر ویلیوز بھریں۔
 
   آپ کو درج ذیل جواب نظر آئے گا، یعنی "add" ٹول کا نتیجہ:
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.ur.png)
+  ![Result of running add](../../../../translated_images/ur/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 مبارک ہو، آپ نے اپنا پہلا سرور بنانے اور چلانے میں کامیابی حاصل کی ہے!
 

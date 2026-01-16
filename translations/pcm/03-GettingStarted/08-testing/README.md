@@ -48,7 +48,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 Di command wey dey up go start MCP and e visual interface, then e go open local web interface for your browser. You go see dashboard wey dey show di MCP servers wey you don register, di tools, resources, and prompts wey dey available. Di interface go allow you test di tools interactively, check server metadata, and see di response as e dey happen, e go make am easy to validate and debug your MCP server implementation.
 
-E fit look like dis: ![Inspector](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.pcm.png)
+E fit look like dis: ![Inspector](../../../../translated_images/pcm/connect.141db0b2bd05f096.webp)
 
 You fit also run dis tool for CLI mode if you add `--cli` attribute. Example of how to run di tool for "CLI" mode wey go list all di tools for di server be like dis:
 

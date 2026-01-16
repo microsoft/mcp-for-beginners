@@ -203,7 +203,7 @@ Selain server Microsoft, ekosistem MCP mencakup:
    - **Nama**: `BrowserAgent`  
    - **Model**: Pilih GPT-4o  
 
-![BrowserAgent](../../../../translated_images/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.id.png)
+![BrowserAgent](../../../../translated_images/id/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.png)
 
 
 ### 🔧 Fase 2: Alur Kerja Integrasi MCP
@@ -213,7 +213,7 @@ Selain server Microsoft, ekosistem MCP mencakup:
 2. **Klik "Add Tool"** untuk membuka menu integrasi  
 3. **Pilih "MCP Server"** dari opsi yang tersedia  
 
-![AddMCP](../../../../translated_images/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.id.png)
+![AddMCP](../../../../translated_images/id/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.png)
 
 **🔍 Memahami Jenis Alat:**
 - **Built-in Tools**: Fungsi AI Toolkit yang sudah dikonfigurasi  
@@ -223,10 +223,10 @@ Selain server Microsoft, ekosistem MCP mencakup:
 
 #### Langkah 4: Pilih Server MCP
 1. **Pilih opsi "MCP Server"** untuk melanjutkan  
-![AddMCPServer](../../../../translated_images/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.id.png)
+![AddMCPServer](../../../../translated_images/id/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.png)
 
 2. **Jelajahi Katalog MCP** untuk melihat integrasi yang tersedia  
-![MCPCatalog](../../../../translated_images/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.id.png)
+![MCPCatalog](../../../../translated_images/id/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.png)
 
 
 ### 🎮 Fase 3: Konfigurasi Playwright MCP
@@ -236,12 +236,12 @@ Selain server Microsoft, ekosistem MCP mencakup:
 2. **Pilih "Playwright"** dari daftar unggulan  
 3. **Terima MCP ID Default** atau sesuaikan untuk lingkungan Anda  
 
-![MCPID](../../../../translated_images/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.id.png)
+![MCPID](../../../../translated_images/id/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.png)
 
 #### Langkah 6: Aktifkan Kemampuan Playwright
 **🔑 Langkah Penting**: Pilih **SEMUA** metode Playwright yang tersedia untuk fungsi maksimal  
 
-![Tools](../../../../translated_images/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.id.png)
+![Tools](../../../../translated_images/id/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.png)
 
 **🛠️ Alat Playwright Esensial:**
 - **Navigasi**: `goto`, `goBack`, `goForward`, `reload`  
@@ -257,7 +257,7 @@ Selain server Microsoft, ekosistem MCP mencakup:
 - Tidak ada pesan error di panel integrasi  
 - Status server Playwright menunjukkan "Connected"  
 
-![AgentTools](../../../../translated_images/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.id.png)
+![AgentTools](../../../../translated_images/id/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.png)
 
 **🔧 Pemecahan Masalah Umum:**
 - **Koneksi Gagal**: Periksa koneksi internet dan pengaturan firewall  
@@ -323,7 +323,7 @@ Navigate to github.com/kinfey and provide a comprehensive analysis including:
 Include screenshots at key steps and provide actionable insights.
 ```
 
-![Prompt](../../../../translated_images/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.id.png)
+![Prompt](../../../../translated_images/id/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.png)
 
 ### 🚀 Fase 5: Eksekusi dan Pengujian
 
@@ -335,19 +335,19 @@ Include screenshots at key steps and provide actionable insights.
    - Screenshot menangkap setiap langkah utama  
    - Hasil analisis mengalir secara real-time  
 
-![Browser](../../../../translated_images/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.id.png)
+![Browser](../../../../translated_images/id/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.png)
 
 #### Langkah 11: Analisis Hasil dan Insight
 Tinjau analisis lengkap di antarmuka Agent Builder:
 
-![Result](../../../../translated_images/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.id.png)
+![Result](../../../../translated_images/id/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.png)
 
 ### 🌟 Fase 6: Kemampuan Lanjutan dan Deployment
 
 #### Langkah 12: Ekspor dan Deployment Produksi
 Agent Builder mendukung berbagai opsi deployment:
 
-![Code](../../../../translated_images/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.id.png)
+![Code](../../../../translated_images/id/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.png)
 
 ## 🎓 Ringkasan Modul 2 & Langkah Selanjutnya
 

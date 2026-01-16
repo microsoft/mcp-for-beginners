@@ -60,7 +60,7 @@ Na konci tohto modulu budete vedieť:
 
 **Krok 3: Inštalujte a aktivujte**
 
-![AI Toolkit Extension](../../../../translated_images/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.sk.png)
+![AI Toolkit Extension](../../../../translated_images/sk/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.png)
 
 ### ✅ Kontrolný zoznam overenia
 - [ ] Ikona AI Toolkit sa zobrazuje v bočnom paneli VS Code
@@ -79,7 +79,7 @@ Katalóg modelov je vašou bránou do AI ekosystému. Zhromažďuje modely od vi
 
 Kliknite na **MODELS - Catalog** v bočnom paneli AI Toolkit
 
-![Model Catalog](../../../../translated_images/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.sk.png)
+![Model Catalog](../../../../translated_images/sk/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.png)
 
 **💡 Tip**: Hľadajte modely s konkrétnymi schopnosťami, ktoré zodpovedajú vášmu prípadu použitia (napr. generovanie kódu, kreatívne písanie, analýza).
 
@@ -97,7 +97,7 @@ Kliknite na **MODELS - Catalog** v bočnom paneli AI Toolkit
 3. Zvoľte **Try in Playground** pre spustenie testovacieho prostredia
 4. Počkajte na inicializáciu modelu (prvé spustenie môže chvíľu trvať)
 
-![Playground Setup](../../../../translated_images/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.sk.png)
+![Playground Setup](../../../../translated_images/sk/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.png)
 
 **⚙️ Pochopenie parametrov modelu:**
 - **Temperature**: Ovláda kreativitu (0 = deterministické, 1 = kreatívne)
@@ -126,7 +126,7 @@ Playground je vaše laboratórium na experimentovanie s AI. Tu je, ako vyťaži�
 "Analyze this sales data and provide insights: [paste your data]. Focus on trends, anomalies, and actionable recommendations."
 ```
 
-![Testing Results](../../../../translated_images/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.sk.png)
+![Testing Results](../../../../translated_images/sk/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.png)
 
 ### 🏆 Výzva: Porovnanie výkonnosti modelov
 
@@ -136,12 +136,12 @@ Playground je vaše laboratórium na experimentovanie s AI. Tu je, ako vyťaži�
 1. Pridajte **Phi-4-mini** do svojho pracovného priestoru
 2. Použite rovnaký prompt pre GPT-4.1 aj Phi-4-mini
 
-![set](../../../../translated_images/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.sk.png)
+![set](../../../../translated_images/sk/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.png)
 
 3. Porovnajte kvalitu odpovedí, rýchlosť a presnosť
 4. Zaznamenajte svoje zistenia v sekcii výsledkov
 
-![Model Comparison](../../../../translated_images/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.sk.png)
+![Model Comparison](../../../../translated_images/sk/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.png)
 
 **💡 Kľúčové poznatky:**
 - Kedy použiť LLM vs SLM
@@ -163,7 +163,7 @@ Agent Builder je miesto, kde AI Toolkit naozaj vyniká. Umožňuje vytvárať ú
 - **Integrácia nástrojov**: Prepojenie na externé API a MCP služby
 - **Pamäť**: Kontext konverzácie a ukladanie relácií
 
-![Agent Builder Interface](../../../../translated_images/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.sk.png)
+![Agent Builder Interface](../../../../translated_images/sk/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.png)
 
 ### ⚙️ Krok 2: Hlbší pohľad na konfiguráciu agenta
 
@@ -237,7 +237,7 @@ You are a senior Python developer with 10+ years of experience. You excel at wri
    - Max Tokens: 2000 (podrobné vysvetlenia)
    - Top-p: 0.9 (vyvážená kreativita)
 
-![Python Agent Configuration](../../../../translated_images/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.sk.png)
+![Python Agent Configuration](../../../../translated_images/sk/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.png)
 
 ### 🧪 Krok 4: Testovanie vášho Python agenta
 

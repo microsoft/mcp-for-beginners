@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Въведение в Протокола за Контекст на Модела (MCP): Защо е важен за мащабируеми AI приложения
 
-[![Въведение в Протокола за Контекст на Модела](../../../translated_images/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.bg.png)](https://youtu.be/agBbdiOPLQA)
+[![Въведение в Протокола за Контекст на Модела](../../../translated_images/bg/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.png)](https://youtu.be/agBbdiOPLQA)
 
 _(Кликнете върху изображението по-горе, за да гледате видеото на този урок)_
 

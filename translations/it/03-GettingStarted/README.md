@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 ## Introduzione  
 
-[![Crea il tuo primo server MCP](../../../translated_images/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.it.png)](https://youtu.be/sNDZO9N4m9Y)
+[![Crea il tuo primo server MCP](../../../translated_images/it/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.png)](https://youtu.be/sNDZO9N4m9Y)
 
 _(Clicca sull'immagine sopra per vedere il video di questa lezione)_
 

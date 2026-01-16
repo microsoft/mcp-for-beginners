@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Praktikal na Implementasyon
 
-[![Paano Bumuo, Subukan, at I-deploy ang MCP Apps gamit ang Totoong Mga Tool at Workflow](../../../translated_images/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.tl.png)](https://youtu.be/vCN9-mKBDfQ)
+[![Paano Bumuo, Subukan, at I-deploy ang MCP Apps gamit ang Totoong Mga Tool at Workflow](../../../translated_images/tl/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.png)](https://youtu.be/vCN9-mKBDfQ)
 
 _(I-click ang larawan sa itaas upang panoorin ang video ng araling ito)_
 
@@ -215,7 +215,7 @@ Tingnan natin kung paano i-deploy ang sample na nabanggit kanina:
 
     Dapat kang makakita ng interface na katulad nito:
 
-    ![Connect to Node inspector](../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.tl.png)
+    ![Connect to Node inspector](../../../translated_images/tl/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. CTRL click upang i-load ang MCP Inspector web app mula sa URL na ipinapakita ng app (hal. [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources))
 1. Itakda ang transport type sa `SSE`

@@ -13,11 +13,11 @@ CO_OP_TRANSLATOR_METADATA:
 [![Python](https://img.shields.io/badge/Python-3.10+-green.svg)](https://python.org)
 [![VS Code](https://img.shields.io/badge/VS%20Code-Latest-orange.svg)](https://code.visualstudio.com/)
 
-![logo](../../../translated_images/logo.ec93918ec338dadde1715c8aaf118079e0ed0502e9efdfcc84d6a0f4a9a70ae8.hr.png)
+![logo](../../../translated_images/hr/logo.ec93918ec338dadde1715c8aaf118079e0ed0502e9efdfcc84d6a0f4a9a70ae8.png)
 
 ## 🎯 Pregled
 
-[![Izgradnja AI Agenta u VS Code: 4 Praktične Radionice s MCP i AI Toolkitom](../../../translated_images/11.0f6db6a0fb6068856d0468590a120ffe35dbccc49b93dc88b2003f306c81493a.hr.png)](https://youtu.be/r34Csn3rkeQ)
+[![Izgradnja AI Agenta u VS Code: 4 Praktične Radionice s MCP i AI Toolkitom](../../../translated_images/hr/11.0f6db6a0fb6068856d0468590a120ffe35dbccc49b93dc88b2003f306c81493a.png)](https://youtu.be/r34Csn3rkeQ)
 
 _(Kliknite na sliku iznad za pregled videa ove lekcije)_
 

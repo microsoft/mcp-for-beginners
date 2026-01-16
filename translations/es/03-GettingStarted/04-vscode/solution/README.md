@@ -23,7 +23,7 @@ Esto corresponde a ejecutar un comando como este: `node build/index.js`.
 
     Deberías ver que se presenta una herramienta encima del cuadro de texto del chat, indicándote que selecciones para ejecutar la herramienta, como en esta imagen:
 
-    ![VS Code indicando que quiere ejecutar una herramienta](../../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.es.png)
+    ![VS Code indicando que quiere ejecutar una herramienta](../../../../../translated_images/es/vscode-agent.d5a0e0b897331060.webp)
 
     Seleccionar la herramienta debería producir un resultado numérico que diga "23" si tu mensaje fue como el que mencionamos anteriormente.
 

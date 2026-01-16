@@ -156,7 +156,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 ਇੱਥੇ ਇਸਦਾ ਇੱਕ ਸਕ੍ਰੀਨਸ਼ਾਟ ਹੈ:
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.pa.png)
+![MCP Inspector server connection](../../../../translated_images/pa/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## ਆਮ ਸੈਟਅਪ ਸਮੱਸਿਆਵਾਂ ਅਤੇ ਹੱਲ
 
@@ -873,7 +873,7 @@ In the inspector web interface:
 2. Set the URL to: `http://localhost:8080/sse`
 3. Click "Connect"
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.pa.png)
+![Connect](../../../../translated_images/pa/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **You're now connected to the server**
 **The Java server testing section is completed now**
@@ -882,18 +882,18 @@ The next section it's about interacting with the server.
 
 You should see the following user interface:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.pa.png)
+![Connect](../../../../translated_images/pa/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. Connect to the server by selecting the Connect button
   Once you connect to the server, you should now see the following:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.pa.png)
+  ![Connected](../../../../translated_images/pa/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. Select "Tools" and "listTools", you should see "Add" show up, select "Add" and fill in the parameter values.
 
   You should see the following response, i.e a result from "add" tool:
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.pa.png)
+  ![Result of running add](../../../../translated_images/pa/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 Congrats, you've managed to create and run your first server!
 

@@ -60,7 +60,7 @@ Når du er færdig med dette modul, vil du kunne:
 
 **Trin 3: Installer og aktiver**
 
-![AI Toolkit Extension](../../../../translated_images/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.da.png)
+![AI Toolkit Extension](../../../../translated_images/da/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.png)
 
 ### ✅ Tjekliste for verifikation
 - [ ] AI Toolkit-ikon vises i VS Code’s sidebjælke
@@ -79,7 +79,7 @@ Modelkataloget er din indgang til AI-økosystemet. Det samler modeller fra flere
 
 Klik på **MODELS - Catalog** i AI Toolkit’s sidebjælke
 
-![Model Catalog](../../../../translated_images/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.da.png)
+![Model Catalog](../../../../translated_images/da/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.png)
 
 **💡 Pro tip**: Kig efter modeller med specifikke egenskaber, der matcher dit brugsscenarie (f.eks. kodegenerering, kreativ skrivning, analyse).
 
@@ -97,7 +97,7 @@ Klik på **MODELS - Catalog** i AI Toolkit’s sidebjælke
 3. Vælg **Try in Playground** for at åbne testmiljøet
 4. Vent på modelinitialisering (første gang kan tage lidt tid)
 
-![Playground Setup](../../../../translated_images/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.da.png)
+![Playground Setup](../../../../translated_images/da/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.png)
 
 **⚙️ Forståelse af modelparametre:**
 - **Temperature**: Styrer kreativitet (0 = deterministisk, 1 = kreativ)
@@ -126,7 +126,7 @@ Playground er dit AI-eksperimentlaboratorium. Sådan får du mest ud af det:
 "Analyze this sales data and provide insights: [paste your data]. Focus on trends, anomalies, and actionable recommendations."
 ```
 
-![Testing Results](../../../../translated_images/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.da.png)
+![Testing Results](../../../../translated_images/da/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.png)
 
 ### 🏆 Udfordringsøvelse: Sammenligning af modelpræstationer
 
@@ -136,12 +136,12 @@ Playground er dit AI-eksperimentlaboratorium. Sådan får du mest ud af det:
 1. Tilføj **Phi-4-mini** til dit workspace
 2. Brug samme prompt til både GPT-4.1 og Phi-4-mini
 
-![set](../../../../translated_images/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.da.png)
+![set](../../../../translated_images/da/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.png)
 
 3. Sammenlign svarenes kvalitet, hastighed og nøjagtighed
 4. Dokumenter dine resultater i resultatsektionen
 
-![Model Comparison](../../../../translated_images/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.da.png)
+![Model Comparison](../../../../translated_images/da/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.png)
 
 **💡 Vigtige indsigter at opdage:**
 - Hvornår man skal bruge LLM vs. SLM
@@ -163,7 +163,7 @@ Agent Builder er, hvor AI Toolkit virkelig skinner. Det giver dig mulighed for a
 - **Værktøjsintegration**: Forbind til eksterne API’er og MCP-tjenester
 - **Hukommelse**: Samtale-kontekst og sessionspersistens
 
-![Agent Builder Interface](../../../../translated_images/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.da.png)
+![Agent Builder Interface](../../../../translated_images/da/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.png)
 
 ### ⚙️ Trin 2: Dybdegående agentkonfiguration
 
@@ -237,7 +237,7 @@ You are a senior Python developer with 10+ years of experience. You excel at wri
    - Max Tokens: 2000 (detaljerede forklaringer)
    - Top-p: 0.9 (balanceret kreativitet)
 
-![Python Agent Configuration](../../../../translated_images/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.da.png)
+![Python Agent Configuration](../../../../translated_images/da/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.png)
 
 ### 🧪 Trin 4: Test din Python-agent
 

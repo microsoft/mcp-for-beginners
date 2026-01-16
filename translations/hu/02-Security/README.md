@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP Biztonság: Átfogó védelem az MI rendszerek számára
 
-[![MCP Security Best Practices](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.hu.png)](https://youtu.be/88No8pw706o)
+[![MCP Security Best Practices](../../../translated_images/hu/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(Kattintson a fenti képre a lecke videójának megtekintéséhez)_
 
@@ -133,7 +133,7 @@ A **közvetett prompt injekció** az egyik legkritikusabb sérülékenység az M
 
 **Valós hatás**: Ezek a támadások adatkiszivárgáshoz, adatvédelmi incidensekhez, káros tartalom generálásához és felhasználói interakciók manipulálásához vezethetnek. Részletes elemzésért lásd: [Prompt Injection az MCP-ben (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
-![Prompt Injection Attack Diagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.hu.png)
+![Prompt Injection Attack Diagram](../../../translated_images/hu/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **Eszközmérgezéses támadások**
 
@@ -147,7 +147,7 @@ Az **eszközmérgezés** az MCP eszközöket definiáló metaadatokat célozza m
 
 **Hosztolt szerver kockázatok**: A távoli MCP szerverek fokozott kockázatot jelentenek, mivel az eszközdefiníciók a felhasználói jóváhagyás után is frissíthetők, olyan helyzeteket teremtve, ahol korábban biztonságos eszközök rosszindulatúvá válhatnak. Átfogó elemzésért lásd: [Tool Poisoning Attacks (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
-![Tool Injection Attack Diagram](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.hu.png)
+![Tool Injection Attack Diagram](../../../translated_images/hu/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **További MI támadási vektorok**
 
@@ -200,7 +200,7 @@ A Microsoft **AI Prompt Shields** átfogó védelmet nyújtanak mind közvetlen,
 
 **Megvalósítási források**: [Microsoft Prompt Shields dokumentáció](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields Protection](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.hu.png)
+![Microsoft Prompt Shields Protection](../../../translated_images/hu/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## Fejlett MCP biztonsági fenyegetések

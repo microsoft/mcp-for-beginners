@@ -201,7 +201,7 @@ MCP Inspector on hyödyllinen työkalu MCP-palveluiden kanssa työskentelyyn. K�
    - Klikkaa "List Tools" nähdäksesi käytettävissä olevat laskinoperaatiot
    - Valitse työkalu ja klikkaa "Run Tool" suorittaaksesi operaation
 
-![MCP Inspector Screenshot](../../../../../../translated_images/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.fi.png)
+![MCP Inspector Screenshot](../../../../../../translated_images/fi/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.png)
 
 ### Dockerin käyttö
 

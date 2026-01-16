@@ -156,7 +156,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 Ето екранна снимка как може да изглежда:
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.bg.png)
+![MCP Inspector server connection](../../../../translated_images/bg/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## Чести проблеми при настройка и решения
 
@@ -1302,7 +1302,7 @@ npx @modelcontextprotocol/inspector
 2. Задайте URL на: `http://localhost:8080/sse`
 3. Натиснете "Connect"
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.bg.png)
+![Connect](../../../../translated_images/bg/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **Вече сте свързани със сървъра**
 **Секцията за тестване на Java сървъра е завършена**
@@ -1311,18 +1311,18 @@ npx @modelcontextprotocol/inspector
 
 Трябва да видите следния потребителски интерфейс:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.bg.png)
+![Connect](../../../../translated_images/bg/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. Свържете се със сървъра, като изберете бутона Connect
   След като се свържете със сървъра, трябва да видите следното:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.bg.png)
+  ![Connected](../../../../translated_images/bg/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. Изберете "Tools" и "listTools", трябва да видите "Add", изберете "Add" и попълнете стойностите на параметрите.
 
   Трябва да видите следния отговор, т.е. резултат от инструмента "add":
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.bg.png)
+  ![Result of running add](../../../../translated_images/bg/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 Поздравления, успяхте да създадете и стартирате първия си сървър!
 

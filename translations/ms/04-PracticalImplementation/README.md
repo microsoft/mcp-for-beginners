@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Pelaksanaan Praktikal
 
-[![Cara Membina, Uji, dan Melancarkan Aplikasi MCP dengan Alat dan Aliran Kerja Sebenar](../../../translated_images/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.ms.png)](https://youtu.be/vCN9-mKBDfQ)
+[![Cara Membina, Uji, dan Melancarkan Aplikasi MCP dengan Alat dan Aliran Kerja Sebenar](../../../translated_images/ms/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.png)](https://youtu.be/vCN9-mKBDfQ)
 
 _(Klik imej di atas untuk menonton video pelajaran ini)_
 
@@ -215,7 +215,7 @@ Mari kita lihat jika kita boleh melancarkan sampel yang disebutkan tadi:
 
     Anda seharusnya melihat antara muka yang serupa dengan:
 
-    ![Sambung ke Node inspector](../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.ms.png)
+    ![Sambung ke Node inspector](../../../translated_images/ms/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. Klik CTRL untuk memuatkan aplikasi web MCP Inspector dari URL yang dipaparkan oleh aplikasi (contoh: [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources))
 1. Tetapkan jenis pengangkutan kepada `SSE`

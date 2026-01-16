@@ -201,7 +201,7 @@ MCP Inspector je uporabno orodje za interakcijo z MCP storitvami. Za uporabo s t
    - Kliknite "List Tools" za ogled razpoložljivih kalkulator operacij
    - Izberite orodje in kliknite "Run Tool" za izvedbo operacije
 
-![MCP Inspector Screenshot](../../../../../../translated_images/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.sl.png)
+![MCP Inspector Screenshot](../../../../../../translated_images/sl/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.png)
 
 ### Uporaba Dockerja
 

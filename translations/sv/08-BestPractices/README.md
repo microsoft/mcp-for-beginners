@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP Utvecklingsbästa Praxis
 
-[![MCP Utvecklingsbästa Praxis](../../../translated_images/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.sv.png)](https://youtu.be/W56H9W7x-ao)
+[![MCP Utvecklingsbästa Praxis](../../../translated_images/sv/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.png)](https://youtu.be/W56H9W7x-ao)
 
 _(Klicka på bilden ovan för att se videon för denna lektion)_
 

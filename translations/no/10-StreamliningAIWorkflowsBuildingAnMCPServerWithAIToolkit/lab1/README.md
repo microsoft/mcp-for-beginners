@@ -60,7 +60,7 @@ Etter denne modulen vil du kunne:
 
 **Steg 3: Installer og aktiver**
 
-![AI Toolkit Extension](../../../../translated_images/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.no.png)
+![AI Toolkit Extension](../../../../translated_images/no/aitkext.d28945a03eed003c39fc39bc96ae655af9b64b9b922e78e88b07214420ed7985.png)
 
 ### ✅ Sjekkliste for verifisering
 - [ ] AI Toolkit-ikon vises i VS Code-sidepanelet
@@ -79,7 +79,7 @@ Model Catalog er inngangsporten til AI-økosystemet. Den samler modeller fra fle
 
 Klikk på **MODELS - Catalog** i AI Toolkit-sidepanelet
 
-![Model Catalog](../../../../translated_images/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.no.png)
+![Model Catalog](../../../../translated_images/no/aimodel.263ed2be013d8fb0e2265c4f742cfe490f6f00eca5e132ec50438c8e826e34ed.png)
 
 **💡 Profftips**: Se etter modeller med spesifikke egenskaper som passer ditt brukstilfelle (f.eks. kodegenerering, kreativ skriving, analyse).
 
@@ -97,7 +97,7 @@ Klikk på **MODELS - Catalog** i AI Toolkit-sidepanelet
 3. Velg **Try in Playground** for å åpne testmiljøet
 4. Vent på at modellen initialiseres (første oppstart kan ta litt tid)
 
-![Playground Setup](../../../../translated_images/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.no.png)
+![Playground Setup](../../../../translated_images/no/playground.dd6f5141344878ca4d4f3de819775da7b113518941accf37c291117c602f85db.png)
 
 **⚙️ Forstå modellparametere:**
 - **Temperature**: Styrer kreativitet (0 = deterministisk, 1 = kreativ)
@@ -126,7 +126,7 @@ Playground er ditt AI-eksperimentlaboratorium. Slik får du mest ut av det:
 "Analyze this sales data and provide insights: [paste your data]. Focus on trends, anomalies, and actionable recommendations."
 ```
 
-![Testing Results](../../../../translated_images/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.no.png)
+![Testing Results](../../../../translated_images/no/result.1dfcf211fb359cf65902b09db191d3bfc65713ca15e279c1a30be213bb526949.png)
 
 ### 🏆 Utfordringsøvelse: Sammenligning av modellprestasjoner
 
@@ -136,12 +136,12 @@ Playground er ditt AI-eksperimentlaboratorium. Slik får du mest ut av det:
 1. Legg til **Phi-4-mini** i arbeidsområdet ditt
 2. Bruk samme prompt for både GPT-4.1 og Phi-4-mini
 
-![set](../../../../translated_images/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.no.png)
+![set](../../../../translated_images/no/set.88132df189ecde2cbbda256c1841db5aac8e9bdeba1a4e343dfa031b9545d6c9.png)
 
 3. Sammenlign svarenes kvalitet, hastighet og nøyaktighet
 4. Dokumenter funnene dine i resultatdelen
 
-![Model Comparison](../../../../translated_images/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.no.png)
+![Model Comparison](../../../../translated_images/no/compare.97746cd0f907495503c1fc217739f3890dc76ea5f6fd92379a6db0cc331feb58.png)
 
 **💡 Viktige innsikter å oppdage:**
 - Når bør man bruke LLM vs SLM
@@ -163,7 +163,7 @@ Agent Builder er der AI Toolkit virkelig skinner. Her kan du lage skreddersydde 
 - **Verktøyintegrasjon**: Koble til eksterne API-er og MCP-tjenester
 - **Minne**: Samtalekontekst og sesjonspersistens
 
-![Agent Builder Interface](../../../../translated_images/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.no.png)
+![Agent Builder Interface](../../../../translated_images/no/agentbuilder.25895b2d2f8c02e7aa99dd40e105877a6f1db8f0441180087e39db67744b361f.png)
 
 ### ⚙️ Steg 2: Dypdykk i agentkonfigurasjon
 
@@ -237,7 +237,7 @@ You are a senior Python developer with 10+ years of experience. You excel at wri
    - Max Tokens: 2000 (detaljerte forklaringer)
    - Top-p: 0.9 (balansert kreativitet)
 
-![Python Agent Configuration](../../../../translated_images/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.no.png)
+![Python Agent Configuration](../../../../translated_images/no/pythonagent.5e51b406401c165fcabfd66f2d943c27f46b5fed0f9fb73abefc9e91ca3489d4.png)
 
 ### 🧪 Steg 4: Test din Python-agent
 

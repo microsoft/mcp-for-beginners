@@ -201,7 +201,7 @@ MCP Inspector သည် MCP ဝန်ဆောင်မှုများနှ�
    - "List Tools" ကို နှိပ်၍ ရနိုင်သော ကိရိယာများကို ကြည့်ရှုပါ
    - ကိရိယာတစ်ခုကို ရွေးပြီး "Run Tool" ကို နှိပ်၍ လုပ်ဆောင်ချက် တစ်ခုကို လုပ်ဆောင်ပါ
 
-![MCP Inspector Screenshot](../../../../../../translated_images/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.my.png)
+![MCP Inspector Screenshot](../../../../../../translated_images/my/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.png)
 
 ### Docker အသုံးပြုခြင်း
 

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # 実践的な実装
 
-[![実際のツールとワークフローを使用してMCPアプリを構築、テスト、デプロイする方法](../../../translated_images/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.ja.png)](https://youtu.be/vCN9-mKBDfQ)
+[![実際のツールとワークフローを使用してMCPアプリを構築、テスト、デプロイする方法](../../../translated_images/ja/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.png)](https://youtu.be/vCN9-mKBDfQ)
 
 _(上の画像をクリックすると、このレッスンのビデオを視聴できます)_
 
@@ -215,7 +215,7 @@ Azure API Managementは、MCPサーバーを保護するための優れたソリ
 
     以下のようなインターフェースが表示されるはずです：
 
-    ![Node Inspectorに接続](../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.ja.png)
+    ![Node Inspectorに接続](../../../translated_images/ja/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. 表示されたURL（例：[http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources)）をCTRLクリックしてMCP Inspector Webアプリをロード
 1. トランスポートタイプを`SSE`に設定

@@ -26,7 +26,7 @@ The other projects come from [.NET Aspire](https://learn.microsoft.com/dotnet/as
 
 1. When a web browser opens the .NET Aspire dashboard, note the `http` URL. It should look something like `http://localhost:5058/`.
 
-   ![.NET Aspire Dashboard](../../../../../translated_images/dotnet-aspire-dashboard.0a7095710e9301e90df2efd867e1b675b3b9bc2ccd7feb1ebddc0751522bc37c.en.png)
+   ![.NET Aspire Dashboard](../../../../../translated_images/en/dotnet-aspire-dashboard.0a7095710e9301e9.webp)
 
 ## Test Streamable HTTP with the MCP Inspector
 
@@ -38,7 +38,7 @@ Start the server and run the following command in a terminal:
 npx @modelcontextprotocol/inspector http://localhost:5058
 ```
 
-![MCP Inspector](../../../../../translated_images/mcp-inspector.c223422b9b494fb4a518a3b3911b3e708e6a5715069470f9163ee2ee8d5f1ba9.en.png)
+![MCP Inspector](../../../../../translated_images/en/mcp-inspector.c223422b9b494fb4.webp)
 
 - Select `Streamable HTTP` as the Transport type.
 - In the Url field, enter the server URL you noted earlier, appending `/mcp`. It should be `http` (not `https`), something like `http://localhost:5058/mcp`.
@@ -83,7 +83,7 @@ azd up
 
 Once deployment finishes, you should see a message like this:
 
-![Azd deployment success](../../../../../translated_images/azd-deployment-success.bd42940493f1b834a5ce6251a6f88966546009b350df59d0cc4a8caabe94a4f1.en.png)
+![Azd deployment success](../../../../../translated_images/en/azd-deployment-success.bd42940493f1b834.webp)
 
 Copy the URL and use it in the MCP Inspector and GitHub Copilot Chat.
 

@@ -108,7 +108,7 @@ Let me know if you want module-specific recommendations or need more customized 
 
 Žemiau pateikiamas minimalus sprendimo pavyzdys. Pilnas kodas ir detalės yra prieinami sprendimo aplanke.
 
-![Scenarijus 2 apžvalga](../../../../translated_images/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.lt.png)
+![Scenarijus 2 apžvalga](../../../../translated_images/lt/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.png)
 
 <details>
 <summary>Python (Chainlit)</summary>
@@ -165,7 +165,7 @@ Jei norite gauti Microsoft Learn dokumentaciją tiesiai savo VS Code (užuot per
 
 > Išsamų vadovą su ekrano nuotraukomis ir žingsnis po žingsnio instrukcijas rasite [`README.md`](./solution/scenario3/README.md).
 
-![Scenarijus 3 apžvalga](../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.lt.png)
+![Scenarijus 3 apžvalga](../../../../translated_images/lt/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 Šis požiūris yra idealus visiems, kurie kuria techninius kursus, rašo dokumentaciją ar kuria kodą, dažnai remdamiesi nuorodomis.
 

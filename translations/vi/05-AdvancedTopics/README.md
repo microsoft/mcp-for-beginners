@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Các Chủ Đề Nâng Cao trong MCP
 
-[![MCP Nâng Cao: Các Tác Nhân AI An Toàn, Mở Rộng và Đa Phương Thức](../../../translated_images/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.vi.png)](https://youtu.be/4yjmGvJzYdY)
+[![MCP Nâng Cao: Các Tác Nhân AI An Toàn, Mở Rộng và Đa Phương Thức](../../../translated_images/vi/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.png)](https://youtu.be/4yjmGvJzYdY)
 
 _(Nhấp vào hình ảnh trên để xem video của bài học này)_
 

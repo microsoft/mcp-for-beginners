@@ -202,7 +202,7 @@ Microsoftin palvelimien lisäksi MCP-ekosysteemiin kuuluu:
    - **Nimi**: `BrowserAgent`
    - **Malli**: Valitse GPT-4o
 
-![BrowserAgent](../../../../translated_images/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.fi.png)
+![BrowserAgent](../../../../translated_images/fi/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.png)
 
 ### 🔧 Vaihe 2: MCP-integraation työkulku
 
@@ -211,7 +211,7 @@ Microsoftin palvelimien lisäksi MCP-ekosysteemiin kuuluu:
 2. **Klikkaa "Add Tool"** avataksesi integraatiovalikon
 3. **Valitse "MCP Server"** saatavilla olevista vaihtoehdoista
 
-![AddMCP](../../../../translated_images/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.fi.png)
+![AddMCP](../../../../translated_images/fi/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.png)
 
 **🔍 Työkalutyyppien ymmärtäminen:**
 - **Sisäänrakennetut työkalut**: AI Toolkitin valmiit toiminnot
@@ -221,10 +221,10 @@ Microsoftin palvelimien lisäksi MCP-ekosysteemiin kuuluu:
 
 #### Vaihe 4: MCP-palvelimen valinta
 1. **Valitse "MCP Server"** jatkaaksesi
-![AddMCPServer](../../../../translated_images/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.fi.png)
+![AddMCPServer](../../../../translated_images/fi/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.png)
 
 2. **Selaa MCP-katalogia** tutustuaksesi saatavilla oleviin integraatioihin
-![MCPCatalog](../../../../translated_images/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.fi.png)
+![MCPCatalog](../../../../translated_images/fi/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.png)
 
 ### 🎮 Vaihe 3: Playwright MCP:n konfigurointi
 
@@ -233,12 +233,12 @@ Microsoftin palvelimien lisäksi MCP-ekosysteemiin kuuluu:
 2. **Valitse "Playwright"** esitellyistä palvelimista
 3. **Hyväksy oletus MCP ID** tai muokkaa ympäristöösi sopivaksi
 
-![MCPID](../../../../translated_images/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.fi.png)
+![MCPID](../../../../translated_images/fi/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.png)
 
 #### Vaihe 6: Ota Playwrightin ominaisuudet käyttöön
 **🔑 Tärkeä vaihe**: Valitse **KAIKKI** saatavilla olevat Playwright-metodit maksimaalisen toiminnallisuuden takaamiseksi
 
-![Tools](../../../../translated_images/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.fi.png)
+![Tools](../../../../translated_images/fi/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.png)
 
 **🛠️ Keskeiset Playwright-työkalut:**
 - **Navigointi**: `goto`, `goBack`, `goForward`, `reload`
@@ -254,7 +254,7 @@ Microsoftin palvelimien lisäksi MCP-ekosysteemiin kuuluu:
 - Integraatiopaneelissa ei ole virheilmoituksia
 - Playwright-palvelimen tila näyttää "Connected"
 
-![AgentTools](../../../../translated_images/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.fi.png)
+![AgentTools](../../../../translated_images/fi/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.png)
 
 **🔧 Yleiset ongelmat ja ratkaisut:**
 - **Yhteys epäonnistui**: Tarkista internet-yhteys ja palomuuriasetukset
@@ -320,7 +320,7 @@ Navigate to github.com/kinfey and provide a comprehensive analysis including:
 Include screenshots at key steps and provide actionable insights.
 ```
 
-![Prompt](../../../../translated_images/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.fi.png)
+![Prompt](../../../../translated_images/fi/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.png)
 
 ### 🚀 Vaihe 5: Suoritus ja testaus
 
@@ -332,19 +332,19 @@ Include screenshots at key steps and provide actionable insights.
    - Kuvakaappaukset tallentuvat jokaisesta merkittävästä vaiheesta
    - Analyysitulokset päivittyvät reaaliajassa
 
-![Browser](../../../../translated_images/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.fi.png)
+![Browser](../../../../translated_images/fi/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.png)
 
 #### Vaihe 11: Analysoi tulokset ja havainnot
 Tarkastele kattavaa analyysiä Agent Builderin käyttöliittymässä:
 
-![Result](../../../../translated_images/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.fi.png)
+![Result](../../../../translated_images/fi/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.png)
 
 ### 🌟 Vaihe 6: Edistyneet ominaisuudet ja käyttöönotto
 
 #### Vaihe 12: Vie ja ota tuotantokäyttöön
 Agent Builder tukee useita käyttöönotto vaihtoehtoja:
 
-![Code](../../../../translated_images/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.fi.png)
+![Code](../../../../translated_images/fi/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.png)
 
 ## 🎓 Moduuli 2 yhteenveto & seuraavat askeleet
 

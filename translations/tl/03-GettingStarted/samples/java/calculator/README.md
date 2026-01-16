@@ -201,7 +201,7 @@ Ang MCP Inspector ay isang kapaki-pakinabang na tool para makipag-interact sa MC
    - I-click ang "List Tools" para makita ang mga magagamit na operasyon ng calculator
    - Piliin ang isang tool at i-click ang "Run Tool" para isagawa ang operasyon
 
-![MCP Inspector Screenshot](../../../../../../translated_images/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.tl.png)
+![MCP Inspector Screenshot](../../../../../../translated_images/tl/tool.c75a0b2380efcf1a47a8478f54380a36ddcca7943b98f56dabbac8b07e15c3bb.png)
 
 ### Using Docker
 

@@ -48,7 +48,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 Yllä oleva komento käynnistää MCP:n ja sen visuaalisen käyttöliittymän sekä avaa paikallisen web-käyttöliittymän selaimessasi. Näet kojelaudan, jossa on rekisteröidyt MCP-palvelimesi, niiden käytettävissä olevat työkalut, resurssit ja kehotteet. Käyttöliittymä mahdollistaa työkalujen suorittamisen interaktiivisen testauksen, palvelimen metatietojen tarkastelun ja reaaliaikaisten vastausten seuraamisen, mikä helpottaa MCP-palvelintoteutustesi validointia ja virheenkorjausta.
 
-Tältä se voi näyttää: ![Inspector](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.fi.png)
+Tältä se voi näyttää: ![Inspector](../../../../translated_images/fi/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 Voit myös käyttää työkalua CLI-tilassa lisäämällä `--cli`-attribuutin. Tässä esimerkki työkalun ajamisesta "CLI"-tilassa, joka listaa kaikki palvelimen työkalut:
 

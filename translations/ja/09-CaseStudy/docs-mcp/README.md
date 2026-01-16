@@ -110,7 +110,7 @@ Let me know if you want module-specific recommendations or need more customized 
 
 以下は最小限のサンプルソリューションです。完全なコードと詳細はsolutionフォルダーにあります。
 
-![Scenario 2 Overview](../../../../translated_images/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.ja.png)
+![Scenario 2 Overview](../../../../translated_images/ja/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.png)
 
 <details>
 <summary>Python (Chainlit)</summary>
@@ -168,7 +168,7 @@ VS CodeでMCPサーバーを設定する例は以下の通りです：
 
 > スクリーンショット付きの詳細な手順は[`README.md`](./solution/scenario3/README.md)を参照してください。
 
-![Scenario 3 Overview](../../../../translated_images/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.ja.png)
+![Scenario 3 Overview](../../../../translated_images/ja/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 この方法は、技術コースの作成、ドキュメント執筆、頻繁に参照が必要なコード開発に最適です。
 

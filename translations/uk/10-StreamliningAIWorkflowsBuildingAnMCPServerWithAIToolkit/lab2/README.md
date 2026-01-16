@@ -203,7 +203,7 @@ Microsoft очолює екосистему MCP, пропонуючи компл
    - **Ім’я**: `BrowserAgent`
    - **Модель**: Оберіть GPT-4o
 
-![BrowserAgent](../../../../translated_images/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.uk.png)
+![BrowserAgent](../../../../translated_images/uk/BrowserAgent.09c1adde5e136573b64ab1baecd830049830e295eac66cb18bebb85fb386e00a.png)
 
 
 ### 🔧 Фаза 2: Робочий процес інтеграції MCP
@@ -213,7 +213,7 @@ Microsoft очолює екосистему MCP, пропонуючи компл
 2. **Натисніть "Add Tool"**, щоб відкрити меню інтеграцій
 3. **Виберіть "MCP Server"** зі списку доступних опцій
 
-![AddMCP](../../../../translated_images/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.uk.png)
+![AddMCP](../../../../translated_images/uk/AddMCP.afe3308ac20aa94469a5717b632d77b2197b9838a438b05d39aeb2db3ec47ef1.png)
 
 **🔍 Розуміння типів інструментів:**
 - **Вбудовані інструменти**: Попередньо налаштовані функції AI Toolkit
@@ -223,10 +223,10 @@ Microsoft очолює екосистему MCP, пропонуючи компл
 
 #### Крок 4: Вибір MCP Server
 1. **Оберіть опцію "MCP Server"** для продовження
-![AddMCPServer](../../../../translated_images/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.uk.png)
+![AddMCPServer](../../../../translated_images/uk/AddMCPServer.69b911ccef872cbd0d0c0c2e6a00806916e1673e543b902a23dee23e6ff54b4c.png)
 
 2. **Перегляньте каталог MCP** для ознайомлення з доступними інтеграціями
-![MCPCatalog](../../../../translated_images/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.uk.png)
+![MCPCatalog](../../../../translated_images/uk/MCPCatalog.a817d053145699006264f5a475f2b48fbd744e43633f656b6453c15a09ba5130.png)
 
 
 ### 🎮 Фаза 3: Налаштування Playwright MCP
@@ -236,12 +236,12 @@ Microsoft очолює екосистему MCP, пропонуючи компл
 2. **Оберіть "Playwright"** зі списку
 3. **Прийміть стандартний MCP ID** або налаштуйте під своє середовище
 
-![MCPID](../../../../translated_images/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.uk.png)
+![MCPID](../../../../translated_images/uk/MCPID.67d446052979e819c945ff7b6430196ef587f5217daadd3ca52fa9659c1245c9.png)
 
 #### Крок 6: Активуйте можливості Playwright
 **🔑 Важливий крок**: Виберіть **ВСІ** доступні методи Playwright для максимальної функціональності
 
-![Tools](../../../../translated_images/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.uk.png)
+![Tools](../../../../translated_images/uk/Tools.3ea23c447b4d9feccbd7101e6dcf9e27cb0e5273f351995fde62c5abf9a78b4c.png)
 
 **🛠️ Основні інструменти Playwright:**
 - **Навігація**: `goto`, `goBack`, `goForward`, `reload`
@@ -257,7 +257,7 @@ Microsoft очолює екосистему MCP, пропонуючи компл
 - Відсутність повідомлень про помилки в панелі інтеграції
 - Статус сервера Playwright показує "Connected"
 
-![AgentTools](../../../../translated_images/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.uk.png)
+![AgentTools](../../../../translated_images/uk/AgentTools.053cfb96a17e02199dcc6563010d2b324d4fc3ebdd24889657a6950647a52f63.png)
 
 **🔧 Вирішення поширених проблем:**
 - **Не вдається підключитись**: Перевірте інтернет-з’єднання та налаштування брандмауера
@@ -323,7 +323,7 @@ Navigate to github.com/kinfey and provide a comprehensive analysis including:
 Include screenshots at key steps and provide actionable insights.
 ```
 
-![Prompt](../../../../translated_images/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.uk.png)
+![Prompt](../../../../translated_images/uk/Prompt.bfc846605db4999f4d9c1b09c710ef63cae7b3057444e68bf07240fb142d9f8f.png)
 
 ### 🚀 Фаза 5: Виконання та тестування
 
@@ -335,19 +335,19 @@ Include screenshots at key steps and provide actionable insights.
    - Кожен ключовий крок фіксується скріншотами
    - Результати аналізу надходять у реальному часі
 
-![Browser](../../../../translated_images/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.uk.png)
+![Browser](../../../../translated_images/uk/Browser.ec011d0bd64d0d112c8a29bd8cc44c76d0bbfd0b019cb2983ef679328435ce5d.png)
 
 #### Крок 11: Аналіз результатів та інсайтів
 Огляньте детальний аналіз у інтерфейсі Agent Builder:
 
-![Result](../../../../translated_images/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.uk.png)
+![Result](../../../../translated_images/uk/Result.8638f2b6703e9ea6d58d4e4475e39456b6a51d4c787f9bf481bae694d370a69a.png)
 
 ### 🌟 Фаза 6: Розширені можливості та розгортання
 
 #### Крок 12: Експорт і розгортання у виробництві
 Agent Builder підтримує кілька варіантів розгортання:
 
-![Code](../../../../translated_images/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.uk.png)
+![Code](../../../../translated_images/uk/Code.d9eeeead0b96db0ca19c5b10ad64cfea8c1d0d1736584262970a4d43e1403d13.png)
 
 ## 🎓 Підсумок Модуля 2 та подальші кроки
 

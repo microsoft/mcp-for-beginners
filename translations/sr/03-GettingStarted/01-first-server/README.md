@@ -156,7 +156,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 Ево снимка екрана како то може изгледати:
 
-![MCP Inspector server connection](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.sr.png)
+![MCP Inspector server connection](../../../../translated_images/sr/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 ## Чести проблеми при подешавању и решења
 
@@ -1302,7 +1302,7 @@ npx @modelcontextprotocol/inspector
 2. Поставите URL на: `http://localhost:8080/sse`
 3. Кликните "Connect"
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.sr.png)
+![Connect](../../../../translated_images/sr/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.png)
 
 **Сада сте повезани са сервером**
 **Секција за тестирање Java сервера је сада завршена**
@@ -1311,18 +1311,18 @@ npx @modelcontextprotocol/inspector
 
 Требало би да видите следећи кориснички интерфејс:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.sr.png)
+![Connect](../../../../translated_images/sr/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. Повежите се са сервером тако што ћете изабрати дугме Connect
   Када се повежете са сервером, требало би да видите следеће:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.sr.png)
+  ![Connected](../../../../translated_images/sr/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.png)
 
 1. Изаберите "Tools" и "listTools", требало би да се појави "Add", изаберите "Add" и попуните вредности параметара.
 
   Требало би да видите следећи одговор, тј. резултат из "add" алата:
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.sr.png)
+  ![Result of running add](../../../../translated_images/sr/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.png)
 
 Честитамо, успели сте да креирате и покренете свој први сервер!
 

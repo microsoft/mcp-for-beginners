@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Napredne teme v MCP
 
-[![Napredni MCP: Varnostni, razširljivi in večmodalni AI agenti](../../../translated_images/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.sl.png)](https://youtu.be/4yjmGvJzYdY)
+[![Napredni MCP: Varnostni, razširljivi in večmodalni AI agenti](../../../translated_images/sl/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.png)](https://youtu.be/4yjmGvJzYdY)
 
 _(Kliknite zgornjo sliko za ogled videa te lekcije)_
 

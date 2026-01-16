@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # ਐਡਵਾਂਸਡ ਟਾਪਿਕਸ MCP ਵਿੱਚ
 
-[![ਐਡਵਾਂਸਡ MCP: ਸੁਰੱਖਿਅਤ, ਸਕੇਲਬਲ ਅਤੇ ਮਲਟੀ-ਮੋਡਲ AI ਏਜੰਟ](../../../translated_images/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.pa.png)](https://youtu.be/4yjmGvJzYdY)
+[![ਐਡਵਾਂਸਡ MCP: ਸੁਰੱਖਿਅਤ, ਸਕੇਲਬਲ ਅਤੇ ਮਲਟੀ-ਮੋਡਲ AI ਏਜੰਟ](../../../translated_images/pa/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.png)](https://youtu.be/4yjmGvJzYdY)
 
 _(ਉਪਰ ਦਿੱਤੀ ਤਸਵੀਰ 'ਤੇ ਕਲਿੱਕ ਕਰਕੇ ਇਸ ਪਾਠ ਦਾ ਵੀਡੀਓ ਵੇਖੋ)_
 

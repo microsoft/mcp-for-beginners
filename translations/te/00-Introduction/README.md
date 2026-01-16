@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # మోడల్ కాంటెక్స్ట్ ప్రోటోకాల్ (MCP) పరిచయం: స్కేలబుల్ AI అప్లికేషన్ల కోసం ఇది ఎందుకు ముఖ్యం
 
-[![మోడల్ కాంటెక్స్ట్ ప్రోటోకాల్ పరిచయం](../../../translated_images/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.te.png)](https://youtu.be/agBbdiOPLQA)
+[![మోడల్ కాంటెక్స్ట్ ప్రోటోకాల్ పరిచయం](../../../translated_images/te/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.png)](https://youtu.be/agBbdiOPLQA)
 
 _(ఈ పాఠం వీడియోను చూడడానికి పై చిత్రాన్ని క్లిక్ చేయండి)_
 

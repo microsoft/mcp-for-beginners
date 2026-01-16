@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Concepte de bază MCP: Stăpânirea Protocolului Contextului Modelului pentru Integrarea AI
 
-[![Concepte de bază MCP](../../../translated_images/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.ro.png)](https://youtu.be/earDzWGtE84)
+[![Concepte de bază MCP](../../../translated_images/ro/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.png)](https://youtu.be/earDzWGtE84)
 
 _(Faceți clic pe imaginea de mai sus pentru a viziona videoclipul acestei lecții)_
 

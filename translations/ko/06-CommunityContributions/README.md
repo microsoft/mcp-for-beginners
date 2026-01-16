@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # 커뮤니티와 기여
 
-[![MCP에 기여하는 방법: 도구, 문서, 코드 등](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.ko.png)](https://youtu.be/v1pvCYAWpRE)
+[![MCP에 기여하는 방법: 도구, 문서, 코드 등](../../../translated_images/ko/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.png)](https://youtu.be/v1pvCYAWpRE)
 
 _(위 이미지를 클릭하면 이 강의의 동영상을 볼 수 있습니다)_
 
