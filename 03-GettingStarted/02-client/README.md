@@ -239,7 +239,7 @@ async def run():
 if __name__ == "__main__":
     import asyncio
 
-    asyncio.run(run())
+    asyncio.run(main())
 ```
 
 In the preceding code we've:
