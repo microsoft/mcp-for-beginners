@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ebdb86db46113f1cbd59ce4c74caaa79",
-  "translation_date": "2025-07-17T00:09:18+00:00",
-  "source_file": "05-AdvancedTopics/mcp-root-contexts/README.md",
-  "language_code": "bn"
-}
--->
 # MCP Root Contexts
 
 Root contexts হল Model Context Protocol-এর একটি মৌলিক ধারণা যা একাধিক অনুরোধ এবং সেশনের মধ্যে কথোপকথনের ইতিহাস এবং শেয়ার করা অবস্থা বজায় রাখার জন্য একটি স্থায়ী স্তর প্রদান করে।

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "57f14126c1c6add76b3aef3844dfe4e3",
-  "translation_date": "2025-07-13T15:04:16+00:00",
-  "source_file": "SECURITY.md",
-  "language_code": "bn"
-}
--->
 ## সুরক্ষা
 
 Microsoft আমাদের সফটওয়্যার পণ্য এবং পরিষেবাগুলোর সুরক্ষা গুরুত্বের সাথে গ্রহণ করে, যার মধ্যে রয়েছে আমাদের GitHub সংস্থাগুলোর মাধ্যমে পরিচালিত সমস্ত সোর্স কোড রিপোজিটরি, যেমন [Microsoft](https://github.com/Microsoft), [Azure](https://github.com/Azure), [DotNet](https://github.com/dotnet), [AspNet](https://github.com/aspnet) এবং [Xamarin](https://github.com/xamarin)।

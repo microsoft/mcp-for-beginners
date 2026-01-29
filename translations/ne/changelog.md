@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e8bbc7982284fe177dd4be5e7f2b3357",
-  "translation_date": "2025-12-19T10:40:34+00:00",
-  "source_file": "changelog.md",
-  "language_code": "ne"
-}
--->
 # परिवर्तन विवरण: MCP for Beginners पाठ्यक्रम
 
 यो दस्तावेजले Model Context Protocol (MCP) for Beginners पाठ्यक्रममा गरिएका सबै महत्वपूर्ण परिवर्तनहरूको अभिलेखको रूपमा काम गर्दछ। परिवर्तनहरू उल्टो कालानुक्रमिक क्रममा (नयाँ परिवर्तनहरू पहिले) दस्तावेज गरिएको छ।

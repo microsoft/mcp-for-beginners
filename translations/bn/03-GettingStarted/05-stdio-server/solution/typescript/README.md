@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9d799c4a30a8383e0a74af9153262972",
-  "translation_date": "2025-08-26T20:07:44+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/typescript/README.md",
-  "language_code": "bn"
-}
--->
 # MCP stdio সার্ভার - টাইপস্ক্রিপ্ট সমাধান
 
 > **⚠️ গুরুত্বপূর্ণ**: এই সমাধানটি **stdio transport** ব্যবহারের জন্য আপডেট করা হয়েছে, যা MCP স্পেসিফিকেশন 2025-06-18 অনুযায়ী সুপারিশকৃত। পুরনো SSE transport এখন আর ব্যবহৃত হয় না।

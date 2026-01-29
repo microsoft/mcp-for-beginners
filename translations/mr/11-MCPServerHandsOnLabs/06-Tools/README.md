@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5854af7b7c1cf4a5193eabdca60a4c19",
-  "translation_date": "2025-09-30T17:06:38+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/06-Tools/README.md",
-  "language_code": "mr"
-}
--->
 # टूल विकास
 
 ## 🎯 या प्रयोगशाळेत काय समाविष्ट आहे

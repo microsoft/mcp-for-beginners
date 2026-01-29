@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f400d87053221363769113c24f117248",
-  "translation_date": "2025-10-06T22:36:44+00:00",
-  "source_file": "03-GettingStarted/README.md",
-  "language_code": "bn"
-}
--->
 ## শুরু করা  
 
 [![আপনার প্রথম MCP সার্ভার তৈরি করুন](../../../translated_images/bn/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.png)](https://youtu.be/sNDZO9N4m9Y)

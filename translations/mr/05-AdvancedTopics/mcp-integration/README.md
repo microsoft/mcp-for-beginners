@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f84eaea79c8fa9ab318a494f40891814",
-  "translation_date": "2025-08-18T15:34:36+00:00",
-  "source_file": "05-AdvancedTopics/mcp-integration/README.md",
-  "language_code": "mr"
-}
--->
 # एंटरप्राइझ इंटिग्रेशन
 
 एंटरप्राइझ संदर्भात MCP सर्व्हर्स तयार करताना, विद्यमान AI प्लॅटफॉर्म्स आणि सेवांसोबत एकत्रिकरण करणे आवश्यक असते. या विभागात MCP ला Azure OpenAI आणि Microsoft AI Foundry सारख्या एंटरप्राइझ सिस्टम्ससोबत कसे एकत्रित करायचे याबद्दल माहिती दिली आहे, ज्यामुळे प्रगत AI क्षमता आणि टूल ऑर्केस्ट्रेशन सक्षम होते.

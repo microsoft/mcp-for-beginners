@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "fd169ca3071b81b5ee282e194bc823df",
-  "translation_date": "2025-09-15T20:11:56+00:00",
-  "source_file": "05-AdvancedTopics/mcp-contextengineering/README.md",
-  "language_code": "ne"
-}
--->
 # सन्दर्भ इन्जिनियरिङ: MCP पारिस्थितिकी तन्त्रमा एक उदाउँदो अवधारणा
 
 ## अवलोकन

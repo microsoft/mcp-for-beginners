@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "cf8b2ca0cea03c09428ae042938995c1",
-  "translation_date": "2025-09-30T16:56:07+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/12-Best-Practices/README.md",
-  "language_code": "ne"
-}
--->
 # उत्कृष्ट अभ्यास र अनुकूलन
 
 ## 🎯 यो प्रयोगशालाले के समेट्छ

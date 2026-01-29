@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9351493ad29390d37f64bc6d84a03db5",
-  "translation_date": "2025-12-19T10:49:00+00:00",
-  "source_file": "02-Security/mcp-security-controls-2025.md",
-  "language_code": "ne"
-}
--->
 # MCP सुरक्षा नियन्त्रणहरू - डिसेम्बर २०२५ अपडेट
 
 > **हालको मापदण्ड**: यो दस्तावेजले [MCP विनिर्देशन २०२५-११-२५](https://spec.modelcontextprotocol.io/specification/2025-11-25/) सुरक्षा आवश्यकताहरू र आधिकारिक [MCP सुरक्षा उत्तम अभ्यासहरू](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) प्रतिबिम्बित गर्दछ।

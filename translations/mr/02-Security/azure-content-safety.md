@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f5300fd1b5e84520d500b2a8f568a1d8",
-  "translation_date": "2025-07-17T01:59:15+00:00",
-  "source_file": "02-Security/azure-content-safety.md",
-  "language_code": "mr"
-}
--->
 # Azure Content Safety सह प्रगत MCP सुरक्षा
 
 Azure Content Safety तुमच्या MCP अंमलबजावणीत सुरक्षा वाढवण्यासाठी अनेक सामर्थ्यशाली साधने प्रदान करते:

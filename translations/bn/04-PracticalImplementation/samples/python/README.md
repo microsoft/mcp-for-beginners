@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "706b9b075dc484b73a053e6e9c709b4b",
-  "translation_date": "2025-07-13T23:31:28+00:00",
-  "source_file": "04-PracticalImplementation/samples/python/README.md",
-  "language_code": "bn"
-}
--->
 # Model Context Protocol (MCP) Python ইমপ্লিমেন্টেশন
 
 এই রিপোজিটরিটি Model Context Protocol (MCP)-এর একটি Python ইমপ্লিমেন্টেশন ধারণ করে, যা দেখায় কিভাবে MCP স্ট্যান্ডার্ড ব্যবহার করে একটি সার্ভার এবং ক্লায়েন্ট অ্যাপ্লিকেশন তৈরি করা যায় যা একে অপরের সাথে যোগাযোগ করে।

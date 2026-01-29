@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0a7083e660ca0d85fd6a947514c61993",
-  "translation_date": "2025-07-14T00:41:09+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/README.md",
-  "language_code": "ne"
-}
--->
 # MCP OAuth2 डेमो
 
 यो प्रोजेक्ट एक **सर्वन्यूनतम Spring Boot एप्लिकेशन** हो जुन दुवैको रूपमा काम गर्छ:

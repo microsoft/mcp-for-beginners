@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4d3415b9d2bf58bc69be07f945a69e07",
-  "translation_date": "2025-07-14T05:58:15+00:00",
-  "source_file": "09-CaseStudy/travelagentsample.md",
-  "language_code": "ne"
-}
--->
 # केस स्टडी: Azure AI Travel Agents – रेफरेन्स इम्प्लिमेन्टेशन
 
 ## अवलोकन

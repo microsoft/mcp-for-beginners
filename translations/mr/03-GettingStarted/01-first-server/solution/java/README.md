@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ed9cab32cc67c12d8969b407aa47100a",
-  "translation_date": "2025-07-13T17:53:24+00:00",
-  "source_file": "03-GettingStarted/01-first-server/solution/java/README.md",
-  "language_code": "mr"
-}
--->
 # बेसिक कॅल्क्युलेटर MCP सेवा
 
 ही सेवा Model Context Protocol (MCP) द्वारे बेसिक कॅल्क्युलेटर ऑपरेशन्स प्रदान करते, जी Spring Boot सह WebFlux ट्रान्सपोर्ट वापरून तयार केली आहे. ही सेवा MCP अंमलबजावणी शिकणाऱ्या नवशिक्यांसाठी एक सोपा उदाहरण म्हणून डिझाइन केली आहे.

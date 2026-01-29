@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1b6c746d9e190deba4d8765267ffb94e",
-  "translation_date": "2025-07-17T02:00:57+00:00",
-  "source_file": "02-Security/azure-content-safety-implementation.md",
-  "language_code": "mr"
-}
--->
 # MCP सह Azure Content Safety ची अंमलबजावणी
 
 प्रॉम्प्ट इंजेक्शन, टूल पॉइझनिंग आणि इतर AI-विशिष्ट धोके यांविरुद्ध MCP ची सुरक्षा मजबूत करण्यासाठी Azure Content Safety चे एकत्रीकरण अत्यंत शिफारसीय आहे.

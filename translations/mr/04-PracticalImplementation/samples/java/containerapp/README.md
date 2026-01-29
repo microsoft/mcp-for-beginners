@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e5ea5e7582f70008ea9bec3b3820f20a",
-  "translation_date": "2025-07-13T23:14:26+00:00",
-  "source_file": "04-PracticalImplementation/samples/java/containerapp/README.md",
-  "language_code": "mr"
-}
--->
 ## सिस्टम आर्किटेक्चर
 
 हा प्रकल्प वेब अनुप्रयोग दाखवतो जो वापरकर्त्याच्या प्रॉम्प्ट्सना Model Context Protocol (MCP) द्वारे कॅल्क्युलेटर सेवेकडे पाठवण्यापूर्वी कंटेंट सेफ्टी तपासणी करतो.

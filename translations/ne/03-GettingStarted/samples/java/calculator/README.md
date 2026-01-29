@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "13231e9951b68efd9df8c56bd5cdb27e",
-  "translation_date": "2025-07-13T22:24:45+00:00",
-  "source_file": "03-GettingStarted/samples/java/calculator/README.md",
-  "language_code": "ne"
-}
--->
 # Basic Calculator MCP सेवा
 
 यो सेवा Model Context Protocol (MCP) मार्फत Spring Boot र WebFlux ट्रान्सपोर्ट प्रयोग गरी आधारभूत क्याल्कुलेटर अपरेसनहरू प्रदान गर्छ। यो MCP कार्यान्वयनहरू सिक्न चाहने शुरुवातीहरूका लागि सरल उदाहरणको रूपमा डिजाइन गरिएको हो।

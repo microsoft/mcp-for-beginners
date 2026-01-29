@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "68cd055621b3370948a5a1dff7bedc9a",
-  "translation_date": "2025-08-26T20:30:48+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/python/README.md",
-  "language_code": "bn"
-}
--->
 # MCP stdio সার্ভার - পাইথন সমাধান
 
 > **⚠️ গুরুত্বপূর্ণ**: এই সমাধানটি **stdio transport** ব্যবহার করার জন্য আপডেট করা হয়েছে, যা MCP স্পেসিফিকেশন 2025-06-18 অনুযায়ী সুপারিশ করা হয়েছে। পুরানো SSE transport এখন আর ব্যবহারযোগ্য নয়।

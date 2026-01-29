@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7b4d8d17fc1f501468cce40c3651aed1",
-  "translation_date": "2025-07-17T00:37:13+00:00",
-  "source_file": "05-AdvancedTopics/mcp-scaling/README.md",
-  "language_code": "ne"
-}
--->
 # Scalability and High-Performance MCP
 
 उद्यम स्तरका परिनियोजनहरूका लागि, MCP कार्यान्वयनहरूले प्रायः न्यूनतम विलम्बतासँग उच्च मात्रामा अनुरोधहरू व्यवस्थापन गर्नुपर्ने हुन्छ।

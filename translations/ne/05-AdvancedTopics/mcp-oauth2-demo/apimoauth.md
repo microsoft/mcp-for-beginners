@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "32c9a4263be08f9050c8044bb26267c4",
-  "translation_date": "2025-07-14T00:25:07+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/apimoauth.md",
-  "language_code": "ne"
-}
--->
 # Spring AI MCP एपलाई Azure Container Apps मा डिप्लोय गर्ने तरिका
 
 ([Spring AI MCP सर्भरलाई OAuth2 सँग सुरक्षित गर्ने](https://spring.io/blog/2025/04/02/mcp-server-oauth2))  

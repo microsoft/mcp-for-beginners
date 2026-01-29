@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "32c9a4263be08f9050c8044bb26267c4",
-  "translation_date": "2025-07-14T00:24:07+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/apimoauth.md",
-  "language_code": "bn"
-}
--->
 # Spring AI MCP অ্যাপ Azure Container Apps-এ ডিপ্লয় করা
 
 ([Securing Spring AI MCP servers with OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2)) *চিত্র: Spring Authorization Server দিয়ে সুরক্ষিত Spring AI MCP সার্ভার। সার্ভার ক্লায়েন্টদের কাছে অ্যাক্সেস টোকেন ইস্যু করে এবং আসা রিকোয়েস্টে সেগুলো যাচাই করে (উৎস: Spring ব্লগ) ([Securing Spring AI MCP servers with OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2#:~:text=,server%20with%20the%20MCP%20inspector)).* Spring MCP সার্ভার ডিপ্লয় করতে, এটিকে একটি কন্টেইনার হিসেবে তৈরি করুন এবং Azure Container Apps ব্যবহার করে এক্সটার্নাল ইনগ্রেস দিন। উদাহরণস্বরূপ, Azure CLI ব্যবহার করে আপনি চালাতে পারেন:

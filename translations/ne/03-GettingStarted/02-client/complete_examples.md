@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8358c13b5b6877e475674697cdc1a904",
-  "translation_date": "2025-08-18T16:18:46+00:00",
-  "source_file": "03-GettingStarted/02-client/complete_examples.md",
-  "language_code": "ne"
-}
--->
 # पूर्ण MCP क्लाइन्ट उदाहरणहरू
 
 यो डाइरेक्टरीमा विभिन्न प्रोग्रामिङ भाषाहरूमा MCP क्लाइन्टका पूर्ण, कार्यरत उदाहरणहरू समावेश छन्। प्रत्येक क्लाइन्टले मुख्य README.md ट्युटोरियलमा वर्णन गरिएको सम्पूर्ण कार्यक्षमता प्रदर्शन गर्दछ।

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "77735b446eb79b1bba9c849865cd0ced",
-  "translation_date": "2025-08-28T22:19:45+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/README.md",
-  "language_code": "ne"
-}
--->
 # MCP Server with stdio Transport
 
 > **⚠️ महत्त्वपूर्ण अपडेट**: MCP Specification 2025-06-18 अनुसार, standalone SSE (Server-Sent Events) transport **अप्रचलित** भइसकेको छ र यसको स्थानमा "Streamable HTTP" transport आएको छ। हालको MCP specification ले दुई मुख्य transport विधिहरू परिभाषित गर्दछ:

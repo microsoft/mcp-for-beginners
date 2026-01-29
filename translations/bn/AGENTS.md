@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "b9e8de81a14b77abeeb98a20b4c894d0",
-  "translation_date": "2025-10-03T08:13:22+00:00",
-  "source_file": "AGENTS.md",
-  "language_code": "bn"
-}
--->
 # AGENTS.md
 
 ## প্রকল্পের সংক্ষিপ্ত বিবরণ

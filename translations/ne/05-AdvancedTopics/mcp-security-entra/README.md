@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6e562d7e5a77c8982da4aa8f762ad1d8",
-  "translation_date": "2025-07-14T02:57:31+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security-entra/README.md",
-  "language_code": "ne"
-}
--->
 # AI कार्यप्रवाहहरू सुरक्षित गर्ने: मोडेल कन्टेक्स्ट प्रोटोकल सर्भरहरूका लागि Entra ID प्रमाणीकरण
 
 ## परिचय  

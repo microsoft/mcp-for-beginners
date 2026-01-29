@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "d4c162484df410632550a4a357d40341",
-  "translation_date": "2025-09-03T16:04:02+00:00",
-  "source_file": "03-GettingStarted/01-first-server/solution/python/README.md",
-  "language_code": "ne"
-}
--->
 # यो नमूना चलाउनुहोस्
 
 तपाईंलाई `uv` स्थापना गर्न सिफारिस गरिन्छ तर यो अनिवार्य छैन, [निर्देशनहरू](https://docs.astral.sh/uv/#highlights) हेर्नुहोस्।

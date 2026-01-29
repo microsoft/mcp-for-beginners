@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "84857cd27c06e9e5cb8bded78ab9c05c",
-  "translation_date": "2025-07-13T18:27:32+00:00",
-  "source_file": "03-GettingStarted/02-client/solution/dotnet/README.md",
-  "language_code": "bn"
-}
--->
 # এই স্যাম্পল চালানো
 
 ## -1- ডিপেন্ডেন্সিগুলো ইনস্টল করুন

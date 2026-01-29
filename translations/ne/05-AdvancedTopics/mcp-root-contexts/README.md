@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ebdb86db46113f1cbd59ce4c74caaa79",
-  "translation_date": "2025-07-17T00:34:44+00:00",
-  "source_file": "05-AdvancedTopics/mcp-root-contexts/README.md",
-  "language_code": "ne"
-}
--->
 # MCP Root Contexts
 
 Root contexts मोडेल कन्टेक्स्ट प्रोटोकलमा एउटा आधारभूत अवधारणा हो जसले बहु अनुरोध र सत्रहरूमा कुराकानी इतिहास र साझा अवस्थालाई कायम राख्न स्थायी तह प्रदान गर्छ।

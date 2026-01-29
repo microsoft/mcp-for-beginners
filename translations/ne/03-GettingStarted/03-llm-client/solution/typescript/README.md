@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6d6315e03f591fb5a39be91da88585dc",
-  "translation_date": "2025-07-13T19:19:23+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/typescript/README.md",
-  "language_code": "ne"
-}
--->
 # यो नमुना चलाउँदै
 
 यो नमुनामा क्लाइन्टमा LLM राखिएको छ। LLM ले तपाईंलाई यो Codespaces मा चलाउन वा GitHub मा व्यक्तिगत पहुँच टोकन सेटअप गर्न आवश्यक पर्छ।

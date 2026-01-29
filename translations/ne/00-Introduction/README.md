@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9678e0c6945b8e0c23586869b0e26783",
-  "translation_date": "2025-10-06T10:57:02+00:00",
-  "source_file": "00-Introduction/README.md",
-  "language_code": "ne"
-}
--->
 # मोडेल कन्टेक्स्ट प्रोटोकल (MCP) को परिचय: स्केलेबल एआई एप्लिकेसनहरूको लागि यसको महत्त्व
 
 [![मोडेल कन्टेक्स्ट प्रोटोकलको परिचय](../../../translated_images/ne/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.png)](https://youtu.be/agBbdiOPLQA)

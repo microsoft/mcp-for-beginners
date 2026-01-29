@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2228721599c0c8673de83496b4d7d7a9",
-  "translation_date": "2025-08-18T15:55:39+00:00",
-  "source_file": "09-CaseStudy/apimsample.md",
-  "language_code": "ne"
-}
--->
 # केस स्टडी: API Management मा REST API लाई MCP सर्भरको रूपमा एक्सपोज गर्नुहोस्
 
 Azure API Management एउटा सेवा हो जसले तपाईंको API Endpoints माथि Gateway प्रदान गर्दछ। यसको काम गर्ने तरिका यस्तो छ कि Azure API Management तपाईंको API हरूको अगाडि proxy को रूपमा काम गर्छ र आउने अनुरोधहरूसँग के गर्ने भनेर निर्णय गर्न सक्छ।

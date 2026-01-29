@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "fd28e690667b8ad84bb153cb025cfd73",
-  "translation_date": "2025-10-07T01:16:22+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/solution/python/README.md",
-  "language_code": "bn"
-}
--->
 # নমুনা চালান
 
 ## পরিবেশ তৈরি করুন

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7b4d8d17fc1f501468cce40c3651aed1",
-  "translation_date": "2025-07-17T00:25:25+00:00",
-  "source_file": "05-AdvancedTopics/mcp-scaling/README.md",
-  "language_code": "mr"
-}
--->
 # स्केलेबिलिटी आणि उच्च-कार्यक्षमता MCP
 
 एंटरप्राइझ डिप्लॉयमेंटसाठी, MCP अंमलबजावण्या अनेकदा कमी विलंबासह उच्च प्रमाणात विनंत्या हाताळण्याची गरज असते.

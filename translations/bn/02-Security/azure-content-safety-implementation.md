@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1b6c746d9e190deba4d8765267ffb94e",
-  "translation_date": "2025-07-17T02:00:49+00:00",
-  "source_file": "02-Security/azure-content-safety-implementation.md",
-  "language_code": "bn"
-}
--->
 # MCP এর সাথে Azure Content Safety বাস্তবায়ন
 
 প্রম্পট ইনজেকশন, টুল পয়জনিং এবং অন্যান্য AI-সংক্রান্ত দুর্বলতার বিরুদ্ধে MCP নিরাপত্তা শক্তিশালী করতে Azure Content Safety ইন্টিগ্রেশন অত্যন্ত গুরুত্বপূর্ণ।

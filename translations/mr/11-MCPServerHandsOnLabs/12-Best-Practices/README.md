@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "cf8b2ca0cea03c09428ae042938995c1",
-  "translation_date": "2025-09-30T16:55:17+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/12-Best-Practices/README.md",
-  "language_code": "mr"
-}
--->
 # सर्वोत्तम पद्धती आणि ऑप्टिमायझेशन
 
 ## 🎯 या प्रयोगशाळेत काय समाविष्ट आहे

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-07-13T19:40:57+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "bn"
-}
--->
 এটি এমন একটি কমান্ড চালানোর সমতুল্য: `node build/index.js`।
 
 - আপনার সার্ভার ফাইল কোথায় অবস্থিত বা আপনার নির্বাচিত রানটাইম এবং সার্ভার অবস্থানের উপর নির্ভর করে সার্ভার চালু করার জন্য যা প্রয়োজন, সেই অনুযায়ী এই সার্ভার এন্ট্রি পরিবর্তন করুন।

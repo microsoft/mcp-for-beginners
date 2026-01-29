@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e8bbc7982284fe177dd4be5e7f2b3357",
-  "translation_date": "2025-12-19T10:27:04+00:00",
-  "source_file": "changelog.md",
-  "language_code": "mr"
-}
--->
 # बदलनोंची नोंद: MCP for Beginners अभ्यासक्रम
 
 हा दस्तऐवज Model Context Protocol (MCP) for Beginners अभ्यासक्रमात केलेल्या सर्व महत्त्वाच्या बदलांची नोंद म्हणून काम करतो. बदल उलट कालक्रमानुसार (नवीनतम बदल आधी) नोंदवले आहेत.
