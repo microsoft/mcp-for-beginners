@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2aa9dbc165e104764fa57e8a0d3f1c73",
-  "translation_date": "2025-07-14T07:18:13+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab1/README.md",
-  "language_code": "de"
-}
--->
 # 🚀 Modul 1: Grundlagen des AI Toolkits
 
 [![Dauer](https://img.shields.io/badge/Duration-15%20minutes-blue.svg)]()

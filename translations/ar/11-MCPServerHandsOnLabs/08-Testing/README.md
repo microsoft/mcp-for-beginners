@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ad02c1223d7861292651ffce2f52bb28",
-  "translation_date": "2025-09-30T15:16:04+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/08-Testing/README.md",
-  "language_code": "ar"
-}
--->
 # اختبار وتصحيح الأخطاء
 
 ## 🎯 ما يغطيه هذا المختبر

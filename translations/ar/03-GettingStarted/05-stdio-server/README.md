@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "77735b446eb79b1bba9c849865cd0ced",
-  "translation_date": "2025-08-28T22:09:49+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/README.md",
-  "language_code": "ar"
-}
--->
 # خادم MCP باستخدام stdio Transport
 
 > **⚠️ تحديث مهم**: اعتبارًا من مواصفات MCP بتاريخ 2025-06-18، تم **إيقاف** النقل المستقل SSE (Server-Sent Events) واستبداله بنقل "Streamable HTTP". تحدد مواصفات MCP الحالية آليتين رئيسيتين للنقل:

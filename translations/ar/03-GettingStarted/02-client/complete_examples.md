@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8358c13b5b6877e475674697cdc1a904",
-  "translation_date": "2025-08-18T13:50:50+00:00",
-  "source_file": "03-GettingStarted/02-client/complete_examples.md",
-  "language_code": "ar"
-}
--->
 # أمثلة كاملة لعملاء MCP
 
 يحتوي هذا الدليل على أمثلة كاملة وعاملة لعملاء MCP مكتوبة بلغات برمجة مختلفة. كل عميل يوضح الوظائف الكاملة التي تم وصفها في دليل README.md الرئيسي.

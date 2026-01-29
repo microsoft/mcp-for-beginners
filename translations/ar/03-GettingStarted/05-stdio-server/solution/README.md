@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e378b47e0361b7a9b0dab7a0306878c8",
-  "translation_date": "2025-08-26T19:59:22+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/README.md",
-  "language_code": "ar"
-}
--->
 # حلول خوادم MCP باستخدام stdio
 
 > **⚠️ مهم**: تم تحديث هذه الحلول لاستخدام **stdio transport** كما هو موصى به في مواصفات MCP بتاريخ 2025-06-18. تم إيقاف استخدام النقل الأصلي SSE (Server-Sent Events).

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7b4d8d17fc1f501468cce40c3651aed1",
-  "translation_date": "2025-07-16T22:16:55+00:00",
-  "source_file": "05-AdvancedTopics/mcp-scaling/README.md",
-  "language_code": "de"
-}
--->
 # Skalierbarkeit und Hochleistungs-MCP
 
 Für Unternehmenseinsätze müssen MCP-Implementierungen oft große Mengen an Anfragen mit minimaler Latenz bewältigen.

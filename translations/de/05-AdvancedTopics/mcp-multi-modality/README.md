@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e1d142978227a4bfc468bb0accab62e2",
-  "translation_date": "2025-07-16T22:16:47+00:00",
-  "source_file": "05-AdvancedTopics/mcp-multi-modality/README.md",
-  "language_code": "de"
-}
--->
 # Multi-Modal Integration
 
 Multi-modale Anwendungen gewinnen in der KI zunehmend an Bedeutung, da sie reichhaltigere Interaktionen und komplexere Aufgaben ermöglichen. Das Model Context Protocol (MCP) bietet einen Rahmen zum Erstellen von multi-modalen Anwendungen, die verschiedene Datentypen wie Text, Bilder und Audio verarbeiten können.

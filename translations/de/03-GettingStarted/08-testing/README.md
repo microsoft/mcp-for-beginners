@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4e34e34e84f013e73c7eaa6d09884756",
-  "translation_date": "2025-07-13T21:56:37+00:00",
-  "source_file": "03-GettingStarted/08-testing/README.md",
-  "language_code": "de"
-}
--->
 ## Testen und Debuggen
 
 Bevor Sie mit dem Testen Ihres MCP-Servers beginnen, ist es wichtig, die verfügbaren Werkzeuge und bewährten Methoden zum Debuggen zu verstehen. Effektives Testen stellt sicher, dass Ihr Server wie erwartet funktioniert und hilft Ihnen, Probleme schnell zu erkennen und zu beheben. Der folgende Abschnitt beschreibt empfohlene Vorgehensweisen zur Validierung Ihrer MCP-Implementierung.

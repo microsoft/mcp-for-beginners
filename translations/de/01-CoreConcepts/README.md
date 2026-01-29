@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9ad93d2074502828b8139d5aba7bafab",
-  "translation_date": "2025-12-19T07:45:41+00:00",
-  "source_file": "01-CoreConcepts/README.md",
-  "language_code": "de"
-}
--->
 # MCP Kernkonzepte: Beherrschung des Model Context Protocol für die KI-Integration
 
 [![MCP Kernkonzepte](../../../translated_images/de/02.8203e26c6fb5a797.webp)](https://youtu.be/earDzWGtE84)

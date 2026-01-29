@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2f1b473818b5a6cc9a9bbf777fffa6d4",
-  "translation_date": "2025-07-14T21:44:22+00:00",
-  "source_file": "05-AdvancedTopics/mcp-routing/README.md",
-  "language_code": "ar"
-}
--->
 ## التوازن الذكي للحمل
 
 يعمل توازن الحمل على تحسين استخدام الموارد وضمان توفر عالي لخدمات MCP. هناك طرق مختلفة لتنفيذ توازن الحمل، مثل التوزيع بالتناوب (round-robin)، أو استنادًا إلى زمن الاستجابة المرجح، أو استراتيجيات تعتمد على محتوى الطلب.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4d3415b9d2bf58bc69be07f945a69e07",
-  "translation_date": "2025-07-14T05:54:46+00:00",
-  "source_file": "09-CaseStudy/travelagentsample.md",
-  "language_code": "ar"
-}
--->
 # دراسة حالة: وكلاء السفر الذكي من Azure – تنفيذ مرجعي
 
 ## نظرة عامة

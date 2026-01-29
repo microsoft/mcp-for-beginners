@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
-  "translation_date": "2025-08-18T12:58:19+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
-  "language_code": "de"
-}
--->
 # Ausführen dieses Beispiels
 
 So führen Sie den klassischen HTTP-Streaming-Server und -Client sowie den MCP-Streaming-Server und -Client mit Python aus.

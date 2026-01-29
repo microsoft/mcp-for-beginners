@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "af27b0acfae6caa134d9701453884df8",
-  "translation_date": "2025-10-06T21:58:14+00:00",
-  "source_file": "study_guide.md",
-  "language_code": "de"
-}
--->
 # Model Context Protocol (MCP) für Anfänger - Lernleitfaden
 
 Dieser Lernleitfaden bietet einen Überblick über die Struktur und Inhalte des Repositorys für das Curriculum "Model Context Protocol (MCP) für Anfänger". Nutzen Sie diesen Leitfaden, um das Repository effizient zu navigieren und die verfügbaren Ressourcen optimal zu nutzen.

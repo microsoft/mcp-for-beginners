@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7074b9f4c8cd147c1c10f569d8508c82",
-  "translation_date": "2025-07-13T18:30:19+00:00",
-  "source_file": "03-GettingStarted/02-client/solution/java/README.md",
-  "language_code": "de"
-}
--->
 # MCP Java Client - Rechner-Demo
 
 Dieses Projekt zeigt, wie man einen Java-Client erstellt, der sich mit einem MCP (Model Context Protocol) Server verbindet und mit ihm interagiert. In diesem Beispiel verbinden wir uns mit dem Rechner-Server aus Kapitel 01 und führen verschiedene mathematische Operationen durch.

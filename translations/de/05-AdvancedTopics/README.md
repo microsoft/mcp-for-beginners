@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "d204bc94ea6027d06a703b21b711ca57",
-  "translation_date": "2025-07-29T00:58:05+00:00",
-  "source_file": "05-AdvancedTopics/README.md",
-  "language_code": "de"
-}
--->
 # Fortgeschrittene Themen in MCP
 
 [![Fortgeschrittenes MCP: Sichere, skalierbare und multimodale KI-Agenten](../../../translated_images/de/06.42259eaf91fccfc6.webp)](https://youtu.be/4yjmGvJzYdY)

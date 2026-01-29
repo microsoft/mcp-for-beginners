@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1b6c746d9e190deba4d8765267ffb94e",
-  "translation_date": "2025-07-17T02:00:22+00:00",
-  "source_file": "02-Security/azure-content-safety-implementation.md",
-  "language_code": "ar"
-}
--->
 # تنفيذ أمان المحتوى في Azure مع MCP
 
 لتعزيز أمان MCP ضد حقن الأوامر، وتسميم الأدوات، وغيرها من الثغرات الخاصة بالذكاء الاصطناعي، يُنصح بشدة بدمج Azure Content Safety.

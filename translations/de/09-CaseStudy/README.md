@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1611dc5f6a2a35a789fc4c95fc5bfbe8",
-  "translation_date": "2025-09-26T17:37:56+00:00",
-  "source_file": "09-CaseStudy/README.md",
-  "language_code": "de"
-}
--->
 # MCP in Aktion: Fallstudien aus der Praxis
 
 [![MCP in Aktion: Fallstudien aus der Praxis](../../../translated_images/de/10.3262cc80b4de5071.webp)](https://youtu.be/IxshWb2Az5w)

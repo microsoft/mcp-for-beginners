@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "24531f2b6b0f7fa3839accf4dc10088a",
-  "translation_date": "2025-07-13T19:14:39+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/python/README.md",
-  "language_code": "ru"
-}
--->
 # Запуск этого примера
 
 Рекомендуется установить `uv`, но это не обязательно, подробности смотрите в [инструкциях](https://docs.astral.sh/uv/#highlights)

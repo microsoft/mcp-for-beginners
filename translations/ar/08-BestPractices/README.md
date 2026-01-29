@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "b62150e27d4b7b5797ee41146d176e6b",
-  "translation_date": "2025-08-18T13:36:33+00:00",
-  "source_file": "08-BestPractices/README.md",
-  "language_code": "ar"
-}
--->
 # أفضل الممارسات لتطوير MCP
 
 [![أفضل الممارسات لتطوير MCP](../../../translated_images/ar/09.d0f6d86c9d72134c.webp)](https://youtu.be/W56H9W7x-ao)

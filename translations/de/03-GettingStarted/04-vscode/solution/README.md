@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-07-13T19:38:40+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "de"
-}
--->
 Dies entspricht dem Ausführen eines Befehls wie: `node build/index.js`.
 
 - Ändern Sie diesen Server-Eintrag so, dass er auf den absoluten Pfad Ihrer Serverdatei zeigt oder passen Sie ihn an, um den Start Ihres Servers entsprechend Ihrer gewählten Laufzeit und Serverposition zu ermöglichen.

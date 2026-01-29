@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "cf3e88e4c0b2d9d65c7f300986bd8c6c",
-  "translation_date": "2025-12-19T08:16:47+00:00",
-  "source_file": "05-AdvancedTopics/mcp-transport/README.md",
-  "language_code": "ar"
-}
--->
 # MCP النقل المخصص - دليل التنفيذ المتقدم
 
 يوفر بروتوكول سياق النموذج (MCP) مرونة في آليات النقل، مما يسمح بتنفيذات مخصصة لبيئات المؤسسات المتخصصة. يستكشف هذا الدليل المتقدم تنفيذات النقل المخصصة باستخدام Azure Event Grid و Azure Event Hubs كأمثلة عملية لبناء حلول MCP قابلة للتوسع ومبنية على السحابة.

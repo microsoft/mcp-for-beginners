@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6d6315e03f591fb5a39be91da88585dc",
-  "translation_date": "2025-07-13T19:18:23+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/typescript/README.md",
-  "language_code": "ru"
-}
--->
 # Запуск этого примера
 
 В этом примере используется LLM на стороне клиента. Для работы вам нужно либо запустить это в Codespaces, либо настроить персональный токен доступа в GitHub.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0bc7bd48f55f1565f1d95ccb2c16f728",
-  "translation_date": "2025-07-13T23:03:46+00:00",
-  "source_file": "04-PracticalImplementation/samples/csharp/README.md",
-  "language_code": "ar"
-}
--->
 # مثال
 
 يُظهر المثال السابق كيفية استخدام مشروع .NET محلي مع نوع `stdio`. وكيفية تشغيل الخادم محليًا داخل حاوية. هذا حل جيد في العديد من الحالات. ومع ذلك، قد يكون من المفيد تشغيل الخادم عن بُعد، مثل بيئة السحابة. وهنا يأتي دور نوع `http`.

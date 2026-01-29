@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1b000fd6e1b04c047578bfc5d07d54eb",
-  "translation_date": "2025-08-18T13:52:19+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md",
-  "language_code": "ar"
-}
--->
 # تبسيط سير العمل في الذكاء الاصطناعي: بناء خادم MCP باستخدام أدوات الذكاء الاصطناعي
 
 [![إصدار MCP](https://img.shields.io/badge/MCP-1.9.3-blue.svg)](https://modelcontextprotocol.io/)

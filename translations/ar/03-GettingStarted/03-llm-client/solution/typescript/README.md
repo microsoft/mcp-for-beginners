@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6d6315e03f591fb5a39be91da88585dc",
-  "translation_date": "2025-07-13T19:18:28+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/typescript/README.md",
-  "language_code": "ar"
-}
--->
 # تشغيل هذا المثال
 
 يتطلب هذا المثال وجود نموذج لغة كبير (LLM) على العميل. يحتاج النموذج إلى أن تقوم إما بتشغيل هذا في Codespaces أو إعداد رمز وصول شخصي في GitHub ليعمل.

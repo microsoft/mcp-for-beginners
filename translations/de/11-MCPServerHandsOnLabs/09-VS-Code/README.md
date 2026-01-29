@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "769c9794759f416450dce77286e98f00",
-  "translation_date": "2025-09-30T14:02:44+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/09-VS-Code/README.md",
-  "language_code": "de"
-}
--->
 # VS Code-Integration
 
 ## 🎯 Was dieses Lab abdeckt

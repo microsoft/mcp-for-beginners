@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ebdb86db46113f1cbd59ce4c74caaa79",
-  "translation_date": "2025-07-16T23:25:03+00:00",
-  "source_file": "05-AdvancedTopics/mcp-root-contexts/README.md",
-  "language_code": "ru"
-}
--->
 # MCP Root Contexts
 
 Корневые контексты — это ключевая концепция в Model Context Protocol, обеспечивающая постоянный уровень для сохранения истории разговоров и общего состояния между несколькими запросами и сессиями.

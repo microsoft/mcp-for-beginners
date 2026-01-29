@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "db532b1ec386c9ce38c791653dc3c881",
-  "translation_date": "2025-07-14T06:46:45+00:00",
-  "source_file": "09-CaseStudy/docs-mcp/solution/scenario3/README.md",
-  "language_code": "ar"
-}
--->
 # السيناريو 3: توثيق داخل المحرر مع خادم MCP في VS Code
 
 ## نظرة عامة

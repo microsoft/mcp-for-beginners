@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1d9dc83260576b76f272d330ed93c51f",
-  "translation_date": "2025-07-13T22:05:44+00:00",
-  "source_file": "03-GettingStarted/09-deployment/README.md",
-  "language_code": "de"
-}
--->
 # Bereitstellung von MCP-Servern
 
 Die Bereitstellung Ihres MCP-Servers ermöglicht es anderen, auf dessen Tools und Ressourcen über Ihre lokale Umgebung hinaus zuzugreifen. Je nach Anforderungen an Skalierbarkeit, Zuverlässigkeit und einfache Verwaltung gibt es verschiedene Bereitstellungsstrategien. Im Folgenden finden Sie Anleitungen zur Bereitstellung von MCP-Servern lokal, in Containern und in der Cloud.

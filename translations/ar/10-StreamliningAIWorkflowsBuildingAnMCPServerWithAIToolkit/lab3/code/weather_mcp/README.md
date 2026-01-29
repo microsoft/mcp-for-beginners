@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "999c5e7623c1e2d5e5a07c2feb39eb67",
-  "translation_date": "2025-07-14T08:23:05+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/README.md",
-  "language_code": "ar"
-}
--->
 # خادم Weather MCP
 
 هذا نموذج لخادم MCP مكتوب بلغة Python يقوم بتنفيذ أدوات الطقس مع استجابات وهمية. يمكن استخدامه كأساس لإنشاء خادم MCP خاص بك. يتضمن الميزات التالية:

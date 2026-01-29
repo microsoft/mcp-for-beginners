@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "cf48858182f366e9d3f080fb0d3bfc37",
-  "translation_date": "2025-12-19T07:49:19+00:00",
-  "source_file": "02-Security/README.md",
-  "language_code": "de"
-}
--->
 # MCP-Sicherheit: Umfassender Schutz für KI-Systeme
 
 [![MCP Security Best Practices](../../../translated_images/de/03.175aed6dedae133f.webp)](https://youtu.be/88No8pw706o)

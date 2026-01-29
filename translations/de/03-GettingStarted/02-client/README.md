@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "94c80ae71fb9971e9b57b51ab0912121",
-  "translation_date": "2025-08-12T19:19:32+00:00",
-  "source_file": "03-GettingStarted/02-client/README.md",
-  "language_code": "de"
-}
--->
 # Erstellen eines Clients
 
 Clients sind benutzerdefinierte Anwendungen oder Skripte, die direkt mit einem MCP-Server kommunizieren, um Ressourcen, Tools und Eingabeaufforderungen anzufordern. Im Gegensatz zur Verwendung des Inspektor-Tools, das eine grafische Benutzeroberfläche für die Interaktion mit dem Server bietet, ermöglicht das Schreiben eines eigenen Clients programmatische und automatisierte Interaktionen. Dies erlaubt es Entwicklern, MCP-Funktionen in ihre eigenen Workflows zu integrieren, Aufgaben zu automatisieren und maßgeschneiderte Lösungen für spezifische Anforderungen zu erstellen.

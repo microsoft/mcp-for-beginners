@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "fcf1e12b62102bf7d16b78deb2b163b7",
-  "translation_date": "2025-08-18T13:27:58+00:00",
-  "source_file": "06-CommunityContributions/README.md",
-  "language_code": "ru"
-}
--->
 # Сообщество и вклад
 
 [![Как внести вклад в MCP: инструменты, документация, код и многое другое](../../../translated_images/ru/07.1179f6de46ff196e.webp)](https://youtu.be/v1pvCYAWpRE)

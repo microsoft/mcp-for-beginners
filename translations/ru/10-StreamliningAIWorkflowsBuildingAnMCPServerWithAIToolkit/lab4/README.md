@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f83bc722dc758efffd68667d6a1db470",
-  "translation_date": "2025-07-14T08:35:47+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/README.md",
-  "language_code": "ru"
-}
--->
 # 🐙 Модуль 4: Практическая разработка MCP — Пользовательский сервер клонирования GitHub
 
 ![Duration](https://img.shields.io/badge/Duration-30_minutes-blue?style=flat-square)

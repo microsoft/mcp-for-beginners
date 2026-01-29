@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "cf8b2ca0cea03c09428ae042938995c1",
-  "translation_date": "2025-09-30T14:13:55+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/12-Best-Practices/README.md",
-  "language_code": "de"
-}
--->
 # Best Practices und Optimierung
 
 ## 🎯 Was dieser Workshop abdeckt

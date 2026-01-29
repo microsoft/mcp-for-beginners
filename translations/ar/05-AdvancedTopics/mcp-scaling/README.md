@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7b4d8d17fc1f501468cce40c3651aed1",
-  "translation_date": "2025-07-16T23:37:52+00:00",
-  "source_file": "05-AdvancedTopics/mcp-scaling/README.md",
-  "language_code": "ar"
-}
--->
 # القابلية للتوسع وأداء MCP العالي
 
 في بيئات المؤسسات، غالبًا ما تحتاج تطبيقات MCP إلى التعامل مع حجم كبير من الطلبات مع تقليل زمن الاستجابة إلى أدنى حد.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9678e0c6945b8e0c23586869b0e26783",
-  "translation_date": "2025-10-06T10:50:02+00:00",
-  "source_file": "00-Introduction/README.md",
-  "language_code": "ar"
-}
--->
 # مقدمة إلى بروتوكول سياق النموذج (MCP): لماذا هو مهم لتطبيقات الذكاء الاصطناعي القابلة للتوسع
 
 [![مقدمة إلى بروتوكول سياق النموذج](../../../translated_images/ar/01.a467036d886b5fb5.webp)](https://youtu.be/agBbdiOPLQA)

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "41f16dac486d2086a53bc644a01cbe42",
-  "translation_date": "2025-08-18T13:10:31+00:00",
-  "source_file": "07-LessonsfromEarlyAdoption/README.md",
-  "language_code": "ru"
-}
--->
 # 🌟 Уроки от ранних пользователей
 
 [![Уроки от ранних пользователей MCP](../../../translated_images/ru/08.980bb2babbaadd8a.webp)](https://youtu.be/jds7dSmNptE)

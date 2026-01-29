@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9a6a4d3497921d2f6d9699f0a6a1890c",
-  "translation_date": "2025-09-09T21:23:32+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/README.md",
-  "language_code": "ru"
-}
--->
 # Сервер MCP для погоды
 
 Это пример сервера MCP на Python, реализующий инструменты для работы с погодой с использованием фиктивных ответов. Его можно использовать как основу для создания собственного сервера MCP. Включает следующие функции:

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "41f16dac486d2086a53bc644a01cbe42",
-  "translation_date": "2025-08-18T11:46:17+00:00",
-  "source_file": "07-LessonsfromEarlyAdoption/README.md",
-  "language_code": "de"
-}
--->
 # 🌟 Lektionen von frühen Anwendern
 
 [![Lektionen von MCP Early Adopters](../../../translated_images/de/08.980bb2babbaadd8a.webp)](https://youtu.be/jds7dSmNptE)

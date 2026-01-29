@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
-  "translation_date": "2025-08-18T13:24:49+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
-  "language_code": "ru"
-}
--->
 # Запуск этого примера
 
 Вот как запустить классический HTTP сервер и клиент потоковой передачи, а также MCP сервер и клиент потоковой передачи с использованием Python.
