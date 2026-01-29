@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "882aae00f1d3f007e20d03b883f44afa",
-  "translation_date": "2025-07-13T22:17:19+00:00",
-  "source_file": "03-GettingStarted/samples/csharp/README.md",
-  "language_code": "nl"
-}
--->
 # Basic Calculator MCP Service
 
 Deze service biedt basisrekenkundige bewerkingen via het Model Context Protocol (MCP). Het is ontworpen als een eenvoudig voorbeeld voor beginners die MCP-implementaties leren.

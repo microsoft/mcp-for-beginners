@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-07-13T19:44:08+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "he"
-}
--->
 זה מתאים להרצת פקודה כמו: `node build/index.js`.
 
 - שנה את הערך של השרת כך שיתאים למיקום הקובץ של השרת שלך או למה שנדרש כדי להפעיל את השרת בהתאם לסביבת הריצה והמיקום שבחרת.

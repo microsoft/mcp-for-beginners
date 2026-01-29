@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "94c80ae71fb9971e9b57b51ab0912121",
-  "translation_date": "2025-08-18T17:23:47+00:00",
-  "source_file": "03-GettingStarted/02-client/README.md",
-  "language_code": "vi"
-}
--->
 # Tạo một client
 
 Client là các ứng dụng hoặc script tùy chỉnh giao tiếp trực tiếp với MCP Server để yêu cầu tài nguyên, công cụ và gợi ý. Khác với việc sử dụng công cụ inspector, cung cấp giao diện đồ họa để tương tác với server, việc viết client của riêng bạn cho phép tương tác lập trình và tự động hóa. Điều này giúp các nhà phát triển tích hợp khả năng của MCP vào quy trình làm việc của họ, tự động hóa các tác vụ và xây dựng các giải pháp tùy chỉnh phù hợp với nhu cầu cụ thể.

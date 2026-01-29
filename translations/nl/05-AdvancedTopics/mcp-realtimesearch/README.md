@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "333a03e51f90bdf3e6f1ba1694c73f36",
-  "translation_date": "2025-07-17T07:11:46+00:00",
-  "source_file": "05-AdvancedTopics/mcp-realtimesearch/README.md",
-  "language_code": "nl"
-}
--->
 ## Disclaimer bij Codevoorbeelden
 
 > **Belangrijke Opmerking**: De onderstaande codevoorbeelden tonen de integratie van het Model Context Protocol (MCP) met webzoekfunctionaliteit. Hoewel ze de patronen en structuren van de officiële MCP SDK's volgen, zijn ze vereenvoudigd voor educatieve doeleinden.

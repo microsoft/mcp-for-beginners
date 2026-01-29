@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7b4d8d17fc1f501468cce40c3651aed1",
-  "translation_date": "2025-07-17T07:12:22+00:00",
-  "source_file": "05-AdvancedTopics/mcp-scaling/README.md",
-  "language_code": "nl"
-}
--->
 # Schaalbaarheid en High-Performance MCP
 
 Voor enterprise-implementaties moeten MCP-oplossingen vaak grote aantallen verzoeken verwerken met minimale vertraging.

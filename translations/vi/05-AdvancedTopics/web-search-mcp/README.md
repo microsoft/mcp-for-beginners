@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "151265c9a2124d7c53e04d16ee3fb73b",
-  "translation_date": "2025-07-17T07:39:55+00:00",
-  "source_file": "05-AdvancedTopics/web-search-mcp/README.md",
-  "language_code": "vi"
-}
--->
 # Bài học: Xây dựng MCP Server Tìm kiếm Web
 
 Chương này hướng dẫn cách xây dựng một agent AI thực tế tích hợp với các API bên ngoài, xử lý nhiều loại dữ liệu khác nhau, quản lý lỗi và điều phối nhiều công cụ—tất cả trong một định dạng sẵn sàng cho môi trường sản xuất. Bạn sẽ thấy:

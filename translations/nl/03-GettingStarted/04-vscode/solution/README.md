@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-07-13T19:43:57+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "nl"
-}
--->
 Dit komt overeen met het uitvoeren van een commando zoals: `node build/index.js`.
 
 - Pas deze serververmelding aan zodat deze wijst naar de absolute locatie van je serverbestand, inclusief het volledige commando dat nodig is om je server te starten, afhankelijk van je gekozen runtime en serverlocatie.

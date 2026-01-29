@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5f1383103523fa822e1fec7ef81904d5",
-  "translation_date": "2025-08-18T17:22:16+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/README.md",
-  "language_code": "vi"
-}
--->
 # Phát trực tuyến HTTPS với Giao thức Ngữ cảnh Mô hình (MCP)
 
 Chương này cung cấp hướng dẫn toàn diện về cách triển khai phát trực tuyến an toàn, có khả năng mở rộng và thời gian thực với Giao thức Ngữ cảnh Mô hình (MCP) sử dụng HTTPS. Nội dung bao gồm động lực của phát trực tuyến, các cơ chế truyền tải có sẵn, cách triển khai HTTP có thể phát trực tuyến trong MCP, các thực hành bảo mật tốt nhất, chuyển đổi từ SSE, và hướng dẫn thực tiễn để xây dựng ứng dụng MCP phát trực tuyến của riêng bạn.

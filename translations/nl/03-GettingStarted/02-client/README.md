@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "94c80ae71fb9971e9b57b51ab0912121",
-  "translation_date": "2025-08-18T16:37:41+00:00",
-  "source_file": "03-GettingStarted/02-client/README.md",
-  "language_code": "nl"
-}
--->
 # Een client maken
 
 Clients zijn aangepaste applicaties of scripts die rechtstreeks communiceren met een MCP-server om bronnen, tools en prompts op te vragen. In tegenstelling tot het gebruik van de inspectietool, die een grafische interface biedt voor interactie met de server, stelt het schrijven van je eigen client je in staat om programmatische en geautomatiseerde interacties te hebben. Dit stelt ontwikkelaars in staat om MCP-functionaliteiten te integreren in hun eigen workflows, taken te automatiseren en aangepaste oplossingen te bouwen die zijn afgestemd op specifieke behoeften.

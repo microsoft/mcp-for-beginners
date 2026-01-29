@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8358c13b5b6877e475674697cdc1a904",
-  "translation_date": "2025-08-18T16:38:34+00:00",
-  "source_file": "03-GettingStarted/02-client/complete_examples.md",
-  "language_code": "nl"
-}
--->
 # Volledige MCP Client Voorbeelden
 
 Deze map bevat complete, werkende voorbeelden van MCP-clients in verschillende programmeertalen. Elke client demonstreert de volledige functionaliteit zoals beschreven in de hoofdhandleiding README.md.

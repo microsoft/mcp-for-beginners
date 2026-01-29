@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "77735b446eb79b1bba9c849865cd0ced",
-  "translation_date": "2025-08-28T22:30:57+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/README.md",
-  "language_code": "vi"
-}
--->
 # MCP Server với Giao thức stdio
 
 > **⚠️ Cập nhật quan trọng**: Từ phiên bản MCP Specification 2025-06-18, giao thức SSE (Server-Sent Events) độc lập đã bị **khai tử** và được thay thế bằng giao thức "Streamable HTTP". Phiên bản MCP hiện tại định nghĩa hai cơ chế giao tiếp chính:

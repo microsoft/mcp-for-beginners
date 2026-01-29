@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5f1383103523fa822e1fec7ef81904d5",
-  "translation_date": "2025-08-18T16:59:07+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/README.md",
-  "language_code": "he"
-}
--->
 # סטרימינג HTTPS עם פרוטוקול Model Context Protocol (MCP)
 
 פרק זה מספק מדריך מקיף ליישום סטרימינג מאובטח, ניתן להרחבה ובזמן אמת עם פרוטוקול Model Context Protocol (MCP) באמצעות HTTPS. הוא מכסה את המוטיבציה לסטרימינג, מנגנוני התעבורה הזמינים, כיצד ליישם HTTP ניתן לסטרימינג ב-MCP, שיטות עבודה מומלצות לאבטחה, מעבר מ-SSE והנחיות מעשיות לבניית יישומי MCP סטרימינג משלכם.

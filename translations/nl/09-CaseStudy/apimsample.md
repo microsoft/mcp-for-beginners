@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2228721599c0c8673de83496b4d7d7a9",
-  "translation_date": "2025-08-18T16:24:23+00:00",
-  "source_file": "09-CaseStudy/apimsample.md",
-  "language_code": "nl"
-}
--->
 # Casestudy: REST API blootstellen in API Management als een MCP-server
 
 Azure API Management is een service die een Gateway biedt bovenop je API-eindpunten. Het werkt als een proxy voor je API's en kan bepalen wat er met inkomende verzoeken gebeurt.

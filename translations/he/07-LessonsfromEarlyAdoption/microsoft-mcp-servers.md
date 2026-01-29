@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "c8f283730b5421082ddd26cc85c07831",
-  "translation_date": "2025-07-18T11:46:30+00:00",
-  "source_file": "07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md",
-  "language_code": "he"
-}
--->
 # 🚀 10 שרתי Microsoft MCP שמשנים את הפרודוקטיביות של מפתחים
 
 ## 🎯 מה תלמדו במדריך הזה

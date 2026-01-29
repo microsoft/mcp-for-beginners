@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "882aae00f1d3f007e20d03b883f44afa",
-  "translation_date": "2025-07-13T22:17:37+00:00",
-  "source_file": "03-GettingStarted/samples/csharp/README.md",
-  "language_code": "vi"
-}
--->
 # Dịch vụ Máy tính Cơ bản MCP
 
 Dịch vụ này cung cấp các phép toán cơ bản thông qua Model Context Protocol (MCP). Nó được thiết kế như một ví dụ đơn giản dành cho người mới bắt đầu tìm hiểu về triển khai MCP.

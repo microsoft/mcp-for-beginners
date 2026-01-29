@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e1d142978227a4bfc468bb0accab62e2",
-  "translation_date": "2025-07-17T07:41:26+00:00",
-  "source_file": "05-AdvancedTopics/mcp-multi-modality/README.md",
-  "language_code": "vi"
-}
--->
 # Tích hợp Đa phương thức
 
 Các ứng dụng đa phương thức ngày càng trở nên quan trọng trong AI, cho phép tương tác phong phú hơn và thực hiện các nhiệm vụ phức tạp hơn. Model Context Protocol (MCP) cung cấp một khung để xây dựng các ứng dụng đa phương thức có thể xử lý nhiều loại dữ liệu khác nhau, như văn bản, hình ảnh và âm thanh.

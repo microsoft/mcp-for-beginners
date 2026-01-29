@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9351493ad29390d37f64bc6d84a03db5",
-  "translation_date": "2025-12-19T14:00:15+00:00",
-  "source_file": "02-Security/mcp-security-controls-2025.md",
-  "language_code": "he"
-}
--->
 # בקרות אבטחה של MCP - עדכון דצמבר 2025
 
 > **תקן נוכחי**: מסמך זה משקף את דרישות האבטחה של [MCP Specification 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) ואת [הנחיות אבטחה הטובות ביותר של MCP](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2228721599c0c8673de83496b4d7d7a9",
-  "translation_date": "2025-08-18T17:06:18+00:00",
-  "source_file": "09-CaseStudy/apimsample.md",
-  "language_code": "vi"
-}
--->
 # Nghiên cứu trường hợp: Công khai REST API trong API Management dưới dạng máy chủ MCP
 
 Azure API Management là một dịch vụ cung cấp một Gateway trên các API Endpoint của bạn. Cách hoạt động của nó là Azure API Management hoạt động như một proxy trước các API của bạn và có thể quyết định cách xử lý các yêu cầu đến.

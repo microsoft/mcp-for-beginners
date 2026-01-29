@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e1d142978227a4bfc468bb0accab62e2",
-  "translation_date": "2025-07-17T07:26:42+00:00",
-  "source_file": "05-AdvancedTopics/mcp-multi-modality/README.md",
-  "language_code": "he"
-}
--->
 # אינטגרציה רב-מודאלית
 
 יישומים רב-מודאליים הופכים לחשובים יותר ויותר בתחום ה-AI, ומאפשרים אינטראקציות עשירות יותר ומשימות מורכבות יותר. פרוטוקול Model Context (MCP) מספק מסגרת לבניית יישומים רב-מודאליים שיכולים להתמודד עם סוגי נתונים שונים, כמו טקסט, תמונות וקול.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e5ea5e7582f70008ea9bec3b3820f20a",
-  "translation_date": "2025-07-13T23:18:15+00:00",
-  "source_file": "04-PracticalImplementation/samples/java/containerapp/README.md",
-  "language_code": "vi"
-}
--->
 ## Kiến trúc Hệ thống
 
 Dự án này minh họa một ứng dụng web sử dụng kiểm tra an toàn nội dung trước khi gửi yêu cầu người dùng đến dịch vụ máy tính thông qua Model Context Protocol (MCP).

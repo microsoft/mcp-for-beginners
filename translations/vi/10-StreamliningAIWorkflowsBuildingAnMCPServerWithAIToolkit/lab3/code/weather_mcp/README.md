@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "999c5e7623c1e2d5e5a07c2feb39eb67",
-  "translation_date": "2025-07-14T08:30:20+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/README.md",
-  "language_code": "vi"
-}
--->
 # Weather MCP Server
 
 Đây là một ví dụ về MCP Server viết bằng Python, triển khai các công cụ thời tiết với các phản hồi giả lập. Nó có thể được sử dụng làm khung để bạn phát triển MCP Server riêng của mình. Bao gồm các tính năng sau:

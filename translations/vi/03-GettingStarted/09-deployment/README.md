@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1d9dc83260576b76f272d330ed93c51f",
-  "translation_date": "2025-07-13T22:10:00+00:00",
-  "source_file": "03-GettingStarted/09-deployment/README.md",
-  "language_code": "vi"
-}
--->
 # Triển khai MCP Servers
 
 Triển khai server MCP của bạn cho phép người khác truy cập các công cụ và tài nguyên của nó ngoài môi trường cục bộ của bạn. Có nhiều chiến lược triển khai khác nhau để cân nhắc, tùy thuộc vào yêu cầu về khả năng mở rộng, độ tin cậy và sự dễ dàng trong quản lý. Dưới đây bạn sẽ tìm thấy hướng dẫn triển khai MCP servers tại chỗ, trong container và trên đám mây.

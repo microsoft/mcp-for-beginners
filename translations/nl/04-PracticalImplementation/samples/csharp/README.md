@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0bc7bd48f55f1565f1d95ccb2c16f728",
-  "translation_date": "2025-07-13T23:08:01+00:00",
-  "source_file": "04-PracticalImplementation/samples/csharp/README.md",
-  "language_code": "nl"
-}
--->
 # Voorbeeld
 
 Het vorige voorbeeld laat zien hoe je een lokaal .NET-project gebruikt met het `stdio` type. En hoe je de server lokaal in een container draait. Dit is in veel situaties een goede oplossing. Toch kan het handig zijn om de server op afstand te laten draaien, bijvoorbeeld in een cloudomgeving. Hiervoor is het `http` type bedoeld.

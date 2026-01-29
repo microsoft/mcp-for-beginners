@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1de8367745088b9fcd4746ea4cc5a161",
-  "translation_date": "2025-10-06T15:51:36+00:00",
-  "source_file": "03-GettingStarted/10-advanced/README.md",
-  "language_code": "he"
-}
--->
 # שימוש מתקדם בשרת
 
 ב-MCP SDK ישנם שני סוגי שרתים: השרת הרגיל והשרת ברמה נמוכה. בדרך כלל, תשתמשו בשרת הרגיל כדי להוסיף לו תכונות. עם זאת, במקרים מסוימים, כדאי להסתמך על השרת ברמה נמוכה, למשל:

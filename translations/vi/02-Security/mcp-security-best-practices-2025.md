@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e30aaf6b178137fa6668efc1b20851d5",
-  "translation_date": "2025-12-19T14:07:38+00:00",
-  "source_file": "02-Security/mcp-security-best-practices-2025.md",
-  "language_code": "vi"
-}
--->
 # Thực Tiễn Bảo Mật MCP - Cập Nhật Tháng 12 Năm 2025
 
 > **Quan trọng**: Tài liệu này phản ánh các yêu cầu bảo mật mới nhất của [Đặc tả MCP 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) và [Thực Tiễn Bảo Mật MCP chính thức](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices). Luôn tham khảo đặc tả hiện hành để có hướng dẫn cập nhật nhất.

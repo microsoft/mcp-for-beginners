@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "77735b446eb79b1bba9c849865cd0ced",
-  "translation_date": "2025-08-28T22:29:42+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/README.md",
-  "language_code": "he"
-}
--->
 # שרת MCP עם stdio Transport
 
 > **⚠️ עדכון חשוב**: החל ממפרט MCP 2025-06-18, ה-SSE (Server-Sent Events) העצמאי **הוצא משימוש** והוחלף ב-"Streamable HTTP" transport. מפרט MCP הנוכחי מגדיר שני מנגנוני תעבורה עיקריים:

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5f1383103523fa822e1fec7ef81904d5",
-  "translation_date": "2025-08-18T16:36:33+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/README.md",
-  "language_code": "nl"
-}
--->
 # HTTPS Streaming met Model Context Protocol (MCP)
 
 Dit hoofdstuk biedt een uitgebreide handleiding voor het implementeren van veilige, schaalbare en realtime streaming met het Model Context Protocol (MCP) via HTTPS. Het behandelt de motivatie voor streaming, de beschikbare transportmechanismen, hoe streambare HTTP in MCP te implementeren, beveiligingsrichtlijnen, migratie van SSE en praktische tips voor het bouwen van je eigen streaming MCP-toepassingen.

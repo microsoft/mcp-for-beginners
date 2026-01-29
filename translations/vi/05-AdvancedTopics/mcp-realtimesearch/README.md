@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "333a03e51f90bdf3e6f1ba1694c73f36",
-  "translation_date": "2025-07-17T07:40:56+00:00",
-  "source_file": "05-AdvancedTopics/mcp-realtimesearch/README.md",
-  "language_code": "vi"
-}
--->
 ## Tuyên bố về Ví dụ Mã
 
 > **Lưu ý Quan trọng**: Các ví dụ mã dưới đây minh họa việc tích hợp Model Context Protocol (MCP) với chức năng tìm kiếm web. Mặc dù chúng tuân theo các mẫu và cấu trúc của SDK MCP chính thức, nhưng đã được đơn giản hóa cho mục đích giáo dục.

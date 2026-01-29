@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9351493ad29390d37f64bc6d84a03db5",
-  "translation_date": "2025-12-19T14:12:33+00:00",
-  "source_file": "02-Security/mcp-security-controls-2025.md",
-  "language_code": "vi"
-}
--->
 # MCP Security Controls - Cập nhật Tháng 12 Năm 2025
 
 > **Tiêu Chuẩn Hiện Tại**: Tài liệu này phản ánh các yêu cầu bảo mật của [MCP Specification 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) và [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) chính thức.

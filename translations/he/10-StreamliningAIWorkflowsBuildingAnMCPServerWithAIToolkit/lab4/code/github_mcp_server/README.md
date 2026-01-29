@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9a6a4d3497921d2f6d9699f0a6a1890c",
-  "translation_date": "2025-09-09T22:02:11+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/README.md",
-  "language_code": "he"
-}
--->
 # שרת MCP למזג אוויר
 
 זהו שרת MCP לדוגמה שנכתב ב-Python ומיישם כלים למזג אוויר עם תגובות מדומות. ניתן להשתמש בו כבסיס ליצירת שרת MCP משלכם. הוא כולל את התכונות הבאות:

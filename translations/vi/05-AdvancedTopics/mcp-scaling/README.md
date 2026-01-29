@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7b4d8d17fc1f501468cce40c3651aed1",
-  "translation_date": "2025-07-17T07:41:39+00:00",
-  "source_file": "05-AdvancedTopics/mcp-scaling/README.md",
-  "language_code": "vi"
-}
--->
 # Khả năng mở rộng và MCP hiệu suất cao
 
 Đối với các triển khai doanh nghiệp, các cài đặt MCP thường cần xử lý khối lượng lớn yêu cầu với độ trễ tối thiểu.

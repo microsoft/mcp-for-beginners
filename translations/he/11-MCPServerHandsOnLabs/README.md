@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "83d32e5c5dd838d4b87a730cab88db77",
-  "translation_date": "2025-09-30T19:30:10+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/README.md",
-  "language_code": "he"
-}
--->
 # 🚀 מדריך לימוד מלא לשרת MCP עם PostgreSQL
 
 ## 🧠 סקירה של מסלול הלימוד לשילוב מסד נתונים MCP

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "98bcd044860716da5819e31c152813b7",
-  "translation_date": "2025-08-18T16:57:25+00:00",
-  "source_file": "03-GettingStarted/07-aitk/README.md",
-  "language_code": "he"
-}
--->
 # צריכת שרת מהרחבת AI Toolkit עבור Visual Studio Code
 
 כשאתם בונים סוכן AI, זה לא רק על יצירת תגובות חכמות; זה גם על לתת לסוכן שלכם את היכולת לבצע פעולות. כאן נכנס לתמונה פרוטוקול Model Context Protocol (MCP). MCP מאפשר לסוכנים גישה לכלים ושירותים חיצוניים בצורה עקבית. תחשבו על זה כמו לחבר את הסוכן שלכם לארגז כלים שהוא *באמת* יכול להשתמש בו.

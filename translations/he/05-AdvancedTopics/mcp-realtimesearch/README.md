@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "333a03e51f90bdf3e6f1ba1694c73f36",
-  "translation_date": "2025-07-17T07:26:10+00:00",
-  "source_file": "05-AdvancedTopics/mcp-realtimesearch/README.md",
-  "language_code": "he"
-}
--->
 ## כתב ויתור על דוגמאות קוד
 
 > **הערה חשובה**: דוגמאות הקוד שלהלן מדגימות את השילוב של Model Context Protocol (MCP) עם פונקציונליות חיפוש באינטרנט בזמן אמת. למרות שהן עוקבות אחרי התבניות והמבנים של ערכות הפיתוח הרשמיות של MCP, הן פושטו למטרות לימודיות.

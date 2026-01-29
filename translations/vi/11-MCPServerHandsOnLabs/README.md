@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "83d32e5c5dd838d4b87a730cab88db77",
-  "translation_date": "2025-09-30T19:30:42+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/README.md",
-  "language_code": "vi"
-}
--->
 # 🚀 MCP Server với PostgreSQL - Hướng Dẫn Học Tập Hoàn Chỉnh
 
 ## 🧠 Tổng Quan Về Lộ Trình Học Tích Hợp Cơ Sở Dữ Liệu MCP

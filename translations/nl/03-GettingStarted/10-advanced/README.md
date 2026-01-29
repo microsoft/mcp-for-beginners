@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1de8367745088b9fcd4746ea4cc5a161",
-  "translation_date": "2025-10-06T15:51:14+00:00",
-  "source_file": "03-GettingStarted/10-advanced/README.md",
-  "language_code": "nl"
-}
--->
 # Geavanceerd servergebruik
 
 Er zijn twee verschillende soorten servers beschikbaar in de MCP SDK: je normale server en de low-level server. Normaal gesproken gebruik je de reguliere server om functies toe te voegen. In sommige gevallen wil je echter vertrouwen op de low-level server, bijvoorbeeld:

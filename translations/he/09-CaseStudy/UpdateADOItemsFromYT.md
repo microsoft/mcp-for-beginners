@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "14a2dfbea55ef735660a06bd6bdfe5f3",
-  "translation_date": "2025-07-14T06:13:47+00:00",
-  "source_file": "09-CaseStudy/UpdateADOItemsFromYT.md",
-  "language_code": "he"
-}
--->
 # Case Study: עדכון פריטי Azure DevOps מנתוני YouTube עם MCP
 
 > **Disclaimer:** קיימים כלים ודוחות מקוונים שיכולים לאוטומט את תהליך עדכון פריטי Azure DevOps עם נתונים מפלטפורמות כמו YouTube. התרחיש הבא מוצג כדוגמה בלבד להמחשת האופן שבו ניתן להשתמש בכלי MCP למשימות אוטומציה ואינטגרציה.

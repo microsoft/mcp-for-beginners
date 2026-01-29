@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4e34e34e84f013e73c7eaa6d09884756",
-  "translation_date": "2025-07-13T22:02:14+00:00",
-  "source_file": "03-GettingStarted/08-testing/README.md",
-  "language_code": "vi"
-}
--->
 ## Kiểm thử và Gỡ lỗi
 
 Trước khi bắt đầu kiểm thử server MCP của bạn, điều quan trọng là phải hiểu các công cụ có sẵn và các phương pháp tốt nhất để gỡ lỗi. Kiểm thử hiệu quả đảm bảo server của bạn hoạt động như mong đợi và giúp bạn nhanh chóng phát hiện cũng như khắc phục sự cố. Phần sau đây sẽ trình bày các cách tiếp cận được khuyến nghị để xác thực việc triển khai MCP của bạn.
