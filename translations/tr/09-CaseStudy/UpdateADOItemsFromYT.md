@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "14a2dfbea55ef735660a06bd6bdfe5f3",
-  "translation_date": "2025-07-14T06:12:15+00:00",
-  "source_file": "09-CaseStudy/UpdateADOItemsFromYT.md",
-  "language_code": "tr"
-}
--->
 # Vaka Çalışması: MCP ile YouTube Verilerinden Azure DevOps Öğelerinin Güncellenmesi
 
 > **Disclaimer:** YouTube gibi platformlardan alınan verilerle Azure DevOps öğelerinin güncellenmesini otomatikleştirebilen mevcut çevrimiçi araçlar ve raporlar bulunmaktadır. Aşağıdaki senaryo, MCP araçlarının otomasyon ve entegrasyon görevlerinde nasıl kullanılabileceğini göstermek amacıyla örnek bir kullanım durumu olarak sunulmuştur.

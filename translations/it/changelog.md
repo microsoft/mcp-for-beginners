@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e8bbc7982284fe177dd4be5e7f2b3357",
-  "translation_date": "2025-12-19T11:31:53+00:00",
-  "source_file": "changelog.md",
-  "language_code": "it"
-}
--->
 # Changelog: Curriculum MCP per Principianti
 
 Questo documento serve come registro di tutte le modifiche significative apportate al curriculum Model Context Protocol (MCP) per Principianti. Le modifiche sono documentate in ordine cronologico inverso (prime le più recenti).

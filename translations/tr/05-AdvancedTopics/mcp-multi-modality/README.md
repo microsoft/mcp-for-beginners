@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e1d142978227a4bfc468bb0accab62e2",
-  "translation_date": "2025-07-17T01:30:13+00:00",
-  "source_file": "05-AdvancedTopics/mcp-multi-modality/README.md",
-  "language_code": "tr"
-}
--->
 # Çok Modlu Entegrasyon
 
 Çok modlu uygulamalar, AI'da giderek daha önemli hale geliyor ve daha zengin etkileşimler ile daha karmaşık görevlerin gerçekleştirilmesini sağlıyor. Model Context Protocol (MCP), metin, görüntü ve ses gibi çeşitli veri türlerini işleyebilen çok modlu uygulamalar geliştirmek için bir çerçeve sunar.

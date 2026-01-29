@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-07-13T19:42:09+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "it"
-}
--->
 Questo corrisponde all'esecuzione di un comando come: `node build/index.js`.
 
 - Modifica questa voce del server in modo che corrisponda alla posizione del file del tuo server o a ciò che è necessario per avviare il server, a seconda del runtime scelto e della posizione del server.

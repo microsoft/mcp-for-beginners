@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5f1383103523fa822e1fec7ef81904d5",
-  "translation_date": "2025-08-11T11:40:24+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/README.md",
-  "language_code": "pl"
-}
--->
 # HTTPS Streaming z protokołem Model Context Protocol (MCP)
 
 Ten rozdział oferuje kompleksowy przewodnik po implementacji bezpiecznego, skalowalnego i w czasie rzeczywistym przesyłania strumieniowego z użyciem protokołu Model Context Protocol (MCP) za pomocą HTTPS. Omawia motywację do przesyłania strumieniowego, dostępne mechanizmy transportowe, sposób implementacji przesyłania strumieniowego HTTP w MCP, najlepsze praktyki dotyczące bezpieczeństwa, migrację z SSE oraz praktyczne wskazówki dotyczące budowy własnych aplikacji MCP do przesyłania strumieniowego.

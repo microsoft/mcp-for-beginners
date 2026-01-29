@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9351493ad29390d37f64bc6d84a03db5",
-  "translation_date": "2025-12-19T11:39:14+00:00",
-  "source_file": "02-Security/mcp-security-controls-2025.md",
-  "language_code": "it"
-}
--->
 # Controlli di Sicurezza MCP - Aggiornamento Dicembre 2025
 
 > **Standard Attuale**: Questo documento riflette i requisiti di sicurezza della [Specificazione MCP 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) e le ufficiali [Best Practice di Sicurezza MCP](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).

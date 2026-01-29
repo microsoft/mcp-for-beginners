@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
-  "translation_date": "2025-10-17T20:05:27+00:00",
-  "source_file": "03-GettingStarted/samples/python/README.md",
-  "language_code": "it"
-}
--->
 # Server MCP Calculator (Python)
 
 Una semplice implementazione del server Model Context Protocol (MCP) in Python che offre funzionalità di calcolatrice di base.

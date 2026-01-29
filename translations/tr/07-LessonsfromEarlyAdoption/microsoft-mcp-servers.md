@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "c8f283730b5421082ddd26cc85c07831",
-  "translation_date": "2025-07-18T11:29:18+00:00",
-  "source_file": "07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md",
-  "language_code": "tr"
-}
--->
 # 🚀 Geliştirici Verimliliğini Dönüştüren 10 Microsoft MCP Sunucusu
 
 ## 🎯 Bu Rehberde Neler Öğreneceksiniz

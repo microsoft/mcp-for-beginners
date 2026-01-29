@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "75638575f993c152965ae2271c4da938",
-  "translation_date": "2025-12-19T12:05:46+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/README.md",
-  "language_code": "tr"
-}
--->
 # LLM ile bir istemci oluşturma
 
 Şimdiye kadar bir sunucu ve istemci oluşturmayı gördünüz. İstemci, araçlarını, kaynaklarını ve istemlerini listelemek için sunucuyu açıkça çağırabiliyordu. Ancak bu çok pratik bir yaklaşım değil. Kullanıcınız ajanlık çağında yaşıyor ve bunu yapmak için istemleri kullanmayı ve bir LLM ile iletişim kurmayı bekliyor. Kullanıcınız için yeteneklerinizi depolamak için MCP kullanıp kullanmadığınız önemli değil, ancak doğal dili kullanarak etkileşimde bulunmayı bekliyorlar. Peki bunu nasıl çözeriz? Çözüm, istemciye bir LLM eklemekle ilgilidir.

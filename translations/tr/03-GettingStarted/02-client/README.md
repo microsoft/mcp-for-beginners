@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "94c80ae71fb9971e9b57b51ab0912121",
-  "translation_date": "2025-08-18T18:02:39+00:00",
-  "source_file": "03-GettingStarted/02-client/README.md",
-  "language_code": "tr"
-}
--->
 # Bir istemci oluşturma
 
 İstemciler, kaynaklar, araçlar ve istemler talep etmek için bir MCP Sunucusuyla doğrudan iletişim kuran özel uygulamalar veya betiklerdir. Sunucuyla etkileşim için grafiksel bir arayüz sağlayan denetçi aracını kullanmanın aksine, kendi istemcinizi yazmak, programlanabilir ve otomatikleştirilmiş etkileşimlere olanak tanır. Bu, geliştiricilerin MCP yeteneklerini kendi iş akışlarına entegre etmelerini, görevleri otomatikleştirmelerini ve belirli ihtiyaçlara göre özel çözümler oluşturmalarını sağlar.

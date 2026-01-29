@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5b00b8a8971a07d2d8803be4c9f138f8",
-  "translation_date": "2025-10-07T00:48:52+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/README.md",
-  "language_code": "tr"
-}
--->
 # Basit Kimlik Doğrulama
 
 MCP SDK'leri, OAuth 2.1 kullanımını destekler. Ancak dürüst olmak gerekirse, bu süreç kimlik doğrulama sunucusu, kaynak sunucusu, kimlik bilgilerini gönderme, bir kod alma, kodu bir taşıyıcı token ile değiştirme gibi kavramları içeren oldukça karmaşık bir süreçtir. OAuth kullanmaya alışkın değilseniz, ki bu harika bir şeydir, temel bir kimlik doğrulama seviyesiyle başlamak ve güvenliği adım adım geliştirmek iyi bir fikirdir. İşte bu bölüm bu yüzden var; sizi daha gelişmiş kimlik doğrulama yöntemlerine hazırlamak için.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "75638575f993c152965ae2271c4da938",
-  "translation_date": "2025-12-19T11:53:01+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/README.md",
-  "language_code": "pl"
-}
--->
 # Tworzenie klienta z LLM
 
 Do tej pory widziałeś, jak stworzyć serwer i klienta. Klient był w stanie wywołać serwer explicite, aby wylistować jego narzędzia, zasoby i podpowiedzi. Jednak to nie jest zbyt praktyczne podejście. Twój użytkownik żyje w erze agentów i oczekuje używania podpowiedzi oraz komunikacji z LLM, aby to zrobić. Dla twojego użytkownika nie ma znaczenia, czy używasz MCP do przechowywania swoich możliwości, ale oczekuje, że będzie mógł używać naturalnego języka do interakcji. Jak więc to rozwiązać? Rozwiązaniem jest dodanie LLM do klienta.

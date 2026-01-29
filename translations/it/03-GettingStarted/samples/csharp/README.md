@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "882aae00f1d3f007e20d03b883f44afa",
-  "translation_date": "2025-07-13T22:15:48+00:00",
-  "source_file": "03-GettingStarted/samples/csharp/README.md",
-  "language_code": "it"
-}
--->
 # Servizio Calcolatrice Base MCP
 
 Questo servizio offre operazioni di calcolo base tramite il Model Context Protocol (MCP). È progettato come un esempio semplice per chi inizia a imparare le implementazioni MCP.

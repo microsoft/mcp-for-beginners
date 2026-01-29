@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "acd4010e430da00946a154f62847a169",
-  "translation_date": "2025-07-13T21:11:20+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/java/README.md",
-  "language_code": "pl"
-}
--->
 # Calculator HTTP Streaming Demo
 
 Ten projekt demonstruje strumieniowanie HTTP za pomocą Server-Sent Events (SSE) w Spring Boot WebFlux. Składa się z dwóch aplikacji:

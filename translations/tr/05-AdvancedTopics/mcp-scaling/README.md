@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7b4d8d17fc1f501468cce40c3651aed1",
-  "translation_date": "2025-07-17T01:30:24+00:00",
-  "source_file": "05-AdvancedTopics/mcp-scaling/README.md",
-  "language_code": "tr"
-}
--->
 # Ölçeklenebilirlik ve Yüksek Performanslı MCP
 
 Kurumsal dağıtımlarda, MCP uygulamalarının genellikle yüksek hacimli istekleri düşük gecikmeyle karşılaması gerekir.

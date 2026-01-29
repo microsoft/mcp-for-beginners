@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0a7083e660ca0d85fd6a947514c61993",
-  "translation_date": "2025-07-14T00:41:42+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/README.md",
-  "language_code": "pl"
-}
--->
 # MCP OAuth2 Demo
 
 Ten projekt to **minimalna aplikacja Spring Boot**, która pełni jednocześnie rolę:

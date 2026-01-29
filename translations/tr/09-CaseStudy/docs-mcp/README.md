@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4319d291c9d124ecafea52b3d04bfa0e",
-  "translation_date": "2025-07-14T06:23:59+00:00",
-  "source_file": "09-CaseStudy/docs-mcp/README.md",
-  "language_code": "tr"
-}
--->
 # Vaka Çalışması: Bir İstemciden Microsoft Learn Docs MCP Sunucusuna Bağlanma
 
 Hiç kodunuzdaki bir problemi çözerken dokümantasyon siteleri, Stack Overflow ve sonsuz arama motoru sekmeleri arasında gidip gelirken kendinizi buldunuz mu? Belki dokümanlar için ayrı bir monitörünüz var ya da IDE ile tarayıcı arasında sürekli alt-tab yapıyorsunuz. Dokümantasyonu doğrudan iş akışınıza—uygulamalarınıza, IDE’nize veya kendi özel araçlarınıza entegre edebilseydiniz, daha iyi olmaz mıydı? Bu vaka çalışmasında, kendi istemci uygulamanızdan Microsoft Learn Docs MCP sunucusuna doğrudan nasıl bağlanacağınızı keşfedeceğiz.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e1d142978227a4bfc468bb0accab62e2",
-  "translation_date": "2025-07-16T22:39:09+00:00",
-  "source_file": "05-AdvancedTopics/mcp-multi-modality/README.md",
-  "language_code": "pl"
-}
--->
 # Integracja Wielomodalna
 
 Aplikacje wielomodalne stają się coraz ważniejsze w AI, umożliwiając bogatsze interakcje i realizację bardziej złożonych zadań. Model Context Protocol (MCP) dostarcza ramy do tworzenia aplikacji wielomodalnych, które potrafią obsługiwać różne typy danych, takie jak tekst, obrazy i dźwięk.

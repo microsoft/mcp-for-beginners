@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1d9dc83260576b76f272d330ed93c51f",
-  "translation_date": "2025-07-13T22:08:39+00:00",
-  "source_file": "03-GettingStarted/09-deployment/README.md",
-  "language_code": "tr"
-}
--->
 # MCP Sunucularını Dağıtma
 
 MCP sunucunuzu dağıtarak, araçlarına ve kaynaklarına yerel ortamınızın dışından erişilmesini sağlayabilirsiniz. Ölçeklenebilirlik, güvenilirlik ve yönetim kolaylığı gibi gereksinimlerinize bağlı olarak dikkate almanız gereken çeşitli dağıtım stratejileri vardır. Aşağıda MCP sunucularını yerel olarak, konteynerlerde ve buluta dağıtma rehberini bulacaksınız.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "999c5e7623c1e2d5e5a07c2feb39eb67",
-  "translation_date": "2025-07-14T08:27:42+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/README.md",
-  "language_code": "pl"
-}
--->
 # Weather MCP Server
 
 To jest przykładowy serwer MCP w Pythonie implementujący narzędzia pogodowe z symulowanymi odpowiedziami. Może służyć jako szkielet do stworzenia własnego serwera MCP. Zawiera następujące funkcje:

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6d6315e03f591fb5a39be91da88585dc",
-  "translation_date": "2025-07-13T19:19:50+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/typescript/README.md",
-  "language_code": "tr"
-}
--->
 # Bu örneği çalıştırmak
 
 Bu örnek, istemcide bir LLM bulundurmayı içerir. LLM'nin çalışması için bunu ya Codespaces'te çalıştırmanız ya da GitHub'da kişisel erişim belirteci ayarlamanız gerekir.

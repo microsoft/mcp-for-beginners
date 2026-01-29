@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5f1383103523fa822e1fec7ef81904d5",
-  "translation_date": "2025-08-18T18:01:19+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/README.md",
-  "language_code": "tr"
-}
--->
 # HTTPS Akışı ve Model Context Protocol (MCP)
 
 Bu bölüm, HTTPS kullanarak Model Context Protocol (MCP) ile güvenli, ölçeklenebilir ve gerçek zamanlı akışın nasıl uygulanacağına dair kapsamlı bir rehber sunar. Akışın motivasyonunu, mevcut taşıma mekanizmalarını, MCP'de akışlı HTTP'nin nasıl uygulanacağını, güvenlik en iyi uygulamalarını, SSE'den geçişi ve kendi MCP akış uygulamalarınızı oluşturmak için pratik rehberliği kapsar.

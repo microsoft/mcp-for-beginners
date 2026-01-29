@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "d940b5e0af75e3a3a4d1c3179120d1d9",
-  "translation_date": "2025-08-26T17:44:12+00:00",
-  "source_file": "03-GettingStarted/04-vscode/README.md",
-  "language_code": "tr"
-}
--->
 # GitHub Copilot Agent Modunda Bir Sunucu Kullanma
 
 Visual Studio Code ve GitHub Copilot, bir MCP Sunucusunu istemci olarak kullanabilir. Peki, neden bunu yapmak isteyelim diye sorabilirsiniz? Çünkü bu, MCP Sunucusunun sahip olduğu tüm özelliklerin artık IDE'nizden kullanılabileceği anlamına gelir. Örneğin, GitHub'ın MCP sunucusunu eklediğinizi düşünün; bu, terminalde belirli komutları yazmak yerine GitHub'ı istemler aracılığıyla kontrol etmenizi sağlar. Ya da genel olarak geliştirici deneyiminizi iyileştirebilecek her şeyin doğal dil ile kontrol edildiğini hayal edin. Şimdi bunun ne kadar faydalı olduğunu görebiliyorsunuz, değil mi?

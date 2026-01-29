@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f5300fd1b5e84520d500b2a8f568a1d8",
-  "translation_date": "2025-07-17T02:00:06+00:00",
-  "source_file": "02-Security/azure-content-safety.md",
-  "language_code": "tr"
-}
--->
 # Azure İçerik Güvenliği ile Gelişmiş MCP Güvenliği
 
 Azure İçerik Güvenliği, MCP uygulamalarınızın güvenliğini artırabilecek birçok güçlü araç sunar:

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "193889b580c86bbb1e4f577114a5ce4e",
-  "translation_date": "2025-07-17T01:15:30+00:00",
-  "source_file": "05-AdvancedTopics/mcp-sampling/README.md",
-  "language_code": "it"
-}
--->
 # Campionamento nel Protocollo Model Context
 
 Il campionamento è una potente funzionalità di MCP che permette ai server di richiedere completamenti LLM tramite il client, abilitando comportamenti agentici sofisticati mantenendo sicurezza e privacy. La configurazione corretta del campionamento può migliorare notevolmente la qualità e le prestazioni delle risposte. MCP fornisce un modo standardizzato per controllare come i modelli generano testo con parametri specifici che influenzano casualità, creatività e coerenza.

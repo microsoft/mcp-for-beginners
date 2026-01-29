@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "195f7287638b77a549acadd96c8f981c",
-  "translation_date": "2025-07-14T01:38:32+00:00",
-  "source_file": "05-AdvancedTopics/mcp-realtimestreaming/README.md",
-  "language_code": "it"
-}
--->
 # Model Context Protocol per lo Streaming di Dati in Tempo Reale
 
 ## Panoramica

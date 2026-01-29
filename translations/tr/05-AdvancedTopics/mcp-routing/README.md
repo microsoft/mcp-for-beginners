@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2f1b473818b5a6cc9a9bbf777fffa6d4",
-  "translation_date": "2025-07-14T21:47:35+00:00",
-  "source_file": "05-AdvancedTopics/mcp-routing/README.md",
-  "language_code": "tr"
-}
--->
 ## Dinamik Araç Yönlendirme
 
 Araç yönlendirme, araç çağrılarının bağlama göre en uygun hizmete yönlendirilmesini sağlar. Örneğin, bir hava durumu aracı çağrısı, kullanıcının konumuna bağlı olarak bölgesel bir uç noktaya yönlendirilmesi gerekebilir veya bir hesap makinesi aracı, belirli bir API sürümünü kullanmak zorunda olabilir.

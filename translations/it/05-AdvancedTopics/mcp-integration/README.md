@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f84eaea79c8fa9ab318a494f40891814",
-  "translation_date": "2025-08-18T17:27:40+00:00",
-  "source_file": "05-AdvancedTopics/mcp-integration/README.md",
-  "language_code": "it"
-}
--->
 # Integrazione Aziendale
 
 Quando si costruiscono server MCP in un contesto aziendale, spesso è necessario integrarli con piattaforme e servizi di intelligenza artificiale esistenti. Questa sezione spiega come integrare MCP con sistemi aziendali come Azure OpenAI e Microsoft AI Foundry, abilitando funzionalità avanzate di intelligenza artificiale e orchestrazione degli strumenti.

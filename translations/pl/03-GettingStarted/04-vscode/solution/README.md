@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-07-13T19:42:21+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "pl"
-}
--->
 To odpowiada uruchomieniu polecenia w ten sposób: `node build/index.js`.
 
 - Zmień wpis serwera tak, aby wskazywał na absolutną ścieżkę do Twojego pliku serwera oraz zawierał pełne polecenie potrzebne do uruchomienia serwera, w zależności od wybranego środowiska uruchomieniowego i lokalizacji serwera.
