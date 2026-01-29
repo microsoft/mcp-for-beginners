@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2228721599c0c8673de83496b4d7d7a9",
-  "translation_date": "2025-08-18T15:56:43+00:00",
-  "source_file": "09-CaseStudy/apimsample.md",
-  "language_code": "fi"
-}
--->
 # Tapaustutkimus: REST-rajapinnan julkaiseminen API Managementissa MCP-palvelimena
 
 Azure API Management on palvelu, joka tarjoaa yhdyskäytävän API-päätepisteidesi päälle. Se toimii siten, että Azure API Management toimii välityspalvelimena API:esi edessä ja voi päättää, mitä saapuville pyynnöille tehdään.

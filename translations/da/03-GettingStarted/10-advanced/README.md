@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1de8367745088b9fcd4746ea4cc5a161",
-  "translation_date": "2025-10-06T15:49:48+00:00",
-  "source_file": "03-GettingStarted/10-advanced/README.md",
-  "language_code": "da"
-}
--->
 # Avanceret serverbrug
 
 Der er to forskellige typer servere, der eksponeres i MCP SDK: din normale server og lavniveau-serveren. Normalt bruger du den almindelige server til at tilføje funktioner. I nogle tilfælde kan det dog være nødvendigt at bruge lavniveau-serveren, for eksempel:

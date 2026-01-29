@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e8bbc7982284fe177dd4be5e7f2b3357",
-  "translation_date": "2025-12-19T12:54:36+00:00",
-  "source_file": "changelog.md",
-  "language_code": "da"
-}
--->
 # Changelog: MCP for Beginners Curriculum
 
 Dette dokument fungerer som en oversigt over alle væsentlige ændringer foretaget i Model Context Protocol (MCP) for Beginners pensum. Ændringer dokumenteres i omvendt kronologisk rækkefølge (nyeste ændringer først).

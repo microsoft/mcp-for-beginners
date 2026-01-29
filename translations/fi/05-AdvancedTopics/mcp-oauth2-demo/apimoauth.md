@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "32c9a4263be08f9050c8044bb26267c4",
-  "translation_date": "2025-07-14T00:30:44+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/apimoauth.md",
-  "language_code": "fi"
-}
--->
 # Spring AI MCP -sovelluksen käyttöönotto Azure Container Appsissa
 
  ([Spring AI MCP -palvelimien suojaaminen OAuth2:lla](https://spring.io/blog/2025/04/02/mcp-server-oauth2)) *Kuva: Spring AI MCP -palvelin suojattuna Spring Authorization Serverilla. Palvelin myöntää käyttöoikeustunnuksia asiakkaille ja validoi ne saapuvissa pyynnöissä (lähde: Spring blogi) ([Spring AI MCP -palvelimien suojaaminen OAuth2:lla](https://spring.io/blog/2025/04/02/mcp-server-oauth2#:~:text=,server%20with%20the%20MCP%20inspector)).* Spring MCP -palvelimen käyttöönottoa varten rakenna se kontiksi ja käytä Azure Container Appsia ulkoisella ingressillä. Esimerkiksi Azure CLI:llä voit ajaa:

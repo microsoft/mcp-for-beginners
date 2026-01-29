@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2f1b473818b5a6cc9a9bbf777fffa6d4",
-  "translation_date": "2025-07-14T21:48:35+00:00",
-  "source_file": "05-AdvancedTopics/mcp-routing/README.md",
-  "language_code": "no"
-}
--->
 ## Prøvetaking og rutearkitektur i MCP
 
 Prøvetaking er en kritisk komponent i Model Context Protocol (MCP) som muliggjør effektiv behandling og ruting av forespørsler. Det innebærer å analysere innkommende forespørsler for å avgjøre hvilken modell eller tjeneste som er best egnet til å håndtere dem, basert på ulike kriterier som innholdstype, brukerkontekst og systembelastning.

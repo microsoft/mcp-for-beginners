@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7b4d8d17fc1f501468cce40c3651aed1",
-  "translation_date": "2025-07-17T06:29:44+00:00",
-  "source_file": "05-AdvancedTopics/mcp-scaling/README.md",
-  "language_code": "da"
-}
--->
 # Skalerbarhed og Højtydende MCP
 
 For virksomhedsmiljøer skal MCP-implementeringer ofte kunne håndtere store mængder forespørgsler med minimal ventetid.

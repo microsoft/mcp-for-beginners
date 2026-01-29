@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4e34e34e84f013e73c7eaa6d09884756",
-  "translation_date": "2025-07-13T22:01:38+00:00",
-  "source_file": "03-GettingStarted/08-testing/README.md",
-  "language_code": "fi"
-}
--->
 ## Testaus ja virheenkorjaus
 
 Ennen kuin aloitat MCP-palvelimesi testaamisen, on tärkeää ymmärtää käytettävissä olevat työkalut ja parhaat käytännöt virheiden etsimiseen. Tehokas testaus varmistaa, että palvelimesi toimii odotetusti ja auttaa sinua nopeasti tunnistamaan ja korjaamaan ongelmat. Seuraavassa osiossa käydään läpi suositeltuja menetelmiä MCP-toteutuksesi validoimiseksi.

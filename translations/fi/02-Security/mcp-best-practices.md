@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5061d7e2ae9eea9cbaae77c1a020b318",
-  "translation_date": "2025-12-19T13:29:28+00:00",
-  "source_file": "02-Security/mcp-best-practices.md",
-  "language_code": "fi"
-}
--->
 # MCP:n turvallisuuden parhaat käytännöt 2025
 
 Tämä kattava opas esittelee olennaiset turvallisuuden parhaat käytännöt Model Context Protocol (MCP) -järjestelmien toteuttamiseen perustuen uusimpaan **MCP Specification 2025-11-25** -määrittelyyn ja nykyisiin alan standardeihin. Nämä käytännöt käsittelevät sekä perinteisiä turvallisuuskysymyksiä että MCP-järjestelmiin liittyviä tekoälyyn liittyviä uhkia.

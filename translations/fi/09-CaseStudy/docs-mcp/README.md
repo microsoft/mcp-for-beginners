@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4319d291c9d124ecafea52b3d04bfa0e",
-  "translation_date": "2025-07-14T06:25:56+00:00",
-  "source_file": "09-CaseStudy/docs-mcp/README.md",
-  "language_code": "fi"
-}
--->
 # Case Study: Yhteyden muodostaminen Microsoft Learn Docs MCP -palvelimeen asiakkaalta
 
 Oletko koskaan huomannut hyppiväsi dokumentaatiosivustojen, Stack Overflow’n ja loputtomien hakukonevälilehtien välillä samalla, kun yrität ratkaista koodiongelmaa? Ehkä sinulla on toinen näyttö pelkästään dokumentaatiota varten, tai vaihdat jatkuvasti alt-tabilla IDE:n ja selaimen välillä. Eikö olisi parempi, jos dokumentaatio olisi suoraan työnkulussasi – integroituna sovelluksiisi, IDE:esi tai jopa omiin räätälöityihin työkaluihisi? Tässä case studyssä tutustumme siihen, miten voit tehdä juuri näin yhdistämällä suoraan Microsoft Learn Docs MCP -palvelimeen omasta asiakasohjelmastasi.

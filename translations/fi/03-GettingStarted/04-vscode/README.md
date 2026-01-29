@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "d940b5e0af75e3a3a4d1c3179120d1d9",
-  "translation_date": "2025-08-26T17:56:12+00:00",
-  "source_file": "03-GettingStarted/04-vscode/README.md",
-  "language_code": "fi"
-}
--->
 # GitHub Copilot Agent -tilan käyttäminen palvelimen kanssa
 
 Visual Studio Code ja GitHub Copilot voivat toimia asiakkaana ja käyttää MCP-palvelinta. Miksi haluaisimme tehdä niin, saatat kysyä? No, tämä tarkoittaa, että mitä tahansa MCP-palvelimen ominaisuuksia voidaan nyt käyttää suoraan IDE:ssäsi. Kuvittele esimerkiksi GitHubin MCP-palvelimen lisääminen – tämä mahdollistaisi GitHubin hallinnan kehotteiden avulla sen sijaan, että kirjoittaisit tiettyjä komentoja terminaaliin. Tai kuvittele mitä tahansa, mikä voisi parantaa kehittäjäkokemustasi, kaikki ohjattuna luonnollisella kielellä. Nyt alat nähdä hyödyn, eikö?

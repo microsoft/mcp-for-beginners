@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "a22b7dd11cd7690f99f9195877cafdc3",
-  "translation_date": "2025-07-14T07:54:24+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab2/README.md",
-  "language_code": "da"
-}
--->
 # 🌐 Modul 2: MCP med AI Toolkit Grundlæggende
 
 [![Duration](https://img.shields.io/badge/Duration-20%20minutes-blue.svg)]()

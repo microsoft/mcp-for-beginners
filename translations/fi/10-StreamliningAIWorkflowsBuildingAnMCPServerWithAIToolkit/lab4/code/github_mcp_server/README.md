@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9a6a4d3497921d2f6d9699f0a6a1890c",
-  "translation_date": "2025-09-09T21:59:45+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/README.md",
-  "language_code": "fi"
-}
--->
 # Sää MCP-palvelin
 
 Tämä on esimerkkipalvelin Pythonilla, joka toteuttaa säätyökaluja mock-vastauksilla. Sitä voidaan käyttää pohjana omalle MCP-palvelimellesi. Se sisältää seuraavat ominaisuudet:

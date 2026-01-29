@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4e34e34e84f013e73c7eaa6d09884756",
-  "translation_date": "2025-07-13T22:01:17+00:00",
-  "source_file": "03-GettingStarted/08-testing/README.md",
-  "language_code": "da"
-}
--->
 ## Test og fejlfinding
 
 Før du begynder at teste din MCP-server, er det vigtigt at forstå de tilgængelige værktøjer og bedste praksis for fejlfinding. Effektiv test sikrer, at din server opfører sig som forventet og hjælper dig med hurtigt at identificere og løse problemer. Følgende afsnit beskriver anbefalede metoder til at validere din MCP-implementering.

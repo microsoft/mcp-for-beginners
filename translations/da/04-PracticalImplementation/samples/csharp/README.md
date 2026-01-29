@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0bc7bd48f55f1565f1d95ccb2c16f728",
-  "translation_date": "2025-07-13T23:07:32+00:00",
-  "source_file": "04-PracticalImplementation/samples/csharp/README.md",
-  "language_code": "da"
-}
--->
 # Eksempel
 
 Det forrige eksempel viser, hvordan man bruger et lokalt .NET-projekt med typen `stdio`. Og hvordan man kører serveren lokalt i en container. Dette er en god løsning i mange situationer. Men det kan være nyttigt at have serveren kørende eksternt, for eksempel i et cloud-miljø. Her kommer typen `http` ind i billedet.

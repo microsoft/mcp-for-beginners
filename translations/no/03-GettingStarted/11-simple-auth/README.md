@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5b00b8a8971a07d2d8803be4c9f138f8",
-  "translation_date": "2025-10-07T00:53:47+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/README.md",
-  "language_code": "no"
-}
--->
 # Enkel autentisering
 
 MCP SDK-er støtter bruk av OAuth 2.1, som ærlig talt er en ganske omfattende prosess som involverer konsepter som autentiseringsserver, ressursserver, sende inn legitimasjon, få en kode, bytte koden mot en "bearer token" før du endelig kan få tilgang til ressursdataene dine. Hvis du ikke er vant til OAuth, som er en flott ting å implementere, er det en god idé å starte med et grunnleggende nivå av autentisering og gradvis bygge opp til bedre og sikrere løsninger. Det er derfor dette kapittelet eksisterer – for å hjelpe deg med å utvikle mer avansert autentisering.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
-  "translation_date": "2025-08-18T15:23:34+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
-  "language_code": "da"
-}
--->
 # Kør dette eksempel
 
 Her er hvordan du kører den klassiske HTTP-streamingserver og -klient samt MCP-streamingserveren og -klienten ved hjælp af Python.

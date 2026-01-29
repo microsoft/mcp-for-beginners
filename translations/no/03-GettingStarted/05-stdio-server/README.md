@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "77735b446eb79b1bba9c849865cd0ced",
-  "translation_date": "2025-08-28T22:27:16+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/README.md",
-  "language_code": "no"
-}
--->
 # MCP-server med stdio-transport
 
 > **⚠️ Viktig oppdatering**: Fra og med MCP-spesifikasjonen 2025-06-18 er den frittstående SSE (Server-Sent Events)-transporten **utdatert** og erstattet av "Streamable HTTP"-transport. Den nåværende MCP-spesifikasjonen definerer to primære transportmekanismer:

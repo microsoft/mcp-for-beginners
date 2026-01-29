@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5061d7e2ae9eea9cbaae77c1a020b318",
-  "translation_date": "2025-12-19T12:59:53+00:00",
-  "source_file": "02-Security/mcp-best-practices.md",
-  "language_code": "da"
-}
--->
 # MCP Sikkerhedsbedste Praksis 2025
 
 Denne omfattende guide skitserer væsentlige sikkerhedsbedste praksisser for implementering af Model Context Protocol (MCP) systemer baseret på den seneste **MCP Specification 2025-11-25** og aktuelle industristandarder. Disse praksisser adresserer både traditionelle sikkerhedsbekymringer og AI-specifikke trusler unikke for MCP-implementeringer.

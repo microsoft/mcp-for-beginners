@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5f1383103523fa822e1fec7ef81904d5",
-  "translation_date": "2025-08-18T15:48:55+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/README.md",
-  "language_code": "no"
-}
--->
 # HTTPS-strømming med Model Context Protocol (MCP)
 
 Dette kapittelet gir en omfattende veiledning i hvordan man implementerer sikker, skalerbar og sanntidsstrømming med Model Context Protocol (MCP) ved bruk av HTTPS. Det dekker motivasjonen for strømming, tilgjengelige transportmekanismer, hvordan man implementerer strømbar HTTP i MCP, sikkerhetspraksis, migrasjon fra SSE og praktiske råd for å bygge dine egne MCP-strømmingsapplikasjoner.

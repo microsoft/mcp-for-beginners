@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "94c80ae71fb9971e9b57b51ab0912121",
-  "translation_date": "2025-08-18T15:50:29+00:00",
-  "source_file": "03-GettingStarted/02-client/README.md",
-  "language_code": "no"
-}
--->
 # Opprette en klient
 
 Klienter er tilpassede applikasjoner eller skript som kommuniserer direkte med en MCP-server for å be om ressurser, verktøy og forespørsler. I motsetning til å bruke inspeksjonsverktøyet, som gir et grafisk grensesnitt for å samhandle med serveren, lar det å skrive din egen klient deg automatisere og programmere interaksjoner. Dette gjør det mulig for utviklere å integrere MCP-funksjonalitet i sine egne arbeidsflyter, automatisere oppgaver og bygge skreddersydde løsninger tilpasset spesifikke behov.

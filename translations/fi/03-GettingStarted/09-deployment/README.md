@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1d9dc83260576b76f272d330ed93c51f",
-  "translation_date": "2025-07-13T22:09:35+00:00",
-  "source_file": "03-GettingStarted/09-deployment/README.md",
-  "language_code": "fi"
-}
--->
 # MCP-palvelimien käyttöönotto
 
 MCP-palvelimen käyttöönotto mahdollistaa sen työkalujen ja resurssien käytön myös paikallisen ympäristösi ulkopuolella. Käyttöönottoon on useita strategioita, jotka kannattaa valita tarpeidesi mukaan skaalautuvuuden, luotettavuuden ja hallinnan helppouden perusteella. Alta löydät ohjeet MCP-palvelimien käyttöönottoon paikallisesti, konteissa ja pilvessä.

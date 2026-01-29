@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "84857cd27c06e9e5cb8bded78ab9c05c",
-  "translation_date": "2025-07-13T18:28:22+00:00",
-  "source_file": "03-GettingStarted/02-client/solution/dotnet/README.md",
-  "language_code": "da"
-}
--->
 # Kør dette eksempel
 
 ## -1- Installer afhængighederne

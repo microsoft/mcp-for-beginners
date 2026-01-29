@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1d9dc83260576b76f272d330ed93c51f",
-  "translation_date": "2025-07-13T22:09:19+00:00",
-  "source_file": "03-GettingStarted/09-deployment/README.md",
-  "language_code": "da"
-}
--->
 # Udrulning af MCP-servere
 
 At udrulle din MCP-server gør det muligt for andre at få adgang til dens værktøjer og ressourcer ud over dit lokale miljø. Der findes flere udrulningsstrategier, afhængigt af dine krav til skalerbarhed, pålidelighed og nem administration. Nedenfor finder du vejledning til at udrulle MCP-servere lokalt, i containere og i skyen.

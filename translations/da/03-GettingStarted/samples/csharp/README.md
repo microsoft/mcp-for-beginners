@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "882aae00f1d3f007e20d03b883f44afa",
-  "translation_date": "2025-07-13T22:16:49+00:00",
-  "source_file": "03-GettingStarted/samples/csharp/README.md",
-  "language_code": "da"
-}
--->
 # Basic Calculator MCP Service
 
 Denne service tilbyder grundlæggende lommeregnerfunktioner via Model Context Protocol (MCP). Den er designet som et simpelt eksempel for begyndere, der lærer om MCP-implementeringer.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "193889b580c86bbb1e4f577114a5ce4e",
-  "translation_date": "2025-07-17T06:53:58+00:00",
-  "source_file": "05-AdvancedTopics/mcp-sampling/README.md",
-  "language_code": "fi"
-}
--->
 # Otanta Model Context Protocolissa
 
 Otanta on tehokas MCP-ominaisuus, joka mahdollistaa palvelimien pyytää LLM-valmisteluja asiakkaan kautta, mahdollistaen kehittyneet agenttikäyttäytymiset samalla kun turvataan turvallisuus ja yksityisyys. Oikea otantakonfiguraatio voi merkittävästi parantaa vastausten laatua ja suorituskykyä. MCP tarjoaa standardoidun tavan hallita, miten mallit tuottavat tekstiä tietyillä parametreilla, jotka vaikuttavat satunnaisuuteen, luovuuteen ja johdonmukaisuuteen.

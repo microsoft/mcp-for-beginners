@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6d6315e03f591fb5a39be91da88585dc",
-  "translation_date": "2025-07-13T19:20:14+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/typescript/README.md",
-  "language_code": "no"
-}
--->
 # Kjøre dette eksemplet
 
 Dette eksemplet innebærer å ha en LLM på klienten. LLM-en krever at du enten kjører dette i Codespaces eller at du setter opp en personlig tilgangstoken i GitHub for at det skal fungere.

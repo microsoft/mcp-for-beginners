@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e1d142978227a4bfc468bb0accab62e2",
-  "translation_date": "2025-07-17T06:57:29+00:00",
-  "source_file": "05-AdvancedTopics/mcp-multi-modality/README.md",
-  "language_code": "fi"
-}
--->
 # Monimodaalinen integraatio
 
 Monimodaaliset sovellukset ovat yhä tärkeämpiä tekoälyssä, sillä ne mahdollistavat monipuolisemmat vuorovaikutukset ja monimutkaisemmat tehtävät. Model Context Protocol (MCP) tarjoaa kehyksen monimodaalisten sovellusten rakentamiseen, jotka pystyvät käsittelemään erilaisia datatyyppejä, kuten tekstiä, kuvia ja ääntä.

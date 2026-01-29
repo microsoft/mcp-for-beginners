@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e8bbc7982284fe177dd4be5e7f2b3357",
-  "translation_date": "2025-12-19T13:23:31+00:00",
-  "source_file": "changelog.md",
-  "language_code": "fi"
-}
--->
 # Muutosloki: MCP aloittelijoille -opetussuunnitelma
 
 Tämä asiakirja toimii kirjana kaikista merkittävistä muutoksista, jotka on tehty Model Context Protocol (MCP) for Beginners -opetussuunnitelmaan. Muutokset on dokumentoitu käänteisessä kronologisessa järjestyksessä (uusimmat muutokset ensin).

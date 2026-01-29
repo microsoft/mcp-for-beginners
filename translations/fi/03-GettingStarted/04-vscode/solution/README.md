@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-07-13T19:43:47+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "fi"
-}
--->
 Tämä vastaa komentoa `node build/index.js` ajamista.
 
 - Muokkaa tätä server-kohdetta vastaamaan palvelintiedostosi sijaintia tai tarpeitasi palvelimen käynnistämiseksi valitun ajoympäristön ja palvelimen sijainnin mukaan.

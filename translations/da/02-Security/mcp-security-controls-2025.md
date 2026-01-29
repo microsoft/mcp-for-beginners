@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9351493ad29390d37f64bc6d84a03db5",
-  "translation_date": "2025-12-19T13:03:27+00:00",
-  "source_file": "02-Security/mcp-security-controls-2025.md",
-  "language_code": "da"
-}
--->
 # MCP Sikkerhedskontroller - Opdatering december 2025
 
 > **Nuværende standard**: Dette dokument afspejler [MCP Specification 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) sikkerhedskrav og officielle [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).

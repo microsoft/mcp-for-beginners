@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5b00b8a8971a07d2d8803be4c9f138f8",
-  "translation_date": "2025-10-07T00:54:31+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/README.md",
-  "language_code": "fi"
-}
--->
 # Yksinkertainen tunnistus
 
 MCP SDK:t tukevat OAuth 2.1 -protokollan käyttöä, joka on rehellisesti sanottuna melko monimutkainen prosessi. Siihen liittyy käsitteitä, kuten tunnistuspalvelin, resurssipalvelin, tunnistetietojen lähettäminen, koodin hankkiminen, koodin vaihtaminen kantajatunnukseen, kunnes lopulta pääset käsiksi resurssitietoihisi. Jos et ole tottunut OAuthiin, joka on erinomainen toteutettava asia, on hyvä aloittaa perusautentikoinnista ja edetä kohti parempaa ja turvallisempaa järjestelmää. Juuri siksi tämä luku on olemassa: auttaakseen sinua kehittymään kohti edistyneempää tunnistusta.

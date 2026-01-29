@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4319d291c9d124ecafea52b3d04bfa0e",
-  "translation_date": "2025-07-14T06:25:23+00:00",
-  "source_file": "09-CaseStudy/docs-mcp/README.md",
-  "language_code": "da"
-}
--->
 # Case Study: Forbindelse til Microsoft Learn Docs MCP-serveren fra en klient
 
 Har du nogensinde oplevet at jonglere mellem dokumentationssider, Stack Overflow og utallige søgemaskinefaner, mens du prøver at løse et problem i din kode? Måske har du en ekstra skærm kun til dokumentation, eller du skifter konstant mellem din IDE og en browser. Ville det ikke være bedre, hvis du kunne bringe dokumentationen direkte ind i din arbejdsproces—integreret i dine apps, din IDE eller endda dine egne brugerdefinerede værktøjer? I denne case study vil vi undersøge, hvordan du præcis gør det ved at forbinde direkte til Microsoft Learn Docs MCP-serveren fra din egen klientapplikation.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "af27b0acfae6caa134d9701453884df8",
-  "translation_date": "2025-10-06T23:24:09+00:00",
-  "source_file": "study_guide.md",
-  "language_code": "fi"
-}
--->
 # Model Context Protocol (MCP) aloittelijoille - Opas
 
 Tämä opas tarjoaa yleiskatsauksen "Model Context Protocol (MCP) for Beginners" -opetussuunnitelman arkiston rakenteesta ja sisällöstä. Käytä opasta navigoidaksesi arkistossa tehokkaasti ja hyödyntääksesi saatavilla olevia resursseja parhaalla mahdollisella tavalla.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "acd4010e430da00946a154f62847a169",
-  "translation_date": "2025-07-13T21:12:16+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/java/README.md",
-  "language_code": "da"
-}
--->
 # Calculator HTTP Streaming Demo
 
 Dette projekt demonstrerer HTTP streaming ved brug af Server-Sent Events (SSE) med Spring Boot WebFlux. Det består af to applikationer:

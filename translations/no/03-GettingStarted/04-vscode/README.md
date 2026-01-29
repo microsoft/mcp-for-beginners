@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "d940b5e0af75e3a3a4d1c3179120d1d9",
-  "translation_date": "2025-08-26T17:54:21+00:00",
-  "source_file": "03-GettingStarted/04-vscode/README.md",
-  "language_code": "no"
-}
--->
 # Bruke en server fra GitHub Copilot Agent-modus
 
 Visual Studio Code og GitHub Copilot kan fungere som en klient og bruke en MCP-server. Hvorfor skulle vi ønske å gjøre det, spør du kanskje? Vel, det betyr at hvilke som helst funksjoner MCP-serveren har, nå kan brukes direkte fra IDE-en din. Tenk deg for eksempel å legge til GitHubs MCP-server – dette vil gjøre det mulig å kontrollere GitHub via naturlige språkkommandoer i stedet for å skrive spesifikke kommandoer i terminalen. Eller forestill deg alt som generelt kan forbedre utvikleropplevelsen din, styrt av naturlig språk. Nå begynner du å se fordelen, ikke sant?

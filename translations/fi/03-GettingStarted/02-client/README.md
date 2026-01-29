@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "94c80ae71fb9971e9b57b51ab0912121",
-  "translation_date": "2025-08-18T16:18:45+00:00",
-  "source_file": "03-GettingStarted/02-client/README.md",
-  "language_code": "fi"
-}
--->
 # Asiakkaan luominen
 
 Asiakkaat ovat mukautettuja sovelluksia tai skriptejä, jotka kommunikoivat suoraan MCP-palvelimen kanssa pyytääkseen resursseja, työkaluja ja kehotteita. Toisin kuin tarkastustyökalun käyttö, joka tarjoaa graafisen käyttöliittymän palvelimen kanssa vuorovaikuttamiseen, oman asiakkaan kirjoittaminen mahdollistaa ohjelmalliset ja automatisoidut vuorovaikutukset. Tämä antaa kehittäjille mahdollisuuden integroida MCP-ominaisuudet omiin työnkulkuihinsa, automatisoida tehtäviä ja rakentaa mukautettuja ratkaisuja erityistarpeisiin.
