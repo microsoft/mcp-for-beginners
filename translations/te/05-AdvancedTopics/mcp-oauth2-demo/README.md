@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0a7083e660ca0d85fd6a947514c61993",
-  "translation_date": "2025-12-11T16:15:38+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/README.md",
-  "language_code": "te"
-}
--->
 # MCP OAuth2 డెమో
 
 ఈ ప్రాజెక్ట్ ఒక **సూక్ష్మ స్ప్రింగ్ బూట్ అప్లికేషన్** గా పనిచేస్తుంది, ఇది రెండు విధాలుగా ఉంటుంది:

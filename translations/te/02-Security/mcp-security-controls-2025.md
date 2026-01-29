@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9351493ad29390d37f64bc6d84a03db5",
-  "translation_date": "2025-12-19T18:56:06+00:00",
-  "source_file": "02-Security/mcp-security-controls-2025.md",
-  "language_code": "te"
-}
--->
 # MCP సెక్యూరిటీ నియంత్రణలు - డిసెంబర్ 2025 నవీకరణ
 
 > **ప్రస్తుత ప్రమాణం**: ఈ డాక్యుమెంట్ [MCP స్పెసిఫికేషన్ 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) సెక్యూరిటీ అవసరాలు మరియు అధికారిక [MCP సెక్యూరిటీ ఉత్తమ పద్ధతులు](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) ను ప్రతిబింబిస్తుంది.

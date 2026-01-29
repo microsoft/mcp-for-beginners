@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "b9e8de81a14b77abeeb98a20b4c894d0",
-  "translation_date": "2025-12-11T09:38:13+00:00",
-  "source_file": "AGENTS.md",
-  "language_code": "te"
-}
--->
 # AGENTS.md
 
 ## ప్రాజెక్ట్ అవలోకనం

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e3813a6ea19657d0cff0c2d1a1ffd324",
-  "translation_date": "2025-12-11T13:34:00+00:00",
-  "source_file": "03-GettingStarted/02-client/solution/rust/README.md",
-  "language_code": "te"
-}
--->
 # ఈ నమూనాను నడపడం
 
 > [!NOTE]

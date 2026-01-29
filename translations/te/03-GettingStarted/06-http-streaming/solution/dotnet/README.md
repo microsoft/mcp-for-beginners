@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "dde4e32e4b55ef4962c411b39d2340a7",
-  "translation_date": "2025-12-11T13:26:52+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/dotnet/README.md",
-  "language_code": "te"
-}
--->
 # ఈ నమూనాను నడపడం
 
 ## -1- ఆధారాలను ఇన్‌స్టాల్ చేయండి

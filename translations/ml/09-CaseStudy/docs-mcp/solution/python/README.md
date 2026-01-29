@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6ef6015d29b95f1cab97fb88a045a991",
-  "translation_date": "2025-12-11T13:45:35+00:00",
-  "source_file": "09-CaseStudy/docs-mcp/solution/python/README.md",
-  "language_code": "ml"
-}
--->
 # Chainlit & Microsoft Learn Docs MCP ഉപയോഗിച്ച് സ്റ്റഡി പ്ലാൻ ജനറേറ്റർ
 
 ## മുൻകൂട്ടി ആവശ്യമായവ

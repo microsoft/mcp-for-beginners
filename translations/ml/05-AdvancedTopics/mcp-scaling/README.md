@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7b4d8d17fc1f501468cce40c3651aed1",
-  "translation_date": "2025-12-11T15:12:49+00:00",
-  "source_file": "05-AdvancedTopics/mcp-scaling/README.md",
-  "language_code": "ml"
-}
--->
 # സ്കെയിലബിലിറ്റി ആൻഡ് ഹൈ-പർഫോർമൻസ് MCP
 
 എന്റർപ്രൈസ് ഡിപ്ലോയ്മെന്റുകൾക്കായി, MCP ഇംപ്ലിമെന്റേഷനുകൾ സാധാരണയായി കുറഞ്ഞ ലാറ്റൻസിയോടെ ഉയർന്ന വോളിയം അഭ്യർത്ഥനകൾ കൈകാര്യം ചെയ്യേണ്ടതുണ്ട്.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "d204bc94ea6027d06a703b21b711ca57",
-  "translation_date": "2025-12-11T10:59:42+00:00",
-  "source_file": "05-AdvancedTopics/README.md",
-  "language_code": "kn"
-}
--->
 # MCP ನಲ್ಲಿ ಉನ್ನತ ವಿಷಯಗಳು
 
 [![ಉನ್ನತ MCP: ಸುರಕ್ಷಿತ, ವಿಸ್ತಾರಗೊಳ್ಳುವ ಮತ್ತು ಬಹು-ಮೋಡಲ್ AI ಏಜೆಂಟ್ಗಳು](../../../translated_images/kn/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.png)](https://youtu.be/4yjmGvJzYdY)

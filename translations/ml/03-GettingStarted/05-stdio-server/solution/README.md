@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e378b47e0361b7a9b0dab7a0306878c8",
-  "translation_date": "2025-12-11T13:01:33+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/README.md",
-  "language_code": "ml"
-}
--->
 # MCP stdio സെർവർ പരിഹാരങ്ങൾ
 
 > **⚠️ പ്രധാനപ്പെട്ടത്**: MCP സ്പെസിഫിക്കേഷൻ 2025-06-18 പ്രകാരം ശുപാർശ ചെയ്ത **stdio ട്രാൻസ്പോർട്ട്** ഉപയോഗിക്കാൻ ഈ പരിഹാരങ്ങൾ അപ്ഡേറ്റ് ചെയ്തിട്ടുണ്ട്. മുൾ SSE (Server-Sent Events) ട്രാൻസ്പോർട്ട് ഡിപ്രിക്കേറ്റുചെയ്തിരിക്കുന്നു.

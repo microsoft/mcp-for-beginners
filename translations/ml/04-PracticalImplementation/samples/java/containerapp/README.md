@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e5ea5e7582f70008ea9bec3b3820f20a",
-  "translation_date": "2025-12-11T16:39:00+00:00",
-  "source_file": "04-PracticalImplementation/samples/java/containerapp/README.md",
-  "language_code": "ml"
-}
--->
 ## സിസ്റ്റം ആർക്കിടെക്ചർ
 
 ഈ പ്രോജക്ട് ഒരു വെബ് അപ്ലിക്കേഷൻ പ്രദർശിപ്പിക്കുന്നു, ഇത് യൂസർ പ്രോംപ്റ്റുകൾ കാൽക്കുലേറ്റർ സർവീസിലേക്ക് Model Context Protocol (MCP) വഴി അയയ്ക്കുന്നതിന് മുമ്പ് ഉള്ളടക്ക സുരക്ഷ പരിശോധന ഉപയോഗിക്കുന്നു.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "036e01c8c6ecc8610809d52e4a738641",
-  "translation_date": "2025-12-11T15:31:11+00:00",
-  "source_file": "05-AdvancedTopics/mcp-foundry-agent-integration/README.md",
-  "language_code": "kn"
-}
--->
 # ಮಾದರಿ ಸಂದರ್ಭ ಪ್ರೋಟೋಕಾಲ್ (MCP) ಅನ್ನು Azure AI Foundry ಜೊತೆಗೆ ಏಕೀಕರಣ
 
 ಈ ಮಾರ್ಗದರ್ಶಿ ಮಾದರಿ ಸಂದರ್ಭ ಪ್ರೋಟೋಕಾಲ್ (MCP) ಸರ್ವರ್‌ಗಳನ್ನು Azure AI Foundry ಏಜೆಂಟ್‌ಗಳೊಂದಿಗೆ ಏಕೀಕರಿಸುವ ವಿಧಾನವನ್ನು ತೋರಿಸುತ್ತದೆ, ಶಕ್ತಿಶಾಲಿ ಉಪಕರಣ ಸಂಯೋಜನೆ ಮತ್ತು ಎಂಟರ್‌ಪ್ರೈಸ್ AI ಸಾಮರ್ಥ್ಯಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸುತ್ತದೆ.

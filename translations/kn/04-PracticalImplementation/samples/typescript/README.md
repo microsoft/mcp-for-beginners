@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f7a8ffd07682d554929968dfc6ae2ecb",
-  "translation_date": "2025-12-11T16:34:05+00:00",
-  "source_file": "04-PracticalImplementation/samples/typescript/README.md",
-  "language_code": "kn"
-}
--->
 # ಮಾದರಿ
 
 ಇದು MCP ಸರ್ವರ್‌ಗಾಗಿ ಟೈಪ್ಸ್ಕ್ರಿಪ್ಟ್ ಮಾದರಿಯಾಗಿದೆ

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "195f7287638b77a549acadd96c8f981c",
-  "translation_date": "2025-12-11T15:21:00+00:00",
-  "source_file": "05-AdvancedTopics/mcp-realtimestreaming/README.md",
-  "language_code": "ml"
-}
--->
 # റിയൽ-ടൈം ഡാറ്റാ സ്ട്രീമിംഗിനുള്ള മോഡൽ കോൺടെക്സ്റ്റ് പ്രോട്ടോക്കോൾ
 
 ## അവലോകനം

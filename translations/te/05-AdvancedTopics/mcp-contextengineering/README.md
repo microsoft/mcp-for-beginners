@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "fd169ca3071b81b5ee282e194bc823df",
-  "translation_date": "2025-12-11T15:40:52+00:00",
-  "source_file": "05-AdvancedTopics/mcp-contextengineering/README.md",
-  "language_code": "te"
-}
--->
 # Context Engineering: MCP ఎకోసిస్టమ్‌లో ఒక ఉదయిస్తున్న భావన
 
 ## అవలోకనం

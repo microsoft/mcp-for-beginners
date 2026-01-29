@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9d799c4a30a8383e0a74af9153262972",
-  "translation_date": "2025-12-11T13:04:59+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/typescript/README.md",
-  "language_code": "ml"
-}
--->
 # MCP stdio Server - TypeScript പരിഹാരം
 
 > **⚠️ പ്രധാനപ്പെട്ടത്**: MCP സ്പെസിഫിക്കേഷൻ 2025-06-18 പ്രകാരം ശുപാർശ ചെയ്ത **stdio ട്രാൻസ്പോർട്ട്** ഉപയോഗിക്കാൻ ഈ പരിഹാരം അപ്ഡേറ്റ് ചെയ്തിരിക്കുന്നു. മുൽ SSE ട്രാൻസ്പോർട്ട് ഡിപ്രിക്കേറ്റഡ് ആയി.

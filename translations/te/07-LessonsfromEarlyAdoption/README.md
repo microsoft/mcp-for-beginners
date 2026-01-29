@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "41f16dac486d2086a53bc644a01cbe42",
-  "translation_date": "2025-12-11T09:51:36+00:00",
-  "source_file": "07-LessonsfromEarlyAdoption/README.md",
-  "language_code": "te"
-}
--->
 # 🌟 ప్రారంభ దత్తతదారుల నుండి పాఠాలు
 
 [![Lessons from MCP Early Adopters](../../../translated_images/te/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.png)](https://youtu.be/jds7dSmNptE)

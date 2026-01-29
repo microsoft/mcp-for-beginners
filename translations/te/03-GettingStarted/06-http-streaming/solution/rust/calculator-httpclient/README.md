@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "aa5122c6d9868b4b566586f27577ca47",
-  "translation_date": "2025-12-11T13:31:06+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/rust/calculator-httpclient/README.md",
-  "language_code": "te"
-}
--->
 # ఈ నమూనాను నడపడం
 
 ## -1- Streamable HTTP సర్వర్‌ను నడపండి

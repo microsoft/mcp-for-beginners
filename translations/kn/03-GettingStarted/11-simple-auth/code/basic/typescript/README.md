@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "67cc24a3a2d1cdd7d395ed5e67be8557",
-  "translation_date": "2025-12-11T13:21:49+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/code/basic/typescript/README.md",
-  "language_code": "kn"
-}
--->
 # ಮಾದರಿ ಚಾಲನೆ
 
 ## ಅವಲಂಬನೆಗಳನ್ನು ಸ್ಥಾಪಿಸಿ

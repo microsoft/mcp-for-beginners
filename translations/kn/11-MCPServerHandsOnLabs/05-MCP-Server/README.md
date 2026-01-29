@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "240e365cc324d23a0033e5615b5feb5e",
-  "translation_date": "2025-12-11T14:36:55+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/05-MCP-Server/README.md",
-  "language_code": "kn"
-}
--->
 # MCP ಸರ್ವರ್ ಅನುಷ್ಠಾನ
 
 ## 🎯 ಈ ಪ್ರಯೋಗಶಾಲೆ ಏನು ಒಳಗೊಂಡಿದೆ

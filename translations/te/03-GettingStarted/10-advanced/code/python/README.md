@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "c3c28b090a54f59374677200e23a809e",
-  "translation_date": "2025-12-11T13:38:19+00:00",
-  "source_file": "03-GettingStarted/10-advanced/code/python/README.md",
-  "language_code": "te"
-}
--->
 # నమూనా నడపండి
 
 ## వర్చువల్ ఎన్విరాన్‌మెంట్ సెట్ చేయండి

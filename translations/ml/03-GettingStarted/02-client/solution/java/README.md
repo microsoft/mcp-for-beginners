@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7074b9f4c8cd147c1c10f569d8508c82",
-  "translation_date": "2025-12-11T13:36:29+00:00",
-  "source_file": "03-GettingStarted/02-client/solution/java/README.md",
-  "language_code": "ml"
-}
--->
 # MCP ജാവ ക്ലയന്റ് - കാൽക്കുലേറ്റർ ഡെമോ
 
 ഈ പ്രോജക്ട് MCP (Model Context Protocol) സെർവറുമായി കണക്റ്റ് ചെയ്ത് ഇടപഴകുന്ന ജാവ ക്ലയന്റ് എങ്ങനെ സൃഷ്ടിക്കാമെന്ന് കാണിക്കുന്നു. ഈ ഉദാഹരണത്തിൽ, നാം Chapter 01 ലെ കാൽക്കുലേറ്റർ സെർവറുമായി കണക്റ്റ് ചെയ്ത് വിവിധ ഗണിത പ്രവർത്തനങ്ങൾ നടത്തും.

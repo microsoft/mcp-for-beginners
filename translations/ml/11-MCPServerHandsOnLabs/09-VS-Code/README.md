@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "769c9794759f416450dce77286e98f00",
-  "translation_date": "2025-12-11T14:15:04+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/09-VS-Code/README.md",
-  "language_code": "ml"
-}
--->
 # VS Code ഇന്റഗ്രേഷൻ
 
 ## 🎯 ഈ ലാബ് ഉൾക്കൊള്ളുന്നത്

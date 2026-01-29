@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "32c9a4263be08f9050c8044bb26267c4",
-  "translation_date": "2025-12-11T16:17:26+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/apimoauth.md",
-  "language_code": "te"
-}
--->
 # Spring AI MCP యాప్‌ను Azure కంటైనర్ యాప్స్‌కు డిప్లాయ్ చేయడం
 
  ([OAuth2తో Spring AI MCP సర్వర్‌లను సురక్షితం చేయడం](https://spring.io/blog/2025/04/02/mcp-server-oauth2)) *చిత్రం: Spring Authorization Serverతో సురక్షితం చేయబడిన Spring AI MCP సర్వర్. సర్వర్ క్లయింట్లకు యాక్సెస్ టోకెన్లను జారీ చేస్తుంది మరియు వాటిని వచ్చే అభ్యర్థనలపై ధృవీకరిస్తుంది (మూలం: Spring బ్లాగ్) ([OAuth2తో Spring AI MCP సర్వర్‌లను సురక్షితం చేయడం](https://spring.io/blog/2025/04/02/mcp-server-oauth2#:~:text=,server%20with%20the%20MCP%20inspector)).* Spring MCP సర్వర్‌ను డిప్లాయ్ చేయడానికి, దాన్ని కంటైనర్‌గా నిర్మించి Azure కంటైనర్ యాప్స్‌తో బాహ్య ఇంగ్రెస్ ఉపయోగించండి. ఉదాహరణకు, Azure CLI ఉపయోగించి మీరు ఈ క్రింది విధంగా నడపవచ్చు:

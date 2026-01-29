@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "69372338676e01a2c97f42f70fdfbf42",
-  "translation_date": "2025-12-11T13:07:53+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/dotnet/README.md",
-  "language_code": "kn"
-}
--->
 # MCP stdio ಸರ್ವರ್ - .NET ಪರಿಹಾರ
 
 > **⚠️ ಪ್ರಮುಖ**: ಈ ಪರಿಹಾರವನ್ನು MCP ಸ್ಪೆಸಿಫಿಕೇಶನ್ 2025-06-18 ನಿಂದ ಶಿಫಾರಸು ಮಾಡಲಾದ **stdio ಸಾರಿಗೆ** ಬಳಕೆಗೆ ನವೀಕರಿಸಲಾಗಿದೆ. ಮೂಲ SSE ಸಾರಿಗೆ ನಿಷೇಧಿಸಲಾಗಿದೆ.

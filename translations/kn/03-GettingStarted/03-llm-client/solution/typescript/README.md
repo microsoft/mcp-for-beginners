@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6d6315e03f591fb5a39be91da88585dc",
-  "translation_date": "2025-12-11T12:57:33+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/typescript/README.md",
-  "language_code": "kn"
-}
--->
 # ಈ ಮಾದರಿಯನ್ನು ಚಾಲನೆ ಮಾಡುವುದು
 
 ಈ ಮಾದರಿಯಲ್ಲಿ ಕ್ಲೈಂಟ್‌ನಲ್ಲಿ LLM ಇರಬೇಕು. LLM ನಿಮಗೆ ಇದನ್ನು Codespaces ನಲ್ಲಿ ಚಾಲನೆ ಮಾಡಲು ಅಥವಾ GitHub ನಲ್ಲಿ ವೈಯಕ್ತಿಕ ಪ್ರವೇಶ ಟೋಕನ್ ಅನ್ನು ಸೆಟ್ ಅಪ್ ಮಾಡಲು ಅಗತ್ಯವಿದೆ.

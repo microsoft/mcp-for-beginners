@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "dd8da3f75addcef453fe11f02a270217",
-  "translation_date": "2025-12-11T16:49:40+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/README.md",
-  "language_code": "ml"
-}
--->
 # 🔧 മോഡ്യൂൾ 3: AI ടൂൾകിറ്റ് ഉപയോഗിച്ച് ആഡ്വാൻസ്ഡ് MCP ഡെവലപ്പ്മെന്റ്
 
 ![Duration](https://img.shields.io/badge/Duration-20_minutes-blue?style=flat-square)

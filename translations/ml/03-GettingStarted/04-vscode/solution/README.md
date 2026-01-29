@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-12-11T13:17:18+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "ml"
-}
--->
 # സാമ്പിൾ പ്രവർത്തിപ്പിക്കൽ
 
 ഇവിടെ നിങ്ങൾക്ക് ഇതിനകം പ്രവർത്തനക്ഷമമായ ഒരു സെർവർ കോഡ് ഉണ്ടെന്ന് فرضിക്കുന്നു. ദയവായി മുൻ അധ്യായങ്ങളിൽ നിന്നുള്ള ഒരു സെർവർ കണ്ടെത്തുക.

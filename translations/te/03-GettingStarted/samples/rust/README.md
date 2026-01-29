@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ffc7f32ed12664b640175f27f0a997a",
-  "translation_date": "2025-12-11T12:51:11+00:00",
-  "source_file": "03-GettingStarted/samples/rust/README.md",
-  "language_code": "te"
-}
--->
 # నమూనా
 
 ఇది MCP సర్వర్ కోసం ఒక రస్ట్ నమూనా

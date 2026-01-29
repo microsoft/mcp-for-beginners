@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4d3415b9d2bf58bc69be07f945a69e07",
-  "translation_date": "2025-12-11T10:36:53+00:00",
-  "source_file": "09-CaseStudy/travelagentsample.md",
-  "language_code": "kn"
-}
--->
 # ಪ್ರಕರಣ ಅಧ್ಯಯನ: ಅಜೂರ್ AI ಪ್ರಯಾಣ ಏಜೆಂಟ್ಸ್ – ರೆಫರೆನ್ಸ್ ಅನುಷ್ಠಾನ
 
 ## ಅವಲೋಕನ

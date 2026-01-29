@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1b000fd6e1b04c047578bfc5d07d54eb",
-  "translation_date": "2025-12-11T11:40:02+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md",
-  "language_code": "ml"
-}
--->
 # AI പ്രവൃത്തിപദ്ധതികൾ ലളിതമാക്കൽ: AI ടൂൾകിറ്റുമായി MCP സെർവർ നിർമ്മിക്കൽ
 
 [![MCP പതിപ്പ്](https://img.shields.io/badge/MCP-1.9.3-blue.svg)](https://modelcontextprotocol.io/)

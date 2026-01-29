@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6240e78bb87f91bece16f8742472aeef",
-  "translation_date": "2025-12-11T13:30:53+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/rust/calculator-httpserver/README.md",
-  "language_code": "kn"
-}
--->
 # ಈ ಮಾದರಿಯನ್ನು ಚಾಲನೆ ಮಾಡುವುದು
 
 ## -1- ಅವಲಂಬನೆಗಳನ್ನು ಸ್ಥಾಪಿಸಿ ಮತ್ತು ಯೋಜನೆಯನ್ನು ನಿರ್ಮಿಸಿ

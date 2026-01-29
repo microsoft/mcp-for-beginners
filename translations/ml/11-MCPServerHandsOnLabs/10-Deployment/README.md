@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "42c4bda55924cd1d6964c1a01fe65f28",
-  "translation_date": "2025-12-11T14:18:52+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/10-Deployment/README.md",
-  "language_code": "ml"
-}
--->
 # വിന്യാസ തന്ത്രങ്ങൾ
 
 ## 🎯 ഈ ലാബ് ഉൾക്കൊള്ളുന്നത്

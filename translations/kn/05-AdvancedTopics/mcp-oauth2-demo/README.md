@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0a7083e660ca0d85fd6a947514c61993",
-  "translation_date": "2025-12-11T16:17:06+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/README.md",
-  "language_code": "kn"
-}
--->
 # MCP OAuth2 ಡೆಮೊ
 
 ಈ ಪ್ರಾಜೆಕ್ಟ್ ಒಂದು **ಕನಿಷ್ಠ ಸ್ಪ್ರಿಂಗ್ ಬೂಟ್ ಅಪ್ಲಿಕೇಶನ್** ಆಗಿದ್ದು, ಎರಡೂ ಕಾರ್ಯಗಳನ್ನು ನಿರ್ವಹಿಸುತ್ತದೆ:

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6d6315e03f591fb5a39be91da88585dc",
-  "translation_date": "2025-12-11T12:57:05+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/typescript/README.md",
-  "language_code": "te"
-}
--->
 # ఈ నమూనాను నడపడం
 
 ఈ నమూనాలో క్లయింట్‌పై LLM ఉండటం అవసరం. LLM కోసం మీరు దీన్ని Codespacesలో నడపాలి లేదా GitHubలో వ్యక్తిగత యాక్సెస్ టోకెన్‌ను సెట్ చేయాలి.

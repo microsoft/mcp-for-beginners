@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "b4662e0a75e645f3eeb4e69e5ba905f4",
-  "translation_date": "2025-12-11T13:39:18+00:00",
-  "source_file": "03-GettingStarted/10-advanced/code/typescript/README.md",
-  "language_code": "ml"
-}
--->
 # സാമ്പിൾ പ്രവർത്തിപ്പിക്കുക
 
 ## ആശ്രിതങ്ങൾ ഇൻസ്റ്റാൾ ചെയ്യുക

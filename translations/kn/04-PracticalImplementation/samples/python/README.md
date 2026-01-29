@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "706b9b075dc484b73a053e6e9c709b4b",
-  "translation_date": "2025-12-11T16:33:03+00:00",
-  "source_file": "04-PracticalImplementation/samples/python/README.md",
-  "language_code": "kn"
-}
--->
 # ಮಾದರಿ ಸಂದರ್ಭ ಪ್ರೋಟೋಕಾಲ್ (MCP) ಪೈಥಾನ್ ಅನುಷ್ಠಾನ
 
 ಈ ರೆಪೊಸಿಟರಿ ಮಾದರಿ ಸಂದರ್ಭ ಪ್ರೋಟೋಕಾಲ್ (MCP) ನ ಪೈಥಾನ್ ಅನುಷ್ಠಾನವನ್ನು ಒಳಗೊಂಡಿದೆ, ಇದು MCP ಮಾನದಂಡವನ್ನು ಬಳಸಿಕೊಂಡು ಸಂವಹನ ಮಾಡುವ ಸರ್ವರ್ ಮತ್ತು ಕ್ಲೈಂಟ್ ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ಹೇಗೆ ರಚಿಸುವುದನ್ನು ತೋರಿಸುತ್ತದೆ.

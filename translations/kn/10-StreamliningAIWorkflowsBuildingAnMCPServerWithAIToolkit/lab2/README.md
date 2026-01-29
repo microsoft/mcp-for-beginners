@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "a22b7dd11cd7690f99f9195877cafdc3",
-  "translation_date": "2025-12-11T17:00:08+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab2/README.md",
-  "language_code": "kn"
-}
--->
 # 🌐 ಮೋಡ್ಯೂಲ್ 2: AI ಟೂಲ್ಕಿಟ್ ಮೂಲಭೂತಗಳೊಂದಿಗೆ MCP
 
 [![ಅವಧಿ](https://img.shields.io/badge/Duration-20%20minutes-blue.svg)]()

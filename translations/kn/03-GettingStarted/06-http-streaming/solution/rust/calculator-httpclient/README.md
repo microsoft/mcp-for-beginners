@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "aa5122c6d9868b4b566586f27577ca47",
-  "translation_date": "2025-12-11T13:31:39+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/rust/calculator-httpclient/README.md",
-  "language_code": "kn"
-}
--->
 # ಈ ಮಾದರಿಯನ್ನು ಚಾಲನೆ ಮಾಡುವುದು
 
 ## -1- ಸ್ಟ್ರೀಮಬಲ್ HTTP ಸರ್ವರ್ ಅನ್ನು ಚಾಲನೆ ಮಾಡು

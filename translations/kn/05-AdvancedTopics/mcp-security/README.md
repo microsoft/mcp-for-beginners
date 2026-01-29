@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "997c7119766a69552e23d7d681316902",
-  "translation_date": "2025-12-11T15:09:35+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security/README.md",
-  "language_code": "kn"
-}
--->
 # MCP ಭದ್ರತಾ ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು - ಉನ್ನತ ಅನುಷ್ಠಾನ ಮಾರ್ಗದರ್ಶಿ
 
 > **ಪ್ರಸ್ತುತ ಮಾನದಂಡ**: ಈ ಮಾರ್ಗದರ್ಶಿ [MCP ನಿರ್ದಿಷ್ಟತೆ 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) ಭದ್ರತಾ ಅಗತ್ಯಗಳನ್ನು ಮತ್ತು ಅಧಿಕೃತ [MCP ಭದ್ರತಾ ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) ಅನ್ನು ಪ್ರತಿಬಿಂಬಿಸುತ್ತದೆ.

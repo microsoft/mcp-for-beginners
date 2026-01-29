@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f5300fd1b5e84520d500b2a8f568a1d8",
-  "translation_date": "2025-12-11T11:28:41+00:00",
-  "source_file": "02-Security/azure-content-safety.md",
-  "language_code": "ml"
-}
--->
 # Azure Content Safety ഉപയോഗിച്ച് ആധുനിക MCP സുരക്ഷ
 
 നിങ്ങളുടെ MCP നടപ്പാക്കലുകളുടെ സുരക്ഷ മെച്ചപ്പെടുത്താൻ Azure Content Safety നിരവധി ശക്തമായ ഉപകരണങ്ങൾ നൽകുന്നു:

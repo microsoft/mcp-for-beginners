@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6ef6015d29b95f1cab97fb88a045a991",
-  "translation_date": "2025-12-11T13:46:27+00:00",
-  "source_file": "09-CaseStudy/docs-mcp/solution/python/README.md",
-  "language_code": "kn"
-}
--->
 # ಚೈನ್‌ಲಿಟ್ ಮತ್ತು ಮೈಕ್ರೋಸಾಫ್ಟ್ ಲರ್ನ್ ಡಾಕ್ಸ್ MCP ಜೊತೆಗೆ ಅಧ್ಯಯನ ಯೋಜನೆ ಜನರೇಟರ್
 
 ## ಪೂರ್ವಾಪೇಕ್ಷಿತಗಳು

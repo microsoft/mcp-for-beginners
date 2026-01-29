@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e5ea5e7582f70008ea9bec3b3820f20a",
-  "translation_date": "2025-12-11T16:39:32+00:00",
-  "source_file": "04-PracticalImplementation/samples/java/containerapp/README.md",
-  "language_code": "kn"
-}
--->
 ## ಸಿಸ್ಟಮ್ ವಾಸ್ತುಶಿಲ್ಪ
 
 ಈ ಯೋಜನೆ ಬಳಕೆದಾರರ ಪ್ರಾಂಪ್ಟ್‌ಗಳನ್ನು ಕ್ಯಾಲ್ಕುಲೇಟರ್ ಸೇವೆಗೆ Model Context Protocol (MCP) ಮೂಲಕ ಕಳುಹಿಸುವ ಮೊದಲು ವಿಷಯ ಸುರಕ್ಷತೆ ಪರಿಶೀಲನೆ ಬಳಸುವ ವೆಬ್ ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ಪ್ರದರ್ಶಿಸುತ್ತದೆ.

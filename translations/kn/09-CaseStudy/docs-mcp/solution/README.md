@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "c8c1a74c74f6c2d42d511daf12d0b6c5",
-  "translation_date": "2025-12-11T13:44:18+00:00",
-  "source_file": "09-CaseStudy/docs-mcp/solution/README.md",
-  "language_code": "kn"
-}
--->
 ಪ್ರತಿ ರನ್‌ಟೈಮ್‌ಗೆ ಪರಿಹಾರಗಳು ಇಲ್ಲಿವೆ:
 - [Python](./python/README.md)
 

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2228721599c0c8673de83496b4d7d7a9",
-  "translation_date": "2025-12-11T10:33:20+00:00",
-  "source_file": "09-CaseStudy/apimsample.md",
-  "language_code": "te"
-}
--->
 # కేసు అధ్యయనం: API మేనేజ్‌మెంట్‌లో REST APIని MCP సర్వర్‌గా ప్రదర్శించడం
 
 Azure API Management అనేది మీ API ఎండ్‌పాయింట్లపై గేట్వేను అందించే సేవ. ఇది ఎలా పనిచేస్తుందంటే Azure API Management మీ APIs ముందు ప్రాక్సీగా పనిచేస్తుంది మరియు వచ్చే అభ్యర్థనలతో ఏమి చేయాలో నిర్ణయించగలదు.

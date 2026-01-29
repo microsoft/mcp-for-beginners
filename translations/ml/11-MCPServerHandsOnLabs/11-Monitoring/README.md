@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "a603abf726c7d946f0b0f05a3a42d8ac",
-  "translation_date": "2025-12-11T14:23:26+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/11-Monitoring/README.md",
-  "language_code": "ml"
-}
--->
 # നിരീക്ഷണവും ദൃശ്യവത്കരണവും
 
 ## 🎯 ഈ ലാബ് എന്താണ് ഉൾക്കൊള്ളുന്നത്

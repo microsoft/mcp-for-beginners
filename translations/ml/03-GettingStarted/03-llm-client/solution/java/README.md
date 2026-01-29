@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ac2459c0d5cc823922e3d9240a95028c",
-  "translation_date": "2025-12-11T12:59:49+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/java/README.md",
-  "language_code": "ml"
-}
--->
 # കാൽക്കുലേറ്റർ LLM ക്ലയന്റ്
 
 GitHub മോഡലുകൾ ഇന്റഗ്രേഷനോടുകൂടിയ MCP (Model Context Protocol) കാൽക്കുലേറ്റർ സർവീസുമായി ബന്ധിപ്പിക്കാൻ LangChain4j ഉപയോഗിക്കുന്ന വിധം കാണിക്കുന്ന ഒരു ജാവ ആപ്ലിക്കേഷൻ.

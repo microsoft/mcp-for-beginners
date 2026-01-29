@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6e562d7e5a77c8982da4aa8f762ad1d8",
-  "translation_date": "2025-12-11T16:00:36+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security-entra/README.md",
-  "language_code": "kn"
-}
--->
 # AI ಕಾರ್ಯಪ್ರವಾಹಗಳನ್ನು ಸುರಕ್ಷಿತಗೊಳಿಸುವುದು: ಮಾದರಿ ಸಾಂದರ್ಭಿಕ ಪ್ರೋಟೋಕಾಲ್ ಸರ್ವರ್‌ಗಳಿಗೆ Entra ID ಪ್ರಾಮಾಣೀಕರಣ
 
 ## ಪರಿಚಯ

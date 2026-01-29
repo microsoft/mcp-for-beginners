@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7b4d8d17fc1f501468cce40c3651aed1",
-  "translation_date": "2025-12-11T15:11:39+00:00",
-  "source_file": "05-AdvancedTopics/mcp-scaling/README.md",
-  "language_code": "te"
-}
--->
 # స్కేలబిలిటీ మరియు హై-పర్ఫార్మెన్స్ MCP
 
 ఎంటర్‌ప్రైజ్ డిప్లాయ్‌మెంట్‌ల కోసం, MCP అమలు ఎక్కువ వాల్యూమ్ అభ్యర్థనలను తక్కువ లేటెన్సీతో నిర్వహించాల్సి ఉంటుంది.

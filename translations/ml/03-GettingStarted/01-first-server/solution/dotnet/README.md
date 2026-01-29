@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "92af35e8c34923031f3d228dffad9ebb",
-  "translation_date": "2025-12-11T13:12:36+00:00",
-  "source_file": "03-GettingStarted/01-first-server/solution/dotnet/README.md",
-  "language_code": "ml"
-}
--->
 # ഈ സാമ്പിൾ പ്രവർത്തിപ്പിക്കൽ
 
 ## -1- ആശ്രിതങ്ങൾ ഇൻസ്റ്റാൾ ചെയ്യുക

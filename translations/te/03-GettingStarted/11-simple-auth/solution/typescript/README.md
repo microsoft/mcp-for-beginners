@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "3880d89fa60abc699e1a17a82ae514ef",
-  "translation_date": "2025-12-11T13:23:08+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/solution/typescript/README.md",
-  "language_code": "te"
-}
--->
 # నమూనా నడపండి
 
 ## ఆధారాలు ఇన్‌స్టాల్ చేయండి

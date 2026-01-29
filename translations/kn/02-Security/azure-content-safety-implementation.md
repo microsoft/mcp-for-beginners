@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1b6c746d9e190deba4d8765267ffb94e",
-  "translation_date": "2025-12-11T11:33:32+00:00",
-  "source_file": "02-Security/azure-content-safety-implementation.md",
-  "language_code": "kn"
-}
--->
 # MCP ಜೊತೆಗೆ Azure ವಿಷಯ ಸುರಕ್ಷತೆ ಅನುಷ್ಠಾನಗೊಳಿಸುವುದು
 
 ಪ್ರಾಂಪ್ಟ್ ಇಂಜೆಕ್ಷನ್, ಟೂಲ್ ವಿಷಕಾರಕತೆ ಮತ್ತು ಇತರ AI-ನಿರ್ದಿಷ್ಟ ದುರ್ಬಲತೆಗಳ ವಿರುದ್ಧ MCP ಭದ್ರತೆಯನ್ನು ಬಲಪಡಿಸಲು, Azure ವಿಷಯ ಸುರಕ್ಷತೆಯನ್ನು ಸಂಯೋಜಿಸುವುದು ಅತ್ಯಂತ ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ.

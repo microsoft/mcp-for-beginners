@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6ebbb78b04c9b1f6c2367c713524fc95",
-  "translation_date": "2025-12-11T13:10:23+00:00",
-  "source_file": "03-GettingStarted/01-first-server/solution/typescript/README.md",
-  "language_code": "te"
-}
--->
 # ఈ నమూనాను నడపడం
 
 మీకు `uv` ను ఇన్‌స్టాల్ చేయాలని సిఫార్సు చేయబడింది కానీ ఇది తప్పనిసరి కాదు, [సూచనలు](https://docs.astral.sh/uv/#highlights) చూడండి

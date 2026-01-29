@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "999c5e7623c1e2d5e5a07c2feb39eb67",
-  "translation_date": "2025-12-11T17:01:49+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/README.md",
-  "language_code": "te"
-}
--->
 # వాతావరణ MCP సర్వర్
 
 ఇది మాక్ ప్రతిస్పందనలతో వాతావరణ సాధనాలను అమలు చేసే Python లో ఒక నమూనా MCP సర్వర్. ఇది మీ స్వంత MCP సర్వర్ కోసం ఒక మౌలిక నిర్మాణంగా ఉపయోగించవచ్చు. ఇది క్రింది లక్షణాలను కలిగి ఉంది:

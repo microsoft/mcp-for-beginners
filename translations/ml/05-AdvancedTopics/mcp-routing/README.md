@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2f1b473818b5a6cc9a9bbf777fffa6d4",
-  "translation_date": "2025-12-11T16:29:38+00:00",
-  "source_file": "05-AdvancedTopics/mcp-routing/README.md",
-  "language_code": "ml"
-}
--->
 # മോഡൽ കോൺടെക്സ്റ്റ് പ്രോട്ടോക്കോളിലെ റൂട്ടിംഗ്
 
 MCP ഇക്കോസിസ്റ്റത്തിൽ ആവശ്യമായ മോഡലുകൾ, ടൂളുകൾ, അല്ലെങ്കിൽ സേവനങ്ങളിലേക്ക് അഭ്യർത്ഥനകൾ നയിക്കുന്നതിന് റൂട്ടിംഗ് അനിവാര്യമാണ്.

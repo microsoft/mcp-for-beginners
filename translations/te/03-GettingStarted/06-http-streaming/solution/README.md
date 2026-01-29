@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "96dbf17071ab774595ab8777468f0c83",
-  "translation_date": "2025-12-11T13:24:08+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/README.md",
-  "language_code": "te"
-}
--->
 ప్రతి రన్‌టైమ్ కోసం పరిష్కారాలు ఇక్కడ ఉన్నాయి:
 
 - [Python](./python/README.md)

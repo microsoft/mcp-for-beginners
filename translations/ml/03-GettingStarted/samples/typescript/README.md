@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "d1fd6d5079bee9fe4f6ed9cfd8031d98",
-  "translation_date": "2025-12-11T12:48:38+00:00",
-  "source_file": "03-GettingStarted/samples/typescript/README.md",
-  "language_code": "ml"
-}
--->
 # സാമ്പിൾ
 
 ഇത് ഒരു MCP സെർവറിനുള്ള ടൈപ്പ്സ്ക്രിപ്റ്റ് സാമ്പിൾ ആണ്

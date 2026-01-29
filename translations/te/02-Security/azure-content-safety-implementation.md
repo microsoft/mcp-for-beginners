@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1b6c746d9e190deba4d8765267ffb94e",
-  "translation_date": "2025-12-11T11:32:36+00:00",
-  "source_file": "02-Security/azure-content-safety-implementation.md",
-  "language_code": "te"
-}
--->
 # MCPతో Azure కంటెంట్ సేఫ్టీ అమలు
 
 ప్రాంప్ట్ ఇంజెక్షన్, టూల్ విషపూరణ మరియు ఇతర AI-స్పెసిఫిక్ సున్నితత్వాలపై MCP భద్రతను బలోపేతం చేయడానికి, Azure కంటెంట్ సేఫ్టీని సమగ్రపరచడం అత్యంత సిఫార్సు చేయబడింది.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "3b3c9c3f033e59a30c92b5895e0dc9fd",
-  "translation_date": "2025-12-11T14:38:44+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/02-Security/README.md",
-  "language_code": "te"
-}
--->
 # భద్రత మరియు బహుళ-అద్దెదారితనం
 
 ## 🎯 ఈ ప్రయోగశాల ఏమి కవర్ చేస్తుంది

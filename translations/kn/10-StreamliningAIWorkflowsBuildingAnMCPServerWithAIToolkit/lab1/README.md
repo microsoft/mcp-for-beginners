@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2aa9dbc165e104764fa57e8a0d3f1c73",
-  "translation_date": "2025-12-11T16:46:40+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab1/README.md",
-  "language_code": "kn"
-}
--->
 # 🚀 ಮೋಡ್ಯೂಲ್ 1: AI ಟೂಲ್‌ಕಿಟ್ ಮೂಲಭೂತಗಳು
 
 [![ಅವಧಿ](https://img.shields.io/badge/Duration-15%20minutes-blue.svg)]()

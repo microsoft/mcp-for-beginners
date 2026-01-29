@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "c8c1a74c74f6c2d42d511daf12d0b6c5",
-  "translation_date": "2025-12-11T13:43:54+00:00",
-  "source_file": "09-CaseStudy/docs-mcp/solution/README.md",
-  "language_code": "te"
-}
--->
 ప్రతి రన్‌టైమ్ కోసం పరిష్కారాలు ఇవి:
 - [Python](./python/README.md)
 

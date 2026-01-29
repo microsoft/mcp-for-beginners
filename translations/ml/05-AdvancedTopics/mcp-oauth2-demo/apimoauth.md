@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "32c9a4263be08f9050c8044bb26267c4",
-  "translation_date": "2025-12-11T16:18:40+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/apimoauth.md",
-  "language_code": "ml"
-}
--->
 # Spring AI MCP ആപ്പ് Azure Container Apps-ലേക്ക് ഡിപ്ലോയ് ചെയ്യൽ
 
  ([OAuth2 ഉപയോഗിച്ച് Spring AI MCP സെർവറുകൾ സുരക്ഷിതമാക്കൽ](https://spring.io/blog/2025/04/02/mcp-server-oauth2)) *ചിത്രം: Spring Authorization Server ഉപയോഗിച്ച് സുരക്ഷിതമാക്കിയ Spring AI MCP സെർവർ. സെർവർ ക്ലയന്റുകൾക്ക് ആക്സസ് ടോക്കണുകൾ നൽകുകയും വരവു അഭ്യർത്ഥനകളിൽ അവ പരിശോധിക്കുകയും ചെയ്യുന്നു (മൂലം: Spring ബ്ലോഗ്) ([OAuth2 ഉപയോഗിച്ച് Spring AI MCP സെർവറുകൾ സുരക്ഷിതമാക്കൽ](https://spring.io/blog/2025/04/02/mcp-server-oauth2#:~:text=,server%20with%20the%20MCP%20inspector)).* Spring MCP സെർവർ ഡിപ്ലോയ് ചെയ്യാൻ, അത് ഒരു കണ്ടെയ്‌നറായി നിർമ്മിച്ച് Azure Container Apps-ൽ external ingress ഉപയോഗിച്ച് പ്രവർത്തിപ്പിക്കുക. ഉദാഹരണത്തിന്, Azure CLI ഉപയോഗിച്ച് നിങ്ങൾക്ക് താഴെപറയുന്ന കമാൻഡ് ഓടിക്കാം:

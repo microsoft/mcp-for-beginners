@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "3b3c9c3f033e59a30c92b5895e0dc9fd",
-  "translation_date": "2025-12-11T14:40:27+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/02-Security/README.md",
-  "language_code": "ml"
-}
--->
 # സുരക്ഷയും മൾട്ടി-ടെനൻസിയും
 
 ## 🎯 ഈ ലാബ് എന്താണ് ഉൾക്കൊള്ളുന്നത്

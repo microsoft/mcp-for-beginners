@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ebdb86db46113f1cbd59ce4c74caaa79",
-  "translation_date": "2025-12-11T15:14:28+00:00",
-  "source_file": "05-AdvancedTopics/mcp-root-contexts/README.md",
-  "language_code": "te"
-}
--->
 # MCP రూట్ కాంటెక్స్ట్‌లు
 
 రూట్ కాంటెక్స్ట్‌లు మోడల్ కాంటెక్స్ట్ ప్రోటోకాల్‌లో ఒక ప్రాథమిక భావన, ఇవి అనేక అభ్యర్థనలు మరియు సెషన్లలో సంభాషణ చరిత్ర మరియు పంచుకున్న స్థితిని నిలుపుకునేందుకు ఒక స్థిరమైన పొరను అందిస్తాయి.

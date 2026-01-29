@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "706b9b075dc484b73a053e6e9c709b4b",
-  "translation_date": "2025-12-11T16:31:50+00:00",
-  "source_file": "04-PracticalImplementation/samples/python/README.md",
-  "language_code": "te"
-}
--->
 # మోడల్ కాంటెక్స్ట్ ప్రోటోకాల్ (MCP) పైథాన్ అమలు
 
 ఈ రిపోజిటరీలో మోడల్ కాంటెక్స్ట్ ప్రోటోకాల్ (MCP) యొక్క పైథాన్ అమలు ఉంది, ఇది MCP ప్రమాణాన్ని ఉపయోగించి కమ్యూనికేట్ చేసే సర్వర్ మరియు క్లయింట్ అప్లికేషన్‌లను ఎలా సృష్టించాలో చూపిస్తుంది.

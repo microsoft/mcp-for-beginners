@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "3f68294760a11dd3fdd175bd7f904a92",
-  "translation_date": "2025-12-11T13:20:51+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/code/basic/python/README.md",
-  "language_code": "ml"
-}
--->
 # സാമ്പിൾ പ്രവർത്തിപ്പിക്കുക
 
 ഈ സാമ്പിൾ ഒരു MCP സെർവർ ആരംഭിക്കുന്നു, സാധുവായ Authorization ഹെഡർ പരിശോധിക്കുന്ന ഒരു മിഡിൽവെയർ ഉപയോഗിച്ച്.

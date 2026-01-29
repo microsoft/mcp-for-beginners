@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6d6315e03f591fb5a39be91da88585dc",
-  "translation_date": "2025-12-11T12:57:20+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/typescript/README.md",
-  "language_code": "ml"
-}
--->
 # ഈ സാമ്പിൾ പ്രവർത്തിപ്പിക്കൽ
 
 ഈ സാമ്പിളിൽ ക്ലയന്റിൽ ഒരു LLM ഉണ്ടാകണം. ഇത് പ്രവർത്തിപ്പിക്കാൻ നിങ്ങൾക്ക് Codespaces-ൽ ഇത് ഓടിക്കുകയോ GitHub-ൽ ഒരു വ്യക്തിഗത ആക്‌സസ് ടോക്കൺ സജ്ജമാക്കുകയോ വേണം.

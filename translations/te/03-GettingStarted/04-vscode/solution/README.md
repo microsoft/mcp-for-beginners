@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-12-11T13:16:51+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "te"
-}
--->
 # నమూనా నడపడం
 
 ఇక్కడ మీరు ఇప్పటికే పని చేస్తున్న సర్వర్ కోడ్ ఉన్నట్లు అనుకుంటున్నాము. దయచేసి ముందటి అధ్యాయాలలోని ఒక సర్వర్‌ను కనుగొనండి.

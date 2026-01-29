@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0f27f8c14853621d982185e6bbdd1dc6",
-  "translation_date": "2025-12-11T12:50:24+00:00",
-  "source_file": "03-GettingStarted/samples/javascript/README.md",
-  "language_code": "te"
-}
--->
 # నమూనా
 
 ఇది MCP సర్వర్ కోసం ఒక జావాస్క్రిప్ట్ నమూనా

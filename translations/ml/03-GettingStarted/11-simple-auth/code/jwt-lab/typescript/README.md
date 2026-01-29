@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0f756f0d5b712847bd7d21b5e45c4166",
-  "translation_date": "2025-12-11T13:20:08+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/code/jwt-lab/typescript/README.md",
-  "language_code": "ml"
-}
--->
 # സാമ്പിൾ പ്രവർത്തിപ്പിക്കുക
 
 ## ആശ്രിതങ്ങൾ ഇൻസ്റ്റാൾ ചെയ്യുക
