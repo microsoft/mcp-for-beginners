@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "333a03e51f90bdf3e6f1ba1694c73f36",
-  "translation_date": "2025-07-17T11:51:20+00:00",
-  "source_file": "05-AdvancedTopics/mcp-realtimesearch/README.md",
-  "language_code": "sr"
-}
--->
 ## Одрицање од одговорности за примере кода
 
 > **Важно обавештење**: Примери кода у наставку показују интеграцију Model Context Protocol (MCP) са функционалношћу веб претраге. Иако прате обрасце и структуре званичних MCP SDK-ова, поједностављени су у образовне сврхе.

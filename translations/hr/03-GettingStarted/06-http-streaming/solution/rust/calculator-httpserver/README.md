@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6240e78bb87f91bece16f8742472aeef",
-  "translation_date": "2025-08-19T17:57:59+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/rust/calculator-httpserver/README.md",
-  "language_code": "hr"
-}
--->
 # Pokretanje ovog primjera
 
 ## -1- Instalirajte ovisnosti i izgradite projekt

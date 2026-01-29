@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8358c13b5b6877e475674697cdc1a904",
-  "translation_date": "2025-08-19T17:34:49+00:00",
-  "source_file": "03-GettingStarted/02-client/complete_examples.md",
-  "language_code": "sr"
-}
--->
 # Комплетни Примери MCP Клијената
 
 Овај директоријум садржи комплетне, функционалне примере MCP клијената на различитим програмским језицима. Сваки клијент демонстрира пуну функционалност описану у главном README.md туторијалу.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "193889b580c86bbb1e4f577114a5ce4e",
-  "translation_date": "2025-07-17T12:05:15+00:00",
-  "source_file": "05-AdvancedTopics/mcp-sampling/README.md",
-  "language_code": "hr"
-}
--->
 # Uzorkovanje u Model Context Protocolu
 
 Uzorkovanje je moćna značajka MCP-a koja omogućuje serverima da putem klijenta zatraže LLM dovršetke, omogućujući sofisticirano agentno ponašanje uz održavanje sigurnosti i privatnosti. Prava konfiguracija uzorkovanja može značajno poboljšati kvalitetu i performanse odgovora. MCP pruža standardizirani način kontrole načina na koji modeli generiraju tekst s određenim parametrima koji utječu na nasumičnost, kreativnost i koherentnost.

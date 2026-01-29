@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "706b9b075dc484b73a053e6e9c709b4b",
-  "translation_date": "2025-07-13T23:35:28+00:00",
-  "source_file": "04-PracticalImplementation/samples/python/README.md",
-  "language_code": "sl"
-}
--->
 # Protokol modelnega konteksta (MCP) Python implementacija
 
 Ta repozitorij vsebuje Python implementacijo protokola modelnega konteksta (MCP), ki prikazuje, kako ustvariti tako strežniško kot odjemalsko aplikacijo, ki komunicirata z uporabo standarda MCP.

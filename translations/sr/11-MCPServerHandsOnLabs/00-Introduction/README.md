@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1d375ae049e52c89287d533daa4ba348",
-  "translation_date": "2025-09-30T23:22:59+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/00-Introduction/README.md",
-  "language_code": "sr"
-}
--->
 # Увод у MCP интеграцију са базом података
 
 ## 🎯 Шта овај лабораторијски рад покрива

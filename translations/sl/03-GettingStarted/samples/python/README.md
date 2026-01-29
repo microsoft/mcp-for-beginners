@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
-  "translation_date": "2025-10-17T20:07:50+00:00",
-  "source_file": "03-GettingStarted/samples/python/README.md",
-  "language_code": "sl"
-}
--->
 # MCP strežnik kalkulatorja (Python)
 
 Preprosta implementacija strežnika Model Context Protocol (MCP) v Pythonu, ki omogoča osnovno funkcionalnost kalkulatorja.

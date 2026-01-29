@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "32c9a4263be08f9050c8044bb26267c4",
-  "translation_date": "2025-07-14T00:36:51+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/apimoauth.md",
-  "language_code": "sr"
-}
--->
 # Деплојмент Spring AI MCP апликације на Azure Container Apps
 
  ([Securing Spring AI MCP servers with OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2)) *Слика: Spring AI MCP сервер заштићен Spring Authorization Server-ом. Сервер издаје приступне токене клијентима и верификује их приликом долазних захтева (извор: Spring блог) ([Securing Spring AI MCP servers with OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2#:~:text=,server%20with%20the%20MCP%20inspector)).* Да бисте деплојовали Spring MCP сервер, направите га као контејнер и користите Azure Container Apps са спољним приступом. На пример, помоћу Azure CLI можете покренути:

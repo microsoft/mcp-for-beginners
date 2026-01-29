@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-07-13T19:46:31+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "hr"
-}
--->
 Ovo odgovara pokretanju naredbe poput: `node build/index.js`.
 
 - Promijenite ovaj unos servera tako da odgovara lokaciji vaše server datoteke ili onome što je potrebno za pokretanje servera, ovisno o odabranom runtime-u i lokaciji servera.

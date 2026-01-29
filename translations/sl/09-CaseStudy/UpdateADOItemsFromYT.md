@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "14a2dfbea55ef735660a06bd6bdfe5f3",
-  "translation_date": "2025-07-14T06:16:14+00:00",
-  "source_file": "09-CaseStudy/UpdateADOItemsFromYT.md",
-  "language_code": "sl"
-}
--->
 # Študija primera: Posodabljanje elementov Azure DevOps z YouTube podatki z MCP
 
 > **Opozorilo:** Obstajajo že obstoječa spletna orodja in poročila, ki lahko avtomatizirajo postopek posodabljanja elementov Azure DevOps z podatki s platform, kot je YouTube. Naslednji primer je podan zgolj kot vzorčni primer uporabe, ki prikazuje, kako se orodja MCP lahko uporabijo za avtomatizacijo in integracijske naloge.

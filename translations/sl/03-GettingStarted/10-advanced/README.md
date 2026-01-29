@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1de8367745088b9fcd4746ea4cc5a161",
-  "translation_date": "2025-10-06T15:57:38+00:00",
-  "source_file": "03-GettingStarted/10-advanced/README.md",
-  "language_code": "sl"
-}
--->
 # Napredna uporaba strežnika
 
 V MCP SDK sta na voljo dva različna tipa strežnikov: običajni strežnik in strežnik na nizki ravni. Običajno uporabljate običajni strežnik za dodajanje funkcionalnosti. V nekaterih primerih pa se boste morda želeli zanašati na strežnik na nizki ravni, na primer:

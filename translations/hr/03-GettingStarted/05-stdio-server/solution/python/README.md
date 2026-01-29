@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "68cd055621b3370948a5a1dff7bedc9a",
-  "translation_date": "2025-08-26T20:37:22+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/python/README.md",
-  "language_code": "hr"
-}
--->
 # MCP stdio Server - Python rješenje
 
 > **⚠️ Važno**: Ovo rješenje je ažurirano kako bi koristilo **stdio transport** prema preporuci MCP specifikacije 2025-06-18. Izvorni SSE transport je ukinut.

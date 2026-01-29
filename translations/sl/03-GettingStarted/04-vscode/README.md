@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "d940b5e0af75e3a3a4d1c3179120d1d9",
-  "translation_date": "2025-08-26T18:25:59+00:00",
-  "source_file": "03-GettingStarted/04-vscode/README.md",
-  "language_code": "sl"
-}
--->
 # Uporaba strežnika v načinu agenta GitHub Copilot
 
 Visual Studio Code in GitHub Copilot lahko delujeta kot odjemalec in uporabljata MCP strežnik. Zakaj bi to želeli? No, to pomeni, da lahko vse funkcije MCP strežnika uporabljate neposredno v svojem IDE-ju. Predstavljajte si, da dodate na primer GitHubov MCP strežnik – to bi omogočilo upravljanje GitHuba prek ukazov v naravnem jeziku namesto tipkanja specifičnih ukazov v terminalu. Ali pa si zamislite karkoli, kar bi lahko izboljšalo vašo izkušnjo razvijalca, vse nadzorovano z naravnim jezikom. Zdaj vidite prednosti, kajne?

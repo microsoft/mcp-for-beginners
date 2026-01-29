@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "af27b0acfae6caa134d9701453884df8",
-  "translation_date": "2025-10-07T00:11:56+00:00",
-  "source_file": "study_guide.md",
-  "language_code": "hr"
-}
--->
 # Protokol konteksta modela (MCP) za početnike - Vodič za učenje
 
 Ovaj vodič pruža pregled strukture i sadržaja repozitorija za kurikulum "Protokol konteksta modela (MCP) za početnike". Koristite ovaj vodič kako biste učinkovito navigirali repozitorijem i maksimalno iskoristili dostupne resurse.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-07-13T19:46:44+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "sl"
-}
--->
 To ustreza zagonu ukaza, kot je ta: `node build/index.js`.
 
 - Spremenite ta vnos za strežnik tako, da ustreza lokaciji vaše datoteke strežnika ali pa temu, kar je potrebno za zagon vašega strežnika glede na izbrano okolje za izvajanje in lokacijo strežnika.

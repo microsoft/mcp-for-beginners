@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "882aae00f1d3f007e20d03b883f44afa",
-  "translation_date": "2025-07-13T22:19:27+00:00",
-  "source_file": "03-GettingStarted/samples/csharp/README.md",
-  "language_code": "hr"
-}
--->
 # Basic Calculator MCP Service
 
 Ova usluga pruža osnovne kalkulatorske operacije putem Model Context Protocol (MCP). Dizajnirana je kao jednostavan primjer za početnike koji uče o implementacijama MCP-a.

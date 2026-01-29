@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5b00b8a8971a07d2d8803be4c9f138f8",
-  "translation_date": "2025-10-07T01:06:38+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/README.md",
-  "language_code": "hr"
-}
--->
 # Jednostavna autentifikacija
 
 MCP SDK-ovi podržavaju korištenje OAuth 2.1, što je prilično složen proces koji uključuje koncepte poput auth servera, resource servera, slanja vjerodajnica, dobivanja koda, zamjene koda za bearer token, sve dok konačno ne dobijete podatke o resursima. Ako niste upoznati s OAuth-om, koji je sjajan za implementaciju, dobra je ideja započeti s osnovnom razinom autentifikacije i postupno graditi prema sve boljoj sigurnosti. Zato ovaj poglavlje postoji – da vas vodi prema naprednijoj autentifikaciji.

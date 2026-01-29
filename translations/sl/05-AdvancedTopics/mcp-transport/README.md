@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "cf3e88e4c0b2d9d65c7f300986bd8c6c",
-  "translation_date": "2025-12-19T17:10:43+00:00",
-  "source_file": "05-AdvancedTopics/mcp-transport/README.md",
-  "language_code": "sl"
-}
--->
 # MCP Prilagojeni Prenosi - Napredni Vodnik za Implementacijo
 
 Protokol Model Context (MCP) omogoča prilagodljivost v mehanizmih prenosa, kar omogoča prilagojene implementacije za specializirana podjetniška okolja. Ta napredni vodnik raziskuje prilagojene implementacije prenosa z uporabo Azure Event Grid in Azure Event Hubs kot praktičnih primerov za gradnjo razširljivih, v oblaku naravnanih MCP rešitev.

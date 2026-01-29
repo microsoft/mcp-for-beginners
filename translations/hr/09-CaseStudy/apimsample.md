@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2228721599c0c8673de83496b4d7d7a9",
-  "translation_date": "2025-08-19T17:40:53+00:00",
-  "source_file": "09-CaseStudy/apimsample.md",
-  "language_code": "hr"
-}
--->
 # Studija slučaja: Izlaganje REST API-ja u API Managementu kao MCP poslužitelja
 
 Azure API Management je usluga koja pruža Gateway iznad vaših API krajnjih točaka. Funkcionira tako da Azure API Management djeluje kao proxy ispred vaših API-ja i odlučuje što učiniti s dolaznim zahtjevima.

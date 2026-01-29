@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6e562d7e5a77c8982da4aa8f762ad1d8",
-  "translation_date": "2025-07-14T03:18:58+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security-entra/README.md",
-  "language_code": "sl"
-}
--->
 # Zavarovanje AI potekov dela: Entra ID overjanje za strežnike Model Context Protocol
 
 ## Uvod

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e5ea5e7582f70008ea9bec3b3820f20a",
-  "translation_date": "2025-07-13T23:20:30+00:00",
-  "source_file": "04-PracticalImplementation/samples/java/containerapp/README.md",
-  "language_code": "sr"
-}
--->
 ## Архитектура система
 
 Овај пројекат демонстрира веб апликацију која користи проверу безбедности садржаја пре него што проследи корисничке упите ка сервису калкулатора преко Model Context Protocol (MCP).

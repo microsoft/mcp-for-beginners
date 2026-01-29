@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1de8367745088b9fcd4746ea4cc5a161",
-  "translation_date": "2025-10-06T15:57:13+00:00",
-  "source_file": "03-GettingStarted/10-advanced/README.md",
-  "language_code": "hr"
-}
--->
 # Napredno korištenje servera
 
 Postoje dvije različite vrste servera koje MCP SDK nudi: vaš uobičajeni server i server niske razine. Obično koristite uobičajeni server za dodavanje značajki. Međutim, u nekim slučajevima možda ćete se osloniti na server niske razine, primjerice:

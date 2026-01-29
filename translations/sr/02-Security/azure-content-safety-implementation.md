@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1b6c746d9e190deba4d8765267ffb94e",
-  "translation_date": "2025-07-17T13:51:45+00:00",
-  "source_file": "02-Security/azure-content-safety-implementation.md",
-  "language_code": "sr"
-}
--->
 # Имплементација Azure Content Safety са MCP-ом
 
 Да бисте ојачали безбедност MCP-а против убризгавања упита, тровања алата и других специфичних AI рањивости, препоручује се интеграција Azure Content Safety.

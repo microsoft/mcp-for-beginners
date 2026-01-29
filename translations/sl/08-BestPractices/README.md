@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "b62150e27d4b7b5797ee41146d176e6b",
-  "translation_date": "2025-08-19T18:11:08+00:00",
-  "source_file": "08-BestPractices/README.md",
-  "language_code": "sl"
-}
--->
 # Najboljše prakse za razvoj MCP
 
 [![Najboljše prakse za razvoj MCP](../../../translated_images/sl/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.png)](https://youtu.be/W56H9W7x-ao)

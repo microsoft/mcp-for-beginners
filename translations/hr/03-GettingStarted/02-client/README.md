@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "94c80ae71fb9971e9b57b51ab0912121",
-  "translation_date": "2025-08-19T17:58:27+00:00",
-  "source_file": "03-GettingStarted/02-client/README.md",
-  "language_code": "hr"
-}
--->
 # Kreiranje klijenta
 
 Klijenti su prilagođene aplikacije ili skripte koje komuniciraju izravno s MCP poslužiteljem kako bi zatražili resurse, alate i upite. Za razliku od korištenja alata za inspekciju, koji pruža grafičko sučelje za interakciju s poslužiteljem, pisanje vlastitog klijenta omogućuje programsku i automatiziranu interakciju. Ovo omogućuje programerima integraciju MCP mogućnosti u vlastite radne procese, automatizaciju zadataka i izgradnju prilagođenih rješenja prilagođenih specifičnim potrebama.

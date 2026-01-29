@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2228721599c0c8673de83496b4d7d7a9",
-  "translation_date": "2025-08-19T18:04:23+00:00",
-  "source_file": "09-CaseStudy/apimsample.md",
-  "language_code": "sl"
-}
--->
 # Študija primera: Izpostavitev REST API-ja v API Management kot MCP strežnik
 
 Azure API Management je storitev, ki zagotavlja prehod (Gateway) nad vašimi API končnimi točkami. Deluje tako, da Azure API Management deluje kot posrednik pred vašimi API-ji in lahko odloča, kaj storiti z dohodnimi zahtevami.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9a6a4d3497921d2f6d9699f0a6a1890c",
-  "translation_date": "2025-09-09T22:19:51+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/README.md",
-  "language_code": "sl"
-}
--->
 # Weather MCP Strežnik
 
 To je vzorčni MCP strežnik v Pythonu, ki implementira orodja za vreme z lažnimi odgovori. Uporabite ga lahko kot osnovo za svoj MCP strežnik. Vključuje naslednje funkcionalnosti:

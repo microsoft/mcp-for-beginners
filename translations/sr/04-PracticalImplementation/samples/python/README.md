@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "706b9b075dc484b73a053e6e9c709b4b",
-  "translation_date": "2025-07-13T23:35:13+00:00",
-  "source_file": "04-PracticalImplementation/samples/python/README.md",
-  "language_code": "sr"
-}
--->
 # Model Context Protocol (MCP) Python Implementacija
 
 Ovaj repozitorijum sadrži Python implementaciju Model Context Protocol-a (MCP), koja pokazuje kako napraviti i serversku i klijentsku aplikaciju koje komuniciraju koristeći MCP standard.

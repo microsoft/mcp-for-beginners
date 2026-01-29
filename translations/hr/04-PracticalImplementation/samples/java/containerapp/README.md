@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e5ea5e7582f70008ea9bec3b3820f20a",
-  "translation_date": "2025-07-13T23:20:45+00:00",
-  "source_file": "04-PracticalImplementation/samples/java/containerapp/README.md",
-  "language_code": "hr"
-}
--->
 ## Arhitektura sustava
 
 Ovaj projekt prikazuje web aplikaciju koja koristi provjeru sigurnosti sadržaja prije nego što korisničke upite proslijedi kalkulatoru putem Model Context Protocol (MCP).

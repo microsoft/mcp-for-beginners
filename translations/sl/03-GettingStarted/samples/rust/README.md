@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ffc7f32ed12664b640175f27f0a997a",
-  "translation_date": "2025-08-19T18:23:47+00:00",
-  "source_file": "03-GettingStarted/samples/rust/README.md",
-  "language_code": "sl"
-}
--->
 To je vzorčni primer za MCP strežnik v programskem jeziku Rust
 
 Tukaj je prikazan del kalkulatorja:

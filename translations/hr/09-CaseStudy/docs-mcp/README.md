@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4319d291c9d124ecafea52b3d04bfa0e",
-  "translation_date": "2025-07-14T06:30:18+00:00",
-  "source_file": "09-CaseStudy/docs-mcp/README.md",
-  "language_code": "hr"
-}
--->
 # Case Study: Povezivanje s Microsoft Learn Docs MCP serverom iz klijentske aplikacije
 
 Jeste li se ikada našli kako istovremeno koristite stranice s dokumentacijom, Stack Overflow i bezbroj kartica pretraživača, dok pokušavate riješiti problem u svom kodu? Možda imate drugi monitor samo za dokumentaciju ili stalno prebacujete između IDE-a i preglednika. Zar ne bi bilo bolje da dokumentaciju imate integriranu izravno u svoj radni tijek—u svoje aplikacije, IDE ili čak vlastite prilagođene alate? U ovoj studiji slučaja pokazat ćemo kako to napraviti povezivanjem izravno na Microsoft Learn Docs MCP server iz vlastite klijentske aplikacije.

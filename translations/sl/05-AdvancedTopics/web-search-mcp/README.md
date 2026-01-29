@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "151265c9a2124d7c53e04d16ee3fb73b",
-  "translation_date": "2025-07-17T12:21:57+00:00",
-  "source_file": "05-AdvancedTopics/web-search-mcp/README.md",
-  "language_code": "sl"
-}
--->
 # Lekcija: Gradnja MCP strežnika za spletno iskanje
 
 Ta poglavje prikazuje, kako zgraditi resničnega AI agenta, ki se povezuje z zunanjimi API-ji, obdeluje različne vrste podatkov, upravlja napake in usklajuje več orodij — vse v produkcijsko pripravljenem formatu. Videli boste:
