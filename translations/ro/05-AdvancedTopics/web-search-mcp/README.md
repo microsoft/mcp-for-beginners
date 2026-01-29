@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "151265c9a2124d7c53e04d16ee3fb73b",
-  "translation_date": "2025-07-17T11:14:52+00:00",
-  "source_file": "05-AdvancedTopics/web-search-mcp/README.md",
-  "language_code": "ro"
-}
--->
 # Lecția: Construirea unui server MCP pentru căutare web
 
 Acest capitol arată cum să construiești un agent AI real care se integrează cu API-uri externe, gestionează tipuri diverse de date, tratează erorile și coordonează mai multe unelte — toate într-un format pregătit pentru producție. Vei vedea:

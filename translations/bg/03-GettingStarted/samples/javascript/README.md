@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0f27f8c14853621d982185e6bbdd1dc6",
-  "translation_date": "2025-07-13T22:36:03+00:00",
-  "source_file": "03-GettingStarted/samples/javascript/README.md",
-  "language_code": "bg"
-}
--->
 # Пример
 
 Това е пример на JavaScript за MCP Server

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "882aae00f1d3f007e20d03b883f44afa",
-  "translation_date": "2025-07-13T22:18:56+00:00",
-  "source_file": "03-GettingStarted/samples/csharp/README.md",
-  "language_code": "ro"
-}
--->
 # Serviciu Calculator de Bază MCP
 
 Acest serviciu oferă operații de bază pentru calculator prin Model Context Protocol (MCP). Este conceput ca un exemplu simplu pentru începători care învață despre implementările MCP.

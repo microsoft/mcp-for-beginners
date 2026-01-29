@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9351493ad29390d37f64bc6d84a03db5",
-  "translation_date": "2025-12-19T16:21:40+00:00",
-  "source_file": "02-Security/mcp-security-controls-2025.md",
-  "language_code": "bg"
-}
--->
 # MCP Контрол на сигурността - Актуализация декември 2025
 
 > **Текущ стандарт**: Този документ отразява изискванията за сигурност на [MCP Спецификация 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) и официалните [MCP Най-добри практики за сигурност](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).

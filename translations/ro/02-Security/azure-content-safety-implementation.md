@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1b6c746d9e190deba4d8765267ffb94e",
-  "translation_date": "2025-07-17T13:51:28+00:00",
-  "source_file": "02-Security/azure-content-safety-implementation.md",
-  "language_code": "ro"
-}
--->
 # Implementarea Azure Content Safety cu MCP
 
 Pentru a întări securitatea MCP împotriva injecțiilor de prompt, otrăvirii uneltelor și altor vulnerabilități specifice AI, se recomandă cu tărie integrarea Azure Content Safety.

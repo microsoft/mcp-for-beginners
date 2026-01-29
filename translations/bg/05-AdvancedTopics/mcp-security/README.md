@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "997c7119766a69552e23d7d681316902",
-  "translation_date": "2025-08-19T16:55:47+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security/README.md",
-  "language_code": "bg"
-}
--->
 # MCP Най-добри практики за сигурност - Ръководство за напреднали
 
 > **Текущ стандарт**: Това ръководство отразява изискванията за сигурност от [MCP Спецификация 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) и официалните [MCP Най-добри практики за сигурност](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices).

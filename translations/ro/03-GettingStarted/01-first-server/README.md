@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8fdac7600a5f4722643d0f14e15ac259",
-  "translation_date": "2025-12-11T07:57:16+00:00",
-  "source_file": "03-GettingStarted/01-first-server/README.md",
-  "language_code": "ro"
-}
--->
 # Început cu MCP
 
 Bine ați venit la primii pași cu Model Context Protocol (MCP)! Fie că sunteți nou în MCP sau doriți să vă aprofundați înțelegerea, acest ghid vă va conduce prin procesul esențial de configurare și dezvoltare. Veți descoperi cum MCP permite integrarea fără probleme între modelele AI și aplicații și veți învăța cum să vă pregătiți rapid mediul pentru a construi și testa soluții bazate pe MCP.

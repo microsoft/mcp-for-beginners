@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1b000fd6e1b04c047578bfc5d07d54eb",
-  "translation_date": "2025-08-19T17:09:20+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md",
-  "language_code": "bg"
-}
--->
 # Оптимизиране на AI работни процеси: Създаване на MCP сървър с AI Toolkit
 
 ## 🎯 Преглед

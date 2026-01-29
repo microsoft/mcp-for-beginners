@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "14a2dfbea55ef735660a06bd6bdfe5f3",
-  "translation_date": "2025-07-14T06:15:15+00:00",
-  "source_file": "09-CaseStudy/UpdateADOItemsFromYT.md",
-  "language_code": "sk"
-}
--->
 # Prípadová štúdia: Aktualizácia položiek Azure DevOps pomocou údajov z YouTube s MCP
 
 > **Disclaimer:** Existujú online nástroje a reporty, ktoré dokážu automatizovať proces aktualizácie položiek Azure DevOps údajmi z platforiem ako YouTube. Nasledujúci scenár slúži len ako ukážkový príklad, ako možno nástroje MCP využiť na automatizáciu a integráciu.

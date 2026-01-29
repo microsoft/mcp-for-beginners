@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "772b18b1ca4fb34af68e12eb2f2defda",
-  "translation_date": "2025-09-30T23:35:55+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/07-Semantic-Search/README.md",
-  "language_code": "bg"
-}
--->
 # Интеграция на семантично търсене
 
 ## 🎯 Какво обхваща този лабораторен урок

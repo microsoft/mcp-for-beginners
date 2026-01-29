@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6d6315e03f591fb5a39be91da88585dc",
-  "translation_date": "2025-07-13T19:21:04+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/typescript/README.md",
-  "language_code": "sk"
-}
--->
 # Spustenie tohto príkladu
 
 Tento príklad vyžaduje mať LLM na klientovi. LLM potrebuje, aby ste to buď spustili v Codespaces, alebo si nastavili osobný prístupový token v GitHub, aby to fungovalo.

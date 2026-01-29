@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "32c9a4263be08f9050c8044bb26267c4",
-  "translation_date": "2025-07-14T00:35:54+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/apimoauth.md",
-  "language_code": "ro"
-}
--->
 # Implementarea aplicației Spring AI MCP pe Azure Container Apps
 
 ([Securizarea serverelor Spring AI MCP cu OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2)) *Figură: Server Spring AI MCP securizat cu Spring Authorization Server. Serverul emite tokenuri de acces către clienți și le validează la cererile primite (sursa: blog Spring) ([Securizarea serverelor Spring AI MCP cu OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2#:~:text=,server%20with%20the%20MCP%20inspector)).* Pentru a implementa serverul Spring MCP, construiți-l ca un container și folosiți Azure Container Apps cu ingress extern. De exemplu, folosind Azure CLI puteți rula:

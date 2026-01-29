@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4117a42f3e7baae859515f7b8b911e56",
-  "translation_date": "2025-08-19T16:35:03+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/README.md",
-  "language_code": "ro"
-}
--->
 Iată soluțiile pentru fiecare mediu de execuție:
 
 - [TypeScript](./typescript/README.md)

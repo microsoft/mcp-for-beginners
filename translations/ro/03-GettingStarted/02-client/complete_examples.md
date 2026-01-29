@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8358c13b5b6877e475674697cdc1a904",
-  "translation_date": "2025-08-19T16:38:45+00:00",
-  "source_file": "03-GettingStarted/02-client/complete_examples.md",
-  "language_code": "ro"
-}
--->
 # Exemple Complete de Clienți MCP
 
 Acest director conține exemple complete și funcționale de clienți MCP în diferite limbaje de programare. Fiecare client demonstrează întreaga funcționalitate descrisă în tutorialul principal din README.md.

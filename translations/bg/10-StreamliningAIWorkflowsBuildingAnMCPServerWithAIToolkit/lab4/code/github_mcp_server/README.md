@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9a6a4d3497921d2f6d9699f0a6a1890c",
-  "translation_date": "2025-09-09T22:15:54+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/README.md",
-  "language_code": "bg"
-}
--->
 # Weather MCP Server
 
 Това е примерен MCP сървър на Python, който реализира инструменти за времето с фиктивни отговори. Може да се използва като основа за ваш собствен MCP сървър. Включва следните функции:

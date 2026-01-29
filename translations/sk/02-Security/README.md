@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "cf48858182f366e9d3f080fb0d3bfc37",
-  "translation_date": "2025-12-19T15:46:12+00:00",
-  "source_file": "02-Security/README.md",
-  "language_code": "sk"
-}
--->
 # MCP Security: Komplexná ochrana pre AI systémy
 
 [![MCP Security Best Practices](../../../translated_images/sk/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)

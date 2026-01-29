@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "a603abf726c7d946f0b0f05a3a42d8ac",
-  "translation_date": "2025-09-30T23:19:07+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/11-Monitoring/README.md",
-  "language_code": "bg"
-}
--->
 # Мониторинг и наблюдаемост
 
 ## 🎯 Какво обхваща този лабораторен урок

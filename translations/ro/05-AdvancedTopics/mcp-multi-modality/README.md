@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e1d142978227a4bfc468bb0accab62e2",
-  "translation_date": "2025-07-17T11:16:39+00:00",
-  "source_file": "05-AdvancedTopics/mcp-multi-modality/README.md",
-  "language_code": "ro"
-}
--->
 # Integrare Multi-Modală
 
 Aplicațiile multi-modale devin tot mai importante în AI, permițând interacțiuni mai bogate și sarcini mai complexe. Model Context Protocol (MCP) oferă un cadru pentru construirea aplicațiilor multi-modale care pot gestiona diverse tipuri de date, cum ar fi text, imagini și audio.

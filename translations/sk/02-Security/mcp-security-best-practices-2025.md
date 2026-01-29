@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e30aaf6b178137fa6668efc1b20851d5",
-  "translation_date": "2025-12-19T15:42:56+00:00",
-  "source_file": "02-Security/mcp-security-best-practices-2025.md",
-  "language_code": "sk"
-}
--->
 # MCP Bezpečnostné Najlepšie Praktiky - Aktualizácia December 2025
 
 > **Dôležité**: Tento dokument odráža najnovšie bezpečnostné požiadavky [MCP Špecifikácie 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) a oficiálne [MCP Bezpečnostné Najlepšie Praktiky](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices). Vždy sa odvolávajte na aktuálnu špecifikáciu pre najnovšie usmernenia.

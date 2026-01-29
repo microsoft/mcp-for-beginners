@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1de8367745088b9fcd4746ea4cc5a161",
-  "translation_date": "2025-10-06T15:55:39+00:00",
-  "source_file": "03-GettingStarted/10-advanced/README.md",
-  "language_code": "ro"
-}
--->
 # Utilizare avansată a serverului
 
 Există două tipuri diferite de servere expuse în MCP SDK: serverul obișnuit și serverul de nivel scăzut. De obicei, folosești serverul obișnuit pentru a adăuga funcționalități. Totuși, în anumite cazuri, este necesar să te bazezi pe serverul de nivel scăzut, cum ar fi:

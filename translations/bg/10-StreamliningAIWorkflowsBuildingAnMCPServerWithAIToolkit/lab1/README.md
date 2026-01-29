@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2aa9dbc165e104764fa57e8a0d3f1c73",
-  "translation_date": "2025-07-14T07:34:55+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab1/README.md",
-  "language_code": "bg"
-}
--->
 # 🚀 Модул 1: Основи на AI Toolkit
 
 [![Продължителност](https://img.shields.io/badge/Duration-15%20minutes-blue.svg)]()

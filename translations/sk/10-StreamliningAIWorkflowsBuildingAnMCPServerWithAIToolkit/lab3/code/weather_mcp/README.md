@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "999c5e7623c1e2d5e5a07c2feb39eb67",
-  "translation_date": "2025-07-14T08:32:14+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/README.md",
-  "language_code": "sk"
-}
--->
 # Weather MCP Server
 
 Toto je ukážkový MCP Server v Pythone, ktorý implementuje nástroje na počasie s falošnými odpoveďami. Môže slúžiť ako základ pre váš vlastný MCP Server. Obsahuje nasledujúce funkcie:

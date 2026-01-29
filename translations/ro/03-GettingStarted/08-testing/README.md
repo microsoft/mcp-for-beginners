@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4e34e34e84f013e73c7eaa6d09884756",
-  "translation_date": "2025-07-13T22:03:46+00:00",
-  "source_file": "03-GettingStarted/08-testing/README.md",
-  "language_code": "ro"
-}
--->
 ## Testare și depanare
 
 Înainte de a începe testarea serverului tău MCP, este important să înțelegi uneltele disponibile și cele mai bune practici pentru depanare. Testarea eficientă asigură că serverul tău funcționează conform așteptărilor și te ajută să identifici și să rezolvi rapid problemele. Secțiunea următoare prezintă metode recomandate pentru validarea implementării MCP.

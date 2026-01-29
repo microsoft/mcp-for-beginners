@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1d9dc83260576b76f272d330ed93c51f",
-  "translation_date": "2025-07-13T22:11:11+00:00",
-  "source_file": "03-GettingStarted/09-deployment/README.md",
-  "language_code": "ro"
-}
--->
 # Implementarea serverelor MCP
 
 Implementarea serverului MCP permite altora să acceseze uneltele și resursele acestuia dincolo de mediul tău local. Există mai multe strategii de implementare de luat în considerare, în funcție de cerințele tale legate de scalabilitate, fiabilitate și ușurința în administrare. Mai jos vei găsi îndrumări pentru implementarea serverelor MCP local, în containere și în cloud.

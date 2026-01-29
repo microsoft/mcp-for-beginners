@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-07-13T19:45:44+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "sk"
-}
--->
 To zodpovedá spusteniu príkazu ako `node build/index.js`.
 
 - Zmeňte tento záznam servera tak, aby ukazoval na absolútnu cestu k vášmu serveru vrátane potrebného úplného príkazu na spustenie.

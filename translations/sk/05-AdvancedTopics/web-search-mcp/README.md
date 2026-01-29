@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "151265c9a2124d7c53e04d16ee3fb73b",
-  "translation_date": "2025-07-17T10:59:42+00:00",
-  "source_file": "05-AdvancedTopics/web-search-mcp/README.md",
-  "language_code": "sk"
-}
--->
 # Lekcia: Vytvorenie Web Search MCP Servera
 
 Táto kapitola ukazuje, ako vytvoriť reálneho AI agenta, ktorý sa integruje s externými API, spracováva rôzne typy dát, zvláda chyby a koordinuje viacero nástrojov – to všetko v produkčnej kvalite. Uvidíte:
