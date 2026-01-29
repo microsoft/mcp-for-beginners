@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1d9dc83260576b76f272d330ed93c51f",
-  "translation_date": "2025-07-13T22:10:08+00:00",
-  "source_file": "03-GettingStarted/09-deployment/README.md",
-  "language_code": "id"
-}
--->
 # Men-deploy Server MCP
 
 Men-deploy server MCP Anda memungkinkan orang lain mengakses alat dan sumber dayanya di luar lingkungan lokal Anda. Ada beberapa strategi deployment yang bisa dipertimbangkan, tergantung pada kebutuhan Anda terkait skalabilitas, keandalan, dan kemudahan pengelolaan. Di bawah ini Anda akan menemukan panduan untuk men-deploy server MCP secara lokal, dalam container, dan ke cloud.

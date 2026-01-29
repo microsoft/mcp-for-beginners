@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5061d7e2ae9eea9cbaae77c1a020b318",
-  "translation_date": "2025-12-19T14:34:09+00:00",
-  "source_file": "02-Security/mcp-best-practices.md",
-  "language_code": "ms"
-}
--->
 # Amalan Terbaik Keselamatan MCP 2025
 
 Panduan komprehensif ini menggariskan amalan terbaik keselamatan penting untuk melaksanakan sistem Protokol Konteks Model (MCP) berdasarkan **Spesifikasi MCP 2025-11-25** terkini dan piawaian industri semasa. Amalan ini menangani kedua-dua kebimbangan keselamatan tradisional dan ancaman khusus AI yang unik kepada pelaksanaan MCP.

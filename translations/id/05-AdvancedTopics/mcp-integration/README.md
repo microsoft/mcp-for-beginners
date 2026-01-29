@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f84eaea79c8fa9ab318a494f40891814",
-  "translation_date": "2025-08-18T17:34:24+00:00",
-  "source_file": "05-AdvancedTopics/mcp-integration/README.md",
-  "language_code": "id"
-}
--->
 # Integrasi Perusahaan
 
 Saat membangun MCP Server dalam konteks perusahaan, sering kali Anda perlu mengintegrasikan dengan platform dan layanan AI yang sudah ada. Bagian ini membahas cara mengintegrasikan MCP dengan sistem perusahaan seperti Azure OpenAI dan Microsoft AI Foundry, memungkinkan kemampuan AI canggih dan orkestrasi alat.

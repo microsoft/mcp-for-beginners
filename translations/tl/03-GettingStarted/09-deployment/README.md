@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1d9dc83260576b76f272d330ed93c51f",
-  "translation_date": "2025-07-13T22:10:24+00:00",
-  "source_file": "03-GettingStarted/09-deployment/README.md",
-  "language_code": "tl"
-}
--->
 # Pag-deploy ng MCP Servers
 
 Ang pag-deploy ng iyong MCP server ay nagbibigay-daan sa iba na ma-access ang mga tools at resources nito lampas sa iyong lokal na kapaligiran. Mayroong iba't ibang mga estratehiya sa pag-deploy na dapat isaalang-alang, depende sa iyong pangangailangan para sa scalability, pagiging maaasahan, at kadalian sa pamamahala. Sa ibaba, makikita mo ang mga gabay para sa pag-deploy ng MCP servers nang lokal, sa mga container, at sa cloud.

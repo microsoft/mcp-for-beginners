@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1de8367745088b9fcd4746ea4cc5a161",
-  "translation_date": "2025-10-06T15:52:33+00:00",
-  "source_file": "03-GettingStarted/10-advanced/README.md",
-  "language_code": "id"
-}
--->
 # Penggunaan Server Lanjutan
 
 Ada dua jenis server yang tersedia dalam MCP SDK, yaitu server biasa dan server tingkat rendah. Biasanya, Anda akan menggunakan server biasa untuk menambahkan fitur. Namun, dalam beberapa kasus, Anda mungkin ingin menggunakan server tingkat rendah, seperti:

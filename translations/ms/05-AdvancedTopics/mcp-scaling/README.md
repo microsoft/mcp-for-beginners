@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7b4d8d17fc1f501468cce40c3651aed1",
-  "translation_date": "2025-07-17T08:07:38+00:00",
-  "source_file": "05-AdvancedTopics/mcp-scaling/README.md",
-  "language_code": "ms"
-}
--->
 # Kebolehsuaian dan MCP Berprestasi Tinggi
 
 Untuk pengedaran perusahaan, pelaksanaan MCP sering kali perlu mengendalikan jumlah permintaan yang tinggi dengan kelewatan yang minimum.

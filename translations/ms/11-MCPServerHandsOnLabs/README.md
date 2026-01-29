@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "83d32e5c5dd838d4b87a730cab88db77",
-  "translation_date": "2025-09-30T19:31:41+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/README.md",
-  "language_code": "ms"
-}
--->
 # 🚀 Pelayan MCP dengan PostgreSQL - Panduan Pembelajaran Lengkap
 
 ## 🧠 Gambaran Keseluruhan Laluan Pembelajaran Integrasi Pangkalan Data MCP

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "151265c9a2124d7c53e04d16ee3fb73b",
-  "translation_date": "2025-07-17T08:19:44+00:00",
-  "source_file": "05-AdvancedTopics/web-search-mcp/README.md",
-  "language_code": "tl"
-}
--->
 # Lesson: Paggawa ng Web Search MCP Server
 
 Ipinapakita sa kabanatang ito kung paano bumuo ng isang totoong AI agent na nakakabit sa mga external API, humahawak ng iba't ibang uri ng data, nagma-manage ng mga error, at nag-oorganisa ng maraming tools—lahat sa isang production-ready na format. Makikita mo dito:

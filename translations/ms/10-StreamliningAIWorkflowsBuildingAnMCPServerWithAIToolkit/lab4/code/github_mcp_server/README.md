@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9a6a4d3497921d2f6d9699f0a6a1890c",
-  "translation_date": "2025-09-09T22:05:41+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/README.md",
-  "language_code": "ms"
-}
--->
 # Pelayan MCP Cuaca
 
 Ini adalah contoh Pelayan MCP dalam Python yang melaksanakan alat cuaca dengan respons tiruan. Ia boleh digunakan sebagai asas untuk membina Pelayan MCP anda sendiri. Ia termasuk ciri-ciri berikut:

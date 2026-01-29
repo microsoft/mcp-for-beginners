@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0bc7bd48f55f1565f1d95ccb2c16f728",
-  "translation_date": "2025-07-13T23:08:30+00:00",
-  "source_file": "04-PracticalImplementation/samples/csharp/README.md",
-  "language_code": "id"
-}
--->
 # Contoh
 
 Contoh sebelumnya menunjukkan cara menggunakan proyek .NET lokal dengan tipe `stdio`. Dan bagaimana menjalankan server secara lokal di dalam container. Ini adalah solusi yang baik dalam banyak situasi. Namun, terkadang berguna untuk menjalankan server secara remote, misalnya di lingkungan cloud. Di sinilah tipe `http` digunakan.

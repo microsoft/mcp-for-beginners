@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e9490aedc71f99bc774af57b207a7adb",
-  "translation_date": "2025-07-13T21:54:15+00:00",
-  "source_file": "03-GettingStarted/07-aitk/solution/README.md",
-  "language_code": "tl"
-}
--->
 # 📘 Solusyon sa Takdang-Aralin: Pagpapalawak ng Iyong Calculator MCP Server gamit ang Square Root Tool
 
 ## Pangkalahatang-ideya

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5b00b8a8971a07d2d8803be4c9f138f8",
-  "translation_date": "2025-10-07T00:57:29+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/README.md",
-  "language_code": "id"
-}
--->
 # Autentikasi Sederhana
 
 SDK MCP mendukung penggunaan OAuth 2.1 yang, sejujurnya, merupakan proses yang cukup rumit melibatkan konsep seperti server autentikasi, server sumber daya, mengirimkan kredensial, mendapatkan kode, menukarkan kode untuk token bearer hingga akhirnya Anda dapat mengakses data sumber daya Anda. Jika Anda belum terbiasa dengan OAuth, yang merupakan hal yang sangat baik untuk diterapkan, ada baiknya memulai dengan tingkat autentikasi dasar dan secara bertahap meningkatkan keamanan. Itulah alasan bab ini ada, untuk membantu Anda membangun autentikasi yang lebih canggih.

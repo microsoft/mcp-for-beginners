@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5061d7e2ae9eea9cbaae77c1a020b318",
-  "translation_date": "2025-12-19T14:21:32+00:00",
-  "source_file": "02-Security/mcp-best-practices.md",
-  "language_code": "id"
-}
--->
 # Praktik Terbaik Keamanan MCP 2025
 
 Panduan komprehensif ini menguraikan praktik terbaik keamanan penting untuk mengimplementasikan sistem Model Context Protocol (MCP) berdasarkan **Spesifikasi MCP 2025-11-25** terbaru dan standar industri saat ini. Praktik ini menangani baik kekhawatiran keamanan tradisional maupun ancaman khusus AI yang unik untuk penerapan MCP.

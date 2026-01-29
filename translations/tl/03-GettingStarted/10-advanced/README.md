@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1de8367745088b9fcd4746ea4cc5a161",
-  "translation_date": "2025-10-06T15:53:17+00:00",
-  "source_file": "03-GettingStarted/10-advanced/README.md",
-  "language_code": "tl"
-}
--->
 # Advanced server usage
 
 May dalawang uri ng server na ipinapakita sa MCP SDK: ang normal na server at ang low-level server. Karaniwan, ginagamit mo ang regular na server upang magdagdag ng mga tampok dito. Gayunpaman, sa ilang mga kaso, mas mainam na umasa sa low-level server tulad ng:

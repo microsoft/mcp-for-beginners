@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1d9dc83260576b76f272d330ed93c51f",
-  "translation_date": "2025-07-13T22:10:16+00:00",
-  "source_file": "03-GettingStarted/09-deployment/README.md",
-  "language_code": "ms"
-}
--->
 # Menggunakan Pelayan MCP
 
 Menggunakan pelayan MCP anda membolehkan orang lain mengakses alat dan sumbernya di luar persekitaran tempatan anda. Terdapat beberapa strategi penggunaan yang boleh dipertimbangkan, bergantung pada keperluan anda untuk kebolehsuaian, kebolehpercayaan, dan kemudahan pengurusan. Di bawah ini anda akan menemui panduan untuk menggunakan pelayan MCP secara tempatan, dalam kontena, dan ke awan.

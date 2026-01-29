@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e8bbc7982284fe177dd4be5e7f2b3357",
-  "translation_date": "2025-12-19T14:41:22+00:00",
-  "source_file": "changelog.md",
-  "language_code": "tl"
-}
--->
 # Changelog: MCP para sa Mga Nagsisimula na Kurikulum
 
 Ang dokumentong ito ay nagsisilbing talaan ng lahat ng mahahalagang pagbabago na ginawa sa Model Context Protocol (MCP) para sa kurikulum ng mga nagsisimula. Ang mga pagbabago ay naitala sa reverse chronological order (pinakabago muna).

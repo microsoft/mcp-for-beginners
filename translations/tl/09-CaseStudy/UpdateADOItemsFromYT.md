@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "14a2dfbea55ef735660a06bd6bdfe5f3",
-  "translation_date": "2025-07-14T06:14:28+00:00",
-  "source_file": "09-CaseStudy/UpdateADOItemsFromYT.md",
-  "language_code": "tl"
-}
--->
 # Case Study: Pag-update ng Azure DevOps Items mula sa YouTube Data gamit ang MCP
 
 > **Disclaimer:** May mga umiiral nang online tools at ulat na maaaring mag-automate ng proseso ng pag-update ng Azure DevOps items gamit ang data mula sa mga platform tulad ng YouTube. Ang sumusunod na senaryo ay ibinigay bilang halimbawa lamang upang ipakita kung paano maaaring gamitin ang MCP tools para sa automation at integration na mga gawain.

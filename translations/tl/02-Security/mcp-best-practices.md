@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5061d7e2ae9eea9cbaae77c1a020b318",
-  "translation_date": "2025-12-19T14:46:47+00:00",
-  "source_file": "02-Security/mcp-best-practices.md",
-  "language_code": "tl"
-}
--->
 # MCP Security Best Practices 2025
 
 Ang komprehensibong gabay na ito ay naglalahad ng mahahalagang pinakamahusay na kasanayan sa seguridad para sa pagpapatupad ng Model Context Protocol (MCP) systems batay sa pinakabagong **MCP Specification 2025-11-25** at kasalukuyang mga pamantayan sa industriya. Tinatalakay ng mga kasanayang ito ang parehong tradisyunal na mga alalahanin sa seguridad at mga AI-specific na banta na natatangi sa mga deployment ng MCP.

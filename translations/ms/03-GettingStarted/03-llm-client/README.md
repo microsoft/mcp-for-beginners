@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "75638575f993c152965ae2271c4da938",
-  "translation_date": "2025-12-19T14:37:56+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/README.md",
-  "language_code": "ms"
-}
--->
 # Mewujudkan klien dengan LLM
 
 Setakat ini, anda telah melihat bagaimana untuk mewujudkan pelayan dan klien. Klien telah dapat memanggil pelayan secara eksplisit untuk menyenaraikan alat, sumber dan arahan. Walau bagaimanapun, ini bukan pendekatan yang sangat praktikal. Pengguna anda hidup dalam era agen dan mengharapkan untuk menggunakan arahan dan berkomunikasi dengan LLM untuk berbuat demikian. Bagi pengguna anda, mereka tidak kisah jika anda menggunakan MCP atau tidak untuk menyimpan keupayaan anda tetapi mereka mengharapkan untuk menggunakan bahasa semula jadi untuk berinteraksi. Jadi bagaimana kita menyelesaikan ini? Penyelesaiannya adalah dengan menambah LLM ke klien.

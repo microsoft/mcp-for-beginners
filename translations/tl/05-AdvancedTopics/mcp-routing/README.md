@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2f1b473818b5a6cc9a9bbf777fffa6d4",
-  "translation_date": "2025-07-14T21:49:52+00:00",
-  "source_file": "05-AdvancedTopics/mcp-routing/README.md",
-  "language_code": "tl"
-}
--->
 ## Dynamic Tool Routing
 
 Tinitiyak ng tool routing na ang mga tawag sa tool ay naituturo sa pinakaangkop na serbisyo base sa konteksto. Halimbawa, ang tawag sa weather tool ay maaaring kailangang ituro sa regional endpoint base sa lokasyon ng gumagamit, o ang calculator tool ay maaaring kailangang gumamit ng partikular na bersyon ng API.

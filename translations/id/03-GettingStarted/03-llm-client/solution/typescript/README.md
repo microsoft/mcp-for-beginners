@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6d6315e03f591fb5a39be91da88585dc",
-  "translation_date": "2025-07-13T19:20:36+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/typescript/README.md",
-  "language_code": "id"
-}
--->
 # Menjalankan contoh ini
 
 Contoh ini melibatkan penggunaan LLM di sisi klien. LLM membutuhkan Anda untuk menjalankan ini di Codespaces atau mengatur personal access token di GitHub agar dapat bekerja.

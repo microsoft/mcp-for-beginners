@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "75638575f993c152965ae2271c4da938",
-  "translation_date": "2025-12-19T14:51:33+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/README.md",
-  "language_code": "tl"
-}
--->
 # Paglikha ng kliyente gamit ang LLM
 
 Sa ngayon, nakita mo na kung paano gumawa ng server at kliyente. Nakapag-call na ang kliyente sa server nang tahasan upang ilista ang mga tools, resources, at prompts nito. Gayunpaman, hindi ito masyadong praktikal na paraan. Ang iyong user ay nabubuhay sa agentic era at inaasahan na gagamit ng prompts at makikipag-ugnayan sa isang LLM para gawin ito. Para sa iyong user, hindi mahalaga kung gagamit ka ng MCP o hindi para iimbak ang iyong mga kakayahan ngunit inaasahan nilang gagamit ng natural na wika sa pakikipag-ugnayan. Paano natin ito sosolusyunan? Ang solusyon ay ang pagdagdag ng LLM sa kliyente.

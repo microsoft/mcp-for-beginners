@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "706b9b075dc484b73a053e6e9c709b4b",
-  "translation_date": "2025-07-13T23:34:13+00:00",
-  "source_file": "04-PracticalImplementation/samples/python/README.md",
-  "language_code": "tl"
-}
--->
 # Model Context Protocol (MCP) Python Implementation
 
 Ang repositoryong ito ay naglalaman ng Python na implementasyon ng Model Context Protocol (MCP), na nagpapakita kung paano gumawa ng parehong server at client na aplikasyon na nag-uusap gamit ang MCP standard.

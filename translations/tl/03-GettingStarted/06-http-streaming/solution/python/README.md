@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
-  "translation_date": "2025-08-18T18:28:39+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
-  "language_code": "tl"
-}
--->
 # Pagsasagawa ng Halimbawang Ito
 
 Narito kung paano patakbuhin ang classic HTTP streaming server at client, pati na rin ang MCP streaming server at client gamit ang Python.

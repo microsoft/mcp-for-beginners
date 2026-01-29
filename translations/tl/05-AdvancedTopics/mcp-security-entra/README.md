@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6e562d7e5a77c8982da4aa8f762ad1d8",
-  "translation_date": "2025-07-14T03:11:35+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security-entra/README.md",
-  "language_code": "tl"
-}
--->
 # Pagpapatibay ng Seguridad sa AI Workflows: Entra ID Authentication para sa Model Context Protocol Servers
 
 ## Panimula  

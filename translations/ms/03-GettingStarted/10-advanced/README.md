@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1de8367745088b9fcd4746ea4cc5a161",
-  "translation_date": "2025-10-06T15:52:55+00:00",
-  "source_file": "03-GettingStarted/10-advanced/README.md",
-  "language_code": "ms"
-}
--->
 # Penggunaan pelayan lanjutan
 
 Terdapat dua jenis pelayan yang didedahkan dalam MCP SDK, iaitu pelayan biasa dan pelayan tahap rendah. Biasanya, anda akan menggunakan pelayan biasa untuk menambah ciri-ciri padanya. Walau bagaimanapun, dalam beberapa kes, anda mungkin ingin bergantung kepada pelayan tahap rendah seperti:

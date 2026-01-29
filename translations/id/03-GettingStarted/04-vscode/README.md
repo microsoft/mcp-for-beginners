@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "d940b5e0af75e3a3a4d1c3179120d1d9",
-  "translation_date": "2025-08-26T18:04:04+00:00",
-  "source_file": "03-GettingStarted/04-vscode/README.md",
-  "language_code": "id"
-}
--->
 # Menggunakan Server dari GitHub Copilot dalam Mode Agen
 
 Visual Studio Code dan GitHub Copilot dapat berfungsi sebagai klien dan menggunakan MCP Server. Mengapa kita ingin melakukannya, Anda mungkin bertanya? Nah, itu berarti fitur apa pun yang dimiliki MCP Server sekarang dapat digunakan langsung dari dalam IDE Anda. Bayangkan Anda menambahkan, misalnya, server MCP GitHub, ini akan memungkinkan Anda mengontrol GitHub melalui perintah berbasis prompt alih-alih mengetik perintah tertentu di terminal. Atau bayangkan hal lain secara umum yang dapat meningkatkan pengalaman pengembang Anda, semuanya dikendalikan oleh bahasa alami. Sekarang Anda mulai melihat keuntungannya, bukan?

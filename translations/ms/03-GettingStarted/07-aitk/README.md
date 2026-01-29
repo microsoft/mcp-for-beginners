@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "98bcd044860716da5819e31c152813b7",
-  "translation_date": "2025-08-18T18:02:12+00:00",
-  "source_file": "03-GettingStarted/07-aitk/README.md",
-  "language_code": "ms"
-}
--->
 # Menggunakan pelayan dari sambungan AI Toolkit untuk Visual Studio Code
 
 Apabila anda membina agen AI, ia bukan hanya tentang menghasilkan respons pintar; ia juga tentang memberikan keupayaan kepada agen anda untuk mengambil tindakan. Di sinilah Model Context Protocol (MCP) memainkan peranan. MCP memudahkan agen untuk mengakses alat dan perkhidmatan luaran dengan cara yang konsisten. Anggap ia seperti menyambungkan agen anda kepada kotak alat yang boleh *benar-benar* digunakan.

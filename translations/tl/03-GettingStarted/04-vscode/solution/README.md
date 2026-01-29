@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-07-13T19:44:53+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "tl"
-}
--->
 Ito ay tumutukoy sa pagpapatakbo ng isang utos tulad ng: `node build/index.js`.
 
 - Baguhin ang entry ng server upang tumugma sa lokasyon ng iyong server file o kung ano ang kinakailangan upang simulan ang iyong server depende sa iyong napiling runtime at lokasyon ng server.
