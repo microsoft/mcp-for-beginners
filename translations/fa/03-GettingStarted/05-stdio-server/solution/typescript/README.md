@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9d799c4a30a8383e0a74af9153262972",
-  "translation_date": "2025-08-26T20:05:49+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/typescript/README.md",
-  "language_code": "fa"
-}
--->
 # MCP stdio Server - راه‌حل TypeScript
 
 > **⚠️ مهم**: این راه‌حل به‌روزرسانی شده است تا از **حمل‌ونقل stdio** استفاده کند، همان‌طور که در مشخصات MCP 2025-06-18 توصیه شده است. روش حمل‌ونقل SSE اصلی منسوخ شده است.

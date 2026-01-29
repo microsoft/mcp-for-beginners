@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "fcf1e12b62102bf7d16b78deb2b163b7",
-  "translation_date": "2025-07-29T01:04:03+00:00",
-  "source_file": "06-CommunityContributions/README.md",
-  "language_code": "fa"
-}
--->
 # جامعه و مشارکت‌ها
 
 [![چگونه به MCP کمک کنیم: ابزارها، مستندات، کد و بیشتر](../../../translated_images/fa/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.png)](https://youtu.be/v1pvCYAWpRE)

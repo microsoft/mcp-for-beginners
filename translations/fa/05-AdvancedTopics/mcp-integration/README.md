@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f84eaea79c8fa9ab318a494f40891814",
-  "translation_date": "2025-07-22T08:41:44+00:00",
-  "source_file": "05-AdvancedTopics/mcp-integration/README.md",
-  "language_code": "fa"
-}
--->
 # یکپارچه‌سازی سازمانی
 
 هنگام ساخت سرورهای MCP در یک محیط سازمانی، اغلب نیاز به یکپارچه‌سازی با پلتفرم‌ها و خدمات هوش مصنوعی موجود دارید. این بخش به نحوه یکپارچه‌سازی MCP با سیستم‌های سازمانی مانند Azure OpenAI و Microsoft AI Foundry می‌پردازد که قابلیت‌های پیشرفته هوش مصنوعی و هماهنگی ابزارها را ممکن می‌سازد.

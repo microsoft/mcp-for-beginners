@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7074b9f4c8cd147c1c10f569d8508c82",
-  "translation_date": "2025-07-13T18:31:03+00:00",
-  "source_file": "03-GettingStarted/02-client/solution/java/README.md",
-  "language_code": "ur"
-}
--->
 # MCP Java Client - کیلکولیٹر ڈیمو
 
 یہ پروجیکٹ دکھاتا ہے کہ کیسے ایک جاوا کلائنٹ بنایا جائے جو MCP (Model Context Protocol) سرور سے جڑتا ہے اور اس کے ساتھ تعامل کرتا ہے۔ اس مثال میں، ہم چپٹر 01 کے کیلکولیٹر سرور سے کنیکٹ ہوں گے اور مختلف ریاضیاتی عملیات انجام دیں گے۔

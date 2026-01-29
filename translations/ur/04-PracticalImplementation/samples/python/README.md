@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "706b9b075dc484b73a053e6e9c709b4b",
-  "translation_date": "2025-07-13T23:30:24+00:00",
-  "source_file": "04-PracticalImplementation/samples/python/README.md",
-  "language_code": "ur"
-}
--->
 # ماڈل کانٹیکسٹ پروٹوکول (MCP) پائتھن امپلیمنٹیشن
 
 یہ ریپوزیٹری ماڈل کانٹیکسٹ پروٹوکول (MCP) کی پائتھن امپلیمنٹیشن پر مشتمل ہے، جو دکھاتی ہے کہ کس طرح ایک سرور اور کلائنٹ ایپلیکیشن بنائی جاتی ہے جو MCP اسٹینڈرڈ کے ذریعے بات چیت کرتی ہیں۔

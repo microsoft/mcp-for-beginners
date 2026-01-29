@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2228721599c0c8673de83496b4d7d7a9",
-  "translation_date": "2025-08-12T08:04:40+00:00",
-  "source_file": "09-CaseStudy/apimsample.md",
-  "language_code": "fa"
-}
--->
 # مطالعه موردی: انتشار REST API در مدیریت API به عنوان یک سرور MCP
 
 مدیریت API در Azure، سرویسی است که یک Gateway را بر روی نقاط انتهایی API شما فراهم می‌کند. این سرویس به عنوان یک پروکسی در جلوی API‌های شما عمل می‌کند و می‌تواند تصمیم بگیرد که با درخواست‌های ورودی چه کاری انجام دهد.

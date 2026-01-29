@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "32c9a4263be08f9050c8044bb26267c4",
-  "translation_date": "2025-07-14T00:19:59+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/apimoauth.md",
-  "language_code": "fa"
-}
--->
 # استقرار برنامه Spring AI MCP در Azure Container Apps
 
  ([امن‌سازی سرورهای Spring AI MCP با OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2)) *شکل: سرور Spring AI MCP با Spring Authorization Server ایمن شده است. سرور توکن‌های دسترسی را به کلاینت‌ها صادر می‌کند و آن‌ها را در درخواست‌های ورودی اعتبارسنجی می‌کند (منبع: بلاگ Spring) ([امن‌سازی سرورهای Spring AI MCP با OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2#:~:text=,server%20with%20the%20MCP%20inspector)).* برای استقرار سرور Spring MCP، آن را به صورت یک کانتینر بسازید و از Azure Container Apps با ورودی خارجی استفاده کنید. به عنوان مثال، با استفاده از Azure CLI می‌توانید دستور زیر را اجرا کنید:

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0bc7bd48f55f1565f1d95ccb2c16f728",
-  "translation_date": "2025-07-13T23:04:05+00:00",
-  "source_file": "04-PracticalImplementation/samples/csharp/README.md",
-  "language_code": "ur"
-}
--->
 # نمونہ
 
 پچھلا مثال دکھاتا ہے کہ لوکل .NET پروجیکٹ کو `stdio` قسم کے ساتھ کیسے استعمال کیا جائے۔ اور سرور کو لوکل کنٹینر میں کیسے چلایا جائے۔ یہ کئی حالات میں ایک اچھا حل ہے۔ تاہم، سرور کو ریموٹلی چلانا بھی مفید ہو سکتا ہے، جیسے کلاؤڈ ماحول میں۔ یہی وہ جگہ ہے جہاں `http` قسم کام آتی ہے۔

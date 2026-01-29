@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "acd4010e430da00946a154f62847a169",
-  "translation_date": "2025-07-13T21:08:11+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/java/README.md",
-  "language_code": "fa"
-}
--->
 # دمو استریمینگ HTTP ماشین‌حساب
 
 این پروژه استریمینگ HTTP را با استفاده از Server-Sent Events (SSE) و Spring Boot WebFlux نشان می‌دهد. این پروژه شامل دو برنامه است:

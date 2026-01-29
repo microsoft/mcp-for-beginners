@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "882aae00f1d3f007e20d03b883f44afa",
-  "translation_date": "2025-07-13T22:13:25+00:00",
-  "source_file": "03-GettingStarted/samples/csharp/README.md",
-  "language_code": "ur"
-}
--->
 # بنیادی کیلکولیٹر MCP سروس
 
 یہ سروس ماڈل کانٹیکسٹ پروٹوکول (MCP) کے ذریعے بنیادی کیلکولیٹر آپریشنز فراہم کرتی ہے۔ یہ MCP کی امپلیمنٹیشن سیکھنے والے ابتدائی افراد کے لیے ایک سادہ مثال کے طور پر ڈیزائن کی گئی ہے۔

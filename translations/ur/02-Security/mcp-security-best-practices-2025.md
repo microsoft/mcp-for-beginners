@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e30aaf6b178137fa6668efc1b20851d5",
-  "translation_date": "2025-12-19T08:37:01+00:00",
-  "source_file": "02-Security/mcp-security-best-practices-2025.md",
-  "language_code": "ur"
-}
--->
 # MCP سیکیورٹی بہترین طریقے - دسمبر 2025 اپ ڈیٹ
 
 > **اہم**: یہ دستاویز تازہ ترین [MCP وضاحت 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) سیکیورٹی ضروریات اور سرکاری [MCP سیکیورٹی بہترین طریقے](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) کی عکاسی کرتی ہے۔ ہمیشہ سب سے جدید رہنمائی کے لیے موجودہ وضاحت کا حوالہ دیں۔

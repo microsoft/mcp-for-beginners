@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7b4d8d17fc1f501468cce40c3651aed1",
-  "translation_date": "2025-07-16T22:27:32+00:00",
-  "source_file": "05-AdvancedTopics/mcp-scaling/README.md",
-  "language_code": "fa"
-}
--->
 # مقیاس‌پذیری و عملکرد بالا در MCP
 
 برای استقرارهای سازمانی، پیاده‌سازی‌های MCP اغلب باید حجم بالایی از درخواست‌ها را با کمترین تأخیر مدیریت کنند.

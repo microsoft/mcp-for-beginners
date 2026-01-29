@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6d6315e03f591fb5a39be91da88585dc",
-  "translation_date": "2025-07-13T19:18:36+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/typescript/README.md",
-  "language_code": "ur"
-}
--->
 # اس نمونے کو چلانا
 
 یہ نمونہ کلائنٹ پر ایک LLM رکھنے سے متعلق ہے۔ LLM کو چاہیے کہ آپ اسے Codespaces میں چلائیں یا GitHub میں ایک ذاتی رسائی ٹوکن سیٹ اپ کریں تاکہ یہ کام کرے۔

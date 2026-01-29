@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-07-13T19:39:12+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "fa"
-}
--->
 این معادل اجرای دستوری مانند این است: `node build/index.js`.
 
 - این ورودی سرور را تغییر دهید تا متناسب با محل فایل سرور شما باشد یا با آنچه برای راه‌اندازی سرور شما بسته به زمان اجرای انتخابی و محل سرور لازم است، مطابقت داشته باشد.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "69372338676e01a2c97f42f70fdfbf42",
-  "translation_date": "2025-08-26T20:16:47+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/dotnet/README.md",
-  "language_code": "fa"
-}
--->
 # سرور MCP stdio - راهکار .NET
 
 > **⚠️ مهم**: این راهکار به‌روزرسانی شده است تا از **حمل‌ونقل stdio** استفاده کند، همان‌طور که در مشخصات MCP تاریخ ۱۸-۰۶-۲۰۲۵ توصیه شده است. حمل‌ونقل SSE قدیمی دیگر پشتیبانی نمی‌شود.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "32c9a4263be08f9050c8044bb26267c4",
-  "translation_date": "2025-07-14T00:20:26+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/apimoauth.md",
-  "language_code": "ur"
-}
--->
 # Spring AI MCP ایپ کو Azure Container Apps پر تعینات کرنا
 
  ([Securing Spring AI MCP servers with OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2)) *تصویر: Spring AI MCP سرور کو Spring Authorization Server کے ذریعے محفوظ کیا گیا ہے۔ سرور کلائنٹس کو ایکسیس ٹوکن جاری کرتا ہے اور آنے والی درخواستوں پر ان کی تصدیق کرتا ہے (ماخذ: Spring بلاگ) ([Securing Spring AI MCP servers with OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2#:~:text=,server%20with%20the%20MCP%20inspector)).* Spring MCP سرور کو تعینات کرنے کے لیے، اسے کنٹینر کے طور پر بنائیں اور Azure Container Apps کے ساتھ external ingress استعمال کریں۔ مثال کے طور پر، Azure CLI کے ذریعے آپ یہ کمانڈ چلا سکتے ہیں:

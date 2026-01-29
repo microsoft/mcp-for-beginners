@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "882aae00f1d3f007e20d03b883f44afa",
-  "translation_date": "2025-07-13T22:13:15+00:00",
-  "source_file": "03-GettingStarted/samples/csharp/README.md",
-  "language_code": "fa"
-}
--->
 # سرویس ماشین حساب پایه MCP
 
 این سرویس عملیات پایه ماشین حساب را از طریق پروتکل مدل کانتکست (MCP) ارائه می‌دهد. این سرویس به عنوان یک مثال ساده برای مبتدیانی که می‌خواهند با پیاده‌سازی‌های MCP آشنا شوند طراحی شده است.

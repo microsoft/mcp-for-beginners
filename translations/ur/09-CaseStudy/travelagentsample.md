@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4d3415b9d2bf58bc69be07f945a69e07",
-  "translation_date": "2025-07-14T05:55:17+00:00",
-  "source_file": "09-CaseStudy/travelagentsample.md",
-  "language_code": "ur"
-}
--->
 # کیس اسٹڈی: Azure AI Travel Agents – حوالہ جاتی نفاذ
 
 ## جائزہ

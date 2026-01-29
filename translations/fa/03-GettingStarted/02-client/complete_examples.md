@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8358c13b5b6877e475674697cdc1a904",
-  "translation_date": "2025-08-11T11:26:38+00:00",
-  "source_file": "03-GettingStarted/02-client/complete_examples.md",
-  "language_code": "fa"
-}
--->
 # مثال‌های کامل کلاینت MCP
 
 این پوشه شامل مثال‌های کامل و عملی از کلاینت‌های MCP در زبان‌های برنامه‌نویسی مختلف است. هر کلاینت تمام قابلیت‌هایی که در آموزش اصلی README.md توضیح داده شده را نشان می‌دهد.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e5ea5e7582f70008ea9bec3b3820f20a",
-  "translation_date": "2025-07-13T23:12:13+00:00",
-  "source_file": "04-PracticalImplementation/samples/java/containerapp/README.md",
-  "language_code": "fa"
-}
--->
 ## معماری سیستم
 
 این پروژه یک برنامه وب را نشان می‌دهد که قبل از ارسال درخواست‌های کاربر به سرویس ماشین‌حساب از طریق Model Context Protocol (MCP)، بررسی ایمنی محتوا را انجام می‌دهد.

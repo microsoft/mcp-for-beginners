@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ed9cab32cc67c12d8969b407aa47100a",
-  "translation_date": "2025-07-13T17:52:15+00:00",
-  "source_file": "03-GettingStarted/01-first-server/solution/java/README.md",
-  "language_code": "ur"
-}
--->
 # بنیادی کیلکولیٹر MCP سروس
 
 یہ سروس ماڈل کانٹیکسٹ پروٹوکول (MCP) کے ذریعے بنیادی کیلکولیٹر آپریشنز فراہم کرتی ہے، جو Spring Boot کے WebFlux ٹرانسپورٹ کے ساتھ کام کرتی ہے۔ یہ نئے سیکھنے والوں کے لیے MCP کی امپلیمنٹیشنز کا ایک آسان مثال کے طور پر ڈیزائن کی گئی ہے۔

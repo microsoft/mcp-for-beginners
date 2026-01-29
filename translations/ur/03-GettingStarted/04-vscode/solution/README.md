@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-07-13T19:39:23+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "ur"
-}
--->
 یہ ایک کمانڈ چلانے کے مترادف ہے جیسے: `node build/index.js`۔
 
 - اس سرور انٹری کو اپنی سرور فائل کی جگہ کے مطابق یا آپ کے منتخب کردہ رن ٹائم اور سرور کی جگہ کے مطابق سرور شروع کرنے کے لیے درکار مکمل کمانڈ کے ساتھ تبدیل کریں۔

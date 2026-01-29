@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1b6c746d9e190deba4d8765267ffb94e",
-  "translation_date": "2025-07-17T02:00:31+00:00",
-  "source_file": "02-Security/azure-content-safety-implementation.md",
-  "language_code": "ur"
-}
--->
 # MCP کے ساتھ Azure Content Safety کا نفاذ
 
 MCP کی سیکیورٹی کو پرامپٹ انجیکشن، ٹول پوائزننگ، اور دیگر AI مخصوص خطرات سے محفوظ بنانے کے لیے، Azure Content Safety کو شامل کرنا انتہائی مفید ہے۔

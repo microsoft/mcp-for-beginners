@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "14a2dfbea55ef735660a06bd6bdfe5f3",
-  "translation_date": "2025-07-14T06:09:13+00:00",
-  "source_file": "09-CaseStudy/UpdateADOItemsFromYT.md",
-  "language_code": "ur"
-}
--->
 # کیس اسٹڈی: MCP کے ذریعے YouTube ڈیٹا سے Azure DevOps آئٹمز کو اپ ڈیٹ کرنا
 
 > **Disclaimer:** آن لائن ایسے کئی ٹولز اور رپورٹس موجود ہیں جو YouTube جیسے پلیٹ فارمز سے ڈیٹا لے کر Azure DevOps آئٹمز کو خودکار طریقے سے اپ ڈیٹ کر سکتے ہیں۔ درج ذیل منظرنامہ صرف ایک نمونہ کے طور پر پیش کیا گیا ہے تاکہ دکھایا جا سکے کہ MCP ٹولز کو آٹومیشن اور انٹیگریشن کے کاموں کے لیے کیسے استعمال کیا جا سکتا ہے۔

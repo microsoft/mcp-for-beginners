@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ebdb86db46113f1cbd59ce4c74caaa79",
-  "translation_date": "2025-07-16T23:46:33+00:00",
-  "source_file": "05-AdvancedTopics/mcp-root-contexts/README.md",
-  "language_code": "ur"
-}
--->
 # MCP Root Contexts
 
 Root contexts ماڈل کانٹیکسٹ پروٹوکول کا ایک بنیادی تصور ہیں جو متعدد درخواستوں اور سیشنز کے دوران گفتگو کی تاریخ اور مشترکہ حالت کو برقرار رکھنے کے لیے ایک مستقل سطح فراہم کرتے ہیں۔

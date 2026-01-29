@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9a6a4d3497921d2f6d9699f0a6a1890c",
-  "translation_date": "2025-09-09T21:26:02+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/README.md",
-  "language_code": "fa"
-}
--->
 # سرور MCP هواشناسی
 
 این یک نمونه سرور MCP در پایتون است که ابزارهای هواشناسی را با پاسخ‌های شبیه‌سازی شده پیاده‌سازی می‌کند. می‌توانید از آن به عنوان پایه‌ای برای سرور MCP خود استفاده کنید. این سرور شامل ویژگی‌های زیر است:
