@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e30aaf6b178137fa6668efc1b20851d5",
-  "translation_date": "2025-12-19T18:35:39+00:00",
-  "source_file": "02-Security/mcp-security-best-practices-2025.md",
-  "language_code": "pcm"
-}
--->
 # MCP Security Best Practices - December 2025 Update
 
 > **Important**: Dis dokument dey show di latest [MCP Specification 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) security requirements and official [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices). Always check di current specification for di most up-to-date guidance.

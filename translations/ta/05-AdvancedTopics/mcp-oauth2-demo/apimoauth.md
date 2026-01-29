@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "32c9a4263be08f9050c8044bb26267c4",
-  "translation_date": "2025-10-11T12:09:58+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/apimoauth.md",
-  "language_code": "ta"
-}
--->
 # Spring AI MCP பயன்பாட்டை Azure Container Apps-க்கு வெளியிடுதல்
 
 ([Spring AI MCP சேவையகங்களை OAuth2 மூலம் பாதுகாப்பது](https://spring.io/blog/2025/04/02/mcp-server-oauth2)) *படம்: Spring Authorization Server மூலம் பாதுகாக்கப்பட்ட Spring AI MCP சேவையகம். இந்த சேவையகம் கிளையண்ட்களுக்கு அணுகல் டோக்கன்களை வழங்குகிறது மற்றும் வரும் கோரிக்கைகளில் அவற்றை சரிபார்க்கிறது (மூலம்: Spring blog) ([Spring AI MCP சேவையகங்களை OAuth2 மூலம் பாதுகாப்பது](https://spring.io/blog/2025/04/02/mcp-server-oauth2#:~:text=,server%20with%20the%20MCP%20inspector)).* Spring MCP சேவையகத்தை வெளியிட, அதை ஒரு கன்டெய்னராக உருவாக்கி, Azure Container Apps-இல் வெளிப்புற ingress-ஐ பயன்படுத்தவும். உதாரணமாக, Azure CLI-யை பயன்படுத்தி நீங்கள் இயக்கலாம்:

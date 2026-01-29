@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "195f7287638b77a549acadd96c8f981c",
-  "translation_date": "2025-10-11T12:15:05+00:00",
-  "source_file": "05-AdvancedTopics/mcp-realtimestreaming/README.md",
-  "language_code": "ta"
-}
--->
 # மாடல் சூழல் நெறிமுறை (MCP) - நேரடி தரவோட்டம்
 
 ## கண்ணோட்டம்

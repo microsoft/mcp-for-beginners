@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "cf3e88e4c0b2d9d65c7f300986bd8c6c",
-  "translation_date": "2025-12-19T18:42:05+00:00",
-  "source_file": "05-AdvancedTopics/mcp-transport/README.md",
-  "language_code": "pcm"
-}
--->
 # MCP Custom Transports - Advanced Implementation Guide
 
 Di Model Context Protocol (MCP) dey give beta flexibility for transport mechanisms, wey fit allow custom implementations for special enterprise environments dem. Dis advanced guide go explore custom transport implementations wey dey use Azure Event Grid and Azure Event Hubs as practical examples for how to build scalable, cloud-native MCP solutions.

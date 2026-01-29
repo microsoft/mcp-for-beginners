@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4e34e34e84f013e73c7eaa6d09884756",
-  "translation_date": "2025-11-18T19:21:54+00:00",
-  "source_file": "03-GettingStarted/08-testing/README.md",
-  "language_code": "pcm"
-}
--->
 ## Testing and Debugging
 
 Before you go start to test your MCP server, e good make you sabi di tools wey dey and di best way to debug am. Beta testing go make sure say your server dey work as e suppose and e go help you quick quick find and fix wahala. Di next section go show di recommended way to check your MCP implementation.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1de8367745088b9fcd4746ea4cc5a161",
-  "translation_date": "2025-10-11T11:51:32+00:00",
-  "source_file": "03-GettingStarted/10-advanced/README.md",
-  "language_code": "et"
-}
--->
 # Täiustatud serveri kasutamine
 
 MCP SDK-s on kaks erinevat tüüpi servereid: tavaline server ja madala taseme server. Tavaliselt kasutatakse tavalist serverit funktsioonide lisamiseks. Kuid mõnel juhul võib olla kasulik tugineda madala taseme serverile, näiteks:

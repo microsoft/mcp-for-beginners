@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2f1b473818b5a6cc9a9bbf777fffa6d4",
-  "translation_date": "2025-10-11T12:25:30+00:00",
-  "source_file": "05-AdvancedTopics/mcp-routing/README.md",
-  "language_code": "et"
-}
--->
 # Marsruutimine Model Context Protocolis
 
 Marsruutimine on oluline, et suunata päringud MCP ökosüsteemis sobivatesse mudelitesse, tööriistadesse või teenustesse.

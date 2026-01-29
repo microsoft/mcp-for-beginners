@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "b4662e0a75e645f3eeb4e69e5ba905f4",
-  "translation_date": "2025-10-11T11:52:17+00:00",
-  "source_file": "03-GettingStarted/10-advanced/code/typescript/README.md",
-  "language_code": "ta"
-}
--->
 # மாதிரி இயக்கவும்
 
 ## தேவையான பொருட்களை நிறுவவும்

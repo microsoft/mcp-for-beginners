@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "240e365cc324d23a0033e5615b5feb5e",
-  "translation_date": "2025-10-11T12:49:07+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/05-MCP-Server/README.md",
-  "language_code": "ta"
-}
--->
 # MCP சர்வர் செயல்பாடு
 
 ## 🎯 இந்த ஆய்வகத்தில் என்ன கற்றுக்கொள்வீர்கள்

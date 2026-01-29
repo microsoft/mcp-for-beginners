@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
-  "translation_date": "2025-10-17T20:08:18+00:00",
-  "source_file": "03-GettingStarted/samples/python/README.md",
-  "language_code": "ta"
-}
--->
 # MCP கணக்கீடு சர்வர் (Python)
 
 Python-ல் அடிப்படை கணக்கீடு செயல்பாடுகளை வழங்கும் எளிய Model Context Protocol (MCP) சர்வர் செயல்பாடு.

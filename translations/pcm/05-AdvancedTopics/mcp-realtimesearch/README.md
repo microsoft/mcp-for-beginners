@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "333a03e51f90bdf3e6f1ba1694c73f36",
-  "translation_date": "2025-11-18T19:37:18+00:00",
-  "source_file": "05-AdvancedTopics/mcp-realtimesearch/README.md",
-  "language_code": "pcm"
-}
--->
 # Model Context Protocol for Real-Time Web Search
 
 ## Overview

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1de8367745088b9fcd4746ea4cc5a161",
-  "translation_date": "2025-11-18T19:17:39+00:00",
-  "source_file": "03-GettingStarted/10-advanced/README.md",
-  "language_code": "pcm"
-}
--->
 # Advanced server usage
 
 For MCP SDK, e get two kain server wey e dey expose: di normal server and di low-level server. Normally, you go use di regular server to add features join am. But for some cases, you fit wan use di low-level server like:

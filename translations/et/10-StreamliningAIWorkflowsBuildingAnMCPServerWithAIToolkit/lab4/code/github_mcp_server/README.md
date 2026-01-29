@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9a6a4d3497921d2f6d9699f0a6a1890c",
-  "translation_date": "2025-10-11T11:25:52+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/README.md",
-  "language_code": "et"
-}
--->
 # Ilma MCP Server
 
 See on näidis MCP server Pythonis, mis rakendab ilmatööriistu koos näidisvastustega. Seda saab kasutada oma MCP serveri alusena. See sisaldab järgmisi funktsioone:

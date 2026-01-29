@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "13231e9951b68efd9df8c56bd5cdb27e",
-  "translation_date": "2025-11-18T19:04:15+00:00",
-  "source_file": "03-GettingStarted/samples/java/calculator/README.md",
-  "language_code": "pcm"
-}
--->
 # Basic Calculator MCP Service
 
 Dis service dey provide basic calculator operations wit Model Context Protocol (MCP) wey dey use Spring Boot wit WebFlux transport. E dey designed as simple example for beginners wey wan learn about MCP implementations.

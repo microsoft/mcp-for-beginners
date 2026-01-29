@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4d3415b9d2bf58bc69be07f945a69e07",
-  "translation_date": "2025-11-18T19:43:22+00:00",
-  "source_file": "09-CaseStudy/travelagentsample.md",
-  "language_code": "pcm"
-}
--->
 # Case Study: Azure AI Travel Agents – Reference Implementation
 
 ## Overview

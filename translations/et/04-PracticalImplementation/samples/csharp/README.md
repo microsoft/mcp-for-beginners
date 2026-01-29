@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0bc7bd48f55f1565f1d95ccb2c16f728",
-  "translation_date": "2025-10-11T13:03:32+00:00",
-  "source_file": "04-PracticalImplementation/samples/csharp/README.md",
-  "language_code": "et"
-}
--->
 # Näidis
 
 Eelmine näide näitab, kuidas kasutada kohalikku .NET projekti `stdio` tüüpi abil ja kuidas serverit konteineris kohapeal käivitada. See on paljudes olukordades hea lahendus. Kuid võib olla kasulik, kui server töötab kaugkeskkonnas, näiteks pilves. Siin tuleb mängu `http` tüüp.

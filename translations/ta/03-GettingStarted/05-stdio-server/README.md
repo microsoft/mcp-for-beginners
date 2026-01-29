@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "77735b446eb79b1bba9c849865cd0ced",
-  "translation_date": "2025-10-11T11:38:48+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/README.md",
-  "language_code": "ta"
-}
--->
 # MCP Server stdio போக்குவரத்து
 
 > **⚠️ முக்கியமான புதுப்பிப்பு**: MCP Specification 2025-06-18 முதல், தனித்துவமான SSE (Server-Sent Events) போக்குவரத்து **நீக்கப்பட்டது** மற்றும் "Streamable HTTP" போக்குவரத்து மூலம் மாற்றப்பட்டது. தற்போதைய MCP Specification இரண்டு முக்கிய போக்குவரத்து முறைகளை வரையறுக்கிறது:

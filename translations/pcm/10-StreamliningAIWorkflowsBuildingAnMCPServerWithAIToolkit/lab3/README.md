@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "dd8da3f75addcef453fe11f02a270217",
-  "translation_date": "2025-11-18T18:50:31+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/README.md",
-  "language_code": "pcm"
-}
--->
 # 🔧 Module 3: Advanced MCP Development wit AI Toolkit
 
 ![Duration](https://img.shields.io/badge/Duration-20_minutes-blue?style=flat-square)

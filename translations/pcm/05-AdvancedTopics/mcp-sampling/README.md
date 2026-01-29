@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "193889b580c86bbb1e4f577114a5ce4e",
-  "translation_date": "2025-11-18T19:34:40+00:00",
-  "source_file": "05-AdvancedTopics/mcp-sampling/README.md",
-  "language_code": "pcm"
-}
--->
 # Sampling for Model Context Protocol
 
 Sampling na one strong MCP feature wey go allow server dem request LLM completions through di client. E fit help do beta agent behavior while e still dey keep security and privacy. If you set sampling well, e fit make response quality and performance beta well well. MCP don give one standard way to control how model go dey generate text with di parameters wey go affect randomness, creativity, and coherence.

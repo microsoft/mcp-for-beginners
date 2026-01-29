@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e8bbc7982284fe177dd4be5e7f2b3357",
-  "translation_date": "2025-12-19T18:20:24+00:00",
-  "source_file": "changelog.md",
-  "language_code": "et"
-}
--->
 # Muudatuste logi: MCP algajatele õppekava
 
 See dokument toimib kõigi Model Context Protocol (MCP) algajatele õppekava oluliste muudatuste registrina. Muudatused on dokumenteeritud pööratud kronoloogilises järjekorras (uusimad muudatused ees).

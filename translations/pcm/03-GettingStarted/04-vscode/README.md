@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "d940b5e0af75e3a3a4d1c3179120d1d9",
-  "translation_date": "2025-11-18T18:59:54+00:00",
-  "source_file": "03-GettingStarted/04-vscode/README.md",
-  "language_code": "pcm"
-}
--->
 # How to use server from GitHub Copilot Agent mode
 
 Visual Studio Code and GitHub Copilot fit act like client wey go use MCP Server. You fit dey wonder why person go wan do am abi? Well, e mean say any feature wey MCP Server get, you fit use am inside your IDE. Imagine say you add GitHub MCP server, e go allow you control GitHub with prompts instead of typing commands for terminal. Or imagine anything wey go make your developer work easy, all controlled by natural language. You don dey see the benefit abi?

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "882aae00f1d3f007e20d03b883f44afa",
-  "translation_date": "2025-10-11T11:38:23+00:00",
-  "source_file": "03-GettingStarted/samples/csharp/README.md",
-  "language_code": "ta"
-}
--->
 # அடிப்படை கணிகையாளர் MCP சேவை
 
 இந்த சேவை Model Context Protocol (MCP) மூலம் அடிப்படை கணிகையாளர் செயல்பாடுகளை வழங்குகிறது. MCP செயல்பாடுகளைப் பற்றி அறிய தொடங்கும் தொடக்கநிலை பயிற்சியாளர்களுக்கான ஒரு எளிய உதாரணமாக இது வடிவமைக்கப்பட்டுள்ளது.

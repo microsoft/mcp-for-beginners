@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5854af7b7c1cf4a5193eabdca60a4c19",
-  "translation_date": "2025-10-11T13:00:19+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/06-Tools/README.md",
-  "language_code": "et"
-}
--->
 # Tööriistade arendamine
 
 ## 🎯 Mida see labor hõlmab

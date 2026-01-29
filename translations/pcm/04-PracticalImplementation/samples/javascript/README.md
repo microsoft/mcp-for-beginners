@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8f12fc94cee9ed16a5eddf9f51fba755",
-  "translation_date": "2025-11-18T20:02:55+00:00",
-  "source_file": "04-PracticalImplementation/samples/javascript/README.md",
-  "language_code": "pcm"
-}
--->
 # Sample
 
 Dis na JavaScript sample for MCP Server

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e378b47e0361b7a9b0dab7a0306878c8",
-  "translation_date": "2025-10-11T11:40:01+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/README.md",
-  "language_code": "ta"
-}
--->
 # MCP stdio சர்வர் தீர்வுகள்
 
 > **⚠️ முக்கியம்**: இந்த தீர்வுகள் **stdio போக்குவரத்து** பயன்படுத்துவதற்கு மேம்படுத்தப்பட்டுள்ளன, MCP Specification 2025-06-18 பரிந்துரைப்படி. முதன்மை SSE (Server-Sent Events) போக்குவரத்து தற்போது நீக்கப்பட்டுள்ளது.

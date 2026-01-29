@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "c8f283730b5421082ddd26cc85c07831",
-  "translation_date": "2025-10-11T12:45:57+00:00",
-  "source_file": "07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md",
-  "language_code": "et"
-}
--->
 # 🚀 10 Microsoft MCP serverit, mis muudavad arendajate produktiivsust
 
 ## 🎯 Mida õpid sellest juhendist

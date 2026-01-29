@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "195f7287638b77a549acadd96c8f981c",
-  "translation_date": "2025-10-11T12:16:19+00:00",
-  "source_file": "05-AdvancedTopics/mcp-realtimestreaming/README.md",
-  "language_code": "et"
-}
--->
 # Mudeli Konteksti Protokoll reaalajas andmevoogude jaoks
 
 ## Ülevaade

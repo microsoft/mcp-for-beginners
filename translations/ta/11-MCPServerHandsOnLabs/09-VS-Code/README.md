@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "769c9794759f416450dce77286e98f00",
-  "translation_date": "2025-10-11T12:54:23+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/09-VS-Code/README.md",
-  "language_code": "ta"
-}
--->
 # VS Code ஒருங்கிணைப்பு
 
 ## 🎯 இந்த ஆய்வகத்தில் என்ன கற்றுக்கொள்வீர்கள்

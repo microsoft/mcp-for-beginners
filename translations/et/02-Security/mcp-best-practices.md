@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5061d7e2ae9eea9cbaae77c1a020b318",
-  "translation_date": "2025-12-19T18:25:50+00:00",
-  "source_file": "02-Security/mcp-best-practices.md",
-  "language_code": "et"
-}
--->
 # MCP turvalisuse parimad tavad 2025
 
 See põhjalik juhend kirjeldab olulisi turvalisuse parimaid tavasid Model Context Protocol (MCP) süsteemide rakendamiseks, tuginedes uusimale **MCP spetsifikatsioonile 2025-11-25** ja kehtivatele tööstusharu standarditele. Need tavad käsitlevad nii traditsioonilisi turvalisuse küsimusi kui ka MCP juurutustele omaseid AI-spetsiifilisi ohte.

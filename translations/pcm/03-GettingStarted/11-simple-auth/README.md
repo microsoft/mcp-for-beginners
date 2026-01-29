@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5b00b8a8971a07d2d8803be4c9f138f8",
-  "translation_date": "2025-11-18T19:18:49+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/README.md",
-  "language_code": "pcm"
-}
--->
 # Simple auth
 
 MCP SDKs dey support OAuth 2.1 wey no be small work, e involve things like auth server, resource server, posting credentials, getting code, exchanging code for bearer token until you fit finally collect your resource data. If you no sabi OAuth wey be better thing to use, e good make you start with simple auth first before you go dey add better security. Na why dis chapter dey here, to help you move from simple auth go advanced auth.

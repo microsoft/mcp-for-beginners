@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7074b9f4c8cd147c1c10f569d8508c82",
-  "translation_date": "2025-11-18T18:58:49+00:00",
-  "source_file": "03-GettingStarted/02-client/solution/java/README.md",
-  "language_code": "pcm"
-}
--->
 # MCP Java Client - Calculator Demo
 
 Dis project dey show how pesin fit take create Java client wey go connect and work wit MCP (Model Context Protocol) server. For dis example, we go connect to di calculator server wey dey Chapter 01 and do different kind mathematical operations.

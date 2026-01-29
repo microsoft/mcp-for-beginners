@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "151265c9a2124d7c53e04d16ee3fb73b",
-  "translation_date": "2025-10-11T12:13:19+00:00",
-  "source_file": "05-AdvancedTopics/web-search-mcp/README.md",
-  "language_code": "et"
-}
--->
 # Õppetund: Veebipõhise otsingu MCP serveri loomine
 
 Selles peatükis näidatakse, kuidas luua päriselu AI-agent, mis integreerub väliste API-dega, käsitleb erinevaid andmetüüpe, haldab vigu ja koordineerib mitut tööriista – kõik tootmisvalmis formaadis. Saate teada:

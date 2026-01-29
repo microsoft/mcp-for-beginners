@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0a7083e660ca0d85fd6a947514c61993",
-  "translation_date": "2025-10-11T12:09:40+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/README.md",
-  "language_code": "ta"
-}
--->
 # MCP OAuth2 டெமோ
 
 இந்த திட்டம் **குறைந்தபட்சமான ஸ்பிரிங் பூட் பயன்பாடு** ஆகும், இது இரண்டையும் செய்கிறது:

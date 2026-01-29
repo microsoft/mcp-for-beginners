@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "036e01c8c6ecc8610809d52e4a738641",
-  "translation_date": "2025-10-11T12:24:34+00:00",
-  "source_file": "05-AdvancedTopics/mcp-foundry-agent-integration/README.md",
-  "language_code": "ta"
-}
--->
 # மாடல் சூழல் நெறிமுறை (MCP) மற்றும் Azure AI Foundry ஒருங்கிணைப்பு
 
 இந்த வழிகாட்டி, மாடல் சூழல் நெறிமுறை (MCP) சேவையகங்களை Azure AI Foundry முகவர்களுடன் ஒருங்கிணைப்பது எப்படி என்பதை விளக்குகிறது, சக்திவாய்ந்த கருவி ஒருங்கிணைப்பு மற்றும் நிறுவன AI திறன்களை இயக்குகிறது.

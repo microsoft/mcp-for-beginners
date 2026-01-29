@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9d799c4a30a8383e0a74af9153262972",
-  "translation_date": "2025-11-18T19:07:46+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/typescript/README.md",
-  "language_code": "pcm"
-}
--->
 # MCP stdio Server - TypeScript Solution
 
 > **⚠️ Important**: Dis solution don update to dey use **stdio transport** as MCP Specification 2025-06-18 recommend. Di original SSE transport don dey deprecated.

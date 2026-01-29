@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "cf48858182f366e9d3f080fb0d3bfc37",
-  "translation_date": "2025-12-19T18:26:43+00:00",
-  "source_file": "02-Security/README.md",
-  "language_code": "et"
-}
--->
 # MCP turvalisus: põhjalik kaitse tehisintellekti süsteemidele
 
 [![MCP turvalisuse parimad tavad](../../../translated_images/et/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)

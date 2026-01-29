@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "acd4010e430da00946a154f62847a169",
-  "translation_date": "2025-10-11T11:50:33+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/java/README.md",
-  "language_code": "et"
-}
--->
 # Kalkulaatori HTTP voogedastuse demo
 
 See projekt demonstreerib HTTP voogedastust, kasutades Server-Sent Events (SSE) koos Spring Boot WebFluxiga. Projekt koosneb kahest rakendusest:

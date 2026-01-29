@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5f1383103523fa822e1fec7ef81904d5",
-  "translation_date": "2025-10-11T11:48:34+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/README.md",
-  "language_code": "et"
-}
--->
 # HTTPS voogedastus Model Context Protocoli (MCP) abil
 
 See peatükk pakub põhjalikku juhendit turvalise, skaleeritava ja reaalajas voogedastuse rakendamiseks Model Context Protocoli (MCP) abil, kasutades HTTPS-i. Käsitletakse voogedastuse motivatsiooni, saadaolevaid transpordimehhanisme, voogedastatava HTTP rakendamist MCP-s, turvalisuse parimaid tavasid, üleminekut SSE-lt ja praktilisi juhiseid oma MCP voogedastusrakenduste loomiseks.

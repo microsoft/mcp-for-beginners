@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2228721599c0c8673de83496b4d7d7a9",
-  "translation_date": "2025-11-18T19:41:37+00:00",
-  "source_file": "09-CaseStudy/apimsample.md",
-  "language_code": "pcm"
-}
--->
 # Case Study: Show REST API for API Management as MCP Server
 
 Azure API Management na service wey dey provide Gateway on top your API Endpoints. How e dey work be say Azure API Management go act like proxy wey go dey front of your APIs and e fit decide wetin to do with requests wey dey come.

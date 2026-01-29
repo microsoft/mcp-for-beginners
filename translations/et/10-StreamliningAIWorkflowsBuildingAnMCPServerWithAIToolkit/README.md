@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1b000fd6e1b04c047578bfc5d07d54eb",
-  "translation_date": "2025-10-11T11:21:58+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md",
-  "language_code": "et"
-}
--->
 # AI-töövoogude optimeerimine: MCP-serveri loomine AI Toolkitiga
 
 [![MCP Versioon](https://img.shields.io/badge/MCP-1.9.3-blue.svg)](https://modelcontextprotocol.io/)

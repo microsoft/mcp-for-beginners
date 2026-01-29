@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4e34e34e84f013e73c7eaa6d09884756",
-  "translation_date": "2025-10-11T11:57:01+00:00",
-  "source_file": "03-GettingStarted/08-testing/README.md",
-  "language_code": "et"
-}
--->
 ## Testimine ja silumine
 
 Enne kui alustate oma MCP serveri testimist, on oluline mõista olemasolevaid tööriistu ja parimaid praktikaid silumiseks. Tõhus testimine tagab, et teie server käitub ootuspäraselt, ning aitab teil kiiresti tuvastada ja lahendada probleeme. Järgmises osas tutvustatakse soovitatud lähenemisviise MCP rakenduse valideerimiseks.

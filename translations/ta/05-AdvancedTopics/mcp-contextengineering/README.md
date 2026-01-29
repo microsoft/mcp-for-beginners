@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "fd169ca3071b81b5ee282e194bc823df",
-  "translation_date": "2025-10-11T12:22:19+00:00",
-  "source_file": "05-AdvancedTopics/mcp-contextengineering/README.md",
-  "language_code": "ta"
-}
--->
 # சூழல் பொறியியல்: MCP சூழலமைப்பில் உருவாகும் ஒரு கருத்து
 
 ## கண்ணோட்டம்

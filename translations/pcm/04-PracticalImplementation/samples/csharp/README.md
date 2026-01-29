@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0bc7bd48f55f1565f1d95ccb2c16f728",
-  "translation_date": "2025-11-18T20:04:28+00:00",
-  "source_file": "04-PracticalImplementation/samples/csharp/README.md",
-  "language_code": "pcm"
-}
--->
 # Sample
 
 Di example wey we show before don explain how you fit use local .NET project wit di `stdio` type. E also show how you fit run di server for container for your local machine. Dis na better solution for many situations. But sometimes, e go make sense to run di server for remote place, like for cloud environment. Na here di `http` type go help.

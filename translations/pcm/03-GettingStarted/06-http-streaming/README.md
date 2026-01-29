@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5f1383103523fa822e1fec7ef81904d5",
-  "translation_date": "2025-11-18T19:13:39+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/README.md",
-  "language_code": "pcm"
-}
--->
 # HTTPS Streaming wit Model Context Protocol (MCP)
 
 Dis chapter go show you beta guide on how to do secure, scalable, and real-time streaming wit Model Context Protocol (MCP) using HTTPS. E go talk about why streaming dey important, di transport mechanisms wey dey, how to do streamable HTTP for MCP, security best practices, how to move from SSE, and practical tips to build your own streaming MCP apps.

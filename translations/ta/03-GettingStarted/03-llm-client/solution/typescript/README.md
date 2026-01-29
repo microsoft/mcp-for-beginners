@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6d6315e03f591fb5a39be91da88585dc",
-  "translation_date": "2025-10-11T11:36:24+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/typescript/README.md",
-  "language_code": "ta"
-}
--->
 # இந்த மாதிரியை இயக்குவது
 
 இந்த மாதிரி, LLM ஐ கிளையன்டில் வைத்திருப்பதை உள்ளடக்கியது. LLM ஐ இயக்க Codespaces-ல் அல்லது GitHub-ல் தனிப்பட்ட அணுகல் டோக்கனை அமைக்க வேண்டும்.

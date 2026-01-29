@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ebdb86db46113f1cbd59ce4c74caaa79",
-  "translation_date": "2025-10-11T12:30:08+00:00",
-  "source_file": "05-AdvancedTopics/mcp-root-contexts/README.md",
-  "language_code": "et"
-}
--->
 # MCP Põhikontekstid
 
 Põhikontekstid on Model Context Protocoli (MCP) oluline osa, mis pakuvad püsivat kihti vestluste ajaloo ja jagatud oleku säilitamiseks mitme päringu ja sessiooni jooksul.

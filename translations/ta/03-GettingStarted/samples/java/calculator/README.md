@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "13231e9951b68efd9df8c56bd5cdb27e",
-  "translation_date": "2025-10-11T11:37:29+00:00",
-  "source_file": "03-GettingStarted/samples/java/calculator/README.md",
-  "language_code": "ta"
-}
--->
 # அடிப்படை கணிகையாளர் MCP சேவை
 
 இந்த சேவை Model Context Protocol (MCP) மூலம் அடிப்படை கணிகையாளர் செயல்பாடுகளை வழங்குகிறது, Spring Boot மற்றும் WebFlux போக்குவரத்து பயன்படுத்தி. MCP செயல்பாடுகளை அறிந்து கொள்ளும் தொடக்க நிலை பயிற்சியாளர்களுக்கு இது ஒரு எளிய உதாரணமாக வடிவமைக்கப்பட்டுள்ளது.

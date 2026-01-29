@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "999c5e7623c1e2d5e5a07c2feb39eb67",
-  "translation_date": "2025-10-11T11:23:57+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/README.md",
-  "language_code": "ta"
-}
--->
 # வானிலை MCP சர்வர்
 
 Python-இல் உருவாக்கப்பட்ட ஒரு மாதிரி MCP சர்வர் இது, mock பதில்களுடன் வானிலை கருவிகளை செயல்படுத்துகிறது. உங்கள் சொந்த MCP சர்வருக்கான அடிப்படையாக இதை பயன்படுத்தலாம். இதில் பின்வரும் அம்சங்கள் அடங்கும்:

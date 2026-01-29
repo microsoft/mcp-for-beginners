@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "75638575f993c152965ae2271c4da938",
-  "translation_date": "2025-12-19T18:30:01+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/README.md",
-  "language_code": "et"
-}
--->
 # Kliendi loomine LLM-iga
 
 Siiani olete näinud, kuidas luua serverit ja klienti. Klient on suutnud serverit otseselt kutsuda, et loetleda selle tööriistu, ressursse ja prompt'e. Kuid see pole väga praktiline lähenemine. Teie kasutaja elab agendi ajastul ja ootab, et saaks kasutada prompt'e ja suhelda LLM-iga. Teie kasutajale ei ole oluline, kas te kasutate MCP-d oma võimete salvestamiseks või mitte, kuid nad ootavad loomuliku keele kasutamist suhtlemiseks. Kuidas me seda lahendame? Lahendus seisneb LLM-i lisamises kliendile.

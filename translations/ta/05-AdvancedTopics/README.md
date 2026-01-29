@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "d204bc94ea6027d06a703b21b711ca57",
-  "translation_date": "2025-10-11T12:09:01+00:00",
-  "source_file": "05-AdvancedTopics/README.md",
-  "language_code": "ta"
-}
--->
 # MCP இல் மேம்பட்ட தலைப்புகள்
 
 [![மேம்பட்ட MCP: பாதுகாப்பான, அளவளாவிய மற்றும் பலவகை AI முகவர்கள்](../../../translated_images/ta/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.png)](https://youtu.be/4yjmGvJzYdY)

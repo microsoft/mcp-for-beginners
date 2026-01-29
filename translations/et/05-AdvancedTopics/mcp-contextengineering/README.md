@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "fd169ca3071b81b5ee282e194bc823df",
-  "translation_date": "2025-10-11T12:23:47+00:00",
-  "source_file": "05-AdvancedTopics/mcp-contextengineering/README.md",
-  "language_code": "et"
-}
--->
 # Kontekstiinseneeria: Tekkiv kontseptsioon MCP ökosüsteemis
 
 ## Ülevaade

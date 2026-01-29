@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2f1b473818b5a6cc9a9bbf777fffa6d4",
-  "translation_date": "2025-10-11T12:25:10+00:00",
-  "source_file": "05-AdvancedTopics/mcp-routing/README.md",
-  "language_code": "ta"
-}
--->
 # மாடல் சூழல் நெறிமுறை (MCP) இல் வழிமாற்றல்
 
 MCP சூழலில் கோரிக்கைகளை சரியான மாடல்கள், கருவிகள் அல்லது சேவைகளுக்கு வழிமாற்றுவது முக்கியமானது.

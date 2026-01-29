@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "aa5122c6d9868b4b566586f27577ca47",
-  "translation_date": "2025-10-11T11:50:06+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/rust/calculator-httpclient/README.md",
-  "language_code": "ta"
-}
--->
 # இந்த மாதிரியை இயக்குதல்
 
 ## -1- ஸ்ட்ரீமபிள் HTTP சர்வரை இயக்கவும்

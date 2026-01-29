@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "acd4010e430da00946a154f62847a169",
-  "translation_date": "2025-10-11T11:50:16+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/java/README.md",
-  "language_code": "ta"
-}
--->
 # கணினி HTTP ஸ்ட்ரீமிங் டெமோ
 
 இந்த திட்டம் Spring Boot WebFlux உடன் Server-Sent Events (SSE) பயன்படுத்தி HTTP ஸ்ட்ரீமிங்கை விளக்குகிறது. இது இரண்டு பயன்பாடுகளைக் கொண்டுள்ளது:

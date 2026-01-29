@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2f1b473818b5a6cc9a9bbf777fffa6d4",
-  "translation_date": "2025-11-18T19:37:04+00:00",
-  "source_file": "05-AdvancedTopics/mcp-routing/README.md",
-  "language_code": "pcm"
-}
--->
 # Routing for Model Context Protocol
 
 Routing na di way wey dem dey take direct requests go di correct models, tools, or services inside MCP ecosystem.

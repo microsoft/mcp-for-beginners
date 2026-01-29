@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "77735b446eb79b1bba9c849865cd0ced",
-  "translation_date": "2025-10-11T11:39:26+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/README.md",
-  "language_code": "et"
-}
--->
 # MCP Server koos stdio transpordiga
 
 > **⚠️ Tähtis uuendus**: Alates MCP spetsifikatsioonist 2025-06-18 on iseseisev SSE (Server-Sent Events) transport **aegunud** ja asendatud "Streamable HTTP" transpordiga. Praegune MCP spetsifikatsioon määratleb kaks peamist transpordimehhanismi:

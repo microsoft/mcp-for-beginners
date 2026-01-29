@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "14a2dfbea55ef735660a06bd6bdfe5f3",
-  "translation_date": "2025-11-18T19:44:06+00:00",
-  "source_file": "09-CaseStudy/UpdateADOItemsFromYT.md",
-  "language_code": "pcm"
-}
--->
 # Case Study: How to Update Azure DevOps Items wit YouTube Data wit MCP
 
 > **Disclaimer:** E get tools wey dey online wey fit help automate di process of updating Azure DevOps items wit data from places like YouTube. Di example wey dey here na just sample wey go show how MCP tools fit work for automation and integration tasks.

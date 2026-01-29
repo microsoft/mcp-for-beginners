@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f83bc722dc758efffd68667d6a1db470",
-  "translation_date": "2025-10-11T11:24:41+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/README.md",
-  "language_code": "ta"
-}
--->
 # 🐙 Module 4: நடைமுறை MCP மேம்பாடு - தனிப்பயன் GitHub Clone Server
 
 ![Duration](https://img.shields.io/badge/Duration-30_minutes-blue?style=flat-square)

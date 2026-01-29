@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "997c7119766a69552e23d7d681316902",
-  "translation_date": "2025-10-11T12:20:16+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security/README.md",
-  "language_code": "et"
-}
--->
 # MCP Turvalisuse Parimad Tavad - Täiustatud Rakendamise Juhend
 
 > **Praegune standard**: See juhend kajastab [MCP Spetsifikatsiooni 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) turvanõudeid ja ametlikke [MCP Turvalisuse Parimaid Tavasid](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices).

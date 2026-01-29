@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "fcf1e12b62102bf7d16b78deb2b163b7",
-  "translation_date": "2025-10-11T12:07:49+00:00",
-  "source_file": "06-CommunityContributions/README.md",
-  "language_code": "ta"
-}
--->
 # சமூகமும் பங்களிப்புகளும்
 
 [![MCP க்கு பங்களிக்க எப்படி: கருவிகள், ஆவணங்கள், குறியீடு மற்றும் மேலும்](../../../translated_images/ta/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.png)](https://youtu.be/v1pvCYAWpRE)

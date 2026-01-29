@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "997c7119766a69552e23d7d681316902",
-  "translation_date": "2025-11-18T19:33:37+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security/README.md",
-  "language_code": "pcm"
-}
--->
 # MCP Security Best Practices - Advanced Implementation Guide
 
 > **Current Standard**: Dis guide dey follow [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) security requirements and official [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices).

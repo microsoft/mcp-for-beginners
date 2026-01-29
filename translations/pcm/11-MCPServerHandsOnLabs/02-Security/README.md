@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "3b3c9c3f033e59a30c92b5895e0dc9fd",
-  "translation_date": "2025-11-18T19:55:17+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/02-Security/README.md",
-  "language_code": "pcm"
-}
--->
 # Security and Multi-Tenancy
 
 ## 🎯 Wetin Dis Lab Go Teach You

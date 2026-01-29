@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ed9cab32cc67c12d8969b407aa47100a",
-  "translation_date": "2025-10-11T11:45:14+00:00",
-  "source_file": "03-GettingStarted/01-first-server/solution/java/README.md",
-  "language_code": "et"
-}
--->
 # Põhiline Kalkulaatori MCP Teenus
 
 See teenus pakub põhilisi kalkulaatori operatsioone Model Context Protocol'i (MCP) kaudu, kasutades Spring Boot'i koos WebFlux transpordiga. Teenus on loodud lihtsa näitena algajatele, kes õpivad MCP rakendusi.

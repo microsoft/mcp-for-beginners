@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "b62150e27d4b7b5797ee41146d176e6b",
-  "translation_date": "2025-10-11T13:04:38+00:00",
-  "source_file": "08-BestPractices/README.md",
-  "language_code": "ta"
-}
--->
 # MCP மேம்பாட்டு சிறந்த நடைமுறைகள்
 
 [![MCP மேம்பாட்டு சிறந்த நடைமுறைகள்](../../../translated_images/ta/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.png)](https://youtu.be/W56H9W7x-ao)

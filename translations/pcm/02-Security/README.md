@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "cf48858182f366e9d3f080fb0d3bfc37",
-  "translation_date": "2025-12-19T18:38:33+00:00",
-  "source_file": "02-Security/README.md",
-  "language_code": "pcm"
-}
--->
 # MCP Security: Complete Protection for AI Systems
 
 [![MCP Security Best Practices](../../../translated_images/pcm/03.175aed6dedae133f.webp)](https://youtu.be/88No8pw706o)

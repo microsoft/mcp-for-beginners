@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9351493ad29390d37f64bc6d84a03db5",
-  "translation_date": "2025-12-19T18:17:10+00:00",
-  "source_file": "02-Security/mcp-security-controls-2025.md",
-  "language_code": "ta"
-}
--->
 # MCP பாதுகாப்பு கட்டுப்பாடுகள் - டிசம்பர் 2025 புதுப்பிப்பு
 
 > **தற்போதைய தரநிலை**: இந்த ஆவணம் [MCP விவரக்குறிப்பு 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) பாதுகாப்பு தேவைகள் மற்றும் அதிகாரப்பூர்வ [MCP பாதுகாப்பு சிறந்த நடைமுறைகள்](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) ஆகியவற்றை பிரதிபலிக்கிறது.

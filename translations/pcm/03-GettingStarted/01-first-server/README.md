@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8fdac7600a5f4722643d0f14e15ac259",
-  "translation_date": "2025-12-11T09:00:48+00:00",
-  "source_file": "03-GettingStarted/01-first-server/README.md",
-  "language_code": "pcm"
-}
--->
 # Getting Started with MCP
 
 Welcome to your first steps with the Model Context Protocol (MCP)! Whether you dey new to MCP or you wan sabi am well well, dis guide go show you how to set up and develop am. You go learn how MCP dey make AI models and applications join well well, and how to quickly prepare your environment to build and test MCP-powered solutions.
