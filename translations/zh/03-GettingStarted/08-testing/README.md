@@ -48,7 +48,7 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 上述命令启动 MCP 及其可视化界面，并在浏览器中打开本地网页界面。你会看到一个仪表盘，显示已注册的 MCP 服务器、可用工具、资源和提示。该界面允许你交互式地测试工具执行、检查服务器元数据和查看实时响应，方便验证和调试 MCP 服务器实现。
 
-界面示例如下： ![Inspector](../../../../translated_images/zh/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
+界面示例如下： ![Inspector](../../../../translated_images/zh-CN/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 你也可以在 CLI 模式下运行该工具，只需添加 `--cli` 参数。下面是以“CLI”模式运行工具并列出服务器上所有工具的示例：
 

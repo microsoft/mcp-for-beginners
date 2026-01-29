@@ -139,7 +139,7 @@ Scenario : Basic Clone and Open
  } and save to {The global path you specify}, then open it with VS Code Insiders"
 ```
 
-![Agent Builder Testing](../../../../translated_images/mo/DebugAgent.81d152370c503241b3b39a251b8966f7f739286df19dd57f9147f6402214a012.png)
+![Agent Builder Testing](../../../../translated_images/zh-MO/DebugAgent.81d152370c503241b3b39a251b8966f7f739286df19dd57f9147f6402214a012.png)
 
 **預期結果：**
 - ✅ 成功複製並確認路徑
@@ -149,7 +149,7 @@ Scenario : Basic Clone and Open
 
 #### 4b. 在 MCP Inspector 中測試
 
-![MCP Inspector Testing](../../../../translated_images/mo/DebugInspector.eb5c95f94c69a8ba36944941b9a3588309a3a2fae101ace470ee09bde41d1667.png)
+![MCP Inspector Testing](../../../../translated_images/zh-MO/DebugInspector.eb5c95f94c69a8ba36944941b9a3588309a3a2fae101ace470ee09bde41d1667.png)
 
 ---
 

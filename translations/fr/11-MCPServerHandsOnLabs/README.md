@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "83d32e5c5dd838d4b87a730cab88db77",
-  "translation_date": "2025-09-30T12:36:39+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/README.md",
-  "language_code": "fr"
-}
--->
 # 🚀 Serveur MCP avec PostgreSQL - Guide d'Apprentissage Complet
 
 ## 🧠 Aperçu du Parcours d'Apprentissage sur l'Intégration de Bases de Données MCP

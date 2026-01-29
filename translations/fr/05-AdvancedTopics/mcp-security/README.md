@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "997c7119766a69552e23d7d681316902",
-  "translation_date": "2025-08-18T10:55:56+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security/README.md",
-  "language_code": "fr"
-}
--->
 # Meilleures Pratiques de Sécurité MCP - Guide d'Implémentation Avancée
 
 > **Norme Actuelle** : Ce guide reflète les exigences de sécurité de la [Spécification MCP 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) et les [Meilleures Pratiques de Sécurité MCP](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) officielles.

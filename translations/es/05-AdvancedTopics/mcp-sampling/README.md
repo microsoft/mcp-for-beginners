@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "193889b580c86bbb1e4f577114a5ce4e",
-  "translation_date": "2025-07-16T22:05:20+00:00",
-  "source_file": "05-AdvancedTopics/mcp-sampling/README.md",
-  "language_code": "es"
-}
--->
 # Muestreo en el Protocolo de Contexto de Modelo (MCP)
 
 El muestreo es una función poderosa de MCP que permite a los servidores solicitar completaciones de LLM a través del cliente, habilitando comportamientos agenticos sofisticados mientras se mantiene la seguridad y privacidad. La configuración adecuada del muestreo puede mejorar drásticamente la calidad y el rendimiento de las respuestas. MCP ofrece una forma estandarizada de controlar cómo los modelos generan texto con parámetros específicos que influyen en la aleatoriedad, creatividad y coherencia.

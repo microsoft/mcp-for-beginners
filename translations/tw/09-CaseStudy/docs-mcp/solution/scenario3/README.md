@@ -52,28 +52,28 @@ CO_OP_TRANSLATOR_METADATA:
    ```  
    此設定告訴 VS Code 如何連接到 [`Microsoft Learn Docs MCP server`](https://github.com/MicrosoftDocs/mcp)。
 
-   ![Step 1: Add mcp.json to .vscode folder](../../../../../../translated_images/tw/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
+   ![Step 1: Add mcp.json to .vscode folder](../../../../../../translated_images/zh-TW/step1-mcp-json.c06a007fccc3edfaf0598a31903c9ec71476d9fd3ae6c1b2b4321fd38688ca4b.png)
     
 2. **開啟 GitHub Copilot Chat 面板：**  
    如果尚未安裝 GitHub Copilot 擴充功能，請前往 VS Code 的擴充功能檢視並安裝。您也可以直接從 [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat) 下載。接著，從側邊欄開啟 Copilot Chat 面板。
 
-   ![Step 2: Open Copilot Chat panel](../../../../../../translated_images/tw/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
+   ![Step 2: Open Copilot Chat panel](../../../../../../translated_images/zh-TW/step2-copilot-panel.f1cc86e9b9b8cd1a85e4df4923de8bafee4830541ab255e3c90c09777fed97db.png)
 
 3. **啟用代理模式並確認工具：**  
    在 Copilot Chat 面板中，啟用代理模式。
 
-   ![Step 3: Enable agent mode and verify tools](../../../../../../translated_images/tw/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
+   ![Step 3: Enable agent mode and verify tools](../../../../../../translated_images/zh-TW/step3-agent-mode.cdc32520fd7dd1d149c3f5226763c1d85a06d3c041d4cc983447625bdbeff4d4.png)
 
    啟用後，確認 MCP 伺服器已列為可用工具之一。這確保 Copilot 代理能存取文件伺服器，取得相關資訊。
 
-   ![Step 3: Verify MCP server tool](../../../../../../translated_images/tw/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
+   ![Step 3: Verify MCP server tool](../../../../../../translated_images/zh-TW/step3-verify-mcp-tool.76096a6329cbfecd42888780f322370a0d8c8fa003ed3eeb7ccd23f0fc50c1ad.png)
 
 4. **開始新對話並向代理提問：**  
    在 Copilot Chat 面板開啟新對話，您現在可以向代理提出文件相關問題。代理會使用 MCP 伺服器，直接在編輯器中擷取並顯示相關 Microsoft Learn 文件。
 
    - *「我正在為主題 X 撰寫學習計畫，計畫為期 8 週，請建議每週應學習的內容。」*
 
-   ![Step 4: Prompt the agent in chat](../../../../../../translated_images/tw/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
+   ![Step 4: Prompt the agent in chat](../../../../../../translated_images/zh-TW/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 5. **即時查詢：**
 
@@ -82,7 +82,7 @@ CO_OP_TRANSLATOR_METADATA:
    *「我想了解如何部署多代理解決方案，這些 AI 代理是在 Azure AI Foundry 上開發的。我發現沒有像 Copilot Studio 頻道那樣的直接部署方式。那麼，企業用戶要如何部署，才能互動並完成工作？  
    有許多文章或部落格提到可以使用 Azure Bot 服務作為 MS Teams 與 Azure AI Foundry 代理之間的橋樑。如果我設定一個 Azure Bot，透過 Azure Function 連接到 Azure AI Foundry 的 Orchestrator Agent 來執行協調，這樣可行嗎？還是我需要為多代理解決方案中的每個 AI 代理建立 Azure Function，在 Bot Framework 端進行協調？其他建議也非常歡迎。」*
 
-   ![Step 5: Live queries](../../../../../../translated_images/tw/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
+   ![Step 5: Live queries](../../../../../../translated_images/zh-TW/step5-live-queries.49db3e4a50bea27327e3cb18c24d263b7d134930d78e7392f9515a1c00264a7f.png)
 
    代理會回應相關文件連結與摘要，您可以直接插入到 Markdown 檔案中，或作為程式碼中的參考。
 

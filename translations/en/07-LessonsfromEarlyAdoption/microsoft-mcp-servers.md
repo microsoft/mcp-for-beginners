@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "c8f283730b5421082ddd26cc85c07831",
-  "translation_date": "2025-07-18T10:40:25+00:00",
-  "source_file": "07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md",
-  "language_code": "en"
-}
--->
 # 🚀 10 Microsoft MCP Servers That Are Transforming Developer Productivity
 
 ## 🎯 What You'll Learn in This Guide

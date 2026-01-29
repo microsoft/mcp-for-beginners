@@ -56,7 +56,7 @@ AI Toolkit 是一个功能强大的 Visual Studio Code 扩展，可以简化代�
 
 本练习使用 **GPT-4o** 模型。在创建代理之前，应将该模型添加到 **我的模型**。
 
-![Visual Studio Code 的 AI Toolkit 扩展中模型选择界面的截图。标题为“为你的 AI 解决方案找到合适的模型”，副标题鼓励用户发现、测试和部署 AI 模型。下方“热门模型”部分显示六个模型卡片：DeepSeek-R1（GitHub 托管）、OpenAI GPT-4o、OpenAI GPT-4.1、OpenAI o1、Phi 4 Mini（CPU - 小型、快速）和 DeepSeek-R1（Ollama 托管）。每个卡片包括“添加”模型或“在 Playground 中试用”的选项。](../../../../translated_images/zh/aitk-model-catalog.2acd38953bb9c119aa629fe74ef34cc56e4eed35e7f5acba7cd0a59e614ab335.png)
+![Visual Studio Code 的 AI Toolkit 扩展中模型选择界面的截图。标题为“为你的 AI 解决方案找到合适的模型”，副标题鼓励用户发现、测试和部署 AI 模型。下方“热门模型”部分显示六个模型卡片：DeepSeek-R1（GitHub 托管）、OpenAI GPT-4o、OpenAI GPT-4.1、OpenAI o1、Phi 4 Mini（CPU - 小型、快速）和 DeepSeek-R1（Ollama 托管）。每个卡片包括“添加”模型或“在 Playground 中试用”的选项。](../../../../translated_images/zh-CN/aitk-model-catalog.2acd38953bb9c119aa629fe74ef34cc56e4eed35e7f5acba7cd0a59e614ab335.png)
 
 1. 从 **活动栏** 打开 **AI Toolkit** 扩展。
 1. 在 **目录** 部分选择 **模型**，以打开 **模型目录**。选择 **模型** 会在新的编辑器标签中打开 **模型目录**。
@@ -68,7 +68,7 @@ AI Toolkit 是一个功能强大的 Visual Studio Code 扩展，可以简化代�
 
 **代理（提示）构建器** 使你能够创建和自定义自己的 AI 驱动代理。在本节中，你将创建一个新代理并分配一个模型来支持对话。
 
-![Visual Studio Code 的 AI Toolkit 扩展中“计算器代理”构建器界面的截图。左侧面板中选择的模型是“OpenAI GPT-4o（通过 GitHub）”。系统提示为“你是一名教授，教授大学数学”，用户提示为“用简单的术语向我解释傅里叶方程”。其他选项包括添加工具、启用 MCP 服务器和选择结构化输出的按钮。底部有一个蓝色“运行”按钮。右侧面板中，“通过示例开始”下列出了三个示例代理：Web 开发者（带 MCP 服务器）、二年级简化器和梦境解释器，每个都有简短的功能描述。](../../../../translated_images/zh/aitk-agent-builder.901e3a2960c3e4774b29a23024ff5bec2d4232f57fae2a418b2aaae80f81c05f.png)
+![Visual Studio Code 的 AI Toolkit 扩展中“计算器代理”构建器界面的截图。左侧面板中选择的模型是“OpenAI GPT-4o（通过 GitHub）”。系统提示为“你是一名教授，教授大学数学”，用户提示为“用简单的术语向我解释傅里叶方程”。其他选项包括添加工具、启用 MCP 服务器和选择结构化输出的按钮。底部有一个蓝色“运行”按钮。右侧面板中，“通过示例开始”下列出了三个示例代理：Web 开发者（带 MCP 服务器）、二年级简化器和梦境解释器，每个都有简短的功能描述。](../../../../translated_images/zh-CN/aitk-agent-builder.901e3a2960c3e4774b29a23024ff5bec2d4232f57fae2a418b2aaae80f81c05f.png)
 
 1. 从 **活动栏** 打开 **AI Toolkit** 扩展。
 1. 在 **工具** 部分选择 **代理（提示）构建器**。选择 **代理（提示）构建器** 会在新的编辑器标签中打开 **代理（提示）构建器**。
@@ -80,7 +80,7 @@ AI Toolkit 是一个功能强大的 Visual Studio Code 扩展，可以简化代�
 
 代理框架搭建完成后，是时候定义其个性和用途了。在本节中，你将使用 **生成系统提示** 功能来描述代理的预期行为（例如一个计算器代理），并让模型为你编写系统提示。
 
-![Visual Studio Code 的 AI Toolkit 扩展中“计算器代理”界面的截图，显示一个标题为“生成提示”的模态窗口。模态窗口解释了可以通过分享基本信息生成提示模板，并包括一个文本框，示例系统提示为：“你是一个乐于助人且高效的数学助手。当遇到涉及基本算术的问题时，你会提供正确的结果。”文本框下方有“关闭”和“生成”按钮。背景中部分代理配置可见，包括选定的模型“OpenAI GPT-4o（通过 GitHub）”以及系统和用户提示字段。](../../../../translated_images/zh/aitk-generate-prompt.ba9e69d3d2bbe2a26444d0c78775540b14196061eee32c2054e9ee68c4f51f3a.png)
+![Visual Studio Code 的 AI Toolkit 扩展中“计算器代理”界面的截图，显示一个标题为“生成提示”的模态窗口。模态窗口解释了可以通过分享基本信息生成提示模板，并包括一个文本框，示例系统提示为：“你是一个乐于助人且高效的数学助手。当遇到涉及基本算术的问题时，你会提供正确的结果。”文本框下方有“关闭”和“生成”按钮。背景中部分代理配置可见，包括选定的模型“OpenAI GPT-4o（通过 GitHub）”以及系统和用户提示字段。](../../../../translated_images/zh-CN/aitk-generate-prompt.ba9e69d3d2bbe2a26444d0c78775540b14196061eee32c2054e9ee68c4f51f3a.png)
 
 1. 在 **提示** 部分，点击 **生成系统提示** 按钮。此按钮会打开提示构建器，利用 AI 为代理生成系统提示。
 1. 在 **生成提示** 窗口中输入以下内容：`你是一个乐于助人且高效的数学助手。当遇到涉及基本算术的问题时，你会提供正确的结果。`
@@ -91,7 +91,7 @@ AI Toolkit 是一个功能强大的 Visual Studio Code 扩展，可以简化代�
 
 现在你已经定义了代理的系统提示，指导其行为和响应，是时候为代理配备实际功能了。在本节中，你将创建一个带有加法、减法、乘法和除法计算工具的计算器 MCP 服务器。此服务器将使代理能够通过自然语言提示执行实时数学运算。
 
-![Visual Studio Code 的 AI Toolkit 扩展中“计算器代理”界面底部的截图。显示“工具”和“结构化输出”的可展开菜单，以及一个设置为“文本”的下拉菜单“选择输出格式”。右侧有一个标记为“+ MCP 服务器”的按钮，用于添加模型上下文协议服务器。工具部分上方显示一个图像图标占位符。](../../../../translated_images/zh/aitk-add-mcp-server.9742cfddfe808353c0caf9cc0a7ed3e80e13abf4d2ebde315c81c3cb02a2a449.png)
+![Visual Studio Code 的 AI Toolkit 扩展中“计算器代理”界面底部的截图。显示“工具”和“结构化输出”的可展开菜单，以及一个设置为“文本”的下拉菜单“选择输出格式”。右侧有一个标记为“+ MCP 服务器”的按钮，用于添加模型上下文协议服务器。工具部分上方显示一个图像图标占位符。](../../../../translated_images/zh-CN/aitk-add-mcp-server.9742cfddfe808353c0caf9cc0a7ed3e80e13abf4d2ebde315c81c3cb02a2a449.png)
 
 AI Toolkit 配备了模板，便于创建自己的 MCP 服务器。我们将使用 Python 模板来创建计算器 MCP 服务器。
 
@@ -157,7 +157,7 @@ AI Toolkit 配备了模板，便于创建自己的 MCP 服务器。我们将使�
 
 现在代理已经拥有工具，是时候使用它们了！在本节中，你将向代理提交提示，以测试并验证代理是否正确调用计算器 MCP 服务器中的工具。
 
-![Visual Studio Code 的 AI Toolkit 扩展中“计算器代理”界面的截图。左侧面板中，“工具”下添加了一个名为 local-server-calculator_server 的 MCP 服务器，显示四个可用工具：加法、减法、乘法和除法。一个徽章显示四个工具已激活。下方是一个折叠的“结构化输出”部分和一个蓝色“运行”按钮。右侧面板中，“模型响应”显示代理调用了乘法和减法工具，输入分别为 {"a": 3, "b": 25} 和 {"a": 75, "b": 20}。最终“工具响应”显示为 75.0。底部有一个“查看代码”按钮。](../../../../translated_images/zh/aitk-agent-response-with-tools.e7c781869dc8041a25f9903ed4f7e8e0c7e13d7d94f6786a6c51b1e172f56866.png)
+![Visual Studio Code 的 AI Toolkit 扩展中“计算器代理”界面的截图。左侧面板中，“工具”下添加了一个名为 local-server-calculator_server 的 MCP 服务器，显示四个可用工具：加法、减法、乘法和除法。一个徽章显示四个工具已激活。下方是一个折叠的“结构化输出”部分和一个蓝色“运行”按钮。右侧面板中，“模型响应”显示代理调用了乘法和减法工具，输入分别为 {"a": 3, "b": 25} 和 {"a": 75, "b": 20}。最终“工具响应”显示为 75.0。底部有一个“查看代码”按钮。](../../../../translated_images/zh-CN/aitk-agent-response-with-tools.e7c781869dc8041a25f9903ed4f7e8e0c7e13d7d94f6786a6c51b1e172f56866.png)
 
 你将在本地开发机器上通过 **代理构建器** 运行计算器 MCP 服务器作为 MCP 客户端。
 

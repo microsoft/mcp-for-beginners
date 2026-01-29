@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP 安全性：AI 系统的全面保护
 
-[![MCP Security Best Practices](../../../translated_images/zh/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
+[![MCP Security Best Practices](../../../translated_images/zh-CN/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.png)](https://youtu.be/88No8pw706o)
 
 _(点击上方图片观看本课视频)_
 
@@ -133,7 +133,7 @@ MCP 规范在身份验证和授权方法上经历了显著演变：
 
 **实际影响**：这些攻击可能导致数据外泄、隐私泄露、有害内容生成和用户交互操控。详见[Prompt Injection in MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/)。
 
-![Prompt Injection Attack Diagram](../../../translated_images/zh/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
+![Prompt Injection Attack Diagram](../../../translated_images/zh-CN/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.png)
 
 #### **工具投毒攻击**
 
@@ -147,7 +147,7 @@ MCP 规范在身份验证和授权方法上经历了显著演变：
 
 **托管服务器风险**：远程 MCP 服务器风险更高，工具定义可在用户初次批准后更新，导致原本安全的工具变为恶意。详见[Tool Poisoning Attacks (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks)。
 
-![Tool Injection Attack Diagram](../../../translated_images/zh/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
+![Tool Injection Attack Diagram](../../../translated_images/zh-CN/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.png)
 
 #### **其他 AI 攻击向量**
 
@@ -200,7 +200,7 @@ MCP 规范在身份验证和授权方法上经历了显著演变：
 
 **实施资源**：[微软 Prompt Shields 文档](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields Protection](../../../translated_images/zh/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
+![Microsoft Prompt Shields Protection](../../../translated_images/zh-CN/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.png)
 
 
 ## 高级 MCP 安全威胁

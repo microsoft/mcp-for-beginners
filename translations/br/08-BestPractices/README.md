@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Melhores Práticas para Desenvolvimento MCP
 
-[![Melhores Práticas para Desenvolvimento MCP](../../../translated_images/br/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.png)](https://youtu.be/W56H9W7x-ao)
+[![Melhores Práticas para Desenvolvimento MCP](../../../translated_images/pt-BR/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.png)](https://youtu.be/W56H9W7x-ao)
 
 _(Clique na imagem acima para assistir ao vídeo desta lição)_
 

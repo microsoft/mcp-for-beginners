@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "999c5e7623c1e2d5e5a07c2feb39eb67",
-  "translation_date": "2025-07-14T08:22:23+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/README.md",
-  "language_code": "es"
-}
--->
 # Servidor MCP de Clima
 
 Este es un ejemplo de Servidor MCP en Python que implementa herramientas meteorológicas con respuestas simuladas. Puede usarse como base para tu propio Servidor MCP. Incluye las siguientes características:

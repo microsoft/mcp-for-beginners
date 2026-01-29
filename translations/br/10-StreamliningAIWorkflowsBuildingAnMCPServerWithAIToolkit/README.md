@@ -13,11 +13,11 @@ CO_OP_TRANSLATOR_METADATA:
 [![Python](https://img.shields.io/badge/Python-3.10+-green.svg)](https://python.org)
 [![VS Code](https://img.shields.io/badge/VS%20Code-Latest-orange.svg)](https://code.visualstudio.com/)
 
-![logo](../../../translated_images/br/logo.ec93918ec338dadde1715c8aaf118079e0ed0502e9efdfcc84d6a0f4a9a70ae8.png)
+![logo](../../../translated_images/pt-BR/logo.ec93918ec338dadde1715c8aaf118079e0ed0502e9efdfcc84d6a0f4a9a70ae8.png)
 
 ## 🎯 Visão Geral
 
-[![Crie Agentes de IA no VS Code: 4 Laboratórios Práticos com MCP e AI Toolkit](../../../translated_images/br/11.0f6db6a0fb6068856d0468590a120ffe35dbccc49b93dc88b2003f306c81493a.png)](https://youtu.be/r34Csn3rkeQ)
+[![Crie Agentes de IA no VS Code: 4 Laboratórios Práticos com MCP e AI Toolkit](../../../translated_images/pt-BR/11.0f6db6a0fb6068856d0468590a120ffe35dbccc49b93dc88b2003f306c81493a.png)](https://youtu.be/r34Csn3rkeQ)
 
 _(Clique na imagem acima para assistir ao vídeo desta lição)_
 

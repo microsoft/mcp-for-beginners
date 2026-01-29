@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e8bbc7982284fe177dd4be5e7f2b3357",
-  "translation_date": "2025-12-19T07:25:29+00:00",
-  "source_file": "changelog.md",
-  "language_code": "fr"
-}
--->
 # Journal des modifications : Programme MCP pour débutants
 
 Ce document sert de registre pour tous les changements importants apportés au programme Model Context Protocol (MCP) pour débutants. Les modifications sont documentées par ordre chronologique inverse (les plus récentes en premier).

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7b4d8d17fc1f501468cce40c3651aed1",
-  "translation_date": "2025-07-16T22:07:29+00:00",
-  "source_file": "05-AdvancedTopics/mcp-scaling/README.md",
-  "language_code": "es"
-}
--->
 # Escalabilidad y MCP de Alto Rendimiento
 
 Para implementaciones empresariales, las soluciones MCP suelen necesitar manejar grandes volúmenes de solicitudes con una latencia mínima.

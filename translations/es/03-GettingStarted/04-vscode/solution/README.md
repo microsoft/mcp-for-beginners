@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-07-13T19:38:28+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "es"
-}
--->
 Esto corresponde a ejecutar un comando como este: `node build/index.js`.
 
 - Cambia esta entrada del servidor para que coincida con la ubicación de tu archivo de servidor o con lo que sea necesario para iniciar tu servidor, dependiendo del entorno de ejecución y la ubicación del servidor que hayas elegido.

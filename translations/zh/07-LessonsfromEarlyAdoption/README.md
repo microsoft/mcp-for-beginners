@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # 🌟 从早期采用者中学习
 
-[![从 MCP 早期采用者中学习](../../../translated_images/zh/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.png)](https://youtu.be/jds7dSmNptE)
+[![从 MCP 早期采用者中学习](../../../translated_images/zh-CN/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.png)](https://youtu.be/jds7dSmNptE)
 
 _（点击上方图片观看本课视频）_
 

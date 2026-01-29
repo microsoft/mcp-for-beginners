@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1de8367745088b9fcd4746ea4cc5a161",
-  "translation_date": "2025-10-06T15:37:35+00:00",
-  "source_file": "03-GettingStarted/10-advanced/README.md",
-  "language_code": "fr"
-}
--->
 # Utilisation avancée du serveur
 
 Il existe deux types de serveurs exposés dans le SDK MCP : le serveur classique et le serveur bas-niveau. En général, vous utilisez le serveur classique pour y ajouter des fonctionnalités. Cependant, dans certains cas, vous pourriez préférer utiliser le serveur bas-niveau, notamment pour :

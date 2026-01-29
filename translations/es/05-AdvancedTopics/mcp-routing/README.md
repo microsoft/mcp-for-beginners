@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2f1b473818b5a6cc9a9bbf777fffa6d4",
-  "translation_date": "2025-07-14T21:43:53+00:00",
-  "source_file": "05-AdvancedTopics/mcp-routing/README.md",
-  "language_code": "es"
-}
--->
 ## Arquitectura de Muestreo y Enrutamiento en MCP
 
 El muestreo es un componente crítico del Model Context Protocol (MCP) que permite un procesamiento y enrutamiento eficiente de las solicitudes. Consiste en analizar las solicitudes entrantes para determinar el modelo o servicio más adecuado para manejarlas, basándose en diversos criterios como el tipo de contenido, el contexto del usuario y la carga del sistema.

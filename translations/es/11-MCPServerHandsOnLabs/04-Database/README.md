@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9525f06ed164e10f29e0f6b055d4f3d3",
-  "translation_date": "2025-09-30T14:19:13+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/04-Database/README.md",
-  "language_code": "es"
-}
--->
 # Diseño de Base de Datos y Esquema
 
 ## 🎯 Qué Cubre Este Laboratorio

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1b6c746d9e190deba4d8765267ffb94e",
-  "translation_date": "2025-07-17T13:50:49+00:00",
-  "source_file": "02-Security/azure-content-safety-implementation.md",
-  "language_code": "en"
-}
--->
 # Implementing Azure Content Safety with MCP
 
 To enhance MCP security against prompt injection, tool poisoning, and other AI-specific threats, integrating Azure Content Safety is highly recommended.

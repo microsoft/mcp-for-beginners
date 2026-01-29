@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP 核心概念：掌握模型上下文協議以整合 AI
 
-[![MCP 核心概念](../../../translated_images/mo/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.png)](https://youtu.be/earDzWGtE84)
+[![MCP 核心概念](../../../translated_images/zh-MO/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.png)](https://youtu.be/earDzWGtE84)
 
 _(點擊上方圖片觀看本課程影片)_
 

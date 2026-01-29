@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # MCP 核心概念：掌握用于 AI 集成的模型上下文协议
 
-[![MCP 核心概念](../../../translated_images/zh/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.png)](https://youtu.be/earDzWGtE84)
+[![MCP 核心概念](../../../translated_images/zh-CN/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.png)](https://youtu.be/earDzWGtE84)
 
 _(点击上方图片观看本课视频)_
 

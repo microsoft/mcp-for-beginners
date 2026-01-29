@@ -38,9 +38,9 @@ Você pode controlar seu MCP Server de duas maneiras diferentes:
 
 ### Capturas de Tela
 
-![Configuração guiada do MCP Server no Visual Studio Code](../../../../translated_images/br/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.png)
-![Seleção de ferramentas por sessão de agente](../../../../translated_images/br/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.png)
-![Depuração fácil de erros durante o desenvolvimento de MCP](../../../../translated_images/br/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.png)
+![Configuração guiada do MCP Server no Visual Studio Code](../../../../translated_images/pt-BR/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.png)
+![Seleção de ferramentas por sessão de agente](../../../../translated_images/pt-BR/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.png)
+![Depuração fácil de erros durante o desenvolvimento de MCP](../../../../translated_images/pt-BR/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.png)
 
 Vamos falar mais sobre como usar a interface visual nas próximas seções.
 
@@ -103,15 +103,15 @@ Agora que você adicionou uma entrada, vamos iniciar o servidor:
 
 1. Localize sua entrada no arquivo *mcp.json* e certifique-se de encontrar o ícone de "play":
 
-  ![Iniciando servidor no Visual Studio Code](../../../../translated_images/br/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.png)  
+  ![Iniciando servidor no Visual Studio Code](../../../../translated_images/pt-BR/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.png)  
 
 1. Clique no ícone de "play". Você deve ver o ícone de ferramentas no GitHub Copilot Chat aumentar o número de ferramentas disponíveis. Se você clicar nesse ícone de ferramentas, verá uma lista de ferramentas registradas. Você pode marcar/desmarcar cada ferramenta dependendo se deseja que o GitHub Copilot as use como contexto:
 
-  ![Iniciando servidor no Visual Studio Code](../../../../translated_images/br/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.png)
+  ![Iniciando servidor no Visual Studio Code](../../../../translated_images/pt-BR/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.png)
 
 1. Para executar uma ferramenta, digite um prompt que corresponda à descrição de uma das suas ferramentas, por exemplo, um prompt como "somar 22 e 1":
 
-  ![Executando uma ferramenta no GitHub Copilot](../../../../translated_images/br/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
+  ![Executando uma ferramenta no GitHub Copilot](../../../../translated_images/pt-BR/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
   Você deve ver uma resposta dizendo 23.
 

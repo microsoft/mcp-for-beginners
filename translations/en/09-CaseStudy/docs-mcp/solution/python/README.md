@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6ef6015d29b95f1cab97fb88a045a991",
-  "translation_date": "2025-09-05T10:12:27+00:00",
-  "source_file": "09-CaseStudy/docs-mcp/solution/python/README.md",
-  "language_code": "en"
-}
--->
 # Study Plan Generator with Chainlit & Microsoft Learn Docs MCP
 
 ## Prerequisites

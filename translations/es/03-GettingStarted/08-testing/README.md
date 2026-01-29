@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4e34e34e84f013e73c7eaa6d09884756",
-  "translation_date": "2025-07-13T21:56:26+00:00",
-  "source_file": "03-GettingStarted/08-testing/README.md",
-  "language_code": "es"
-}
--->
 ## Pruebas y Depuración
 
 Antes de comenzar a probar tu servidor MCP, es importante entender las herramientas disponibles y las mejores prácticas para la depuración. Realizar pruebas efectivas garantiza que tu servidor funcione como se espera y te ayuda a identificar y resolver problemas rápidamente. La siguiente sección describe los enfoques recomendados para validar tu implementación MCP.

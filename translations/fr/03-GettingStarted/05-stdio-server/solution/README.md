@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e378b47e0361b7a9b0dab7a0306878c8",
-  "translation_date": "2025-08-26T19:58:55+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/README.md",
-  "language_code": "fr"
-}
--->
 # Solutions de Serveur MCP stdio
 
 > **⚠️ Important** : Ces solutions ont été mises à jour pour utiliser le **transport stdio** conformément aux recommandations de la spécification MCP du 18/06/2025. Le transport SSE (Server-Sent Events) original a été déprécié.

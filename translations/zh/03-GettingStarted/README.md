@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 ## 入门  
 
-[![构建您的第一个 MCP 服务器](../../../translated_images/zh/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.png)](https://youtu.be/sNDZO9N4m9Y)
+[![构建您的第一个 MCP 服务器](../../../translated_images/zh-CN/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.png)](https://youtu.be/sNDZO9N4m9Y)
 
 _（点击上方图片观看本课视频）_
 

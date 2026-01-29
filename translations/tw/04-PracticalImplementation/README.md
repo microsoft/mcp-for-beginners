@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # 實際應用
 
-[![如何使用真實工具和工作流程構建、測試和部署 MCP 應用程式](../../../translated_images/tw/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.png)](https://youtu.be/vCN9-mKBDfQ)
+[![如何使用真實工具和工作流程構建、測試和部署 MCP 應用程式](../../../translated_images/zh-TW/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.png)](https://youtu.be/vCN9-mKBDfQ)
 
 _（點擊上方圖片觀看本課程的影片）_
 
@@ -215,7 +215,7 @@ Azure API 管理是保護 MCP 伺服器的絕佳解決方案。其核心思想�
 
     您應該會看到類似以下的介面：
 
-    ![連接到 Node Inspector](../../../translated_images/tw/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
+    ![連接到 Node Inspector](../../../translated_images/zh-TW/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.png)
 
 1. 按住 CTRL 點擊應用程式顯示的 URL（例如 [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources)）以加載 MCP Inspector Web 應用程式。
 1. 將傳輸類型設置為 `SSE`。

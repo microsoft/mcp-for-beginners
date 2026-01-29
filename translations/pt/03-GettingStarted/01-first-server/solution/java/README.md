@@ -72,7 +72,7 @@ O MCP Inspector é uma ferramenta útil para interagir com serviços MCP. Para o
    - Clique em "List Tools" para ver as operações de calculadora disponíveis
    - Selecione uma ferramenta e clique em "Run Tool" para executar uma operação
 
-![Captura de ecrã do MCP Inspector](../../../../../../translated_images/pt/tool.40e180a7b0d0fe2067cf96435532b01f63f7f8619d6b0132355a04b426b669ac.png)
+![Captura de ecrã do MCP Inspector](../../../../../../translated_images/pt-PT/tool.40e180a7b0d0fe2067cf96435532b01f63f7f8619d6b0132355a04b426b669ac.png)
 
 **Aviso Legal**:  
 Este documento foi traduzido utilizando o serviço de tradução automática [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos por garantir a precisão, por favor tenha em conta que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autorizada. Para informações críticas, recomenda-se a tradução profissional humana. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes da utilização desta tradução.

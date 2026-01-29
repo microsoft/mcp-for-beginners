@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "193889b580c86bbb1e4f577114a5ce4e",
-  "translation_date": "2025-07-16T21:23:50+00:00",
-  "source_file": "05-AdvancedTopics/mcp-sampling/README.md",
-  "language_code": "fr"
-}
--->
 # Échantillonnage dans le protocole Model Context
 
 L’échantillonnage est une fonctionnalité puissante de MCP qui permet aux serveurs de demander des complétions LLM via le client, favorisant des comportements agentiques sophistiqués tout en garantissant sécurité et confidentialité. Une bonne configuration de l’échantillonnage peut considérablement améliorer la qualité des réponses et les performances. MCP offre une méthode standardisée pour contrôler la génération de texte par les modèles avec des paramètres spécifiques influençant l’aléa, la créativité et la cohérence.

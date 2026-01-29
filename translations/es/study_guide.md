@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "af27b0acfae6caa134d9701453884df8",
-  "translation_date": "2025-10-06T21:55:26+00:00",
-  "source_file": "study_guide.md",
-  "language_code": "es"
-}
--->
 # Protocolo de Contexto de Modelo (MCP) para Principiantes - Guía de Estudio
 
 Esta guía de estudio ofrece una visión general de la estructura y contenido del repositorio para el currículo "Protocolo de Contexto de Modelo (MCP) para Principiantes". Utiliza esta guía para navegar por el repositorio de manera eficiente y aprovechar al máximo los recursos disponibles.

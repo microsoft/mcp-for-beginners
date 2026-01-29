@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "c2cdd08d4e120558270e3f534841fab8",
-  "translation_date": "2025-10-07T01:25:34+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/code/README.md",
-  "language_code": "fr"
-}
--->
 Solution
 
 - [Python](./basic/python/README.md)

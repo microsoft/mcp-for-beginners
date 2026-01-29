@@ -110,7 +110,7 @@ Let me know if you want module-specific recommendations or need more customized 
 
 Abaixo está uma solução mínima de exemplo. O código completo e detalhes estão disponíveis na pasta de solução.
 
-![Visão Geral do Cenário 2](../../../../translated_images/br/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.png)
+![Visão Geral do Cenário 2](../../../../translated_images/pt-BR/scenario2.0c92726d5cd81f68238e5ba65f839a0b300d5b74b8ca7db28bc8f900c3e7d037.png)
 
 <details>
 <summary>Python (Chainlit)</summary>
@@ -167,7 +167,7 @@ Aqui está um exemplo de como configurar o servidor MCP no VS Code:
 
 > Para um passo a passo detalhado com capturas de tela e guia passo a passo, veja [`README.md`](./solution/scenario3/README.md).
 
-![Visão Geral do Cenário 3](../../../../translated_images/br/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
+![Visão Geral do Cenário 3](../../../../translated_images/pt-BR/step4-prompt-chat.12187bb001605efc5077992b621f0fcd1df12023c5dce0464f8eb8f3d595218f.png)
 
 Essa abordagem é ideal para quem cria cursos técnicos, escreve documentação ou desenvolve código com necessidade frequente de referências.
 

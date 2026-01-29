@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "c8f283730b5421082ddd26cc85c07831",
-  "translation_date": "2025-07-18T10:42:02+00:00",
-  "source_file": "07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md",
-  "language_code": "fr"
-}
--->
 # 🚀 10 serveurs Microsoft MCP qui transforment la productivité des développeurs
 
 ## 🎯 Ce que vous apprendrez dans ce guide

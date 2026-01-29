@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f84eaea79c8fa9ab318a494f40891814",
-  "translation_date": "2025-08-19T14:10:00+00:00",
-  "source_file": "05-AdvancedTopics/mcp-integration/README.md",
-  "language_code": "en"
-}
--->
 # Enterprise Integration
 
 When creating MCP Servers in an enterprise environment, it's often necessary to integrate with existing AI platforms and services. This section explains how to connect MCP with enterprise systems like Azure OpenAI and Microsoft AI Foundry, enabling advanced AI functionalities and tool orchestration.

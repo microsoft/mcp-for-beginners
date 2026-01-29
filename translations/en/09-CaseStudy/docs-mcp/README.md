@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4319d291c9d124ecafea52b3d04bfa0e",
-  "translation_date": "2025-07-14T06:16:54+00:00",
-  "source_file": "09-CaseStudy/docs-mcp/README.md",
-  "language_code": "en"
-}
--->
 # Case Study: Connecting to the Microsoft Learn Docs MCP Server from a Client
 
 Have you ever found yourself switching between documentation sites, Stack Overflow, and countless search engine tabs while trying to fix a problem in your code? Maybe you keep a second monitor just for docs, or you’re constantly alt-tabbing between your IDE and a browser. Wouldn’t it be better if you could bring the documentation directly into your workflow—integrated into your apps, your IDE, or even your own custom tools? In this case study, we’ll explore how to do exactly that by connecting directly to the Microsoft Learn Docs MCP server from your own client application.

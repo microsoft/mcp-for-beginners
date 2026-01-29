@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Model Context Protocol (MCP) 簡介：為何它對可擴展的 AI 應用至關重要
 
-[![Model Context Protocol 簡介](../../../translated_images/tw/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.png)](https://youtu.be/agBbdiOPLQA)
+[![Model Context Protocol 簡介](../../../translated_images/zh-TW/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.png)](https://youtu.be/agBbdiOPLQA)
 
 _（點擊上方圖片觀看本課程影片）_
 

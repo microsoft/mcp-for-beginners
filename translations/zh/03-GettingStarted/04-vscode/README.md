@@ -38,9 +38,9 @@ Visual Studio Code 和 GitHub Copilot 可以作为客户端连接 MCP 服务器�
 
 ### 截图
 
-![在 Visual Studio Code 中配置 MCP 服务器](../../../../translated_images/zh/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.png)
-![每个 Agent 会话的工具选择](../../../../translated_images/zh/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.png)
-![在 MCP 开发过程中轻松调试错误](../../../../translated_images/zh/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.png)
+![在 Visual Studio Code 中配置 MCP 服务器](../../../../translated_images/zh-CN/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.png)
+![每个 Agent 会话的工具选择](../../../../translated_images/zh-CN/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.png)
+![在 MCP 开发过程中轻松调试错误](../../../../translated_images/zh-CN/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.png)
 
 接下来我们将详细讨论如何使用可视化界面。
 
@@ -103,15 +103,15 @@ Visual Studio Code 和 GitHub Copilot 可以作为客户端连接 MCP 服务器�
 
 1. 在 *mcp.json* 文件中找到你的条目，并确保找到 "播放" 图标：
 
-  ![在 Visual Studio Code 中启动服务器](../../../../translated_images/zh/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.png)  
+  ![在 Visual Studio Code 中启动服务器](../../../../translated_images/zh-CN/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.png)  
 
 1. 点击 "播放" 图标，你应该会看到 GitHub Copilot 聊天界面的工具图标显示可用工具数量增加。如果点击该工具图标，你会看到已注册工具的列表。你可以根据需要勾选/取消勾选每个工具，以决定是否让 GitHub Copilot 使用它们作为上下文：
 
-  ![在 Visual Studio Code 中启动服务器](../../../../translated_images/zh/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.png)
+  ![在 Visual Studio Code 中启动服务器](../../../../translated_images/zh-CN/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.png)
 
 1. 要运行工具，请输入一个与工具描述匹配的提示，例如 "将 22 加到 1"：
 
-  ![从 GitHub Copilot 运行工具](../../../../translated_images/zh/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
+  ![从 GitHub Copilot 运行工具](../../../../translated_images/zh-CN/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
   你应该会看到一个响应，显示结果为 23。
 

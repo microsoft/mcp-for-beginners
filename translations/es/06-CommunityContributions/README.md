@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "fcf1e12b62102bf7d16b78deb2b163b7",
-  "translation_date": "2025-07-29T00:43:25+00:00",
-  "source_file": "06-CommunityContributions/README.md",
-  "language_code": "es"
-}
--->
 # Comunidad y Contribuciones
 
 [![Cómo Contribuir a MCP: Herramientas, Documentación, Código y Más](../../../translated_images/es/07.1179f6de46ff196e.webp)](https://youtu.be/v1pvCYAWpRE)

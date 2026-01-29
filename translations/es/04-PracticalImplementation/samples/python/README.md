@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "706b9b075dc484b73a053e6e9c709b4b",
-  "translation_date": "2025-07-13T23:29:46+00:00",
-  "source_file": "04-PracticalImplementation/samples/python/README.md",
-  "language_code": "es"
-}
--->
 # Protocolo de Contexto de Modelo (MCP) Implementación en Python
 
 Este repositorio contiene una implementación en Python del Protocolo de Contexto de Modelo (MCP), que muestra cómo crear una aplicación tanto de servidor como de cliente que se comuniquen usando el estándar MCP.

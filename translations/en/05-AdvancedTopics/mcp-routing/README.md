@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2f1b473818b5a6cc9a9bbf777fffa6d4",
-  "translation_date": "2025-07-14T21:43:34+00:00",
-  "source_file": "05-AdvancedTopics/mcp-routing/README.md",
-  "language_code": "en"
-}
--->
 ## Sampling and Routing Architecture in MCP
 
 Sampling is a key part of the Model Context Protocol (MCP) that enables efficient request processing and routing. It involves analyzing incoming requests to identify the best model or service to handle them, based on factors like content type, user context, and system load.

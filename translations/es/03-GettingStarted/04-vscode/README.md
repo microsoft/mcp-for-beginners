@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "d940b5e0af75e3a3a4d1c3179120d1d9",
-  "translation_date": "2025-08-26T17:03:45+00:00",
-  "source_file": "03-GettingStarted/04-vscode/README.md",
-  "language_code": "es"
-}
--->
 # Consumir un servidor desde el modo Agente de GitHub Copilot
 
 Visual Studio Code y GitHub Copilot pueden actuar como un cliente y consumir un servidor MCP. ¿Por qué querríamos hacer eso, te preguntarás? Bueno, eso significa que las características que tenga el servidor MCP ahora pueden ser utilizadas desde tu IDE. Imagina que agregas, por ejemplo, el servidor MCP de GitHub; esto permitiría controlar GitHub mediante comandos en lenguaje natural en lugar de escribir comandos específicos en el terminal. O imagina cualquier cosa en general que pueda mejorar tu experiencia como desarrollador, todo controlado por lenguaje natural. ¿Empiezas a ver las ventajas, verdad?

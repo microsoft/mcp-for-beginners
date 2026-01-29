@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4e34e34e84f013e73c7eaa6d09884756",
-  "translation_date": "2025-07-13T21:56:15+00:00",
-  "source_file": "03-GettingStarted/08-testing/README.md",
-  "language_code": "fr"
-}
--->
 ## Tests et Débogage
 
 Avant de commencer à tester votre serveur MCP, il est important de bien comprendre les outils disponibles et les bonnes pratiques pour le débogage. Un test efficace garantit que votre serveur fonctionne comme prévu et vous aide à identifier et résoudre rapidement les problèmes. La section suivante présente les approches recommandées pour valider votre implémentation MCP.

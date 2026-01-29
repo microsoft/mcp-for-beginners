@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ebdb86db46113f1cbd59ce4c74caaa79",
-  "translation_date": "2025-07-16T22:05:42+00:00",
-  "source_file": "05-AdvancedTopics/mcp-root-contexts/README.md",
-  "language_code": "es"
-}
--->
 # Contextos Raíz de MCP
 
 Los contextos raíz son un concepto fundamental en el Model Context Protocol que proporcionan una capa persistente para mantener el historial de conversación y el estado compartido a lo largo de múltiples solicitudes y sesiones.

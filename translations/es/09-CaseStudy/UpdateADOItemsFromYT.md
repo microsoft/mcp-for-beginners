@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "14a2dfbea55ef735660a06bd6bdfe5f3",
-  "translation_date": "2025-07-14T06:08:22+00:00",
-  "source_file": "09-CaseStudy/UpdateADOItemsFromYT.md",
-  "language_code": "es"
-}
--->
 # Estudio de Caso: Actualización de Ítems de Azure DevOps con Datos de YouTube usando MCP
 
 > **Disclaimer:** Existen herramientas y reportes en línea que pueden automatizar el proceso de actualizar ítems de Azure DevOps con datos de plataformas como YouTube. El siguiente escenario se presenta únicamente como un caso de uso de ejemplo para ilustrar cómo se pueden aplicar las herramientas MCP en tareas de automatización e integración.

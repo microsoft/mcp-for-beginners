@@ -38,9 +38,9 @@ Visual Studio Code 和 GitHub Copilot 可以作為客戶端來使用 MCP 伺服�
 
 ### 截圖
 
-![在 Visual Studio Code 中引導式配置 MCP 伺服器](../../../../translated_images/tw/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.png)
-![每次 Agent 會話的工具選擇](../../../../translated_images/tw/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.png)
-![在 MCP 開發過程中輕鬆調試錯誤](../../../../translated_images/tw/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.png)
+![在 Visual Studio Code 中引導式配置 MCP 伺服器](../../../../translated_images/zh-TW/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.png)
+![每次 Agent 會話的工具選擇](../../../../translated_images/zh-TW/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.png)
+![在 MCP 開發過程中輕鬆調試錯誤](../../../../translated_images/zh-TW/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.png)
 
 接下來我們將討論如何使用視覺介面。
 
@@ -103,15 +103,15 @@ Visual Studio Code 和 GitHub Copilot 可以作為客戶端來使用 MCP 伺服�
 
 1. 在 *mcp.json* 中找到你的條目，並確保找到 "播放" 圖示：
 
-  ![在 Visual Studio Code 中啟動伺服器](../../../../translated_images/tw/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.png)  
+  ![在 Visual Studio Code 中啟動伺服器](../../../../translated_images/zh-TW/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.png)  
 
 1. 點擊 "播放" 圖示，你應該會看到 GitHub Copilot 聊天工具圖示中的可用工具數量增加。如果點擊該工具圖示，你會看到已註冊工具的列表。你可以勾選/取消勾選每個工具，根據你是否希望 GitHub Copilot 使用它們作為上下文：
 
-  ![在 Visual Studio Code 中啟動伺服器](../../../../translated_images/tw/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.png)
+  ![在 Visual Studio Code 中啟動伺服器](../../../../translated_images/zh-TW/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.png)
 
 1. 要運行工具，輸入一個你知道會匹配某個工具描述的提示，例如 "add 22 to 1"：
 
-  ![從 GitHub Copilot 運行工具](../../../../translated_images/tw/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
+  ![從 GitHub Copilot 運行工具](../../../../translated_images/zh-TW/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.png)
 
   你應該會看到一個回應，顯示 23。
 
