@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e378b47e0361b7a9b0dab7a0306878c8",
-  "translation_date": "2025-08-26T20:00:28+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/README.md",
-  "language_code": "hi"
-}
--->
 # MCP स्टैंडर्ड इनपुट/आउटपुट सर्वर समाधान
 
 > **⚠️ महत्वपूर्ण**: इन समाधानों को **stdio transport** का उपयोग करने के लिए अपडेट किया गया है, जैसा कि MCP स्पेसिफिकेशन 2025-06-18 में अनुशंसित किया गया है। मूल SSE (Server-Sent Events) transport को अब बंद कर दिया गया है।

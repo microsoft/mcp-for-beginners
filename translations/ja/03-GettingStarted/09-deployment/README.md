@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1d9dc83260576b76f272d330ed93c51f",
-  "translation_date": "2025-07-13T22:07:00+00:00",
-  "source_file": "03-GettingStarted/09-deployment/README.md",
-  "language_code": "ja"
-}
--->
 # MCPサーバーのデプロイ
 
 MCPサーバーをデプロイすることで、ローカル環境を超えて他のユーザーがそのツールやリソースにアクセスできるようになります。スケーラビリティ、信頼性、管理のしやすさなどの要件に応じて、いくつかのデプロイ戦略があります。以下では、ローカル環境、コンテナ、クラウドへのMCPサーバーのデプロイ方法について説明します。

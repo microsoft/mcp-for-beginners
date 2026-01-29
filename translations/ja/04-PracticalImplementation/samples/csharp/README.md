@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0bc7bd48f55f1565f1d95ccb2c16f728",
-  "translation_date": "2025-07-13T23:04:53+00:00",
-  "source_file": "04-PracticalImplementation/samples/csharp/README.md",
-  "language_code": "ja"
-}
--->
 # サンプル
 
 前の例では、`stdio` タイプを使ったローカルの .NET プロジェクトの使い方と、コンテナ内でサーバーをローカルに起動する方法を示しました。これは多くの状況で良い解決策です。しかし、サーバーをクラウド環境のようなリモートで動かすことも有用な場合があります。そこで登場するのが `http` タイプです。

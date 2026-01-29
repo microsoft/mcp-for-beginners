@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6d6315e03f591fb5a39be91da88585dc",
-  "translation_date": "2025-07-13T19:19:04+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/typescript/README.md",
-  "language_code": "ko"
-}
--->
 # 이 샘플 실행하기
 
 이 샘플은 클라이언트에 LLM이 있는 경우를 다룹니다. LLM이 작동하려면 Codespaces에서 실행하거나 GitHub에서 개인 액세스 토큰을 설정해야 합니다.

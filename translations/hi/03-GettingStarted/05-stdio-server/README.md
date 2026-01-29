@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "77735b446eb79b1bba9c849865cd0ced",
-  "translation_date": "2025-08-28T22:17:11+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/README.md",
-  "language_code": "hi"
-}
--->
 # MCP सर्वर stdio ट्रांसपोर्ट के साथ
 
 > **⚠️ महत्वपूर्ण अपडेट**: MCP स्पेसिफिकेशन 2025-06-18 के अनुसार, स्टैंडअलोन SSE (Server-Sent Events) ट्रांसपोर्ट को **डिप्रिकेट** कर दिया गया है और इसे "Streamable HTTP" ट्रांसपोर्ट से बदल दिया गया है। वर्तमान MCP स्पेसिफिकेशन दो मुख्य ट्रांसपोर्ट मैकेनिज़्म को परिभाषित करता है:

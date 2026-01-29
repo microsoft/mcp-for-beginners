@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "14a2dfbea55ef735660a06bd6bdfe5f3",
-  "translation_date": "2025-07-14T06:10:07+00:00",
-  "source_file": "09-CaseStudy/UpdateADOItemsFromYT.md",
-  "language_code": "ja"
-}
--->
 # ケーススタディ：MCPを使ってYouTubeデータからAzure DevOpsアイテムを更新する
 
 > **免責事項:** YouTubeなどのプラットフォームからのデータを使ってAzure DevOpsアイテムを自動更新する既存のオンラインツールやレポートはすでに存在します。以下のシナリオは、MCPツールを自動化や統合タスクに活用する一例として提供しています。

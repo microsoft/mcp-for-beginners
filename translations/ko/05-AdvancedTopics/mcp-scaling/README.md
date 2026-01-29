@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7b4d8d17fc1f501468cce40c3651aed1",
-  "translation_date": "2025-07-16T21:48:38+00:00",
-  "source_file": "05-AdvancedTopics/mcp-scaling/README.md",
-  "language_code": "ko"
-}
--->
 # 확장성 및 고성능 MCP
 
 기업 환경에서 MCP 구현은 종종 최소한의 지연 시간으로 대량의 요청을 처리해야 합니다.

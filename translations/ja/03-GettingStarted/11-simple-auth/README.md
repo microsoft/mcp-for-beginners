@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5b00b8a8971a07d2d8803be4c9f138f8",
-  "translation_date": "2025-10-07T00:37:44+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/README.md",
-  "language_code": "ja"
-}
--->
 # シンプル認証
 
 MCP SDKはOAuth 2.1をサポートしていますが、これは認証サーバー、リソースサーバー、資格情報の送信、コードの取得、コードをベアラートークンに交換するなど、かなり複雑なプロセスを伴います。OAuthに慣れていない場合、基本的な認証から始めて徐々にセキュリティを向上させるのが良いでしょう。この章はそのために存在し、より高度な認証へとステップアップする手助けをします。

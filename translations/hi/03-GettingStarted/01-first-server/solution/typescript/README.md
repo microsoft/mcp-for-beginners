@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6ebbb78b04c9b1f6c2367c713524fc95",
-  "translation_date": "2025-09-03T16:02:18+00:00",
-  "source_file": "03-GettingStarted/01-first-server/solution/typescript/README.md",
-  "language_code": "hi"
-}
--->
 # इस सैंपल को चलाना
 
 आपको `uv` इंस्टॉल करने की सलाह दी जाती है, लेकिन यह अनिवार्य नहीं है। [निर्देश](https://docs.astral.sh/uv/#highlights) देखें।

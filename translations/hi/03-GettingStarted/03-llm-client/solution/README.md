@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4117a42f3e7baae859515f7b8b911e56",
-  "translation_date": "2025-08-11T11:53:44+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/README.md",
-  "language_code": "hi"
-}
--->
 यहाँ प्रत्येक रनटाइम के लिए समाधान हैं:
 
 - [TypeScript](./typescript/README.md)

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e5ea5e7582f70008ea9bec3b3820f20a",
-  "translation_date": "2025-07-13T23:13:28+00:00",
-  "source_file": "04-PracticalImplementation/samples/java/containerapp/README.md",
-  "language_code": "ja"
-}
--->
 ## システムアーキテクチャ
 
 このプロジェクトは、ユーザーのプロンプトを計算サービスに渡す前にコンテンツの安全性チェックを行うウェブアプリケーションを示しています。通信はModel Context Protocol（MCP）を使用しています。

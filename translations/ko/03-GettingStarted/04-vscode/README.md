@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "d940b5e0af75e3a3a4d1c3179120d1d9",
-  "translation_date": "2025-08-26T17:24:34+00:00",
-  "source_file": "03-GettingStarted/04-vscode/README.md",
-  "language_code": "ko"
-}
--->
 # GitHub Copilot 에이전트 모드에서 서버 사용하기
 
 Visual Studio Code와 GitHub Copilot은 클라이언트 역할을 하며 MCP 서버를 사용할 수 있습니다. 왜 이런 기능이 필요할까요? MCP 서버의 모든 기능을 IDE 내에서 사용할 수 있다는 뜻입니다. 예를 들어 GitHub의 MCP 서버를 추가하면 터미널에서 특정 명령어를 입력하는 대신 프롬프트를 통해 GitHub을 제어할 수 있습니다. 또는 개발자 경험을 개선할 수 있는 모든 것을 자연어로 제어할 수 있다고 상상해 보세요. 이제 이 기능의 장점을 이해할 수 있겠죠?

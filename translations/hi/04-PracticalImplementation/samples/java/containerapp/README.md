@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e5ea5e7582f70008ea9bec3b3820f20a",
-  "translation_date": "2025-07-13T23:13:56+00:00",
-  "source_file": "04-PracticalImplementation/samples/java/containerapp/README.md",
-  "language_code": "hi"
-}
--->
 ## सिस्टम आर्किटेक्चर
 
 यह प्रोजेक्ट एक वेब एप्लिकेशन को दर्शाता है जो उपयोगकर्ता के प्रॉम्प्ट को कैलकुलेटर सेवा को भेजने से पहले कंटेंट सेफ्टी चेकिंग करता है, जो Model Context Protocol (MCP) के माध्यम से काम करता है।

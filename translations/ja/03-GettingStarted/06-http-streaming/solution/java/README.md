@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "acd4010e430da00946a154f62847a169",
-  "translation_date": "2025-07-13T21:09:20+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/java/README.md",
-  "language_code": "ja"
-}
--->
 # Calculator HTTP Streaming デモ
 
 このプロジェクトは、Spring Boot WebFlux を使った Server-Sent Events (SSE) による HTTP ストリーミングを示しています。2つのアプリケーションで構成されています：

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "d72a1d9e9ad1a7cc8d40d05d546b5ca0",
-  "translation_date": "2025-09-30T13:55:10+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/01-Architecture/README.md",
-  "language_code": "ko"
-}
--->
 # 핵심 아키텍처 개념
 
 ## 🎯 이 실습에서 다루는 내용

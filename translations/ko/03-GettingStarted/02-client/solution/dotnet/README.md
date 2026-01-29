@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "84857cd27c06e9e5cb8bded78ab9c05c",
-  "translation_date": "2025-07-13T18:27:24+00:00",
-  "source_file": "03-GettingStarted/02-client/solution/dotnet/README.md",
-  "language_code": "ko"
-}
--->
 # 이 샘플 실행하기
 
 ## -1- 의존성 설치하기

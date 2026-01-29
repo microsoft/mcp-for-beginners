@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "997c7119766a69552e23d7d681316902",
-  "translation_date": "2025-08-18T11:08:17+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security/README.md",
-  "language_code": "ja"
-}
--->
 # MCPセキュリティベストプラクティス - 上級実装ガイド
 
 > **現在の標準**: このガイドは、[MCP仕様2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/)のセキュリティ要件および公式の[MCPセキュリティベストプラクティス](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices)に準拠しています。

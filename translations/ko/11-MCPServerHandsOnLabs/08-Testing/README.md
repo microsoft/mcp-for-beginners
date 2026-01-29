@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ad02c1223d7861292651ffce2f52bb28",
-  "translation_date": "2025-09-30T13:46:17+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/08-Testing/README.md",
-  "language_code": "ko"
-}
--->
 # 테스트 및 디버깅
 
 ## 🎯 이 실습에서 다루는 내용

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ebdb86db46113f1cbd59ce4c74caaa79",
-  "translation_date": "2025-07-16T21:34:47+00:00",
-  "source_file": "05-AdvancedTopics/mcp-root-contexts/README.md",
-  "language_code": "ja"
-}
--->
 # MCP ルートコンテキスト
 
 ルートコンテキストは、Model Context Protocol の基本的な概念であり、複数のリクエストやセッションにわたって会話履歴や共有状態を持続的に保持するためのレイヤーを提供します。

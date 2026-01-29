@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "997c7119766a69552e23d7d681316902",
-  "translation_date": "2025-08-18T12:29:42+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security/README.md",
-  "language_code": "hi"
-}
--->
 # MCP सुरक्षा सर्वोत्तम प्रथाएँ - उन्नत कार्यान्वयन गाइड
 
 > **वर्तमान मानक**: यह गाइड [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) की सुरक्षा आवश्यकताओं और आधिकारिक [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) को दर्शाता है।

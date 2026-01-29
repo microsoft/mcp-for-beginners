@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9a6a4d3497921d2f6d9699f0a6a1890c",
-  "translation_date": "2025-09-09T21:34:45+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/README.md",
-  "language_code": "ko"
-}
--->
 # Weather MCP Server
 
 이 문서는 Python으로 구현된 샘플 MCP 서버로, 날씨 도구를 모의 응답으로 제공하며, 여러분의 MCP 서버를 위한 기본 구조로 사용할 수 있습니다. 다음과 같은 기능을 포함하고 있습니다:

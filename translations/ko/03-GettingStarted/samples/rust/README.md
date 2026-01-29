@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ffc7f32ed12664b640175f27f0a997a",
-  "translation_date": "2025-08-11T12:02:29+00:00",
-  "source_file": "03-GettingStarted/samples/rust/README.md",
-  "language_code": "ko"
-}
--->
 # 샘플
 
 이것은 MCP 서버를 위한 Rust 샘플입니다.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e8bbc7982284fe177dd4be5e7f2b3357",
-  "translation_date": "2025-12-19T09:31:47+00:00",
-  "source_file": "changelog.md",
-  "language_code": "ja"
-}
--->
 # 変更履歴: MCP for Beginners カリキュラム
 
 このドキュメントは、Model Context Protocol (MCP) for Beginners カリキュラムに加えられたすべての重要な変更の記録として機能します。変更は逆時系列（最新の変更が最初）で記録されています。

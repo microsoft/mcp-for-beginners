@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "57f14126c1c6add76b3aef3844dfe4e3",
-  "translation_date": "2025-07-13T15:03:48+00:00",
-  "source_file": "SECURITY.md",
-  "language_code": "ja"
-}
--->
 ## セキュリティ
 
 Microsoft は、当社のソフトウェア製品およびサービスのセキュリティを非常に重視しており、これには [Microsoft](https://github.com/Microsoft)、[Azure](https://github.com/Azure)、[DotNet](https://github.com/dotnet)、[AspNet](https://github.com/aspnet)、[Xamarin](https://github.com/xamarin) を含む当社の GitHub 組織で管理されているすべてのソースコードリポジトリが含まれます。

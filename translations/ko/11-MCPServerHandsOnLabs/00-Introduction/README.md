@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1d375ae049e52c89287d533daa4ba348",
-  "translation_date": "2025-09-30T14:06:56+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/00-Introduction/README.md",
-  "language_code": "ko"
-}
--->
 # MCP 데이터베이스 통합 소개
 
 ## 🎯 이 실습에서 다루는 내용

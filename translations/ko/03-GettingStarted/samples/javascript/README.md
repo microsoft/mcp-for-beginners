@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0f27f8c14853621d982185e6bbdd1dc6",
-  "translation_date": "2025-07-13T22:34:05+00:00",
-  "source_file": "03-GettingStarted/samples/javascript/README.md",
-  "language_code": "ko"
-}
--->
 # 샘플
 
 이것은 MCP 서버용 JavaScript 샘플입니다

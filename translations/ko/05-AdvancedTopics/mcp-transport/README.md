@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "cf3e88e4c0b2d9d65c7f300986bd8c6c",
-  "translation_date": "2025-12-19T09:55:42+00:00",
-  "source_file": "05-AdvancedTopics/mcp-transport/README.md",
-  "language_code": "ko"
-}
--->
 # MCP 맞춤형 전송 - 고급 구현 가이드
 
 모델 컨텍스트 프로토콜(MCP)은 맞춤형 구현을 허용하여 특수한 엔터프라이즈 환경에 적합한 전송 메커니즘의 유연성을 제공합니다. 이 고급 가이드는 확장 가능하고 클라우드 네이티브 MCP 솔루션을 구축하기 위한 실용적인 예제로 Azure Event Grid와 Azure Event Hubs를 사용한 맞춤형 전송 구현을 탐구합니다.

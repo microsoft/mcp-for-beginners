@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "96dbf17071ab774595ab8777468f0c83",
-  "translation_date": "2025-08-11T11:56:05+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/README.md",
-  "language_code": "hi"
-}
--->
 यहाँ प्रत्येक रनटाइम के लिए समाधान हैं:
 
 - [Python](./python/README.md)

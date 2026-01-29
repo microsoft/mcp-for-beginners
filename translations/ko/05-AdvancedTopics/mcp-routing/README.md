@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2f1b473818b5a6cc9a9bbf777fffa6d4",
-  "translation_date": "2025-07-14T21:45:45+00:00",
-  "source_file": "05-AdvancedTopics/mcp-routing/README.md",
-  "language_code": "ko"
-}
--->
 ## MCP의 샘플링 및 라우팅 아키텍처
 
 샘플링은 Model Context Protocol(MCP)의 핵심 요소로, 효율적인 요청 처리와 라우팅을 가능하게 합니다. 이는 들어오는 요청을 분석하여 콘텐츠 유형, 사용자 컨텍스트, 시스템 부하 등 다양한 기준에 따라 가장 적합한 모델이나 서비스로 처리하도록 결정하는 과정을 포함합니다.

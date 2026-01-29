@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "151265c9a2124d7c53e04d16ee3fb73b",
-  "translation_date": "2025-07-16T21:47:21+00:00",
-  "source_file": "05-AdvancedTopics/web-search-mcp/README.md",
-  "language_code": "ko"
-}
--->
 # Lesson: 웹 검색 MCP 서버 구축
 
 이 장에서는 외부 API와 통합하고, 다양한 데이터 유형을 처리하며, 오류를 관리하고, 여러 도구를 조율하는 실제 AI 에이전트를 만드는 방법을 보여줍니다. 모두 프로덕션 환경에 적합한 형태로 구현합니다. 다음 내용을 다룹니다:

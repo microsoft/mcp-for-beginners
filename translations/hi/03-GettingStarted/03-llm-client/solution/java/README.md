@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ac2459c0d5cc823922e3d9240a95028c",
-  "translation_date": "2025-07-13T19:07:50+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/java/README.md",
-  "language_code": "hi"
-}
--->
 # Calculator LLM Client
 
 एक Java एप्लिकेशन जो दिखाता है कि LangChain4j का उपयोग करके MCP (Model Context Protocol) कैलकुलेटर सेवा से GitHub Models इंटीग्रेशन के साथ कैसे कनेक्ट किया जाए।

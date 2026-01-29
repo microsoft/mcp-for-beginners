@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "b3cffaf217113101e21eba532be806ea",
-  "translation_date": "2025-07-13T15:21:13+00:00",
-  "source_file": "SUPPORT.md",
-  "language_code": "ja"
-}
--->
 # サポート
 
 ## 問題の報告方法とサポートの受け方  

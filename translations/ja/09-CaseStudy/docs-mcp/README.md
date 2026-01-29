@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4319d291c9d124ecafea52b3d04bfa0e",
-  "translation_date": "2025-07-14T06:20:07+00:00",
-  "source_file": "09-CaseStudy/docs-mcp/README.md",
-  "language_code": "ja"
-}
--->
 # ケーススタディ：クライアントからMicrosoft Learn Docs MCPサーバーへの接続
 
 コードの問題を解決しようとするとき、ドキュメントサイトやStack Overflow、検索エンジンのタブを行ったり来たりしていませんか？ドキュメント用にセカンドモニターを用意したり、IDEとブラウザを頻繁に切り替えたりしているかもしれません。もしドキュメントをワークフローの中に直接取り込めたら、つまりアプリやIDE、あるいは自分だけのカスタムツールに統合できたら、どれだけ便利でしょうか？このケーススタディでは、クライアントアプリケーションからMicrosoft Learn Docs MCPサーバーに直接接続する方法を探っていきます。

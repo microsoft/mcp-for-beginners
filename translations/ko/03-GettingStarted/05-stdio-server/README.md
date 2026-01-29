@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "77735b446eb79b1bba9c849865cd0ced",
-  "translation_date": "2025-08-28T22:16:03+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/README.md",
-  "language_code": "ko"
-}
--->
 # MCP 서버와 stdio 전송 방식
 
 > **⚠️ 중요 업데이트**: MCP 사양 2025-06-18 기준으로, 독립형 SSE(Server-Sent Events) 전송 방식은 **더 이상 사용되지 않으며** "Streamable HTTP" 전송 방식으로 대체되었습니다. 현재 MCP 사양은 두 가지 주요 전송 메커니즘을 정의합니다:

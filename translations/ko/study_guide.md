@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "af27b0acfae6caa134d9701453884df8",
-  "translation_date": "2025-10-06T22:27:58+00:00",
-  "source_file": "study_guide.md",
-  "language_code": "ko"
-}
--->
 # 초보자를 위한 모델 컨텍스트 프로토콜(MCP) - 학습 가이드
 
 이 학습 가이드는 "초보자를 위한 모델 컨텍스트 프로토콜(MCP)" 커리큘럼의 저장소 구조와 내용을 개괄적으로 설명합니다. 이 가이드를 활용하여 저장소를 효율적으로 탐색하고 제공되는 리소스를 최대한 활용하세요.

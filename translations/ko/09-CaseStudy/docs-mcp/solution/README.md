@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "c8c1a74c74f6c2d42d511daf12d0b6c5",
-  "translation_date": "2025-07-14T06:32:34+00:00",
-  "source_file": "09-CaseStudy/docs-mcp/solution/README.md",
-  "language_code": "ko"
-}
--->
 다음은 각 런타임별 솔루션입니다:
 - [Python](./python/README.md)
 

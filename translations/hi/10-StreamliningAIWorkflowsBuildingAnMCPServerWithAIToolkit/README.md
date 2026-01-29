@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1b000fd6e1b04c047578bfc5d07d54eb",
-  "translation_date": "2025-07-29T01:51:44+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md",
-  "language_code": "hi"
-}
--->
 # एआई वर्कफ़्लो को सरल बनाना: एआई टूलकिट के साथ MCP सर्वर बनाना
 
 [![MCP Version](https://img.shields.io/badge/MCP-1.9.3-blue.svg)](https://modelcontextprotocol.io/)

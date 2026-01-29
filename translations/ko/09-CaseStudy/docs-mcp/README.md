@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4319d291c9d124ecafea52b3d04bfa0e",
-  "translation_date": "2025-07-14T06:20:25+00:00",
-  "source_file": "09-CaseStudy/docs-mcp/README.md",
-  "language_code": "ko"
-}
--->
 # 사례 연구: 클라이언트에서 Microsoft Learn Docs MCP 서버에 연결하기
 
 코드를 해결하려고 하면서 문서 사이트, Stack Overflow, 그리고 끝없는 검색 엔진 탭 사이를 오가 본 적이 있나요? 아마도 문서 전용으로 두 번째 모니터를 사용하거나 IDE와 브라우저 사이를 계속해서 alt-tab 하고 있을지도 모릅니다. 문서를 여러분의 워크플로우 안으로, 앱이나 IDE, 혹은 자신만의 맞춤 도구에 통합할 수 있다면 훨씬 더 좋지 않을까요? 이 사례 연구에서는 클라이언트 애플리케이션에서 직접 Microsoft Learn Docs MCP 서버에 연결하는 방법을 살펴보겠습니다.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e378b47e0361b7a9b0dab7a0306878c8",
-  "translation_date": "2025-08-26T20:00:21+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/README.md",
-  "language_code": "ko"
-}
--->
 # MCP stdio 서버 솔루션
 
 > **⚠️ 중요**: 이 솔루션은 MCP 사양 2025-06-18에 따라 권장되는 **stdio 전송**을 사용하도록 업데이트되었습니다. 기존의 SSE (Server-Sent Events) 전송은 더 이상 사용되지 않습니다.

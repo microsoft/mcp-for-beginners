@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "24531f2b6b0f7fa3839accf4dc10088a",
-  "translation_date": "2025-07-13T19:15:27+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/python/README.md",
-  "language_code": "hi"
-}
--->
 # इस सैंपल को चलाना
 
 आपको `uv` इंस्टॉल करने की सलाह दी जाती है लेकिन यह जरूरी नहीं है, देखें [instructions](https://docs.astral.sh/uv/#highlights)

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "aa5122c6d9868b4b566586f27577ca47",
-  "translation_date": "2025-08-11T12:00:21+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/rust/calculator-httpclient/README.md",
-  "language_code": "ko"
-}
--->
 # 샘플 실행하기
 
 ## -1- 스트리머블 HTTP 서버 실행

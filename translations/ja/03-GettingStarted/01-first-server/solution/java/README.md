@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ed9cab32cc67c12d8969b407aa47100a",
-  "translation_date": "2025-07-13T17:52:54+00:00",
-  "source_file": "03-GettingStarted/01-first-server/solution/java/README.md",
-  "language_code": "ja"
-}
--->
 # Basic Calculator MCP Service
 
 このサービスは、Spring BootのWebFluxトランスポートを使ってModel Context Protocol（MCP）経由で基本的な計算機能を提供します。MCPの実装を学ぶ初心者向けのシンプルな例として設計されています。

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4e34e34e84f013e73c7eaa6d09884756",
-  "translation_date": "2025-07-13T21:58:13+00:00",
-  "source_file": "03-GettingStarted/08-testing/README.md",
-  "language_code": "ja"
-}
--->
 ## テストとデバッグ
 
 MCPサーバーのテストを始める前に、利用可能なツールやデバッグのベストプラクティスを理解しておくことが重要です。効果的なテストはサーバーが期待通りに動作することを保証し、問題の特定と解決を迅速に行うのに役立ちます。以下のセクションでは、MCPの実装を検証するための推奨される方法を紹介します。

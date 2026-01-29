@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9525f06ed164e10f29e0f6b055d4f3d3",
-  "translation_date": "2025-09-30T14:18:41+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/04-Database/README.md",
-  "language_code": "ko"
-}
--->
 # 데이터베이스 설계 및 스키마
 
 ## 🎯 이 실습에서 다루는 내용

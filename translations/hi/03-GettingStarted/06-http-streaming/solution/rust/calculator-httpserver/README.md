@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6240e78bb87f91bece16f8742472aeef",
-  "translation_date": "2025-08-11T12:01:58+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/rust/calculator-httpserver/README.md",
-  "language_code": "hi"
-}
--->
 # इस नमूने को चलाना
 
 ## -1- डिपेंडेंसीज़ इंस्टॉल करें और प्रोजेक्ट को बिल्ड करें

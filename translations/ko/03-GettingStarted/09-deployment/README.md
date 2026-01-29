@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1d9dc83260576b76f272d330ed93c51f",
-  "translation_date": "2025-07-13T22:07:10+00:00",
-  "source_file": "03-GettingStarted/09-deployment/README.md",
-  "language_code": "ko"
-}
--->
 # MCP 서버 배포
 
 MCP 서버를 배포하면 로컬 환경을 넘어 다른 사람들이 해당 도구와 리소스에 접근할 수 있습니다. 확장성, 신뢰성, 관리 용이성 등 요구사항에 따라 여러 가지 배포 전략을 고려할 수 있습니다. 아래에서는 MCP 서버를 로컬, 컨테이너, 클라우드에 배포하는 방법에 대해 안내합니다.

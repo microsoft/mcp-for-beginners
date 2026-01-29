@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "999c5e7623c1e2d5e5a07c2feb39eb67",
-  "translation_date": "2025-07-14T08:24:57+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/README.md",
-  "language_code": "ja"
-}
--->
 # Weather MCP Server
 
 これは、モックレスポンスを使った天気ツールを実装したPythonのサンプルMCPサーバーです。自身のMCPサーバーの足がかりとして利用できます。以下の機能が含まれています：

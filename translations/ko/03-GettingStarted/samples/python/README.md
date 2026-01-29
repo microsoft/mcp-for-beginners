@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
-  "translation_date": "2025-10-17T20:04:35+00:00",
-  "source_file": "03-GettingStarted/samples/python/README.md",
-  "language_code": "ko"
-}
--->
 # MCP 계산기 서버 (Python)
 
 Python으로 구현된 간단한 Model Context Protocol (MCP) 서버로, 기본적인 계산기 기능을 제공합니다.

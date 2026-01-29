@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2f1b473818b5a6cc9a9bbf777fffa6d4",
-  "translation_date": "2025-07-14T21:45:34+00:00",
-  "source_file": "05-AdvancedTopics/mcp-routing/README.md",
-  "language_code": "ja"
-}
--->
 ## MCPにおけるサンプリングとルーティングのアーキテクチャ
 
 サンプリングは、Model Context Protocol（MCP）の重要な要素であり、効率的なリクエスト処理とルーティングを可能にします。これは、コンテンツタイプ、ユーザーコンテキスト、システム負荷などのさまざまな基準に基づいて、最適なモデルやサービスを判断するために、受信したリクエストを分析することを含みます。

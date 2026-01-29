@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "333a03e51f90bdf3e6f1ba1694c73f36",
-  "translation_date": "2025-07-16T21:48:09+00:00",
-  "source_file": "05-AdvancedTopics/mcp-realtimesearch/README.md",
-  "language_code": "ko"
-}
--->
 ## 코드 예제 면책 조항
 
 > **중요 참고**: 아래 코드 예제는 Model Context Protocol(MCP)과 웹 검색 기능의 통합을 보여줍니다. 공식 MCP SDK의 패턴과 구조를 따르지만 교육 목적으로 단순화되어 있습니다.

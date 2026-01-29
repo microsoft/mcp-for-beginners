@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "77735b446eb79b1bba9c849865cd0ced",
-  "translation_date": "2025-08-28T22:15:09+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/README.md",
-  "language_code": "ja"
-}
--->
 # MCPサーバーとstdioトランスポート
 
 > **⚠️ 重要な更新情報**: MCP仕様2025-06-18より、独立したSSE（Server-Sent Events）トランスポートは**非推奨**となり、「Streamable HTTP」トランスポートに置き換えられました。現在のMCP仕様では、以下の2つの主要なトランスポートメカニズムが定義されています：

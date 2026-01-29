@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e378b47e0361b7a9b0dab7a0306878c8",
-  "translation_date": "2025-08-26T20:00:14+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/README.md",
-  "language_code": "ja"
-}
--->
 # MCP stdio サーバーソリューション
 
 > **⚠️ 重要**: これらのソリューションは、MCP仕様2025-06-18で推奨されている**stdioトランスポート**を使用するよう更新されています。従来のSSE（Server-Sent Events）トランスポートは廃止されました。

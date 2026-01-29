@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5061d7e2ae9eea9cbaae77c1a020b318",
-  "translation_date": "2025-12-19T09:50:39+00:00",
-  "source_file": "02-Security/mcp-best-practices.md",
-  "language_code": "ko"
-}
--->
 # MCP 보안 모범 사례 2025
 
 이 종합 가이드는 최신 **MCP 사양 2025-11-25** 및 현재 업계 표준을 기반으로 Model Context Protocol (MCP) 시스템 구현을 위한 필수 보안 모범 사례를 설명합니다. 이 모범 사례는 전통적인 보안 문제와 MCP 배포에 고유한 AI 관련 위협을 모두 다룹니다.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6d6315e03f591fb5a39be91da88585dc",
-  "translation_date": "2025-07-13T19:19:00+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/typescript/README.md",
-  "language_code": "ja"
-}
--->
 # このサンプルの実行
 
 このサンプルではクライアント側にLLMを用います。LLMを動かすには、Codespacesで実行するか、GitHubでパーソナルアクセストークンを設定する必要があります。

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0bc7bd48f55f1565f1d95ccb2c16f728",
-  "translation_date": "2025-07-13T23:05:04+00:00",
-  "source_file": "04-PracticalImplementation/samples/csharp/README.md",
-  "language_code": "ko"
-}
--->
 # 샘플
 
 이전 예제에서는 `stdio` 타입을 사용하는 로컬 .NET 프로젝트와 컨테이너에서 서버를 로컬로 실행하는 방법을 보여주었습니다. 이는 많은 상황에서 좋은 해결책입니다. 하지만 서버를 클라우드 환경처럼 원격에서 실행하는 것도 유용할 수 있습니다. 이럴 때 `http` 타입이 필요합니다.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
-  "translation_date": "2025-08-18T12:57:14+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
-  "language_code": "ko"
-}
--->
 # 샘플 실행하기
 
 다음은 클래식 HTTP 스트리밍 서버와 클라이언트, 그리고 MCP 스트리밍 서버와 클라이언트를 Python으로 실행하는 방법입니다.

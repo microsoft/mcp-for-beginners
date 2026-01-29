@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1b6c746d9e190deba4d8765267ffb94e",
-  "translation_date": "2025-07-16T23:14:49+00:00",
-  "source_file": "02-Security/azure-content-safety-implementation.md",
-  "language_code": "ko"
-}
--->
 # MCP와 함께하는 Azure 콘텐츠 안전성 구현
 
 프롬프트 인젝션, 도구 오염, 기타 AI 특화 취약점에 대응하기 위해 MCP 보안을 강화하려면 Azure 콘텐츠 안전성 통합을 적극 권장합니다.

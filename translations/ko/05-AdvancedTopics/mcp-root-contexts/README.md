@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ebdb86db46113f1cbd59ce4c74caaa79",
-  "translation_date": "2025-07-16T21:46:40+00:00",
-  "source_file": "05-AdvancedTopics/mcp-root-contexts/README.md",
-  "language_code": "ko"
-}
--->
 # MCP 루트 컨텍스트
 
 루트 컨텍스트는 Model Context Protocol에서 기본 개념으로, 여러 요청과 세션에 걸쳐 대화 기록과 공유 상태를 지속적으로 유지할 수 있는 계층을 제공합니다.

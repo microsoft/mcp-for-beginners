@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "769c9794759f416450dce77286e98f00",
-  "translation_date": "2025-09-30T12:50:02+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/09-VS-Code/README.md",
-  "language_code": "ja"
-}
--->
 # VS Code 統合
 
 ## 🎯 このラボで学べること

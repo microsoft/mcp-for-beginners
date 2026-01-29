@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6d6315e03f591fb5a39be91da88585dc",
-  "translation_date": "2025-07-13T19:19:09+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/typescript/README.md",
-  "language_code": "hi"
-}
--->
 # इस सैंपल को चलाना
 
 इस सैंपल में क्लाइंट पर एक LLM शामिल है। LLM को काम करने के लिए आपको इसे Codespaces में चलाना होगा या GitHub में एक पर्सनल एक्सेस टोकन सेटअप करना होगा।

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f7a8ffd07682d554929968dfc6ae2ecb",
-  "translation_date": "2025-07-13T23:36:54+00:00",
-  "source_file": "04-PracticalImplementation/samples/typescript/README.md",
-  "language_code": "hi"
-}
--->
 # नमूना
 
 यह MCP सर्वर के लिए एक Typescript नमूना है
