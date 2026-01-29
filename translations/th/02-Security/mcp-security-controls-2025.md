@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9351493ad29390d37f64bc6d84a03db5",
-  "translation_date": "2025-12-19T12:36:19+00:00",
-  "source_file": "02-Security/mcp-security-controls-2025.md",
-  "language_code": "th"
-}
--->
 # MCP Security Controls - อัปเดต ธันวาคม 2025
 
 > **มาตรฐานปัจจุบัน**: เอกสารนี้สะท้อนข้อกำหนดความปลอดภัยของ [MCP Specification 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) และ [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) อย่างเป็นทางการ

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7074b9f4c8cd147c1c10f569d8508c82",
-  "translation_date": "2025-07-13T18:34:43+00:00",
-  "source_file": "03-GettingStarted/02-client/solution/java/README.md",
-  "language_code": "th"
-}
--->
 # MCP Java Client - ตัวอย่างเครื่องคิดเลข
 
 โปรเจกต์นี้แสดงวิธีการสร้าง Java client ที่เชื่อมต่อและโต้ตอบกับ MCP (Model Context Protocol) server ในตัวอย่างนี้ เราจะเชื่อมต่อกับเซิร์ฟเวอร์เครื่องคิดเลขจากบทที่ 01 และทำการคำนวณทางคณิตศาสตร์ต่างๆ

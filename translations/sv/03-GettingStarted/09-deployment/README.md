@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1d9dc83260576b76f272d330ed93c51f",
-  "translation_date": "2025-07-13T22:09:10+00:00",
-  "source_file": "03-GettingStarted/09-deployment/README.md",
-  "language_code": "sv"
-}
--->
 # Distribuera MCP-servrar
 
 Att distribuera din MCP-server gör det möjligt för andra att få tillgång till dess verktyg och resurser utanför din lokala miljö. Det finns flera distributionsstrategier att överväga, beroende på dina krav på skalbarhet, tillförlitlighet och enkel hantering. Nedan hittar du vägledning för att distribuera MCP-servrar lokalt, i containrar och i molnet.

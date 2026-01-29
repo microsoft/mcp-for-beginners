@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ac2459c0d5cc823922e3d9240a95028c",
-  "translation_date": "2025-07-13T19:09:55+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/java/README.md",
-  "language_code": "th"
-}
--->
 # Calculator LLM Client
 
 แอปพลิเคชัน Java ที่แสดงตัวอย่างการใช้ LangChain4j เพื่อเชื่อมต่อกับบริการเครื่องคิดเลข MCP (Model Context Protocol) พร้อมการผสานรวมกับ GitHub Models

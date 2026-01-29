@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "cf3e88e4c0b2d9d65c7f300986bd8c6c",
-  "translation_date": "2025-12-19T12:38:46+00:00",
-  "source_file": "05-AdvancedTopics/mcp-transport/README.md",
-  "language_code": "th"
-}
--->
 # MCP Custom Transports - คู่มือการใช้งานขั้นสูง
 
 โปรโตคอล Model Context (MCP) มอบความยืดหยุ่นในกลไกการขนส่ง โดยอนุญาตให้มีการใช้งานแบบกำหนดเองสำหรับสภาพแวดล้อมองค์กรเฉพาะ คู่มือขั้นสูงนี้สำรวจการใช้งานขนส่งแบบกำหนดเองโดยใช้ Azure Event Grid และ Azure Event Hubs เป็นตัวอย่างเชิงปฏิบัติสำหรับการสร้างโซลูชัน MCP ที่ปรับขนาดได้และเนทีฟบนคลาวด์

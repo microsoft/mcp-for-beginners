@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "999c5e7623c1e2d5e5a07c2feb39eb67",
-  "translation_date": "2025-07-14T08:28:31+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/README.md",
-  "language_code": "th"
-}
--->
 # Weather MCP Server
 
 นี่คือตัวอย่าง MCP Server ที่เขียนด้วย Python ซึ่งจำลองการทำงานของเครื่องมือเกี่ยวกับสภาพอากาศด้วยการตอบกลับแบบจำลอง สามารถใช้เป็นโครงสร้างพื้นฐานสำหรับ MCP Server ของคุณเองได้ โดยมีฟีเจอร์ดังนี้:

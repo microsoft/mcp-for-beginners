@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4d3415b9d2bf58bc69be07f945a69e07",
-  "translation_date": "2025-07-14T06:01:19+00:00",
-  "source_file": "09-CaseStudy/travelagentsample.md",
-  "language_code": "sv"
-}
--->
 # Fallstudie: Azure AI Travel Agents – Referensimplementation
 
 ## Översikt

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
-  "translation_date": "2025-08-18T14:01:49+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
-  "language_code": "el"
-}
--->
 # Εκτέλεση αυτού του δείγματος
 
 Ακολουθούν οι οδηγίες για την εκτέλεση του κλασικού HTTP streaming server και client, καθώς και του MCP streaming server και client χρησιμοποιώντας Python.

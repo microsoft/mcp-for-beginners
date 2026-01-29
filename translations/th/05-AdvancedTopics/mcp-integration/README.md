@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f84eaea79c8fa9ab318a494f40891814",
-  "translation_date": "2025-08-18T14:21:02+00:00",
-  "source_file": "05-AdvancedTopics/mcp-integration/README.md",
-  "language_code": "th"
-}
--->
 # การผสานรวมในระดับองค์กร
 
 เมื่อสร้าง MCP Servers ในบริบทขององค์กร คุณมักจะต้องผสานรวมกับแพลตฟอร์มและบริการ AI ที่มีอยู่แล้ว ส่วนนี้จะครอบคลุมถึงวิธีการผสาน MCP เข้ากับระบบองค์กร เช่น Azure OpenAI และ Microsoft AI Foundry เพื่อเพิ่มความสามารถด้าน AI ขั้นสูงและการจัดการเครื่องมือ

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0bc7bd48f55f1565f1d95ccb2c16f728",
-  "translation_date": "2025-07-13T23:07:22+00:00",
-  "source_file": "04-PracticalImplementation/samples/csharp/README.md",
-  "language_code": "sv"
-}
--->
 # Exempel
 
 Det föregående exemplet visar hur man använder ett lokalt .NET-projekt med typen `stdio`. Och hur man kör servern lokalt i en container. Detta är en bra lösning i många situationer. Men det kan vara användbart att ha servern igång på distans, till exempel i en molnmiljö. Det är här typen `http` kommer in i bilden.

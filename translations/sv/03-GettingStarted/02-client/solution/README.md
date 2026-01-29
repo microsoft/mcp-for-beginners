@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4d5e8e6f105e4f6e6953c0c14c99b394",
-  "translation_date": "2025-08-18T15:01:17+00:00",
-  "source_file": "03-GettingStarted/02-client/solution/README.md",
-  "language_code": "sv"
-}
--->
 Här är lösningarna för varje runtime:
 
 - [TypeScript](./typescript/README.md)

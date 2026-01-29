@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f83bc722dc758efffd68667d6a1db470",
-  "translation_date": "2025-07-14T08:42:55+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/README.md",
-  "language_code": "sv"
-}
--->
 # 🐙 Modul 4: Praktisk MCP-utveckling - Anpassad GitHub-klonserver
 
 ![Duration](https://img.shields.io/badge/Duration-30_minutes-blue?style=flat-square)

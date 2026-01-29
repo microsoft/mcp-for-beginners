@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "57f14126c1c6add76b3aef3844dfe4e3",
-  "translation_date": "2025-07-13T15:05:32+00:00",
-  "source_file": "SECURITY.md",
-  "language_code": "el"
-}
--->
 ## Ασφάλεια
 
 Η Microsoft λαμβάνει σοβαρά υπόψη την ασφάλεια των λογισμικών προϊόντων και υπηρεσιών της, που περιλαμβάνει όλα τα αποθετήρια πηγαίου κώδικα που διαχειρίζονται μέσω των οργανισμών μας στο GitHub, όπως οι [Microsoft](https://github.com/Microsoft), [Azure](https://github.com/Azure), [DotNet](https://github.com/dotnet), [AspNet](https://github.com/aspnet) και [Xamarin](https://github.com/xamarin).

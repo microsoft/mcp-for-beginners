@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4e34e34e84f013e73c7eaa6d09884756",
-  "translation_date": "2025-07-13T22:01:07+00:00",
-  "source_file": "03-GettingStarted/08-testing/README.md",
-  "language_code": "sv"
-}
--->
 ## Testning och Felsökning
 
 Innan du börjar testa din MCP-server är det viktigt att förstå vilka verktyg som finns tillgängliga och vilka bästa metoder som gäller för felsökning. Effektiv testning säkerställer att din server fungerar som förväntat och hjälper dig att snabbt identifiera och åtgärda problem. Följande avsnitt beskriver rekommenderade metoder för att validera din MCP-implementation.

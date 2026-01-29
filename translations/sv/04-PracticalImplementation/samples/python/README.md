@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "706b9b075dc484b73a053e6e9c709b4b",
-  "translation_date": "2025-07-13T23:33:03+00:00",
-  "source_file": "04-PracticalImplementation/samples/python/README.md",
-  "language_code": "sv"
-}
--->
 # Model Context Protocol (MCP) Python-implementation
 
 Det här arkivet innehåller en Python-implementation av Model Context Protocol (MCP) som visar hur man skapar både en server- och klientapplikation som kommunicerar med MCP-standarden.

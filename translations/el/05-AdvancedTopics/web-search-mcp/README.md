@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "151265c9a2124d7c53e04d16ee3fb73b",
-  "translation_date": "2025-07-17T05:44:15+00:00",
-  "source_file": "05-AdvancedTopics/web-search-mcp/README.md",
-  "language_code": "el"
-}
--->
 # Μάθημα: Δημιουργία ενός Web Search MCP Server
 
 Αυτό το κεφάλαιο δείχνει πώς να δημιουργήσετε έναν πραγματικό AI agent που ενσωματώνεται με εξωτερικά APIs, διαχειρίζεται διάφορους τύπους δεδομένων, χειρίζεται σφάλματα και συντονίζει πολλαπλά εργαλεία — όλα σε μορφή έτοιμη για παραγωγή. Θα δείτε:

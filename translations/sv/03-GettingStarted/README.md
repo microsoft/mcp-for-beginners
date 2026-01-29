@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f400d87053221363769113c24f117248",
-  "translation_date": "2025-10-06T23:15:33+00:00",
-  "source_file": "03-GettingStarted/README.md",
-  "language_code": "sv"
-}
--->
 ## Komma igång  
 
 [![Skapa din första MCP-server](../../../translated_images/sv/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.png)](https://youtu.be/sNDZO9N4m9Y)

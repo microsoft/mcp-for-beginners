@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1b6c746d9e190deba4d8765267ffb94e",
-  "translation_date": "2025-07-17T08:57:25+00:00",
-  "source_file": "02-Security/azure-content-safety-implementation.md",
-  "language_code": "th"
-}
--->
 # การใช้งาน Azure Content Safety กับ MCP
 
 เพื่อเสริมความปลอดภัยของ MCP จากการโจมตีแบบ prompt injection, การโจมตีด้วยเครื่องมือที่เป็นอันตราย และช่องโหว่เฉพาะของ AI แนะนำให้ผสานรวม Azure Content Safety อย่างจริงจัง

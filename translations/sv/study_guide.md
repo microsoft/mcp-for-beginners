@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "af27b0acfae6caa134d9701453884df8",
-  "translation_date": "2025-10-06T23:15:05+00:00",
-  "source_file": "study_guide.md",
-  "language_code": "sv"
-}
--->
 # Model Context Protocol (MCP) för Nybörjare - Studievägledning
 
 Denna studievägledning ger en översikt över struktur och innehåll i "Model Context Protocol (MCP) för Nybörjare"-läroplanen. Använd denna guide för att navigera i repositoryn effektivt och dra nytta av de tillgängliga resurserna.

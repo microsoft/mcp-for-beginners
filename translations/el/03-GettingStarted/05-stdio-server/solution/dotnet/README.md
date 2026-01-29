@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "69372338676e01a2c97f42f70fdfbf42",
-  "translation_date": "2025-08-26T20:21:31+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/dotnet/README.md",
-  "language_code": "el"
-}
--->
 # MCP stdio Server - Λύση .NET
 
 > **⚠️ Σημαντικό**: Αυτή η λύση έχει ενημερωθεί ώστε να χρησιμοποιεί τη **μεταφορά stdio**, όπως συνιστάται από την Προδιαγραφή MCP 2025-06-18. Η αρχική μεταφορά SSE έχει καταργηθεί.

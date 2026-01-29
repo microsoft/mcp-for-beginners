@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e5ea5e7582f70008ea9bec3b3820f20a",
-  "translation_date": "2025-07-13T23:16:22+00:00",
-  "source_file": "04-PracticalImplementation/samples/java/containerapp/README.md",
-  "language_code": "el"
-}
--->
 ## Αρχιτεκτονική Συστήματος
 
 Αυτό το έργο παρουσιάζει μια web εφαρμογή που χρησιμοποιεί έλεγχο ασφάλειας περιεχομένου πριν προωθήσει τα αιτήματα των χρηστών σε μια υπηρεσία αριθμομηχανής μέσω του Model Context Protocol (MCP).

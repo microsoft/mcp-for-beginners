@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "706b9b075dc484b73a053e6e9c709b4b",
-  "translation_date": "2025-07-13T23:32:55+00:00",
-  "source_file": "04-PracticalImplementation/samples/python/README.md",
-  "language_code": "th"
-}
--->
 # Model Context Protocol (MCP) Python Implementation
 
 ที่เก็บนี้ประกอบด้วยการใช้งาน Model Context Protocol (MCP) ด้วยภาษา Python โดยแสดงตัวอย่างการสร้างทั้งแอปเซิร์ฟเวอร์และไคลเอนต์ที่สื่อสารกันตามมาตรฐาน MCP

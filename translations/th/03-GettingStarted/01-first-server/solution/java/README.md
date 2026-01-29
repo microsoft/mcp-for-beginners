@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ed9cab32cc67c12d8969b407aa47100a",
-  "translation_date": "2025-07-13T17:54:38+00:00",
-  "source_file": "03-GettingStarted/01-first-server/solution/java/README.md",
-  "language_code": "th"
-}
--->
 # Basic Calculator MCP Service
 
 บริการนี้ให้การดำเนินการเครื่องคิดเลขพื้นฐานผ่าน Model Context Protocol (MCP) โดยใช้ Spring Boot กับ WebFlux transport ออกแบบมาเป็นตัวอย่างง่ายๆ สำหรับผู้เริ่มต้นที่ต้องการเรียนรู้เกี่ยวกับการใช้งาน MCP

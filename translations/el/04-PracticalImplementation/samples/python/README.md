@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "706b9b075dc484b73a053e6e9c709b4b",
-  "translation_date": "2025-07-13T23:32:45+00:00",
-  "source_file": "04-PracticalImplementation/samples/python/README.md",
-  "language_code": "el"
-}
--->
 # Model Context Protocol (MCP) Python Υλοποίηση
 
 Αυτό το αποθετήριο περιέχει μια υλοποίηση σε Python του Model Context Protocol (MCP), που δείχνει πώς να δημιουργήσετε τόσο μια εφαρμογή διακομιστή όσο και πελάτη που επικοινωνούν χρησιμοποιώντας το πρότυπο MCP.

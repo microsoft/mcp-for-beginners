@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e8bbc7982284fe177dd4be5e7f2b3357",
-  "translation_date": "2025-12-19T12:40:55+00:00",
-  "source_file": "changelog.md",
-  "language_code": "sv"
-}
--->
 # Ändringslogg: MCP för nybörjare läroplan
 
 Detta dokument fungerar som en redogörelse för alla betydande ändringar som gjorts i Model Context Protocol (MCP) för nybörjare läroplanen. Ändringar dokumenteras i omvänd kronologisk ordning (nyaste ändringar först).

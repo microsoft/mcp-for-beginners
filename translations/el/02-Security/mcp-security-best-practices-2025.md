@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e30aaf6b178137fa6668efc1b20851d5",
-  "translation_date": "2025-12-19T12:14:26+00:00",
-  "source_file": "02-Security/mcp-security-best-practices-2025.md",
-  "language_code": "el"
-}
--->
 # Καλύτερες Πρακτικές Ασφαλείας MCP - Ενημέρωση Δεκεμβρίου 2025
 
 > **Σημαντικό**: Αυτό το έγγραφο αντικατοπτρίζει τις τελευταίες απαιτήσεις ασφαλείας της [Προδιαγραφής MCP 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) και τις επίσημες [Καλύτερες Πρακτικές Ασφαλείας MCP](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices). Ανατρέξτε πάντα στην τρέχουσα προδιαγραφή για τις πιο ενημερωμένες οδηγίες.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "193889b580c86bbb1e4f577114a5ce4e",
-  "translation_date": "2025-07-17T06:13:30+00:00",
-  "source_file": "05-AdvancedTopics/mcp-sampling/README.md",
-  "language_code": "sv"
-}
--->
 # Sampling i Model Context Protocol
 
 Sampling är en kraftfull MCP-funktion som gör det möjligt för servrar att begära LLM-kompletteringar via klienten, vilket möjliggör avancerade agentliknande beteenden samtidigt som säkerhet och integritet upprätthålls. Rätt samplingkonfiguration kan avsevärt förbättra svarskvalitet och prestanda. MCP erbjuder ett standardiserat sätt att styra hur modeller genererar text med specifika parametrar som påverkar slumpmässighet, kreativitet och sammanhang.

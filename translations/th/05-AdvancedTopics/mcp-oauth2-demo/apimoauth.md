@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "32c9a4263be08f9050c8044bb26267c4",
-  "translation_date": "2025-07-14T00:28:53+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/apimoauth.md",
-  "language_code": "th"
-}
--->
 # การปรับใช้แอป Spring AI MCP บน Azure Container Apps
 
 ([Securing Spring AI MCP servers with OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2)) *รูปภาพ: เซิร์ฟเวอร์ Spring AI MCP ที่ได้รับการปกป้องด้วย Spring Authorization Server เซิร์ฟเวอร์จะออก access token ให้กับไคลเอนต์และตรวจสอบความถูกต้องของโทเค็นเมื่อมีคำขอเข้ามา (ที่มา: Spring blog) ([Securing Spring AI MCP servers with OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2#:~:text=,server%20with%20the%20MCP%20inspector)).* ในการปรับใช้ Spring MCP server ให้สร้างเป็นคอนเทนเนอร์และใช้ Azure Container Apps พร้อม ingress ภายนอก เช่น ใช้ Azure CLI รันคำสั่ง:
