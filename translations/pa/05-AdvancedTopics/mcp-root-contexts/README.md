@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ebdb86db46113f1cbd59ce4c74caaa79",
-  "translation_date": "2025-07-17T00:48:29+00:00",
-  "source_file": "05-AdvancedTopics/mcp-root-contexts/README.md",
-  "language_code": "pa"
-}
--->
 # MCP ਰੂਟ ਕਾਂਟੈਕਸਟ
 
 ਰੂਟ ਕਾਂਟੈਕਸਟ ਮਾਡਲ ਕਾਂਟੈਕਸਟ ਪ੍ਰੋਟੋਕੋਲ ਵਿੱਚ ਇੱਕ ਮੂਲ ਭਾਵਨਾ ਹਨ ਜੋ ਕਈ ਬੇਨਤੀਆਂ ਅਤੇ ਸੈਸ਼ਨਾਂ ਵਿੱਚ ਗੱਲਬਾਤ ਦਾ ਇਤਿਹਾਸ ਅਤੇ ਸਾਂਝੀ ਸਥਿਤੀ ਨੂੰ ਲਗਾਤਾਰ ਬਣਾਈ ਰੱਖਣ ਲਈ ਇੱਕ ਸਥਾਈ ਪਰਤ ਪ੍ਰਦਾਨ ਕਰਦੇ ਹਨ।

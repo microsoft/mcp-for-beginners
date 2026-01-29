@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7074b9f4c8cd147c1c10f569d8508c82",
-  "translation_date": "2025-07-13T18:33:12+00:00",
-  "source_file": "03-GettingStarted/02-client/solution/java/README.md",
-  "language_code": "pa"
-}
--->
 # MCP Java Client - ਕੈਲਕੁਲੇਟਰ ਡੈਮੋ
 
 ਇਹ ਪ੍ਰੋਜੈਕਟ ਦਿਖਾਉਂਦਾ ਹੈ ਕਿ ਕਿਵੇਂ ਇੱਕ ਜਾਵਾ ਕਲਾਇੰਟ ਬਣਾਇਆ ਜਾਵੇ ਜੋ MCP (ਮਾਡਲ ਕਾਂਟੈਕਸਟ ਪ੍ਰੋਟੋਕੋਲ) ਸਰਵਰ ਨਾਲ ਜੁੜਦਾ ਹੈ ਅਤੇ ਉਸ ਨਾਲ ਇੰਟਰੈਕਟ ਕਰਦਾ ਹੈ। ਇਸ ਉਦਾਹਰਨ ਵਿੱਚ, ਅਸੀਂ ਚੈਪਟਰ 01 ਦੇ ਕੈਲਕੁਲੇਟਰ ਸਰਵਰ ਨਾਲ ਜੁੜ ਕੇ ਵੱਖ-ਵੱਖ ਗਣਿਤੀ ਕਾਰਵਾਈਆਂ ਕਰਾਂਗੇ।

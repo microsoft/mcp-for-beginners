@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "d204bc94ea6027d06a703b21b711ca57",
-  "translation_date": "2025-08-18T16:36:00+00:00",
-  "source_file": "05-AdvancedTopics/README.md",
-  "language_code": "pa"
-}
--->
 # ਐਡਵਾਂਸਡ ਟਾਪਿਕਸ MCP ਵਿੱਚ
 
 [![ਐਡਵਾਂਸਡ MCP: ਸੁਰੱਖਿਅਤ, ਸਕੇਲਬਲ ਅਤੇ ਮਲਟੀ-ਮੋਡਲ AI ਏਜੰਟ](../../../translated_images/pa/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.png)](https://youtu.be/4yjmGvJzYdY)

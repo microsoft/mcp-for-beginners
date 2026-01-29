@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "68cd055621b3370948a5a1dff7bedc9a",
-  "translation_date": "2025-08-26T20:31:29+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/python/README.md",
-  "language_code": "pa"
-}
--->
 # MCP stdio ਸਰਵਰ - ਪਾਇਥਨ ਹੱਲ
 
 > **⚠️ ਮਹੱਤਵਪੂਰਨ**: ਇਸ ਹੱਲ ਨੂੰ **stdio ਟ੍ਰਾਂਸਪੋਰਟ** ਵਰਤਣ ਲਈ ਅਪਡੇਟ ਕੀਤਾ ਗਿਆ ਹੈ, ਜਿਵੇਂ ਕਿ MCP ਨਿਰਧਾਰਨ 2025-06-18 ਵਿੱਚ ਸਿਫਾਰਸ਼ ਕੀਤੀ ਗਈ ਹੈ। ਮੂਲ SSE ਟ੍ਰਾਂਸਪੋਰਟ ਹੁਣ ਡਿਪ੍ਰੀਕੇਟ ਕੀਤਾ ਜਾ ਚੁੱਕਾ ਹੈ।

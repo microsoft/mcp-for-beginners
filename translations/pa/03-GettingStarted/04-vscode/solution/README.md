@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-07-13T19:41:33+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "pa"
-}
--->
 ਇਹ ਇੱਕ ਕਮਾਂਡ ਚਲਾਉਣ ਦੇ ਬਰਾਬਰ ਹੈ: `node build/index.js`।
 
 - ਇਸ ਸਰਵਰ ਐਂਟਰੀ ਨੂੰ ਆਪਣੇ ਸਰਵਰ ਫਾਇਲ ਦੀ ਸਥਿਤੀ ਦੇ ਅਨੁਸਾਰ ਜਾਂ ਆਪਣੇ ਚੁਣੇ ਹੋਏ ਰਨਟਾਈਮ ਅਤੇ ਸਰਵਰ ਸਥਾਨ ਦੇ ਅਨੁਸਾਰ ਸਰਵਰ ਨੂੰ ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਲੋੜੀਂਦੇ ਪੂਰੇ ਕਮਾਂਡ ਨਾਲ ਬਦਲੋ।

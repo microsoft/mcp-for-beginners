@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9d799c4a30a8383e0a74af9153262972",
-  "translation_date": "2025-08-26T20:08:28+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/typescript/README.md",
-  "language_code": "pa"
-}
--->
 # MCP stdio ਸਰਵਰ - ਟਾਈਪਸਕ੍ਰਿਪਟ ਹੱਲ
 
 > **⚠️ ਮਹੱਤਵਪੂਰਨ**: ਇਸ ਹੱਲ ਨੂੰ **stdio ਟ੍ਰਾਂਸਪੋਰਟ** ਵਰਤਣ ਲਈ ਅਪਡੇਟ ਕੀਤਾ ਗਿਆ ਹੈ, ਜਿਵੇਂ ਕਿ MCP ਸਪੈਸਿਫਿਕੇਸ਼ਨ 2025-06-18 ਵਿੱਚ ਸਿਫਾਰਸ਼ ਕੀਤੀ ਗਈ ਹੈ। ਮੂਲ SSE ਟ੍ਰਾਂਸਪੋਰਟ ਹੁਣ ਡਿਪ੍ਰੀਕੇਟ ਕੀਤਾ ਜਾ ਚੁੱਕਾ ਹੈ।

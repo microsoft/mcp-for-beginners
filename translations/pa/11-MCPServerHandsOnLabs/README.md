@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "83d32e5c5dd838d4b87a730cab88db77",
-  "translation_date": "2025-09-30T16:24:48+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/README.md",
-  "language_code": "pa"
-}
--->
 # 🚀 MCP ਸਰਵਰ ਨਾਲ PostgreSQL - ਪੂਰੀ ਸਿੱਖਣ ਗਾਈਡ
 
 ## 🧠 MCP ਡਾਟਾਬੇਸ ਇੰਟੀਗ੍ਰੇਸ਼ਨ ਸਿੱਖਣ ਪਾਥ ਦਾ ਜਾਇਜ਼ਾ

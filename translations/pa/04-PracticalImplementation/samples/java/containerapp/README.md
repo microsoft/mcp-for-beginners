@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e5ea5e7582f70008ea9bec3b3820f20a",
-  "translation_date": "2025-07-13T23:14:54+00:00",
-  "source_file": "04-PracticalImplementation/samples/java/containerapp/README.md",
-  "language_code": "pa"
-}
--->
 ## ਸਿਸਟਮ ਆਰਕੀਟੈਕਚਰ
 
 ਇਹ ਪ੍ਰੋਜੈਕਟ ਇੱਕ ਵੈੱਬ ਐਪਲੀਕੇਸ਼ਨ ਨੂੰ ਦਰਸਾਉਂਦਾ ਹੈ ਜੋ ਯੂਜ਼ਰ ਦੇ ਪ੍ਰਾਂਪਟ ਨੂੰ ਕੈਲਕੂਲੇਟਰ ਸਰਵਿਸ ਨੂੰ ਭੇਜਣ ਤੋਂ ਪਹਿਲਾਂ ਸਮੱਗਰੀ ਸੁਰੱਖਿਆ ਜਾਂਚ ਕਰਦਾ ਹੈ, ਜੋ Model Context Protocol (MCP) ਰਾਹੀਂ ਕੰਮ ਕਰਦਾ ਹੈ।

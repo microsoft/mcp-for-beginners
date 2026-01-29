@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6e562d7e5a77c8982da4aa8f762ad1d8",
-  "translation_date": "2025-07-14T02:59:13+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security-entra/README.md",
-  "language_code": "pa"
-}
--->
 # AI ਵਰਕਫਲੋਜ਼ ਦੀ ਸੁਰੱਖਿਆ: ਮਾਡਲ ਕਾਂਟੈਕਸਟ ਪ੍ਰੋਟੋਕੋਲ ਸਰਵਰਾਂ ਲਈ Entra ID ਪ੍ਰਮਾਣਿਕਤਾ
 
 ## ਪਰਿਚਯ  

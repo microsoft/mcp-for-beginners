@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "769c9794759f416450dce77286e98f00",
-  "translation_date": "2025-09-30T16:45:26+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/09-VS-Code/README.md",
-  "language_code": "pa"
-}
--->
 # VS Code ਇੰਟੀਗ੍ਰੇਸ਼ਨ
 
 ## 🎯 ਇਹ ਲੈਬ ਕੀ ਕਵਰ ਕਰਦੀ ਹੈ

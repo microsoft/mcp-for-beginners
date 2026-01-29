@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "3f68294760a11dd3fdd175bd7f904a92",
-  "translation_date": "2025-10-07T01:30:21+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/code/basic/python/README.md",
-  "language_code": "pa"
-}
--->
 # ਨਮੂਨਾ ਚਲਾਓ
 
 ਇਸ ਨਮੂਨੇ ਵਿੱਚ ਇੱਕ MCP ਸਰਵਰ ਸ਼ੁਰੂ ਕੀਤਾ ਜਾਂਦਾ ਹੈ ਜਿਸ ਵਿੱਚ ਇੱਕ ਮਿਡਲਵੇਅਰ ਸ਼ਾਮਲ ਹੈ ਜੋ ਵੈਧ Authorization ਹੈਡਰ ਦੀ ਜਾਂਚ ਕਰਦਾ ਹੈ।

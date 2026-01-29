@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ec1d9eafbe697ada412ee4fd102ce5b8",
-  "translation_date": "2025-09-30T16:34:18+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/03-Setup/README.md",
-  "language_code": "pa"
-}
--->
 # ਵਾਤਾਵਰਣ ਸੈਟਅੱਪ
 
 ## 🎯 ਇਹ ਲੈਬ ਕੀ ਕਵਰ ਕਰਦੀ ਹੈ

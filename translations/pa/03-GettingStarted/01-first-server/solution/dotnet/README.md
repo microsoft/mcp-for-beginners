@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "92af35e8c34923031f3d228dffad9ebb",
-  "translation_date": "2025-09-03T16:05:08+00:00",
-  "source_file": "03-GettingStarted/01-first-server/solution/dotnet/README.md",
-  "language_code": "pa"
-}
--->
 # ਇਸ ਨਮੂਨੇ ਨੂੰ ਚਲਾਉਣਾ
 
 ## -1- ਲੋੜੀਂਦੇ ਡਿਪੈਂਡੈਂਸੀਜ਼ ਇੰਸਟਾਲ ਕਰੋ
