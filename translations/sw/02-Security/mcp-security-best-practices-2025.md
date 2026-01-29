@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e30aaf6b178137fa6668efc1b20851d5",
-  "translation_date": "2025-12-19T15:00:04+00:00",
-  "source_file": "02-Security/mcp-security-best-practices-2025.md",
-  "language_code": "sw"
-}
--->
 # MCP Mazoezi Bora ya Usalama - Sasisho la Desemba 2025
 
 > **Muhimu**: Hati hii inaonyesha mahitaji ya usalama ya hivi karibuni ya [MCP Specification 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) na [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) rasmi. Kila mara rejelea maelezo ya sasa kwa mwongozo wa kisasa zaidi.

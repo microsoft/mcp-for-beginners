@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8fdac7600a5f4722643d0f14e15ac259",
-  "translation_date": "2025-12-11T07:34:28+00:00",
-  "source_file": "03-GettingStarted/01-first-server/README.md",
-  "language_code": "sw"
-}
--->
 # Kuanzisha na MCP
 
 Karibu kwenye hatua zako za kwanza na Model Context Protocol (MCP)! Iwe wewe ni mpya kwa MCP au unatafuta kuongeza uelewa wako, mwongozo huu utakuelekeza kupitia mchakato muhimu wa usanidi na maendeleo. Utagundua jinsi MCP inavyowezesha muunganisho usio na mshono kati ya mifano ya AI na programu, na kujifunza jinsi ya kuandaa mazingira yako haraka kwa ajili ya kujenga na kujaribu suluhisho zinazotumia MCP.

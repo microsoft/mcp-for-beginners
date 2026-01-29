@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2228721599c0c8673de83496b4d7d7a9",
-  "translation_date": "2025-08-19T14:24:19+00:00",
-  "source_file": "09-CaseStudy/apimsample.md",
-  "language_code": "sw"
-}
--->
 # Uchunguzi wa Kesi: Kufichua REST API katika API Management kama seva ya MCP
 
 Azure API Management ni huduma inayotoa lango juu ya sehemu za mwisho za API yako. Inavyofanya kazi ni kwamba Azure API Management hufanya kama wakala mbele ya API zako na inaweza kuamua nini cha kufanya na maombi yanayoingia.

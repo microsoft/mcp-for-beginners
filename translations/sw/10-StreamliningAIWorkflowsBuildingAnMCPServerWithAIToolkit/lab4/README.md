@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f83bc722dc758efffd68667d6a1db470",
-  "translation_date": "2025-07-14T08:46:01+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/README.md",
-  "language_code": "sw"
-}
--->
 # 🐙 Moduli 4: Maendeleo ya Vitendo ya MCP - Server ya Kigezo cha GitHub ya Kipekee
 
 ![Duration](https://img.shields.io/badge/Duration-30_minutes-blue?style=flat-square)

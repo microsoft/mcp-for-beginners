@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f84eaea79c8fa9ab318a494f40891814",
-  "translation_date": "2025-08-19T15:34:35+00:00",
-  "source_file": "05-AdvancedTopics/mcp-integration/README.md",
-  "language_code": "cs"
-}
--->
 # Podniková integrace
 
 Při vytváření MCP serverů v podnikových prostředích je často potřeba integrovat je s existujícími AI platformami a službami. Tato sekce se zabývá tím, jak integrovat MCP s podnikovými systémy, jako jsou Azure OpenAI a Microsoft AI Foundry, a umožnit tak pokročilé AI schopnosti a orchestraci nástrojů.

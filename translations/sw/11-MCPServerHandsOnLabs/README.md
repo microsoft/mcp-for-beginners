@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "83d32e5c5dd838d4b87a730cab88db77",
-  "translation_date": "2025-09-30T21:42:53+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/README.md",
-  "language_code": "sw"
-}
--->
 # 🚀 Seva ya MCP na PostgreSQL - Mwongozo Kamili wa Kujifunza
 
 ## 🧠 Muhtasari wa Njia ya Kujifunza Muunganisho wa Hifadhidata ya MCP

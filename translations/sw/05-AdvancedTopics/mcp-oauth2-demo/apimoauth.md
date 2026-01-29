@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "32c9a4263be08f9050c8044bb26267c4",
-  "translation_date": "2025-07-14T00:34:01+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/apimoauth.md",
-  "language_code": "sw"
-}
--->
 # Kuweka Spring AI MCP App kwenye Azure Container Apps
 
  ([Kuhakikisha seva za Spring AI MCP kwa OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2)) *Mchoro: Seva ya Spring AI MCP iliyo salama kwa kutumia Spring Authorization Server. Seva hutoa tokeni za ufikiaji kwa wateja na kuzikagua kwenye maombi yanayoingia (chanzo: Spring blog) ([Kuhakikisha seva za Spring AI MCP kwa OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2#:~:text=,server%20with%20the%20MCP%20inspector)).* Ili kuweka seva ya Spring MCP, jenge kama kontena na tumia Azure Container Apps na ingress ya nje. Kwa mfano, kwa kutumia Azure CLI unaweza kuendesha:

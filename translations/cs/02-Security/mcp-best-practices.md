@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5061d7e2ae9eea9cbaae77c1a020b318",
-  "translation_date": "2025-12-19T15:29:50+00:00",
-  "source_file": "02-Security/mcp-best-practices.md",
-  "language_code": "cs"
-}
--->
 # MCP Bezpečnostní osvědčené postupy 2025
 
 Tento komplexní průvodce popisuje základní bezpečnostní osvědčené postupy pro implementaci systémů Model Context Protocol (MCP) založené na nejnovější **MCP Specifikaci 2025-11-25** a aktuálních průmyslových standardech. Tyto postupy řeší jak tradiční bezpečnostní problémy, tak i specifické hrozby AI unikátní pro nasazení MCP.

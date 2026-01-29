@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7b4d8d17fc1f501468cce40c3651aed1",
-  "translation_date": "2025-07-17T10:45:55+00:00",
-  "source_file": "05-AdvancedTopics/mcp-scaling/README.md",
-  "language_code": "cs"
-}
--->
 # Škálovatelnost a vysoce výkonný MCP
 
 Pro podnikové nasazení často musí implementace MCP zvládat vysoký objem požadavků s minimální latencí.

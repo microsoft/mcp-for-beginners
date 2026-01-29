@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "68cd055621b3370948a5a1dff7bedc9a",
-  "translation_date": "2025-08-26T20:35:41+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/python/README.md",
-  "language_code": "sw"
-}
--->
 # MCP stdio Server - Suluhisho la Python
 
 > **⚠️ Muhimu**: Suluhisho hili limeboreshwa kutumia **stdio transport** kama ilivyopendekezwa na MCP Specification 2025-06-18. Njia ya awali ya SSE imeachwa.

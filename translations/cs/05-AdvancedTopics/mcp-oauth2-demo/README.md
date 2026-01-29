@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0a7083e660ca0d85fd6a947514c61993",
-  "translation_date": "2025-07-14T00:43:31+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/README.md",
-  "language_code": "cs"
-}
--->
 # MCP OAuth2 Demo
 
 Tento projekt je **minimální aplikace ve Spring Boot**, která funguje zároveň jako:

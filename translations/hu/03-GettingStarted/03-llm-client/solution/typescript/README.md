@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6d6315e03f591fb5a39be91da88585dc",
-  "translation_date": "2025-07-13T19:20:54+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/typescript/README.md",
-  "language_code": "hu"
-}
--->
 # A minta futtatása
 
 Ez a minta azt mutatja be, hogyan használhatunk egy LLM-et a kliens oldalon. Az LLM működéséhez vagy Codespaces-ben kell futtatnod, vagy be kell állítanod egy személyes hozzáférési tokent a GitHubon.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5061d7e2ae9eea9cbaae77c1a020b318",
-  "translation_date": "2025-12-19T15:16:18+00:00",
-  "source_file": "02-Security/mcp-best-practices.md",
-  "language_code": "hu"
-}
--->
 # MCP Biztonsági Legjobb Gyakorlatok 2025
 
 Ez az átfogó útmutató a Model Context Protocol (MCP) rendszerek megvalósításához szükséges alapvető biztonsági legjobb gyakorlatokat ismerteti a legfrissebb **MCP Specifikáció 2025-11-25** és a jelenlegi iparági szabványok alapján. Ezek a gyakorlatok mind a hagyományos biztonsági kérdéseket, mind az MCP telepítésekre jellemző, mesterséges intelligenciára specifikus fenyegetéseket kezelik.

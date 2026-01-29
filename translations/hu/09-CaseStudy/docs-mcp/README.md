@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4319d291c9d124ecafea52b3d04bfa0e",
-  "translation_date": "2025-07-14T06:28:20+00:00",
-  "source_file": "09-CaseStudy/docs-mcp/README.md",
-  "language_code": "hu"
-}
--->
 # Esettanulmány: Kapcsolódás a Microsoft Learn Docs MCP szerverhez kliensből
 
 Előfordult már, hogy egyszerre kellett váltogatnod dokumentációs oldalak, a Stack Overflow és végtelen keresőfülek között, miközben egy kódproblémát próbáltál megoldani? Talán van egy második monitorod csak a dokumentációk számára, vagy folyamatosan alt-tabolsz az IDE-d és a böngésző között. Nem lenne jobb, ha a dokumentáció közvetlenül a munkafolyamatod része lenne—integrálva az alkalmazásaidba, az IDE-dbe vagy akár a saját egyedi eszközeidbe? Ebben az esettanulmányban megmutatjuk, hogyan lehet pontosan ezt megvalósítani azzal, hogy közvetlenül a Microsoft Learn Docs MCP szerverhez kapcsolódsz a saját kliensalkalmazásodból.

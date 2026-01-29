@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4e34e34e84f013e73c7eaa6d09884756",
-  "translation_date": "2025-07-13T22:02:56+00:00",
-  "source_file": "03-GettingStarted/08-testing/README.md",
-  "language_code": "sw"
-}
--->
 ## Kupima na Kurekebisha Hitilafu
 
 Kabla hujaanza kupima seva yako ya MCP, ni muhimu kuelewa zana zinazopatikana na mbinu bora za kurekebisha hitilafu. Kupima kwa ufanisi kunahakikisha seva yako inafanya kazi kama inavyotarajiwa na kukusaidia kugundua na kutatua matatizo haraka. Sehemu ifuatayo inaelezea mbinu zinazopendekezwa za kuthibitisha utekelezaji wako wa MCP.

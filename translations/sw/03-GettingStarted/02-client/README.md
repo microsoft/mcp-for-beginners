@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "94c80ae71fb9971e9b57b51ab0912121",
-  "translation_date": "2025-08-19T14:44:19+00:00",
-  "source_file": "03-GettingStarted/02-client/README.md",
-  "language_code": "sw"
-}
--->
 # Kuunda Mteja
 
 Wateja ni programu maalum au maandiko yanayowasiliana moja kwa moja na Seva ya MCP kuomba rasilimali, zana, na maelekezo. Tofauti na kutumia zana ya ukaguzi, ambayo hutoa kiolesura cha picha kwa kuingiliana na seva, kuandika mteja wako mwenyewe kunaruhusu mwingiliano wa kiotomatiki na wa programu. Hii inawawezesha watengenezaji kuunganisha uwezo wa MCP katika mtiririko wao wa kazi, kuendesha kazi, na kujenga suluhisho maalum kulingana na mahitaji maalum.

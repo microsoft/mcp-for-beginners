@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4117a42f3e7baae859515f7b8b911e56",
-  "translation_date": "2025-08-19T14:40:32+00:00",
-  "source_file": "03-GettingStarted/01-first-server/solution/README.md",
-  "language_code": "sw"
-}
--->
 Hapa kuna suluhisho kwa kila muda wa utekelezaji:
 
 - [TypeScript](./typescript/README.md)

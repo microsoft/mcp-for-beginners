@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5061d7e2ae9eea9cbaae77c1a020b318",
-  "translation_date": "2025-12-19T15:02:10+00:00",
-  "source_file": "02-Security/mcp-best-practices.md",
-  "language_code": "sw"
-}
--->
 # MCP Mazoezi Bora ya Usalama 2025
 
 Mwongozo huu kamili unaelezea mazoezi muhimu bora ya usalama kwa kutekeleza mifumo ya Model Context Protocol (MCP) kulingana na **MCP Specification 2025-11-25** ya hivi karibuni na viwango vya sasa vya sekta. Mazoezi haya yanashughulikia masuala ya usalama ya jadi pamoja na vitisho maalum vya AI vinavyotokana na utekelezaji wa MCP.

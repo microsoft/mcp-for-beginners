@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "98bcd044860716da5819e31c152813b7",
-  "translation_date": "2025-08-19T15:13:17+00:00",
-  "source_file": "03-GettingStarted/07-aitk/README.md",
-  "language_code": "hu"
-}
--->
 # Az AI Toolkit kiterjesztés használata Visual Studio Code-ban egy szerver fogyasztásához
 
 Amikor AI ügynököt építesz, nem csak az okos válaszok generálásáról van szó; az is fontos, hogy az ügynök képes legyen cselekedni. Itt jön képbe a Model Context Protocol (MCP). Az MCP lehetővé teszi az ügynökök számára, hogy külső eszközökhöz és szolgáltatásokhoz férjenek hozzá egységes módon. Gondolj rá úgy, mint egy szerszámosládára, amit az ügynök *valóban* használni tud.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "882aae00f1d3f007e20d03b883f44afa",
-  "translation_date": "2025-07-13T22:18:26+00:00",
-  "source_file": "03-GettingStarted/samples/csharp/README.md",
-  "language_code": "hu"
-}
--->
 # Alap Számológép MCP Szolgáltatás
 
 Ez a szolgáltatás alapvető számológép műveleteket biztosít a Model Context Protocol (MCP) segítségével. Egyszerű példaként készült kezdők számára, akik az MCP megvalósításokat tanulják.

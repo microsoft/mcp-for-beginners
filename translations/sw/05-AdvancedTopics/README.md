@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "d204bc94ea6027d06a703b21b711ca57",
-  "translation_date": "2025-08-19T14:32:22+00:00",
-  "source_file": "05-AdvancedTopics/README.md",
-  "language_code": "sw"
-}
--->
 # Mada ya Juu katika MCP
 
 [![MCP ya Juu: Mawakala wa AI Salama, Wenye Uwezo wa Kupanuka, na Multi-modal](../../../translated_images/sw/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.png)](https://youtu.be/4yjmGvJzYdY)

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "cf3e88e4c0b2d9d65c7f300986bd8c6c",
-  "translation_date": "2025-12-19T15:08:32+00:00",
-  "source_file": "05-AdvancedTopics/mcp-transport/README.md",
-  "language_code": "sw"
-}
--->
 # MCP Usafirishaji Maalum - Mwongozo wa Utekelezaji wa Juu
 
 Itifaki ya Muktadha wa Mfano (MCP) inatoa unyumbufu katika mbinu za usafirishaji, ikiruhusu utekelezaji maalum kwa mazingira maalum ya biashara. Mwongozo huu wa juu unachunguza utekelezaji wa usafirishaji maalum kwa kutumia Azure Event Grid na Azure Event Hubs kama mifano ya vitendo ya kujenga suluhisho za MCP zinazoweza kupanuka na asili ya wingu.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "333a03e51f90bdf3e6f1ba1694c73f36",
-  "translation_date": "2025-07-17T10:27:50+00:00",
-  "source_file": "05-AdvancedTopics/mcp-realtimesearch/README.md",
-  "language_code": "hu"
-}
--->
 ## Kódpéldák felelősségvállalása
 
 > **Fontos megjegyzés**: Az alábbi kódpéldák a Model Context Protocol (MCP) webes keresési funkcióval való integrációját mutatják be. Bár követik az hivatalos MCP SDK-k mintáit és szerkezetét, oktatási célokra egyszerűsítettek.

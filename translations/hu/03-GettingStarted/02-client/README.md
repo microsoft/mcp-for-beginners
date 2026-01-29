@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "94c80ae71fb9971e9b57b51ab0912121",
-  "translation_date": "2025-08-19T15:16:59+00:00",
-  "source_file": "03-GettingStarted/02-client/README.md",
-  "language_code": "hu"
-}
--->
 # Ügyfél létrehozása
 
 Az ügyfelek olyan egyedi alkalmazások vagy szkriptek, amelyek közvetlenül kommunikálnak egy MCP szerverrel, hogy erőforrásokat, eszközöket és promptokat kérjenek. Ellentétben az ellenőrző eszköz használatával, amely grafikus felületet biztosít a szerverrel való interakcióhoz, saját ügyfél írása lehetővé teszi a programozott és automatizált interakciókat. Ez lehetővé teszi a fejlesztők számára, hogy az MCP képességeit integrálják saját munkafolyamataikba, automatizálják a feladatokat, és egyedi megoldásokat hozzanak létre specifikus igényekre szabva.

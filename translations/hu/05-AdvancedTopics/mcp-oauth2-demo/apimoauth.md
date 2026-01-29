@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "32c9a4263be08f9050c8044bb26267c4",
-  "translation_date": "2025-07-14T00:34:28+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/apimoauth.md",
-  "language_code": "hu"
-}
--->
 # A Spring AI MCP alkalmazás telepítése Azure Container Apps-re
 
  ([A Spring AI MCP szerverek OAuth2-vel történő védelme](https://spring.io/blog/2025/04/02/mcp-server-oauth2)) *Ábra: Spring AI MCP szerver Spring Authorization Server-rel védve. A szerver hozzáférési tokeneket bocsát ki a klienseknek, és ellenőrzi azokat a bejövő kéréseknél (forrás: Spring blog) ([A Spring AI MCP szerverek OAuth2-vel történő védelme](https://spring.io/blog/2025/04/02/mcp-server-oauth2#:~:text=,server%20with%20the%20MCP%20inspector)).* A Spring MCP szerver telepítéséhez készítsd el konténerként, majd használd az Azure Container Apps szolgáltatást külső bejárattal. Például az Azure CLI segítségével futtathatod:

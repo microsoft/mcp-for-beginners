@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8358c13b5b6877e475674697cdc1a904",
-  "translation_date": "2025-08-19T14:45:11+00:00",
-  "source_file": "03-GettingStarted/02-client/complete_examples.md",
-  "language_code": "sw"
-}
--->
 # Mifano Kamili za Wateja wa MCP
 
 Hili jalada lina mifano kamili na inayofanya kazi ya wateja wa MCP katika lugha mbalimbali za programu. Kila mteja anaonyesha utendaji wote ulioelezwa katika mafunzo ya README.md kuu.

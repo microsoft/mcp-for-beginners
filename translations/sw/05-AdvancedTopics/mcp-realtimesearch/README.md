@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "333a03e51f90bdf3e6f1ba1694c73f36",
-  "translation_date": "2025-07-17T10:11:05+00:00",
-  "source_file": "05-AdvancedTopics/mcp-realtimesearch/README.md",
-  "language_code": "sw"
-}
--->
 ## Maelezo Kuhusu Mifano ya Msimbo
 
 > **Kumbuka Muhimu**: Mifano ya msimbo hapa chini inaonyesha jinsi ya kuunganisha Model Context Protocol (MCP) na utendaji wa utafutaji wa wavuti. Ingawa inafuata mifumo na miundo ya SDK rasmi za MCP, imefanywa iwe rahisi kwa madhumuni ya elimu.

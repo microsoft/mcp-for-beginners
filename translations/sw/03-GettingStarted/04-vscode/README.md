@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "d940b5e0af75e3a3a4d1c3179120d1d9",
-  "translation_date": "2025-08-26T18:09:57+00:00",
-  "source_file": "03-GettingStarted/04-vscode/README.md",
-  "language_code": "sw"
-}
--->
 # Kutumia seva kutoka kwa hali ya Wakala wa GitHub Copilot
 
 Visual Studio Code na GitHub Copilot vinaweza kufanya kazi kama mteja na kutumia seva ya MCP. Kwa nini tungependa kufanya hivyo, unaweza kuuliza? Naam, hii inamaanisha kwamba vipengele vyovyote ambavyo seva ya MCP inavyo sasa vinaweza kutumika moja kwa moja kutoka ndani ya IDE yako. Fikiria ukiongeza, kwa mfano, seva ya MCP ya GitHub, hii itakuruhusu kudhibiti GitHub kupitia maelekezo badala ya kuandika amri maalum kwenye terminal. Au fikiria chochote kwa ujumla ambacho kinaweza kuboresha uzoefu wako wa maendeleo, vyote vikidhibitiwa kwa lugha ya kawaida. Sasa unaanza kuona faida, sivyo?

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f83bc722dc758efffd68667d6a1db470",
-  "translation_date": "2025-07-14T08:46:43+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/README.md",
-  "language_code": "cs"
-}
--->
 # 🐙 Modul 4: Praktický vývoj MCP – Vlastní server pro klonování GitHub repozitářů
 
 ![Duration](https://img.shields.io/badge/Duration-30_minutes-blue?style=flat-square)

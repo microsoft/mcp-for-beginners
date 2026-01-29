@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e8bbc7982284fe177dd4be5e7f2b3357",
-  "translation_date": "2025-12-19T15:24:28+00:00",
-  "source_file": "changelog.md",
-  "language_code": "cs"
-}
--->
 # Změny: MCP pro začátečníky - osnovy
 
 Tento dokument slouží jako záznam všech významných změn provedených v osnovách Model Context Protocol (MCP) pro začátečníky. Změny jsou zaznamenány v obráceném chronologickém pořadí (nejnovější změny první).

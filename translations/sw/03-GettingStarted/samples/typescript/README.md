@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "d1fd6d5079bee9fe4f6ed9cfd8031d98",
-  "translation_date": "2025-07-13T22:42:15+00:00",
-  "source_file": "03-GettingStarted/samples/typescript/README.md",
-  "language_code": "sw"
-}
--->
 # Mfano
 
 Huu ni mfano wa Typescript kwa MCP Server

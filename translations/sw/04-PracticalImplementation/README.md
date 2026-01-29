@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "83efa75a69bc831277263a6f1ae53669",
-  "translation_date": "2025-08-19T14:29:04+00:00",
-  "source_file": "04-PracticalImplementation/README.md",
-  "language_code": "sw"
-}
--->
 # Utekelezaji wa Kivitendo
 
 [![Jinsi ya Kujenga, Kupima, na Kuweka Programu za MCP kwa Kutumia Zana na Mifumo Halisi](../../../translated_images/sw/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.png)](https://youtu.be/vCN9-mKBDfQ)

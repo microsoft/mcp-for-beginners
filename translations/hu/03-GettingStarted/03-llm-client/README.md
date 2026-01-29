@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "75638575f993c152965ae2271c4da938",
-  "translation_date": "2025-12-19T15:20:31+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/README.md",
-  "language_code": "hu"
-}
--->
 # Ügyfél létrehozása LLM-mel
 
 Eddig láttad, hogyan lehet szervert és ügyfelet létrehozni. Az ügyfél képes volt explicit módon hívni a szervert, hogy listázza az eszközeit, erőforrásait és promptjait. Azonban ez nem túl praktikus megközelítés. A felhasználód az ügynöki korszakban él, és elvárja, hogy promptokat használjon és természetes nyelven kommunikáljon egy LLM-mel. A felhasználód számára nem számít, hogy MCP-t használsz-e a képességek tárolására, de elvárja, hogy természetes nyelven tudjon interakcióba lépni. Hogyan oldjuk meg ezt? A megoldás az, hogy hozzáadunk egy LLM-et az ügyfélhez.

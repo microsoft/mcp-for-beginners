@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "706b9b075dc484b73a053e6e9c709b4b",
-  "translation_date": "2025-07-13T23:34:22+00:00",
-  "source_file": "04-PracticalImplementation/samples/python/README.md",
-  "language_code": "sw"
-}
--->
 # Model Context Protocol (MCP) Utekelezaji wa Python
 
 Hifadhi hii ina utekelezaji wa Python wa Model Context Protocol (MCP), unaoonyesha jinsi ya kuunda programu ya seva na mteja zinazozungumza kwa kutumia kiwango cha MCP.

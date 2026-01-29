@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-07-13T19:45:06+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "sw"
-}
--->
 Hii inahusiana na kuendesha amri kama ifuatavyo: `node build/index.js`.
 
 - Badilisha kipengee cha server ili kiendane na mahali ambapo faili yako ya server iko au kile kinachohitajika kuanzisha server yako kulingana na runtime na eneo la server ulilochagua.

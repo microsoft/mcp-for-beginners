@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ebdb86db46113f1cbd59ce4c74caaa79",
-  "translation_date": "2025-07-17T10:08:32+00:00",
-  "source_file": "05-AdvancedTopics/mcp-root-contexts/README.md",
-  "language_code": "sw"
-}
--->
 # MCP Root Contexts
 
 Muktadha mzizi ni dhana muhimu katika Model Context Protocol inayotoa safu ya kudumu kwa kuhifadhi historia ya mazungumzo na hali iliyoshirikiwa kati ya maombi na vikao vingi.

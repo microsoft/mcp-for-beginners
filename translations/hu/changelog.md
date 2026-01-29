@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e8bbc7982284fe177dd4be5e7f2b3357",
-  "translation_date": "2025-12-19T15:10:37+00:00",
-  "source_file": "changelog.md",
-  "language_code": "hu"
-}
--->
 # Változásnapló: MCP kezdőknek tananyag
 
 Ez a dokumentum a Model Context Protocol (MCP) kezdőknek szóló tananyagában történt jelentős változások nyilvántartására szolgál. A változások fordított időrendi sorrendben vannak dokumentálva (legújabb változások elöl).

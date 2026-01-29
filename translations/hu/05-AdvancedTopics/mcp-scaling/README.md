@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7b4d8d17fc1f501468cce40c3651aed1",
-  "translation_date": "2025-07-17T10:28:44+00:00",
-  "source_file": "05-AdvancedTopics/mcp-scaling/README.md",
-  "language_code": "hu"
-}
--->
 # Skálázhatóság és nagy teljesítményű MCP
 
 Vállalati telepítések esetén az MCP megvalósításoknak gyakran kell nagy mennyiségű kérést minimális késleltetéssel kezelniük.

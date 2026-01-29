@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1d9dc83260576b76f272d330ed93c51f",
-  "translation_date": "2025-07-13T22:10:33+00:00",
-  "source_file": "03-GettingStarted/09-deployment/README.md",
-  "language_code": "sw"
-}
--->
 # Kuweka seva za MCP
 
 Kuweka seva yako ya MCP kunawawezesha wengine kufikia zana na rasilimali zake zaidi ya mazingira yako ya ndani. Kuna mikakati kadhaa ya kuweka seva unayoweza kuzingatia, kulingana na mahitaji yako ya upanuzi, uaminifu, na urahisi wa usimamizi. Hapa chini utapata mwongozo wa kuweka seva za MCP kwa njia ya ndani, kwenye kontena, na kwenye wingu.

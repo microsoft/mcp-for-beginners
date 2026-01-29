@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1de8367745088b9fcd4746ea4cc5a161",
-  "translation_date": "2025-10-06T15:54:43+00:00",
-  "source_file": "03-GettingStarted/10-advanced/README.md",
-  "language_code": "cs"
-}
--->
 # Pokročilé použití serveru
 
 V MCP SDK jsou k dispozici dva různé typy serverů: běžný server a nízkoúrovňový server. Obvykle používáte běžný server k přidávání funkcí. V některých případech však může být vhodné spolehnout se na nízkoúrovňový server, například:

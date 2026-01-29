@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4e34e34e84f013e73c7eaa6d09884756",
-  "translation_date": "2025-07-13T22:03:21+00:00",
-  "source_file": "03-GettingStarted/08-testing/README.md",
-  "language_code": "cs"
-}
--->
 ## Testování a ladění
 
 Než začnete testovat svůj MCP server, je důležité pochopit dostupné nástroje a osvědčené postupy pro ladění. Efektivní testování zajistí, že váš server bude fungovat podle očekávání, a pomůže vám rychle identifikovat a vyřešit problémy. Následující část popisuje doporučené přístupy k ověření vaší implementace MCP.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "193889b580c86bbb1e4f577114a5ce4e",
-  "translation_date": "2025-07-17T10:42:02+00:00",
-  "source_file": "05-AdvancedTopics/mcp-sampling/README.md",
-  "language_code": "cs"
-}
--->
 # Sampling v Model Context Protocolu
 
 Sampling je výkonná funkce MCP, která umožňuje serverům požadovat dokončení od LLM přes klienta, čímž umožňuje sofistikované agentní chování při zachování bezpečnosti a soukromí. Správná konfigurace sampling výrazně zlepší kvalitu odpovědí a výkon. MCP poskytuje standardizovaný způsob, jak řídit generování textu modelem pomocí specifických parametrů ovlivňujících náhodnost, kreativitu a soudržnost.

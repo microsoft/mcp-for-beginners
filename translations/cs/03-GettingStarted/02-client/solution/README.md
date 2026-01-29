@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4d5e8e6f105e4f6e6953c0c14c99b394",
-  "translation_date": "2025-08-19T15:47:14+00:00",
-  "source_file": "03-GettingStarted/02-client/solution/README.md",
-  "language_code": "cs"
-}
--->
 Zde jsou řešení pro jednotlivé runtime:
 
 - [TypeScript](./typescript/README.md)

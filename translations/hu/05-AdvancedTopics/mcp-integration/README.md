@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f84eaea79c8fa9ab318a494f40891814",
-  "translation_date": "2025-08-19T15:01:50+00:00",
-  "source_file": "05-AdvancedTopics/mcp-integration/README.md",
-  "language_code": "hu"
-}
--->
 # Vállalati Integráció
 
 Amikor MCP szervereket építünk vállalati környezetben, gyakran szükség van a meglévő AI platformokkal és szolgáltatásokkal való integrációra. Ez a rész bemutatja, hogyan integrálható az MCP olyan vállalati rendszerekkel, mint az Azure OpenAI és a Microsoft AI Foundry, lehetővé téve fejlett AI képességek és eszközök összehangolását.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ed9cab32cc67c12d8969b407aa47100a",
-  "translation_date": "2025-07-13T17:56:17+00:00",
-  "source_file": "03-GettingStarted/01-first-server/solution/java/README.md",
-  "language_code": "cs"
-}
--->
 # Základní kalkulační služba MCP
 
 Tato služba poskytuje základní kalkulační operace prostřednictvím Model Context Protocolu (MCP) s využitím Spring Boot a WebFlux transportu. Je navržena jako jednoduchý příklad pro začátečníky, kteří se učí o implementacích MCP.

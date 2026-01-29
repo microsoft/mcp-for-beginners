@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "14a2dfbea55ef735660a06bd6bdfe5f3",
-  "translation_date": "2025-07-14T06:14:38+00:00",
-  "source_file": "09-CaseStudy/UpdateADOItemsFromYT.md",
-  "language_code": "sw"
-}
--->
 # Case Study: Kusasisha Vitu vya Azure DevOps Kutoka Data ya YouTube kwa MCP
 
 > **Disclaimer:** Kuna zana na ripoti za mtandaoni zilizopo ambazo zinaweza kuendesha mchakato wa kusasisha vitu vya Azure DevOps kwa data kutoka kwenye majukwaa kama YouTube. Mfano ufuatao umetolewa kama kesi ya matumizi tu kuonyesha jinsi zana za MCP zinavyoweza kutumika kwa kazi za uendeshaji na muunganisho.

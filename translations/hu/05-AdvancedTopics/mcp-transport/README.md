@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "cf3e88e4c0b2d9d65c7f300986bd8c6c",
-  "translation_date": "2025-12-19T15:22:17+00:00",
-  "source_file": "05-AdvancedTopics/mcp-transport/README.md",
-  "language_code": "hu"
-}
--->
 # MCP Egyedi Átvitel - Haladó Megvalósítási Útmutató
 
 A Model Context Protocol (MCP) rugalmasságot biztosít az átvitel mechanizmusokban, lehetővé téve egyedi megvalósításokat speciális vállalati környezetek számára. Ez a haladó útmutató az egyedi átvitel megvalósításokat vizsgálja az Azure Event Grid és Azure Event Hubs gyakorlati példáin keresztül, amelyek skálázható, felhőnatív MCP megoldások építésére szolgálnak.

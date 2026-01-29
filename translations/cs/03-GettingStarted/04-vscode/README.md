@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "d940b5e0af75e3a3a4d1c3179120d1d9",
-  "translation_date": "2025-08-26T18:14:00+00:00",
-  "source_file": "03-GettingStarted/04-vscode/README.md",
-  "language_code": "cs"
-}
--->
 # Spotřebovávání serveru v režimu agenta GitHub Copilot
 
 Visual Studio Code a GitHub Copilot mohou fungovat jako klient a využívat MCP Server. Proč by nás to mělo zajímat, ptáte se? No, to znamená, že jakékoli funkce, které MCP Server má, mohou být nyní využívány přímo z vašeho IDE. Představte si například přidání MCP serveru GitHubu, což by umožnilo ovládat GitHub pomocí příkazů v přirozeném jazyce místo psaní konkrétních příkazů do terminálu. Nebo si představte cokoli, co by mohlo zlepšit váš vývojářský zážitek, vše ovládané přirozeným jazykem. Už vidíte tu výhodu, že?
