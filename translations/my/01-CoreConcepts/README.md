@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9ad93d2074502828b8139d5aba7bafab",
-  "translation_date": "2025-12-19T17:16:31+00:00",
-  "source_file": "01-CoreConcepts/README.md",
-  "language_code": "my"
-}
--->
 # MCP အခြေခံအယူအဆများ: AI ပေါင်းစည်းမှုအတွက် Model Context Protocol ကို ကျွမ်းကျင်စွာ အသုံးပြုခြင်း
 
 [![MCP Core Concepts](../../../translated_images/my/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.png)](https://youtu.be/earDzWGtE84)

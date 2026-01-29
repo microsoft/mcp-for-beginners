@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e378b47e0361b7a9b0dab7a0306878c8",
-  "translation_date": "2025-08-26T20:03:06+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/README.md",
-  "language_code": "sw"
-}
--->
 # Suluhisho za Seva za MCP stdio
 
 > **⚠️ Muhimu**: Suluhisho hizi zimesasishwa kutumia **usafirishaji wa stdio** kama ilivyopendekezwa na MCP Specification 2025-06-18. Usafirishaji wa awali wa SSE (Server-Sent Events) umesitishwa.

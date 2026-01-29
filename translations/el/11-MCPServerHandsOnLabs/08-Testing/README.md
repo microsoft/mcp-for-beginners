@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ad02c1223d7861292651ffce2f52bb28",
-  "translation_date": "2025-09-30T18:04:17+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/08-Testing/README.md",
-  "language_code": "el"
-}
--->
 # Δοκιμή και Εντοπισμός Σφαλμάτων
 
 ## 🎯 Τι Καλύπτει Αυτό το Εργαστήριο

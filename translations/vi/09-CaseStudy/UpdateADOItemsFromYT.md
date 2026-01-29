@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "14a2dfbea55ef735660a06bd6bdfe5f3",
-  "translation_date": "2025-07-14T06:13:57+00:00",
-  "source_file": "09-CaseStudy/UpdateADOItemsFromYT.md",
-  "language_code": "vi"
-}
--->
 # Nghiên cứu trường hợp: Cập nhật các mục Azure DevOps từ dữ liệu YouTube với MCP
 
 > **Tuyên bố từ chối trách nhiệm:** Đã có các công cụ và báo cáo trực tuyến có thể tự động hóa quá trình cập nhật các mục Azure DevOps với dữ liệu từ các nền tảng như YouTube. Kịch bản dưới đây chỉ được cung cấp như một ví dụ minh họa cách các công cụ MCP có thể được áp dụng cho các tác vụ tự động hóa và tích hợp.

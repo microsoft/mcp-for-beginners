@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "77735b446eb79b1bba9c849865cd0ced",
-  "translation_date": "2025-08-28T22:10:23+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/README.md",
-  "language_code": "fa"
-}
--->
 # سرور MCP با انتقال stdio
 
 > **⚠️ به‌روزرسانی مهم**: از تاریخ مشخصات MCP 2025-06-18، انتقال مستقل SSE (رویدادهای ارسال‌شده توسط سرور) **منسوخ شده** و با انتقال "HTTP قابل جریان" جایگزین شده است. مشخصات فعلی MCP دو مکانیزم انتقال اصلی را تعریف می‌کند:

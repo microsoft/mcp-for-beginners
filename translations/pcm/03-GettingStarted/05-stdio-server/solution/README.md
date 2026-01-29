@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e378b47e0361b7a9b0dab7a0306878c8",
-  "translation_date": "2025-11-18T19:06:54+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/README.md",
-  "language_code": "pcm"
-}
--->
 # MCP stdio Server Solutions
 
 > **⚠️ Important**: Dis solutions don update to use **stdio transport** as MCP Specification 2025-06-18 recommend. Di original SSE (Server-Sent Events) transport don dey deprecated.

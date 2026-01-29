@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "98bcd044860716da5819e31c152813b7",
-  "translation_date": "2025-08-18T17:41:43+00:00",
-  "source_file": "03-GettingStarted/07-aitk/README.md",
-  "language_code": "id"
-}
--->
 # Menggunakan Server dari Ekstensi AI Toolkit untuk Visual Studio Code
 
 Ketika Anda membangun agen AI, tujuannya bukan hanya menghasilkan respons cerdas, tetapi juga memberikan kemampuan kepada agen untuk mengambil tindakan. Di sinilah Model Context Protocol (MCP) berperan. MCP memudahkan agen untuk mengakses alat dan layanan eksternal dengan cara yang konsisten. Anggap saja seperti menyambungkan agen Anda ke kotak peralatan yang benar-benar bisa digunakan.

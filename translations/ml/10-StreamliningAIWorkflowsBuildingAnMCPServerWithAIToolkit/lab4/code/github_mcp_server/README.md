@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9a6a4d3497921d2f6d9699f0a6a1890c",
-  "translation_date": "2025-12-11T17:06:29+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/README.md",
-  "language_code": "ml"
-}
--->
 # Weather MCP Server
 
 Python-ൽ മോക്ക് പ്രതികരണങ്ങളോടുകൂടിയ കാലാവസ്ഥാ ഉപകരണങ്ങൾ നടപ്പിലാക്കുന്ന ഒരു സാമ്പിൾ MCP സെർവർ ആണ് ഇത്. നിങ്ങളുടെ സ്വന്തം MCP സെർവറിനായി ഇത് ഒരു സ്കാഫോൾഡ് ആയി ഉപയോഗിക്കാം. ഇതിൽ താഴെപ്പറയുന്ന സവിശേഷതകൾ ഉൾപ്പെടുന്നു:

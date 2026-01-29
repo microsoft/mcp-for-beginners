@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
-  "translation_date": "2025-12-11T13:26:14+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
-  "language_code": "kn"
-}
--->
 # ಈ ಮಾದರಿಯನ್ನು ಚಾಲನೆ ಮಾಡುವುದು
 
 ಕ್ಲಾಸಿಕ್ HTTP ಸ್ಟ್ರೀಮಿಂಗ್ ಸರ್ವರ್ ಮತ್ತು ಕ್ಲೈಂಟ್, ಹಾಗೆಯೇ MCP ಸ್ಟ್ರೀಮಿಂಗ್ ಸರ್ವರ್ ಮತ್ತು ಕ್ಲೈಂಟ್ ಅನ್ನು Python ಬಳಸಿ ಹೇಗೆ ಚಾಲನೆ ಮಾಡುವುದು ಎಂಬುದನ್ನು ಇಲ್ಲಿ ವಿವರಿಸಲಾಗಿದೆ.

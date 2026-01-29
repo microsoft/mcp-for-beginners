@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4117a42f3e7baae859515f7b8b911e56",
-  "translation_date": "2025-08-11T10:39:32+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/README.md",
-  "language_code": "ko"
-}
--->
 각 런타임에 대한 솔루션은 다음과 같습니다:
 
 - [TypeScript](./typescript/README.md)

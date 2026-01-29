@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "14a2dfbea55ef735660a06bd6bdfe5f3",
-  "translation_date": "2025-07-14T06:08:53+00:00",
-  "source_file": "09-CaseStudy/UpdateADOItemsFromYT.md",
-  "language_code": "ar"
-}
--->
 # دراسة حالة: تحديث عناصر Azure DevOps باستخدام بيانات YouTube مع MCP
 
 > **تنويه:** توجد أدوات وتقارير عبر الإنترنت يمكنها أتمتة عملية تحديث عناصر Azure DevOps باستخدام بيانات من منصات مثل YouTube. السيناريو التالي مقدم كمثال توضيحي فقط لكيفية استخدام أدوات MCP في مهام الأتمتة والتكامل.

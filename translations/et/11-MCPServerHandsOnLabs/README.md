@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "83d32e5c5dd838d4b87a730cab88db77",
-  "translation_date": "2025-10-11T12:48:39+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/README.md",
-  "language_code": "et"
-}
--->
 # 🚀 MCP Server PostgreSQL-ga – Täielik Õppejuhend
 
 ## 🧠 Ülevaade MCP andmebaasi integreerimise õpiteest

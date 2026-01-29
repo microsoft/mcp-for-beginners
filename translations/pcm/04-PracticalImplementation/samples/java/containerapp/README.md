@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e5ea5e7582f70008ea9bec3b3820f20a",
-  "translation_date": "2025-11-18T20:03:24+00:00",
-  "source_file": "04-PracticalImplementation/samples/java/containerapp/README.md",
-  "language_code": "pcm"
-}
--->
 ## System Architecture
 
 Dis project dey show how web application dey use content safety check before e go pass user prompt go calculator service through Model Context Protocol (MCP).

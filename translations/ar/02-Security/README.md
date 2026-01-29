@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "cf48858182f366e9d3f080fb0d3bfc37",
-  "translation_date": "2025-12-19T08:13:05+00:00",
-  "source_file": "02-Security/README.md",
-  "language_code": "ar"
-}
--->
 # أمان MCP: الحماية الشاملة لأنظمة الذكاء الاصطناعي
 
 [![أفضل ممارسات أمان MCP](../../../translated_images/ar/03.175aed6dedae133f.webp)](https://youtu.be/88No8pw706o)

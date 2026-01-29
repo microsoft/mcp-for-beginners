@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "999c5e7623c1e2d5e5a07c2feb39eb67",
-  "translation_date": "2025-07-14T08:31:06+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/README.md",
-  "language_code": "tl"
-}
--->
 # Weather MCP Server
 
 Ito ay isang halimbawa ng MCP Server sa Python na nagpapatupad ng mga tool sa panahon gamit ang mga mock na tugon. Maaari itong gamitin bilang panimulang balangkas para sa iyong sariling MCP Server. Kasama dito ang mga sumusunod na tampok:

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f84eaea79c8fa9ab318a494f40891814",
-  "translation_date": "2025-10-11T12:14:15+00:00",
-  "source_file": "05-AdvancedTopics/mcp-integration/README.md",
-  "language_code": "et"
-}
--->
 # Ettevõtte integratsioon
 
 MCP-serverite loomisel ettevõtte kontekstis on tihti vaja integreerida olemasolevate tehisintellekti platvormide ja teenustega. Selles jaotises käsitletakse, kuidas integreerida MCP ettevõtte süsteemidega, nagu Azure OpenAI ja Microsoft AI Foundry, et võimaldada täiustatud tehisintellekti võimekust ja tööriistade orkestreerimist.

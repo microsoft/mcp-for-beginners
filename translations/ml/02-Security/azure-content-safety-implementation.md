@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1b6c746d9e190deba4d8765267ffb94e",
-  "translation_date": "2025-12-11T11:33:04+00:00",
-  "source_file": "02-Security/azure-content-safety-implementation.md",
-  "language_code": "ml"
-}
--->
 # MCP-യുമായി Azure Content Safety നടപ്പിലാക്കൽ
 
 പ്രോംപ്റ്റ് ഇൻജക്ഷൻ, ടൂൾ വിഷബാധ, മറ്റ് AI-സവിശേഷമായ സുരക്ഷാ ദുർബലതകൾ എന്നിവക്കെതിരെ MCP സുരക്ഷ ശക്തിപ്പെടുത്താൻ Azure Content Safety സംയോജിപ്പിക്കുന്നത് വളരെ ശുപാർശ ചെയ്യപ്പെടുന്നു.

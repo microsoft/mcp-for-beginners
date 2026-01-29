@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9351493ad29390d37f64bc6d84a03db5",
-  "translation_date": "2025-12-19T17:28:52+00:00",
-  "source_file": "02-Security/mcp-security-controls-2025.md",
-  "language_code": "my"
-}
--->
 # MCP လုံခြုံရေး ထိန်းချုပ်မှုများ - ဒီဇင်ဘာ 2025 အပ်ဒိတ်
 
 > **လက်ရှိ စံချိန်စံညွှန်း**: ဤစာတမ်းသည် [MCP Specification 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) ၏ လုံခြုံရေး လိုအပ်ချက်များနှင့် တရားဝင် [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) ကို ပြသသည်။

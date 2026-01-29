@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "333a03e51f90bdf3e6f1ba1694c73f36",
-  "translation_date": "2025-08-26T18:59:15+00:00",
-  "source_file": "05-AdvancedTopics/mcp-realtimesearch/README.md",
-  "language_code": "lt"
-}
--->
 ## Atsakomybės apribojimas dėl kodo pavyzdžių
 
 > **Svarbi pastaba**: Žemiau pateikti kodo pavyzdžiai demonstruoja Model Context Protocol (MCP) integraciją su interneto paieškos funkcionalumu. Nors jie atitinka oficialių MCP SDK struktūras ir modelius, jie yra supaprastinti mokymo tikslais.

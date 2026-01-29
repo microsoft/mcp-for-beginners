@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "151265c9a2124d7c53e04d16ee3fb73b",
-  "translation_date": "2025-11-18T19:29:59+00:00",
-  "source_file": "05-AdvancedTopics/web-search-mcp/README.md",
-  "language_code": "pcm"
-}
--->
 # Lesson: How to Build Web Search MCP Server
 
 Dis chapter go show you how to build real-life AI agent wey fit connect with external APIs, handle different kain data, manage errors, and use plenty tools together—all for production-ready format. You go see:

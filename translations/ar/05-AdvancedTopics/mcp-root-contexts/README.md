@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ebdb86db46113f1cbd59ce4c74caaa79",
-  "translation_date": "2025-07-16T23:35:55+00:00",
-  "source_file": "05-AdvancedTopics/mcp-root-contexts/README.md",
-  "language_code": "ar"
-}
--->
 # سياقات الجذر في MCP
 
 تُعد سياقات الجذر مفهومًا أساسيًا في بروتوكول سياق النموذج، حيث توفر طبقة دائمة للحفاظ على سجل المحادثة والحالة المشتركة عبر عدة طلبات وجلسات.

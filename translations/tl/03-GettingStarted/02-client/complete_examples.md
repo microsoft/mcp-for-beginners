@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8358c13b5b6877e475674697cdc1a904",
-  "translation_date": "2025-08-18T18:29:50+00:00",
-  "source_file": "03-GettingStarted/02-client/complete_examples.md",
-  "language_code": "tl"
-}
--->
 # Kumpletong Halimbawa ng MCP Client
 
 Ang direktoryong ito ay naglalaman ng mga kumpleto at gumaganang halimbawa ng MCP clients sa iba't ibang programming languages. Ang bawat client ay nagpapakita ng buong functionality na inilarawan sa pangunahing tutorial na README.md.

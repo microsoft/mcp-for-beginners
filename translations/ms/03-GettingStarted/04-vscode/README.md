@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "d940b5e0af75e3a3a4d1c3179120d1d9",
-  "translation_date": "2025-08-26T18:05:54+00:00",
-  "source_file": "03-GettingStarted/04-vscode/README.md",
-  "language_code": "ms"
-}
--->
 # Menggunakan pelayan dari mod Agen GitHub Copilot
 
 Visual Studio Code dan GitHub Copilot boleh bertindak sebagai klien dan menggunakan MCP Server. Kenapa kita mahu melakukannya, anda mungkin bertanya? Nah, ini bermakna apa sahaja ciri yang dimiliki oleh MCP Server kini boleh digunakan terus dari dalam IDE anda. Bayangkan anda menambah, sebagai contoh, pelayan MCP GitHub, ini akan membolehkan anda mengawal GitHub melalui arahan semula jadi tanpa perlu menaip perintah tertentu di terminal. Atau bayangkan apa sahaja yang secara amnya boleh meningkatkan pengalaman pembangun anda, semuanya dikawal melalui bahasa semula jadi. Sekarang anda mula nampak kelebihannya, bukan?

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "cf3e88e4c0b2d9d65c7f300986bd8c6c",
-  "translation_date": "2025-12-19T07:42:54+00:00",
-  "source_file": "05-AdvancedTopics/mcp-transport/README.md",
-  "language_code": "es"
-}
--->
 # MCP Transportes Personalizados - Guía de Implementación Avanzada
 
 El Protocolo de Contexto de Modelo (MCP) ofrece flexibilidad en los mecanismos de transporte, permitiendo implementaciones personalizadas para entornos empresariales especializados. Esta guía avanzada explora implementaciones de transporte personalizadas utilizando Azure Event Grid y Azure Event Hubs como ejemplos prácticos para construir soluciones MCP escalables y nativas en la nube.

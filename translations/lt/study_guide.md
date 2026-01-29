@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "af27b0acfae6caa134d9701453884df8",
-  "translation_date": "2025-10-07T00:28:12+00:00",
-  "source_file": "study_guide.md",
-  "language_code": "lt"
-}
--->
 # Model Context Protocol (MCP) pradedantiesiems - mokymosi vadovas
 
 Šis mokymosi vadovas pateikia apžvalgą apie saugyklos struktūrą ir turinį, skirtą „Model Context Protocol (MCP) pradedantiesiems“ mokymo programai. Naudokite šį vadovą, kad efektyviai naršytumėte saugyklą ir maksimaliai išnaudotumėte turimus išteklius.

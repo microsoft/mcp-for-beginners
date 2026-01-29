@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9d799c4a30a8383e0a74af9153262972",
-  "translation_date": "2025-08-26T20:07:20+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/typescript/README.md",
-  "language_code": "ko"
-}
--->
 # MCP stdio 서버 - TypeScript 솔루션
 
 > **⚠️ 중요**: 이 솔루션은 MCP 사양 2025-06-18에서 권장하는 **stdio 전송**을 사용하도록 업데이트되었습니다. 기존의 SSE 전송은 더 이상 사용되지 않습니다.

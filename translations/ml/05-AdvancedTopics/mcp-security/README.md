@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "997c7119766a69552e23d7d681316902",
-  "translation_date": "2025-12-11T15:06:34+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security/README.md",
-  "language_code": "ml"
-}
--->
 # MCP സുരക്ഷ മികച്ച രീതികൾ - ആധുനിക നടപ്പാക്കൽ ഗൈഡ്
 
 > **നിലവിലെ സ്റ്റാൻഡേർഡ്**: ഈ ഗൈഡ് [MCP സ്പെസിഫിക്കേഷൻ 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) സുരക്ഷാ ആവശ്യകതകളും ഔദ്യോഗിക [MCP സുരക്ഷ മികച്ച രീതികൾ](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) എന്നിവ പ്രതിഫലിപ്പിക്കുന്നു.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "75638575f993c152965ae2271c4da938",
-  "translation_date": "2025-12-19T07:32:50+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/README.md",
-  "language_code": "fr"
-}
--->
 # Création d'un client avec LLM
 
 Jusqu'à présent, vous avez vu comment créer un serveur et un client. Le client a pu appeler explicitement le serveur pour lister ses outils, ressources et invites. Cependant, ce n'est pas une approche très pratique. Votre utilisateur vit à l'ère agentique et s'attend à utiliser des invites et à communiquer avec un LLM pour ce faire. Pour votre utilisateur, peu importe si vous utilisez MCP ou non pour stocker vos capacités, mais il s'attend à utiliser le langage naturel pour interagir. Alors, comment résoudre cela ? La solution consiste à ajouter un LLM au client.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5f1383103523fa822e1fec7ef81904d5",
-  "translation_date": "2025-08-11T10:29:03+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/README.md",
-  "language_code": "ja"
-}
--->
 # HTTPSストリーミングとModel Context Protocol (MCP)
 
 この章では、HTTPSを使用してModel Context Protocol (MCP)を活用した安全でスケーラブルなリアルタイムストリーミングの実装方法について詳しく説明します。ストリーミングの動機、利用可能なトランスポートメカニズム、MCPでのストリーム可能なHTTPの実装方法、セキュリティのベストプラクティス、SSEからの移行、そして独自のストリーミングMCPアプリケーションを構築するための実践的なガイダンスを取り上げます。

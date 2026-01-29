@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5b00b8a8971a07d2d8803be4c9f138f8",
-  "translation_date": "2025-10-07T00:58:03+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/README.md",
-  "language_code": "ms"
-}
--->
 # Auth Mudah
 
 SDK MCP menyokong penggunaan OAuth 2.1 yang, secara jujurnya, adalah proses yang agak kompleks melibatkan konsep seperti pelayan pengesahan, pelayan sumber, menghantar kelayakan, mendapatkan kod, menukar kod kepada token pembawa sehingga akhirnya anda boleh mendapatkan data sumber anda. Jika anda tidak biasa dengan OAuth, yang merupakan sesuatu yang bagus untuk dilaksanakan, adalah idea yang baik untuk bermula dengan tahap pengesahan asas dan membina kepada keselamatan yang lebih baik. Itulah sebabnya bab ini wujud, untuk membantu anda membina pengesahan yang lebih maju.

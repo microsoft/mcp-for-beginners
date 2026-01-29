@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "32c9a4263be08f9050c8044bb26267c4",
-  "translation_date": "2025-07-14T00:28:23+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/apimoauth.md",
-  "language_code": "el"
-}
--->
 # Ανάπτυξη της εφαρμογής Spring AI MCP σε Azure Container Apps
 
  ([Securing Spring AI MCP servers with OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2)) *Εικόνα: Ο διακομιστής Spring AI MCP ασφαλισμένος με Spring Authorization Server. Ο διακομιστής εκδίδει access tokens στους πελάτες και τα επαληθεύει στα εισερχόμενα αιτήματα (πηγή: Spring blog) ([Securing Spring AI MCP servers with OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2#:~:text=,server%20with%20the%20MCP%20inspector)).* Για να αναπτύξετε τον διακομιστή Spring MCP, δημιουργήστε τον ως container και χρησιμοποιήστε τα Azure Container Apps με εξωτερική πρόσβαση (ingress). Για παράδειγμα, με το Azure CLI μπορείτε να εκτελέσετε:

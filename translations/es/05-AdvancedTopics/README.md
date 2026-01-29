@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "d204bc94ea6027d06a703b21b711ca57",
-  "translation_date": "2025-07-29T00:48:47+00:00",
-  "source_file": "05-AdvancedTopics/README.md",
-  "language_code": "es"
-}
--->
 # Temas Avanzados en MCP
 
 [![MCP Avanzado: Agentes de IA Seguros, Escalables y Multimodales](../../../translated_images/es/06.42259eaf91fccfc6.webp)](https://youtu.be/4yjmGvJzYdY)

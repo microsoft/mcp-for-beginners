@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "cf8b2ca0cea03c09428ae042938995c1",
-  "translation_date": "2025-10-11T12:57:22+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/12-Best-Practices/README.md",
-  "language_code": "et"
-}
--->
 # Parimad Tavad ja Optimeerimine
 
 ## 🎯 Mida see labor hõlmab

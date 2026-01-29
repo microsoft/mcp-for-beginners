@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2228721599c0c8673de83496b4d7d7a9",
-  "translation_date": "2025-08-12T07:43:53+00:00",
-  "source_file": "09-CaseStudy/apimsample.md",
-  "language_code": "ja"
-}
--->
 # ケーススタディ: API ManagementでREST APIをMCPサーバーとして公開する
 
 Azure API Managementは、APIエンドポイントの上にゲートウェイを提供するサービスです。仕組みとしては、Azure API ManagementがAPIの前にプロキシとして機能し、受信リクエストに対して何を行うかを決定します。

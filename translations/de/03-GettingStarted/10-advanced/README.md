@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1de8367745088b9fcd4746ea4cc5a161",
-  "translation_date": "2025-10-06T15:38:24+00:00",
-  "source_file": "03-GettingStarted/10-advanced/README.md",
-  "language_code": "de"
-}
--->
 # Erweiterte Servernutzung
 
 Im MCP SDK gibt es zwei verschiedene Arten von Servern: den normalen Server und den Low-Level-Server. Normalerweise verwendet man den regulären Server, um Funktionen hinzuzufügen. In einigen Fällen ist es jedoch sinnvoll, auf den Low-Level-Server zurückzugreifen, beispielsweise:

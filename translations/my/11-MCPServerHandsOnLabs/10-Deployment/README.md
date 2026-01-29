@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "42c4bda55924cd1d6964c1a01fe65f28",
-  "translation_date": "2025-09-30T23:31:45+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/10-Deployment/README.md",
-  "language_code": "my"
-}
--->
 # Deployment Strategies
 
 ## 🎯 ဒီလက်တွေ့လုပ်ငန်းမှာ ဘာတွေ ပါဝင်သလဲ

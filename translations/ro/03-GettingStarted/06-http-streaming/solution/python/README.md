@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
-  "translation_date": "2025-08-19T16:37:28+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
-  "language_code": "ro"
-}
--->
 # Rularea acestui exemplu
 
 Iată cum să rulezi serverul și clientul clasic de streaming HTTP, precum și serverul și clientul MCP de streaming utilizând Python.

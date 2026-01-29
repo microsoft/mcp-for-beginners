@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-07-13T19:39:01+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "ar"
-}
--->
 هذا يتوافق مع تشغيل أمر مثل: `node build/index.js`.
 
 - قم بتغيير إدخال الخادم ليتناسب مع مكان وجود ملف الخادم الخاص بك أو بما هو مطلوب لتشغيل الخادم بناءً على بيئة التشغيل وموقع الخادم الذي اخترته.

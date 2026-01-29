@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9525f06ed164e10f29e0f6b055d4f3d3",
-  "translation_date": "2025-12-11T13:53:59+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/04-Database/README.md",
-  "language_code": "ml"
-}
--->
 # ഡാറ്റാബേസ് ഡിസൈൻ ആൻഡ് സ്കീമ
 
 ## 🎯 ഈ ലാബ് ഉൾക്കൊള്ളുന്നത്

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5854af7b7c1cf4a5193eabdca60a4c19",
-  "translation_date": "2025-12-11T14:46:16+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/06-Tools/README.md",
-  "language_code": "ml"
-}
--->
 # ടൂൾ വികസനം
 
 ## 🎯 ഈ ലാബ് ഉൾക്കൊള്ളുന്നത്

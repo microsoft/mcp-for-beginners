@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8358c13b5b6877e475674697cdc1a904",
-  "translation_date": "2025-10-11T11:29:46+00:00",
-  "source_file": "03-GettingStarted/02-client/complete_examples.md",
-  "language_code": "et"
-}
--->
 # Täielikud MCP kliendi näited
 
 See kataloog sisaldab täielikult töötavaid MCP klientide näiteid erinevates programmeerimiskeeltes. Iga klient demonstreerib kogu funktsionaalsust, mida on kirjeldatud peamises README.md juhendis.

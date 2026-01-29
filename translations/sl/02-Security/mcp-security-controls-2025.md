@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9351493ad29390d37f64bc6d84a03db5",
-  "translation_date": "2025-12-19T17:08:15+00:00",
-  "source_file": "02-Security/mcp-security-controls-2025.md",
-  "language_code": "sl"
-}
--->
 # MCP Varnostni Ukrepi - Posodobitev december 2025
 
 > **Trenutni standard**: Ta dokument odraža varnostne zahteve [MCP specifikacije 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) in uradne [MCP varnostne najboljše prakse](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).

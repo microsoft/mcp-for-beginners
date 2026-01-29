@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7b4d8d17fc1f501468cce40c3651aed1",
-  "translation_date": "2025-07-16T22:39:18+00:00",
-  "source_file": "05-AdvancedTopics/mcp-scaling/README.md",
-  "language_code": "pl"
-}
--->
 # Skalowalność i Wysoka Wydajność MCP
 
 W przypadku wdrożeń korporacyjnych implementacje MCP często muszą obsługiwać duże ilości żądań przy minimalnych opóźnieniach.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "882aae00f1d3f007e20d03b883f44afa",
-  "translation_date": "2025-07-13T22:20:01+00:00",
-  "source_file": "03-GettingStarted/samples/csharp/README.md",
-  "language_code": "uk"
-}
--->
 # Сервіс базового калькулятора MCP
 
 Цей сервіс надає базові операції калькулятора через Model Context Protocol (MCP). Він створений як простий приклад для початківців, які вивчають реалізації MCP.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "af27b0acfae6caa134d9701453884df8",
-  "translation_date": "2025-10-06T23:41:16+00:00",
-  "source_file": "study_guide.md",
-  "language_code": "tl"
-}
--->
 # Model Context Protocol (MCP) para sa mga Baguhan - Gabay sa Pag-aaral
 
 Ang gabay na ito ay nagbibigay ng pangkalahatang ideya tungkol sa istruktura ng repositoryo at nilalaman para sa kurikulum na "Model Context Protocol (MCP) para sa mga Baguhan." Gamitin ang gabay na ito upang mas madaling ma-navigate ang repositoryo at magamit nang husto ang mga magagamit na resources.

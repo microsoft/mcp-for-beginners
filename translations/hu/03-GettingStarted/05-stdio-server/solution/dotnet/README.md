@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "69372338676e01a2c97f42f70fdfbf42",
-  "translation_date": "2025-08-26T20:24:43+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/dotnet/README.md",
-  "language_code": "hu"
-}
--->
 # MCP stdio Szerver - .NET Megoldás
 
 > **⚠️ Fontos**: Ez a megoldás frissítve lett, hogy a **stdio transzportot** használja, ahogy azt az MCP Specifikáció 2025-06-18 ajánlja. Az eredeti SSE transzport elavult.

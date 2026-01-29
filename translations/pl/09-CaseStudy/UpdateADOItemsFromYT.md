@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "14a2dfbea55ef735660a06bd6bdfe5f3",
-  "translation_date": "2025-07-14T06:12:04+00:00",
-  "source_file": "09-CaseStudy/UpdateADOItemsFromYT.md",
-  "language_code": "pl"
-}
--->
 # Studium przypadku: Aktualizacja elementów Azure DevOps danymi z YouTube za pomocą MCP
 
 > **Disclaimer:** Istnieją dostępne narzędzia online i raporty, które mogą automatyzować proces aktualizacji elementów Azure DevOps danymi z platform takich jak YouTube. Poniższy scenariusz jest przedstawiony wyłącznie jako przykładowe zastosowanie, ilustrujące, jak narzędzia MCP mogą być wykorzystane do automatyzacji i integracji.

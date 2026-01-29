@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-07-13T19:41:20+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "ne"
-}
--->
 यो कमाण्ड चलाउने जस्तै हो: `node build/index.js`।
 
 - आफ्नो सर्भर फाइल कहाँ छ वा कुन रनटाइम र सर्भर स्थान अनुसार सर्भर सुरु गर्न के आवश्यक छ, त्यसअनुसार यो सर्भर इन्ट्री परिवर्तन गर्नुहोस्।

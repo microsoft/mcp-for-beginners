@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "333a03e51f90bdf3e6f1ba1694c73f36",
-  "translation_date": "2025-07-16T23:37:23+00:00",
-  "source_file": "05-AdvancedTopics/mcp-realtimesearch/README.md",
-  "language_code": "ar"
-}
--->
 ## إخلاء مسؤولية أمثلة الشيفرة
 
 > **ملاحظة مهمة**: أمثلة الشيفرة أدناه توضح دمج بروتوكول سياق النموذج (MCP) مع وظيفة البحث على الويب. رغم أنها تتبع أنماط وهياكل SDKs الرسمية لـ MCP، فقد تم تبسيطها لأغراض تعليمية.

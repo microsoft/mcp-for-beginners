@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "769c9794759f416450dce77286e98f00",
-  "translation_date": "2025-12-11T14:13:41+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/09-VS-Code/README.md",
-  "language_code": "te"
-}
--->
 # VS Code ఇంటిగ్రేషన్
 
 ## 🎯 ఈ ల్యాబ్ కవర్ చేసే అంశాలు

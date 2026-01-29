@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4d3415b9d2bf58bc69be07f945a69e07",
-  "translation_date": "2025-07-14T06:07:16+00:00",
-  "source_file": "09-CaseStudy/travelagentsample.md",
-  "language_code": "my"
-}
--->
 # ကိစ္စလေ့လာမှု: Azure AI ခရီးသွားအေးဂျင့်များ – ကိုးကားအကောင်အထည်ဖော်မှု
 
 ## အနှစ်ချုပ်

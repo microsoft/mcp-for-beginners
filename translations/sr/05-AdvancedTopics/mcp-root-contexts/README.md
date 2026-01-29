@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ebdb86db46113f1cbd59ce4c74caaa79",
-  "translation_date": "2025-07-17T11:48:12+00:00",
-  "source_file": "05-AdvancedTopics/mcp-root-contexts/README.md",
-  "language_code": "sr"
-}
--->
 # MCP Root Contexts
 
 Root contexti су основни појам у Model Context Protocol-у који обезбеђују трајни слој за одржавање историје разговора и заједничког стања кроз више захтева и сесија.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "75638575f993c152965ae2271c4da938",
-  "translation_date": "2025-12-19T16:05:11+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/README.md",
-  "language_code": "ro"
-}
--->
 # Crearea unui client cu LLM
 
 Până acum, ai văzut cum să creezi un server și un client. Clientul a putut apela explicit serverul pentru a lista uneltele, resursele și prompturile sale. Totuși, aceasta nu este o abordare foarte practică. Utilizatorul tău trăiește în era agentică și se așteaptă să folosească prompturi și să comunice cu un LLM pentru a face acest lucru. Pentru utilizatorul tău, nu contează dacă folosești MCP sau nu pentru a stoca capabilitățile, dar se așteaptă să folosească limbaj natural pentru a interacționa. Deci, cum rezolvăm asta? Soluția este să adăugăm un LLM clientului.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2f1b473818b5a6cc9a9bbf777fffa6d4",
-  "translation_date": "2025-08-26T19:00:38+00:00",
-  "source_file": "05-AdvancedTopics/mcp-routing/README.md",
-  "language_code": "lt"
-}
--->
 # Maršrutizavimas Modelio Konteksto Protokole
 
 Maršrutizavimas yra būtinas norint nukreipti užklausas į tinkamus modelius, įrankius ar paslaugas MCP ekosistemoje.

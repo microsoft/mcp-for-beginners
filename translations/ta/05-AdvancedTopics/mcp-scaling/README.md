@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7b4d8d17fc1f501468cce40c3651aed1",
-  "translation_date": "2025-10-11T12:11:14+00:00",
-  "source_file": "05-AdvancedTopics/mcp-scaling/README.md",
-  "language_code": "ta"
-}
--->
 # அளவீட்டு திறன் மற்றும் உயர் செயல்திறன் MCP
 
 நிறுவன பயன்பாடுகளுக்காக, MCP செயல்பாடுகள் குறைந்த தாமதத்துடன் அதிக அளவிலான கோரிக்கைகளை கையாள வேண்டும்.

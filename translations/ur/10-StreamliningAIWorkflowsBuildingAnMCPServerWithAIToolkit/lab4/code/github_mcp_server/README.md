@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9a6a4d3497921d2f6d9699f0a6a1890c",
-  "translation_date": "2025-09-09T21:27:25+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/README.md",
-  "language_code": "ur"
-}
--->
 # موسم ایم سی پی سرور
 
 یہ ایک نمونہ ایم سی پی سرور ہے جو پائتھون میں موسم کے آلات کے ساتھ فرضی جوابات فراہم کرتا ہے۔ یہ آپ کے اپنے ایم سی پی سرور کے لیے بنیاد کے طور پر استعمال کیا جا سکتا ہے۔ اس میں درج ذیل خصوصیات شامل ہیں:

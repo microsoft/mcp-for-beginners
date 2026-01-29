@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0eaf9f1f29c86311674013505e9202f3",
-  "translation_date": "2025-12-11T16:40:52+00:00",
-  "source_file": "04-PracticalImplementation/samples/java/containerapp/src/main/resources/static/images/sequence-diagram.md",
-  "language_code": "ml"
-}
--->
 നമസ്കാരം, എനിക്ക് എങ്ങനെ സഹായിക്കാമെന്ന് പറയൂ.
 
 ---

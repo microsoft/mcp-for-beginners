@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "d1fd6d5079bee9fe4f6ed9cfd8031d98",
-  "translation_date": "2025-10-11T11:38:14+00:00",
-  "source_file": "03-GettingStarted/samples/typescript/README.md",
-  "language_code": "ta"
-}
--->
 # மாதிரி
 
 இது MCP சர்வருக்கான ஒரு டைப் ஸ்கிரிப்ட் மாதிரி

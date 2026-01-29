@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4117a42f3e7baae859515f7b8b911e56",
-  "translation_date": "2025-12-11T12:55:53+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/README.md",
-  "language_code": "ml"
-}
--->
 പ്രതിയൊരു റൺടൈമിനും പരിഹാരങ്ങൾ ഇവയാണ്:
 
 - [TypeScript](./typescript/README.md)

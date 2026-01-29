@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "3f68294760a11dd3fdd175bd7f904a92",
-  "translation_date": "2025-11-18T19:20:55+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/code/basic/python/README.md",
-  "language_code": "pcm"
-}
--->
 # Run sample
 
 Dis sample go start one MCP Server wey get middleware wey dey check say Authorization header dey valid.

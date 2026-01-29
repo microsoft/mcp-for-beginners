@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "77735b446eb79b1bba9c849865cd0ced",
-  "translation_date": "2025-08-28T22:06:05+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/README.md",
-  "language_code": "fr"
-}
--->
 # Serveur MCP avec transport stdio
 
 > **⚠️ Mise à jour importante** : À partir de la spécification MCP du 18 juin 2025, le transport SSE (Server-Sent Events) autonome a été **déprécié** et remplacé par le transport "HTTP Streamable". La spécification MCP actuelle définit deux mécanismes de transport principaux :

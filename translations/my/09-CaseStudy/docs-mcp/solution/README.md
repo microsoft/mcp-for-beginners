@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "c8c1a74c74f6c2d42d511daf12d0b6c5",
-  "translation_date": "2025-07-14T06:35:28+00:00",
-  "source_file": "09-CaseStudy/docs-mcp/solution/README.md",
-  "language_code": "my"
-}
--->
 ဒီမှာ runtime တစ်ခုချင်းစီအတွက် ဖြေရှင်းချက်တွေရှိပါတယ်။
 - [Python](./python/README.md)
 

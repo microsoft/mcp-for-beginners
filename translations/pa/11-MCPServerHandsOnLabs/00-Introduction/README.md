@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1d375ae049e52c89287d533daa4ba348",
-  "translation_date": "2025-09-30T16:51:47+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/00-Introduction/README.md",
-  "language_code": "pa"
-}
--->
 # MCP ਡੇਟਾਬੇਸ ਇੰਟੀਗ੍ਰੇਸ਼ਨ ਦਾ ਪਰਚੇ
 
 ## 🎯 ਇਹ ਲੈਬ ਕੀ ਕਵਰ ਕਰਦੀ ਹੈ

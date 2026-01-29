@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "83d32e5c5dd838d4b87a730cab88db77",
-  "translation_date": "2025-09-30T13:39:26+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/README.md",
-  "language_code": "ko"
-}
--->
 # 🚀 PostgreSQL과 함께하는 MCP 서버 - 완벽 학습 가이드
 
 ## 🧠 MCP 데이터베이스 통합 학습 경로 개요

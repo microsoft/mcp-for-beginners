@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "41f16dac486d2086a53bc644a01cbe42",
-  "translation_date": "2025-12-11T10:00:17+00:00",
-  "source_file": "07-LessonsfromEarlyAdoption/README.md",
-  "language_code": "kn"
-}
--->
 # 🌟 ಮೊದಲ ಬಳಕೆದಾರರಿಂದ ಪಾಠಗಳು
 
 [![Lessons from MCP Early Adopters](../../../translated_images/kn/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.png)](https://youtu.be/jds7dSmNptE)

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5854af7b7c1cf4a5193eabdca60a4c19",
-  "translation_date": "2025-10-11T13:00:03+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/06-Tools/README.md",
-  "language_code": "ta"
-}
--->
 # கருவி உருவாக்கம்
 
 ## 🎯 இந்த ஆய்வகத்தில் என்ன கற்றுக்கொள்வீர்கள்

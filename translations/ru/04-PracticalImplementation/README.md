@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "83efa75a69bc831277263a6f1ae53669",
-  "translation_date": "2025-08-18T13:11:42+00:00",
-  "source_file": "04-PracticalImplementation/README.md",
-  "language_code": "ru"
-}
--->
 # Практическая реализация
 
 [![Как создавать, тестировать и развертывать приложения MCP с использованием реальных инструментов и рабочих процессов](../../../translated_images/ru/05.64bea204e25ca891.webp)](https://youtu.be/vCN9-mKBDfQ)

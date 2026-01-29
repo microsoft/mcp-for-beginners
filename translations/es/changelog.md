@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e8bbc7982284fe177dd4be5e7f2b3357",
-  "translation_date": "2025-12-19T07:34:44+00:00",
-  "source_file": "changelog.md",
-  "language_code": "es"
-}
--->
 # Registro de cambios: Currículo MCP para principiantes
 
 Este documento sirve como un registro de todos los cambios significativos realizados en el currículo del Protocolo de Contexto de Modelo (MCP) para principiantes. Los cambios se documentan en orden cronológico inverso (los cambios más recientes primero).

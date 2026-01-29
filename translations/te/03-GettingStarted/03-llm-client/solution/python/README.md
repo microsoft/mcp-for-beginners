@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "24531f2b6b0f7fa3839accf4dc10088a",
-  "translation_date": "2025-12-11T12:56:20+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/python/README.md",
-  "language_code": "te"
-}
--->
 # ఈ నమూనాను నడపడం
 
 మీకు `uv` ను ఇన్‌స్టాల్ చేయాలని సిఫార్సు చేయబడింది కానీ ఇది తప్పనిసరి కాదు, [సూచనలు](https://docs.astral.sh/uv/#highlights) చూడండి

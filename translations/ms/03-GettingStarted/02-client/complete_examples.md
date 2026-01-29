@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8358c13b5b6877e475674697cdc1a904",
-  "translation_date": "2025-08-18T18:04:42+00:00",
-  "source_file": "03-GettingStarted/02-client/complete_examples.md",
-  "language_code": "ms"
-}
--->
 # Contoh Lengkap Klien MCP
 
 Direktori ini mengandungi contoh lengkap dan berfungsi untuk klien MCP dalam pelbagai bahasa pengaturcaraan. Setiap klien menunjukkan fungsi penuh seperti yang diterangkan dalam tutorial README.md utama.

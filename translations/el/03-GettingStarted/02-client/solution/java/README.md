@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7074b9f4c8cd147c1c10f569d8508c82",
-  "translation_date": "2025-07-13T18:34:29+00:00",
-  "source_file": "03-GettingStarted/02-client/solution/java/README.md",
-  "language_code": "el"
-}
--->
 # MCP Java Client - Παράδειγμα Αριθμομηχανής
 
 Αυτό το έργο δείχνει πώς να δημιουργήσετε έναν Java client που συνδέεται και αλληλεπιδρά με έναν MCP (Model Context Protocol) server. Σε αυτό το παράδειγμα, θα συνδεθούμε στον server της αριθμομηχανής από το Κεφάλαιο 01 και θα εκτελέσουμε διάφορες μαθηματικές πράξεις.

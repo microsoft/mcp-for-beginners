@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "75638575f993c152965ae2271c4da938",
-  "translation_date": "2025-12-19T17:08:54+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/README.md",
-  "language_code": "sl"
-}
--->
 # Ustvarjanje odjemalca z LLM
 
 Do zdaj ste videli, kako ustvariti strežnik in odjemalca. Odjemalec je lahko izrecno klical strežnik, da našteje njegove orodja, vire in pozive. Vendar to ni zelo praktičen pristop. Vaš uporabnik živi v dobi agentnosti in pričakuje uporabo pozivov ter komunikacijo z LLM za to. Za vašega uporabnika ni pomembno, ali uporabljate MCP za shranjevanje svojih zmogljivosti, vendar pričakujejo uporabo naravnega jezika za interakcijo. Kako torej to rešimo? Rešitev je dodajanje LLM k odjemalcu.

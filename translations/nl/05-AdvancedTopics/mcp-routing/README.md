@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2f1b473818b5a6cc9a9bbf777fffa6d4",
-  "translation_date": "2025-07-14T21:48:59+00:00",
-  "source_file": "05-AdvancedTopics/mcp-routing/README.md",
-  "language_code": "nl"
-}
--->
 ## Sampling en Routing Architectuur in MCP
 
 Sampling is een cruciaal onderdeel van het Model Context Protocol (MCP) dat zorgt voor efficiënte verwerking en routering van verzoeken. Het houdt in dat binnenkomende verzoeken worden geanalyseerd om te bepalen welk model of welke service het beste geschikt is om ze af te handelen, op basis van verschillende criteria zoals het type inhoud, gebruikerscontext en systeembelasting.

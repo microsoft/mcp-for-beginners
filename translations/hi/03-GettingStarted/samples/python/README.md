@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
-  "translation_date": "2025-10-17T20:04:41+00:00",
-  "source_file": "03-GettingStarted/samples/python/README.md",
-  "language_code": "hi"
-}
--->
 # MCP कैलकुलेटर सर्वर (Python)
 
 Python में एक सरल मॉडल कॉन्टेक्स्ट प्रोटोकॉल (MCP) सर्वर का कार्यान्वयन, जो बुनियादी कैलकुलेटर की सुविधा प्रदान करता है।

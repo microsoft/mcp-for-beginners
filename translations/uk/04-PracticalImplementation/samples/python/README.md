@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "706b9b075dc484b73a053e6e9c709b4b",
-  "translation_date": "2025-07-13T23:35:50+00:00",
-  "source_file": "04-PracticalImplementation/samples/python/README.md",
-  "language_code": "uk"
-}
--->
 # Model Context Protocol (MCP) Python Реалізація
 
 Цей репозиторій містить Python-реалізацію Model Context Protocol (MCP), що демонструє, як створити серверний та клієнтський додатки, які взаємодіють за стандартом MCP.

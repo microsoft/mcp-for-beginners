@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e30aaf6b178137fa6668efc1b20851d5",
-  "translation_date": "2025-12-19T15:58:24+00:00",
-  "source_file": "02-Security/mcp-security-best-practices-2025.md",
-  "language_code": "ro"
-}
--->
 # Cele mai bune practici de securitate MCP - Actualizare decembrie 2025
 
 > **Important**: Acest document reflectă cele mai recente cerințe de securitate din [Specificația MCP 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) și [Cele mai bune practici oficiale de securitate MCP](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices). Consultați întotdeauna specificația curentă pentru cele mai actualizate recomandări.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "32c9a4263be08f9050c8044bb26267c4",
-  "translation_date": "2025-07-14T00:27:57+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/apimoauth.md",
-  "language_code": "tr"
-}
--->
 # Spring AI MCP Uygulamasını Azure Container Apps’e Dağıtma
 
 ([Spring AI MCP sunucularını OAuth2 ile güvence altına alma](https://spring.io/blog/2025/04/02/mcp-server-oauth2)) *Şekil: Spring Authorization Server ile güvence altına alınmış Spring AI MCP sunucusu. Sunucu, istemcilere erişim tokenları verir ve gelen isteklerde bunları doğrular (kaynak: Spring blog) ([Spring AI MCP sunucularını OAuth2 ile güvence altına alma](https://spring.io/blog/2025/04/02/mcp-server-oauth2#:~:text=,server%20with%20the%20MCP%20inspector)).* Spring MCP sunucusunu dağıtmak için, onu bir konteyner olarak oluşturun ve Azure Container Apps’i dış erişim ile kullanın. Örneğin, Azure CLI ile şu komutu çalıştırabilirsiniz:

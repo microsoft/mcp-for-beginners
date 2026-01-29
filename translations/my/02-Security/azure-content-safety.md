@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f5300fd1b5e84520d500b2a8f568a1d8",
-  "translation_date": "2025-07-17T13:50:28+00:00",
-  "source_file": "02-Security/azure-content-safety.md",
-  "language_code": "my"
-}
--->
 # Azure Content Safety ဖြင့် အဆင့်မြင့် MCP လုံခြုံရေး
 
 Azure Content Safety သည် သင့် MCP အကောင်အထည်ဖော်မှုများ၏ လုံခြုံရေးကို တိုးတက်စေမည့် အင်အားကြီးကိရိယာများစွာကို ပံ့ပိုးပေးပါသည်။

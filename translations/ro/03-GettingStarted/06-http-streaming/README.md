@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5f1383103523fa822e1fec7ef81904d5",
-  "translation_date": "2025-08-19T16:36:02+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/README.md",
-  "language_code": "ro"
-}
--->
 # Streaming HTTPS cu Protocolul Model Context (MCP)
 
 Acest capitol oferă un ghid cuprinzător pentru implementarea streaming-ului securizat, scalabil și în timp real folosind Protocolul Model Context (MCP) prin HTTPS. Acoperă motivația pentru streaming, mecanismele de transport disponibile, cum să implementezi HTTP streamabil în MCP, cele mai bune practici de securitate, migrarea de la SSE și sfaturi practice pentru construirea propriilor aplicații MCP de streaming.

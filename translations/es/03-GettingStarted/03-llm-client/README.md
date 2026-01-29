@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "75638575f993c152965ae2271c4da938",
-  "translation_date": "2025-12-19T07:41:30+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/README.md",
-  "language_code": "es"
-}
--->
 # Creando un cliente con LLM
 
 Hasta ahora, has visto cómo crear un servidor y un cliente. El cliente ha podido llamar explícitamente al servidor para listar sus herramientas, recursos y prompts. Sin embargo, no es un enfoque muy práctico. Tu usuario vive en la era agentiva y espera usar prompts y comunicarse con un LLM para hacerlo. Para tu usuario, no le importa si usas MCP o no para almacenar tus capacidades, pero sí esperan usar lenguaje natural para interactuar. Entonces, ¿cómo resolvemos esto? La solución es agregar un LLM al cliente.

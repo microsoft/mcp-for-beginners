@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8358c13b5b6877e475674697cdc1a904",
-  "translation_date": "2025-08-19T17:08:14+00:00",
-  "source_file": "03-GettingStarted/02-client/complete_examples.md",
-  "language_code": "bg"
-}
--->
 # Пълни примери за MCP клиенти
 
 Тази директория съдържа пълни, работещи примери за MCP клиенти на различни програмни езици. Всеки клиент демонстрира пълната функционалност, описана в основния урок README.md.

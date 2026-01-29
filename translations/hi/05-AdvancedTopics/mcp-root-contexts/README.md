@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ebdb86db46113f1cbd59ce4c74caaa79",
-  "translation_date": "2025-07-16T22:48:14+00:00",
-  "source_file": "05-AdvancedTopics/mcp-root-contexts/README.md",
-  "language_code": "hi"
-}
--->
 # MCP रूट कॉन्टेक्स्ट्स
 
 रूट कॉन्टेक्स्ट्स मॉडल कॉन्टेक्स्ट प्रोटोकॉल में एक मूलभूत अवधारणा हैं जो कई अनुरोधों और सत्रों के बीच बातचीत के इतिहास और साझा स्थिति को बनाए रखने के लिए एक स्थायी परत प्रदान करते हैं।

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7074b9f4c8cd147c1c10f569d8508c82",
-  "translation_date": "2025-07-13T18:33:01+00:00",
-  "source_file": "03-GettingStarted/02-client/solution/java/README.md",
-  "language_code": "ne"
-}
--->
 # MCP Java Client - क्याल्कुलेटर डेमो
 
 यो प्रोजेक्टले कसरी Java क्लाइन्ट बनाउने र MCP (Model Context Protocol) सर्भरसँग जडान भएर अन्तरक्रिया गर्ने देखाउँछ। यस उदाहरणमा, हामी अध्याय ०१ को क्याल्कुलेटर सर्भरसँग जडान भएर विभिन्न गणितीय अपरेसनहरू गर्नेछौं।

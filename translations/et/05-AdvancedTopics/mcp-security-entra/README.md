@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6e562d7e5a77c8982da4aa8f762ad1d8",
-  "translation_date": "2025-10-11T12:19:00+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security-entra/README.md",
-  "language_code": "et"
-}
--->
 # AI Töövoogude Turvalisus: Entra ID autentimine mudeli kontekstiprotokolli serveritele
 
 ## Sissejuhatus

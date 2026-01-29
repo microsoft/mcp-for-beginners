@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6d6315e03f591fb5a39be91da88585dc",
-  "translation_date": "2025-11-18T19:02:42+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/typescript/README.md",
-  "language_code": "pcm"
-}
--->
 # How to run dis sample
 
 Dis sample dey involve say make LLM dey for di client side. Di LLM go need you to either run am for Codespaces or make you set up personal access token for GitHub to make am work.

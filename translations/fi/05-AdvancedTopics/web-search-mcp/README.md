@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "151265c9a2124d7c53e04d16ee3fb73b",
-  "translation_date": "2025-07-17T06:55:46+00:00",
-  "source_file": "05-AdvancedTopics/web-search-mcp/README.md",
-  "language_code": "fi"
-}
--->
 # Oppitunti: Web-hakumCP-palvelimen rakentaminen
 
 Tässä luvussa näytetään, miten rakennetaan käytännön AI-agentti, joka yhdistyy ulkoisiin API-rajapintoihin, käsittelee erilaisia tietotyyppejä, hallitsee virheitä ja ohjaa useita työkaluja – kaikki tuotantovalmiissa muodossa. Näet:

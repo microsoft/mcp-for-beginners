@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2228721599c0c8673de83496b4d7d7a9",
-  "translation_date": "2025-08-12T08:10:16+00:00",
-  "source_file": "09-CaseStudy/apimsample.md",
-  "language_code": "pl"
-}
--->
 # Studium przypadku: Udostępnianie REST API w API Management jako serwer MCP
 
 Azure API Management to usługa, która zapewnia bramę nad Twoimi punktami końcowymi API. Działa w ten sposób, że Azure API Management działa jak proxy przed Twoimi API i decyduje, co zrobić z przychodzącymi żądaniami.

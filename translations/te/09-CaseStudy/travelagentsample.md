@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4d3415b9d2bf58bc69be07f945a69e07",
-  "translation_date": "2025-12-11T10:35:30+00:00",
-  "source_file": "09-CaseStudy/travelagentsample.md",
-  "language_code": "te"
-}
--->
 # కేస్ స్టడీ: Azure AI ట్రావెల్ ఏజెంట్స్ – రిఫరెన్స్ ఇంప్లిమెంటేషన్
 
 ## అవలోకనం

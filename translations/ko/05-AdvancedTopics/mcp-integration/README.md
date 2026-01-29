@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f84eaea79c8fa9ab318a494f40891814",
-  "translation_date": "2025-07-22T07:58:21+00:00",
-  "source_file": "05-AdvancedTopics/mcp-integration/README.md",
-  "language_code": "ko"
-}
--->
 # 엔터프라이즈 통합
 
 엔터프라이즈 환경에서 MCP 서버를 구축할 때 기존 AI 플랫폼 및 서비스와 통합해야 하는 경우가 많습니다. 이 섹션에서는 Azure OpenAI 및 Microsoft AI Foundry와 같은 엔터프라이즈 시스템과 MCP를 통합하여 고급 AI 기능과 도구 오케스트레이션을 구현하는 방법을 다룹니다.

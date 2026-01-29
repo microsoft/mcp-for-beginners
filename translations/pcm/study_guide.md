@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "af27b0acfae6caa134d9701453884df8",
-  "translation_date": "2025-11-18T18:48:16+00:00",
-  "source_file": "study_guide.md",
-  "language_code": "pcm"
-}
--->
 # Model Context Protocol (MCP) for Beginners - Study Guide
 
 Dis study guide dey give overview of di repository structure and content for di "Model Context Protocol (MCP) for Beginners" curriculum. Use dis guide to waka through di repository well and enjoy di resources wey dey.

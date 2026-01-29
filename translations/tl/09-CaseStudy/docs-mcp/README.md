@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4319d291c9d124ecafea52b3d04bfa0e",
-  "translation_date": "2025-07-14T06:27:43+00:00",
-  "source_file": "09-CaseStudy/docs-mcp/README.md",
-  "language_code": "tl"
-}
--->
 # Case Study: Pagkonekta sa Microsoft Learn Docs MCP Server mula sa isang Client
 
 Naranasan mo na bang magpalipat-lipat sa pagitan ng mga dokumentasyon, Stack Overflow, at walang katapusang mga tab sa search engine habang sinusubukang lutasin ang isang problema sa iyong code? Baka may pangalawang monitor ka para lang sa docs, o palaging nag-a-alt-tab sa pagitan ng iyong IDE at browser. Hindi ba mas maganda kung maipapasok mo ang dokumentasyon mismo sa iyong workflow—naka-integrate sa iyong mga app, IDE, o kahit sa sarili mong mga custom na tools? Sa case study na ito, tatalakayin natin kung paano gawin ito sa pamamagitan ng direktang pagkonekta sa Microsoft Learn Docs MCP server mula sa iyong sariling client application.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0a7083e660ca0d85fd6a947514c61993",
-  "translation_date": "2025-12-11T16:16:22+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/README.md",
-  "language_code": "ml"
-}
--->
 # MCP OAuth2 ഡെമോ
 
 ഈ പ്രോജക്ട് ഒരു **മിനിമൽ സ്പ്രിംഗ് ബൂട്ട് അപ്ലിക്കേഷൻ** ആണ്, ഇത് രണ്ട് കാര്യങ്ങൾ ചെയ്യുന്നു:

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f84eaea79c8fa9ab318a494f40891814",
-  "translation_date": "2025-08-19T17:47:47+00:00",
-  "source_file": "05-AdvancedTopics/mcp-integration/README.md",
-  "language_code": "hr"
-}
--->
 # Integracija u poduzeću
 
 Prilikom izgradnje MCP poslužitelja u kontekstu poduzeća, često je potrebno integrirati se s postojećim AI platformama i uslugama. Ovaj odjeljak objašnjava kako integrirati MCP s poslovnim sustavima poput Azure OpenAI i Microsoft AI Foundry, omogućujući napredne AI mogućnosti i orkestraciju alata.

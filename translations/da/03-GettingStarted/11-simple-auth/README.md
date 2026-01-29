@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5b00b8a8971a07d2d8803be4c9f138f8",
-  "translation_date": "2025-10-07T00:52:59+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/README.md",
-  "language_code": "da"
-}
--->
 # Enkel godkendelse
 
 MCP SDK'er understøtter brugen af OAuth 2.1, som ærligt talt er en ret kompleks proces, der involverer begreber som godkendelsesserver, ressourcesserver, indsendelse af legitimationsoplysninger, modtagelse af en kode, udveksling af koden for en bearer-token, indtil du endelig kan få adgang til dine ressourcedata. Hvis du ikke er vant til OAuth, som er en fantastisk ting at implementere, er det en god idé at starte med en grundlæggende form for godkendelse og gradvist opbygge bedre og bedre sikkerhed. Det er derfor, dette kapitel eksisterer – for at hjælpe dig med at opbygge mere avanceret godkendelse.

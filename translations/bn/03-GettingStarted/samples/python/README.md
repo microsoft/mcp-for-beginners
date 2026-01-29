@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
-  "translation_date": "2025-10-17T20:04:47+00:00",
-  "source_file": "03-GettingStarted/samples/python/README.md",
-  "language_code": "bn"
-}
--->
 # MCP ক্যালকুলেটর সার্ভার (Python)
 
 একটি সহজ Model Context Protocol (MCP) সার্ভার যা Python-এ তৈরি এবং মৌলিক ক্যালকুলেটর কার্যকারিতা প্রদান করে।

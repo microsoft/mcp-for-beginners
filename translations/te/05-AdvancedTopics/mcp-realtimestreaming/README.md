@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "195f7287638b77a549acadd96c8f981c",
-  "translation_date": "2025-12-11T15:18:31+00:00",
-  "source_file": "05-AdvancedTopics/mcp-realtimestreaming/README.md",
-  "language_code": "te"
-}
--->
 # రియల్-టైమ్ డేటా స్ట్రీమింగ్ కోసం మోడల్ కాంటెక్స్ట్ ప్రోటోకాల్
 
 ## అవలోకనం

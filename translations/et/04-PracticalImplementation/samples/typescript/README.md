@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f7a8ffd07682d554929968dfc6ae2ecb",
-  "translation_date": "2025-10-11T13:03:12+00:00",
-  "source_file": "04-PracticalImplementation/samples/typescript/README.md",
-  "language_code": "et"
-}
--->
 # Näidis
 
 See on Typescripti näidis MCP serveri jaoks.

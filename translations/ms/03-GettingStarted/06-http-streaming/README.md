@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5f1383103523fa822e1fec7ef81904d5",
-  "translation_date": "2025-08-18T18:02:47+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/README.md",
-  "language_code": "ms"
-}
--->
 # Penstriman HTTPS dengan Protokol Model Context (MCP)
 
 Bab ini menyediakan panduan menyeluruh untuk melaksanakan penstriman yang selamat, boleh diskala, dan masa nyata menggunakan Protokol Model Context (MCP) dengan HTTPS. Ia merangkumi motivasi untuk penstriman, mekanisme pengangkutan yang tersedia, cara melaksanakan HTTP boleh distrim dalam MCP, amalan terbaik keselamatan, migrasi daripada SSE, dan panduan praktikal untuk membina aplikasi MCP penstriman anda sendiri.

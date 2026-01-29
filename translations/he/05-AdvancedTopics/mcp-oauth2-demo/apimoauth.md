@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "32c9a4263be08f9050c8044bb26267c4",
-  "translation_date": "2025-07-14T00:31:41+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/apimoauth.md",
-  "language_code": "he"
-}
--->
 # פריסת אפליקציית Spring AI MCP ב-Azure Container Apps
 
  ([אבטחת שרתי Spring AI MCP עם OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2)) *איור: שרת Spring AI MCP מאובטח עם Spring Authorization Server. השרת מנפיק אסימוני גישה ללקוחות ומאמת אותם בבקשות נכנסות (מקור: בלוג Spring) ([אבטחת שרתי Spring AI MCP עם OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2#:~:text=,server%20with%20the%20MCP%20inspector)).* כדי לפרוס את שרת Spring MCP, יש לבנות אותו כמכולה ולהשתמש ב-Azure Container Apps עם כניסה חיצונית. לדוגמה, באמצעות Azure CLI ניתן להריץ:

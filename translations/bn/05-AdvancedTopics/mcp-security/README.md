@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "997c7119766a69552e23d7d681316902",
-  "translation_date": "2025-08-18T14:59:55+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security/README.md",
-  "language_code": "bn"
-}
--->
 # MCP নিরাপত্তা সেরা অনুশীলন - উন্নত বাস্তবায়ন গাইড
 
 > **বর্তমান মান**: এই গাইডটি [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) এর নিরাপত্তা প্রয়োজনীয়তা এবং অফিসিয়াল [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) প্রতিফলিত করে।

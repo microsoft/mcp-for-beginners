@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "41f16dac486d2086a53bc644a01cbe42",
-  "translation_date": "2025-11-18T19:47:34+00:00",
-  "source_file": "07-LessonsfromEarlyAdoption/README.md",
-  "language_code": "pcm"
-}
--->
 # 🌟 Lessons wey Early Adopters don Learn
 
 [![Lessons wey MCP Early Adopters don Learn](../../../translated_images/pcm/08.980bb2babbaadd8a.webp)](https://youtu.be/jds7dSmNptE)

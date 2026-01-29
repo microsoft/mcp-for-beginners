@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e378b47e0361b7a9b0dab7a0306878c8",
-  "translation_date": "2025-08-26T19:59:29+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/README.md",
-  "language_code": "fa"
-}
--->
 # راه‌حل‌های سرور MCP با استفاده از stdio
 
 > **⚠️ مهم**: این راه‌حل‌ها به‌روزرسانی شده‌اند تا از **انتقال stdio** استفاده کنند، همان‌طور که در مشخصات MCP تاریخ ۱۸-۰۶-۲۰۲۵ توصیه شده است. روش انتقال SSE (رویدادهای ارسال‌شده توسط سرور) منسوخ شده است.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9d799c4a30a8383e0a74af9153262972",
-  "translation_date": "2025-08-26T20:13:34+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/typescript/README.md",
-  "language_code": "ro"
-}
--->
 # MCP stdio Server - Soluție TypeScript
 
 > **⚠️ Important**: Această soluție a fost actualizată pentru a utiliza **stdio transport**, conform recomandărilor din Specificația MCP 2025-06-18. Transportul original SSE a fost depreciat.

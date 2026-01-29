@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "cf3e88e4c0b2d9d65c7f300986bd8c6c",
-  "translation_date": "2025-12-19T13:20:22+00:00",
-  "source_file": "05-AdvancedTopics/mcp-transport/README.md",
-  "language_code": "no"
-}
--->
 # MCP Egendefinerte Transporter - Avansert Implementasjonsveiledning
 
 Model Context Protocol (MCP) gir fleksibilitet i transportmekanismer, og tillater egendefinerte implementasjoner for spesialiserte bedriftsmiljøer. Denne avanserte veiledningen utforsker egendefinerte transportimplementasjoner ved bruk av Azure Event Grid og Azure Event Hubs som praktiske eksempler for å bygge skalerbare, sky-native MCP-løsninger.

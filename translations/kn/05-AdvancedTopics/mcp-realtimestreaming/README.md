@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "195f7287638b77a549acadd96c8f981c",
-  "translation_date": "2025-12-11T15:23:42+00:00",
-  "source_file": "05-AdvancedTopics/mcp-realtimestreaming/README.md",
-  "language_code": "kn"
-}
--->
 # ರಿಯಲ್-ಟೈಮ್ ಡೇಟಾ ಸ್ಟ್ರೀಮಿಂಗ್‌ಗಾಗಿ ಮಾದರಿ ಸಂದರ್ಭ ಪ್ರೋಟೋಕಾಲ್
 
 ## ಅವಲೋಕನ

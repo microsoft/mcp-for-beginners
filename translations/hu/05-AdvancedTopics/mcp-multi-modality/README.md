@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e1d142978227a4bfc468bb0accab62e2",
-  "translation_date": "2025-07-17T10:28:34+00:00",
-  "source_file": "05-AdvancedTopics/mcp-multi-modality/README.md",
-  "language_code": "hu"
-}
--->
 # Többmodális integráció
 
 A többmodális alkalmazások egyre fontosabbá válnak a mesterséges intelligenciában, lehetővé téve gazdagabb interakciókat és összetettebb feladatok elvégzését. A Model Context Protocol (MCP) egy keretrendszert biztosít többmodális alkalmazások építéséhez, amelyek képesek különféle adatokat kezelni, például szöveget, képeket és hangot.

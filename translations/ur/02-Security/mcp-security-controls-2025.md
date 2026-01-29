@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9351493ad29390d37f64bc6d84a03db5",
-  "translation_date": "2025-12-19T08:43:23+00:00",
-  "source_file": "02-Security/mcp-security-controls-2025.md",
-  "language_code": "ur"
-}
--->
 # MCP سیکیورٹی کنٹرولز - دسمبر 2025 اپ ڈیٹ
 
 > **موجودہ معیار**: یہ دستاویز [MCP وضاحت 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) کی سیکیورٹی ضروریات اور سرکاری [MCP سیکیورٹی بہترین طریقہ کار](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) کی عکاسی کرتی ہے۔

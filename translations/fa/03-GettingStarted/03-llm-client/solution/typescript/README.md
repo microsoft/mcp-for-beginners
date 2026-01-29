@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6d6315e03f591fb5a39be91da88585dc",
-  "translation_date": "2025-07-13T19:18:32+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/typescript/README.md",
-  "language_code": "fa"
-}
--->
 # اجرای این نمونه
 
 این نمونه شامل داشتن یک LLM در سمت کلاینت است. LLM نیاز دارد که یا این را در Codespaces اجرا کنید یا یک توکن دسترسی شخصی در GitHub تنظیم کنید تا کار کند.

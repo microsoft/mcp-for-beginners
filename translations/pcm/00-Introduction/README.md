@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9678e0c6945b8e0c23586869b0e26783",
-  "translation_date": "2025-11-18T19:40:59+00:00",
-  "source_file": "00-Introduction/README.md",
-  "language_code": "pcm"
-}
--->
 # Introduction to Model Context Protocol (MCP): Why E Matter for Scalable AI Applications
 
 [![Introduction to Model Context Protocol](../../../translated_images/pcm/01.a467036d886b5fb5.webp)](https://youtu.be/agBbdiOPLQA)

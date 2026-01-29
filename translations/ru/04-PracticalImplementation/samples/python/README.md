@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "706b9b075dc484b73a053e6e9c709b4b",
-  "translation_date": "2025-07-13T23:30:01+00:00",
-  "source_file": "04-PracticalImplementation/samples/python/README.md",
-  "language_code": "ru"
-}
--->
 # Протокол Контекста Модели (MCP) — реализация на Python
 
 В этом репозитории представлена реализация протокола Model Context Protocol (MCP) на Python, демонстрирующая, как создать серверное и клиентское приложение, которые взаимодействуют по стандарту MCP.

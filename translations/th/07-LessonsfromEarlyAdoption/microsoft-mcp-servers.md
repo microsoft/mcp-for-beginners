@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "c8f283730b5421082ddd26cc85c07831",
-  "translation_date": "2025-07-18T11:33:44+00:00",
-  "source_file": "07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md",
-  "language_code": "th"
-}
--->
 # 🚀 10 เซิร์ฟเวอร์ Microsoft MCP ที่เปลี่ยนแปลงประสิทธิภาพการทำงานของนักพัฒนา
 
 ## 🎯 สิ่งที่คุณจะได้เรียนรู้ในคู่มือนี้

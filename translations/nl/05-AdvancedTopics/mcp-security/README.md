@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "997c7119766a69552e23d7d681316902",
-  "translation_date": "2025-08-18T16:29:08+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security/README.md",
-  "language_code": "nl"
-}
--->
 # MCP Beveiligingsrichtlijnen - Gids voor Geavanceerde Implementatie
 
 > **Huidige Standaard**: Deze gids weerspiegelt de beveiligingseisen van [MCP Specificatie 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) en de officiële [MCP Beveiligingsrichtlijnen](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices).

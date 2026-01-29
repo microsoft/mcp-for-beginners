@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f7a8ffd07682d554929968dfc6ae2ecb",
-  "translation_date": "2025-12-11T16:33:30+00:00",
-  "source_file": "04-PracticalImplementation/samples/typescript/README.md",
-  "language_code": "te"
-}
--->
 # నమూనా
 
 ఇది MCP సర్వర్ కోసం ఒక టైప్స్క్రిప్ట్ నమూనా

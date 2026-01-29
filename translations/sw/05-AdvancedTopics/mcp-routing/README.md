@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2f1b473818b5a6cc9a9bbf777fffa6d4",
-  "translation_date": "2025-07-14T21:50:02+00:00",
-  "source_file": "05-AdvancedTopics/mcp-routing/README.md",
-  "language_code": "sw"
-}
--->
 ## Usanidi wa Sampuli na Upangaji Njia katika MCP
 
 Sampuli ni sehemu muhimu ya Model Context Protocol (MCP) inayoruhusu usindikaji wa maombi kwa ufanisi na upangaji njia. Inahusisha kuchambua maombi yanayoingia ili kubaini mfano au huduma inayofaa zaidi kushughulikia maombi hayo, kulingana na vigezo mbalimbali kama aina ya maudhui, muktadha wa mtumiaji, na mzigo wa mfumo.

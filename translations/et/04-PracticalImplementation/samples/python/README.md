@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "706b9b075dc484b73a053e6e9c709b4b",
-  "translation_date": "2025-10-11T13:01:55+00:00",
-  "source_file": "04-PracticalImplementation/samples/python/README.md",
-  "language_code": "et"
-}
--->
 # Mudeli Konteksti Protokolli (MCP) Pythoni Implementatsioon
 
 See repositoorium sisaldab Mudeli Konteksti Protokolli (MCP) Pythoni implementatsiooni, mis näitab, kuidas luua nii serveri kui ka kliendirakendust, mis suhtlevad MCP standardi abil.

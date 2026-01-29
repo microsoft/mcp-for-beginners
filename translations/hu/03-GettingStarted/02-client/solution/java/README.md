@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7074b9f4c8cd147c1c10f569d8508c82",
-  "translation_date": "2025-07-13T18:36:54+00:00",
-  "source_file": "03-GettingStarted/02-client/solution/java/README.md",
-  "language_code": "hu"
-}
--->
 # MCP Java Client - Számológép Demó
 
 Ez a projekt bemutatja, hogyan lehet létrehozni egy Java klienst, amely kapcsolódik egy MCP (Model Context Protocol) szerverhez, és interakcióba lép vele. Ebben a példában a 01. fejezetben található számológép szerverhez csatlakozunk, és különböző matematikai műveleteket hajtunk végre.

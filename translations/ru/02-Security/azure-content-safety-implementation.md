@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1b6c746d9e190deba4d8765267ffb94e",
-  "translation_date": "2025-07-17T02:00:14+00:00",
-  "source_file": "02-Security/azure-content-safety-implementation.md",
-  "language_code": "ru"
-}
--->
 # Реализация Azure Content Safety с MCP
 
 Для повышения безопасности MCP против инъекций в подсказки, отравления инструментов и других уязвимостей, связанных с ИИ, настоятельно рекомендуется интегрировать Azure Content Safety.

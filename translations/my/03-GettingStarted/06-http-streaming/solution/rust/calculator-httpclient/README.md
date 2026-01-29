@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "aa5122c6d9868b4b566586f27577ca47",
-  "translation_date": "2025-08-19T18:56:18+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/rust/calculator-httpclient/README.md",
-  "language_code": "my"
-}
--->
 # ဒီနမူနာကို အလုပ်လုပ်စေခြင်း
 
 ## -1- Streamable HTTP server ကို အလုပ်လုပ်စေပါ

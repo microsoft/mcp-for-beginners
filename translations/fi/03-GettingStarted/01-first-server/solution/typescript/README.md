@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6ebbb78b04c9b1f6c2367c713524fc95",
-  "translation_date": "2025-09-03T16:11:18+00:00",
-  "source_file": "03-GettingStarted/01-first-server/solution/typescript/README.md",
-  "language_code": "fi"
-}
--->
 # Tämän esimerkin suorittaminen
 
 Suositellaan asentamaan `uv`, mutta se ei ole pakollista. Katso [ohjeet](https://docs.astral.sh/uv/#highlights)

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "77735b446eb79b1bba9c849865cd0ced",
-  "translation_date": "2025-08-28T22:18:10+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/README.md",
-  "language_code": "bn"
-}
--->
 # MCP সার্ভার stdio পরিবহন সহ
 
 > **⚠️ গুরুত্বপূর্ণ আপডেট**: MCP স্পেসিফিকেশন 2025-06-18 অনুযায়ী, স্ট্যান্ডঅ্যালোন SSE (Server-Sent Events) পরিবহন **অপ্রচলিত** এবং "Streamable HTTP" পরিবহনে প্রতিস্থাপিত হয়েছে। বর্তমান MCP স্পেসিফিকেশন দুটি প্রধান পরিবহন পদ্ধতি সংজ্ঞায়িত করে:

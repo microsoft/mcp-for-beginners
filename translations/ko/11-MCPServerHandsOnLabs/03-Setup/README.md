@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ec1d9eafbe697ada412ee4fd102ce5b8",
-  "translation_date": "2025-09-30T13:49:37+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/03-Setup/README.md",
-  "language_code": "ko"
-}
--->
 # 환경 설정
 
 ## 🎯 이 실습에서 다루는 내용

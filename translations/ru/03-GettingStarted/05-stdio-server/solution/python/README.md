@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "68cd055621b3370948a5a1dff7bedc9a",
-  "translation_date": "2025-08-26T20:28:28+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/python/README.md",
-  "language_code": "ru"
-}
--->
 # MCP stdio Server - Решение на Python
 
 > **⚠️ Важно**: Это решение было обновлено для использования **stdio транспорта** в соответствии с рекомендациями спецификации MCP от 2025-06-18. Изначальный транспорт SSE устарел.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "3b3c9c3f033e59a30c92b5895e0dc9fd",
-  "translation_date": "2025-09-30T13:59:27+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/02-Security/README.md",
-  "language_code": "ko"
-}
--->
 # 보안 및 멀티 테넌시
 
 ## 🎯 이 실습에서 다루는 내용

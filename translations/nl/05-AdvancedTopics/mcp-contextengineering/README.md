@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "fd169ca3071b81b5ee282e194bc823df",
-  "translation_date": "2025-09-15T20:41:45+00:00",
-  "source_file": "05-AdvancedTopics/mcp-contextengineering/README.md",
-  "language_code": "nl"
-}
--->
 # Context Engineering: Een Opkomend Concept in het MCP-ecosysteem
 
 ## Overzicht

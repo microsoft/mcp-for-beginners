@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4e34e34e84f013e73c7eaa6d09884756",
-  "translation_date": "2025-07-13T22:03:08+00:00",
-  "source_file": "03-GettingStarted/08-testing/README.md",
-  "language_code": "hu"
-}
--->
 ## Tesztelés és Hibakeresés
 
 Mielőtt elkezdenéd tesztelni az MCP szerveredet, fontos megérteni a rendelkezésre álló eszközöket és a hibakeresés legjobb gyakorlatait. A hatékony tesztelés biztosítja, hogy a szerver a várakozásoknak megfelelően működjön, és segít gyorsan azonosítani és megoldani a problémákat. A következő részben ajánlott módszereket ismertetünk az MCP megvalósításának ellenőrzésére.

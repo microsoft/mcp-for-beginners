@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "75638575f993c152965ae2271c4da938",
-  "translation_date": "2025-12-19T13:18:52+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/README.md",
-  "language_code": "no"
-}
--->
 # Lage en klient med LLM
 
 Så langt har du sett hvordan du lager en server og en klient. Klienten har kunnet kalle serveren eksplisitt for å liste opp verktøy, ressurser og prompts. Men dette er ikke en veldig praktisk tilnærming. Brukeren din lever i den agentiske æraen og forventer å bruke prompts og kommunisere med en LLM for å gjøre dette. For brukeren din spiller det ingen rolle om du bruker MCP eller ikke for å lagre dine kapasiteter, men de forventer å bruke naturlig språk for å samhandle. Så hvordan løser vi dette? Løsningen handler om å legge til en LLM til klienten.

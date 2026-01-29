@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "151265c9a2124d7c53e04d16ee3fb73b",
-  "translation_date": "2025-07-16T21:35:36+00:00",
-  "source_file": "05-AdvancedTopics/web-search-mcp/README.md",
-  "language_code": "ja"
-}
--->
 # レッスン: Web検索MCPサーバーの構築
 
 この章では、外部APIと連携し、多様なデータタイプを扱い、エラー管理を行い、複数のツールをオーケストレーションする、実践的なAIエージェントの構築方法を紹介します。以下の内容が学べます：

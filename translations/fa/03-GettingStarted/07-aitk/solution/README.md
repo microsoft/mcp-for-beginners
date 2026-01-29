@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e9490aedc71f99bc774af57b207a7adb",
-  "translation_date": "2025-07-13T21:45:00+00:00",
-  "source_file": "03-GettingStarted/07-aitk/solution/README.md",
-  "language_code": "fa"
-}
--->
 # 📘 راه‌حل تمرین: افزودن ابزار جذر به سرور MCP ماشین‌حساب شما
 
 ## مرور کلی  

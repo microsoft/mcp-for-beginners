@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "999c5e7623c1e2d5e5a07c2feb39eb67",
-  "translation_date": "2025-07-14T08:26:20+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/README.md",
-  "language_code": "ne"
-}
--->
 # Weather MCP Server
 
 यो Python मा लेखिएको एउटा नमूना MCP Server हो जसले मौसम उपकरणहरूलाई नकली प्रतिक्रियासहित कार्यान्वयन गर्छ। यसलाई तपाईंको आफ्नै MCP Server को आधारको रूपमा प्रयोग गर्न सकिन्छ। यसमा निम्न सुविधाहरू समावेश छन्:

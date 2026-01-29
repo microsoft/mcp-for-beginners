@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e8bbc7982284fe177dd4be5e7f2b3357",
-  "translation_date": "2025-12-19T13:07:58+00:00",
-  "source_file": "changelog.md",
-  "language_code": "no"
-}
--->
 # Endringslogg: MCP for Beginners Pensum
 
 Dette dokumentet fungerer som en oversikt over alle betydelige endringer gjort i Model Context Protocol (MCP) for Beginners pensum. Endringer dokumenteres i omvendt kronologisk rekkefølge (nyeste endringer først).

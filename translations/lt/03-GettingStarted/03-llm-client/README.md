@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "75638575f993c152965ae2271c4da938",
-  "translation_date": "2025-12-19T18:02:12+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/README.md",
-  "language_code": "lt"
-}
--->
 # Kliento kūrimas su LLM
 
 Iki šiol matėte, kaip sukurti serverį ir klientą. Klientas galėjo aiškiai kreiptis į serverį, kad išvardintų jo įrankius, išteklius ir užklausas. Tačiau tai nėra labai praktiškas požiūris. Jūsų vartotojas gyvena agentiškoje eroje ir tikisi naudoti užklausas bei bendrauti su LLM tam. Jūsų vartotojui nesvarbu, ar naudojate MCP savo galimybėms saugoti, tačiau jie tikisi naudoti natūralią kalbą sąveikai. Kaip tai išspręsti? Sprendimas yra pridėti LLM prie kliento.

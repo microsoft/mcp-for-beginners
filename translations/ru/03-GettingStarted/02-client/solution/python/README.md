@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0ab9613fc9595f493847f91275859a18",
-  "translation_date": "2025-07-13T18:39:24+00:00",
-  "source_file": "03-GettingStarted/02-client/solution/python/README.md",
-  "language_code": "ru"
-}
--->
 # Запуск этого примера
 
 Рекомендуется установить `uv`, но это не обязательно, подробности смотрите в [инструкциях](https://docs.astral.sh/uv/#highlights)

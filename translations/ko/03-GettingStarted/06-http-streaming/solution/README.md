@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "96dbf17071ab774595ab8777468f0c83",
-  "translation_date": "2025-08-11T10:41:10+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/README.md",
-  "language_code": "ko"
-}
--->
 각 런타임에 대한 솔루션은 다음과 같습니다:
 
 - [Python](./python/README.md)

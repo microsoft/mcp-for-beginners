@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2f1b473818b5a6cc9a9bbf777fffa6d4",
-  "translation_date": "2025-07-14T21:47:13+00:00",
-  "source_file": "05-AdvancedTopics/mcp-routing/README.md",
-  "language_code": "it"
-}
--->
 ## Architettura di Campionamento e Routing in MCP
 
 Il campionamento è un componente fondamentale del Model Context Protocol (MCP) che consente un'elaborazione e un instradamento efficienti delle richieste. Consiste nell'analizzare le richieste in arrivo per determinare il modello o il servizio più adatto a gestirle, basandosi su vari criteri come il tipo di contenuto, il contesto dell'utente e il carico del sistema.

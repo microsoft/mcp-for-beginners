@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e378b47e0361b7a9b0dab7a0306878c8",
-  "translation_date": "2025-08-26T20:04:31+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/README.md",
-  "language_code": "lt"
-}
--->
 # MCP stdio serverio sprendimai
 
 > **⚠️ Svarbu**: Šie sprendimai buvo atnaujinti, kad naudotų **stdio transportą**, kaip rekomenduojama MCP specifikacijoje 2025-06-18. Originalus SSE (Server-Sent Events) transportas buvo pasenęs.

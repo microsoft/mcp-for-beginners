@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7b4d8d17fc1f501468cce40c3651aed1",
-  "translation_date": "2025-07-17T10:11:50+00:00",
-  "source_file": "05-AdvancedTopics/mcp-scaling/README.md",
-  "language_code": "sw"
-}
--->
 # Uwezo wa Kupanua na MCP yenye Utendaji wa Juu
 
 Kwa usambazaji wa biashara, utekelezaji wa MCP mara nyingi huhitaji kushughulikia idadi kubwa ya maombi kwa ucheleweshaji mdogo sana.

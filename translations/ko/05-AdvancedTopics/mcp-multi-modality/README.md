@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e1d142978227a4bfc468bb0accab62e2",
-  "translation_date": "2025-07-16T21:48:29+00:00",
-  "source_file": "05-AdvancedTopics/mcp-multi-modality/README.md",
-  "language_code": "ko"
-}
--->
 # 다중 모달 통합
 
 다중 모달 애플리케이션은 AI에서 점점 더 중요해지고 있으며, 더 풍부한 상호작용과 복잡한 작업 수행을 가능하게 합니다. Model Context Protocol(MCP)은 텍스트, 이미지, 오디오 등 다양한 유형의 데이터를 처리할 수 있는 다중 모달 애플리케이션을 구축하기 위한 프레임워크를 제공합니다.

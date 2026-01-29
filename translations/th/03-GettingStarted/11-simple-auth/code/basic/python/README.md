@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "3f68294760a11dd3fdd175bd7f904a92",
-  "translation_date": "2025-10-07T01:31:01+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/code/basic/python/README.md",
-  "language_code": "th"
-}
--->
 # รันตัวอย่าง
 
 ตัวอย่างนี้เริ่มต้น MCP Server พร้อมกับ middleware ที่ตรวจสอบว่า Authorization header นั้นถูกต้องหรือไม่

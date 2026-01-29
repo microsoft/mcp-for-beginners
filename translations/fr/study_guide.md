@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "af27b0acfae6caa134d9701453884df8",
-  "translation_date": "2025-10-06T21:52:58+00:00",
-  "source_file": "study_guide.md",
-  "language_code": "fr"
-}
--->
 # Protocole de Contexte Modèle (MCP) pour Débutants - Guide d'Étude
 
 Ce guide d'étude offre un aperçu de la structure et du contenu du dépôt pour le programme "Protocole de Contexte Modèle (MCP) pour Débutants". Utilisez ce guide pour naviguer efficacement dans le dépôt et tirer le meilleur parti des ressources disponibles.

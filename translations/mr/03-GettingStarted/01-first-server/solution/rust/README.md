@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "154876082e29d53dc2a2615a65627464",
-  "translation_date": "2025-08-18T18:07:14+00:00",
-  "source_file": "03-GettingStarted/01-first-server/solution/rust/README.md",
-  "language_code": "mr"
-}
--->
 # हे नमुना चालवा
 
 ## -1- अवलंबित्वे स्थापित करा आणि प्रकल्प तयार करा

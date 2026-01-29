@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "83efa75a69bc831277263a6f1ae53669",
-  "translation_date": "2025-08-11T10:09:32+00:00",
-  "source_file": "04-PracticalImplementation/README.md",
-  "language_code": "fr"
-}
--->
 # Mise en œuvre pratique
 
 [![Comment construire, tester et déployer des applications MCP avec des outils et des workflows réels](../../../translated_images/fr/05.64bea204e25ca891.webp)](https://youtu.be/vCN9-mKBDfQ)

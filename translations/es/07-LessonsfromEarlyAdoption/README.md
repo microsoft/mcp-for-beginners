@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "41f16dac486d2086a53bc644a01cbe42",
-  "translation_date": "2025-08-18T11:36:35+00:00",
-  "source_file": "07-LessonsfromEarlyAdoption/README.md",
-  "language_code": "es"
-}
--->
 # 🌟 Lecciones de los primeros adoptantes
 
 [![Lecciones de los primeros adoptantes de MCP](../../../translated_images/es/08.980bb2babbaadd8a.webp)](https://youtu.be/jds7dSmNptE)

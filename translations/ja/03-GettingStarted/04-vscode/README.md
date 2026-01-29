@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "d940b5e0af75e3a3a4d1c3179120d1d9",
-  "translation_date": "2025-08-26T17:22:38+00:00",
-  "source_file": "03-GettingStarted/04-vscode/README.md",
-  "language_code": "ja"
-}
--->
 # GitHub Copilot Agentモードでサーバーを利用する
 
 Visual Studio CodeとGitHub Copilotはクライアントとして動作し、MCPサーバーを利用することができます。なぜそれが必要なのかと思うかもしれませんね。それはつまり、MCPサーバーが持つ機能をIDE内で利用できるということです。例えば、GitHubのMCPサーバーを追加すると、ターミナルで特定のコマンドを入力する代わりに、プロンプトを使ってGitHubを操作できるようになります。また、開発者体験を向上させる何かを自然言語で制御できるとしたらどうでしょうか？その利点が見えてきましたね。

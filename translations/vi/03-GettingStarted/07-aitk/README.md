@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "98bcd044860716da5819e31c152813b7",
-  "translation_date": "2025-08-18T17:21:37+00:00",
-  "source_file": "03-GettingStarted/07-aitk/README.md",
-  "language_code": "vi"
-}
--->
 # Sử dụng một máy chủ từ tiện ích mở rộng AI Toolkit cho Visual Studio Code
 
 Khi bạn xây dựng một tác nhân AI, không chỉ là tạo ra các phản hồi thông minh; mà còn là cung cấp cho tác nhân khả năng thực hiện hành động. Đó là lúc giao thức Model Context Protocol (MCP) xuất hiện. MCP giúp các tác nhân dễ dàng truy cập các công cụ và dịch vụ bên ngoài một cách nhất quán. Hãy tưởng tượng như bạn đang kết nối tác nhân của mình với một hộp công cụ mà nó có thể *thực sự* sử dụng.

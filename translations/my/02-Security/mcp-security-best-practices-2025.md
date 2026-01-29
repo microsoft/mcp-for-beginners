@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e30aaf6b178137fa6668efc1b20851d5",
-  "translation_date": "2025-12-19T17:20:48+00:00",
-  "source_file": "02-Security/mcp-security-best-practices-2025.md",
-  "language_code": "my"
-}
--->
 # MCP လုံခြုံရေးအကောင်းဆုံးလေ့ကျင့်မှုများ - ဒီဇင်ဘာ 2025 အပ်ဒိတ်
 
 > **အရေးကြီးချက်**: ဤစာတမ်းသည် နောက်ဆုံးပေါ် [MCP Specification 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) လုံခြုံရေးလိုအပ်ချက်များနှင့် တရားဝင် [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) ကို ပြသထားသည်။ အမြဲတမ်း နောက်ဆုံးပေါ် လမ်းညွှန်ချက်များအတွက် လက်ရှိ specification ကို ကိုးကားပါ။

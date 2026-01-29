@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5061d7e2ae9eea9cbaae77c1a020b318",
-  "translation_date": "2025-12-19T16:00:07+00:00",
-  "source_file": "02-Security/mcp-best-practices.md",
-  "language_code": "ro"
-}
--->
 # Cele mai bune practici de securitate MCP 2025
 
 Acest ghid cuprinzător prezintă cele mai importante practici de securitate pentru implementarea sistemelor Model Context Protocol (MCP) bazate pe cea mai recentă **Specificație MCP 2025-11-25** și standardele actuale din industrie. Aceste practici abordează atât preocupările tradiționale de securitate, cât și amenințările specifice AI unice pentru implementările MCP.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "14a2dfbea55ef735660a06bd6bdfe5f3",
-  "translation_date": "2025-07-14T06:13:37+00:00",
-  "source_file": "09-CaseStudy/UpdateADOItemsFromYT.md",
-  "language_code": "nl"
-}
--->
 # Case Study: Azure DevOps-items bijwerken met YouTube-gegevens via MCP
 
 > **Disclaimer:** Er bestaan al online tools en rapporten die het proces van het bijwerken van Azure DevOps-items met gegevens van platforms zoals YouTube kunnen automatiseren. Het volgende scenario wordt puur als voorbeeld gebruikt om te laten zien hoe MCP-tools kunnen worden ingezet voor automatisering en integratietaken.

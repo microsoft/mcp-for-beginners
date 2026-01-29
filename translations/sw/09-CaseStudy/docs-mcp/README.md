@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4319d291c9d124ecafea52b3d04bfa0e",
-  "translation_date": "2025-07-14T06:28:01+00:00",
-  "source_file": "09-CaseStudy/docs-mcp/README.md",
-  "language_code": "sw"
-}
--->
 # Uchunguzi wa Kesi: Kuunganishwa na Microsoft Learn Docs MCP Server kutoka kwa Mteja
 
 Je, umewahi kujikuta ukitafuta kati ya tovuti za nyaraka, Stack Overflow, na tabo zisizoisha za injini za utafutaji, huku ukijaribu kutatua tatizo kwenye msimbo wako? Labda unatumia monitor ya pili kwa ajili ya nyaraka pekee, au unabadilisha mara kwa mara kati ya IDE yako na kivinjari. Je, singekuwa bora ikiwa ungeweza kuleta nyaraka moja kwa moja kwenye mtiririko wako wa kazi—zikijumuishwa kwenye programu zako, IDE yako, au hata zana zako za kawaida? Katika uchunguzi huu wa kesi, tutaangalia jinsi ya kufanya hivyo kwa kuunganishwa moja kwa moja na Microsoft Learn Docs MCP server kutoka kwa programu yako ya mteja.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1d9dc83260576b76f272d330ed93c51f",
-  "translation_date": "2025-07-13T22:08:22+00:00",
-  "source_file": "03-GettingStarted/09-deployment/README.md",
-  "language_code": "it"
-}
--->
 # Distribuire i server MCP
 
 Distribuire il tuo server MCP permette ad altri di accedere ai suoi strumenti e risorse oltre il tuo ambiente locale. Ci sono diverse strategie di distribuzione da considerare, a seconda delle tue esigenze di scalabilità, affidabilità e facilità di gestione. Di seguito troverai indicazioni per distribuire i server MCP localmente, in container e sul cloud.

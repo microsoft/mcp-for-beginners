@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9a6a4d3497921d2f6d9699f0a6a1890c",
-  "translation_date": "2025-09-09T22:17:15+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/README.md",
-  "language_code": "sr"
-}
--->
 # Weather MCP Server
 
 Ово је пример MCP сервера у Python-у који имплементира алатке за временску прогнозу са лажним одговорима. Може се користити као основа за ваш MCP сервер. Укључује следеће функције:

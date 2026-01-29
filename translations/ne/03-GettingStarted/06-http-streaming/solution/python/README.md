@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
-  "translation_date": "2025-08-18T16:17:35+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
-  "language_code": "ne"
-}
--->
 # यो नमूना चलाउनुहोस्
 
 क्लासिक HTTP स्ट्रिमिङ सर्भर र क्लाइन्ट, साथै MCP स्ट्रिमिङ सर्भर र क्लाइन्ट Python प्रयोग गरेर कसरी चलाउने भन्ने यहाँ विवरण छ।

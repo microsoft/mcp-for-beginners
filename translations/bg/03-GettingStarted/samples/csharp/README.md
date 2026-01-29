@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "882aae00f1d3f007e20d03b883f44afa",
-  "translation_date": "2025-07-13T22:19:06+00:00",
-  "source_file": "03-GettingStarted/samples/csharp/README.md",
-  "language_code": "bg"
-}
--->
 # Основна калкулаторна MCP услуга
 
 Тази услуга предоставя основни калкулаторни операции чрез Model Context Protocol (MCP). Тя е създадена като прост пример за начинаещи, които се запознават с имплементациите на MCP.

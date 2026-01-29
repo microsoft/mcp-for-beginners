@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5f1383103523fa822e1fec7ef81904d5",
-  "translation_date": "2025-08-11T10:59:22+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/README.md",
-  "language_code": "es"
-}
--->
 # Transmisión HTTPS con el Protocolo de Contexto de Modelo (MCP)
 
 Este capítulo ofrece una guía completa para implementar transmisión segura, escalable y en tiempo real con el Protocolo de Contexto de Modelo (MCP) utilizando HTTPS. Cubre la motivación para la transmisión, los mecanismos de transporte disponibles, cómo implementar HTTP transmisible en MCP, mejores prácticas de seguridad, migración desde SSE y orientación práctica para construir tus propias aplicaciones MCP de transmisión.

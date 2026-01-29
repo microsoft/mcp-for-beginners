@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
-  "translation_date": "2025-10-11T11:49:36+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
-  "language_code": "ta"
-}
--->
 # இந்த மாதிரியை இயக்குவது
 
 Python பயன்படுத்தி பாரம்பரிய HTTP ஸ்ட்ரீமிங் சர்வர் மற்றும் கிளையண்ட், MCP ஸ்ட்ரீமிங் சர்வர் மற்றும் கிளையண்ட் ஆகியவற்றை எப்படி இயக்குவது என்பதை இங்கே காணலாம்.

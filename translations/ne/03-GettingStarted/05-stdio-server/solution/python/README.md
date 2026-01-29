@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "68cd055621b3370948a5a1dff7bedc9a",
-  "translation_date": "2025-08-26T20:31:17+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/python/README.md",
-  "language_code": "ne"
-}
--->
 # MCP stdio Server - Python समाधान
 
 > **⚠️ महत्त्वपूर्ण**: यो समाधानलाई **stdio transport** प्रयोग गर्न अद्यावधिक गरिएको छ, जसलाई MCP Specification 2025-06-18 द्वारा सिफारिस गरिएको छ। पुरानो SSE transport अब प्रयोगमा छैन।

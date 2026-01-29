@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-07-13T19:40:43+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "hi"
-}
--->
 यह कमांड चलाने के समान है: `node build/index.js`।
 
 - इस server entry को अपने सर्वर फाइल के स्थान के अनुसार या आपके चुने हुए runtime और सर्वर स्थान के आधार पर सर्वर शुरू करने के लिए आवश्यक कमांड के अनुसार बदलें।

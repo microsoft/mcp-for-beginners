@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2228721599c0c8673de83496b4d7d7a9",
-  "translation_date": "2025-08-19T15:24:44+00:00",
-  "source_file": "09-CaseStudy/apimsample.md",
-  "language_code": "cs"
-}
--->
 # Případová studie: Zpřístupnění REST API v API Management jako MCP server
 
 Azure API Management je služba, která poskytuje bránu nad vašimi API koncovými body. Funguje tak, že Azure API Management působí jako proxy před vašimi API a rozhoduje, co dělat s příchozími požadavky.

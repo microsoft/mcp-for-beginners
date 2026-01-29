@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5854af7b7c1cf4a5193eabdca60a4c19",
-  "translation_date": "2025-09-30T23:40:44+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/06-Tools/README.md",
-  "language_code": "my"
-}
--->
 # Tool Development
 
 ## 🎯 ဒီလက်တွေ့အလုပ်ရုံမှာ ဘာတွေကို လေ့လာမလဲ

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8358c13b5b6877e475674697cdc1a904",
-  "translation_date": "2025-08-18T15:16:52+00:00",
-  "source_file": "03-GettingStarted/02-client/complete_examples.md",
-  "language_code": "bn"
-}
--->
 # সম্পূর্ণ MCP ক্লায়েন্ট উদাহরণসমূহ
 
 এই ডিরেক্টরিতে বিভিন্ন প্রোগ্রামিং ভাষায় MCP ক্লায়েন্টের সম্পূর্ণ, কার্যকরী উদাহরণ রয়েছে। প্রতিটি ক্লায়েন্ট মূল README.md টিউটোরিয়ালে বর্ণিত সম্পূর্ণ কার্যকারিতা প্রদর্শন করে।

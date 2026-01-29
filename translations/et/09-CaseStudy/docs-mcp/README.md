@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4319d291c9d124ecafea52b3d04bfa0e",
-  "translation_date": "2025-10-11T12:38:33+00:00",
-  "source_file": "09-CaseStudy/docs-mcp/README.md",
-  "language_code": "et"
-}
--->
 # Juhtumiuuring: Ühenduse loomine Microsoft Learn Docs MCP serveriga kliendi kaudu
 
 Kas oled kunagi leidnud end dokumentatsioonisaitide, Stack Overflow ja lõputute otsingumootori vahekaartide vahel laveerimas, püüdes samal ajal oma koodis probleemi lahendada? Võib-olla hoiad teist monitori ainult dokumentatsiooni jaoks või vahetad pidevalt alt-tabiga oma IDE ja brauseri vahel. Kas poleks parem, kui saaksid tuua dokumentatsiooni otse oma töövoogu—integreerituna oma rakendustesse, IDE-sse või isegi oma kohandatud tööriistadesse? Selles juhtumiuuringus uurime, kuidas seda täpselt teha, luues ühenduse Microsoft Learn Docs MCP serveriga otse oma kliendirakendusest.

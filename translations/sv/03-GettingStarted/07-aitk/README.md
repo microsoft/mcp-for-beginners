@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "98bcd044860716da5819e31c152813b7",
-  "translation_date": "2025-08-18T14:57:42+00:00",
-  "source_file": "03-GettingStarted/07-aitk/README.md",
-  "language_code": "sv"
-}
--->
 # Konsumera en server från AI Toolkit-tillägget för Visual Studio Code
 
 När du bygger en AI-agent handlar det inte bara om att generera smarta svar; det handlar också om att ge din agent förmågan att agera. Det är här Model Context Protocol (MCP) kommer in. MCP gör det enkelt för agenter att få tillgång till externa verktyg och tjänster på ett konsekvent sätt. Tänk på det som att koppla din agent till en verktygslåda som den faktiskt kan *använda*.

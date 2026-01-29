@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0ab9613fc9595f493847f91275859a18",
-  "translation_date": "2025-11-18T18:57:59+00:00",
-  "source_file": "03-GettingStarted/02-client/solution/python/README.md",
-  "language_code": "pcm"
-}
--->
 # How to run dis sample
 
 E good make you install `uv` but e no dey compulsory, check [instructions](https://docs.astral.sh/uv/#highlights)

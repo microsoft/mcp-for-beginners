@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2228721599c0c8673de83496b4d7d7a9",
-  "translation_date": "2025-08-18T13:07:23+00:00",
-  "source_file": "09-CaseStudy/apimsample.md",
-  "language_code": "ru"
-}
--->
 # Пример использования: Экспонирование REST API в API Management как MCP сервер
 
 Azure API Management — это сервис, предоставляющий шлюз поверх ваших конечных точек API. Он работает как прокси перед вашими API и может управлять входящими запросами.

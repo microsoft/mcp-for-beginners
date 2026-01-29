@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e5ea5e7582f70008ea9bec3b3820f20a",
-  "translation_date": "2025-12-11T16:37:55+00:00",
-  "source_file": "04-PracticalImplementation/samples/java/containerapp/README.md",
-  "language_code": "te"
-}
--->
 ## సిస్టమ్ ఆర్కిటెక్చర్
 
 ఈ ప్రాజెక్ట్ ఒక వెబ్ అప్లికేషన్‌ను ప్రదర్శిస్తుంది, ఇది యూజర్ ప్రాంప్ట్‌లను క్యాల్క్యులేటర్ సర్వీస్‌కు Model Context Protocol (MCP) ద్వారా పంపించే ముందు కంటెంట్ సేఫ్టీ తనిఖీని ఉపయోగిస్తుంది.

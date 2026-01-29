@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "036e01c8c6ecc8610809d52e4a738641",
-  "translation_date": "2025-07-17T00:25:38+00:00",
-  "source_file": "05-AdvancedTopics/mcp-foundry-agent-integration/README.md",
-  "language_code": "mr"
-}
--->
 # Model Context Protocol (MCP) चे Azure AI Foundry सोबत एकत्रीकरण
 
 हा मार्गदर्शक Model Context Protocol (MCP) सर्व्हर्सना Azure AI Foundry एजंट्ससोबत कसे एकत्र करायचे हे दाखवतो, ज्यामुळे शक्तिशाली टूल ऑर्केस्ट्रेशन आणि एंटरप्राइझ AI क्षमता शक्य होतात.

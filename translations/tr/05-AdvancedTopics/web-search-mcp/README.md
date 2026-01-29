@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "151265c9a2124d7c53e04d16ee3fb73b",
-  "translation_date": "2025-07-17T01:28:46+00:00",
-  "source_file": "05-AdvancedTopics/web-search-mcp/README.md",
-  "language_code": "tr"
-}
--->
 # Ders: Web Arama MCP Sunucusu Oluşturma
 
 Bu bölüm, dış API'lerle entegrasyon sağlayan, çeşitli veri türlerini işleyen, hata yönetimi yapan ve birden fazla aracı koordine eden gerçek dünya yapay zeka ajanı oluşturmayı gösterir—hepsi üretime hazır bir formatta. Şunları göreceksiniz:

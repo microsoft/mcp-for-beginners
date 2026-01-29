@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5b00b8a8971a07d2d8803be4c9f138f8",
-  "translation_date": "2025-10-07T00:30:28+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/README.md",
-  "language_code": "es"
-}
--->
 # Autenticación simple
 
 Los SDK de MCP admiten el uso de OAuth 2.1, que, siendo honestos, es un proceso bastante complejo que involucra conceptos como servidor de autenticación, servidor de recursos, envío de credenciales, obtención de un código, intercambio del código por un token de portador, hasta que finalmente puedes acceder a tus datos de recursos. Si no estás familiarizado con OAuth, que es una excelente implementación, es buena idea comenzar con un nivel básico de autenticación e ir mejorando la seguridad gradualmente. Por eso existe este capítulo, para ayudarte a avanzar hacia métodos de autenticación más avanzados.

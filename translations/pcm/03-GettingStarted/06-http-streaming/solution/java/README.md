@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "acd4010e430da00946a154f62847a169",
-  "translation_date": "2025-11-18T19:16:26+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/java/README.md",
-  "language_code": "pcm"
-}
--->
 # Calculator HTTP Streaming Demo
 
 Dis project dey show how HTTP streaming dey work wit Server-Sent Events (SSE) for Spring Boot WebFlux. E get two applications:

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7b4d8d17fc1f501468cce40c3651aed1",
-  "translation_date": "2025-07-16T22:50:28+00:00",
-  "source_file": "05-AdvancedTopics/mcp-scaling/README.md",
-  "language_code": "hi"
-}
--->
 # Scalability and High-Performance MCP
 
 एंटरप्राइज डिप्लॉयमेंट्स के लिए, MCP इम्प्लीमेंटेशन को अक्सर उच्च मात्रा में रिक्वेस्ट्स को न्यूनतम विलंबता के साथ संभालना पड़ता है।

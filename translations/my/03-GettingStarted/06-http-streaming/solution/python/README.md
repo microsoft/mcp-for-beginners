@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
-  "translation_date": "2025-08-19T18:56:33+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
-  "language_code": "my"
-}
--->
 # ဒီနမူနာကို အလုပ်လုပ်ရန်
 
 ဒီနေရာမှာ classic HTTP streaming server နဲ့ client, နောက်ပြီး MCP streaming server နဲ့ client ကို Python အသုံးပြုပြီး အလုပ်လုပ်ပုံကို ပြသထားပါတယ်။

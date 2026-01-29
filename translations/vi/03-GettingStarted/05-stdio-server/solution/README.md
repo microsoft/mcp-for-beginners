@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e378b47e0361b7a9b0dab7a0306878c8",
-  "translation_date": "2025-08-26T20:02:37+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/README.md",
-  "language_code": "vi"
-}
--->
 # Giải pháp Máy chủ MCP stdio
 
 > **⚠️ Quan trọng**: Các giải pháp này đã được cập nhật để sử dụng **giao thức stdio** theo khuyến nghị của MCP Specification 2025-06-18. Giao thức SSE (Server-Sent Events) ban đầu đã bị ngừng sử dụng.

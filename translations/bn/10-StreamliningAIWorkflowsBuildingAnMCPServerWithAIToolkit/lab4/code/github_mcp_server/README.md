@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9a6a4d3497921d2f6d9699f0a6a1890c",
-  "translation_date": "2025-09-09T21:37:32+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/README.md",
-  "language_code": "bn"
-}
--->
 # Weather MCP Server
 
 এটি একটি নমুনা MCP সার্ভার যা Python-এ আবহাওয়া টুলস সহ মক রেসপন্স ব্যবহার করে তৈরি করা হয়েছে। এটি আপনার নিজস্ব MCP সার্ভারের জন্য একটি কাঠামো হিসেবে ব্যবহার করা যেতে পারে। এতে নিম্নলিখিত বৈশিষ্ট্যগুলি অন্তর্ভুক্ত রয়েছে:

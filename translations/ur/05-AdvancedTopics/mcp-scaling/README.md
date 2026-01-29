@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7b4d8d17fc1f501468cce40c3651aed1",
-  "translation_date": "2025-07-16T23:48:58+00:00",
-  "source_file": "05-AdvancedTopics/mcp-scaling/README.md",
-  "language_code": "ur"
-}
--->
 # Scalability and High-Performance MCP
 
 انٹرپرائز تعیناتیوں کے لیے، MCP کی تنصیبات کو اکثر کم سے کم تاخیر کے ساتھ بڑی تعداد میں درخواستوں کو سنبھالنا ہوتا ہے۔

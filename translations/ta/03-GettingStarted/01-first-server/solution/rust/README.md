@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "154876082e29d53dc2a2615a65627464",
-  "translation_date": "2025-10-11T11:44:57+00:00",
-  "source_file": "03-GettingStarted/01-first-server/solution/rust/README.md",
-  "language_code": "ta"
-}
--->
 # இந்த உதாரணத்தை இயக்குதல்
 
 ## -1- சார்புகளை நிறுவி திட்டத்தை உருவாக்கவும்

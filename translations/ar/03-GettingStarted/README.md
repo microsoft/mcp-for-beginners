@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f400d87053221363769113c24f117248",
-  "translation_date": "2025-10-06T22:04:11+00:00",
-  "source_file": "03-GettingStarted/README.md",
-  "language_code": "ar"
-}
--->
 ## البدء  
 
 [![إنشاء أول خادم MCP](../../../translated_images/ar/04.0ea920069efd979a.webp)](https://youtu.be/sNDZO9N4m9Y)

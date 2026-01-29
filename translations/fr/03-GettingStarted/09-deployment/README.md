@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1d9dc83260576b76f272d330ed93c51f",
-  "translation_date": "2025-07-13T22:05:28+00:00",
-  "source_file": "03-GettingStarted/09-deployment/README.md",
-  "language_code": "fr"
-}
--->
 # Déploiement des serveurs MCP
 
 Déployer votre serveur MCP permet à d’autres d’accéder à ses outils et ressources au-delà de votre environnement local. Plusieurs stratégies de déploiement sont à envisager, selon vos besoins en termes de scalabilité, fiabilité et facilité de gestion. Vous trouverez ci-dessous des conseils pour déployer des serveurs MCP localement, dans des conteneurs, ou dans le cloud.

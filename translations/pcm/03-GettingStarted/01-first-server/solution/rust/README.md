@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "154876082e29d53dc2a2615a65627464",
-  "translation_date": "2025-11-18T19:13:05+00:00",
-  "source_file": "03-GettingStarted/01-first-server/solution/rust/README.md",
-  "language_code": "pcm"
-}
--->
 # How you go take run dis sample
 
 ## -1- Install di dependencies and build di project

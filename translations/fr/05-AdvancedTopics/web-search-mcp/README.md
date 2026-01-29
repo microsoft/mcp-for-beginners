@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "151265c9a2124d7c53e04d16ee3fb73b",
-  "translation_date": "2025-07-16T21:25:03+00:00",
-  "source_file": "05-AdvancedTopics/web-search-mcp/README.md",
-  "language_code": "fr"
-}
--->
 # Leçon : Construire un serveur MCP de recherche web
 
 Ce chapitre montre comment créer un agent IA réel qui s’intègre à des API externes, gère différents types de données, traite les erreurs et orchestre plusieurs outils — le tout dans un format prêt pour la production. Vous découvrirez :

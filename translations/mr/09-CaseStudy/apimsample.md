@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2228721599c0c8673de83496b4d7d7a9",
-  "translation_date": "2025-08-18T15:23:13+00:00",
-  "source_file": "09-CaseStudy/apimsample.md",
-  "language_code": "mr"
-}
--->
 # केस स्टडी: API Management मध्ये REST API MCP सर्व्हर म्हणून उघडणे
 
 Azure API Management ही एक सेवा आहे जी तुमच्या API Endpoints वर गेटवे प्रदान करते. याचे कार्य असे आहे की Azure API Management तुमच्या API च्या समोर एक प्रॉक्सी म्हणून काम करते आणि येणाऱ्या विनंत्यांवर काय करायचे ते ठरवते.

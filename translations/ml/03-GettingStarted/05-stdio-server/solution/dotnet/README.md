@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "69372338676e01a2c97f42f70fdfbf42",
-  "translation_date": "2025-12-11T13:07:07+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/dotnet/README.md",
-  "language_code": "ml"
-}
--->
 # MCP stdio Server - .NET പരിഹാരം
 
 > **⚠️ പ്രധാനപ്പെട്ടത്**: MCP സ്പെസിഫിക്കേഷൻ 2025-06-18 പ്രകാരം ശുപാർശ ചെയ്ത **stdio ട്രാൻസ്പോർട്ട്** ഉപയോഗിക്കാൻ ഈ പരിഹാരം അപ്ഡേറ്റ് ചെയ്തിരിക്കുന്നു. മുൾ SSE ട്രാൻസ്പോർട്ട് ഇനി ഉപയോഗിക്കരുത്.

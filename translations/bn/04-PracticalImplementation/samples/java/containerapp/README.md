@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e5ea5e7582f70008ea9bec3b3820f20a",
-  "translation_date": "2025-07-13T23:14:12+00:00",
-  "source_file": "04-PracticalImplementation/samples/java/containerapp/README.md",
-  "language_code": "bn"
-}
--->
 ## সিস্টেম আর্কিটেকচার
 
 এই প্রকল্পটি একটি ওয়েব অ্যাপ্লিকেশন প্রদর্শন করে যা ব্যবহারকারীর প্রম্পটগুলি Model Context Protocol (MCP) এর মাধ্যমে ক্যালকুলেটর সার্ভিসে পাঠানোর আগে কন্টেন্ট সেফটি চেক করে।

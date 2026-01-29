@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5f1383103523fa822e1fec7ef81904d5",
-  "translation_date": "2025-08-18T16:17:34+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/README.md",
-  "language_code": "fi"
-}
--->
 # HTTPS-suoratoisto Model Context Protocolin (MCP) avulla
 
 Tässä luvussa tarjotaan kattava opas turvallisen, skaalautuvan ja reaaliaikaisen suoratoiston toteuttamiseen Model Context Protocolin (MCP) avulla käyttäen HTTPS:ää. Se käsittelee suoratoiston motivaatiota, käytettävissä olevia siirtomekanismeja, HTTP-suoratoiston toteuttamista MCP:ssä, turvallisuuden parhaita käytäntöjä, siirtymistä SSE:stä sekä käytännön ohjeita omien MCP-suoratoistosovellusten rakentamiseen.

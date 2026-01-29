@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e5ea5e7582f70008ea9bec3b3820f20a",
-  "translation_date": "2025-07-13T23:16:56+00:00",
-  "source_file": "04-PracticalImplementation/samples/java/containerapp/README.md",
-  "language_code": "sv"
-}
--->
 ## Systemarkitektur
 
 Det här projektet visar en webbapplikation som använder innehållssäkerhetskontroll innan användarens prompt skickas vidare till en kalkylatortjänst via Model Context Protocol (MCP).

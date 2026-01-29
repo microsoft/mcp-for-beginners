@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "14a2dfbea55ef735660a06bd6bdfe5f3",
-  "translation_date": "2025-07-14T06:14:50+00:00",
-  "source_file": "09-CaseStudy/UpdateADOItemsFromYT.md",
-  "language_code": "hu"
-}
--->
 # Esettanulmány: Azure DevOps elemek frissítése YouTube adatokkal MCP segítségével
 
 > **Disclaimer:** Már léteznek online eszközök és jelentések, amelyek automatizálni tudják az Azure DevOps elemek frissítését olyan platformokról származó adatokkal, mint a YouTube. Az alábbi példa csupán egy illusztráció arra, hogyan alkalmazhatók az MCP eszközök automatizálási és integrációs feladatokra.

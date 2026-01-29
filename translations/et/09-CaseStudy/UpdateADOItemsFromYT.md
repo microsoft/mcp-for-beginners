@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "14a2dfbea55ef735660a06bd6bdfe5f3",
-  "translation_date": "2025-10-11T12:37:55+00:00",
-  "source_file": "09-CaseStudy/UpdateADOItemsFromYT.md",
-  "language_code": "et"
-}
--->
 # Juhtumiuuring: Azure DevOps üksuste uuendamine YouTube'i andmetega MCP abil
 
 > **Vastutusest loobumine:** Olemas on veebipõhised tööriistad ja aruanded, mis automatiseerivad Azure DevOps üksuste uuendamise protsessi platvormide, nagu YouTube, andmetega. Järgnevat stsenaariumi esitatakse ainult näidisjuhtumina, et illustreerida, kuidas MCP tööriistu saab kasutada automatiseerimise ja integreerimise ülesannete jaoks.

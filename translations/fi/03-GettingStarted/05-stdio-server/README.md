@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "77735b446eb79b1bba9c849865cd0ced",
-  "translation_date": "2025-08-28T22:28:01+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/README.md",
-  "language_code": "fi"
-}
--->
 # MCP-palvelin stdio-kuljetuksella
 
 > **⚠️ Tärkeä päivitys**: MCP-määrittelyn 2025-06-18 mukaan itsenäinen SSE (Server-Sent Events) -kuljetus on **poistettu käytöstä** ja korvattu "Streamable HTTP" -kuljetuksella. Nykyinen MCP-määrittely määrittelee kaksi ensisijaista kuljetusmekanismia:

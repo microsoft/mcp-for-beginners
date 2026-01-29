@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e378b47e0361b7a9b0dab7a0306878c8",
-  "translation_date": "2025-08-26T20:02:18+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/README.md",
-  "language_code": "fi"
-}
--->
 # MCP stdio-palvelinratkaisut
 
 > **⚠️ Tärkeää**: Nämä ratkaisut on päivitetty käyttämään **stdio-kuljetusta** MCP-määrittelyn 2025-06-18 suositusten mukaisesti. Alkuperäinen SSE (Server-Sent Events) -kuljetus on poistettu käytöstä.

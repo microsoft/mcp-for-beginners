@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "a22b7dd11cd7690f99f9195877cafdc3",
-  "translation_date": "2025-10-11T11:26:58+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab2/README.md",
-  "language_code": "et"
-}
--->
 # 🌐 Moodul 2: MCP ja AI Toolkit põhialused
 
 [![Kestus](https://img.shields.io/badge/Duration-20%20minutes-blue.svg)]()

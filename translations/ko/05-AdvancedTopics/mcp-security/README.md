@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "997c7119766a69552e23d7d681316902",
-  "translation_date": "2025-08-18T11:19:20+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security/README.md",
-  "language_code": "ko"
-}
--->
 # MCP 보안 모범 사례 - 고급 구현 가이드
 
 > **현재 표준**: 이 가이드는 [MCP 사양 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/)의 보안 요구사항과 공식 [MCP 보안 모범 사례](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices)를 반영합니다.

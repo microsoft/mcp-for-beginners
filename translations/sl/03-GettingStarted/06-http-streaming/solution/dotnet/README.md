@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "dde4e32e4b55ef4962c411b39d2340a7",
-  "translation_date": "2025-09-03T16:19:38+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/dotnet/README.md",
-  "language_code": "sl"
-}
--->
 # Zagon tega vzorca
 
 ## -1- Namestite odvisnosti

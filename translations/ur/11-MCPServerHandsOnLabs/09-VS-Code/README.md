@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "769c9794759f416450dce77286e98f00",
-  "translation_date": "2025-09-30T15:27:24+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/09-VS-Code/README.md",
-  "language_code": "ur"
-}
--->
 # VS Code انضمام
 
 ## 🎯 یہ لیب کیا کور کرتی ہے؟

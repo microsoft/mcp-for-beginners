@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5b00b8a8971a07d2d8803be4c9f138f8",
-  "translation_date": "2025-10-07T01:01:04+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/README.md",
-  "language_code": "hu"
-}
--->
 # Egyszerű hitelesítés
 
 Az MCP SDK-k támogatják az OAuth 2.1 használatát, amely őszintén szólva egy elég összetett folyamat, amely olyan fogalmakat foglal magában, mint a hitelesítési szerver, erőforrás-szerver, hitelesítési adatok küldése, kód megszerzése, a kód cseréje egy hordozó tokenre, amíg végül hozzáférhetünk az erőforrás-adatokhoz. Ha nem ismered az OAuth-ot, amely egy nagyszerű megoldás, érdemes egy alapvető szintű hitelesítéssel kezdeni, és fokozatosan haladni a jobb és biztonságosabb megoldások felé. Ezért létezik ez a fejezet, hogy segítsen eljutni a fejlettebb hitelesítési megoldásokig.

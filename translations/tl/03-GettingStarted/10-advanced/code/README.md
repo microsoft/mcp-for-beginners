@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7b2e74021ff41e9ad5892ed5e07cd72f",
-  "translation_date": "2025-10-06T16:01:55+00:00",
-  "source_file": "03-GettingStarted/10-advanced/code/README.md",
-  "language_code": "tl"
-}
--->
 Mga Runtime
 
 - [Python](./python/README.md)

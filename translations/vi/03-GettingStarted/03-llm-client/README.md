@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "75638575f993c152965ae2271c4da938",
-  "translation_date": "2025-12-19T14:13:13+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/README.md",
-  "language_code": "vi"
-}
--->
 # Tạo một client với LLM
 
 Cho đến nay, bạn đã thấy cách tạo một server và một client. Client đã có thể gọi server một cách rõ ràng để liệt kê các công cụ, tài nguyên và prompt của nó. Tuy nhiên, đây không phải là cách tiếp cận thực tế. Người dùng của bạn sống trong thời đại agentic và mong muốn sử dụng prompt và giao tiếp với một LLM để làm điều đó. Đối với người dùng của bạn, họ không quan tâm bạn có sử dụng MCP hay không để lưu trữ khả năng của bạn nhưng họ mong muốn sử dụng ngôn ngữ tự nhiên để tương tác. Vậy làm thế nào để giải quyết điều này? Giải pháp là thêm một LLM vào client.

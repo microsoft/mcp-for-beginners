@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e378b47e0361b7a9b0dab7a0306878c8",
-  "translation_date": "2025-08-26T20:00:59+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/README.md",
-  "language_code": "pa"
-}
--->
 # MCP stdio ਸਰਵਰ ਹੱਲ
 
 > **⚠️ ਮਹੱਤਵਪੂਰਨ**: ਇਹ ਹੱਲ **stdio ਟ੍ਰਾਂਸਪੋਰਟ** ਦੀ ਵਰਤੋਂ ਕਰਨ ਲਈ ਅਪਡੇਟ ਕੀਤੇ ਗਏ ਹਨ, ਜਿਵੇਂ ਕਿ MCP Specification 2025-06-18 ਵਿੱਚ ਸਿਫਾਰਸ਼ ਕੀਤੀ ਗਈ ਹੈ। ਮੂਲ SSE (Server-Sent Events) ਟ੍ਰਾਂਸਪੋਰਟ ਹੁਣ ਡਿਪ੍ਰੀਕੇਟ ਕੀਤਾ ਗਿਆ ਹੈ।

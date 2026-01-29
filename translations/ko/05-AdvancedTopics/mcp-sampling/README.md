@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "193889b580c86bbb1e4f577114a5ce4e",
-  "translation_date": "2025-07-16T21:46:17+00:00",
-  "source_file": "05-AdvancedTopics/mcp-sampling/README.md",
-  "language_code": "ko"
-}
--->
 # 모델 컨텍스트 프로토콜에서의 샘플링
 
 샘플링은 서버가 클라이언트를 통해 LLM 완성을 요청할 수 있게 하는 강력한 MCP 기능으로, 보안과 프라이버시를 유지하면서 정교한 에이전트 행동을 가능하게 합니다. 적절한 샘플링 설정은 응답 품질과 성능을 크게 향상시킬 수 있습니다. MCP는 무작위성, 창의성, 일관성에 영향을 주는 특정 매개변수를 통해 모델이 텍스트를 생성하는 방식을 표준화된 방법으로 제어합니다.

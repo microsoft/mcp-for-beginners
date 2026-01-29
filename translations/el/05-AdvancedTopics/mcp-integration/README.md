@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f84eaea79c8fa9ab318a494f40891814",
-  "translation_date": "2025-08-18T13:45:09+00:00",
-  "source_file": "05-AdvancedTopics/mcp-integration/README.md",
-  "language_code": "el"
-}
--->
 # Ενσωμάτωση σε Επιχειρησιακό Περιβάλλον
 
 Όταν δημιουργείτε MCP Servers σε ένα επιχειρησιακό πλαίσιο, συχνά χρειάζεται να ενσωματώσετε υπάρχουσες πλατφόρμες και υπηρεσίες AI. Αυτή η ενότητα καλύπτει πώς να ενσωματώσετε το MCP με επιχειρησιακά συστήματα όπως το Azure OpenAI και το Microsoft AI Foundry, επιτρέποντας προηγμένες δυνατότητες AI και οργάνωση εργαλείων.

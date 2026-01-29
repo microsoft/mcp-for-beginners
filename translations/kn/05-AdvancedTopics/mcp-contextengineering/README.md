@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "fd169ca3071b81b5ee282e194bc823df",
-  "translation_date": "2025-12-11T15:47:40+00:00",
-  "source_file": "05-AdvancedTopics/mcp-contextengineering/README.md",
-  "language_code": "kn"
-}
--->
 # ಸಾಂದರ್ಭಿಕ ಎಂಜಿನಿಯರಿಂಗ್: MCP ಪರಿಸರದಲ್ಲಿ ಉದಯೋನ್ಮುಖ ಸಂಪ್ರದಾಯ
 
 ## ಅವಲೋಕನ

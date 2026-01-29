@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1d9dc83260576b76f272d330ed93c51f",
-  "translation_date": "2025-08-26T20:38:31+00:00",
-  "source_file": "03-GettingStarted/09-deployment/README.md",
-  "language_code": "lt"
-}
--->
 # MCP serverių diegimas
 
 MCP serverio diegimas leidžia kitiems naudotis jo įrankiais ir ištekliais už jūsų vietinės aplinkos ribų. Yra keletas diegimo strategijų, kurias galite apsvarstyti, priklausomai nuo jūsų poreikių dėl mastelio, patikimumo ir valdymo paprastumo. Žemiau rasite rekomendacijas, kaip diegti MCP serverius vietoje, konteineriuose ir debesyje.

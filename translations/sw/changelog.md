@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e8bbc7982284fe177dd4be5e7f2b3357",
-  "translation_date": "2025-12-19T14:55:25+00:00",
-  "source_file": "changelog.md",
-  "language_code": "sw"
-}
--->
 # Mabadiliko ya Toleo: MCP kwa Mtaalamu Mwanzo
 
 Hati hii inahudumu kama kumbukumbu ya mabadiliko yote muhimu yaliyofanywa kwenye mtaala wa Model Context Protocol (MCP) kwa Mtaalamu Mwanzo. Mabadiliko yameandikwa kwa mpangilio wa mfululizo wa tarehe (mabadiliko mapya kwanza).

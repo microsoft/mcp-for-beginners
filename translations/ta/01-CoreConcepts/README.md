@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9ad93d2074502828b8139d5aba7bafab",
-  "translation_date": "2025-12-19T18:08:15+00:00",
-  "source_file": "01-CoreConcepts/README.md",
-  "language_code": "ta"
-}
--->
 # MCP கோர் கருத்துக்கள்: AI ஒருங்கிணைப்புக்கான மாடல் சூழல் நெறிமுறை (Model Context Protocol) கற்றல்
 
 [![MCP Core Concepts](../../../translated_images/ta/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.png)](https://youtu.be/earDzWGtE84)

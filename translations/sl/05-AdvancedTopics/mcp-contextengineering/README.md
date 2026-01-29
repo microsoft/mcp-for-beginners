@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "fd169ca3071b81b5ee282e194bc823df",
-  "translation_date": "2025-09-15T21:17:37+00:00",
-  "source_file": "05-AdvancedTopics/mcp-contextengineering/README.md",
-  "language_code": "sl"
-}
--->
 # Inženiring konteksta: Nastajajoči koncept v ekosistemu MCP
 
 ## Pregled

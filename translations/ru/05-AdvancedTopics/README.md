@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "d204bc94ea6027d06a703b21b711ca57",
-  "translation_date": "2025-08-18T13:13:15+00:00",
-  "source_file": "05-AdvancedTopics/README.md",
-  "language_code": "ru"
-}
--->
 # Продвинутые темы в MCP
 
 [![Advanced MCP: Secure, Scalable, and Multi-modal AI Agents](../../../translated_images/ru/06.42259eaf91fccfc6.webp)](https://youtu.be/4yjmGvJzYdY)

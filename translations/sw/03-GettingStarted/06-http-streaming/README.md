@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5f1383103523fa822e1fec7ef81904d5",
-  "translation_date": "2025-08-19T14:42:43+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/README.md",
-  "language_code": "sw"
-}
--->
 # Utiririshaji wa HTTPS na Itifaki ya Model Context (MCP)
 
 Sura hii inatoa mwongozo wa kina wa kutekeleza utiririshaji salama, unaoweza kupanuka, na wa wakati halisi kwa kutumia Itifaki ya Model Context (MCP) kupitia HTTPS. Inashughulikia motisha ya utiririshaji, mifumo ya usafirishaji inayopatikana, jinsi ya kutekeleza HTTP inayoweza kutiririka katika MCP, mbinu bora za usalama, uhamishaji kutoka SSE, na mwongozo wa vitendo wa kujenga programu zako za utiririshaji za MCP.

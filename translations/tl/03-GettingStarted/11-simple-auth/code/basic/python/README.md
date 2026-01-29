@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "3f68294760a11dd3fdd175bd7f904a92",
-  "translation_date": "2025-10-07T01:31:52+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/code/basic/python/README.md",
-  "language_code": "tl"
-}
--->
 # Patakbuhin ang halimbawa
 
 Ang halimbawang ito ay nagsisimula ng isang MCP Server na may middleware na nagche-check para sa valid na Authorization header.

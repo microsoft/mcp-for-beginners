@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "151265c9a2124d7c53e04d16ee3fb73b",
-  "translation_date": "2025-07-17T10:09:42+00:00",
-  "source_file": "05-AdvancedTopics/web-search-mcp/README.md",
-  "language_code": "sw"
-}
--->
 # Somo: Kujenga Server ya Utafutaji wa Mtandao ya MCP
 
 Sura hii inaonyesha jinsi ya kujenga wakala halisi wa AI anayejumuisha API za nje, kushughulikia aina mbalimbali za data, kusimamia makosa, na kuendesha zana nyingi—yote haya kwa muundo unaotumika katika uzalishaji. Utaona:

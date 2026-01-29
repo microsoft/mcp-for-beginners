@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ac2459c0d5cc823922e3d9240a95028c",
-  "translation_date": "2025-12-11T12:58:58+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/java/README.md",
-  "language_code": "te"
-}
--->
 # క్యాల్క్యులేటర్ LLM క్లయింట్
 
 GitHub Models ఇంటిగ్రేషన్‌తో MCP (మోడల్ కాంటెక్స్ట్ ప్రోటోకాల్) క్యాల్క్యులేటర్ సర్వీస్‌కు కనెక్ట్ కావడానికి LangChain4j ను ఎలా ఉపయోగించాలో చూపించే జావా అప్లికేషన్.

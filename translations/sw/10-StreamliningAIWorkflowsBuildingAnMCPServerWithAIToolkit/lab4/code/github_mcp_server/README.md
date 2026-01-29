@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9a6a4d3497921d2f6d9699f0a6a1890c",
-  "translation_date": "2025-09-09T22:08:13+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/README.md",
-  "language_code": "sw"
-}
--->
 # Seva ya Hali ya Hewa MCP
 
 Hii ni mfano wa Seva ya MCP iliyoandikwa kwa Python inayotekeleza zana za hali ya hewa na majibu ya mfano. Inaweza kutumika kama msingi wa kuunda Seva yako ya MCP. Inajumuisha vipengele vifuatavyo:

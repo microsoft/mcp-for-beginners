@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "d4c162484df410632550a4a357d40341",
-  "translation_date": "2025-09-03T16:20:22+00:00",
-  "source_file": "03-GettingStarted/01-first-server/solution/python/README.md",
-  "language_code": "my"
-}
--->
 # ဒီနမူနာကို အလုပ်လုပ်စေခြင်း
 
 `uv` ကို install လုပ်ဖို့ အကြံပေးထားပေမယ့် မဖြစ်မဖြစ်လိုအပ်တာမဟုတ်ပါဘူး၊ [လမ်းညွှန်ချက်များ](https://docs.astral.sh/uv/#highlights) ကိုကြည့်ပါ။

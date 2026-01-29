@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ffc7f32ed12664b640175f27f0a997a",
-  "translation_date": "2025-08-18T18:10:07+00:00",
-  "source_file": "03-GettingStarted/samples/rust/README.md",
-  "language_code": "ur"
-}
--->
 یہ ایک Rust کا نمونہ ہے MCP سرور کے لیے
 
 یہاں کیلکولیٹر کا حصہ کچھ اس طرح دکھائی دیتا ہے:

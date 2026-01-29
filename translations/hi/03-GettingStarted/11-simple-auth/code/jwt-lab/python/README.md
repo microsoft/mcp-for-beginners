@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "cc12267d65091b22e39026fccfcaa22b",
-  "translation_date": "2025-10-07T01:37:55+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/code/jwt-lab/python/README.md",
-  "language_code": "hi"
-}
--->
 # नमूना चलाएं
 
 ## पर्यावरण सेट करें

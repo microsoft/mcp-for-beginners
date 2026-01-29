@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5061d7e2ae9eea9cbaae77c1a020b318",
-  "translation_date": "2025-12-19T14:09:18+00:00",
-  "source_file": "02-Security/mcp-best-practices.md",
-  "language_code": "vi"
-}
--->
 # Thực Tiễn Bảo Mật MCP 2025
 
 Hướng dẫn toàn diện này trình bày các thực tiễn bảo mật thiết yếu để triển khai hệ thống Model Context Protocol (MCP) dựa trên **Đặc tả MCP 2025-11-25** mới nhất và các tiêu chuẩn ngành hiện hành. Các thực tiễn này giải quyết cả các mối quan ngại bảo mật truyền thống và các mối đe dọa đặc thù AI trong các triển khai MCP.

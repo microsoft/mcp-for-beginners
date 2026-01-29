@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "333a03e51f90bdf3e6f1ba1694c73f36",
-  "translation_date": "2025-07-17T10:45:03+00:00",
-  "source_file": "05-AdvancedTopics/mcp-realtimesearch/README.md",
-  "language_code": "cs"
-}
--->
 ## Upozornění k příkladům kódu
 
 > **Důležité upozornění**: Níže uvedené příklady kódu demonstrují integraci Model Context Protocolu (MCP) s funkcionalitou webového vyhledávání. I když následují vzory a struktury oficiálních MCP SDK, byly zjednodušeny pro vzdělávací účely.

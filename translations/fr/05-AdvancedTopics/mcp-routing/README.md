@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2f1b473818b5a6cc9a9bbf777fffa6d4",
-  "translation_date": "2025-07-14T21:43:44+00:00",
-  "source_file": "05-AdvancedTopics/mcp-routing/README.md",
-  "language_code": "fr"
-}
--->
 ## Architecture d'Échantillonnage et de Routage dans MCP
 
 L'échantillonnage est un élément clé du Model Context Protocol (MCP) qui permet un traitement et un routage efficaces des requêtes. Il consiste à analyser les requêtes entrantes afin de déterminer le modèle ou le service le plus approprié pour les traiter, en fonction de divers critères tels que le type de contenu, le contexte utilisateur et la charge du système.

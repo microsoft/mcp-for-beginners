@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9678e0c6945b8e0c23586869b0e26783",
-  "translation_date": "2025-10-11T12:33:47+00:00",
-  "source_file": "00-Introduction/README.md",
-  "language_code": "ta"
-}
--->
 # மாடல் சூழல் நெறிமுறை (MCP) அறிமுகம்: விரிவாக்கக்கூடிய AI பயன்பாடுகளுக்கான முக்கியத்துவம்
 
 [![மாடல் சூழல் நெறிமுறை அறிமுகம்](../../../translated_images/ta/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.png)](https://youtu.be/agBbdiOPLQA)

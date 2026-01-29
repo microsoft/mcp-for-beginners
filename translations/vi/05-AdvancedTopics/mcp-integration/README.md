@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f84eaea79c8fa9ab318a494f40891814",
-  "translation_date": "2025-08-18T17:13:38+00:00",
-  "source_file": "05-AdvancedTopics/mcp-integration/README.md",
-  "language_code": "vi"
-}
--->
 # Tích hợp Doanh nghiệp
 
 Khi xây dựng các máy chủ MCP trong bối cảnh doanh nghiệp, bạn thường cần tích hợp với các nền tảng và dịch vụ AI hiện có. Phần này hướng dẫn cách tích hợp MCP với các hệ thống doanh nghiệp như Azure OpenAI và Microsoft AI Foundry, giúp kích hoạt các khả năng AI tiên tiến và điều phối công cụ.

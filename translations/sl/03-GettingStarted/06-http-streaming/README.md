@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5f1383103523fa822e1fec7ef81904d5",
-  "translation_date": "2025-08-19T18:22:13+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/README.md",
-  "language_code": "sl"
-}
--->
 # HTTPS pretakanje z Model Context Protocol (MCP)
 
 To poglavje ponuja celovit vodnik za implementacijo varnega, skalabilnega in realnočasovnega pretakanja z Model Context Protocol (MCP) prek HTTPS. Pokriva motivacijo za pretakanje, razpoložljive transportne mehanizme, kako implementirati pretakanje HTTP v MCP, najboljše prakse za varnost, migracijo iz SSE ter praktične smernice za gradnjo lastnih aplikacij za pretakanje MCP.

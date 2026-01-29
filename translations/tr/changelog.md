@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e8bbc7982284fe177dd4be5e7f2b3357",
-  "translation_date": "2025-12-19T11:56:30+00:00",
-  "source_file": "changelog.md",
-  "language_code": "tr"
-}
--->
 # Değişiklik Günlüğü: Yeni Başlayanlar için MCP Müfredatı
 
 Bu belge, Model Context Protocol (MCP) için Yeni Başlayanlar müfredatında yapılan tüm önemli değişikliklerin kaydıdır. Değişiklikler ters kronolojik sırayla (en yeni değişiklikler önce) belgelenmiştir.

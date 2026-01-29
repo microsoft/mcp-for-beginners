@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "333a03e51f90bdf3e6f1ba1694c73f36",
-  "translation_date": "2025-12-11T16:08:59+00:00",
-  "source_file": "05-AdvancedTopics/mcp-realtimesearch/README.md",
-  "language_code": "ml"
-}
--->
 # റിയൽ-ടൈം വെബ് സെർച്ച്‌ക്കുള്ള മോഡൽ കോൺടെക്സ്റ്റ് പ്രോട്ടോക്കോൾ
 
 ## അവലോകനം

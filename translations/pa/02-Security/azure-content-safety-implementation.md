@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1b6c746d9e190deba4d8765267ffb94e",
-  "translation_date": "2025-07-17T02:01:13+00:00",
-  "source_file": "02-Security/azure-content-safety-implementation.md",
-  "language_code": "pa"
-}
--->
 # MCP ਨਾਲ Azure Content Safety ਦੀ ਲਾਗੂਆਈ
 
 MCP ਦੀ ਸੁਰੱਖਿਆ ਨੂੰ prompt injection, tool poisoning ਅਤੇ ਹੋਰ AI-ਵਿਸ਼ੇਸ਼ ਖਤਰਨਾਕੀਆਂ ਤੋਂ ਮਜ਼ਬੂਤ ਬਣਾਉਣ ਲਈ, Azure Content Safety ਨੂੰ ਸ਼ਾਮਲ ਕਰਨਾ ਬਹੁਤ ਜ਼ਰੂਰੀ ਹੈ।

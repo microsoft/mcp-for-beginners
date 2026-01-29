@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1611dc5f6a2a35a789fc4c95fc5bfbe8",
-  "translation_date": "2025-09-26T18:01:09+00:00",
-  "source_file": "09-CaseStudy/README.md",
-  "language_code": "hi"
-}
--->
 # MCP इन एक्शन: वास्तविक दुनिया के केस स्टडीज
 
 [![MCP इन एक्शन: वास्तविक दुनिया के केस स्टडीज](../../../translated_images/hi/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.png)](https://youtu.be/IxshWb2Az5w)

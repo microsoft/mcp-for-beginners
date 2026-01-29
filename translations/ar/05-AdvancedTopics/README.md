@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "d204bc94ea6027d06a703b21b711ca57",
-  "translation_date": "2025-08-18T13:37:34+00:00",
-  "source_file": "05-AdvancedTopics/README.md",
-  "language_code": "ar"
-}
--->
 # مواضيع متقدمة في MCP
 
 [![MCP المتقدم: وكلاء الذكاء الاصطناعي الآمنة، القابلة للتوسع، ومتعددة الوسائط](../../../translated_images/ar/06.42259eaf91fccfc6.webp)](https://youtu.be/4yjmGvJzYdY)

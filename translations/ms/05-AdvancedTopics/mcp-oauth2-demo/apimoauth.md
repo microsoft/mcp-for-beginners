@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "32c9a4263be08f9050c8044bb26267c4",
-  "translation_date": "2025-07-14T00:33:01+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/apimoauth.md",
-  "language_code": "ms"
-}
--->
 # Menyebarkan Aplikasi Spring AI MCP ke Azure Container Apps
 
  ([Mengamankan pelayan Spring AI MCP dengan OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2)) *Rajah: Pelayan Spring AI MCP yang dilindungi dengan Spring Authorization Server. Pelayan mengeluarkan token akses kepada klien dan mengesahkannya pada permintaan masuk (sumber: blog Spring) ([Mengamankan pelayan Spring AI MCP dengan OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2#:~:text=,server%20with%20the%20MCP%20inspector)).* Untuk menyebarkan pelayan Spring MCP, bina ia sebagai kontena dan gunakan Azure Container Apps dengan ingress luaran. Contohnya, menggunakan Azure CLI anda boleh jalankan:

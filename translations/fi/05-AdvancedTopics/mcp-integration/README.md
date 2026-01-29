@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f84eaea79c8fa9ab318a494f40891814",
-  "translation_date": "2025-08-18T16:06:32+00:00",
-  "source_file": "05-AdvancedTopics/mcp-integration/README.md",
-  "language_code": "fi"
-}
--->
 # Yritysintegrointi
 
 Kun rakennat MCP-palvelimia yrityskontekstissa, sinun on usein integroitava olemassa oleviin tekoälyalustoihin ja -palveluihin. Tässä osiossa käsitellään, kuinka MCP integroidaan yritysjärjestelmiin, kuten Azure OpenAI:hin ja Microsoft AI Foundryyn, mahdollistaen kehittyneet tekoälyominaisuudet ja työkalujen orkestroinnin.

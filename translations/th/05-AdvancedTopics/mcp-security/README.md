@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "997c7119766a69552e23d7d681316902",
-  "translation_date": "2025-08-18T14:20:17+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security/README.md",
-  "language_code": "th"
-}
--->
 # แนวทางปฏิบัติที่ดีที่สุดด้านความปลอดภัยของ MCP - คู่มือการใช้งานขั้นสูง
 
 > **มาตรฐานปัจจุบัน**: คู่มือนี้สะท้อนถึงข้อกำหนดด้านความปลอดภัยของ [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) และ [แนวทางปฏิบัติที่ดีที่สุดด้านความปลอดภัยของ MCP](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) อย่างเป็นทางการ

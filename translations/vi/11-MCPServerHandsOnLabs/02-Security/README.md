@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "3b3c9c3f033e59a30c92b5895e0dc9fd",
-  "translation_date": "2025-09-30T19:46:44+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/02-Security/README.md",
-  "language_code": "vi"
-}
--->
 # Bảo mật và Đa Người Dùng
 
 ## 🎯 Nội dung của bài thực hành này

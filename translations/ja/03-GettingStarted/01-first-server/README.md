@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8fdac7600a5f4722643d0f14e15ac259",
-  "translation_date": "2025-12-11T05:30:47+00:00",
-  "source_file": "03-GettingStarted/01-first-server/README.md",
-  "language_code": "ja"
-}
--->
 # MCPの始め方
 
 Model Context Protocol（MCP）の最初のステップへようこそ！MCPが初めての方も、理解を深めたい方も、このガイドでは基本的なセットアップと開発プロセスを案内します。MCPがAIモデルとアプリケーション間のシームレスな統合をどのように実現するかを学び、MCP対応ソリューションの構築とテストのための環境を迅速に準備する方法を紹介します。

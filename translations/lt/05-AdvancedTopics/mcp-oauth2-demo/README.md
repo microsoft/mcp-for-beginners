@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0a7083e660ca0d85fd6a947514c61993",
-  "translation_date": "2025-08-26T18:51:51+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/README.md",
-  "language_code": "lt"
-}
--->
 # MCP OAuth2 Demo
 
 Šis projektas yra **minimalus Spring Boot taikymas**, kuris veikia kaip:

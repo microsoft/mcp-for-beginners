@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4117a42f3e7baae859515f7b8b911e56",
-  "translation_date": "2025-08-18T15:12:07+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/README.md",
-  "language_code": "bn"
-}
--->
 প্রতিটি রানটাইমের জন্য সমাধান এখানে দেওয়া হলো:
 
 - [TypeScript](./typescript/README.md)

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "75638575f993c152965ae2271c4da938",
-  "translation_date": "2025-12-19T16:54:47+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/README.md",
-  "language_code": "hr"
-}
--->
 # Kreiranje klijenta s LLM-om
 
 Do sada ste vidjeli kako kreirati server i klijenta. Klijent je mogao eksplicitno pozivati server da navede njegove alate, resurse i upite. Međutim, to nije baš praktičan pristup. Vaš korisnik živi u agentskoj eri i očekuje da koristi upite i komunicira s LLM-om da bi to učinio. Za vašeg korisnika nije važno koristite li MCP ili ne za pohranu svojih mogućnosti, ali očekuju da koriste prirodni jezik za interakciju. Kako to riješiti? Rješenje je dodati LLM klijentu.

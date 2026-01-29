@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "b62150e27d4b7b5797ee41146d176e6b",
-  "translation_date": "2025-08-18T13:12:18+00:00",
-  "source_file": "08-BestPractices/README.md",
-  "language_code": "ru"
-}
--->
 # Лучшие практики разработки MCP
 
 [![Лучшие практики разработки MCP](../../../translated_images/ru/09.d0f6d86c9d72134c.webp)](https://youtu.be/W56H9W7x-ao)

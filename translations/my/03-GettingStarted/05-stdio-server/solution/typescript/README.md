@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9d799c4a30a8383e0a74af9153262972",
-  "translation_date": "2025-08-26T20:14:47+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/typescript/README.md",
-  "language_code": "my"
-}
--->
 # MCP stdio Server - TypeScript Solution
 
 > **⚠️ အရေးကြီး**: ဒီဖြေရှင်းနည်းကို MCP Specification 2025-06-18 မှအကြံပြုထားတဲ့ **stdio transport** ကိုအသုံးပြုဖို့အတွက် အပ်ဒိတ်လုပ်ထားပါတယ်။ အရင် SSE transport ကို အသုံးမပြုတော့ပါ။

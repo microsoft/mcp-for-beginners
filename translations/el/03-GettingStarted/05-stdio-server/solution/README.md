@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e378b47e0361b7a9b0dab7a0306878c8",
-  "translation_date": "2025-08-26T20:01:43+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/README.md",
-  "language_code": "el"
-}
--->
 # Λύσεις MCP stdio Server
 
 > **⚠️ Σημαντικό**: Αυτές οι λύσεις έχουν ενημερωθεί ώστε να χρησιμοποιούν τη **stdio μεταφορά** όπως συνιστάται από την MCP Προδιαγραφή 2025-06-18. Η αρχική μεταφορά SSE (Server-Sent Events) έχει καταργηθεί.

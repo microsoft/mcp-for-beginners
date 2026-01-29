@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e378b47e0361b7a9b0dab7a0306878c8",
-  "translation_date": "2025-08-26T20:01:50+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/README.md",
-  "language_code": "th"
-}
--->
 # MCP stdio Server Solutions
 
 > **⚠️ สำคัญ**: โซลูชันเหล่านี้ได้รับการอัปเดตเพื่อใช้ **stdio transport** ตามคำแนะนำใน MCP Specification 2025-06-18 โดยการส่งข้อมูลแบบ SSE (Server-Sent Events) เดิมนั้นถูกยกเลิกการใช้งานแล้ว

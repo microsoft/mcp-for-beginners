@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7b4d8d17fc1f501468cce40c3651aed1",
-  "translation_date": "2025-07-16T21:37:07+00:00",
-  "source_file": "05-AdvancedTopics/mcp-scaling/README.md",
-  "language_code": "ja"
-}
--->
 # スケーラビリティと高性能MCP
 
 エンタープライズ展開では、MCPの実装が大量のリクエストを低遅延で処理する必要があります。

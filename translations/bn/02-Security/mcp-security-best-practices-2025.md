@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e30aaf6b178137fa6668efc1b20851d5",
-  "translation_date": "2025-12-19T10:17:02+00:00",
-  "source_file": "02-Security/mcp-security-best-practices-2025.md",
-  "language_code": "bn"
-}
--->
 # MCP সিকিউরিটি সেরা অনুশীলন - ডিসেম্বর ২০২৫ আপডেট
 
 > **গুরুত্বপূর্ণ**: এই ডকুমেন্টটি সর্বশেষ [MCP স্পেসিফিকেশন ২০২৫-১১-২৫](https://spec.modelcontextprotocol.io/specification/2025-11-25/) সিকিউরিটি প্রয়োজনীয়তা এবং অফিসিয়াল [MCP সিকিউরিটি সেরা অনুশীলন](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) প্রতিফলিত করে। সর্বদা সর্বশেষ নির্দেশনার জন্য বর্তমান স্পেসিফিকেশনটি দেখুন।

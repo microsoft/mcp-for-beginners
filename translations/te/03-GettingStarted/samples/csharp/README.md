@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "882aae00f1d3f007e20d03b883f44afa",
-  "translation_date": "2025-12-11T12:49:01+00:00",
-  "source_file": "03-GettingStarted/samples/csharp/README.md",
-  "language_code": "te"
-}
--->
 # ప్రాథమిక క్యాల్క్యులేటర్ MCP సర్వీస్
 
 ఈ సర్వీస్ మోడల్ కాంటెక్స్ట్ ప్రోటోకాల్ (MCP) ద్వారా ప్రాథమిక క్యాల్క్యులేటర్ ఆపరేషన్లను అందిస్తుంది. ఇది MCP అమలుల గురించి నేర్చుకుంటున్న ప్రారంభకులకు ఒక సాదారణ ఉదాహరణగా రూపొందించబడింది.

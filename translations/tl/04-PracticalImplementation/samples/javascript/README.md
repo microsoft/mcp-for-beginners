@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8f12fc94cee9ed16a5eddf9f51fba755",
-  "translation_date": "2025-07-13T23:28:40+00:00",
-  "source_file": "04-PracticalImplementation/samples/javascript/README.md",
-  "language_code": "tl"
-}
--->
 # Sample
 
 Ito ay isang halimbawa ng JavaScript para sa isang MCP Server

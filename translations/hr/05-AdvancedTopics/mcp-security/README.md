@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "997c7119766a69552e23d7d681316902",
-  "translation_date": "2025-08-19T17:47:23+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security/README.md",
-  "language_code": "hr"
-}
--->
 # MCP Sigurnosne Najbolje Prakse - Napredni Vodič za Implementaciju
 
 > **Trenutni Standard**: Ovaj vodič odražava sigurnosne zahtjeve [MCP Specifikacije 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) i službene [MCP Sigurnosne Najbolje Prakse](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices).

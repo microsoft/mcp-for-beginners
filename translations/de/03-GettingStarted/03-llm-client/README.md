@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "75638575f993c152965ae2271c4da938",
-  "translation_date": "2025-12-19T07:51:53+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/README.md",
-  "language_code": "de"
-}
--->
 # Erstellen eines Clients mit LLM
 
 Bisher haben Sie gesehen, wie man einen Server und einen Client erstellt. Der Client konnte den Server explizit aufrufen, um seine Werkzeuge, Ressourcen und Eingabeaufforderungen aufzulisten. Das ist jedoch kein sehr praktischer Ansatz. Ihr Benutzer lebt im agentischen Zeitalter und erwartet, Eingabeaufforderungen zu verwenden und mit einem LLM zu kommunizieren, um dies zu tun. Für Ihren Benutzer ist es egal, ob Sie MCP verwenden, um Ihre Fähigkeiten zu speichern, aber sie erwarten, natürliche Sprache zur Interaktion zu verwenden. Wie lösen wir das? Die Lösung besteht darin, dem Client ein LLM hinzuzufügen.

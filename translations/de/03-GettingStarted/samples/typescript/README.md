@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "d1fd6d5079bee9fe4f6ed9cfd8031d98",
-  "translation_date": "2025-07-13T22:39:59+00:00",
-  "source_file": "03-GettingStarted/samples/typescript/README.md",
-  "language_code": "de"
-}
--->
 # Beispiel
 
 Dies ist ein Typescript-Beispiel für einen MCP-Server

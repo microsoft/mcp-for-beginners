@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f84eaea79c8fa9ab318a494f40891814",
-  "translation_date": "2025-08-18T16:49:24+00:00",
-  "source_file": "05-AdvancedTopics/mcp-integration/README.md",
-  "language_code": "he"
-}
--->
 # אינטגרציה ארגונית
 
 כאשר בונים שרתי MCP בהקשר ארגוני, לעיתים קרובות יש צורך להשתלב עם פלטפורמות ושירותי AI קיימים. חלק זה עוסק באיך לשלב את MCP עם מערכות ארגוניות כמו Azure OpenAI ו-Microsoft AI Foundry, כדי לאפשר יכולות AI מתקדמות ותזמור כלים.

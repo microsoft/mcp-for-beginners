@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "94c80ae71fb9971e9b57b51ab0912121",
-  "translation_date": "2025-08-18T18:04:02+00:00",
-  "source_file": "03-GettingStarted/02-client/README.md",
-  "language_code": "ms"
-}
--->
 # Membuat Klien
 
 Klien adalah aplikasi atau skrip khusus yang berkomunikasi secara langsung dengan MCP Server untuk meminta sumber, alat, dan arahan. Tidak seperti menggunakan alat pemeriksa yang menyediakan antara muka grafik untuk berinteraksi dengan server, menulis klien sendiri membolehkan interaksi secara programatik dan automatik. Ini membolehkan pembangun mengintegrasikan keupayaan MCP ke dalam aliran kerja mereka sendiri, mengautomasi tugas, dan membina penyelesaian khusus yang disesuaikan dengan keperluan tertentu.

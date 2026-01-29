@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "997c7119766a69552e23d7d681316902",
-  "translation_date": "2025-08-18T13:13:37+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security/README.md",
-  "language_code": "ru"
-}
--->
 # MCP Руководство по лучшим практикам безопасности - Расширенное руководство по внедрению
 
 > **Текущий стандарт**: Это руководство соответствует требованиям безопасности [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) и официальным [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices).

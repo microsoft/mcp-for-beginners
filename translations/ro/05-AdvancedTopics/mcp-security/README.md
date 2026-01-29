@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "997c7119766a69552e23d7d681316902",
-  "translation_date": "2025-08-19T16:26:01+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security/README.md",
-  "language_code": "ro"
-}
--->
 # Cele Mai Bune Practici de Securitate MCP - Ghid de Implementare Avansată
 
 > **Standard Curent**: Acest ghid reflectă cerințele de securitate din [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) și [Cele Mai Bune Practici de Securitate MCP](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices).

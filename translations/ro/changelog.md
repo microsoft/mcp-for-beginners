@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e8bbc7982284fe177dd4be5e7f2b3357",
-  "translation_date": "2025-12-19T15:54:03+00:00",
-  "source_file": "changelog.md",
-  "language_code": "ro"
-}
--->
 # Changelog: Curriculum MCP pentru Începători
 
 Acest document servește ca un registru al tuturor modificărilor semnificative aduse curriculumului Model Context Protocol (MCP) pentru Începători. Modificările sunt documentate în ordine cronologică inversă (cele mai noi modificări primele).

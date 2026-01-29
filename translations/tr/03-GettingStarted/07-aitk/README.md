@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "98bcd044860716da5819e31c152813b7",
-  "translation_date": "2025-08-18T18:00:38+00:00",
-  "source_file": "03-GettingStarted/07-aitk/README.md",
-  "language_code": "tr"
-}
--->
 # Visual Studio Code için AI Toolkit uzantısından bir sunucu tüketmek
 
 Bir AI ajanı oluştururken, sadece akıllı yanıtlar üretmek değil, aynı zamanda ajanın harekete geçebilme yeteneğini kazandırmak da önemlidir. İşte burada Model Context Protocol (MCP) devreye giriyor. MCP, ajanların harici araçlara ve hizmetlere tutarlı bir şekilde erişmesini kolaylaştırır. Bunu, ajanın gerçekten kullanabileceği bir alet çantasına bağlanması gibi düşünebilirsiniz.

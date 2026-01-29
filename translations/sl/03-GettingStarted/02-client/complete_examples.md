@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8358c13b5b6877e475674697cdc1a904",
-  "translation_date": "2025-08-19T18:24:42+00:00",
-  "source_file": "03-GettingStarted/02-client/complete_examples.md",
-  "language_code": "sl"
-}
--->
 # Popolni primeri MCP odjemalcev
 
 Ta mapa vsebuje popolne, delujoče primere MCP odjemalcev v različnih programskih jezikih. Vsak odjemalec prikazuje celotno funkcionalnost, opisano v glavnem vodiču README.md.

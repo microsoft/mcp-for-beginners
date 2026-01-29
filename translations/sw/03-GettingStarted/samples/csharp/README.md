@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "882aae00f1d3f007e20d03b883f44afa",
-  "translation_date": "2025-07-13T22:18:15+00:00",
-  "source_file": "03-GettingStarted/samples/csharp/README.md",
-  "language_code": "sw"
-}
--->
 # Huduma ya Calculator Msingi MCP
 
 Huduma hii hutoa shughuli za msingi za calculator kupitia Model Context Protocol (MCP). Imetengenezwa kama mfano rahisi kwa wanaoanza kujifunza kuhusu utekelezaji wa MCP.

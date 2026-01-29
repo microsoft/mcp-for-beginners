@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2228721599c0c8673de83496b4d7d7a9",
-  "translation_date": "2025-10-11T12:34:54+00:00",
-  "source_file": "09-CaseStudy/apimsample.md",
-  "language_code": "ta"
-}
--->
 # வழக்குக் கதை: API மேலாண்மையில் REST API-ஐ MCP சர்வராக வெளிப்படுத்துதல்
 
 Azure API Management என்பது உங்கள் API முடிவுகளுக்கு மேல் ஒரு Gateway வழங்கும் சேவையாகும். இது செயல்படுவது எப்படி என்றால், Azure API Management உங்கள் API-களுக்கு முன் ஒரு proxy போல செயல்பட்டு, வரும் கோரிக்கைகளுடன் என்ன செய்ய வேண்டும் என்பதை முடிவு செய்யும்.

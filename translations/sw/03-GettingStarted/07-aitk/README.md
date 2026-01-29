@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "98bcd044860716da5819e31c152813b7",
-  "translation_date": "2025-08-19T14:41:44+00:00",
-  "source_file": "03-GettingStarted/07-aitk/README.md",
-  "language_code": "sw"
-}
--->
 # Kutumia seva kutoka kwa kiendelezi cha AI Toolkit katika Visual Studio Code
 
 Unapojenga wakala wa AI, si tu kuhusu kutoa majibu ya busara; ni pia kuhusu kumpa wakala wako uwezo wa kuchukua hatua. Hapo ndipo Model Context Protocol (MCP) inapoingia. MCP hufanya iwe rahisi kwa mawakala kufikia zana na huduma za nje kwa njia thabiti. Fikiria kama kuunganisha wakala wako kwenye kisanduku cha zana ambacho kinaweza *kweli* kutumia.

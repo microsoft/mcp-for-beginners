@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1b6c746d9e190deba4d8765267ffb94e",
-  "translation_date": "2025-07-17T02:01:05+00:00",
-  "source_file": "02-Security/azure-content-safety-implementation.md",
-  "language_code": "ne"
-}
--->
 # MCP सँग Azure Content Safety लागू गर्ने
 
 प्रम्प्ट इन्जेक्शन, टूल पोइजनिङ, र अन्य AI-विशिष्ट जोखिमहरूबाट MCP सुरक्षा बलियो बनाउन Azure Content Safety समावेश गर्न अत्यन्त सिफारिस गरिन्छ।

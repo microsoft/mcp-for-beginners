@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5b00b8a8971a07d2d8803be4c9f138f8",
-  "translation_date": "2025-10-07T00:48:02+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/README.md",
-  "language_code": "pl"
-}
--->
 # Prosta autoryzacja
 
 SDK MCP obsługują użycie OAuth 2.1, który, szczerze mówiąc, jest dość skomplikowanym procesem obejmującym takie pojęcia jak serwer autoryzacji, serwer zasobów, przesyłanie danych uwierzytelniających, uzyskiwanie kodu, wymiana kodu na token dostępu, aż w końcu można uzyskać dane zasobów. Jeśli nie jesteś zaznajomiony z OAuth, który jest świetnym rozwiązaniem do wdrożenia, warto zacząć od podstawowego poziomu autoryzacji i stopniowo przechodzić do coraz lepszego zabezpieczenia. Dlatego właśnie powstał ten rozdział – aby pomóc Ci przejść do bardziej zaawansowanej autoryzacji.

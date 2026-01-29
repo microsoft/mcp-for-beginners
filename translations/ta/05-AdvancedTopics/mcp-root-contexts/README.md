@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ebdb86db46113f1cbd59ce4c74caaa79",
-  "translation_date": "2025-10-11T12:29:47+00:00",
-  "source_file": "05-AdvancedTopics/mcp-root-contexts/README.md",
-  "language_code": "ta"
-}
--->
 # MCP Root Contexts
 
 Root contexts என்பது மாடல் கான்டெக்ஸ்ட் புரோட்டோகோலில் அடிப்படை கருத்தாகும், இது பல கோரிக்கைகள் மற்றும் அமர்வுகளுக்கு இடையில் உரையாடல் வரலாறு மற்றும் பகிரப்பட்ட நிலையை பராமரிக்க ஒரு நிலையான அடுக்கு வழங்குகிறது.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "77735b446eb79b1bba9c849865cd0ced",
-  "translation_date": "2025-08-28T22:25:18+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/README.md",
-  "language_code": "th"
-}
--->
 # MCP Server ด้วย stdio Transport
 
 > **⚠️ การอัปเดตสำคัญ**: ตั้งแต่ MCP Specification วันที่ 2025-06-18 การใช้งาน SSE (Server-Sent Events) แบบเดี่ยวได้ถูก **ยกเลิก** และแทนที่ด้วย "Streamable HTTP" transport สเปค MCP ปัจจุบันกำหนดวิธีการส่งข้อมูลหลักสองแบบ:

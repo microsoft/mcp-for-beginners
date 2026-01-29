@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1b000fd6e1b04c047578bfc5d07d54eb",
-  "translation_date": "2025-08-18T16:57:01+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md",
-  "language_code": "pa"
-}
--->
 # AI ਵਰਕਫਲੋਜ਼ ਨੂੰ ਸਧਾਰਨਾ: AI ਟੂਲਕਿਟ ਨਾਲ MCP ਸਰਵਰ ਬਣਾਉਣਾ
 
 ## 🎯 ਜਾਇਜ਼ਾ

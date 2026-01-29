@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0bc7bd48f55f1565f1d95ccb2c16f728",
-  "translation_date": "2025-07-13T23:06:28+00:00",
-  "source_file": "04-PracticalImplementation/samples/csharp/README.md",
-  "language_code": "it"
-}
--->
 # Esempio
 
 L'esempio precedente mostra come utilizzare un progetto .NET locale con il tipo `stdio` e come eseguire il server localmente in un container. Questa è una buona soluzione in molte situazioni. Tuttavia, può essere utile avere il server in esecuzione da remoto, ad esempio in un ambiente cloud. Qui entra in gioco il tipo `http`.

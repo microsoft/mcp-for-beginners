@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "af27b0acfae6caa134d9701453884df8",
-  "translation_date": "2025-10-06T23:45:29+00:00",
-  "source_file": "study_guide.md",
-  "language_code": "sw"
-}
--->
 # Mwongozo wa Kujifunza - Itifaki ya Muktadha wa Mfano (MCP) kwa Anayeanza
 
 Mwongozo huu wa kujifunza unatoa muhtasari wa muundo wa hifadhi na maudhui ya mtaala wa "Itifaki ya Muktadha wa Mfano (MCP) kwa Anayeanza". Tumia mwongozo huu kuvinjari hifadhi kwa ufanisi na kufaidika zaidi na rasilimali zilizopo.

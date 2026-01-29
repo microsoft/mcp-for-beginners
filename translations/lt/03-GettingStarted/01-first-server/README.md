@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8fdac7600a5f4722643d0f14e15ac259",
-  "translation_date": "2025-12-11T08:45:58+00:00",
-  "source_file": "03-GettingStarted/01-first-server/README.md",
-  "language_code": "lt"
-}
--->
 # Pradžia su MCP
 
 Sveiki atvykę į pirmuosius Model Context Protocol (MCP) žingsnius! Nesvarbu, ar esate naujokas MCP, ar norite gilinti savo supratimą, ši vadovas padės jums pereiti per esminį nustatymą ir kūrimo procesą. Sužinosite, kaip MCP leidžia sklandžiai integruoti AI modelius ir programas, ir kaip greitai paruošti savo aplinką MCP pagrįstų sprendimų kūrimui ir testavimui.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1d9dc83260576b76f272d330ed93c51f",
-  "translation_date": "2025-11-18T19:21:39+00:00",
-  "source_file": "03-GettingStarted/09-deployment/README.md",
-  "language_code": "pcm"
-}
--->
 # How to Deploy MCP Servers
 
 When you deploy MCP server, e go allow other people fit use di tools and resources wey dey inside am, no be only for your local environment. You get different ways wey you fit take deploy am, depending on wetin you need for scalability, reliability, and how easy e go be to manage am. For here, you go see guide on how to deploy MCP servers for local, inside containers, and for cloud.

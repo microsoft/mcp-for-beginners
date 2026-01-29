@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9351493ad29390d37f64bc6d84a03db5",
-  "translation_date": "2025-12-19T12:21:06+00:00",
-  "source_file": "02-Security/mcp-security-controls-2025.md",
-  "language_code": "el"
-}
--->
 # Έλεγχοι Ασφαλείας MCP - Ενημέρωση Δεκεμβρίου 2025
 
 > **Τρέχον Πρότυπο**: Αυτό το έγγραφο αντικατοπτρίζει τις απαιτήσεις ασφαλείας της [Προδιαγραφής MCP 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) και τις επίσημες [Καλύτερες Πρακτικές Ασφαλείας MCP](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).

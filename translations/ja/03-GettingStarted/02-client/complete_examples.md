@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8358c13b5b6877e475674697cdc1a904",
-  "translation_date": "2025-08-11T10:31:19+00:00",
-  "source_file": "03-GettingStarted/02-client/complete_examples.md",
-  "language_code": "ja"
-}
--->
 # 完全なMCPクライアント例
 
 このディレクトリには、さまざまなプログラミング言語で記述された完全で動作するMCPクライアントの例が含まれています。各クライアントは、メインのREADME.mdチュートリアルで説明されているすべての機能を示しています。

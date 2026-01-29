@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "94c80ae71fb9971e9b57b51ab0912121",
-  "translation_date": "2025-08-18T17:37:20+00:00",
-  "source_file": "03-GettingStarted/02-client/README.md",
-  "language_code": "it"
-}
--->
 # Creazione di un client
 
 I client sono applicazioni o script personalizzati che comunicano direttamente con un MCP Server per richiedere risorse, strumenti e prompt. A differenza dell'utilizzo dello strumento di ispezione, che fornisce un'interfaccia grafica per interagire con il server, scrivere il proprio client consente interazioni programmatiche e automatizzate. Questo permette agli sviluppatori di integrare le funzionalità MCP nei propri flussi di lavoro, automatizzare attività e creare soluzioni personalizzate su misura per esigenze specifiche.

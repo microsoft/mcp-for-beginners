@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9678e0c6945b8e0c23586869b0e26783",
-  "translation_date": "2025-10-06T10:48:12+00:00",
-  "source_file": "00-Introduction/README.md",
-  "language_code": "fr"
-}
--->
 # Introduction au protocole de contexte de modèle (MCP) : Pourquoi il est essentiel pour des applications IA évolutives
 
 [![Introduction au protocole de contexte de modèle](../../../translated_images/fr/01.a467036d886b5fb5.webp)](https://youtu.be/agBbdiOPLQA)

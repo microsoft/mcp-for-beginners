@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7074b9f4c8cd147c1c10f569d8508c82",
-  "translation_date": "2025-07-13T18:35:27+00:00",
-  "source_file": "03-GettingStarted/02-client/solution/java/README.md",
-  "language_code": "fi"
-}
--->
 # MCP Java Client - Laskin Demo
 
 Tämä projekti näyttää, miten luodaan Java-asiakas, joka yhdistää MCP (Model Context Protocol) -palvelimeen ja kommunikoi sen kanssa. Tässä esimerkissä yhdistämme luvun 01 laskinpalvelimeen ja suoritetaan erilaisia matemaattisia operaatioita.

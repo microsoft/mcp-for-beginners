@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f400d87053221363769113c24f117248",
-  "translation_date": "2025-11-18T18:54:49+00:00",
-  "source_file": "03-GettingStarted/README.md",
-  "language_code": "pcm"
-}
--->
 ## How to Start  
 
 [![Build Your First MCP Server](../../../translated_images/pcm/04.0ea920069efd979a.webp)](https://youtu.be/sNDZO9N4m9Y)

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5b00b8a8971a07d2d8803be4c9f138f8",
-  "translation_date": "2025-10-07T00:58:47+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/README.md",
-  "language_code": "tl"
-}
--->
 # Simpleng Pagpapatunay
 
 Ang MCP SDKs ay sumusuporta sa paggamit ng OAuth 2.1 na, sa totoo lang, ay isang medyo komplikadong proseso na kinabibilangan ng mga konsepto tulad ng auth server, resource server, pag-post ng mga kredensyal, pagkuha ng code, pagpapalit ng code para sa bearer token hanggang sa makuha mo na ang iyong resource data. Kung hindi ka sanay sa OAuth, na isang mahusay na bagay na ipatupad, magandang ideya na magsimula sa mas simpleng antas ng pagpapatunay at unti-unting magtungo sa mas mahusay na seguridad. Kaya't umiiral ang kabanatang ito, upang tulungan kang maabot ang mas advanced na pagpapatunay.

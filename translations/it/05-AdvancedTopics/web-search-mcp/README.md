@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "151265c9a2124d7c53e04d16ee3fb73b",
-  "translation_date": "2025-07-17T01:16:52+00:00",
-  "source_file": "05-AdvancedTopics/web-search-mcp/README.md",
-  "language_code": "it"
-}
--->
 # Lezione: Costruire un Server MCP per la Ricerca Web
 
 Questo capitolo mostra come costruire un agente AI reale che si integra con API esterne, gestisce diversi tipi di dati, gestisce errori e coordina più strumenti—tutto in un formato pronto per la produzione. Vedrai:

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5b00b8a8971a07d2d8803be4c9f138f8",
-  "translation_date": "2025-10-07T00:56:45+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/README.md",
-  "language_code": "vi"
-}
--->
 # Xác thực đơn giản
 
 Các SDK của MCP hỗ trợ sử dụng OAuth 2.1, một quy trình khá phức tạp liên quan đến các khái niệm như máy chủ xác thực, máy chủ tài nguyên, gửi thông tin đăng nhập, nhận mã, đổi mã lấy mã thông báo bearer cho đến khi bạn có thể truy cập dữ liệu tài nguyên của mình. Nếu bạn chưa quen với OAuth, một công nghệ tuyệt vời để triển khai, thì việc bắt đầu với một mức độ xác thực cơ bản và dần nâng cao bảo mật là một ý tưởng hay. Đó là lý do chương này tồn tại, để giúp bạn tiến tới các phương pháp xác thực nâng cao hơn.

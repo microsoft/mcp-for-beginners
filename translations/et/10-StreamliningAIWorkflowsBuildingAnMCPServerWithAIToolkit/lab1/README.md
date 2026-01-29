@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2aa9dbc165e104764fa57e8a0d3f1c73",
-  "translation_date": "2025-10-11T11:28:19+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab1/README.md",
-  "language_code": "et"
-}
--->
 # 🚀 Moodul 1: AI Toolkit'i põhialused
 
 [![Kestus](https://img.shields.io/badge/Duration-15%20minutes-blue.svg)]()

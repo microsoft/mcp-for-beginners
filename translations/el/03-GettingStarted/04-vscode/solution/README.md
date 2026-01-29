@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-07-13T19:42:45+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "el"
-}
--->
 Αυτό αντιστοιχεί στην εκτέλεση μιας εντολής όπως: `node build/index.js`.
 
 - Αλλάξτε αυτή την καταχώρηση server ώστε να ταιριάζει με το πού βρίσκεται το αρχείο του server σας ή με ό,τι απαιτείται για την εκκίνηση του server σας, ανάλογα με το runtime και τη θέση του server που έχετε επιλέξει.

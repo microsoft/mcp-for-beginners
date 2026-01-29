@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8358c13b5b6877e475674697cdc1a904",
-  "translation_date": "2025-08-18T16:19:45+00:00",
-  "source_file": "03-GettingStarted/02-client/complete_examples.md",
-  "language_code": "fi"
-}
--->
 # Täydelliset MCP-asiakasohjelman esimerkit
 
 Tämä hakemisto sisältää täydellisiä, toimivia esimerkkejä MCP-asiakasohjelmista eri ohjelmointikielillä. Jokainen asiakasohjelma esittelee kaikki pääasiallisessa README.md-oppaassa kuvatut toiminnot.

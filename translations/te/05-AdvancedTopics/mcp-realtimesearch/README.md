@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "333a03e51f90bdf3e6f1ba1694c73f36",
-  "translation_date": "2025-12-11T16:04:22+00:00",
-  "source_file": "05-AdvancedTopics/mcp-realtimesearch/README.md",
-  "language_code": "te"
-}
--->
 # రియల్-టైమ్ వెబ్ సెర్చ్ కోసం మోడల్ కాంటెక్స్ట్ ప్రోటోకాల్
 
 ## అవలోకనం

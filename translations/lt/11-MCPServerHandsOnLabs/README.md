@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "83d32e5c5dd838d4b87a730cab88db77",
-  "translation_date": "2025-09-30T23:00:18+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/README.md",
-  "language_code": "lt"
-}
--->
 # 🚀 MCP serveris su PostgreSQL - Išsamus mokymosi vadovas
 
 ## 🧠 MCP duomenų bazės integracijos mokymosi kelio apžvalga

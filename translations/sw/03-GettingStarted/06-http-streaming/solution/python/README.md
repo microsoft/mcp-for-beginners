@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
-  "translation_date": "2025-08-19T14:43:59+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
-  "language_code": "sw"
-}
--->
 # Kuendesha Sampuli Hii
 
 Hapa kuna jinsi ya kuendesha seva na mteja wa kawaida wa HTTP streaming, pamoja na seva na mteja wa MCP streaming kwa kutumia Python.

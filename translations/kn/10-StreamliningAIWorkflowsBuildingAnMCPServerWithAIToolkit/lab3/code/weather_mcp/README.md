@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "999c5e7623c1e2d5e5a07c2feb39eb67",
-  "translation_date": "2025-12-11T17:04:02+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/README.md",
-  "language_code": "kn"
-}
--->
 # ಹವಾಮಾನ MCP ಸರ್ವರ್
 
 ಇದು ಹವಾಮಾನ ಸಾಧನಗಳನ್ನು ನಕಲಿ ಪ್ರತಿಕ್ರಿಯೆಗಳೊಂದಿಗೆ ಅನುಷ್ಠಾನಗೊಳಿಸುವ ಪೈಥಾನ್‌ನಲ್ಲಿ ಒಂದು ಮಾದರಿ MCP ಸರ್ವರ್ ಆಗಿದೆ. ನಿಮ್ಮ ಸ್ವಂತ MCP ಸರ್ವರ್‌ಗೆ ಇದು ಒಂದು ತಳಹದಿಯಾಗಿ ಬಳಸಬಹುದು. ಇದರಲ್ಲಿ ಕೆಳಗಿನ ವೈಶಿಷ್ಟ್ಯಗಳು ಸೇರಿವೆ:

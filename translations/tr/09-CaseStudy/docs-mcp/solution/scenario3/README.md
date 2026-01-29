@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "db532b1ec386c9ce38c791653dc3c881",
-  "translation_date": "2025-07-14T06:51:24+00:00",
-  "source_file": "09-CaseStudy/docs-mcp/solution/scenario3/README.md",
-  "language_code": "tr"
-}
--->
 # Senaryo 3: VS Code'da MCP Sunucusu ile Editör İçi Dokümantasyon
 
 ## Genel Bakış

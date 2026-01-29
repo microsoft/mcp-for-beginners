@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9351493ad29390d37f64bc6d84a03db5",
-  "translation_date": "2025-12-19T19:20:57+00:00",
-  "source_file": "02-Security/mcp-security-controls-2025.md",
-  "language_code": "ml"
-}
--->
 # MCP സുരക്ഷാ നിയന്ത്രണങ്ങൾ - ഡിസംബർ 2025 അപ്ഡേറ്റ്
 
 > **നിലവിലെ സ്റ്റാൻഡേർഡ്**: ഈ ഡോക്യുമെന്റ് [MCP സ്പെസിഫിക്കേഷൻ 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) സുരക്ഷാ ആവശ്യകതകളും ഔദ്യോഗിക [MCP സുരക്ഷാ മികച്ച പ്രാക്ടീസുകളും](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) പ്രതിഫലിപ്പിക്കുന്നു.

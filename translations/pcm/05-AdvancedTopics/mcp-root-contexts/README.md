@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ebdb86db46113f1cbd59ce4c74caaa79",
-  "translation_date": "2025-11-18T19:38:37+00:00",
-  "source_file": "05-AdvancedTopics/mcp-root-contexts/README.md",
-  "language_code": "pcm"
-}
--->
 # MCP Root Contexts
 
 Root contexts na one important idea for Model Context Protocol wey dey provide one layer wey go dey permanent to keep conversation history and shared state for plenty requests and sessions.

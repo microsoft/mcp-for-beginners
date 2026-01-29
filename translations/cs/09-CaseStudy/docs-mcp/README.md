@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4319d291c9d124ecafea52b3d04bfa0e",
-  "translation_date": "2025-07-14T06:28:42+00:00",
-  "source_file": "09-CaseStudy/docs-mcp/README.md",
-  "language_code": "cs"
-}
--->
 # Případová studie: Připojení ke Microsoft Learn Docs MCP serveru z klienta
 
 Stalo se vám někdy, že jste přeskakovali mezi dokumentačními stránkami, Stack Overflow a nekonečnými záložkami ve vyhledávači, zatímco jste se snažili vyřešit problém ve svém kódu? Možná máte druhý monitor jen na dokumentaci, nebo neustále přepínáte mezi IDE a prohlížečem pomocí Alt+Tab. Nebylo by lepší mít dokumentaci přímo ve svém pracovním toku – integrovanou do vašich aplikací, IDE nebo dokonce vlastních nástrojů? V této případové studii si ukážeme, jak přesně to udělat připojením přímo k Microsoft Learn Docs MCP serveru z vaší vlastní klientské aplikace.

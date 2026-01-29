@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2228721599c0c8673de83496b4d7d7a9",
-  "translation_date": "2025-08-18T16:43:34+00:00",
-  "source_file": "09-CaseStudy/apimsample.md",
-  "language_code": "he"
-}
--->
 # חקר מקרה: חשיפת REST API ב-API Management כשרת MCP
 
 Azure API Management הוא שירות שמספק שער (Gateway) מעל נקודות הקצה של ה-API שלך. השירות פועל כפרוקסי מול ה-APIs שלך ויכול להחליט מה לעשות עם בקשות נכנסות.

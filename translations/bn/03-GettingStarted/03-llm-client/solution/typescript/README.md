@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6d6315e03f591fb5a39be91da88585dc",
-  "translation_date": "2025-07-13T19:19:13+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/typescript/README.md",
-  "language_code": "bn"
-}
--->
 # এই স্যাম্পল চালানো
 
 এই স্যাম্পলে ক্লায়েন্টে একটি LLM থাকা প্রয়োজন। LLM এর জন্য আপনাকে এটি Codespaces-এ চালাতে হবে অথবা GitHub-এ একটি personal access token সেটআপ করতে হবে।

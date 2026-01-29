@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "acd4010e430da00946a154f62847a169",
-  "translation_date": "2025-07-13T21:14:00+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/java/README.md",
-  "language_code": "sw"
-}
--->
 # Calculator HTTP Streaming Demo
 
 Mradi huu unaonyesha utiririshaji wa HTTP kwa kutumia Server-Sent Events (SSE) kwa Spring Boot WebFlux. Unajumuisha programu mbili:

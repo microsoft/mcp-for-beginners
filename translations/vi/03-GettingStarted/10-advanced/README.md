@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1de8367745088b9fcd4746ea4cc5a161",
-  "translation_date": "2025-10-06T15:52:02+00:00",
-  "source_file": "03-GettingStarted/10-advanced/README.md",
-  "language_code": "vi"
-}
--->
 # Sử dụng máy chủ nâng cao
 
 Có hai loại máy chủ khác nhau được cung cấp trong MCP SDK: máy chủ thông thường và máy chủ cấp thấp. Thông thường, bạn sẽ sử dụng máy chủ thông thường để thêm các tính năng vào nó. Tuy nhiên, trong một số trường hợp, bạn có thể muốn dựa vào máy chủ cấp thấp, chẳng hạn như:

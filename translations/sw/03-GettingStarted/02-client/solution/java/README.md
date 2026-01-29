@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7074b9f4c8cd147c1c10f569d8508c82",
-  "translation_date": "2025-07-13T18:36:44+00:00",
-  "source_file": "03-GettingStarted/02-client/solution/java/README.md",
-  "language_code": "sw"
-}
--->
 # MCP Java Client - Demo ya Calculator
 
 Mradi huu unaonyesha jinsi ya kuunda mteja wa Java unaounganisha na kuingiliana na seva ya MCP (Model Context Protocol). Katika mfano huu, tutajiunga na seva ya calculator kutoka Sura ya 01 na kufanya shughuli mbalimbali za hisabati.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e5ea5e7582f70008ea9bec3b3820f20a",
-  "translation_date": "2025-07-13T23:19:05+00:00",
-  "source_file": "04-PracticalImplementation/samples/java/containerapp/README.md",
-  "language_code": "sw"
-}
--->
 ## Muundo wa Mfumo
 
 Mradi huu unaonyesha programu ya wavuti inayotumia ukaguzi wa usalama wa maudhui kabla ya kupitisha maelekezo ya mtumiaji kwa huduma ya kalkuleta kupitia Model Context Protocol (MCP).

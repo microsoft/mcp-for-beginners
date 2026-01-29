@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f84eaea79c8fa9ab318a494f40891814",
-  "translation_date": "2025-08-19T16:26:33+00:00",
-  "source_file": "05-AdvancedTopics/mcp-integration/README.md",
-  "language_code": "ro"
-}
--->
 # Integrarea în mediul enterprise
 
 Când construiești servere MCP într-un context enterprise, este adesea necesar să integrezi cu platforme și servicii AI existente. Această secțiune acoperă modul de integrare a MCP cu sisteme enterprise precum Azure OpenAI și Microsoft AI Foundry, permițând capabilități avansate de AI și orchestrare a instrumentelor.

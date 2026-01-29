@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ebdb86db46113f1cbd59ce4c74caaa79",
-  "translation_date": "2025-07-17T05:59:00+00:00",
-  "source_file": "05-AdvancedTopics/mcp-root-contexts/README.md",
-  "language_code": "th"
-}
--->
 # MCP Root Contexts
 
 Root contexts เป็นแนวคิดพื้นฐานใน Model Context Protocol ที่ให้ชั้นข้อมูลถาวรสำหรับเก็บประวัติการสนทนาและสถานะที่ใช้ร่วมกันระหว่างคำขอและเซสชันหลายๆ ครั้ง

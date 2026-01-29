@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "151265c9a2124d7c53e04d16ee3fb73b",
-  "translation_date": "2025-07-17T08:05:53+00:00",
-  "source_file": "05-AdvancedTopics/web-search-mcp/README.md",
-  "language_code": "ms"
-}
--->
 # Pelajaran: Membangun Pelayan MCP Carian Web
 
 Bab ini menunjukkan cara membina agen AI dunia sebenar yang berintegrasi dengan API luaran, mengendalikan pelbagai jenis data, menguruskan ralat, dan mengatur pelbagai alat—semuanya dalam format sedia produksi. Anda akan melihat:

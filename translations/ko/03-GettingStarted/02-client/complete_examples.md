@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8358c13b5b6877e475674697cdc1a904",
-  "translation_date": "2025-08-11T10:42:01+00:00",
-  "source_file": "03-GettingStarted/02-client/complete_examples.md",
-  "language_code": "ko"
-}
--->
 # 완전한 MCP 클라이언트 예제
 
 이 디렉토리에는 다양한 프로그래밍 언어로 작성된 MCP 클라이언트의 완전하고 작동 가능한 예제가 포함되어 있습니다. 각 클라이언트는 메인 README.md 튜토리얼에서 설명된 모든 기능을 보여줍니다.

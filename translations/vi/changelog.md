@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e8bbc7982284fe177dd4be5e7f2b3357",
-  "translation_date": "2025-12-19T14:03:31+00:00",
-  "source_file": "changelog.md",
-  "language_code": "vi"
-}
--->
 # Changelog: MCP cho Khóa học Người mới bắt đầu
 
 Tài liệu này ghi lại tất cả các thay đổi quan trọng được thực hiện đối với chương trình giảng dạy Model Context Protocol (MCP) cho Người mới bắt đầu. Các thay đổi được ghi lại theo thứ tự thời gian ngược (thay đổi mới nhất trước).

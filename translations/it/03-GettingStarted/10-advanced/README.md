@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1de8367745088b9fcd4746ea4cc5a161",
-  "translation_date": "2025-10-06T15:46:55+00:00",
-  "source_file": "03-GettingStarted/10-advanced/README.md",
-  "language_code": "it"
-}
--->
 # Utilizzo avanzato del server
 
 Ci sono due tipi di server esposti nell'MCP SDK: il server normale e il server di basso livello. Normalmente, si utilizza il server regolare per aggiungere funzionalità. Tuttavia, in alcuni casi, è preferibile affidarsi al server di basso livello, ad esempio:

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "706b9b075dc484b73a053e6e9c709b4b",
-  "translation_date": "2025-07-13T23:31:03+00:00",
-  "source_file": "04-PracticalImplementation/samples/python/README.md",
-  "language_code": "ja"
-}
--->
 # Model Context Protocol (MCP) Python 実装
 
 このリポジトリには、Model Context Protocol (MCP) のPython実装が含まれており、MCP標準を使って通信するサーバーとクライアントアプリケーションの作成方法を示しています。

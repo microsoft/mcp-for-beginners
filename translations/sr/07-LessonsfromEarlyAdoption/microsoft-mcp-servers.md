@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "c8f283730b5421082ddd26cc85c07831",
-  "translation_date": "2025-07-18T12:09:55+00:00",
-  "source_file": "07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md",
-  "language_code": "sr"
-}
--->
 # 🚀 10 Microsoft MCP сервера који трансформишу продуктивност програмера
 
 ## 🎯 Шта ћете научити у овом водичу

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "cf3e88e4c0b2d9d65c7f300986bd8c6c",
-  "translation_date": "2025-12-19T12:07:03+00:00",
-  "source_file": "05-AdvancedTopics/mcp-transport/README.md",
-  "language_code": "tr"
-}
--->
 # MCP Özel Taşıyıcılar - İleri Düzey Uygulama Kılavuzu
 
 Model Context Protocol (MCP), özel kurumsal ortamlar için özel uygulamalara izin vererek taşıma mekanizmalarında esneklik sağlar. Bu ileri düzey kılavuz, ölçeklenebilir, bulut yerel MCP çözümleri oluşturmak için pratik örnekler olarak Azure Event Grid ve Azure Event Hubs kullanarak özel taşıyıcı uygulamalarını inceler.

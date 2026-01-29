@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0bc7bd48f55f1565f1d95ccb2c16f728",
-  "translation_date": "2025-07-13T23:10:26+00:00",
-  "source_file": "04-PracticalImplementation/samples/csharp/README.md",
-  "language_code": "sl"
-}
--->
 # Primer
 
 Prejšnji primer prikazuje, kako uporabiti lokalni .NET projekt s tipom `stdio`. In kako zagnati strežnik lokalno v vsebniku. To je dobra rešitev v mnogih primerih. Vendar pa je lahko koristno, da strežnik teče na daljavo, na primer v oblaku. Tu pride v poštev tip `http`.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9d799c4a30a8383e0a74af9153262972",
-  "translation_date": "2025-08-26T20:05:26+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/typescript/README.md",
-  "language_code": "ru"
-}
--->
 # MCP stdio Server - Решение на TypeScript
 
 > **⚠️ Важно**: Это решение было обновлено для использования транспорта **stdio**, как рекомендовано в спецификации MCP от 2025-06-18. Оригинальный транспорт SSE был устаревшим.

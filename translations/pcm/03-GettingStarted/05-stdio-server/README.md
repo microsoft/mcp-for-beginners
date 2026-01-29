@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "77735b446eb79b1bba9c849865cd0ced",
-  "translation_date": "2025-11-18T19:06:05+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/README.md",
-  "language_code": "pcm"
-}
--->
 # MCP Server wit stdio Transport
 
 > **⚠️ Important Update**: As of MCP Specification 2025-06-18, di standalone SSE (Server-Sent Events) transport don **deprecated** and dem don replace am wit "Streamable HTTP" transport. Di current MCP specification dey define two main transport mechanisms:

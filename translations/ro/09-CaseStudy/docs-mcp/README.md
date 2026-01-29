@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4319d291c9d124ecafea52b3d04bfa0e",
-  "translation_date": "2025-07-14T06:29:22+00:00",
-  "source_file": "09-CaseStudy/docs-mcp/README.md",
-  "language_code": "ro"
-}
--->
 # Studiu de caz: Conectarea la serverul Microsoft Learn Docs MCP de pe un client
 
 Ți s-a întâmplat vreodată să jonglezi între site-uri de documentație, Stack Overflow și zeci de taburi de browser, în timp ce încerci să rezolvi o problemă în codul tău? Poate ai un al doilea monitor doar pentru documentație sau faci constant alt-tab între IDE și browser. Nu ar fi mai bine dacă ai putea aduce documentația direct în fluxul tău de lucru—integrată în aplicațiile tale, în IDE sau chiar în propriile tale unelte personalizate? În acest studiu de caz, vom explora cum să faci exact asta, conectându-te direct la serverul Microsoft Learn Docs MCP din propria aplicație client.

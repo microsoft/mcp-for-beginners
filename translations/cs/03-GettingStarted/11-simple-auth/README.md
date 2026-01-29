@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5b00b8a8971a07d2d8803be4c9f138f8",
-  "translation_date": "2025-10-07T01:02:00+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/README.md",
-  "language_code": "cs"
-}
--->
 # Jednoduché ověřování
 
 MCP SDK podporují použití OAuth 2.1, což je poměrně složitý proces zahrnující koncepty jako ověřovací server, server zdrojů, odesílání přihlašovacích údajů, získání kódu, výměnu kódu za přístupový token, až nakonec získáte data svého zdroje. Pokud nejste zvyklí na OAuth, což je skvělý mechanismus k implementaci, je dobré začít s nějakou základní úrovní ověřování a postupně přejít k lepšímu zabezpečení. Proto tato kapitola existuje – aby vás připravila na pokročilejší ověřování.

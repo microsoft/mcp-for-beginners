@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5f1383103523fa822e1fec7ef81904d5",
-  "translation_date": "2025-08-18T14:58:16+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/README.md",
-  "language_code": "sv"
-}
--->
 # HTTPS-strömning med Model Context Protocol (MCP)
 
 Detta kapitel ger en omfattande guide till att implementera säker, skalbar och realtidsströmning med Model Context Protocol (MCP) via HTTPS. Det täcker motivationen för strömning, tillgängliga transportmekanismer, hur man implementerar strömningsbar HTTP i MCP, säkerhetsbästa praxis, migrering från SSE och praktiska råd för att bygga egna MCP-strömningsapplikationer.

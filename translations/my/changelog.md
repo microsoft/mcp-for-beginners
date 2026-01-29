@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e8bbc7982284fe177dd4be5e7f2b3357",
-  "translation_date": "2025-12-19T17:13:50+00:00",
-  "source_file": "changelog.md",
-  "language_code": "my"
-}
--->
 # ပြောင်းလဲမှုမှတ်တမ်း: MCP for Beginners သင်ရိုးညွှန်းတမ်း
 
 ဤစာတမ်းသည် Model Context Protocol (MCP) for Beginners သင်ရိုးညွှန်းတမ်းတွင် ပြုလုပ်ထားသော အရေးကြီးပြောင်းလဲမှုများအားလုံးကို မှတ်တမ်းတင်ထားခြင်းဖြစ်သည်။ ပြောင်းလဲမှုများကို နောက်ဆုံးပြောင်းလဲမှုမှ စ၍ အချိန်အလိုက် လျှောက်ထားထားသည်။

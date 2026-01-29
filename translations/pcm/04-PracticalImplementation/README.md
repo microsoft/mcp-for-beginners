@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "83efa75a69bc831277263a6f1ae53669",
-  "translation_date": "2025-11-18T20:01:31+00:00",
-  "source_file": "04-PracticalImplementation/README.md",
-  "language_code": "pcm"
-}
--->
 # Practical Implementation
 
 [![How to Build, Test, and Deploy MCP Apps with Real Tools and Workflows](../../../translated_images/pcm/05.64bea204e25ca891.webp)](https://youtu.be/vCN9-mKBDfQ)

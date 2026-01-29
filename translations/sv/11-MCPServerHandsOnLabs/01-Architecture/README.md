@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "d72a1d9e9ad1a7cc8d40d05d546b5ca0",
-  "translation_date": "2025-09-30T18:11:55+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/01-Architecture/README.md",
-  "language_code": "sv"
-}
--->
 # Kärnkoncept för Arkitektur
 
 ## 🎯 Vad Denna Labb Täcker

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7b4d8d17fc1f501468cce40c3651aed1",
-  "translation_date": "2025-07-17T00:11:49+00:00",
-  "source_file": "05-AdvancedTopics/mcp-scaling/README.md",
-  "language_code": "bn"
-}
--->
 # Scalability and High-Performance MCP
 
 এন্টারপ্রাইজ ডিপ্লয়মেন্টের জন্য, MCP ইমপ্লিমেন্টেশনগুলো প্রায়ই উচ্চ পরিমাণের রিকোয়েস্ট কম লেটেন্সিতে হ্যান্ডেল করতে হয়।

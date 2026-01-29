@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0bc7bd48f55f1565f1d95ccb2c16f728",
-  "translation_date": "2025-07-13T23:08:49+00:00",
-  "source_file": "04-PracticalImplementation/samples/csharp/README.md",
-  "language_code": "tl"
-}
--->
 # Sample
 
 Ipinapakita ng naunang halimbawa kung paano gamitin ang lokal na .NET project gamit ang `stdio` na uri. At kung paano patakbuhin ang server nang lokal sa isang container. Ito ay magandang solusyon sa maraming sitwasyon. Gayunpaman, maaaring maging kapaki-pakinabang na patakbuhin ang server nang remote, tulad sa isang cloud environment. Dito pumapasok ang `http` na uri.

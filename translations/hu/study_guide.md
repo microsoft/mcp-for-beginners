@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "af27b0acfae6caa134d9701453884df8",
-  "translation_date": "2025-10-06T23:49:51+00:00",
-  "source_file": "study_guide.md",
-  "language_code": "hu"
-}
--->
 # Model Context Protocol (MCP) kezdőknek - Tanulmányi útmutató
 
 Ez a tanulmányi útmutató áttekintést nyújt a "Model Context Protocol (MCP) kezdőknek" tananyaghoz tartozó adattár felépítéséről és tartalmáról. Használja ezt az útmutatót az adattár hatékony navigálásához és az elérhető források maximális kihasználásához.

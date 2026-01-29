@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f84eaea79c8fa9ab318a494f40891814",
-  "translation_date": "2025-08-19T16:56:14+00:00",
-  "source_file": "05-AdvancedTopics/mcp-integration/README.md",
-  "language_code": "bg"
-}
--->
 # Интеграция в предприятието
 
 При изграждането на MCP сървъри в контекста на предприятие често се налага интеграция със съществуващи AI платформи и услуги. Тази секция обхваща как да интегрирате MCP със системи като Azure OpenAI и Microsoft AI Foundry, за да активирате разширени AI възможности и оркестрация на инструменти.

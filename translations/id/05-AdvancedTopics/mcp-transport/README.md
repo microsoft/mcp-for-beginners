@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "cf3e88e4c0b2d9d65c7f300986bd8c6c",
-  "translation_date": "2025-12-19T14:26:48+00:00",
-  "source_file": "05-AdvancedTopics/mcp-transport/README.md",
-  "language_code": "id"
-}
--->
 # MCP Custom Transports - Panduan Implementasi Lanjutan
 
 Model Context Protocol (MCP) menyediakan fleksibilitas dalam mekanisme transportasi, memungkinkan implementasi kustom untuk lingkungan perusahaan yang khusus. Panduan lanjutan ini mengeksplorasi implementasi transportasi kustom menggunakan Azure Event Grid dan Azure Event Hubs sebagai contoh praktis untuk membangun solusi MCP yang skalabel dan cloud-native.

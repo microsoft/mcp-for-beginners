@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9a6a4d3497921d2f6d9699f0a6a1890c",
-  "translation_date": "2025-09-09T22:03:29+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/README.md",
-  "language_code": "vi"
-}
--->
 # Máy chủ MCP Thời tiết
 
 Đây là một máy chủ MCP mẫu viết bằng Python, triển khai các công cụ thời tiết với phản hồi giả lập. Nó có thể được sử dụng làm khung mẫu cho máy chủ MCP của bạn. Các tính năng bao gồm:

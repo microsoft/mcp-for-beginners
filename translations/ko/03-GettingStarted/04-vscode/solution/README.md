@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-07-13T19:40:31+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "ko"
-}
--->
 이는 `node build/index.js`와 같은 명령어를 실행하는 것과 같습니다.
 
 - 서버 항목을 서버 파일이 위치한 경로나 선택한 런타임과 서버 위치에 따라 서버를 시작하는 데 필요한 전체 명령어로 변경하세요.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1de8367745088b9fcd4746ea4cc5a161",
-  "translation_date": "2025-10-06T15:42:59+00:00",
-  "source_file": "03-GettingStarted/10-advanced/README.md",
-  "language_code": "ko"
-}
--->
 # 고급 서버 사용법
 
 MCP SDK에는 일반 서버와 저수준 서버라는 두 가지 유형의 서버가 있습니다. 일반적으로는 일반 서버를 사용하여 기능을 추가합니다. 하지만 특정 경우에는 저수준 서버를 사용하는 것이 필요할 때가 있습니다. 예를 들어:

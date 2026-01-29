@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1b6c746d9e190deba4d8765267ffb94e",
-  "translation_date": "2025-07-17T02:01:39+00:00",
-  "source_file": "02-Security/azure-content-safety-implementation.md",
-  "language_code": "tr"
-}
--->
 # MCP ile Azure İçerik Güvenliğinin Uygulanması
 
 MCP güvenliğini prompt enjeksiyonu, araç zehirlenmesi ve diğer yapay zeka odaklı zafiyetlere karşı güçlendirmek için Azure İçerik Güvenliği entegrasyonu şiddetle tavsiye edilir.

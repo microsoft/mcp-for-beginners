@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1611dc5f6a2a35a789fc4c95fc5bfbe8",
-  "translation_date": "2025-09-26T19:00:15+00:00",
-  "source_file": "09-CaseStudy/README.md",
-  "language_code": "cs"
-}
--->
 # MCP v akci: Případové studie z reálného světa
 
 [![MCP v akci: Případové studie z reálného světa](../../../translated_images/cs/10.3262cc80b4de5071fde8ba74c5c5d6738a0a9f398dcc0423f0210f632e2238b8.png)](https://youtu.be/IxshWb2Az5w)

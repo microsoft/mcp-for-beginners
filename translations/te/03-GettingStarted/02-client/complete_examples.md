@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8358c13b5b6877e475674697cdc1a904",
-  "translation_date": "2025-12-11T12:37:27+00:00",
-  "source_file": "03-GettingStarted/02-client/complete_examples.md",
-  "language_code": "te"
-}
--->
 # పూర్తి MCP క్లయింట్ ఉదాహరణలు
 
 ఈ డైరెక్టరీలో వివిధ ప్రోగ్రామింగ్ భాషలలో పూర్తి, పనిచేసే MCP క్లయింట్ల ఉదాహరణలు ఉన్నాయి. ప్రతి క్లయింట్ ప్రధాన README.md ట్యుటోరియల్‌లో వివరించిన పూర్తి ఫంక్షనాలిటీని ప్రదర్శిస్తుంది.

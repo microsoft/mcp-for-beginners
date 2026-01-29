@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5b00b8a8971a07d2d8803be4c9f138f8",
-  "translation_date": "2025-10-07T00:59:24+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/README.md",
-  "language_code": "sw"
-}
--->
 # Uthibitisho Rahisi
 
 SDK za MCP zinaunga mkono matumizi ya OAuth 2.1, ambayo kwa kweli ni mchakato wa kina unaohusisha dhana kama seva ya uthibitisho, seva ya rasilimali, kutuma hati za kuingia, kupata msimbo, kubadilisha msimbo kwa tokeni ya kubeba hadi hatimaye uweze kupata data ya rasilimali yako. Ikiwa hujazoea OAuth, ambayo ni jambo zuri kutekeleza, ni wazo zuri kuanza na kiwango cha msingi cha uthibitisho na kujenga usalama bora na bora zaidi. Ndiyo sababu sura hii ipo, ili kukusaidia kuelekea uthibitisho wa hali ya juu zaidi.

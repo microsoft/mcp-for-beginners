@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9351493ad29390d37f64bc6d84a03db5",
-  "translation_date": "2025-12-19T15:33:24+00:00",
-  "source_file": "02-Security/mcp-security-controls-2025.md",
-  "language_code": "cs"
-}
--->
 # MCP Bezpečnostní Kontroly - Aktualizace prosinec 2025
 
 > **Aktuální standard**: Tento dokument odráží bezpečnostní požadavky [MCP specifikace 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) a oficiální [MCP bezpečnostní osvědčené postupy](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).

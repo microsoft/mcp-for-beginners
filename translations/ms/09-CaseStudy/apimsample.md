@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2228721599c0c8673de83496b4d7d7a9",
-  "translation_date": "2025-08-18T17:50:03+00:00",
-  "source_file": "09-CaseStudy/apimsample.md",
-  "language_code": "ms"
-}
--->
 # Kajian Kes: Dedahkan REST API dalam API Management sebagai pelayan MCP
 
 Azure API Management adalah perkhidmatan yang menyediakan Gateway di atas Endpoint API anda. Cara ia berfungsi adalah Azure API Management bertindak seperti proksi di hadapan API anda dan boleh menentukan apa yang perlu dilakukan dengan permintaan masuk.

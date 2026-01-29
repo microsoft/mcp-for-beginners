@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "d4c162484df410632550a4a357d40341",
-  "translation_date": "2025-10-11T11:44:42+00:00",
-  "source_file": "03-GettingStarted/01-first-server/solution/python/README.md",
-  "language_code": "ta"
-}
--->
 # இந்த மாதிரியை இயக்குவது
 
 `uv` நிறுவ பரிந்துரைக்கப்படுகிறது, ஆனால் இது கட்டாயம் அல்ல, [வழிமுறைகளை](https://docs.astral.sh/uv/#highlights) பார்க்கவும்.

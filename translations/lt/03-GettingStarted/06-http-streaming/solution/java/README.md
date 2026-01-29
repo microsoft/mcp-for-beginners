@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "acd4010e430da00946a154f62847a169",
-  "translation_date": "2025-08-26T20:41:31+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/java/README.md",
-  "language_code": "lt"
-}
--->
 # Skaičiuotuvo HTTP srautinio perdavimo demonstracija
 
 Šis projektas demonstruoja HTTP srautinį perdavimą naudojant Server-Sent Events (SSE) su Spring Boot WebFlux. Jį sudaro dvi programos:

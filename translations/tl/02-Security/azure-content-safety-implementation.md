@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1b6c746d9e190deba4d8765267ffb94e",
-  "translation_date": "2025-07-17T08:58:44+00:00",
-  "source_file": "02-Security/azure-content-safety-implementation.md",
-  "language_code": "tl"
-}
--->
 # Pagpapatupad ng Azure Content Safety sa MCP
 
 Upang palakasin ang seguridad ng MCP laban sa prompt injection, tool poisoning, at iba pang mga partikular na kahinaan ng AI, lubos na inirerekomenda ang pagsasama ng Azure Content Safety.

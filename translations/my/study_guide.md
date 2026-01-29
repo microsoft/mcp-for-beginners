@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "af27b0acfae6caa134d9701453884df8",
-  "translation_date": "2025-10-07T00:19:41+00:00",
-  "source_file": "study_guide.md",
-  "language_code": "my"
-}
--->
 # Model Context Protocol (MCP) အတွက် အခြေခံလမ်းညွှန် - သင်ကြားရေးလမ်းညွှန်
 
 ဒီသင်ကြားရေးလမ်းညွှန်မှာ "Model Context Protocol (MCP) for Beginners" သင်ခန်းစာအတွက် repository ရဲ့ ဖွဲ့စည်းပုံနဲ့ အကြောင်းအရာကို အကျဉ်းချုပ်ဖော်ပြထားပါတယ်။ Repository ကို ထိရောက်စွာ အသုံးချနိုင်ဖို့ ဒီလမ်းညွှန်ကို အသုံးပြုပါ။

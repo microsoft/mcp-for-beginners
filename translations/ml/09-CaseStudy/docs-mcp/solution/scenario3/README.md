@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "db532b1ec386c9ce38c791653dc3c881",
-  "translation_date": "2025-12-11T13:47:29+00:00",
-  "source_file": "09-CaseStudy/docs-mcp/solution/scenario3/README.md",
-  "language_code": "ml"
-}
--->
 # സീനാരിയോ 3: VS കോഡിൽ MCP സെർവറോടൊപ്പം ഇൻ-എഡിറ്റർ ഡോക്സ്
 
 ## അവലോകനം

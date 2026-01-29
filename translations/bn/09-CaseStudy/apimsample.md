@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2228721599c0c8673de83496b4d7d7a9",
-  "translation_date": "2025-08-18T14:50:45+00:00",
-  "source_file": "09-CaseStudy/apimsample.md",
-  "language_code": "bn"
-}
--->
 # কেস স্টাডি: API Management-এ REST API-কে MCP সার্ভার হিসেবে উন্মুক্ত করা
 
 Azure API Management একটি সেবা যা আপনার API এন্ডপয়েন্টগুলোর উপরে একটি গেটওয়ে প্রদান করে। এটি কাজ করে এভাবে যে Azure API Management আপনার API-গুলোর সামনে একটি প্রক্সি হিসেবে কাজ করে এবং আগত অনুরোধগুলোর সাথে কী করা হবে তা নির্ধারণ করে।

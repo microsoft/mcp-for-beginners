@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "151265c9a2124d7c53e04d16ee3fb73b",
-  "translation_date": "2025-07-17T07:10:55+00:00",
-  "source_file": "05-AdvancedTopics/web-search-mcp/README.md",
-  "language_code": "nl"
-}
--->
 # Les: Een Web Search MCP Server Bouwen
 
 Dit hoofdstuk laat zien hoe je een realistische AI-agent bouwt die integreert met externe API's, verschillende datatypes verwerkt, fouten afhandelt en meerdere tools orkestreert—alles in een productieklare opzet. Je leert:

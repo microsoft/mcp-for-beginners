@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ed9cab32cc67c12d8969b407aa47100a",
-  "translation_date": "2025-07-13T17:53:41+00:00",
-  "source_file": "03-GettingStarted/01-first-server/solution/java/README.md",
-  "language_code": "pa"
-}
--->
 # ਬੇਸਿਕ ਕੈਲਕੁਲੇਟਰ MCP ਸਰਵਿਸ
 
 ਇਹ ਸਰਵਿਸ ਮਾਡਲ ਕਾਂਟੈਕਸਟ ਪ੍ਰੋਟੋਕੋਲ (MCP) ਰਾਹੀਂ ਬੇਸਿਕ ਕੈਲਕੁਲੇਟਰ ਓਪਰੇਸ਼ਨਾਂ ਨੂੰ ਸਪ੍ਰਿੰਗ ਬੂਟ ਅਤੇ WebFlux ਟ੍ਰਾਂਸਪੋਰਟ ਦੀ ਵਰਤੋਂ ਨਾਲ ਪ੍ਰਦਾਨ ਕਰਦੀ ਹੈ। ਇਹ MCP ਇੰਪਲੀਮੈਂਟੇਸ਼ਨਾਂ ਬਾਰੇ ਸਿੱਖ ਰਹੇ ਸ਼ੁਰੂਆਤੀ ਲੋਕਾਂ ਲਈ ਇੱਕ ਸਧਾਰਣ ਉਦਾਹਰਨ ਵਜੋਂ ਤਿਆਰ ਕੀਤੀ ਗਈ ਹੈ।

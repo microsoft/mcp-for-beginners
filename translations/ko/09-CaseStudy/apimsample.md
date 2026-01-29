@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2228721599c0c8673de83496b4d7d7a9",
-  "translation_date": "2025-08-12T07:49:09+00:00",
-  "source_file": "09-CaseStudy/apimsample.md",
-  "language_code": "ko"
-}
--->
 # 사례 연구: API Management에서 REST API를 MCP 서버로 노출하기
 
 Azure API Management는 API 엔드포인트 위에 게이트웨이를 제공하는 서비스입니다. 작동 방식은 Azure API Management가 API 앞에서 프록시 역할을 하며 들어오는 요청에 대해 무엇을 할지 결정하는 것입니다.

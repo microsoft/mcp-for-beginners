@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "69372338676e01a2c97f42f70fdfbf42",
-  "translation_date": "2025-08-26T20:18:35+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/dotnet/README.md",
-  "language_code": "ko"
-}
--->
 # MCP stdio 서버 - .NET 솔루션
 
 > **⚠️ 중요**: 이 솔루션은 MCP 사양 2025-06-18에서 권장하는 **stdio 전송**을 사용하도록 업데이트되었습니다. 기존 SSE 전송은 더 이상 사용되지 않습니다.

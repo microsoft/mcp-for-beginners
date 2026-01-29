@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5f1383103523fa822e1fec7ef81904d5",
-  "translation_date": "2025-08-18T17:43:11+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/README.md",
-  "language_code": "id"
-}
--->
 # Streaming HTTPS dengan Model Context Protocol (MCP)
 
 Bab ini memberikan panduan lengkap untuk mengimplementasikan streaming yang aman, skalabel, dan real-time menggunakan Model Context Protocol (MCP) melalui HTTPS. Topik yang dibahas meliputi motivasi untuk streaming, mekanisme transport yang tersedia, cara mengimplementasikan HTTP yang dapat di-stream di MCP, praktik keamanan terbaik, migrasi dari SSE, serta panduan praktis untuk membangun aplikasi MCP streaming Anda sendiri.

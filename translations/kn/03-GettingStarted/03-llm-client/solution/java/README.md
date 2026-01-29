@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ac2459c0d5cc823922e3d9240a95028c",
-  "translation_date": "2025-12-11T13:00:41+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/java/README.md",
-  "language_code": "kn"
-}
--->
 # ಕ್ಯಾಲ್ಕುಲೇಟರ್ LLM ಕ್ಲೈಂಟ್
 
 GitHub ಮಾದರಿಗಳ ಏಕೀಕರಣದೊಂದಿಗೆ MCP (ಮಾದರಿ ಸಂದರ್ಭ ಪ್ರೋಟೋಕಾಲ್) ಕ್ಯಾಲ್ಕುಲೇಟರ್ ಸೇವೆಗೆ ಸಂಪರ್ಕಿಸಲು LangChain4j ಅನ್ನು ಹೇಗೆ ಬಳಸುವುದು ಎಂಬುದನ್ನು ತೋರಿಸುವ ಜಾವಾ ಅಪ್ಲಿಕೇಶನ್.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
-  "translation_date": "2025-12-11T13:25:36+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
-  "language_code": "ml"
-}
--->
 # ഈ സാമ്പിൾ പ്രവർത്തിപ്പിക്കൽ
 
 ക്ലാസിക് HTTP സ്ട്രീമിംഗ് സെർവർ, ക്ലയന്റ്, കൂടാതെ MCP സ്ട്രീമിംഗ് സെർവർ, ക്ലയന്റ് Python ഉപയോഗിച്ച് എങ്ങനെ പ്രവർത്തിപ്പിക്കാമെന്ന് ഇവിടെ കാണിക്കുന്നു.

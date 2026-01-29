@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6d6315e03f591fb5a39be91da88585dc",
-  "translation_date": "2025-07-13T19:19:27+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/typescript/README.md",
-  "language_code": "pa"
-}
--->
 # ਇਸ ਸੈਂਪਲ ਨੂੰ ਚਲਾਉਣਾ
 
 ਇਸ ਸੈਂਪਲ ਵਿੱਚ ਕਲਾਇੰਟ 'ਤੇ ਇੱਕ LLM ਹੋਣਾ ਸ਼ਾਮਲ ਹੈ। LLM ਨੂੰ ਚਾਹੀਦਾ ਹੈ ਕਿ ਤੁਸੀਂ ਇਸਨੂੰ Codespaces ਵਿੱਚ ਚਲਾਓ ਜਾਂ GitHub ਵਿੱਚ ਇੱਕ personal access token ਸੈੱਟ ਕਰੋ ਤਾਂ ਜੋ ਇਹ ਕੰਮ ਕਰ ਸਕੇ।

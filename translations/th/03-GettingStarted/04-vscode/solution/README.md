@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-07-13T19:42:58+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "th"
-}
--->
 ซึ่งสอดคล้องกับการรันคำสั่งแบบนี้: `node build/index.js`
 
 - เปลี่ยน entry ของเซิร์ฟเวอร์นี้ให้ตรงกับตำแหน่งไฟล์เซิร์ฟเวอร์ของคุณ หรือให้เหมาะสมกับคำสั่งที่ต้องใช้ในการเริ่มต้นเซิร์ฟเวอร์ ขึ้นอยู่กับ runtime และตำแหน่งเซิร์ฟเวอร์ที่คุณเลือก

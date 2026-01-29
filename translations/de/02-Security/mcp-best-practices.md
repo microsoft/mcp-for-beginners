@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5061d7e2ae9eea9cbaae77c1a020b318",
-  "translation_date": "2025-12-19T07:48:39+00:00",
-  "source_file": "02-Security/mcp-best-practices.md",
-  "language_code": "de"
-}
--->
 # MCP Sicherheits-Best Practices 2025
 
 Dieser umfassende Leitfaden beschreibt wesentliche Sicherheits-Best Practices für die Implementierung von Model Context Protocol (MCP)-Systemen basierend auf der neuesten **MCP-Spezifikation 2025-11-25** und aktuellen Industriestandards. Diese Praktiken adressieren sowohl traditionelle Sicherheitsaspekte als auch KI-spezifische Bedrohungen, die bei MCP-Einsätzen einzigartig sind.

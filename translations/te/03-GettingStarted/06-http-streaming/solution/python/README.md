@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
-  "translation_date": "2025-12-11T13:24:59+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
-  "language_code": "te"
-}
--->
 # ఈ నమూనాను నడపడం
 
 క్లాసిక్ HTTP స్ట్రీమింగ్ సర్వర్ మరియు క్లయింట్, అలాగే MCP స్ట్రీమింగ్ సర్వర్ మరియు క్లయింట్‌ను Python ఉపయోగించి ఎలా నడపాలో ఇక్కడ ఉంది.

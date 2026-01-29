@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "77735b446eb79b1bba9c849865cd0ced",
-  "translation_date": "2025-08-28T22:24:40+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/README.md",
-  "language_code": "el"
-}
--->
 # MCP Server με μεταφορά stdio
 
 > **⚠️ Σημαντική Ενημέρωση**: Από την MCP Προδιαγραφή 2025-06-18, η ανεξάρτητη μεταφορά SSE (Server-Sent Events) έχει **καταργηθεί** και αντικατασταθεί από τη μεταφορά "Streamable HTTP". Η τρέχουσα προδιαγραφή MCP ορίζει δύο κύριους μηχανισμούς μεταφοράς:

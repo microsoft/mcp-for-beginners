@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f84eaea79c8fa9ab318a494f40891814",
-  "translation_date": "2025-08-18T14:06:41+00:00",
-  "source_file": "05-AdvancedTopics/mcp-integration/README.md",
-  "language_code": "ur"
-}
--->
 # انٹرپرائز انٹیگریشن
 
 جب آپ انٹرپرائز کے سیاق و سباق میں MCP سرورز بنا رہے ہوں، تو اکثر آپ کو موجودہ AI پلیٹ فارمز اور سروسز کے ساتھ انٹیگریٹ کرنے کی ضرورت ہوتی ہے۔ اس سیکشن میں یہ بتایا گیا ہے کہ MCP کو انٹرپرائز سسٹمز جیسے Azure OpenAI اور Microsoft AI Foundry کے ساتھ کیسے انٹیگریٹ کیا جائے، تاکہ جدید AI صلاحیتوں اور ٹول آرکیسٹریشن کو فعال کیا جا سکے۔

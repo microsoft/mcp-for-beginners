@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "fd169ca3071b81b5ee282e194bc823df",
-  "translation_date": "2025-12-11T15:44:13+00:00",
-  "source_file": "05-AdvancedTopics/mcp-contextengineering/README.md",
-  "language_code": "ml"
-}
--->
 # Context Engineering: MCP ഇക്കോസിസ്റ്റത്തിൽ ഒരു ഉദയാസന്നമായ ആശയം
 
 ## അവലോകനം

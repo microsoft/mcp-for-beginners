@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0bc7bd48f55f1565f1d95ccb2c16f728",
-  "translation_date": "2025-07-13T23:08:20+00:00",
-  "source_file": "04-PracticalImplementation/samples/csharp/README.md",
-  "language_code": "vi"
-}
--->
 # Mẫu
 
 Ví dụ trước cho thấy cách sử dụng một dự án .NET cục bộ với loại `stdio`. Và cách chạy server cục bộ trong một container. Đây là một giải pháp tốt trong nhiều tình huống. Tuy nhiên, việc có server chạy từ xa, như trong môi trường đám mây, cũng rất hữu ích. Đây là lúc loại `http` phát huy tác dụng.

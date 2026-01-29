@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1de8367745088b9fcd4746ea4cc5a161",
-  "translation_date": "2025-10-06T15:59:02+00:00",
-  "source_file": "03-GettingStarted/10-advanced/README.md",
-  "language_code": "lt"
-}
--->
 # Išplėstinis serverio naudojimas
 
 MCP SDK pateikia du skirtingus serverių tipus: įprastą serverį ir žemo lygio serverį. Paprastai naudojate įprastą serverį, kad pridėtumėte funkcijų. Tačiau kai kuriais atvejais verta pasikliauti žemo lygio serveriu, pavyzdžiui:

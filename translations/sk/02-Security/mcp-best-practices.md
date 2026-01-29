@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5061d7e2ae9eea9cbaae77c1a020b318",
-  "translation_date": "2025-12-19T15:44:58+00:00",
-  "source_file": "02-Security/mcp-best-practices.md",
-  "language_code": "sk"
-}
--->
 # MCP Bezpečnostné Najlepšie Praktiky 2025
 
 Tento komplexný sprievodca načrtáva základné bezpečnostné najlepšie praktiky pre implementáciu systémov Model Context Protocol (MCP) založených na najnovšej **MCP Špecifikácii 2025-11-25** a aktuálnych priemyselných štandardoch. Tieto praktiky riešia tradičné bezpečnostné obavy aj špecifické hrozby AI jedinečné pre nasadenia MCP.

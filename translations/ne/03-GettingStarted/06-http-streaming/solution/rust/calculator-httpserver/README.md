@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6240e78bb87f91bece16f8742472aeef",
-  "translation_date": "2025-08-18T18:09:28+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/rust/calculator-httpserver/README.md",
-  "language_code": "ne"
-}
--->
 # यो नमूना चलाउनुहोस्
 
 ## -1- निर्भरता स्थापना गर्नुहोस् र प्रोजेक्ट निर्माण गर्नुहोस्

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e378b47e0361b7a9b0dab7a0306878c8",
-  "translation_date": "2025-08-26T20:00:36+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/README.md",
-  "language_code": "bn"
-}
--->
 # MCP stdio সার্ভার সমাধানসমূহ
 
 > **⚠️ গুরুত্বপূর্ণ**: এই সমাধানগুলো **stdio transport** ব্যবহার করার জন্য আপডেট করা হয়েছে, যা MCP স্পেসিফিকেশন ২০২৫-০৬-১৮ অনুযায়ী সুপারিশকৃত। পূর্বের SSE (Server-Sent Events) transport এখন আর ব্যবহারযোগ্য নয়।

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "193889b580c86bbb1e4f577114a5ce4e",
-  "translation_date": "2025-10-11T12:21:23+00:00",
-  "source_file": "05-AdvancedTopics/mcp-sampling/README.md",
-  "language_code": "et"
-}
--->
 # Mudeli konteksti protokolli proovivõtmine
 
 Proovivõtmine on võimas MCP funktsioon, mis võimaldab serveritel taotleda LLM-i täiendusi kliendi kaudu, pakkudes keerukaid agentlikke käitumisi, säilitades samal ajal turvalisuse ja privaatsuse. Õige proovivõtmise konfiguratsioon võib märkimisväärselt parandada vastuste kvaliteeti ja jõudlust. MCP pakub standardiseeritud viisi, kuidas kontrollida mudelite tekstigeneratsiooni konkreetsete parameetritega, mis mõjutavad juhuslikkust, loovust ja sidusust.

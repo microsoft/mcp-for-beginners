@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e5ea5e7582f70008ea9bec3b3820f20a",
-  "translation_date": "2025-08-26T18:46:42+00:00",
-  "source_file": "04-PracticalImplementation/samples/java/containerapp/README.md",
-  "language_code": "lt"
-}
--->
 ## Sistemos architektūra
 
 Šis projektas demonstruoja internetinę programą, kuri tikrina turinio saugumą prieš perduodant vartotojo užklausas skaičiuoklės paslaugai per Model Context Protocol (MCP).

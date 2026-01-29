@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f400d87053221363769113c24f117248",
-  "translation_date": "2025-10-06T21:53:25+00:00",
-  "source_file": "03-GettingStarted/README.md",
-  "language_code": "fr"
-}
--->
 ## Premiers Pas  
 
 [![Créer votre premier serveur MCP](../../../translated_images/fr/04.0ea920069efd979a.webp)](https://youtu.be/sNDZO9N4m9Y)

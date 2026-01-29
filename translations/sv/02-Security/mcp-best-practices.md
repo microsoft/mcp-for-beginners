@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5061d7e2ae9eea9cbaae77c1a020b318",
-  "translation_date": "2025-12-19T12:46:39+00:00",
-  "source_file": "02-Security/mcp-best-practices.md",
-  "language_code": "sv"
-}
--->
 # MCP Säkerhetsbästa metoder 2025
 
 Denna omfattande guide beskriver viktiga säkerhetsbästa metoder för implementering av Model Context Protocol (MCP)-system baserat på den senaste **MCP-specifikationen 2025-11-25** och aktuella branschstandarder. Dessa metoder tar upp både traditionella säkerhetsfrågor och AI-specifika hot unika för MCP-distributioner.

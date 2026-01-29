@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8358c13b5b6877e475674697cdc1a904",
-  "translation_date": "2025-08-19T18:59:08+00:00",
-  "source_file": "03-GettingStarted/02-client/complete_examples.md",
-  "language_code": "my"
-}
--->
 # MCP Client အပြည့်အစုံ နမူနာများ
 
 ဒီဖိုင်တွင် မတူညီသော programming language များဖြင့် ရေးသားထားသော MCP client များ၏ အပြည့်အစုံ၊ အလုပ်လုပ်နေသော နမူနာများ ပါဝင်သည်။ Client တစ်ခုစီသည် အဓိက README.md သင်ခန်းစာတွင် ဖော်ပြထားသော လုပ်ဆောင်ချက်များအားလုံးကို ပြသထားသည်။

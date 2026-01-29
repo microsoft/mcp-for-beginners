@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ebdb86db46113f1cbd59ce4c74caaa79",
-  "translation_date": "2025-07-17T06:27:04+00:00",
-  "source_file": "05-AdvancedTopics/mcp-root-contexts/README.md",
-  "language_code": "da"
-}
--->
 # MCP Root Contexts
 
 Root contexts er et grundlæggende koncept i Model Context Protocol, som giver et vedvarende lag til at bevare samtalehistorik og delt tilstand på tværs af flere forespørgsler og sessioner.

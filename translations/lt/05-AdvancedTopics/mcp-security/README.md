@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "997c7119766a69552e23d7d681316902",
-  "translation_date": "2025-08-26T18:52:46+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security/README.md",
-  "language_code": "lt"
-}
--->
 # MCP saugumo geriausios praktikos – pažangus įgyvendinimo vadovas
 
 > **Dabartinis standartas**: Šis vadovas atspindi [MCP specifikacijos 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) saugumo reikalavimus ir oficialias [MCP saugumo geriausias praktikas](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices).

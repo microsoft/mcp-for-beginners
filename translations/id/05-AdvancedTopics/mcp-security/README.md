@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "997c7119766a69552e23d7d681316902",
-  "translation_date": "2025-08-18T17:33:58+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security/README.md",
-  "language_code": "id"
-}
--->
 # Panduan Implementasi Lanjutan - Praktik Keamanan MCP
 
 > **Standar Saat Ini**: Panduan ini mencerminkan persyaratan keamanan [Spesifikasi MCP 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) dan [Praktik Keamanan MCP](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) resmi.

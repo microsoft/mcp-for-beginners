@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "cf8b2ca0cea03c09428ae042938995c1",
-  "translation_date": "2025-09-30T22:04:27+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/12-Best-Practices/README.md",
-  "language_code": "sk"
-}
--->
 # Najlepšie praktiky a optimalizácia
 
 ## 🎯 Čo tento lab pokrýva

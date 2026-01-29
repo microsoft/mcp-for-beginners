@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "997c7119766a69552e23d7d681316902",
-  "translation_date": "2025-12-11T15:03:34+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security/README.md",
-  "language_code": "te"
-}
--->
 # MCP సెక్యూరిటీ ఉత్తమ పద్ధతులు - అధునాతన అమలు మార్గదర్శకం
 
 > **ప్రస్తుత ప్రమాణం**: ఈ మార్గదర్శకం [MCP స్పెసిఫికేషన్ 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) సెక్యూరిటీ అవసరాలు మరియు అధికారిక [MCP సెక్యూరిటీ ఉత్తమ పద్ధతులు](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) ను ప్రతిబింబిస్తుంది.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5b00b8a8971a07d2d8803be4c9f138f8",
-  "translation_date": "2025-10-11T11:54:13+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/README.md",
-  "language_code": "et"
-}
--->
 # Lihtne autentimine
 
 MCP SDK-d toetavad OAuth 2.1 kasutamist, mis on ausalt öeldes üsna keeruline protsess, hõlmates selliseid kontseptsioone nagu autentimisserver, ressursiserver, mandaadi edastamine, koodi hankimine, koodi vahetamine kandjatunnuse vastu, kuni lõpuks pääsete oma ressursiandmetele. Kui te pole OAuthiga harjunud, mis on suurepärane asi rakendamiseks, on hea alustada lihtsama autentimise tasemega ja liikuda järk-järgult parema ja turvalisema lahenduse poole. Sellepärast see peatükk eksisteeribki – et aidata teil liikuda keerukama autentimise suunas.

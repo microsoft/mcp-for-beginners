@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
-  "translation_date": "2025-10-17T20:07:31+00:00",
-  "source_file": "03-GettingStarted/samples/python/README.md",
-  "language_code": "bg"
-}
--->
 # MCP Calculator Server (Python)
 
 Прост имплементация на сървър за Model Context Protocol (MCP) на Python, който предоставя основна функционалност на калкулатор.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e1d142978227a4bfc468bb0accab62e2",
-  "translation_date": "2025-11-18T19:32:15+00:00",
-  "source_file": "05-AdvancedTopics/mcp-multi-modality/README.md",
-  "language_code": "pcm"
-}
--->
 # Multi-Modal Integration
 
 Multi-modal apps dey become more important for AI, e dey make interaction better and fit handle more complex tasks. The Model Context Protocol (MCP) na framework wey dey help build multi-modal apps wey fit work with different kain data like text, image, and audio.

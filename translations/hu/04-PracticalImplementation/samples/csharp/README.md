@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0bc7bd48f55f1565f1d95ccb2c16f728",
-  "translation_date": "2025-07-13T23:09:10+00:00",
-  "source_file": "04-PracticalImplementation/samples/csharp/README.md",
-  "language_code": "hu"
-}
--->
 # Minta
 
 Az előző példa bemutatja, hogyan használhatunk egy helyi .NET projektet a `stdio` típussal. És hogyan futtathatjuk a szervert helyben egy konténerben. Ez sok helyzetben jó megoldás. Ugyanakkor hasznos lehet, ha a szerver távolról, például egy felhő környezetben fut. Itt jön képbe a `http` típus.

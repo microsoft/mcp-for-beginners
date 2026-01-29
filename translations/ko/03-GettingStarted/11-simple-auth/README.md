@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5b00b8a8971a07d2d8803be4c9f138f8",
-  "translation_date": "2025-10-07T00:38:34+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/README.md",
-  "language_code": "ko"
-}
--->
 # 간단한 인증
 
 MCP SDK는 OAuth 2.1을 지원합니다. 하지만 OAuth는 인증 서버, 리소스 서버, 자격 증명 전송, 코드 획득, 코드와 베어러 토큰 교환 등 여러 개념을 포함하는 복잡한 과정입니다. OAuth를 처음 접하는 경우, 기본적인 인증부터 시작해 점차 더 나은 보안으로 발전시키는 것이 좋습니다. 이 장은 바로 그런 이유로 존재하며, 여러분을 더 고급 인증으로 안내하기 위한 것입니다.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7074b9f4c8cd147c1c10f569d8508c82",
-  "translation_date": "2025-07-13T18:32:11+00:00",
-  "source_file": "03-GettingStarted/02-client/solution/java/README.md",
-  "language_code": "ko"
-}
--->
 # MCP Java Client - 계산기 데모
 
 이 프로젝트는 MCP(Model Context Protocol) 서버에 연결하고 상호작용하는 Java 클라이언트를 만드는 방법을 보여줍니다. 이 예제에서는 1장에 나온 계산기 서버에 연결하여 다양한 수학 연산을 수행합니다.

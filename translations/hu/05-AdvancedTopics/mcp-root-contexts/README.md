@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ebdb86db46113f1cbd59ce4c74caaa79",
-  "translation_date": "2025-07-17T10:24:31+00:00",
-  "source_file": "05-AdvancedTopics/mcp-root-contexts/README.md",
-  "language_code": "hu"
-}
--->
 # MCP Root Contexts
 
 A root contextok alapvető fogalmak a Model Context Protocolban, amelyek egy állandó réteget biztosítanak a beszélgetési előzmények és a megosztott állapot több kérés és munkamenet során történő megőrzéséhez.

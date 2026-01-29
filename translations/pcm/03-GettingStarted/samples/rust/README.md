@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ffc7f32ed12664b640175f27f0a997a",
-  "translation_date": "2025-11-18T19:03:46+00:00",
-  "source_file": "03-GettingStarted/samples/rust/README.md",
-  "language_code": "pcm"
-}
--->
 # Sample
 
 Dis na Rust sample for MCP Server

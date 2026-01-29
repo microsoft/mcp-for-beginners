@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "c3c28b090a54f59374677200e23a809e",
-  "translation_date": "2025-10-11T11:52:08+00:00",
-  "source_file": "03-GettingStarted/10-advanced/code/python/README.md",
-  "language_code": "ta"
-}
--->
 # மாதிரி இயக்கவும்
 
 ## மெய்நிகர் சூழலை அமைக்கவும்

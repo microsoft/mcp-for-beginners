@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "af27b0acfae6caa134d9701453884df8",
-  "translation_date": "2025-10-11T11:20:35+00:00",
-  "source_file": "study_guide.md",
-  "language_code": "et"
-}
--->
 # Mudeli Konteksti Protokoll (MCP) algajatele - Õppematerjal
 
 See õppematerjal annab ülevaate "Mudeli Konteksti Protokoll (MCP) algajatele" õppekava hoidla struktuurist ja sisust. Kasutage seda juhendit, et hoidlas tõhusalt navigeerida ja saada maksimaalset kasu pakutavatest ressurssidest.

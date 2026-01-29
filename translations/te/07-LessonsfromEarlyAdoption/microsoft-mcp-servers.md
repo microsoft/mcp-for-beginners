@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "c8f283730b5421082ddd26cc85c07831",
-  "translation_date": "2025-12-11T10:02:18+00:00",
-  "source_file": "07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md",
-  "language_code": "te"
-}
--->
 # 🚀 10 Microsoft MCP సర్వర్లు డెవలపర్ ఉత్పాదకతను మార్చేస్తున్నాయి
 
 ## 🎯 ఈ గైడ్‌లో మీరు నేర్చుకునేది

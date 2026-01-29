@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "706b9b075dc484b73a053e6e9c709b4b",
-  "translation_date": "2025-07-13T23:34:56+00:00",
-  "source_file": "04-PracticalImplementation/samples/python/README.md",
-  "language_code": "ro"
-}
--->
 # Protocolul Model Context (MCP) Implementare Python
 
 Acest depozit conține o implementare Python a Protocolului Model Context (MCP), demonstrând cum să creezi atât o aplicație server, cât și una client care comunică folosind standardul MCP.

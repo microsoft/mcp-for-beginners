@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8fdac7600a5f4722643d0f14e15ac259",
-  "translation_date": "2025-12-11T04:33:03+00:00",
-  "source_file": "03-GettingStarted/01-first-server/README.md",
-  "language_code": "fr"
-}
--->
 # Prise en main avec MCP
 
 Bienvenue dans vos premiers pas avec le Model Context Protocol (MCP) ! Que vous soyez nouveau dans MCP ou que vous souhaitiez approfondir votre compréhension, ce guide vous accompagnera à travers le processus essentiel de configuration et de développement. Vous découvrirez comment MCP permet une intégration fluide entre les modèles d'IA et les applications, et apprendrez à préparer rapidement votre environnement pour construire et tester des solutions propulsées par MCP.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "83d32e5c5dd838d4b87a730cab88db77",
-  "translation_date": "2025-11-18T19:50:58+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/README.md",
-  "language_code": "pcm"
-}
--->
 # 🚀 MCP Server wit PostgreSQL - Complete Learning Guide
 
 ## 🧠 Overview of MCP Database Integration Learning Path

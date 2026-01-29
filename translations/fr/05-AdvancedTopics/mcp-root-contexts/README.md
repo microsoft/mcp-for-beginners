@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ebdb86db46113f1cbd59ce4c74caaa79",
-  "translation_date": "2025-07-16T21:24:16+00:00",
-  "source_file": "05-AdvancedTopics/mcp-root-contexts/README.md",
-  "language_code": "fr"
-}
--->
 # Contextes racines MCP
 
 Les contextes racines sont un concept fondamental du Model Context Protocol qui fournissent une couche persistante pour conserver l’historique des conversations et l’état partagé à travers plusieurs requêtes et sessions.

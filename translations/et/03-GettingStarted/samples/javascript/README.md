@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0f27f8c14853621d982185e6bbdd1dc6",
-  "translation_date": "2025-10-11T11:37:15+00:00",
-  "source_file": "03-GettingStarted/samples/javascript/README.md",
-  "language_code": "et"
-}
--->
 # Näidis
 
 See on JavaScripti näidis MCP serveri jaoks.

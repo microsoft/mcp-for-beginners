@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "d4c162484df410632550a4a357d40341",
-  "translation_date": "2025-09-03T16:18:39+00:00",
-  "source_file": "03-GettingStarted/01-first-server/solution/python/README.md",
-  "language_code": "sr"
-}
--->
 # Покретање овог примера
 
 Препоручује се да инсталирате `uv`, али није обавезно, погледајте [упутства](https://docs.astral.sh/uv/#highlights)

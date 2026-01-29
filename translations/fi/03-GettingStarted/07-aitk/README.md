@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "98bcd044860716da5819e31c152813b7",
-  "translation_date": "2025-08-18T16:15:49+00:00",
-  "source_file": "03-GettingStarted/07-aitk/README.md",
-  "language_code": "fi"
-}
--->
 # AI Toolkit -palvelimen käyttäminen Visual Studio Code -laajennuksessa
 
 Kun rakennat tekoälyagenttia, kyse ei ole pelkästään älykkäiden vastausten tuottamisesta; kyse on myös agentin kyvystä toimia. Tässä kohtaa Model Context Protocol (MCP) astuu kuvaan. MCP mahdollistaa agenttien pääsyn ulkoisiin työkaluihin ja palveluihin yhtenäisellä tavalla. Voit ajatella sen kuin liittäisit agenttisi työkalupakkiin, jota se *oikeasti* voi käyttää.

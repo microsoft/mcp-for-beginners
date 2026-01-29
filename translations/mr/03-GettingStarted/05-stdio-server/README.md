@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "77735b446eb79b1bba9c849865cd0ced",
-  "translation_date": "2025-08-28T22:18:37+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/README.md",
-  "language_code": "mr"
-}
--->
 # MCP सर्व्हर stdio ट्रान्सपोर्टसह
 
 > **⚠️ महत्त्वाचे अपडेट**: MCP स्पेसिफिकेशन 2025-06-18 नुसार, स्वतंत्र SSE (Server-Sent Events) ट्रान्सपोर्ट **निष्क्रिय** करण्यात आले आहे आणि त्याऐवजी "Streamable HTTP" ट्रान्सपोर्टचा वापर करण्यात येतो. सध्याच्या MCP स्पेसिफिकेशनमध्ये दोन मुख्य ट्रान्सपोर्ट यंत्रणा परिभाषित केल्या आहेत:

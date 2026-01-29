@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e378b47e0361b7a9b0dab7a0306878c8",
-  "translation_date": "2025-08-26T20:04:23+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/README.md",
-  "language_code": "uk"
-}
--->
 # Рішення для MCP stdio серверів
 
 > **⚠️ Важливо**: Ці рішення були оновлені для використання **stdio транспорту**, як рекомендовано в MCP Специфікації від 2025-06-18. Оригінальний транспорт SSE (Server-Sent Events) був застарілий.

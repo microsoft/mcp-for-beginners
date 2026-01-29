@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "75638575f993c152965ae2271c4da938",
-  "translation_date": "2025-12-19T14:25:24+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/README.md",
-  "language_code": "id"
-}
--->
 # Membuat klien dengan LLM
 
 Sejauh ini, Anda telah melihat cara membuat server dan klien. Klien telah dapat memanggil server secara eksplisit untuk daftar alat, sumber daya, dan promptnya. Namun, ini bukan pendekatan yang sangat praktis. Pengguna Anda hidup di era agen dan mengharapkan untuk menggunakan prompt dan berkomunikasi dengan LLM untuk melakukannya. Bagi pengguna Anda, mereka tidak peduli apakah Anda menggunakan MCP atau tidak untuk menyimpan kemampuan Anda tetapi mereka mengharapkan menggunakan bahasa alami untuk berinteraksi. Jadi bagaimana kita menyelesaikan ini? Solusinya adalah dengan menambahkan LLM ke klien.

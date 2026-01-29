@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1d9dc83260576b76f272d330ed93c51f",
-  "translation_date": "2025-07-13T22:11:48+00:00",
-  "source_file": "03-GettingStarted/09-deployment/README.md",
-  "language_code": "sl"
-}
--->
 # Namestitev MCP strežnikov
 
 Namestitev vašega MCP strežnika omogoča drugim dostop do njegovih orodij in virov tudi izven vašega lokalnega okolja. Obstaja več strategij namestitve, ki jih je treba upoštevati glede na vaše zahteve po razširljivosti, zanesljivosti in enostavnosti upravljanja. Spodaj boste našli navodila za namestitev MCP strežnikov lokalno, v vsebnikih in v oblaku.

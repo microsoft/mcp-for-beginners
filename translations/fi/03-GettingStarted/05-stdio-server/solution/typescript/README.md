@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9d799c4a30a8383e0a74af9153262972",
-  "translation_date": "2025-08-26T20:11:04+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/typescript/README.md",
-  "language_code": "fi"
-}
--->
 # MCP stdio Server - TypeScript-ratkaisu
 
 > **⚠️ Tärkeää**: Tämä ratkaisu on päivitetty käyttämään **stdio-kuljetusta**, kuten MCP-määrittelyssä 2025-06-18 suositellaan. Alkuperäinen SSE-kuljetus on poistettu käytöstä.

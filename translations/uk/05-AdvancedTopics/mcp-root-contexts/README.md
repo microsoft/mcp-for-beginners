@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ebdb86db46113f1cbd59ce4c74caaa79",
-  "translation_date": "2025-07-17T13:00:02+00:00",
-  "source_file": "05-AdvancedTopics/mcp-root-contexts/README.md",
-  "language_code": "uk"
-}
--->
 # MCP Root Contexts
 
 Кореневі контексти — це фундаментальна концепція в Model Context Protocol, яка забезпечує постійний рівень для збереження історії розмови та спільного стану між кількома запитами та сесіями.

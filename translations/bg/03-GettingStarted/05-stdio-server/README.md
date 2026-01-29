@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "77735b446eb79b1bba9c849865cd0ced",
-  "translation_date": "2025-08-28T22:38:01+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/README.md",
-  "language_code": "bg"
-}
--->
 # MCP Server със stdio транспорт
 
 > **⚠️ Важна актуализация**: От MCP спецификацията 2025-06-18, самостоятелният SSE (Server-Sent Events) транспорт е **отхвърлен** и заменен с "Streamable HTTP" транспорт. Текущата MCP спецификация дефинира два основни транспортни механизма:

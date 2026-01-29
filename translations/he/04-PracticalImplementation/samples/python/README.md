@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "706b9b075dc484b73a053e6e9c709b4b",
-  "translation_date": "2025-07-13T23:33:43+00:00",
-  "source_file": "04-PracticalImplementation/samples/python/README.md",
-  "language_code": "he"
-}
--->
 # פרוטוקול הקשר למודל (MCP) מימוש בפייתון
 
 מאגר זה מכיל מימוש בפייתון של פרוטוקול הקשר למודל (MCP), המדגים כיצד ליצור גם שרת וגם אפליקציית לקוח התקשורת באמצעות תקן MCP.

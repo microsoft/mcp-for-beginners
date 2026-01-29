@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4117a42f3e7baae859515f7b8b911e56",
-  "translation_date": "2025-12-11T13:08:19+00:00",
-  "source_file": "03-GettingStarted/01-first-server/solution/README.md",
-  "language_code": "te"
-}
--->
 ప్రతి రన్‌టైమ్ కోసం పరిష్కారాలు ఇక్కడ ఉన్నాయి:
 
 - [TypeScript](./typescript/README.md)

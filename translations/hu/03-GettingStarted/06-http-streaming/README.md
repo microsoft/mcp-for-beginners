@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5f1383103523fa822e1fec7ef81904d5",
-  "translation_date": "2025-08-19T15:15:17+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/README.md",
-  "language_code": "hu"
-}
--->
 # HTTPS Streaming a Model Context Protocol (MCP) használatával
 
 Ez a fejezet átfogó útmutatót nyújt a biztonságos, skálázható és valós idejű streaming megvalósításához a Model Context Protocol (MCP) segítségével HTTPS-en keresztül. Kitér a streaming motivációjára, az elérhető szállítási mechanizmusokra, az MCP-ben használható streamelhető HTTP megvalósítására, a biztonsági legjobb gyakorlatokra, az SSE-ről való átállásra, valamint gyakorlati tanácsokat ad saját streaming MCP alkalmazások építéséhez.

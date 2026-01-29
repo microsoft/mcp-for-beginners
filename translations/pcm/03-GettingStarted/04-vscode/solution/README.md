@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-11-18T19:00:32+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "pcm"
-}
--->
 # How to run di sample
 
 We dey assume say you don already get server code wey dey work. Abeg find server from one of di earlier chapters.

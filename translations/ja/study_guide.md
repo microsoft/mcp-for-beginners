@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "af27b0acfae6caa134d9701453884df8",
-  "translation_date": "2025-10-06T22:25:20+00:00",
-  "source_file": "study_guide.md",
-  "language_code": "ja"
-}
--->
 # 初心者向け Model Context Protocol (MCP) - 学習ガイド
 
 この学習ガイドは、「初心者向け Model Context Protocol (MCP)」カリキュラムのリポジトリ構造と内容の概要を提供します。このガイドを活用してリポジトリを効率的にナビゲートし、利用可能なリソースを最大限に活用してください。

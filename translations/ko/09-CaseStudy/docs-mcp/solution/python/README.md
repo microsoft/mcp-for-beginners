@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6ef6015d29b95f1cab97fb88a045a991",
-  "translation_date": "2025-09-05T10:33:45+00:00",
-  "source_file": "09-CaseStudy/docs-mcp/solution/python/README.md",
-  "language_code": "ko"
-}
--->
 # 체인릿과 Microsoft Learn Docs MCP를 활용한 학습 계획 생성기
 
 ## 사전 요구 사항

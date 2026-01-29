@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2228721599c0c8673de83496b4d7d7a9",
-  "translation_date": "2025-10-11T12:35:21+00:00",
-  "source_file": "09-CaseStudy/apimsample.md",
-  "language_code": "et"
-}
--->
 # Juhtumiuuring: REST API avaldamine API Managementis MCP serverina
 
 Azure API Management on teenus, mis pakub väravat teie API lõpp-punktide peal. Selle tööpõhimõte seisneb selles, et Azure API Management toimib teie API-de ees puhvrina ja otsustab, mida sissetulevate päringutega teha.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
-  "translation_date": "2025-12-11T12:47:22+00:00",
-  "source_file": "03-GettingStarted/samples/python/README.md",
-  "language_code": "te"
-}
--->
 # MCP క్యాల్క్యులేటర్ సర్వర్ (Python)
 
 

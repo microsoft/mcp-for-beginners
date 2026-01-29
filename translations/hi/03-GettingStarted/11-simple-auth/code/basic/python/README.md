@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "3f68294760a11dd3fdd175bd7f904a92",
-  "translation_date": "2025-10-07T01:29:59+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/code/basic/python/README.md",
-  "language_code": "hi"
-}
--->
 # नमूना चलाएँ
 
 यह नमूना एक MCP सर्वर शुरू करता है जिसमें एक मिडलवेयर शामिल है जो वैध Authorization हेडर की जांच करता है।

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "69372338676e01a2c97f42f70fdfbf42",
-  "translation_date": "2025-08-26T20:22:04+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/dotnet/README.md",
-  "language_code": "sv"
-}
--->
 # MCP stdio Server - .NET-lösning
 
 > **⚠️ Viktigt**: Den här lösningen har uppdaterats för att använda **stdio-transport** enligt rekommendationerna i MCP-specifikationen 2025-06-18. Den ursprungliga SSE-transporten har avvecklats.

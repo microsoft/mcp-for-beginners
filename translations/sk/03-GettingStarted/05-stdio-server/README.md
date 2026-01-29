@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "77735b446eb79b1bba9c849865cd0ced",
-  "translation_date": "2025-08-28T22:36:45+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/README.md",
-  "language_code": "sk"
-}
--->
 # MCP Server s transportom stdio
 
 > **⚠️ Dôležitá aktualizácia**: Od špecifikácie MCP z 18. júna 2025 bol samostatný transport SSE (Server-Sent Events) **zastaraný** a nahradený transportom „Streamable HTTP“. Aktuálna špecifikácia MCP definuje dva hlavné transportné mechanizmy:

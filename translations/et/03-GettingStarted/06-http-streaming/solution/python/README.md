@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
-  "translation_date": "2025-10-11T11:49:47+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
-  "language_code": "et"
-}
--->
 # Selle näidise käivitamine
 
 Siin on juhised klassikalise HTTP voogedastuse serveri ja kliendi ning MCP voogedastuse serveri ja kliendi käivitamiseks Pythonis.

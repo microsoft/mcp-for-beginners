@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "98bcd044860716da5819e31c152813b7",
-  "translation_date": "2025-08-11T10:13:59+00:00",
-  "source_file": "03-GettingStarted/07-aitk/README.md",
-  "language_code": "fr"
-}
--->
 # Consommer un serveur avec l'extension AI Toolkit pour Visual Studio Code
 
 Lorsque vous construisez un agent d'IA, il ne s'agit pas seulement de générer des réponses intelligentes ; il s'agit également de donner à votre agent la capacité d'agir. C'est là que le protocole Model Context Protocol (MCP) entre en jeu. MCP permet aux agents d'accéder facilement à des outils et services externes de manière cohérente. Imaginez que vous connectez votre agent à une boîte à outils qu'il peut *vraiment* utiliser.

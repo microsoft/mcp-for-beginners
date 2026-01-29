@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "94c80ae71fb9971e9b57b51ab0912121",
-  "translation_date": "2025-11-18T18:56:52+00:00",
-  "source_file": "03-GettingStarted/02-client/README.md",
-  "language_code": "pcm"
-}
--->
 # How to make client
 
 Client na custom app or script wey dey talk directly wit MCP Server to ask for resources, tools, and prompts. E different from inspector tool wey dey use graphical interface to interact wit server. If you write your own client, e go allow you do programmatic and automated interactions. Dis one go help developers put MCP features inside dia own workflow, automate tasks, and build custom solution wey fit dia specific needs.

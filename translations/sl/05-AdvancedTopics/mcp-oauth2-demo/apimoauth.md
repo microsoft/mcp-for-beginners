@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "32c9a4263be08f9050c8044bb26267c4",
-  "translation_date": "2025-07-14T00:37:45+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/apimoauth.md",
-  "language_code": "sl"
-}
--->
 # Namestitev aplikacije Spring AI MCP na Azure Container Apps
 
 ([Zavarovanje Spring AI MCP strežnikov z OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2)) *Slika: Spring AI MCP strežnik zavarovan s Spring Authorization Server. Strežnik izdaja dostopne žetone strankam in jih preverja pri dohodnih zahtevah (vir: Spring blog) ([Zavarovanje Spring AI MCP strežnikov z OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2#:~:text=,server%20with%20the%20MCP%20inspector)).* Za namestitev Spring MCP strežnika ga zgradite kot vsebnik in uporabite Azure Container Apps z zunanjim dostopom. Na primer, z uporabo Azure CLI lahko zaženete:

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "3f68294760a11dd3fdd175bd7f904a92",
-  "translation_date": "2025-12-11T13:21:08+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/code/basic/python/README.md",
-  "language_code": "kn"
-}
--->
 # ಮಾದರಿ ಚಾಲನೆ
 
 ಈ ಮಾದರಿ ಮಾನ್ಯ Authorization ಹೆಡರ್‌ಗಾಗಿ ಪರಿಶೀಲಿಸುವ ಮಧ್ಯವರ್ತಿಯನ್ನು ಹೊಂದಿರುವ MCP ಸರ್ವರ್ ಅನ್ನು ಪ್ರಾರಂಭಿಸುತ್ತದೆ.

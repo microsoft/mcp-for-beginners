@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "240e365cc324d23a0033e5615b5feb5e",
-  "translation_date": "2025-09-30T13:43:12+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/05-MCP-Server/README.md",
-  "language_code": "ko"
-}
--->
 # MCP 서버 구현
 
 ## 🎯 이 실습에서 다루는 내용

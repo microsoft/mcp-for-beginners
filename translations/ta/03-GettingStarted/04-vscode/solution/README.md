@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-10-11T11:33:39+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "ta"
-}
--->
 # மாதிரியை இயக்குதல்
 
 இங்கே, நீங்கள் ஏற்கனவே செயல்படும் சர்வர் குறியீடு வைத்திருக்கிறீர்கள் என்று கருதுகிறோம். முந்தைய அத்தியாயங்களில் இருந்து ஒரு சர்வரை கண்டறியவும்.

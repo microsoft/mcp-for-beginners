@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7b4d8d17fc1f501468cce40c3651aed1",
-  "translation_date": "2025-12-11T15:13:56+00:00",
-  "source_file": "05-AdvancedTopics/mcp-scaling/README.md",
-  "language_code": "kn"
-}
--->
 # ವಿಸ್ತರಣೆ ಮತ್ತು ಉನ್ನತ ಕಾರ್ಯಕ್ಷಮತೆ MCP
 
 ಉದ್ಯಮ ನಿಯೋಜನೆಗಳಿಗೆ, MCP ಅನುಷ್ಠಾನಗಳು ಸಾಮಾನ್ಯವಾಗಿ ಕಡಿಮೆ ವಿಳಂಬದೊಂದಿಗೆ ಹೆಚ್ಚಿನ ಪ್ರಮಾಣದ ವಿನಂತಿಗಳನ್ನು ನಿರ್ವಹಿಸಬೇಕಾಗುತ್ತದೆ.

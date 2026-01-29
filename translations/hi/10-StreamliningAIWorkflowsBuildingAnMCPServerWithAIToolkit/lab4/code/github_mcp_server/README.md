@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9a6a4d3497921d2f6d9699f0a6a1890c",
-  "translation_date": "2025-09-09T21:36:09+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/README.md",
-  "language_code": "hi"
-}
--->
 # वेदर MCP सर्वर
 
 यह एक नमूना MCP सर्वर है जो Python में मौसम उपकरणों को मॉक प्रतिक्रियाओं के साथ लागू करता है। इसे आपके अपने MCP सर्वर के लिए एक आधार के रूप में उपयोग किया जा सकता है। इसमें निम्नलिखित विशेषताएं शामिल हैं:

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "acd4010e430da00946a154f62847a169",
-  "translation_date": "2025-12-11T13:29:07+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/java/README.md",
-  "language_code": "ml"
-}
--->
 # കാൽക്കുലേറ്റർ HTTP സ്ട്രീമിംഗ് ഡെമോ
 
 ഈ പ്രോജക്ട് Spring Boot WebFlux ഉപയോഗിച്ച് Server-Sent Events (SSE) ഉപയോഗിച്ച് HTTP സ്ട്രീമിംഗ് പ്രദർശിപ്പിക്കുന്നു. ഇത് രണ്ട് ആപ്ലിക്കേഷനുകളായി വിഭജിച്ചിരിക്കുന്നു:

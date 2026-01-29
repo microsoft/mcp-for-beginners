@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6e562d7e5a77c8982da4aa8f762ad1d8",
-  "translation_date": "2025-12-11T15:57:28+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security-entra/README.md",
-  "language_code": "ml"
-}
--->
 # AI പ്രവൃത്തികൾ സുരക്ഷിതമാക്കൽ: മോഡൽ കോൺടെക്സ്റ്റ് പ്രോട്ടോക്കോൾ സർവറുകൾക്കായി Entra ID പ്രാമാണീകരണം
 
 ## പരിചയം

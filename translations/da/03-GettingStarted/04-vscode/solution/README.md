@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-07-13T19:43:21+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "da"
-}
--->
 Dette svarer til at køre en kommando som: `node build/index.js`.
 
 - Ændr denne serverpost, så den passer til, hvor din serverfil er placeret, eller hvad der er nødvendigt for at starte din server afhængigt af dit valgte runtime og serverplacering.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "68cd055621b3370948a5a1dff7bedc9a",
-  "translation_date": "2025-08-26T20:35:15+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/python/README.md",
-  "language_code": "ms"
-}
--->
 # MCP stdio Server - Penyelesaian Python
 
 > **⚠️ Penting**: Penyelesaian ini telah dikemas kini untuk menggunakan **pengangkutan stdio** seperti yang disarankan oleh Spesifikasi MCP 2025-06-18. Pengangkutan SSE asal telah dihentikan.

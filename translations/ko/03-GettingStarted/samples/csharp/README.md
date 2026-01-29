@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "882aae00f1d3f007e20d03b883f44afa",
-  "translation_date": "2025-07-13T22:14:23+00:00",
-  "source_file": "03-GettingStarted/samples/csharp/README.md",
-  "language_code": "ko"
-}
--->
 # Basic Calculator MCP Service
 
 이 서비스는 Model Context Protocol(MCP)을 통해 기본 계산기 연산을 제공합니다. MCP 구현을 배우는 초보자를 위한 간단한 예제로 설계되었습니다.

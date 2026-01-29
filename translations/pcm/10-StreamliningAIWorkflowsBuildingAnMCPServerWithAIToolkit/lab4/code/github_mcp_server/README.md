@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9a6a4d3497921d2f6d9699f0a6a1890c",
-  "translation_date": "2025-11-18T18:52:42+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/README.md",
-  "language_code": "pcm"
-}
--->
 # Weather MCP Server
 
 Dis na sample MCP Server wey dem write for Python wey dey use weather tools wit mock response. You fit use am as base to build your own MCP Server. E get di following features:

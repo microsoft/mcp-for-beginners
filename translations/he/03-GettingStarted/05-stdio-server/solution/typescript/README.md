@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9d799c4a30a8383e0a74af9153262972",
-  "translation_date": "2025-08-26T20:11:32+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/typescript/README.md",
-  "language_code": "he"
-}
--->
 # MCP stdio Server - פתרון ב-TypeScript
 
 > **⚠️ חשוב**: הפתרון הזה עודכן לשימוש ב-**stdio transport** כפי שמומלץ במפרט MCP 2025-06-18. התמיכה ב-SSE transport המקורי הופסקה.

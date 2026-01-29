@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f5300fd1b5e84520d500b2a8f568a1d8",
-  "translation_date": "2025-07-17T13:49:22+00:00",
-  "source_file": "02-Security/azure-content-safety.md",
-  "language_code": "sk"
-}
--->
 # Pokročilá bezpečnosť MCP s Azure Content Safety
 
 Azure Content Safety ponúka niekoľko výkonných nástrojov, ktoré môžu výrazne zvýšiť bezpečnosť vašich implementácií MCP:

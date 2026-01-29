@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "c8f283730b5421082ddd26cc85c07831",
-  "translation_date": "2025-07-18T11:09:47+00:00",
-  "source_file": "07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md",
-  "language_code": "bn"
-}
--->
 # 🚀 ১০টি Microsoft MCP সার্ভার যা ডেভেলপারদের উৎপাদনশীলতা বদলে দিচ্ছে
 
 ## 🎯 এই গাইডে আপনি কী শিখবেন

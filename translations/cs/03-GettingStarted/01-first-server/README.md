@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8fdac7600a5f4722643d0f14e15ac259",
-  "translation_date": "2025-12-11T07:46:07+00:00",
-  "source_file": "03-GettingStarted/01-first-server/README.md",
-  "language_code": "cs"
-}
--->
 # Začínáme s MCP
 
 Vítejte u vašich prvních kroků s Model Context Protocol (MCP)! Ať už jste v MCP noví, nebo chcete prohloubit své znalosti, tento průvodce vás provede základním nastavením a vývojovým procesem. Objevíte, jak MCP umožňuje bezproblémovou integraci mezi AI modely a aplikacemi, a naučíte se, jak rychle připravit své prostředí pro vytváření a testování řešení založených na MCP.

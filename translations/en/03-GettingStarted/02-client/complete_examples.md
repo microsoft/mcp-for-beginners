@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8358c13b5b6877e475674697cdc1a904",
-  "translation_date": "2025-08-19T14:18:47+00:00",
-  "source_file": "03-GettingStarted/02-client/complete_examples.md",
-  "language_code": "en"
-}
--->
 # Complete MCP Client Examples
 
 This directory contains fully functional examples of MCP clients in various programming languages. Each client showcases the complete functionality described in the main README.md tutorial.

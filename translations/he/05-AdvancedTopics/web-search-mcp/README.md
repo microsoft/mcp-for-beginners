@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "151265c9a2124d7c53e04d16ee3fb73b",
-  "translation_date": "2025-07-17T07:24:53+00:00",
-  "source_file": "05-AdvancedTopics/web-search-mcp/README.md",
-  "language_code": "he"
-}
--->
 # שיעור: בניית שרת MCP לחיפוש באינטרנט
 
 פרק זה מדגים כיצד לבנות סוכן AI אמיתי שמשתלב עם APIs חיצוניים, מטפל בסוגי נתונים מגוונים, מנהל שגיאות ומאחד כלים מרובים — הכל בפורמט מוכן לפרודקשן. תראו:

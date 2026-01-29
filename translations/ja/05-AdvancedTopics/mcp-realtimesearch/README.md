@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "333a03e51f90bdf3e6f1ba1694c73f36",
-  "translation_date": "2025-07-16T21:36:34+00:00",
-  "source_file": "05-AdvancedTopics/mcp-realtimesearch/README.md",
-  "language_code": "ja"
-}
--->
 ## コード例に関する免責事項
 
 > **重要な注意**: 以下のコード例は、Model Context Protocol（MCP）とウェブ検索機能の統合を示しています。公式のMCP SDKのパターンや構造に従っていますが、教育目的のために簡略化されています。

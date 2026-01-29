@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6ef6015d29b95f1cab97fb88a045a991",
-  "translation_date": "2025-10-11T12:39:20+00:00",
-  "source_file": "09-CaseStudy/docs-mcp/solution/python/README.md",
-  "language_code": "et"
-}
--->
 # Õppeplaani generaator Chainlitiga ja Microsoft Learn Docs MCP-ga
 
 ## Eeltingimused

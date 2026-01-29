@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "999c5e7623c1e2d5e5a07c2feb39eb67",
-  "translation_date": "2025-12-11T17:02:55+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/README.md",
-  "language_code": "ml"
-}
--->
 # Weather MCP Server
 
 Python-ൽ weather tools mock responses ഉപയോഗിച്ച് നടപ്പിലാക്കിയ ഒരു സാമ്പിൾ MCP Server ആണ് ഇത്. നിങ്ങളുടെ സ്വന്തം MCP Server-നായി scaffold ആയി ഇത് ഉപയോഗിക്കാം. ഇതിൽ താഴെപ്പറയുന്ന സവിശേഷതകൾ ഉൾക്കൊള്ളുന്നു:

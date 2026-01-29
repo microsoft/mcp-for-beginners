@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "77735b446eb79b1bba9c849865cd0ced",
-  "translation_date": "2025-08-28T22:34:51+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/README.md",
-  "language_code": "hu"
-}
--->
 # MCP szerver stdio transzporttal
 
 > **⚠️ Fontos frissítés**: Az MCP Specifikáció 2025-06-18 óta a különálló SSE (Server-Sent Events) transzport **elavultnak** minősült, és helyette a "Streamable HTTP" transzportot vezették be. Az aktuális MCP specifikáció két elsődleges transzport mechanizmust határoz meg:

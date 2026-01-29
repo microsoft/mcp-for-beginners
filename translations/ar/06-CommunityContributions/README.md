@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "fcf1e12b62102bf7d16b78deb2b163b7",
-  "translation_date": "2025-08-18T13:53:11+00:00",
-  "source_file": "06-CommunityContributions/README.md",
-  "language_code": "ar"
-}
--->
 # المجتمع والمساهمات
 
 [![كيفية المساهمة في MCP: الأدوات، الوثائق، الكود والمزيد](../../../translated_images/ar/07.1179f6de46ff196e.webp)](https://youtu.be/v1pvCYAWpRE)

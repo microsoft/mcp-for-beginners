@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "195f7287638b77a549acadd96c8f981c",
-  "translation_date": "2025-07-14T01:55:30+00:00",
-  "source_file": "05-AdvancedTopics/mcp-realtimestreaming/README.md",
-  "language_code": "my"
-}
--->
 # Model Context Protocol အတွက် အချိန်နှင့်တပြေးညီ ဒေတာစီးဆင်းမှု
 
 ## အနှစ်ချုပ်

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "333a03e51f90bdf3e6f1ba1694c73f36",
-  "translation_date": "2025-07-17T00:52:19+00:00",
-  "source_file": "05-AdvancedTopics/mcp-realtimesearch/README.md",
-  "language_code": "pa"
-}
--->
 ## ਕੋਡ ਉਦਾਹਰਨਾਂ ਲਈ ਸਪਸ਼ਟੀਕਰਨ
 
 > **ਮਹੱਤਵਪੂਰਨ ਨੋਟ**: ਹੇਠਾਂ ਦਿੱਤੀਆਂ ਕੋਡ ਉਦਾਹਰਨਾਂ ਵਿੱਚ Model Context Protocol (MCP) ਨੂੰ ਵੈੱਬ ਖੋਜ ਫੰਕਸ਼ਨਾਲਿਟੀ ਨਾਲ ਜੋੜਨ ਦਾ ਤਰੀਕਾ ਦਿਖਾਇਆ ਗਿਆ ਹੈ। ਜਦੋਂ ਕਿ ਇਹ ਅਧਿਕਾਰਿਕ MCP SDKs ਦੇ ਪੈਟਰਨ ਅਤੇ ਢਾਂਚਿਆਂ ਦੀ ਪਾਲਣਾ ਕਰਦੀਆਂ ਹਨ, ਇਹ ਸਿੱਖਣ ਦੇ ਮਕਸਦ ਲਈ ਸਧਾਰਨ ਕੀਤੀਆਂ ਗਈਆਂ ਹਨ।

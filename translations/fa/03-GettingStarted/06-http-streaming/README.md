@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5f1383103523fa822e1fec7ef81904d5",
-  "translation_date": "2025-08-11T11:24:32+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/README.md",
-  "language_code": "fa"
-}
--->
 # پخش HTTPS با پروتکل Model Context (MCP)
 
 این فصل راهنمای جامعی برای پیاده‌سازی پخش امن، مقیاس‌پذیر و بلادرنگ با استفاده از پروتکل Model Context (MCP) از طریق HTTPS ارائه می‌دهد. موضوعاتی مانند انگیزه برای پخش، مکانیزم‌های انتقال موجود، نحوه پیاده‌سازی HTTP قابل پخش در MCP، بهترین شیوه‌های امنیتی، مهاجرت از SSE و راهنمای عملی برای ساخت برنامه‌های MCP پخش خودتان را پوشش می‌دهد.

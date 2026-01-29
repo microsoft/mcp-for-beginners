@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1b6c746d9e190deba4d8765267ffb94e",
-  "translation_date": "2025-11-18T19:22:23+00:00",
-  "source_file": "02-Security/azure-content-safety-implementation.md",
-  "language_code": "pcm"
-}
--->
 # How to Use Azure Content Safety with MCP
 
 To make MCP more secure against things like prompt injection, tool poisoning, and other AI wahala, e good to add Azure Content Safety.

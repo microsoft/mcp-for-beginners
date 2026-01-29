@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "32c9a4263be08f9050c8044bb26267c4",
-  "translation_date": "2025-07-14T00:32:10+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/apimoauth.md",
-  "language_code": "vi"
-}
--->
 # Triển khai ứng dụng Spring AI MCP trên Azure Container Apps
 
 ([Securing Spring AI MCP servers with OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2)) *Hình minh họa: Máy chủ Spring AI MCP được bảo mật bằng Spring Authorization Server. Máy chủ phát hành token truy cập cho client và xác thực chúng trên các yêu cầu đến (nguồn: Spring blog) ([Securing Spring AI MCP servers with OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2#:~:text=,server%20with%20the%20MCP%20inspector)).* Để triển khai máy chủ Spring MCP, bạn xây dựng nó dưới dạng container và sử dụng Azure Container Apps với ingress bên ngoài. Ví dụ, sử dụng Azure CLI bạn có thể chạy:

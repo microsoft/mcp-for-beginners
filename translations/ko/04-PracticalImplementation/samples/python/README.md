@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "706b9b075dc484b73a053e6e9c709b4b",
-  "translation_date": "2025-07-13T23:31:13+00:00",
-  "source_file": "04-PracticalImplementation/samples/python/README.md",
-  "language_code": "ko"
-}
--->
 # Model Context Protocol (MCP) Python 구현
 
 이 저장소에는 Model Context Protocol (MCP)의 Python 구현이 포함되어 있으며, MCP 표준을 사용하여 통신하는 서버와 클라이언트 애플리케이션을 만드는 방법을 보여줍니다.

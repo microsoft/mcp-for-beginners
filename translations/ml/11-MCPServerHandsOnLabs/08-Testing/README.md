@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ad02c1223d7861292651ffce2f52bb28",
-  "translation_date": "2025-12-11T14:29:21+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/08-Testing/README.md",
-  "language_code": "ml"
-}
--->
 # ടെസ്റ്റിംഗ് ആൻഡ് ഡീബഗ്ഗിംഗ്
 
 ## 🎯 ഈ ലാബ് ഉൾക്കൊള്ളുന്നത്

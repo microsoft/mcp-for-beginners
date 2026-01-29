@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "151265c9a2124d7c53e04d16ee3fb73b",
-  "translation_date": "2025-07-17T12:07:18+00:00",
-  "source_file": "05-AdvancedTopics/web-search-mcp/README.md",
-  "language_code": "hr"
-}
--->
 # Lekcija: Izgradnja MCP servera za web pretraživanje
 
 Ovo poglavlje pokazuje kako izgraditi stvarnog AI agenta koji se integrira s vanjskim API-jima, obrađuje različite vrste podataka, upravlja pogreškama i koordinira više alata — sve u produkcijski spremnom obliku. Vidjet ćete:

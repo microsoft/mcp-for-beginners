@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1de8367745088b9fcd4746ea4cc5a161",
-  "translation_date": "2025-10-06T15:47:48+00:00",
-  "source_file": "03-GettingStarted/10-advanced/README.md",
-  "language_code": "tr"
-}
--->
 # Gelişmiş Sunucu Kullanımı
 
 MCP SDK'de iki farklı türde sunucu bulunur: normal sunucu ve düşük seviyeli sunucu. Genelde, normal sunucuyu kullanarak özellikler eklemek istersiniz. Ancak bazı durumlarda düşük seviyeli sunucuya güvenmek isteyebilirsiniz, örneğin:

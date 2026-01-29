@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-07-13T19:46:20+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "sr"
-}
--->
 Ово одговара покретању команде као што је: `node build/index.js`.
 
 - Промените овај унос сервера тако да одговара локацији ваше серверске датотеке или ономе што је потребно за покретање вашег сервера у зависности од изабраног окружења и локације сервера.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "882aae00f1d3f007e20d03b883f44afa",
-  "translation_date": "2025-07-13T22:16:31+00:00",
-  "source_file": "03-GettingStarted/samples/csharp/README.md",
-  "language_code": "th"
-}
--->
 # บริการเครื่องคิดเลขพื้นฐาน MCP
 
 บริการนี้ให้การทำงานเครื่องคิดเลขพื้นฐานผ่านโปรโตคอล Model Context Protocol (MCP) ออกแบบมาเป็นตัวอย่างง่ายๆ สำหรับผู้เริ่มต้นที่กำลังเรียนรู้การใช้งาน MCP

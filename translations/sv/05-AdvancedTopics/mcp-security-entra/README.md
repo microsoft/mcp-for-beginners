@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6e562d7e5a77c8982da4aa8f762ad1d8",
-  "translation_date": "2025-07-14T03:05:49+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security-entra/README.md",
-  "language_code": "sv"
-}
--->
 # Säkerställa AI-arbetsflöden: Entra ID-autentisering för Model Context Protocol-servrar
 
 ## Introduktion

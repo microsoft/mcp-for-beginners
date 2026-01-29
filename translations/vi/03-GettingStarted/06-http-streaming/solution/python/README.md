@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
-  "translation_date": "2025-08-18T17:23:35+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
-  "language_code": "vi"
-}
--->
 # Chạy mẫu này
 
 Dưới đây là cách chạy máy chủ và máy khách HTTP streaming cổ điển, cũng như máy chủ và máy khách MCP streaming sử dụng Python.

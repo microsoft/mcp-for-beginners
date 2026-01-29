@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "98bcd044860716da5819e31c152813b7",
-  "translation_date": "2025-08-11T10:27:24+00:00",
-  "source_file": "03-GettingStarted/07-aitk/README.md",
-  "language_code": "ja"
-}
--->
 # Visual Studio CodeのAI Toolkit拡張機能を使用したサーバーの利用
 
 AIエージェントを構築する際、賢い応答を生成するだけでなく、エージェントに行動を起こす能力を与えることが重要です。そこで登場するのがModel Context Protocol (MCP)です。MCPを使用すると、エージェントが外部ツールやサービスに一貫した方法でアクセスできるようになります。まるでエージェントを実際に使えるツールボックスに接続するようなものです。

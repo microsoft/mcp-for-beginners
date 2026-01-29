@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "c8f283730b5421082ddd26cc85c07831",
-  "translation_date": "2025-07-18T11:36:11+00:00",
-  "source_file": "07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md",
-  "language_code": "sv"
-}
--->
 # 🚀 10 Microsoft MCP-servrar som förändrar utvecklares produktivitet
 
 ## 🎯 Vad du kommer att lära dig i den här guiden

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "af27b0acfae6caa134d9701453884df8",
-  "translation_date": "2025-10-06T23:17:53+00:00",
-  "source_file": "study_guide.md",
-  "language_code": "da"
-}
--->
 # Model Context Protocol (MCP) for Begyndere - Studieguide
 
 Denne studieguide giver et overblik over strukturen og indholdet i "Model Context Protocol (MCP) for Begyndere"-curriculum. Brug denne guide til at navigere i repositoryet effektivt og få mest muligt ud af de tilgængelige ressourcer.

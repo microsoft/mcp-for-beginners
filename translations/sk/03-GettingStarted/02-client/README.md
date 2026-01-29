@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "94c80ae71fb9971e9b57b51ab0912121",
-  "translation_date": "2025-08-19T16:12:15+00:00",
-  "source_file": "03-GettingStarted/02-client/README.md",
-  "language_code": "sk"
-}
--->
 # Vytvorenie klienta
 
 Klienti sú vlastné aplikácie alebo skripty, ktoré priamo komunikujú s MCP Serverom za účelom požiadania o zdroje, nástroje a výzvy. Na rozdiel od použitia inšpekčného nástroja, ktorý poskytuje grafické rozhranie na interakciu so serverom, písanie vlastného klienta umožňuje programovateľné a automatizované interakcie. To umožňuje vývojárom integrovať schopnosti MCP do vlastných pracovných postupov, automatizovať úlohy a vytvárať vlastné riešenia prispôsobené konkrétnym potrebám.

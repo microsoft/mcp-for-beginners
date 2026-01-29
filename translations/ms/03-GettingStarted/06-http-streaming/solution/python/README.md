@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
-  "translation_date": "2025-08-18T18:03:50+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
-  "language_code": "ms"
-}
--->
 # Menjalankan Sampel Ini
 
 Berikut adalah cara menjalankan pelayan dan klien penstriman HTTP klasik, serta pelayan dan klien penstriman MCP menggunakan Python.

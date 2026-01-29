@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4319d291c9d124ecafea52b3d04bfa0e",
-  "translation_date": "2025-07-14T06:27:09+00:00",
-  "source_file": "09-CaseStudy/docs-mcp/README.md",
-  "language_code": "id"
-}
--->
 # Studi Kasus: Menghubungkan ke Microsoft Learn Docs MCP Server dari Klien
 
 Pernahkah Anda merasa harus bolak-balik antara situs dokumentasi, Stack Overflow, dan tab mesin pencari yang tak berujung, sambil mencoba memecahkan masalah dalam kode Anda? Mungkin Anda punya monitor kedua khusus untuk dokumentasi, atau terus-menerus berganti jendela antara IDE dan browser. Bukankah akan lebih baik jika dokumentasi bisa langsung masuk ke dalam alur kerja Anda—terintegrasi ke dalam aplikasi, IDE, atau bahkan alat kustom Anda sendiri? Dalam studi kasus ini, kita akan mengeksplorasi cara melakukannya dengan menghubungkan langsung ke Microsoft Learn Docs MCP server dari aplikasi klien Anda sendiri.

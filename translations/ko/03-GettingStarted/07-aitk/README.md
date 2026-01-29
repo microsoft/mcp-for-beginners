@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "98bcd044860716da5819e31c152813b7",
-  "translation_date": "2025-08-11T10:39:37+00:00",
-  "source_file": "03-GettingStarted/07-aitk/README.md",
-  "language_code": "ko"
-}
--->
 # Visual Studio Code의 AI Toolkit 확장을 사용하여 서버 활용하기
 
 AI 에이전트를 구축할 때, 단순히 스마트한 응답을 생성하는 것만이 아니라 에이전트가 실제로 행동을 취할 수 있는 능력을 부여하는 것이 중요합니다. 바로 여기서 Model Context Protocol (MCP)이 등장합니다. MCP는 에이전트가 외부 도구와 서비스를 일관된 방식으로 쉽게 접근할 수 있도록 해줍니다. 마치 에이전트를 실제로 사용할 수 있는 도구 상자에 연결하는 것과 같습니다.

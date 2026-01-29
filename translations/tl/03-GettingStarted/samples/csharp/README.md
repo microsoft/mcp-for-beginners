@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "882aae00f1d3f007e20d03b883f44afa",
-  "translation_date": "2025-07-13T22:18:04+00:00",
-  "source_file": "03-GettingStarted/samples/csharp/README.md",
-  "language_code": "tl"
-}
--->
 # Basic Calculator MCP Service
 
 Ang serbisyong ito ay nagbibigay ng mga pangunahing operasyon ng calculator gamit ang Model Context Protocol (MCP). Dinisenyo ito bilang isang simpleng halimbawa para sa mga nagsisimula na gustong matutunan ang tungkol sa mga implementasyon ng MCP.

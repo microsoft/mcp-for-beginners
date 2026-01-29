@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e8bbc7982284fe177dd4be5e7f2b3357",
-  "translation_date": "2025-12-19T15:38:29+00:00",
-  "source_file": "changelog.md",
-  "language_code": "sk"
-}
--->
 # Zmeny: MCP pre začiatočníkov - učebný plán
 
 Tento dokument slúži ako záznam všetkých významných zmien vykonaných v učebnom pláne Model Context Protocol (MCP) pre začiatočníkov. Zmeny sú zaznamenané v obrátenom chronologickom poradí (najnovšie zmeny ako prvé).

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1b6c746d9e190deba4d8765267ffb94e",
-  "translation_date": "2025-07-16T23:14:42+00:00",
-  "source_file": "02-Security/azure-content-safety-implementation.md",
-  "language_code": "ja"
-}
--->
 # MCPでのAzure Content Safetyの実装
 
 MCPのセキュリティをプロンプトインジェクション、ツールポイズニング、その他AI特有の脆弱性から強化するために、Azure Content Safetyの統合が強く推奨されます。

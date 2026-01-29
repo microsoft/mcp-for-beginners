@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ebdb86db46113f1cbd59ce4c74caaa79",
-  "translation_date": "2025-08-26T18:59:52+00:00",
-  "source_file": "05-AdvancedTopics/mcp-root-contexts/README.md",
-  "language_code": "lt"
-}
--->
 # MCP Pagrindinės Kontekstai
 
 Pagrindiniai kontekstai yra esminė Model Context Protocol (MCP) koncepcija, kuri užtikrina nuolatinį sluoksnį pokalbių istorijai ir bendros būsenos palaikymui per kelias užklausas ir sesijas.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "32c9a4263be08f9050c8044bb26267c4",
-  "translation_date": "2025-12-11T16:20:06+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/apimoauth.md",
-  "language_code": "kn"
-}
--->
 # Spring AI MCP ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು Azure Container Apps ಗೆ ನಿಯೋಜಿಸುವುದು
 
  ([OAuth2 ಮೂಲಕ Spring AI MCP ಸರ್ವರ್‌ಗಳನ್ನು ಸುರಕ್ಷಿತಗೊಳಿಸುವುದು](https://spring.io/blog/2025/04/02/mcp-server-oauth2)) *ಚಿತ್ರ: Spring Authorization Server ಮೂಲಕ ಸುರಕ್ಷಿತಗೊಳಿಸಲಾದ Spring AI MCP ಸರ್ವರ್. ಸರ್ವರ್ ಕ್ಲೈಂಟ್‌ಗಳಿಗೆ ಪ್ರವೇಶ ಟೋಕನ್‌ಗಳನ್ನು ನೀಡುತ್ತದೆ ಮತ್ತು ಇನ್‌ಕಮಿಂಗ್ ವಿನಂತಿಗಳಲ್ಲಿ ಅವುಗಳನ್ನು ಪರಿಶೀಲಿಸುತ್ತದೆ (ಮೂಲ: Spring ಬ್ಲಾಗ್) ([OAuth2 ಮೂಲಕ Spring AI MCP ಸರ್ವರ್‌ಗಳನ್ನು ಸುರಕ್ಷಿತಗೊಳಿಸುವುದು](https://spring.io/blog/2025/04/02/mcp-server-oauth2#:~:text=,server%20with%20the%20MCP%20inspector)).* Spring MCP ಸರ್ವರ್ ಅನ್ನು ನಿಯೋಜಿಸಲು, ಅದನ್ನು ಕಂಟೇನರ್ ಆಗಿ ನಿರ್ಮಿಸಿ ಮತ್ತು ಹೊರಗಿನ ಇನ್‌ಗ್ರೆಸ್ ಹೊಂದಿರುವ Azure Container Apps ಅನ್ನು ಬಳಸಿ. ಉದಾಹರಣೆಗೆ, Azure CLI ಬಳಸಿ ನೀವು ಈ ಕೆಳಗಿನಂತೆ ಚಾಲನೆ ಮಾಡಬಹುದು:

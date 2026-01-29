@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9525f06ed164e10f29e0f6b055d4f3d3",
-  "translation_date": "2025-09-30T18:29:20+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/04-Database/README.md",
-  "language_code": "el"
-}
--->
 # Σχεδιασμός Βάσης Δεδομένων και Σχήμα
 
 ## 🎯 Τι Καλύπτει Αυτό το Εργαστήριο

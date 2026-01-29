@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "af27b0acfae6caa134d9701453884df8",
-  "translation_date": "2025-10-06T23:59:45+00:00",
-  "source_file": "study_guide.md",
-  "language_code": "ro"
-}
--->
 # Protocolul Model Context (MCP) pentru Începători - Ghid de Studiu
 
 Acest ghid de studiu oferă o prezentare generală a structurii și conținutului depozitului pentru curriculumul "Protocolul Model Context (MCP) pentru Începători". Folosește acest ghid pentru a naviga eficient prin depozit și pentru a profita la maximum de resursele disponibile.

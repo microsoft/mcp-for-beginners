@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8f12fc94cee9ed16a5eddf9f51fba755",
-  "translation_date": "2025-07-13T23:29:23+00:00",
-  "source_file": "04-PracticalImplementation/samples/javascript/README.md",
-  "language_code": "my"
-}
--->
 # နမူနာ
 
 ဒါက MCP Server အတွက် JavaScript နမူနာတစ်ခုဖြစ်ပါတယ်

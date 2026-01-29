@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "af27b0acfae6caa134d9701453884df8",
-  "translation_date": "2025-10-06T23:26:45+00:00",
-  "source_file": "study_guide.md",
-  "language_code": "nl"
-}
--->
 # Model Context Protocol (MCP) voor Beginners - Studiegids
 
 Deze studiegids biedt een overzicht van de structuur en inhoud van de repository voor het curriculum "Model Context Protocol (MCP) voor Beginners". Gebruik deze gids om de repository efficiënt te navigeren en optimaal gebruik te maken van de beschikbare bronnen.

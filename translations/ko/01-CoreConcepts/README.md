@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9ad93d2074502828b8139d5aba7bafab",
-  "translation_date": "2025-12-19T09:46:55+00:00",
-  "source_file": "01-CoreConcepts/README.md",
-  "language_code": "ko"
-}
--->
 # MCP 핵심 개념: AI 통합을 위한 모델 컨텍스트 프로토콜 마스터하기
 
 [![MCP Core Concepts](../../../translated_images/ko/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.png)](https://youtu.be/earDzWGtE84)

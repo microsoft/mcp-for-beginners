@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9a6a4d3497921d2f6d9699f0a6a1890c",
-  "translation_date": "2025-09-09T21:41:37+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/README.md",
-  "language_code": "ne"
-}
--->
 # मौसम MCP सर्भर
 
 यो Python मा लेखिएको एक नमूना MCP सर्भर हो जसले मौसम उपकरणहरूलाई नकली प्रतिक्रिया सहित कार्यान्वयन गर्दछ। यसलाई तपाईंको आफ्नै MCP सर्भरको लागि आधारको रूपमा प्रयोग गर्न सकिन्छ। यसमा निम्न सुविधाहरू समावेश छन्:

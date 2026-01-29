@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "882aae00f1d3f007e20d03b883f44afa",
-  "translation_date": "2025-11-18T19:05:05+00:00",
-  "source_file": "03-GettingStarted/samples/csharp/README.md",
-  "language_code": "pcm"
-}
--->
 # Basic Calculator MCP Service
 
 Dis service dey provide basic calculator operations wit di Model Context Protocol (MCP). E dey designed as simple example for people wey dey learn MCP implementations.

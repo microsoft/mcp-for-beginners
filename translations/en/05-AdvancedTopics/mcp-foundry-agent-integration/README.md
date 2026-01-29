@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "036e01c8c6ecc8610809d52e4a738641",
-  "translation_date": "2025-07-17T09:26:35+00:00",
-  "source_file": "05-AdvancedTopics/mcp-foundry-agent-integration/README.md",
-  "language_code": "en"
-}
--->
 # Model Context Protocol (MCP) Integration with Azure AI Foundry
 
 This guide shows how to integrate Model Context Protocol (MCP) servers with Azure AI Foundry agents, enabling powerful tool orchestration and enterprise AI capabilities.

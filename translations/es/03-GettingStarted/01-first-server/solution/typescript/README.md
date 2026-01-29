@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6ebbb78b04c9b1f6c2367c713524fc95",
-  "translation_date": "2025-09-03T15:55:10+00:00",
-  "source_file": "03-GettingStarted/01-first-server/solution/typescript/README.md",
-  "language_code": "es"
-}
--->
 # Ejecutar este ejemplo
 
 Se recomienda instalar `uv`, pero no es obligatorio. Consulta [instrucciones](https://docs.astral.sh/uv/#highlights)

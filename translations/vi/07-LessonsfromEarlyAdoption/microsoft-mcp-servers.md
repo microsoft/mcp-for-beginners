@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "c8f283730b5421082ddd26cc85c07831",
-  "translation_date": "2025-07-18T11:48:26+00:00",
-  "source_file": "07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md",
-  "language_code": "vi"
-}
--->
 # 🚀 10 Máy chủ Microsoft MCP Đang Thay Đổi Năng Suất Phát Triển Phần Mềm
 
 ## 🎯 Những Gì Bạn Sẽ Học Trong Hướng Dẫn Này

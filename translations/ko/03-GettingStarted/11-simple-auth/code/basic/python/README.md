@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "3f68294760a11dd3fdd175bd7f904a92",
-  "translation_date": "2025-10-07T01:29:54+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/code/basic/python/README.md",
-  "language_code": "ko"
-}
--->
 # 샘플 실행
 
 이 샘플은 유효한 Authorization 헤더를 확인하는 미들웨어와 함께 MCP 서버를 시작합니다.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8358c13b5b6877e475674697cdc1a904",
-  "translation_date": "2025-08-18T16:55:03+00:00",
-  "source_file": "03-GettingStarted/02-client/complete_examples.md",
-  "language_code": "pa"
-}
--->
 # ਮੁਕੰਮਲ MCP ਕਲਾਇੰਟ ਉਦਾਹਰਨਾਂ
 
 ਇਸ ਡਾਇਰੈਕਟਰੀ ਵਿੱਚ ਵੱਖ-ਵੱਖ ਪ੍ਰੋਗ੍ਰਾਮਿੰਗ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ MCP ਕਲਾਇੰਟਾਂ ਦੇ ਮੁਕੰਮਲ, ਕੰਮ ਕਰਨ ਵਾਲੇ ਉਦਾਹਰਨਾਂ ਸ਼ਾਮਲ ਹਨ। ਹਰ ਕਲਾਇੰਟ ਮੁੱਖ README.md ਟਿਊਟੋਰਿਅਲ ਵਿੱਚ ਵਰਣਨ ਕੀਤੀ ਗਈ ਪੂਰੀ ਕਾਰਗੁਜ਼ਾਰੀ ਨੂੰ ਦਰਸਾਉਂਦਾ ਹੈ।

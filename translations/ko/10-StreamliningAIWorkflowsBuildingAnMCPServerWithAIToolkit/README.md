@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1b000fd6e1b04c047578bfc5d07d54eb",
-  "translation_date": "2025-07-29T00:33:16+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md",
-  "language_code": "ko"
-}
--->
 # AI 워크플로우 간소화: AI Toolkit을 활용한 MCP 서버 구축
 
 ## 🎯 개요

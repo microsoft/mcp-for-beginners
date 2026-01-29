@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9ad93d2074502828b8139d5aba7bafab",
-  "translation_date": "2025-12-19T11:44:38+00:00",
-  "source_file": "01-CoreConcepts/README.md",
-  "language_code": "pl"
-}
--->
 # Podstawowe koncepcje MCP: Opanowanie Model Context Protocol dla integracji AI
 
 [![Podstawowe koncepcje MCP](../../../translated_images/pl/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.png)](https://youtu.be/earDzWGtE84)

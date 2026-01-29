@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "83efa75a69bc831277263a6f1ae53669",
-  "translation_date": "2025-08-11T10:54:47+00:00",
-  "source_file": "04-PracticalImplementation/README.md",
-  "language_code": "es"
-}
--->
 # Implementación Práctica
 
 [![Cómo construir, probar y desplegar aplicaciones MCP con herramientas y flujos de trabajo reales](../../../translated_images/es/05.64bea204e25ca891.webp)](https://youtu.be/vCN9-mKBDfQ)

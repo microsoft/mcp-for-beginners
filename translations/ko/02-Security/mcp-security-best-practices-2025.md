@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e30aaf6b178137fa6668efc1b20851d5",
-  "translation_date": "2025-12-19T09:49:15+00:00",
-  "source_file": "02-Security/mcp-security-best-practices-2025.md",
-  "language_code": "ko"
-}
--->
 # MCP 보안 모범 사례 - 2025년 12월 업데이트
 
 > **중요**: 이 문서는 최신 [MCP 사양 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) 보안 요구 사항과 공식 [MCP 보안 모범 사례](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices)를 반영합니다. 항상 최신 지침을 위해 현재 사양을 참조하십시오.

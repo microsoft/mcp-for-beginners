@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0ab9613fc9595f493847f91275859a18",
-  "translation_date": "2025-07-13T18:41:20+00:00",
-  "source_file": "03-GettingStarted/02-client/solution/python/README.md",
-  "language_code": "no"
-}
--->
 # Kjøre dette eksempelet
 
 Det anbefales å installere `uv`, men det er ikke nødvendig, se [instruksjoner](https://docs.astral.sh/uv/#highlights)

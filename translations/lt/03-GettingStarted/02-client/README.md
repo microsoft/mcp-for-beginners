@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "94c80ae71fb9971e9b57b51ab0912121",
-  "translation_date": "2025-08-26T20:43:34+00:00",
-  "source_file": "03-GettingStarted/02-client/README.md",
-  "language_code": "lt"
-}
--->
 # Kliento kūrimas
 
 Klientai yra pritaikytos programos arba skriptai, kurie tiesiogiai bendrauja su MCP serveriu, siekdami gauti išteklius, įrankius ir užklausas. Skirtingai nei naudojant inspektoriaus įrankį, kuris suteikia grafinę sąsają sąveikai su serveriu, savo kliento rašymas leidžia programiškai ir automatiškai vykdyti užduotis. Tai leidžia kūrėjams integruoti MCP galimybes į savo darbo eigą, automatizuoti procesus ir kurti pritaikytus sprendimus, atitinkančius specifinius poreikius.

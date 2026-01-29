@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-07-13T19:44:20+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "vi"
-}
--->
 Điều này tương ứng với việc chạy một lệnh như sau: `node build/index.js`.
 
 - Thay đổi mục server này cho phù hợp với vị trí file server của bạn hoặc theo yêu cầu để khởi động server tùy thuộc vào runtime và vị trí server bạn chọn.

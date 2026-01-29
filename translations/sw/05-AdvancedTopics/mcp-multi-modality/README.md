@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e1d142978227a4bfc468bb0accab62e2",
-  "translation_date": "2025-07-17T10:11:39+00:00",
-  "source_file": "05-AdvancedTopics/mcp-multi-modality/README.md",
-  "language_code": "sw"
-}
--->
 # Muunganiko wa Njia Nyingi
 
 Programu zinazotumia njia nyingi zinaongezeka umuhimu katika AI, zikiruhusu mwingiliano wa kina zaidi na kazi ngumu zaidi. Itifaki ya Muktadha wa Mfano (MCP) hutoa mfumo wa kujenga programu zinazotumia njia nyingi zinazoweza kushughulikia aina mbalimbali za data, kama maandishi, picha, na sauti.

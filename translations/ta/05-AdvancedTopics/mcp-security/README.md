@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "997c7119766a69552e23d7d681316902",
-  "translation_date": "2025-10-11T12:19:51+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security/README.md",
-  "language_code": "ta"
-}
--->
 # MCP பாதுகாப்பு சிறந்த நடைமுறைகள் - மேம்பட்ட செயல்பாட்டு வழிகாட்டி
 
 > **தற்போதைய தரநிலை**: இந்த வழிகாட்டி [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) பாதுகாப்பு தேவைகள் மற்றும் அதிகாரப்பூர்வ [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) ஆகியவற்றை பிரதிபலிக்கிறது.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4d5e8e6f105e4f6e6953c0c14c99b394",
-  "translation_date": "2025-12-11T13:32:16+00:00",
-  "source_file": "03-GettingStarted/02-client/solution/README.md",
-  "language_code": "kn"
-}
--->
 ಪ್ರತಿ ರನ್‌ಟೈಮ್‌ಗೆ ಪರಿಹಾರಗಳು ಇಲ್ಲಿವೆ:
 
 - [TypeScript](./typescript/README.md)

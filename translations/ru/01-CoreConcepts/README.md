@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9ad93d2074502828b8139d5aba7bafab",
-  "translation_date": "2025-12-19T07:56:37+00:00",
-  "source_file": "01-CoreConcepts/README.md",
-  "language_code": "ru"
-}
--->
 # Основные концепции MCP: Освоение протокола Model Context для интеграции ИИ
 
 [![Основные концепции MCP](../../../translated_images/ru/02.8203e26c6fb5a797.webp)](https://youtu.be/earDzWGtE84)

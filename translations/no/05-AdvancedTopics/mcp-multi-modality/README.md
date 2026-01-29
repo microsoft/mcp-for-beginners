@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e1d142978227a4bfc468bb0accab62e2",
-  "translation_date": "2025-07-17T06:42:57+00:00",
-  "source_file": "05-AdvancedTopics/mcp-multi-modality/README.md",
-  "language_code": "no"
-}
--->
 # Multi-modale integrasjoner
 
 Multi-modale applikasjoner blir stadig viktigere innen AI, og muliggjør rikere interaksjoner og mer komplekse oppgaver. Model Context Protocol (MCP) gir et rammeverk for å bygge multi-modale applikasjoner som kan håndtere ulike typer data, som tekst, bilder og lyd.

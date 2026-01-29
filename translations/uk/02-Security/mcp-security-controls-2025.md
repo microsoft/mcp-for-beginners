@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9351493ad29390d37f64bc6d84a03db5",
-  "translation_date": "2025-12-19T17:45:58+00:00",
-  "source_file": "02-Security/mcp-security-controls-2025.md",
-  "language_code": "uk"
-}
--->
 # Контроль безпеки MCP - оновлення грудня 2025 року
 
 > **Поточний стандарт**: Цей документ відображає вимоги безпеки [MCP Specification 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) та офіційні [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).

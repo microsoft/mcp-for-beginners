@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5b00b8a8971a07d2d8803be4c9f138f8",
-  "translation_date": "2025-10-07T01:03:36+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/README.md",
-  "language_code": "ro"
-}
--->
 # Autentificare simplă
 
 SDK-urile MCP acceptă utilizarea OAuth 2.1, care, să fim sinceri, este un proces destul de complex ce implică concepte precum server de autentificare, server de resurse, trimiterea acreditărilor, obținerea unui cod, schimbarea codului pentru un token de tip bearer, până când în final poți accesa datele resurselor tale. Dacă nu ești familiarizat cu OAuth, care este o soluție excelentă de implementat, este o idee bună să începi cu un nivel de bază de autentificare și să avansezi treptat către o securitate mai bună. De aceea există acest capitol, pentru a te ajuta să evoluezi către metode mai avansate de autentificare.

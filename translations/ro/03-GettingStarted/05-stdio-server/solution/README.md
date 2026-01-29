@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e378b47e0361b7a9b0dab7a0306878c8",
-  "translation_date": "2025-08-26T20:03:35+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/README.md",
-  "language_code": "ro"
-}
--->
 # Soluții MCP stdio Server
 
 > **⚠️ Important**: Aceste soluții au fost actualizate pentru a utiliza **transportul stdio**, conform recomandărilor din Specificația MCP 2025-06-18. Transportul original SSE (Server-Sent Events) a fost depreciat.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "32c9a4263be08f9050c8044bb26267c4",
-  "translation_date": "2025-07-14T00:22:45+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/apimoauth.md",
-  "language_code": "ja"
-}
--->
 # Spring AI MCPアプリをAzure Container Appsにデプロイする
 
  ([Securing Spring AI MCP servers with OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2)) *図：Spring Authorization Serverで保護されたSpring AI MCPサーバー。サーバーはクライアントにアクセストークンを発行し、受信リクエストでそれを検証します（出典：Springブログ）([Securing Spring AI MCP servers with OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2#:~:text=,server%20with%20the%20MCP%20inspector)).* Spring MCPサーバーをデプロイするには、コンテナとしてビルドし、外部イングレス付きのAzure Container Appsを使用します。例えば、Azure CLIを使って以下のコマンドを実行できます：

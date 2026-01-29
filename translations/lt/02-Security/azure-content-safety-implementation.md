@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1b6c746d9e190deba4d8765267ffb94e",
-  "translation_date": "2025-08-26T19:06:16+00:00",
-  "source_file": "02-Security/azure-content-safety-implementation.md",
-  "language_code": "lt"
-}
--->
 # Azure Content Safety diegimas su MCP
 
 Norint sustiprinti MCP saugumą nuo užklausų injekcijų, įrankių užnuodijimo ir kitų AI specifinių pažeidžiamumų, labai rekomenduojama integruoti Azure Content Safety.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "997c7119766a69552e23d7d681316902",
-  "translation_date": "2025-08-18T16:36:33+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security/README.md",
-  "language_code": "pa"
-}
--->
 # MCP ਸੁਰੱਖਿਆ ਸ੍ਰੇਸ਼ਠ ਅਭਿਆਸ - ਉੱਚ ਪੱਧਰੀ ਕਾਰਜਨਵਾਈ ਗਾਈਡ
 
 > **ਮੌਜੂਦਾ ਮਿਆਰ**: ਇਹ ਗਾਈਡ [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) ਸੁਰੱਖਿਆ ਦੀਆਂ ਲੋੜਾਂ ਅਤੇ ਅਧਿਕਾਰਤ [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) ਨੂੰ ਦਰਸਾਉਂਦੀ ਹੈ।

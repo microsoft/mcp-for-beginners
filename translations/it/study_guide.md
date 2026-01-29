@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "af27b0acfae6caa134d9701453884df8",
-  "translation_date": "2025-10-06T22:57:10+00:00",
-  "source_file": "study_guide.md",
-  "language_code": "it"
-}
--->
 # Protocollo di Contesto Modello (MCP) per Principianti - Guida allo Studio
 
 Questa guida allo studio offre una panoramica della struttura e dei contenuti del repository per il curriculum "Protocollo di Contesto Modello (MCP) per Principianti". Utilizza questa guida per navigare nel repository in modo efficiente e sfruttare al meglio le risorse disponibili.

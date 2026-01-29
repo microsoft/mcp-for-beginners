@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1d9dc83260576b76f272d330ed93c51f",
-  "translation_date": "2025-07-13T22:11:02+00:00",
-  "source_file": "03-GettingStarted/09-deployment/README.md",
-  "language_code": "sk"
-}
--->
 # Nasadenie MCP serverov
 
 Nasadenie vášho MCP servera umožňuje ostatným prístup k jeho nástrojom a zdrojom mimo vášho lokálneho prostredia. Existuje niekoľko stratégií nasadenia, ktoré treba zvážiť v závislosti od vašich požiadaviek na škálovateľnosť, spoľahlivosť a jednoduchosť správy. Nižšie nájdete pokyny na nasadenie MCP serverov lokálne, v kontajneroch a do cloudu.

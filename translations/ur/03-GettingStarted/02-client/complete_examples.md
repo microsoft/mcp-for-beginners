@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8358c13b5b6877e475674697cdc1a904",
-  "translation_date": "2025-08-18T14:22:47+00:00",
-  "source_file": "03-GettingStarted/02-client/complete_examples.md",
-  "language_code": "ur"
-}
--->
 # مکمل ایم سی پی کلائنٹ کی مثالیں
 
 یہ ڈائریکٹری مختلف پروگرامنگ زبانوں میں ایم سی پی کلائنٹس کی مکمل اور کام کرنے والی مثالیں فراہم کرتی ہے۔ ہر کلائنٹ مرکزی README.md ٹیوٹوریل میں بیان کردہ مکمل فعالیت کو ظاہر کرتا ہے۔

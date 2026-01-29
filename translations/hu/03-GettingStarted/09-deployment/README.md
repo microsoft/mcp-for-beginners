@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1d9dc83260576b76f272d330ed93c51f",
-  "translation_date": "2025-07-13T22:10:44+00:00",
-  "source_file": "03-GettingStarted/09-deployment/README.md",
-  "language_code": "hu"
-}
--->
 # MCP szerverek telepítése
 
 Az MCP szerver telepítése lehetővé teszi, hogy mások is hozzáférjenek az eszközeihez és erőforrásaihoz a helyi környezeteden kívül. Többféle telepítési stratégia létezik, amelyeket a skálázhatóság, megbízhatóság és a kezelhetőség szempontjai alapján érdemes mérlegelni. Az alábbiakban útmutatót találsz az MCP szerverek helyi, konténeres és felhő alapú telepítéséhez.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0bc7bd48f55f1565f1d95ccb2c16f728",
-  "translation_date": "2025-07-13T23:08:10+00:00",
-  "source_file": "04-PracticalImplementation/samples/csharp/README.md",
-  "language_code": "he"
-}
--->
 # דוגמה
 
 הדוגמה הקודמת מראה כיצד להשתמש בפרויקט .NET מקומי עם סוג `stdio`. וכיצד להריץ את השרת מקומית בתוך מכולה. זו פתרון טוב במצבים רבים. עם זאת, יכול להיות שימושי שהשרת ירוץ מרחוק, כמו בסביבת ענן. כאן נכנס סוג ה-`http`.

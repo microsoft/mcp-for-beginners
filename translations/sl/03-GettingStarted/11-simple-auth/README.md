@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5b00b8a8971a07d2d8803be4c9f138f8",
-  "translation_date": "2025-10-07T01:07:32+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/README.md",
-  "language_code": "sl"
-}
--->
 # Preprosto preverjanje pristnosti
 
 MCP SDK-ji podpirajo uporabo OAuth 2.1, kar je precej zahteven proces, ki vključuje koncepte, kot so strežnik za preverjanje pristnosti, strežnik virov, pošiljanje poverilnic, pridobivanje kode, zamenjava kode za žeton nosilca, dokler končno ne pridobite podatkov o viru. Če niste vajeni OAuth-a, ki je sicer odličen za implementacijo, je dobra ideja začeti z osnovno ravnjo preverjanja pristnosti in postopoma graditi boljšo varnost. Zato obstaja to poglavje, da vas vodi do naprednejšega preverjanja pristnosti.

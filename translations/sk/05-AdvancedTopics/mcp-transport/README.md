@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "cf3e88e4c0b2d9d65c7f300986bd8c6c",
-  "translation_date": "2025-12-19T15:51:50+00:00",
-  "source_file": "05-AdvancedTopics/mcp-transport/README.md",
-  "language_code": "sk"
-}
--->
 # MCP Vlastné transporty - Pokročilý sprievodca implementáciou
 
 Protokol Model Context (MCP) poskytuje flexibilitu v mechanizmoch transportu, umožňujúc vlastné implementácie pre špecializované podnikové prostredia. Tento pokročilý sprievodca skúma implementácie vlastných transportov pomocou Azure Event Grid a Azure Event Hubs ako praktické príklady pre budovanie škálovateľných, cloud-native MCP riešení.

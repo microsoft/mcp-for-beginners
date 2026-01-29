@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e1d142978227a4bfc468bb0accab62e2",
-  "translation_date": "2025-10-11T12:17:09+00:00",
-  "source_file": "05-AdvancedTopics/mcp-multi-modality/README.md",
-  "language_code": "et"
-}
--->
 # Multi-Modalne Integratsioon
 
 Multi-modal rakendused muutuvad tehisintellektis üha olulisemaks, võimaldades rikkalikumaid interaktsioone ja keerukamaid ülesandeid. Model Context Protocol (MCP) pakub raamistiku multi-modalsete rakenduste loomiseks, mis suudavad hallata erinevat tüüpi andmeid, nagu tekst, pildid ja heli.

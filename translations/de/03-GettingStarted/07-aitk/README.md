@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "98bcd044860716da5819e31c152813b7",
-  "translation_date": "2025-08-11T11:10:12+00:00",
-  "source_file": "03-GettingStarted/07-aitk/README.md",
-  "language_code": "de"
-}
--->
 # Verwenden eines Servers aus der AI Toolkit-Erweiterung für Visual Studio Code
 
 Beim Erstellen eines KI-Agenten geht es nicht nur darum, intelligente Antworten zu generieren, sondern auch darum, dem Agenten die Fähigkeit zu geben, Aktionen auszuführen. Hier kommt das Model Context Protocol (MCP) ins Spiel. MCP ermöglicht es Agenten, externe Tools und Dienste auf konsistente Weise zu nutzen. Stellen Sie sich vor, Sie schließen Ihren Agenten an eine Werkzeugkiste an, die er *tatsächlich* verwenden kann.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2228721599c0c8673de83496b4d7d7a9",
-  "translation_date": "2025-08-18T14:09:55+00:00",
-  "source_file": "09-CaseStudy/apimsample.md",
-  "language_code": "th"
-}
--->
 # กรณีศึกษา: เปิดเผย REST API ใน API Management เป็นเซิร์ฟเวอร์ MCP
 
 Azure API Management เป็นบริการที่ให้ Gateway อยู่บน API Endpoints ของคุณ วิธีการทำงานคือ Azure API Management ทำหน้าที่เป็นพร็อกซีที่อยู่ด้านหน้าของ API ของคุณ และสามารถตัดสินใจว่าจะทำอะไรกับคำขอที่เข้ามา

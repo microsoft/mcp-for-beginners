@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ac2459c0d5cc823922e3d9240a95028c",
-  "translation_date": "2025-07-13T19:06:06+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/java/README.md",
-  "language_code": "ar"
-}
--->
 # عميل حاسبة LLM
 
 تطبيق جافا يوضح كيفية استخدام LangChain4j للاتصال بخدمة حاسبة MCP (بروتوكول سياق النموذج) مع تكامل نماذج GitHub.

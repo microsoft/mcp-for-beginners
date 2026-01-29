@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ebdb86db46113f1cbd59ce4c74caaa79",
-  "translation_date": "2025-07-17T01:16:03+00:00",
-  "source_file": "05-AdvancedTopics/mcp-root-contexts/README.md",
-  "language_code": "it"
-}
--->
 # Contesti Root MCP
 
 I contesti root sono un concetto fondamentale nel Model Context Protocol che forniscono un livello persistente per mantenere la cronologia delle conversazioni e lo stato condiviso attraverso molteplici richieste e sessioni.

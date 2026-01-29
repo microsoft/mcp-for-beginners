@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e5ea5e7582f70008ea9bec3b3820f20a",
-  "translation_date": "2025-07-13T23:11:02+00:00",
-  "source_file": "04-PracticalImplementation/samples/java/containerapp/README.md",
-  "language_code": "en"
-}
--->
 ## System Architecture
 
 This project showcases a web application that performs content safety checks before sending user prompts to a calculator service via the Model Context Protocol (MCP).

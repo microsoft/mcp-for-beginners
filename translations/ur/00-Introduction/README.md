@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9678e0c6945b8e0c23586869b0e26783",
-  "translation_date": "2025-10-06T10:51:07+00:00",
-  "source_file": "00-Introduction/README.md",
-  "language_code": "ur"
-}
--->
 # ماڈل کانٹیکسٹ پروٹوکول (MCP) کا تعارف: اسکیل ایبل AI ایپلیکیشنز کے لیے اس کی اہمیت
 
 [![ماڈل کانٹیکسٹ پروٹوکول کا تعارف](../../../translated_images/ur/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.png)](https://youtu.be/agBbdiOPLQA)

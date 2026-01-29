@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "d940b5e0af75e3a3a4d1c3179120d1d9",
-  "translation_date": "2025-08-26T18:12:06+00:00",
-  "source_file": "03-GettingStarted/04-vscode/README.md",
-  "language_code": "hu"
-}
--->
 # GitHub Copilot Agent mód használata egy szerver fogyasztására
 
 A Visual Studio Code és a GitHub Copilot kliensként működhet, és képes egy MCP szervert fogyasztani. Miért lenne ez hasznos, kérdezhetnéd? Nos, ez azt jelenti, hogy az MCP szerver bármilyen funkciója mostantól elérhető az IDE-n belül. Képzeld el például, hogy hozzáadod a GitHub MCP szerverét, így természetes nyelvű utasításokkal vezérelheted a GitHubot ahelyett, hogy konkrét parancsokat írnál a terminálba. Vagy gondolj bármire, ami javíthatja a fejlesztői élményt, mindezt természetes nyelvvel irányítva. Most már látod, miért előnyös ez, igaz?

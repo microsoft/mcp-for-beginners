@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f84eaea79c8fa9ab318a494f40891814",
-  "translation_date": "2025-08-18T16:06:10+00:00",
-  "source_file": "05-AdvancedTopics/mcp-integration/README.md",
-  "language_code": "ne"
-}
--->
 # इन्टरप्राइज इन्टिग्रेशन
 
 इन्टरप्राइज सन्दर्भमा MCP सर्भरहरू निर्माण गर्दा, प्रायः तपाईंले विद्यमान AI प्लेटफर्महरू र सेवाहरूसँग इन्टिग्रेट गर्नुपर्ने हुन्छ। यो खण्डले Azure OpenAI र Microsoft AI Foundry जस्ता इन्टरप्राइज प्रणालीहरूसँग MCP कसरी इन्टिग्रेट गर्ने भन्ने कुरा समेट्छ, जसले उन्नत AI क्षमताहरू र उपकरणहरूको समन्वयलाई सक्षम बनाउँछ।

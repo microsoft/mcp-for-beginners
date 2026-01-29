@@ -1,0 +1,422 @@
+{
+  "01.a467036d886b5fb5.webp": {
+    "original_hash": "3d4c3e18950f29eddd3831cf36ce0447",
+    "translation_date": "2026-01-16T11:24:08+00:00",
+    "source_file": "images/video-thumbnails/01.png",
+    "language_code": "pt-BR"
+  },
+  "02.8203e26c6fb5a797.webp": {
+    "original_hash": "5d4053d512422d1628f0791d4a98f567",
+    "translation_date": "2026-01-16T11:22:59+00:00",
+    "source_file": "images/video-thumbnails/02.png",
+    "language_code": "pt-BR"
+  },
+  "03.175aed6dedae133f.webp": {
+    "original_hash": "350c054afa5e65a7c5bb9a47fdcd7fca",
+    "translation_date": "2026-01-16T11:23:51+00:00",
+    "source_file": "images/video-thumbnails/03.png",
+    "language_code": "pt-BR"
+  },
+  "04.0ea920069efd979a.webp": {
+    "original_hash": "a5d4cb0ea552972395636d2d33e3192e",
+    "translation_date": "2026-01-16T11:23:59+00:00",
+    "source_file": "images/video-thumbnails/04.png",
+    "language_code": "pt-BR"
+  },
+  "05.64bea204e25ca891.webp": {
+    "original_hash": "37e97c83a122f42774fceea0bdc4f41f",
+    "translation_date": "2026-01-16T11:24:25+00:00",
+    "source_file": "images/video-thumbnails/05.png",
+    "language_code": "pt-BR"
+  },
+  "06.42259eaf91fccfc6.webp": {
+    "original_hash": "c0de41afc485a8d2b2ea0bd222680208",
+    "translation_date": "2026-01-16T11:23:34+00:00",
+    "source_file": "images/video-thumbnails/06.png",
+    "language_code": "pt-BR"
+  },
+  "07.1179f6de46ff196e.webp": {
+    "original_hash": "65a5d72d409521a0cd5fc01f1bbda847",
+    "translation_date": "2026-01-16T11:23:08+00:00",
+    "source_file": "images/video-thumbnails/07.png",
+    "language_code": "pt-BR"
+  },
+  "08.980bb2babbaadd8a.webp": {
+    "original_hash": "54965c66539414fc23b575c35cc5594e",
+    "translation_date": "2026-01-16T11:24:16+00:00",
+    "source_file": "images/video-thumbnails/08.png",
+    "language_code": "pt-BR"
+  },
+  "09.d0f6d86c9d72134c.webp": {
+    "original_hash": "48fec870b320bc473705f1238e5980ed",
+    "translation_date": "2026-01-16T11:23:16+00:00",
+    "source_file": "images/video-thumbnails/09.png",
+    "language_code": "pt-BR"
+  },
+  "10.3262cc80b4de5071.webp": {
+    "original_hash": "20d40b7212cfb4255b49e9fba3814748",
+    "translation_date": "2026-01-16T11:23:43+00:00",
+    "source_file": "images/video-thumbnails/10.png",
+    "language_code": "pt-BR"
+  },
+  "11.0f6db6a0fb606885.webp": {
+    "original_hash": "ea010845c27740365423e8515dec9cf6",
+    "translation_date": "2026-01-16T11:23:26+00:00",
+    "source_file": "images/video-thumbnails/11.png",
+    "language_code": "pt-BR"
+  },
+  "AddMCP.afe3308ac20aa944.webp": {
+    "original_hash": "3c136269c27ca26dbd4600cd3331030e",
+    "translation_date": "2026-01-16T11:35:20+00:00",
+    "source_file": "images/10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab2/AddMCP.png",
+    "language_code": "pt-BR"
+  },
+  "AddMCPServer.69b911ccef872cbd.webp": {
+    "original_hash": "2d7e425967aa732d3496a55ffc24c058",
+    "translation_date": "2026-01-16T11:34:36+00:00",
+    "source_file": "images/10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab2/AddMCPServer.png",
+    "language_code": "pt-BR"
+  },
+  "Agent.c9c33f6a412b4cde.webp": {
+    "original_hash": "93646dce73ddd715ffc1d98bb620d418",
+    "translation_date": "2026-01-16T11:32:22+00:00",
+    "source_file": "images/10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/Agent.png",
+    "language_code": "pt-BR"
+  },
+  "AgentTools.053cfb96a17e0219.webp": {
+    "original_hash": "9295ccc76eb94f0f8ae0f3e6f1c287e8",
+    "translation_date": "2026-01-16T11:33:16+00:00",
+    "source_file": "images/10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab2/AgentTools.png",
+    "language_code": "pt-BR"
+  },
+  "Browser.ec011d0bd64d0d11.webp": {
+    "original_hash": "92009deba527f7972c14d2e2f91d76ac",
+    "translation_date": "2026-01-16T11:34:34+00:00",
+    "source_file": "images/10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab2/Browser.png",
+    "language_code": "pt-BR"
+  },
+  "BrowserAgent.09c1adde5e136573.webp": {
+    "original_hash": "7341116639da524e5a5ba0e2245b961b",
+    "translation_date": "2026-01-16T11:33:34+00:00",
+    "source_file": "images/10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab2/BrowserAgent.png",
+    "language_code": "pt-BR"
+  },
+  "Code.d9eeeead0b96db0c.webp": {
+    "original_hash": "53a2cd4ff90f397018f1c399e08dbff3",
+    "translation_date": "2026-01-16T11:33:02+00:00",
+    "source_file": "images/10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab2/Code.png",
+    "language_code": "pt-BR"
+  },
+  "DebugAgent.81d152370c503241.webp": {
+    "original_hash": "74a529c1f271d8bb9ec27595d145eaab",
+    "translation_date": "2026-01-16T11:31:21+00:00",
+    "source_file": "images/10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/DebugAgent.png",
+    "language_code": "pt-BR"
+  },
+  "DebugInspector.eb5c95f94c69a8ba.webp": {
+    "original_hash": "c92c5af78dbbf0640e8645f1b2b21a24",
+    "translation_date": "2026-01-16T11:31:03+00:00",
+    "source_file": "images/10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/DebugInspector.png",
+    "language_code": "pt-BR"
+  },
+  "Inspector.5672415cd02fe873.webp": {
+    "original_hash": "5808867a6d2f7b492a45c2209d25da22",
+    "translation_date": "2026-01-16T11:31:48+00:00",
+    "source_file": "images/10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/Inspector.png",
+    "language_code": "pt-BR"
+  },
+  "MCPCatalog.a817d05314569900.webp": {
+    "original_hash": "e10c170277859c076320f8c4ccf0df2d",
+    "translation_date": "2026-01-16T11:33:11+00:00",
+    "source_file": "images/10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab2/MCPCatalog.png",
+    "language_code": "pt-BR"
+  },
+  "MCPID.67d446052979e819.webp": {
+    "original_hash": "4548fa4450fd8ca4eb04546d45620abc",
+    "translation_date": "2026-01-16T11:33:41+00:00",
+    "source_file": "images/10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab2/MCPID.png",
+    "language_code": "pt-BR"
+  },
+  "Prompt.bfc846605db4999f.webp": {
+    "original_hash": "ca665967c2a76efc8d4a6d8d6e32d6f9",
+    "translation_date": "2026-01-16T11:34:54+00:00",
+    "source_file": "images/10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab2/Prompt.png",
+    "language_code": "pt-BR"
+  },
+  "Pythontemplate.9d0a2913c6491500.webp": {
+    "original_hash": "6c90be3db9d20172390459f999b12304",
+    "translation_date": "2026-01-16T11:31:25+00:00",
+    "source_file": "images/10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/Pythontemplate.png",
+    "language_code": "pt-BR"
+  },
+  "Result.6ac570f7d2b1d538.webp": {
+    "original_hash": "8af177b2fbd839d051ce068d41997f97",
+    "translation_date": "2026-01-16T11:32:37+00:00",
+    "source_file": "images/10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/Result.png",
+    "language_code": "pt-BR"
+  },
+  "Result.8638f2b6703e9ea6.webp": {
+    "original_hash": "20c7c47fc766d9ab570b09eb2e52445e",
+    "translation_date": "2026-01-16T11:35:15+00:00",
+    "source_file": "images/10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab2/Result.png",
+    "language_code": "pt-BR"
+  },
+  "Tools.3ea23c447b4d9fec.webp": {
+    "original_hash": "6dd1358992c6009440fe7f2b56487c8d",
+    "translation_date": "2026-01-16T11:35:42+00:00",
+    "source_file": "images/10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab2/Tools.png",
+    "language_code": "pt-BR"
+  },
+  "Weather.ee38efbe956d00f1.webp": {
+    "original_hash": "8af177b2fbd839d051ce068d41997f97",
+    "translation_date": "2026-01-16T11:32:06+00:00",
+    "source_file": "images/10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/Weather.png",
+    "language_code": "pt-BR"
+  },
+  "agent-mode-select-tools.522c7ba5df0848f8.webp": {
+    "original_hash": "499d1a91e66e1385a1c230a7b6c0e8ea",
+    "translation_date": "2026-01-16T11:22:47+00:00",
+    "source_file": "images/03-GettingStarted/agent-mode-select-tools.png",
+    "language_code": "pt-BR"
+  },
+  "agentbuilder.25895b2d2f8c02e7.webp": {
+    "original_hash": "6175f0c2fb904071e67d553ea7d78670",
+    "translation_date": "2026-01-16T11:27:20+00:00",
+    "source_file": "images/10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab1/agentbuilder.png",
+    "language_code": "pt-BR"
+  },
+  "aimodel.263ed2be013d8fb0.webp": {
+    "original_hash": "05c905e4d78d20b078fc536b733d946e",
+    "translation_date": "2026-01-16T11:29:08+00:00",
+    "source_file": "images/10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab1/aimodel.png",
+    "language_code": "pt-BR"
+  },
+  "aitk-add-mcp-server.9742cfddfe808353.webp": {
+    "original_hash": "ecd75d0bf0af41031cfd5fb697926670",
+    "translation_date": "2026-01-16T11:20:09+00:00",
+    "source_file": "03-GettingStarted/07-aitk/assets/aitk-add-mcp-server.png",
+    "language_code": "pt-BR"
+  },
+  "aitk-agent-builder.901e3a2960c3e477.webp": {
+    "original_hash": "cfefe845d0cbd99b05f4e036e920b05b",
+    "translation_date": "2026-01-16T11:20:32+00:00",
+    "source_file": "03-GettingStarted/07-aitk/assets/aitk-agent-builder.png",
+    "language_code": "pt-BR"
+  },
+  "aitk-agent-response-with-tools.e7c781869dc8041a.webp": {
+    "original_hash": "d2af4a12214066b51375d53b4fb63a30",
+    "translation_date": "2026-01-16T11:20:06+00:00",
+    "source_file": "03-GettingStarted/07-aitk/assets/aitk-agent-response-with-tools.png",
+    "language_code": "pt-BR"
+  },
+  "aitk-generate-prompt.ba9e69d3d2bbe2a2.webp": {
+    "original_hash": "97d77e7125f79a26c1b369588d1f298f",
+    "translation_date": "2026-01-16T11:19:55+00:00",
+    "source_file": "03-GettingStarted/07-aitk/assets/aitk-generate-prompt.png",
+    "language_code": "pt-BR"
+  },
+  "aitk-model-catalog.2acd38953bb9c119.webp": {
+    "original_hash": "8fd2ee2968286e0f5ed8f21d16985ae9",
+    "translation_date": "2026-01-16T11:20:48+00:00",
+    "source_file": "03-GettingStarted/07-aitk/assets/aitk-model-catalog.png",
+    "language_code": "pt-BR"
+  },
+  "aitkext.d28945a03eed003c.webp": {
+    "original_hash": "ff1e71c5c645cc31f14fbf2085619247",
+    "translation_date": "2026-01-16T11:30:29+00:00",
+    "source_file": "images/10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab1/aitkext.png",
+    "language_code": "pt-BR"
+  },
+  "azd-deployment-success.bd42940493f1b834.webp": {
+    "original_hash": "a7925dfdb29ecb05a678aea27bf8db33",
+    "translation_date": "2026-01-16T11:36:36+00:00",
+    "source_file": "04-PracticalImplementation/samples/csharp/images/azd-deployment-success.png",
+    "language_code": "pt-BR"
+  },
+  "chat-mode-agent.729a22473f822216.webp": {
+    "original_hash": "4e4d2cd88e534e4de108497fed8d123b",
+    "translation_date": "2026-01-16T11:22:51+00:00",
+    "source_file": "images/03-GettingStarted/chat-mode-agent.png",
+    "language_code": "pt-BR"
+  },
+  "compare.97746cd0f9074955.webp": {
+    "original_hash": "b944da5262f9dc6c41aa64b646d2dad4",
+    "translation_date": "2026-01-16T11:28:17+00:00",
+    "source_file": "images/10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab1/compare.png",
+    "language_code": "pt-BR"
+  },
+  "connect.141db0b2bd05f096.webp": {
+    "original_hash": "ed0313574a8af5f32203d9976cf5492b",
+    "translation_date": "2026-01-16T11:21:12+00:00",
+    "source_file": "03-GettingStarted/01-first-server/assets/connect.png",
+    "language_code": "pt-BR"
+  },
+  "connected.73d1e042c24075d3.webp": {
+    "original_hash": "bf70d26e3fea8d674359584085bd1903",
+    "translation_date": "2026-01-16T11:21:27+00:00",
+    "source_file": "03-GettingStarted/01-first-server/assets/connected.png",
+    "language_code": "pt-BR"
+  },
+  "dotnet-aspire-dashboard.0a7095710e9301e9.webp": {
+    "original_hash": "8c9f6f357f36cc9d7e4e7bcc8be5b3ce",
+    "translation_date": "2026-01-16T11:36:10+00:00",
+    "source_file": "04-PracticalImplementation/samples/csharp/images/dotnet-aspire-dashboard.png",
+    "language_code": "pt-BR"
+  },
+  "logo.ec93918ec338dadd.webp": {
+    "original_hash": "a5f237e314d243dfee6bf5b1ee815914",
+    "translation_date": "2026-01-16T11:22:25+00:00",
+    "source_file": "images/10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/logo.png",
+    "language_code": "pt-BR"
+  },
+  "mcp-beginners.2ce2b317996369ff.webp": {
+    "original_hash": "967ec9e1f9eea09266f6b08ddebabdb5",
+    "translation_date": "2026-01-16T11:19:00+00:00",
+    "source_file": "images/mcp-beginners.png",
+    "language_code": "pt-BR"
+  },
+  "mcp-inspector.c223422b9b494fb4.webp": {
+    "original_hash": "a4726dc2caa8b1a648ee5e4bd22d4a17",
+    "translation_date": "2026-01-16T11:36:30+00:00",
+    "source_file": "04-PracticalImplementation/samples/csharp/images/mcp-inspector.png",
+    "language_code": "pt-BR"
+  },
+  "mcp-list-servers.fce89eefe3f30032.webp": {
+    "original_hash": "1bbf846c89e4a27363400fe923f85aa4",
+    "translation_date": "2026-01-16T11:22:29+00:00",
+    "source_file": "images/03-GettingStarted/mcp-list-servers.png",
+    "language_code": "pt-BR"
+  },
+  "plant.b079fed84e945b7c.webp": {
+    "original_hash": "23da2e8c840ae422a9f54465e870b5df",
+    "translation_date": "2026-01-16T11:35:58+00:00",
+    "source_file": "04-PracticalImplementation/samples/java/containerapp/src/main/resources/diagrams/plant.png",
+    "language_code": "pt-BR"
+  },
+  "playground.dd6f5141344878ca.webp": {
+    "original_hash": "24b85813864dc06c33f75361bbd0950b",
+    "translation_date": "2026-01-16T11:26:57+00:00",
+    "source_file": "images/10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab1/playground.png",
+    "language_code": "pt-BR"
+  },
+  "prompt-injection.ed9fbfde297ca877.webp": {
+    "original_hash": "a81b5b798041fd25d2b16036855308c0",
+    "translation_date": "2026-01-16T11:26:07+00:00",
+    "source_file": "images/02-Security/prompt-injection.png",
+    "language_code": "pt-BR"
+  },
+  "prompt-shield.ff5b95be76e9c78c.webp": {
+    "original_hash": "de9191f435a1a48bad3d9dc4208bbe4c",
+    "translation_date": "2026-01-16T11:26:19+00:00",
+    "source_file": "images/02-Security/prompt-shield.png",
+    "language_code": "pt-BR"
+  },
+  "pythonagent.5e51b406401c165f.webp": {
+    "original_hash": "9e9b1569d24193b10b9c21421d0665dd",
+    "translation_date": "2026-01-16T11:27:43+00:00",
+    "source_file": "images/10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab1/pythonagent.png",
+    "language_code": "pt-BR"
+  },
+  "ran-tool.a5a6ee878c1369ec.webp": {
+    "original_hash": "89fb8ffdad99140928f5202dbe6db070",
+    "translation_date": "2026-01-16T11:21:03+00:00",
+    "source_file": "03-GettingStarted/01-first-server/assets/ran-tool.png",
+    "language_code": "pt-BR"
+  },
+  "result.1dfcf211fb359cf6.webp": {
+    "original_hash": "2cfe3483a0995c41fd5df2e50bed92d2",
+    "translation_date": "2026-01-16T11:29:34+00:00",
+    "source_file": "images/10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab1/result.png",
+    "language_code": "pt-BR"
+  },
+  "scenario2.0c92726d5cd81f68.webp": {
+    "original_hash": "54c5ca9006c532ef891ed0e6a18e54ab",
+    "translation_date": "2026-01-16T11:38:45+00:00",
+    "source_file": "09-CaseStudy/docs-mcp/assets/scenario2.png",
+    "language_code": "pt-BR"
+  },
+  "set.88132df189ecde2c.webp": {
+    "original_hash": "2ad01741a86a6f0409d234eaf4e6f0a6",
+    "translation_date": "2026-01-16T11:26:37+00:00",
+    "source_file": "images/10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab1/set.png",
+    "language_code": "pt-BR"
+  },
+  "step1-mcp-json.c06a007fccc3edfa.webp": {
+    "original_hash": "b7c452f0da291ec9d98dc23ab419537d",
+    "translation_date": "2026-01-16T11:36:43+00:00",
+    "source_file": "09-CaseStudy/docs-mcp/assets/step1-mcp-json.png",
+    "language_code": "pt-BR"
+  },
+  "step2-copilot-panel.f1cc86e9b9b8cd1a.webp": {
+    "original_hash": "2bb5c5a34b2a72c7bae90362eec4f073",
+    "translation_date": "2026-01-16T11:38:30+00:00",
+    "source_file": "09-CaseStudy/docs-mcp/assets/step2-copilot-panel.png",
+    "language_code": "pt-BR"
+  },
+  "step3-agent-mode.cdc32520fd7dd1d1.webp": {
+    "original_hash": "9c72f97379444f34332423941691961e",
+    "translation_date": "2026-01-16T11:37:09+00:00",
+    "source_file": "09-CaseStudy/docs-mcp/assets/step3-agent-mode.png",
+    "language_code": "pt-BR"
+  },
+  "step3-verify-mcp-tool.76096a6329cbfecd.webp": {
+    "original_hash": "a0a9ad74a1464a4626a925c875a9ca57",
+    "translation_date": "2026-01-16T11:37:06+00:00",
+    "source_file": "09-CaseStudy/docs-mcp/assets/step3-verify-mcp-tool.png",
+    "language_code": "pt-BR"
+  },
+  "step4-prompt-chat.12187bb001605efc.webp": {
+    "original_hash": "bacd37e1e6a98b84ab4df7d60f12669e",
+    "translation_date": "2026-01-16T11:37:24+00:00",
+    "source_file": "09-CaseStudy/docs-mcp/assets/step4-prompt-chat.png",
+    "language_code": "pt-BR"
+  },
+  "step5-live-queries.49db3e4a50bea273.webp": {
+    "original_hash": "9462f5948361611613e98e68412cbc6a",
+    "translation_date": "2026-01-16T11:39:04+00:00",
+    "source_file": "09-CaseStudy/docs-mcp/assets/step5-live-queries.png",
+    "language_code": "pt-BR"
+  },
+  "tool-injection.3b0b4a6b24de6bef.webp": {
+    "original_hash": "eb91d1d1131dec69cf295c197f92b042",
+    "translation_date": "2026-01-16T11:24:36+00:00",
+    "source_file": "images/02-Security/tool-injection.png",
+    "language_code": "pt-BR"
+  },
+  "tool.163d33e3ee307e20.webp": {
+    "original_hash": "ed2556303c831d1c9277652dc12014a1",
+    "translation_date": "2026-01-16T11:21:49+00:00",
+    "source_file": "03-GettingStarted/01-first-server/assets/tool.png",
+    "language_code": "pt-BR"
+  },
+  "tool.40e180a7b0d0fe20.webp": {
+    "original_hash": "ed2556303c831d1c9277652dc12014a1",
+    "translation_date": "2026-01-16T11:22:17+00:00",
+    "source_file": "03-GettingStarted/01-first-server/solution/java/images/tool.png",
+    "language_code": "pt-BR"
+  },
+  "tool.c75a0b2380efcf1a.webp": {
+    "original_hash": "ed2556303c831d1c9277652dc12014a1",
+    "translation_date": "2026-01-16T11:19:21+00:00",
+    "source_file": "03-GettingStarted/samples/java/calculator/images/tool.png",
+    "language_code": "pt-BR"
+  },
+  "vscode-agent.d5a0e0b897331060.webp": {
+    "original_hash": "28cf123bb0118a7a72c479a7fa3d7319",
+    "translation_date": "2026-01-16T11:19:36+00:00",
+    "source_file": "03-GettingStarted/04-vscode/assets/vscode-agent.png",
+    "language_code": "pt-BR"
+  },
+  "vscode-start-server.8e3c986612e3555d.webp": {
+    "original_hash": "aa39a5cd3c7804c01b8f72b94b30aae6",
+    "translation_date": "2026-01-16T11:19:29+00:00",
+    "source_file": "03-GettingStarted/04-vscode/assets/vscode-start-server.png",
+    "language_code": "pt-BR"
+  },
+  "vscode-tool.0b3bbea2fb7d8c26.webp": {
+    "original_hash": "b343d9a3d40268d08f436cd868426b7d",
+    "translation_date": "2026-01-16T11:19:25+00:00",
+    "source_file": "03-GettingStarted/04-vscode/assets/vscode-tool.png",
+    "language_code": "pt-BR"
+  }
+}

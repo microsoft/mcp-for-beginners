@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e378b47e0361b7a9b0dab7a0306878c8",
-  "translation_date": "2025-12-11T13:01:52+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/README.md",
-  "language_code": "kn"
-}
--->
 # MCP stdio ಸರ್ವರ್ ಪರಿಹಾರಗಳು
 
 > **⚠️ ಪ್ರಮುಖ**: ಈ ಪರಿಹಾರಗಳನ್ನು MCP ಸ್ಪೆಸಿಫಿಕೇಶನ್ 2025-06-18 ನಿಂದ ಶಿಫಾರಸು ಮಾಡಲಾದ **stdio ಸಾರಿಗೆ** ಬಳಕೆಗಾಗಿ ನವೀಕರಿಸಲಾಗಿದೆ. ಮೂಲ SSE (ಸರ್ವರ್-ಸೆಂಟ್ ಇವೆಂಟ್ಸ್) ಸಾರಿಗೆ ನಿಷೇಧಿಸಲಾಗಿದೆ.

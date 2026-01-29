@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "999c5e7623c1e2d5e5a07c2feb39eb67",
-  "translation_date": "2025-11-18T18:51:11+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/README.md",
-  "language_code": "pcm"
-}
--->
 # Weather MCP Server
 
 Dis na sample MCP Server wey dey use Python wey dey do weather tools wit mock response. E fit work as scaffold for your own MCP Server. E get di following features:

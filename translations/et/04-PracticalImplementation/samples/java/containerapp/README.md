@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e5ea5e7582f70008ea9bec3b3820f20a",
-  "translation_date": "2025-10-11T13:02:42+00:00",
-  "source_file": "04-PracticalImplementation/samples/java/containerapp/README.md",
-  "language_code": "et"
-}
--->
 ## Süsteemi arhitektuur
 
 See projekt demonstreerib veebirakendust, mis kasutab sisuturvalisuse kontrolli enne kasutaja sisendite edastamist kalkulaatoriteenusele Model Context Protocol (MCP) kaudu.

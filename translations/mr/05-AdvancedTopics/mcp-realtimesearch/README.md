@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "333a03e51f90bdf3e6f1ba1694c73f36",
-  "translation_date": "2025-07-17T00:24:48+00:00",
-  "source_file": "05-AdvancedTopics/mcp-realtimesearch/README.md",
-  "language_code": "mr"
-}
--->
 ## कोड उदाहरणांची सूचना
 
 > **महत्त्वाची नोंद**: खालील कोड उदाहरणे Model Context Protocol (MCP) च्या वेब सर्च कार्यक्षमतेशी एकत्रीकरण कसे करतात हे दाखवतात. ही उदाहरणे अधिकृत MCP SDK च्या पॅटर्न आणि रचनेचे अनुसरण करतात, पण शैक्षणिक उद्देशांसाठी सोपी केली आहेत.

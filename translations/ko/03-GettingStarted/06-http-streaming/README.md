@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5f1383103523fa822e1fec7ef81904d5",
-  "translation_date": "2025-08-11T10:40:05+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/README.md",
-  "language_code": "ko"
-}
--->
 # HTTPS 스트리밍과 모델 컨텍스트 프로토콜 (MCP)
 
 이 장에서는 HTTPS를 사용하여 안전하고 확장 가능하며 실시간 스트리밍을 구현하는 방법에 대한 포괄적인 가이드를 제공합니다. 스트리밍의 동기, 사용 가능한 전송 메커니즘, MCP에서 스트리밍 가능한 HTTP 구현 방법, 보안 모범 사례, SSE에서의 마이그레이션, 그리고 MCP 스트리밍 애플리케이션을 구축하기 위한 실용적인 지침을 다룹니다.

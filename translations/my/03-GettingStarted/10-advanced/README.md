@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1de8367745088b9fcd4746ea4cc5a161",
-  "translation_date": "2025-10-06T15:58:02+00:00",
-  "source_file": "03-GettingStarted/10-advanced/README.md",
-  "language_code": "my"
-}
--->
 # အဆင့်မြင့် server အသုံးပြုမှု
 
 MCP SDK မှာ server နှစ်မျိုးရှိပါတယ်၊ သင့်ရိုးရိုး server နဲ့ low-level server ပါ။ သာမန်အားဖြင့် သင့်ရိုးရိုး server ကို အသုံးပြုပြီး feature တွေထည့်သွင်းနိုင်ပါတယ်။ သို့သော် အချို့သောအခြေအနေများတွင် low-level server ကို အောက်ပါအတိုင်း အသုံးပြုလိုတတ်ပါတယ်-

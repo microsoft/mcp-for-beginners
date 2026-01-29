@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "fd169ca3071b81b5ee282e194bc823df",
-  "translation_date": "2025-09-15T21:20:12+00:00",
-  "source_file": "05-AdvancedTopics/mcp-contextengineering/README.md",
-  "language_code": "my"
-}
--->
 # Context Engineering: MCP စနစ်တွင် ပေါ်ထွက်လာသော အယူအဆ
 
 ## အကျဉ်းချုပ်

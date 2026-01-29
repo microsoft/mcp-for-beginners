@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "240e365cc324d23a0033e5615b5feb5e",
-  "translation_date": "2025-09-30T23:01:56+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/05-MCP-Server/README.md",
-  "language_code": "hr"
-}
--->
 # Implementacija MCP poslužitelja
 
 ## 🎯 Što ovaj laboratorij pokriva

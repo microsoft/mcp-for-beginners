@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4117a42f3e7baae859515f7b8b911e56",
-  "translation_date": "2025-08-18T16:13:02+00:00",
-  "source_file": "03-GettingStarted/01-first-server/solution/README.md",
-  "language_code": "ne"
-}
--->
 Here's the solutions for each runtime:
 
 - [TypeScript](./typescript/README.md)

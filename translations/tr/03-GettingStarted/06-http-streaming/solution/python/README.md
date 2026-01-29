@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
-  "translation_date": "2025-08-18T18:02:25+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
-  "language_code": "tr"
-}
--->
 # Bu örneği çalıştırma
 
 Klasik HTTP akış sunucusu ve istemcisini, ayrıca MCP akış sunucusu ve istemcisini Python kullanarak nasıl çalıştıracağınızı öğrenin.

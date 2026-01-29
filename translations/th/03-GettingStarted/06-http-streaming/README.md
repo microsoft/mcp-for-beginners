@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5f1383103523fa822e1fec7ef81904d5",
-  "translation_date": "2025-08-18T14:35:13+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/README.md",
-  "language_code": "th"
-}
--->
 # การสตรีม HTTPS ด้วย Model Context Protocol (MCP)
 
 บทนี้ให้คำแนะนำที่ครอบคลุมเกี่ยวกับการใช้งานการสตรีมที่ปลอดภัย ขยายขนาดได้ และแบบเรียลไทม์ด้วย Model Context Protocol (MCP) ผ่าน HTTPS โดยครอบคลุมแรงจูงใจในการสตรีม กลไกการขนส่งที่มีอยู่ วิธีการใช้งาน HTTP แบบสตรีมใน MCP แนวทางปฏิบัติด้านความปลอดภัย การย้ายจาก SSE และคำแนะนำเชิงปฏิบัติสำหรับการสร้างแอปพลิเคชัน MCP แบบสตรีมของคุณเอง

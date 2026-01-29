@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1d9dc83260576b76f272d330ed93c51f",
-  "translation_date": "2025-07-13T22:09:45+00:00",
-  "source_file": "03-GettingStarted/09-deployment/README.md",
-  "language_code": "nl"
-}
--->
 # Deployen van MCP-servers
 
 Het deployen van je MCP-server maakt het mogelijk dat anderen toegang krijgen tot de tools en resources buiten je lokale omgeving. Er zijn verschillende strategieën om te deployen, afhankelijk van je wensen op het gebied van schaalbaarheid, betrouwbaarheid en beheer. Hieronder vind je richtlijnen voor het deployen van MCP-servers lokaal, in containers en in de cloud.

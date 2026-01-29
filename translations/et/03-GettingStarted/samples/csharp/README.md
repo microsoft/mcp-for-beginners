@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "882aae00f1d3f007e20d03b883f44afa",
-  "translation_date": "2025-10-11T11:38:38+00:00",
-  "source_file": "03-GettingStarted/samples/csharp/README.md",
-  "language_code": "et"
-}
--->
 # Põhiline Kalkulaatori MCP Teenus
 
 See teenus pakub põhilisi kalkulaatori funktsioone Model Context Protocoli (MCP) kaudu. See on loodud lihtsa näitena algajatele, kes õpivad MCP rakendusi.

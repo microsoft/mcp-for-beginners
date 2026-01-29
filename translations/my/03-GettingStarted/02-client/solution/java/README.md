@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7074b9f4c8cd147c1c10f569d8508c82",
-  "translation_date": "2025-07-13T18:38:37+00:00",
-  "source_file": "03-GettingStarted/02-client/solution/java/README.md",
-  "language_code": "my"
-}
--->
 # MCP Java Client - ကိန်းဂဏန်းတွက်စက် မျှဝေမှု
 
 ဤပရောဂျက်သည် MCP (Model Context Protocol) ဆာဗာနှင့် ချိတ်ဆက်ပြီး အပြန်အလှန် ဆက်သွယ်နိုင်သော Java client တစ်ခုကို ဖန်တီးပုံကို ပြသသည်။ ဤဥပမာတွင် Chapter 01 မှ ကိန်းဂဏန်းတွက်စက် ဆာဗာနှင့် ချိတ်ဆက်ကာ အမျိုးမျိုးသော သင်္ချာဆိုင်ရာ လုပ်ဆောင်ချက်များကို ပြုလုပ်မည်ဖြစ်သည်။

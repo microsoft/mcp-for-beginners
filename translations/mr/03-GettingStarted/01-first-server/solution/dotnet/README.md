@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "92af35e8c34923031f3d228dffad9ebb",
-  "translation_date": "2025-09-03T16:03:44+00:00",
-  "source_file": "03-GettingStarted/01-first-server/solution/dotnet/README.md",
-  "language_code": "mr"
-}
--->
 # हे नमुना चालवणे
 
 ## -1- आवश्यक गोष्टी स्थापित करा

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e9490aedc71f99bc774af57b207a7adb",
-  "translation_date": "2025-08-26T19:14:21+00:00",
-  "source_file": "03-GettingStarted/07-aitk/solution/README.md",
-  "language_code": "lt"
-}
--->
 # 📘 Užduoties sprendimas: Skaičiuoklės MCP serverio išplėtimas kvadratinės šaknies įrankiu
 
 ## Apžvalga

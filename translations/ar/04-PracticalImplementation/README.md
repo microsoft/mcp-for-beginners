@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "83efa75a69bc831277263a6f1ae53669",
-  "translation_date": "2025-08-18T13:35:59+00:00",
-  "source_file": "04-PracticalImplementation/README.md",
-  "language_code": "ar"
-}
--->
 # التنفيذ العملي
 
 [![كيفية بناء واختبار ونشر تطبيقات MCP باستخدام أدوات وسير عمل حقيقية](../../../translated_images/ar/05.64bea204e25ca891.webp)](https://youtu.be/vCN9-mKBDfQ)

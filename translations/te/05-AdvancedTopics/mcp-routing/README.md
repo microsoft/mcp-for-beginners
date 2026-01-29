@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2f1b473818b5a6cc9a9bbf777fffa6d4",
-  "translation_date": "2025-12-11T16:28:40+00:00",
-  "source_file": "05-AdvancedTopics/mcp-routing/README.md",
-  "language_code": "te"
-}
--->
 # మోడల్ కాంటెక్స్ట్ ప్రోటోకాల్‌లో రౌటింగ్
 
 రౌటింగ్ అనేది MCP ఎకోసిస్టమ్‌లో సరైన మోడల్స్, టూల్స్ లేదా సర్వీసులకు అభ్యర్థనలను దారితీయడానికి అవసరం.

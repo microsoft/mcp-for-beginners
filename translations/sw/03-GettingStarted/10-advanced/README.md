@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1de8367745088b9fcd4746ea4cc5a161",
-  "translation_date": "2025-10-06T15:53:44+00:00",
-  "source_file": "03-GettingStarted/10-advanced/README.md",
-  "language_code": "sw"
-}
--->
 # Matumizi ya Juu ya Seva
 
 Kuna aina mbili za seva zinazotolewa katika MCP SDK, seva ya kawaida na seva ya kiwango cha chini. Kwa kawaida, ungetumia seva ya kawaida kuongeza vipengele. Hata hivyo, kuna baadhi ya hali ambapo unahitaji kutegemea seva ya kiwango cha chini, kama:

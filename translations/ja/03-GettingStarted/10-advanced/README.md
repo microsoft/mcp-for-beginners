@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1de8367745088b9fcd4746ea4cc5a161",
-  "translation_date": "2025-10-06T15:42:31+00:00",
-  "source_file": "03-GettingStarted/10-advanced/README.md",
-  "language_code": "ja"
-}
--->
 # 高度なサーバーの使用方法
 
 MCP SDKでは、通常のサーバーと低レベルサーバーの2種類のサーバーが提供されています。通常は、通常のサーバーを使用して機能を追加します。ただし、以下のような場合には低レベルサーバーを使用することが推奨されます。

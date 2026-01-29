@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5061d7e2ae9eea9cbaae77c1a020b318",
-  "translation_date": "2025-12-19T13:44:31+00:00",
-  "source_file": "02-Security/mcp-best-practices.md",
-  "language_code": "nl"
-}
--->
 # MCP Security Best Practices 2025
 
 Deze uitgebreide gids beschrijft essentiële beveiligingsbest practices voor het implementeren van Model Context Protocol (MCP) systemen op basis van de nieuwste **MCP Specificatie 2025-11-25** en huidige industrienormen. Deze praktijken behandelen zowel traditionele beveiligingsproblemen als AI-specifieke bedreigingen die uniek zijn voor MCP-implementaties.

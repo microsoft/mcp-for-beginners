@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5f1383103523fa822e1fec7ef81904d5",
-  "translation_date": "2025-08-18T13:48:35+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/README.md",
-  "language_code": "ar"
-}
--->
 # البث عبر HTTPS باستخدام بروتوكول Model Context Protocol (MCP)
 
 يوفر هذا الفصل دليلًا شاملاً لتنفيذ بث آمن وقابل للتوسع وفي الوقت الفعلي باستخدام بروتوكول Model Context Protocol (MCP) عبر HTTPS. يتناول الدوافع وراء البث، وآليات النقل المتاحة، وكيفية تنفيذ HTTP القابل للبث في MCP، وأفضل ممارسات الأمان، والانتقال من SSE، وإرشادات عملية لبناء تطبيقات MCP الخاصة بك.

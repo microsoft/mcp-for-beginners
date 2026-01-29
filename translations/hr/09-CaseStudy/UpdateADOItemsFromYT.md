@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "14a2dfbea55ef735660a06bd6bdfe5f3",
-  "translation_date": "2025-07-14T06:16:02+00:00",
-  "source_file": "09-CaseStudy/UpdateADOItemsFromYT.md",
-  "language_code": "hr"
-}
--->
 # Studija slučaja: Ažuriranje Azure DevOps stavki podacima s YouTubea pomoću MCP-a
 
 > **Odricanje:** Postoje postojeći online alati i izvještaji koji mogu automatizirati proces ažuriranja Azure DevOps stavki podacima s platformi poput YouTubea. Sljedeći scenarij je dan isključivo kao primjer kako se MCP alati mogu primijeniti za zadatke automatizacije i integracije.

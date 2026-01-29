@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "92af35e8c34923031f3d228dffad9ebb",
-  "translation_date": "2025-12-11T13:12:58+00:00",
-  "source_file": "03-GettingStarted/01-first-server/solution/dotnet/README.md",
-  "language_code": "kn"
-}
--->
 # ಈ ಮಾದರಿಯನ್ನು ಚಾಲನೆ ಮಾಡುವುದು
 
 ## -1- ಅವಲಂಬನೆಗಳನ್ನು ಸ್ಥಾಪಿಸಿ

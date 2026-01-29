@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9351493ad29390d37f64bc6d84a03db5",
-  "translation_date": "2025-12-19T09:41:36+00:00",
-  "source_file": "02-Security/mcp-security-controls-2025.md",
-  "language_code": "ja"
-}
--->
 # MCP セキュリティコントロール - 2025年12月アップデート
 
 > **現在の標準**: 本ドキュメントは [MCP仕様 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) のセキュリティ要件および公式の [MCPセキュリティベストプラクティス](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) を反映しています。

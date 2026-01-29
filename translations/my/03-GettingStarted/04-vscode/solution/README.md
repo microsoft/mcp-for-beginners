@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-07-13T19:46:58+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "my"
-}
--->
 ဒါဟာ `node build/index.js` လို command တစ်ခုကို chạy လုပ်တာနဲ့ ကိုက်ညီပါတယ်။
 
 - သင့် server ဖိုင်ရှိရာနေရာနဲ့ သင့်ရွေးချယ်ထားတဲ့ runtime နဲ့ server တည်နေရာအပေါ်မူတည်ပြီး server entry ကို သင့် server ဖိုင်ရှိရာနေရာသို့ သို့မဟုတ် server ကို စတင်ဖို့လိုအပ်တဲ့ command ပြောင်းလဲပါ။

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f5300fd1b5e84520d500b2a8f568a1d8",
-  "translation_date": "2025-07-17T08:55:06+00:00",
-  "source_file": "02-Security/azure-content-safety.md",
-  "language_code": "el"
-}
--->
 # Προηγμένη Ασφάλεια MCP με το Azure Content Safety
 
 Το Azure Content Safety προσφέρει πολλά ισχυρά εργαλεία που μπορούν να ενισχύσουν την ασφάλεια των υλοποιήσεων MCP σας:

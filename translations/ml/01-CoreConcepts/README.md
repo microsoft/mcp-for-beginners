@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9ad93d2074502828b8139d5aba7bafab",
-  "translation_date": "2025-12-19T19:07:46+00:00",
-  "source_file": "01-CoreConcepts/README.md",
-  "language_code": "ml"
-}
--->
 Translation for chunk 1 of 'README.md' skipped due to timeout.
 - **ലൈഫ്‌സൈക്കിൾ മാനേജ്മെന്റ്**: ക്ലയന്റുകളും സർവറുകളും തമ്മിലുള്ള കണക്ഷൻ ആരംഭിക്കൽ, കഴിവ് ചർച്ച, സെഷൻ അവസാനിപ്പിക്കൽ എന്നിവ കൈകാര്യം ചെയ്യുന്നു  
 - **സർവർ പ്രിമിറ്റീവുകൾ**: ടൂളുകൾ, വിഭവങ്ങൾ, പ്രോംപ്റ്റുകൾ എന്നിവ വഴി സർവറുകൾക്ക് മുൽ പ്രവർത്തനങ്ങൾ നൽകാൻ സാധിക്കുന്നു  

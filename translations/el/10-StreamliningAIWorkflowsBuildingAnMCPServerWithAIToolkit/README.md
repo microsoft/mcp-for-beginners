@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1b000fd6e1b04c047578bfc5d07d54eb",
-  "translation_date": "2025-08-18T14:05:23+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md",
-  "language_code": "el"
-}
--->
 # Απλοποίηση Ροών Εργασίας AI: Δημιουργία Διακομιστή MCP με το AI Toolkit
 
 ## 🎯 Επισκόπηση

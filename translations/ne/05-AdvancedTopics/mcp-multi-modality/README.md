@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e1d142978227a4bfc468bb0accab62e2",
-  "translation_date": "2025-07-17T00:37:03+00:00",
-  "source_file": "05-AdvancedTopics/mcp-multi-modality/README.md",
-  "language_code": "ne"
-}
--->
 # बहु-मोडल एकीकरण
 
 बहु-मोडल अनुप्रयोगहरू AI मा दिनप्रतिदिन महत्त्वपूर्ण हुँदैछन्, जसले समृद्ध अन्तरक्रियाहरू र जटिल कार्यहरू सम्भव बनाउँछ। Model Context Protocol (MCP) ले विभिन्न प्रकारका डाटा, जस्तै पाठ, छवि, र अडियो, सम्हाल्न सक्ने बहु-मोडल अनुप्रयोगहरू निर्माण गर्नका लागि एक रूपरेखा प्रदान गर्दछ।

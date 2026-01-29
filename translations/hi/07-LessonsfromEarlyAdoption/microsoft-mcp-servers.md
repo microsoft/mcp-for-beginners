@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "c8f283730b5421082ddd26cc85c07831",
-  "translation_date": "2025-07-18T11:07:47+00:00",
-  "source_file": "07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md",
-  "language_code": "hi"
-}
--->
 # 🚀 10 Microsoft MCP सर्वर जो डेवलपर उत्पादकता को बदल रहे हैं
 
 ## 🎯 इस गाइड में आप क्या सीखेंगे

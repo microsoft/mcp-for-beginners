@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "193889b580c86bbb1e4f577114a5ce4e",
-  "translation_date": "2025-07-17T01:27:29+00:00",
-  "source_file": "05-AdvancedTopics/mcp-sampling/README.md",
-  "language_code": "tr"
-}
--->
 # Model Bağlam Protokolünde Örnekleme
 
 Örnekleme, sunucuların istemci aracılığıyla LLM tamamlamaları talep etmesini sağlayan güçlü bir MCP özelliğidir. Bu, gelişmiş ajan davranışlarını mümkün kılarken güvenlik ve gizliliği korur. Doğru örnekleme yapılandırması, yanıt kalitesini ve performansını önemli ölçüde artırabilir. MCP, modellerin metin üretimini rastgelelik, yaratıcılık ve tutarlılığı etkileyen belirli parametrelerle kontrol etmek için standart bir yol sunar.

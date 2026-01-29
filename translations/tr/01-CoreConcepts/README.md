@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9ad93d2074502828b8139d5aba7bafab",
-  "translation_date": "2025-12-19T11:57:51+00:00",
-  "source_file": "01-CoreConcepts/README.md",
-  "language_code": "tr"
-}
--->
 # MCP Temel Kavramları: Yapay Zeka Entegrasyonu için Model Bağlam Protokolünde Ustalaşma
 
 [![MCP Temel Kavramları](../../../translated_images/tr/02.8203e26c6fb5a797f38a10012061013ec66c95bb3260f6c9cfd2bf74b00860e1.png)](https://youtu.be/earDzWGtE84)

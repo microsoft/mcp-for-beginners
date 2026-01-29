@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8358c13b5b6877e475674697cdc1a904",
-  "translation_date": "2025-11-18T18:55:41+00:00",
-  "source_file": "03-GettingStarted/02-client/complete_examples.md",
-  "language_code": "pcm"
-}
--->
 # Complete MCP Client Examples
 
 Dis folder get complete, working example of MCP clients for different programming languages. Each client dey show all di functionality wey dey described for di main README.md tutorial.

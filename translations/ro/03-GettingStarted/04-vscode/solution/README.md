@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-07-13T19:45:55+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "ro"
-}
--->
 Aceasta corespunde rulării unei comenzi de genul: `node build/index.js`.
 
 - Modifică această intrare a serverului pentru a se potrivi cu locația fișierului tău server sau cu ceea ce este necesar pentru a porni serverul, în funcție de runtime-ul ales și locația serverului.

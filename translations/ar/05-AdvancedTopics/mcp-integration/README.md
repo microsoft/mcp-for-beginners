@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f84eaea79c8fa9ab318a494f40891814",
-  "translation_date": "2025-08-18T13:38:22+00:00",
-  "source_file": "05-AdvancedTopics/mcp-integration/README.md",
-  "language_code": "ar"
-}
--->
 # تكامل المؤسسات
 
 عند إنشاء خوادم MCP في سياق المؤسسات، غالبًا ما تحتاج إلى التكامل مع منصات وخدمات الذكاء الاصطناعي الموجودة. تغطي هذه القسم كيفية دمج MCP مع أنظمة المؤسسات مثل Azure OpenAI وMicrosoft AI Foundry، مما يتيح قدرات ذكاء اصطناعي متقدمة وتنظيم الأدوات.

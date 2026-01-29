@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4319d291c9d124ecafea52b3d04bfa0e",
-  "translation_date": "2025-07-14T06:27:24+00:00",
-  "source_file": "09-CaseStudy/docs-mcp/README.md",
-  "language_code": "ms"
-}
--->
 # Kajian Kes: Menyambung ke Pelayan Microsoft Learn Docs MCP dari Klien
 
 Pernahkah anda mendapati diri anda melompat antara laman dokumentasi, Stack Overflow, dan tab enjin carian yang tidak berkesudahan, sambil cuba menyelesaikan masalah dalam kod anda? Mungkin anda mempunyai monitor kedua hanya untuk dokumen, atau anda sentiasa menukar antara IDE dan pelayar. Bukankah lebih baik jika anda boleh membawa dokumentasi terus ke dalam aliran kerja anda—terintegrasi dalam aplikasi anda, IDE anda, atau alat khusus anda sendiri? Dalam kajian kes ini, kita akan terokai cara untuk melakukan perkara itu dengan menyambung terus ke pelayan Microsoft Learn Docs MCP dari aplikasi klien anda sendiri.

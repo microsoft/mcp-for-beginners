@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6d6315e03f591fb5a39be91da88585dc",
-  "translation_date": "2025-07-13T19:21:17+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/typescript/README.md",
-  "language_code": "sr"
-}
--->
 # Покретање овог примера
 
 Овај пример подразумева да имате LLM на клијенту. LLM захтева да или покренете ово у Codespaces или да подесите лични приступни токен на GitHub-у да би радило.

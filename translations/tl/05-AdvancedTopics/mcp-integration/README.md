@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f84eaea79c8fa9ab318a494f40891814",
-  "translation_date": "2025-08-18T18:17:11+00:00",
-  "source_file": "05-AdvancedTopics/mcp-integration/README.md",
-  "language_code": "tl"
-}
--->
 # Enterprise Integration
 
 Kapag gumagawa ng MCP Servers sa konteksto ng enterprise, madalas na kinakailangan ang integrasyon sa mga umiiral na AI platform at serbisyo. Ang seksyong ito ay tumatalakay kung paano i-integrate ang MCP sa mga enterprise system tulad ng Azure OpenAI at Microsoft AI Foundry, upang paganahin ang advanced na AI capabilities at tool orchestration.

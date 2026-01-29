@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e1d142978227a4bfc468bb0accab62e2",
-  "translation_date": "2025-07-16T21:36:58+00:00",
-  "source_file": "05-AdvancedTopics/mcp-multi-modality/README.md",
-  "language_code": "ja"
-}
--->
 # マルチモーダル統合
 
 マルチモーダルアプリケーションはAIにおいてますます重要になっており、より豊かな対話や複雑なタスクを可能にします。Model Context Protocol（MCP）は、テキスト、画像、音声などさまざまな種類のデータを扱えるマルチモーダルアプリケーションを構築するためのフレームワークを提供します。

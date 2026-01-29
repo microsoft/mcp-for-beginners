@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "98bcd044860716da5819e31c152813b7",
-  "translation_date": "2025-11-18T19:09:26+00:00",
-  "source_file": "03-GettingStarted/07-aitk/README.md",
-  "language_code": "pcm"
-}
--->
 # How to use server wey dey from AI Toolkit extension for Visual Studio Code
 
 When you dey build AI agent, e no be only to make am dey give smart answer; e go also need sabi how to take action. Na here Model Context Protocol (MCP) go help. MCP dey make am easy for agents to fit use external tools and services in one kind way wey dey consistent. Think am like say you dey connect your agent to toolbox wey e fit *really* use.

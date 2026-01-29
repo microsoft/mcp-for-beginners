@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "96dbf17071ab774595ab8777468f0c83",
-  "translation_date": "2025-08-19T18:56:10+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/README.md",
-  "language_code": "my"
-}
--->
 ဒီ runtime တစ်ခုချင်းစီအတွက် ဖြေရှင်းနည်းများမှာ:
 
 - [Python](./python/README.md)

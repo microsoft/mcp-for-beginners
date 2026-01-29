@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f84eaea79c8fa9ab318a494f40891814",
-  "translation_date": "2025-07-22T07:49:02+00:00",
-  "source_file": "05-AdvancedTopics/mcp-integration/README.md",
-  "language_code": "ja"
-}
--->
 # エンタープライズ統合
 
 エンタープライズ環境でMCPサーバーを構築する際、既存のAIプラットフォームやサービスと統合する必要があることがよくあります。このセクションでは、Azure OpenAIやMicrosoft AI FoundryのようなエンタープライズシステムとMCPを統合し、高度なAI機能やツールのオーケストレーションを実現する方法について説明します。

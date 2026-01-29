@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7074b9f4c8cd147c1c10f569d8508c82",
-  "translation_date": "2025-07-13T18:36:00+00:00",
-  "source_file": "03-GettingStarted/02-client/solution/java/README.md",
-  "language_code": "vi"
-}
--->
 # MCP Java Client - Demo Máy Tính
 
 Dự án này minh họa cách tạo một client Java kết nối và tương tác với server MCP (Model Context Protocol). Trong ví dụ này, chúng ta sẽ kết nối với server máy tính từ Chương 01 và thực hiện các phép toán khác nhau.

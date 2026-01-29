@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2f1b473818b5a6cc9a9bbf777fffa6d4",
-  "translation_date": "2025-07-14T21:51:43+00:00",
-  "source_file": "05-AdvancedTopics/mcp-routing/README.md",
-  "language_code": "sl"
-}
--->
 ## Dinamično usmerjanje orodij
 
 Usmerjanje orodij zagotavlja, da so klici orodij usmerjeni na najbolj ustrezno storitev glede na kontekst. Na primer, klic orodja za vreme je morda treba usmeriti na regionalno točko glede na lokacijo uporabnika, ali pa mora orodje za kalkulator uporabljati določeno različico API-ja.

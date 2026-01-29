@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "98bcd044860716da5819e31c152813b7",
-  "translation_date": "2025-08-19T18:53:42+00:00",
-  "source_file": "03-GettingStarted/07-aitk/README.md",
-  "language_code": "my"
-}
--->
 # Visual Studio Code အတွက် AI Toolkit Extension မှ Server ကို အသုံးပြုခြင်း
 
 AI Agent တစ်ခုကို တည်ဆောက်တဲ့အခါမှာ၊ ရှင်းလင်းတဲ့ အဖြေတွေကို ဖန်တီးပေးရုံသာမက၊ Agent ကို လုပ်ဆောင်နိုင်စွမ်းပေးဖို့လည်း အရေးကြီးပါတယ်။ Model Context Protocol (MCP) က ဒီအပိုင်းမှာ အထောက်အကူပေးနိုင်ပါတယ်။ MCP က Agent တွေကို အပြင် Tools နဲ့ Services တွေကို တစ်စည်းတစ်လုံးနဲ့ အဆင်ပြေပြေ အသုံးပြုနိုင်အောင် လုပ်ပေးပါတယ်။ ဒါကို Agent ကို အသုံးပြုနိုင်တဲ့ Toolbox တစ်ခုလို ထင်ရပါတယ်။

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f83bc722dc758efffd68667d6a1db470",
-  "translation_date": "2025-07-14T08:44:30+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/README.md",
-  "language_code": "he"
-}
--->
 # 🐙 מודול 4: פיתוח MCP מעשי - שרת גיטאב מותאם אישית לשכפול
 
 ![Duration](https://img.shields.io/badge/Duration-30_minutes-blue?style=flat-square)

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "13231e9951b68efd9df8c56bd5cdb27e",
-  "translation_date": "2025-12-11T12:54:56+00:00",
-  "source_file": "03-GettingStarted/samples/java/calculator/README.md",
-  "language_code": "kn"
-}
--->
 # ಮೂಲ ಕ್ಯಾಲ್ಕುಲೇಟರ್ MCP ಸೇವೆ
 
 ಈ ಸೇವೆ ಸ್ಪ್ರಿಂಗ್ ಬೂಟ್ ಮತ್ತು ವೆಬ್‌ಫ್ಲಕ್ಸ್ ಸಾರಿಗೆ ಬಳಸಿ ಮಾದರಿ ಸಾಂದರ್ಭಿಕ ಪ್ರೋಟೋಕಾಲ್ (MCP) ಮೂಲಕ ಮೂಲ ಕ್ಯಾಲ್ಕುಲೇಟರ್ ಕಾರ್ಯಾಚರಣೆಗಳನ್ನು ಒದಗಿಸುತ್ತದೆ. ಇದು MCP ಅನುಷ್ಠಾನಗಳನ್ನು ಕಲಿಯುತ್ತಿರುವ ಆರಂಭಿಕರಿಗೆ ಸರಳ ಉದಾಹರಣೆಯಾಗಿ ವಿನ್ಯಾಸಗೊಳಿಸಲಾಗಿದೆ.

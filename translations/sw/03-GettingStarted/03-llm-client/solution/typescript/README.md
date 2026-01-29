@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6d6315e03f591fb5a39be91da88585dc",
-  "translation_date": "2025-07-13T19:20:49+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/typescript/README.md",
-  "language_code": "sw"
-}
--->
 # Kuendesha sampuli hii
 
 Sampuli hii inahusisha kuwa na LLM upande wa mteja. LLM inahitaji uendeshe hii katika Codespaces au kuweka tokeni ya upatikanaji binafsi kwenye GitHub ili ifanye kazi.

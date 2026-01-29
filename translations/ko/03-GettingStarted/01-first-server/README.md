@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8fdac7600a5f4722643d0f14e15ac259",
-  "translation_date": "2025-12-11T05:35:17+00:00",
-  "source_file": "03-GettingStarted/01-first-server/README.md",
-  "language_code": "ko"
-}
--->
 # MCP 시작하기
 
 Model Context Protocol(MCP)와 함께하는 첫걸음에 오신 것을 환영합니다! MCP가 처음이든 이해를 심화하고자 하든, 이 가이드는 필수 설정 및 개발 과정을 안내합니다. MCP가 AI 모델과 애플리케이션 간의 원활한 통합을 어떻게 가능하게 하는지 발견하고, MCP 기반 솔루션을 구축하고 테스트하기 위한 환경을 빠르게 준비하는 방법을 배우게 됩니다.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "997c7119766a69552e23d7d681316902",
-  "translation_date": "2025-08-19T16:01:20+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security/README.md",
-  "language_code": "sk"
-}
--->
 # MCP Bezpečnostné najlepšie praktiky - Pokročilý implementačný sprievodca
 
 > **Aktuálny štandard**: Tento sprievodca odráža bezpečnostné požiadavky [MCP Špecifikácie 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) a oficiálne [MCP Bezpečnostné najlepšie praktiky](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices).

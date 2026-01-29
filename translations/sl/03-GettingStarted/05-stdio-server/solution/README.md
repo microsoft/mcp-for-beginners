@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e378b47e0361b7a9b0dab7a0306878c8",
-  "translation_date": "2025-08-26T20:04:03+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/README.md",
-  "language_code": "sl"
-}
--->
 # MCP stdio Strežniške Rešitve
 
 > **⚠️ Pomembno**: Te rešitve so bile posodobljene za uporabo **stdio transporta**, kot je priporočeno v MCP Specifikaciji 2025-06-18. Prvotni SSE (Server-Sent Events) transport je bil ukinjen.

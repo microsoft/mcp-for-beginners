@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "57f14126c1c6add76b3aef3844dfe4e3",
-  "translation_date": "2025-07-13T15:06:26+00:00",
-  "source_file": "SECURITY.md",
-  "language_code": "nl"
-}
--->
 ## Beveiliging
 
 Microsoft neemt de beveiliging van onze softwareproducten en -diensten serieus, inclusief alle broncode-repositories die worden beheerd via onze GitHub-organisaties, zoals [Microsoft](https://github.com/Microsoft), [Azure](https://github.com/Azure), [DotNet](https://github.com/dotnet), [AspNet](https://github.com/aspnet) en [Xamarin](https://github.com/xamarin).

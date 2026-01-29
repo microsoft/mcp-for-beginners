@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "69372338676e01a2c97f42f70fdfbf42",
-  "translation_date": "2025-08-26T20:21:14+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/dotnet/README.md",
-  "language_code": "tr"
-}
--->
 # MCP stdio Sunucusu - .NET Çözümü
 
 > **⚠️ Önemli**: Bu çözüm, MCP Spesifikasyonu 2025-06-18 tarafından önerildiği gibi **stdio taşıma** yöntemini kullanacak şekilde güncellenmiştir. Orijinal SSE taşıma yöntemi artık kullanımdan kaldırılmıştır.

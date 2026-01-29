@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "772b18b1ca4fb34af68e12eb2f2defda",
-  "translation_date": "2025-10-11T12:59:31+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/07-Semantic-Search/README.md",
-  "language_code": "et"
-}
--->
 # Semantiline otsing
 
 ## 🎯 Mida see labor hõlmab

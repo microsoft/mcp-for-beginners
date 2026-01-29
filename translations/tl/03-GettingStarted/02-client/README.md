@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "94c80ae71fb9971e9b57b51ab0912121",
-  "translation_date": "2025-08-18T18:28:52+00:00",
-  "source_file": "03-GettingStarted/02-client/README.md",
-  "language_code": "tl"
-}
--->
 # Paglikha ng Kliyente
 
 Ang mga kliyente ay mga custom na aplikasyon o script na direktang nakikipag-ugnayan sa isang MCP Server upang humiling ng mga resources, tools, at prompts. Hindi tulad ng paggamit ng inspector tool na nagbibigay ng graphical interface para makipag-ugnayan sa server, ang pagsusulat ng sarili mong kliyente ay nagbibigay-daan para sa programmatic at automated na interaksyon. Sa ganitong paraan, maaaring isama ng mga developer ang mga kakayahan ng MCP sa kanilang sariling workflows, mag-automate ng mga gawain, at bumuo ng mga custom na solusyon na akma sa partikular na pangangailangan.

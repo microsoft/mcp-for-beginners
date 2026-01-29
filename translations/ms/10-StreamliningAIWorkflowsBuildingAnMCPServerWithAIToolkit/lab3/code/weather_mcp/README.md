@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "999c5e7623c1e2d5e5a07c2feb39eb67",
-  "translation_date": "2025-07-14T08:30:52+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/README.md",
-  "language_code": "ms"
-}
--->
 # Weather MCP Server
 
 Ini adalah contoh MCP Server dalam Python yang melaksanakan alat cuaca dengan respons tiruan. Ia boleh digunakan sebagai rangka untuk MCP Server anda sendiri. Ia merangkumi ciri-ciri berikut:

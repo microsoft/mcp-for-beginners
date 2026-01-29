@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e378b47e0361b7a9b0dab7a0306878c8",
-  "translation_date": "2025-08-26T20:03:28+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/README.md",
-  "language_code": "sk"
-}
--->
 # MCP stdio Server Riešenia
 
 > **⚠️ Dôležité**: Tieto riešenia boli aktualizované na používanie **stdio transportu** podľa odporúčaní MCP Špecifikácie z 18. júna 2025. Pôvodný transport SSE (Server-Sent Events) bol vyradený.

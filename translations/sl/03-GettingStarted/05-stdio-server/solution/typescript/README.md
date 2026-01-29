@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9d799c4a30a8383e0a74af9153262972",
-  "translation_date": "2025-08-26T20:14:32+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/typescript/README.md",
-  "language_code": "sl"
-}
--->
 # MCP stdio strežnik - TypeScript rešitev
 
 > **⚠️ Pomembno**: Ta rešitev je bila posodobljena za uporabo **stdio transporta**, kot je priporočeno v MCP specifikaciji 2025-06-18. Prvotni SSE transport je bil ukinjen.

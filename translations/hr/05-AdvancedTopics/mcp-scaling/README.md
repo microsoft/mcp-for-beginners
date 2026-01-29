@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7b4d8d17fc1f501468cce40c3651aed1",
-  "translation_date": "2025-07-17T12:09:25+00:00",
-  "source_file": "05-AdvancedTopics/mcp-scaling/README.md",
-  "language_code": "hr"
-}
--->
 # Skalabilnost i visokoučinkoviti MCP
 
 Za implementacije u poduzećima, MCP često mora obrađivati velike količine zahtjeva s minimalnim kašnjenjem.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f84eaea79c8fa9ab318a494f40891814",
-  "translation_date": "2025-08-18T16:29:38+00:00",
-  "source_file": "05-AdvancedTopics/mcp-integration/README.md",
-  "language_code": "nl"
-}
--->
 # Enterprise-integratie
 
 Bij het bouwen van MCP-servers in een zakelijke context moet je vaak integreren met bestaande AI-platforms en -diensten. In deze sectie wordt uitgelegd hoe je MCP kunt integreren met bedrijfssystemen zoals Azure OpenAI en Microsoft AI Foundry, zodat je geavanceerde AI-mogelijkheden en toolorkestratie kunt benutten.

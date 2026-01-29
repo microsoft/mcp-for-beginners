@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9ad93d2074502828b8139d5aba7bafab",
-  "translation_date": "2025-12-19T07:35:45+00:00",
-  "source_file": "01-CoreConcepts/README.md",
-  "language_code": "es"
-}
--->
 # Conceptos Básicos de MCP: Dominando el Protocolo de Contexto de Modelo para la Integración de IA
 
 [![Conceptos Básicos de MCP](../../../translated_images/es/02.8203e26c6fb5a797.webp)](https://youtu.be/earDzWGtE84)

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "706b9b075dc484b73a053e6e9c709b4b",
-  "translation_date": "2025-07-13T23:32:36+00:00",
-  "source_file": "04-PracticalImplementation/samples/python/README.md",
-  "language_code": "tr"
-}
--->
 # Model Context Protocol (MCP) Python Uygulaması
 
 Bu depo, Model Context Protocol (MCP) standardını kullanarak iletişim kuran hem sunucu hem de istemci uygulaması oluşturmayı gösteren bir Python uygulaması içerir.

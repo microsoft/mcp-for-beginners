@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
-  "translation_date": "2025-08-18T17:00:20+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
-  "language_code": "he"
-}
--->
 # הפעלת הדוגמה הזו
 
 כך ניתן להפעיל את שרת ולקוח הזרמת HTTP הקלאסי, כמו גם את שרת ולקוח הזרמת MCP באמצעות Python.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "75638575f993c152965ae2271c4da938",
-  "translation_date": "2025-12-19T15:50:03+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/README.md",
-  "language_code": "sk"
-}
--->
 # Vytvorenie klienta s LLM
 
 Doteraz ste videli, ako vytvoriť server a klienta. Klient mohol explicitne volať server, aby zobrazil jeho nástroje, zdroje a výzvy. Avšak, nie je to veľmi praktický prístup. Váš používateľ žije v agentickej ére a očakáva, že bude používať výzvy a komunikovať s LLM, aby to dosiahol. Pre vášho používateľa nezáleží na tom, či používate MCP na ukladanie svojich schopností, ale očakáva, že bude používať prirodzený jazyk na interakciu. Ako to teda vyriešime? Riešením je pridať LLM ku klientovi.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "999c5e7623c1e2d5e5a07c2feb39eb67",
-  "translation_date": "2025-07-14T08:31:38+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/README.md",
-  "language_code": "hu"
-}
--->
 # Weather MCP Server
 
 Ez egy példa MCP Server Pythonban, amely időjárás eszközöket valósít meg hamis válaszokkal. Használható kiindulópontként a saját MCP Serveredhez. A következő funkciókat tartalmazza:

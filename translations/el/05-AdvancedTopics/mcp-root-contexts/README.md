@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ebdb86db46113f1cbd59ce4c74caaa79",
-  "translation_date": "2025-07-17T05:42:43+00:00",
-  "source_file": "05-AdvancedTopics/mcp-root-contexts/README.md",
-  "language_code": "el"
-}
--->
 # MCP Root Contexts
 
 Οι root contexts είναι μια βασική έννοια στο Model Context Protocol που παρέχει ένα μόνιμο επίπεδο για τη διατήρηση του ιστορικού συνομιλίας και της κοινής κατάστασης σε πολλαπλά αιτήματα και συνεδρίες.

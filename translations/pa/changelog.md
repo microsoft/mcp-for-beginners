@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e8bbc7982284fe177dd4be5e7f2b3357",
-  "translation_date": "2025-12-19T10:52:02+00:00",
-  "source_file": "changelog.md",
-  "language_code": "pa"
-}
--->
 # Changelog: MCP for Beginners Curriculum
 
 ਇਹ ਦਸਤਾਵੇਜ਼ ਮਾਡਲ ਕਾਂਟੈਕਸਟ ਪ੍ਰੋਟੋਕੋਲ (MCP) ਫਾਰ ਬਿਗਿਨਰਜ਼ ਕਰਿਕੁਲਮ ਵਿੱਚ ਕੀਤੀਆਂ ਸਾਰੀਆਂ ਮਹੱਤਵਪੂਰਨ ਬਦਲਾਵਾਂ ਦਾ ਰਿਕਾਰਡ ਹੈ। ਬਦਲਾਵਾਂ ਉਲਟ ਕ੍ਰਮ ਵਿੱਚ ਦਰਜ ਕੀਤੇ ਗਏ ਹਨ (ਨਵੇਂ ਬਦਲਾਵ ਪਹਿਲਾਂ)।

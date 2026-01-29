@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4319d291c9d124ecafea52b3d04bfa0e",
-  "translation_date": "2025-07-14T06:30:38+00:00",
-  "source_file": "09-CaseStudy/docs-mcp/README.md",
-  "language_code": "sl"
-}
--->
 # Študija primera: Povezava s strežnikom Microsoft Learn Docs MCP iz odjemalca
 
 Ste se kdaj znašli v situaciji, ko preklapljate med spletnimi stranmi z dokumentacijo, Stack Overflow in neskončnimi zavihki iskalnikov, medtem ko poskušate rešiti težavo v svoji kodi? Morda imate drugi zaslon samo za dokumentacijo ali pa ves čas preklapljate med IDE-jem in brskalnikom. Bi bilo ne boljše, če bi lahko dokumentacijo pripeljali neposredno v svoj delovni proces — integrirano v vaše aplikacije, IDE ali celo lastna orodja? V tej študiji primera bomo raziskali, kako to storiti tako, da se neposredno povežete s strežnikom Microsoft Learn Docs MCP iz svoje odjemalske aplikacije.

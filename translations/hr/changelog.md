@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e8bbc7982284fe177dd4be5e7f2b3357",
-  "translation_date": "2025-12-19T16:44:27+00:00",
-  "source_file": "changelog.md",
-  "language_code": "hr"
-}
--->
 # Dnevnik promjena: MCP za početnike kurikulum
 
 Ovaj dokument služi kao zapis svih značajnih promjena napravljenih u Model Context Protocol (MCP) za početnike kurikulumu. Promjene su dokumentirane u obrnutom kronološkom redoslijedu (najnovije promjene prve).

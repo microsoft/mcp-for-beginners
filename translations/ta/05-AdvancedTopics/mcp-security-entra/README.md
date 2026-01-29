@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6e562d7e5a77c8982da4aa8f762ad1d8",
-  "translation_date": "2025-10-11T12:18:03+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security-entra/README.md",
-  "language_code": "ta"
-}
--->
 # AI வேலைப்பாடுகளை பாதுகாக்குதல்: மாடல் சூழல் நெறிமுறை சேவையகங்களுக்கு Entra ID அங்கீகாரம்
 
 ## அறிமுகம்

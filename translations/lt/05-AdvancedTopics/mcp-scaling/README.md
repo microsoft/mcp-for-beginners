@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7b4d8d17fc1f501468cce40c3651aed1",
-  "translation_date": "2025-08-26T18:55:57+00:00",
-  "source_file": "05-AdvancedTopics/mcp-scaling/README.md",
-  "language_code": "lt"
-}
--->
 # Skalė ir aukštas MCP našumas
 
 Įmonių diegimuose MCP dažnai turi apdoroti didelius užklausų kiekius su minimalia delsos trukme.

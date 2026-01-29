@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "68cd055621b3370948a5a1dff7bedc9a",
-  "translation_date": "2025-08-26T20:32:59+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/python/README.md",
-  "language_code": "el"
-}
--->
 # MCP stdio Server - Λύση Python
 
 > **⚠️ Σημαντικό**: Αυτή η λύση έχει ενημερωθεί ώστε να χρησιμοποιεί τη **μεταφορά stdio** όπως συνιστάται από την MCP Specification 2025-06-18. Η αρχική μεταφορά SSE έχει καταργηθεί.

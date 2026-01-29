@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0eaf9f1f29c86311674013505e9202f3",
-  "translation_date": "2025-12-11T16:40:21+00:00",
-  "source_file": "04-PracticalImplementation/samples/java/containerapp/src/main/resources/static/images/sequence-diagram.md",
-  "language_code": "te"
-}
--->
 ప్రియమైన వినియోగదారులారా,
 
 మీరు మా సేవలను ఎంచుకున్నందుకు ధన్యవాదాలు. మీకు ఏవైనా ప్రశ్నలు లేదా సహాయం అవసరమైతే, దయచేసి మమ్మల్ని సంప్రదించండి.

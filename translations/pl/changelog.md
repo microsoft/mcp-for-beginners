@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e8bbc7982284fe177dd4be5e7f2b3357",
-  "translation_date": "2025-12-19T11:43:04+00:00",
-  "source_file": "changelog.md",
-  "language_code": "pl"
-}
--->
 # Dziennik zmian: Program nauczania MCP dla początkujących
 
 Ten dokument służy jako zapis wszystkich istotnych zmian wprowadzonych w programie nauczania Model Context Protocol (MCP) dla początkujących. Zmiany są dokumentowane w kolejności odwrotnej chronologicznie (najnowsze zmiany na początku).

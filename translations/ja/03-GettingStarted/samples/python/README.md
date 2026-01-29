@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
-  "translation_date": "2025-10-17T20:04:29+00:00",
-  "source_file": "03-GettingStarted/samples/python/README.md",
-  "language_code": "ja"
-}
--->
 # MCP計算機サーバー (Python)
 
 Pythonで実装されたシンプルなModel Context Protocol (MCP)サーバーで、基本的な計算機能を提供します。

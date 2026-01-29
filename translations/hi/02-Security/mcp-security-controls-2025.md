@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9351493ad29390d37f64bc6d84a03db5",
-  "translation_date": "2025-12-19T10:06:09+00:00",
-  "source_file": "02-Security/mcp-security-controls-2025.md",
-  "language_code": "hi"
-}
--->
 # MCP सुरक्षा नियंत्रण - दिसंबर 2025 अपडेट
 
 > **वर्तमान मानक**: यह दस्तावेज़ [MCP विनिर्देशन 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) सुरक्षा आवश्यकताओं और आधिकारिक [MCP सुरक्षा सर्वोत्तम प्रथाओं](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) को दर्शाता है।

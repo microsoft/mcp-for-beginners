@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
-  "translation_date": "2025-11-18T19:15:25+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
-  "language_code": "pcm"
-}
--->
 # How to run dis sample
 
 Dis na how you go fit run di classic HTTP streaming server and client, plus di MCP streaming server and client wey dey use Python.

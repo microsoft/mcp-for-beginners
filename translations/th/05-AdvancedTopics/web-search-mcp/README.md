@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "151265c9a2124d7c53e04d16ee3fb73b",
-  "translation_date": "2025-07-17T05:59:53+00:00",
-  "source_file": "05-AdvancedTopics/web-search-mcp/README.md",
-  "language_code": "th"
-}
--->
 # บทเรียน: การสร้าง Web Search MCP Server
 
 บทนี้จะแสดงวิธีการสร้าง AI agent ที่ใช้งานได้จริง ซึ่งผสานรวมกับ API ภายนอก จัดการกับข้อมูลหลากหลายประเภท จัดการข้อผิดพลาด และประสานงานเครื่องมือต่างๆ หลายตัว — ทั้งหมดในรูปแบบที่พร้อมใช้งานในงานจริง คุณจะได้เห็น:

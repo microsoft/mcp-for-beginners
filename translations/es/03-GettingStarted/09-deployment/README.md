@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1d9dc83260576b76f272d330ed93c51f",
-  "translation_date": "2025-07-13T22:05:36+00:00",
-  "source_file": "03-GettingStarted/09-deployment/README.md",
-  "language_code": "es"
-}
--->
 # Despliegue de Servidores MCP
 
 Desplegar tu servidor MCP permite que otros accedan a sus herramientas y recursos más allá de tu entorno local. Existen varias estrategias de despliegue a considerar, dependiendo de tus necesidades de escalabilidad, confiabilidad y facilidad de gestión. A continuación, encontrarás orientación para desplegar servidores MCP localmente, en contenedores y en la nube.

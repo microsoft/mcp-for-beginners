@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "706b9b075dc484b73a053e6e9c709b4b",
-  "translation_date": "2025-11-18T20:02:35+00:00",
-  "source_file": "04-PracticalImplementation/samples/python/README.md",
-  "language_code": "pcm"
-}
--->
 # Model Context Protocol (MCP) Python Implementation
 
 Dis repository get Python implementation of di Model Context Protocol (MCP), wey dey show how to create server and client application wey go dey communicate wit MCP standard.

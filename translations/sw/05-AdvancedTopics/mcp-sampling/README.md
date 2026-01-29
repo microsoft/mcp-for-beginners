@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "193889b580c86bbb1e4f577114a5ce4e",
-  "translation_date": "2025-07-17T10:08:02+00:00",
-  "source_file": "05-AdvancedTopics/mcp-sampling/README.md",
-  "language_code": "sw"
-}
--->
 # Sampuli katika Itifaki ya Muktadha wa Mfano
 
 Sampuli ni kipengele chenye nguvu cha MCP kinachowezesha seva kuomba ukamilishaji wa LLM kupitia mteja, kuruhusu tabia za wakala wa hali ya juu huku ikidumisha usalama na faragha. Usanidi sahihi wa sampuli unaweza kuboresha kwa kiasi kikubwa ubora wa majibu na utendaji. MCP hutoa njia ya kawaida ya kudhibiti jinsi mifano inavyotengeneza maandishi kwa vigezo maalum vinavyoathiri nasibu, ubunifu, na muendelezo.

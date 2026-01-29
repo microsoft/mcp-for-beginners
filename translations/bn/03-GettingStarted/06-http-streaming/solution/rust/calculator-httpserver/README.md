@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6240e78bb87f91bece16f8742472aeef",
-  "translation_date": "2025-08-18T18:09:18+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/rust/calculator-httpserver/README.md",
-  "language_code": "bn"
-}
--->
 # এই নমুনা চালানো
 
 ## -1- নির্ভরশীলতাগুলি ইনস্টল করুন এবং প্রকল্পটি তৈরি করুন

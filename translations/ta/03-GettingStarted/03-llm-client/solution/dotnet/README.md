@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "c40c54fa74ded9c223bc0ebfc8a2de7c",
-  "translation_date": "2025-10-11T11:36:34+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/dotnet/README.md",
-  "language_code": "ta"
-}
--->
 # இந்த மாதிரியை இயக்கவும்
 
 > [!NOTE]

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e30aaf6b178137fa6668efc1b20851d5",
-  "translation_date": "2025-12-19T13:11:54+00:00",
-  "source_file": "02-Security/mcp-security-best-practices-2025.md",
-  "language_code": "no"
-}
--->
 # MCP Sikkerhetsbeste praksis - Oppdatering desember 2025
 
 > **Viktig**: Dette dokumentet gjenspeiler de nyeste [MCP-spesifikasjon 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) sikkerhetskravene og offisielle [MCP sikkerhetsbeste praksis](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices). Henvis alltid til gjeldende spesifikasjon for den mest oppdaterte veiledningen.

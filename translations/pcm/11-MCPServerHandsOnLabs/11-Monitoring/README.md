@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "a603abf726c7d946f0b0f05a3a42d8ac",
-  "translation_date": "2025-11-18T19:56:17+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/11-Monitoring/README.md",
-  "language_code": "pcm"
-}
--->
 # Monitoring and Observability
 
 ## 🎯 Wetin Dis Lab Go Teach You

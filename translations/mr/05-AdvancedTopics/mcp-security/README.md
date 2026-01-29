@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "997c7119766a69552e23d7d681316902",
-  "translation_date": "2025-08-18T15:33:56+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security/README.md",
-  "language_code": "mr"
-}
--->
 # MCP सुरक्षा सर्वोत्तम पद्धती - प्रगत अंमलबजावणी मार्गदर्शक
 
 > **सध्याचा मानक**: हा मार्गदर्शक [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) सुरक्षा आवश्यकता आणि अधिकृत [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) यांचे प्रतिबिंबित करतो.

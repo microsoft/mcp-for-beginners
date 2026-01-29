@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0a7083e660ca0d85fd6a947514c61993",
-  "translation_date": "2025-11-18T19:28:17+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/README.md",
-  "language_code": "pcm"
-}
--->
 # MCP OAuth2 Demo
 
 Dis project na **small Spring Boot application** wey dey do two things:

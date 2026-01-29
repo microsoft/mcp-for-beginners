@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "fcf1e12b62102bf7d16b78deb2b163b7",
-  "translation_date": "2025-08-19T18:26:53+00:00",
-  "source_file": "06-CommunityContributions/README.md",
-  "language_code": "sl"
-}
--->
 # Skupnost in prispevki
 
 [![Kako prispevati k MCP: orodja, dokumentacija, koda in več](../../../translated_images/sl/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.png)](https://youtu.be/v1pvCYAWpRE)

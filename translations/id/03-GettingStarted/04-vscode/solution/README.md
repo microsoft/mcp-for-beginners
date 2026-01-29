@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-07-13T19:44:31+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "id"
-}
--->
 Ini sesuai dengan menjalankan perintah seperti ini: `node build/index.js`.
 
 - Ubah entri server ini agar sesuai dengan lokasi file server Anda atau sesuai dengan yang dibutuhkan untuk memulai server Anda tergantung pada runtime dan lokasi server yang Anda pilih.

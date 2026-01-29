@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "fae57a69c2b62cb7d92ff12da65f36c3",
-  "translation_date": "2025-07-13T18:45:23+00:00",
-  "source_file": "03-GettingStarted/02-client/solution/typescript/README.md",
-  "language_code": "ms"
-}
--->
 # Menjalankan contoh ini
 
 Anda disarankan untuk memasang `uv` tetapi ia bukan wajib, lihat [arahan](https://docs.astral.sh/uv/#highlights)

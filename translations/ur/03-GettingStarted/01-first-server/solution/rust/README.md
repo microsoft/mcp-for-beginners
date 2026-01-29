@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "154876082e29d53dc2a2615a65627464",
-  "translation_date": "2025-08-18T18:06:59+00:00",
-  "source_file": "03-GettingStarted/01-first-server/solution/rust/README.md",
-  "language_code": "ur"
-}
--->
 # اس نمونے کو چلانا
 
 ## -1- ضروری لائبریریاں انسٹال کریں اور پروجیکٹ کو تیار کریں

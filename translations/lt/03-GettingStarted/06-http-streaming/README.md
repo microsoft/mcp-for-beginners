@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5f1383103523fa822e1fec7ef81904d5",
-  "translation_date": "2025-08-26T20:40:15+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/README.md",
-  "language_code": "lt"
-}
--->
 # HTTPS transliacija naudojant Model Context Protocol (MCP)
 
 Šiame skyriuje pateikiamas išsamus vadovas, kaip įgyvendinti saugią, mastelio keičiamą ir realaus laiko transliaciją naudojant Model Context Protocol (MCP) per HTTPS. Jame aptariama transliacijos motyvacija, galimi transporto mechanizmai, kaip įgyvendinti transliuojamą HTTP MCP, saugumo geriausios praktikos, migracija iš SSE ir praktiniai patarimai, kaip kurti savo MCP transliacijos programas.

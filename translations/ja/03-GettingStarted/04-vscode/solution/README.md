@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-07-13T19:40:18+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "ja"
-}
--->
 これは、`node build/index.js` のようなコマンドを実行することに対応しています。
 
 - サーバーのエントリは、サーバーファイルの場所や選択したランタイムおよびサーバーの場所に応じて、サーバーを起動するために必要なコマンドに合わせて変更してください。

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "13231e9951b68efd9df8c56bd5cdb27e",
-  "translation_date": "2025-12-11T12:52:20+00:00",
-  "source_file": "03-GettingStarted/samples/java/calculator/README.md",
-  "language_code": "te"
-}
--->
 # ప్రాథమిక క్యాల్క్యులేటర్ MCP సర్వీస్
 
 ఈ సర్వీస్ మోడల్ కాంటెక్స్ట్ ప్రోటోకాల్ (MCP) ద్వారా ప్రాథమిక క్యాల్క్యులేటర్ ఆపరేషన్లను Spring Boot తో WebFlux ట్రాన్స్‌పోర్ట్ ఉపయోగించి అందిస్తుంది. ఇది MCP అమలు గురించి నేర్చుకుంటున్న ప్రారంభకులకు ఒక సాదారణ ఉదాహరణగా రూపొందించబడింది.

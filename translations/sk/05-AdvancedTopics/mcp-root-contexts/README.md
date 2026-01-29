@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ebdb86db46113f1cbd59ce4c74caaa79",
-  "translation_date": "2025-07-17T10:58:34+00:00",
-  "source_file": "05-AdvancedTopics/mcp-root-contexts/README.md",
-  "language_code": "sk"
-}
--->
 # MCP Root Contexts
 
 Root contexty sú základným pojmom v Model Context Protocol, ktorý poskytuje trvalú vrstvu na uchovávanie histórie konverzácií a zdieľaného stavu naprieč viacerými požiadavkami a reláciami.

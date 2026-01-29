@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "772b18b1ca4fb34af68e12eb2f2defda",
-  "translation_date": "2025-09-30T17:04:47+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/07-Semantic-Search/README.md",
-  "language_code": "pa"
-}
--->
 # ਸੈਮੈਂਟਿਕ ਖੋਜ ਇੰਟੀਗ੍ਰੇਸ਼ਨ
 
 ## 🎯 ਇਹ ਲੈਬ ਕੀ ਕਵਰ ਕਰਦੀ ਹੈ

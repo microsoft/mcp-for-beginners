@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1b6c746d9e190deba4d8765267ffb94e",
-  "translation_date": "2025-07-17T08:57:59+00:00",
-  "source_file": "02-Security/azure-content-safety-implementation.md",
-  "language_code": "fi"
-}
--->
 # Azure Content Safetyn toteuttaminen MCP:ssä
 
 MCP:n suojaamiseksi promptin injektointia, työkalujen myrkyttämistä ja muita tekoälyyn liittyviä haavoittuvuuksia vastaan Azure Content Safetyn integrointi on erittäin suositeltavaa.

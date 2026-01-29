@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2f1b473818b5a6cc9a9bbf777fffa6d4",
-  "translation_date": "2025-07-14T21:50:54+00:00",
-  "source_file": "05-AdvancedTopics/mcp-routing/README.md",
-  "language_code": "ro"
-}
--->
 ## Eșantionare și Arhitectură de Rutare în MCP
 
 Eșantionarea este o componentă esențială a Model Context Protocol (MCP) care permite procesarea și rutarea eficientă a cererilor. Aceasta implică analizarea cererilor primite pentru a determina cel mai potrivit model sau serviciu care să le gestioneze, pe baza unor criterii variate, cum ar fi tipul de conținut, contextul utilizatorului și încărcarea sistemului.

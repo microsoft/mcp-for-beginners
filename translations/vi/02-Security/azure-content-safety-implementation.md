@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1b6c746d9e190deba4d8765267ffb94e",
-  "translation_date": "2025-07-17T08:58:22+00:00",
-  "source_file": "02-Security/azure-content-safety-implementation.md",
-  "language_code": "vi"
-}
--->
 # Triển khai Azure Content Safety với MCP
 
 Để tăng cường bảo mật MCP chống lại các cuộc tấn công chèn lệnh, đầu độc công cụ và các lỗ hổng đặc thù của AI, việc tích hợp Azure Content Safety được khuyến nghị mạnh mẽ.

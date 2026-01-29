@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "d4c162484df410632550a4a357d40341",
-  "translation_date": "2025-09-03T16:08:15+00:00",
-  "source_file": "03-GettingStarted/01-first-server/solution/python/README.md",
-  "language_code": "el"
-}
--->
 # Εκτέλεση αυτού του δείγματος
 
 Συνιστάται να εγκαταστήσετε το `uv`, αλλά δεν είναι απαραίτητο. Δείτε [οδηγίες](https://docs.astral.sh/uv/#highlights).

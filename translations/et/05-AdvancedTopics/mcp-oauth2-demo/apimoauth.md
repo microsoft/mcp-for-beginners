@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "32c9a4263be08f9050c8044bb26267c4",
-  "translation_date": "2025-10-11T12:10:36+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/apimoauth.md",
-  "language_code": "et"
-}
--->
 # Spring AI MCP rakenduse juurutamine Azure Container Apps keskkonda
 
 ([Spring AI MCP serverite turvamine OAuth2-ga](https://spring.io/blog/2025/04/02/mcp-server-oauth2)) *Joonis: Spring AI MCP server, mis on turvatud Spring Authorization Serveriga. Server väljastab klientidele juurdepääsutokenid ja valideerib neid sissetulevate päringute korral (allikas: Spring blogi) ([Spring AI MCP serverite turvamine OAuth2-ga](https://spring.io/blog/2025/04/02/mcp-server-oauth2#:~:text=,server%20with%20the%20MCP%20inspector)).* Spring MCP serveri juurutamiseks ehitage see konteinerina ja kasutage Azure Container Apps koos välise ingressiga. Näiteks Azure CLI abil saate käivitada:

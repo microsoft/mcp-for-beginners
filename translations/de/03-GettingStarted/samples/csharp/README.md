@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "882aae00f1d3f007e20d03b883f44afa",
-  "translation_date": "2025-07-13T22:12:48+00:00",
-  "source_file": "03-GettingStarted/samples/csharp/README.md",
-  "language_code": "de"
-}
--->
 # Basic Calculator MCP Service
 
 Dieser Service bietet grundlegende Taschenrechnerfunktionen über das Model Context Protocol (MCP) an. Er ist als einfaches Beispiel für Einsteiger gedacht, die MCP-Implementierungen kennenlernen möchten.

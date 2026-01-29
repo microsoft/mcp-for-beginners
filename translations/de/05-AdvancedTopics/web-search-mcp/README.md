@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "151265c9a2124d7c53e04d16ee3fb73b",
-  "translation_date": "2025-07-16T22:15:37+00:00",
-  "source_file": "05-AdvancedTopics/web-search-mcp/README.md",
-  "language_code": "de"
-}
--->
 # Lektion: Aufbau eines Web Search MCP Servers
 
 Dieses Kapitel zeigt, wie man einen praxisnahen KI-Agenten entwickelt, der externe APIs integriert, verschiedene Datentypen verarbeitet, Fehler handhabt und mehrere Tools orchestriert – alles in einem produktionsreifen Format. Du wirst sehen:

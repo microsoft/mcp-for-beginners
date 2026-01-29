@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ec1d9eafbe697ada412ee4fd102ce5b8",
-  "translation_date": "2025-12-11T14:53:44+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/03-Setup/README.md",
-  "language_code": "ml"
-}
--->
 # പരിസ്ഥിതി ക്രമീകരണം
 
 ## 🎯 ഈ ലാബ് എന്താണ് ഉൾക്കൊള്ളുന്നത്

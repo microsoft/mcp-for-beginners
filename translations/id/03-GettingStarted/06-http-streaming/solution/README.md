@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "96dbf17071ab774595ab8777468f0c83",
-  "translation_date": "2025-08-18T17:43:59+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/solution/README.md",
-  "language_code": "id"
-}
--->
 Berikut adalah solusi untuk setiap runtime:
 
 - [Python](./python/README.md)

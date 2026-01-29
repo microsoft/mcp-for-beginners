@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "999c5e7623c1e2d5e5a07c2feb39eb67",
-  "translation_date": "2025-08-26T20:48:24+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/README.md",
-  "language_code": "lt"
-}
--->
 # Weather MCP Server
 
 Tai yra pavyzdinis MCP serveris, parašytas Python kalba, kuris įgyvendina orų įrankius su imituotais atsakymais. Jis gali būti naudojamas kaip pagrindas kuriant savo MCP serverį. Šiame serveryje yra šios funkcijos:

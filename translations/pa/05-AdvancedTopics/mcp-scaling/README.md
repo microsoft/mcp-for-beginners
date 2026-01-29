@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7b4d8d17fc1f501468cce40c3651aed1",
-  "translation_date": "2025-07-17T00:53:08+00:00",
-  "source_file": "05-AdvancedTopics/mcp-scaling/README.md",
-  "language_code": "pa"
-}
--->
 # Scalability and High-Performance MCP
 
 ਐਂਟਰਪ੍ਰਾਈਜ਼ ਡਿਪਲੋਇਮੈਂਟ ਲਈ, MCP ਇੰਪਲੀਮੈਂਟੇਸ਼ਨ ਨੂੰ ਅਕਸਰ ਘੱਟ ਲੈਟੈਂਸੀ ਨਾਲ ਵੱਡੀ ਗਿਣਤੀ ਵਿੱਚ ਰਿਕਵੇਸਟਾਂ ਨੂੰ ਸੰਭਾਲਣਾ ਪੈਂਦਾ ਹੈ।

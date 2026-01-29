@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "151265c9a2124d7c53e04d16ee3fb73b",
-  "translation_date": "2025-07-17T09:25:01+00:00",
-  "source_file": "05-AdvancedTopics/web-search-mcp/README.md",
-  "language_code": "en"
-}
--->
 # Lesson: Building a Web Search MCP Server
 
 This chapter shows you how to build a real-world AI agent that integrates with external APIs, handles various data types, manages errors, and coordinates multiple tools—all in a production-ready setup. You'll learn about:

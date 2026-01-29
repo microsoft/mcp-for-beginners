@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "706b9b075dc484b73a053e6e9c709b4b",
-  "translation_date": "2025-07-13T23:31:46+00:00",
-  "source_file": "04-PracticalImplementation/samples/python/README.md",
-  "language_code": "ne"
-}
--->
 # Model Context Protocol (MCP) Python कार्यान्वयन
 
 यो रिपोजिटरीमा Model Context Protocol (MCP) को Python कार्यान्वयन समावेश छ, जसले कसरी MCP मानक प्रयोग गरेर सर्भर र क्लाइन्ट एप्लिकेशन दुवै बनाउन सकिन्छ भन्ने देखाउँछ।

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ebdb86db46113f1cbd59ce4c74caaa79",
-  "translation_date": "2025-07-17T11:13:49+00:00",
-  "source_file": "05-AdvancedTopics/mcp-root-contexts/README.md",
-  "language_code": "ro"
-}
--->
 # Contextele Root MCP
 
 Contexturile root sunt un concept fundamental în Model Context Protocol, oferind un strat persistent pentru menținerea istoricului conversațiilor și a stării partajate pe parcursul mai multor cereri și sesiuni.

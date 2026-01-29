@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4319d291c9d124ecafea52b3d04bfa0e",
-  "translation_date": "2025-07-14T06:30:56+00:00",
-  "source_file": "09-CaseStudy/docs-mcp/README.md",
-  "language_code": "my"
-}
--->
 # Case Study: Microsoft Learn Docs MCP Server ကို Client မှတဆင့် ချိတ်ဆက်ခြင်း
 
 သင်က ကိုဒ်ပြဿနာကို ဖြေရှင်းဖို့ ကြိုးစားနေစဉ် Documentation ဆိုက်တွေ၊ Stack Overflow နဲ့ ရှာဖွေမှုအင်ဂျင် တက်ဘ်တွေကြားမှာ အချိန်ကုန်ကျနေဖူးပါသလား? ဒေါက်မြင့်တစ်ခုကို Documentation အတွက် သီးသန့်ထားတတ်ပါသလား၊ ဒါမှမဟုတ် IDE နဲ့ Browser ကြားကို အမြဲ Alt-tab လုပ်နေတတ်ပါသလား။ Documentation ကို သင့် workflow ထဲမှာ တိုက်ရိုက် ထည့်သွင်းနိုင်ရင် ပိုကောင်းမယ်ထင်ပါသလား—သင့် app တွေ၊ IDE သို့မဟုတ် ကိုယ်ပိုင် custom tools တွေထဲမှာပဲ ပေါင်းစပ်ထားနိုင်ရင်? ဒီ case study မှာတော့ Microsoft Learn Docs MCP server ကို ကိုယ်ပိုင် client application မှတဆင့် တိုက်ရိုက် ချိတ်ဆက်နည်းကို လေ့လာကြမယ်။

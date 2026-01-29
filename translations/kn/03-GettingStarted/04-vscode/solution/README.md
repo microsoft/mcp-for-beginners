@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-12-11T13:17:47+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "kn"
-}
--->
 # ಮಾದರಿಯನ್ನು ಚಾಲನೆ ಮಾಡುವುದು
 
 ಇಲ್ಲಿ ನಾವು ನೀವು ಈಗಾಗಲೇ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತಿರುವ ಸರ್ವರ್ ಕೋಡ್ ಹೊಂದಿದ್ದೀರಿ ಎಂದು فرضಿಸುತ್ತೇವೆ. ದಯವಿಟ್ಟು ಹಿಂದಿನ ಅಧ್ಯಾಯಗಳಲ್ಲಿ ಒಂದರಿಂದ ಸರ್ವರ್ ಅನ್ನು ಹುಡುಕಿ.

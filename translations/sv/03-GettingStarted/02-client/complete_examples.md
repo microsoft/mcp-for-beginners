@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8358c13b5b6877e475674697cdc1a904",
-  "translation_date": "2025-08-18T15:00:54+00:00",
-  "source_file": "03-GettingStarted/02-client/complete_examples.md",
-  "language_code": "sv"
-}
--->
 # Kompletta MCP-klientexempel
 
 Den här katalogen innehåller kompletta, fungerande exempel på MCP-klienter i olika programmeringsspråk. Varje klient demonstrerar den fullständiga funktionaliteten som beskrivs i huvudhandledningen README.md.

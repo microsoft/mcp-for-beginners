@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ac2459c0d5cc823922e3d9240a95028c",
-  "translation_date": "2025-07-13T19:06:17+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/java/README.md",
-  "language_code": "fa"
-}
--->
 # کلاینت ماشین‌حساب LLM
 
 یک برنامه جاوا که نشان می‌دهد چگونه از LangChain4j برای اتصال به سرویس ماشین‌حساب MCP (پروتکل زمینه مدل) با ادغام مدل‌های GitHub استفاده کنیم.

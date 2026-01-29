@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "af27b0acfae6caa134d9701453884df8",
-  "translation_date": "2025-10-06T23:56:52+00:00",
-  "source_file": "study_guide.md",
-  "language_code": "sk"
-}
--->
 # Protokol kontextu modelu (MCP) pre začiatočníkov - Študijný sprievodca
 
 Tento študijný sprievodca poskytuje prehľad štruktúry a obsahu repozitára pre učebný plán "Protokol kontextu modelu (MCP) pre začiatočníkov". Použite tento sprievodca na efektívnu navigáciu v repozitári a maximálne využitie dostupných zdrojov.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "997c7119766a69552e23d7d681316902",
-  "translation_date": "2025-08-19T15:34:05+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security/README.md",
-  "language_code": "cs"
-}
--->
 # MCP Bezpečnostní nejlepší praktiky - Pokročilý implementační průvodce
 
 > **Aktuální standard**: Tento průvodce odráží bezpečnostní požadavky [MCP Specifikace 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) a oficiální [MCP Bezpečnostní nejlepší praktiky](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices).

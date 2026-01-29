@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "b3cffaf217113101e21eba532be806ea",
-  "translation_date": "2025-07-13T15:22:11+00:00",
-  "source_file": "SUPPORT.md",
-  "language_code": "tr"
-}
--->
 # Destek
 
 ## Sorun bildirme ve yardım alma  

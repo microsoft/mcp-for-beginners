@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9678e0c6945b8e0c23586869b0e26783",
-  "translation_date": "2025-10-06T10:49:06+00:00",
-  "source_file": "00-Introduction/README.md",
-  "language_code": "de"
-}
--->
 # Einführung in das Model Context Protocol (MCP): Warum es für skalierbare KI-Anwendungen wichtig ist
 
 [![Einführung in das Model Context Protocol](../../../translated_images/de/01.a467036d886b5fb5.webp)](https://youtu.be/agBbdiOPLQA)

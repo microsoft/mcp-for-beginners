@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1b6c746d9e190deba4d8765267ffb94e",
-  "translation_date": "2025-07-16T23:15:15+00:00",
-  "source_file": "02-Security/azure-content-safety-implementation.md",
-  "language_code": "fa"
-}
--->
 # پیاده‌سازی Azure Content Safety با MCP
 
 برای تقویت امنیت MCP در برابر تزریق پرامپت، مسمومیت ابزار و سایر آسیب‌پذیری‌های خاص هوش مصنوعی، توصیه می‌شود Azure Content Safety را یکپارچه کنید.

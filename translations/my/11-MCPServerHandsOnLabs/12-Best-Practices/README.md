@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "cf8b2ca0cea03c09428ae042938995c1",
-  "translation_date": "2025-09-30T23:29:28+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/12-Best-Practices/README.md",
-  "language_code": "my"
-}
--->
 # အကောင်းဆုံးအလုပ်လုပ်နည်းများနှင့် အကောင်းဆုံးစီမံခန့်ခွဲမှု
 
 ## 🎯 ဒီလက်တွေ့ကျင့်ခန်းမှာ ဘာတွေပါဝင်သလဲ

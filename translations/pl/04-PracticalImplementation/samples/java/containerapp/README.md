@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e5ea5e7582f70008ea9bec3b3820f20a",
-  "translation_date": "2025-07-13T23:15:53+00:00",
-  "source_file": "04-PracticalImplementation/samples/java/containerapp/README.md",
-  "language_code": "pl"
-}
--->
 ## Architektura Systemu
 
 Ten projekt demonstruje aplikację webową, która wykorzystuje sprawdzanie bezpieczeństwa treści przed przekazaniem zapytań użytkownika do usługi kalkulatora za pomocą Model Context Protocol (MCP).

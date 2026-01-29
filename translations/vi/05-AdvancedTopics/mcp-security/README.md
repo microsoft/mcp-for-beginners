@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "997c7119766a69552e23d7d681316902",
-  "translation_date": "2025-08-18T17:13:07+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security/README.md",
-  "language_code": "vi"
-}
--->
 # Hướng Dẫn Triển Khai Nâng Cao - Thực Hành Bảo Mật MCP
 
 > **Tiêu Chuẩn Hiện Tại**: Hướng dẫn này phản ánh các yêu cầu bảo mật của [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) và [Thực Hành Bảo Mật MCP](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) chính thức.

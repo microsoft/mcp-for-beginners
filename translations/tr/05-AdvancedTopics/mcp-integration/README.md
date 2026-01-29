@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f84eaea79c8fa9ab318a494f40891814",
-  "translation_date": "2025-08-18T17:51:37+00:00",
-  "source_file": "05-AdvancedTopics/mcp-integration/README.md",
-  "language_code": "tr"
-}
--->
 # Kurumsal Entegrasyon
 
 Kurumsal bağlamda MCP Sunucuları oluştururken, genellikle mevcut yapay zeka platformları ve hizmetleriyle entegrasyon sağlamanız gerekir. Bu bölüm, MCP'yi Azure OpenAI ve Microsoft AI Foundry gibi kurumsal sistemlerle entegre ederek gelişmiş yapay zeka yetenekleri ve araç orkestrasyonu sağlamayı ele alır.

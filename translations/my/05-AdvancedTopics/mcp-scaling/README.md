@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7b4d8d17fc1f501468cce40c3651aed1",
-  "translation_date": "2025-07-17T12:43:36+00:00",
-  "source_file": "05-AdvancedTopics/mcp-scaling/README.md",
-  "language_code": "my"
-}
--->
 # Scalability and High-Performance MCP
 
 စီးပွားရေးလုပ်ငန်းများအတွက် MCP ကို တပ်ဆင်ရာတွင် အမြန်ဆုံးတုံ့ပြန်မှုနဲ့ အများအပြားတောင်းဆိုမှုများကို ကိုင်တွယ်နိုင်ဖို့ လိုအပ်ပါတယ်။

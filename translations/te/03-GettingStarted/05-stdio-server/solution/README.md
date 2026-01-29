@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e378b47e0361b7a9b0dab7a0306878c8",
-  "translation_date": "2025-12-11T13:01:13+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/README.md",
-  "language_code": "te"
-}
--->
 # MCP stdio సర్వర్ పరిష్కారాలు
 
 > **⚠️ ముఖ్యమైనది**: ఈ పరిష్కారాలు MCP స్పెసిఫికేషన్ 2025-06-18 ద్వారా సిఫార్సు చేయబడిన **stdio ట్రాన్స్‌పోర్ట్** ఉపయోగించడానికి నవీకరించబడ్డాయి. అసలు SSE (సర్వర్-సెంట్ ఈవెంట్స్) ట్రాన్స్‌పోర్ట్‌ను డిప్రికేటెడ్ చేయబడింది.

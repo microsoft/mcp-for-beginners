@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e5ea5e7582f70008ea9bec3b3820f20a",
-  "translation_date": "2025-07-13T23:18:28+00:00",
-  "source_file": "04-PracticalImplementation/samples/java/containerapp/README.md",
-  "language_code": "id"
-}
--->
 ## Arsitektur Sistem
 
 Proyek ini menunjukkan sebuah aplikasi web yang menggunakan pemeriksaan keamanan konten sebelum meneruskan perintah pengguna ke layanan kalkulator melalui Model Context Protocol (MCP).

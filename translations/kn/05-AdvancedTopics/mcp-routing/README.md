@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2f1b473818b5a6cc9a9bbf777fffa6d4",
-  "translation_date": "2025-12-11T16:30:33+00:00",
-  "source_file": "05-AdvancedTopics/mcp-routing/README.md",
-  "language_code": "kn"
-}
--->
 # ಮಾದರಿ ಸಂಧರ್ಭ ಪ್ರೋಟೋಕಾಲ್‌ನಲ್ಲಿ ಮಾರ್ಗನಿರ್ದೇಶನ
 
 ಮಾರ್ಗನಿರ್ದೇಶನವು MCP ಪರಿಸರದಲ್ಲಿ ವಿನಂತಿಗಳನ್ನು ಸೂಕ್ತ ಮಾದರಿಗಳು, ಸಾಧನಗಳು ಅಥವಾ ಸೇವೆಗಳಿಗೆ ನಿರ್ದೇಶಿಸುವುದಕ್ಕೆ ಅಗತ್ಯವಾಗಿದೆ.

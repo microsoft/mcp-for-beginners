@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e1d142978227a4bfc468bb0accab62e2",
-  "translation_date": "2025-07-17T11:01:34+00:00",
-  "source_file": "05-AdvancedTopics/mcp-multi-modality/README.md",
-  "language_code": "sk"
-}
--->
 # Multi-modálna integrácia
 
 Multi-modálne aplikácie získavajú v AI čoraz väčší význam, pretože umožňujú bohatšie interakcie a riešenie zložitejších úloh. Model Context Protocol (MCP) poskytuje rámec na tvorbu multi-modálnych aplikácií, ktoré dokážu spracovávať rôzne typy dát, ako sú text, obrázky a zvuk.

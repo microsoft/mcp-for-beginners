@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "94c80ae71fb9971e9b57b51ab0912121",
-  "translation_date": "2025-10-11T11:30:51+00:00",
-  "source_file": "03-GettingStarted/02-client/README.md",
-  "language_code": "et"
-}
--->
 # Kliendi loomine
 
 Kliendid on kohandatud rakendused või skriptid, mis suhtlevad otse MCP serveriga, et taotleda ressursse, tööriistu ja juhiseid. Erinevalt inspektori tööriista kasutamisest, mis pakub graafilist liidest serveriga suhtlemiseks, võimaldab oma kliendi kirjutamine programmeerimist ja automatiseeritud suhtlust. See võimaldab arendajatel integreerida MCP võimalusi oma töövoogudesse, automatiseerida ülesandeid ja luua kohandatud lahendusi vastavalt konkreetsetele vajadustele.

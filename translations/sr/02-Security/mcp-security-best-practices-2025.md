@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e30aaf6b178137fa6668efc1b20851d5",
-  "translation_date": "2025-12-19T16:32:57+00:00",
-  "source_file": "02-Security/mcp-security-best-practices-2025.md",
-  "language_code": "sr"
-}
--->
 # MCP Безбедносне Најбоље Практике - Децембар 2025. Ажурирање
 
 > **Важно**: Овај документ одражава најновије безбедносне захтеве из [MCP Спецификације 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) и званичних [MCP Безбедносних Најбољих Практика](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices). Увек се позивајте на актуелну спецификацију за најсвежије смернице.

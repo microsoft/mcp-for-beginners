@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "32c9a4263be08f9050c8044bb26267c4",
-  "translation_date": "2025-07-14T00:24:36+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/apimoauth.md",
-  "language_code": "mr"
-}
--->
 # Spring AI MCP अॅप Azure Container Apps मध्ये तैनात करणे
 
 ([Spring AI MCP सर्व्हर OAuth2 सह सुरक्षित करणे](https://spring.io/blog/2025/04/02/mcp-server-oauth2)) *आकृती: Spring Authorization Server सह सुरक्षित केलेला Spring AI MCP सर्व्हर. सर्व्हर क्लायंटसाठी access tokens जारी करतो आणि येणाऱ्या विनंत्यांवर त्यांची पडताळणी करतो (स्रोत: Spring ब्लॉग) ([Spring AI MCP सर्व्हर OAuth2 सह सुरक्षित करणे](https://spring.io/blog/2025/04/02/mcp-server-oauth2#:~:text=,server%20with%20the%20MCP%20inspector)).* Spring MCP सर्व्हर तैनात करण्यासाठी, त्याला कंटेनर म्हणून तयार करा आणि Azure Container Apps सह external ingress वापरा. उदाहरणार्थ, Azure CLI वापरून तुम्ही खालीलप्रमाणे चालवू शकता:

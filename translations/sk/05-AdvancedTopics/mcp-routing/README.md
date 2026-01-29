@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2f1b473818b5a6cc9a9bbf777fffa6d4",
-  "translation_date": "2025-07-14T21:50:42+00:00",
-  "source_file": "05-AdvancedTopics/mcp-routing/README.md",
-  "language_code": "sk"
-}
--->
 ## Dynamické smerovanie nástrojov
 
 Smerovanie nástrojov zabezpečuje, že volania nástrojov sú nasmerované na najvhodnejšiu službu podľa kontextu. Napríklad volanie nástroja na počasie môže byť nasmerované na regionálny endpoint podľa polohy používateľa, alebo kalkulačka môže potrebovať použiť konkrétnu verziu API.

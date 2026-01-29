@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7074b9f4c8cd147c1c10f569d8508c82",
-  "translation_date": "2025-07-13T18:31:59+00:00",
-  "source_file": "03-GettingStarted/02-client/solution/java/README.md",
-  "language_code": "ja"
-}
--->
 # MCP Java Client - 電卓デモ
 
 このプロジェクトは、MCP（Model Context Protocol）サーバーに接続してやり取りするJavaクライアントの作成方法を示しています。ここでは、Chapter 01の電卓サーバーに接続し、さまざまな数学的操作を実行します。

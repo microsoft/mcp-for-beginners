@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "98bcd044860716da5819e31c152813b7",
-  "translation_date": "2025-10-11T11:42:03+00:00",
-  "source_file": "03-GettingStarted/07-aitk/README.md",
-  "language_code": "et"
-}
--->
 # Serveri kasutamine Visual Studio Code'i AI Toolkit laienduses
 
 AI-agendi loomisel ei ole oluline ainult nutikate vastuste genereerimine, vaid ka agendi võimekus tegutseda. Siin tuleb mängu Model Context Protocol (MCP). MCP muudab agentidele väliste tööriistade ja teenuste ühtse viisi kaudu ligipääsu lihtsaks. Kujutage ette, et ühendate oma agendi tööriistakastiga, mida ta *päriselt* kasutada saab.

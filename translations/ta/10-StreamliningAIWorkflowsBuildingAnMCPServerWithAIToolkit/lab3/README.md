@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "dd8da3f75addcef453fe11f02a270217",
-  "translation_date": "2025-10-11T11:23:12+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/README.md",
-  "language_code": "ta"
-}
--->
 # 🔧 Module 3: AI கருவிகளுடன் மேம்பட்ட MCP மேம்பாடு
 
 ![Duration](https://img.shields.io/badge/Duration-20_minutes-blue?style=flat-square)

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-  "translation_date": "2025-08-26T20:39:17+00:00",
-  "source_file": "03-GettingStarted/04-vscode/solution/README.md",
-  "language_code": "lt"
-}
--->
 # Paleisti pavyzdį
 
 Čia darome prielaidą, kad jau turite veikiančią serverio kodo versiją. Suraskite serverį iš vieno ankstesnių skyrių.

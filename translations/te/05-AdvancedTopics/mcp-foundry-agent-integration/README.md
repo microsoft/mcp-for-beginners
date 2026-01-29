@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "036e01c8c6ecc8610809d52e4a738641",
-  "translation_date": "2025-12-11T15:28:35+00:00",
-  "source_file": "05-AdvancedTopics/mcp-foundry-agent-integration/README.md",
-  "language_code": "te"
-}
--->
 # మోడల్ కాంటెక్స్ట్ ప్రోటోకాల్ (MCP) ను Azure AI Foundryతో సమీకరణం
 
 ఈ గైడ్ మోడల్ కాంటెక్స్ట్ ప్రోటోకాల్ (MCP) సర్వర్లను Azure AI Foundry ఏజెంట్లతో ఎలా సమీకరించాలో చూపిస్తుంది, శక్తివంతమైన టూల్ ఆర్కెస్ట్రేషన్ మరియు ఎంటర్ప్రైజ్ AI సామర్థ్యాలను సాధించడానికి.

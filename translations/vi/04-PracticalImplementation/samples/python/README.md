@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "706b9b075dc484b73a053e6e9c709b4b",
-  "translation_date": "2025-07-13T23:33:51+00:00",
-  "source_file": "04-PracticalImplementation/samples/python/README.md",
-  "language_code": "vi"
-}
--->
 # Model Context Protocol (MCP) Python Implementation
 
 Kho lưu trữ này chứa một bản triển khai Python của Model Context Protocol (MCP), minh họa cách tạo cả ứng dụng server và client giao tiếp theo chuẩn MCP.

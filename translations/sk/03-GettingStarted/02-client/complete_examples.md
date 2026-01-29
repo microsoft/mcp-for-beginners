@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8358c13b5b6877e475674697cdc1a904",
-  "translation_date": "2025-08-19T16:13:33+00:00",
-  "source_file": "03-GettingStarted/02-client/complete_examples.md",
-  "language_code": "sk"
-}
--->
 # Kompletné príklady MCP klientov
 
 Tento adresár obsahuje kompletné, funkčné príklady MCP klientov v rôznych programovacích jazykoch. Každý klient demonštruje plnú funkcionalitu popísanú v hlavnom návode README.md.

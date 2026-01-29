@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "706b9b075dc484b73a053e6e9c709b4b",
-  "translation_date": "2025-07-13T23:35:37+00:00",
-  "source_file": "04-PracticalImplementation/samples/python/README.md",
-  "language_code": "my"
-}
--->
 # Model Context Protocol (MCP) Python အကောင်အထည်ဖော်ခြင်း
 
 ဤ repository တွင် Model Context Protocol (MCP) ကို Python ဖြင့် အကောင်အထည်ဖော်ထားပြီး MCP စံသတ်မှတ်ချက်ကို အသုံးပြုကာ ဆာဗာနှင့် ကလိုင်ယင့် အပလီကေးရှင်းများကို ဖန်တီးပုံကို ပြသထားသည်။

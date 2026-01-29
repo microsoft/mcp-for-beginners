@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1d9dc83260576b76f272d330ed93c51f",
-  "translation_date": "2025-07-13T22:11:40+00:00",
-  "source_file": "03-GettingStarted/09-deployment/README.md",
-  "language_code": "hr"
-}
--->
 # Postavljanje MCP poslužitelja
 
 Postavljanje vašeg MCP poslužitelja omogućuje drugima pristup njegovim alatima i resursima izvan vaše lokalne okoline. Postoji nekoliko strategija postavljanja koje treba razmotriti, ovisno o vašim zahtjevima za skalabilnošću, pouzdanošću i jednostavnošću upravljanja. U nastavku ćete pronaći upute za postavljanje MCP poslužitelja lokalno, u kontejnerima i u oblaku.

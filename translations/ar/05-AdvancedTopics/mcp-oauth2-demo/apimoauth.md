@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "32c9a4263be08f9050c8044bb26267c4",
-  "translation_date": "2025-07-14T00:19:33+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/apimoauth.md",
-  "language_code": "ar"
-}
--->
 # نشر تطبيق Spring AI MCP على Azure Container Apps
 
 ([تأمين خوادم Spring AI MCP باستخدام OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2)) *الشكل: خادم Spring AI MCP مؤمن باستخدام Spring Authorization Server. يقوم الخادم بإصدار رموز وصول للعملاء والتحقق منها عند الطلبات الواردة (المصدر: مدونة Spring) ([تأمين خوادم Spring AI MCP باستخدام OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2#:~:text=,server%20with%20the%20MCP%20inspector)).* لنشر خادم Spring MCP، قم ببنائه كحاوية واستخدم Azure Container Apps مع دخول خارجي. على سبيل المثال، باستخدام Azure CLI يمكنك تشغيل الأمر التالي:

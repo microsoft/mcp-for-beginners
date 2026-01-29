@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0bc7bd48f55f1565f1d95ccb2c16f728",
-  "translation_date": "2025-07-13T23:08:39+00:00",
-  "source_file": "04-PracticalImplementation/samples/csharp/README.md",
-  "language_code": "ms"
-}
--->
 # Sample
 
 Contoh sebelum ini menunjukkan cara menggunakan projek .NET tempatan dengan jenis `stdio`. Dan bagaimana untuk menjalankan pelayan secara tempatan dalam sebuah kontena. Ini adalah penyelesaian yang baik dalam banyak situasi. Walau bagaimanapun, ia boleh menjadi berguna untuk menjalankan pelayan secara jauh, seperti dalam persekitaran awan. Di sinilah jenis `http` digunakan.

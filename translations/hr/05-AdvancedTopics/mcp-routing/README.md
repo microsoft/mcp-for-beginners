@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2f1b473818b5a6cc9a9bbf777fffa6d4",
-  "translation_date": "2025-07-14T21:51:31+00:00",
-  "source_file": "05-AdvancedTopics/mcp-routing/README.md",
-  "language_code": "hr"
-}
--->
 ## Uzorkovanje i arhitektura usmjeravanja u MCP-u
 
 Uzorkovanje je ključna komponenta Model Context Protocola (MCP) koja omogućuje učinkovitu obradu i usmjeravanje zahtjeva. Uključuje analizu dolaznih zahtjeva kako bi se odredio najprikladniji model ili usluga za njihovu obradu, na temelju različitih kriterija poput vrste sadržaja, korisničkog konteksta i opterećenja sustava.

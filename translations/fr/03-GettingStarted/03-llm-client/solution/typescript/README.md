@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6d6315e03f591fb5a39be91da88585dc",
-  "translation_date": "2025-07-13T19:18:09+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/typescript/README.md",
-  "language_code": "fr"
-}
--->
 # Exécuter cet exemple
 
 Cet exemple consiste à avoir un LLM côté client. Le LLM nécessite que vous exécutiez cela dans un Codespaces ou que vous configuriez un token d'accès personnel sur GitHub pour que cela fonctionne.

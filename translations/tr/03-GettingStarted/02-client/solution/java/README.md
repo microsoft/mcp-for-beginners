@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7074b9f4c8cd147c1c10f569d8508c82",
-  "translation_date": "2025-07-13T18:34:18+00:00",
-  "source_file": "03-GettingStarted/02-client/solution/java/README.md",
-  "language_code": "tr"
-}
--->
 # MCP Java Client - Hesap Makinesi Demo
 
 Bu proje, bir MCP (Model Context Protocol) sunucusuna bağlanan ve onunla etkileşime giren bir Java istemcisinin nasıl oluşturulacağını gösterir. Bu örnekte, Bölüm 01'deki hesap makinesi sunucusuna bağlanacak ve çeşitli matematiksel işlemler yapacağız.

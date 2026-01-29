@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2228721599c0c8673de83496b4d7d7a9",
-  "translation_date": "2025-08-18T17:42:59+00:00",
-  "source_file": "09-CaseStudy/apimsample.md",
-  "language_code": "tr"
-}
--->
 # Vaka Çalışması: API Management'te REST API'yi MCP sunucusu olarak açığa çıkarma
 
 Azure API Management, API uç noktalarınızın üzerinde bir Gateway sağlayan bir hizmettir. Çalışma şekli, Azure API Management'ın API'lerinizin önünde bir proxy gibi davranması ve gelen isteklerle ne yapılacağına karar vermesidir.

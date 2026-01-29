@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "7074b9f4c8cd147c1c10f569d8508c82",
-  "translation_date": "2025-07-13T18:37:50+00:00",
-  "source_file": "03-GettingStarted/02-client/solution/java/README.md",
-  "language_code": "bg"
-}
--->
 # MCP Java Client - Демонстрация на калкулатор
 
 Този проект показва как да се създаде Java клиент, който се свързва и взаимодейства със сървър MCP (Model Context Protocol). В този пример ще се свържем със сървъра на калкулатора от Глава 01 и ще извършим различни математически операции.

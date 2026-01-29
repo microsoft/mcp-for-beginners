@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "68cd055621b3370948a5a1dff7bedc9a",
-  "translation_date": "2025-08-26T20:32:45+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/solution/python/README.md",
-  "language_code": "tr"
-}
--->
 # MCP stdio Sunucusu - Python Çözümü
 
 > **⚠️ Önemli**: Bu çözüm, MCP Spesifikasyonu 2025-06-18 tarafından önerildiği gibi **stdio taşıma** yöntemini kullanacak şekilde güncellenmiştir. Orijinal SSE taşıma yöntemi artık kullanımdan kaldırılmıştır.

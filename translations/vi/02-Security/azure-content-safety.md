@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f5300fd1b5e84520d500b2a8f568a1d8",
-  "translation_date": "2025-07-17T08:56:37+00:00",
-  "source_file": "02-Security/azure-content-safety.md",
-  "language_code": "vi"
-}
--->
 # Bảo mật MCP nâng cao với Azure Content Safety
 
 Azure Content Safety cung cấp nhiều công cụ mạnh mẽ giúp tăng cường bảo mật cho các triển khai MCP của bạn:

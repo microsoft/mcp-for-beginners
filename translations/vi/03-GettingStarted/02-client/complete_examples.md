@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8358c13b5b6877e475674697cdc1a904",
-  "translation_date": "2025-08-18T17:24:34+00:00",
-  "source_file": "03-GettingStarted/02-client/complete_examples.md",
-  "language_code": "vi"
-}
--->
 # Các Ví Dụ MCP Client Hoàn Chỉnh
 
 Thư mục này chứa các ví dụ hoàn chỉnh và hoạt động của MCP client trong các ngôn ngữ lập trình khác nhau. Mỗi client minh họa đầy đủ các chức năng được mô tả trong hướng dẫn README.md chính.

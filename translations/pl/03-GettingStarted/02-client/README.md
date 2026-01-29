@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "94c80ae71fb9971e9b57b51ab0912121",
-  "translation_date": "2025-08-12T19:23:16+00:00",
-  "source_file": "03-GettingStarted/02-client/README.md",
-  "language_code": "pl"
-}
--->
 # Tworzenie klienta
 
 Klienci to niestandardowe aplikacje lub skrypty, które komunikują się bezpośrednio z serwerem MCP w celu żądania zasobów, narzędzi i podpowiedzi. W przeciwieństwie do korzystania z narzędzia inspektora, które zapewnia graficzny interfejs do interakcji z serwerem, napisanie własnego klienta umożliwia programistyczne i zautomatyzowane interakcje. Dzięki temu deweloperzy mogą integrować możliwości MCP z własnymi procesami, automatyzować zadania i budować niestandardowe rozwiązania dostosowane do konkretnych potrzeb.

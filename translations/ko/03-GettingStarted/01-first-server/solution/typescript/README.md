@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6ebbb78b04c9b1f6c2367c713524fc95",
-  "translation_date": "2025-09-03T16:01:43+00:00",
-  "source_file": "03-GettingStarted/01-first-server/solution/typescript/README.md",
-  "language_code": "ko"
-}
--->
 # 샘플 실행하기
 
 `uv`를 설치하는 것을 권장하지만 필수는 아닙니다. 자세한 내용은 [설치 가이드](https://docs.astral.sh/uv/#highlights)를 참고하세요.

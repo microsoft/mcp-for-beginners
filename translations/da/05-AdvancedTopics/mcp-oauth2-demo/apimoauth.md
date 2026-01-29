@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "32c9a4263be08f9050c8044bb26267c4",
-  "translation_date": "2025-07-14T00:29:52+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/apimoauth.md",
-  "language_code": "da"
-}
--->
 # Udrulning af Spring AI MCP App til Azure Container Apps
 
  ([Sikring af Spring AI MCP-servere med OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2)) *Figur: Spring AI MCP-server sikret med Spring Authorization Server. Serveren udsteder adgangstokens til klienter og validerer dem ved indkommende forespørgsler (kilde: Spring blog) ([Sikring af Spring AI MCP-servere med OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2#:~:text=,server%20with%20the%20MCP%20inspector)).* For at udrulle Spring MCP-serveren, byg den som en container og brug Azure Container Apps med ekstern ingress. For eksempel kan du med Azure CLI køre:

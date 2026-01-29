@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "997c7119766a69552e23d7d681316902",
-  "translation_date": "2025-08-18T14:06:05+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security/README.md",
-  "language_code": "ur"
-}
--->
 # ایم سی پی سیکیورٹی بہترین طریقے - جدید عمل درآمد گائیڈ
 
 > **موجودہ معیار**: یہ گائیڈ [ایم سی پی اسپیسفیکیشن 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) کے سیکیورٹی تقاضوں اور سرکاری [ایم سی پی سیکیورٹی بہترین طریقے](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) کی عکاسی کرتا ہے۔

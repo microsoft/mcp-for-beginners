@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e30aaf6b178137fa6668efc1b20851d5",
-  "translation_date": "2025-12-19T13:42:53+00:00",
-  "source_file": "02-Security/mcp-security-best-practices-2025.md",
-  "language_code": "nl"
-}
--->
 # MCP Beveiligingsrichtlijnen - Update December 2025
 
 > **Belangrijk**: Dit document weerspiegelt de nieuwste [MCP Specificatie 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) beveiligingseisen en officiële [MCP Beveiligingsrichtlijnen](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices). Raadpleeg altijd de actuele specificatie voor de meest recente richtlijnen.

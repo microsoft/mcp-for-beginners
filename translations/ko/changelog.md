@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e8bbc7982284fe177dd4be5e7f2b3357",
-  "translation_date": "2025-12-19T09:45:34+00:00",
-  "source_file": "changelog.md",
-  "language_code": "ko"
-}
--->
 # 변경 로그: 초보자를 위한 MCP 커리큘럼
 
 이 문서는 Model Context Protocol (MCP) 초보자용 커리큘럼에 이루어진 모든 주요 변경 사항을 기록합니다. 변경 사항은 역순(최신 변경 사항이 먼저)으로 문서화되어 있습니다.

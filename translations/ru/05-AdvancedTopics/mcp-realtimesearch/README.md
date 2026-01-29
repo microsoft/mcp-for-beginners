@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "333a03e51f90bdf3e6f1ba1694c73f36",
-  "translation_date": "2025-07-16T23:26:50+00:00",
-  "source_file": "05-AdvancedTopics/mcp-realtimesearch/README.md",
-  "language_code": "ru"
-}
--->
 ## Отказ от ответственности по примерам кода
 
 > **Важное замечание**: приведённые ниже примеры кода демонстрируют интеграцию Model Context Protocol (MCP) с функционалом веб-поиска. Хотя они следуют паттернам и структурам официальных SDK MCP, они упрощены для образовательных целей.

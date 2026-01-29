@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1de8367745088b9fcd4746ea4cc5a161",
-  "translation_date": "2025-10-06T15:49:23+00:00",
-  "source_file": "03-GettingStarted/10-advanced/README.md",
-  "language_code": "sv"
-}
--->
 # Avancerad serveranvändning
 
 Det finns två olika typer av servrar som exponeras i MCP SDK: din vanliga server och låg-nivå servern. Normalt sett använder du den vanliga servern för att lägga till funktioner. I vissa fall kan det dock vara bättre att använda låg-nivå servern, exempelvis:
