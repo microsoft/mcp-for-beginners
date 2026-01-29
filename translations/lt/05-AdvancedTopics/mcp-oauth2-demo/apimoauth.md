@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "32c9a4263be08f9050c8044bb26267c4",
-  "translation_date": "2025-08-26T18:52:05+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/apimoauth.md",
-  "language_code": "lt"
-}
--->
 # Diegimas Spring AI MCP programos Azure Container Apps
 
 ([Spring AI MCP serverių apsauga naudojant OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2)) *Paveikslas: Spring AI MCP serveris apsaugotas Spring Authorization Server. Serveris išduoda prieigos žetonus klientams ir tikrina juos gaunamuose užklausose (šaltinis: Spring tinklaraštis) ([Spring AI MCP serverių apsauga naudojant OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2#:~:text=,server%20with%20the%20MCP%20inspector)).* Norėdami diegti Spring MCP serverį, sukurkite jį kaip konteinerį ir naudokite Azure Container Apps su išoriniu įėjimu. Pavyzdžiui, naudodami Azure CLI galite paleisti:

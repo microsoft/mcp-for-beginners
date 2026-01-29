@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "3880d89fa60abc699e1a17a82ae514ef",
-  "translation_date": "2025-10-07T01:25:06+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/solution/typescript/README.md",
-  "language_code": "my"
-}
--->
 # နမူနာကို အလုပ်လုပ်စေပါ
 
 ## လိုအပ်သော dependencies များကို ထည့်သွင်းပါ

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "13231e9951b68efd9df8c56bd5cdb27e",
-  "translation_date": "2025-08-26T20:42:31+00:00",
-  "source_file": "03-GettingStarted/samples/java/calculator/README.md",
-  "language_code": "lt"
-}
--->
 # Pagrindinė Skaičiuotuvo MCP Paslauga
 
 Ši paslauga teikia pagrindines skaičiuotuvo operacijas per Model Context Protocol (MCP), naudojant Spring Boot su WebFlux transportu. Ji sukurta kaip paprastas pavyzdys pradedantiesiems, norintiems susipažinti su MCP įgyvendinimu.

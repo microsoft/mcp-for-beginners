@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e5ea5e7582f70008ea9bec3b3820f20a",
-  "translation_date": "2025-07-13T23:21:10+00:00",
-  "source_file": "04-PracticalImplementation/samples/java/containerapp/README.md",
-  "language_code": "my"
-}
--->
 ## စနစ်ဖွဲ့စည်းပုံ
 
 ဒီပရောဂျက်မှာ Model Context Protocol (MCP) ကို အသုံးပြုပြီး အသုံးပြုသူရဲ့ prompt ကို calculator service ဆီ ပို့မယ့်အရင်မှာ content safety စစ်ဆေးမှုလုပ်တဲ့ web application ကို ပြသထားပါတယ်။

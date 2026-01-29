@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "193889b580c86bbb1e4f577114a5ce4e",
-  "translation_date": "2025-08-26T18:57:36+00:00",
-  "source_file": "05-AdvancedTopics/mcp-sampling/README.md",
-  "language_code": "lt"
-}
--->
 # Modelio konteksto protokolo pavyzdžių ėmimas
 
 Pavyzdžių ėmimas yra galinga MCP funkcija, leidžianti serveriams per klientą prašyti LLM užbaigimų, taip suteikiant sudėtingą agentinį elgesį, išlaikant saugumą ir privatumą. Tinkama pavyzdžių ėmimo konfigūracija gali žymiai pagerinti atsakymų kokybę ir našumą. MCP suteikia standartizuotą būdą kontroliuoti, kaip modeliai generuoja tekstą, naudojant specifinius parametrus, kurie daro įtaką atsitiktinumui, kūrybiškumui ir nuoseklumui.

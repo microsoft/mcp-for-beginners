@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6d6315e03f591fb5a39be91da88585dc",
-  "translation_date": "2025-07-13T19:21:31+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/typescript/README.md",
-  "language_code": "my"
-}
--->
 # ဤနမူနာကို chạyခြင်း
 
 ဤနမူနာတွင် client ပေါ်တွင် LLM တစ်ခုရှိသည်။ LLM သည် သင်ကို Codespaces တွင် chạyရန် သို့မဟုတ် GitHub တွင် personal access token တစ်ခု စတင်တပ်ဆင်ရန် လိုအပ်သည်။

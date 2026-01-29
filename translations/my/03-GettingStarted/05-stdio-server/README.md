@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "77735b446eb79b1bba9c849865cd0ced",
-  "translation_date": "2025-08-28T22:41:50+00:00",
-  "source_file": "03-GettingStarted/05-stdio-server/README.md",
-  "language_code": "my"
-}
--->
 # MCP Server with stdio Transport
 
 > **⚠️ အရေးကြီး အပ်ဒိတ်**: MCP Specification 2025-06-18 အရ standalone SSE (Server-Sent Events) transport ကို **deprecated** လုပ်ပြီး "Streamable HTTP" transport ဖြင့် အစားထိုးထားပါသည်။ လက်ရှိ MCP specification တွင် အဓိက transport mechanism နှစ်ခုကို ဖော်ပြထားသည်။

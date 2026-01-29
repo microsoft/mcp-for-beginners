@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9a6a4d3497921d2f6d9699f0a6a1890c",
-  "translation_date": "2025-09-09T22:22:25+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/README.md",
-  "language_code": "my"
-}
--->
 # ရာသီဥတု MCP Server
 
 ဒီဟာက Python မှာ ရေးသားထားတဲ့ ရာသီဥတု tools တွေကို mock response တွေနဲ့ အကောင်အထည်ဖော်ထားတဲ့ sample MCP Server တစ်ခုဖြစ်ပါတယ်။ သင့်ရဲ့ MCP Server ကို ဖန်တီးဖို့အတွက် scaffold အနေနဲ့ အသုံးပြုနိုင်ပါတယ်။ အောက်ပါ feature တွေပါဝင်ပါတယ်-

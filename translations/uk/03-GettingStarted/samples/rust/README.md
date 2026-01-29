@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5ffc7f32ed12664b640175f27f0a997a",
-  "translation_date": "2025-08-19T19:27:42+00:00",
-  "source_file": "03-GettingStarted/samples/rust/README.md",
-  "language_code": "uk"
-}
--->
 # Зразок
 
 Це приклад на Rust для MCP Server

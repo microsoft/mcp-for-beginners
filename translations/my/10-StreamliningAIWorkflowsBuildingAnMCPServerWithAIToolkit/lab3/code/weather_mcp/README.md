@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "999c5e7623c1e2d5e5a07c2feb39eb67",
-  "translation_date": "2025-07-14T08:34:02+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/README.md",
-  "language_code": "my"
-}
--->
 # Weather MCP Server
 
 Python ဖြင့်ရေးသားထားသော weather tools များကို mock response များဖြင့် အကောင်အထည်ဖော်ထားသည့် MCP Server နမူနာဖြစ်သည်။ သင့်ရဲ့ MCP Server ကို တည်ဆောက်ရာတွင် အခြေခံအဖြစ် အသုံးပြုနိုင်သည်။ အောက်ပါ လုပ်ဆောင်ချက်များ ပါဝင်သည်။

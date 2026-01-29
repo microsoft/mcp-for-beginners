@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5f1383103523fa822e1fec7ef81904d5",
-  "translation_date": "2025-08-19T18:55:14+00:00",
-  "source_file": "03-GettingStarted/06-http-streaming/README.md",
-  "language_code": "my"
-}
--->
 # HTTPS Streaming with Model Context Protocol (MCP)
 
 ဤအခန်းတွင် Model Context Protocol (MCP) ကို အသုံးပြု၍ HTTPS ဖြင့် လုံခြုံမှုရှိပြီး၊ အတိုင်းအတာကျပြီး၊ အချိန်နှင့်တပြေးညီ စီးဆင်းမှုကို အကောင်အထည်ဖော်ရန် လမ်းညွှန်ချက်များကို ဖော်ပြထားသည်။ စီးဆင်းမှု၏ အဓိကရည်ရွယ်ချက်၊ အသုံးပြုနိုင်သော သယ်ဆောင်မှု Mechanisms များ၊ MCP တွင် Streamable HTTP ကို အကောင်အထည်ဖော်နည်း၊ လုံခြုံမှုအကောင်းဆုံး လုပ်ထုံးလုပ်နည်းများ၊ SSE မှ ပြောင်းရွှေ့ခြင်းနှင့် MCP စီးဆင်းမှု အက်ပလီကေးရှင်းများကို တည်ဆောက်ရန် လက်တွေ့လမ်းညွှန်ချက်များကို ဖော်ပြထားသည်။

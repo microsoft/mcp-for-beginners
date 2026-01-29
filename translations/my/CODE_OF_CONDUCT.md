@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "c06b12caf3c901eb3156e3dd5b0aea56",
-  "translation_date": "2025-07-13T14:30:10+00:00",
-  "source_file": "CODE_OF_CONDUCT.md",
-  "language_code": "my"
-}
--->
 # Microsoft Open Source Code of Conduct
 
 ဤပရောဂျက်သည် [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/) ကို လက်ခံအသုံးပြုထားပါသည်။

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0bc7bd48f55f1565f1d95ccb2c16f728",
-  "translation_date": "2025-08-26T18:47:11+00:00",
-  "source_file": "04-PracticalImplementation/samples/csharp/README.md",
-  "language_code": "lt"
-}
--->
 Ankstesniame pavyzdyje parodyta, kaip naudoti vietinį .NET projektą su `stdio` tipu ir kaip paleisti serverį vietoje konteineryje. Tai yra geras sprendimas daugelyje situacijų. Tačiau gali būti naudinga, kad serveris veiktų nuotoliniu būdu, pavyzdžiui, debesų aplinkoje. Čia praverčia `http` tipas.
 
 Žvelgiant į sprendimą aplanke `04-PracticalImplementation`, jis gali atrodyti daug sudėtingesnis nei ankstesnis. Tačiau iš tikrųjų taip nėra. Jei atidžiau pažvelgsite į projektą `src/Calculator`, pamatysite, kad tai iš esmės tas pats kodas kaip ankstesniame pavyzdyje. Vienintelis skirtumas yra tas, kad naudojame kitą biblioteką `ModelContextProtocol.AspNetCore`, kad apdorotume HTTP užklausas. Be to, pakeitėme metodą `IsPrime`, kad jis būtų privatus, tiesiog norėdami parodyti, jog galite turėti privačius metodus savo kode. Likęs kodas yra toks pat kaip ir anksčiau.

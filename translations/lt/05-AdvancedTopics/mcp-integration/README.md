@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f84eaea79c8fa9ab318a494f40891814",
-  "translation_date": "2025-08-26T18:58:22+00:00",
-  "source_file": "05-AdvancedTopics/mcp-integration/README.md",
-  "language_code": "lt"
-}
--->
 # Įmonių integracija
 
 Kuriant MCP serverius įmonių kontekste, dažnai reikia integruoti esamas AI platformas ir paslaugas. Šiame skyriuje aptariama, kaip integruoti MCP su įmonių sistemomis, tokiomis kaip Azure OpenAI ir Microsoft AI Foundry, siekiant įgalinti pažangias AI galimybes ir įrankių koordinavimą.

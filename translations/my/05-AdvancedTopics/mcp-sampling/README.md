@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "193889b580c86bbb1e4f577114a5ce4e",
-  "translation_date": "2025-07-17T12:37:20+00:00",
-  "source_file": "05-AdvancedTopics/mcp-sampling/README.md",
-  "language_code": "my"
-}
--->
 # Sampling in Model Context Protocol
 
 Sampling သည် MCP ၏ အင်အားကြီးသော feature တစ်ခုဖြစ်ပြီး၊ server များသည် client မှတဆင့် LLM completions များကို request ပြုလုပ်နိုင်စေပြီး၊ agentic behaviors များကို တိုးတက်စေသည့်အပြင် security နှင့် privacy ကိုလည်း ထိန်းသိမ်းပေးသည်။ သင့်တော်သော sampling configuration သည် response အရည်အသွေးနှင့် performance ကို အလွန်ကောင်းမွန်စေသည်။ MCP သည် မော်ဒယ်များသည် စာသားများကို random, creative နှင့် coherent ဖြစ်စေရန် သတ်မှတ်ထားသော parameters များဖြင့် ဘယ်လို generate လုပ်မည်ကို စံပြနည်းဖြင့် ထိန်းချုပ်ပေးသည်။

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "6d6315e03f591fb5a39be91da88585dc",
-  "translation_date": "2025-08-26T19:12:36+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/typescript/README.md",
-  "language_code": "lt"
-}
--->
 # Paleisti šį pavyzdį
 
 Šis pavyzdys reikalauja, kad klientas turėtų LLM. LLM reikia, kad paleistumėte tai Codespaces aplinkoje arba nustatytumėte asmeninį prieigos raktą GitHub, kad viskas veiktų.

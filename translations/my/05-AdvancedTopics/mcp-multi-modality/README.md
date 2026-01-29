@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e1d142978227a4bfc468bb0accab62e2",
-  "translation_date": "2025-07-17T12:43:16+00:00",
-  "source_file": "05-AdvancedTopics/mcp-multi-modality/README.md",
-  "language_code": "my"
-}
--->
 # Multi-Modal ပေါင်းစပ်မှု
 
 Multi-modal အက်ပလီကေးရှင်းတွေဟာ AI မှာ ပိုမိုအရေးကြီးလာပြီး ပိုမိုစုံလင်တဲ့ အပြန်အလှန်ဆက်သွယ်မှုနဲ့ ပိုမိုရှုပ်ထွေးတဲ့ လုပ်ငန်းများကို ဆောင်ရွက်နိုင်စေပါတယ်။ Model Context Protocol (MCP) ကတော့ စာသား၊ ပုံရိပ်၊ အသံ စတဲ့ အမျိုးမျိုးသော ဒေတာများကို ကိုင်တွယ်နိုင်တဲ့ multi-modal အက်ပလီကေးရှင်းတွေ ဖန်တီးဖို့ အခြေခံဖွဲ့စည်းမှုကို ပံ့ပိုးပေးပါတယ်။

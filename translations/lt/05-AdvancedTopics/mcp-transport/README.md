@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "cf3e88e4c0b2d9d65c7f300986bd8c6c",
-  "translation_date": "2025-12-19T18:03:58+00:00",
-  "source_file": "05-AdvancedTopics/mcp-transport/README.md",
-  "language_code": "lt"
-}
--->
 # MCP Pasirinktinių Transportų - Išplėstinis Įgyvendinimo Vadovas
 
 Modelio Konteksto Protokolas (MCP) suteikia lankstumą transporto mechanizmams, leidžiant pasirinktinius įgyvendinimus specializuotoms įmonių aplinkoms. Šis išplėstinis vadovas nagrinėja pasirinktinių transportų įgyvendinimus, naudojant Azure Event Grid ir Azure Event Hubs kaip praktinius pavyzdžius kuriant mastelio keičiamus, debesų natūralios MCP sprendimus.

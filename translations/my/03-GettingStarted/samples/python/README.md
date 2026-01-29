@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
-  "translation_date": "2025-10-17T20:07:57+00:00",
-  "source_file": "03-GettingStarted/samples/python/README.md",
-  "language_code": "my"
-}
--->
 # MCP Calculator Server (Python)
 
 Python ဖြင့် ရိုးရှင်းသော Model Context Protocol (MCP) server ကို ဖန်တီးထားပြီး အခြေခံ ကိန်းဂဏန်းတွက်ချက်မှုများကို ပံ့ပိုးပေးပါသည်။

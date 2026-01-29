@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "9a6a4d3497921d2f6d9699f0a6a1890c",
-  "translation_date": "2025-09-09T22:23:56+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/README.md",
-  "language_code": "uk"
-}
--->
 # Сервер MCP Погоди
 
 Це приклад сервера MCP на Python, який реалізує інструменти для роботи з погодою з використанням мок-відповідей. Його можна використовувати як шаблон для створення власного сервера MCP. Він включає наступні функції:

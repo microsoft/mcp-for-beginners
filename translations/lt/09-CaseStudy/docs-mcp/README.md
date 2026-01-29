@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4319d291c9d124ecafea52b3d04bfa0e",
-  "translation_date": "2025-08-26T18:35:55+00:00",
-  "source_file": "09-CaseStudy/docs-mcp/README.md",
-  "language_code": "lt"
-}
--->
 # Atvejo analizė: Prisijungimas prie Microsoft Learn Docs MCP serverio iš kliento
 
 Ar kada nors teko blaškytis tarp dokumentacijos svetainių, „Stack Overflow“ ir nesibaigiančių paieškos variklių skirtukų, bandant išspręsti problemą savo kode? Galbūt turite antrą monitorių, skirtą tik dokumentacijai, arba nuolat perjungiate langus tarp IDE ir naršyklės. Ar nebūtų geriau, jei dokumentacija būtų integruota tiesiai į jūsų darbo eigą—į jūsų programas, IDE ar net jūsų pačių sukurtus įrankius? Šioje atvejo analizėje aptarsime, kaip tai padaryti, prisijungiant tiesiogiai prie Microsoft Learn Docs MCP serverio iš savo kliento programos.

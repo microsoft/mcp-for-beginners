@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ed9cab32cc67c12d8969b407aa47100a",
-  "translation_date": "2025-07-13T17:57:12+00:00",
-  "source_file": "03-GettingStarted/01-first-server/solution/java/README.md",
-  "language_code": "my"
-}
--->
 # အခြေခံ ကိန်းဂဏန်းတွက်စက် MCP ဝန်ဆောင်မှု
 
 ဤဝန်ဆောင်မှုသည် Spring Boot နှင့် WebFlux သယ်ယူပို့ဆောင်မှုကို အသုံးပြု၍ Model Context Protocol (MCP) မှတဆင့် အခြေခံ ကိန်းဂဏန်းတွက်ချက်မှုများကို ပေးဆောင်သည်။ MCP အကောင်အထည်ဖော်မှုများကို သင်ယူနေသော စတင်သူများအတွက် ရိုးရှင်းသော ဥပမာတစ်ခုအဖြစ် ဒီဇိုင်းရေးဆွဲထားသည်။

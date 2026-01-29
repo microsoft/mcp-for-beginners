@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "c8f283730b5421082ddd26cc85c07831",
-  "translation_date": "2025-08-26T18:42:25+00:00",
-  "source_file": "07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md",
-  "language_code": "lt"
-}
--->
 # 🚀 10 Microsoft MCP serverių, keičiančių programuotojų produktyvumą
 
 ## 🎯 Ką sužinosite šiame vadove

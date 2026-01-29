@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e1d142978227a4bfc468bb0accab62e2",
-  "translation_date": "2025-08-26T19:02:26+00:00",
-  "source_file": "05-AdvancedTopics/mcp-multi-modality/README.md",
-  "language_code": "lt"
-}
--->
 # Daugiarūšė integracija
 
 Daugiarūšės programos tampa vis svarbesnės dirbtinio intelekto srityje, leidžiančios turtingesnę sąveiką ir sudėtingesnes užduotis. Modelio konteksto protokolas (MCP) suteikia pagrindą kurti daugiarūšes programas, kurios gali apdoroti įvairių tipų duomenis, tokius kaip tekstas, vaizdai ir garsas.

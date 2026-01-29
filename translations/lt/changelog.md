@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e8bbc7982284fe177dd4be5e7f2b3357",
-  "translation_date": "2025-12-19T17:51:01+00:00",
-  "source_file": "changelog.md",
-  "language_code": "lt"
-}
--->
 # Pakeitimų žurnalas: MCP pradedantiesiems mokymo programa
 
 Šis dokumentas fiksuoja visus reikšmingus Modelio konteksto protokolo (MCP) pradedantiesiems mokymo programos pakeitimus. Pakeitimai pateikiami atvirkštine chronologine tvarka (naujausi pakeitimai pirmiausia).

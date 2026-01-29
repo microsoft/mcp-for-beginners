@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "83d32e5c5dd838d4b87a730cab88db77",
-  "translation_date": "2025-09-30T22:59:17+00:00",
-  "source_file": "11-MCPServerHandsOnLabs/README.md",
-  "language_code": "my"
-}
--->
 # 🚀 MCP Server နှင့် PostgreSQL - လေ့လာမှုလမ်းညွှန်အပြည့်အစုံ
 
 ## 🧠 MCP Database Integration Learning Path အကြောင်းအရာ

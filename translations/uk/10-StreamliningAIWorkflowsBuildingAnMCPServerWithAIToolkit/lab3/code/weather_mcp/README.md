@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "999c5e7623c1e2d5e5a07c2feb39eb67",
-  "translation_date": "2025-07-14T08:34:21+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/README.md",
-  "language_code": "uk"
-}
--->
 # Weather MCP Server
 
 Це приклад MCP Server на Python, який реалізує інструменти для погоди з імітованими відповідями. Його можна використовувати як основу для власного MCP Server. Він включає такі функції:

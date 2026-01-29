@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "0a7083e660ca0d85fd6a947514c61993",
-  "translation_date": "2025-07-14T00:44:18+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/README.md",
-  "language_code": "my"
-}
--->
 # MCP OAuth2 Demo
 
 ဤပရောဂျက်သည် **အနည်းဆုံး Spring Boot အက်ပလီကေးရှင်း** ဖြစ်ပြီး အောက်ပါအဖြစ် လုပ်ဆောင်သည်-

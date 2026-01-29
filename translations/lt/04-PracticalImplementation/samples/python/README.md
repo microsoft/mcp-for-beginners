@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "706b9b075dc484b73a053e6e9c709b4b",
-  "translation_date": "2025-08-26T18:47:33+00:00",
-  "source_file": "04-PracticalImplementation/samples/python/README.md",
-  "language_code": "lt"
-}
--->
 # Modelio Konteksto Protokolo (MCP) Python Įgyvendinimas
 
 Šiame saugykloje pateikiamas Modelio Konteksto Protokolo (MCP) Python įgyvendinimas, parodantis, kaip sukurti tiek serverio, tiek kliento programą, kurios bendrauja naudodamos MCP standartą.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "98bcd044860716da5819e31c152813b7",
-  "translation_date": "2025-08-26T19:13:36+00:00",
-  "source_file": "03-GettingStarted/07-aitk/README.md",
-  "language_code": "lt"
-}
--->
 # Naudojimasis serveriu iš AI Toolkit plėtinio Visual Studio Code
 
 Kuriant dirbtinio intelekto agentą, svarbu ne tik generuoti išmanius atsakymus, bet ir suteikti agentui galimybę veikti. Čia pasitarnauja Model Context Protocol (MCP). MCP leidžia agentams lengvai ir nuosekliai pasiekti išorinius įrankius bei paslaugas. Galvokite apie tai kaip apie įrankių dėžę, kurią jūsų agentas gali *tikrai* naudoti.

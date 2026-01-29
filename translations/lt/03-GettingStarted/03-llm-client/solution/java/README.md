@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ac2459c0d5cc823922e3d9240a95028c",
-  "translation_date": "2025-08-26T19:12:41+00:00",
-  "source_file": "03-GettingStarted/03-llm-client/solution/java/README.md",
-  "language_code": "lt"
-}
--->
 # Skaičiuotuvo LLM Klientas
 
 Java programa, demonstruojanti, kaip naudoti LangChain4j prisijungimui prie MCP (Model Context Protocol) skaičiuotuvo paslaugos su GitHub Models integracija.

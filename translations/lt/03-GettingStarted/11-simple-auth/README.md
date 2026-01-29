@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "5b00b8a8971a07d2d8803be4c9f138f8",
-  "translation_date": "2025-10-07T01:10:45+00:00",
-  "source_file": "03-GettingStarted/11-simple-auth/README.md",
-  "language_code": "lt"
-}
--->
 # Paprasta autentifikacija
 
 MCP SDK palaiko OAuth 2.1 naudojimą, kuris, tiesą sakant, yra gana sudėtingas procesas, apimantis tokias sąvokas kaip autentifikacijos serveris, resursų serveris, kredencialų pateikimas, kodo gavimas, kodo keitimas į „bearer“ žetoną, kol galiausiai galite pasiekti savo resursų duomenis. Jei nesate susipažinę su OAuth, kuris yra puikus įgyvendinimo būdas, verta pradėti nuo paprastesnio autentifikacijos lygio ir palaipsniui pereiti prie geresnio saugumo. Štai kodėl egzistuoja šis skyrius – padėti jums pereiti prie pažangesnės autentifikacijos.

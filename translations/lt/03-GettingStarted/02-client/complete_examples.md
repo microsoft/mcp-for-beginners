@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8358c13b5b6877e475674697cdc1a904",
-  "translation_date": "2025-08-26T20:44:48+00:00",
-  "source_file": "03-GettingStarted/02-client/complete_examples.md",
-  "language_code": "lt"
-}
--->
 # Pilni MCP Klientų Pavyzdžiai
 
 Šiame kataloge pateikiami pilni, veikiantys MCP klientų pavyzdžiai įvairiomis programavimo kalbomis. Kiekvienas klientas demonstruoja visą funkcionalumą, aprašytą pagrindiniame README.md vadove.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "8358c13b5b6877e475674697cdc1a904",
-  "translation_date": "2025-08-19T19:28:44+00:00",
-  "source_file": "03-GettingStarted/02-client/complete_examples.md",
-  "language_code": "uk"
-}
--->
 # Повні приклади клієнтів MCP
 
 Ця директорія містить повні, робочі приклади клієнтів MCP на різних мовах програмування. Кожен клієнт демонструє всю функціональність, описану в основному навчальному посібнику README.md.

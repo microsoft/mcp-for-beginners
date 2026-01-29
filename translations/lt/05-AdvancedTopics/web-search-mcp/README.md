@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "151265c9a2124d7c53e04d16ee3fb73b",
-  "translation_date": "2025-08-26T19:01:44+00:00",
-  "source_file": "05-AdvancedTopics/web-search-mcp/README.md",
-  "language_code": "lt"
-}
--->
 # Pamoka: Internetinės paieškos MCP serverio kūrimas
 
 Šiame skyriuje parodoma, kaip sukurti realaus pasaulio AI agentą, kuris integruojasi su išoriniais API, tvarko įvairius duomenų tipus, valdo klaidas ir koordinuoja kelis įrankius – visa tai gamybai paruoštu formatu. Jūs sužinosite:

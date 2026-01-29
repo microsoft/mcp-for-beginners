@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "32c9a4263be08f9050c8044bb26267c4",
-  "translation_date": "2025-07-14T00:38:16+00:00",
-  "source_file": "05-AdvancedTopics/mcp-oauth2-demo/apimoauth.md",
-  "language_code": "my"
-}
--->
 # Spring AI MCP App ကို Azure Container Apps တွင် တပ်ဆင်ခြင်း
 
 ([Securing Spring AI MCP servers with OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2)) *ပုံရိပ် - Spring AI MCP server ကို Spring Authorization Server ဖြင့် လုံခြုံစေထားသည်။ Server သည် client များအား access token များထုတ်ပေးပြီး လာရောက်သော request များတွင် token များကို စစ်ဆေးသည် (အရင်းအမြစ် - Spring blog) ([Securing Spring AI MCP servers with OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2#:~:text=,server%20with%20the%20MCP%20inspector)).* Spring MCP server ကို deploy လုပ်ရန် container အဖြစ် တည်ဆောက်ပြီး Azure Container Apps တွင် external ingress ဖြင့် အသုံးပြုပါ။ ဥပမာအားဖြင့် Azure CLI ကို အသုံးပြု၍ အောက်ပါ command ကို run နိုင်သည်-

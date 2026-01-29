@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e30aaf6b178137fa6668efc1b20851d5",
-  "translation_date": "2025-12-19T17:39:40+00:00",
-  "source_file": "02-Security/mcp-security-best-practices-2025.md",
-  "language_code": "uk"
-}
--->
 # Найкращі практики безпеки MCP – оновлення грудня 2025 року
 
 > **Важливо**: Цей документ відображає останні вимоги безпеки [MCP Specification 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) та офіційні [Найкращі практики безпеки MCP](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices). Завжди звертайтеся до поточної специфікації для отримання найактуальніших рекомендацій.

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f83bc722dc758efffd68667d6a1db470",
-  "translation_date": "2025-08-26T20:48:50+00:00",
-  "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/README.md",
-  "language_code": "lt"
-}
--->
 # 🐙 Modulis 4: Praktinis MCP kūrimas – Individualus GitHub klonavimo serveris
 
 ![Trukmė](https://img.shields.io/badge/Duration-30_minutes-blue?style=flat-square)

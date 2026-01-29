@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "997c7119766a69552e23d7d681316902",
-  "translation_date": "2025-08-19T18:40:58+00:00",
-  "source_file": "05-AdvancedTopics/mcp-security/README.md",
-  "language_code": "my"
-}
--->
 # MCP လုံခြုံရေးအကောင်းဆုံးအလေ့အကျင့်များ - အဆင့်မြင့်အကောင်အထည်ဖော်လမ်းညွှန်
 
 > **လက်ရှိစံနှုန်း**: ဤလမ်းညွှန်သည် [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) ၏ လုံခြုံရေးလိုအပ်ချက်များနှင့် တရားဝင် [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) ကို အခြေခံထားသည်။

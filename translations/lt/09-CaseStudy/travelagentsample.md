@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "4d3415b9d2bf58bc69be07f945a69e07",
-  "translation_date": "2025-08-26T18:35:12+00:00",
-  "source_file": "09-CaseStudy/travelagentsample.md",
-  "language_code": "lt"
-}
--->
 # Atvejo analizė: Azure AI kelionių agentai – pavyzdinė įgyvendinimo schema
 
 ## Apžvalga

@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "2228721599c0c8673de83496b4d7d7a9",
-  "translation_date": "2025-08-26T18:34:40+00:00",
-  "source_file": "09-CaseStudy/apimsample.md",
-  "language_code": "lt"
-}
--->
 # Atvejo analizė: REST API eksponavimas API Management kaip MCP serveris
 
 Azure API Management yra paslauga, kuri suteikia vartus jūsų API galiniams taškams. Ji veikia kaip tarpininkas prieš jūsų API ir gali nuspręsti, ką daryti su gaunamais užklausomis.

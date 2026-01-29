@@ -1,12 +1,3 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "1b6c746d9e190deba4d8765267ffb94e",
-  "translation_date": "2025-07-17T13:52:11+00:00",
-  "source_file": "02-Security/azure-content-safety-implementation.md",
-  "language_code": "my"
-}
--->
 # MCP နှင့် Azure Content Safety ကို အကောင်အထည်ဖော်ခြင်း
 
 MCP ကို prompt injection, tool poisoning နှင့် အခြား AI အထူးထိခိုက်မှုများမှ ကာကွယ်ရန် Azure Content Safety ကို ပေါင်းစည်းအသုံးပြုရန် အကြံပြုပါသည်။
