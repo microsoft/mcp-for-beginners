@@ -1,6 +1,6 @@
 # Tämän esimerkin suorittaminen
 
-Suosittelemme asentamaan `uv`, mutta se ei ole pakollista, katso [ohjeet](https://docs.astral.sh/uv/#highlights)
+Suositellaan asentamaan `uv`, mutta se ei ole pakollista, katso [ohjeet](https://docs.astral.sh/uv/#highlights)
 
 ## -0- Luo virtuaaliympäristö
 
@@ -17,38 +17,26 @@ venv\Scripts\activate
 ## -2- Asenna riippuvuudet
 
 ```bash
-pip install "mcp[cli]"
+pip install "mcp[cli]" openai
 ```
 
 ## -3- Suorita esimerkki
 
 
 ```bash
-mcp run server.py
-```
-
-## -4- Testaa esimerkki
-
-Suorita palvelin komennolla:
-
-Lisää se *mcp.json* tiedostoon näin:
-
-```json
-```
-
-Käynnistä palvelin
-
-Kirjoita seuraava kehotus:
-
-```text
-prompt
+python client.py
 ```
 
 Näet tulosteen, joka on samanlainen kuin:
+
+```text
+[02/18/26 13:16:34] INFO     Processing request of type ListToolsRequest               server.py:720
+result: {"id": 1, "name": "paprika", "description": "**Product Description: Paprika - The Vibrant Red Wonder**\n\nElevate your culinary creations with our premium paprika, the jewel of spices that bursts with color, flavor, and nutrition. Harvested from the finest red, juicy peppers, our paprika is meticulously ground to preserve its rich, vibrant hue and aromatic essence, making it an essential ingredient in any kitchen.\n\nEach sprinkle of our paprika adds a delightful warmth and a subtle sweetness to a variety of dishes, from savory stews to vibrant salads and mouthwatering marinades. Its radiant red color not only enhances the visual appeal of your meals but also signifies the freshness and quality of the peppers used. \n\nRich in antioxidants and packed with vitamins, paprika not only tantalizes your taste buds but also contributes to a healthy lifestyle. Whether you're a professional chef or a home cook, this versatile spice will inspire your creativity and add a beautiful, flavorful touch to everything you whip up.\n\nDiscover the magic of our red, juicy paprika\u2014a spice that transforms ordinary dishes into"}
+```
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Vastuuvapauslauseke**:
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, ole hyvä ja huomioi, että automaattikäännöksissä voi esiintyä virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäiskielellä on tarkoitettu viralliseksi lähteeksi. Tärkeissä tiedoissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automatisoiduissa käännöksissä saattaa esiintyä virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäisellä kielellä tulee pitää auktoritatiivisena lähteenä. Tärkeiden tietojen osalta suositellaan ammattilaisen tekemää ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai virhetulkinnoista.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
