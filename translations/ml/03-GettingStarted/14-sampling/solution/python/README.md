@@ -1,14 +1,14 @@
-# ഈ സാമ്പിൾ പ്രവർത്തിപ്പിക്കൽ
+# ഈ സാംപിൾ ഓടിക്കുന്നത്
 
-`uv` ഇൻസ്റ്റാൾ ചെയ്യുന്നത് ശുപാർശ ചെയ്യുന്നു പക്ഷേ അത് നിർബന്ധമല്ല, [നിർദ്ദേശങ്ങൾ](https://docs.astral.sh/uv/#highlights) കാണുക
+നിങ്ങൾക്ക് `uv` ഇൻസ്റ്റാൾ ചെയ്യണമെന്ന് ശിപാർശ ചെയ്യപ്പെടുന്നു, പക്ഷേ അതൊരു നിർബന്ധം അല്ല, കാണുക [instructions](https://docs.astral.sh/uv/#highlights)
 
-## -0- ഒരു വെർച്വൽ എൻവയော်ൺമെന്റ് സൃഷ്ടിക്കുക
+## -0- ഒരു വെർച്ച്വൽ എൻവൈറൺമെന്റ് സൃഷ്ടിക്കുക
 
 ```bash
 python -m venv venv
 ```
 
-## -1- വെർച്വൽ എൻവയോമെന്റ് സജീവമാക്കുക
+## -1- വെർച്ച്വൽ എൻവൈറൺമെന്റ് സജീവമാക്കുക
 
 ```bash
 venv\Scripts\activate
@@ -17,38 +17,26 @@ venv\Scripts\activate
 ## -2- ആശ്രിതത്വങ്ങൾ ഇൻസ്റ്റാൾ ചെയ്യുക
 
 ```bash
-pip install "mcp[cli]"
+pip install "mcp[cli]" openai
 ```
 
-## -3- സാമ്പിൾ പ്രവർത്തിപ്പിക്കുക
+## -3- സാംപിൾ പ്രവർത്തിപ്പിക്കുക
 
 
 ```bash
-mcp run server.py
+python client.py
 ```
 
-## -4- സാമ്പിൾ പരീക്ഷിക്കുക
-
-സർവർ താഴെ പറയുന്ന കമാന്റ് ഉപയോഗിച്ച് പ്രവർത്തിപ്പിക്കുക:
-
-*mcp.json* ൽ ഇങ്ങനെ ചേർക്കുക:
-
-```json
-```
-
-സർവർ തുടങ്ങുക
-
-താഴെ പറയുന്ന പ്രോംപ്റ്റ് നൽകുക:
+താഴെ കാണുന്നതുപോലുള്ള ഔട്ട്പുട്ട് നിങ്ങൾക്ക് കാണാവുന്നതാണ്:
 
 ```text
-prompt
+[02/18/26 13:16:34] INFO     Processing request of type ListToolsRequest               server.py:720
+result: {"id": 1, "name": "paprika", "description": "**Product Description: Paprika - The Vibrant Red Wonder**\n\nElevate your culinary creations with our premium paprika, the jewel of spices that bursts with color, flavor, and nutrition. Harvested from the finest red, juicy peppers, our paprika is meticulously ground to preserve its rich, vibrant hue and aromatic essence, making it an essential ingredient in any kitchen.\n\nEach sprinkle of our paprika adds a delightful warmth and a subtle sweetness to a variety of dishes, from savory stews to vibrant salads and mouthwatering marinades. Its radiant red color not only enhances the visual appeal of your meals but also signifies the freshness and quality of the peppers used. \n\nRich in antioxidants and packed with vitamins, paprika not only tantalizes your taste buds but also contributes to a healthy lifestyle. Whether you're a professional chef or a home cook, this versatile spice will inspire your creativity and add a beautiful, flavorful touch to everything you whip up.\n\nDiscover the magic of our red, juicy paprika\u2014a spice that transforms ordinary dishes into"}
 ```
-
-നിങ്ങൾക്ക് സമാനമായ ഔട്ട്പുട്ട് കാണാൻ സാധിക്കും:
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**തടស്തികള്‍**:  
-ഈ രേഖ AI വിവര്‍ത്തന സേവനം [Co-op Translator](https://github.com/Azure/co-op-translator) ഉപയോഗിച്ച് വിവര്‍ത്തനം ചെയ്തതാണ്. ഞങ്ങള്‍ സൂക്ഷ്മതയ്ക്കായി ശ്രമിച്ചെങ്കിലും, യന്ത്ര വിവര്‍ത്തനങ്ങളില്‍ പിശകുകളോ അച്ചടക്കക്കേടുകളോ ഉണ്ടാകാവുന്നതാണ്. മൂല രേഖയുടെ നാടുവഴി ഭാഷയിലാണ് പ്രാമാണിക സ്രോതസ്സെന്നും അംഗീകരിക്കണമെെന്നാണ് അഭ്യര്‍ത്ഥനം. സുപ്രധാന വിവരങ്ങള്‍ക്കായി വിദഗ്ദ്ധ മനുഷ്യ വിവര്‍ത്തനം നിര്‍ദ്ദേശിക്കപ്പെടുന്നു. ഈ വിവര്‍ത്തനത്തിന്റെ ഉപയോഗത്തില്‍ നിന്നുണ്ടാകുന്ന യാതൊരു തെറ്റിദ്ധാരണകള്‍ക്കും ഞങ്ങള്‍ ഉത്തരവാദിയല്ല.
+**തള്ളിപ്പ്**:  
+ഈ ഡോസ്യुमെന്റ് AI ഭാഷാന്തര സേവനം [Co-op Translator](https://github.com/Azure/co-op-translator) ഉപയോഗിച്ചു വിവർത്തനം ചെയ്തതാണ്. നമുക്ക് ശരിയായ പരിഭാഷ നൽകാൻ പ്രയത്‌നിച്ചിട്ടുണ്ടെങ്കിലും, യന്ത്ര വിവർത്തനത്തിൽ പിഴവുകൾ അല്ലെങ്കിൽ അമ്പരപ്പുകൾ ഉണ്ടാകാമെന്ന് ദയവായി ശ്രദ്ധിക്കുക. പ്രാഥമിക ഭാഷയിലെ യഥാർത്ഥ ഡോക്യുമെന്റ് അധികാരമുള്ള സ്രോതസ്സായി കണക്കാക്കണം. നിർണ്ണായക വിവരങ്ങൾക്കായി, പ്രൊഫഷണൽ മനുഷ്യ വിവർത്തനം അഭ്യർത്ഥിക്കുന്നു. ഈ വിവർത്തനത്തിന്റെ ഉപയോഗത്തിൽ ഉണ്ടാകുന്ന തെറ്റായ ധാരണകൾക്കും വ്യാഖ്യാനക്കുകള്ക്കും ഞങ്ങൾ ബാധ്യസ്ഥരല്ല.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

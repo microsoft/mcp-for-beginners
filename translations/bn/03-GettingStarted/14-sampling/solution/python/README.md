@@ -1,6 +1,6 @@
-# এই নমুনা চালানো হচ্ছে
+# এই নমুনাটি চালানো
 
-আপনাকে `uv` ইনস্টল করার পরামর্শ দেওয়া হয় কিন্তু এটি আবশ্যক নয়, দেখুন [নির্দেশাবলী](https://docs.astral.sh/uv/#highlights)
+আপনাকে `uv` ইনস্টল করার পরামর্শ দেওয়া হয় তবে এটি আবশ্যক নয়, দেখুন [নির্দেশাবলী](https://docs.astral.sh/uv/#highlights)
 
 ## -0- একটি ভার্চুয়াল পরিবেশ তৈরি করুন
 
@@ -17,38 +17,26 @@ venv\Scripts\activate
 ## -2- নির্ভরশীলতাগুলি ইনস্টল করুন
 
 ```bash
-pip install "mcp[cli]"
+pip install "mcp[cli]" openai
 ```
 
-## -3- নমুনা চালান
+## -3- নমুনাটি চালান
 
 
 ```bash
-mcp run server.py
+python client.py
 ```
 
-## -4- নমুনার পরীক্ষা করুন
-
-নিম্নলিখিত কমান্ড দিয়ে সার্ভার চালান:
-
-এটিকে *mcp.json* এ এভাবে যোগ করুন:
-
-```json
-```
-
-সার্ভার শুরু করুন
-
-নিম্নলিখিত প্রম্পট টাইপ করুন:
+আপনি নিম্নলিখিত ধরণের আউটপুট দেখতে পাবেন:
 
 ```text
-prompt
+[02/18/26 13:16:34] INFO     Processing request of type ListToolsRequest               server.py:720
+result: {"id": 1, "name": "paprika", "description": "**Product Description: Paprika - The Vibrant Red Wonder**\n\nElevate your culinary creations with our premium paprika, the jewel of spices that bursts with color, flavor, and nutrition. Harvested from the finest red, juicy peppers, our paprika is meticulously ground to preserve its rich, vibrant hue and aromatic essence, making it an essential ingredient in any kitchen.\n\nEach sprinkle of our paprika adds a delightful warmth and a subtle sweetness to a variety of dishes, from savory stews to vibrant salads and mouthwatering marinades. Its radiant red color not only enhances the visual appeal of your meals but also signifies the freshness and quality of the peppers used. \n\nRich in antioxidants and packed with vitamins, paprika not only tantalizes your taste buds but also contributes to a healthy lifestyle. Whether you're a professional chef or a home cook, this versatile spice will inspire your creativity and add a beautiful, flavorful touch to everything you whip up.\n\nDiscover the magic of our red, juicy paprika\u2014a spice that transforms ordinary dishes into"}
 ```
-
-আপনি এর মতো আউটপুট দেখতে পাবেন:
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**অস্বীকারোক্তি**:  
-এই নথিটি AI অনুবাদ সেবা [Co-op Translator](https://github.com/Azure/co-op-translator) ব্যবহার করে অনূদিত হয়েছে। যদিও আমরা সঠিকতার জন্য চেষ্টা করি, স্বয়ংক্রিয় অনুবাদে ভুল বা অসঙ্গতি থাকতে পারে তা অনুগ্রহ করে বুঝে নিন। মূল নথির নিজ ভাষার সংস্করণটিকে সর্বোচ্চ কর্তৃপক্ষ হিসাবে গণ্য করা উচিত। গুরুত্বপূর্ণ তথ্যের জন্য পেশাদার মানব অনুবাদ সুপারিশ করা হয়। এই অনুবাদের ব্যবহারে সৃষ্ট যেকোনো ভুল বোঝাবুঝি বা ভুল ব্যাখ্যার জন্য আমরা দায়ী নই।
+**অস্বীকৃতি**:  
+এই ডকুমেন্টটি AI অনুবাদ সেবা [Co-op Translator](https://github.com/Azure/co-op-translator) ব্যবহার করে অনূদিত হয়েছে। আমরা যথাযথতার চেষ্টা করি, তবে স্বয়ংক্রিয় অনুবাদে ত্রুটি বা অসঙ্গতি থাকতে পারে। মূল ডকুমেন্টটি তার নিজ নিজ ভাষায় প্রামাণিক উৎস হিসাবে বিবেচনা করা উচিত। গুরুতর তথ্যের জন্য পেশাদার মানব অনুবাদ সুপারিশ করা হয়। এই অনুবাদের ব্যবহারে উদ্ভূত কোনও বিভ্রান্তি বা ভুল ব্যাখ্যার জন্য আমরা দায়ী নই।
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

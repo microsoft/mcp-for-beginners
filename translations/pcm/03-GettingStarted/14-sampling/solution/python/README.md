@@ -1,6 +1,6 @@
 # Running dis sample
 
-You dey recommended make you install `uv` but e no be say e must, see [instructions](https://docs.astral.sh/uv/#highlights)
+Dem recommend sey make you install `uv` but e no mandatory, see [instructions](https://docs.astral.sh/uv/#highlights)
 
 ## -0- Create virtual environment
 
@@ -8,7 +8,7 @@ You dey recommended make you install `uv` but e no be say e must, see [instructi
 python -m venv venv
 ```
 
-## -1- Activate di virtual environment
+## -1- Activate the virtual environment
 
 ```bash
 venv\Scripts\activate
@@ -17,38 +17,26 @@ venv\Scripts\activate
 ## -2- Install di dependencies
 
 ```bash
-pip install "mcp[cli]"
+pip install "mcp[cli]" openai
 ```
 
 ## -3- Run di sample
 
 
 ```bash
-mcp run server.py
+python client.py
 ```
 
-## -4- Test di sample
-
-Run di server wit di command:
-
-Add am to *mcp.json* like dis:
-
-```json
-```
-
-Start di server
-
-Type di followin prompt:
+You go fit see output wey resemble:
 
 ```text
-prompt
+[02/18/26 13:16:34] INFO     Processing request of type ListToolsRequest               server.py:720
+result: {"id": 1, "name": "paprika", "description": "**Product Description: Paprika - The Vibrant Red Wonder**\n\nElevate your culinary creations with our premium paprika, the jewel of spices that bursts with color, flavor, and nutrition. Harvested from the finest red, juicy peppers, our paprika is meticulously ground to preserve its rich, vibrant hue and aromatic essence, making it an essential ingredient in any kitchen.\n\nEach sprinkle of our paprika adds a delightful warmth and a subtle sweetness to a variety of dishes, from savory stews to vibrant salads and mouthwatering marinades. Its radiant red color not only enhances the visual appeal of your meals but also signifies the freshness and quality of the peppers used. \n\nRich in antioxidants and packed with vitamins, paprika not only tantalizes your taste buds but also contributes to a healthy lifestyle. Whether you're a professional chef or a home cook, this versatile spice will inspire your creativity and add a beautiful, flavorful touch to everything you whip up.\n\nDiscover the magic of our red, juicy paprika\u2014a spice that transforms ordinary dishes into"}
 ```
-
-You go see output wey be like:
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Disclaimer**:
-Dis kain document na AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator) we use translate am. Even though we try make am accurate, e good make you sabi say sometimes automated translation fit get errors or no clear well. Di original document wey e be for im own language na di correct source. If na serious matter, e better make professional human translate am. We no go responsible for any kind wrong understanding or misinterpretation wey fit jack from dis translation.
+Dis document don translate wit AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). Even though we dey try make am correct, abeg sabi say automatic translations fit get mistake or wrong meaning. Di original document for im own language na di correct one be dat. If na very important matter, make person wey sabi human translation do am. We no go take responsibility for any confusion or wrong understanding wey fit come from dis translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

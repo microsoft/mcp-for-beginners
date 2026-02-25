@@ -1,6 +1,6 @@
 # اجرای این نمونه
 
-پیشنهاد می‌شود `uv` را نصب کنید اما اجباری نیست، به [دستورالعمل‌ها](https://docs.astral.sh/uv/#highlights) مراجعه کنید
+توصیه می‌شود `uv` را نصب کنید اما اجباری نیست، به [دستورالعمل‌ها](https://docs.astral.sh/uv/#highlights) مراجعه کنید
 
 ## -0- ایجاد یک محیط مجازی
 
@@ -8,7 +8,7 @@
 python -m venv venv
 ```
 
-## -1- فعال کردن محیط مجازی
+## -1- فعال‌سازی محیط مجازی
 
 ```bash
 venv\Scripts\activate
@@ -17,38 +17,26 @@ venv\Scripts\activate
 ## -2- نصب وابستگی‌ها
 
 ```bash
-pip install "mcp[cli]"
+pip install "mcp[cli]" openai
 ```
 
 ## -3- اجرای نمونه
 
 
 ```bash
-mcp run server.py
+python client.py
 ```
 
-## -4- تست نمونه
-
-سرور را با دستور زیر اجرا کنید:
-
-آن را به *mcp.json* به صورت زیر اضافه کنید:
-
-```json
-```
-
-شروع سرور
-
-عبارت زیر را تایپ کنید:
+شما باید خروجی مشابه زیر را ببینید:
 
 ```text
-prompt
+[02/18/26 13:16:34] INFO     Processing request of type ListToolsRequest               server.py:720
+result: {"id": 1, "name": "paprika", "description": "**Product Description: Paprika - The Vibrant Red Wonder**\n\nElevate your culinary creations with our premium paprika, the jewel of spices that bursts with color, flavor, and nutrition. Harvested from the finest red, juicy peppers, our paprika is meticulously ground to preserve its rich, vibrant hue and aromatic essence, making it an essential ingredient in any kitchen.\n\nEach sprinkle of our paprika adds a delightful warmth and a subtle sweetness to a variety of dishes, from savory stews to vibrant salads and mouthwatering marinades. Its radiant red color not only enhances the visual appeal of your meals but also signifies the freshness and quality of the peppers used. \n\nRich in antioxidants and packed with vitamins, paprika not only tantalizes your taste buds but also contributes to a healthy lifestyle. Whether you're a professional chef or a home cook, this versatile spice will inspire your creativity and add a beautiful, flavorful touch to everything you whip up.\n\nDiscover the magic of our red, juicy paprika\u2014a spice that transforms ordinary dishes into"}
 ```
-
-باید خروجی مشابه زیر را ببینید:
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**توضیح مهم**:  
-این سند با استفاده از خدمات ترجمه خودکار [Co-op Translator](https://github.com/Azure/co-op-translator) ترجمه شده است. در حالی که ما در تلاش برای دقت هستیم، لطفاً توجه داشته باشید که ترجمه‌های اتوماتیک ممکن است حاوی خطا یا نادرستی باشند. سند اصلی به زبان مادری آن باید به عنوان منبع معتبر در نظر گرفته شود. برای اطلاعات حیاتی، توصیه می‌شود از ترجمه حرفه‌ای انسانی استفاده شود. ما مسئول هیچ گونه سوءتفاهم یا تفسیر نادرست ناشی از استفاده از این ترجمه نیستیم.
+**سلب مسئولیت**:  
+این سند با استفاده از سرویس ترجمه هوش مصنوعی [Co-op Translator](https://github.com/Azure/co-op-translator) ترجمه شده است. در حالی که ما در تلاش برای دقت هستیم، لطفاً به این نکته توجه داشته باشید که ترجمه‌های خودکار ممکن است شامل خطاها یا نواقصی باشند. سند اصلی به زبان اصلی خود باید به عنوان منبع معتبر در نظر گرفته شود. برای اطلاعات حیاتی، ترجمه حرفه‌ای انسانی توصیه می‌شود. ما مسئول هیچگونه سوءتفاهم یا تفسیر نادرستی که از استفاده از این ترجمه ناشی شود، نیستیم.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

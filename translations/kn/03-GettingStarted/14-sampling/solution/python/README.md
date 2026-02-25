@@ -1,54 +1,42 @@
-# ಈ ಮಾದರಿಯನ್ನು ಚಲಾಯಿಸುವುದು
+# ಈ ಮಾದರಿಯನ್ನು 실행 ಮಾಡುವುದು
 
-ನೀವು `uv` ಅನ್ನು εγκαೀಡಿಸಲು ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ ಆದರೆ ಅದು ಅಗತ್ಯವಿಲ್ಲ, [ಹುಡುಕಾಟಗಳನ್ನು](https://docs.astral.sh/uv/#highlights) ನೋಡಿ
+ನೀವು `uv` ಅನ್ನು ಸ್ಥಾಪಿಸಲು ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ ಆದರೆ ಇದು ಕಡ್ಡಾಯವಲ್ಲ, [ಸೂಚನೆಗಳು](https://docs.astral.sh/uv/#highlights) ನೋಡಿ
 
-## -0- ಕಾರ್ಯಾಚರಿಕ ಪರಿಸರವನ್ನು ರಚಿಸಿ
+## -0- ವರ್ಚುವಲ್ ಪರಿಸರವನ್ನು ರಚಿಸಿ
 
 ```bash
 python -m venv venv
 ```
 
-## -1- ಕಾರ್ಯಾಚರಿಕ ಪರಿಸರವನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ
+## -1- ವರ್ಚುವಲ್ ಪರಿಸರವನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ
 
 ```bash
 venv\Scripts\activate
 ```
 
-## -2- ಅವಲಂಬನೆಗಳನ್ನು εγκαೀಡಿ
+## -2- ಅವಲಂಬನೆಗಳನ್ನು ಸ್ಥಾಪಿಸಿ
 
 ```bash
-pip install "mcp[cli]"
+pip install "mcp[cli]" openai
 ```
 
-## -3- ಮಾದರಿಯನ್ನು ಚಲಾಯಿಸಿ
+## -3- ಮಾದರಿಯನ್ನು 실행 ಮಾಡಿ
 
 
 ```bash
-mcp run server.py
+python client.py
 ```
 
-## -4- ಮಾದರಿಯನ್ನು ಪರೀಕ್ಷಿಸಿ
-
-ಕಡತವನ್ನು ಈ ಕೆಳಗಿನ ಆದೇಶದಿಂದ ಚಾಲನೆ ಮಾಡಿ:
-
-*ಮಿಸಿ.json*ಕ್ಕೆ ಅದನ್ನು ಹೀಗೆ ಸೇರಿಸಿ:
-
-```json
-```
-
-ಸರ್ವರ್ ಪ್ರಾರಂಭಿಸಿ
-
-ಕೆಳಗಿನ ಪ್ರಾಂಪ್ಟ್ ಅನ್ನು ಟೈಪ್ ಮಾಡಿ:
+ನೀವು ಹೀಗೆಯಿರುವ ಔಟ್‌ಪುಟ್ ಅನ್ನು ನೋಡುವಿರಿ:
 
 ```text
-prompt
+[02/18/26 13:16:34] INFO     Processing request of type ListToolsRequest               server.py:720
+result: {"id": 1, "name": "paprika", "description": "**Product Description: Paprika - The Vibrant Red Wonder**\n\nElevate your culinary creations with our premium paprika, the jewel of spices that bursts with color, flavor, and nutrition. Harvested from the finest red, juicy peppers, our paprika is meticulously ground to preserve its rich, vibrant hue and aromatic essence, making it an essential ingredient in any kitchen.\n\nEach sprinkle of our paprika adds a delightful warmth and a subtle sweetness to a variety of dishes, from savory stews to vibrant salads and mouthwatering marinades. Its radiant red color not only enhances the visual appeal of your meals but also signifies the freshness and quality of the peppers used. \n\nRich in antioxidants and packed with vitamins, paprika not only tantalizes your taste buds but also contributes to a healthy lifestyle. Whether you're a professional chef or a home cook, this versatile spice will inspire your creativity and add a beautiful, flavorful touch to everything you whip up.\n\nDiscover the magic of our red, juicy paprika\u2014a spice that transforms ordinary dishes into"}
 ```
-
-ನೀವು ಈ ರೀತಿಯ ಔಟ್‌ಪುಟ್ ಅನ್ನು ಕಾಣಬಹುದು:
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**ನಿರಾಕರಣೆ**:  
-ಈ ದಷ್ಟಾವೇಜು AI ಭಾಷಾಂತರ ಸೇವೆ [Co-op Translator](https://github.com/Azure/co-op-translator) ಬಳಸಿ ಭಾಷಾಂತರಿಸಲಾಗಿದೆ. ನಾವು ಶುದ್ಧತೆಯ ಬಗ್ಗೆ ಪ್ರಯತ್ನಿಸಿದರೂ ಆದರೂ ಸ್ವಯಂಚಾಲಿತ ಭಾಷಾಂತರದಲ್ಲಿ ದೋಷಗಳು ಅಥವಾ ಅಸತ್ಯತೆಗಳು ಇರಬಹುದು ಎಂದು ದಯವಿಟ್ಟು ಗಮನಿಸಿ. ಮೂಲ ದಷ್ಟಾವೇಜು ಅದರ ಸ್ವදේශಿ ಭಾಷೆಯಲ್ಲಿ ಪ್ರಾಮಾಣಿಕ ಮೂಲವಾಗಿ ಪರಿಗಣಿಸಬೇಕು. ಪ್ರಮುಖ ಮಾಹಿತಿಗಾಗಿ ವೃತ್ತಿಪರ ಮಾನವ ಭಾಷಾಂತರ ಶಿಫಾರಸು ಮಾಡಲಾಗುತ್ತದೆ. ಈ ಭಾಷಾಂತರವನ್ನು ಬಳಸುವುದರಿಂದ ಉಂಟಾಗುವ ಯಾವುದೇ ತಪ್ಪುಮನತೆಗಳಿಗಾಗಿಯೂ ಅಥವಾ ಭ್ರಮೆಗಳಿಗಾಗಿಯೂ ನಾವು ಹೊಣೆಗಾರರಾಗುವುದಿಲ್ಲ.
+**ವಿಮರ್ಶೆ**:
+ಈ ದಾಖಲೆವನ್ನು AI ಅನುವಾದ ಸೇವೆ [Co-op Translator](https://github.com/Azure/co-op-translator) ಉಪಯೋಗಿಸಿ ಕನ್ನಡಕ್ಕೆ ಅನುವದಿಸಲಾಗಿದೆ. ನಾವು ಸರಿಯಾದ ಅನುವಾದಕ್ಕಾಗಿ ಪ್ರಯತ್ನಿಸಲಿದ್ದಾರೆಂದೂ, ಸಹಜವಾಗಿ ಸ್ವಯಂಚಾಲಿತ ಅನುವಾದಗಳಲ್ಲಿ ದೋಷಗಳು ಅಥವಾ ತಪ್ಪುಗಳಿರಬಹುದು ಎಂಬುದನ್ನು ಗಮನದಲ್ಲಿಡಿ. ಮೂಲ ಭಾಷೆಯಲ್ಲಿರುವ ಮೂಲ ದಾಖಲೆಯನ್ನು ಅಧಿಕೃತ ಸ್ರೋತರಾಗಿ ಪರಿಗಣಿಸಬೇಕು. ಪ್ರಮುಖ ಮಾಹಿತಿಗಾಗಿ ವೃತ್ತಿಪರ ಮಾನವ ಅನುವಾದವನ್ನು ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ. ಈ ಅನುವಾದದ ಬಳಕೆಯಿಂದ ಸಂಭವಿಸುವ ಯಾವುದೇ ತಪ್ಪು ಅರ್ಥಮಾಡಿಕೊಳ್ಳಿಕೆಗೆ ಅಥವಾ ಅಸ್ಪಷ್ಟತೆಗಳಿಗೆ ನಾವು ಹೊಣೆಗಾರರಾಗಿರುವುದಿಲ್ಲ.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

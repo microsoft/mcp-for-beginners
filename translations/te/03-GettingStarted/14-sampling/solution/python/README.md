@@ -1,54 +1,42 @@
-# ఈ నమూనాను నడపడం
+# ఈ నమూనాను నడుపుతున్నది
 
-మీరు `uv` ని ఇన్ స్టాల్ చేయాలని సలహా ఇస్తున్నారు, కానీ అది తప్పనిసరి కాదు, [సూచనలు](https://docs.astral.sh/uv/#highlights)ను చూడండి
+మీకు `uv` ని ఇన్‌స్టాల్ చేయాలని సిఫార్సు చేయబడింది, కానీ ఇది తప్పనిసరి కాదు, చూడండి [సూచనలు](https://docs.astral.sh/uv/#highlights)
 
-## -0- వర్చువల్ ఎన్విరాన్‌మెంట్ సృష్టించండి
+## -0- ఒక వర్చువల్ ఇన్విరాన్‌మెంట్ సృష్టించండి
 
 ```bash
 python -m venv venv
 ```
 
-## -1- వర్చువల్ ఎన్విరాన్‌మెంట్‌ను యాక్టివేట్ చేయండి
+## -1- వర్చువల్ ఇన్విరాన్‌మెంట్‌ను యాక్టివేట్ చేయండి
 
 ```bash
 venv\Scripts\activate
 ```
 
-## -2- డిపెండెన్సీని ఇన్‌స్టాల్ చేయండి
+## -2- డిపెండెన్సీలను ఇన్‌స్టాల్ చేయండి
 
 ```bash
-pip install "mcp[cli]"
+pip install "mcp[cli]" openai
 ```
 
 ## -3- నమూనాను నడపండి
 
 
 ```bash
-mcp run server.py
+python client.py
 ```
 
-## -4- నమూనాను పరీక్షించండి
-
-సర్వర్‌ను ఈ కమాండ్‌తో నడపండి:
-
-దానిని *mcp.json* లో ఇలా జోడించండి:
-
-```json
-```
-
-సర్వర్‌ను ప్రారంభించండి
-
-క్రింది ప్రాంప్ట్ టైప్ చేయండి:
+మీకు ఇంతలాగే ఉత్పత్తి కనిపించాలి:
 
 ```text
-prompt
+[02/18/26 13:16:34] INFO     Processing request of type ListToolsRequest               server.py:720
+result: {"id": 1, "name": "paprika", "description": "**Product Description: Paprika - The Vibrant Red Wonder**\n\nElevate your culinary creations with our premium paprika, the jewel of spices that bursts with color, flavor, and nutrition. Harvested from the finest red, juicy peppers, our paprika is meticulously ground to preserve its rich, vibrant hue and aromatic essence, making it an essential ingredient in any kitchen.\n\nEach sprinkle of our paprika adds a delightful warmth and a subtle sweetness to a variety of dishes, from savory stews to vibrant salads and mouthwatering marinades. Its radiant red color not only enhances the visual appeal of your meals but also signifies the freshness and quality of the peppers used. \n\nRich in antioxidants and packed with vitamins, paprika not only tantalizes your taste buds but also contributes to a healthy lifestyle. Whether you're a professional chef or a home cook, this versatile spice will inspire your creativity and add a beautiful, flavorful touch to everything you whip up.\n\nDiscover the magic of our red, juicy paprika\u2014a spice that transforms ordinary dishes into"}
 ```
-
-మీకు ఈ విధమైన అవుట్పుట్ కనపడాలి:
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**అస్వీకరణ**:  
-ఈ పత్రాన్ని AI అనువాద సేవ [కో-అప్ ట్రాన్స్లేటర్](https://github.com/Azure/co-op-translator) ఉపయోగించి అనువదించబడింది. సరైనత కోసం మేము ప్రయత్నిస్తున్నప్పటికీ, ఆటోమేటెడ్ అనువాదాల్లో తప్పులు లేదా అసత్యతలు ఉండవచ్చు అనే విషయాన్ని దయచేస్తూ గమనించండి. స్పష్టమైన మూలాధారంగా అంతర్గత భాషలో ఉన్న అసలు పత్రాన్ని పరిగణించాలి. కీలకమైన సమాచారానికి, నిపుణుల మానవ అనువాదాన్ని సిఫార్సు చేస్తాం. ఈ అనువాదం వినియోగం వలన ఏర్పడిన ఏవైనా అపార్థాలు లేదా తప్పుదారులను మేము బాధ్యులను కాదని తెలియజేస్తున్నాము.
+**సూచన**:  
+ఈ దస్త్రాన్ని AI అనువాద సేవ [Co-op Translator](https://github.com/Azure/co-op-translator) ఉపయోగించి అనువదించబడింది. మేము శుద్ధతకు గణనీయంగా ప్రయత్నిస్తాం కాని, ఆటోమేటెడ్ అనువాదాలలో తప్పులు లేదా అసత్యతలు ఉండగలవని దయచేసి గమనించండి. స్థానిక భాషలో ఉన్న అసలు దస్త్రాన్ని అధికారిక మూలం గా పరిగణించాలి. కీలక సమాచారానికి, ప్రొఫెషనల్ మానవ అనువాదాన్ని సూచిస్తాము. ఈ అనువాదం ఉపయోగంతో కలిగే ఏవైనా అపార్థాలు లేదా తప్పు అర్థం చేసుకోబడిన పరిస్థితులకి మేము బాధ్యులు కాదు.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
