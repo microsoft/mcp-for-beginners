@@ -1,6 +1,6 @@
 # Running this sample
 
-You're recommended to install `uv` but it's not a must, see [instructions](https://docs.astral.sh/uv/#highlights) 
+You're recommended to install `uv` but it's not a must, see [instructions](https://docs.astral.sh/uv/#highlights)
 
 ## -0- Create a virtual environment
 
