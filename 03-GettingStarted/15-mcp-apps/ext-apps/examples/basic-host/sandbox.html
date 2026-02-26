@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="light dark">
+    <!-- CSP is set via HTTP headers by serve.ts (based on ?csp= query param).
+         The inner iframe inherits this CSP since we use document.write(). -->
+    <title>MCP-UI Proxy</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        height: 100vh;
+        width: 100vw;
+        /* Transparent background allows parent page to show through */
+        background-color: transparent;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      iframe {
+        background-color: transparent;
+        border: 0px none transparent;
+        padding: 0px;
+        overflow: hidden;
+        flex-grow: 1;
+        /* Inherit color scheme from parent for consistent transparency */
+        color-scheme: inherit;
+      }
+    </style>
+  </head>
+  <body>
+    <script type="module" src="/src/sandbox.ts"></script>
+  </body>
+</html>
