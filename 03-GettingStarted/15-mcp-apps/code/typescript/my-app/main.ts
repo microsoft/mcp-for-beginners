@@ -17,7 +17,14 @@ export async function startStreamableHTTPServer(
   const port = parseInt(process.env.PORT ?? "3001", 10);
 
   const app = createMcpExpressApp({ host: "0.0.0.0" });
-  app.use(cors());
+  app.use(
+    cors({
+      origin: "*",
+      methods: ["GET", "POST", "OPTIONS"],
+      allowedHeaders: ["Content-Type", "Authorization", "MCP-Protocol-Version"],
+      credentials: false,
+    }),
+  );
 
   app.all("/mcp", async (req: Request, res: Response) => {
     const server = createServer();
