@@ -1,31 +1,31 @@
-# Membuat Klien
+# Mewujudkan klien
 
-Klien adalah aplikasi atau skrip khusus yang berkomunikasi secara langsung dengan MCP Server untuk meminta sumber, alat, dan arahan. Tidak seperti menggunakan alat pemeriksa yang menyediakan antara muka grafik untuk berinteraksi dengan server, menulis klien sendiri membolehkan interaksi secara programatik dan automatik. Ini membolehkan pembangun mengintegrasikan keupayaan MCP ke dalam aliran kerja mereka sendiri, mengautomasi tugas, dan membina penyelesaian khusus yang disesuaikan dengan keperluan tertentu.
+Klien adalah aplikasi tersuai atau skrip yang berkomunikasi secara langsung dengan Pelayan MCP untuk meminta sumber, alat, dan arahan. Tidak seperti menggunakan alat pemeriksa, yang menyediakan antara muka grafik untuk berinteraksi dengan pelayan, menulis klien anda sendiri membolehkan interaksi secara programatik dan automatik. Ini membolehkan pembangun mengintegrasikan keupayaan MCP ke dalam aliran kerja mereka sendiri, mengautomatikkan tugasan, dan membina penyelesaian tersuai yang disesuaikan dengan keperluan tertentu.
 
 ## Gambaran Keseluruhan
 
-Pelajaran ini memperkenalkan konsep klien dalam ekosistem Model Context Protocol (MCP). Anda akan belajar cara menulis klien anda sendiri dan menyambungkannya ke MCP Server.
+Pelajaran ini memperkenalkan konsep klien dalam ekosistem Protokol Konteks Model (MCP). Anda akan belajar cara menulis klien anda sendiri dan menghubungkannya ke Pelayan MCP.
 
 ## Objektif Pembelajaran
 
-Pada akhir pelajaran ini, anda akan dapat:
+Menjelang akhir pelajaran ini, anda akan dapat:
 
 - Memahami apa yang boleh dilakukan oleh klien.
 - Menulis klien anda sendiri.
-- Menyambung dan menguji klien dengan MCP Server untuk memastikan ia berfungsi seperti yang diharapkan.
+- Menghubungkan dan menguji klien dengan pelayan MCP untuk memastikan pelayan berfungsi seperti yang dijangkakan.
 
-## Apa yang diperlukan untuk menulis klien?
+## Apa yang perlu dilakukan untuk menulis klien?
 
 Untuk menulis klien, anda perlu melakukan perkara berikut:
 
-- **Import pustaka yang betul**. Anda akan menggunakan pustaka yang sama seperti sebelumnya, hanya dengan struktur yang berbeza.
-- **Mewujudkan klien**. Ini melibatkan penciptaan instance klien dan menyambungkannya ke kaedah pengangkutan yang dipilih.
-- **Memutuskan sumber yang hendak disenaraikan**. MCP Server anda mempunyai sumber, alat, dan arahan; anda perlu memutuskan yang mana satu untuk disenaraikan.
-- **Mengintegrasikan klien ke aplikasi hos**. Setelah anda mengetahui keupayaan server, anda perlu mengintegrasikannya ke aplikasi hos anda supaya apabila pengguna menaip arahan atau perintah lain, ciri server yang sesuai akan dipanggil.
+- **Import perpustakaan yang betul**. Anda akan menggunakan perpustakaan yang sama seperti sebelum ini, cuma struktur yang berbeza.
+- **Buat instans klien**. Ini akan melibatkan penciptaan instans klien dan menyambungkannya ke kaedah pengangkutan yang dipilih.
+- **Tentukan sumber apa yang hendak disenaraikan**. Pelayan MCP anda disertakan dengan sumber, alat dan arahan, anda perlu memutuskan yang mana satu untuk disenaraikan.
+- **Mengintegrasikan klien ke dalam aplikasi hos**. Setelah anda mengetahui keupayaan pelayan, anda perlu mengintegrasikan ini ke dalam aplikasi hos anda supaya jika pengguna menaip arahan atau arahan lain, ciri pelayan yang bersesuaian akan dipanggil.
 
-Sekarang kita memahami secara umum apa yang akan kita lakukan, mari kita lihat contoh berikut.
+Sekarang kita faham secara garis besar apa yang akan kita lakukan, mari kita lihat contoh seterusnya.
 
-### Contoh Klien
+### Contoh klien
 
 Mari kita lihat contoh klien ini:
 
@@ -49,10 +49,10 @@ const client = new Client(
 
 await client.connect(transport);
 
-// List prompts
+// Senarai arahan
 const prompts = await client.listPrompts();
 
-// Get a prompt
+// Dapatkan satu arahan
 const prompt = await client.getPrompt({
   name: "example-prompt",
   arguments: {
@@ -60,15 +60,15 @@ const prompt = await client.getPrompt({
   }
 });
 
-// List resources
+// Senarai sumber
 const resources = await client.listResources();
 
-// Read a resource
+// Baca satu sumber
 const resource = await client.readResource({
   uri: "file:///example.txt"
 });
 
-// Call a tool
+// Panggil alat
 const result = await client.callTool({
   name: "example-tool",
   arguments: {
@@ -77,23 +77,23 @@ const result = await client.callTool({
 });
 ```
 
-Dalam kod di atas, kita:
+Dalam kod sebelumnya kami:
 
-- Mengimport pustaka.
-- Mencipta instance klien dan menyambungkannya menggunakan stdio sebagai pengangkutan.
-- Menyenaraikan arahan, sumber, dan alat serta memanggil semuanya.
+- Mengimport perpustakaan
+- Mencipta instans klien dan menyambungkannya menggunakan stdio sebagai pengangkutan.
+- Menyenaraikan arahan, sumber dan alat dan memanggil kesemuanya.
 
-Itulah dia, klien yang boleh berkomunikasi dengan MCP Server.
+Itulah, sebuah klien yang boleh berbual dengan Pelayan MCP.
 
-Mari kita luangkan masa dalam bahagian latihan seterusnya dan pecahkan setiap petikan kod untuk menerangkan apa yang sedang berlaku.
+Mari kita luangkan masa di bahagian latihan seterusnya dan pecahkan setiap potongan kod serta terangkan apa yang berlaku.
 
-## Latihan: Menulis Klien
+## Latihan: Menulis klien
 
-Seperti yang dinyatakan di atas, mari kita luangkan masa menerangkan kod, dan jika anda mahu, anda boleh menulis kod bersama-sama.
+Seperti yang disebutkan di atas, mari kita luangkan masa menerangkan kod, dan jika mahu, anda boleh menulis kod bersama-sama.
 
-### -1- Mengimport pustaka
+### -1- Import perpustakaan
 
-Mari kita import pustaka yang diperlukan. Kita memerlukan rujukan kepada klien dan protokol pengangkutan yang dipilih, stdio. Stdio adalah protokol untuk perkara yang dijalankan pada mesin tempatan anda. SSE adalah protokol pengangkutan lain yang akan kita tunjukkan dalam bab akan datang, tetapi itu adalah pilihan lain. Buat masa ini, mari kita teruskan dengan stdio.
+Mari kita import perpustakaan yang diperlukan, kita akan memerlukan rujukan kepada klien dan kepada protokol pengangkutan yang dipilih, stdio. stdio adalah protokol untuk perkara yang bertujuan dijalankan pada mesin tempatan anda. SSE adalah protokol pengangkutan lain yang akan kami tunjukkan dalam bab akan datang tetapi itu adalah pilihan lain anda. Buat masa ini, mari teruskan dengan stdio.
 
 #### TypeScript
 
@@ -116,12 +116,11 @@ using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using ModelContextProtocol.Client;
-using ModelContextProtocol.Protocol.Transport;
 ```
 
 #### Java
 
-Untuk Java, anda akan mencipta klien yang menyambung ke MCP Server dari latihan sebelumnya. Menggunakan struktur projek Java Spring Boot yang sama dari [Memulakan dengan MCP Server](../../../../03-GettingStarted/01-first-server/solution/java), buat kelas Java baru bernama `SDKClient` dalam folder `src/main/java/com/microsoft/mcp/sample/client/` dan tambahkan import berikut:
+Untuk Java, anda akan mencipta klien yang menyambung ke pelayan MCP dari latihan sebelumnya. Menggunakan struktur projek Java Spring Boot yang sama dari [Memulakan dengan Pelayan MCP](../../../../03-GettingStarted/01-first-server/solution/java), buat kelas Java baru yang dipanggil `SDKClient` dalam folder `src/main/java/com/microsoft/mcp/sample/client/` dan tambah import berikut:
 
 ```java
 import java.util.Map;
@@ -136,7 +135,7 @@ import io.modelcontextprotocol.spec.McpSchema.ListToolsResult;
 
 #### Rust
 
-Anda perlu menambahkan kebergantungan berikut ke fail `Cargo.toml` anda.
+Anda perlu menambah kebergantungan berikut ke fail `Cargo.toml` anda.
 
 ```toml
 [package]
@@ -150,7 +149,7 @@ serde_json = "1.0.141"
 tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 ```
 
-Dari situ, anda boleh mengimport pustaka yang diperlukan dalam kod klien anda.
+Daripada situ, anda boleh mengimport perpustakaan yang diperlukan dalam kod klien anda.
 
 ```rust
 use rmcp::{
@@ -162,11 +161,11 @@ use rmcp::{
 use tokio::process::Command;
 ```
 
-Mari kita teruskan ke instansiasi.
+Mari teruskan dengan penciptaan instans.
 
-### -2- Mewujudkan klien dan pengangkutan
+### -2- Membuat instans klien dan pengangkutan
 
-Kita perlu mencipta instance pengangkutan dan instance klien kita:
+Kita perlu mencipta instans pengangkutan dan juga klien kita:
 
 #### TypeScript
 
@@ -186,9 +185,9 @@ const client = new Client(
 await client.connect(transport);
 ```
 
-Dalam kod di atas, kita telah:
+Dalam kod sebelumnya kami telah:
 
-- Mencipta instance pengangkutan stdio. Perhatikan bagaimana ia menentukan perintah dan argumen untuk mencari dan memulakan server kerana itu adalah sesuatu yang perlu kita lakukan semasa mencipta klien.
+- Mencipta instans pengangkutan stdio. Perhatikan bagaimana ia menentukan arahan dan argumen untuk mencari dan memulakan pelayan kerana itulah sesuatu yang perlu kita lakukan semasa mencipta klien.
 
     ```typescript
     const transport = new StdioClientTransport({
@@ -197,7 +196,7 @@ Dalam kod di atas, kita telah:
     });
     ```
 
-- Mewujudkan klien dengan memberikan nama dan versi.
+- Menginstansikan klien dengan memberikan nama dan versi.
 
     ```typescript
     const client = new Client(
@@ -219,11 +218,11 @@ Dalam kod di atas, kita telah:
 from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
 
-# Create server parameters for stdio connection
+# Cipta parameter pelayan untuk sambungan stdio
 server_params = StdioServerParameters(
-    command="mcp",  # Executable
-    args=["run", "server.py"],  # Optional command line arguments
-    env=None,  # Optional environment variables
+    command="mcp",  # Boleh laksana
+    args=["run", "server.py"],  # Argumen baris perintah pilihan
+    env=None,  # Pembolehubah persekitaran pilihan
 )
 
 async def run():
@@ -231,7 +230,7 @@ async def run():
         async with ClientSession(
             read, write
         ) as session:
-            # Initialize the connection
+            # Inisialisasi sambungan
             await session.initialize()
 
           
@@ -242,10 +241,10 @@ if __name__ == "__main__":
     asyncio.run(run())
 ```
 
-Dalam kod di atas, kita telah:
+Dalam kod sebelumnya kami telah:
 
-- Mengimport pustaka yang diperlukan.
-- Mewujudkan objek parameter server kerana kita akan menggunakannya untuk menjalankan server supaya kita boleh menyambung kepadanya dengan klien kita.
+- Mengimport perpustakaan yang diperlukan
+- Menginstansikan objek parameter pelayan kerana kita akan menggunakannya untuk menjalankan pelayan supaya kita boleh menyambung kepadanya dengan klien kita.
 - Mendefinisikan kaedah `run` yang seterusnya memanggil `stdio_client` yang memulakan sesi klien.
 - Mencipta titik masuk di mana kita menyediakan kaedah `run` kepada `asyncio.run`.
 
@@ -256,7 +255,6 @@ using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using ModelContextProtocol.Client;
-using ModelContextProtocol.Protocol.Transport;
 
 var builder = Host.CreateApplicationBuilder(args);
 
@@ -273,15 +271,15 @@ var clientTransport = new StdioClientTransport(new()
     Arguments = ["run", "--project", "path/to/file.csproj"],
 });
 
-await using var mcpClient = await McpClientFactory.CreateAsync(clientTransport);
+await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 ```
 
-Dalam kod di atas, kita telah:
+Dalam kod sebelumnya kami telah:
 
-- Mengimport pustaka yang diperlukan.
-- Mencipta pengangkutan stdio dan mencipta klien `mcpClient`. Yang terakhir adalah sesuatu yang akan kita gunakan untuk menyenaraikan dan memanggil ciri pada MCP Server.
+- Mengimport perpustakaan yang diperlukan.
+- Mencipta pengangkutan stdio dan mencipta klien `mcpClient`. Klien ini adalah sesuatu yang kita akan gunakan untuk menyenaraikan dan memanggil ciri pada Pelayan MCP.
 
-Perhatikan, dalam "Arguments", anda boleh menunjuk kepada *.csproj* atau kepada executable.
+Perhatian, dalam "Arguments", anda boleh menunjuk sama ada kepada *.csproj* atau kepada fail boleh laksana.
 
 #### Java
 
@@ -303,25 +301,25 @@ public class SDKClient {
         var client = McpClient.sync(this.transport).build();
         client.initialize();
         
-        // Your client logic goes here
+        // Logik pelanggan anda dimulakan di sini
     }
 }
 ```
 
-Dalam kod di atas, kita telah:
+Dalam kod sebelumnya kami telah:
 
-- Mencipta kaedah utama yang menyediakan pengangkutan SSE yang menunjuk kepada `http://localhost:8080` di mana MCP Server kita akan berjalan.
-- Mencipta kelas klien yang mengambil pengangkutan sebagai parameter konstruktor.
-- Dalam kaedah `run`, kita mencipta klien MCP secara segerak menggunakan pengangkutan dan memulakan sambungan.
-- Menggunakan pengangkutan SSE (Server-Sent Events) yang sesuai untuk komunikasi berasaskan HTTP dengan MCP Server Java Spring Boot.
+- Mencipta kaedah utama yang menyediakan pengangkutan SSE menunjuk ke `http://localhost:8080` di mana pelayan MCP kita akan dijalankan.
+- Mencipta kelas klien yang menerima pengangkutan sebagai parameter konstruktor.
+- Dalam kaedah `run`, kita mencipta klien MCP secara sinkron menggunakan pengangkutan dan memulakan sambungan.
+- Menggunakan pengangkutan SSE (Server-Sent Events) yang sesuai untuk komunikasi berasaskan HTTP dengan pelayan MCP Java Spring Boot.
 
 #### Rust
 
-Klien Rust ini mengandaikan server adalah projek saudara bernama "calculator-server" dalam direktori yang sama. Kod di bawah akan memulakan server dan menyambung kepadanya.
+Perlu diketahui, klien Rust ini menganggap pelayan adalah projek adik-beradik bernama "calculator-server" dalam direktori yang sama. Kod di bawah ini akan memulakan pelayan dan menyambung kepadanya.
 
 ```rust
 async fn main() -> Result<(), RmcpError> {
-    // Assume the server is a sibling project named "calculator-server" in the same directory
+    // Anggap server adalah projek adik-beradik yang bernama "calculator-server" dalam direktori yang sama
     let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .expect("failed to locate workspace root")
@@ -336,51 +334,51 @@ async fn main() -> Result<(), RmcpError> {
         )
         .await?;
 
-    // TODO: Initialize
+    // TODO: Inisialisasi
 
-    // TODO: List tools
+    // TODO: Senaraikan alat
 
-    // TODO: Call add tool with arguments = {"a": 3, "b": 2}
+    // TODO: Panggil tambah alat dengan argumen = {"a": 3, "b": 2}
 
     client.cancel().await?;
     Ok(())
 }
 ```
 
-### -3- Menyenaraikan ciri server
+### -3- Menyenaraikan ciri pelayan
 
-Sekarang, kita mempunyai klien yang boleh menyambung jika program dijalankan. Walau bagaimanapun, ia tidak benar-benar menyenaraikan cirinya, jadi mari kita lakukan itu seterusnya:
+Kini, kita mempunyai klien yang boleh disambungkan apabila program dijalankan. Namun, ia tidak menyenaraikan ciri-cirinya jadi mari kita lakukan itu seterusnya:
 
 #### TypeScript
 
 ```typescript
-// List prompts
+// Senarai arahan
 const prompts = await client.listPrompts();
 
-// List resources
+// Senarai sumber
 const resources = await client.listResources();
 
-// list tools
+// senarai alat
 const tools = await client.listTools();
 ```
 
 #### Python
 
 ```python
-# List available resources
+# Senaraikan sumber yang tersedia
 resources = await session.list_resources()
 print("LISTING RESOURCES")
 for resource in resources:
     print("Resource: ", resource)
 
-# List available tools
+# Senaraikan alat yang tersedia
 tools = await session.list_tools()
 print("LISTING TOOLS")
 for tool in tools.tools:
     print("Tool: ", tool.name)
 ```
 
-Di sini kita menyenaraikan sumber yang tersedia, `list_resources()` dan alat, `list_tools` dan mencetaknya.
+Di sini kita menyenaraikan sumber yang ada, `list_resources()` dan alat `list_tools` dan mencetaknya keluar.
 
 #### .NET
 
@@ -391,37 +389,37 @@ foreach (var tool in await client.ListToolsAsync())
 }
 ```
 
-Di atas adalah contoh bagaimana kita boleh menyenaraikan alat pada server. Untuk setiap alat, kita kemudian mencetak namanya.
+Di atas adalah contoh bagaimana kita boleh menyenaraikan alat di pelayan. Untuk setiap alat, kita kemudian mencetak namanya.
 
 #### Java
 
 ```java
-// List and demonstrate tools
+// Senaraikan dan tunjukkan alat
 ListToolsResult toolsList = client.listTools();
 System.out.println("Available Tools = " + toolsList);
 
-// You can also ping the server to verify connection
+// Anda juga boleh ping pelayan untuk mengesahkan sambungan
 client.ping();
 ```
 
-Dalam kod di atas, kita telah:
+Dalam kod sebelumnya kami telah:
 
-- Memanggil `listTools()` untuk mendapatkan semua alat yang tersedia dari MCP Server.
-- Menggunakan `ping()` untuk mengesahkan bahawa sambungan ke server berfungsi.
-- `ListToolsResult` mengandungi maklumat tentang semua alat termasuk nama, deskripsi, dan skema input mereka.
+- Memanggil `listTools()` untuk mendapatkan semua alat yang tersedia dari pelayan MCP.
+- Menggunakan `ping()` untuk mengesahkan bahawa sambungan ke pelayan berfungsi.
+- `ListToolsResult` mengandungi maklumat tentang semua alat termasuk nama, penerangan, dan skema input mereka.
 
-Bagus, sekarang kita telah menangkap semua ciri. Persoalannya sekarang ialah bila kita menggunakannya? Klien ini agak mudah, mudah dalam erti kata bahawa kita perlu secara eksplisit memanggil ciri apabila kita mahu. Dalam bab seterusnya, kita akan mencipta klien yang lebih maju yang mempunyai akses kepada model bahasa besar (LLM) sendiri. Buat masa ini, mari kita lihat bagaimana kita boleh memanggil ciri pada server:
+Bagus, kini kita telah menangkap semua ciri. Soalannya, bila kita menggunakannya? Baiklah, klien ini agak mudah, mudah dalam erti kata kita perlu memanggil ciri-ciri secara eksplisit apabila kita mahu mereka. Dalam bab seterusnya, kita akan mencipta klien lebih maju yang mempunyai akses kepada model bahasa besarnya sendiri, LLM. Buat masa ini, mari lihat bagaimana kita boleh memanggil ciri pada pelayan:
 
 #### Rust
 
-Dalam fungsi utama, selepas memulakan klien, kita boleh memulakan server dan menyenaraikan beberapa cirinya.
+Dalam fungsi utama, selepas menginisialisasi klien, kita boleh menginisialisasi pelayan dan menyenaraikan beberapa cirinya.
 
 ```rust
-// Initialize
+// Inisialisasi
 let server_info = client.peer_info();
 println!("Server info: {:?}", server_info);
 
-// List tools
+// Senaraikan alat
 let tools = client.list_tools(Default::default()).await?;
 println!("Available tools: {:?}", tools);
 ```
@@ -434,12 +432,12 @@ Untuk memanggil ciri, kita perlu memastikan kita menentukan argumen yang betul d
 
 ```typescript
 
-// Read a resource
+// Baca sebuah sumber
 const resource = await client.readResource({
   uri: "file:///example.txt"
 });
 
-// Call a tool
+// Panggil satu alat
 const result = await client.callTool({
   name: "example-tool",
   arguments: {
@@ -447,7 +445,7 @@ const result = await client.callTool({
   }
 });
 
-// call prompt
+// panggil arahan segera
 const promptResult = await client.getPrompt({
     name: "review-code",
     arguments: {
@@ -456,9 +454,9 @@ const promptResult = await client.getPrompt({
 })
 ```
 
-Dalam kod di atas, kita:
+Dalam kod sebelumnya kami:
 
-- Membaca sumber, kita memanggil sumber dengan memanggil `readResource()` dan menentukan `uri`. Inilah yang mungkin kelihatan di sisi server:
+- Membaca sumber, kita panggil sumber dengan memanggil `readResource()` dengan menyatakan `uri`. Ini kemungkinan besar seperti berikut di sisi pelayan:
 
     ```typescript
     server.resource(
@@ -473,9 +471,9 @@ Dalam kod di atas, kita:
     );
     ```
 
-    Nilai `uri` kita `file://example.txt` sepadan dengan `file://{name}` pada server. `example.txt` akan dipetakan kepada `name`.
+    Nilai `uri` kita `file://example.txt` sepadan dengan `file://{name}` di pelayan. `example.txt` akan dipetakan kepada `name`.
 
-- Memanggil alat, kita memanggilnya dengan menentukan `name` dan `arguments` seperti berikut:
+- Memanggil alat, kita panggil dengan menyatakan `name` dan `arguments` seperti berikut:
 
     ```typescript
     const result = await client.callTool({
@@ -486,7 +484,7 @@ Dalam kod di atas, kita:
     });
     ```
 
-- Mendapatkan arahan, untuk mendapatkan arahan, anda memanggil `getPrompt()` dengan `name` dan `arguments`. Kod server kelihatan seperti berikut:
+- Mendapatkan arahan, untuk mendapatkan arahan, anda panggil `getPrompt()` dengan `name` dan `arguments`. Kod pelayan kelihatan seperti ini:
 
     ```typescript
     server.prompt(
@@ -504,7 +502,7 @@ Dalam kod di atas, kita:
     );
     ```
 
-    dan kod klien anda kelihatan seperti berikut untuk sepadan dengan apa yang diisytiharkan pada server:
+    maka kod klien anda yang terhasil kelihatan seperti ini untuk sepadan dengan yang diisytiharkan di pelayan:
 
     ```typescript
     const promptResult = await client.getPrompt({
@@ -518,17 +516,17 @@ Dalam kod di atas, kita:
 #### Python
 
 ```python
-# Read a resource
+# Baca sumber
 print("READING RESOURCE")
 content, mime_type = await session.read_resource("greeting://hello")
 
-# Call a tool
+# Panggil alat
 print("CALL TOOL")
 result = await session.call_tool("add", arguments={"a": 1, "b": 7})
 print(result.content)
 ```
 
-Dalam kod di atas, kita telah:
+Dalam kod sebelumnya, kami telah:
 
 - Memanggil sumber bernama `greeting` menggunakan `read_resource`.
 - Memanggil alat bernama `add` menggunakan `call_tool`.
@@ -544,7 +542,7 @@ Dalam kod di atas, kita telah:
       cancellationToken:CancellationToken.None);
   ```
 
-1. Untuk mencetak hasilnya, berikut adalah kod untuk mengendalikannya:
+1. Untuk mencetak hasilnya, berikut beberapa kod untuk mengendalikan itu:
 
   ```csharp
   Console.WriteLine(result.Content.First(c => c.Type == "text").Text);
@@ -554,7 +552,7 @@ Dalam kod di atas, kita telah:
 #### Java
 
 ```java
-// Call various calculator tools
+// Panggil pelbagai alat kalkulator
 CallToolResult resultAdd = client.callTool(new CallToolRequest("add", Map.of("a", 5.0, "b", 3.0)));
 System.out.println("Add Result = " + resultAdd);
 
@@ -571,17 +569,17 @@ CallToolResult resultHelp = client.callTool(new CallToolRequest("help", Map.of()
 System.out.println("Help = " + resultHelp);
 ```
 
-Dalam kod di atas, kita telah:
+Dalam kod sebelumnya kami telah:
 
 - Memanggil beberapa alat kalkulator menggunakan kaedah `callTool()` dengan objek `CallToolRequest`.
 - Setiap panggilan alat menentukan nama alat dan `Map` argumen yang diperlukan oleh alat tersebut.
-- Alat server mengharapkan nama parameter tertentu (seperti "a", "b" untuk operasi matematik).
-- Hasil dikembalikan sebagai objek `CallToolResult` yang mengandungi respons dari server.
+- Alat pelayan mengharapkan nama parameter tertentu (seperti "a", "b" untuk operasi matematik).
+- Keputusan dikembalikan sebagai objek `CallToolResult` yang mengandungi respons dari pelayan.
 
 #### Rust
 
 ```rust
-// Call add tool with arguments = {"a": 3, "b": 2}
+// Panggil alat tambah dengan argumen = {"a": 3, "b": 2}
 let a = 3;
 let b = 2;
 let tool_result = client
@@ -593,13 +591,13 @@ let tool_result = client
 println!("Result of {:?} + {:?}: {:?}", a, b, tool_result);
 ```
 
-### -5- Menjalankan klien
+### -5- Jalankan klien
 
-Untuk menjalankan klien, taipkan perintah berikut di terminal:
+Untuk menjalankan klien, taip arahan berikut di terminal:
 
 #### TypeScript
 
-Tambahkan entri berikut ke bahagian "scripts" dalam *package.json*:
+Tambah entri berikut ke bahagian "scripts" dalam *package.json*:
 
 ```json
 "client": "tsc && node build/client.js"
@@ -611,7 +609,7 @@ npm run client
 
 #### Python
 
-Panggil klien dengan perintah berikut:
+Panggil klien dengan arahan berikut:
 
 ```sh
 python client.py
@@ -625,23 +623,23 @@ dotnet run
 
 #### Java
 
-Pertama, pastikan MCP Server anda berjalan di `http://localhost:8080`. Kemudian jalankan klien:
+Pertama, pastikan pelayan MCP anda berjalan di `http://localhost:8080`. Kemudian jalankan klien:
 
 ```bash
-# Build you project
+# Bina projek anda
 ./mvnw clean compile
 
-# Run the client
+# Jalankan klien
 ./mvnw exec:java -Dexec.mainClass="com.microsoft.mcp.sample.client.SDKClient"
 ```
 
-Sebagai alternatif, anda boleh menjalankan projek klien lengkap yang disediakan dalam folder penyelesaian `03-GettingStarted\02-client\solution\java`:
+Secara alternatif, anda boleh menjalankan projek klien lengkap yang disediakan dalam folder penyelesaian `03-GettingStarted\02-client\solution\java`:
 
 ```bash
-# Navigate to the solution directory
+# Navigasi ke direktori penyelesaian
 cd 03-GettingStarted/02-client/solution/java
 
-# Build and run the JAR
+# Bina dan jalankan JAR
 ./mvnw clean package
 java -jar target/calculator-client-0.0.1-SNAPSHOT.jar
 ```
@@ -657,7 +655,7 @@ cargo run
 
 Dalam tugasan ini, anda akan menggunakan apa yang telah anda pelajari dalam mencipta klien tetapi mencipta klien anda sendiri.
 
-Berikut adalah server yang boleh anda gunakan yang perlu anda panggil melalui kod klien anda, lihat jika anda boleh menambahkan lebih banyak ciri ke server untuk menjadikannya lebih menarik.
+Berikut adalah pelayan yang boleh anda gunakan yang anda perlu panggil melalui kod klien anda, lihat jika anda boleh menambah lebih banyak ciri kepada pelayan untuk menjadikannya lebih menarik.
 
 ### TypeScript
 
@@ -666,13 +664,13 @@ import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mc
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 
-// Create an MCP server
+// Cipta pelayan MCP
 const server = new McpServer({
   name: "Demo",
   version: "1.0.0"
 });
 
-// Add an addition tool
+// Tambah alat penambahan
 server.tool("add",
   { a: z.number(), b: z.number() },
   async ({ a, b }) => ({
@@ -680,7 +678,7 @@ server.tool("add",
   })
 );
 
-// Add a dynamic greeting resource
+// Tambah sumber ucapan dinamik
 server.resource(
   "greeting",
   new ResourceTemplate("greeting://{name}", { list: undefined }),
@@ -692,7 +690,7 @@ server.resource(
   })
 );
 
-// Start receiving messages on stdin and sending messages on stdout
+// Mula menerima mesej pada stdin dan menghantar mesej pada stdout
 
 async function main() {
   const transport = new StdioServerTransport();
@@ -712,18 +710,18 @@ main().catch((error) => {
 # server.py
 from mcp.server.fastmcp import FastMCP
 
-# Create an MCP server
+# Cipta pelayan MCP
 mcp = FastMCP("Demo")
 
 
-# Add an addition tool
+# Tambah alat penjumlahan
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
     return a + b
 
 
-# Add a dynamic greeting resource
+# Tambah sumber salam dinamik
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
@@ -761,21 +759,21 @@ public static class CalculatorTool
 }
 ```
 
-Lihat projek ini untuk melihat bagaimana anda boleh [menambahkan arahan dan sumber](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs).
+Lihat projek ini untuk melihat bagaimana anda boleh [menambah arahan dan sumber](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs).
 
-Juga, periksa pautan ini untuk cara memanggil [arahan dan sumber](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/).
+Juga, semak pautan ini tentang bagaimana untuk memanggil [arahan dan sumber](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/).
 
 ### Rust
 
-Dalam [bahagian sebelumnya](../../../../03-GettingStarted/01-first-server), anda telah belajar cara mencipta MCP Server sederhana dengan Rust. Anda boleh terus membina di atasnya atau periksa pautan ini untuk lebih banyak contoh MCP Server berasaskan Rust: [Contoh MCP Server](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
+Dalam [bahagian sebelumnya](../../../../03-GettingStarted/01-first-server), anda telah belajar bagaimana mencipta pelayan MCP yang mudah dengan Rust. Anda boleh terus membina di atas itu atau semak pautan ini untuk contoh pelayan MCP berasaskan Rust yang lebih banyak: [Contoh Pelayan MCP](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
 
 ## Penyelesaian
 
-Folder **penyelesaian** mengandungi implementasi klien lengkap yang siap dijalankan yang menunjukkan semua konsep yang dibahas dalam tutorial ini. Setiap penyelesaian termasuk kod klien dan server yang diatur dalam projek yang terpisah dan mandiri.
+**folder penyelesaian** mengandungi pelaksanaan klien lengkap yang sedia untuk dijalankan yang menunjukkan semua konsep yang dibincangkan dalam tutorial ini. Setiap penyelesaian merangkumi kod klien dan pelayan yang dianjurkan dalam projek yang berasingan dan berdiri sendiri.
 
 ### 📁 Struktur Penyelesaian
 
-Direktori penyelesaian diatur mengikut bahasa pengaturcaraan:
+Direktori penyelesaian dianjurkan mengikut bahasa pengaturcaraan:
 
 ```text
 solution/
@@ -809,27 +807,27 @@ solution/
 
 Setiap penyelesaian khusus bahasa menyediakan:
 
-- **Implementasi klien lengkap** dengan semua ciri dari tutorial.
-- **Struktur projek yang berfungsi** dengan kebergantungan dan konfigurasi yang betul.
-- **Skrip binaan dan jalankan** untuk penyediaan dan pelaksanaan yang mudah.
-- **README terperinci** dengan arahan khusus bahasa.
-- **Contoh pengendalian kesalahan** dan pemprosesan hasil.
+- **Pelaksanaan klien lengkap** dengan semua ciri dari tutorial
+- **Struktur projek yang berfungsi** dengan kebergantungan dan konfigurasi yang betul
+- **Skrip bina dan jalankan** untuk kemudahan penyediaan dan pelaksanaan
+- **README terperinci** dengan arahan khusus bahasa
+- **Pengendalian ralat** dan contoh pemprosesan keputusan
 
 ### 📖 Menggunakan Penyelesaian
 
 1. **Navigasi ke folder bahasa pilihan anda**:
 
    ```bash
-   cd solution/typescript/    # For TypeScript
-   cd solution/java/          # For Java
-   cd solution/python/        # For Python
-   cd solution/dotnet/        # For .NET
+   cd solution/typescript/    # Untuk TypeScript
+   cd solution/java/          # Untuk Java
+   cd solution/python/        # Untuk Python
+   cd solution/dotnet/        # Untuk .NET
    ```
 
-2. **Ikuti arahan README** dalam setiap folder untuk:
-   - Memasang kebergantungan.
-   - Membina projek.
-   - Menjalankan klien.
+2. **Ikuti arahan README dalam setiap folder untuk:**
+   - Memasang kebergantungan
+   - Membina projek
+   - Menjalankan klien
 
 3. **Contoh output** yang sepatutnya anda lihat:
 
@@ -843,70 +841,74 @@ Untuk dokumentasi lengkap dan arahan langkah demi langkah, lihat: **[📖 Dokume
 
 ## 🎯 Contoh Lengkap
 
-Kami telah menyediakan implementasi klien lengkap yang berfungsi untuk semua bahasa pengaturcaraan yang dibahas dalam tutorial ini. Contoh-contoh ini menunjukkan fungsi penuh yang dijelaskan di atas dan boleh digunakan sebagai implementasi rujukan atau titik permulaan untuk projek anda sendiri.
+Kami telah menyediakan pelaksanaan klien lengkap dan berfungsi untuk semua bahasa pengaturcaraan yang diliputi dalam tutorial ini. Contoh ini menunjukkan fungsi penuh yang diterangkan di atas dan boleh digunakan sebagai pelaksanaan rujukan atau titik mula untuk projek anda sendiri.
 
-### Contoh Lengkap yang Tersedia
+### Contoh Lengkap Tersedia
 
-| Bahasa | Fail | Deskripsi |
-|--------|------|-----------|
-| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | Klien Java lengkap menggunakan pengangkutan SSE dengan pengendalian kesalahan yang komprehensif |
-| **C#** | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | Klien C# lengkap menggunakan pengangkutan stdio dengan permulaan server automatik |
-| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | Klien TypeScript lengkap dengan sokongan penuh protokol MCP |
+| Bahasa   | Fail                                | Penerangan                                                     |
+|----------|-----------------------------------|----------------------------------------------------------------|
+| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | Klien Java lengkap menggunakan pengangkutan SSE dengan pengendalian ralat menyeluruh |
+| **C#**   | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | Klien C# lengkap menggunakan pengangkutan stdio dengan permulaan pelayan automatik |
+| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | Klien TypeScript lengkap dengan sokongan protokol MCP penuh |
 | **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | Klien Python lengkap menggunakan corak async/await |
 | **Rust** | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs) | Klien Rust lengkap menggunakan Tokio untuk operasi async |
+
 Setiap contoh lengkap merangkumi:
+- ✅ **Penubuhan sambungan** dan pengendalian ralat  
+- ✅ **Penemuan pelayan** (alat, sumber, arahan jika berkenaan)  
+- ✅ **Operasi kalkulator** (tambah, tolak, darab, bahagi, bantuan)  
+- ✅ **Pemprosesan keputusan** dan output yang diformatkan  
+- ✅ **Pengendalian ralat yang menyeluruh**  
+- ✅ **Kod yang bersih dan didokumentasi** dengan komen langkah demi langkah  
 
-- ✅ **Penyambungan sambungan** dan pengendalian ralat
-- ✅ **Penemuan pelayan** (alat, sumber, arahan di mana sesuai)
-- ✅ **Operasi kalkulator** (tambah, tolak, darab, bahagi, bantuan)
-- ✅ **Pemprosesan hasil** dan output yang diformat
-- ✅ **Pengendalian ralat yang menyeluruh**
-- ✅ **Kod yang bersih dan didokumentasikan** dengan komen langkah demi langkah
+### Bermula dengan Contoh Lengkap
 
-### Memulakan dengan Contoh Lengkap
+1. **Pilih bahasa pilihan anda** dari jadual di atas  
+2. **Semak fail contoh lengkap** untuk memahami pelaksanaan penuh  
+3. **Jalankan contoh** mengikut arahan dalam [`complete_examples.md`](./complete_examples.md)  
+4. **Ubah suai dan kembangkan** contoh untuk kes penggunaan khusus anda  
 
-1. **Pilih bahasa pilihan anda** daripada jadual di atas
-2. **Semak fail contoh lengkap** untuk memahami pelaksanaan penuh
-3. **Jalankan contoh** mengikut arahan dalam [`complete_examples.md`](./complete_examples.md)
-4. **Ubah suai dan kembangkan** contoh untuk kes penggunaan spesifik anda
-
-Untuk dokumentasi terperinci tentang menjalankan dan menyesuaikan contoh ini, lihat: **[📖 Dokumentasi Contoh Lengkap](./complete_examples.md)**
+Untuk dokumentasi terperinci mengenai menjalankan dan menyesuaikan contoh-contoh ini, lihat: **[📖 Dokumentasi Contoh Lengkap](./complete_examples.md)**  
 
 ### 💡 Penyelesaian vs. Contoh Lengkap
 
 | **Folder Penyelesaian** | **Contoh Lengkap** |
-|-------------------------|--------------------|
-| Struktur projek penuh dengan fail binaan | Pelaksanaan dalam satu fail |
-| Sedia dijalankan dengan kebergantungan | Contoh kod yang fokus |
+|------------------------|--------------------|
+| Struktur projek penuh dengan fail binaan | Pelaksanaan satu fail |
+| Sedia untuk dijalankan dengan kebergantungan | Contoh kod fokus |
 | Persediaan seperti produksi | Rujukan pendidikan |
-| Alat khusus bahasa | Perbandingan antara bahasa |
+| Alat khusus bahasa | Perbandingan lintas bahasa |
 
-Kedua-dua pendekatan ini bernilai - gunakan **folder penyelesaian** untuk projek lengkap dan **contoh lengkap** untuk pembelajaran dan rujukan.
+Kedua-dua pendekatan adalah bernilai - guna **folder penyelesaian** untuk projek lengkap dan **contoh lengkap** untuk pembelajaran dan rujukan.  
 
-## Perkara Penting
+## Pengajaran Utama
 
-Perkara penting untuk bab ini adalah seperti berikut tentang klien:
+Pengajaran utama untuk bab ini mengenai klien adalah seperti berikut:  
 
-- Boleh digunakan untuk kedua-dua penemuan dan pelaksanaan ciri pada pelayan.
-- Boleh memulakan pelayan semasa ia bermula sendiri (seperti dalam bab ini) tetapi klien juga boleh menyambung ke pelayan yang sedang berjalan.
-- Merupakan cara yang hebat untuk menguji keupayaan pelayan berbanding alternatif seperti Inspector seperti yang diterangkan dalam bab sebelumnya.
+- Boleh digunakan untuk menemui dan memanggil ciri pada pelayan.  
+- Boleh memulakan pelayan semasa ia sendiri bermula (seperti dalam bab ini) tetapi klien juga boleh menyambung ke pelayan yang sedang berjalan.  
+- Merupakan cara yang bagus untuk menguji kemampuan pelayan berbanding alternatif seperti Inspector seperti yang diterangkan dalam bab sebelumnya.  
 
 ## Sumber Tambahan
 
-- [Membina klien dalam MCP](https://modelcontextprotocol.io/quickstart/client)
+- [Membina klien dalam MCP](https://modelcontextprotocol.io/quickstart/client)  
 
 ## Sampel
 
-- [Java Calculator](../samples/java/calculator/README.md)
-- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
-- [JavaScript Calculator](../samples/javascript/README.md)
-- [TypeScript Calculator](../samples/typescript/README.md)
-- [Python Calculator](../../../../03-GettingStarted/samples/python)
-- [Rust Calculator](../../../../03-GettingStarted/samples/rust)
+- [Kalkulator Java](../samples/java/calculator/README.md)  
+- [Kalkulator .Net](../../../../03-GettingStarted/samples/csharp)  
+- [Kalkulator JavaScript](../samples/javascript/README.md)  
+- [Kalkulator TypeScript](../samples/typescript/README.md)  
+- [Kalkulator Python](../../../../03-GettingStarted/samples/python)  
+- [Kalkulator Rust](../../../../03-GettingStarted/samples/rust)  
 
 ## Apa Seterusnya
 
-- Seterusnya: [Membuat klien dengan LLM](../03-llm-client/README.md)
+- Seterusnya: [Membina klien dengan LLM](../03-llm-client/README.md)
 
-**Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk memastikan ketepatan, sila ambil maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat penting, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Penafian**:
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya hendaklah dianggap sebagai sumber yang sahih. Untuk maklumat kritikal, terjemahan profesional oleh manusia adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
