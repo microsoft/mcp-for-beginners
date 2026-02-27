@@ -1,33 +1,33 @@
 # Tworzenie klienta
 
-Klienci to niestandardowe aplikacje lub skrypty, które komunikują się bezpośrednio z serwerem MCP w celu żądania zasobów, narzędzi i podpowiedzi. W przeciwieństwie do korzystania z narzędzia inspektora, które zapewnia graficzny interfejs do interakcji z serwerem, napisanie własnego klienta umożliwia programistyczne i zautomatyzowane interakcje. Dzięki temu deweloperzy mogą integrować możliwości MCP z własnymi procesami, automatyzować zadania i budować niestandardowe rozwiązania dostosowane do konkretnych potrzeb.
+Klienci to niestandardowe aplikacje lub skrypty, które komunikują się bezpośrednio z serwerem MCP, aby żądać zasobów, narzędzi i promptów. W przeciwieństwie do korzystania z narzędzia inspektora, które zapewnia graficzny interfejs do interakcji z serwerem, napisanie własnego klienta pozwala na programistyczne i automatyczne interakcje. Umożliwia to programistom integrację możliwości MCP z własnymi procesami pracy, automatyzację zadań oraz budowę niestandardowych rozwiązań dopasowanych do konkretnych potrzeb.
 
 ## Przegląd
 
-Ta lekcja wprowadza pojęcie klientów w ekosystemie Model Context Protocol (MCP). Dowiesz się, jak napisać własnego klienta i połączyć go z serwerem MCP.
+Ta lekcja wprowadza pojęcie klientów w ekosystemie Model Context Protocol (MCP). Nauczysz się, jak napisać własnego klienta i połączyć go z serwerem MCP.
 
 ## Cele nauki
 
-Po ukończeniu tej lekcji będziesz w stanie:
+Na koniec tej lekcji będziesz umiał:
 
-- Zrozumieć, co może robić klient.
+- Zrozumieć, co klient może robić.
 - Napisać własnego klienta.
 - Połączyć i przetestować klienta z serwerem MCP, aby upewnić się, że działa zgodnie z oczekiwaniami.
 
-## Co jest potrzebne do napisania klienta?
+## Co wymaga napisanie klienta?
 
 Aby napisać klienta, musisz wykonać następujące kroki:
 
-- **Zaimportować odpowiednie biblioteki**. Będziesz używać tej samej biblioteki co wcześniej, ale z innymi konstrukcjami.
-- **Utworzyć instancję klienta**. Obejmuje to stworzenie instancji klienta i połączenie jej z wybraną metodą transportu.
-- **Zdecydować, jakie zasoby wylistować**. Twój serwer MCP oferuje zasoby, narzędzia i podpowiedzi, musisz zdecydować, które z nich wylistować.
-- **Zintegrować klienta z aplikacją hostującą**. Gdy poznasz możliwości serwera, musisz zintegrować je z aplikacją hostującą, aby w przypadku wpisania przez użytkownika podpowiedzi lub innego polecenia wywoływana była odpowiednia funkcja serwera.
+- **Zaimportować odpowiednie biblioteki**. Będziesz używać tej samej biblioteki co wcześniej, ale innych konstrukcji.
+- **Utworzyć instancję klienta**. To będzie polegać na stworzeniu instancji klienta i podłączeniu jej za pomocą wybranej metody transportu.
+- **Zdecydować, jakie zasoby wyświetlać**. Twój serwer MCP oferuje zasoby, narzędzia i prompty; musisz zdecydować, które z nich wyświetlić.
+- **Zintegrować klienta z aplikacją hosta**. Gdy już poznasz możliwości serwera, musisz zintegrować klienta z aplikacją hosta tak, aby jeśli użytkownik wpisze prompt lub inne polecenie, wywołana została odpowiednia funkcja serwera.
 
-Teraz, gdy rozumiemy na wysokim poziomie, co zamierzamy zrobić, przejdźmy do przykładu.
+Teraz, gdy rozumiemy ogólnie, co będziemy robić, przyjrzyjmy się kolejnemu przykładowi.
 
 ### Przykładowy klient
 
-Przyjrzyjmy się przykładowemu klientowi:
+Spójrzmy na ten przykładowy klient:
 
 ### TypeScript
 
@@ -49,10 +49,10 @@ const client = new Client(
 
 await client.connect(transport);
 
-// List prompts
+// Lista podpowiedzi
 const prompts = await client.listPrompts();
 
-// Get a prompt
+// Pobierz podpowiedź
 const prompt = await client.getPrompt({
   name: "example-prompt",
   arguments: {
@@ -60,15 +60,15 @@ const prompt = await client.getPrompt({
   }
 });
 
-// List resources
+// Lista zasobów
 const resources = await client.listResources();
 
-// Read a resource
+// Odczytaj zasób
 const resource = await client.readResource({
   uri: "file:///example.txt"
 });
 
-// Call a tool
+// Wywołaj narzędzie
 const result = await client.callTool({
   name: "example-tool",
   arguments: {
@@ -79,21 +79,21 @@ const result = await client.callTool({
 
 W powyższym kodzie:
 
-- Importujemy biblioteki.
-- Tworzymy instancję klienta i łączymy ją za pomocą stdio jako metody transportu.
-- Wylistowujemy podpowiedzi, zasoby i narzędzia oraz wywołujemy je wszystkie.
+- Importujemy biblioteki
+- Tworzymy instancję klienta i łączymy ją używając stdio jako transportu
+- Wyświetlamy listę promptów, zasobów i narzędzi, a następnie je wywołujemy
 
-I oto mamy klienta, który może komunikować się z serwerem MCP.
+Oto masz klienta, który może komunikować się z serwerem MCP.
 
-Poświęćmy teraz czas w sekcji ćwiczeń, aby rozłożyć każdy fragment kodu i wyjaśnić, co się dzieje.
+Poświęćmy czas w następnej części ćwiczenia, by przeanalizować każdy fragment kodu i wyjaśnić, co się dzieje.
 
 ## Ćwiczenie: Pisanie klienta
 
-Jak wspomniano wcześniej, poświęćmy czas na wyjaśnienie kodu, a jeśli chcesz, możesz kodować równolegle.
+Jak powiedziano powyżej, poświęćmy czas na tłumaczenie kodu, a jeśli chcesz, programuj razem z nami.
 
-### -1- Importowanie bibliotek
+### -1- Import bibliotek
 
-Zaimportujmy potrzebne biblioteki. Będziemy potrzebować odniesień do klienta i wybranego protokołu transportowego, stdio. stdio to protokół przeznaczony do uruchamiania na lokalnym komputerze. SSE to inny protokół transportowy, który pokażemy w przyszłych rozdziałach, ale to twoja druga opcja. Na razie jednak kontynuujmy ze stdio.
+Zaimportujmy potrzebne biblioteki; potrzebujemy odniesień do klienta i do wybranego protokołu transportowego, czyli stdio. stdio to protokół do rzeczy uruchamianych lokalnie. SSE to inny protokół transportowy, który pokażemy w przyszłych rozdziałach, ale to jest twoja druga opcja. Na razie jednak kontynuujemy ze stdio.
 
 #### TypeScript
 
@@ -116,12 +116,11 @@ using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using ModelContextProtocol.Client;
-using ModelContextProtocol.Protocol.Transport;
 ```
 
 #### Java
 
-Dla Javy utworzysz klienta, który łączy się z serwerem MCP z poprzedniego ćwiczenia. Korzystając z tej samej struktury projektu Java Spring Boot z [Pierwsze kroki z serwerem MCP](../../../../03-GettingStarted/01-first-server/solution/java), utwórz nową klasę Java o nazwie `SDKClient` w folderze `src/main/java/com/microsoft/mcp/sample/client/` i dodaj następujące importy:
+Dla Javy stworzysz klienta łączącego się z serwerem MCP z poprzedniego ćwiczenia. Używając tej samej struktury projektu Java Spring Boot z [Wprowadzenie do serwera MCP](../../../../03-GettingStarted/01-first-server/solution/java), utwórz nową klasę Java o nazwie `SDKClient` w folderze `src/main/java/com/microsoft/mcp/sample/client/` i dodaj następujące importy:
 
 ```java
 import java.util.Map;
@@ -136,7 +135,7 @@ import io.modelcontextprotocol.spec.McpSchema.ListToolsResult;
 
 #### Rust
 
-Musisz dodać następujące zależności do pliku `Cargo.toml`.
+Będziesz musiał dodać następujące zależności do pliku `Cargo.toml`.
 
 ```toml
 [package]
@@ -166,7 +165,7 @@ Przejdźmy teraz do tworzenia instancji.
 
 ### -2- Tworzenie instancji klienta i transportu
 
-Musimy utworzyć instancję transportu oraz naszego klienta:
+Musimy utworzyć instancję transportu oraz klienta:
 
 #### TypeScript
 
@@ -188,7 +187,7 @@ await client.connect(transport);
 
 W powyższym kodzie:
 
-- Utworzono instancję transportu stdio. Zwróć uwagę, jak określa polecenie i argumenty, aby znaleźć i uruchomić serwer, ponieważ jest to coś, co musimy zrobić podczas tworzenia klienta.
+- Utworzono instancję transportu stdio. Zwróć uwagę, jak określa polecenie i argumenty do znalezienia i uruchomienia serwera, ponieważ będziemy to musieli zrobić pisząc klienta.
 
     ```typescript
     const transport = new StdioClientTransport({
@@ -197,7 +196,7 @@ W powyższym kodzie:
     });
     ```
 
-- Utworzono instancję klienta, podając jej nazwę i wersję.
+- Utworzono klienta, nadając mu nazwę i wersję.
 
     ```typescript
     const client = new Client(
@@ -219,11 +218,11 @@ W powyższym kodzie:
 from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
 
-# Create server parameters for stdio connection
+# Utwórz parametry serwera dla połączenia stdio
 server_params = StdioServerParameters(
-    command="mcp",  # Executable
-    args=["run", "server.py"],  # Optional command line arguments
-    env=None,  # Optional environment variables
+    command="mcp",  # Wykonywalny
+    args=["run", "server.py"],  # Opcjonalne argumenty wiersza poleceń
+    env=None,  # Opcjonalne zmienne środowiskowe
 )
 
 async def run():
@@ -231,7 +230,7 @@ async def run():
         async with ClientSession(
             read, write
         ) as session:
-            # Initialize the connection
+            # Zainicjuj połączenie
             await session.initialize()
 
           
@@ -244,10 +243,10 @@ if __name__ == "__main__":
 
 W powyższym kodzie:
 
-- Zaimportowano potrzebne biblioteki.
-- Utworzono obiekt parametrów serwera, który zostanie użyty do uruchomienia serwera, aby można było połączyć się z nim za pomocą klienta.
-- Zdefiniowano metodę `run`, która wywołuje `stdio_client`, rozpoczynając sesję klienta.
-- Utworzono punkt wejścia, w którym metoda `run` jest przekazywana do `asyncio.run`.
+- Zaimportowano potrzebne biblioteki
+- Utworzono obiekt parametrów serwera, ponieważ użyjemy go do uruchomienia serwera, abyśmy mogli się z nim połączyć klientem.
+- Zdefiniowano metodę `run`, która wywołuje `stdio_client`, rozpoczynającą sesję klienta.
+- Utworzono punkt wejścia, gdzie przekazujemy metodę `run` do `asyncio.run`.
 
 #### .NET
 
@@ -256,7 +255,6 @@ using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using ModelContextProtocol.Client;
-using ModelContextProtocol.Protocol.Transport;
 
 var builder = Host.CreateApplicationBuilder(args);
 
@@ -273,15 +271,15 @@ var clientTransport = new StdioClientTransport(new()
     Arguments = ["run", "--project", "path/to/file.csproj"],
 });
 
-await using var mcpClient = await McpClientFactory.CreateAsync(clientTransport);
+await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 ```
 
 W powyższym kodzie:
 
 - Zaimportowano potrzebne biblioteki.
-- Utworzono transport stdio i klienta `mcpClient`. Ten ostatni będzie używany do listowania i wywoływania funkcji na serwerze MCP.
+- Utworzono transport stdio oraz klienta o nazwie `mcpClient`. Ten ostatni będzie używany do listowania i wywoływania funkcji na serwerze MCP.
 
-Uwaga: w sekcji "Arguments" możesz wskazać plik *.csproj* lub plik wykonywalny.
+Uwaga: w polu "Arguments" możesz wskazać albo plik *.csproj*, albo plik wykonywalny.
 
 #### Java
 
@@ -303,25 +301,25 @@ public class SDKClient {
         var client = McpClient.sync(this.transport).build();
         client.initialize();
         
-        // Your client logic goes here
+        // Twoja logika klienta idzie tutaj
     }
 }
 ```
 
 W powyższym kodzie:
 
-- Utworzono metodę główną, która konfiguruje transport SSE wskazujący na `http://localhost:8080`, gdzie będzie działał nasz serwer MCP.
+- Utworzono metodę main, która ustawia transport SSE wskazujący na `http://localhost:8080`, gdzie będzie działał nasz serwer MCP.
 - Utworzono klasę klienta, która przyjmuje transport jako parametr konstruktora.
-- W metodzie `run` utworzono synchronicznego klienta MCP za pomocą transportu i zainicjowano połączenie.
-- Użyto transportu SSE (Server-Sent Events), który jest odpowiedni do komunikacji HTTP z serwerami MCP opartymi na Java Spring Boot.
+- W metodzie `run` tworzymy synchronicznego klienta MCP, korzystając z transportu, i inicjalizujemy połączenie.
+- Użyto transportu SSE (Server-Sent Events), odpowiedniego dla komunikacji HTTP z serwerami MCP opartymi na Java Spring Boot.
 
 #### Rust
 
-Ten klient Rust zakłada, że serwer jest projektem siostrzanym o nazwie "calculator-server" w tym samym katalogu. Poniższy kod uruchomi serwer i połączy się z nim.
+Ten klient Rust zakłada, że serwer jest projektem rodzeństwem o nazwie "calculator-server" w tym samym katalogu. Poniższy kod uruchomi serwer i połączy się z nim.
 
 ```rust
 async fn main() -> Result<(), RmcpError> {
-    // Assume the server is a sibling project named "calculator-server" in the same directory
+    // Załóżmy, że serwer to projekt rodzeństwa o nazwie "calculator-server" w tym samym katalogu
     let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .expect("failed to locate workspace root")
@@ -336,51 +334,51 @@ async fn main() -> Result<(), RmcpError> {
         )
         .await?;
 
-    // TODO: Initialize
+    // DO ZROBIENIA: Inicjalizacja
 
-    // TODO: List tools
+    // DO ZROBIENIA: Wyświetl listę narzędzi
 
-    // TODO: Call add tool with arguments = {"a": 3, "b": 2}
+    // DO ZROBIENIA: Wywołaj narzędzie add z argumentami = {"a": 3, "b": 2}
 
     client.cancel().await?;
     Ok(())
 }
 ```
 
-### -3- Listowanie funkcji serwera
+### -3- Wyświetlanie funkcji serwera
 
-Teraz mamy klienta, który może się połączyć, jeśli program zostanie uruchomiony. Jednak nie wylistowuje on jeszcze funkcji, więc zróbmy to teraz:
+Mamy teraz klienta, który może połączyć się z serwerem po uruchomieniu programu. Jednak nie wyświetla on jeszcze funkcji, więc zróbmy to teraz:
 
 #### TypeScript
 
 ```typescript
-// List prompts
+// Lista podpowiedzi
 const prompts = await client.listPrompts();
 
-// List resources
+// Lista zasobów
 const resources = await client.listResources();
 
-// list tools
+// lista narzędzi
 const tools = await client.listTools();
 ```
 
 #### Python
 
 ```python
-# List available resources
+# Wymień dostępne zasoby
 resources = await session.list_resources()
 print("LISTING RESOURCES")
 for resource in resources:
     print("Resource: ", resource)
 
-# List available tools
+# Wymień dostępne narzędzia
 tools = await session.list_tools()
 print("LISTING TOOLS")
 for tool in tools.tools:
     print("Tool: ", tool.name)
 ```
 
-Tutaj wylistowujemy dostępne zasoby za pomocą `list_resources()` i narzędzia za pomocą `list_tools`, a następnie je wypisujemy.
+Tutaj wyświetlamy dostępne zasoby, `list_resources()`, i narzędzia, `list_tools`, i wypisujemy je.
 
 #### .NET
 
@@ -391,55 +389,55 @@ foreach (var tool in await client.ListToolsAsync())
 }
 ```
 
-Powyżej znajduje się przykład, jak można wylistować narzędzia na serwerze. Dla każdego narzędzia wypisujemy jego nazwę.
+Powyżej przykład, jak wyświetlić narzędzia na serwerze. Dla każdego narzędzia wypisujemy jego nazwę.
 
 #### Java
 
 ```java
-// List and demonstrate tools
+// Wymień i zademonstruj narzędzia
 ListToolsResult toolsList = client.listTools();
 System.out.println("Available Tools = " + toolsList);
 
-// You can also ping the server to verify connection
+// Możesz także pingować serwer, aby zweryfikować połączenie
 client.ping();
 ```
 
 W powyższym kodzie:
 
-- Wywołano `listTools()`, aby uzyskać wszystkie dostępne narzędzia z serwera MCP.
-- Użyto `ping()`, aby zweryfikować, czy połączenie z serwerem działa.
-- Obiekt `ListToolsResult` zawiera informacje o wszystkich narzędziach, w tym ich nazwach, opisach i schematach wejściowych.
+- Wywołano `listTools()`, aby pobrać wszystkie dostępne narzędzia z serwera MCP.
+- Użyto `ping()`, aby zweryfikować, że połączenie z serwerem działa.
+- `ListToolsResult` zawiera informacje o wszystkich narzędziach, łącznie z ich nazwami, opisami i schematami wejściowymi.
 
-Świetnie, teraz mamy wszystkie funkcje. Pytanie brzmi, kiedy ich używamy? Ten klient jest dość prosty, w tym sensie, że musimy jawnie wywoływać funkcje, gdy ich potrzebujemy. W następnym rozdziale stworzymy bardziej zaawansowanego klienta, który będzie miał dostęp do własnego dużego modelu językowego (LLM). Na razie jednak zobaczmy, jak możemy wywoływać funkcje na serwerze:
+Świetnie, mamy teraz wszystkie funkcje. Ale kiedy je wykorzystać? Ten klient jest dość prosty, co oznacza, że będziemy musieli wywoływać funkcje explicite, gdy będziemy ich chcieli. W następnym rozdziale stworzymy bardziej zaawansowanego klienta mającego dostęp do własnego dużego modelu językowego (LLM). Na razie jednak zobaczmy, jak wywołać funkcje na serwerze:
 
 #### Rust
 
-W funkcji głównej, po zainicjowaniu klienta, możemy zainicjować serwer i wylistować niektóre z jego funkcji.
+W funkcji main, po inicjalizacji klienta, możemy zainicjalizować serwer i wyświetlić niektóre jego funkcje.
 
 ```rust
-// Initialize
+// Inicjalizuj
 let server_info = client.peer_info();
 println!("Server info: {:?}", server_info);
 
-// List tools
+// Wyświetl narzędzia
 let tools = client.list_tools(Default::default()).await?;
 println!("Available tools: {:?}", tools);
 ```
 
 ### -4- Wywoływanie funkcji
 
-Aby wywołać funkcje, musimy upewnić się, że określamy poprawne argumenty, a w niektórych przypadkach nazwę tego, co próbujemy wywołać.
+Aby wywołać funkcje, musimy zapewnić podanie właściwych argumentów, a w niektórych przypadkach nazwy tego, co wywołujemy.
 
 #### TypeScript
 
 ```typescript
 
-// Read a resource
+// Odczytaj zasób
 const resource = await client.readResource({
   uri: "file:///example.txt"
 });
 
-// Call a tool
+// Wywołaj narzędzie
 const result = await client.callTool({
   name: "example-tool",
   arguments: {
@@ -447,7 +445,7 @@ const result = await client.callTool({
   }
 });
 
-// call prompt
+// wywołaj podpowiedź
 const promptResult = await client.getPrompt({
     name: "review-code",
     arguments: {
@@ -458,7 +456,7 @@ const promptResult = await client.getPrompt({
 
 W powyższym kodzie:
 
-- Odczytujemy zasób, wywołując `readResource()` i podając `uri`. Oto jak to może wyglądać po stronie serwera:
+- Odczytujemy zasób, wywołujemy go przez `readResource()`, podając `uri`. Oto jak to prawdopodobnie wygląda na serwerze:
 
     ```typescript
     server.resource(
@@ -473,9 +471,9 @@ W powyższym kodzie:
     );
     ```
 
-    Nasza wartość `uri` `file://example.txt` odpowiada `file://{name}` na serwerze. `example.txt` zostanie przypisane do `name`.
+    Wartość `uri` `file://example.txt` odpowiada wzorcowi `file://{name}` na serwerze. `example.txt` zostanie przypisane do `name`.
 
-- Wywołujemy narzędzie, podając jego `name` i `arguments`, jak poniżej:
+- Wywołujemy narzędzie, podając jego `name` i `arguments` w ten sposób:
 
     ```typescript
     const result = await client.callTool({
@@ -486,7 +484,7 @@ W powyższym kodzie:
     });
     ```
 
-- Pobieramy podpowiedź, wywołując `getPrompt()` z `name` i `arguments`. Kod serwera wygląda następująco:
+- Pobieramy prompt, wywołując `getPrompt()` z `name` i `arguments`. Kod serwera wygląda tak:
 
     ```typescript
     server.prompt(
@@ -504,7 +502,7 @@ W powyższym kodzie:
     );
     ```
 
-    W związku z tym kod klienta wygląda następująco, aby dopasować się do tego, co zadeklarowano na serwerze:
+    a więc wynikowy kod klienta wygląda tak, aby pasować do tego, co jest zadeklarowane na serwerze:
 
     ```typescript
     const promptResult = await client.getPrompt({
@@ -518,11 +516,11 @@ W powyższym kodzie:
 #### Python
 
 ```python
-# Read a resource
+# Odczytaj zasób
 print("READING RESOURCE")
 content, mime_type = await session.read_resource("greeting://hello")
 
-# Call a tool
+# Wywołaj narzędzie
 print("CALL TOOL")
 result = await session.call_tool("add", arguments={"a": 1, "b": 7})
 print(result.content)
@@ -530,8 +528,8 @@ print(result.content)
 
 W powyższym kodzie:
 
-- Wywołano zasób o nazwie `greeting` za pomocą `read_resource`.
-- Wywołano narzędzie o nazwie `add` za pomocą `call_tool`.
+- Wywołaliśmy zasób `greeting` używając `read_resource`.
+- Wywołaliśmy narzędzie `add` używając `call_tool`.
 
 #### .NET
 
@@ -544,7 +542,7 @@ W powyższym kodzie:
       cancellationToken:CancellationToken.None);
   ```
 
-1. Aby wydrukować wynik, oto kod obsługujący to:
+2. Aby wypisać wynik, oto kod to obsługujący:
 
   ```csharp
   Console.WriteLine(result.Content.First(c => c.Type == "text").Text);
@@ -554,7 +552,7 @@ W powyższym kodzie:
 #### Java
 
 ```java
-// Call various calculator tools
+// Wywołaj różne narzędzia kalkulatora
 CallToolResult resultAdd = client.callTool(new CallToolRequest("add", Map.of("a", 5.0, "b", 3.0)));
 System.out.println("Add Result = " + resultAdd);
 
@@ -573,15 +571,15 @@ System.out.println("Help = " + resultHelp);
 
 W powyższym kodzie:
 
-- Wywołano wiele narzędzi kalkulatora za pomocą metody `callTool()` z obiektami `CallToolRequest`.
-- Każde wywołanie narzędzia określa nazwę narzędzia i `Map` argumentów wymaganych przez to narzędzie.
+- Wywołano wiele narzędzi kalkulatora używając metody `callTool()` z obiektami `CallToolRequest`.
+- Każde wywołanie narzędzia określa nazwę narzędzia i mapę argumentów wymaganych przez to narzędzie.
 - Narzędzia serwera oczekują określonych nazw parametrów (np. "a", "b" dla operacji matematycznych).
-- Wyniki są zwracane jako obiekty `CallToolResult`, zawierające odpowiedź z serwera.
+- Wyniki zwracane są jako obiekty `CallToolResult`, zawierające odpowiedź z serwera.
 
 #### Rust
 
 ```rust
-// Call add tool with arguments = {"a": 3, "b": 2}
+// Wywołaj narzędzie dodawania z argumentami = {"a": 3, "b": 2}
 let a = 3;
 let b = 2;
 let tool_result = client
@@ -593,13 +591,13 @@ let tool_result = client
 println!("Result of {:?} + {:?}: {:?}", a, b, tool_result);
 ```
 
-### -5- Uruchamianie klienta
+### -5- Uruchomienie klienta
 
 Aby uruchomić klienta, wpisz następujące polecenie w terminalu:
 
 #### TypeScript
 
-Dodaj następujący wpis do sekcji "scripts" w pliku *package.json*:
+Dodaj następujący wpis do sekcji "scripts" w *package.json*:
 
 ```json
 "client": "tsc && node build/client.js"
@@ -611,7 +609,7 @@ npm run client
 
 #### Python
 
-Uruchom klienta za pomocą następującego polecenia:
+Wywołaj klienta następującym poleceniem:
 
 ```sh
 python client.py
@@ -625,23 +623,23 @@ dotnet run
 
 #### Java
 
-Najpierw upewnij się, że twój serwer MCP działa na `http://localhost:8080`. Następnie uruchom klienta:
+Najpierw upewnij się, że twój serwer MCP działa pod adresem `http://localhost:8080`. Następnie uruchom klienta:
 
 ```bash
-# Build you project
+# Zbuduj swój projekt
 ./mvnw clean compile
 
-# Run the client
+# Uruchom klienta
 ./mvnw exec:java -Dexec.mainClass="com.microsoft.mcp.sample.client.SDKClient"
 ```
 
-Alternatywnie możesz uruchomić kompletny projekt klienta znajdujący się w folderze rozwiązania `03-GettingStarted\02-client\solution\java`:
+Alternatywnie możesz uruchomić kompletny projekt klienta dostępny w folderze `03-GettingStarted\02-client\solution\java`:
 
 ```bash
-# Navigate to the solution directory
+# Przejdź do katalogu rozwiązania
 cd 03-GettingStarted/02-client/solution/java
 
-# Build and run the JAR
+# Zbuduj i uruchom plik JAR
 ./mvnw clean package
 java -jar target/calculator-client-0.0.1-SNAPSHOT.jar
 ```
@@ -655,9 +653,9 @@ cargo run
 
 ## Zadanie
 
-W tym zadaniu wykorzystasz zdobytą wiedzę, aby stworzyć własnego klienta.
+W tym zadaniu wykorzystasz wiedzę zdobytą przy tworzeniu klienta, ale stworzysz własnego klienta.
 
-Oto serwer, którego możesz użyć i który musisz wywołać za pomocą kodu klienta. Spróbuj dodać więcej funkcji do serwera, aby uczynić go bardziej interesującym.
+Oto serwer, którego możesz użyć i wywołać go za pomocą swojego kodu klienta; sprawdź, czy potrafisz dodać więcej funkcji do serwera, by uczynić go bardziej interesującym.
 
 ### TypeScript
 
@@ -666,13 +664,13 @@ import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mc
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 
-// Create an MCP server
+// Utwórz serwer MCP
 const server = new McpServer({
   name: "Demo",
   version: "1.0.0"
 });
 
-// Add an addition tool
+// Dodaj narzędzie do dodawania
 server.tool("add",
   { a: z.number(), b: z.number() },
   async ({ a, b }) => ({
@@ -680,7 +678,7 @@ server.tool("add",
   })
 );
 
-// Add a dynamic greeting resource
+// Dodaj dynamiczne zasoby powitalne
 server.resource(
   "greeting",
   new ResourceTemplate("greeting://{name}", { list: undefined }),
@@ -692,7 +690,7 @@ server.resource(
   })
 );
 
-// Start receiving messages on stdin and sending messages on stdout
+// Rozpocznij odbieranie wiadomości na stdin i wysyłanie wiadomości na stdout
 
 async function main() {
   const transport = new StdioServerTransport();
@@ -712,18 +710,18 @@ main().catch((error) => {
 # server.py
 from mcp.server.fastmcp import FastMCP
 
-# Create an MCP server
+# Utwórz serwer MCP
 mcp = FastMCP("Demo")
 
 
-# Add an addition tool
+# Dodaj narzędzie do dodawania
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
     return a + b
 
 
-# Add a dynamic greeting resource
+# Dodaj dynamiczny zasób powitania
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
@@ -761,17 +759,17 @@ public static class CalculatorTool
 }
 ```
 
-Zobacz ten projekt, aby dowiedzieć się, jak [dodawać podpowiedzi i zasoby](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs).
+Zobacz ten projekt, aby dowiedzieć się, jak [dodawać prompty i zasoby](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs).
 
-Sprawdź również ten link, aby dowiedzieć się, jak wywoływać [podpowiedzi i zasoby](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/).
+Sprawdź też ten link, aby dowiedzieć się, jak wywoływać [prompty i zasoby](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/).
 
 ### Rust
 
-W [poprzedniej sekcji](../../../../03-GettingStarted/01-first-server) nauczyłeś się, jak stworzyć prosty serwer MCP w Rust. Możesz kontynuować jego rozwijanie lub sprawdzić ten link, aby zobaczyć więcej przykładów serwerów MCP opartych na Rust: [Przykłady serwerów MCP](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
+W [poprzedniej sekcji](../../../../03-GettingStarted/01-first-server) nauczyłeś się, jak stworzyć prosty serwer MCP z Rustem. Możesz dalej go rozwijać lub sprawdzić ten link, aby zobaczyć więcej przykładów serwerów MCP opartych na Rust: [Przykłady serwerów MCP](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
 
 ## Rozwiązanie
 
-Folder **solution** zawiera kompletne, gotowe do uruchomienia implementacje klientów, które demonstrują wszystkie koncepcje omówione w tym samouczku. Każde rozwiązanie zawiera zarówno kod klienta, jak i serwera, zorganizowane w oddzielne, samodzielne projekty.
+**Folder z rozwiązaniami** zawiera kompletne, gotowe do uruchomienia implementacje klientów demonstrujące wszystkie koncepcje omówione w tym samouczku. Każde rozwiązanie zawiera kod klienta i serwera zorganizowany w oddzielnych, niezależnych projektach.
 
 ### 📁 Struktura rozwiązania
 
@@ -807,29 +805,29 @@ solution/
 
 ### 🚀 Co zawiera każde rozwiązanie
 
-Każde rozwiązanie specyficzne dla języka zawiera:
+Każde rozwiązanie specyficzne dla danego języka zawiera:
 
-- **Kompletną implementację klienta** z wszystkimi funkcjami opisanymi w samouczku.
-- **Działającą strukturę projektu** z odpowiednimi zależnościami i konfiguracją.
-- **Skrypty budowania i uruchamiania** dla łatwej konfiguracji i wykonania.
-- **Szczegółowy plik README** z instrukcjami specyficznymi dla języka.
-- **Przykłady obsługi błędów** i przetwarzania wyników.
+- **Kompletną implementację klienta** ze wszystkimi funkcjami z tutorialu
+- **Działającą strukturę projektu** z odpowiednimi zależnościami i konfiguracją
+- **Skrypty budowania i uruchamiania** dla łatwej konfiguracji i wykonania
+- **Szczegółowy plik README** z instrukcjami specyficznymi dla języka
+- **Obsługę błędów** i przykłady przetwarzania wyników
 
 ### 📖 Korzystanie z rozwiązań
 
-1. **Przejdź do folderu preferowanego języka**:
+1. **Przejdź do wybranego folderu języka**:
 
    ```bash
-   cd solution/typescript/    # For TypeScript
-   cd solution/java/          # For Java
-   cd solution/python/        # For Python
-   cd solution/dotnet/        # For .NET
+   cd solution/typescript/    # Dla TypeScript
+   cd solution/java/          # Dla Java
+   cd solution/python/        # Dla Pythona
+   cd solution/dotnet/        # Dla .NET
    ```
 
-2. **Postępuj zgodnie z instrukcjami README** w każdym folderze, aby:
-   - Zainstalować zależności.
-   - Zbudować projekt.
-   - Uruchomić klienta.
+2. **Postępuj zgodnie z instrukcjami README** w każdym folderze dotyczącymi:
+   - Instalacji zależności
+   - Budowania projektu
+   - Uruchamiania klienta
 
 3. **Przykładowy wynik**, który powinieneś zobaczyć:
 
@@ -839,57 +837,57 @@ Każde rozwiązanie specyficzne dla języka zawiera:
    Tool result: { content: [ { type: 'text', text: '9' } ] }
    ```
 
-Aby uzyskać pełną dokumentację i instrukcje krok po kroku, zobacz: **[📖 Dokumentacja rozwiązania](./solution/README.md)**
+Pełna dokumentacja oraz instrukcje krok po kroku dostępne są pod adresem: **[📖 Dokumentacja rozwiązania](./solution/README.md)**
 
-## 🎯 Kompletny przykład
+## 🎯 Kompleksowe przykłady
 
-Udostępniliśmy kompletne, działające implementacje klientów dla wszystkich języków programowania omówionych w tym samouczku. Te przykłady demonstrują pełną funkcjonalność opisaną powyżej i mogą być używane jako implementacje referencyjne lub punkty wyjścia do własnych projektów.
+Udostępniliśmy kompletne, działające implementacje klientów dla wszystkich języków programowania omawianych w tym tutorialu. Te przykłady demonstrują pełną opisaną powyżej funkcjonalność i mogą służyć jako odniesienia lub punkty startowe do własnych projektów.
 
 ### Dostępne kompletne przykłady
 
-| Język       | Plik                              | Opis                                                                 |
-|-------------|-----------------------------------|----------------------------------------------------------------------|
-| **Java**    | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | Kompletny klient Java korzystający z transportu SSE z pełną obsługą błędów |
-| **C#**      | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | Kompletny klient C# korzystający z transportu stdio z automatycznym uruchamianiem serwera |
-| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | Kompletny klient TypeScript z pełnym wsparciem protokołu MCP         |
-| **Python**  | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | Kompletny klient Python korzystający z wzorców async/await           |
-| **Rust**    | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs)     | Kompletny klient Rust korzystający z Tokio do operacji asynchronicznych |
-Każdy kompletny przykład zawiera:
+| Język    | Plik                            | Opis                                                        |
+|----------|--------------------------------|-------------------------------------------------------------|
+| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java)         | Kompletny klient Java używający transportu SSE z pełną obsługą błędów |
+| **C#**   | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs)         | Kompletny klient C# używający transportu stdio z automatycznym uruchamianiem serwera |
+| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | Kompletny klient TypeScript z pełnym wsparciem protokołu MCP |
+| **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py)         | Kompletny klient Python używający wzorców async/await         |
+| **Rust** | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs)             | Kompletny klient Rust używający Tokio do operacji asynchronicznych |
 
-- ✅ **Nawiązywanie połączenia** i obsługę błędów  
-- ✅ **Odkrywanie serwera** (narzędzia, zasoby, podpowiedzi, gdzie to ma zastosowanie)  
+Każdy kompletny przykład zawiera:
+- ✅ **Nawiązywanie połączenia** i obsługa błędów  
+- ✅ **Odnajdywanie serwera** (narzędzia, zasoby, podpowiedzi tam, gdzie to możliwe)  
 - ✅ **Operacje kalkulatora** (dodawanie, odejmowanie, mnożenie, dzielenie, pomoc)  
-- ✅ **Przetwarzanie wyników** i sformatowane wyjście  
-- ✅ **Kompleksową obsługę błędów**  
+- ✅ **Przetwarzanie wyników** i formatowany output  
+- ✅ **Kompleksowa obsługa błędów**  
 - ✅ **Czysty, udokumentowany kod** z komentarzami krok po kroku  
 
 ### Rozpoczęcie pracy z kompletnymi przykładami
 
-1. **Wybierz preferowany język** z tabeli powyżej  
-2. **Przejrzyj plik z kompletnym przykładem**, aby zrozumieć pełną implementację  
-3. **Uruchom przykład**, postępując zgodnie z instrukcjami w [`complete_examples.md`](./complete_examples.md)  
-4. **Zmodyfikuj i rozbuduj** przykład dla swojego konkretnego przypadku użycia  
+1. **Wybierz preferowany język** z powyższej tabeli  
+2. **Przejrzyj kompletny plik przykładowy**, aby zrozumieć pełną implementację  
+3. **Uruchom przykład** zgodnie z instrukcjami w [`complete_examples.md`](./complete_examples.md)  
+4. **Modyfikuj i rozszerzaj** przykład, dostosowując go do własnych zastosowań  
 
-Szczegółową dokumentację dotyczącą uruchamiania i dostosowywania tych przykładów znajdziesz tutaj: **[📖 Dokumentacja Kompletnych Przykładów](./complete_examples.md)**  
+Po szczegółową dokumentację dotyczącą uruchamiania i dostosowywania tych przykładów zajrzyj do: **[📖 Dokumentacja Kompletnych Przykładów](./complete_examples.md)**  
 
-### 💡 Rozwiązanie vs. Kompletny Przykład
+### 💡 Rozwiązanie vs. Kompletnie Przykłady
 
-| **Folder Rozwiązania** | **Kompletny Przykład** |
-|------------------------|-----------------------|
-| Pełna struktura projektu z plikami build | Implementacje w jednym pliku |
-| Gotowe do uruchomienia z zależnościami | Skoncentrowane przykłady kodu |
-| Konfiguracja przypominająca produkcyjną | Edukacyjny punkt odniesienia |
-| Narzędzia specyficzne dla języka | Porównanie między językami |
+| **Folder z rozwiązaniem** | **Kompletne przykłady**               |
+|---------------------------|-------------------------------------|
+| Pełna struktura projektu z plikami build | Implementacje w pojedynczych plikach        |
+| Gotowe do uruchomienia z zależnościami  | Skupione przykłady kodu                       |
+| Środowisko produkcyjne                   | Materiał edukacyjny, punkt odniesienia        |
+| Narzędzia specyficzne dla języka         | Porównanie międzyjęzykowe                      |
 
-Oba podejścia są wartościowe - używaj **folderu rozwiązania** dla kompletnych projektów, a **kompletnych przykładów** do nauki i odniesienia.
+Oba podejścia są wartościowe – używaj **folderu z rozwiązaniem** dla pełnych projektów, a **kompletnych przykładów** do nauki i odniesienia.  
 
 ## Kluczowe Wnioski
 
-Kluczowe wnioski z tego rozdziału dotyczące klientów to:
+Kluczowe wnioski z tego rozdziału dotyczące klientów to:  
 
-- Mogą być używane zarówno do odkrywania, jak i wywoływania funkcji na serwerze.  
-- Mogą uruchamiać serwer podczas swojego startu (jak w tym rozdziale), ale klienci mogą również łączyć się z już działającymi serwerami.  
-- Są świetnym sposobem na testowanie możliwości serwera, obok alternatyw takich jak Inspektor, opisany w poprzednim rozdziale.  
+- Mogą być używane zarówno do odnajdowania, jak i wywoływania funkcji na serwerze.  
+- Klient może uruchomić serwer wraz z samym sobą (jak w tym rozdziale), ale klienci mogą też łączyć się z już działającymi serwerami.  
+- To świetny sposób na testowanie możliwości serwera, obok innych narzędzi takich jak Inspector, opisanych w poprzednim rozdziale.  
 
 ## Dodatkowe Zasoby
 
@@ -897,16 +895,20 @@ Kluczowe wnioski z tego rozdziału dotyczące klientów to:
 
 ## Przykłady
 
-- [Kalkulator w Javie](../samples/java/calculator/README.md)  
-- [Kalkulator w .Net](../../../../03-GettingStarted/samples/csharp)  
-- [Kalkulator w JavaScript](../samples/javascript/README.md)  
-- [Kalkulator w TypeScript](../samples/typescript/README.md)  
-- [Kalkulator w Pythonie](../../../../03-GettingStarted/samples/python)  
-- [Kalkulator w Ruście](../../../../03-GettingStarted/samples/rust)  
+- [Java Calculator](../samples/java/calculator/README.md)  
+- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)  
+- [JavaScript Calculator](../samples/javascript/README.md)  
+- [TypeScript Calculator](../samples/typescript/README.md)  
+- [Python Calculator](../../../../03-GettingStarted/samples/python)  
+- [Rust Calculator](../../../../03-GettingStarted/samples/rust)  
 
-## Co Dalej
+## Co dalej
 
-- Następny krok: [Tworzenie klienta z LLM](../03-llm-client/README.md)  
+- Następny: [Tworzenie klienta z LLM](../03-llm-client/README.md)
 
-**Zastrzeżenie**:  
-Ten dokument został przetłumaczony za pomocą usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Chociaż dokładamy wszelkich starań, aby tłumaczenie było precyzyjne, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w jego rodzimym języku powinien być uznawany za autorytatywne źródło. W przypadku informacji o kluczowym znaczeniu zaleca się skorzystanie z profesjonalnego tłumaczenia przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z użycia tego tłumaczenia.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Zastrzeżenie**:
+Niniejszy dokument został przetłumaczony przy użyciu usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Chociaż dążymy do dokładności, prosimy mieć na uwadze, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w jego rodzimym języku należy traktować jako źródło autorytatywne. W przypadku informacji krytycznych zalecane jest skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z korzystania z tego tłumaczenia.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
