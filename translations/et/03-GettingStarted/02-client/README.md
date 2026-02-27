@@ -1,33 +1,33 @@
 # Kliendi loomine
 
-Kliendid on kohandatud rakendused või skriptid, mis suhtlevad otse MCP serveriga, et taotleda ressursse, tööriistu ja juhiseid. Erinevalt inspektori tööriista kasutamisest, mis pakub graafilist liidest serveriga suhtlemiseks, võimaldab oma kliendi kirjutamine programmeerimist ja automatiseeritud suhtlust. See võimaldab arendajatel integreerida MCP võimalusi oma töövoogudesse, automatiseerida ülesandeid ja luua kohandatud lahendusi vastavalt konkreetsetele vajadustele.
+Kliendid on kohandatud rakendused või skriptid, mis suhtlevad otse MCP serveriga, et taotleda ressursse, tööriistu ja promte. Erinevalt inspektori tööriista kasutamisest, mis pakub graafilist liidest serveriga suhtlemiseks, võimaldab oma kliendi kirjutamine programmeeritud ja automatiseeritud suhtlust. See võimaldab arendajatel integreerida MCP võimekust omaenda töövoogudesse, automatiseerida ülesandeid ning luua spetsiifilistele vajadustele kohandatud lahendusi.
 
 ## Ülevaade
 
-See õppetund tutvustab klientide kontseptsiooni Model Context Protocol (MCP) ökosüsteemis. Õpid, kuidas kirjutada oma klienti ja ühendada see MCP serveriga.
+See õppetund tutvustab kliente Model Context Protocoli (MCP) ökosüsteemis. Õpid, kuidas kirjutada oma klient ja ühendada see MCP serveriga.
 
 ## Õpieesmärgid
 
-Selle õppetunni lõpuks oskad:
+Selle õppetunni lõpuks oled võimeline:
 
-- Mõista, mida klient teha saab.
-- Kirjutada oma klienti.
-- Ühendada ja testida klienti MCP serveriga, et veenduda, et viimane töötab ootuspäraselt.
+- Mõistma, mida klient suudab teha.
+- Kirjutama oma kliendi.
+- Ühendama ja testima klienti MCP serveriga, et veenduda selle ootuspärases töös.
 
-## Mis on kliendi kirjutamise protsessis oluline?
+## Mis on kliendi kirjutamisse kaasatud?
 
 Kliendi kirjutamiseks tuleb teha järgmist:
 
-- **Impordi õiged teegid**. Kasutad sama teeki nagu varem, kuid erinevaid konstruktsioone.
-- **Loo kliendi eksemplar**. See hõlmab kliendi eksemplari loomist ja selle ühendamist valitud transpordimeetodiga.
-- **Otsusta, milliseid ressursse loetleda**. Sinu MCP serveril on ressursid, tööriistad ja juhised, pead otsustama, milliseid loetleda.
-- **Integreeri klient hostrakendusse**. Kui tead serveri võimalusi, pead selle integreerima oma hostrakendusse, et kasutaja sisestatud juhis või muu käsk käivitaks vastava serveri funktsiooni.
+- **Impordi õiged teegid.** Kasutad sama teeki nagu varem, ainult erinevaid konstruktoreid.
+- **Loo kliendi eksemplar.** Selleks pead looma kliendi näite ja ühendama selle valitud transpordimeetodi kaudu.
+- **Otsusta, milliseid ressursse kuvada.** Sinu MCP serveris on ressursid, tööriistad ja promtid, pead valima, milliseid näidata.
+- **Integreeri klient hostrakendusse.** Kui tead serveri võimeid, integreeri need oma hostrakendusse, nii et kui kasutaja sisestab prompti või teise käsu, kutsutakse vastav serveri funktsioon.
 
-Nüüd, kui oleme üldisel tasemel aru saanud, mida teeme, vaatame järgmisena näidet.
+Nüüd, kui meil on ülevaade, mida teha, vaatame allpool näiteid.
 
-### Näide kliendist
+### Näite klient
 
-Vaatame seda näidet kliendist:
+Vaata seda näite klienti:
 
 ### TypeScript
 
@@ -49,10 +49,10 @@ const client = new Client(
 
 await client.connect(transport);
 
-// List prompts
+// Küsitluste loend
 const prompts = await client.listPrompts();
 
-// Get a prompt
+// Hangi küsimus
 const prompt = await client.getPrompt({
   name: "example-prompt",
   arguments: {
@@ -60,15 +60,15 @@ const prompt = await client.getPrompt({
   }
 });
 
-// List resources
+// Ressursside loend
 const resources = await client.listResources();
 
-// Read a resource
+// Loe ressurssi
 const resource = await client.readResource({
   uri: "file:///example.txt"
 });
 
-// Call a tool
+// Käivita tööriist
 const result = await client.callTool({
   name: "example-tool",
   arguments: {
@@ -77,23 +77,23 @@ const result = await client.callTool({
 });
 ```
 
-Eelnevas koodis:
+Eelnevas koodis me:
 
-- Impordime teegid.
-- Loome kliendi eksemplari ja ühendame selle stdio transpordiga.
-- Loetleme juhised, ressursid ja tööriistad ning käivitame need kõik.
+- Impordime teegid
+- Loome kliendi eksemplari ja ühendame selle stdio transpordi kaudu.
+- Kuvame promte, ressursse ja tööriistu ning kutsume kõiki neid.
 
-Seal see on – klient, mis suudab MCP serveriga suhelda.
+Siin see on, klient, kes saab MCP serveriga suhelda.
 
-Võtame järgmises harjutuse osas aega, et iga koodilõik lahti seletada ja selgitada, mis toimub.
+Võtame järgmises harjutuse osas aega ja selgitame iga kooditüki ja selle tööd.
 
 ## Harjutus: Kliendi kirjutamine
 
-Nagu öeldud, võtame aega koodi selgitamiseks ja soovi korral võid kaasa kodeerida.
+Nagu ülal mainitud, võtame aja ja selgitame koodi ning vajadusel saa ka ise kaasa kodeerida.
 
 ### -1- Teekide importimine
 
-Impordime vajalikud teegid, vajame viiteid kliendile ja valitud transpordiprotokollile, stdio. Stdio on protokoll, mis on mõeldud kohalikul masinal töötamiseks. SSE on teine transpordiprotokoll, mida näitame tulevastes peatükkides, kuid see on sinu teine valik. Praegu jätkame stdio-ga.
+Impordime vajalikud teegid, meil on vaja viiteid kliendile ja valitud transpordiprotokollile, stdio-le. stdio on protokoll arvutis lokaalselt jooksvate protsesside jaoks. SSE on teine transpordivõimalus, mida näitame tulevastes peatükkides, see on alternatiiv. Seniks jätkame stdio-ga.
 
 #### TypeScript
 
@@ -116,12 +116,11 @@ using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using ModelContextProtocol.Client;
-using ModelContextProtocol.Protocol.Transport;
 ```
 
 #### Java
 
-Java puhul loome kliendi, mis ühendub eelmise harjutuse MCP serveriga. Kasutades sama Java Spring Boot projekti struktuuri kui [MCP serveriga alustamine](../../../../03-GettingStarted/01-first-server/solution/java), loo uus Java klass nimega `SDKClient` kaustas `src/main/java/com/microsoft/mcp/sample/client/` ja lisa järgmised impordid:
+Javas lood MCP serverile ühenduva kliendi eelmise harjutuse põhjal. Kasutades sama Java Spring Boot projekti struktuuri nagu [Sissejuhatus MCP serverisse](../../../../03-GettingStarted/01-first-server/solution/java), loo uus Java klass nimega `SDKClient` kaustas `src/main/java/com/microsoft/mcp/sample/client/` ning lisa järgmised impordid:
 
 ```java
 import java.util.Map;
@@ -136,7 +135,7 @@ import io.modelcontextprotocol.spec.McpSchema.ListToolsResult;
 
 #### Rust
 
-Pead lisama järgmised sõltuvused oma `Cargo.toml` faili.
+Pead lisama järgmised sõltuvused failile `Cargo.toml`.
 
 ```toml
 [package]
@@ -150,7 +149,7 @@ serde_json = "1.0.141"
 tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 ```
 
-Sealt saad importida vajalikud teegid oma kliendikoodi.
+Seejärel saad importida vajalikud teegid oma kliendikoodi.
 
 ```rust
 use rmcp::{
@@ -164,9 +163,9 @@ use tokio::process::Command;
 
 Liigume edasi eksemplari loomise juurde.
 
-### -2- Kliendi ja transpordi eksemplari loomine
+### -2- Kliendi ja transpordi loomine
 
-Peame looma transpordi ja kliendi eksemplari:
+Peame looma transpordi eksemplari ja kliendi eksemplari:
 
 #### TypeScript
 
@@ -188,7 +187,7 @@ await client.connect(transport);
 
 Eelnevas koodis oleme:
 
-- Loonud stdio transpordi eksemplari. Pane tähele, kuidas see määrab käsu ja argumendid serveri leidmiseks ja käivitamiseks, kuna see on midagi, mida peame tegema kliendi loomisel.
+- Loonud stdio transpordi eksemplari. Märka, kuidas seal määratletakse käsk ja argumendid, kuidas server leida ja käivitada, seda peabki kliendi loomisel arvestama.
 
     ```typescript
     const transport = new StdioClientTransport({
@@ -197,7 +196,7 @@ Eelnevas koodis oleme:
     });
     ```
 
-- Loonud kliendi, andes sellele nime ja versiooni.
+- Loonud kliendi, andes talle nime ja versiooni.
 
     ```typescript
     const client = new Client(
@@ -219,11 +218,11 @@ Eelnevas koodis oleme:
 from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
 
-# Create server parameters for stdio connection
+# Loo serveri parameetrid stdio ühenduseks
 server_params = StdioServerParameters(
-    command="mcp",  # Executable
-    args=["run", "server.py"],  # Optional command line arguments
-    env=None,  # Optional environment variables
+    command="mcp",  # Käivitatav fail
+    args=["run", "server.py"],  # Valikulised käsurea argumendid
+    env=None,  # Valikulised keskkonnamuutujad
 )
 
 async def run():
@@ -231,7 +230,7 @@ async def run():
         async with ClientSession(
             read, write
         ) as session:
-            # Initialize the connection
+            # Algata ühendus
             await session.initialize()
 
           
@@ -244,10 +243,10 @@ if __name__ == "__main__":
 
 Eelnevas koodis oleme:
 
-- Imporditud vajalikud teegid.
-- Loonud serveri parameetrite objekti, kuna kasutame seda serveri käivitamiseks, et saaksime sellega oma kliendi kaudu ühendust võtta.
-- Määratlenud meetodi `run`, mis omakorda kutsub `stdio_client`, mis käivitab kliendi sessiooni.
-- Loonud sisenemispunkti, kus anname `run` meetodi `asyncio.run`-ile.
+- Impordinud vajalikud teegid
+- Loonud serveri parameetrite objekti, et server käivitada ja sellega kliendiga ühendada.
+- Määratlenud meetodi `run`, mis kutsub `stdio_client`-i, alustades kliendi seanssi.
+- Loonud sisendi (entry point) kasutades `asyncio.run`.
 
 #### .NET
 
@@ -256,7 +255,6 @@ using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using ModelContextProtocol.Client;
-using ModelContextProtocol.Protocol.Transport;
 
 var builder = Host.CreateApplicationBuilder(args);
 
@@ -273,15 +271,15 @@ var clientTransport = new StdioClientTransport(new()
     Arguments = ["run", "--project", "path/to/file.csproj"],
 });
 
-await using var mcpClient = await McpClientFactory.CreateAsync(clientTransport);
+await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 ```
 
 Eelnevas koodis oleme:
 
-- Imporditud vajalikud teegid.
-- Loonud stdio transpordi ja kliendi `mcpClient`. Viimane on midagi, mida kasutame MCP serveri funktsioonide loetlemiseks ja käivitamiseks.
+- Impordinud vajalikud teegid.
+- Loonud stdio transpordi ja kliendi nimega `mcpClient`. Seda klienti kasutame, et kuvada ja kutsuda MCP serveri funktsioone.
 
-Pane tähele, et "Arguments" osas saad viidata kas *.csproj* failile või käivitatavale failile.
+Märkus: "Arguments" võib viidata kas *.csproj* failile või käivitatavale failile.
 
 #### Java
 
@@ -303,25 +301,25 @@ public class SDKClient {
         var client = McpClient.sync(this.transport).build();
         client.initialize();
         
-        // Your client logic goes here
+        // Teie kliendi loogika läheb siia
     }
 }
 ```
 
 Eelnevas koodis oleme:
 
-- Loonud peameetodi, mis seadistab SSE transpordi, osutades `http://localhost:8080`, kus meie MCP server töötab.
-- Loonud kliendiklassi, mis võtab transpordi konstruktoriparameetrina.
-- Meetodis `run` loome sünkroonse MCP kliendi, kasutades transporti ja algatame ühenduse.
-- Kasutanud SSE-d (Server-Sent Events) transporti, mis sobib HTTP-põhiseks suhtluseks Java Spring Boot MCP serveritega.
+- Loonud main meetodi, mis seadistab SSE transpordi aadressile `http://localhost:8080`, kus MCP server töötab.
+- Loonud kliendi klassi, mis võtab transpordi konstruktoriparameetrina.
+- `run` meetodis loome süntroonse MCP kliendi transpordiga ja algatame ühenduse.
+- Kasutame SSE (Server-Sent Events) transporti, mis sobib HTTP-põhisteks suhtlusteks Java Spring Boot MCP serveritega.
 
 #### Rust
 
-Pane tähele, et see Rusti klient eeldab, et server on sama kataloogi "calculator-server" nimeline projekt. Allolev kood käivitab serveri ja ühendub sellega.
+Pane tähele, see Rust klient eeldab, et server on timmisood "calculator-server" samas kataloogis. Kood allpool käivitab serveri ja ühendub sellega.
 
 ```rust
 async fn main() -> Result<(), RmcpError> {
-    // Assume the server is a sibling project named "calculator-server" in the same directory
+    // Eeldage, et server on sama kataloogi õdeprojekt nimega "calculator-server"
     let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .expect("failed to locate workspace root")
@@ -336,51 +334,51 @@ async fn main() -> Result<(), RmcpError> {
         )
         .await?;
 
-    // TODO: Initialize
+    // TODO: Algatada
 
-    // TODO: List tools
+    // TODO: Tööriistade loendamine
 
-    // TODO: Call add tool with arguments = {"a": 3, "b": 2}
+    // TODO: Kutsuge tööriist add argumendiga = {"a": 3, "b": 2}
 
     client.cancel().await?;
     Ok(())
 }
 ```
 
-### -3- Serveri funktsioonide loetlemine
+### -3- Serveri omaduste kuvamine
 
-Nüüd on meil klient, mis saab ühendust luua, kui programm käivitatakse. Kuid see ei loetle tegelikult oma funktsioone, seega teeme seda järgmisena:
+Nüüd on meil klient, kes saab programmiga ühenduda. Kuid see ei kuva oma funktsioone, teeme selle nüüd:
 
 #### TypeScript
 
 ```typescript
-// List prompts
+// Loetle käsud
 const prompts = await client.listPrompts();
 
-// List resources
+// Loetle ressursid
 const resources = await client.listResources();
 
-// list tools
+// loetle tööriistad
 const tools = await client.listTools();
 ```
 
 #### Python
 
 ```python
-# List available resources
+# Loetle saadaolevad ressursid
 resources = await session.list_resources()
 print("LISTING RESOURCES")
 for resource in resources:
     print("Resource: ", resource)
 
-# List available tools
+# Loetle saadaolevad tööriistad
 tools = await session.list_tools()
 print("LISTING TOOLS")
 for tool in tools.tools:
     print("Tool: ", tool.name)
 ```
 
-Siin loetleme saadaval olevad ressursid, `list_resources()` ja tööriistad, `list_tools` ning prindime need välja.
+Siin kuvame olemasolevad ressursid `list_resources()` ja tööriistad `list_tools` ning trükime need välja.
 
 #### .NET
 
@@ -391,55 +389,55 @@ foreach (var tool in await client.ListToolsAsync())
 }
 ```
 
-Ülaltoodud näide näitab, kuidas saame serveri tööriistu loetleda. Iga tööriista puhul prindime välja selle nime.
+Ülal on näide, kuidas kuvada serveri tööriistu. Iga tööriista kohta trükime selle nime.
 
 #### Java
 
 ```java
-// List and demonstrate tools
+// Loetle ja näita tööriistu
 ListToolsResult toolsList = client.listTools();
 System.out.println("Available Tools = " + toolsList);
 
-// You can also ping the server to verify connection
+// Võid ka serverit pingida, et kontrollida ühendust
 client.ping();
 ```
 
 Eelnevas koodis oleme:
 
 - Kutsunud `listTools()`, et saada kõik saadaval olevad tööriistad MCP serverist.
-- Kasutanud `ping()`, et kontrollida, kas ühendus serveriga töötab.
-- `ListToolsResult` sisaldab teavet kõigi tööriistade kohta, sealhulgas nende nimed, kirjeldused ja sisendiskeemid.
+- Kasutanud `ping()` ühenduse toimimise kontrollimiseks.
+- `ListToolsResult` sisaldab kõigi tööriistade infot - nimed, kirjeldused, sisendi skeemid.
 
-Suurepärane, nüüd oleme kõik funktsioonid kaardistanud. Küsimus on, millal me neid kasutame? Noh, see klient on üsna lihtne, lihtne selles mõttes, et peame funktsioone selgesõnaliselt kutsuma, kui neid vajame. Järgmises peatükis loome arenenuma kliendi, millel on juurdepääs oma suurele keelemudelile (LLM). Praegu aga vaatame, kuidas saame serveri funktsioone käivitada:
+Suurepärane, nüüd omame kõiki funktsioone. Aga millal neid kasutada? See klient on lihtne, peame funktsioonid kutsuma käsitsi. Järgmises peatükis teeme keerukama kliendi, kellel on oma suur keelemudel (LLM). Seniks vaatame, kuidas funktsioone serveris kutsuda:
 
 #### Rust
 
-Põhifunktsioonis, pärast kliendi algatamist, saame serveri algatada ja mõned selle funktsioonid loetleda.
+Main-funktsioonis, pärast kliendi initsialiseerimist, käivitame serveri ja kuvame mõned funktsioonid.
 
 ```rust
-// Initialize
+// Algatamine
 let server_info = client.peer_info();
 println!("Server info: {:?}", server_info);
 
-// List tools
+// Tööriistade loetelu
 let tools = client.list_tools(Default::default()).await?;
 println!("Available tools: {:?}", tools);
 ```
 
-### -4- Funktsioonide käivitamine
+### -4- Funktsioonide kutsumine
 
-Funktsioonide käivitamiseks peame tagama, et määrame õiged argumendid ja mõnel juhul ka käivitatava funktsiooni nime.
+Selleks, et funktsioone kutsuda, peab tagama õiged argumendid ja mõnikord ka õige nime.
 
 #### TypeScript
 
 ```typescript
 
-// Read a resource
+// Loe ressurssi
 const resource = await client.readResource({
   uri: "file:///example.txt"
 });
 
-// Call a tool
+// Kutsu tööriista
 const result = await client.callTool({
   name: "example-tool",
   arguments: {
@@ -447,7 +445,7 @@ const result = await client.callTool({
   }
 });
 
-// call prompt
+// kutsu prompt
 const promptResult = await client.getPrompt({
     name: "review-code",
     arguments: {
@@ -456,9 +454,9 @@ const promptResult = await client.getPrompt({
 })
 ```
 
-Eelnevas koodis oleme:
+Eelnevas koodis:
 
-- Lugemisressurssi, kutsume ressursi, kasutades `readResource()` ja määrates `uri`. Siin on, kuidas see tõenäoliselt serveri poolel välja näeb:
+- Loe ressurssi, kutsudes `readResource()` ja määrates `uri`. Serveri pool näeb see välja umbes nii:
 
     ```typescript
     server.resource(
@@ -473,9 +471,9 @@ Eelnevas koodis oleme:
     );
     ```
 
-    Meie `uri` väärtus `file://example.txt` vastab `file://{name}` serveris. `example.txt` kaardistatakse `name`-le.
+    Meie `uri` väärtus `file://example.txt` vastab serveri tasandil `file://{name}` mustrile. `example.txt` seotakse parameetriga `name`.
 
-- Tööriista kutsumine, kutsume seda, määrates selle `name` ja `arguments` järgmiselt:
+- Kutsu tööriista, nimetades tööriista nime ja argumendid nii:
 
     ```typescript
     const result = await client.callTool({
@@ -486,7 +484,7 @@ Eelnevas koodis oleme:
     });
     ```
 
-- Juhise saamine, juhise saamiseks kutsume `getPrompt()` koos `name` ja `arguments`. Serveri kood näeb välja järgmiselt:
+- Saada prompt, kutsudes `getPrompt()` koos `name` ja `arguments`. Serveri kood on selline:
 
     ```typescript
     server.prompt(
@@ -504,7 +502,7 @@ Eelnevas koodis oleme:
     );
     ```
 
-    ja sinu kliendikood näeb seega välja järgmiselt, et vastata serveris deklareeritule:
+    Seetõttu näeb sinu kliendi kood välja umbes nii, et sobituks serveris määratuga:
 
     ```typescript
     const promptResult = await client.getPrompt({
@@ -518,20 +516,20 @@ Eelnevas koodis oleme:
 #### Python
 
 ```python
-# Read a resource
+# Loe ressurssi
 print("READING RESOURCE")
 content, mime_type = await session.read_resource("greeting://hello")
 
-# Call a tool
+# Kutsu tööriista
 print("CALL TOOL")
 result = await session.call_tool("add", arguments={"a": 1, "b": 7})
 print(result.content)
 ```
 
-Eelnevas koodis oleme:
+Eelnevas koodis:
 
-- Kutsunud ressursi nimega `greeting`, kasutades `read_resource`.
-- Käivitanud tööriista nimega `add`, kasutades `call_tool`.
+- Kutsusime ressurssi nimega `greeting` kasutades `read_resource`.
+- Kutsusime tööriista nimega `add` kasutades `call_tool`.
 
 #### .NET
 
@@ -544,7 +542,7 @@ Eelnevas koodis oleme:
       cancellationToken:CancellationToken.None);
   ```
 
-1. Tulemuse printimiseks on siin kood, mis seda käsitleb:
+2. Tulemuse väljastamiseks kasutame järgmist koodi:
 
   ```csharp
   Console.WriteLine(result.Content.First(c => c.Type == "text").Text);
@@ -554,7 +552,7 @@ Eelnevas koodis oleme:
 #### Java
 
 ```java
-// Call various calculator tools
+// Kutsu erinevaid kalkulaatori tööriistu
 CallToolResult resultAdd = client.callTool(new CallToolRequest("add", Map.of("a", 5.0, "b", 3.0)));
 System.out.println("Add Result = " + resultAdd);
 
@@ -571,17 +569,17 @@ CallToolResult resultHelp = client.callTool(new CallToolRequest("help", Map.of()
 System.out.println("Help = " + resultHelp);
 ```
 
-Eelnevas koodis oleme:
+Eelnevas koodis:
 
-- Kutsunud mitmeid kalkulaatori tööriistu, kasutades `callTool()` meetodit koos `CallToolRequest` objektidega.
-- Iga tööriista kutse määrab tööriista nime ja vajalike argumentide `Map`-i.
-- Serveri tööriistad eeldavad konkreetseid parameetrite nimesid (näiteks "a", "b" matemaatiliste operatsioonide jaoks).
+- Kutsusime mitut kalkulaatori tööriista `callTool()` meetodiga ja `CallToolRequest` objektidega.
+- Iga tööriista kutsumise juures määratakse tööriista nimi ja seletav argumentide `Map`.
+- Serveri tööriistad ootavad kindlaid parameetrinimesid (nt "a", "b" matemaatika operatsioonides).
 - Tulemused tagastatakse `CallToolResult` objektidena, mis sisaldavad serveri vastust.
 
 #### Rust
 
 ```rust
-// Call add tool with arguments = {"a": 3, "b": 2}
+// Kutsu lisamise tööriist argumentidega = {"a": 3, "b": 2}
 let a = 3;
 let b = 2;
 let tool_result = client
@@ -595,11 +593,11 @@ println!("Result of {:?} + {:?}: {:?}", a, b, tool_result);
 
 ### -5- Kliendi käivitamine
 
-Kliendi käivitamiseks sisesta terminali järgmine käsk:
+Klienti käivitamiseks tipi terminali järgmine käsk:
 
 #### TypeScript
 
-Lisa järgmine kirje oma *package.json* "scripts" sektsiooni:
+Lisa pouks avaldusse oma *package.json*- faili "scripts" sektsiooni:
 
 ```json
 "client": "tsc && node build/client.js"
@@ -611,7 +609,7 @@ npm run client
 
 #### Python
 
-Kutsu klienti järgmise käsuga:
+Kutsu klient järgmise käsuga:
 
 ```sh
 python client.py
@@ -625,23 +623,23 @@ dotnet run
 
 #### Java
 
-Esmalt veendu, et sinu MCP server töötab aadressil `http://localhost:8080`. Seejärel käivita klient:
+Veendu, et MCP server töötab aadressil `http://localhost:8080`. Seejärel käivita klient:
 
 ```bash
-# Build you project
+# Koosta oma projekt
 ./mvnw clean compile
 
-# Run the client
+# Käivita klient
 ./mvnw exec:java -Dexec.mainClass="com.microsoft.mcp.sample.client.SDKClient"
 ```
 
-Alternatiivselt saad käivitada täieliku kliendiprojekti, mis on lahenduskaustas `03-GettingStarted\02-client\solution\java`:
+Või muul juhul võid käivitada kogu kliendi lahenduse projekti, mis asub kaustas `03-GettingStarted\02-client\solution\java`:
 
 ```bash
-# Navigate to the solution directory
+# Liigu lahenduse kataloogi
 cd 03-GettingStarted/02-client/solution/java
 
-# Build and run the JAR
+# Koosta ja käivita JAR
 ./mvnw clean package
 java -jar target/calculator-client-0.0.1-SNAPSHOT.jar
 ```
@@ -653,11 +651,11 @@ cargo fmt
 cargo run
 ```
 
-## Ülesanne
+## Kodutöö
 
-Selles ülesandes kasutad õpitut kliendi loomiseks, kuid lood oma kliendi.
+Selles kodutöös kasutad õpitut ja teed iseenda kliendi.
 
-Siin on server, mida saad kasutada ja mida pead oma kliendikoodiga kutsuma. Proovi lisada serverile rohkem funktsioone, et see oleks huvitavam.
+Siin on server, mida saad kasutada ja kellest oma kliendi kaudu kutsuda. Proovi lisada serverile huvitavamaid funktsioone.
 
 ### TypeScript
 
@@ -666,13 +664,13 @@ import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mc
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 
-// Create an MCP server
+// Loo MCP server
 const server = new McpServer({
   name: "Demo",
   version: "1.0.0"
 });
 
-// Add an addition tool
+// Lisa täiendustööriist
 server.tool("add",
   { a: z.number(), b: z.number() },
   async ({ a, b }) => ({
@@ -680,7 +678,7 @@ server.tool("add",
   })
 );
 
-// Add a dynamic greeting resource
+// Lisa dünaamiline tervituse ressurss
 server.resource(
   "greeting",
   new ResourceTemplate("greeting://{name}", { list: undefined }),
@@ -692,7 +690,7 @@ server.resource(
   })
 );
 
-// Start receiving messages on stdin and sending messages on stdout
+// Alusta sõnumite vastuvõttu stdin-i kaudu ja sõnumite saatmist stdout-i kaudu
 
 async function main() {
   const transport = new StdioServerTransport();
@@ -712,18 +710,18 @@ main().catch((error) => {
 # server.py
 from mcp.server.fastmcp import FastMCP
 
-# Create an MCP server
+# Loo MCP server
 mcp = FastMCP("Demo")
 
 
-# Add an addition tool
+# Lisa liitmistööriist
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
     return a + b
 
 
-# Add a dynamic greeting resource
+# Lisa dünaamiline tervitusressurss
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
@@ -761,21 +759,21 @@ public static class CalculatorTool
 }
 ```
 
-Vaata seda projekti, et näha, kuidas [lisada juhiseid ja ressursse](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs).
+Vaata seda projekti, et näha, kuidas [lisada prompt'e ja ressursse](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs).
 
-Samuti vaata seda linki, et näha, kuidas kutsuda [juhiseid ja ressursse](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/).
+Samuti vaata linki, kuidas kutsuda [prompte ja ressursse](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/).
 
 ### Rust
 
-Eelmises osas (../01-first-server) õppisid, kuidas luua lihtsat MCP serverit Rustiga. Saad seda edasi arendada või vaadata seda linki, et näha rohkem Rusti-põhiseid MCP serveri näiteid: [MCP Server Examples](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
+Eelmises jaotises õppisid, kuidas luua lihtne MCP server Rustiga. Võid jätkata selle arendamist või vaadata lisaks Rust'il põhinevaid MCP serverite näiteid siin: [MCP serveri näited](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
 
 ## Lahendus
 
-**Lahenduskaust** sisaldab täielikke, käivitatavaid kliendi implementatsioone, mis demonstreerivad kõiki selles juhendis käsitletud kontseptsioone. Iga lahendus sisaldab nii kliendi kui serveri koodi, mis on organiseeritud eraldi, iseseisvates projektides.
+**Lahenduse kaust** sisaldab täielikke, jooksutamiseks valmis kliendi rakendusi, mis demonstreerivad kõiki selles õpetuses käsitletud mõisteid. Iga lahendus sisaldab nii klient- kui serverikoodi, organiseeritud eraldi iseseisvateks projektideks.
 
 ### 📁 Lahenduse struktuur
 
-Lahenduse kataloog on organiseeritud programmeerimiskeelte järgi:
+Lahenduse kaust on organiseeritud programmeerimiskeelte kaupa:
 
 ```text
 solution/
@@ -807,31 +805,31 @@ solution/
 
 ### 🚀 Mida iga lahendus sisaldab
 
-Iga keelespetsiifiline lahendus pakub:
+Iga keelepõhine lahendus sisaldab:
 
-- **Täielikku kliendi implementatsiooni** kõigi juhendis käsitletud funktsioonidega.
-- **Töötavat projektistruktuuri** koos õige sõltuvuste ja konfiguratsiooniga.
-- **Ehitus- ja käivitusskripte** lihtsaks seadistamiseks ja käivitamiseks.
-- **Üksikasjalikku README-d** keelespetsiifiliste juhistega.
-- **Vigade käsitlemise** ja tulemuste töötlemise näiteid.
+- **Täielikku kliendi rakendust** koos kõigi õpetuses käsitletud funktsioonidega
+- **Toimivat projektistruktuuri** koos õige sõltuvuste ja konfigureerimisega
+- **Build ja käivituskäske** lihtsaks seadistamiseks ja käivitamiseks
+- **Detailset README faili**, milles on keele põhised juhised
+- **Vigade käsitlemise** ja tulemuste töötlemise näiteid
 
 ### 📖 Lahenduste kasutamine
 
-1. **Liigu oma eelistatud keele kausta**:
+1. **Mine oma eelistatud keele kausta**:
 
    ```bash
-   cd solution/typescript/    # For TypeScript
-   cd solution/java/          # For Java
-   cd solution/python/        # For Python
-   cd solution/dotnet/        # For .NET
+   cd solution/typescript/    # TypeScripti jaoks
+   cd solution/java/          # Java jaoks
+   cd solution/python/        # Pythoni jaoks
+   cd solution/dotnet/        # .NETi jaoks
    ```
 
-2. **Järgi README juhiseid** igas kaustas:
-   - Sõltuvuste installimine
-   - Projekti ehitamine
+2. **Järgi iga kausta README juhiseid**, kus on:
+   - Sõltuvuste paigaldamine
+   - Projekti build
    - Kliendi käivitamine
 
-3. **Näidisväljund**, mida peaksid nägema:
+3. **Näide väljundist, mida peaksid nägema**:
 
    ```text
    Prompt: Please review this code: console.log("hello");
@@ -839,64 +837,63 @@ Iga keelespetsiifiline lahendus pakub:
    Tool result: { content: [ { type: 'text', text: '9' } ] }
    ```
 
-Täieliku dokumentatsiooni ja samm-sammult juhiste jaoks vaata: **[📖 Lahenduse dokumentatsioon](./solution/README.md)**
+Kogu dokumentatsiooni ja samm-sammuliste juhiste jaoks vaata: **[📖 Lahenduse dokumentatsioon](./solution/README.md)**
 
 ## 🎯 Täielikud näited
 
-Oleme pakkunud täielikke, töötavaid kliendi implementatsioone kõigi selles juhendis käsitletud programmeerimiskeelte jaoks. Need näited demonstreerivad kogu ülaltoodud funktsionaalsust ja neid saab kasutada viiteimplementatsioonidena või lähtepunktidena oma projektide jaoks.
+Oleme pakkunud täielikke ja töötavaid kliendi rakendusi kõigis selles õpetuses käsitletud keeltes. Need näited demonstreerivad kõiki eespool kirjeldatud funktsionaalsusi ja sobivad nii viitena kui ka lähtepunktiks sinu oma projektidele.
 
-### Saadaval olevad täielikud näited
+### Saadaval täielikud näited
 
-| Keel | Fail | Kirjeldus |
-|------|------|-----------|
-| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | Täielik Java klient, mis kasutab SSE transporti koos põhjaliku vigade käsitlemisega |
-| **C#** | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | Täielik C# klient, mis kasutab stdio transporti koos automaatse serveri käivitamisega |
-| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | Täielik TypeScript klient, millel on täielik MCP protokolli tugi |
-| **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | Täielik Python klient, mis kasutab async/await mustreid |
-| **Rust** | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs) | Täielik Rust klient, mis kasutab Tokio't asünkroonsete operatsioonide jaoks |
+| Keel     | Fail                        | Kirjeldus                                                        |
+|----------|-----------------------------|-----------------------------------------------------------------|
+| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java)         | Täielik Java klient kasutades SSE transporti, põhjaliku veahaldusega |
+| **C#**   | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs)         | Täielik C# klient stdio transpordiga ja automaatse serveri käivitusega |
+| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | Täielik TypeScript kliendi protokolli tugi MCP üldfunktsioonidega    |
+| **Python**| [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py)         | Täielik Python klient, kasutades async/await mustrit                |
+| **Rust** | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs)             | Täielik Rust klient, kasutades Tokio asünkroonseid operatsioone      |
 
 Iga täielik näide sisaldab:
-
-- ✅ **Ühenduse loomist** ja vigade käsitlemist
-- ✅ **Serveri avastamist** (tööriistad, ressursid, juhised, kus kohaldatav)
-- ✅ **Kalkulaatori operatsioone** (liitmine, lahutamine, korrutamine, jagamine, abi)
+- ✅ **Ühenduse loomine** ja veahaldus
+- ✅ **Serveri avastamine** (tööriistad, ressursid, juhised, kus rakenduvad)
+- ✅ **Kalkulaatori toimingud** (liitmine, lahutamine, korrutamine, jagamine, abi)
 - ✅ **Tulemuste töötlemine** ja vormindatud väljund
-- ✅ **Põhjalik vigade käsitlemine**
-- ✅ **Puhas, dokumenteeritud kood** koos samm-sammuliste kommentaaridega
+- ✅ **Põhjalik veahaldus**
+- ✅ **Puhas, dokumenteeritud kood** samm-sammuliste kommentaaridega
 
-### Alustamine täielike näidetega
+### Alustamine koos täielike näidetega
 
 1. **Vali oma eelistatud keel** ülaltoodud tabelist
-2. **Vaata täielikku näidiste faili**, et mõista kogu rakendust
+2. **Vaata läbi täieliku näidifaili**, et mõista kogu teostust
 3. **Käivita näide** järgides juhiseid failis [`complete_examples.md`](./complete_examples.md)
-4. **Muuda ja laienda** näidet vastavalt oma konkreetsele kasutusjuhule
+4. **Muuda ja laienda** näidet oma konkreetse kasutusjuhtumi jaoks
 
-Üksikasjaliku dokumentatsiooni saamiseks nende näidiste käivitamise ja kohandamise kohta vaata: **[📖 Täielike näidiste dokumentatsioon](./complete_examples.md)**
+Üksikasjaliku dokumentatsiooni saamiseks näidete käivitamise ja kohandamise kohta vaata: **[📖 Täielike näidete dokumentatsioon](./complete_examples.md)**
 
-### 💡 Lahendus vs. Täielikud näited
+### 💡 Lahendus vs Täielikud näited
 
 | **Lahenduse kaust** | **Täielikud näited** |
 |--------------------|--------------------- |
-| Täielik projekti struktuur koos ehitusfailidega | Ühe faili rakendused |
-| Valmis käivitamiseks koos sõltuvustega | Keskendunud koodinäited |
-| Tootmiskeskkonna sarnane seadistus | Hariduslik viide |
-| Keelespetsiifilised tööriistad | Erinevate keelte võrdlus |
+| Täielik projekti struktuur koos ehitusfailidega | Ühe faili teostused |
+| Käivitamiseks valmis koos sõltuvustega | Keskendunud koodinäited |
+| Tootmisele sarnane seadistus | Hariduslik viite materjal |
+| Keele-spetsiifilised tööriistad | Keeleid ületav võrdlus |
 
-Mõlemad lähenemised on väärtuslikud - kasuta **lahenduse kausta** täielike projektide jaoks ja **täielikke näiteid** õppimiseks ja viitamiseks.
+Mõlemad lähenemised on väärtuslikud - kasuta **lahenduse kausta** täielike projektide jaoks ja **täielikke näiteid** õppe- ja viitamiseks.
 
-## Olulised punktid
+## Peamised järeldused
 
-Selle peatüki olulised punktid klientide kohta on järgmised:
+Selle peatüki peamised järeldused klientide kohta on järgmised:
 
-- Saab kasutada nii serveri funktsioonide avastamiseks kui ka nende käivitamiseks.
-- Saab käivitada serveri samal ajal, kui see ise käivitub (nagu selles peatükis), kuid kliendid võivad ühenduda ka juba töötavate serveritega.
-- On suurepärane viis serveri võimaluste testimiseks, lisaks alternatiividele nagu Inspector, mida kirjeldati eelmises peatükis.
+- Klientide abil saab nii avastada kui ka serveri funktsioone kutsuda.
+- Klient saab käivitada serveri samal ajal, kui ta ise käivitub (nagu selles peatükis), kuid kliendid võivad ühendada ka juba töötavate serveritega.
+- Klient on suurepärane viis serveri võimete testimiseks lisaks alternatiividele nagu Inspector, nagu kirjeldati eelmises peatükis.
 
-## Lisamaterjalid
+## Täiendavad ressursid
 
-- [Klientide loomine MCP-s](https://modelcontextprotocol.io/quickstart/client)
+- [Kliendi loomine MCP-s](https://modelcontextprotocol.io/quickstart/client)
 
-## Näidised
+## Näited
 
 - [Java kalkulaator](../samples/java/calculator/README.md)
 - [.Net kalkulaator](../../../../03-GettingStarted/samples/csharp)
@@ -905,11 +902,13 @@ Selle peatüki olulised punktid klientide kohta on järgmised:
 - [Python kalkulaator](../../../../03-GettingStarted/samples/python)
 - [Rust kalkulaator](../../../../03-GettingStarted/samples/rust)
 
-## Mis edasi?
+## Järgmine samm
 
 - Järgmine: [Kliendi loomine LLM-iga](../03-llm-client/README.md)
 
 ---
 
-**Lahtiütlus**:  
-See dokument on tõlgitud AI tõlketeenuse [Co-op Translator](https://github.com/Azure/co-op-translator) abil. Kuigi püüame tagada täpsust, palume arvestada, et automaatsed tõlked võivad sisaldada vigu või ebatäpsusi. Algne dokument selle algses keeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitame kasutada professionaalset inimtõlget. Me ei vastuta selle tõlke kasutamisest tulenevate arusaamatuste või valesti tõlgenduste eest.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Vastutusest loobumine**:
+See dokument on tõlgitud tehisintellekti tõlketeenuse [Co-op Translator](https://github.com/Azure/co-op-translator) abil. Kuigi püüame tagada täpsust, palun arvestage, et automaatsed tõlked võivad sisaldada vigu või ebatäpsusi. Originaaldokument oma emakeeles tuleks pidada autoriteetseks allikaks. Olulise info puhul soovitatakse kasutada professionaalset inimtõlget. Me ei vastuta selle tõlke kasutamisest tulenevate arusaamatuste või valesti tõlgenduste eest.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

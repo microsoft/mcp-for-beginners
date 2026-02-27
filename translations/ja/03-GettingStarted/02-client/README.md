@@ -1,33 +1,33 @@
 # クライアントの作成
 
-クライアントは、MCPサーバーと直接通信してリソース、ツール、プロンプトを要求するカスタムアプリケーションやスクリプトです。サーバーと対話するためのグラフィカルインターフェースを提供するインスペクターツールを使用する場合とは異なり、自分自身でクライアントを作成することで、プログラム的かつ自動化された対話が可能になります。これにより、開発者はMCPの機能を自分のワークフローに統合し、タスクを自動化し、特定のニーズに合わせたカスタムソリューションを構築することができます。
+クライアントは、MCPサーバーと直接通信してリソース、ツール、およびプロンプトを要求するカスタムアプリケーションまたはスクリプトです。サーバーとの対話のためのグラフィカルインターフェイスを提供するインスペクターツールとは異なり、自分でクライアントを書くことでプログラムによる自動化された操作が可能になります。これにより、開発者はMCPの機能を自分のワークフローに統合し、タスクを自動化し、特定のニーズに合わせたカスタムソリューションを構築できます。
 
 ## 概要
 
-このレッスンでは、Model Context Protocol (MCP) エコシステム内でのクライアントの概念を紹介します。自分自身のクライアントを作成し、それをMCPサーバーに接続する方法を学びます。
+このレッスンでは、Model Context Protocol (MCP) エコシステム内のクライアントの概念を紹介します。自分のクライアントを書く方法とMCPサーバーに接続する方法を学びます。
 
 ## 学習目標
 
-このレッスンの終わりまでに、以下ができるようになります：
+このレッスンの終わりには、以下ができるようになります：
 
-- クライアントが何をできるかを理解する。
-- 自分自身のクライアントを作成する。
-- MCPサーバーに接続し、期待通りに動作するかテストする。
+- クライアントができることを理解する。
+- 自分自身でクライアントを書く。
+- MCPサーバーに接続してテストし、サーバーが期待通りに動作することを確認する。
 
-## クライアント作成の手順
+## クライアントを書くには何が必要？
 
-クライアントを作成するには、以下の手順が必要です：
+クライアントを書くために必要なことは以下の通りです：
 
-- **適切なライブラリをインポートする**。以前使用したライブラリと同じですが、異なる構造を使用します。
-- **クライアントをインスタンス化する**。クライアントインスタンスを作成し、選択したトランスポートメソッドに接続します。
-- **リストするリソースを決定する**。MCPサーバーにはリソース、ツール、プロンプトが用意されているため、どれをリストするかを決定します。
-- **クライアントをホストアプリケーションに統合する**。サーバーの機能を理解したら、ホストアプリケーションに統合し、ユーザーがプロンプトやコマンドを入力した際に対応するサーバー機能が呼び出されるようにします。
+- **適切なライブラリのインポート**。前回と同じライブラリを使いますが、使う構造体が異なります。
+- **クライアントのインスタンス化**。クライアントインスタンスを作成し、選択したトランスポート方法に接続します。
+- **どのリソースを一覧表示するか決定**。MCPサーバーにはリソース、ツール、プロンプトがありますが、どれを一覧表示するか選択します。
+- **クライアントをホストアプリに統合**。サーバーの機能が分かったら、ユーザーがプロンプトやコマンドを入力したときに対応するサーバーの機能が呼び出されるようホストアプリケーションに組み込みます。
 
-これで、全体的な流れを理解しましたので、次に例を見てみましょう。
+大まかな流れがわかったところで、次は例を見ていきましょう。
 
 ### クライアントの例
 
-以下はクライアントの例です：
+以下に例となるクライアントを見てみましょう：
 
 ### TypeScript
 
@@ -49,10 +49,10 @@ const client = new Client(
 
 await client.connect(transport);
 
-// List prompts
+// プロンプトを一覧表示
 const prompts = await client.listPrompts();
 
-// Get a prompt
+// プロンプトを取得
 const prompt = await client.getPrompt({
   name: "example-prompt",
   arguments: {
@@ -60,15 +60,15 @@ const prompt = await client.getPrompt({
   }
 });
 
-// List resources
+// リソースを一覧表示
 const resources = await client.listResources();
 
-// Read a resource
+// リソースを読む
 const resource = await client.readResource({
   uri: "file:///example.txt"
 });
 
-// Call a tool
+// ツールを呼び出す
 const result = await client.callTool({
   name: "example-tool",
   arguments: {
@@ -77,23 +77,23 @@ const result = await client.callTool({
 });
 ```
 
-上記のコードでは以下を行っています：
+上記コードでは：
 
-- ライブラリをインポートする。
-- クライアントのインスタンスを作成し、stdioを使用してトランスポートに接続する。
-- プロンプト、リソース、ツールをリストし、それらをすべて呼び出す。
+- ライブラリをインポート。
+- クライアントのインスタンスを作成し、stdioをトランスポートとして接続。
+- プロンプト、リソース、ツールを一覧表示し、すべて呼び出し。
 
-これで、MCPサーバーと通信できるクライアントが完成しました。
+これでMCPサーバーと通信できるクライアントができました。
 
-次の演習セクションでは、コードを分解して各部分を説明していきます。
+次の演習セクションでじっくりコードを分解し、内容を説明します。
 
-## 演習：クライアントの作成
+## 演習：クライアントを書く
 
-前述の通り、コードを説明しながら進めていきます。コードを書きながら進めても構いません。
+前述の通り、コードの説明をじっくり行います。もしよければ一緒にコードを書きながら進めてください。
 
-### -1- ライブラリのインポート
+### -1- ライブラリをインポートする
 
-必要なライブラリをインポートします。クライアントと選択したトランスポートプロトコル（今回はstdio）への参照が必要です。stdioはローカルマシンで実行されるもの向けのプロトコルです。SSEは別のトランスポートプロトコルで、今後の章で紹介しますが、もう一つの選択肢です。今回はstdioを使って進めましょう。
+必要なライブラリをインポートします。クライアント本体と、選択したトランスポートプロトコルであるstdioの参照が必要です。stdioはローカルマシンで実行するもの向けのプロトコルです。SSEは別のトランスポートプロトコルで、後の章で紹介しますが、今回はstdioを使います。
 
 #### TypeScript
 
@@ -116,12 +116,11 @@ using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using ModelContextProtocol.Client;
-using ModelContextProtocol.Protocol.Transport;
 ```
 
 #### Java
 
-Javaの場合、前の演習で作成したMCPサーバーに接続するクライアントを作成します。[Getting Started with MCP Server](../../../../03-GettingStarted/01-first-server/solution/java) のJava Spring Bootプロジェクト構造を使用して、`SDKClient`という新しいJavaクラスを`src/main/java/com/microsoft/mcp/sample/client/`フォルダーに作成し、以下のインポートを追加します：
+Javaでは、前の演習で使ったMCPサーバーに接続するクライアントを作成します。[Getting Started with MCP Server](../../../../03-GettingStarted/01-first-server/solution/java)のJava Spring Bootプロジェクト構造を利用し、`src/main/java/com/microsoft/mcp/sample/client/`フォルダーに`SDKClient`クラスを作成し、以下のインポートを追加してください：
 
 ```java
 import java.util.Map;
@@ -136,7 +135,7 @@ import io.modelcontextprotocol.spec.McpSchema.ListToolsResult;
 
 #### Rust
 
-`Cargo.toml`ファイルに以下の依存関係を追加する必要があります。
+`Cargo.toml`ファイルに以下の依存関係を追加してください。
 
 ```toml
 [package]
@@ -150,7 +149,7 @@ serde_json = "1.0.141"
 tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 ```
 
-その後、クライアントコードで必要なライブラリをインポートします。
+クライアントコード内で必要なライブラリをインポートします。
 
 ```rust
 use rmcp::{
@@ -162,11 +161,11 @@ use rmcp::{
 use tokio::process::Command;
 ```
 
-次に、インスタンス化に進みましょう。
+次にインスタンス化に移ります。
 
 ### -2- クライアントとトランスポートのインスタンス化
 
-トランスポートのインスタンスとクライアントのインスタンスを作成する必要があります：
+トランスポートのインスタンスとクライアントのインスタンスを作成します。
 
 #### TypeScript
 
@@ -186,9 +185,9 @@ const client = new Client(
 await client.connect(transport);
 ```
 
-上記のコードでは以下を行っています：
+上記コードで：
 
-- stdioトランスポートインスタンスを作成。サーバーを見つけて起動するためのコマンドと引数を指定する必要があることに注意してください。
+- stdioトランスポートのインスタンスを作成。サーバーを起動するコマンドと引数を指定している点に注目してください。クライアント作成時に必要な処理です。
 
     ```typescript
     const transport = new StdioClientTransport({
@@ -207,7 +206,7 @@ await client.connect(transport);
     });
     ```
 
-- 選択したトランスポートにクライアントを接続。
+- クライアントを選択したトランスポートに接続。
 
     ```typescript
     await client.connect(transport);
@@ -219,11 +218,11 @@ await client.connect(transport);
 from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
 
-# Create server parameters for stdio connection
+# stdio接続のためのサーバーパラメータを作成する
 server_params = StdioServerParameters(
-    command="mcp",  # Executable
-    args=["run", "server.py"],  # Optional command line arguments
-    env=None,  # Optional environment variables
+    command="mcp",  # 実行可能ファイル
+    args=["run", "server.py"],  # オプションのコマンドライン引数
+    env=None,  # オプションの環境変数
 )
 
 async def run():
@@ -231,7 +230,7 @@ async def run():
         async with ClientSession(
             read, write
         ) as session:
-            # Initialize the connection
+            # 接続を初期化する
             await session.initialize()
 
           
@@ -242,12 +241,12 @@ if __name__ == "__main__":
     asyncio.run(run())
 ```
 
-上記のコードでは以下を行っています：
+上記コードで：
 
 - 必要なライブラリをインポート。
-- サーバーパラメータオブジェクトをインスタンス化。これを使用してサーバーを実行し、クライアントで接続できるようにします。
-- `run`メソッドを定義。このメソッドは`stdio_client`を呼び出し、クライアントセッションを開始します。
-- エントリーポイントを作成し、`asyncio.run`に`run`メソッドを提供。
+- サーバーパラメータオブジェクトを作成。これを使ってサーバーを起動し、クライアントから接続します。
+- `run`メソッドを定義し、内部から`stdio_client`を呼び出してクライアントセッションを開始。
+- エントリポイントで`asyncio.run`に`run`メソッドを渡す。
 
 #### .NET
 
@@ -256,7 +255,6 @@ using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using ModelContextProtocol.Client;
-using ModelContextProtocol.Protocol.Transport;
 
 var builder = Host.CreateApplicationBuilder(args);
 
@@ -273,15 +271,15 @@ var clientTransport = new StdioClientTransport(new()
     Arguments = ["run", "--project", "path/to/file.csproj"],
 });
 
-await using var mcpClient = await McpClientFactory.CreateAsync(clientTransport);
+await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 ```
 
-上記のコードでは以下を行っています：
+上記コードで：
 
-- 必要なライブラリをインポート。
-- stdioトランスポートを作成し、クライアント`mcpClient`を作成。このクライアントを使用してMCPサーバーの機能をリストおよび呼び出します。
+- ライブラリをインポート。
+- stdioトランスポートを作成し、クライアント`mcpClient`を作成。これはMCPサーバーの機能を一覧表示・呼び出しに使います。
 
-注意："Arguments"では、*.csproj*または実行可能ファイルを指定できます。
+なお、"Arguments"では*.csproj*ファイルか実行ファイルのどちらかを指定できます。
 
 #### Java
 
@@ -303,25 +301,25 @@ public class SDKClient {
         var client = McpClient.sync(this.transport).build();
         client.initialize();
         
-        // Your client logic goes here
+        // クライアントのロジックはここに記述します
     }
 }
 ```
 
-上記のコードでは以下を行っています：
+上記コードで：
 
-- MCPサーバーが実行される`http://localhost:8080`を指すSSEトランスポートを設定するメインメソッドを作成。
-- トランスポートをコンストラクタパラメータとして受け取るクライアントクラスを作成。
-- `run`メソッドで、トランスポートを使用して同期MCPクライアントを作成し、接続を初期化。
-- Java Spring Boot MCPサーバーとのHTTPベースの通信に適したSSE（Server-Sent Events）トランスポートを使用。
+- `http://localhost:8080`を指すSSEトランスポートを設定するmainメソッドを作成。ここでMCPサーバーが動作。
+- トランスポートをコンストラクタ引数にとるクライアントクラスを作成。
+- `run`メソッドでトランスポート経由の同期MCPクライアントを作成し、接続を初期化。
+- Java Spring Boot MCPサーバーとのHTTPベース通信に適したSSE (Server-Sent Events) トランスポートを使用。
 
 #### Rust
 
-このRustクライアントは、同じディレクトリ内の兄弟プロジェクト「calculator-server」をサーバーとして想定しています。以下のコードはサーバーを起動し、それに接続します。
+Rustクライアントは同じディレクトリに兄弟プロジェクト「calculator-server」があることを前提とします。以下のコードはサーバーを起動し接続します。
 
 ```rust
 async fn main() -> Result<(), RmcpError> {
-    // Assume the server is a sibling project named "calculator-server" in the same directory
+    // サーバーは同じディレクトリ内にある「calculator-server」という兄弟プロジェクトであると仮定します
     let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .expect("failed to locate workspace root")
@@ -336,51 +334,51 @@ async fn main() -> Result<(), RmcpError> {
         )
         .await?;
 
-    // TODO: Initialize
+    // TODO: 初期化する
 
-    // TODO: List tools
+    // TODO: ツールをリストする
 
-    // TODO: Call add tool with arguments = {"a": 3, "b": 2}
+    // TODO: 引数 = {"a": 3, "b": 2} で add ツールを呼び出す
 
     client.cancel().await?;
     Ok(())
 }
 ```
 
-### -3- サーバー機能のリスト
+### -3- サーバーの機能を一覧表示
 
-これで、プログラムを実行すればクライアントが接続できるようになりました。ただし、まだ機能をリストしていないので、次にそれを行います：
+プログラム実行時に接続できるクライアントができましたが、現状では機能一覧を表示しません。次にそれを行いましょう：
 
 #### TypeScript
 
 ```typescript
-// List prompts
+// プロンプトをリストする
 const prompts = await client.listPrompts();
 
-// List resources
+// リソースをリストする
 const resources = await client.listResources();
 
-// list tools
+// ツールをリストする
 const tools = await client.listTools();
 ```
 
 #### Python
 
 ```python
-# List available resources
+# 利用可能なリソースを一覧表示する
 resources = await session.list_resources()
 print("LISTING RESOURCES")
 for resource in resources:
     print("Resource: ", resource)
 
-# List available tools
+# 利用可能なツールを一覧表示する
 tools = await session.list_tools()
 print("LISTING TOOLS")
 for tool in tools.tools:
     print("Tool: ", tool.name)
 ```
 
-ここでは、利用可能なリソース`list_resources()`とツール`list_tools`をリストし、それらを出力します。
+利用可能なリソースを`list_resources()`で、ツールを`list_tools`で一覧表示し、出力しています。
 
 #### .NET
 
@@ -391,55 +389,55 @@ foreach (var tool in await client.ListToolsAsync())
 }
 ```
 
-上記は、サーバー上のツールをリストする方法の例です。各ツールについて、その名前を出力します。
+上記はサーバーのツールを一覧表示する例です。各ツールの名前を出力しています。
 
 #### Java
 
 ```java
-// List and demonstrate tools
+// ツールの一覧と実演
 ListToolsResult toolsList = client.listTools();
 System.out.println("Available Tools = " + toolsList);
 
-// You can also ping the server to verify connection
+// 接続確認のためにサーバーにpingを送ることもできます
 client.ping();
 ```
 
-上記のコードでは以下を行っています：
+上記コードで：
 
-- MCPサーバーから利用可能なツールをすべて取得するために`listTools()`を呼び出し。
-- サーバーへの接続が機能していることを確認するために`ping()`を使用。
-- `ListToolsResult`には、ツールの名前、説明、入力スキーマなどの情報が含まれています。
+- MCPサーバーから利用可能なツールを`listTools()`で取得。
+- 接続確認のために`ping()`を呼び出し。
+- `ListToolsResult`には名前、説明、入力スキーマなどのツール情報が含まれる。
 
-これで、すべての機能をキャプチャしました。次の問題は、それらをいつ使用するかです。このクライアントは非常にシンプルで、サーバーの機能を明示的に呼び出す必要があります。次の章では、独自の大規模言語モデル（LLM）にアクセスできるより高度なクライアントを作成します。今回は、サーバーの機能を呼び出す方法を見てみましょう：
+これでサーバーの全機能を取得できました。ではそれらはいつ使うのか？このクライアントはシンプルで、機能を使いたいときに明示的に呼び出す必要があります。次章では、自身の大規模言語モデル(LLM)を持つ高度なクライアントを作りますが、まずはサーバーの機能の呼び出し方を見てみましょう：
 
 #### Rust
 
-クライアントを初期化した後、サーバーを初期化し、その機能をいくつかリストできます。
+メイン関数でクライアント初期化後、サーバーを初期化し機能を一覧表示できます。
 
 ```rust
-// Initialize
+// 初期化
 let server_info = client.peer_info();
 println!("Server info: {:?}", server_info);
 
-// List tools
+// ツールの一覧
 let tools = client.list_tools(Default::default()).await?;
 println!("Available tools: {:?}", tools);
 ```
 
-### -4- 機能の呼び出し
+### -4- 機能を呼び出す
 
-機能を呼び出すには、正しい引数と場合によっては呼び出す対象の名前を指定する必要があります。
+機能を呼び出すには正しい引数と場合によっては呼び出す名前を指定する必要があります。
 
 #### TypeScript
 
 ```typescript
 
-// Read a resource
+// リソースを読み取る
 const resource = await client.readResource({
   uri: "file:///example.txt"
 });
 
-// Call a tool
+// ツールを呼び出す
 const result = await client.callTool({
   name: "example-tool",
   arguments: {
@@ -447,7 +445,7 @@ const result = await client.callTool({
   }
 });
 
-// call prompt
+// プロンプトを呼び出す
 const promptResult = await client.getPrompt({
     name: "review-code",
     arguments: {
@@ -456,9 +454,9 @@ const promptResult = await client.getPrompt({
 })
 ```
 
-上記のコードでは以下を行っています：
+上記コードで：
 
-- リソースを読み取る。`readResource()`を呼び出し、`uri`を指定します。サーバー側では以下のようになります：
+- リソースを読み取るため、`readResource()`に`uri`を指定して呼び出し。サーバー側は以下のようになっている可能性があります：
 
     ```typescript
     server.resource(
@@ -473,9 +471,9 @@ const promptResult = await client.getPrompt({
     );
     ```
 
-    クライアント側の`uri`値`file://example.txt`はサーバー側の`file://{name}`に一致します。`example.txt`は`name`にマッピングされます。
+    `uri`の値`file://example.txt`はサーバーの`file://{name}`とマッチし、`example.txt`が`name`としてマッピングされます。
 
-- ツールを呼び出す。`name`と`arguments`を指定して呼び出します：
+- ツール呼び出しは、`name`と`arguments`を指定して行います：
 
     ```typescript
     const result = await client.callTool({
@@ -486,7 +484,7 @@ const promptResult = await client.getPrompt({
     });
     ```
 
-- プロンプトを取得する。`getPrompt()`を`name`と`arguments`で呼び出します。サーバーコードは以下のようになります：
+- プロンプト取得は、`getPrompt()`に`name`と`arguments`を渡して呼び出します。サーバーコードは以下の通り：
 
     ```typescript
     server.prompt(
@@ -504,7 +502,7 @@ const promptResult = await client.getPrompt({
     );
     ```
 
-    そのため、クライアントコードは以下のようになります：
+    それに合わせてクライアントコードは以下の通りです：
 
     ```typescript
     const promptResult = await client.getPrompt({
@@ -518,20 +516,20 @@ const promptResult = await client.getPrompt({
 #### Python
 
 ```python
-# Read a resource
+# リソースを読み取る
 print("READING RESOURCE")
 content, mime_type = await session.read_resource("greeting://hello")
 
-# Call a tool
+# ツールを呼び出す
 print("CALL TOOL")
 result = await session.call_tool("add", arguments={"a": 1, "b": 7})
 print(result.content)
 ```
 
-上記のコードでは以下を行っています：
+上記コードで：
 
-- `read_resource`を使用して`greeting`というリソースを呼び出し。
-- `call_tool`を使用して`add`というツールを呼び出し。
+- `read_resource`を使い`greeting`というリソースを呼び出し。
+- `call_tool`で`add`というツールを呼び出し。
 
 #### .NET
 
@@ -544,7 +542,7 @@ print(result.content)
       cancellationToken:CancellationToken.None);
   ```
 
-1. 結果を出力するコードを追加：
+2. 結果を出力するコードは以下：
 
   ```csharp
   Console.WriteLine(result.Content.First(c => c.Type == "text").Text);
@@ -554,7 +552,7 @@ print(result.content)
 #### Java
 
 ```java
-// Call various calculator tools
+// さまざまな計算ツールを呼び出す
 CallToolResult resultAdd = client.callTool(new CallToolRequest("add", Map.of("a", 5.0, "b", 3.0)));
 System.out.println("Add Result = " + resultAdd);
 
@@ -571,17 +569,17 @@ CallToolResult resultHelp = client.callTool(new CallToolRequest("help", Map.of()
 System.out.println("Help = " + resultHelp);
 ```
 
-上記のコードでは以下を行っています：
+上記コードで：
 
-- `CallToolRequest`オブジェクトを使用して`callTool()`メソッドで複数の計算ツールを呼び出し。
-- 各ツール呼び出しで、ツール名とそのツールに必要な引数の`Map`を指定。
-- サーバーツールは特定のパラメータ名（例："a"、"b"）を期待。
-- 結果はサーバーからの応答を含む`CallToolResult`オブジェクトとして返されます。
+- `callTool()`メソッドと`CallToolRequest`オブジェクトを使い複数の電卓ツールを呼び出し。
+- 各ツール呼び出しはツール名と、必要な引数の`Map`を指定。
+- サーバーツールは特定のパラメータ名(例: "a"、"b")を期待する。
+- 結果はサーバーからのレスポンスを含む`CallToolResult`オブジェクトとして返される。
 
 #### Rust
 
 ```rust
-// Call add tool with arguments = {"a": 3, "b": 2}
+// 引数={"a": 3, "b": 2}で加算ツールを呼び出す
 let a = 3;
 let b = 2;
 let tool_result = client
@@ -593,13 +591,13 @@ let tool_result = client
 println!("Result of {:?} + {:?}: {:?}", a, b, tool_result);
 ```
 
-### -5- クライアントの実行
+### -5- クライアントを実行する
 
-クライアントを実行するには、ターミナルで以下のコマンドを入力します：
+クライアントを実行するには、以下のコマンドをターミナルで入力してください：
 
 #### TypeScript
 
-*package.json*の"scripts"セクションに以下のエントリを追加：
+*package.json*の"scripts"セクションに以下を追加：
 
 ```json
 "client": "tsc && node build/client.js"
@@ -611,7 +609,7 @@ npm run client
 
 #### Python
 
-以下のコマンドでクライアントを呼び出します：
+以下のコマンドでクライアントを実行：
 
 ```sh
 python client.py
@@ -625,23 +623,23 @@ dotnet run
 
 #### Java
 
-まず、MCPサーバーが`http://localhost:8080`で実行されていることを確認します。その後、クライアントを実行します：
+まず、MCPサーバーが`http://localhost:8080`で実行されていることを確認し、クライアントを実行：
 
 ```bash
-# Build you project
+# プロジェクトをビルドする
 ./mvnw clean compile
 
-# Run the client
+# クライアントを実行する
 ./mvnw exec:java -Dexec.mainClass="com.microsoft.mcp.sample.client.SDKClient"
 ```
 
-または、`03-GettingStarted\02-client\solution\java`フォルダーにある完全なクライアントプロジェクトを実行できます：
+あるいは、ソリューションフォルダ`03-GettingStarted\02-client\solution\java`にある完全なクライアントプロジェクトを実行可能：
 
 ```bash
-# Navigate to the solution directory
+# ソリューションディレクトリに移動する
 cd 03-GettingStarted/02-client/solution/java
 
-# Build and run the JAR
+# JARをビルドして実行する
 ./mvnw clean package
 java -jar target/calculator-client-0.0.1-SNAPSHOT.jar
 ```
@@ -655,9 +653,9 @@ cargo run
 
 ## 課題
 
-この課題では、学んだ内容を活用して独自のクライアントを作成します。
+この課題では、学んだことを使って自分のクライアントを作成します。
 
-以下のサーバーを使用して、クライアントコードを介して呼び出します。サーバーに機能を追加して、より興味深いものにしてみてください。
+以下のサーバーをクライアントコードから呼び出してください。機能を追加してより面白くできるか挑戦してみてください。
 
 ### TypeScript
 
@@ -666,13 +664,13 @@ import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mc
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 
-// Create an MCP server
+// MCPサーバーを作成する
 const server = new McpServer({
   name: "Demo",
   version: "1.0.0"
 });
 
-// Add an addition tool
+// 追加のツールを追加する
 server.tool("add",
   { a: z.number(), b: z.number() },
   async ({ a, b }) => ({
@@ -680,7 +678,7 @@ server.tool("add",
   })
 );
 
-// Add a dynamic greeting resource
+// 動的な挨拶リソースを追加する
 server.resource(
   "greeting",
   new ResourceTemplate("greeting://{name}", { list: undefined }),
@@ -692,7 +690,7 @@ server.resource(
   })
 );
 
-// Start receiving messages on stdin and sending messages on stdout
+// stdinでメッセージの受信を開始し、stdoutでメッセージを送信する
 
 async function main() {
   const transport = new StdioServerTransport();
@@ -712,18 +710,18 @@ main().catch((error) => {
 # server.py
 from mcp.server.fastmcp import FastMCP
 
-# Create an MCP server
+# MCPサーバーを作成する
 mcp = FastMCP("Demo")
 
 
-# Add an addition tool
+# 加算ツールを追加する
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
     return a + b
 
 
-# Add a dynamic greeting resource
+# 動的な挨拶リソースを追加する
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
@@ -761,21 +759,21 @@ public static class CalculatorTool
 }
 ```
 
-このプロジェクトを参照して[プロンプトとリソースを追加する方法](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs)を確認してください。
+このプロジェクトでプロンプトやリソースの[追加方法](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs)を参照。
 
-また、[プロンプトとリソースを呼び出す方法](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/)も確認してください。
+また、[プロンプトやリソースの呼び出し方](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/)も確認してください。
 
 ### Rust
 
-[前のセクション](../../../../03-GettingStarted/01-first-server)で、Rustを使用して簡単なMCPサーバーを作成する方法を学びました。それを基に構築するか、以下のリンクでRustベースのMCPサーバーの例を確認してください：[MCP Server Examples](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
+[前のセクション](../../../../03-GettingStarted/01-first-server)でRustによる簡単なMCPサーバーの作成を学びました。続けて開発するか、以下リンクのRustベースのMCPサーバー例もご覧ください：[MCP Server Examples](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
 
-## 解答
+## 解答例
 
-**解答フォルダー**には、このチュートリアルで説明したすべての概念を示す完全なクライアント実装が含まれています。各解答には、クライアントとサーバーコードが別々の自己完結型プロジェクトとして整理されています。
+**solutionフォルダ**には、このチュートリアルで扱った全概念を示す完全実装済みクライアントが入っています。各ソリューションはクライアント・サーバーコード両方を別々の自己完結型プロジェクトとして含んでいます。
 
-### 📁 解答構造
+### 📁 解答例構成
 
-解答ディレクトリはプログラミング言語ごとに整理されています：
+ソリューションディレクトリは言語ごとに整理されています：
 
 ```text
 solution/
@@ -805,28 +803,28 @@ solution/
     └── server.csproj    # Server project file
 ```
 
-### 🚀 各解答に含まれる内容
+### 🚀 各解答例に含まれるもの
 
-各言語固有の解答には以下が含まれます：
+各言語別ソリューションには：
 
-- **完全なクライアント実装**（チュートリアルのすべての機能を含む）
-- **適切な依存関係と設定を備えたプロジェクト構造**
-- **簡単にセットアップして実行できるビルドおよび実行スクリプト**
-- **言語固有の指示を含む詳細なREADME**
-- **エラーハンドリング**と結果処理の例
+- チュートリアルの全機能を備えた完全なクライアント実装
+- 適切な依存関係・設定を含む動作可能なプロジェクト構成
+- 簡単にセットアップ・実行できるビルド・実行スクリプト
+- 言語特有の詳細なREADME
+- エラーハンドリングや結果処理の例
 
-### 📖 解答の使用方法
+### 📖 解答例の使い方
 
-1. **希望する言語フォルダーに移動**：
+1. **使いたい言語のフォルダに移動**：
 
    ```bash
-   cd solution/typescript/    # For TypeScript
-   cd solution/java/          # For Java
-   cd solution/python/        # For Python
-   cd solution/dotnet/        # For .NET
+   cd solution/typescript/    # TypeScript用
+   cd solution/java/          # Java用
+   cd solution/python/        # Python用
+   cd solution/dotnet/        # .NET用
    ```
 
-2. **各フォルダーのREADME指示に従う**：
+2. **各フォルダのREADMEに従い**：
    - 依存関係のインストール
    - プロジェクトのビルド
    - クライアントの実行
@@ -839,57 +837,57 @@ solution/
    Tool result: { content: [ { type: 'text', text: '9' } ] }
    ```
 
-完全なドキュメントとステップバイステップの指示については、**[📖 解答ドキュメント](./solution/README.md)** を参照してください。
+完全なドキュメントとステップごとの手順は：**[📖 Solution Documentation](./solution/README.md)**
 
-## 🎯 完全な例
+## 🎯 完成例
 
-このチュートリアルで説明したすべての機能を示す完全なクライアント実装を提供しています。これらの例は、参考実装や独自プロジェクトの出発点として使用できます。
+このチュートリアルで扱った全プログラミング言語の、完全かつ動作するクライアント実装を提供しています。これらの例は上記機能をフルに示し、参照や独自プロジェクトの出発点として使用可能です。
 
-### 利用可能な完全な例
+### 利用可能な完成例
 
-| 言語       | ファイル                          | 説明                                                                 |
-|------------|-----------------------------------|----------------------------------------------------------------------|
-| **Java**   | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | SSEトランスポートを使用した完全なJavaクライアント（包括的なエラーハンドリング付き） |
-| **C#**     | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | stdioトランスポートを使用した完全なC#クライアント（自動サーバー起動付き）         |
-| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | MCPプロトコル完全対応のTypeScriptクライアント                           |
-| **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | async/awaitパターンを使用した完全なPythonクライアント                   |
-| **Rust**   | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs)     | Tokioを使用した非同期操作対応の完全なRustクライアント                   |
-各完全な例には以下が含まれます：
+| 言語 | ファイル | 説明 |
+|----------|------|-------------|
+| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | SSEトランスポートを使い包括的なエラーハンドリングを備えた完全なJavaクライアント |
+| **C#** | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | stdioトランスポートを使いサーバー自動起動付きの完全なC#クライアント |
+| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | MCPプロトコル完全対応のTypeScriptクライアント |
+| **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | async/awaitパターンを使った完全なPythonクライアント |
+| **Rust** | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs) | Tokioによる非同期処理対応の完全なRustクライアント |
 
-- ✅ **接続の確立**とエラーハンドリング  
-- ✅ **サーバーの探索**（ツール、リソース、プロンプトが適用可能な場合）  
-- ✅ **計算機の操作**（加算、減算、乗算、除算、ヘルプ）  
-- ✅ **結果の処理**とフォーマットされた出力  
-- ✅ **包括的なエラーハンドリング**  
-- ✅ **クリーンで文書化されたコード**（ステップごとのコメント付き）  
+各完成例には以下が含まれます：
+- ✅ **接続確立** とエラー処理
+- ✅ **サーバー発見**（ツール、リソース、適用可能なプロンプト）
+- ✅ **計算機操作**（加算、減算、乗算、除算、ヘルプ）
+- ✅ **結果処理** とフォーマット済み出力
+- ✅ **包括的なエラー処理**
+- ✅ **クリーンでコメント付きのコード**（ステップごとのコメント込み）
 
 ### 完全な例で始める
 
-1. 上記の表から**希望する言語を選択**してください  
-2. **完全な例ファイルを確認**して、実装全体を理解してください  
-3. [`complete_examples.md`](./complete_examples.md)の指示に従って**例を実行**してください  
-4. **特定のユースケースに合わせて例を修正・拡張**してください  
+1. 上の表から **希望の言語を選択**
+2. 完全な実装を理解するために **完全な例のファイルを確認**
+3. [`complete_examples.md`](./complete_examples.md) の指示に従って **例を実行**
+4. 特定のユースケースに合わせて **例を変更・拡張**
 
-これらの例を実行およびカスタマイズする詳細なドキュメントについては、**[📖 完全な例のドキュメント](./complete_examples.md)** をご覧ください。
+これらの例の実行とカスタマイズに関する詳細なドキュメントは、**[📖 完全な例のドキュメント](./complete_examples.md)** を参照してください。
 
-### 💡 ソリューション vs 完全な例
+### 💡 ソリューション vs. 完全な例
 
-| **ソリューションフォルダ** | **完全な例** |
-|--------------------|--------------------- |
-| ビルドファイルを含む完全なプロジェクト構造 | 単一ファイルの実装 |
-| 依存関係を含むすぐに実行可能な形式 | コード例に焦点を当てた内容 |
-| 実際の運用に近いセットアップ | 教育的な参考資料 |
-| 言語固有のツール | 複数言語の比較 |
+| **ソリューションフォルダー** | **完全な例** |
+|------------------------------|--------------|
+| ビルドファイルを含む完全なプロジェクト構造 | 単一ファイルの実装例 |
+| 依存関係を含みすぐに実行可能 | コードに焦点を当てた例 |
+| 本番に近いセットアップ | 教育的な参考用 |
+| 言語固有のツールチェイン | 複数言語の比較 |
 
-どちらのアプローチも価値があります。**ソリューションフォルダ**は完全なプロジェクト向けに、**完全な例**は学習と参考資料として活用してください。
+どちらのアプローチも価値があります。完全なプロジェクトには **ソリューションフォルダー** を、学習や参照には **完全な例** を利用してください。
 
 ## 重要なポイント
 
-この章の重要なポイントは、クライアントに関する以下の内容です：
+この章におけるクライアントについての重要ポイントは次の通りです。
 
-- サーバー上の機能を発見し、呼び出すために使用できます。  
-- 自身が起動する際にサーバーを開始することもできます（この章のように）。ただし、クライアントは既存のサーバーに接続することも可能です。  
-- 前章で説明したInspectorのような代替手段と並んで、サーバーの機能をテストする優れた方法です。  
+- サーバー上の機能を発見し呼び出すために使用できる。
+- 自身を起動しながらサーバーも開始できる（この章のように）が、実行中のサーバーに接続することも可能。
+- 前章で説明したInspectorのような代替手段と並び、サーバー機能をテストするすばらしい手段である。
 
 ## 追加リソース
 
@@ -897,16 +895,20 @@ solution/
 
 ## サンプル
 
-- [Java計算機](../samples/java/calculator/README.md)  
-- [.Net計算機](../../../../03-GettingStarted/samples/csharp)  
-- [JavaScript計算機](../samples/javascript/README.md)  
-- [TypeScript計算機](../samples/typescript/README.md)  
-- [Python計算機](../../../../03-GettingStarted/samples/python)  
-- [Rust計算機](../../../../03-GettingStarted/samples/rust)  
+- [Java 計算機](../samples/java/calculator/README.md)
+- [.Net 計算機](../../../../03-GettingStarted/samples/csharp)
+- [JavaScript 計算機](../samples/javascript/README.md)
+- [TypeScript 計算機](../samples/typescript/README.md)
+- [Python 計算機](../../../../03-GettingStarted/samples/python)
+- [Rust 計算機](../../../../03-GettingStarted/samples/rust)
 
-## 次のステップ
+## 次にすべきこと
 
-- 次へ: [LLMを使用したクライアントの作成](../03-llm-client/README.md)  
+- 次へ: [LLMを使ったクライアントの作成](../03-llm-client/README.md)
 
-**免責事項**:  
-この文書は、AI翻訳サービス [Co-op Translator](https://github.com/Azure/co-op-translator) を使用して翻訳されています。正確性を追求しておりますが、自動翻訳には誤りや不正確な部分が含まれる可能性があります。元の言語で記載された文書を正式な情報源としてお考えください。重要な情報については、専門の人間による翻訳を推奨します。この翻訳の使用に起因する誤解や誤解釈について、当方は責任を負いません。
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**免責事項**：  
+本書類はAI翻訳サービス「Co-op Translator」（https://github.com/Azure/co-op-translator）を用いて翻訳されました。正確性の確保に努めておりますが、自動翻訳には誤りや不正確な表現が含まれる可能性があります。原文の言語による文書が正式な資料としてご参照ください。重要な情報については、専門の翻訳者による翻訳を推奨いたします。本翻訳の使用により生じたいかなる誤解や誤訳に対しても、当方は責任を負いかねます。
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,33 +1,33 @@
 # Ustvarjanje odjemalca
 
-Odjemalci so prilagojene aplikacije ali skripte, ki neposredno komunicirajo z MCP strežnikom za zahtevanje virov, orodij in pozivov. Za razliko od uporabe orodja za pregledovanje, ki ponuja grafični vmesnik za interakcijo s strežnikom, pisanje lastnega odjemalca omogoča programatične in avtomatizirane interakcije. To razvijalcem omogoča integracijo zmogljivosti MCP v njihove delovne procese, avtomatizacijo nalog in gradnjo prilagojenih rešitev, prilagojenih specifičnim potrebam.
+Odjemalci so prilagojene aplikacije ali skripte, ki neposredno komunicirajo z MCP strežnikom za zahtevanje virov, orodij in pozivov. Za razliko od uporabe orodja za pregledovalnik, ki omogoča grafični vmesnik za interakcijo s strežnikom, pisanje lastnega odjemalca omogoča programirane in avtomatizirane interakcije. To razvijalcem omogoča integracijo zmogljivosti MCP v njihove delovne postopke, avtomatizacijo opravil in izdelavo prilagojenih rešitev, prilagojenih specifičnim potrebam.
 
 ## Pregled
 
-Ta lekcija uvaja koncept odjemalcev v ekosistemu Model Context Protocol (MCP). Naučili se boste, kako napisati svojega odjemalca in ga povezati z MCP strežnikom.
+Ta lekcija uvaja koncept odjemalcev v ekosistemu Model Context Protocol (MCP). Naučili se boste, kako napisati svoj odjemalec in ga povezati s MCP strežnikom.
 
 ## Cilji učenja
 
-Do konca te lekcije boste sposobni:
+Na koncu te lekcije boste znali:
 
-- Razumeti, kaj lahko odjemalec naredi.
+- Razumeti, kaj odjemalec lahko počne.
 - Napisati svojega odjemalca.
-- Povezati in preizkusiti odjemalca z MCP strežnikom, da zagotovite, da slednji deluje, kot je pričakovano.
+- Povezati se in preizkusiti odjemalca z MCP strežnikom, da zagotovite, da slednji deluje kot pričakovano.
 
-## Kaj vključuje pisanje odjemalca?
+## Kaj spada v pisanje odjemalca?
 
-Za pisanje odjemalca morate storiti naslednje:
+Za pisanje odjemalca boste morali narediti naslednje:
 
-- **Uvoziti ustrezne knjižnice**. Uporabili boste isto knjižnico kot prej, le drugačne konstrukte.
-- **Ustvariti odjemalca**. To vključuje ustvarjanje primerka odjemalca in povezavo z izbrano transportno metodo.
-- **Odločiti se, katere vire našteti**. Vaš MCP strežnik ima vire, orodja in pozive, vi pa morate odločiti, katere želite našteti.
-- **Integrirati odjemalca v gostiteljsko aplikacijo**. Ko poznate zmogljivosti strežnika, morate to integrirati v svojo gostiteljsko aplikacijo, tako da se ob vnosu poziva ali drugega ukaza ustrezna funkcija strežnika sproži.
+- **Uvoziti pravilne knjižnice**. Uporabljali boste isto knjižnico kot prej, le različne konstrukte.
+- **Ustvariti instanco odjemalca**. To bo vključevalo ustvarjanje instance odjemalca in njegovo povezavo z izbrano metodo prenosa.
+- **Odločiti se, katere vire boste našteli**. Vaš MCP strežnik ima vire, orodja in pozive, odločiti se morate, katere boste našteli.
+- **Integrirati odjemalca v gostujočo aplikacijo**. Ko poznate zmogljivosti strežnika, jih morate integrirati v vašo gostujočo aplikacijo, tako da bo ob vnosu poziva ali druge ukaze uporabnika priklicana ustrezna funkcionalnost strežnika.
 
-Zdaj, ko na visoki ravni razumemo, kaj bomo storili, si poglejmo primer.
+Sedaj, ko razumemo na visoki ravni, kaj bomo naredili, poglejmo naslednji primer.
 
 ### Primer odjemalca
 
-Poglejmo si primer odjemalca:
+Poglejmo si ta primer odjemalca:
 
 ### TypeScript
 
@@ -49,10 +49,10 @@ const client = new Client(
 
 await client.connect(transport);
 
-// List prompts
+// Seznam pozivov
 const prompts = await client.listPrompts();
 
-// Get a prompt
+// Pridobi poziv
 const prompt = await client.getPrompt({
   name: "example-prompt",
   arguments: {
@@ -60,15 +60,15 @@ const prompt = await client.getPrompt({
   }
 });
 
-// List resources
+// Seznam virov
 const resources = await client.listResources();
 
-// Read a resource
+// Preberi vir
 const resource = await client.readResource({
   uri: "file:///example.txt"
 });
 
-// Call a tool
+// Pokliči orodje
 const result = await client.callTool({
   name: "example-tool",
   arguments: {
@@ -79,21 +79,21 @@ const result = await client.callTool({
 
 V zgornji kodi smo:
 
-- Uvozili knjižnice.
-- Ustvarili primerek odjemalca in ga povezali z uporabo stdio za transport.
-- Našteli pozive, vire in orodja ter jih vse sprožili.
+- Uvozili knjižnice
+- Ustvarili instanco odjemalca in ga povezali z uporabo stdio za prenos.
+- Našteli pozive, vire in orodja ter jih vse poklicali.
 
-Tukaj imate odjemalca, ki lahko komunicira z MCP strežnikom.
+Tako imamo odjemalca, ki lahko komunicira z MCP strežnikom.
 
-V naslednjem razdelku vaj si vzemimo čas in razčlenimo vsak del kode ter razložimo, kaj se dogaja.
+V naslednjem delu vaje si bomo vzeli čas in razčlenili vsak del kode ter razložili, kaj se dogaja.
 
 ## Vaja: Pisanje odjemalca
 
-Kot rečeno zgoraj, si vzemimo čas za razlago kode, in če želite, lahko kodirate zraven.
+Kot smo že rekli, si bomo vzeli čas za razlago kode, in če želite, kodo tudi pišite skupaj z nami.
 
 ### -1- Uvoz knjižnic
 
-Uvozimo knjižnice, ki jih potrebujemo. Potrebovali bomo reference na odjemalca in na izbrani transportni protokol, stdio. stdio je protokol za stvari, ki naj bi se izvajale na vašem lokalnem računalniku. SSE je drug transportni protokol, ki ga bomo pokazali v prihodnjih poglavjih, vendar je to vaša druga možnost. Za zdaj pa nadaljujmo s stdio.
+Uvozimo knjižnice, ki jih potrebujemo, potrebovali bomo reference za odjemalca in za izbrani prenosni protokol, stdio. stdio je protokol za stvari, ki naj bi tekle na vašem lokalnem računalniku. SSE je drugi prenosni protokol, ki ga bomo pokazali v prihodnjih poglavjih, a to je vaša druga možnost. Za zdaj pa nadaljujmo z stdio.
 
 #### TypeScript
 
@@ -116,12 +116,11 @@ using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using ModelContextProtocol.Client;
-using ModelContextProtocol.Protocol.Transport;
 ```
 
 #### Java
 
-Za Java boste ustvarili odjemalca, ki se poveže z MCP strežnikom iz prejšnje vaje. Z uporabo iste strukture projekta Java Spring Boot iz [Začetek z MCP strežnikom](../../../../03-GettingStarted/01-first-server/solution/java) ustvarite nov razred Java z imenom `SDKClient` v mapi `src/main/java/com/microsoft/mcp/sample/client/` in dodajte naslednje uvoze:
+Za Java boste ustvarili odjemalca, ki se poveže s MCP strežnikom iz prejšnje vaje. Uporabite isto strukturo projekta Java Spring Boot iz [Getting Started with MCP Server](../../../../03-GettingStarted/01-first-server/solution/java), ustvarite novo Java razredno `SDKClient` v mapi `src/main/java/com/microsoft/mcp/sample/client/` in dodajte naslednje uvoze:
 
 ```java
 import java.util.Map;
@@ -150,7 +149,7 @@ serde_json = "1.0.141"
 tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 ```
 
-Od tam lahko uvozite potrebne knjižnice v svojo odjemalsko kodo.
+Nato lahko v kodi vašega odjemalca uvozite potrebne knjižnice.
 
 ```rust
 use rmcp::{
@@ -162,11 +161,11 @@ use rmcp::{
 use tokio::process::Command;
 ```
 
-Nadaljujmo z ustvarjanjem primerka.
+Pojdimo na ustvarjanje instanc.
 
-### -2- Ustvarjanje odjemalca in transporta
+### -2- Ustvarjanje instančne objekta odjemalca in prenosa
 
-Ustvariti moramo primerek transporta in primerek našega odjemalca:
+Ustvariti bomo morali instanco prenosa in instanco našega odjemalca:
 
 #### TypeScript
 
@@ -188,7 +187,7 @@ await client.connect(transport);
 
 V zgornji kodi smo:
 
-- Ustvarili primerek stdio transporta. Opazite, kako določa ukaz in argumente za to, kako najti in zagnati strežnik, saj je to nekaj, kar bomo morali storiti, ko ustvarimo odjemalca.
+- Ustvarili instanco prenosa stdio. Opažamo, da določa ukaz in argumente, kako najti in zagnati strežnik, kar bomo potrebovali med ustvarjanjem odjemalca.
 
     ```typescript
     const transport = new StdioClientTransport({
@@ -197,7 +196,7 @@ V zgornji kodi smo:
     });
     ```
 
-- Ustvarili odjemalca z imenom in različico.
+- Ustvarili instanco odjemalca z imenom in različico.
 
     ```typescript
     const client = new Client(
@@ -207,7 +206,7 @@ V zgornji kodi smo:
     });
     ```
 
-- Povezali odjemalca z izbranim transportom.
+- Povezali odjemalca z izbranim prenosom.
 
     ```typescript
     await client.connect(transport);
@@ -219,11 +218,11 @@ V zgornji kodi smo:
 from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
 
-# Create server parameters for stdio connection
+# Ustvari parametre strežnika za stdio povezavo
 server_params = StdioServerParameters(
-    command="mcp",  # Executable
-    args=["run", "server.py"],  # Optional command line arguments
-    env=None,  # Optional environment variables
+    command="mcp",  # Izvedljiva datoteka
+    args=["run", "server.py"],  # Neobvezni argumenti ukazne vrstice
+    env=None,  # Neobvezne okoljske spremenljivke
 )
 
 async def run():
@@ -231,7 +230,7 @@ async def run():
         async with ClientSession(
             read, write
         ) as session:
-            # Initialize the connection
+            # Inicializiraj povezavo
             await session.initialize()
 
           
@@ -245,9 +244,9 @@ if __name__ == "__main__":
 V zgornji kodi smo:
 
 - Uvozili potrebne knjižnice.
-- Ustvarili objekt parametrov strežnika, saj ga bomo uporabili za zagon strežnika, da se lahko povežemo z njim z našim odjemalcem.
-- Določili metodo `run`, ki nato pokliče `stdio_client`, kar začne sejo odjemalca.
-- Ustvarili vstopno točko, kjer metodi `run` podamo `asyncio.run`.
+- Ustvarili objekt parametrov strežnika, saj ga bomo uporabili za zagon strežnika, da se bomo lahko povezali z našim odjemalcem.
+- Definirali metodo `run`, ki kliče `stdio_client`, ki začne odjemalčevo sejo.
+- Ustvarili vstopno točko, kjer posredujemo metodo `run` funkciji `asyncio.run`.
 
 #### .NET
 
@@ -256,7 +255,6 @@ using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using ModelContextProtocol.Client;
-using ModelContextProtocol.Protocol.Transport;
 
 var builder = Host.CreateApplicationBuilder(args);
 
@@ -273,15 +271,15 @@ var clientTransport = new StdioClientTransport(new()
     Arguments = ["run", "--project", "path/to/file.csproj"],
 });
 
-await using var mcpClient = await McpClientFactory.CreateAsync(clientTransport);
+await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 ```
 
 V zgornji kodi smo:
 
 - Uvozili potrebne knjižnice.
-- Ustvarili stdio transport in odjemalca `mcpClient`. Slednjega bomo uporabili za naštevanje in sprožanje funkcij na MCP strežniku.
+- Ustvarili stdio prenos in odjemalca `mcpClient`. To bomo uporabili za naštetje in klic funkcij MCP strežnika.
 
-Opomba: v "Arguments" lahko pokažete bodisi na *.csproj* bodisi na izvršljivo datoteko.
+Opomba: v "Arguments" lahko navedete pot do *.csproj* ali do izvršljive datoteke.
 
 #### Java
 
@@ -303,25 +301,25 @@ public class SDKClient {
         var client = McpClient.sync(this.transport).build();
         client.initialize();
         
-        // Your client logic goes here
+        // Vaša logika odjemalca gre sem
     }
 }
 ```
 
 V zgornji kodi smo:
 
-- Ustvarili glavno metodo, ki nastavi SSE transport, ki kaže na `http://localhost:8080`, kjer bo naš MCP strežnik deloval.
-- Ustvarili razred odjemalca, ki transport sprejme kot parameter konstruktorja.
-- V metodi `run` ustvarili sinhroni MCP odjemalec z uporabo transporta in inicializirali povezavo.
-- Uporabili SSE (Server-Sent Events) transport, ki je primeren za komunikacijo na osnovi HTTP z Java Spring Boot MCP strežniki.
+- Ustvarili glavno metodo, ki nastavi SSE prenos, ki se povezuje na `http://localhost:8080`, kjer bo tekel naš MCP strežnik.
+- Ustvarili razred odjemalca, ki kot parameter konstruktora prejme prenos.
+- V metodi `run` ustvarili sinhroni MCP odjemalec z uporabo prenosa in inicializirali povezavo.
+- Uporabili SSE (Server-Sent Events) prenos, ki je primeren za HTTP komunikacijo z MCP strežniki Java Spring Boot.
 
 #### Rust
 
-Ta Rust odjemalec predvideva, da je strežnik sorodni projekt z imenom "calculator-server" v isti mapi. Spodnja koda bo zagnala strežnik in se povezala z njim.
+Ta Rust odjemalec predvideva, da je strežnik sosednji projekt z imenom "calculator-server" v isti mapi. Koda spodaj zažene strežnik in se poveže nanj.
 
 ```rust
 async fn main() -> Result<(), RmcpError> {
-    // Assume the server is a sibling project named "calculator-server" in the same directory
+    // Predpostavimo, da je strežnik sorodni projekt z imenom "calculator-server" v isti mapi
     let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .expect("failed to locate workspace root")
@@ -336,11 +334,11 @@ async fn main() -> Result<(), RmcpError> {
         )
         .await?;
 
-    // TODO: Initialize
+    // TODO: Inicializiraj
 
-    // TODO: List tools
+    // TODO: Prikaži orodja
 
-    // TODO: Call add tool with arguments = {"a": 3, "b": 2}
+    // TODO: Pokliči dodaj orodje z argumenti = {"a": 3, "b": 2}
 
     client.cancel().await?;
     Ok(())
@@ -349,38 +347,38 @@ async fn main() -> Result<(), RmcpError> {
 
 ### -3- Naštevanje funkcij strežnika
 
-Zdaj imamo odjemalca, ki se lahko poveže, če se program zažene. Vendar pa dejansko ne našteva svojih funkcij, zato to storimo naslednje:
+Sedaj imamo odjemalca, ki se lahko poveže, če bo program zagnan. Vendar ne našteva njegovih funkcij, zato to naredimo naslednje:
 
 #### TypeScript
 
 ```typescript
-// List prompts
+// Našteti pozive
 const prompts = await client.listPrompts();
 
-// List resources
+// Našteti vire
 const resources = await client.listResources();
 
-// list tools
+// našteti orodja
 const tools = await client.listTools();
 ```
 
 #### Python
 
 ```python
-# List available resources
+# Našteti razpoložljive vire
 resources = await session.list_resources()
 print("LISTING RESOURCES")
 for resource in resources:
     print("Resource: ", resource)
 
-# List available tools
+# Našteti razpoložljiva orodja
 tools = await session.list_tools()
 print("LISTING TOOLS")
 for tool in tools.tools:
     print("Tool: ", tool.name)
 ```
 
-Tukaj naštejemo razpoložljive vire, `list_resources()` in orodja, `list_tools` ter jih izpišemo.
+Tukaj navajamo razpoložljive vire z `list_resources()` in orodja z `list_tools` ter jih izpišemo.
 
 #### .NET
 
@@ -391,55 +389,55 @@ foreach (var tool in await client.ListToolsAsync())
 }
 ```
 
-Zgornji primer prikazuje, kako lahko naštejemo orodja na strežniku. Za vsako orodje nato izpišemo njegovo ime.
+Zgoraj je primer, kako lahko naštejemo orodja na strežniku. Za vsako orodje nato izpišemo njegovo ime.
 
 #### Java
 
 ```java
-// List and demonstrate tools
+// Naštej in pokaži orodja
 ListToolsResult toolsList = client.listTools();
 System.out.println("Available Tools = " + toolsList);
 
-// You can also ping the server to verify connection
+// Povezavo lahko preveriš tudi s »ping« ukazom strežnika
 client.ping();
 ```
 
 V zgornji kodi smo:
 
-- Poklicali `listTools()`, da dobimo vsa razpoložljiva orodja iz MCP strežnika.
+- Poklicali `listTools()`, da dobimo vsa razpoložljiva orodja MCP strežnika.
 - Uporabili `ping()`, da preverimo, ali povezava s strežnikom deluje.
-- `ListToolsResult` vsebuje informacije o vseh orodjih, vključno z njihovimi imeni, opisi in shemami vhodnih podatkov.
+- `ListToolsResult` vsebuje informacije o vseh orodjih vključno z njihovimi imeni, opisi in shemami vhodnih podatkov.
 
-Odlično, zdaj smo zajeli vse funkcije. Zdaj pa se postavlja vprašanje, kdaj jih uporabimo? Ta odjemalec je precej preprost, preprost v smislu, da bomo morali funkcije izrecno poklicati, ko jih želimo. V naslednjem poglavju bomo ustvarili bolj napreden odjemalec, ki bo imel dostop do lastnega velikega jezikovnega modela (LLM). Za zdaj pa poglejmo, kako lahko sprožimo funkcije na strežniku:
+Odlično, zdaj smo zajeli vse funkcije. Zdaj je vprašanje, kdaj jih uporabiti? Ta odjemalec je precej enostaven, kar pomeni, da jih bomo morali izrecno klicati, ko jih bomo želeli uporabiti. V naslednjem poglavju bomo ustvarili naprednejšega odjemalca, ki bo imel dostop do lastnega velikega jezikovnega modela, LLM. Za zdaj pa si poglejmo, kako lahko prikličemo funkcije na strežniku:
 
 #### Rust
 
 V glavni funkciji, po inicializaciji odjemalca, lahko inicializiramo strežnik in naštejemo nekatere njegove funkcije.
 
 ```rust
-// Initialize
+// Inicializiraj
 let server_info = client.peer_info();
 println!("Server info: {:?}", server_info);
 
-// List tools
+// Navedite orodja
 let tools = client.list_tools(Default::default()).await?;
 println!("Available tools: {:?}", tools);
 ```
 
-### -4- Sprožanje funkcij
+### -4- Klic funkcij
 
-Za sprožanje funkcij moramo zagotoviti, da določimo pravilne argumente in v nekaterih primerih ime funkcije, ki jo želimo sprožiti.
+Za klic funkcij moramo zagotoviti pravilne argumente in v nekaterih primerih ime, kar želimo poklicati.
 
 #### TypeScript
 
 ```typescript
 
-// Read a resource
+// Preberi vir
 const resource = await client.readResource({
   uri: "file:///example.txt"
 });
 
-// Call a tool
+// Pokliči orodje
 const result = await client.callTool({
   name: "example-tool",
   arguments: {
@@ -447,7 +445,7 @@ const result = await client.callTool({
   }
 });
 
-// call prompt
+// pokliči poziv
 const promptResult = await client.getPrompt({
     name: "review-code",
     arguments: {
@@ -458,7 +456,7 @@ const promptResult = await client.getPrompt({
 
 V zgornji kodi smo:
 
-- Prebrali vir, poklicali smo vir z uporabo `readResource()` in določili `uri`. Tukaj je, kako bi to najverjetneje izgledalo na strežniški strani:
+- Prebrali vir; pokličemo vir z `readResource()` in določimo `uri`. Tukaj je, kako to verjetno izgleda na strežniški strani:
 
     ```typescript
     server.resource(
@@ -473,9 +471,9 @@ V zgornji kodi smo:
     );
     ```
 
-    Naša vrednost `uri` `file://example.txt` ustreza `file://{name}` na strežniku. `example.txt` bo preslikan na `name`.
+    Naša vrednost `uri` `file://example.txt` ustreza `file://{name}` na strežniku. `example.txt` bo preslikan v `name`.
 
-- Poklicali orodje, poklicali smo ga z določitvijo njegovega `name` in njegovih `arguments`, kot sledi:
+- Poklicali orodje; to storimo z določanjem njegovega `name` in `arguments` tako:
 
     ```typescript
     const result = await client.callTool({
@@ -486,7 +484,7 @@ V zgornji kodi smo:
     });
     ```
 
-- Pridobili poziv, za pridobitev poziva pokličete `getPrompt()` z `name` in `arguments`. Strežniška koda izgleda takole:
+- Pridobili poziv; za poziv kličemo `getPrompt()` z `name` in `arguments`. Strežniška koda izgleda tako:
 
     ```typescript
     server.prompt(
@@ -504,7 +502,7 @@ V zgornji kodi smo:
     );
     ```
 
-    in vaša odjemalska koda bo zato izgledala takole, da se ujema s tem, kar je deklarirano na strežniku:
+    in zato vaša koda odjemalca izgleda takole, da ustreza tistemu, kar je deklarirano na strežniku:
 
     ```typescript
     const promptResult = await client.getPrompt({
@@ -518,11 +516,11 @@ V zgornji kodi smo:
 #### Python
 
 ```python
-# Read a resource
+# Preberi vir
 print("READING RESOURCE")
 content, mime_type = await session.read_resource("greeting://hello")
 
-# Call a tool
+# Pokliči orodje
 print("CALL TOOL")
 result = await session.call_tool("add", arguments={"a": 1, "b": 7})
 print(result.content)
@@ -531,7 +529,7 @@ print(result.content)
 V zgornji kodi smo:
 
 - Poklicali vir z imenom `greeting` z uporabo `read_resource`.
-- Sprožili orodje z imenom `add` z uporabo `call_tool`.
+- Poklicali orodje z imenom `add` z uporabo `call_tool`.
 
 #### .NET
 
@@ -544,7 +542,7 @@ V zgornji kodi smo:
       cancellationToken:CancellationToken.None);
   ```
 
-1. Za izpis rezultata, tukaj je nekaj kode za obdelavo tega:
+1. Za izpis rezultata pa nekaj kode za obdelavo:
 
   ```csharp
   Console.WriteLine(result.Content.First(c => c.Type == "text").Text);
@@ -554,7 +552,7 @@ V zgornji kodi smo:
 #### Java
 
 ```java
-// Call various calculator tools
+// Pokliči različna orodja kalkulatorja
 CallToolResult resultAdd = client.callTool(new CallToolRequest("add", Map.of("a", 5.0, "b", 3.0)));
 System.out.println("Add Result = " + resultAdd);
 
@@ -573,15 +571,15 @@ System.out.println("Help = " + resultHelp);
 
 V zgornji kodi smo:
 
-- Poklicali več orodij kalkulatorja z uporabo metode `callTool()` z objekti `CallToolRequest`.
-- Vsak klic orodja določa ime orodja in `Map` argumentov, ki jih to orodje zahteva.
-- Strežniška orodja pričakujejo specifična imena parametrov (kot sta "a", "b" za matematične operacije).
-- Rezultati so vrnjeni kot objekti `CallToolResult`, ki vsebujejo odgovor strežnika.
+- Poklicali več kalkulacijskih orodij z metodo `callTool()` s predmeti `CallToolRequest`.
+- Vsak klic orodja določa ime orodja in `Map` argumentov, ki jih orodje zahteva.
+- Strežniška orodja pričakujejo specifična imena parametrov (kot "a", "b" za matematične operacije).
+- Rezultati so vrnjeni kot objekti `CallToolResult`, ki vsebujejo odziv strežnika.
 
 #### Rust
 
 ```rust
-// Call add tool with arguments = {"a": 3, "b": 2}
+// Pokliči orodje add z argumenti = {"a": 3, "b": 2}
 let a = 3;
 let b = 2;
 let tool_result = client
@@ -595,11 +593,11 @@ println!("Result of {:?} + {:?}: {:?}", a, b, tool_result);
 
 ### -5- Zagon odjemalca
 
-Za zagon odjemalca vnesite naslednji ukaz v terminal:
+Za zagon odjemalca v terminal vpišite naslednji ukaz:
 
 #### TypeScript
 
-Dodajte naslednji vnos v razdelek "scripts" v *package.json*:
+Dodajte naslednji vnos v vaš odsek "scripts" v *package.json*:
 
 ```json
 "client": "tsc && node build/client.js"
@@ -625,23 +623,23 @@ dotnet run
 
 #### Java
 
-Najprej se prepričajte, da vaš MCP strežnik deluje na `http://localhost:8080`. Nato zaženite odjemalca:
+Najprej zagotovite, da vaš MCP strežnik teče na `http://localhost:8080`. Nato zaženite odjemalca:
 
 ```bash
-# Build you project
+# Zgradi svoj projekt
 ./mvnw clean compile
 
-# Run the client
+# Zaženi odjemalca
 ./mvnw exec:java -Dexec.mainClass="com.microsoft.mcp.sample.client.SDKClient"
 ```
 
-Alternativno lahko zaženete celoten projekt odjemalca, ki je na voljo v mapi rešitve `03-GettingStarted\02-client\solution\java`:
+Lahko pa zaženete celoten projekt odjemalca, ki je na voljo v mapi rešitve `03-GettingStarted\02-client\solution\java`:
 
 ```bash
-# Navigate to the solution directory
+# Pomaknite se do imenika rešitve
 cd 03-GettingStarted/02-client/solution/java
 
-# Build and run the JAR
+# Sestavite in zaženite JAR
 ./mvnw clean package
 java -jar target/calculator-client-0.0.1-SNAPSHOT.jar
 ```
@@ -655,9 +653,9 @@ cargo run
 
 ## Naloga
 
-V tej nalogi boste uporabili, kar ste se naučili pri ustvarjanju odjemalca, in ustvarili svojega odjemalca.
+V tej nalogi boste uporabili naučeno za ustvarjanje svojega odjemalca.
 
-Tukaj je strežnik, ki ga lahko uporabite in ga morate poklicati prek svoje odjemalske kode. Poskusite dodati več funkcij strežniku, da bo bolj zanimiv.
+Tukaj je strežnik, ki ga lahko uporabite in ga morate poklicati preko vaše kode odjemalca. Poskusite dodati več funkcionalnosti strežniku, da bo bolj zanimiv.
 
 ### TypeScript
 
@@ -666,13 +664,13 @@ import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mc
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 
-// Create an MCP server
+// Ustvari MCP strežnik
 const server = new McpServer({
   name: "Demo",
   version: "1.0.0"
 });
 
-// Add an addition tool
+// Dodaj orodje za seštevanje
 server.tool("add",
   { a: z.number(), b: z.number() },
   async ({ a, b }) => ({
@@ -680,7 +678,7 @@ server.tool("add",
   })
 );
 
-// Add a dynamic greeting resource
+// Dodaj dinamični vir pozdravov
 server.resource(
   "greeting",
   new ResourceTemplate("greeting://{name}", { list: undefined }),
@@ -692,7 +690,7 @@ server.resource(
   })
 );
 
-// Start receiving messages on stdin and sending messages on stdout
+// Začni prejemati sporočila na stdin in pošiljati sporočila na stdout
 
 async function main() {
   const transport = new StdioServerTransport();
@@ -712,18 +710,18 @@ main().catch((error) => {
 # server.py
 from mcp.server.fastmcp import FastMCP
 
-# Create an MCP server
+# Ustvari MCP strežnik
 mcp = FastMCP("Demo")
 
 
-# Add an addition tool
+# Dodaj orodje za seštevanje
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
     return a + b
 
 
-# Add a dynamic greeting resource
+# Dodaj dinamični vir pozdrava
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
@@ -767,15 +765,15 @@ Prav tako preverite to povezavo za klic [pozivov in virov](https://github.com/mo
 
 ### Rust
 
-V [prejšnjem razdelku](../../../../03-GettingStarted/01-first-server) ste se naučili, kako ustvariti preprost MCP strežnik z Rust. Lahko nadaljujete z gradnjo na tem ali preverite to povezavo za več primerov MCP strežnikov na osnovi Rust: [Primeri MCP strežnikov](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
+V [predhodnem poglavju](../../../../03-GettingStarted/01-first-server) ste se naučili, kako ustvariti preprost MCP strežnik z Rustom. Lahko nadaljujete z razvojem tega ali preverite to povezavo za več primerov MCP strežnikov z Rustom: [Primeri MCP strežnikov](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
 
 ## Rešitev
 
-**Mapa rešitev** vsebuje popolne, pripravljene za zagon implementacije odjemalcev, ki prikazujejo vse koncepte, obravnavane v tem priročniku. Vsaka rešitev vključuje tako kodo odjemalca kot strežnika, organizirano v ločene, samostojne projekte.
+**Mapa rešitve** vsebuje popolne, takoj za zagon pripravljene implementacije odjemalcev, ki prikazujejo vse pojme obravnavane v tem tutorialu. Vsaka rešitev vključuje kodo odjemalca in strežnika, organizirano v ločenih, samostojnih projektih.
 
 ### 📁 Struktura rešitve
 
-Mapa rešitev je organizirana po programskih jezikih:
+Mapa rešitve je organizirana po programskih jezikih:
 
 ```text
 solution/
@@ -809,29 +807,29 @@ solution/
 
 Vsaka jezikovno specifična rešitev ponuja:
 
-- **Popolno implementacijo odjemalca** z vsemi funkcijami iz priročnika.
-- **Delujočo strukturo projekta** z ustreznimi odvisnostmi in konfiguracijo.
-- **Skripte za gradnjo in zagon** za enostavno nastavitev in izvedbo.
-- **Podroben README** z jezikovno specifičnimi navodili.
-- **Primeri obdelave napak** in obdelave rezultatov.
+- **Popolno implementacijo odjemalca** z vsemi funkcijami iz tutoriala
+- **Delujočo strukturo projekta** s pravilnimi odvisnostmi in konfiguracijo
+- **Skripte za gradnjo in zagon** za enostavno nastavitev in izvajanje
+- **Podroben README** z navodili po jeziku
+- **Primere obdelave napak** in rezultatov
 
 ### 📖 Uporaba rešitev
 
-1. **Pomaknite se do mape za želeni jezik**:
+1. **Pomaknite se v mapo za želeni programski jezik**:
 
    ```bash
-   cd solution/typescript/    # For TypeScript
-   cd solution/java/          # For Java
-   cd solution/python/        # For Python
-   cd solution/dotnet/        # For .NET
+   cd solution/typescript/    # Za TypeScript
+   cd solution/java/          # Za Javo
+   cd solution/python/        # Za Python
+   cd solution/dotnet/        # Za .NET
    ```
 
-2. **Sledite navodilom v README** v vsaki mapi za:
-   - Namestitev odvisnosti.
-   - Gradnjo projekta.
-   - Zagon odjemalca.
+2. **Sledite navodilom v README v vsaki mapi za:**
+   - Namestitev odvisnosti
+   - Gradnjo projekta
+   - Zagon odjemalca
 
-3. **Primer izpisa**, ki ga morate videti:
+3. **Primer izhoda, ki ga morate videti:**
 
    ```text
    Prompt: Please review this code: console.log("hello");
@@ -839,74 +837,78 @@ Vsaka jezikovno specifična rešitev ponuja:
    Tool result: { content: [ { type: 'text', text: '9' } ] }
    ```
 
-Za popolno dokumentacijo in navodila po korakih si oglejte: **[📖 Dokumentacija rešitve](./solution/README.md)**
+Za popolno dokumentacijo in navodila korak za korakom, glejte: **[📖 Dokumentacija rešitve](./solution/README.md)**
 
 ## 🎯 Popolni primeri
 
-Ponudili smo popolne, delujoče implementacije odjemalcev za vse programske jezike, obravnavane v tem priročniku. Ti primeri prikazujejo celotno funkcionalnost, opisano zgoraj, in jih lahko uporabite kot referenčne implementacije ali izhodišča za svoje projekte.
+Pripravili smo popolne, delujoče implementacije odjemalcev za vse programske jezike, obravnavane v tem tutorialu. Ti primeri prikazujejo vso zgoraj opisano funkcionalnost in jih lahko uporabite kot referenčne implementacije ali izhodišča za lastne projekte.
 
 ### Na voljo popolni primeri
 
 | Jezik | Datoteka | Opis |
-|-------|---------|------|
-| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | Popoln Java odjemalec z uporabo SSE transporta z obsežno obdelavo napak |
-| **C#** | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | Popoln C# odjemalec z uporabo stdio transporta z avtomatskim zagonom strežnika |
-| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | Popoln TypeScript odjemalec s polno podporo MCP protokolu |
-| **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | Popoln Python odjemalec z uporabo vzorcev async/await |
+|--------|----------|------|
+| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | Popoln Java odjemalec s SSE prenosom in obsežnim ravnanjem z napakami |
+| **C#** | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | Popoln C# odjemalec s stdio prenosom in samodejnim zagonom strežnika |
+| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | Popoln TypeScript odjemalec s podporo za MCP protokol v celoti |
+| **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | Popoln Python odjemalec z uporabo async/await vzorcev |
 | **Rust** | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs) | Popoln Rust odjemalec z uporabo Tokio za asinhrone operacije |
+
 Vsak popoln primer vključuje:
-
-- ✅ **Vzpostavitev povezave** in obravnavo napak
-- ✅ **Iskanje strežnika** (orodja, viri, pozivi, kjer je primerno)
+- ✅ **Vzpostavitev povezave** in obravnava napak
+- ✅ **Odkritje strežnika** (orodja, viri, pozivi kjer je primerno)
 - ✅ **Operacije kalkulatorja** (seštevanje, odštevanje, množenje, deljenje, pomoč)
-- ✅ **Obdelavo rezultatov** in formatiran izpis
-- ✅ **Celovito obravnavo napak**
-- ✅ **Čisto, dokumentirano kodo** s komentarji po korakih
+- ✅ **Obdelava rezultatov** in oblikovani izpis
+- ✅ **Celovita obravnava napak**
+- ✅ **Čista, dokumentirana koda** s korak za korakom komentarji
 
-### Začetek z popolnimi primeri
+### Začetek z dokončnimi primeri
 
-1. **Izberite želeni jezik** iz zgornje tabele
-2. **Preglejte datoteko s popolnim primerom**, da razumete celotno implementacijo
-3. **Zaženite primer** po navodilih v [`complete_examples.md`](./complete_examples.md)
+1. **Izberite želeni jezik** iz tabele zgoraj
+2. **Preglejte datoteko z dokončnim primerom**, da razumete celotno implementacijo
+3. **Zaženite primer** sledite navodilom v [`complete_examples.md`](./complete_examples.md)
 4. **Prilagodite in razširite** primer za vaš specifičen primer uporabe
 
-Za podrobno dokumentacijo o zagonu in prilagajanju teh primerov si oglejte: **[📖 Dokumentacija popolnih primerov](./complete_examples.md)**
+Za podrobno dokumentacijo o zagonu in prilagajanju teh primerov si oglejte: **[📖 Dokumentacija dokončnih primerov](./complete_examples.md)**
 
-### 💡 Rešitev vs. Popolni primeri
+### 💡 Rešitev proti dokončnim primerom
 
-| **Mapa rešitev** | **Popolni primeri** |
-|--------------------|--------------------- |
-| Celotna struktura projekta z gradbenimi datotekami | Implementacije v eni datoteki |
+| **Mapa z rešitvijo** | **Dokončni primeri** |
+|---------------------|--------------------- |
+| Celotna struktura projekta z datotekami za gradnjo | Izvedbe v eni datoteki |
 | Pripravljeno za zagon z odvisnostmi | Osredotočeni primeri kode |
-| Nastavitev podobna produkciji | Izobraževalni referenčni primer |
+| Okolje podobno proizvodnemu | Izobraževalni referenčni primer |
 | Orodja specifična za jezik | Primerjava med jeziki |
 
-Oba pristopa sta dragocena - uporabite **mapo rešitev** za celotne projekte in **popolne primere** za učenje in referenco.
+Oba pristopa sta dragocena – uporabite **mapo z rešitvijo** za celovite projekte in **dokončne primere** za učenje in referenco.
 
 ## Ključne ugotovitve
 
-Ključne ugotovitve tega poglavja o klientih so naslednje:
+Ključne ugotovitve za to poglavje o klientih so naslednje:
 
-- Lahko se uporabljajo za odkrivanje in izvajanje funkcij na strežniku.
-- Lahko zaženejo strežnik med svojim zagonom (kot v tem poglavju), vendar se lahko klienti povežejo tudi z že delujočimi strežniki.
-- So odličen način za testiranje zmogljivosti strežnika poleg alternativ, kot je Inspector, ki je bil opisan v prejšnjem poglavju.
+- Uporabljajo se lahko za odkrivanje in klicanje funkcionalnosti na strežniku.
+- Lahko zaženejo strežnik, medtem ko se sami sprožijo (kot v tem poglavju), vendar se lahko klienti povežejo tudi na že delujoče strežnike.
+- So odličen način za preizkus zmožnosti strežnika poleg alternativ, kot je Inspector, kot je bilo opisano v prejšnjem poglavju.
 
 ## Dodatni viri
 
 - [Gradnja klientov v MCP](https://modelcontextprotocol.io/quickstart/client)
 
-## Primeri
+## Vzorci
 
-- [Java Kalkulator](../samples/java/calculator/README.md)
-- [.Net Kalkulator](../../../../03-GettingStarted/samples/csharp)
-- [JavaScript Kalkulator](../samples/javascript/README.md)
-- [TypeScript Kalkulator](../samples/typescript/README.md)
-- [Python Kalkulator](../../../../03-GettingStarted/samples/python)
-- [Rust Kalkulator](../../../../03-GettingStarted/samples/rust)
+- [Java kalkulator](../samples/java/calculator/README.md)
+- [.Net kalkulator](../../../../03-GettingStarted/samples/csharp)
+- [JavaScript kalkulator](../samples/javascript/README.md)
+- [TypeScript kalkulator](../samples/typescript/README.md)
+- [Python kalkulator](../../../../03-GettingStarted/samples/python)
+- [Rust kalkulator](../../../../03-GettingStarted/samples/rust)
 
 ## Kaj sledi
 
-- Naprej: [Ustvarjanje klienta z LLM](../03-llm-client/README.md)
+- Naslednje: [Ustvarjanje klienta z LLM](../03-llm-client/README.md)
 
-**Omejitev odgovornosti**:  
-Ta dokument je bil preveden z uporabo storitve AI za prevajanje [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, vas prosimo, da upoštevate, da lahko avtomatizirani prevodi vsebujejo napake ali netočnosti. Izvirni dokument v njegovem maternem jeziku je treba obravnavati kot avtoritativni vir. Za ključne informacije priporočamo profesionalni človeški prevod. Ne prevzemamo odgovornosti za morebitne nesporazume ali napačne razlage, ki izhajajo iz uporabe tega prevoda.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Opozorilo**:
+Ta dokument je bil preveden z uporabo avtomatske prevajalske storitve AI [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, upoštevajte, da lahko avtomatski prevodi vsebujejo napake ali netočnosti. Izvirni dokument v njegovem izvirnem jeziku velja za avtoritativni vir. Za ključne informacije priporočamo strokovni človeški prevod. Nismo odgovorni za morebitna nesporazume ali napačne interpretacije, ki izhajajo iz uporabe tega prevoda.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
