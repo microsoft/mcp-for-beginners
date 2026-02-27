@@ -1,10 +1,10 @@
 # إنشاء عميل
 
-العملاء هم تطبيقات أو سكربتات مخصصة تتواصل مباشرة مع خادم MCP لطلب الموارد، الأدوات، والمحفزات. على عكس استخدام أداة الفحص التي توفر واجهة رسومية للتفاعل مع الخادم، فإن كتابة عميل خاص بك يتيح التفاعل البرمجي والتلقائي. هذا يمكّن المطورين من دمج قدرات MCP في سير العمل الخاص بهم، أتمتة المهام، وبناء حلول مخصصة تلبي احتياجات محددة.
+العملاء هم تطبيقات مخصصة أو سكربتات تتواصل مباشرة مع خادم MCP لطلب الموارد، الأدوات، والمطالبات. بخلاف استخدام أداة المفتش التي توفر واجهة رسومية للتفاعل مع الخادم، كتابة عميل خاص بك تتيح تفاعلات مبرمجة وآلية. هذا يمكّن المطورين من دمج قدرات MCP في سير العمل الخاص بهم، أتمتة المهام، وبناء حلول مخصصة تلبي احتياجات محددة.
 
 ## نظرة عامة
 
-تقدم هذه الدرس مفهوم العملاء ضمن نظام Model Context Protocol (MCP). ستتعلم كيفية كتابة عميل خاص بك وربطه بخادم MCP.
+تقدم هذه الدرس مفهوم العملاء داخل نظام بروتوكول سياق النموذج (MCP). ستتعلم كيفية كتابة عميل خاص بك وجعله يتصل بخادم MCP.
 
 ## أهداف التعلم
 
@@ -12,22 +12,22 @@
 
 - فهم ما يمكن للعميل القيام به.
 - كتابة عميل خاص بك.
-- ربط العميل واختباره مع خادم MCP للتأكد من عمله كما هو متوقع.
+- الاتصال واختبار العميل مع خادم MCP لضمان عمل الأخير كما هو متوقع.
 
 ## ما الذي يتطلبه كتابة عميل؟
 
 لكتابة عميل، ستحتاج إلى القيام بما يلي:
 
-- **استيراد المكتبات الصحيحة**. ستستخدم نفس المكتبة كما في السابق، ولكن مع استخدام تراكيب مختلفة.
-- **إنشاء عميل**. يتضمن ذلك إنشاء مثيل للعميل وربطه بطريقة النقل المختارة.
-- **تحديد الموارد التي تريد عرضها**. يأتي خادم MCP مع موارد، أدوات، ومحفزات، ويجب عليك تحديد ما تريد عرضه.
-- **دمج العميل مع تطبيق مضيف**. بمجرد معرفة قدرات الخادم، تحتاج إلى دمج ذلك مع تطبيقك المضيف بحيث يتم استدعاء الميزة المناسبة على الخادم عند إدخال المستخدم أمرًا أو محفزًا.
+- **استيراد المكتبات الصحيحة**. ستستخدم نفس المكتبة كما في السابق، فقط مع تراكيب مختلفة.
+- **إنشاء نسخة من العميل**. هذا سيتضمن إنشاء مثيل للعميل وربطه بطريقة النقل المختارة.
+- **تحديد الموارد التي سيتم سردها**. يأتي خادم MCP الخاص بك مع موارد، أدوات ومطالبات، تحتاج إلى تحديد أيها سيتم سردها.
+- **دمج العميل مع تطبيق مضيف**. بمجرد معرفتك بقدرات الخادم، تحتاج إلى دمج هذا مع تطبيق المضيف بحيث إذا كتب المستخدم مطالبة أو أمرًا آخر يتم استدعاء الميزة المقابلة على الخادم.
 
-الآن بعد أن فهمنا على مستوى عالٍ ما نحن بصدد القيام به، دعونا نلقي نظرة على مثال.
+الآن بعد أن فهمنا على مستوى عالٍ ما نحن على وشك القيام به، دعنا نلقي نظرة على مثال في القسم التالي.
 
 ### مثال على عميل
 
-لنلقِ نظرة على هذا المثال للعميل:
+لنلق نظرة على هذا العميل النموذجي:
 
 ### TypeScript
 
@@ -49,10 +49,10 @@ const client = new Client(
 
 await client.connect(transport);
 
-// List prompts
+// قائمة الطلبات
 const prompts = await client.listPrompts();
 
-// Get a prompt
+// الحصول على طلب
 const prompt = await client.getPrompt({
   name: "example-prompt",
   arguments: {
@@ -60,15 +60,15 @@ const prompt = await client.getPrompt({
   }
 });
 
-// List resources
+// قائمة الموارد
 const resources = await client.listResources();
 
-// Read a resource
+// قراءة مورد
 const resource = await client.readResource({
   uri: "file:///example.txt"
 });
 
-// Call a tool
+// استدعاء أداة
 const result = await client.callTool({
   name: "example-tool",
   arguments: {
@@ -77,23 +77,23 @@ const result = await client.callTool({
 });
 ```
 
-في الكود السابق قمنا بـ:
+في الشفرة السابقة قمنا بـ:
 
-- استيراد المكتبات.
-- إنشاء مثيل للعميل وربطه باستخدام stdio كوسيلة للنقل.
-- عرض المحفزات، الموارد، والأدوات واستدعائها جميعًا.
+- استيراد المكتبات
+- إنشاء نسخة من العميل وربطها باستخدام stdio للنقل.
+- سرد المطالبات، الموارد، والأدوات واستدعاءها جميعًا.
 
-ها قد حصلت على عميل يمكنه التحدث مع خادم MCP.
+هذا هو، عميل يمكنه التحدث إلى خادم MCP.
 
-لنأخذ وقتنا في القسم التالي من التمارين ونفصل كل جزء من الكود ونشرح ما يحدث.
+دعنا نأخذ وقتنا في قسم التمرين القادم ونفصل كل مقتطف كود ونشرح ما يجري.
 
-## تمرين: كتابة عميل
+## التمرين: كتابة عميل
 
-كما ذكرنا أعلاه، لنأخذ وقتنا في شرح الكود، وبكل تأكيد يمكنك كتابة الكود أثناء المتابعة إذا أردت.
+كما ذُكر أعلاه، دعنا نأخذ وقتنا نشرح الكود، وبكل الوسائل قم بالبرمجة جنبًا إلى جنب إذا رغبت.
 
 ### -1- استيراد المكتبات
 
-لنقم باستيراد المكتبات التي نحتاجها، سنحتاج إلى مراجع لعميلنا وبروتوكول النقل الذي اخترناه، stdio. بروتوكول stdio مخصص للأشياء التي تعمل على جهازك المحلي. SSE هو بروتوكول نقل آخر سنعرضه في الفصول القادمة ولكنه خيارك الآخر. ولكن الآن، دعنا نستمر مع stdio.
+دعنا نستورد المكتبات التي نحتاجها، سنحتاج مراجع إلى العميل وبروتوكول النقل المختار، stdio. stdio هو بروتوكول للأشياء التي من المفترض أن تعمل على جهازك المحلي. SSE هو بروتوكول نقل آخر سنعرضه في الفصول القادمة لكنه خيارك الآخر. الآن، لنكمل مع stdio.
 
 #### TypeScript
 
@@ -116,12 +116,11 @@ using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using ModelContextProtocol.Client;
-using ModelContextProtocol.Protocol.Transport;
 ```
 
 #### Java
 
-بالنسبة لـ Java، ستقوم بإنشاء عميل يتصل بخادم MCP من التمرين السابق. باستخدام نفس بنية مشروع Java Spring Boot من [البدء مع خادم MCP](../../../../03-GettingStarted/01-first-server/solution/java)، قم بإنشاء فئة Java جديدة تسمى `SDKClient` في المجلد `src/main/java/com/microsoft/mcp/sample/client/` وأضف الاستيرادات التالية:
+بالنسبة للجافا، ستنشئ عميلًا يتصل بخادم MCP من التمرين السابق. باستخدام نفس هيكل مشروع Java Spring Boot من [البدء مع خادم MCP](../../../../03-GettingStarted/01-first-server/solution/java)، أنشئ فئة جافا جديدة باسم `SDKClient` في المجلد `src/main/java/com/microsoft/mcp/sample/client/` وأضف الاستيرادات التالية:
 
 ```java
 import java.util.Map;
@@ -136,7 +135,7 @@ import io.modelcontextprotocol.spec.McpSchema.ListToolsResult;
 
 #### Rust
 
-ستحتاج إلى إضافة التبعيات التالية إلى ملف `Cargo.toml`.
+ستحتاج إلى إضافة الاعتمادات التالية إلى ملف `Cargo.toml` الخاص بك.
 
 ```toml
 [package]
@@ -162,11 +161,11 @@ use rmcp::{
 use tokio::process::Command;
 ```
 
-دعنا ننتقل إلى إنشاء العميل.
+دعنا ننتقل إلى عملية التهيئة.
 
 ### -2- إنشاء العميل ووسيلة النقل
 
-سنحتاج إلى إنشاء مثيل لوسيلة النقل ومثيل للعميل الخاص بنا:
+سنحتاج إلى إنشاء مثيل لوسيلة النقل وواحد للعميل:
 
 #### TypeScript
 
@@ -188,7 +187,7 @@ await client.connect(transport);
 
 في الكود السابق قمنا بـ:
 
-- إنشاء مثيل stdio كوسيلة للنقل. لاحظ كيف يحدد الأمر والمعاملات لكيفية العثور على الخادم وتشغيله، حيث سنحتاج إلى ذلك أثناء إنشاء العميل.
+- إنشاء مثيل لوسيلة النقل stdio. لاحظ كيف أنه يحدد الأمر والوسائط لكيفية العثور على الخادم وتشغيله لأن ذلك شيء سنحتاج للقيام به عند إنشاء العميل.
 
     ```typescript
     const transport = new StdioClientTransport({
@@ -197,7 +196,7 @@ await client.connect(transport);
     });
     ```
 
-- إنشاء مثيل للعميل بإعطائه اسمًا وإصدارًا.
+- إنشاء عميل بإعطائه اسمًا وإصدارًا.
 
     ```typescript
     const client = new Client(
@@ -219,11 +218,11 @@ await client.connect(transport);
 from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
 
-# Create server parameters for stdio connection
+# إنشاء معلمات الخادم لاتصال stdio
 server_params = StdioServerParameters(
-    command="mcp",  # Executable
-    args=["run", "server.py"],  # Optional command line arguments
-    env=None,  # Optional environment variables
+    command="mcp",  # قابل للتنفيذ
+    args=["run", "server.py"],  # وسيطات اختيارية لسطر الأوامر
+    env=None,  # متغيرات بيئة اختيارية
 )
 
 async def run():
@@ -231,7 +230,7 @@ async def run():
         async with ClientSession(
             read, write
         ) as session:
-            # Initialize the connection
+            # تهيئة الاتصال
             await session.initialize()
 
           
@@ -242,12 +241,12 @@ if __name__ == "__main__":
     asyncio.run(run())
 ```
 
-في الكود السابق قمنا بـ:
+في الكود السابق قمنا بما يلي:
 
-- استيراد المكتبات اللازمة.
-- إنشاء كائن معلمات الخادم حيث سنستخدمه لتشغيل الخادم حتى نتمكن من الاتصال به باستخدام العميل.
-- تعريف طريقة `run` التي تستدعي بدورها `stdio_client` لبدء جلسة العميل.
-- إنشاء نقطة دخول حيث نوفر طريقة `run` إلى `asyncio.run`.
+- استيراد المكتبات اللازمة
+- إنشاء كائن معلمات الخادم لأننا سنستخدمه لتشغيل الخادم حتى نتمكن من الاتصال به من خلال العميل.
+- تعريف دالة `run` التي بدورها تستدعي `stdio_client` التي تبدأ جلسة العميل.
+- إنشاء نقطة دخول حيث نوفر الدالة `run` إلى `asyncio.run`.
 
 #### .NET
 
@@ -256,7 +255,6 @@ using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using ModelContextProtocol.Client;
-using ModelContextProtocol.Protocol.Transport;
 
 var builder = Host.CreateApplicationBuilder(args);
 
@@ -273,15 +271,15 @@ var clientTransport = new StdioClientTransport(new()
     Arguments = ["run", "--project", "path/to/file.csproj"],
 });
 
-await using var mcpClient = await McpClientFactory.CreateAsync(clientTransport);
+await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 ```
 
-في الكود السابق قمنا بـ:
+في الكود السابق قمنا بما يلي:
 
 - استيراد المكتبات اللازمة.
-- إنشاء وسيلة نقل stdio وإنشاء عميل `mcpClient`. الأخير هو ما سنستخدمه لعرض واستدعاء الميزات على خادم MCP.
+- إنشاء وسيلة نقل stdio وإنشاء عميل `mcpClient`. هذا الأخير هو الذي سنستخدمه لسرد واستدعاء ميزات على خادم MCP.
 
-ملاحظة: في "Arguments"، يمكنك الإشارة إما إلى ملف *.csproj* أو إلى الملف التنفيذي.
+ملاحظة، في "Arguments"، يمكنك الإشارة إما إلى *.csproj* أو إلى الملف التنفيذي.
 
 #### Java
 
@@ -303,25 +301,25 @@ public class SDKClient {
         var client = McpClient.sync(this.transport).build();
         client.initialize();
         
-        // Your client logic goes here
+        // هنا تذهب منطق العميل الخاص بك
     }
 }
 ```
 
-في الكود السابق قمنا بـ:
+في الكود السابق قمنا بما يلي:
 
-- إنشاء طريقة رئيسية تقوم بإعداد وسيلة نقل SSE تشير إلى `http://localhost:8080` حيث سيعمل خادم MCP الخاص بنا.
-- إنشاء فئة عميل تأخذ وسيلة النقل كمعامل في المنشئ.
-- في طريقة `run`، نقوم بإنشاء عميل MCP متزامن باستخدام وسيلة النقل ونبدأ الاتصال.
-- استخدام وسيلة نقل SSE (Server-Sent Events) المناسبة للتواصل المستند إلى HTTP مع خوادم Java Spring Boot MCP.
+- إنشاء طريقة رئيسية تضبط وسيلة نقل SSE تشير إلى `http://localhost:8080` حيث سيعمل خادم MCP الخاص بنا.
+- إنشاء فئة عميل تأخذ وسيلة النقل كمعامل منشئ.
+- في طريقة `run`، ننشئ عميل MCP متزامن باستخدام وسيلة النقل ونبدأ الاتصال.
+- استخدام وسيلة نقل SSE (Server-Sent Events) والتي تناسب الاتصالات المعتمدة على HTTP مع خوادم MCP باستخدام Java Spring Boot.
 
 #### Rust
 
-هذا العميل المكتوب بلغة Rust يفترض أن الخادم هو مشروع شقيق يسمى "calculator-server" في نفس الدليل. الكود أدناه سيبدأ الخادم ويتصل به.
+لاحظ أن هذا العميل الخاص بـ Rust يفترض أن الخادم هو مشروع شقيق باسم "calculator-server" في نفس الدليل. الكود أدناه سيبدأ الخادم ويتصل به.
 
 ```rust
 async fn main() -> Result<(), RmcpError> {
-    // Assume the server is a sibling project named "calculator-server" in the same directory
+    // افترض أن الخادم هو مشروع شقيق باسم "calculator-server" في نفس الدليل
     let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .expect("failed to locate workspace root")
@@ -336,51 +334,51 @@ async fn main() -> Result<(), RmcpError> {
         )
         .await?;
 
-    // TODO: Initialize
+    // مهمة: التهيئة
 
-    // TODO: List tools
+    // مهمة: سرد الأدوات
 
-    // TODO: Call add tool with arguments = {"a": 3, "b": 2}
+    // مهمة: استدعاء أداة الإضافة بالوسائط = {"a": 3, "b": 2}
 
     client.cancel().await?;
     Ok(())
 }
 ```
 
-### -3- عرض ميزات الخادم
+### -3- سرد ميزات الخادم
 
-الآن، لدينا عميل يمكنه الاتصال إذا تم تشغيل البرنامج. ومع ذلك، فإنه لا يعرض ميزاته، لذا دعنا نفعل ذلك الآن:
+الآن، لدينا عميل يمكنه الاتصال إذا تم تشغيل البرنامج. مع ذلك، لا يسرد ميزاته فعليًا، لذا دعنا نفعل ذلك الآن:
 
 #### TypeScript
 
 ```typescript
-// List prompts
+// قائمة المطالبات
 const prompts = await client.listPrompts();
 
-// List resources
+// قائمة الموارد
 const resources = await client.listResources();
 
-// list tools
+// قائمة الأدوات
 const tools = await client.listTools();
 ```
 
 #### Python
 
 ```python
-# List available resources
+# سرد الموارد المتاحة
 resources = await session.list_resources()
 print("LISTING RESOURCES")
 for resource in resources:
     print("Resource: ", resource)
 
-# List available tools
+# سرد الأدوات المتاحة
 tools = await session.list_tools()
 print("LISTING TOOLS")
 for tool in tools.tools:
     print("Tool: ", tool.name)
 ```
 
-هنا نقوم بعرض الموارد المتاحة باستخدام `list_resources()` والأدوات باستخدام `list_tools` وطباعتها.
+هنا نقوم بسرد الموارد المتاحة، `list_resources()` والأدوات، `list_tools` وطباعتها.
 
 #### .NET
 
@@ -391,55 +389,55 @@ foreach (var tool in await client.ListToolsAsync())
 }
 ```
 
-أعلاه مثال على كيفية عرض الأدوات على الخادم. لكل أداة، نقوم بعد ذلك بطباعة اسمها.
+أعلاه مثال كيف يمكننا سرد الأدوات على الخادم. لكل أداة، نطبع اسمها.
 
 #### Java
 
 ```java
-// List and demonstrate tools
+// قائمة وعرض الأدوات
 ListToolsResult toolsList = client.listTools();
 System.out.println("Available Tools = " + toolsList);
 
-// You can also ping the server to verify connection
+// يمكنك أيضًا إرسال طلب Ping للخادم للتحقق من الاتصال
 client.ping();
 ```
 
-في الكود السابق قمنا بـ:
+في الكود السابق قمنا بما يلي:
 
 - استدعاء `listTools()` للحصول على جميع الأدوات المتاحة من خادم MCP.
 - استخدام `ping()` للتحقق من أن الاتصال بالخادم يعمل.
-- يحتوي `ListToolsResult` على معلومات حول جميع الأدوات بما في ذلك أسمائها، أوصافها، ومخططات الإدخال الخاصة بها.
+- يحتوي `ListToolsResult` على معلومات عن كل الأدوات بما في ذلك أسماؤها، أوصافها، ومخططات الإدخال الخاصة بها.
 
-رائع، الآن قمنا بجمع جميع الميزات. السؤال الآن هو متى نستخدمها؟ حسنًا، هذا العميل بسيط جدًا، بمعنى أنه سيتعين علينا استدعاء الميزات صراحةً عند الحاجة. في الفصل التالي، سنقوم بإنشاء عميل أكثر تقدمًا لديه إمكانية الوصول إلى نموذج لغوي كبير خاص به (LLM). ولكن الآن، دعنا نرى كيف يمكننا استدعاء الميزات على الخادم:
+جيد، الآن قمنا بالتقاط كل الميزات. الآن السؤال، متى نستخدمها؟ حسنًا، هذا العميل بسيط جدًا، بسيط بمعنى أننا سنحتاج لاستدعاء الميزات صراحةً عندما نريدها. في الفصل التالي، سننشئ عميلًا أكثر تقدمًا لديه وصول إلى نموذج لغوي كبير خاص به، LLM. لكن الآن، دعنا نرى كيف يمكننا استدعاء الميزات على الخادم:
 
 #### Rust
 
-في الدالة الرئيسية، بعد تهيئة العميل، يمكننا تهيئة الخادم وعرض بعض ميزاته.
+في الوظيفة الرئيسية، بعد تهيئة العميل، يمكننا تهيئة الخادم وسرد بعض ميزاته.
 
 ```rust
-// Initialize
+// تهيئة
 let server_info = client.peer_info();
 println!("Server info: {:?}", server_info);
 
-// List tools
+// قائمة الأدوات
 let tools = client.list_tools(Default::default()).await?;
 println!("Available tools: {:?}", tools);
 ```
 
 ### -4- استدعاء الميزات
 
-لاستدعاء الميزات، نحتاج إلى التأكد من تحديد المعاملات الصحيحة وفي بعض الحالات اسم ما نحاول استدعاءه.
+لاستدعاء الميزات، نحتاج إلى التأكد من تحديد الوسائط الصحيحة وفي بعض الحالات اسم ما نحاول استدعاءه.
 
 #### TypeScript
 
 ```typescript
 
-// Read a resource
+// قراءة مورد
 const resource = await client.readResource({
   uri: "file:///example.txt"
 });
 
-// Call a tool
+// استدعاء أداة
 const result = await client.callTool({
   name: "example-tool",
   arguments: {
@@ -447,7 +445,7 @@ const result = await client.callTool({
   }
 });
 
-// call prompt
+// استدعاء الموجه
 const promptResult = await client.getPrompt({
     name: "review-code",
     arguments: {
@@ -458,7 +456,7 @@ const promptResult = await client.getPrompt({
 
 في الكود السابق قمنا بـ:
 
-- قراءة مورد، نستدعي المورد باستخدام `readResource()` مع تحديد `uri`. هذا ما قد يبدو عليه على جانب الخادم:
+- قراءة مورد، نستدعي المورد عبر استدعاء `readResource()` مع تحديد `uri`. هذا ما سيبدو عليه غالبًا على جانب الخادم:
 
     ```typescript
     server.resource(
@@ -475,7 +473,7 @@ const promptResult = await client.getPrompt({
 
     قيمة `uri` الخاصة بنا `file://example.txt` تتطابق مع `file://{name}` على الخادم. سيتم تعيين `example.txt` إلى `name`.
 
-- استدعاء أداة، نستدعيها بتحديد `name` و`arguments` كما يلي:
+- استدعاء أداة، نستدعيها بتحديد `name` و `arguments` هكذا:
 
     ```typescript
     const result = await client.callTool({
@@ -486,7 +484,7 @@ const promptResult = await client.getPrompt({
     });
     ```
 
-- الحصول على محفز، للحصول على محفز، نستدعي `getPrompt()` مع `name` و`arguments`. كود الخادم يبدو كما يلي:
+- الحصول على مطالبة، للحصول على مطالبة، تستدعي `getPrompt()` مع `name` و `arguments`. كود الخادم يبدو هكذا:
 
     ```typescript
     server.prompt(
@@ -504,7 +502,7 @@ const promptResult = await client.getPrompt({
     );
     ```
 
-    وبالتالي يبدو كود العميل الناتج كما يلي ليتطابق مع ما تم تعريفه على الخادم:
+    وكود العميل الناتج لذلك يبدو هكذا ليتطابق مع ما هو معلن على الخادم:
 
     ```typescript
     const promptResult = await client.getPrompt({
@@ -518,11 +516,11 @@ const promptResult = await client.getPrompt({
 #### Python
 
 ```python
-# Read a resource
+# قراءة مورد
 print("READING RESOURCE")
 content, mime_type = await session.read_resource("greeting://hello")
 
-# Call a tool
+# استدعاء أداة
 print("CALL TOOL")
 result = await session.call_tool("add", arguments={"a": 1, "b": 7})
 print(result.content)
@@ -530,12 +528,12 @@ print(result.content)
 
 في الكود السابق قمنا بـ:
 
-- استدعاء مورد يسمى `greeting` باستخدام `read_resource`.
-- استدعاء أداة تسمى `add` باستخدام `call_tool`.
+- استدعاء مورد اسمه `greeting` باستخدام `read_resource`.
+- استدعاء أداة اسمها `add` باستخدام `call_tool`.
 
 #### .NET
 
-1. لنضف بعض الكود لاستدعاء أداة:
+1. لنضيف بعض الكود لاستدعاء أداة:
 
   ```csharp
   var result = await mcpClient.CallToolAsync(
@@ -554,7 +552,7 @@ print(result.content)
 #### Java
 
 ```java
-// Call various calculator tools
+// استدعاء أدوات حاسبة مختلفة
 CallToolResult resultAdd = client.callTool(new CallToolRequest("add", Map.of("a", 5.0, "b", 3.0)));
 System.out.println("Add Result = " + resultAdd);
 
@@ -573,15 +571,15 @@ System.out.println("Help = " + resultHelp);
 
 في الكود السابق قمنا بـ:
 
-- استدعاء أدوات حاسبة متعددة باستخدام طريقة `callTool()` مع كائنات `CallToolRequest`.
-- يحدد كل استدعاء أداة اسم الأداة و`Map` من المعاملات المطلوبة لتلك الأداة.
+- استدعاء عدة أدوات حاسبة باستخدام طريقة `callTool()` مع كائنات `CallToolRequest`.
+- كل استدعاء أداة يحدد اسم الأداة و`Map` من الوسائط المطلوبة بواسطة تلك الأداة.
 - تتوقع أدوات الخادم أسماء معلمات محددة (مثل "a"، "b" للعمليات الرياضية).
-- يتم إرجاع النتائج ككائنات `CallToolResult` تحتوي على الاستجابة من الخادم.
+- تُعاد النتائج ككائنات `CallToolResult` تحتوي على الرد من الخادم.
 
 #### Rust
 
 ```rust
-// Call add tool with arguments = {"a": 3, "b": 2}
+// استدعاء أداة الجمع مع الوسيطات = {"a": 3، "b": 2}
 let a = 3;
 let b = 2;
 let tool_result = client
@@ -599,7 +597,7 @@ println!("Result of {:?} + {:?}: {:?}", a, b, tool_result);
 
 #### TypeScript
 
-أضف الإدخال التالي إلى قسم "scripts" في *package.json*:
+أضف الإدخال التالي إلى قسم "scripts" في *package.json* الخاص بك:
 
 ```json
 "client": "tsc && node build/client.js"
@@ -611,7 +609,7 @@ npm run client
 
 #### Python
 
-استدعِ العميل باستخدام الأمر التالي:
+استدع العميل بالأمر التالي:
 
 ```sh
 python client.py
@@ -625,23 +623,23 @@ dotnet run
 
 #### Java
 
-أولاً، تأكد من تشغيل خادم MCP الخاص بك على `http://localhost:8080`. ثم قم بتشغيل العميل:
+أولًا، تأكد من أن خادم MCP يعمل على `http://localhost:8080`. ثم شغّل العميل:
 
 ```bash
-# Build you project
+# بناء مشروعك
 ./mvnw clean compile
 
-# Run the client
+# تشغيل العميل
 ./mvnw exec:java -Dexec.mainClass="com.microsoft.mcp.sample.client.SDKClient"
 ```
 
 بدلاً من ذلك، يمكنك تشغيل مشروع العميل الكامل المقدم في مجلد الحل `03-GettingStarted\02-client\solution\java`:
 
 ```bash
-# Navigate to the solution directory
+# انتقل إلى دليل الحل
 cd 03-GettingStarted/02-client/solution/java
 
-# Build and run the JAR
+# بناء وتشغيل ملف JAR
 ./mvnw clean package
 java -jar target/calculator-client-0.0.1-SNAPSHOT.jar
 ```
@@ -655,9 +653,9 @@ cargo run
 
 ## المهمة
 
-في هذه المهمة، ستستخدم ما تعلمته في إنشاء عميل ولكن ستقوم بإنشاء عميل خاص بك.
+في هذه المهمة، ستستخدم ما تعلمته في إنشاء عميل، لكن أنشئ عميلًا خاصًا بك.
 
-إليك خادم يمكنك استخدامه والذي تحتاج إلى استدعائه عبر كود العميل الخاص بك، حاول إضافة المزيد من الميزات إلى الخادم لجعله أكثر إثارة.
+إليك خادم يمكنك استخدامه تحتاج لاستدعائه عبر كود العميل الخاص بك، تحقق إذا كنت تستطيع إضافة ميزات أكثر للخادم لجعله أكثر إثارة.
 
 ### TypeScript
 
@@ -666,13 +664,13 @@ import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mc
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 
-// Create an MCP server
+// إنشاء خادم MCP
 const server = new McpServer({
   name: "Demo",
   version: "1.0.0"
 });
 
-// Add an addition tool
+// إضافة أداة إضافية
 server.tool("add",
   { a: z.number(), b: z.number() },
   async ({ a, b }) => ({
@@ -680,7 +678,7 @@ server.tool("add",
   })
 );
 
-// Add a dynamic greeting resource
+// إضافة مورد ترحيب ديناميكي
 server.resource(
   "greeting",
   new ResourceTemplate("greeting://{name}", { list: undefined }),
@@ -692,7 +690,7 @@ server.resource(
   })
 );
 
-// Start receiving messages on stdin and sending messages on stdout
+// بدء استقبال الرسائل من الإدخال القياسي وإرسال الرسائل عبر الإخراج القياسي
 
 async function main() {
   const transport = new StdioServerTransport();
@@ -712,18 +710,18 @@ main().catch((error) => {
 # server.py
 from mcp.server.fastmcp import FastMCP
 
-# Create an MCP server
+# إنشاء خادم MCP
 mcp = FastMCP("Demo")
 
 
-# Add an addition tool
+# إضافة أداة جمع
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
     return a + b
 
 
-# Add a dynamic greeting resource
+# إضافة مورد ترحيب ديناميكي
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
@@ -761,21 +759,21 @@ public static class CalculatorTool
 }
 ```
 
-راجع هذا المشروع لمعرفة كيفية [إضافة المحفزات والموارد](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs).
+راجع هذا المشروع لترى كيف يمكنك [إضافة مطالبات وموارد](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs).
 
-أيضًا، تحقق من هذا الرابط لمعرفة كيفية استدعاء [المحفزات والموارد](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/).
+أيضًا، تحقق من هذا الرابط لمعرفة كيفية استدعاء [مطالبات وموارد](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/).
 
 ### Rust
 
-في [القسم السابق](../../../../03-GettingStarted/01-first-server)، تعلمت كيفية إنشاء خادم MCP بسيط باستخدام Rust. يمكنك الاستمرار في البناء على ذلك أو مراجعة هذا الرابط للحصول على المزيد من أمثلة خوادم MCP المستندة إلى Rust: [أمثلة خوادم MCP](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
+في [القسم السابق](../../../../03-GettingStarted/01-first-server)، تعلمت كيفية إنشاء خادم MCP بسيط باستخدام Rust. يمكنك الاستمرار في بناء ذلك أو الاطلاع على هذا الرابط لمزيد من أمثلة خوادم MCP المعتمدة على Rust: [أمثلة خادم MCP](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
 
 ## الحل
 
-يتضمن **مجلد الحل** تطبيقات عملاء كاملة وجاهزة للتشغيل توضح جميع المفاهيم التي تمت تغطيتها في هذا الدرس. يتضمن كل حل كود العميل والخادم منظمًا في مشاريع منفصلة ومستقلة.
+يحتوي **مجلد الحل** على تطبيقات عميل كاملة وجاهزة للتشغيل توضح كل المفاهيم المشروحة في هذا الدليل. كل حل يشمل كود العميل والخادم منظم في مشاريع منفصلة ومستقلة.
 
-### 📁 بنية الحل
+### 📁 هيكل المجلد الحل
 
-يتم تنظيم دليل الحل حسب لغة البرمجة:
+يُنظم مجلد الحل حسب لغة البرمجة:
 
 ```text
 solution/
@@ -805,33 +803,33 @@ solution/
     └── server.csproj    # Server project file
 ```
 
-### 🚀 ما يتضمنه كل حل
+### 🚀 ماذا يتضمن كل حل
 
-يوفر كل حل خاص بلغة البرمجة:
+كل حل خاص بلغة معينة يوفر:
 
-- **تنفيذ كامل للعميل** مع جميع الميزات من الدرس.
-- **بنية مشروع جاهزة للعمل** مع التبعيات والتكوين المناسب.
-- **برامج بناء وتشغيل** لتسهيل الإعداد والتنفيذ.
-- **README مفصل** مع تعليمات خاصة باللغة.
-- **أمثلة على معالجة الأخطاء** ومعالجة النتائج.
+- **تطبيق عميل كامل** مع كل الميزات من الدليل
+- **هيكل مشروع يعمل** مع الاعتمادات والتكوين المناسب
+- **سكريبتات بناء وتشغيل** لتسهيل الإعداد والتنفيذ
+- **ملف README مفصل** مع تعليمات خاصة باللغة
+- **أمثلة معالجة الأخطاء** ومعالجة النتائج
 
 ### 📖 استخدام الحلول
 
 1. **انتقل إلى مجلد اللغة المفضلة لديك**:
 
    ```bash
-   cd solution/typescript/    # For TypeScript
-   cd solution/java/          # For Java
-   cd solution/python/        # For Python
-   cd solution/dotnet/        # For .NET
+   cd solution/typescript/    # لـ TypeScript
+   cd solution/java/          # لـ Java
+   cd solution/python/        # لـ Python
+   cd solution/dotnet/        # لـ .NET
    ```
 
-2. **اتبع تعليمات README** في كل مجلد لـ:
-   - تثبيت التبعيات.
-   - بناء المشروع.
-   - تشغيل العميل.
+2. **اتبع تعليمات README في كل مجلد ل**:
+   - تثبيت الاعتمادات
+   - بناء المشروع
+   - تشغيل العميل
 
-3. **المخرجات المتوقعة** التي يجب أن تراها:
+3. **الناتج المتوقع** الذي ينبغي أن تراه:
 
    ```text
    Prompt: Please review this code: console.log("hello");
@@ -843,70 +841,74 @@ solution/
 
 ## 🎯 أمثلة كاملة
 
-لقد قدمنا تطبيقات عملاء كاملة وعاملة لجميع لغات البرمجة التي تمت تغطيتها في هذا الدرس. توضح هذه الأمثلة الوظائف الكاملة الموضحة أعلاه ويمكن استخدامها كمرجع أو كنقطة انطلاق لمشاريعك الخاصة.
+قدمنا تطبيقات عميل كاملة وعاملة لكل لغات البرمجة التي تم تغطيتها في هذا الدليل. توضح هذه الأمثلة كامل الوظائف الموضحة أعلاه ويمكن استخدامها كنماذج مرجعية أو نقاط بداية لمشاريعك الخاصة.
 
-### أمثلة كاملة متوفرة
+### الأمثلة الكاملة المتاحة
 
 | اللغة | الملف | الوصف |
-|-------|-------|-------|
-| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | عميل Java كامل يستخدم وسيلة نقل SSE مع معالجة شاملة للأخطاء |
-| **C#** | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | عميل C# كامل يستخدم وسيلة نقل stdio مع تشغيل تلقائي للخادم |
-| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | عميل TypeScript كامل مع دعم كامل لبروتوكول MCP |
-| **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | عميل Python كامل يستخدم أنماط async/await |
+|----------|------|-------------|
+| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | عميل جافا كامل يستخدم وسيلة نقل SSE مع معالجة شاملة للأخطاء |
+| **C#** | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | عميل C# كامل يستخدم وسيلة نقل stdio مع بدء تشغيل تلقائي للخادم |
+| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | عميل TypeScript كامل بدعم كامل لبروتوكول MCP |
+| **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | عميل Python كامل يستخدم نمط async/await |
 | **Rust** | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs) | عميل Rust كامل يستخدم Tokio للعمليات غير المتزامنة |
-كل مثال مكتمل يتضمن:
 
+كل مثال كامل يتضمن:
 - ✅ **إنشاء الاتصال** ومعالجة الأخطاء  
-- ✅ **اكتشاف الخادم** (الأدوات، الموارد، التعليمات عند الاقتضاء)  
-- ✅ **عمليات الآلة الحاسبة** (الجمع، الطرح، الضرب، القسمة، المساعدة)  
-- ✅ **معالجة النتائج** وإخراجها بشكل منسق  
+- ✅ **اكتشاف الخادم** (الأدوات، الموارد، الموجهات عند الاقتضاء)  
+- ✅ **عمليات الآلة الحاسبة** (جمع، طرح، ضرب، قسمة، مساعدة)  
+- ✅ **معالجة النتائج** والإخراج المنسق  
 - ✅ **معالجة شاملة للأخطاء**  
 - ✅ **كود نظيف وموثق** مع تعليقات خطوة بخطوة  
 
-### البدء مع الأمثلة الكاملة
+### البدء بأمثلة كاملة
 
 1. **اختر لغتك المفضلة** من الجدول أعلاه  
-2. **راجع ملف المثال الكامل** لفهم التنفيذ بالكامل  
-3. **قم بتشغيل المثال** باتباع التعليمات في [`complete_examples.md`](./complete_examples.md)  
-4. **قم بتعديل وتوسيع** المثال ليناسب حالتك الخاصة  
+2. **راجع ملف المثال الكامل** لفهم التنفيذ الكامل  
+3. **شغل المثال** باتباع التعليمات في [`complete_examples.md`](./complete_examples.md)  
+4. **قم بتعديل وتوسيع** المثال لحالتك الخاصة  
 
 للحصول على توثيق مفصل حول تشغيل وتخصيص هذه الأمثلة، راجع: **[📖 توثيق الأمثلة الكاملة](./complete_examples.md)**  
 
 ### 💡 الحل مقابل الأمثلة الكاملة
 
-| **مجلد الحل**         | **الأمثلة الكاملة**         |
-|--------------------|---------------------|
-| هيكل مشروع كامل مع ملفات البناء | تنفيذات في ملف واحد |
-| جاهز للتشغيل مع التبعيات | أمثلة تعليمية مركزة |
-| إعداد يشبه الإنتاج | مرجع تعليمي |
-| أدوات مخصصة للغة | مقارنة بين اللغات |
+| **مجلد الحل**       | **الأمثلة الكاملة**      |
+|--------------------|-------------------------|
+| هيكل مشروع كامل مع ملفات البناء | تنفيذات في ملف واحد       |
+| جاهز للتشغيل مع التبعيات          | أمثلة كود مركزة          |
+| إعداد يشبه الإنتاج              | مرجع تعليمي               |
+| أدوات موجهة للغة معينة         | مقارنة متعددة اللغات       |
 
-كلا النهجين لهما قيمة - استخدم **مجلد الحل** للمشاريع الكاملة و**الأمثلة الكاملة** للتعلم والمرجعية.
+كلا النهجين قيم - استخدم **مجلد الحل** للمشاريع الكاملة و**الأمثلة الكاملة** للتعلم والمرجعية.  
 
-## النقاط الرئيسية
+## نقاط رئيسية
 
-النقاط الرئيسية لهذا الفصل تتعلق بالعملاء:
+النقاط الرئيسية لهذا الفصل حول العملاء هي كما يلي:
 
-- يمكن استخدامها لاكتشاف الميزات وتنفيذها على الخادم.  
-- يمكنها بدء خادم أثناء تشغيلها (كما في هذا الفصل)، ولكن يمكن للعملاء أيضًا الاتصال بالخوادم التي تعمل بالفعل.  
-- تُعد وسيلة رائعة لاختبار قدرات الخادم بجانب بدائل مثل "المفتش" كما تم وصفه في الفصل السابق.  
+- يمكن استخدامها لاكتشاف واستدعاء الميزات على الخادم.  
+- يمكن أن يبدأ الخادم أثناء بدء تشغيله (كما في هذا الفصل) ولكن يمكن للعملاء الاتصال بالخوادم التي تعمل أيضًا.  
+- هي طريقة رائعة لاختبار قدرات الخادم بجانب البدائل مثل المفتش كما وُصف في الفصل السابق.  
 
 ## موارد إضافية
 
 - [بناء العملاء في MCP](https://modelcontextprotocol.io/quickstart/client)  
 
-## أمثلة
+## عينات
 
-- [Java Calculator](../samples/java/calculator/README.md)  
-- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)  
-- [JavaScript Calculator](../samples/javascript/README.md)  
-- [TypeScript Calculator](../samples/typescript/README.md)  
-- [Python Calculator](../../../../03-GettingStarted/samples/python)  
-- [Rust Calculator](../../../../03-GettingStarted/samples/rust)  
+- [آلة حاسبة جافا](../samples/java/calculator/README.md)  
+- [آلة حاسبة .Net](../../../../03-GettingStarted/samples/csharp)  
+- [آلة حاسبة جافا سكريبت](../samples/javascript/README.md)  
+- [آلة حاسبة تايب سكريبت](../samples/typescript/README.md)  
+- [آلة حاسبة بايثون](../../../../03-GettingStarted/samples/python)  
+- [آلة حاسبة روست](../../../../03-GettingStarted/samples/rust)  
 
-## ما التالي
+## ماذا بعد
 
-- التالي: [إنشاء عميل باستخدام LLM](../03-llm-client/README.md)  
+- التالي: [إنشاء عميل مع LLM](../03-llm-client/README.md)
 
-**إخلاء المسؤولية**:  
-تمت ترجمة هذا المستند باستخدام خدمة الترجمة الآلية [Co-op Translator](https://github.com/Azure/co-op-translator). بينما نسعى لتحقيق الدقة، يرجى العلم أن الترجمات الآلية قد تحتوي على أخطاء أو عدم دقة. يجب اعتبار المستند الأصلي بلغته الأصلية هو المصدر الموثوق. للحصول على معلومات حساسة أو هامة، يُوصى بالاستعانة بترجمة بشرية احترافية. نحن غير مسؤولين عن أي سوء فهم أو تفسيرات خاطئة تنشأ عن استخدام هذه الترجمة.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**إخلاء المسؤولية**:
+تمت ترجمة هذا المستند باستخدام خدمة الترجمة الآلية [Co-op Translator](https://github.com/Azure/co-op-translator). بينما نسعى لتحقيق الدقة، يرجى العلم أن الترجمات الآلية قد تحتوي على أخطاء أو عدم دقة. يجب اعتبار المستند الأصلي بلغته الأصلية المصدر الموثوق. للمواد المهمة والحساسة، يُنصح باستخدام ترجمة بشرية احترافية. نحن غير مسؤولين عن أي سوء فهم أو تفسير ناتج عن استخدام هذه الترجمة.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
