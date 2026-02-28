@@ -1,52 +1,52 @@
 # LLMを使ったクライアントの作成
 
-これまでに、サーバーとクライアントの作成方法を見てきました。クライアントは明示的にサーバーを呼び出して、そのツール、リソース、プロンプトの一覧を取得できました。しかし、これはあまり実用的な方法ではありません。ユーザーはエージェンシックな時代に生きており、プロンプトを使ってLLMとコミュニケーションを取りたいと期待しています。ユーザーにとって、能力をMCPに格納しているかどうかは重要ではありませんが、自然言語でインタラクションすることを望みます。では、どうやってこれを解決するのでしょうか？解決策はクライアントにLLMを追加することです。
+これまでに、サーバーとクライアントの作り方を見てきました。クライアントはサーバーを明示的に呼び出してツール、リソース、プロンプトの一覧を取得できました。しかし、これはあまり実用的な方法ではありません。ユーザーはエージェンシックな時代に生きており、プロンプトを使いLLMと対話することを期待しています。ユーザーはMCPで機能を管理しているかどうかには関心がなく、自然言語での対話を単純に求めているのです。では、どうすればこれを解決できるでしょうか？ 解決策は、クライアントにLLMを追加することです。
 
 ## 概要
 
-このレッスンでは、クライアントにLLMを追加し、ユーザーにとってより良い体験を提供する方法に焦点を当てます。
+このレッスンでは、クライアントにLLMを追加することに焦点を当て、ユーザーにとってより良い体験をどのように提供できるかを示します。
 
 ## 学習目標
 
-このレッスンを終える頃には、以下ができるようになります：
+このレッスンの終了時には、以下ができるようになります。
 
-- LLMを使ったクライアントの作成。
-- LLMを用いてMCPサーバーとシームレスにやり取りを行う。
+- LLMを備えたクライアントを作成する。
+- LLMを用いてMCPサーバーとシームレスにやり取りする。
 - クライアント側でより良いエンドユーザー体験を提供する。
 
 ## アプローチ
 
-必要なアプローチを理解してみましょう。LLMの追加は単純そうに見えますが、実際にどう行うのでしょうか？
+どのようなアプローチが必要か理解してみましょう。LLMを追加するのは簡単に聞こえますが、実際にどうやるのでしょうか？
 
-クライアントがサーバーとやり取りする流れは以下のようになります：
+クライアントはサーバーと以下のようにやり取りします：
 
 1. サーバーとの接続を確立する。
 
-1. 能力、プロンプト、リソース、ツールを一覧表示し、それらのスキーマを保存する。
+1. 機能、プロンプト、リソース、ツールを一覧し、それらのスキーマを保存する。
 
-1. LLMを追加して、保存した能力とそのスキーマをLLMが理解できる形式で渡す。
+1. LLMを追加し、保存した機能とスキーマをLLMが理解できる形式で渡す。
 
-1. ユーザーのプロンプトを受け取り、LLMに渡し、クライアントが一覧したツールも一緒に渡して処理する。
+1. ユーザープロンプトを、クライアントがリストしたツールと共にLLMに渡して処理する。
 
-素晴らしい、これで大まかな流れが理解できました。次の演習でこれを実際に試してみましょう。
+素晴らしい、これで高レベルでの流れがわかりました。では以下の演習で試してみましょう。
 
 ## 演習：LLMを使ったクライアントの作成
 
 この演習では、クライアントにLLMを追加する方法を学びます。
 
-### GitHub Personal Access Token を使った認証
+### GitHubパーソナルアクセストークンを使った認証
 
-GitHubトークンの作成は簡単なプロセスです。以下の手順で行えます：
+GitHubトークンの作成は簡単です。以下のように行います：
 
-- GitHubの設定へ — 右上のプロフィール写真をクリックし、[Settings]を選択。
-- [Developer Settings]へ移動 — 下にスクロールして[Developer Settings]をクリック。
-- [Personal Access Tokens] を選択 — [Fine-grained tokens]をクリックし、次に[Generate new token]をクリック。
-- トークンの設定 — 参照用のメモを追加し、有効期限を設定し、必要なスコープ（権限）を選択します。この場合、必ずModels権限を追加してください。
-- トークンの生成とコピー — [Generate token]をクリックし、トークンが表示されたらすぐにコピーしてください。二度と見ることはできません。
+- GitHubの設定画面へ – 右上のプロフィールアイコンをクリックして設定を選択。
+- 開発者設定へ移動 – 下にスクロールして「Developer Settings」をクリック。
+- パーソナルアクセストークンを選択 – 「Fine-grained tokens」をクリックし、「Generate new token」を選択。
+- トークンの設定 – 参照用のメモを追加し、有効期限を設定し、必要な権限（スコープ）を選択します。今回のケースではModels権限を必ず追加してください。
+- トークンの生成とコピー – 「Generate token」をクリックし、表示されるトークンを必ずすぐコピーしてください。後で再表示はできません。
 
-### -1- サーバーへ接続
+### -1- サーバーに接続
 
-まずクライアントを作成しましょう：
+まずはクライアントを作成しましょう。
 
 #### TypeScript
 
@@ -83,11 +83,11 @@ class MCPClient {
 }
 ```
 
-上記コードでは：
+前のコードでは以下を行いました：
 
-- 必要なライブラリをインポートしました
-- クライアント管理用の `client` と LLMとやり取りするための `openai` の二つのメンバーを持つクラスを作成しました。
-- `baseUrl` を推論API（inference API）に設定し、GitHub Modelsを使うようにLLMのインスタンスを設定しました。
+- 必要なライブラリをインポート
+- `client` と `openai` という2つのメンバーを持つクラスを作成し、それぞれクライアント管理とLLMとのやり取りに使用
+- `baseUrl`を推論APIに設定してGitHub Modelsを使うようにLLMインスタンスを設定
 
 #### Python
 
@@ -98,8 +98,8 @@ from mcp.client.stdio import stdio_client
 # stdio接続のためのサーバーパラメータを作成する
 server_params = StdioServerParameters(
     command="mcp",  # 実行可能ファイル
-    args=["run", "server.py"],  # オプションのコマンドライン引数
-    env=None,  # オプションの環境変数
+    args=["run", "server.py"],  # 任意のコマンドライン引数
+    env=None,  # 任意の環境変数
 )
 
 
@@ -119,10 +119,10 @@ if __name__ == "__main__":
 
 ```
 
-上記コードでは：
+前のコードでは以下を行いました：
 
-- MCP用に必要なライブラリをインポートしました
-- クライアントを作成しました
+- MCP用の必要なライブラリをインポート
+- クライアントを作成
 
 #### .NET
 
@@ -132,7 +132,6 @@ using Azure.AI.Inference;
 using Azure.Identity;
 using System.Text.Json;
 using ModelContextProtocol.Client;
-using ModelContextProtocol.Protocol.Transport;
 using System.Text.Json;
 
 var clientTransport = new StdioClientTransport(new()
@@ -142,12 +141,12 @@ var clientTransport = new StdioClientTransport(new()
     Arguments = [],
 });
 
-await using var mcpClient = await McpClientFactory.CreateAsync(clientTransport);
+await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 ```
 
 #### Java
 
-まず、`pom.xml`ファイルにLangChain4jの依存関係を追加する必要があります。MCP統合とGitHub Modelsのサポートのために以下の依存関係を追加してください：
+まず、`pom.xml`にLangChain4jの依存関係を追加します。これによりMCP連携とGitHub Modelsのサポートが有効になります。
 
 ```xml
 <properties>
@@ -184,7 +183,7 @@ await using var mcpClient = await McpClientFactory.CreateAsync(clientTransport);
 </dependencies>
 ```
 
-次に、Javaクライアントクラスを作成します：
+次にJavaクライアントクラスを作成します：
 
 ```java
 import dev.langchain4j.mcp.McpToolProvider;
@@ -202,7 +201,7 @@ import java.util.List;
 
 public class LangChain4jClient {
     
-    public static void main(String[] args) throws Exception {        // LLMをGitHubモデル使用に設定する
+    public static void main(String[] args) throws Exception {        // LLM を GitHub モデルを使用するように設定する
         ChatLanguageModel model = OpenAiOfficialChatModel.builder()
                 .isGitHubModels(true)
                 .apiKey(System.getenv("GITHUB_TOKEN"))
@@ -210,7 +209,7 @@ public class LangChain4jClient {
                 .modelName("gpt-4.1-nano")
                 .build();
 
-        // サーバー接続用のMCPトランスポートを作成する
+        // サーバーに接続するための MCP トランスポートを作成する
         McpTransport transport = new HttpMcpTransport.Builder()
                 .sseUrl("http://localhost:8080/sse")
                 .timeout(Duration.ofSeconds(60))
@@ -218,7 +217,7 @@ public class LangChain4jClient {
                 .logResponses(true)
                 .build();
 
-        // MCPクライアントを作成する
+        // MCP クライアントを作成する
         McpClient mcpClient = new DefaultMcpClient.Builder()
                 .transport(transport)
                 .build();
@@ -226,20 +225,20 @@ public class LangChain4jClient {
 }
 ```
 
-上記コードでは：
+前のコードでは以下を行いました：
 
-- **LangChain4jの依存関係を追加**：MCP統合、OpenAI公式クライアント、GitHub Models対応に必要です
-- **LangChain4jライブラリをインポート**：MCP統合とOpenAIチャットモデル機能のため
-- **`ChatLanguageModel`を作成**：GitHubトークンでGitHub Modelsを使うよう設定
-- **HTTPトランスポートを設定**：Server-Sent Events(SSE)を使ってMCPサーバーに接続
-- **MCPクライアントを作成**：サーバーとの通信を担当
-- **LangChain4jのMCPサポートを利用**：LLMとMCPサーバーの統合を簡単に実現
+- **LangChain4j依存関係の追加**：MCP連携、OpenAI公式クライアント、GitHub Modelsサポートを含む
+- **LangChain4jライブラリのインポート**：MCP連携とOpenAIチャットモデル機能のため
+- **ChatLanguageModelの作成**：GitHubトークンでGitHub Modelsを使うよう設定
+- **HTTPトランスポートのセットアップ**：Server-Sent Events (SSE) を使いMCPサーバーと接続
+- **MCPクライアントの作成**：サーバーとの通信を担当
+- **LangChain4jのMCPサポート活用**：LLMとMCPサーバーの統合を簡素化
 
 #### Rust
 
-この例はRustベースのMCPサーバーが稼働していることを前提としています。もしまだ持っていなければ、[01-first-server](../01-first-server/README.md) のレッスンを参照してサーバーを作成してください。
+この例ではRust製のMCPサーバーを動かしていることが前提です。お持ちでない場合は[01-first-server](../01-first-server/README.md)レッスンを参照してサーバーを作成してください。
 
-Rust MCPサーバーが起動している状態で、ターミナルを開きサーバーと同じディレクトリに移動して、以下のコマンドを実行し、新しいLLMクライアントプロジェクトを作成します：
+Rust MCPサーバーを用意したら、ターミナルを開きサーバーと同じディレクトリに移動し、以下のコマンドで新しいLLMクライアントプロジェクトを作成します。
 
 ```bash
 mkdir calculator-llmclient
@@ -247,7 +246,7 @@ cd calculator-llmclient
 cargo init
 ```
 
-`Cargo.toml`ファイルに以下の依存関係を追加します：
+`Cargo.toml`ファイルに以下の依存関係を追加してください：
 
 ```toml
 [dependencies]
@@ -258,9 +257,9 @@ tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 ```
 
 > [!NOTE]
-> OpenAIの公式Rustライブラリはありませんが、`async-openai`クレートは[コミュニティでメンテナンスされているライブラリ](https://platform.openai.com/docs/libraries/rust#rust)で一般的に使われています。
+> Rust向けの公式OpenAIライブラリはありませんが、`async-openai`クレートは[コミュニティ維持のライブラリ](https://platform.openai.com/docs/libraries/rust#rust)としてよく使われています。
 
-`src/main.rs`ファイルの内容を以下のコードに置き換えます：
+`src/main.rs`を開き、内容を次のコードに置き換えます：
 
 ```rust
 use async_openai::{Client, config::OpenAIConfig};
@@ -279,7 +278,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
     // 初期メッセージ
     let mut messages = vec![json!({"role": "user", "content": "What is the sum of 3 and 2?"})];
 
-    // OpenAIクライアントの設定
+    // OpenAIクライアントを設定
     let api_key = std::env::var("OPENAI_API_KEY")?;
     let openai_client = Client::with_config(
         OpenAIConfig::new()
@@ -287,7 +286,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
             .with_api_key(api_key),
     );
 
-    // MCPクライアントの設定
+    // MCPクライアントを設定
     let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .unwrap()
@@ -302,7 +301,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
         )
         .await?;
 
-    // TODO: MCPツールリストを取得
+    // TODO: MCPツールのリストを取得
 
     // TODO: ツール呼び出しを伴うLLM会話
 
@@ -310,16 +309,16 @@ async fn main() -> Result<(), Box<dyn Error>> {
 }
 ```
 
-このコードは基本的なRustアプリケーションを設定し、MCPサーバーおよびGitHub Modelsと接続してLLM連携を行うものです。
+このコードは基本的なRustアプリケーションをセットアップし、MCPサーバーおよびGitHub Modelsと連携してLLMインタラクションを可能にします。
 
 > [!IMPORTANT]
-> アプリケーションを実行する前に、必ず環境変数 `OPENAI_API_KEY` にGitHubトークンを設定してください。
+> 実行前に必ず`OPENAI_API_KEY`環境変数にGitHubトークンを設定してください。
 
-素晴らしい、次のステップとしてサーバーの機能一覧を取得しましょう。
+良いですね。次のステップとしてサーバーの機能を一覧表示しましょう。
 
-### -2- サーバーの機能一覧を取得
+### -2- サーバー機能の一覧表示
 
-次に、サーバーへ接続し、能力一覧を取得します：
+サーバーに接続して機能を問い合わせます。
 
 #### TypeScript
 
@@ -335,26 +334,26 @@ async connectToServer(transport: Transport) {
 async run() {
     console.log("Asking server for available tools");
 
-    // ツールのリスト表示
+    // ツールの一覧表示
     const toolsResult = await this.client.listTools();
 }
 ```
 
-上記コードでは：
+前のコードでは以下を行いました：
 
-- サーバー接続用の `connectToServer` メソッドを追加しました。
-- アプリの処理を担当する `run` メソッドを作成。今のところツール一覧のみの表示ですが、追って機能追加します。
+- サーバー接続用メソッド`connectToServer`を追加
+- `run`メソッドを作成し、アプリのフローを管理。現在はツール一覧表示のみだが後で拡張予定
 
 #### Python
 
 ```python
-# 利用可能なリソースを一覧表示
+# 利用可能なリソースを一覧表示する
 resources = await session.list_resources()
 print("LISTING RESOURCES")
 for resource in resources:
     print("Resource: ", resource)
 
-# 利用可能なツールを一覧表示
+# 利用可能なツールを一覧表示する
 tools = await session.list_tools()
 print("LISTING TOOLS")
 for tool in tools.tools:
@@ -364,7 +363,7 @@ for tool in tools.tools:
 
 追加した内容：
 
-- リソースとツールの一覧を取得し表示しました。ツールについては後で使う `inputSchema` も一覧に含めています。
+- リソースとツールを一覧し、出力。ツールについては後で使うため`inputSchema`も表示している
 
 #### .NET
 
@@ -389,47 +388,47 @@ async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
 }
 ```
 
-上記コードでは：
+前のコードでは以下を行いました：
 
-- MCPサーバーの利用可能ツールを一覧表示しました。
-- 各ツールの名前、説明、スキーマを取得しています。スキーマは後でツール呼び出しに使います。
+- MCPサーバー上の利用可能なツールの一覧表示
+- 各ツールについて名前、説明、スキーマを取得。スキーマは後でツール呼び出しに使う予定
 
 #### Java
 
 ```java
-// MCPツールを自動的に検出するツールプロバイダーを作成する
+// MCPツールを自動的に検出するツールプロバイダーを作成します
 ToolProvider toolProvider = McpToolProvider.builder()
         .mcpClients(List.of(mcpClient))
         .build();
 
-// MCPツールプロバイダーは自動的に以下を処理します:
-// - MCPサーバーから利用可能なツールのリストを取得
+// MCPツールプロバイダーは以下を自動的に処理します：
+// - MCPサーバーから利用可能なツールの一覧取得
 // - MCPツールのスキーマをLangChain4j形式に変換
 // - ツールの実行とレスポンスの管理
 ```
 
-上記コードでは：
+前のコードでは以下を行いました：
 
-- MCPサーバーから自動的にツールを検出・登録する `McpToolProvider` を作成しました。
-- ツールプロバイダーはMCPツールのスキーマとLangChain4jのツール形式の変換を内部で処理しています。
-- 手動でツールを一覧し変換する処理を抽象化しています。
+- MCPサーバーから自動的にツールを発見し登録する`McpToolProvider`を作成
+- ツールプロバイダーはMCPのツールスキーマとLangChain4jのツール形式を内部で変換
+- これによりツールの手動列挙と変換処理が抽象化される
 
 #### Rust
 
-MCPサーバーからツールを取得するには、`list_tools`メソッドを使います。`main`関数の中でMCPクライアントをセットアップした後に、以下のコードを追加してください：
+MCPサーバーからツールを取得するには`list_tools`メソッドを使います。`main`関数内でMCPクライアントをセットアップした後、以下のコードを追加してください：
 
 ```rust
 // MCPツールのリストを取得する
 let tools = mcp_client.list_tools(Default::default()).await?;
 ```
 
-### -3- サーバーの機能をLLMツールに変換
+### -3- サーバー機能をLLMツールに変換
 
-次のステップは、サーバー能力一覧をLLMが理解するフォーマットに変換することです。変換できたら、LLMにはこれらの機能をツールとして提供できます。
+次はサーバーの機能一覧をLLMが理解できるツール形式に変換します。こうしてLLMにツールとして提供できるようにします。
 
 #### TypeScript
 
-1. MCPサーバーからの応答をLLMが使えるツール形式に変換するコードを追加します：
+1. MCPサーバーからの応答をLLMが利用可能なツール形式に変換するコードを追加：
 
     ```typescript
     openAiToolAdapter(tool: {
@@ -441,7 +440,7 @@ let tools = mcp_client.list_tools(Default::default()).await?;
         const schema = z.object(tool.input_schema);
     
         return {
-            type: "function" as const, // 型を明示的に "function" に設定する
+            type: "function" as const, // 明示的にタイプを「function」に設定する
             function: {
             name: tool.name,
             description: tool.description,
@@ -456,9 +455,9 @@ let tools = mcp_client.list_tools(Default::default()).await?;
 
     ```
 
-    上記コードはMCPサーバーの応答を受け取り、LLMが理解できるツール定義形式に変換しています。
+    上記コードはMCPサーバーからの応答を受け取り、LLMが理解可能なツール定義に変換するものです。
 
-1. つづいて `run` メソッドを更新し、サーバーの機能を一覧表示しましょう：
+1. `run`メソッドを次のようにアップデートしてサーバー機能を一覧表示します：
 
     ```typescript
     async run() {
@@ -474,11 +473,11 @@ let tools = mcp_client.list_tools(Default::default()).await?;
     }
     ```
 
-    上記コードで `run` メソッドを更新し、結果をマップし各エントリーに `openAiToolAdapter` を呼び出しています。
+    このコードでは`run`メソッドで結果をマッピングし、それぞれに`openAiToolAdapter`を呼んでいます。
 
 #### Python
 
-1. まずコンバーター関数を作成します：
+1. まず変換関数を作成します：
 
     ```python
     def convert_to_llm_tool(tool):
@@ -498,9 +497,9 @@ let tools = mcp_client.list_tools(Default::default()).await?;
         return tool_schema
     ```
 
-    上記の `convert_to_llm_tools` 関数では、MCPツールの応答をLLMが理解できる形式に変換しています。
+    `convert_to_llm_tools`関数はMCPツールの応答をLLMが理解できる形式に変換します。
 
-1. 次にクライアントコードを更新して、この関数を活用しましょう：
+1. 次にクライアントコードを更新してこの関数を活用します：
 
     ```python
     functions = []
@@ -510,11 +509,11 @@ let tools = mcp_client.list_tools(Default::default()).await?;
         functions.append(convert_to_llm_tool(tool))
     ```
 
-    ここではMCPツール応答をLLMに渡すために、`convert_to_llm_tool` を呼び出して変換しています。
+    MCPツールの応答をLLMに渡せる形に変換するため`convert_to_llm_tool`を呼んでいます。
 
 #### .NET
 
-1. MCPツール応答をLLM向けに変換するコードを追加します：
+1. MCPツール応答をLLMが理解可能な形式に変換するコードを追加：
 
 ```csharp
 ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonElement jsonElement)
@@ -537,12 +536,12 @@ ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonE
 }
 ```
 
-上記コードでは：
+前のコードでは以下を行いました：
 
-- 名前、説明、入力スキーマを受け取る `ConvertFrom` 関数を作成しました。
-- `FunctionDefinition` を生成し、それを `ChatCompletionsDefinition` に渡す処理を定義しました。後者はLLMが理解できるものです。
+- 名前、説明、入力スキーマを受け取り、`ConvertFrom`関数を作成
+- `FunctionDefinition`を作成し、それを`ChatCompletionsDefinition`に渡す機能を定義。後者はLLMが理解可能
 
-1. 既存コードをこの関数に合わせて更新する方法を見てみましょう：
+1. この関数を使うために既存コードをどうアップデートするか見てみましょう：
 
     ```csharp
     async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
@@ -588,28 +587,28 @@ ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonE
 #### Java
 
 ```java
-// 自然言語での対話のためのBotインターフェースを作成する
+// 自然言語での対話用のBotインターフェースを作成する
 public interface Bot {
     String chat(String prompt);
 }
 
-// LLMとMCPツールを用いてAIサービスを設定する
+// LLMおよびMCPツールを使用してAIサービスを設定する
 Bot bot = AiServices.builder(Bot.class)
         .chatLanguageModel(model)
         .toolProvider(toolProvider)
         .build();
 ```
 
-上記コードでは：
+前のコードでは以下を行いました：
 
-- 自然言語インタラクション用のシンプルな `Bot` インターフェースを定義しました。
-- LangChain4jの `AiServices` を使い、LLMとMCPツールプロバイダーを自動的にバインドしました。
-- フレームワークが内部でツールスキーマの変換と関数呼び出しを自動処理します。
-- これにより手動のツール変換が不要となり、LangChain4jがMCPツールのLLM対応形式への変換の複雑さをすべて扱います。
+- 自然言語対話用のシンプルな`Bot`インターフェイスを定義
+- LangChain4jの`AiServices`を用いてLLMとMCPツールプロバイダーを自動でバインド
+- フレームワークがツールスキーマの変換と関数呼び出しを自動で処理
+- 手動でのツール変換が不要で、複雑な変換処理をLangChain4jが吸収
 
 #### Rust
 
-MCPツール応答をLLMが理解できる形式に変換するため、ツール一覧をフォーマットするヘルパー関数を追加します。`main.rs`ファイルの `main` 関数の下に以下のコードを追加してください。LLMへのリクエスト時に呼び出されます：
+MCPツール応答をLLMが理解できる形式に変換する補助関数を追加します。`main`関数の下に以下を追加してください。これはLLMへのリクエスト時に呼び出されます：
 
 ```rust
 async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Error>> {
@@ -644,15 +643,15 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 }
 ```
 
-素晴らしい、これでユーザーリクエストを処理する準備ができました。次に進みましょう。
+よし、ユーザーリクエストを扱う準備ができました。次はそれに取り組みましょう。
 
 ### -4- ユーザープロンプトの処理
 
-この部分のコードではユーザーからのリクエストを処理します。
+この部分のコードでユーザーリクエストを処理します。
 
 #### TypeScript
 
-1. LLM呼び出しに使うメソッドを追加します：
+1. LLM呼び出し用のメソッドを追加：
 
     ```typescript
     async callTools(
@@ -681,10 +680,10 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
     }
     ```
 
-    上記で：
+    前のコードでは：
 
-    - `callTools` メソッドを追加。
-    - メソッドはLLMのレスポンスを受けて、どのツールが呼び出されたかを確認します：
+    - `callTools`メソッドを追加
+    - LLMの応答を受け取り、呼び出すべきツールがあるかチェック
 
         ```typescript
         for (const tool_call of tool_calls) {
@@ -697,7 +696,7 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
         }
         ```
 
-    - LLMが呼び出すべきツールを示していれば、そのツールを呼び出します：
+    - 呼び出すべきツールがあれば実行：
 
         ```typescript
         // 2. サーバーのツールを呼び出す
@@ -708,15 +707,15 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 
         console.log("Tool result: ", toolResult);
 
-        // 3. 結果で何かを行う
+        // 3. 結果を使って何かを行う
         // TODO
         ```
 
-1. `run` メソッドを更新して、LLMの呼び出しと `callTools` を行います：
+1. `run`メソッドを更新してLLM呼び出しと`callTools`の利用を含めます：
 
     ```typescript
 
-    // 1. LLMへの入力となるメッセージを作成する
+    // 1. LLM の入力となるメッセージを作成する
     const prompt = "What is the sum of 2 and 3?"
 
     const messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
@@ -728,7 +727,7 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 
     console.log("Querying LLM: ", messages[0].content);
 
-    // 2. LLMを呼び出す
+    // 2. LLM を呼び出す
     let response = this.openai.chat.completions.create({
         model: "gpt-4.1-mini",
         max_tokens: 1000,
@@ -738,7 +737,7 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 
     let results: any[] = [];
 
-    // 3. LLMの応答を確認し、各選択肢にツール呼び出しがあるかどうかをチェックする
+    // 3. LLM の応答を確認し、各選択肢にツール呼び出しがあるかチェックする
     (await response).choices.map(async (choice: { message: any; }) => {
         const message = choice.message;
         if (message.tool_calls) {
@@ -748,7 +747,7 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
     });
     ```
 
-さあ、コード全体を見てみましょう：
+素晴らしい。完全なコードを表示します：
 
 ```typescript
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
@@ -762,7 +761,7 @@ class MyClient {
     private client: Client;
     constructor(){
         this.openai = new OpenAI({
-            baseURL: "https://models.inference.ai.azure.com", // 将来的にこのURLに変更する必要があるかもしれません：https://models.github.ai/inference
+            baseURL: "https://models.inference.ai.azure.com", // 将来的にこのURLに変更する可能性があります: https://models.github.ai/inference
             apiKey: process.env.GITHUB_TOKEN,
         });
 
@@ -796,7 +795,7 @@ class MyClient {
           const schema = z.object(tool.input_schema);
       
           return {
-            type: "function" as const, // 型を明示的に「function」に設定する
+            type: "function" as const, // typeを明示的に"function"に設定する
             function: {
               name: tool.name,
               description: tool.description,
@@ -864,7 +863,7 @@ class MyClient {
 
         let results: any[] = [];
     
-        // 1. LLMの応答を順に処理し、各選択肢にツールコールがあるか確認する
+        // 1. LLMの応答を確認し、各選択肢にツール呼び出しがあるかどうかをチェックする
         (await response).choices.map(async (choice: { message: any; }) => {
           const message = choice.message;
           if (message.tool_calls) {
@@ -887,7 +886,7 @@ client.connectToServer(transport);
 
 #### Python
 
-1. まずLLM呼び出しに必要なインポートを追加します：
+1. LLM呼び出しに必要なインポートを追加：
 
     ```python
     # 大規模言語モデル
@@ -898,7 +897,7 @@ client.connectToServer(transport);
     import json
     ```
 
-1. 次にLLMを呼び出す関数を追加します：
+1. 続いてLLMを呼び出す関数を追加：
 
     ```python
     # 大規模言語モデル
@@ -948,19 +947,19 @@ client.connectToServer(transport);
         return functions_to_call
     ```
 
-    上記コードでは：
+    前のコードでは：
 
-    - MCPサーバーで見つけた関数群をLLMに渡しています。
-    - その関数を使ってLLMを呼び出しています。
-    - 結果から、呼び出すべき関数があるかどうかを調べます。
-    - 呼び出す関数の配列を渡しています。
+    - MCPサーバー上の関数をLLMに渡している
+    - LLMを関数付きで呼び出し
+    - 結果を検査し呼ぶべき関数を判定
+    - 呼び出す関数の配列を渡している
 
-1. 最後にメインコードを更新しましょう：
+1. 最後にメインコードを更新：
 
     ```python
     prompt = "Add 2 to 20"
 
-    # もしあれば、どのツールをすべて使用するかLLMに尋ねる
+    # もしあれば、利用可能なツールをLLMに尋ねる
     functions_to_call = call_llm(prompt, functions)
 
     # 推奨される関数を呼び出す
@@ -969,14 +968,14 @@ client.connectToServer(transport);
         print("TOOLS result: ", result.content)
     ```
 
-    これが最終ステップです。上記コードでは：
+    これで最後のステップとなります。上記コードでは：
 
-    - プロンプトに基づきLLMが呼び出すべきと判断した関数を使ってMCPツールを呼び出しています。
-    - MCPサーバーでのツール呼び出し結果を出力しています。
+    - LLMの判断で呼び出すべき関数を持つツールを`call_tool`で呼び出し
+    - ツール呼び出しの結果をMCPサーバーから受け取り表示
 
 #### .NET
 
-1. LLMプロンプトリクエストのコード例を見てみましょう：
+1. LLMプロンプトリクエストのコード例：
 
     ```csharp
     var tools = await GetMcpTools();
@@ -1010,14 +1009,14 @@ client.connectToServer(transport);
 
     ```
 
-    ここでは：
+    前のコードでは：
 
-    - MCPサーバーからツールを取得しています（`var tools = await GetMcpTools()`）。
-    - ユーザープロンプト `userMessage` を定義。
+    - MCPサーバーからツールを取得、`var tools = await GetMcpTools()`。
+    - ユーザープロンプト`userMessage`を定義。
     - モデルとツールを指定したオプションオブジェクトを作成。
-    - LLMにリクエストを送っています。
+    - LLMへリクエスト送信。
 
-1. 最後に、LLMが関数呼び出しを必要と判断したかを確認しましょう：
+1. 最後に、LLMが関数呼び出しを要求しているか確認：
 
     ```csharp
     // 4. Check if the response contains a function call
@@ -1040,12 +1039,12 @@ client.connectToServer(transport);
     }
     ```
 
-    上記コードでは：
+    前のコードでは：
 
-    - 関数呼び出しリストをループ処理。
-    - 各ツール呼び出しについて名前と引数を解析し、MCPクライアントでツールを呼び出し、結果を表示しています。
+    - 関数呼び出しリストをループ
+    - 各ツール呼び出しの名前と引数を解析し、MCPクライアントでツール実行。結果を表示。
 
-以下が全体コードです：
+完全なコードはこちら：
 
 ```csharp
 using Azure;
@@ -1053,8 +1052,7 @@ using Azure.AI.Inference;
 using Azure.Identity;
 using System.Text.Json;
 using ModelContextProtocol.Client;
-using ModelContextProtocol.Protocol.Transport;
-using System.Text.Json;
+using ModelContextProtocol.Protocol;
 
 var endpoint = "https://models.inference.ai.azure.com";
 var token = Environment.GetEnvironmentVariable("GITHUB_TOKEN"); // Your GitHub Access Token
@@ -1073,7 +1071,7 @@ var clientTransport = new StdioClientTransport(new()
 
 Console.WriteLine("Setting up stdio transport");
 
-await using var mcpClient = await McpClientFactory.CreateAsync(clientTransport);
+await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 
 ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonElement jsonElement)
 { 
@@ -1164,7 +1162,7 @@ for (int i = 0; i < response.ToolCalls.Count; i++)
         cancellationToken: CancellationToken.None
     );
 
-    Console.WriteLine(result.Content.First(c => c.Type == "text").Text);
+    Console.WriteLine(result.Content.OfType<TextContentBlock>().First().Text);
 
 }
 
@@ -1190,15 +1188,15 @@ try {
 }
 ```
 
-上記コードでは：
+前のコードでは：
 
-- 簡単な自然言語プロンプトでMCPサーバーツールとインタラクションしています
-- LangChain4jフレームワークは以下を自動化しています：
-  - 必要なときにユーザープロンプトをツール呼び出しへ変換
+- シンプルな自然言語プロンプトでMCPサーバーツールと対話
+- LangChain4jフレームワークが以下を自動処理：
+  - 必要に応じてユーザープロンプトをツール呼び出しに変換
   - LLMの判断に基づき適切なMCPツールを呼び出し
-  - LLMとMCPサーバー間の会話の流れを管理
-- `bot.chat()` メソッドはMCPツール実行結果を含む自然言語の応答を返します
-- この方法により、ユーザーはMCPの実装詳細を知らずにシームレスな体験が得られます
+  - LLMとMCPサーバー間の会話フロー管理
+- `bot.chat()`メソッドはMCPツールの結果を含む自然言語応答を返す
+- ユーザーはMCPの実装を意識せずにシームレスに利用可能
 
 完全なコード例：
 
@@ -1251,9 +1249,9 @@ public class LangChain4jClient {
 
 #### Rust
 
-ここがメインの処理部分です。最初のユーザープロンプトでLLMを呼び出し、応答を解析して呼び出すべきツールがあれば実行し、再度LLMと対話を続けて、ツール呼び出しが不要な最終の応答が得られるまで繰り返します。
+ここが主な処理の場所です。初回のユーザープロンプトでLLMを呼び、その応答から必要なツール呼び出しを判定します。もしあればツールを呼び出し、さらにLLMとの対話を続け、ツール呼び出しが不要になるまで繰り返します。
 
-複数回LLMに問い合わせるため、それを処理する関数を定義しましょう。`main.rs`ファイルに以下の関数を追加します：
+数回にわたるLLM呼び出しがあるため、LLM呼び出しを処理する関数を定義しましょう。`main.rs`に以下を追加：
 
 ```rust
 async fn call_llm(
@@ -1273,8 +1271,8 @@ async fn call_llm(
 }
 ```
 
-この関数は、LLMクライアント、メッセージ一覧（ユーザープロンプト含む）、MCPサーバーのツールを受け取り、LLMへリクエストを送り応答を返します。
-LLMからの応答には `choices` の配列が含まれています。結果に `tool_calls` が存在するかどうかを処理する必要があります。これにより、LLMが特定のツールを引数付きで呼び出す要求をしていることがわかります。LLMの応答を処理する関数を定義するために、`main.rs` ファイルの一番下に次のコードを追加してください：
+この関数はLLMクライアント、メッセージリスト（ユーザープロンプトを含む）、MCPサーバーのツール群を受けて、LLMにリクエストを送り応答を返します。
+LLMからの応答には`choices`の配列が含まれています。結果を処理して`tool_calls`が存在するかどうかを確認する必要があります。これにより、LLMが引数付きで特定のツールを呼び出すことを要求していることが分かります。以下のコードを`main.rs`ファイルの末尾に追加して、LLM応答を処理する関数を定義してください。
 
 ```rust
 async fn process_llm_response(
@@ -1293,12 +1291,12 @@ async fn process_llm_response(
         return Ok(());
     };
 
-    // 利用可能な場合は内容を印刷する
+    // コンテンツが利用可能な場合に印刷する
     if let Some(content) = message.get("content").and_then(|c| c.as_str()) {
         println!("🤖 {}", content);
     }
 
-    // ツールの呼び出しを処理する
+    // ツール呼び出しを処理する
     if let Some(tool_calls) = message.get("tool_calls").and_then(|tc| tc.as_array()) {
         messages.push(message.clone()); // アシスタントメッセージを追加する
 
@@ -1314,7 +1312,7 @@ async fn process_llm_response(
                 })
                 .await?;
 
-            // ツールの結果をメッセージに追加する
+            // メッセージにツール結果を追加する
             messages.push(json!({
                 "role": "tool",
                 "tool_call_id": tool_id,
@@ -1322,7 +1320,7 @@ async fn process_llm_response(
             }));
         }
 
-        // ツールの結果で会話を続ける
+        // ツール結果で会話を続ける
         let response = call_llm(openai_client, messages, mcp_tools).await?;
         Box::pin(process_llm_response(
             &response,
@@ -1337,9 +1335,9 @@ async fn process_llm_response(
 }
 ```
 
-`tool_calls` が存在する場合、ツールの情報を抽出し、ツールリクエストを持ってMCPサーバーを呼び出し、その結果を会話のメッセージに追加します。その後、LLMとの会話を続行し、アシスタントの応答とツールコールの結果でメッセージが更新されます。
+`tool_calls`が存在する場合は、ツール情報を抽出し、ツールリクエストをMCPサーバーに送信し、その結果を会話メッセージに追加します。その後、LLMとの会話を続け、メッセージはアシスタントの応答とツール呼び出し結果で更新されます。
 
-MCPコールのためにLLMが返すツールコール情報を抽出するために、呼び出しに必要なすべてを抽出するもう一つのヘルパー関数を追加します。`main.rs` ファイルの一番下に以下のコードを追加してください：
+LLMがMCP呼び出しのために返すツールコール情報を抽出するために、呼び出しに必要なすべてを抽出する別のヘルパー関数を追加します。以下のコードを`main.rs`ファイルの末尾に追加してください。
 
 ```rust
 fn extract_tool_call_info(tool_call: &Value) -> Result<(String, String, String), Box<dyn Error>> {
@@ -1363,10 +1361,10 @@ fn extract_tool_call_info(tool_call: &Value) -> Result<(String, String, String),
 }
 ```
 
-すべてのパーツが揃ったので、最初のユーザープロンプトを処理しLLMを呼び出すことができます。`main` 関数を以下のコードで更新してください：
+すべてのパーツが揃ったので、最初のユーザープロンプトを処理してLLMを呼び出せるようになりました。`main`関数を以下のコードで更新してください。
 
 ```rust
-// ツール呼び出しを伴うLLMとの会話
+// ツール呼び出しを含むLLM会話
 let response = call_llm(&openai_client, &messages, &tools).await?;
 process_llm_response(
     &response,
@@ -1378,22 +1376,22 @@ process_llm_response(
 .await?;
 ```
 
-これにより、初期ユーザープロンプトで2つの数の合計を求めるようLLMへ問い合わせ、応答を処理して動的にツールコールを扱います。
+これにより、2つの数字の合計を求める最初のユーザープロンプトを使ってLLMに問い合わせ、レスポンスを処理して動的にツール呼び出しを処理します。
 
 素晴らしい、できましたね！
 
 ## 課題
 
-演習のコードを使って、さらに多くのツールを備えたサーバーを構築してください。その後、演習のようにLLMを使ったクライアントを作成し、さまざまなプロンプトでテストして、サーバーツールがすべて動的に呼び出されることを確認してください。このクライアント構築方法により、最終ユーザーは正確なクライアントコマンドではなくプロンプトを使い、MCPサーバーが呼び出されていることを意識せずに優れたユーザー体験を得られます。
+演習のコードをもとに、さらにいくつかのツールを持つサーバーを構築してください。その後、演習のようにLLMを使ったクライアントを作成し、さまざまなプロンプトでテストして、すべてのサーバーツールが動的に呼び出されることを確認してください。このようなクライアントの構築方法は、最終ユーザーが正確なクライアントコマンドではなくプロンプトで操作でき、MCPサーバーの呼び出しを意識せずに済むため、優れたユーザー体験を提供します。
 
-## 解答例
+## ソリューション
 
 [Solution](/03-GettingStarted/03-llm-client/solution/README.md)
 
 ## 重要なポイント
 
-- クライアントにLLMを加えることで、ユーザーがMCPサーバーとより良く対話できる方法を提供します。
-- MCPサーバーの応答をLLMが理解できる形に変換する必要があります。
+- クライアントにLLMを追加すると、ユーザーがMCPサーバーとより良く対話する方法が提供されます。
+- MCPサーバーの応答をLLMが理解できる形式に変換する必要があります。
 
 ## サンプル
 
@@ -1408,11 +1406,11 @@ process_llm_response(
 
 ## 次にやること
 
-- 次へ: [Visual Studio Codeを用いたサーバーの利用](../04-vscode/README.md)
+- 次へ: [Visual Studio Codeを使ったサーバーの利用](../04-vscode/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**免責事項**：  
-本書類はAI翻訳サービス[Co-op Translator](https://github.com/Azure/co-op-translator)を使用して翻訳されました。正確性には努めておりますが、自動翻訳には誤りや不正確な部分が含まれる可能性があります。原文の言語で記載された文書が正式な情報源とみなされます。重要な情報については、専門の人間による翻訳を推奨いたします。本翻訳の使用により生じたいかなる誤解や誤訳に対しても当方は責任を負いかねます。
+**免責事項**：
+本書類はAI翻訳サービス「Co-op Translator」（https://github.com/Azure/co-op-translator）を使用して翻訳されました。正確性の確保に努めておりますが、自動翻訳には誤りや不正確な部分が含まれる場合があります。原文の言語での文書を正式な情報源としてご参照ください。重要な情報については、専門の翻訳者による翻訳を推奨します。本翻訳の使用によって生じたいかなる誤解や解釈の相違についても、一切責任を負いかねます。
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
