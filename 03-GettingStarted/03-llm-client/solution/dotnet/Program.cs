@@ -114,7 +114,11 @@ for (int i = 0; i < response.ToolCalls.Count; i++)
         cancellationToken: CancellationToken.None
     );
 
-    Console.WriteLine(result.Content.OfType<TextContentBlock>().First());
+    var textBlock = result.Content.OfType<TextContentBlock>().FirstOrDefault();
+    if (textBlock != null)
+    {
+        Console.WriteLine(textBlock.Text);
+    }
 
 }
 
