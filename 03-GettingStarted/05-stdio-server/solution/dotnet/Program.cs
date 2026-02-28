@@ -9,7 +9,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using ModelContextProtocol.Server;
 using server;
 
 // Create host builder for stdio transport
@@ -18,7 +17,7 @@ var builder = Host.CreateApplicationBuilder(args);
 // Configure services
 builder.Services
     .AddMcpServer()
-    .WithStdioTransport()
+    .WithStdioServerTransport()
     .WithTools<Tools>();
 
 // Configure logging to stderr (never stdout for MCP servers)
