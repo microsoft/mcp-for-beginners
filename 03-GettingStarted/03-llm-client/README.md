@@ -1,6 +1,6 @@
 # Creating a client with LLM
 
-So far, you've seen how to create a server and a client. The client has been able to call the server explicitly to list its tools, resources and prompts. However, it's not very practical approach. Your user lives in the agentic era and expects to use prompts and communicate with an LLM to do so. For your user, it doesn't care if you use MCP or not to store your capabilities but they do expect to use natural language to interact. So how do we solve this? The solution is about adding an LLM to the client.
+So far, you've seen how to create a server and a client. The client has been able to call the server explicitly to list its tools, resources, and prompts. However, this is not a very practical approach. Your users live in the agentic era and expect to use prompts and communicate with an LLM instead. They do not care whether you use MCP to store your capabilities; they simply expect to interact using natural language. So how do we solve this? The solution is to add an LLM to the client.
 
 ## Overview
 
