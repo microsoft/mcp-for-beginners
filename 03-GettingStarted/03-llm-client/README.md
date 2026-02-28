@@ -1162,7 +1162,7 @@ for (int i = 0; i < response.ToolCalls.Count; i++)
         cancellationToken: CancellationToken.None
     );
 
-    Console.WriteLine(result.Content.OfType<TextContentBlock>().First());
+    Console.WriteLine(result.Content.OfType<TextContentBlock>().First().Text);
 
 }
 
