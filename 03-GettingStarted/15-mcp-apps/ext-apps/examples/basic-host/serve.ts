@@ -14,6 +14,7 @@ import express from "express";
 import cors from "cors";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
+import type { AddressInfo } from "net";
 import type { McpUiResourceCsp } from "@modelcontextprotocol/ext-apps";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -26,9 +27,84 @@ const SERVERS: string[] = process.env.SERVERS
   ? JSON.parse(process.env.SERVERS)
   : ["https://psychic-xylophone-657rpjgvxpc5g64-3001.app.github.dev/mcp"]; // https://psychic-xylophone-657rpjgvxpc5g64-3001.app.github.dev/mcp
 
+function parseCorsOrigins(raw?: string): string[] | null {
+  if (!raw) return null;
+
+  const trimmed = raw.trim();
+  if (!trimmed) return null;
+
+  try {
+    const parsed = JSON.parse(trimmed);
+    if (Array.isArray(parsed)) {
+      return parsed.filter((o): o is string => typeof o === "string" && o.trim().length > 0);
+    }
+  } catch {
+    // Fall through to CSV parsing.
+  }
+
+  const csv = trimmed
+    .split(",")
+    .map((v) => v.trim())
+    .filter((v) => v.length > 0);
+
+  return csv.length ? csv : null;
+}
+
+const allowedCorsOrigins = parseCorsOrigins(process.env.CORS_ORIGINS);
+
+const corsOptions: cors.CorsOptions = {
+  // Reflect request origin by default so credentialed requests work.
+  // Optionally restrict via CORS_ORIGINS='["https://example.com"]' or CSV.
+  origin(origin, callback) {
+    if (!origin) {
+      callback(null, true);
+      return;
+    }
+
+    if (!allowedCorsOrigins || allowedCorsOrigins.includes(origin)) {
+      callback(null, true);
+      return;
+    }
+
+    callback(new Error(`CORS blocked for origin: ${origin}`));
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+};
+
+async function startServerWithFallback(
+  app: express.Express,
+  preferredPort: number,
+  name: string,
+): Promise<{ server: ReturnType<express.Express["listen"]>; port: number }> {
+  return new Promise((resolve, reject) => {
+    const server = app.listen(preferredPort, () => {
+      resolve({ server, port: preferredPort });
+    });
+
+    server.once("error", (err: NodeJS.ErrnoException) => {
+      if (err.code !== "EADDRINUSE") {
+        reject(err);
+        return;
+      }
+
+      console.warn(
+        `${name} port ${preferredPort} is in use. Falling back to an available port.`,
+      );
+
+      const fallbackServer = app.listen(0, () => {
+        const address = fallbackServer.address() as AddressInfo | null;
+        resolve({ server: fallbackServer, port: address?.port ?? preferredPort });
+      });
+
+      fallbackServer.once("error", reject);
+    });
+  });
+}
+
 // ============ Host Server (port 8080) ============
 const hostApp = express();
-hostApp.use(cors());
+hostApp.use(cors(corsOptions));
 
 // Exclude sandbox.html from host server
 hostApp.use((req, res, next) => {
@@ -52,7 +128,7 @@ hostApp.get("/", (_req, res) => {
 
 // ============ Sandbox Server (port 8081) ============
 const sandboxApp = express();
-sandboxApp.use(cors());
+sandboxApp.use(cors(corsOptions));
 
 // Validate CSP domain entries to prevent injection attacks.
 // Rejects entries containing characters that could:
@@ -132,19 +208,26 @@ sandboxApp.use((_req, res) => {
 });
 
 // ============ Start both servers ============
-hostApp.listen(HOST_PORT, (err) => {
-  if (err) {
-    console.error("Error starting server:", err);
-    process.exit(1);
-  }
-  console.log(`Host server:    http://localhost:${HOST_PORT}`);
-});
+async function startServers(): Promise<void> {
+  try {
+    const { port: hostPort } = await startServerWithFallback(
+      hostApp,
+      HOST_PORT,
+      "Host server",
+    );
+    const { port: sandboxPort } = await startServerWithFallback(
+      sandboxApp,
+      SANDBOX_PORT,
+      "Sandbox server",
+    );
 
-sandboxApp.listen(SANDBOX_PORT, (err) => {
-  if (err) {
+    console.log(`Host server:    http://localhost:${hostPort}`);
+    console.log(`Sandbox server: http://localhost:${sandboxPort}`);
+    console.log("\nPress Ctrl+C to stop\n");
+  } catch (err) {
     console.error("Error starting server:", err);
     process.exit(1);
   }
-  console.log(`Sandbox server: http://localhost:${SANDBOX_PORT}`);
-  console.log("\nPress Ctrl+C to stop\n");
-});
+}
+
+void startServers();

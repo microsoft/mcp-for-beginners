@@ -127,6 +127,7 @@ Just like the backend, there's two pieces here:
 Let's have a look at the user interface.
 
 ```html
+<!-- mcp-app.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -148,6 +149,8 @@ Let's have a look at the user interface.
 The last piece is the event wireup. That means we identifying which part in our UI needs event handlers and what to do if events are raised:
 
 ```typescript
+// mcp-app.ts
+
 import { App } from "@modelcontextprotocol/ext-apps";
 
 // Get element references
@@ -188,15 +191,139 @@ So far, we've seen a component that has a button that when clicked calls a tool.
 Let's add the needed support to the backend first:
 
 ```typescript
+const faq: { [key: string]: string } = {
+    "shipping": "Our standard shipping time is 3-5 business days.",
+    "return policy": "You can return any item within 30 days of purchase.",
+    "warranty": "All products come with a 1-year warranty covering manufacturing defects.",
+  }
 
+registerAppTool(
+    server,
+    "get-faq",
+    {
+      title: "Search FAQ",
+      description: "Searches the FAQ for relevant answers.",
+      inputSchema: zod.object({
+        query: zod.string().default("shipping"),
+      }),
+      _meta: { ui: { resourceUri: faqResourceUri } }, // Links this tool to its UI resource
+    },
+    async ({ query }) => {
+      const answer: string = faq[query.toLowerCase()] || "Sorry, I don't have an answer for that.";
+      return { content: [{ type: "text", text: answer }] };
+    },
+  );
 ```
 
-## Try it yourself
+What we're seing here is how we populate `inputSchema` and give it a `zod` schema like so:
 
-In the [code](./code/README.md) folder there's example code you can test out yourself. 
+```typescript
+inputSchema: zod.object({
+  query: zod.string().default("shipping"),
+})
+```
 
-## Prerequisites
+In above schema we declare we have an input parameter called `query` and that it's optional with a default value of "shipping". 
+
+Ok, let's move on to *mcp-app.html* to see what UI we need to create for this:
+
+```html
+<div class="faq">
+    <h1>FAQ response</h1>
+    <p>FAQ Response: <code id="faq-response">Loading...</code></p>
+    <input type="text" id="faq-query" placeholder="Enter FAQ query" />
+    <button id="get-faq-btn">Get FAQ Response</button>
+  </div>
+```
+
+Great, now we have an input element and button. Let's go to *mcp-app.ts* next to wire up these events:
+
+```typescript
+const getFaqBtn = document.getElementById("get-faq-btn")!;
+const faqQueryInput = document.getElementById("faq-query") as HTMLInputElement;
+
+getFaqBtn.addEventListener("click", async () => {
+  const query = faqQueryInput.value;
+  const result = await app.callServerTool({ name: "get-faq", arguments: { query } });
+  const faq = result.content?.find((c) => c.type === "text")?.text;
+  faqResponseEl.textContent = faq ?? "[ERROR]";
+});
+```
+
+In the code above we:
+
+- Create references to the interesting UI elements.
+- Handle a button click to parse out the input element value and we also call `app.callServerTool()` with `name` and `arguments` where the latter is passing `query` as value. 
+
+What actually happens whwn you call `callServerTool` is that it sends a message to the parent window and that window ends up calling the MCP Server.
+
+### Try it out
+
+Trying this out we should now see the following:
+
+![](assets/faq.png)
+
+and here's where we try it with input like "warranty"
+
+![](assets/faq-input.png)
+
+To run this code, head over to [Code section](./code/README.md)
+
+## Testing in Visual Studio Code
+
+Visual Studio Code have great support for MVP Apps and is probably one of the easiest ways of testing your MCP Apps. To use Visual Studio Code, add a server entry to *mcp.json* like so:
+
+```json
+"my-mcp-server-7178eca7": {
+    "url": "http://localhost:3001/mcp",
+    "type": "http"
+  }
+```
+
+Then start the server, you should be able to communicate with your MVP App through the Chat Window providing you have GitHub Copilot installed. 
+
+with by triggering via prompt, for example "#get-faq":
+
+![Visual Studio run prompt](assets/vscode-run.png)
+
+and just like when you ran it through a web browser, it renders the same way like so:
+
+![UI Visual Studio Code](assets/vscode-ui.png)
+
+## Assignment
+
+Create a rock paper scissor game. It should consist of the following:
+
+UI:
+
+- a drop down list with options
+- a button to submit a choice
+- a label showing who picked what and who won
+
+Server:
+
+- should have a tool rock paper scissor tool that takes "choice" as input. It should also render a computer choice and determine winner
+
+## Solution
+
+[Solution](./assignment/README.md)
+
+## Summary
+
+We learned about this new paradigm MCP Apps. It's a new paradigm that allows MCP Servers to have an opinion about not only the data but also how this data should be presented. 
+
+Additionally, we learned that these MCP Apps are hosted into an IFrame and to communicate with MCP Servers they would need to send messages to the parent web app. There are several libraries out there for both plain JavaScript and React and more that makes this communication easier. 
+
+Have a look at the 
+
+## Key Takeaways
+
+Here's what you learned:
+
+- MCP Apps is a new standard that can be useful when you want to ship both data and UI features.
+- These types of apps run in an IFrame for security reasons.
 
 
+## What's Next
 
-That doesn't safe does it, that someone else specifies my user interface? For that reason responses from MCP Apps are rendered inside IFrames to keep it separated from
+- [Chapter 4](../../04-PracticalImplementation/README.md)
