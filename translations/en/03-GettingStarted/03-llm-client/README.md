@@ -1,10 +1,10 @@
 # Creating a client with LLM
 
-So far, you've seen how to create a server and a client. The client has been able to call the server explicitly to list its tools, resources, and prompts. However, it's not a very practical approach. Your user lives in the agentic era and expects to use prompts and communicate with an LLM to do so. For your user, it doesn't matter if you use MCP or not to store your capabilities but they do expect to use natural language to interact. So how do we solve this? The solution is about adding an LLM to the client.
+So far, you've seen how to create a server and a client. The client has been able to call the server explicitly to list its tools, resources, and prompts. However, this is not a very practical approach. Your users live in the agentic era and expect to use prompts and communicate with an LLM instead. They do not care whether you use MCP to store your capabilities; they simply expect to interact using natural language. So how do we solve this? The solution is to add an LLM to the client.
 
 ## Overview
 
-In this lesson we focus on adding an LLM to your client and show how this provides a much better experience for your user.
+In this lesson we focus on adding an LLM to do your client and show how this provides a much better experience for your user.
 
 ## Learning Objectives
 
@@ -12,7 +12,7 @@ By the end of this lesson, you will be able to:
 
 - Create a client with an LLM.
 - Seamlessly interact with an MCP server using an LLM.
-- Provide a better end-user experience on the client side.
+- Provide a better end user experience on the client side.
 
 ## Approach
 
@@ -20,15 +20,15 @@ Let's try to understand the approach we need to take. Adding an LLM sounds simpl
 
 Here's how the client will interact with the server:
 
-1. Establish connection with the server.
+1. Establish connection with server.
 
-1. List capabilities, prompts, resources, and tools, and save down their schema.
+1. List capabilities, prompts, resources and tools, and save down their schema.
 
 1. Add an LLM and pass the saved capabilities and their schema in a format the LLM understands.
 
 1. Handle a user prompt by passing it to the LLM together with the tools listed by the client.
 
-Great, now we understand how we can do this at a high level, let's try this out in the exercise below.
+Great, now we understand how we can do this at high level, let's try this out in below exercise.
 
 ## Exercise: Creating a client with an LLM
 
@@ -86,7 +86,7 @@ class MCPClient {
 In the preceding code we've:
 
 - Imported the needed libraries
-- Created a class with two members, `client` and `openai` that will help us manage a client and interact with an LLM respectively.
+- Create a class with two members, `client` and `openai` that will help us manage a client and interact with an LLM respectively.
 - Configured our LLM instance to use GitHub Models by setting `baseUrl` to point to the inference API.
 
 #### Python
@@ -132,7 +132,6 @@ using Azure.AI.Inference;
 using Azure.Identity;
 using System.Text.Json;
 using ModelContextProtocol.Client;
-using ModelContextProtocol.Protocol.Transport;
 using System.Text.Json;
 
 var clientTransport = new StdioClientTransport(new()
@@ -142,7 +141,7 @@ var clientTransport = new StdioClientTransport(new()
     Arguments = [],
 });
 
-await using var mcpClient = await McpClientFactory.CreateAsync(clientTransport);
+await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 ```
 
 #### Java
@@ -202,7 +201,7 @@ import java.util.List;
 
 public class LangChain4jClient {
     
-    public static void main(String[] args) throws Exception {        // Configure the LLM to use GitHub Models
+    public static void main(String[] args) throws Exception {        // Configure el LLM para usar modelos de GitHub
         ChatLanguageModel model = OpenAiOfficialChatModel.builder()
                 .isGitHubModels(true)
                 .apiKey(System.getenv("GITHUB_TOKEN"))
@@ -210,7 +209,7 @@ public class LangChain4jClient {
                 .modelName("gpt-4.1-nano")
                 .build();
 
-        // Create MCP transport for connecting to server
+        // Crear transporte MCP para conectar al servidor
         McpTransport transport = new HttpMcpTransport.Builder()
                 .sseUrl("http://localhost:8080/sse")
                 .timeout(Duration.ofSeconds(60))
@@ -218,7 +217,7 @@ public class LangChain4jClient {
                 .logResponses(true)
                 .build();
 
-        // Create MCP client
+        // Crear cliente MCP
         McpClient mcpClient = new DefaultMcpClient.Builder()
                 .transport(transport)
                 .build();
@@ -335,7 +334,7 @@ async connectToServer(transport: Transport) {
 async run() {
     console.log("Asking server for available tools");
 
-    // listing tools
+    // displaying tools
     const toolsResult = await this.client.listTools();
 }
 ```
@@ -474,7 +473,7 @@ Next step after listing server capabilities is to convert them into a format tha
     }
     ```
 
-    In the preceding code, we've updated the `run` method to map through the result and for each entry call `openAiToolAdapter`.
+    In the preceding code, we've update the `run` method to map through the result and for each entry call `openAiToolAdapter`.
 
 #### Python
 
@@ -644,7 +643,7 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 }
 ```
 
-Great, we're now set up to handle any user requests, so let's tackle that next.
+Great, we're not set up to handle any user requests, so let's tackle that next.
 
 ### -4- Handle user prompt request
 
@@ -728,7 +727,7 @@ In this part of the code, we will handle user requests.
 
     console.log("Querying LLM: ", messages[0].content);
 
-    // 2. Call the LLM
+    // 2. Calling the LLM
     let response = this.openai.chat.completions.create({
         model: "gpt-4.1-mini",
         max_tokens: 1000,
@@ -1014,7 +1013,7 @@ client.connectToServer(transport);
 
     - Fetched tools from the MCP server, `var tools = await GetMcpTools()`.
     - Defined a user prompt `userMessage`.
-    - Constructed an options object specifying model and tools.
+    - Constructor an options object specifying model and tools.
     - Made a request towards the LLM.
 
 1. One last step, let's see if the LLM thinks we should call a function:
@@ -1043,7 +1042,7 @@ client.connectToServer(transport);
     In the preceding code we've:
 
     - Looped through a list of function calls.
-    - For each tool call, parsed out name and arguments and called the tool on the MCP server using the MCP client. Finally we print the results.
+    - For each tool call, parse out name and arguments and call the tool on the MCP server using the MCP client. Finally we print the results.
 
 Here's the code in full:
 
@@ -1053,8 +1052,7 @@ using Azure.AI.Inference;
 using Azure.Identity;
 using System.Text.Json;
 using ModelContextProtocol.Client;
-using ModelContextProtocol.Protocol.Transport;
-using System.Text.Json;
+using ModelContextProtocol.Protocol;
 
 var endpoint = "https://models.inference.ai.azure.com";
 var token = Environment.GetEnvironmentVariable("GITHUB_TOKEN"); // Your GitHub Access Token
@@ -1073,7 +1071,7 @@ var clientTransport = new StdioClientTransport(new()
 
 Console.WriteLine("Setting up stdio transport");
 
-await using var mcpClient = await McpClientFactory.CreateAsync(clientTransport);
+await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 
 ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonElement jsonElement)
 { 
@@ -1164,7 +1162,7 @@ for (int i = 0; i < response.ToolCalls.Count; i++)
         cancellationToken: CancellationToken.None
     );
 
-    Console.WriteLine(result.Content.First(c => c.Type == "text").Text);
+    Console.WriteLine(result.Content.OfType<TextContentBlock>().First().Text);
 
 }
 
@@ -1176,7 +1174,7 @@ Console.WriteLine($"Assistant response: {content}");
 
 ```java
 try {
-    // Run natural language requests that automatically use MCP tools
+    // Execute natural language requests that automatically use MCP tools
     String response = bot.chat("Calculate the sum of 24.5 and 17.3 using the calculator service");
     System.out.println(response);
 
@@ -1384,7 +1382,7 @@ Great, you did it!
 
 ## Assignment
 
-Take the code from the exercise and build out the server with some more tools. Then create a client with an LLM, like in the exercise, and test it out with different prompts to make sure all your server tools get called dynamically. This way of building a client means the end user will have a great user experience as they're able to use prompts, instead of exact client commands, and be oblivious to any MCP server being called.
+Take the code from the exercise and build out the server with some more tools. Then create a client with an LLM, like in the exercise, and test it out with different prompts to make sure all your server tools gets called dynamically. This way of building a client means the end user will have a great user experience as they're able to use prompts, instead of exact client commands, and be oblivious to any MCP server being called.
 
 ## Solution
 
