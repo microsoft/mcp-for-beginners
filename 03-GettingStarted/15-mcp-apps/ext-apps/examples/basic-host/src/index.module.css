@@ -1,0 +1,281 @@
+/* Theme toggle button */
+.themeToggle {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background-color: var(--color-bg-secondary);
+  font-size: 1.25rem;
+  cursor: pointer;
+  z-index: 1000;
+  transition: background-color 0.2s, border-color 0.2s, transform 0.1s;
+
+  &:hover {
+    background-color: var(--color-border);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.callToolPanel, .toolCallInfoPanel {
+  margin: 0 auto;
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background-color: var(--color-bg-secondary);
+
+  * + & {
+    margin-top: 1rem;
+  }
+}
+
+.callToolPanel {
+  max-width: 480px;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-weight: 600;
+  }
+
+  select,
+  textarea {
+    padding: 0.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    font-size: inherit;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+  }
+
+  .toolSelect {
+    font-family: monospace;
+  }
+
+  .toolInput {
+    min-height: 6rem;
+    font-family: monospace;
+    resize: vertical;
+
+    &[aria-invalid="true"] {
+      background-color: light-dark(#fee2e2, #7f1d1d);
+    }
+  }
+
+  button {
+    align-self: center;
+    min-width: 200px;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--color-primary);
+    font-size: inherit;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      background-color: var(--color-primary-hover);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.toolCallInfoPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-12px); }
+}
+
+.appHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  position: relative;
+
+  .toolName {
+    font-family: monospace;
+  }
+
+  .closeButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0;
+    border: none;
+    border-radius: 4px;
+    background: var(--color-border);
+    font-size: 1.25rem;
+    line-height: 1;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+
+    &:hover {
+      background: var(--color-bg-secondary);
+      color: var(--color-text);
+    }
+  }
+}
+
+.appIframePanel {
+  min-height: 100px;
+
+  iframe {
+    width: 100%;
+    height: 400px;
+    box-sizing: border-box;
+    border: 3px dashed var(--color-border);
+    border-radius: 4px;
+  }
+
+  &.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    margin: 0;
+    padding: 1rem;
+    max-width: none;
+    background: var(--color-bg);
+    border: none;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+
+    /* Hide collapsible panels in fullscreen */
+    .collapsiblePanel {
+      display: none;
+    }
+
+    iframe {
+      flex: 1;
+      height: 100%;
+      border: none;
+      border-radius: 0;
+    }
+  }
+}
+
+.appToolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+
+  .collapsiblePanel {
+    flex: 1;
+    margin: 0;
+  }
+}
+
+.fullscreenButton {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background: var(--color-bg-secondary);
+  color: var(--color-text);
+  font-size: 1.25rem;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--color-bg);
+  }
+}
+
+.collapsiblePanel {
+  margin: 0.5rem 0;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background-color: var(--color-bg-secondary);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.15s;
+
+  &:hover {
+    background-color: var(--color-bg);
+  }
+}
+
+.collapsibleHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.collapsibleLabel {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.collapsibleSize {
+  color: var(--color-text-secondary);
+  font-size: 0.75rem;
+}
+
+.collapsibleToggle {
+  margin-left: auto;
+  color: var(--color-text-secondary);
+  font-size: 0.75rem;
+}
+
+.collapsiblePreview {
+  margin-top: 0.25rem;
+  color: var(--color-text-secondary);
+  font-family: monospace;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.collapsibleFull {
+  margin: 0.5rem 0 0;
+  padding: 0.5rem;
+  border-radius: 4px;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: monospace;
+  font-size: 0.8rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 200px;
+  overflow: auto;
+}
+
+.error {
+  padding: 1.5rem;
+  background-color: var(--color-bg-secondary);
+  color: light-dark(#dc2626, #f87171);
+}

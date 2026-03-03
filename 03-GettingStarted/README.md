@@ -32,6 +32,10 @@ This section consists of several lessons:
 
 - **13 MCP Inspector**. Debug and test your MCP servers interactively using the MCP Inspector tool. Learn to troubleshoot tools, resources, and protocol messages, [to the lesson](./13-mcp-inspector/README.md)
 
+- **14 Sampling**. Create MCP Servers that collaborate with MCP clients on LLM related tasks. [to the lesson](./14-sampling/README.md)
+
+- **15 MCP Apps**. Build MCP Servers that also reply with UI instructions, [to the lesson](./15-mcp-apps/README.md)
+
 The Model Context Protocol (MCP) is an open protocol that standardizes how applications provide context to LLMs. Think of MCP like a USB-C port for AI applications - it provides a standardized way to connect AI models to different data sources and tools.
 
 ## Learning Objectives

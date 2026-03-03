@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Get Time App</title>
+  </head>
+  <body>
+     <div>
+      <button id="ping">Ping</button>
+      <code id="ping-response">...</code>
+     </div>
+
+    <div class="rock-paper-scissors">
+      <h1>Rock Paper Scissors</h1>
+      <select id="rps-options" value="rock">
+        <option value="rock">Rock</option>
+        <option value="paper">Paper</option>
+        <option value="scissors">Scissors</option>
+      </select>
+      <button class="select" id="rps-button" >Select</button>
+     
+      <p>Result: <code id="rps-result">...</code></p>
+    </div>
+
+    <div class="faq">
+      <h1>FAQ response</h1>
+      <p>FAQ Response: <code id="faq-response">Loading...</code></p>
+      <input type="text" id="faq-query" placeholder="Enter FAQ query" />
+      <button id="get-faq-btn">Get FAQ Response</button>
+    </div>
+    <div class="time">
+      <p>
+        <strong>Server Time:</strong> <code id="server-time">Loading...</code>
+      </p>
+      <button id="get-time-btn">Get Server Time</button>
+    </div>
+    <script type="module" src="/src/mcp-app.ts"></script>
+  </body>
+</html>
