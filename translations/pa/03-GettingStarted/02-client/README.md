@@ -1,33 +1,33 @@
-# ਕਲਾਇੰਟ ਬਣਾਉਣਾ
+# ਇੱਕ ਕਲਾਇੰਟ ਬਣਾਉਣਾ
 
-ਕਲਾਇੰਟ ਉਹ ਕਸਟਮ ਐਪਲੀਕੇਸ਼ਨ ਜਾਂ ਸਕ੍ਰਿਪਟ ਹੁੰਦੇ ਹਨ ਜੋ ਸਿੱਧੇ MCP ਸਰਵਰ ਨਾਲ ਸੰਚਾਰ ਕਰਦੇ ਹਨ ਤਾਂ ਜੋ ਸਰੋਤਾਂ, ਟੂਲਾਂ ਅਤੇ ਪ੍ਰੋੰਪਟਾਂ ਦੀ ਬੇਨਤੀ ਕੀਤੀ ਜਾ ਸਕੇ। ਇੰਸਪੈਕਟਰ ਟੂਲ ਦੀ ਵਰਤੋਂ ਕਰਨ ਦੇ ਵਿਰੁੱਧ, ਜੋ ਸਰਵਰ ਨਾਲ ਸੰਚਾਰ ਕਰਨ ਲਈ ਇੱਕ ਗ੍ਰਾਫਿਕਲ ਇੰਟਰਫੇਸ ਪ੍ਰਦਾਨ ਕਰਦਾ ਹੈ, ਆਪਣਾ ਕਲਾਇੰਟ ਲਿਖਣ ਨਾਲ ਪ੍ਰੋਗਰਾਮਮੈਟਿਕ ਅਤੇ ਆਟੋਮੈਟਿਕ ਸੰਚਾਰ ਸੰਭਵ ਹੁੰਦਾ ਹੈ। ਇਹ ਵਿਕਾਸਕਾਰਾਂ ਨੂੰ ਆਪਣੇ ਵਰਕਫਲੋ ਵਿੱਚ MCP ਸਮਰੱਥਾਵਾਂ ਨੂੰ ਸ਼ਾਮਲ ਕਰਨ, ਕੰਮਾਂ ਨੂੰ ਆਟੋਮੈਟ ਕਰਨ ਅਤੇ ਵਿਸ਼ੇਸ਼ ਜ਼ਰੂਰਤਾਂ ਲਈ ਕਸਟਮ ਹੱਲ ਬਣਾਉਣ ਦੀ ਆਗਿਆ ਦਿੰਦਾ ਹੈ।
+ਕਲਾਇੰਟ ਵਿਸ਼ੇਸ਼ ਐਪਲੀਕੇਸ਼ਨ ਜਾਂ ਸਕ੍ਰਿਪਟ ਹੁੰਦੇ ਹਨ ਜੋ ਸਿੱਧਾ MCP ਸਰਵਰ ਨਾਲ ਸੰਚਾਰ ਕਰਦੇ ਹਨ ਤਾਂ ਜੋ ਸਰੋਤ, ਟੂਲ ਅਤੇ ਪ੍ਰਾਂਪਟ ਦੀ ਮੰਗ ਕਰ ਸਕਣ। ਇੰਸਪੈਕਟਰ ਟੂਲ ਦੀ ਵਰਤੋਂ ਕਰਨ ਦੇ ਬਜਾਏ, ਜੋ ਸਰਵਰ ਨਾਲ ਸੰਪਰਕ ਕਰਨ ਲਈ ਇੱਕ ਗ੍ਰਾਫਿਕਲ ਇੰਟਰਫੇਸ ਪ੍ਰਦਾਨ ਕਰਦਾ ਹੈ, ਆਪਣਾ ਕਲਾਇੰਟ ਲਿਖਣਾ ਪ੍ਰੋਗਰਾਮੈਟਿਕ ਅਤੇ ਆਟੋਮੇਟਿਕ ਇੰਟਰਐਕਸ਼ਨ ਦੀ ਆਗਿਆ ਦਿੰਦਾ ਹੈ। ਇਹ ਵਿਕਾਸਕਾਰਾਂ ਨੂੰ MCP ਸਮਰੱਥਾਵਾਂ ਨੂੰ ਆਪਣੇ ਕੰਮ ਦੇ ਪ੍ਰਬੰਧ ਵਿੱਚ ਸ਼ਾਮਿਲ ਕਰਨ, ਕਾਰਜਾਂ ਆਟੋਮੇਟ ਕਰਨ, ਅਤੇ ਨਿਰਧਾਰਿਤ ਜ਼ਰੂਰਤਾਂ ਲਈ ਕਸਟਮ ਹੱਲ ਬਣਾਉਣ ਦੀ ਸਹੂਲਤ ਦਿੰਦਾ ਹੈ।
 
 ## ਝਲਕ
 
-ਇਹ ਪਾਠ MCP (ਮਾਡਲ ਕਾਂਟੈਕਸਟ ਪ੍ਰੋਟੋਕੋਲ) ਪਰਿਵਾਰ ਵਿੱਚ ਕਲਾਇੰਟਾਂ ਦੇ ਅਵਧਾਰਨਾ ਨਾਲ ਜਾਣੂ ਕਰਵਾਉਂਦਾ ਹੈ। ਤੁਸੀਂ ਸਿੱਖੋਗੇ ਕਿ ਆਪਣਾ ਕਲਾਇੰਟ ਕਿਵੇਂ ਲਿਖਣਾ ਹੈ ਅਤੇ ਇਸਨੂੰ MCP ਸਰਵਰ ਨਾਲ ਕਿਵੇਂ ਜੋੜਨਾ ਹੈ।
+ਇਸ ਪਾਠ ਵਿੱਚ ਮਾਡਲ ਕਾਂਟੈਕਸਟ ਪ੍ਰੋਟੋਕੋਲ (MCP) ਪਰਿਵੇਸ਼ ਵਿੱਚ ਕਲਾਇੰਟਾਂ ਦੇ ਸੰਕਲਪ ਨੂੰ ਵੱਖ-ਵੱਖ ਤਰੀਕੇ ਨਾਲ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ ਹੈ। ਤੁਸੀਂ ਸਿੱਖੋਗੇ ਕਿ ਆਪਣਾ ਕਲਾਇੰਟ ਕਿਵੇਂ ਲਿਖਣਾ ਹੈ ਅਤੇ ਉਸ ਨੂੰ MCP ਸਰਵਰ ਨਾਲ ਕਿਵੇਂ ਜੋੜਣਾ ਹੈ।
 
 ## ਸਿੱਖਣ ਦੇ ਉਦੇਸ਼
 
-ਇਸ ਪਾਠ ਦੇ ਅੰਤ ਤੱਕ, ਤੁਸੀਂ ਇਹ ਕਰਨ ਦੇ ਯੋਗ ਹੋਵੋਗੇ:
+ਇਸ ਪਾਠ ਦੇ ਅੰਤ ਤੱਕ, ਤੁਸੀਂ ਸਮਰਥ ਹੋਵੋਗੇ:
 
-- ਸਮਝੋ ਕਿ ਕਲਾਇੰਟ ਕੀ ਕਰ ਸਕਦਾ ਹੈ।
-- ਆਪਣਾ ਕਲਾਇੰਟ ਲਿਖੋ।
-- ਕਲਾਇੰਟ ਨੂੰ MCP ਸਰਵਰ ਨਾਲ ਜੋੜੋ ਅਤੇ ਟੈਸਟ ਕਰੋ ਤਾਂ ਕਿ ਇਹ ਯਕੀਨੀ ਬਣਾਇਆ ਜਾ ਸਕੇ ਕਿ ਇਹ ਉਮੀਦਾਂ ਦੇ ਅਨੁਸਾਰ ਕੰਮ ਕਰਦਾ ਹੈ।
+- ਕਲਾਇੰਟ ਕੀ ਕਰ ਸਕਦਾ ਹੈ, ਇਹ ਸਮਝਣਾ।
+- ਆਪਣਾ ਕਲਾਇੰਟ ਲਿਖਣਾ।
+- ਕਲਾਇੰਟ ਨੂੰ MCP ਸਰਵਰ ਨਾਲ ਜੁੜਨਾ ਅਤੇ ਟੈਸਟ ਕਰਨਾ ਤਾਂ ਜੋ ਇਹ ਯਕੀਨੀ ਬਣਾਇਆ ਜਾ ਸਕੇ ਕਿ ਸਰਵਰ ਉਮੀਦਾਂ ਮੁਤਾਬਕ ਕੰਮ ਕਰ ਰਿਹਾ ਹੈ।
 
 ## ਕਲਾਇੰਟ ਲਿਖਣ ਵਿੱਚ ਕੀ ਸ਼ਾਮਲ ਹੈ?
 
-ਕਲਾਇੰਟ ਲਿਖਣ ਲਈ, ਤੁਹਾਨੂੰ ਇਹ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੋਵੇਗੀ:
+ਕਲਾਇੰਟ ਲਿਖਣ ਲਈ, ਤੁਹਾਨੂੰ ਹੇਠਾਂ ਦਿੱਤੇ ਕੰਮ ਕਰਨੇ ਹੋਣਗੇ:
 
-- **ਸਹੀ ਲਾਇਬ੍ਰੇਰੀਆਂ ਨੂੰ ਇੰਪੋਰਟ ਕਰੋ**। ਤੁਸੀਂ ਪਹਿਲਾਂ ਵਰਤੀ ਗਈ ਲਾਇਬ੍ਰੇਰੀ ਦੀ ਵਰਤੋਂ ਕਰੋਗੇ, ਸਿਰਫ਼ ਵੱਖ-ਵੱਖ ਬਣਤਰਾਂ ਨਾਲ।
-- **ਕਲਾਇੰਟ ਬਣਾਓ**। ਇਸ ਵਿੱਚ ਇੱਕ ਕਲਾਇੰਟ ਇੰਸਟੈਂਸ ਬਣਾਉਣਾ ਅਤੇ ਇਸਨੂੰ ਚੁਣੇ ਗਏ ਟ੍ਰਾਂਸਪੋਰਟ ਮੋਡ ਨਾਲ ਜੋੜਨਾ ਸ਼ਾਮਲ ਹੋਵੇਗਾ।
-- **ਸਰੋਤਾਂ ਦੀ ਸੂਚੀ ਬਣਾਉਣ ਦਾ ਫੈਸਲਾ ਕਰੋ**। ਤੁਹਾਡੇ MCP ਸਰਵਰ ਵਿੱਚ ਸਰੋਤ, ਟੂਲ ਅਤੇ ਪ੍ਰੋੰਪਟ ਹਨ, ਤੁਹਾਨੂੰ ਇਹ ਫੈਸਲਾ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ ਕਿ ਕਿਹੜਾ ਸੂਚੀਬੱਧ ਕਰਨਾ ਹੈ।
-- **ਕਲਾਇੰਟ ਨੂੰ ਹੋਸਟ ਐਪਲੀਕੇਸ਼ਨ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ**। ਜਦੋਂ ਤੁਹਾਨੂੰ ਸਰਵਰ ਦੀ ਸਮਰੱਥਾਵਾਂ ਦਾ ਪਤਾ ਲੱਗ ਜਾਵੇ, ਤਾਂ ਤੁਹਾਨੂੰ ਇਸਨੂੰ ਆਪਣੇ ਹੋਸਟ ਐਪਲੀਕੇਸ਼ਨ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ ਤਾਂ ਜੋ ਜਦੋਂ ਕੋਈ ਯੂਜ਼ਰ ਪ੍ਰੋੰਪਟ ਜਾਂ ਹੋਰ ਕਮਾਂਡ ਟਾਈਪ ਕਰੇ, ਤਾਂ ਸੰਬੰਧਿਤ ਸਰਵਰ ਫੀਚਰ ਚਾਲੂ ਹੋਵੇ।
+- **ਸਹੀ ਲਾਇਬ੍ਰੇਰੀਜ਼ ਆਯਾਤ ਕਰੋ**। ਤੁਸੀਂ ਪਹਿਲਾਂ ਵਰਤੀ ਗਈ ਲਾਇਬ੍ਰੇਰੀ ਵਰਤ ਰਹੇ ਹੋ, ਸਿਰਫ਼ ਵੱਖ ਵੱਖ ਬਣਾਤਾਂ ਨਾਲ।
+- **ਕਲਾਇੰਟ ਬਣਾਓ**। ਇਹ ਵਿੱਚ ਕਲਾਇੰਟ ਇੰਸਟੈਂਸ ਬਣਾਉਣਾ ਅਤੇ ਇਸ ਨੂੰ ਚੁਣੇ ਗਏ ਟ੍ਰਾਂਸਪੋਰਟ ਵਿਧੀ ਨਾਲ ਜੋੜਨਾ ਸ਼ਾਮਲ ਹੋਵੇਗਾ।
+- **ਤਯ ਕਰਨਾ ਕਿ ਕਿਹੜੇ ਸ੍ਰੋਤ ਨੂੰ ਲਿਸਟ ਕਰਨਾ ਹੈ**। ਤੁਹਾਡੇ MCP ਸਰਵਰ ਨਾਲ ਸਰੋਤ, ਟੂਲ ਅਤੇ ਪ੍ਰਾਂਪਟ ਹੁੰਦੇ ਹਨ, ਤੁਹਾਨੂੰ ਇਹ ਨਿਰਧਾਰਤ ਕਰਨਾ ਹੈ ਕਿ ਕਿਹੜੇ ਲਿਸਟ ਕਰਨੇ ਹਨ।
+- **ਕਲਾਇੰਟ ਨੂੰ ਇੱਕ ਹੋਸਟ ਐਪਲੀਕੇਸ਼ਨ ਨਾਲ ਜੋੜਨਾ**। ਜਦੋਂ ਤੁਸੀਂ ਸਰਵਰ ਦੀ ਸਮਰੱਥਾ ਜਾਣ ਲਓ, ਤਾਂ ਇਸਨੂੰ ਆਪਣੇ ਹੋਸਟ ਐਪਲੀਕੇਸ਼ਨ ਨਾਲ ਜੋੜੋ ਤਾਂ ਜੋ ਜੇ ਕੋਈ ਯੂਜ਼ਰ ਪ੍ਰਾਂਪਟ ਜਾਂ ਹੋਰ ਕਮਾਂਡ ਟਾਈਪ ਕਰੇ ਤਾਂ ਉਸ ਅਨੁਸਾਰ ਸਰਵਰ ਫੀਚਰ ਚਲਾਇਆ ਜਾ ਸਕੇ।
 
-ਹੁਣ ਜਦੋਂ ਅਸੀਂ ਉੱਚ ਪੱਧਰ 'ਤੇ ਸਮਝ ਗਏ ਕਿ ਅਸੀਂ ਕੀ ਕਰਨ ਜਾ ਰਹੇ ਹਾਂ, ਆਓ ਅਗਲੇ ਹਿੱਸੇ ਵਿੱਚ ਇੱਕ ਉਦਾਹਰਨ ਦੇਖੀਏ।
+ਹੁਣ ਜਦੋਂ ਕਿ ਅਸੀਂ ਉੱਚ ਪੱਧਰ 'ਤੇ ਸਮਝ ਚੁੱਕੇ ਹਾਂ ਕਿ ਅਸੀਂ ਕੀ ਕਰਨ ਜਾ ਰਹੇ ਹਾਂ, ਆਓ ਅਗਲੇ ਉਦਾਹਰਨ ਨੂੰ ਵੇਖੀਏ।
 
 ### ਇੱਕ ਉਦਾਹਰਨ ਕਲਾਇੰਟ
 
-ਆਓ ਇਸ ਉਦਾਹਰਨ ਕਲਾਇੰਟ ਨੂੰ ਦੇਖੀਏ:
+ਆਓ ਇਸ ਉਦਾਹਰਨ ਕਲਾਇੰਟ ਨੂੰ ਵੇਖੀਏ:
 
 ### ਟਾਈਪਸਕ੍ਰਿਪਟ
 
@@ -49,10 +49,10 @@ const client = new Client(
 
 await client.connect(transport);
 
-// List prompts
+// ਪ੍ਰੰਪਟ ਸੂਚੀਬੱਧ ਕਰੋ
 const prompts = await client.listPrompts();
 
-// Get a prompt
+// ਇੱਕ ਪ੍ਰੰਪਟ ਪ੍ਰਾਪਤ ਕਰੋ
 const prompt = await client.getPrompt({
   name: "example-prompt",
   arguments: {
@@ -60,15 +60,15 @@ const prompt = await client.getPrompt({
   }
 });
 
-// List resources
+// ਸਰੋਤ ਸੂਚੀਬੱਧ ਕਰੋ
 const resources = await client.listResources();
 
-// Read a resource
+// ਇੱਕ ਸਰੋਤ ਪੜ੍ਹੋ
 const resource = await client.readResource({
   uri: "file:///example.txt"
 });
 
-// Call a tool
+// ਇੱਕ ਟੂਲ ਕਾਲ ਕਰੋ
 const result = await client.callTool({
   name: "example-tool",
   arguments: {
@@ -77,23 +77,23 @@ const result = await client.callTool({
 });
 ```
 
-ਉਪਰੋਕਤ ਕੋਡ ਵਿੱਚ ਅਸੀਂ:
+ਪਿਛਲੇ ਕੋਡ ਵਿੱਚ ਅਸੀਂ:
 
-- ਲਾਇਬ੍ਰੇਰੀਆਂ ਨੂੰ ਇੰਪੋਰਟ ਕੀਤਾ।
-- ਇੱਕ ਕਲਾਇੰਟ ਇੰਸਟੈਂਸ ਬਣਾਇਆ ਅਤੇ ਇਸਨੂੰ ਟ੍ਰਾਂਸਪੋਰਟ ਲਈ stdio ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਜੋੜਿਆ।
-- ਪ੍ਰੋੰਪਟ, ਸਰੋਤ ਅਤੇ ਟੂਲਾਂ ਦੀ ਸੂਚੀ ਬਣਾਈ ਅਤੇ ਉਨ੍ਹਾਂ ਨੂੰ ਚਾਲੂ ਕੀਤਾ।
+- ਲਾਇਬ੍ਰੇਰੀਜ਼ ਆਯਾਤ ਕੀਤੀਆਂ
+- stdio ਦਾ ਉਪਯੋਗ ਕਰਦਿਆਂ ਇੱਕ ਕਲਾਇੰਟ ਦਾ ਇੰਸਟੈਂਸ ਬਣਾਇਆ ਅਤੇ ਜੋੜਿਆ।
+- ਪ੍ਰਾਂਪਟ, ਸਰੋਤ ਅਤੇ ਟੂਲ ਲਿਸਟ ਕੀਤੇ ਅਤੇ ਸਾਰੇ ਨਿਰਵਾਹ ਕੀਤੇ।
 
-ਇਹ ਹੈ, ਇੱਕ ਕਲਾਇੰਟ ਜੋ MCP ਸਰਵਰ ਨਾਲ ਗੱਲਬਾਤ ਕਰ ਸਕਦਾ ਹੈ।
+ਇਹ ਹੈ, ਇੱਕ ਕਲਾਇੰਟ ਜੋ MCP ਸਰਵਰ ਨਾਲ ਗੱਲ ਕਰ ਸਕਦਾ ਹੈ।
 
-ਆਓ ਅਗਲੇ ਅਭਿਆਸ ਹਿੱਸੇ ਵਿੱਚ ਹਰ ਕੋਡ ਸਨਿੱਪਟ ਨੂੰ ਵਿਖੰਡਿਤ ਕਰਕੇ ਸਮਝਣ ਲਈ ਸਮਾਂ ਲਵਾਂ।
+ਅਗਲੇ ਅਭਿਆਸ ਸੈਸ਼ਨ ਵਿੱਚ ਅਸੀਂ ਹਰ ਕੋਡ ਟੁਕੜੇ ਨੂੰ ਵਿਚਾਰੇਂਗੇ ਅਤੇ ਸਮਝਾਵਾਂਗੇ ਕਿ ਕੀ ਹੋ ਰਿਹਾ ਹੈ।
 
-## ਅਭਿਆਸ: ਕਲਾਇੰਟ ਲਿਖਣਾ
+## ਅਭਿਆਸ: ਇੱਕ ਕਲਾਇੰਟ ਲਿਖਣਾ
 
-ਜਿਵੇਂ ਕਿ ਉਪਰੋਕਤ ਕਿਹਾ ਗਿਆ ਹੈ, ਆਓ ਕੋਡ ਨੂੰ ਸਮਝਾਉਣ ਲਈ ਸਮਾਂ ਲਵਾਂ, ਅਤੇ ਜੇ ਤੁਸੀਂ ਚਾਹੋ ਤਾਂ ਕੋਡ ਨਾਲ ਅਭਿਆਸ ਕਰੋ।
+ਜਿਵੇਂ ਉੱਪਰ ਕਿਹਾ ਗਿਆ, ਆਓ ਅਸੀਂ ਸਮਾਂ ਲੈ ਕੇ ਕੋਡ ਨੂੰ ਸਮਝੀਏ, ਅਤੇ ਜੇਚਾਹੁੰਦੇ ਹੋ ਤਾਂ ਕੋਡ ਨਾਲ਼ ਵੀ ਚੱਲ ਸਕਦੇ ਹੋ।
 
-### -1- ਲਾਇਬ੍ਰੇਰੀਆਂ ਨੂੰ ਇੰਪੋਰਟ ਕਰੋ
+### -1- ਲਾਇਬ੍ਰੇਰੀਜ਼ ਆਯਾਤ ਕਰੋ
 
-ਆਓ ਜਿਨ ਲਾਇਬ੍ਰੇਰੀਆਂ ਦੀ ਜ਼ਰੂਰਤ ਹੈ ਉਹਨਾਂ ਨੂੰ ਇੰਪੋਰਟ ਕਰੀਏ। ਸਾਨੂੰ ਇੱਕ ਕਲਾਇੰਟ ਅਤੇ ਚੁਣੇ ਗਏ ਟ੍ਰਾਂਸਪੋਰਟ ਪ੍ਰੋਟੋਕੋਲ stdio ਲਈ ਹਵਾਲੇ ਦੀ ਜ਼ਰੂਰਤ ਹੋਵੇਗੀ। stdio ਉਹ ਪ੍ਰੋਟੋਕੋਲ ਹੈ ਜੋ ਤੁਹਾਡੇ ਸਥਾਨਕ ਮਸ਼ੀਨ 'ਤੇ ਚਲਾਉਣ ਲਈ ਬਣਾਇਆ ਗਿਆ ਹੈ। SSE ਇੱਕ ਹੋਰ ਟ੍ਰਾਂਸਪੋਰਟ ਪ੍ਰੋਟੋਕੋਲ ਹੈ ਜਿਸਨੂੰ ਅਸੀਂ ਭਵਿੱਖ ਦੇ ਅਧਿਆਇ ਵਿੱਚ ਦਿਖਾਵਾਂਗੇ ਪਰ ਇਹ ਤੁਹਾਡਾ ਦੂਜਾ ਵਿਕਲਪ ਹੈ। ਫਿਲਹਾਲ, ਆਓ stdio ਨਾਲ ਜਾਰੀ ਰੱਖੀਏ।
+ਆਓ ਜਰੂਰੀ ਲਾਇਬ੍ਰੇਰੀਜ਼ ਆਯਾਤ ਕਰੀਏ, ਸਾਨੂੰ ਕਲਾਇੰਟ ਅਤੇ ਚੁਣੇ ਗਏ ਟ੍ਰਾਂਸਪੋਰਟ ਪ੍ਰੋਟੋਕੋਲ stdio ਦਾ ਹਵਾਲਾ ਦੇਣਾ ਪੈਏਗਾ। stdio ਇੱਕ ਪ੍ਰੋਟੋਕੋਲ ਹੈ ਜੋ ਤੁਹਾਡੇ ਸਥਾਨਕ ਮਸ਼ੀਨ ਉੱਤੇ ਚੱਲਣ ਵਾਲੀਆਂ ਚੀਜ਼ਾਂ ਲਈ ਹੈ। SSE ਇੱਕ ਹੋਰ ਟ੍ਰਾਂਸਪੋਰਟ ਪ੍ਰੋਟੋਕੋਲ ਹੈ ਜੋ ਅਸੀਂ ਆਉਣ ਵਾਲੇ ਅਧਿਆਏ ਵਿੱਚ ਵੇਖਾਂਗੇ ਪਰ ਇਹ ਤੁਹਾਡਾ ਦੂਜਾ ਵਿਕਲਪ ਹੈ। ਇਸ ਵੇਲੇ ਲਈ, ਆਓ stdio ਨਾਲ ਜਾਰੀ ਰੱਖੀਏ।
 
 #### ਟਾਈਪਸਕ੍ਰਿਪਟ
 
@@ -116,12 +116,11 @@ using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using ModelContextProtocol.Client;
-using ModelContextProtocol.Protocol.Transport;
 ```
 
 #### ਜਾਵਾ
 
-ਜਾਵਾ ਲਈ, ਤੁਸੀਂ ਪਿਛਲੇ ਅਭਿਆਸ ਤੋਂ MCP ਸਰਵਰ ਨਾਲ ਜੁੜਨ ਵਾਲਾ ਕਲਾਇੰਟ ਬਣਾਉਗੇ। ਜਾਵਾ ਸਪ੍ਰਿੰਗ ਬੂਟ ਪ੍ਰੋਜੈਕਟ ਸਟ੍ਰਕਚਰ ਦੀ ਵਰਤੋਂ ਕਰਦੇ ਹੋਏ [Getting Started with MCP Server](../../../../03-GettingStarted/01-first-server/solution/java) ਤੋਂ, `SDKClient` ਨਾਮਕ ਇੱਕ ਨਵੀਂ ਜਾਵਾ ਕਲਾਸ ਬਣਾਓ `src/main/java/com/microsoft/mcp/sample/client/` ਫੋਲਡਰ ਵਿੱਚ ਅਤੇ ਹੇਠਾਂ ਦਿੱਤੇ ਇੰਪੋਰਟ ਸ਼ਾਮਲ ਕਰੋ:
+ਜਾਵਾ ਲਈ, ਤੁਸੀਂ ਇੱਕ ਕਲਾਇੰਟ ਬਣਾਉਗੇ ਜੋ ਪਿਛਲੇ ਅਭਿਆਸ ਦਾ MCP ਸਰਵਰ ਨਾਲ ਜੁੜਦਾ ਹੈ। ਉਹੀ ਜਾਵਾ ਸਪ੍ਰਿੰਗ ਬੂਟ ਪ੍ਰੋਜੈਕਟ ਢਾਂਚਾ ਵਰਤਦੇ ਹੋਏ ਜੋ [Getting Started with MCP Server](../../../../03-GettingStarted/01-first-server/solution/java) ਤੋਂ ਹੈ, `src/main/java/com/microsoft/mcp/sample/client/` ਫੋਲਡਰ ਵਿੱਚ `SDKClient` ਨਾਮਕ ਨਵੀਂ ਜਾਵਾ ਕਲਾਸ ਬਣਾਓ ਅਤੇ ਹੇਠਾਂ ਦਿੱਤੀਆਂ ਆਯਾਤਾਂ ਸ਼ਾਮਲ ਕਰੋ:
 
 ```java
 import java.util.Map;
@@ -136,7 +135,7 @@ import io.modelcontextprotocol.spec.McpSchema.ListToolsResult;
 
 #### ਰਸਟ
 
-ਤੁਹਾਨੂੰ ਆਪਣੇ `Cargo.toml` ਫਾਇਲ ਵਿੱਚ ਹੇਠਾਂ ਦਿੱਤੀਆਂ Dependencies ਸ਼ਾਮਲ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੋਵੇਗੀ।
+ਤੁਹਾਨੂੰ ਆਪਣੇ `Cargo.toml` ਫਾਈਲ ਵਿੱਚ ਹੇਠਾਂ ਦਿੱਤੇ ਡੀਪੈਂਡੈਂਸੀਜ਼ ਸ਼ਾਮਲ ਕਰਨੀਆਂ ਪੈਣਗੀਆਂ।
 
 ```toml
 [package]
@@ -150,7 +149,7 @@ serde_json = "1.0.141"
 tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 ```
 
-ਇਸ ਤੋਂ ਬਾਅਦ, ਤੁਸੀਂ ਆਪਣੇ ਕਲਾਇੰਟ ਕੋਡ ਵਿੱਚ ਜ਼ਰੂਰੀ ਲਾਇਬ੍ਰੇਰੀਆਂ ਨੂੰ ਇੰਪੋਰਟ ਕਰ ਸਕਦੇ ਹੋ।
+ਇੱਥੋਂ ਤੋਂ, ਤੁਸੀਂ ਆਪਣੀ ਕਲਾਇੰਟ ਕੋਡ ਵਿੱਚ ਲੋੜੀਂਦੀ ਲਾਇਬ੍ਰੇਰੀਜ਼ ਆਯਾਤ ਕਰ ਸਕਦੇ ਹੋ।
 
 ```rust
 use rmcp::{
@@ -162,11 +161,11 @@ use rmcp::{
 use tokio::process::Command;
 ```
 
-ਆਓ ਇੰਸਟੈਂਸ਼ਨ ਵੱਲ ਵਧੀਏ।
+ਚਲੋ ਅੱਗੇ ਇੰਸਟੈਂਸੀਏਸ਼ਨ ਵੱਲ ਵਧੀਏ।
 
-### -2- ਕਲਾਇੰਟ ਅਤੇ ਟ੍ਰਾਂਸਪੋਰਟ ਨੂੰ ਇੰਸਟੈਂਸ਼ੀਏਟ ਕਰਨਾ
+### -2- ਕਲਾਇੰਟ ਅਤੇ ਟ੍ਰਾਂਸਪੋਰਟ ਦੀ ਇੰਸਟੈਂਸੀਏਸ਼ਨ
 
-ਸਾਨੂੰ ਟ੍ਰਾਂਸਪੋਰਟ ਅਤੇ ਆਪਣੇ ਕਲਾਇੰਟ ਦਾ ਇੱਕ ਇੰਸਟੈਂਸ ਬਣਾਉਣ ਦੀ ਜ਼ਰੂਰਤ ਹੋਵੇਗੀ:
+ਸਾਨੂੰ ਇੱਕ ਟ੍ਰਾਂਸਪੋਰਟ ਅਤੇ ਇੱਕ ਕਲਾਇੰਟ ਦਾ ਇੰਸਟੈਂਸ ਬਣਾਉਣਾ ਹੋਵੇਗਾ:
 
 #### ਟਾਈਪਸਕ੍ਰਿਪਟ
 
@@ -186,9 +185,9 @@ const client = new Client(
 await client.connect(transport);
 ```
 
-ਉਪਰੋਕਤ ਕੋਡ ਵਿੱਚ ਅਸੀਂ:
+ਪਿਛਲੇ ਕੋਡ ਵਿੱਚ ਅਸੀਂ:
 
-- stdio ਟ੍ਰਾਂਸਪੋਰਟ ਇੰਸਟੈਂਸ ਬਣਾਇਆ। ਧਿਆਨ ਦਿਓ ਕਿ ਇਹ ਕਮਾਂਡ ਅਤੇ ਆਰਗਸ ਨੂੰ ਨਿਰਧਾਰਤ ਕਰਦਾ ਹੈ ਕਿ ਸਰਵਰ ਨੂੰ ਕਿਵੇਂ ਲੱਭਣਾ ਅਤੇ ਸ਼ੁਰੂ ਕਰਨਾ ਹੈ ਕਿਉਂਕਿ ਇਹ ਕੁਝ ਹੈ ਜੋ ਅਸੀਂ ਕਲਾਇੰਟ ਬਣਾਉਣ ਸਮੇਂ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੋਵੇਗੀ।
+- stdio ਟ੍ਰਾਂਸਪੋਰਟ ਇੰਸਟੈਂਸ ਬਣਾਇਆ। ਦੇਖੋ ਕਿ ਕਿਵੇਂ ਕਮਾਂਡ ਅਤੇ args ਨੂੰ ਵਿਸ਼ੇਸ਼ਤ ਕੀਤਾ ਗਿਆ ਹੈ ਕਿ ਸਰਵਰ ਕਿਵੇਂ ਲੱਭਣਾ ਅਤੇ ਚਾਲੂ ਕਰਨਾ ਹੈ, ਕਿਉਂਕਿ ਇਹ ਕੁਝ ਅਸੀਂ ਕਲਾਇੰਟ ਬਣਾਉਂਦੇ ਸਮੇਂ ਕਰਨ ਵਾਲੇ ਹਾਂ।
 
     ```typescript
     const transport = new StdioClientTransport({
@@ -197,7 +196,7 @@ await client.connect(transport);
     });
     ```
 
-- ਕਲਾਇੰਟ ਨੂੰ ਇੱਕ ਨਾਮ ਅਤੇ ਵਰਜਨ ਦੇ ਕੇ ਇੰਸਟੈਂਸ਼ੀਏਟ ਕੀਤਾ।
+- ਕਲਾਇੰਟ ਨੂੰ ਇੱਕ ਨਾਮ ਅਤੇ ਸਮਾਂ ਵਰਜਨ ਦਿੱਤੇ ਬਿਨਾਂ ਇੰਸਟੈਂਸ ਕੀਤਾ।
 
     ```typescript
     const client = new Client(
@@ -219,11 +218,11 @@ await client.connect(transport);
 from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
 
-# Create server parameters for stdio connection
+# stdio ਕਨੈਕਸ਼ਨ ਲਈ ਸਰਵਰ ਪੈਰਾਮੀਟਰ ਬਣਾਓ
 server_params = StdioServerParameters(
-    command="mcp",  # Executable
-    args=["run", "server.py"],  # Optional command line arguments
-    env=None,  # Optional environment variables
+    command="mcp",  # ਚਲਾਉਣਯੋਗ
+    args=["run", "server.py"],  # ਵਿਕਲਪਿਕ ਕਮਾਂਡ ਲਾਈਨ ਦਰਜ
+    env=None,  # ਵਿਕਲਪਿਕ ਵਾਤਾਵਰਨ ਵੈਰੀਏਬਲ
 )
 
 async def run():
@@ -231,7 +230,7 @@ async def run():
         async with ClientSession(
             read, write
         ) as session:
-            # Initialize the connection
+            # ਕਨੈਕਸ਼ਨ ਸ਼ੁਰੂ ਕਰੋ
             await session.initialize()
 
           
@@ -242,6 +241,13 @@ if __name__ == "__main__":
     asyncio.run(run())
 ```
 
+ਪਿਛਲੇ ਕੋਡ ਵਿੱਚ ਅਸੀਂ:
+
+- ਲੋੜੀਂਦੀਆਂ ਲਾਇਬ੍ਰੇਰੀਜ਼ ਆਯਾਤ ਕੀਤੀਆਂ
+- ਸਰਵਰ ਪੈਰਾਮੀਟਰ ਆਬਜੈਕਟ ਇੰਸਟੈਂਸ਼ੀਏਟ ਕੀਤਾ ਜੋ ਅਸੀਂ ਸਰਵਰ ਚਲਾਉਣ ਲਈ ਵਰਤਾਂਗੇ ਤਾਂ ਜੋ ਕਲਾਇੰਟ ਨਾਲ ਜੁੜ ਸਕੀਏ।
+- `run` ਨਾਮਕ ਇੱਕ ਮੈਥਡ ਤਿਆਰ ਕੀਤਾ ਜੋ `stdio_client` ਨੂੰ ਕਾਲ ਕਰਦਾ ਹੈ ਜੋ ਕਲਾਇੰਟ ਸੈਸ਼ਨ ਸ਼ੁਰੂ ਕਰਦਾ ਹੈ।
+- ਇੱਕ ਐਂਟਰੀ ਪਾਇੰਟ ਬਣਾਈ ਜਿਸ ਵਿੱਚ ਅਸੀਂ `asyncio.run` ਨੂੰ `run` ਮੈਥਡ ਪ੍ਰਦਾਨ ਕਰਦੇ ਹਾਂ।
+
 #### .NET
 
 ```dotnet
@@ -249,7 +255,6 @@ using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using ModelContextProtocol.Client;
-using ModelContextProtocol.Protocol.Transport;
 
 var builder = Host.CreateApplicationBuilder(args);
 
@@ -266,8 +271,15 @@ var clientTransport = new StdioClientTransport(new()
     Arguments = ["run", "--project", "path/to/file.csproj"],
 });
 
-await using var mcpClient = await McpClientFactory.CreateAsync(clientTransport);
+await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 ```
+
+ਪਿਛਲੇ ਕੋਡ ਵਿੱਚ ਅਸੀਂ:
+
+- ਜਰੂਰੀ ਲਾਇਬ੍ਰੇਰੀਜ਼ ਆਯਾਤ ਕੀਤੀਆਂ।
+- stdio ਟ੍ਰਾਂਸਪੋਰਟ ਬਣਾਇਆ ਅਤੇ `mcpClient` ਕਲਾਇੰਟ ਬਣਾਇਆ। ਇਹਚੀਜ਼ ਅਸੀਂ MCP ਸਰਵਰ ਉੱਤੇ ਫੀਚਰ ਲਿਸਟ ਕਰਨ ਅਤੇ ਨਿਰਵਾਹ ਕਰਨ ਲਈ ਵਰਤਾਂਗੇ।
+
+ਨੋਟ ਕਰੋ, "Arguments" ਵਿੱਚ ਤੁਸੀਂ ਜਾਂ ਤਾਂ *.csproj* ਜਾਂ ਐਗਜ਼ਿਕਿਊਟੇਬਲ ਨੂੰ ਪੌਇੰਟ ਕਰ ਸਕਦੇ ਹੋ।
 
 #### ਜਾਵਾ
 
@@ -289,16 +301,25 @@ public class SDKClient {
         var client = McpClient.sync(this.transport).build();
         client.initialize();
         
-        // Your client logic goes here
+        // ਤੁਹਾਡਾ ਕਲਾਇੰਟ ਤਰਕ ਇੱਥੇ ਜਾਂਦਾ ਹੈ
     }
 }
 ```
 
+ਪਿਛਲੇ ਕੋਡ ਵਿੱਚ ਅਸੀਂ:
+
+- ਇੱਕ ਮੈਨ ਮੈਥਡ ਬਣਾਇਆ ਜੋ `http://localhost:8080` ਨੂੰ ਪੌਇੰਟ ਕਰਦਾ ਈ SSE ਟ੍ਰਾਂਸਪੋਰਟ ਸੈੱਟ ਕਰਦਾ ਹੈ ਜਿੱਥੇ ਸਾਡੇ MCP ਸਰਵਰ ਚੱਲ ਰਿਹਾ ਹੋਵੇਗਾ।
+- ਇੱਕ ਕਲਾਇੰਟ ਕਲਾਸ ਬਣਾਇਆ ਜੋ ਟ੍ਰਾਂਸਪੋਰਟ ਨੂੰ ਕੰਸਟ੍ਰਕਟਰ ਪੈਰਾਮੀਟਰ ਵਜੋਂ ਲੈਂਦੀ ਹੈ।
+- `run` ਮੈਥਡ ਵਿੱਚ, ਅਸੀਂ ਟ੍ਰਾਂਸਪੋਰਟ ਦੀ ਵਰਤੋਂ ਕਰਦਿਆਂ ਸਿੰਕ੍ਰੋਨਸ MCP ਕਲਾਇੰਟ ਬਣਾਇਆ ਅਤੇ ਕਨੈਕਸ਼ਨ ਸ਼ੁਰੂ ਕੀਤਾ।
+- SSE (ਸਰਵਰ-ਸੈਂਟ ਈਵੇਂਟ) ਟ੍ਰਾਂਸਪੋਰਟ ਵਰਤਿਆ ਜੋ ਜਾਵਾ ਸਪ੍ਰਿੰਗ ਬੂਟ MCP ਸਰਵਰਾਂ ਨਾਲ HTTP ਆਧਾਰਿਤ ਸੰਚਾਰ ਲਈ ਮੋਹੱਈਆ ਹੈ।
+
 #### ਰਸਟ
+
+ਜੇਕਰ ਸਰਵਰ ਉਧਵਤਾ "calculator-server" ਨਾਂ ਦੇ ਸਬਲਿੰਗ ਪ੍ਰੋਜੈਕਟ ਵਜੋਂ ਸਮਾਨ ਡਾਇਰੈਕਟਰੀ ਵਿੱਚ ਮੰਨਿਆ ਜਾਵੇ। ਹੇਠਾਂ ਦਿੱਤਾ ਕੋਡ ਸਰਵਰ ਨੂੰ ਸ਼ੁਰੂ ਕਰੇਗਾ ਅਤੇ ਇਸ ਨਾਲ ਜੁੜੇਗਾ।
 
 ```rust
 async fn main() -> Result<(), RmcpError> {
-    // Assume the server is a sibling project named "calculator-server" in the same directory
+    // فرض کرو کہ سرور ایک بھائی پروجیکٹ ہے جس کا نام "calculator-server" ہے اور وہی ڈائریکٹری میں ہے
     let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .expect("failed to locate workspace root")
@@ -313,49 +334,51 @@ async fn main() -> Result<(), RmcpError> {
         )
         .await?;
 
-    // TODO: Initialize
+    // TODO: شروعات کرو
 
-    // TODO: List tools
+    // TODO: آلات کی فہرست بناؤ
 
-    // TODO: Call add tool with arguments = {"a": 3, "b": 2}
+    // TODO: add tool کو arguments = {"a": 3, "b": 2} کے ساتھ کال کرو
 
     client.cancel().await?;
     Ok(())
 }
 ```
 
-### -3- ਸਰਵਰ ਫੀਚਰਾਂ ਦੀ ਸੂਚੀ ਬਣਾਉਣਾ
+### -3- ਸਰਵਰ ਫੀਚਰਲਿਸਟ
 
-ਹੁਣ, ਸਾਡੇ ਕੋਲ ਇੱਕ ਕਲਾਇੰਟ ਹੈ ਜੋ ਕਨੈਕਟ ਕਰ ਸਕਦਾ ਹੈ ਜੇਕਰ ਪ੍ਰੋਗਰਾਮ ਚਲਾਇਆ ਜਾਵੇ। ਹਾਲਾਂਕਿ, ਇਹ ਅਸਲ ਵਿੱਚ ਆਪਣੇ ਫੀਚਰਾਂ ਦੀ ਸੂਚੀ ਨਹੀਂ ਬਣਾਉਂਦਾ, ਇਸ ਲਈ ਆਓ ਅਗਲੇ ਕਦਮ ਵਿੱਚ ਇਹ ਕਰੀਏ:
+ਹੁਣ ਸਾਡੇ ਕੋਲ ਐਸਾ ਕਲਾਇੰਟ ਹੈ ਜੋ ਚਲਣ ਤੇ ਜੋੜ ਸਕਦਾ ਹੈ। ਪਰ ਇਹ ਹਾਲੇ ਆਪਣੇ ਫੀਚਰ ਲਿਸਟ ਨਹੀਂ ਕਰਦਾ, ਆਓ ਹੁਣ ਇਹ ਕਰੀਏ:
 
 #### ਟਾਈਪਸਕ੍ਰਿਪਟ
 
 ```typescript
-// List prompts
+// ਪ੍ਰੋਂਪਟਸ ਦੀ ਸੂਚੀ
 const prompts = await client.listPrompts();
 
-// List resources
+// ਸਰੋਤਾਂ ਦੀ ਸੂਚੀ
 const resources = await client.listResources();
 
-// list tools
+// ਟੂਲਾਂ ਦੀ ਸੂਚੀ
 const tools = await client.listTools();
 ```
 
 #### ਪਾਇਥਨ
 
 ```python
-# List available resources
+# ਉਪਲਬਧ ਸਰੋਤਾਂ ਦੀ ਸੂਚੀ ਬਣਾਓ
 resources = await session.list_resources()
 print("LISTING RESOURCES")
 for resource in resources:
     print("Resource: ", resource)
 
-# List available tools
+# ਉਪਲਬਧ ਸੰਦਾਂ ਦੀ ਸੂਚੀ ਬਣਾਓ
 tools = await session.list_tools()
 print("LISTING TOOLS")
 for tool in tools.tools:
     print("Tool: ", tool.name)
 ```
+
+ਅਸੀਂ ਉਪਲਬਧ ਸਰੋਤਾਂ `list_resources()` ਅਤੇ ਟੂਲਾਂ `list_tools` ਨੂੰ ਲਿਸਟ ਕਰਦੇ ਹਾਂ ਅਤੇ ਪ੍ਰਿੰਟ ਕਰਦੇ ਹਾਂ।
 
 #### .NET
 
@@ -366,41 +389,55 @@ foreach (var tool in await client.ListToolsAsync())
 }
 ```
 
+ਉੱਪਰ ਇੱਕ ਉਦਾਹਰਨ ਹੈ ਕਿ ਕਿਵੇਂ ਸਰਵਰ ਉੱਤੇ ਟੂਲਾਂ ਲਿਸਟ ਕਰ ਸਕਦੇ ਹਾਂ। ਹਰ ਟੂਲ ਲਈ ਅਸੀਂ ਉਸ ਦਾ ਨਾਮ ਪ੍ਰਿੰਟ ਕਰਦੇ ਹਾਂ।
+
 #### ਜਾਵਾ
 
 ```java
-// List and demonstrate tools
+// ਟੂਲਾਂ ਦੀ ਸੂਚੀ ਬਣਾਓ ਅਤੇ ਪ੍ਰਦਰਸ਼ਨ ਕਰੋ
 ListToolsResult toolsList = client.listTools();
 System.out.println("Available Tools = " + toolsList);
 
-// You can also ping the server to verify connection
+// ਤੁਸੀਂ ਕੁਨੈਕਸ਼ਨ ਦੀ ਪੁਸ਼ਟੀ ਕਰਨ ਲਈ ਸਰਵਰ ਨੂੰ ਪਿੰਗ ਵੀ ਕਰ ਸਕਦੇ ਹੋ
 client.ping();
 ```
 
+ਪਿਛਲੇ ਕੋਡ ਵਿੱਚ ਅਸੀਂ:
+
+- MCP ਸਰਵਰ ਤੋਂ ਸਾਰੇ ਉਪਲਬਧ ਟੂਲ ਲੈਣ ਲਈ `listTools()` ਨੂੰ ਕਾਲ ਕੀਤਾ।
+- ਸਰਵਰ ਨਾਲ ਸੰਜੋਗ ਸਥਾਪਿਤ ਕਰਨ ਲਈ `ping()` ਵਰਤੀ।
+- `ListToolsResult` ਵਿੱਚ ਸਾਰੇ ਟੂਲਾਂ ਬਾਰੇ ਜਾਣਕਾਰੀ ਹੁੰਦੀ ਹੈ ਜਿਵੇਂ ਨਾਮ, ਵਰਣਨ ਅਤੇ ਇਨਪੁਟ ਸਕੀਮਾਵਾਂ।
+
+ਵਧੀਆ, ਹੁਣ ਸਾਡੇ ਕੋਲ ਸਾਰੇ ਫੀਚਰ ਹਨ। ਹੁਣ ਸਵਾਲ ਹੈ ਕਿ ਇਹਨਾਂ ਦੀ ਵਰਤੋਂ ਕਦੋਂ ਕਰੀਏ? ਇਹ ਕਲਾਇੰਟ ਬਹੁਤ ਸਧਾਰਣ ਹੈ, ਇਸ ਦਾ ਮਤਲਬ ਹੈ ਕਿ ਸਾਨੂੰ ਫੀਚਰ ਕਾਲ ਕਰਨ ਲਈ ਸਪਸਟ ਤੌਰ 'ਤੇ ਕਾਲ ਕਰਨੀ ਪਵੇਗੀ। ਅਗਲੇ ਅਧਿਆਏ ਵਿੱਚ ਅਸੀਂ ਇੱਕ ਅੱਗੇ ਵਧੇ ਕਲਾਇੰਟ ਬਣਾਵਾਂਗੇ ਜਿਸ ਕੋਲ ਆਪਣੇ ਵੱਡੇ ਭਾਸ਼ਾ ਮਾਡਲ, LLM ਦੀ ਪਹੁੰਚ ਹੋਵੇਗੀ। ਫਿਲਹਾਲ, ਆਓ ਵੇਖੀਏ ਕਿ ਸਿਰਫ MCP ਸਰਵਰ ਉੱਤੇ ਫੀਚਰ ਕਿਵੇਂ ਅਮਲ ਕਰਦੇ ਹਾਂ:
+
 #### ਰਸਟ
 
+ਮੁੱਖ ਫੰਕਸ਼ਨ ਵਿੱਚ, ਕਲਾਇੰਟ ਇਨਿਸ਼ੀਅਲਾਈਜ਼ ਕਰਨ ਤੋਂ ਬਾਅਦ, ਅਸੀਂ ਸਰਵਰ ਨੂੰ ਇਨਿਸ਼ੀਅਲਾਈਜ਼ ਕਰ ਸਕਦੇ ਹਾਂ ਅਤੇ ਕੁਝ ਫੀਚਰ ਲਿਸਟ ਕਰ ਸਕਦੇ ਹਾਂ।
+
 ```rust
-// Initialize
+// ਸ਼ੁਰੂਆਤ ਕਰੋ
 let server_info = client.peer_info();
 println!("Server info: {:?}", server_info);
 
-// List tools
+// ਟੂਲਸ ਦੀ ਸੂਚੀ
 let tools = client.list_tools(Default::default()).await?;
 println!("Available tools: {:?}", tools);
 ```
 
-### -4- ਫੀਚਰਾਂ ਨੂੰ ਚਾਲੂ ਕਰਨਾ
+### -4- ਫੀਚਰ ਕਾਲ ਕਰੋ
+
+ਫੀਚਰ ਕਾਲ ਕਰਨ ਲਈ ਸਾਨੂੰ ਯਕੀਨੀ ਬਣਾਉਣਾ ਹੈ ਕਿ ਅਸੀਂ ਠੀਕ ਆਰਗੂਮੈਂਟ ਦਿੱਤੇ ਹਨ ਅਤੇ ਕਈ ਵਾਰ ਉਸ ਦਾ ਨਾਮ ਵੀ ਜੋ ਅਸੀਂ ਕਾਲ ਕਰ ਰਹੇ ਹਾਂ।
 
 #### ਟਾਈਪਸਕ੍ਰਿਪਟ
 
 ```typescript
 
-// Read a resource
+// ਇੱਕ ਸਰੋਤ ਪੜੋ
 const resource = await client.readResource({
   uri: "file:///example.txt"
 });
 
-// Call a tool
+// ਇੱਕ ਸੰਦ ਨੂੰ ਕਾਲ ਕਰੋ
 const result = await client.callTool({
   name: "example-tool",
   arguments: {
@@ -408,7 +445,7 @@ const result = await client.callTool({
   }
 });
 
-// call prompt
+// ਪ੍ਰੰਪਟ ਨੂੰ ਕਾਲ ਕਰੋ
 const promptResult = await client.getPrompt({
     name: "review-code",
     arguments: {
@@ -417,29 +454,97 @@ const promptResult = await client.getPrompt({
 })
 ```
 
+ਪਿਛਲੇ ਕੋਡ ਵਿੱਚ ਅਸੀਂ:
+
+- ਇੱਕ ਸਰੋਤ ਨੂੰ ਪੜ੍ਹਿਆ, ਅਸੀਂ `readResource()` ਨਾਲ `uri` ਦਿੱਤਾ। ਇਹ ਸੰਭਵਤ: ਸਰਵਰ ਉਤੋਂ ਇਸ ਤਰ੍ਹਾਂ ਹੋਵੇਗਾ:
+
+    ```typescript
+    server.resource(
+        "readFile",
+        new ResourceTemplate("file://{name}", { list: undefined }),
+        async (uri, { name }) => ({
+          contents: [{
+            uri: uri.href,
+            text: `Hello, ${name}!`
+          }]
+        })
+    );
+    ```
+
+    ਸਾਡਾ `uri` ਮੁੱਲ `file://example.txt` ਸਰਵਰ ਉੱਤੇ `file://{name}` ਨਾਲ ਮੇਲ ਖਾਂਦਾ ਹੈ। `example.txt` ਨੂੰ `name` ਨਾਲ ਮੈਪ ਕੀਤਾ ਜਾਵੇਗਾ।
+
+- একটা ਟੂਲ ਕਾਲ ਕੀਤਾ, ਅਸੀਂ ਇਸ ਨੂੰ ਉਸ ਦੇ `name` ਅਤੇ `arguments` ਦੇ ਕੇ ਕਾਲ ਕਰਦੇ ਹਾਂ:
+
+    ```typescript
+    const result = await client.callTool({
+        name: "example-tool",
+        arguments: {
+            arg1: "value"
+        }
+    });
+    ```
+
+- ਪ੍ਰਾਂਪਟ ਪ੍ਰਾਪਤ ਕੀਤਾ, `getPrompt()` ਤੋਂ `name` ਅਤੇ `arguments` ਦੇ ਕੇ। ਸਰਵਰ ਕੋਡ ਇਸ ਤਰ੍ਹਾਂ ਲੱਗਦਾ ਹੈ:
+
+    ```typescript
+    server.prompt(
+        "review-code",
+        { code: z.string() },
+        ({ code }) => ({
+            messages: [{
+            role: "user",
+            content: {
+                type: "text",
+                text: `Please review this code:\n\n${code}`
+            }
+            }]
+        })
+    );
+    ```
+
+    ਅਤੇ ਤੁਹਾਡਾ ਕਲਾਇੰਟ ਕੋਡ ਇਸ ਤਰ੍ਹਾਂ ਹੋਵੇਗਾ ਜੋ ਸਰਵਰ ਉੱਤੇ ਘੋਸ਼ਿਤ ਕੀਤੇ ਗਏ ਨਾਲ ਮੇਲ ਖਾਂਦਾ ਹੈ:
+
+    ```typescript
+    const promptResult = await client.getPrompt({
+        name: "review-code",
+        arguments: {
+            code: "console.log(\"Hello world\")"
+        }
+    })
+    ```
+
 #### ਪਾਇਥਨ
 
 ```python
-# Read a resource
+# ਇੱਕ ਸਾਧਨ ਪੜ੍ਹੋ
 print("READING RESOURCE")
 content, mime_type = await session.read_resource("greeting://hello")
 
-# Call a tool
+# ਇੱਕ ਟੂਲ ਕਾਲ ਕਰੋ
 print("CALL TOOL")
 result = await session.call_tool("add", arguments={"a": 1, "b": 7})
 print(result.content)
 ```
 
+ਪਿਛਲੇ ਕੋਡ ਵਿੱਚ ਅਸੀਂ:
+
+- ਇੱਕ ਸਰੋਤ `greeting` ਨੂੰ `read_resource` ਨਾਲ ਕਾਲ ਕੀਤਾ।
+- ਇੱਕ ਟੂਲ `add` ਨੂੰ `call_tool` ਨਾਲ ਕਾਲ ਕੀਤਾ।
+
 #### .NET
 
-```csharp
+1. ਇੱਕ ਟੂਲ ਕਾਲ ਕਰਨ ਲਈ ਕੋਡ ਸ਼ਾਮਲ ਕਰੋ:
+
+  ```csharp
   var result = await mcpClient.CallToolAsync(
       "Add",
       new Dictionary<string, object?>() { ["a"] = 1, ["b"] = 3  },
       cancellationToken:CancellationToken.None);
   ```
 
-```csharp
+2. ਨਤੀਜੇ ਪ੍ਰਿੰਟ ਕਰਨ ਲਈ ਕੋਡ ਇੱਥੇ ਹੈ:
+
+  ```csharp
   Console.WriteLine(result.Content.First(c => c.Type == "text").Text);
   // Sum 4
   ```
@@ -447,7 +552,7 @@ print(result.content)
 #### ਜਾਵਾ
 
 ```java
-// Call various calculator tools
+// ਵੱਖ-ਵੱਖ ਕੈਲਕुलेਟਰ ਟੂਲਜ਼ ਨੂੰ ਕਾਲ ਕਰੋ
 CallToolResult resultAdd = client.callTool(new CallToolRequest("add", Map.of("a", 5.0, "b", 3.0)));
 System.out.println("Add Result = " + resultAdd);
 
@@ -464,10 +569,17 @@ CallToolResult resultHelp = client.callTool(new CallToolRequest("help", Map.of()
 System.out.println("Help = " + resultHelp);
 ```
 
+ਪਿਛਲੇ ਕੋਡ ਵਿੱਚ ਅਸੀਂ:
+
+- ਕਈ ਕੈਲਕੂਲੇਟਰ ਟੂਲਾਂ ਨੂੰ `callTool()` ਮੈਥਡ ਨਾਲ `CallToolRequest` ਔਬਜੈਕਟਾਂ ਨੂੰ ਵਰਤ ਕੇ ਕਾਲ ਕੀਤਾ।
+- ਹਰ ਟੂਲ ਕਾਲ ਵਿੱਚ ਉਸ ਟੂਲ ਦਾ ਨਾਮ ਅਤੇ ਉਸ ਦੇ ਲੋੜੀਂਦੇ ਆਗਮੈਂਟ ਦਾ `Map` ਦਿੱਤਾ ਗਿਆ।
+- ਸਰਵਰ ਟੂਲਾਂ ਖਾਸ ਪੈਰਾਮੀਟਰ ਨਾਮਾਂ ਦੀ ਉਮੀਦ ਕਰਦੇ ਹਨ (ਜਿਵੇਂ "a", "b" ਗਣਿਤੀ ਕੰਮਾਂ ਲਈ)।
+- ਨਤੀਜੇ `CallToolResult` ਔਬਜੈਕਟ ਵਜੋਂ ਵਾਪਸ ਮਿਲਦੇ ਹਨ ਜੋ ਸਰਵਰ ਤੋਂ ਪ੍ਰਾਪਤ ਜਵਾਬ ਹਨ।
+
 #### ਰਸਟ
 
 ```rust
-// Call add tool with arguments = {"a": 3, "b": 2}
+// ਦਰਜ ਕੀਤੇ ਹੋਏ ਤਰਕਾਂ ਨਾਲ ਐਡ ਟੂਲ ਨੂੰ ਕਾਲ ਕਰੋ = {"a": 3, "b": 2}
 let a = 3;
 let b = 2;
 let tool_result = client
@@ -479,9 +591,13 @@ let tool_result = client
 println!("Result of {:?} + {:?}: {:?}", a, b, tool_result);
 ```
 
-### -5- ਕਲਾਇੰਟ ਚਲਾਉਣਾ
+### -5- ਕਲਾਇੰਟ ਚਲਾਓ
+
+ਕਲਾਇੰਟ ਚਲਾਉਣ ਲਈ, ਟਰਮੀਨਲ ਵਿੱਚ ਹੇਠਾਂ ਦਿੱਤੀ ਕਮਾਂਡ ਲਿਖੋ:
 
 #### ਟਾਈਪਸਕ੍ਰਿਪਟ
+
+ਆਪਣੇ *package.json* ਦੀ "scripts" ਸੈਕਸ਼ਨ ਵਿੱਚ ਹੇਠਾਂ ਦਿੱਤੀ ਐਂਟਰੀ ਸ਼ਾਮਲ ਕਰੋ:
 
 ```json
 "client": "tsc && node build/client.js"
@@ -492,6 +608,8 @@ npm run client
 ```
 
 #### ਪਾਇਥਨ
+
+ਕਲਾਇੰਟ ਨੂੰ ਹੇਠਾਂ ਦਿੱਤੀ ਕਮਾਂਡ ਨਾਲ ਕਾਲ ਕਰੋ:
 
 ```sh
 python client.py
@@ -505,19 +623,23 @@ dotnet run
 
 #### ਜਾਵਾ
 
+ਸਭ ਤੋਂ ਪਹਿਲਾਂ, ਯਕੀਨ ਕਰੋ ਕਿ ਤੁਹਾਡਾ MCP ਸਰਵਰ `http://localhost:8080` ਉੱਤੇ ਚੱਲ ਰਿਹਾ ਹੈ। ਫਿਰ ਕਲਾਇੰਟ ਚਲਾਓ:
+
 ```bash
-# Build you project
+# ਆਪਣਾ ਪ੍ਰੋਜੈਕਟ ਬਣਾਓ
 ./mvnw clean compile
 
-# Run the client
+# ਕਲਾਇੰਟ ਚਲਾਓ
 ./mvnw exec:java -Dexec.mainClass="com.microsoft.mcp.sample.client.SDKClient"
 ```
 
+ਵਿਕਲਪਕ ਤੌਰ ਤੇ, ਤੁਸੀਂ ਸਕੌਲਿਊਸ਼ਨ ਫੋਲਡਰ `03-GettingStarted\02-client\solution\java` ਵਿੱਚ ਦਿੱਤਾ ਹੋਇਆ ਪੂਰਾ ਕਲਾਇੰਟ ਪ੍ਰੋਜੈਕਟ ਚਲਾ ਸਕਦੇ ਹੋ:
+
 ```bash
-# Navigate to the solution directory
+# ਹੱਲ ਡਿਰੈਕਟਰੀ ਵਿੱਚ ਜਾਓ
 cd 03-GettingStarted/02-client/solution/java
 
-# Build and run the JAR
+# JAR ਬਣਾਓ ਅਤੇ ਚਲਾਓ
 ./mvnw clean package
 java -jar target/calculator-client-0.0.1-SNAPSHOT.jar
 ```
@@ -531,7 +653,9 @@ cargo run
 
 ## ਅਸਾਈਨਮੈਂਟ
 
-ਇਸ ਅਸਾਈਨਮੈਂਟ ਵਿੱਚ, ਤੁਸੀਂ ਜੋ ਸਿੱਖਿਆ ਹੈ ਉਸਦਾ ਪ੍ਰਯੋਗ ਕਰਦੇ ਹੋਏ ਆਪਣਾ ਕਲਾਇੰਟ ਬਣਾਉਗੇ।
+ਇਸ ਅਸਾਈਨਮੈਂਟ ਵਿੱਚ, ਤੁਸੀਂ ਜੋ ਸਿੱਖਿਆ ਹੈ ਉਸਦਾ ਉਪਯੋਗ ਕਰਦੇ ਹੋਏ ਆਪਣਾ ਕਲਾਇੰਟ ਬਣਾਉਗੇ।
+
+ਇੱਥੇ ਇੱਕ ਸਰਵਰ ਹੈ ਜਿਸਨੂੰ ਤੁਹਾਨੂੰ ਆਪਣੇ ਕਲਾਇੰਟ ਕੋਡ ਰਾਹੀਂ ਕਾਲ ਕਰਨਾ ਹੈ, ਦੇਖੋ ਕਿ ਤੁਸੀਂ ਇਸ ਸਰਵਰ ਵਿੱਚ ਹੋਰ ਫੀਚਰ ਜੋੜ ਕੇ ਇਸਨੂੰ ਹੋਰ ਦਿਲਚਸਪ ਬਣਾ ਸਕਦੇ ਹੋ।
 
 ### ਟਾਈਪਸਕ੍ਰਿਪਟ
 
@@ -540,13 +664,13 @@ import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mc
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 
-// Create an MCP server
+// ਇੱਕ MCP ਸਰਵਰ ਬਣਾਓ
 const server = new McpServer({
   name: "Demo",
   version: "1.0.0"
 });
 
-// Add an addition tool
+// ਇੱਕ ਜੋੜ ਟੂਲ ਜੋੜੋ
 server.tool("add",
   { a: z.number(), b: z.number() },
   async ({ a, b }) => ({
@@ -554,7 +678,7 @@ server.tool("add",
   })
 );
 
-// Add a dynamic greeting resource
+// ਇੱਕ ਗਤਿਸੀਲ ਸੰਦੇਸ਼ ਸਾਧਨ ਜੋੜੋ
 server.resource(
   "greeting",
   new ResourceTemplate("greeting://{name}", { list: undefined }),
@@ -566,7 +690,7 @@ server.resource(
   })
 );
 
-// Start receiving messages on stdin and sending messages on stdout
+// stdin 'ਤੇ ਸੁਨੇਹੇ ਪ੍ਰਾਪਤ ਕਰਨਾ ਅਤੇ stdout 'ਤੇ ਸੁਨੇਹੇ ਭੇਜਣਾ ਸ਼ੁਰੂ ਕਰੋ
 
 async function main() {
   const transport = new StdioServerTransport();
@@ -586,18 +710,18 @@ main().catch((error) => {
 # server.py
 from mcp.server.fastmcp import FastMCP
 
-# Create an MCP server
+# ਇੱਕ MCP ਸਰਵਰ ਬਣਾਓ
 mcp = FastMCP("Demo")
 
 
-# Add an addition tool
+# ਇਕ ਜੋੜਨ ਦਾ ਟੂਲ ਸ਼ਾਮਲ ਕਰੋ
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
     return a + b
 
 
-# Add a dynamic greeting resource
+# ਇਕ ਡਾਇਨੇਮਿਕ ਸਲਾਮ ਸੰਸਾਧਨ ਸ਼ਾਮਲ ਕਰੋ
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
@@ -635,11 +759,21 @@ public static class CalculatorTool
 }
 ```
 
+ਇਸ ਪ੍ਰੋਜੈਕਟ ਨੂੰ ਵੇਖੋ ਕਿ ਕਿਵੇਂ ਤੁਸੀਂ [ਪ੍ਰਾਂਪਟ ਅਤੇ ਸਰੋਤ ਸ਼ਾਮਲ ਕਰ ਸਕਦੇ ਹੋ](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs)।
+
+ਇਸ ਲਿੰਕ ਨੂੰ ਵੀ ਚੈੱਕ ਕਰੋ ਕਿ ਕਿਵੇਂ [ਪ੍ਰਾਂਪਟ ਅਤੇ ਸਰੋਤ ਕਾਲ ਕਰਨ](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/) ਲਈ।
+
 ### ਰਸਟ
+
+ਪਿਛਲੇ ਅਧਿਆਏ ਵਿੱਚ ਤੁਸੀਂ ਸਿੱਖਿਆ ਕਿ ਰਸਟ ਨਾਲ ਇੱਕ ਸਧਾਰਣ MCP ਸਰਵਰ ਕਿਵੇਂ ਬਣਾਉਣਾ ਹੈ। ਤੁਸੀਂ ਇਸ ਨੂੰ ਅੱਗੇ ਵੀ ਵਧਾ ਸਕਦੇ ਹੋ ਜਾਂ ਇਸ ਲਿੰਕ ਦੀ ਸਹਾਇਤਾ ਲੈ ਸਕਦੇ ਹੋ ਜਿੱਥੇ ਹੋਰ ਰਸਟ ਆਧਾਰਿਤ MCP ਸਰਵਰ ਉਦਾਹਰਨਾਂ ਹਨ: [MCP Server Examples](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
 
 ## ਹੱਲ
 
-### 📁 ਹੱਲ ਦੀ ਬਣਤਰ
+**ਸਕੌਲਿਊਸ਼ਨ ਫੋਲਡਰ** ਵਿੱਚ ਪੂਰੇ, ਤਿਆਰ-ਚਲਾਉ ਕਲਾਇੰਟ ਇੰਪਲੀਮੈਂਟੇਸ਼ਨ ਹਨ ਜੋ ਇਸ ਟਿਊਟੋਰਿਅਲ ਵਿੱਚ ਕਵਰ ਕੀਤੀਆਂ ਸਾਰੀਆਂ ਧਾਰਣਾਵਾਂ ਨੂੰ ਦਰਸਾਉਂਦੇ ਹਨ। ਹਰ ਇੱਕ ਹੱਲ ਵਿੱਚ ਕਲਾਇੰਟ ਅਤੇ ਸਰਵਰ ਕੋਡ ਵੱਖ-ਵੱਖ, ਸਵੈ-ਨਿਰਭਰ ਪ੍ਰੋਜੈਕਟਾਂ ਵਿੱਚ ਸੰਯੋਜਿਤ ਹਨ।
+
+### 📁 ਹੱਲ ਢਾਂਚਾ
+
+ਹੱਲ ਡਾਇਰੈਕਟਰੀ ਪ੍ਰੋਗ੍ਰਾਮਿੰਗ ਭਾਸ਼ਾ ਅਨੁਸਾਰ ਵਿਕਸਤ ਕੀਤੀ ਗਈ ਹੈ:
 
 ```text
 solution/
@@ -669,87 +803,112 @@ solution/
     └── server.csproj    # Server project file
 ```
 
-### 🚀 ਹਰੇਕ ਹੱਲ ਵਿੱਚ ਕੀ ਸ਼ਾਮਲ ਹੈ
+### 🚀 ਹਰ ਹੱਲ ਵਿੱਚ ਕੀ ਹੁੰਦਾ ਹੈ
 
-### 📖 ਹੱਲ ਦੀ ਵਰਤੋਂ
+ਹਰ ਭਾਸ਼ਾ-ਵਿਸ਼ੇਸ਼ ਹੱਲ ਵਿੱਚ ਸ਼ਾਮਲ ਹੈ:
 
-```bash
-   cd solution/typescript/    # For TypeScript
-   cd solution/java/          # For Java
-   cd solution/python/        # For Python
-   cd solution/dotnet/        # For .NET
+- **ਪੂਰਾ ਕਲਾਇੰਟ ਇੰਪਲੀਮੈਂਟੇਸ਼ਨ** ਜਿਸ ਵਿੱਚ ਸਾਰੇ ਟਿਊਟੋਰਿਅਲ ਦੇ ਫੀਚਰ ਸ਼ਾਮਲ ਹਨ
+- **ਸਰਗਰਮ ਪ੍ਰੋਜੈਕਟ ਢਾਂਚਾ** ਜਿਸ ਵਿੱਚ ਸਹੀ ਡੀਪੈਂਡੈਸੀਜ਼ ਅਤੇ ਸੰਰਚਨਾ ਹੈ
+- **ਬਿਲਡ ਅਤੇ ਚਲਾਉਣ ਵਾਲੇ ਸਕ੍ਰਿਪਟਸ** ਆਸਾਨ ਸੈੱਟਅੱਪ ਅਤੇ ਚਲਾਉਣ ਲਈ
+- **ਵਿਸ਼ਤ੍ਰਿਤ README** ਭਾਸ਼ਾ-ਵਿਸ਼ੇਸ਼ ਹੁਕਮਾਂ ਨਾਲ
+- **ਤ੍ਰੁੱਟੀ ਸੰਭਾਲਣ** ਅਤੇ ਨਤੀਜੇ ਪ੍ਰਕਿਰਿਆ ਉਦਾਹਰਨਾਂ
+
+### 📖 ਹੱਲਾਂ ਦੀ ਵਰਤੋਂ
+
+1. **ਆਪਣੀ ਮਨਪਸੰਦ ਭਾਸ਼ਾ ਵਾਲੇ ਫੋਲਡਰ ਵਿੱਚ ਜਾਓ**:
+
+   ```bash
+   cd solution/typescript/    # ਟਾਈਪਸਕ੍ਰਿਪਟ ਲਈ
+   cd solution/java/          # ਜਾਵਾ ਲਈ
+   cd solution/python/        # ਪਾਇਥਨ ਲਈ
+   cd solution/dotnet/        # .NET ਲਈ
    ```
 
-```text
+2. **ਹਰ ਫੋਲਡਰ ਵਿੱਚ README ਨਿਰਦੇਸ਼ਾਂ ਦੀ ਪਾਲਣਾ ਕਰੋ**:
+   - ਡੀਪੈਂਡੈਸੀਜ਼ ਇੰਸਟਾਲ ਕਰਨਾ
+   - ਪ੍ਰੋਜੈਕਟ ਬਣਾਉਣਾ
+   - ਕਲਾਇੰਟ ਚਲਾਉਣਾ
+
+3. **ਤੁਹਾਨੂੰ ਜੋ ਨਤੀਜਾ ਦੇਖਣਾ ਚਾਹੀਦਾ ਹੈ**:
+
+   ```text
    Prompt: Please review this code: console.log("hello");
    Resource template: file
    Tool result: { content: [ { type: 'text', text: '9' } ] }
    ```
 
+ਪੂਰੀ ਦਸਤਾਵੇਜ਼ੀ ਅਤੇ ਕਦਮ-ਦਰ-ਕਦਮ ਹਦਾਇਤਾਂ ਲਈ ਵੇਖੋ: **[📖 ਹੱਲ ਦਸਤਾਵੇਜ਼ੀ](./solution/README.md)**
+
 ## 🎯 ਪੂਰੇ ਉਦਾਹਰਨ
+
+ਅਸੀਂ ਸਾਰੇ ਸਮਾਰਥਿਤ ਪ੍ਰੋਗ੍ਰਾਮਿੰਗ ਭਾਸ਼ਾਵਾਂ ਲਈ ਪੂਰੇ, ਤੁਲਨਾਤਮਕ ਤੌਰ 'ਤੇ ਕੰਮ ਕਰਨ ਵਾਲੇ ਕਲਾਇੰਟ ਇੰਪਲੀਮੈਂਟੇਸ਼ਨ ਦਿੱਤੇ ਹਨ। ਇਹ ਉਦਾਹਰਨ ਉਪਰ ਦਰਸਾਈਆਂ ਸਮਰੱਥਾਵਾਂ ਨੂੰ ਪੂਰੀ ਤਰ੍ਹਾਂ ਦਿਖਾਉਂਦੇ ਹਨ ਅਤੇ ਰੁਫ਼ੜ ਸੂਤਰ ਜਾਂ ਆਪਣੇ ਪ੍ਰੋਜੈਕਟਾਂ ਲਈ ਸ਼ੁਰੂਆਤ ਵਾਲੇ ਪੁਆਇੰਟ ਵਜੋਂ ਵਰਤੇ ਜਾ ਸਕਦੇ ਹਨ।
 
 ### ਉਪਲਬਧ ਪੂਰੇ ਉਦਾਹਰਨ
 
-| ਭਾਸ਼ਾ | ਫਾਇਲ | ਵੇਰਵਾ |
+| ਭਾਸ਼ਾ | ਫਾਈਲ | ਵਰਣਨ |
 |----------|------|-------------|
-| **ਜਾਵਾ** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | SSE ਟ੍ਰਾਂਸਪੋਰਟ ਵਰਤਦੇ ਹੋਏ ਪੂਰਾ ਜਾਵਾ ਕਲਾਇੰਟ |
-| **C#** | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | stdio ਟ੍ਰਾਂਸਪੋਰਟ ਵਰਤਦੇ ਹੋਏ ਪੂਰਾ C# ਕਲਾਇੰਟ |
-| **ਟਾਈਪਸਕ੍ਰਿਪਟ** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | MCP ਪ੍ਰੋਟੋਕੋਲ ਸਹਾਇਤਾ ਨਾਲ ਪੂਰਾ ਟਾਈਪਸਕ੍ਰਿਪਟ ਕਲਾਇੰਟ |
-| **ਪਾਇਥਨ** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | async/await ਪੈਟਰਨ ਵਰਤਦੇ ਹੋਏ ਪੂਰਾ ਪਾਇਥਨ ਕਲਾਇੰਟ |
-| **ਰਸਟ** | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs) | async ਕਾਰਵਾਈਆਂ ਲਈ Tokio ਵਰਤਦੇ ਹੋਏ ਪੂਰਾ ਰਸਟ ਕਲਾਇੰਟ |
+| **ਜਾਵਾ** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | SSE ਟ੍ਰਾਂਸਪੋਰਟ ਵਰਤਦਾ ਪੂਰਾ ਜਾਵਾ ਕਲਾਇੰਟ ਜਿਸ ਵਿੱਚ ਵਿਸਤ੍ਰਿਤ ਤ੍ਰੁੱਟੀ ਸੰਭਾਲ ਹੈ |
+| **C#** | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | stdio ਟ੍ਰਾਂਸਪੋਰਟ ਨਾਲ ਪੂਰਾ C# ਕਲਾਇੰਟ ਜੋ ਸਵੈਚਾਲਿਤ ਸਰਵਰ ਸ਼ੁਰੂਆਤ ਕਰਦਾ ਹੈ |
+| **ਟਾਈਪਸਕ੍ਰਿਪਟ** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | ਪੂਰਾ ਟਾਈਪਸਕ੍ਰਿਪਟ ਕਲਾਇੰਟ MCP ਪ੍ਰੋਟੋਕੋਲ ਸਮਰਥਨ ਨਾਲ |
+| **ਪਾਇਥਨ** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | async/await ਪੈਟਰਨ ਵਰਤਦਾ ਪੂਰਾ ਪਾਇਥਨ ਕਲਾਇੰਟ |
+| **ਰਸਟ** | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs) | Tokio ਦੀ ਵਰਤੋਂ ਨਾਲ async ਆਪਰੇਸ਼ਨਾਂ ਲਈ ਪੂਰਾ ਰਸਟ ਕਲਾਇੰਟ |
+
 ਹਰ ਪੂਰੇ ਉਦਾਹਰਨ ਵਿੱਚ ਸ਼ਾਮਲ ਹੈ:
+- ✅ **ਕਨੈਕਸ਼ਨ ਸਥਾਪਨਾ** ਅਤੇ ਗਲਤੀ ਸੰਭਾਲ  
+- ✅ **ਸਰਵਰ ਖੋਜ** (ਜਿੱਥੇ ਲਾਗੂ ਹੋਵੇ, ਟੂਲ, ਸਰੋਤ, ਪ੍ਰਾਂਪਟ)  
+- ✅ **ਕੈਲਕੁਲੇਟਰ ਓਪਰੇਸ਼ਨ** (ਜੋੜਨਾ, ਘਟਾਉਣਾ, ਗੁਣਾ, ਵੰਡਣਾ, ਮਦਦ)  
+- ✅ **ਨਤੀਜੇ ਦੀ ਪ੍ਰੋਸੈਸਿੰਗ** ਅਤੇ ਫਾਰਮੈਟ ਕੀਤਾ ਆਉਟਪੁੱਟ  
+- ✅ **ਵਿਆਪਕ ਗਲਤੀ ਸੰਭਾਲ**  
+- ✅ **ਸਾਫ, ਦਸਤਾਵੇਜ਼ਬੱਧ ਕੋਡ** ਕਦਮ-ਦਰ-ਕਦਮ ਟਿੱਪਣੀਆਂ ਸਮੇਤ  
 
-- ✅ **ਕਨੈਕਸ਼ਨ ਸਥਾਪਨਾ** ਅਤੇ ਗਲਤੀ ਸੰਭਾਲ
-- ✅ **ਸਰਵਰ ਖੋਜ** (ਟੂਲ, ਸਰੋਤ, ਪ੍ਰੇਰਨਾ ਜਿੱਥੇ ਲਾਗੂ ਹੋਵੇ)
-- ✅ **ਕੈਲਕੂਲੇਟਰ ਕਾਰਵਾਈਆਂ** (ਜੋੜ, ਘਟਾਉ, ਗੁਣਾ, ਭਾਗ, ਮਦਦ)
-- ✅ **ਨਤੀਜਾ ਪ੍ਰਕਿਰਿਆ** ਅਤੇ ਫਾਰਮੈਟ ਕੀਤਾ ਆਉਟਪੁੱਟ
-- ✅ **ਵਿਆਪਕ ਗਲਤੀ ਸੰਭਾਲ**
-- ✅ **ਸਾਫ, ਦਸਤਾਵੇਜ਼ੀਕ੍ਰਿਤ ਕੋਡ** ਸਟੈਪ-ਬਾਈ-ਸਟੈਪ ਟਿੱਪਣੀਆਂ ਨਾਲ
+### ਪੂਰੇ ਉਦਾਹਰਣਾਂ ਨਾਲ ਸ਼ੁਰੂਆਤ
 
-### ਪੂਰੇ ਉਦਾਹਰਨਾਂ ਨਾਲ ਸ਼ੁਰੂਆਤ ਕਰਨਾ
+1. ਉੱਪਰ ਦਿੱਤੀ ਸੂਚੀ ਤੋਂ ਆਪਣੀ ਪਸੰਦੀਦਾ ਭਾਸ਼ਾ ਚੁਣੋ  
+2. ਪੂਰੇ ਉਦਾਹਰਣ ਫਾਇਲ ਦਾ ਸਮੀਖਿਆ ਕਰੋ ਤਾਂ ਜੋ ਪੂਰੀ ਕਾਰਗੁਜ਼ਾਰੀ ਸਮਝ ਆ ਸਕੇ  
+3. [`complete_examples.md`](./complete_examples.md) ਵਿੱਚ ਦਿੱਤੇ ਨਿਰਦੇਸ਼ਾਂ ਦੇ ਅਨੁਸਾਰ ਉਦਾਹਰਣ ਚਲਾਓ  
+4. ਆਪਣੀ ਖਾਸ ਲੋੜ ਲਈ ਉਦਾਹਰਣ ਵਿੱਚ ਸੋਧ ਅਤੇ ਵਾਧਾ ਕਰੋ  
 
-1. **ਆਪਣੀ ਪਸੰਦੀਦਾ ਭਾਸ਼ਾ ਚੁਣੋ** ਉਪਰੋਕਤ ਸਾਰਣੀ ਵਿੱਚੋਂ
-2. **ਪੂਰੇ ਉਦਾਹਰਨ ਫਾਈਲ ਦੀ ਸਮੀਖਿਆ ਕਰੋ** ਪੂਰੀ ਕਾਰਵਾਈ ਨੂੰ ਸਮਝਣ ਲਈ
-3. **ਉਦਾਹਰਨ ਚਲਾਓ** ਹਦਾਇਤਾਂ ਦੀ ਪਾਲਣਾ ਕਰਦੇ ਹੋਏ [`complete_examples.md`](./complete_examples.md) ਵਿੱਚ ਦਿੱਤੀ ਗਈ
-4. **ਉਦਾਹਰਨ ਨੂੰ ਸੋਧੋ ਅਤੇ ਵਧਾਓ** ਆਪਣੇ ਵਿਸ਼ੇਸ਼ ਉਪਯੋਗ ਲਈ
+ਇਨ੍ਹਾਂ ਉਦਾਹਰਣਾਂ ਨੂੰ ਚਲਾਉਣ ਅਤੇ ਅਨੁਕੂਲਿਤ ਕਰਨ ਬਾਰੇ ਵਿਸਤ੍ਰਿਤ ਦਸਤਾਵੇਜ਼ ਲਈ ਵੇਖੋ: **[📖 Complete Examples Documentation](./complete_examples.md)**  
 
-ਇਨ੍ਹਾਂ ਉਦਾਹਰਨਾਂ ਨੂੰ ਚਲਾਉਣ ਅਤੇ ਕਸਟਮਾਈਜ਼ ਕਰਨ ਬਾਰੇ ਵਿਸਤ੍ਰਿਤ ਦਸਤਾਵੇਜ਼ੀਕਰਨ ਲਈ, ਵੇਖੋ: **[📖 ਪੂਰੇ ਉਦਾਹਰਨਾਂ ਦੀ ਦਸਤਾਵੇਜ਼ੀਕਰਨ](./complete_examples.md)**
+### 💡 ਸੁਝਾਅ ਬਨਾਮ ਪੂਰੇ ਉਦਾਹਰਣ
 
-### 💡 ਹੱਲ ਵਿਰੁੱਧ ਪੂਰੇ ਉਦਾਹਰਨ
+| **ਸੁਝਾਅ ਫੋਲਡਰ** | **ਪੂਰੇ ਉਦਾਹਰਣ** |
+|-----------------|-----------------|
+| ਪੂਰੇ ਪ੍ਰੋਜੈਕਟ ਦਾ ਢਾਂਚਾ ਅਤੇ ਬਿਲਡ ਫਾਇਲਾਂ | ਸਿਰਫ ਇੱਕ ਫਾਇਲ ਵਾਲੇ ਇੰਪਲੀਮੈਂਟੇਸ਼ਨ |  
+| ਡਿਪੈਂਡੇੰਸੀਜ਼ ਸਮੇਤ ਤਿਆਰ | ਕੇਂਦਰਿਤ ਕੋਡ ਉਦਾਹਰਣ |  
+| ਪ੍ਰੋਡਕਸ਼ਨ ਵਰਗਾ ਸੈਟਅੱਪ | ਸਿੱਖਣ ਲਈ ਰেফਰੈਂਸ |  
+| ਭਾਸ਼ਾ ਨਿਰਧਾਰਿਤ ਟੂਲਿੰਗ | ਬਹੁਭਾਸ਼ਾਈ ਤੁਲਨਾ |  
 
-| **ਹੱਲ ਫੋਲਡਰ** | **ਪੂਰੇ ਉਦਾਹਰਨ** |
-|--------------------|--------------------- |
-| ਬਿਲਡ ਫਾਈਲਾਂ ਨਾਲ ਪੂਰੀ ਪ੍ਰੋਜੈਕਟ ਸੰਰਚਨਾ | ਸਿੰਗਲ-ਫਾਈਲ ਕਾਰਵਾਈਆਂ |
-| ਨਿਰਭਰਤਾਵਾਂ ਨਾਲ ਤਿਆਰ-ਚਲਾਉਣ ਯੋਗ | ਕੇਵਲ ਕੋਡ ਉਦਾਹਰਨਾਂ |
-| ਉਤਪਾਦਨ-ਜੈਸਾ ਸੈਟਅਪ | ਸਿੱਖਣ ਲਈ ਸੰਦਰਭ |
-| ਭਾਸ਼ਾ-ਵਿਸ਼ੇਸ਼ ਟੂਲਿੰਗ | ਭਾਸ਼ਾ-ਅਨੁਸਾਰ ਤੁਲਨਾ |
+ਦੋਹਾਂ ਤਰੀਕਿਆਂ ਦੀ ਕੀਮਤ ਹੈ - ਪੂਰੇ ਪ੍ਰੋਜੈਕਟਾਂ ਲਈ **ਸੁਝਾਅ ਫੋਲਡਰ** ਅਤੇ ਸਿੱਖਣ ਅਤੇ ਰੁਜੂ ਕਰਨ ਲਈ **ਪੂਰੇ ਉਦਾਹਰਣ** ਦੀ ਵਰਤੋਂ ਕਰੋ।  
 
-ਦੋਵੇਂ ਪਹੁੰਚਾਂ ਕੀਮਤੀ ਹਨ - **ਹੱਲ ਫੋਲਡਰ** ਨੂੰ ਪੂਰੇ ਪ੍ਰੋਜੈਕਟਾਂ ਲਈ ਵਰਤੋ ਅਤੇ **ਪੂਰੇ ਉਦਾਹਰਨ** ਸਿੱਖਣ ਅਤੇ ਸੰਦਰਭ ਲਈ।
+## ਮੁੱਖ ਬਿੰਦੂ
 
-## ਮੁੱਖ ਸਿੱਖਣ
+ਇਸ ਅਧਿਆਇ ਲਈ ਮੁੱਖ ਬਿੰਦੂ ਇਹ ਹਨ:  
 
-ਇਸ ਅਧਿਆਇ ਲਈ ਮੁੱਖ ਸਿੱਖਣ ਇਹ ਹਨ ਕਿ ਕਲਾਇੰਟ ਬਾਰੇ:
-
-- ਸਰਵਰ 'ਤੇ ਫੀਚਰਾਂ ਦੀ ਖੋਜ ਅਤੇ ਉਨ੍ਹਾਂ ਨੂੰ ਚਲਾਉਣ ਲਈ ਵਰਤਿਆ ਜਾ ਸਕਦਾ ਹੈ।
-- ਜਦੋਂ ਇਹ ਖੁਦ ਸ਼ੁਰੂ ਹੁੰਦਾ ਹੈ ਤਾਂ ਸਰਵਰ ਨੂੰ ਸ਼ੁਰੂ ਕਰ ਸਕਦਾ ਹੈ (ਜਿਵੇਂ ਇਸ ਅਧਿਆਇ ਵਿੱਚ) ਪਰ ਕਲਾਇੰਟ ਚੱਲ ਰਹੇ ਸਰਵਰਾਂ ਨਾਲ ਵੀ ਜੁੜ ਸਕਦੇ ਹਨ।
-- ਸਰਵਰ ਦੀ ਸਮਰਥਾ ਦੀ ਜਾਂਚ ਕਰਨ ਦਾ ਇਹ ਇੱਕ ਸ਼ਾਨਦਾਰ ਤਰੀਕਾ ਹੈ, ਜਿਵੇਂ ਪਿਛਲੇ ਅਧਿਆਇ ਵਿੱਚ ਵਰਣਨ ਕੀਤਾ ਗਿਆ ਸੀ।
+- ਕਲਾਇੰਟ ਸਰਵਰ 'ਤੇ ਖੂਬੀਆਂ ਖੋਜਣ ਅਤੇ ਕਾਲ ਕਰਨ ਦੋਹਾਂ ਲਈ ਵਰਤੇ ਜਾ ਸਕਦੇ ਹਨ।  
+- ਇਹ ਆਪਣੇ ਆਪ ਸੇਵਾ ਸ਼ੁਰੂ ਕਰ ਸਕਦੇ ਹਨ (ਇਸ ਅਧਿਆਇ ਵਾਂਗ) ਪਰ ਚੱਲ ਰਹੇ ਸਰਵਰਾਂ ਨਾਲ ਵੀ ਕਨੈਕਟ ਹੋ ਸਕਦੇ ਹਨ।  
+- ਸਰਵਰ ਸਮਰੱਥਾਵਾਂ ਦਾ ਟੈਸਟ ਕਰਨ ਲਈ ਇਕ ਵਧੀਆ ਢੰਗ ਹੈ, ਜਿਵੇਂ ਕਿ ਪਿਛਲੇ ਅਧਿਆਇ ਵਿੱਚ ਵਰਣਿਤ ਇੰਸਪੈਕਟਰ ਵਰਗਾ ਵਿਕਲਪ।  
 
 ## ਵਾਧੂ ਸਰੋਤ
 
-- [MCP ਵਿੱਚ ਕਲਾਇੰਟ ਬਣਾਉਣਾ](https://modelcontextprotocol.io/quickstart/client)
+- [MCP ਵਿਚ ਕਲਾਇੰਟ ਬਣਾਉਣਾ](https://modelcontextprotocol.io/quickstart/client)  
 
 ## ਨਮੂਨੇ
 
-- [ਜਾਵਾ ਕੈਲਕੂਲੇਟਰ](../samples/java/calculator/README.md)
-- [.Net ਕੈਲਕੂਲੇਟਰ](../../../../03-GettingStarted/samples/csharp)
-- [ਜਾਵਾਸਕ੍ਰਿਪਟ ਕੈਲਕੂਲੇਟਰ](../samples/javascript/README.md)
-- [ਟਾਈਪਸਕ੍ਰਿਪਟ ਕੈਲਕੂਲੇਟਰ](../samples/typescript/README.md)
-- [ਪਾਇਥਨ ਕੈਲਕੂਲੇਟਰ](../../../../03-GettingStarted/samples/python)
-- [ਰਸਟ ਕੈਲਕੂਲੇਟਰ](../../../../03-GettingStarted/samples/rust)
+- [ਜਾਵਾ ਕੈਲਕੁਲੇਟਰ](../samples/java/calculator/README.md)  
+- [.Net ਕੈਲਕੁਲੇਟਰ](../../../../03-GettingStarted/samples/csharp)  
+- [ਜਾਵਾਸਕ੍ਰਿਪਟ ਕੈਲਕੁਲੇਟਰ](../samples/javascript/README.md)  
+- [ਟਾਈਪਸਕ੍ਰਿਪਟ ਕੈਲਕੁਲੇਟਰ](../samples/typescript/README.md)  
+- [ਪਾਇਥਨ ਕੈਲਕੁਲੇਟਰ](../../../../03-GettingStarted/samples/python)  
+- [ਰਸਟ ਕੈਲਕੁਲੇਟਰ](../../../../03-GettingStarted/samples/rust)  
 
 ## ਅਗਲਾ ਕੀ ਹੈ
 
 - ਅਗਲਾ: [LLM ਨਾਲ ਕਲਾਇੰਟ ਬਣਾਉਣਾ](../03-llm-client/README.md)
 
-**ਅਸਵੀਕਾਰਨਾ**:  
-ਇਹ ਦਸਤਾਵੇਜ਼ AI ਅਨੁਵਾਦ ਸੇਵਾ [Co-op Translator](https://github.com/Azure/co-op-translator) ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਅਨੁਵਾਦ ਕੀਤਾ ਗਿਆ ਹੈ। ਹਾਲਾਂਕਿ ਅਸੀਂ ਸਹੀਅਤਾ ਲਈ ਯਤਨਸ਼ੀਲ ਹਾਂ, ਕਿਰਪਾ ਕਰਕੇ ਧਿਆਨ ਦਿਓ ਕਿ ਸਵੈਚਾਲਿਤ ਅਨੁਵਾਦਾਂ ਵਿੱਚ ਗਲਤੀਆਂ ਜਾਂ ਅਸੁਚੀਤਤਾਵਾਂ ਹੋ ਸਕਦੀਆਂ ਹਨ। ਮੂਲ ਦਸਤਾਵੇਜ਼ ਨੂੰ ਇਸਦੀ ਮੂਲ ਭਾਸ਼ਾ ਵਿੱਚ ਅਧਿਕਾਰਤ ਸਰੋਤ ਮੰਨਿਆ ਜਾਣਾ ਚਾਹੀਦਾ ਹੈ। ਮਹੱਤਵਪੂਰਨ ਜਾਣਕਾਰੀ ਲਈ, ਪੇਸ਼ੇਵਰ ਮਨੁੱਖੀ ਅਨੁਵਾਦ ਦੀ ਸਿਫਾਰਸ਼ ਕੀਤੀ ਜਾਂਦੀ ਹੈ। ਇਸ ਅਨੁਵਾਦ ਦੀ ਵਰਤੋਂ ਤੋਂ ਪੈਦਾ ਹੋਣ ਵਾਲੇ ਕਿਸੇ ਵੀ ਗਲਤਫਹਿਮੀ ਜਾਂ ਗਲਤ ਵਿਆਖਿਆ ਲਈ ਅਸੀਂ ਜ਼ਿੰਮੇਵਾਰ ਨਹੀਂ ਹਾਂ।
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**ਡਿਸਕਲੇਮਰ**:  
+ਇਹ ਦਸਤਾਵੇਜ਼ ਏਆਈ ਅਨੁਵਾਦ ਸੇਵਾ [Co-op Translator](https://github.com/Azure/co-op-translator) ਦੇ ਜ਼ਰੀਏ ਅਨੁਵਾਦਿਤ ਕੀਤਾ ਗਿਆ ਹੈ। ਜਦੋਂ ਕਿ ਅਸੀਂ ਸਹੀਤਾ ਲਈ ਪ੍ਰਯਾਸ ਕਰਦੇ ਹਾਂ, ਕਿਰਪਾ ਕਰਕੇ ਧਿਆਨ ਵਿੱਚ ਰੱਖੋ ਕਿ ਸਵੈਚਾਲਿਤ ਅਨੁਵਾਦਾਂ ਵਿੱਚ ਗਲਤੀਆਂ ਜਾਂ ਅਸਮਰੱਥਤਾਵਾਂ ਹੋ ਸਕਦੀਆਂ ਹਨ। ਮੂਲ ਦਸਤਾਵੇਜ਼ ਆਪਣੀ ਮੂਲ ਭਾਸ਼ਾ ਵਿੱਚ ਸਰਵੋਤਮ ਸਰੋਤ ਮੰਨਿਆ ਜਾਣਾ ਚਾਹੀਦਾ ਹੈ। ਮਹੱਤਵਪੂਰਨ ਜਾਣਕਾਰੀ ਲਈ, ਪੇਸ਼ੇਵਰ ਮਨੁੱਖੀ ਅਨੁਵਾਦ ਦੀ ਸਿਫਾਰਸ਼ ਕੀਤੀ ਜਾਂਦੀ ਹੈ। ਅਸੀਂ ਇਸ ਅਨੁਵਾਦ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਹੋਣ ਵਾਲੀਆਂ ਕਿਸੇ ਵੀ ਗਲਤ ਫਹਿਮੀਆਂ ਜਾਂ ਗਲਤ ਵਿਵਰਣਾਂ ਲਈ ਜਿੰਮੇਵਾਰ ਨਹੀਂ ਹਾਂ।
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

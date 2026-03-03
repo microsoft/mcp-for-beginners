@@ -1,54 +1,42 @@
 # हा नमुना चालविणे
 
-आपण `uv` इन्स्टॉल करणे शिफारस केली जाते परंतु ते बंधनकारक नाही, पाहा [सूचना](https://docs.astral.sh/uv/#highlights)
+तुम्हाला `uv` इन्स्टॉल करण्याचा सल्ला दिला जातो, पण ते आवश्यक नाही, पाहा [सूचना](https://docs.astral.sh/uv/#highlights)
 
-## -0- एक आभासी पर्यावरण तयार करा
+## -0- व्हर्च्युअल एन्व्हायर्नमेंट तयार करा
 
 ```bash
 python -m venv venv
 ```
 
-## -1- आभासी पर्यावरण सक्रिय करा
+## -1- व्हर्च्युअल एन्व्हायर्नमेंट सक्रिय करा
 
 ```bash
 venv\Scripts\activate
 ```
 
-## -2- अवलंबित पॅकेजेस इन्स्टॉल करा
+## -2- अवलंबित्वे इन्स्टॉल करा
 
 ```bash
-pip install "mcp[cli]"
+pip install "mcp[cli]" openai
 ```
 
 ## -3- नमुना चालवा
 
 
 ```bash
-mcp run server.py
+python client.py
 ```
 
-## -4- नमुन्याची चाचणी करा
-
-सर्व्हर खालील आदेशाने चालवा:
-
-*मcp.json* मध्ये असे जोडा:
-
-```json
-```
-
-सर्व्हर सुरू करा
-
-खालील प्रॉम्प्ट टाइप करा:
+तुम्हाला आउटपुट हे प्रमाणे दिसेल:
 
 ```text
-prompt
+[02/18/26 13:16:34] INFO     Processing request of type ListToolsRequest               server.py:720
+result: {"id": 1, "name": "paprika", "description": "**Product Description: Paprika - The Vibrant Red Wonder**\n\nElevate your culinary creations with our premium paprika, the jewel of spices that bursts with color, flavor, and nutrition. Harvested from the finest red, juicy peppers, our paprika is meticulously ground to preserve its rich, vibrant hue and aromatic essence, making it an essential ingredient in any kitchen.\n\nEach sprinkle of our paprika adds a delightful warmth and a subtle sweetness to a variety of dishes, from savory stews to vibrant salads and mouthwatering marinades. Its radiant red color not only enhances the visual appeal of your meals but also signifies the freshness and quality of the peppers used. \n\nRich in antioxidants and packed with vitamins, paprika not only tantalizes your taste buds but also contributes to a healthy lifestyle. Whether you're a professional chef or a home cook, this versatile spice will inspire your creativity and add a beautiful, flavorful touch to everything you whip up.\n\nDiscover the magic of our red, juicy paprika\u2014a spice that transforms ordinary dishes into"}
 ```
-
-आपणास खालीलप्रमाणे आउटपुट दिसेः
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**सूचना**:
-हा दस्तऐवज AI अनुवाद सेवा [Co-op Translator](https://github.com/Azure/co-op-translator) वापरून अनुवादित केला आहे. आम्ही अचूकतेसाठी प्रयत्नशील असलो तरी, कृपया लक्षात ठेवा की स्वयंचलित अनुवादांमध्ये चुका किंवा अचूकतेच्या त्रुटी असू शकतात. मूळ दस्तऐवज त्याच्या स्थानिक भाषेत अधिकृत स्रोत मानला जाणे आवश्यक आहे. महत्वाची माहिती साठी व्यावसायिक मानवी अनुवादाचा सल्ला दिला जातो. या अनुवादाच्या वापरामुळे झालेल्या कोणत्याही गैरसमजुती किंवा चुकीच्या अर्थसंग्रहणासाठी आम्ही जबाबदार नाही.
+**सोडकर उल्लेख**:
+हा दस्तऐवज AI अनुवाद सेवा [Co-op Translator](https://github.com/Azure/co-op-translator) वापरून अनुवादित केला आहे. आम्ही अचूकतेसाठी प्रयत्नशील असलो तरी, कृपया लक्षात घ्या की स्वयंचलित अनुवादांमध्ये त्रुटी किंवा अपूर्णता असू शकतात. मूळ भाषेतील दस्तऐवज अधिकृत स्रोत मानावा. महत्त्वाच्या माहितीसाठी व्यावसायिक मानव अनुवाद शिफारस केला जातो. या अनुवादाच्या वापरामुळे उद्भवलेल्या कोणत्याही गैरसमजुतीसाठी किंवा चुकीच्या अर्थ लावण्यासाठी आम्ही जबाबदार नाही.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

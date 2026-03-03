@@ -1,29 +1,29 @@
-# Kreiranje klijenta
+# Izrada klijenta
 
-Klijenti su prilagođene aplikacije ili skripte koje komuniciraju izravno s MCP poslužiteljem kako bi zatražili resurse, alate i upite. Za razliku od korištenja alata za inspekciju, koji pruža grafičko sučelje za interakciju s poslužiteljem, pisanje vlastitog klijenta omogućuje programsku i automatiziranu interakciju. Ovo omogućuje programerima integraciju MCP mogućnosti u vlastite radne procese, automatizaciju zadataka i izgradnju prilagođenih rješenja prilagođenih specifičnim potrebama.
+Klijenti su prilagođene aplikacije ili skripte koje izravno komuniciraju s MCP poslužiteljem za zahtjev resursa, alata i naznaka. Za razliku od korištenja alata inspektora koji pruža grafičko sučelje za interakciju s poslužiteljem, pisanje vlastitog klijenta omogućuje programske i automatizirane interakcije. To omogućava programerima integraciju MCP sposobnosti u svoje radne tokove, automatizaciju zadataka i izgradnju prilagođenih rješenja prilagođenih specifičnim potrebama.
 
 ## Pregled
 
-Ova lekcija uvodi koncept klijenata unutar ekosustava Model Context Protocol (MCP). Naučit ćete kako napisati vlastiti klijent i povezati ga s MCP poslužiteljem.
+Ova lekcija uvodi pojam klijenata unutar Model Context Protocol (MCP) ekosustava. Naučit ćete kako napisati vlastiti klijent i povezati ga s MCP poslužiteljem.
 
 ## Ciljevi učenja
 
-Na kraju ove lekcije, moći ćete:
+Do kraja ove lekcije moći ćete:
 
-- Razumjeti što klijent može raditi.
+- Razumjeti što klijent može učiniti.
 - Napisati vlastiti klijent.
-- Povezati i testirati klijenta s MCP poslužiteljem kako biste osigurali da poslužitelj radi kako se očekuje.
+- Povezati se i testirati klijenta s MCP poslužiteljem kako biste osigurali da zadnji radi kako se očekuje.
 
-## Što je potrebno za pisanje klijenta?
+## Što ide u pisanje klijenta?
 
-Za pisanje klijenta potrebno je učiniti sljedeće:
+Za pisanje klijenta, trebate učiniti sljedeće:
 
-- **Uvesti odgovarajuće biblioteke**. Koristit ćete istu biblioteku kao i prije, samo različite konstrukte.
-- **Instancirati klijenta**. Ovo uključuje stvaranje instance klijenta i povezivanje s odabranom metodom prijenosa.
-- **Odlučiti koje resurse popisati**. Vaš MCP poslužitelj dolazi s resursima, alatima i upitima, a vi trebate odlučiti koje od njih popisati.
-- **Integrirati klijenta u glavnu aplikaciju**. Kada saznate mogućnosti poslužitelja, trebate ga integrirati u glavnu aplikaciju tako da, ako korisnik unese upit ili drugu naredbu, odgovarajuća značajka poslužitelja bude pozvana.
+- **Uvoz ispravnih biblioteka**. Koristit ćete istu biblioteku kao i ranije, samo različite konstrukte.
+- **Inicijalizirati klijenta**. To će uključivati kreiranje instance klijenta i povezivanje na odabranu metodu prijenosa.
+- **Odlučiti koje resurse navesti**. Vaš MCP poslužitelj dolazi s resursima, alatima i naznakama, morate odlučiti koje ćete navesti.
+- **Integrirati klijenta u glavnu aplikaciju**. Kad znate mogućnosti poslužitelja, trebate integrirati klijenta u glavnu aplikaciju tako da, ako korisnik unese naznaku ili drugi naredbeni zahtjev, odgovarajuća funkcija poslužitelja bude pozvana.
 
-Sada kada razumijemo na visokoj razini što ćemo raditi, pogledajmo sljedeći primjer.
+Sad kad razumijemo na visokim razinama što ćemo raditi, pogledajmo primjer.
 
 ### Primjer klijenta
 
@@ -49,10 +49,10 @@ const client = new Client(
 
 await client.connect(transport);
 
-// List prompts
+// Popis upita
 const prompts = await client.listPrompts();
 
-// Get a prompt
+// Dobiti upit
 const prompt = await client.getPrompt({
   name: "example-prompt",
   arguments: {
@@ -60,15 +60,15 @@ const prompt = await client.getPrompt({
   }
 });
 
-// List resources
+// Popis resursa
 const resources = await client.listResources();
 
-// Read a resource
+// Pročitati resurs
 const resource = await client.readResource({
   uri: "file:///example.txt"
 });
 
-// Call a tool
+// Pozvati alat
 const result = await client.callTool({
   name: "example-tool",
   arguments: {
@@ -79,21 +79,21 @@ const result = await client.callTool({
 
 U prethodnom kodu:
 
-- Uvozimo biblioteke.
-- Kreiramo instancu klijenta i povezujemo je koristeći stdio za prijenos.
-- Popisujemo upite, resurse i alate te ih sve pozivamo.
+- Uvozimo biblioteke
+- Kreiramo instancu klijenta i povezujemo je koristeći stdio kao transport.
+- Navodimo naznake, resurse i alate te pozivamo sve.
 
-Evo ga, klijent koji može komunicirati s MCP poslužiteljem.
+Eto ga, klijent koji može komunicirati s MCP poslužiteljem.
 
-U sljedećem odjeljku vježbi uzet ćemo si vremena da razložimo svaki isječak koda i objasnimo što se događa.
+Uzeti ćemo si vremena u sljedećoj vježbi da razložimo svaki dio koda i objasnimo što se događa.
 
 ## Vježba: Pisanje klijenta
 
-Kao što je već rečeno, uzet ćemo si vremena da objasnimo kod, a vi slobodno kodirajte zajedno s nama ako želite.
+Kao što je rečeno, uzet ćemo si vremena za objašnjenje koda, i svakako kodirajte zajedno ako želite.
 
 ### -1- Uvoz biblioteka
 
-Uvezimo biblioteke koje su nam potrebne. Trebat će nam reference na klijenta i na odabrani protokol prijenosa, stdio. stdio je protokol za stvari koje se pokreću na vašem lokalnom računalu. SSE je još jedan protokol prijenosa koji ćemo pokazati u budućim poglavljima, ali to je vaša druga opcija. Za sada, nastavimo sa stdio.
+Uvezimo potrebne biblioteke, trebat će nam reference na klijenta i na odabrani transportni protokol, stdio. stdio je protokol za stvari koje se izvoze na vašem lokalnom računalu. SSE je drugi transportni protokol koji ćemo pokazati u budućim poglavljima, no to je vaša druga opcija. Za sada nastavljamo sa stdio-om.
 
 #### TypeScript
 
@@ -116,12 +116,11 @@ using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using ModelContextProtocol.Client;
-using ModelContextProtocol.Protocol.Transport;
 ```
 
 #### Java
 
-Za Javu ćete kreirati klijenta koji se povezuje s MCP poslužiteljem iz prethodne vježbe. Koristeći istu strukturu Java Spring Boot projekta iz [Početak rada s MCP poslužiteljem](../../../../03-GettingStarted/01-first-server/solution/java), kreirajte novu Java klasu pod nazivom `SDKClient` u mapi `src/main/java/com/microsoft/mcp/sample/client/` i dodajte sljedeće uvoze:
+Za Javu, kreirat ćete klijenta koji se povezuje na MCP poslužitelj iz prijašnje vježbe. Koristeći istu strukturu Java Spring Boot projekta iz [Uvod u MCP poslužitelj](../../../../03-GettingStarted/01-first-server/solution/java), stvorite novu Java klasu pod nazivom `SDKClient` u mapi `src/main/java/com/microsoft/mcp/sample/client/` i dodajte sljedeće uvoze:
 
 ```java
 import java.util.Map;
@@ -136,7 +135,7 @@ import io.modelcontextprotocol.spec.McpSchema.ListToolsResult;
 
 #### Rust
 
-Trebat ćete dodati sljedeće ovisnosti u svoju `Cargo.toml` datoteku.
+Morat ćete dodati sljedeće ovisnosti u svoj `Cargo.toml` file.
 
 ```toml
 [package]
@@ -150,7 +149,7 @@ serde_json = "1.0.141"
 tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 ```
 
-Nakon toga, možete uvesti potrebne biblioteke u svoj klijentski kod.
+Nakon toga možete uvesti potrebne biblioteke u vaš klijentski kod.
 
 ```rust
 use rmcp::{
@@ -162,11 +161,11 @@ use rmcp::{
 use tokio::process::Command;
 ```
 
-Prijeđimo na instanciranje.
+Nastavimo s instanciranjem.
 
-### -2- Instanciranje klijenta i prijenosa
+### -2- Instanciranje klijenta i transporta
 
-Trebat ćemo kreirati instancu prijenosa i našeg klijenta:
+Morat ćemo stvoriti instancu transporta i instancu našeg klijenta:
 
 #### TypeScript
 
@@ -188,7 +187,7 @@ await client.connect(transport);
 
 U prethodnom kodu:
 
-- Kreirali smo instancu stdio prijenosa. Obratite pažnju kako specificira naredbu i argumente za pronalaženje i pokretanje poslužitelja, jer je to nešto što ćemo trebati učiniti dok kreiramo klijenta.
+- Kreirali smo instancu stdio transporta. Primijetite kako specificira naredbu i argumente za pronalazak i pokretanje poslužitelja jer je to nešto što ćemo morati napraviti pri kreiranju klijenta.
 
     ```typescript
     const transport = new StdioClientTransport({
@@ -197,7 +196,7 @@ U prethodnom kodu:
     });
     ```
 
-- Instancirali smo klijenta dajući mu ime i verziju.
+- Instancirali klijenta dajući mu ime i verziju.
 
     ```typescript
     const client = new Client(
@@ -207,7 +206,7 @@ U prethodnom kodu:
     });
     ```
 
-- Povezali klijenta s odabranim prijenosom.
+- Povezali klijenta s odabranim transportom.
 
     ```typescript
     await client.connect(transport);
@@ -219,11 +218,11 @@ U prethodnom kodu:
 from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
 
-# Create server parameters for stdio connection
+# Kreiraj parametre poslužitelja za stdio vezu
 server_params = StdioServerParameters(
-    command="mcp",  # Executable
-    args=["run", "server.py"],  # Optional command line arguments
-    env=None,  # Optional environment variables
+    command="mcp",  # Izvršna datoteka
+    args=["run", "server.py"],  # Opcionalni argumenti naredbenog retka
+    env=None,  # Opcionalne varijable okoline
 )
 
 async def run():
@@ -231,7 +230,7 @@ async def run():
         async with ClientSession(
             read, write
         ) as session:
-            # Initialize the connection
+            # Inicijaliziraj vezu
             await session.initialize()
 
           
@@ -242,12 +241,12 @@ if __name__ == "__main__":
     asyncio.run(run())
 ```
 
-U prethodnom kodu:
+U prethodnom kodu smo:
 
-- Uvezli smo potrebne biblioteke.
-- Instancirali objekt parametara poslužitelja jer ćemo ga koristiti za pokretanje poslužitelja kako bismo se mogli povezati s njim putem klijenta.
-- Definirali metodu `run` koja poziva `stdio_client` za pokretanje klijentske sesije.
-- Kreirali ulaznu točku gdje pružamo metodu `run` funkciji `asyncio.run`.
+- Uvezli potrebne biblioteke
+- Instancirali objekt parametara poslužitelja koji ćemo koristiti za pokretanje poslužitelja da se možemo s njim povezati sa svojim klijentom.
+- Definirali metodu `run` koja zauzvrat poziva `stdio_client` što pokreće klijentsku sesiju.
+- Kreirali ulaznu točku gdje prosljeđujemo metodu `run` funkciji `asyncio.run`.
 
 #### .NET
 
@@ -256,7 +255,6 @@ using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using ModelContextProtocol.Client;
-using ModelContextProtocol.Protocol.Transport;
 
 var builder = Host.CreateApplicationBuilder(args);
 
@@ -273,15 +271,15 @@ var clientTransport = new StdioClientTransport(new()
     Arguments = ["run", "--project", "path/to/file.csproj"],
 });
 
-await using var mcpClient = await McpClientFactory.CreateAsync(clientTransport);
+await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 ```
 
-U prethodnom kodu:
+U prethodnom kodu smo:
 
-- Uvezli smo potrebne biblioteke.
-- Kreirali stdio prijenos i klijenta `mcpClient`. Ovo posljednje koristit ćemo za popis i pozivanje značajki na MCP poslužitelju.
+- Uvezli potrebne biblioteke.
+- Kreirali stdio transport i instancirali klijenta `mcpClient`. Ovaj zadnji ćemo koristiti za popisivanje i pozivanje značajki na MCP poslužitelju.
 
-Napomena: U "Arguments" možete ukazati na *.csproj* ili na izvršnu datoteku.
+Napomena, u "Arguments" možete navesti ili *.csproj* ili izvršnu datoteku.
 
 #### Java
 
@@ -303,25 +301,25 @@ public class SDKClient {
         var client = McpClient.sync(this.transport).build();
         client.initialize();
         
-        // Your client logic goes here
+        // Vaša klijentska logika ide ovdje
     }
 }
 ```
 
-U prethodnom kodu:
+U prethodnom kodu smo:
 
-- Kreirali smo glavnu metodu koja postavlja SSE prijenos usmjeren na `http://localhost:8080`, gdje će MCP poslužitelj biti pokrenut.
-- Kreirali klasu klijenta koja uzima prijenos kao parametar konstruktora.
-- U metodi `run` kreiramo sinkroni MCP klijent koristeći prijenos i inicijaliziramo vezu.
-- Koristili SSE (Server-Sent Events) prijenos koji je prikladan za HTTP komunikaciju s Java Spring Boot MCP poslužiteljima.
+- Kreirali main metodu koja postavlja SSE transport usmjeren na `http://localhost:8080` gdje će naš MCP poslužitelj biti pokrenut.
+- Kreirali klasu klijenta koja prima transport kao parametar konstruktora.
+- U metodi `run` kreirali sinhroni MCP klijent koristeći transport i inicijalizirali vezu.
+- Koristili SSE (Server-Sent Events) transport koji je prikladan za HTTP komunikaciju s Java Spring Boot MCP poslužiteljima.
 
 #### Rust
 
-Ovaj Rust klijent pretpostavlja da je poslužitelj sestrinski projekt nazvan "calculator-server" u istom direktoriju. Kod ispod pokrenut će poslužitelj i povezati se s njim.
+Ovaj Rust klijent pretpostavlja da je poslužitelj sestrinski projekt nazvan "calculator-server" u istoj direktoriji. Kod ispod pokreće poslužitelja i povezuje se s njim.
 
 ```rust
 async fn main() -> Result<(), RmcpError> {
-    // Assume the server is a sibling project named "calculator-server" in the same directory
+    // Pretpostavite da je poslužitelj sestrinski projekt nazvan "calculator-server" u istom direktoriju
     let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .expect("failed to locate workspace root")
@@ -336,51 +334,51 @@ async fn main() -> Result<(), RmcpError> {
         )
         .await?;
 
-    // TODO: Initialize
+    // TODO: Inicijaliziraj
 
-    // TODO: List tools
+    // TODO: Nabroji alate
 
-    // TODO: Call add tool with arguments = {"a": 3, "b": 2}
+    // TODO: Pozovi alat za zbrajanje s argumentima = {"a": 3, "b": 2}
 
     client.cancel().await?;
     Ok(())
 }
 ```
 
-### -3- Popis značajki poslužitelja
+### -3- Popisivanje značajki poslužitelja
 
-Sada imamo klijenta koji se može povezati ako se program pokrene. Međutim, on zapravo ne popisuje svoje značajke, pa to učinimo sljedeće:
+Sada imamo klijenta koji se može povezati ako se program pokrene. No, zapravo ne navodi njegove značajke pa to učinimo sljedeće:
 
 #### TypeScript
 
 ```typescript
-// List prompts
+// Popis upita
 const prompts = await client.listPrompts();
 
-// List resources
+// Popis resursa
 const resources = await client.listResources();
 
-// list tools
+// popis alata
 const tools = await client.listTools();
 ```
 
 #### Python
 
 ```python
-# List available resources
+# Nabroji dostupne resurse
 resources = await session.list_resources()
 print("LISTING RESOURCES")
 for resource in resources:
     print("Resource: ", resource)
 
-# List available tools
+# Nabroji dostupne alate
 tools = await session.list_tools()
 print("LISTING TOOLS")
 for tool in tools.tools:
     print("Tool: ", tool.name)
 ```
 
-Ovdje popisujemo dostupne resurse, `list_resources()` i alate, `list_tools`, te ih ispisujemo.
+Ovdje navodimo dostupne resurse, `list_resources()` i alate, `list_tools` i ispisujemo ih.
 
 #### .NET
 
@@ -391,55 +389,55 @@ foreach (var tool in await client.ListToolsAsync())
 }
 ```
 
-Gore je primjer kako možemo popisati alate na poslužitelju. Za svaki alat zatim ispisujemo njegovo ime.
+Gore je primjer kako možemo navesti alate na poslužitelju. Za svaki alat ispisujemo njegov naziv.
 
 #### Java
 
 ```java
-// List and demonstrate tools
+// Navedite i pokažite alate
 ListToolsResult toolsList = client.listTools();
 System.out.println("Available Tools = " + toolsList);
 
-// You can also ping the server to verify connection
+// Također možete poslati ping poslužitelju za provjeru veze
 client.ping();
 ```
 
-U prethodnom kodu:
+U prethodnom kodu smo:
 
-- Pozvali smo `listTools()` za dobivanje svih dostupnih alata s MCP poslužitelja.
-- Koristili `ping()` za provjeru radi li veza s poslužiteljem.
-- `ListToolsResult` sadrži informacije o svim alatima, uključujući njihova imena, opise i ulazne sheme.
+- Pozvali `listTools()` da dobijemo sve dostupne alate s MCP poslužitelja.
+- Koristili `ping()` da provjerimo radi li veza s poslužiteljem.
+- `ListToolsResult` sadrži informacije o svim alatima uključujući njihova imena, opise i ulazne sheme.
 
-Odlično, sada smo zabilježili sve značajke. Sada je pitanje kada ih koristiti? Ovaj klijent je prilično jednostavan, u smislu da ćemo morati eksplicitno pozvati značajke kada ih želimo. U sljedećem poglavlju kreirat ćemo napredniji klijent koji ima pristup vlastitom velikom jezičnom modelu (LLM). Za sada, pogledajmo kako možemo pozvati značajke na poslužitelju:
+Odlično, sada smo pokupili sve značajke. Sad pitanje je kada ih koristimo? Ovaj klijent je prilično jednostavan, jednostavan u smislu da ćemo morati eksplicitno pozvati značajke kada ih poželimo. U sljedećem poglavlju kreirat ćemo naprednijeg klijenta koji ima pristup svom velikom jezičnom modelu, LLM-u. Za sada, pogledajmo kako možemo pozvati značajke na poslužitelju:
 
 #### Rust
 
-U glavnoj funkciji, nakon inicijalizacije klijenta, možemo inicijalizirati poslužitelj i popisati neke od njegovih značajki.
+U glavnoj funkciji, nakon inicijalizacije klijenta, možemo inicijalizirati poslužitelja i navesti neke njegove značajke.
 
 ```rust
-// Initialize
+// Inicijaliziraj
 let server_info = client.peer_info();
 println!("Server info: {:?}", server_info);
 
-// List tools
+// Popis alata
 let tools = client.list_tools(Default::default()).await?;
 println!("Available tools: {:?}", tools);
 ```
 
 ### -4- Pozivanje značajki
 
-Za pozivanje značajki trebamo osigurati da specificiramo ispravne argumente i, u nekim slučajevima, ime onoga što pokušavamo pozvati.
+Za pozivanje značajki moramo osigurati da specificiramo točne argumente i u nekim slučajevima ime onoga što pokušavamo pozvati.
 
 #### TypeScript
 
 ```typescript
 
-// Read a resource
+// Pročitaj resurs
 const resource = await client.readResource({
   uri: "file:///example.txt"
 });
 
-// Call a tool
+// Pozovi alat
 const result = await client.callTool({
   name: "example-tool",
   arguments: {
@@ -447,7 +445,7 @@ const result = await client.callTool({
   }
 });
 
-// call prompt
+// pozovi upit
 const promptResult = await client.getPrompt({
     name: "review-code",
     arguments: {
@@ -458,7 +456,7 @@ const promptResult = await client.getPrompt({
 
 U prethodnom kodu:
 
-- Čitamo resurs pozivajući `readResource()` i specificirajući `uri`. Evo kako to najvjerojatnije izgleda na strani poslužitelja:
+- Čitamo resurs, pozivamo resurs s `readResource()` specificirajući `uri`. Evo kako to najvjerojatnije izgleda s poslužiteljske strane:
 
     ```typescript
     server.resource(
@@ -473,9 +471,9 @@ U prethodnom kodu:
     );
     ```
 
-    Naša vrijednost `uri` `file://example.txt` odgovara `file://{name}` na poslužitelju. `example.txt` će biti mapiran na `name`.
+    Naša `uri` vrijednost `file://example.txt` odgovara `file://{name}` na poslužitelju. `example.txt` će biti mapiran na `name`.
 
-- Pozivamo alat specificirajući njegovo `name` i `arguments` ovako:
+- Pozivamo alat, pozivamo ga specificirajući njegovo `name` i njegove `arguments` ovako:
 
     ```typescript
     const result = await client.callTool({
@@ -486,7 +484,7 @@ U prethodnom kodu:
     });
     ```
 
-- Dobivamo upit pozivajući `getPrompt()` s `name` i `arguments`. Kod poslužitelja izgleda ovako:
+- Dohvaćamo naznaku, za naznaku pozivamo `getPrompt()` sa `name` i `arguments`. Kod poslužitelja izgleda ovako:
 
     ```typescript
     server.prompt(
@@ -504,7 +502,7 @@ U prethodnom kodu:
     );
     ```
 
-    i vaš klijentski kod izgleda ovako kako bi odgovarao onome što je deklarirano na poslužitelju:
+    a vaš klijentski kod stoga izgleda ovako da odgovara onome što je deklarirano na poslužitelju:
 
     ```typescript
     const promptResult = await client.getPrompt({
@@ -518,24 +516,24 @@ U prethodnom kodu:
 #### Python
 
 ```python
-# Read a resource
+# Pročitaj resurs
 print("READING RESOURCE")
 content, mime_type = await session.read_resource("greeting://hello")
 
-# Call a tool
+# Pozovi alat
 print("CALL TOOL")
 result = await session.call_tool("add", arguments={"a": 1, "b": 7})
 print(result.content)
 ```
 
-U prethodnom kodu:
+U prethodnom kodu smo:
 
-- Pozvali smo resurs nazvan `greeting` koristeći `read_resource`.
-- Pozvali alat nazvan `add` koristeći `call_tool`.
+- Pozvali resurs zvan `greeting` koristeći `read_resource`.
+- Pozvali alat zvan `add` koristeći `call_tool`.
 
 #### .NET
 
-1. Dodajmo kod za pozivanje alata:
+1. Dodajmo malo koda za pozivanje alata:
 
   ```csharp
   var result = await mcpClient.CallToolAsync(
@@ -544,7 +542,7 @@ U prethodnom kodu:
       cancellationToken:CancellationToken.None);
   ```
 
-1. Za ispis rezultata, evo koda koji to omogućuje:
+1. Za ispis rezultata, evo koda za to:
 
   ```csharp
   Console.WriteLine(result.Content.First(c => c.Type == "text").Text);
@@ -554,7 +552,7 @@ U prethodnom kodu:
 #### Java
 
 ```java
-// Call various calculator tools
+// Pozovi razne alate kalkulatora
 CallToolResult resultAdd = client.callTool(new CallToolRequest("add", Map.of("a", 5.0, "b", 3.0)));
 System.out.println("Add Result = " + resultAdd);
 
@@ -571,17 +569,17 @@ CallToolResult resultHelp = client.callTool(new CallToolRequest("help", Map.of()
 System.out.println("Help = " + resultHelp);
 ```
 
-U prethodnom kodu:
+U prethodnom kodu smo:
 
-- Pozvali smo više alata kalkulatora koristeći metodu `callTool()` s objektima `CallToolRequest`.
-- Svaki poziv alata specificira ime alata i `Map` argumenata potrebnih za taj alat.
-- Alati poslužitelja očekuju specifična imena parametara (poput "a", "b" za matematičke operacije).
-- Rezultati se vraćaju kao `CallToolResult` objekti koji sadrže odgovor poslužitelja.
+- Pozvali više kalkulatorskih alata koristeći metodu `callTool()` s objektima `CallToolRequest`.
+- Svaki poziv alatu specificira ime alata i `Map` argumenata potrebnih za taj alat.
+- Poslužiteljski alati očekuju specifična imena parametara (kao "a", "b" za matematičke operacije).
+- Rezultati se vraćaju kao `CallToolResult` objekti koji sadrže odgovor od poslužitelja.
 
 #### Rust
 
 ```rust
-// Call add tool with arguments = {"a": 3, "b": 2}
+// Pozovi alat za zbrajanje s argumentima = {"a": 3, "b": 2}
 let a = 3;
 let b = 2;
 let tool_result = client
@@ -593,13 +591,13 @@ let tool_result = client
 println!("Result of {:?} + {:?}: {:?}", a, b, tool_result);
 ```
 
-### -5- Pokretanje klijenta
+### -5- Pokreni klijenta
 
-Za pokretanje klijenta, unesite sljedeću naredbu u terminal:
+Za pokretanje klijenta upišite sljedeću naredbu u terminal:
 
 #### TypeScript
 
-Dodajte sljedeći unos u odjeljak "scripts" u *package.json*:
+Dodajte sljedeći unos u svoj "scripts" odjeljak u *package.json*:
 
 ```json
 "client": "tsc && node build/client.js"
@@ -611,7 +609,7 @@ npm run client
 
 #### Python
 
-Pokrenite klijenta sljedećom naredbom:
+Pozovite klijenta sljedećom naredbom:
 
 ```sh
 python client.py
@@ -625,23 +623,23 @@ dotnet run
 
 #### Java
 
-Prvo, osigurajte da vaš MCP poslužitelj radi na `http://localhost:8080`. Zatim pokrenite klijenta:
+Prvo se uvjerite da je vaš MCP poslužitelj pokrenut na `http://localhost:8080`. Zatim pokrenite klijenta:
 
 ```bash
-# Build you project
+# Izgradite svoj projekt
 ./mvnw clean compile
 
-# Run the client
+# Pokrenite klijent
 ./mvnw exec:java -Dexec.mainClass="com.microsoft.mcp.sample.client.SDKClient"
 ```
 
-Alternativno, možete pokrenuti cijeli projekt klijenta dostupan u mapi rješenja `03-GettingStarted\02-client\solution\java`:
+Alternativno, možete pokrenuti kompletan projekt klijenta iz rješenja u mapi `03-GettingStarted\02-client\solution\java`:
 
 ```bash
-# Navigate to the solution directory
+# Navigirajte do direktorija rješenja
 cd 03-GettingStarted/02-client/solution/java
 
-# Build and run the JAR
+# Izgradite i pokrenite JAR
 ./mvnw clean package
 java -jar target/calculator-client-0.0.1-SNAPSHOT.jar
 ```
@@ -655,9 +653,9 @@ cargo run
 
 ## Zadatak
 
-U ovom zadatku koristit ćete ono što ste naučili o kreiranju klijenta, ali ćete kreirati vlastitog klijenta.
+U ovom zadatku koristit ćete ono što ste naučili o izradi klijenta, ali ćete kreirati vlastiti klijent.
 
-Evo poslužitelja kojeg možete koristiti i kojeg trebate pozvati putem svog klijentskog koda. Pokušajte dodati više značajki poslužitelju kako bi bio zanimljiviji.
+Evo poslužitelja kojeg možete koristiti i kojeg trebate pozvati kroz svoj klijentski kod, pokušajte dodati više značajki poslužitelju kako bi bio zanimljiviji.
 
 ### TypeScript
 
@@ -666,13 +664,13 @@ import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mc
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 
-// Create an MCP server
+// Kreiraj MCP poslužitelj
 const server = new McpServer({
   name: "Demo",
   version: "1.0.0"
 });
 
-// Add an addition tool
+// Dodaj dodatni alat
 server.tool("add",
   { a: z.number(), b: z.number() },
   async ({ a, b }) => ({
@@ -680,7 +678,7 @@ server.tool("add",
   })
 );
 
-// Add a dynamic greeting resource
+// Dodaj dinamički resurs za pozdrav
 server.resource(
   "greeting",
   new ResourceTemplate("greeting://{name}", { list: undefined }),
@@ -692,7 +690,7 @@ server.resource(
   })
 );
 
-// Start receiving messages on stdin and sending messages on stdout
+// Započni primanje poruka na stdin i slanje poruka na stdout
 
 async function main() {
   const transport = new StdioServerTransport();
@@ -712,18 +710,18 @@ main().catch((error) => {
 # server.py
 from mcp.server.fastmcp import FastMCP
 
-# Create an MCP server
+# Kreiraj MCP poslužitelj
 mcp = FastMCP("Demo")
 
 
-# Add an addition tool
+# Dodaj alat za zbrajanje
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
     return a + b
 
 
-# Add a dynamic greeting resource
+# Dodaj dinamički resurs za pozdrav
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
@@ -761,21 +759,21 @@ public static class CalculatorTool
 }
 ```
 
-Pogledajte ovaj projekt kako biste vidjeli kako možete [dodati upite i resurse](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs).
+Pogledajte ovaj projekt da vidite kako možete [dodati naznake i resurse](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs).
 
-Također, provjerite ovaj link za pozivanje [upita i resursa](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/).
+Također, provjerite ovaj link za način pozivanja [naznaka i resursa](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/).
 
 ### Rust
 
-U [prethodnom odjeljku](../../../../03-GettingStarted/01-first-server) naučili ste kako kreirati jednostavan MCP poslužitelj s Rustom. Možete nastaviti graditi na tome ili provjeriti ovaj link za više primjera MCP poslužitelja temeljenih na Rustu: [Primjeri MCP poslužitelja](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
+U [prethodnom dijelu](../../../../03-GettingStarted/01-first-server) naučili ste kako kreirati jednostavan MCP poslužitelj u Rustu. Možete graditi dalje na tome ili provjeriti ovaj link za više Rust baziranih MCP primjera poslužitelja: [Primjeri MCP poslužitelja](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
 
 ## Rješenje
 
-**Mapa rješenja** sadrži kompletne, spremne za pokretanje implementacije klijenata koje demonstriraju sve koncepte obrađene u ovom vodiču. Svako rješenje uključuje i klijentski i poslužiteljski kod organiziran u odvojene, samostalne projekte.
+**Mapa rješenja** sadrži kompletne, spremne za pokretanje implementacije klijenata koje demonstriraju sve koncepte obrađene u ovom tutorijalu. Svako rješenje uključuje i klijentski i poslužiteljski kod organizirani u odvojene, samostalne projekte.
 
 ### 📁 Struktura rješenja
 
-Direktorij rješenja organiziran je prema programskom jeziku:
+Direktorij rješenja organiziran je po programskim jezicima:
 
 ```text
 solution/
@@ -807,26 +805,26 @@ solution/
 
 ### 🚀 Što svako rješenje uključuje
 
-Svako rješenje specifično za jezik pruža:
+Svako rješenje za određeni jezik pruža:
 
-- **Kompletnu implementaciju klijenta** sa svim značajkama iz vodiča.
-- **Radnu strukturu projekta** s odgovarajućim ovisnostima i konfiguracijom.
-- **Skripte za izgradnju i pokretanje** za jednostavno postavljanje i izvršavanje.
-- **Detaljan README** s uputama specifičnim za jezik.
-- **Primjere obrade pogrešaka** i rezultata.
+- **Kompletna implementacija klijenta** sa svim značajkama iz tutorijala
+- **Funkcionalna struktura projekta** s pravilnim ovisnostima i konfiguracijom
+- **Skripte za izgradnju i pokretanje** za lakše postavljanje i izvođenje
+- **Detaljan README** s uputama specifičnim za jezik
+- **Primjere za upravljanje greškama** i obradu rezultata
 
 ### 📖 Korištenje rješenja
 
-1. **Navigirajte do mape za željeni jezik**:
+1. **Idite u mapu željenog jezika**:
 
    ```bash
-   cd solution/typescript/    # For TypeScript
-   cd solution/java/          # For Java
-   cd solution/python/        # For Python
-   cd solution/dotnet/        # For .NET
+   cd solution/typescript/    # Za TypeScript
+   cd solution/java/          # Za Javu
+   cd solution/python/        # Za Python
+   cd solution/dotnet/        # Za .NET
    ```
 
-2. **Slijedite upute iz README datoteke** u svakoj mapi za:
+2. **Slijedite upute u README-u** u svakoj mapi za:
    - Instalaciju ovisnosti
    - Izgradnju projekta
    - Pokretanje klijenta
@@ -839,57 +837,57 @@ Svako rješenje specifično za jezik pruža:
    Tool result: { content: [ { type: 'text', text: '9' } ] }
    ```
 
-Za potpunu dokumentaciju i upute korak po korak, pogledajte: **[📖 Dokumentacija rješenja](./solution/README.md)**
+Za potpunu dokumentaciju i upute korak po korak pogledajte: **[📖 Dokumentacija rješenja](./solution/README.md)**
 
 ## 🎯 Kompletni primjeri
 
-Pružili smo kompletne, funkcionalne implementacije klijenata za sve programske jezike obrađene u ovom vodiču. Ovi primjeri demonstriraju punu funkcionalnost opisanu gore i mogu se koristiti kao referentne implementacije ili početne točke za vaše vlastite projekte.
+Osigurali smo kompletne, funkcionalne implementacije klijenata za sve programske jezike obrađene u ovom tutorijalu. Ovi primjeri demonstriraju svu funkcionalnost navedenu gore i mogu se koristiti kao referentne implementacije ili polazne točke za vlastite projekte.
 
 ### Dostupni kompletni primjeri
 
-| Jezik      | Datoteka                          | Opis                                                                 |
-|------------|-----------------------------------|----------------------------------------------------------------------|
-| **Java**   | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | Kompletan Java klijent koristeći SSE prijenos s opsežnim rukovanjem pogreškama |
-| **C#**     | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | Kompletan C# klijent koristeći stdio prijenos s automatskim pokretanjem poslužitelja |
-| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | Kompletan TypeScript klijent s punom podrškom za MCP protokol       |
-| **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | Kompletan Python klijent koristeći async/await obrasce              |
-| **Rust**   | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs)     | Kompletan Rust klijent koristeći Tokio za asinhrone operacije       |
-Svaki potpuni primjer uključuje:
+| Jezik | Datoteka | Opis |
+|----------|---------|---------|
+| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | Potpuni Java klijent koristeći SSE transport s opsežnim upravljanjem greškama |
+| **C#** | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | Potpuni C# klijent koristeći stdio transport s automatskim pokretanjem poslužitelja |
+| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | Potpuni TypeScript klijent s potpunom podrškom MCP protokola |
+| **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | Potpuni Python klijent koristeći async/await obrasce |
+| **Rust** | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs) | Potpuni Rust klijent koristeći Tokio za asinhrone operacije |
 
-- ✅ **Uspostavljanje veze** i rukovanje pogreškama
-- ✅ **Otkrivanje poslužitelja** (alati, resursi, upiti gdje je primjenjivo)
+Svaki kompletan primjer uključuje:
+- ✅ **Uspostava veze** i rukovanje pogreškama
+- ✅ **Otkrivanje servera** (alati, resursi, upiti gdje je primjenjivo)
 - ✅ **Operacije kalkulatora** (zbrajanje, oduzimanje, množenje, dijeljenje, pomoć)
 - ✅ **Obrada rezultata** i formatirani ispis
 - ✅ **Sveobuhvatno rukovanje pogreškama**
-- ✅ **Čist, dokumentiran kod** s komentarima korak po korak
+- ✅ **Čist, dokumentiran kod** sa komentarima korak po korak
 
 ### Početak rada s potpunim primjerima
 
-1. **Odaberite željeni jezik** iz tablice iznad
-2. **Pregledajte datoteku s potpunim primjerom** kako biste razumjeli cijelu implementaciju
+1. **Odaberite željeni jezik** iz gornje tablice
+2. **Pregledajte datoteku potpunog primjera** kako biste razumjeli kompletnu implementaciju
 3. **Pokrenite primjer** slijedeći upute u [`complete_examples.md`](./complete_examples.md)
-4. **Prilagodite i proširite** primjer za svoj specifični slučaj upotrebe
+4. **Izmijenite i proširite** primjer za svoj specifični slučaj upotrebe
 
 Za detaljnu dokumentaciju o pokretanju i prilagodbi ovih primjera, pogledajte: **[📖 Dokumentacija potpunih primjera](./complete_examples.md)**
 
-### 💡 Rješenje vs. Potpuni primjeri
+### 💡 Rješenje vs. Potpuni Primjeri
 
-| **Mapa rješenja** | **Potpuni primjeri** |
+| **Mapa Rješenja** | **Potpuni Primjeri** |
 |--------------------|--------------------- |
-| Cijela struktura projekta s datotekama za izgradnju | Implementacije u jednoj datoteci |
+| Puna struktura projekta s build datotekama | Implementacije u jednoj datoteci |
 | Spremno za pokretanje s ovisnostima | Fokusirani primjeri koda |
-| Postavka nalik produkciji | Edukativna referenca |
+| Postavka slična produkciji | Edukativna referenca |
 | Alati specifični za jezik | Usporedba među jezicima |
 
-Oba pristupa su vrijedna - koristite **mapu rješenja** za potpune projekte, a **pune primjere** za učenje i referencu.
+Oba pristupa su vrijedna – koristite **mapu rješenja** za kompletne projekte, a **potpune primjere** za učenje i referencu.
 
-## Ključne točke
+## Ključne poruke
 
-Ključne točke ovog poglavlja o klijentima su sljedeće:
+Ključne poruke ovog poglavlja o klijentima su sljedeće:
 
-- Mogu se koristiti za otkrivanje i pozivanje funkcionalnosti na poslužitelju.
-- Mogu pokrenuti poslužitelj dok se sami pokreću (kao u ovom poglavlju), ali klijenti se također mogu povezati s već pokrenutim poslužiteljima.
-- Izvrsni su za testiranje mogućnosti poslužitelja uz alternative poput Inspectora, kako je opisano u prethodnom poglavlju.
+- Mogu se koristiti i za otkrivanje i za pozivanje značajki na serveru.
+- Mogu pokrenuti server dok se sami pokreću (kao u ovom poglavlju), ali klijenti se također mogu spojiti i na već pokrenute servere.
+- Odličan su način za isprobavanje mogućnosti servera uz alternative poput Inspektora, kako je opisano u prethodnom poglavlju.
 
 ## Dodatni resursi
 
@@ -908,5 +906,9 @@ Ključne točke ovog poglavlja o klijentima su sljedeće:
 
 - Sljedeće: [Izrada klijenta s LLM-om](../03-llm-client/README.md)
 
-**Odricanje od odgovornosti**:  
-Ovaj dokument je preveden korištenjem AI usluge za prijevod [Co-op Translator](https://github.com/Azure/co-op-translator). Iako nastojimo osigurati točnost, imajte na umu da automatski prijevodi mogu sadržavati pogreške ili netočnosti. Izvorni dokument na izvornom jeziku treba smatrati mjerodavnim izvorom. Za ključne informacije preporučuje se profesionalni prijevod od strane stručnjaka. Ne preuzimamo odgovornost za bilo kakva nesporazuma ili pogrešna tumačenja koja mogu proizaći iz korištenja ovog prijevoda.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Izjava o odricanju od odgovornosti**:
+Ovaj dokument preveden je pomoću AI usluge za prijevod [Co-op Translator](https://github.com/Azure/co-op-translator). Iako težimo točnosti, imajte na umu da automatski prijevodi mogu sadržavati pogreške ili netočnosti. Izvorni dokument na izvornom jeziku treba se smatrati službenim i autoritativnim izvorom. Za ključne informacije preporučuje se profesionalni ljudski prijevod. Ne snosimo odgovornost za bilo kakve nesporazume ili pogrešne interpretacije koje proizlaze iz korištenja ovog prijevoda.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
