@@ -314,8 +314,6 @@ We learned about this new paradigm MCP Apps. It's a new paradigm that allows MCP
 
 Additionally, we learned that these MCP Apps are hosted into an IFrame and to communicate with MCP Servers they would need to send messages to the parent web app. There are several libraries out there for both plain JavaScript and React and more that makes this communication easier. 
 
-Have a look at the 
-
 ## Key Takeaways
 
 Here's what you learned:
