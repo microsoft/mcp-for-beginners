@@ -395,9 +395,45 @@
     "source_file": "03-GettingStarted/14-sampling/solution/python/README.md",
     "language_code": "lt"
   },
+  "03-GettingStarted/15-mcp-apps/README.md": {
+    "original_hash": "0ce5c2b226bb11d8d473bec29ef60eff",
+    "translation_date": "2026-03-03T23:41:07+00:00",
+    "source_file": "03-GettingStarted/15-mcp-apps/README.md",
+    "language_code": "lt"
+  },
+  "03-GettingStarted/15-mcp-apps/assignment/README.md": {
+    "original_hash": "a43163957900ba6256f2d8239397506e",
+    "translation_date": "2026-03-03T23:41:41+00:00",
+    "source_file": "03-GettingStarted/15-mcp-apps/assignment/README.md",
+    "language_code": "lt"
+  },
+  "03-GettingStarted/15-mcp-apps/assignment/typescript/README.md": {
+    "original_hash": "9822fdcfb5f29d8ab39f73c9b6706eef",
+    "translation_date": "2026-03-03T23:43:27+00:00",
+    "source_file": "03-GettingStarted/15-mcp-apps/assignment/typescript/README.md",
+    "language_code": "lt"
+  },
+  "03-GettingStarted/15-mcp-apps/code/README.md": {
+    "original_hash": "dc5a940dc7cc9b977a72d53f5ca0d7d1",
+    "translation_date": "2026-03-03T23:41:23+00:00",
+    "source_file": "03-GettingStarted/15-mcp-apps/code/README.md",
+    "language_code": "lt"
+  },
+  "03-GettingStarted/15-mcp-apps/code/typescript/README.md": {
+    "original_hash": "b1ceeae9c52e0455f1b8751d966ed36f",
+    "translation_date": "2026-03-03T23:43:07+00:00",
+    "source_file": "03-GettingStarted/15-mcp-apps/code/typescript/README.md",
+    "language_code": "lt"
+  },
+  "03-GettingStarted/15-mcp-apps/ext-apps/examples/basic-host/README.md": {
+    "original_hash": "421d499abf7928d97873e3f27956cb46",
+    "translation_date": "2026-03-03T23:42:20+00:00",
+    "source_file": "03-GettingStarted/15-mcp-apps/ext-apps/examples/basic-host/README.md",
+    "language_code": "lt"
+  },
   "03-GettingStarted/README.md": {
-    "original_hash": "9011c971791f0929aea7b53f3c2e7b92",
-    "translation_date": "2026-02-08T09:41:09+00:00",
+    "original_hash": "ca652b136fbc15422809dc3ac262a9a4",
+    "translation_date": "2026-03-03T23:38:54+00:00",
     "source_file": "03-GettingStarted/README.md",
     "language_code": "lt"
   },
@@ -804,8 +840,8 @@
     "language_code": "lt"
   },
   "README.md": {
-    "original_hash": "8433aa89c0b9428468344eb3df8fef98",
-    "translation_date": "2026-02-27T10:52:26+00:00",
+    "original_hash": "24a30911ddb447c2a6edc09a7a6afd08",
+    "translation_date": "2026-03-03T23:38:23+00:00",
     "source_file": "README.md",
     "language_code": "lt"
   },
