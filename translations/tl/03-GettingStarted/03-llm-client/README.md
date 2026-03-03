@@ -1,52 +1,52 @@
 # Paglikha ng kliyente gamit ang LLM
 
-Sa ngayon, nakikita mo na kung paano gumawa ng server at kliyente. Ang kliyente ay nakapagsagawa na ng tawag sa server nang hayagan upang ilista ang mga tool, resources, at prompts nito. Gayunpaman, hindi ito gaanong praktikal na paraan. Ang iyong user ay nabubuhay sa agentic era at inaasahan na gamitin ang mga prompt at makipag-ugnayan sa isang LLM upang gawin ito. Para sa iyong user, hindi mahalaga kung gagamit ka ng MCP o hindi para iimbak ang iyong mga kakayahan ngunit inaasahan nila na gamitin ang natural na wika para makipag-interact. Paano natin ito malulutas? Ang solusyon ay ang pagdaragdag ng LLM sa kliyente.
+Sa ngayon, nakita mo kung paano gumawa ng server at isang kliyente. Ang kliyente ay nakapag-atawag nang tuwiran sa server para ilista ang mga tool, resources, at mga prompt nito. Gayunpaman, hindi ito isang praktikal na paraan. Ang iyong mga gumagamit ay nabubuhay sa panahon ng agentic at inaasahan nilang gamitin ang mga prompt at makipag-usap sa isang LLM. Hindi nila pinapansin kung ginamit mo ang MCP para iimbak ang iyong mga kakayahan; inaasahan nilang makipag-ugnayan gamit ang natural na wika. Paano natin ito sosolusyunan? Ang solusyon ay magdagdag ng isang LLM sa kliyente.
 
-## Pangkalahatang Pagsilip
+## Pangkalahatang-ideya
 
-Sa araling ito, magpo-focus tayo sa pagdaragdag ng LLM sa iyong kliyente at ipapakita kung paano ito nagbibigay ng mas magandang karanasan para sa iyong user.
+Sa araling ito, tututok tayo sa pagdaragdag ng isang LLM para sa iyong kliyente at ipapakita kung paano ito nagbibigay ng mas magandang karanasan para sa iyong gumagamit.
 
 ## Mga Layunin sa Pagkatuto
 
-Sa pagtatapos ng araling ito, magagawa mo na:
+Sa pagtatapos ng araling ito, magiging kaya mong:
 
 - Gumawa ng kliyente na may LLM.
-- Mag-interact nang maayos sa isang MCP server gamit ang LLM.
+- Magsagawa ng tuloy-tuloy na interaksyon sa isang MCP server gamit ang LLM.
 - Magbigay ng mas magandang karanasan sa end user sa bahagi ng kliyente.
 
 ## Pamamaraan
 
-Subukan nating unawain ang pamamaraan na kailangan nating gawin. Ang pagdaragdag ng LLM ay tila simple, ngunit gagawin ba talaga natin ito?
+Subukan nating unawain ang pamamaraan na kailangan nating gawin. Ang pagdaragdag ng isang LLM ay tila simple, pero talaga ba natin ito gagawin?
 
-Ganito makikipag-ugnayan ang kliyente sa server:
+Ganito ang pakikipag-ugnayan ng kliyente sa server:
 
-1. Magtatag ng koneksyon sa server.
+1. Magtayo ng koneksyon sa server.
 
-1. Ililista ang mga kakayahan, prompts, resources at tools, at ise-save ang kanilang schema.
+1. Ilista ang mga kakayahan, mga prompt, mga resources, at mga tool, at i-save ang kanilang schema.
 
-1. Magdaragdag ng LLM at ipapasa ang na-save na mga kakayahan at ang kanilang schema sa format na naiintindihan ng LLM.
+1. Magdagdag ng isang LLM at ipasa ang mga naka-save na kakayahan pati na ang kanilang schema sa format na naiintindihan ng LLM.
 
-1. Pamahalaan ang isang user prompt sa pamamagitan ng pagpapasa nito sa LLM kasabay ng mga tools na nilista ng kliyente.
+1. Pamahalaan ang prompt ng gumagamit sa pamamagitan ng pagpapasa nito sa LLM kasabay ng mga tool na naka-lista ng kliyente.
 
-Magaling, ngayon na naiintindihan natin kung paano ito gawin sa mataas na antas, subukan natin ito sa sumusunod na ehersisyo.
+Magaling, ngayon naiintindihan natin kung paano natin ito gagawin sa mataas na antas, subukan natin ito sa sumusunod na pagsasanay.
 
-## Ehersisyo: Paglikha ng kliyente na may LLM
+## Pagsasanay: Paglikha ng kliyente na may LLM
 
-Sa ehersisyong ito, matututuhan natin kung paano magdagdag ng LLM sa ating kliyente.
+Sa pagsasanay na ito, matututuhan nating magdagdag ng LLM sa ating kliyente.
 
 ### Pag-authenticate gamit ang GitHub Personal Access Token
 
-Ang paggawa ng GitHub token ay diretso lang. Ganito ang paraan:
+Ang paggawa ng GitHub token ay isang diretso na proseso. Ganito mo ito magagawa:
 
-- Pumunta sa GitHub Settings – I-click ang iyong larawan sa profile sa kanang itaas na sulok at piliin ang Settings.
+- Pumunta sa GitHub Settings – I-click ang iyong larawan ng profile sa kanang itaas na sulok at piliin ang Settings.
 - Pumunta sa Developer Settings – Mag-scroll pababa at i-click ang Developer Settings.
 - Piliin ang Personal Access Tokens – I-click ang Fine-grained tokens at pagkatapos ay Generate new token.
-- I-configure ang Iyong Token – Magdagdag ng tala para reference, mag-set ng expiration date, at piliin ang kinakailangang mga scope (permissions). Sa kasong ito, siguraduhing idagdag ang Models permission.
-- I-generate at Kopyahin ang Token – I-click ang Generate token, at siguraduhing kopyahin ito agad, dahil hindi mo na ito makikita muli.
+- I-configure ang Iyong Token – Magdagdag ng tala para reference, itakda ang expiration date, at piliin ang kinakailangang mga scope (mga permiso). Sa kasong ito ay siguraduhing idagdag ang Models permission.
+- I-generate at Kopyahin ang Token – I-click ang Generate token, at siguraduhing kopyahin ito agad dahil hindi mo na ito makikita ulit.
 
 ### -1- Kumonekta sa server
 
-Gawin muna natin ang ating kliyente:
+Gumawa muna tayo ng ating kliyente:
 
 #### TypeScript
 
@@ -55,7 +55,7 @@ import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 import { Transport } from "@modelcontextprotocol/sdk/shared/transport.js";
 import OpenAI from "openai";
-import { z } from "zod"; // I-import ang zod para sa pag-validate ng schema
+import { z } from "zod"; // I-import ang zod para sa schema validation
 
 class MCPClient {
     private openai: OpenAI;
@@ -83,11 +83,11 @@ class MCPClient {
 }
 ```
 
-Sa naunang code ay:
+Sa nakaraang code ay:
 
-- Inimport ang mga kinakailangang libraries
-- Gumawa ng klase na may dalawang miyembro, `client` at `openai` na tutulong sa atin sa pamamahala ng kliyente at pag-interact sa LLM nang paisa-isa.
-- I-setup ang LLM instance para gamitin ang GitHub Models sa pamamagitan ng pag-set ng `baseUrl` upang ituro sa inference API.
+- In-import ang mga kinakailangang librarya
+- Gumawa ng klase na may dalawang miyembro, `client` at `openai` na tutulong sa atin na pamahalaan ang isang kliyente at makipag-ugnayan sa isang LLM ayon sa pagkakabanggit.
+- Ikinonpigura ang ating LLM instance upang gamitin ang GitHub Models sa pamamagitan ng pagtatakda ng `baseUrl` para tumuro sa inference API.
 
 #### Python
 
@@ -95,11 +95,11 @@ Sa naunang code ay:
 from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
 
-# Gumawa ng mga parameter ng server para sa stdio na koneksyon
+# Gumawa ng mga parameter ng server para sa koneksyon ng stdio
 server_params = StdioServerParameters(
-    command="mcp",  # Maaaring patakbuhin
-    args=["run", "server.py"],  # Opsyonal na mga argumento sa command line
-    env=None,  # Opsyonal na mga variable sa kapaligiran
+    command="mcp",  # Maisasakatuparan
+    args=["run", "server.py"],  # Opsyonal na mga argumento sa linya ng utos
+    env=None,  # Opsyonal na mga variable ng kapaligiran
 )
 
 
@@ -119,10 +119,10 @@ if __name__ == "__main__":
 
 ```
 
-Sa naunang code ay:
+Sa nakaraang code ay:
 
-- Inimport ang mga kinakailangang libraries para sa MCP
-- Gumawa ng kliyente
+- In-import ang mga kinakailangang librarya para sa MCP
+- Lumilikha ng kliyente
 
 #### .NET
 
@@ -132,7 +132,6 @@ using Azure.AI.Inference;
 using Azure.Identity;
 using System.Text.Json;
 using ModelContextProtocol.Client;
-using ModelContextProtocol.Protocol.Transport;
 using System.Text.Json;
 
 var clientTransport = new StdioClientTransport(new()
@@ -142,12 +141,12 @@ var clientTransport = new StdioClientTransport(new()
     Arguments = [],
 });
 
-await using var mcpClient = await McpClientFactory.CreateAsync(clientTransport);
+await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 ```
 
 #### Java
 
-Una, kailangan mong idagdag ang LangChain4j dependencies sa iyong `pom.xml` file. Idagdag ang mga ito upang paganahin ang MCP integration at suporta para sa GitHub Models:
+Una, kailangan mong idagdag ang mga LangChain4j dependencies sa iyong `pom.xml` file. Idagdag ang mga dependencies na ito para payagan ang MCP integration at GitHub Models support:
 
 ```xml
 <properties>
@@ -184,7 +183,7 @@ Una, kailangan mong idagdag ang LangChain4j dependencies sa iyong `pom.xml` file
 </dependencies>
 ```
 
-Pagkatapos ay gumawa ng iyong Java client class:
+Pagkatapos, gumawa ng iyong Java client class:
 
 ```java
 import dev.langchain4j.mcp.McpToolProvider;
@@ -202,7 +201,7 @@ import java.util.List;
 
 public class LangChain4jClient {
     
-    public static void main(String[] args) throws Exception {        // I-configure ang LLM upang gamitin ang mga Modelo ng GitHub
+    public static void main(String[] args) throws Exception {        // I-configure ang LLM upang gamitin ang mga Modelong GitHub
         ChatLanguageModel model = OpenAiOfficialChatModel.builder()
                 .isGitHubModels(true)
                 .apiKey(System.getenv("GITHUB_TOKEN"))
@@ -210,7 +209,7 @@ public class LangChain4jClient {
                 .modelName("gpt-4.1-nano")
                 .build();
 
-        // Gumawa ng MCP transport para kumonekta sa server
+        // Lumikha ng MCP transport para kumonekta sa server
         McpTransport transport = new HttpMcpTransport.Builder()
                 .sseUrl("http://localhost:8080/sse")
                 .timeout(Duration.ofSeconds(60))
@@ -218,7 +217,7 @@ public class LangChain4jClient {
                 .logResponses(true)
                 .build();
 
-        // Gumawa ng MCP client
+        // Lumikha ng MCP client
         McpClient mcpClient = new DefaultMcpClient.Builder()
                 .transport(transport)
                 .build();
@@ -226,20 +225,20 @@ public class LangChain4jClient {
 }
 ```
 
-Sa naunang code ay:
+Sa nakaraang code ay:
 
-- **Idinagdag ang LangChain4j dependencies**: Kinakailangan para sa MCP integration, opisyal na OpenAI client, at suporta sa GitHub Models
-- **Inimport ang LangChain4j libraries**: Para sa MCP integration at functionality ng OpenAI chat model
-- **Gumawa ng `ChatLanguageModel`**: Naka-configure para gamitin ang GitHub Models gamit ang iyong GitHub token
-- **Nag-setup ng HTTP transport**: Gamit ang Server-Sent Events (SSE) para kumonekta sa MCP server
-- **Gumawa ng MCP client**: Na siyang hahawak ng komunikasyon sa server
-- **Ginamit ang built-in MCP support ng LangChain4j**: Na nagpapadali ng integration sa pagitan ng LLMs at MCP servers
+- **Idinagdag ang mga LangChain4j dependencies**: Kinakailangan para sa integrasyon ng MCP, opisyal na OpenAI client, at GitHub Models support
+- **In-import ang mga LangChain4j librarya**: Para sa MCP integration at OpenAI chat model functionality
+- **Gumawa ng `ChatLanguageModel`**: Nakikonpigura upang gamitin ang GitHub Models gamit ang iyong GitHub token
+- **Naitakda ang HTTP transport**: Gamit ang Server-Sent Events (SSE) para kumonekta sa MCP server
+- **Nagawa ang MCP client**: Na siyang humahawak ng komunikasyon sa server
+- **Ginamit ang built-in MCP support ng LangChain4j**: Na nagpapadali ng integrasyon sa pagitan ng LLMs at MCP servers
 
 #### Rust
 
-Ang halimbawang ito ay nagpapalagay na may tumatakbong Rust based MCP server ka na. Kung wala ka pang ganoon, balikan ang [01-first-server](../01-first-server/README.md) na aralin upang gumawa ng server.
+Ang halimbawang ito ay nangangailangan na mayroon kang Rust based MCP server na tumatakbo. Kung wala pa, balikan ang leksyon na [01-first-server](../01-first-server/README.md) para gumawa ng server.
 
-Kapag mayroon ka nang Rust MCP server, buksan ang terminal at pumunta sa parehong direktoryo ng server. Patakbuhin ang sumusunod na utos upang gumawa ng bagong LLM client project:
+Kapag nakuha mo na ang Rust MCP server, buksan ang terminal at pumunta sa parehong directory kung nasaan ang server. Pagkatapos patakbuhin ang sumusunod na utos para gumawa ng bagong LLM client project:
 
 ```bash
 mkdir calculator-llmclient
@@ -260,7 +259,7 @@ tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 > [!NOTE]
 > Walang opisyal na Rust library para sa OpenAI, ngunit ang `async-openai` crate ay isang [community maintained library](https://platform.openai.com/docs/libraries/rust#rust) na karaniwang ginagamit.
 
-Buksan ang `src/main.rs` na file at palitan ang laman nito ng sumusunod na code:
+Buksan ang `src/main.rs` file at palitan ang nilalaman nito ng sumusunod na code:
 
 ```rust
 use async_openai::{Client, config::OpenAIConfig};
@@ -279,7 +278,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
     // Paunang mensahe
     let mut messages = vec![json!({"role": "user", "content": "What is the sum of 3 and 2?"})];
 
-    // I-set up ang OpenAI client
+    // I-setup ang OpenAI client
     let api_key = std::env::var("OPENAI_API_KEY")?;
     let openai_client = Client::with_config(
         OpenAIConfig::new()
@@ -287,7 +286,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
             .with_api_key(api_key),
     );
 
-    // I-set up ang MCP client
+    // I-setup ang MCP client
     let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .unwrap()
@@ -302,28 +301,28 @@ async fn main() -> Result<(), Box<dyn Error>> {
         )
         .await?;
 
-    // TODO: Kumuha ng listahan ng MCP tool
+    // TODO: Kunin ang listahan ng MCP tool
 
-    // TODO: Pag-uusap ng LLM kasama ang tawag sa tool
+    // TODO: Pag-uusap ng LLM gamit ang mga tawag sa tool
 
     Ok(())
 }
 ```
 
-Itinakda ng code na ito ang isang basic na Rust application na kokonekta sa MCP server at GitHub Models para sa pag-interak sa LLM.
+Ang code na ito ay nagse-set up ng isang pangunahing Rust application na magkokonekta sa MCP server at GitHub Models para sa LLM interactions.
 
 > [!IMPORTANT]
-> Siguraduhing i-set ang `OPENAI_API_KEY` environment variable gamit ang iyong GitHub token bago patakbuhin ang application.
+> Siguraduhing itakda ang `OPENAI_API_KEY` na environment variable gamit ang iyong GitHub token bago patakbuhin ang application.
 
-Magaling, sa susunod nating hakbang, ililista natin ang mga kakayahan sa server.
+Magaling, para sa ating susunod na hakbang, listahan ang mga kakayahan sa server.
 
-### -2- Ilista ang mga kakayahan ng server
+### -2- Listahan ng kakayahan ng server
 
-Ngayon ay kokonekta tayo sa server at hihingin ang mga kakayahan nito:
+Ngayon ay kokonekta tayo sa server at hihilingin ang mga kakayahan nito:
 
 #### Typescript
 
-Sa parehong klase, idagdag ang mga sumusunod na method:
+Sa parehong klase, idagdag ang sumusunod na mga method:
 
 ```typescript
 async connectToServer(transport: Transport) {
@@ -335,26 +334,26 @@ async connectToServer(transport: Transport) {
 async run() {
     console.log("Asking server for available tools");
 
-    // mga kasangkapang panglistahan
+    // naglilista ng mga kasangkapan
     const toolsResult = await this.client.listTools();
 }
 ```
 
-Sa naunang code ay:
+Sa nakaraang code ay:
 
 - Idinagdag ang code para kumonekta sa server, `connectToServer`.
-- Gumawa ng `run` method na responsable sa pag-handle ng daloy ng app. Sa ngayon, nililista lang nito ang mga tools ngunit magdagdag tayo ng iba pang hakbang.
+- Gumawa ng `run` na method na responsable sa paghawak ng daloy ng ating app. Sa ngayon inililista lamang nito ang mga tool ngunit magdaragdag tayo pa rito.
 
 #### Python
 
 ```python
-# Ilan ang mga magagamit na mapagkukunan
+# Ilahad ang mga magagamit na resources
 resources = await session.list_resources()
 print("LISTING RESOURCES")
 for resource in resources:
     print("Resource: ", resource)
 
-# Ilan ang mga magagamit na kasangkapan
+# Ilahad ang mga magagamit na tools
 tools = await session.list_tools()
 print("LISTING TOOLS")
 for tool in tools.tools:
@@ -362,9 +361,9 @@ for tool in tools.tools:
     print("Tool", tool.inputSchema["properties"])
 ```
 
-Ito ang ating idinagdag:
+Narito ang idinagdag namin:
 
-- Paglilista ng resources at tools at ipinrint ang mga ito. Sa mga tools, nililista rin ang `inputSchema` na gagamitin natin mamaya.
+- Paglilista ng mga resources at tools at ipinrint ang mga ito. Para sa mga tool, nilista rin ang `inputSchema` na gagamitin natin mamaya.
 
 #### .NET
 
@@ -389,15 +388,15 @@ async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
 }
 ```
 
-Sa naunang code ay:
+Sa nakaraang code ay:
 
-- Nilista ang mga tools na available sa MCP Server
-- Para sa bawat tool, nilista ang pangalan, paglalarawan, at ang schema nito. Ito ay gagamitin natin para tawagan ang mga tool.
+- Nilista ang mga tool na available sa MCP Server
+- Para sa bawat tool, nilista ang pangalan, deskripsyon at ang schema nito. Ang huli ay gagamitin natin para tumawag sa mga tool sa lalong madaling panahon.
 
 #### Java
 
 ```java
-// Gumawa ng tagapagbigay ng tool na awtomatikong nakakahanap ng mga MCP tool
+// Gumawa ng tagapagbigay ng tool na awtomatikong nakakakita ng mga MCP tool
 ToolProvider toolProvider = McpToolProvider.builder()
         .mcpClients(List.of(mcpClient))
         .build();
@@ -405,31 +404,31 @@ ToolProvider toolProvider = McpToolProvider.builder()
 // Ang tagapagbigay ng MCP tool ay awtomatikong humahawak ng:
 // - Paglilista ng mga magagamit na tool mula sa MCP server
 // - Pag-convert ng mga schema ng MCP tool sa format ng LangChain4j
-// - Pamamahala ng pagpapatupad ng tool at mga tugon
+// - Pamamahala ng pagpapatupad ng tool at mga sagot
 ```
 
-Sa naunang code ay:
+Sa nakaraang code ay:
 
-- Gumawa ng `McpToolProvider` na awtomatikong nagdi-discover at nagrerehistro ng lahat ng tools mula sa MCP server
-- Pinangangasiwaan ng tool provider ang conversion sa pagitan ng MCP tool schemas at ng format ng tool sa LangChain4j internally
-- Itong pamamaraan ay inaalis ang manu-manong proseso ng paglilista at conversion ng tools
+- Gumawa ng isang `McpToolProvider` na awtomatikong nagdi-discover at nagrerehistro ng lahat ng tool mula sa MCP server
+- Ang tool provider ang humahawak ng conversion sa pagitan ng MCP tool schemas at tool format ng LangChain4j nang internal
+- Binabawasan ng pamamaraang ito ang manual na paglilista at conversion ng tool
 
 #### Rust
 
-Ang pagkuha ng mga tools mula sa MCP server ay ginagawa gamit ang `list_tools` method. Sa loob ng iyong `main` function, pagkatapos i-setup ang MCP client, idagdag ang sumusunod na code:
+Ang pagkuha ng tool mula sa MCP server ay ginagawa gamit ang `list_tools` na method. Sa iyong `main` function, pagkatapos i-setup ang MCP client, idagdag ang sumusunod na code:
 
 ```rust
 // Kunin ang listahan ng MCP tool
 let tools = mcp_client.list_tools(Default::default()).await?;
 ```
 
-### -3- I-convert ang mga kakayahan ng server sa LLM tools
+### -3- I-convert ang kakayahan ng server sa mga tool para sa LLM
 
-Susunod na hakbang pagkatapos mailista ang kakayahan ng server ay i-convert ang mga ito sa isang format na naiintindihan ng LLM. Kapag nagawa na natin ito, maaari nating ibigay ang mga kakayahang ito bilang mga tool sa ating LLM.
+Susunod na hakbang pagkatapos ilista ang kakayahan ng server ay i-convert ang mga ito sa format na naiintindihan ng LLM. Kapag nagawa na ito, maipapasa natin ang mga kakayahang ito bilang mga tool sa ating LLM.
 
 #### TypeScript
 
-1. Idagdag ang sumusunod na code para i-convert ang response mula sa MCP Server sa isang tool format na magagamit ng LLM:
+1. Idagdag ang sumusunod na code para i-convert ang response mula sa MCP Server sa tool format na puwedeng gamitin ng LLM:
 
     ```typescript
     openAiToolAdapter(tool: {
@@ -437,7 +436,7 @@ Susunod na hakbang pagkatapos mailista ang kakayahan ng server ay i-convert ang 
         description?: string;
         input_schema: any;
         }) {
-        // Lumikha ng zod schema batay sa input_schema
+        // Gumawa ng zod schema batay sa input_schema
         const schema = z.object(tool.input_schema);
     
         return {
@@ -456,9 +455,9 @@ Susunod na hakbang pagkatapos mailista ang kakayahan ng server ay i-convert ang 
 
     ```
 
-    Kinukuha ng code sa itaas ang response mula sa MCP Server at kino-convert ito sa isang tool definition format na naiintindihan ng LLM.
+    Ang code sa itaas ay kumukuha ng tugon mula sa MCP Server at kino-convert ito sa isang tool definition format na naiintindihan ng LLM.
 
-1. I-update naman natin ang `run` method para ilista ang mga kakayahan ng server:
+1. I-update naman natin ang `run` method upang ilista ang kakayahan ng server:
 
     ```typescript
     async run() {
@@ -474,7 +473,7 @@ Susunod na hakbang pagkatapos mailista ang kakayahan ng server ay i-convert ang 
     }
     ```
 
-    Sa naunang code, na-update natin ang `run` method upang ipasa ang resulta at sa bawat entry ay tawagan ang `openAiToolAdapter`.
+    Sa nakaraang code, in-update natin ang `run` method upang dumaan sa resulta at para sa bawat entry ay tawagin ang `openAiToolAdapter`.
 
 #### Python
 
@@ -498,9 +497,9 @@ Susunod na hakbang pagkatapos mailista ang kakayahan ng server ay i-convert ang 
         return tool_schema
     ```
 
-    Sa function na `convert_to_llm_tools` ay kinukuha natin ang response ng MCP tool at kino-convert ito sa format na naiintindihan ng LLM.
+    Sa function na `convert_to_llm_tools` ay kinukuha natin ang MCP tool response at kino-convert ito sa format na naiintindihan ng LLM.
 
-1. Susunod, i-update natin ang client code para gamitin ang function na ito:
+1. Susunod, i-update natin ang kodigo ng kliyente gamit ang function na ito:
 
     ```python
     functions = []
@@ -510,11 +509,11 @@ Susunod na hakbang pagkatapos mailista ang kakayahan ng server ay i-convert ang 
         functions.append(convert_to_llm_tool(tool))
     ```
 
-    Dito, nagdagdag tayo ng tawag sa `convert_to_llm_tool` para i-convert ang MCP tool response sa bagay na maaaring ipasa sa LLM.
+    Dito, nagdagdag tayo ng tawag sa `convert_to_llm_tool` para i-convert ang response ng MCP tool sa isang bagay na maipapakain natin sa LLM mamaya.
 
 #### .NET
 
-1. Magdagdag tayo ng code para i-convert ang MCP tool response sa isang format na naiintindihan ng LLM
+1. Magdagdag tayo ng code upang i-convert ang response ng MCP tool sa isang bagay na naiintindihan ng LLM
 
 ```csharp
 ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonElement jsonElement)
@@ -537,12 +536,12 @@ ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonE
 }
 ```
 
-Sa naunang code ay:
+Sa nakaraang code ay:
 
-- Gumawa ng function na `ConvertFrom` na tumatanggap ng name, description, at input schema.
-- Nakadefine ang functionality na lumilikha ng FunctionDefinition na ipinapasa sa ChatCompletionsDefinition. Ito ang naiintindihan ng LLM.
+- Gumawa tayo ng function na `ConvertFrom` na tumatanggap ng pangalan, deskripsyon, at input schema.
+- Itinakda ang functionality na lumilikha ng FunctionDefinition na ipapasa sa ChatCompletionsDefinition. Ang huli ay naiintindihan ng LLM.
 
-1. Tingnan natin kung paano i-update ang ilang existing na code para mapakinabangan ang function sa itaas:
+1. Tingnan natin kung paano i-update ang ilang bahagi ng code upang samantalahin ang function na ito:
 
     ```csharp
     async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
@@ -588,28 +587,28 @@ Sa naunang code ay:
 #### Java
 
 ```java
-// Lumikha ng isang Bot na interface para sa pakikipag-ugnayan gamit ang natural na wika
+// Lumikha ng isang Bot interface para sa natural na pakikipag-ugnayan gamit ang wika
 public interface Bot {
     String chat(String prompt);
 }
 
-// I-configure ang serbisyo ng AI gamit ang LLM at MCP na mga kagamitan
+// I-configure ang AI serbisyo gamit ang LLM at MCP na mga kasangkapan
 Bot bot = AiServices.builder(Bot.class)
         .chatLanguageModel(model)
         .toolProvider(toolProvider)
         .build();
 ```
 
-Sa naunang code ay:
+Sa nakaraang code ay:
 
 - Nagdefine ng simpleng `Bot` interface para sa natural language interactions
-- Ginamit ang LangChain4j's `AiServices` para awtomatikong pagdugtungin ang LLM sa MCP tool provider
-- Ang framework ay awtomatikong nagha-handle ng tool schema conversion at function calling sa likod ng mga eksena
-- Inalis ng pamamaraang ito ang manu-manong conversion ng tools - ang LangChain4j ang humahawak ng lahat ng komplikasyon ng pag-convert ng MCP tools sa LLM-compatible na format
+- Ginamit ang LangChain4j's `AiServices` upang awtomatikong i-bind ang LLM sa MCP tool provider
+- Ang framework ay awtomatikong humahawak sa conversion ng tool schema at pagtawag ng function sa likod ng eksena
+- Pinapawi nito ang manual tool conversion — hinahandle ng LangChain4j ang lahat ng komplikasyon ng pag-convert ng MCP tools sa LLM-compatible na format
 
 #### Rust
 
-Para i-convert ang MCP tool response sa format na naiintindihan ng LLM, magdagdag tayo ng helper function na nagfo-format ng mga tool listing. Idagdag ang sumusunod na code sa `main.rs` file mo sa ilalim ng `main` function. Tatawagin ito kapag gumagawa ng request sa LLM:
+Para i-convert ang MCP tool response sa isang format na naiintindihan ng LLM, magdadagdag tayo ng helper function na nagfo-format ng listahan ng mga tool. Idagdag ang sumusunod na code sa iyong `main.rs` file sa ibaba ng `main` function. Ito ay tatawagin kapag gumagawa ng mga request sa LLM:
 
 ```rust
 async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Error>> {
@@ -644,15 +643,15 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 }
 ```
 
-Magaling, nakapaghanda na tayo para i-handle ang mga user requests, kaya gawin natin iyon ngayon.
+Magaling, handa na tayo para hawakan ang anumang request mula sa user, kaya gawin natin iyon sa susunod.
 
-### -4- Pamahalaan ang user prompt request
+### -4- Hawakan ang prompt request ng gumagamit
 
-Sa bahagi ng code na ito, pamamahalaan natin ang mga user requests.
+Sa bahaging ito ng code, hahawakan natin ang mga request ng gumagamit.
 
 #### TypeScript
 
-1. Magdagdag ng method na gagamitin para tawagan ang ating LLM:
+1. Magdagdag ng metodo na gagamitin para tawagan ang ating LLM:
 
     ```typescript
     async callTools(
@@ -666,40 +665,6 @@ Sa bahagi ng code na ito, pamamahalaan natin ang mga user requests.
         console.log(`Calling tool ${toolName} with args ${JSON.stringify(args)}`);
 
 
-        // 2. Tawagan ang kasangkapan ng server
-        const toolResult = await this.client.callTool({
-            name: toolName,
-            arguments: JSON.parse(args),
-        });
-
-        console.log("Tool result: ", toolResult);
-
-        // 3. Gawin ang isang bagay gamit ang resulta
-        // GAGAWIN
-
-        }
-    }
-    ```
-
-    Sa naunang code ay:
-
-    - Nagdagdag ng method na `callTools`.
-    - Tini-check ng method ang response ng LLM kung may mga tool na dapat tawagin:
-
-        ```typescript
-        for (const tool_call of tool_calls) {
-        const toolName = tool_call.function.name;
-        const args = tool_call.function.arguments;
-
-        console.log(`Calling tool ${toolName} with args ${JSON.stringify(args)}`);
-
-        // tawagan ang kasangkapan
-        }
-        ```
-
-    - Tinatawag ang tool, kung sinasabi ng LLM na dapat itong tawagin:
-
-        ```typescript
         // 2. Tawagin ang tool ng server
         const toolResult = await this.client.callTool({
             name: toolName,
@@ -709,14 +674,48 @@ Sa bahagi ng code na ito, pamamahalaan natin ang mga user requests.
         console.log("Tool result: ", toolResult);
 
         // 3. Gawin ang isang bagay gamit ang resulta
-        // GAGAWIN
+        // TODO
+
+        }
+    }
+    ```
+
+    Sa nakaraang code ay:
+
+    - Idinagdag ang method na `callTools`.
+    - Tinitingnan ng method na ito ang response mula sa LLM kung anong mga tool ang tinawag, kung mayroon man:
+
+        ```typescript
+        for (const tool_call of tool_calls) {
+        const toolName = tool_call.function.name;
+        const args = tool_call.function.arguments;
+
+        console.log(`Calling tool ${toolName} with args ${JSON.stringify(args)}`);
+
+        // tawagin ang tool
+        }
         ```
 
-1. I-update ang `run` method para isama ang mga tawag sa LLM at pagtawag sa `callTools`:
+    - Tinatawag ang isang tool, kung sinasabi ng LLM na dapat iyon ang tawagin:
+
+        ```typescript
+        // 2. Tawagan ang kasangkapang server
+        const toolResult = await this.client.callTool({
+            name: toolName,
+            arguments: JSON.parse(args),
+        });
+
+        console.log("Tool result: ", toolResult);
+
+        // 3. Gawin ang isang bagay gamit ang resulta
+        // TODO
+        ```
+
+1. I-update ang `run` method upang isama ang tawag sa LLM at pagtawag sa `callTools`:
 
     ```typescript
 
-    // 1. Gumawa ng mga mensahe na input para sa LLM
+    // 1. Gumawa ng mga mensaheng input para sa LLM
     const prompt = "What is the sum of 2 and 3?"
 
     const messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
@@ -728,7 +727,7 @@ Sa bahagi ng code na ito, pamamahalaan natin ang mga user requests.
 
     console.log("Querying LLM: ", messages[0].content);
 
-    // 2. Tawagin ang LLM
+    // 2. Tawagan ang LLM
     let response = this.openai.chat.completions.create({
         model: "gpt-4.1-mini",
         max_tokens: 1000,
@@ -755,14 +754,14 @@ import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 import { Transport } from "@modelcontextprotocol/sdk/shared/transport.js";
 import OpenAI from "openai";
-import { z } from "zod"; // I-import ang zod para sa schema validation
+import { z } from "zod"; // Mag-import ng zod para sa pag-validate ng schema
 
 class MyClient {
     private openai: OpenAI;
     private client: Client;
     constructor(){
         this.openai = new OpenAI({
-            baseURL: "https://models.inference.ai.azure.com", // maaaring kailanganin baguhin sa url na ito sa hinaharap: https://models.github.ai/inference
+            baseURL: "https://models.inference.ai.azure.com", // maaaring kailanganin baguhin ang url na ito sa hinaharap: https://models.github.ai/inference
             apiKey: process.env.GITHUB_TOKEN,
         });
 
@@ -792,11 +791,11 @@ class MyClient {
         description?: string;
         input_schema: any;
           }) {
-          // Gumawa ng zod schema base sa input_schema
+          // Gumawa ng zod schema batay sa input_schema
           const schema = z.object(tool.input_schema);
       
           return {
-            type: "function" as const, // Hayagang itakda ang uri bilang "function"
+            type: "function" as const, // Tiyaking itakda ang uri bilang "function"
             function: {
               name: tool.name,
               description: tool.description,
@@ -820,7 +819,7 @@ class MyClient {
           console.log(`Calling tool ${toolName} with args ${JSON.stringify(args)}`);
     
     
-          // 2. Tawagan ang tool ng server
+          // 2. Tawagin ang tool ng server
           const toolResult = await this.client.callTool({
             name: toolName,
             arguments: JSON.parse(args),
@@ -828,7 +827,7 @@ class MyClient {
     
           console.log("Tool result: ", toolResult);
     
-          // 3. Gawin ang isang bagay sa resulta
+          // 3. Gawin ang isang bagay gamit ang resulta
           // GAGAWIN PA
     
          }
@@ -887,7 +886,7 @@ client.connectToServer(transport);
 
 #### Python
 
-1. Magdagdag muna tayo ng imports na kakailanganin para tawagin ang LLM
+1. Magdagdag tayo ng ilang import na kailangan para tumawag ng LLM
 
     ```python
     # llm
@@ -898,7 +897,7 @@ client.connectToServer(transport);
     import json
     ```
 
-1. Susunod, idagdag ang function na tutawag sa LLM:
+1. Ngayon naman, idagdag ang function na tatawag sa LLM:
 
     ```python
     # llm
@@ -948,19 +947,19 @@ client.connectToServer(transport);
         return functions_to_call
     ```
 
-    Sa naunang code ay:
+    Sa nakaraang code ay:
 
-    - Ipinasa ang mga functions na nakuha natin mula sa MCP server at na-convert sa LLM.
-    - Tinawag ang LLM kasama ang mga functions.
-    - Sinuri ang resulta upang makita kung anong function ang dapat tawagin, kung meron man.
-    - Sa wakas, nagpapasa tayo ng array ng function na tatawagin.
+    - Ipinasa natin ang mga functions na nahanap sa MCP server at na-convert natin sa LLM.
+    - Tinawag natin ang LLM gamit ang mga nasabing function.
+    - Sinusuri naman natin ang resulta para makita kung ano ang mga function na dapat tawagin, kung meron man.
+    - Sa wakas, nagpasa tayo ng array ng mga function na tatawagin.
 
-1. Huling hakbang, i-update ang ating main na code:
+1. Panghuling hakbang, i-update ang ating pangunahing kodigo:
 
     ```python
     prompt = "Add 2 to 20"
 
-    # itanong sa LLM kung anong mga tool ang gagamitin, kung mayroon man
+    # tanungin ang LLM kung may mga gamit na dapat gamitin, kung meron man
     functions_to_call = call_llm(prompt, functions)
 
     # tawagan ang mga mungkahing function
@@ -969,14 +968,14 @@ client.connectToServer(transport);
         print("TOOLS result: ", result.content)
     ```
 
-    Dito, ang huling hakbang sa code ay:
+    Yan ang huling hakbang, sa code sa itaas ay:
 
-    - Tinatawag ang MCP tool via `call_tool` gamit ang function na inisip ng LLM na dapat tawagin base sa prompt.
-    - Ipiniprint ang resulta ng pagtawag sa tool mula sa MCP Server.
+    - Tinawag ang MCP tool gamit ang `call_tool` gamit ang function na inisip ng LLM na dapat tawagin base sa prompt.
+    - Ipiniprint ang resulta ng tool call sa MCP Server.
 
 #### .NET
 
-1. Ipakita natin ang code para sa LLM prompt request:
+1. Ipakita natin ang ilang code para sa pag-request ng prompt ng LLM:
 
     ```csharp
     var tools = await GetMcpTools();
@@ -1010,14 +1009,14 @@ client.connectToServer(transport);
 
     ```
 
-    Sa naunang code ay:
+    Sa nakaraang code ay:
 
-    - Kinuha ang mga tools mula sa MCP server, `var tools = await GetMcpTools()`.
-    - Nagdefine ng user prompt na `userMessage`.
-    - Gumawa ng options object na nagsasaad ng model at tools.
-    - Gumawa ng request papunta sa LLM.
+    - Kinuha ang mga tool mula sa MCP server, `var tools = await GetMcpTools()`.
+    - Dinisenyo ang user prompt `userMessage`.
+    - Gumawa ng options object na nagtatalaga ng modelo at mga tool.
+    - Nagpadala ng kahilingan sa LLM.
 
-1. Isang huling hakbang, tingnan natin kung iniisip ng LLM na dapat tayong tumawag ng function:
+1. Panghuling hakbang, tingnan kung sa palagay ng LLM ay dapat tayong tumawag ng isang function:
 
     ```csharp
     // 4. Check if the response contains a function call
@@ -1040,10 +1039,10 @@ client.connectToServer(transport);
     }
     ```
 
-    Sa naunang code ay:
+    Sa nakaraang code ay:
 
-    - Nag-loop sa listahan ng function calls.
-    - Para sa bawat pagtawag ng tool, kinukuha ang pangalan at arguments at tinatawag ang tool sa MCP server gamit ang MCP client. Sa huli, piniprint ang resulta.
+    - Nou-loop ang listahan ng function calls.
+    - Para sa bawat tool call, pinuparse ang pangalan at argumento at tinawag ang tool sa MCP server gamit ang MCP client. Sa huli, priniprint ang mga resulta.
 
 Narito ang buong code:
 
@@ -1053,8 +1052,7 @@ using Azure.AI.Inference;
 using Azure.Identity;
 using System.Text.Json;
 using ModelContextProtocol.Client;
-using ModelContextProtocol.Protocol.Transport;
-using System.Text.Json;
+using ModelContextProtocol.Protocol;
 
 var endpoint = "https://models.inference.ai.azure.com";
 var token = Environment.GetEnvironmentVariable("GITHUB_TOKEN"); // Your GitHub Access Token
@@ -1073,7 +1071,7 @@ var clientTransport = new StdioClientTransport(new()
 
 Console.WriteLine("Setting up stdio transport");
 
-await using var mcpClient = await McpClientFactory.CreateAsync(clientTransport);
+await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 
 ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonElement jsonElement)
 { 
@@ -1164,7 +1162,7 @@ for (int i = 0; i < response.ToolCalls.Count; i++)
         cancellationToken: CancellationToken.None
     );
 
-    Console.WriteLine(result.Content.First(c => c.Type == "text").Text);
+    Console.WriteLine(result.Content.OfType<TextContentBlock>().First().Text);
 
 }
 
@@ -1190,17 +1188,17 @@ try {
 }
 ```
 
-Sa naunang code ay:
+Sa nakaraang code ay:
 
-- Gumamit ng simpleng natural language prompts para makipag-ugnayan sa MCP server tools
-- Awtonomong hinahandle ng LangChain4j framework ang:
-  - Pag-convert ng user prompts sa tawag sa tool kung kinakailangan
-  - Pagtawag sa tamang MCP tools base sa desisyon ng LLM
-  - Pamamahala ng daloy ng usapan sa pagitan ng LLM at MCP server
-- Ang `bot.chat()` method ay nagbabalik ng natural language responses na maaaring maglaman ng resulta mula sa pagpapatakbo ng MCP tools
-- Binibigyan ng paraan na ito ang seamless na karanasan sa user kung saan hindi na nila kailangang malaman ang likod ng MCP implementation
+- Gumamit ng simpleng natural language prompts para makipag-ugnayan sa mga tool ng MCP server
+- Awtomatikong humahawak ang LangChain4j framework ng:
+  - Pag-convert ng user prompts sa tool calls kapag kinakailangan
+  - Pagtawag sa tamang MCP tool base sa desisyon ng LLM
+  - Pamamahala ng daloy ng pag-uusap sa pagitan ng LLM at MCP server
+- Ang `bot.chat()` method ay nagbabalik ng natural language responses na maaaring may kasamang resulta mula sa pagpapatakbo ng mga MCP tool
+- Nagbibigay ito ng tuloy-tuloy na karanasan sa gumagamit kung saan hindi kailangang malaman ng mga user ang tungkol sa likod-ng-tagpo na MCP implementation
 
-Kumpletong halimbawa ng code:
+Kompletong halimbawa ng code:
 
 ```java
 public class LangChain4jClient {
@@ -1251,9 +1249,9 @@ public class LangChain4jClient {
 
 #### Rust
 
-Dito nagaganap ang karamihan ng trabaho. Tatawagin natin ang LLM gamit ang unang user prompt, tapos ipoproseso ang tugon para makita kung may mga tool na kailangang tawagin. Kung meron, tatawagin natin yung mga tool na iyon at ipagpapatuloy ang usapan sa LLM hanggang hindi na kailangan tawagan pa ng tool at makuha natin ang panghuling sagot.
+Dito nangyayari ang karamihan sa trabaho. Tatawagin natin ang LLM gamit ang unang prompt mula sa user, pagkatapos ay ipoproseso ang sagot upang tingnan kung may kailangan bang tawagin na mga tool. Kung mayroon, tatawagin natin ang mga tool na iyon at ipagpapatuloy ang pag-uusap sa LLM hanggang sa wala nang ibang tool na kailangang tawagin at mayroon na tayong pangwakas na sagot.
 
-Gagawa tayo ng maraming tawag sa LLM, kaya magdefine tayo ng function na hahawak sa tawag sa LLM. Idagdag ang sumusunod na function sa iyong `main.rs` file:
+Gagawa tayo ng maraming tawag sa LLM, kaya gumawa tayo ng function na hahawak sa tawag sa LLM. Idagdag ang sumusunod na function sa iyong `main.rs` file:
 
 ```rust
 async fn call_llm(
@@ -1273,8 +1271,8 @@ async fn call_llm(
 }
 ```
 
-Ang function na ito ay tumatanggap ng LLM client, listahan ng mga mensahe (kasama ang user prompt), tools mula sa MCP server, at nagpapadala ng request sa LLM, na nagbabalik ng tugon.
-Ang tugon mula sa LLM ay maglalaman ng isang array ng `choices`. Kailangan nating iproseso ang resulta upang makita kung may anumang `tool_calls` na naroroon. Ipinapakita nito na ang LLM ay humihiling na isang partikular na tool ang tawagin kasama ang mga argumento. Idagdag ang sumusunod na code sa dulo ng iyong `main.rs` na file upang tukuyin ang isang function para hawakan ang tugon ng LLM:
+Ang function na ito ay tumatanggap ng LLM client, isang listahan ng mga mensahe (kasama ang prompt ng user), mga tool mula sa MCP server, at nagpapadala ng kahilingan sa LLM, pagkatapos ay ibinabalik ang sagot.
+Ang tugon mula sa LLM ay maglalaman ng isang array ng `choices`. Kailangan nating iproseso ang resulta upang makita kung mayroon bang anumang `tool_calls`. Ipinapahiwatig nito na ang LLM ay humihiling na isang partikular na tool ay tatawagin kasama ang mga argumento. Idagdag ang sumusunod na code sa ilalim ng iyong `main.rs` file upang tukuyin ang isang function na hahawakan ang tugon ng LLM:
 
 ```rust
 async fn process_llm_response(
@@ -1298,9 +1296,9 @@ async fn process_llm_response(
         println!("🤖 {}", content);
     }
 
-    // Pamahalaan ang mga tawag sa tool
+    // Huwag mag-handle ng mga tawag sa tool
     if let Some(tool_calls) = message.get("tool_calls").and_then(|tc| tc.as_array()) {
-        messages.push(message.clone()); // Magdagdag ng mensahe ng katulong
+        messages.push(message.clone()); // Magdagdag ng mensahe ng assistant
 
         // Isagawa ang bawat tawag sa tool
         for tool_call in tool_calls {
@@ -1337,9 +1335,9 @@ async fn process_llm_response(
 }
 ```
 
-Kung may mga `tool_calls`, kukunin nito ang impormasyon tungkol sa tool, tatawagin ang MCP server gamit ang tool request, at idaragdag ang mga resulta sa messages ng pag-uusap. Pagkatapos ay ipagpapatuloy nito ang pag-uusap kasama ang LLM at ang mga mensahe ay ia-update gamit ang tugon ng assistant at mga resulta ng tool call.
+Kung mayroong `tool_calls`, kinukuha nito ang impormasyon ng tool, tinatawagan ang MCP server gamit ang kahilingan ng tool, at idinadagdag ang mga resulta sa mga mensahe ng pag-uusap. Pagkatapos nito ay ipinagpapatuloy ang pag-uusap sa LLM at ang mga mensahe ay ina-update gamit ang tugon ng assistant at mga resulta ng pagtawag sa tool.
 
-Upang kunin ang impormasyon ng tool call na ibinabalik ng LLM para sa mga tawag sa MCP, magdadagdag tayo ng isa pang helper function upang makuha ang lahat ng kailangan upang magawa ang tawag. Idagdag ang sumusunod na code sa dulo ng iyong `main.rs` na file:
+Upang makuha ang impormasyon ng pagtawag sa tool na ibinabalik ng LLM para sa mga MCP call, magdadagdag tayo ng isa pang helper function upang makuha ang lahat ng kailangan para gawin ang tawag. Idagdag ang sumusunod na code sa ilalim ng iyong `main.rs` file:
 
 ```rust
 fn extract_tool_call_info(tool_call: &Value) -> Result<(String, String, String), Box<dyn Error>> {
@@ -1363,10 +1361,10 @@ fn extract_tool_call_info(tool_call: &Value) -> Result<(String, String, String),
 }
 ```
 
-Sa pagkakaroon ng lahat ng bahagi, maaari na nating hawakan ang initial user prompt at tawagin ang LLM. I-update ang iyong `main` na function upang isama ang sumusunod na code:
+Sa lahat ng bahagi na nasa lugar na, maaari na nating hawakan ang unang prompt ng user at tawagan ang LLM. I-update ang iyong `main` function upang isama ang sumusunod na code:
 
 ```rust
-// Usapan ng LLM na may mga tawag sa kasangkapan
+// Usapan ng LLM na may mga tawag sa kagamitan
 let response = call_llm(&openai_client, &messages, &tools).await?;
 process_llm_response(
     &response,
@@ -1378,24 +1376,24 @@ process_llm_response(
 .await?;
 ```
 
-Ito ay magtatanong sa LLM gamit ang initial user prompt na humihiling ng sum ng dalawang numero, at ipoproseso nito ang tugon upang dinamiko na hawakan ang mga tool calls.
+Ito ay magtatanong sa LLM gamit ang unang prompt ng user na humihiling ng kabuuan ng dalawang numero, at ipoproseso nito ang tugon upang dynamic na hawakan ang mga tawag sa tool.
 
 Magaling, nagawa mo ito!
 
-## Assignment
+## Takdang Aralin
 
-Kunin ang code mula sa exercise at paunlarin ang server gamit ang ilan pang mga tool. Pagkatapos gumawa ng isang client na may LLM, gaya ng sa exercise, at subukan ito gamit ang iba't ibang mga prompt upang masiguro na ang lahat ng iyong server tools ay tinatawag nang dinamiko. Ang paraan ng paggawa ng client na ito ay nangangahulugan na magkakaroon ng mahusay na karanasan ang end user dahil maaari nilang gamitin ang mga prompt, sa halip na tiyak na mga utos ng client, at hindi nila direktang mapapansin ang anumang MCP server na tinatawag.
+Kunin ang code mula sa ehersisyo at palawakin ang server gamit ang ilang iba pang mga tool. Pagkatapos gumawa ng isang client na may LLM, tulad ng sa ehersisyo, at subukan ito gamit ang iba't ibang mga prompt upang matiyak na lahat ng mga tool ng iyong server ay tinatawagan nang dynamic. Ang paraan ng paggawa ng isang client na ito ay nangangahulugan na magkakaroon ng mahusay na karanasan ang end user dahil magagamit nila ang mga prompt, sa halip na mga eksaktong command ng client, at hindi nila mapapansin ang anumang MCP server na tinatawag.
 
-## Solution
+## Solusyon
 
 [Solution](/03-GettingStarted/03-llm-client/solution/README.md)
 
-## Key Takeaways
+## Pangunahing Mga Natutuhan
 
 - Ang pagdagdag ng LLM sa iyong client ay nagbibigay ng mas mahusay na paraan para makipag-ugnayan ang mga user sa MCP Servers.
 - Kailangan mong i-convert ang tugon ng MCP Server sa isang bagay na maiintindihan ng LLM.
 
-## Samples
+## Mga Halimbawa
 
 - [Java Calculator](../samples/java/calculator/README.md)
 - [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
@@ -1404,15 +1402,15 @@ Kunin ang code mula sa exercise at paunlarin ang server gamit ang ilan pang mga 
 - [Python Calculator](../../../../03-GettingStarted/samples/python)
 - [Rust Calculator](../../../../03-GettingStarted/samples/rust)
 
-## Additional Resources
+## Karagdagang Mga Mapagkukunan
 
-## What's Next
+## Ano ang Susunod
 
-- Susunod: [Consuming a server using Visual Studio Code](../04-vscode/README.md)
+- Susunod: [Pagkonsumo ng server gamit ang Visual Studio Code](../04-vscode/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Paalala**:  
-Ang dokumentong ito ay isinalin gamit ang serbisyong AI na pagsasalin na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagama't nagsusumikap kaming maging tumpak, mangyaring tandaan na ang mga awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o di-tumpak na impormasyon. Ang orihinal na dokumento sa orihinal nitong wika ang dapat ituring na pangunahing sanggunian. Para sa mahahalagang impormasyon, inirerekomenda ang propesyonal na pagsasaling-tao. Hindi kami mananagot sa anumang hindi pagkakaunawaan o maling interpretasyon na maaaring magmula sa paggamit ng pagsasaling ito.
+**Paunawa**:  
+Ang dokumentong ito ay isinalin gamit ang AI translation service na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagamat nagsusumikap kami na maging tumpak, pakatandaan na ang awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o hindi pagkakatugma. Ang orihinal na dokumento sa orihinal nitong wika ang dapat ituring na pangunahing sanggunian. Para sa mahahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang hindi pagkakaintindihan o maling interpretasyon na maaaring magmula sa paggamit ng salin na ito.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
