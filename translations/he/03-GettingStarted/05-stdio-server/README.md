@@ -1,39 +1,39 @@
-# שרת MCP עם stdio Transport
+# שרת MCP עם תחבורת stdio
 
-> **⚠️ עדכון חשוב**: החל ממפרט MCP 2025-06-18, ה-SSE (Server-Sent Events) העצמאי **הוצא משימוש** והוחלף ב-"Streamable HTTP" transport. מפרט MCP הנוכחי מגדיר שני מנגנוני תעבורה עיקריים:
+> **⚠️ עדכון חשוב**: החל מ-MCP Specification 2025-06-18, תחבורת SSE עצמאית (Server-Sent Events) הוכרזה כ**מיושנת** והוחלפה בתחבורת "Streamable HTTP". המפרט הנוכחי של MCP מגדיר שני מנגנוני תחבורה עיקריים:
 > 1. **stdio** - קלט/פלט סטנדרטי (מומלץ לשרתים מקומיים)
-> 2. **Streamable HTTP** - לשרתים מרוחקים שעשויים להשתמש ב-SSE באופן פנימי
+> 2. **Streamable HTTP** - עבור שרתים מרוחקים שעשויים להשתמש ב-SSE פנימית
 >
-> שיעור זה עודכן להתמקד ב-**stdio transport**, שהוא הגישה המומלצת לרוב מימושי שרתי MCP.
+> שיעור זה עודכן כדי להתמקד ב**תחבורת stdio**, שהיא הגישה המומלצת לרוב מימושי שרת MCP.
 
-ה-stdio transport מאפשר לשרתי MCP לתקשר עם לקוחות דרך זרמי קלט ופלט סטנדרטיים. זהו מנגנון התעבורה הנפוץ והמומלץ ביותר במפרט MCP הנוכחי, המספק דרך פשוטה ויעילה לבנות שרתי MCP שניתן לשלב בקלות עם יישומי לקוח שונים.
+תחבורת ה-stdio מאפשרת לשרתי MCP לתקשר עם לקוחות דרך זרמי קלט ופלט סטנדרטיים. זוהי שיטת התחבורה הנפוצה והמומלצת במפרט MCP הנוכחי, המספקת דרך פשוטה ויעילה לבנות שרתי MCP שניתן לשלב בקלות עם יישומי לקוח שונים.
 
 ## סקירה כללית
 
-שיעור זה מכסה כיצד לבנות ולצרוך שרתי MCP באמצעות stdio transport.
+שיעור זה דן כיצד לבנות ולצרוך שרתי MCP באמצעות תחבורת stdio.
 
 ## מטרות למידה
 
-בסיום השיעור, תוכלו:
+בסיום שיעור זה תוכל:
 
-- לבנות שרת MCP באמצעות stdio transport.
-- לנטר ולתקן באגים בשרת MCP באמצעות ה-Inspector.
+- לבנות שרת MCP באמצעות תחבורת stdio.
+- לבצע איתור שגיאות בשרתי MCP באמצעות Inspector.
 - לצרוך שרת MCP באמצעות Visual Studio Code.
-- להבין את מנגנוני התעבורה הנוכחיים של MCP ולמה stdio מומלץ.
+- להבין את מנגנוני התחבורה הנוכחיים של MCP ולמה stdio מומלץ.
 
-## stdio Transport - איך זה עובד
+## תחבורת stdio - איך זה עובד
 
-ה-stdio transport הוא אחד משני סוגי התעבורה הנתמכים במפרט MCP הנוכחי (2025-06-18). כך זה עובד:
+תחבורת ה-stdio היא אחד משני סוגי התחבורה הנתמכים במפרט MCP הנוכחי (2025-06-18). כך זה עובד:
 
-- **תקשורת פשוטה**: השרת קורא הודעות JSON-RPC מקלט סטנדרטי (`stdin`) ושולח הודעות לפלט סטנדרטי (`stdout`).
-- **מבוסס תהליך**: הלקוח מפעיל את שרת ה-MCP כתהליך משנה.
-- **פורמט הודעות**: ההודעות הן בקשות, התראות או תגובות JSON-RPC בודדות, המופרדות על ידי שורות חדשות.
-- **לוגים**: השרת **עשוי** לכתוב מחרוזות UTF-8 לשגיאה סטנדרטית (`stderr`) לצורכי לוגים.
+- **תקשורת פשוטה**: השרת קורא הודעות JSON-RPC מ-standard input (`stdin`) ושולח הודעות ל-standard output (`stdout`).
+- **מבוסס תהליך**: הלקוח מפעיל את שרת MCP כתהליך משני.
+- **פורמט הודעות**: ההודעות הן בקשות JSON-RPC בודדות, התראות או תגובות, המופרדות בשורות חדשות.
+- **רישום**: השרת יכול לכתוב מחרוזות UTF-8 ל-standard error (`stderr`) לצורך רישום.
 
-### דרישות עיקריות:
-- ההודעות **חייבות** להיות מופרדות על ידי שורות חדשות ו**אסור** להכיל שורות חדשות משובצות.
-- השרת **אסור** שיכתוב ל-`stdout` משהו שאינו הודעת MCP תקינה.
-- הלקוח **אסור** שיכתוב ל-`stdin` של השרת משהו שאינו הודעת MCP תקינה.
+### דרישות מפתח:
+- ההודעות חייבות להיות מופרדות בשורות חדשות ואסור שיכילו שורות חדשות בתוך ההודעה
+- השרת חייב לא לכתוב ל-`stdout` כל דבר שאינו הודעת MCP תקפה
+- הלקוח חייב לא לכתוב ל-`stdin` של השרת כל דבר שאינו הודעת MCP תקפה
 
 ### TypeScript
 
@@ -53,11 +53,11 @@ const server = new Server(
   }
 );
 ```
-
+  
 בקוד הקודם:
 
-- אנו מייבאים את המחלקה `Server` ואת `StdioServerTransport` מ-SDK של MCP.
-- אנו יוצרים מופע של שרת עם תצורה ויכולות בסיסיות.
+- מייבאים את מחלקת `Server` ואת `StdioServerTransport` מ-SDK של MCP
+- יוצרים מופע שרת עם תצורה ויכולות בסיסיות
 
 ### Python
 
@@ -67,7 +67,7 @@ import logging
 from mcp.server import Server
 from mcp.server.stdio import stdio_server
 
-# Create server instance
+# צור מופע שרת
 server = Server("example-server")
 
 @server.tool()
@@ -86,12 +86,12 @@ async def main():
 if __name__ == "__main__":
     asyncio.run(main())
 ```
+  
+בקוד הקודם:
 
-בקוד הקודם אנו:
-
-- יוצרים מופע של שרת באמצעות SDK של MCP.
-- מגדירים כלים באמצעות דקורטורים.
-- משתמשים ב-context manager של stdio_server לניהול התעבורה.
+- יוצרים מופע שרת באמצעות SDK של MCP
+- מגדירים כלים באמצעות דקורטורים
+- משתמשים במנהל ההקשר stdio_server לטיפול בתחבורה
 
 ### .NET
 
@@ -105,7 +105,7 @@ var builder = Host.CreateApplicationBuilder(args);
 
 builder.Services
     .AddMcpServer()
-    .WithStdioTransport()
+    .WithStdioServerTransport()
     .WithTools<Tools>();
 
 builder.Services.AddLogging(logging => logging.AddConsole());
@@ -113,31 +113,31 @@ builder.Services.AddLogging(logging => logging.AddConsole());
 var app = builder.Build();
 await app.RunAsync();
 ```
-
+  
 ההבדל המרכזי מ-SSE הוא ששרתי stdio:
 
-- אינם דורשים הגדרת שרת אינטרנט או נקודות קצה HTTP.
-- מופעלים כתהליכי משנה על ידי הלקוח.
-- מתקשרים דרך זרמי stdin/stdout.
-- פשוטים יותר ליישום ולניטור.
+- לא דורשים הקמת שרת ווב או נקודות קצה HTTP
+- מופעלים כתהליכים משניים על ידי הלקוח
+- מתקשרים דרך זרמי stdin/stdout
+- פשוטים יותר ליישום ולאיתור שגיאות
 
 ## תרגיל: יצירת שרת stdio
 
 כדי ליצור את השרת שלנו, עלינו לזכור שני דברים:
 
-- עלינו להשתמש בשרת אינטרנט כדי לחשוף נקודות קצה לחיבור ולהודעות.
+- עלינו להשתמש בשרת ווב כדי לחשוף נקודות קצה לחיבור ולהודעות.
 
 ## מעבדה: יצירת שרת MCP stdio פשוט
 
-במעבדה זו, ניצור שרת MCP פשוט באמצעות stdio transport המומלץ. שרת זה יחשוף כלים שלקוחות יוכלו לקרוא באמצעות פרוטוקול Model Context.
+במעבדה זו ניצור שרת MCP פשוט באמצעות תחבורת stdio המומלצת. שרת זה יספק כלים שהלקוחות יוכלו לקרוא באמצעות פרוטוקול Model Context Protocol הסטנדרטי.
 
-### דרישות מוקדמות
+### דרישות מקדימות
 
-- Python 3.8 או גרסה מאוחרת יותר.
-- SDK של MCP לפייתון: `pip install mcp`.
-- הבנה בסיסית של תכנות אסינכרוני.
+- Python 3.8 ומעלה
+- MCP Python SDK: `pip install mcp`
+- הבנה בסיסית בתכנות אסינכרוני
 
-בואו נתחיל ביצירת שרת MCP stdio הראשון שלנו:
+נתחיל ביצירת שרת MCP stdio ראשון שלנו:
 
 ```python
 import asyncio
@@ -146,11 +146,11 @@ from mcp.server import Server
 from mcp.server.stdio import stdio_server
 from mcp import types
 
-# Configure logging
+# הגדר יומן רישום
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Create the server
+# צור את השרת
 server = Server("example-stdio-server")
 
 @server.tool()
@@ -164,7 +164,7 @@ def get_greeting(name: str) -> str:
     return f"Hello, {name}! Welcome to MCP stdio server."
 
 async def main():
-    # Use stdio transport
+    # השתמש בהעברת stdio
     async with stdio_server(server) as (read_stream, write_stream):
         await server.run(
             read_stream,
@@ -175,33 +175,34 @@ async def main():
 if __name__ == "__main__":
     asyncio.run(main())
 ```
+  
 
-## הבדלים מרכזיים מגישת SSE שהוצאה משימוש
+## הבדלים עיקריים מהגישה הישן של SSE
 
-**Stdio Transport (הסטנדרט הנוכחי):**
-- מודל פשוט של תהליך משנה - הלקוח מפעיל את השרת כתהליך משנה.
-- תקשורת דרך stdin/stdout באמצעות הודעות JSON-RPC.
-- אין צורך בהגדרת שרת HTTP.
-- ביצועים ואבטחה טובים יותר.
-- קל יותר לניטור ופיתוח.
+**תחבורת stdio (תקן נוכחי):**
+- מודל תהליך משני פשוט - הלקוח מפעיל את השרת כתהליך ילד
+- תקשורת דרך stdin/stdout באמצעות הודעות JSON-RPC
+- אין צורך בהקמת שרת HTTP
+- ביצועים ובטיחות טובים יותר
+- איתור שגיאות ופיתוח קלים יותר
 
-**SSE Transport (הוצא משימוש החל מ-MCP 2025-06-18):**
-- דרש שרת HTTP עם נקודות קצה של SSE.
-- הגדרה מורכבת יותר עם תשתית שרת אינטרנט.
-- שיקולי אבטחה נוספים לנקודות קצה HTTP.
-- הוחלף כעת ב-Streamable HTTP לתרחישים מבוססי אינטרנט.
+**תחבורת SSE (מיושנת החל מ-MCP 2025-06-18):**
+- דרש שרת HTTP עם נקודות SSE
+- הקמה מורכבת יותר עם תשתית שרת ווב
+- שיקולי אבטחה נוספים לנקודות HTTP
+- הוחלף כעת ב-Streamable HTTP לתרחישי ווב
 
-### יצירת שרת עם stdio transport
+### יצירת שרת עם תחבורת stdio
 
-כדי ליצור שרת stdio, עלינו:
+כדי ליצור את שרת ה-stdio שלנו, עלינו:
 
-1. **לייבא את הספריות הנדרשות** - נזדקק לרכיבי שרת MCP ול-stdio transport.
-2. **ליצור מופע של שרת** - להגדיר את השרת עם יכולותיו.
-3. **להגדיר כלים** - להוסיף את הפונקציונליות שברצוננו לחשוף.
-4. **להגדיר את התעבורה** - להגדיר תקשורת stdio.
-5. **להפעיל את השרת** - להפעיל את השרת ולטפל בהודעות.
+1. **ייבוא הספריות הדרושות** - צריכים את רכיבי השרת ותחבורת stdio
+2. **יצירת מופע שרת** - להגדיר את השרת עם יכולותיו
+3. **הגדרת כלים** - להוסיף את הפונקציונליות שאנו רוצים לחשוף
+4. **הגדרת התחבורה** - לכוון את תקשורת ה-stdio
+5. **הפעלת השרת** - להתחיל את השרת ולטפל בהודעות
 
-בואו נבנה זאת שלב אחר שלב:
+נתחיל לבנות זאת שלב אחר שלב:
 
 ### שלב 1: יצירת שרת stdio בסיסי
 
@@ -211,11 +212,11 @@ import logging
 from mcp.server import Server
 from mcp.server.stdio import stdio_server
 
-# Configure logging
+# הגדר יומן רישום
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Create the server
+# צור את השרת
 server = Server("example-stdio-server")
 
 @server.tool()
@@ -234,7 +235,7 @@ async def main():
 if __name__ == "__main__":
     asyncio.run(main())
 ```
-
+  
 ### שלב 2: הוספת כלים נוספים
 
 ```python
@@ -258,24 +259,24 @@ def get_server_info() -> dict:
         "capabilities": ["tools"]
     }
 ```
-
+  
 ### שלב 3: הפעלת השרת
 
-שמרו את הקוד כ-`server.py` והפעילו אותו משורת הפקודה:
+שמור את הקוד כ-`server.py` והפעל אותו משורת הפקודה:
 
 ```bash
 python server.py
 ```
+  
+השרת יתחיל ויחכה לקלט מ-stdin. הוא מתקשר באמצעות הודעות JSON-RPC מעל תחבורת stdio.
 
-השרת יתחיל וימתין לקלט מ-stdin. הוא מתקשר באמצעות הודעות JSON-RPC על גבי stdio transport.
+### שלב 4: בדיקה עם Inspector
 
-### שלב 4: בדיקה עם ה-Inspector
+אתה יכול לבדוק את השרת שלך באמצעות MCP Inspector:
 
-ניתן לבדוק את השרת שלכם באמצעות MCP Inspector:
-
-1. התקינו את ה-Inspector: `npx @modelcontextprotocol/inspector`.
-2. הפעילו את ה-Inspector והפנו אותו לשרת שלכם.
-3. בדקו את הכלים שיצרתם.
+1. התקן את Inspector: `npx @modelcontextprotocol/inspector`
+2. הפעל את Inspector ופנה לשרת שלך
+3. בדוק את הכלים שיצרת
 
 ### .NET
 
@@ -284,34 +285,34 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddMcpServer();
  ```
-
-## ניטור שרת stdio שלכם
+  
+## איתור שגיאות לשרת stdio שלך
 
 ### שימוש ב-MCP Inspector
 
-ה-MCP Inspector הוא כלי חשוב לניטור ובדיקת שרתי MCP. כך תשתמשו בו עם שרת stdio שלכם:
+MCP Inspector הוא כלי חשוב לאיתור שגיאות ובדיקות בשרתי MCP. כך תשתמש בו עם שרת stdio שלך:
 
-1. **התקינו את ה-Inspector**:
+1. **התקן את Inspector**:
    ```bash
    npx @modelcontextprotocol/inspector
    ```
-
-2. **הפעילו את ה-Inspector**:
+  
+2. **הפעל את Inspector**:
    ```bash
    npx @modelcontextprotocol/inspector python server.py
    ```
-
-3. **בדקו את השרת שלכם**: ה-Inspector מספק ממשק אינטרנט שבו תוכלו:
-   - לצפות ביכולות השרת.
-   - לבדוק כלים עם פרמטרים שונים.
-   - לעקוב אחר הודעות JSON-RPC.
-   - לנטר בעיות חיבור.
+  
+3. **בדוק את השרת שלך**: ה-Inspector מספק ממשק ווב שבו ניתן:
+   - לצפות ביכולות השרת
+   - לבדוק כלים עם פרמטרים שונים
+   - לעקוב אחרי הודעות JSON-RPC
+   - לאתר בעיות חיבור
 
 ### שימוש ב-VS Code
 
-ניתן גם לנטר את שרת MCP שלכם ישירות ב-VS Code:
+אתה יכול גם לבצע איתור שגיאות ישירות ב-VS Code:
 
-1. צרו קובץ תצורה ב-`.vscode/launch.json`:
+1. צור תצורת הפעלה בקובץ `.vscode/launch.json`:
    ```json
    {
      "version": "0.2.0",
@@ -326,24 +327,24 @@ builder.Services
      ]
    }
    ```
+  
+2. הגדר נקודות עצירה בקוד השרת שלך  
+3. הפעל את הדיבאגר ובדוק עם Inspector  
 
-2. הגדירו נקודות עצירה בקוד השרת שלכם.
-3. הפעילו את מנטר הבאגים ובדקו עם ה-Inspector.
+### טיפים נפוצים לאיתור שגיאות
 
-### טיפים נפוצים לניטור
+- השתמש ב-`stderr` לרישום - אל תכתוב ל-`stdout` כי הוא שמור להודעות MCP
+- ודא שכל הודעות JSON-RPC מופרדות בשורה חדשה
+- בדוק כלים פשוטים תחילה לפני הוספת פונקציונליות מורכבת
+- השתמש ב-Inspector כדי לוודא פורמט ההודעות
 
-- השתמשו ב-`stderr` ללוגים - לעולם אל תכתבו ל-`stdout`, שמיועד להודעות MCP בלבד.
-- ודאו שכל הודעות JSON-RPC מופרדות בשורות חדשות.
-- התחילו עם כלים פשוטים לפני הוספת פונקציונליות מורכבת.
-- השתמשו ב-Inspector כדי לוודא את פורמט ההודעות.
+## צריכת שרת stdio שלך ב-VS Code
 
-## צריכת שרת stdio שלכם ב-VS Code
-
-לאחר שבניתם את שרת MCP stdio שלכם, תוכלו לשלב אותו עם VS Code כדי להשתמש בו עם Claude או לקוחות תואמי MCP אחרים.
+לאחר שבנית את שרת ה-stdio שלך, תוכל לשלב אותו עם VS Code כדי להשתמש בו עם Claude או לקוחות תואמים אחרים של MCP.
 
 ### תצורה
 
-1. **צרו קובץ תצורה של MCP** ב-`%APPDATA%\Claude\claude_desktop_config.json` (Windows) או `~/Library/Application Support/Claude/claude_desktop_config.json` (Mac):
+1. **צור קובץ תצורה של MCP ב- `%APPDATA%\Claude\claude_desktop_config.json` (Windows) או `~/Library/Application Support/Claude/claude_desktop_config.json` (Mac):**
 
    ```json
    {
@@ -355,17 +356,17 @@ builder.Services
      }
    }
    ```
+  
+2. **הפעל מחדש את Claude**: סגור ופתח מחדש את Claude כדי לטעון את התצורה החדשה של השרת.
 
-2. **אתחלו את Claude**: סגרו ופתחו מחדש את Claude כדי לטעון את תצורת השרת החדשה.
-
-3. **בדקו את החיבור**: התחילו שיחה עם Claude ונסו להשתמש בכלים של השרת שלכם:
-   - "תוכל לברך אותי באמצעות כלי הברכה?"
-   - "חשב את הסכום של 15 ו-27."
-   - "מהו מידע השרת?"
+3. **בדוק את החיבור**: התחל שיחה עם Claude ונסה להשתמש בכלי השרת:
+   - "האם תוכל לברך אותי באמצעות כלי הברכות?"
+   - "חשב את סכום 15 ו-27"
+   - "מה המידע על השרת?"
 
 ### דוגמה לשרת stdio ב-TypeScript
 
-להלן דוגמה מלאה ב-TypeScript לעיונכם:
+להלן דוגמה מלאה ב-TypeScript לעיון:
 
 ```typescript
 #!/usr/bin/env node
@@ -385,7 +386,7 @@ const server = new Server(
   }
 );
 
-// Add tools
+// הוסף כלים
 server.setRequestHandler(ListToolsRequestSchema, async () => {
   return {
     tools: [
@@ -429,7 +430,7 @@ async function runServer() {
 
 runServer().catch(console.error);
 ```
-
+  
 ### דוגמה לשרת stdio ב-.NET
 
 ```csharp
@@ -443,41 +444,152 @@ var builder = Host.CreateApplicationBuilder(args);
 
 builder.Services
     .AddMcpServer()
-    .WithStdioTransport()
+    .WithStdioServerTransport()
     .WithTools<Tools>();
 
 var app = builder.Build();
 await app.RunAsync();
 
+[McpServerToolType]
 public class Tools
 {
-    [Description("Get a personalized greeting")]
+    [McpServerTool, Description("Get a personalized greeting")]
     public string GetGreeting(string name)
     {
         return $"Hello, {name}! Welcome to MCP stdio server.";
     }
 
-    [Description("Calculate the sum of two numbers")]
+    [McpServerTool, Description("Calculate the sum of two numbers")]
     public int CalculateSum(int a, int b)
     {
         return a + b;
     }
 }
 ```
-
+  
 ## סיכום
 
-בשיעור זה למדתם כיצד:
+בשיעור זה למדת כיצד:
 
-- לבנות שרתי MCP באמצעות **stdio transport** (הגישה המומלצת).
-- להבין מדוע תעבורת SSE הוצאה משימוש לטובת stdio ו-Streamable HTTP.
-- ליצור כלים שניתן לקרוא על ידי לקוחות MCP.
-- לנטר את השרת שלכם באמצעות MCP Inspector.
-- לשלב את שרת stdio שלכם עם VS Code ו-Claude.
+- לבנות שרתי MCP באמצעות **תחבורת stdio** הנוכחית (הגישה המומלצת)
+- להבין מדוע תחבורת SSE הוכרזה כמיושנת לטובת stdio ו-Streamable HTTP
+- ליצור כלים שניתן לקרוא להם על ידי לקוחות MCP
+- לאתר שגיאות בשרת שלך באמצעות MCP Inspector
+- לשלב את שרת stdio שלך עם VS Code ו-Claude
 
-ה-stdio transport מספק דרך פשוטה, מאובטחת ובעלת ביצועים טובים יותר לבנות שרתי MCP בהשוואה לגישת SSE שהוצאה משימוש. זהו מנגנון התעבורה המומלץ לרוב מימושי שרתי MCP החל ממפרט 2025-06-18.
+תחבורת stdio מספקת דרך פשוטה, בטוחה וביצועית יותר לבניית שרתי MCP בהשוואה לגישת SSE המיושנת. היא התחבורה המומלצת לרוב מימושי שרת MCP החל מהמפרט מ-18/06/2025.
+
+### .NET
+
+1. נתחיל ביצירת כלים, לשם כך ניצור קובץ *Tools.cs* עם התוכן הבא:
+
+  ```csharp
+  using System.ComponentModel;
+  using System.Text.Json;
+  using ModelContextProtocol.Server;
+  ```
+  
+## תרגיל: בדיקת שרת stdio שלך
+
+כעת, לאחר שבנית את שרת stdio שלך, נבדוק שהוא פועל כראוי.
+
+### דרישות מקדימות
+
+1. ודא שהתקנת את MCP Inspector:
+   ```bash
+   npm install -g @modelcontextprotocol/inspector
+   ```
+  
+2. הקוד של השרת שלך נשמר (למשל כ-`server.py`)
+
+### בדיקה עם Inspector
+
+1. **הפעל את Inspector עם השרת שלך**:
+   ```bash
+   npx @modelcontextprotocol/inspector python server.py
+   ```
+  
+2. **פתח את ממשק הווב**: ה-Inspector יפתח דפדפן המציג את יכולות השרת שלך.
+
+3. **בדוק את הכלים**: 
+   - נסה את הכלי `get_greeting` עם שמות שונים  
+   - בדוק את כלי `calculate_sum` עם מספרים שונים  
+   - קרא לכלי `get_server_info` כדי לצפות במטא-דטה של השרת  
+
+4. **עקוב אחרי התקשורת**: ה-Inspector מציג את הודעות JSON-RPC שמתחלפות בין הלקוח לשרת.
+
+### מה תראה
+
+כאשר השרת שלך עולה בהצלחה, תראה:
+- יכולות השרת ברשימה ב-Inspector
+- כלי בדיקה זמינים
+- החלפות הודעות JSON-RPC מוצלחות
+- תגובות לכלים מוצגות בממשק
+
+### בעיות נפוצות ופתרונות
+
+**השרת לא מתחיל:**
+- בדוק שכל התלויות מותקנות: `pip install mcp`
+- ודא תחביר ופיסוק פייתון תקינים
+- חפש הודעות שגיאה בקונסול
+
+**כלים לא מופיעים:**
+- ודא שקיימים דקורטורים `@server.tool()`
+- בדוק שהפונקציות של הכלים מוגדרות לפני `main()`
+- וודא שהשרת מוגדר נכון
+
+**בעיות חיבור:**
+- ודא שהשרת משתמש בstdio כראוי
+- וודא שלא קיימים תהליכים אחרים שמפריעים
+- בדוק את תחביר הפקודות של Inspector
+
+## מטלה
+
+נסה לבנות את השרת שלך עם יכולות נוספות. עיין בעמוד [זה](https://api.chucknorris.io/) כדי, למשל, להוסיף כלי שמבצע קריאת API. אתה מחליט איך השרת צריך להיראות. בהצלחה :)
+
+## פתרון
+
+[פתרון](./solution/README.md) להלן פתרון אפשרי עם קוד עובד.
+
+## נקודות מפתח
+
+הנקודות המרכזיות מהפרק הן:
+
+- תחבורת stdio היא המנגנון המומלץ לשרתי MCP מקומיים.
+- תחבורת stdio מאפשרת תקשורת חלקה בין שרתי MCP לבין לקוחות באמצעות זרמי קלט ופלט סטנדרטיים.
+- ניתן להשתמש ב-Inspector וב-Visual Studio Code לצריכת שרתי stdio ישירות, מה שמקל על איתור בעיות ושילוב.
+
+## דוגמאות
+
+- [מחשבון Java](../samples/java/calculator/README.md)
+- [מחשבון .Net](../../../../03-GettingStarted/samples/csharp)
+- [מחשבון JavaScript](../samples/javascript/README.md)
+- [מחשבון TypeScript](../samples/typescript/README.md)
+- [מחשבון Python](../../../../03-GettingStarted/samples/python)
+
+## משאבים נוספים
+
+- [SSE](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events)
+
+## מה הלאה
+
+## צעדים הבאים
+
+כעת שלמדת כיצד לבנות שרתי MCP עם תחבורת stdio, תוכל לחקור נושאים מתקדמים יותר:
+
+- **הבא**: [הזרמת HTTP עם MCP (Streamable HTTP)](../06-http-streaming/README.md) - למידה על מנגנון תחבורה נוסף הנתמך לשרתים מרוחקים  
+- **מתקדם**: [הנחיות אבטחת MCP](../../02-Security/README.md) - יישום אבטחה בשרתי MCP שלך  
+- **לפרודקשן**: [אסטרטגיות הפצה](../09-deployment/README.md) - פרוס את השרתים שלך לשימוש בפרודקשן  
+
+## משאבים נוספים
+
+- [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/) - המפרט הרשמי  
+- [תיעוד SDK של MCP](https://github.com/modelcontextprotocol/sdk) - הפניות SDK לכל השפות  
+- [דוגמאות מהקהילה](../../06-CommunityContributions/README.md) - דוגמאות שרת נוספות מהקהילה
 
 ---
 
-**כתב ויתור**:  
-מסמך זה תורגם באמצעות שירות תרגום מבוסס בינה מלאכותית [Co-op Translator](https://github.com/Azure/co-op-translator). למרות שאנו שואפים לדיוק, יש לקחת בחשבון שתרגומים אוטומטיים עשויים להכיל שגיאות או אי דיוקים. המסמך המקורי בשפתו המקורית צריך להיחשב כמקור סמכותי. עבור מידע קריטי, מומלץ להשתמש בתרגום מקצועי על ידי אדם. איננו נושאים באחריות לאי הבנות או לפרשנויות שגויות הנובעות משימוש בתרגום זה.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**הצהרת אחריות**:  
+מסמך זה תורגם באמצעות שירות תרגום אוטומטי AI [Co-op Translator](https://github.com/Azure/co-op-translator). למרות שאנו שואפים לדייק, יש להיות מודעים לכך שתרגומים אוטומטיים עלולים להכיל טעויות או אי-דיוקים. המסמך המקורי בשפת המקור מהווה את המקור הסמכותי. למידע קריטי מומלץ להשתמש בתרגום מקצועי באנוש. אנו אינם אחראים לכל אי-הבנות או פרשנויות שגוֹת הנובעות משימוש בתרגום זה.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
