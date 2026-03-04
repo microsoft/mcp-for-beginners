@@ -1,39 +1,39 @@
-# MCP Server cu Transport stdio
+# Server MCP cu transport stdio
 
-> **⚠️ Actualizare Importantă**: Începând cu Specificația MCP 2025-06-18, transportul SSE (Server-Sent Events) standalone a fost **depreciat** și înlocuit cu transportul "Streamable HTTP". Specificația MCP actuală definește două mecanisme principale de transport:
-> 1. **stdio** - Intrare/ieșire standard (recomandat pentru servere locale)
-> 2. **Streamable HTTP** - Pentru servere la distanță care pot utiliza SSE intern
+> **⚠️ Actualizare importantă**: Începând cu specificația MCP 2025-06-18, transportul standalone SSE (Server-Sent Events) a fost **înlocuit** cu transportul "Streamable HTTP". Specificația MCP curentă definește două mecanisme principale de transport:
+> 1. **stdio** - Input/output standard (recomandat pentru servere locale)
+> 2. **Streamable HTTP** - Pentru servere remote care pot folosi SSE intern
 >
-> Această lecție a fost actualizată pentru a se concentra pe **transportul stdio**, care este abordarea recomandată pentru majoritatea implementărilor de server MCP.
+> Această lecție a fost actualizată pentru a se concentra pe **transportul stdio**, care este metoda recomandată pentru majoritatea implementărilor serverelor MCP.
 
-Transportul stdio permite serverelor MCP să comunice cu clienții prin fluxuri de intrare și ieșire standard. Este cel mai utilizat și recomandat mecanism de transport în specificația MCP actuală, oferind o modalitate simplă și eficientă de a construi servere MCP care pot fi integrate cu ușurință în diverse aplicații client.
+Transportul stdio permite serverelor MCP să comunice cu clienții prin fluxurile standard de intrare și ieșire. Acesta este cel mai utilizat și recomandat mecanism de transport în specificația MCP curentă, oferind o modalitate simplă și eficientă de a construi servere MCP care pot fi integrate ușor cu diverse aplicații client.
 
-## Prezentare Generală
+## Prezentare generală
 
-Această lecție acoperă modul de construire și utilizare a serverelor MCP folosind transportul stdio.
+Această lecție acoperă modul de construire și consumare a serverelor MCP folosind transportul stdio.
 
-## Obiective de Învățare
+## Obiective de învățare
 
-La finalul acestei lecții, vei putea:
+La sfârșitul acestei lecții, vei fi capabil să:
 
-- Construi un server MCP folosind transportul stdio.
-- Depana un server MCP utilizând Inspectorul.
-- Utiliza un server MCP în Visual Studio Code.
-- Înțelege mecanismele actuale de transport MCP și de ce stdio este recomandat.
+- Construiești un server MCP folosind transportul stdio.
+- Depanezi un server MCP folosind Inspectorul.
+- Consumii un server MCP folosind Visual Studio Code.
+- Înțelegi mecanismele curente de transport MCP și de ce stdio este recomandat.
 
-## Transportul stdio - Cum Funcționează
+## Transportul stdio - Cum funcționează
 
-Transportul stdio este unul dintre cele două tipuri de transport acceptate în specificația MCP actuală (2025-06-18). Iată cum funcționează:
+Transportul stdio este unul dintre cele două tipuri de transport suportate în specificația MCP actuală (2025-06-18). Iată cum funcționează:
 
-- **Comunicare Simplă**: Serverul citește mesaje JSON-RPC din intrarea standard (`stdin`) și trimite mesaje către ieșirea standard (`stdout`).
-- **Bazat pe Proces**: Clientul lansează serverul MCP ca un subproces.
-- **Formatul Mesajelor**: Mesajele sunt cereri, notificări sau răspunsuri JSON-RPC individuale, delimitate prin linii noi.
-- **Logare**: Serverul POATE scrie șiruri UTF-8 în eroarea standard (`stderr`) pentru scopuri de logare.
+- **Comunicare simplă**: serverul citește mesaje JSON-RPC de la intrarea standard (`stdin`) și trimite mesaje către ieșirea standard (`stdout`).
+- **Bazat pe proces**: clientul lansează serverul MCP ca un proces copil.
+- **Formatul mesajelor**: mesajele sunt cereri, notificări sau răspunsuri JSON-RPC individuale, delimitate prin linii noi.
+- **Jurnalizare**: serverul POATE scrie șiruri UTF-8 către ieșirea de eroare standard (`stderr`) pentru logare.
 
-### Cerințe Cheie:
-- Mesajele TREBUIE să fie delimitate prin linii noi și NU TREBUIE să conțină linii noi încorporate.
-- Serverul NU TREBUIE să scrie nimic în `stdout` care să nu fie un mesaj MCP valid.
-- Clientul NU TREBUIE să scrie nimic în `stdin` al serverului care să nu fie un mesaj MCP valid.
+### Cerințe cheie:
+- Mesajele TREBUIE să fie delimitate prin linii noi și NU TREBUIE să conțină linii noi în interior
+- Serverul NU TREBUIE să scrie nimic pe `stdout` care să nu fie un mesaj MCP valid
+- Clientul NU TREBUIE să scrie nimic către `stdin` al serverului care să nu fie un mesaj MCP valid
 
 ### TypeScript
 
@@ -56,8 +56,8 @@ const server = new Server(
 
 În codul precedent:
 
-- Importăm clasa `Server` și `StdioServerTransport` din MCP SDK.
-- Creăm o instanță de server cu configurație și capabilități de bază.
+- Importăm clasa `Server` și `StdioServerTransport` din MCP SDK
+- Creăm o instanță de server cu configurație și capabilități de bază
 
 ### Python
 
@@ -67,7 +67,7 @@ import logging
 from mcp.server import Server
 from mcp.server.stdio import stdio_server
 
-# Create server instance
+# Creează o instanță de server
 server = Server("example-server")
 
 @server.tool()
@@ -89,9 +89,9 @@ if __name__ == "__main__":
 
 În codul precedent:
 
-- Creăm o instanță de server utilizând MCP SDK.
-- Definim instrumente folosind decoratori.
-- Utilizăm context managerul stdio_server pentru a gestiona transportul.
+- Creăm o instanță de server folosind MCP SDK
+- Definim unelte folosind decoratori
+- Folosim managerul de context stdio_server pentru a gestiona transportul
 
 ### .NET
 
@@ -105,7 +105,7 @@ var builder = Host.CreateApplicationBuilder(args);
 
 builder.Services
     .AddMcpServer()
-    .WithStdioTransport()
+    .WithStdioServerTransport()
     .WithTools<Tools>();
 
 builder.Services.AddLogging(logging => logging.AddConsole());
@@ -114,30 +114,30 @@ var app = builder.Build();
 await app.RunAsync();
 ```
 
-Diferența cheie față de SSE este că serverele stdio:
+Diferența principală față de SSE este că serverele stdio:
 
-- Nu necesită configurarea unui server web sau puncte finale HTTP.
-- Sunt lansate ca subprocese de către client.
-- Comunică prin fluxuri stdin/stdout.
-- Sunt mai simple de implementat și depanat.
+- Nu necesită configurare de server web sau endpoint-uri HTTP
+- Sunt lansate ca procese copil de către client
+- Comunică prin fluxurile stdin/stdout
+- Sunt mai simple de implementat și de depanat
 
-## Exercițiu: Crearea unui Server stdio
+## Exercițiu: Crearea unui server stdio
 
-Pentru a crea serverul nostru, trebuie să ținem cont de două lucruri:
+Pentru a crea serverul nostru, trebuie să ținem cont de două aspecte:
 
-- Trebuie să utilizăm un server web pentru a expune puncte finale pentru conexiune și mesaje.
+- Trebuie să folosim un server web pentru a expune endpoint-uri pentru conexiune și mesaje.
 
-## Laborator: Crearea unui server MCP stdio simplu
+## Laborator: Crearea unui server MCP simplu cu stdio
 
-În acest laborator, vom crea un server MCP simplu folosind transportul stdio recomandat. Acest server va expune instrumente pe care clienții le pot apela utilizând Protocolul Model Context standard.
+În acest laborator, vom crea un server MCP simplu folosind transportul stdio recomandat. Acest server va expune unelte pe care clienții le pot apela folosind protocolul standard Model Context Protocol.
 
-### Cerințe Prealabile
+### Precondiții
 
-- Python 3.8 sau mai recent.
-- MCP Python SDK: `pip install mcp`.
-- Înțelegerea de bază a programării asincrone.
+- Python 3.8 sau versiune mai nouă
+- MCP Python SDK: `pip install mcp`
+- Înțelegere de bază a programării asincrone
 
-Să începem prin crearea primului nostru server MCP stdio:
+Să începem prin a crea primul nostru server MCP stdio:
 
 ```python
 import asyncio
@@ -146,11 +146,11 @@ from mcp.server import Server
 from mcp.server.stdio import stdio_server
 from mcp import types
 
-# Configure logging
+# Configurează jurnalizarea
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Create the server
+# Creează serverul
 server = Server("example-stdio-server")
 
 @server.tool()
@@ -164,7 +164,7 @@ def get_greeting(name: str) -> str:
     return f"Hello, {name}! Welcome to MCP stdio server."
 
 async def main():
-    # Use stdio transport
+    # Folosește transportul stdio
     async with stdio_server(server) as (read_stream, write_stream):
         await server.run(
             read_stream,
@@ -176,32 +176,33 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
+
 ## Diferențe cheie față de abordarea SSE depreciată
 
-**Transportul Stdio (Standard Actual):**
-- Model simplu de subproces - clientul lansează serverul ca proces copil.
-- Comunicare prin stdin/stdout utilizând mesaje JSON-RPC.
-- Nu necesită configurarea unui server HTTP.
-- Performanță și securitate mai bune.
-- Depanare și dezvoltare mai ușoare.
+**Transport stdio (Standard curent):**
+- Model simplu de proces copil - clientul lansează serverul ca proces copil
+- Comunicare prin stdin/stdout folosind mesaje JSON-RPC
+- Nu este necesară configurarea unui server HTTP
+- Performanță și securitate mai bune
+- Debugging și dezvoltare mai ușoare
 
-**Transportul SSE (Depreciat din MCP 2025-06-18):**
-- Necesita un server HTTP cu puncte finale SSE.
-- Configurare mai complexă cu infrastructură de server web.
-- Considerații suplimentare de securitate pentru punctele finale HTTP.
-- Acum înlocuit de Streamable HTTP pentru scenarii bazate pe web.
+**Transport SSE (depreciat începând cu MCP 2025-06-18):**
+- Necesita server HTTP cu endpoint-uri SSE
+- Configurare mai complexă cu infrastructură web
+- Considerații suplimentare de securitate pentru endpoint-uri HTTP
+- A fost înlocuit de Streamable HTTP pentru scenarii web
 
-### Crearea unui server cu transport stdio
+### Crearea serverului cu transport stdio
 
 Pentru a crea serverul nostru stdio, trebuie să:
 
-1. **Importăm bibliotecile necesare** - Avem nevoie de componentele serverului MCP și transportul stdio.
-2. **Creăm o instanță de server** - Definim serverul cu capabilitățile sale.
-3. **Definim instrumente** - Adăugăm funcționalitatea pe care dorim să o expunem.
-4. **Configurăm transportul** - Configurăm comunicarea stdio.
-5. **Pornim serverul** - Lansăm serverul și gestionăm mesajele.
+1. **Importăm bibliotecile necesare** - avem nevoie de componentele server MCP și transportul stdio
+2. **Creăm o instanță de server** - definim serverul cu capabilitățile sale
+3. **Definim unelte** - adăugăm funcționalitatea pe care dorim să o expunem
+4. **Configurăm transportul** - setăm comunicarea prin stdio
+5. **Pornim serverul** - lansăm serverul și gestionăm mesajele
 
-Să construim acest lucru pas cu pas:
+Hai să construim pas cu pas:
 
 ### Pasul 1: Crearea unui server stdio de bază
 
@@ -211,11 +212,11 @@ import logging
 from mcp.server import Server
 from mcp.server.stdio import stdio_server
 
-# Configure logging
+# Configurează jurnalizarea
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Create the server
+# Creează serverul
 server = Server("example-stdio-server")
 
 @server.tool()
@@ -235,7 +236,8 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-### Pasul 2: Adăugarea mai multor instrumente
+
+### Pasul 2: Adăugarea de unelte suplimentare
 
 ```python
 @server.tool()
@@ -259,6 +261,7 @@ def get_server_info() -> dict:
     }
 ```
 
+
 ### Pasul 3: Pornirea serverului
 
 Salvează codul ca `server.py` și rulează-l din linia de comandă:
@@ -267,15 +270,15 @@ Salvează codul ca `server.py` și rulează-l din linia de comandă:
 python server.py
 ```
 
-Serverul va porni și va aștepta intrări din stdin. Comunică utilizând mesaje JSON-RPC prin transportul stdio.
+Serverul va porni și va aștepta input de la stdin. Comunică folosind mesaje JSON-RPC prin transportul stdio.
 
 ### Pasul 4: Testarea cu Inspectorul
 
-Poți testa serverul utilizând MCP Inspector:
+Poți testa serverul tău folosind MCP Inspector:
 
-1. Instalează Inspectorul: `npx @modelcontextprotocol/inspector`.
-2. Rulează Inspectorul și indică-l către serverul tău.
-3. Testează instrumentele pe care le-ai creat.
+1. Instalează Inspectorul: `npx @modelcontextprotocol/inspector`
+2. Rulează Inspectorul și direcționează-l către serverul tău
+3. Testează uneltele pe care le-ai creat
 
 ### .NET
 
@@ -285,11 +288,12 @@ builder.Services
     .AddMcpServer();
  ```
 
+
 ## Depanarea serverului stdio
 
-### Utilizarea MCP Inspector
+### Folosirea MCP Inspector
 
-MCP Inspector este un instrument valoros pentru depanarea și testarea serverelor MCP. Iată cum să-l utilizezi cu serverul tău stdio:
+MCP Inspector este un instrument valoros pentru depanarea și testarea serverelor MCP. Iată cum să îl folosești cu serverul stdio:
 
 1. **Instalează Inspectorul**:
    ```bash
@@ -302,14 +306,14 @@ MCP Inspector este un instrument valoros pentru depanarea și testarea serverelo
    ```
 
 3. **Testează serverul**: Inspectorul oferă o interfață web unde poți:
-   - Vizualiza capabilitățile serverului.
-   - Testa instrumente cu diferiți parametri.
-   - Monitoriza mesajele JSON-RPC.
-   - Depana problemele de conexiune.
+   - Vizualiza capabilitățile serverului
+   - Testa uneltele cu parametri diferiți
+   - Monitoriza mesajele JSON-RPC
+   - Depana probleme de conexiune
 
-### Utilizarea VS Code
+### Folosirea VS Code
 
-Poți de asemenea să depanezi serverul MCP direct în VS Code:
+Poți depana serverul MCP direct în VS Code:
 
 1. Creează o configurație de lansare în `.vscode/launch.json`:
    ```json
@@ -327,19 +331,19 @@ Poți de asemenea să depanezi serverul MCP direct în VS Code:
    }
    ```
 
-2. Setează puncte de întrerupere în codul serverului.
-3. Rulează depanatorul și testează cu Inspectorul.
+2. Setează breakpoint-uri în codul serverului
+3. Rulează debuggerul și testează cu Inspectorul
 
-### Sfaturi comune pentru depanare
+### Sfaturi comune de depanare
 
-- Utilizează `stderr` pentru logare - nu scrie niciodată în `stdout`, deoarece este rezervat pentru mesaje MCP.
-- Asigură-te că toate mesajele JSON-RPC sunt delimitate prin linii noi.
-- Testează mai întâi cu instrumente simple înainte de a adăuga funcționalități complexe.
-- Utilizează Inspectorul pentru a verifica formatele mesajelor.
+- Folosește `stderr` pentru logare - nu scrie niciodată pe `stdout` deoarece este rezervat mesajelor MCP
+- Asigură-te că toate mesajele JSON-RPC sunt delimitate prin linii noi
+- Testează mai întâi cu unelte simple înainte de a adăuga funcționalități complexe
+- Folosește Inspectorul pentru a verifica formatul mesajelor
 
-## Utilizarea serverului stdio în VS Code
+## Consumarea serverului stdio în VS Code
 
-După ce ai construit serverul MCP stdio, îl poți integra cu VS Code pentru a-l utiliza cu Claude sau alți clienți compatibili MCP.
+Odată ce ai construit serverul MCP stdio, îl poți integra cu VS Code pentru a-l folosi cu Claude sau alți clienți compatibili MCP.
 
 ### Configurare
 
@@ -356,16 +360,16 @@ După ce ai construit serverul MCP stdio, îl poți integra cu VS Code pentru a-
    }
    ```
 
-2. **Repornește Claude**: Închide și redeschide Claude pentru a încărca noua configurație a serverului.
+2. **Repornește Claude**: Închide și redeschide Claude pentru a încărca noua configurație de server.
 
-3. **Testează conexiunea**: Începe o conversație cu Claude și încearcă să utilizezi instrumentele serverului tău:
-   - "Poți să mă saluți folosind instrumentul de salut?"
-   - "Calculează suma dintre 15 și 27."
-   - "Care sunt informațiile serverului?"
+3. **Testează conexiunea**: Pornește o conversație cu Claude și încearcă să folosești uneltele serverului tău:
+   - "Poți să mă saluți folosind unealta de salut?"
+   - "Calculează suma lui 15 și 27"
+   - "Care este informația despre server?"
 
-### Exemplu de server stdio TypeScript
+### Exemplu TypeScript de server stdio
 
-Iată un exemplu complet în TypeScript pentru referință:
+Iată un exemplu complet TypeScript pentru referință:
 
 ```typescript
 #!/usr/bin/env node
@@ -385,7 +389,7 @@ const server = new Server(
   }
 );
 
-// Add tools
+// Adaugă unelte
 server.setRequestHandler(ListToolsRequestSchema, async () => {
   return {
     tools: [
@@ -430,7 +434,8 @@ async function runServer() {
 runServer().catch(console.error);
 ```
 
-### Exemplu de server stdio .NET
+
+### Exemplu .NET de server stdio
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
@@ -443,21 +448,22 @@ var builder = Host.CreateApplicationBuilder(args);
 
 builder.Services
     .AddMcpServer()
-    .WithStdioTransport()
+    .WithStdioServerTransport()
     .WithTools<Tools>();
 
 var app = builder.Build();
 await app.RunAsync();
 
+[McpServerToolType]
 public class Tools
 {
-    [Description("Get a personalized greeting")]
+    [McpServerTool, Description("Get a personalized greeting")]
     public string GetGreeting(string name)
     {
         return $"Hello, {name}! Welcome to MCP stdio server.";
     }
 
-    [Description("Calculate the sum of two numbers")]
+    [McpServerTool, Description("Calculate the sum of two numbers")]
     public int CalculateSum(int a, int b)
     {
         return a + b;
@@ -465,21 +471,22 @@ public class Tools
 }
 ```
 
+
 ## Rezumat
 
 În această lecție actualizată, ai învățat cum să:
 
-- Construiești servere MCP utilizând transportul **stdio** (abordarea recomandată).
-- Înțelegi de ce transportul SSE a fost depreciat în favoarea stdio și Streamable HTTP.
-- Creezi instrumente care pot fi apelate de clienții MCP.
-- Depanezi serverul utilizând MCP Inspector.
-- Integrezi serverul stdio cu VS Code și Claude.
+- Construiești servere MCP folosind transportul curent **stdio** (metoda recomandată)
+- Înțelegi de ce transportul SSE a fost înlocuit cu stdio și Streamable HTTP
+- Creezi unelte care pot fi apelate de clienții MCP
+- Depanezi serverul folosind MCP Inspector
+- Integrezi serverul stdio cu VS Code și Claude
 
-Transportul stdio oferă o modalitate mai simplă, mai sigură și mai performantă de a construi servere MCP comparativ cu abordarea SSE depreciată. Este mecanismul de transport recomandat pentru majoritatea implementărilor de server MCP conform specificației din 2025-06-18.
+Transportul stdio oferă o modalitate mai simplă, mai sigură și mai performantă pentru construire servere MCP comparativ cu abordarea SSE depreciată. Este transportul recomandat pentru majoritatea implementărilor serverelor MCP începând cu specificația 2025-06-18.
 
 ### .NET
 
-1. Să creăm mai întâi câteva instrumente; pentru aceasta vom crea un fișier *Tools.cs* cu următorul conținut:
+1. Hai să creăm mai întâi niște unelte, pentru asta vom crea un fișier *Tools.cs* cu următorul conținut:
 
   ```csharp
   using System.ComponentModel;
@@ -487,18 +494,19 @@ Transportul stdio oferă o modalitate mai simplă, mai sigură și mai performan
   using ModelContextProtocol.Server;
   ```
 
+
 ## Exercițiu: Testarea serverului stdio
 
-Acum că ai construit serverul stdio, să-l testăm pentru a ne asigura că funcționează corect.
+Acum că ai construit serverul stdio, să îl testăm să vedem dacă funcționează corect.
 
-### Cerințe Prealabile
+### Precondiții
 
-1. Asigură-te că ai MCP Inspector instalat:
+1. Asigură-te că ai instalat MCP Inspector:
    ```bash
    npm install -g @modelcontextprotocol/inspector
    ```
 
-2. Codul serverului tău ar trebui să fie salvat (de exemplu, ca `server.py`).
+2. Codul serverului tău ar trebui salvat (de exemplu ca `server.py`)
 
 ### Testarea cu Inspectorul
 
@@ -507,85 +515,87 @@ Acum că ai construit serverul stdio, să-l testăm pentru a ne asigura că func
    npx @modelcontextprotocol/inspector python server.py
    ```
 
-2. **Deschide interfața web**: Inspectorul va deschide o fereastră de browser care afișează capabilitățile serverului tău.
+2. **Deschide interfața web**: Inspectorul va deschide o fereastră în browser care arată capabilitățile serverului tău.
 
-3. **Testează instrumentele**: 
-   - Încearcă instrumentul `get_greeting` cu diferite nume.
-   - Testează instrumentul `calculate_sum` cu diverse numere.
-   - Apelează instrumentul `get_server_info` pentru a vedea metadatele serverului.
+3. **Testează uneltele**:
+   - Încearcă unealta `get_greeting` cu nume diferite
+   - Testează unelta `calculate_sum` cu diverse numere
+   - Apelează unealta `get_server_info` pentru a vedea metadatele serverului
 
-4. **Monitorizează comunicarea**: Inspectorul afișează mesajele JSON-RPC schimbate între client și server.
+4. **Monitorizează comunicarea**: Inspectorul arată mesajele JSON-RPC care sunt schimbate între client și server.
 
 ### Ce ar trebui să vezi
 
 Când serverul tău pornește corect, ar trebui să vezi:
-- Capabilitățile serverului listate în Inspector.
-- Instrumentele disponibile pentru testare.
-- Schimburi de mesaje JSON-RPC reușite.
-- Răspunsurile instrumentelor afișate în interfață.
+- Capabilitățile serverului listate în Inspector
+- Unelte disponibile pentru testare
+- Mesaje JSON-RPC schimbate cu succes
+- Răspunsuri ale uneltelor afișate în interfață
 
-### Probleme comune și soluții
+### Probleme frecvente și soluții
 
 **Serverul nu pornește:**
-- Verifică dacă toate dependențele sunt instalate: `pip install mcp`.
-- Verifică sintaxa și indentarea Python.
-- Caută mesaje de eroare în consolă.
+- Verifică dacă toate dependențele sunt instalate: `pip install mcp`
+- Verifică sintaxa și indentarea Python
+- Caută mesaje de eroare în consolă
 
-**Instrumentele nu apar:**
-- Asigură-te că decoratori `@server.tool()` sunt prezenți.
-- Verifică dacă funcțiile instrumentelor sunt definite înainte de `main()`.
-- Asigură-te că serverul este configurat corect.
+**Uneltele nu apar:**
+- Asigură-te că decoratoarele `@server.tool()` sunt prezente
+- Verifică ca funcțiile uneltelor să fie definite înainte de `main()`
+- Asigură-te că serverul este configurat corect
 
-**Probleme de conexiune:**
-- Asigură-te că serverul utilizează corect transportul stdio.
-- Verifică dacă alte procese nu interferează.
-- Verifică sintaxa comenzii Inspectorului.
+**Probleme de conectare:**
+- Verifică că serverul folosește corect transportul stdio
+- Asigură-te că niciun alt proces nu interferează
+- Verifică sintaxa comenzii Inspectorului
 
 ## Temă
 
-Încearcă să extinzi serverul tău cu mai multe capabilități. Vezi [această pagină](https://api.chucknorris.io/) pentru a adăuga, de exemplu, un instrument care apelează o API. Tu decizi cum ar trebui să arate serverul. Distracție plăcută :)
+Încearcă să extinzi serverul cu mai multe capabilități. Vezi [această pagină](https://api.chucknorris.io/) pentru a adăuga, de exemplu, o unealtă care apelează un API. Tu decizi cum va arăta serverul. Distracție plăcută :)
 
 ## Soluție
 
-[Soluție](./solution/README.md) Iată o soluție posibilă cu cod funcțional.
+[Solution](./solution/README.md) Iată o posibilă soluție cu cod funcțional.
 
-## Concluzii Cheie
+## Puncte cheie
 
-Concluziile cheie din acest capitol sunt următoarele:
+Punctele cheie ale acestui capitol sunt următoarele:
 
-- Transportul stdio este mecanismul recomandat pentru serverele MCP locale.
-- Transportul stdio permite comunicarea fără probleme între serverele MCP și clienți utilizând fluxuri de intrare și ieșire standard.
-- Poți utiliza atât Inspectorul, cât și Visual Studio Code pentru a consuma servere stdio direct, făcând depanarea și integrarea simple.
+- Transportul stdio este mecanismul recomandat pentru servere MCP locale.
+- Transportul stdio permite comunicare neîntreruptă între serverele MCP și clienți folosind fluxurile standard de intrare și ieșire.
+- Poți folosi atât Inspectorul cât și Visual Studio Code pentru a consuma serverele stdio direct, ceea ce face depanarea și integrarea foarte simple.
 
-## Exemple 
+## Exemple
 
 - [Calculator Java](../samples/java/calculator/README.md)
 - [Calculator .Net](../../../../03-GettingStarted/samples/csharp)
 - [Calculator JavaScript](../samples/javascript/README.md)
 - [Calculator TypeScript](../samples/typescript/README.md)
-- [Calculator Python](../../../../03-GettingStarted/samples/python) 
+- [Calculator Python](../../../../03-GettingStarted/samples/python)
 
-## Resurse Suplimentare
+## Resurse suplimentare
 
 - [SSE](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events)
 
-## Ce Urmează
+## Ce urmează
 
-## Pași Următori
+## Pași următori
 
 Acum că ai învățat cum să construiești servere MCP cu transportul stdio, poți explora subiecte mai avansate:
 
-- **Următorul**: [HTTP Streaming cu MCP (Streamable HTTP)](../06-http-streaming/README.md) - Învață despre celălalt mecanism de transport acceptat pentru servere la distanță.
-- **Avansat**: [Cele mai bune practici de securitate MCP](../../02-Security/README.md) - Implementează securitatea în serverele MCP.
-- **Producție**: [Strategii de implementare](../09-deployment/README.md) - Implementează serverele tale pentru utilizare în producție.
+- **Următorul**: [HTTP Streaming cu MCP (Streamable HTTP)](../06-http-streaming/README.md) - Află despre celălalt mecanism de transport suportat pentru servere remote
+- **Avansat**: [Bune practici de securitate MCP](../../02-Security/README.md) - Implementează securitate în serverele tale MCP
+- **Producție**: [Strategii de implementare](../09-deployment/README.md) - Publică serverele pentru utilizare în producție
 
-## Resurse Suplimentare
+## Resurse suplimentare
 
-- [Specificația MCP 2025-06-18](https://spec.modelcontextprotocol.io/specification/) - Specificația oficială.
-- [Documentația MCP SDK](https://github.com/modelcontextprotocol/sdk) - Referințe SDK pentru toate limbile.
-- [Exemple Comunitare](../../06-CommunityContributions/README.md) - Mai multe exemple de servere din comunitate.
+- [Specificația MCP 2025-06-18](https://spec.modelcontextprotocol.io/specification/) - Specificația oficială
+- [Documentația MCP SDK](https://github.com/modelcontextprotocol/sdk) - Referințe SDK pentru toate limbajele
+- [Exemple comunitare](../../06-CommunityContributions/README.md) - Mai multe exemple de servere din comunitate
 
 ---
 
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Declinare de responsabilitate**:  
-Acest document a fost tradus folosind serviciul de traducere AI [Co-op Translator](https://github.com/Azure/co-op-translator). Deși ne străduim să asigurăm acuratețea, vă rugăm să fiți conștienți că traducerile automate pot conține erori sau inexactități. Documentul original în limba sa natală ar trebui considerat sursa autoritară. Pentru informații critice, se recomandă traducerea profesională realizată de un specialist uman. Nu ne asumăm responsabilitatea pentru eventualele neînțelegeri sau interpretări greșite care pot apărea din utilizarea acestei traduceri.
+Acest document a fost tradus folosind serviciul de traducere AI [Co-op Translator](https://github.com/Azure/co-op-translator). Deși ne străduim pentru acuratețe, vă rugăm să rețineți că traducerile automate pot conține erori sau inexactități. Documentul original, în limba sa nativă, trebuie considerat sursa autorizată. Pentru informații critice, se recomandă traducerea profesională realizată de un specialist uman. Nu ne asumăm responsabilitatea pentru eventualele neînțelegeri sau interpretări greșite care pot apărea în urma utilizării acestei traduceri.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
