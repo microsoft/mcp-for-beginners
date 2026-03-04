@@ -12,22 +12,22 @@
 
 [![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
 
-Bu kaynakları kullanmaya başlamak için aşağıdaki adımları izleyin:
+Başlamak için bu kaynakları kullanma adımlarını takip edin:
 1. **Depoyu Forklayın**: Tıklayın [![GitHub forks](https://img.shields.io/github/forks/microsoft/mcp-for-beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/mcp-for-beginners/fork)
 2. **Depoyu Klonlayın**:   `git clone https://github.com/microsoft/mcp-for-beginners.git`
-3. **Katılın** [![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
+3. **Katılın:** [![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
 
 
-### 🌐 Çoklu Dil Desteği
+### 🌐 Çok Dilli Destek
 
-#### GitHub Action ile Desteklenmektedir (Otomatik ve Her Zaman Güncel)
+#### GitHub Actions ile Destekleniyor (Otomatik & Her Zaman Güncel)
 
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE START -->
-[Arabic](../ar/README.md) | [Bengali](../bn/README.md) | [Bulgarian](../bg/README.md) | [Burmese (Myanmar)](../my/README.md) | [Chinese (Simplified)](../zh-CN/README.md) | [Chinese (Traditional, Hong Kong)](../zh-HK/README.md) | [Chinese (Traditional, Macau)](../zh-MO/README.md) | [Chinese (Traditional, Taiwan)](../zh-TW/README.md) | [Croatian](../hr/README.md) | [Czech](../cs/README.md) | [Danish](../da/README.md) | [Dutch](../nl/README.md) | [Estonian](../et/README.md) | [Finnish](../fi/README.md) | [French](../fr/README.md) | [German](../de/README.md) | [Greek](../el/README.md) | [Hebrew](../he/README.md) | [Hindi](../hi/README.md) | [Hungarian](../hu/README.md) | [Indonesian](../id/README.md) | [Italian](../it/README.md) | [Japanese](../ja/README.md) | [Kannada](../kn/README.md) | [Korean](../ko/README.md) | [Lithuanian](../lt/README.md) | [Malay](../ms/README.md) | [Malayalam](../ml/README.md) | [Marathi](../mr/README.md) | [Nepali](../ne/README.md) | [Nigerian Pidgin](../pcm/README.md) | [Norwegian](../no/README.md) | [Persian (Farsi)](../fa/README.md) | [Polish](../pl/README.md) | [Portuguese (Brazil)](../pt-BR/README.md) | [Portuguese (Portugal)](../pt-PT/README.md) | [Punjabi (Gurmukhi)](../pa/README.md) | [Romanian](../ro/README.md) | [Russian](../ru/README.md) | [Serbian (Cyrillic)](../sr/README.md) | [Slovak](../sk/README.md) | [Slovenian](../sl/README.md) | [Spanish](../es/README.md) | [Swahili](../sw/README.md) | [Swedish](../sv/README.md) | [Tagalog (Filipino)](../tl/README.md) | [Tamil](../ta/README.md) | [Telugu](../te/README.md) | [Thai](../th/README.md) | [Turkish](./README.md) | [Ukrainian](../uk/README.md) | [Urdu](../ur/README.md) | [Vietnamese](../vi/README.md)
+[Arapça](../ar/README.md) | [Bengalce](../bn/README.md) | [Bulgarca](../bg/README.md) | [Birmence (Myanmar)](../my/README.md) | [Çince (Basitleştirilmiş)](../zh-CN/README.md) | [Çince (Geleneksel, Hong Kong)](../zh-HK/README.md) | [Çince (Geleneksel, Makao)](../zh-MO/README.md) | [Çince (Geleneksel, Tayvan)](../zh-TW/README.md) | [Hırvatça](../hr/README.md) | [Çekçe](../cs/README.md) | [Danca](../da/README.md) | [Flemenkçe](../nl/README.md) | [Estonca](../et/README.md) | [Fince](../fi/README.md) | [Fransızca](../fr/README.md) | [Almanca](../de/README.md) | [Yunanca](../el/README.md) | [İbranice](../he/README.md) | [Hintçe](../hi/README.md) | [Macarca](../hu/README.md) | [Endonezce](../id/README.md) | [İtalyanca](../it/README.md) | [Japonca](../ja/README.md) | [Kannada](../kn/README.md) | [Korece](../ko/README.md) | [Litvanca](../lt/README.md) | [Malayca](../ms/README.md) | [Malayalamca](../ml/README.md) | [Marathice](../mr/README.md) | [Nepalce](../ne/README.md) | [Nijerya Pidgin](../pcm/README.md) | [Norveççe](../no/README.md) | [Farsça (Persçe)](../fa/README.md) | [Lehçe](../pl/README.md) | [Portekizce (Brezilya)](../pt-BR/README.md) | [Portekizce (Portekiz)](../pt-PT/README.md) | [Pencapça (Gurmukhi)](../pa/README.md) | [Rumence](../ro/README.md) | [Rusça](../ru/README.md) | [Sırpça (Kiril)](../sr/README.md) | [Slovakça](../sk/README.md) | [Slovence](../sl/README.md) | [İspanyolca](../es/README.md) | [Svahili](../sw/README.md) | [İsveççe](../sv/README.md) | [Tagalogca (Filipinler)](../tl/README.md) | [Tamilce](../ta/README.md) | [Telugu](../te/README.md) | [Tayca](../th/README.md) | [Türkçe](./README.md) | [Ukraynaca](../uk/README.md) | [Urduca](../ur/README.md) | [Vietnamca](../vi/README.md)
 
-> **Yerel olarak Klonlamayı mı Tercih Ediyorsunuz?**
+> **Yerelde Klonlamayı mı Tercih Ediyorsunuz?**
 >
-> Bu depo, indirme boyutunu önemli ölçüde artıran 50'den fazla dil çevirisini içerir. Çeviri olmadan klonlamak için, sparse checkout kullanın:
+> Bu depo 50'den fazla dil çevirisi içerir, bu da indirme boyutunu önemli ölçüde artırır. Çeviriler olmadan klonlamak için sparse checkout kullanın:
 >
 > **Bash / macOS / Linux:**
 > ```bash
@@ -43,180 +43,182 @@ Bu kaynakları kullanmaya başlamak için aşağıdaki adımları izleyin:
 > git sparse-checkout set --no-cone "/*" "!translations" "!translated_images"
 > ```
 >
-> Bu, kursu tamamlamak için ihtiyacınız olan her şeyi çok daha hızlı bir indirme ile sağlar.
+> Bu, kursu tamamlamak için ihtiyacınız olan her şeyi çok daha hızlı bir indirme ile size sağlar.
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE END -->
 
-# 🚀 Başlangıç Seviyesi için Model Context Protocol (MCP) Müfredatı
+# 🚀 Model Context Protocol (MCP) Yeni Başlayanlar İçin Müfredat
 
-## **MCP'yi C#, Java, JavaScript, Rust, Python ve TypeScript ile Pratik Kod Örnekleriyle Öğrenin**
+## **C#, Java, JavaScript, Rust, Python ve TypeScript ile Uygulamalı Kod Örnekleriyle MCP Öğrenin**
 
-## 🧠 Model Context Protocol Müfredatı Genel Bakışı
-Model Context Protocol yolculuğunuza hoş geldiniz! AI uygulamalarının farklı araçlar ve servislerle nasıl iletişim kurduğunu hiç merak ettiyseniz, geliştiricilerin akıllı sistemler yaratma şekillerini dönüştüren zarif çözümü keşfetmek üzeresiniz.
+## 🧠 Model Context Protocol Müfredatı Genel Bakış  
+Model Context Protocol yolculuğunuza hoş geldiniz! AI uygulamalarının farklı araçlar ve servislerle nasıl iletişim kurduğunu hiç merak ettiyseniz, geliştiricilerin akıllı sistemler oluşturma şeklini değiştiren zarif çözümü keşfetmek üzeresiniz.
 
-MCP'yi, AI uygulamaları için evrensel bir çevirmen olarak düşünün - tıpkı USB portlarının bilgisayarınıza herhangi bir cihaz bağlamanızı sağlaması gibi, MCP de AI modellerinin herhangi bir araca veya servise standart bir şekilde bağlanmasını sağlar. İster ilk sohbet botunuzu oluşturuyor olun, ister karmaşık AI iş akışlarıyla çalışıyor olun, MCP'yi anlamak size daha yetenekli ve esnek uygulamalar yaratma gücü verecektir.
+MCP’yi AI uygulamaları için evrensel bir çevirmen olarak düşünebilirsiniz – USB portlarının bilgisayarınıza herhangi bir cihaz bağlamanıza izin vermesi gibi, MCP de AI modellerinin herhangi bir araca veya servise standart bir şekilde bağlanmasını sağlar. İlk sohbet botunuzu oluşturuyor olun ya da karmaşık AI iş akışları üzerinde çalışıyor olun, MCP’yi anlamak size daha yetenekli ve esnek uygulamalar yaratma gücü verecek.
 
-Bu müfredat, öğrenme yolculuğunuz için sabır ve özenle tasarlandı. Zaten bildiğiniz basit kavramlarla başlayacak ve en sevdiğiniz programlama dilinde uygulamalı pratikle uzmanlığınızı kademeli olarak artıracağız. Her adımda net açıklamalar, pratik örnekler ve bolca teşvik bulacaksınız.
+Bu müfredat öğrenme yolculuğunuz için sabır ve özenle hazırlandı. Zaten bildiğiniz basit kavramlarla başlayacak ve favori programlama dilinizde uygulamalı pratiklerle uzmanlığınızı kademeli olarak artıracağız. Her adımda net açıklamalar, pratik örnekler ve bolca teşvik bulacaksınız.
 
-Bu yolculuğu tamamladığınızda, kendi MCP sunucularınızı oluşturma, popüler AI platformlarıyla entegrasyon sağlama ve bu teknolojinin AI geliştirme geleceğini nasıl şekillendirdiğini anlama konusunda kendinize güveniniz olacak. Haydi, bu heyecan verici maceraya birlikte başlayalım!
+Bu yolculuğu tamamladığınızda, kendi MCP sunucularınızı oluşturma, popüler AI platformlarıyla entegre etme ve bu teknolojinin AI geliştirme geleceğini nasıl şekillendirdiğini anlama güvenine sahip olacaksınız. Hadi bu heyecan verici maceraya birlikte başlayalım!
 
-### Resmi Dokümantasyon ve Teknik Şartnameler
+### Resmi Dokümantasyon ve Spesifikasyonlar
 
-Bu müfredat **MCP Specification 2025-11-25** (en son kararlı sürüm) ile uyumludur. MCP şartnamesi, net protokol sürüm takibini sağlamak için tarih tabanlı sürümleme (YYYY-AA-GG formatı) kullanır.
+Bu müfredat **MCP Spesifikasyonu 2025-11-25** (en son stabil sürüm) ile uyumludur. MCP spesifikasyonu, net protokol sürümü takibi sağlamak için tarih tabanlı sürümleme (YYYY-AA-GG formatı) kullanır.
 
-Bu kaynaklar anlayışınız arttıkça daha değerli hale gelir, ancak her şeyi hemen okuma baskısı hissetmeyin. İlginizi çeken alanlarla başlayın!
-- 📘 [MCP Dokümantasyonu](https://modelcontextprotocol.io/) – Adım adım öğreticiler ve kullanıcı rehberleri için başvuru kaynağınız. Başlangıç seviyesindeki kullanıcılar düşünülerek yazılmıştır, kendi hızınızda takip edebileceğiniz net örnekler sunar.
-- 📜 [MCP Şartnamesi](https://modelcontextprotocol.io/specification/2025-11-25) – Bunu kapsamlı bir başvuru kılavuzu olarak düşünün. Müfredatı ilerledikçe, belirli detayları görmek ve ileri özellikleri keşfetmek için buraya döneceksiniz.
-- 📜 [MCP Şartname Sürümleme](https://modelcontextprotocol.io/specification/versioning) – Protokol sürüm geçmişi ve MCP'nin tarih tabanlı sürümleme (YYYY-AA-GG formatı) nasıl kullandığı hakkında bilgi içerir.
-- 🧑‍💻 [MCP GitHub Deposu](https://github.com/modelcontextprotocol) – Burada çoklu programlama dilinde SDK'lar, araçlar ve kod örnekleri bulacaksınız. Pratik örnekler ve hazır bileşenler hazine sandığı gibidir.
-- 🌐 [MCP Topluluğu](https://github.com/orgs/modelcontextprotocol/discussions) – MCP hakkında tartışmalar için diğer öğrenenler ve deneyimli geliştiricilerle katılın. Soruların hoş karşılandığı ve bilginin özgürce paylaşıldığı destekleyici bir topluluktur.
+Bu kaynaklar anladıkça daha değerli hale gelir ancak her şeyi hemen okuma baskısı hissetmeyin. En çok ilginizi çeken alanlardan başlayın!
+- 📘 [MCP Dokümantasyonu](https://modelcontextprotocol.io/) – Adım adım öğreticiler ve kullanıcı kılavuzları için başvuracağınız kaynaktır. Dokümantasyon yeni başlayanlar düşünülerek yazılmıştır ve kendi hızınızda takip edebileceğiniz net örnekler sunar.
+- 📜 [MCP Spesifikasyonu](https://modelcontextprotocol.io/specification/2025-11-25) – Bunu kapsamlı bir referans kılavuzu olarak düşünün. Müfredat ilerledikçe, belirli detayları kontrol etmek ve gelişmiş özellikleri keşfetmek için buraya geri döneceksiniz.
+- 📜 [MCP Spesifikasyon Sürümleme](https://modelcontextprotocol.io/specification/versioning) – Protokol sürüm geçmişi ve MCP’nin tarih tabanlı sürümlemeyi nasıl kullandığı hakkında bilgi içerir.
+- 🧑‍💻 [MCP GitHub Deposu](https://github.com/modelcontextprotocol) – Burada SDK’lar, araçlar ve birden çok programlama dilinde kod örnekleri bulabilirsiniz. Pratik örnekler ve kullanıma hazır bileşenler hazinesi gibidir.
+- 🌐 [MCP Topluluğu](https://github.com/orgs/modelcontextprotocol/discussions) – MCP hakkında diğer öğrenenler ve deneyimli geliştiricilerle tartışmalara katılın. Soruların hoş karşılandığı ve bilginin özgürce paylaşıldığı destekleyici bir topluluktur.
   
 ## Öğrenme Hedefleri
 
-Bu müfredatın sonunda, yeni yeteneklerinizle kendinizi emin ve heyecanlı hissedeceksiniz. İşte ulaşacaklarınız:
+Bu müfredatı tamamladığınızda yeni becerilerinizle kendinize güvenecek ve heyecan duyacaksınız. İşte ulaşacaklarınız:
 
-• **MCP temellerini anlayın**: Model Context Protocol'ün ne olduğunu ve neden AI uygulamalarının birlikte çalışma şeklini devrimleştirdiğini, anlamlı benzetmeler ve örneklerle kavrayacaksınız.
+• **MCP temellerini anlayın**: Model Context Protocol’ün ne olduğunu ve AI uygulamalarının birlikte nasıl çalıştığını anlamak, konuyu açıklayan benzetmeler ve örneklerle kavrayacaksınız.
 
-• **İlk MCP sunucunuzu oluşturun**: Tercih ettiğiniz programlama dilinde çalışan bir MCP sunucusu yaratacaksınız, basit örneklerle başlayıp becerilerinizi adım adım geliştireceksiniz.
+• **İlk MCP sunucunuzu oluşturun**: Tercih ettiğiniz programlama dilinde çalışan bir MCP sunucusu oluşturacak, basit örneklerle başlayıp adım adım becerilerinizi geliştireceksiniz.
 
-• **AI modellerini gerçek araçlara bağlayın**: AI modelleri ile gerçek servisler arasındaki boşluğu nasıl köprüleyeceğinizi öğrenecek, uygulamalarınıza güçlü yeni yetenekler kazandıracaksınız.
+• **AI modellerini gerçek araçlara bağlayın**: AI modelleri ile gerçek servisler arasında köprü kurmayı öğrenecek, uygulamalarınıza güçlü yeni yetenekler kazandıracaksınız.
 
-• **Güvenlik en iyi uygulamalarını uygulayın**: MCP uygulamalarınızı güvenli tutmak için gerekli bilgileri anlayacak, hem uygulamalarınızı hem kullanıcılarınızı koruyacaksınız.
+• **Güvenlik en iyi uygulamalarını uygulayın**: MCP uygulamalarınızı ve kullanıcılarınızı korumak için yerleşik güvenlik özelliklerini ve en iyi yöntemleri öğreneceksiniz.
 
-• **Güvenle dağıtım yapın**: MCP projelerinizi geliştirmeden üretime taşımanın gerçek dünyada çalışan pratik dağıtım stratejilerini bileceksiniz.
+• **Güvenle dağıtım yapın**: MCP projelerinizi geliştirmeden üretime taşımayı, gerçek dünyada işe yarayan pratik dağıtım stratejilerini nasıl kullanacağınızı bileceksiniz.
 
-• **MCP topluluğuna katılın**: AI uygulama geliştirme geleceğini şekillendiren büyüyen geliştirici topluluğunun bir parçası olacaksınız. 
+• **MCP topluluğuna katılın**: Yapay zeka uygulama geliştirme geleceğini şekillendiren büyüyen geliştirici topluluğunun bir parçası olacaksınız.
 
-## Temel Arka Plan
+## Temel Arka Plan Bilgisi
 
-MCP detaylarına girmeden önce, temel bazı kavramlarda rahat hissetmenizi sağlayalım. Uzman olmasanız bile endişelenmeyin - ihtiyacınız olan her şeyi adım adım açıklayacağız!
+MCP detaylarına geçmeden önce, bazı temel kavramlarla rahat ettiğinizden emin olalım. Bu alanlarda uzman olmasanız da endişelenmeyin – öğrenmeniz gereken her şeyi adım adım açıklayacağız!
 
 ### Protokolleri Anlamak (Temel)
 
-Bir protokolü, bir konuşma kuralı gibi düşünün. Bir arkadaşınızı aradığınızda cevaplarken "merhaba" denir, sırayla konuşulur ve iş bittiğinde "hoşça kal" denir. Bilgisayar programlarının da etkili iletişim kurabilmek için benzer kurallara ihtiyacı vardır.
+Protokolü bir konuşma kuralları gibi düşünün. Bir arkadaşınızı aradığınızda cevap verirken “merhaba” dersiniz, sırayla konuşursunuz ve işiniz bittiğinde “hoşça kal” dersiniz. Bilgisayar programlarının da etkili iletişim kurabilmesi için benzer kurallara ihtiyacı vardır.
 
-MCP bir protokoldür - AI modelleri ile araçlar ve servisler arasında üretken "konuşmalar" yapmalarını sağlayan üzerinde anlaşılmış kurallar bütünüdür. İnsan iletişimini kolaylaştıran iletişim kuralları gibi, MCP de AI uygulamalarının iletişimini çok daha güvenilir ve güçlü kılar.
+MCP, AI modelleri ve uygulamaların araçlar ve servislerle verimli “konuşmalar” yapmasını sağlayan üzerinde anlaşılan kurallar kümesidir. İnsan iletişiminde konuşma kuralları iletişimi daha akıcı yaptığı gibi, MCP de AI uygulaması iletişimini çok daha güvenilir ve güçlü yapar.
 
 ### İstemci-Sunucu İlişkileri (Programların Birlikte Çalışması)
 
-Her gün istemci-sunucu ilişkilerini kullanıyorsunuz! Bir web tarayıcısı (istemci) ile bir web sitesini ziyaret ettiğinizde, sayfa içeriğini gönderen bir web sunucusuna bağlanırsınız. Tarayıcı bilgiyi nasıl isteyeceğini bilir, sunucu nasıl yanıt vereceğini.
+Günlük olarak istemci-sunucu ilişkilerini zaten kullanıyorsunuz! Bir web tarayıcısı (istemci) ile bir web sitesini ziyaret ederken, size sayfa içeriğini gönderen web sunucusuna bağlanırsınız. Tarayıcı nasıl bilgi isteyeceğini bilir, sunucu nasıl cevap vereceğini.
 
-MCP’de benzer bir ilişki vardır: AI modelleri bilgi veya aksiyon talep eden istemciler, MCP sunucuları ise bu yetenekleri sunan taraflardır. Bu, AI’nin belirli görevleri yerine getirmesi için sorabileceği yardımcı bir asistan (sunucu) gibidir.
+MCP’de de benzer ilişki vardır: AI modelleri bilgi veya işlem isteyen istemciler, MCP sunucuları ise bu yetenekleri sağlayan taraf olarak görev yapar. AI’nın belirli görevleri gerçekleştirmesi için yardım eden bir asistan (sunucu) gibidir.
 
-### Standardizasyon Neden Önemlidir (İşbirliği Sağlamak)
+### Standardizasyonun Önemi (Birlikte Çalışabilirlik)
 
-Her araba üreticisi farklı şekillerde benzin pompası kullansa - her araba için farklı bir adaptör gerekirdi! Standardizasyon, işlerin sorunsuz çalışabilmesi için ortak yaklaşımlarda anlaşmak demektir.
+Her araba üreticisinin farklı şekle sahip benzin pompası kullandığını hayal edin – her araba için farklı bir adaptöre ihtiyacınız olur! Standardizasyon, ortak yaklaşımlar üzerinde anlaşarak her şeyin sorunsuz çalışmasını sağlar.
 
-MCP AI uygulamaları için bu standardizasyonu sağlar. Her AI modelinin her araç için özel kod yazması yerine, MCP ortak bir iletişim yolu oluşturur. Bu sayede geliştiriciler araçları bir kere oluşturup birçok farklı AI sistemi ile çalışmasını sağlar.
+MCP, AI uygulamaları için bu standardizasyona olanak tanır. Her AI modelinin her araca özel kod yazması yerine, MCP onların evrensel bir şekilde iletişim kurmasını sağlar. Bu sayede geliştiriciler araçları bir kez yapar ve birçok farklı AI sistemi ile çalıştırabilir.
 
-## 🧭 Öğrenme Yolunuzun Genel Bakışı
+## 🧭 Öğrenme Yolunuzun Genel Görünümü
 
-MCP yolculuğunuz, kendinize güveninizi ve becerilerinizi kademeli olarak inşa edecek şekilde dikkatle yapılandırılmıştır. Her aşama yeni kavramlar tanıtırken edinilenleri pekiştirir.
+MCP yolculuğunuz, kendinize güveninizi ve becerilerinizi kademeli olarak geliştirmek üzere özenle yapılandırıldı. Her aşamada yeni kavramlar tanıtılırken, daha önce öğrendikleriniz pekiştirilir.
 
-### 🌱 Temel Aşama: Temelleri Anlamak (Modüller 0-2)
+### 🌱 Temel Dönem: Temelleri Anlamak (Modüller 0-2)
 
-Macaranızın başlangıcı burası! MCP kavramlarını tanıtan tanıdık benzetmeler ve basit örneklerle başlayacağız. MCP’nin ne olduğunu, neden var olduğunu ve AI geliştirme dünyasındaki yerini anlayacaksınız.
+Macera burada başlıyor! Tanıdık benzetmeler ve basit örneklerle MCP kavramlarını tanıtacağız. MCP’nin ne olduğunu, neden var olduğunu ve AI geliştirme dünyasındaki yerini anlayacaksınız.
 
-• **Modül 0 - MCP’ye Giriş**: MCP’nin ne olduğu ve modern AI uygulamaları için neden önemli olduğu üzerine keşfe çıkacağız. MCP’nin gerçek dünya örneklerini görecek ve geliştiricilerin sıkça karşılaştığı sorunları nasıl çözdüğünü anlayacaksınız.
+• **Modül 0 - MCP’ye Giriş**: MCP’nin ne olduğunu ve modern AI uygulamaları için neden önemli olduğunu keşfedeceğiz. MCP’nin gerçek hayattaki örneklerini görecek ve geliştiricilerin karşılaştığı yaygın sorunları nasıl çözdüğünü anlayacaksınız.
 
-• **Modül 1 - Temel Kavramların Açıklaması**: Burada MCP’nin temel yapı taşlarını öğreneceksiniz. Kavramları daha doğal ve anlaşılır kılmak için çok sayıda benzetme ve görsel örnek kullanacağız.
+• **Modül 1 - Temel Kavramların Açıklanması**: Burada MCP’nin temel yapı taşlarını öğreneceksiniz. Bu kavramların sizin için doğal ve anlaşılır olması için çok sayıda benzetme ve görsel örnek kullanacağız.
 
-• **Modül 2 - MCP’de Güvenlik**: Güvenlik gözünüzü korkutmasın, MCP’nin yerleşik güvenlik özelliklerini göstereceğiz ve uygulamalarınızı baştan koruyacak en iyi uygulamaları öğreteceğiz.
+• **Modül 2 - MCP’de Güvenlik**: Güvenlik gözünüzde daha karmaşık görünebilir, ancak MCP’nin yerleşik güvenlik özellikleri olduğunu göstereceğiz ve uygulamalarınızı baştan itibaren koruyan en iyi uygulamaları öğreteceğiz.
 
-### 🔨 Oluşturma Aşaması: İlk Uygulamalarınızı Oluşturmak (Modül 3)
+### 🔨 İnşa Etme Dönemi: İlk Uygulamalarınızı Oluşturma (Modül 3)
 
-Artık gerçek eğlence başlıyor! Gerçek MCP sunucuları ve istemcileri oluşturma konusunda uygulamalı deneyim kazanacaksınız. Endişelenmeyin - basit başlayacağız ve her adımda sizi yönlendireceğiz.
-Bu modül, tercih ettiğiniz programlama dilinde pratik yapmanızı sağlayan birden çok uygulamalı kılavuz içerir. İlk sunucunuzu oluşturacak, ona bağlanmak için bir istemci geliştirecek ve hatta VS Code gibi popüler geliştirme araçlarıyla entegrasyon yapacaksınız.
+Artık gerçek eğlence başlıyor! Gerçek MCP sunucuları ve istemcileri oluştururken uygulamalı deneyim kazanacaksınız. Endişelenmeyin – basitten başlayacağız ve her adımda rehberlik edeceğiz.
+Bu modül, tercih ettiğiniz programlama dilinde pratik yapmanızı sağlayan birden çok uygulamalı kılavuz içerir. İlk sunucunuzu oluşturacak, ona bağlanacak bir istemci geliştirecek ve hatta VS Code gibi popüler geliştirme araçlarıyla entegrasyon yapacaksınız.
 
-Her kılavuz, tam kod örnekleri, sorun giderme ipuçları ve belirli tasarım tercihlerini neden yaptığımızın açıklamalarını içerir. Bu aşamanın sonunda, gurur duyabileceğiniz çalışan MCP uygulamalarına sahip olacaksınız!
+Her kılavuzda eksiksiz kod örnekleri, sorun giderme ipuçları ve belirli tasarım seçimlerini neden yaptığımızın açıklamaları bulunur. Bu aşamanın sonunda, gurur duyabileceğiniz çalışan MCP uygulamalarına sahip olacaksınız!
 
-### 🚀 Gelişim Aşaması: İleri Düzey Kavramlar ve Gerçek Dünya Uygulamaları (Modüller 4-5)
+### 🚀 Büyüme Aşaması: İleri Düzey Kavramlar ve Gerçek Dünya Uygulamaları (Modüller 4-5)
 
-Temelleri öğrendikten sonra, daha gelişmiş MCP özelliklerini keşfetmeye hazırsınız. Pratik uygulama stratejilerini, hata ayıklama tekniklerini ve çok modlu yapay zeka entegrasyonu gibi ileri konuları ele alacağız.
+Temelleri öğrendikten sonra, daha gelişmiş MCP özelliklerini keşfetmeye hazırsınız. Pratik uygulama stratejilerini, hata ayıklama tekniklerini ve çok modlu AI entegrasyonu gibi ileri konuları ele alacağız.
 
-Ayrıca MCP uygulamalarınızı üretim kullanımı için nasıl ölçeklendireceğinizi ve Azure gibi bulut platformlarıyla entegrasyon yapmayı öğreneceksiniz. Bu modüller, gerçek dünya gereksinimlerini karşılayabilecek MCP çözümleri oluşturmanız için sizi hazırlar.
+Ayrıca MCP uygulamalarınızı üretim kullanımı için nasıl ölçeklendireceğinizi ve Azure gibi bulut platformlarıyla nasıl entegre edeceğinizi öğreneceksiniz. Bu modüller, gerçek dünya taleplerini karşılayabilecek MCP çözümleri oluşturmanız için sizi hazırlar.
 
 ### 🌟 Ustalık Aşaması: Topluluk ve Uzmanlaşma (Modüller 6-11)
 
-Son aşama, MCP topluluğuna katılmaya ve ilginizi çeken alanlarda uzmanlaşmaya odaklanır. Açık kaynak MCP projelerine nasıl katkıda bulunacağınızı, gelişmiş kimlik doğrulama desenlerini uygulamayı ve kapsamlı veri tabanı-entegre çözümler inşa etmeyi öğreneceksiniz.
+Son aşama, MCP topluluğuna katılmaya ve sizi en çok ilgilendiren alanlarda uzmanlaşmaya odaklanır. Açık kaynak MCP projelerine nasıl katkıda bulunacağınızı, gelişmiş kimlik doğrulama desenlerini nasıl uygulayacağınızı ve kapsamlı veritabanı entegre çözümlerini nasıl oluşturacağınızı öğreneceksiniz.
 
-Modül 11 özel bir yere sahiptir - PostgreSQL entegrasyonu ile üretime hazır MCP sunucuları oluşturmayı öğreten 13 laboratuvarlı kapsamlı bir uygulamalı öğrenme yolu. Öğrendiklerinizi bir araya getiren adeta bir mezuniyet projesi gibidir!
+Modül 11 özel bir önem taşır - PostgreSQL entegrasyonlu, üretime hazır MCP sunucuları oluşturmayı öğreten tamamı 13 laboratuvardan oluşan uygulamalı bir öğrenme yoludur. Öğrendiklerinizin tamamını bir araya getiren bir bitirme projesi gibidir!
 
 ### 📚 Tam Müfredat Yapısı
 
 | Modül | Konu | Açıklama | Bağlantı |
 |--------|-------|-------------|------|
-| **Modül 0-3: Temeller** | | | |
-| 00 | MCP'ye Giriş | Model Context Protocol ve AI boru hatlarındaki önemi genel bakış | [Daha fazla oku](./00-Introduction/README.md) |
-| 01 | Temel Kavramlar Açıklaması | MCP temel kavramlarının derinlemesine keşfi | [Daha fazla oku](./01-CoreConcepts/README.md) |
-| 02 | MCP’de Güvenlik | Güvenlik tehditleri ve en iyi uygulamalar | [Daha fazla oku](./02-Security/README.md) |
-| 03 | MCP ile Başlarken | Ortam kurulumu, temel sunucular/istemciler, entegrasyon | [Daha fazla oku](./03-GettingStarted/README.md) |
+| **Modül 0-3: Temel Bilgiler** | | | |
+| 00 | MCP'ye Giriş | Model Context Protocol'ün genel bakışı ve AI boru hatlarındaki önemi | [Devamını oku](./00-Introduction/README.md) |
+| 01 | Temel Kavramların Açıklaması | MCP temel kavramlarının derinlemesine incelenmesi | [Devamını oku](./01-CoreConcepts/README.md) |
+| 02 | MCP'de Güvenlik | Güvenlik tehditleri ve en iyi uygulamalar | [Devamını oku](./02-Security/README.md) |
+| 03 | MCP ile Başlarken | Ortam kurulumu, temel sunucu/istemciler, entegrasyon | [Devamını oku](./03-GettingStarted/README.md) |
 | **Modül 3: İlk Sunucu ve İstemcinizi Oluşturma** | | | |
 | 3.1 | İlk Sunucu | İlk MCP sunucunuzu oluşturun | [Kılavuz](./03-GettingStarted/01-first-server/README.md) |
 | 3.2 | İlk İstemci | Temel bir MCP istemcisi geliştirin | [Kılavuz](./03-GettingStarted/02-client/README.md) |
 | 3.3 | LLM ile İstemci | Büyük dil modelleri entegrasyonu | [Kılavuz](./03-GettingStarted/03-llm-client/README.md) |
-| 3.4 | VS Code Entegrasyonu | MCP sunucularını VS Code’da kullanın | [Kılavuz](./03-GettingStarted/04-vscode/README.md) |
-| 3.5 | stdio Sunucu | stdio taşıma kullanarak sunucular oluşturun | [Kılavuz](./03-GettingStarted/05-stdio-server/README.md) |
-| 3.6 | HTTP Akışı | MCP’de HTTP akışını uygulayın | [Kılavuz](./03-GettingStarted/06-http-streaming/README.md) |
-| 3.7 | AI Araç Takımı | AI Araç Takımını MCP ile kullanın | [Kılavuz](./03-GettingStarted/07-aitk/README.md) |
+| 3.4 | VS Code Entegrasyonu | MCP sunucularını VS Code'da kullanma | [Kılavuz](./03-GettingStarted/04-vscode/README.md) |
+| 3.5 | stdio Sunucusu | stdio taşıma ile sunucular oluşturun | [Kılavuz](./03-GettingStarted/05-stdio-server/README.md) |
+| 3.6 | HTTP Akışı | MCP'de HTTP akışı uygulayın | [Kılavuz](./03-GettingStarted/06-http-streaming/README.md) |
+| 3.7 | AI Araç Seti | MCP ile AI Araç Seti kullanımı | [Kılavuz](./03-GettingStarted/07-aitk/README.md) |
 | 3.8 | Test Etme | MCP sunucu uygulamanızı test edin | [Kılavuz](./03-GettingStarted/08-testing/README.md) |
-| 3.9 | Dağıtım | MCP sunucularını üretime dağıtın | [Kılavuz](./03-GettingStarted/09-deployment/README.md) |
-| 3.10 | Gelişmiş sunucu kullanımı | Gelişmiş özellik kullanımı ve iyileştirilmiş mimari için gelişmiş sunucular kullanın | [Kılavuz](./03-GettingStarted/10-advanced/README.md) |
-| 3.11 | Basit kimlik doğrulama | Başlangıçtan itibaren kimlik doğrulamayı ve RBAC’i gösteren bir bölüm | [Kılavuz](./03-GettingStarted/11-simple-auth/README.md) |
-| 3.12 | MCP Hostları | Claude Desktop, Cursor, Cline ve diğer MCP hostlarını yapılandırma | [Kılavuz](./03-GettingStarted/12-mcp-hosts/README.md) |
-| 3.13 | MCP Denetleyici | MCP sunucularını Inspector aracı ile hata ayıklama ve test etme | [Kılavuz](./03-GettingStarted/13-mcp-inspector/README.md) |
-| 3.14 | Örnekleme | İstemci ile işbirliği yapmak için örnekleme kullanımı | [Kılavuz](./03-GettingStarted/14-sampling/README.md) |
+| 3.9 | Yayınlama | MCP sunucularını üretime yayınlayın | [Kılavuz](./03-GettingStarted/09-deployment/README.md) |
+| 3.10 | İleri Düzey Sunucu Kullanımı | Gelişmiş özellik kullanımı ve iyileştirilmiş mimari için gelişmiş sunucular kullanın | [Kılavuz](./03-GettingStarted/10-advanced/README.md) |
+| 3.11 | Basit Kimlik Doğrulama | Başlangıçtan itibaren kimlik doğrulamayı ve RBAC'i gösteren bir bölüm | [Kılavuz](./03-GettingStarted/11-simple-auth/README.md) |
+| 3.12 | MCP Hostları | Claude Desktop, Cursor, Cline ve diğer MCP hostlarını yapılandırın | [Kılavuz](./03-GettingStarted/12-mcp-hosts/README.md) |
+| 3.13 | MCP Denetleyici | Inspector aracı ile MCP sunucularını hata ayıklayın ve test edin | [Kılavuz](./03-GettingStarted/13-mcp-inspector/README.md) |
+| 3.14 | Örnekleme | İstemci ile işbirliği yapmak için örnekleme kullanın | [Kılavuz](./03-GettingStarted/14-sampling/README.md) |
+| 3.15 | MCP Uygulamaları | MCP Uygulamaları oluşturun | [Kılavuz](./03-GettingStarted/15-mcp-apps/README.md) |
+
 | **Modül 4-5: Pratik & İleri Düzey** | | | |
-| 04 | Pratik Uygulama | SDK'lar, hata ayıklama, test, yeniden kullanılabilir istem şablonları | [Daha fazla oku](./04-PracticalImplementation/README.md) |
-| 4.1 | Sayfalama | Büyük sonuç kümelerini imleç tabanlı sayfalama ile işleyin | [Kılavuz](./04-PracticalImplementation/pagination/README.md) |
-| 05 | MCP’de İleri Konular | Çok modlu yapay zeka, ölçeklendirme, kurumsal kullanım | [Daha fazla oku](./05-AdvancedTopics/README.md) |
-| 5.1 | Azure Entegrasyonu | MCP’nin Azure ile entegrasyonu | [Kılavuz](./05-AdvancedTopics/mcp-integration/README.md) |
-| 5.2 | Çok Modluluk | Birden fazla mod ile çalışmak | [Kılavuz](./05-AdvancedTopics/mcp-multi-modality/README.md) |
-| 5.3 | OAuth2 Demo | OAuth2 kimlik doğrulamasını uygulama | [Kılavuz](./05-AdvancedTopics/mcp-oauth2-demo/README.md) |
+| 04 | Pratik Uygulama | SDK'lar, hata ayıklama, test, yeniden kullanılabilir istem şablonları | [Devamını oku](./04-PracticalImplementation/README.md) |
+| 4.1 | Sayfalama | İmleç tabanlı sayfalama ile büyük sonuç kümelerini yönetin | [Kılavuz](./04-PracticalImplementation/pagination/README.md) |
+| 05 | MCP'de İleri Konular | Çok modlu AI, ölçeklendirme, kurumsal kullanım | [Devamını oku](./05-AdvancedTopics/README.md) |
+| 5.1 | Azure Entegrasyonu | MCP'nin Azure ile entegrasyonu | [Kılavuz](./05-AdvancedTopics/mcp-integration/README.md) |
+| 5.2 | Çok Modluluk | Birden çok modalite ile çalışma | [Kılavuz](./05-AdvancedTopics/mcp-multi-modality/README.md) |
+| 5.3 | OAuth2 Demo | OAuth2 kimlik doğrulaması uygulaması | [Kılavuz](./05-AdvancedTopics/mcp-oauth2-demo/README.md) |
 | 5.4 | Kök Bağlamlar | Kök bağlamları anlama ve uygulama | [Kılavuz](./05-AdvancedTopics/mcp-root-contexts/README.md) |
 | 5.5 | Yönlendirme | MCP yönlendirme stratejileri | [Kılavuz](./05-AdvancedTopics/mcp-routing/README.md) |
-| 5.6 | Örnekleme | MCP’de örnekleme teknikleri | [Kılavuz](./05-AdvancedTopics/mcp-sampling/README.md) |
-| 5.7 | Ölçeklendirme | MCP uygulamalarını ölçeklendirin | [Kılavuz](./05-AdvancedTopics/mcp-scaling/README.md) |
-| 5.8 | Güvenlik | İleri düzey güvenlik hususları | [Kılavuz](./05-AdvancedTopics/mcp-security/README.md) |
-| 5.9 | Web Arama | Web arama özelliklerini uygulama | [Kılavuz](./05-AdvancedTopics/web-search-mcp/README.md) |
-| 5.10 | Gerçek Zamanlı Akış | Gerçek zamanlı akış işlevselliği oluşturma | [Kılavuz](./05-AdvancedTopics/mcp-realtimestreaming/README.md) |
-| 5.11 | Gerçek Zamanlı Arama | Gerçek zamanlı aramayı uygulama | [Kılavuz](./05-AdvancedTopics/mcp-realtimesearch/README.md) |
+| 5.6 | Örnekleme | MCP'deki örnekleme teknikleri | [Kılavuz](./05-AdvancedTopics/mcp-sampling/README.md) |
+| 5.7 | Ölçeklendirme | MCP uygulamalarını ölçeklendirme | [Kılavuz](./05-AdvancedTopics/mcp-scaling/README.md) |
+| 5.8 | Güvenlik | İleri düzey güvenlik değerlendirmeleri | [Kılavuz](./05-AdvancedTopics/mcp-security/README.md) |
+| 5.9 | Web Araması | Web arama yetenekleri uygulama | [Kılavuz](./05-AdvancedTopics/web-search-mcp/README.md) |
+| 5.10 | Gerçek Zamanlı Akış | Gerçek zamanlı akış fonksiyonalitesi oluşturma | [Kılavuz](./05-AdvancedTopics/mcp-realtimestreaming/README.md) |
+| 5.11 | Gerçek Zamanlı Arama | Gerçek zamanlı arama uygulaması | [Kılavuz](./05-AdvancedTopics/mcp-realtimesearch/README.md) |
 | 5.12 | Entra ID Kimlik Doğrulama | Microsoft Entra ID ile kimlik doğrulama | [Kılavuz](./05-AdvancedTopics/mcp-security-entra/README.md) |
 | 5.13 | Foundry Entegrasyonu | Azure AI Foundry ile entegrasyon | [Kılavuz](./05-AdvancedTopics/mcp-foundry-agent-integration/README.md) |
 | 5.14 | Bağlam Mühendisliği | Etkili bağlam mühendisliği teknikleri | [Kılavuz](./05-AdvancedTopics/mcp-contextengineering/README.md) |
 | 5.15 | MCP Özel Taşıma | Özel Taşıma uygulamaları | [Kılavuz](./05-AdvancedTopics/mcp-transport/README.md) |
 | 5.16 | Protokol Özellikleri | İlerleme bildirimleri, iptal, kaynak şablonları | [Kılavuz](./05-AdvancedTopics/mcp-protocol-features/README.md) |
-| **Modül 6-10: Topluluk ve En İyi Uygulamalar** | | | |
+| **Modül 6-10: Topluluk & En İyi Uygulamalar** | | | |
 | 06 | Topluluk Katkıları | MCP ekosistemine nasıl katkıda bulunulur | [Kılavuz](./06-CommunityContributions/README.md) |
-| 07 | Erken Benimsemeden Alınan Dersler | Gerçek dünyadan uygulama hikayeleri | [Kılavuz](./07-LessonsfromEarlyAdoption/README.md) |
-| 08 | MCP İçin En İyi Uygulamalar | Performans, hata toleransı, dayanıklılık | [Kılavuz](./08-BestPractices/README.md) |
-| 09 | MCP Vaka İncelemeleri | Pratik uygulama örnekleri | [Kılavuz](./09-CaseStudy/README.md) |
-| 10 | Uygulamalı Atölye | AI Araç Takımı ile MCP Sunucusu Oluşturma | [Laboratuvar](./10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md) |
-| **Modül 11: MCP Sunucu Uygulamalı Laboratuvar** | | | |
-| 11 | MCP Sunucu Veri Tabanı Entegrasyonu | PostgreSQL entegrasyonu için kapsamlı 13 laboratuvarlı uygulamalı öğrenme yolu | [Laboratuvarlar](./11-MCPServerHandsOnLabs/README.md) |
-| 11.1 | Giriş | Veri tabanı entegrasyonu ve perakende analiz kullanım senaryosuyla MCP’ye genel bakış | [Laboratuvar 00](./11-MCPServerHandsOnLabs/00-Introduction/README.md) |
-| 11.2 | Temel Mimari | MCP sunucu mimarisi, veri tabanı katmanları ve güvenlik desenlerinin anlaşılması | [Laboratuvar 01](./11-MCPServerHandsOnLabs/01-Architecture/README.md) |
-| 11.3 | Güvenlik & Çoklu Kiracı | Satır Seviyesi Güvenlik, kimlik doğrulama ve çoklu kiracı veri erişimi | [Laboratuvar 02](./11-MCPServerHandsOnLabs/02-Security/README.md) |
-| 11.4 | Ortam Kurulumu | Geliştirme ortamı kurulumu, Docker, Azure kaynakları | [Laboratuvar 03](./11-MCPServerHandsOnLabs/03-Setup/README.md) |
-| 11.5 | Veri Tabanı Tasarımı | PostgreSQL kurulumu, perakende şema tasarımı ve örnek veri | [Laboratuvar 04](./11-MCPServerHandsOnLabs/04-Database/README.md) |
-| 11.6 | MCP Sunucu Uygulaması | Veri tabanı entegrasyonlu FastMCP sunucusunu oluşturma | [Laboratuvar 05](./11-MCPServerHandsOnLabs/05-MCP-Server/README.md) |
-| 11.7 | Araç Geliştirme | Veri tabanı sorgu araçları ve şema introspeksiyon oluşturma | [Laboratuvar 06](./11-MCPServerHandsOnLabs/06-Tools/README.md) |
-| 11.8 | Anlamsal Arama | Azure OpenAI ve pgvector kullanarak vektör gömme uygulaması | [Laboratuvar 07](./11-MCPServerHandsOnLabs/07-Semantic-Search/README.md) |
-| 11.9 | Test & Hata Ayıklama | Test stratejileri, hata ayıklama araçları ve doğrulama yaklaşımları | [Laboratuvar 08](./11-MCPServerHandsOnLabs/08-Testing/README.md) |
-| 11.10 | VS Code Entegrasyonu | VS Code MCP entegrasyon ve AI Sohbet kullanımı yapılandırma | [Laboratuvar 09](./11-MCPServerHandsOnLabs/09-VS-Code/README.md) |
-| 11.11 | Dağıtım Stratejileri | Docker dağıtımı, Azure Container Apps ve ölçeklendirme dikkate alınması | [Laboratuvar 10](./11-MCPServerHandsOnLabs/10-Deployment/README.md) |
-| 11.12 | İzleme | Application Insights, günlük kaydı, performans izleme | [Laboratuvar 11](./11-MCPServerHandsOnLabs/11-Monitoring/README.md) |
-| 11.13 | En İyi Uygulamalar | Performans optimizasyonu, güvenlik sertleştirme ve üretim ipuçları | [Laboratuvar 12](./11-MCPServerHandsOnLabs/12-Best-Practices/README.md) |
+| 07 | Erken Benimsemeden Dersler | Gerçek dünya uygulama hikayeleri | [Kılavuz](./07-LessonsfromEarlyAdoption/README.md) |
+| 08 | MCP için En İyi Uygulamalar | Performans, hata toleransı, dayanıklılık | [Kılavuz](./08-BestPractices/README.md) |
+| 09 | MCP Vaka Çalışmaları | Pratik uygulama örnekleri | [Kılavuz](./09-CaseStudy/README.md) |
+| 10 | Uygulamalı Atölye | AI Toolkit ile MCP Sunucusu Oluşturma | [Lab](./10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md) |
+| **Modül 11: MCP Sunucu Uygulamalı Lab** | | | |
+| 11 | MCP Sunucu Veritabanı Entegrasyonu | PostgreSQL entegrasyonu için kapsamlı 13 laboratuvarlı uygulamalı öğrenme yolu | [Lablar](./11-MCPServerHandsOnLabs/README.md) |
+| 11.1 | Giriş | Veritabanı entegrasyonu ve perakende analitiği kullanım durumu ile MCP genel bakışı | [Lab 00](./11-MCPServerHandsOnLabs/00-Introduction/README.md) |
+| 11.2 | Temel Mimari | MCP sunucu mimarisi, veritabanı katmanları ve güvenlik desenlerinin anlaşılması | [Lab 01](./11-MCPServerHandsOnLabs/01-Architecture/README.md) |
+| 11.3 | Güvenlik & Çok Kiracılılık | Satır Seviyesi Güvenliği, kimlik doğrulama ve çok kiracılı veri erişimi | [Lab 02](./11-MCPServerHandsOnLabs/02-Security/README.md) |
+| 11.4 | Ortam Kurulumu | Geliştirme ortamı kurulumu, Docker, Azure kaynakları | [Lab 03](./11-MCPServerHandsOnLabs/03-Setup/README.md) |
+| 11.5 | Veritabanı Tasarımı | PostgreSQL kurulumu, perakende şema tasarımı ve örnek veriler | [Lab 04](./11-MCPServerHandsOnLabs/04-Database/README.md) |
+| 11.6 | MCP Sunucu Uygulaması | Veritabanı entegrasyonlu FastMCP sunucusunun oluşturulması | [Lab 05](./11-MCPServerHandsOnLabs/05-MCP-Server/README.md) |
+| 11.7 | Araç Geliştirme | Veritabanı sorgu araçları ve şema incelemesi oluşturma | [Lab 06](./11-MCPServerHandsOnLabs/06-Tools/README.md) |
+| 11.8 | Semantik Arama | Azure OpenAI ve pgvector ile vektör gömme uygulaması | [Lab 07](./11-MCPServerHandsOnLabs/07-Semantic-Search/README.md) |
+| 11.9 | Test & Hata Ayıklama | Test stratejileri, hata ayıklama araçları ve doğrulama yaklaşımları | [Lab 08](./11-MCPServerHandsOnLabs/08-Testing/README.md) |
+| 11.10 | VS Code Entegrasyonu | VS Code MCP entegrasyonu ve AI Sohbet kullanımının yapılandırılması | [Lab 09](./11-MCPServerHandsOnLabs/09-VS-Code/README.md) |
+| 11.11 | Yayınlama Stratejileri | Docker yayını, Azure Container Apps ve ölçeklendirme değerlendirmeleri | [Lab 10](./11-MCPServerHandsOnLabs/10-Deployment/README.md) |
+| 11.12 | İzleme | Application Insights, günlük kaydı, performans izleme | [Lab 11](./11-MCPServerHandsOnLabs/11-Monitoring/README.md) |
+| 11.13 | En İyi Uygulamalar | Performans optimizasyonu, güvenlik sertleştirme ve üretim ipuçları | [Lab 12](./11-MCPServerHandsOnLabs/12-Best-Practices/README.md) |
 
 ### 💻 Örnek Kod Projeleri
 
-MCP öğrenmenin en heyecan verici kısımlarından biri, kodlama becerilerinizin aşamalı olarak gelişmesini görmektir. Kod örneklerimizi, kavramları anlamanız derinleştikçe basitten karmaşığa doğru tasarladık. İşte kavramları tanıtma şeklimiz - anlaşılması kolay ancak gerçek MCP ilkelerini gösteren kod ile, bu kodun ne yaptığını değil, neden böyle yapıldığını ve daha büyük MCP uygulamalarına nasıl uyduğunu anlayacaksınız.
+MCP öğreniminde en heyecan verici kısımlardan biri, kod becerilerinizin aşama aşama gelişimini görmek. Kod örneklerimizi basit başlayacak ve anlayışınız derinleştikçe daha sofistike hale gelecek şekilde tasarladık. İşte kavramları tanıtma şeklimiz - kolay anlaşılır ama gerçek MCP prensiplerini gösteren kodlarla, sadece bu kodun ne yaptığını değil, neden bu şekilde yapılandırıldığını ve daha büyük MCP uygulamalarına nasıl uyduğunu anlayacaksınız.
 
-#### Temel MCP Hesap Makinesi Örnekleri
+#### Temel MCP Hesaplayıcı Örnekleri
 
 | Dil | Açıklama | Bağlantı |
 |----------|-------------|------|
 | C# | MCP Sunucu Örneği | [Kodu Görüntüle](./03-GettingStarted/samples/csharp/README.md) |
-| Java | MCP Hesap Makinesi | [Kodu Görüntüle](./03-GettingStarted/samples/java/calculator/README.md) |
+| Java | MCP Hesaplayıcı | [Kodu Görüntüle](./03-GettingStarted/samples/java/calculator/README.md) |
 | JavaScript | MCP Demo | [Kodu Görüntüle](./03-GettingStarted/samples/javascript/README.md) |
 | Python | MCP Sunucu | [Kodu Görüntüle](../../03-GettingStarted/samples/python/mcp_calculator_server.py) |
 | TypeScript | MCP Örneği | [Kodu Görüntüle](./03-GettingStarted/samples/typescript/README.md) |
@@ -233,11 +235,11 @@ MCP öğrenmenin en heyecan verici kısımlarından biri, kodlama becerilerinizi
 | TypeScript | Container Örneği | [Kodu Görüntüle](./04-PracticalImplementation/samples/typescript/README.md) |
 
 
-## 🎯 MCP Öğrenimi İçin Ön Koşullar
+## 🎯 MCP Öğrenimi için Önkoşullar
 
-Bu müfredattan en iyi şekilde faydalanabilmek için:
+Bu müfredattan en iyi şekilde faydalanmak için sahip olmanız gerekenler:
 - Aşağıdaki dillerden en az birinde temel programlama bilgisi: C#, Java, JavaScript, Python veya TypeScript
-- İstemci-sunucu modeli ve API’lerin anlaşılması
+- İstemci-sunucu modeli ve API kavramlarının anlaşılması
 - REST ve HTTP kavramlarına aşinalık
 - (İsteğe bağlı) AI/ML kavramları hakkında bilgi
 
@@ -245,38 +247,40 @@ Bu müfredattan en iyi şekilde faydalanabilmek için:
 
 ## 📚 Çalışma Rehberi ve Kaynaklar
 
-Bu depo, etkili öğrenmeniz için çeşitli kaynaklar içerir:
+Bu depo, size etkili bir şekilde yol göstermek ve öğrenmenizi desteklemek için çeşitli kaynaklar içermektedir:
 
 ### Çalışma Rehberi
 
-Bu deposu etkili bir şekilde kullanmanıza yardımcı olacak kapsamlı bir [Çalışma Rehberi](./study_guide.md) mevcuttur. Bu görsel müfredat haritası, tüm konuların nasıl bağlantılı olduğunu gösterir ve örnek projeleri nasıl etkili kullanacağınız konusunda rehberlik sağlar. Özellikle büyük resmi görmekten hoşlanan görsel öğreniciler için faydalıdır.
+Bu depoyu etkili bir şekilde kullanmanıza yardımcı olacak kapsamlı bir [Çalışma Rehberi](./study_guide.md) mevcuttur. Bu görsel müfredat haritası tüm konuların nasıl bağlandığını gösterir ve örnek projeleri nasıl kullanacağınız konusunda rehberlik sağlar. Büyük resmi görmekten hoşlanan görsel öğrenenler için özellikle faydalıdır.
 
 Rehber şunları içerir:
-- Tüm konuları gösteren görsel müfredat haritası
-- Her depo bölümünün ayrıntılı dökümantasyonu
-- Örnek projelerin nasıl kullanılacağına dair rehberlik
-- Farklı beceri seviyeleri için önerilen öğrenme yolları
-- Öğrenme sürecinizi destekleyecek ek kaynaklar
+- Kapsanan tüm konuları gösteren görsel müfredat haritası
+- Her depo bölümünün detaylı analizi
+- Örnek projeleri kullanma rehberi
+- Farklı beceri seviyelerine uygun öğrenme yolları
+- Öğrenme yolculuğunuzu tamamlayacak ek kaynaklar
 
 ### Değişiklik Günlüğü
 
-Müfredat materyallerindeki tüm önemli güncellemeleri takip eden ayrıntılı bir [Değişiklik Günlüğü](./changelog.md) tutuyoruz, böylece en yeni geliştirme ve eklentilerden haberdar olabilirsiniz.
+Müfredat materyallerinde yapılan tüm önemli güncellemeleri takip eden ayrıntılı bir [Değişiklik Günlüğü](./changelog.md) tutuyoruz; böylece en son iyileştirmeler ve eklemeler hakkında güncel kalabilirsiniz.
 - Yeni içerik eklemeleri
 - Yapısal değişiklikler
-- Özellik iyileştirmeleri
+- Özellik geliştirmeleri
 - Dokümantasyon güncellemeleri
 
-## 🛠️ Bu Müfredatı Etkili Kullanma Yöntemleri
+## 🛠️ Bu Müfredatı Etkili Kullanma Yöntemi
 
-Bu rehberdeki her ders şunları içerir:
+Bu rehberdeki her ders:
 
-1. MCP kavramlarının net açıklamaları  
-2. Birden çok dilde canlı kod örnekleri  
-3. Gerçek MCP uygulamaları oluşturmak için egzersizler  
-4. İleri düzey öğrenciler için ek kaynaklar
+1. MCP kavramlarının net açıklamalarını  
+2. Birden fazla dilde canlı kod örneklerini  
+3. Gerçek MCP uygulamaları geliştirmek için egzersizleri  
+4. İleri seviye öğrenciler için ek kaynakları  
+
+içerir.
 
 ### C# ile MCP Öğrenelim - Eğitim Serisi
-Model Context Protocol (MCP) hakkında bilgi edinelim; bu, yapay zekâ modelleri ile istemci uygulamaları arasındaki etkileşimleri standartlaştırmak için tasarlanmış son teknoloji bir çerçevedir. Bu başlangıç dostu oturumda size MCP’yi tanıtacak ve ilk MCP sunucunuzu oluşturmanızı sağlayacağız.
+Model Context Protocol (MCP) hakkında bilgi edinelim; AI modelleri ile istemci uygulamalar arasındaki etkileşimleri standartlaştırmak için tasarlanmış ileri teknoloji bir çerçeve. Bu başlangıç dostu oturumda MCP’yi tanıtacak ve ilk MCP sunucunuzu oluşturmanızda yol göstereceğiz.
 #### C#: [https://aka.ms/letslearnmcp-csharp](https://aka.ms/letslearnmcp-csharp)
 #### Java: [https://aka.ms/letslearnmcp-java](https://aka.ms/letslearnmcp-java)
 #### JavaScript: [https://aka.ms/letslearnmcp-javascript](https://aka.ms/letslearnmcp-javascript)
@@ -284,97 +288,94 @@ Model Context Protocol (MCP) hakkında bilgi edinelim; bu, yapay zekâ modelleri
 
 ## 🎓 MCP Yolculuğunuz Başlıyor
 
-Tebrikler! Programlama becerilerinizi geliştirecek ve sizi AI geliştirme alanının ön saflarına bağlayacak heyecan verici bir yolculukta ilk adımı attınız.
+Tebrikler! Programlama becerilerinizi genişletecek ve sizi AI geliştirme alanının keskin noktasına bağlayacak heyecan verici bir yolculuğa ilk adımı attınız.
 
-### Şimdiye Kadar Neler Başardınız
+### Zaten Başardıklarınız
 
-Bu tanıtımı okuyarak MCP bilgi temelinizi oluşturmaya başladınız. MCP’nin ne olduğunu, neden önemli olduğunu ve bu müfredatın öğrenme yolculuğunuzda size nasıl destek olacağını anladınız. Bu, önemli bir başarıdır ve bu önemli teknolojide uzmanlığınızın başlangıcıdır.
+Bu tanıtımı okuyarak MCP hakkında temel bilginizi oluşturmaya başladınız. MCP’nin ne olduğunu, neden önemli olduğunu ve bu müfredatın öğrenme yolculuğunuzda size nasıl destek olacağını anladınız. Bu önemli bir başarıdır ve bu önemli teknoloji konusunda uzmanlığınızın başlangıcıdır.
 
 ### Önünüzdeki Macera
 
-Modüllerde ilerledikçe, her uzmanın bir zamanlar başlangıç seviyesi olduğunu unutmayın. Şimdi karmaşık görünen kavramlar, pratik yaptıkça ve uyguladıkça ikinci doğanız haline gelecektir. Her küçük adım, gelişim kariyeriniz boyunca size hizmet edecek güçlü yetkinlikler oluşturur.
+Modüller ilerledikçe, her uzmanın bir zamanlar acemi olduğunu unutmayın. Şu anda karmaşık görünen kavramlar, bunları uygulayıp pratik yaptıkça ikinci doğanız haline gelecek. Atılan her küçük adım, geliştirme kariyeriniz boyunca hizmet edecek güçlü yeteneklere doğru ilerlemenizi sağlayacak.
 
 ### Destek Ağınız
 
-MCP konusunda tutkulu ve başkalarının başarıya ulaşmasına istekli bir öğrenici ve uzmanlar topluluğuna katılıyorsunuz. Kodlama zorluğunda takılırsanız veya bir ilerlemeyi paylaşmak isterseniz, topluluk yolculuğunuzda size destek olmaya hazırdır.
+MCP hakkında tutkulu olan ve başarılı olmanız için istekle yardımcı olan öğrenenler ve uzmanlardan oluşan bir topluluğa katılıyorsunuz. Kodlama sorunlarında takılırsanız veya yeni bir gelişmeyi paylaşmak isterseniz, topluluk yolculuğunuzda destek sağlamaya hazırdır.
 
-Yapay zeka uygulamaları oluşturmayla ilgili takılırsanız veya sorularınız olursa, MCP hakkında diğer öğrenciler ve deneyimli geliştiricilerle tartışmalara katılın. Burası soruların memnuniyetle karşılandığı ve bilginin özgürce paylaşıldığı destekleyici bir topluluktur.
+Yapay zeka uygulamaları geliştirmede takılırsanız veya sorularınız olursa, MCP hakkında tartışmalara katılın. Burası soruların memnuniyetle karşılandığı ve bilginin özgürce paylaşıldığı destekleyici bir topluluktur.
 
 [![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
 
-Ürün geri bildirimi vermek veya hata bildirimi yapmak isterseniz:
+Ürün geri bildiriminiz veya geliştirme sırasında hatalarınız varsa şu adresi ziyaret edin:
 
 [![Microsoft Foundry Developer Forum](https://img.shields.io/badge/GitHub-Microsoft_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=000000&logoColor=fff)](https://aka.ms/foundry/forum)
 
-### Başlamaya Hazır mısınız?
+### Başlamaya Hazır Mısınız?
 
-MCP maceranız şimdi başlıyor! İlk pratik MCP deneyimlerinize dalmak için Modül 0’dan başlayın veya hangi projeleri oluşturacağınızı görmek için örnek projeleri inceleyin. Unutmayın - her uzman tam da sizin olduğunuz noktadan başladı ve sabırla çalışarak neler başarabileceğinize şaşıracaksınız.
+MCP maceranız şimdi başlıyor! İlk pratik MCP deneyiminiz için Modül 0 ile başlayın veya neler inşa edeceğinizi görmek için örnek projeleri keşfedin. Unutmayın - her uzman tam olarak sizin olduğunuz yerden başladı ve sabır ile pratik sayesinde neler başarabileceğinize şaşıracaksınız.
 
-Model Context Protocol geliştirme dünyasına hoş geldiniz. Haydi hep birlikte harika bir şeyler inşa edelim!
+Model Context Protocol geliştirme dünyasına hoş geldiniz. Gelin birlikte harika şeyler kuralım!
 
-## 🤝 Öğrenme Topluluğuna Katkıda Bulunma
+## 🤝 Öğrenme Topluluğuna Katkı
 
-Bu müfredat, sizin gibi öğrenenlerin katkılarıyla güçleniyor! İster bir yazım hatasını düzeltin, ister daha net bir açıklama önerin ya da yeni bir örnek ekleyin, katkılarınız diğer yeni başlayanların başarılı olmasına yardımcı olur.
+Bu müfredat, sizin gibi öğrenenlerin katkılarıyla güçleniyor! İster bir yazım hatasını düzeltin, ister daha net bir açıklama önerin, ya da yeni bir örnek ekleyin; katkılarınız diğer acemilerin başarıya ulaşmasına yardımcı olur.
 
-Kod örnekleriyle katkıda bulunan Microsoft Değerli Profesyonel [Shivam Goyal](https://www.linkedin.com/in/shivam2003/)'a teşekkür ederiz.
+Kod örnekleri için Microsoft Değerli Profesyoneli [Shivam Goyal](https://www.linkedin.com/in/shivam2003/)’a teşekkür ederiz.
 
-Katkı süreci, misafirperver ve destekleyici olacak şekilde tasarlanmıştır. Çoğu katkı, bir Katkı Lisans Anlaşması (CLA) gerektirir, ancak otomatik araçlar sizi sürecin içinden sorunsuzca yönlendirecektir.
+Katkı süreci misafirperver ve destekleyici olacak şekilde tasarlanmıştır. Çoğu katkı için Katkı Veren Lisans Sözleşmesi (CLA) gerekir, ancak otomatik araçlar sizi sorunsuzca yönlendirecektir.
 
-## 📜 Açık Kaynak Öğrenme
+## 📜 Açık Kaynak Öğrenim
 
-Bu müfredatın tamamı, kullan, değiştir ve paylaş özgürlüğü sağlayan MIT [LİSANSI](../../LICENSE) altında sunulmaktadır. Bu, MCP bilgisini her yerdeki geliştiricilere erişilebilir kılma misyonumuzu destekler.
+Bu müfredatın tamamı MIT [LİSANSLI](../../LICENSE) olarak sunulmaktadır; yani dilediğiniz gibi kullanabilir, değiştirebilir ve paylaşabilirsiniz. Bu, MCP bilgisini geliştiricilere erişilebilir kılma misyonumuzu desteklemektedir.
 
-## 🤝 Katkı Rehberi
+## 🤝 Katkı Kuralları
 
-Bu proje, katkılara ve önerilere açıktır. Çoğu katkı, haklarınıza sahip olduğunuzu ve katkınızı kullanma haklarını bizimle paylaştığınızı belirten bir
-Katkı Lisans Anlaşması'nı (CLA) kabul etmenizi gerektirir. Ayrıntılar için <https://cla.opensource.microsoft.com> adresini ziyaret edin.
+Bu proje katkılara ve önerilere açıktır. Çoğu katkı, katkınızı kullanma haklarını bize verdiğinizi ve bu hakkı gerçekten sahip olduğunuzu beyan eden bir Katkı Veren Lisans Sözleşmesi (CLA) imzalamanızı gerektirir. Ayrıntılar için <https://cla.opensource.microsoft.com> adresini ziyaret edin.
 
-Bir çekme isteği gönderdiğinizde, bir CLA botu sizden CLA sağlamanızı isteyip istemeyeceğinizi otomatik olarak belirler ve PR’yı uygun şekilde işaretler (örneğin, durum kontrolü, yorum). Botun talimatlarını izleyin. Tüm depolarda CLA işlemini sadece bir kez yapmanız yeterlidir.
+Bir çekme isteği gönderdiğinizde, bir CLA botu otomatik olarak CLA sağlamanız gerekip gerekmediğini belirleyecek ve PR’ı uygun şekilde (örneğin durum denetimi, yorum) işaretleyecektir. Botun verdiği talimatları izleyin. Bu işlemi, CLA’yı kullanan tüm depolar için yalnızca bir kez yapmanız yeterli olacaktır.
 
-Bu proje, [Microsoft Açık Kaynak Davranış Kuralları](https://opensource.microsoft.com/codeofconduct/)’nu benimsemiştir.
-Daha fazla bilgi için [Davranış Kuralları SSS](https://opensource.microsoft.com/codeofconduct/faq/) sayfasını ziyaret edin veya
-ek sorularınız için [opencode@microsoft.com](mailto:opencode@microsoft.com) adresiyle iletişime geçin.
+Bu proje [Microsoft Açık Kaynak Davranış Kuralları](https://opensource.microsoft.com/codeofconduct/)’unu benimsemiştir. Daha fazla bilgi için [Davranış Kuralları SSS](https://opensource.microsoft.com/codeofconduct/faq/) sayfasına bakabilir veya ek sorularınız için [opencode@microsoft.com](mailto:opencode@microsoft.com) adresine yazabilirsiniz.
 
 ---
 
-*Model Context Protocol yolculuğunuza başlamaya hazır mısınız? Başlamak için [Modül 00 - MCP'ye Giriş](./00-Introduction/README.md) ile ilk adımlarınızı atın ve Model Context Protocol geliştirme dünyasına giriş yapın!*
+*Model Context Protocol yolculuğunuza başlamaya hazır mısınız? [Modül 00 - MCP Tanıtımı](./00-Introduction/README.md) ile başlayın ve Model Context Protocol geliştirme dünyasında ilk adımlarınızı atın!*
 
 
 
 ## 🎒 Diğer Kurslar
-Ekibimiz başka kurslar da üretiyor! Göz atın:
+Ekibimiz diğer kurslar da üretiyor! Göz atın:
 
 <!-- CO-OP TRANSLATOR OTHER COURSES START -->
 ### LangChain
-[![Yeni Başlayanlar için LangChain4j](https://img.shields.io/badge/LangChain4j%20for%20Beginners-22C55E?style=for-the-badge&&labelColor=E5E7EB&color=0553D6)](https://aka.ms/langchain4j-for-beginners)
-[![Yeni Başlayanlar için LangChain.js](https://img.shields.io/badge/LangChain.js%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=0553D6)](https://aka.ms/langchainjs-for-beginners?WT.mc_id=m365-94501-dwahlin)
-[![Yeni Başlayanlar için LangChain](https://img.shields.io/badge/LangChain%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=0553D6)](https://github.com/microsoft/langchain-for-beginners?WT.mc_id=m365-94501-dwahlin)
+[![LangChain4j Yeni Başlayanlar için](https://img.shields.io/badge/LangChain4j%20for%20Beginners-22C55E?style=for-the-badge&&labelColor=E5E7EB&color=0553D6)](https://aka.ms/langchain4j-for-beginners)
+[![LangChain.js Yeni Başlayanlar için](https://img.shields.io/badge/LangChain.js%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=0553D6)](https://aka.ms/langchainjs-for-beginners?WT.mc_id=m365-94501-dwahlin)
+[![LangChain Yeni Başlayanlar için](https://img.shields.io/badge/LangChain%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=0553D6)](https://github.com/microsoft/langchain-for-beginners?WT.mc_id=m365-94501-dwahlin)
 ---
 
-### Azure / Edge / MCP / Agents
-[![Yeni Başlayanlar için AZD](https://img.shields.io/badge/AZD%20for%20Beginners-0078D4?style=for-the-badge&labelColor=E5E7EB&color=0078D4)](https://github.com/microsoft/AZD-for-beginners?WT.mc_id=academic-105485-koreyst)
-[![Yeni Başlayanlar için Edge AI](https://img.shields.io/badge/Edge%20AI%20for%20Beginners-00B8E4?style=for-the-badge&labelColor=E5E7EB&color=00B8E4)](https://github.com/microsoft/edgeai-for-beginners?WT.mc_id=academic-105485-koreyst)
-[![Yeni Başlayanlar için MCP](https://img.shields.io/badge/MCP%20for%20Beginners-009688?style=for-the-badge&labelColor=E5E7EB&color=009688)](https://github.com/microsoft/mcp-for-beginners?WT.mc_id=academic-105485-koreyst)
-[![Yeni Başlayanlar için AI Agents](https://img.shields.io/badge/AI%20Agents%20for%20Beginners-00C49A?style=for-the-badge&labelColor=E5E7EB&color=00C49A)](https://github.com/microsoft/ai-agents-for-beginners?WT.mc_id=academic-105485-koreyst)
+### Azure / Edge / MCP / Ajanlar
+[![AZD Yeni Başlayanlar için](https://img.shields.io/badge/AZD%20for%20Beginners-0078D4?style=for-the-badge&labelColor=E5E7EB&color=0078D4)](https://github.com/microsoft/AZD-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![Edge AI Yeni Başlayanlar için](https://img.shields.io/badge/Edge%20AI%20for%20Beginners-00B8E4?style=for-the-badge&labelColor=E5E7EB&color=00B8E4)](https://github.com/microsoft/edgeai-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![MCP Yeni Başlayanlar için](https://img.shields.io/badge/MCP%20for%20Beginners-009688?style=for-the-badge&labelColor=E5E7EB&color=009688)](https://github.com/microsoft/mcp-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![AI Ajanlar Yeni Başlayanlar için](https://img.shields.io/badge/AI%20Agents%20for%20Beginners-00C49A?style=for-the-badge&labelColor=E5E7EB&color=00C49A)](https://github.com/microsoft/ai-agents-for-beginners?WT.mc_id=academic-105485-koreyst)
 
 ---
  
 ### Üretken AI Serisi
-[![Yeni Başlayanlar için Üretken AI](https://img.shields.io/badge/Generative%20AI%20for%20Beginners-8B5CF6?style=for-the-badge&labelColor=E5E7EB&color=8B5CF6)](https://github.com/microsoft/generative-ai-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![Üretken AI Yeni Başlayanlar için](https://img.shields.io/badge/Generative%20AI%20for%20Beginners-8B5CF6?style=for-the-badge&labelColor=E5E7EB&color=8B5CF6)](https://github.com/microsoft/generative-ai-for-beginners?WT.mc_id=academic-105485-koreyst)
 [![Üretken AI (.NET)](https://img.shields.io/badge/Generative%20AI%20(.NET)-9333EA?style=for-the-badge&labelColor=E5E7EB&color=9333EA)](https://github.com/microsoft/Generative-AI-for-beginners-dotnet?WT.mc_id=academic-105485-koreyst)
 [![Üretken AI (Java)](https://img.shields.io/badge/Generative%20AI%20(Java)-C084FC?style=for-the-badge&labelColor=E5E7EB&color=C084FC)](https://github.com/microsoft/generative-ai-for-beginners-java?WT.mc_id=academic-105485-koreyst)
 [![Üretken AI (JavaScript)](https://img.shields.io/badge/Generative%20AI%20(JavaScript)-E879F9?style=for-the-badge&labelColor=E5E7EB&color=E879F9)](https://github.com/microsoft/generative-ai-with-javascript?WT.mc_id=academic-105485-koreyst)
 
 ---
  
-### Temel Öğrenim
-[![Yeni Başlayanlar için ML](https://img.shields.io/badge/ML%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=22C55E)](https://aka.ms/ml-beginners?WT.mc_id=academic-105485-koreyst)
-[![Yeni Başlayanlar için Veri Bilimi](https://img.shields.io/badge/Data%20Science%20for%20Beginners-84CC16?style=for-the-badge&labelColor=E5E7EB&color=84CC16)](https://aka.ms/datascience-beginners?WT.mc_id=academic-105485-koreyst)
-[![Yeni Başlayanlar için AI](https://img.shields.io/badge/AI%20for%20Beginners-A3E635?style=for-the-badge&labelColor=E5E7EB&color=A3E635)](https://aka.ms/ai-beginners?WT.mc_id=academic-105485-koreyst)
-[![Yeni Başlayanlar için Siber Güvenlik](https://img.shields.io/badge/Cybersecurity%20for%20Beginners-F97316?style=for-the-badge&labelColor=E5E7EB&color=F97316)](https://github.com/microsoft/Security-101?WT.mc_id=academic-96948-sayoung)
-[![Yeni Başlayanlar için Web Geliştirme](https://img.shields.io/badge/Web%20Dev%20for%20Beginners-EC4899?style=for-the-badge&labelColor=E5E7EB&color=EC4899)](https://aka.ms/webdev-beginners?WT.mc_id=academic-105485-koreyst)
-[![Yeni Başlayanlar için IoT](https://img.shields.io/badge/IoT%20for%20Beginners-14B8A6?style=for-the-badge&labelColor=E5E7EB&color=14B8A6)](https://aka.ms/iot-beginners?WT.mc_id=academic-105485-koreyst)
-[![Yeni Başlayanlar için XR Geliştirme](https://img.shields.io/badge/XR%20Development%20for%20Beginners-38BDF8?style=for-the-badge&labelColor=E5E7EB&color=38BDF8)](https://github.com/microsoft/xr-development-for-beginners?WT.mc_id=academic-105485-koreyst)
+### Temel Öğrenme
+[![ML Yeni Başlayanlar için](https://img.shields.io/badge/ML%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=22C55E)](https://aka.ms/ml-beginners?WT.mc_id=academic-105485-koreyst)
+[![Veri Bilimi Yeni Başlayanlar için](https://img.shields.io/badge/Data%20Science%20for%20Beginners-84CC16?style=for-the-badge&labelColor=E5E7EB&color=84CC16)](https://aka.ms/datascience-beginners?WT.mc_id=academic-105485-koreyst)
+[![AI Yeni Başlayanlar için](https://img.shields.io/badge/AI%20for%20Beginners-A3E635?style=for-the-badge&labelColor=E5E7EB&color=A3E635)](https://aka.ms/ai-beginners?WT.mc_id=academic-105485-koreyst)
+[![Siber Güvenlik Yeni Başlayanlar için](https://img.shields.io/badge/Cybersecurity%20for%20Beginners-F97316?style=for-the-badge&labelColor=E5E7EB&color=F97316)](https://github.com/microsoft/Security-101?WT.mc_id=academic-96948-sayoung)
+[![Web Geliştirme Yeni Başlayanlar için](https://img.shields.io/badge/Web%20Dev%20for%20Beginners-EC4899?style=for-the-badge&labelColor=E5E7EB&color=EC4899)](https://aka.ms/webdev-beginners?WT.mc_id=academic-105485-koreyst)
+[![IoT Yeni Başlayanlar için](https://img.shields.io/badge/IoT%20for%20Beginners-14B8A6?style=for-the-badge&labelColor=E5E7EB&color=14B8A6)](https://aka.ms/iot-beginners?WT.mc_id=academic-105485-koreyst)
+[![XR Geliştirme Yeni Başlayanlar için](https://img.shields.io/badge/XR%20Development%20for%20Beginners-38BDF8?style=for-the-badge&labelColor=E5E7EB&color=38BDF8)](https://github.com/microsoft/xr-development-for-beginners?WT.mc_id=academic-105485-koreyst)
 
 ---
  
@@ -387,6 +388,6 @@ Ekibimiz başka kurslar da üretiyor! Göz atın:
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Feragatname**:
-Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hatalar veya yanlışlıklar içerebileceğini lütfen unutmayın. Orijinal belge, kendi dilinde yetkili kaynak olarak kabul edilmelidir. Önemli bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucunda oluşabilecek yanlış anlamalar veya yorum farklılıklarından sorumlu değiliz.
+**Feragatname**:  
+Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluğa özen göstersek de, otomatik çevirilerin hata veya tutarsızlıklar içerebileceğini lütfen unutmayın. Orijinal belge, ana dilinde yetkili kaynak olarak kabul edilmelidir. Önemli bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucunda doğabilecek herhangi bir yanlış anlama veya yorumdan dolayı sorumluluk kabul edilmemektedir.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
