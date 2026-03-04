@@ -1,39 +1,40 @@
-# MCP Server na Usafirishaji wa stdio
+# MCP Server na usafirishaji wa stdio
 
-> **⚠️ Sasisho Muhimu**: Kuanzia MCP Specification 2025-06-18, usafirishaji wa SSE (Server-Sent Events) umepitwa na wakati na kubadilishwa na usafirishaji wa "Streamable HTTP". Maelezo ya sasa ya MCP yanafafanua njia mbili kuu za usafirishaji:
-> 1. **stdio** - Ingizo/utoaji wa kawaida (inapendekezwa kwa seva za ndani)
+> **⚠️ Sasisho Muhimu**: Kuanzia Sifa ya MCP 2025-06-18, usafirishaji wa SSE wa pekee (Server-Sent Events) umeondolewa rasmi na kubadilishwa na usafirishaji wa "Streamable HTTP". Sifa ya MCP ya sasa inabainisha njia mbili kuu za usafirishaji:
+> 1. **stdio** - Kuingiza/kunyoosha kwa kawaida (inashauriwa kwa seva za ndani)
 > 2. **Streamable HTTP** - Kwa seva za mbali zinazoweza kutumia SSE ndani
 >
-> Somo hili limeboreshwa kuzingatia usafirishaji wa **stdio**, ambao ni njia inayopendekezwa kwa utekelezaji wa seva nyingi za MCP.
+> Somo hili limebadilishwa kuzingatia **usafirishaji wa stdio**, ambao ndiyo njia inayopendekezwa kwa utekelezaji wengi wa seva za MCP.
 
-Usafirishaji wa stdio unaruhusu seva za MCP kuwasiliana na wateja kupitia mito ya ingizo na utoaji wa kawaida. Hii ni njia inayotumika zaidi na inayopendekezwa katika maelezo ya sasa ya MCP, ikitoa njia rahisi na bora ya kujenga seva za MCP zinazoweza kuunganishwa kwa urahisi na programu mbalimbali za wateja.
+Usafirishaji wa stdio unaruhusu seva za MCP kuwasiliana na wateja kupitia milisho ya kuingiza na kutoa kwa kawaida. Hii ndiyo njia inayotumiwa zaidi na inayopendekezwa katika sifa ya MCP ya sasa, ikitoa njia rahisi na yenye ufanisi ya kujenga seva za MCP zinazoweza kuunganishwa kwa urahisi na programu mbalimbali za wateja.
 
 ## Muhtasari
 
-Somo hili linaelezea jinsi ya kujenga na kutumia seva za MCP kwa kutumia usafirishaji wa stdio.
+Somo hili linashughulikia jinsi ya kujenga na kutumia Seva za MCP kwa kutumia usafirishaji wa stdio.
 
 ## Malengo ya Kujifunza
 
 Mwisho wa somo hili, utaweza:
 
-- Kujenga seva ya MCP kwa kutumia usafirishaji wa stdio.
-- Kufanyia uchunguzi seva ya MCP kwa kutumia Inspector.
-- Kutumia seva ya MCP ndani ya Visual Studio Code.
-- Kuelewa mifumo ya sasa ya usafirishaji wa MCP na kwa nini stdio inapendekezwa.
+- Kujenga Seva ya MCP kwa kutumia usafirishaji wa stdio.
+- Kutatua matatizo ya Seva ya MCP kwa kutumia Mchunguzi (Inspector).
+- Kutumia Seva ya MCP kwa kutumia Visual Studio Code.
+- Kuelewa mifumo ya usafirishaji wa MCP ya sasa na kwanini stdio inapendekezwa.
 
-## Usafirishaji wa stdio - Jinsi Unavyofanya Kazi
 
-Usafirishaji wa stdio ni mojawapo ya aina mbili za usafirishaji zinazoungwa mkono katika maelezo ya sasa ya MCP (2025-06-18). Hivi ndivyo unavyofanya kazi:
+## Usafirishaji wa stdio - Jinsi Inavyofanya Kazi
 
-- **Mawasiliano Rahisi**: Seva inasoma ujumbe wa JSON-RPC kutoka kwa ingizo la kawaida (`stdin`) na kutuma ujumbe kwa utoaji wa kawaida (`stdout`).
-- **Mfumo wa Mchakato**: Mteja huzindua seva ya MCP kama mchakato wa chini.
-- **Muundo wa Ujumbe**: Ujumbe ni maombi ya JSON-RPC, arifa, au majibu, yaliyotenganishwa na mistari mipya.
-- **Kumbukumbu**: Seva INAWEZA kuandika maandishi ya UTF-8 kwa kosa la kawaida (`stderr`) kwa madhumuni ya kumbukumbu.
+Usafirishaji wa stdio ni mojawapo ya aina mbili za usafirishaji zinazotangazwa katika sifa ya MCP ya sasa (2025-06-18). Hapa ni jinsi unavyofanya kazi:
+
+- **Mawasiliano Rahisi**: Seva husoma ujumbe za JSON-RPC kutoka kuingiza kwa kawaida (`stdin`) na kutuma ujumbe kwa kutoa kwa kawaida (`stdout`).
+- **Kufanya kazi kama mchakato-chini**: Mteja huanzisha seva ya MCP kama mchakato mdogo (subprocess).
+- **Muundo wa Ujumbe**: Ujumbe ni maombi, arifa, au majibu ya JSON-RPC yaliyoachwa kwa mistari mipya.
+- **Kufuatilia**: Seva INAWEZA kuandika mistari ya UTF-8 kwa kosa la kawaida (`stderr`) kwa ajili ya kufuatilia.
 
 ### Mahitaji Muhimu:
-- Ujumbe LAZIMA utenganishwe na mistari mipya na HAUTAKIWI kuwa na mistari mipya ndani yake
-- Seva HAITAKIWI kuandika chochote kwa `stdout` ambacho si ujumbe halali wa MCP
-- Mteja HAUTAKIWI kuandika chochote kwa `stdin` ya seva ambacho si ujumbe halali wa MCP
+- Ujumbe LAZIMA uachwe kwa mistari mipya na HAUZUIZI kuwa na mistari mipya iliyo ndani yake
+- Seva HAIPASWI kuandika chochote kwa `stdout` ambacho si ujumbe halali wa MCP
+- Mteja HAIPASWI kuandika chochote kwa `stdin` ya seva ambacho si ujumbe halali wa MCP
 
 ### TypeScript
 
@@ -54,9 +55,9 @@ const server = new Server(
 );
 ```
 
-Katika msimbo uliotangulia:
+Katika msimbo uliopita:
 
-- Tunaingiza darasa la `Server` na `StdioServerTransport` kutoka kwa MCP SDK
+- Tunaingiza darasa `Server` na `StdioServerTransport` kutoka MCP SDK
 - Tunaunda mfano wa seva na usanidi wa msingi na uwezo
 
 ### Python
@@ -67,7 +68,7 @@ import logging
 from mcp.server import Server
 from mcp.server.stdio import stdio_server
 
-# Create server instance
+# Unda mfano wa seva
 server = Server("example-server")
 
 @server.tool()
@@ -87,11 +88,11 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-Katika msimbo uliotangulia tunafanya:
+Katika msimbo uliopita sisi:
 
-- Kuunda mfano wa seva kwa kutumia MCP SDK
-- Kufafanua zana kwa kutumia mapambo
-- Kutumia meneja wa muktadha wa stdio_server kushughulikia usafirishaji
+- Tunaunda mfano wa seva kwa kutumia MCP SDK
+- Tufafanue zana kwa kutumia mapambo ya func (decorators)
+- Tunutumie meneja wa muktadha (context manager) wa stdio_server kushughulikia usafirishaji
 
 ### .NET
 
@@ -105,7 +106,7 @@ var builder = Host.CreateApplicationBuilder(args);
 
 builder.Services
     .AddMcpServer()
-    .WithStdioTransport()
+    .WithStdioServerTransport()
     .WithTools<Tools>();
 
 builder.Services.AddLogging(logging => logging.AddConsole());
@@ -114,30 +115,29 @@ var app = builder.Build();
 await app.RunAsync();
 ```
 
-Tofauti kuu kutoka kwa SSE ni kwamba seva za stdio:
+Tofauti kuu na SSE ni kwamba seva za stdio:
 
-- Hazihitaji usanidi wa seva ya wavuti au viingilio vya HTTP
-- Huzinduliwa kama michakato ya chini na mteja
-- Huwasiliana kupitia mito ya stdin/stdout
-- Ni rahisi kutekeleza na kufanyia uchunguzi
+- Hazihitaji usanidi wa seva ya wavuti au viunganishi vya HTTP
+- Huanzishwa kama michakato ndogo na mteja
+- Wanasiliana kupitia milisho ya stdin/stdout
+- Ni rahisi kutekeleza na kutatua matatizo
 
-## Zoezi: Kujenga Seva ya stdio
+## Zoef: Kuunda Seva ya stdio
 
-Ili kujenga seva yetu, tunahitaji kuzingatia mambo mawili:
+Ili kuunda seva yetu, tunahitaji kuzingatia vitu viwili:
 
-- Tunahitaji kutumia seva ya wavuti kufichua viingilio kwa ajili ya muunganisho na ujumbe.
+- Tunahitaji kutumia seva ya wavuti kufungua viunganishi kwa ajili ya muunganisho na ujumbe.
+## Maabara: Kuunda seva rahisi ya MCP stdio
 
-## Maabara: Kujenga seva rahisi ya MCP stdio
+Katika maabara hii, tutaunda seva rahisi ya MCP kwa kutumia usafirishaji wa stdio unaopendekezwa. Seva hii itaonyesha zana ambazo wateja wanaweza kuitumia kutumia itifaki ya Model Context Protocol ya kawaida.
 
-Katika maabara hii, tutaunda seva rahisi ya MCP kwa kutumia usafirishaji wa stdio unaopendekezwa. Seva hii itafichua zana ambazo wateja wanaweza kupiga simu kwa kutumia Model Context Protocol ya kawaida.
-
-### Mahitaji ya Awali
+### Mahitaji ya awali
 
 - Python 3.8 au zaidi
 - MCP Python SDK: `pip install mcp`
-- Uelewa wa msingi wa programu ya async
+- Uelewa wa msingi wa programu za cha asynchronous
 
-Tuanzishe kwa kujenga seva yetu ya kwanza ya MCP stdio:
+Tuanze kwa kuunda seva yetu ya kwanza ya MCP stdio:
 
 ```python
 import asyncio
@@ -146,11 +146,11 @@ from mcp.server import Server
 from mcp.server.stdio import stdio_server
 from mcp import types
 
-# Configure logging
+# Sanidi kuandika kumbukumbu
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Create the server
+# Unda seva
 server = Server("example-stdio-server")
 
 @server.tool()
@@ -164,7 +164,7 @@ def get_greeting(name: str) -> str:
     return f"Hello, {name}! Welcome to MCP stdio server."
 
 async def main():
-    # Use stdio transport
+    # Tumia usafirishaji wa stdio
     async with stdio_server(server) as (read_stream, write_stream):
         await server.run(
             read_stream,
@@ -176,34 +176,34 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-## Tofauti kuu kutoka kwa mbinu ya SSE iliyopitwa na wakati
+## Tofauti kuu na njia iliyokataliwa ya SSE
 
 **Usafirishaji wa Stdio (Kiwango cha Sasa):**
-- Mfano rahisi wa mchakato wa chini - mteja huzindua seva kama mchakato wa mtoto
-- Mawasiliano kupitia stdin/stdout kwa kutumia ujumbe wa JSON-RPC
-- Hakuna usanidi wa seva ya HTTP unaohitajika
+- Mfano rahisi wa mchakato - mteja huanzisha seva kama mchakato mdogo
+- Mawasiliano kupitia stdin/stdout kwa ujumbe za JSON-RPC
+- Hakuna usanidi wa seva ya HTTP unahitajika
 - Utendaji bora na usalama
-- Rahisi kufanyia uchunguzi na maendeleo
+- Rahisi kutatua matatizo na kuendeleza
 
-**Usafirishaji wa SSE (Uliopitwa na Wakati kuanzia MCP 2025-06-18):**
-- Ulitaka seva ya HTTP na viingilio vya SSE
-- Usanidi mgumu zaidi na miundombinu ya seva ya wavuti
-- Masuala ya ziada ya usalama kwa viingilio vya HTTP
-- Sasa imebadilishwa na Streamable HTTP kwa hali za wavuti
+**Usafirishaji wa SSE (Umeondolewa rasmi kuanzia MCP 2025-06-18):**
+- Ulilazimisha seva ya HTTP na viunganishi vya SSE
+- Usanidi tata zaidi wa miundombinu ya seva ya wavuti
+- Mambo zaidi ya usalama kwa viunganishi vya HTTP
+- Sasa umebadilishwa na Streamable HTTP kwa mazingira ya wavuti
 
-### Kujenga seva kwa usafirishaji wa stdio
+### Kuunda seva kwa usafirishaji wa stdio
 
-Ili kujenga seva yetu ya stdio, tunahitaji:
+Ili kuunda seva yetu ya stdio, tunahitaji:
 
 1. **Kuleta maktaba zinazohitajika** - Tunahitaji vipengele vya seva ya MCP na usafirishaji wa stdio
-2. **Kuunda mfano wa seva** - Kufafanua seva na uwezo wake
-3. **Kufafanua zana** - Kuongeza utendaji tunaotaka kufichua
-4. **Kusanidi usafirishaji** - Kusimamia mawasiliano ya stdio
-5. **Kuendesha seva** - Kuanza seva na kushughulikia ujumbe
+2. **Kuunda mfano wa seva** - Fafanua seva na uwezo wake
+3. **Fafanua zana** - Ongeza kazi tunayotaka kuonyesha
+4. **Sanidi usafirishaji** - Pangilia mawasiliano ya stdio
+5. **Anzisha seva** - Anzisha seva na shughulikia ujumbe
 
-Tuanzishe hatua kwa hatua:
+Tujenge hatua kwa hatua:
 
-### Hatua ya 1: Unda seva ya msingi ya stdio
+### Hatua 1: Unda seva rahisi ya stdio
 
 ```python
 import asyncio
@@ -211,11 +211,11 @@ import logging
 from mcp.server import Server
 from mcp.server.stdio import stdio_server
 
-# Configure logging
+# Sanidi uandikishaji wa kumbukumbu
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Create the server
+# Tengeneza seva
 server = Server("example-stdio-server")
 
 @server.tool()
@@ -235,7 +235,7 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-### Hatua ya 2: Ongeza zana zaidi
+### Hatua 2: Ongeza zana zaidi
 
 ```python
 @server.tool()
@@ -259,23 +259,23 @@ def get_server_info() -> dict:
     }
 ```
 
-### Hatua ya 3: Kuendesha seva
+### Hatua 3: Anzisha seva
 
-Hifadhi msimbo kama `server.py` na uendeshe kutoka kwa mstari wa amri:
+Hifadhi msimbo kama `server.py` na uendeshwe kutoka kwenye mstari wa amri (command line):
 
 ```bash
 python server.py
 ```
 
-Seva itaanza na kusubiri ingizo kutoka kwa stdin. Inawasiliana kwa kutumia ujumbe wa JSON-RPC kupitia usafirishaji wa stdio.
+Seva itaanzishwa na kusubiri kuingizwa kutoka `stdin`. Husiliana kwa kutumia ujumbe za JSON-RPC juu ya usafirishaji wa stdio.
 
-### Hatua ya 4: Kupima kwa Inspector
+### Hatua 4: Kuangalia na Mchunguzi (Inspector)
 
-Unaweza kupima seva yako kwa kutumia MCP Inspector:
+Unaweza kujaribu seva yako kwa kutumia MCP Inspector:
 
-1. Sakinisha Inspector: `npx @modelcontextprotocol/inspector`
-2. Endesha Inspector na uelekeze kwa seva yako
-3. Pima zana ulizounda
+1. Sakinisha Mchunguzi: `npx @modelcontextprotocol/inspector`
+2. Endesha Mchunguzi na uelekeze kwa seva yako
+3. Jaribu zana ulizotengeneza
 
 ### .NET
 
@@ -284,12 +284,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddMcpServer();
  ```
-
-## Kufanyia uchunguzi seva yako ya stdio
+## Kukagua shida za seva yako ya stdio
 
 ### Kutumia MCP Inspector
 
-MCP Inspector ni zana muhimu kwa kufanyia uchunguzi na kupima seva za MCP. Hivi ndivyo unavyoweza kuitumia na seva yako ya stdio:
+MCP Inspector ni chombo muhimu kwa kuchakata matatizo na kujaribu seva za MCP. Hapa ni jinsi ya kuitumia na seva yako ya stdio:
 
 1. **Sakinisha Inspector**:
    ```bash
@@ -301,17 +300,17 @@ MCP Inspector ni zana muhimu kwa kufanyia uchunguzi na kupima seva za MCP. Hivi 
    npx @modelcontextprotocol/inspector python server.py
    ```
 
-3. **Pima seva yako**: Inspector hutoa kiolesura cha wavuti ambapo unaweza:
+3. **Jaribu seva yako**: Inspector hutoa kiolesura cha wavuti ambapo unaweza:
    - Kuona uwezo wa seva
-   - Kupima zana kwa vigezo tofauti
-   - Kufuatilia ujumbe wa JSON-RPC
-   - Kufanyia uchunguzi masuala ya muunganisho
+   - Kujaribu zana na vigezo tofauti
+   - Kufuatilia ujumbe za JSON-RPC
+   - Kutambua matatizo ya muunganisho
 
 ### Kutumia VS Code
 
-Unaweza pia kufanyia uchunguzi seva yako ya MCP moja kwa moja ndani ya VS Code:
+Unaweza pia kutatua matatizo ya seva yako ya MCP moja kwa moja ndani ya VS Code:
 
-1. Unda usanidi wa kuzindua ndani ya `.vscode/launch.json`:
+1. Tengeneza usanidi wa kuanzisha `.vscode/launch.json`:
    ```json
    {
      "version": "0.2.0",
@@ -327,23 +326,23 @@ Unaweza pia kufanyia uchunguzi seva yako ya MCP moja kwa moja ndani ya VS Code:
    }
    ```
 
-2. Weka alama za kusimamisha katika msimbo wa seva yako
-3. Endesha kifuatiliaji na upime kwa Inspector
+2. Weka alama za kukatiza (breakpoints) kwenye msimbo wa seva
+3. Endesha mtafutaji (debugger) na jaribu na Inspector
 
-### Vidokezo vya kawaida vya kufanyia uchunguzi
+### Vidokezo vya kawaida vya utatuzi
 
-- Tumia `stderr` kwa kumbukumbu - usiandike chochote kwa `stdout` kwani imehifadhiwa kwa ujumbe wa MCP
-- Hakikisha ujumbe wote wa JSON-RPC umetenganishwa na mistari mipya
-- Pima kwa zana rahisi kwanza kabla ya kuongeza utendaji tata
+- Tumia `stderr` kwa ajili ya kufuatilia - kamwe usiandike `stdout` kwa kuwa imehifadhiwa kwa ujumbe za MCP
+- Hakikisha ujumbe wote wa JSON-RPC umeachwa kwa mistari mipya
+- Jaribu na zana rahisi kwanza kabla ya kuongeza kazi ngumu
 - Tumia Inspector kuthibitisha muundo wa ujumbe
 
-## Kutumia seva yako ya stdio ndani ya VS Code
+## Matumizi ya seva yako ya stdio ndani ya VS Code
 
-Baada ya kujenga seva yako ya MCP stdio, unaweza kuijumuisha na VS Code ili kuitumia na Claude au wateja wengine wanaoendana na MCP.
+Baada ya kujenga seva yako ya MCP stdio, unaweza kuunganisha na VS Code kuitumia na Claude au wateja wengine wanaoendana na MCP.
 
 ### Usanidi
 
-1. **Unda faili ya usanidi wa MCP** katika `%APPDATA%\Claude\claude_desktop_config.json` (Windows) au `~/Library/Application Support/Claude/claude_desktop_config.json` (Mac):
+1. **Tengeneza faili la usanidi la MCP** katika `%APPDATA%\Claude\claude_desktop_config.json` (Windows) au `~/Library/Application Support/Claude/claude_desktop_config.json` (Mac):
 
    ```json
    {
@@ -356,16 +355,16 @@ Baada ya kujenga seva yako ya MCP stdio, unaweza kuijumuisha na VS Code ili kuit
    }
    ```
 
-2. **Anzisha upya Claude**: Funga na ufungue tena Claude ili kupakia usanidi mpya wa seva.
+2. **Fungua upya Claude**: Funga na fungua tena Claude ili ipakuze usanidi mpya wa seva.
 
-3. **Pima muunganisho**: Anzisha mazungumzo na Claude na ujaribu kutumia zana za seva yako:
-   - "Je, unaweza kunisalimia kwa kutumia zana ya salamu?"
+3. **Jaribu muunganisho**: Anzisha mazungumzo na Claude na jaribu kutumia zana za seva yako:
+   - "Je, unaweza kunipigia salamu ukitumia zana ya salamu?"
    - "Hesabu jumla ya 15 na 27"
-   - "Ni taarifa gani za seva?"
+   - "Je, ni taarifa gani kuhusu seva?"
 
-### Mfano wa seva ya stdio ya TypeScript
+### Mfano wa seva ya stdio kwa TypeScript
 
-Hapa kuna mfano kamili wa TypeScript kwa marejeleo:
+Hapa kuna mfano kamili wa TypeScript kwa ajili ya kumbukumbu:
 
 ```typescript
 #!/usr/bin/env node
@@ -385,7 +384,7 @@ const server = new Server(
   }
 );
 
-// Add tools
+// Ongeza zana
 server.setRequestHandler(ListToolsRequestSchema, async () => {
   return {
     tools: [
@@ -430,7 +429,7 @@ async function runServer() {
 runServer().catch(console.error);
 ```
 
-### Mfano wa seva ya stdio ya .NET
+### Mfano wa seva ya stdio kwa .NET
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
@@ -443,21 +442,22 @@ var builder = Host.CreateApplicationBuilder(args);
 
 builder.Services
     .AddMcpServer()
-    .WithStdioTransport()
+    .WithStdioServerTransport()
     .WithTools<Tools>();
 
 var app = builder.Build();
 await app.RunAsync();
 
+[McpServerToolType]
 public class Tools
 {
-    [Description("Get a personalized greeting")]
+    [McpServerTool, Description("Get a personalized greeting")]
     public string GetGreeting(string name)
     {
         return $"Hello, {name}! Welcome to MCP stdio server.";
     }
 
-    [Description("Calculate the sum of two numbers")]
+    [McpServerTool, Description("Calculate the sum of two numbers")]
     public int CalculateSum(int a, int b)
     {
         return a + b;
@@ -467,19 +467,20 @@ public class Tools
 
 ## Muhtasari
 
-Katika somo hili lililoboreshwa, umejifunza jinsi ya:
+Katika somo hili lililosasishwa, umejifunza jinsi ya:
 
-- Kujenga seva za MCP kwa kutumia usafirishaji wa **stdio** (njia inayopendekezwa)
-- Kuelewa kwa nini usafirishaji wa SSE ulipitwa na wakati na kubadilishwa na stdio na Streamable HTTP
-- Kuunda zana ambazo zinaweza kupigiwa simu na wateja wa MCP
-- Kufanyia uchunguzi seva yako kwa kutumia MCP Inspector
-- Kujumuisha seva yako ya stdio na VS Code na Claude
+- Kujenga seva za MCP kwa kutumia **usafirishaji wa stdio** wa sasa (njia inayopendekezwa)
+- Kuelewa kwa nini usafirishaji wa SSE umeachwa na kubadilishwa na stdio na Streamable HTTP
+- Kuunda zana zinazoweza kuitwa na wateja wa MCP
+- Kutatua matatizo ya seva yako kwa kutumia MCP Inspector
+- Kuunganisha seva yako ya stdio na VS Code na Claude
 
-Usafirishaji wa stdio unatoa njia rahisi, salama zaidi, na yenye utendaji bora ya kujenga seva za MCP ikilinganishwa na mbinu ya SSE iliyopitwa na wakati. Ni usafirishaji unaopendekezwa kwa utekelezaji wa seva nyingi za MCP kuanzia maelezo ya 2025-06-18.
+Usafirishaji wa stdio unatoa njia rahisi, salama, na yenye ufanisi ya kujenga seva za MCP ukilinganisha na njia ya SSE iliyokataliwa. Ni usafirishaji unaopendekezwa kwa utekelezaji mingi wa seva za MCP kuanzia sifa ya 2025-06-18.
+
 
 ### .NET
 
-1. Tuunde zana kadhaa kwanza, kwa hili tutaunda faili *Tools.cs* yenye maudhui yafuatayo:
+1. Hebu tuanze kwa kuunda zana kwanza, kwa hili tutengeneza faili *Tools.cs* yenye maudhui yafuatayo:
 
   ```csharp
   using System.ComponentModel;
@@ -487,105 +488,107 @@ Usafirishaji wa stdio unatoa njia rahisi, salama zaidi, na yenye utendaji bora y
   using ModelContextProtocol.Server;
   ```
 
-## Zoezi: Kupima seva yako ya stdio
+## Zoef: Kuangalia seva yako ya stdio
 
-Sasa kwa kuwa umejenga seva yako ya stdio, hebu tuipime ili kuhakikisha inafanya kazi vizuri.
+Sasa umejenga seva yako ya stdio, hebu ijaribu kuhakikisha inafanya kazi ipasavyo.
 
-### Mahitaji ya Awali
+### Mahitaji ya awali
 
-1. Hakikisha umeweka MCP Inspector:
+1. Hakikisha MCP Inspector imesakinishwa:
    ```bash
    npm install -g @modelcontextprotocol/inspector
    ```
 
-2. Msimbo wa seva yako unapaswa kuhifadhiwa (mfano, kama `server.py`)
+2. Msimbo wa seva yako unapaswa kuwa umehifadhiwa (mfano, `server.py`)
 
-### Kupima kwa Inspector
+### Kujaribu na Inspector
 
-1. **Anzisha Inspector na seva yako**:
+1. **Anzisha Inspector kwa seva yako**:
    ```bash
    npx @modelcontextprotocol/inspector python server.py
    ```
 
-2. **Fungua kiolesura cha wavuti**: Inspector itafungua dirisha la kivinjari linaloonyesha uwezo wa seva yako.
+2. **Fungua kiolesura cha wavuti**: Inspector itafungua dirisha la kivinjari linaonyesha uwezo wa seva yako.
 
-3. **Pima zana**: 
+3. **Jaribu zana**:
    - Jaribu zana ya `get_greeting` kwa majina tofauti
-   - Pima zana ya `calculate_sum` kwa namba mbalimbali
-   - Piga zana ya `get_server_info` ili kuona metadata ya seva
+   - Jaribu zana ya `calculate_sum` kwa nambari mbalimbali
+   - Piga simu zana ya `get_server_info` kuona metadata ya seva
 
-4. **Fuatilia mawasiliano**: Inspector inaonyesha ujumbe wa JSON-RPC unaobadilishana kati ya mteja na seva.
+4. **Fuata mawasiliano**: Inspector inaonyesha ujumbe za JSON-RPC zinazobenefitiwa kati ya mteja na seva.
 
-### Unachopaswa kuona
+### Utaratibu unaotarajiwa
 
-Seva yako ikianza vizuri, unapaswa kuona:
-- Uwezo wa seva umeorodheshwa katika Inspector
-- Zana zinapatikana kwa kupima
-- Ubadilishanaji wa ujumbe wa JSON-RPC uliofanikiwa
-- Majibu ya zana yanaonyeshwa katika kiolesura
+Seva itapoanza kikamilifu, utaona:
+- Uwezo wa seva umeorodheshwa kwenye Inspector
+- Zana zinapatikana kwa majaribio
+- Mabadilishano ya ujumbe za JSON-RPC yamefanikiwa
+- Majibu ya zana yanaonyeshwa kwenye kiolesura
 
-### Masuala ya kawaida na suluhisho
+### Shida za kawaida na suluhisho
 
-**Seva haitaanza:**
-- Hakikisha utegemezi wote umesakinishwa: `pip install mcp`
-- Thibitisha sintaksia ya Python na upangaji
-- Angalia ujumbe wa makosa kwenye koni
+**Seva haiwezi kuanza:**
+- Angalia kama vyanzo vyote vimesakinishwa: `pip install mcp`
+- Hakikisha syntax ya Python na mkao ni sahihi
+- Angalia ujumbe wa makosa kwenye console
 
 **Zana hazionekani:**
 - Hakikisha mapambo ya `@server.tool()` yapo
-- Thibitisha kuwa kazi za zana zimefafanuliwa kabla ya `main()`
-- Hakikisha seva imewekwa vizuri
+- Hakikisha zana zimetangazwa kabla ya `main()`
+- Hakikisha seva imepangiliwa ipasavyo
 
-**Masuala ya muunganisho:**
-- Hakikisha seva inatumia usafirishaji wa stdio kwa usahihi
-- Angalia kuwa hakuna michakato mingine inayozuia
-- Thibitisha sintaksia ya amri ya Inspector
+**Shida za muunganisho:**
+- Hakikisha seva inatumia usafirishaji wa stdio ipasavyo
+- Angalia kama hakuna michakato mingine inakwamisha
+- Hakikisha amri ya Inspector imeandikwa kwa usahihi
 
-## Kazi
+## Majukumu
 
-Jaribu kujenga seva yako na uwezo zaidi. Tazama [ukurasa huu](https://api.chucknorris.io/) ili, kwa mfano, kuongeza zana inayopiga API. Wewe ndiye unayeamua jinsi seva inavyopaswa kuonekana. Furahia :)
+Jaribu kuendeleza seva yako kwa uwezo zaidi. Angalia [ukurasa huu](https://api.chucknorris.io/) kuongeza zana inayopiga API. Uamuzi ni wako ni seva itakuwaje. Furahia :)
 
 ## Suluhisho
 
-[Suluhisho](./solution/README.md) Hapa kuna suluhisho linalowezekana lenye msimbo unaofanya kazi.
+[Suluhisho](./solution/README.md) Hapa kuna suluhisho linalowezekana na msimbo unaofanya kazi.
 
-## Mambo Muhimu
+## Muhimu wa Kuzingatia
 
-Mambo muhimu kutoka sura hii ni haya yafuatayo:
+Muhimu wa somo hili kwa kifupi ni:
 
-- Usafirishaji wa stdio ni njia inayopendekezwa kwa seva za MCP za ndani.
-- Usafirishaji wa stdio unaruhusu mawasiliano ya moja kwa moja kati ya seva za MCP na wateja kwa kutumia mito ya ingizo na utoaji wa kawaida.
-- Unaweza kutumia Inspector na Visual Studio Code kutumia seva za stdio moja kwa moja, na kufanya uchunguzi na ujumuishaji kuwa rahisi.
+- Usafirishaji wa stdio ndio njia inayopendekezwa kwa seva za MCP za ndani.
+- Usafirishaji wa stdio unaruhusu mawasiliano rahisi kati ya seva za MCP na wateja kwa kutumia milisho ya kawaida ya kuingiza na kutoa.
+- Unaweza kutumia Inspector na Visual Studio Code moja kwa moja kutumia seva za stdio, kufanya utatuzi na uunganishaji kuwa rahisi.
 
 ## Sampuli 
 
-- [Java Calculator](../samples/java/calculator/README.md)
-- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
-- [JavaScript Calculator](../samples/javascript/README.md)
-- [TypeScript Calculator](../samples/typescript/README.md)
-- [Python Calculator](../../../../03-GettingStarted/samples/python) 
+- [Kalkuleta ya Java](../samples/java/calculator/README.md)
+- [Kalkuleta ya .Net](../../../../03-GettingStarted/samples/csharp)
+- [Kalkuleta ya JavaScript](../samples/javascript/README.md)
+- [Kalkuleta ya TypeScript](../samples/typescript/README.md)
+- [Kalkuleta ya Python](../../../../03-GettingStarted/samples/python) 
 
-## Rasilimali za Ziada
+## Rasilimali Zaidi
 
 - [SSE](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events)
 
 ## Nini Kinachofuata
 
-## Hatua Zifuatazo
+## Hatua Zifuatayo
 
-Sasa kwa kuwa umejifunza jinsi ya kujenga seva za MCP kwa usafirishaji wa stdio, unaweza kuchunguza mada za hali ya juu zaidi:
+Kwa sasa umejifunza jinsi ya kujenga seva za MCP na usafirishaji wa stdio, unaweza kuchunguza mada za hali ya juu:
 
-- **Ijayo**: [Usafirishaji wa HTTP Streaming na MCP (Streamable HTTP)](../06-http-streaming/README.md) - Jifunze kuhusu njia nyingine ya usafirishaji inayoungwa mkono kwa seva za mbali
-- **Hali ya Juu**: [MCP Security Best Practices](../../02-Security/README.md) - Tekeleza usalama katika seva zako za MCP
-- **Uzalishaji**: [Mikakati ya Utekelezaji](../09-deployment/README.md) - Tekeleza seva zako kwa matumizi ya uzalishaji
+- **Ifuatayo**: [HTTP Streaming na MCP (Streamable HTTP)](../06-http-streaming/README.md) - Jifunze kuhusu njia nyingine ya usafirishaji inayotumiwa kwa seva za mbali
+- **Kiwango cha Juu**: [Mbinu Bora za Usalama wa MCP](../../02-Security/README.md) - Tekeleza usalama katika seva zako za MCP
+- **Matumizi ya Kizalishaji**: [Mikakati ya Utekelezaji](../09-deployment/README.md) - Weka seva zako katika matumizi ya uzalishaji
 
-## Rasilimali za Ziada
+## Rasilimali Zaidi
 
-- [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/) - Maelezo rasmi
-- [MCP SDK Documentation](https://github.com/modelcontextprotocol/sdk) - Marejeleo ya SDK kwa lugha zote
-- [Community Examples](../../06-CommunityContributions/README.md) - Sampuli zaidi za seva kutoka kwa jamii
+- [Sifa ya MCP 2025-06-18](https://spec.modelcontextprotocol.io/specification/) - Sifa rasmi
+- [Nyaraka za MCP SDK](https://github.com/modelcontextprotocol/sdk) - Marejeleo ya SDK kwa lugha zote
+- [Mifano ya Jamii](../../06-CommunityContributions/README.md) - Mifano zaidi ya seva kutoka kwa jamii
 
 ---
 
-**Kanusho**:  
-Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kuhakikisha usahihi, tafsiri za kiotomatiki zinaweza kuwa na makosa au kutokuwa sahihi. Hati ya asili katika lugha yake ya awali inapaswa kuchukuliwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu ya binadamu inapendekezwa. Hatutawajibika kwa kutokuelewana au tafsiri zisizo sahihi zinazotokana na matumizi ya tafsiri hii.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Kauli ya Kukataa**:  
+Nyaraka hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Wakati tunajitahidi kwa usahihi, tafadhali fahamu kwamba tafsiri za kiotomatiki zinaweza kuwa na makosa au upotovu wa maana. Nyaraka ya asili katika lugha yake ya asili inapaswa kuzingatiwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu inayofanywa na binadamu inapendekezwa. Hatuwajibiki kwa kutoelewana au tafsiri potofu zitokanazo na matumizi ya tafsiri hii.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
