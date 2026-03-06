@@ -1,33 +1,33 @@
-![MCP-pradžiamokslis](../../translated_images/lt/mcp-beginners.2ce2b317996369ff.webp) 
+![MCP-for-beginners](../../translated_images/lt/mcp-beginners.2ce2b317996369ff.webp) 
 
-[![GitHub bendradarbiai](https://img.shields.io/github/contributors/microsoft/mcp-for-beginners.svg)](https://GitHub.com/microsoft/mcp-for-beginners/graphs/contributors)
-[![GitHub problemos](https://img.shields.io/github/issues/microsoft/mcp-for-beginners.svg)](https://GitHub.com/microsoft/mcp-for-beginners/issues)
+[![GitHub contributors](https://img.shields.io/github/contributors/microsoft/mcp-for-beginners.svg)](https://GitHub.com/microsoft/mcp-for-beginners/graphs/contributors)
+[![GitHub issues](https://img.shields.io/github/issues/microsoft/mcp-for-beginners.svg)](https://GitHub.com/microsoft/mcp-for-beginners/issues)
 [![GitHub pull-requests](https://img.shields.io/github/issues-pr/microsoft/mcp-for-beginners.svg)](https://GitHub.com/microsoft/mcp-for-beginners/pulls)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-[![GitHub stebėtojai](https://img.shields.io/github/watchers/microsoft/mcp-for-beginners.svg?style=social&label=Watch)](https://GitHub.com/microsoft/mcp-for-beginners/watchers)
-[![GitHub šakos](https://img.shields.io/github/forks/microsoft/mcp-for-beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/mcp-for-beginners/fork)
-[![GitHub žvaigždės](https://img.shields.io/github/stars/microsoft/mcp-for-beginners?style=social&label=Star)](https://GitHub.com/microsoft/mcp-for-beginners/stargazers)
+[![GitHub watchers](https://img.shields.io/github/watchers/microsoft/mcp-for-beginners.svg?style=social&label=Watch)](https://GitHub.com/microsoft/mcp-for-beginners/watchers)
+[![GitHub forks](https://img.shields.io/github/forks/microsoft/mcp-for-beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/mcp-for-beginners/fork)
+[![GitHub stars](https://img.shields.io/github/stars/microsoft/mcp-for-beginners?style=social&label=Star)](https://GitHub.com/microsoft/mcp-for-beginners/stargazers)
 
 
 [![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
 
-Sekite šiuos veiksmus, kad pradėtumėte naudotis šiomis ištekliais:
-1. **Padarykite šaką (fork)**: Spustelėkite [![GitHub šakos](https://img.shields.io/github/forks/microsoft/mcp-for-beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/mcp-for-beginners/fork)
-2. **Klonuokite saugyklą**:   `git clone https://github.com/microsoft/mcp-for-beginners.git`
+Sekite šiuos žingsnius, kad pradėtumėte naudotis šiais ištekliais:
+1. **Padalykite repozitoriją (Fork the Repository)**: Spustelėkite [![GitHub forks](https://img.shields.io/github/forks/microsoft/mcp-for-beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/mcp-for-beginners/fork)
+2. **Klonuokite repozitoriją (Clone the Repository)**:   `git clone https://github.com/microsoft/mcp-for-beginners.git`
 3. **Prisijunkite prie** [![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
 
 
-### 🌐 Daugialypė kalbų palaikymas
+### 🌐 Daugiakalbė palaikymas
 
-#### Palaikoma per GitHub Action (automatizuota ir visada atnaujinta)
+#### Palaikoma per GitHub Action (Automatinė ir visada atnaujinama)
 
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE START -->
-[Arabų](../ar/README.md) | [Bengalų](../bn/README.md) | [Bulgarų](../bg/README.md) | [Birmos (Mianmaras)](../my/README.md) | [Kinų (supaprastinta)](../zh-CN/README.md) | [Kinų (tradicinė, Honkongas)](../zh-HK/README.md) | [Kinų (tradicinė, Makao)](../zh-MO/README.md) | [Kinų (tradicinė, Taivanas)](../zh-TW/README.md) | [Kroatų](../hr/README.md) | [Čekų](../cs/README.md) | [Danų](../da/README.md) | [Olandų](../nl/README.md) | [Estų](../et/README.md) | [Suomių](../fi/README.md) | [Prancūzų](../fr/README.md) | [Vokiečių](../de/README.md) | [Graikų](../el/README.md) | [Hebrajų](../he/README.md) | [Hindi](../hi/README.md) | [Vengrų](../hu/README.md) | [Indoneziečių](../id/README.md) | [Italų](../it/README.md) | [Japonų](../ja/README.md) | [Kannadų](../kn/README.md) | [Korėjiečių](../ko/README.md) | [Lietuvių](./README.md) | [Malajų](../ms/README.md) | [Malajalamų](../ml/README.md) | [Maratų](../mr/README.md) | [Nepalų](../ne/README.md) | [Nigerijos pidžinas](../pcm/README.md) | [Norvegų](../no/README.md) | [Persų (Farsi)](../fa/README.md) | [Lenkų](../pl/README.md) | [Portugalų (Brazilija)](../pt-BR/README.md) | [Portugalų (Portugalija)](../pt-PT/README.md) | [Pandžabių (Gurmuchi)](../pa/README.md) | [Rumunų](../ro/README.md) | [Rusų](../ru/README.md) | [Serbų (kirilica)](../sr/README.md) | [Slovakų](../sk/README.md) | [Slovėnų](../sl/README.md) | [Ispanų](../es/README.md) | [Suahelio](../sw/README.md) | [Švedų](../sv/README.md) | [Tagalogų (Filipinų)](../tl/README.md) | [Tamilų](../ta/README.md) | [Telugų](../te/README.md) | [Tailando](../th/README.md) | [Turkų](../tr/README.md) | [Ukrainiečių](../uk/README.md) | [Urdu](../ur/README.md) | [Vietnamiečių](../vi/README.md)
+[Arabic](../ar/README.md) | [Bengali](../bn/README.md) | [Bulgarian](../bg/README.md) | [Burmese (Myanmar)](../my/README.md) | [Chinese (Simplified)](../zh-CN/README.md) | [Chinese (Traditional, Hong Kong)](../zh-HK/README.md) | [Chinese (Traditional, Macau)](../zh-MO/README.md) | [Chinese (Traditional, Taiwan)](../zh-TW/README.md) | [Croatian](../hr/README.md) | [Czech](../cs/README.md) | [Danish](../da/README.md) | [Dutch](../nl/README.md) | [Estonian](../et/README.md) | [Finnish](../fi/README.md) | [French](../fr/README.md) | [German](../de/README.md) | [Greek](../el/README.md) | [Hebrew](../he/README.md) | [Hindi](../hi/README.md) | [Hungarian](../hu/README.md) | [Indonesian](../id/README.md) | [Italian](../it/README.md) | [Japanese](../ja/README.md) | [Kannada](../kn/README.md) | [Korean](../ko/README.md) | [Lithuanian](./README.md) | [Malay](../ms/README.md) | [Malayalam](../ml/README.md) | [Marathi](../mr/README.md) | [Nepali](../ne/README.md) | [Nigerian Pidgin](../pcm/README.md) | [Norwegian](../no/README.md) | [Persian (Farsi)](../fa/README.md) | [Polish](../pl/README.md) | [Portuguese (Brazil)](../pt-BR/README.md) | [Portuguese (Portugal)](../pt-PT/README.md) | [Punjabi (Gurmukhi)](../pa/README.md) | [Romanian](../ro/README.md) | [Russian](../ru/README.md) | [Serbian (Cyrillic)](../sr/README.md) | [Slovak](../sk/README.md) | [Slovenian](../sl/README.md) | [Spanish](../es/README.md) | [Swahili](../sw/README.md) | [Swedish](../sv/README.md) | [Tagalog (Filipino)](../tl/README.md) | [Tamil](../ta/README.md) | [Telugu](../te/README.md) | [Thai](../th/README.md) | [Turkish](../tr/README.md) | [Ukrainian](../uk/README.md) | [Urdu](../ur/README.md) | [Vietnamese](../vi/README.md)
 
 > **Norite klonuoti vietoje?**
 >
-> Ši saugykla apima daugiau nei 50 kalbų vertimus, kurie žymiai padidina atsisiuntimo dydį. Norėdami klonuoti be vertimų, naudokite retu atrinkimą (sparse checkout):
+> Ši repozitorija apima daugiau nei 50 kalbų vertimų, kas žymiai padidina atsisiuntimo dydį. Norėdami klonuoti be vertimų, naudokite sparse checkout:
 >
 > **Bash / macOS / Linux:**
 > ```bash
@@ -43,188 +43,187 @@ Sekite šiuos veiksmus, kad pradėtumėte naudotis šiomis ištekliais:
 > git sparse-checkout set --no-cone "/*" "!translations" "!translated_images"
 > ```
 >
-> Tai suteikia viską, ko reikia kursui baigti su daug greitesniu atsisiuntimu.
+> Tai suteiks jums viską, ko reikia kursui baigti, su daug sparčiau vykstančiu atsisiuntimu.
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE END -->
 
-# 🚀 Modelio konteksto protokolo (MCP) mokymas pradedantiesiems
+# 🚀 Modelio Konteksto Protokolo (MCP) kursai pradedantiesiems
 
-## **Išmokite MCP su praktiniais kodo pavyzdžiais C#, Java, JavaScript, Rust, Python ir TypeScript**
+## **Mokykitės MCP su praktiniais kodo pavyzdžiais C#, Java, JavaScript, Rust, Python ir TypeScript kalbomis**
 
-## 🧠 Modelio konteksto protokolo mokymo apžvalga
-Sveiki atvykę į Modelio konteksto protokolo pasaulį! Jei kada nors svarstėte, kaip DI programos bendrauja su įvairiais įrankiais ir paslaugomis, jūs esate pasiruošę atrasti elegantišką sprendimą, kuris keičia tai, kaip kūrėjai kuria išmanias sistemas.
+## 🧠 Modelio Konteksto Protokolo kursų apžvalga
+Sveiki atvykę į savo kelią su Modelio Konteksto Protokolu! Jei kada nors susimąstėte, kaip DI (dirbtinio intelekto) programos bendrauja su skirtingais įrankiais ir paslaugomis, netrukus atrasite elegantišką sprendimą, kuris keičia tai, kaip kūrėjai kuria intelektualias sistemas.
 
-Įsivaizduokite MCP kaip universalią vertimo priemonę DI programoms – taip, kaip USB jungtys leidžia prijungti bet kokį įrenginį prie kompiuterio, MCP leidžia DI modeliams standartizuotu būdu jungtis prie bet kurio įrankio ar paslaugos. Nesvarbu, ar kuriate savo pirmąjį pokalbių robotą, ar dirbate su sudėtingais DI darbo srautais – MCP supratimas suteiks jums galią kurti galingesnes ir lankstesnes programas.
+Įsivaizduokite MCP kaip universalų vertėją DI programoms – taip, kaip USB prievadai leidžia prijungti bet kokį įrenginį prie jūsų kompiuterio, MCP leidžia DI modeliams standartizuotai prisijungti prie bet kurio įrankio ar paslaugos. Nesvarbu, ar kuriate pirmąjį savo pokalbių robotą, ar dirbate su sudėtingais DI darbo srautais, MCP supratimas suteiks jums galią kurti pajėgesnes ir lanksčias programas.
 
-Šis mokymas yra sukurtas kantriai ir rūpestingai, atsižvelgiant į jūsų mokymosi kelionę. Pradėsime nuo paprastų koncepcijų, kurias jau suprantate, ir palaipsniui kursime jūsų įgūdžius per praktinius užsiėmimus jūsų mėgstama programavimo kalba. Kiekviename žingsnyje rasite aiškius paaiškinimus, naudingus pavyzdžius ir daug motyvacijos.
+Šis kursas sukurtas kantriai ir rūpestingai jūsų mokymosi kelionei. Pradėsime nuo paprastų jau suprantamų sąvokų ir pamažu auginsime jūsų įgūdžius per praktinius pratimus pasirinktoje programavimo kalboje. Kiekviename etape yra aiškūs paaiškinimai, praktiški pavyzdžiai ir daug padrąsinimų.
 
-Baigę šią kelionę būsite pasiruošę kurti savo MCP serverius, integruoti juos su populiariausiomis DI platformomis ir suprasti, kaip ši technologija keičia DI kūrimo ateitį. Pradėkime šią įdomią nuotykį kartu!
+Baigę šią kelionę, turėsite pasitikėjimo kurdami savo MCP serverius, integruodami juos su populiariomis DI platformomis ir suprasite, kaip ši technologija keičia DI vystymo ateitį. Pradėkime šią įdomią nuotykį kartu!
 
 ### Oficialūs dokumentai ir specifikacijos
 
-Šis mokymo planas yra suderintas su **MCP specifikacija 2025-11-25** (naujausia stabili versija). MCP specifikacija naudoja datos pagrindu pagrįstą versijų žymėjimą (YYYY-MM-DD formato), kad būtų aiškiai sekama protokolo versija.
+Šis kursas suderintas su **MCP Specifikacija 2025-11-25** (naujausias stabilus leidimas). MCP specifikacija naudoja datos pagrindu versijavimą (YYYY-MM-DD formatu), kad aiškiai sekama protokolo versija.
 
-Šie ištekliai taps vertingesni jūsų supratimui augant, tačiau nesijaudinkite, jei visko iš karto neskaitysite. Pradėkite nuo jūsų labiausiai dominančių sričių!
-- 📘 [MCP dokumentacija](https://modelcontextprotocol.io/) – Tai jūsų pagrindinis išteklius, kuriame rasite žingsnis po žingsnio gidus ir vartotojo vadovus. Dokumentacija parengta pradedantiesiems, pateikiant aiškius pavyzdžius, kuriuos galite sekti savo tempu.
-- 📜 [MCP specifikacija](https://modelcontextprotocol.io/specification/2025-11-25) – Tai išsamus jūsų nuorodų vadovas. Dirbdami su mokymu, čia dažnai grįšite ieškodami konkrečių detalių ir pažengusių funkcijų.
-- 📜 [MCP specifikacijų versijų informacija](https://modelcontextprotocol.io/specification/versioning) – Čia pateikta informacija apie protokolo versijų istoriją ir kaip MCP naudoja datos pagrindu pagrįstą versijavimo sistemą (YYYY-MM-DD formatas).
-- 🧑‍💻 [MCP GitHub saugykla](https://github.com/modelcontextprotocol) – Čia rasite SDK, įrankius ir kodo pavyzdžius daugelyje programavimo kalbų. Tai praktiškų pavyzdžių ir paruoštų naudoti komponentų lobynas.
-- 🌐 [MCP bendruomenė](https://github.com/orgs/modelcontextprotocol/discussions) – Prisijunkite prie kitų mokinių ir patyrusių kūrėjų diskusijų apie MCP. Tai palaikanti bendruomenė, kurioje klausimai yra laukiami, o žinios laisvai dalijamos.
-
+Šie ištekliai tampa vertingesni su jūsų supratimo augimu, tačiau nesijauskite spaudžiami viską skaityti iš karto. Pradėkite nuo srities, kuri jus labiausiai domina!
+- 📘 [MCP dokumentacija](https://modelcontextprotocol.io/) – Tai jūsų pagrindinis šaltinis žingsnis po žingsnio vadovams ir vartotojų gido. Dokumentacija parašyta pradedantiesiems draugišku stiliumi, pateikiant aiškius pavyzdžius, kuriuos galite sekti jums patogiu tempu.
+- 📜 [MCP specifikacija](https://modelcontextprotocol.io/specification/2025-11-25) – Įsivaizduokite tai kaip išsamų nuorodų vadovą. Dirbdami per kursą, dažnai čia grįšite ieškoti konkrečių detalių ir nagrinėti pažangias funkcijas.
+- 📜 [MCP specifikacijos versijavimas](https://modelcontextprotocol.io/specification/versioning) – Čia rasite informaciją apie protokolo versijų istoriją ir kaip MCP naudoja datos pagrindo versijavimą (YYYY-MM-DD formatu).
+- 🧑‍💻 [MCP GitHub repozitorija](https://github.com/modelcontextprotocol) – Čia rasite SDK, įrankius ir kodo pavyzdžius įvairiomis programavimo kalbomis. Tai tarsi lobyno deimantas su praktiškais pavyzdžiais ir paruoštais komponentais.
+- 🌐 [MCP bendruomenė](https://github.com/orgs/modelcontextprotocol/discussions) – Prisijunkite prie kitų besimokančių ir patyrusių kūrėjų diskusijose apie MCP. Tai palaikanti bendruomenė, kurioje klausimai yra laukiami ir žinios laisvai dalijamos.
+  
 ## Mokymosi tikslai
 
-Baigę šį mokymo programą jausitės užtikrinti ir entuziastingi dėl savo naujų gebėjimų. Štai ką pasieksite:
+Šio kurso pabaigoje jausitės pasitikintys ir džiaugsitės savo naujais gebėjimais. Štai ką pasieksite:
 
-• **Suprasti MCP pagrindus**: Suprasite, kas yra Modelio konteksto protokolas ir kodėl jis keičia DI programų bendradarbiavimą, naudodami prasmingas analogijas ir pavyzdžius.
+• **Suprasite MCP pagrindus**: Sužinosite, kas yra Modelio Konteksto Protokolas ir kodėl jis keičia tai, kaip DI programos veikia kartu, naudodamiesi prasmingomis analogijomis ir pavyzdžiais.
 
-• **Sukurti savo pirmą MCP serverį**: Kursite veikiantį MCP serverį pasirinkta programavimo kalba, pradedant nuo paprastų pavyzdžių ir žingsnis po žingsnio įvaldant įgūdžius.
+• **Sukursite savo pirmą MCP serverį**: Sukursite veikiantį MCP serverį pasirinktoje programavimo kalboje, pradedant nuo paprastų pavyzdžių ir žingsnis po žingsnio augindami savo įgūdžius.
 
-• **Jungti DI modelius su realiais įrankiais**: Išmoksite sujungti DI modelius su tikromis paslaugomis, suteikdami savo programoms galingas naujas funkcijas.
+• **Sujungsite DI modelius su tikrais įrankiais**: Sužinosite, kaip tiltu sujungti DI modelius ir tikras paslaugas, suteikdami savo programoms galingas naujas galimybes.
 
-• **Įgyvendinti geriausias saugumo praktikas**: Suprasite, kaip apsaugoti MCP įgyvendinimus, saugant tiek programas, tiek naudotojus.
+• **Įgyvendinsite saugumo geriausias praktikas**: Suprasite, kaip užtikrinti savo MCP įgyvendinimų saugumą, apsaugant tiek savo programas, tiek naudotojus.
 
-• **Diegti su pasitikėjimu**: Žinosite, kaip perkelti MCP projektus iš kūrimo į gamybą, naudodami praktiškas diegimo strategijas.
+• **Diegsite drąsiai**: Žinosite, kaip savo MCP projektus perkelti iš kūrimo į gamybą, naudodami praktiškas diegimo strategijas, veikiančias realiame pasaulyje.
 
-• **Prisijungti prie MCP bendruomenės**: Tapsite augančios kūrėjų bendruomenės dalimi, kuri formuoja DI programų kūrimo ateitį.
+• **Prisijungsite prie MCP bendruomenės**: Tapsite augančios kūrėjų bendruomenės dalimi, formuojančios DI programų vystymo ateitį.
 
 ## Būtinos žinios
 
-Prieš gilindamiesi į MCP specifiką, įsitikinkime, kad jau esate patogiai susipažinę su kai kuriomis pagrindinėmis sąvokomis. Nesijaudinkite, jei nesate ekspertas – paaiškinsime viską, ko prireiks!
+Prieš neriant į MCP specifiką, įsitikinkime, kad jaučiatės patogiai su kai kuriomis pagrindinėmis sąvokomis. Nesijaudinkite, jei šiose srityse nesate ekspertas – mes paaiškinsime viską, ko jums reikės, eidami kartu!
 
-### Protokolų supratimas (Pagrindas)
+### Protokolų supratimas (Pamatai)
 
-Įsivaizduokite protokolą kaip pokalbio taisykles. Kai skambinate draugui, abu žinote, kad reikia pasisveikinti, laukti savo eilės kalbėti ir atsisveikinti pabaigoje. Kompiuterinės programos taip pat reikia panašių taisyklių, kad galėtų efektyviai bendrauti.
+Įsivaizduokite protokolą kaip pokalbio taisykles. Kai skambinate draugui, abu žinote, kad atsakius sakote „labas“, kalbatės po vieną ir baigę sakote „viso gero“. Kompiuterinės programos taip pat reikalingas panašus taisyklių rinkinys, kad jos galėtų efektyviai bendrauti.
 
-MCP yra protokolas – sutartų taisyklių rinkinys, padedantis DI modeliams ir programoms prasmingai „kalbėtis“ su įrankiais ir paslaugomis. Kaip taisyklės palengvina žmonių komunikaciją, taip MCP užtikrina patikimą ir galingą DI programų bendravimą.
+MCP yra protokolas – sutartų taisyklių rinkinys, kuris padeda DI modeliams ir programoms produktyviai „kalbėtis“ su įrankiais ir paslaugomis. Kaip pokalbio taisyklės palengvina žmonių bendravimą, taip MCP padaro DI programų komunikaciją daug patikimesnę ir galingesnę.
 
-### Kliento ir serverio santykiai (Kaip programos veikia kartu)
+### Kliento-serverio santykiai (Kaip programos veikia kartu)
 
-Kliento ir serverio santykiai jums yra pažįstami kasdien! Naudodami naršyklę (klientą), naršote tinklalapį, kuris yra serverio siunčiama turinio pateikimo vieta. Naršyklė žino, kaip užklausti, o serveris – kaip atsakyti.
+Jūs jau kasdien naudojate kliento-serverio santykius! Kai naudojate interneto naršyklę (klientą) apsilankyti svetainėje, prisijungiate prie interneto serverio, kuris siunčia puslapio turinį. Naršyklė žino, kaip prašyti informacijos, o serveris žino, kaip atsakyti.
 
-MCP turi panašią sąveiką: DI modeliai veikia kaip klientai, kurie prašo informacijos ar veiksmų, o MCP serveriai teikia šias galimybes. Tai lyg turėti pagalbininką (serverį), kuriam DI modelis gali patikėti konkrečias užduotis.
+MCP yra panašus santykis: DI modeliai yra klientai, kurie prašo informacijos ar veiksmų, o MCP serveriai teikia tas galimybes. Tai tarsi turėti padedantį asistentą (serverį), kurį DI gali paprašyti atlikti specifines užduotis.
 
-### Kodėl standartizacija svarbi (Kaip viskas veikia darniai)
+### Kodėl svarbi standartizacija (Kaip dalykai veikia kartu)
 
-Įsivaizduokite, kad kiekvienas automobilių gamintojas naudotų skirtingos formos degalų įkrovimo angas – reikėtų adapterio kiekvienam automobiliui! Standartizacija reiškia susitarimą dėl bendrų sprendimų, kad viskas veiktų sklandžiai.
+Įsivaizduokite, jei kiekvienas automobilių gamintojas naudotų skirtingo dydžio degalų piltuvus – jums reikėtų skirtingo adapterio kiekvienam automobiliui! Standartizacija reiškia susitarti dėl bendrų sprendimų, kad viskas veiktų be problemų.
 
-MCP suteikia tokią standartizaciją DI programoms. Vietoje to, kad kiekvienas DI modelis turėtų individualų kodą kiekvienam įrankiui, MCP sukuria universalų komunikacijos būdą. Tai leidžia kūrėjams sukurti įrankius vieną kartą ir juos naudoti daugelyje DI sistemų.
+MCP suteikia šią standartizaciją DI programoms. Vietoj to, kad kiekvienas DI modelis reikėtų rašyti specialų kodą darbui su kiekvienu įrankiu, MCP sukuria universalų būdą jiems bendrauti. Tai leidžia kūrėjams įrankius kurti vieną kartą ir naudoti daugelyje skirtingų DI sistemų.
 
-## 🧭 Jūsų mokymosi kelias – apžvalga
+## 🧭 Jūsų mokymosi kelio apžvalga
 
-Jūsų kelionė į MCP yra kruopščiai sukurta, kad palaipsniui stiprintų jūsų pasitikėjimą ir įgūdžius. Kiekviename etape susipažinsite su naujomis sąvokomis ir sustiprinsite jau išmoktas.
+Jūsų MCP kelias yra kruopščiai struktūruotas, siekiant palaipsniui ugdyti jūsų pasitikėjimą ir įgūdžius. Kiekvienas etapas pristato naujas sąvokas ir stiprina jau įgytas žinias.
 
-### 🌱 Pagrindų etapas: Pagrindų supratimas (Moduliai 0–2)
+### 🌱 Pagrindų etapas: pagrindų supratimas (0–2 moduliai)
 
-Čia prasideda jūsų nuotykis! Pateiksime MCP sąvokas naudojant pažįstamas analogijas ir paprastus pavyzdžius. Suprasite, kas yra MCP, kodėl jis svarbus ir kaip jis įsipaišo į didesnį DI pasaulį.
+Čia prasideda jūsų nuotykis! Pateiksime jums MCP sąvokas naudodami pažįstamas analogijas ir paprastus pavyzdžius. Suprasite, kas yra MCP, kodėl jis egzistuoja ir kaip jis dera su platesniu DI pasauliu.
 
-• **Modulis 0 – Įvadas į MCP**: Pradėsime tyrinėti, kas yra MCP ir kodėl jis toks svarbus šiuolaikinėms DI programoms. Matysite realius MCP panaudojimo pavyzdžius ir suprasite, kaip jis sprendžia dažnas kūrėjų problemas.
+• **Modulis 0 – Įvadas į MCP**: Pradėsime tyrinėdami, kas yra MCP ir kodėl jis toks svarbus šiuolaikinėms DI programoms. Pamatysite realius MCP veikimo pavyzdžius ir suprasite, kaip jis sprendžia bendras problemas, su kuriomis susiduria kūrėjai.
 
-• **Modulis 1 – Pagrindinių sąvokų paaiškinimas**: Čia išmoksite esminius MCP statybinius blokelius. Naudosime daug analogijų ir vaizdinių pavyzdžių, kad šios sąvokos taptų aiškios ir suprantamos.
+• **Modulis 1 – Pagrindinės sąvokos paaiškintos**: Čia išmoksite pagrindinius MCP statybinius blokus. Naudosime daug analogijų ir vaizdinių pavyzdžių, kad šios sąvokos būtų natūralios ir suprantamos.
 
-• **Modulis 2 – Saugumas MCP**: Saugumas gali skambėti sudėtingai, bet mes parodysime, kaip MCP turi įmontuotas saugumo funkcijas ir išmokysime geriausių praktikų, kurios nuo pradžių saugo jūsų programas.
+• **Modulis 2 – Saugumas MCP**: Saugumas gali atrodyti bauginantis, bet mes parodysime, kaip MCP turi integruotas saugumo priemones ir išmokysime geriausių praktikų, kurios apsaugos jūsų programas nuo pat pradžių.
 
-### 🔨 Kūrimo etapas: Pirmųjų implementacijų kūrimas (Modulis 3)
+### 🔨 Kūrimo etapas: pirmųjų įgyvendinimų kūrimas (3 modulis)
 
-Dabar prasideda tikrasis malonumas! Gaunate praktinės patirties kuriant tikrus MCP serverius ir klientus. Nesijaudinkite – pradėsime paprastai ir lydėsime jus kiekvienu žingsniu.
-Šis modulis apima kelis praktinius vadovus, leidžiančius praktikuotis jums patogiausia programavimo kalba. Jūs sukursite pirmąjį serverį, sukursite klientą, kad prisijungtumėte prie jo, ir net integruosite su populiariomis kūrimo priemonėmis, tokiomis kaip VS Code.
+Dabar prasideda tikras linksmybių metas! Gaunate praktinės patirties kuriant tikrus MCP serverius ir klientus. Nesijaudinkite – pradėsime nuo paprasto ir vesime jus žingsnis po žingsnio.
+Šis modulis apima kelis praktinius vadovus, leidžiančius praktikuotis jums patogiausia programavimo kalba. Sukursite savo pirmąjį serverį, sukursite klientą, kuris prisijungs prie jo, ir net integruositės su populiariomis kūrimo priemonėmis, tokiomis kaip VS Code.
 
-Kiekviename vadove pateikti pilni kodo pavyzdžiai, trikčių šalinimo patarimai ir paaiškinimai, kodėl pasirenkame tam tikrus dizaino sprendimus. Baigę šį etapą turėsite veikiančias MCP implementacijas, kuriomis galėsite didžiuotis!
+Kiekvienas vadovas apima pilnus kodo pavyzdžius, trikčių šalinimo patarimus ir paaiškinimus, kodėl pasirenkame tam tikrus dizaino sprendimus. Šios fazės pabaigoje turėsite veikiančias MCP įgyvendinimo versijas, kurias galėsite didžiuotis!
 
-### 🚀 Augimo etapas: pažangios sąvokos ir realaus pasaulio taikymas (4–5 moduliai)
+### 🚀 Augimo fazė: pažangios sąvokos ir realaus pasaulio taikymas (4-5 moduliai)
 
-Įvaldę pagrindus, esate pasiruošę tyrinėti sudėtingesnes MCP funkcijas. Apžvelgsime praktines įgyvendinimo strategijas, derinimo metodus ir pažangias temas, tokias kaip multimodalinė DI integracija.
+Įvaldę pagrindus, esate pasiruošę tyrinėti sudėtingesnes MCP funkcijas. Aptarsime praktines įgyvendinimo strategijas, derinimo technikas ir pažangias temas, tokias kaip daugialypio režimo AI integracija.
 
-Taip pat sužinosite, kaip skalauti savo MCP implementacijas gamybai ir integruotis su debesų platformomis, tokiomis kaip Azure. Šie moduliai paruoš jus kurti MCP sprendimus, galinčius atlaikyti realaus pasaulio reikalavimus.
+Taip pat išmoksite keisti savo MCP įgyvendinimus gamybiniam naudojimui ir integruotis su debesų platformomis, tokiomis kaip Azure. Šie moduliai paruoš jus kurti MCP sprendimus, kurie atlaikytų realaus pasaulio reikalavimus.
 
-### 🌟 Meistriškumo etapas: bendruomenė ir specializacija (6–11 moduliai)
+### 🌟 Meistriškumo fazė: bendruomenė ir specializacija (6-11 moduliai)
 
-Paskutinis etapas sutelktas į MCP bendruomenės narių įtraukimą ir specializaciją jus labiausiai dominančiose srityse. Išmoksite prisidėti prie atviro kodo MCP projektų, įgyvendinti pažangias autentifikacijos schemas ir kurti visapusiškus sprendimus su duomenų bazės integracija.
+Paskutinė fazė skirta prisijungti prie MCP bendruomenės ir specializuotis jums įdomiose srityse. Išmoksite prisidėti prie atvirojo kodo MCP projektų, įgyvendinti pažangias autentifikacijos schemas ir kurti išsamias sprendimų su duomenų bazės integracija.
 
-Ypatingas dėmesys skirtas 11 moduliui – tai visas 13 laboratorinių darbų praktinis mokymosi kelias, kuris moko kurti gamybai paruoštus MCP serverius su PostgreSQL integracija. Tai lyg baigiamasis projektas, apjungiantis viską, ką išmokote!
+11 modulis nusipelno ypatingo paminėjimo – tai pilnas 13 laboratorijų praktinis mokymosi kelias, kuris moko kurti gamybai paruoštus MCP serverius su PostgreSQL integracija. Tai kaip baigiamasis projektas, apjungiantis viską, ko išmokote!
 
-### 📚 Pilnas mokymo struktūros planas
+### 📚 Pilnas mokymo planas
 
 | Modulis | Tema | Aprašymas | Nuoroda |
 |--------|-------|-------------|------|
 | **Moduliai 0-3: Pagrindai** | | | |
-| 00 | Įvadas į MCP | Modelio konteksto protokolo apžvalga ir jo reikšmė DI vamzdynuose | [Skaityti daugiau](./00-Introduction/README.md) |
+| 00 | Įvadas į MCP | Modelio konteksto protokolo apžvalga ir jo svarba AI srautuose | [Skaityti daugiau](./00-Introduction/README.md) |
 | 01 | Pagrindinių sąvokų paaiškinimas | Išsamus pagrindinių MCP sąvokų nagrinėjimas | [Skaityti daugiau](./01-CoreConcepts/README.md) |
-| 02 | Saugumas MCP | Saugumo grėsmės ir geriausios praktikos | [Skaityti daugiau](./02-Security/README.md) |
-| 03 | Pradžia su MCP | Aplinkos nustatymas, pagrindiniai serveriai/klientai, integracija | [Skaityti daugiau](./03-GettingStarted/README.md) |
-| **Modulis 3: kurkite savo pirmąjį serverį ir klientą** | | | |
-| 3.1 | Pirmasis serveris | Sukurkite savo pirmą MCP serverį | [Vadovas](./03-GettingStarted/01-first-server/README.md) |
+| 02 | MCP saugumas | Saugumo grėsmės ir geriausios praktikos | [Skaityti daugiau](./02-Security/README.md) |
+| 03 | Pirmieji žingsniai su MCP | Aplinkos nustatymas, pagrindiniai serveriai/klientai, integracija | [Skaityti daugiau](./03-GettingStarted/README.md) |
+| **Modulis 3: Pirmojo serverio ir kliento kūrimas** | | | |
+| 3.1 | Pirmasis serveris | Sukurkite savo pirmąjį MCP serverį | [Vadovas](./03-GettingStarted/01-first-server/README.md) |
 | 3.2 | Pirmasis klientas | Sukurkite paprastą MCP klientą | [Vadovas](./03-GettingStarted/02-client/README.md) |
 | 3.3 | Klientas su LLM | Integruokite didelius kalbos modelius | [Vadovas](./03-GettingStarted/03-llm-client/README.md) |
-| 3.4 | VS Code integracija | Naudokitės MCP serveriais VS Code aplinkoje | [Vadovas](./03-GettingStarted/04-vscode/README.md) |
+| 3.4 | VS Code integracija | Naudokite MCP serverius VS Code aplinkoje | [Vadovas](./03-GettingStarted/04-vscode/README.md) |
 | 3.5 | stdio serveris | Kurkite serverius naudodami stdio transportą | [Vadovas](./03-GettingStarted/05-stdio-server/README.md) |
-| 3.6 | HTTP transliacija | Įgyvendinkite HTTP transliaciją MCP | [Vadovas](./03-GettingStarted/06-http-streaming/README.md) |
-| 3.7 | DI įrankių rinkinys | Naudokite DI įrankių rinkinį su MCP | [Vadovas](./03-GettingStarted/07-aitk/README.md) |
+| 3.6 | HTTP srautas | Įgyvendinkite HTTP srautą MCP | [Vadovas](./03-GettingStarted/06-http-streaming/README.md) |
+| 3.7 | AI įrankių rinkinys | Naudokite AI įrankių rinkinį su MCP | [Vadovas](./03-GettingStarted/07-aitk/README.md) |
 | 3.8 | Testavimas | Testuokite savo MCP serverio įgyvendinimą | [Vadovas](./03-GettingStarted/08-testing/README.md) |
-| 3.9 | Diegimas | Diegkite MCP serverius gamyboje | [Vadovas](./03-GettingStarted/09-deployment/README.md) |
-| 3.10 | Pažangus serverio naudojimas | Naudokite pažangius serverius pažangioms funkcijoms ir geresnei architektūrai | [Vadovas](./03-GettingStarted/10-advanced/README.md) |
-| 3.11 | Paprasta autentifikacija | Skyrius, pradedantis nuo autentifikacijos ir RBAC | [Vadovas](./03-GettingStarted/11-simple-auth/README.md) |
+| 3.9 | Diegimas | Diegkite MCP serverius į gamybą | [Vadovas](./03-GettingStarted/09-deployment/README.md) |
+| 3.10 | Pažangus serverio naudojimas | Naudokite pažangius serverius pažangioms funkcijoms ir patobulintai architektūrai | [Vadovas](./03-GettingStarted/10-advanced/README.md) |
+| 3.11 | Paprasta autentifikacija | Skyrius, kuris nuo pradžių parodo autentifikaciją ir RBAC | [Vadovas](./03-GettingStarted/11-simple-auth/README.md) |
 | 3.12 | MCP šeimininkai | Konfigūruokite Claude Desktop, Cursor, Cline ir kitus MCP šeimininkus | [Vadovas](./03-GettingStarted/12-mcp-hosts/README.md) |
-| 3.13 | MCP inspektorius | Derinkite ir testuokite MCP serverius su Inspektoriaus įrankiu | [Vadovas](./03-GettingStarted/13-mcp-inspector/README.md) |
-| 3.14 | Atranka | Naudokite atranką bendradarbiaujant su klientu | [Vadovas](./03-GettingStarted/14-sampling/README.md) |
-| 3.15 | MCP programos | Kurkite MCP programas | [Vadovas](./03-GettingStarted/15-mcp-apps/README.md) |
-
-| **Moduliai 4-5: praktiniai ir pažangūs** | | | |
-| 04 | Praktinis įgyvendinimas | SDK, derinimas, testavimas, pakartotinai naudojamos komandų šablonai | [Skaityti daugiau](./04-PracticalImplementation/README.md) |
-| 4.1 | Puslapiavimas | Tvarkykite dideles rezultatų aibes su žymekliu pagrįstu puslapiavimu | [Vadovas](./04-PracticalImplementation/pagination/README.md) |
-| 05 | Pažangios MCP temos | Multimodalinė DI, skalavimas, įmonių naudojimas | [Skaityti daugiau](./05-AdvancedTopics/README.md) |
+| 3.13 | MCP inspektorius | Derinkite ir testuokite MCP serverius su Inspector įrankiu | [Vadovas](./03-GettingStarted/13-mcp-inspector/README.md) |
+| 3.14 | Imbūdinimas | Naudokite imbūdinimą bendradarbiaudami su klientu | [Vadovas](./03-GettingStarted/14-sampling/README.md) |
+| 3.15 | MCP programėlės | Kurkite MCP programėles | [Vadovas](./03-GettingStarted/15-mcp-apps/README.md) |
+| **Moduliai 4-5: Praktika ir pažangi tema** | | | |
+| 04 | Praktinis įgyvendinimas | SDK, derinimas, testavimas, pakartotinai naudojami užklausų šablonai | [Skaityti daugiau](./04-PracticalImplementation/README.md) |
+| 4.1 | Puslapiavimas | Tvarkykite didelius rezultatų rinkinius su kursoriaus pagrindu sudarytu puslapiavimu | [Vadovas](./04-PracticalImplementation/pagination/README.md) |
+| 05 | Pažangios MCP temos | Daugialypis AI, mastelio didinimas, įmonių naudojimas | [Skaityti daugiau](./05-AdvancedTopics/README.md) |
 | 5.1 | Azure integracija | MCP integracija su Azure | [Vadovas](./05-AdvancedTopics/mcp-integration/README.md) |
-| 5.2 | Multimodalumas | Darbas su keliomis modalitetėmis | [Vadovas](./05-AdvancedTopics/mcp-multi-modality/README.md) |
+| 5.2 | Daugialypėje erdvėje | Darbas su keliomis modalinėmis sritimis | [Vadovas](./05-AdvancedTopics/mcp-multi-modality/README.md) |
 | 5.3 | OAuth2 demonstracija | Įgyvendinkite OAuth2 autentifikaciją | [Vadovas](./05-AdvancedTopics/mcp-oauth2-demo/README.md) |
-| 5.4 | Pagrindiniai kontekstai | Supraskite ir įgyvendinkite pagrindinius kontekstus | [Vadovas](./05-AdvancedTopics/mcp-root-contexts/README.md) |
-| 5.5 | Maršrutizacija | MCP maršrutizavimo strategijos | [Vadovas](./05-AdvancedTopics/mcp-routing/README.md) |
-| 5.6 | Atranka | Atrankos metodai MCP | [Vadovas](./05-AdvancedTopics/mcp-sampling/README.md) |
-| 5.7 | Skalavimas | Skalaukite MCP implementacijas | [Vadovas](./05-AdvancedTopics/mcp-scaling/README.md) |
+| 5.4 | Root kontekstai | Supraskite ir įgyvendinkite root kontekstus | [Vadovas](./05-AdvancedTopics/mcp-root-contexts/README.md) |
+| 5.5 | Maršrutizavimas | MCP maršrutizavimo strategijos | [Vadovas](./05-AdvancedTopics/mcp-routing/README.md) |
+| 5.6 | Imbūdinimas | Imbūdinimo MCP technikos | [Vadovas](./05-AdvancedTopics/mcp-sampling/README.md) |
+| 5.7 | Mastelio keitimas | MCP įgyvendinimų mastelio didinimas | [Vadovas](./05-AdvancedTopics/mcp-scaling/README.md) |
 | 5.8 | Saugumas | Pažangūs saugumo aspektai | [Vadovas](./05-AdvancedTopics/mcp-security/README.md) |
-| 5.9 | Internetinė paieška | Įgyvendinkite internetinės paieškos galimybes | [Vadovas](./05-AdvancedTopics/web-search-mcp/README.md) |
-| 5.10 | Realaus laiko transliacija | Kurkite realaus laiko transliacijos funkcionalumą | [Vadovas](./05-AdvancedTopics/mcp-realtimestreaming/README.md) |
+| 5.9 | Tinklo paieška | Įgyvendinkite tinklo paieškos galimybes | [Vadovas](./05-AdvancedTopics/web-search-mcp/README.md) |
+| 5.10 | Realaus laiko transliacija | Kurkite realaus laiko srauto funkcijas | [Vadovas](./05-AdvancedTopics/mcp-realtimestreaming/README.md) |
 | 5.11 | Realaus laiko paieška | Įgyvendinkite realaus laiko paiešką | [Vadovas](./05-AdvancedTopics/mcp-realtimesearch/README.md) |
 | 5.12 | Entra ID autentifikacija | Autentifikacija su Microsoft Entra ID | [Vadovas](./05-AdvancedTopics/mcp-security-entra/README.md) |
 | 5.13 | Foundry integracija | Integracija su Azure AI Foundry | [Vadovas](./05-AdvancedTopics/mcp-foundry-agent-integration/README.md) |
 | 5.14 | Konteksto inžinerija | Efektyvios konteksto inžinerijos technikos | [Vadovas](./05-AdvancedTopics/mcp-contextengineering/README.md) |
-| 5.15 | MCP įprastas transportas | Įprastinio transporto įgyvendinimai | [Vadovas](./05-AdvancedTopics/mcp-transport/README.md) |
-| 5.16 | Protokolo funkcijos | Progresų pranešimai, atšaukimas, išteklių šablonai | [Vadovas](./05-AdvancedTopics/mcp-protocol-features/README.md) |
-| **Moduliai 6-10: bendruomenė ir geriausios praktikos** | | | |
-| 06 | Bendruomenės indėlis | Kaip prisidėti prie MCP ekosistemos | [Vadovas](./06-CommunityContributions/README.md) |
-| 07 | Ankstyvosios adaptacijos įžvalgos | Realūs įgyvendinimo atvejai | [Vadovas](./07-LessonsfromEarlyAdoption/README.md) |
-| 08 | Geriausios MCP praktikos | Veikimas, atsparumas gedimams, ištvermė | [Vadovas](./08-BestPractices/README.md) |
-| 09 | MCP atvejo studijos | Praktiniai įgyvendinimo pavyzdžiai | [Vadovas](./09-CaseStudy/README.md) |
-| 10 | Praktinis seminaras | MCP serverio kūrimas su DI įrankių rinkiniu | [Laboratorija](./10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md) |
-| **Modulis 11: MCP serverio praktikos laboratorija** | | | |
-| 11 | MCP serverio duomenų bazės integracija | Išsamus 13 laboratorinių darbų praktinis mokymosi kelias PostgreSQL integracijai | [Laboratorijos](./11-MCPServerHandsOnLabs/README.md) |
-| 11.1 | Įvadas | MCP su duomenų bazės integracija ir mažmeninės analizės panaudojimo atvejo apžvalga | [Laboratorija 00](./11-MCPServerHandsOnLabs/00-Introduction/README.md) |
-| 11.2 | Pagrindinė architektūra | Supratimas apie MCP serverio architektūrą, duomenų bazės sluoksnius ir saugumo schemas | [Laboratorija 01](./11-MCPServerHandsOnLabs/01-Architecture/README.md) |
-| 11.3 | Saugumas ir daugiaklientiškumas | Eilučių lygmens saugumas, autentifikacija ir daugiaklientė duomenų prieiga | [Laboratorija 02](./11-MCPServerHandsOnLabs/02-Security/README.md) |
-| 11.4 | Aplinkos nustatymas | Vystymo aplinkos, Docker, Azure išteklių nustatymas | [Laboratorija 03](./11-MCPServerHandsOnLabs/03-Setup/README.md) |
+| 5.15 | MCP pasirinktinė transporto priemonė | Pasirinktinių transporto priemonių įgyvendinimai | [Vadovas](./05-AdvancedTopics/mcp-transport/README.md) |
+| 5.16 | Protokolo funkcijos | Progreso pranešimai, atšaukimas, resursų šablonai | [Vadovas](./05-AdvancedTopics/mcp-protocol-features/README.md) |
+| **Moduliai 6-10: Bendruomenė ir geriausios praktikos** | | | |
+| 06 | Bendruomenės indėliai | Kaip prisidėti prie MCP ekosistemos | [Vadovas](./06-CommunityContributions/README.md) |
+| 07 | Pirmosios patirties įžvalgos | Realūs įgyvendinimo pavyzdžiai | [Vadovas](./07-LessonsfromEarlyAdoption/README.md) |
+| 08 | Geriausios MCP praktikos | Veikimas, klaidų tolerancija, atsparumas | [Vadovas](./08-BestPractices/README.md) |
+| 09 | MCP atvejų analizės | Praktiniai įgyvendinimo pavyzdžiai | [Vadovas](./09-CaseStudy/README.md) |
+| 10 | Praktinis seminaras | MCP serverio kūrimas su AI įrankių rinkiniu | [Laboratorija](./10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md) |
+| **Modulis 11: MCP serverio praktinės laboratorijos** | | | |
+| 11 | MCP serverio duomenų bazės integracija | Išsamus 13 laboratorijų praktinis mokymo kelias PostgreSQL integracijai | [Laboratorijos](./11-MCPServerHandsOnLabs/README.md) |
+| 11.1 | Įvadas | MCP apžvalga su duomenų bazės integracija ir mažmeninės prekybos analizės atveju | [Laboratorija 00](./11-MCPServerHandsOnLabs/00-Introduction/README.md) |
+| 11.2 | Pagrindinė architektūra | MCP serverio architektūros, duomenų bazių sluoksnių ir saugumo modelių supratimas | [Laboratorija 01](./11-MCPServerHandsOnLabs/01-Architecture/README.md) |
+| 11.3 | Saugumas ir multi-nuomininkų palaikymas | Eilučių lygio saugumas, autentifikacija ir daugiareikšmės prieigos prie duomenų valdymas | [Laboratorija 02](./11-MCPServerHandsOnLabs/02-Security/README.md) |
+| 11.4 | Aplinkos nustatymas | Vystytojo aplinkos, Docker, Azure išteklių konfigūravimas | [Laboratorija 03](./11-MCPServerHandsOnLabs/03-Setup/README.md) |
 | 11.5 | Duomenų bazės dizainas | PostgreSQL nustatymas, mažmeninės prekybos schemos kūrimas ir pavyzdiniai duomenys | [Laboratorija 04](./11-MCPServerHandsOnLabs/04-Database/README.md) |
 | 11.6 | MCP serverio įgyvendinimas | FastMCP serverio kūrimas su duomenų bazės integracija | [Laboratorija 05](./11-MCPServerHandsOnLabs/05-MCP-Server/README.md) |
-| 11.7 | Įrankių kūrimas | Duomenų bazės užklausų įrankių ir schemos introspekcijos kūrimas | [Laboratorija 06](./11-MCPServerHandsOnLabs/06-Tools/README.md) |
-| 11.8 | Semantinė paieška | Vektorinės įdėtys su Azure OpenAI ir pgvector įgyvendinimas | [Laboratorija 07](./11-MCPServerHandsOnLabs/07-Semantic-Search/README.md) |
-| 11.9 | Testavimas ir derinimas | Testavimo strategijos, derinimo įrankiai ir patvirtinimo metodai | [Laboratorija 08](./11-MCPServerHandsOnLabs/08-Testing/README.md) |
-| 11.10 | VS Code integracija | VS Code MCP integracijos ir DI pokalbių naudojimo konfigūracija | [Laboratorija 09](./11-MCPServerHandsOnLabs/09-VS-Code/README.md) |
-| 11.11 | Diegimo strategijos | Docker diegimas, Azure Container Apps ir skalavimo svarstymai | [Laboratorija 10](./11-MCPServerHandsOnLabs/10-Deployment/README.md) |
-| 11.12 | Stebėsena | Application Insights, žurnalavimas, veiklos stebėjimas | [Laboratorija 11](./11-MCPServerHandsOnLabs/11-Monitoring/README.md) |
-| 11.13 | Geriausios praktikos | Veiklos optimizavimas, saugumo stiprinimas ir gamybos patarimai | [Laboratorija 12](./11-MCPServerHandsOnLabs/12-Best-Practices/README.md) |
+| 11.7 | Įrankių kūrimas | Duomenų užklausų įrankių ir schemos introspekcijos kūrimas | [Laboratorija 06](./11-MCPServerHandsOnLabs/06-Tools/README.md) |
+| 11.8 | Semantinė paieška | Vektorių įterpimų įgyvendinimas su Azure OpenAI ir pgvector | [Laboratorija 07](./11-MCPServerHandsOnLabs/07-Semantic-Search/README.md) |
+| 11.9 | Testavimas ir derinimas | Testavimo strategijos, derinimo įrankiai ir validavimo metodai | [Laboratorija 08](./11-MCPServerHandsOnLabs/08-Testing/README.md) |
+| 11.10 | VS Code integracija | VS Code MCP integracijos ir AI pokalbių naudojimo konfigūracija | [Laboratorija 09](./11-MCPServerHandsOnLabs/09-VS-Code/README.md) |
+| 11.11 | Diegimo strategijos | Docker diegimas, Azure Container Apps ir mastelio keitimo aspektai | [Laboratorija 10](./11-MCPServerHandsOnLabs/10-Deployment/README.md) |
+| 11.12 | Stebėjimas | Application Insights, logų kaupimas, našumo stebėjimas | [Laboratorija 11](./11-MCPServerHandsOnLabs/11-Monitoring/README.md) |
+| 11.13 | Geriausios praktikos | Veikimo optimizavimas, saugumo stiprinimas ir gamybos patarimai | [Laboratorija 12](./11-MCPServerHandsOnLabs/12-Best-Practices/README.md) |
 
 ### 💻 Pavyzdiniai kodo projektai
 
-Vienas įdomiausių MCP mokymosi aspektų – matyti, kaip jūsų kodo įgūdžiai palaipsniui tobulėja. Mūsų kodo pavyzdžiai sukurti taip, kad prasidėtų paprastai ir augtų į sudėtingesnius, kai gilinate supratimą. Čia pristatomos sąvokos su kodu, kuris lengvai suprantamas, bet demonstruoja tikras MCP principus – suprasite ne tik, ką šis kodas daro, bet ir kodėl jis taip struktūruotas bei kaip jis dera su didesnėmis MCP programomis.
+Vienas įdomiausių mokantis MCP yra matyti, kaip jūsų kodo įgūdžiai nuosekliai tobulėja. Kodo pavyzdžiai sukurti taip, kad prasidėtų paprastai ir augtų į sudėtingesnius, atsižvelgiant į jūsų supratimo gilumą. Štai kaip pateikiame sąvokas – su kodu, kuris lengvai suprantamas, bet demonstruoja tikrus MCP principus, jūs suprasite ne tik ką šis kodas daro, bet ir kodėl jis struktūruotas būtent taip ir kaip jis dera platesnėse MCP programose.
 
-#### Pagrindiniai MCP skaičiuotuvo pavyzdžiai
+#### Pagrindiniai MCP skaičiuoklių pavyzdžiai
 
 | Kalba | Aprašymas | Nuoroda |
 |----------|-------------|------|
 | C# | MCP serverio pavyzdys | [Peržiūrėti kodą](./03-GettingStarted/samples/csharp/README.md) |
-| Java | MCP skaičiuotuvas | [Peržiūrėti kodą](./03-GettingStarted/samples/java/calculator/README.md) |
+| Java | MCP skaičiuoklė | [Peržiūrėti kodą](./03-GettingStarted/samples/java/calculator/README.md) |
 | JavaScript | MCP demonstracija | [Peržiūrėti kodą](./03-GettingStarted/samples/javascript/README.md) |
 | Python | MCP serveris | [Peržiūrėti kodą](../../03-GettingStarted/samples/python/mcp_calculator_server.py) |
 | TypeScript | MCP pavyzdys | [Peržiūrėti kodą](./03-GettingStarted/samples/typescript/README.md) |
 | Rust | MCP pavyzdys | [Peržiūrėti kodą](./03-GettingStarted/samples/rust/README.md) |
 
-#### Pažangios MCP įgyvendinimai
+#### Pažangūs MCP įgyvendinimai
 
 | Kalba | Aprašymas | Nuoroda |
 |----------|-------------|------|
@@ -237,48 +236,48 @@ Vienas įdomiausių MCP mokymosi aspektų – matyti, kaip jūsų kodo įgūdži
 
 ## 🎯 MCP mokymosi išankstiniai reikalavimai
 
-Norėdami maksimaliai išnaudoti šį mokymo planą, turėtumėte turėti:
-- Pagrindinės programavimo žinios bent vienoje iš šių programavimo kalbų: C#, Java, JavaScript, Python arba TypeScript  
-- Kliento-serverio modelio ir API supratimas  
-- Pažintis su REST ir HTTP principais  
-- (Pasirinktinai) Žinios apie AI/ML koncepcijas  
+Kad gautumėte kuo daugiau naudos iš šio mokymo plano, turėtumėte turėti:
+- Pagrindinės programavimo žinios bent vienoje iš šių kalbų: C#, Java, JavaScript, Python arba TypeScript
+- Kliento-serverio modelio ir API supratimas
+- Supažindinimas su REST ir HTTP koncepcijomis
+- (Pasirinktinai) AI / ML koncepcijų pagrindai
 
-- Dalyvavimas mūsų bendruomenės diskusijose dėl palaikymo  
+- Dalyvavimas mūsų bendruomenės diskusijose paramai gauti
 
 ## 📚 Studijų vadovas ir ištekliai
 
-Šiame saugykloje yra keli ištekliai, kurie padės jums efektyviai mokytis ir orientuotis:
+Šiame saugykloje yra keletas išteklių, kurie padės jums orientuotis ir efektyviai mokytis:
 
 ### Studijų vadovas
 
-Prieinamas išsamus [Studijų vadovas](./study_guide.md), kuris padės jums efektyviai orientuotis šioje saugykloje. Ši vizualinė mokymo programa parodo, kaip visi temos yra susijusios, ir pateikia nurodymus, kaip efektyviai naudoti pavyzdinius projektus. Tai ypač naudinga vizualiai besimokantiems, kurie mėgsta matyti bendrą vaizdą.
+Išsamus [Studijų vadovas](./study_guide.md) padės jums efektyviai orientuotis šiame saugykloje. Ši vizualinė mokymo programos schema rodo, kaip visos temos susijusios, ir suteikia nurodymų, kaip veiksmingai naudoti pavyzdinius projektus. Tai ypač naudinga, jei esate vizualinis mokinys, mėgstantis matyti bendrą vaizdą.
 
-Vadove rasite:  
-- Vizualinę mokymo programos schemą, kurioje atvaizduotos visos nagrinėjamos temos  
-- Išsamų kiekvienos saugyklos dalies suskirstymą  
-- Nurodymus, kaip naudoti pavyzdinius projektus  
-- Rekomenduojamus mokymosi kelius skirtingiems įgūdžių lygiams  
-- Papildomą medžiagą, papildančią jūsų mokymosi kelionę  
+Vadove yra:
+- Vizualinė mokymo programos schema, rodanti visas temas
+- Išsamus kiekvienos saugyklos skilties išskaidymas
+- Nurodymai, kaip naudoti pavyzdinius projektus
+- Rekomenduojami mokymosi keliai skirtingo lygio mokiniams
+- Papildomi ištekliai jūsų mokymosi kelionei papildyti
 
-### Pokyčių žurnalas
+### Keitimo žurnalas
 
-Mes vedame išsamų [Pokyčių žurnalą](./changelog.md), kuriame fiksuojami visi svarbūs mokymo medžiagos atnaujinimai, kad galėtumėte būti susipažinę su naujausiais patobulinimais ir papildymais.  
-- Naujos turinio dalys  
-- Struktūriniai pokyčiai  
-- Funkcijų patobulinimai  
-- Dokumentacijos atnaujinimai  
+Mes palaikome išsamų [Keitimo žurnalą](./changelog.md), kuriame sekami visi svarbūs mokymo medžiagos atnaujinimai, kad galėtumėte nuolat sekti naujausius patobulinimus ir papildymus.
+- Naujo turinio įtraukimas
+- Struktūriniai pokyčiai
+- Funkcijų patobulinimai
+- Dokumentacijos atnaujinimai
 
 ## 🛠️ Kaip efektyviai naudotis šia mokymo programa
 
-Kiekviena pamoka apima:  
+Kiekviena šio vadovo pamoka apima:
 
 1. Aiškius MCP koncepcijų paaiškinimus  
-2. Veikiančius kodo pavyzdžius keliomis programavimo kalbomis  
-3. Užduotis, skirtas kurti tikras MCP programas  
-4. Papildomus išteklius pažengusiems besimokantiesiems  
+2. Gyvus kodo pavyzdžius keliomis kalbomis  
+3. Užduotis tikrų MCP programų kūrimui  
+4. Papildomus išteklius pažengusiems mokiniams
 
-### Mokomės MCP su C# - mokymų serija  
-Susipažinkime su Model Context Protocol (MCP), pažangia sistema, skirta standartizuoti sąveiką tarp dirbtinio intelekto modelių ir kliento programų. Šioje pradedančiųjų sesijoje pristatysime MCP ir padėsime sukurti jūsų pirmąjį MCP serverį.  
+### Mokomės MCP su C# - pamokų serija  
+Susipažinkime su Model Context Protocol (MCP) – pažangia sistema, skirta standartizuoti sąveikas tarp AI modelių ir klientų programų. Šiame pradedančiųjų lygiui skirtame kurse pristatysime MCP ir padėsime jums sukurti pirmą MCP serverį.  
 #### C#: [https://aka.ms/letslearnmcp-csharp](https://aka.ms/letslearnmcp-csharp)  
 #### Java: [https://aka.ms/letslearnmcp-java](https://aka.ms/letslearnmcp-java)  
 #### JavaScript: [https://aka.ms/letslearnmcp-javascript](https://aka.ms/letslearnmcp-javascript)  
@@ -286,66 +285,69 @@ Susipažinkime su Model Context Protocol (MCP), pažangia sistema, skirta standa
 
 ## 🎓 Jūsų MCP kelionė prasideda
 
-Sveikiname! Jūs ką tik žengėte pirmąjį žingsnį į įdomią kelionę, kuri praplės jūsų programavimo įgūdžius ir supažindins su pažangiausiais dirbtinio intelekto kūrimo sprendimais.  
+Sveikiname! Jūs ką tik žengėte pirmą žingsnį į įdomią kelionę, kuri praplės jūsų programavimo galimybes ir sujungs jus su pažangiausiomis AI kūrimo sritimis.
 
-### Ko jau pasiekėte  
+### Ką jau pasiekėte
 
-Perskaitę šį įvadą, jūs jau pradėjote kurti savo MCP žinių pagrindą. Jūs suprantate, kas yra MCP, kodėl tai svarbu ir kaip ši mokymo programa padės jums mokytis. Tai svarbus pasiekimas ir jūsų technologinių žinių pradžia.  
+Perskaitę šį įvadą, jūs jau pradėjote kurti savo MCP žinių pagrindą. Suprantate, kas yra MCP, kodėl jis svarbus ir kaip ši programa padės jūsų mokymosi kelionėje. Tai svarbus pasiekimas ir jūsų ekspertizės pradžia šioje svarbioje technologijoje.
 
-### Nuotykiai laukia  
+### Nuotykiai laukia
 
-Judėdami per modulius, atminkite, kad kiekvienas ekspertas buvo kadaise pradedantysis. Koncepcijos, kurios dabar gali pasirodyti sudėtingos, taps savaime suprantamomis, kai jas praktikuosite ir taikysite. Kiekvienas mažas žingsnis kuria galingus įgūdžius, kurie jums tarnaus visos programavimo karjeros metu.  
+Judėdami toliau per modulius, prisiminkite, kad kiekvienas ekspertas kadaise buvo pradedantysis. Koncepcijos, kurios dabar gali atrodyti sudėtingos, taps antrąja prigimtimi, kai praktikuositės ir jas pritaikysite. Kiekvienas mažas žingsnis kuria galingas galimybes, kurios jums pasitarnaus visos karjeros metu.
 
-### Jūsų palaikymo tinklas  
+### Jūsų pagalbos tinklas
 
-Jūs prisijungiate prie mokslininkų ir ekspertų bendruomenės, kuri domisi MCP ir nori padėti kitiems sėkmingai mokytis. Nesvarbu, ar įstringate su kodo užduotimi, ar džiaugiatės atradimu – bendruomenė čia, kad palaikytų jus.  
+Jūs prisijungiate prie bendruomenės, sudarytos iš mokinių ir ekspertų, kurie aistringai domisi MCP ir noriai padeda kitiems pasiekti sėkmę. Nesvarbu, ar užstrigote su programavimo iššūkiu, ar norite pasidalinti savo proveržiu, bendruomenė čia, kad palaikytų jūsų kelionę.
 
-Jei kils klausimų ar kils sunkumų kuriant AI programas, prisijunkite prie bendraminčių ir patyrusių kūrėjų diskusijų apie MCP. Tai draugiška bendruomenė, kurioje klausimai yra laukiami, o žinios dalijamos laisvai.  
+Jei turite klausimų ar užstrigote kurdami AI programas, prisijunkite prie diskusijų su kitais mokiniais ir patyrusiais kūrėjais apie MCP. Tai draugiška bendruomenė, kurioje klausimai laukiami, o žinios laisvai dalijamos.
 
-[![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)  
+[![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
 
-Jei turite produktų atsiliepimų arba pastebite klaidų kūrimo metu, apsilankykite:  
+Jei turite produkto atsiliepimų arba radote klaidų, apsilankykite:
 
-[![Microsoft Foundry Developer Forum](https://img.shields.io/badge/GitHub-Microsoft_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=000000&logoColor=fff)](https://aka.ms/foundry/forum)  
+[![Microsoft Foundry Developer Forum](https://img.shields.io/badge/GitHub-Microsoft_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=000000&logoColor=fff)](https://aka.ms/foundry/forum)
 
-### Pasiruošę pradėti?  
+### Pasiruošę pradėti?
 
-Jūsų MCP nuotykiai prasideda dabar! Pradėkite nuo 0 modulio, kad gilintumėtės į pirmąsias praktines MCP patirtis, arba peržiūrėkite pavyzdinius projektus, kad pamatytumėte, ką kursite. Atminkite – kiekvienas ekspertas pradėjo būtent ten, kur esate jūs dabar, ir su kantrybe bei praktika būsite nustebinti savo pasiekimais.  
+Jūsų MCP nuotykis prasideda dabar! Pradėkite nuo 0 modulio, kad įgytumėte pirmųjų praktinių MCP įgūdžių, arba apžiūrėkite pavyzdinius projektus, kad pamatytumėte, ką kursite. Atminkite – kiekvienas ekspertas pradėjo būtent ten, kur esate jūs dabar, ir su kantrybe bei praktika būsite nustebinti, ką galite pasiekti.
 
-Sveiki atvykę į Model Context Protocol kūrimo pasaulį. Kurkime kažką nuostabaus kartu!  
+Sveiki atvykę į Model Context Protocol kūrimo pasaulį. Kurkime kažką nuostabaus kartu!
 
-## 🤝 Dalyvavimas mokymosi bendruomenėje  
+## 🤝 Indėlis į mokymosi bendruomenę
 
-Ši mokymo programa stiprėja dėl tokių besimokančiųjų kaip jūs indėlio! Nesvarbu, ar taisote rašybos klaidą, ar siūlote aiškesnį paaiškinimą, ar pridedate naują pavyzdį – jūsų indėlis padeda kitiems pradedantiesiems sėkmingai mokytis.  
+Ši mokymo programa stiprėja su tokiais mokiniais kaip jūs! Nesvarbu, ar taisote rašybos klaidą, siūlote aiškesnį paaiškinimą, ar pridedate naują pavyzdį, jūsų indėlis padeda kitiems pradedantiesiems pasiekti sėkmę.
 
-Dėkojame Microsoft Valued Professional [Shivam Goyal](https://www.linkedin.com/in/shivam2003/) už kodo pavyzdžių pateikimą.  
+Dėkojame Microsoft Vertinamo Profesionalo [Shivam Goyal](https://www.linkedin.com/in/shivam2003/) už kodo pavyzdžių prisidėjimą.
 
-Indėlio procesas yra draugiškas ir palaikantis. Daugumai indėlių reikalinga pasirašyti Contributor License Agreement (CLA), tačiau automatizuotos priemonės jus sklandžiai per jį nuves.  
+Indėlio procesas yra draugiškas ir palaikantis. Daugumai indėlių reikalinga Pasirašančiojo licencijos sutartis (CLA), tačiau automatizuoti įrankiai sklandžiai jus tai praves.
 
-## 📜 Atvirojo kodo mokymasis  
+## 📜 Atvirojo kodo mokymasis
 
-Visa ši mokymo programa yra prieinama pagal MIT [LICENCIJĄ](../../LICENSE), todėl galite ją naudoti, keisti ir laisvai dalytis. Tai remia mūsų misiją – suteikti MCP žinias kūrėjams visame pasaulyje.  
-## 🤝 Indėlio taisyklės  
+Visa ši mokymo programa yra prieinama pagal MIT [LICENCIJĄ](../../LICENSE), reiškiančią, kad galite ją naudoti, keisti ir laisvai dalintis. Tai palaiko mūsų misiją - padaryti MCP žinias prieinamas programuotojams visur.
+## 🤝 Indėlio taisyklės
 
-Šis projektas laukią indėlių ir pasiūlymų. Daugumai indėlių reikalinga sutikti su Contributor License Agreement (CLA), kuris deklaruoja, kad turite teisę ir iš tikrųjų suteikiate mums teisę naudoti jūsų indėlį. Daugiau informacijos rasite <https://cla.opensource.microsoft.com>.  
+Šis projektas kviečia prisidėti ir teikti pasiūlymus. Daugumai indėlių reikia sutikti su Pasirašančiojo licencijos sutartimi (CLA), kurioje patvirtinate, kad turite teisę ir iš tikrųjų suteikiate mums teisę naudoti jūsų indėlį. Išsamesnė informacija: <https://cla.opensource.microsoft.com>.
 
-Kai pateikiate pull request, CLA bot automatiškai nustatys, ar reikia pateikti CLA ir tinkamai pažymės užklausą (pvz., būsenos patikrinimu, komentaru). Tiesiog vykdykite roboto nurodymus. Tai reikės padaryti tik vieną kartą visose saugyklose, naudojančiose mūsų CLA.  
+Pateikus pull request, CLA robotas automatiškai nustatys, ar reikia pateikti CLA, ir tinkamai paženklins PR (pvz., būsenos patikrinimai, komentarai). Tiesiog vykdykite roboto nurodymus. Tai reikės padaryti tik vieną kartą visose saugyklose, kurios naudoja mūsų CLA.
 
-Šis projektas prisijungė prie [Microsoft atvirojo kodo elgesio kodekso](https://opensource.microsoft.com/codeofconduct/). Daugiau informacijos rasite [Elgesio kodekso DUK](https://opensource.microsoft.com/codeofconduct/faq/) arba kreipkitės adresu [opencode@microsoft.com](mailto:opencode@microsoft.com) su papildomais klausimais ar pasiūlymais.  
+Šis projektas taiko [Microsoft atvirojo kodo elgesio taisykles](https://opensource.microsoft.com/codeofconduct/).
+Daugiau informacijos ieškokite [Elgesio taisyklių DUK](https://opensource.microsoft.com/codeofconduct/faq/) arba susisiekite su [opencode@microsoft.com](mailto:opencode@microsoft.com) dėl papildomų klausimų ar pastabų.
 
----  
+---
 
-*Pasiruošę pradėti savo MCP kelionę? Pradėkite nuo [00 modulio - įvadas į MCP](./00-Introduction/README.md) ir ženkite pirmuosius žingsnius Model Context Protocol kūrimo pasaulyje!*  
+*Pasiruošę pradėti savo MCP kelionę? Pradėkite nuo [Modulis 00 – Įvadas į MCP](./00-Introduction/README.md) ir ženkite pirmuosius žingsnius Model Context Protocol kūrimo pasaulyje!*
+
+
 
 ## 🎒 Kiti kursai  
-Mūsų komanda kuria ir kitus kursus! Pažiūrėkite:  
+Mūsų komanda kuria ir kitus kursus! Patikrinkite:
 
-<!-- CO-OP TRANSLATOR OTHER COURSES START -->  
+<!-- CO-OP TRANSLATOR OTHER COURSES START -->
 ### LangChain  
 [![LangChain4j pradedantiesiems](https://img.shields.io/badge/LangChain4j%20for%20Beginners-22C55E?style=for-the-badge&&labelColor=E5E7EB&color=0553D6)](https://aka.ms/langchain4j-for-beginners)  
 [![LangChain.js pradedantiesiems](https://img.shields.io/badge/LangChain.js%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=0553D6)](https://aka.ms/langchainjs-for-beginners?WT.mc_id=m365-94501-dwahlin)  
 [![LangChain pradedantiesiems](https://img.shields.io/badge/LangChain%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=0553D6)](https://github.com/microsoft/langchain-for-beginners?WT.mc_id=m365-94501-dwahlin)  
----  
+---
 
 ### Azure / Edge / MCP / Agentai  
 [![AZD pradedantiesiems](https://img.shields.io/badge/AZD%20for%20Beginners-0078D4?style=for-the-badge&labelColor=E5E7EB&color=0078D4)](https://github.com/microsoft/AZD-for-beginners?WT.mc_id=academic-105485-koreyst)  
@@ -353,28 +355,29 @@ Mūsų komanda kuria ir kitus kursus! Pažiūrėkite:
 [![MCP pradedantiesiems](https://img.shields.io/badge/MCP%20for%20Beginners-009688?style=for-the-badge&labelColor=E5E7EB&color=009688)](https://github.com/microsoft/mcp-for-beginners?WT.mc_id=academic-105485-koreyst)  
 [![AI agentai pradedantiesiems](https://img.shields.io/badge/AI%20Agents%20for%20Beginners-00C49A?style=for-the-badge&labelColor=E5E7EB&color=00C49A)](https://github.com/microsoft/ai-agents-for-beginners?WT.mc_id=academic-105485-koreyst)  
 
----  
+---
 
-### Generatyvus AI serija  
-[![Generatyvus AI pradedantiesiems](https://img.shields.io/badge/Generative%20AI%20for%20Beginners-8B5CF6?style=for-the-badge&labelColor=E5E7EB&color=8B5CF6)](https://github.com/microsoft/generative-ai-for-beginners?WT.mc_id=academic-105485-koreyst)  
-[![Generatyvus AI (.NET)](https://img.shields.io/badge/Generative%20AI%20(.NET)-9333EA?style=for-the-badge&labelColor=E5E7EB&color=9333EA)](https://github.com/microsoft/Generative-AI-for-beginners-dotnet?WT.mc_id=academic-105485-koreyst)  
-[![Generatyvus AI (Java)](https://img.shields.io/badge/Generative%20AI%20(Java)-C084FC?style=for-the-badge&labelColor=E5E7EB&color=C084FC)](https://github.com/microsoft/generative-ai-for-beginners-java?WT.mc_id=academic-105485-koreyst)  
-[![Generatyvus AI (JavaScript)](https://img.shields.io/badge/Generative%20AI%20(JavaScript)-E879F9?style=for-the-badge&labelColor=E5E7EB&color=E879F9)](https://github.com/microsoft/generative-ai-with-javascript?WT.mc_id=academic-105485-koreyst)  
+### Generatyvinio AI serija  
+[![Generatyvinis AI pradedantiesiems](https://img.shields.io/badge/Generative%20AI%20for%20Beginners-8B5CF6?style=for-the-badge&labelColor=E5E7EB&color=8B5CF6)](https://github.com/microsoft/generative-ai-for-beginners?WT.mc_id=academic-105485-koreyst)  
+[![Generatyvinis AI (.NET)](https://img.shields.io/badge/Generative%20AI%20(.NET)-9333EA?style=for-the-badge&labelColor=E5E7EB&color=9333EA)](https://github.com/microsoft/Generative-AI-for-beginners-dotnet?WT.mc_id=academic-105485-koreyst)  
+[![Generatyvinis AI (Java)](https://img.shields.io/badge/Generative%20AI%20(Java)-C084FC?style=for-the-badge&labelColor=E5E7EB&color=C084FC)](https://github.com/microsoft/generative-ai-for-beginners-java?WT.mc_id=academic-105485-koreyst)  
+[![Generatyvinis AI (JavaScript)](https://img.shields.io/badge/Generative%20AI%20(JavaScript)-E879F9?style=for-the-badge&labelColor=E5E7EB&color=E879F9)](https://github.com/microsoft/generative-ai-with-javascript?WT.mc_id=academic-105485-koreyst)  
 
----  
+---
 
 ### Pagrindinis mokymasis  
 [![ML pradedantiesiems](https://img.shields.io/badge/ML%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=22C55E)](https://aka.ms/ml-beginners?WT.mc_id=academic-105485-koreyst)  
 [![Duomenų mokslas pradedantiesiems](https://img.shields.io/badge/Data%20Science%20for%20Beginners-84CC16?style=for-the-badge&labelColor=E5E7EB&color=84CC16)](https://aka.ms/datascience-beginners?WT.mc_id=academic-105485-koreyst)  
 [![AI pradedantiesiems](https://img.shields.io/badge/AI%20for%20Beginners-A3E635?style=for-the-badge&labelColor=E5E7EB&color=A3E635)](https://aka.ms/ai-beginners?WT.mc_id=academic-105485-koreyst)  
 [![Kibernetinis saugumas pradedantiesiems](https://img.shields.io/badge/Cybersecurity%20for%20Beginners-F97316?style=for-the-badge&labelColor=E5E7EB&color=F97316)](https://github.com/microsoft/Security-101?WT.mc_id=academic-96948-sayoung)  
-[![Žiniatinklio kūrimas pradedantiesiems](https://img.shields.io/badge/Web%20Dev%20for%20Beginners-EC4899?style=for-the-badge&labelColor=E5E7EB&color=EC4899)](https://aka.ms/webdev-beginners?WT.mc_id=academic-105485-koreyst)  
-[![Daiktų internetas pradedantiesiems](https://img.shields.io/badge/IoT%20for%20Beginners-14B8A6?style=for-the-badge&labelColor=E5E7EB&color=14B8A6)](https://aka.ms/iot-beginners?WT.mc_id=academic-105485-koreyst)  
+[![Web kūrimas pradedantiesiems](https://img.shields.io/badge/Web%20Dev%20for%20Beginners-EC4899?style=for-the-badge&labelColor=E5E7EB&color=EC4899)](https://aka.ms/webdev-beginners?WT.mc_id=academic-105485-koreyst)  
+[![IoT pradedantiesiems](https://img.shields.io/badge/IoT%20for%20Beginners-14B8A6?style=for-the-badge&labelColor=E5E7EB&color=14B8A6)](https://aka.ms/iot-beginners?WT.mc_id=academic-105485-koreyst)  
 [![XR kūrimas pradedantiesiems](https://img.shields.io/badge/XR%20Development%20for%20Beginners-38BDF8?style=for-the-badge&labelColor=E5E7EB&color=38BDF8)](https://github.com/microsoft/xr-development-for-beginners?WT.mc_id=academic-105485-koreyst)  
 
----  
+---
 
 ### Copilot serija  
+
 [![Copilot for AI Paired Programming](https://img.shields.io/badge/Copilot%20for%20AI%20Paired%20Programming-FACC15?style=for-the-badge&labelColor=E5E7EB&color=FACC15)](https://aka.ms/GitHubCopilotAI?WT.mc_id=academic-105485-koreyst)
 [![Copilot for C#/.NET](https://img.shields.io/badge/Copilot%20for%20C%23/.NET-FBBF24?style=for-the-badge&labelColor=E5E7EB&color=FBBF24)](https://github.com/microsoft/mastering-github-copilot-for-dotnet-csharp-developers?WT.mc_id=academic-105485-koreyst)
 [![Copilot Adventure](https://img.shields.io/badge/Copilot%20Adventure-FDE68A?style=for-the-badge&labelColor=E5E7EB&color=FDE68A)](https://github.com/microsoft/CopilotAdventures?WT.mc_id=academic-105485-koreyst)
@@ -384,5 +387,5 @@ Mūsų komanda kuria ir kitus kursus! Pažiūrėkite:
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Atsakomybės apribojimas**:
-Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors stengiamės užtikrinti tikslumą, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Svarbiai informacijai rekomenduojama naudoti profesionalų žmogaus vertimą. Mes neatsakome už bet kokius nesusipratimus ar neteisingus aiškinimus, kilusius naudojant šį vertimą.
+Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas gimtąja kalba laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojame naudoti profesionalų žmogaus atliktą vertimą. Mes neatsakome už galimus nesusipratimus ar neteisingus interpretavimus, kilusius naudojantis šiuo vertimu.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
