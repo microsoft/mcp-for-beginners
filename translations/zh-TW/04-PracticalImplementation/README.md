@@ -1,35 +1,35 @@
 # 實務實作
 
-[![如何使用真實工具和工作流程構建、測試和部署 MCP 應用程式](../../../translated_images/zh-TW/05.64bea204e25ca891.webp)](https://youtu.be/vCN9-mKBDfQ)
+[![如何使用真實工具與工作流程來建置、測試及部署 MCP 應用程式](../../../translated_images/zh-TW/05.64bea204e25ca891.webp)](https://youtu.be/vCN9-mKBDfQ)
 
-_(點擊上方圖片觀看本課程的影片)_
+_（點擊上方圖片觀看本課程影片）_
 
-實務實作是使模型上下文協定（MCP）威力具象化的關鍵。雖然理解 MCP 背後的理論與架構很重要，但真正的價值在於你如何應用這些概念來建構、測試和部署解決實際問題的方案。本章節搭起概念知識與動手開發的橋樑，帶領你透過流程將 MCP 為基礎的應用程式付諸實現。
+實務實作是讓模型上下文協定（Model Context Protocol，MCP）力量具體展現的階段。理解 MCP 的理論和架構很重要，但當你將這些概念應用於建構、測試及部署解決現實問題的方案時，真正的價值才開始顯現。本章節連結了概念性知識與實務開發，指導你如何讓基於 MCP 的應用程式活躍起來。
 
-無論你是開發智慧助理、將 AI 整合進商業工作流程，或是打造資料處理的自訂工具，MCP 都提供靈活的基礎。它的語言無關設計以及針對熱門程式語言提供的官方 SDK，使不同開發者皆能輕易使用。透過這些 SDK，你可以快速製作原型、持續迭代，並在不同平台與環境中擴大規模。
+無論你是在開發智慧助理、將 AI 整合進商業工作流程，或是建置資料處理的自訂工具，MCP 提供了彈性的基礎。其語言無關的設計以及針對熱門程式語言的官方 SDK，讓廣大開發者都能輕鬆使用。藉由這些 SDK，你可以快速地原型設計、迭代與擴展你的解決方案，跨不同平台和環境進行開發。
 
-接下來的章節中，你會找到實務範例、範例程式碼與部署策略，示範如何使用 C#、Java（Spring）、TypeScript、JavaScript 與 Python 實作 MCP。你還會學習如何除錯與測試 MCP 伺服器、管理 API，以及使用 Azure 部署雲端解決方案。這些動手資源旨在加速你的學習，讓你自信地建置健全且可投入生產的 MCP 應用程式。
+接下來的章節中，你會看到實務範例、示範程式碼與部署策略，展現如何在 C#、Java 與 Spring、TypeScript、JavaScript 和 Python 中實作 MCP。你也將學習如何除錯和測試 MCP 伺服器，管理 API，並使用 Azure 部署解決方案。這些實作資源旨在加速你的學習，並幫助你自信地構建穩健且可投入生產的 MCP 應用程式。
 
 ## 概覽
 
-本課程聚焦於多種程式語言 MCP 實作的實務面。將探索如何使用 C#、Java（搭配 Spring）、TypeScript、JavaScript 與 Python 的 MCP SDK 來建立強健的應用程式，除錯與測試 MCP 伺服器，並創建可重複使用的資源、提示與工具。
+本課程聚焦於多語言 MCP 實作的實務面。我們將探討如何使用 C#、Java 與 Spring、TypeScript、JavaScript 以及 Python 的 MCP SDK 來建立健全應用、除錯和測試 MCP 伺服器，以及創建可重用的資源、提示及工具。
 
 ## 學習目標
 
 完成本課程後，你將能夠：
 
-- 使用官方 SDK 在各種程式語言中實作 MCP 解決方案
-- 系統性除錯及測試 MCP 伺服器
+- 使用多種程式語言的官方 SDK 實現 MCP 解決方案
+- 系統性除錯與測試 MCP 伺服器
 - 創建並使用伺服器功能（資源、提示與工具）
-- 設計複雜任務的有效 MCP 工作流程
-- 優化 MCP 實作的效能與可靠性
+- 設計有效的 MCP 工作流程來處理複雜任務
+- 優化 MCP 實作以提升效能和可靠度
 
 ## 官方 SDK 資源
 
-模型上下文協定提供多種語言的官方 SDK（符合 [MCP 規範 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)）：
+模型上下文協定提供多種語言的官方 SDK（對應 [MCP 規範 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)）：
 
 - [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk)
-- [Java 搭配 Spring SDK](https://github.com/modelcontextprotocol/java-sdk) **注意：** 需要依賴 [Project Reactor](https://projectreactor.io)。（請參閱 [討論議題 246](https://github.com/orgs/modelcontextprotocol/discussions/246)。）
+- [Java 與 Spring SDK](https://github.com/modelcontextprotocol/java-sdk) **注意：** 需依賴 [Project Reactor](https://projectreactor.io)。（參見 [討論議題 246](https://github.com/orgs/modelcontextprotocol/discussions/246)。）
 - [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)
 - [Python SDK](https://github.com/modelcontextprotocol/python-sdk)
 - [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk)
@@ -37,153 +37,153 @@ _(點擊上方圖片觀看本課程的影片)_
 
 ## 使用 MCP SDK
 
-本節提供跨多種程式語言 MCP 實作的實務範例。你可在 `samples` 目錄中依語言找到範例程式碼。
+本節提供多種程式語言中實作 MCP 的實務範例，示範程式碼位於 `samples` 目錄中，按語言分類整理。
 
 ### 可用範例
 
-此儲存庫包含以下語言的 [範例實作](../../../04-PracticalImplementation/samples)：
+此資源庫包含以下語言的 [示範實作](../../../04-PracticalImplementation/samples)：
 
 - [C#](./samples/csharp/README.md)
-- [Java 搭配 Spring](./samples/java/containerapp/README.md)
+- [Java 與 Spring](./samples/java/containerapp/README.md)
 - [TypeScript](./samples/typescript/README.md)
 - [JavaScript](./samples/javascript/README.md)
 - [Python](./samples/python/README.md)
 
-每個範例展示該語言及生態系中的 MCP 核心概念與實作模式。
+每個範例示範該語言及生態系統中關鍵 MCP 概念與實作模式。
 
 ### 實務指南
 
-更多實務 MCP 實作指南：
+其他實務 MCP 實作指南：
 
-- [分頁與大量結果集](./pagination/README.md) - 處理工具、資源與大量資料集的游標式分頁
+- [分頁與大型結果集](./pagination/README.md) - 處理工具、資源及大型資料集的游標分頁
 
 ## 核心伺服器功能
 
-MCP 伺服器可實作以下功能的任意組合：
+MCP 伺服器可以實作下列任意組合的功能：
 
 ### 資源
 
-資源為使用者或 AI 模型提供情境與資料：
+資源為使用者或 AI 模型提供上下文及資料：
 
-- 文件庫
+- 文件資料庫
 - 知識庫
-- 結構化資料來源
+- 結構化資料源
 - 檔案系統
 
 ### 提示
 
-提示是對使用者的範本訊息和工作流程：
+提示是用戶的模板化訊息與工作流程：
 
-- 預先定義的對話範本
+- 預定義對話模板
 - 引導式互動模式
 - 專門設計的對話結構
 
 ### 工具
 
-工具是 AI 模型執行的功能：
+工具是 AI 模型可執行的函式：
 
 - 資料處理工具
 - 外部 API 整合
-- 計算功能
+- 運算能力
 - 搜尋功能
 
 ## 範例實作：C# 實作
 
-官方 C# SDK 儲存庫包含數個範例實作，示範 MCP 不同面向：
+官方 C# SDK 資源庫包含多個示範實作，展現不同的 MCP 面向：
 
-- **基礎 MCP 用戶端**：展示如何建立 MCP 用戶端並呼叫工具的簡單範例
-- **基礎 MCP 伺服器**：註冊基礎工具的最小伺服器實作
-- **進階 MCP 伺服器**：具備工具註冊、驗證與錯誤處理的完整伺服器
-- **ASP.NET 整合**：展示與 ASP.NET Core 整合的範例
-- **工具實作模式**：不同複雜度層級工具的多種實作模式
+- **基本 MCP 用戶端**：簡單範例示範如何建立 MCP 用戶端並呼叫工具
+- **基本 MCP 伺服器**：最小伺服器實作及基本工具註冊
+- **高階 MCP 伺服器**：完整功能伺服器，含工具註冊、認證及錯誤處理
+- **ASP.NET 整合**：示範與 ASP.NET Core 整合的範例
+- **工具實作模式**：各式工具實作模式，涵蓋不同複雜度
 
-MCP C# SDK 目前處於預覽階段，API 可能會變更。隨著 SDK 演進，我們將持續更新本部落格。
+MCP C# SDK 目前為預覽版，API 可能會有變動。我們將持續更新本部落格以跟進 SDK 發展。
 
-### 主要特色
+### 主要功能
 
 - [C# MCP Nuget ModelContextProtocol](https://www.nuget.org/packages/ModelContextProtocol)
-- 建置你的 [第一個 MCP 伺服器](https://devblogs.microsoft.com/dotnet/build-a-model-context-protocol-mcp-server-in-csharp/)。
+- 建立你的 [第一個 MCP 伺服器](https://devblogs.microsoft.com/dotnet/build-a-model-context-protocol-mcp-server-in-csharp/)
 
-欲取得完整 C# 實作範例，請造訪 [官方 C# SDK 範例儲存庫](https://github.com/modelcontextprotocol/csharp-sdk)
+完整的 C# 實作範例，請參見 [官方 C# SDK 範例資源庫](https://github.com/modelcontextprotocol/csharp-sdk)
 
-## 範例實作：Java 搭配 Spring 實作
+## 範例實作：Java 與 Spring 實作
 
-Java 搭配 Spring SDK 提供企業級功能的穩健 MCP 實作選項。
+Java 與 Spring SDK 提供企業級功能的 MCP 堅實實作選項。
 
-### 主要特色
+### 主要功能
 
 - Spring Framework 整合
 - 強型別安全
-- 響應式程式設計支援
-- 完整錯誤處理
+- 反應式程式設計支援
+- 完整的錯誤處理
 
-完整 Java 搭配 Spring 實作範例請參閱 samples 目錄下的 [Java 搭配 Spring 範例](samples/java/containerapp/README.md)。
+完整的 Java 與 Spring 實作範例，請參見範例目錄中的 [Java 與 Spring 範例](samples/java/containerapp/README.md)。
 
 ## 範例實作：JavaScript 實作
 
-JavaScript SDK 提供輕量且靈活的 MCP 實作方式。
+JavaScript SDK 提供輕量且彈性的 MCP 實作方式。
 
-### 主要特色
+### 主要功能
 
-- 支援 Node.js 與瀏覽器
+- 支援 Node.js 與瀏覽器環境
 - 基於 Promise 的 API
-- 易於與 Express 等框架整合
-- 支援 WebSocket 串流
+- 易於整合 Express 及其他框架
+- 支援 WebSocket 串流功能
 
-完整 JavaScript 實作範例請參閱 samples 目錄下的 [JavaScript 範例](samples/javascript/README.md)。
+完成的 JavaScript 實作範例，請見範例目錄中的 [JavaScript 範例](samples/javascript/README.md)。
 
 ## 範例實作：Python 實作
 
-Python SDK 提供 Python 化的 MCP 實作方式，與優秀的機器學習框架整合。
+Python SDK 以 Pythonic 風格實作 MCP，並與主流機器學習框架整合良好。
 
-### 主要特色
+### 主要功能
 
-- 使用 asyncio 的 Async/Await 支援
+- 支援 asyncio 的 async/await
 - FastAPI 整合
 - 簡單的工具註冊
-- 原生整合熱門機器學習函式庫
+- 與流行機器學習函式庫的原生整合
 
-完整 Python 實作範例請參閱 samples 目錄下的 [Python 範例](samples/python/README.md)。
+完成的 Python 實作範例，請參見範例目錄中的 [Python 範例](samples/python/README.md)。
 
 ## API 管理
 
-Azure API 管理是保護 MCP 伺服器的絕佳方案。主要想法是將 Azure API 管理放在 MCP 伺服器前端，並讓它處理你可能需要的功能，如：
+Azure API Management 是保護 MCP 伺服器的絕佳方案。基本想法是將 Azure API Management 實例置於 MCP 伺服器之前，由它處理常見需求，如：
 
-- 速率限制
+- 流量限制
 - 令牌管理
 - 監控
 - 負載平衡
-- 安全性
+- 安全
 
 ### Azure 範例
 
-以下是 Azure 範例，做的正是這件事，即[建立 MCP 伺服器並使用 Azure API 管理保護](https://github.com/Azure-Samples/remote-mcp-apim-functions-python)。
+這裡有一個 Azure 範例，正是 [建立 MCP 伺服器並用 Azure API Management 保護之](https://github.com/Azure-Samples/remote-mcp-apim-functions-python)。
 
-請看以下圖片了解授權流程：
+下圖示範授權流程：
 
 ![APIM-MCP](https://github.com/Azure-Samples/remote-mcp-apim-functions-python/blob/main/mcp-client-authorization.gif?raw=true)
 
-上述圖片中發生了以下過程：
+圖中流程如下：
 
-- 使用 Microsoft Entra 進行身份驗證/授權。
-- Azure API 管理作為閘道並使用政策來導引和管理流量。
-- Azure 監控記錄所有請求以供後續分析。
+- 使用 Microsoft Entra 進行認證/授權。
+- Azure API Management 作為閘道，透過政策管理與導向流量。
+- Azure 監視器記錄所有請求以供後續分析。
 
 #### 授權流程
 
-讓我們更詳細看看授權流程：
+來更詳細看看授權流程：
 
 ![Sequence Diagram](https://github.com/Azure-Samples/remote-mcp-apim-functions-python/blob/main/infra/app/apim-oauth/diagrams/images/mcp-client-auth.png?raw=true)
 
 #### MCP 授權規範
 
-深入瞭解[ MCP 授權規範](https://spec.modelcontextprotocol.io/specification/2025-11-25/basic/authorization/)
+深入瞭解 [MCP 授權規範](https://spec.modelcontextprotocol.io/specification/2025-11-25/basic/authorization/)
 
-## 部署遠端 MCP 伺服器至 Azure
+## 部署遠端 MCP 伺服器到 Azure
 
-讓我們來看看能否部署前面提到的範例：
+讓我們試著部署之前提到的範例：
 
-1. 複製程式碼庫
+1. 克隆資料庫
 
     ```bash
     git clone https://github.com/Azure-Samples/remote-mcp-apim-functions-python.git
@@ -192,96 +192,96 @@ Azure API 管理是保護 MCP 伺服器的絕佳方案。主要想法是將 Azur
 
 1. 註冊 `Microsoft.App` 資源提供者。
 
-   - 如果你使用 Azure CLI，請執行 `az provider register --namespace Microsoft.App --wait`。
-   - 如果你使用 Azure PowerShell，請執行 `Register-AzResourceProvider -ProviderNamespace Microsoft.App`。並在稍後執行 `(Get-AzResourceProvider -ProviderNamespace Microsoft.App).RegistrationState` 來檢查註冊是否完成。
+   - 如果使用 Azure CLI，執行 `az provider register --namespace Microsoft.App --wait`。
+   - 如果使用 Azure PowerShell，執行 `Register-AzResourceProvider -ProviderNamespace Microsoft.App`。之後稍等片刻再執行 `(Get-AzResourceProvider -ProviderNamespace Microsoft.App).RegistrationState` 以確認註冊狀態。
 
-1. 執行此 [azd](https://aka.ms/azd) 命令來建立 API 管理服務、Function App（含程式碼）和所有其他所需的 Azure 資源
+1. 執行此 [azd](https://aka.ms/azd) 指令以建立 API 管理服務、帶程式碼的 Function App 及所有其他必需的 Azure 資源
 
     ```shell
     azd up
     ```
 
-    此命令應會將所需的所有雲端資源部署到 Azure
+    此指令將會在 Azure 上部署所有雲端資源
 
 ### 使用 MCP Inspector 測試你的伺服器
 
-1. 在 **新終端視窗** 中，安裝並執行 MCP Inspector
+1. 在 **新終端機視窗**，安裝並執行 MCP Inspector
 
     ```shell
     npx @modelcontextprotocol/inspector
     ```
 
-    你應該會看到類似以下介面：
+    你應該會看到與下圖相似的介面：
 
     ![Connect to Node inspector](../../../translated_images/zh-TW/connect.141db0b2bd05f096.webp)
 
-1. 按住 CTRL 點擊由應用程式顯示的 URL 以載入 MCP Inspector 網頁應用程式 （例如 [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources)）
-1. 設定傳輸類型為 `SSE`
-1. 設定 URL 為你執行中 API 管理 SSE 端點，此端點會在執行 `azd up` 後顯示，然後點選 **Connect**：
+1. CTRL 點擊以從應用顯示的 URL 載入 MCP Inspector 網頁應用（例如：[http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources)）
+1. 將傳輸類型設為 `SSE`
+1. 將 URL 設成在執行 `azd up` 後顯示的 API 管理 SSE 端點，然後 **Connect**：
 
     ```shell
     https://<apim-servicename-from-azd-output>.azure-api.net/mcp/sse
     ```
 
-1. **列出工具**。點擊一個工具並 **執行工具**。  
+1. **列出工具**。點擊其中某個工具並 **執行工具**。
 
-若所有步驟執行成功，現在你應已連線至 MCP 伺服器並成功呼叫工具。
+若全部步驟皆成功，你現在將連接至 MCP 伺服器並能呼叫工具。
 
-## Azure 用 MCP 伺服器
+## 適用於 Azure 的 MCP 伺服器
 
-[Remote-mcp-functions](https://github.com/Azure-Samples/remote-mcp-functions-dotnet)：此系列儲存庫提供使用 Azure Functions 與 Python、C# .NET 或 Node/TypeScript 快速建置與部署自訂遠端 MCP（模型上下文協定）伺服器的範本。
+[Remote-mcp-functions](https://github.com/Azure-Samples/remote-mcp-functions-dotnet)：這組資源庫是使用 Azure Functions（Python、C# .NET 或 Node/TypeScript）快速啟動並部署遠端 MCP（模型上下文協定）伺服器的範本。
 
-範例提供完整解決方案，使開發者能：
+此範例提供完整解決方案，方便開發者：
 
-- 本機建立與執行：在本機端開發與除錯 MCP 伺服器
-- 部署至 Azure：使用簡易的 azd up 指令輕鬆部署雲端
-- 來自用戶端的連線：支援從多種用戶端連線 MCP 伺服器，包括 VS Code 的 Copilot 代理模式與 MCP Inspector 工具
+- 本地建置與執行：在本機開發並偵錯 MCP 伺服器
+- 部署至 Azure：使用簡單 `azd up` 指令快速上雲部署
+- 用戶端連線：從多種用戶端連接 MCP 伺服器，包括 VS Code 的 Copilot 代理模式和 MCP Inspector 工具
 
-### 主要特色
+### 主要功能
 
-- 以安全為設計核心：MCP 伺服器透過金鑰與 HTTPS 保護
-- 認證選項：支援使用內建認證和/或 API 管理的 OAuth
-- 網路隔離：支援使用 Azure 虛擬網路（VNET）進行網路隔離
-- 無伺服器架構：運用 Azure Functions 以實現可擴充的事件驅動執行
-- 本地開發：提供完整本機開發和除錯支持
-- 簡易部署：簡化的 Azure 部署流程
+- 安全設計：MCP 伺服器使用金鑰與 HTTPS 保障安全
+- 身分驗證選項：支援內建認證與/或 API 管理的 OAuth
+- 網路隔離：支援 Azure 虛擬網路 (VNET) 隔離
+- 無伺服器架構：利用 Azure Functions 實現可擴展的事件驅動執行
+- 本地開發：提供完整的本地開發與除錯支援
+- 簡易部署：流暢快速的 Azure 部署流程
 
-此儲存庫包含所有必要的設定檔、原始碼和基礎架構定義，可快速啟動生產級 MCP 伺服器實作。
+資源庫包含所有需要的設定檔、原始碼及基礎架構定義，助你快速上手並打造可投入生產的 MCP 伺服器實作。
 
-- [Azure Remote MCP Functions Python](https://github.com/Azure-Samples/remote-mcp-functions-python) - 使用 Azure Functions 與 Python 實作 MCP 的範例
+- [Azure Remote MCP Functions Python](https://github.com/Azure-Samples/remote-mcp-functions-python) - 使用 Azure Functions 與 Python 實作 MCP 範例
 
-- [Azure Remote MCP Functions .NET](https://github.com/Azure-Samples/remote-mcp-functions-dotnet) - 使用 Azure Functions 與 C# .NET 實作 MCP 的範例
+- [Azure Remote MCP Functions .NET](https://github.com/Azure-Samples/remote-mcp-functions-dotnet) - 使用 Azure Functions 與 C# .NET 實作 MCP 範例
 
-- [Azure Remote MCP Functions Node/Typescript](https://github.com/Azure-Samples/remote-mcp-functions-typescript) - 使用 Azure Functions 與 Node/TypeScript 實作 MCP 的範例。
+- [Azure Remote MCP Functions Node/Typescript](https://github.com/Azure-Samples/remote-mcp-functions-typescript) - 使用 Azure Functions 與 Node/TypeScript 實作 MCP 範例。
 
 ## 主要重點
 
-- MCP SDK 提供語言專屬工具以實作健全的 MCP 解決方案
-- 除錯與測試流程對可靠的 MCP 應用至關重要
-- 可重複使用的提示範本促進一致性的 AI 互動
-- 精心設計的工作流程可編排多工具以完成複雜任務
-- 實作 MCP 解決方案需考慮安全性、效能與錯誤處理
+- MCP SDK 提供各語言專屬工具來實作健全的 MCP 解決方案
+- 除錯與測試程序對可靠的 MCP 應用至關重要
+- 可重用提示模板促進 AI 互動一致性
+- 精心設計的工作流程能協調複雜任務和多重工具
+- 實作 MCP 解決方案需兼顧安全、效能與錯誤處理
 
 ## 練習
 
-設計一個符合你領域真實問題的實務 MCP 工作流程：
+設計一個實務 MCP 工作流程，解決你領域中的真實問題：
 
-1. 辨識 3-4 個對解決此問題有用的工具
-2. 繪製工作流程圖，顯示這些工具如何互動
+1. 確定 3-4 個適合解決此問題的工具
+2. 繪製這些工具互動的工作流程圖
 3. 使用你偏好的語言實作其中一個工具的基本版本
-4. 建立一個提示範本以協助模型有效使用你的工具
+4. 創建一個提示模板，幫助模型有效使用你的工具
 
-## 其他資源
+## 額外資源
 
 ---
 
-## 接下來
+## 下一步
 
-下一節：[進階主題](../05-AdvancedTopics/README.md)
+下一篇： [進階主題](../05-AdvancedTopics/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **免責聲明**：  
-本文件係使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。雖然我們努力確保翻譯的準確性，但請注意，自動翻譯可能包含錯誤或不準確之處。原始文件之原文版本應視為具權威性的主要來源。對於重要資訊，建議採用專業人工翻譯。我們不對因使用本翻譯而導致之任何誤解或錯誤詮釋負責。
+本文件使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。雖然我們致力於確保準確性，但請注意自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於重要資訊，建議尋求專業人工翻譯服務。因使用本翻譯所引起的任何誤解或誤釋，本公司概不負責。
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
