@@ -213,7 +213,7 @@ Let's see if we can deploy the sample we mentioned earlier:
 
     You should see an interface similar to:
 
-    ![Connect to Node inspector](/03-GettingStarted/01-first-server/assets/connect.png)
+    ![Connect to Node inspector](../03-GettingStarted/01-first-server/assets/connect.png)
 
 1. CTRL click to load the MCP Inspector web app from the URL displayed by the app (e.g. [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources))
 1. Set the transport type to `SSE`
