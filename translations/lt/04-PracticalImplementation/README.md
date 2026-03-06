@@ -1,35 +1,35 @@
 # Praktinė įgyvendinimo dalis
 
-[![Kaip kurti, testuoti ir diegti MCP programas su realiais įrankiais ir darbo srautais](../../../translated_images/lt/05.64bea204e25ca891.webp)](https://youtu.be/vCN9-mKBDfQ)
+[![Kaip kurti, testuoti ir diegti MCP programas naudojant tikrus įrankius ir darbo eigas](../../../translated_images/lt/05.64bea204e25ca891.webp)](https://youtu.be/vCN9-mKBDfQ)
 
-_(Spustelėkite aukščiau esantį paveikslėlį, kad peržiūrėtumėte šios pamokos vaizdo įrašą)_
+_(Spustelėkite paveikslėlį viršuje, norėdami peržiūrėti šios pamokos vaizdo įrašą)_
 
-Praktinis įgyvendinimas yra vieta, kur Model Context Protocol (MCP) galia tampa apčiuopiama. Nors teorijos ir architektūros supratimas apie MCP yra svarbus, tikroji vertė atsiskleidžia, kai šiuos konceptus pritaikote kurdami, testuodami ir diegdami sprendimus, kurie sprendžia realaus pasaulio problemas. Šis skyrius sujungia konceptualias žinias su praktiniu vystymu, vesdamas jus pro MCP pagrindu sukurtų programų gyvavimo ciklą.
+Praktinė įgyvendinimo dalis yra vieta, kur Model Context Protocol (MCP) galia tampa apčiuopiama. Nors teorijos ir architektūros supratimas apie MCP yra svarbus, tikroji vertė atsiskleidžia, kai šias sąvokas panaudojate kuriant, testuojant ir diegiant sprendimus, sprendžiančius realaus pasaulio problemas. Šis skyrius sujungia konceptualias žinias su praktiniu kūrimu, vedant jus per MCP pagrindu kuriamų programų kūrimo procesą.
 
-Nesvarbu, ar kuriate išmanius asistentus, integruojate dirbtinį intelektą verslo darbo srautuose, ar kuriate specializuotus įrankius duomenų apdorojimui, MCP suteikia lanksčią pagrindą. Jo kalbai nepriklausomas dizainas ir oficialūs SDK populiarioms programavimo kalboms leidžia prieiti platų kūrėjų ratą. Pasinaudodami šiais SDK galite greitai prototipuoti, tobulinti ir pleči į savo sprendimus įvairiose platformose ir aplinkose.
+Nesvarbu, ar kuriate intelektualius asistentus, integruojate dirbtinį intelektą į verslo darbo eigas, ar kuriate individualius duomenų apdorojimo įrankius, MCP suteikia lankstų pagrindą. Jo kalbų nepriklausomas dizainas ir oficialūs SDK populiarioms programavimo kalboms leidžia platų spektrą kūrėjų pasiekti. Naudodami šiuos SDK, galite greitai kurti prototipus, tobulinti ir skaluoti savo sprendimus įvairiose platformose ir aplinkose.
 
-Toliau pateiktose skiltyse rasite praktinių pavyzdžių, pavyzdinį kodą ir diegimo strategijas, kurios demonstruoja, kaip įgyvendinti MCP C#, Java su Spring, TypeScript, JavaScript ir Python kalbomis. Taip pat sužinosite, kaip derinti ir testuoti MCP serverius, valdyti API ir diegti sprendimus debesyje naudojant Azure. Šie praktiniai ištekliai skirti pagreitinti jūsų mokymąsi ir padėti pasitikint kurti tvirtas, gamybinės kokybės MCP programas.
+Tolimesniuose skyriuose rasite praktinių pavyzdžių, pavyzdinį kodą ir diegimo strategijas, kurios demonstruoja, kaip įgyvendinti MCP C#, Java su Spring, TypeScript, JavaScript ir Python kalbomis. Taip pat sužinosite, kaip derinti ir testuoti MCP serverius, valdyti API bei diegti sprendimus į debesį naudodami Azure. Šie praktiniai ištekliai yra sukurti pagreitinti jūsų mokymąsi ir padėti užtikrintai kurti stiprias, gamybai paruoštas MCP programas.
 
 ## Apžvalga
 
-Ši pamoka orientuota į praktinius MCP įgyvendinimo aspektus keliomis programavimo kalbomis. Išnagrinėsime, kaip naudoti MCP SDK C#, Java su Spring, TypeScript, JavaScript ir Python kalbomis, kad sukurtumėte tvirtas programas, derintumėte ir testuotumėte MCP serverius bei kurtumėte pakartotinai naudojamus resursus, paraginius šablonus ir įrankius.
+Ši pamoka orientuota į praktinius MCP įgyvendinimo aspektus keliomis programavimo kalbomis. Išnagrinėsime, kaip naudoti MCP SDK C#, Java su Spring, TypeScript, JavaScript ir Python kalbomis kuriant patikimas programas, derinant ir testuojant MCP serverius bei kuriant pakartotinai panaudojamus išteklius, užklausas ir įrankius.
 
 ## Mokymosi tikslai
 
-Baigę šią pamoką galėsite:
+Pamokos pabaigoje galėsite:
 
 - Įgyvendinti MCP sprendimus naudodami oficialius SDK įvairiomis programavimo kalbomis
 - Sistemingai derinti ir testuoti MCP serverius
-- Kurti ir naudoti serverio funkcijas (Resursus, Paraginius šablonus ir Įrankius)
-- Kurti efektyvias MCP darbo eigas sudėtingiems uždaviniams
-- Optimizuoti MCP įgyvendinimus našumui ir patikimumui
+- Kurti ir naudoti serverio funkcijas (ištekliai, užklausos ir įrankiai)
+- Kurti veiksmingas MCP darbo eigas sudėtingoms užduotims
+- Optimizuoti MCP įgyvendinimus našumui ir patikimumui užtikrinti
 
 ## Oficialūs SDK ištekliai
 
-Model Context Protocol siūlo oficialius SDK kelioms kalboms (atitinkančius [MCP specifikaciją 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)):
+Model Context Protocol siūlo oficialius SDK kelioms kalboms (atitinka [MCP specifikaciją 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)):
 
 - [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk)
-- [Java su Spring SDK](https://github.com/modelcontextprotocol/java-sdk) **Pastaba:** reikalauja priklausomybės nuo [Project Reactor](https://projectreactor.io). (Žr. [diskusijų temą 246](https://github.com/orgs/modelcontextprotocol/discussions/246).)
+- [Java su Spring SDK](https://github.com/modelcontextprotocol/java-sdk) **Pastaba:** reikalauja priklausomybės nuo [Project Reactor](https://projectreactor.io). (Žr. [diskusiją #246](https://github.com/orgs/modelcontextprotocol/discussions/246).)
 - [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)
 - [Python SDK](https://github.com/modelcontextprotocol/python-sdk)
 - [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk)
@@ -37,11 +37,11 @@ Model Context Protocol siūlo oficialius SDK kelioms kalboms (atitinkančius [MC
 
 ## Darbas su MCP SDK
 
-Ši skiltis pateikia praktinius MCP įgyvendinimo pavyzdžius keliomis programavimo kalbomis. Pavyzdinį kodą rasite aplanke `samples`, suskirstytą pagal kalbas.
+Šiame skyriuje pateikiami praktiniai pavyzdžiai, kaip įgyvendinti MCP keliomis programavimo kalbomis. Pavyzdinį kodą rasite `samples` kataloge, suskirstytą pagal kalbą.
 
-### Turimi pavyzdžiai
+### Galimi pavyzdžiai
 
-Saugykloje yra [pavyzdinės įgyvendinimo versijos](../../../04-PracticalImplementation/samples) šiomis kalbomis:
+Sąraše yra [pavyzdiniai įgyvendinimai](../../../04-PracticalImplementation/samples) šia kalbomis:
 
 - [C#](./samples/csharp/README.md)
 - [Java su Spring](./samples/java/containerapp/README.md)
@@ -49,30 +49,30 @@ Saugykloje yra [pavyzdinės įgyvendinimo versijos](../../../04-PracticalImpleme
 - [JavaScript](./samples/javascript/README.md)
 - [Python](./samples/python/README.md)
 
-Kiekvienas pavyzdys demonstruoja pagrindinius MCP konceptus ir įgyvendinimo šablonus tam tikrai kalbai ir ekosistemai.
+Kiekvienas pavyzdys demonstruoja pagrindines MCP sąvokas ir įgyvendinimo modelius konkrečioje kalboje ir ekosistemoje.
 
-### Praktiniai vadovai
+### Praktinės gairės
 
-Papildomi vadovai praktiniam MCP įgyvendinimui:
+Papildomos gairės praktiniam MCP įgyvendinimui:
 
-- [Puslapiavimas ir dideli rezultatų rinkiniai](./pagination/README.md) - Tegul įrankiai, resursai ir dideli duomenų rinkiniai tvarkomi su žymeklio pagrindu veikiančiu puslapiavimu
+- [Puslapiavimas ir didelės rezultatų rinkiniai](./pagination/README.md) - tvarkykite įrankių, išteklių ir didelių duomenų rinkinių puslapiavimą pagal žymeklius
 
 ## Pagrindinės serverio funkcijos
 
-MCP serveriai gali įgyvendinti bet kokį šių funkcijų derinį:
+MCP serveriai gali įgyvendinti bet kurį iš šių funkcijų derinį:
 
-### Resursai
+### Ištekliai
 
-Resursai suteikia kontekstą ir duomenis naudotojui arba DI modeliui:
+Ištekliai suteikia kontekstą ir duomenis vartotojui arba DI modeliui:
 
 - Dokumentų saugyklos
 - Žinių bazės
-- Struktūrizuoti duomenų šaltiniai
+- Struktūruotų duomenų šaltiniai
 - Failų sistemos
 
-### Paraginiai šablonai
+### Užklausos
 
-Paraginiai šablonai yra šabloninės žinutės ir darbo eigos naudotojams:
+Užklausos yra šabloniniai pranešimai ir darbo eigos vartotojams:
 
 - Iš anksto apibrėžti pokalbių šablonai
 - Vadovaujami sąveikos modeliai
@@ -84,94 +84,94 @@ Paraginiai šablonai yra šabloninės žinutės ir darbo eigos naudotojams:
 
 - Duomenų apdorojimo įrankiai
 - Išorinės API integracijos
-- Skaičiavimo galimybės
+- Skaičiavimo funkcijos
 - Paieškos funkcionalumas
 
-## Pavyzdinės įgyvendinimo versijos: C# įgyvendinimas
+## Pavyzdiniai įgyvendinimai: C# įgyvendinimas
 
-Oficiali C# SDK saugykla talpina keletą pavyzdinių versijų, demonstruojančių skirtingus MCP aspektus:
+Oficiali C# SDK saugykla turi kelis pavyzdinius įgyvendinimus, demonstruojančius įvairius MCP aspektus:
 
-- **Paprastas MCP klientas**: paprastas pavyzdys, kaip sukurti MCP klientą ir kviesti įrankius
-- **Paprastas MCP serveris**: minimalus serverio įgyvendinimas su bazine įrankių registracija
-- **Išplėstinis MCP serveris**: pilno funkciškumo serveris su įrankių registracija, autentifikacija ir klaidų tvarkymu
+- **Paprastas MCP klientas**: paprastas pavyzdys, kaip sukurti MCP klientą ir iškviesti įrankius
+- **Paprastas MCP serveris**: minimalus serverio įgyvendinimas su pagrindine įrankių registracija
+- **Išplėstinis MCP serveris**: pilnai funkcionalus serveris su įrankių registracija, autentifikacija ir klaidų valdymu
 - **ASP.NET integracija**: pavyzdžiai, demonstruojantys integraciją su ASP.NET Core
-- **Įrankių įgyvendinimo šablonai**: įvairūs šablonai įrankiams įgyvendinti skirtingo sudėtingumo lygyje
+- **Įrankių įgyvendinimo modeliai**: įvairūs modeliai įrankiams įgyvendinti su skirtingu sudėtingumo lygiu
 
-MCP C# SDK yra rodymo stadijoje, todėl API gali keistis. Nuolat atnaujinsime šį tinklaraštį pagal SDK evoliuciją.
+MCP C# SDK yra peržiūros stadijoje, API gali kisti. Šis tinklaraštis bus nuolat atnaujinamas su SDK vystymu.
 
-### Pagrindinės savybės
+### Pagrindinės funkcijos
 
 - [C# MCP Nuget ModelContextProtocol](https://www.nuget.org/packages/ModelContextProtocol)
-- Sukurkite savo [pirmą MCP serverį](https://devblogs.microsoft.com/dotnet/build-a-model-context-protocol-mcp-server-in-csharp/).
+- Statykite savo [pirmą MCP serverį](https://devblogs.microsoft.com/dotnet/build-a-model-context-protocol-mcp-server-in-csharp/)
 
-Pilną C# įgyvendinimo pavyzdžių rinkinį rasite [oficialios C# SDK pavyzdžių saugykloje](https://github.com/modelcontextprotocol/csharp-sdk)
+Norėdami gauti pilnus C# įgyvendinimo pavyzdžius, apsilankykite [oficialioje C# SDK pavyzdžių saugykloje](https://github.com/modelcontextprotocol/csharp-sdk)
 
-## Pavyzdinė įgyvendinimo versija: Java su Spring
+## Pavyzdinis įgyvendinimas: Java su Spring įgyvendinimas
 
-Java su Spring SDK siūlo galingas MCP įgyvendinimo galimybes su įmonių lygmens funkcijomis.
+Java su Spring SDK siūlo tvirtas MCP įgyvendinimo galimybes su įmoninio lygio funkcijomis.
 
-### Pagrindinės savybės
+### Pagrindinės funkcijos
 
 - Spring Framework integracija
-- Griežtas tipų saugumas
-- Reaktyvus programavimas
-- Išsamus klaidų tvarkymas
+- Stipri tipų sauga
+- Reaktyvios programavimo palaikymas
+- Išsamus klaidų valdymas
 
-Pilną Java su Spring įgyvendinimo pavyzdį rasite [Java su Spring pavyzdyje](samples/java/containerapp/README.md) pavyzdžių kataloge.
+Pilnam Java su Spring įgyvendinimo pavyzdžiui žr. [Java su Spring pavyzdį](samples/java/containerapp/README.md) pavyzdžių kataloge.
 
-## Pavyzdinė įgyvendinimo versija: JavaScript
+## Pavyzdinis įgyvendinimas: JavaScript įgyvendinimas
 
-JavaScript SDK suteikia lengvą ir lanksčią prieigą prie MCP įgyvendinimo.
+JavaScript SDK suteikia lengvą ir lankstų požiūrį į MCP įgyvendinimą.
 
-### Pagrindinės savybės
+### Pagrindinės funkcijos
 
-- Palaikymas Node.js ir naršyklėms
+- Node.js ir naršyklės palaikymas
 - API pagrįsta pažadais (Promise)
 - Lengva integracija su Express ir kitais karkasais
-- WebSocket palaikymas srautiniam perdavimui
+- WebSocket palaikymas srautui
 
-Pilną JavaScript įgyvendinimo pavyzdį rasite [JavaScript pavyzdyje](samples/javascript/README.md) pavyzdžių kataloge.
+Pilnam JavaScript įgyvendinimo pavyzdžiui žr. [JavaScript pavyzdį](samples/javascript/README.md) pavyzdžių kataloge.
 
-## Pavyzdinė įgyvendinimo versija: Python
+## Pavyzdinis įgyvendinimas: Python įgyvendinimas
 
-Python SDK siūlo „pythonišką“ MCP įgyvendinimą su puikia integracija į ML karkasus.
+Python SDK siūlo python-išką požiūrį į MCP įgyvendinimą su puikiomis ML karkasų integracijomis.
 
-### Pagrindinės savybės
+### Pagrindinės funkcijos
 
-- Async/await palaikymas naudojant asyncio
+- Async/await palaikymas su asyncio
 - FastAPI integracija
 - Paprasta įrankių registracija
-- Vietinė integracija su populiariomis ML bibliotekomis
+- Natūrali integracija su populiariomis ML bibliotekomis
 
-Pilną Python įgyvendinimo pavyzdį rasite [Python pavyzdyje](samples/python/README.md) pavyzdžių kataloge.
+Pilnam Python įgyvendinimo pavyzdžiui žr. [Python pavyzdį](samples/python/README.md) pavyzdžių kataloge.
 
 ## API valdymas
 
-Azure API Management yra puikus sprendimas, kaip apsaugoti MCP serverius. Idėja – įdėti Azure API Management instanciją prieš jūsų MCP serverį ir leisti jai valdyti funkcijas, kurių paprastai norėtumėte, pavyzdžiui:
+Azure API Management yra puikus sprendimas, kaip apsaugoti MCP serverius. Idėja – įdėti Azure API Management instanciją prieš savo MCP serverį, kuri jis tvarkytų funkcijas, kurias greičiausiai norėsite, pvz.:
 
-- užklausų dažnio ribojimas
-- žetonų valdymas
+- greičio ribojimas
+- raktų valdymas
 - stebėjimas
 - apkrovos balansavimas
 - saugumas
 
 ### Azure pavyzdys
 
-Štai Azure pavyzdys, kuris tai daro, t.y. [kuria MCP serverį ir saugo jį Azure API Management pagalba](https://github.com/Azure-Samples/remote-mcp-apim-functions-python).
+Štai Azure pavyzdys, darantis būtent tai, t.y. [kuriantis MCP serverį ir apsaugantis jį Azure API Management](https://github.com/Azure-Samples/remote-mcp-apim-functions-python).
 
-Žr. žemiau paveikslėlį, kaip vyksta autorizacijos srautas:
+Žr., kaip patvirtinimo srautas vyksta paveikslėlyje žemiau:
 
 ![APIM-MCP](https://github.com/Azure-Samples/remote-mcp-apim-functions-python/blob/main/mcp-client-authorization.gif?raw=true)
 
-Pirmiau pateiktame paveikslėlyje vyksta šie veiksmai:
+Paveikslėlyje vyksta:
 
-- Autentifikacija/Autorizacija vyksta naudojant Microsoft Entra.
-- Azure API Management veikia kaip vartai ir naudoja taisykles valdyti srautą.
-- Azure Monitor registruoja visas užklausas tolesnei analizei.
+- Autentifikacija/Autorizacija naudojant Microsoft Entra.
+- Azure API Management veikia kaip vartai ir naudoja taisykles, kad nukreiptų ir valdytų srautą.
+- Azure Monitor fiksuoja visus užklausimus tolesnei analizei.
 
 #### Autorizacijos srautas
 
-Žvelkime išsamiau į autorizacijos srautą:
+Pažvelkime į autorizacijos srautą išsamiau:
 
 ![Sequence Diagram](https://github.com/Azure-Samples/remote-mcp-apim-functions-python/blob/main/infra/app/apim-oauth/diagrams/images/mcp-client-auth.png?raw=true)
 
@@ -179,97 +179,97 @@ Pirmiau pateiktame paveikslėlyje vyksta šie veiksmai:
 
 Sužinokite daugiau apie [MCP autorizacijos specifikaciją](https://spec.modelcontextprotocol.io/specification/2025-11-25/basic/authorization/)
 
-## Nuotolinio MCP serverio diegimas Azure
+## Nuotolinio MCP serverio diegimas į Azure
 
-Pažiūrėkime, ar galime įdiegti anksčiau minėtą pavyzdį:
+Pažiūrėkime, ar galime įdiegti ankstesnį pavyzdį:
 
-1. Klonuokite saugyklą
+1. Nuklonuokite repozitoriją
 
     ```bash
     git clone https://github.com/Azure-Samples/remote-mcp-apim-functions-python.git
     cd remote-mcp-apim-functions-python
     ```
 
-1. Užregistruokite `Microsoft.App` resursų tiekėją.
+1. Užregistruokite `Microsoft.App` išteklių tiekėją.
 
-   - Jei naudojate Azure CLI, vykdykite `az provider register --namespace Microsoft.App --wait`.
-   - Jei naudojate Azure PowerShell, vykdykite `Register-AzResourceProvider -ProviderNamespace Microsoft.App`. Po kurio laiko patikrinkite `(Get-AzResourceProvider -ProviderNamespace Microsoft.App).RegistrationState`, ar registracija baigta.
+   - Jei naudojate Azure CLI, paleiskite `az provider register --namespace Microsoft.App --wait`.
+   - Jei naudojate Azure PowerShell, paleiskite `Register-AzResourceProvider -ProviderNamespace Microsoft.App`. Po kurio laiko patikrinkite `(Get-AzResourceProvider -ProviderNamespace Microsoft.App).RegistrationState`, ar registracija baigta.
 
-1. Vykdykite šią [azd](https://aka.ms/azd) komandą, kad paskirstytumėte API valdymo paslaugą, funkcijų programėlę (su kodu) ir visus kitus reikiamus Azure išteklius
+1. Paleiskite šią [azd](https://aka.ms/azd) komandą, kad suteiktumėte api valdymo paslaugą, funkcijų programą (su kodu) ir visus kitus būtinus Azure išteklius
 
     ```shell
     azd up
     ```
 
-    Ši komanda turėtų įdiegti visus debesies išteklius Azure platformoje
+    Ši komanda turėtų įdiegti visus debesies išteklius Azure
 
-### Serverio testavimas su MCP Inspector
+### Jūsų serverio testavimas su MCP Inspector
 
-1. Atsidarykite **naują terminalo langą**, įdiekite ir paleiskite MCP Inspector
+1. Naujoje terminalo lange įdiekite ir paleiskite MCP Inspector
 
     ```shell
     npx @modelcontextprotocol/inspector
     ```
 
-    Turėtumėte pamatyti sąsają, panašią į:
+    Turėtumėte matyti panašią sąsają:
 
     ![Connect to Node inspector](../../../translated_images/lt/connect.141db0b2bd05f096.webp)
 
-1. Paspauskite CTRL ir spustelėkite, kad atidarytumėte MCP Inspector žiniatinklio programą pagal programos rodytą adresą (pvz. [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources))
+1. Paspauskite CTRL ir spustelėkite, kad įkeltumėte MCP Inspector žiniatinklio programą iš programos rodomo URL (pvz., [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources))
 1. Nustatykite transporto tipą į `SSE`
-1. Nustatykite URL į jūsų veikiančio API Management SSE galinį tašką, rodytą po `azd up`, ir spustelėkite **Connect**:
+1. Nustatykite URL į veikiantį API Management SSE įgalintą galinį tašką, rodytą po `azd up` ir **Prijunkite**:
 
     ```shell
     https://<apim-servicename-from-azd-output>.azure-api.net/mcp/sse
     ```
 
-1. **Įrankių sąrašas**. Spustelėkite įrankį ir **Run Tool**.
+1. **Rodyti įrankius**. Spustelėkite įrankį ir **Paleiskite įrankį**.
 
-Jei visi žingsniai buvo atlikti teisingai, turėtumėte būti prijungti prie MCP serverio ir galėję iškviesti įrankį.
+Jei visi žingsniai pavyko, dabar turėtumėte būti prijungti prie MCP serverio ir galėjote kviesti įrankį.
 
-## MCP serveriai Azure aplinkai
+## MCP serveriai Azure aplinkoje
 
-[Remote-mcp-functions](https://github.com/Azure-Samples/remote-mcp-functions-dotnet): Ši saugykla yra greito paleidimo šablonas kuriant ir diegiant nuotolinius MCP (Model Context Protocol) serverius naudojant Azure Functions su Python, C# .NET ar Node/TypeScript.
+[Remote-mcp-functions](https://github.com/Azure-Samples/remote-mcp-functions-dotnet): Šis repozitorijų rinkinys yra greito paleidimo šablonas, skirtas kurti ir diegti pasirinktinius nuotolinius MCP (Model Context Protocol) serverius naudojant Azure Functions su Python, C# .NET arba Node/TypeScript.
 
 Pavyzdžiai suteikia pilną sprendimą, leidžiantį kūrėjams:
 
-- Kurti ir vykdyti lokaliai: kurti ir derinti MCP serverį vietiniame kompiuteryje
-- Diegti Azure: lengvai diegti debesyje vienu azd up komandos vykdymu
-- Jungtis iš klientų: jungtis prie MCP serverio iš įvairių klientų, įskaitant VS Code Copilot agento režimą ir MCP Inspector įrankį
+- Kurti ir paleisti vietoje: kurti ir derinti MCP serverį vietinėje mašinoje
+- Diegti Azure: lengvai diegti debesyje su paprasta `azd up` komanda
+- Prisijungti iš klientų: prisijungti prie MCP serverio iš įvairių klientų, įskaitant VS Code Copilot agento režimą ir MCP Inspector įrankį
 
-### Pagrindinės savybės
+### Pagrindinės funkcijos
 
 - Saugumas pagal dizainą: MCP serveris apsaugotas naudojant raktus ir HTTPS
-- Autentifikacijos galimybės: palaiko OAuth su integruota autenfikacija ir/ar API Management
-- Tinklo izoliacija: leidžia naudoti tinklo izoliaciją su Azure Virtual Networks (VNET)
-- Serverless architektūra: pasinaudoja Azure Functions skalai ir įvykiais pagrįstam vykdymui
-- Vietinis vystymas: visapusiška vietinio vystymo ir derinimo parama
-- Paprastas diegimas: supaprastintas diegimo procesas Azure aplinkoje
+- Autentifikacijos pasirinkimai: palaiko OAuth naudojant įmontuotą autentifikaciją ir/arba API Management
+- Tinklo izoliacija: leidžia naudoti tinklo izoliaciją naudojant Azure Virtual Networks (VNET)
+- Serverless architektūra: naudoja Azure Functions skalabiliam, įvykių valdomam vykdymui
+- Vietinis kūrimas: išsamus vietinio kūrimo ir derinimo palaikymas
+- Paprastas diegimas: supaprastintas diegimo procesas į Azure
 
-Saugykla talpina visus reikalingus konfigūracijos failus, šaltinio kodą ir infrastruktūros aprašus, kad greitai pradėtumėte gamybinio lygio MCP serverio įgyvendinimą.
+Repozitorius apima visus reikalingus konfigūracijos failus, šaltinio kodą ir infrastruktūros apibrėžimus, kad greitai pradėtumėte gamybai paruoštą MCP serverio įgyvendinimą.
 
-- [Azure Remote MCP Functions Python](https://github.com/Azure-Samples/remote-mcp-functions-python) - MCP pavyzdys naudojant Azure Functions su Python
+- [Azure Remote MCP Functions Python](https://github.com/Azure-Samples/remote-mcp-functions-python) - MCP įgyvendinimo pavyzdys naudojant Azure Functions su Python
 
-- [Azure Remote MCP Functions .NET](https://github.com/Azure-Samples/remote-mcp-functions-dotnet) - MCP pavyzdys naudojant Azure Functions su C# .NET
+- [Azure Remote MCP Functions .NET](https://github.com/Azure-Samples/remote-mcp-functions-dotnet) - MCP įgyvendinimo pavyzdys naudojant Azure Functions su C# .NET
 
-- [Azure Remote MCP Functions Node/Typescript](https://github.com/Azure-Samples/remote-mcp-functions-typescript) - MCP pavyzdys naudojant Azure Functions su Node/TypeScript.
+- [Azure Remote MCP Functions Node/Typescript](https://github.com/Azure-Samples/remote-mcp-functions-typescript) - MCP įgyvendinimo pavyzdys naudojant Azure Functions su Node/TypeScript.
 
-## Svarbiausios išvados
+## Pagrindinės įžvalgos
 
-- MCP SDK teikia kalbai specifinius įrankius tvirtų MCP sprendimų įgyvendinimui
-- Derinimo ir testavimo procesas yra labai svarbus patikimoms MCP programoms
-- Pakartotinai naudojami paraginiai šablonai užtikrina nuoseklias DI sąveikas
-- Gerai suprojektuotos darbo eigos gali koordinuoti sudėtingus uždavinius su keliais įrankiais
-- MCP sprendimų įgyvendinimas reikalauja dėmesio saugumui, našumui ir klaidų tvarkymui
+- MCP SDK suteikia kalbai specifinius įrankius patikimiems MCP sprendimams įgyvendinti
+- Derinimo ir testavimo procesas yra kritiškai svarbus patikimoms MCP programoms
+- Pakartotinai naudojami užklausų šablonai užtikrina nuoseklias DI sąveikas
+- Gerai suprojektuotos darbo eigos gali koordinuoti sudėtingas užduotis, naudojant daug įrankių
+- MCP sprendimų įgyvendinimas reikalauja saugumo, našumo ir klaidų valdymo aspektų įvertinimo
 
-## Pratimai
+## Užduotis
 
-Sukurkite praktišką MCP darbo eigą, sprendžiančią realų jūsų srities problemą:
+Sukurkite praktišką MCP darbo eigą, sprendžiančią realaus pasaulio problemą jūsų srityje:
 
-1. Nustatykite 3–4 įrankius, kurie būtų naudingi sprendžiant šią problemą
-2. Sukurkite darbo eigos diagramą, kurioje parodyta, kaip šie įrankiai sąveikauja
-3. Įgyvendinkite vieno įrankio bazinę versiją naudodami jums patinkančią kalbą
-4. Sukurkite paraginio šablono šabloną, kuris padėtų modeliui efektyviai naudoti jūsų įrankį
+1. Identifikuokite 3-4 įrankius, kurie būtų naudingi sprendžiant šią problemą
+2. Sukurkite darbo eigos diagramą, rodant, kaip šie įrankiai sąveikauja
+3. Įgyvendinkite pagrindinę vieno iš įrankių versiją pasirinkta kalba
+4. Sukurkite užklausos šabloną, kuris padėtų modeliui efektyviai naudoti jūsų įrankį
 
 ## Papildomi ištekliai
 
@@ -277,11 +277,11 @@ Sukurkite praktišką MCP darbo eigą, sprendžiančią realų jūsų srities pr
 
 ## Kas toliau
 
-Toliau: [Išplėstiniai Temos](../05-AdvancedTopics/README.md)
+Toliau: [Išplėstiniai dalykai](../05-AdvancedTopics/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Atsakomybės apribojimas**:  
-Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors stengiamės užtikrinti tikslumą, prašome atkreipti dėmesį, kad automatizuoti vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas gimtąja kalba turi būti laikomas autoritetingu šaltiniu. Svarbiai informacijai rekomenduojame kreiptis į profesionalius žmogiškus vertėjus. Mes neatsakome už jokius nesusipratimus ar klaidingas interpretacijas, kylančias dėl šio vertimo naudojimo.
+**Atsakomybės apribojimas**:
+Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas gimtąja kalba laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojama naudoti profesionalų žmogaus vertimą. Mes neatsakome už jokius nesusipratimus ar klaidingas interpretacijas, kylančias dėl šio vertimo naudojimo.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
