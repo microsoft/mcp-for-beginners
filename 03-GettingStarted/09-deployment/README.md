@@ -59,7 +59,7 @@ Here's how you can go about it:
   uv run fastapi dev main.py
   ```
 
-1. To try it locally, create a *mcp.json* file in a *.vscode* directory and add the following content:
+1. To try it locally, create an *mcp.json* file in a *.vscode* directory and add the following content:
 
   ```json
   {
@@ -83,7 +83,7 @@ Here's how you can go about it:
   }
   ```
 
-  Once the SSE server is started, you can click the play icon in the JSON file, you should now see tools on the server be picked up by GitHub Copilot, see the Tool icon. 
+  Once the SSE server is started, you can click the play icon in the JSON file, you should now see tools on the server being picked up by GitHub Copilot, see the Tool icon. 
 
 1. To deploy, run the following command:
 
