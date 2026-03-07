@@ -24,7 +24,7 @@ MCP provides tools to help you test and debug your servers:
 
 ### Using MCP Inspector
 
-We've describes the usage of this tool in previous lessons but let's talk about it a bit at high level. It's a tool built in Node.js and you can use it by calling the `npx` executable which will download and install the tool itself temporarily and will clean itself up once it's done running your request.
+We've described the usage of this tool in previous lessons but let's talk about it a bit at high level. It's a tool built in Node.js and you can use it by calling the `npx` executable which will download and install the tool itself temporarily and will clean itself up once it's done running your request.
 
 The [MCP Inspector](https://github.com/modelcontextprotocol/inspector) helps you:
 
