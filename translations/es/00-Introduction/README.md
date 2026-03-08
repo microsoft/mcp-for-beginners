@@ -218,7 +218,7 @@ graph TD
 ```
 El Conector Universal permite que los servidores MCP se comuniquen y compartan capacidades entre sí, permitiendo que ServerA delegue tareas a ServerB o acceda a sus herramientas y conocimiento. Esto federara herramientas y datos entre servidores, apoyando arquitecturas de agentes escalables y modulares. Debido a que MCP estandariza la exposición de herramientas, los agentes pueden descubrir y enrutar solicitudes dinámicamente entre servidores sin integraciones codificadas.
 
-Federación de herramientas y conocimiento: Se puede acceder a herramientas y datos a través de servidores, lo que habilita arquitecturas agenticas más escalables y modulares.
+Federación de herramientas y conocimiento: Se puede acceder a herramientas y datos a través de servidores, lo que habilita arquitecturas agénticas más escalables y modulares.
 
 ### 🔄 Escenarios Avanzados de MCP con Integración de LLM en el Lado Cliente
 
