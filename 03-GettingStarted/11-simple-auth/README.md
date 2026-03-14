@@ -1,6 +1,6 @@
 # Simple auth
 
-MCP SDKs support the use of OAuth 2.1 which to be fair is a pretty involved process involving concepts like auth server, resource server, posting credentials, getting a code, exhanging the code for a bearer token until you can finally get your resource data. If you're unused to OAuth which is a great thing to implement, it's a good idea to start with some basic level of auth and build up to better and better security. That's why this chapter exist, to build you up to more advanced auth.
+MCP SDKs support the use of OAuth 2.1 which to be fair is a pretty involved process involving concepts like auth server, resource server, posting credentials, getting a code, exchanging the code for a bearer token until you can finally get your resource data. If you're unused to OAuth which is a great thing to implement, it's a good idea to start with some basic level of auth and build up to better and better security. That's why this chapter exists, to build you up to more advanced auth.
 
 ## Auth, what do we mean?
 
@@ -196,7 +196,7 @@ const server = new McpServer({
     // ... set up server resources, tools, and prompts ...
 ```
 
-This MCP Server creation will need to happen within our POST /mcp route definition, so let's take th above code and move it like so:
+This MCP Server creation will need to happen within our POST /mcp route definition, so let's take the above code and move it like so:
 
 ```typescript
 import express from "express";
@@ -496,7 +496,7 @@ So, we're trying to improve things from sending very simple credentials. What's 
 - **Statelessness and scalability**. JWTs are self-contained, they carry all user info and eliminates the need to store server-side session storage. Token can also be validated locally.
 - **Interoperability and federation**. JWTs is central of Open ID Connect and is used with known identity providers like Entra ID, Google Identity and Auth0. They also make it possible to use single sign on and much more making it enterprise-grade.
 - **Modularity and flexibility**. JWTs can also be used with API Gateways like Azure API Management, NGINX and more. It also supports use authentication scenarios and server-to-service communication including impersonation and delegation scenarios.
-- **Performance and caching**. JWTs can be cavhed after decoding which reduces the need for parsing. This helps specifically with high-traffic apps as it improves throughput and reduced load on your chosen infrastructure.
+- **Performance and caching**. JWTs can be cached after decoding which reduces the need for parsing. This helps specifically with high-traffic apps as it improves throughput and reduced load on your chosen infrastructure.
 - **Advanced features**. It also supports introspection (checking validity on server) and revocation (making a token invalid).
 
 With all of these benefits, let's see how we can take our implementation to the next level.
@@ -516,7 +516,7 @@ So, the changes we need to at mile-high level is to:
 First off, a JWT token has the following parts:
 
 - **header**, algorithm used and token type.
-- **payload**, claimes, like sub (the user or entity the token represents. In an auth scenario this typically the userid), exp (when it expires) role (the role)
+- **payload**, claims, like sub (the user or entity the token represents. In an auth scenario this typically the userid), exp (when it expires) role (the role)
 - **signature**, signed with a secret or private key.
 
 For this, we will need to construct the header, payload and the encoded token.
@@ -538,7 +538,7 @@ header = {
     "typ": "JWT"
 }
 
-# the user info andits claims and expiry time
+# the user info and its claims and expiry time
 payload = {
     "sub": "1234567890",               # Subject (user ID)
     "name": "User Userson",                # Custom claim
@@ -554,7 +554,7 @@ encoded_jwt = jwt.encode(payload, secret_key, algorithm="HS256", headers=header)
 In the above code we've:
 
 - Defined a header using HS256 as algorithm and type to be JWT.
-- Constructed a payload that contains a subject or iser id, a username, a role, when it was issues and when it's set to expire thereby implementing the time bound aspect we mentioned earlier. 
+- Constructed a payload that contains a subject or user id, a username, a role, when it was issued and when it's set to expire thereby implementing the time bound aspect we mentioned earlier. 
 
 **TypeScript**
 
@@ -767,7 +767,7 @@ There's quite a few things we can let our middleware and that our middleware SHO
 
 1. Check if authorization header is present
 2. Check if token is valid, we call `isValid` which is a method we wrote that check integrity and validity of JWT token.
-3. Verify the user exist in our system, we should check this.
+3. Verify the user exists in our system, we should check this.
 
    ```typescript
     // users in DB
