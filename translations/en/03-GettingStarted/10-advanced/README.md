@@ -46,7 +46,7 @@ The point being is that you explicitly add each tool, resource or prompt that yo
 
 ### Low-level server approach
 
-However, when you use the low-level server approach you need to think about it differently namely that instead of registering each tool you instead create two handlers per feature type (tools, resources or prompts). So for example tools then only have two functions like so:
+However, when you use the low-level server approach you need to think about differently. Instead of registering each tool, you instead create two handlers per feature type (tools, resources or prompts). So for example tools then only have two functions like so:
 
 - Listing all tools. One function would be responsible for all attempts to list tools.
 - handle calling all tools. Here also, there's only one function handling calls to a tool
@@ -68,8 +68,8 @@ async def handle_list_tools() -> list[types.Tool]:
             inputSchema={
                 "type": "object",
                 "properties": {
-                    "a": {"type": "number", "description": "nubmer to add"}, 
-                    "b": {"type": "number", "description": "nubmer to add"}
+                    "a": {"type": "number", "description": "number to add"}, 
+                    "b": {"type": "number", "description": "number to add"}
                 },
                 "required": ["query"],
             },
@@ -89,8 +89,8 @@ server.setRequestHandler(ListToolsRequestSchema, async (request) => {
         inputSchema={
             "type": "object",
             "properties": {
-                "a": {"type": "number", "description": "nubmer to add"}, 
-                "b": {"type": "number", "description": "nubmer to add"}
+                "a": {"type": "number", "description": "number to add"}, 
+                "b": {"type": "number", "description": "number to add"}
             },
             "required": ["query"],
         }
@@ -177,7 +177,7 @@ So far, you've seen how all your registrations to add tools, resources and promp
 
 ### Create a feature
 
-To create a feature, we will need to create a file for that feature and make sure it has the mandatory fields required of that feature. Which fields differ a bit between tools, resources and prompts.
+To create a feature, we will need to create a file for that feature and make sure it has the mandatory fields requred of that feature. Which fields differ a bit between tools, resources and prompts.
 
 **Python**
 
@@ -371,7 +371,7 @@ tool_add = {
 }
 ```
 
-What we see here is how we define name, description, an input schema using Pydantic and a handler that will be invoked once this tool is being called. Lastly, we expose `tool_add` which is a dictionary holding all these properties.
+What we see here is how we define name, description, and input schema using Pydantic and a handler that will be invoked once this tool is being called. Lastly, we expose `tool_add` which is a dictionary holding all these properties.
 
 There's also *schema.py* that's used to define the input schema used by our tool:
 
@@ -421,7 +421,7 @@ Here we create a dictionary consisting of properties:
 - inputSchema, this schema will be used by the handler.
 - callback, this is used to invoke the tool.
 
-There is also `Tool` that's used to convert this dictionary into a type the mcp server handler can accept and it looks like so:
+There's also `Tool` that's used to convert this dictionary into a type the mcp server handler can accept and it looks like so:
 
 ```typescript
 import { z } from 'zod';
@@ -442,7 +442,7 @@ import { z } from 'zod';
 export const MathInputSchema = z.object({ a: z.number(), b: z.number() });
 ```
 
-Great, let's proceed to handle the listing of our tools next.
+Great, let's procced to handle the listing of our tools next.
 
 ### -3- Handle tool listing
 
@@ -470,7 +470,7 @@ async def handle_list_tools() -> list[types.Tool]:
     return tool_list
 ```
 
-Here we add the decorator `@server.list_tools` and the implementing function `handle_list_tools`. In the latter, we need to produce a list of tools. Note how each tool needs to have a name, description and inputSchema.   
+Here, we add the decorator `@server.list_tools` and the implementing function `handle_list_tools`. In the latter, we need to produce a list of tools. Note how each tool needs to have a name, description and inputSchema.   
 
 **TypeScript**
 
@@ -503,7 +503,7 @@ Great, now we have solved the piece of listing tools, let's look at how we could
 
 ### -4- Handle calling a tool
 
-To call a tool, we need to set up another request handler, this time focused on dealing with a request specifying which feature to call and with what arguments.
+To call a tool, we need set up another request handler, this time focused on dealing with a request specifying which feature to call and with what arguments.
 
 **Python**
 
@@ -551,7 +551,7 @@ Extend the code you've been given with a number of tools, resources and prompt a
 
 ## Summary
 
-In this chapter, we saw how the low-level server approach worked and how that can help us create a nice architecture we can keep building on. We also discussed validation and you were shown how to work with validation libraries to create schemas for input validation.
+In this chapter, we saw how low-level server approach worked and how that can help us create a nice architecture we can keep building on. We also discussed validation and you were shown how to work with validation libraries to create schemas for input validation.
 
 ## What's Next
 
