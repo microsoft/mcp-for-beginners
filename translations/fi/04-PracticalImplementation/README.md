@@ -1,35 +1,35 @@
 # Käytännön toteutus
 
-[![Kuinka rakentaa, testata ja ottaa MCP-sovelluksia käyttöön todellisilla työkaluilla ja työnkulkuilla](../../../translated_images/fi/05.64bea204e25ca891.webp)](https://youtu.be/vCN9-mKBDfQ)
+[![Kuinka rakentaa, testata ja ottaa käyttöön MCP-sovelluksia oikeilla työkaluilla ja työnkuluilla](../../../translated_images/fi/05.64bea204e25ca891.webp)](https://youtu.be/vCN9-mKBDfQ)
 
-_(Klikkaa yllä olevaa kuvaa katsellaksesi tämän oppitunnin videon)_
+_(Klikkaa yllä olevaa kuvaa nähdäksesi videon tästä oppitunnista)_
 
-Käytännön toteutus on se vaihe, jossa Model Context Protocolin (MCP) voima tulee konkreettiseksi. Vaikka MCP:n teoria ja arkkitehtuuri ovat tärkeitä ymmärtää, todellinen arvo syntyy, kun sovellat näitä käsitteitä rakentaaksesi, testataksesi ja käyttöönottaaksesi ratkaisuja, jotka ratkaisevat todellisia ongelmia. Tämä luku yhdistää käsitteellisen tiedon ja käytännön kehityksen opastaen sinua MCP-pohjaisten sovellusten elävöittämisessä.
+Käytännön toteutus on se vaihe, jossa Model Context Protocolin (MCP) voima muuttuu konkreettiseksi. Vaikka MCP:n teorian ja arkkitehtuurin ymmärtäminen on tärkeää, todellinen arvo syntyy, kun sovellat näitä käsitteitä rakentaaksesi, testataksesi ja ottaaksesi käyttöön ratkaisuja, jotka ratkaisevat oikeita maailman ongelmia. Tämä luku yhdistää käsitteellisen tiedon ja käytännön kehityksen ohjaten sinua tuomaan MCP-pohjaiset sovellukset eloon.
 
-Olitpa kehittämässä älykkäitä apureita, integroimassa tekoälyä liiketoimintaprosesseihin tai rakentamassa räätälöityjä työkaluja tietojenkäsittelyyn, MCP tarjoaa joustavan pohjan. Sen kieliriippumaton muotoilu ja viralliset SDK:t suosituissa ohjelmointikielissä tekevät siitä helposti lähestyttävän monenlaisille kehittäjille. Hyödyntämällä näitä SDK:ita voit nopeasti prototypoida, kehittää ja skaalata ratkaisuja eri alustoilla ja ympäristöissä.
+Oletpa sitten kehittämässä älykkäitä assistentteja, integroimassa tekoälyä liiketoimintaprosesseihin tai rakentamassa räätälöityjä työkaluja datan käsittelyyn, MCP tarjoaa joustavan perustan. Sen kieliriippumaton suunnittelu ja viralliset SDK:t suosituilla ohjelmointikielillä tekevät siitä helposti lähestyttävän monille kehittäjille. Hyödyntämällä näitä SDK:ita voit nopeasti prototyypittää, iteröidä ja skaalata ratkaisuja eri alustoilla ja ympäristöissä.
 
-Seuraavissa osioissa löydät käytännön esimerkkejä, mallikoodeja ja käyttöönotto-strategioita, jotka osoittavat, miten MCP:tä toteutetaan C#:ssa, Javalla Springillä, TypeScriptissä, JavaScriptissä ja Pythonissa. Opit myös, miten MCP-palvelimia virheenkorjataan ja testataan, hallitaan API:ita ja otetaan ratkaisuja käyttöön pilvessä Azurea hyödyntäen. Nämä käytännön resurssit on suunniteltu nopeuttamaan oppimistasi ja auttamaan sinua rakentamaan luottavaisin mielin vankkoja, tuotantovalmiita MCP-sovelluksia.
+Seuraavissa osioissa löydät käytännön esimerkkejä, koodinäytteitä ja käyttöönotto-strategioita, jotka demonstroivat MCP:n toteutusta C#:lla, Javalla Springillä, TypeScripillä, JavaScriptillä ja Pythonilla. Opit myös, miten debuggaat ja testaat MCP-palvelimia, hallinnoit API-rajapintoja ja otat ratkaisuja käyttöön pilvessä Azurea käyttäen. Nämä käytännön resurssit on suunniteltu nopeuttamaan oppimistasi ja auttamaan sinua rakentamaan luotettavia ja tuotantovalmiita MCP-sovelluksia itsevarmasti.
 
 ## Yleiskatsaus
 
-Tämä oppitunti keskittyy MCP:n käytännön toteutusnäkökulmiin useilla ohjelmointikielillä. Tutkimme, miten MCP SDK:ita käytetään C#:ssa, Javalla Springillä, TypeScriptissä, JavaScriptissä ja Pythonissa vahvojen sovellusten rakentamiseen, MCP-palvelimien virheenkorjaukseen ja testaukseen sekä uudelleenkäytettävien resurssien, kehotteiden ja työkalujen luomiseen.
+Tämä oppitunti keskittyy MCP:n käytännön toteutukseen useilla ohjelmointikielillä. Tutkimme, kuinka käyttää MCP SDK:ita C#:ssa, Javassa Springin kanssa, TypeScriptissä, JavaScriptissä ja Pythonissa robustien sovellusten rakentamiseen, MCP-palvelimien debuggaamiseen ja testaamiseen sekä uudelleenkäytettävien resurssien, kehotteiden ja työkalujen luomiseen.
 
 ## Oppimistavoitteet
 
-Oppitunnin lopuksi osaat:
+Oppitunnin lopuksi pystyt:
 
-- Toteuttaa MCP-ratkaisuja virallisilla SDK:illa eri ohjelmointikielillä
-- Virheenkorjata ja testata MCP-palvelimia systemaattisesti
-- Luoda ja käyttää palvelimen ominaisuuksia (Resurssit, Kehotteet, Työkalut)
-- Suunnitella tehokkaita MCP-työnkulkuja monimutkaisia tehtäviä varten
-- Optimoida MCP-toteutuksia suorituskyvyn ja luotettavuuden parantamiseksi
+- Toteuttamaan MCP-ratkaisuja virallisilla SDK:illa eri ohjelmointikielillä
+- Debuggaamaan ja testaamaan MCP-palvelimia järjestelmällisesti
+- Luomaan ja käyttämään palvelinominaisuuksia (Resurssit, Kehotteet ja Työkalut)
+- Suunnittelemaan tehokkaita MCP-työnkulkuja monimutkaisiin tehtäviin
+- Optimoimaan MCP-toteutuksia suorituskyvyn ja luotettavuuden näkökulmasta
 
 ## Viralliset SDK-resurssit
 
-Model Context Protocol tarjoaa viralliset SDK:t useille kielille (linjassa [MCP-spesifikaation 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) kanssa):
+Model Context Protocol tarjoaa viralliset SDK:t useille kielille (yhteensopiva [MCP-määrityksen 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) kanssa):
 
 - [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk)
-- [Java Spring SDK](https://github.com/modelcontextprotocol/java-sdk) **Huom:** vaatii riippuvuuden [Project Reactor](https://projectreactor.io) -kirjastoon. (Katso [keskustelu issue 246](https://github.com/orgs/modelcontextprotocol/discussions/246).)
+- [Java Spring SDK](https://github.com/modelcontextprotocol/java-sdk) **Huom:** vaatii riippuvuuden [Project Reactor](https://projectreactor.io) kanssa. (Katso [keskustelu #246](https://github.com/orgs/modelcontextprotocol/discussions/246).)
 - [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)
 - [Python SDK](https://github.com/modelcontextprotocol/python-sdk)
 - [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk)
@@ -37,25 +37,25 @@ Model Context Protocol tarjoaa viralliset SDK:t useille kielille (linjassa [MCP-
 
 ## Työskentely MCP SDK:iden kanssa
 
-Tässä osassa esitellään käytännön esimerkkejä MCP:n toteuttamisesta useilla ohjelmointikielillä. Mallikoodit löytyvät `samples`-hakemistosta kielikohtaisesti järjestettynä.
+Tässä osiossa on käytännön esimerkkejä MCP:n toteuttamisesta useilla ohjelmointikielillä. Löydät esimerkkikoodit `samples`-hakemistosta järjestettynä kielittäin.
 
-### Saatavilla olevat mallit
+### Saatavilla olevat esimerkit
 
-Reposti sisältää [mallitoteutuksia](../../../04-PracticalImplementation/samples) seuraavilla kielillä:
+Repositoriossa on [implementaatioesimerkkejä](../../../04-PracticalImplementation/samples) seuraavilla kielillä:
 
 - [C#](./samples/csharp/README.md)
-- [Java Spring](./samples/java/containerapp/README.md)
+- [Java Springin kanssa](./samples/java/containerapp/README.md)
 - [TypeScript](./samples/typescript/README.md)
 - [JavaScript](./samples/javascript/README.md)
 - [Python](./samples/python/README.md)
 
-Jokainen malli esittelee keskeisiä MCP-käsitteitä ja toteutusmalleja kyseisen kielen ja ekosysteemin mukaiseen käyttöön.
+Jokainen esimerkki demonstroi keskeisiä MCP-käsitteitä ja toteutusmalleja kyseiselle kielelle ja ekosysteemille.
 
 ### Käytännön oppaat
 
 Lisäoppaita käytännön MCP-toteutukseen:
 
-- [Paginointi ja suuret tulosjoukot](./pagination/README.md) – Työkalujen, resurssien ja suurten aineistojen kursori-pohjaisen paginoinnin käsittely
+- [Sivutus ja suurten tietojoukkojen käsittely](./pagination/README.md) - Käsittele työkalujen, resurssien ja suurten tietojen kursori-pohjaista sivutusta
 
 ## Keskeiset palvelinominaisuudet
 
@@ -65,123 +65,123 @@ MCP-palvelimet voivat toteuttaa minkä tahansa yhdistelmän seuraavista ominaisu
 
 Resurssit tarjoavat kontekstin ja datan käyttäjälle tai tekoälymallille:
 
-- Asiakirjakokoelmat
+- Dokumenttivarastot
 - Tietopohjat
-- Rakenteelliset tietolähteet
+- Rakenteiset tietolähteet
 - Tiedostojärjestelmät
 
 ### Kehotteet
 
 Kehotteet ovat mallipohjaisia viestejä ja työnkulkuja käyttäjille:
 
-- Ennalta määritellyt keskustelumallit
+- Esimääritellyt keskustelumallit
 - Ohjatut vuorovaikutuskuviot
 - Erikoistuneet dialogirakenteet
 
 ### Työkalut
 
-Työkalut ovat tekoälymallin suorittamia toimintoja:
+Työkalut ovat funktioita, joita tekoälymalli voi suorittaa:
 
-- Tietojenkäsittelyapuohjelmat
+- Datan käsittelytyökalut
 - Ulkoiset API-integraatiot
-- Laskentakyvyt
-- Hakutoiminnot
+- Laskennalliset kyvykkyydet
+- Hakutoiminnallisuus
 
-## Mallitoteutukset: C#-toteutus
+## Esimerkkitoteutukset: C# -toteutus
 
-Virallinen C# SDK -repo sisältää useita malliesimerkkejä, jotka havainnollistavat eri MCP:n osa-alueita:
+Virallisen C# SDK -repositoriossa on useita esimerkkitoteutuksia, jotka osoittavat MCP:n eri osa-alueita:
 
-- **Perus MCP-asiakas:** Yksinkertainen esimerkki siitä, miten luodaan MCP-asiakas ja kutsutaan työkaluja
-- **Perus MCP-palvelin:** Minimipalvelimen toteutus jossa on perustyökalujen rekisteröinti
-- **Edistynyt MCP-palvelin:** Täysimittainen palvelin, jossa työkalu-rekisteröinti, todennus ja virheenkäsittely
-- **ASP.NET -integraatiot:** Esimerkkejä ASP.NET Core -integraatiosta
-- **Työkalujen toteutuskuviot:** Vaihtelevia mallitapoja työkalujen toteuttamiseen eri monimutkaisuustasoilla
+- **Perus MCP-asiakas:** Yksinkertainen esimerkki MCP-asiakkaan luomisesta ja työkalujen kutsumisesta
+- **Perus MCP-palvelin:** Minimipalvelintoteutus perus työkalujen rekisteröinnillä
+- **Kehittynyt MCP-palvelin:** Täysimittainen palvelin työkalujen rekisteröinnillä, autentikoinnilla ja virheenkäsittelyllä
+- **ASP.NET-integraatio:** Esimerkkejä ASP.NET Core -integraatiosta
+- **Työkalujen toteutusmallit:** Erilaisia malleja työkaluja varten eri monimutkaisuustasoilla
 
-MCP C# SDK on esikatseluvaiheessa ja API:t voivat muuttua. Päivitämme tätä blogia jatkuvasti SDK:n kehittyessä.
+MCP C# SDK on esikatseluvaiheessa ja sovellusrajapinnat saattavat muuttua. Päivitämme tätä blogia jatkuvasti SDK:n kehittyessä.
 
 ### Keskeiset ominaisuudet
 
 - [C# MCP Nuget ModelContextProtocol](https://www.nuget.org/packages/ModelContextProtocol)
-- Rakennetaan [ensimmäinen MCP-palvelimesi](https://devblogs.microsoft.com/dotnet/build-a-model-context-protocol-mcp-server-in-csharp/).
+- Rakennusopas [ensimmäiseen MCP-palvelimeesi](https://devblogs.microsoft.com/dotnet/build-a-model-context-protocol-mcp-server-in-csharp/).
 
-Täydet C#-toteutusmallit löytyvät [virallisesta C# SDK:n mallireposta](https://github.com/modelcontextprotocol/csharp-sdk).
+Täydelliset C#-toteutusesimerkit löytyvät [virallisesta C# SDK -esimerkkirepostiosta](https://github.com/modelcontextprotocol/csharp-sdk)
 
-## Mallitoteutus: Java Spring -toteutus
+## Esimerkkitoteutus: Java Spring -toteutus
 
-Java Spring SDK tarjoaa vahvan MCP-toteutuskyvyn yritysluokkaisin ominaisuuksin.
+Java Spring SDK tarjoaa vahvoja MCP-toteutusvaihtoehtoja yritystason ominaisuuksilla.
 
 ### Keskeiset ominaisuudet
 
-- Spring Frameworkin integraatio
+- Spring Framework -integraatio
 - Vahva tyyppiturvallisuus
-- Reaktiivinen ohjelmointi
-- Kattava virheenkäsittely
+- Reaktiivisen ohjelmoinnin tuki
+- Laaja virheenkäsittely
 
-Täydellinen Java Spring -toteutus löytyy [Java Spring mallista](samples/java/containerapp/README.md) mallihakemistosta.
+Täydellisen Java Spring -toteutusesimerkin löydät [Java Spring -esimerkkikansiosta](samples/java/containerapp/README.md).
 
-## Mallitoteutus: JavaScript-toteutus
+## Esimerkkitoteutus: JavaScript -toteutus
 
-JavaScript SDK tarjoaa kevyen ja joustavan tavan toteuttaa MCP.
+JavaScript SDK tarjoaa kevyen ja joustavan lähestymistavan MCP:n toteutukseen.
 
 ### Keskeiset ominaisuudet
 
-- Node.js- ja selaintuki
+- Node.js- ja selain-tuki
 - Lupauspohjainen API
-- Helppo integraatio Expressin ja muiden frameworkien kanssa
-- WebSocket-tuki suoratoistolle
+- Helppo integraatio Expressiin ja muihin kehyksiin
+- WebSocket-tuki suoratoistoon
 
-Täydellinen JavaScript-malli löytyy [JavaScript mallista](samples/javascript/README.md) mallihakemistosta.
+Täydellisen JavaScript-toteutusesimerkin löydät [JavaScript-esimerkkikansiosta](samples/javascript/README.md).
 
-## Mallitoteutus: Python-toteutus
+## Esimerkkitoteutus: Python -toteutus
 
-Python SDK tarjoaa Python-tyylisen tavan toteuttaa MCP erinomaisella ML-framework -integraatiolla.
+Python SDK tarjoaa pythonilaisen lähestymistavan MCP-toteutukseen erinomaisilla ML-kehysten integraatioilla.
 
 ### Keskeiset ominaisuudet
 
-- Async/await tuki asyncio-kirjastolla
+- async/await-tuki asyncio-kirjastolla
 - FastAPI-integraatio
 - Yksinkertainen työkalujen rekisteröinti
-- Natiivi integraatio suosittuihin ML-kirjastoihin
+- Natiivisti tuettu suosittujen ML-kirjastojen kanssa
 
-Täydellinen Python-malli löytyy [Python mallista](samples/python/README.md) mallihakemistosta.
+Täydellisen Python-toteutusesimerkin löydät [Python-esimerkkikansiosta](samples/python/README.md).
 
 ## API-hallinta
 
-Azure API Management tarjoaa hyvän vastauksen MCP-palvelinten suojaamiseen. Ajatus on asettaa Azure API Management -instanssi MCP-palvelimesi eteen ja antaa sen hoitaa toiminnot, joita tarvitset, kuten:
+Azure API Management on erinomainen ratkaisu MCP-palvelimien suojaamiseen. Ajatuksena on laittaa Azure API Management -instanssi MCP-palvelimesi eteen ja antaa sen hoitaa ominaisuuksia, joita todennäköisesti tarvitset, kuten:
 
-- Rajoitusnopeudet
-- Tokenien hallinta
-- Valvonta
-- Kuormantasapaino
-- Turvallisuus
+- nopeusrajoitukset
+- tunnusten hallinta
+- valvonta
+- kuormantasapaino
+- turvallisuus
 
-### Azure-malli
+### Azure-esimerkki
 
-Tässä on Azure-malli, joka tekee juuri tämän, eli [luo MCP-palvelin ja suojaa se Azure API Managementilla](https://github.com/Azure-Samples/remote-mcp-apim-functions-python).
+Tässä on Azure-esimerkki, joka tekee juuri tämän, eli [luo MCP-palvelimen ja suojaa sen Azure API Managementilla](https://github.com/Azure-Samples/remote-mcp-apim-functions-python).
 
-Katso alla olevaa kuvaa, miten valtuutusprosessi tapahtuu:
+Katso alla olevaa kuvaa valtuutusprosessista:
 
 ![APIM-MCP](https://github.com/Azure-Samples/remote-mcp-apim-functions-python/blob/main/mcp-client-authorization.gif?raw=true)
 
-Edellisessä kuvassa tapahtuu seuraavaa:
+Kuvassa tapahtuu seuraavaa:
 
-- Todennus/valtuutus tapahtuu Microsoft Entran kautta.
+- Todentaminen/valtuutus hoidetaan Microsoft Entraa käyttäen.
 - Azure API Management toimii porttina ja käyttää politiikkoja liikenteen ohjaukseen ja hallintaan.
 - Azure Monitor kirjaa kaikki pyynnöt jatkoanalyysiä varten.
 
-#### Valtuutusprosessi
+#### Valtuutusprosessin kulku
 
-Katsotaan valtuutusprosessia tarkemmin:
+Tutustutaan valtuutusprosessiin tarkemmin:
 
 ![Sequence Diagram](https://github.com/Azure-Samples/remote-mcp-apim-functions-python/blob/main/infra/app/apim-oauth/diagrams/images/mcp-client-auth.png?raw=true)
 
-#### MCP-valtuutusspesifikaatio
+#### MCP:n valtuutusmääritys
 
-Lisätietoja MCP:n valtuutusspesifikaatiosta löydät osoitteesta [MCP Authorization specification](https://spec.modelcontextprotocol.io/specification/2025-11-25/basic/authorization/).
+Lue lisää [MCP Authorization -määrityksestä](https://spec.modelcontextprotocol.io/specification/2025-11-25/basic/authorization/)
 
-## Etä-MCP-palvelimen käyttöönotto Azuren pilvessä
+## Kauko-MCP-palvelimen käyttöönotto Azureen
 
-Katsotaan, onnistummeko ottamaan aikaisemmin mainittu malli käyttöön:
+Katsotaan, voimmeko ottaa käyttöön aiemmin mainitun esimerkin:
 
 1. Klonaa repositorio
 
@@ -190,34 +190,34 @@ Katsotaan, onnistummeko ottamaan aikaisemmin mainittu malli käyttöön:
     cd remote-mcp-apim-functions-python
     ```
 
-1. Rekisteröi `Microsoft.App` resurssitoimittaja.
+1. Rekisteröi `Microsoft.App` resurssipalveluntarjoaja.
 
-   - Jos käytät Azure CLI:ä, suorita `az provider register --namespace Microsoft.App --wait`.
-   - Jos käytät Azure PowerShelliä, suorita `Register-AzResourceProvider -ProviderNamespace Microsoft.App`. Tarkista sitten `(Get-AzResourceProvider -ProviderNamespace Microsoft.App).RegistrationState` tarkistaaksesi rekisteröinnin valmistumisen.
+   - Jos käytät Azure CLI:tä, suorita `az provider register --namespace Microsoft.App --wait`.
+   - Jos käytät Azure PowerShelliä, suorita `Register-AzResourceProvider -ProviderNamespace Microsoft.App`. Tarkista rekisteröinnin tila ajamalla `(Get-AzResourceProvider -ProviderNamespace Microsoft.App).RegistrationState` jonkin ajan kuluttua.
 
-1. Suorita tämä [azd](https://aka.ms/azd) -komento API Management -palvelun, funktiosovelluksen (koodilla) ja muiden tarvittavien Azure-resurssien provisioimiseksi
+1. Suorita tämä [azd](https://aka.ms/azd) -komento provisioidaksesi API Management -palvelu, funktiosovellus (koodilla) ja kaikki muut tarvittavat Azure-resurssit
 
     ```shell
     azd up
     ```
 
-    Tämä komento ottaa käyttöön kaikki pilviresurssit Azureen
+    Tämä komento ottaa käyttöön kaikki tarvittavat pilvipalvelut Azureen
 
-### Palvelimen testaaminen MCP Inspectorilla
+### Testaa palvelimesi MCP Inspectorilla
 
-1. Avaa **uusi komentorivipääte** ja asenna sekä käynnistä MCP Inspector
+1. Uudessa komentorivissä asenna ja käynnistä MCP Inspector
 
     ```shell
     npx @modelcontextprotocol/inspector
     ```
 
-    Näet käyttöliittymän, joka näyttää suunnilleen tältä:
+    Pitäisi nähdä käyttöliittymä, joka näyttää seuraavalta:
 
-    ![Connect to Node inspector](../../../translated_images/fi/connect.141db0b2bd05f096.webp)
+    ![Yhdistä Node Inspectorin](../../../translated_images/fi/connect.141db0b2bd05f096.webp)
 
-1. CTRL-klikkaa ladataksesi MCP Inspectorin verkkosovelluksen sovelluksen näyttämästä URL-osoitteesta (esim. [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources))
-1. Aseta tiedonsiirtotyyppi `SSE`
-1. Syötä URL käyttämäsi API Managementin SSE-päätepisteeseen, joka näkyy `azd up` -komennon jälkeen, ja **Yhdistä**:
+1. CTRL-klikkaa ladataksesi MCP Inspectorin web-sovelluksen osoitteesta, jonka sovellus näyttää (esim. [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources))
+1. Aseta kuljetustavaksi `SSE`
+1. Aseta URL kulkevalle API Management SSE -pisteelle, jonka `azd up` -komento näyttää ja **Yhdistä**:
 
     ```shell
     https://<apim-servicename-from-azd-output>.azure-api.net/mcp/sse
@@ -225,51 +225,51 @@ Katsotaan, onnistummeko ottamaan aikaisemmin mainittu malli käyttöön:
 
 1. **Listaa työkalut**. Klikkaa työkalua ja **Suorita työkalu**.
 
-Jos kaikki vaiheet ovat onnistuneet, olet yhteydessä MCP-palvelimeen ja olet pystynyt kutsumaan työkalun.
+Jos kaikki sujui oikein, sinun pitäisi nyt olla yhteydessä MCP-palvelimeen ja pystyä kutsumaan työkalua.
 
 ## MCP-palvelimet Azurelle
 
-[Remote-mcp-functions](https://github.com/Azure-Samples/remote-mcp-functions-dotnet): Tämä joukko repositorioita on pika-aloituspohja räätälöityjen etä-MCP-palvelimien rakentamiseen ja käyttöönottoon Azure Functions -ympäristössä Pythonilla, C# .NET:llä tai Node/TypeScriptillä.
+[Remote-mcp-functions](https://github.com/Azure-Samples/remote-mcp-functions-dotnet): Tämä joukko repositorioita on pika-aloitusmalli omien etä-MCP (Model Context Protocol) palvelinten rakentamiseen ja käyttöönottoon Azure Functions -ympäristössä Pythonilla, C# .NET:llä tai Node/TypeScriptillä.
 
-Malliesimerkit tarjoavat kokonaisratkaisun, jonka avulla kehittäjät voivat:
+Näytteet tarjoavat kokonaisratkaisun, joka sallii kehittäjien:
 
-- Rakentaa ja ajaa paikallisesti: Kehittää ja virheenkorjata MCP-palvelin paikallisella koneella
-- Ottaa käyttöön Azureen: Helppo pilvi-käyttöönotto yksinkertaisella azd up -komennolla
-- Yhdistää asiakkailta: Yhdistää MCP-palvelimeen eri asiakasohjelmilla, kuten VS Coden Copilot-tilassa ja MCP Inspector -työkalulla
+- Rakentaa ja ajaa paikallisesti: Kehittää ja debugata MCP-palvelinta paikallisella koneella
+- Julkaista Azureen: Helppo pilvikäyttöönotto yksinkertaisella azd up -komennolla
+- Yhdistää asiakasohjelmista: Yhdistää MCP-palvelimeen eri asiakasohjelmilla, kuten VS Code:n Copilot agent -tilassa ja MCP Inspector -työkalulla
 
 ### Keskeiset ominaisuudet
 
-- Turvallisuus oletuksena: MCP-palvelin on suojattu avaimilla ja HTTPS:llä
-- Todennusvaihtoehdot: Tukee OAuth:ta sisäänrakennetulla autentikoinnilla tai API Managementilla
-- Verkkoympäristön eristäminen: Mahdollisuus verkkoeristykseen Azure Virtual Networks (VNET) avulla
-- Palvelinless-arkkitehtuuri: Käyttää Azure Functions -toimintoja skaalaavaan, tapahtumapohjaiseen suoritusmalliin
-- Paikallinen kehitys: Kattava paikallisen kehityksen ja virheenkorjauksen tuki
+- Turvallisuus suunnittelusta lähtien: MCP-palvelin on suojattu avaimilla ja HTTPS:llä
+- Todennusvaihtoehdot: Tuki OAuth:lle sisäänrakennetuilla autentikointi- ja/tai API Management -ratkaisuilla
+- Verkkosekvenssin eristys: Tukee verkon eristystä Azure Virtual Networks (VNET) -määrityksellä
+- Serverless-arkkitehtuuri: Hyödyntää Azure Functionsia skaalautuvaan, tapahtumaohjattuun suoritukseen
+- Paikallinen kehitys: Kattava tuki paikalliselle kehitykselle ja debuggaamiselle
 - Yksinkertainen käyttöönotto: Virtaviivainen käyttöönotto Azureen
 
-Repositorio sisältää kaikki tarvittavat määritystiedostot, lähdekoodin ja infrastruktuurin määritelmät nopeasti tuotantovalmiin MCP-palvelimen toteutukseen.
+Repositoriossa on kaikki tarvittavat konfigurointitiedostot, lähdekoodi ja infrastruktuurin määritelmät, joilla pääsee nopeasti alkuun tuotantovalmiin MCP-palvelimen toteutuksessa.
 
-- [Azure Remote MCP Functions Python](https://github.com/Azure-Samples/remote-mcp-functions-python) - MCP:n malliesimerkki Azure Functionsilla Pythonilla
+- [Azure Remote MCP Functions Python](https://github.com/Azure-Samples/remote-mcp-functions-python) - MCP-toteutusesimerkki Azure Functionsilla Pythonilla
 
-- [Azure Remote MCP Functions .NET](https://github.com/Azure-Samples/remote-mcp-functions-dotnet) - MCP:n malliesimerkki Azure Functionsilla C# .NET:llä
+- [Azure Remote MCP Functions .NET](https://github.com/Azure-Samples/remote-mcp-functions-dotnet) - MCP-toteutusesimerkki Azure Functionsilla C# .NET:llä
 
-- [Azure Remote MCP Functions Node/Typescript](https://github.com/Azure-Samples/remote-mcp-functions-typescript) - MCP:n malliesimerkki Azure Functionsilla Node/TypeScriptillä.
+- [Azure Remote MCP Functions Node/Typescript](https://github.com/Azure-Samples/remote-mcp-functions-typescript) - MCP-toteutusesimerkki Azure Functionsilla Node/TypeScriptillä.
 
 ## Keskeiset opit
 
-- MCP SDK:t tarjoavat kielikohtaiset työkalut vankkojen MCP-ratkaisujen toteuttamiseen
-- Virheenkorjaus ja testaus ovat kriittisiä luotettaville MCP-sovelluksille
-- Uudelleenkäytettävät kehottepohjat mahdollistavat yhdenmukaiset tekoälyvuorovaikutukset
-- Hyvin suunnitellut työnkulut voivat orkestroida monimutkaisia tehtäviä useilla työkaluilla
-- MCP-ratkaisujen toteutuksessa tulee huomioida turvallisuus, suorituskyky ja virheenkäsittely
+- MCP SDK:t tarjoavat kielenomaisia työkaluja vahvojen MCP-ratkaisujen toteutukseen
+- Debuggaus- ja testausprosessi on kriittinen luotettavien MCP-sovellusten kehittämisessä
+- Uudelleenkäytettävät kehotemallit mahdollistavat johdonmukaiset AI-vuorovaikutukset
+- Hyvin suunnitellut työnkulut voivat orkestroida monimutkaisia tehtäviä käyttäen useita työkaluja
+- MCP-ratkaisujen toteutuksessa on huomioitava turvallisuus, suorituskyky ja virheenkäsittely
 
 ## Harjoitus
 
-Suunnittele käytännön MCP-työnkulku, joka ratkaisee oman alasi todellisen ongelman:
+Suunnittele käytännön MCP-työnkulku, joka ratkaisee todellisen ongelman omalla alallasi:
 
-1. Tunnista 3-4 työkalua, jotka olisivat hyödyllisiä ongelman ratkaisemisessa
-2. Luo työnkulku-kaavio, joka näyttää, miten nämä työkalut vuorovaikuttavat
-3. Toteuta yksi työkalu perusversio valitsemallasi kielellä
-4. Luo kehotemalli, joka auttaa mallia käyttämään työkalua tehokkaasti
+1. Tunnista 3-4 työkalua, jotka olisivat hyödyllisiä ongelman ratkaisemiseen
+2. Laadi työnkulun kaavio, joka näyttää, miten työkalut ovat vuorovaikutuksessa keskenään
+3. Toteuta perusversio yhdestä työkaluista suosikkiohjelmointikielelläsi
+4. Luo kehotetyyppinen malli, joka auttaa mallia tehokkaasti käyttämään työkalua
 
 ## Lisäresurssit
 
@@ -277,11 +277,11 @@ Suunnittele käytännön MCP-työnkulku, joka ratkaisee oman alasi todellisen on
 
 ## Mitä seuraavaksi
 
-Seuraava: [Edistyneet aiheet](../05-AdvancedTopics/README.md)
+Seuraavaksi: [Edistyneet aiheet](../05-AdvancedTopics/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäisellä kielellä tulee pitää virallisena lähteenä. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä mahdollisesti aiheutuvista väärinkäsityksistä tai tulkinnoista.
+**Vastuuvapauslauseke**:
+Tämä asiakirja on käännetty tekoälypohjaisen käännöspalvelun [Co-op Translator](https://github.com/Azure/co-op-translator) avulla. Vaikka pyrimme tarkkuuteen, automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäiskielellä tulee pitää virallisena lähteenä. Tärkeiden tietojen osalta suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tästä käännöksestä aiheutuvista väärinymmärryksistä tai virheellisistä tulkinnoista.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,9 +1,9 @@
 # Advanced server usage
 
-There are two different types of servers exposes in the MCP SDK, your normal server and the low-level server. Normally, you would use the regular server to add features to it. For some cases though, you want to rely on the low-level server such as:
+There are two different types of servers exposed in the MCP SDK, your normal server and the low-level server. Normally, you would use the regular server to add features to it. For some cases though, you want to rely on the low-level server such as:
 
 - Better architecture. It's possible to create a clean architecture with both the regular server and a low-level server but it can be argued that it's slightly easier with a low-level server.
-- Feature avavailability. Some advanced features can only be used with a low-level server. Youiwill see this in later chapters as we add sampling and elicitation.
+- Feature availability. Some advanced features can only be used with a low-level server. You will see this in later chapters as we add sampling and elicitation.
 
 ## Regular server vs low-level server
 
@@ -46,12 +46,12 @@ The point being is that you explicitly add each tool, resource or prompt that yo
 
 ### Low-level server approach
 
-However, when you use the low-level server approach you need to think about differently namely that instead of registering each tool you instead create two handlers per feature type (tools, resources or prompts). So for example tools then only have two functions like so:
+However, when you use the low-level server approach you need to think about differently. Instead of registering each tool, you instead create two handlers per feature type (tools, resources or prompts). So for example tools then only have two functions like so:
 
 - Listing all tools. One function would be responsible for all attempts to list tools.
 - handle calling all tools. Here also, there's only one function handling calls to a tool
 
-That sounds like potentially less work right? So instead of registering a tool, I just need to make sure the tool is listed when I list all tools and that's it's called when there's an incoming request to call a tool. 
+That sounds like potentially less work right? So instead of registering a tool, I just need to make sure the tool is listed when I list all tools and that it's called when there's an incoming request to call a tool. 
 
 Let's have a look at how the code now looks:
 
@@ -68,8 +68,8 @@ async def handle_list_tools() -> list[types.Tool]:
             inputSchema={
                 "type": "object",
                 "properties": {
-                    "a": {"type": "number", "description": "nubmer to add"}, 
-                    "b": {"type": "number", "description": "nubmer to add"}
+                    "a": {"type": "number", "description": "number to add"}, 
+                    "b": {"type": "number", "description": "number to add"}
                 },
                 "required": ["query"],
             },
@@ -89,8 +89,8 @@ server.setRequestHandler(ListToolsRequestSchema, async (request) => {
         inputSchema={
             "type": "object",
             "properties": {
-                "a": {"type": "number", "description": "nubmer to add"}, 
-                "b": {"type": "number", "description": "nubmer to add"}
+                "a": {"type": "number", "description": "number to add"}, 
+                "b": {"type": "number", "description": "number to add"}
             },
             "required": ["query"],
         }
@@ -99,7 +99,7 @@ server.setRequestHandler(ListToolsRequestSchema, async (request) => {
 });
 ```
 
-Here we now have a function that returns a list of features. Each entry in the tools list now have fields like `name`, `description` and `inputSchema` to adhere to the return type. This enables us to put our tools and feature definition elsewhere. We can now create all our tools in a tools folder and the same goes for all your features so your project can suddenly be organized like so:
+Here we now have a function that returns a list of features. Each entry in the tools list now has fields like `name`, `description` and `inputSchema` to adhere to the return type. This enables us to put our tools and feature definition elsewhere. We can now create all our tools in a tools folder and the same goes for all your features so your project can suddenly be organized like so:
 
 ```text
 app
@@ -170,7 +170,7 @@ As you can see from above code, we need to parse out the tool to call, and with 
 
 ## Improving the approach with validation
 
-So far, you've seen how all your registrations to add tools, resources and prompts can be replaced with these two handlers per feature type. What else do we need to do? Well, we should add some form of validation to ensure that the tool is called with right arguments. Each runtime have their own solution for this, for example Python uses Pydantic and TypeScript uses Zod. The idea is that we do the following:
+So far, you've seen how all your registrations to add tools, resources and prompts can be replaced with these two handlers per feature type. What else do we need to do? Well, we should add some form of validation to ensure that the tool is called with right arguments. Each runtime has their own solution for this, for example Python uses Pydantic and TypeScript uses Zod. The idea is that we do the following:
 
 - Move the logic for creating a feature (tool, resource or prompt) to its dedicated folder.
 - Add a way to validate an incoming request asking to for example call a tool.
@@ -303,7 +303,7 @@ export default {
     const result = await tool.callback(input);
     ```
 
-As you can see, this approach creates a great architecture as everything has it's place, the *server.ts* is a very small file that only wires up th request handlers and each features is in their respective folder i.e tools/, resources/ or /prompts.
+As you can see, this approach creates a great architecture as everything has its place, the *server.ts* is a very small file that only wires up the request handlers and each feature is in their respective folder i.e tools/, resources/ or /prompts.
 
 Great, let's try to build this next. 
 
@@ -340,7 +340,7 @@ server.ts
 client.ts
 ```
 
-Now we have set up in architecture that ensures we can easily add new tools in a tools folder. Feel free to follow this to add subdirectories for resources and prompts.
+Now we have set up an architecture that ensures we can easily add new tools in a tools folder. Feel free to follow this to add subdirectories for resources and prompts.
 
 ### -2- Creating a tool
 
@@ -371,7 +371,7 @@ tool_add = {
 }
 ```
 
-What we se here is how we define name, description, an input schema using Pydantic and a handler that will be invoked once this tool is being called. Lastly, we expose `tool_add` which is a dictionary holding all these properties.
+What we see here is how we define name, description, and input schema using Pydantic and a handler that will be invoked once this tool is being called. Lastly, we expose `tool_add` which is a dictionary holding all these properties.
 
 There's also *schema.py* that's used to define the input schema used by our tool:
 
@@ -421,7 +421,7 @@ Here we create a dictionary consisting of properties:
 - inputSchema, this schema will be used by the handler.
 - callback, this is used to invoke the tool.
 
-There' also `Tool` that's used to convert this dictionary into a type the mcp server handler can accept and it looks like so:
+There's also `Tool` that's used to convert this dictionary into a type the mcp server handler can accept and it looks like so:
 
 ```typescript
 import { z } from 'zod';
@@ -470,7 +470,7 @@ async def handle_list_tools() -> list[types.Tool]:
     return tool_list
 ```
 
-Here' we add the decorator `@server.list_tools` and the implementing function `handle_list_tools`. In the latter, we need to produce a list of tools. Note how each tool needs to have a name, description and inputSchema.   
+Here, we add the decorator `@server.list_tools` and the implementing function `handle_list_tools`. In the latter, we need to produce a list of tools. Note how each tool needs to have a name, description and inputSchema.   
 
 **TypeScript**
 
