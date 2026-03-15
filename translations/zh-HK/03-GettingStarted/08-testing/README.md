@@ -1,47 +1,47 @@
 ## 測試與除錯
 
-在開始測試你的 MCP 伺服器之前，了解可用的工具和除錯的最佳實踐非常重要。有效的測試能確保你的伺服器按預期運作，並幫助你快速識別和解決問題。以下章節將介紹驗證 MCP 實作的推薦方法。
+在開始測試您的 MCP 伺服器之前，了解可用的工具和除錯最佳實務非常重要。有效的測試能確保您的伺服器表現如預期，並幫助您快速識別和解決問題。以下章節概述驗證您的 MCP 實作的建議方法。
 
-## 概覽
+## 概述
 
-本課程將說明如何選擇合適的測試方法及最有效的測試工具。
+本課程涵蓋如何選擇正確的測試方法及最有效的測試工具。
 
 ## 學習目標
 
-完成本課程後，你將能夠：
+完成本課程後，您將能夠：
 
 - 描述各種測試方法。
-- 使用不同工具有效地測試你的程式碼。
+- 使用不同工具有效測試您的程式碼。
 
 ## 測試 MCP 伺服器
 
-MCP 提供工具協助你測試和除錯伺服器：
+MCP 提供工具幫助您測試及除錯伺服器：
 
-- **MCP Inspector**：一個命令列工具，可作為 CLI 工具或視覺化工具使用。
-- **手動測試**：你可以使用 curl 這類工具發送網路請求，任何能執行 HTTP 的工具都適用。
-- **單元測試**：你可以使用喜歡的測試框架來測試伺服器和客戶端的功能。
+- **MCP Inspector**：命令行工具，可作為 CLI 工具和視覺化工具執行。
+- **手動測試**：您可以使用像 curl 這樣的工具執行網路請求，任何可使用 HTTP 的工具都可以。
+- **單元測試**：可以使用您偏好的測試框架測試伺服器及用戶端的功能。
 
 ### 使用 MCP Inspector
 
-我們在之前的課程中已介紹過此工具的使用，這裡簡單說明一下。它是用 Node.js 建置的工具，你可以透過執行 `npx` 指令來使用，這會暫時下載並安裝該工具，執行完請求後會自動清理。
+我們在之前的課程中已描述此工具的用法，這裡來簡單介紹一下。這是一個基於 Node.js 的工具，您可以透過呼叫 `npx` 執行檔使用它，`npx` 會暫時下載並安裝該工具，執行完請求後會自行清理。
 
-[MCP Inspector](https://github.com/modelcontextprotocol/inspector) 可協助你：
+[MCP Inspector](https://github.com/modelcontextprotocol/inspector) 幫助您：
 
 - **發現伺服器功能**：自動偵測可用的資源、工具和提示
 - **測試工具執行**：嘗試不同參數並即時查看回應
-- **檢視伺服器元資料**：檢查伺服器資訊、結構和設定
+- **檢視伺服器元資料**：檢查伺服器資訊、結構與配置
 
-工具的典型執行方式如下：
+工具的典型執行範例如下：
 
 ```bash
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-上述指令會啟動 MCP 及其視覺化介面，並在瀏覽器中開啟本地網頁介面。你會看到一個儀表板，顯示已註冊的 MCP 伺服器、可用的工具、資源和提示。介面允許你互動式測試工具執行、檢查伺服器元資料及即時查看回應，讓你更輕鬆驗證和除錯 MCP 伺服器實作。
+上述指令啟動 MCP 及其視覺化介面，並在您的瀏覽器中啟動本地網頁介面。您會看到一個儀表板，顯示您註冊的 MCP 伺服器、其可用工具、資源及提示。此介面允許您互動式測試工具執行、檢查伺服器元資料並觀看即時回應，使驗證和除錯 MCP 伺服器實作更為方便。
 
-介面大致長這樣： ![Inspector](../../../../translated_images/zh-HK/connect.141db0b2bd05f096.webp)
+它大致會長這樣：![Inspector](../../../../translated_images/zh-HK/connect.141db0b2bd05f096.webp)
 
-你也可以用 CLI 模式執行此工具，只要加上 `--cli` 參數。以下是以 CLI 模式執行並列出伺服器上所有工具的範例：
+您也可以在 CLI 模式下執行此工具，這時加上 `--cli` 參數。以下是在「CLI」模式下列出伺服器所有工具的範例：
 
 ```sh
 npx @modelcontextprotocol/inspector --cli node build/index.js --method tools/list
@@ -49,25 +49,25 @@ npx @modelcontextprotocol/inspector --cli node build/index.js --method tools/lis
 
 ### 手動測試
 
-除了使用 inspector 工具測試伺服器功能外，另一種類似方法是使用能執行 HTTP 的客戶端工具，例如 curl。
+除了使用 inspector 工具測試伺服器功能外，另一類似方法是使用能發送 HTTP 請求的客戶端工具，例如 curl。
 
-使用 curl，你可以直接透過 HTTP 請求測試 MCP 伺服器：
+使用 curl，您可以直接用 HTTP 請求測試 MCP 伺服器：
 
 ```bash
-# Example: Test server metadata
+# 範例: 測試伺服器元資料
 curl http://localhost:3000/v1/metadata
 
-# Example: Execute a tool
+# 範例: 執行工具
 curl -X POST http://localhost:3000/v1/tools/execute \
   -H "Content-Type: application/json" \
   -d '{"name": "calculator", "parameters": {"expression": "2+2"}}'
 ```
 
-從上述 curl 用法可見，你是用 POST 請求呼叫工具，並以包含工具名稱及參數的 payload 傳送。請選擇最適合你的方式。一般來說，CLI 工具使用起來較快，且容易被腳本化，這在 CI/CD 環境中非常有用。
+從上述 curl 用法可見，您使用 POST 請求呼叫工具，並傳送含工具名稱及其參數的 payload。請選擇最適合您的方法。一般而言 CLI 工具使用較快速，且易於編寫腳本，在 CI/CD 環境中特別實用。
 
 ### 單元測試
 
-為你的工具和資源建立單元測試，確保它們如預期運作。以下是範例測試程式碼。
+為您的工具和資源建立單元測試，確保其如預期運作。以下是一些示範測試程式碼。
 
 ```python
 import pytest
@@ -77,7 +77,7 @@ from mcp.shared.memory import (
     create_connected_server_and_client_session as create_session,
 )
 
-# Mark the whole module for async tests
+# 標記整個模組為非同步測試
 pytestmark = pytest.mark.anyio
 
 
@@ -90,7 +90,7 @@ async def test_list_tools_cursor_parameter():
 
  server = FastMCP("test")
 
-    # Create a couple of test tools
+    # 建立幾個測試工具
     @server.tool(name="test_tool_1")
     async def test_tool_1() -> str:
         """First test tool"""
@@ -102,19 +102,19 @@ async def test_list_tools_cursor_parameter():
         return "Result 2"
 
     async with create_session(server._mcp_server) as client_session:
-        # Test without cursor parameter (omitted)
+        # 測試無游標參數（省略）
         result1 = await client_session.list_tools()
         assert len(result1.tools) == 2
 
-        # Test with cursor=None
+        # 使用 cursor=None 測試
         result2 = await client_session.list_tools(cursor=None)
         assert len(result2.tools) == 2
 
-        # Test with cursor as string
+        # 使用字串作為游標測試
         result3 = await client_session.list_tools(cursor="some_cursor_value")
         assert len(result3.tools) == 2
 
-        # Test with empty string cursor
+        # 使用空字串游標測試
         result4 = await client_session.list_tools(cursor="")
         assert len(result4.tools) == 2
     
@@ -122,15 +122,15 @@ async def test_list_tools_cursor_parameter():
 
 上述程式碼做了以下事情：
 
-- 使用 pytest 框架，讓你能以函式建立測試並使用 assert 陳述式。
-- 建立一個包含兩個不同工具的 MCP 伺服器。
-- 使用 `assert` 陳述式檢查特定條件是否成立。
+- 採用 pytest 框架，讓您可以用函式建立測試，並使用 assert 陳述式。
+- 建立一個有兩個不同工具的 MCP 伺服器。
+- 使用 `assert` 陳述式檢查特定條件是否符合。
 
-你可以參考[完整檔案](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+您可以參考[完整檔案](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
-根據上述檔案，你可以測試自己的伺服器，確保功能如預期被建立。
+參考此檔，您可以測試自己的伺服器確保功能正常建立。
 
-所有主要 SDK 都有類似的測試章節，你可以依照所選的執行環境做調整。
+所有主要 SDK 都有類似的測試章節，可依您選擇的執行環境調整。
 
 ## 範例
 
@@ -144,9 +144,13 @@ async def test_list_tools_cursor_parameter():
 
 - [Python SDK](https://github.com/modelcontextprotocol/python-sdk)
 
-## 接下來
+## 下一步
 
-- 下一步：[部署](../09-deployment/README.md)
+- 下一課： [部署](../09-deployment/README.md)
 
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **免責聲明**：  
-本文件由 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。雖然我們致力於確保準確性，但請注意自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於重要資訊，建議採用專業人工翻譯。我們不對因使用本翻譯而引起的任何誤解或誤釋承擔責任。
+本文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。儘管我們致力於確保準確性，但請注意，自動翻譯可能包含錯誤或不準確之處。原文的母語版本應被視為權威來源。若涉及重要資訊，建議尋求專業人工翻譯。我們不對因使用此翻譯而引致的任何誤解或誤譯承擔責任。
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
