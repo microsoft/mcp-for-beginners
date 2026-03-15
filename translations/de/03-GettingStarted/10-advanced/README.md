@@ -1,9 +1,9 @@
-# Erweiterte Servernutzung
+# Erweiterte Server-Nutzung
 
-Es gibt zwei verschiedene Servertypen, die im MCP SDK bereitgestellt werden: Ihren normalen Server und den Low-Level-Server. Normalerweise würden Sie den regulären Server verwenden, um Funktionen hinzuzufügen. In manchen Fällen möchten Sie jedoch auf den Low-Level-Server zurückgreifen, wie zum Beispiel:
+Im MCP SDK gibt es zwei verschiedene Arten von Servern: den normalen Server und den Low-Level-Server. Normalerweise verwendet man den regulären Server, um Funktionen hinzuzufügen. In manchen Fällen möchte man jedoch auf den Low-Level-Server zurückgreifen, z.B.:
 
-- Bessere Architektur. Es ist möglich, eine saubere Architektur sowohl mit dem regulären Server als auch mit einem Low-Level-Server zu erstellen, aber es kann argumentiert werden, dass es mit einem Low-Level-Server etwas einfacher ist.
-- Verfügbarkeit von Funktionen. Einige fortgeschrittene Funktionen können nur mit einem Low-Level-Server verwendet werden. Dies werden Sie in späteren Kapiteln sehen, wenn wir Sampling und Elicitation hinzufügen.
+- Bessere Architektur. Es ist möglich, mit sowohl dem regulären Server als auch einem Low-Level-Server eine saubere Architektur zu erstellen, aber es kann argumentiert werden, dass es mit einem Low-Level-Server etwas einfacher ist.
+- Verfügbarkeit von Funktionen. Einige erweiterte Funktionen können nur mit einem Low-Level-Server genutzt werden. Dies wird in späteren Kapiteln beim Hinzufügen von Sampling und Elicitation deutlich.
 
 ## Regulärer Server vs. Low-Level-Server
 
@@ -14,7 +14,7 @@ So sieht die Erstellung eines MCP-Servers mit dem regulären Server aus
 ```python
 mcp = FastMCP("Demo")
 
-# Ein Hinzufügungswerkzeug hinzufügen
+# Fügen Sie ein Additionstool hinzu
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
@@ -29,7 +29,7 @@ const server = new McpServer({
   version: "1.0.0"
 });
 
-// Ein Additionstool hinzufügen
+// Fügen Sie ein Additionswerkzeug hinzu
 server.registerTool("add",
   {
     title: "Addition Tool",
@@ -42,18 +42,18 @@ server.registerTool("add",
 );
 ```
 
-Dabei geht es darum, dass Sie explizit jedes Werkzeug, jede Ressource oder Eingabeaufforderung hinzufügen, die der Server haben soll. Daran ist nichts falsch.  
+Der Punkt ist, dass man explizit jedes Tool, jede Ressource oder jeden Prompt hinzufügen muss, den der Server haben soll. Daran ist nichts falsch.
 
 ### Low-Level-Server-Ansatz
 
-Wenn Sie jedoch den Low-Level-Server-Ansatz verwenden, müssen Sie anders denken, nämlich dass Sie anstatt jedes Werkzeug zu registrieren, stattdessen zwei Handler pro Feature-Typ (Werkzeuge, Ressourcen oder Eingabeaufforderungen) erstellen. Zum Beispiel haben Werkzeuge dann nur zwei Funktionen, wie folgt:
+Beim Low-Level-Server-Ansatz muss man aber anders denken. Statt jedes Tool zu registrieren, erstellt man stattdessen zwei Handler pro Feature-Typ (Tools, Ressourcen oder Prompts). Zum Beispiel haben Tools dann nur zwei Funktionen wie folgt:
 
-- Auflisten aller Werkzeuge. Eine Funktion wäre für alle Versuche verantwortlich, Werkzeuge aufzulisten.
-- Aufrufe aller Werkzeuge bearbeiten. Hier gibt es ebenfalls nur eine Funktion, die Aufrufe eines Werkzeugs bearbeitet.
+- Alle Tools auflisten. Eine Funktion ist für alle Versuche verantwortlich, Tools aufzulisten.
+- Aufrufe aller Tools behandeln. Hier gibt es ebenfalls nur eine Funktion, die die Aufrufe eines Tools handhabt.
 
-Das klingt nach möglicherweise weniger Arbeit, oder? Also anstatt ein Werkzeug zu registrieren, muss ich nur sicherstellen, dass das Werkzeug beim Auflisten aller Werkzeuge aufgelistet wird und es aufgerufen wird, wenn eine eingehende Anfrage vorliegt, ein Werkzeug zu verwenden.
+Das klingt nach potenziell weniger Arbeit, oder? Statt also ein Tool zu registrieren, muss ich nur sicherstellen, dass das Tool beim Auflisten aller Tools auftaucht und aufgerufen wird, wenn eine Anfrage zum Aufruf eines Tools eintrifft.
 
-Sehen wir uns an, wie der Code jetzt aussieht:
+Schauen wir uns an, wie der Code jetzt aussieht:
 
 **Python**
 
@@ -68,8 +68,8 @@ async def handle_list_tools() -> list[types.Tool]:
             inputSchema={
                 "type": "object",
                 "properties": {
-                    "a": {"type": "number", "description": "nubmer to add"}, 
-                    "b": {"type": "number", "description": "nubmer to add"}
+                    "a": {"type": "number", "description": "number to add"}, 
+                    "b": {"type": "number", "description": "number to add"}
                 },
                 "required": ["query"],
             },
@@ -89,8 +89,8 @@ server.setRequestHandler(ListToolsRequestSchema, async (request) => {
         inputSchema={
             "type": "object",
             "properties": {
-                "a": {"type": "number", "description": "nubmer to add"}, 
-                "b": {"type": "number", "description": "nubmer to add"}
+                "a": {"type": "number", "description": "number to add"}, 
+                "b": {"type": "number", "description": "number to add"}
             },
             "required": ["query"],
         }
@@ -99,7 +99,7 @@ server.setRequestHandler(ListToolsRequestSchema, async (request) => {
 });
 ```
 
-Hier haben wir nun eine Funktion, die eine Liste von Features zurückgibt. Jeder Eintrag in der Werkzeugliste hat nun Felder wie `name`, `description` und `inputSchema`, um dem Rückgabetyp zu entsprechen. Das ermöglicht uns, unsere Werkzeuge und Feature-Definitionen anderswo zu platzieren. Wir können jetzt alle unsere Werkzeuge in einem tools-Ordner erstellen, und das gleiche gilt für alle Ihre Features, sodass Ihr Projekt plötzlich so organisiert sein kann:
+Hier haben wir jetzt eine Funktion, die eine Liste von Features zurückgibt. Jeder Eintrag in der Tool-Liste hat jetzt Felder wie `name`, `description` und `inputSchema`, um dem Rückgabetyp zu entsprechen. Das ermöglicht es uns, unsere Tools und Feature-Definitionen an anderer Stelle unterzubringen. Wir können nun alle unsere Tools in einem Tools-Ordner erstellen, genauso wie alle Features, sodass dein Projekt plötzlich so organisiert aussehen kann:
 
 ```text
 app
@@ -113,9 +113,9 @@ app
 ----| product-description
 ```
 
-Das ist großartig, unsere Architektur kann recht sauber gestaltet werden.
+Das ist großartig, unsere Architektur kann sehr sauber gestaltet werden.
 
-Wie sieht es mit dem Aufrufen von Werkzeugen aus, ist es dann das gleiche Prinzip, ein Handler zum Aufrufen eines Werkzeugs, egal welches? Ja, genau, hier ist der Code dafür:
+Und wie sieht es mit dem Aufruf von Tools aus? Ist es die gleiche Idee, also ein Handler, der jedes Tool aufruft? Ja, genau, hier ist der Code dafür:
 
 **Python**
 
@@ -125,7 +125,7 @@ async def handle_call_tool(
     name: str, arguments: dict[str, str] | None
 ) -> list[types.TextContent]:
     
-    # tools ist ein Wörterbuch mit Toolnamen als Schlüssel
+    # tools ist ein Wörterbuch mit Werkzeugnamen als Schlüssel
     if name not in tools.tools:
         raise ValueError(f"Unknown tool: {name}")
     
@@ -158,7 +158,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     }
     
     // args: request.params.arguments
-    // TODO das Tool aufrufen,
+    // TODO Rufen Sie das Werkzeug auf,
 
     return {
        content: [{ type: "text", text: `Tool ${name} called with arguments: ${JSON.stringify(input)}, result: ${JSON.stringify(result)}` }]
@@ -166,18 +166,18 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 });
 ```
 
-Wie Sie im obigen Code sehen können, müssen wir das zu rufende Werkzeug und die Argumente herausfiltern, und dann müssen wir mit dem Aufruf des Werkzeugs fortfahren.
+Aus dem obigen Code ist ersichtlich, dass wir das Tool, das aufgerufen werden soll, bestimmen und mit welchen Argumenten, und anschließend das Tool aufrufen müssen.
 
 ## Verbesserung des Ansatzes mit Validierung
 
-Bis jetzt haben Sie gesehen, wie alle Ihre Registrierungen zum Hinzufügen von Werkzeugen, Ressourcen und Eingabeaufforderungen durch diese beiden Handler pro Feature-Typ ersetzt werden können. Was müssen wir noch tun? Nun, wir sollten eine Form der Validierung hinzufügen, um sicherzustellen, dass das Werkzeug mit den richtigen Argumenten aufgerufen wird. Jede Laufzeitumgebung hat dafür ihre eigene Lösung, zum Beispiel verwendet Python Pydantic und TypeScript verwendet Zod. Die Idee ist, dass wir Folgendes tun:
+Bisher hast du gesehen, wie alle Registrierungen zum Hinzufügen von Tools, Ressourcen und Prompts mit diesen zwei Handlern pro Feature-Typ ersetzt werden können. Was müssen wir sonst noch tun? Nun, wir sollten eine Form der Validierung hinzufügen, um sicherzustellen, dass das Tool mit den richtigen Argumenten aufgerufen wird. Jede Laufzeit hat dafür ihre eigene Lösung, z.B. verwendet Python Pydantic und TypeScript Zod. Die Idee ist folgende:
 
-- Die Logik zur Erstellung eines Features (Werkzeug, Ressource oder Eingabeaufforderung) in seinen eigenen Ordner verschieben.
-- Eine Möglichkeit hinzufügen, eine eingehende Anfrage z. B. zum Aufruf eines Werkzeugs zu validieren.
+- Die Logik zur Erstellung eines Features (Tool, Ressource oder Prompt) in seinen eigenen Ordner verschieben.
+- Eine Möglichkeit hinzufügen, eingehende Anfragen zu validieren, z.B. beim Aufruf eines Tools.
 
 ### Ein Feature erstellen
 
-Um ein Feature zu erstellen, müssen wir eine Datei für dieses Feature erstellen und sicherstellen, dass sie die für dieses Feature erforderlichen obligatorischen Felder enthält. Welche Felder das sind, unterscheidet sich ein wenig zwischen Werkzeugen, Ressourcen und Eingabeaufforderungen.
+Um ein Feature zu erstellen, müssen wir eine Datei für dieses Feature anlegen und sicherstellen, dass sie die obligatorischen Felder enthält, die für dieses Feature erforderlich sind. Welche Felder das genau sind, unterscheidet sich leicht zwischen Tools, Ressourcen und Prompts.
 
 **Python**
 
@@ -213,21 +213,21 @@ tool_add = {
 }
 ```
 
-Hier sehen Sie, wie wir Folgendes tun:
+Hier siehst du, wie wir Folgendes tun:
 
 - Ein Schema mit Pydantic `AddInputModel` mit den Feldern `a` und `b` in der Datei *schema.py* erstellen.
-- Versuchen, die eingehende Anfrage als Typ `AddInputModel` zu parsen, bei einer Parameterabweichung wird dies abstürzen:
+- Versuchen, die eingehende Anfrage zu parsen, sodass sie vom Typ `AddInputModel` ist; bei Parameterabweichungen wird das scheitern:
 
    ```python
    # add.py
     try:
-        # Eingaben mit Pydantic-Modell validieren
+        # Eingabe mit Pydantic-Modell validieren
         input_model = AddInputModel(**args)
     except Exception as e:
         raise ValueError(f"Invalid input: {str(e)}")
    ```
 
-Sie können wählen, ob Sie diese Parsing-Logik im Tool-Aufruf selbst oder in der Handler-Funktion platzieren.
+Du kannst entscheiden, ob du diese Parsing-Logik im Tool-Aufruf selbst oder im Handler implementierst.
 
 **TypeScript**
 
@@ -288,7 +288,7 @@ export default {
 } as Tool;
 ```
 
-- Im Handler, der alle Werkzeugaufrufe bearbeitet, versuchen wir nun, die eingehende Anfrage in das definierte Schema des Werkzeugs zu parsen:
+- Im Handler, der alle Tool-Aufrufe behandelt, versuchen wir nun, die eingehende Anfrage in das durch das Tool definierte Schema zu parsen:
 
     ```typescript
     const Schema = tool.rawSchema;
@@ -297,27 +297,27 @@ export default {
        const input = Schema.parse(request.params.arguments);
     ```
 
-    Wenn das funktioniert, rufen wir das eigentliche Werkzeug auf:
+    Wenn das funktioniert, fahren wir mit dem tatsächlichen Aufruf des Tools fort:
 
     ```typescript
     const result = await tool.callback(input);
     ```
 
-Wie Sie sehen, schafft dieser Ansatz eine großartige Architektur, da alles seinen Platz hat. Die *server.ts* ist eine sehr kleine Datei, die nur die Anforderungs-Handler verbindet, und jedes Feature befindet sich in seinem jeweiligen Ordner, z.B. tools/, resources/ oder /prompts.
+Wie man sieht, schafft dieser Ansatz eine großartige Architektur, da alles seinen Platz hat: *server.ts* ist eine sehr kleine Datei, die nur die Request-Handler verbindet, und jedes Feature befindet sich im jeweiligen Ordner, z.B. tools/, resources/ oder prompts/.
 
-Großartig, lassen Sie uns das als Nächstes aufbauen.
+Super, lass uns das als Nächstes bauen.
 
-## Übung: Einen Low-Level-Server erstellen
+## Übung: Erstellen eines Low-Level-Servers
 
 In dieser Übung werden wir Folgendes tun:
 
-1. Einen Low-Level-Server erstellen, der das Auflisten von Werkzeugen und das Aufrufen von Werkzeugen behandelt.
-1. Eine Architektur implementieren, auf der Sie aufbauen können.
-1. Eine Validierung hinzufügen, um sicherzustellen, dass Ihre Werkzeugaufrufe richtig validiert werden.
+1. Einen Low-Level-Server erstellen, der Tool-Listen und Tool-Aufrufe handhabt.
+1. Eine Architektur implementieren, auf der du aufbauen kannst.
+1. Validierung hinzufügen, um sicherzustellen, dass Tool-Aufrufe korrekt validiert werden.
 
-### -1- Eine Architektur erstellen
+### -1- Architektur erstellen
 
-Das Erste, womit wir uns befassen müssen, ist eine Architektur, die uns beim Skalieren unterstützt, wenn wir weitere Features hinzufügen. So sieht sie aus:
+Als Erstes brauchen wir eine Architektur, die uns beim Skalieren hilft, wenn wir mehr Features hinzufügen. So sieht sie aus:
 
 **Python**
 
@@ -340,11 +340,11 @@ server.ts
 client.ts
 ```
 
-Jetzt haben wir eine Architektur eingerichtet, die sicherstellt, dass wir problemlos neue Werkzeuge in einem tools-Ordner hinzufügen können. Fühlen Sie sich frei, dieser zu folgen und Unterverzeichnisse für resources und prompts hinzuzufügen.
+Jetzt haben wir eine Architektur eingerichtet, die es uns ermöglicht, einfach neue Tools in einem Tools-Ordner hinzuzufügen. Folge gerne diesem Beispiel, um weitere Unterverzeichnisse für Ressourcen und Prompts anzulegen.
 
-### -2- Ein Werkzeug erstellen
+### -2- Ein Tool erstellen
 
-Sehen wir uns als Nächstes an, wie ein Werkzeug erstellt wird. Zuerst muss es in seinem *tool*-Unterverzeichnis wie folgt erstellt werden:
+Schauen wir uns als Nächstes an, wie man ein Tool erstellt. Es muss zuerst im *tool*-Unterordner wie folgt erstellt werden:
 
 **Python**
 
@@ -353,12 +353,12 @@ from .schema import AddInputModel
 
 async def add_handler(args) -> float:
     try:
-        # Eingabe mit Pydantic-Modell validieren
+        # Eingaben mit einem Pydantic-Modell validieren
         input_model = AddInputModel(**args)
     except Exception as e:
         raise ValueError(f"Invalid input: {str(e)}")
 
-    # TODO: Pydantic hinzufügen, damit wir ein AddInputModel erstellen und args validieren können
+    # TODO: Pydantic hinzufügen, damit wir ein AddInputModel erstellen und Argumente validieren können
 
     """Handler function for the add tool."""
     return float(input_model.a) + float(input_model.b)
@@ -371,9 +371,9 @@ tool_add = {
 }
 ```
 
-Hier sehen wir, wie wir Namen, Beschreibung, ein Eingabeschema mit Pydantic definieren und einen Handler, der aufgerufen wird, wenn dieses Werkzeug ausgeführt wird. Zuletzt exposen wir `tool_add`, das ein Dictionary mit all diesen Eigenschaften hält.
+Hier sehen wir, wie wir mit Pydantic den Namen, die Beschreibung und das Input-Schema definieren und einen Handler, der aufgerufen wird, wenn dieses Tool verwendet wird. Schließlich exponieren wir `tool_add`, ein Dictionary, das all diese Eigenschaften enthält.
 
-Es gibt auch die Datei *schema.py*, die verwendet wird, um das Eingabeschema für unser Werkzeug zu definieren:
+Außerdem gibt es *schema.py*, das das Input-Schema für unser Tool definiert:
 
 ```python
 from pydantic import BaseModel
@@ -383,7 +383,7 @@ class AddInputModel(BaseModel):
     b: float
 ```
 
-Wir müssen auch *__init__.py* füllen, damit das tools-Verzeichnis als Modul behandelt wird. Zusätzlich müssen wir die Module innerhalb des Verzeichnisses so exposen:
+Wir müssen auch *__init__.py* befüllen, damit das Tools-Verzeichnis als Modul behandelt wird. Zusätzlich müssen wir die Module darin so exponieren:
 
 ```python
 from .add import tool_add
@@ -393,7 +393,7 @@ tools = {
 }
 ```
 
-Wir können diese Datei erweitern, wenn wir mehr Werkzeuge hinzufügen.
+Wir können diese Datei weiterhin erweitern, wenn wir weitere Tools hinzufügen.
 
 **TypeScript**
 
@@ -414,14 +414,14 @@ export default {
 } as Tool;
 ```
 
-Hier erstellen wir ein Dictionary mit Eigenschaften:
+Hier erstellen wir ein Dictionary mit den Eigenschaften:
 
-- name, das ist der Name des Werkzeugs.
-- rawSchema, das ist das Zod-Schema, das verwendet wird, um eingehende Anfragen zur Nutzung dieses Werkzeugs zu validieren.
+- name, das ist der Name des Tools.
+- rawSchema, das ist das Zod-Schema, welches verwendet wird, um eingehende Anfragen zum Aufruf dieses Tools zu validieren.
 - inputSchema, dieses Schema wird vom Handler verwendet.
-- callback, das wird verwendet, um das Werkzeug aufzurufen.
+- callback, das wird genutzt, um das Tool aufzurufen.
 
-Es gibt auch `Tool`, das verwendet wird, um dieses Dictionary in einen Typ umzuwandeln, den der MCP-Server-Handler akzeptieren kann, und sieht so aus:
+Außerdem gibt es `Tool`, das dieses Dictionary in einen Typ umwandelt, den der MCP-Server-Handler akzeptieren kann und das so aussieht:
 
 ```typescript
 import { z } from 'zod';
@@ -434,7 +434,7 @@ export interface Tool {
 }
 ```
 
-Und es gibt *schema.ts*, wo wir die Eingabeschemas für jedes Werkzeug speichern, die derzeit nur ein Schema enthalten, aber wenn wir mehr Werkzeuge hinzufügen, können wir weitere Einträge ergänzen:
+Und es gibt *schema.ts*, wo wir die Input-Schemas für jedes Tool speichern. Aktuell nur mit einem Schema, aber wenn wir mehr Tools hinzufügen, können wir weitere Einträge ergänzen:
 
 ```typescript
 import { z } from 'zod';
@@ -442,11 +442,11 @@ import { z } from 'zod';
 export const MathInputSchema = z.object({ a: z.number(), b: z.number() });
 ```
 
-Großartig, dann machen wir als Nächstes mit der Handhabung des Auflistens unserer Werkzeuge weiter.
+Super, als Nächstes kümmern wir uns um das Auflisten unserer Tools.
 
-### -3- Werkzeugauflistung handhaben
+### -3- Tool-Auflistung behandeln
 
-Als Nächstes, um das Auflisten unserer Werkzeuge zu bearbeiten, müssen wir einen Anforderungs-Handler dafür einrichten. Das müssen wir unserer Server-Datei hinzufügen:
+Als Nächstes müssen wir einen Request-Handler für das Auflisten unserer Tools einrichten. Folgendes fügen wir zur Server-Datei hinzu:
 
 **Python**
 
@@ -470,11 +470,11 @@ async def handle_list_tools() -> list[types.Tool]:
     return tool_list
 ```
 
-Hier fügen wir den Decorator `@server.list_tools` und die zugehörige Funktion `handle_list_tools` hinzu. In letzterer müssen wir eine Liste von Werkzeugen erzeugen. Beachten Sie, dass jedes Werkzeug einen Namen, eine Beschreibung und ein inputSchema haben muss.   
+Hier fügen wir den Dekorator `@server.list_tools` und die Implementierung `handle_list_tools` hinzu. In letzterem müssen wir eine Liste von Tools erzeugen. Beachte, dass jedes Tool einen Namen, eine Beschreibung und ein InputSchema haben muss.
 
 **TypeScript**
 
-Um den Anforderungs-Handler für das Auflisten von Werkzeugen einzurichten, müssen wir `setRequestHandler` auf dem Server mit einem Schema aufrufen, das zu dem passt, was wir tun wollen, in diesem Fall `ListToolsRequestSchema`. 
+Um den Request-Handler für das Auflisten von Tools einzurichten, müssen wir `setRequestHandler` auf dem Server mit einem passenden Schema aufrufen, in diesem Fall `ListToolsRequestSchema`.
 
 ```typescript
 // index.ts
@@ -499,15 +499,15 @@ server.setRequestHandler(ListToolsRequestSchema, async (request) => {
 });
 ```
 
-Großartig, jetzt haben wir den Teil zum Auflisten von Werkzeugen gelöst, sehen wir uns an, wie wir Werkzeuge aufrufen könnten.
+Super, jetzt haben wir das Auflisten von Tools gelöst, lass uns ansehen, wie Tool-Aufrufe aussehen können.
 
-### -4- Einen Werkzeugaufruf handhaben
+### -4- Tool-Aufruf behandeln
 
-Um ein Werkzeug aufzurufen, müssen wir einen weiteren Anforderungs-Handler einrichten, diesmal fokussiert darauf, mit einer Anfrage umzugehen, die angibt, welches Feature mit welchen Argumenten aufgerufen werden soll.
+Um ein Tool aufzurufen, müssen wir einen weiteren Request-Handler einrichten, der sich darauf fokussiert, zu behandeln, welches Feature mit welchen Argumenten aufgerufen werden soll.
 
 **Python**
 
-Verwenden wir den Decorator `@server.call_tool` und implementieren ihn mit einer Funktion wie `handle_call_tool`. In dieser Funktion müssen wir den Werkzeugnamen und dessen Argument herausfiltern und sicherstellen, dass die Argumente für das betreffende Werkzeug gültig sind. Wir können die Argumente entweder in dieser Funktion oder im eigentlichen Werkzeug validieren.
+Nutzen wir den Dekorator `@server.call_tool` und implementieren ihn mit einer Funktion wie `handle_call_tool`. In dieser Funktion müssen wir den Tool-Namen und seine Argumente parsen und sicherstellen, dass die Argumente für das entsprechende Tool gültig sind. Die Argumentvalidierung kann entweder in dieser Funktion oder später im eigentlichen Tool erfolgen.
 
 ```python
 @server.call_tool()
@@ -515,7 +515,7 @@ async def handle_call_tool(
     name: str, arguments: dict[str, str] | None
 ) -> list[types.TextContent]:
     
-    # tools ist ein Wörterbuch mit Werkzeugnamen als Schlüsseln
+    # tools ist ein Wörterbuch mit Werkzeugnamen als Schlüssel
     if name not in tools.tools:
         raise ValueError(f"Unknown tool: {name}")
     
@@ -535,31 +535,31 @@ async def handle_call_tool(
 
 Folgendes passiert hier:
 
-- Unser Werkzeugname ist bereits als Eingabeparameter `name` vorhanden, ebenso die Argumente in Form des `arguments`-Dictionarys.
+- Unser Tool-Name ist als Eingabeparameter `name` bereits vorhanden, ebenso unsere Argumente als `arguments`-Dictionary.
 
-- Das Werkzeug wird aufgerufen mit `result = await tool["handler"](../../../../03-GettingStarted/10-advanced/arguments)`. Die Validierung der Argumente erfolgt in der `handler`-Eigenschaft, die auf eine Funktion zeigt; wenn die Validierung fehlschlägt, wird eine Ausnahme ausgelöst.
+- Das Tool wird mit `result = await tool["handler"](../../../../03-GettingStarted/10-advanced/arguments)` aufgerufen. Die Validierung der Argumente erfolgt in der `handler`-Eigenschaft, die auf eine Funktion zeigt; wenn das fehlschlägt, wird eine Ausnahme ausgelöst.
 
-Damit haben wir nun ein vollständiges Verständnis davon, wie man Werkzeuge mit einem Low-Level-Server auflistet und aufruft.
+So, jetzt haben wir ein vollständiges Verständnis für das Auflisten und Aufrufen von Tools mittels eines Low-Level-Servers.
 
-Sehen Sie sich das [vollständige Beispiel](./code/README.md) hier an
+Siehe das [vollständige Beispiel](./code/README.md) hier
 
 ## Aufgabe
 
-Erweitern Sie den Ihnen gegebenen Code mit mehreren Werkzeugen, Ressourcen und Eingabeaufforderungen und reflektieren Sie, wie Sie feststellen, dass Sie nur Dateien im tools-Verzeichnis hinzufügen müssen und nirgendwo sonst. 
+Erweitere den dir gegebenen Code um eine Reihe von Tools, Ressourcen und Prompts und reflektiere dabei, wie du nur noch Dateien im Tools-Verzeichnis hinzufügen musst und sonst nirgendwo.
 
 *Keine Lösung vorgegeben*
 
 ## Zusammenfassung
 
-In diesem Kapitel haben wir gesehen, wie der Low-Level-Server-Ansatz funktioniert und wie er uns hilft, eine schöne Architektur zu schaffen, auf der wir weiter aufbauen können. Wir haben außerdem über Validierung gesprochen und Ihnen gezeigt, wie man mit Validierungsbibliotheken arbeitet, um Schemata zur Eingabevalidierung zu erstellen.
+In diesem Kapitel haben wir gesehen, wie der Low-Level-Server-Ansatz funktioniert und wie er uns hilft, eine schöne Architektur aufzubauen, auf der man weiter aufbauen kann. Wir haben zudem über Validierung gesprochen und dir gezeigt, wie du mit Validierungsbibliotheken Schemas zur Input-Validierung erstellst.
 
 ## Was kommt als Nächstes
 
-- Nächstes: [Einfache Authentifizierung](../11-simple-auth/README.md)
+- Nächstes Thema: [Einfache Authentifizierung](../11-simple-auth/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Haftungsausschluss**:  
-Dieses Dokument wurde mithilfe des KI-Übersetzungsdienstes [Co-op Translator](https://github.com/Azure/co-op-translator) übersetzt. Obwohl wir uns um Genauigkeit bemühen, weisen wir darauf hin, dass automatische Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner Ursprungssprache gilt als maßgebliche Quelle. Für wichtige Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die aus der Nutzung dieser Übersetzung entstehen.
+Dieses Dokument wurde mithilfe des KI-Übersetzungsdienstes [Co-op Translator](https://github.com/Azure/co-op-translator) übersetzt. Obwohl wir uns um Genauigkeit bemühen, beachten Sie bitte, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner Ursprungssprache ist als maßgebliche Quelle zu betrachten. Für wichtige Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die aus der Nutzung dieser Übersetzung entstehen.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
