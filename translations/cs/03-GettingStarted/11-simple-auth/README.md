@@ -1,25 +1,25 @@
-# Jednoduchá autentizace
+# Jednoduché ověřování
 
-SDK MCP podporují použití OAuth 2.1, což je, abychom byli upřímní, celkem složitý proces zahrnující pojmy jako auth server, resource server, posílání přihlašovacích údajů, získávání kódu, výměnu kódu za bearer token, až konečně získání dat z našeho zdroje. Pokud nejste zvyklí na OAuth, což je skvělá věc k implementaci, je dobré začít s nějakou základní úrovní autentizace a postupně ji zlepšovat směrem k stále lepší bezpečnosti. Proto tato kapitola existuje, aby vás připravila na pokročilejší autentizaci.
+Sady MCP SDK podporují použití OAuth 2.1, což je, upřímně řečeno, poměrně složitý proces zahrnující koncepty jako autentizační server, server zdrojů, odesílání přihlašovacích údajů, získání kódu, výměnu kódu za nosičský token, dokud konečně nezískáte data zdroje. Pokud nejste zvyklí na OAuth, což je skvělá věc k implementaci, je dobré začít s nějakou základní úrovní ověřování a postupně budovat stále lepší a lepší zabezpečení. Proto tato kapitola existuje, aby vás připravila na pokročilejší ověřování.
 
-## Autentizace, co tím myslíme?
+## Ověřování, co tím myslíme?
 
-Autentizace je zkratka pro ověření a autorizaci. Myšlenka je, že je potřeba udělat dvě věci:
+Ověřování je zkratka pro autentizaci a autorizaci. Myšlenka je, že musíme provést dvě věci:
 
-- **Ověření (Authentication)**, což je proces zjištění, zda dovolíme člověku vstoupit do našeho domu, že má právo být "tady", tedy mít přístup k našemu resource serveru, kde se nachází funkce našeho MCP Serveru.
-- **Autorizace (Authorization)**, je proces zjištění, zda by uživatel měl mít přístup k těmto konkrétním zdrojům, které žádá, například k těmto objednávkám nebo produktům, nebo zda může jen číst obsah, ale bez oprávnění mazat, jako jiný příklad.
+- **Autentizace**, což je proces zjišťování, zda osobě dovolíme vstoupit do našeho domu, že má právo být „tady“, tedy mít přístup k našemu serveru zdrojů, kde běží funkce našeho MCP serveru.
+- **Autorizace**, je proces zjistit, zda by uživatel měl mít přístup ke konkrétním zdrojům, o které žádá, například k těmto objednávkám nebo produktům, anebo zda může číst obsah, ale ne mazat — jako další příklad.
 
 ## Přihlašovací údaje: jak systému říkáme, kdo jsme
 
-No, většina webových vývojářů začíná myslet v tom smyslu, že poskytnou serveru přihlašovací údaj, obvykle tajemství, které říká, zda smí být tady "Authentication". Toto přihlašovací údaje jsou obvykle base64 kódovaná verze uživatelského jména a hesla nebo API klíč, který jednoznačně identifikuje konkrétního uživatele.
+Většina webových vývojářů začíná přemýšlet v termínech poskytování přihlašovacích údajů serveru, obvykle tajemství, které říká, zda mají právo být „tady“ — autentizace. Tyto přihlašovací údaje jsou obvykle base64 zakódovaná verze uživatelského jména a hesla nebo API klíč, který jednoznačně identifikuje konkrétního uživatele.
 
-To obnáší poslat je přes hlavičku nazvanou "Authorization" takto:
+To obnáší jejich odeslání přes hlavičku nazvanou "Authorization" takto:
 
 ```json
 { "Authorization": "secret123" }
 ```
 
-Tomu se obvykle říká základní autentizace (basic authentication). Celý průběh pak funguje takto:
+Tomu se obvykle říká základní autentizace (basic authentication). Celý proces pak funguje takto:
 
 ```mermaid
 sequenceDiagram
@@ -28,11 +28,11 @@ sequenceDiagram
    participant Server
 
    User->>Client: ukaž mi data
-   Client->>Server: ukaž mi data, tady jsou mé přihlašovací údaje
-   Server-->>Client: 1a, znám tě, tady jsou tvá data
+   Client->>Server: ukaž mi data, tady jsou mé údaje
+   Server-->>Client: 1a, znám tě, tady jsou tvoje data
    Server-->>Client: 1b, neznám tě, 401 
 ```
-Nyní, když chápeme, jak to funguje z hlediska průběhu, jak to implementovat? Většina webových serverů má pojem middleware, kus kódu, který se spouští jako součást požadavku a může ověřit přihlašovací údaje, a pokud jsou platné, nechá požadavek projít. Pokud požadavek nemá platné přihlašovací údaje, dostanete chybu autentizace. Podívejme se, jak to lze implementovat:
+Teď když rozumíme, jak to funguje z hlediska toku, jak to implementujeme? Většina webových serverů má koncept middleware, kus kódu, který běží jako součást požadavku a může ověřit přihlašovací údaje, a pokud jsou platné, nechá požadavek projít. Pokud požadavek nemá platné přihlašovací údaje, dostanete chybu ověřování. Podívejme se, jak to lze implementovat:
 
 **Python**
 
@@ -52,23 +52,23 @@ class AuthMiddleware(BaseHTTPMiddleware):
         print("Valid token, proceeding...")
        
         response = await call_next(request)
-        # přidejte jakékoli uživatelské hlavičky nebo nějakým způsobem změňte odpověď
+        # přidejte jakékoliv vlastní hlavičky zákazníka nebo nějakým způsobem změňte odpověď
         return response
 
 
 starlette_app.add_middleware(CustomHeaderMiddleware)
 ```
 
-Tady máme:
+Tady jsme:
 
-- Vytvořen middleware s názvem `AuthMiddleware`, kde jeho metoda `dispatch` je vyvolána webovým serverem.
-- Přidán middleware do webového serveru:
+- Vytvořili middleware nazvaný `AuthMiddleware`, jehož metoda `dispatch` je volána webovým serverem.
+- Přidali middleware do webového serveru:
 
     ```python
     starlette_app.add_middleware(AuthMiddleware)
     ```
 
-- Napsanou validační logiku, která kontroluje, jestli hlavička Authorization je přítomna a zda odeslané tajemství je platné:
+- Napsali validační logiku, která kontroluje, zda je hlavička Authorization přítomná a zda je odesílané tajemství platné:
 
     ```python
     has_header = request.headers.get("Authorization")
@@ -81,19 +81,19 @@ Tady máme:
         return Response(status_code=403, content="Forbidden")
     ```
 
-    pokud je tajemství přítomno a platné, necháme požadavek projít zavoláním `call_next` a vrátíme odpověď.
+    pokud je tajemství přítomné a platné, necháme požadavek projít zavoláním `call_next` a vrátíme odpověď.
 
     ```python
     response = await call_next(request)
-    # přidat jakékoli zákaznické hlavičky nebo nějakým způsobem změnit odpověď
+    # přidejte jakékoliv zákaznické hlavičky nebo nějak změňte odpověď
     return response
     ```
 
-Princip fungování je takový, že pokud je proveden webový požadavek na server, middleware se vyvolá a dle své implementace buď nechá požadavek projít, nebo vrátí chybu, která ukazuje, že klient nemá povolení pokračovat.
+Jak to funguje je, že pokud je odeslán webový požadavek na server, middleware je volán a podle své implementace buď požadavek pustí dál, nebo vrátí chybu označující, že klient nemá oprávnění pokračovat.
 
 **TypeScript**
 
-Zde vytvoříme middleware s populárním frameworkem Express a zachytíme požadavek, než dosáhne MCP Serveru. Kód je následující:
+Zde vytvoříme middleware s populárním frameworkem Express a zachytíme požadavek před tím, než dosáhne MCP serveru. Zde je ukázka kódu:
 
 ```typescript
 function isValid(secret) {
@@ -101,7 +101,7 @@ function isValid(secret) {
 }
 
 app.use((req, res, next) => {
-    // 1. Hlavička autorizace přítomna?
+    // 1. Je přítomen autorizační záhlaví?
     if(!req.headers["Authorization"]) {
         res.status(401).send('Unauthorized');
     }
@@ -115,20 +115,20 @@ app.use((req, res, next) => {
 
    
     console.log('Middleware executed');
-    // 3. Předá požadavek do dalšího kroku v pipeline požadavku.
+    // 3. Předá požadavek do dalšího kroku v pipeline požadavků.
     next();
 });
 ```
 
 V tomto kódu:
 
-1. Kontrolujeme, zda hlavička Authorization vůbec existuje, pokud ne, pošleme chybu 401.
+1. Kontrolujeme, zda je hlavička Authorization vůbec přítomná, pokud ne, pošleme chybu 401.
 2. Zajistíme, že přihlašovací údaj/token je platný, pokud ne, pošleme chybu 403.
-3. Nakonec propustíme požadavek v rámci pipeline a vrátíme požadovaný zdroj.
+3. Nakonec požadavek předáme dále v pipeline a vrátíme požadovaný zdroj.
 
-## Cvičení: Implementujte autentizaci
+## Cvičení: Implementace ověřování
 
-Pojďme naše znalosti vyzkoušet v praxi. Plán je:
+Vezměme si naše znalosti a zkuste to implementovat. Plán je následující:
 
 Server
 
@@ -137,15 +137,15 @@ Server
 
 Klient
 
-- Poslat webový požadavek s přihlašovacími údaji přes hlavičku.
+- Odeslat webový požadavek s přihlašovacími údaji v hlavičce.
 
 ### -1- Vytvořit webový server a instanci MCP
 
-V prvním kroku je potřeba vytvořit instanci webového serveru a MCP Server.
+V první fázi potřebujeme vytvořit instanci webového serveru a MCP server.
 
 **Python**
 
-Zde vytvoříme instanci MCP serveru, vytvoříme starlette web app a hostíme ji pomocí uvicorn.
+Zde vytvoříme instanci MCP serveru, vytvoříme webovou aplikaci starlette a spustíme ji pomocí uvicorn.
 
 ```python
 # vytváření MCP serveru
@@ -161,7 +161,7 @@ app = FastMCP(
 # vytváření webové aplikace starlette
 starlette_app = app.streamable_http_app()
 
-# poskytování aplikace přes uvicorn
+# provozování aplikace přes uvicorn
 async def run(starlette_app):
     import uvicorn
     config = uvicorn.Config(
@@ -178,13 +178,13 @@ run(starlette_app)
 
 V tomto kódu:
 
-- Vytvoříme MCP Server.
-- Sestavíme starlette web app z MCP Serveru, `app.streamable_http_app()`.
-- Hostujeme a servírujeme webovou aplikaci pomocí uvicorn `server.serve()`.
+- Vytvoříme MCP server.
+- Sestavíme starlette webovou aplikaci z MCP serveru pomocí `app.streamable_http_app()`.
+- Spustíme a obsluhujeme webovou aplikaci pomocí uvicorn `server.serve()`.
 
 **TypeScript**
 
-Zde vytvoříme instanci MCP Serveru.
+Zde vytvoříme instanci MCP serveru.
 
 ```typescript
 const server = new McpServer({
@@ -192,10 +192,10 @@ const server = new McpServer({
       version: "1.0.0"
     });
 
-    // ... nastavit zdroje serveru, nástroje a výzvy ...
+    // ... nastavit zdroje serveru, nástroje a podněty ...
 ```
 
-Toto vytvoření MCP Serveru bude potřeba udělat v naší definici trasy POST /mcp, takže vezměme výše uvedený kód a přesuňme ho takto:
+Toto vytvoření MCP serveru musí proběhnout v rámci definice cesty POST /mcp, takže vezměme výše uvedený kód a přesuňme jej takto:
 
 ```typescript
 import express from "express";
@@ -207,33 +207,33 @@ import { isInitializeRequest } from "@modelcontextprotocol/sdk/types.js"
 const app = express();
 app.use(express.json());
 
-// Mapa pro ukládání přenosů podle ID relace
+// Mapa pro ukládání transportů podle ID relace
 const transports: { [sessionId: string]: StreamableHTTPServerTransport } = {};
 
-// Zpracování POST požadavků pro komunikaci klient-server
+// Zpracovat POST požadavky pro komunikaci klient-server
 app.post('/mcp', async (req, res) => {
   // Kontrola existujícího ID relace
   const sessionId = req.headers['mcp-session-id'] as string | undefined;
   let transport: StreamableHTTPServerTransport;
 
   if (sessionId && transports[sessionId]) {
-    // Znovupoužití existujícího přenosu
+    // Znovupoužít existující transport
     transport = transports[sessionId];
   } else if (!sessionId && isInitializeRequest(req.body)) {
-    // Nový inicializační požadavek
+    // Nový požadavek na inicializaci
     transport = new StreamableHTTPServerTransport({
       sessionIdGenerator: () => randomUUID(),
       onsessioninitialized: (sessionId) => {
-        // Uložení přenosu podle ID relace
+        // Uložit transport podle ID relace
         transports[sessionId] = transport;
       },
-      // Ochrana proti DNS rebindingu je ve výchozím nastavení vypnuta pro zpětnou kompatibilitu. Pokud tento server spouštíte
-      // lokálně, ujistěte se, že nastavíte:
+      // Ochrana proti DNS rebindingu je ve výchozím nastavení vypnuta pro zpětnou kompatibilitu. Pokud tento server
+      // provozujete lokálně, ujistěte se, že nastavíte:
       // enableDnsRebindingProtection: true,
       // allowedHosts: ['127.0.0.1'],
     });
 
-    // Vyčištění přenosu po jeho uzavření
+    // Vyčistit transport při uzavření
     transport.onclose = () => {
       if (transport.sessionId) {
         delete transports[transport.sessionId];
@@ -244,9 +244,9 @@ app.post('/mcp', async (req, res) => {
       version: "1.0.0"
     });
 
-    // ... nastavení serverových zdrojů, nástrojů a výzev ...
+    // ... nastavit serverové zdroje, nástroje a výzvy ...
 
-    // Připojení k MCP serveru
+    // Připojit se k MCP serveru
     await server.connect(transport);
   } else {
     // Neplatný požadavek
@@ -261,11 +261,11 @@ app.post('/mcp', async (req, res) => {
     return;
   }
 
-  // Zpracování požadavku
+  // Zpracovat požadavek
   await transport.handleRequest(req, res, req.body);
 });
 
-// Znovupoužitelný zpracovatel pro GET a DELETE požadavky
+// Znovupoužitelný handler pro GET a DELETE požadavky
 const handleSessionRequest = async (req: express.Request, res: express.Response) => {
   const sessionId = req.headers['mcp-session-id'] as string | undefined;
   if (!sessionId || !transports[sessionId]) {
@@ -277,44 +277,44 @@ const handleSessionRequest = async (req: express.Request, res: express.Response)
   await transport.handleRequest(req, res);
 };
 
-// Zpracování GET požadavků pro notifikace serveru klientovi přes SSE
+// Zpracovat GET požadavky pro oznámení ze serveru klientovi přes SSE
 app.get('/mcp', handleSessionRequest);
 
-// Zpracování DELETE požadavků pro ukončení relace
+// Zpracovat DELETE požadavky na ukončení relace
 app.delete('/mcp', handleSessionRequest);
 
 app.listen(3000);
 ```
 
-Nyní vidíte, jak bylo vytvoření MCP Serveru přesunuto do `app.post("/mcp")`.
+Nyní vidíte, že vytvoření MCP serveru bylo přesunuto dovnitř `app.post("/mcp")`.
 
-Přejděme k dalšímu kroku — vytvoření middleware, abychom mohli validovat přicházející přihlašovací údaje.
+Pokračujme k dalšímu kroku, kterým je vytvoření middleware pro validaci přicházejících přihlašovacích údajů.
 
 ### -2- Implementovat middleware pro server
 
-Nyní k části middleware. Vytvoříme middleware, který hledá přihlašovací údaje v hlavičce `Authorization` a validuje je. Pokud jsou přijatelná, požadavek bude pokračovat a vykoná, co má (například zobrazí nástroje, načte zdroj nebo cokoliv, co klient MCP požaduje).
+Podívejme se teď na middleware část. Zde vytvoříme middleware, který hledá přihlašovací údaje v hlavičce `Authorization` a ověří je. Pokud jsou přijatelné, požadavek pokračuje k vykonání požadované akce (například vypsat nástroje, načíst zdroj nebo cokoliv z funkcí MCP klient požaduje).
 
 **Python**
 
-K vytvoření middleware je potřeba vytvořit třídu, která dědí z `BaseHTTPMiddleware`. Jsou tu dva zajímavé prvky:
+Pro vytvoření middleware vytvoříme třídu, která dědí z `BaseHTTPMiddleware`. Jsou zde dva zajímavé komponenty:
 
-- Požadavek `request`, ze kterého čteme informace v hlavičkách.
-- `call_next` je callback, který musíme zavolat, pokud klient přinesl přihlašovací údaje, které akceptujeme.
+- požadavek `request`, ze kterého čteme informace z hlaviček.
+- `call_next`, zpětné volání, které musíme zavolat, pokud klient přinesl přihlašovací údaje, které akceptujeme.
 
-Nejprve musíme ošetřit případ, kdy hlavička `Authorization` chybí:
+Nejprve je potřeba ošetřit případ, kdy hlavička `Authorization` chybí:
 
 ```python
 has_header = request.headers.get("Authorization")
 
-# není přítomen žádný záhlaví, chyba s 401, jinak pokračovat dál.
+# žádný záhlaví není přítomno, selhat s 401, jinak pokračovat dál.
 if not has_header:
     print("-> Missing Authorization header!")
     return Response(status_code=401, content="Unauthorized")
 ```
 
-Zde posíláme 401 unauthorized zprávu, protože klient selhává v autentizaci.
+Zde posíláme zprávu 401 unauthorized, protože klient nezvládl autentizaci.
 
-Dále, pokud jsou přihlašovací údaje předány, musíme zkontrolovat jejich platnost takto:
+Dále, pokud byly přihlašovací údaje odeslány, musíme ověřit jejich platnost takto:
 
 ```python
  if not valid_token(has_header):
@@ -322,7 +322,7 @@ Dále, pokud jsou přihlašovací údaje předány, musíme zkontrolovat jejich 
     return Response(status_code=403, content="Forbidden")
 ```
 
-Všimněte si, že posíláme zprávu 403 forbidden. Níže je celé middleware implementující vše, co jsme zmínili:
+Všimněte si, že posíláme zprávu 403 forbidden. Podívejme se na celý middleware níže implementující vše, co jsme zmínili:
 
 ```python
 class AuthMiddleware(BaseHTTPMiddleware):
@@ -346,31 +346,32 @@ class AuthMiddleware(BaseHTTPMiddleware):
 ```
 
 Skvělé, ale co funkce `valid_token`? Zde je níže:
+:
 
 ```python
-# NEPOUŽÍVEJTE pro produkci - vylepšete to !!
+# NEPOUŽÍVEJTE do výroby - vylepšete to !!
 def valid_token(token: str) -> bool:
-    # odstraňte předponu "Bearer "
+    # odeberte prefix "Bearer "
     if token.startswith("Bearer "):
         token = token[7:]
         return token == "secret-token"
     return False
 ```
 
-Tohle by se samozřejmě mělo zlepšit.
+Toto samozřejmě můžete ještě vylepšit.
 
-DŮLEŽITÉ: Nikdy byste neměli mít tajemství přímo v kódu. Měli byste ideálně hodnotu brát z datového zdroje nebo od poskytovatele identity (IDP), nebo ještě lépe, nechat validaci provádět právě IDP.
+DŮLEŽITÉ: Nikdy byste neměli mít taková tajemství přímo v kódu. Ideálně byste měli hodnotu pro porovnání načítat z datového zdroje nebo od IDP (poskytovatele identity) či raději nechat validaci na IDP.
 
 **TypeScript**
 
-Pro implementaci v Express musíme zavolat metodu `use`, která bere middleware funkce.
+Pro implementaci tohoto v Expressu je potřeba zavolat metodu `use`, která přijímá middleware funkce.
 
-Potřebujeme:
+Musíme:
 
-- Pracovat s požadavkem, aby bylo možné zkontrolovat předané přihlašovací údaje v `Authorization` vlastnosti.
-- Validovat přihlašovací údaje, a pokud jsou platné, nechat požadavek pokračovat a provést požadavky MCP klienta (například vypsat nástroje, přečíst zdroj nebo cokoli jiného ve vztahu k MCP).
+- Interagovat s proměnnou požadavku a zkontrolovat přihlašovací údaje v vlastnosti `Authorization`.
+- Validovat přihlašovací údaje a v případě platnosti nechat požadavek pokračovat, aby klientova MCP žádost mohla vykonat, co má (např. vypsat nástroje, načíst zdroj či cokoliv dalšího vztahujícího se k MCP).
 
-Zde kontrolujeme, zda hlavička `Authorization` je přítomna, jinak zastavíme požadavek:
+Zde kontrolujeme, zda hlavička `Authorization` je přítomna, pokud není, zastavujeme průchod požadavku:
 
 ```typescript
 if(!req.headers["authorization"]) {
@@ -379,9 +380,9 @@ if(!req.headers["authorization"]) {
 }
 ```
 
-Pokud hlavička není vůbec poslána, dostanete 401.
+Pokud hlavička není vůbec odeslána, dostanete chybu 401.
 
-Dále kontrolujeme platnost přihlašovacích údajů; pokud neplatné, zastavíme požadavek s jinou chybou:
+Dále kontrolujeme platnost přihlašovacích údajů, pokud neplatí, znova požadavek zastavíme, ale s jinou chybovou zprávou:
 
 ```typescript
 if(!isValid(token)) {
@@ -390,7 +391,7 @@ if(!isValid(token)) {
 } 
 ```
 
-Vidíte, že teď obdržíte chybu 403.
+Všimněte si, že nyní dostanete chybu 403.
 
 Zde je kompletní kód:
 
@@ -415,18 +416,18 @@ app.use((req, res, next) => {
 });
 ```
 
-Nastavili jsme webový server tak, aby přijímal middleware kontrolující přihlašovací údaje, které nám klient posílá. Co klient sám?
+Nastavili jsme webový server tak, aby přijímal middleware pro kontrolu přihlašovacích údajů, které nám klient snad posílá. Co klient sám?
 
-### -3- Poslat webový požadavek s přihlašovacími údaji přes hlavičku
+### -3- Odeslat webový požadavek s přihlašovacími údaji v hlavičce
 
-Musíme zajistit, aby klient předával přihlašovací údaje přes hlavičku. Protože chceme použít MCP klienta, musíme zjistit, jak se to dělá.
+Musíme zajistit, aby klient přihlašovací údaje předával přes hlavičku. Protože použijeme MCP klienta, musíme zjistit, jak se to dělá.
 
 **Python**
 
-Pro klienta musíme přidat hlavičku s přihlašovacím údajem takto:
+Pro klienta je potřeba předat hlavičku s přihlašovacími údaji takto:
 
 ```python
-# NEpevně nastavujte hodnotu, mějte ji alespoň v proměnné prostředí nebo v bezpečnějším úložišti
+# NEPEVNĚ zakódujte hodnotu, mějte ji alespoň v proměnné prostředí nebo v bezpečnějším úložišti
 token = "secret-token"
 
 async with streamablehttp_client(
@@ -443,24 +444,24 @@ async with streamablehttp_client(
         ) as session:
             await session.initialize()
       
-            # TODO, co chcete provést na klientovi, např. zobrazit nástroje, volat nástroje atd.
+            # TODO, co chcete udělat na klientovi, např. vypsat nástroje, volat nástroje apod.
 ```
 
-Všimněte si, jak nastavujeme vlastnost `headers` jako `headers = {"Authorization": f"Bearer {token}"}`.
+Všimněte si, jak vyplňujeme vlastnost `headers` takto: ` headers = {"Authorization": f"Bearer {token}"}`.
 
 **TypeScript**
 
-Můžeme to vyřešit ve dvou krocích:
+Toto můžeme vyřešit ve dvou krocích:
 
-1. Naplnit konfigurační objekt přihlašovacími údaji.
-2. Poslat konfigurační objekt do transportu.
+1. Naplnit konfigurační objekt našimi přihlašovacími údaji.
+2. Předat tento konfigurační objekt transportu.
 
 ```typescript
 
-// NEpevně zakódovávejte hodnotu, jako je zde ukázáno. Minimálně ji mějte jako proměnnou prostředí a používejte něco jako dotenv (v režimu vývoje).
+// NEtvrdě kódujte hodnotu, jak je ukázáno zde. Minimálně ji mějte jako proměnnou prostředí a použijte něco jako dotenv (v režimu vývoje).
 let token = "secret123"
 
-// definujte objekt s možnostmi pro klientský transport
+// definujte objekt volby klientského transportu
 let options: StreamableHTTPClientTransportOptions = {
   sessionId: sessionId,
   requestInit: {
@@ -478,46 +479,46 @@ async function main() {
    );
 ```
 
-Vidíte, jak jsme museli vytvořit objekt `options` a vložit záhlaví do vlastnosti `requestInit`.
+Zde vidíte výše, jak jsme museli vytvořit objekt `options` a umístit naše hlavičky pod vlastnost `requestInit`.
 
-DŮLEŽITÉ: Jak to ale vylepšit? Současná implementace má určité problémy. Především posílání přihlašovacích údajů tímto způsobem je poměrně rizikové, pokud alespoň nemáte HTTPS. I pak mohou být údaje ukradeny, takže potřebujete systém, který umožní snadné zrušení tokenu a přidání dalších kontrol jako např. odkud token přichází, jestli požadavky nepřicházejí příliš často (chování jako bot), zkrátka je tu celá řada obav.
+DŮLEŽITÉ: Jak to tedy zlepšit? Současná implementace má několik problémů. Za prvé, předávat přihlašovací údaje tímto způsobem je dost riskantní, pokud nemáte minimálně HTTPS. I pak může být přihlašovací údaj ukraden, takže potřebujete systém, kde můžete snadno token zneplatnit a přidat další kontroly, například odkud na světě požadavek přichází, zda se požadavky nestanou příliš častými (chování robota) a podobně, existuje celá řada ohledů.
 
-Je ale potřeba říct, že pro velmi jednoduchá API, kde nechcete, aby kdokoli volal vaše API bez autentizace, je to dobrý start.
+Mělo by se ale říct, že pro velmi jednoduché API, kde nechcete, aby kdokoliv volal vaše API bez ověření, je to dobrý začátek.
 
-S tímto na mysli pojďme zpřísnit bezpečnost zavedením standardizovaného formátu, jako je JSON Web Token, známý také jako JWT nebo "JOT" tokeny.
+S tím řečeno, pojďme trochu posílit bezpečnost použitím standardizovaného formátu jako JSON Web Token, známého také jako JWT nebo "JOT" tokeny.
 
 ## JSON Web Tokeny, JWT
 
-Takže se snažíme zlepšit věci oproti posílání velmi jednoduchých přihlašovacích údajů. Jaké jsou okamžité výhody použití JWT?
+Snažíme se zlepšit zasílání velmi jednoduchých přihlašovacích údajů. Jaké jsou okamžité výhody přijetí JWT?
 
-- **Bezpečnostní zlepšení**. V basic auth posíláte uživatelské jméno a heslo jako base64 kódovaný token (nebo API klíč) znovu a znovu, což zvyšuje riziko. S JWT posíláte jméno a heslo a dostanete token zpět a ten je časově omezený, tedy expirovatelný. JWT umožňuje snadné použití jemnozrné kontroly přístupu pomocí rolí, rozsahů a oprávnění.
-- **Bezstavovost a škálovatelnost**. JWT jsou samostatné, přenášejí všechny informace o uživateli a eliminují nutnost ukládání session na straně serveru. Token může být také validován lokálně.
-- **Interoperabilita a federace**. JWT jsou středem Open ID Connect a používají se u známých poskytovatelů identity jako Entra ID, Google Identity a Auth0. Umožňují také Single Sign-On a další, činí je podnikově využitelnými.
-- **Modularita a flexibilita**. JWT lze použít i s API bránami jako Azure API Management, NGINX a další. Podporují scénáře autentizace i komunikace server-ke-serveru včetně impersonace a delegace.
-- **Výkon a cachování**. JWT lze cachovat po dekódování, což snižuje potřebu parsování. To pomáhá zejména u aplikací s vysokým provozem, protože zlepšuje průtok a snižuje zátěž infrastruktury.
-- **Pokročilé funkce**. Podporují introspekci (kontrolu platnosti na serveru) a revokaci (zneplatnění tokenu).
+- **Zlepšení bezpečnosti**. V základním ověřování posíláte uživatelské jméno a heslo jako base64 kódovaný token (nebo API klíč) znovu a znovu, což zvyšuje riziko. U JWT odešlete uživatelské jméno a heslo a dostanete token na oplátku, který má také časovou platnost, takže vyprší. JWT umožňuje snadno používat jemnozrnné řízení přístupu pomocí rolí, rozsahů a oprávnění.
+- **Bezstavovost a škálovatelnost**. JWT je samostatně obsahující data, nese veškeré uživatelské informace a eliminuje potřebu serverového uložení relací. Token lze také ověřovat lokálně.
+- **Interoperabilita a federace**. JWT je ústředním prvkem OpenID Connect a používá se s známými poskytovateli identity jako Entra ID, Google Identity a Auth0. Umožňují také použití single sign-on a mnoho dalšího, čímž je to řešení na úrovni podniku.
+- **Modularita a flexibilita**. JWT lze použít i s API bránami jako Azure API Management, NGINX a další. Podporuje i použití v autentizačních scénářích a komunikaci server-server včetně přecpávání identity a delegace.
+- **Výkon a cachování**. JWT lze kešovat po dekódování, což snižuje potřebu opakovaného parsování. To pomáhá zejména v aplikacích s velkým provozem, protože zlepšuje propustnost a snižuje zatížení infrastruktury.
+- **Pokročilé funkce**. Dále podporuje introspekci (kontrola platnosti na serveru) a zneplatnění tokenů.
 
-Se všemi těmito výhodami si ukažme, jak posunout naši implementaci na další úroveň.
+S tolika výhodami se podívejme, jak posunout naši implementaci na vyšší úroveň.
 
-## Převod základní autentizace na JWT
+## Převod základního ověřování na JWT
 
-Takže změny, které musíme udělat na vysoké úrovni, jsou:
+Na velké úrovni potřebujeme:
 
-- **Naučit se sestavit JWT token** a připravit ho pro odeslání z klienta na server.
-- **Validovat JWT token**, a pokud je platný, umožnit klientovi přístup k našim zdrojům.
-- **Bezpečné uložení tokenu**. Jak token bezpečně uložit.
-- **Ochrana tras**. Potřebujeme chránit cesty (routes), v našem případě chránit konkrétní trasy a MCP funkce.
-- **Přidání refresh tokenů**. Zajistit, že vytváříme tokeny s krátkou životností a současně refresh tokeny, které jsou dlouhodobé a mohou sloužit k získání nových tokenů v případě vypršení platnosti. Také zajistit refresh endpoint a strategii rotace.
+- **Naučit se vytvořit JWT token** a připravit ho pro odeslání od klienta na server.
+- **Ověřit JWT token**, a pokud je platný, nechat klientovi přístup ke zdrojům.
+- **Bezpečné ukládání tokenu**. Jak tento token ukládat.
+- **Ochrana cest**. Musíme chránit cesty, v našem případě tedy chránit cesty a konkrétní funkce MCP.
+- **Přidat refresh tokeny**. Zajistit, že vytváříme tokeny s krátkou životností, ale také dlouhodobé refresh tokeny, které lze použít k získání nových tokenů, když vyprší platnost. Zajistit refresh endpoint a strategii rotace tokenů.
 
-### -1- Sestavení JWT tokenu
+### -1- Vytvořit JWT token
 
-Nejprve, JWT token má tyto části:
+JWT token má následující části:
 
-- **header**, použitý algoritmus a typ tokenu.
-- **payload**, tvrzení (claims), jako sub (uživatel nebo entita, kterou token reprezentuje; v auth scénáři uživatelské ID), exp (vypršení platnosti), role (role).
-- **signature**, podepsaná tajemstvím nebo privátním klíčem.
+- **hlavička**, použitý algoritmus a typ tokenu.
+- **náklad (payload)**, tvrzení (claims), jako sub (uživatel nebo entita, kterou token reprezentuje, typicky uživatelské ID), exp (kdy token vyprší), role (role).
+- **podpis**, podepsaný tajemstvím nebo privátním klíčem.
 
-Pro tuto úlohu sestavíme header, payload a kódovaný token.
+Potřebujeme sestavit hlavičku, payload a zakódovaný token.
 
 **Python**
 
@@ -528,7 +529,7 @@ import jwt
 from jwt.exceptions import ExpiredSignatureError, InvalidTokenError
 import datetime
 
-# Tajný klíč použitý k podepsání JWT
+# Tajný klíč použitý pro podepsání JWT
 secret_key = 'your-secret-key'
 
 header = {
@@ -536,12 +537,12 @@ header = {
     "typ": "JWT"
 }
 
-# informace o uživateli a jeho nároky a čas vypršení
+# informace o uživateli a jeho nároky a doba vypršení
 payload = {
     "sub": "1234567890",               # Předmět (ID uživatele)
     "name": "User Userson",                # Vlastní nárok
     "admin": True,                     # Vlastní nárok
-    "iat": datetime.datetime.utcnow(),# Vydáno
+    "iat": datetime.datetime.utcnow(),# Vydáno v
     "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=1)  # Vypršení
 }
 
@@ -549,14 +550,14 @@ payload = {
 encoded_jwt = jwt.encode(payload, secret_key, algorithm="HS256", headers=header)
 ```
 
-V uvedeném kódu jsme:
+V tomto kódu jsme:
 
-- Definovali header s algoritmem HS256 a typem JWT.
-- Sestavili payload, který obsahuje subjekt či uživatelské ID, uživatelské jméno, roli, kdy byl token vydán a kdy expiruje - tím jsme implementovali časové omezení, o kterém jsme mluvili.
+- Definovali hlavičku s algoritmem HS256 a typem JWT.
+- Sestavili payload s předmětem (uživatelským ID), uživatelským jménem, rolí, časem vydání a časem expirace, čímž jsme implementovali časové omezení, které jsme zmínili dříve.
 
 **TypeScript**
 
-Zde budeme potřebovat nějaké závislosti, které nám pomohou sestavit JWT token.
+Budeme potřebovat některé závislosti, které nám pomohou sestavit JWT token.
 
 Závislosti
 
@@ -566,12 +567,12 @@ npm install jsonwebtoken
 npm install --save-dev @types/jsonwebtoken
 ```
 
-Nyní, když je to připravené, sestavíme header, payload a přes to vygenerujeme kódovaný token.
+Nyní, když to máme, vytvoříme hlavičku, payload a pomocí toho zakódovaný token.
 
 ```typescript
 import jwt from 'jsonwebtoken';
 
-const secretKey = 'your-secret-key'; // Použijte proměnné prostředí v produkci
+const secretKey = 'your-secret-key'; // Použijte proměnné prostředí ve výrobě
 
 // Definujte užitečné zatížení
 const payload = {
@@ -599,15 +600,15 @@ console.log('JWT:', token);
 
 Tento token je:
 
-Podepsán pomocí HS256
+Podepsaný pomocí HS256
 Platný 1 hodinu
-Obsahuje tvrzení jako sub, name, admin, iat a exp.
+Zahrnuje claims jako sub, name, admin, iat a exp.
 
-### -2- Validace tokenu
+### -2- Ověřit token
 
-Také budeme potřebovat validovat token; to je něco, co bychom měli dělat na serveru, abychom zajistili, že to, co nám klient posílá, je skutečně platné. Je potřeba udělat mnoho kontrol, od ověření struktury až po platnost. Doporučuje se také přidat další kontroly, například jestli uživatel je v našem systému a další.
+Budeme také potřebovat token ověřit, což by se mělo dělat na serveru, abychom měli jistotu, že to, co klient posílá, je skutečně platné. Je potřeba provést mnoho kontrol od ověření struktury až po platnost. Doporučuje se také přidat další kontroly, například zda uživatel je v našem systému a další.
 
-Pro validaci tokenu musíme token dekódovat, abychom ho mohli číst a začít kontrolovat jeho platnost:
+Pro ověření tokenu ho musíme dekódovat, abychom jej mohli přečíst, a pak začít ověřovat jeho platnost:
 
 **Python**
 
@@ -627,11 +628,11 @@ except InvalidTokenError as e:
 
 ```
 
-V tomto kódu voláme `jwt.decode` s tokenem, tajným klíčem a zvoleným algoritmem. Všimněte si použití try-catch konstruktu, protože selhání validace vyvolá chybu.
+V tomto kódu voláme `jwt.decode` s tokenem, tajným klíčem a zvoleným algoritmem jako vstupem. Všimněte si, že používáme try-catch konstrukci, protože neúspěšná validace vrací chybu.
 
 **TypeScript**
 
-Zde voláme `jwt.verify` pro získání dekódované verze tokenu, kterou můžeme dále analyzovat. Pokud volání selže, token má nekorektní strukturu nebo už není platný.
+Zde voláme `jwt.verify`, abychom získali dekódovanou verzi tokenu, kterou můžeme dále analyzovat. Pokud volání selže, znamená to, že struktura tokenu je nesprávná nebo již není platný.
 
 ```typescript
 
@@ -643,18 +644,18 @@ try {
 }
 ```
 
-POZNÁMKA: jak bylo uvedeno výše, měli bychom provést další kontroly, zda tento token skutečně odkazuje na uživatele v našem systému a ověřit, jestli má uživatel práva, která token tvrdí, že má.
-Dále se podíváme na řízení přístupu založené na rolích, také známé jako RBAC.
+POZNÁMKA: Jak již bylo zmíněno, měli byste provést další kontroly, abyste zajistili, že tento token ukazuje na uživatele ve vašem systému a že uživatel má práva, která token deklaruje.
 
-## Přidání řízení přístupu založeného na rolích
+Dále se podívejme na řízení přístupu založené na rolích, známé jako RBAC.
+## Přidání řízení přístupu na základě rolí
 
-Myšlenka je v tom, že chceme vyjádřit, že různé role mají různá oprávnění. Například předpokládáme, že administrátor může dělat vše a že běžní uživatelé mohou číst/pisovat a že host může pouze číst. Proto zde jsou možné úrovně oprávnění:
+Myšlenka je taková, že chceme vyjádřit, že různé role mají různá oprávnění. Například předpokládáme, že správce může dělat vše, běžní uživatelé mohou číst a zapisovat a hosté mohou pouze číst. Proto zde jsou některé možné úrovně oprávnění:
 
-- Admin.Write
+- Admin.Write 
 - User.Read
 - Guest.Read
 
-Podívejme se, jak takovou kontrolu můžeme implementovat pomocí middleware. Middleware lze přidávat na jednotlivé cesty i na všechny cesty.
+Podívejme se, jak můžeme takovou kontrolu implementovat pomocí middleware. Middleware lze přidat pro konkrétní trasu, stejně jako pro všechny trasy.
 
 **Python**
 
@@ -663,8 +664,8 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.responses import JSONResponse
 import jwt
 
-# NEMĚJTE tajemství v kódu jako toto, to je pouze pro demonstrační účely. Čtěte to z bezpečného místa.
-SECRET_KEY = "your-secret-key" # umístěte to do proměnné prostředí
+# NEUCHOVÁVEJTE tajný klíč přímo v kódu, toto je pouze pro demonstrační účely. Načtěte jej z bezpečného místa.
+SECRET_KEY = "your-secret-key" # vložte to do proměnné prostředí
 REQUIRED_PERMISSION = "User.Read"
 
 class JWTPermissionMiddleware(BaseHTTPMiddleware):
@@ -691,18 +692,18 @@ class JWTPermissionMiddleware(BaseHTTPMiddleware):
 
 ```
 
-Existuje několik různých způsobů, jak middleware přidat, jako níže:
+Existuje několik různých způsobů, jak middleware přidat, například níže:
 
 ```python
 
-# Alt 1: přidat middleware při vytváření aplikace starlette
+# Alt 1: přidat middleware při konstrukci starlette aplikace
 middleware = [
     Middleware(JWTPermissionMiddleware)
 ]
 
 app = Starlette(routes=routes, middleware=middleware)
 
-# Alt 2: přidat middleware poté, co je aplikace starlette již vytvořena
+# Alt 2: přidat middleware poté, co je starlette aplikace již zkonstruována
 starlette_app.add_middleware(JWTPermissionMiddleware)
 
 # Alt 3: přidat middleware pro každou trasu
@@ -724,7 +725,7 @@ app.use((req, res, next) => {
     console.log('Request received:', req.method, req.url, req.headers);
     console.log('Headers:', req.headers["authorization"]);
 
-    // 1. Zkontrolujte, zda byl odeslán autorizační záhlaví
+    // 1. Zkontrolujte, zda byl odeslán autorizační hlavička
 
     if(!req.headers["authorization"]) {
         res.status(401).send('Unauthorized');
@@ -747,7 +748,7 @@ app.use((req, res, next) => {
     }
     console.log("User exists");
 
-    // 4. Ověřte, zda má token správná oprávnění
+    // 4. Ověřte, zda token má správná oprávnění
     if(!hasScopes(token, ["User.Read"])){
         res.status(403).send('Forbidden - insufficient scopes');
     }
@@ -760,14 +761,14 @@ app.use((req, res, next) => {
 
 ```
 
-Existuje docela mnoho věcí, které můžeme nechat náš middleware dělat a které náš middleware MĚL UDĚLAT, konkrétně:
+Existuje celá řada věcí, které můžeme naše middleware nechat dělat a co naše middleware MĚLA DĚLAT, totiž:
 
-1. Zkontrolovat, zda je přítomen hlavičkový parametr autorizace
+1. Zkontrolovat, zda je přítomen autorizační hlavička
 2. Zkontrolovat, zda je token platný, voláme `isValid`, což je metoda, kterou jsme napsali a která kontroluje integritu a platnost JWT tokenu.
-3. Ověřit, zda uživatel existuje v našem systému, to bychom měli zkontrolovat.
+3. Ověřit, že uživatel existuje v našem systému, to bychom měli ověřit.
 
    ```typescript
-    // uživatelé v DB
+    // uživatelé v databázi
    const users = [
      "user1",
      "User usersson",
@@ -776,14 +777,14 @@ Existuje docela mnoho věcí, které můžeme nechat náš middleware dělat a k
    function isExistingUser(token) {
      let decodedToken = verifyToken(token);
 
-     // TODO, zkontrolovat, zda uživatel existuje v DB
+     // TODO, zkontrolovat, zda uživatel existuje v databázi
      return users.includes(decodedToken?.name || "");
    }
    ```
 
    Výše jsme vytvořili velmi jednoduchý seznam `users`, který by samozřejmě měl být v databázi.
 
-4. Navíc bychom měli také zkontrolovat, zda má token správná oprávnění.
+4. Navíc bychom měli ověřit, že token má správná oprávnění.
 
    ```typescript
    if(!hasScopes(token, ["User.Read"])){
@@ -791,7 +792,7 @@ Existuje docela mnoho věcí, které můžeme nechat náš middleware dělat a k
    }
    ```
 
-   V tomto kódu výše v middleware kontrolujeme, že token obsahuje oprávnění User.Read, pokud ne, odešleme chybu 403. Níže je pomocná metoda `hasScopes`.
+   V tomto kódu výše v middleware kontrolujeme, že token obsahuje oprávnění User.Read, pokud ne, posíláme chybu 403. Níže je pomocná metoda `hasScopes`.
 
    ```typescript
    function hasScopes(scope: string, requiredScopes: string[]) {
@@ -840,15 +841,15 @@ app.use((err, req, res, next) => {
 
 ```
 
-Teď jste viděli, jak lze middleware použít jak pro autentizaci, tak autorizaci, ale co MCP, změní to, jak děláme autentizaci? To zjistíme v další části.
+Nyní jste viděli, jak může být middleware použito jak pro autentizaci, tak autorizaci, ale co MCP, změní se způsob autentizace? Pojďme to zjistit v další sekci.
 
 ### -3- Přidání RBAC do MCP
 
-Doposud jste viděli, jak můžete přidat RBAC pomocí middleware, nicméně pro MCP není jednoduchý způsob, jak přidat RBAC na úrovni jednotlivé funkce MCP, co tedy uděláme? No, prostě přidáme kód, který v tomto případě kontroluje, zda klient má práva volat konkrétní nástroj:
+Doposud jste viděli, jak můžete přidat RBAC pomocí middleware, nicméně pro MCP neexistuje snadný způsob, jak přidat RBAC pro každou funkci MCP, co tedy dělat? No, musíme přidat kód jako je tento, který kontroluje, zda klient má práva ke spuštění konkrétního nástroje:
 
-Máte několik možností, jak dosáhnout RBAC na úrovni funkce, zde jsou některé:
+Máte několik možností, jak dosáhnout RBAC pro jednotlivé funkce, zde jsou některé:
 
-- Přidat kontrolu pro každý nástroj, zdroj, prompt, kde potřebujete kontrolovat úroveň oprávnění.
+- Přidat kontrolu pro každý nástroj, zdroj, prompt, kde je potřeba ověřit úroveň oprávnění.
 
    **python**
 
@@ -888,7 +889,7 @@ Máte několik možností, jak dosáhnout RBAC na úrovni funkce, zde jsou někt
    ```
 
 
-- Použít pokročilý serverový přístup a request handlery, aby se minimalizovalo, kolik míst je třeba kontrolovat.
+- Použít pokročilý přístup serveru a request handlery, abyste snížili počet míst, kde musíte kontrolu provádět.
 
    **Python**
 
@@ -908,16 +909,16 @@ Máte několik možností, jak dosáhnout RBAC na úrovni funkce, zde jsou někt
    async def handle_call_tool(
      name: str, arguments: dict[str, str] | None
    ) -> list[types.TextContent]:
-    # Předpokládejte, že request.user.permissions je seznam oprávnění uživatele
+    # Předpokládejme, že request.user.permissions je seznam oprávnění uživatele
      user_permissions = request.user.permissions
      required_permissions = tool_permission.get(name, [])
      if not has_permission(user_permissions, required_permissions):
-        # Vyvolejte chybu "Nemáte oprávnění k volání nástroje {name}"
+        # Vyvolej chybu "Nemáte oprávnění volat nástroj {name}"
         raise Exception(f"You don't have permission to call tool {name}")
-     # pokračujte a zavolejte nástroj
+     # pokračovat a zavolat nástroj
      # ...
    ```   
-    
+   
 
    **TypeScript**
 
@@ -942,25 +943,25 @@ Máte několik možností, jak dosáhnout RBAC na úrovni funkce, zde jsou někt
    });
    ```
 
-   Poznámka, budete muset zajistit, aby váš middleware přiděloval dekódovaný token do vlastnosti user požadavku, tak aby byl kód výše jednoduchý.
+   Poznámka, je třeba zajistit, aby middleware přiřadil dekódovaný token do vlastnosti user v požadavku, aby kód výše byl jednoduchý.
 
 ### Shrnutí
 
-Nyní, když jsme probrali, jak obecně přidat podporu RBAC a zvláště pro MCP, je čas zkusit implementovat zabezpečení sami, abyste si ověřili, že jste koncepty pochopili.
+Nyní, když jsme probrali, jak obecně přidat podporu RBAC a konkrétně pro MCP, je čas zkoušet implementovat zabezpečení sami, abyste si ověřili, že jste pochopili představené koncepty.
 
-## Zadání 1: Vytvořte MCP server a MCP klient s použitím základní autentizace
+## Úkol 1: Vytvořit MCP server a MCP klienta pomocí základní autentizace
 
-Zde využijete, co jste se naučili ohledně posílání přihlašovacích údajů přes hlavičky.
+Zde použijete to, co jste se naučili o zasílání přihlašovacích údajů přes hlavičky.
 
 ## Řešení 1
 
 [Řešení 1](./code/basic/README.md)
 
-## Zadání 2: Vylepšete řešení ze Zadání 1 použitím JWT
+## Úkol 2: Vylepšit řešení z Úkolu 1 a použít JWT
 
-Vezměte první řešení, ale tentokrát ho vylepšíme.
+Vezměte první řešení, tentokrát ho ale vylepšíme.
 
-Namísto Basic Auth použijeme JWT.
+Místo použití Basic Auth použijeme JWT.
 
 ## Řešení 2
 
@@ -968,15 +969,15 @@ Namísto Basic Auth použijeme JWT.
 
 ## Výzva
 
-Přidejte RBAC na úrovni nástroje, jak jsme popsali v sekci "Přidání RBAC do MCP".
+Přidejte RBAC pro jednotlivé nástroje, jak popisujeme v části "Přidání RBAC do MCP".
 
 ## Shrnutí
 
-Doufáme, že jste se v této kapitole hodně naučili, od nulové bezpečnosti, přes základní zabezpečení, po JWT a jak ho přidat do MCP.
+Doufejme, že jste se v této kapitole hodně naučili, od žádného zabezpečení, přes základní zabezpečení, až po JWT a jak ho přidat do MCP.
 
-Vybudovali jsme pevný základ s vlastními JWT, ale jak se rozrůstáme, posouváme se směrem ke standardizovanému modelu identity. Přijetí IdP jako Entra nebo Keycloak nám umožní delegovat vydávání tokenů, validaci a správu životního cyklu na důvěryhodnou platformu — což nám umožní soustředit se na logiku aplikace a uživatelskou zkušenost.
+Vybudovali jsme pevné základy s vlastním JWT, ale jak škálujeme, přecházíme k modelu identity založenému na standardech. Přijetí IdP jako Entra nebo Keycloak nám umožní delegovat vydávání tokenů, validaci a správu životního cyklu na důvěryhodnou platformu – což nám uvolní ruce pro zaměření se na logiku aplikace a uživatelskou zkušenost.
 
-Pro to máme pokročilejší [kapitolu o Entra](../../05-AdvancedTopics/mcp-security-entra/README.md)
+K tomu máme pokročilejší [kapitolu o Entra](../../05-AdvancedTopics/mcp-security-entra/README.md)
 
 ## Co dál
 
@@ -985,6 +986,6 @@ Pro to máme pokročilejší [kapitolu o Entra](../../05-AdvancedTopics/mcp-secu
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Prohlášení o vyloučení odpovědnosti**:  
-Tento dokument byl přeložen pomocí služby strojového překladu [Co-op Translator](https://github.com/Azure/co-op-translator). Ač usilujeme o přesnost, mějte prosím na paměti, že automatizované překlady mohou obsahovat chyby nebo nepřesnosti. Původní dokument v původním jazyce by měl být považován za autoritativní zdroj. U kritických informací se doporučuje profesionální lidský překlad. Nejsme odpovědní za jakékoli nedorozumění nebo chybné výklady vzniklé z použití tohoto překladu.
+**Upozornění**:  
+Tento dokument byl přeložen pomocí AI překladatelské služby [Co-op Translator](https://github.com/Azure/co-op-translator). I když usilujeme o přesnost, mějte prosím na paměti, že automatické překlady mohou obsahovat chyby nebo nepřesnosti. Originální dokument v jeho rodném jazyce by měl být považován za závazný zdroj. Pro zásadní informace se doporučuje profesionální lidský překlad. Nepřebíráme odpovědnost za jakékoliv nedorozumění nebo nesprávné výklady vyplývající z použití tohoto překladu.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
