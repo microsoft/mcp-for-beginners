@@ -1,13 +1,13 @@
 # 고급 서버 사용법
 
-MCP SDK에는 두 가지 유형의 서버가 있습니다. 일반 서버와 저수준 서버입니다. 일반적으로는 기능을 추가하기 위해 일반 서버를 사용합니다. 그러나 다음과 같은 경우에는 저수준 서버를 사용하는 것이 좋습니다:
+MCP SDK에는 두 가지 종류의 서버가 있습니다. 일반 서버와 저수준 서버입니다. 보통은 일반 서버를 사용하여 기능을 추가합니다. 하지만 다음과 같은 경우에는 저수준 서버에 의존하고 싶을 수 있습니다:
 
-- 더 나은 아키텍처. 일반 서버와 저수준 서버를 함께 사용하여 깨끗한 아키텍처를 만드는 것이 가능하지만, 저수준 서버 쪽이 조금 더 간편하다고 할 수 있습니다.
-- 기능 가용성. 일부 고급 기능은 저수준 서버에서만 사용할 수 있습니다. 샘플링 및 엘리시테이션을 추가하는 후속 장에서 이를 보게 될 것입니다.
+- 더 나은 아키텍처. 일반 서버와 저수준 서버 모두를 사용해 깔끔한 아키텍처를 만들 수 있지만, 저수준 서버가 조금 더 쉽다고 할 수 있습니다.
+- 기능 가용성. 일부 고급 기능들은 저수준 서버에서만 사용할 수 있습니다. 샘플링 및 유도 기능 추가와 같은 후속 장에서 이를 확인할 수 있습니다.
 
-## 일반 서버와 저수준 서버
+## 일반 서버 vs 저수준 서버
 
-일반 서버로 MCP Server를 생성하는 예는 다음과 같습니다.
+다음은 일반 서버로 MCP 서버를 생성하는 모습입니다.
 
 **Python**
 
@@ -42,18 +42,18 @@ server.registerTool("add",
 );
 ```
 
-요점은 서버에 포함시키고자 하는 각 도구, 리소스, 프롬프트를 명시적으로 추가한다는 것입니다. 이것 자체는 문제가 없습니다.
+핵심은 서버가 갖길 원하는 각 도구, 리소스 또는 프롬프트를 명시적으로 추가한다는 점입니다. 이는 전혀 문제가 없습니다.
 
 ### 저수준 서버 접근법
 
-하지만 저수준 서버 접근법을 사용할 때는 다르게 생각해야 합니다. 즉, 각 도구를 등록하는 대신 기능 유형별(도구, 리소스, 프롬프트)로 두 개의 핸들러만 생성합니다. 예를 들어 도구의 경우 다음 두 가지 함수만 있습니다:
+그러나 저수준 서버 접근법을 사용할 때는 생각을 다르게 해야 합니다. 각 도구를 등록하는 대신 기능 유형(도구, 리소스, 프롬프트)마다 두 개의 핸들러를 만듭니다. 예를 들어 도구의 경우 다음 두 함수만 존재합니다:
 
-- 모든 도구를 나열하는 함수. 모든 도구 목록 조회 시 이 함수가 호출됩니다.
-- 모든 도구 호출을 처리하는 함수. 도구 호출 요청에 대해 이 함수가 처리합니다.
+- 모든 도구 나열. 한 함수가 도구를 나열하는 모든 시도를 담당합니다.
+- 모든 도구 호출 처리. 이 함수는 도구 호출을 처리하는 단 하나의 함수입니다.
 
-이것은 잠재적으로 작업이 줄어드는 것처럼 들리죠? 도구를 등록하는 대신 모든 도구를 나열할 때 목록에 도구가 포함되어 있고, 도구 호출 요청이 있을 때 호출되도록 하면 됩니다.
+이게 더 적은 작업처럼 들리죠? 도구를 등록하는 대신 모든 도구 목록에 도구가 포함되도록 하고 도구 호출 요청이 들어올 때 호출되도록 하면 됩니다.
 
-코드는 다음과 같이 됩니다:
+코드가 어떻게 보이는지 살펴봅시다.
 
 **Python**
 
@@ -68,8 +68,8 @@ async def handle_list_tools() -> list[types.Tool]:
             inputSchema={
                 "type": "object",
                 "properties": {
-                    "a": {"type": "number", "description": "nubmer to add"}, 
-                    "b": {"type": "number", "description": "nubmer to add"}
+                    "a": {"type": "number", "description": "number to add"}, 
+                    "b": {"type": "number", "description": "number to add"}
                 },
                 "required": ["query"],
             },
@@ -89,8 +89,8 @@ server.setRequestHandler(ListToolsRequestSchema, async (request) => {
         inputSchema={
             "type": "object",
             "properties": {
-                "a": {"type": "number", "description": "nubmer to add"}, 
-                "b": {"type": "number", "description": "nubmer to add"}
+                "a": {"type": "number", "description": "number to add"}, 
+                "b": {"type": "number", "description": "number to add"}
             },
             "required": ["query"],
         }
@@ -99,7 +99,7 @@ server.setRequestHandler(ListToolsRequestSchema, async (request) => {
 });
 ```
 
-여기서는 기능 목록을 반환하는 함수를 생성했습니다. 도구 목록의 각 항목은 반환 타입을 준수하기 위해 `name`, `description`, `inputSchema` 같은 필드를 가집니다. 이렇게 하면 도구와 기능 정의를 다른 곳에 둘 수 있습니다. 이제 도구 폴더에 모든 도구를 만들 수 있고, 마찬가지로 모든 기능도 각각의 폴더로 분리할 수 있어 프로젝트는 다음과 같이 깔끔하게 구성될 수 있습니다.
+여기 이제 기능 목록을 반환하는 함수가 있습니다. 도구 목록의 각 항목은 반환 유형에 맞게 `name`, `description`, `inputSchema`와 같은 필드를 갖고 있습니다. 이를 통해 도구 및 기능 정의를 다른 위치에 둘 수 있습니다. 이제 도구는 tools 폴더에 모두 두고, 다른 기능들도 마찬가지로 구성할 수 있으므로 프로젝트 구조가 다음과 같이 정리될 수 있습니다.
 
 ```text
 app
@@ -113,9 +113,9 @@ app
 ----| product-description
 ```
 
-훌륭합니다. 아키텍처가 상당히 깔끔해질 수 있습니다.
+아주 좋습니다. 우리가 만든 아키텍처는 꽤 깔끔해 보일 수 있습니다.
 
-도구 호출은 어떨까요? 똑같은 아이디어인가요? 네, 어떤 도구든 호출할 수 있는 하나의 핸들러입니다. 다음은 그 코드입니다:
+도구 호출은 어떨까요? 동일한 개념으로 하나의 핸들러가 모든 도구 호출을 처리하나요? 맞습니다. 다음은 이에 대한 코드입니다.
 
 **Python**
 
@@ -125,7 +125,7 @@ async def handle_call_tool(
     name: str, arguments: dict[str, str] | None
 ) -> list[types.TextContent]:
     
-    # tools는 도구 이름을 키로 사용하는 사전입니다
+    # tools는 도구 이름을 키로 가진 딕셔너리입니다
     if name not in tools.tools:
         raise ValueError(f"Unknown tool: {name}")
     
@@ -158,7 +158,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     }
     
     // args: request.params.arguments
-    // TODO 도구 호출,
+    // TODO 도구를 호출하세요,
 
     return {
        content: [{ type: "text", text: `Tool ${name} called with arguments: ${JSON.stringify(input)}, result: ${JSON.stringify(result)}` }]
@@ -166,18 +166,18 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 });
 ```
 
-위 코드를 보면 호출할 도구와 인자를 파싱한 후, 도구를 호출하는 과정을 수행함을 알 수 있습니다.
+위 코드에서 볼 수 있듯이 호출할 도구와 인수를 파싱한 후 도구를 호출합니다.
 
 ## 검증을 통한 접근법 개선
 
-지금까지 도구, 리소스, 프롬프트를 추가하는 모든 등록을 기능 유형별 두 개의 핸들러로 대체하는 방법을 보았습니다. 그 외에 해야 할 것은 뭘까요? 도구를 올바른 인자와 함께 호출하는지 검증하는 형태를 추가해야 합니다. 각 런타임에는 자체 솔루션이 있습니다. 예를 들면 Python은 Pydantic을, TypeScript는 Zod를 사용합니다. 아이디어는 다음과 같습니다:
+지금까지 도구, 리소스, 프롬프트 등록을 각 기능 유형별 두 개의 핸들러로 대체하는 방법을 보았습니다. 다음으로 해야 할 일은 무엇일까요? 도구가 올바른 인수로 호출되는지 확인할 수 있도록 검증 로직을 추가해야 합니다. 런타임마다 각각의 솔루션이 있으며 예를 들어 Python은 Pydantic을, TypeScript는 Zod를 사용합니다. 다음을 수행할 수 있습니다:
 
-- 기능(도구, 리소스, 프롬프트) 생성 로직을 전용 폴더로 이동합니다.
-- 도구 호출 요청이 들어왔을 때 이를 검증할 수 있도록 합니다.
+- 기능(도구, 리소스, 프롬프트)을 생성하는 로직을 해당 폴더로 이동합니다.
+- 예를 들어 도구 호출 요청이 올바른지 검증하는 방법을 추가합니다.
 
-### 기능 생성하기
+### 기능 생성
 
-기능을 생성하려면 해당 기능의 파일을 만들고 그 기능에 필요한 필수 필드를 포함시켜야 합니다. 도구, 리소스, 프롬프트마다 일부 필드가 다를 수 있습니다.
+기능을 생성하려면 해당 기능에 대한 파일을 만들고 필수 필드를 포함하는지 확인해야 합니다. 도구, 리소스, 프롬프트에 따라 필드가 다소 다릅니다.
 
 **Python**
 
@@ -200,7 +200,7 @@ async def add_handler(args) -> float:
     except Exception as e:
         raise ValueError(f"Invalid input: {str(e)}")
 
-    # TODO: Pydantic 추가, AddInputModel을 생성하고 인수를 검증할 수 있도록 하기 위해
+    # TODO: Pydantic 추가하여 AddInputModel을 생성하고 인자를 검증할 수 있도록 하기
 
     """Handler function for the add tool."""
     return float(input_model.a) + float(input_model.b)
@@ -213,26 +213,26 @@ tool_add = {
 }
 ```
 
-여기서는 다음을 수행합니다:
+여기에서 다음 작업을 수행합니다:
 
-- *schema.py* 파일에 Pydantic `AddInputModel` 스키마를 만들어 `a`와 `b` 필드를 정의합니다.
-- 들어오는 요청을 `AddInputModel` 형식으로 파싱을 시도하며, 인자 불일치시 오류가 발생합니다:
+- *schema.py* 파일에 Pydantic `AddInputModel` 스키마를 만들고 필드 `a`와 `b`를 포함합니다.
+- 들어오는 요청을 `AddInputModel` 타입으로 파싱을 시도합니다. 인자 불일치가 있으면 오류가 발생합니다.
 
    ```python
    # add.py
     try:
-        # Pydantic 모델을 사용하여 입력값을 검증합니다
+        # Pydantic 모델을 사용하여 입력값 검증
         input_model = AddInputModel(**args)
     except Exception as e:
         raise ValueError(f"Invalid input: {str(e)}")
    ```
 
-이 파싱 로직을 도구 호출 함수 내에 두거나 핸들러 함수 내에 둘 수 있습니다.
+이 파싱 로직을 도구 호출 내에 두거나 핸들러 함수에 둘지 선택할 수 있습니다.
 
 **TypeScript**
 
 ```typescript
-// server.ts
+// 서버.ts
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
     const { params: { name } } = request;
     let tool = tools.find(t => t.name === name);
@@ -249,7 +249,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     try {
        const input = Schema.parse(request.params.arguments);
 
-       // @ts-ignore
+       // @ts-무시
        const result = await tool.callback(input);
 
        return {
@@ -266,12 +266,12 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
 });
 
-// schema.ts
+// 스키마.ts
 import { z } from 'zod';
 
 export const MathInputSchema = z.object({ a: z.number(), b: z.number() });
 
-// add.ts
+// 추가.ts
 import { Tool } from "./tool.js";
 import { MathInputSchema } from "./schema.js";
 import { zodToJsonSchema } from "zod-to-json-schema";
@@ -288,7 +288,7 @@ export default {
 } as Tool;
 ```
 
-- 모든 도구 호출을 처리하는 핸들러 내에서 도구의 정의된 스키마에 따라 들어오는 요청을 파싱하려고 시도합니다:
+- 모든 도구 호출을 처리하는 핸들러에서는 들어오는 요청을 도구의 정의된 스키마로 파싱을 시도합니다.
 
     ```typescript
     const Schema = tool.rawSchema;
@@ -297,27 +297,27 @@ export default {
        const input = Schema.parse(request.params.arguments);
     ```
 
-성공하면 실제 도구를 호출합니다:
+    성공하면 실제 도구를 호출합니다:
 
     ```typescript
     const result = await tool.callback(input);
     ```
 
-이 접근법은 모든 것이 적절한 위치에 배치되어 훌륭한 아키텍처를 만듭니다. *server.ts* 파일은 요청 핸들러를 연결하는 아주 작은 파일이며, 각 기능은 각각의 폴더(도구, 리소스, 프롬프트)에 있습니다.
+보시다시피, 이 접근법은 모든 요소가 각자의 위치에 있어 훌륭한 아키텍처를 만듭니다. *server.ts*는 요청 핸들러만 연결하는 매우 작은 파일이고, 각각의 기능은 tools/, resources/, prompts/과 같은 각자의 폴더에 있습니다.
 
-좋습니다, 이제 이것을 구현해 봅시다.
+좋습니다. 이제 이를 구축해 봅시다.
 
-## 연습: 저수준 서버 만들기
+## 연습: 저수준 서버 생성하기
 
-이번 연습에서 다음을 수행할 것입니다:
+이번 연습에서는 다음을 수행합니다:
 
-1. 도구 목록 조회 및 도구 호출을 처리하는 저수준 서버를 만듭니다.
-2. 확장 가능한 아키텍처를 구현합니다.
-3. 도구 호출 검증을 추가합니다.
+1. 도구 목록화 및 도구 호출을 처리하는 저수준 서버 생성.
+2. 확장 가능한 아키텍처 구현.
+3. 도구 호출이 정상적으로 검증되도록 검증 추가.
 
-### -1- 아키텍처 만들기
+### -1- 아키텍처 생성
 
-먼저 확장성을 도와줄 아키텍처를 만들어야 합니다. 다음과 같습니다:
+먼저 기능이 늘어날 때 확장 가능한 아키텍처를 설계해야 합니다. 다음과 같습니다.
 
 **Python**
 
@@ -340,11 +340,11 @@ server.ts
 client.ts
 ```
 
-이제 tools 폴더에 새 도구를 쉽게 추가할 수 있도록 아키텍처를 구성했습니다. 리소스 및 프롬프트에 대해서도 하위 디렉터리를 추가해도 좋습니다.
+이제 tools 폴더에 쉽게 새 도구를 추가할 수 있는 아키텍처를 구축했습니다. 필요하면 resources, prompts용 하위 디렉터리를 추가하세요.
 
-### -2- 도구 만들기
+### -2- 도구 생성
 
-다음은 도구를 만드는 모습입니다. 먼저 도구는 *tool* 하위 디렉터리에 만들어야 합니다:
+도구를 만드는 과정을 살펴보겠습니다. 우선 *tool* 하위 디렉터리에 생성해야 합니다.
 
 **Python**
 
@@ -353,12 +353,12 @@ from .schema import AddInputModel
 
 async def add_handler(args) -> float:
     try:
-        # Pydantic 모델을 사용하여 입력을 검증합니다
+        # Pydantic 모델을 사용하여 입력 값 검증
         input_model = AddInputModel(**args)
     except Exception as e:
         raise ValueError(f"Invalid input: {str(e)}")
 
-    # TODO: Pydantic을 추가하여 AddInputModel을 만들고 인수를 검증할 수 있도록 합니다
+    # TODO: Pydantic을 추가하여 AddInputModel을 만들고 인수를 검증할 수 있도록 하기
 
     """Handler function for the add tool."""
     return float(input_model.a) + float(input_model.b)
@@ -371,9 +371,9 @@ tool_add = {
 }
 ```
 
-여기서는 이름, 설명, Pydantic을 사용한 입력 스키마와 호출될 때 실행되는 핸들러를 정의합니다. 마지막으로, 이러한 속성을 모두 갖는 `tool_add` 딕셔너리를 노출합니다.
+여기서는 Pydantic으로 이름, 설명, 입력 스키마를 정의하고 도구 호출 시 실행되는 핸들러를 만듭니다. 마지막으로 `tool_add`라는 딕셔너리로 이 속성들을 노출합니다.
 
-또한, 도구에서 사용할 입력 스키마를 정의하는 *schema.py*도 있습니다:
+또한 입력 스키마를 정의하는 *schema.py* 파일도 있습니다:
 
 ```python
 from pydantic import BaseModel
@@ -383,7 +383,7 @@ class AddInputModel(BaseModel):
     b: float
 ```
 
-*__init__.py* 파일도 작성해 tools 디렉터리를 모듈로 인식하게 하고, 다음과 같이 내부 모듈을 노출해야 합니다:
+*__init__.py*를 채워서 tools 폴더가 모듈로 인식되도록 해야 하며 내부 모듈도 노출해야 합니다:
 
 ```python
 from .add import tool_add
@@ -393,7 +393,7 @@ tools = {
 }
 ```
 
-도구가 늘어나면 이 파일에 계속 추가하면 됩니다.
+도구를 추가할 때마다 이 파일에 계속 추가하면 됩니다.
 
 **TypeScript**
 
@@ -414,14 +414,14 @@ export default {
 } as Tool;
 ```
 
-여기에서는 다음 속성을 가진 딕셔너리를 만듭니다:
+여기서 프로퍼티로 구성된 딕셔너리를 만듭니다:
 
-- name: 도구 이름
-- rawSchema: Zod 스키마, 이 스키마로 도구 호출 요청을 검증합니다.
-- inputSchema: 핸들러가 사용하는 스키마
-- callback: 도구를 호출하는 함수
+- name: 도구 이름.
+- rawSchema: Zod 스키마로, 도구 호출 요청 검증에 사용.
+- inputSchema: 핸들러에 의해 사용되는 스키마.
+- callback: 도구 호출용 함수.
 
-`Tool` 타입은 이 딕셔너리를 MCP 서버 핸들러가 처리할 수 있는 타입으로 변환하며, 다음과 같습니다:
+`Tool` 타입은 이 딕셔너리를 mcp 서버 핸들러가 받을 수 있는 타입으로 변환하며 다음과 같습니다:
 
 ```typescript
 import { z } from 'zod';
@@ -434,7 +434,7 @@ export interface Tool {
 }
 ```
 
-그리고 각 도구의 입력 스키마를 저장하는 *schema.ts*가 있습니다. 현재는 하나의 스키마만 포함하지만 도구가 많아지면 더 추가할 수 있습니다:
+또한 *schema.ts*가 있으며, 각 도구의 입력 스키마를 저장합니다. 현재 하나의 스키마만 있지만 도구가 추가될수록 항목을 늘릴 수 있습니다:
 
 ```typescript
 import { z } from 'zod';
@@ -442,16 +442,16 @@ import { z } from 'zod';
 export const MathInputSchema = z.object({ a: z.number(), b: z.number() });
 ```
 
-좋습니다. 다음은 도구 목록 조회를 처리해 봅시다.
+좋습니다. 이제 도구 목록화 처리를 진행해 보겠습니다.
 
-### -3- 도구 목록 조회 처리
+### -3- 도구 목록 처리
 
-도구 목록 조회를 처리하려면 요청 핸들러를 설정해야 합니다. 서버 파일에 다음을 추가하세요:
+도구 목록을 처리하기 위해 요청 핸들러를 추가해야 합니다. 서버 파일에 다음을 추가하세요:
 
 **Python**
 
 ```python
-# 간결함을 위해 코드 생략됨
+# 간결함을 위해 코드 생략
 from tools import tools
 
 @server.list_tools()
@@ -470,11 +470,11 @@ async def handle_list_tools() -> list[types.Tool]:
     return tool_list
 ```
 
-여기서 `@server.list_tools` 데코레이터와 `handle_list_tools` 구현 함수를 추가합니다. 후자는 도구 목록을 생성합니다. 각 도구에는 이름, 설명, inputSchema가 있어야 합니다.
+`@server.list_tools` 데코레이터와 `handle_list_tools` 함수를 추가합니다. 이 함수에서는 도구 목록을 만들어야 하며, 각 도구는 이름, 설명, inputSchema가 포함되어야 합니다.
 
 **TypeScript**
 
-도구 목록 조회 요청 핸들러 설정을 위해 서버에 `setRequestHandler`를 호출하고, 시도 중인 작업에 맞는 스키마로 `ListToolsRequestSchema`를 사용합니다.
+도구 목록화 요청 핸들러를 등록하려면 서버에서 `setRequestHandler`를 호출하고 수행하려는 작업에 맞는 스키마(`ListToolsRequestSchema`)를 사용해야 합니다.
 
 ```typescript
 // index.ts
@@ -492,22 +492,22 @@ tools.push(subtractTool);
 import { tools } from './tools/index.js';
 
 server.setRequestHandler(ListToolsRequestSchema, async (request) => {
-  // 등록된 도구 목록을 반환합니다
+  // 등록된 도구 목록 반환
   return {
     tools: tools
   };
 });
 ```
 
-이제 도구 목록 조회가 해결되었으니, 도구 호출은 어떻게 할지 살펴보겠습니다.
+잘했습니다. 도구 목록화 문제를 해결했습니다. 다음으로 도구 호출을 어떻게 처리하는지 봅시다.
 
 ### -4- 도구 호출 처리
 
-도구를 호출하려면 요청 핸들러를 설정해야 하며, 이 때 호출할 기능과 인자를 지정한 요청을 처리합니다.
+도구를 호출하려면, 이번에는 어떤 기능을 호출할지, 어떤 인수와 함께 호출할지를 지정하는 요청을 처리하는 핸들러를 설정해야 합니다.
 
 **Python**
 
-`@server.call_tool` 데코레이터를 사용하고 `handle_call_tool` 함수로 구현합시다. 이 함수 내에서 도구 이름과 인자를 파싱하고, 유효한 인자인지 확인합니다. 검증은 이 함수 내 또는 실제 도구 내에서 할 수 있습니다.
+`@server.call_tool` 데코레이터를 사용하고 `handle_call_tool` 같은 함수를 구현합니다. 이 함수 내에서 도구 이름, 인수를 파싱하고 인수가 해당 도구에 적합한지 확인합니다. 인수 검증을 이 함수에서 하거나 실제 도구 내에서 할 수 있습니다.
 
 ```python
 @server.call_tool()
@@ -515,7 +515,7 @@ async def handle_call_tool(
     name: str, arguments: dict[str, str] | None
 ) -> list[types.TextContent]:
     
-    # tools는 도구 이름을 키로 가진 딕셔너리입니다
+    # tools는 도구 이름을 키로 하는 딕셔너리입니다
     if name not in tools.tools:
         raise ValueError(f"Unknown tool: {name}")
     
@@ -533,26 +533,26 @@ async def handle_call_tool(
     ] 
 ```
 
-일어나는 일:
+작동 방식은 다음과 같습니다:
 
-- 도구 이름은 이미 입력 매개변수 `name`에 있고, 인자는 `arguments` 딕셔너리에 있습니다.
-- 도구는 `result = await tool["handler"](../../../../03-GettingStarted/10-advanced/arguments)`를 통해 호출됩니다. 인자 검증은 이 `handler` 함수 내에서 수행되며 실패 시 예외가 발생합니다.
+- 도구 이름은 입력 매개변수 `name`에 이미 포함되어 있고, 인수는 `arguments` 딕셔너리 형태입니다.
+- 도구는 `result = await tool["handler"](../../../../03-GettingStarted/10-advanced/arguments)`로 호출됩니다. 인수 검증은 함수인 `handler` 속성에서 이루어지며 실패 시 예외가 발생합니다.
 
-이제 저수준 서버를 사용하여 도구 목록을 조회하고 호출하는 과정을 완전히 이해했습니다.
+이제 저수준 서버를 이용해 도구 목록화 및 호출하는 과정을 완전히 이해했습니다.
 
-전체 예제는 [여기](./code/README.md)에서 확인할 수 있습니다.
+전체 예시는 [여기](./code/README.md)를 참조하세요.
 
 ## 과제
 
-제공된 코드를 여러 도구, 리소스, 프롬프트로 확장해 보세요. 그리고 도구 디렉터리에 파일만 추가하면 되고 다른 곳에서는 추가할 필요가 없음을 인식해 보세요.
+지금까지 받은 코드를 여러 도구, 리소스, 프롬프트로 확장하고, tools 디렉터리에 파일만 추가하면 된다는 점을 어떻게 느끼는지 성찰해 보세요.
 
 *해답 없음*
 
 ## 요약
 
-이번 장에서는 저수준 서버 접근법이 어떻게 동작하는지, 그리고 이를 통해 계속 확장 가능한 좋은 아키텍처를 만드는 방법을 보았습니다. 또한 검증에 대해 논의하였고, 입력 검증을 위한 스키마를 만드는 데 사용되는 검증 라이브러리들을 사용하는 방법도 보여드렸습니다.
+이번 장에서는 저수준 서버 접근법이 어떻게 동작하는지, 그리고 이를 통해 계속 확장 가능한 깔끔한 아키텍처를 만드는 방법을 살펴보았습니다. 또한 검증에 관해 다루었으며, 입력 검증을 위한 스키마를 만드는 데 사용하는 검증 라이브러리 활용법도 소개했습니다.
 
-## 다음 내용
+## 다음 단계
 
 - 다음: [간단한 인증](../11-simple-auth/README.md)
 
@@ -560,5 +560,5 @@ async def handle_call_tool(
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **면책 조항**:  
-이 문서는 AI 번역 서비스 [Co-op Translator](https://github.com/Azure/co-op-translator)를 사용하여 번역되었습니다. 정확성을 위해 최선을 다하고 있으나, 자동 번역에는 오류나 부정확한 부분이 있을 수 있음을 유의하시기 바랍니다. 원본 문서는 해당 언어의 공식적인 자료로 간주되어야 합니다. 중요한 정보의 경우 전문 인간 번역을 권장합니다. 이 번역의 사용으로 인해 발생하는 모든 오해나 잘못된 해석에 대해 당사는 책임을 지지 않습니다.
+이 문서는 AI 번역 서비스 [Co-op Translator](https://github.com/Azure/co-op-translator)를 이용하여 번역되었습니다. 정확성을 위해 최선을 다하고 있으나, 자동 번역에는 오류나 부정확한 내용이 포함될 수 있음을 양지해 주시기 바랍니다. 원문 문서가 권위 있는 출처로 간주되어야 합니다. 중요한 내용에 대해서는 전문 번역가의 번역을 권장합니다. 본 번역 사용으로 인해 발생하는 어떠한 오해나 잘못된 해석에 대해서도 당사는 책임을 지지 않습니다.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
