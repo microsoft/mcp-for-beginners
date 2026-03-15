@@ -1,41 +1,41 @@
 # MCP-palvelimien käyttöönotto
 
-MCP-palvelimesi käyttöönotto mahdollistaa sen työkalujen ja resurssien käytön paikallisen ympäristösi ulkopuolella. Käyttöönottoon on useita strategioita, riippuen skaalaustarpeistasi, luotettavuudesta ja hallinnan helppoudesta. Alta löydät ohjeita MCP-palvelimien käyttöönottoon paikallisesti, konteissa ja pilvessä.
+MCP-palvelimen käyttöönotto mahdollistaa sen työkalujen ja resurssien käytön paikallisen ympäristösi ulkopuolella. Käyttöönottoon on useita strategioita, riippuen vaatimuksistasi skaalautuvuuden, luotettavuuden ja hallinnan helppouden suhteen. Alla löydät ohjeita MCP-palvelimien käyttöönottoon paikallisesti, konteissa ja pilveen.
 
 ## Yleiskatsaus
 
-Tämä oppitunti kattaa, kuinka MCP Server -sovelluksesi otetaan käyttöön.
+Tässä oppitunnissa käsitellään, miten MCP Server -sovelluksesi otetaan käyttöön.
 
 ## Oppimistavoitteet
 
-Tämän oppitunnin jälkeen osaat:
+Oppitunnin lopuksi osaat:
 
-- Arvioida erilaisia käyttöönotto-menetelmiä.
+- Arvioida erilaisia käyttöönotto lähestymistapoja.
 - Ottaa sovelluksesi käyttöön.
 
 ## Paikallinen kehitys ja käyttöönotto
 
-Jos palvelimesi on tarkoitettu käytettäväksi suoraan käyttäjän koneella, voit noudattaa seuraavia vaiheita:
+Jos palvelimesi on tarkoitettu käytettäväksi käyttäjän koneella, voit seurata seuraavia vaiheita:
 
 1. **Lataa palvelin**. Jos et itse kirjoittanut palvelinta, lataa se ensin koneellesi.  
-1. **Käynnistä palvelinprosessi**: Käynnistä MCP-palvelinsovelluksesi.
+1. **Käynnistä palvelinprosessi**: Käynnistä MCP-palvelinsovelluksesi 
 
-SSE:tä varten (ei tarvita stdio-tyyppiselle palvelimelle)
+SSE:lle (ei tarvita stdio-tyyppiselle palvelimelle)
 
-1. **Määritä verkkoasetukset**: Varmista, että palvelin on käytettävissä odotetulla portilla.  
-1. **Yhdistä asiakkaat**: Käytä paikallisia yhteysosoitteita kuten `http://localhost:3000`.
+1. **Konfiguroi verkko**: Varmista, että palvelimeen pääsee odotetulla portilla  
+1. **Yhdistä asiakkaat**: Käytä paikallisia URL-osoitteita kuten `http://localhost:3000`
 
 ## Pilvikäyttöönotto
 
-MCP-palvelimia voi ottaa käyttöön erilaisilla pilvialustoilla:
+MCP-palvelimia voidaan ottaa käyttöön erilaisilla pilvialustoilla:
 
-- **Serverless-funktiot**: Ota käyttöön kevyitä MCP-palvelimia serverless-funktioina.  
-- **Säiliöpalvelut**: Käytä palveluita kuten Azure Container Apps, AWS ECS tai Google Cloud Run.  
-- **Kubernetes**: Ota MCP-palvelimet käyttöön ja hallinnoi niitä Kubernetes-klustereissa korkean saatavuuden takaamiseksi.
+- **Serverless Functions**: Ota käyttöön kevyitä MCP-palvelimia serverless-toimintoina
+- **Konttipalvelut**: Käytä palveluita kuten Azure Container Apps, AWS ECS tai Google Cloud Run
+- **Kubernetes**: Ota käyttöön ja hallitse MCP-palvelimia Kubernetes-klustereissa korkean käytettävyyden varmistamiseksi
 
 ### Esimerkki: Azure Container Apps
 
-Azure Container Apps tukee MCP-palvelimien käyttöönottoa. Se on vielä työn alla, ja tällä hetkellä tukee SSE-palvelimia.
+Azure Container Apps tukee MCP-palvelimien käyttöönottoa. Se on vielä työn alla, ja tällä hetkellä se tukee SSE-palvelimia.
 
 Näin voit toimia:
 
@@ -45,7 +45,7 @@ Näin voit toimia:
   git clone https://github.com/anthonychu/azure-container-apps-mcp-sample.git
   ```
 
-1. Käynnistä paikallisesti testataksesi:
+1. Käynnistä se paikallisesti testataksesi:
 
   ```sh
   uv venv
@@ -59,7 +59,7 @@ Näin voit toimia:
   uv run fastapi dev main.py
   ```
 
-1. Paikallisen kokeilun tekemiseksi luo *mcp.json* -tiedosto *.vscode*-kansioon ja lisää seuraava sisältö:
+1. Jotta voit kokeilla paikallisesti, luo *mcp.json* tiedosto *.vscode* hakemistoon ja lisää seuraava sisältö:
 
   ```json
   {
@@ -83,29 +83,30 @@ Näin voit toimia:
   }
   ```
 
-  Kun SSE-palvelin on käynnistynyt, voit klikata JSON-tiedostossa olevaa toistopainiketta, nyt palvelimen työkalut pitäisi näkyä GitHub Copilotissa, näet työkalukuvakkeen.
+  Kun SSE-palvelin on käynnistetty, voit klikata JSON-tiedostossa play-kuvaketta, ja nyt GitHub Copilot tunnistaa palvelimella olevat työkalut, katso työkalukuvaketta.
 
-1. Käyttöönottoa varten suorita seuraava komento:
+1. Ota käyttöön suorittamalla seuraava komento:
 
   ```sh
   az containerapp up -g <RESOURCE_GROUP_NAME> -n weather-mcp --environment mcp -l westus --env-vars API_KEYS=<AN_API_KEY> --source .
   ```
 
-Siinä se, ota käyttöön paikallisesti tai Azuren kautta näiden vaiheiden avulla.
+Siinä se, käytä nämä vaiheet ottaaksesi palvelimen käyttöön paikallisesti tai Azureen.
 
-## Lisämateriaalit
+## Lisäresurssit
 
 - [Azure Functions + MCP](https://learn.microsoft.com/en-us/samples/azure-samples/remote-mcp-functions-dotnet/remote-mcp-functions-dotnet/)
-- [Azure Container Apps -artikkeli](https://techcommunity.microsoft.com/blog/appsonazureblog/host-remote-mcp-servers-in-azure-container-apps/4403550)
-- [Azure Container Apps MCP -repo](https://github.com/anthonychu/azure-container-apps-mcp-sample)
+- [Azure Container Apps artikkeli](https://techcommunity.microsoft.com/blog/appsonazureblog/host-remote-mcp-servers-in-azure-container-apps/4403550)
+- [Azure Container Apps MCP repo](https://github.com/anthonychu/azure-container-apps-mcp-sample)
+
 
 ## Seuraavaksi
 
-- Seuraava: [Kehittyneet palvelinaiheet](../10-advanced/README.md)
+- Seuraava: [Advanced Server Topics](../10-advanced/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Vastuuvapauslauseke**:
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, pyydämme huomioimaan, että automaattikäännöksissä saattaa esiintyä virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen omalla kielellä tulisi pitää oikeana lähteenä. Tärkeissä tiedoissa suosittelemme ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä mahdollisesti aiheutuvista väärinkäsityksistä tai virhetulkinnasta.
+Tämä asiakirja on käännetty käyttämällä tekoälykäännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, otathan huomioon, että automaattikäännöksissä saattaa esiintyä virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäiskielellä tulee pitää auktoriteettisena lähteenä. Tärkeiden tietojen osalta suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tästä käännöksestä johtuvista väärinymmärryksistä tai tulkinnoista.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
