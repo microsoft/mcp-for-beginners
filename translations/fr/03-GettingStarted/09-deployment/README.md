@@ -1,41 +1,41 @@
 # Déploiement des serveurs MCP
 
-Déployer votre serveur MCP permet à d'autres d'accéder à ses outils et ressources au-delà de votre environnement local. Plusieurs stratégies de déploiement sont à considérer, selon vos besoins en matière de scalabilité, de fiabilité et de facilité de gestion. Vous trouverez ci-dessous des conseils pour déployer des serveurs MCP localement, dans des conteneurs et dans le cloud.
+Le déploiement de votre serveur MCP permet à d’autres d’accéder à ses outils et ressources au-delà de votre environnement local. Plusieurs stratégies de déploiement sont à considérer, selon vos exigences en matière de scalabilité, fiabilité et facilité de gestion. Vous trouverez ci-dessous des conseils pour déployer des serveurs MCP localement, dans des conteneurs et sur le cloud.
 
 ## Aperçu
 
-Cette leçon explique comment déployer votre application MCP Server.
+Cette leçon explique comment déployer votre application serveur MCP.
 
-## Objectifs d'apprentissage
+## Objectifs d’apprentissage
 
-À la fin de cette leçon, vous pourrez :
+À la fin de cette leçon, vous serez capable de :
 
 - Évaluer différentes approches de déploiement.
 - Déployer votre application.
 
 ## Développement et déploiement local
 
-Si votre serveur est destiné à être utilisé en local sur la machine des utilisateurs, vous pouvez suivre les étapes suivantes :
+Si votre serveur est destiné à être utilisé en exécutant sur la machine des utilisateurs, vous pouvez suivre les étapes suivantes :
 
-1. **Téléchargez le serveur**. Si vous n'avez pas écrit le serveur, téléchargez-le d'abord sur votre machine.  
-1. **Démarrez le processus du serveur** : Lancez votre application serveur MCP.
+1. **Téléchargez le serveur**. Si vous n’avez pas écrit le serveur, téléchargez-le d’abord sur votre machine.
+1. **Démarrez le processus du serveur** : Lancez votre application serveur MCP
 
-Pour SSE (non nécessaire pour un serveur de type stdio)
+Pour SSE (pas nécessaire pour un serveur de type stdio)
 
-1. **Configurez le réseau** : Assurez-vous que le serveur est accessible sur le port attendu.  
-1. **Connectez les clients** : Utilisez des URL de connexion locale comme `http://localhost:3000`.
+1. **Configurez le réseau** : Assurez-vous que le serveur est accessible sur le port attendu
+1. **Connectez les clients** : Utilisez des URLs de connexion locales comme `http://localhost:3000`
 
-## Déploiement dans le cloud
+## Déploiement sur le cloud
 
-Les serveurs MCP peuvent être déployés sur diverses plateformes cloud :
+Les serveurs MCP peuvent être déployés sur différentes plateformes cloud :
 
-- **Fonctions sans serveur** : Déployez des serveurs MCP légers en tant que fonctions serverless.  
-- **Services de conteneurs** : Utilisez des services comme Azure Container Apps, AWS ECS ou Google Cloud Run.  
-- **Kubernetes** : Déployez et gérez les serveurs MCP dans des clusters Kubernetes pour une haute disponibilité.
+- **Fonctions serverless** : Déployez des serveurs MCP légers en tant que fonctions serverless
+- **Services de conteneurs** : Utilisez des services comme Azure Container Apps, AWS ECS ou Google Cloud Run
+- **Kubernetes** : Déployez et gérez des serveurs MCP dans des clusters Kubernetes pour une haute disponibilité
 
 ### Exemple : Azure Container Apps
 
-Azure Container Apps prend en charge le déploiement des serveurs MCP. C’est encore un travail en cours et cela supporte actuellement les serveurs SSE.
+Azure Container Apps supporte le déploiement des serveurs MCP. C’est encore en cours de développement et il prend actuellement en charge les serveurs SSE.
 
 Voici comment procéder :
 
@@ -53,13 +53,13 @@ Voici comment procéder :
 
   # linux/macOS
   export API_KEYS=<AN_API_KEY>
-  # windows
+  # fenêtres
   set API_KEYS=<AN_API_KEY>
 
   uv run fastapi dev main.py
   ```
 
-1. Pour essayer localement, créez un fichier *mcp.json* dans un répertoire *.vscode* et ajoutez le contenu suivant :
+1. Pour l’essayer localement, créez un fichier *mcp.json* dans un dossier *.vscode* et ajoutez le contenu suivant :
 
   ```json
   {
@@ -83,7 +83,7 @@ Voici comment procéder :
   }
   ```
 
-  Une fois le serveur SSE démarré, vous pouvez cliquer sur l'icône de lecture dans le fichier JSON, vous devriez voir les outils sur le serveur être reconnus par GitHub Copilot, voir l'icône Outil.
+  Une fois le serveur SSE démarré, vous pouvez cliquer sur l’icône de lecture dans le fichier JSON, vous devriez voir maintenant les outils du serveur détectés par GitHub Copilot, voir l’icône outil.
 
 1. Pour déployer, exécutez la commande suivante :
 
@@ -91,7 +91,7 @@ Voici comment procéder :
   az containerapp up -g <RESOURCE_GROUP_NAME> -n weather-mcp --environment mcp -l westus --env-vars API_KEYS=<AN_API_KEY> --source .
   ```
 
-Voilà, déployez-le localement, déployez-le sur Azure via ces étapes.
+Voilà, déployez-le localement, déployez-le sur Azure en suivant ces étapes.
 
 ## Ressources supplémentaires
 
@@ -100,13 +100,13 @@ Voilà, déployez-le localement, déployez-le sur Azure via ces étapes.
 - [Dépôt Azure Container Apps MCP](https://github.com/anthonychu/azure-container-apps-mcp-sample)
 
 
-## Et ensuite
+## Étapes suivantes
 
 - Suivant : [Sujets avancés sur les serveurs](../10-advanced/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Clause de non-responsabilité** :  
-Ce document a été traduit à l’aide du service de traduction automatique [Co-op Translator](https://github.com/Azure/co-op-translator). Bien que nous nous efforcions d’assurer l’exactitude, veuillez noter que les traductions automatisées peuvent contenir des erreurs ou des inexactitudes. Le document original dans sa langue native doit être considéré comme la source faisant autorité. Pour les informations critiques, il est recommandé de recourir à une traduction professionnelle effectuée par un humain. Nous déclinons toute responsabilité en cas de malentendus ou d’interprétations erronées résultant de l’utilisation de cette traduction.
+**Avertissement** :  
+Ce document a été traduit à l’aide du service de traduction automatique [Co-op Translator](https://github.com/Azure/co-op-translator). Bien que nous nous efforçons d’assurer l’exactitude, veuillez noter que les traductions automatiques peuvent contenir des erreurs ou des inexactitudes. Le document original dans sa langue native doit être considéré comme la source faisant foi. Pour les informations critiques, une traduction professionnelle réalisée par un humain est recommandée. Nous déclinons toute responsabilité en cas de malentendus ou d’interprétations erronées résultant de l’utilisation de cette traduction.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

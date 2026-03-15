@@ -1,6 +1,6 @@
 # Menyebarkan Server MCP
 
-Menyebarkan server MCP Anda memungkinkan orang lain mengakses alat dan sumber dayanya di luar lingkungan lokal Anda. Ada beberapa strategi penyebaran yang harus dipertimbangkan, tergantung pada kebutuhan Anda untuk skalabilitas, keandalan, dan kemudahan pengelolaan. Di bawah ini Anda akan menemukan panduan untuk menyebarkan server MCP secara lokal, di kontainer, dan ke cloud.
+Menyebarkan server MCP Anda memungkinkan orang lain mengakses alat dan sumber dayanya di luar lingkungan lokal Anda. Ada beberapa strategi penyebaran yang perlu dipertimbangkan, tergantung pada kebutuhan Anda untuk skalabilitas, keandalan, dan kemudahan pengelolaan. Di bawah ini Anda akan menemukan panduan untuk menyebarkan server MCP secara lokal, di dalam kontainer, dan ke cloud.
 
 ## Ikhtisar
 
@@ -15,27 +15,27 @@ Pada akhir pelajaran ini, Anda akan dapat:
 
 ## Pengembangan dan Penyebaran Lokal
 
-Jika server Anda dimaksudkan untuk digunakan dengan menjalankan di mesin pengguna, Anda dapat mengikuti langkah-langkah berikut:
+Jika server Anda dimaksudkan untuk dijalankan di mesin pengguna, Anda dapat mengikuti langkah-langkah berikut:
 
-1. **Unduh server**. Jika Anda tidak menulis server, unduh terlebih dahulu ke mesin Anda.
-1. **Mulai proses server**: Jalankan aplikasi server MCP Anda
+1. **Unduh server**. Jika Anda tidak menulis servernya, maka unduh terlebih dahulu ke mesin Anda. 
+1. **Mulai proses server**: Jalankan aplikasi server MCP Anda 
 
 Untuk SSE (tidak diperlukan untuk server tipe stdio)
 
-1. **Konfigurasikan jaringan**: Pastikan server dapat diakses pada port yang diharapkan
+1. **Konfigurasikan jaringan**: Pastikan server dapat diakses pada port yang diharapkan 
 1. **Hubungkan klien**: Gunakan URL koneksi lokal seperti `http://localhost:3000`
 
 ## Penyebaran Cloud
 
 Server MCP dapat disebarkan ke berbagai platform cloud:
 
-- **Fungsi Tanpa Server (Serverless Functions)**: Sebarkan server MCP ringan sebagai fungsi tanpa server
+- **Fungsi tanpa server**: Sebarkan server MCP ringan sebagai fungsi tanpa server
 - **Layanan Kontainer**: Gunakan layanan seperti Azure Container Apps, AWS ECS, atau Google Cloud Run
-- **Kubernetes**: Sebarkan dan kelola server MCP di kluster Kubernetes untuk ketersediaan tinggi
+- **Kubernetes**: Sebarkan dan kelola server MCP dalam klaster Kubernetes untuk ketersediaan tinggi
 
 ### Contoh: Azure Container Apps
 
-Azure Container Apps mendukung penyebaran Server MCP. Ini masih dalam tahap pengembangan dan saat ini mendukung server SSE.
+Azure Container Apps mendukung penyebaran Server MCP. Ini masih dalam pengembangan dan saat ini mendukung server SSE.
 
 Berikut cara melakukannya:
 
@@ -59,7 +59,7 @@ Berikut cara melakukannya:
   uv run fastapi dev main.py
   ```
 
-1. Untuk mencobanya secara lokal, buat file *mcp.json* di direktori *.vscode* dan tambahkan konten berikut:
+1. Untuk mencoba secara lokal, buat berkas *mcp.json* dalam direktori *.vscode* dan tambahkan isi berikut:
 
   ```json
   {
@@ -83,7 +83,7 @@ Berikut cara melakukannya:
   }
   ```
 
-  Setelah server SSE dimulai, Anda dapat mengklik ikon play di file JSON, Anda sekarang harus dapat melihat alat pada server yang dikenali oleh GitHub Copilot, lihat ikon Alat.
+  Setelah server SSE dimulai, Anda dapat mengklik ikon play pada berkas JSON, Anda sekarang seharusnya melihat alat pada server yang terdeteksi oleh GitHub Copilot, lihat ikon Tool.
 
 1. Untuk menyebarkan, jalankan perintah berikut:
 
@@ -91,7 +91,7 @@ Berikut cara melakukannya:
   az containerapp up -g <RESOURCE_GROUP_NAME> -n weather-mcp --environment mcp -l westus --env-vars API_KEYS=<AN_API_KEY> --source .
   ```
 
-Itulah cara Anda, menyebarkan secara lokal, menyebarkan ke Azure melalui langkah-langkah ini.
+Itu dia, sebarkan secara lokal, sebarkan ke Azure melalui langkah-langkah ini.
 
 ## Sumber Daya Tambahan
 
@@ -99,13 +99,13 @@ Itulah cara Anda, menyebarkan secara lokal, menyebarkan ke Azure melalui langkah
 - [Artikel Azure Container Apps](https://techcommunity.microsoft.com/blog/appsonazureblog/host-remote-mcp-servers-in-azure-container-apps/4403550)
 - [Repositori Azure Container Apps MCP](https://github.com/anthonychu/azure-container-apps-mcp-sample)
 
-## Apa Selanjutnya
+## Selanjutnya
 
-- Berikutnya: [Topik Server Lanjutan](../10-advanced/README.md)
+- Selanjutnya: [Topik Server Lanjutan](../10-advanced/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan layanan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Meskipun kami berupaya untuk menjaga akurasi, harap diingat bahwa terjemahan otomatis mungkin mengandung kesalahan atau ketidakakuratan. Dokumen asli dalam bahasa aslinya harus dianggap sebagai sumber otoritatif. Untuk informasi yang sangat penting, disarankan menggunakan terjemahan profesional oleh manusia. Kami tidak bertanggung jawab atas kesalahpahaman atau penafsiran yang salah yang timbul dari penggunaan terjemahan ini.
+**Penafian**:
+Dokumen ini telah diterjemahkan menggunakan layanan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Meskipun kami berusaha untuk akurasi, harap diketahui bahwa terjemahan otomatis mungkin mengandung kesalahan atau ketidakakuratan. Dokumen asli dalam bahasa aslinya harus dianggap sebagai sumber yang sah. Untuk informasi penting, disarankan menggunakan terjemahan profesional oleh manusia. Kami tidak bertanggung jawab atas kesalahpahaman atau interpretasi yang salah yang timbul dari penggunaan terjemahan ini.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

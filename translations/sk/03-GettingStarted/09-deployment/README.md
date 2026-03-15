@@ -1,41 +1,41 @@
 # Nasadzovanie MCP serverov
 
-Nasadenie vášho MCP servera umožňuje ostatným pristupovať k jeho nástrojom a zdrojom mimo vášho lokálneho prostredia. Existuje niekoľko stratégií nasadenia, ktoré treba zvážiť v závislosti od vašich požiadaviek na škálovateľnosť, spoľahlivosť a jednoduchosť správy. Nižšie nájdete pokyny na nasadenie MCP serverov lokálne, v kontajneroch a do cloudu.
+Nasadenie vášho MCP servera umožňuje ostatným prístup k jeho nástrojom a zdrojom mimo vášho miestneho prostredia. Existuje niekoľko stratégií nasadenia, ktoré treba zvážiť v závislosti od vašich požiadaviek na škálovateľnosť, spoľahlivosť a jednoduché riadenie. Nižšie nájdete pokyny pre nasadenie MCP serverov lokálne, v kontajneroch a do cloudu.
 
 ## Prehľad
 
-Táto lekcia pokrýva, ako nasadiť vašu MCP Server aplikáciu.
+Táto lekcia pokrýva, ako nasadiť vašu aplikáciu MCP Server.
 
 ## Ciele učenia
 
-Na konci tejto lekcie budete vedieť:
+Na konci tejto lekcie budete schopní:
 
-- Zhodnotiť rôzne prístupy k nasadeniu.
+- Zhodnotiť rôzne prístupy nasadenia.
 - Nasadiť vašu aplikáciu.
 
 ## Lokálny vývoj a nasadenie
 
-Ak váš server má byť používaný spustením na počítači používateľa, môžete postupovať podľa týchto krokov:
+Ak je váš server určený na použitie spustením na stroji používateľa, môžete postupovať podľa nasledujúcich krokov:
 
-1. **Stiahnite server**. Ak ste server nenapísali, najskôr si ho stiahnite do svojho počítača.  
-1. **Spustite proces servera**: Spustite vašu MCP serverovú aplikáciu  
+1. **Stiahnite server**. Ak ste server nenapísali, najprv si ho stiahnite do svojho počítača.  
+1. **Spustite proces servera**: Spustite vašu MCP server aplikáciu
 
 Pre SSE (nie je potrebné pre stdio typ servera)
 
-1. **Nakonfigurujte sieť**: Zabezpečte, že server je prístupný na očakávanom porte  
+1. **Nastavte sieťovanie**: Zabezpečte, aby bol server prístupný na očakávanom porte  
 1. **Pripojte klientov**: Použite lokálne pripojovacie URL ako `http://localhost:3000`
 
 ## Nasadenie do cloudu
 
-MCP servery je možné nasadiť na rôzne cloudové platformy:
+MCP servery môžu byť nasadené na rôznych cloudových platformách:
 
-- **Serverless funkcie**: Nasadzujte ľahké MCP servery ako serverless funkcie  
-- **Kontajnerové služby**: Použite služby ako Azure Container Apps, AWS ECS alebo Google Cloud Run  
+- **Serverless funkcie**: Nasadzujte ľahké MCP servery ako serverless funkcie
+- **Kontajnerové služby**: Používajte služby ako Azure Container Apps, AWS ECS alebo Google Cloud Run
 - **Kubernetes**: Nasadzujte a spravujte MCP servery v Kubernetes klastroch pre vysokú dostupnosť
 
 ### Príklad: Azure Container Apps
 
-Azure Container Apps podporujú nasadenie MCP serverov. Projekt je stále vo vývoji a momentálne podporuje SSE servery.
+Azure Container Apps podporuje nasadenie MCP Serverov. Je to stále vo vývoji a momentálne podporuje SSE servery.
 
 Tu je postup, ako na to:
 
@@ -45,7 +45,7 @@ Tu je postup, ako na to:
   git clone https://github.com/anthonychu/azure-container-apps-mcp-sample.git
   ```
 
-1. Spustite ho lokálne na testovanie:
+1. Spustite to lokálne, aby ste si to otestovali:
 
   ```sh
   uv venv
@@ -59,7 +59,7 @@ Tu je postup, ako na to:
   uv run fastapi dev main.py
   ```
 
-1. Pre lokálne testovanie vytvorte súbor *mcp.json* v priečinku *.vscode* a pridajte nasledujúci obsah:
+1. Ak to chcete skúsiť lokálne, vytvorte súbor *mcp.json* v adresári *.vscode* a pridajte nasledujúci obsah:
 
   ```json
   {
@@ -83,7 +83,7 @@ Tu je postup, ako na to:
   }
   ```
 
-  Akonáhle je SSE server spustený, môžete kliknúť na ikonu prehrávania v JSON súbore, mali by ste vidieť, že nástroje na serveri sú zachytené GitHub Copilotom, pozrite si ikonu nástroja.
+  Keď je SSE server spustený, môžete kliknúť na ikonu spustenia v JSON súbore, teraz by ste mali vidieť, že nástroje na serveri sú zaregistrované GitHub Copilotom, pozrite sa na ikonu Nástroj.
 
 1. Na nasadenie spustite nasledujúci príkaz:
 
@@ -91,22 +91,21 @@ Tu je postup, ako na to:
   az containerapp up -g <RESOURCE_GROUP_NAME> -n weather-mcp --environment mcp -l westus --env-vars API_KEYS=<AN_API_KEY> --source .
   ```
 
-Máte to, nasadte lokálne, alebo nasadte do Azure podľa týchto krokov.
+Máte to, nasadíte to lokálne alebo do Azure podľa týchto krokov.
 
-## Ďalšie zdroje
+## Dodatočné zdroje
 
 - [Azure Functions + MCP](https://learn.microsoft.com/en-us/samples/azure-samples/remote-mcp-functions-dotnet/remote-mcp-functions-dotnet/)
 - [Článok o Azure Container Apps](https://techcommunity.microsoft.com/blog/appsonazureblog/host-remote-mcp-servers-in-azure-container-apps/4403550)
 - [Azure Container Apps MCP repozitár](https://github.com/anthonychu/azure-container-apps-mcp-sample)
 
+## Čo bude ďalej
 
-## Čo ďalej
-
-- Ďalej: [Pokročilé témy o serveroch](../10-advanced/README.md)
+- Ďalej: [Pokročilé témy serverov](../10-advanced/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Vyhlásenie o zodpovednosti**:  
-Tento dokument bol preložený pomocou AI prekladateľskej služby [Co-op Translator](https://github.com/Azure/co-op-translator). Aj keď sa snažíme o presnosť, berte prosím na vedomie, že automatizované preklady môžu obsahovať chyby alebo nepresnosti. Pôvodný dokument v jeho zdrojovom jazyku by mal byť považovaný za autoritatívny zdroj. Pre kritické informácie sa odporúča profesionálny ľudský preklad. Nepreberáme žiadnu zodpovednosť za nepochopenia alebo nesprávne interpretácie vyplývajúce z použitia tohto prekladu.
+**Výhrada zodpovednosti**:
+Tento dokument bol preložený pomocou AI prekladateľskej služby [Co-op Translator](https://github.com/Azure/co-op-translator). Hoci sa snažíme o presnosť, berte prosím na vedomie, že automatické preklady môžu obsahovať chyby alebo nepresnosti. Originálny dokument v jeho pôvodnom jazyku by mal byť považovaný za autoritatívny zdroj. Pre kritické informácie sa odporúča profesionálny ľudský preklad. Nie sme zodpovední za akékoľvek nedorozumenia alebo nesprávne výklady vyplývajúce z použitia tohto prekladu.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -52,7 +52,7 @@ class AuthMiddleware(BaseHTTPMiddleware):
         print("Valid token, proceeding...")
        
         response = await call_next(request)
-        # add any custom headers or change the response in some way
+        # add any customer headers or change in the response in some way
         return response
 
 
@@ -85,7 +85,7 @@ Here we have:
 
     ```python
     response = await call_next(request)
-    # add any custom headers or modify the response in some way
+    # add any customer headers or change in the response in some way
     return response
     ```
 
@@ -491,11 +491,11 @@ With that said, let's try to harden the security a little bit by using a standar
 
 So, we're trying to improve things from sending very simple credentials. What's the immediate improvements we get adopting JWT?
 
-- **Security improvements**. In basic auth, you send the username and password as a base64 encoded token (or you send an API key) over and over which increase the risk. With JWT, you send your username and password and get a token in return and it's also time bound meaning it will expire. JWT lets you easily use fine-grained access control using roles, scopes and permissions. 
-- **Statelessness and scalability**. JWTs are self-contained, they carry all user info and eliminates the need to store server-side session storage. Tokens can also be validated locally.
+- **Security improvements**. In basic auth, you send the username and password as a base64 encoded token (or you send an API key) over and over which increase the risk. With JWT, you send your username and password and gets a token in return and it's also time bound meaning it will expire. JWT lets you easily use fine-grained access control using roles, scopes and permissions. 
+- **Statelessness and scalability**. JWTs are self-contained, they carry all user info and eliminates the need to store server-side session storage. Token can also be validated locally.
 - **Interoperability and federation**. JWTs is central of Open ID Connect and is used with known identity providers like Entra ID, Google Identity and Auth0. They also make it possible to use single sign on and much more making it enterprise-grade.
 - **Modularity and flexibility**. JWTs can also be used with API Gateways like Azure API Management, NGINX and more. It also supports use authentication scenarios and server-to-service communication including impersonation and delegation scenarios.
-- **Performance and caching**. JWTs can be cached after decoding which reduces the need for parsing. This helps specifically with high-traffic apps as it improves throughput and reduces load on your chosen infrastructure.
+- **Performance and caching**. JWTs can be cached after decoding which reduces the need for parsing. This helps specifically with high-traffic apps as it improves throughput and reduced load on your chosen infrastructure.
 - **Advanced features**. It also supports introspection (checking validity on server) and revocation (making a token invalid).
 
 With all of these benefits, let's see how we can take our implementation to the next level.
@@ -537,7 +537,7 @@ header = {
     "typ": "JWT"
 }
 
-# The user info and its claims and expiry time
+# the user info and its claims and expiry time
 payload = {
     "sub": "1234567890",               # Subject (user ID)
     "name": "User Userson",                # Custom claim
@@ -546,7 +546,7 @@ payload = {
     "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=1)  # Expiry
 }
 
-# Encode it
+# encode it
 encoded_jwt = jwt.encode(payload, secret_key, algorithm="HS256", headers=header)
 ```
 
@@ -645,11 +645,11 @@ try {
 ```
 
 NOTE: as mentioned previously, we should perform additional checks to ensure this token points out a user in our system and ensure the user has the rights it claims to have.
-Next, let's look into role based access control, also known as RBAC.
 
+Next, let's look into role based access control, also known as RBAC.
 ## Adding role based access control
 
-The idea is that we want to express that different roles have different permissions. For example, we assume an admin can do everything and that a normal users can do read/write and that a guest can only read. Therefore, here are some possible permission levels:
+The idea is that we want to express that different roles have different permissions. For example, we assume an admin can do everything and that a normal user can do read/write and that a guest can only read. Therefore, here are some possible permission levels:
 
 - Admin.Write 
 - User.Read
@@ -692,21 +692,21 @@ class JWTPermissionMiddleware(BaseHTTPMiddleware):
 
 ```
 
-There a few different ways to add the middleware like below:
+There are a few different ways to add the middleware like below:
 
 ```python
 
-# Alt 1: add middleware while constructing starlette app
+# Option 1: add middleware while constructing starlette app
 middleware = [
     Middleware(JWTPermissionMiddleware)
 ]
 
 app = Starlette(routes=routes, middleware=middleware)
 
-# Alt 2: add middleware after starlette app is already constructed
+# Option 2: add middleware after starlette app is already constructed
 starlette_app.add_middleware(JWTPermissionMiddleware)
 
-# Alt 3: add middleware per route
+# Option 3: add middleware per route
 routes = [
     Route(
         "/mcp",
@@ -740,7 +740,7 @@ app.use((req, res, next) => {
         return;
     }  
 
-    // 3. Check if token user exist in our system
+    // 3. Check if token user exists in our system
     if(!isExistingUser(token)) {
         res.status(403).send('Forbidden');
         console.log("User does not exist");
@@ -764,8 +764,8 @@ app.use((req, res, next) => {
 There's quite a few things we can let our middleware and that our middleware SHOULD do, namely:
 
 1. Check if authorization header is present
-2. Check if token is valid, we call `isValid` which is a method we wrote that check integrity and validity of JWT token.
-3. Verify the user exist in our system, we should check this.
+2. Check if token is valid, we call `isValid` which is a method we wrote that checks integrity and validity of JWT token.
+3. Verify the user exists in our system, we should check this.
 
    ```typescript
     // users in DB

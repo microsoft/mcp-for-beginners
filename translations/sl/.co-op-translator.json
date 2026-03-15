@@ -276,14 +276,14 @@
     "language_code": "sl"
   },
   "03-GettingStarted/09-deployment/README.md": {
-    "original_hash": "8d7e4a2fd7d62125674895617b9aca32",
-    "translation_date": "2026-02-08T05:02:52+00:00",
+    "original_hash": "53297ef48b822eb83a9318a67ec179c7",
+    "translation_date": "2026-03-15T17:54:37+00:00",
     "source_file": "03-GettingStarted/09-deployment/README.md",
     "language_code": "sl"
   },
   "03-GettingStarted/10-advanced/README.md": {
-    "original_hash": "2fd2194a33b43b4ce07e192670ef163d",
-    "translation_date": "2026-02-08T05:01:10+00:00",
+    "original_hash": "a44fb29821f575fad740b1ec5323dc1e",
+    "translation_date": "2026-03-15T17:52:50+00:00",
     "source_file": "03-GettingStarted/10-advanced/README.md",
     "language_code": "sl"
   },
@@ -306,8 +306,8 @@
     "language_code": "sl"
   },
   "03-GettingStarted/11-simple-auth/README.md": {
-    "original_hash": "ff04655687067b58258a40a2a697c5c2",
-    "translation_date": "2026-02-08T05:02:40+00:00",
+    "original_hash": "79f0cc70ccc02ea25210e6365fdbf391",
+    "translation_date": "2026-03-15T17:54:24+00:00",
     "source_file": "03-GettingStarted/11-simple-auth/README.md",
     "language_code": "sl"
   },

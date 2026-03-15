@@ -1,25 +1,25 @@
 # Paprasta autentifikacija
 
-MCP SDK palaiko OAuth 2.1 naudojimą, kuris, reikia pripažinti, yra gana sudėtingas procesas, apimantis tokius dalykus kaip autentifikavimo serveris, resursų serveris, paskyros duomenų įrašymas, kodo gavimas, kodo keitimas į nešiklio žetoną, kol galiausiai galite gauti savo resursų duomenis. Jei nesate pratę prie OAuth, kuris yra puikus diegti dalykas, geriausia pradėti nuo bazinio autentifikavimo lygio ir palaipsniui kurti vis geresnį saugumą. Todėl egzistuoja šis skyrius, kuris padės jums pasiekti pažangesnį autentifikavimą.
+MCP SDK palaiko OAuth 2.1 naudojimą, kuris, tiesą sakant, yra gana sudėtingas procesas apimantis tokius konceptus kaip autentifikavimo serveris, resursų serveris, kredencialų pateikimas, kodo gavimas, kodo pavertimas prieigos žetonu, kol pagaliau galite gauti savo resurso duomenis. Jei nesate pratę prie OAuth, kuris yra puikus dalykas diegti, gera pradėti nuo kai kurių paprastų autentifikacijos lygių ir palaipsniui kelti sau saugumo lygį. Būtent todėl šis skyrius egzistuoja – padėti jums žengti į pažangesnę autentifikaciją.
 
 ## Autentifikacija, ką turime omenyje?
 
-Autentifikacija yra trumpinys nuo autentifikavimo ir autorizavimo. Idėja yra tokia, kad turime atlikti du dalykus:
+Autentifikacija yra trumpinys iš autentifikavimo ir autorizavimo. Idėja yra tokia, kad turime padaryti dvi dalykus:
 
-- **Autentifikavimas**, tai procesas, kai nustatome, ar leidžiame asmeniui patekti į savo namus, t.y., ar jis turi teisę būti „čia“, tai yra turėti prieigą prie mūsų resursų serverio, kuriame gyvena mūsų MCP serverio funkcijos.
-- **Autorizavimas**, tai procesas, kurio metu nustatome, ar vartotojas turėtų turėti prieigą prie konkrečių resursų, kurių jis prašo, pavyzdžiui, šių užsakymų arba šių produktų, arba ar jam leidžiama tik skaityti turinį, bet ne trinti, kaip kitas pavyzdys.
+- **Autentifikavimas**, tai procesas, kuriuo sužinome, ar leidžiame asmeniui įeiti į mūsų namus, ar jie turi teisę būti „čionai“, tai yra turėti prieigą prie mūsų resursų serverio, kuriame veikia mūsų MCP Serverio funkcijos.
+- **Autorizavimas**, tai procesas, kuriuo sužinome, ar vartotojas turėtų turėti prieigą prie konkrečių resursų, kurių jis prašo, pavyzdžiui, šių užsakymų ar produktų, arba ar jam leidžiama skaityti turinį, bet ne naikinti, kaip kitą pavyzdį.
 
-## Kredencialai: kaip nurodome sistemai, kas mes esame
+## Kredencialai: kaip mes sakome sistemai, kas mes esame
 
-Dauguma žiniatinklio kūrėjų pradeda mąstyti pateikdami serveriui kredencialą, dažniausiai slaptą kodą, kuris sako, ar jiems leidžiama būti čia („Autentifikavimas“). Šis kredencialas dažniausiai yra vartotojo vardo ir slaptažodžio base64 koduota versija arba API raktas, kuris unikalus tam tikram vartotojui.
+Dauguma interneto kūrėjų pradeda mąstyti suteikdami serveriui kredencialą, dažniausiai paslaptį, rodantį, ar jiems leidžiama būti čia – „Autentifikacija“. Šis kredencialas paprastai yra bazinio64 kodo versija su vartotojo vardu ir slaptažodžiu arba API raktas, kuris unikaliai identifikuoja konkretų vartotoją.
 
-Tai apima siuntimą per antraštę, pavadintą „Authorization“, tokiu būdu:
+Tai vyksta siunčiant HTTP antraštę pavadinimu "Authorization" tokiu būdu:
 
 ```json
 { "Authorization": "secret123" }
 ```
 
-Tai paprastai vadinama baziniu autentifikavimu. Bendras srauto veikimo principas yra toks:
+Tai dažnai vadinama pagrindine autentifikacija. Bendras srauto veikimas yra toks:
 
 ```mermaid
 sequenceDiagram
@@ -28,11 +28,11 @@ sequenceDiagram
    participant Server
 
    User->>Client: parodyk man duomenis
-   Client->>Server: parodyk man duomenis, štai mano įgaliojimai
+   Client->>Server: parodyk man duomenis, štai mano kredencialai
    Server-->>Client: 1a, aš tave pažįstu, štai tavo duomenys
    Server-->>Client: 1b, aš tavęs nepažįstu, 401 
 ```
-Dabar, kai suprantame, kaip veikia srautas, kaip tai įgyvendinti? Dauguma žiniatinklio serverių turi sąvoką, vadinamą middleware, tai yra kodo gabalas, kuris vyksta kaip užklausos dalis, gali patikrinti kredencialus ir, jei kredencialai galioja, leidžia užklausai praeiti. Jei užklausa neturi galiojančių kredencialų, gaunate autentifikavimo klaidą. Pažiūrėkime, kaip tai galima įgyvendinti:
+Dabar, kai suprantame kaip tai veikia iš srauto perspektyvos, kaip tai įgyvendinti? Dauguma žiniatinklio serverių turi koncepciją, vadinamą tarpinis programinis sluoksnis (middleware), tai kodas, kuris vykdomas kaip užklausos dalis, gali patikrinti kredencialus ir, jei jie galioja, leidžia užklausai praėjimą. Jei užklausa neturi galiojančių kredencialų, gaunate autentifikavimo klaidą. Pažiūrėkime, kaip tai galima įgyvendinti:
 
 **Python**
 
@@ -52,7 +52,7 @@ class AuthMiddleware(BaseHTTPMiddleware):
         print("Valid token, proceeding...")
        
         response = await call_next(request)
-        # pridėti bet kokius vartotojo antraštes arba pakeisti atsakymą kažkokiu būdu
+        # pridėti bet kokius kliento antraštes arba kitaip pakeisti atsakymą
         return response
 
 
@@ -61,14 +61,14 @@ starlette_app.add_middleware(CustomHeaderMiddleware)
 
 Čia turime:
 
-- Sukurtą middleware pavadinimu `AuthMiddleware`, kuriame `dispatch` metodas yra kviečiamas žiniatinklio serverio.
-- Įtrauktą middleware į žiniatinklio serverį:
+- Sukurtą tarpprograminį sluoksnį pavadinimu `AuthMiddleware`, kurio `dispatch` metodas kviečiamas žiniatinklio serverio.
+- Pridėtą tarpprograminį sluoksnį prie žiniatinklio serverio:
 
     ```python
     starlette_app.add_middleware(AuthMiddleware)
     ```
 
-- Parašytą validacijos logiką, kuri tikrina, ar yra „Authorization“ antraštė, ir ar siunčiamas slaptasis kodas yra galiojantis:
+- Parašytą patikros logiką, kuri tikrina, ar yra „Authorization“ antraštė ir ar siunčiamas slaptasis raktas yra galiojantis:
 
     ```python
     has_header = request.headers.get("Authorization")
@@ -81,7 +81,7 @@ starlette_app.add_middleware(CustomHeaderMiddleware)
         return Response(status_code=403, content="Forbidden")
     ```
 
-Jei slaptasis kodas yra pateiktas ir galiojantis, leidžiame užklausai praeiti, kviesdami `call_next` ir grąžindami atsakymą.
+   jei slaptasis raktas yra pateiktas ir galiojantis, leidžiame užklausai praėjimą kviesdami `call_next` ir grąžiname atsakymą.
 
     ```python
     response = await call_next(request)
@@ -89,11 +89,11 @@ Jei slaptasis kodas yra pateiktas ir galiojantis, leidžiame užklausai praeiti,
     return response
     ```
 
-Tai veikia taip: jei žiniatinklio užklausa yra nukreipiama į serverį, middleware bus kviečiamas ir, atsižvelgiant į jo įgyvendinimą, jis arba leis užklausai praeiti, arba grąžins klaidą, rodydamas, kad klientas negali tęsti.
+Veikia taip: jei į serverį ateina užklausa, bus kviečiamas tarpprograminis sluoksnis ir pagal jo įgyvendinimą užklausa arba bus praleista, arba grąžinama klaida, nurodanti, kad klientui neleidžiama tęsti.
 
 **TypeScript**
 
-Čia mes sukuriame middleware naudojant populiarų Express karkasą ir perimame užklausą prieš jai pasiekiant MCP Serverį. Štai kodas tam:
+Čia kuriame tarpprograminį sluoksnį naudodami populiarų Express karkasą ir perimame užklausą prieš ją pasiekiant MCP Serverį. Štai kodas:
 
 ```typescript
 function isValid(secret) {
@@ -108,44 +108,44 @@ app.use((req, res, next) => {
     
     let token = req.headers["Authorization"];
 
-    // 2. Patikrinti galiojimą.
+    // 2. Patikrinkite galiojimą.
     if(!isValid(token)) {
         res.status(403).send('Forbidden');
     }
 
    
     console.log('Middleware executed');
-    // 3. Perduoda užklausą kitam užklausų apdorojimo veiksmui.
+    // 3. Pateikia užklausą kitam užklausų vamzdyno žingsniui.
     next();
 });
 ```
 
 Šiame kode mes:
 
-1. Patikriname, ar yra „Authorization“ antraštė, jei ne, siunčiame 401 klaidą.
-2. Užtikriname, kad kredencialas/žetonas yra galiojantis, jei ne, siunčiame 403 klaidą.
-3. Galiausiai perduodame užklausą toliau ir grąžiname prašomą resursą.
+1. Tikriname, ar yra „Authorization“ antraštė, jei nėra, siunčiame 401 klaidą.
+2. Užtikriname, kad kredencialas/žetonas galioja, jei ne, siunčiame 403 klaidą.
+3. Galiausiai perduodame užklausą toliau eilėje ir grąžiname reikalaujamą resursą.
 
-## Pratybos: įgyvendinti autentifikavimą
+## Pratimai: Įgyvendinkite autentifikaciją
 
-Panaudokime savo žinias ir pabandykime ją įgyvendinti. Štai planas:
+Pažiūrėkime, kaip įgyvendinti tai praktiškai. Štai planas:
 
 Serveris
 
-- Sukurti žiniatinklio serverį ir MCP instanciją.
-- Įgyvendinti serverio middleware.
+- Sukurkite žiniatinklio serverį ir MCP instanciją.
+- Įdiekite tarpinį programinį sluoksnį serveriui.
 
 Klientas
 
-- Siųsti žiniatinklio užklausą su kredencialais per antraštę.
+- Siųskite žiniatinklio užklausą su kredencialu per antraštę.
 
 ### -1- Sukurkite žiniatinklio serverį ir MCP instanciją
 
-Pirmame žingsnyje turime sukurti žiniatinklio serverio instanciją ir MCP Serverį.
+Pirmame žingsnyje reikia sukurti žiniatinklio serverio instanciją ir MCP Serverį.
 
 **Python**
 
-Čia sukuriame MCP serverio instanciją, sukonstruojame starlette žiniatinklio programėlę ir talpiname ją su uvicorn.
+Čia sukuriame MCP serverio instanciją, starlette žiniatinklio programą ir paleidžiame ją naudodami uvicorn.
 
 ```python
 # kuriamas MCP serveris
@@ -161,7 +161,7 @@ app = FastMCP(
 # kuriama starlette žiniatinklio programa
 starlette_app = app.streamable_http_app()
 
-# programos aptarnavimas per uvicorn
+# teikiama programa per uvicorn
 async def run(starlette_app):
     import uvicorn
     config = uvicorn.Config(
@@ -178,9 +178,9 @@ run(starlette_app)
 
 Šiame kode mes:
 
-- Sukuriame MCP Serverį.
-- Sukuriame starlette žiniatinklio programėlę iš MCP Serverio, `app.streamable_http_app()`.
-- Talpiname ir aptarnaujame žiniatinklio programėlę naudodami uvicorn `server.serve()`.
+- Sukūrėme MCP Serverį.
+- Sukonstravome starlette žiniatinklio programą iš MCP Serverio, `app.streamable_http_app()`.
+- Paleidome ir aptarnaujame žiniatinklio programą naudodami uvicorn `server.serve()`.
 
 **TypeScript**
 
@@ -195,7 +195,7 @@ const server = new McpServer({
     // ... nustatyti serverio išteklius, įrankius ir užklausas ...
 ```
 
-Šis MCP Serverio kūrimas turi vykti mūsų POST /mcp maršrutų apibrėžime, tad paimkime aukščiau pateiktą kodą ir perkelkime jį taip:
+Šis MCP Serverio kūrimas turi įvykti mūsų POST /mcp maršruto apibrėžime, taigi paimkime aukščiau nurodytą kodą ir perkėlkime jį taip:
 
 ```typescript
 import express from "express";
@@ -207,7 +207,7 @@ import { isInitializeRequest } from "@modelcontextprotocol/sdk/types.js"
 const app = express();
 app.use(express.json());
 
-// Žemėlapis, skirtas transportams saugoti pagal sesijos ID
+// Žemėlapis transportams saugoti pagal sesijos ID
 const transports: { [sessionId: string]: StreamableHTTPServerTransport } = {};
 
 // Apdoroti POST užklausas klientas-serveris komunikacijai
@@ -217,23 +217,23 @@ app.post('/mcp', async (req, res) => {
   let transport: StreamableHTTPServerTransport;
 
   if (sessionId && transports[sessionId]) {
-    // Pakartotinai panaudoti esamą transportą
+    // Pakartotinai naudoti esamą transportą
     transport = transports[sessionId];
   } else if (!sessionId && isInitializeRequest(req.body)) {
     // Naujas inicijavimo prašymas
     transport = new StreamableHTTPServerTransport({
       sessionIdGenerator: () => randomUUID(),
       onsessioninitialized: (sessionId) => {
-        // Išsaugoti transportą pagal sesijos ID
+        // Saugo transportą pagal sesijos ID
         transports[sessionId] = transport;
       },
-      // DNS peradresavimo apsauga pagal numatytuosius nustatymus išjungta dėl atgalinio suderinamumo. Jei jūs vykdote šį serverį
-      // lokaliai, būtinai nustatykite:
+      // DNS persaistymo apsauga pagal numatytuosius nustatymus išjungta dėl suderinamumo atgal. Jei paleidžiate šį serverį
+      // vietoje, būtinai nustatykite:
       // enableDnsRebindingProtection: true,
       // allowedHosts: ['127.0.0.1'],
     });
 
-    // Išvalyti transportą, kai jis uždaromas
+    // Išvalyti transportą po uždarymo
     transport.onclose = () => {
       if (transport.sessionId) {
         delete transports[transport.sessionId];
@@ -244,12 +244,12 @@ app.post('/mcp', async (req, res) => {
       version: "1.0.0"
     });
 
-    // ... paruošti serverio išteklius, įrankius ir užklausas ...
+    // ... nustatyti serverio išteklius, įrankius ir užklausas ...
 
     // Prisijungti prie MCP serverio
     await server.connect(transport);
   } else {
-    // Neteisinga užklausa
+    // Neteisingas užklausimas
     res.status(400).json({
       jsonrpc: '2.0',
       error: {
@@ -265,7 +265,7 @@ app.post('/mcp', async (req, res) => {
   await transport.handleRequest(req, res, req.body);
 });
 
-// Pakartotinai naudojamas tvarkytojas GET ir DELETE užklausoms
+// Pakartotinai naudojamas apdorotojas GET ir DELETE užklausoms
 const handleSessionRequest = async (req: express.Request, res: express.Response) => {
   const sessionId = req.headers['mcp-session-id'] as string | undefined;
   if (!sessionId || !transports[sessionId]) {
@@ -288,33 +288,33 @@ app.listen(3000);
 
 Dabar matote, kaip MCP Serverio kūrimas buvo perkeltas į `app.post("/mcp")`.
 
-Judėkime toliau, prie middleware kūrimo, kad galėtume patvirtinti atėjusius kredencialus.
+Toliau pereikime prie tarpinio programinio sluoksnio kūrimo, kad galėtume tikrinti atėjusius kredencialus.
 
-### -2- Įgyvendinti serverio middleware
+### -2- Įdiekite tarpinį programinį sluoksnį serveriui
 
-Dabar pereikime prie middleware dalies. Čia kursime middleware, kuris ieško kredencialo `Authorization` antraštėje ir jį patvirtina. Jei kredencialas priimtinas, užklausa tęsis ir atliks reikalingus veiksmus (pvz., įvardys įrankius, skaitys resursą ar bet ką, ką klientas prašė MCP funkcionalumo).
+Toliau pereisime prie tarpinio programinio sluoksnio dalies. Čia kursime tarpinį sluoksnį, kuris ieško kredencialo `Authorization` antraštėje ir jį tikrina. Jei jis priimtinas, užklausa tęsis ir atliks tai, ką reikia (pvz., išvardys įrankius, perskaitys resursą ar vykdys kokias MCP funkcijas, kurių klientas prašė).
 
 **Python**
 
-Norėdami sukurti middleware, turime sukurti klasę, kuri paveldi iš `BaseHTTPMiddleware`. Yra du įdomūs dalykai:
+Norėdami sukurti tarpinį sluoksnį, turime sukurti klasę, paveldinčią `BaseHTTPMiddleware`. Yra du įdomūs elementai:
 
 - Užklausa `request`, iš kurios skaitome antraštės informaciją.
-- `call_next` atgalinis kvietimas, kurį turime iškviesti, jei klientas pateikė mums priimtiną kredencialą.
+- `call_next` – atgalinio kvietimo funkcija, kurią turime iškviesti, jei klientas pateikė priimtiną kredencialą.
 
-Pirma, turime apdoroti atvejį, kai trūksta `Authorization` antraštės:
+Pirmiausiai reikia pasitikrinti, ar trūksta `Authorization` antraštės:
 
 ```python
 has_header = request.headers.get("Authorization")
 
-# antraštė nerasta, nepavyko su klaida 401, kitu atveju tęsti.
+# antraštė nerasta, nepavyko su 401, kitu atveju tęsti.
 if not has_header:
     print("-> Missing Authorization header!")
     return Response(status_code=401, content="Unauthorized")
 ```
 
-Čia siunčiame 401 neautorizuoto pranešimą, nes klientas nepraėjo autentifikacijos.
+Čia siunčiame 401 neautorizuoto pranešimą, nes klientas nepavyksta autentifikuotis.
 
-Toliau, jei buvo pateiktas kredencialas, tikriname jo galiojimą taip:
+Tada, jei buvo pateiktas kredencialas, tikriname jo galiojimą taip:
 
 ```python
  if not valid_token(has_header):
@@ -322,7 +322,7 @@ Toliau, jei buvo pateiktas kredencialas, tikriname jo galiojimą taip:
     return Response(status_code=403, content="Forbidden")
 ```
 
-Atkreipkite dėmesį, kaip aukščiau siunčiame 403 uždraustą pranešimą. Pažiūrėkime visą middleware, kuri įgyvendina viską, ką minėjome aukščiau:
+Atkreipkite dėmesį, kad aukščiau siunčiame 403 uždrausto pranešimą. Pažiūrėkime visą tarpprograminio sluoksnio kodą, įgyvendinantį viską, ką aptarėme:
 
 ```python
 class AuthMiddleware(BaseHTTPMiddleware):
@@ -345,32 +345,32 @@ class AuthMiddleware(BaseHTTPMiddleware):
 
 ```
 
-Puiku, bet o `valid_token` funkcija? Ji pateikta žemiau:
+Puiku, bet kaip dėl `valid_token` funkcijos? Štai ji žemiau:
 
 ```python
-# NENAUDOKITE gamyboje - tobulinkite tai !!
+# NENAUDOKITE gamybai - patobulinkite tai !!
 def valid_token(token: str) -> bool:
-    # pašalinkite "Bearer " priesagą
+    # pašalinkite "Bearer " priešdėlį
     if token.startswith("Bearer "):
         token = token[7:]
         return token == "secret-token"
     return False
 ```
 
-Žinoma, tai turėtų būti patobulinta.
+Tai akivaizdžiai galima patobulinti.
 
-SVARBU: Jūs NETURĖTUMĖTE laikyti tokių slaptų raktų kode. Idealus variantas - gauti reikšmę iš duomenų šaltinio ar iš IDP (tapatybės paslaugų teikėjo), arba dar geriau, leisti IDP atlikti validaciją.
+SVARBU: Tokios paslapties niekada neturėtumėte laikyti kodo viduje. Idealiai vertėtų gauti vertę iš duomenų šaltinio arba iš IDP (identiteto teikėjo) arba dar geriau – leisti IDP atlikti autentifikacijos patikrinimą.
 
 **TypeScript**
 
-Norėdami įgyvendinti tai su Express, turime kviesti `use` metodą, kurį priima middleware funkcijos.
+Norėdami tai įgyvendinti su Express, turime iškviesti metodą `use`, kuris priima tarpinių sluoksnių funkcijas.
 
 Turime:
 
-- Sąveikauti su užklausa, kad patikrintume perduotą kredencialą `Authorization` savybėje.
-- Patikrinti kredencialą ir jei jis galioja, leisti užklausai tęsti, kad kliento MCP užklausa atliktų tai, ką turėtų (pvz., įvardytų įrankius, perskaitytų resursą ar kitus MCP susijusius veiksmus).
+- Dirbti su užklausa, kad patikrintume perduotą kredencialą `Authorization` savybėje.
+- Patikrinti kredencialą ir, jei jis priimtinas, leisti užklausai tęsti bei klientui naudoti MCP funkcijas (pvz., išvardyti įrankius, skaityti resursos duomenis ar kt.).
 
-Čia tikriname, ar yra `Authorization` antraštė ir jei jos nėra, sustabdome užklausą:
+Čia tikriname, ar esama `Authorization` antraštės, ir jei jos nėra, sustabdome užklausos įvykdymą:
 
 ```typescript
 if(!req.headers["authorization"]) {
@@ -379,9 +379,9 @@ if(!req.headers["authorization"]) {
 }
 ```
 
-Jei antraštė visiškai nepateikta, gaunate 401 klaidą.
+Jei antraštė visai nebus atsiųsta, gausite 401 klaidą.
 
-Toliau tikriname, ar kredencialas galiojantis, jei ne, dar kartą sustabdome užklausą, bet su šiek tiek kita žinute:
+Tada tikriname, ar kredencialas galioja, ir jei ne, vėl sustabdome užklausą šįkart su kitokia žinute:
 
 ```typescript
 if(!isValid(token)) {
@@ -390,9 +390,9 @@ if(!isValid(token)) {
 } 
 ```
 
-Atkreipkite dėmesį, dabar gaunate 403 klaidą.
+Pastebėkite, kad dabar gaunate 403 klaidą.
 
-Štai visas kodas:
+Štai pilnas kodas:
 
 ```typescript
 app.use((req, res, next) => {
@@ -415,18 +415,18 @@ app.use((req, res, next) => {
 });
 ```
 
-Paruošėme žiniatinklio serverį priimti middleware, kuris tikrina, ar klientas mums siunčia kredencialus. O kas su pačiu klientu?
+Nustatėme, kad žiniatinklio serveris priima tarpinį sluoksnį, tikrinsiantį klientų atsiųstus kredencialus. O kaip dėl paties kliento?
 
-### -3- Siųsti žiniatinklio užklausą su kredencialais per antraštę
+### -3- Siųskite žiniatinklio užklausą su kredencialu antraštėje
 
-Turime įsitikinti, kad klientas perduoda kredencialą per antraštę. Kadangi naudosime MCP klientą tai daryti, turime sužinoti, kaip tai padaryti.
+Turime užtikrinti, kad klientas perduoda kredencialą per antraštę. Kadangi naudosisime MCP klientą, turime suprasti, kaip tai padaryti.
 
 **Python**
 
-Klientui turime perduoti antraštę su savo kredencialu tokiu būdu:
+Klientui reikia perduoti antraštę su kredencialu taip:
 
 ```python
-# NENAUDOKITE fiksuotos reikšmės, bent jau laikykite ją aplinkos kintamajame arba saugesnėje saugykloje
+# NENUSTATYKITE reikšmės tiesiogiai, bent jau laikykite ją aplinkos kintamajame arba saugesnėje saugykloje
 token = "secret-token"
 
 async with streamablehttp_client(
@@ -443,21 +443,21 @@ async with streamablehttp_client(
         ) as session:
             await session.initialize()
       
-            # TODO, ką norite atlikti kliente, pvz., išvardinti įrankius, iškviesti įrankius ir pan.
+            # DARBUS, ką norite atlikti kliente, pavyzdžiui, įrankių sąrašą, įrankių kvietimą ir pan.
 ```
 
-Atkreipkite dėmesį, kaip užpildome `headers` savybę tokiu būdu `headers = {"Authorization": f"Bearer {token}"}`.
+Atkreipkite dėmesį, kaip mes užpildome `headers` savybę tokiu būdu ` headers = {"Authorization": f"Bearer {token}"}`.
 
 **TypeScript**
 
-Tai galime išspręsti dviem žingsniais:
+Galime tai padaryti dviem etapais:
 
-1. Užpildyti konfigūracijos objektą savo kredencialu.
-2. Perduoti konfigūracijos objektą transportui.
+1. Užpildyti konfigūracijos objektą mūsų kredencialu.
+2. Paduoti konfigūracijos objektą transportui.
 
 ```typescript
 
-// NENAUDOKITE vertės įkoduotos tiesiogiai kaip parodyta čia. Bent jau turėkite ją kaip aplinkos kintamąjį ir naudokite kažką panašaus į dotenv (plėtros režimu).
+// NEREIKIA kietai užkoduoti reikšmės kaip parodyta čia. Bent jau naudokite kaip aplinkos kintamąjį ir naudokite kažką panašaus į dotenv (kūrimo režime).
 let token = "secret123"
 
 // apibrėžkite kliento transporto parinkčių objektą
@@ -478,46 +478,46 @@ async function main() {
    );
 ```
 
-Čia matote, kaip turėjome sukurti `options` objektą ir įdėti mūsų antraštes į `requestInit` savybę.
+Čia matote, kaip prireikė sukurti `options` objektą ir padėti antraštes į `requestInit` savybę.
 
-SVARBU: Kaip tai pagerinti? Dabartinė įgyvendinimo forma turi tam tikrų trūkumų. Visų pirma, perduoti kredencialą tokiu būdu yra gana rizikinga, nebent bent jau turite HTTPS. Net ir tada kredencialas gali būti pavogtas, todėl jums reikia sistemos, kurios pagalba galėtumėte lengvai atšaukti žetoną ir pridėti papildomus patikrinimus, pvz., iš kur pasaulyje jis kyla, ar užklausa vykdoma pernelyg dažnai (robotų elgesys), trumpai tariant, yra daug problemų.
+SVARBU: Kaip tai pagerinti? Šiuo metu esama keletas trūkumų. Visų pirma, perduoti kredencialą tokiu būdu yra rizikinga, nebent turite bent jau HTTPS. Net tada kredencialas gali būti pavogtas, todėl jums reikia sistema, kuri leidžia lengvai panaikinti žetoną ir pridėti papildomų patikrinimų, pavyzdžiui, iš kurios vietos pasaulyje ateina užklausa, ar užklausa nevykdoma pernelyg dažnai (kaip botų elgsena), trumpai tariant, yra daug rūpesčių.
 
-Reikia paminėti, kad paprastoms API, kur nenorite, kad kas nors naudotų jūsų API be autentifikacijos, tai yra geras pradinis sprendimas.
+Vis dėlto verta paminėti, kad labai paprastoms API, kuriose nenorite, kad kas nors galėtų naudotis jūsų API be autentifikacijos, tai yra gera pradžia.
 
-Vis dėlto pabandykime sustiprinti saugumą naudodami standartizuotą formatą, pvz., JSON Web Token, dar žinomą kaip JWT arba „JOT“ žetonai.
+Sakydami tai, pabandykime pagerinti saugumą naudodami standartizuotą formatą – JSON Web Token, dar žinomus kaip JWT arba „JOT“ žetonus.
 
-## JSON Web Tokens, JWT
+## JSON Web žetonai, JWT
 
-Taigi, stengiamės patobulinti dalykus nuo labai paprastų kredencialų siuntimo. Kokius tiesioginius patobulinimus gauname priimdami JWT?
+Taigi, mes bandome patobulinti dalykus, pateikdami paprastus kredencialus. Kokie yra tiesioginiai pranašumai taikant JWT?
 
-- **Saugumo patobulinimai.** Su baziniu autentifikavimu jūs siunčiate vartotojo vardą ir slaptažodį kaip base64 koduotą žetoną (arba siunčiate API raktą) vėl ir vėl, kas padidina riziką. Su JWT jūs siunčiate savo vartotojo vardą ir slaptažodį, gaunate žetoną mainais ir jis taip pat yra riboto galiojimo laikotarpiu, t. y. jis baigs galioti. JWT leidžia lengvai naudoti smulkų prieigos valdymą naudojant vaidmenis, aprėptis ir leidimus.
-- **Bestatusinis ir mastelio keičiamumas.** JWT yra savarankiški, jie neša visą vartotojo informaciją ir atima poreikį saugoti sesiją serverio pusėje. Žetoną taip pat galima validuoti vietoje.
-- **Sąveikumas ir federacija.** JWT yra OpenID Connect centrinė dalis ir naudojama su žinomais tapatybės tiekėjais, tokiais kaip Entra ID, Google Identity ir Auth0. Jie taip pat leidžia naudoti vienkartinę prisijungimo funkciją ir daug daugiau, kas daro juos įmonių klase.
-- **Moduliarumas ir lankstumas.** JWT taip pat galima naudoti su API vartais, tokiais kaip Azure API Management, NGINX ir kt. Tai palaiko naudotojų autentifikacijos scenarijus ir serverio-serviso komunikaciją, įskaitant įsikūnijimo ir delegavimo scenarijus.
-- **Veikimas ir kešavimas.** JWT galima kešuoti po dešifravimo, tai sumažina poreikį nuolat analizuoti. Tai ypač padeda esant dideliam srautui, nes pagerina pralaidumą ir sumažina apkrovą pasirinktoje infrastruktūroje.
-- **Pažangios funkcijos.** Taip pat palaiko introspekciją (galiojimo tikrinimą serveryje) ir žetonų atšaukimą (žetonų padarymą negaliojančiais).
+- **Saugumo patobulinimai**. Basic auth atveju siunčiate vartotojo vardą ir slaptažodį kaip base64 koduotą žetoną (arba API raktą) vėl ir vėl, o tai didina riziką. Su JWT siunčiate vartotojo vardą ir slaptažodį, gaunate žetoną mainais, kuris taip pat yra laiko ribojamas – t. y. baigsis galiojimo laikas. JWT leidžia paprastai naudoti smulkesnes prieigos kontrolės taisykles, naudodami vaidmenis, apimtis ir leidimus.
+- **Be valstybės ir skalabilumas**. JWT yra savarankiški, jie neša visą vartotojo informaciją ir panaikina serverio sesijos saugojimo poreikį. Žetonas gali būti patvirtinamas lokaliai.
+- **Sąveikumas ir federacija**. JWT yra Open ID Connect centras ir naudojamas su žinomais identiteto teikėjais kaip Entra ID, Google Identity ir Auth0. Jie taip pat leidžia naudoti vieno prisijungimo sistemas ir dar daugiau, darant juos įmonių lygio sprendimu.
+- **Moduliarumas ir lankstumas**. JWT taip pat gali būti naudojamas su API vartais (Gateway) kaip Azure API Management, NGINX ir kitais. Jis palaiko autentifikacijos scenarijus ir serverio į serverį komunikaciją, įskaitant įsikūnijimo ir delegavimo scenarijus.
+- **Veikimas ir kešavimas**. JWT galima kešuoti po iškodavimo, o tai sumažina analizės poreikį. Tai padeda ypač daug eismų turinčioms programoms, nes pagerina pralaidumą ir sumažina infrastruktūros apkrovą.
+- **Pažangios funkcijos**. Taip pat palaiko introspekciją (validumo patikrinimą serveryje) ir tokenų panaikinimą (tokeno daro nebegaliojančiu).
 
-Su šiomis nauda pamėginkime žiūrėti, kaip galime pakelti savo įgyvendinimą į kitą lygį.
+Su visais šiais privalumais pažiūrėkime, kaip galime perkelti mūsų įgyvendinimą į kitą lygį.
 
-## Iš bazinio autentifikavimo į JWT
+## Kaip pakeisti paprastą autentifikaciją į JWT
 
-Taigi, esmės pakeitimai aukštame lygmenyje yra:
+Taigi didieji pokyčiai, kuriuos turime atlikti, yra:
 
 - **Išmokti sukurti JWT žetoną** ir paruošti jį siuntimui iš kliento į serverį.
-- **Validuoti JWT žetoną**, ir jei galioja, leisti klientui naudotis mūsų resursais.
-- **Saugi žetono saugykla**. Kaip laikome šį žetoną.
-- **Apsaugoti maršrutus**. Turime apsaugoti maršrutus, mūsų atveju, MCP maršrutus ir konkrečias funkcijas.
-- **Pridėti atnaujinimo žetonus**. Užtikrinti, kad sukuriami trumpalaikiai žetonai ir ilgalaikiai atnaujinimo žetonai, kurie gali būti naudojami naujiems žetonams gauti, jei senieji baigė galioti. Taip pat užtikrinti egzistavimą atnaujinimo endpoint'ui ir rotacijos strategiją.
+- **Tikrinkite JWT žetoną**, ir jei jis galiojantis, leiskite klientui naudotis mūsų resursais.
+- **Saugi žetono saugykla**. Kaip mes saugosime šį žetoną.
+- **Apsaugoti maršrutus**. Turime apsaugoti maršrutus, mūsų atveju apsaugosime maršrutus ir konkrečias MCP funkcijas.
+- **Pridėti atnaujinimo žetonus**. Užtikrinti, kad sukuriami trumpalaikiai žetonai ir ilgo veikimo atnaujinimo žetonai, kurie gali būti naudojami naujiems žetonams gauti, jei senieji baigiasi. Taip pat užtikrinti yra atnaujinimo endpointas ir rotacijos strategija.
 
 ### -1- Sukurkite JWT žetoną
 
-Pradžioje JWT žetonas turi šias dalis:
+Pirmiausia JWT žetonas susideda iš šių dalių:
 
-- **antraštę**, jame nurodomas naudotas algoritmas ir žetono tipas.
-- **keliamus duomenis**, claims, tokius kaip sub (vartotojas arba subjektas, kuriam žetonas atstovauja. Autentifikacijos scenarijuje tai paprastai yra vartotojo ID), exp (kai baigs galioti), role (vartotojo vaidmuo)
-- **parašą**, pasirašytą slaptu arba privačiu raktu.
+- **antraštė**, naudojamas algoritmas ir žetono tipas.
+- **duomenų dalis (payload)**, teiginiai, pvz., sub (vartotojas ar subjektas, kurį žetonas atstovauja, tai dažniausiai vartotojo ID), exp (galiojimo pabaiga), role (vaidmuo)
+- **parašas**, pasirašytas paslaptimi arba privačiu raktu.
 
-Tam reikia sukonstruoti antraštę, keliamus duomenis ir koduotą žetoną.
+Tam reikės sukurti antraštę, duomenų dalį ir užkoduotą žetoną.
 
 **Python**
 
@@ -528,7 +528,7 @@ import jwt
 from jwt.exceptions import ExpiredSignatureError, InvalidTokenError
 import datetime
 
-# Slaptažodis, naudojamas JWT pasirašymui
+# Slaptas raktas, naudojamas JWT pasirašymui
 secret_key = 'your-secret-key'
 
 header = {
@@ -538,25 +538,25 @@ header = {
 
 # vartotojo informacija, jos teiginiai ir galiojimo laikas
 payload = {
-    "sub": "1234567890",               # Tema (vartotojo ID)
+    "sub": "1234567890",               # Subjektas (vartotojo ID)
     "name": "User Userson",                # Pasirinktinis teiginys
     "admin": True,                     # Pasirinktinis teiginys
     "iat": datetime.datetime.utcnow(),# Išduota
-    "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=1)  # Galiojimo pabaiga
+    "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=1)  # Galiojimo laikas
 }
 
 # užkoduoti tai
 encoded_jwt = jwt.encode(payload, secret_key, algorithm="HS256", headers=header)
 ```
 
-Aukščiau esančiame kode:
+Aukščiau kode mes:
 
-- Apibrėžėme antraštę, naudodami HS256 algoritmą ir tipą JWT.
-- Sukonstravome keliamus duomenis, kuriuose yra subjektas arba vartotojo ID, vartotojo vardas, vaidmuo, kada buvo išduotas ir kada baigs galioti, taip įgyvendindami ankstesnę minėtą laike ribotą ypatybę.
+- Aprašėme antraštę naudodami HS256 algoritmą ir JWT tipą.
+- Sukonstravome duomenų dalį, kurioje yra subjektas ar vartotojo ID, vartotojo vardas, vaidmuo, išdavimo laikas ir galiojimo pabaigos laikas, taip įgyvendindami jau aptartą laiko ribotumo aspektą.
 
 **TypeScript**
 
-Čia reikės kelių priklausomybių, kurios padės sukurti JWT žetoną.
+Čia mums reikės priklausomybių, kurios padės sukurti JWT žetoną.
 
 Priklausomybės
 
@@ -566,23 +566,23 @@ npm install jsonwebtoken
 npm install --save-dev @types/jsonwebtoken
 ```
 
-Dabar, kai turime tai vietoje, sukurkime antraštę, keliamus duomenis ir taip sugeneruokime koduotą žetoną.
+Dabar, kai turime tai vietoje, sukurkime antraštę, duomenų dalį ir per tai sukurkime užkoduotą žetoną.
 
 ```typescript
 import jwt from 'jsonwebtoken';
 
 const secretKey = 'your-secret-key'; // Naudokite aplinkos kintamuosius gamyboje
 
-// Apibrėžkite duomenų paketą
+// Apibrėžkite elementą
 const payload = {
   sub: '1234567890',
   name: 'User usersson',
   admin: true,
-  iat: Math.floor(Date.now() / 1000), // Išleista
+  iat: Math.floor(Date.now() / 1000), // Išduota
   exp: Math.floor(Date.now() / 1000) + 60 * 60 // Galioja 1 valandą
 };
 
-// Apibrėžkite antraštę (nebūtina, jsonwebtoken nustato numatytuosius)
+// Apibrėžkite antraštę (neprivaloma, jsonwebtoken nustato numatytuosius)
 const header = {
   alg: 'HS256',
   typ: 'JWT'
@@ -601,19 +601,19 @@ console.log('JWT:', token);
 
 Pasirašytas naudojant HS256
 Galioja 1 valandą
-Įtraukia keliamus duomenis, tokius kaip sub, name, admin, iat ir exp.
+Apima teiginius kaip sub, name, admin, iat ir exp.
 
-### -2- Validuoti žetoną
+### -2- Patikrinkite žetoną
 
-Taip pat turėsime validuoti žetoną, ką turėtume daryti serveryje, kad įsitikintume, ar tai, ką klientas siunčia, yra iš tiesų galiojantis. Turėtume atlikti daug patikrinimų, pradedant struktūros validavimu ir galiojimu. Rekomenduojama pridėti kitus patikrinimus, pvz., ar vartotojas yra mūsų sistemoje ir panašiai.
+Taip pat turėsime patikrinti žetoną, tai reikia daryti serveryje, kad įsitikintume, jog klientas siunčia galiojantį žetoną. Reikia atlikti daug patikrinimų – nuo struktūros iki galiojimo. Rekomenduojama pridėti kitų patikrinimų, pvz., ar vartotojas egzistuoja jūsų sistemoje ir pan.
 
-Norint validuoti žetoną, jį reikia iškoduoti, kad galėtume perskaityti, ir tada pradėti tikrinti galiojimą:
+Kad patikrintume žetoną, turime jį iškoduoti, kad galėtume jį skaityti, tada pradėti tikrinti jo galiojimą:
 
 **Python**
 
 ```python
 
-# Iššifruokite ir patikrinkite JWT
+# Iššifruoti ir patikrinti JWT
 try:
     decoded = jwt.decode(token, secret_key, algorithms=["HS256"])
     print("✅ Token is valid.")
@@ -627,11 +627,11 @@ except InvalidTokenError as e:
 
 ```
 
-Šiame kode mes kviečiame `jwt.decode`, naudodami žetoną, slaptą raktą ir pasirinktą algoritmą kaip įvestį. Atkreipkite dėmesį, kaip naudojame try-catch konstrukciją, nes nepavykus validuoti rašomas klaidos pranešimas.
+Šiame kode kviečiame `jwt.decode` su žetonu, slaptuoju raktu ir pasirinktu algoritmu kaip įvestimi. Atkreipkite dėmesį, kad naudojame try-catch konstrukciją, nes nepavykus patikrai išmetama klaida.
 
 **TypeScript**
 
-Čia turime kviesti `jwt.verify`, kad gautume iškoduotą žetono versiją, kurią galime toliau analizuoti. Jei šis kvietimas nepavyksta, reiškia, kad žetono struktūra neteisinga arba jis nebėra galiojantis.
+Čia reikia iškviesti `jwt.verify`, kad gautume iškoduotą žetono versiją, kurią galime toliau analizuoti. Jei šis kvietimas nepavyksta, tai reiškia, kad žetono struktūra yra neteisinga arba žetonas nebegalioja.
 
 ```typescript
 
@@ -643,18 +643,18 @@ try {
 }
 ```
 
-PASTABA: kaip minėta anksčiau, turėtume atlikti papildomus patikrinimus, kad tikrintume, ar žetonas perteikia vartotoją mūsų sistemoje ir ar vartotojas turi teises, kurias žetonas teigia turintis.
-Toliau pažiūrėkime į vaidmenimis pagrįstą prieigos valdymą, dar žinomą kaip RBAC.
+PASTABA: Kaip minėta anksčiau, turėtume atlikti papildomus patikrinimus, kad įsitikintume, jog šis žetonas rodo į vartotoją mūsų sistemoje ir užtikrintume, kad vartotojas turi teises, kurias jis teigia turintis.
 
-## Vaidmenimis pagrįsto prieigos valdymo pridėjimas
+Dabar pažvelkime į vaidmenimis grįstą prieigos valdymą, dar žinomą kaip RBAC.
+## Rolės pagrindu veikiantis prieigos valdymas
 
-Idėja ta, kad norime išreikšti, kad skirtingi vaidmenys turi skirtingas teises. Pavyzdžiui, laikome, kad administratorius gali daryti viską, paprasti vartotojai gali skaityti/rašyti, o svečiai gali tik skaityti. Todėl čia pateikiamos kelios galimos leidimų lygmenys:
+Idėja yra ta, kad norime išreikšti, jog skirtingos rolės turi skirtingus leidimus. Pavyzdžiui, laikome, kad administratorius gali daryti viską, įprastas vartotojas gali skaityti/rašyti, o svečias gali tik skaityti. Todėl čia yra keletas galimų leidimų lygių:
 
-- Admin.Write  
-- User.Read  
-- Guest.Read  
+- Admin.Write 
+- User.Read
+- Guest.Read
 
-Pažiūrėkime, kaip galime įgyvendinti tokį valdymą su tarpinio sluoksnio programine įranga (middleware). Tarpinio sluoksnio programinę įrangą galima pridėti konkrečiam maršrutui arba visiems maršrutams.
+Pažiūrėkime, kaip galime įgyvendinti tokį valdymą su middleware. Middleware galima pridėti prie konkrečių maršrutų, taip pat ir prie visų maršrutų.
 
 **Python**
 
@@ -663,7 +663,7 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.responses import JSONResponse
 import jwt
 
-# NETURĖKITE slaptumo kode, tai skirta tik demonstravimo tikslams. Skaitykite jį iš saugios vietos.
+# NETURĖKITE slapto rakto kode, pavyzdžiui, tai yra tik demonstraciniais tikslais. Skaitykite jį iš saugios vietos.
 SECRET_KEY = "your-secret-key" # įdėkite tai į aplinkos kintamąjį
 REQUIRED_PERMISSION = "User.Read"
 
@@ -690,8 +690,8 @@ class JWTPermissionMiddleware(BaseHTTPMiddleware):
 
 
 ```
-  
-Yra kelios skirtingos būdo pridėti tarpinio sluoksnio programinę įrangą, kaip parodyta žemiau:
+
+Yra keletas skirtingų būdų pridėti middleware, pavyzdžiui:
 
 ```python
 
@@ -702,7 +702,7 @@ middleware = [
 
 app = Starlette(routes=routes, middleware=middleware)
 
-# Alt 2: pridėti tarpinį programinį sluoksnį po to, kai starlette programa jau yra sukurta
+# Alt 2: pridėti tarpinį programinį sluoksnį po to, kai starlette programa jau sukurta
 starlette_app.add_middleware(JWTPermissionMiddleware)
 
 # Alt 3: pridėti tarpinį programinį sluoksnį kiekvienam maršrutui
@@ -714,17 +714,17 @@ routes = [
     )
 ]
 ```
-  
+
 **TypeScript**
 
-Galime naudoti `app.use` ir tarpinio sluoksnio programinę įrangą, kuri veiks visiems užklausoms.
+Galime naudoti `app.use` ir middleware, kuris veiks visiems užklausoms.
 
 ```typescript
 app.use((req, res, next) => {
     console.log('Request received:', req.method, req.url, req.headers);
     console.log('Headers:', req.headers["authorization"]);
 
-    // 1. Patikrinkite, ar siunčiamas autorizacijos antraštė
+    // 1. Patikrinkite, ar buvo išsiųstas autorizacijos antraštė
 
     if(!req.headers["authorization"]) {
         res.status(401).send('Unauthorized');
@@ -747,7 +747,7 @@ app.use((req, res, next) => {
     }
     console.log("User exists");
 
-    // 4. Patvirtinkite, kad žetonas turi tinkamas teises
+    // 4. Patvirtinkite, kad žetonas turi teisingas teises
     if(!hasScopes(token, ["User.Read"])){
         res.status(403).send('Forbidden - insufficient scopes');
     }
@@ -759,12 +759,12 @@ app.use((req, res, next) => {
 });
 
 ```
-  
-Yra daug dalykų, kuriuos galime leisti mūsų tarpinio sluoksnio programinei įrangai daryti IR ką ji TURĖTŲ daryti, būtent:
 
-1. Patikrinti, ar yra autorizacijos antraštė (authorization header).  
-2. Patikrinti, ar tokenas yra galiojantis, mes kviečiame `isValid`, kuri yra mūsų parašytas metodas, tikrinantis JWT tokeno vientisumą ir galiojimą.  
-3. Patikrinti, ar vartotojas egzistuoja mūsų sistemoje, tai turėtume patikrinti. 
+Yra nemažai dalykų, kuriuos galime leisti mūsų middleware atlikti ir kuriuos mūsų middleware TURĖTŲ daryti, būtent:
+
+1. Patikrinti, ar yra autorizacijos antraštė
+2. Patikrinti, ar žetonas yra galiojantis, mes kviečiame `isValid` metodą, kurį parašėme patikrinimui dėl JWT žetono integralumo ir galiojimo.
+3. Patikrinti, ar vartotojas egzistuoja mūsų sistemoje, tai būtina patikrinti.
 
    ```typescript
     // vartotojai duomenų bazėje
@@ -776,28 +776,28 @@ Yra daug dalykų, kuriuos galime leisti mūsų tarpinio sluoksnio programinei į
    function isExistingUser(token) {
      let decodedToken = verifyToken(token);
 
-     // TODO, patikrinti, ar vartotojas egzistuoja duomenų bazėje
+     // TODO, patikrinti ar vartotojas egzistuoja duomenų bazėje
      return users.includes(decodedToken?.name || "");
    }
    ```
-  
-Aukščiau sukūrėme labai paprastą `users` sąrašą, kuris žinoma turėtų būti duomenų bazėje.
 
-4. Be to, turėtume tikrinti, ar tokenas turi teisingas teises.
+   Aukščiau sukūrėme labai paprastą `users` sąrašą, kuris, žinoma, turėtų būti duomenų bazėje.
+
+4. Be to, reikėtų patikrinti, ar žetonas turi tinkamus leidimus.
 
    ```typescript
    if(!hasScopes(token, ["User.Read"])){
         res.status(403).send('Forbidden - insufficient scopes');
    }
    ```
-  
-Šiame aukščiau esančiame kode iš tarpinio sluoksnio programinės įrangos mes tikriname, ar tokenas turi User.Read leidimą, jei ne, grąžiname 403 klaidą. Žemiau pateiktas `hasScopes` pagalbinis metodas.
+
+   Šiame middleware kode aukščiau tikriname, ar žetonas turi User.Read leidimą, jei ne, siunčiame 403 klaidą. Žemiau yra `hasScopes` pagalbinė funkcija.
 
    ```typescript
    function hasScopes(scope: string, requiredScopes: string[]) {
      let decodedToken = verifyToken(scope);
     return requiredScopes.every(scope => decodedToken?.scopes.includes(scope));
-  }  
+  }
    ```
 
 Have a think which additional checks you should be doing, but these are the absolute minimum of checks you should be doing.
@@ -839,16 +839,16 @@ app.use((err, req, res, next) => {
 });
 
 ```
-  
-Dabar matėme, kaip tarpinio sluoksnio programinę įrangą galima naudoti tiek autentifikavimui, tiek autorizacijai, o kaip dėl MCP? Ar tai keičia, kaip mes atliekame autentifikaciją? Sužinokime kitame skyriuje.
+
+Dabar jūs matėte, kaip middleware gali būti naudojamas tiek autentifikavimui, tiek autorizacijai, tačiau kaip dėl MCP, ar tai keičia mūsų autentifikavimo būdą? Sužinosime kitoje skiltyje.
 
 ### -3- Pridėti RBAC prie MCP
 
-Iki šiol matėte, kaip RBAC galima pridėti per tarpinio sluoksnio programinę įrangą, tačiau MCP atveju nėra lengvo būdo pridėti RBAC kiekvienai MCP funkcijai, tai ką daryti? Tiesiog turime pridėti tokią kodo dalį, kuri tikrina, ar klientas turi teises naudoti konkretų įrankį:
+Iki šiol matėte, kaip galite pridėti RBAC per middleware, tačiau MCP atveju nėra paprasto būdo pridėti RBAC kiekvienai MCP funkcijai, ką daryti? Įprastai tiesiog pridedame tokį kodą, kuris tikrina, ar klientas turi teisę kviesti tam tikrą įrankį:
 
-Galite pasirinkti keletą skirtingų būdų, kaip įgyvendinti RBAC kiekvienai funkcijai, čia keletas jų:
+Turite keletą variantų, kaip įgyvendinti per funkciją veikiantį RBAC, štai keletas:
 
-- Pridėti patikrinimą kiekvienam įrankiui, ištekliui, užklausai, kur reikia patikrinti leidimo lygį.
+- Pridėti patikrinimą kiekvienam įrankiui, šaltiniui, raginimui, kur reikia patikrinti leidimų lygį.
 
    **python**
 
@@ -858,9 +858,9 @@ Galite pasirinkti keletą skirtingų būdų, kaip įgyvendinti RBAC kiekvienai f
       try:
           check_permissions(role="Admin.Write", request)
       catch:
-        pass # klientas nepavyko patvirtinti, iškelkite patvirtinimo klaidą
+        pass # klientas nepavyko autorizuoti, padidinkite autorizacijos klaidą
    ```
-  
+
    **typescript**
 
    ```typescript
@@ -875,7 +875,7 @@ Galite pasirinkti keletą skirtingų būdų, kaip įgyvendinti RBAC kiekvienai f
       
       try {
         checkPermissions("Admin.Write", request);
-        // daroma, siųsti id į productService ir nuotolinį įrašą
+        // daroma, siųsti id į productService ir nuotolinę įrašą
       } catch(Exception e) {
         console.log("Authorization error, you're not allowed");  
       }
@@ -888,7 +888,7 @@ Galite pasirinkti keletą skirtingų būdų, kaip įgyvendinti RBAC kiekvienai f
    ```
 
 
-- Naudoti pažengusį serverio požiūrį ir užklausų tvarkykles, kad sumažintumėte vietų, kur reikia atlikti patikrinimą, skaičių.
+- Naudoti pažangesnį serverio metodą ir užklausų tvarkytojus, kad sumažintumėte vietų, kur reikia atlikti patikrinimą, skaičių.
 
    **Python**
 
@@ -900,7 +900,7 @@ Galite pasirinkti keletą skirtingų būdų, kaip įgyvendinti RBAC kiekvienai f
    }
 
    def has_permission(user_permissions, required_permissions) -> bool:
-      # user_permissions: naudotojo turimų leidimų sąrašas
+      # user_permissions: vartotojo turimų leidimų sąrašas
       # required_permissions: įrankiui reikalingų leidimų sąrašas
       return any(perm in user_permissions for perm in required_permissions)
 
@@ -908,11 +908,11 @@ Galite pasirinkti keletą skirtingų būdų, kaip įgyvendinti RBAC kiekvienai f
    async def handle_call_tool(
      name: str, arguments: dict[str, str] | None
    ) -> list[types.TextContent]:
-    # Tarkime, kad request.user.permissions yra naudotojo leidimų sąrašas
+    # Tarkime, request.user.permissions yra vartotojo leidimų sąrašas
      user_permissions = request.user.permissions
      required_permissions = tool_permission.get(name, [])
      if not has_permission(user_permissions, required_permissions):
-        # Iškelkite klaidą „Jūs neturite leidimo naudoti įrankį {name}“
+        # Išmesti klaidą "Jūs neturite leidimo kviesti įrankį {name}"
         raise Exception(f"You don't have permission to call tool {name}")
      # tęsti ir iškviesti įrankį
      # ...
@@ -924,7 +924,7 @@ Galite pasirinkti keletą skirtingų būdų, kaip įgyvendinti RBAC kiekvienai f
    ```typescript
    function hasPermission(userPermissions: string[], requiredPermissions: string[]): boolean {
        if (!Array.isArray(userPermissions) || !Array.isArray(requiredPermissions)) return false;
-       // Grąžina true, jei vartotojas turi bent vieną reikiamą leidimą
+       // Grąžinti true, jei vartotojas turi bent vieną reikalingą leidimą
        
        return requiredPermissions.some(perm => userPermissions.includes(perm));
    }
@@ -938,53 +938,53 @@ Galite pasirinkti keletą skirtingų būdų, kaip įgyvendinti RBAC kiekvienai f
          return new Error(`You don't have permission to call ${name}`);
       }
   
-      // tęskite..
+      // tęsti..
    });
    ```
-  
-   Atkreipkite dėmesį, kad turite užtikrinti, jog jūsų tarpinio sluoksnio programinė įranga priskiria dekoduotą tokeną užklausos user savybei, kad aukščiau esantis kodas būtų paprastas.
+
+   Atkreipkite dėmesį, kad turite užtikrinti, jog jūsų middleware priskiria dekoduotą žetoną užklausos vartotojo savybei, kad aukščiau pateiktas kodas būtų paprastas.
 
 ### Apibendrinimas
 
-Dabar, kai aptarėme, kaip pridėti RBAC palaikymą apskritai ir konkrečiai MCP, atėjo laikas pabandyti įgyvendinti saugumą savarankiškai, kad įsitikintumėte, kad supratote pateiktas koncepcijas.
+Dabar, kai aptarėme, kaip pridėti RBAC bendruoju atveju ir MCP atveju, metas pabandyti įgyvendinti saugumą patiems, kad įsitikintumėte, jog supratote pristatytas sąvokas.
 
-## Užduotis 1: Sukurkite MCP serverį ir MCP klientą naudodami pagrindinę autentifikaciją
+## Užduotis 1: Sukurkite mcp serverį ir mcp klientą naudodami bazinę autentifikaciją
 
-Čia panaudosite tai, ko išmokote siųsdami prisijungimo duomenis per antraštes.
+Čia taikysite tai, ką išmokote siųsdami kredencialus per antraštes.
 
 ## Sprendimas 1
 
-[Solution 1](./code/basic/README.md)
+[Sprendimas 1](./code/basic/README.md)
 
-## Užduotis 2: Atnaujinkite sprendimą iš Užduoties 1 naudoti JWT
+## Užduotis 2: Patobulinkite sprendimą iš Užduoties 1 naudodami JWT
 
-Paimkite pirmą sprendimą, bet šį kartą jį patobulinkime.
+Imkite pirmą sprendimą, bet šį kartą patobulinkime jį.
 
-Vietoje Basic Auth naudokime JWT.
+Vietoj Basic Auth naudosime JWT.
 
 ## Sprendimas 2
 
-[Solution 2](./solution/jwt-solution/README.md)
+[Sprendimas 2](./solution/jwt-solution/README.md)
 
 ## Iššūkis
 
-Pridėkite RBAC kiekvienam įrankiui, kaip aprašyta skyriuje "Pridėti RBAC prie MCP".
+Pridėkite RBAC pagal įrankį, kaip aprašyta skiltyje „Pridėti RBAC prie MCP“.
 
 ## Santrauka
 
-Tikimės, kad šioje pamokoje daug ko išmokote, nuo visiško saugumo trūkumo, iki pagrindinio saugumo, iki JWT ir kaip jį galima pridėti prie MCP.
+Tikimės, kad išmokote daug šiame skyriuje — nuo visiškos apsaugos nebuvimo, per pagrindinį saugumą, iki JWT ir kaip jis gali būti pridėtas prie MCP.
 
-Mes sukūrėme tvirtą pagrindą su individualiais JWT, tačiau augant pereiname prie standartizuoto tapatybės modelio. Pasirinkus IdP, kaip Entra ar Keycloak, galime perleisti tokenų išdavimo, patikrinimo ir gyvavimo valdymą patikimai platformai — taip galime sutelkti dėmesį į programos logiką ir vartotojo patirtį.
+Mes sukūrėme tvirtus pagrindus su individualiais JWT, bet augant sistemai judame link standartizuoto tapatybės modelio. Naudodami IdP, kaip Entra ar Keycloak, galime perkelti žetonų išdavimo, tikrinimo ir gyvavimo valdymą į patikimą platformą — taip galime daugiau dėmesio skirti programos logikai ir vartotojo patirčiai.
 
-Dėl to turime išsamesnį [pažangų skyrių apie Entrą](../../05-AdvancedTopics/mcp-security-entra/README.md)
+Dėl to turime pažangesnę [temą apie Entra](../../05-AdvancedTopics/mcp-security-entra/README.md)
 
 ## Kas toliau
 
-- Toliau: [MCP kompiuterių įrenginių nustatymas](../12-mcp-hosts/README.md)
+- Toliau: [MCP prieglobos nustatymas](../12-mcp-hosts/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Atsakomybės apribojimas**:
-Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, atkreipkite dėmesį, kad automatiniai vertimai gali turėti klaidų arba netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Esant svarbiai informacijai rekomenduojame naudotis profesionalaus žmogaus vertimu. Mes neatsakom už bet kokius nesusipratimus ar neteisingus interpretavimus, kilusius naudojantis šiuo vertimu.
+Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, atkreipkite dėmesį, kad automatizuoti vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas savo gimtąja kalba turi būti laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojamas profesionalus žmogaus vertimas. Mes neprisiimame atsakomybės už bet kokius nesusipratimus ar klaidingas interpretacijas, kylančias dėl šio vertimo naudojimo.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
