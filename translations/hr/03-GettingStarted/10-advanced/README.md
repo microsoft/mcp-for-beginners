@@ -1,13 +1,13 @@
 # Napredno korištenje servera
 
-U MCP SDK postoje dva različita tipa servera, vaš obični server i niskorazinski server. Obično biste koristili redovni server za dodavanje značajki. Međutim, u nekim slučajevima želite se osloniti na niskorazinski server kao što su:
+U MCP SDK postoje dva različita tipa servera, vaš normalni server i low-level server. Obično koristite regularni server za dodavanje značajki. Međutim, u nekim slučajevima želite koristiti low-level server, kao na primjer:
 
-- Bolja arhitektura. Moguće je kreirati čistu arhitekturu i s redovnim serverom i niskorazinskim serverom, ali može se tvrditi da je nešto lakše s niskorazinskim serverom.
-- Dostupnost značajki. Neke napredne značajke mogu se koristiti samo s niskorazinskim serverom. To ćete vidjeti u kasnijim poglavljima kada dodajemo uzorkovanje i izzivanje.
+- Bolja arhitektura. Moguće je kreirati čistu arhitekturu s regularnim serverom i low-level serverom, ali može se tvrditi da je to malo lakše s low-level serverom.
+- Dostupnost značajki. Neke napredne značajke mogu se koristiti samo s low-level serverom. To ćete vidjeti u kasnijim poglavljima kada dodajemo uzorkovanje i prikupljanje.
 
-## Redovni server vs niskorazinski server
+## Regularni server vs low-level server
 
-Evo kako izgleda stvaranje MCP Servera s redovnim serverom
+Evo kako izgleda kreiranje MCP servera s regularnim serverom
 
 **Python**
 
@@ -42,16 +42,16 @@ server.registerTool("add",
 );
 ```
 
-Poanta je da eksplicitno dodajete svaki alat, resurs ili prompt koji želite da server ima. Nema ništa loše u tome.
+Poanta je da eksplicitno dodajete svaki alat, resurs ili upit koji želite da server ima. Nema ništa loše u tome.
 
-### Pristup niskorazinskog servera
+### Pristup low-level servera
 
-Međutim, kad koristite pristup niskorazinskog servera, trebate razmišljati drugačije, naime umjesto registracije svakog alata stvarate dva handlera po tipu značajke (alat, resurs ili prompt). Dakle, na primjer, alati tada imaju samo dvije funkcije ovako:
+Međutim, kada koristite pristup low-level servera morate razmišljati drugačije. Umjesto da registrirate svaki alat, kreirate dvije funkcije po tipu značajke (alati, resursi ili upiti). Na primjer, za alate postoje samo dvije funkcije:
 
-- Nabrajanje svih alata. Jedna funkcija je odgovorna za sve pokušaje nabrajanja alata.
-- Obrada poziva svih alata. Također, postoji samo jedna funkcija koja obrađuje poziv alata.
+- Nabrajanje svih alata. Jedna funkcija će biti odgovorna za sve pokušaje nabrajanja alata.
+- Obrada poziva svih alata. Ovdje također postoji samo jedna funkcija koja obrađuje pozive na alat.
 
-Zvui kao potencijalno manje posla, zar ne? Dakle, umjesto registracije alata, samo trebam osigurati da alat bude naveden kad nabrajam sve alate i da se pozove kad postoji dolazni zahtjev za poziv alata.
+To zvuči kao manje posla, zar ne? Umjesto registracije alata, samo trebam osigurati da je alat naveden kada nabrajam sve alate i da se pozove kada stigne zahtjev za poziv alata.
 
 Pogledajmo kako sada izgleda kod:
 
@@ -68,8 +68,8 @@ async def handle_list_tools() -> list[types.Tool]:
             inputSchema={
                 "type": "object",
                 "properties": {
-                    "a": {"type": "number", "description": "nubmer to add"}, 
-                    "b": {"type": "number", "description": "nubmer to add"}
+                    "a": {"type": "number", "description": "number to add"}, 
+                    "b": {"type": "number", "description": "number to add"}
                 },
                 "required": ["query"],
             },
@@ -81,7 +81,7 @@ async def handle_list_tools() -> list[types.Tool]:
 
 ```typescript
 server.setRequestHandler(ListToolsRequestSchema, async (request) => {
-  // Vraća popis registriranih alata
+  // Vrati popis registriranih alata
   return {
     tools: [{
         name="add",
@@ -89,8 +89,8 @@ server.setRequestHandler(ListToolsRequestSchema, async (request) => {
         inputSchema={
             "type": "object",
             "properties": {
-                "a": {"type": "number", "description": "nubmer to add"}, 
-                "b": {"type": "number", "description": "nubmer to add"}
+                "a": {"type": "number", "description": "number to add"}, 
+                "b": {"type": "number", "description": "number to add"}
             },
             "required": ["query"],
         }
@@ -99,7 +99,7 @@ server.setRequestHandler(ListToolsRequestSchema, async (request) => {
 });
 ```
 
-Ovdje sada imamo funkciju koja vraća listu značajki. Svaki unos u popisu alata sada ima polja poput `name`, `description` i `inputSchema` da odgovara tipu povratka. To nam omogućuje da naše alate i definiciju značajki stavimo negdje drugdje. Sada možemo stvoriti sve naše alate u mapi tools i isto vrijedi za sve vaše značajke pa vaš projekt može odjednom biti organiziran ovako:
+Ovdje sada imamo funkciju koja vraća popis značajki. Svaki unos u popisu alata sada ima polja poput `name`, `description` i `inputSchema` da udovolji tipu povratne vrijednosti. To nam omogućuje da alate i definicije značajki držimo negdje drugdje. Sada možemo kreirati sve naše alate u mapi tools i isto vrijedi za sve vaše značajke pa vaš projekt može biti organiziran ovako:
 
 ```text
 app
@@ -113,9 +113,9 @@ app
 ----| product-description
 ```
 
-Super, naša arhitektura može biti vrlo uredna.
+Odlično, naša arhitektura može biti vrlo čista.
 
-A što je s pozivanjem alata, je li to ista ideja, jedan handler za pozivanje bilo kojeg alata? Da, točno, evo koda za to:
+Što je s pozivanjem alata, je li ideja ista, jedan handler za pozivanje bilo kojeg alata? Da, upravo tako, evo koda za to:
 
 **Python**
 
@@ -166,18 +166,18 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 });
 ```
 
-Kao što vidite iz gornjeg koda, trebamo izdvojiti alat za pozivati i s kojim argumentima, a zatim nastaviti s pozivanjem alata.
+Kao što vidite iz gornjeg koda, moramo parsirati koji alat treba pozvati i s kojim argumentima, a zatim nastaviti s pozivanjem alata.
 
 ## Poboljšanje pristupa s validacijom
 
-Dosad ste vidjeli kako se sve registracije za dodavanje alata, resursa i promptova mogu zamijeniti s ta dva handlera po tipu značajke. Što još trebamo napraviti? Pa, trebali bismo dodati neki oblik validacije kako bismo osigurali da je alat pozvan s ispravnim argumentima. Svaki runtime ima vlastito rješenje za to, na primjer Python koristi Pydantic, a TypeScript koristi Zod. Ideja je da napravimo sljedeće:
+Do sada ste vidjeli kako se sve vaše registracije za dodavanje alata, resursa i upita mogu zamijeniti s dvije funkcije po tipu značajke. Što još trebamo napraviti? Trebali bismo dodati neku vrstu validacije da osiguramo da se alat poziva s ispravnim argumentima. Svako runtime okruženje ima svoje rješenje za to, na primjer Python koristi Pydantic, a TypeScript koristi Zod. Ideja je da napravimo sljedeće:
 
-- Premjestimo logiku za kreiranje značajke (alat, resurs ili prompt) u njegovu namjensku mapu.
-- Dodamo način za validaciju dolaznog zahtjeva koji traži, na primjer, pozivanje alata.
+- Premjestimo logiku za kreiranje značajke (alatat, resurs ili upit) u njenu namjensku mapu.
+- Dodamo način da se validira dolazni zahtjev za poziv alata.
 
 ### Kreiranje značajke
 
-Da bismo kreirali značajku, morat ćemo napraviti datoteku za tu značajku i osigurati da sadrži obavezna polja zahtijevana za tu značajku. Koja se polja razlikuju između alata, resursa i promptova.
+Za kreiranje značajke trebamo napraviti datoteku za tu značajku i osigurati da ima obavezna polja koja ta značajka zahtijeva. Koja se polja razlikuju između alata, resursa i upita.
 
 **Python**
 
@@ -195,12 +195,12 @@ from .schema import AddInputModel
 
 async def add_handler(args) -> float:
     try:
-        # Validiraj unos koristeći Pydantic model
+        # Provjeri unos koristeći Pydantic model
         input_model = AddInputModel(**args)
     except Exception as e:
         raise ValueError(f"Invalid input: {str(e)}")
 
-    # TODO: dodaj Pydantic, kako bismo mogli kreirati AddInputModel i validirati argumente
+    # TODO: dodaj Pydantic, tako da možemo kreirati AddInputModel i provjeriti argumenate
 
     """Handler function for the add tool."""
     return float(input_model.a) + float(input_model.b)
@@ -213,21 +213,21 @@ tool_add = {
 }
 ```
 
-ovdje možete vidjeti kako radimo sljedeće:
+Ovdje možete vidjeti kako radimo sljedeće:
 
 - Kreiramo shemu koristeći Pydantic `AddInputModel` s poljima `a` i `b` u datoteci *schema.py*.
-- Pokušavamo parsirati dolazni zahtjev kao tip `AddInputModel`; ako postoji neslaganje u parametrima, to će uzrokovati grešku:
+- Pokušavamo parsirati dolazni zahtjev da bude tipa `AddInputModel`, ako postoji nesklad u parametrima, to će se srušiti:
 
    ```python
    # add.py
     try:
-        # Provjerite unos pomoću Pydantic modela
+        # Validirajte unos korištenjem Pydantic modela
         input_model = AddInputModel(**args)
     except Exception as e:
         raise ValueError(f"Invalid input: {str(e)}")
    ```
 
-Možete odabrati hoćete li ovu logiku parsiranja staviti u sam poziv alata ili u handler funkciju.
+Možete odlučiti hoćete li ovu logiku parsiranja staviti u sam poziv alata ili u handler funkciju.
 
 **TypeScript**
 
@@ -288,7 +288,7 @@ export default {
 } as Tool;
 ```
 
-- U handleru koji obrađuje sve pozive alata sad pokušavamo parsirati dolazni zahtjev u shemu definiranu za alat:
+- U handleru koji obrađuje sve pozive alata sada pokušavamo parsirati dolazni zahtjev u definiranu shemu alata:
 
     ```typescript
     const Schema = tool.rawSchema;
@@ -297,27 +297,27 @@ export default {
        const input = Schema.parse(request.params.arguments);
     ```
 
-  ako to uspije, nastavljamo s pozivanjem stvarnog alata:
+    ako to uspije, nastavljamo s pozivanjem samog alata:
 
     ```typescript
     const result = await tool.callback(input);
     ```
 
-Kao što vidite, ovaj pristup stvara izvrsnu arhitekturu jer sve ima svoje mjesto; *server.ts* je vrlo mala datoteka koja samo povezuje zahvalnice zahtjeva, a svaka značajka je u svojoj odgovarajućoj mapi tj. tools/, resources/ ili /prompts.
+Kao što vidite, ovaj pristup kreira izvrsnu arhitekturu jer sve ima svoje mjesto, *server.ts* je vrlo mala datoteka koja samo povezuje request handlere, a svaka značajka je u svojoj mapi, npr. tools/, resources/ ili prompts/.
 
-Odlično, pokušajmo to sada izgraditi.
+Super, pokušajmo to sada izgraditi.
 
-## Vježba: Kreiranje niskorazinskog servera
+## Vježba: Kreiranje low-level servera
 
-U ovoj vježbi ćemo napraviti sljedeće:
+U ovoj vježbi učinit ćemo sljedeće:
 
-1. Kreirati niskorazinski server koji obrađuje nabrajanje alata i pozivanje alata.
-1. Implementirati arhitekturu na kojoj možete graditi dalje.
-1. Dodati validaciju da osiguramo ispravno validirane pozive alata.
+1. Kreirati low-level server za rukovanje nabrajanjem alata i pozivanjem alata.
+1. Implementirati arhitekturu na kojoj možete graditi.
+1. Dodati validaciju da osigurate da su vaši pozivi alata ispravno validirani.
 
-### -1- Kreiranje arhitekture
+### -1- Kreirati arhitekturu
 
-Prvo što trebamo riješiti je arhitektura koja nam pomaže da lako skaliramo dok dodajemo nove značajke, evo kako izgleda:
+Prvo što trebamo riješiti je arhitektura koja nam pomaže da skaliramo dok dodajemo više značajki, evo kako to izgleda:
 
 **Python**
 
@@ -340,11 +340,11 @@ server.ts
 client.ts
 ```
 
-Sada smo postavili arhitekturu koja osigurava da možemo lako dodavati nove alate u mapu tools. Slobodno koristite ovaj pristup za dodavanje poddirektorija za resurse i promptove.
+Sada smo postavili arhitekturu koja osigurava da lako možemo dodavati nove alate u mapu tools. Slobodno napravite poddirektorije za resources i prompts.
 
 ### -2- Kreiranje alata
 
-Pogledajmo kako izgleda kreiranje alata. Prvo, mora biti napravljen u njegovom *tool* poddirektoriju ovako:
+Pogledajmo kako izgleda kreiranje alata. Prvo, mora biti stvoren u poddirektoriju *tool* ovako:
 
 **Python**
 
@@ -353,12 +353,12 @@ from .schema import AddInputModel
 
 async def add_handler(args) -> float:
     try:
-        # Validirajte unos koristeći Pydantic model
+        # Validiraj unos koristeći Pydantic model
         input_model = AddInputModel(**args)
     except Exception as e:
         raise ValueError(f"Invalid input: {str(e)}")
 
-    # TODO: dodajte Pydantic, tako da možemo napraviti AddInputModel i validirati argumente
+    # TODO: dodaj Pydantic, tako da možemo kreirati AddInputModel i validirati argumente
 
     """Handler function for the add tool."""
     return float(input_model.a) + float(input_model.b)
@@ -371,9 +371,9 @@ tool_add = {
 }
 ```
 
-Ovdje vidimo kako definiramo ime, opis, ulaznu shemu koristeći Pydantic i handler koji će se pozvati kad se alat pozove. Na kraju izlažemo `tool_add` što je rječnik koji drži sve te karakteristike.
+Ovdje vidimo kako definiramo ime, opis i ulaznu shemu koristeći Pydantic i handler koji će se pozvati kada se alat pozove. Na kraju izlažemo `tool_add` koji je rječnik koji drži sve ove stvari.
 
-Tu je i *schema.py* koji se koristi za definiranje ulazne sheme koju naš alat koristi:
+Postoji i *schema.py* koji definira ulaznu shemu koju alat koristi:
 
 ```python
 from pydantic import BaseModel
@@ -383,7 +383,7 @@ class AddInputModel(BaseModel):
     b: float
 ```
 
-Također, moramo popuniti *__init__.py* kako bismo osigurali da se mapa tools tretira kao modul. Dodatno, moramo izložiti module unutar nje ovako:
+Također moramo popuniti *__init__.py* kako bi direktorij tools bio tretiran kao modul. Osim toga, moramo izložiti module unutar njega ovako:
 
 ```python
 from .add import tool_add
@@ -393,7 +393,7 @@ tools = {
 }
 ```
 
-U ovu datoteku možemo nastaviti dodavati kako dodajemo nove alate.
+Možemo nastaviti dodavati u ovu datoteku kako dodajemo više alata.
 
 **TypeScript**
 
@@ -414,14 +414,14 @@ export default {
 } as Tool;
 ```
 
-Ovdje stvaramo rječnik koji se sastoji od svojstava:
+Ovdje kreiramo rječnik sastavljen od svojstava:
 
 - name, ime alata.
-- rawSchema, to je Zod shema koja će se koristiti za validaciju dolaznih zahtjeva za pozivanje ovog alata.
-- inputSchema, ova shema će se koristiti u handleru.
-- callback, služi za pozivanje alata.
+- rawSchema, to je Zod shema koja se koristi za validaciju dolaznih zahtjeva poziva alata.
+- inputSchema, ova shema se koristi u handleru.
+- callback, ovo se koristi za pozivanje alata.
 
-Postoji i `Tool` koji služi za pretvaranje ovog rječnika u tip koji MCP server handler može prihvatiti i izgleda ovako:
+Postoji i `Tool` koji pretvara ovaj rječnik u tip koji mcp server handler može prihvatiti i izgleda ovako:
 
 ```typescript
 import { z } from 'zod';
@@ -434,7 +434,7 @@ export interface Tool {
 }
 ```
 
-I tu je *schema.ts* gdje pohranjujemo ulazne sheme za svaki alat koje trenutno izgleda ovako s jednom shemom, ali kako dodajemo alate možemo dodati više unosa:
+Također postoji *schema.ts* gdje pohranjujemo ulazne sheme za svaki alat koji izgleda ovako, trenutno samo sa jednom shemom, ali kako dodajemo alate može biti više unosa:
 
 ```typescript
 import { z } from 'zod';
@@ -442,11 +442,11 @@ import { z } from 'zod';
 export const MathInputSchema = z.object({ a: z.number(), b: z.number() });
 ```
 
-Super, krenimo sada s obradom nabrajanja alata.
+Super, nastavimo s rukovanjem nabrajanjem naših alata.
 
-### -3- Obrada nabrajanja alata
+### -3- Rukovanje nabrajanjem alata
 
-Dalje, da bismo obradili nabrajanje alata, trebamo postaviti handler zahtjeva za to. Evo što trebamo dodati u našu server datoteku:
+Sljedeće, za rukovanje nabrajanjem alata, trebamo postaviti request handler za to. Evo što trebamo dodati u naš server file:
 
 **Python**
 
@@ -470,11 +470,11 @@ async def handle_list_tools() -> list[types.Tool]:
     return tool_list
 ```
 
-Ovdje dodajemo dekorator `@server.list_tools` i implementirajuću funkciju `handle_list_tools`. U potonjoj trebamo proizvesti popis alata. Primijetite da svaki alat mora imati ime, opis i ulaznu shemu.
+Ovdje dodajemo dekorator `@server.list_tools` i implementiramo funkciju `handle_list_tools`. U njoj trebamo proizvesti listu alata. Obratite pažnju da svaki alat treba imati name, description i inputSchema.
 
 **TypeScript**
 
-Za postavljanje handlera zahtjeva za nabrajanje alata, potrebno je pozvati `setRequestHandler` na serveru s shemom koja odgovara onome što želimo, u ovom slučaju `ListToolsRequestSchema`.
+Da bismo postavili request handler za nabrajanje alata, trebamo pozvati `setRequestHandler` na serveru sa shemom koja odgovara onome što radimo, u ovom slučaju `ListToolsRequestSchema`.
 
 ```typescript
 // index.ts
@@ -488,26 +488,26 @@ tools.push(addTool);
 tools.push(subtractTool);
 
 // server.ts
-// kod izostavljen radi sažetosti
+// kod izostavljen zbog sažetka
 import { tools } from './tools/index.js';
 
 server.setRequestHandler(ListToolsRequestSchema, async (request) => {
-  // Vraća popis registriranih alata
+  // Vrati popis registriranih alata
   return {
     tools: tools
   };
 });
 ```
 
-Super, sada smo riješili dio nabrajanja alata, pogledajmo kako pozivati alate.
+Odlično, sada smo riješili dio za nabrajanje alata, pogledajmo kako možemo pozivati alate.
 
-### -4- Obrada poziva alata
+### -4- Rukovanje pozivanjem alata
 
-Da pozovemo alat, trebamo postaviti još jednog handlera zahtjeva, ovaj put fokusiranog na obradu zahtjeva koji specificira koju značajku pozvati i s kojim argumentima.
+Za pozivanje alata, trebamo postaviti još jedan request handler, ovaj put fokusiran na zahtjev koji specificira koju značajku pozvati i s kojim argumentima.
 
 **Python**
 
-Koristimo dekorator `@server.call_tool` i implementiramo ga funkcijom poput `handle_call_tool`. Unutar te funkcije trebamo izvaditi ime alata, njegove argumente i osigurati da su argumenti valjani za dotični alat. Validaciju argumenata možemo napraviti u ovoj funkciji ili dalje u samom alatu.
+Upotrijebimo dekorator `@server.call_tool` i implementirajmo ga funkcijom poput `handle_call_tool`. U toj funkciji trebamo parsirati ime alata, njegove argumente i osigurati da su argumenti valjani za dotični alat. Validaciju argumenata možemo napraviti u ovoj funkciji ili dublje u samom alatu.
 
 ```python
 @server.call_tool()
@@ -535,30 +535,31 @@ async def handle_call_tool(
 
 Evo što se događa:
 
-- Ime našeg alata već je prisutno kao ulazni parametar `name`, dok su argumenti u obliku rječnika `arguments`.
-- Alat se poziva s `result = await tool["handler"](../../../../03-GettingStarted/10-advanced/arguments)`. Validacija argumenata događa se u `handler` svojstvu koje ukazuje na funkciju, ako to ne uspije, bit će podignuta iznimka.
+- Ime našeg alata već je prisutno kao ulazni parametar `name` što vrijedi i za argumente u rječniku `arguments`.
 
-Tu imamo potpuno razumijevanje nabrajanja i pozivanja alata koristeći niskorazinski server.
+- Alat se poziva s `result = await tool["handler"](../../../../03-GettingStarted/10-advanced/arguments)`. Validacija argumenata događa se u `handler` svojstvu koje pokazuje na funkciju, a ako ne uspije bit će podignut izuzetak.
 
-Pogledajte [cjeloviti primjer](./code/README.md) ovdje
+Eto, sada imamo potpuno razumijevanje nabrajanja i pozivanja alata koristeći low-level server.
+
+Pogledajte [cijeli primjer](./code/README.md) ovdje
 
 ## Zadatak
 
-Proširite postojeći kod s nekoliko alata, resursa i promptova i razmislite kako primjećujete da trebate dodavati datoteke samo u direktorij tools, a nigdje drugo.
+Proširite dobiveni kod s nekoliko alata, resursa i upita i razmislite kako primjećujete da samo trebate dodavati datoteke u mapu tools i nigdje drugo.
 
-*Nema dane riješene verzije*
+*Rješenje nije dano*
 
 ## Sažetak
 
-U ovom poglavlju vidjeli smo kako pristup niskorazinskog servera funkcionira i kako nam može pomoći stvoriti lijepu arhitekturu na kojoj možemo dalje graditi. Također smo razgovarali o validaciji i pokazano vam je kako raditi s knjižnicama za validaciju da biste stvorili sheme za validaciju ulaza.
+U ovom poglavlju vidjeli smo kako funkcionira pristup low-level servera i kako nam to pomaže stvoriti lijepu arhitekturu na kojoj možemo dalje graditi. Također smo razgovarali o validaciji i pokazano vam je kako raditi s bibliotekama za validaciju da kreirate sheme za ulaznu validaciju.
 
-## Što je sljedeće
+## Što slijedi
 
-- Sljedeće: [Jednostavna autentifikacija](../11-simple-auth/README.md)
+- Sljedeće: [Jednostavna autentikacija](../11-simple-auth/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Odricanje od odgovornosti**:
-Ovaj dokument preveden je pomoću AI usluge za prijevod [Co-op Translator](https://github.com/Azure/co-op-translator). Iako težimo točnosti, molimo imajte na umu da automatski prijevodi mogu sadržavati pogreške ili netočnosti. Izvorni dokument na izvornom jeziku treba smatrati autoritativnim izvorom. Za važne informacije preporučuje se profesionalni ljudski prijevod. Ne snosimo odgovornost za bilo kakva nerazumijevanja ili pogrešne interpretacije koje proizlaze iz korištenja ovog prijevoda.
+**Odricanje od odgovornosti**:  
+Ovaj dokument preveden je pomoću AI prevoditeljskog servisa [Co-op Translator](https://github.com/Azure/co-op-translator). Iako nastojimo postići točnost, imajte na umu da automatski prijevodi mogu sadržavati pogreške ili netočnosti. Izvorni dokument na izvornom jeziku treba smatrati autoritativnim izvorom. Za kritične informacije preporučuje se profesionalni ljudski prijevod. Ne snosimo odgovornost za bilo kakve nesporazume ili pogrešna tumačenja proizašla iz upotrebe ovog prijevoda.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
