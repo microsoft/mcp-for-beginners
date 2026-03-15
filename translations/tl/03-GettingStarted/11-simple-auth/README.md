@@ -1,25 +1,25 @@
 # Simple auth
 
-Sinusuportahan ng MCP SDKs ang paggamit ng OAuth 2.1 na para maging patas isang medyo kumplikadong proseso na kinabibilangan ng mga konsepto tulad ng auth server, resource server, pagpopost ng mga kredensyal, pagkuha ng code, pagpapalit ng code para sa bearer token hanggang sa sa wakas ay makuha mo ang data ng iyong resource. Kung hindi ka sanay sa OAuth na isang mahusay na bagay na ipatupad, magandang ideya na magsimula sa ilang basic na antas ng auth at palaguin ito patungo sa mas mahusay at matibay na seguridad. Kaya narito ang kabanatang ito, para itayo ka papunta sa mas advanced na auth.
+Sinusuportahan ng MCP SDKs ang paggamit ng OAuth 2.1 na sa totoo lang ay isang medyo masalimuot na proseso na may kasamang mga konsepto tulad ng auth server, resource server, pag-post ng credentials, pagkuha ng code, pagpapalitan ng code para sa bearer token hanggang sa sa wakas ay makuha mo ang iyong resource data. Kung hindi ka pamilyar sa OAuth na magandang ipatupad, magandang ideya na magsimula sa ilang basic level ng auth at magtayo patungo sa mas mabuti at mas ligtas na seguridad. Kaya nandito ang kabanatang ito, upang ituro sa iyo patungo sa mas advanced na auth.
 
 ## Auth, ano ang ibig sabihin natin?
 
-Ang Auth ay pinaikling salita para sa authentication at authorization. Ang ideya ay kailangan nating gawin ang dalawang bagay:
+Ang Auth ay pinaikling authentication at authorization. Ang ideya ay kailangan nating gawin ang dalawang bagay:
 
-- **Authentication**, na proseso ng pagtukoy kung papayagan nating pumasok ang isang tao sa ating bahay, na sila ay may karapatang "nandito" o may access sa ating resource server kung saan nakatira ang mga katangian ng MCP Server.
-- **Authorization**, ay ang proseso ng pagtukoy kung dapat bang magkaroon ng access ang isang user sa mga tiyak na resources na hinihiling nila, halimbawa ang mga orders o mga produkto o kung pinapayagan silang basahin ang nilalaman ngunit hindi burahin bilang isa pang halimbawa.
+- **Authentication**, na proseso ng pagtukoy kung papayagan ba natin ang isang tao na pumasok sa ating bahay, na meron silang karapatang "nandito" ibig sabihin ay may access sa ating resource server kung saan naroroon ang mga feature ng ating MCP Server.
+- **Authorization**, ay proseso ng pagtukoy kung dapat bang magkaroon ng access ang isang user sa mga partikular na resources na hinihingi nila, halimbawa mga order na ito o mga produktong ito o kung pinapayagang basahin nila ang nilalaman ngunit hindi burahin bilang isa pang halimbawa.
 
-## Mga Kredensyal: paano natin sasabihin sa sistema kung sino tayo
+## Mga Credential: paano natin sasabihin sa sistema kung sino tayo
 
-Karamihan sa mga web developer ay nagsisimulang mag-isip sa pagbibigay ng kredensyal sa server, karaniwang isang sikreto na nagsasabi kung pinapayagan silang narito "Authentication". Ang kredensyal na ito ay karaniwang naka-base64 encode na bersyon ng username at password o isang API key na natatangi upang kilalanin ang isang tiyak na user.
+Kadalasan, ang karamihan sa web developers ay nag-iisip sa pagbibigay ng credential sa server, karaniwan ay isang secret na nagsasabing kung pinapayagan silang narito "Authentication". Ang credential na ito ay karaniwang base64 encoded na bersyon ng username at password o isang API key na tiyak na kumikilala sa isang partikular na user. 
 
-Kabilang dito ang pagpapadala nito sa pamamagitan ng header na tinatawag na "Authorization" ganito:
+Ito ay ipinapadala sa pamamagitan ng header na tinatawag na "Authorization" ganito:
 
 ```json
 { "Authorization": "secret123" }
 ```
 
-Karaniwan itong tinutukoy bilang basic authentication. Paano gumagana ang kabuuang flow ay sa sumusunod na paraan:
+Ito ay karaniwang tinatawag na basic authentication. Ang pangkalahatang daloy ay gumagana sa ganitong paraan:
 
 ```mermaid
 sequenceDiagram
@@ -28,11 +28,11 @@ sequenceDiagram
    participant Server
 
    User->>Client: ipakita sa akin ang data
-   Client->>Server: ipakita sa akin ang data, narito ang aking kredensyal
-   Server-->>Client: 1a, kilala kita, narito ang iyong data
+   Client->>Server: ipakita sa akin ang data, ito ang aking kredensyal
+   Server-->>Client: 1a, kilala kita, ito ang iyong data
    Server-->>Client: 1b, hindi kita kilala, 401 
 ```
-Ngayong naiintindihan natin kung paano ito gumagana mula sa flow standpoint, paano natin ito ipatutupad? Karamihan sa mga web server ay may konseptong tinatawag na middleware, isang piraso ng code na tumatakbo bilang bahagi ng request na maaaring mag-verify ng mga kredensyal, at kung ang mga kredensyal ay wasto ay papayagan ang request na makalusot. Kung ang request ay walang balidong kredensyal, makakakuha ka ng auth error. Tingnan natin kung paano ito maisasakatuparan:
+Ngayon na naintindihan natin kung paano ito gumagana mula sa daloy, paano natin ito ipatutupad? Karamihan sa mga web server ay may konsepto ng middleware, isang bahagi ng code na tumatakbo bilang bahagi ng request na maaaring mag-verify ng credentials, at kung tama ang credentials hayaan ang request na dumaan. Kung wala o mali ang credentials, magkakaroon ng error sa auth. Tingnan natin kung paano ito ipatutupad:
 
 **Python**
 
@@ -52,23 +52,23 @@ class AuthMiddleware(BaseHTTPMiddleware):
         print("Valid token, proceeding...")
        
         response = await call_next(request)
-        # magdagdag ng mga header ng customer o baguhin ang tugon sa ilang paraan
+        # magdagdag ng anumang header ng customer o baguhin ang tugon sa ilang paraan
         return response
 
 
 starlette_app.add_middleware(CustomHeaderMiddleware)
 ```
 
-Dito ay mayroon tayo:
+Narito ang mga ginawa:
 
-- Lumikhang middleware na tinatawag na `AuthMiddleware` kung saan ang `dispatch` method nito ay tinatawag ng web server.
-- Idinagdag ang middleware sa web server:
+- Nilikha ang middleware na tinatawag na `AuthMiddleware` kung saan ang `dispatch` method nito ay tinatawag ng web server.
+- Inilagay ang middleware sa web server:
 
     ```python
     starlette_app.add_middleware(AuthMiddleware)
     ```
 
-- Nakasulat ang validation logic na tinitingnan kung naroroon ang Authorization header at kung ang sikreto na ipinapadala ay wasto:
+- Nagsulat ng validation logic na nagsisiyasat kung nandiyan ang Authorization header at kung tama ang secret na ipinapadala:
 
     ```python
     has_header = request.headers.get("Authorization")
@@ -81,19 +81,19 @@ Dito ay mayroon tayo:
         return Response(status_code=403, content="Forbidden")
     ```
 
-    kung ang sikreto ay naroroon at wasto, papayagan natin ang request na makalusot sa pamamagitan ng pagtawag sa `call_next` at ibabalik ang tugon.
+    kung ang secret ay nandiyan at tama papayagan ang request na dumaan sa pamamagitan ng pagtawag sa `call_next` at ibalik ang response.
 
     ```python
     response = await call_next(request)
-    # magdagdag ng anumang customer headers o baguhin ang tugon sa ilang paraan
+    # magdagdag ng anumang header ng customer o baguhin ang tugon sa anumang paraan
     return response
     ```
 
-Gumagana ito sa paraang kapag may web request papunta sa server, tatawagin ang middleware at dahil sa implementasyon nito, papayagan nito ang request na makalusot o magbabalik ng error na nagsasabing hindi pinapayagan ang client na magpatuloy.
+Gumagana ito na kapag may ginawa na web request papunta sa server ay tatawagin ang middleware at base sa implementasyon nito ay papayagan nito ang request na dumaan o magbabalik ng error na nagsasabing hindi payagan ang client na magpatuloy.
 
 **TypeScript**
 
-Dito tayo gumawa ng middleware gamit ang sikat na framework na Express at i-intercept ang request bago pa ito makarating sa MCP Server. Heto ang code para diyan:
+Dito tayo gagawa ng middleware gamit ang kilalang framework na Express at mahuhuli ang request bago makarating sa MCP Server. Narito ang code para dito:
 
 ```typescript
 function isValid(secret) {
@@ -101,7 +101,7 @@ function isValid(secret) {
 }
 
 app.use((req, res, next) => {
-    // 1. Naroroon ba ang Authorization header?
+    // 1. Nasa header ba ang awtorisasyon?
     if(!req.headers["Authorization"]) {
         res.status(401).send('Unauthorized');
     }
@@ -115,40 +115,40 @@ app.use((req, res, next) => {
 
    
     console.log('Middleware executed');
-    // 3. Ipaubaya ang paghiling sa susunod na hakbang sa request pipeline.
+    // 3. Ipapasa ang kahilingan sa susunod na hakbang sa pipeline ng kahilingan.
     next();
 });
 ```
 
-Sa code na ito ay:
+Sa code na ito:
 
-1. Tinitingnan kung ang Authorization header ay naroroon, kung wala, nagpapadala tayo ng 401 error.
-2. Sinisiguro kung ang credential/token ay wasto, kung hindi, nagpapadala tayo ng 403 error.
-3. Sa wakas, pinapasa ang request sa request pipeline at ibinabalik ang hiniling na resource.
+1. Sinusuri namin kung nandiyan ba ang Authorization header, kung wala nagpapadala kami ng 401 error.
+2. Tinitiyak naming valid ang credential/token, kung hindi nagpapadala kami ng 403 error.
+3. Sa huli, pinapasa ang request sa request pipeline at ibinabalik ang hiniling na resource.
 
 ## Ehersisyo: Ipatupad ang authentication
 
-Gamitin natin ang ating kaalaman at subukang ipatupad ito. Heto ang plano:
+Gamitin natin ang ating kaalaman at subukang ipatupad ito. Narito ang plano:
 
 Server
 
 - Gumawa ng web server at MCP instance.
 - Ipatupad ang middleware para sa server.
 
-Client
+Client 
 
-- Magpadala ng web request, gamit ang kredensyal, sa pamamagitan ng header.
+- Magpadala ng web request gamit ang credential sa header.
 
 ### -1- Gumawa ng web server at MCP instance
 
-Sa unang hakbang natin, kailangan nating gumawa ng web server instance at MCP Server.
+Sa unang hakbang, kailangang gawin natin ang web server instance at ang MCP Server.
 
 **Python**
 
-Dito tayo gumagawa ng MCP server instance, gumawa ng starlette web app at i-host ito gamit ang uvicorn.
+Dito tayo gagawa ng MCP server instance, gumawa ng starlette web app at ihahost ito gamit ang uvicorn.
 
 ```python
-# lumilikha ng MCP Server
+# gumagawa ng MCP Server
 
 app = FastMCP(
     name="MCP Resource Server",
@@ -158,7 +158,7 @@ app = FastMCP(
     debug=True
 )
 
-# lumilikha ng starlette web app
+# gumagawa ng starlette web app
 starlette_app = app.streamable_http_app()
 
 # nagseserbisyo ng app gamit ang uvicorn
@@ -179,12 +179,12 @@ run(starlette_app)
 Sa code na ito:
 
 - Gumawa ng MCP Server.
-- Ginawa ang starlette web app mula sa MCP Server, `app.streamable_http_app()`.
-- In-host at pinagsilbihan ang web app gamit ang uvicorn `server.serve()`.
+- Ginawa ang starlette web app mula sa MCP Server gamit ang `app.streamable_http_app()`.
+- Inihost at sinilbihan ang web app gamit ang uvicorn `server.serve()`.
 
 **TypeScript**
 
-Dito tayo gumagawa ng MCP Server instance.
+Dito gagawa tayo ng MCP Server instance.
 
 ```typescript
 const server = new McpServer({
@@ -192,10 +192,10 @@ const server = new McpServer({
       version: "1.0.0"
     });
 
-    // ... ayusin ang mga resources ng server, mga kagamitan, at mga paalala ...
+    // ... maghanda ng mga yaman ng server, mga kagamitan, at mga prompt ...
 ```
 
-Ang paggawa ng MCP Server ay kailangang gawin sa loob ng POST /mcp na route definition, kaya't kunin natin ang code sa itaas at ilipat ito ganito:
+Kailangang gawin ang MCP Server na ito sa loob ng POST /mcp route definition, kaya ililipat natin ang code sa ganito:
 
 ```typescript
 import express from "express";
@@ -207,12 +207,12 @@ import { isInitializeRequest } from "@modelcontextprotocol/sdk/types.js"
 const app = express();
 app.use(express.json());
 
-// Mapa para mag-imbak ng mga transport ayon sa session ID
+// Mapa para itago ang mga transport ayon sa session ID
 const transports: { [sessionId: string]: StreamableHTTPServerTransport } = {};
 
-// Hawakan ang mga POST request para sa komunikasyon mula kliyente papuntang server
+// Pangasiwaan ang mga POST na kahilingan para sa komunikasyon ng kliyente-papunta sa server
 app.post('/mcp', async (req, res) => {
-  // Suriin kung may umiiral na session ID
+  // Suriin kung may existing na session ID
   const sessionId = req.headers['mcp-session-id'] as string | undefined;
   let transport: StreamableHTTPServerTransport;
 
@@ -220,20 +220,20 @@ app.post('/mcp', async (req, res) => {
     // Gamitin muli ang umiiral na transport
     transport = transports[sessionId];
   } else if (!sessionId && isInitializeRequest(req.body)) {
-    // Bagong kahilingan para sa inisyal na setup
+    // Bagong kahilingan para sa inisyal na pag-set up
     transport = new StreamableHTTPServerTransport({
       sessionIdGenerator: () => randomUUID(),
       onsessioninitialized: (sessionId) => {
-        // I-imbak ang transport ayon sa session ID
+        // Itago ang transport ayon sa session ID
         transports[sessionId] = transport;
       },
-      // Ang proteksyon laban sa DNS rebinding ay naka-disable bilang default para sa pabalik na pagiging compatible. Kung pinapatakbo mo ang server na ito
+      // Ang proteksyon laban sa DNS rebinding ay naka-disable bilang default para sa backwards compatibility. Kung pinapatakbo mo ang server na ito
       // nang lokal, siguraduhing itakda ang:
       // enableDnsRebindingProtection: true,
       // allowedHosts: ['127.0.0.1'],
     });
 
-    // Linisin ang transport kapag isinarado
+    // Linisin ang transport kapag isinara
     transport.onclose = () => {
       if (transport.sessionId) {
         delete transports[transport.sessionId];
@@ -244,12 +244,12 @@ app.post('/mcp', async (req, res) => {
       version: "1.0.0"
     });
 
-    // ... ihanda ang mga resources ng server, mga kagamitan, at mga prompt ...
+    // ... i-set up ang mga resources, tools, at prompts ng server ...
 
     // Kumonekta sa MCP server
     await server.connect(transport);
   } else {
-    // Hindi wastong kahilingan
+    // Di-wastong kahilingan
     res.status(400).json({
       jsonrpc: '2.0',
       error: {
@@ -261,11 +261,11 @@ app.post('/mcp', async (req, res) => {
     return;
   }
 
-  // Hawakan ang kahilingan
+  // Pangasiwaan ang kahilingan
   await transport.handleRequest(req, res, req.body);
 });
 
-// Maaaring gamitin muli na handler para sa mga GET at DELETE na request
+// Muling magagamit na handler para sa GET at DELETE na mga kahilingan
 const handleSessionRequest = async (req: express.Request, res: express.Response) => {
   const sessionId = req.headers['mcp-session-id'] as string | undefined;
   if (!sessionId || !transports[sessionId]) {
@@ -277,44 +277,44 @@ const handleSessionRequest = async (req: express.Request, res: express.Response)
   await transport.handleRequest(req, res);
 };
 
-// Hawakan ang mga GET request para sa mga notipikasyon mula server papuntang kliyente gamit ang SSE
+// Pangasiwaan ang mga GET na kahilingan para sa abiso mula server-papunta sa kliyente gamit ang SSE
 app.get('/mcp', handleSessionRequest);
 
-// Hawakan ang mga DELETE request para sa pagtatapos ng session
+// Pangasiwaan ang mga DELETE na kahilingan para sa pagtatapos ng session
 app.delete('/mcp', handleSessionRequest);
 
 app.listen(3000);
 ```
 
-Ngayon makikita mo kung paano inilipat ang paggawa ng MCP Server sa loob ng `app.post("/mcp")`.
+Makikita mo na ang paglikha ng MCP Server ay inilipat sa loob ng `app.post("/mcp")`.
 
-Tuloy tayo sa susunod na hakbang ng paggawa ng middleware para ma-validate natin ang papasok na kredensyal.
+Tuloy tayo sa susunod na hakbang na paggawa ng middleware para ma-validate ang papasok na credential.
 
 ### -2- Ipatupad ang middleware para sa server
 
-Pumunta tayo sa bahagi ng middleware. Dito tayo gagawa ng middleware na naghahanap ng kredensyal sa `Authorization` header at ivavalida ito. Kung ito ay tinatanggap, magpapatuloy ang request na gawin ang kailangan nito (halimbawa maglista ng tools, basahin ang isang resource o kahit anong MCP functionality na hinihingi ng client).
+Ngayon ay gagawa tayo ng middleware na hahanapin ang credential sa `Authorization` header at ivavalidate ito. Kapag tanggap ay magpapatuloy ang request para gawin ang kinakailangan (halimbawa, listahan ng tools, pagbabasa ng isang resource, o anuman MCP functionality na hinihingi ng client).
 
 **Python**
 
-Para gumawa ng middleware, kailangan nating gumawa ng klase na nagmana mula sa `BaseHTTPMiddleware`. May dalawang interesting na bahagi:
+Para gumawa ng middleware, kailangan nating gumawa ng class na minana mula sa `BaseHTTPMiddleware`. May dalawang interesanteng bahagi:
 
-- Ang request `request`, kung saan binabasa natin ang header info.
-- `call_next` na callback na tatawagin natin kung may dalang kredensyal ang client na tinatanggap natin.
+- Ang request `request`, kung saan babasahin natin ang header info.
+- `call_next` ang callback na tatawagin kapag may dalang tanggap na credential ang client.
 
-Una, kailangan nating ayusin ang kaso kung nawawala ang `Authorization` header:
+Una, hawakan natin ang kaso kung wala ang `Authorization` header:
 
 ```python
 has_header = request.headers.get("Authorization")
 
-# walang header na naroroon, mabigo gamit ang 401, kung hindi ay magpatuloy.
+# walang header na naroroon, mag-fail sa 401, kung hindi ay magpatuloy.
 if not has_header:
     print("-> Missing Authorization header!")
     return Response(status_code=401, content="Unauthorized")
 ```
 
-Dito tayo nagpapadala ng 401 unauthorized message dahil pumapalya ang client sa authentication.
+Nagpapadala dito ng 401 unauthorized message dahil pumalya ang client sa authentication.
 
-Sunod, kung may ipinasa na kredensyal, kailangan nating tingnan kung wasto ito ganito:
+Sunod, kung may isinubmit na credential, kailangang suriin ang bisa nito ganito:
 
 ```python
  if not valid_token(has_header):
@@ -322,7 +322,7 @@ Sunod, kung may ipinasa na kredensyal, kailangan nating tingnan kung wasto ito g
     return Response(status_code=403, content="Forbidden")
 ```
 
-Pansinin na nagpapadala tayo ng 403 forbidden message sa itaas. Tingnan ang buong middleware sa ibaba na ipinatupad ang lahat ng nabanggit natin:
+Mapapansin kung paano nagpapadala ng 403 forbidden message. Tingnan ang buong middleware code sa ibaba na ipinatutupad ang lahat ng nabanggit:
 
 ```python
 class AuthMiddleware(BaseHTTPMiddleware):
@@ -345,32 +345,32 @@ class AuthMiddleware(BaseHTTPMiddleware):
 
 ```
 
-Maganda, pero paano naman ang `valid_token` function? Narito ito sa ibaba:
+Magaling, pero paano ang `valid_token` function? Narito ito sa ibaba:
 
 ```python
-# HUWAG gamitin para sa produksyon - pagbutihin ito !!
+# HUWAG gamitin para sa produksyon - pagandahin ito !!
 def valid_token(token: str) -> bool:
-    # alisin ang "Bearer " na panimula
+    # alisin ang prefix na "Bearer "
     if token.startswith("Bearer "):
         token = token[7:]
         return token == "secret-token"
     return False
 ```
 
-Dapat ito ay mapaunlad pa.
+Dapat itong pagandahin pa.
 
-MAHALAGA: Huwag kailanman magkaroon ng mga sikreto tulad nito sa code. Dapat ideyal na kuhanin ang halagang ipapantay mula sa isang data source o mula sa IDP (identity service provider) o mas maganda, hayaang ang IDP ang magsagawa ng validation.
+MAHALAGA: Huwag kailanman ilagay ang mga secret na ganito sa code. Dapat kunin ang value mula sa data source o mula sa IDP (identity service provider) o mas mabuting hayaan ang IDP ang mag-validate.
 
 **TypeScript**
 
-Para ipatupad ito gamit ang Express, kailangan nating tawagin ang `use` method na tumatanggap ng middleware functions.
+Para ipatupad ito gamit ang Express, kailangan natin tawagin ang `use` method na tumatanggap ng middleware functions.
 
 Kailangan nating:
 
-- Makipag-ugnayan sa request variable para tingnan ang ipinasa na kredensyal sa `Authorization` property.
-- I-validate ang kredensyal, at kung wasto, papayagan ang request na magpatuloy at gawin ang kinakailangan ng client MCP request (halimbawa maglista ng tools, basahin ang resource o anumang kaugnay sa MCP).
+- Makipag-interact sa request variable para suriin ang credential na pumasa sa `Authorization` property.
+- Ivalidate ang credential, at kung tama, hayaan ang request na magpatuloy para gawin ng client ang kanyang MCP request (halimbawa, list tools, read resource, o anumang MCP-related).
 
-Dito, tinitingnan natin kung naroroon ang `Authorization` header at kung wala, pinipigilan natin ang request na makalusot:
+Dito, sinisiyasat natin kung nandiyan ang `Authorization` header at kung wala, pinipigilan ang request:
 
 ```typescript
 if(!req.headers["authorization"]) {
@@ -379,9 +379,9 @@ if(!req.headers["authorization"]) {
 }
 ```
 
-Kung hindi ipinadala ang header sa umpisa, makakatanggap ka ng 401.
+Kung walang header, makakatanggap ng 401.
 
-Susunod, tinitingnan natin kung wasto ang kredensyal, kung hindi, muli naming pinipigilan ang request pero may bahagyang ibang mensahe:
+Sunod, sinisiyasat kung valid ang credential, kung hindi, hihinto uli ang request pero ibang message ang isusulat:
 
 ```typescript
 if(!isValid(token)) {
@@ -390,7 +390,7 @@ if(!isValid(token)) {
 } 
 ```
 
-Pansinin na ngayon ay makakakuha ka ng 403 error.
+Makakakuha ka ng 403 error.
 
 Narito ang buong code:
 
@@ -415,18 +415,18 @@ app.use((req, res, next) => {
 });
 ```
 
-Naitakda natin ang web server upang tumanggap ng middleware para i-check ang kredensyal na sana ay ipinapadala ng client. Paano naman ang client mismo?
+Naka-set up ang web server para tumanggap ng middleware para suriin ang credential na sana ipapadala ng client. Paano naman ang client mismo?
 
-### -3- Magpadala ng web request gamit ang kredensyal sa pamamagitan ng header
+### -3- Magpadala ng web request gamit ang credential sa header
 
-Kailangan nating siguraduhin na ipinapasa ng client ang kredensyal sa header. Dahil gagamit tayo ng MCP client para dito, kailangan nating alamin kung paano ito ginagawa.
+Kailangan nating tiyakin na ipinapasa ng client ang credential sa header. Gagamit tayo ng MCP client kaya kailangang malaman kung paano ito gawin.
 
 **Python**
 
-Para sa client, kailangan nating magpasa ng header kasama ang ating kredensyal ganito:
+Para sa client, kailangan nating maglagay ng header na may credential ganito:
 
 ```python
-# HUWAG i-hardcode ang halaga, ilagay ito kahit man lang sa isang environment variable o sa mas secure na imbakan
+# HUWAG i-hardcode ang halaga, ilagay ito kahit man lang sa isang environment variable o mas ligtas na imbakan
 token = "secret-token"
 
 async with streamablehttp_client(
@@ -443,21 +443,21 @@ async with streamablehttp_client(
         ) as session:
             await session.initialize()
       
-            # GAWIN PA, kung ano ang gusto mong gawin sa kliyente, hal. ilista ang mga tools, tawagin ang mga tools atbp.
+            # TODO, kung ano ang gusto mong gawin sa client, hal. listahan ng mga tool, tawagan ang mga tool atbp.
 ```
 
-Pansinin kung paano natin pinupuno ang `headers` property ganito ` headers = {"Authorization": f"Bearer {token}"}`.
+Mapapansin kung paano pinupuno ang `headers` property ng ganito ` headers = {"Authorization": f"Bearer {token}"}`.
 
 **TypeScript**
 
-Maaari natin itong lutasin sa dalawang hakbang:
+Maisasaayos ito sa dalawang hakbang:
 
-1. Punan ang isang configuration object kasama ang ating kredensyal.
-2. I-pasa ang configuration object sa transport.
+1. Punan ang configuration object gamit ang credential.
+2. Ibigay ang configuration object sa transport.
 
 ```typescript
 
-// HUWAG i-hardcode ang halaga tulad ng ipinakita dito. Sa pinakamababa, gawin itong isang env variable at gumamit ng isang bagay tulad ng dotenv (sa dev mode).
+// HUWAG i-hardcode ang halaga tulad ng ipinakita dito. Sa pinakamababa, gawin itong isang environment variable at gumamit ng tulad ng dotenv (sa dev mode).
 let token = "secret123"
 
 // tukuyin ang isang client transport option object
@@ -478,46 +478,46 @@ async function main() {
    );
 ```
 
-Dito makikita mo kung paano tayo gumawa ng `options` object at inilagay ang ating mga headers sa ilalim ng `requestInit` property.
+Makikita mo kung paano gumawa ng `options` object at inilagay ang mga headers sa `requestInit` property.
 
-MAHALAGA: Paano natin ito mapapabuti mula rito? Well, may ilang isyu ang kasalukuyang implementasyon. Una, ang pagpasa ng kredensyal ganito ay medyo mapanganib maliban na lang kung mayroon kang HTTPS. Kahit na ganoon, maaaring manakaw ang kredensyal kaya kailangan mo ng sistema kung saan madaling ma-revoke ang token at magdagdag ng mga karagdagang pagsisiyasat tulad ng kung saan ito nanggagaling sa mundo, kung sobrang laki ng request na ginagawa (bot-like behavior), sa madaling salita, maraming mga isyu. 
+MAHALAGA: Paano pa ito pagbutihin? Ang kasalukuyang implementasyon ay may mga isyu. Una ay risky ang pagpapasa ng credential na ito maliban kung may HTTPS. Kahit may HTTPS, pwedeng makuha ang credential kaya kailangan ng sistema kung saan madaling ma-revoke ang token at magdagdag ng dagdag na tseke tulad ng lokasyon ng request, madalas ba itong nangyayari (bot-like behavior), at iba pa, maraming bagay na kailangang isaalang-alang.
 
-Pero dapat ding sabihin, para sa napakasimpleng API kung saan ayaw mong may tumawag sa iyong API nang hindi authenticated, itong nalalaman natin ay magandang panimula.
+Gayunpaman, para sa napakasimpleng APIs kung saan ayaw mong tawagan ito ng sinuman nang hindi authenticated ay magandang panimulang punto ito.
 
-Sa sinabi iyon, subukan nating palakasin ang seguridad ng kaunti gamit ang standardized na format tulad ng JSON Web Token, na kilala rin bilang JWT o "JOT" tokens.
+Ngayon, subukan nating higpitan ang seguridad gamit ang standardized format tulad ng JSON Web Token, kilala rin bilang JWT o "JOT" tokens.
 
 ## JSON Web Tokens, JWT
 
-Kaya sinusubukan nating pagandahin pa mula sa pagpapadala ng napakasimpleng kredensyal. Ano ang mga agarang pagpapabuti na makukuha natin gamit ang paggamit ng JWT?
+Kaya, sinusubukan nating pagbutihin ang pagpapadala ng napakasimpleng credentials. Ano ang mga pangunahing benepisyo ng pag-adopt ng JWT?
 
-- **Mga pagbuti sa seguridad**. Sa basic auth, ipinapadala mo ang username at password bilang base64 encoded token (o nagpapadala ka ng API key) nang paulit-ulit na nagdaragdag ng panganib. Sa JWT, ipinapadala mo ang iyong username at password at makakakuha ng token bilang kapalit at ito rin ay may takdang oras ibig sabihin mag-eexpire ito. Pinapayagan ka ng JWT na madaling magamit ang fine-grained access control gamit ang mga role, scopes, at permissions.
-- **Statelessness at scalability**. Ang mga JWT ay self-contained, dala-dala nila ang lahat ng info ng user at inaalis ang pangangailangan sa server-side session storage. Ang token ay maaaring i-validate nang lokal.
-- **Interoperability at federation**. Ang mga JWT ay sentral sa Open ID Connect at ginagamit sa mga kilalang identity providers tulad ng Entra ID, Google Identity at Auth0. Ginagawa rin nitong posible ang single sign on at marami pang iba na ginagawang enterprise-grade.
-- **Modularity at flexibility**. Maaari ring magamit ang JWT sa API Gateways tulad ng Azure API Management, NGINX at iba pa. Sinusuportahan din nito ang mga senaryo ng paggamit ng authentication at server-to-service communication kabilang ang impersonation at delegation.
-- **Performance at caching**. Maaaring i-cache ang JWT pagkatapos i-decode na nagpapababa sa kailangan para sa parsing. Nakakatulong ito lalo na sa high-traffic apps dahil pinapabuti ang throughput at binabawasan ang load sa iyong piniling imprastruktura.
-- **Mga advanced na tampok**. Sinusuportahan din nito ang introspection (pagsusuri ng validity sa server) at revocation (pagiging invalid ng token).
+- **Pagbuti sa Seguridad**. Sa basic auth, paulit-ulit mong ipinapadala ang username at password bilang base64 encoded token (o API key) na nagpapataas ng panganib. Sa JWT, ipinapadala mo ang username at password at nakakakuha ng token bilang kapalit na time bound at mag-e-expire. Pinapadali ng JWT ang fine-grained access control gamit ang roles, scopes, at permissions.
+- **Statelessness at scalability**. Self-contained ang JWTs, dala ang lahat ng impormasyon ng user kaya hindi na kailangan mag-imbak ng session server-side. Pwede ring i-validate ang token locally.
+- **Interoperability at federation**. Sentro ang JWTs sa Open ID Connect at ginagamit ng kilalang identity providers tulad ng Entra ID, Google Identity, at Auth0. Pinapagana nito ang single sign on at marami pang iba kaya angkop sa enterprise.
+- **Modularity at flexibility**. Pwede rin gamitin ang JWTs sa API Gateways tulad ng Azure API Management, NGINX, at iba pa. Sinusuportahan nito ang mga authentication scenarios pati na server-to-service communication kasama na ang impersonation at delegation scenarios.
+- **Performance at caching**. Pwedeng i-cache ang JWTs pagkatapos i-decode para mabawasan ang parsing. Nakakatulong ito sa high-traffic apps dahil pinabubuti ang throughput at pinapababa ang load sa infrastructure.
+- **Advanced features**. Sinusuportahan din nito ang introspection (pagsusuri ng validity sa server) at revocation (paggawing invalid ng token).
 
-Sa lahat ng mga benepisyo na ito, tingnan natin kung paano natin maaangat ang ating implementasyon sa susunod na antas.
+Dahil sa lahat ng benepisyo, tingnan natin kung paano natin mapapalakas pa ang ating implementasyon.
 
-## Pagsasalin ng basic auth patungo sa JWT
+## Pagtalikod mula sa basic auth patungo sa JWT
 
-Kaya, ang mga pagbabago na kailangan nating gawin sa mataas na antas ay:
+Ang mga pagbabago sa mataas na antas ay:
 
-- **Matutong gumawa ng JWT token** at ihanda ito upang maipadala mula client papunta server.
-- **I-validate ang JWT token**, at kung wasto, papayagan ang client na magkaroon ng mga resources natin.
-- **Ligtas na pag-iimbak ng token**. Paano natin iniimbak ang token na ito.
-- **Protektahan ang mga ruta**. Kailangan nating protektahan ang mga ruta, sa ating kaso, kailangan nating protektahan ang mga ruta at mga tiyak na MCP features.
-- **Magdagdag ng refresh tokens**. Siguraduhin tayo na gumagawa tayo ng mga token na panandalian ngunit may mga refresh token na pangmatagalan na maaaring gamitin para makakuha ng bagong mga token kung mag-expire. Siguraduhing may refresh endpoint at rotation strategy.
+- **Matutong bumuo ng JWT token** at ihanda para ipadala mula client papunta server.
+- **Ivalidate ang JWT token**, at kung tama, bigyan ang client ng access sa resources.
+- **Ligtas na imbakan ng token**. Paano natin i-iimbak ang token.
+- **Protektahan ang mga ruta**. Kailangang protektahan ang mga ruta, sa ating kaso, mga ruta at partikular na MCP features.
+- **Magdagdag ng refresh tokens**. Gumawa ng mga token na panandalian pero may refresh tokens na pangmatagalan na pwede gamitin para kumuha ng bagong token kapag expired na. Siguruhing may refresh endpoint at rotation strategy.
 
-### -1- Gumawa ng JWT token
+### -1- Bumuo ng JWT token
 
 Una, ang JWT token ay may mga sumusunod na bahagi:
 
-- **header**, algorithm na ginamit at uri ng token.
-- **payload**, mga claims, tulad ng sub (ang user o entity na kinakatawan ng token. Sa sitwasyon ng auth karaniwan ito ang userid), exp (kung kailan ito mag-eexpire), role (ang role).
-- **signature**, nilagdaan gamit ang isang secret o private key.
+- **header**, algorithm na gamit at uri ng token.
+- **payload**, claims tulad ng sub (ang user o entity na kinakatawan ng token, karaniwan ay userid sa auth scenario), exp (kung kailan mag-e-expire) role (ang papel niya)
+- **signature**, pinirmahan gamit ang secret o private key.
 
-Para dito, kailangan nating gumawa ng header, payload at ang encoded token.
+Para dito, kailangan nating buuin ang header, payload at ang encoded token.
 
 **Python**
 
@@ -536,27 +536,27 @@ header = {
     "typ": "JWT"
 }
 
-# ang impormasyon ng user at ang mga claim at oras ng pag-expire nito
+# ang impormasyon ng user at ang mga claim nito at oras ng pag-expire
 payload = {
     "sub": "1234567890",               # Paksa (ID ng user)
     "name": "User Userson",                # Pasadyang claim
     "admin": True,                     # Pasadyang claim
     "iat": datetime.datetime.utcnow(),# Inilabas noong
-    "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=1)  # Oras ng pag-expire
+    "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=1)  # Pag-expire
 }
 
 # i-encode ito
 encoded_jwt = jwt.encode(payload, secret_key, algorithm="HS256", headers=header)
 ```
 
-Sa itaas na code ay:
+Sa code sa itaas:
 
-- Nagdefine ng header gamit ang HS256 bilang algorithm at JWT bilang type.
-- Gumawa ng payload na naglalaman ng subject o user id, username, role, kung kailan ito inisyu at kung kailan ito mag-eexpire kaya naipatupad ang time bound aspect na nabanggit natin kanina.
+- Nagdefine ng header na gumagamit ng HS256 bilang algorithm at JWT bilang uri.
+- Bumuo ng payload na may subject o user id, username, role, kung kailan inisyu, at expiry na nag-iimplementa ng time bound na aspetong nabanggit.
 
 **TypeScript**
 
-Dito kailangan natin ng ilang dependencies na tutulong sa paggawa ng JWT token.
+Kailangan natin ng ilang dependencies para makatulong sa paggawa ng JWT token.
 
 Dependencies
 
@@ -566,7 +566,7 @@ npm install jsonwebtoken
 npm install --save-dev @types/jsonwebtoken
 ```
 
-Ngayong meron na tayong iyon, gumawa tayo ng header, payload at mula rito gumawa ng encoded token.
+Ngayon na nandiyan na, ginawa natin ang header, payload at ginawang encoded token.
 
 ```typescript
 import jwt from 'jsonwebtoken';
@@ -578,17 +578,17 @@ const payload = {
   sub: '1234567890',
   name: 'User usersson',
   admin: true,
-  iat: Math.floor(Date.now() / 1000), // Inilabas noong
+  iat: Math.floor(Date.now() / 1000), // Nilabas noong
   exp: Math.floor(Date.now() / 1000) + 60 * 60 // Mag-e-expire sa loob ng 1 oras
 };
 
-// Tukuyin ang header (opsyonal, ang jsonwebtoken ay nagse-set ng mga default)
+// Tukuyin ang header (opsyonal, nagse-set ang jsonwebtoken ng mga default)
 const header = {
   alg: 'HS256',
   typ: 'JWT'
 };
 
-// Gumawa ng token
+// Lumikha ng token
 const token = jwt.sign(payload, secretKey, {
   algorithm: 'HS256',
   header: header
@@ -599,15 +599,15 @@ console.log('JWT:', token);
 
 Ang token na ito ay:
 
-Nilagdaan gamit ang HS256  
-Balido ng 1 oras  
-Naglalaman ng mga claims na tulad ng sub, name, admin, iat, at exp.
+Pinirmahan gamit ang HS256
+Valid ng 1 oras
+May kasamang claims tulad ng sub, name, admin, iat, at exp.
 
-### -2- I-validate ang token
+### -2- Ivalidate ang token
 
-Kailangan din nating i-validate ang token, ito ay dapat gawin sa server upang matiyak na ang ipinapadala ng client ay wasto. Maraming checks ang dapat gawin dito mula sa pag-validate ng istruktura nito hanggang sa pagiging wasto nito. Hinihikayat ka ring magdagdag ng iba pang pagsusuri upang matiyak na ang user ay nasa iyong sistema at marami pa.
+Kailangan din nating i-validate ang token, ito ay dapat gawin sa server para masiguro na ang ipinapadala ng client ay valid talaga. Maraming tseke ang dapat gawin mula sa pagsuri ng istruktura hanggang sa validity. Mas mainam din na magdagdag ng ibang tseke para tiyakin kung ang user ay nandito sa ating sistema at kung may karapatan ba siya.
 
-Para i-validate ang token, kailangan muna itong i-decode upang mabasa ito at saka simulan ang pag-check ng validity:
+Para i-validate, kailangang i-decode ang token para mabasa at simulan ang pagsusuri ng validity:
 
 **Python**
 
@@ -627,11 +627,11 @@ except InvalidTokenError as e:
 
 ```
 
-Sa code na ito, tinatawag ang `jwt.decode` gamit ang token, secret key at ang napiling algorithm bilang input. Pansinin na gumagamit tayo ng try-catch na construct dahil ang failed validation ay nagreresulta sa error.
+Sa code na ito, tinawag natin ang `jwt.decode` gamit ang token, secret key, at algorithm na pinili bilang input. Napapansin ang try-catch construct dahil kapag nabigo ang validation ay magtataas ng error.
 
 **TypeScript**
 
-Dito kailangan nating tawagin ang `jwt.verify` upang makakuha ng decoded na bersyon ng token na maaari nating suriin pa. Kung mabigo ang tawag na ito, ibig sabihin mali ang istruktura ng token o hindi na ito valid.
+Dito kailangan nating tawagin ang `jwt.verify` para makakuha ng decoded na token na maaari nating susuriin nang mas detalyado. Kung mabigo ito, ibig sabihin mali ang istruktura ng token o hindi na ito valid.
 
 ```typescript
 
@@ -643,18 +643,18 @@ try {
 }
 ```
 
-TANDAAN: gaya ng nabanggit noon, dapat tayong magsagawa ng mga dagdag na tsek para matiyak na ang token na ito ay tumutukoy sa user sa ating sistema at siguraduhin na ang user ay may mga karapatang sinasabi nitong taglay.
-Susunod, tingnan natin ang role based access control, na kilala rin bilang RBAC.
+TANDAAN: gaya ng sinabi dati, dapat magdagdag ng iba pang tseke para siguraduhin na ang token ay kumakatawan sa user sa ating sistema at may karapatan ang user na iyon.
 
+Sunod, tingnan natin ang role based access control, na kilala rin bilang RBAC.
 ## Pagdaragdag ng role based access control
 
-Ang ideya ay nais nating ipahayag na ang iba't ibang mga role ay may iba't ibang mga permiso. Halimbawa, ipinapalagay natin na ang isang admin ay maaaring gawin ang lahat at ang isang normal na user ay maaaring magbasa/sulat at ang isang guest ay maaari lang magbasa. Kaya, narito ang ilang posibleng antas ng permiso:
+Ang ideya ay nais nating ipahayag na ang iba't ibang mga role ay may iba't ibang mga pahintulot. Halimbawa, inaasahan natin na ang isang admin ay maaaring gawin ang lahat at ang isang normal na user ay maaaring magbasa/sulat at ang isang guest ay maaari lamang magbasa. Kaya, narito ang ilang posibleng antas ng pahintulot:
 
 - Admin.Write 
 - User.Read
 - Guest.Read
 
-Tingnan natin kung paano natin maipapatupad ang ganitong kontrol gamit ang middleware. Ang mga middleware ay maaaring idagdag per ruta pati na rin para sa lahat ng mga ruta.
+Tingnan natin kung paano natin maipapatupad ang ganitong kontrol gamit ang middleware. Ang mga middleware ay maaaring idagdag kada ruta pati na rin para sa lahat ng mga ruta.
 
 **Python**
 
@@ -663,7 +663,7 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.responses import JSONResponse
 import jwt
 
-# HUWAG ilagay ang lihim sa code tulad nito, ito ay para lamang sa layunin ng demonstrasyon. Basahin ito mula sa isang ligtas na lugar.
+# HUWAG ilagay ang sikreto sa code tulad nito, para lamang ito sa layunin ng demonstrasyon. Basahin ito mula sa ligtas na lugar.
 SECRET_KEY = "your-secret-key" # ilagay ito sa env variable
 REQUIRED_PERMISSION = "User.Read"
 
@@ -691,7 +691,7 @@ class JWTPermissionMiddleware(BaseHTTPMiddleware):
 
 ```
 
-May ilang iba't ibang paraan upang idagdag ang middleware tulad ng nasa ibaba:
+May ilang iba't ibang mga paraan para idagdag ang middleware gaya ng nasa ibaba:
 
 ```python
 
@@ -705,11 +705,11 @@ app = Starlette(routes=routes, middleware=middleware)
 # Alt 2: magdagdag ng middleware pagkatapos mabuo ang starlette app
 starlette_app.add_middleware(JWTPermissionMiddleware)
 
-# Alt 3: magdagdag ng middleware sa bawat ruta
+# Alt 3: magdagdag ng middleware bawat ruta
 routes = [
     Route(
         "/mcp",
-        endpoint=..., # tagapamahala
+        endpoint=..., # handler
         middleware=[Middleware(JWTPermissionMiddleware)]
     )
 ]
@@ -717,14 +717,14 @@ routes = [
 
 **TypeScript**
 
-Maaari nating gamitin ang `app.use` at isang middleware na tatakbo para sa lahat ng mga request.
+Maaari nating gamitin ang `app.use` at isang middleware na tatakbo para sa lahat ng mga request. 
 
 ```typescript
 app.use((req, res, next) => {
     console.log('Request received:', req.method, req.url, req.headers);
     console.log('Headers:', req.headers["authorization"]);
 
-    // 1. Suriin kung naipadala ang authorization header
+    // 1. Suriin kung naipadala na ang authorization header
 
     if(!req.headers["authorization"]) {
         res.status(401).send('Unauthorized');
@@ -733,13 +733,13 @@ app.use((req, res, next) => {
     
     let token = req.headers["authorization"];
 
-    // 2. Suriin kung valid ang token
+    // 2. Suriin kung ang token ay balido
     if(!isValid(token)) {
         res.status(403).send('Forbidden');
         return;
     }  
 
-    // 3. Suriin kung umiiral ang user ng token sa aming sistema
+    // 3. Suriin kung ang gumagamit ng token ay umiiral sa ating sistema
     if(!isExistingUser(token)) {
         res.status(403).send('Forbidden');
         console.log("User does not exist");
@@ -747,7 +747,7 @@ app.use((req, res, next) => {
     }
     console.log("User exists");
 
-    // 4. Tiyakin na ang token ay may tamang mga permiso
+    // 4. Patunayan na ang token ay may tamang pahintulot
     if(!hasScopes(token, ["User.Read"])){
         res.status(403).send('Forbidden - insufficient scopes');
     }
@@ -760,11 +760,11 @@ app.use((req, res, next) => {
 
 ```
 
-Maraming mga bagay na maaari nating ipagawa sa middleware at DAPAT gawin ng middleware, katulad ng:
+May ilang mga bagay na pwede nating ipagawa sa ating middleware at ang middleware AY DAPAT gawin, katulad ng:
 
-1. Suriin kung nandiyan ang authorization header
-2. Suriin kung valid ang token, tinatawag natin ang `isValid` na isang method na isinulat natin para suriin ang integridad at bisa ng JWT token.
-3. Patunayan na umiiral ang user sa ating sistema, dapat natin itong suriin.
+1. Tingnan kung present ang authorization header
+2. Tingnan kung valid ang token, tinatawag natin ang `isValid` na isang method na isinulat natin na sumusuri sa integridad at bisa ng JWT token.
+3. Patunayan na umiiral ang user sa ating sistema, dapat nating suriin ito.
 
    ```typescript
     // mga gumagamit sa DB
@@ -781,9 +781,9 @@ Maraming mga bagay na maaari nating ipagawa sa middleware at DAPAT gawin ng midd
    }
    ```
 
-   Sa itaas, gumawa tayo ng napakasimpleng listahan na `users`, na dapat ay nasa isang database naman talaga.
+   Sa itaas, gumawa tayo ng napakasimpleng listahan ng `users`, na dapat ay nasa database naman talaga.
 
-4. Bukod pa rito, dapat din nating suriin kung ang token ay may tamang mga permiso.
+4. Bukod dito, dapat ding suriin kung ang token ay may tamang mga pahintulot.
 
    ```typescript
    if(!hasScopes(token, ["User.Read"])){
@@ -791,7 +791,7 @@ Maraming mga bagay na maaari nating ipagawa sa middleware at DAPAT gawin ng midd
    }
    ```
 
-   Sa code sa itaas mula sa middleware, sinisiguro natin na ang token ay naglalaman ng User.Read na permiso, kung hindi ay nagpapadala tayo ng 403 error. Nasa ibaba ang `hasScopes` na helper method.
+   Sa code sa itaas mula sa middleware, sinusuri natin na ang token ay may User.Read na pahintulot, kung wala ay magpapadala tayo ng 403 error. Nasa ibaba ang `hasScopes` na helper method.
 
    ```typescript
    function hasScopes(scope: string, requiredScopes: string[]) {
@@ -840,15 +840,15 @@ app.use((err, req, res, next) => {
 
 ```
 
-Ngayon nakita mo na kung paano ginagamit ang middleware para sa parehong authentication at authorization, paano naman ang MCP? Binabago ba nito kung paano tayo gumagawa ng auth? Alamin natin sa susunod na seksyon.
+Ngayon ay nakita mo na kung paano magagamit ang middleware para sa parehong authentication at authorization, paano naman ang MCP, binabago ba nito ang paraan natin ng auth? Alamin natin sa susunod na seksyon.
 
 ### -3- Magdagdag ng RBAC sa MCP
 
-Nakikita mo na kung paano magdagdag ng RBAC gamit ang middleware, ngunit para sa MCP, walang madaling paraan para magdagdag ng RBAC na per MCP feature, kaya ano ang gagawin natin? Kailangan lang tayong magdagdag ng code tulad nito na nagsusuri kung ang client ay may karapatang tumawag ng isang partikular na tool:
+Nakita mo na kung paano magdagdag ng RBAC gamit ang middleware, subalit para sa MCP ay walang madaling paraan para magdagdag ng RBAC kada MCP feature, ano ang gagawin natin? Kailangan lang nating magdagdag ng code tulad nito na sinusuri sa kasong ito kung ang client ay may karapatan na tawagan ang isang partikular na tool:
 
-May ilang mga pagpipilian kung paano maisasagawa ang per feature RBAC, narito ang ilan:
+May ilang iba't ibang pagpipilian kung paano gawin ang per feature RBAC, ilan dito ay:
 
-- Magdagdag ng pagsuri para sa bawat tool, resource, prompt kung saan kailangan mong suriin ang antas ng permiso.
+- Magdagdag ng tseke para sa bawat tool, resource, prompt kung saan kailangan mong suriin ang antas ng pahintulot.
 
    **python**
 
@@ -858,7 +858,7 @@ May ilang mga pagpipilian kung paano maisasagawa ang per feature RBAC, narito an
       try:
           check_permissions(role="Admin.Write", request)
       catch:
-        pass # nabigo ang pag-apruba ng kliyente, itaas ang error sa pag-apruba
+        pass # nabigo ang kliyente sa awtorisasyon, magtaas ng error sa awtorisasyon
    ```
 
    **typescript**
@@ -888,7 +888,7 @@ May ilang mga pagpipilian kung paano maisasagawa ang per feature RBAC, narito an
    ```
 
 
-- Gamitin ang advanced server na pamamaraan at ang request handlers upang mabawasan kung ilang lugar ang kailangang mag-suri.
+- Gumamit ng advanced server approach at mga request handlers para mapaliit ang dami ng lugar kung saan kailangang gawin ang tseke.
 
    **Python**
 
@@ -900,21 +900,21 @@ May ilang mga pagpipilian kung paano maisasagawa ang per feature RBAC, narito an
    }
 
    def has_permission(user_permissions, required_permissions) -> bool:
-      # user_permissions: listahan ng mga pahintulot na mayroon ang user
-      # required_permissions: listahan ng mga kinakailangang pahintulot para sa tool
+      # user_permissions: listahan ng mga pahintulot na hawak ng gumagamit
+      # required_permissions: listahan ng mga pahintulot na kailangan para sa tool
       return any(perm in user_permissions for perm in required_permissions)
 
    @server.call_tool()
    async def handle_call_tool(
      name: str, arguments: dict[str, str] | None
    ) -> list[types.TextContent]:
-    # Ipagpalagay na ang request.user.permissions ay isang listahan ng mga pahintulot para sa user
+    # Ipagpalagay na ang request.user.permissions ay listahan ng mga pahintulot para sa gumagamit
      user_permissions = request.user.permissions
      required_permissions = tool_permission.get(name, [])
      if not has_permission(user_permissions, required_permissions):
-        # Itaas ang error na "Wala kang pahintulot na gamitin ang tool na {name}"
+        # Magtaas ng error na "Wala kang pahintulot na tawagan ang tool na {name}"
         raise Exception(f"You don't have permission to call tool {name}")
-     # ipagpatuloy at tawagin ang tool
+     # ipagpatuloy at tawagan ang tool
      # ...
    ```   
    
@@ -924,7 +924,7 @@ May ilang mga pagpipilian kung paano maisasagawa ang per feature RBAC, narito an
    ```typescript
    function hasPermission(userPermissions: string[], requiredPermissions: string[]): boolean {
        if (!Array.isArray(userPermissions) || !Array.isArray(requiredPermissions)) return false;
-       // Magbalik ng true kung ang gumagamit ay may kahit isang kinakailangang pahintulot
+       // Ibalik ang true kung ang gumagamit ay may hindi bababa sa isang kinakailangang pahintulot
        
        return requiredPermissions.some(perm => userPermissions.includes(perm));
    }
@@ -942,15 +942,15 @@ May ilang mga pagpipilian kung paano maisasagawa ang per feature RBAC, narito an
    });
    ```
 
-   Tandaan, kailangan mong siguraduhin na ang iyong middleware ay nag-a-assign ng decoded token sa user property ng request para maging simple ang code sa itaas.
+   Tandaan, kailangan mong siguraduhin na ang iyong middleware ay nag-a-assign ng decoded token sa user property ng request para maging simple ang kodigo sa itaas.
 
-### Buod
+### Pagbubuod
 
-Ngayong napag-usapan natin kung paano magdagdag ng suporta para sa RBAC sa pangkalahatan at para sa MCP partikular, oras na para subukang ipatupad ang seguridad nang sarili mo upang matiyak na naintindihan mo ang mga konseptong ipinakita sa iyo.
+Ngayon na napag-usapan natin kung paano magdagdag ng suporta para sa RBAC sa pangkalahatan at para sa MCP partikular, panahon na para subukan mong ipatupad ang seguridad nang mag-isa upang masiguro mong naintindihan mo ang mga konseptong ipinakita sa iyo.
 
 ## Assignment 1: Gumawa ng mcp server at mcp client gamit ang basic authentication
 
-Dito gagamitin mo ang mga natutunan mo tungkol sa pagpapadala ng credentials sa pamamagitan ng headers.
+Dito, gagamitin mo ang natutunan mo tungkol sa pagpapadala ng credentials sa headers.
 
 ## Solution 1
 
@@ -958,9 +958,9 @@ Dito gagamitin mo ang mga natutunan mo tungkol sa pagpapadala ng credentials sa 
 
 ## Assignment 2: I-upgrade ang solusyon mula sa Assignment 1 upang gumamit ng JWT
 
-Kunin ang unang solusyon pero sa pagkakataong ito, pagbutihin natin ito.
+Gamitin ang unang solusyon ngunit sa pagkakataong ito, pagandahin pa natin ito.
 
-Sa halip na Basic Auth, gamitin natin ang JWT.
+Sa halip na Basic Auth, gagamit tayo ng JWT.
 
 ## Solution 2
 
@@ -968,23 +968,23 @@ Sa halip na Basic Auth, gamitin natin ang JWT.
 
 ## Hamon
 
-Magdagdag ng RBAC per tool na inilarawan natin sa seksyong "Magdagdag ng RBAC sa MCP".
+Magdagdag ng RBAC kada tool tulad ng inilalarawan sa seksyon na "Add RBAC to MCP".
 
 ## Buod
 
-Sana ay marami kang natutunan sa kabanatang ito, mula sa walang seguridad, sa basic security, sa JWT at kung paano ito maidagdag sa MCP.
+Sana ay marami kang natutunan sa kabanatang ito, mula sa kawalan ng seguridad, hanggang sa basic na seguridad, hanggang sa JWT at kung paano ito maidaragdag sa MCP.
 
-Nakapagtayo tayo ng matibay na pundasyon gamit ang custom JWTs, ngunit habang lumalawak tayo, papunta tayo sa modelong identity na batay sa mga pamantayan. Ang paggamit ng isang IdP tulad ng Entra o Keycloak ay nagpapahintulot sa atin na i-offload ang token issuance, validation, at lifecycle management sa isang pinagkakatiwalaang platform — upang makapag-focus tayo sa app logic at karanasan ng user.
+Nakabuo tayo ng matibay na pundasyon gamit ang custom JWTs, ngunit habang lumalago tayo, lumalapit tayo sa isang standards-based identity model. Ang pagtanggap ng isang IdP tulad ng Entra o Keycloak ay nagbibigay-daan sa atin na i-offload ang pag-isyu, pag-validate, at lifecycle management ng token sa isang pinagkakatiwalaang platform — na nagpapalaya sa atin upang magpokus sa app logic at karanasan ng gumagamit.
 
 Para doon, mayroon tayong mas [advanced na kabanata tungkol sa Entra](../../05-AdvancedTopics/mcp-security-entra/README.md)
 
 ## Ano ang Susunod
 
-- Susunod: [Pagse-setup ng MCP Hosts](../12-mcp-hosts/README.md)
+- Susunod: [Pagsasaayos ng mga MCP Hosts](../12-mcp-hosts/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Paunawa**:  
-Ang dokumentong ito ay isinalin gamit ang AI translation service na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagama't nagsusumikap kami para sa katumpakan, pakatandaan na ang mga awtomatikong pagsasalin ay maaaring maglaman ng mga error o di-tumpak na impormasyon. Ang orihinal na dokumento sa orihinal nitong wika ang itinuturing na pangunahing sanggunian. Para sa mahahalagang impormasyon, inirerekomenda ang propesyonal na pagsasaling-tao. Hindi kami mananagot sa anumang hindi pagkakaintindihan o maling interpretasyon na dulot ng paggamit ng pagsasaling ito.
+**Paunawa**:
+Ang dokumentong ito ay isinalin gamit ang serbisyong AI na pagsasalin na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagamat aming pinagsisikapang maging tumpak ang pagsasalin, pakatandaan na ang awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o hindi pagkakatugma. Ang orihinal na dokumento sa orihinal nitong wika ang dapat ituring na pinagkakatiwalaang pinagmulan. Para sa mahahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang hindi pagkakaintindihan o maling interpretasyon na maaaring mauwi mula sa paggamit ng pagsasaling ito.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
