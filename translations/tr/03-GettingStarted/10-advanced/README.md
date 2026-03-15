@@ -1,20 +1,20 @@
-# Gelişmiş sunucu kullanımı
+# İleri düzey sunucu kullanımı
 
-MCP SDK'da iki farklı sunucu türü vardır, normal sunucunuz ve düşük seviyeli sunucu. Normalde, özellik eklemek için düzenli sunucuyu kullanırsınız. Ancak bazı durumlarda, şu gibi nedenlerle düşük seviyeli sunucuya dayanmak isteyebilirsiniz:
+MCP SDK'da iki farklı sunucu türü bulunmaktadır; normal sunucunuz ve düşük seviyeli sunucu. Normalde, özellik eklemek için düzenli sunucuyu kullanırsınız. Ancak bazı durumlarda, aşağıdakiler gibi düşük seviyeli sunucuya güvenmek isteyebilirsiniz:
 
-- Daha iyi mimari. Hem düzenli sunucu hem de düşük seviyeli sunucu ile temiz bir mimari oluşturmak mümkündür ancak düşük seviyeli sunucu ile biraz daha kolay olduğu iddia edilebilir.
-- Özellik kullanılabilirliği. Bazı gelişmiş özellikler yalnızca düşük seviyeli sunucu ile kullanılabilir. Örnek olarak örnekleme ve soru yöneltmeyi eklediğimiz sonraki bölümlerde bunu göreceksiniz.
+- Daha iyi mimari. Hem düzenli sunucu hem de düşük seviyeli sunucu ile temiz bir mimari oluşturmak mümkündür, ancak düşük seviyeli sunucu ile biraz daha kolay olduğu söylenebilir.
+- Özellik uygunluğu. Bazı gelişmiş özellikler sadece düşük seviyeli sunucuyla kullanılabilir. Örnek olarak, örnekleme ve tetikleme eklerken bunları sonraki bölümlerde göreceksiniz.
 
-## Normal sunucu ve düşük seviyeli sunucu karşılaştırması
+## Düzenli sunucu vs düşük seviyeli sunucu
 
-Bir MCP Sunucusu oluşturmanın düzenli sunucu ile nasıl göründüğüne bakalım
+MCP Sunucusu oluşturmanın düzenli sunucu ile nasıl göründüğüne bakalım
 
 **Python**
 
 ```python
 mcp = FastMCP("Demo")
 
-# Bir toplama aracı ekleyin
+# Bir toplama aracı ekle
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
@@ -29,7 +29,7 @@ const server = new McpServer({
   version: "1.0.0"
 });
 
-// Bir toplama aracı ekle
+// Toplama aracı ekle
 server.registerTool("add",
   {
     title: "Addition Tool",
@@ -42,16 +42,16 @@ server.registerTool("add",
 );
 ```
 
-Buradaki nokta, sunucunun sahip olmasını istediğiniz her araç, kaynak veya istemi açıkça eklemenizdir. Bununla ilgili hiçbir yanlış yoktur.
+Buradaki nokta, sunucuda bulunmasını istediğiniz her araç, kaynak veya istemi açıkça eklemenizdir. Bunun hiçbir sakıncası yoktur.
 
 ### Düşük seviyeli sunucu yaklaşımı
 
-Ancak, düşük seviyeli sunucu yaklaşımını kullandığınızda, her aracı kaydetmek yerine her özellik türü için (araçlar, kaynaklar veya istemler) iki tane işleyici oluşturmanız gerektiğini farklı olarak düşünmeniz gerekir. Örneğin araçlar için sadece şu iki işlev olur:
+Ancak, düşük seviyeli sunucu yaklaşımını kullandığınızda farklı düşünmeniz gerekir. Her aracı kaydetmek yerine, özellik türü başına (araçlar, kaynaklar veya istemler) iki işleyici oluşturursunuz. Örneğin araçlar için sadece iki işlev olur:
 
-- Tüm araçları listeleme. Bir işlev araçları listelemek için yapılan tüm denemelerden sorumlu olur.
-- Tüm araç çağrılarını işleme. Burada da bir işlev araç çağrılarını işler.
+- Tüm araçları listeleme. Bir işlev, araçları listelemeye yönelik tüm denemelerden sorumlu olur.
+- Araç çağrılarını işleme. Burada da sadece tek bir işlev, bir araca yapılan çağrıları işler.
 
-Bu kulağa daha az iş gibi geliyor değil mi? Yani araç kaydetmek yerine, yalnızca araçların listelendiğinden ve çağrı isteği geldiğinde çağrıldığından emin olmam yeterli olur.
+Bu potansiyel olarak daha az işmiş gibi mi geliyor? Yani bir araç kaydetmek yerine, sadece araçlar listelendiğinde aracın listede olmasını ve bir araç çağrısı geldiğinde çağrılmasını sağlamam gerekiyor.
 
 Şimdi kodun nasıl göründüğüne bakalım:
 
@@ -68,8 +68,8 @@ async def handle_list_tools() -> list[types.Tool]:
             inputSchema={
                 "type": "object",
                 "properties": {
-                    "a": {"type": "number", "description": "nubmer to add"}, 
-                    "b": {"type": "number", "description": "nubmer to add"}
+                    "a": {"type": "number", "description": "number to add"}, 
+                    "b": {"type": "number", "description": "number to add"}
                 },
                 "required": ["query"],
             },
@@ -81,7 +81,7 @@ async def handle_list_tools() -> list[types.Tool]:
 
 ```typescript
 server.setRequestHandler(ListToolsRequestSchema, async (request) => {
-  // Kayıtlı araçların listesini döndür
+  // Kayıtlı araçların listesini döndürür
   return {
     tools: [{
         name="add",
@@ -89,8 +89,8 @@ server.setRequestHandler(ListToolsRequestSchema, async (request) => {
         inputSchema={
             "type": "object",
             "properties": {
-                "a": {"type": "number", "description": "nubmer to add"}, 
-                "b": {"type": "number", "description": "nubmer to add"}
+                "a": {"type": "number", "description": "number to add"}, 
+                "b": {"type": "number", "description": "number to add"}
             },
             "required": ["query"],
         }
@@ -99,7 +99,7 @@ server.setRequestHandler(ListToolsRequestSchema, async (request) => {
 });
 ```
 
-Burada artık, bir özellikler listesini döndüren bir işlev var. Araçlar listesindeki her giriş şimdi `name`, `description` ve `inputSchema` gibi alanlara sahip olup dönüş tipine uyuyor. Bu, araçlarımızı ve özellik tanımlarımızı başka bir yerde tutabilmemizi sağlar. Artık tüm araçlarımızı tools klasöründe oluşturabiliriz ve aynı şekilde tüm özellikler için de geçerlidir, böylece projeniz aniden şu şekilde organize olabilir:
+Burada artık bir özellikler listesini döndüren bir işlevimiz var. Araçlar listesindeki her kayıt, dönüş türüne uymak için `name`, `description` ve `inputSchema` gibi alanlara sahiptir. Bu, araçlarımızı ve özellik tanımlarımızı başka bir yere koymamıza olanak sağlar. Artık tüm araçlarımızı tools klasöründe oluşturabiliriz ve tüm özellikleriniz için aynı durum geçerlidir, böylece projeniz aniden şu şekilde düzenlenebilir:
 
 ```text
 app
@@ -113,9 +113,9 @@ app
 ----| product-description
 ```
 
-Harika, mimarimiz oldukça temiz görünebilir.
+Harika, mimarimiz oldukça temiz görülebilir.
 
-Peki araç çağırmak, aynı fikir mi yani, bir işleyici ile istediğimiz aracı çağırmak? Evet, tam olarak, işte kodu:
+Peki araçları çağırmak, aynı fikir mi yani, hangi araç olursa olsun aracı çağırmak için tek bir işleyici mi? Evet, tam olarak, işte bunun kodu:
 
 **Python**
 
@@ -125,7 +125,7 @@ async def handle_call_tool(
     name: str, arguments: dict[str, str] | None
 ) -> list[types.TextContent]:
     
-    # tools, anahtarları araç adları olan bir sözlüktür
+    # tools, anahtarları araç isimleri olan bir sözlüktür
     if name not in tools.tools:
         raise ValueError(f"Unknown tool: {name}")
     
@@ -166,18 +166,18 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 });
 ```
 
-Yukarıdaki koddaki gibi, çağrılacak aracı ve hangi argümanlarla çağrılacağını ayrıştırmamız gerekiyor, sonra aracı çağırmamız gerekiyor.
+Yukarıdaki koddan görebileceğiniz üzere, çağrılacak aracı ve hangi argümanlarla çağrılacağını ayrıştırmamız gerekiyor ve ardından aracı çağırmaya devam etmemiz gerekir.
 
-## Validasyon ile yaklaşımı geliştirmek
+## Yaklaşımı doğrulama ile geliştirme
 
-Şimdiye kadar, araç, kaynak ve istem eklemek için yaptığınız tüm kayıtların her özellik türü için bu iki işleyici ile değiştirilebileceğini gördünüz. Başka ne yapmamız gerekiyor? Elbette, aracın doğru argümanlarla çağrıldığından emin olmak için bir tür doğrulama eklemeliyiz. Her çalışma zamanı bunun için kendi çözümüne sahiptir, örneğin Python Pydantic, TypeScript ise Zod kullanır. Fikir şudur:
+Şimdiye kadar araçlar, kaynaklar ve istemler eklemek için yaptığınız tüm kayıtların her özellik türü başına bu iki işleyici ile nasıl değiştirilebileceğini gördünüz. Başka ne yapmamız gerekiyor? Araçların doğru argümanlarla çağrıldığından emin olmak için bir tür doğrulama eklemeliyiz. Her çalışma zamanı kendi çözümünü kullanır; örneğin Python Pydantic kullanır ve TypeScript Zod kullanır. Buradaki fikir:
 
-- Bir özelliğin (araç, kaynak veya istem) oluşturma mantığını kendi klasörüne taşımak.
-- Örneğin bir aracın çağrılması istenen gelen isteği doğrulamak için bir yol eklemek.
+- Bir özelliği (araç, kaynak veya istem) oluşturma mantığını ona adanmış klasöre taşımak.
+- Örneğin bir araç çağrısı yapmak isteyen gelen bir isteği doğrulamanın bir yolunu eklemek.
 
 ### Bir özellik oluşturmak
 
-Bir özellik oluşturmak için, o özellik için bir dosya oluşturmanız ve ilgili zorunlu alanların olduğundan emin olmanız gerekiyor. Bu alanlar araçlar, kaynaklar ve istemlerde biraz farklıdır.
+Bir özellik oluşturmak için bu özellik için bir dosya yaratmanız ve o özelliğin gerektirdiği zorunlu alanların bulunduğundan emin olmanız gerekir. Hangi alanların farklılık gösterdiği araçlar, kaynaklar ve istemler arasında biraz değişir.
 
 **Python**
 
@@ -195,7 +195,7 @@ from .schema import AddInputModel
 
 async def add_handler(args) -> float:
     try:
-        # Girdiyi Pydantic modeli kullanarak doğrula
+        # Girişi Pydantic modeli kullanarak doğrulayın
         input_model = AddInputModel(**args)
     except Exception as e:
         raise ValueError(f"Invalid input: {str(e)}")
@@ -213,21 +213,21 @@ tool_add = {
 }
 ```
 
-Burada şu adımları nasıl yaptığımızı görebilirsiniz:
+Burada şu işlemleri nasıl yaptığımızı görebilirsiniz:
 
-- *schema.py* dosyasında `AddInputModel` adlı Pydantic şemasını `a` ve `b` alanları ile oluşturmak.
-- Gelen isteği `AddInputModel` olarak ayrıştırmaya çalışmak, parametrelerde bir uyuşmazlık varsa hata verecektir:
+- *schema.py* dosyasında `a` ve `b` alanlarına sahip Pydantic `AddInputModel` şema oluşturmak.
+- Gelen isteğin `AddInputModel` türünde olup olmadığını ayrıştırmaya çalışmak; parametrelerde uyumsuzluk varsa bu çökmesine neden olur:
 
    ```python
    # add.py
     try:
-        # Girişi Pydantic modeli kullanarak doğrula
+        # Girdiyi Pydantic modeli kullanarak doğrulayın
         input_model = AddInputModel(**args)
     except Exception as e:
         raise ValueError(f"Invalid input: {str(e)}")
    ```
 
-Bu ayrıştırma mantığını araç çağrısının kendisinde veya işleyici işlevinde yapmayı seçebilirsiniz.
+Bu ayrıştırma mantığını, araç çağrısı içinde ya da işleyici fonksiyonda koymayı seçebilirsiniz.
 
 **TypeScript**
 
@@ -288,7 +288,7 @@ export default {
 } as Tool;
 ```
 
-- Tüm araç çağrılarını ele alan işleyicide, gelen isteği aracın tanımlı şemasına ayrıştırmaya çalışıyoruz:
+- Tüm araç çağrılarını işleyen işleyicide, gelen isteği aracın tanımlı şemasına ayrıştırmaya çalışıyoruz:
 
     ```typescript
     const Schema = tool.rawSchema;
@@ -297,27 +297,27 @@ export default {
        const input = Schema.parse(request.params.arguments);
     ```
 
-    Bu başarılı olursa, aracı çağırmaya devam ediyoruz:
+    Eğer bu başarılı olursa, gerçek aracı çağırmaya devam ediyoruz:
 
     ```typescript
     const result = await tool.callback(input);
     ```
 
-Gördüğünüz gibi bu yaklaşım harika bir mimari yaratır çünkü her şey yerli yerindedir, *server.ts* sadece istek işleyicilerini bağlayan çok küçük bir dosyadır ve her özellik kendi klasöründedir, örneğin tools/, resources/ veya /prompts.
+Gördüğünüz gibi, bu yaklaşım harika bir mimari yaratıyor çünkü her şeyin yeri belli, *server.ts* sadece istek işleyicilerini bağlayan çok küçük bir dosya ve her özellik kendi klasöründe yani tools/, resources/ veya prompts/.
 
 Harika, bunu şimdi oluşturmaya çalışalım.
 
-## Alıştırma: Düşük seviyeli sunucu oluşturmak
+## Egzersiz: Düşük seviyeli sunucu oluşturma
 
-Bu alıştırmada şunları yapacağız:
+Bu egzersizde şu işlemleri yapacağız:
 
-1. Araçları listeleyen ve araçları çağıran düşük seviyeli bir sunucu oluşturmak.
-1. Üzerine inşa edebileceğiniz bir mimari uygulamak.
-1. Araç çağrılarınızın doğru şekilde doğrulandığından emin olmak için doğrulama eklemek.
+1. Araçların listelenmesini ve araçların çağrılmasını yöneten düşük seviyeli bir sunucu oluşturmak.
+1. Üzerine inşa edebileceğiniz bir mimari gerçekleştirmek.
+1. Araç çağrılarınızın doğru şekilde doğrulanmasını sağlamak için doğrulama eklemek.
 
 ### -1- Bir mimari oluşturmak
 
-İlk ele almamız gereken, daha fazla özellik ekledikçe bize ölçeklendirme yardımcı olacak bir mimari, işte nasıl görünüyor:
+Ele almamız gereken ilk şey, daha fazla özellik ekledikçe büyümemize yardımcı olacak bir mimaridir, işte nasıl göründüğü:
 
 **Python**
 
@@ -340,11 +340,11 @@ server.ts
 client.ts
 ```
 
-Artık tools klasörüne yeni araçlar eklemeyi kolaylaştıran bir mimari kurduk. Kaynaklar ve istemler için alt dizinler eklemek için istediğiniz gibi bunu takip edebilirsiniz.
+Artık araçlar klasöründe kolayca yeni araçlar ekleyebileceğimiz bir mimari kurduk. İsterseniz kaynaklar ve istemler için alt dizinler ekleyebilirsiniz.
 
 ### -2- Bir araç oluşturmak
 
-Şimdi bir araç oluşturmanın nasıl göründüğüne bakalım. Öncelikle, şu şekilde kendi *tool* alt dizininde oluşturulması gerekir:
+Şimdi bir araç oluşturmanın nasıl göründüğüne bakalım. Öncelikle, bunu tools alt dizininde oluşturmalısınız:
 
 **Python**
 
@@ -353,12 +353,12 @@ from .schema import AddInputModel
 
 async def add_handler(args) -> float:
     try:
-        # Girdiyi Pydantic modeli kullanarak doğrulayın
+        # Pydantic modeli kullanarak girdiyi doğrulayın
         input_model = AddInputModel(**args)
     except Exception as e:
         raise ValueError(f"Invalid input: {str(e)}")
 
-    # TODO: Pydantic ekle, böylece bir AddInputModel oluşturabilir ve argümanları doğrulayabiliriz
+    # TODO: Pydantic ekle, böylece bir AddInputModel oluşturup argümanları doğrulayabiliriz
 
     """Handler function for the add tool."""
     return float(input_model.a) + float(input_model.b)
@@ -371,9 +371,9 @@ tool_add = {
 }
 ```
 
-Burada ismi, açıklaması, Pydantic ile bir input şeması ve bir çağrı yapıldığında tetiklenecek işleyici tanımladığımızı görüyoruz. Son olarak tüm bu özelliklere sahip bir sözlük olan `tool_add`'i dışarıya açıyoruz.
+Burada adı, açıklaması ve Pydantic kullanarak giriş şeması nasıl tanımlanıyor ve bu araç çağrıldığında tetiklenecek bir işleyici olduğu gösteriliyor. Son olarak, tüm bu özellikleri tutan `tool_add` sözlüğünü dışarı açıyoruz.
 
-Ayrıca aracımız tarafından kullanılan input şemasını tanımlayan *schema.py* dosyasına sahibiz:
+Ayrıca aracımızın giriş şemasını tanımlamak için kullanılan *schema.py* var:
 
 ```python
 from pydantic import BaseModel
@@ -383,7 +383,7 @@ class AddInputModel(BaseModel):
     b: float
 ```
 
-Araçlar dizinini modül olarak kabul ettirmek için *__init__.py* dosyasını da doldurmamız gerekiyor. Ayrıca şu şekilde içindekileri dışarıya açmalıyız:
+Araçlar dizininin modül olarak kabul edilmesini sağlamak için *__init__.py* dosyasını da doldurmamız gerekir. Ayrıca içindeki modülleri şöyle açığa çıkarmamız gerekir:
 
 ```python
 from .add import tool_add
@@ -393,7 +393,7 @@ tools = {
 }
 ```
 
-Yeni araçlar ekledikçe bu dosyayı büyütebiliriz.
+Daha fazla araç ekledikçe bu dosyayı genişletebiliriz.
 
 **TypeScript**
 
@@ -414,14 +414,14 @@ export default {
 } as Tool;
 ```
 
-Burada şu özelliklerden oluşan bir sözlük oluşturuyoruz:
+Burada özelliklerden oluşan bir sözlük yaratıyoruz:
 
 - name, aracın adı.
-- rawSchema, Zod şeması, aracın çağrılması için gelen istekleri doğrulamada kullanılır.
-- inputSchema, bu şema işleyici tarafından kullanılır.
-- callback, aracı çağırmak için kullanılır.
+- rawSchema, Zod şemasıdır, bu araç çağrılarını doğrulamak için kullanılacak.
+- inputSchema, bu şema işleyici tarafından kullanılacak.
+- callback, aracı çağırmak için kullanılacak.
 
-`Tool` adlı bir yapı da vardır, bu sözlüğü mcp sunucu işleyicisinin kabul edebileceği bir tipe dönüştürür, şöyle görünür:
+Ayrıca `Tool` var, bu sözlüğü mcp sunucu işleyicisinin kabul edebileceği türe dönüştürmek için kullanılır ve şöyle görünür:
 
 ```typescript
 import { z } from 'zod';
@@ -434,7 +434,7 @@ export interface Tool {
 }
 ```
 
-Ve her araç için şemaları depoladığımız *schema.ts* dosyası vardır, şu anda sadece bir tane şema var ama araç ekledikçe daha fazla girdi ekleyebiliriz:
+Ve her aracın giriş şemasını sakladığımız *schema.ts* var, şu anda sadece bir şema var ama araç ekledikçe yeni kayıtlar ekleyebiliriz:
 
 ```typescript
 import { z } from 'zod';
@@ -442,16 +442,16 @@ import { z } from 'zod';
 export const MathInputSchema = z.object({ a: z.number(), b: z.number() });
 ```
 
-Harika, şimdi araçlarımızın listesini yönetmeye geçelim.
+Harika, şimdi araçlarımızın listesini nasıl yöneteceğimizi ele alalım.
 
 ### -3- Araç listesini yönetmek
 
-Araç listesini yönetmek için bir istek işleyici kurmamız gerekiyor. Sunucu dosyamıza eklememiz gerekenler şunlar:
+Araçları listelemek için, bununla ilgili bir istek işleyici kurmamız gerekir. Sunucu dosyamıza eklememiz gerekenler şunlar:
 
 **Python**
 
 ```python
-# kısaltma için kod atlandı
+# kısalık için kod atlandı
 from tools import tools
 
 @server.list_tools()
@@ -470,11 +470,11 @@ async def handle_list_tools() -> list[types.Tool]:
     return tool_list
 ```
 
-Burada `@server.list_tools` dekoratörünü ve uygulayıcı işlev `handle_list_tools`'u ekliyoruz. Bu işlevde araçların listesini üretmeliyiz. Her aracın bir adı, açıklaması ve inputSchema'sı olmalı.
+Burada `@server.list_tools` dekoratörünü ve bunu uygulayan `handle_list_tools` fonksiyonunu ekliyoruz. Bu fonksiyon içinde bir araçlar listesi üretmeliyiz. Her aracın bir adı, açıklaması ve inputSchema alanına sahip olması gerektiğine dikkat edin.
 
 **TypeScript**
 
-Araç listesini almak için istek işleyici ayarlamak üzere, yapılmak istenen işle uyumlu bir şema ile sunucuda `setRequestHandler` çağrılır, bu durumda `ListToolsRequestSchema`:
+Araçları listelemek için istek işleyiciyi kurmak adına, `setRequestHandler` fonksiyonunu, yapmak istediğimiz işe uygun bir şema ile birlikte sunucuda çağırmalıyız; burada `ListToolsRequestSchema` kullanılıyor.
 
 ```typescript
 // index.ts
@@ -488,26 +488,26 @@ tools.push(addTool);
 tools.push(subtractTool);
 
 // server.ts
-// Kısalık için kod atlandı
+// kısalık için kod atlandı
 import { tools } from './tools/index.js';
 
 server.setRequestHandler(ListToolsRequestSchema, async (request) => {
-  // Kayıtlı araçların listesini döndürür
+  // Kayıtlı araçların listesini döndür
   return {
     tools: tools
   };
 });
 ```
 
-Harika, şimdi araçları listeleme kısmını çözdük, gelelim araç çağırmaya.
+Harika, artık araçları listeleme kısmını çözdük, sırada araçların nasıl çağrılacağı var.
 
-### -4- Bir aracı çağırmayı yönetmek
+### -4- Araç çağrısını yönetmek
 
-Bir aracı çağırmak için başka bir istek işleyici kurmamız gerekiyor, bu sefer hangi özelliğin çağrılacağını ve hangi argümanlarla çağrılacağını belirten istekleri ele alacak.
+Bir aracı çağırmak için, hangi özelliğin çağrılacağı ve hangi argümanlarla belirtildiğine odaklanan yeni bir istek işleyici kurmamız gerekiyor.
 
 **Python**
 
-`@server.call_tool` dekoratörünü kullanalım ve `handle_call_tool` şeklinde uygulayalım. Bu işlev içinde araç adını, argümanlarını ayrıştırmalı ve argümanların ilgili araç için geçerli olup olmadığını doğrulamalıyız. Argümanları burada veya gerçek araçta doğrulayabiliriz.
+`@server.call_tool` dekoratörünü kullanalım ve `handle_call_tool` gibi bir fonksiyon ile uygulayalım. Bu fonksiyon içinde araç adını, argümanlarını ayrıştırmalı ve argümanların ilgili araç için geçerli olduklarından emin olmalıyız. Argüman doğrulamasını bu fonksiyonda veya daha aşağıda, gerçek araçta yapabiliriz.
 
 ```python
 @server.call_tool()
@@ -515,7 +515,7 @@ async def handle_call_tool(
     name: str, arguments: dict[str, str] | None
 ) -> list[types.TextContent]:
     
-    # tools, araç isimlerini anahtar olarak kullanan bir sözlüktür
+    # tools, anahtarları araç isimleri olan bir sözlüktür
     if name not in tools.tools:
         raise ValueError(f"Unknown tool: {name}")
     
@@ -533,33 +533,33 @@ async def handle_call_tool(
     ] 
 ```
 
-Şöyle oluyor:
+Yapılanlar şunlar:
 
-- Araç adı zaten giriş parametresi `name` olarak mevcut ve argümanlar `arguments` isimli sözlük şeklinde.
+- Aracın adı, girdi parametresi `name` olarak zaten mevcuttur ve argümanlarımız burada `arguments` adlı sözlük şeklindedir.
 
-- Araç şu şekilde çağrılır: `result = await tool["handler"](../../../../03-GettingStarted/10-advanced/arguments)`. Argümanların doğrulaması `handler` özelliğinde, bir işlevi gösterir. Başarısız olursa bir hata fırlatır.
+- Araç `result = await tool["handler"](../../../../03-GettingStarted/10-advanced/arguments)` ile çağrılır. Argüman doğrulama, `handler` özelliği tarafından işlenir; burası bir fonksiyona işaret eder, doğrulama başarısız olursa hata oluşturur.
 
-İşte, düşük seviyeli sunucu kullanarak araçları listeleme ve çağırmayı tamamen anladık.
+Artık düşük seviyeli sunucu kullanarak araçları listeleme ve çağırma konusunda tam bir anlayışa sahibiz.
 
-[Burada tam örneğe](./code/README.md) bakabilirsiniz.
+Tam örneği [buradan](./code/README.md) görebilirsiniz.
 
 ## Ödev
 
-Size verilen kodu bir dizi araç, kaynak ve istemle genişletin ve sadece tools dizinine dosya eklemeniz gerektiğini ve başka yere dosya eklemenize gerek olmadığını görün.
+Size verilen kodu, çeşitli araçlar, kaynaklar ve istemlerle genişletin ve sadece tools dizinine dosya eklemekle yetindiğinizi fark edin.
 
-*Hiçbir çözüm verilmedi*
+*Çözüm verilmemiştir*
 
 ## Özet
 
-Bu bölümde, düşük seviyeli sunucu yaklaşımının nasıl çalıştığını ve bunun üzerine kurabileceğimiz temiz bir mimari yaratmaya nasıl yardımcı olduğunu gördük. Ayrıca doğrulamadan bahsettik ve giriş doğrulama şemaları oluşturmak için doğrulama kütüphanelerinin nasıl kullanılacağını gösterdik.
+Bu bölümde düşük seviyeli sunucu yaklaşımının nasıl işlediğini ve bunun üzerine inşa edebileceğimiz iyi bir mimari oluşturulmasına nasıl yardımcı olabileceğini gördük. Ayrıca doğrulamayı ele aldık ve girdi doğrulaması için doğrulama kütüphaneleriyle nasıl şema oluşturulacağını gösterdik.
 
-## Sonraki Bölüm
+## Sonraki
 
-- Devam: [Basit Kimlik Doğrulama](../11-simple-auth/README.md)
+- Sonraki: [Basit Kimlik Doğrulama](../11-simple-auth/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Feragatname**:
-Bu belge, AI çeviri servisi [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hata veya yanlışlıklar içerebileceğini lütfen unutmayınız. Orijinal belge, kendi dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucu ortaya çıkabilecek herhangi bir yanlış anlaşılma veya yorum hatasından sorumlu değiliz.
+**Feragatname**:  
+Bu belge, AI çeviri servisi [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba gösterilse de, otomatik çevirilerin hatalar veya yanlışlıklar içerebileceğini lütfen unutmayın. Orijinal belge, kendi dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi tavsiye edilir. Bu çevirinin kullanılması sonucu ortaya çıkabilecek yanlış anlamalar veya yanlış yorumlamalar konusunda sorumluluk kabul edilmemektedir.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

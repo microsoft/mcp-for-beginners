@@ -1,20 +1,20 @@
-# Zaawansowane użycie serwera
+# Zaawansowane wykorzystanie serwera
 
-W MCP SDK dostępne są dwa różne typy serwerów: zwykły serwer oraz serwer niskiego poziomu. Zazwyczaj używa się zwykłego serwera do dodawania funkcji. W niektórych jednak przypadkach warto polegać na serwerze niskiego poziomu, na przykład:
+W MCP SDK udostępnione są dwa różne typy serwerów: zwykły serwer oraz serwer niskopoziomowy. Zazwyczaj używasz zwykłego serwera, aby dodać do niego funkcje. W niektórych jednak przypadkach warto skorzystać z serwera niskopoziomowego, np.:
 
-- Lepsza architektura. Możliwe jest stworzenie czystej architektury zarówno z zwykłym serwerem, jak i serwerem niskiego poziomu, ale można argumentować, że jest to nieco łatwiejsze z serwerem niskiego poziomu.
-- Dostępność funkcji. Niektóre zaawansowane funkcje można wykorzystać tylko z serwerem niskiego poziomu. Zobaczysz to w późniejszych rozdziałach, gdy dodamy próbkowanie i elicytację.
+- Lepsza architektura. Możliwe jest stworzenie czystej architektury zarówno ze zwykłym, jak i niskopoziomowym serwerem, ale można argumentować, że jest to nieco łatwiejsze przy serwerze niskopoziomowym.
+- Dostępność funkcji. Niektóre zaawansowane funkcje mogą być używane tylko z serwerem niskopoziomowym. Zobaczysz to w dalszych rozdziałach, gdy dodamy próbkowanie i elicytację.
 
-## Zwykły serwer a serwer niskiego poziomu
+## Zwykły serwer vs serwer niskopoziomowy
 
-Tak wygląda tworzenie serwera MCP za pomocą zwykłego serwera
+Oto jak wygląda tworzenie serwera MCP za pomocą zwykłego serwera
 
 **Python**
 
 ```python
 mcp = FastMCP("Demo")
 
-# Dodaj narzędzie do dodawania
+# Dodaj narzędzie dodawania
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
@@ -29,7 +29,7 @@ const server = new McpServer({
   version: "1.0.0"
 });
 
-// Dodaj narzędzie do dodawania
+// Dodaj narzędzie dodawania
 server.registerTool("add",
   {
     title: "Addition Tool",
@@ -42,18 +42,18 @@ server.registerTool("add",
 );
 ```
 
-Chodzi o to, że jawnie dodajesz każde narzędzie, zasób lub prompt, które chcesz, aby serwer posiadał. W tym nie ma nic złego.  
+Chodzi o to, że wyraźnie dodajesz każde narzędzie, zasób lub prompt, które mają być dostępne na serwerze. Nie ma w tym nic złego.
 
-### Podejście serwera niskiego poziomu
+### Podejście serwera niskopoziomowego
 
-Natomiast w podejściu z serwerem niskiego poziomu musisz podejść do tego inaczej, mianowicie zamiast rejestrować każde narzędzie, tworzysz dwa handlery na typ funkcji (narzędzia, zasoby lub prompt). Na przykład dla narzędzi są tylko dwie funkcje:
+Natomiast korzystając z podejścia serwera niskopoziomowego, musisz podejść do tego inaczej. Zamiast rejestrować każde narzędzie, tworzysz dwie funkcje obsługi dla każdego typu funkcji (narzędzia, zasoby lub prompt). Na przykład narzędzia mają wtedy tylko dwie funkcje:
 
-- Lista wszystkich narzędzi. Jedna funkcja odpowiada za wszystkie próby listowania narzędzi.
-- obsługa wywoływania wszystkich narzędzi. Tutaj również jest tylko jedna funkcja obsługująca wywołania narzędzi.
+- Lista wszystkich narzędzi. Jedna funkcja jest odpowiedzialna za wszystkie próby listowania narzędzi.
+- obsługa wywoływania narzędzi. Również tu jest tylko jedna funkcja obsługująca wywołania narzędzia.
 
-Brzmi jak potencjalnie mniej pracy, prawda? Więc zamiast rejestrować narzędzie, wystarczy upewnić się, że narzędzie jest na liście podczas listowania wszystkich narzędzi oraz że jest wywoływane, gdy pojawi się żądanie jego wywołania. 
+Brzmi to jak potencjalnie mniej pracy, prawda? Zamiast rejestrować narzędzie wystarczy, że narzędzie pojawi się na liście podczas listowania wszystkich narzędzi i że zostanie wywołane przy przychodzącym żądaniu wywołania narzędzia.
 
-Zobaczmy jak teraz wygląda kod:
+Zobaczmy, jak teraz wygląda kod:
 
 **Python**
 
@@ -68,8 +68,8 @@ async def handle_list_tools() -> list[types.Tool]:
             inputSchema={
                 "type": "object",
                 "properties": {
-                    "a": {"type": "number", "description": "nubmer to add"}, 
-                    "b": {"type": "number", "description": "nubmer to add"}
+                    "a": {"type": "number", "description": "number to add"}, 
+                    "b": {"type": "number", "description": "number to add"}
                 },
                 "required": ["query"],
             },
@@ -89,8 +89,8 @@ server.setRequestHandler(ListToolsRequestSchema, async (request) => {
         inputSchema={
             "type": "object",
             "properties": {
-                "a": {"type": "number", "description": "nubmer to add"}, 
-                "b": {"type": "number", "description": "nubmer to add"}
+                "a": {"type": "number", "description": "number to add"}, 
+                "b": {"type": "number", "description": "number to add"}
             },
             "required": ["query"],
         }
@@ -99,7 +99,7 @@ server.setRequestHandler(ListToolsRequestSchema, async (request) => {
 });
 ```
 
-Teraz mamy funkcję, która zwraca listę funkcji. Każdy wpis na liście narzędzi ma pola takie jak `name`, `description` i `inputSchema`, aby odpowiadać typowi zwracanemu. Pozwala to na umieszczenie definicji narzędzi i funkcji gdzie indziej. Możemy teraz tworzyć wszystkie nasze narzędzia w folderze tools, to samo tyczy się wszystkich funkcji, dzięki czemu projekt może być zorganizowany tak:
+Mamy teraz funkcję, która zwraca listę funkcji. Każdy wpis na liście narzędzi ma teraz pola `name`, `description` i `inputSchema`, aby spełnić typ zwracany. Dzięki temu możemy umieścić definicje narzędzi i funkcji gdzie indziej. Możemy teraz tworzyć wszystkie narzędzia w folderze tools, podobnie z funkcjami, więc projekt może być nagle zorganizowany tak:
 
 ```text
 app
@@ -113,9 +113,9 @@ app
 ----| product-description
 ```
 
-Świetnie, nasza architektura może wyglądać całkiem czyście.
+To świetne, nasza architektura może wyglądać bardzo czysto.
 
-A co z wywoływaniem narzędzi, czy to ta sama idea, jeden handler do wywołania dowolnego narzędzia? Tak, dokładnie, oto kod do tego:
+A co z wywoływaniem narzędzi, czy to ta sama koncepcja, jeden handler do wywoływania dowolnego narzędzia? Tak, dokładnie, oto kod do tego:
 
 **Python**
 
@@ -166,18 +166,18 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 });
 ```
 
-Jak widać w powyższym kodzie, musimy wyodrębnić narzędzie do wywołania oraz argumenty, a następnie kontynuować wywołanie narzędzia.
+Jak widać powyżej, musimy wyodrębnić, które narzędzie wywołać i z jakimi argumentami, a następnie przejść do wywołania narzędzia.
 
-## Ulepszanie podejścia za pomocą walidacji
+## Ulepszenie podejścia za pomocą walidacji
 
-Jak dotąd widziałeś, że wszystkie rejestracje dodające narzędzia, zasoby i prompt można zastąpić tymi dwoma handlerami na typ funkcji. Co jeszcze powinniśmy zrobić? Powinniśmy dodać jakąś formę walidacji, aby upewnić się, że narzędzie jest wywoływane z właściwymi argumentami. Każde środowisko wykonawcze ma swoje rozwiązanie, na przykład Python używa Pydantic, a TypeScript używa Zod. Idea jest następująca:
+Jak dotąd widziałeś, że wszystkie rejestracje do dodawania narzędzi, zasobów i promptów można zastąpić tymi dwoma handlerami dla każdego typu funkcji. Co jeszcze musimy zrobić? Powinniśmy dodać jakąś formę walidacji, aby upewnić się, że narzędzie jest wywoływane z odpowiednimi argumentami. Każde środowisko uruchomieniowe ma własne rozwiązanie, np. Python używa Pydantic, a TypeScript Zod. Idea jest taka:
 
-- Przenieść logikę tworzenia funkcji (narzędzia, zasobu lub prompta) do dedykowanego folderu.
+- Przenieść logikę tworzenia funkcji (narzędzia, zasobu lub prompta) do jej dedykowanego folderu.
 - Dodać sposób walidacji przychodzącego żądania, np. wywołania narzędzia.
 
 ### Tworzenie funkcji
 
-Aby stworzyć funkcję, musimy utworzyć dla niej plik i upewnić się, że zawiera obowiązkowe pola wymagane przez daną funkcję. Które pola się różnią nieco między narzędziami, zasobami i promptami.
+Aby stworzyć funkcję, trzeba utworzyć plik dla tej funkcji i upewnić się, że posiada obowiązkowe pola wymagane dla danej funkcji. Pola różnią się nieco w przypadku narzędzi, zasobów i promptów.
 
 **Python**
 
@@ -213,10 +213,10 @@ tool_add = {
 }
 ```
 
-tutaj widać, jak robimy:
+Tutaj możesz zobaczyć, jak:
 
 - Tworzymy schemat za pomocą Pydantic `AddInputModel` z polami `a` i `b` w pliku *schema.py*.
-- Próbujemy sparsować przychodzące żądanie na typ `AddInputModel`, jeśli parametry nie pasują, nastąpi awaria:
+- Próbujemy sparsować przychodzące żądanie jako typ `AddInputModel`, jeśli wystąpi niezgodność parametrów, nastąpi błąd:
 
    ```python
    # add.py
@@ -227,7 +227,7 @@ tutaj widać, jak robimy:
         raise ValueError(f"Invalid input: {str(e)}")
    ```
 
-Możesz wybrać, czy tę logikę parsowania umieścić w samym wywołaniu narzędzia, czy w funkcji handlera.
+Możesz zdecydować, czy tę logikę parsowania umieścić bezpośrednio w wywołaniu narzędzia, czy w funkcji handlera.
 
 **TypeScript**
 
@@ -288,7 +288,7 @@ export default {
 } as Tool;
 ```
 
-- W handlerze obsługującym wszystkie wywołania narzędzi próbujemy teraz sparsować przychodzące żądanie do zdefiniowanego schematu narzędzia:
+- W handlerze obsługującym wszystkie wywołania narzędzi próbujemy teraz sparsować przychodzące żądanie do schematu zdefiniowanego przez narzędzie:
 
     ```typescript
     const Schema = tool.rawSchema;
@@ -297,27 +297,27 @@ export default {
        const input = Schema.parse(request.params.arguments);
     ```
 
-    jeśli to się uda, przechodzimy do wywołania właściwego narzędzia:
+    Jeśli się uda, przechodzimy do wywołania właściwego narzędzia:
 
     ```typescript
     const result = await tool.callback(input);
     ```
 
-Jak widzisz, to podejście tworzy świetną architekturę, bo wszystko ma swoje miejsce, *server.ts* jest bardzo małym plikiem, który tylko łączy request handlery, a każda funkcja znajduje się w swoim folderze, tj. tools/, resources/ lub prompts/.
+Jak widać, to podejście tworzy świetną architekturę, bo wszystko ma swoje miejsce, a *server.ts* to bardzo mały plik jedynie łączący handlerzy żądań, a każda funkcja znajduje się w swoim folderze, np. tools/, resources/ lub /prompts.
 
-Świetnie, spróbujmy teraz to zbudować.
+Świetnie, spróbujmy to teraz zbudować.
 
-## Ćwiczenie: Tworzenie serwera niskiego poziomu
+## Ćwiczenie: Tworzenie serwera niskopoziomowego
 
 W tym ćwiczeniu zrobimy następujące rzeczy:
 
-1. Stworzymy serwer niskiego poziomu, obsługujący listowanie narzędzi i wywoływanie narzędzi.
-1. Zaimportujemy architekturę, na której można dalej budować.
-1. Dodamy walidację, aby zapewnić poprawną walidację wywołań narzędzi.
+1. Utworzymy serwer niskopoziomowy obsługujący listowanie narzędzi i wywoływanie narzędzi.
+1. Wdrożymy architekturę, na której możesz budować.
+1. Dodamy walidację, aby upewnić się, że wywołania narzędzi są poprawnie weryfikowane.
 
-### -1- Stworzenie architektury
+### -1- Utworzenie architektury
 
-Pierwsza rzecz, którą musimy rozwiązać, to architektura pomagająca nam skalować się wraz z dodawaniem kolejnych funkcji, wygląda to tak:
+Pierwszą rzeczą, którą musimy zająć się, jest architektura, która pomoże nam się skalować, gdy dodamy więcej funkcji, wygląda to tak:
 
 **Python**
 
@@ -340,11 +340,11 @@ server.ts
 client.ts
 ```
 
-Teraz mamy ustawioną architekturę, która pozwala łatwo dodawać narzędzia w folderze tools. Możesz też dodać podkatalogi dla zasobów i promptów wg uznania.
+Mamy teraz architekturę, która pozwala łatwo dodawać nowe narzędzia w folderze tools. Możesz dodać podfoldery dla zasobów i promptów według własnego uznania.
 
 ### -2- Tworzenie narzędzia
 
-Zobaczmy, jak wygląda tworzenie narzędzia. Najpierw musi ono powstać w podkatalogu *tool* tak:
+Zobaczmy, jak wygląda tworzenie narzędzia. Najpierw musi być utworzone w swoim podfolderze *tool* tak:
 
 **Python**
 
@@ -358,7 +358,7 @@ async def add_handler(args) -> float:
     except Exception as e:
         raise ValueError(f"Invalid input: {str(e)}")
 
-    # TODO: dodaj Pydantic, abyśmy mogli stworzyć AddInputModel i zwalidować argumenty
+    # DO ZROBIENIA: dodaj Pydantic, abyśmy mogli stworzyć AddInputModel i zwalidować argumenty
 
     """Handler function for the add tool."""
     return float(input_model.a) + float(input_model.b)
@@ -371,9 +371,9 @@ tool_add = {
 }
 ```
 
-Widzimy tu, jak definiujemy nazwę, opis, schemat wejściowy za pomocą Pydantic oraz handler, który będzie wywołany po wywołaniu narzędzia. Na końcu udostępniamy `tool_add`, który jest słownikiem zawierającym wszystkie te właściwości.
+Widzimy tu, jak definiujemy nazwę, opis i schemat wejściowy za pomocą Pydantic oraz handler, który zostanie wywołany po uruchomieniu narzędzia. Na koniec udostępniamy `tool_add`, czyli słownik zawierający te wszystkie właściwości.
 
-Jest też *schema.py* używany do definiowania schematu wejściowego używanego przez nasze narzędzie:
+Jest też *schema.py* wykorzystywany do zdefiniowania schematu wejściowego dla naszego narzędzia:
 
 ```python
 from pydantic import BaseModel
@@ -383,7 +383,7 @@ class AddInputModel(BaseModel):
     b: float
 ```
 
-Musimy także wypełnić *__init__.py*, aby folder tools był traktowany jako moduł. Dodatkowo musimy takie moduły w nim udostępnić tak:
+Musimy też uzupełnić *__init__.py*, aby folder tools był traktowany jako moduł. Dodatkowo musimy wystawić moduły w nim tak:
 
 ```python
 from .add import tool_add
@@ -393,7 +393,7 @@ tools = {
 }
 ```
 
-Możemy dalej dodawać wpisy w tym pliku, gdy dodajemy kolejne narzędzia.
+Ten plik będziemy rozbudowywać, gdy dodamy kolejne narzędzia.
 
 **TypeScript**
 
@@ -414,14 +414,14 @@ export default {
 } as Tool;
 ```
 
-Tworzymy tu słownik składający się z właściwości:
+Tworzymy słownik zawierający właściwości:
 
-- name, to nazwa narzędzia,
-- rawSchema, to schemat Zod używany do walidacji przychodzących żądań wywołania tego narzędzia,
-- inputSchema, ten schemat będzie używany przez handler,
-- callback, służy do wywołania narzędzia.
+- name — nazwa narzędzia.
+- rawSchema — schemat Zod, używany do walidacji nadchodzących żądań wywołania narzędzia.
+- inputSchema — schemat używany przez handler.
+- callback — funkcja wywołująca narzędzie.
 
-Jest też `Tool`, który konwertuje ten słownik na typ akceptowany przez handler serwera MCP, wygląda tak:
+Mamy również `Tool`, służący do konwersji tego słownika na typ akceptowany przez handler serwera mcp i wygląda to tak:
 
 ```typescript
 import { z } from 'zod';
@@ -434,7 +434,7 @@ export interface Tool {
 }
 ```
 
-Jest też *schema.ts*, gdzie trzymamy schematy wejściowe dla poszczególnych narzędzi, obecnie z jednym schematem, ale możemy dodawać kolejne wpisy:
+Jest też plik *schema.ts*, gdzie przechowujemy schematy wejściowe dla każdego narzędzia, obecnie z jednym schematem, ale wraz z dodawaniem narzędzi możemy dodawać kolejne wpisy:
 
 ```typescript
 import { z } from 'zod';
@@ -442,11 +442,11 @@ import { z } from 'zod';
 export const MathInputSchema = z.object({ a: z.number(), b: z.number() });
 ```
 
-Świetnie, przejdźmy teraz do obsługi listowania naszych narzędzi.
+Świetnie, przejdźmy dalej do obsługi listowania narzędzi.
 
 ### -3- Obsługa listowania narzędzi
 
-Aby obsłużyć listowanie narzędzi, musimy dodać request handler obsługujący to żądanie. Dodajemy to do naszego pliku serwera:
+Aby obsłużyć listowanie narzędzi, musimy dodać handler żądań. Oto co dodajemy do pliku serwera:
 
 **Python**
 
@@ -470,11 +470,11 @@ async def handle_list_tools() -> list[types.Tool]:
     return tool_list
 ```
 
-Dodajemy dekorator `@server.list_tools` oraz implementującą funkcję `handle_list_tools`. W tej funkcji musimy zwrócić listę narzędzi. Zwróć uwagę, że każde narzędzie musi mieć nazwę, opis i inputSchema.   
+Dodajemy dekorator `@server.list_tools` oraz implementację funkcji `handle_list_tools`. Ta funkcja musi zwrócić listę narzędzi. Zauważ, że każde narzędzie musi mieć nazwę, opis i inputSchema.
 
 **TypeScript**
 
-Aby dodać handler do żądania listowania narzędzi, wywołujemy `setRequestHandler` na serwerze z odpowiednim schematem, czyli `ListToolsRequestSchema`.
+Aby ustawić handler żądań dla listowania narzędzi, wywołujemy `setRequestHandler` na serwerze z odpowiednim schematem, w tym przypadku `ListToolsRequestSchema`.
 
 ```typescript
 // index.ts
@@ -499,15 +499,15 @@ server.setRequestHandler(ListToolsRequestSchema, async (request) => {
 });
 ```
 
-Dobrze, mamy już rozwiązany fragment listowania narzędzi, zobaczmy teraz, jak wywołujemy narzędzia.
+Świetnie, rozwiązaliśmy fragment dotyczący listowania narzędzi, zobaczmy, jak możemy wywoływać narzędzia.
 
-### -4- Obsługa wywołania narzędzia
+### -4- Obsługa wywoływania narzędzia
 
-Aby wywołać narzędzie, musimy dodać kolejny request handler, tym razem obsługujący żądanie określające, którą funkcję wywołać oraz z jakimi argumentami.
+Do wywołania narzędzia musimy dodać kolejny handler żądań, który będzie obsługiwał żądanie określające, którą funkcję wywołać i z jakimi argumentami.
 
 **Python**
 
-Użyjmy dekoratora `@server.call_tool` i zaimplementujmy go funkcją `handle_call_tool`. W tej funkcji musimy wydobyć nazwę narzędzia, jego argumenty oraz upewnić się, że argumenty są poprawne dla danego narzędzia. Walidację możemy zrobić tutaj albo dalej, w samym narzędziu.
+Skorzystajmy z dekoratora `@server.call_tool` i zaimplementujmy go funkcją `handle_call_tool`. W niej musimy wydobyć nazwę narzędzia, argumenty i upewnić się, że argumenty są poprawne dla danego narzędzia. Walidację możemy zrobić tutaj lub później w samym narzędziu.
 
 ```python
 @server.call_tool()
@@ -533,25 +533,25 @@ async def handle_call_tool(
     ] 
 ```
 
-Co się tutaj dzieje:
+Oto, co się dzieje:
 
-- Nazwa narzędzia jest dostępna jako parametr wejściowy `name`, a argumenty jako słownik `arguments`.
+- Nazwa narzędzia jest już dostępna jako parametr wejściowy `name`, podobnie jak argumenty w słowniku `arguments`.
 
-- Narzędzie jest wywoływane przez `result = await tool["handler"](../../../../03-GettingStarted/10-advanced/arguments)`. Walidacja argumentów odbywa się w polu `handler`, które wskazuje na funkcję, jeśli walidacja się nie powiedzie, zostanie rzucony wyjątek.
+- Narzędzie jest wywoływane przez `result = await tool["handler"](../../../../03-GettingStarted/10-advanced/arguments)`. Walidacja argumentów odbywa się w właściwości `handler`, która wskazuje na funkcję, jeśli się nie powiedzie, zostanie zgłoszony wyjątek.
 
-Otóż to, teraz mamy pełne zrozumienie listowania i wywoływania narzędzi za pomocą serwera niskiego poziomu.
+Teraz mamy pełne zrozumienie, jak listować i wywoływać narzędzia przy użyciu serwera niskopoziomowego.
 
-Zobacz [pełny przykład](./code/README.md)
+Zobacz [pełny przykład](./code/README.md) tutaj
 
 ## Zadanie
 
-Rozszerz podany kod o kilka narzędzi, zasobów i promptów i zaobserwuj, że musisz dodawać jedynie pliki w katalogu tools i nigdzie indziej.
+Rozszerz dostarczony kod o kilka narzędzi, zasobów i promptów i zauważ, że wystarczy dodawać pliki tylko w katalogu tools i nigdzie indziej.
 
-*Brak podanego rozwiązania*
+*Brak rozwiązania*
 
 ## Podsumowanie
 
-W tym rozdziale zobaczyliśmy, jak działa podejście serwera niskiego poziomu i jak może pomóc stworzyć ładną architekturę, na której można budować kolejne funkcje. Omówiliśmy też walidację oraz pokazano, jak pracować z bibliotekami walidacyjnymi do tworzenia schematów walidacji wejścia.
+W tym rozdziale zobaczyliśmy, jak działa podejście serwera niskopoziomowego i jak pomaga stworzyć czystą architekturę, którą można rozbudowywać. Omówiliśmy także walidację i pokazano, jak pracować z bibliotekami walidacyjnymi, aby tworzyć schematy walidacji wejścia.
 
 ## Co dalej
 
@@ -560,6 +560,6 @@ W tym rozdziale zobaczyliśmy, jak działa podejście serwera niskiego poziomu i
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Zastrzeżenie**:  
-Niniejszy dokument został przetłumaczony przy użyciu usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Choć dokładamy starań, aby tłumaczenie było jak najbardziej poprawne, prosimy mieć na uwadze, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w języku źródłowym powinien być traktowany jako ostateczne i autorytatywne źródło. W przypadku istotnych informacji zalecane jest skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z korzystania z tego tłumaczenia.
+**Zastrzeżenie**:
+Niniejszy dokument został przetłumaczony przy użyciu usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Chociaż dążymy do dokładności, prosimy pamiętać, że tłumaczenia automatyczne mogą zawierać błędy lub nieścisłości. Oryginalny dokument w języku źródłowym powinien być uznawany za źródło autorytatywne. W przypadku informacji krytycznych zaleca się skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z korzystania z tego tłumaczenia.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

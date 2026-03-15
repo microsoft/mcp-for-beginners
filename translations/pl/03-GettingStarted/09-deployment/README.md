@@ -1,41 +1,41 @@
 # Wdrażanie serwerów MCP
 
-Wdrażanie serwera MCP umożliwia innym dostęp do jego narzędzi i zasobów poza Twoim lokalnym środowiskiem. Istnieje kilka strategii wdrażania, które warto rozważyć, w zależności od Twoich wymagań dotyczących skalowalności, niezawodności i łatwości zarządzania. Poniżej znajdziesz wskazówki dotyczące wdrażania serwerów MCP lokalnie, w kontenerach oraz w chmurze.
+Wdrażanie serwera MCP pozwala innym na dostęp do jego narzędzi i zasobów poza Twoim lokalnym środowiskiem. Istnieje kilka strategii wdrażania do rozważenia, w zależności od Twoich wymagań dotyczących skalowalności, niezawodności i łatwości zarządzania. Poniżej znajdziesz wskazówki dotyczące wdrażania serwerów MCP lokalnie, w kontenerach oraz w chmurze.
 
 ## Przegląd
 
-Ta lekcja omawia, jak wdrożyć aplikację MCP Server.
+Ta lekcja obejmuje sposób wdrażania aplikacji serwera MCP.
 
 ## Cele nauki
 
-Po zakończeniu tej lekcji będziesz potrafił:
+Pod koniec tej lekcji będziesz umiał:
 
-- Ocenić różne podejścia do wdrażania.
+- Ocenić różne podejścia do wdrożenia.
 - Wdrożyć swoją aplikację.
 
-## Lokalne tworzenie i wdrażanie
+## Lokalny rozwój i wdrożenie
 
-Jeśli Twój serwer ma być używany na maszynie użytkownika, możesz wykonać następujące kroki:
+Jeśli serwer ma być używany na komputerach użytkowników, możesz postępować według poniższych kroków:
 
-1. **Pobierz serwer**. Jeśli nie pisałeś serwera, najpierw pobierz go na swoją maszynę.
-1. **Uruchom proces serwera**: Uruchom aplikację serwera MCP
+1. **Pobierz serwer**. Jeśli nie napisałeś serwera, najpierw pobierz go na swój komputer.  
+1. **Uruchom proces serwera**: Uruchom aplikację serwera MCP.
 
-Dla SSE (nie jest potrzebne dla serwera typu stdio)
+Dla SSE (niepotrzebne dla serwera typu stdio)
 
-1. **Skonfiguruj sieć**: Upewnij się, że serwer jest dostępny na oczekiwanym porcie
-1. **Połącz klientów**: Używaj lokalnych adresów URL połączenia takich jak `http://localhost:3000`
+1. **Skonfiguruj sieć**: Upewnij się, że serwer jest dostępny na oczekiwanym porcie  
+1. **Połącz klientów**: Używaj lokalnych adresów URL, takich jak `http://localhost:3000`
 
 ## Wdrażanie w chmurze
 
 Serwery MCP można wdrażać na różnych platformach chmurowych:
 
-- **Funkcje serverless**: Wdrażaj lekkie serwery MCP jako funkcje serverless
-- **Usługi kontenerowe**: Korzystaj z usług takich jak Azure Container Apps, AWS ECS lub Google Cloud Run
+- **Funkcje serverless**: Wdrażaj lekkie serwery MCP jako funkcje serverless  
+- **Usługi kontenerowe**: Używaj usług takich jak Azure Container Apps, AWS ECS lub Google Cloud Run  
 - **Kubernetes**: Wdrażaj i zarządzaj serwerami MCP w klastrach Kubernetes dla wysokiej dostępności
 
 ### Przykład: Azure Container Apps
 
-Azure Container Apps wspiera wdrażanie serwerów MCP. Projekt jest wciąż rozwijany i obecnie obsługuje serwery SSE.
+Azure Container Apps obsługuje wdrażanie serwerów MCP. To nadal praca w toku i obecnie obsługuje serwery SSE.
 
 Oto jak możesz to zrobić:
 
@@ -45,7 +45,7 @@ Oto jak możesz to zrobić:
   git clone https://github.com/anthonychu/azure-container-apps-mcp-sample.git
   ```
 
-1. Uruchom je lokalnie, aby przetestować:
+1. Uruchom go lokalnie, aby przetestować działanie:
 
   ```sh
   uv venv
@@ -59,7 +59,7 @@ Oto jak możesz to zrobić:
   uv run fastapi dev main.py
   ```
 
-1. Aby wypróbować lokalnie, utwórz plik *mcp.json* w katalogu *.vscode* i dodaj następującą zawartość:
+1. Aby uruchomić lokalnie, stwórz plik *mcp.json* w katalogu *.vscode* i dodaj następującą zawartość:
 
   ```json
   {
@@ -83,7 +83,7 @@ Oto jak możesz to zrobić:
   }
   ```
 
-  Po uruchomieniu serwera SSE możesz kliknąć ikonę odtwarzania w pliku JSON, teraz powinieneś zobaczyć, że narzędzia serwera są wychwytywane przez GitHub Copilot, zobacz ikonę Narzędzia.
+  Po uruchomieniu serwera SSE możesz kliknąć ikonę odtwarzania w pliku JSON, powinieneś teraz zobaczyć, że narzędzia na serwerze są wykrywane przez GitHub Copilot, zobacz ikonę Narzędzia. 
 
 1. Aby wdrożyć, uruchom następujące polecenie:
 
@@ -91,22 +91,22 @@ Oto jak możesz to zrobić:
   az containerapp up -g <RESOURCE_GROUP_NAME> -n weather-mcp --environment mcp -l westus --env-vars API_KEYS=<AN_API_KEY> --source .
   ```
 
-Oto masz, wdrażaj lokalnie lub do Azure wykonując te kroki.
+Oto masz, wdroż go lokalnie lub wdroż do Azure według tych kroków.
 
 ## Dodatkowe zasoby
 
 - [Azure Functions + MCP](https://learn.microsoft.com/en-us/samples/azure-samples/remote-mcp-functions-dotnet/remote-mcp-functions-dotnet/)
 - [Artykuł o Azure Container Apps](https://techcommunity.microsoft.com/blog/appsonazureblog/host-remote-mcp-servers-in-azure-container-apps/4403550)
-- [Repozytorium MCP dla Azure Container Apps](https://github.com/anthonychu/azure-container-apps-mcp-sample)
+- [Repozytorium MCP Azure Container Apps](https://github.com/anthonychu/azure-container-apps-mcp-sample)
 
 
 ## Co dalej
 
-- Dalej: [Zaawansowane tematy serwerowe](../10-advanced/README.md)
+- Dalej: [Zaawansowane tematy serwera](../10-advanced/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Zastrzeżenie**:  
-Ten dokument został przetłumaczony za pomocą usługi tłumaczeń AI [Co-op Translator](https://github.com/Azure/co-op-translator). Choć dążymy do jak największej dokładności, prosimy mieć na uwadze, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w języku źródłowym należy traktować jako dokument wiążący. W przypadku informacji o krytycznym znaczeniu zaleca się skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z korzystania z tego tłumaczenia.
+Niniejszy dokument został przetłumaczony przy użyciu usługi tłumaczeń AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mimo że dokładamy starań, aby tłumaczenie było jak najbardziej precyzyjne, prosimy mieć na uwadze, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Źródłem ostatecznym i wiążącym jest oryginalny dokument w języku źródłowym. W przypadku informacji o krytycznym znaczeniu zaleca się skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z korzystania z tego tłumaczenia.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
