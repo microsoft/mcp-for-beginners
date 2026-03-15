@@ -1,52 +1,51 @@
 # 部署 MCP 伺服器
 
-部署你的 MCP 伺服器讓其他人能在本地環境之外存取其工具和資源。根據你對可擴充性、可靠性和管理便利性的需求，有數種部署策略可以考慮。以下你會找到針對本地、容器及雲端部署 MCP 伺服器的指南。
+部署您的 MCP 伺服器可以讓他人超越您的本地環境來存取其工具和資源。根據您對可擴充性、可靠性和管理便利性的需求，有多種部署策略可供考量。以下將引導您如何在本地、容器中及雲端部署 MCP 伺服器。
 
 ## 概覽
 
-本課程涵蓋如何部署你的 MCP 伺服器應用程式。
+本課程涵蓋如何部署您的 MCP Server 應用程式。
 
 ## 學習目標
 
-課程結束後，你將可以：
+完成本課程後，您將能夠：
 
 - 評估不同的部署方法。
-- 部署你的應用程式。
+- 部署您的應用程式。
 
 ## 本地開發與部署
 
-如果你的伺服器是設計讓使用者在自己的機器上運行並使用，可以遵循以下步驟：
+如果您的伺服器是設計供使用者在其機器上運行，您可以依照以下步驟：
 
-1. **下載伺服器**。如果你不是寫伺服器的開發者，請先下載它到你的機器。  
-1. **啟動伺服器程序**：執行你的 MCP 伺服器應用程式。
+1. **下載伺服器**。若您並非自行撰寫伺服器，請先下載到您的機器。
+1. **啟動伺服器程序**：執行您的 MCP 伺服器應用程式
 
-針對 SSE（標準 IO 類型伺服器不需要）：
+針對 SSE（stdio 類型伺服器則不需此步驟）
 
-1. **設定網路**：確保伺服器能在預期的連接埠被存取。  
-1. **連接客戶端**：使用本地連結 URL，例如 `http://localhost:3000`。
+1. **設定網路**：確保伺服器在預期的埠可被存取
+1. **連接客戶端**：使用像 `http://localhost:3000` 的本地連接 URL
 
 ## 雲端部署
 
-MCP 伺服器可以部署到各種雲端平台：
+MCP 伺服器可部署至各種雲端平台：
 
-- **無伺服器函式**：將輕量 MCP 伺服器部署為無伺服器函式。  
-- **容器服務**：使用 Azure Container Apps、AWS ECS 或 Google Cloud Run 等服務。  
-- **Kubernetes**：部署及管理 MCP 伺服器至 Kubernetes 叢集提供高可用性。
+- **無伺服器函式**：以無伺服器函式方式部署輕量級 MCP 伺服器
+- **容器服務**：使用 Azure Container Apps、AWS ECS 或 Google Cloud Run 等服務
+- **Kubernetes**：在 Kubernetes 叢集內部署與管理 MCP 伺服器以達高可用性
 
 ### 範例：Azure Container Apps
 
-Azure Container Apps 支援部署 MCP 伺服器，目前仍在持續開發中，現階段支援 SSE 伺服器。
+Azure Container Apps 支援部署 MCP 伺服器。目前仍在開發中，且目前支援 SSE 伺服器。
 
-你可以按照下列方式操作：
+以下是操作步驟：
 
-1. 克隆一個程式庫：
+1. 克隆一個儲存庫：
 
   ```sh
   git clone https://github.com/anthonychu/azure-container-apps-mcp-sample.git
   ```
 
-
-1. 本地執行測試：
+1. 在本地執行以測試：
 
   ```sh
   uv venv
@@ -60,8 +59,7 @@ Azure Container Apps 支援部署 MCP 伺服器，目前仍在持續開發中，
   uv run fastapi dev main.py
   ```
 
-
-1. 想在本地試用，在 *.vscode* 資料夾建立 *mcp.json* 檔案並加入以下內容：
+1. 若想在本地試運行，請在 *.vscode* 目錄下建立 *mcp.json* 檔案並加入下列內容：
 
   ```json
   {
@@ -85,32 +83,29 @@ Azure Container Apps 支援部署 MCP 伺服器，目前仍在持續開發中，
   }
   ```
 
+  SSE 伺服器啟動後，您可以在 JSON 檔案中點擊播放圖示，現在應能看到伺服器上的工具被 GitHub Copilot 偵測，請見工具圖示。
 
-  一旦 SSE 伺服器啟動，你可以點擊 JSON 檔案中的播放圖示，GitHub Copilot 就會抓取伺服器上的工具，會看到工具圖示。
-
-1. 進行部署，執行以下命令：
+1. 部署時，執行以下指令：
 
   ```sh
   az containerapp up -g <RESOURCE_GROUP_NAME> -n weather-mcp --environment mcp -l westus --env-vars API_KEYS=<AN_API_KEY> --source .
   ```
 
-
-就這麼簡單，透過以上步驟，你可以本地部署，也可以部署到 Azure。
+就是這樣，您可以依照這些步驟在本地或透過 Azure 進行部署。
 
 ## 其他資源
 
-- [Azure Functions + MCP](https://learn.microsoft.com/en-us/samples/azure-samples/remote-mcp-functions-dotnet/remote-mcp-functions-dotnet/)  
-- [Azure Container Apps 文章](https://techcommunity.microsoft.com/blog/appsonazureblog/host-remote-mcp-servers-in-azure-container-apps/4403550)  
-- [Azure Container Apps MCP 程式庫](https://github.com/anthonychu/azure-container-apps-mcp-sample)  
+- [Azure Functions + MCP](https://learn.microsoft.com/en-us/samples/azure-samples/remote-mcp-functions-dotnet/remote-mcp-functions-dotnet/)
+- [Azure Container Apps 文章](https://techcommunity.microsoft.com/blog/appsonazureblog/host-remote-mcp-servers-in-azure-container-apps/4403550)
+- [Azure Container Apps MCP 儲存庫](https://github.com/anthonychu/azure-container-apps-mcp-sample)
 
+## 接下來學習
 
-## 下一步
-
-- 下一篇：[進階伺服器主題](../10-advanced/README.md)
+- 下一課：[進階伺服器主題](../10-advanced/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**免責聲明**：
-本文件係使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。雖然我們力求準確，但請注意自動翻譯可能包含錯誤或不準確之處。原始文件之母語版本應視為權威來源。對於重要資訊，建議採用專業人工翻譯。我們不對因使用本翻譯所導致之任何誤解或誤譯負責。
+**免責聲明**：  
+本文件經由 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 翻譯而成。雖然我們致力於追求準確性，但請注意自動翻譯可能存在錯誤或不精確之處。原始文件的母語版本應視為權威來源。對於重要資訊，建議採用專業人工翻譯。我們不對因使用本翻譯所導致的任何誤解或誤譯負責。
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
