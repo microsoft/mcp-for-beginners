@@ -600,7 +600,7 @@ server.connect(transport).catch(console.error);
 console.log("Weather MCP Server started");
 ```
 
-This JavaScript example demonstrates how to create an MCP client that connects to a server, sends a prompt, and processes the response including any tool calls that were made.
+This JavaScript example demonstrates how to create an MCP server that registers weather-related tools and connects using stdio transport to handle incoming client requests.
 
 ## Security and Authorization
 
