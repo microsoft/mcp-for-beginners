@@ -1,47 +1,48 @@
 ## Testing and Debugging
 
-Before you start testing your MCP server, it’s important to understand the available tools and best practices for debugging. Effective testing ensures your server behaves as expected and helps you quickly identify and fix issues. The following section outlines recommended methods for validating your MCP implementation.
+Before you begin testing your MCP server, it's important to understand the available tools and best practices for debugging. Effective testing ensures your server behaves as expected and helps you quickly identify and resolve issues. The following section outlines recommended approaches for validating your MCP implementation.
 
 ## Overview
 
-This lesson explains how to choose the right testing approach and the most effective testing tool.
+This lesson covers how to select the right testing approach and the most effective testing tool.
 
 ## Learning Objectives
 
 By the end of this lesson, you will be able to:
 
-- Describe different testing approaches.
-- Use various tools to test your code effectively.
+- Describe various approaches for testing.
+- Use different tools to effectively test your code.
+
 
 ## Testing MCP Servers
 
-MCP offers tools to help you test and debug your servers:
+MCP provides tools to help you test and debug your servers:
 
-- **MCP Inspector**: A command-line tool that can be used both as a CLI and with a visual interface.
-- **Manual testing**: You can use tools like curl to send web requests, but any tool capable of making HTTP requests will work.
-- **Unit testing**: You can use your preferred testing framework to test features on both the server and client sides.
+- **MCP Inspector**: A command line tool that can be run both as a CLI tool and as a visual tool.
+- **Manual testing**: You can use a tool like curl to run web requests, but any tool capabable of running HTTP will do.
+- **Unit testing**: It's possible to use your preferred testing framework to test the features of both server and client.
 
 ### Using MCP Inspector
 
-We’ve covered how to use this tool in previous lessons, but here’s a brief overview. It’s built with Node.js and can be run using the `npx` command, which temporarily downloads and installs the tool, then cleans up after running your request.
+We've described the usage of this tool in previous lessons but let's talk about it a bit at high level. It's a tool built in Node.js and you can use it by calling the `npx` executable which will download and install the tool itself temporarily and will clean itself up once it's done running your request.
 
 The [MCP Inspector](https://github.com/modelcontextprotocol/inspector) helps you:
 
-- **Discover Server Capabilities**: Automatically detect available resources, tools, and prompts.
-- **Test Tool Execution**: Experiment with different parameters and see responses in real time.
-- **View Server Metadata**: Inspect server information, schemas, and configurations.
+- **Discover Server Capabilities**: Automatically detect available resources, tools, and prompts
+- **Test Tool Execution**: Try different parameters and see responses in real-time
+- **View Server Metadata**: Examine server info, schemas, and configurations
 
-A typical command to run the tool looks like this:
+A typical run of the tool looks like so:
 
 ```bash
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-This command starts an MCP server with its visual interface and opens a local web interface in your browser. You’ll see a dashboard showing your registered MCP servers, their available tools, resources, and prompts. The interface lets you interactively test tool execution, inspect server metadata, and view real-time responses, making it easier to validate and debug your MCP server implementations.
+The above command starts an MCP and its visual interface and launches a local web interface in your browser. You can expect to see a dashboard displaying your registered MCP servers, their available tools, resources, and prompts. The interface allows you to interactively test tool execution, inspect server metadata, and view real-time responses, making it easier to validate and debug your MCP server implementations.
 
-Here’s an example of what it looks like: ![Inspector](../../../../translated_images/en/connect.141db0b2bd05f096.webp)
+Here's what it can look like: ![Inspector](../../../../translated_images/en/connect.141db0b2bd05f096.webp)
 
-You can also run the tool in CLI mode by adding the `--cli` flag. Here’s an example of running it in CLI mode, which lists all the tools on the server:
+You can also run this tool in CLI mode in which case you add `--cli` attribute. Here's an example of running the tool in "CLI" mode which lists all the tools on the server:
 
 ```sh
 npx @modelcontextprotocol/inspector --cli node build/index.js --method tools/list
@@ -49,9 +50,9 @@ npx @modelcontextprotocol/inspector --cli node build/index.js --method tools/lis
 
 ### Manual Testing
 
-Besides using the inspector tool to test server capabilities, another option is to use a client that can make HTTP requests, such as curl.
+Apart from running the inspector tool to test server capabilities, another similar approach is to run a client capable of using HTTP lik for example curl.
 
-With curl, you can test MCP servers directly by sending HTTP requests:
+With curl, you can test MCP servers directly using HTTP requests:
 
 ```bash
 # Example: Test server metadata
@@ -63,11 +64,11 @@ curl -X POST http://localhost:3000/v1/tools/execute \
   -d '{"name": "calculator", "parameters": {"expression": "2+2"}}'
 ```
 
-As shown in the example above, you use a POST request to invoke a tool by sending a payload with the tool’s name and parameters. Choose the method that works best for you. CLI tools are generally faster and can be scripted, which is useful in CI/CD environments.
+As you can see from above usage of curl, you use a POST request  to invoke a tool using a payload consisting of the tools name and its parameters. Use the approach that fits you best. CLI tools in general tends to be faster to use and lends themselves to be scripted which can be useful in a CI/CD environment.
 
 ### Unit Testing
 
-Write unit tests for your tools and resources to ensure they work as expected. Here’s an example of test code:
+Create unit tests for your tools and resources to ensure they work as expected. Here's some example testing code.
 
 ```python
 import pytest
@@ -120,25 +121,25 @@ async def test_list_tools_cursor_parameter():
     
 ```
 
-This code does the following:
+The preceding code does the following:
 
-- Uses the pytest framework, which lets you write tests as functions and use assert statements.
+- Leverages pytest framework which lets you create tests as functions and use assert statements.
 - Creates an MCP Server with two different tools.
-- Uses `assert` statements to verify that certain conditions are met.
+- Uses `assert` statement to check that certain conditions are fulfilled.
 
-Check out the [full file here](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+Have a look at the [full file here](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
-Using this file as a reference, you can test your own server to ensure capabilities are set up correctly.
+Given the above file, you can test your own server to ensure capabilities are created as they should.
 
-All major SDKs have similar testing sections, so you can adapt this to your preferred runtime.
+All major SDKs have similar testing sections so you can adjust to your chosen runtime.
 
-## Samples
+## Samples 
 
 - [Java Calculator](../samples/java/calculator/README.md)
 - [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
 - [JavaScript Calculator](../samples/javascript/README.md)
 - [TypeScript Calculator](../samples/typescript/README.md)
-- [Python Calculator](../../../../03-GettingStarted/samples/python)
+- [Python Calculator](../../../../03-GettingStarted/samples/python) 
 
 ## Additional Resources
 
@@ -148,5 +149,9 @@ All major SDKs have similar testing sections, so you can adapt this to your pref
 
 - Next: [Deployment](../09-deployment/README.md)
 
-**Disclaimer**:  
-This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Disclaimer**:
+This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please note that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations resulting from the use of this translation.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
