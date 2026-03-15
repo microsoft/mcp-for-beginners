@@ -1,51 +1,51 @@
 # Deploying MCP Servers
 
-Deploying your MCP server dey allow oda people to access im tools and resources beyond your local environment. E get different deployment strategies wey you fit consider, depend on how you want am for scalability, reliability, and how e go easy to manage. Below you go find guidance for deploying MCP servers locally, inside containers, and for the cloud.
+Deploying your MCP server dey allow oda people access e tools and resources beyond your local environment. E get plenti deployment ways wey you fit consider, depend on wetin you want for scalability, reliability, and easy management. Down below, you go find how to deploy MCP servers for local machine, inside container, and for cloud.
 
 ## Overview
 
-Dis lesson go show how to deploy your MCP Server app.
+Dis lesson go show you how to deploy your MCP Server app.
 
 ## Learning Objectives
 
-By di end of dis lesson, you go fit:
+By the time you finish dis lesson, you go fit:
 
 - Check different deployment ways.
 - Deploy your app.
 
 ## Local development and deployment
 
-If your server na to run for user machine, you fit follow these steps:
+If your server suppose dey run for users machine, you fit follow dis steps:
 
-1. **Download the server**. If you no write di server, abeg download am first for your machine.  
+1. **Download the server**. If you no write the server, then download am first to your machine.  
 1. **Start the server process**: Run your MCP server application 
 
-For SSE (no need am for stdio type server)
+For SSE (no need for stdio type server)
 
-1. **Configure networking**: Make sure say the server dey accessible on di port wey dem expect  
+1. **Configure networking**: Make sure say the server dey reachable for the right port  
 1. **Connect clients**: Use local connection URLs like `http://localhost:3000`
 
 ## Cloud Deployment
 
 MCP servers fit deploy for different cloud platforms:
 
-- **Serverless Functions**: Deploy light MCP servers as serverless functions  
-- **Container Services**: Use services like Azure Container Apps, AWS ECS, or Google Cloud Run  
-- **Kubernetes**: Deploy and manage MCP servers for Kubernetes clusters to get better availability
+- **Serverless Functions**: Deploy small MCP servers as serverless functions
+- **Container Services**: Use services like Azure Container Apps, AWS ECS, or Google Cloud Run
+- **Kubernetes**: Deploy and manage MCP servers for Kubernetes clusters, make e dey always available
 
 ### Example: Azure Container Apps
 
-Azure Container Apps fit deploy MCP Servers. E still dey work progress and e currently dey support SSE servers.
+Azure Container Apps dey support MCP Servers deployment. E still dey work progress and e dey support SSE servers now.
 
-Na so you fit take do am:
+Na so you fit do am:
 
-1. Clone the repo:
+1. Clone a repo:
 
   ```sh
   git clone https://github.com/anthonychu/azure-container-apps-mcp-sample.git
   ```
 
-1. Run am locally to test di thing dem:
+1. Run am locally to test am:
 
   ```sh
   uv venv
@@ -59,7 +59,7 @@ Na so you fit take do am:
   uv run fastapi dev main.py
   ```
 
-1. To try am locally, create *mcp.json* file inside *.vscode* directory and put dis content inside:
+1. To try am locally, create *mcp.json* file for *.vscode* directory and put this content:
 
   ```json
   {
@@ -83,15 +83,15 @@ Na so you fit take do am:
   }
   ```
 
-  Once the SSE server don start, you fit click the play icon for the JSON file, you go fit see tools for the server dey picked up by GitHub Copilot, check the Tool icon.
+  Once the SSE server start, you fit click the play icon for the JSON file, you go see tools for the server dey show inside GitHub Copilot, check the Tool icon. 
 
-1. To deploy am, run dis command:
+1. To deploy am, run this command:
 
   ```sh
   az containerapp up -g <RESOURCE_GROUP_NAME> -n weather-mcp --environment mcp -l westus --env-vars API_KEYS=<AN_API_KEY> --source .
   ```
 
-Na so e be, deploy am locally, deploy am to Azure through these steps.
+That’s all, deploy am locally, deploy am for Azure through these steps.
 
 ## Additional Resources
 
@@ -108,5 +108,5 @@ Na so e be, deploy am locally, deploy am to Azure through these steps.
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Disclaimer**:
-Dis document don translate wit AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). Even though we dey try make am accurate, abeg sabi say automated translations fit get errors or mistakes. The original document wey e dey for im own language na im be the correct one. If na serious matter, e better make person wey sabi human translation do am. We no go responsible if person no understand well or if person misunderstand from this translation.
+Dis document don translate wit AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). Even tho we dey try make am correct, abeg make you sabi say automated translations fit get some mistakes or no too clear. Di original document wey e dey for im own language na di correct one wey you suppose use. If na serious info, e good make professional human translation do am. We no go fit take responsibility for any kin misunderstanding or wrong interpretation wey fit come from dis translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
