@@ -2,11 +2,11 @@
 
 Implantar seu servidor MCP permite que outros acessem suas ferramentas e recursos além do seu ambiente local. Existem várias estratégias de implantação a considerar, dependendo dos seus requisitos de escalabilidade, confiabilidade e facilidade de gerenciamento. Abaixo você encontrará orientações para implantar servidores MCP localmente, em contêineres e na nuvem.
 
-## Visão geral
+## Visão Geral
 
-Esta lição cobre como implantar seu aplicativo de Servidor MCP.
+Esta lição cobre como implantar seu aplicativo Servidor MCP.
 
-## Objetivos de aprendizado
+## Objetivos de Aprendizagem
 
 Ao final desta lição, você será capaz de:
 
@@ -15,29 +15,29 @@ Ao final desta lição, você será capaz de:
 
 ## Desenvolvimento e implantação local
 
-Se seu servidor deve ser consumido executando na máquina do usuário, você pode seguir os seguintes passos:
+Se seu servidor se destina a ser consumido executando na máquina dos usuários, você pode seguir os seguintes passos:
 
-1. **Baixe o servidor**. Se você não escreveu o servidor, então faça o download primeiro para sua máquina.  
-1. **Inicie o processo do servidor**: Execute seu aplicativo de servidor MCP.
+1. **Baixe o servidor**. Se você não escreveu o servidor, baixe-o primeiro para sua máquina.  
+1. **Inicie o processo do servidor**: Execute seu aplicativo servidor MCP.
 
 Para SSE (não necessário para servidor do tipo stdio)
 
-1. **Configure a rede**: Garanta que o servidor esteja acessível na porta esperada  
-1. **Conecte os clientes**: Use URLs de conexão local como `http://localhost:3000`
+1. **Configure a rede**: Garanta que o servidor seja acessível na porta esperada.  
+1. **Conecte os clientes**: Use URLs de conexão local como `http://localhost:3000`.
 
 ## Implantação na Nuvem
 
 Servidores MCP podem ser implantados em várias plataformas de nuvem:
 
-- **Funções Serverless**: Implante servidores MCP leves como funções serverless  
-- **Serviços de Contêineres**: Use serviços como Azure Container Apps, AWS ECS ou Google Cloud Run  
-- **Kubernetes**: Implante e gerencie servidores MCP em clusters Kubernetes para alta disponibilidade
+- **Funções Serverless**: Implemente servidores MCP leves como funções serverless.  
+- **Serviços de Contêiner**: Use serviços como Azure Container Apps, AWS ECS ou Google Cloud Run.  
+- **Kubernetes**: Implemente e gerencie servidores MCP em clusters Kubernetes para alta disponibilidade.
 
 ### Exemplo: Azure Container Apps
 
-Azure Container Apps suporta implantação de Servidores MCP. Ainda está em desenvolvimento e atualmente suporta servidores SSE.
+Azure Container Apps suportam a implantação de Servidores MCP. Ainda está em desenvolvimento e atualmente suporta servidores SSE.
 
-Veja como você pode proceder:
+Veja como você pode fazer isso:
 
 1. Clone um repositório:
 
@@ -45,7 +45,7 @@ Veja como você pode proceder:
   git clone https://github.com/anthonychu/azure-container-apps-mcp-sample.git
   ```
 
-1. Execute localmente para testar as coisas:
+1. Execute localmente para testar:
 
   ```sh
   uv venv
@@ -59,7 +59,7 @@ Veja como você pode proceder:
   uv run fastapi dev main.py
   ```
 
-1. Para tentar localmente, crie um arquivo *mcp.json* em um diretório *.vscode* e adicione o seguinte conteúdo:
+1. Para testar localmente, crie um arquivo *mcp.json* dentro de um diretório *.vscode* e adicione o seguinte conteúdo:
 
   ```json
   {
@@ -83,7 +83,7 @@ Veja como você pode proceder:
   }
   ```
 
-  Uma vez que o servidor SSE seja iniciado, você pode clicar no ícone de play no arquivo JSON, agora você deve ver as ferramentas no servidor sendo capturadas pelo GitHub Copilot, veja o ícone da ferramenta.
+  Depois que o servidor SSE for iniciado, você pode clicar no ícone de play no arquivo JSON, agora deverá ver as ferramentas no servidor sendo captadas pelo GitHub Copilot, veja o ícone da Ferramenta.
 
 1. Para implantar, execute o seguinte comando:
 
@@ -91,7 +91,7 @@ Veja como você pode proceder:
   az containerapp up -g <RESOURCE_GROUP_NAME> -n weather-mcp --environment mcp -l westus --env-vars API_KEYS=<AN_API_KEY> --source .
   ```
 
-É isso aí, implante localmente, implante no Azure seguindo essas etapas.
+Pronto, implante localmente, implante no Azure seguindo esses passos.
 
 ## Recursos Adicionais
 
@@ -100,13 +100,13 @@ Veja como você pode proceder:
 - [Repositório Azure Container Apps MCP](https://github.com/anthonychu/azure-container-apps-mcp-sample)
 
 
-## Próximos Passos
+## O que vem a seguir
 
-- Próximo: [Tópicos Avançados de Servidor](../10-advanced/README.md)
+- Próximo: [Tópicos Avançados do Servidor](../10-advanced/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Aviso Legal**:  
-Este documento foi traduzido usando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original em seu idioma nativo deve ser considerado a fonte autorizada. Para informações críticas, recomenda-se a tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações equivocadas decorrentes do uso desta tradução.
+Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos pela precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original em seu idioma nativo deve ser considerado a fonte oficial. Para informações críticas, recomenda-se a tradução profissional realizada por um humano. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações equivocadas decorrentes do uso desta tradução.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
