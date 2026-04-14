@@ -1,4 +1,4 @@
-# Introduction to Model Context Protocol (MCP): Why It Matters for Scalable AI Applications
+`# Introduction to Model Context Protocol (MCP): Why It Matters for Scalable AI Applications 
 
 [![Introduction to Model Context Protocol](../images/video-thumbnails/01.png)](https://youtu.be/agBbdiOPLQA)
 
