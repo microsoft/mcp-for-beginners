@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -m venv .venv)",
+      "Bash(.venv/bin/pip install:*)",
+      "Bash(.venv/bin/python server.py --help)",
+      "Bash(.venv/bin/python -c \"from mcp.server.fastmcp import FastMCP; print\\('mcp import OK'\\)\")"
+    ]
+  }
+}
