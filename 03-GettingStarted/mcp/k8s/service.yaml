@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mcp-server
+  namespace: ansingh-apps
+  labels:
+    app: mcp-server
+spec:
+  selector:
+    app: mcp-server
+  ports:
+    - name: http
+      port: 8000
+      targetPort: 8000
+  type: ClusterIP

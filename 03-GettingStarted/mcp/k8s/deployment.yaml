@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mcp-server
+  namespace: ansingh-apps
+  labels:
+    app: mcp-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mcp-server
+  template:
+    metadata:
+      labels:
+        app: mcp-server
+    spec:
+      containers:
+        - name: mcp-server
+          # Replace with your registry path, e.g.:
+          # harbor.dev0.us-east-1.devk8s.ariasystems.net/library/mcp-server:latest
+          image: harbor.dev0.us-east-1.devk8s.ariasystems.net/library/mcp-server:latest
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8000
+          env:
+            - name: MCP_TRANSPORT
+              value: "streamable-http"
+            - name: MCP_HOST
+              value: "0.0.0.0"
+            - name: MCP_PORT
+              value: "8000"
+            - name: ORACLE_DRIVER_MODE
+              value: "thick"
+            - name: ORACLE_CLIENT_LIB_DIR
+              value: "/opt/oracle/instantclient"
+            # No default Oracle credentials — each team supplies their own via
+            # HTTP headers in their claude_desktop_config.json (see secret.yaml).
+            #
+            # To add a server-level fallback (optional), apply k8s/secret.yaml and
+            # uncomment the block below:
+            #
+            # - name: ORACLE_USER
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: mcp-server-oracle-default
+            #       key: ORACLE_USER
+            # - name: ORACLE_PASSWORD
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: mcp-server-oracle-default
+            #       key: ORACLE_PASSWORD
+            # - name: ORACLE_DSN
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: mcp-server-oracle-default
+            #       key: ORACLE_DSN
+          livenessProbe:
+            tcpSocket:
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            failureThreshold: 3
+          readinessProbe:
+            tcpSocket:
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
