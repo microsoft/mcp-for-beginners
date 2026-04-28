@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mcp-server
+  namespace: ansingh-apps
+  labels:
+    app: mcp-server
+  annotations:
+    # MCP uses streamable-HTTP (SSE / long-lived connections) — bump timeouts
+    # so nginx doesn't kill in-flight tool calls or streaming responses.
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+    # Disable response buffering so SSE frames reach the client immediately.
+    nginx.ingress.kubernetes.io/proxy-buffering: "off"
+    # Force HTTP/1.1 upstream — required for chunked / streaming responses.
+    nginx.ingress.kubernetes.io/proxy-http-version: "1.1"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - mcp-server.ansingh-apps.dev0.us-east-1.devk8s.ariasystems.net
+      secretName: wildcard-ariasystems-net-tls
+  rules:
+    - host: mcp-server.ansingh-apps.dev0.us-east-1.devk8s.ariasystems.net
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: mcp-server
+                port:
+                  number: 8000
