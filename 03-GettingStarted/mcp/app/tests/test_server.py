@@ -8,11 +8,14 @@ import pytest
 
 import db as db_mod
 from db import (
+    ConnConfig,
     describe_table_impl,
     list_tables_impl,
     run_select_impl,
     validate_select_only_sql,
 )
+
+_FAKE_CFG = ConnConfig(user="u", password="p", dsn="host:1521/svc")
 
 
 def test_validate_accepts_simple_select():
@@ -73,7 +76,7 @@ def test_run_select_impl_returns_rows(mock_get_pool):
         [(1, "hello")],
         ["ID", "MSG"],
     )
-    out = run_select_impl("SELECT id, msg FROM t WHERE id = :id", {"id": 1}, max_rows=10)
+    out = run_select_impl("SELECT id, msg FROM t WHERE id = :id", {"id": 1}, max_rows=10, cfg=_FAKE_CFG)
     assert out["row_count"] == 1
     assert out["truncated"] is False
     assert out["columns"] == ["ID", "MSG"]
@@ -84,7 +87,7 @@ def test_run_select_impl_returns_rows(mock_get_pool):
 def test_run_select_impl_truncates(mock_get_pool):
     rows = [(i,) for i in range(5)]
     mock_get_pool.return_value = _mock_pool_for_select(rows, ["N"])
-    out = run_select_impl("SELECT n FROM t", max_rows=3)
+    out = run_select_impl("SELECT n FROM t", max_rows=3, cfg=_FAKE_CFG)
     assert out["truncated"] is True
     assert out["row_count"] == 3
     assert len(out["rows"]) == 3
@@ -107,7 +110,7 @@ def test_list_tables_impl_user(mock_get_pool):
     cursor.description = [("OWNER",), ("TABLE_NAME",)]
     cursor.fetchall.return_value = [("SCOTT", "EMP")]
 
-    out = list_tables_impl(None)
+    out = list_tables_impl(None, cfg=_FAKE_CFG)
     assert out["row_count"] == 1
     assert out["rows"][0]["TABLE_NAME"] == "EMP"
 
@@ -129,7 +132,7 @@ def test_describe_table_impl(mock_get_pool):
     cursor.description = [("COLUMN_NAME",), ("DATA_TYPE",)]
     cursor.fetchall.return_value = [("ID", "NUMBER")]
 
-    out = describe_table_impl("EMP", None)
+    out = describe_table_impl("EMP", None, cfg=_FAKE_CFG)
     assert out["row_count"] == 1
     assert out["rows"][0]["COLUMN_NAME"] == "ID"
 

@@ -14,7 +14,7 @@ import os
 
 import pytest
 
-from db import close_pool, describe_table_impl, list_tables_impl, run_select_impl
+from db import close_all_pools, describe_table_impl, list_tables_impl, run_select_impl
 
 
 def _oracle_configured() -> bool:
@@ -34,9 +34,9 @@ pytestmark = pytest.mark.skipif(
 @pytest.fixture(autouse=True)
 def reset_pool():
     """Ensure no stale pool between integration tests."""
-    close_pool()
+    close_all_pools()
     yield
-    close_pool()
+    close_all_pools()
 
 
 def test_list_tables_smoke():

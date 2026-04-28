@@ -1,23 +1,70 @@
 """
 Oracle connection pooling, read-only SQL guardrails, and query helpers.
 
-Configuration via environment variables:
-  ORACLE_USER, ORACLE_PASSWORD, ORACLE_DSN (required for live DB)
-  ORACLE_POOL_MIN, ORACLE_POOL_MAX, ORACLE_POOL_INCREMENT (optional)
-  ORACLE_DRIVER_MODE=thin|thick (optional, default: thin)
-  ORACLE_CLIENT_LIB_DIR=/path/to/instantclient (required for thick mode)
+Connection config priority (highest to lowest):
+  1. ConnConfig passed directly to each function (per-call override)
+  2. Environment variables: ORACLE_USER, ORACLE_PASSWORD, ORACLE_DSN
+
+Pool sizing (env vars, applied globally):
+  ORACLE_POOL_MIN, ORACLE_POOL_MAX, ORACLE_POOL_INCREMENT
+
+Driver mode (env var, global — set once per process):
+  ORACLE_DRIVER_MODE=thin|thick  (default: thin)
+  ORACLE_CLIENT_LIB_DIR          (required for thick mode)
 """
 
 from __future__ import annotations
 
 import os
 import re
+from contextvars import ContextVar, Token
+from dataclasses import dataclass, field
 from typing import Any
 
 import oracledb
 
-_pool: oracledb.ConnectionPool | None = None
+# One pool per (user, dsn) pair, shared across callers with the same credentials.
+_pools: dict[tuple[str, str], oracledb.ConnectionPool] = {}
 _client_initialized = False
+
+# Per-request default connection injected via HTTP headers (see OracleHeaderMiddleware).
+# Falls back to env vars if not set.
+_session_conn: ContextVar[ConnConfig | None] = ContextVar("_session_conn", default=None)
+
+
+# ---------------------------------------------------------------------------
+# Connection configuration
+# ---------------------------------------------------------------------------
+
+@dataclass
+class ConnConfig:
+    """Oracle connection parameters for a single caller."""
+    user: str
+    password: str
+    dsn: str
+    pool_min: int = field(default=1)
+    pool_max: int = field(default=5)
+    pool_increment: int = field(default=1)
+
+    @classmethod
+    def from_env(cls) -> "ConnConfig":
+        """Build a ConnConfig from environment variables. Raises if any required var is missing."""
+        user = os.environ.get("ORACLE_USER", "")
+        password = os.environ.get("ORACLE_PASSWORD", "")
+        dsn = os.environ.get("ORACLE_DSN", "")
+        if not user or not password or not dsn:
+            raise RuntimeError(
+                "No connection provided and server has no default Oracle config. "
+                "Pass connection={\"user\": ..., \"password\": ..., \"dsn\": ...} to the tool."
+            )
+        return cls(
+            user=user,
+            password=password,
+            dsn=dsn,
+            pool_min=_env_int("ORACLE_POOL_MIN", 1),
+            pool_max=_env_int("ORACLE_POOL_MAX", 5),
+            pool_increment=_env_int("ORACLE_POOL_INCREMENT", 1),
+        )
 
 
 def _env_int(name: str, default: int) -> int:
@@ -27,13 +74,11 @@ def _env_int(name: str, default: int) -> int:
     return int(raw)
 
 
-def _init_oracle_client_if_needed() -> None:
-    """
-    Initialize python-oracledb client mode once.
+# ---------------------------------------------------------------------------
+# Driver / pool management
+# ---------------------------------------------------------------------------
 
-    - thin mode (default): no client libraries required
-    - thick mode: requires ORACLE_CLIENT_LIB_DIR (Instant Client path)
-    """
+def _init_oracle_client_if_needed() -> None:
     global _client_initialized
     if _client_initialized:
         return
@@ -53,49 +98,67 @@ def _init_oracle_client_if_needed() -> None:
     _client_initialized = True
 
 
-def get_pool() -> oracledb.ConnectionPool:
-    """Create (once) and return the Oracle connection pool."""
-    global _pool
-    if _pool is not None:
-        return _pool
-
+def get_pool(cfg: ConnConfig) -> oracledb.ConnectionPool:
+    """Return (creating if needed) a pool for this (user, dsn) pair."""
     _init_oracle_client_if_needed()
 
-    user = os.environ.get("ORACLE_USER")
-    password = os.environ.get("ORACLE_PASSWORD")
-    dsn = os.environ.get("ORACLE_DSN")
-    if not user or not password or not dsn:
-        raise RuntimeError(
-            "Missing Oracle configuration. Set ORACLE_USER, ORACLE_PASSWORD, and ORACLE_DSN."
-        )
+    key = (cfg.user.upper(), cfg.dsn)
+    if key in _pools:
+        return _pools[key]
 
-    _pool = oracledb.create_pool(
-        user=user,
-        password=password,
-        dsn=dsn,
-        min=_env_int("ORACLE_POOL_MIN", 1),
-        max=_env_int("ORACLE_POOL_MAX", 5),
-        increment=_env_int("ORACLE_POOL_INCREMENT", 1),
+    pool = oracledb.create_pool(
+        user=cfg.user,
+        password=cfg.password,
+        dsn=cfg.dsn,
+        min=cfg.pool_min,
+        max=cfg.pool_max,
+        increment=cfg.pool_increment,
     )
-    return _pool
+    _pools[key] = pool
+    return pool
 
 
-def close_pool() -> None:
-    """Close the pool if it was opened."""
-    global _pool
-    if _pool is not None:
+def set_session_conn(cfg: ConnConfig | None) -> Token:
+    """Store a per-request default connection (called by OracleHeaderMiddleware)."""
+    return _session_conn.set(cfg)
+
+
+def reset_session_conn(token: Token) -> None:
+    """Restore the previous context value after the request completes."""
+    _session_conn.reset(token)
+
+
+def _resolve_cfg(cfg: ConnConfig | None) -> ConnConfig:
+    """Return the provided config, the per-request session config, or fall back to env vars.
+
+    Priority (highest → lowest):
+      1. `connection` dict passed explicitly to the tool call
+      2. Credentials injected via HTTP headers (X-Oracle-User / -Password / -DSN)
+      3. ORACLE_USER / ORACLE_PASSWORD / ORACLE_DSN environment variables
+    """
+    if cfg is not None:
+        return cfg
+    session_cfg = _session_conn.get()
+    if session_cfg is not None:
+        return session_cfg
+    return ConnConfig.from_env()
+
+
+def close_all_pools() -> None:
+    """Close every open connection pool (called at process exit)."""
+    for key in list(_pools):
         try:
-            _pool.close()
-        finally:
-            _pool = None
+            _pools.pop(key).close()
+        except Exception:
+            pass
 
+
+# ---------------------------------------------------------------------------
+# SQL validation
+# ---------------------------------------------------------------------------
 
 def _remove_sql_comments(sql: str) -> str:
-    """Strip -- line and /* */ block comments (best-effort)."""
-    s = sql
-    # Block comments
-    s = re.sub(r"/\*.*?\*/", "", s, flags=re.DOTALL)
-    # Line comments
+    s = re.sub(r"/\*.*?\*/", "", sql, flags=re.DOTALL)
     lines = []
     for line in s.splitlines():
         if "--" in line:
@@ -105,12 +168,6 @@ def _remove_sql_comments(sql: str) -> str:
 
 
 def validate_select_only_sql(sql: str) -> str:
-    """
-    Ensure SQL is a single read-only SELECT (or WITH ... SELECT) statement.
-
-    Returns the single statement to execute (trimmed).
-    Raises ValueError with a user-facing message if not allowed.
-    """
     cleaned = _remove_sql_comments(sql).strip()
     if not cleaned:
         raise ValueError("SQL is empty.")
@@ -121,9 +178,8 @@ def validate_select_only_sql(sql: str) -> str:
         raise ValueError("Only a single SQL statement is allowed (no multiple statements).")
 
     stmt = non_empty[0] if non_empty else ""
-
-    # Disallow obvious write / lock patterns in standalone SQL
     upper = stmt.upper()
+
     if re.search(r"\bFOR\s+UPDATE\b", upper):
         raise ValueError("FOR UPDATE is not allowed.")
     if re.search(r"\b(INSERT|UPDATE|DELETE|MERGE|TRUNCATE|DROP|ALTER|CREATE|GRANT|REVOKE)\b", upper):
@@ -132,12 +188,15 @@ def validate_select_only_sql(sql: str) -> str:
     first_word = re.match(r"^\s*(\w+)", stmt, re.IGNORECASE)
     if not first_word:
         raise ValueError("Could not parse SQL statement.")
-    fw = first_word.group(1).upper()
-    if fw not in ("SELECT", "WITH"):
+    if first_word.group(1).upper() not in ("SELECT", "WITH"):
         raise ValueError("Only SELECT (or WITH ... SELECT) statements are allowed.")
 
     return stmt
 
+
+# ---------------------------------------------------------------------------
+# Query helpers
+# ---------------------------------------------------------------------------
 
 def _rows_to_jsonable(rows: list[Any], cursor: oracledb.Cursor) -> list[dict[str, Any]]:
     columns = [d[0] for d in (cursor.description or [])]
@@ -158,13 +217,13 @@ def run_select_impl(
     sql: str,
     binds: dict[str, Any] | None = None,
     max_rows: int = 100,
+    cfg: ConnConfig | None = None,
 ) -> dict[str, Any]:
-    """Execute a validated SELECT and return structured rows."""
     stmt = validate_select_only_sql(sql)
     if max_rows < 1:
         raise ValueError("max_rows must be at least 1.")
 
-    pool = get_pool()
+    pool = get_pool(_resolve_cfg(cfg))
     binds = binds or {}
 
     with pool.acquire() as conn:
@@ -182,9 +241,8 @@ def run_select_impl(
             }
 
 
-def list_tables_impl(owner: str | None = None) -> dict[str, Any]:
-    """List tables visible to the session (user tables, or ALL_TABLES for a schema)."""
-    pool = get_pool()
+def list_tables_impl(owner: str | None = None, cfg: ConnConfig | None = None) -> dict[str, Any]:
+    pool = get_pool(_resolve_cfg(cfg))
     with pool.acquire() as conn:
         with conn.cursor() as cursor:
             if owner:
@@ -214,13 +272,16 @@ def list_tables_impl(owner: str | None = None) -> dict[str, Any]:
             }
 
 
-def describe_table_impl(table_name: str, owner: str | None = None) -> dict[str, Any]:
-    """Describe columns for a table (USER or ALL)."""
+def describe_table_impl(
+    table_name: str,
+    owner: str | None = None,
+    cfg: ConnConfig | None = None,
+) -> dict[str, Any]:
     if not table_name or not table_name.strip():
         raise ValueError("table_name is required.")
 
     tname = table_name.strip().upper()
-    pool = get_pool()
+    pool = get_pool(_resolve_cfg(cfg))
 
     with pool.acquire() as conn:
         with conn.cursor() as cursor:
