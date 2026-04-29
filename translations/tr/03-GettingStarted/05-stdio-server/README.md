@@ -1,39 +1,40 @@
-# stdio Taşıma Yöntemi ile MCP Sunucusu
+# stdio Transport ile MCP Sunucusu
 
-> **⚠️ Önemli Güncelleme**: MCP Spesifikasyonu 2025-06-18 itibarıyla, bağımsız SSE (Server-Sent Events) taşıma yöntemi **kaldırılmış** ve yerini "Streamable HTTP" taşıma yöntemine bırakmıştır. Güncel MCP spesifikasyonu iki temel taşıma mekanizması tanımlar:
+> **⚠️ Önemli Güncelleme**: MCP Spesifikasyonu 2025-06-18 itibarıyla, bağımsız SSE (Server-Sent Events) taşıyıcı **kaldırılmış** ve yerine "Streamable HTTP" taşıyıcı gelmiştir. Mevcut MCP spesifikasyonu iki temel taşıyıcı mekanizmayı tanımlar:
 > 1. **stdio** - Standart giriş/çıkış (yerel sunucular için önerilir)
-> 2. **Streamable HTTP** - Dahili olarak SSE kullanabilen uzak sunucular için
+> 2. **Streamable HTTP** - Dahili olarak SSE kullanabilecek uzak sunucular için
 >
-> Bu ders, çoğu MCP sunucu uygulaması için önerilen **stdio taşıma yöntemi**ne odaklanacak şekilde güncellenmiştir.
+> Bu ders, çoğu MCP sunucu uygulaması için önerilen **stdio taşıyıcısı**na odaklanacak şekilde güncellenmiştir.
 
-Stdio taşıma yöntemi, MCP sunucularının standart giriş ve çıkış akışları aracılığıyla istemcilerle iletişim kurmasını sağlar. Bu, mevcut MCP spesifikasyonunda en çok kullanılan ve önerilen taşıma mekanizmasıdır; basit ve verimli bir yol sunar, böylece çeşitli istemci uygulamalarla kolayca entegre olabilen MCP sunucuları inşa edebilirsiniz.
+stdio taşıyıcısı, MCP sunucularının standart giriş ve çıkış akışları ile istemcilerle iletişim kurmasına olanak tanır. Bu, mevcut MCP spesifikasyonunda en yaygın kullanılan ve önerilen taşıyıcı mekanizmadır ve çeşitli istemci uygulamalarıyla kolayca entegre olabilen basit ve verimli bir MCP sunucusu oluşturmanın yolunu sağlar.
 
 ## Genel Bakış
 
-Bu derste, stdio taşıma yöntemini kullanarak MCP Sunucuları nasıl oluşturulur ve tüketilir, bunun üzerine durulacaktır.
+Bu derste stdio taşıyıcı kullanarak MCP Sunucularının nasıl oluşturulup kullanılacağı anlatılmaktadır.
 
 ## Öğrenme Hedefleri
 
 Bu dersin sonunda şunları yapabileceksiniz:
 
-- Stdio taşıma yöntemi kullanarak bir MCP Sunucusu oluşturmak.
-- MCP Sunucusunu Inspector ile hata ayıklamak.
-- MCP Sunucusunu Visual Studio Code kullanarak tüketmek.
-- Mevcut MCP taşıma mekanizmalarını ve neden stdio'nun önerildiğini anlamak.
+- stdio taşıyıcı kullanarak bir MCP Sunucusu oluşturmak.
+- Inspector kullanarak bir MCP Sunucusunu hata ayıklamak.
+- Visual Studio Code kullanarak bir MCP Sunucusunu tüketmek.
+- Mevcut MCP taşıyıcı mekanizmalarını ve stdio'nun neden önerildiğini anlamak.
 
-## stdio Taşıma Yöntemi - Nasıl Çalışır?
 
-Stdio taşıma yöntemi, mevcut MCP spesifikasyonunda (2025-06-18) desteklenen iki taşıma tipinden biridir. İşte nasıl çalışır:
+## stdio Taşıyıcı - Nasıl Çalışır
 
-- **Basit İletişim**: Sunucu standart girişten (`stdin`) JSON-RPC mesajlarını okur ve standart çıkışa (`stdout`) mesajlar gönderir.
-- **İşlem Tabanlı**: İstemci, MCP sunucusunu alt süreç olarak başlatır.
-- **Mesaj Formatı**: Mesajlar, yeni satır karakterleri ile ayrılmış tekil JSON-RPC istekleri, bildirimleri veya yanıtlarıdır.
-- **Kayıt Tutma**: Sunucu, kayıt amacıyla UTF-8 dizelerini standart hata çıkışına (`stderr`) yazabilir.
+stdio taşıyıcı, mevcut MCP spesifikasyonundaki (2025-06-18) desteklenen iki taşıyıcı türünden biridir. İşleyişi:
+
+- **Basit İletişim**: Sunucu, standart girdiden (`stdin`) JSON-RPC mesajları okur ve mesajları standart çıktıya (`stdout`) gönderir.
+- **İşlem Tabanlı**: İstemci, MCP sunucusunu bir alt işlem olarak başlatır.
+- **Mesaj Formatı**: Mesajlar bireysel JSON-RPC istekleri, bildirimleri veya yanıtlarıdır, satır sonları ile ayrılır.
+- **Kayıt**: Sunucu, günlük amaçlı UTF-8 dizgilerini standart hata çıkışına (`stderr`) yazabilir.
 
 ### Temel Gereksinimler:
-- Mesajlar yeni satırlarla ayrılmalı ve gömülü yeni satır karakterleri içermemelidir.
-- Sunucu, `stdout`'a geçerli olmayan herhangi bir MCP mesajı yazmamalıdır.
-- İstemci, sunucunun `stdin`'ine geçerli olmayan herhangi bir MCP mesajı yazmamalıdır.
+- Mesajlar satır sonları ile ayrılmalı ve gömülü satır sonları içermemelidir
+- Sunucu, geçerli bir MCP mesajı olmayan hiçbir şeyi `stdout`'a yazmamalıdır
+- İstemci, geçerli bir MCP mesajı olmayan hiçbir şeyi sunucunun `stdin`'ine yazmamalıdır
 
 ### TypeScript
 
@@ -52,12 +53,20 @@ const server = new Server(
     },
   }
 );
+
+async function runServer() {
+  const transport = new StdioServerTransport();
+  await server.connect(transport);
+}
+
+runServer().catch(console.error);
 ```
 
-Önceki kodda:
+Yukarıdaki kodda:
 
-- MCP SDK'dan `Server` sınıfı ve `StdioServerTransport` ithal edilmiştir.
-- Basit yapılandırma ve yeteneklerle bir sunucu örneği oluşturulmuştur.
+- MCP SDK'dan `Server` sınıfı ve `StdioServerTransport` import edilir
+- Temel yapılandırma ve yeteneklerle bir sunucu örneği oluşturulur
+- `StdioServerTransport` örneği oluşturularak sunucu ile bağlantı kurulur, stdin/stdout üzerinden iletişim etkinleştirilir
 
 ### Python
 
@@ -87,11 +96,11 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-Önceki kodda:
+Yukarıdaki kodda:
 
-- MCP SDK kullanılarak bir sunucu örneği oluşturulmuştur.
-- Dekoratörlerle araçlar tanımlanmıştır.
-- Taşıma işlemi için stdio_server bağlam yöneticisi kullanılmıştır.
+- MCP SDK kullanılarak bir sunucu örneği oluşturulur
+- Dekoratörler ile araçlar tanımlanır
+- Taşıyıcıyı yönetmek için stdio_server bağlam yöneticisi kullanılır
 
 ### .NET
 
@@ -114,28 +123,27 @@ var app = builder.Build();
 await app.RunAsync();
 ```
 
-SSE'den farkı olarak stdio sunucuları:
+SSE'den temel farklar şunlardır:
 
-- Web sunucusu kurulumu veya HTTP uç noktaları gerektirmez.
-- İstemci tarafından alt süreç olarak başlatılır.
-- stdin/stdout akışları üzerinden iletişim kurar.
-- Daha basit uygulanır ve hata ayıklanması kolaydır.
+- stdio sunucuları web sunucusu kurulumu veya HTTP uç noktaları gerektirmez
+- İstemci tarafından alt işlem olarak başlatılırlar
+- stdin/stdout akışları üzerinden iletişim kurarlar
+- Uygulaması ve hata ayıklaması daha basittir
 
-## Alıştırma: Bir stdio Sunucusu Oluşturma
+## Alıştırma: stdio Sunucu Oluşturma
 
-Sunucumuzu oluştururken iki önemli noktayı göz önünde bulundurmamız gerekiyor:
+Sunucumuzu oluştururken iki şeyi akılda tutmalıyız:
 
-- Bağlantı ve mesajlar için uç noktaları açmak amacıyla bir web sunucusu kullanmamız gerekebilir.
-
+- Bağlantı ve mesajlar için uç noktaları açmak amacıyla bir web sunucusu kullanmamız gerekir.
 ## Laboratuvar: Basit Bir MCP stdio Sunucusu Oluşturma
 
-Bu laboratuvarda, önerilen stdio taşıma yöntemini kullanarak basit bir MCP sunucusu oluşturacağız. Bu sunucu, istemcilerin standart Model Context Protocol kullanarak çağırabileceği araçlar sunacak.
+Bu laboratuvarda, önerilen stdio taşıyıcısını kullanarak basit bir MCP sunucusu oluşturacağız. Bu sunucu, istemcilerin Standart Model Context Protocol kullanarak çağırabileceği araçları sunacak.
 
-### Önkoşullar
+### Ön Koşullar
 
 - Python 3.8 veya üzeri
 - MCP Python SDK: `pip install mcp`
-- Asenkron programlama konusunda temel bilgi
+- Async programlama hakkında temel bilgi
 
 İlk MCP stdio sunucumuzu oluşturarak başlayalım:
 
@@ -146,7 +154,7 @@ from mcp.server import Server
 from mcp.server.stdio import stdio_server
 from mcp import types
 
-# Günlüklemeyi yapılandır
+# Günlük kaydını yapılandır
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -164,7 +172,7 @@ def get_greeting(name: str) -> str:
     return f"Hello, {name}! Welcome to MCP stdio server."
 
 async def main():
-    # stdio taşımasını kullan
+    # stdio taşımayı kullan
     async with stdio_server(server) as (read_stream, write_stream):
         await server.run(
             read_stream,
@@ -176,34 +184,34 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-## Kaldırılan SSE yaklaşımından temel farklar
+## Kaldırılan SSE yönteminden temel farklar
 
-**Stdio Taşıma (Güncel Standart):**
-- Basit alt süreç modeli - istemci sunucuyu çocuk süreç olarak başlatır
+**Stdio Taşıyıcı (Mevcut Standart):**
+- Basit alt işlem modeli - istemci sunucuyu çocuk işlem olarak başlatır
 - JSON-RPC mesajları ile stdin/stdout üzerinden iletişim
-- HTTP sunucusu kurulumu gerekli değildir
+- HTTP sunucusu kurulumu gerekmez
 - Daha iyi performans ve güvenlik
-- Daha kolay hata ayıklama ve geliştirme
+- Hata ayıklama ve geliştirme kolaylığı
 
-**SSE Taşıma (MCP 2025-06-18 itibarıyla kaldırılmış):**
-- SSE uç noktalarına sahip HTTP sunucusu gerekliydi
-- Web sunucusu altyapısıyla daha karmaşık kurulum
-- HTTP uç noktaları için ek güvenlik hususları
+**SSE Taşıyıcı (MCP 2025-06-18 itibarıyla kaldırıldı):**
+- SSE uç noktalarıyla HTTP sunucusu gerektirirdi
+- Web sunucusu altyapısı ile daha karmaşık kurulum
+- HTTP uç noktaları için ek güvenlik kaygıları
 - Şimdi web tabanlı senaryolar için Streamable HTTP ile değiştirildi
 
-### stdio taşıma yöntemi ile sunucu oluşturma
+### stdio taşıyıcı ile sunucu oluşturma
 
 stdio sunucumuzu oluşturmak için:
 
-1. **Gerekli kütüphaneleri içe aktarın** - MCP sunucu bileşenleri ve stdio taşıma yöntemi gerekir
-2. **Sunucu örneği oluşturun** - Sunucuyu yetenekleri ile tanımlayın
-3. **Araçlar tanımlayın** - Açıklamak istediğiniz fonksiyonları ekleyin
-4. **Taşımayı yapılandırın** - stdio iletişimini ayarlayın
-5. **Sunucuyu çalıştırın** - Başlatın ve mesajları yönetin
+1. **Gerekli kütüphaneleri import edin** - MCP sunucu bileşenleri ve stdio taşıyıcı gerekli
+2. **Bir sunucu örneği oluşturun** - Sunucuyu yetenekleri ile tanımlayın
+3. **Araçları tanımlayın** - Sunmak istediğiniz fonksiyonları ekleyin
+4. **Taşıyıcıyı ayarlayın** - stdio iletişimini yapılandırın
+5. **Sunucuyu çalıştırın** - Sunucuyu başlatın ve mesajları yönetin
 
-Adım adım ilerleyelim:
+Bunu adım adım yapalım:
 
-### Adım 1: Temel bir stdio sunucusu oluşturma
+### Adım 1: Temel bir stdio sunucu oluşturun
 
 ```python
 import asyncio
@@ -211,7 +219,7 @@ import logging
 from mcp.server import Server
 from mcp.server.stdio import stdio_server
 
-# Günlük kaydını yapılandır
+# Günlüğü yapılandır
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -235,7 +243,7 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-### Adım 2: Daha fazla araç ekleme
+### Adım 2: Daha fazla araç ekleyin
 
 ```python
 @server.tool()
@@ -267,14 +275,14 @@ Kodu `server.py` olarak kaydedin ve komut satırından çalıştırın:
 python server.py
 ```
 
-Sunucu başlayacak ve stdin'den gelen girişleri bekleyecektir. stdio taşıma yöntemiyle JSON-RPC mesajları üzerinden iletişim kurar.
+Sunucu başlar ve stdin'den giriş bekler. stdio taşıyıcısı üzerinden JSON-RPC mesajları kullanarak iletişim kurar.
 
-### Adım 4: Inspector ile test
+### Adım 4: Inspector ile test etme
 
-Sunucunuzu MCP Inspector ile test edebilirsiniz:
+Sunucunuzu MCP Inspector kullanarak test edebilirsiniz:
 
 1. Inspector'ı yükleyin: `npx @modelcontextprotocol/inspector`
-2. Inspector'ı başlatın ve sunucunuza yönlendirin
+2. Inspector'ı çalıştırın ve sunucunuza bağlayın
 3. Oluşturduğunuz araçları test edin
 
 ### .NET
@@ -284,34 +292,33 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddMcpServer();
  ```
-
 ## stdio sunucunuzu hata ayıklama
 
-### MCP Inspector Kullanımı
+### MCP Inspector kullanarak
 
-MCP Inspector, MCP sunucularını hata ayıklamak ve test etmek için değerli bir araçtır. İşte bunu stdio sunucunuzla nasıl kullanacağınız:
+MCP Inspector, MCP sunucularını hata ayıklamak ve test etmek için değerli bir araçtır. stdio sunucunuzla nasıl kullanacağınız:
 
-1. **Inspector’ı kurun**:
+1. **Inspector'ı Yükleyin**:
    ```bash
    npx @modelcontextprotocol/inspector
    ```
 
-2. **Inspector’ı çalıştırın**:
+2. **Inspector'ı Çalıştırın**:
    ```bash
    npx @modelcontextprotocol/inspector python server.py
    ```
 
-3. **Sunucunuzu test edin**: Inspector, şu özellikleri sağlayan bir web arayüzü sunar:
+3. **Sunucunuzu Test Edin**: Inspector, bir web arayüzü sağlar ve şunları yapabilirsiniz:
    - Sunucu yeteneklerini görüntüleme
    - Farklı parametrelerle araçları test etme
-   - JSON-RPC mesajlarını izleme
+   - JSON-RPC mesajlarını takip etme
    - Bağlantı sorunlarını hata ayıklama
 
-### VS Code Kullanımı
+### VS Code kullanarak
 
-MCP sunucunuzu doğrudan VS Code içinde de hata ayıklayabilirsiniz:
+MCP sunucunuzu VS Code içinde doğrudan da hata ayıklayabilirsiniz:
 
-1. `.vscode/launch.json` içinde bir çalıştırma yapılandırması oluşturun:
+1. `.vscode/launch.json` dosyasında bir başlatma yapılandırması oluşturun:
    ```json
    {
      "version": "0.2.0",
@@ -327,23 +334,23 @@ MCP sunucunuzu doğrudan VS Code içinde de hata ayıklayabilirsiniz:
    }
    ```
 
-2. Sunucu kodunuza kesme noktaları koyun
-3. Hata ayıklayıcıyı başlatın ve Inspector ile test edin
+2. Sunucu kodunuzda kırılma noktaları ayarlayın
+3. Hata ayıklayıcıyı çalıştırın ve Inspector ile test edin
 
 ### Yaygın hata ayıklama ipuçları
 
-- Kayıt için `stderr` kullanın - kesinlikle `stdout`’a yazmayın çünkü MCP mesajlarına ayrılmıştır
-- Tüm JSON-RPC mesajlarının yeni satır karakteri ile ayrıldığından emin olun
-- Öncelikle basit araçlarla test yapın, karmaşık fonksiyonlar eklemeden önce
-- Mesaj formatlarını doğrulamak için Inspector’ı kullanın
+- Kayıt için `stderr` kullanın - MCP mesajları için ayrılmış olan `stdout`'a asla yazmayın
+- Tüm JSON-RPC mesajlarının satır sonları ile ayrıldığından emin olun
+- Karmaşık işlevsellik eklemeden önce basit araçlarla test yapın
+- Mesaj formatlarını doğrulamak için Inspector'u kullanın
 
 ## stdio sunucunuzu VS Code'da kullanma
 
-MCP stdio sunucunuzu oluşturduktan sonra, bunu VS Code ile entegre ederek Claude veya diğer MCP uyumlu istemcilerle kullanabilirsiniz.
+MCP stdio sunucunuzu oluşturduktan sonra, onu VS Code ile entegre ederek Claude veya diğer MCP uyumlu istemcilerle kullanabilirsiniz.
 
 ### Yapılandırma
 
-1. `%APPDATA%\Claude\claude_desktop_config.json` (Windows) veya `~/Library/Application Support/Claude/claude_desktop_config.json` (Mac) yolunda bir MCP yapılandırma dosyası oluşturun:
+1. `%APPDATA%\Claude\claude_desktop_config.json` (Windows) veya `~/Library/Application Support/Claude/claude_desktop_config.json` (Mac) konumunda bir MCP yapılandırma dosyası oluşturun:
 
    ```json
    {
@@ -356,12 +363,12 @@ MCP stdio sunucunuzu oluşturduktan sonra, bunu VS Code ile entegre ederek Claud
    }
    ```
 
-2. **Claude’u yeniden başlatın**: Yeni sunucu yapılandırmasını yüklemek için Claude’u kapatıp açın.
+2. **Claude'u yeniden başlatın**: Yeni sunucu yapılandırmasını yüklemek için Claude'u kapatıp açın.
 
-3. **Bağlantıyı test edin**: Claude ile bir konuşma başlatıp sunucu araçlarınızı deneyin:
-   - "Karşılama aracını kullanarak bana merhaba diyebilir misin?"
-   - "15 ve 27'nin toplamını hesapla"
-   - "Sunucu bilgilerini alabilir miyim?"
+3. **Bağlantıyı test edin**: Claude ile bir konuşma başlatın ve sunucunuzun araçlarını deneyin:
+   - "Selamlama aracını kullanarak beni selamlayabilir misin?"
+   - "15 ile 27'nin toplamını hesapla"
+   - "Sunucu bilgisi nedir?"
 
 ### TypeScript stdio sunucu örneği
 
@@ -468,20 +475,20 @@ public class Tools
 
 ## Özet
 
-Bu güncellenmiş derste şunları öğrendiniz:
+Bu güncellenen derste şunları öğrendiniz:
 
-- Mevcut **stdio taşıma yöntemi** ile MCP sunucuları oluşturmayı (önerilen yol)
-- SSE taşıma yönteminin neden stdio ve Streamable HTTP lehine kaldırıldığını
-- MCP istemcileri tarafından çağrılabilecek araçlar oluşturmayı
-- MCP Inspector kullanarak sunucunuzu hata ayıklamayı
-- Stdio sunucunuzu VS Code ve Claude ile entegre etmeyi
+- Mevcut **stdio taşıyıcı** kullanarak MCP sunucuları oluşturmak (önerilen yöntem)
+- SSE taşıyıcısının neden stdio ve Streamable HTTP lehine kaldırıldığını anlamak
+- MCP istemcilerinin çağırabileceği araçlar oluşturmak
+- Sunucunuzu MCP Inspector ile hata ayıklamak
+- stdio sunucunuzu VS Code ve Claude ile entegre etmek
 
-stdio taşıma, kaldırılan SSE yaklaşımına kıyasla MCP sunucuları oluşturmak için daha basit, daha güvenilir ve daha performanslı bir yol sunar. 2025-06-18 spesifikasyonundan itibaren çoğu MCP sunucu uygulaması için önerilen taşıma yöntemidir.
+stdio taşıyıcı, kaldırılan SSE yöntemine kıyasla MCP sunucuları oluşturmak için daha basit, daha güvenli ve daha yüksek performanslı bir yöntem sunar. 2025-06-18 tarihli spesifikasyon itibarıyla çoğu MCP sunucu uygulaması için önerilen taşıyıcıdır.
 
 
 ### .NET
 
-1. Öncelikle bazı araçlar oluşturalım, bunun için aşağıdaki içeriğe sahip *Tools.cs* dosyasını oluşturacağız:
+1. Öncelikle bazı araçlar oluşturalım, bunun için *Tools.cs* adlı bir dosya oluşturup aşağıdaki içeriği ekleyeceğiz:
 
   ```csharp
   using System.ComponentModel;
@@ -491,72 +498,72 @@ stdio taşıma, kaldırılan SSE yaklaşımına kıyasla MCP sunucuları oluştu
 
 ## Alıştırma: stdio sunucunuzu test etme
 
-Stdio sunucunuzu oluşturduğunuz için şimdi düzgün çalıştığından emin olmak için test edelim.
+stdio sunucunuzu oluşturduğunuza göre, doğru çalıştığından emin olmak için test edelim.
 
-### Önkoşullar
+### Ön Koşullar
 
-1. MCP Inspector’ın kurulu olduğundan emin olun:
+1. MCP Inspector'ın yüklü olduğundan emin olun:
    ```bash
    npm install -g @modelcontextprotocol/inspector
    ```
 
-2. Sunucu kodunuzun kaydedildiğinden emin olun (örneğin, `server.py` olarak)
+2. Sunucu kodunuzun kaydedilmiş olması (örneğin `server.py` olarak)
 
-### Inspector ile test
+### Inspector ile Test
 
-1. **Sunucunuzla birlikte Inspector’ı başlatın**:
+1. **Sunucunuzla birlikte Inspector'ı başlatın**:
    ```bash
    npx @modelcontextprotocol/inspector python server.py
    ```
 
-2. **Web arayüzünü açın**: Inspector, sunucunuzun yeteneklerini gösteren bir tarayıcı penceresi açar.
+2. **Web arayüzünü açın**: Inspector, sunucunuzun yeteneklerini gösteren bir tarayıcı penceresi açacaktır.
 
-3. **Araçları test edin**:
-   - Farklı isimlerle `get_greeting` aracını deneyin
-   - Çeşitli sayılarla `calculate_sum` aracını test edin
-   - `get_server_info` aracıyla sunucu meta verilerini çağırın
+3. **Araçları test edin**: 
+   - `get_greeting` aracını farklı isimlerle deneyin
+   - `calculate_sum` aracını çeşitli sayılarla test edin
+   - `get_server_info` aracını çağırarak sunucu meta verisini görün
 
-4. **İletişimi izleyin**: Inspector, istemci ve sunucu arasında değiş tokuş edilen JSON-RPC mesajlarını gösterir.
+4. **İletişimi izleyin**: Inspector, istemci ile sunucu arasındaki JSON-RPC mesajlarını gösterir.
 
 ### Görmeniz gerekenler
 
-Sunucunuz doğru başlarsa şunları görmelisiniz:
-- Inspector’da listelenen sunucu yetenekleri
-- Test için mevcut araçlar
-- Başarılı JSON-RPC mesaj alışverişleri
-- Arayüzde gösterilen araç yanıtları
+Sunucunuz doğru başladıysa, şunları görmelisiniz:
+- Inspector'da listelenen sunucu yetenekleri
+- Test için kullanılabilir araçlar
+- Başarılı JSON-RPC mesaj alışverişi
+- Araç yanıtlarının arayüzde görüntülenmesi
 
 ### Yaygın sorunlar ve çözümleri
 
 **Sunucu başlamıyor:**
-- Tüm bağımlılıkların yüklü olduğunu doğrulayın: `pip install mcp`
-- Python sözdizimi ve girintilerini kontrol edin
+- Tüm bağımlılıkların yüklü olduğundan emin olun: `pip install mcp`
+- Python sözdizimi ve girintilemesini kontrol edin
 - Konsoldaki hata mesajlarına bakın
 
 **Araçlar görünmüyor:**
-- `@server.tool()` dekoratörlerinin varlığını kontrol edin
-- Araç fonksiyonlarının `main()` öncesi tanımlandığından emin olun
+- `@server.tool()` dekoratörlerinin mevcut olduğundan emin olun
+- Araç fonksiyonlarının `main()`'den önce tanımlandığını kontrol edin
 - Sunucunun doğru yapılandırıldığını doğrulayın
 
 **Bağlantı sorunları:**
-- Sunucunun stdio taşıma kullanıyor olduğundan emin olun
-- Başka süreçlerin müdahale etmediğini kontrol edin
+- Sunucunun stdio taşıyıcıyı doğru kullandığından emin olun
+- Başka işlemlerin engellemediğini kontrol edin
 - Inspector komut sözdizimini doğrulayın
 
 ## Ödev
 
-Sunucunuzu daha fazla yetenekle geliştirmeyi deneyin. Örneğin, [bu sayfayı](https://api.chucknorris.io/) kullanarak bir API çağıran araç ekleyebilirsiniz. Sunucunuzun nasıl görüneceğine siz karar verin. İyi eğlenceler :)
+Sunucunuzu daha fazla yetenekle geliştirmeye çalışın. Örneğin bir API çağıran araç eklemek için [bu sayfaya](https://api.chucknorris.io/) bakabilirsiniz. Sunucunun nasıl görünmesi gerektiğine siz karar verin. İyi eğlenceler :)
 ## Çözüm
 
-[Çözüm](./solution/README.md) İşleyen kodla olası bir çözüm burada.
+[Çözüm](./solution/README.md) Çalışan kod ile olası bir çözüm örneği.
 
-## Anahtar Noktalar
+## Temel Noktalar
 
-Bu bölümün anahtar noktaları şunlardır:
+Bu bölümden çıkarılacak temel noktalar şunlardır:
 
-- Stdio taşıma, yerel MCP sunucuları için önerilen mekanizmadır.
-- Stdio taşıma, MCP sunucuları ile istemciler arasında standart giriş ve çıkış akışlarını kullanarak kesintisiz iletişim sağlar.
-- Hem Inspector hem de Visual Studio Code kullanarak stdio sunucular doğrudan tüketilebilir; böylece hata ayıklama ve entegrasyon kolaylaşır.
+- stdio taşıyıcı, yerel MCP sunucuları için önerilen mekanizmadır.
+- Stdio taşıyıcı, MCP sunucuları ile istemciler arasında standart giriş ve çıkış akışları üzerinden kesintisiz iletişim sağlar.
+- Inspector ve Visual Studio Code'u kullanarak stdio sunucularına doğrudan erişebilir, böylece hata ayıklama ve entegrasyon kolaylaşır.
 
 ## Örnekler
 
@@ -570,25 +577,25 @@ Bu bölümün anahtar noktaları şunlardır:
 
 - [SSE](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events)
 
-## Sonraki Konular
+## Sırada Ne Var
 
 ## Sonraki Adımlar
 
-stdio taşıma yöntemi ile MCP sunucuları nasıl oluşturulacağını öğrendiğinize göre, daha gelişmiş konuları keşfedebilirsiniz:
+stdio taşıyıcı ile MCP sunucuları oluşturmayı öğrendiğinize göre, daha ileri konuları keşfedebilirsiniz:
 
-- **Sonraki:** [MCP ile HTTP Akışı (Streamable HTTP)](../06-http-streaming/README.md) - Uzak sunucular için desteklenen diğer taşıma mekanizmasını öğrenin
-- **İleri Düzey:** [MCP Güvenlik En İyi Uygulamaları](../../02-Security/README.md) - MCP sunucularınızda güvenlik uygulayın
-- **Üretim:** [Dağıtım Stratejileri](../09-deployment/README.md) - Sunucularınızı üretim amaçlı dağıtın
+- **Sonraki**: [MCP ile HTTP Akışı (Streamable HTTP)](../06-http-streaming/README.md) - Uzak sunucular için diğer desteklenen taşıyıcıyı öğrenin
+- **İleri Düzey**: [MCP Güvenlik En İyi Uygulamaları](../../02-Security/README.md) - MCP sunucularınızı güvenli hale getirin
+- **Üretim**: [Dağıtım Stratejileri](../09-deployment/README.md) - Sunucularınızı üretim ortamına dağıtın
 
 ## Ek Kaynaklar
 
 - [MCP Spesifikasyonu 2025-06-18](https://spec.modelcontextprotocol.io/specification/) - Resmi spesifikasyon
 - [MCP SDK Dokümantasyonu](https://github.com/modelcontextprotocol/sdk) - Tüm diller için SDK referansları
-- [Topluluk Örnekleri](../../06-CommunityContributions/README.md) - Topluluktan daha fazla sunucu örnekleri
+- [Topluluk Örnekleri](../../06-CommunityContributions/README.md) - Topluluktan daha fazla sunucu örneği
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Feragatname**:  
-Bu belge, yapay zeka çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba gösterilse de, otomatik çevirilerin hatalar veya yanlışlıklar içerebileceğini lütfen unutmayınız. Orijinal belge, kendi ana dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımıyla ortaya çıkabilecek herhangi bir yanlış anlama veya yorum hatasından sorumlu değiliz.
+Bu belge, AI çeviri servisi [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba gösterilse de, otomatik çevirilerin hata veya yanlışlık içerebileceğini lütfen unutmayınız. Orijinal belgenin ana dilindeki versiyonu yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımıyla ortaya çıkabilecek herhangi bir yanlış anlama veya yanlış yorumdan dolayı sorumluluk kabul edilmemektedir.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,10 +1,10 @@
 ## Testning och Felsökning
 
-Innan du börjar testa din MCP-server är det viktigt att förstå de tillgängliga verktygen och bästa praxis för felsökning. Effektiv testning säkerställer att din server beter sig som förväntat och hjälper dig att snabbt identifiera och lösa problem. Följande avsnitt beskriver rekommenderade tillvägagångssätt för att validera din MCP-implementering.
+Innan du börjar testa din MCP-server är det viktigt att förstå vilka verktyg som finns tillgängliga och bästa praxis för felsökning. Effektiv testning säkerställer att din server beter sig som förväntat och hjälper dig snabbt identifiera och åtgärda problem. Följande avsnitt beskriver rekommenderade tillvägagångssätt för att validera din MCP-implementering.
 
 ## Översikt
 
-Denna lektion täcker hur du väljer rätt testningsmetod och den mest effektiva testverktyget.
+Den här lektionen täcker hur du väljer rätt testmetod och det mest effektiva testverktyget.
 
 ## Lärandemål
 
@@ -15,7 +15,7 @@ I slutet av denna lektion kommer du att kunna:
 
 ## Testa MCP-servrar
 
-MCP erbjuder verktyg som hjälper dig att testa och felsöka dina servrar:
+MCP tillhandahåller verktyg för att hjälpa dig testa och felsöka dina servrar:
 
 - **MCP Inspector**: Ett kommandoradsverktyg som kan köras både som CLI-verktyg och som ett visuellt verktyg.
 - **Manuell testning**: Du kan använda ett verktyg som curl för att köra webbförfrågningar, men vilket verktyg som helst som kan köra HTTP fungerar.
@@ -23,51 +23,51 @@ MCP erbjuder verktyg som hjälper dig att testa och felsöka dina servrar:
 
 ### Använda MCP Inspector
 
-Vi har beskrivit användningen av detta verktyg i tidigare lektioner, men låt oss prata om det lite på hög nivå. Det är ett verktyg byggt i Node.js och du kan använda det genom att kalla på `npx`-körbar fil som tillfälligt laddar ner och installerar verktyget och sedan städar upp sig när det har kört din förfrågan.
+Vi har beskrivit användningen av detta verktyg i tidigare lektioner men låt oss prata om det lite på en övergripande nivå. Det är ett verktyg byggt i Node.js och du kan använda det genom att köra `npx`-exekverbara filen, vilket temporärt laddar ner och installerar verktyget självt och städar upp efter sig när din förfrågan är kört.
 
 [MCP Inspector](https://github.com/modelcontextprotocol/inspector) hjälper dig att:
 
-- **Upptäcka serverfunktioner**: Upptäck automatiskt tillgängliga resurser, verktyg och uppmaningar
+- **Upptäcka serverkapabiliteter**: Automatiskt upptäcka tillgängliga resurser, verktyg och prompts
 - **Testa verktygsexekvering**: Prova olika parametrar och se svar i realtid
-- **Visa servermetadata**: Undersök serverinformation, scheman och konfigurationer
+- **Visa servermetadata**: Granska serverinformation, scheman och konfigurationer
 
-Ett typiskt körningskommando ser ut så här:
+Ett vanligt körningsexempel av verktyget ser ut så här:
 
 ```bash
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-Ovanstående kommando startar en MCP och dess visuella gränssnitt och öppnar en lokal webbgränssnitt i din webbläsare. Du kan förvänta dig att se en instrumentpanel som visar dina registrerade MCP-servrar, deras tillgängliga verktyg, resurser och uppmaningar. Gränssnittet möjliggör interaktiv testning av verktygsexekvering, inspektion av servermetadata och visning av svar i realtid, vilket gör det enklare att validera och felsöka dina MCP-serverimplementationer.
+Kommandot ovan startar en MCP och dess visuella gränssnitt och öppnar ett lokalt webbgränssnitt i din webbläsare. Du kan förvänta dig att se en instrumentpanel som visar dina registrerade MCP-servrar, deras tillgängliga verktyg, resurser och prompts. Gränssnittet låter dig interaktivt testa verktygsexekvering, inspektera servermetadata och se svar i realtid, vilket gör det enklare att validera och felsöka dina MCP-serverimplementationer.
 
 Så här kan det se ut: ![Inspector](../../../../translated_images/sv/connect.141db0b2bd05f096.webp)
 
-Du kan också köra detta verktyg i CLI-läge, då lägger du till attributet `--cli`. Här är ett exempel på att köra verktyget i "CLI"-läge som listar alla verktyg på servern:
+Du kan också köra detta verktyg i CLI-läge genom att lägga till attributet `--cli`. Här är ett exempel på att köra verktyget i "CLI"-läge som listar alla verktyg på servern:
 
 ```sh
 npx @modelcontextprotocol/inspector --cli node build/index.js --method tools/list
 ```
 
-### Manuell Testning
+### Manuell testning
 
-Förutom att köra inspector-verktyget för att testa serverfunktioner finns ett annat liknande sätt att köra en klient som kan använda HTTP, till exempel curl.
+Förutom att köra inspector-verktyget för att testa serverkapabiliteter är en liknande metod att köra en klient som kan använda HTTP, till exempel curl.
 
-Med curl kan du testa MCP-servrar direkt via HTTP-förfrågningar:
+Med curl kan du testa MCP-servrar direkt med HTTP-förfrågningar:
 
 ```bash
 # Exempel: Testa servermetadata
 curl http://localhost:3000/v1/metadata
 
-# Exempel: Utför ett verktyg
+# Exempel: Kör ett verktyg
 curl -X POST http://localhost:3000/v1/tools/execute \
   -H "Content-Type: application/json" \
   -d '{"name": "calculator", "parameters": {"expression": "2+2"}}'
 ```
 
-Som du kan se från ovanstående användning av curl använder du en POST-förfrågan för att anropa ett verktyg med en belastning som består av verktygets namn och dess parametrar. Använd det tillvägagångssätt som passar dig bäst. CLI-verktyg är i allmänhet snabbare att använda och lämpar sig väl för skriptning, vilket kan vara användbart i en CI/CD-miljö.
+Som du kan se från ovanstående exempel på användning av curl, använder du en POST-förfrågan för att anropa ett verktyg med en nyttolast som består av verktygets namn och dess parametrar. Använd den metod som passar dig bäst. CLI-verktyg tenderar generellt att vara snabbare att använda och lämpar sig för automatisering, vilket kan vara användbart i en CI/CD-miljö.
 
 ### Enhetstestning
 
-Skapa enhetstester för dina verktyg och resurser för att säkerställa att de fungerar som de ska. Här är ett exempel på testkod.
+Skapa enhetstester för dina verktyg och resurser för att säkerställa att de fungerar som förväntat. Här är exempel på testkod.
 
 ```python
 import pytest
@@ -102,7 +102,7 @@ async def test_list_tools_cursor_parameter():
         return "Result 2"
 
     async with create_session(server._mcp_server) as client_session:
-        # Testa utan cursor-parameter (utlämnad)
+        # Testa utan cursor-parameter (utelämnad)
         result1 = await client_session.list_tools()
         assert len(result1.tools) == 2
 
@@ -120,17 +120,17 @@ async def test_list_tools_cursor_parameter():
     
 ```
 
-Ovanstående kod gör följande:
+Den ovanstående koden gör följande:
 
 - Använder pytest-ramverket som låter dig skapa tester som funktioner och använda assert-satser.
 - Skapar en MCP-server med två olika verktyg.
-- Använder `assert`-satsen för att kontrollera att vissa villkor uppfylls.
+- Använder `assert`-satser för att kontrollera att vissa villkor uppfylls.
 
 Ta en titt på [hela filen här](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
-Med ovanstående fil kan du testa din egen server för att se till att funktioner skapas som de ska.
+Med filen ovan kan du testa din egen server för att säkerställa att kapabiliteter skapas som de ska.
 
-Alla större SDK:er har liknande testavsnitt så du kan anpassa dig till den miljö du valt.
+Alla större SDK:er har liknande testavsnitt så du kan anpassa till din valda runtime.
 
 ## Exempel
 
@@ -140,17 +140,17 @@ Alla större SDK:er har liknande testavsnitt så du kan anpassa dig till den mil
 - [TypeScript Calculator](../samples/typescript/README.md)
 - [Python Calculator](../../../../03-GettingStarted/samples/python)
 
-## Ytterligare Resurser
+## Ytterligare resurser
 
 - [Python SDK](https://github.com/modelcontextprotocol/python-sdk)
 
-## Vad som kommer härnäst
+## Vad kommer härnäst
 
 - Nästa: [Deployment](../09-deployment/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Ansvarsfriskrivning**:
-Detta dokument har översatts med hjälp av AI-översättningstjänsten [Co-op Translator](https://github.com/Azure/co-op-translator). Även om vi strävar efter noggrannhet, vänligen var medveten om att automatiska översättningar kan innehålla fel eller brister. Det ursprungliga dokumentet på dess originalspråk bör betraktas som den auktoritativa källan. För kritisk information rekommenderas professionell mänsklig översättning. Vi ansvarar inte för några missförstånd eller feltolkningar som uppstår till följd av användningen av denna översättning.
+**Ansvarsfriskrivning**:  
+Detta dokument har översatts med hjälp av AI-översättningstjänsten [Co-op Translator](https://github.com/Azure/co-op-translator). Även om vi strävar efter noggrannhet, vänligen observera att automatiska översättningar kan innehålla fel eller brister. Det ursprungliga dokumentet på dess ursprungsspråk ska betraktas som den auktoritativa källan. För kritisk information rekommenderas professionell mänsklig översättning. Vi ansvarar inte för några missförstånd eller feltolkningar som uppstår till följd av användningen av denna översättning.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

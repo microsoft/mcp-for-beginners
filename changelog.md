@@ -2,6 +2,59 @@
 
 This document serves as a record of all significant changes made to the Model Context Protocol (MCP) for Beginners curriculum. Changes are documented in reverse chronological order (newest changes first).
 
+## April 11, 2026
+
+### New Lesson, Documentation Fixes, and Dependency Updates
+
+#### New Curriculum Content Added
+
+**Module 05 - Advanced Topics**
+- **Lesson 5.17: Adversarial Multi-Agent Reasoning with MCP** (`05-AdvancedTopics/mcp-adversarial-agents/README.md`): New comprehensive guide covering the adversarial debate pattern for multi-agent systems
+  - Mermaid architecture diagram: two agents → shared MCP server → debate transcript → judge → verdict
+  - Shared MCP tool server (`web_search` + `run_python`) implemented in Python and TypeScript
+  - Opposing system prompts (FOR / AGAINST / Judge) with explicit tool-use requirements
+  - Debate orchestrator in Python, TypeScript, and C# managing rounds and routing arguments
+  - MCP `ClientSession` wiring for the orchestrator to real tool calls
+  - Use-case table (hallucination detection, threat modeling, API design review, factual verification, tech selection)
+  - Security considerations: sandboxed execution, tool-call validation, rate limiting, audit logging
+  - Structured exercise with three practical scenarios (code review, architecture decision, content moderation)
+
+#### Documentation Fixes
+
+**Module 03 - Getting Started**
+- **05-stdio-server/README.md**: Fixed incomplete TypeScript stdio server example — added missing transport instantiation (`new StdioServerTransport()`) and `server.connect(transport)` call to match the Python and .NET examples in the same section
+- **14-sampling/README.md**: Fixed typo — corrected `"Sampling is an davanced features"` → `"Sampling is an advanced feature"`
+
+#### Curriculum Updates
+
+**Main README.md**
+- Added entry 5.17 (Adversarial Multi-Agent Reasoning with MCP) to the curriculum table with a direct link to the new lesson
+
+**05-AdvancedTopics/README.md**
+- Added Lesson 5.17 row to the lessons table
+
+**study_guide.md**
+- Added Adversarial Multi-Agent Reasoning topic to the mind-map and prose description of Advanced Topics
+
+#### Code and Security Fixes
+
+**Module 05 - Adversarial Agents (`mcp-adversarial-agents`)**
+- **Security fix — command injection**: Replaced `execSync` shell interpolation with `execFile` + `promisify` in the TypeScript `run_python` tool, eliminating the command injection surface (LLM-controlled code is now passed as a literal argv element with no shell involvement)
+- **MCP tool loop wiring**: Updated the Python debate orchestrator to use `AsyncAnthropic` client (replacing blocking sync `Anthropic`), pass a live `ClientSession` directly to each agent turn, fetch tool definitions via `session.list_tools()` each turn, and dispatch `tool_use` blocks via `session.call_tool()` in a loop until the model emits a final text response
+
+#### Dependency Updates
+
+- Bumped `hono` to 4.12.12 across multiple packages (03-GettingStarted, 04-PracticalImplementation, 10-StreamliningAIWorkflows)
+- Bumped `@hono/node-server` from 1.19.11 to 1.19.13 in TypeScript packages
+- Bumped `cryptography` from 46.0.5 to 46.0.7 in Python packages (10-StreamliningAIWorkflows labs 3 and 4)
+- Bumped `lodash` from 4.17.23 to 4.18.1 in 10-StreamliningAIWorkflows inspector
+
+#### Translations
+
+- Synced translations for 48+ languages with the latest source changes (i18n update)
+
+---
+
 ## February 5, 2026
 
 ### Repository-Wide Validation and Navigation Improvements

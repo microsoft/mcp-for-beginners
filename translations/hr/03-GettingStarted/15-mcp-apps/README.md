@@ -1,24 +1,24 @@
-# MCP Aplikacije
+# MCP aplikacije
 
-MCP Aplikacije predstavljaju novi način rada u MCP-u. Ideja je da ne odgovarate samo s podacima dobivenim iz poziva alata, već također pružite informacije o tome kako se s tim podacima treba komunicirati. To znači da rezultati alata sada mogu sadržavati informacije o korisničkom sučelju. Zašto bismo to željeli? Pa, razmislite kako stvari radite danas. Vjerojatno koristite rezultate MCP Servera tako što ispred njega stavljate neki tip sučelja, taj kod trebate napisati i održavati. Ponekad je to ono što želite, ali ponekad bi bilo odlično samo unijeti isječak informacija koji je samodostatan i koji ima sve, od podataka do korisničkog sučelja.
+MCP aplikacije predstavljaju novi paradigma u MCP-u. Ideja je da ne samo što odgovarate s podacima iz poziva alata, već i pružate informacije o tome kako se s tim informacijama treba interaktivno rukovati. To znači da rezultati alata sada mogu sadržavati informacije o korisničkom sučelju. Zašto bismo to željeli? Pa, razmislite kako stvari radite danas. Vjerojatno koristite rezultate MCP poslužitelja tako da ispred njega postavite neki oblik frontend-a, što je kod koji trebate napisati i održavati. Ponekad je to ono što želite, ali ponekad bi bilo sjajno ako biste mogli samo donijeti komadić informacije koji je samostalan i ima sve, od podataka do korisničkog sučelja.
 
 ## Pregled
 
-Ova lekcija pruža praktične upute o MCP Aplikacijama, kako započeti s njima i kako ih integrirati u vaše postojeće Web aplikacije. MCP Aplikacije su vrlo novi dodatak MCP Standardu.
+Ova lekcija pruža praktične smjernice o MCP aplikacijama, kako započeti s njima i kako ih integrirati u vaše postojeće web aplikacije. MCP aplikacije su vrlo nov dodatak MCP standardu.
 
 ## Ciljevi učenja
 
-Na kraju ove lekcije, moći ćete:
+Do kraja ove lekcije moći ćete:
 
-- Objasniti što su MCP Aplikacije.
-- Kada koristiti MCP Aplikacije.
-- Izgraditi i integrirati vlastite MCP Aplikacije.
+- Objasniti što su MCP aplikacije.
+- Kada koristiti MCP aplikacije.
+- Izraditi i integrirati vlastite MCP aplikacije.
 
-## MCP Aplikacije - kako to funkcionira
+## MCP aplikacije - kako to funkcionira
 
-Ideja MCP Aplikacija je pružiti odgovor koji je zapravo komponenta za prikaz. Takva komponenta može imati i vizualne elemente i interaktivnost, npr. klikove na gumbe, unos korisnika i drugo. Počnimo sa serverskom stranom i našim MCP Serverom. Za kreiranje MCP App komponente trebate napraviti alat, ali i aplikacijski resurs. Te dvije polovice povezane su preko resourceUri.
+Ideja MCP aplikacija je pružiti odgovor koji je u biti komponenta za prikazivanje. Takva komponenta može imati i vizualni i interaktivni dio, npr. klikove na tipke, unos korisnika i slično. Počnimo sa serverskom stranom i našim MCP poslužiteljem. Da biste stvorili MCP App komponentu, morate napraviti alat, ali i aplikacijski resurs. Ova dva dijela povezana su putem resourceUri.
 
-Evo primjera. Pokušajmo vizualizirati što je uključeno i koja se komponenta čime bavi:
+Evo primjera. Pokušajmo vizualizirati što je uključeno i koje dijelove što radi:
 
 ```text
 server.ts -- responsible for registering tools and the component as a UI component
@@ -27,43 +27,43 @@ src/
 mcp-app.html -- the user interface
 ```
 
-Ovaj vizual opisuje arhitekturu za izradu komponente i njezinu logiku.
+Ova vizualizacija opisuje arhitekturu za stvaranje komponente i njezine logike.
 
 ```mermaid
 flowchart LR
   subgraph Backend[Backend: MCP poslužitelj]
     T["Registriraj alate: registerAppTool()"]
-    C["Registriraj resurs komponente: registerAppResource()"]
+    C["Registriraj komponentu resursa: registerAppResource()"]
     U[resourceUri]
     T --- U
     C --- U
   end
 
   subgraph Parent[Roditeljska web stranica]
-    H[Host aplikacija]
-    IFRAME[Kontejner IFrame]
+    H[Gostiteljska aplikacija]
+    IFRAME[Okvir IFrame]
     H -->|Umetni MCP sučelje aplikacije| IFRAME
   end
 
   subgraph Frontend[Frontend: MCP aplikacija unutar IFrame]
     UI["Korisničko sučelje: mcp-app.html"]
-    EH["Rukovatelji događajima: src/mcp-app.ts"]
+    EH["Obrađivači događaja: src/mcp-app.ts"]
     UI --> EH
   end
 
   IFRAME --> UI
-  EH -->|Klik aktivira poziv alata poslužitelju| T
+  EH -->|Klik pokreće poziv poslužiteljskog alata| T
   T -->|Podaci rezultata alata| EH
   EH -->|Pošalji poruku roditeljskoj stranici| H
 ```
-Pokušajmo opisati odgovornosti za backend odnosno frontend.
+Pokušajmo sada opisati odgovornosti za backend i frontend respektivno.
 
 ### Backend
 
-Treba obaviti dvije stvari:
+Ovdje trebamo ostvariti dvije stvari:
 
-- Registracija alata s kojima želimo raditi.
-- Definiranje komponente.
+- Registrirati alate s kojima želimo komunicirati.
+- Definirati komponentu.
 
 **Registracija alata**
 
@@ -85,7 +85,7 @@ registerAppTool(
 
 ```
 
-Gornji kod opisuje ponašanje gdje se izlaže alat pod nazivom `get-time`. Ne prima ulazne podatke, ali na kraju proizvodi trenutno vrijeme. Imamo mogućnost definirati `inputSchema` za alate koji trebaju prihvatiti unos korisnika.
+Prethodni kod opisuje ponašanje, gdje izlaže alat naziva `get-time`. Ne prima ulaze, ali proizvodi trenutno vrijeme. Imamo mogućnost definirati `inputSchema` za alate kod kojih moramo primati unos korisnika.
 
 **Registracija komponente**
 
@@ -94,7 +94,7 @@ U istoj datoteci trebamo također registrirati komponentu:
 ```typescript
 const resourceUri = "ui://get-time/mcp-app.html";
 
-// Registrirajte resurs, koji vraća objedinjeni HTML/JavaScript za korisničko sučelje.
+// Registrirajte resurs, koji vraća ugrađeni HTML/JavaScript za korisničko sučelje.
 registerAppResource(
   server,
   resourceUri,
@@ -112,14 +112,14 @@ registerAppResource(
 );
 ```
 
-Primijetite kako spominjemo `resourceUri` da povežemo komponentu s njezinim alatima. Zanimljiv je i povratni poziv u kojem učitavamo UI datoteku i vraćamo komponentu.
+Primijetite kako spominjemo `resourceUri` da povežemo komponentu s njezinim alatima. Zanimljiv je i callback u kojem učitavamo UI datoteku i vraćamo komponentu.
 
 ### Frontend komponente
 
-Kao i backend, postoje dva dijela:
+Kao i na backendu, i ovdje postoje dva dijela:
 
-- Frontend napisan čistim HTML-om.
-- Kod koji obrađuje događaje i što se s njima radi, npr. pozivanje alata ili slanje poruka roditeljskom prozoru.
+- Frontend napisan u čistom HTML-u.
+- Kod koji obrađuje događaje i što napraviti, npr. pozivati alate ili slati poruke roditeljskom prozoru.
 
 **Korisničko sučelje**
 
@@ -145,7 +145,7 @@ Pogledajmo korisničko sučelje.
 
 **Povezivanje događaja**
 
-Zadnji dio je povezivanje događaja. To znači da identificiramo koji dio našeg UI-ja treba rukovatelje događaja i što činiti kada se događaji dogode:
+Posljednji dio je povezivanje događaja. To znači da identificiramo koji dio našeg UI treba event handlere i što raditi kada se događaji jave:
 
 ```typescript
 // mcp-app.ts
@@ -159,35 +159,35 @@ const getTimeBtn = document.getElementById("get-time-btn")!;
 // Kreiraj instancu aplikacije
 const app = new App({ name: "Get Time App", version: "1.0.0" });
 
-// Obradi rezultate alata sa servera. Postavi prije `app.connect()` kako bi se izbjeglo
+// Obradi rezultate alata sa servera. Postavi prije `app.connect()` da bi izbjegao
 // propuštanje početnog rezultata alata.
 app.ontoolresult = (result) => {
   const time = result.content?.find((c) => c.type === "text")?.text;
   serverTimeEl.textContent = time ?? "[ERROR]";
 };
 
-// Poveži klik na gumb
+// Poveži klik gumba
 getTimeBtn.addEventListener("click", async () => {
-  // `app.callServerTool()` omogućava UI-u da zatraži svježe podatke sa servera
+  // `app.callServerTool()` omogućuje korisničkom sučelju da zatraži svježe podatke sa servera
   const result = await app.callServerTool({ name: "get-time", arguments: {} });
   const time = result.content?.find((c) => c.type === "text")?.text;
   serverTimeEl.textContent = time ?? "[ERROR]";
 });
 
-// Poveži se na host
+// Spoji se na host
 app.connect();
 ```
 
-Kao što vidite iz gornjeg, ovo je uobičajeni kod za povezivanje DOM elemenata s događajima. Vrijedi istaknuti poziv `callServerTool` koji poziva alat na backendu.
+Kao što vidite iz gore navedenog, ovo je uobičajeni kod za povezivanje DOM elemenata s događajima. Vrijedi istaknuti poziv `callServerTool` koji poziva alat na backendu.
 
-## Rad s unosom korisnika
+## Rukovanje unosom korisnika
 
-Dosad smo vidjeli komponentu koja ima gumb koji pri kliku poziva alat. Pogledajmo možemo li dodati više UI elemenata kao polje za unos i poslati argumente alatu. Implementirajmo FAQ funkcionalnost. Evo kako bi to trebalo raditi:
+Do sada smo vidjeli komponentu koja ima gumb koji, kad se klikne, poziva alat. Pogledajmo možemo li dodati još UI elemenata poput polja za unos i vidjeti možemo li poslati argumente alatu. Implementirajmo funkcionalnost FAQ-a. Evo kako bi to trebalo funkcionirati:
 
-- Trebao bi postojati gumb i unosni element gdje korisnik upisuje ključnu riječ za pretraživanje, npr. "Shipping". To bi trebalo pozvati alat na backendu koji pretražuje FAQ podatke.
+- Trebao bi postojati gumb i element unosa gdje korisnik upisuje ključnu riječ za pretraživanje, na primjer "Shipping" (Dostava). To bi trebalo pozvati alat na backendu koji pretražuje podatke FAQ-a.
 - Alat koji podržava navedenu FAQ pretragu.
 
-Dodajmo prvo potrebnu podršku na backendu:
+Najprije dodajmo potrebnu podršku na backend:
 
 ```typescript
 const faq: { [key: string]: string } = {
@@ -214,7 +214,7 @@ registerAppTool(
   );
 ```
 
-Ono što ovdje vidimo je kako popunjavamo `inputSchema` i dajemo mu `zod` shemu ovako:
+Ono što ovdje vidimo jest kako popunjavamo `inputSchema` i dajemo mu `zod` shemu ovako:
 
 ```typescript
 inputSchema: zod.object({
@@ -222,9 +222,9 @@ inputSchema: zod.object({
 })
 ```
 
-U gornjoj shemi deklariramo da imamo ulazni parametar nazvan `query` i da je opcionalan s zadanim vrijednostima "shipping".
+U gornjoj shemi deklariramo da imamo ulazni parametar naziva `query` koji je opcionalan s zadanim vrijednostima "shipping".
 
-Ok, idemo dalje u *mcp-app.html* da vidimo koje UI elemente trebamo napraviti za ovo:
+Dobro, prijeđimo sada na *mcp-app.html* da vidimo koje UI trebamo napraviti za ovo:
 
 ```html
 <div class="faq">
@@ -235,7 +235,7 @@ Ok, idemo dalje u *mcp-app.html* da vidimo koje UI elemente trebamo napraviti za
   </div>
 ```
 
-Super, sada imamo unosni element i gumb. Idemo dalje u *mcp-app.ts* za povezivanje ovih događaja:
+Super, sada imamo element unosa i gumb. Idemo dalje na *mcp-app.ts* kako bismo povezali ove događaje:
 
 ```typescript
 const getFaqBtn = document.getElementById("get-faq-btn")!;
@@ -249,28 +249,28 @@ getFaqBtn.addEventListener("click", async () => {
 });
 ```
 
-U kodu iznad mi:
+U gornjem kodu:
 
-- Kreiramo reference na zanimljive UI elemente.
-- Rješavamo klik gumba, parsiramo vrijednost iz input elementa i pozivamo `app.callServerTool()` s `name` i `arguments` gdje argument prosljeđuje `query` kao vrijednost.
+- Kreiramo reference na interaktivne UI elemente.
+- Obradjujemo klik na gumb kako bismo dohvatili vrijednost iz unosa, te također pozivamo `app.callServerTool()` s `name` i `arguments`, pri čemu zadnji prosljeđuje `query` kao vrijednost.
 
-Što se zapravo događa kad pozovete `callServerTool` jest da šalje poruku roditeljskom prozoru, a taj prozor na kraju poziva MCP Server.
+Što se zapravo događa kada pozovete `callServerTool` jest da se šalje poruka roditeljskom prozoru, a taj prozor na kraju poziva MCP poslužitelj.
 
 ### Isprobajte
 
-Kad ovo isprobamo, trebali bismo vidjeti sljedeće:
+Isprobavajući ovo trebali bismo vidjeti sljedeće:
 
 ![](../../../../translated_images/hr/faq.f78abe6b2cc68c83.webp)
 
-i evo primjera s unosom poput "warranty"
+a ovdje ga isprobavamo s unosom poput "warranty" (jamstvo)
 
 ![](../../../../translated_images/hr/faq-input.3e276f1c3d7e061e.webp)
 
-Da biste pokrenuli ovaj kod, pogledajte [Code section](./code/README.md)
+Za pokretanje ovog koda, pogledajte [Odjeljak s kodom](./code/README.md)
 
-## Testiranje u Visual Studio Codeu
+## Testiranje u Visual Studio Code
 
-Visual Studio Code ima izvrsnu podršku za MVP Apps i vjerojatno je jedan od najjednostavnijih načina testiranja MCP Aplikacija. Za korištenje Visual Studio Codea, dodajte unos servera u *mcp.json* ovako:
+Visual Studio Code ima izvrsnu podršku za MCP aplikacije i vjerojatno je jedan od najjednostavnijih načina za testiranje vaših MCP aplikacija. Da biste koristili Visual Studio Code, dodajte zapis poslužitelja u *mcp.json* ovako:
 
 ```json
 "my-mcp-server-7178eca7": {
@@ -279,29 +279,29 @@ Visual Studio Code ima izvrsnu podršku za MVP Apps i vjerojatno je jedan od naj
   }
 ```
 
-Zatim pokrenite server, trebali biste moći komunicirati s vašom MVP Aplikacijom kroz Chat prozor pod uvjetom da imate instaliran GitHub Copilot.
+Zatim pokrenite poslužitelj, trebali biste moći komunicirati s vašom MCP aplikacijom preko prozora za chat, pod uvjetom da imate instaliran GitHub Copilot.
 
-pokretanjem preko prompta, npr. "#get-faq":
+Možete ga aktivirati putem prompta, primjerice "#get-faq":
 
 ![Visual Studio run prompt](../../../../translated_images/hr/vscode-run.16cbab9436499f32.webp)
 
-Baš kao kada ste pokretali u web pregledniku, prikazuje isto sučelje ovako:
+i kao što ste ga pokrenuli kroz web preglednik, prikazuje se na isti način ovako:
 
 ![UI Visual Studio Code](../../../../translated_images/hr/vscode-ui.f2771dcfce25ca0f.webp)
 
 ## Zadatak
 
-Napravite igru kamen, papir, škare. Trebala bi sadržavati sljedeće:
+Napravite igru kamen, papir, škare. Trebala bi imati sljedeće:
 
 UI:
 
-- padajući izbornik s opcijama
-- gumb za slanje izbora
-- oznaku koja pokazuje tko je što odabrao i tko je pobjednik
+- padajući popis s opcijama
+- gumb za potvrdu izbora
+- oznaku koja prikazuje tko je što odabrao i tko je pobijedio
 
 Server:
 
-- trebao bi imati alat za igru kamen, papir, škare koji prima "choice" kao unos. Također treba generirati izbor računala i odrediti pobjednika
+- trebao bi imati alat za kamen, papir, škare koji prima "choice" (izbor) kao ulaz. Također treba izabrati izbor računala i odrediti pobjednika
 
 ## Rješenje
 
@@ -309,18 +309,18 @@ Server:
 
 ## Sažetak
 
-Naučili smo o novom načinu rada MCP Aplikacija. To je novi pristup koji dopušta MCP Serverima da imaju mišljenje ne samo o podacima već i o načinu na koji se ti podaci trebaju prikazati.
+Naučili smo o ovom novom paradigmu MCP aplikacija. To je novi način koji omogućuje MCP poslužiteljima da imaju stav ne samo o podacima, nego i o načinu na koji se ti podaci prikazuju.
 
-Dodatno, naučili smo da se MCP Aplikacije hostaju u IFrame-u i da za komunikaciju s MCP Serverima trebaju slati poruke roditeljskoj web aplikaciji. Postoji nekoliko biblioteka za čisti JavaScript, React i druge koje olakšavaju ovu komunikaciju.
+Također smo naučili da se MCP aplikacije hostaju u okviru (IFrame) i da za komunikaciju s MCP poslužiteljima moraju slati poruke roditeljskoj web aplikaciji. Postoji nekoliko biblioteka dostupnih za čisti JavaScript, React i druge, što olakšava tu komunikaciju.
 
-## Ključne lekcije
+## Ključni zaključci
 
 Evo što ste naučili:
 
-- MCP Aplikacije su novi standard koji može biti koristan kada želite isporučiti i podatke i UI značajke.
-- Ove vrste aplikacija rade u IFrame-u zbog sigurnosnih razloga.
+- MCP aplikacije su novi standard koji može biti koristan kada želite isporučiti i podatke i značajke korisničkog sučelja.
+- Ove aplikacije rade u IFrame-u iz sigurnosnih razloga.
 
-## Što dalje
+## Što slijedi
 
 - [Poglavlje 4](../../04-PracticalImplementation/README.md)
 
@@ -328,5 +328,5 @@ Evo što ste naučili:
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Odricanje od odgovornosti**:
-Ovaj dokument je preveden pomoću AI usluge prevođenja [Co-op Translator](https://github.com/Azure/co-op-translator). Iako težimo točnosti, imajte na umu da automatizirani prijevodi mogu sadržavati pogreške ili netočnosti. Izvorni dokument na njegovom izvornom jeziku smatra se službenim i autoritativnim izvorom. Za kritične informacije preporučuje se profesionalni ljudski prijevod. Ne snosimo odgovornost za bilo kakva nesporazuma ili pogrešna tumačenja proizašla iz korištenja ovog prijevoda.
+Ovaj dokument je preveden korištenjem AI usluge za prijevod [Co-op Translator](https://github.com/Azure/co-op-translator). Iako nastojimo postići točnost, imajte na umu da automatski prijevodi mogu sadržavati pogreške ili netočnosti. Izvorni dokument na izvornom jeziku treba smatrati autoritativnim izvorom. Za kritične informacije preporučuje se profesionalni ljudski prijevod. Nismo odgovorni za bilo kakva nesporazuma ili pogrešna tumačenja koja proizlaze iz korištenja ovog prijevoda.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

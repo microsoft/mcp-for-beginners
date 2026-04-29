@@ -1,47 +1,48 @@
 ## Testing and Debugging
 
-Before you begin to dey test your MCP server, e important to understand the tools wey dey available and best way dem for debugging. Correct testing go make sure say your server dey behave as e suppose and e go help you quickly sabi and solve wahala. Di section wey follow go show beta way dem recommend for tozzle your MCP implementation.
+Bifo you begin test your MCP server, e important to sabi di available tools and di best way for debugging. Effective testing dey make sure say your server dey work as e suppose and e go help you find and solve wahala quick quick. Di section wey follow go talk about better way dem for check say your MCP waka correct.
 
 ## Overview
 
-Dis lesson go teach how to choose beta testing way and di best tool for testing.
+Dis lesson go show how to choose better testing way and di best testing tool.
 
 ## Learning Objectives
 
-By di time you finish dis lesson, you go fit:
+By di end of dis lesson, you go fit:
 
-- Talk about different ways for testing.
-- Use different tools to test your code well well.
+- Talk about different testing way dem.
+- Use different tools test your code well well.
+
 
 ## Testing MCP Servers
 
-MCP get tools to help you test and debug your servers:
+MCP get tools wey fit help you test and debug your servers:
 
-- **MCP Inspector**: Na command line tool wey fit run both as CLI tool and as visual tool.
-- **Manual testing**: You fit use tool like curl to run web requests, but any tool wey fit run HTTP go work.
+- **MCP Inspector**: Na command line tool wey you fit run as CLI tool and also as visual tool.
+- **Manual testing**: You fit use tool like curl run web requests, but any tool wey fit run HTTP go do.
 - **Unit testing**: You fit use your preferred testing framework test features of both server and client.
 
 ### Using MCP Inspector
 
-We don talk about how to use dis tool for previous lessons but make we yan small for high level. Na tool wey dem build for Node.js and you fit use am by calling `npx` executable wey go download and install di tool for a short time and e go clear by itself after e finish run your request.
+We don talk how to use dis tool for previous lessons but make we talk small about am for high level. Na tool wey dem build for Node.js and you fit run am by calling di `npx` executable wey go download and install di tool temporary and e go clear itself after e finish run your request.
 
-Di [MCP Inspector](https://github.com/modelcontextprotocol/inspector) go help you:
+Di [MCP Inspector](https://github.com/modelcontextprotocol/inspector) dey help you:
 
-- **Discover Server Capabilities**: Automatically know which resources, tools, and prompts dey available
-- **Test Tool Execution**: Try different parameters and see responses live
+- **Discover Server Capabilities**: Automatically find available resources, tools, and prompts
+- **Test Tool Execution**: Try different parameters and see responses as dem dey happen
 - **View Server Metadata**: Check server info, schemas, and configurations
 
-Normal way to run di tool na dis:
+Typical run of di tool be like this:
 
 ```bash
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-Di command wey dey above go start MCP and e visual interface and e go launch local web interface for your browser. You fit expect to see dashboard wey show your registered MCP servers, their tools wey dey available, resources, and prompts. Di interface let you take test tool execution, check server metadata, and see live responses, e go make am easy to confirm and debug your MCP server implementations.
+Di command wey pass start MCP and hin visual interface and e go launch local web interface for your browser. You go see dashboard wey dey show your registered MCP servers, di tools, resources, and prompts wey dem get. Di interface allow you test tools for real time, check server metadata, and view real-time responses so e go easy to validate and debug your MCP server.
 
-Dis na how e fit look like: ![Inspector](../../../../translated_images/pcm/connect.141db0b2bd05f096.webp)
+Dis be how e fit look: ![Inspector](../../../../translated_images/pcm/connect.141db0b2bd05f096.webp)
 
-You fit still run dis tool for CLI mode by to add `--cli` attribute. See example how e go be to run di tool as "CLI" mode wey go list all di tools for di server:
+You fit run dis tool for CLI mode too by adding `--cli` like dis. Here na example of running di tool for "CLI" mode wey go list all tools for di server:
 
 ```sh
 npx @modelcontextprotocol/inspector --cli node build/index.js --method tools/list
@@ -49,25 +50,25 @@ npx @modelcontextprotocol/inspector --cli node build/index.js --method tools/lis
 
 ### Manual Testing
 
-Besides to run di inspector tool to test server capabilities, another way like dis na to run client wey fit use HTTP, example na curl.
+Besides running inspector tool to test server capability, another way be to run client wey fit use HTTP like curl for example.
 
-With curl, you fit test MCP servers direct with HTTP requests:
+With curl, you fit test MCP servers directly using HTTP requests:
 
 ```bash
-# Example: Test server mata dem
+# Example: Test server metadata
 curl http://localhost:3000/v1/metadata
 
-# Example: Run tool
+# Example: Run wan tool
 curl -X POST http://localhost:3000/v1/tools/execute \
   -H "Content-Type: application/json" \
   -d '{"name": "calculator", "parameters": {"expression": "2+2"}}'
 ```
 
-Like you see from how curl dey work up there, you dey use POST request to call tool with payload wey get di tool name and di parameters. Choose di way wey best suit you. CLI tools e dey faster to use and e fit run as script, dis fit help well for CI/CD environment.
+From di curl example above, you dey send POST request to run tool with payload wey get di tool name and hin parameters. Use di way wey suit you best. CLI tools normally quick to use and dem fit be scripted which fit help well for CI/CD environment.
 
 ### Unit Testing
 
-Make unit tests for your tools and resources to make sure dem dey work well. Here na some example testing code.
+Make unit tests for your tools and resources to make sure dem dey work as dem suppose. Here na example testing code.
 
 ```python
 import pytest
@@ -102,7 +103,7 @@ async def test_list_tools_cursor_parameter():
         return "Result 2"
 
     async with create_session(server._mcp_server) as client_session:
-        # Test without cursor parameter (no put am)
+        # Test without cursor parameter (dem no put am)
         result1 = await client_session.list_tools()
         assert len(result1.tools) == 2
 
@@ -120,17 +121,17 @@ async def test_list_tools_cursor_parameter():
     
 ```
 
-Di code wey dey before do dis:
+Di code wey pass do dis:
 
-- Use pytest framework wey let you create tests as functions and use assert statements.
+- Use pytest framework wey allow you create tests as functions and use assert statements.
 - Create MCP Server with two different tools.
-- Use `assert` statement to check say certain conditions meet.
+- Use `assert` statement check say certain condition dem meet.
 
-Check [full file here](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+See di [full file here](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
-With di file above, you fit test your own server to confirm say capabilities get set as e suppose be.
+With di file wey pass, you fit test your own server to make sure capabilities dem dey created as e suppose be.
 
-All major SDKs get similar testing sections so you fit adjust am to your chosen runtime.
+All major SDKs get similar testing sections so you fit adjust am to your runtime.
 
 ## Samples 
 
@@ -151,6 +152,6 @@ All major SDKs get similar testing sections so you fit adjust am to your chosen 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Disclaimer**:
-Dis document don translate wit AI translation service wey dem call [Co-op Translator](https://github.com/Azure/co-op-translator). Even though we dey try make am correct, abeg sabi say automatic translation fit get some errors or no too clear. The original document for the original language na im be the real correct source. If na serious info, e better make person wey sabi human translation do am. We no go responsible if pesin no understand well or make mistake because of dis translation.
+**Disclaimer**:  
+Dis dokument don translate wit AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). Even tho we dey try make am correct, abeg make you sabi say automated translation fit get mistake or no correct. Di original dokument for im own language na di oga for correct info. If na serious info, e good make profesonal human translate am. We no go fit carry any blame if person misunderstand or miss-interpret tins wey come from dis translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

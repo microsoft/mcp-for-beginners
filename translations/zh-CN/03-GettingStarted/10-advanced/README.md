@@ -1,13 +1,13 @@
 # 高级服务器使用
 
-MCP SDK 中暴露了两种不同类型的服务器，普通服务器和低级服务器。通常情况下，你会使用普通服务器来添加功能。但在某些情况下，你可能希望依赖低级服务器，例如：
+MCP SDK 中暴露了两种不同类型的服务器，分别是普通服务器和低级服务器。通常情况下，你会使用普通服务器来添加功能。不过在某些情况下，你可能想依赖低级服务器，比如：
 
-- 更好的架构。使用普通服务器和低级服务器都可以创建干净的架构，但可以说低级服务器稍微更容易一些。
-- 功能可用性。一些高级功能只能与低级服务器一起使用。后续章节中我们会展示采样和引导技术。
+- 更好的架构。虽然用普通服务器和低级服务器都可以创建清晰的架构，但有人认为低级服务器会稍微容易一些。
+- 功能可用性。有些高级功能只能通过低级服务器来使用。你将在后面的章节中看到，比如添加采样和引导。
 
-## 普通服务器 vs 低级服务器
+## 普通服务器与低级服务器
 
-使用普通服务器创建 MCP 服务器的示例如下：
+下面是用普通服务器创建 MCP 服务器的示例
 
 **Python**
 
@@ -42,18 +42,18 @@ server.registerTool("add",
 );
 ```
 
-关键点是你显式地添加想要服务器拥有的每个工具、资源或提示。这没有错。
+重点是你明确添加了每个工具、资源或提示，告诉服务器它应该具备哪些功能。这种做法没有问题。
 
 ### 低级服务器方法
 
-然而，使用低级服务器方法时，你需要以不同方式思考。不是注册每个工具，而是为每种特性类型（工具、资源或提示）创建两个处理器。例如，工具只有两个函数：
+然而，当你使用低级服务器方法时，需要用不同的思路来看待。不是注册每一个工具，而是针对每种功能类型（工具、资源或提示）创建两个处理函数。例如工具只有两个函数：
 
-- 列出所有工具。一个函数负责所有尝试列出工具的操作。
-- 处理调用所有工具。在这里，也只有一个函数处理对工具的调用。
+- 列出所有工具。一个函数负责所有列出工具的请求。
+- 处理调用所有工具。这也是一个函数，负责所有对工具的调用。
 
-听起来可能工作量更少，对吧？因此，不是注册一个工具，而是确保它在列出所有工具时被列出，并在有调用工具的请求时被调用。
+听上去工作量可能更少吧？所以不需要注册工具，只需保证列表函数能正确列出该工具，同时调用函数能处理请求调用此工具。
 
-让我们看看现在的代码长什么样：
+来看下代码现在的样子：
 
 **Python**
 
@@ -84,12 +84,12 @@ server.setRequestHandler(ListToolsRequestSchema, async (request) => {
   // 返回已注册工具的列表
   return {
     tools: [{
-        name="add",
-        description="Add two numbers",
-        inputSchema={
+        name: "add",
+        description: "Add two numbers",
+        inputSchema: {
             "type": "object",
             "properties": {
-                "a": {"type": "number", "description": "number to add"}, 
+                "a": {"type": "number", "description": "number to add"},
                 "b": {"type": "number", "description": "number to add"}
             },
             "required": ["query"],
@@ -99,7 +99,7 @@ server.setRequestHandler(ListToolsRequestSchema, async (request) => {
 });
 ```
 
-这里我们有一个返回功能列表的函数。工具列表中的每一项现在包含字段如 `name`、`description` 和 `inputSchema` 以符合返回类型。这允许我们将工具和功能定义放在其他地方。我们现在可以将所有工具放在 tools 文件夹中，项目也可以按以下方式组织：
+这里我们有一个函数返回特征列表。工具列表中的每一项都有如 `name`、`description` 和 `inputSchema` 等字段，以符合返回类型。这使我们可以把工具和特征定义放在别处。我们可以把所有工具放到 tools 文件夹，同理为其他特征建立对应文件夹，你的项目架构可以变成这样：
 
 ```text
 app
@@ -113,9 +113,9 @@ app
 ----| product-description
 ```
 
-这很好，我们的架构看起来可以相当整洁。
+这很好，我们的架构可以非常清晰。
 
-调用工具呢？也是同样的思路，一个处理器调用任何工具？没错，代码如下：
+那调用工具也是类似思路吗？一个处理函数来调用任何工具？是的，示例如下：
 
 **Python**
 
@@ -158,7 +158,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     }
     
     // 参数：request.params.arguments
-    // 待办事项 调用工具，
+    // 待办 调用工具，
 
     return {
        content: [{ type: "text", text: `Tool ${name} called with arguments: ${JSON.stringify(input)}, result: ${JSON.stringify(result)}` }]
@@ -166,18 +166,18 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 });
 ```
 
-从上面的代码可以看到，我们需要解析要调用的工具及其参数，然后继续执行调用。
+如上代码，我们需要解析调用的是哪个工具，用什么参数，然后进行调用。
 
-## 使用验证改进方式
+## 通过验证改进方案
 
-到目前为止，你已经看到如何用每种特性类型的两个处理器替代所有的注册操作。那我们还需要做什么？我们应该添加一些验证以确保工具调用参数正确。每种运行环境有自己的解决方案，比如 Python 使用 Pydantic，TypeScript 使用 Zod。思路是：
+到目前为止，已经看到所有添加工具、资源、提示的注册可以被每种功能类型的两个处理函数替代。还需要做什么？我们应当添加某种验证来确保调用工具时参数正确。每种运行时有自己的方式，比如 Python 用 Pydantic，TypeScript 用 Zod。做法是：
 
-- 将创建特性（工具、资源或提示）的逻辑移动到其专属文件夹。
-- 添加验证传入请求的方法，例如调用工具请求的验证。
+- 把创建特征（工具、资源或提示）的逻辑放到其专属文件夹。
+- 添加验证来确认传入请求调用工具时参数格式正确。
 
-### 创建特性
+### 创建特征
 
-创建特性时，我们需要为该特性创建一个文件，并确保它具有该特性必需的字段。不同类型工具、资源和提示字段略有不同。
+创建特征时，需要为该特征创建一个文件，并确保具备该特征必须的字段。不同类型的工具、资源和提示需要的字段有所不同。
 
 **Python**
 
@@ -200,7 +200,7 @@ async def add_handler(args) -> float:
     except Exception as e:
         raise ValueError(f"Invalid input: {str(e)}")
 
-    # 待办事项：添加 Pydantic，以便我们可以创建 AddInputModel 并验证参数
+    # 待办：添加 Pydantic，以便我们可以创建 AddInputModel 并验证参数
 
     """Handler function for the add tool."""
     return float(input_model.a) + float(input_model.b)
@@ -213,21 +213,21 @@ tool_add = {
 }
 ```
 
-这里你可以看到如何做以下事情：
+这里可以看到我们做了以下事情：
 
-- 使用 Pydantic `AddInputModel` 创建一个 schema，字段是 `a` 和 `b`，位于 *schema.py* 文件中。
-- 尝试将传入请求解析为 `AddInputModel` 类型，如果参数不匹配会崩溃：
+- 用 Pydantic 在 *schema.py* 中创建名为 `AddInputModel` 的模式，包含字段 `a` 和 `b`。
+- 尝试把传入请求解析成 `AddInputModel` 类型，如果参数不匹配，将会抛出异常：
 
    ```python
    # add.py
     try:
-        # 使用Pydantic模型验证输入
+        # 使用 Pydantic 模型验证输入
         input_model = AddInputModel(**args)
     except Exception as e:
         raise ValueError(f"Invalid input: {str(e)}")
    ```
 
-你可以选择将解析逻辑放在工具调用本身或处理函数中。
+你可以选择把解析逻辑放在工具调用本身，或者放在处理函数中。
 
 **TypeScript**
 
@@ -288,7 +288,7 @@ export default {
 } as Tool;
 ```
 
-- 在处理所有工具调用的处理器中，尝试将传入请求解析到工具定义的 schema 中：
+- 在处理所有工具调用的处理函数中，试图将传入请求解析为工具定义的模式：
 
     ```typescript
     const Schema = tool.rawSchema;
@@ -297,27 +297,27 @@ export default {
        const input = Schema.parse(request.params.arguments);
     ```
 
-    如果成功，则继续调用实际工具：
+    如果成功解析，则调用对应工具：
 
     ```typescript
     const result = await tool.callback(input);
     ```
 
-如你所见，这种方法建立了良好的架构，所有东西各归其位，*server.ts* 是一个非常小的文件，只负责连接请求处理器，每个特性放在对应文件夹下：tools/、resources/ 或 prompts/。
+正如你所见，这种方式架构优良，每样东西有它的位置，*server.ts* 非常简洁，仅负责连接请求处理器，而每个特征都放在它们各自的文件夹 tools/、resources/ 或 prompts/ 中。
 
-很好，让我们接下来尝试构建它。
+很好，我们继续动手试试。
 
 ## 练习：创建低级服务器
 
-本练习中，我们将执行：
+本练习中，我们将完成：
 
-1. 创建低级服务器，处理工具列表和工具调用。
-2. 实现一个可扩展的架构。
-3. 添加验证以确保工具调用得到正确验证。
+1. 创建低级服务器，处理工具列表与工具调用。
+1. 实现一个可扩展的架构。
+1. 添加验证以确保工具调用参数正确。
 
 ### -1- 创建架构
 
-首先需要搭建一个帮助扩展的架构，形如下所示：
+首先搭建一个有利于扩展的新架构，如下所示：
 
 **Python**
 
@@ -340,11 +340,11 @@ server.ts
 client.ts
 ```
 
-现在我们建立的架构确保可以轻松在 tools 文件夹添加新工具。你也可以按照此方法为资源和提示添加子目录。
+现在我们搭建了一个架构，轻松添加新工具到 tools 文件夹。你也可以类似方式为 resources 和 prompts 建立子目录。
 
 ### -2- 创建工具
 
-接下来看看如何创建工具。首先必须在 *tool* 子目录中创建，例如：
+来看下创建工具的示例。先在 *tool* 子目录下创建：
 
 **Python**
 
@@ -371,9 +371,9 @@ tool_add = {
 }
 ```
 
-这里定义了 name、description 和输入 schema（用 Pydantic 定义），以及调用该工具时将执行的处理器。最后，暴露 `tool_add` 字典，包含所有属性。
+这里展示了如何定义名字、描述和输入模式（使用 Pydantic），以及一个当该工具被调用时执行的处理函数。最后导出 `tool_add` 字典，它包含所有这些属性。
 
-还有 *schema.py* 用于定义工具的输入 schema：
+还有 *schema.py*，定义工具输入模式：
 
 ```python
 from pydantic import BaseModel
@@ -383,7 +383,7 @@ class AddInputModel(BaseModel):
     b: float
 ```
 
-还需要填充 *__init__.py* 以确保 tools 目录被视为模块，并导出模块，如下所示：
+还要填充 *__init__.py*，确保 tools 目录被视为模块。同时导出该目录内的模块，如下：
 
 ```python
 from .add import tool_add
@@ -393,7 +393,7 @@ tools = {
 }
 ```
 
-随着工具添加，我们可以继续往这里添加。
+随着工具增多，可以不断向此文件添加。
 
 **TypeScript**
 
@@ -414,14 +414,14 @@ export default {
 } as Tool;
 ```
 
-这里创建了一个字典，包含属性：
+这里我们创建了一个字典，包含属性：
 
 - name，工具名称。
-- rawSchema，这是 Zod schema，用于验证调用工具的请求。
-- inputSchema，该 schema 由处理器使用。
-- callback，用于调用工具。
+- rawSchema，Zod 模式，用于验证调用请求。
+- inputSchema，处理函数使用的模式。
+- callback，调用工具的函数。
 
-还有 `Tool` 用于将该字典转换为 mcp 服务器处理器可接受的类型，代码如下：
+还有 `Tool`，将该字典转换为 MCP 服务器处理器可接受的类型，如下：
 
 ```typescript
 import { z } from 'zod';
@@ -434,7 +434,7 @@ export interface Tool {
 }
 ```
 
- *schema.ts* 存储每个工具的输入 schema，目前只有一个，后续添加工具时可以加更多：
+另外有 *schema.ts*，存储各工具的输入模式，目前只有一个模式，后续添加工具时可增加更多条目：
 
 ```typescript
 import { z } from 'zod';
@@ -442,16 +442,16 @@ import { z } from 'zod';
 export const MathInputSchema = z.object({ a: z.number(), b: z.number() });
 ```
 
-很好，接下来处理工具列表的实现。
+很好，接下来处理工具列表请求。
 
 ### -3- 处理工具列表
 
-接下来处理请求处理器，负责列出工具。服务器文件中添加如下内容：
+要处理列出工具请求，需要在服务器文件中设置请求处理函数：
 
 **Python**
 
 ```python
-# 为简洁起见，省略代码
+# 代码省略以简洁表示
 from tools import tools
 
 @server.list_tools()
@@ -470,11 +470,11 @@ async def handle_list_tools() -> list[types.Tool]:
     return tool_list
 ```
 
-这里使用修饰器 `@server.list_tools` 和实现函数 `handle_list_tools`，它需要返回工具列表。注意每个工具需有 name、description 和 inputSchema。
+为此添加装饰器 `@server.list_tools` 以及处理函数 `handle_list_tools`。该函数返回工具列表。注意每个工具都必须有 name、description 和 inputSchema。
 
 **TypeScript**
 
-设置处理器时调用 `setRequestHandler`，传入符合请求的 schema，比如 `ListToolsRequestSchema`：
+要设置工具列表请求处理，用 `setRequestHandler`，传入满足需求的模式，这里是 `ListToolsRequestSchema`。
 
 ```typescript
 // index.ts
@@ -488,26 +488,26 @@ tools.push(addTool);
 tools.push(subtractTool);
 
 // server.ts
-// 代码简略
+// 代码省略以简洁起见
 import { tools } from './tools/index.js';
 
 server.setRequestHandler(ListToolsRequestSchema, async (request) => {
-  // 返回已注册工具列表
+  // 返回已注册工具的列表
   return {
     tools: tools
   };
 });
 ```
 
-很好，现在我们解决了工具列表部分，接下来看看如何调用工具。
+很好，工具列表部分已经解决，接下来看看如何调用工具。
 
 ### -4- 处理调用工具
 
-调用工具时，需要另一个请求处理器，处理指定调用哪个功能及传入哪些参数的请求。
+调用工具时，设置另一个请求处理函数，接收请求，说明调用哪个功能以及参数。
 
 **Python**
 
-使用修饰器 `@server.call_tool`，实现函数 `handle_call_tool`。函数内部解析工具名和参数，并验证参数是否符合该工具要求。参数验证可以在此处或实际工具内部执行。
+这次使用装饰器 `@server.call_tool`，用函数 `handle_call_tool` 实现。该函数解析工具名和参数，确认参数有效。参数校验可以在函数中做，也可以放在实际工具里做。
 
 ```python
 @server.call_tool()
@@ -530,36 +530,35 @@ async def handle_call_tool(
 
     return [
         types.TextContent(type="text", text=str(result))
-    ] 
+    ]
 ```
 
-发生了什么：
+要点如下：
 
-- 工具名通过输入参数 `name` 获取；参数在 `arguments` 字典中。
+- 工具名来自输入参数 `name`，参数来自 `arguments` 字典。
+- 调用工具：`result = await tool["handler"](../../../../03-GettingStarted/10-advanced/arguments)`。参数校验在 `handler` 函数里，失败会抛异常。
 
-- 通过 `result = await tool["handler"](../../../../03-GettingStarted/10-advanced/arguments)` 调用工具。参数验证在 `handler` 属性指向的函数中执行，如果失败会抛出异常。
+到这，你已经全面了解了如何使用低级服务器实现工具列表和调用。
 
-好了，现在我们已经完整了解了如何使用低级服务器列出和调用工具。
+完整示例见[此处](./code/README.md)
 
-完整示例见 [full example](./code/README.md)
+## 练习任务
 
-## 作业
+为已有代码添加多个工具、资源、提示，然后体会你只需在 tools 目录添加文件，而无需其他地方改动。
 
-请用多个工具、资源和提示扩展已有代码，并体会你只需要在 tools 目录添加文件，无需其他地方改动。
-
-*未提供答案*
+<em>无提供答案</em>
 
 ## 总结
 
-本章介绍了低级服务器方法及其如何帮助我们构建可扩展的良好架构。还讲了验证的概念，并展示如何使用验证库创建输入验证 schema。
+本章展示了低级服务器的工作原理以及如何构建良好的架构。还讨论了验证机制，并演示了如何使用验证库创建输入验证模式。
 
 ## 接下来
 
-- 下一章：[简单认证](../11-simple-auth/README.md)
+- 下章： [简单认证](../11-simple-auth/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**免责声明**：
-本文件由人工智能翻译服务【Co-op Translator】（https://github.com/Azure/co-op-translator）进行翻译。虽然我们力求准确，但请注意自动翻译可能包含错误或不准确之处。请以原始语言的文档为权威来源。对于重要信息，建议采用专业人工翻译。因使用本翻译可能引起的任何误解或错误解释，我们概不负责。
+**免责声明**：  
+本文档使用AI翻译服务[Co-op Translator](https://github.com/Azure/co-op-translator)进行翻译。尽管我们努力保证准确性，但请注意自动翻译可能包含错误或不准确之处。原始文档的本地语言版本应被视为权威来源。对于关键信息，建议使用专业人工翻译。我们对于因使用此翻译而产生的任何误解或曲解概不负责。
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

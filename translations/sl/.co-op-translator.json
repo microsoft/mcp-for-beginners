@@ -48,8 +48,8 @@
     "language_code": "sl"
   },
   "03-GettingStarted/01-first-server/README.md": {
-    "original_hash": "8fdac7600a5f4722643d0f14e15ac259",
-    "translation_date": "2025-12-11T08:23:36+00:00",
+    "original_hash": "e7d34112ae90a02725e7dc2d0f92c65c",
+    "translation_date": "2026-04-11T20:37:51+00:00",
     "source_file": "03-GettingStarted/01-first-server/README.md",
     "language_code": "sl"
   },
@@ -138,8 +138,8 @@
     "language_code": "sl"
   },
   "03-GettingStarted/03-llm-client/README.md": {
-    "original_hash": "0e32a55181e7306d2b264301ca951a0e",
-    "translation_date": "2026-02-28T16:21:32+00:00",
+    "original_hash": "a9f961c28ecf88d4e37e06c6e78c22ea",
+    "translation_date": "2026-04-11T20:36:18+00:00",
     "source_file": "03-GettingStarted/03-llm-client/README.md",
     "language_code": "sl"
   },
@@ -186,8 +186,8 @@
     "language_code": "sl"
   },
   "03-GettingStarted/05-stdio-server/README.md": {
-    "original_hash": "68c6ec23063b38b455e030281ffd6349",
-    "translation_date": "2026-03-04T07:31:08+00:00",
+    "original_hash": "a5463f3f7f4d157c641d2a0163283081",
+    "translation_date": "2026-04-12T09:33:47+00:00",
     "source_file": "03-GettingStarted/05-stdio-server/README.md",
     "language_code": "sl"
   },
@@ -270,8 +270,8 @@
     "language_code": "sl"
   },
   "03-GettingStarted/08-testing/README.md": {
-    "original_hash": "87f203434a7c2f62f4443fc737ec1f81",
-    "translation_date": "2026-03-15T14:44:26+00:00",
+    "original_hash": "b6e64cb54c38599a0c4395828b6c4977",
+    "translation_date": "2026-04-11T20:36:36+00:00",
     "source_file": "03-GettingStarted/08-testing/README.md",
     "language_code": "sl"
   },
@@ -282,8 +282,8 @@
     "language_code": "sl"
   },
   "03-GettingStarted/10-advanced/README.md": {
-    "original_hash": "a44fb29821f575fad740b1ec5323dc1e",
-    "translation_date": "2026-03-15T17:52:50+00:00",
+    "original_hash": "56f63542fb918dfad6c74a8004c65b52",
+    "translation_date": "2026-04-25T11:13:40+00:00",
     "source_file": "03-GettingStarted/10-advanced/README.md",
     "language_code": "sl"
   },
@@ -306,8 +306,8 @@
     "language_code": "sl"
   },
   "03-GettingStarted/11-simple-auth/README.md": {
-    "original_hash": "79f0cc70ccc02ea25210e6365fdbf391",
-    "translation_date": "2026-03-15T17:54:24+00:00",
+    "original_hash": "e192af3a119f24896a3a0ab93ef848fd",
+    "translation_date": "2026-04-11T20:34:32+00:00",
     "source_file": "03-GettingStarted/11-simple-auth/README.md",
     "language_code": "sl"
   },
@@ -372,8 +372,8 @@
     "language_code": "sl"
   },
   "03-GettingStarted/14-sampling/README.md": {
-    "original_hash": "7fcaf3469589a8b02c633a0fad971ae3",
-    "translation_date": "2026-02-18T14:36:13+00:00",
+    "original_hash": "272288dd38ea2187dc13cac51a8901d8",
+    "translation_date": "2026-04-11T20:32:55+00:00",
     "source_file": "03-GettingStarted/14-sampling/README.md",
     "language_code": "sl"
   },
@@ -396,8 +396,8 @@
     "language_code": "sl"
   },
   "03-GettingStarted/15-mcp-apps/README.md": {
-    "original_hash": "0ce5c2b226bb11d8d473bec29ef60eff",
-    "translation_date": "2026-03-03T22:32:11+00:00",
+    "original_hash": "1cffea8068711496c655e78a8ef6be27",
+    "translation_date": "2026-04-11T20:35:04+00:00",
     "source_file": "03-GettingStarted/15-mcp-apps/README.md",
     "language_code": "sl"
   },
@@ -522,9 +522,15 @@
     "language_code": "sl"
   },
   "05-AdvancedTopics/README.md": {
-    "original_hash": "e057797775564477be2359e65cafd115",
-    "translation_date": "2026-02-08T04:49:28+00:00",
+    "original_hash": "8474d2b783c0cedd3c9e8f994afb96c3",
+    "translation_date": "2026-04-12T09:33:07+00:00",
     "source_file": "05-AdvancedTopics/README.md",
+    "language_code": "sl"
+  },
+  "05-AdvancedTopics/mcp-adversarial-agents/README.md": {
+    "original_hash": "99f63ae76f32e5943c8f00fdfb157940",
+    "translation_date": "2026-04-12T09:35:46+00:00",
+    "source_file": "05-AdvancedTopics/mcp-adversarial-agents/README.md",
     "language_code": "sl"
   },
   "05-AdvancedTopics/mcp-contextengineering/README.md": {
@@ -840,8 +846,8 @@
     "language_code": "sl"
   },
   "README.md": {
-    "original_hash": "f9b49ebcd8116f51fe879e6393d7aa0e",
-    "translation_date": "2026-03-04T07:30:03+00:00",
+    "original_hash": "775abcbde87fa2a5333459a6b3516291",
+    "translation_date": "2026-04-12T09:32:04+00:00",
     "source_file": "README.md",
     "language_code": "sl"
   },
@@ -858,14 +864,14 @@
     "language_code": "sl"
   },
   "changelog.md": {
-    "original_hash": "a67a5e6e614ac5383c708c8eb869b706",
-    "translation_date": "2026-02-08T04:45:32+00:00",
+    "original_hash": "f21295ca9afa7266c4b84780e6e8aa5b",
+    "translation_date": "2026-04-12T09:30:24+00:00",
     "source_file": "changelog.md",
     "language_code": "sl"
   },
   "study_guide.md": {
-    "original_hash": "0afa28229391c5908c1380afb3eee3e1",
-    "translation_date": "2026-02-08T04:42:20+00:00",
+    "original_hash": "db167884425a24ec8baa57bd8013b177",
+    "translation_date": "2026-04-12T09:32:45+00:00",
     "source_file": "study_guide.md",
     "language_code": "sl"
   }

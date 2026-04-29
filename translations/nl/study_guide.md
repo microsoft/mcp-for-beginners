@@ -1,103 +1,104 @@
 # Model Context Protocol (MCP) voor Beginners - Studiegids
 
-Deze studiegids biedt een overzicht van de repositorystructuur en inhoud voor het curriculum "Model Context Protocol (MCP) voor Beginners". Gebruik deze gids om efficiënt door de repository te navigeren en optimaal gebruik te maken van de beschikbare bronnen.
+Deze studiegids biedt een overzicht van de repositorystructuur en inhoud voor de "Model Context Protocol (MCP) voor Beginners" cursus. Gebruik deze gids om efficiënt door de repository te navigeren en optimaal gebruik te maken van de beschikbare bronnen.
 
 ## Overzicht van de Repository
 
-Het Model Context Protocol (MCP) is een gestandaardiseerd raamwerk voor interacties tussen AI-modellen en clientapplicaties. Oorspronkelijk gemaakt door Anthropic, wordt MCP nu onderhouden door de bredere MCP-gemeenschap via de officiële GitHub-organisatie. Deze repository biedt een uitgebreid curriculum met praktische codevoorbeelden in C#, Java, JavaScript, Python en TypeScript, ontworpen voor AI-ontwikkelaars, systeemarchitecten en software engineers.
+Het Model Context Protocol (MCP) is een gestandaardiseerd kader voor interacties tussen AI-modellen en clientapplicaties. Oorspronkelijk gemaakt door Anthropic, wordt MCP nu onderhouden door de bredere MCP-gemeenschap via de officiële GitHub-organisatie. Deze repository biedt een uitgebreide cursus met praktische codevoorbeelden in C#, Java, JavaScript, Python en TypeScript, ontworpen voor AI-ontwikkelaars, systeemarchitecten en software-engineers.
 
-## Visuele Curriculumkaart
+## Visuele Cursuskaart
 
 ```mermaid
 mindmap
   root((MCP voor Beginners))
-    00. Inleiding
+    00. Introductie
       ::icon(fa fa-book)
       (Protocol Overzicht)
       (Voordelen van Standaardisatie)
-      (Praktijkvoorbeelden)
+      (Toepassingen in de Praktijk)
       (Basisprincipes AI Integratie)
     01. Kernconcepten
       ::icon(fa fa-puzzle-piece)
       (Client-Server Architectuur)
-      (Protocolcomponenten)
-      (Berichtgeving Patronen)
+      (Protocol Componenten)
+      (Berichtpatronen)
       (Transportmechanismen)
       (Taken - Experimenteel)
       (Tool Aantekeningen)
     02. Beveiliging
       ::icon(fa fa-shield)
-      (AI-specifieke Bedreigingen)
+      (AI-Specifieke Bedreigingen)
       (Best Practices 2025)
       (Azure Content Veiligheid)
       (Authenticatie & Autorisatie)
-      (Microsoft Prompt Beschermers)
+      (Microsoft Prompt Beschermingen)
       (OWASP MCP Top 10)
-      (Sherpa Security Workshop)
+      (Sherpa Beveiligingsworkshop)
     03. Aan de Slag
       ::icon(fa fa-rocket)
       (Eerste Server Implementatie)
       (Client Ontwikkeling)
       (LLM Client Integratie)
       (VS Code Extensies)
-      (SSE Server Setup)
+      (SSE Server Configuratie)
       (HTTP Streaming)
       (AI Toolkit Integratie)
-      (Test Frameworks)
+      (Testframeworks)
       (Geavanceerd Server Gebruik)
       (Eenvoudige Authenticatie)
-      (Inzet Strategieën)
-      (MCP Hosts Setup)
+      (Uitrol Strategieën)
+      (MCP Hosts Configuratie)
       (MCP Inspector)
     04. Praktische Implementatie
       ::icon(fa fa-code)
-      (Meertalige SDK's)
+      (Multi-Taal SDK's)
       (Testen & Debuggen)
-      (Prompt Sjablonen)
+      (Prompt Templates)
       (Voorbeeldprojecten)
-      (Productie Patronen)
-      (Paginering Strategieën)
+      (Productiepatronen)
+      (Paginatie Strategieën)
     05. Gevorderde Onderwerpen
       ::icon(fa fa-graduation-cap)
       (Context Engineering)
       (Foundry Agent Integratie)
       (Multi-modale AI Workflows)
       (OAuth2 Authenticatie)
-      (Real-time Zoekopdrachten)
+      (Realtime Zoeken)
       (Streaming Protocollen)
       (Root Contexten)
       (Routeringsstrategieën)
       (Sampling Technieken)
       (Schaaloplossingen)
-      (Beveiligingsverharding)
+      (Beveiligingsversterking)
       (Entra ID Integratie)
-      (Web Zoek MCP)
-      (Diepgaande Protocol Functies)
+      (Web Search MCP)
+      (Diepgaande Protocolfuncties)
+      (Antagonistische Multi-Agent Redenering)
       
-    06. Gemeenschap
+    06. Community
       ::icon(fa fa-users)
       (Code Bijdragen)
       (Documentatie)
       (MCP Client Ecosysteem)
       (MCP Server Register)
-      (Afbeelding Generatie Tools)
+      (Afbeeldingsgeneratie Tools)
       (GitHub Samenwerking)
     07. Vroege Adoptie
       ::icon(fa fa-lightbulb)
-      (Productie Inzettingen)
+      (Productie-Implementaties)
       (Microsoft MCP Servers)
       (Azure MCP Service)
-      (Enterprise Case Studies)
+      (Enterprise Casestudies)
       (Toekomstige Routekaart)
     08. Best Practices
       ::icon(fa fa-check)
       (Prestatie Optimalisatie)
       (Fouttolerantie)
-      (Systeem Veerkracht)
+      (Systeem Resilientie)
       (Monitoring & Observeerbaarheid)
-    09. Case Studies
+    09. Casestudies
       ::icon(fa fa-file-text)
-      (Azure API Management)
+      (Azure API Beheer)
       (AI Reisagent)
       (Azure DevOps Integratie)
       (Documentatie MCP)
@@ -106,26 +107,26 @@ mindmap
       (Praktijkimplementaties)
     10. Hands-on Workshop
       ::icon(fa fa-laptop)
-      (MCP Server Basisprincipes)
+      (MCP Server Grondslagen)
       (Geavanceerde Ontwikkeling)
       (AI Toolkit Integratie)
-      (Productie Inzet)
+      (Productie Uitrol)
       (4-Lab Structuur)
     11. Database Integratie Labs
       ::icon(fa fa-database)
       (PostgreSQL Integratie)
-      (Retail Analyse Use Case)
-      (Rijniveau Beveiliging)
-      (Semantische Zoekopdrachten)
-      (Productie Inzet)
+      (Retail Analyse Casus)
+      (Rij Niveaubeveiliging)
+      (Semantisch Zoeken)
+      (Productie Uitrol)
       (13-Lab Structuur)
       (Hands-on Leren)
 ```
-## Repositoriumstructuur
+## Repositorystructuur
 
-De repository is ingedeeld in elf hoofdsecties, elk gericht op verschillende aspecten van MCP:
+De repository is georganiseerd in elf hoofdsecties, elk gericht op verschillende aspecten van MCP:
 
-1. **Inleiding (00-Introduction/)**
+1. **Introductie (00-Introduction/)**
    - Overzicht van het Model Context Protocol
    - Waarom standaardisatie belangrijk is in AI-pijplijnen
    - Praktische use cases en voordelen
@@ -133,28 +134,28 @@ De repository is ingedeeld in elf hoofdsecties, elk gericht op verschillende asp
 2. **Kernconcepten (01-CoreConcepts/)**
    - Client-serverarchitectuur
    - Belangrijke protocolcomponenten
-   - Messagingpatronen in MCP
+   - Berichtenpatronen in MCP
 
 3. **Beveiliging (02-Security/)**
    - Beveiligingsbedreigingen in MCP-gebaseerde systemen
-   - Best practices voor het beveiligen van implementaties
+   - Beste praktijken voor het beveiligen van implementaties
    - Authenticatie- en autorisatiestrategieën
    - **Uitgebreide beveiligingsdocumentatie**:
      - MCP Security Best Practices 2025
-     - Azure Content Safety Implementatiegids
-     - MCP Beveiligingscontroles en Technieken
-     - MCP Best Practices Snelle Referentie
-   - **Belangrijke beveiligingsthema’s**:
-     - Promptinjection en toolvergiftigingsaanvallen
-     - Sessiekaping en confused deputy-problemen
+     - Azure Content Safety Implementatiehandleiding
+     - MCP Security Controls en Technieken
+     - MCP Best Practices Quick Reference
+   - **Belangrijke beveiligingsthema's**:
+     - Promptinjection- en toolvergiftigingsaanvallen
+     - Session hijacking en confused deputy-problemen
      - Token passthrough-kwetsbaarheden
-     - Overmatige machtigingen en toegangscontrole
+     - Overmatige permissies en toegangscontrole
      - Supply chain-beveiliging voor AI-componenten
-     - Microsoft Prompt Shields-integratie
+     - Integratie met Microsoft Prompt Shields
 
-4. **Aan de slag (03-GettingStarted/)**
-   - Omgevingsinstellingen en configuratie
-   - Basis MCP-servers en clients maken
+4. **Aan de Slag (03-GettingStarted/)**
+   - Omgevingsopzet en configuratie
+   - Basis MCP-servers en -clients maken
    - Integratie met bestaande applicaties
    - Inclusief secties voor:
      - Eerste serverimplementatie
@@ -166,41 +167,42 @@ De repository is ingedeeld in elf hoofdsecties, elk gericht op verschillende asp
      - HTTP-streaming
      - AI Toolkit-integratie
      - Teststrategieën
-     - Implementatierichtlijnen
+     - Uitrolrichtlijnen
 
-5. **Praktische implementatie (04-PracticalImplementation/)**
-   - Gebruik van SDK’s in verschillende programmeertalen
+5. **Praktische Implementatie (04-PracticalImplementation/)**
+   - Gebruik van SDK's in verschillende programmeertalen
    - Debuggen, testen en validatietechnieken
-   - Opstellen van herbruikbare promptsjablonen en workflows
+   - Het maken van herbruikbare prompttemplates en workflows
    - Voorbeeldprojecten met implementatievoorbeelden
 
-6. **Geavanceerde onderwerpen (05-AdvancedTopics/)**
-   - Context engineering technieken
+6. **Geavanceerde Onderwerpen (05-AdvancedTopics/)**
+   - Context engineering-technieken
    - Foundry-agentintegratie
    - Multimodale AI-workflows
-   - OAuth2 authenticatiedemo's
+   - OAuth2 authenticatie demonstraties
    - Real-time zoekmogelijkheden
    - Real-time streaming
-   - Root context-implementaties
-   - Routeringsstrategieën
-   - Samplingmethoden
-   - Schaalmethode
+   - Implementatie van root contexts
+   - Routingstrategieën
+   - Samplingtechnieken
+   - Schaalmethoden
    - Beveiligingsoverwegingen
    - Entra ID beveiligingsintegratie
    - Webzoekintegratie
+   - Adversarial multi-agent redenering (debate patterns)
 
-7. **Gemeenschapsbijdragen (06-CommunityContributions/)**
+7. **CommunityBijdragen (06-CommunityContributions/)**
    - Hoe code en documentatie bij te dragen
    - Samenwerken via GitHub
-   - Door de gemeenschap aangedreven verbeteringen en feedback
+   - Communitygedreven verbeteringen en feedback
    - Gebruik van diverse MCP-clients (Claude Desktop, Cline, VSCode)
    - Werken met populaire MCP-servers inclusief beeldgeneratie
 
-8. **Lessen uit vroege adoptie (07-LessonsfromEarlyAdoption/)**
-   - Praktijkvoorbeelden en succesverhalen
+8. **Lessen uit Vroege Adoptie (07-LessonsfromEarlyAdoption/)**
+   - Praktische implementaties en succesverhalen
    - Bouwen en uitrollen van MCP-gebaseerde oplossingen
    - Trends en toekomstige roadmap
-   - **Microsoft MCP Servers Gids**: Uitgebreide gids voor 10 productieklare Microsoft MCP-servers inclusief:
+   - **Microsoft MCP Servers Gids**: Uitgebreide gids voor 10 productierijpe Microsoft MCP-servers inclusief:
      - Microsoft Learn Docs MCP Server
      - Azure MCP Server (15+ gespecialiseerde connectors)
      - GitHub MCP Server
@@ -212,82 +214,82 @@ De repository is ingedeeld in elf hoofdsecties, elk gericht op verschillende asp
      - Azure AI Foundry MCP Server
      - Microsoft 365 Agents Toolkit MCP Server
 
-9. **Best Practices (08-BestPractices/)**
-   - Prestatieafstemming en optimalisatie
+9. **Beste Praktijken (08-BestPractices/)**
+   - Prestatie-afstemming en optimalisatie
    - Ontwerpen van fouttolerante MCP-systemen
    - Test- en veerkrachtstrategieën
 
-10. **Casestudy’s (09-CaseStudy/)**
-    - **Zeven uitgebreide casestudy's** die de veelzijdigheid van MCP aantonen binnen diverse scenario's:
-    - **Azure AI Travel Agents**: Multi-agent orkestratie met Azure OpenAI en AI Search
-    - **Azure DevOps-integratie**: Automatiseren van workflowprocessen met YouTube-data-updates
-    - **Realtime documentatie-opvraging**: Python consoleclient met HTTP-streaming
-    - **Interactieve studieplangenerator**: Chainlit webapp met converserende AI
-    - **In-editor documentatie**: VS Code-integratie met GitHub Copilot-workflows
+10. **Case Studies (09-CaseStudy/)**
+    - **Zeven uitgebreide case studies** die de veelzijdigheid van MCP in diverse scenario’s aantonen:
+    - **Azure AI Travel Agents**: Multi-agent orchestration met Azure OpenAI en AI Search
+    - **Azure DevOps Integratie**: Automatiseren van workflowprocessen met YouTube-gegevensupdates
+    - **Real-Time Documentatie Opvragen**: Python consoleclient met HTTP-streaming
+    - **Interactieve Studieplangenerator**: Chainlit webapp met conversationele AI
+    - **Documentatie in de Editor**: VS Code-integratie met GitHub Copilot-workflows
     - **Azure API Management**: Enterprise API-integratie met MCP-servercreatie
     - **GitHub MCP Registry**: Ecosysteemontwikkeling en agentische integratieplatform
-    - Implementatievoorbeelden variërend van enterprise-integratie, ontwikkelaarproductiviteit tot ecosysteemontwikkeling
+    - Implementatievoorbeelden op het gebied van enterprise-integratie, ontwikkelaarproductiviteit en ecosysteemontwikkeling
 
-11. **Praktische workshop (10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/)**
-    - Uitgebreide praktische workshop die MCP combineert met AI Toolkit
-    - Bouwen van intelligente applicaties die AI-modellen koppelen aan tools uit de echte wereld
-    - Praktische modules met fundamenten, aangepaste serverontwikkeling en productiedeploymentsstrategieën
+11. **Praktische Workshop (10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/)**
+    - Uitgebreide hands-on workshop die MCP combineert met AI Toolkit
+    - Bouwen van intelligente applicaties die AI-modellen koppelen aan real-world tools
+    - Praktische modules die basisprincipes, aangepaste serverontwikkeling en productie-uitrolstrategieën behandelen
     - **Labstructuur**:
-      - Lab 1: MCP Server Fundamentals
+      - Lab 1: MCP Server Fundamenten
       - Lab 2: Geavanceerde MCP Serverontwikkeling
       - Lab 3: AI Toolkit-integratie
-      - Lab 4: Productiedeployment en schaalbaarheid
+      - Lab 4: Productie-uitrol en schaalvergroting
     - Lab-gebaseerde leerbenadering met stapsgewijze instructies
 
 12. **MCP Server Database Integratie Labs (11-MCPServerHandsOnLabs/)**
-    - **Uitgebreide 13-lab leerroute** voor het bouwen van productieklare MCP-servers met PostgreSQL-integratie
-    - **Praktische retail analytics-implementatie** met de Zava Retail use case
-    - **Enterprise-grade patronen** inclusief Row Level Security (RLS), semantisch zoeken en multi-tenant data toegang
-    - **Compleet labstructuur**:
-      - **Labs 00-03: Fundamentals** - Introductie, Architectuur, Beveiliging, Omgevingsinstelling
-      - **Labs 04-06: MCP Server bouwen** - Databaseontwerp, MCP Server-implementatie, Toolontwikkeling
+    - **Uitgebreid 13-labs leerpad** voor het bouwen van productierijpe MCP-servers met PostgreSQL-integratie
+    - **Praktische retailanalyse-implementatie** met de Zava Retail use case
+    - **Enterprise-grade patronen** zoals Row Level Security (RLS), semantisch zoeken en multi-tenant data toegang
+    - **Volledige Labstructuur**:
+      - **Labs 00-03: Fundamenten** - Introductie, Architectuur, Beveiliging, Omgevingsopzet
+      - **Labs 04-06: Bouwen van de MCP Server** - Databaseontwerp, MCP Server implementatie, Toolontwikkeling
       - **Labs 07-09: Geavanceerde functies** - Semantisch zoeken, testen & debuggen, VS Code-integratie
-      - **Labs 10-12: Productie & Best practices** - Deployment, monitoring, optimalisatie
-    - **Behandelde technologieën**: FastMCP framework, PostgreSQL, Azure OpenAI, Azure Container Apps, Application Insights
-    - **Leeruitkomsten**: Productieklare MCP-servers, database-integratiepatronen, AI-gedreven analytics, enterprise beveiliging
+      - **Labs 10-12: Productie & Beste Praktijken** - Uitrol, monitoring, optimalisatie
+    - **Behandelde Technologieën**: FastMCP framework, PostgreSQL, Azure OpenAI, Azure Container Apps, Application Insights
+    - **Leerresultaten**: Productierijpe MCP-servers, database-integratiepatronen, AI-gedreven analyses, enterprise beveiliging
 
-## Aanvullende bronnen
+## Aanvullende Bronnen
 
 De repository bevat ondersteunende bronnen:
 
-- **Afbeeldingenmap**: Bevat diagrammen en illustraties die door het curriculum worden gebruikt
+- **Images map**: Bevat diagrammen en illustraties gebruikt door de hele cursus
 - **Vertalingen**: Meertalige ondersteuning met geautomatiseerde vertalingen van documentatie
-- **Officiële MCP-bronnen**:
-  - [MCP Documentatie](https://modelcontextprotocol.io/)
-  - [MCP Specificatie](https://spec.modelcontextprotocol.io/)
+- **Officiële MCP bronnen**:
+  - [MCP Documentation](https://modelcontextprotocol.io/)
+  - [MCP Specification](https://spec.modelcontextprotocol.io/)
   - [MCP GitHub Repository](https://github.com/modelcontextprotocol)
 
-## Hoe deze repository te gebruiken
+## Hoe Deze Repository te Gebruiken
 
-1. **Sequentieel leren**: Volg de hoofdstukken op volgorde (00 tot 11) voor een gestructureerde leerervaring.
-2. **Taal-specifieke focus**: Als je geïnteresseerd bent in een specifieke programmeertaal, verken dan de voorbeeldmappen voor implementaties in je voorkeurstaal.
-3. **Praktische implementatie**: Begin met de sectie "Aan de slag" om je omgeving op te zetten en je eerste MCP-server en client te maken.
-4. **Geavanceerde verkenning**: Zodra je vertrouwd bent met de basis, ga door naar de geavanceerde onderwerpen om je kennis uit te breiden.
-5. **Gemeenschapsbetrokkenheid**: Word lid van de MCP-gemeenschap via GitHub-discussies en Discord-kanalen om in contact te komen met experts en medeontwikkelaars.
+1. **Gevolgzaam Leren**: Volg de hoofdstukken in volgorde (00 tot 11) voor een gestructureerde leerervaring.
+2. **Taalgerichte Focus**: Als je geïnteresseerd bent in een specifieke programmeertaal, verken dan de samplemappen voor implementaties in jouw voorkeurstaal.
+3. **Praktische Implementatie**: Begin met de sectie "Aan de Slag" om je omgeving op te zetten en je eerste MCP-server en client te maken.
+4. **Geavanceerde Verkenning**: Duik na het beheersen van de basis in de geavanceerde onderwerpen om je kennis uit te breiden.
+5. **Community Betrokkenheid**: Word lid van de MCP-gemeenschap via GitHub-discussies en Discord-kanalen om te verbinden met experts en medeontwikkelaars.
 
-## MCP Clients en Tools
+## MCP-clients en Tools
 
-Het curriculum behandelt diverse MCP-clients en tools:
+De cursus behandelt diverse MCP-clients en tools:
 
-1. **Officiële clients**:
+1. **Officiële Clients**:
    - Visual Studio Code
    - MCP in Visual Studio Code
    - Claude Desktop
    - Claude in VSCode
    - Claude API
 
-2. **Gemeenschapclients**:
+2. **Community Clients**:
    - Cline (terminal-gebaseerd)
    - Cursor (code-editor)
    - ChatMCP
    - Windsurf
 
-3. **MCP Management Tools**:
+3. **MCP Beheer Tools**:
    - MCP CLI
    - MCP Manager
    - MCP Linker
@@ -309,8 +311,8 @@ De repository introduceert diverse MCP-servers, waaronder:
    - Azure AI Foundry MCP Server
    - Microsoft 365 Agents Toolkit MCP Server
 
-2. **Officiële referentieservers**:
-   - Filesysteem
+2. **Officiële Referentieservers**:
+   - Filesystem
    - Fetch
    - Memory
    - Sequential Thinking
@@ -325,22 +327,22 @@ De repository introduceert diverse MCP-servers, waaronder:
    - Terminal Control
    - Code Assistant
 
-5. **Gespecialiseerde servers**:
+5. **Gespecialiseerde Servers**:
    - Salesforce
    - Microsoft Teams
    - Jira & Confluence
 
 ## Bijdragen
 
-Deze repository verwelkomt bijdragen van de gemeenschap. Zie de sectie Gemeenschapsbijdragen voor richtlijnen over hoe je effectief kunt bijdragen aan het MCP-ecosysteem.
+Deze repository verwelkomt bijdragen vanuit de community. Zie de sectie Community Contributions voor richtlijnen over hoe effectief bij te dragen aan het MCP-ecosysteem.
 
 ----
 
-*Deze studiegids is voor het laatst bijgewerkt op 5 februari 2026, weerspiegelt de nieuwste MCP Specificatie 2025-11-25 en biedt een overzicht van de repository tot die datum. De inhoud van de repository kan na deze datum worden bijgewerkt.*
+*Deze studiegids is voor het laatst bijgewerkt op 5 februari 2026, reflecterend de laatste MCP Specification 2025-11-25 en geeft een overzicht van de repository per die datum. De inhoud van de repository kan na deze datum worden bijgewerkt.*
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Disclaimer**:
-Dit document is vertaald met behulp van de AI-vertalingsdienst [Co-op Translator](https://github.com/Azure/co-op-translator). Hoewel we streven naar nauwkeurigheid, dient u er rekening mee te houden dat automatische vertalingen fouten of onnauwkeurigheden kunnen bevatten. Het oorspronkelijke document in de oorspronkelijke taal wordt beschouwd als de gezaghebbende bron. Voor belangrijke informatie wordt professionele menselijke vertaling aanbevolen. Wij zijn niet aansprakelijk voor misverstanden of verkeerde interpretaties die voortkomen uit het gebruik van deze vertaling.
+**Disclaimer**:  
+Dit document is vertaald met behulp van de AI-vertalingsdienst [Co-op Translator](https://github.com/Azure/co-op-translator). Hoewel we streven naar nauwkeurigheid, dient u zich ervan bewust te zijn dat geautomatiseerde vertalingen fouten of onnauwkeurigheden kunnen bevatten. Het oorspronkelijke document in de oorspronkelijke taal moet worden beschouwd als de gezaghebbende bron. Voor kritieke informatie wordt professionele menselijke vertaling aanbevolen. Wij zijn niet aansprakelijk voor enige misverstanden of verkeerde interpretaties die voortvloeien uit het gebruik van deze vertaling.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

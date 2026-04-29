@@ -147,7 +147,7 @@ When you run the above commands, the MCP Inspector will launch a local web inter
 
 Here's a screenshot of what it can look like:
 
-![MCP Inspector server connection](/03-GettingStarted/01-first-server/assets/connected.png)
+![MCP Inspector server connection](./assets/connected.png)
 
 ## Common Setup Issues and Solutions
 
@@ -177,7 +177,7 @@ npm run start
 
 ## Building your first MCP Server
 
-We've covered [Core concepts](/01-CoreConcepts/README.md) in a previous lesson, now it's time to put that knowledge to work.
+We've covered [Core concepts](../../01-CoreConcepts/README.md) in a previous lesson, now it's time to put that knowledge to work.
 
 ### What a server can do
 
@@ -1293,7 +1293,7 @@ In the inspector web interface:
 2. Set the URL to: `http://localhost:8080/sse`
 3. Click "Connect"
 
-![Connect](/03-GettingStarted/01-first-server/assets/tool.png)
+![Connect](./assets/tool.png)
 
 **You're now connected to the server**
 **The Java server testing section is completed now**
@@ -1302,18 +1302,18 @@ The next section it's about interacting with the server.
 
 You should see the following user interface:
 
-![Connect](/03-GettingStarted/01-first-server/assets/connect.png)
+![Connect](./assets/connect.png)
 
 1. Connect to the server by selecting the Connect button
   Once you connect to the server, you should now see the following:
 
-  ![Connected](/03-GettingStarted/01-first-server/assets/connected.png)
+  ![Connected](./assets/connected.png)
 
 1. Select "Tools" and "listTools", you should see "Add" show up, select "Add" and fill in the parameter values.
 
   You should see the following response, i.e a result from "add" tool:
 
-  ![Result of running add](/03-GettingStarted/01-first-server/assets/ran-tool.png)
+  ![Result of running add](./assets/ran-tool.png)
 
 Congrats, you've managed to create and run your first server!
 

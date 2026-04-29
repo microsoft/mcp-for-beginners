@@ -1,47 +1,47 @@
 ## Testaus ja virheenkorjaus
 
-Ennen kuin aloitat MCP-palvelimesi testaamisen, on tärkeää ymmärtää käytettävissä olevat työkalut ja parhaat käytännöt virheenkorjaukseen. Tehokas testaus varmistaa, että palvelimesi toimii odotetusti ja auttaa sinua nopeasti tunnistamaan ja ratkaisemaan ongelmat. Seuraavassa osiossa käsitellään suositeltuja lähestymistapoja MCP-toteutuksesi validoimiseksi.
+Ennen kuin aloitat MCP-palvelimesi testaamisen, on tärkeää ymmärtää käytettävissä olevat työkalut ja parhaat käytännöt virheenkorjaukseen. Tehokas testaus varmistaa, että palvelimesi toimii odotetusti ja auttaa sinua tunnistamaan ja ratkaisemaan ongelmat nopeasti. Seuraavassa osiossa esitellään suositeltuja lähestymistapoja MCP-toteutuksesi validoimiseksi.
 
 ## Yleiskatsaus
 
-Tässä oppitunnissa käydään läpi, kuinka valita oikea testauslähestymistapa ja tehokkain testausväline.
+Tämä oppitunti käsittelee oikean testausmenetelmän valintaa ja tehokkaimman testausvälineen käyttämistä.
 
 ## Oppimistavoitteet
 
-Oppitunnin lopussa osaat:
+Tämän oppitunnin lopuksi osaat:
 
-- Kuvailla erilaisia testauslähestymistapoja.
+- Kuvata erilaisia testausmenetelmiä.
 - Käyttää erilaisia työkaluja koodisi tehokkaaseen testaamiseen.
 
-## MCP-palvelimien testaus
+## MCP-palvelinten testaus
 
 MCP tarjoaa työkaluja, jotka auttavat sinua testaamaan ja virheenkorjaamaan palvelimiasi:
 
-- **MCP Inspector**: Komentorivityökalu, jota voidaan käyttää sekä CLI-työkaluna että visuaalisena työkaluna.
-- **Manuaalinen testaus**: Voit käyttää esimerkiksi curl-työkalua suorittaaksesi verkkopyyntöjä, mutta mikä tahansa HTTP-pyynnöt osaava työkalu käy.
-- **Yksikkötestaus**: Voit käyttää suosimaasi testauskehystä testataksesi niin palvelimen kuin asiakkaan toimintoja.
+- **MCP Inspector**: Komentorivityökalu, jota voi käyttää sekä CLI-työkaluna että visuaalisena työkaluna.
+- **Manuaalinen testaus**: Voit käyttää esimerkiksi curl-työkalua verkkopyyntöjen tekemiseen, mutta mikä tahansa HTTP:n tukema työkalu käy.
+- **Yksikkötestaus**: Voit käyttää suosimaasi testauskehystä testataksesi sekä palvelimen että asiakkaan toimintoja.
 
 ### MCP Inspectorin käyttö
 
-Olemme kuvanneet tämän työkalun käyttöä aiemmissa oppitunneissa, mutta käsitellään sitä hieman yleisellä tasolla. Se on Node.js:ssä rakennettu työkalu, jota voit käyttää kutsumalla `npx`-suoritustiedostoa, joka lataa ja asentaa työkalun tilapäisesti ja siivoaa asennuksen suorituksen jälkeen.
+Olemme kuvanneet tämän työkalun käyttöä aikaisemmissa oppitunneissa, mutta käydään siitä nyt lyhyesti yleisellä tasolla. Se on Node.js:llä rakennettu työkalu, jota voit käyttää kutsumalla `npx`-suoritustiedostoa. Tämä lataa ja asentaa työkalun väliaikaisesti ja siivoaa sen pois, kun pyyntösi on suoritettu.
 
 [MCP Inspector](https://github.com/modelcontextprotocol/inspector) auttaa sinua:
 
-- **Löytämään palvelimen kyvykkyydet**: Havaitsemaan automaattisesti käytettävissä olevat resurssit, työkalut ja kehotteet
-- **Testaamaan työkalujen suorittamista**: Kokeilemaan erilaisia parametreja ja näkemään vastaukset reaaliajassa
-- **Tarkastelemaan palvelimen metatietoja**: Tutkimaan palvelintietoja, skeemoja ja konfiguraatioita
+- **Palvelimen kyvykkyyksien havaitsemisessa**: Tunnistamaan automaattisesti käytettävissä olevat resurssit, työkalut ja kehotteet
+- **Työkalun suorituksen testaamisessa**: Kokeilemaan erilaisia parametreja ja näkemään vastaukset reaaliajassa
+- **Palvelimen metadataan tutustumisessa**: Tarkastelemaan palvelimen tietoja, skeemoja ja asetuksia
 
-Tyypillinen työkalun suoritus näyttää tältä:
+Tyypillinen työkalun ajaminen näyttää tältä:
 
 ```bash
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-Yllä oleva komento käynnistää MCP:n ja sen visuaalisen käyttöliittymän ja avaa paikallisen verkkokäyttöliittymän selaimessasi. Näet kojelaudan, jossa on rekisteröityjä MCP-palvelimiasi, niiden käytettävissä olevat työkalut, resurssit ja kehotteet. Käyttöliittymä mahdollistaa työkalujen suorituksen vuorovaikutteisen testaamisen, palvelimen metatietojen tarkastelun ja reaaliaikaisen vastausten seuraamisen, mikä helpottaa MCP-palvelintoteutustesi validoimista ja virheenkorjausta.
+Yllä oleva komento käynnistää MCP:n ja sen visuaalisen käyttöliittymän sekä avaa paikallisen web-käyttöliittymän selaimessasi. Näet kojelaudan, joka näyttää rekisteröidyt MCP-palvelimesi, niiden käytettävissä olevat työkalut, resurssit ja kehotteet. Käyttöliittymän avulla voit testata työkalun suorittamista interaktiivisesti, tarkastella palvelimen metadataa ja nähdä vastaukset reaaliajassa, mikä helpottaa MCP-palvelintoteutuksiesi validointia ja virheenkorjausta.
 
-Näin se voi näyttää: ![Inspector](../../../../translated_images/fi/connect.141db0b2bd05f096.webp)
+Tältä se voi näyttää: ![Inspector](../../../../translated_images/fi/connect.141db0b2bd05f096.webp)
 
-Voit myös käyttää tätä työkalua CLI-tilassa, johon lisäät `--cli`-attribuutin. Tässä esimerkki työkalun ajamisesta "CLI"-tilassa, joka listaa kaikki palvelimen työkalut:
+Voit myös ajaa tämän työkalun CLI-tilassa lisäämällä `--cli`-parametrin. Tässä esimerkki työkalun ajamisesta "CLI"-tilassa, joka listaa kaikki palvelimen työkalut:
 
 ```sh
 npx @modelcontextprotocol/inspector --cli node build/index.js --method tools/list
@@ -49,9 +49,9 @@ npx @modelcontextprotocol/inspector --cli node build/index.js --method tools/lis
 
 ### Manuaalinen testaus
 
-Tarkastelun lisäksi MCP Inspector -työkalun käytölle palvelimen kykyjen testaamiseksi toinen samankaltainen lähestymistapa on suorittaa HTTP-pyyntöjä osaava asiakas, kuten curl.
+Inspector-työkalun lisäksi palvelimen kyvykkyyksien testaamiseen on toinen samanlainen lähestymistapa, jossa käytetään HTTP:tä tukevia asiakkaita, kuten curl.
 
-Curlilla voit testata MCP-palvelimia suoraan HTTP-pyyntöjen avulla:
+Curlilla voit testata MCP-palvelimia suoraan HTTP-pyynnöillä:
 
 ```bash
 # Esimerkki: Testipalvelimen metatiedot
@@ -63,7 +63,7 @@ curl -X POST http://localhost:3000/v1/tools/execute \
   -d '{"name": "calculator", "parameters": {"expression": "2+2"}}'
 ```
 
-Kuten yllä curlin käytöstä näet, käytät POST-pyyntöä työkalun kutsumiseen työkalun nimen ja parametrien sisältävän tietoruudun avulla. Käytä sinulle parhaiten sopivaa lähestymistapaa. Komentorivityökalut ovat yleensä nopeampia käyttää ja soveltuvat skriptaamiseen, mikä voi olla hyödyllistä CI/CD-ympäristössä.
+Kuten yllä olevasta curl-esimerkistä näkyy, käytät POST-pyyntöä kutsuaksesi työkalua, jonka kuormana on työkalun nimi ja sen parametrit. Käytä sitä lähestymistapaa, joka parhaiten sopii sinulle. CLI-työkalut ovat yleisesti nopeampia käyttää ja ne soveltuvat helposti skriptattaviksi, mikä voi olla hyödyllistä CI/CD-ympäristössä.
 
 ### Yksikkötestaus
 
@@ -77,7 +77,7 @@ from mcp.shared.memory import (
     create_connected_server_and_client_session as create_session,
 )
 
-# Merkitse koko moduuli asynkronisia testejä varten
+# Merkitse koko moduuli asynkronisille testeille
 pytestmark = pytest.mark.anyio
 
 
@@ -102,19 +102,19 @@ async def test_list_tools_cursor_parameter():
         return "Result 2"
 
     async with create_session(server._mcp_server) as client_session:
-        # Testaa ilman cursor-parametria (ohitettu)
+        # Testaa ilman kursoriparametriä (ohitetaan)
         result1 = await client_session.list_tools()
         assert len(result1.tools) == 2
 
-        # Testaa cursor=None:lla
+        # Testaa kursorin ollessa None
         result2 = await client_session.list_tools(cursor=None)
         assert len(result2.tools) == 2
 
-        # Testaa cursor merkkijonona
+        # Testaa kursorin ollessa merkkijono
         result3 = await client_session.list_tools(cursor="some_cursor_value")
         assert len(result3.tools) == 2
 
-        # Testaa tyhjällä merkkijonon cursorilla
+        # Testaa tyhjällä merkkijonokursorilla
         result4 = await client_session.list_tools(cursor="")
         assert len(result4.tools) == 2
     
@@ -122,23 +122,23 @@ async def test_list_tools_cursor_parameter():
 
 Edellinen koodi tekee seuraavaa:
 
-- Hyödyntää pytest-kehystä, jonka avulla voit luoda testejä funktioina ja käyttää assert-lauseita.
-- Luo MCP-palvelimen, jossa on kaksi erilaista työkalua.
-- Käyttää `assert`-lausetta tarkistamaan, että tietyt ehdot täyttyvät.
+- Käyttää pytest-kehystä, joka mahdollistaa testien luomisen funktioina ja assert-lauseiden käytön.
+- Luo MCP-palvelimen, jossa on kaksi eri työkalua.
+- Käyttää `assert`-lausetta tarkistaakseen, että tietyt ehdot täyttyvät.
 
-Tutustu [täydelliseen tiedostoon täällä](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+Katso koko tiedosto täältä: [täysi tiedosto](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
-Edellä olevan tiedoston avulla voit testata omaa palvelintasi varmistaaksesi, että kyvykkyydet luodaan suunnitellusti.
+Yllä olevan tiedoston avulla voit testata omaa palvelintasi varmistaaksesi, että kyvykkyydet luodaan oikein.
 
-Kaikilla suurimmilla SDK:illa on samanlaisia testausosioita, joten voit mukautua valitsemaasi ajonaikaiseen ympäristöön.
+Kaikissa merkittävissä SDK:issa on vastaavia testiosioita, joten voit mukautua haluamaasi ajonaikaiseen ympäristöön.
 
 ## Esimerkit
 
-- [Java-laskin](../samples/java/calculator/README.md)
-- [.Net-laskin](../../../../03-GettingStarted/samples/csharp)
-- [JavaScript-laskin](../samples/javascript/README.md)
-- [TypeScript-laskin](../samples/typescript/README.md)
-- [Python-laskin](../../../../03-GettingStarted/samples/python)
+- [Java Laskin](../samples/java/calculator/README.md)
+- [.Net Laskin](../../../../03-GettingStarted/samples/csharp)
+- [JavaScript Laskin](../samples/javascript/README.md)
+- [TypeScript Laskin](../samples/typescript/README.md)
+- [Python Laskin](../../../../03-GettingStarted/samples/python)
 
 ## Lisäresurssit
 
@@ -151,6 +151,6 @@ Kaikilla suurimmilla SDK:illa on samanlaisia testausosioita, joten voit mukautua
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty käyttäen tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattikäännöksissä voi esiintyä virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen omalla kielellä tulee pitää virallisena lähteenä. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä johtuvista väärinymmärryksistä tai tulkinnoista.
+**Vastuuvapauslauseke**:
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja omalla kielellään on katsottava auktoritatiiviseksi lähteeksi. Tärkeissä tiedoissa suositellaan ammattimaista ihmiskäännöstä. Emme ota vastuuta mahdollisista väärinymmärryksistä tai virhetulkintojen aiheutumisesta tämän käännöksen käytöstä.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

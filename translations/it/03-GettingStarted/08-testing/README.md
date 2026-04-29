@@ -1,48 +1,48 @@
 ## Testing e Debugging
 
-Prima di iniziare a testare il tuo server MCP, è importante comprendere gli strumenti disponibili e le migliori pratiche per il debugging. Un testing efficace assicura che il tuo server si comporti come previsto e ti aiuta a identificare e risolvere rapidamente i problemi. La sezione seguente delinea gli approcci consigliati per la convalida della tua implementazione MCP.
+Prima di iniziare a testare il tuo server MCP, è importante capire gli strumenti disponibili e le migliori pratiche per il debugging. Un testing efficace assicura che il tuo server si comporti come previsto e ti aiuta a identificare e risolvere rapidamente i problemi. La sezione seguente illustra gli approcci consigliati per convalidare la tua implementazione MCP.
 
 ## Panoramica
 
-Questa lezione copre come selezionare l'approccio di testing giusto e lo strumento di testing più efficace.
+Questa lezione tratta come selezionare l'approccio di testing giusto e lo strumento di testing più efficace.
 
 ## Obiettivi di Apprendimento
 
 Al termine di questa lezione, sarai in grado di:
 
 - Descrivere vari approcci per il testing.
-- Usare diversi strumenti per testare efficacemente il tuo codice.
+- Utilizzare diversi strumenti per testare efficacemente il tuo codice.
 
 
 ## Testing dei Server MCP
 
 MCP fornisce strumenti per aiutarti a testare e fare il debug dei tuoi server:
 
-- **MCP Inspector**: Uno strumento da linea di comando che può essere eseguito sia come strumento CLI che come strumento visivo.
-- **Testing manuale**: Puoi utilizzare uno strumento come curl per eseguire richieste web, ma qualsiasi strumento in grado di eseguire HTTP andrà bene.
+- **MCP Inspector**: Uno strumento da linea di comando che può essere eseguito sia come CLI che come strumento visuale.
+- **Testing manuale**: Puoi usare uno strumento come curl per eseguire richieste web, ma qualunque strumento in grado di eseguire HTTP va bene.
 - **Unit testing**: È possibile utilizzare il framework di testing preferito per testare le funzionalità sia del server che del client.
 
-### Utilizzo di MCP Inspector
+### Uso di MCP Inspector
 
-Abbiamo descritto l'uso di questo strumento in lezioni precedenti, ma parliamone un po' a livello generale. È uno strumento costruito in Node.js e puoi usarlo chiamando l'eseguibile `npx` che scaricherà e installerà temporaneamente lo strumento stesso e si pulirà una volta terminata l'esecuzione della tua richiesta.
+Abbiamo descritto l'uso di questo strumento nelle lezioni precedenti, ma parliamone un po' a livello generale. È uno strumento costruito in Node.js e puoi usarlo chiamando l'eseguibile `npx` che scaricherà e installerà temporaneamente lo strumento stesso e si ripulirà una volta terminata l'esecuzione della tua richiesta.
 
 Il [MCP Inspector](https://github.com/modelcontextprotocol/inspector) ti aiuta a:
 
-- **Scoprire le Capacità del Server**: Rilevare automaticamente risorse, strumenti e prompt disponibili
-- **Testare l'Esecuzione degli Strumenti**: Provare diversi parametri e vedere le risposte in tempo reale
-- **Visualizzare i Metadata del Server**: Esaminare informazioni sul server, schemi e configurazioni
+- **Scoprire le capacità del server**: Rilevare automaticamente risorse, strumenti e prompt disponibili
+- **Testare l'esecuzione degli strumenti**: Provare diversi parametri e vedere le risposte in tempo reale
+- **Visualizzare i metadati del server**: Esaminare informazioni sul server, schemi e configurazioni
 
-Una tipica esecuzione dello strumento appare così:
+Una tipica esecuzione dello strumento è la seguente:
 
 ```bash
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-Il comando sopra avvia un MCP e la sua interfaccia visiva e lancia un'interfaccia web locale nel tuo browser. Puoi aspettarti di vedere una dashboard che mostra i tuoi server MCP registrati, i loro strumenti, risorse e prompt disponibili. L'interfaccia ti consente di testare interattivamente l'esecuzione degli strumenti, ispezionare i metadata del server e visualizzare le risposte in tempo reale, facilitando la convalida e il debug delle implementazioni del tuo server MCP.
+Il comando sopra avvia un MCP e la sua interfaccia visiva e lancia un'interfaccia web locale nel tuo browser. Puoi aspettarti di vedere una dashboard che mostra i tuoi server MCP registrati, gli strumenti disponibili, le risorse e i prompt. L'interfaccia ti permette di testare interattivamente l'esecuzione degli strumenti, ispezionare i metadati del server e visualizzare risposte in tempo reale, rendendo più facile convalidare e fare il debug delle implementazioni del tuo server MCP.
 
 Ecco come può apparire: ![Inspector](../../../../translated_images/it/connect.141db0b2bd05f096.webp)
 
-Puoi anche eseguire questo strumento in modalità CLI, in tal caso aggiungi l'attributo `--cli`. Ecco un esempio di esecuzione dello strumento in modalità "CLI" che elenca tutti gli strumenti presenti sul server:
+Puoi anche eseguire questo strumento in modalità CLI, in tal caso aggiungi l'attributo `--cli`. Ecco un esempio di esecuzione dello strumento in modalità "CLI" che elenca tutti gli strumenti sul server:
 
 ```sh
 npx @modelcontextprotocol/inspector --cli node build/index.js --method tools/list
@@ -50,9 +50,9 @@ npx @modelcontextprotocol/inspector --cli node build/index.js --method tools/lis
 
 ### Testing Manuale
 
-Oltre a eseguire lo strumento inspector per testare le capacità del server, un altro approccio simile è eseguire un client in grado di usare HTTP come ad esempio curl.
+Oltre a eseguire lo strumento inspector per testare le capacità del server, un altro approccio simile è eseguire un client in grado di utilizzare HTTP come ad esempio curl.
 
-Con curl, puoi testare direttamente i server MCP utilizzando richieste HTTP:
+Con curl, puoi testare i server MCP direttamente usando richieste HTTP:
 
 ```bash
 # Esempio: Metadati del server di test
@@ -64,7 +64,7 @@ curl -X POST http://localhost:3000/v1/tools/execute \
   -d '{"name": "calculator", "parameters": {"expression": "2+2"}}'
 ```
 
-Come puoi vedere dall'uso di curl sopra, utilizzi una richiesta POST per invocare uno strumento usando un payload composto dal nome dello strumento e dai suoi parametri. Usa l'approccio che più ti si addice. Gli strumenti CLI in generale tendono a essere più veloci da usare e si prestano ad essere orchestrati tramite script, il che può essere utile in un ambiente CI/CD.
+Come puoi vedere dall'uso di curl sopra, utilizzi una richiesta POST per invocare uno strumento utilizzando un payload composto dal nome dello strumento e dai suoi parametri. Usa l'approccio che ti si addice di più. In generale gli strumenti CLI tendono a essere più veloci da usare e si prestano ad essere scriptati, cosa che può essere utile in un ambiente CI/CD.
 
 ### Unit Testing
 
@@ -78,7 +78,7 @@ from mcp.shared.memory import (
     create_connected_server_and_client_session as create_session,
 )
 
-# Segna l'intero modulo per i test asincroni
+# Segna l'intero modulo per test asincroni
 pytestmark = pytest.mark.anyio
 
 
@@ -121,17 +121,17 @@ async def test_list_tools_cursor_parameter():
     
 ```
 
-Il codice precedente fa quanto segue:
+Il codice precedentemente mostrato fa quanto segue:
 
-- Sfrutta il framework pytest che ti permette di creare test come funzioni e usare dichiarazioni assert.
-- Crea un Server MCP con due strumenti differenti.
-- Usa l'istruzione `assert` per verificare che determinate condizioni siano soddisfatte.
+- Sfrutta il framework pytest che ti permette di creare test come funzioni e usare istruzioni assert.
+- Crea un server MCP con due strumenti differenti.
+- Usa l'istruzione `assert` per controllare che certe condizioni siano soddisfatte.
 
 Dai un'occhiata al [file completo qui](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
-Dato il file sopra, puoi testare il tuo server per assicurarti che le capacità vengano create come dovrebbero.
+Dato il file sopra, puoi testare il tuo server per assicurarti che le capacità siano create come dovrebbero.
 
-Tutti i principali SDK hanno sezioni di testing simili, così puoi adattarti al runtime scelto.
+Tutti i principali SDK hanno sezioni di testing simili in modo da poter adattare al runtime scelto.
 
 ## Esempi 
 
@@ -145,13 +145,13 @@ Tutti i principali SDK hanno sezioni di testing simili, così puoi adattarti al 
 
 - [Python SDK](https://github.com/modelcontextprotocol/python-sdk)
 
-## Cosa c'è Dopo
+## Cosa C'è Dopo
 
-- Successivo: [Deployment](../09-deployment/README.md)
+- Prossimo: [Deployment](../09-deployment/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Disclaimer**:  
-Questo documento è stato tradotto utilizzando il servizio di traduzione automatica [Co-op Translator](https://github.com/Azure/co-op-translator). Pur impegnandoci per garantire la massima accuratezza, si prega di notare che le traduzioni automatiche possono contenere errori o imprecisioni. Il documento originale nella sua lingua nativa deve essere considerato la fonte autorevole. Per informazioni critiche, si raccomanda la traduzione professionale effettuata da un traduttore umano. Non siamo responsabili per eventuali fraintendimenti o interpretazioni errate derivanti dall’uso di questa traduzione.
+Questo documento è stato tradotto utilizzando il servizio di traduzione automatica AI [Co-op Translator](https://github.com/Azure/co-op-translator). Pur impegnandoci per l'accuratezza, si prega di considerare che le traduzioni automatiche possono contenere errori o imprecisioni. Il documento originale nella sua lingua nativa deve essere considerato la fonte autorevole. Per informazioni critiche, si raccomanda la traduzione professionale umana. Non ci assumiamo responsabilità per eventuali incomprensioni o interpretazioni errate derivanti dall'uso di questa traduzione.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

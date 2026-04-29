@@ -1,47 +1,48 @@
 ## テストとデバッグ
 
-MCPサーバーのテストを開始する前に、利用可能なツールとデバッグのベストプラクティスを理解することが重要です。効果的なテストは、サーバーが期待通りに動作することを保証し、問題を迅速に特定して解決するのに役立ちます。以下のセクションでは、MCPの実装を検証するための推奨されるアプローチを示します。
+MCPサーバーのテストを始める前に、利用可能なツールとデバッグのベストプラクティスを理解することが重要です。効果的なテストはサーバーが期待通りに動作することを保証し、問題の迅速な特定と解決に役立ちます。以下のセクションでは、MCP実装の検証に推奨されるアプローチを説明します。
 
 ## 概要
 
-このレッスンでは、適切なテストのアプローチと最も効果的なテストツールの選択方法について説明します。
+このレッスンでは、適切なテストアプローチと最も効果的なテストツールの選択方法を扱います。
 
 ## 学習目標
 
-このレッスンを終える頃には、以下ができるようになります：
+このレッスンの終了時には、以下ができるようになります：
 
-- 様々なテストのアプローチを説明できること。
-- 異なるツールを使用してコードを効果的にテストできること。
+- さまざまなテストアプローチを説明できる。
+- 異なるツールを使用してコードを効果的にテストできる。
+
 
 ## MCPサーバーのテスト
 
-MCPはサーバーのテストとデバッグに役立つツールを提供しています：
+MCPは、サーバーのテストとデバッグを支援するツールを提供しています：
 
-- **MCP Inspector**：CLIツールとしてもビジュアルツールとしても実行可能なコマンドラインツール。
-- **手動テスト**：curlのようなツールを使用してWebリクエストを実行できますが、HTTPリクエストを実行できるツールであれば何でも可能です。
-- **ユニットテスト**：好みのテストフレームワークを使用して、サーバーおよびクライアントの両方の機能をテストできます。
+- **MCP Inspector**：CLIツールとしても、ビジュアルツールとしても実行可能なコマンドラインツール。
+- <strong>手動テスト</strong>：curl のようなツールを使ってウェブリクエストを実行可能ですが、HTTPを実行できるツールなら何でも構いません。
+- <strong>ユニットテスト</strong>：好みのテストフレームワークを使用して、サーバーとクライアントの機能をテストできます。
 
 ### MCP Inspectorの使用
 
-このツールの使い方は以前のレッスンで説明しましたが、ここでは高レベルで簡単に説明します。このツールはNode.jsで作られており、`npx`コマンドを呼び出すことで使用できます。`npx`はツールを一時的にダウンロードしてインストールし、リクエストの実行後に自動でクリーンアップを行います。
+このツールの使用法は前のレッスンで説明しましたが、ここでは高レベルで少し説明します。Node.jsで構築されたツールであり、`npx`実行可能ファイルを呼び出して使用します。これによりツール自体を一時的にダウンロードしてインストールし、実行後に自動でクリーンアップされます。
 
-[MCP Inspector](https://github.com/modelcontextprotocol/inspector)は以下のことができます：
+[MCP Inspector](https://github.com/modelcontextprotocol/inspector) は以下を支援します：
 
-- **サーバー機能の検出**：利用可能なリソース、ツール、プロンプトを自動的に検出
-- **ツールの実行テスト**：異なるパラメーターを試し、リアルタイムでレスポンスを確認
-- **サーバーメタデータの表示**：サーバー情報、スキーマ、設定の確認
+- <strong>サーバー機能の検出</strong>：利用可能なリソース、ツール、プロンプトを自動的に検出
+- <strong>ツール実行のテスト</strong>：さまざまなパラメータを試し、リアルタイムでレスポンスを確認
+- <strong>サーバーメタデータの表示</strong>：サーバー情報、スキーマ、構成の検査
 
-ツールの典型的な実行例は以下の通りです：
+ツールの典型的な実行例は以下のようになります：
 
 ```bash
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-上記のコマンドはMCPとそのビジュアルインターフェイスを起動し、ブラウザでローカルのウェブインターフェイスを開きます。登録されたMCPサーバー、利用可能なツール、リソース、プロンプトを表示するダッシュボードが閲覧できます。インターフェイスを使ってツールの実行を対話的にテストしたり、サーバーメタデータを検査したり、リアルタイムのレスポンスを表示し、MCPサーバーの実装の検証とデバッグを容易にします。
+上記のコマンドはMCPとそのビジュアルインターフェースを開始し、ブラウザでローカルのウェブインターフェースを起動します。登録されたMCPサーバー、それらが利用可能なツール、リソース、プロンプトを表示するダッシュボードが表示されます。このインターフェースで、ツールの実行をインタラクティブにテストし、サーバーメタデータを検査し、リアルタイムのレスポンスを確認でき、MCPサーバー実装の検証とデバッグがより容易になります。
 
-以下はそのインターフェイスの例です： ![Inspector](../../../../translated_images/ja/connect.141db0b2bd05f096.webp)
+見た目はこんな感じです: ![Inspector](../../../../translated_images/ja/connect.141db0b2bd05f096.webp)
 
-このツールはCLIモードでも実行可能で、その場合は`--cli`オプションを追加します。以下は、サーバー上のすべてのツールを一覧表示するCLIモードの実行例です：
+このツールはCLIモードでも実行可能で、その場合は `--cli` 属性を追加します。以下はサーバー上のすべてのツールをリスト表示するCLIモードの実行例です：
 
 ```sh
 npx @modelcontextprotocol/inspector --cli node build/index.js --method tools/list
@@ -49,12 +50,12 @@ npx @modelcontextprotocol/inspector --cli node build/index.js --method tools/lis
 
 ### 手動テスト
 
-サーバー機能をテストするためにInspectorツールを使う方法の他に、curlのようなHTTPを実行できるクライアントを使う方法があります。
+インスペクターツールを使ってサーバー機能をテストする以外に、curlのようなHTTPを利用できるクライアントを使う方法もあります。
 
-curlを使うと、HTTPリクエストを通じてMCPサーバーを直接テストできます：
+curlを使うと、HTTPリクエストでMCPサーバーを直接テストできます：
 
 ```bash
-# 例：テストサーバーのメタデータ
+# 例：テストサーバーメタデータ
 curl http://localhost:3000/v1/metadata
 
 # 例：ツールを実行する
@@ -63,11 +64,11 @@ curl -X POST http://localhost:3000/v1/tools/execute \
   -d '{"name": "calculator", "parameters": {"expression": "2+2"}}'
 ```
 
-上記のcurlの使い方からわかるように、POSTリクエストを使ってツールを呼び出し、そのペイロードにはツール名とパラメーターが含まれます。ご自身に合った方法を使ってください。CLIツールは一般的に高速で使いやすく、スクリプト化にも適しているため、CI/CDの環境で役立ちます。
+上記のcurlの使用例からわかる通り、ツール名とパラメータを含むペイロードを使ってPOSTリクエストでツールを呼び出しています。最適な方法を選んでください。CLIツールは通常操作が速く、スクリプト化しやすいためCI/CD環境で役立ちます。
 
 ### ユニットテスト
 
-ツールやリソースのユニットテストを作成し、期待通りに動作するか確認しましょう。以下はテストコードの例です。
+ツールやリソースのユニットテストを作成して正しく動作することを保証しましょう。以下はテストコードの例です。
 
 ```python
 import pytest
@@ -106,7 +107,7 @@ async def test_list_tools_cursor_parameter():
         result1 = await client_session.list_tools()
         assert len(result1.tools) == 2
 
-        # cursor=None でテストする
+        # cursor=Noneでテストする
         result2 = await client_session.list_tools(cursor=None)
         assert len(result2.tools) == 2
 
@@ -114,23 +115,23 @@ async def test_list_tools_cursor_parameter():
         result3 = await client_session.list_tools(cursor="some_cursor_value")
         assert len(result3.tools) == 2
 
-        # 空文字列カーソルでテストする
+        # 空文字列のカーソルでテストする
         result4 = await client_session.list_tools(cursor="")
         assert len(result4.tools) == 2
     
 ```
 
-上記のコードは以下を行っています：
+上記コードは次のことを行っています：
 
-- pytestフレームワークを利用し、テストを関数として作成しassert文を用いています。
-- 2つの異なるツールを持つMCPサーバーを作成しています。
-- `assert`文を使って特定の条件が満たされているか確認します。
+- pytestフレームワークを利用し、関数としてテストを作成してassert文を使う。
+- 2つの異なるツールを持つMCPサーバーを作成。
+- `assert`文で特定の条件が満たされているかチェック。
 
-[こちら](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)でファイルの全体を確認できます。
+[こちらでファイル全体を確認できます](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
-上記のファイルを参考にして、ご自身のサーバーの機能が正しく作成されているかテストしてください。
+上記ファイルを参考にして、ご自身のサーバーをテストし、機能が正しく構築されているかを確認できます。
 
-主要なSDKには類似のテストセクションがあるので、選択したランタイムに応じて調整できます。
+主要なSDKには同様のテストセクションがあるため、使用しているランタイムに合わせて調整可能です。
 
 ## サンプル
 
@@ -138,19 +139,19 @@ async def test_list_tools_cursor_parameter():
 - [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
 - [JavaScript Calculator](../samples/javascript/README.md)
 - [TypeScript Calculator](../samples/typescript/README.md)
-- [Python Calculator](../../../../03-GettingStarted/samples/python)
+- [Python Calculator](../../../../03-GettingStarted/samples/python) 
 
 ## 追加リソース
 
 - [Python SDK](https://github.com/modelcontextprotocol/python-sdk)
 
-## 次に進むこと
+## 次に学ぶこと
 
-- 次： [デプロイ](../09-deployment/README.md)
+- 次： [デプロイメント](../09-deployment/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**免責事項**：  
-本書類はAI翻訳サービス「Co-op Translator」（https://github.com/Azure/co-op-translator）を使用して翻訳されています。正確性の向上に努めておりますが、自動翻訳には誤りや不正確な箇所が含まれる可能性があります。原文の言語で記載された文書が正式な情報源として優先されるべきです。重要な情報については、専門の人間による翻訳を推奨いたします。本翻訳の利用によって生じた誤解や誤訳に関して、当方は一切の責任を負いかねます。
+**免責事項**:  
+本書類は AI 翻訳サービス [Co-op Translator](https://github.com/Azure/co-op-translator) を使用して翻訳されています。正確性を期していますが、自動翻訳には誤りや不正確な部分が含まれる可能性があることをご承知おきください。原文の母国語版が権威ある情報源とみなされます。重要な情報については、専門の人間による翻訳を推奨します。本翻訳の利用により生じたいかなる誤解や誤訳についても責任を負いかねます。
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

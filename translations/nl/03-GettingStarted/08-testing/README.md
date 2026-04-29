@@ -1,10 +1,10 @@
 ## Testen en Debuggen
 
-Voordat je begint met het testen van je MCP-server, is het belangrijk om de beschikbare tools en best practices voor debugging te begrijpen. Effectief testen zorgt ervoor dat je server zich gedraagt zoals verwacht en helpt je om snel problemen te identificeren en op te lossen. De volgende sectie beschrijft aanbevolen benaderingen voor het valideren van je MCP-implementatie.
+Voordat je begint met het testen van je MCP-server, is het belangrijk om de beschikbare tools en best practices voor debugging te begrijpen. Effectief testen zorgt ervoor dat je server zich gedraagt zoals verwacht en helpt je snel problemen te identificeren en op te lossen. De volgende sectie beschrijft aanbevolen benaderingen voor het valideren van je MCP-implementatie.
 
 ## Overzicht
 
-Deze les behandelt hoe je de juiste testbenadering en het meest effectieve testhulpmiddel kunt kiezen.
+Deze les behandelt hoe je de juiste testbenadering kiest en de meest effectieve testtool gebruikt.
 
 ## Leerdoelen
 
@@ -13,23 +13,23 @@ Aan het einde van deze les kun je:
 - Verschillende benaderingen voor testen beschrijven.
 - Verschillende tools gebruiken om je code effectief te testen.
 
-## MCP-servers testen
+## MCP-Servers Testen
 
-MCP biedt tools om je te helpen je servers te testen en te debuggen:
+MCP biedt tools om je te helpen je servers te testen en debuggen:
 
-- **MCP Inspector**: Een commandoregeltool die zowel als CLI-tool als visueel hulpmiddel kan worden uitgevoerd.
-- **Handmatig testen**: Je kunt een tool zoals curl gebruiken om webverzoeken uit te voeren, maar elke tool die HTTP kan uitvoeren is geschikt.
-- **Unittesten**: Het is mogelijk om je favoriete testframework te gebruiken om functies van zowel server als client te testen.
+- **MCP Inspector**: Een commandoregeltool die zowel als CLI-tool als visuele tool kan worden gebruikt.
+- **Handmatig testen**: Je kunt een tool zoals curl gebruiken om webverzoeken uit te voeren, maar elke tool die HTTP kan gebruiken is geschikt.
+- **Unittesten**: Het is mogelijk om je favoriete testframework te gebruiken om de functionaliteiten van zowel server als client te testen.
 
-### MCP Inspector gebruiken
+### MCP Inspector Gebruiken
 
-We hebben het gebruik van deze tool in eerdere lessen beschreven, maar laten we er hier op hoog niveau iets over zeggen. Het is een tool gebouwd in Node.js en je kunt het gebruiken door het `npx` uitvoerbare bestand aan te roepen, dat de tool zelf tijdelijk zal downloaden en installeren en zichzelf opruimt zodra je verzoek is uitgevoerd.
+We hebben het gebruik van deze tool al in eerdere lessen beschreven, maar laten we er hier op hoofdlijnen iets over zeggen. Het is een in Node.js gebouwd hulpmiddel dat je kunt gebruiken door het `npx` uitvoerbare bestand aan te roepen, dat de tool zelf tijdelijk downloadt en installeert en zichzelf weer opruimt zodra het klaar is met het uitvoeren van je verzoek.
 
-De [MCP Inspector](https://github.com/modelcontextprotocol/inspector) helpt je:
+De [MCP Inspector](https://github.com/modelcontextprotocol/inspector) helpt je met:
 
-- **Servermogelijkheden ontdekken**: Automatisch beschikbare bronnen, tools en prompts detecteren
-- **Testen van tooluitvoering**: Verschillende parameters proberen en reacties realtime bekijken
-- **Servermetadata bekijken**: Serverinformatie, schema's en configuraties onderzoeken
+- **Servercapaciteiten Ontdekken**: Detecteert automatisch beschikbare resources, tools en prompts
+- **Testen van Tooluitvoering**: Probeer verschillende parameters en zie de reacties in real-time
+- **Bekijk Servermetadata**: Bekijk serverinformatie, schema's en configuraties
 
 Een typische uitvoering van de tool ziet er als volgt uit:
 
@@ -37,37 +37,37 @@ Een typische uitvoering van de tool ziet er als volgt uit:
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-Bovenstaande opdracht start een MCP en zijn visuele interface en opent een lokale webinterface in je browser. Je kunt een dashboard verwachten dat je geregistreerde MCP-servers toont, hun beschikbare tools, bronnen en prompts. De interface stelt je in staat om interactief tooluitvoering te testen, servermetadata te inspecteren en realtime reacties te bekijken, wat het eenvoudiger maakt om je MCP-serverimplementaties te valideren en debuggen.
+Bovenstaande opdracht start een MCP en de visuele interface en opent een lokale webinterface in je browser. Je kunt een dashboard verwachten met je geregistreerde MCP-servers, hun beschikbare tools, resources en prompts. De interface stelt je in staat interactief tooluitvoering te testen, servermetadata te inspecteren en realtime reacties te bekijken, wat het gemakkelijker maakt om je MCP-serverimplementaties te valideren en te debuggen.
 
 Zo kan het eruitzien: ![Inspector](../../../../translated_images/nl/connect.141db0b2bd05f096.webp)
 
-Je kunt deze tool ook in CLI-modus uitvoeren, in dat geval voeg je de `--cli` eigenschap toe. Hier is een voorbeeld van het uitvoeren van de tool in "CLI"-modus, die alle tools op de server weergeeft:
+Je kunt deze tool ook in CLI-modus uitvoeren door de `--cli` optie toe te voegen. Hier is een voorbeeld om de tool in "CLI"-modus te draaien, wat een lijst van alle tools op de server geeft:
 
 ```sh
 npx @modelcontextprotocol/inspector --cli node build/index.js --method tools/list
 ```
 
-### Handmatig testen
+### Handmatig Testen
 
-Naast het uitvoeren van de inspector tool om servermogelijkheden te testen, is een vergelijkbare aanpak het uitvoeren van een client die HTTP kan gebruiken, bijvoorbeeld curl.
+Naast het uitvoeren van de inspector-tool om servercapaciteiten te testen, is een andere vergelijkbare aanpak het draaien van een client die HTTP kan gebruiken, zoals bijvoorbeeld curl.
 
-Met curl kun je MCP-servers rechtstreeks testen met HTTP-verzoeken:
+Met curl kun je MCP-servers direct testen met HTTP-verzoeken:
 
 ```bash
-# Voorbeeld: Testserver metadata
+# Voorbeeld: Metadata van testserver
 curl http://localhost:3000/v1/metadata
 
-# Voorbeeld: Voer een tool uit
+# Voorbeeld: Voer een hulpmiddel uit
 curl -X POST http://localhost:3000/v1/tools/execute \
   -H "Content-Type: application/json" \
   -d '{"name": "calculator", "parameters": {"expression": "2+2"}}'
 ```
 
-Zoals je kunt zien aan het bovenstaande gebruik van curl, gebruik je een POST-verzoek om een tool aan te roepen met een payload bestaande uit de toolnaam en de parameters. Gebruik de aanpak die het beste bij je past. CLI-tools zijn over het algemeen sneller in gebruik en lenen zich goed om gescript te worden, wat nuttig kan zijn in een CI/CD-omgeving.
+Zoals je ziet in het bovenstaande gebruik van curl, gebruik je een POST-verzoek om een tool aan te roepen met een payload die de naam van de tool en de parameters bevat. Gebruik de methode die jou het beste past. CLI-tools zijn over het algemeen sneller in gebruik en lenen zich goed voor scripting, wat handig kan zijn in een CI/CD-omgeving.
 
 ### Unittesten
 
-Maak unittests voor je tools en bronnen om ervoor te zorgen dat ze werken zoals verwacht. Hier is een voorbeeld van testcode.
+Maak unittests voor je tools en resources om te zorgen dat ze correct werken. Hier is wat voorbeeldcode voor testen.
 
 ```python
 import pytest
@@ -77,7 +77,7 @@ from mcp.shared.memory import (
     create_connected_server_and_client_session as create_session,
 )
 
-# Markeer de hele module voor asynchrone tests
+# Markeer de hele module voor async tests
 pytestmark = pytest.mark.anyio
 
 
@@ -90,7 +90,7 @@ async def test_list_tools_cursor_parameter():
 
  server = FastMCP("test")
 
-    # Maak een paar testtools aan
+    # Maak een paar testtools
     @server.tool(name="test_tool_1")
     async def test_tool_1() -> str:
         """First test tool"""
@@ -110,11 +110,11 @@ async def test_list_tools_cursor_parameter():
         result2 = await client_session.list_tools(cursor=None)
         assert len(result2.tools) == 2
 
-        # Test met cursor als tekenreeks
+        # Test met cursor als string
         result3 = await client_session.list_tools(cursor="some_cursor_value")
         assert len(result3.tools) == 2
 
-        # Test met lege tekenreeks als cursor
+        # Test met lege string cursor
         result4 = await client_session.list_tools(cursor="")
         assert len(result4.tools) == 2
     
@@ -122,15 +122,15 @@ async def test_list_tools_cursor_parameter():
 
 De bovenstaande code doet het volgende:
 
-- Maakt gebruik van het pytest-framework, waarmee je tests als functies kunt maken en assert-statements kunt gebruiken.
+- Maakt gebruik van het pytest-framework waarmee je tests als functies kunt maken en assert-statements kunt gebruiken.
 - Creëert een MCP-server met twee verschillende tools.
-- Gebruikt het `assert` statement om te controleren of bepaalde voorwaarden zijn voldaan.
+- Gebruikt een `assert` statement om te controleren of bepaalde voorwaarden zijn vervuld.
 
 Bekijk het [volledige bestand hier](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
-Met het bovenstaande bestand kun je je eigen server testen om te zorgen dat mogelijkheden correct worden gemaakt.
+Met dat bestand kun je je eigen server testen om te zorgen dat de capaciteiten correct zijn aangemaakt.
 
-Alle belangrijke SDK's hebben vergelijkbare testsecties, dus je kunt deze aanpassen aan je gekozen runtime.
+Alle grote SDK's hebben vergelijkbare testsecties, dus je kunt dit aanpassen aan je gekozen runtime.
 
 ## Voorbeelden
 
@@ -140,11 +140,11 @@ Alle belangrijke SDK's hebben vergelijkbare testsecties, dus je kunt deze aanpas
 - [TypeScript Calculator](../samples/typescript/README.md)
 - [Python Calculator](../../../../03-GettingStarted/samples/python)
 
-## Aanvullende bronnen
+## Aanvullende Bronnen
 
 - [Python SDK](https://github.com/modelcontextprotocol/python-sdk)
 
-## Wat nu
+## Wat Nu
 
 - Volgende: [Deployment](../09-deployment/README.md)
 
@@ -152,5 +152,5 @@ Alle belangrijke SDK's hebben vergelijkbare testsecties, dus je kunt deze aanpas
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Disclaimer**:
-Dit document is vertaald met behulp van de AI-vertalingsdienst [Co-op Translator](https://github.com/Azure/co-op-translator). Hoewel we streven naar nauwkeurigheid, dient u zich ervan bewust te zijn dat automatische vertalingen fouten of onnauwkeurigheden kunnen bevatten. Het oorspronkelijke document in de moedertaal geldt als de gezaghebbende bron. Voor kritieke informatie wordt professionele menselijke vertaling aanbevolen. Wij zijn niet aansprakelijk voor eventuele misverstanden of verkeerde interpretaties die voortvloeien uit het gebruik van deze vertaling.
+Dit document is vertaald met behulp van de AI-vertalingsdienst [Co-op Translator](https://github.com/Azure/co-op-translator). Hoewel wij streven naar nauwkeurigheid, dient u er rekening mee te houden dat automatische vertalingen fouten of onnauwkeurigheden kunnen bevatten. Het oorspronkelijke document in de oorspronkelijke taal moet als de gezaghebbende bron worden beschouwd. Voor cruciale informatie wordt professionele menselijke vertaling aanbevolen. Wij zijn niet aansprakelijk voor enige misverstanden of verkeerde interpretaties die voortvloeien uit het gebruik van deze vertaling.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

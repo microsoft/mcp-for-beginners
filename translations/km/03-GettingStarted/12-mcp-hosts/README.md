@@ -1,0 +1,394 @@
+# ការដំឡើងកម្មវិធីម៉ាស៊ីនមេ MCP ដែលពេញនិយម
+
+មគ្គុទេសក៍នេះគ្របដណ្តប់ពីរបៀបកំណត់រចនាសម្ព័ន្ធ និងប្រើប្រាស់ម៉ាស៊ីនមេ MCP ជាមួយកម្មវិធីម៉ាស៊ីនមេ AI ដែលពេញនិយម។ ម៉ាស៊ីនមេមួយៗមានវិធីសាស្រ្តកំណត់រចនាសម្ព័ន្ធផ្ទាល់ខ្លួន ប៉ុន្តែពេលបានដំឡើងរួច ពួកវាពិភាក្សាគ្នាជាមួយម៉ាស៊ីនមេ MCP ដោយប្រើពិធីសាស្រ្តស្តង់ដារ។
+
+## ម៉ាស៊ីនមេ MCP ជាអ្វី?
+
+**ម៉ាស៊ីនមេ MCP** គឺជាកម្មវិធី AI មួយដែលអាចភ្ជាប់ទៅម៉ាស៊ីនមេ MCP ដើម្បីពង្រីកសមត្ថភាពរបស់វា។ គិតថាវាជា "ផ្នែកមុខ" ដែលអ្នកប្រើប្រាស់អាចផ្ទាល់ចូលរួម បានខណៈដែលម៉ាស៊ីនមេ MCP ផ្តល់ឧបករណ៍ និងទិន្នន័យ "ផ្នែកក្រោយ"។
+
+```mermaid
+flowchart LR
+    User[👤 អ្នកប្រើ] --> Host[🖥️ ម៉ាស៊ីនផ្ទុក MCP]
+    Host --> S1[MCP ម៉ាស៊ីនបម្រើ A]
+    Host --> S2[MCP ម៉ាស៊ីនបម្រើ B]
+    Host --> S3[MCP ម៉ាស៊ីនបម្រើ C]
+    
+    subgraph "ម៉ាស៊ីនផ្ទុកពេញនិយម"
+        H1[Claude Desktop]
+        H2[VS Code]
+        H3[Cursor]
+        H4[Cline]
+        H5[Windsurf]
+    end
+```
+## លក្ខខណ្ឌមុន
+
+- ម៉ាស៊ីនមេ MCP មួយសម្រាប់ភ្ជាប់ (មើល [Module 3.1 - First Server](../01-first-server/README.md))
+- កម្មវិធីម៉ាស៊ីនមេបានដំឡើងនៅលើប្រព័ន្ធរបស់អ្នក
+- ស្គាល់គំរូឯកសារ JSON សម្រាប់កំណត់រចនាសម្ព័ន្ធជាមូលដ្ឋាន
+
+---
+
+## 1. Claude Desktop
+
+**Claude Desktop** គឺជា​កម្មវិធី official ដេ스크តុបរបស់ Anthropic ដែលគាំទ្រ MCP ដោយ​ដើរតួជា​តាមដើម។
+
+### ការតំឡើង
+
+1. ទាញយក Claude Desktop ពី [claude.ai/download](https://claude.ai/download)
+2. ដំឡើង ហើយចូលប្រើជាមួយគណនី Anthropic របស់អ្នក
+
+### ការកំណត់រចនាសម្ព័ន្ធ
+
+Claude Desktop ប្រើឯកសារ JSON សម្រាប់កំណត់រចនាសម្ព័ន្ធម៉ាស៊ីនមេ MCP។
+
+**ទីតាំងឯកសារកំណត់រចនាសម្ព័ន្ធ៖**
+- **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+- **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+- **Linux**: `~/.config/Claude/claude_desktop_config.json`
+
+**ឧទាហរណ៍កំណត់រចនាសម្ព័ន្ធ៖**
+
+```json
+{
+  "mcpServers": {
+    "calculator": {
+      "command": "python",
+      "args": ["-m", "mcp_calculator_server"],
+      "env": {
+        "PYTHONPATH": "/path/to/your/server"
+      }
+    },
+    "weather": {
+      "command": "node",
+      "args": ["/path/to/weather-server/build/index.js"]
+    },
+    "database": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-postgres"],
+      "env": {
+        "DATABASE_URL": "postgresql://user:pass@localhost/mydb"
+      }
+    }
+  }
+}
+```
+
+### ជម្រើសកំណត់រចនាសម្ព័ន្ធ
+
+| វាល | ពិពណ៌នា | ឧទាហរណ៍ |
+|-------|-------------|---------|
+| `command` | កម្មវិធីដែលត្រូវរត់ | `"python"`, `"node"`, `"npx"` |
+| `args` | ពាក្យបញ្ជាឆ្លងបន្ទាត់បញ្ជា | `["-m", "my_server"]` |
+| `env` | បរិស្ថានអថេរ | `{"API_KEY": "xxx"}` |
+| `cwd` | រាយការណ៍ថតការងារ | `"/path/to/server"` |
+
+### ការប្រឡងតំឡើងរបស់អ្នក
+
+1. រក្សាទុកឯកសារកំណត់រចនាសម្ព័ន្ធ
+2. ចាប់ផ្តើមឡើងវិញទាំងស្រុង Claude Desktop (បិទហើយបើកឡើងវិញ)
+3. បើកកិច្ចសន្ទនាថ្មីមួយ
+4. ស្វែងរករូបតំណាង 🔌 បង្ហាញម៉ាស៊ីនមេបានភ្ជាប់
+5. ព្យាយាមសួរ Claude ដើម្បីប្រើឧបករណ៍មួយណាមួយរបស់អ្នក
+
+### ការជួយដោះស្រាយបញ្ហា Claude Desktop
+
+**ម៉ាស៊ីនមេមិនបង្ហាញ៖**
+- ពិនិត្យវិនិយោគឯកសារកំណត់រចនាសម្ព័ន្ធជាមួយកម្មវិធីផ្ទៀងផ្ទាត់ JSON
+- ប្រាកដថាប្រភេទ command ត្រឹមត្រូវ
+- ពិនិត្យកំណត់ហេតុ Claude Desktop: ជំនួយ → បង្ហាញកំណត់ហេតុ
+
+**ម៉ាស៊ីនមេធ្វើឲ្យកម្មវិធីខូចខាតពេលចាប់ផ្តើម៖**
+- សាកល្បងម៉ាស៊ីនមេដោយដៃនៅផ្ទាល់ទីតាំង Terminal ជាលំបាំ
+- ពិនិត្យថាបរិស្ថានអថេរត្រូវបានកំណត់ត្រឹមត្រូវ
+- ប្រាកដថាមុខងារដែលត្រូវការ បានដំឡើងរួច
+
+---
+
+## 2. VS Code ជាមួយ GitHub Copilot
+
+VS Code គាំទ្រ MCP តាមរយៈបន្ថែម GitHub Copilot Chat។
+
+### លក្ខខណ្ឌមុន
+
+1. មាន VS Code 1.99+ បានដំឡើង
+2. បានដំឡើងបន្ថែម GitHub Copilot
+3. បានដំឡើងបន្ថែម GitHub Copilot Chat
+
+### ការកំណត់រចនាសម្ព័ន្ធ
+
+VS Code ប្រើ `.vscode/mcp.json` នៅក្នុងស្ថានីយ៍ការងារឬការកំណត់អ្នកប្រើ។
+
+**ការកំណត់ស្ថានីយ៍ការងារ** (`.vscode/mcp.json`):
+
+```json
+{
+  "servers": {
+    "my-calculator": {
+      "type": "stdio",
+      "command": "python",
+      "args": ["-m", "mcp_calculator_server"]
+    },
+    "my-database": {
+      "type": "sse",
+      "url": "http://localhost:8080/sse"
+    }
+  }
+}
+```
+
+**ការកំណត់អ្នកប្រើ** (`settings.json`):
+
+```json
+{
+  "mcp.servers": {
+    "global-server": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-server-memory"]
+    }
+  },
+  "mcp.enableLogging": true
+}
+```
+
+### ការប្រើ MCP នៅក្នុង VS Code
+
+1. បើកផ្ទាំង Copilot Chat (Ctrl+Shift+I / Cmd+Shift+I)
+2. វាយ `@` ដើម្បីមើលឧបករណ៍ MCP ដែលមានស្រាប់
+3. ប្រើភាសាធម្មជាតិដើម្បីហៅឧបករណ៍៖ "Calculate 25 * 48 using the calculator"
+
+### ការជួយដោះស្រាយបញ្ហា VS Code
+
+**ម៉ាស៊ីនមេ MCP មិនដំណើរការ៖**
+- ពិនិត្យផ្ទាំង Output → "MCP" សម្រាប់កំណត់ហេតុកំហុស
+- ផ្ទុកឡើងវិញផ្ទាំងការងារ: Ctrl+Shift+P → "Developer: Reload Window"
+- ប្រាកដថាម៉ាស៊ីនមេចាប់ផ្តើមដោយឡែកម្ដងមួយបានសម្រេច
+
+---
+
+## 3. Cursor
+
+**Cursor** គឺជាកម្មវិធីកូដដែលផ្តោតលើ AI ដោយមានគាំទ្រ MCP រួមបញ្ចូល។
+
+### ការតំឡើង
+
+1. ទាញយក Cursor ពី [cursor.sh](https://cursor.sh)
+2. ដំឡើង និងចូលប្រើ
+
+### ការកំណត់រចនាសម្ព័ន្ធ
+
+Cursor ប្រើរៀបចំកំណត់រចនាសម្ព័ន្ធដូចជាកម្មវិធី Claude Desktop។
+
+**ទីតាំងឯកសារកំណត់រចនាសម្ព័ន្ធ៖**
+- **macOS**: `~/.cursor/mcp.json`
+- **Windows**: `%USERPROFILE%\.cursor\mcp.json`
+- **Linux**: `~/.cursor/mcp.json`
+
+**ឧទាហរណ៍កំណត់រចនាសម្ព័ន្ធ៖**
+
+```json
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/allowed/directory"]
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_TOKEN": "ghp_your_token_here"
+      }
+    }
+  }
+}
+```
+
+### ការប្រើ MCP នៅ Cursor
+
+1. បើកការសន្ទនា AI របស់ Cursor (Ctrl+L / Cmd+L)
+2. មើលឧបករណ៍ MCP បង្ហាញដោយស្វ័យប្រវត្តិក្នុងការផ្តល់អនុសាសន៍
+3. សុំឲ្យ AI អនុវត្តកម្មវិធីដោយប្រើម៉ាស៊ីនមេដែលបានភ្ជាប់
+
+---
+
+## 4. Cline (ផ្អែកលើ Terminal)
+
+**Cline** គឺជា​ MCP client ប្រើតាម Terminal គួរឱ្យប្រើសម្រាប់ដំណើរការបញ្ជា​មាតិកា។
+
+### ការតំឡើង
+
+```bash
+npm install -g @anthropic/cline
+```
+
+### ការកំណត់រចនាសម្ព័ន្ធ
+
+Cline ប្រើអថេរបរិស្ថាន និងអាក្សរបញ្ជា​នានា។
+
+**ប្រើអថេរបរិស្ថាន៖**
+
+```bash
+export ANTHROPIC_API_KEY="your-api-key"
+export MCP_SERVER_CALCULATOR="python -m mcp_calculator_server"
+```
+
+**ប្រើអាក្សរបញ្ជា៖**
+
+```bash
+cline --mcp-server "calculator:python -m mcp_calculator_server" \
+      --mcp-server "weather:node /path/to/weather/index.js"
+```
+
+**ឯកសារកំណត់រចនាសម្ព័ន្ធ** (`~/.clinerc`):
+
+```json
+{
+  "apiKey": "your-api-key",
+  "mcpServers": {
+    "calculator": {
+      "command": "python",
+      "args": ["-m", "mcp_calculator_server"]
+    }
+  }
+}
+```
+
+### ការប្រើ Cline
+
+```bash
+# ចាប់ផ្តើមសម័យអន្តរកម្ម
+cline
+
+# សំណួរតែមួយជាមួយ MCP
+cline "Calculate the square root of 144 using the calculator"
+
+# បញ្ជីឧបករណ៍ដែលមានស្រាប់
+cline --list-tools
+```
+
+---
+
+## 5. Windsurf
+
+**Windsurf** គឺជា​កម្មវិធីកូដ AI ផ្សេងទៀតដែលមានគាំទ្រ MCP។
+
+### ការតំឡើង
+
+1. ទាញយក Windsurf ពី [codeium.com/windsurf](https://codeium.com/windsurf)
+2. ដំឡើង ហើយបង្កើតគណនី
+
+### ការកំណត់រចនាសម្ព័ន្ធ
+
+Windsurf កំណត់រចនាសម្ព័ន្ធតាមរយៈ UI ការកំណត់៖
+
+1. បើក ការកំណត់ (Ctrl+, / Cmd+,)
+2. ស្វែងរក "MCP"
+3. ចុច "Edit in settings.json"
+
+**ឧទាហរណ៍កំណត់រចនាសម្ព័ន្ធ៖**
+
+```json
+{
+  "windsurf.mcp.servers": {
+    "my-tools": {
+      "command": "python",
+      "args": ["/path/to/server.py"],
+      "env": {}
+    }
+  },
+  "windsurf.mcp.enabled": true
+}
+```
+
+---
+
+## ការប្រៀបធៀបប្រភេទរថយន្ត
+
+ម៉ាស៊ីនមេផ្សេងៗគ្នាគាំទ្ររថយន្តផ្សេងៗ៖
+
+| ម៉ាស៊ីនមេ | stdio | SSE/HTTP | WebSocket |
+|------|-------|----------|-----------|
+| Claude Desktop | ✅ | ❌ | ❌ |
+| VS Code | ✅ | ✅ | ❌ |
+| Cursor | ✅ | ✅ | ❌ |
+| Cline | ✅ | ✅ | ❌ |
+| Windsurf | ✅ | ✅ | ❌ |
+
+**stdio** (ការបញ្ចូល/ចេញស្តង់ដារ)៖ ល្អបំផុតសម្រាប់ម៉ាស៊ីនមេក្នុងស្រុកដែលចាប់ផ្តើមដោយម៉ាស៊ីនមេ
+**SSE/HTTP**៖ ល្អបំផុតសម្រាប់ម៉ាស៊ីនមេចម្រុះឬម៉ាស៊ីនមេដែលចែករំលែករវាងអតិថិជនជាច្រើន
+
+---
+
+## ការជួយដោះស្រាយបញ្ហាជាទូទៅ
+
+### ម៉ាស៊ីនមេមិនចាប់ផ្តើម
+
+1. **សាកល្បងម៉ាស៊ីនមេដោយដៃជាលំបាំ៖**
+   ```bash
+   # សម្រាប់ Python
+   python -m your_server_module
+   
+   # សម្រាប់ Node.js
+   node /path/to/server/index.js
+   ```
+
+2. **ពិនិត្យទីតាំងបញ្ជា៖**
+   - ប្រើផ្លូវតំណដែលពិតបំផុតពេលអាចធ្វើទៅបាន
+   - ប្រាកដថាកម្មវិធីអាចដំណើរការបានក្នុង PATH របស់អ្នក
+
+3. **ផ្ទៀងផ្ទាត់មុខងារដ៏ចាំបាច់៖**
+   ```bash
+   # ភាយថុន
+   pip list | grep mcp
+   
+   # Node.js
+   npm list @modelcontextprotocol/sdk
+   ```
+
+### ម៉ាស៊ីនមេភ្ជាប់បានប៉ុន្តែឧបករណ៍មិនដំណើរការ
+
+1. **ពិនិត្យកំណត់ហេតុម៉ាស៊ីនមេ** - ម៉ាស៊ីនមេភាគច្រើនមានជម្រើសកំណត់ហេតុ
+2. **ផ្ទៀងផ្ទាត់ការចុះបញ្ជីឧបករណ៍** - ប្រើ MCP Inspector ដើម្បីសាកល្បង
+3. **ពិនិត្យការអនុញ្ញាត** - ឧបករណ៍មួយចំនួនត្រូវការចូលប្រើឯកសារ/បណ្តាញ
+
+### អថេរបរិស្ថានមិនបានផ្ញើ
+
+- ម៉ាស៊ីនមេមួយចំនួនសម្អាតអថេរបរិស្ថាន
+- ប្រើវាល `env` ក្នុងកំណត់រចនាសម្ព័ន្ធយ៉ាងច្បាស់
+- ជៀសវាងដាក់ទិន្នន័យសំងាត់ក្នុងឯកសារកំណត់រចនាសម្ព័ន្ធ (ប្រើការគ្រប់គ្រងសម្ងាត់)
+
+---
+
+## វិធីសាស្រ្តសុវត្ថិភាពល្អបំផុត
+
+1. **មិនធ្វើការវេចខ្ចប់សោ API** ទៅក្នុងឯកសារកំណត់រចនាសម្ព័ន្ធទេ
+2. **ប្រើអថេរបរិស្ថាន** សម្រាប់ទិន្នន័យសំងាត់
+3. **កំណត់សិទ្ធិម៉ាស៊ីនមេ** ដល់តែអ្វីដែលចាំបាច់តែប៉ុណ្ណោះ
+4. **ពិនិត្យកូដម៉ាស៊ីនមេ** មុនផ្ដល់ការចូលប្រើប្រព័ន្ធរបស់អ្នក
+5. **ប្រើបញ្ជីអនុញ្ញាត** សម្រាប់ការចូលប្រើប្រព័ន្ធឯកសារ និងបណ្ដាញ
+
+---
+
+## តើបន្ទាប់បន្ថែម
+
+- [3.13 - ការបញ្ចេញកំហុសជាមួយ MCP Inspector](../13-mcp-inspector/README.md)
+- [3.1 - បង្កើតម៉ាស៊ីនមេ MCP ដំបូងរបស់អ្នក](../01-first-server/README.md)
+- [Module 5 - ប្រធានបទកម្រិតខ្ពស់](../../05-AdvancedTopics/README.md)
+
+---
+
+## ឯកសារពាក់ព័ន្ធបន្ថែម
+
+- [ឯកសារម៉ាស៊ីនមេ MCP Claude Desktop](https://docs.anthropic.com/en/docs/claude-desktop/mcp)
+- [បន្ថែម MCP VS Code](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-mcp)
+- [ការបញ្ជាក់ MCP - រថយន្ត](https://spec.modelcontextprotocol.io/specification/2025-11-25/basic/transports/)
+- [កំណត់ម៉ាស៊ីនមេ MCP ផ្លូវការជាផ្លូវការ](https://github.com/modelcontextprotocol/servers)
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**ការបដិសេធ**៖  
+ឯកសារនេះត្រូវបានបកប្រែដោយប្រើសេវាកម្មបកប្រែ AI [Co-op Translator](https://github.com/Azure/co-op-translator)។ ខណៈពេលដែលយើងខិតខំផ្តល់ភាពត្រឹមត្រូវ អ្នកទាំងអស់គួរយល់ដឹងថាការបកប្រែដោយស្វ័យប្រវត្តិក្នុងមួយចំណុចអាចមានកំហុស ឬភាពមិនត្រឹមត្រូវ។ ឯកសារដើមនៅក្នុងភាសាមូលដ្ឋានរបស់វាគួរត្រូវបានចាត់ទុកថាជា ឯកសារយោងដ៏មានអំពើបីយសំខាន់។ សម្រាប់ព័ត៌មានសំខាន់ណាស់ សូមផ្ដល់អនុសាសន៍ឱ្យបកប្រែដោយអ្នកជំនាញមនុស្សវិជ្ជាជីវៈ។ យើងមិនទទួលខុសត្រូវចំពោះការយល់ច្រឡំ ឬការបកស្រាយខុសដោយសារការប្រើប្រាស់ការបកប្រែនេះទេ។
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

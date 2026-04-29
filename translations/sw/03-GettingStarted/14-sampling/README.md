@@ -1,24 +1,24 @@
-# Kuchagua sampuli - kuteua majukumu kwa Mteja
+# Sampuli - kupeana sifa kwa Mteja
 
-Wakati mwingine, unahitaji MCP Client na MCP Server kushirikiana kufanikisha lengo la pamoja. Huenda ukaona hali ambapo Server inahitaji msaada wa LLM inayokaa kwenye mteja. Kwa hali hii, kuchagua sampuli ndicho unachopaswa kutumia.
+Wakati mwingine, unahitaji MCP Client na MCP Server kushirikiana kufanikisha lengo la pamoja. Huenda ukawa na kesi ambapo Server inahitaji msaada wa LLM ambayo iko kwenye mteja. Kwa hali hii, sampuli ndilo unalopaswa kutumia.
 
-Tuchunguze baadhi ya hali za matumizi na jinsi ya kujenga suluhisho linalohusisha kuchagua sampuli.
+Tuchunguze baadhi ya matumizi na jinsi ya kujenga suluhisho linalohusisha sampuli.
 
 ## Muhtasari
 
-Katika somo hili, tunazingatia kuelezea lini na wapi kutumia Kuchagua Sampuli na jinsi ya kuiwezesha.
+Katika somo hili, tunazingatia kuelezea lini na wapi kutumia Sampuli na jinsi ya kuipanua.
 
 ## Malengo ya Kujifunza
 
 Katika sura hii, tutafanya:
 
-- Elezea nini ni Kuchagua Sampuli na lini kuitumia.
-- Onyesha jinsi ya kuiwezesha Kuchagua Sampuli katika MCP.
-- Toa mifano ya Kuchagua Sampuli katika utendaji.
+- Elezea kinachoitwa Sampuli na lini ya kuitumia.
+- Onyesha jinsi ya kusanidi Sampuli katika MCP.
+- Toa mifano ya Sampuli katika utekelezaji.
 
-## Nini ni Kuchagua Sampuli na kwa nini kuitumia?
+## Sampuli ni nini na kwa nini kuitumia?
 
-Kuchagua Sampuli ni kipengele cha juu kinachofanya kazi kwa njia ifuatayo:
+Sampuli ni sifa ya hali ya juu inayofanya kazi kwa njia ifuatayo:
 
 ```mermaid
 sequenceDiagram
@@ -28,17 +28,17 @@ sequenceDiagram
     participant MCP Server
 
     User->>MCP Client: Andika chapisho la blogu
-    MCP Client->>MCP Server: Simu ya chombo (rasimu ya chapisho la blogu)
-    MCP Server->>MCP Client: Ombi la sampuli (tengeneza muhtasari)
+    MCP Client->>MCP Server: Simu ya zana (rasimu ya chapisho la blogu)
+    MCP Server->>MCP Client: Ombi la sampuli (unda muhtasari)
     MCP Client->>LLM: Tengeneza muhtasari wa chapisho la blogu
     LLM->>MCP Client: Matokeo ya muhtasari
-    MCP Client->>MCP Server: Majibu ya sampuli (muhtasari)
-    MCP Server->>MCP Client: Maliza chapisho la blogu (rasimu + muhtasari)
-    MCP Client->>User: Chapisho la blogu tayari
+    MCP Client->>MCP Server: Jibu la sampuli (muhtasari)
+    MCP Server->>MCP Client: Kamili chapisho la blogu (rasimu + muhtasari)
+    MCP Client->>User: Chapisho la blogu liko tayari
 ```
-### Ombi la Kuchagua Sampuli
+### Ombi la Sampuli
 
-Sawa, sasa tuna mtazamo wa juu wa hali yenye uwezekano, tuzungumze kuhusu ombi la kuchagua sampuli ambalo server hutuma kwa mteja. Hivi ndivyo ombi kama hilo linaweza kuonekana katika muundo wa JSON-RPC:
+Sawa, sasa tuna mtazamo wa juu wa hali halisi ya kuaminika, hebu tuzungumze kuhusu ombi la sampuli ambalo server hutuma kwa mteja. Hili ni mfano wa ombi hilo katika muundo wa JSON-RPC:
 
 ```json
 {
@@ -70,17 +70,17 @@ Sawa, sasa tuna mtazamo wa juu wa hali yenye uwezekano, tuzungumze kuhusu ombi l
 }
 ```
 
-Kuna mambo machache hapa yanayostahili kuzingatiwa:
+Kuna mambo machache ya kuzingatia hapa:
 
-- Prompt, chini ya content -> text, ni maelekezo yetu ambayo ni maagizo kwa LLM kupanga muhtasari wa maudhui ya chapisho la blogu.
+- Prompt, chini ya content -> text, ni agizo letu kwa LLM kuifupisha maudhui ya chapisho la blogu.
 
-- **modelPreferences**. Sehemu hii ni ile ile, upendeleo, mapendekezo ya usanidi wa kutumia na LLM. Mtumiaji anaweza kuchagua kama atafuata mapendekezo haya au kubadilisha. Katika kesi hii kuna mapendekezo kuhusu mfano wa kutumia na kipaumbele cha kasi na akili.
-- **systemPrompt**, hii ni prompt ya kawaida ya mfumo inayompa LLM yako utu binafsi na ina maelekezo ya mwongozo.
-- **maxTokens**, hii ni mali nyingine inayotumiwa kusema ni vipi idadi ya tokeni inavyopendekezwa kwa kazi hii.
+- **modelPreferences**. Sehemu hii ni hiyo tu, mapendeleo, ushauri wa ni usanidi gani utumike na LLM. Mtumiaji anaweza kuchagua kufuata ushauri huu au kubadilisha. Katika kesi hii kuna mapendekezo kuhusu mfano wa kutumia na kipaumbele cha kasi na akili.
+- **systemPrompt**, hili ni agizo lako la kawaida la mfumo linalompa LLM yako tabia na lina maelekezo ya mwongozo.
+- **maxTokens**, ni mali nyingine inayotumika kusema ni token ngapi zinapendekezwa kutumika kwa kazi hii.
 
-### Jibu la Kuchagua Sampuli
+### Majibu ya Sampuli
 
-Jibu hili ndilo MCP Client huhitimisha kutuma kurudi kwa MCP Server na ni matokeo ya mteja kupiga simu kwa LLM, kusubiri jibu hilo na kisha kuunda ujumbe huu. Hivi ndivyo linaweza kuonekana katika JSON-RPC:
+Majibu haya ndiyo MCP Client hurejesha kwa MCP Server na ni matokeo ya mteja kupiga simu LLM, kusubiri jibu halafu kutengeneza ujumbe huu. Hili ni mfano katika JSON-RPC:
 
 ```json
 {
@@ -98,13 +98,13 @@ Jibu hili ndilo MCP Client huhitimisha kutuma kurudi kwa MCP Server na ni matoke
 }
 ```
 
-Angalia jinsi jibu linavyo kuwa muhtasari wa chapisho la blogu kama tulivyoomba. Pia angalia jinsi `model` iliyotumika si ile tuliyoomba bali "gpt-5" badala ya "claude-3-sonnet". Hii inaonyesha kuwa mtumiaji anaweza kubadilisha maoni juu ya kile cha kutumia na kwamba ombi lako la kuchagua ni mapendekezo.
+Angalia jinsi jibu ni muhtasari wa chapisho la blogu kama tulivyoomba. Pia angalia jinsi `model` iliyotumika si ile tuliyoomba bali "gpt-5" badala ya "claude-3-sonnet". Hii ni kuonyesha kwamba mtumiaji anaweza kubadili mawazo kuhusu kutumia nini na ombi lako la sampuli ni ushauri tu.
 
-Sawa, sasa tunapoelewa mzunguko mkuu, na kazi muhimu ya kuitumia kwa "utengenezaji wa chapisho la blogu + muhtasari", tuchunguze kile tunachohitaji kufanya ili iweze kufanya kazi.
+Sawa, sasa tumeelewa mzunguko mkuu, na kazi yenye manufaa ya kuitumia "kutengeneza chapisho la blogu + muhtasari", hebu tuangalie ni nini tunapaswa kufanya ili ifanye kazi.
 
 ### Aina za Ujumbe
 
-Ujumbe wa kuchagua sampuli hauzuiliki kwa maandishi pekee bali pia unaweza kutuma, picha na sauti. Hivi ndivyo JSON-RPC inavyoonekana tofauti:
+Ujumbe wa sampuli hauwekwi kikomo kwa maandishi tu bali unaweza pia kutuma picha na sauti. Hili ndilo jinsi JSON-RPC inavyoonekana tofauti:
 
 **Maandishi**
 
@@ -115,7 +115,7 @@ Ujumbe wa kuchagua sampuli hauzuiliki kwa maandishi pekee bali pia unaweza kutum
 }
 ```
 
-**Maudhui ya picha**
+**Maudhui ya Picha**
 
 ```json
 {
@@ -125,7 +125,7 @@ Ujumbe wa kuchagua sampuli hauzuiliki kwa maandishi pekee bali pia unaweza kutum
 }
 ```
 
-**Maudhui ya sauti**
+**Maudhui ya Sauti**
 
 ```json
 {
@@ -135,13 +135,13 @@ Ujumbe wa kuchagua sampuli hauzuiliki kwa maandishi pekee bali pia unaweza kutum
 }
 ```
 
-> NOTE: kwa maelezo zaidi kuhusu Kuchagua Sampuli, angalia [nyaraka rasmi](https://modelcontextprotocol.io/specification/2025-06-18/client/sampling)
+> NOTE: kwa taarifa zaidi za kina kuhusu Sampuli, angalia [nyaraka rasmi](https://modelcontextprotocol.io/specification/2025-06-18/client/sampling)
 
-## Jinsi ya Kuwezesha Kuchagua Sampuli kwenye Mteja
+## Jinsi ya Kusanidi Sampuli katika Mteja
 
-> Kumbuka: kama unajenga server tu, hauhitaji kufanya mengi hapa.
+> Kumbuka: ikiwa unajenga server tu, huna haja ya kufanya mengi hapa.
 
-Katika mteja, unahitaji kubainisha kipengele kama ifuatavyo:
+Katika mteja, unahitaji kubainisha kipengele ifuatavyo hivi:
 
 ```json
 {
@@ -151,18 +151,18 @@ Katika mteja, unahitaji kubainisha kipengele kama ifuatavyo:
 }
 ```
 
-Hii itachukuliwa wakati mteja ulioteuliwa anapoanzisha na server.
+Hii itachukuliwa wakati mteja uliochagua anapoanzisha na server.
 
-## Mfano wa Kuchagua Sampuli Katika Matendo - Tengeneza Chapisho la Blogu
+## Mfano wa Sampuli Katika Utekelezaji - Tengeneza Chapisho la Blogu
 
-Hebu tundae server ya kuchagua sampuli pamoja, tutahitaji kufanya yafuatayo:
+Tandike server ya sampuli pamoja, tutahitaji kufanya yafuatayo:
 
 1. Tengeneza chombo kwenye Server.
-1. Chombo hicho kitengeneze ombi la kuchagua sampuli
-1. Chombo kisubiri jibu la ombi la kuchagua sampuli la mteja.
-1. Kisha matokeo ya chombo yatatengenezwa.
+1. Chombo hicho kinapaswa kutengeneza ombi la sampuli
+1. Chombo kinapaswa kusubiri ombi la sampuli la mteja lijibiwe.
+1. Kisha matokeo ya chombo yafanikiwe.
 
-Tuchunguze msimbo hatua kwa hatua:
+Hebu tuangalie msimbo hatua kwa hatua:
 
 ### -1- Tengeneza chombo
 
@@ -175,9 +175,9 @@ async def create_blog(title: str, content: str, ctx: Context[ServerSession, None
 
 ```
 
-### -2- Tengeneza ombi la kuchagua sampuli
+### -2- Tengeneza ombi la sampuli
 
-Panua chombo chako na msimbo ufuatao:
+Panua chombo chako kwa msimbo ufuatao:
 
 **python**
 
@@ -203,7 +203,7 @@ result = await ctx.session.create_message(
 
 ```
 
-### -3- Subiri jibu na rudisha jibu
+### -3- Subiri jibu na litoe
 
 **python**
 
@@ -297,10 +297,10 @@ if __name__ == "__main__":
 
 ### -5- Kuipima katika Visual Studio Code
 
-Ili kuipima katika Visual Studio Code, fanya yafuatayo:
+Ili kuipima hii katika Visual Studio Code, fanya yafuatayo:
 
-1. Anzisha server kwenye terminal
-1. Iongeze kwenye *mcp.json* (na hakikisha imeanzishwa) mfano kama ifuatavyo:
+1. Anzisha server katika terminali
+1. Iiingize kwenye *mcp.json* (na hakikisha imesheheniwa) mfano kama hivi:
 
    ```json
    "servers": {
@@ -317,39 +317,39 @@ Ili kuipima katika Visual Studio Code, fanya yafuatayo:
    create a blog post named "Where Python comes from", the content is "Python is actually named after Monty Python Flying Circus"
    ```
 
-1. Ruhusu kuchagua sampuli kufanyika. Mara ya kwanza unapotest hii utaoneshwa kidialogi kingine utakachohitaji kukubali, kisha utaona kidialogi cha kawaida kinachokuomba utumie chombo
+1. Ruhusu sampuli ifanyike. Mara ya kwanza unapojaribu hii utaonyeshwa dialogi ya ziada ambayo utahitaji kuikubali, kisha utaona dialogi ya kawaida ya kuomba uendeshe chombo
 
-1. Angalia matokeo. Utaona matokeo yakiwasilishwa vyema ndani ya GitHub Copilot Chat lakini pia unaweza kuchunguza jibu tosha la JSON.
+1. Angalia matokeo. Utaona matokeo yakiwekwa kwa mpangilio mzuri katika GitHub Copilot Chat lakini pia unaweza kuchunguza jibu la asili la JSON.
 
-**Ziada**. Zana za Visual Studio Code zina msaada mzuri kwa kuchagua sampuli. Unaweza kuanzisha upatikanaji wa Kuchagua Sampuli kwenye server uliyoisakinisha kwa kwenda sehemu ifuatayo:
+**Ziada**. Zana za Visual Studio Code zina msaada mzuri wa sampuli. Unaweza kusanidi upatikanaji wa Sampuli kwenye server uliyoisakinisha kwa kuingia baharini kama hizi:
 
-1. Nenda sehemu ya upanuzi.
+1. Nenda kwenye sehemu ya uendelezaji
 1. Chagua ikoni ya gia kwa server uliyoisakinisha katika sehemu ya "MCP SERVERS - INSTALLED".
-1 Chagua "Configure Model Access", hapa unaweza kuchagua modeli gani GitHub Copilot inaruhusiwa kutumia wakati wa kuchagua sampuli. Pia unaweza kuona maombi yote ya kuchagua sampuli yaliyotokea karibuni kwa kuchagua "Show Sampling requests".
+1. Chagua "Configure Model Access", hapa unaweza kuchagua ni Modeli gani GitHub Copilot inaruhusiwa kuzitumia wakati wa sampuli. Pia unaweza kuona maombi yote ya sampuli yaliyotokea hivi karibuni kwa kuchagua "Show Sampling requests".
 
 ## Kazi ya Nyumbani
 
-Katika kazi hii ya nyumbani, utajenga aina tofauti ya Kuchagua Sampuli, yaani ujumuishaji wa sampuli unaounga mkono uzalishaji wa maelezo ya bidhaa. Huu hapa ni mchezo wako:
+Katika kazi hii ya nyumbani, utajenga sampuli tofauti kidogo ya muunganiko wa sampuli unaounga mkono kuzalisha maelezo ya bidhaa. Hii hapa ni hali yako:
 
-**Hali ya Sanaa**: Mfanyakazi wa ofisi ya nyuma katika dukani la mtandaoni anahitaji msaada, hutumia muda mwingi kuandaa maelezo ya bidhaa. Kwa hivyo, unatakiwa kujenga suluhisho ambapo unaweza kupiga simu kwa chombo "create_product" na hoja "title" na "keywords" na kitajumuisha bidhaa kamili ikiwa na uwanja wa "description" ambao unatakiwa kujazwa na LLM ya mteja.
+**Hali Halisi**: Mfanyakazi wa nyuma wa ofisi katika duka la mtandaoni anahitaji msaada, inachukua muda mwingi kutengeneza maelezo ya bidhaa. Kwa hivyo, unapaswa kujenga suluhisho ambapo unaweza kupiga simu chombo "create_product" kwa kutumia "title" na "keywords" kama hoja na kinapaswa kuumba bidhaa kamili ikijumuisha uwanja wa "description" ambao utajazwa na LLM ya mteja.
 
-USHERAA: tumia kile ulichojifunza awali jinsi ya kuunda server hii na chombo chake kwa kutumia ombi la kuchagua sampuli.
+TIP: tumia ulivyojifunza hapo awali kujenga server hii na chombo chake kwa kutumia ombi la sampuli.
 
 ## Suluhisho
 
 [Solution](./solution/README.md)
 
-## Muhimu za Kukumbuka
+## Muhimu Kumbuka
 
-Kuchagua Sampuli ni kipengele chenye nguvu kinachoruhusu server kuteua majukumu kwa mteja wakati inahitaji msaada wa LLM.
+Sampuli ni sifa yenye nguvu inayowezesha server kupeana kazi kwa mteja wakati inahitaji msaada wa LLM.
 
-## Kinacho Fuata
+## Nini Kifuatayo
 
 - [Sura ya 4 - Utekelezaji wa vitendo](../../04-PracticalImplementation/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Kandhari**:
-Nyaraka hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kutoa usahihi, tafadhali fahamu kuwa tafsiri za kishine zinaweza kuwa na makosa au upungufu. Nyaraka ya asili katika lugha yake halisi inapaswa kuchukuliwa kama chanzo cha uhakika. Kwa taarifa muhimu, kuna ushauri wa kutumia huduma ya mtafsiri mzoefu wa kibinadamu. Hatubebei uwajibikaji wowote kwa kutoelewana au tafsiri potofu zinazotokana na matumizi ya tafsiri hii.
+**Kiarifu cha Msamaha**:  
+Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kwa usahihi, tafadhali fahamu kuwa tafsiri za kiotomatiki zinaweza kuwa na makosa au kutokukamilika. Hati asilia katika lugha yake ya asili inapaswa kuzuiliwa kama chanzo dhabiti. Kwa taarifa muhimu, tafsiri ya kitaalamu inayofanywa na binadamu inapendekezwa. Hatubebei mzigo wowote wa kuelewana au kutoelewana kunakotokana na matumizi ya tafsiri hii.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

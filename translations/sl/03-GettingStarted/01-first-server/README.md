@@ -1,45 +1,45 @@
 # Začetek z MCP
 
-Dobrodošli pri vaših prvih korakih z Model Context Protocol (MCP)! Ne glede na to, ali ste novi pri MCP ali želite poglobiti svoje razumevanje, vas ta vodič popelje skozi osnovni postopek nastavitve in razvoja. Spoznali boste, kako MCP omogoča nemoteno integracijo med AI modeli in aplikacijami ter se naučili, kako hitro pripraviti svoje okolje za gradnjo in testiranje rešitev, ki temeljijo na MCP.
+Dobrodošli v vaših prvih korakih z Model Context Protocol (MCP)! Ne glede na to, ali ste novi v MCP ali želite poglobiti svoje razumevanje, vas bo ta vodič popeljal skozi osnovno nastavitev in razvojni proces. Spoznali boste, kako MCP omogoča brezhibno integracijo med AI modeli in aplikacijami ter se naučili, kako hitro pripraviti okolje za ustvarjanje in testiranje rešitev, ki temeljijo na MCP.
 
-> TLDR; Če gradite AI aplikacije, veste, da lahko svojemu LLM (velikemu jezikovnemu modelu) dodate orodja in druge vire, da postane LLM bolj poučen. Če pa ta orodja in vire postavite na strežnik, lahko aplikacija in zmogljivosti strežnika uporabljajo kateri koli odjemalec z ali brez LLM.
+> TLDR; Če gradite AI aplikacije, veste, da lahko svojemu LLM (velikemu jezikovnemu modelu) dodate orodja in druge vire, da bo LLM bolj poučen. Vendar če ta orodja in vire postavite na strežnik, lahko funkcionalnosti aplikacije in strežnika uporablja kateri koli odjemalec z ali brez LLM.
 
 ## Pregled
 
-Ta lekcija ponuja praktična navodila za nastavitev MCP okolij in gradnjo vaših prvih MCP aplikacij. Naučili se boste, kako nastaviti potrebna orodja in ogrodja, zgraditi osnovne MCP strežnike, ustvariti gostiteljske aplikacije in testirati vaše implementacije.
+Ta lekcija nudi praktična navodila za nastavitev MCP okolij in izdelavo vaših prvih MCP aplikacij. Naučili se boste nastaviti potrebna orodja in ogrodja, izdelati osnovne MCP strežnike, ustvariti gostiteljske aplikacije in testirati vaše implementacije.
 
-Model Context Protocol (MCP) je odprt protokol, ki standardizira, kako aplikacije zagotavljajo kontekst LLM-jem. MCP si lahko predstavljate kot USB-C priključek za AI aplikacije - zagotavlja standardiziran način povezovanja AI modelov z različnimi viri podatkov in orodji.
+Model Context Protocol (MCP) je odprt protokol, ki standardizira način, kako aplikacije zagotavljajo kontekst LLM-jem. Predstavljajte si MCP kot USB-C priključek za AI aplikacije - omogoča standardiziran način povezave AI modelov z različnimi viri podatkov in orodji.
 
 ## Cilji učenja
 
-Do konca te lekcije boste znali:
+Na koncu te lekcije boste znali:
 
-- Nastaviti razvojna okolja za MCP v C#, Javi, Pythonu, TypeScriptu in Rustu
-- Zgraditi in namestiti osnovne MCP strežnike s prilagojenimi funkcijami (viri, pozivi in orodja)
-- Ustvariti gostiteljske aplikacije, ki se povezujejo z MCP strežniki
-- Testirati in odpravljati napake v implementacijah MCP
+- Nastaviti razvojna okolja za MCP v C#, Java, Python, TypeScript in Rust
+- Izdelati in namestiti osnovne MCP strežnike s prilagojenimi funkcijami (viri, pozivi in orodja)
+- Ustvariti gostiteljske aplikacije, ki se povežejo s MCP strežniki
+- Testirati in odpravljati napake MCP implementacij
 
 ## Nastavitev vašega MCP okolja
 
-Preden začnete delati z MCP, je pomembno pripraviti razvojno okolje in razumeti osnovni potek dela. Ta razdelek vas bo vodil skozi začetne korake nastavitve, da zagotovite nemoten začetek z MCP.
+Preden začnete delati z MCP, je pomembno pripraviti svoje razvojno okolje in razumeti osnovni delovni tok. Ta razdelek vas bo skozi začetne korake nastavitve vodil, da boste z MCP lahko nemoteno začeli.
 
 ### Predpogoji
 
-Preden se lotite razvoja MCP, poskrbite, da imate:
+Preden se poglobite v razvoj z MCP, poskrbite za:
 
 - **Razvojno okolje**: Za izbrani programski jezik (C#, Java, Python, TypeScript ali Rust)
-- **IDE/Urejevalnik**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm ali kateri koli sodoben urejevalnik kode
+- **IDE/Urejevalnik**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm ali kateri koli moder urejevalnik kode
 - **Upravitelji paketov**: NuGet, Maven/Gradle, pip, npm/yarn ali Cargo
-- **API ključi**: Za vse AI storitve, ki jih nameravate uporabljati v gostiteljskih aplikacijah
+- **API ključi**: Za katerokoli AI storitev, ki jo nameravate uporabljati v svojih gostiteljskih aplikacijah
 
 ## Osnovna struktura MCP strežnika
 
 MCP strežnik običajno vključuje:
 
-- **Konfiguracija strežnika**: Nastavitev vrat, avtentikacije in drugih nastavitev
+- **Konfiguracija strežnika**: Nastavitev vrata, preverjanje pristnosti in druge nastavitve
 - **Viri**: Podatki in kontekst, ki so na voljo LLM-jem
 - **Orodja**: Funkcionalnosti, ki jih modeli lahko kličejo
-- **Pozivi**: Predloge za generiranje ali strukturiranje besedila
+- **Pozivi**: Predloge za ustvarjanje ali strukturiranje besedila
 
 Tukaj je poenostavljen primer v TypeScriptu:
 
@@ -62,10 +62,10 @@ server.tool("add",
   })
 );
 
-// Dodaj dinamični vir pozdravov
+// Dodaj dinamičen vir pozdrava
 server.resource(
   "file",
-  // Parameter 'list' nadzoruje, kako vir navaja razpoložljive datoteke. Nastavitev na undefined onemogoči seznam za ta vir.
+  // Parameter 'list' nadzira, kako vir prikazuje razpoložljive datoteke. Nastavitev na undefined onemogoči prikazovanje za ta vir.
   new ResourceTemplate("file://{path}", { list: undefined }),
   async (uri, { path }) => ({
     contents: [{
@@ -117,57 +117,57 @@ await server.connect(transport);
 V zgornji kodi smo:
 
 - Uvozili potrebne razrede iz MCP TypeScript SDK.
-- Ustvarili in konfigurirali novo instanco MCP strežnika.
-- Registrirali prilagojeno orodje (`calculator`) s funkcijo obdelave.
+- Ustvarili in konfigurirali nov MCP strežnik.
+- Registrirali prilagojeno orodje (`calculator`) s funkcijo upravljanja.
 - Zagnali strežnik, da posluša dohodne MCP zahteve.
 
 ## Testiranje in odpravljanje napak
 
-Preden začnete testirati svoj MCP strežnik, je pomembno razumeti razpoložljiva orodja in najboljše prakse za odpravljanje napak. Učinkovito testiranje zagotavlja, da se strežnik obnaša kot pričakovano, in vam pomaga hitro prepoznati ter odpraviti težave. Naslednji razdelek opisuje priporočene pristope za preverjanje vaše MCP implementacije.
+Preden začnete testirati vaš MCP strežnik, je pomembno razumeti razpoložljiva orodja in najboljše prakse za odpravljanje napak. Učinkovito testiranje zagotavlja, da se vaš strežnik obnaša kot pričakovano in pomaga hitro odkriti ter odpraviti težave. Naslednji razdelek navaja priporočene pristope za preverjanje vaše MCP implementacije.
 
-MCP ponuja orodja, ki vam pomagajo testirati in odpravljati napake na vaših strežnikih:
+MCP nudi orodja za pomoč pri testiranju in odpravljanju napak vaših strežnikov:
 
-- **Orodje Inspector**, ta grafični vmesnik vam omogoča povezavo s strežnikom in testiranje vaših orodij, pozivov in virov.
-- **curl**, lahko se tudi povežete s strežnikom z ukazno vrstico, kot je curl, ali drugimi odjemalci, ki lahko ustvarjajo in izvajajo HTTP ukaze.
+- **Inspektorsko orodje**, ta grafični vmesnik vam omogoča povezavo s strežnikom in testiranje vaših orodij, pozivov in virov.
+- **curl**, dostopate lahko tudi do strežnika z orodjem ukazne vrstice, kot je curl ali drugimi odjemalci, ki lahko ustvarjajo in izvajajo HTTP ukaze.
 
-### Uporaba MCP Inspectorja
+### Uporaba MCP Inspektorja
 
-[MCP Inspector](https://github.com/modelcontextprotocol/inspector) je vizualno orodje za testiranje, ki vam pomaga:
+[MCP Inspektor](https://github.com/modelcontextprotocol/inspector) je vizualno orodje za testiranje, ki vam pomaga:
 
 1. **Odkriti zmogljivosti strežnika**: Samodejno zaznati razpoložljive vire, orodja in pozive
-2. **Testirati izvajanje orodij**: Preizkusiti različne parametre in videti odzive v realnem času
-3. **Ogledati metapodatke strežnika**: Pregledati informacije o strežniku, sheme in konfiguracije
+2. **Testirati izvajanje orodij**: Preizkusiti različne parametre in v realnem času videti od odzivov
+3. **Pregledati metapodatke strežnika**: Pregledati informacije o strežniku, sheme in konfiguracije
 
 ```bash
-# primer TypeScript, namestitev in zagon MCP Inspectorja
+# primer TypeScript, nameščanje in zagon MCP Inspektorja
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-Ko zaženete zgornje ukaze, bo MCP Inspector zagnal lokalni spletni vmesnik v vašem brskalniku. Pričakujete lahko nadzorno ploščo, ki prikazuje vaše registrirane MCP strežnike, njihova razpoložljiva orodja, vire in pozive. Vmesnik omogoča interaktivno testiranje izvajanja orodij, pregled metapodatkov strežnika in ogled odzivov v realnem času, kar olajša preverjanje in odpravljanje napak v vaših MCP strežniških implementacijah.
+Ko izvedete zgornje ukaze, bo MCP Inspektor odprl lokalni spletni vmesnik v vašem brskalniku. Pričakujte nadzorno ploščo, ki prikazuje vaše registrirane MCP strežnike, njihova razpoložljiva orodja, vire in pozive. Ta vmesnik omogoča interaktivno testiranje izvajanja orodij, pregledovanje metapodatkov strežnika in ogled odzivov v realnem času, kar olajša preverjanje in odpravljanje napak v implementacijah vaših MCP strežnikov.
 
-Tukaj je posnetek zaslona, kako lahko izgleda:
+Tukaj je posnetek zaslona, kako je lahko videti:
 
 ![MCP Inspector server connection](../../../../translated_images/sl/connected.73d1e042c24075d3.webp)
 
 ## Pogoste težave pri nastavitvi in rešitve
 
-| Težava | Možna rešitev |
-|-------|-------------------|
-| Povezava zavrnjena | Preverite, ali strežnik teče in ali so vrata pravilna |
-| Napake pri izvajanju orodij | Preglejte preverjanje parametrov in obravnavo napak |
-| Napake avtentikacije | Preverite API ključe in dovoljenja |
-| Napake preverjanja sheme | Zagotovite, da parametri ustrezajo definirani shemi |
+| Težava | Mogoča rešitev |
+|-------|----------------|
+| Povezava zavrnjena | Preverite, ali strežnik deluje in ali je vrata pravilna |
+| Napake pri izvajanju orodja | Preverite preverjanje parametrov in obdelavo napak |
+| Neuspešna avtentikacija | Preverite API ključe in dovoljenja |
+| Napake veljavnosti sheme | Poskrbite, da parametri ustrezajo definirani shemi |
 | Strežnik se ne zažene | Preverite konflikte vrat ali manjkajoče odvisnosti |
-| Napake CORS | Konfigurirajte ustrezne CORS glave za zahteve iz drugih virov |
+| Napake CORS | Pravilno konfigurirajte CORS glave za zahteve iz različnih virov |
 | Težave z avtentikacijo | Preverite veljavnost žetona in dovoljenja |
 
 ## Lokalni razvoj
 
 Za lokalni razvoj in testiranje lahko MCP strežnike zaženete neposredno na svojem računalniku:
 
-1. **Zaženite strežniški proces**: Zaženite svojo MCP strežniško aplikacijo
+1. **Zaženite postopek strežnika**: Zaženite vašo MCP strežniško aplikacijo
 2. **Konfigurirajte omrežje**: Poskrbite, da je strežnik dostopen na pričakovanih vratih
-3. **Povežite odjemalce**: Uporabite lokalne povezovalne URL-je, kot je `http://localhost:3000`
+3. **Povežite odjemalce**: Uporabite lokalne URL-je za povezavo, npr. `http://localhost:3000`
 
 ```bash
 # Primer: Zagon TypeScript MCP strežnika lokalno
@@ -175,34 +175,34 @@ npm run start
 # Strežnik teče na http://localhost:3000
 ```
 
-## Gradnja vašega prvega MCP strežnika
+## Izdelava vašega prvega MCP strežnika
 
-V prejšnji lekciji smo obravnavali [osnovne koncepte](/01-CoreConcepts/README.md), zdaj pa je čas, da to znanje uporabimo v praksi.
+V prejšnji lekciji smo pokrili [Osnovne pojme](../../01-CoreConcepts/README.md), zdaj pa je čas, da to znanje prenesemo v prakso.
 
-### Kaj strežnik lahko počne
+### Kaj zmore strežnik
 
-Preden začnemo pisati kodo, si le osvežimo, kaj strežnik lahko počne:
+Preden začnemo pisati kodo, si osvežimo, kaj zmore strežnik:
 
 MCP strežnik lahko na primer:
 
 - Dostopa do lokalnih datotek in baz podatkov
-- Povezuje se z oddaljenimi API-ji
+- Povezuje se na oddaljene API-je
 - Izvaja izračune
 - Integrira z drugimi orodji in storitvami
-- Zagotavlja uporabniški vmesnik za interakcijo
+- Ponudi uporabniški vmesnik za interakcijo
 
-Odlično, zdaj ko vemo, kaj lahko naredimo, začnimo s kodiranjem.
+Odlično, zdaj ko vemo, kaj lahko naredimo zanj, začnimo s kodiranjem.
 
 ## Vaja: Ustvarjanje strežnika
 
-Za ustvarjanje strežnika morate slediti tem korakom:
+Za ustvarjanje strežnika morate slediti naslednjim korakom:
 
-- Namestite MCP SDK.
-- Ustvarite projekt in nastavite strukturo projekta.
-- Napišite kodo strežnika.
-- Testirajte strežnik.
+- Namestiti MCP SDK.
+- Ustvariti projekt in postaviti strukturo projekta.
+- Napisati strežniško kodo.
+- Testirati strežnik.
 
-### -1- Ustvarite projekt
+### -1- Ustvarjanje projekta
 
 #### TypeScript
 
@@ -219,7 +219,7 @@ npm init -y
 # Ustvari imenik projekta
 mkdir calculator-server
 cd calculator-server
-# Odpri mapo v Visual Studio Code - preskoči to, če uporabljaš drug IDE
+# Odpri mapo v Visual Studio Code - preskoči, če uporabljaš drugačno IDE
 code .
 ```
 
@@ -232,7 +232,7 @@ cd McpCalculatorServer
 
 #### Java
 
-Za Javo ustvarite Spring Boot projekt:
+Za Java izdelajte Spring Boot projekt:
 
 ```bash
 curl https://start.spring.io/starter.zip \
@@ -251,11 +251,11 @@ Razpakirajte zip datoteko:
 ```bash
 unzip calculator-server.zip -d calculator-server
 cd calculator-server
-# neobvezno odstranite neuporabljeni test
+# neobvezno odstranite neuporabljene teste
 rm -rf src/test/java
 ```
 
-Dodajte naslednjo celotno konfiguracijo v vašo datoteko *pom.xml*:
+V datoteko *pom.xml* dodajte naslednjo celovito konfiguracijo:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -363,9 +363,9 @@ cd calculator-server
 cargo init
 ```
 
-### -2- Dodajte odvisnosti
+### -2- Dodajanje odvisnosti
 
-Ko imate ustvarjen projekt, dodajte naslednje odvisnosti:
+Zdaj, ko imate ustvarjen projekt, nadaljujmo z dodajanjem odvisnosti:
 
 #### TypeScript
 
@@ -373,7 +373,7 @@ Ko imate ustvarjen projekt, dodajte naslednje odvisnosti:
 # Če še ni nameščen, namestite TypeScript globalno
 npm install typescript -g
 
-# Namestite MCP SDK in Zod za preverjanje shem
+# Namestite MCP SDK in Zod za preverjanje skladnosti sheme
 npm install @modelcontextprotocol/sdk zod
 npm install -D @types/node typescript
 ```
@@ -402,11 +402,11 @@ cargo add serde
 cargo add tokio --features rt-multi-thread
 ```
 
-### -3- Ustvarite projektne datoteke
+### -3- Ustvarjanje datotek projekta
 
 #### TypeScript
 
-Odprite datoteko *package.json* in zamenjajte vsebino z naslednjo, da zagotovite, da lahko zgradite in zaženete strežnik:
+Odprite datoteko *package.json* in zamenjajte vsebino z naslednjo, da zagotovite, da lahko strežnik zgradite in zaženete:
 
 ```json
 {
@@ -453,7 +453,7 @@ Ustvarite *tsconfig.json* z naslednjo vsebino:
 }
 ```
 
-Ustvarite imenik za vašo izvorno kodo:
+Ustvarite imenik za izvorno kodo:
 
 ```sh
 mkdir src
@@ -470,7 +470,7 @@ touch server.py
 
 #### .NET
 
-Namestite zahtevane NuGet pakete:
+Namestite potrebne NuGet pakete:
 
 ```sh
 dotnet add package ModelContextProtocol --prerelease
@@ -479,13 +479,13 @@ dotnet add package Microsoft.Extensions.Hosting
 
 #### Java
 
-Za Java Spring Boot projekte je struktura projekta ustvarjena samodejno.
+Za Java Spring Boot projekte se struktura projekta ustvari samodejno.
 
 #### Rust
 
-Za Rust je datoteka *src/main.rs* ustvarjena privzeto, ko zaženete `cargo init`. Odprite datoteko in izbrišite privzeto kodo.
+Za Rust se datoteka *src/main.rs* ustvari privzeto ob zagonu `cargo init`. Odprite datoteko in izbrišite privzeto kodo.
 
-### -4- Ustvarite kodo strežnika
+### -4- Pisanje strežniške kode
 
 #### TypeScript
 
@@ -503,7 +503,7 @@ const server = new McpServer({
 });
 ```
 
-Zdaj imate strežnik, vendar ne počne veliko, to bomo popravili.
+Zdaj imate strežnik, vendar ne počne dosti, popravimo to.
 
 #### Python
 
@@ -542,7 +542,7 @@ await builder.Build().RunAsync();
 
 #### Java
 
-Za Javo ustvarite osnovne strežniške komponente. Najprej spremenite glavno aplikacijsko razredno datoteko:
+Za Javo ustvarite osrednje strežniške komponente. Najprej spremenite glavno aplikacijsko razredno datoteko:
 
 *src/main/java/com/microsoft/mcp/sample/server/McpServerApplication.java*:
 
@@ -570,7 +570,7 @@ public class McpServerApplication {
 }
 ```
 
-Ustvarite storitev kalkulatorja *src/main/java/com/microsoft/mcp/sample/server/service/CalculatorService.java*:
+Ustvarite kalkulatorsko storitev *src/main/java/com/microsoft/mcp/sample/server/service/CalculatorService.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.service;
@@ -716,9 +716,9 @@ public class CalculatorService {
 }
 ```
 
-**Neobvezne komponente za produkcijsko pripravljeno storitev:**
+**Neobvezne komponente za produkcijsko pripravljen strežnik:**
 
-Ustvarite konfiguracijo zagona *src/main/java/com/microsoft/mcp/sample/server/config/StartupConfig.java*:
+Ustvarite konfiguracijo zagonja *src/main/java/com/microsoft/mcp/sample/server/config/StartupConfig.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.config;
@@ -769,7 +769,7 @@ public class HealthController {
 }
 ```
 
-Ustvarite upravljalnik izjem *src/main/java/com/microsoft/mcp/sample/server/exception/GlobalExceptionHandler.java*:
+Ustvarite obdelovalnik izjem *src/main/java/com/microsoft/mcp/sample/server/exception/GlobalExceptionHandler.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.exception;
@@ -799,14 +799,14 @@ public class GlobalExceptionHandler {
             this.message = message;
         }
 
-        // Pridobivalci
+        // Pridobiteljski metodi
         public String getCode() { return code; }
         public String getMessage() { return message; }
     }
 }
 ```
 
-Ustvarite prilagojeni banner *src/main/resources/banner.txt*:
+Ustvarite prilagojen banner *src/main/resources/banner.txt*:
 
 ```text
 _____      _            _       _             
@@ -824,7 +824,7 @@ Spring Boot MCP Application
 
 #### Rust
 
-Dodajte naslednjo kodo na vrh datoteke *src/main.rs*. Ta uvozi potrebne knjižnice in module za vaš MCP strežnik.
+Dodajte naslednjo kodo na vrh datoteke *src/main.rs*. To uvozi potrebne knjižnice in module za vaš MCP strežnik.
 
 ```rust
 use rmcp::{
@@ -837,7 +837,7 @@ use rmcp::{
 use std::error::Error;
 ```
 
-Kalkulator strežnik bo preprost, ki lahko sešteje dve števili. Ustvarimo strukturo za predstavitev zahteve kalkulatorja.
+Kalkulatorski strežnik bo preprost, ki lahko sešteje dve številki. Ustvarimo strukturo za predstavitev zahteve kalkulatorja.
 
 ```rust
 #[derive(Debug, serde::Deserialize, schemars::JsonSchema)]
@@ -847,7 +847,7 @@ pub struct CalculatorRequest {
 }
 ```
 
-Nato ustvarite strukturo za predstavitev kalkulator strežnika. Ta struktura bo vsebovala usmerjevalnik orodij, ki se uporablja za registracijo orodij.
+Nato ustvarite strukturo za predstavitev strežnika kalkulatorja. Ta struktura bo vsebovala orodniški usmerjevalnik, ki se uporablja za registracijo orodij.
 
 ```rust
 #[derive(Debug, Clone)]
@@ -856,7 +856,7 @@ pub struct Calculator {
 }
 ```
 
-Zdaj lahko implementiramo strukturo `Calculator`, da ustvarimo novo instanco strežnika in implementiramo strežniški upravljalnik za zagotavljanje informacij o strežniku.
+Zdaj lahko implementiramo strukturo `Calculator` za ustvarjanje novega primerka strežnika in implementacijo strežniškega upravljalnika za zagotavljanje informacij strežnika.
 
 ```rust
 #[tool_router]
@@ -880,7 +880,7 @@ impl ServerHandler for Calculator {
 }
 ```
 
-Nazadnje moramo implementirati glavno funkcijo za zagon strežnika. Ta funkcija bo ustvarila instanco strukture `Calculator` in jo postregla preko standardnega vhoda/izhoda.
+Na koncu moramo implementirati glavno funkcijo za zagon strežnika. Ta funkcija bo ustvarila primerek strukture `Calculator` in ga poganjala prek standardnega vnosa/izhoda.
 
 ```rust
 #[tokio::main]
@@ -891,11 +891,11 @@ async fn main() -> Result<(), Box<dyn Error>> {
 }
 ```
 
-Strežnik je zdaj nastavljen za zagotavljanje osnovnih informacij o sebi. Naslednje bomo dodali orodje za izvajanje seštevanja.
+Strežnik je zdaj nastavljen za zagotavljanje osnovnih informacij o sebi. Naslednje bomo dodali orodje za seštevanje.
 
 ### -5- Dodajanje orodja in vira
 
-Dodajte orodje in vir z dodajanjem naslednje kode:
+Dodajte orodje in vir z naslednjo kodo:
 
 #### TypeScript
 
@@ -920,7 +920,7 @@ server.resource(
 );
 ```
 
-Vaše orodje sprejema parametra `a` in `b` ter izvaja funkcijo, ki ustvari odgovor v obliki:
+Vaše orodje prejme parametra `a` in `b` ter izvede funkcijo, ki ustvari odgovor v obliki:
 
 ```typescript
 {
@@ -930,7 +930,7 @@ Vaše orodje sprejema parametra `a` in `b` ter izvaja funkcijo, ki ustvari odgov
 }
 ```
 
-Vaš vir je dostopen preko niza "greeting" in sprejema parameter `name` ter ustvari podoben odgovor kot orodje:
+Vaš vir je dostopen preko niza "greeting" in prejme parameter `name` ter ustvari podoben odziv kot orodje:
 
 ```typescript
 {
@@ -942,14 +942,14 @@ Vaš vir je dostopen preko niza "greeting" in sprejema parameter `name` ter ustv
 #### Python
 
 ```python
-# Dodajte orodje za seštevanje
+# Dodaj orodje za seštevanje
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
     return a + b
 
 
-# Dodajte dinamičen vir pozdravov
+# Dodaj dinamičen vir pozdravov
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
@@ -958,12 +958,12 @@ def get_greeting(name: str) -> str:
 
 V zgornji kodi smo:
 
-- Definirali orodje `add`, ki sprejema parametra `a` in `b`, oba cela števila.
-- Ustvarili vir z imenom `greeting`, ki sprejema parameter `name`.
+- Določili orodje `add`, ki prejme dve celotni vrednosti: `a` in `b`.
+- Ustvarili vir imenovan `greeting`, ki prejme parameter `name`.
 
 #### .NET
 
-Dodajte to v vašo datoteko Program.cs:
+Dodajte to v datoteko Program.cs:
 
 ```csharp
 [McpServerToolType]
@@ -1018,7 +1018,7 @@ const server = new McpServer({
   version: "1.0.0"
 });
 
-// Dodaj orodje za seštevanje
+// Dodaj dodaten pripomoček
 server.tool(
   "add",
   { a: z.number(), b: z.number() },
@@ -1027,7 +1027,7 @@ server.tool(
   })
 );
 
-// Dodaj dinamični vir pozdravov
+// Dodaj dinamičen vir pozdravov
 server.resource(
   "greeting",
   new ResourceTemplate("greeting://{name}", { list: undefined }),
@@ -1061,13 +1061,13 @@ def add(a: int, b: int) -> int:
     return a + b
 
 
-# Dodaj dinamični vir pozdravov
+# Dodaj dinamični pozdravni vir
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
     return f"Hello, {name}!"
 
-# Glavni blok izvajanja - to je potrebno za zagon strežnika
+# Glavni izvršilni blok - to je potrebno za zagon strežnika
 if __name__ == "__main__":
     mcp.run()
 ```
@@ -1106,7 +1106,7 @@ public static class CalculatorTool
 
 #### Java
 
-Vaša popolna glavna aplikacijska razrednica naj izgleda tako:
+Vaša celotna glavna aplikacijska razred naj izgleda takole:
 
 ```java
 // McpServerApplication.java
@@ -1135,7 +1135,7 @@ public class McpServerApplication {
 
 #### Rust
 
-Končna koda za Rust strežnik naj izgleda tako:
+Končna koda za Rust strežnik naj izgleda takole:
 
 ```rust
 use rmcp::{
@@ -1194,7 +1194,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
 }
 ```
 
-### -7- Testirajte strežnik
+### -7- Testiranje strežnika
 
 Zaženite strežnik z naslednjim ukazom:
 
@@ -1210,11 +1210,11 @@ npm run build
 mcp run server.py
 ```
 
-> Za uporabo MCP Inspectorja uporabite `mcp dev server.py`, ki samodejno zažene Inspector in zagotovi zahtevan žeton seje proxyja. Če uporabljate `mcp run server.py`, boste morali Inspector ročno zagnati in konfigurirati povezavo.
+> Za uporabo MCP Inspektorja uporabite `mcp dev server.py`, ki samodejno zažene Inspektor in zagotovi potreben proxy sejne žeton. Pri uporabi `mcp run server.py` pa boste morali Inspektor ročno zagnati in konfigurirati povezavo.
 
 #### .NET
 
-Prepričajte se, da ste v svojem projektni m imeniku:
+Poskrbite, da ste v direktoriju vašega projekta:
 
 ```sh
 cd McpCalculatorServer
@@ -1230,19 +1230,19 @@ java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
 
 #### Rust
 
-Zaženite naslednje ukaze za formatiranje in zagon strežnika:
+Zaženite naslednje ukaze za oblikovanje in zagon strežnika:
 
 ```sh
 cargo fmt
 cargo run
 ```
 
-### -8- Zagon z uporabo inspectorja
+### -8- Zaženi z uporabo inspektorja
 
-Inspector je odlično orodje, ki lahko zažene vaš strežnik in vam omogoča interakcijo z njim, da lahko testirate, ali deluje. Zaženimo ga:
+Inspektor je odlično orodje, ki lahko zažene vaš strežnik in vam omogoči interakcijo z njim, da preverite, ali deluje. Začnimo z zagonom:
 
 > [!NOTE]
-> lahko izgleda drugače v polju "command", saj vsebuje ukaz za zagon strežnika z vašim specifičnim runtime/
+> V polju "ukaz" se lahko prikaže drugače, ker vsebuje ukaz za zagon strežnika z vašim specifičnim runtime-om.
 
 #### TypeScript
 
@@ -1250,28 +1250,28 @@ Inspector je odlično orodje, ki lahko zažene vaš strežnik in vam omogoča in
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-ali ga dodajte v vaš *package.json* tako: `"inspector": "npx @modelcontextprotocol/inspector node build/index.js"` in nato zaženite `npm run inspector`
+ali ga dodajte v svoj *package.json* takole: `"inspector": "npx @modelcontextprotocol/inspector node build/index.js"` in nato zaženete `npm run inspector`
 
 #### Python
 
-Python ovije Node.js orodje imenovano inspector. Možno je poklicati to orodje tako:
+Python ovija orodje Node.js imenovano inspector. Orodje lahko pokličete tako:
 
 ```sh
 mcp dev server.py
 ```
 
-Vendar ne implementira vseh metod, ki so na voljo na orodju, zato je priporočljivo, da zaženete Node.js orodje neposredno, kot spodaj:
+Vendar pa ne implementira vseh metod, ki so na voljo v orodju, zato priporočamo, da zaženete Node.js orodje neposredno, kot spodaj:
 
 ```sh
 npx @modelcontextprotocol/inspector mcp run server.py
 ```
 
-Če uporabljate orodje ali IDE, ki omogoča konfiguracijo ukazov in argumentov za zagon skript,
-poskrbite, da nastavite `python` v polju `Command` in `server.py` kot `Arguments`. To zagotavlja pravilno delovanje skripte.
+Če uporabljate orodje ali IDE, ki omogoča konfiguracijo ukazov in argumentov za zagone skriptov,
+poskrbite, da je v polju `Command` nastavljeno `python` in kot `Arguments` `server.py`. To zagotavlja pravilno izvajanje skripte.
 
 #### .NET
 
-Prepričajte se, da ste v svoji projektni mapi:
+Poskrbite, da ste v mapi svojega projekta:
 
 ```sh
 cd McpCalculatorServer
@@ -1280,38 +1280,38 @@ npx @modelcontextprotocol/inspector dotnet run
 
 #### Java
 
-Prepričajte se, da vaš kalkulator strežnik deluje
+Preverite, da deluje vaš strežnik kalkulatorja  
 Nato zaženite inšpektor:
 
 ```cmd
 npx @modelcontextprotocol/inspector
 ```
 
-V spletni vmesnik inšpektorja:
+V spletni uporabniški vmesnik inšpektorja:
 
-1. Izberite "SSE" kot tip prenosa
-2. Nastavite URL na: `http://localhost:8080/sse`
+1. Izberite "SSE" kot tip transporta  
+2. Nastavite URL na: `http://localhost:8080/sse`  
 3. Kliknite "Connect"
 
 ![Connect](../../../../translated_images/sl/tool.163d33e3ee307e20.webp)
 
-**Zdaj ste povezani s strežnikom**
-**Oddelek za testiranje Java strežnika je zdaj zaključen**
+**Zdaj ste povezani s strežnikom**  
+**S tem je testiranje Java strežnika zaključeno**
 
-Naslednji oddelek govori o interakciji s strežnikom.
+Naslednji odsek je o interakciji s strežnikom.
 
-Videti bi morali naslednji uporabniški vmesnik:
+Morali bi videti naslednji uporabniški vmesnik:
 
 ![Connect](../../../../translated_images/sl/connect.141db0b2bd05f096.webp)
 
-1. Povežite se s strežnikom s klikom na gumb Connect
-  Ko se povežete s strežnikom, bi morali zdaj videti naslednje:
+1. Povežite se s strežnikom s klikom na gumb Connect  
+  Ko se povežete s strežnikom, bi morali videti naslednje:
 
   ![Connected](../../../../translated_images/sl/connected.73d1e042c24075d3.webp)
 
-1. Izberite "Tools" in "listTools", morali bi videti "Add", izberite "Add" in izpolnite vrednosti parametrov.
+1. Izberite "Tools" in "listTools", morali bi videti prikazano "Add", izberite "Add" in vnesite vrednosti parametrov.
 
-  Videli boste naslednji odgovor, tj. rezultat orodja "add":
+  Videli boste naslednji odgovor, torej rezultat orodja "add":
 
   ![Result of running add](../../../../translated_images/sl/ran-tool.a5a6ee878c1369ec.webp)
 
@@ -1327,39 +1327,39 @@ npx @modelcontextprotocol/inspector cargo run --cli --method tools/call --tool-n
 
 ### Uradni SDK-ji
 
-MCP ponuja uradne SDK-je za več jezikov:
+MCP nudi uradne SDK-je za več jezikov:
 
-- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - Vzdrževan v sodelovanju z Microsoftom
-- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Vzdrževan v sodelovanju s Spring AI
-- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Uradna implementacija za TypeScript
-- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Uradna implementacija za Python
-- [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - Uradna implementacija za Kotlin
-- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - Vzdrževan v sodelovanju z Loopwork AI
-- [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - Uradna implementacija za Rust
+- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - vzdrževano v sodelovanju z Microsoftom  
+- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - vzdrževano v sodelovanju s Spring AI  
+- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - uradna implementacija za TypeScript  
+- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - uradna Python implementacija  
+- [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - uradna Kotlin implementacija  
+- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - vzdrževano v sodelovanju z Loopwork AI  
+- [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - uradna Rust implementacija  
 
-## Ključne ugotovitve
+## Ključni poudarki
 
-- Nastavitev MCP razvojnega okolja je enostavna z jezikovno specifičnimi SDK-ji
-- Gradnja MCP strežnikov vključuje ustvarjanje in registracijo orodij z jasnimi shemami
-- Testiranje in odpravljanje napak sta ključna za zanesljive MCP implementacije
+- Nastavitev MCP razvojnega okolja je enostavna z jezikovno specifičnimi SDK-ji  
+- Gradnja MCP strežnikov vključuje ustvarjanje in registracijo orodij z jasnimi shemami  
+- Testiranje in odpravljanje napak sta ključna za zanesljive implementacije MCP  
 
-## Vzorci
+## Primeri
 
-- [Java Calculator](../samples/java/calculator/README.md)
-- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
-- [JavaScript Calculator](../samples/javascript/README.md)
-- [TypeScript Calculator](../samples/typescript/README.md)
-- [Python Calculator](../../../../03-GettingStarted/samples/python)
-- [Rust Calculator](../../../../03-GettingStarted/samples/rust)
+- [Java kalkulator](../samples/java/calculator/README.md)  
+- [.Net kalkulator](../../../../03-GettingStarted/samples/csharp)  
+- [JavaScript kalkulator](../samples/javascript/README.md)  
+- [TypeScript kalkulator](../samples/typescript/README.md)  
+- [Python kalkulator](../../../../03-GettingStarted/samples/python)  
+- [Rust kalkulator](../../../../03-GettingStarted/samples/rust)  
 
 ## Naloga
 
 Ustvarite preprost MCP strežnik z orodjem po vaši izbiri:
 
-1. Implementirajte orodje v vašem izbranem jeziku (.NET, Java, Python, TypeScript ali Rust).
-2. Določite vhodne parametre in vrednosti za vrnitev.
-3. Zaženite inšpektor, da zagotovite, da strežnik deluje kot je predvideno.
-4. Preizkusite implementacijo z različnimi vnosi.
+1. Implementirajte orodje v izbranem jeziku (.NET, Java, Python, TypeScript ali Rust).  
+2. Definirajte vhodne parametre in rezultate.  
+3. Zaženite inšpektor, da zagotovite pravilno delovanje strežnika.  
+4. Preizkusite implementacijo z različnimi vhodi.  
 
 ## Rešitev
 
@@ -1367,9 +1367,9 @@ Ustvarite preprost MCP strežnik z orodjem po vaši izbiri:
 
 ## Dodatni viri
 
-- [Gradnja agentov z uporabo Model Context Protocol na Azure](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)
-- [Oddaljeni MCP z Azure Container Apps (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)
-- [.NET OpenAI MCP Agent](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)
+- [Gradnja agentov z uporabo Model Context Protocol na Azure](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)  
+- [Oddaljeni MCP z Azure Container Apps (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)  
+- [.NET OpenAI MCP agent](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)  
 
 ## Kaj sledi
 
@@ -1379,5 +1379,5 @@ Naslednje: [Začetek z MCP odjemalci](../02-client/README.md)
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Omejitev odgovornosti**:
-Ta dokument je bil preveden z uporabo storitve za prevajanje z umetno inteligenco [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, vas opozarjamo, da lahko avtomatizirani prevodi vsebujejo napake ali netočnosti. Izvirni dokument v njegovem izvirnem jeziku velja za avtoritativni vir. Za ključne informacije priporočamo strokovni človeški prevod. Za morebitna nesporazume ali napačne interpretacije, ki izhajajo iz uporabe tega prevoda, ne odgovarjamo.
+Ta dokument je bil preveden z uporabo AI prevajalske storitve [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, vas opozarjamo, da lahko avtomatizirani prevodi vsebujejo napake ali netočnosti. Izvirni dokument v njegovem izvoru jeziku velja kot avtoritativni vir. Za ključne informacije priporočamo strokovni človeški prevod. Za kakršnakoli nesporazume ali napačne interpretacije, ki izhajajo iz uporabe tega prevoda, ne odgovarjamo.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

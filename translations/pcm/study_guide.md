@@ -1,10 +1,10 @@
 # Model Context Protocol (MCP) for Beginners - Study Guide
 
-Dis study guide dey give overview of di repository structure and content for di "Model Context Protocol (MCP) for Beginners" curriculum. Use dis guide make you fit navigate di repository well well and take advantage of di resources wey dey.
+Dis study guide dey give you overview of di repository structure and di content wey dey for di "Model Context Protocol (MCP) for Beginners" curriculum. Use dis guide to waka inside di repository well-well and use all di resources wey dey available well.
 
 ## Repository Overview
 
-Di Model Context Protocol (MCP) na one standardized framework wey dey guide how AI models dey interact wit client applications. Di protocol start from Anthropic but now na di bigger MCP community dey maintain am through di official GitHub organization. Dis repository get full curriculum wit hands-on code examples for C#, Java, JavaScript, Python, and TypeScript, wey dem design for AI developers, system architects, and software engineers.
+Di Model Context Protocol (MCP) na one standardized framework wey AI models and client applications dey use to connect. Anthropic na di one wey first create am, but now di whole MCP community dey maintain am through di official GitHub organization. Dis repository get full curriculum with hands-on code examples for C#, Java, JavaScript, Python, and TypeScript, e good for AI developers, system architects, and software engineers.
 
 ## Visual Curriculum Map
 
@@ -13,14 +13,14 @@ mindmap
   root((MCP for Beginners))
     00. Introduction
       ::icon(fa fa-book)
-      (Protocol Overview)
+      (Protokol Overview)
       (Standardization Benefits)
       (Real-world Use Cases)
       (AI Integration Fundamentals)
     01. Core Concepts
       ::icon(fa fa-puzzle-piece)
       (Client-Server Architecture)
-      (Protocol Components)
+      (Protokol Components)
       (Messaging Patterns)
       (Transport Mechanisms)
       (Tasks - Experimental)
@@ -73,6 +73,7 @@ mindmap
       (Entra ID Integration)
       (Web Search MCP)
       (Protocol Features Deep Dive)
+      (Adversarial Multi-Agent Reasoning)
       
     06. Community
       ::icon(fa fa-users)
@@ -123,11 +124,11 @@ mindmap
 ```
 ## Repository Structure
 
-Di repository organize into eleven main sections, each one dey focus on different parts of MCP:
+Di repository arrange inside eleven main parts, each one dey focus on different aspect of MCP:
 
 1. **Introduction (00-Introduction/)**
    - Overview of di Model Context Protocol
-   - Why standardization important for AI pipelines
+   - Why e good make AI pipelines dey standardized
    - Practical use cases and benefits
 
 2. **Core Concepts (01-CoreConcepts/)**
@@ -136,71 +137,72 @@ Di repository organize into eleven main sections, each one dey focus on differen
    - Messaging patterns for MCP
 
 3. **Security (02-Security/)**
-   - Security threats inside MCP-based systems
-   - Best practices to secure how you implement am
-   - Authentication and authorization strategies
-   - **Comprehensive Security Documentation**:
+   - Security threats wey dey MCP-based systems
+   - Best ways to keep di systems safe
+   - Authentication and authorization styles
+   - **Full Security Documentation**:
      - MCP Security Best Practices 2025
      - Azure Content Safety Implementation Guide
      - MCP Security Controls and Techniques
      - MCP Best Practices Quick Reference
-   - **Key Security Topics**:
+   - **Main Security Topics**:
      - Prompt injection and tool poisoning attacks
      - Session hijacking and confused deputy problems
      - Token passthrough vulnerabilities
-     - Excessive permissions and access control
-     - Supply chain security for AI components
+     - Too much permissions and access control
+     - Supply chain security for AI parts
      - Microsoft Prompt Shields integration
 
 4. **Getting Started (03-GettingStarted/)**
    - How to set up environment and configuration
-   - Creating basic MCP servers and clients
-   - How to integrate with existing applications
-   - Include sections for:
+   - How to make simple MCP servers and clients
+   - How to join with existing apps
+   - E get sections for:
      - First server implementation
      - Client development
      - LLM client integration
      - VS Code integration
      - Server-Sent Events (SSE) server
-     - Advanced server usage
+     - Advanced server use
      - HTTP streaming
      - AI Toolkit integration
-     - Testing strategies
+     - Testing ways
      - Deployment guidelines
 
 5. **Practical Implementation (04-PracticalImplementation/)**
    - How to use SDKs for different programming languages
-   - Debugging, testing, and validation techniques
-   - How to create reusable prompt templates and workflows
-   - Sample projects wey get implementation examples
+   - Debugging, testing, and how to make sure e dey work
+   - Making reusable prompt templates and workflows
+   - Sample projects wey show implementation examples
 
 6. **Advanced Topics (05-AdvancedTopics/)**
-   - Context engineering techniques
+   - Context engineering methods
    - Foundry agent integration
    - Multi-modal AI workflows 
    - OAuth2 authentication demos
-   - Real-time search capabilities
+   - Real-time search abilities
    - Real-time streaming
    - Root contexts implementation
-   - Routing strategies
-   - Sampling techniques
-   - Scaling approaches
+   - Routing approaches
+   - Sampling methods
+   - Scaling methods
    - Security considerations
    - Entra ID security integration
    - Web search integration
+   - Adversarial multi-agent reasoning (debate patterns)
 
 7. **Community Contributions (06-CommunityContributions/)**
-   - How you fit contribute code and documentation
-   - How to collaborate through GitHub
-   - Community-driven improvements and feedback
+   - How to contribute code and documentation
+   - How to collab through GitHub
+   - Community-driven improve and feedback
    - How to use different MCP clients (Claude Desktop, Cline, VSCode)
-   - Work with popular MCP servers including image generation ones
+   - How to work with popular MCP servers including image generation
 
 8. **Lessons from Early Adoption (07-LessonsfromEarlyAdoption/)**
-   - Real-world implementations and success stories
+   - Real-world use and success stories
    - How to build and deploy MCP-based solutions
    - Trends and future roadmap
-   - **Microsoft MCP Servers Guide**: Full guide to 10 production-ready Microsoft MCP servers including:
+   - **Microsoft MCP Servers Guide**: Complete guide for 10 production-ready Microsoft MCP servers including:
      - Microsoft Learn Docs MCP Server
      - Azure MCP Server (15+ specialized connectors)
      - GitHub MCP Server
@@ -213,50 +215,50 @@ Di repository organize into eleven main sections, each one dey focus on differen
      - Microsoft 365 Agents Toolkit MCP Server
 
 9. **Best Practices (08-BestPractices/)**
-   - Performance tuning and optimization
-   - How to design fault-tolerant MCP systems
-   - Testing and resilience strategies
+   - How to tune performance and optimize
+   - How to design MCP systems wey no go fail easily
+   - Testing and resilience ways
 
 10. **Case Studies (09-CaseStudy/)**
-    - **Seven complete case studies** wey show how MCP fit work for different scenarios:
-    - **Azure AI Travel Agents**: Multi-agent orchestration wit Azure OpenAI and AI Search
-    - **Azure DevOps Integration**: Automate workflow processes wit YouTube data updates
-    - **Real-Time Documentation Retrieval**: Python console client wit streaming HTTP
-    - **Interactive Study Plan Generator**: Chainlit web app wit conversational AI
-    - **In-Editor Documentation**: VS Code integration wit GitHub Copilot workflows
-    - **Azure API Management**: Enterprise API integration wit MCP server creation
-    - **GitHub MCP Registry**: Ecosystem development and agentic integration platform
-    - Implementation examples wey cover enterprise integration, developer productivity, and ecosystem development
+    - **Seven full case studies** wey show how MCP dey work for different situations:
+    - **Azure AI Travel Agents**: Multi-agent coordination using Azure OpenAI and AI Search
+    - **Azure DevOps Integration**: Automate workflow with YouTube data updates
+    - **Real-Time Documentation Retrieval**: Python console client wey use streaming HTTP
+    - **Interactive Study Plan Generator**: Chainlit web app with conversational AI
+    - **In-Editor Documentation**: VS Code integration with GitHub Copilot workflows
+    - **Azure API Management**: Enterprise API join with MCP server build
+    - **GitHub MCP Registry**: Ecosystem development and agent integration platform
+    - Implementation examples wey cover enterprise integration, developer productivity, and ecosystem growth
 
 11. **Hands-on Workshop (10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/)**
-    - Full hands-on workshop wey combine MCP wit AI Toolkit
-    - Build intelligent apps wey bridge AI models wit real-world tools
-    - Practical modules cover fundamentals, custom server development, and production deployment strategies
+    - Full hands-on workshop wey mix MCP with AI Toolkit
+    - How to build smart apps wey join AI models and real-world tools
+    - Practical modules wey cover basics, custom server development, and how to launch for production
     - **Lab Structure**:
-      - Lab 1: MCP Server Fundamentals
+      - Lab 1: MCP Server Basics
       - Lab 2: Advanced MCP Server Development
       - Lab 3: AI Toolkit Integration
       - Lab 4: Production Deployment and Scaling
-    - Lab-based learning wit step-by-step instructions
+    - Lab-based learning with step-by-step guide
 
 12. **MCP Server Database Integration Labs (11-MCPServerHandsOnLabs/)**
-    - **Comprehensive 13-lab learning path** wey teach how to build production-ready MCP servers wit PostgreSQL integration
-    - **Real-world retail analytics implementation** using Zava Retail use case
-    - **Enterprise-grade patterns** including Row Level Security (RLS), semantic search, and multi-tenant data access
-    - **Complete Lab Structure**:
+    - **Big 13-lab learning path** to build production-ready MCP servers with PostgreSQL join
+    - **Real-world retail analytics using Zava Retail case**
+    - **Enterprise-grade patterns like Row Level Security (RLS), semantic search, and multi-tenant data access**
+    - **Full Lab Structure**:
       - **Labs 00-03: Foundations** - Introduction, Architecture, Security, Environment Setup
-      - **Labs 04-06: Building the MCP Server** - Database Design, MCP Server Implementation, Tool Development
+      - **Labs 04-06: Building MCP Server** - Database Design, MCP Server Implementation, Tool Development
       - **Labs 07-09: Advanced Features** - Semantic Search, Testing & Debugging, VS Code Integration
       - **Labs 10-12: Production & Best Practices** - Deployment, Monitoring, Optimization
     - **Technologies Covered**: FastMCP framework, PostgreSQL, Azure OpenAI, Azure Container Apps, Application Insights
-    - **Learning Outcomes**: Production-ready MCP servers, database integration patterns, AI-powered analytics, enterprise security
+    - **Learning Outcomes**: Production-ready MCP servers, database join patterns, AI-powered analytics, enterprise security
 
 ## Additional Resources
 
-Di repository get other resources to support you:
+Di repository get extra resources:
 
-- **Images folder**: Get diagrams and illustrations wey dem use for di curriculum
-- **Translations**: Multi-language support wit automated translations of documentation
+- **Images folder**: Di diagrams and illustrations wey dey inside di curriculum
+- **Translations**: Support for many languages with automated doc translations
 - **Official MCP Resources**:
   - [MCP Documentation](https://modelcontextprotocol.io/)
   - [MCP Specification](https://spec.modelcontextprotocol.io/)
@@ -264,21 +266,21 @@ Di repository get other resources to support you:
 
 ## How to Use This Repository
 
-1. **Sequential Learning**: Follow di chapters one by one (00 reach 11) for structured learning experience.
-2. **Language-Specific Focus**: If you get interest for one programming language, check di samples directories for examples in your language.
-3. **Practical Implementation**: Start wit di "Getting Started" section to set up your environment and create your first MCP server and client.
-4. **Advanced Exploration**: After you sabi di basics, enter advanced topics to grow your knowledge.
-5. **Community Engagement**: Join MCP community through GitHub discussions and Discord channels to connect wit experts and other developers.
+1. **Sequential Learning**: Follow chapters one by one (00 to 11) to learn properly.
+2. **Language-Specific Focus**: If you like one programming language, check samples directories for code in your language.
+3. **Practical Implementation**: Start with "Getting Started" section to set up your environment and make your first MCP server and client.
+4. **Advanced Exploration**: After you sabi basics well, enter advanced topics to learn more.
+5. **Community Engagement**: Join MCP community for GitHub discussions and Discord channels to meet experts and other developers.
 
 ## MCP Clients and Tools
 
-Di curriculum dey cover different MCP clients and tools:
+Curriculum cover plenty MCP clients and tools:
 
 1. **Official Clients**:
    - Visual Studio Code 
    - MCP inside Visual Studio Code
    - Claude Desktop
-   - Claude for VSCode 
+   - Claude inside VSCode 
    - Claude API
 
 2. **Community Clients**:
@@ -295,7 +297,7 @@ Di curriculum dey cover different MCP clients and tools:
 
 ## Popular MCP Servers
 
-Di repository dey introduce many MCP servers, for example:
+Di repository show different MCP servers, including:
 
 1. **Official Microsoft MCP Servers**:
    - Microsoft Learn Docs MCP Server
@@ -332,15 +334,15 @@ Di repository dey introduce many MCP servers, for example:
 
 ## Contributing
 
-Dis repository dey welcome contributions from di community. Check di Community Contributions section for tips on how to contribute well well to di MCP ecosystem.
+Dis repository dey welcome contributions from di community. See di Community Contributions section for how to contribute well for MCP ecosystem.
 
 ----
 
-*Dis study guide last update na February 5, 2026, e reflect di latest MCP Specification 2025-11-25 and e give overview of di repository as of dat date. Di repository content fit still get update after dat day.*
+*Dis study guide last update na for February 5, 2026, e show latest MCP Specification 2025-11-25 and e give overview of di repository as per dat date. Di content fit get update after dat time.*
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Disclaimer**:
-Dis document don translate wit AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). Even though we try make am correct, abeg make you sabi say automated translation fit get mistake or no too correct. Di original document for im own language na di main correct source. For important info, na human professional translation better. We no go take any yawa wey fit happen as result of dis translation.
+**Disclaimer**:  
+Dis document don translate wit AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). Even though we try to make am correct, abeg sabi say automated translation fit get error or no too correct. Di original document wey e dey for im own language na di correct one wey you suppose use. For important information, better make person wey sabi translate am well well do am. We no go responsible for any misunderstanding or wrong interpretation wey fit happen from using dis translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

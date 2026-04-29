@@ -1,10 +1,10 @@
 # MCP Apps
 
-MCP Apps na new way we dey do tins for MCP. The idea be say, no be only say you go respond with data wey dey come from tool call, but you go still provide info on how person suppose take dey interact with the info. That one mean say tool results fit get UI info inside. Why we go want dat one? Well, make you think how you dey do tins today. You likely dey use the result wey MCP Server give by putting one kain frontend upfront, na code you go write and still maintain be dat. Sometimes na wetin you want be dat, but other times e go beta if you fit just bring one small info wey get everything inside from data to user interface.
+MCP Apps na new way wey MCP dey work. The idea be say no be only to respond with data back from tool call, but you go also provide info on how people suppose dey interact with that info. That one mean say tool results fit get UI info inside. Why we go want am? Well, think about how you dey do tins today. You dey probably dey use the results of MCP Server by putting some kind of frontend in front of am, na code you go need write and maintain. Sometimes na wetin you want, but sometimes e go better if you fit just carry one small snippet of info wey complete, wey get e everything from data to user interface.
 
 ## Overview
 
-Dis lesson go give you practical guide on MCP Apps, how to start with am and how to join am with your existing Web Apps. MCP Apps na fresh new addition to MCP Standard.
+Dis lesson go give you real guide on MCP Apps, how to start with am and how to join am with your existing Web Apps. MCP Apps na beta new addition to MCP Standard.
 
 ## Learning Objectives
 
@@ -12,15 +12,13 @@ By the end of dis lesson, you go fit:
 
 - Explain wetin MCP Apps be.
 - When to use MCP Apps.
-- Build and join your own MCP Apps.
+- Build and put your own MCP Apps join.
 
 ## MCP Apps - how e dey work
 
-The idea for MCP Apps na to provide answer wey basically be component wey person go fit render. Such component fit get visuals and interactivity too, like button clicks, user input and more. Make we start with the server side and our MCP Server. To create MCP App component you need two: create tool and still the application resource. These two parts na resourceUri connect dem.
+The idea for MCP Apps na to provide response wey be like component wey go render. Such component fit get both visuals and interactivity, like button clicks, user input and more. Make we start from server side with our MCP Server. To create MCP App component you need create tool plus the application resource. These two parts connect with resourceUri.
 
-See example:
-
-Make we try talk about the tins we dey do and how each part dey work:
+See example here. Make we try show wetin dey involved and which parts dey do wetin:
 
 ```text
 server.ts -- responsible for registering tools and the component as a UI component
@@ -29,7 +27,7 @@ src/
 mcp-app.html -- the user interface
 ```
 
-Dis picture dey show the architecture to take create component and the logic behind am.
+Dis visual dey describe how to create component and e logic.
 
 ```mermaid
 flowchart LR
@@ -58,16 +56,16 @@ flowchart LR
   T -->|Tool result data| EH
   EH -->|Send message to parent page| H
 ```
-Make we talk about the responsibility for backend and frontend.
+Make we try describe the roles for backend and frontend.
 
 ### The backend
 
-Two tins we need to do here:
+Two tins we need do here:
 
-- Register tools we want make dem interact with.
+- Register the tools we want to dey interact with.
 - Define the component.
 
-**Register the tool**
+**Registering the tool**
 
 ```typescript
 registerAppTool(
@@ -77,7 +75,7 @@ registerAppTool(
       title: "Get Time",
       description: "Returns the current server time.",
       inputSchema: {},
-      _meta: { ui: { resourceUri } }, // Connect dis tool to im UI resource
+      _meta: { ui: { resourceUri } }, // Dey connect dis tool to im UI resource
     },
     async () => {
       const time = new Date().toISOString();
@@ -87,16 +85,16 @@ registerAppTool(
 
 ```
 
-The code wey dey before show the behavior, where e expose tool wey dem call `get-time`. E no need input but e go produce current time. We fit still define `inputSchema` for tools wey need user input.
+Code wey show before dey describe the behavior, e get tool wey dem call `get-time`. E no need input but e go produce the current time. We fit define `inputSchema` for tools if we need accept user input.
 
-**Register the component**
+**Registering the component**
 
-For same file, we need also register the component:
+For the same file, we need register the component too:
 
 ```typescript
 const resourceUri = "ui://get-time/mcp-app.html";
 
-// Make you register the resource, wey go return di bundled HTML/JavaScript for di UI.
+// Register di resource, wey go return di bundled HTML/JavaScript for di UI.
 registerAppResource(
   server,
   resourceUri,
@@ -114,18 +112,18 @@ registerAppResource(
 );
 ```
 
-You fit notice say we mention `resourceUri` to connect component with tools. Another important tin na the callback where we load the UI file and return the component.
+See how we mention `resourceUri` to connect component with e tools. Also the callback wey dey load the UI file and return the component na important.
 
 ### The component frontend
 
-Just like backend, two parts dey here:
+Like backend, two parts dey here:
 
-- Frontend wey pure HTML dey write.
+- Frontend wey pure HTML.
 - Code wey handle events and wetin to do, like calling tools or messaging the parent window.
 
 **User interface**
 
-Make we look user interface.
+Make us see the user interface.
 
 ```html
 <!-- mcp-app.html -->
@@ -147,30 +145,30 @@ Make we look user interface.
 
 **Event wireup**
 
-Last part na event wireup. That one mean say we go find which part for UI wey need event handlers and wetin to do if events happen:
+Last part na event wireup. E mean say we go find which part for UI need event handlers and what to do if events show:
 
 ```typescript
 // mcp-app.ts
 
 import { App } from "@modelcontextprotocol/ext-apps";
 
-// Get element reference dem
+// Grab element references
 const serverTimeEl = document.getElementById("server-time")!;
 const getTimeBtn = document.getElementById("get-time-btn")!;
 
 // Make app instance
 const app = new App({ name: "Get Time App", version: "1.0.0" });
 
-// Handle tool result dem from di server. Set am before `app.connect()` make e no
-// miss di first tool result.
+// Manage tool results wey come from the server. Set am before `app.connect()` make e no miss
+// di first tool result.
 app.ontoolresult = (result) => {
   const time = result.content?.find((c) => c.type === "text")?.text;
   serverTimeEl.textContent = time ?? "[ERROR]";
 };
 
-// Wire up button click
+// Connect button click
 getTimeBtn.addEventListener("click", async () => {
-  // `app.callServerTool()` dey make UI fit request fresh data from di server
+  // `app.callServerTool()` dey allow di UI request fresh data from di server
   const result = await app.callServerTool({ name: "get-time", arguments: {} });
   const time = result.content?.find((c) => c.type === "text")?.text;
   serverTimeEl.textContent = time ?? "[ERROR]";
@@ -180,16 +178,16 @@ getTimeBtn.addEventListener("click", async () => {
 app.connect();
 ```
 
-As you fit see for top, na normal code to hook DOM elements to events. One important tin na the call to `callServerTool` wey go call tool for backend.
+Like you see for the code above, na normal code to join DOM elements with events. The call to `callServerTool` dey important because e go call tool for backend.
 
-## How to handle user input
+## Dealing with user input
 
-So far, we see component wey get button wey when you click e call tool. Make we see if we fit add more UI tins like input field and try send arguments to tool. Make we do FAQ functionality. How e go work:
+So far, we don see component wey get button when you click e go call tool. Make we try add more UI elements like input field and see if we fit send arguments to tool. Make we build FAQ function. Wetin suppose happen be:
 
-- Suppose get button and input element where user go type keyword like "Shipping" to search. This one go call backend tool wey go search FAQ data.
-- Tool wey fit run the FAQ search.
+- E go get button and input element wey user go type keyword like "Shipping". This one go call tool for backend to search FAQ data.
+- Tool wey fit support FAQ search.
 
-Make we add support for backend first:
+Make we add the support to backend first:
 
 ```typescript
 const faq: { [key: string]: string } = {
@@ -216,7 +214,7 @@ registerAppTool(
   );
 ```
 
-Wet we dey see here na how we dey fill `inputSchema` and give am `zod` schema:
+See how we fill `inputSchema` and give am `zod` schema like dis:
 
 ```typescript
 inputSchema: zod.object({
@@ -224,9 +222,9 @@ inputSchema: zod.object({
 })
 ```
 
-For top schema we talk say input parameter dey wey dem call `query` and e be optional with default value "shipping".
+For schema we talk say we get input parameter `query` and e fit optional with default "shipping".
 
-Ok, now make we waka go *mcp-app.html* to see the UI wey we need create:
+Ok, make we go *mcp-app.html* see wetin UI we go create for this:
 
 ```html
 <div class="faq">
@@ -237,7 +235,7 @@ Ok, now make we waka go *mcp-app.html* to see the UI wey we need create:
   </div>
 ```
 
-Great, now we get input element and button. Make we waka go *mcp-app.ts* to wire up these events:
+Great, now we get input element and button. Make we check *mcp-app.ts* to wire these events:
 
 ```typescript
 const getFaqBtn = document.getElementById("get-faq-btn")!;
@@ -251,28 +249,28 @@ getFaqBtn.addEventListener("click", async () => {
 });
 ```
 
-For code wey dey top we:
+For the code above we:
 
-- Create references to the UI elements wey interesting.
-- Handle button click, parse input element value and call `app.callServerTool()` with `name` and `arguments` where the `arguments` pass `query` as value.
+- Create reference to interactive UI elements.
+- Handle button click to get input element value and we call `app.callServerTool()` with `name` and `arguments` where `query` dey as value.
 
-Wetin actually dey happen when you call `callServerTool` be say e send message to the parent window and that window go call MCP Server.
+Wetins really happen when you call `callServerTool` be say e send message to parent window and that window go call MCP Server.
 
 ### Try am
 
-If you try am, you suppose see this:
+Try am now you go see dis:
 
 ![](../../../../translated_images/pcm/faq.f78abe6b2cc68c83.webp)
 
-And here we try am with input "warranty"
+And see how e dey when we try input like "warranty"
 
 ![](../../../../translated_images/pcm/faq-input.3e276f1c3d7e061e.webp)
 
 To run this code, go [Code section](./code/README.md)
 
-## Testing for Visual Studio Code
+## Testing in Visual Studio Code
 
-Visual Studio Code get beta support for MVP Apps and e be one of the easiest way to test your MCP Apps. To use Visual Studio Code, add server entry to *mcp.json* like this:
+Visual Studio Code get beta support for MCP Apps and e be one of easiest way to test your MCP Apps. To use Visual Studio Code, add server entry to *mcp.json* like dis:
 
 ```json
 "my-mcp-server-7178eca7": {
@@ -281,29 +279,29 @@ Visual Studio Code get beta support for MVP Apps and e be one of the easiest way
   }
 ```
 
-Then start the server, you go fit dey communicate with your MVP App through Chat Window if you get GitHub Copilot installed.
+Then start server, you fit now communicate with your MCP App using Chat Window if you get GitHub Copilot install.
 
-Via prompt, for example "#get-faq":
+You fit trigger am with prompt like "#get-faq":
 
 ![Visual Studio run prompt](../../../../translated_images/pcm/vscode-run.16cbab9436499f32.webp)
 
-And just like when you run am for web browser, e show the same way:
+Like how you run am for web browser, e go render the same way:
 
 ![UI Visual Studio Code](../../../../translated_images/pcm/vscode-ui.f2771dcfce25ca0f.webp)
 
 ## Assignment
 
-Make you create rock paper scissor game. E suppose get these:
+Create rock paper scissor game. E suppose get dis:
 
 UI:
 
 - drop down list with options
 - button to submit choice
-- label to show who pick which option and who win
+- label wey show who pick wetin and who win
 
 Server:
 
-- tool rock paper scissor wey go take "choice" as input. E go also render computer choice and declare winner
+- get rock paper scissor tool wey take "choice" as input. E go show computer choice and decide who win.
 
 ## Solution
 
@@ -311,24 +309,24 @@ Server:
 
 ## Summary
 
-We don learn about this new MCP Apps paradigm. E be new paradigm wey let MCP Servers talk not only about the data but how to present the data.
+We learn about dis new way MCP Apps dey work. Na new way wey let MCP Servers get opinion about not just data but how data suppose show.
 
-Also, we learn say MCP Apps dey hosted inside IFrame and to talk to MCP Servers, dem need send messages to the parent web app. Plenty libraries dey for both JavaScript and React to make this communication easy.
+Plus, we learn say MCP Apps dey inside IFrame and to talk with MCP Servers dem go need send messages to parent web app. Plenty libraries dey for JavaScript, React and more wey make communication easy.
 
 ## Key Takeaways
 
-Wet you learn be this:
+Wetins you learn be:
 
-- MCP Apps na new standard wey fit help when you want send both data and UI features.
-- This kind apps dey run inside IFrame for security reasons.
+- MCP Apps na new standard wey fit help when you want carry both data and UI features.
+- Dis kind apps dey run for IFrame for security sake.
 
-## Wet Next
+## What's Next
 
 - [Chapter 4](../../04-PracticalImplementation/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Disclaimer**:
-Dis document don translate wit AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). Even tho we dey try make am correct, abeg sabi say automated translation fit get some mistakes or yawa. Di original document for dia own language na di correct one wey suppose get priority. If na serious matter, make person use professional human translation. We no carry any wahala or misunderstanding wey fit happen because of dis translation.
+**Disclaimer**:  
+Dis document don translate wit AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). Even tho we dey try make am correct, abeg sabi say automated translations fit get errors or mistakes. Di original document wey dey di native language na di correct and true source. For important info, make person wey sabi translate am well do am. We no go responsible for any wahala or wrong meaning wey fit show from dis translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

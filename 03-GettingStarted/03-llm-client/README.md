@@ -1387,7 +1387,7 @@ Take the code from the exercise and build out the server with some more tools. T
 
 ## Solution
 
-[Solution](/03-GettingStarted/03-llm-client/solution/README.md)
+[Solution](./solution/README.md)
 
 ## Key Takeaways
 

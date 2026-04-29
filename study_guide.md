@@ -73,6 +73,7 @@ mindmap
       (Entra ID Integration)
       (Web Search MCP)
       (Protocol Features Deep Dive)
+      (Adversarial Multi-Agent Reasoning)
       
     06. Community
       ::icon(fa fa-users)
@@ -189,6 +190,7 @@ The repository is organized into eleven main sections, each focusing on differen
    - Security considerations
    - Entra ID security integration
    - Web search integration
+   - Adversarial multi-agent reasoning (debate patterns)
 
 7. **Community Contributions (06-CommunityContributions/)**
    - How to contribute code and documentation

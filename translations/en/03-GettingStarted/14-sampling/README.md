@@ -70,13 +70,13 @@ Ok, now we have a mile high view of a credible scenario, let's talk about the sa
 }
 ```
 
-There's a few things here worth calling out:
+There are a few things here worth calling out:
 
 - Prompt, under content -> text, is our prompt that is an instruction for the LLM to summarize blog post content.
 
 - **modelPreferences**. This section is just that, a preference, a recommendation of what configuration to use with the LLM. The user can choose whether to go with these recommendations or change them. In this case there are recommendations on model to use and speed and intelligence priority.
 - **systemPrompt**, this is your normal system prompt that gives your LLM a personality and contains guidance instructions.
-- **maxTokens**, this is another property that's used to say how many tokens is recommended to use for this task.
+- **maxTokens**, this is another property that's used to say how many tokens are recommended to use for this task.
 
 ### Sampling response
 
@@ -159,7 +159,7 @@ Let's code a sampling server together, we will need to do the following:
 
 1. Create a tool on the Server.
 1. Said tool should create a sampling request
-1. Tool should wait for the clients sampling request to be answered.
+1. Tool should wait for the client's sampling request to be answered.
 1. Then the tool result should be produced.
 
 Let's see the code step by step:
@@ -331,9 +331,9 @@ To test this out in Visual Studio Code, do the following:
 
 In this assignment, you will build a slightly different Sampling namely a sampling integration that supports generating a product description. Here's your scenario:
 
-**Scenario**: The back office worker at an e-commerce needs help, it takes way too much time to generate product descriptions. Therefore, you are to build a solution where you can call a tool "create_product" with "title" and "keywords" as argument and it should produce a complete product including a "description" field that should be populated by a client's LLM.
+**Scenario**: The back office worker at an e-commerce needs help, it takes way too much time to generate product descriptions. Therefore, you are to build a solution where you can call a tool "create_product" with "title" and "keywords" as arguments and it should produce a complete product including a "description" field that should be populated by a client's LLM.
 
-TIP: use what you learned earlier how to construct this server and its tool using a sampling request.
+TIP: use what you learned earlier to construct this server and its tool using a sampling request.
 
 ## Solution
 
@@ -351,5 +351,5 @@ Sampling is a powerful feature that allows the server to delegate tasks to the c
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Disclaimer**:
-This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
+This document has been translated using AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

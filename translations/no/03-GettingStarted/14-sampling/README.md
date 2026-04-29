@@ -1,18 +1,18 @@
 # Sampling - delegere funksjoner til klienten
 
-Noen ganger trenger du at MCP-klienten og MCP-serveren samarbeider for å oppnå et felles mål. Du kan ha en situasjon hvor serveren trenger hjelp fra en LLM som kjører på klienten. For denne situasjonen er sampling det du bør bruke.
+Noen ganger trenger MCP-klienten og MCP-serveren å samarbeide for å oppnå et felles mål. Du kan ha et tilfelle hvor serveren trenger hjelp fra en LLM som kjører på klienten. For denne situasjonen er sampling det du bør bruke.
 
-La oss utforske noen brukstilfeller og hvordan man bygger en løsning som involverer sampling.
+La oss utforske noen brukstilfeller og hvordan bygge en løsning som involverer sampling.
 
 ## Oversikt
 
-I denne leksjonen fokuserer vi på å forklare når og hvor man bør bruke Sampling og hvordan man konfigurerer det.
+I denne leksjonen fokuserer vi på å forklare når og hvor man skal bruke Sampling og hvordan konfigurere det.
 
 ## Læringsmål
 
 I dette kapittelet skal vi:
 
-- Forklare hva Sampling er og når man bør bruke det.
+- Forklare hva Sampling er og når det skal brukes.
 - Vise hvordan man konfigurerer Sampling i MCP.
 - Gi eksempler på Sampling i praksis.
 
@@ -27,7 +27,7 @@ sequenceDiagram
     participant LLM
     participant MCP Server
 
-    User->>MCP Client: Forfatter blogginnlegg
+    User->>MCP Client: Skriv blogginnlegg
     MCP Client->>MCP Server: Verktøysanrop (utkast til blogginnlegg)
     MCP Server->>MCP Client: Prøvetakingsforespørsel (lag sammendrag)
     MCP Client->>LLM: Generer sammendrag av blogginnlegg
@@ -38,7 +38,7 @@ sequenceDiagram
 ```
 ### Sampling-forespørsel
 
-Ok, nå har vi en overordnet forståelse av et troverdig scenario, la oss snakke om sampling-forespørselen som serveren sender tilbake til klienten. Slik kan en slik forespørsel se ut i JSON-RPC-format:
+Ok, nå har vi et overblikk over et troverdig scenario, la oss snakke om sampling-forespørselen serveren sender tilbake til klienten. Slik kan en slik forespørsel se ut i JSON-RPC-format:
 
 ```json
 {
@@ -70,17 +70,17 @@ Ok, nå har vi en overordnet forståelse av et troverdig scenario, la oss snakke
 }
 ```
 
-Det er noen ting her verdt å påpeke:
+Det er noen ting her verdt å fremheve:
 
-- Prompt, under content -> text, er vår prompt, som er en instruksjon til LLM om å oppsummere innholdet i blogginnlegget.
+- Prompt, under content -> text, er vår prompt som er en instruksjon til LLM om å oppsummere innholdet i en bloggpost.
 
-- **modelPreferences**. Denne seksjonen er nettopp det, en preferanse, en anbefaling av hvilken konfigurasjon som skal brukes med LLM. Brukeren kan velge om de vil følge disse anbefalingene eller endre dem. I dette tilfellet er det anbefalinger om hvilken modell som skal brukes og prioritet mellom hastighet og intelligens.
-- **systemPrompt**, dette er din normale system-prompt som gir LLM-en din en personlighet og inneholder veiledningsinstrukser.
-- **maxTokens**, dette er en annen egenskap som brukes for å angi hvor mange tokens som anbefales å bli brukt for denne oppgaven.
+- **modelPreferences**. Denne seksjonen er nettopp det, en preferanse, en anbefaling av hvilken konfigurasjon som skal brukes med LLM. Brukeren kan velge å følge disse anbefalingene eller endre dem. I dette tilfellet er det anbefalinger om modell å bruke samt prioritet på hastighet og intelligens.
+- **systemPrompt**, dette er din vanlige systemprompt som gir LLM-en en personlighet og inneholder veiledende instruksjoner.
+- **maxTokens**, dette er en annen egenskap som angir hvor mange tokens som anbefales brukt for denne oppgaven.
 
-### Sampling-svar
+### Sampling-respons
 
-Dette svaret er det MCP-klienten til slutt sender tilbake til MCP-serveren, og er resultatet av at klienten kaller LLM, venter på responsen og deretter konstruerer denne meldingen. Slik kan den se ut i JSON-RPC:
+Dette svaret er det MCP-klienten ender opp med å sende tilbake til MCP-serveren og er resultatet av at klienten kaller LLM, venter på svar og deretter konstruerer denne meldingen. Slik kan det se ut i JSON-RPC:
 
 ```json
 {
@@ -98,9 +98,9 @@ Dette svaret er det MCP-klienten til slutt sender tilbake til MCP-serveren, og e
 }
 ```
 
-Legg merke til hvordan svaret er et sammendrag av blogginnlegget akkurat som vi ba om. Merk også at `model` som ble brukt ikke er den vi ba om, men "gpt-5" i stedet for "claude-3-sonnet". Dette illustrerer at brukeren kan ombestemme seg på hva som skal brukes, og at sampling-forespørselen din er en anbefaling.
+Legg merke til hvordan svaret er en abstrakt av blogginnlegget akkurat som vi ba om. Legg også merke til hvordan den brukte `model` ikke er den vi ba om, men "gpt-5" over "claude-3-sonnet". Dette illustrerer at brukeren kan ombestemme seg på hva som skal brukes og at sampling-forespørselen din er en anbefaling.
 
-Ok, nå som vi forstår hovedflyten, og et nyttig oppgaveområde å bruke det til er "blogginnlegg-opprettelse + sammendrag", la oss se hva vi må gjøre for å få det til å fungere.
+Ok, nå som vi forstår hovedflyten, og nyttig oppgave å bruke det til "bloggpost-opprettelse + abstrakt", la oss se hva vi må gjøre for å få det til å fungere.
 
 ### Meldings-typer
 
@@ -135,11 +135,11 @@ Sampling-meldinger er ikke begrenset til bare tekst, men du kan også sende bild
 }
 ```
 
-> NOTE: for mer detaljert info om Sampling, sjekk ut de [offisielle dokumentene](https://modelcontextprotocol.io/specification/2025-06-18/client/sampling)
+> NOTE: for mer detaljert info om Sampling, sjekk ut [offisiell dokumentasjon](https://modelcontextprotocol.io/specification/2025-06-18/client/sampling)
 
 ## Hvordan konfigurere Sampling i klienten
 
-> Merk: hvis du kun bygger en server, trenger du ikke gjøre mye her.
+> Merk: hvis du bare bygger en server, trenger du ikke gjøre mye her.
 
 I en klient må du spesifisere følgende funksjon slik:
 
@@ -151,20 +151,20 @@ I en klient må du spesifisere følgende funksjon slik:
 }
 ```
 
-Dette vil da plukkes opp når din valgte klient initialiseres med serveren.
+Dette vil da bli plukket opp når den valgte klienten initialiserer med serveren.
 
-## Eksempel på Sampling i praksis - Opprette et blogginnlegg
+## Eksempel på Sampling i praksis - lag en bloggpost
 
 La oss kode en sampling-server sammen, vi må gjøre følgende:
 
 1. Opprette et verktøy på serveren.
-1. Det verktøyet skal lage en sampling-forespørsel.
+1. Verktøyet skal lage en sampling-forespørsel.
 1. Verktøyet skal vente på at klientens sampling-forespørsel blir besvart.
-1. Så skal verktøyet produsere resultatet.
+1. Deretter skal verktøyets resultat produseres.
 
 La oss se på koden steg for steg:
 
-### -1- Opprett verktøyet
+### -1- Lag verktøyet
 
 **python**
 
@@ -175,7 +175,7 @@ async def create_blog(title: str, content: str, ctx: Context[ServerSession, None
 
 ```
 
-### -2- Opprett en sampling-forespørsel
+### -2- Lag en sampling-forespørsel
 
 Utvid verktøyet ditt med følgende kode:
 
@@ -203,7 +203,7 @@ result = await ctx.session.create_message(
 
 ```
 
-### -3- Vent på svar og returner svaret
+### -3- Vent på responsen og returner svar
 
 **python**
 
@@ -281,7 +281,7 @@ async def create_blog(title: str, content: str, ctx: Context[ServerSession, None
 
     posts.append(post)
 
-    # returner hele blogginnlegget
+    # returner det komplette blogginnlegget
     return json.dumps({
         "id": post.title,
         "abstract": post.abstract
@@ -297,10 +297,10 @@ if __name__ == "__main__":
 
 ### -5- Teste det i Visual Studio Code
 
-For å teste dette i Visual Studio Code gjør du følgende:
+For å teste dette i Visual Studio Code, gjør følgende:
 
-1. Start serveren i terminalen
-1. Legg den til i *mcp.json* (og sørg for at den er startet), for eksempel slik:
+1. Start server i terminal
+1. Legg den til i *mcp.json* (og sørg for at den starter) f.eks slik:
 
    ```json
    "servers": {
@@ -317,39 +317,39 @@ For å teste dette i Visual Studio Code gjør du følgende:
    create a blog post named "Where Python comes from", the content is "Python is actually named after Monty Python Flying Circus"
    ```
 
-1. Tillat sampling å skje. Første gang du tester dette vil du få en ekstra dialog du må akseptere, deretter vil du se normal dialog som ber deg kjøre et verktøy.
+1. La sampling skje. Første gang du tester dette vil du få opp en ekstra dialog du må akseptere, deretter vil du se normal dialog der du blir spurt om å kjøre et verktøy
 
-1. Inspiser resultatene. Du vil se resultatene både pent rendret i GitHub Copilot Chat, men du kan også inspisere rå JSON-respons.
+1. Undersøk resultatene. Du vil se resultatene pent gjengitt i GitHub Copilot Chat, men du kan også inspisere rå JSON-respons.
 
-**Bonus**. Visual Studio Code-verktøyene har flott støtte for sampling. Du kan konfigurere Sampling-tilgang på din installerte server ved å navigere slik:
+**Bonus**. Visual Studio Code verktøy har god støtte for sampling. Du kan konfigurere Sampling-tilgang på din installerte server ved å navigere slik:
 
-1. Gå til utvidelsesdelen.
-1. Velg tannhjulikonet for din installerte server under "MCP SERVERS - INSTALLED".
-1. Velg "Configure Model Access", her kan du velge hvilke modeller GitHub Copilot har tillatelse til å bruke under sampling. Du kan også se alle sampling-forespørsler som har skjedd nylig ved å velge "Show Sampling requests".
+1. Gå til utvidelser.
+1. Velg tannhjul-ikonet for din installerte server i "MCP SERVERS - INSTALLED"-seksjonen.
+1. Velg "Configure Model Access", her kan du velge hvilke modeller GitHub Copilot har lov til å bruke ved sampling. Du kan også se alle sampling-forespørsler som har skjedd nylig ved å velge "Show Sampling requests".
 
 ## Oppgave
 
-I denne oppgaven skal du lage en litt annerledes Sampling, nemlig en sampling-integrasjon som støtter generering av produktbeskrivelser. Her er ditt scenario:
+I denne oppgaven skal du bygge en litt annerledes Sampling, nemlig en sampling-integrasjon som støtter generering av produktbeskrivelse. Her er ditt scenario:
 
-**Scenario**: Bakkontormedarbeideren i en nettbutikk trenger hjelp, det tar altfor mye tid å generere produktbeskrivelser. Derfor skal du bygge en løsning hvor du kan kalle et verktøy "create_product" med "title" og "keywords" som argumenter, og det skal produsere et komplett produkt inkludert et "description"-felt som skal fylles ut av klientens LLM.
+**Scenario**: Backoffice-medarbeideren i en e-handel trenger hjelp fordi det tar altfor lang tid å lage produktbeskrivelser. Derfor skal du lage en løsning hvor du kan kalle et verktøy "create_product" med "title" og "keywords" som argumenter, og det skal produsere et komplett produkt inkludert et "description"-felt som skal fylles ut av en LLM på klienten.
 
-TIP: bruk det du lærte tidligere om hvordan du konstruerer denne serveren og verktøyet med en sampling-forespørsel.
+TIP: bruk det du lærte tidligere for å bygge denne serveren og dens verktøy ved bruk av en sampling-forespørsel.
 
 ## Løsning
 
 [Løsning](./solution/README.md)
 
-## Viktige poenger
+## Viktige punkter
 
-Sampling er en kraftfull funksjon som lar serveren delegere oppgaver til klienten når den trenger hjelp fra en LLM.
+Sampling er en kraftig funksjon som lar serveren delegere oppgaver til klienten når den trenger hjelp av en LLM.
 
-## Hva nå
+## Hva kommer nå
 
 - [Kapittel 4 - Praktisk implementering](../../04-PracticalImplementation/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Ansvarsfraskrivelse**:
-Dette dokumentet er oversatt ved hjelp av AI-oversettelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selv om vi streber etter nøyaktighet, vennligst vær oppmerksom på at automatiske oversettelser kan inneholde feil eller unøyaktigheter. Det opprinnelige dokumentet på dets morsmål bør betraktes som den autoritative kilden. For kritisk informasjon anbefales profesjonell menneskelig oversettelse. Vi er ikke ansvarlige for eventuelle misforståelser eller feiltolkninger som oppstår som følge av bruk av denne oversettelsen.
+**Ansvarsfraskrivelse**:  
+Dette dokumentet er oversatt ved hjelp av AI-oversettelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selv om vi streber etter nøyaktighet, vennligst vær oppmerksom på at automatiske oversettelser kan inneholde feil eller unøyaktigheter. Det opprinnelige dokumentet på dets opprinnelige språk bør betraktes som den autoritative kilden. For kritisk informasjon anbefales profesjonell menneskelig oversettelse. Vi er ikke ansvarlige for eventuelle misforståelser eller feiltolkninger som følge av bruken av denne oversettelsen.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

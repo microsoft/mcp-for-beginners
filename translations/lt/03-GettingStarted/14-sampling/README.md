@@ -1,24 +1,24 @@
-# Atranka – funkcijų delegavimas klientui
+# Imties gavimas – funkcijų delegavimas klientui
 
-Kartais reikia, kad MCP klientas ir MCP serveris bendradarbiautų siekiant bendro tikslo. Gali būti atvejis, kai serveriui reikia pagalbos iš LLM, kuris yra kliento pusėje. Tokiu atveju reikėtų naudoti atranką.
+Kartais reikia, kad MCP klientas ir MCP serveris bendradarbiautų siekdami bendro tikslo. Gali būti atvejis, kai serveriui reikia dirbtinio intelekto modelio, kuris yra kliente. Tokiu atveju imties gavimas yra tai, ką reikėtų naudoti.
 
-Pažvelkime į kai kuriuos naudojimo atvejus ir kaip sukurti sprendimą, kuriame naudojama atranka.
+Aptarkime keletą naudojimo atvejų ir kaip sukurti sprendimą, apimantį imties gavimą.
 
 ## Apžvalga
 
-Šioje pamokoje daugiausia dėmesio skirsime paaiškinimui, kada ir kur naudoti atranką bei kaip ją sukonfigūruoti.
+Šiame pamokoje sutelksime dėmesį į paaiškinimą, kada ir kur naudoti imties gavimą bei kaip jį konfigūruoti.
 
 ## Mokymosi tikslai
 
 Šiame skyriuje mes:
 
-- Paaiškinsime, kas yra atranka ir kada ją naudoti.
-- Parodysime, kaip konfigūruoti atranką MCP aplinkoje.
-- Pateiksime atrankos naudojimo pavyzdžių.
+- Paaiškinsime, kas yra imties gavimas ir kada jį naudoti.
+- Parodysime, kaip konfigūruoti imties gavimą MCP.
+- Pateiksime pavyzdžių, kaip veikia imties gavimas.
 
-## Kas yra atranka ir kodėl ją naudoti?
+## Kas yra imties gavimas ir kodėl jį naudoti?
 
-Atranka yra pažangi funkcija, veikianti tokiu būdu:
+Imties gavimas yra pažangi funkcija, kuri veikia taip:
 
 ```mermaid
 sequenceDiagram
@@ -29,16 +29,16 @@ sequenceDiagram
 
     User->>MCP Client: Parašyti tinklaraščio įrašą
     MCP Client->>MCP Server: Įrankio kvietimas (tinklaraščio įrašo juodraštis)
-    MCP Server->>MCP Client: Imties užklausa (sukurti santrauką)
-    MCP Client->>LLM: Sugeneruoti tinklaraščio įrašo santrauką
-    LLM->>MCP Client: Santraukos rezultatas
-    MCP Client->>MCP Server: Imties atsakymas (santrauka)
-    MCP Server->>MCP Client: Užbaigtas tinklaraščio įrašas (juodraštis + santrauka)
+    MCP Server->>MCP Client: Atrankos užklausa (sukurti apžvalgą)
+    MCP Client->>LLM: Generuoti tinklaraščio įrašo apžvalgą
+    LLM->>MCP Client: Apžvalgos rezultatas
+    MCP Client->>MCP Server: Atrankos atsakymas (apžvalga)
+    MCP Server->>MCP Client: Baigtas tinklaraščio įrašas (juodraštis + apžvalga)
     MCP Client->>User: Tinklaraščio įrašas paruoštas
 ```
-### Atrankos užklausa
+### Imties gavimo užklausa
 
-Gerai, dabar turime bendrą patikimo scenarijaus vaizdą, aptarkime užklausą, kurią serveris siunčia klientui. Štai kaip tokia užklausa gali atrodyti JSON-RPC formatu:
+Gerai, dabar turime plačią patikimo scenarijaus apžvalgą, pakalbėkime apie imties gavimo užklausą, kurią serveris siunčia klientui. Štai kaip tokia užklausa gali atrodyti JSON-RPC formatu:
 
 ```json
 {
@@ -70,17 +70,16 @@ Gerai, dabar turime bendrą patikimo scenarijaus vaizdą, aptarkime užklausą, 
 }
 ```
 
-Čia verta paminėti keletą dalykų:
+Čia verta atkreipti dėmesį į keletą dalykų:
 
-- Prompt, po content -> text, yra mūsų promptas, tai nurodymas LLM pateikti tinklaraščio įrašo turinio santrauką.
+- Promptas, esančioje content -> text, yra mūsų prašymas, instrukcija LLM suvesti tinklaraščio įrašo turinį.
+- **modelPreferences**. Ši dalis yra tiesiog pageidavimas, rekomendacija dėl to, kokią LLM konfigūraciją naudoti. Vartotojas gali pasirinkti laikytis šių rekomendacijų arba jas keisti. Šiuo atveju yra rekomendacijos dėl modelio, greičio ir intelekto prioritetų.
+- **systemPrompt**, tai jūsų įprastas sisteminis promptas, suteikiantis LLM asmenybę ir apimantis vadovavimo instrukcijas.
+- **maxTokens**, tai dar viena savybė, nurodanti, kiek žetonų rekomenduojama naudoti šiai užduočiai.
 
-- **modelPreferences**. Ši dalis yra tiesiog rekomendacija, nurodanti, kokią konfigūraciją naudoti su LLM. Vartotojas gali pasirinkti, ar laikytis šių rekomendacijų, ar jas keisti. Šiuo atveju pateiktos rekomendacijos dėl naudojamo modelio, greičio ir intelekto prioriteto.
-- **systemPrompt**, tai jūsų įprastas sistemos promptas, suteikiantis LLM asmenybę ir turintis nurodymus.
-- **maxTokens**, dar viena savybė, nurodanti, kiek tokenų rekomenduojama naudoti šiai užduočiai.
+### Imties gavimo atsakymas
 
-### Atrankos atsakymas
-
-Šis atsakymas yra tas, kurį MCP klientas galiausiai siunčia atgal MCP serveriui, tai yra kliento kvietimo LLM rezultatas, po kurio sukuriamas šis pranešimas. Štai kaip tai gali atrodyti JSON-RPC formatu:
+Šį atsakymą MCP klientas siunčia atgal MCP serveriui – tai kliento kvietimo LLM rezultatas, palaukęs atsakymo ir sudaręs šį pranešimą. Štai kaip jis gali atrodyti JSON-RPC formatu:
 
 ```json
 {
@@ -98,15 +97,15 @@ Gerai, dabar turime bendrą patikimo scenarijaus vaizdą, aptarkime užklausą, 
 }
 ```
 
-Atkreipkite dėmesį, kad atsakymas yra tinklaraščio įrašo santrauka, kaip ir prašėme. Taip pat pastebėkite, kad naudotas `model` nėra tas, kurio prašėme, o "gpt-5" vietoje "claude-3-sonnet". Tai iliustruoja, kad vartotojas gali pakeisti savo nuomonę dėl naudojamo modelio, o jūsų atrankos užklausa yra tik rekomendacija.
+Atkreipkite dėmesį, kad atsakymas yra tinklaraščio įrašo santrauka, kaip ir prašėme. Taip pat pastebėkite, kad naudotas modelis nėra tas, kurį prašėme, o „gpt-5“ vietoje „claude-3-sonnet“. Tai iliustruoja, kad vartotojas gali pakeisti nuomonę dėl naudojamo modelio, o jūsų imties užklausa yra rekomendacija.
 
-Gerai, dabar, kai suprantame pagrindinį srautą ir naudingą užduotį, kuriai ją naudoti „tinklaraščio įrašo kūrimas + santrauka“, pažiūrėkime, ką reikia padaryti, kad tai veiktų.
+Gerai, dabar, kai suprantame pagrindinį procesą ir naudingą užduotį „tinklaraščio įrašo kūrimas + santrauka“, pažvelkime, ką reikia padaryti, kad tai veiktų.
 
-### Žinučių tipai
+### Pranešimų tipai
 
-Atrankos žinutės nėra ribojamos tik tekstu – galite siųsti ir paveikslėlius bei garsą. Štai kaip JSON-RPC skiriasi:
+Imties gavimo pranešimai nėra apriboti tik tekstu; taip pat galite siųsti vaizdus ir garsą. Štai kaip JSON-RPC atrodo skirtingai:
 
-**Tekstas**
+**Teksto**
 
 ```json
 {
@@ -135,13 +134,13 @@ Atrankos žinutės nėra ribojamos tik tekstu – galite siųsti ir paveikslėli
 }
 ```
 
-> PASTABA: detalesnę informaciją apie atranką rasite [oficialioje dokumentacijoje](https://modelcontextprotocol.io/specification/2025-06-18/client/sampling)
+> NOTE: daugiau informacijos apie Imties gavimą rasite [oficialiuose dokumentuose](https://modelcontextprotocol.io/specification/2025-06-18/client/sampling)
 
-## Kaip konfigūruoti atranką kliente
+## Kaip konfigūruoti imties gavimą kliente
 
-> Pastaba: jei kuriate tik serverį, čia daug veiksmų nereikia atlikti.
+> Pastaba: jei kuriate tik serverį, čia daug ko daryti nereikia.
 
-Kliente turite nurodyti šią funkciją tokiu būdu:
+Kliente reikia nurodyti tokią funkciją taip:
 
 ```json
 {
@@ -151,20 +150,20 @@ Kliente turite nurodyti šią funkciją tokiu būdu:
 }
 ```
 
-Tai bus aptikta, kai pasirinktas klientas prisijungs prie serverio.
+Tai bus naudojama, når pasirinktas klientas jungiasi prie serverio.
 
-## Atrankos pavyzdys – sukurti tinklaraščio įrašą
+## Pavyzdys: imties gavimas veiksme – kurkite tinklaraščio įrašą
 
-Parašykime kartu atrankos serverį, mums reikės atlikti šiuos veiksmus:
+Parašykime kartu imties gavimo serverį, turi būti:
 
 1. Sukurti įrankį serveryje.
-1. Šis įrankis turi sukurti atrankos užklausą.
-1. Įrankis turi laukti, kol bus gautas kliento atsakymas į atrankos užklausą.
-1. Tada turi būti sugeneruotas įrankio rezultatas.
+2. Šis įrankis turi sukurti imties gavimo užklausą.
+3. Įrankis turi laukti, kol klientas atsakys į užklausą.
+4. Tada turi būti pateiktas įrankio rezultatas.
 
 Pažiūrėkime kodą žingsnis po žingsnio:
 
-### -1- Sukurti įrankį
+### -1- Sukurkite įrankį
 
 **python**
 
@@ -175,9 +174,9 @@ async def create_blog(title: str, content: str, ctx: Context[ServerSession, None
 
 ```
 
-### -2- Sukurti atrankos užklausą
+### -2- Sukurkite imties gavimo užklausą
 
-Išplėskite savo įrankį šiuo kodu:
+Išplėskite įrankį tokiu kodu:
 
 **python**
 
@@ -203,7 +202,7 @@ result = await ctx.session.create_message(
 
 ```
 
-### -3- Palaukti atsakymo ir grąžinti jį
+### -3- Palaukite atsakymo ir grąžinkite jį
 
 **python**
 
@@ -212,14 +211,14 @@ post.abstract = result.content.text
 
 posts.append(post)
 
-# grąžinkite visą produktą
+# grąžina visą produktą
 return json.dumps({
     "id": post.title,
     "abstract": post.abstract
 })
 ```
 
-### -4- Visas kodas
+### -4- Pilnas kodas
 
 **python**
 
@@ -281,7 +280,7 @@ async def create_blog(title: str, content: str, ctx: Context[ServerSession, None
 
     posts.append(post)
 
-    # grąžina visą tinklaraščio įrašą
+    # grąžina pilną tinklaraščio įrašą
     return json.dumps({
         "id": post.title,
         "abstract": post.abstract
@@ -295,12 +294,12 @@ if __name__ == "__main__":
 # paleiskite programą su: python server.py
 ```
 
-### -5- Testavimas Visual Studio Code
+### -5- Testavimas Visual Studio Code aplinkoje
 
 Norėdami tai išbandyti Visual Studio Code, atlikite šiuos veiksmus:
 
 1. Paleiskite serverį terminale
-1. Pridėkite jį į *mcp.json* (ir įsitikinkite, kad jis paleistas), pavyzdžiui taip:
+1. Pridėkite jį į *mcp.json* (ir įsitikinkite, kad serveris veikia), pvz., taip:
 
    ```json
    "servers": {
@@ -317,39 +316,39 @@ Norėdami tai išbandyti Visual Studio Code, atlikite šiuos veiksmus:
    create a blog post named "Where Python comes from", the content is "Python is actually named after Monty Python Flying Circus"
    ```
 
-1. Leiskite vykti atrankai. Pirmą kartą tai bandydami, pamatysite papildomą dialogą, kurį turėsite patvirtinti, po to bus rodoma įprasta priemonės paleidimo užklausa.
+1. Leiskite vykti imties gavimui. Pirmą kartą išbandydami pamatysite papildomą dialogą, kurį turėsite patvirtinti, tuomet matysite įprastą dialogą, prašantį paleisti įrankį.
 
-1. Patikrinkite rezultatus. Juos matysite ir gražiai pateiktus GitHub Copilot Chat, ir galite peržiūrėti žalią JSON atsakymą.
+1. Patikrinkite rezultatus. Matysite rezultatus gražiai pateiktus GitHub Copilot Chat lange, bet taip pat galėsite peržiūrėti žalią JSON atsakymą.
 
-**Papildomai**. Visual Studio Code įrankiai puikiai palaiko atranką. Galite sukonfigūruoti prieigą prie Atrankos savo įdiegto serveryje taip:
+**Papildymas**. Visual Studio Code įrankiai puikiai palaiko imties gavimą. Galite konfigūruoti imties gavimo prieigą jūsų įdiegtiems serveriams taip:
 
 1. Eikite į plėtinių skyrių.
-1. Pasirinkite krumpliaračio piktogramą prie įdiegto serverio skiltyje „MCP SERVERS - INSTALLED“.
-1. Pasirinkite „Configure Model Access“, čia galite pasirinkti, kuriuos modelius GitHub Copilot gali naudoti vykdydamas atranką. Taip pat galite peržiūrėti visus neseniai įvykusius atrankos užsakymus pasirinkę „Show Sampling requests“.
+1. Pasirinkite krumpliaratį prie savo įdiegto serverio „MCP SERVERS - INSTALLED“ skiltyje.
+1. Pasirinkite „Configure Model Access“, čia galite pasirinkti, kokiais modeliais GitHub Copilot gali naudotis atliekant imties gavimą. Taip pat galite matyti visus neseniai įvykusius imties užklausimus pasirinkę „Show Sampling requests“.
 
 ## Užduotis
 
-Šioje užduotyje sukursite šiek tiek kitokią atrankos integraciją, palaikančią produkto aprašymo generavimą. Štai jūsų scenarijus:
+Šioje užduotyje jums reikės sukurti kiek kitokį imties gavimą – integraciją, kuri generuoja produkto aprašymą. Štai jūsų scenarijus:
 
-**Scenarijus**: internetinės prekybos darbuotojui reikia pagalbos, nes gaminių aprašymų generavimas užima per daug laiko. Todėl turite sukurti sprendimą, kuriame kviečiate įrankį "create_product" su argumentais „title“ ir „keywords“, o jis turi sukurti pilną produktą, į kurį bus įtrauktas „description“ laukas, užpildytas kliento LLM.
+**Scenarijus**: Elektroninės prekybos darbuotojui labai užtrunka kurti produktų aprašymus. Todėl turite sukurti sprendimą, kuriame galite iškviesti įrankį „create_product“ su argumentais „title“ ir „keywords“, ir jis turi sugeneruoti visą produktą, įskaitant lauką „description“, kuris užpildomas kliento LLM.
 
-PATARIMAS: naudokite anksčiau išmoktas žinias, kaip sukurti šį serverį ir jo įrankį naudojant atrankos užklausą.
+Patarimas: naudokite ankstesnėje dalyje įgytas žinias kuriant šį serverį ir jo įrankį, naudodami imties gavimo užklausą.
 
 ## Sprendimas
 
 [Sprendimas](./solution/README.md)
 
-## Svarbiausios mintys
+## Svarbiausios įžvalgos
 
-Atranka – galinga funkcija, leidžianti serveriui deleguoti užduotis klientui, kai reikia LLM pagalbos.
+Imties gavimas yra galinga funkcija, leidžianti serveriui deleguoti užduotis klientui, kai reikalinga LLM pagalba.
 
 ## Kas toliau
 
-- [4 skyrius – praktinė įgyvendinimas](../../04-PracticalImplementation/README.md)
+- [4 skyrius – praktinė realizacija](../../04-PracticalImplementation/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Atsakomybės apribojimas**:  
-Šis dokumentas buvo išverstas naudojant AI vertimo tarnybą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors stengiamės užtikrinti tikslumą, prašome atkreipti dėmesį, kad automatizuoti vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Svarbiai informacijai rekomenduojama naudoti profesionalų žmogaus atliktą vertimą. Mes neatsakome už bet kokius nesusipratimus ar klaidingas interpretacijas, kylančias dėl šio vertimo naudojimo.
+Šis dokumentas buvo išverstas naudojant AI vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Stengiamės užtikrinti tikslumą, tačiau atkreipkite dėmesį, kad automatiniai vertimai gali turėti klaidų arba netikslumų. Originalus dokumentas jo gimtąja kalba turi būti laikomas autoritetingu šaltiniu. Svarbiai informacijai rekomenduojamas profesionalus žmogaus vertimas. Mes neatsakome už jokius nesusipratimus ar klaidingą interpretavimą, kilusį naudojant šį vertimą.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

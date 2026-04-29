@@ -1,13 +1,13 @@
 # Penggunaan pelayan lanjutan
 
-Terdapat dua jenis pelayan yang berbeza yang didedahkan dalam MCP SDK, pelayan biasa anda dan pelayan tahap rendah. Biasanya, anda akan menggunakan pelayan biasa untuk menambah ciri-ciri kepadanya. Untuk beberapa kes pula, anda ingin bergantung pada pelayan tahap rendah seperti:
+Terdapat dua jenis pelayan yang berbeza dipaparkan dalam MCP SDK, pelayan biasa anda dan pelayan tahap rendah. Biasanya, anda akan menggunakan pelayan biasa untuk menambah ciri kepadanya. Walau bagaimanapun, dalam beberapa kes, anda ingin bergantung pada pelayan tahap rendah seperti:
 
-- Seni bina yang lebih baik. Adalah mungkin untuk mencipta seni bina yang bersih dengan kedua-dua pelayan biasa dan pelayan tahap rendah tetapi boleh dipertikaikan bahawa ia sedikit lebih mudah dengan pelayan tahap rendah.
-- Ketersediaan ciri. Sesetengah ciri lanjutan hanya boleh digunakan dengan pelayan tahap rendah. Anda akan melihat ini dalam bab-bab kemudian semasa kami menambah pensampelan dan elicitation.
+- Seni bina yang lebih baik. Adalah mungkin untuk mencipta seni bina yang bersih dengan kedua-dua pelayan biasa dan pelayan tahap rendah tetapi boleh diperdebatkan bahawa ia sedikit lebih mudah dengan pelayan tahap rendah.
+- Ketersediaan ciri. Beberapa ciri lanjutan hanya boleh digunakan dengan pelayan tahap rendah. Anda akan melihat ini dalam bab-bab kemudian apabila kami menambah pengambilan sampel dan elicitation.
 
 ## Pelayan biasa vs pelayan tahap rendah
 
-Inilah bagaimana penciptaan MCP Server kelihatan dengan pelayan biasa
+Ini ialah bagaimana penciptaan Pelayan MCP kelihatan dengan pelayan biasa
 
 **Python**
 
@@ -42,18 +42,18 @@ server.registerTool("add",
 );
 ```
 
-Tujuannya ialah anda secara eksplisit menambah setiap alat, sumber atau prompt yang anda mahu pelayan miliki. Tiada masalah dengan itu.
+Intipatinya ialah anda secara eksplisit menambah setiap alat, sumber atau petunjuk yang anda mahu pelayan miliki. Tiada yang salah dengan itu.
 
 ### Pendekatan pelayan tahap rendah
 
-Walau bagaimanapun, apabila anda menggunakan pendekatan pelayan tahap rendah anda perlu berfikir secara berbeza. Daripada mendaftar setiap alat, anda sebaliknya mencipta dua pengendali untuk setiap jenis ciri (alat, sumber atau prompt). Jadi contohnya alat hanya mempunyai dua fungsi seperti berikut:
+Walau bagaimanapun, apabila anda menggunakan pendekatan pelayan tahap rendah anda perlu memikirkannya secara berbeza. Daripada mendaftar setiap alat, anda sebaliknya mencipta dua pengendali setiap jenis ciri (alat, sumber atau petunjuk). Jadi sebagai contoh alat hanya mempunyai dua fungsi seperti berikut:
 
-- Menyenaraikan semua alat. Satu fungsi bertanggungjawab untuk semua percubaan untuk menyenaraikan alat.
-- mengendalikan panggilan semua alat. Di sini juga, hanya ada satu fungsi mengendalikan panggilan kepada alat.
+- Menyenaraikan semua alat. Satu fungsi akan bertanggungjawab untuk semua usaha menyenaraikan alat.
+- mengendalikan panggilan semua alat. Di sini juga, hanya ada satu fungsi mengendalikan panggilan ke alat
 
-Nampaknya ini mungkin kerja yang kurang, bukan? Jadi daripada mendaftar alat, saya hanya perlu pastikan alat itu disenaraikan apabila saya menyenaraikan semua alat dan ia dipanggil apabila ada permintaan masuk untuk memanggil alat.
+Itu kedengaran seperti kerja yang mungkin kurang, bukan? Jadi daripada mendaftar alat, saya hanya perlu memastikan alat itu disenaraikan apabila saya menyenaraikan semua alat dan ia dipanggil apabila terdapat permintaan masuk untuk memanggil alat.
 
-Mari kita lihat bagaimana kod itu sekarang kelihatan:
+Jom lihat bagaimana kod itu kelihatan sekarang:
 
 **Python**
 
@@ -81,15 +81,15 @@ async def handle_list_tools() -> list[types.Tool]:
 
 ```typescript
 server.setRequestHandler(ListToolsRequestSchema, async (request) => {
-  // Pulangkan senarai alat yang didaftarkan
+  // Kembalikan senarai alat yang berdaftar
   return {
     tools: [{
-        name="add",
-        description="Add two numbers",
-        inputSchema={
+        name: "add",
+        description: "Add two numbers",
+        inputSchema: {
             "type": "object",
             "properties": {
-                "a": {"type": "number", "description": "number to add"}, 
+                "a": {"type": "number", "description": "number to add"},
                 "b": {"type": "number", "description": "number to add"}
             },
             "required": ["query"],
@@ -99,7 +99,7 @@ server.setRequestHandler(ListToolsRequestSchema, async (request) => {
 });
 ```
 
-Di sini kita sekarang mempunyai fungsi yang mengembalikan senarai ciri. Setiap entri dalam senarai alat kini mempunyai medan seperti `name`, `description` dan `inputSchema` untuk mematuhi jenis pulangan. Ini membolehkan kita meletakkan alat dan definisi ciri kita di tempat lain. Kita kini boleh mencipta semua alat kita dalam folder alat dan begitu juga untuk semua ciri anda supaya projek anda boleh terus diatur seperti berikut:
+Di sini kami kini mempunyai fungsi yang mengembalikan senarai ciri. Setiap entri dalam senarai alat kini mempunyai medan seperti `name`, `description` dan `inputSchema` untuk mematuhi jenis pengembalian. Ini membolehkan kami meletakkan alat dan definisi ciri kami di tempat lain. Kami kini boleh mencipta semua alat kami dalam folder alat dan perkara yang sama berlaku untuk semua ciri anda supaya projek anda secara tiba-tiba boleh diatur seperti berikut:
 
 ```text
 app
@@ -113,9 +113,9 @@ app
 ----| product-description
 ```
 
-Itu hebat, seni bina kita boleh dibuat kelihatan cukup bersih.
+Itu hebat, seni bina kami boleh dibuat kelihatan cukup kemas.
 
-Bagaimana pula dengan memanggil alat, adakah ia idea yang sama, satu pengendali untuk memanggil alat, alat mana-mana? Ya, tepat, ini adalah kod untuk itu:
+Bagaimana pula dengan memanggil alat, adakah ia idea yang sama, satu pengendali untuk memanggil alat, alat mana-mana? Ya, tepat sekali, ini adalah kod untuk itu:
 
 **Python**
 
@@ -125,7 +125,7 @@ async def handle_call_tool(
     name: str, arguments: dict[str, str] | None
 ) -> list[types.TextContent]:
     
-    # tools adalah kamus dengan nama alat sebagai kunci
+    # tools adalah sebuah kamus dengan nama alat sebagai kunci
     if name not in tools.tools:
         raise ValueError(f"Unknown tool: {name}")
     
@@ -166,18 +166,18 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 });
 ```
 
-Seperti yang anda lihat dari kod di atas, kita perlu menguraikan alat yang hendak dipanggil, dan dengan hujah apa, dan kemudian kita perlu terus memanggil alat tersebut.
+Seperti yang anda boleh lihat daripada kod di atas, kita perlu mengurai alat untuk dipanggil, dan dengan argumen apa, dan kemudian kita perlu meneruskan untuk memanggil alat itu.
 
-## Memperbaiki pendekatan dengan pengesahan
+## Meningkatkan pendekatan dengan pengesahan
 
-Sejauh ini, anda telah melihat bagaimana semua pendaftaran anda untuk menambah alat, sumber dan prompt boleh digantikan dengan dua pengendali ini setiap jenis ciri. Apa lagi yang perlu kita lakukan? Baiklah, kita patut menambah sesuatu bentuk pengesahan untuk memastikan alat itu dipanggil dengan hujah yang betul. Setiap runtime mempunyai penyelesaian mereka sendiri untuk ini, contohnya Python menggunakan Pydantic dan TypeScript menggunakan Zod. Idenya adalah kita melakukan yang berikut:
+Setakat ini, anda telah melihat bagaimana semua pendaftaran anda untuk menambah alat, sumber dan petunjuk boleh digantikan dengan dua pengendali ini bagi setiap jenis ciri. Apa lagi yang perlu kita lakukan? Baiklah, kita harus menambah beberapa bentuk pengesahan untuk memastikan alat dipanggil dengan argumen yang betul. Setiap runtime mempunyai penyelesaian mereka sendiri untuk ini, contohnya Python menggunakan Pydantic dan TypeScript menggunakan Zod. Idéanya adalah bahawa kita melakukan perkara berikut:
 
-- Pindahkan logik untuk mencipta ciri (alat, sumber atau prompt) ke folder khasnya.
-- Tambah cara untuk mengesahkan permintaan masuk yang memohon contohnya untuk memanggil alat.
+- Memindahkan logik untuk mencipta ciri (alat, sumber atau petunjuk) ke folder khususnya.
+- Menambah cara untuk mengesahkan permintaan masuk yang meminta misalnya memanggil alat.
 
-### Cipta ciri
+### Mencipta ciri
 
-Untuk mencipta ciri, kita perlu mencipta fail untuk ciri tersebut dan pastikan ia mempunyai medan wajib yang diperlukan oleh ciri itu. Medan yang berbeza sedikit antara alat, sumber dan prompt.
+Untuk mencipta ciri, kita perlu membuat fail untuk ciri itu dan pastikan ia mempunyai medan wajib yang diperlukan bagi ciri itu. Medan mana yang berbeza sedikit antara alat, sumber dan petunjuk.
 
 **Python**
 
@@ -200,7 +200,7 @@ async def add_handler(args) -> float:
     except Exception as e:
         raise ValueError(f"Invalid input: {str(e)}")
 
-    # TODO: tambah Pydantic, supaya kita boleh buat AddInputModel dan sahkan argumen
+    # TODO: tambah Pydantic, supaya kita boleh buat AddInputModel dan sahkan args
 
     """Handler function for the add tool."""
     return float(input_model.a) + float(input_model.b)
@@ -213,10 +213,10 @@ tool_add = {
 }
 ```
 
-di sini anda boleh lihat bagaimana kita melakukan yang berikut:
+di sini anda boleh lihat bagaimana kami melakukan perkara berikut:
 
 - Cipta skema menggunakan Pydantic `AddInputModel` dengan medan `a` dan `b` dalam fail *schema.py*.
-- Cuba menguraikan permintaan masuk supaya menjadi jenis `AddInputModel`, jika terdapat ketidakpadanan dalam parameter ini akan menyebabkan ralat:
+- Cuba mengurai permintaan masuk menjadi jenis `AddInputModel`, jika terdapat ketidakpadanan dalam parameter ini akan gagal:
 
    ```python
    # add.py
@@ -227,7 +227,7 @@ di sini anda boleh lihat bagaimana kita melakukan yang berikut:
         raise ValueError(f"Invalid input: {str(e)}")
    ```
 
-Anda boleh memilih untuk meletakkan logik penguraian ini di dalam panggilan alat itu sendiri atau dalam fungsi pengendali.
+Anda boleh memilih sama ada untuk meletakkan logik penguraian ini dalam panggilan alat itu sendiri atau dalam fungsi pengendali.
 
 **TypeScript**
 
@@ -288,7 +288,7 @@ export default {
 } as Tool;
 ```
 
-- Dalam pengendali yang mengendalikan semua panggilan alat, kita kini cuba menguraikan permintaan masuk ke dalam skema yang ditakrifkan alat:
+- Dalam pengendali yang mengendalikan semua panggilan alat, kami kini cuba mengurai permintaan masuk ke dalam skema yang ditakrifkan oleh alat itu:
 
     ```typescript
     const Schema = tool.rawSchema;
@@ -297,27 +297,27 @@ export default {
        const input = Schema.parse(request.params.arguments);
     ```
 
-    jika itu berjaya maka kita terus memanggil alat sebenar:
+    jika itu berjaya maka kami meneruskan untuk memanggil alat sebenar:
 
     ```typescript
     const result = await tool.callback(input);
     ```
 
-Seperti yang anda lihat, pendekatan ini mewujudkan seni bina yang hebat kerana semuanya ada tempatnya, *server.ts* adalah fail yang sangat kecil yang hanya menghubungkan pengendali permintaan dan setiap ciri berada dalam folder mereka masing-masing iaitu tools/, resources/ atau /prompts.
+Seperti yang anda lihat, pendekatan ini mewujudkan seni bina yang hebat kerana semuanya ada tempatnya, *server.ts* adalah fail yang sangat kecil yang hanya menyambungkan pengendali permintaan dan setiap ciri ada dalam folder masing-masing iaitu tools/, resources/ atau /prompts.
 
-Hebat, mari kita cuba bina ini seterusnya.
+Bagus, mari kita cuba bina ini seterusnya.
 
 ## Latihan: Mencipta pelayan tahap rendah
 
-Dalam latihan ini, kita akan melakukan yang berikut:
+Dalam latihan ini, kita akan melakukan perkara berikut:
 
-1. Cipta pelayan tahap rendah yang mengendalikan penyenaraian alat dan pemanggilan alat.
-1. Laksanakan seni bina yang anda boleh bina terus.
-1. Tambah pengesahan untuk memastikan panggilan alat anda disahkan dengan betul.
+1. Mencipta pelayan tahap rendah yang mengendalikan penyenaraian alat dan pemanggilan alat.
+1. Melaksanakan seni bina yang anda boleh bina.
+1. Menambah pengesahan untuk memastikan panggilan alat anda disahkan dengan betul.
 
 ### -1- Cipta seni bina
 
-Perkara pertama yang perlu kita tangani ialah seni bina yang membantu kita skala apabila kita menambah lebih banyak ciri, begini rupanya:
+Perkara pertama yang perlu kita atasi ialah seni bina yang membantu kita berskala apabila kita menambah lebih banyak ciri, ini adalah bagaimana ia kelihatan:
 
 **Python**
 
@@ -340,11 +340,11 @@ server.ts
 client.ts
 ```
 
-Kini kita telah menyediakan seni bina yang memastikan kita boleh mudah menambah alat baru dalam folder alat. Sila ikut ini untuk menambah subdirektori bagi sumber dan prompt.
+Kini kita telah menetapkan seni bina yang memastikan kita boleh dengan mudah menambah alat baru dalam folder tools. Sila ikut ini untuk menambah subdirektori untuk resources dan prompts.
 
 ### -2- Mencipta alat
 
-Mari lihat bagaimana mencipta alat seterusnya. Pertama, ia perlu dicipta dalam subdirektori *tool* seperti berikut:
+Mari kita lihat bagaimana mencipta alat kelihatan seterusnya. Pertama, ia perlu dicipta dalam subdirektori *tool* seperti berikut:
 
 **Python**
 
@@ -371,9 +371,9 @@ tool_add = {
 }
 ```
 
-Apa yang kita lihat di sini adalah bagaimana kita mentakrifkan nama, penerangan, dan skema input menggunakan Pydantic dan pengendali yang akan dipanggil apabila alat ini dipanggil. Akhir sekali, kita dedahkan `tool_add` yang merupakan kamus yang memegang semua sifat ini.
+Apa yang kita lihat di sini ialah bagaimana kita mentakrifkan nama, penerangan, dan skema input menggunakan Pydantic serta pengendali yang akan dipanggil apabila alat ini dipanggil. Akhir sekali, kami dedahkan `tool_add` yang merupakan kamus memegang semua sifat ini.
 
-Ada juga *schema.py* yang digunakan untuk mentakrifkan skema input yang digunakan oleh alat kita:
+Terdapat juga *schema.py* yang digunakan untuk mentakrifkan skema input yang digunakan oleh alat kita:
 
 ```python
 from pydantic import BaseModel
@@ -383,7 +383,7 @@ class AddInputModel(BaseModel):
     b: float
 ```
 
-Kita juga perlu mengisi *__init__.py* untuk memastikan direktori alat diperlakukan sebagai modul. Selain itu, kita perlu dedahkan modul di dalamnya seperti berikut:
+Kita juga perlu mengisi *__init__.py* untuk memastikan direktori tools dianggap sebagai modul. Selain itu, kita perlu mendedahkan modul dalamnya seperti berikut:
 
 ```python
 from .add import tool_add
@@ -393,7 +393,7 @@ tools = {
 }
 ```
 
-Kita boleh terus menambah dalam fail ini apabila kita menambah lebih banyak alat.
+Kita boleh terus menambah pada fail ini semasa kita menambah lebih banyak alat.
 
 **TypeScript**
 
@@ -414,14 +414,14 @@ export default {
 } as Tool;
 ```
 
-Di sini kita mencipta kamus yang mengandungi sifat:
+Di sini kita mencipta kamus yang terdiri daripada sifat:
 
-- name, ini ialah nama alat.
+- name, ini adalah nama alat.
 - rawSchema, ini adalah skema Zod, ia akan digunakan untuk mengesahkan permintaan masuk untuk memanggil alat ini.
 - inputSchema, skema ini akan digunakan oleh pengendali.
 - callback, ini digunakan untuk memanggil alat.
 
-Ada juga `Tool` yang digunakan untuk menukar kamus ini menjadi jenis yang boleh diterima oleh pengendali pelayan mcp dan ia kelihatan seperti berikut:
+Terdapat juga `Tool` yang digunakan untuk menukar kamus ini kepada jenis yang pengendali pelayan mcp boleh terima dan ia kelihatan seperti berikut:
 
 ```typescript
 import { z } from 'zod';
@@ -434,7 +434,7 @@ export interface Tool {
 }
 ```
 
-Dan ada *schema.ts* di mana kita menyimpan skema input untuk setiap alat yang kelihatan seperti ini dengan hanya satu skema buat masa sekarang tapi apabila kita menambah alat kita boleh tambah lebih banyak entri:
+Dan terdapat *schema.ts* di mana kita menyimpan skema input untuk setiap alat seperti berikut dengan hanya satu skema pada masa ini tetapi apabila kita menambah alat kita boleh menambah lebih banyak entri:
 
 ```typescript
 import { z } from 'zod';
@@ -442,16 +442,16 @@ import { z } from 'zod';
 export const MathInputSchema = z.object({ a: z.number(), b: z.number() });
 ```
 
-Hebat, mari kita teruskan untuk mengendalikan penyenaraian alat kita seterusnya.
+Bagus, mari kita teruskan dengan mengendalikan penyenaraian alat kita seterusnya.
 
 ### -3- Mengendalikan penyenaraian alat
 
-Seterusnya, untuk mengendalikan penyenaraian alat kita, kita perlu menyediakan pengendali permintaan untuk itu. Berikut adalah apa yang perlu kita tambah ke fail pelayan kita:
+Seterusnya, untuk mengendalikan penyenaraian alat kita, kita perlu menyediakan pengendali permintaan untuk itu. Ini adalah apa yang perlu kita tambah ke fail pelayan kita:
 
 **Python**
 
 ```python
-# kod diabaikan untuk ringkasan
+# kod dilupakan untuk ringkasan
 from tools import tools
 
 @server.list_tools()
@@ -470,11 +470,11 @@ async def handle_list_tools() -> list[types.Tool]:
     return tool_list
 ```
 
-Di sini, kita tambah dekorator `@server.list_tools` dan fungsi pelaksanaan `handle_list_tools`. Dalam yang terakhir, kita perlu menghasilkan senarai alat. Perhatikan setiap alat perlu mempunyai nama, penerangan dan inputSchema.
+Di sini, kami menambah hiasan `@server.list_tools` dan fungsi pelaksana `handle_list_tools`. Dalam fungsi ini, kita perlu menghasilkan senarai alat. Perhatikan bagaimana setiap alat perlu mempunyai nama, penerangan dan inputSchema.
 
 **TypeScript**
 
-Untuk menyediakan pengendali permintaan untuk menyenaraikan alat, kita perlu memanggil `setRequestHandler` pada pelayan dengan skema yang sesuai dengan apa yang kita cuba lakukan, dalam kes ini `ListToolsRequestSchema`.
+Untuk menyediakan pengendali permintaan bagi penyenaraian alat, kita perlu memanggil `setRequestHandler` pada pelayan dengan skema yang sesuai dengan apa yang kita cuba lakukan, dalam kes ini `ListToolsRequestSchema`.
 
 ```typescript
 // index.ts
@@ -492,22 +492,22 @@ tools.push(subtractTool);
 import { tools } from './tools/index.js';
 
 server.setRequestHandler(ListToolsRequestSchema, async (request) => {
-  // Kembalikan senarai alat yang berdaftar
+  // Pulangkan senarai alat yang didaftarkan
   return {
     tools: tools
   };
 });
 ```
 
-Hebat, kini kita telah menyelesaikan bahagian penyenaraian alat, mari lihat bagaimana kita boleh memanggil alat seterusnya.
+Bagus, kini kita telah menyelesaikan bahagian penyenaraian alat, mari lihat bagaimana kita boleh memanggil alat seterusnya.
 
 ### -4- Mengendalikan panggilan alat
 
-Untuk memanggil alat, kita perlu menyediakan satu lagi pengendali permintaan, kali ini yang fokus pada mengendalikan permintaan yang menentukan ciri mana hendak dipanggil dan dengan hujah apa.
+Untuk memanggil alat, kita perlu menyediakan pengendali permintaan lain, kali ini memfokuskan pada mengendalikan permintaan yang menyatakan ciri mana yang hendak dipanggil dan dengan argumen apa.
 
 **Python**
 
-Mari gunakan dekorator `@server.call_tool` dan laksanakan dengan fungsi seperti `handle_call_tool`. Dalam fungsi itu, kita perlu menguraikan nama alat, hujahnya dan pastikan hujah tersebut sah untuk alat yang dimaksudkan. Kita boleh sama ada sahkan hujah dalam fungsi ini atau dalam alat sebenar.
+Mari gunakan hiasan `@server.call_tool` dan laksanakan dengan fungsi seperti `handle_call_tool`. Dalam fungsi itu, kita perlu mengurai nama alat, argumennya dan memastikan argumen itu sah untuk alat berkenaan. Kita boleh sama ada mengesahkan argumen dalam fungsi ini atau di hilir dalam alat sebenar.
 
 ```python
 @server.call_tool()
@@ -515,7 +515,7 @@ async def handle_call_tool(
     name: str, arguments: dict[str, str] | None
 ) -> list[types.TextContent]:
     
-    # tools ialah satu kamus dengan nama alat sebagai kunci
+    # tools adalah kamus dengan nama alat sebagai kunci
     if name not in tools.tools:
         raise ValueError(f"Unknown tool: {name}")
     
@@ -523,43 +523,43 @@ async def handle_call_tool(
 
     result = "default"
     try:
-        # panggil alat tersebut
+        # gunakan alat tersebut
         result = await tool["handler"](../../../../03-GettingStarted/10-advanced/arguments)
     except Exception as e:
         raise ValueError(f"Error calling tool {name}: {str(e)}")
 
     return [
         types.TextContent(type="text", text=str(result))
-    ] 
+    ]
 ```
 
 Ini yang berlaku:
 
-- Nama alat kita sudah sedia ada sebagai parameter input `name` yang juga benar untuk hujah kita dalam bentuk kamus `arguments`.
+- Nama alat kita sudah ada sebagai parameter input `name` yang benar untuk argumen kita dalam bentuk kamus `arguments`.
 
-- Alat dipanggil dengan `result = await tool["handler"](../../../../03-GettingStarted/10-advanced/arguments)`. Pengesahan hujah berlaku dalam sifat `handler` yang menunjuk ke fungsi, jika gagal ia akan mengeluarkan pengecualian.
+- Alat dipanggil dengan `result = await tool["handler"](../../../../03-GettingStarted/10-advanced/arguments)`. Pengesahan argumen berlaku dalam sifat `handler` yang menunjuk ke fungsi, jika itu gagal ia akan menaikkan pengecualian.
 
-Di situ, kini kita mempunyai kefahaman penuh tentang penyenaraian dan pemanggilan alat menggunakan pelayan tahap rendah.
+Jadi, kini kita mempunyai pemahaman penuh tentang penyenaraian dan pemanggilan alat menggunakan pelayan tahap rendah.
 
 Lihat [contoh penuh](./code/README.md) di sini
 
 ## Tugasan
 
-Perluaskan kod yang telah diberikan dengan beberapa alat, sumber dan prompt dan fikirkan bagaimana anda perasan bahawa anda hanya perlu menambah fail dalam direktori alat dan tidak di tempat lain.
+Kembangkan kod yang telah anda diberikan dengan beberapa alat, sumber dan petunjuk dan renungkan bagaimana anda perasan bahawa anda hanya perlu menambah fail dalam direktori tools dan tiada tempat lain.
 
 *Tiada penyelesaian diberikan*
 
-## Rumusan
+## Ringkasan
 
-Dalam bab ini, kita melihat bagaimana pendekatan pelayan tahap rendah berfungsi dan bagaimana ia boleh membantu kita mencipta seni bina yang kemas yang boleh terus kita bina. Kita juga membincangkan pengesahan dan anda telah ditunjukkan bagaimana bekerja dengan perpustakaan pengesahan untuk mencipta skema bagi pengesahan input.
+Dalam bab ini, kita melihat bagaimana pendekatan pelayan tahap rendah berfungsi dan bagaimana ia boleh membantu kita mencipta seni bina yang bagus untuk terus dibina. Kami juga membincangkan pengesahan dan anda telah ditunjukkan cara bekerja dengan perpustakaan pengesahan untuk mencipta skema untuk pengesahan input.
 
-## Apa seterusnya
+## Apakah seterusnya
 
-- Seterusnya: [Pengesahan Mudah](../11-simple-auth/README.md)
+- Seterusnya: [Pengesahan Ringkas](../11-simple-auth/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk ketepatan, sila ambil maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang sahih. Untuk maklumat penting, terjemahan profesional oleh manusia adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidakakuratan. Dokumen asal dalam bahasa asalnya hendaklah dianggap sebagai sumber yang sahih. Untuk maklumat penting, terjemahan profesional oleh manusia disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul akibat penggunaan terjemahan ini.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,35 +1,35 @@
 # Komme i gang med MCP
 
-Velkommen til dine første steg med Model Context Protocol (MCP)! Enten du er ny til MCP eller ønsker å utdype din forståelse, vil denne guiden lede deg gjennom den essensielle oppsett- og utviklingsprosessen. Du vil oppdage hvordan MCP muliggjør sømløs integrasjon mellom AI-modeller og applikasjoner, og lære hvordan du raskt får miljøet ditt klart for å bygge og teste MCP-drevne løsninger.
+Velkommen til dine første steg med Model Context Protocol (MCP)! Enten du er ny til MCP eller ønsker å utdype din forståelse, vil denne guiden gå deg gjennom den essensielle oppsett- og utviklingsprosessen. Du vil oppdage hvordan MCP muliggjør sømløs integrasjon mellom AI-modeller og applikasjoner, og lære hvordan du raskt gjør miljøet ditt klart for å bygge og teste MCP-drevne løsninger.
 
-> TLDR; Hvis du bygger AI-apper, vet du at du kan legge til verktøy og andre ressurser til din LLM (stor språkmodell), for å gjøre LLM mer kunnskapsrik. Men hvis du plasserer disse verktøyene og ressursene på en server, kan appen og serverens kapasiteter brukes av enhver klient med/uten en LLM.
+> TLDR; Hvis du bygger AI-apper, vet du at du kan legge til verktøy og andre ressurser til din LLM (stor språkmodell) for å gjøre LLM mer kunnskapsrik. Men hvis du plasserer disse verktøyene og ressursene på en server, kan appen og serverens kapabiliteter brukes av hvilken som helst klient med/uten en LLM.
 
 ## Oversikt
 
-Denne leksjonen gir praktisk veiledning om hvordan du setter opp MCP-miljøer og bygger dine første MCP-applikasjoner. Du vil lære hvordan du setter opp nødvendige verktøy og rammeverk, bygger grunnleggende MCP-servere, lager vertsapplikasjoner og tester implementeringene dine.
+Denne leksjonen gir praktisk veiledning for oppsett av MCP-miljøer og bygging av dine første MCP-applikasjoner. Du lærer hvordan du setter opp nødvendige verktøy og rammeverk, bygger grunnleggende MCP-servere, lager vertsapplikasjoner, og tester implementasjonene dine.
 
-Model Context Protocol (MCP) er en åpen protokoll som standardiserer hvordan applikasjoner gir kontekst til LLM-er. Tenk på MCP som en USB-C-port for AI-applikasjoner – det gir en standardisert måte å koble AI-modeller til forskjellige datakilder og verktøy.
+Model Context Protocol (MCP) er en åpen protokoll som standardiserer hvordan applikasjoner gir kontekst til LLM-er. Tenk på MCP som en USB-C-port for AI-applikasjoner – den gir en standardisert måte å koble AI-modeller til forskjellige datakilder og verktøy.
 
 ## Læringsmål
 
 Ved slutten av denne leksjonen vil du kunne:
 
-- Sette opp utviklingsmiljøer for MCP i C#, Java, Python, TypeScript og Rust
-- Bygge og distribuere grunnleggende MCP-servere med tilpassede funksjoner (ressurser, prompts og verktøy)
+- Sette opp utviklingsmiljøer for MCP i C#, Java, Python, TypeScript, og Rust
+- Bygge og distribuere grunnleggende MCP-servere med egendefinerte funksjoner (ressurser, prompts og verktøy)
 - Lage vertsapplikasjoner som kobler til MCP-servere
-- Teste og feilsøke MCP-implementeringer
+- Teste og feilsøke MCP-implementasjoner
 
 ## Sette opp ditt MCP-miljø
 
-Før du begynner å jobbe med MCP, er det viktig å forberede utviklingsmiljøet ditt og forstå den grunnleggende arbeidsflyten. Denne seksjonen vil veilede deg gjennom de innledende oppsettsstegene for å sikre en smidig start med MCP.
+Før du begynner å jobbe med MCP, er det viktig å forberede utviklingsmiljøet ditt og forstå den grunnleggende arbeidsflyten. Dette avsnittet veileder deg gjennom de første oppsettsstegene for å sikre en smidig start med MCP.
 
 ### Forutsetninger
 
 Før du dykker inn i MCP-utvikling, sørg for at du har:
 
 - **Utviklingsmiljø**: For ditt valgte språk (C#, Java, Python, TypeScript eller Rust)
-- **IDE/Editor**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm eller en moderne kodeeditor
-- **Pakkebehandlere**: NuGet, Maven/Gradle, pip, npm/yarn eller Cargo
+- **IDE/Editor**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm eller en hvilken som helst moderne kodeeditor
+- **Pakkehåndterere**: NuGet, Maven/Gradle, pip, npm/yarn eller Cargo
 - **API-nøkler**: For eventuelle AI-tjenester du planlegger å bruke i vertsapplikasjonene dine
 
 ## Grunnleggende MCP-serverstruktur
@@ -54,7 +54,7 @@ const server = new McpServer({
   version: "1.0.0"
 });
 
-// Legg til et tillegg verktøy
+// Legg til et addisjonsverktøy
 server.tool("add",
   { a: z.number(), b: z.number() },
   async ({ a, b }) => ({
@@ -62,7 +62,7 @@ server.tool("add",
   })
 );
 
-// Legg til en dynamisk hilsenressurs
+// Legg til en dynamisk hilseneressurs
 server.resource(
   "file",
   // 'list'-parameteren styrer hvordan ressursen viser tilgjengelige filer. Å sette den til undefined deaktiverer visning for denne ressursen.
@@ -114,36 +114,36 @@ const transport = new StdioServerTransport();
 await server.connect(transport);
 ```
 
-I koden ovenfor:
+I koden over har vi:
 
-- Importerer vi nødvendige klasser fra MCP TypeScript SDK.
-- Oppretter og konfigurerer en ny MCP-serverinstans.
-- Registrerer et tilpasset verktøy (`calculator`) med en håndteringsfunksjon.
-- Starter serveren for å lytte etter innkommende MCP-forespørsler.
+- Importert nødvendige klasser fra MCP TypeScript SDK.
+- Opprettet og konfigurert en ny MCP-serverinstans.
+- Registrert et egendefinert verktøy (`calculator`) med en håndteringsfunksjon.
+- Startet serveren for å lytte etter innkommende MCP-forespørsler.
 
 ## Testing og feilsøking
 
-Før du begynner å teste MCP-serveren din, er det viktig å forstå tilgjengelige verktøy og beste praksis for feilsøking. Effektiv testing sikrer at serveren oppfører seg som forventet og hjelper deg raskt å identifisere og løse problemer. Følgende seksjon skisserer anbefalte tilnærminger for å validere din MCP-implementering.
+Før du begynner å teste MCP-serveren din, er det viktig å forstå hvilke tilgjengelige verktøy som finnes og beste praksis for feilsøking. Effektiv testing sikrer at serveren oppfører seg som forventet og hjelper deg raskt å identifisere og løse problemer. Følgende avsnitt beskriver anbefalte tilnærminger for å validere din MCP-implementasjon.
 
-MCP tilbyr verktøy som hjelper deg å teste og feilsøke serverne dine:
+MCP tilbyr verktøy for å hjelpe deg teste og feilsøke serverne dine:
 
-- **Inspector-verktøyet**, dette grafiske grensesnittet lar deg koble til serveren din og teste verktøy, prompts og ressurser.
-- **curl**, du kan også koble til serveren din ved hjelp av et kommandolinjeverktøy som curl eller andre klienter som kan lage og kjøre HTTP-kommandoer.
+- **Inspector-verktøyet**, dette grafiske grensesnittet lar deg koble til serveren din og teste verktøyene, promptene og ressursene dine.
+- **curl**, du kan også koble til serveren din ved hjelp av en kommandolinjeverktøy som curl eller andre klienter som kan lage og kjøre HTTP-kommandoer.
 
 ### Bruke MCP Inspector
 
 [MCP Inspector](https://github.com/modelcontextprotocol/inspector) er et visuelt testverktøy som hjelper deg med å:
 
 1. **Oppdage serverkapasiteter**: Automatisk oppdage tilgjengelige ressurser, verktøy og prompts
-2. **Teste verktøykjøring**: Prøve forskjellige parametere og se svar i sanntid
+2. **Teste verktøyutførelse**: Prøve ulike parametere og se svar i sanntid
 3. **Se servermetadata**: Undersøke serverinfo, skjemaer og konfigurasjoner
 
 ```bash
-# for eksempel TypeScript, installere og kjøre MCP Inspector
+# eks TypeScript, installere og kjøre MCP Inspector
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-Når du kjører kommandoene ovenfor, vil MCP Inspector starte et lokalt webgrensesnitt i nettleseren din. Du kan forvente å se et dashbord som viser dine registrerte MCP-servere, deres tilgjengelige verktøy, ressurser og prompts. Grensesnittet lar deg interaktivt teste verktøykjøring, inspisere servermetadata og se svar i sanntid, noe som gjør det enklere å validere og feilsøke dine MCP-serverimplementeringer.
+Når du kjører kommandoene over, vil MCP Inspector starte et lokalt webgrensesnitt i nettleseren din. Du kan forvente å se et dashbord som viser dine registrerte MCP-servere, deres tilgjengelige verktøy, ressurser og prompts. Grensesnittet lar deg interaktivt teste verktøyutførelse, inspisere servermetadata og se sanntidssvar, noe som gjør det enklere å validere og feilsøke MCP-serverimplementasjonene dine.
 
 Her er et skjermbilde av hvordan det kan se ut:
 
@@ -154,20 +154,20 @@ Her er et skjermbilde av hvordan det kan se ut:
 | Problem | Mulig løsning |
 |---------|---------------|
 | Tilkobling nektet | Sjekk om serveren kjører og at porten er korrekt |
-| Feil ved verktøykjøring | Gå gjennom parameter-validering og feilhåndtering |
-| Autentiseringsfeil | Verifiser API-nøkler og tillatelser |
-| Skjemavalideringsfeil | Sørg for at parametere samsvarer med definert skjema |
+| Feil ved verktøyutførelse | Gå gjennom parametervalidering og feilhåndtering |
+| Autentisering feiler | Verifiser API-nøkler og tillatelser |
+| Skjemavalideringsfeil | Sørg for at parametere stemmer med definert skjema |
 | Server starter ikke | Sjekk for portkonflikter eller manglende avhengigheter |
-| CORS-feil | Konfigurer riktige CORS-headere for kryss-opprinnelsesforespørsler |
-| Autentiseringsproblemer | Verifiser token gyldighet og tillatelser |
+| CORS-feil | Konfigurer riktige CORS-overskrifter for kryss-opprinnelsesforespørsler |
+| Autentiseringsproblemer | Sjekk tokenets gyldighet og tillatelser |
 
 ## Lokal utvikling
 
-For lokal utvikling og testing kan du kjøre MCP-servere direkte på maskinen din:
+For lokal utvikling og testing kan du kjøre MCP-servere direkte på din maskin:
 
 1. **Start serverprosessen**: Kjør MCP-serverapplikasjonen din
 2. **Konfigurer nettverk**: Sørg for at serveren er tilgjengelig på forventet port
-3. **Koble til klienter**: Bruk lokale tilkoblings-URLer som `http://localhost:3000`
+3. **Koble til klienter**: Bruk lokale tilkoblings-URL-er som `http://localhost:3000`
 
 ```bash
 # Eksempel: Kjøre en TypeScript MCP-server lokalt
@@ -177,11 +177,11 @@ npm run start
 
 ## Bygge din første MCP-server
 
-Vi har dekket [Kjernebegreper](/01-CoreConcepts/README.md) i en tidligere leksjon, nå er det på tide å sette den kunnskapen ut i praksis.
+Vi har tidligere dekket [Kjernebegreper](../../01-CoreConcepts/README.md), nå er det tid for å sette den kunnskapen ut i praksis.
 
 ### Hva en server kan gjøre
 
-Før vi begynner å skrive kode, la oss minne oss selv på hva en server kan gjøre:
+Før vi begynner å skrive kode, la oss minne oss på hva en server kan gjøre:
 
 En MCP-server kan for eksempel:
 
@@ -191,7 +191,7 @@ En MCP-server kan for eksempel:
 - Integrere med andre verktøy og tjenester
 - Tilby et brukergrensesnitt for interaksjon
 
-Flott, nå som vi vet hva vi kan gjøre for den, la oss begynne å kode.
+Flott, nå som vi vet hva vi kan gjøre, la oss begynne å kode.
 
 ## Øvelse: Lage en server
 
@@ -207,7 +207,7 @@ For å lage en server må du følge disse stegene:
 #### TypeScript
 
 ```sh
-# Opprett prosjektmappe og initialiser npm-prosjekt
+# Opprett prosjektmappe og initialiser npm-prosjektet
 mkdir calculator-server
 cd calculator-server
 npm init -y
@@ -219,7 +219,7 @@ npm init -y
 # Opprett prosjektmappe
 mkdir calculator-server
 cd calculator-server
-# Åpne mappen i Visual Studio Code - Hopp over dette hvis du bruker en annen IDE
+# Åpne mappen i Visual Studio Code - Hopp over dette hvis du bruker et annet IDE
 code .
 ```
 
@@ -232,7 +232,7 @@ cd McpCalculatorServer
 
 #### Java
 
-For Java, opprett et Spring Boot-prosjekt:
+For Java, lag et Spring Boot-prosjekt:
 
 ```bash
 curl https://start.spring.io/starter.zip \
@@ -255,7 +255,7 @@ cd calculator-server
 rm -rf src/test/java
 ```
 
-Legg til følgende komplette konfigurasjon i din *pom.xml*-fil:
+Legg til følgende komplette konfigurasjon i *pom.xml*-filen din:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -365,7 +365,7 @@ cargo init
 
 ### -2- Legg til avhengigheter
 
-Nå som du har opprettet prosjektet, la oss legge til avhengigheter:
+Nå som du har opprettet prosjektet ditt, la oss legge til avhengigheter:
 
 #### TypeScript
 
@@ -373,7 +373,7 @@ Nå som du har opprettet prosjektet, la oss legge til avhengigheter:
 # Hvis det ikke allerede er installert, installer TypeScript globalt
 npm install typescript -g
 
-# Installer MCP SDK og Zod for skjema-validering
+# Installer MCP SDK og Zod for skjema validering
 npm install @modelcontextprotocol/sdk zod
 npm install -D @types/node typescript
 ```
@@ -433,7 +433,7 @@ cargo add tokio --features rt-multi-thread
 }
 ```
 
-Opprett en *tsconfig.json* med følgende innhold:
+Lag en *tsconfig.json* med følgende innhold:
 
 ```json
 {
@@ -453,7 +453,7 @@ Opprett en *tsconfig.json* med følgende innhold:
 }
 ```
 
-Opprett en katalog for kildekoden din:
+Lag en katalog for kildekoden din:
 
 ```sh
 mkdir src
@@ -462,7 +462,7 @@ touch src/index.ts
 
 #### Python
 
-Opprett en fil *server.py*
+Lag en fil *server.py*
 
 ```sh
 touch server.py
@@ -485,11 +485,11 @@ For Java Spring Boot-prosjekter opprettes prosjektstrukturen automatisk.
 
 For Rust opprettes en *src/main.rs*-fil som standard når du kjører `cargo init`. Åpne filen og slett standardkoden.
 
-### -4- Lag serverkode
+### -4- Skriv serverkode
 
 #### TypeScript
 
-Opprett en fil *index.ts* og legg til følgende kode:
+Lag en fil *index.ts* og legg til følgende kode:
 
 ```typescript
 import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
@@ -503,7 +503,7 @@ const server = new McpServer({
 });
 ```
 
-Nå har du en server, men den gjør ikke så mye, la oss fikse det.
+Nå har du en server, men den gjør ikke mye, la oss fikse det.
 
 #### Python
 
@@ -542,7 +542,7 @@ await builder.Build().RunAsync();
 
 #### Java
 
-For Java, opprett kjernekomponentene for serveren. Først, endre hovedapplikasjonsklassen:
+For Java, lag kjernekomponentene i serveren. Først, modifiser hovedapplikasjonsklassen:
 
 *src/main/java/com/microsoft/mcp/sample/server/McpServerApplication.java*:
 
@@ -570,7 +570,7 @@ public class McpServerApplication {
 }
 ```
 
-Opprett kalkulatortjenesten *src/main/java/com/microsoft/mcp/sample/server/service/CalculatorService.java*:
+Lag kalkulatortjenesten *src/main/java/com/microsoft/mcp/sample/server/service/CalculatorService.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.service;
@@ -718,7 +718,7 @@ public class CalculatorService {
 
 **Valgfrie komponenter for en produksjonsklar tjeneste:**
 
-Opprett en oppstartskonfigurasjon *src/main/java/com/microsoft/mcp/sample/server/config/StartupConfig.java*:
+Lag oppstartskonfigurasjon *src/main/java/com/microsoft/mcp/sample/server/config/StartupConfig.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.config;
@@ -743,7 +743,7 @@ public class StartupConfig {
 }
 ```
 
-Opprett en helsekontroller *src/main/java/com/microsoft/mcp/sample/server/controller/HealthController.java*:
+Lag helsesjekk-kontroller *src/main/java/com/microsoft/mcp/sample/server/controller/HealthController.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.controller;
@@ -769,7 +769,7 @@ public class HealthController {
 }
 ```
 
-Opprett en unntakshåndterer *src/main/java/com/microsoft/mcp/sample/server/exception/GlobalExceptionHandler.java*:
+Lag en unntakshåndterer *src/main/java/com/microsoft/mcp/sample/server/exception/GlobalExceptionHandler.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.exception;
@@ -799,14 +799,14 @@ public class GlobalExceptionHandler {
             this.message = message;
         }
 
-        // Gettere
+        // Hentere
         public String getCode() { return code; }
         public String getMessage() { return message; }
     }
 }
 ```
 
-Opprett et tilpasset banner *src/main/resources/banner.txt*:
+Lag en egendefinert banner *src/main/resources/banner.txt*:
 
 ```text
 _____      _            _       _             
@@ -837,7 +837,7 @@ use rmcp::{
 use std::error::Error;
 ```
 
-Kalkulatorserveren vil være enkel og kan legge sammen to tall. La oss lage en struct for å representere kalkulatorforespørselen.
+Kalkulatorserveren vil være enkel og kan legge sammen to tall. La oss lage en struct som representerer kalkulatorforespørselen.
 
 ```rust
 #[derive(Debug, serde::Deserialize, schemars::JsonSchema)]
@@ -847,7 +847,7 @@ pub struct CalculatorRequest {
 }
 ```
 
-Deretter lager vi en struct for å representere kalkulatorserveren. Denne structen vil holde verktøyruteren, som brukes til å registrere verktøy.
+Deretter, lag en struct som representerer kalkulatorserveren. Denne struct-en vil holde verktøyruteren, som brukes til å registrere verktøy.
 
 ```rust
 #[derive(Debug, Clone)]
@@ -856,7 +856,7 @@ pub struct Calculator {
 }
 ```
 
-Nå kan vi implementere `Calculator`-structen for å lage en ny instans av serveren og implementere serverhåndtereren for å gi serverinformasjon.
+Nå kan vi implementere `Calculator` struct for å lage en ny instans av serveren og implementere serverhåndtereren for å gi serverinformasjon.
 
 ```rust
 #[tool_router]
@@ -880,7 +880,7 @@ impl ServerHandler for Calculator {
 }
 ```
 
-Til slutt må vi implementere main-funksjonen for å starte serveren. Denne funksjonen vil lage en instans av `Calculator`-structen og serve den over standard input/output.
+Til slutt må vi implementere main-funksjonen for å starte serveren. Denne funksjonen vil lage en instans av `Calculator` struct og kjøre den over standard input/output.
 
 ```rust
 #[tokio::main]
@@ -891,7 +891,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
 }
 ```
 
-Serveren er nå satt opp til å gi grunnleggende informasjon om seg selv. Neste steg er å legge til et verktøy for å utføre addisjon.
+Serveren er nå klar til å gi grunnleggende informasjon om seg selv. Neste steg er å legge til et verktøy for å utføre addisjon.
 
 ### -5- Legge til et verktøy og en ressurs
 
@@ -920,7 +920,7 @@ server.resource(
 );
 ```
 
-Verktøyet ditt tar parametrene `a` og `b` og kjører en funksjon som produserer et svar på formen:
+Ditt verktøy tar parametere `a` og `b` og kjører en funksjon som produserer et svar i form av:
 
 ```typescript
 {
@@ -930,7 +930,7 @@ Verktøyet ditt tar parametrene `a` og `b` og kjører en funksjon som produserer
 }
 ```
 
-Ressursen din nås gjennom strengen "greeting" og tar parameteren `name` og produserer et lignende svar som verktøyet:
+Din ressurs nås gjennom en streng "greeting" og tar en parameter `name` og produserer et lignende svar som verktøyet:
 
 ```typescript
 {
@@ -956,14 +956,14 @@ def get_greeting(name: str) -> str:
     return f"Hello, {name}!"
 ```
 
-I koden ovenfor har vi:
+I koden over har vi:
 
-- Definert et verktøy `add` som tar parametrene `a` og `b`, begge heltall.
-- Opprettet en ressurs kalt `greeting` som tar parameteren `name`.
+- Definert et verktøy `add` som tar parametere `a` og `b`, begge heltall.
+- Laget en ressurs kalt `greeting` som tar parameteren `name`.
 
 #### .NET
 
-Legg dette til i din Program.cs-fil:
+Legg dette til i Program.cs-filen din:
 
 ```csharp
 [McpServerToolType]
@@ -976,7 +976,7 @@ public static class CalculatorTool
 
 #### Java
 
-Verktøyene er allerede opprettet i forrige steg.
+Verktøyene ble allerede laget i forrige steg.
 
 #### Rust
 
@@ -994,7 +994,7 @@ async fn add(
 
 ### -6- Endelig kode
 
-La oss legge til den siste koden vi trenger slik at serveren kan starte:
+La oss legge til siste kode vi trenger slik at serveren kan startes:
 
 #### TypeScript
 
@@ -1004,7 +1004,7 @@ const transport = new StdioServerTransport();
 await server.connect(transport);
 ```
 
-Her er hele koden:
+Her er fullstendig kode:
 
 ```typescript
 // index.ts
@@ -1018,7 +1018,7 @@ const server = new McpServer({
   version: "1.0.0"
 });
 
-// Legg til et tillegg verktøy
+// Legg til et tilleggverktøy
 server.tool(
   "add",
   { a: z.number(), b: z.number() },
@@ -1027,7 +1027,7 @@ server.tool(
   })
 );
 
-// Legg til en dynamisk hilsen ressurs
+// Legg til en dynamisk hilsningsressurs
 server.resource(
   "greeting",
   new ResourceTemplate("greeting://{name}", { list: undefined }),
@@ -1054,27 +1054,27 @@ from mcp.server.fastmcp import FastMCP
 mcp = FastMCP("Demo")
 
 
-# Legg til et tillegg verktøy
+# Legg til et tilleggverktøy
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
     return a + b
 
 
-# Legg til en dynamisk hilsen ressurs
+# Legg til en dynamisk hilsningsressurs
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
     return f"Hello, {name}!"
 
-# Hovedutførelsesblokk - dette er nødvendig for å kjøre serveren
+# Hovedutførelsesblokk - dette kreves for å kjøre serveren
 if __name__ == "__main__":
     mcp.run()
 ```
 
 #### .NET
 
-Opprett en Program.cs-fil med følgende innhold:
+Lag en Program.cs-fil med følgende innhold:
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
@@ -1106,7 +1106,7 @@ public static class CalculatorTool
 
 #### Java
 
-Din komplette hovedapplikasjonsklasse skal se slik ut:
+Hovedapplikasjonsklassen din bør se slik ut:
 
 ```java
 // McpServerApplication.java
@@ -1135,7 +1135,7 @@ public class McpServerApplication {
 
 #### Rust
 
-Den endelige koden for Rust-serveren skal se slik ut:
+Den endelige koden for Rust-serveren bør se slik ut:
 
 ```rust
 use rmcp::{
@@ -1210,7 +1210,7 @@ npm run build
 mcp run server.py
 ```
 
-> For å bruke MCP Inspector, bruk `mcp dev server.py` som automatisk starter Inspector og gir nødvendig proxy session token. Hvis du bruker `mcp run server.py`, må du manuelt starte Inspector og konfigurere tilkoblingen.
+> For å bruke MCP Inspector, bruk `mcp dev server.py` som automatisk starter Inspector og gir nødvendig proxy-sesjonstoken. Hvis du bruker `mcp run server.py`, må du manuelt starte Inspector og konfigurere tilkoblingen.
 
 #### .NET
 
@@ -1230,7 +1230,7 @@ java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
 
 #### Rust
 
-Kjør følgende kommandoer for å formatere og kjøre serveren:
+Kjør følgende kommandoer for å formatere og starte serveren:
 
 ```sh
 cargo fmt
@@ -1242,7 +1242,7 @@ cargo run
 Inspector er et flott verktøy som kan starte serveren din og lar deg interagere med den slik at du kan teste at den fungerer. La oss starte den:
 
 > [!NOTE]
-> Det kan se annerledes ut i "command"-feltet da det inneholder kommandoen for å kjøre en server med din spesifikke runtime/
+> det kan se annerledes ut i "kommando"-feltet ettersom det inneholder kommandoen for å kjøre en server med ditt spesifikke runtime/
 
 #### TypeScript
 
@@ -1254,24 +1254,24 @@ eller legg det til i din *package.json* slik: `"inspector": "npx @modelcontextpr
 
 #### Python
 
-Python pakker inn et Node.js-verktøy kalt inspector. Det er mulig å kalle dette verktøyet slik:
+Python pakker inn et Node.js-verktøy kalt inspector. Det er mulig å kalle det verktøyet slik:
 
 ```sh
 mcp dev server.py
 ```
 
-Men det implementerer ikke alle metodene som er tilgjengelige i verktøyet, så det anbefales å kjøre Node.js-verktøyet direkte som vist nedenfor:
+Men det implementerer ikke alle metoder som er tilgjengelige i verktøyet, så det anbefales at du kjører Node.js-verktøyet direkte som vist nedenfor:
 
 ```sh
 npx @modelcontextprotocol/inspector mcp run server.py
 ```
 
-Hvis du bruker et verktøy eller IDE som lar deg konfigurere kommandoer og argumenter for å kjøre skript, 
-sørg for å sette `python` i `Command`-feltet og `server.py` som `Arguments`. Dette sikrer at skriptet kjører riktig.
+Hvis du bruker et verktøy eller IDE som lar deg konfigurere kommandoer og argumenter for skriptkjøring,
+pass på å sette `python` i `Command`-feltet og `server.py` som `Arguments`. Dette sikrer at skriptet kjører riktig.
 
 #### .NET
 
-Sørg for at du er i prosjektmappen din:
+Pass på at du er i prosjektmappen din:
 
 ```sh
 cd McpCalculatorServer
@@ -1280,8 +1280,8 @@ npx @modelcontextprotocol/inspector dotnet run
 
 #### Java
 
-Sørg for at kalkulatorserveren din kjører
-Deretter kjører du inspektøren:
+Sørg for at kalkulatorserveren kjører
+Kjør deretter inspektøren:
 
 ```cmd
 npx @modelcontextprotocol/inspector
@@ -1290,26 +1290,26 @@ npx @modelcontextprotocol/inspector
 I inspektørens nettgrensesnitt:
 
 1. Velg "SSE" som transporttype
-2. Sett URL-en til: `http://localhost:8080/sse`
-3. Klikk "Connect"
+2. Sett URL til: `http://localhost:8080/sse`
+3. Klikk på "Connect"
 
 ![Connect](../../../../translated_images/no/tool.163d33e3ee307e20.webp)
 
-**Du er nå koblet til serveren**
-**Java-server testseksjonen er nå fullført**
+**Du er nå tilkoblet serveren**
+**Testseksjonen for Java-serveren er nå fullført**
 
-Neste seksjon handler om å samhandle med serveren.
+Neste seksjon handler om å interagere med serveren.
 
 Du bør se følgende brukergrensesnitt:
 
 ![Connect](../../../../translated_images/no/connect.141db0b2bd05f096.webp)
 
-1. Koble til serveren ved å velge Connect-knappen
-  Når du kobler til serveren, bør du nå se følgende:
+1. Koble til serveren ved å velge Koble til-knappen
+  Når du er tilkoblet serveren, bør du nå se følgende:
 
   ![Connected](../../../../translated_images/no/connected.73d1e042c24075d3.webp)
 
-1. Velg "Tools" og "listTools", du bør se "Add" dukke opp, velg "Add" og fyll inn parameterverdiene.
+1. Velg "Tools" og "listTools", du bør se "Add" vises, velg "Add" og fyll ut parameterverdiene.
 
   Du bør se følgende svar, altså et resultat fra "add"-verktøyet:
 
@@ -1339,8 +1339,8 @@ MCP tilbyr offisielle SDK-er for flere språk:
 
 ## Viktige punkter
 
-- Å sette opp et MCP-utviklingsmiljø er enkelt med språkspesifikke SDK-er
-- Å bygge MCP-servere innebærer å lage og registrere verktøy med klare skjemaer
+- Å sette opp et MCP utviklingsmiljø er enkelt med språkspecifikke SDK-er
+- Å bygge MCP-servere innebærer å lage og registrere verktøy med tydelige skjemaer
 - Testing og feilsøking er essensielt for pålitelige MCP-implementasjoner
 
 ## Eksempler
@@ -1354,12 +1354,12 @@ MCP tilbyr offisielle SDK-er for flere språk:
 
 ## Oppgave
 
-Lag en enkel MCP-server med et verktøy etter eget valg:
+Lag en enkel MCP-server med et verktøy du velger:
 
-1. Implementer verktøyet i ditt foretrukne språk (.NET, Java, Python, TypeScript eller Rust).
+1. Implementer verktøyet i ditt foretrukne språk (.NET, Java, Python, TypeScript, eller Rust).
 2. Definer inndata-parametere og returverdier.
 3. Kjør inspektørverktøyet for å sikre at serveren fungerer som forventet.
-4. Test implementeringen med ulike inndata.
+4. Test implementasjonen med ulike inputverdier.
 
 ## Løsning
 
@@ -1379,5 +1379,5 @@ Neste: [Kom i gang med MCP-klienter](../02-client/README.md)
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Ansvarsfraskrivelse**:
-Dette dokumentet er oversatt ved hjelp av AI-oversettelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selv om vi streber etter nøyaktighet, vennligst vær oppmerksom på at automatiske oversettelser kan inneholde feil eller unøyaktigheter. Det opprinnelige dokumentet på originalspråket skal anses som den autoritative kilden. For kritisk informasjon anbefales profesjonell menneskelig oversettelse. Vi er ikke ansvarlige for eventuelle misforståelser eller feiltolkninger som oppstår ved bruk av denne oversettelsen.
+Dette dokumentet er oversatt ved hjelp av AI-oversettelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selv om vi streber etter nøyaktighet, vennligst vær oppmerksom på at automatiserte oversettelser kan inneholde feil eller unøyaktigheter. Det opprinnelige dokumentet i sitt opprinnelige språk bør betraktes som den autoritative kilden. For kritisk informasjon anbefales profesjonell menneskelig oversettelse. Vi er ikke ansvarlige for eventuelle misforståelser eller feiltolkninger som oppstår fra bruk av denne oversettelsen.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

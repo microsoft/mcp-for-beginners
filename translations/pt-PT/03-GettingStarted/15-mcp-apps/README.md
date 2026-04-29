@@ -1,10 +1,10 @@
 # MCP Apps
 
-MCP Apps é um novo paradigma no MCP. A ideia é que não só respondes com dados de volta de uma chamada a uma ferramenta, como também forneces informação sobre como esta informação deve ser interagida. Isso significa que os resultados da ferramenta agora podem conter informação de UI. Mas porque é que quereríamos isso? Bem, considera como fazes as coisas hoje. Provavelmente comes os resultados de um MCP Server colocando algum tipo de frontend à frente, que é código que precisas de escrever e manter. Por vezes é isso que queres, mas outras vezes seria ótimo se pudesses simplesmente trazer um fragmento de informação auto-contido que tenha tudo, desde os dados até à interface do utilizador.
+MCP Apps é um novo paradigma no MCP. A ideia é que não só respondes com dados de volta a partir de uma chamada de ferramenta, mas também forneces informação sobre como essa informação deve ser interagida. Isso significa que os resultados da ferramenta agora podem conter informação de interface de utilizador. Mas porque é que quereríamos isso? Bem, considera como fazes as coisas hoje em dia. É provável que estejas a consumir os resultados de um Servidor MCP colocando algum tipo de frontend à sua frente, esse é código que precisas de escrever e manter. Por vezes é isso que queres, mas outras vezes seria ótimo se pudesses simplesmente trazer um fragmento de informação que é auto-suficiente e que tem tudo, desde dados até à interface de utilizador.
 
 ## Visão Geral
 
-Esta lição fornece orientação prática sobre MCP Apps, como começar com eles e como integrá-los nas tuas Web Apps existentes. MCP Apps é uma adição muito nova ao Standard MCP.
+Esta lição fornece orientações práticas sobre MCP Apps, como começar e como integrá-lo nas tuas Apps Web existentes. MCP Apps é uma adição muito nova ao Standard MCP.
 
 ## Objetivos de Aprendizagem
 
@@ -16,7 +16,7 @@ No final desta lição, serás capaz de:
 
 ## MCP Apps - como funciona
 
-A ideia com MCP Apps é fornecer uma resposta que essencialmente é um componente a ser renderizado. Tal componente pode ter visuais e interatividade, por exemplo, cliques de botão, input do utilizador e mais. Vamos começar pelo lado do servidor e nosso MCP Server. Para criar um componente MCP App precisas de criar uma ferramenta mas também o recurso da aplicação. Estas duas partes estão ligadas por um resourceUri.
+A ideia com MCP Apps é fornecer uma resposta que essencialmente é um componente para ser renderizado. Tal componente pode ter tanto elementos visuais como interatividade, por exemplo, cliques em botões, entrada do utilizador e mais. Vamos começar pelo lado do servidor e pelo nosso Servidor MCP. Para criar um componente MCP App precisas de criar uma ferramenta mas também o recurso de aplicação. Estas duas partes estão ligadas por um resourceUri.
 
 Aqui está um exemplo. Vamos tentar visualizar o que está envolvido e que partes fazem o quê:
 
@@ -27,7 +27,7 @@ src/
 mcp-app.html -- the user interface
 ```
 
-Este visual descreve a arquitetura para criar um componente e a sua lógica.
+Esta visualização descreve a arquitetura para criar um componente e a sua lógica.
 
 ```mermaid
 flowchart LR
@@ -40,19 +40,19 @@ flowchart LR
   end
 
   subgraph Parent[Página Web Pai]
-    H[Aplicação hospedeira]
-    IFRAME[Recipiente IFrame]
+    H[Aplicação anfitriã]
+    IFRAME[Contentor IFrame]
     H -->|Injetar UI da App MCP| IFRAME
   end
 
   subgraph Frontend[Frontend: App MCP dentro do IFrame]
-    UI["Interface de utilizador: mcp-app.html"]
-    EH["Manipuladores de eventos: src/mcp-app.ts"]
+    UI["Interface do utilizador: mcp-app.html"]
+    EH["Gestores de eventos: src/mcp-app.ts"]
     UI --> EH
   end
 
   IFRAME --> UI
-  EH -->|Clique dispara chamada da ferramenta do servidor| T
+  EH -->|Clique dispara chamada da ferramenta no servidor| T
   T -->|Dados do resultado da ferramenta| EH
   EH -->|Enviar mensagem para a página pai| H
 ```
@@ -85,7 +85,7 @@ registerAppTool(
 
 ```
 
-O código anterior descreve o comportamento, onde expõe uma ferramenta chamada `get-time`. Esta não recebe inputs mas acaba por produzir a hora atual. Temos a capacidade de definir um `inputSchema` para ferramentas onde precisamos de aceitar input do utilizador.
+O código anterior descreve o comportamento, onde expõe uma ferramenta chamada `get-time`. Não recebe entradas mas acaba por produzir a hora atual. Temos a capacidade de definir um `inputSchema` para ferramentas onde precisamos de aceitar entrada do utilizador.
 
 **Registar o componente**
 
@@ -94,7 +94,7 @@ No mesmo ficheiro, também precisamos de registar o componente:
 ```typescript
 const resourceUri = "ui://get-time/mcp-app.html";
 
-// Regista o recurso, que devolve o HTML/JavaScript empacotado para a interface de utilizador.
+// Regista o recurso, que retorna o HTML/JavaScript empacotado para a interface de utilizador.
 registerAppResource(
   server,
   resourceUri,
@@ -112,18 +112,18 @@ registerAppResource(
 );
 ```
 
-Repara como mencionamos `resourceUri` para conectar o componente às suas ferramentas. De interesse é também o callback onde carregamos o ficheiro UI e retornamos o componente.
+Repara como mencionamos `resourceUri` para ligar o componente às suas ferramentas. Também é interessante o callback onde carregamos o ficheiro UI e retornamos o componente.
 
 ### O frontend do componente
 
-Tal como o backend, há duas partes aqui:
+Tal como no backend, há duas partes aqui:
 
 - Um frontend escrito em HTML puro.
-- Código que trata os eventos e o que fazer, por exemplo, chamar ferramentas ou enviar mensagens à janela pai.
+- Código que trata eventos e o que fazer, por exemplo, chamar ferramentas ou enviar mensagens para a janela pai.
 
-**Interface de utilizador**
+**Interface do utilizador**
 
-Vamos ver a interface do utilizador.
+Vamos olhar para a interface do utilizador.
 
 ```html
 <!-- mcp-app.html -->
@@ -145,7 +145,7 @@ Vamos ver a interface do utilizador.
 
 **Ligação dos eventos**
 
-A última parte é a ligação dos eventos. Isso significa que identificamos qual parte da nossa UI precisa de tratadores de eventos e o que fazer se os eventos forem disparados:
+A última parte é a ligação dos eventos. Isso significa que identificamos qual a parte na UI que precisa de manipuladores de eventos e o que fazer se eventos forem disparados:
 
 ```typescript
 // mcp-app.ts
@@ -159,33 +159,33 @@ const getTimeBtn = document.getElementById("get-time-btn")!;
 // Criar instância da aplicação
 const app = new App({ name: "Get Time App", version: "1.0.0" });
 
-// Tratar resultados de ferramentas do servidor. Definir antes de `app.connect()` para evitar
+// Tratar resultados da ferramenta do servidor. Definir antes de `app.connect()` para evitar
 // perder o resultado inicial da ferramenta.
 app.ontoolresult = (result) => {
   const time = result.content?.find((c) => c.type === "text")?.text;
   serverTimeEl.textContent = time ?? "[ERROR]";
 };
 
-// Ligar o clique do botão
+// Ligar clique do botão
 getTimeBtn.addEventListener("click", async () => {
-  // `app.callServerTool()` permite à UI solicitar dados atualizados do servidor
+  // `app.callServerTool()` permite à interface pedir novos dados ao servidor
   const result = await app.callServerTool({ name: "get-time", arguments: {} });
   const time = result.content?.find((c) => c.type === "text")?.text;
   serverTimeEl.textContent = time ?? "[ERROR]";
 });
 
-// Conectar ao host
+// Ligar ao host
 app.connect();
 ```
 
-Como podes ver acima, este é código normal para ligar elementos DOM a eventos. Vale a pena destacar a chamada a `callServerTool` que acaba por chamar uma ferramenta no backend.
+Como podes ver acima, este é código normal para ligar elementos do DOM a eventos. Vale a pena destacar a chamada a `callServerTool` que acaba por chamar uma ferramenta no backend.
 
-## Lidando com input do utilizador
+## Lidar com a entrada do utilizador
 
-Até agora, vimos um componente que tem um botão que ao ser clicado chama uma ferramenta. Vamos ver se podemos adicionar mais elementos UI como um campo de input e ver se conseguimos enviar argumentos para uma ferramenta. Vamos implementar uma funcionalidade de FAQ. Eis como deve funcionar:
+Até agora, vimos um componente que tem um botão que, quando clicado, chama uma ferramenta. Vamos ver se podemos adicionar mais elementos UI como um campo de entrada e verificar se podemos enviar argumentos para uma ferramenta. Vamos implementar uma funcionalidade de FAQ. Aqui está como deve funcionar:
 
-- Deve haver um botão e um elemento de input onde o utilizador digita uma palavra-chave para pesquisar, por exemplo "Shipping". Isto deve chamar uma ferramenta no backend que faz uma pesquisa nos dados de FAQ.
-- Uma ferramenta que suporte a pesquisa FAQ mencionada.
+- Deve haver um botão e um elemento de entrada onde o utilizador digita uma palavra-chave para pesquisar, por exemplo "Shipping". Isto deve chamar uma ferramenta no backend que faça uma pesquisa nos dados do FAQ.
+- Uma ferramenta que suporta a pesquisa FAQ mencionada.
 
 Vamos adicionar o suporte necessário ao backend primeiro:
 
@@ -205,7 +205,7 @@ registerAppTool(
       inputSchema: zod.object({
         query: zod.string().default("shipping"),
       }),
-      _meta: { ui: { resourceUri: faqResourceUri } }, // Liga esta ferramenta ao seu recurso de interface utilizador
+      _meta: { ui: { resourceUri: faqResourceUri } }, // Liga esta ferramenta ao seu recurso de interface de utilizador
     },
     async ({ query }) => {
       const answer: string = faq[query.toLowerCase()] || "Sorry, I don't have an answer for that.";
@@ -214,7 +214,7 @@ registerAppTool(
   );
 ```
 
-O que estamos a ver aqui é como preenchemos o `inputSchema` e damos um esquema `zod` assim:
+O que estamos a ver aqui é como preenchemos `inputSchema` e fornecemos um esquema `zod` assim:
 
 ```typescript
 inputSchema: zod.object({
@@ -222,9 +222,9 @@ inputSchema: zod.object({
 })
 ```
 
-No esquema acima declaramos que temos um parâmetro de entrada chamado `query` e que é opcional com um valor predefinido de "shipping".
+No esquema acima declaramos que temos um parâmetro de entrada chamado `query` e que é opcional com um valor padrão de "shipping".
 
-Ok, vamos avançar para *mcp-app.html* para ver que UI precisamos de criar para isto:
+Ok, vamos avançar para *mcp-app.html* para ver que UI precisamos criar para isto:
 
 ```html
 <div class="faq">
@@ -235,7 +235,7 @@ Ok, vamos avançar para *mcp-app.html* para ver que UI precisamos de criar para 
   </div>
 ```
 
-Ótimo, agora temos um elemento input e um botão. Vamos a *mcp-app.ts* a seguir para ligar esses eventos:
+Ótimo, agora temos um elemento de entrada e um botão. Vamos para *mcp-app.ts* a seguir para ligar estes eventos:
 
 ```typescript
 const getFaqBtn = document.getElementById("get-faq-btn")!;
@@ -249,28 +249,28 @@ getFaqBtn.addEventListener("click", async () => {
 });
 ```
 
-No código acima nós:
+No código acima:
 
-- Criamos referências aos elementos UI interessantes.
-- Tratamos um clique no botão para analisar o valor do elemento input e também chamamos `app.callServerTool()` com `name` e `arguments` onde este último passa `query` como valor.
+- Criamos referências aos elementos UI interativos.
+- Tratamos um clique de botão para analisar o valor do elemento de entrada e também chamamos `app.callServerTool()` com `name` e `arguments` onde este último passa `query` como valor.
 
-O que realmente acontece quando chamas `callServerTool` é que envia uma mensagem para a janela pai e essa janela acaba por chamar o MCP Server.
+O que realmente acontece quando chamas `callServerTool` é que envia uma mensagem para a janela pai e essa janela acaba por chamar o Servidor MCP.
 
 ### Experimenta
 
-Ao experimentar isso, devemos agora ver o seguinte:
+Ao experimentarmos isto, devemos agora ver o seguinte:
 
 ![](../../../../translated_images/pt-PT/faq.f78abe6b2cc68c83.webp)
 
-e aqui onde tentamos com input como "warranty"
+e aqui onde tentamos com uma entrada como "warranty"
 
 ![](../../../../translated_images/pt-PT/faq-input.3e276f1c3d7e061e.webp)
 
-Para executar este código, dirige-te à [secção de código](./code/README.md)
+Para executar este código, vai para a [seção de código](./code/README.md)
 
 ## Testar no Visual Studio Code
 
-O Visual Studio Code tem ótimo suporte para MVP Apps e é provavelmente uma das formas mais fáceis de testar os teus MCP Apps. Para usar o Visual Studio Code, adiciona uma entrada de servidor ao *mcp.json* assim:
+O Visual Studio Code tem um ótimo suporte para MCP Apps e é provavelmente uma das maneiras mais fáceis de testar os teus MCP Apps. Para usar o Visual Studio Code, adiciona uma entrada de servidor em *mcp.json* assim:
 
 ```json
 "my-mcp-server-7178eca7": {
@@ -279,19 +279,19 @@ O Visual Studio Code tem ótimo suporte para MVP Apps e é provavelmente uma das
   }
 ```
 
-Depois inicia o servidor, deverás ser capaz de comunicar com o teu MVP App através da Janela de Chat desde que tenhas o GitHub Copilot instalado.
+Depois inicia o servidor, deverás ser capaz de comunicar com o teu MCP App através da Janela de Chat, desde que tenhas o GitHub Copilot instalado.
 
-activando via prompt, por exemplo "#get-faq":
+Podes dispará-lo via um prompt, por exemplo "#get-faq":
 
 ![Visual Studio run prompt](../../../../translated_images/pt-PT/vscode-run.16cbab9436499f32.webp)
 
-e tal como quando o executaste através de um navegador web, é renderizado da mesma forma assim:
+e tal como quando o executaste através de um navegador web, ele renderiza da mesma forma assim:
 
 ![UI Visual Studio Code](../../../../translated_images/pt-PT/vscode-ui.f2771dcfce25ca0f.webp)
 
-## Tarefa
+## Exercício
 
-Cria um jogo de pedra, papel, tesoura. Deve consistir no seguinte:
+Cria um jogo de pedra papel tesoura. Deve consistir nos seguintes:
 
 UI:
 
@@ -301,7 +301,7 @@ UI:
 
 Servidor:
 
-- deve ter uma ferramenta pedra, papel, tesoura que recebe "choice" como input. Deve também renderizar a escolha do computador e determinar o vencedor
+- deve ter uma ferramenta rock paper scissor que recebe "choice" como entrada. Deve também renderizar a escolha do computador e determinar o vencedor
 
 ## Solução
 
@@ -309,16 +309,16 @@ Servidor:
 
 ## Resumo
 
-Aprendemos sobre este novo paradigma MCP Apps. É um novo paradigma que permite aos MCP Servers ter uma opinião não só sobre os dados mas também sobre como esses dados devem ser apresentados.
+Aprendemos sobre este novo paradigma MCP Apps. É um novo paradigma que permite aos Servidores MCP terem uma opinião não só sobre os dados mas também sobre como esses dados devem ser apresentados.
 
-Adicionalmente, aprendemos que estes MCP Apps estão alojados numa IFrame e para comunicarem com MCP Servers precisam de enviar mensagens para a aplicação web pai. Existem várias bibliotecas para JavaScript puro, React e mais que tornam esta comunicação mais fácil.
+Adicionalmente, aprendemos que estes MCP Apps são alojados num IFrame e para comunicarem com os Servidores MCP precisam de enviar mensagens para a aplicação web pai. Há várias bibliotecas disponíveis tanto para JavaScript puro como para React e outras que facilitam esta comunicação.
 
-## Principais Conclusões
+## Pontos-chave
 
 Aqui está o que aprendeste:
 
 - MCP Apps é um novo standard que pode ser útil quando queres enviar tanto dados como funcionalidades de UI.
-- Este tipo de apps corre numa IFrame por razões de segurança.
+- Este tipo de apps corre num IFrame por razões de segurança.
 
 ## O que vem a seguir
 
@@ -327,6 +327,6 @@ Aqui está o que aprendeste:
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Aviso Legal**:
-Este documento foi traduzido utilizando o serviço de tradução automática [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, por favor tenha em atenção que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autorizada. Para informações críticas, recomenda-se tradução profissional efetuada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações erradas resultantes da utilização desta tradução.
+**Aviso**:
+Este documento foi traduzido utilizando o serviço de tradução automática [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos pela precisão, por favor tenha em atenção que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autoritativa. Para informações críticas, recomenda-se a tradução profissional humana. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações erradas resultantes do uso desta tradução.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

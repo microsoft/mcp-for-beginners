@@ -201,7 +201,7 @@ import java.util.List;
 
 public class LangChain4jClient {
     
-    public static void main(String[] args) throws Exception {        // Configure el LLM para usar modelos de GitHub
+    public static void main(String[] args) throws Exception {        // Configure the LLM to use GitHub Models
         ChatLanguageModel model = OpenAiOfficialChatModel.builder()
                 .isGitHubModels(true)
                 .apiKey(System.getenv("GITHUB_TOKEN"))
@@ -209,7 +209,7 @@ public class LangChain4jClient {
                 .modelName("gpt-4.1-nano")
                 .build();
 
-        // Crear transporte MCP para conectar al servidor
+        // Create MCP transport for connecting to server
         McpTransport transport = new HttpMcpTransport.Builder()
                 .sseUrl("http://localhost:8080/sse")
                 .timeout(Duration.ofSeconds(60))
@@ -217,7 +217,7 @@ public class LangChain4jClient {
                 .logResponses(true)
                 .build();
 
-        // Crear cliente MCP
+        // Create MCP client
         McpClient mcpClient = new DefaultMcpClient.Builder()
                 .transport(transport)
                 .build();
@@ -334,7 +334,7 @@ async connectToServer(transport: Transport) {
 async run() {
     console.log("Asking server for available tools");
 
-    // displaying tools
+    // listing tools
     const toolsResult = await this.client.listTools();
 }
 ```
@@ -727,7 +727,7 @@ In this part of the code, we will handle user requests.
 
     console.log("Querying LLM: ", messages[0].content);
 
-    // 2. Calling the LLM
+    // 2. Call the LLM
     let response = this.openai.chat.completions.create({
         model: "gpt-4.1-mini",
         max_tokens: 1000,
@@ -1382,11 +1382,11 @@ Great, you did it!
 
 ## Assignment
 
-Take the code from the exercise and build out the server with some more tools. Then create a client with an LLM, like in the exercise, and test it out with different prompts to make sure all your server tools gets called dynamically. This way of building a client means the end user will have a great user experience as they're able to use prompts, instead of exact client commands, and be oblivious to any MCP server being called.
+Take the code from the exercise and build out the server with some more tools. Then create a client with an LLM, like in the exercise, and test it out with different prompts to make sure all your server tools get called dynamically. This way of building a client means the end user will have a great user experience as they're able to use prompts, instead of exact client commands, and be oblivious to any MCP server being called.
 
 ## Solution
 
-[Solution](/03-GettingStarted/03-llm-client/solution/README.md)
+[Solution](./solution/README.md)
 
 ## Key Takeaways
 
@@ -1412,5 +1412,5 @@ Take the code from the exercise and build out the server with some more tools. T
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Disclaimer**:
-This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
+This document has been translated using AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

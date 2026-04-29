@@ -139,7 +139,7 @@ The [MCP Inspector](https://github.com/modelcontextprotocol/inspector) is a visu
 3. **View Server Metadata**: Examine server info, schemas, and configurations
 
 ```bash
-# ex TypeScript, installing and running MCP Inspector
+# example TypeScript, installing and running MCP Inspector
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
@@ -177,7 +177,7 @@ npm run start
 
 ## Building your first MCP Server
 
-We've covered [Core concepts](/01-CoreConcepts/README.md) in a previous lesson, now it's time to put that knowledge to work.
+We've covered [Core concepts](../../01-CoreConcepts/README.md) in a previous lesson, now it's time to put that knowledge to work.
 
 ### What a server can do
 
@@ -216,7 +216,7 @@ npm init -y
 #### Python
 
 ```sh
-# Create project dir
+# Create project directory
 mkdir calculator-server
 cd calculator-server
 # Open the folder in Visual Studio Code - Skip this if you are using a different IDE
@@ -1379,6 +1379,6 @@ Next: [Getting Started with MCP Clients](../02-client/README.md)
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Disclaimer**:
-This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
+**Disclaimer**:  
+This document has been translated using AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

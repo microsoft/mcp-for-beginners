@@ -53,12 +53,20 @@ const server = new Server(
     },
   }
 );
+
+async function runServer() {
+  const transport = new StdioServerTransport();
+  await server.connect(transport);
+}
+
+runServer().catch(console.error);
 ```
 
 In the preceding code:
 
 - We import the `Server` class and `StdioServerTransport` from the MCP SDK
 - We create a server instance with basic configuration and capabilities
+- We create a `StdioServerTransport` instance and connect the server to it, enabling communication over stdin/stdout
 
 ### Python
 

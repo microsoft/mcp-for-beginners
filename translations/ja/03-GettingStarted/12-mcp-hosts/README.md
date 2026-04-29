@@ -340,10 +340,10 @@ Windsurfの設定はUIの設定画面から行います：
 
 3. **依存関係を確認:**
    ```bash
-   # パイソン
+   # Python用
    pip list | grep mcp
    
-   # ノード.js
+   # Node.js用
    npm list @modelcontextprotocol/sdk
    ```
 
@@ -390,5 +390,5 @@ Windsurfの設定はUIの設定画面から行います：
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **免責事項**：  
-本資料はAI翻訳サービス「Co-op Translator」（https://github.com/Azure/co-op-translator）を使用して翻訳されています。正確性を期しておりますが、自動翻訳には誤りや不正確な箇所が含まれる場合があります。原文を権威ある情報源としてご参照ください。重要な情報については、専門の人間翻訳をご利用いただくことを推奨します。本翻訳の利用により生じたいかなる誤解や誤訳についても、当方は責任を負いかねます。
+本資料はAI翻訳サービス「[Co-op Translator](https://github.com/Azure/co-op-translator)」を使用して翻訳されています。正確性を期しておりますが、自動翻訳には誤りや不正確な箇所が含まれる場合があります。原文を権威ある情報源としてご参照ください。重要な情報については、専門の人間翻訳をご利用いただくことを推奨します。本翻訳の利用により生じたいかなる誤解や誤訳についても、当方は責任を負いかねます。
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

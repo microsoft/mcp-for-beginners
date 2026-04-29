@@ -90,7 +90,7 @@ Here we have:
     return response
     ```
 
-How it works is that if a web request are made towards the server the middleware will be invoked and given its implementation it will either let the request pass through or end up returning an error that indicates the client isn't allowed to proceed.
+How it works is that if a web request is made towards the server the middleware will be invoked and given its implementation it will either let the request pass through or end up returning an error that indicates the client isn't allowed to proceed.
 
 **TypeScript**
 
@@ -293,14 +293,14 @@ Let's move on to the next step of creating the middleware so we can validate the
 
 ### -2- Implement a middleware for the server
 
-Let's get to the middleware portion next. Here we will create a middleware that looks for a credential in the `Authorization` header and validate it. If it's acceptable then the request will move on to do what it needs (e.g list tools, read a resource or whatever MCP functionality the client was asking for).
+Let's get to the middleware portion next. Here we will create a middleware that looks for a credential in the `Authorization` header and validates it. If it's acceptable then the request will move on to do what it needs (e.g list tools, read a resource or whatever MCP functionality the client was asking for).
 
 **Python**
 
-To create the middleware, we need to create a class that inherits from `BaseHTTPMiddleware`. There's two interesting pieces:
+To create the middleware, we need to create a class that inherits from `BaseHTTPMiddleware`. There are two interesting pieces:
 
 - The request `request` , that we read the header info from.
-- `call_next` the callback we need to invoke if the client have brought a credential we accept.
+- `call_next` the callback we need to invoke if the client has brought a credential we accept.
 
 First, we need to handle the case if the `Authorization` header is missing:
 
@@ -347,7 +347,6 @@ class AuthMiddleware(BaseHTTPMiddleware):
 ```
 
 Great, but what about `valid_token` function? Here it is below:
-:
 
 ```python
 # DON'T use for production - improve it !!
@@ -492,18 +491,18 @@ With that said, let's try to harden the security a little bit by using a standar
 
 So, we're trying to improve things from sending very simple credentials. What's the immediate improvements we get adopting JWT?
 
-- **Security improvements**. In basic auth, you send the username and password as a base64 encoded token (or you send an API key) over and over which increase the risk. With JWT, you send your username and password and gets a token in return and it's also time bound meaning it will expire. JWT lets you easily use fine-grained access control using roles, scopes and permissions. 
-- **Statelessness and scalability**. JWTs are self-contained, they carry all user info and eliminates the need to store server-side session storage. Token can also be validated locally.
+- **Security improvements**. In basic auth, you send the username and password as a base64 encoded token (or you send an API key) over and over which increases the risk. With JWT, you send your username and password and get a token in return and it's also time bound meaning it will expire. JWT lets you easily use fine-grained access control using roles, scopes and permissions.
+- **Statelessness and scalability**. JWTs are self-contained, they carry all user info and eliminate the need to store server-side session storage. Token can also be validated locally.
 - **Interoperability and federation**. JWTs is central of Open ID Connect and is used with known identity providers like Entra ID, Google Identity and Auth0. They also make it possible to use single sign on and much more making it enterprise-grade.
 - **Modularity and flexibility**. JWTs can also be used with API Gateways like Azure API Management, NGINX and more. It also supports use authentication scenarios and server-to-service communication including impersonation and delegation scenarios.
-- **Performance and caching**. JWTs can be cached after decoding which reduces the need for parsing. This helps specifically with high-traffic apps as it improves throughput and reduced load on your chosen infrastructure.
+- **Performance and caching**. JWTs can be cached after decoding which reduces the need for parsing. This helps specifically with high-traffic apps as it improves throughput and reduces load on your chosen infrastructure.
 - **Advanced features**. It also supports introspection (checking validity on server) and revocation (making a token invalid).
 
 With all of these benefits, let's see how we can take our implementation to the next level.
 
 ## Turning basic auth into JWT
 
-So, the changes we need to at mile-high level is to:
+So, the changes we need to make at mile-high level are to:
 
 - **Learn to construct a JWT token** and make it ready for being sent from client to server.
 - **Validate a JWT token**, and if so, let the client have our resources.
@@ -516,7 +515,7 @@ So, the changes we need to at mile-high level is to:
 First off, a JWT token has the following parts:
 
 - **header**, algorithm used and token type.
-- **payload**, claims, like sub (the user or entity the token represents. In an auth scenario this typically the userid), exp (when it expires) role (the role)
+- **payload**, claims, like sub (the user or entity the token represents. In an auth scenario this is typically the userid), exp (when it expires) role (the role)
 - **signature**, signed with a secret or private key.
 
 For this, we will need to construct the header, payload and the encoded token.
@@ -651,7 +650,7 @@ Next, let's look into role based access control, also known as RBAC.
 
 ## Adding role based access control
 
-The idea is that we want to express that different roles have different permissions. For example, we assume an admin can do everything and that a normal users can do read/write and that a guest can only read. Therefore, here are some possible permission levels:
+The idea is that we want to express that different roles have different permissions. For example, we assume an admin can do everything and that a normal user can do read/write and that a guest can only read. Therefore, here are some possible permission levels:
 
 - Admin.Write 
 - User.Read
@@ -705,7 +704,7 @@ middleware = [
 
 app = Starlette(routes=routes, middleware=middleware)
 
-# Alt 2: add middleware after starlette app is a already constructed
+# Alt 2: add middleware after starlette app is already constructed
 starlette_app.add_middleware(JWTPermissionMiddleware)
 
 # Alt 3: add middleware per route

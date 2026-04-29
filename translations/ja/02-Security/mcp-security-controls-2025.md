@@ -450,5 +450,5 @@ Recovery Procedures:
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **免責事項**：  
-本書類はAI翻訳サービス「Co-op Translator」（https://github.com/Azure/co-op-translator）を使用して翻訳されました。正確性の向上に努めておりますが、自動翻訳には誤りや不正確な部分が含まれる可能性があります。原文の母国語版を正式な情報源としてご参照ください。重要な情報については、専門の翻訳者による翻訳を推奨します。本翻訳の使用により生じた誤解や誤訳に関して、当方は一切の責任を負いかねます。
+本書類はAI翻訳サービス「[Co-op Translator](https://github.com/Azure/co-op-translator)」を使用して翻訳されました。正確性の向上に努めておりますが、自動翻訳には誤りや不正確な部分が含まれる可能性があります。原文の母国語版を正式な情報源としてご参照ください。重要な情報については、専門の翻訳者による翻訳を推奨します。本翻訳の使用により生じた誤解や誤訳に関して、当方は一切の責任を負いかねます。
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

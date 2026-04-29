@@ -1,39 +1,39 @@
-# MCP-server stdio transpordiga
+# MCP server stdio transpordiga
 
-> **⚠️ Tähtis uuendus**: MCP spetsifikatsiooni 2025-06-18 seisuga on iseseisev SSE (Server-Sent Events) transport **ära toodud** ja asendatud „Streamable HTTP” transpordiga. Praegune MCP spetsifikatsioon määratleb kaks peamist transpordimehhanismi:
-> 1. **stdio** - standardne sisend/väljund (soovitatav kohalikele serveritele)
-> 2. **Streamable HTTP** - kaugserverite jaoks, mis võivad kasutada SSE-d sisemiselt
+> **⚠️ Tähtis uuendus**: MCP spetsifikatsiooni 2025-06-18 seisuga on eraldiseisev SSE (Server-Sent Events) transport **ära kaotatud** ning asendatud "Streamable HTTP" transpordiga. Praegune MCP spetsifikatsioon määratleb kaks peamist transpordimehhanismi:
+> 1. **stdio** - Standard sisend/väljund (soovitatav kohalikele serveritele)
+> 2. **Streamable HTTP** - kaugsuhtlus, mis võib sisemiselt kasutada SSE-d
 >
-> See õppetund on uuendatud keskenduma **stdio transpordile**, mis on soovitatav enamikus MCP serverite rakendustes.
+> See õppetund keskendub uuendatult **stdio transpordile**, mis on enamiku MCP serveri rakenduste jaoks soovitatav.
 
-Stdio transport võimaldab MCP serveritel suhelda klientidega standardse sisendi ja väljundi kaudu. See on enim kasutatav ja soovitatav transpordimehhanism praeguses MCP spetsifikatsioonis, pakkudes lihtsat ja tõhusat viisi MCP serverite loomiseks, mida saab hõlpsasti integreerida erinevate kliendirakendustega.
+Stdio transport võimaldab MCP serveritel suhelda klientidega standardse sisendi ja väljundi voogude kaudu. See on praeguse MCP spetsifikatsiooni kõige enamkasutatavam ja soovitatav transpordimehhanism, mis pakub lihtsat ja tõhusat viisi MCP serverite loomiseks ning võimaldab hõlpsat integreerimist erinevate kliendirakendustega.
 
 ## Ülevaade
 
-Selles õppetunnis käsitleme, kuidas luua ja tarbida MCP servereid kasutades stdio transporti.
+See õppetund käsitleb, kuidas luua ja kasutada MCP servereid stdio transpordi abil.
 
 ## Õpieesmärgid
 
-Selle õppetunni lõpuks oskad:
+Selle õppetunni lõpuks oskad sa:
 
-- Luua MCP serveri, kasutades stdio transporti.
-- Siluda MCP serverit, kasutades Inspectorit.
-- Tarbida MCP serverit Visual Studio Code'is.
-- Mõista praeguseid MCP transpordimehhanisme ja miks stdio on soovitatav.
+- Luua MCP serveri stdio transpordi abil.
+- Siluda MCP serverit Inspectoriga.
+- Kasutada MCP serverit Visual Studio Code'is.
+- Mõista MCP transpordimehhanisme ning miks stdio on soovitatav.
 
-## stdio transport – Kuidas see töötab
+## stdio transport - kuidas see töötab
 
-Stdio transport on üks kahest toetatud transporditüübist praeguses MCP spetsifikatsioonis (2025-06-18). Siin on, kuidas see töötab:
+Stdio transport on üks kahest toetatud transporditüübist praeguses MCP spetsifikatsioonis (2025-06-18). See töötab järgmiselt:
 
-- **Lihtne kommunikatsioon**: server loeb JSON-RPC sõnumeid standardse sisendi (`stdin`) kaudu ja saadab sõnumeid standardse väljundi (`stdout`) kaudu.
+- **Lihtne suhtlus**: server loeb JSON-RPC sõnumeid standard sisendist (`stdin`) ja saadab sõnumeid standard väljundisse (`stdout`).
 - **Protsessipõhine**: klient käivitab MCP serveri alamprotsessina.
-- **Sõnumite formaat**: sõnumid on üksikud JSON-RPC päringud, teavitused või vastused, mis on reavahetustega piiratud.
-- **Logimine**: server VÕIB kirjutada UTF-8 stringe standardse vea voogu (`stderr`) logimise eesmärgil.
+- **Sõnumite formaat**: sõnumid on eraldiseisvad JSON-RPC päringud, teated või vastused, mis on eraldatud reavahetustega.
+- **Logimine**: server VÕIB kirjutada logimiseks UTF-8 stringe standardveasse (`stderr`).
 
-### Põhinõuded:
-- Sõnumid PEAVAD olema reavahetustega piiratud ja EI TOHI sisaldada manustatud reavahetusi
-- Server EI TOHI kirjutada midagi `stdout`-i, mis ei ole kehtiv MCP sõnum
-- Klient EI TOHI kirjutada serveri `stdin`-i midagi, mis ei ole kehtiv MCP sõnum
+### Peamised nõuded:
+- Sõnumeid TULEB eraldada reavahetustega ja nende sees EI TOHI olla manustatud reavahetusi
+- Server EI TOHI kirjutada `stdout`-i mitte kehtivaid MCP sõnumeid
+- Klient EI TOHI kirjutada serveri `stdin`-i mitte kehtivaid MCP sõnumeid
 
 ### TypeScript
 
@@ -52,12 +52,20 @@ const server = new Server(
     },
   }
 );
+
+async function runServer() {
+  const transport = new StdioServerTransport();
+  await server.connect(transport);
+}
+
+runServer().catch(console.error);
 ```
 
 Eelnevas koodis:
 
-- Impordime MCP SDK-st `Server` klassi ja `StdioServerTransport`-i
-- Loome serveri instantsi põhilise konfiguratsiooni ja võimekustega
+- Impordime MCP SDK-st klassi `Server` ja transpordi `StdioServerTransport`
+- Loome serveri eksemplari baaskonfiguratsiooni ja võimetega
+- Loome `StdioServerTransport` eksemplari ning ühendame serveri sellega, võimaldades suhtlust stdin/stdout kaudu
 
 ### Python
 
@@ -89,9 +97,9 @@ if __name__ == "__main__":
 
 Eelnevas koodis:
 
-- Loome serveri instantsi, kasutades MCP SDK-d
-- Määratleme tööriistad dekoratiivide abil
-- Kasutame stdio_server kontekstihaldurit transpordi käsitlemiseks
+- Loome MCP SDK abil serveri instantsi
+- Määratleme tööriistad dekoratsioonide abil
+- Kasutame stdio_server kontekstihaldurit transpordi haldamiseks
 
 ### .NET
 
@@ -114,30 +122,29 @@ var app = builder.Build();
 await app.RunAsync();
 ```
 
-Peamine erinevus SSE-st on see, et stdio serverid:
+Peamine erinevus SSE-st seisneb selles, et stdio serverid:
 
-- Ei vaja veebiserveri seadistust ega HTTP otspunktide olemasolu
-- Käivitatakse kliendi poolt alamprotsessidena
-- Suhelda stdin/stdout voogude kaudu
-- On lihtsamini teostatavad ja silutavad
+- Ei vaja veebiserveri seadistust ega HTTP otspunktide loomiseks
+- Käivitatakse kliendi poolt alamprotsessina
+- Suhtlevad stdin/stdout voogude kaudu
+- On lihtsamad rakendada ja siluda
 
 ## Harjutus: stdio serveri loomine
 
-Serveri loomiseks tuleb meeles pidada kahte asja:
+Serveri loomiseks tuleb pidada silmas kahte asja:
 
-- Peame kasutama veebiserverit ühendus- ja sõnumi otspunktide eksponeerimiseks.
-
+- Me vajame veebiserverit ühenduse ja sõnumite otspunktide eksponeerimiseks.
 ## Labor: Lihtsa MCP stdio serveri loomine
 
-Selles laboris loome lihtsa MCP serveri, kasutades soovitatud stdio transporti. See server eksponeerib tööriistu, mida kliendid saavad kutsuda standardse Model Context Protocol-i abil.
+Selles laboris loome lihtsa MCP serveri, kasutades soovitatavat stdio transporti. See server eksponeerib tööriistu, mida kliendid saavad kutsuda standardse Model Context Protocoli kaudu.
 
-### Eeldused
+### Eeltingimused
 
 - Python 3.8 või uuem
-- MCP Python SDK: `pip install mcp`
-- Põhilised teadmised asünkroonsest programmeerimisest
+- MCP Pythoni SDK: `pip install mcp`
+- Baasteadmised asünkroonsest programmeerimisest
 
-Alustame oma esimese MCP stdio serveri loomisega:
+Alustame esimese MCP stdio serveri loomisega:
 
 ```python
 import asyncio
@@ -176,34 +183,34 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-## Peamised erinevused aegunud SSE lähenemisest
+## Peamised erinevused SSE (ära antud) lähenemisest
 
 **Stdio transport (praegune standard):**
-- Lihtne alamprotsessi mudel – klient käivitab serveri lapsprotsessina
-- Kommunikatsioon stdin/stdout kaudu JSON-RPC sõnumitega
+- Lihtne alamprotsessi mudel - klient käivitab serveri alamprotsessina
+- Suhtlus stdin/stdout kaudu JSON-RPC sõnumitega
 - HTTP serverit ei ole vaja seadistada
 - Parem jõudlus ja turvalisus
 - Lihtsam siluda ja arendada
 
-**SSE transport (ära toodud seisuga MCP 2025-06-18):**
-- Vajas HTTP serverit koos SSE otspunktidega
-- Keerukam seadistus veebiserveri infrastruktuuriga
-- Täiendavad turvakaalutlused HTTP otspunktide jaoks
-- Asendatud Streamable HTTP-ga veebi-põhiste stsenaariumite jaoks
+**SSE transport (ära antud MCP 2025-06-18 seisuga):**
+- Nõudis HTTP serverit SSE otspunktidega
+- Keerulisem seadistamine veebiserveri infrastruktuuriga
+- Täiendavad turvaküsimused HTTP otspunktide juures
+- Asendatud Streamable HTTP-ga veebipõhiste stsenaariumite jaoks
 
 ### stdio transpordiga serveri loomine
 
-Serveri loomiseks tuleb:
+Serveri loomiseks peame:
 
-1. **Impordida vajalikud teegid** – vajame MCP serveri komponente ja stdio transporti
-2. **Luua serveri instants** – määratleda server ja selle võimekus
-3. **Määratleda tööriistad** – lisada funktsionaalsus, mida soovime eksponeerida
-4. **Seadistada transport** – konfigureerida stdio kommunikatsioon
-5. **Käivitada server** – alustada serverit ja käsitleda sõnumeid
+1. **Impordima vajalikud teegid** - MCP serveri komponendid ja stdio transport
+2. **Looma serveri instantsi** - määratlema server koos võimetega
+3. **Määratlema tööriistad** - lisama funktsionaalsust, mida eksponeerida
+4. **Seadistama transpordi** - konfigureerima stdio suhtlust
+5. **Käivita server** - alustama serverit ja töötlema sõnumeid
 
-Loome selle samm-sammult:
+Ehitage see samm-sammult:
 
-### Samm 1: Põhilise stdio serveri loomine
+### Samm 1: Loome baasilise stdio serveri
 
 ```python
 import asyncio
@@ -235,7 +242,7 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-### Samm 2: Rohkem tööriistu lisamine
+### Samm 2: Lisame rohkem tööriistu
 
 ```python
 @server.tool()
@@ -261,20 +268,20 @@ def get_server_info() -> dict:
 
 ### Samm 3: Serveri käivitamine
 
-Salvesta kood faili `server.py` ja käivita see käsurealt:
+Salvesta kood failina `server.py` ja käivita see käsurealt:
 
 ```bash
 python server.py
 ```
 
-Server käivitub ja ootab sisendeid stdin-ist. Suhtleb JSON-RPC sõnumite kaudu stdio transpordi peal.
+Server käivitub ja ootab sisendit stdin-st. Suhtleb JSON-RPC sõnumitega stdio transpordi kaudu.
 
 ### Samm 4: Testimine Inspectoriga
 
-Saad oma serverit testida MCP Inspectoriga:
+Serverit saad testida MCP Inspectoriga:
 
 1. Paigalda Inspector: `npx @modelcontextprotocol/inspector`
-2. Käivita Inspector ja suuna see oma serveri poole
+2. Käivita Inspector ja suuna see oma serverile
 3. Testi loodud tööriistu
 
 ### .NET
@@ -284,11 +291,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddMcpServer();
  ```
-## Stdio serveri silumine
+## oma stdio serveri silumine
 
-### MCP Inspectori kasutamine
+### MCP Inspectoriga
 
-MCP Inspector on kasulik tööriist MCP serverite silumiseks ja testimiseks. Siin on, kuidas seda stdio serveri puhul kasutada:
+MCP Inspector on väärtuslik vahend MCP serverite silumiseks ja testimiseks. Nii saad seda kasutada stdio serveriga:
 
 1. **Paigalda Inspector**:
    ```bash
@@ -300,17 +307,17 @@ MCP Inspector on kasulik tööriist MCP serverite silumiseks ja testimiseks. Sii
    npx @modelcontextprotocol/inspector python server.py
    ```
 
-3. **Testi serverit**: Inspector pakub veebiliidest, kus saad:
-   - Vaadata serveri võimekust
+3. **Testi oma serverit**: Inspector pakub veebiliidest, kus saad:
+   - Vaadata serveri võimeid
    - Testida tööriistu erinevate parameetritega
    - Jälgida JSON-RPC sõnumeid
-   - Siluda ühendusprobleeme
+   - Siluda ühenduvusprobleeme
 
-### VS Code'i kasutamine
+### Kasutades VS Code
 
-Sa saad MCP serverit siluda ka otse VS Code’is:
+VS Code'is saad oma MCP serverit samuti otse siluda:
 
-1. Loo konfiguratsioon failis `.vscode/launch.json`:
+1. Loo `.vscode/launch.json` käivituskonfiguratsioon:
    ```json
    {
      "version": "0.2.0",
@@ -326,19 +333,19 @@ Sa saad MCP serverit siluda ka otse VS Code’is:
    }
    ```
 
-2. Sea murdepunktid serverikoodis
+2. Määra murdepunkte serveri koodi
 3. Käivita silur ja testi Inspectoriga
 
-### Levinumad silumise nõuanded
+### Sageli kasulikud silumishoiatused
 
-- Kasuta logimiseks `stderr` – ära kunagi kirjuta `stdout`-i, see on reserveeritud MCP sõnumitele
-- Veendu, et kõik JSON-RPC sõnumid on reavahetustega piiratud
+- Kasuta logimiseks `stderr`-i - ära kirjuta kunagi `stdout`-i, kuna see on reserveeritud MCP sõnumitele
+- Veendu, et kõik JSON-RPC sõnumid oleksid reavahetusega eraldatud
 - Testi esmalt lihtsate tööriistadega enne keerukamate lisamist
-- Kasuta Inspectori, et kontrollida sõnumite formaate
+- Kontrolli sõnumiformaate Inspectoriga
 
-## Oma stdio serveri tarbimine VS Code’is
+## stdio serveri kasutamine VS Code'is
 
-Kui oled oma MCP stdio serveri loonud, saad selle integreerida VS Code’i, et kasutada seda Claude’i või teiste MCP-ühilduvate klientidega.
+Kui oled MCP stdio serveri valmis teinud, saad selle integreerida VS Code’i, et kasutada seda koos Claude'i või muud MCP ühilduva kliendiga.
 
 ### Konfiguratsioon
 
@@ -357,14 +364,14 @@ Kui oled oma MCP stdio serveri loonud, saad selle integreerida VS Code’i, et k
 
 2. **Taaskäivita Claude**: Sule ja ava Claude uuesti, et laadida uus serveri konfiguratsioon.
 
-3. **Testi ühendust**: Alusta Claudega vestlust ja proovi kasutada serveri tööriistu:
-   - „Kas sa saad mind tervitada tervitustööriista abil?”
-   - „Arvuta 15 ja 27 summa.”
-   - „Mis on serveri info?”
+3. **Testi ühendust**: Alusta vestlust Claude'iga ja proovi serveri tööriistu:
+   - "Kas saaksid tervitada mind tervitustööriista abil?"
+   - "Arvuta 15 ja 27 summa"
+   - "Mis info sul serveri kohta on?"
 
 ### TypeScript stdio serveri näide
 
-Siin on täielik TypeScript näidis:
+Siin on viitamiseks täielik TypeScript näidis:
 
 ```typescript
 #!/usr/bin/env node
@@ -467,19 +474,20 @@ public class Tools
 
 ## Kokkuvõte
 
-Selles uuendatud õppetunnis õppisid:
+Selles uuendatud õppetunnis õppisid sa:
 
-- MCP serverite loomist, kasutades praegust **stdio transporti** (soovitatud lähenemine)
-- Miks SSE transport asendati stdio ja Streamable HTTP-ga
+- MCP serverite loomist kasutades praegust **stdio transporti** (soovitatav lahendus)
+- Mõistma miks SSE transport kaotati ja miks üle mindi stdio ja Streamable HTTP peale
 - Tööriistade loomist, mida MCP kliendid saavad kutsuda
-- Serveri silumist MCP Inspectori abil
-- Oma stdio serveri integreerimist VS Code’i ja Claude’iga
+- Oma serveri silumist MCP Inspectoriga
+- oma stdio serveri integreerimist VS Code'i ja Claude'iga
 
-Stdio transport pakub lihtsamat, turvalisemat ja parema jõudlusega võimalust MCP serverite loomiseks võrreldes aegunud SSE lähenemisega. See on soovitatav transport enamikule MCP serverite rakendustele 2025-06-18 spetsifikatsiooni seisuga.
+Stdio transport pakub lihtsamat, turvalisemat ja jõudluslikult paremat viisi MCP serverite loomiseks võrreldes kadunud SSE lähenemisega. See on soovitatav transport enamikele MCP serveri rakendustele alates 2025-06-18 spetsifikatsioonist.
+
 
 ### .NET
 
-1. Loome esmalt mõned tööriistad, selleks loome faili *Tools.cs* järgmise sisuga:
+1. Alustame tööriistade loomisega, selleks loome faili *Tools.cs* järgmise sisuga:
 
   ```csharp
   using System.ComponentModel;
@@ -487,107 +495,106 @@ Stdio transport pakub lihtsamat, turvalisemat ja parema jõudlusega võimalust M
   using ModelContextProtocol.Server;
   ```
 
-## Harjutus: Oma stdio serveri testimine
+## Harjutus: oma stdio serveri testimine
 
-Nüüd, kui oled oma stdio serveri loonud, testime seda, et veenduda selle õiges töös.
+Nüüd, kui oled oma stdio serveri valmis teinud, testime seda, et veenduda selle korrektsuses.
 
-### Eeldused
+### Eeltingimused
 
 1. Veendu, et MCP Inspector on paigaldatud:
    ```bash
    npm install -g @modelcontextprotocol/inspector
    ```
 
-2. Serveri kood peaks olema salvestatud (nt faili `server.py`)
+2. Serveri kood peaks olema salvestatud (näiteks failina `server.py`)
 
-### Testimine Inspectori abil
+### Testimine Inspectoriga
 
-1. **Käivita Inspector koos serveriga**:
+1. **Käivita Inspector koos oma serveriga**:
    ```bash
    npx @modelcontextprotocol/inspector python server.py
    ```
 
-2. **Ava veebiliides**: Inspector avab brauseriakna, kus näed serveri võimekusi.
+2. **Ava veebiliides**: Inspector avab brauseriakna, kus kuvatakse serveri võimed.
 
 3. **Testi tööriistu**: 
-   - Proovi `get_greeting` tööriista erinevate nimedega
-   - Testi `calculate_sum` tööriista erinevate arvudega
-   - Kutsu `get_server_info` tööriista, et näha serveri metaandmeid
+   - Proovi tööriista `get_greeting` erinevate nimedega
+   - Testi tööriista `calculate_sum` erinevate arvudega
+   - Kutsu `get_server_info` tööriista serveri metaandmete saamiseks
 
-4. **Jälgi suhtlust**: Inspector kuvab klienti ja serverit vahetatavaid JSON-RPC sõnumeid.
+4. **Jälgi suhtlust**: Inspector kuvab klientide ja serveri vahel vahetatavaid JSON-RPC sõnumeid.
 
-### Mida näha ootama
+### Mida peaksid nägema
 
 Kui server käivitub korrektselt, peaksid nägema:
-- Serveri võimekust Inspectoris listituna
-- Testimiseks tööriistu saadaval
+- Serveri võimekirja Inspectoris
+- Testimiseks saadaolevaid tööriistu
 - Edukaid JSON-RPC sõnumite vahetusi
-- Tööriistade vastuseid kasutajaliideses
+- Tööriistade vastuseid liideses
 
-### Levinumad probleemid ja lahendused
+### Levinud probleemid ja lahendused
 
 **Server ei käivitu:**
 - Kontrolli, et kõik sõltuvused on paigaldatud: `pip install mcp`
-- Kontrolli Python’i süntaksit ja taandeid
-- Vaata konsoolist veateateid
+- Kontrolli Pythoni süntaksit ja taandarveid
+- Otsi konsoolist veateateid
 
 **Tööriistad ei ilmu:**
-- Kontrolli, et on olemas `@server.tool()` dekoratsioonid
-- Veendu, et tööriistafunktsioonid on määratletud enne `main()` funktsiooni
-- Kontrolli, kas server on korrektselt konfigureeritud
+- Veendu, et `@server.tool()` dekoratsioonid on olemas
+- Kontrolli, et tööriistafunktsioonid on defineeritud enne `main()` funktsiooni
+- Veendu, et server on korrektselt seadistatud
 
-**Ühenduse probleemid:**
+**Ühendusprobleemid:**
 - Veendu, et server kasutab stdio transporti korrektselt
 - Kontrolli, et teised protsessid ei sega
-- Kontrolli Inspectori käskluse süntaksit
+- Kontrolli Inspector'i käsu süntaksit
 
-## Kodutöö
+## Ülesanne
 
-Proovi laiendada oma serverit rohkemate võimekustega. Vaata [seda lehte](https://api.chucknorris.io/), et näiteks lisada tööriist, mis kutsub API-d. Sa otsustad, kuidas server peaks välja nägema. Lõbutse hästi :)
-
+Proovi lisada oma serverile rohkem võimeid. Vaata [seda lehte](https://api.chucknorris.io/), et näiteks lisada tööriist, mis kutsub API-d. Sa otsustad, milline server peaks välja nägema. Head katsetamist :)
 ## Lahendus
 
-[Lahendus](./solution/README.md) Siin on võimalik lahendus koos töötava koodiga.
+[Lahendus](./solution/README.md) Siin on võimalik lahendus töötava koodiga.
 
-## Peamised tähelepanekud
+## Olulised võtmedõppetunnid
 
-Selle peatüki põhitõed on järgmised:
+Selle peatüki võtmemõtted on järgmised:
 
 - Stdio transport on soovitatav mehhanism kohalikele MCP serveritele.
-- Stdio transport võimaldab sujuvat suhtlust MCP serverite ja klientide vahel, kasutades standardseid sisendi ja väljundi vooge.
-- Sa saad kas kasutada nii Inspectorit kui ka Visual Studio Code’i, et tarbida stdio servereid otse, muutes silumise ja integreerimise lihtsaks.
+- Stdio transport võimaldab sujuvat suhtlust MCP serverite ja klientide vahel, kasutades standard sisendi ja väljundi vooge.
+- Saad kasutada nii Inspectorit kui ka Visual Studio Code'i stdio serverite otseks kasutamiseks, muutes silumise ja integreerimise lihtsaks.
 
-## Näited
+## Näited 
 
 - [Java kalkulaator](../samples/java/calculator/README.md)
 - [.Net kalkulaator](../../../../03-GettingStarted/samples/csharp)
 - [JavaScript kalkulaator](../samples/javascript/README.md)
 - [TypeScript kalkulaator](../samples/typescript/README.md)
-- [Python kalkulaator](../../../../03-GettingStarted/samples/python)
+- [Python kalkulaator](../../../../03-GettingStarted/samples/python) 
 
-## Lisamaterjalid
+## Täiendavad ressursid
 
 - [SSE](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events)
 
-## Mis edasi
+## Mis järgmiseks
 
 ## Järgmised sammud
 
-Nüüd, kui oled õppinud MCP serverite loomist stdio transpordiga, võid sukelduda edasijõudnumatesse teemadesse:
+Nüüd, kui sa tead, kuidas luua MCP servereid stdio transpordiga, võid uurida edasijõudnumaid teemasid:
 
-- **Järgmine**: [HTTP voogedastus MCP-ga (Streamable HTTP)](../06-http-streaming/README.md) - Õpi teisest toetatud transpordimehhanismist kaugserverite jaoks
-- **Edasijõudnutele**: [MCP turvalisuse parimad praktikad](../../02-Security/README.md) - Rakenda turvalisust oma MCP serverites
-- **Tootmine**: [Deploy strateegiad](../09-deployment/README.md) - Paiguta oma server tootmiskeskkonda
+- **Edasi**: [HTTP voogesitus MCP-ga (Streamable HTTP)](../06-http-streaming/README.md) - Õpi teise toetatud transpordimehhanismi kohta kaugsuhtluseks
+- **Edasijõudnutele**: [MCP turvapraktikad](../../02-Security/README.md) - Rakenda turvalisust MCP serverites
+- **Tootmisse**: [Deploy strateegiad](../09-deployment/README.md) - Serverite tootmiskeskkonda paigaldamine
 
-## Lisamaterjalid
+## Täiendavad ressursid
 
 - [MCP spetsifikatsioon 2025-06-18](https://spec.modelcontextprotocol.io/specification/) - Ametlik spetsifikatsioon
-- [MCP SDK dokumentatsioon](https://github.com/modelcontextprotocol/sdk) - SDK viited kõigile keeltele
-- [Kogukonna näited](../../06-CommunityContributions/README.md) - Rohkem serverinäiteid kogukonnast
+- [MCP SDK dokumentatsioon](https://github.com/modelcontextprotocol/sdk) - SDK viited kõigi keelte jaoks
+- [Kogukonna näited](../../06-CommunityContributions/README.md) - Rohkem serverite näiteid kogukonnalt
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Tähelepanek**:
-See dokument on tõlgitud tehisintellekti tõlketeenuse [Co-op Translator](https://github.com/Azure/co-op-translator) abil. Kuigi püüame tagada täpsust, palun arvestage, et automatiseeritud tõlked võivad sisaldada vigu või ebatäpsusi. Originaaldokument selle emakeeles tuleks pidada ametlikuks allikaks. Tähtsa teabe puhul soovitatakse kasutada professionaalset inimtõlget. Me ei vastuta käesoleva tõlke kasutamisest tulenevate arusaamatuste või väärarusaamade eest.
+**Vastutusest loobumine**:  
+See dokument on tõlgitud AI tõlketeenuse [Co-op Translator](https://github.com/Azure/co-op-translator) abil. Kuigi me püüame täpsust, palun olge teadlik, et automaatsed tõlked võivad sisaldada vigu või ebatäpsusi. Originaaldokument oma algkeeles tuleks pidada ametlikuks allikaks. Kriitilise teabe puhul soovitatakse kasutada professionaalset inimtõlget. Me ei vastuta selle tõlke kasutamisest tekkivate arusaamatuste või väär tõlgenduste eest.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,43 +1,43 @@
-# התחלה עם MCP
+# להתחיל עם MCP
 
-ברוכים הבאים לצעדים הראשונים שלכם עם פרוטוקול הקשר למודל (MCP)! בין אם אתם חדשים ב-MCP או מחפשים להעמיק את ההבנה שלכם, מדריך זה ילווה אתכם בתהליך ההתקנה והפיתוח החיוני. תגלה כיצד MCP מאפשר אינטגרציה חלקה בין מודלים של בינה מלאכותית ליישומים, ולמד כיצד להכין במהירות את הסביבה שלך לבניית ובדיקת פתרונות מבוססי MCP.
+ברוכים הבאים לצעדים הראשונים שלכם עם פרוטוקול הקשר מודל (MCP)! בין אם אתם חדשים ל-MCP או מחפשים להעמיק את ההבנה שלכם, המדריך הזה ילווה אתכם בתהליך ההקמה והפיתוח ההכרחי. תגלו כיצד MCP מאפשר אינטגרציה חלקה בין מודלים של בינה מלאכותית ויישומים, ותלמדו כיצד להכין במהירות את הסביבה שלכם לבניית ולטסט פתרונות המופעלים על ידי MCP.
 
-> סיכום; אם אתם בונים אפליקציות בינה מלאכותית, אתם יודעים שניתן להוסיף כלים ומשאבים אחרים ל-LLM (מודל שפה גדול), כדי להפוך את ה-LLM ליותר ידעתי. עם זאת, אם אתם ממקמים את הכלים והמשאבים האלה על שרת, היישום ויכולות השרת יכולים לשמש כל לקוח עם/בלי LLM.
+> TLDR; אם אתם בונים אפליקציות AI, אתם יודעים שניתן להוסיף כלים ומשאבים נוספים ל-LLM שלכם (מודל שפה גדול), כדי להפוך את ה-LLM ליותר אינפורמטיבי. אך אם תמקמו את הכלים והמשאבים האלה בשרת, יכולות האפליקציה והשרת יכולות לשמש כל לקוח עם או בלי LLM.
 
 ## סקירה כללית
 
-שיעור זה מספק הנחיות מעשיות על הקמת סביבות MCP ובניית היישומים הראשונים שלך ב-MCP. תלמד כיצד להגדיר את הכלים והמסגרות הנדרשות, לבנות שרתי MCP בסיסיים, ליצור יישומי מארח, ולבדוק את היישומים שלך.
+השיעור הזה מספק הדרכה מעשית על הגדרת סביבות MCP ובניית האפליקציות הראשונות שלכם ב-MCP. תלמדו כיצד להגדיר את הכלים והמסגרות הדרושים, לבנות שרתי MCP בסיסיים, ליצור יישומי מארח ולבדוק את המימושים שלכם.
 
-פרוטוקול הקשר למודל (MCP) הוא פרוטוקול פתוח שמאחד כיצד יישומים מספקים הקשר ל-LLM. חשבו על MCP כמו יציאת USB-C לאפליקציות בינה מלאכותית - הוא מספק דרך סטנדרטית לחבר מודלים של בינה מלאכותית למקורות נתונים וכלים שונים.
+פרוטוקול הקשר מודל (MCP) הוא פרוטוקול פתוח המייצב איך אפליקציות מספקות הקשר ל-LLMs. חשבו על MCP כמו פורט USB-C לאפליקציות AI - הוא מספק דרך סטנדרטית לחבר מודלי AI למשאבי נתונים וכלים שונים.
 
-## מטרות הלמידה
+## מטרות למידה
 
-בסיום שיעור זה, תוכל:
+בסיום השיעור תוכלו:
 
 - להגדיר סביבות פיתוח ל-MCP ב-C#, Java, Python, TypeScript ו-Rust
-- לבנות ולפרוס שרתי MCP בסיסיים עם תכונות מותאמות אישית (משאבים, תבניות, וכלים)
-- ליצור יישומי מארח שמתחברים לשרתי MCP
-- לבדוק ולפתור תקלות ביישומי MCP
+- לבנות ולפרוס שרתי MCP בסיסיים עם תכונות מותאמות אישית (משאבים, תבניות וכלים)
+- ליצור אפליקציות מארחות שמתחברות לשרתי MCP
+- לבדוק ולתקן באגים במימושי MCP
 
-## הגדרת סביבת ה-MCP שלך
+## הגדרת סביבת ה-MCP שלכם
 
-לפני שתתחיל לעבוד עם MCP, חשוב להכין את סביבת הפיתוח שלך ולהבין את זרימת העבודה הבסיסית. חלק זה ידריך אותך בשלבי ההתקנה הראשוניים כדי להבטיח התחלה חלקה עם MCP.
+לפני שתתחילו לעבוד עם MCP, חשוב להכין את סביבת הפיתוח שלכם ולהבין את זרימת העבודה הבסיסית. מדור זה ינחה אתכם בשלבי ההתקנה הראשוניים כדי להבטיח התחלה חלקה עם MCP.
 
 ### דרישות מוקדמות
 
-לפני שתצלול לפיתוח MCP, ודא שיש לך:
+לפני שתצללו לפיתוח ב-MCP, ודאו שיש לכם:
 
-- **סביבת פיתוח**: עבור השפה שבחרת (C#, Java, Python, TypeScript או Rust)
-- **IDE/עורך**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm, או כל עורך קוד מודרני
-- **מנהל חבילות**: NuGet, Maven/Gradle, pip, npm/yarn, או Cargo
-- **מפתחות API**: עבור כל שירותי בינה מלאכותית שאתה מתכנן להשתמש בהם ביישומי המארח שלך
+- **סביבת פיתוח**: עבור השפה שבחרתם (C#, Java, Python, TypeScript או Rust)
+- **IDE/עורך קוד**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm או כל עורך קוד מודרני
+- **מנהל חבילות**: NuGet, Maven/Gradle, pip, npm/yarn או Cargo
+- **מפתחות API**: עבור כל שירות AI שאתם מתכננים להשתמש בהם באפליקציות המארחות שלכם
 
 ## מבנה בסיסי של שרת MCP
 
-שרת MCP כולל בדרך כלל:
+שרת MCP טיפוסי כולל:
 
-- **הגדרות שרת**: הגדרת פורט, אימות, והגדרות נוספות
-- **משאבים**: נתונים והקשר הזמינים ל-LLM
+- **קונפיגורציה של השרת**: הגדרת פורט, אימות והגדרות נוספות
+- **משאבים**: נתונים והקשר שנגישים ל-LLMs
 - **כלים**: פונקציונליות שהמודלים יכולים להפעיל
 - **תבניות**: תבניות ליצירת או מבנה טקסט
 
@@ -65,7 +65,7 @@ server.tool("add",
 // הוסף משאב ברכה דינמי
 server.resource(
   "file",
-  // הפרמטר 'list' שולט כיצד המשאב מציג את הקבצים הזמינים. הגדרת הפרמטר ל-undefined מבטלת את ההצגה עבור משאב זה.
+  // הפרמטר 'list' שולט כיצד המשאב מביא רשימה של קבצים זמינים. הגדרתו כ-undefined מבטלת את הרישום עבור משאב זה.
   new ResourceTemplate("file://{path}", { list: undefined }),
   async (uri, { path }) => ({
     contents: [{
@@ -109,75 +109,75 @@ server.prompt(
   })
 );
 
-// התחל לקבל הודעות ב-stdin ולשלוח הודעות ב-stdout
+// התחל לקבל הודעות בקלט סטנדרטי ולשלוח הודעות ביציאה סטנדרטית
 const transport = new StdioServerTransport();
 await server.connect(transport);
 ```
 
 בקוד שלמעלה אנחנו:
 
-- מייבאים את המחלקות הנדרשות מ-SDK של MCP ל-TypeScript.
+- מייבאים את המחלקות הנחוצות מ-SDK של MCP ב-TypeScript.
 - יוצרים ומגדירים מופע חדש של שרת MCP.
-- רושמים כלי מותאם אישית (`calculator`) עם פונקציית מטפל.
+- מרשימים כלי מותאם אישית (`calculator`) עם פונקציית טיפול.
 - מפעילים את השרת להאזנה לבקשות MCP נכנסות.
 
-## בדיקה ופתרון תקלות
+## בדיקה ותיקון באגים
 
-לפני שתתחיל לבדוק את שרת ה-MCP שלך, חשוב להבין את הכלים הזמינים ואת שיטות העבודה המומלצות לפתרון תקלות. בדיקה יעילה מבטיחה שהשרת שלך מתנהג כמצופה ועוזרת לך לזהות ולפתור בעיות במהירות. החלק הבא מפרט גישות מומלצות לאימות יישום ה-MCP שלך.
+לפני שתתחילו לבדוק את שרת ה-MCP שלכם, חשוב להבין את הכלים והפרקטיקות הטובות ביותר לתיקון באגים. בדיקה יעילה מבטיחה שהשרת יתנהג כמצופה ועוזרת לכם לזהות ולפתור בעיות במהירות. המדור הבא מפרט דרכי עבודה מומלצות לאימות מימוש ה-MCP שלכם.
 
-MCP מספק כלים שיעזרו לך לבדוק ולפתור תקלות בשרתים שלך:
+MCP מספק כלים שיעזרו לכם לבדוק ולתקן את השרתים:
 
-- **כלי Inspector**, ממשק גרפי זה מאפשר לך להתחבר לשרת שלך ולבדוק את הכלים, התבניות והמשאבים שלך.
-- **curl**, ניתן גם להתחבר לשרת שלך באמצעות כלי שורת פקודה כמו curl או לקוחות אחרים שיכולים ליצור ולהריץ פקודות HTTP.
+- **כלי Inspector**, ממשק גרפי המאפשר חיבור לשרת ובדיקה של הכלים, התבניות והמשאבים שלכם.
+- **curl**, אפשר גם להתחבר לשרת באמצעות כלי שורת הפקודה curl או לקוחות אחרים שיכולים להריץ פקודות HTTP.
 
 ### שימוש ב-MCP Inspector
 
-[מפקח MCP](https://github.com/modelcontextprotocol/inspector) הוא כלי בדיקה חזותי שעוזר לך:
+[MCP Inspector](https://github.com/modelcontextprotocol/inspector) הוא כלי בדיקה ויזואלי שעוזר לכם:
 
-1. **לגלות יכולות שרת**: לזהות אוטומטית משאבים, כלים ותבניות זמינים
-2. **לבדוק הפעלת כלים**: לנסות פרמטרים שונים ולראות תגובות בזמן אמת
-3. **לצפות במטא-נתוני השרת**: לבדוק מידע על השרת, סכימות והגדרות
+1. **לגלות יכולות של השרת**: לזהות אוטומטית משאבים, כלים ותבניות זמינות
+2. **לבחון הרצת כלים**: לנסות פרמטרים שונים ולראות תגובות בזמן אמת
+3. **לצפות במטא נתונים של השרת**: לבדוק מידע על השרת, סכמות והגדרות
 
 ```bash
-# דוגמת TypeScript, התקנה והרצה של MCP Inspector
+# לדוגמה TypeScript, התקנה והרצה של MCP Inspector
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-כאשר אתה מריץ את הפקודות שלמעלה, MCP Inspector יפתח ממשק אינטרנט מקומי בדפדפן שלך. תוכל לצפות בלוח בקרה המציג את שרתי MCP הרשומים שלך, הכלים, המשאבים והתבניות הזמינים שלהם. הממשק מאפשר לך לבדוק אינטראקטיבית הפעלת כלים, לבדוק מטא-נתוני שרת ולראות תגובות בזמן אמת, מה שמקל על אימות ופתרון תקלות ביישומי שרת MCP שלך.
+כאשר תריצו את הפקודות הנ"ל, MCP Inspector יפתח ממשק אינטרנט מקומי בדפדפן שלכם. תוכלו לצפות בלוח בקרה המציג את שרתי ה-MCP שרשמתם, הכלים, המשאבים והתבניות הזמינים להם. הממשק מאפשר לכם לבדוק אינטראקטיבית את הרצת הכלים, לבדוק מטא נתונים של השרת ולצפות בתגובות בזמן אמת, מה שמקל לאמת ולתקן את מימושי שרת ה-MCP שלכם.
 
-הנה צילום מסך של איך זה יכול להיראות:
+הנה צילום מסך של המראה האפשרי:
 
 ![MCP Inspector server connection](../../../../translated_images/he/connected.73d1e042c24075d3.webp)
 
-## בעיות נפוצות בהגדרה ופתרונות
+## בעיות הגדרה נפוצות ופתרונות
 
 | בעיה | פתרון אפשרי |
 |-------|-------------------|
-| חיבור נדחה | בדוק אם השרת פועל והפורט נכון |
-| שגיאות בהפעלת כלים | בדוק את אימות הפרמטרים וטיפול בשגיאות |
-| כשלי אימות | אמת מפתחות API והרשאות |
-| שגיאות אימות סכימה | ודא שהפרמטרים תואמים לסכימה המוגדרת |
-| השרת לא מתחיל | בדוק קונפליקטים בפורט או תלות חסרה |
-| שגיאות CORS | הגדר כותרות CORS נכונות לבקשות חוצות מקור |
-| בעיות אימות | אמת את תוקף הטוקן והרשאות |
+| חיבור נדחה | בדקו האם השרת פועל והפורט נכון |
+| שגיאות בהרצת כלי | בדקו את אימות הפרמטרים וטיפול בשגיאות |
+| כשלי אימות | ודאו מפתחות ה-API והרשאות נכונות |
+| שגיאות אימות סכימה | ודאו שהפרמטרים תואמים לסכימה שהוגדרה |
+| השרת לא מתחיל | בדקו קונפליקטים בפורט או תלות חסרה |
+| שגיאות CORS | הגדירו כותרות CORS מתאימות לבקשות חוצות מקור |
+| בעיות אימות | בדקו תוקף טוקנים והרשאות |
 
 ## פיתוח מקומי
 
-לצורך פיתוח ובדיקה מקומיים, ניתן להריץ שרתי MCP ישירות על המחשב שלך:
+עבור פיתוח ובדיקה מקומית, תוכלו להריץ שרתי MCP ישירות על המחשב שלכם:
 
-1. **הפעל את תהליך השרת**: הרץ את יישום שרת ה-MCP שלך
-2. **הגדר רשת**: ודא שהשרת נגיש בפורט הצפוי
-3. **התחבר ללקוחות**: השתמש בכתובות חיבור מקומיות כמו `http://localhost:3000`
+1. **הפעלת תהליך השרת**: הריצו את אפליקציית השרת MCP שלכם
+2. **הגדרת רשת**: ודאו שהשרת זמין בפורט הרצוי
+3. **חיבור לקוחות**: השתמשו בכתובות מקומיות כמו `http://localhost:3000`
 
 ```bash
-# דוגמה: הרצת שרת MCP ב-TypeScript באופן מקומי
+# דוגמה: הפעלת שרת MCP ב-TypeScript מקומית
 npm run start
 # השרת רץ בכתובת http://localhost:3000
 ```
 
-## בניית שרת MCP ראשון שלך
+## בניית שרת MCP ראשון שלכם
 
-כבר סקרנו [מושגים מרכזיים](/01-CoreConcepts/README.md) בשיעור קודם, עכשיו הגיע הזמן ליישם את הידע.
+כיסינו את [מושגי הליבה](../../01-CoreConcepts/README.md) בשיעור קודם, ועכשיו הגיע הזמן לממש את הידע.
 
 ### מה שרת יכול לעשות
 
@@ -191,23 +191,23 @@ npm run start
 - להשתלב עם כלים ושירותים אחרים
 - לספק ממשק משתמש לאינטראקציה
 
-מצוין, עכשיו כשאנחנו יודעים מה אפשר לעשות, נתחיל לקודד.
+מצוין, עכשיו שאנחנו יודעים מה אפשר לעשות, בואו נתחיל לקודד.
 
 ## תרגיל: יצירת שרת
 
-כדי ליצור שרת, עליך לבצע את השלבים הבאים:
+ליצירת שרת, יש לעקוב אחרי השלבים הבאים:
 
-- התקן את SDK של MCP.
-- צור פרויקט והגדר את מבנה הפרויקט.
-- כתוב את קוד השרת.
-- בדוק את השרת.
+- התקנת SDK של MCP.
+- יצירת פרויקט והגדרת מבנה הפרויקט.
+- כתיבת קוד השרת.
+- בדיקת השרת.
 
 ### -1- יצירת פרויקט
 
 #### TypeScript
 
 ```sh
-# צור תיקיית פרויקט ואתחל פרויקט npm
+# צור מדריך פרויקט ואתחל פרויקט npm
 mkdir calculator-server
 cd calculator-server
 npm init -y
@@ -232,7 +232,7 @@ cd McpCalculatorServer
 
 #### Java
 
-ל-Java, צור פרויקט Spring Boot:
+עבור Java, צרו פרויקט Spring Boot:
 
 ```bash
 curl https://start.spring.io/starter.zip \
@@ -246,16 +246,16 @@ curl https://start.spring.io/starter.zip \
   -o calculator-server.zip
 ```
 
-חלץ את קובץ ה-zip:
+חלצו את קובץ ה-zip:
 
 ```bash
 unzip calculator-server.zip -d calculator-server
 cd calculator-server
-# אפשרי להסיר את הבדיקה שלא בשימוש
+# אפשרי להסיר את הבדיקה הלא בשימוש
 rm -rf src/test/java
 ```
 
-הוסף את ההגדרה המלאה הבאה לקובץ *pom.xml* שלך:
+הוסיפו את ההגדרה המלאה הבאה לקובץ *pom.xml* שלכם:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -365,15 +365,15 @@ cargo init
 
 ### -2- הוספת תלותים
 
-כעת כשיצרת את הפרויקט, נוסיף תלותים:
+כעת כשיש לכם פרויקט, נוסיף את התלותים הבאות:
 
 #### TypeScript
 
 ```sh
-# אם לא מותקן כבר, התקן את TypeScript באופן גלובלי
+# אם עדיין לא מותקן, התקן את TypeScript באופן גלובלי
 npm install typescript -g
 
-# התקן את MCP SDK ואת Zod לאימות סכימות
+# התקן את MCP SDK ואת Zod לאימות סכימה
 npm install @modelcontextprotocol/sdk zod
 npm install -D @types/node typescript
 ```
@@ -402,11 +402,11 @@ cargo add serde
 cargo add tokio --features rt-multi-thread
 ```
 
-### -3- יצירת קבצי פרויקט
+### -3- יצירת קבצי הפרויקט
 
 #### TypeScript
 
-פתח את הקובץ *package.json* והחלף את התוכן הבא כדי להבטיח שתוכל לבנות ולהריץ את השרת:
+פתחו את הקובץ *package.json* והחליפו את התוכן הבא כדי להבטיח שתוכלו לבנות ולהריץ את השרת:
 
 ```json
 {
@@ -433,7 +433,7 @@ cargo add tokio --features rt-multi-thread
 }
 ```
 
-צור קובץ *tsconfig.json* עם התוכן הבא:
+צרו קובץ *tsconfig.json* עם התוכן הבא:
 
 ```json
 {
@@ -453,7 +453,7 @@ cargo add tokio --features rt-multi-thread
 }
 ```
 
-צור תיקייה לקוד המקור שלך:
+צרו תיקייה לקוד המקור שלכם:
 
 ```sh
 mkdir src
@@ -462,7 +462,7 @@ touch src/index.ts
 
 #### Python
 
-צור קובץ *server.py*
+צרו קובץ *server.py*
 
 ```sh
 touch server.py
@@ -470,7 +470,7 @@ touch server.py
 
 #### .NET
 
-התקן את חבילות NuGet הנדרשות:
+התקינו את חבילות NuGet הנדרשות:
 
 ```sh
 dotnet add package ModelContextProtocol --prerelease
@@ -479,17 +479,17 @@ dotnet add package Microsoft.Extensions.Hosting
 
 #### Java
 
-לפרויקטים של Java Spring Boot, מבנה הפרויקט נוצר אוטומטית.
+לפרויקטי Java Spring Boot, מבנה הפרויקט נוצר אוטומטית.
 
 #### Rust
 
-ל-Rust, קובץ *src/main.rs* נוצר כברירת מחדל כשאתה מריץ `cargo init`. פתח את הקובץ ומחק את הקוד המוגדר כברירת מחדל.
+עבור Rust, קובץ *src/main.rs* נוצר כברירת מחדל כשמריצים `cargo init`. פתחו את הקובץ ומחקו את הקוד המוגדר כברירת מחדל.
 
 ### -4- כתיבת קוד השרת
 
 #### TypeScript
 
-צור קובץ *index.ts* והוסף את הקוד הבא:
+צרו קובץ *index.ts* והוסיפו את הקוד הבא:
 
 ```typescript
 import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
@@ -503,7 +503,7 @@ const server = new McpServer({
 });
 ```
 
-כעת יש לך שרת, אבל הוא לא עושה הרבה, בוא נתקן את זה.
+כעת יש לכם שרת, אבל הוא לא עושה הרבה, בואו נשפר אותו.
 
 #### Python
 
@@ -511,7 +511,7 @@ const server = new McpServer({
 # server.py
 from mcp.server.fastmcp import FastMCP
 
-# יצירת שרת MCP
+# צור שרת MCP
 mcp = FastMCP("Demo")
 ```
 
@@ -542,7 +542,7 @@ await builder.Build().RunAsync();
 
 #### Java
 
-ל-Java, צור את רכיבי השרת המרכזיים. ראשית, שנה את מחלקת היישום הראשית:
+לגבי Java, צרו את הרכיבים המרכזיים של השרת. תחילה, ערכו את מחלקת האפליקציה הראשית:
 
 *src/main/java/com/microsoft/mcp/sample/server/McpServerApplication.java*:
 
@@ -570,7 +570,7 @@ public class McpServerApplication {
 }
 ```
 
-צור את שירות המחשבון *src/main/java/com/microsoft/mcp/sample/server/service/CalculatorService.java*:
+צרו את שירות החשבון *src/main/java/com/microsoft/mcp/sample/server/service/CalculatorService.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.service;
@@ -716,9 +716,9 @@ public class CalculatorService {
 }
 ```
 
-**רכיבים אופציונליים לשירות מוכן לייצור:**
+**רכיבים אופציונליים לשירות מוכן לפרודקשן:**
 
-צור קונפיגורציית הפעלה *src/main/java/com/microsoft/mcp/sample/server/config/StartupConfig.java*:
+צרו קונפיגורציית הפעלה *src/main/java/com/microsoft/mcp/sample/server/config/StartupConfig.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.config;
@@ -743,7 +743,7 @@ public class StartupConfig {
 }
 ```
 
-צור בקר בריאות *src/main/java/com/microsoft/mcp/sample/server/controller/HealthController.java*:
+צרו בקרה לבריאות השרת *src/main/java/com/microsoft/mcp/sample/server/controller/HealthController.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.controller;
@@ -769,7 +769,7 @@ public class HealthController {
 }
 ```
 
-צור מטפל בשגיאות *src/main/java/com/microsoft/mcp/sample/server/exception/GlobalExceptionHandler.java*:
+צרו מטפל בשגיאות *src/main/java/com/microsoft/mcp/sample/server/exception/GlobalExceptionHandler.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.exception;
@@ -799,14 +799,14 @@ public class GlobalExceptionHandler {
             this.message = message;
         }
 
-        // גטרים
+        // מאגרים
         public String getCode() { return code; }
         public String getMessage() { return message; }
     }
 }
 ```
 
-צור באנר מותאם אישית *src/main/resources/banner.txt*:
+צרו באנר מותאם *src/main/resources/banner.txt*:
 
 ```text
 _____      _            _       _             
@@ -824,7 +824,7 @@ Spring Boot MCP Application
 
 #### Rust
 
-הוסף את הקוד הבא לראש קובץ *src/main.rs*. זה מייבא את הספריות והמודולים הנדרשים לשרת MCP שלך.
+הוסיפו את הקוד הבא לראש הקובץ *src/main.rs*. הוא מייבא את הספריות והמודולים הנחוצים לשרת MCP שלכם.
 
 ```rust
 use rmcp::{
@@ -837,7 +837,7 @@ use rmcp::{
 use std::error::Error;
 ```
 
-שרת המחשבון יהיה פשוט שיכול לחבר שני מספרים יחד. ניצור מבנה לייצוג בקשת מחשבון.
+שרת המכונה המחשבת יהיה פשוט ויוכל להוסיף שני מספרים יחד. בואו ניצור מבנה נתונים (struct) שמייצג בקשת מחשבון.
 
 ```rust
 #[derive(Debug, serde::Deserialize, schemars::JsonSchema)]
@@ -847,7 +847,7 @@ pub struct CalculatorRequest {
 }
 ```
 
-לאחר מכן, צור מבנה לייצוג שרת המחשבון. מבנה זה יחזיק את נתב הכלים, המשמש לרישום כלים.
+לאחר מכן, צרו struct שמייצג את שרת המחשבון. struct זה יחזיק את המנתב לכלים, המשמש לרישום כלים.
 
 ```rust
 #[derive(Debug, Clone)]
@@ -856,7 +856,7 @@ pub struct Calculator {
 }
 ```
 
-כעת, נוכל לממש את מבנה `Calculator` כדי ליצור מופע חדש של השרת ולממש את מטפל השרת לספק מידע על השרת.
+כעת, נוכל לממש את ה-`Calculator` struct כדי ליצור מופע חדש של השרת ולממש את מטפל השרת שיספק מידע על השרת.
 
 ```rust
 #[tool_router]
@@ -880,7 +880,7 @@ impl ServerHandler for Calculator {
 }
 ```
 
-לבסוף, עלינו לממש את הפונקציה הראשית כדי להפעיל את השרת. פונקציה זו תיצור מופע של מבנה `Calculator` ותשרת אותו דרך קלט/פלט סטנדרטי.
+לבסוף, עלינו לממש את פונקציית ה-main כדי להפעיל את השרת. פונקציה זו תיצור מופע של struct ה-`Calculator` ותפעיל אותו באמצעות קלט/פלט סטנדרטי.
 
 ```rust
 #[tokio::main]
@@ -891,11 +891,11 @@ async fn main() -> Result<(), Box<dyn Error>> {
 }
 ```
 
-השרת מוגדר כעת לספק מידע בסיסי על עצמו. לאחר מכן, נוסיף כלי לביצוע חיבור.
+השרת מוכן כעת לספק מידע בסיסי על עצמו. בהמשך נוסיף כלי שיבצע חיבור.
 
 ### -5- הוספת כלי ומשאב
 
-הוסף כלי ומשאב על ידי הוספת הקוד הבא:
+הוסיפו כלי ומשאב על ידי הוספת הקוד הבא:
 
 #### TypeScript
 
@@ -920,7 +920,7 @@ server.resource(
 );
 ```
 
-הכלי שלך מקבל פרמטרים `a` ו-`b` ומריץ פונקציה שמייצרת תגובה בצורת:
+הכלי שלכם מקבל פרמטרים `a` ו-`b` ומריץ פונקציה שמחזירה תגובה בצורה:
 
 ```typescript
 {
@@ -930,7 +930,7 @@ server.resource(
 }
 ```
 
-המשאב שלך נגיש דרך מחרוזת "greeting" ומקבל פרמטר `name` ומייצר תגובה דומה לכלי:
+המשאב שלכם ניגש באמצעות המחרוזת "greeting" ומקבל פרמטר `name` ומחזיר תגובה דומה לזו של הכלי:
 
 ```typescript
 {
@@ -958,12 +958,12 @@ def get_greeting(name: str) -> str:
 
 בקוד שלמעלה הגדרנו:
 
-- כלי `add` שלוקח פרמטרים `a` ו-`b`, שניהם מספרים שלמים.
-- יצירת משאב בשם `greeting` שלוקח פרמטר `name`.
+- כלי `add` שלוקח פרמטרים `a` ו-`b`, שניהם שלמים.
+- יצרנו משאב בשם `greeting` שלוקח פרמטר `name`.
 
 #### .NET
 
-הוסף זאת לקובץ Program.cs שלך:
+הוסיפו זאת לקובץ Program.cs שלכם:
 
 ```csharp
 [McpServerToolType]
@@ -976,11 +976,11 @@ public static class CalculatorTool
 
 #### Java
 
-הכלים כבר נוצרו בשלב הקודם.
+הכלים כבר נוצרו בשלב קודם.
 
 #### Rust
 
-הוסף כלי חדש בתוך בלוק `impl Calculator`:
+הוסיפו כלי חדש בתוך בלוק `impl Calculator`:
 
 ```rust
 #[tool(description = "Adds a and b")]
@@ -994,12 +994,12 @@ async fn add(
 
 ### -6- קוד סופי
 
-נוסיף את הקוד האחרון הדרוש כדי שהשרת יוכל להתחיל:
+בואו נוסיף את הקוד האחרון הנדרש כדי שהשרת יוכל להתחיל:
 
 #### TypeScript
 
 ```typescript
-// התחלת קבלת הודעות ב-stdin ושליחת הודעות ב-stdout
+// התחלת קבלת הודעות על stdin ושליחת הודעות על stdout
 const transport = new StdioServerTransport();
 await server.connect(transport);
 ```
@@ -1012,7 +1012,7 @@ import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mc
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 
-// צור שרת MCP
+// יצירת שרת MCP
 const server = new McpServer({
   name: "Calculator MCP Server",
   version: "1.0.0"
@@ -1050,7 +1050,7 @@ server.connect(transport);
 # server.py
 from mcp.server.fastmcp import FastMCP
 
-# יצירת שרת MCP
+# צור שרת MCP
 mcp = FastMCP("Demo")
 
 
@@ -1061,20 +1061,20 @@ def add(a: int, b: int) -> int:
     return a + b
 
 
-# הוסף משאב ברכה דינמי
+# הוסף משאב ברכה דינאמית
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
     return f"Hello, {name}!"
 
-# בלוק ביצוע ראשי - זה נדרש כדי להפעיל את השרת
+# בלוק ביצוע ראשי - זה דרוש כדי להפעיל את השרת
 if __name__ == "__main__":
     mcp.run()
 ```
 
 #### .NET
 
-צור קובץ Program.cs עם התוכן הבא:
+צרו קובץ Program.cs עם התוכן הבא:
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
@@ -1106,7 +1106,7 @@ public static class CalculatorTool
 
 #### Java
 
-מחלקת היישום הראשית המלאה שלך צריכה להיראות כך:
+מחלקת האפליקציה הראשית המלאה שלכם תיראה כך:
 
 ```java
 // McpServerApplication.java
@@ -1135,7 +1135,7 @@ public class McpServerApplication {
 
 #### Rust
 
-הקוד הסופי לשרת Rust צריך להיראות כך:
+הקוד הסופי לשרת Rust יראה כך:
 
 ```rust
 use rmcp::{
@@ -1194,9 +1194,9 @@ async fn main() -> Result<(), Box<dyn Error>> {
 }
 ```
 
-### -7- בדוק את השרת
+### -7- בדקו את השרת
 
-הפעל את השרת עם הפקודה הבאה:
+הפעילו את השרת עם הפקודה הבאה:
 
 #### TypeScript
 
@@ -1210,11 +1210,11 @@ npm run build
 mcp run server.py
 ```
 
-> כדי להשתמש ב-MCP Inspector, השתמש ב-`mcp dev server.py` שמפעיל אוטומטית את ה-Inspector ומספק את טוקן הסשן הנדרש לפרוקסי. אם משתמשים ב-`mcp run server.py`, תצטרך להפעיל את ה-Inspector ידנית ולהגדיר את החיבור.
+> לשימוש ב-MCP Inspector, השתמשו בפקודה `mcp dev server.py` שמפעילה אוטומטית את Inspector ומספקת את טוקן המפסק לשיחות הפרוקסי. אם מריצים עם `mcp run server.py`, תצטרכו להפעיל ידנית את ה-Inspector ולהגדיר את החיבור.
 
 #### .NET
 
-ודא שאתה בתיקיית הפרויקט שלך:
+ודאו שאתם בספריית הפרויקט שלכם:
 
 ```sh
 cd McpCalculatorServer
@@ -1230,19 +1230,19 @@ java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
 
 #### Rust
 
-הרץ את הפקודות הבאות לעיצוב והרצת השרת:
+הריצו את הפקודות הבאות לעיצוב וריצה של השרת:
 
 ```sh
 cargo fmt
 cargo run
 ```
 
-### -8- הרצה באמצעות ה-Inspector
+### -8- הפעלה באמצעות Inspector
 
-ה-Inspector הוא כלי מצוין שיכול להפעיל את השרת שלך ומאפשר לך אינטראקציה איתו כדי לבדוק שהוא עובד. נתחיל:
+ה-Inspector הוא כלי מצוין שיכול להפעיל את השרת שלכם ולתת לכם אינטראקציה איתו כדי לבדוק שהוא פועל. בואו נפעיל אותו:
 
 > [!NOTE]
-> זה עשוי להיראות שונה בשדה "command" כי הוא מכיל את הפקודה להרצת שרת עם סביבת הריצה הספציפית שלך.
+> יתכן שהשדה "command" ייראה שונה כיוון שהוא מכיל את פקודת ההפעלה של השרת עם זמן הריצה הספציפי שלכם.
 
 #### TypeScript
 
@@ -1250,28 +1250,28 @@ cargo run
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-או הוסף זאת ל-*package.json* שלך כך: `"inspector": "npx @modelcontextprotocol/inspector node build/index.js"` ואז הרץ `npm run inspector`
+או הוסיפו זאת ל-*package.json* כך: `"inspector": "npx @modelcontextprotocol/inspector node build/index.js"` ואז הריצו `npm run inspector`
 
 #### Python
 
-Python עוטף כלי Node.js שנקרא inspector. אפשר לקרוא לכלי זה כך:
+Python עוטף כלי Node.js בשם inspector. ניתן לקרוא לכלי זה כך:
 
 ```sh
 mcp dev server.py
 ```
 
-עם זאת, הוא לא מממש את כל השיטות הזמינות בכלי ולכן מומלץ להריץ את כלי ה-Node.js ישירות כך:
+אולם, הכלי הזה לא מממש את כל השיטות הזמינות, לכן מומלץ להריץ את כלי Node.js ישירות כך:
 
 ```sh
 npx @modelcontextprotocol/inspector mcp run server.py
 ```
 
-אם אתה משתמש בכלי או IDE שמאפשר להגדיר פקודות וארגומנטים להרצת סקריפטים,
-ודא להגדיר `python` בשדה `Command` ו-`server.py` כ-`Arguments`. זה מבטיח שהסקריפט ירוץ כראוי.
+אם אתם משתמשים בכלי או IDE שמאפשר להגדיר פקודות וארגומנטים להרצת סקריפטים,
+ודא שהגדרת `python` בשדה `Command` ו-`server.py` כ`Arguments`. זה מבטיח שהסקריפט ירוץ כראוי.
 
 #### .NET
 
-ודא שאתה בתיקיית הפרויקט שלך:
+ודא שאתה בספריית הפרויקט שלך:
 
 ```sh
 cd McpCalculatorServer
@@ -1280,46 +1280,46 @@ npx @modelcontextprotocol/inspector dotnet run
 
 #### Java
 
-ודא ששרת המחשבון שלך פועל
-לאחר מכן הפעל את הבודק:
+ודא שהשרת של המחשבון שלך פועל  
+אז הרץ את הכלי inspector:
 
 ```cmd
 npx @modelcontextprotocol/inspector
 ```
 
-בממשק האינטרנטי של הבודק:
+בממשק הרשת של ה-inspector:
 
-1. בחר "SSE" כסוג ההעברה
-2. הגדר את ה-URL ל: `http://localhost:8080/sse`
+1. בחר "SSE" כסוג התעבורה  
+2. הגדר את הכתובת ל: `http://localhost:8080/sse`  
 3. לחץ על "Connect"
 
 ![Connect](../../../../translated_images/he/tool.163d33e3ee307e20.webp)
 
-**כעת אתה מחובר לשרת**
-**חלק הבדיקה של שרת ה-Java הושלם כעת**
+**כעת אתה מחובר לשרת**  
+**קטע בדיקת השרת בג'אווה הושלם כעת**
 
-החלק הבא עוסק באינטראקציה עם השרת.
+הקטע הבא עוסק באינטראקציה עם השרת.
 
 עליך לראות את ממשק המשתמש הבא:
 
 ![Connect](../../../../translated_images/he/connect.141db0b2bd05f096.webp)
 
-1. התחבר לשרת על ידי בחירת כפתור Connect
-  לאחר שתתחבר לשרת, עליך לראות את הבא:
+1. התחבר לשרת על ידי בחירת כפתור Connect  
+  ברגע שאתה מתחבר לשרת, עליך לראות את הדבר הבא:
 
   ![Connected](../../../../translated_images/he/connected.73d1e042c24075d3.webp)
 
-1. בחר "Tools" ו-"listTools", עליך לראות את "Add" מופיע, בחר "Add" ומלא את ערכי הפרמטרים.
+1. בחר "Tools" ואז "listTools", אמור להופיע "Add", בחר ב- "Add" ומלא את ערכי הפרמטרים.
 
-  עליך לראות את התגובה הבאה, כלומר תוצאה מכלי "add":
+  עליך לראות את התגובה הבאה, כלומר תוצאה מהכלי "add":
 
   ![Result of running add](../../../../translated_images/he/ran-tool.a5a6ee878c1369ec.webp)
 
-מזל טוב, הצלחת ליצור ולהפעיל את השרת הראשון שלך!
+מזל טוב, הצלחת ליצור ולהריץ את השרת הראשון שלך!
 
 #### Rust
 
-כדי להפעיל את שרת ה-Rust עם MCP Inspector CLI, השתמש בפקודה הבאה:
+כדי להריץ את שרת ה-Rust עם MCP Inspector CLI, השתמש בפקודה הבאה:
 
 ```sh
 npx @modelcontextprotocol/inspector cargo run --cli --method tools/call --tool-name add --tool-arg a=1 b=2
@@ -1329,47 +1329,47 @@ npx @modelcontextprotocol/inspector cargo run --cli --method tools/call --tool-n
 
 MCP מספק SDKs רשמיים למספר שפות:
 
-- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - מתוחזק בשיתוף עם מיקרוסופט
-- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - מתוחזק בשיתוף עם Spring AI
-- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - המימוש הרשמי של TypeScript
-- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - המימוש הרשמי של Python
-- [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - המימוש הרשמי של Kotlin
-- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - מתוחזק בשיתוף עם Loopwork AI
-- [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - המימוש הרשמי של Rust
+- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - מתוחזק בשותפות עם מיקרוסופט  
+- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - מתוחזק בשותפות עם Spring AI  
+- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - המימוש הרשמי של TypeScript  
+- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - המימוש הרשמי של Python  
+- [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - המימוש הרשמי של Kotlin  
+- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - מתוחזק בשותפות עם Loopwork AI  
+- [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - המימוש הרשמי של Rust  
 
-## נקודות מפתח
+## נקודות מרכזיות להבנה
 
-- הקמת סביבת פיתוח MCP היא פשוטה עם SDKs ספציפיים לשפה
-- בניית שרתי MCP כוללת יצירה ורישום של כלים עם סכימות ברורות
-- בדיקות וניפוי שגיאות הם חיוניים למימושים אמינים של MCP
+- הקמת סביבת פיתוח MCP היא פשוטה עם SDK ספציפיים לשפה  
+- בניית שרתי MCP כוללת יצירה ורישום של כלים עם סכימות ברורות  
+- בדיקות וניפוי שגיאות הם חיוניים למימושים אמינים של MCP  
 
 ## דוגמאות
 
-- [Java Calculator](../samples/java/calculator/README.md)
-- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
-- [JavaScript Calculator](../samples/javascript/README.md)
-- [TypeScript Calculator](../samples/typescript/README.md)
-- [Python Calculator](../../../../03-GettingStarted/samples/python)
-- [Rust Calculator](../../../../03-GettingStarted/samples/rust)
+- [מחשבון בג׳אווה](../samples/java/calculator/README.md)  
+- [מחשבון .Net](../../../../03-GettingStarted/samples/csharp)  
+- [מחשבון ב-JavaScript](../samples/javascript/README.md)  
+- [מחשבון ב-TypeScript](../samples/typescript/README.md)  
+- [מחשבון בפייתון](../../../../03-GettingStarted/samples/python)  
+- [מחשבון ברסט](../../../../03-GettingStarted/samples/rust)  
 
 ## משימה
 
 צור שרת MCP פשוט עם כלי לבחירתך:
 
-1. מימש את הכלי בשפתך המועדפת (.NET, Java, Python, TypeScript, או Rust).
-2. הגדר פרמטרי קלט וערכי החזרה.
-3. הפעל את כלי הבודק כדי לוודא שהשרת פועל כמתוכנן.
-4. בדוק את המימוש עם קלטים שונים.
+1. מימוש הכלי בשפת התכנות המועדפת עליך (.NET, Java, Python, TypeScript, או Rust).  
+2. הגדר פרמטרי קלט וערכי החזרה.  
+3. הרץ את כלי ה-inspector כדי לוודא שהשרת עובד כמתוכנן.  
+4. בדוק את המימוש עם קלטים שונים.  
 
 ## פתרון
 
-[Solution](./solution/README.md)
+[פתרון](./solution/README.md)
 
 ## משאבים נוספים
 
-- [בניית סוכנים באמצעות Model Context Protocol ב-Azure](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)
-- [MCP מרוחק עם Azure Container Apps (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)
-- [.NET OpenAI MCP Agent](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)
+- [בניית סוכנים באמצעות Model Context Protocol על Azure](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)  
+- [MCP מרחוק עם Azure Container Apps (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)  
+- [סוכן MCP של OpenAI ב-.NET](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)  
 
 ## מה הלאה
 
@@ -1378,6 +1378,6 @@ MCP מספק SDKs רשמיים למספר שפות:
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**כתב ויתור**:  
-מסמך זה תורגם באמצעות שירות תרגום מבוסס בינה מלאכותית [Co-op Translator](https://github.com/Azure/co-op-translator). למרות שאנו שואפים לדיוק, יש לקחת בחשבון כי תרגומים אוטומטיים עלולים להכיל שגיאות או אי-דיוקים. המסמך המקורי בשפת המקור שלו נחשב למקור הסמכותי. למידע קריטי מומלץ להשתמש בתרגום מקצועי על ידי אדם. אנו לא נושאים באחריות לכל אי-הבנה או פרשנות שגויה הנובעת משימוש בתרגום זה.
+**כתב אחריות**:  
+מסמך זה תורגם באמצעות שירות תרגום אוטומטי [Co-op Translator](https://github.com/Azure/co-op-translator). למרות שאנו שואפים לדיוק, יש להיות מודעים לכך שתרגומים אוטומטיים עשויים להכיל שגיאות או אי-דיוקים. יש להתייחס למסמך המקורי בשפתו המקורית כמקור הסמכות הראשי. למידע קריטי מומלץ להיעזר בתרגום מקצועי על ידי אדם. איננו נושאים באחריות לכל אי הבנה או פרשנות שגויה הנובעות משימוש בתרגום זה.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

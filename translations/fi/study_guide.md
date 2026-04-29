@@ -1,10 +1,10 @@
 # Model Context Protocol (MCP) aloittelijoille - Opas
 
-Tämä opas tarjoaa yleiskatsauksen "Model Context Protocol (MCP) aloittelijoille" -oppimateriaalin hakemiston rakenteesta ja sisällöstä. Käytä tätä opasta navigoidaksesi hakemistossa tehokkaasti ja hyödyntääksesi saatavilla olevia resursseja parhaalla mahdollisella tavalla.
+Tämä opas tarjoaa yleiskatsauksen "Model Context Protocol (MCP) for Beginners" -opetussuunnitelman arkiston rakenteesta ja sisällöstä. Käytä tätä opasta navigoidaksesi arkistossa tehokkaasti ja hyödyntääksesi saatavilla olevia resursseja parhaalla mahdollisella tavalla.
 
-## Hakemiston yleiskatsaus
+## Arkiston yleiskatsaus
 
-Model Context Protocol (MCP) on standardoitu kehys tekoälymallien ja asiakasohjelmien välisille vuorovaikutuksille. Alun perin Anthropicin luoma MCP on nyt laajemman MCP-yhteisön ylläpitämä virallisen GitHub-organisaation kautta. Tämä hakemisto tarjoaa kattavan opetussuunnitelman, jossa on käytännön koodiesimerkkejä C#:lla, Javalla, JavaScripillä, Pythonilla ja TypeScriptillä. Se on suunnattu tekoälykehittäjille, järjestelmäarkkitehdeille ja ohjelmistosuunnittelijoille.
+Model Context Protocol (MCP) on standardoitu kehys tekoälymallien ja asiakassovellusten välisille vuorovaikutuksille. Alun perin Anthropicin luoma MCP ylläpidetään nyt laajemman MCP-yhteisön toimesta virallisessa GitHub-organisaatiossa. Tämä arkisto tarjoaa kattavan opetussuunnitelman, jossa on käytännön koodiesimerkkejä kielillä C#, Java, JavaScript, Python ja TypeScript, suunnattu tekoälykehittäjille, järjestelmäarkkitehdeille ja ohjelmistokehittäjille.
 
 ## Visuaalinen opetussuunnitelmakartta
 
@@ -14,300 +14,302 @@ mindmap
     00. Johdanto
       ::icon(fa fa-book)
       (Protokollan yleiskatsaus)
-      (Standardoinnin hyödyt)
+      (Standardoinnin edut)
       (Todelliset käyttötapaukset)
-      (AI-integraation perusteet)
-    01. Peruskäsitteet
+      (Tekoälyn integroinnin perusteet)
+    01. Keskeiset käsitteet
       ::icon(fa fa-puzzle-piece)
       (Asiakas-palvelinarkkitehtuuri)
       (Protokollan osat)
-      (Viestintäkuviot)
-      (Kuljetusmenetelmät)
-      (Tehtävät - kokeelliset)
-      (Työkalujen annotaatiot)
-    02. Tietoturva
+      (Viestintämallit)
+      (Siirtomekanismit)
+      (Tehtävät - kokeellinen)
+      (Työkalumerkinnät)
+    02. Turvallisuus
       ::icon(fa fa-shield)
-      (AI-spesifiset uhat)
+      (Tekoälyyn liittyvät uhat)
       (Parhaat käytännöt 2025)
-      (Azuren sisällön turvallisuus)
-      (Todennus & valtuutus)
-      (Microsoftin kehotesuojat)
+      (Azure-sisällön turvallisuus)
+      (Todennus ja valtuutus)
+      (Microsoftin kehotteiden suojat)
       (OWASP MCP Top 10)
-      (Sherpa-tietoturvaharjoitus)
+      (Sherpa-turvatyöpaja)
     03. Aloittaminen
       ::icon(fa fa-rocket)
-      (Ensimmäinen palvelinimplementointi)
-      (Asiakaskehitys)
+      (Ensimmäinen palvelinimplementaatio)
+      (Asiakkaan kehitys)
       (LLM-asiakasintegraatio)
       (VS Coden laajennukset)
-      (SSE-palvelimen asennus)
-      (HTTP-suoratoisto)
-      (AI-työkalupakin integrointi)
-      (Testauskehykset)
+      (SSE-palvelimen asetukset)
+      (HTTP-virtautus)
+      (Tekoälytyökalupakin integrointi)
+      (Testauskehyksiä)
       (Edistynyt palvelimen käyttö)
       (Yksinkertainen todennus)
-      (Julkaisu-strategiat)
-      (MCP-palvelinten asennus)
+      (Käyttöönotto strategiat)
+      (MCP-isännät asetukset)
       (MCP-tarkastaja)
     04. Käytännön toteutus
       ::icon(fa fa-code)
       (Monikieliset SDK:t)
-      (Testaus & virheenkorjaus)
+      (Testaus ja virheenkorjaus)
       (Kehote-mallit)
-      (Esimerkki-projektit)
-      (Tuotantokuvioita)
+      (Esimerkkiprojektit)
+      (Tuotantokuvion mallit)
       (Sivutusstrategiat)
     05. Edistyneet aiheet
       ::icon(fa fa-graduation-cap)
-      (Konteksti-insinööritaito)
+      (Konteksti-insinöörityö)
       (Foundry-agentin integrointi)
-      (Monimodaaliset AI-työnkulut)
+      (Monimodaaliset tekoälytyönkulut)
       (OAuth2-todennus)
       (Reaaliaikainen haku)
-      (Suoratoistoprotokollat)
+      (Virtausprotokollat)
       (Juuri-kontekstit)
-      (Reititystrategiat)
-      (Näytteenottotekniikat)
+      (Reititysstrategiat)
+      (Otanta-tekniikat)
       (Skaalausratkaisut)
-      (Tietoturvan kovettaminen)
+      (Turvallisuuden vahvistaminen)
       (Entra ID -integraatio)
       (Web-haku MCP)
-      (Protokollan ominaisuuksien syväanalyysi)
+      (Protokollan ominaisuudet syvällisesti)
+      (Vihamielinen moniagenttiajattelu)
       
     06. Yhteisö
       ::icon(fa fa-users)
-      (Koodipanokset)
+      (Koodin kontribuutiot)
       (Dokumentaatio)
-      (MCP-asiakas-ekosysteemi)
+      (MCP-asiakasekosysteemi)
       (MCP-palvelinrekisteri)
-      (Kuvagenerointityökalut)
+      (Kuvant生成 työkalut)
       (GitHub-yhteistyö)
     07. Varhainen käyttöönotto
       ::icon(fa fa-lightbulb)
-      (Tuotantojulkaisut)
-      (Microsoftin MCP-palvelimet)
+      (Tuotantokäyttöönotot)
+      (Microsoft MCP -palvelimet)
       (Azure MCP -palvelu)
-      (Yritys-case-tutkimukset)
+      (Yritystapaukset)
       (Tulevaisuuden tiekartta)
     08. Parhaat käytännöt
       ::icon(fa fa-check)
       (Suorituskyvyn optimointi)
-      (Vikankestävyys)
+      (Virhesieto)
       (Järjestelmän resilienssi)
-      (Valvonta & havaittavuus)
-    09. Case-tutkimukset
+      (Valvonta ja havaittavuus)
+    09. Tapaukset
       ::icon(fa fa-file-text)
       (Azure API -hallinta)
-      (AI-matkatoimisto)
+      (Tekoälymatkatoimisto)
       (Azure DevOps -integraatio)
       (Dokumentaatio MCP)
       (GitHub MCP -rekisteri)
-      (VS Coden integraatio)
+      (VS Code -integraatio)
       (Todelliset toteutukset)
     10. Käytännön työpaja
       ::icon(fa fa-laptop)
       (MCP-palvelimen perusteet)
       (Edistynyt kehitys)
-      (AI-työkalupakin integrointi)
-      (Tuotantojulkaisu)
-      (4-luokan rakenne)
-    11. Tietokantaintegraatiolaboratoriot
+      (Tekoälytyökalupakin integrointi)
+      (Tuotantokäyttöönotto)
+      (4-laboratorio rakenne)
+    11. Tietokanta-integraatiolaboratoriot
       ::icon(fa fa-database)
       (PostgreSQL-integraatio)
       (Vähittäiskaupan analytiikan käyttötapaus)
-      (Rivitason tietoturva)
+      (Rivin tasoinen turvallisuus)
       (Semanttinen haku)
-      (Tuotantojulkaisu)
-      (13-luokan rakenne)
+      (Tuotantokäyttöönotto)
+      (13-laboratorio rakenne)
       (Käytännön oppiminen)
 ```
-## Hakemiston rakenne
+## Arkiston rakenne
 
-Hakemisto on järjestetty yksitoistaen pääosaan, jotka keskittyvät eri MCP:n osa-alueisiin:
+Arkisto on järjestetty yhdentoista pääosioon, jotka kukin keskittyvät eri MCP:n osa-alueisiin:
 
 1. **Johdanto (00-Introduction/)**
-   - Model Context Protocolin yleiskatsaus
+   - Yleiskatsaus Model Context Protocolliin
    - Miksi standardointi on tärkeää tekoälyputkissa
-   - Käytännön käyttötapaukset ja hyödyt
+   - Käytännön käyttötapaukset ja edut
 
-2. **Keskeiset käsitteet (01-CoreConcepts/)**
+2. **Peruskäsitteet (01-CoreConcepts/)**
    - Asiakas-palvelinarkkitehtuuri
-   - Protokollan keskeiset komponentit
+   - Tärkeimmät protokollakomponentit
    - Viestintämallit MCP:ssä
 
 3. **Tietoturva (02-Security/)**
-   - Tietoturvauhat MCP-pohjaisissa järjestelmissä
-   - Parhaat käytännöt toteutusten suojaamiseen
+   - MCP-pohjaisten järjestelmien tietoturvauhat
+   - Parhaat käytännöt toteutusten suojaamiseksi
    - Autentikointi- ja valtuutusstrategiat
    - **Kattava tietoturvadokumentaatio**:
-     - MCP Tietoturvan parhaat käytännöt 2025
-     - Azure Content Safety -toteutusopas
-     - MCP:n tietoturvakontrollit ja -tekniikat
-     - MCP:n parhaat käytännöt pikaopas
-   - **Tärkeimmät tietoturva-aiheet**:
-     - Kehotteen injektointi ja työkalujen myrkytys
-     - Istunnon kaappaus ja hämmentynyt apulainen -ongelmat
-     - Tunnusten läpivientikohdat
-     - Liialliset oikeudet ja pääsynhallinta
-     - Toimitusketjun tietoturva tekoälykomponenteille
+     - MCP Security Best Practices 2025
+     - Azure Content Safety Implementation Guide
+     - MCP Security Controls and Techniques
+     - MCP Best Practices Quick Reference
+   - **Keskeiset tietoturva-aiheet**:
+     - Kehoteinjektiot ja työkalujen myrkytyshyökkäykset
+     - Istunnonkaappaus ja "confused deputy" -ongelmat
+     - Tokenin läpivientivaiheet
+     - Liialliset oikeudet ja käyttövalvonta
+     - Tekoälykomponenttien toimitusketjun turvallisuus
      - Microsoft Prompt Shields -integraatio
 
 4. **Aloittaminen (03-GettingStarted/)**
-   - Ympäristön määritys ja konfigurointi
-   - Perus MCP-palvelimien ja asiakasohjelmien luominen
+   - Ympäristön asetukset ja konfigurointi
+   - Perustason MCP-palvelimien ja -asiakkaiden luominen
    - Integraatio olemassa oleviin sovelluksiin
    - Sisältää osiot:
-     - Ensimmäisen palvelimen toteutus
-     - Asiakasohjelman kehitys
+     - Ensimmäinen palvelin toteutus
+     - Asiakaskehitys
      - LLM-asiakasintegraatio
      - VS Code -integraatio
-     - Server-Sent Events (SSE) palvelin
+     - Server-Sent Events (SSE) -palvelin
      - Edistynyt palvelimen käyttö
      - HTTP-suoratoisto
      - AI Toolkit -integraatio
      - Testausstrategiat
-     - Julkaisusuositukset
+     - Julkaisuohjeet
 
 5. **Käytännön toteutus (04-PracticalImplementation/)**
-   - SDK:iden käyttö eri ohjelmointikielillä
+   - SDK:iden käyttäminen eri ohjelmointikielillä
    - Virheenkorjaus, testaus ja validointitekniikat
-   - Uudelleenkäytettävien kehotepohjien ja työnkulkujen luominen
-   - Esimerkkiprojekteja toteutuksineen
+   - Uudelleenkäytettävien prompt-mallien ja työnkulkujen luominen
+   - Esimerkkiprojekteja toteutusesimerkkien kera
 
 6. **Edistyneet aiheet (05-AdvancedTopics/)**
-   - Kontekstisuunnittelu- ja tekniikat
-   - Foundry-agenttien integraatio
+   - Kontekstisuunnittelutekniikat
+   - Foundry-agenttien integrointi
    - Monimodaaliset tekoälytyönkulut
-   - OAuth2-autentikointidemonstraatiot
+   - OAuth2-autentikointidemot
    - Reaaliaikaiset hakutoiminnot
    - Reaaliaikainen suoratoisto
-   - Juurikontekstien toteutus
-   - Reititysstrategiat
+   - Juuri-kontekstien toteutus
+   - Reitityksen strategiat
    - Otannan tekniikat
    - Skaalausmenetelmät
-   - Tietoturvaan liittyvät näkökohdat
-   - Entra ID -tietoturvaintegraatio
-   - Verkkohaku-integraatio
+   - Turvallisuusseikat
+   - Entra ID -turvallisuusintegraatio
+   - Web-haun integrointi
+   - Vastaväittäjä-multi-agenttiaajuus (debate-kuviot)
 
 7. **Yhteisön panokset (06-CommunityContributions/)**
    - Kuinka osallistua koodilla ja dokumentaatiolla
    - Yhteistyö GitHubin kautta
-   - Yhteisölähtöiset parannukset ja palaute
+   - Yhteisön vetämät parannukset ja palaute
    - Erilaisten MCP-asiakkaiden käyttö (Claude Desktop, Cline, VSCode)
-   - Työskentely suosittujen MCP-palvelimien kanssa, mukaan lukien kuvanluonti
+   - Työskentely suosittujen MCP-palvelimien kanssa, mukaan lukien kuvatuotanto
 
-8. **Opit varhaisesta käyttöönotosta (07-LessonsfromEarlyAdoption/)**
+8. **Varhaisen käyttöönoton opit (07-LessonsfromEarlyAdoption/)**
    - Käytännön toteutukset ja menestystarinat
-   - MCP-pohjaisten ratkaisujen rakentaminen ja käyttöönotto
-   - Suuntaukset ja tulevaisuuden tiekartta
-   - **Microsoft MCP -palvelimet -opas**: Kattava opas 10 tuotantovalmiille Microsoft MCP -palvelimelle, mukaan lukien:
-     - Microsoft Learn Docs MCP -palvelin
-     - Azure MCP -palvelin (yli 15 erikoistunutta liitintä)
-     - GitHub MCP -palvelin
-     - Azure DevOps MCP -palvelin
-     - MarkItDown MCP -palvelin
-     - SQL Server MCP -palvelin
-     - Playwright MCP -palvelin
-     - Dev Box MCP -palvelin
-     - Azure AI Foundry MCP -palvelin
-     - Microsoft 365 Agents Toolkit MCP -palvelin
+   - MCP-pohjaisten ratkaisujen rakentaminen ja julkaisu
+   - Trendit ja tulevaisuuden tiekartta
+   - **Microsoft MCP Servers Guide**: Kattava opas 10 tuotantovalmiiseen Microsoft MCP -palvelimeen, sisältäen:
+     - Microsoft Learn Docs MCP Server
+     - Azure MCP Server (15+ erikoisliitintä)
+     - GitHub MCP Server
+     - Azure DevOps MCP Server
+     - MarkItDown MCP Server
+     - SQL Server MCP Server
+     - Playwright MCP Server
+     - Dev Box MCP Server
+     - Azure AI Foundry MCP Server
+     - Microsoft 365 Agents Toolkit MCP Server
 
 9. **Parhaat käytännöt (08-BestPractices/)**
-   - Suorituskyvyn hienosäätö ja optimointi
+   - Suorituskyvyn viritys ja optimointi
    - Vikasietoisten MCP-järjestelmien suunnittelu
    - Testaus- ja resilienssistrategiat
 
 10. **Tapaustutkimukset (09-CaseStudy/)**
-    - **Seitsemän kattavaa tapaustutkimusta**, jotka osoittavat MCP:n monipuolisuuden erilaisissa skenaarioissa:
-    - **Azure AI Travel Agents**: Moniagenttiorganisointi Azure OpenAI:n ja AI Searchin avulla
-    - **Azure DevOps -integraatio**: Työnkulkujen automatisointi YouTube-datan päivityksillä
-    - **Reaaliaikainen dokumenttien haku**: Python-konsoliasiakas, jossa HTTP-suoratoisto
-    - **Interaktiivinen opintosuunnitelman generointi**: Chainlit-verkkosovellus keskustelevaa tekoälyä hyödyntäen
-    - **Keskitin dokumentaatiossa**: VS Code -integraatio GitHub Copilotin työnkulkuihin
-    - **Azure API -hallinta**: Yritysrajapinnan integrointi MCP-palvelimen luomisen avulla
-    - **GitHub MCP -rekisteri**: Ekosysteemin kehitys ja agenttipohjainen integraatioalusta
-    - Toteutusesimerkkejä, jotka kattavat yritysin­tegraation, kehittäjien tuottavuuden ja ekosysteemin kehityksen
+    - **Seitsemän kattavaa tapaustutkimusta** osoittamassa MCP:n monipuolisuutta erilaissa tilanteissa:
+    - **Azure AI Travel Agents**: Moni-agenttien orkestrointi Azure OpenAI:n ja AI-haun kanssa
+    - **Azure DevOps -integraatio**: Työnkulkujen automaatio YouTube-datan päivityksillä
+    - **Reaaliaikainen dokumentaation haku**: Python-konsoliasiakas suoratoistavalla HTTP:llä
+    - **Interaktiivinen opintosuunnitelman generaattori**: Chainlit-verkkosovellus keskustelevaa tekoälyä käyttäen
+    - **Editorin sisäinen dokumentaatio**: VS Code -integraatio GitHub Copilot -työnkulkujen kanssa
+    - **Azure API Management**: Yritystason API-integraatio MCP-palvelimen luomisella
+    - **GitHub MCP Registry**: Ekosysteemin kehittäminen ja agenttipohjainen integraatioalusta
+    - Toteutusesimerkkejä kattavasti yritysintegroinnista, kehittäjätuottavuudesta ja ekosysteemin kehittämisestä
 
 11. **Käytännön työpaja (10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/)**
-    - Kattava käytännön työpaja, joka yhdistää MCP:n AI Toolkitin kanssa
+    - Kattava käytännön työpaja, joka yhdistää MCP:n ja AI Toolkitin
     - Älykkäiden sovellusten rakentaminen, jotka yhdistävät tekoälymallit todellisiin työkaluihin
-    - Käytännön moduulit, joissa käydään läpi perusteet, räätälöity palvelin­kehitys ja tuotanto­käyttöönotto
-    - **Työpajarakenteet**:
+    - Käytännön moduulit kattavat perusteet, mukautetun palvelinkehityksen ja tuotantojulkaisut
+    - **Lab-rakenne**:
       - Lab 1: MCP-palvelimen perusteet
-      - Lab 2: Edistynyt MCP-palvelimen kehitys
+      - Lab 2: Edistynyt MCP-palvelinkehitys
       - Lab 3: AI Toolkit -integraatio
-      - Lab 4: Tuotantokäyttöönotto ja skaalaus
-    - Lab-pohjainen oppimistapa vaiheittaisine ohjeineen
+      - Lab 4: Tuotantojulkaisu ja skaalaus
+    - Lab-pohjainen oppimistapa vaiheittaisilla ohjeilla
 
-12. **MCP-palvelimen tietokanta-integraatiolaboratoriot (11-MCPServerHandsOnLabs/)**
-    - **Kattava 13-labran oppimispolku** tuotantovalmiiden MCP-palvelimien rakentamiseen PostgreSQL-integraatiolla
-    - **Käytännön vähittäiskaupan analytiikan toteutus** Zava Retail -käyttötapausta hyödyntäen
-    - **Yritystason mallit**, kuten rivitasoinen tietoturva (RLS), semanttinen haku ja moni­asiakas­tietojen pääsy
-    - **Täydellinen lab-rakenne**:
-      - **Labit 00-03: Perusteet** - Johdanto, arkkitehtuuri, tietoturva, ympäristön määrittely
+12. **MCP-palvelimen tietokantaintegraatiolaboratoriot (11-MCPServerHandsOnLabs/)**
+    - **Kattava 13-laboratoriopolku** tuotantovalmiiden MCP-palvelimien rakentamiseen PostgreSQL-integraatiolla
+    - **Käytännön jälleenmyynnin analytiikan toteutus** käyttäen Zava Retail -esimerkkiä
+    - **Yritystason mallit** kuten rivitason turvallisuus (RLS), semanttinen haku ja monivuokralaisarkkitehtuuri
+    - **Kokonaisvaltainen lab-rakenne**:
+      - **Labit 00-03: Perusteet** - Johdanto, arkkitehtuuri, tietoturva, ympäristön asennus
       - **Labit 04-06: MCP-palvelimen rakentaminen** - Tietokannan suunnittelu, MCP-palvelimen toteutus, työkalujen kehitys
-      - **Labit 07-09: Edistyneet ominaisuudet** - Semanttinen haku, testaus & virheenkorjaus, VS Code -integraatio
-      - **Labit 10-12: Tuotanto & parhaat käytännöt** - Julkaisu, valvonta, optimointi
-    - **Käytetyt teknologiat**: FastMCP-kehys, PostgreSQL, Azure OpenAI, Azure Container Apps, Application Insights
-    - **Oppimistavoitteet**: Tuotantovalmiit MCP-palvelimet, tietokantaintegraatiomallit, tekoälyllä tehostettu analytiikka, yritystason tietoturva
+      - **Labit 07-09: Edistyneet ominaisuudet** - Semanttinen haku, testaus ja virheenkorjaus, VS Code -integraatio
+      - **Labit 10-12: Tuotanto ja parhaat käytännöt** - Julkaisu, valvonta, optimointi
+    - **Katetut teknologiat**: FastMCP-kehys, PostgreSQL, Azure OpenAI, Azure Container Apps, Application Insights
+    - **Oppimistulokset**: Tuotantovalmiit MCP-palvelimet, tietokantaintegraatiomallit, tekoälyvetoiset analytiikat, yritystason tietoturva
 
 ## Lisäresurssit
 
-Hakemistossa on tukiresursseja:
+Arkisto sisältää tukimateriaaleja:
 
-- **Kuvakansio**: Sisältää kaavioita ja kuvituksia, joita käytetään opetussuunnitelmassa
-- **Käännökset**: Monikielinen tuki automatisoiduilla dokumentaatiokäännöksillä
+- **Kuvat-kansio**: Sisältää koko opetussuunnitelman aikaiset kaaviot ja kuvat
+- **Käännökset**: Monikielinen tuki automaattisine dokumentaatiokäännöksineen
 - **Viralliset MCP-resurssit**:
   - [MCP-dokumentaatio](https://modelcontextprotocol.io/)
-  - [MCP-määritys](https://spec.modelcontextprotocol.io/)
-  - [MCP GitHub -repositorio](https://github.com/modelcontextprotocol)
+  - [MCP-spesifikaatio](https://spec.modelcontextprotocol.io/)
+  - [MCP GitHub-arkisto](https://github.com/modelcontextprotocol)
 
-## Kuinka käyttää tätä hakemistoa
+## Kuinka käyttää tätä arkistoa
 
-1. **Järjestelmällinen opiskelu**: Seuraa lukuja järjestyksessä (00–11) rakenteellisen oppimiskokemuksen saamiseksi.
-2. **Kielikohtainen painotus**: Jos olet kiinnostunut tietystä ohjelmointikielestä, tutustu näytekansioihin kyseisen kielen toteutusten löytämiseksi.
-3. **Käytännön toteutus**: Aloita "Aloittaminen" -osiosta asettaaksesi ympäristön ja luodaksesi ensimmäisen MCP-palvelimesi ja -asiakkaasi.
-4. **Edistynyt tutkiminen**: Kun perusteet ovat hallussa, sukeltaudu edistyneisiin aiheisiin laajentaaksesi tietämystäsi.
-5. **Yhteisön osallistuminen**: Liity MCP-yhteisöön GitHub-keskustelujen ja Discord-kanavien kautta yhdistääksesi asiantuntijoiden ja muiden kehittäjien kanssa.
+1. **Peräkkäinen opiskelu**: Seuraa lukuja järjestyksessä (00–11) rakenteellisen oppimiskokemuksen saamiseksi.
+2. **Kielikohtainen painotus**: Jos olet kiinnostunut tietystä ohjelmointikielestä, tutustu sample-kansioihin löytääksesi toteutukset haluamallasi kielellä.
+3. **Käytännön toteutus**: Aloita "Getting Started" -osiosta ympäristön asennuksella ja ensimmäisen MCP-palvelimen ja -asiakkaan luomisella.
+4. **Edistynyt tutkimus**: Kun perusteet ovat hallussa, sukeltaudu edistyneisiin aiheisiin laajentaaksesi osaamistasi.
+5. **Yhteisöosallistuminen**: Liity MCP-yhteisöön GitHub-keskusteluissa ja Discord-kanavilla, ollaksesi yhteydessä asiantuntijoihin ja muihin kehittäjiin.
 
 ## MCP-asiakkaat ja työkalut
 
-Opetussuunnitelma kattaa erilaisia MCP-asiakkaita ja työkaluja:
+Opetussuunnitelmassa käsitellään erilaisia MCP-asiakkaita ja työkaluja:
 
 1. **Viralliset asiakkaat**:
-   - Visual Studio Code
+   - Visual Studio Code 
    - MCP Visual Studio Codessa
    - Claude Desktop
    - Claude VSCodessa
    - Claude API
 
 2. **Yhteisön asiakkaat**:
-   - Cline (päätteeseen perustuva)
+   - Cline (päätepohjainen)
    - Cursor (koodieditori)
    - ChatMCP
    - Windsurf
 
-3. **MCP:n hallintatyökalut**:
+3. **MCP-hallintatyökalut**:
    - MCP CLI
    - MCP Manager
    - MCP Linker
    - MCP Router
 
-## Suosittuja MCP-palvelimia
+## Suositut MCP-palvelimet
 
-Hakemisto esittelee useita MCP-palvelimia, mukaan lukien:
+Arkisto esittelee useita MCP-palvelimia, mukaan lukien:
 
 1. **Viralliset Microsoft MCP -palvelimet**:
-   - Microsoft Learn Docs MCP -palvelin
-   - Azure MCP -palvelin (yli 15 erikoistunutta liitintä)
-   - GitHub MCP -palvelin
-   - Azure DevOps MCP -palvelin
-   - MarkItDown MCP -palvelin
-   - SQL Server MCP -palvelin
-   - Playwright MCP -palvelin
-   - Dev Box MCP -palvelin
-   - Azure AI Foundry MCP -palvelin
-   - Microsoft 365 Agents Toolkit MCP -palvelin
+   - Microsoft Learn Docs MCP Server
+   - Azure MCP Server (15+ erikoisliitintä)
+   - GitHub MCP Server
+   - Azure DevOps MCP Server
+   - MarkItDown MCP Server
+   - SQL Server MCP Server
+   - Playwright MCP Server
+   - Dev Box MCP Server
+   - Azure AI Foundry MCP Server
+   - Microsoft 365 Agents Toolkit MCP Server
 
 2. **Viralliset referenssipalvelimet**:
    - Filesystem
@@ -315,7 +317,7 @@ Hakemisto esittelee useita MCP-palvelimia, mukaan lukien:
    - Memory
    - Sequential Thinking
 
-3. **Kuvantamisen generointi**:
+3. **Kuvatuotanto**:
    - Azure OpenAI DALL-E 3
    - Stable Diffusion WebUI
    - Replicate
@@ -332,15 +334,15 @@ Hakemisto esittelee useita MCP-palvelimia, mukaan lukien:
 
 ## Osallistuminen
 
-Tämä hakemisto toivottaa yhteisön panokset tervetulleiksi. Katso Yhteisön panokset -osio ohjeista, miten voit tehokkaasti osallistua MCP-ekosysteemiin.
+Tämä arkisto toivottaa tervetulleeksi yhteisön panokset. Katso yhteisön panokset -osio saadaksesi ohjeita MCP-ekosysteemiin tehokkaasti osallistumisesta.
 
 ----
 
-*Tämä opas päivitettiin viimeksi 5. helmikuuta 2026, heijastaen uusinta MCP-määritystä 2025-11-25 ja tarjoaa yleiskatsauksen hakemistosta kyseisenä päivänä. Hakemiston sisältöä voidaan päivittää tämän päivämäärän jälkeen.*
+*Tämä oppaan päivitys tehtiin viimeksi 5. helmikuuta 2026 ja heijastaa viimeisintä MCP Specification 2025-11-25 -versiota sekä arkiston tilannetta kyseisenä päivänä. Arkiston sisältöä voidaan päivittää tämän päivämäärän jälkeen.*
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Vastuuvapauslauseke**:
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Pyrimme tarkkuuteen, mutta otathan huomioon, että automaattikäännöksissä saattaa esiintyä virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäiskielellä tulee pitää määräyksenä. Tärkeissä asioissa suositellaan ammattilaisen tekemää ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai virhetulkinnoista.
+**Vastuuvapauslauseke**:  
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Pyrimme tarkkuuteen, mutta huomioithan, että automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäiskielellä on virallinen lähde. Tärkeissä tiedoissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

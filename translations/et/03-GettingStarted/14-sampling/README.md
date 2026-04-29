@@ -1,20 +1,20 @@
-# Valimine - tunnuste delegeerimine kliendile
+# Valimine - funktsioonide volitamine kliendile
 
-Mõnikord peab MCP klient ja MCP server koostööd tegema ühise eesmärgi saavutamiseks. Võib juhtuda, et server vajab abi kliendi poolel olevast LLM-ist. Selleks olukorraks tuleks kasutada valimist.
+Mõnikord peavad MCP klient ja MCP server koostööd tegema ühise eesmärgi saavutamiseks. Võib juhtuda, et server vajab abi kliendis paiknevalt LLM-ilt. Selle olukorra lahendamiseks tuleks kasutada valimist.
 
-Vaatame mõningaid kasutusjuhte ja kuidas ehitada lahendus, mis hõlmab valimist.
+Vaatleme mõningaid kasutusjuhtumeid ja kuidas ehitada lahendus, mis hõlmab valimist.
 
 ## Ülevaade
 
-Selles õppetükis keskendume nõustamisele, millal ja kus kasutada valimist ning kuidas seda seadistada.
+Selles õppetükis keskendume valimise selgitamisele, millal ja kus seda kasutada ning kuidas seda konfigureerida.
 
 ## Õpieesmärgid
 
 Selles peatükis:
 
 - Selgitame, mis on valimine ja millal seda kasutada.
-- Näitame, kuidas MCP-s valimist seadistada.
-- Toome näiteid valimise kasutamisest.
+- Näitame, kuidas MCP-s valimist konfigureerida.
+- Anname näiteid valimise rakendamisest.
 
 ## Mis on valimine ja miks seda kasutada?
 
@@ -27,18 +27,18 @@ sequenceDiagram
     participant LLM
     participant MCP Server
 
-    User->>MCP Client: Koosta blogipostitus
-    MCP Client->>MCP Server: Tööriista kõne (blogipostituse mustand)
-    MCP Server->>MCP Client: Valimispäring (loo kokkuvõte)
+    User->>MCP Client: Autor blogipostitus
+    MCP Client->>MCP Server: Tööriista kutsung (blogipostituse mustand)
+    MCP Server->>MCP Client: Valikunäidise päring (loo kokkuvõte)
     MCP Client->>LLM: Genereeri blogipostituse kokkuvõte
     LLM->>MCP Client: Kokkuvõtte tulemus
-    MCP Client->>MCP Server: Valimisvastus (kokkuvõte)
+    MCP Client->>MCP Server: Valikunäidise vastus (kokkuvõte)
     MCP Server->>MCP Client: Valmis blogipostitus (mustand + kokkuvõte)
     MCP Client->>User: Blogipostitus valmis
 ```
-### Valimistaotlus
+### Valimise päring
 
-Okei, nüüd, kui meil on stsenaariumi üldvaade, räägime valimistaotlusest, mida server klienti saadab. Selline taotlus võib JSON-RPC formaadis välja näha järgmiselt:
+Nüüd, kui meil on usutava stsenaariumi üldvaade, räägime serveri kliendile tagastatavast valimise päringust. Selline päring võib JSON-RPC formaadis välja näha järgmiselt:
 
 ```json
 {
@@ -70,17 +70,17 @@ Okei, nüüd, kui meil on stsenaariumi üldvaade, räägime valimistaotlusest, m
 }
 ```
 
-Siin on mitu olulist momenti:
+Siin on mõningad olulised punktid:
 
-- Tekst, content -> text all, on meie üleskutse — juhis LLM-ile blogipostituse sisu kokkuvõtmiseks.
+- Prompt, sisu all -> text, on meie prompt, mis on juhis LLM-ile kokkuvõtte tegemiseks blogipostituse sisust.
 
-- **modelPreferences**. See jaotis on lihtsalt soovitus, millist konfiguratsiooni LLM-iga kasutada. Kasutaja võib neid soovitusi järgida või muuta. Antud juhul on soovitused mudeli, kiiruse ja intelligentsuse prioriteedi kohta.
-- **systemPrompt** on sinu tavapärane süsteemi juhis, mis annab LLM-ile iseloomu ja sisaldab juhiseid.
-- **maxTokens** määrab, mitu võtmesõna soovitatakse sellele ülesandele kasutada.
+- **modelPreferences**. See osa ongi eelistus, soovitus millist konfiguratsiooni LLM-iga kasutada. Kasutaja saab otsustada, kas järgneda neile soovitustele või neid muuta. Selles näites on soovitusi kasutatava mudeli, kiiruse ja intellekti prioriteedi osas.
+- **systemPrompt**, see on tavapärane süsteemprompt, mis annab LLM-ile iseloomu ja sisaldab juhiseid.
+- **maxTokens**, see on atribuut, mis näitab, mitu tokenit selle ülesande jaoks soovitatakse kasutada.
 
-### Valimisvastus
+### Valimise vastus
 
-See vastus on see, mida MCP klient lõpuks MCP serverile tagastab ja mis on kliendi poolt LLM-ile tehtud päringu tulemus. Näeb JSON-RPC-s välja selline:
+See vastus on see, mida MCP klient lõpuks MCP serverile saadab ja mis tekib kliendi LLM-i kutsumise järel, selle vastuse ootel ja sõnumi kokkupanekul. JSON-RPC formaadis võib see välja näha nii:
 
 ```json
 {
@@ -98,13 +98,13 @@ See vastus on see, mida MCP klient lõpuks MCP serverile tagastab ja mis on klie
 }
 ```
 
-Pane tähele, et vastus on blogipostituse kokkuvõte, just nagu soovisime. Samuti märka, et kasutatud mudel on "gpt-5", mitte meie soovitud "claude-3-sonnet". See näitab, et kasutaja võib oma meelt muuta, ja sinu valimistaotlus on soovitus.
+Pane tähele, et vastus on blogipostituse kokkuvõte, nagu palusime. Samuti märka, et kasutatud `model` pole see, mida me küsisime, vaid "gpt-5" "claude-3-sonnet" asemel. See näitab, et kasutaja võib otsustada mudeli osas teisiti ja et sinu valimise päring on soovitus.
 
-Nüüd, kui mõistame põhivoogu ja kasulikku ülesannet "blogipostituse loomine + kokkuvõte", vaatame, mida peab selleks tegema.
+Nüüd, kui mõistame põhivoogu ja kasulikku ülesannet "blogipostituse loomine + kokkuvõte", vaatame, mida peame selle tööle saamiseks tegema.
 
-### Sõnumi tüübid
+### Sõnumitüübid
 
-Valimissõnumid ei piirdu ainult tekstiga, vaid võid saata ka pilte ja heli. JSON-RPC format erineb sellel juhul järgmiselt:
+Valimise sõnumeid pole piiratud ainult tekstiga, vaid saab saata ka pilte ja heli. JSON-RPC näeb sellisel juhul välja erinev:
 
 **Tekst**
 
@@ -135,13 +135,13 @@ Valimissõnumid ei piirdu ainult tekstiga, vaid võid saata ka pilte ja heli. JS
 }
 ```
 
-> MÄRKUS: valimise üksikasjalikumaks uurimiseks vaata [ametlikku dokumentatsiooni](https://modelcontextprotocol.io/specification/2025-06-18/client/sampling)
+> MÄRKUS: valimise kohta leiad rohkem üksikasju ametlikest dokumentidest aadressil [official docs](https://modelcontextprotocol.io/specification/2025-06-18/client/sampling)
 
-## Kuidas kliendis valimist seadistada
+## Kuidas kliendis valimist konfigureerida
 
-> Märkus: kui ehitad ainult serverit, siis siin palju teha ei ole.
+> Märkus: kui sa ehitad ainult serverit, ei pea siin palju tegema.
 
-Kliendis tuleb järgmiselt määrata järgmine funktsioon:
+Kliendis tuleb määratleda järgmine funktsioon nii:
 
 ```json
 {
@@ -151,18 +151,18 @@ Kliendis tuleb järgmiselt määrata järgmine funktsioon:
 }
 ```
 
-See aktiveeritakse, kui sinu valitud klient serveriga ühenduse loob.
+See võetakse arvesse, kui sinu valitud klient alustab serveriga ühendust.
 
 ## Näide valimise kasutamisest - blogipostituse loomine
 
 Loome koos valimise serveri, peame tegema järgmist:
 
 1. Loome serveris tööriista.
-1. See tööriist loob valimistaotluse.
-1. Tööriist ootab kliendi valimistaotluse vastust.
+1. See tööriist peaks looma valimise päringu.
+1. Tööriist ootab kliendi valimise päringu vastust.
 1. Seejärel toodetakse tööriista tulemus.
 
-Vaatame koodis samm-sammult:
+Vaatame koodi samm-sammult:
 
 ### -1- Tööriista loomine
 
@@ -175,9 +175,9 @@ async def create_blog(title: str, content: str, ctx: Context[ServerSession, None
 
 ```
 
-### -2- Valimistaotluse loomine
+### -2- Valimise päringu loomine
 
-Lisa oma tööriistale järgmine kood:
+Laienda tööriista järgmise koodiga:
 
 **python**
 
@@ -203,7 +203,7 @@ result = await ctx.session.create_message(
 
 ```
 
-### -3- Oota vastust ja tagasta see
+### -3- Oota vastust ja tagasta tulemus
 
 **python**
 
@@ -212,7 +212,7 @@ post.abstract = result.content.text
 
 posts.append(post)
 
-# tagastage täielik toode
+# tagasta kogu toode
 return json.dumps({
     "id": post.title,
     "abstract": post.abstract
@@ -281,7 +281,7 @@ async def create_blog(title: str, content: str, ctx: Context[ServerSession, None
 
     posts.append(post)
 
-    # tagasta kogu blogipostitus
+    # tagasta täielik blogipostitus
     return json.dumps({
         "id": post.title,
         "abstract": post.abstract
@@ -295,12 +295,12 @@ if __name__ == "__main__":
 # käivita rakendus käsuga: python server.py
 ```
 
-### -5- Testimine Visual Studio Codes
+### -5- Testimine Visual Studio Code'is
 
-Testimiseks Visual Studio Codes tee järgmist:
+Testimiseks tee Visual Studio Code'is järgmist:
 
-1. Käivita server terminalis.
-1. Lisa see *mcp.json* faili (kontrolli, et server oleks käivitatud), nt nii:
+1. Käivita server terminalis
+1. Lisa see *mcp.json*-i (ja veendu, et see on töös) nt nii:
 
    ```json
    "servers": {
@@ -311,45 +311,45 @@ Testimiseks Visual Studio Codes tee järgmist:
    }
    ```
 
-1. Sisesta päring:
+1. Sisesta prompt:
 
    ```text
    create a blog post named "Where Python comes from", the content is "Python is actually named after Monty Python Flying Circus"
    ```
 
-1. Luba valimise toimimine. Esmakordsel testimisel küsitakse sinult täiendavat dialoogi kinnitamist, seejärel kuvatakse tavapärane dialoog tööriista käivitamiseks.
+1. Luba valimine toimuda. Esimest korda testides ilmub lisadialoog, mille pead aktsepteerima, seejärel näed tavapärast tööriista käivitamise dialoogi.
 
-1. Kontrolli tulemusi. Tulemused kuvatakse kenasti GitHub Copilot Chatis, aga võid ka sirvida käsitsi saadud JSON-vastust.
+1. Vaata tulemusi. Näed tulemeid GitHub Copilot Chatis ilusasti renderdatuna, kuid võid ka vaadata toore JSON vastust.
 
-**Boonus**. Visual Studio Code tööriistad toetavad valimist hästi. Sa saad seadistada valimise ligipääsu oma installitud serverile järgmiselt:
+**Boonus**. Visual Studio Code tööriistad toetavad hästi valimist. Saad konfigureerida valimise ligipääsu oma installitud serverile järgmiselt:
 
-1. Mine laienduste sektsiooni.
-1. Vali hammasrattaikoon oma installitud serveri juures jaotisest "MCP SERVERS - INSTALLED".
-1. Vali "Configure Model Access", kus saad valida, milliseid mudeleid GitHub Copilot võib valimisel kasutada. Samuti saad näha kõiki hiljutisi valimistaotlusi valiku "Show Sampling requests" alt.
+1. Müügiosa avamine.
+1. Vali ikoon oma installitud serveri juures sektsioonis "MCP SERVERS - INSTALLED".
+1. Vali "Configure Model Access", siin saad valida, milliseid mudeleid GitHub Copilot tohib valimise ajal kasutada. Samuti näed kõiki hiljutisi valimise päringuid valides "Show Sampling requests".
 
 ## Ülesanne
 
-Selles ülesandes ehitad veidi teistsuguse valimise — valimise integratsiooni, mis toetab tootekirjelduse genereerimist. Sinu stsenaarium:
+Selles ülesandes ehitad veidi teistsuguse valimise integraatori, mis toetab tootekirjelduse genereerimist. Siin on sinu stsenaarium:
 
-**Stsenaarium**: E-kaubanduse administratiivtöötajal puudub piisavalt aega tootetekstide kirjutamiseks. Ehita lahendus, mis kutsutakse tööriistana "create_product" koos argumentidega "title" ja "keywords" ja mis genereerib toote täieliku kirjelduse, mille täidab kliendi LLM.
+**Stsenaarium**: e-kaubanduse tagakontori töötajal on abi vaja, sest tootetutvustuste genereerimine võtab liiga palju aega. Seetõttu pead ehitama lahenduse, kus saad tööriista "create_product" kutsuda koos argumentidega "title" ja "keywords" ning see peaks looma täieliku toote, millel on "description" väli, mis täidetakse kliendi LLM-i abil.
 
-NIPP: kasuta varasemat teadmist, kuidas see server ja tööriist valimistaotluse põhjal üles ehitada.
+NÕUANNE: kasuta varasemalt õpitud teadmisi, et üles ehitada see server ja tööriist kasutades valimise päringut.
 
 ## Lahendus
 
 [Lahendus](./solution/README.md)
 
-## Peamised mõtted
+## Peamised õppetunnid
 
-Valimine on võimas funktsioon, mis võimaldab serveril delegeerida ülesandeid kliendile, kui ta vajab LLM abi.
+Valimine on võimas funktsioon, mis võimaldab serveril delegeerida ülesandeid kliendile, kui tal on vaja LLM-i abi.
 
 ## Mis järgmiseks
 
-- [Lõik 4 - Praktiline rakendus](../../04-PracticalImplementation/README.md)
+- [4. peatükk - praktiline rakendamine](../../04-PracticalImplementation/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Vastutusest loobumine**:
-See dokument on tõlgitud AI tõlketeenuse [Co-op Translator](https://github.com/Azure/co-op-translator) abil. Kuigi püüame tagada täpsust, palun arvestage, et automaatsed tõlked võivad sisaldada vigu või ebatäpsusi. Originaaldokument selle emakeeles loetakse ametlikuks allikaks. Tähtsa teabe puhul soovitatakse kasutada professionaalset inimtõlget. Me ei vastuta selle tõlke kasutamisest tulenevate arusaamatuste ega väärinterpretatsioonide eest.
+**Vastutusest loobumine**:  
+See dokument on tõlgitud AI tõlke teenuse [Co-op Translator](https://github.com/Azure/co-op-translator) abil. Kuigi püüame täpsust, tuleb arvestada, et automaatsed tõlked võivad sisaldada vigu või ebatäpsusi. Originaaldokument selle emakeeles tuleks pidada autoriteetseks allikaks. Olulise info puhul soovitatakse kasutada professionaalset inimtõlget. Me ei vastuta selle tõlkega seotud arusaamatuste ega valesti tõlgendamise eest.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

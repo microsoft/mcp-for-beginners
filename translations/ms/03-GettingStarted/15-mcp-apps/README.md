@@ -1,24 +1,24 @@
 # Aplikasi MCP
 
-Aplikasi MCP adalah paradigma baru dalam MCP. Idéanya ialah bukan sahaja anda membalas dengan data daripada panggilan alat, malah anda juga menyediakan maklumat tentang bagaimana maklumat ini harus berinteraksi. Itu bermakna hasil alat kini boleh mengandungi maklumat UI. Kenapa kita mahu begitu? Baiklah, fikirkan bagaimana anda melakukan perkara hari ini. Anda kemungkinan besar menggunakan hasil daripada Server MCP dengan meletakkan jenis frontend di hadapannya, itu kod yang anda perlu tulis dan selenggara. Kadang-kadang itu yang anda mahu, tetapi kadang-kadang ia akan menjadi hebat jika anda boleh membawa sekeping maklumat yang berdiri sendiri yang mempunyai semuanya daripada data ke antara muka pengguna.
+Aplikasi MCP adalah paradigma baru dalam MCP. Idea ini bukan sahaja anda memberi respon dengan data kembali dari panggilan alat, tetapi anda juga menyediakan maklumat tentang bagaimana maklumat ini harus berinteraksi. Itu bermakna hasil alat kini boleh mengandungi maklumat UI. Kenapa kita mahukannya? Baiklah, pertimbangkan bagaimana anda melakukan perkara hari ini. Anda mungkin menggunakan hasil dari Server MCP dengan meletakkan beberapa jenis frontend di hadapannya, itu kod yang anda perlu tulis dan selenggara. Kadangkala itu apa yang anda mahu, tetapi kadangkala lebih baik jika anda hanya boleh membawa sekeping maklumat yang bersendirian yang mempunyai semuanya dari data ke antara muka pengguna.
 
 ## Gambaran Keseluruhan
 
-Pelajaran ini menyediakan panduan praktikal tentang Aplikasi MCP, bagaimana memulakannya dan bagaimana mengintegrasikannya dalam Aplikasi Web anda yang sedia ada. Aplikasi MCP adalah tambahan yang sangat baru kepada Standard MCP.
+Pelajaran ini memberikan panduan praktikal tentang Aplikasi MCP, bagaimana untuk bermula dengannya dan bagaimana mengintegrasikannya dalam Aplikasi Web sedia ada anda. Aplikasi MCP adalah penambahan yang sangat baru kepada Standard MCP.
 
 ## Objektif Pembelajaran
 
-Menjelang akhir pelajaran ini, anda akan boleh:
+Pada akhir pelajaran ini, anda akan dapat:
 
 - Menjelaskan apa itu Aplikasi MCP.
-- Bila hendak menggunakan Aplikasi MCP.
-- Membangun dan mengintegrasikan Aplikasi MCP anda sendiri.
+- Bila menggunakan Aplikasi MCP.
+- Membangun dan mengintegrasi Aplikasi MCP anda sendiri.
 
 ## Aplikasi MCP - bagaimana ia berfungsi
 
-Idéanya dengan Aplikasi MCP adalah untuk menyediakan tindak balas yang pada dasarnya adalah komponen untuk dirender. Komponen seperti itu boleh mempunyai visual dan interaktiviti, contohnya klik butang, input pengguna dan banyak lagi. Mari mula dengan sisi server dan Server MCP kami. Untuk mencipta komponen Aplikasi MCP anda perlu membuat alat dan juga sumber aplikasi. Dua bahagian ini disambungkan oleh resourceUri.
+Idea dengan Aplikasi MCP adalah untuk menyediakan respon yang sebenarnya adalah komponen untuk dirender. Komponen sebegini boleh mempunyai kedua-dua visual dan interaktiviti, contohnya, klik butang, input pengguna dan lain-lain. Mari bermula dengan bahagian server dan Server MCP kami. Untuk membuat komponen Aplikasi MCP anda perlu membuat alat tetapi juga sumber aplikasi. Kedua-dua bahagian ini dihubungkan oleh resourceUri.
 
-Berikut adalah contoh. Mari cuba memvisualisasikan apa yang terlibat dan bahagian apa yang melakukan apa:
+Berikut adalah contoh. Mari cuba visualisasikan apa yang terlibat dan bahagian mana melakukan apa:
 
 ```text
 server.ts -- responsible for registering tools and the component as a UI component
@@ -27,7 +27,7 @@ src/
 mcp-app.html -- the user interface
 ```
 
-Visual ini menerangkan seni bina untuk mencipta komponen dan logiknya.
+Visual ini menerangkan seni bina untuk membuat komponen dan logiknya.
 
 ```mermaid
 flowchart LR
@@ -39,30 +39,30 @@ flowchart LR
     C --- U
   end
 
-  subgraph Parent[Halaman Web Induk]
-    H[Aplikasi hos]
-    IFRAME[Bekas IFrame]
-    H -->|Suntik UI Apl MCP| IFRAME
+  subgraph Parent[Laman Web Induk]
+    H[Host aplikasi]
+    IFRAME[Kontena IFrame]
+    H -->|Suntik UI Aplikasi MCP| IFRAME
   end
 
-  subgraph Frontend[Frontend: Apl MCP dalam IFrame]
-    UI["Antara muka pengguna: mcp-app.html"]
+  subgraph Frontend[Frontend: Aplikasi MCP dalam IFrame]
+    UI["Antaramuka pengguna: mcp-app.html"]
     EH["Pengendali acara: src/mcp-app.ts"]
     UI --> EH
   end
 
   IFRAME --> UI
-  EH -->|Klik mencetus panggilan alat pelayan| T
-  T -->|Data hasil alat| EH
-  EH -->|Hantar mesej ke halaman induk| H
+  EH -->|Klik mencetuskan panggilan alat pelayan| T
+  T -->|Data keputusan alat| EH
+  EH -->|Hantar mesej ke laman induk| H
 ```
 Mari cuba terangkan tanggungjawab seterusnya untuk backend dan frontend masing-masing.
 
 ### Backend
 
-Terdapat dua perkara yang perlu kita capai di sini:
+Ada dua perkara yang perlu kita capai di sini:
 
-- Mendaftar alat yang kita mahu berinteraksi.
+- Mendaftar alat yang ingin kita interaksi.
 - Mendefinisikan komponen.
 
 **Mendaftar alat**
@@ -75,7 +75,7 @@ registerAppTool(
       title: "Get Time",
       description: "Returns the current server time.",
       inputSchema: {},
-      _meta: { ui: { resourceUri } }, // Menghubungkan alat ini ke sumber UInya
+      _meta: { ui: { resourceUri } }, // Menghubungkan alat ini kepada sumber UI-nya
     },
     async () => {
       const time = new Date().toISOString();
@@ -85,7 +85,7 @@ registerAppTool(
 
 ```
 
-Kod sebelumnya menerangkan kelakuan, di mana ia mendedahkan alat bernama `get-time`. Ia tidak mengambil input tetapi akhirnya menghasilkan masa semasa. Kita mempunyai keupayaan untuk mendefinisikan `inputSchema` untuk alat di mana kita perlu menerima input pengguna.
+Kod di atas menerangkan tingkah laku, di mana ia mendedahkan alat yang dipanggil `get-time`. Ia tidak mengambil input tetapi akhirnya menghasilkan masa semasa. Kita boleh mentakrifkan `inputSchema` untuk alat di mana kita perlu menerima input pengguna.
 
 **Mendaftar komponen**
 
@@ -119,11 +119,11 @@ Perhatikan bagaimana kita menyebut `resourceUri` untuk menghubungkan komponen de
 Sama seperti backend, ada dua bahagian di sini:
 
 - Frontend yang ditulis dalam HTML tulen.
-- Kod yang mengendalikan acara dan apa yang perlu dibuat, contohnya memanggil alat atau menghantar mesej ke tetingkap induk.
+- Kod yang mengendalikan acara dan apa yang perlu dilakukan, contohnya memanggil alat atau menghantar mesej ke tetingkap induk.
 
 **Antara muka pengguna**
 
-Mari lihat antara muka pengguna.
+Mari kita lihat antara muka pengguna.
 
 ```html
 <!-- mcp-app.html -->
@@ -143,9 +143,9 @@ Mari lihat antara muka pengguna.
 </html>
 ```
 
-**Penghubung acara**
+**Penyambungan acara**
 
-Bahagian terakhir adalah penghubung acara. Itu bermakna kita mengenal pasti bahagian dalam UI kita yang memerlukan pengendali acara dan apa yang perlu dilakukan jika acara diangkat:
+Bahagian terakhir adalah penyambungan acara. Itu bermakna kita mengenal pasti bahagian mana dalam UI kita memerlukan pengendali acara dan apa yang perlu dilakukan jika acara dicetuskan:
 
 ```typescript
 // mcp-app.ts
@@ -156,11 +156,11 @@ import { App } from "@modelcontextprotocol/ext-apps";
 const serverTimeEl = document.getElementById("server-time")!;
 const getTimeBtn = document.getElementById("get-time-btn")!;
 
-// Cipta contoh aplikasi
+// Buat contoh aplikasi
 const app = new App({ name: "Get Time App", version: "1.0.0" });
 
-// Tangani keputusan alat dari pelayan. Tetapkan sebelum `app.connect()` untuk mengelakkan
-// terlepas keputusan alat awal.
+// Tangani hasil alat dari pelayan. Tetapkan sebelum `app.connect()` untuk mengelakkan
+// kehilangan hasil alat awal.
 app.ontoolresult = (result) => {
   const time = result.content?.find((c) => c.type === "text")?.text;
   serverTimeEl.textContent = time ?? "[ERROR]";
@@ -168,7 +168,7 @@ app.ontoolresult = (result) => {
 
 // Sambungkan klik butang
 getTimeBtn.addEventListener("click", async () => {
-  // `app.callServerTool()` membolehkan antara muka pengguna meminta data segar dari pelayan
+  // `app.callServerTool()` membolehkan UI meminta data baru dari pelayan
   const result = await app.callServerTool({ name: "get-time", arguments: {} });
   const time = result.content?.find((c) => c.type === "text")?.text;
   serverTimeEl.textContent = time ?? "[ERROR]";
@@ -178,16 +178,16 @@ getTimeBtn.addEventListener("click", async () => {
 app.connect();
 ```
 
-Seperti yang anda lihat di atas, ini adalah kod biasa untuk memasang elemen DOM kepada acara. Yang patut dipanggil keluar adalah panggilan ke `callServerTool` yang akhirnya memanggil alat di backend.
+Seperti yang anda lihat di atas, ini adalah kod biasa untuk mengaitkan elemen DOM kepada acara. Yang patut diperhatikan adalah panggilan ke `callServerTool` yang akhirnya memanggil alat di backend.
 
 ## Mengendalikan input pengguna
 
-Setakat ini, kita telah melihat komponen yang mempunyai butang yang apabila diklik memanggil alat. Mari kita lihat jika kita boleh tambah lebih elemen UI seperti medan input dan lihat jika kita boleh menghantar argumen ke alat. Mari laksanakan fungsi FAQ. Berikut cara ia harus berfungsi:
+Setakat ini, kita telah melihat komponen yang mempunyai butang yang apabila diklik memanggil alat. Mari lihat jika kita boleh tambah elemen UI seperti medan input dan lihat jika kita boleh menghantar argumen ke alat. Mari laksanakan fungsi FAQ. Begini caranya ia sepatutnya berfungsi:
 
-- Harus ada butang dan elemen input di mana pengguna menaip kata kunci untuk mencari contohnya "Shipping". Ini harus memanggil alat di backend yang melakukan carian dalam data FAQ.
+- Harus ada butang dan elemen input di mana pengguna menaip kata kunci untuk mencari contohnya "Shipping". Ini harus memanggil alat pada backend yang membuat carian dalam data FAQ.
 - Alat yang menyokong carian FAQ yang disebutkan.
 
-Mari tambah sokongan yang diperlukan ke backend terlebih dahulu:
+Mari tambah sokongan yang diperlukan pada backend dahulu:
 
 ```typescript
 const faq: { [key: string]: string } = {
@@ -205,7 +205,7 @@ registerAppTool(
       inputSchema: zod.object({
         query: zod.string().default("shipping"),
       }),
-      _meta: { ui: { resourceUri: faqResourceUri } }, // Menghubungkan alat ini kepada sumber UI-nya
+      _meta: { ui: { resourceUri: faqResourceUri } }, // Pautkan alat ini kepada sumber UI-nya
     },
     async ({ query }) => {
       const answer: string = faq[query.toLowerCase()] || "Sorry, I don't have an answer for that.";
@@ -214,7 +214,7 @@ registerAppTool(
   );
 ```
 
-Apa yang kita lihat di sini adalah bagaimana kita mengisi `inputSchema` dan memberikannya skema `zod` seperti ini:
+Apa yang kita lihat di sini adalah bagaimana kita mengisi `inputSchema` dan memberinya skema `zod` seperti berikut:
 
 ```typescript
 inputSchema: zod.object({
@@ -222,9 +222,9 @@ inputSchema: zod.object({
 })
 ```
 
-Dalam skema di atas kita mengisytiharkan kita ada parameter input bernama `query` dan ia adalah pilihan dengan nilai lalai "shipping".
+Dalam skema di atas kita mengisytiharkan kita mempunyai parameter input bernama `query` dan bahawa ia adalah pilihan dengan nilai lalai "shipping".
 
-Ok, mari beralih ke *mcp-app.html* untuk melihat UI yang perlu kita cipta untuk ini:
+Ok, mari teruskan ke *mcp-app.html* untuk lihat UI apa yang perlu kita cipta untuk ini:
 
 ```html
 <div class="faq">
@@ -235,7 +235,7 @@ Ok, mari beralih ke *mcp-app.html* untuk melihat UI yang perlu kita cipta untuk 
   </div>
 ```
 
-Bagus, sekarang kita ada elemen input dan butang. Mari ke *mcp-app.ts* seterusnya untuk hubungkan acara-acara ini:
+Hebat, sekarang kita ada elemen input dan butang. Mari pergi ke *mcp-app.ts* seterusnya untuk sambungkan acara ini:
 
 ```typescript
 const getFaqBtn = document.getElementById("get-faq-btn")!;
@@ -251,26 +251,26 @@ getFaqBtn.addEventListener("click", async () => {
 
 Dalam kod di atas kita:
 
-- Mencipta rujukan ke elemen UI yang menarik.
-- Mengendalikan klik butang untuk menguraikan nilai elemen input dan kita juga memanggil `app.callServerTool()` dengan `name` dan `arguments` di mana yang terakhir menghantar `query` sebagai nilai.
+- Mencipta rujukan kepada elemen UI yang interaktif.
+- Mengendalikan klik butang untuk mengurai nilai elemen input dan juga memanggil `app.callServerTool()` dengan `name` dan `arguments` di mana yang terakhir menghantar `query` sebagai nilai.
 
 Apa yang sebenarnya berlaku apabila anda memanggil `callServerTool` adalah ia menghantar mesej ke tetingkap induk dan tetingkap itu akhirnya memanggil Server MCP.
 
 ### Cuba ia
 
-Mencubanya kita kini sepatutnya melihat yang berikut:
+Mencubanya sekarang kita sepatutnya lihat yang berikut:
 
 ![](../../../../translated_images/ms/faq.f78abe6b2cc68c83.webp)
 
-dan ini ketika kita mencuba dengan input seperti "warranty"
+dan ini adalah apabila kita cuba dengan input seperti "warranty"
 
 ![](../../../../translated_images/ms/faq-input.3e276f1c3d7e061e.webp)
 
-Untuk menjalankan kod ini, lawati [Bahagian Kod](./code/README.md)
+Untuk jalankan kod ini, pergi ke [seksyen Kod](./code/README.md)
 
 ## Ujian dalam Visual Studio Code
 
-Visual Studio Code mempunyai sokongan hebat untuk Aplikasi MVP dan mungkin salah satu cara paling mudah untuk menguji Aplikasi MCP anda. Untuk menggunakan Visual Studio Code, tambah entri server ke *mcp.json* seperti ini:
+Visual Studio Code mempunyai sokongan hebat untuk Aplikasi MCP dan mungkin salah satu cara paling mudah untuk menguji Aplikasi MCP anda. Untuk menggunakan Visual Studio Code, tambah entri server pada *mcp.json* seperti berikut:
 
 ```json
 "my-mcp-server-7178eca7": {
@@ -279,29 +279,29 @@ Visual Studio Code mempunyai sokongan hebat untuk Aplikasi MVP dan mungkin salah
   }
 ```
 
-Kemudian mula server, anda sepatutnya dapat berkomunikasi dengan Aplikasi MVP anda melalui Tetingkap Chat dengan syarat anda telah memasang GitHub Copilot.
+Kemudian mulakan server, anda sepatutnya boleh berkomunikasi dengan Aplikasi MCP anda melalui Tetingkap Sembang asalkan anda telah memasang GitHub Copilot.
 
-dengan mencetuskan melalui prompt, contohnya "#get-faq":
+Anda boleh mencetuskannya melalui prompt, contohnya "#get-faq":
 
 ![Visual Studio run prompt](../../../../translated_images/ms/vscode-run.16cbab9436499f32.webp)
 
-dan sama seperti apabila anda menjalankannya melalui pelayar web, ia mempersembahkan dengan cara yang sama seperti ini:
+dan sama seperti apabila anda menjalankannya melalui pelayar web, ia memaparkan cara yang sama seperti berikut:
 
 ![UI Visual Studio Code](../../../../translated_images/ms/vscode-ui.f2771dcfce25ca0f.webp)
 
 ## Tugasan
 
-Cipta permainan gunting batu kertas. Ia harus terdiri daripada yang berikut:
+Cipta permainan batu gunting kertas. Ia sepatutnya mengandungi yang berikut:
 
 UI:
 
-- senarai juntai dengan pilihan
+- senarai turun dengan pilihan
 - butang untuk menghantar pilihan
-- label yang menunjukkan siapa pilih apa dan siapa menang
+- label yang menunjukkan siapa memilih apa dan siapa yang menang
 
 Server:
 
-- harus ada alat gunting batu kertas yang mengambil "choice" sebagai input. Ia juga harus merender pilihan komputer dan menentukan pemenang
+- harus mempunyai alat batu gunting kertas yang mengambil "choice" sebagai input. Ia juga harus merender pilihan komputer dan menentukan pemenang
 
 ## Penyelesaian
 
@@ -309,16 +309,16 @@ Server:
 
 ## Rumusan
 
-Kita telah belajar tentang paradigma baru ini iaitu Aplikasi MCP. Ia adalah paradigma baru yang membolehkan Server MCP mempunyai pendapat tentang bukan sahaja data tetapi juga bagaimana data ini harus dipersembahkan.
+Kita telah belajar tentang paradigma baru ini Aplikasi MCP. Ia paradigma baru yang membolehkan Server MCP mempunyai pendapat bukan sahaja tentang data tetapi juga bagaimana data ini harus dipersembahkan.
 
-Selain itu, kita belajar bahawa Aplikasi MCP ini dihoskan dalam IFrame dan untuk berkomunikasi dengan Server MCP, mereka perlu menghantar mesej ke aplikasi web induk. Terdapat beberapa perpustakaan untuk JavaScript biasa dan React dan lebih banyak lagi yang memudahkan komunikasi ini.
+Selain itu, kita belajar bahawa Aplikasi MCP ini dihoskan dalam IFrame dan untuk berkomunikasi dengan Server MCP mereka perlu menghantar mesej ke aplikasi web induk. Terdapat beberapa perpustakaan untuk JavaScript biasa dan React dan lain-lain yang menjadikan komunikasi ini lebih mudah.
 
-## Pengajaran Penting
+## Perkara Penting
 
-Berikut apa yang anda pelajari:
+Berikut adalah apa yang anda telah pelajari:
 
 - Aplikasi MCP adalah standard baru yang berguna apabila anda mahu menghantar kedua-dua data dan ciri UI.
-- Jenis aplikasi ini dijalankan dalam IFrame atas sebab keselamatan.
+- Jenis aplikasi ini berjalan dalam IFrame untuk sebab keselamatan.
 
 ## Apa Seterusnya
 
@@ -328,5 +328,5 @@ Berikut apa yang anda pelajari:
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk ketepatan, sila maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya hendaklah dianggap sebagai sumber rujukan yang sahih. Untuk maklumat penting, terjemahan profesional oleh manusia adalah disyorkan. Kami tidak bertanggungjawab terhadap sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk ketepatan, sila maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber rasmi. Untuk maklumat penting, terjemahan profesional oleh manusia adalah disyorkan. Kami tidak bertanggungjawab terhadap sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

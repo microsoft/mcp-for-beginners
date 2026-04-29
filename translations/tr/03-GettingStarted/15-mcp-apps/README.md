@@ -1,10 +1,10 @@
 # MCP Uygulamaları
 
-MCP Uygulamaları, MCP'de yeni bir paradigma. Fikir, sadece bir araç çağrısından veri ile yanıt vermek değil, aynı zamanda bu bilgiyle nasıl etkileşim kurulması gerektiği bilgisini sağlamaktır. Bu, araç sonuçlarının artık UI (kullanıcı arayüzü) bilgisi içerebileceği anlamına gelir. Peki neden bunu isteriz? Bugün nasıl yaptığını düşün. Muhtemelen bir MCP Sunucusunun sonuçlarını önüne bir tür frontend koyarak tüketiyorsun, bu yazman ve bakımını yapman gereken bir kod olur. Bazen bu istediğin şeydir, ancak bazen tüm veriden kullanıcı arayüzüne kadar her şeyi içeren, kendi kendine yeten küçük bir bilgi parçasını getirmen harika olurdu.
+MCP Uygulamaları, MCP'de yeni bir paradigmadır. Fikir, sadece bir araç çağrısından veriyle yanıt vermek değil, aynı zamanda bu bilginin nasıl etkileşime girileceğine dair bilgi sağlamaktır. Bu, araç sonuçlarının artık UI bilgisi içerebileceği anlamına gelir. Peki neden bunu isteriz? Bugün işlerinizi nasıl yaptığınıza bir bakalım. Muhtemelen bir MCP Sunucusunun sonuçlarını tüketmek için önünde bir tür ön yüz kodu yazıyorsunuz ve bunu sürdürmeniz gerekiyor. Bazen istediğiniz budur, ancak bazen veri ve kullanıcı arayüzünü tamamen kapsayan kendine yeten bir bilgi parçasını getirmeniz harika olurdu.
 
 ## Genel Bakış
 
-Bu ders, MCP Uygulamaları hakkında pratik rehberlik sağlar, nasıl başlanacağı ve mevcut Web Uygulamalarına nasıl entegre edileceği anlatılır. MCP Uygulamaları, MCP Standardına çok yeni eklenmiş bir özelliktir.
+Bu ders, MCP Uygulamaları hakkında pratik rehberlik sağlar, nasıl başlayacağınızı ve mevcut Web Uygulamalarınıza nasıl entegre edeceğinizi açıklar. MCP Uygulamaları, MCP Standardına çok yeni eklenen bir özelliktir.
 
 ## Öğrenme Hedefleri
 
@@ -12,13 +12,13 @@ Bu dersin sonunda şunları yapabileceksiniz:
 
 - MCP Uygulamalarının ne olduğunu açıklamak.
 - MCP Uygulamalarının ne zaman kullanılacağını.
-- Kendi MCP Uygulamalarınızı oluşturmak ve entegre etmek.
+- Kendi MCP Uygulamalarınızı oluşturup entegre etmeyi.
 
 ## MCP Uygulamaları - nasıl çalışır
 
-MCP Uygulamaları fikri, temelde render edilecek bir bileşen olarak bir yanıt sağlamaktır. Böyle bir bileşenin hem görsel hem de etkileşimli özellikleri olabilir, örneğin buton tıklamaları, kullanıcı girdisi ve daha fazlası. Sunucu tarafı ve MCP Sunucumuzla başlayalım. Bir MCP Uygulama bileşeni yaratmak için hem bir araç hem de uygulama kaynağı oluşturman gerekir. Bu iki parça bir resourceUri ile bağlıdır.
+MCP Uygulamaları ile amaç, temelde render edilmek üzere bir bileşen sağlayan bir yanıt vermektir. Böyle bir bileşen hem görsel hem de etkileşimli olabilir; örneğin düğme tıklamaları, kullanıcı girişi ve daha fazlası. Sunucu tarafı ve MCP Sunucumuzla başlayalım. Bir MCP Uygulaması bileşeni oluşturmak için hem bir araç hem de uygulama kaynağı oluşturmanız gerekir. Bu iki parça, bir resourceUri ile bağlanır.
 
-İşte bir örnek. Neler olduğunu ve hangi parçanın ne yaptığını görselleştirelim:
+İşte bir örnek. İlgili parçaları ve işlevlerini görselleştirelim:
 
 ```text
 server.ts -- responsible for registering tools and the component as a UI component
@@ -27,11 +27,11 @@ src/
 mcp-app.html -- the user interface
 ```
 
-Bu görsel, bir bileşen oluşturmanın mimarisini ve mantığını tanımlar.
+Bu görsel, bir bileşen ve mantığını oluşturmanın mimarisini anlatıyor.
 
 ```mermaid
 flowchart LR
-  subgraph Backend[Arka Uç: MCP Sunucusu]
+  subgraph Backend[Backend: MCP Sunucusu]
     T["Araçları kaydet: registerAppTool()"]
     C["Bileşen kaynağını kaydet: registerAppResource()"]
     U[kaynakUri]
@@ -40,29 +40,29 @@ flowchart LR
   end
 
   subgraph Parent[Üst Web Sayfası]
-    H[Sunucu uygulama]
-    IFRAME[IFrame kapsayıcı]
-    H -->|MCP Uygulama UI'sı Enjekte Et| IFRAME
+    H[Ev sahibi uygulama]
+    IFRAME[IFrame konteyneri]
+    H -->|MCP Uygulama UI'sını enjekte et| IFRAME
   end
 
-  subgraph Frontend[Ön Uç: IFrame içindeki MCP Uygulaması]
+  subgraph Frontend[Ön Yüz: IFrame içindeki MCP Uygulaması]
     UI["Kullanıcı arayüzü: mcp-app.html"]
-    EH["Olay işleyicileri: src/mcp-app.ts"]
+    EH["Olay yöneticileri: src/mcp-app.ts"]
     UI --> EH
   end
 
   IFRAME --> UI
   EH -->|Tıklama sunucu araç çağrısını tetikler| T
-  T -->|Araç sonuç verisi| EH
+  T -->|Araç sonucu verisi| EH
   EH -->|Üst sayfaya mesaj gönder| H
 ```
-Ardından sırayla backend ve frontend sorumluluklarını tanımlamaya çalışalım.
+Sırasıyla backend ve frontend sorumluluklarını tanımlamaya çalışalım.
 
 ### Backend
 
-Burada başarmamız gereken iki şey var:
+Burada iki şeyi başarmamız gerekiyor:
 
-- Etkileşimde bulunmak istediğimiz araçları kaydetmek.
+- Etkileşim kurmak istediğimiz araçları kaydetmek.
 - Bileşeni tanımlamak.
 
 **Aracı kaydetmek**
@@ -85,16 +85,16 @@ registerAppTool(
 
 ```
 
-Yukarıdaki kod, `get-time` adında bir araç sunduğu davranışı tanımlar. Girdi almaz ama güncel zamanı üretir. Kullanıcı girdisi alabilmek için araçlar için bir `inputSchema` tanımlama yeteneğimiz var.
+Yukarıdaki kod, `get-time` adında bir araç açığa çıkaran davranışı tanımlıyor. Girdi almıyor ama nihayetinde geçerli zamanı üretiyor. Kullanıcı girdisini kabul etmemiz gereken araçlar için `inputSchema` tanımlama imkanımız var.
 
 **Bileşeni kaydetmek**
 
-Aynı dosyada, bileşeni de kaydetmemiz gerekir:
+Aynı dosyada bileşeni de kaydetmemiz gerekiyor:
 
 ```typescript
 const resourceUri = "ui://get-time/mcp-app.html";
 
-// UI için paketlenmiş HTML/JavaScript'i döndüren kaynağı kaydedin.
+// UI için bir araya getirilmiş HTML/JavaScript'i döndüren kaynağı kaydedin.
 registerAppResource(
   server,
   resourceUri,
@@ -112,18 +112,18 @@ registerAppResource(
 );
 ```
 
-Bileşeni araçlara bağlamak için nasıl `resourceUri` belirttiğimize dikkat edin. İlgi çekici bir diğer nokta da UI dosyasını yükleyip bileşeni döndüren callback'dir.
+Bileşeni araçlarıyla bağlamak için `resourceUri` kısmına dikkat edin. İlgi çekici olan bir diğer nokta da UI dosyasını yükleyip bileşeni döndüren geri çağrıdır.
 
-### Bileşen frontend
+### Bileşen ön yüzü
 
-Backend gibi, burada da iki parça var:
+Backend gibi burada da iki parça vardır:
 
-- Saf HTML ile yazılmış bir frontend.
-- Olayları ve yapılacakları yöneten kod, örneğin araç çağırma veya ebeveyn pencereye mesaj gönderme.
+- Saf HTML ile yazılmış bir ön yüz.
+- Olayları işleyen ve ne yapılacağını (örneğin, araç çağırma veya üst pencereye mesaj gönderme) kontrol eden kod.
 
 **Kullanıcı arayüzü**
 
-Kullanıcı arayüzüne bir bakalım.
+Kullanıcı arayüzüne bakalım.
 
 ```html
 <!-- mcp-app.html -->
@@ -145,49 +145,49 @@ Kullanıcı arayüzüne bir bakalım.
 
 **Olay bağlama**
 
-Son parça olay bağlama. Bu, UI'daki hangi bölümün olay işleyicilere ihtiyaç duyduğunu belirlemek ve olaylar tetiklenirse ne yapılacağını tanımlamak demektir:
+Son parça olayların bağlanmasıdır. Yani UI'da hangi kısımların olay işleyicilere ihtiyacı olduğunu belirleriz ve olaylar tetiklendiğinde ne yapılacağını tanımlarız:
 
 ```typescript
 // mcp-app.ts
 
 import { App } from "@modelcontextprotocol/ext-apps";
 
-// Eleman referanslarını al
+// Eleman referanslarını alın
 const serverTimeEl = document.getElementById("server-time")!;
 const getTimeBtn = document.getElementById("get-time-btn")!;
 
-// Uygulama örneği oluştur
+// Uygulama örneğini oluşturun
 const app = new App({ name: "Get Time App", version: "1.0.0" });
 
-// Sunucudan araç sonuçlarını işle. İlk araç sonucunu kaçırmamak için `app.connect()` öncesinde ayarla
-// ilk araç sonucunun kaçırılmaması.
+// Sunucudan gelen araç sonuçlarını işleyin. Başlangıç `app.connect()` öncesinde ayarlanmalı ki
+// ilk araç sonucu kaçırılmasın.
 app.ontoolresult = (result) => {
   const time = result.content?.find((c) => c.type === "text")?.text;
   serverTimeEl.textContent = time ?? "[ERROR]";
 };
 
-// Buton tıklamasını bağla
+// Buton tıklamasını bağlayın
 getTimeBtn.addEventListener("click", async () => {
-  // `app.callServerTool()` UI'ın sunucudan güncel veri talep etmesini sağlar
+  // `app.callServerTool()` arayüzün sunucudan yeni veri talep etmesini sağlar
   const result = await app.callServerTool({ name: "get-time", arguments: {} });
   const time = result.content?.find((c) => c.type === "text")?.text;
   serverTimeEl.textContent = time ?? "[ERROR]";
 });
 
-// Host'a bağlan
+// Ana bilgisayara bağlanın
 app.connect();
 ```
 
-Yukarıdan gördüğünüz gibi, bu DOM elemanlarına olay bağlamak için normal koddur. Dikkat çekmeye değer olan kısım, backend tarafında bir aracı çağıran `callServerTool` çağrısıdır.
+Yukarıdan görebileceğiniz gibi, bu DOM öğelerini olaylara bağlamak için normal koddur. Bahsetmeye değer nokta, arka uçta bir aracı çağıran `callServerTool` çağrısıdır.
 
-## Kullanıcı girdisi ile çalışma
+## Kullanıcı girdisi ile başa çıkma
 
-Şimdiye kadar, tıklandığında bir aracı çağıran bir buton içeren bir bileşen gördük. Şimdi bir giriş alanı gibi daha fazla UI öğesi ekleyip argümanları araca gönderebilir miyiz bakalım. Bir SSS işlevselliği (Sıkça Sorulan Sorular) uygulayalım. İşleyiş şöyle olmalı:
+Şimdiye kadar, tıklandığında bir aracı çağıran bir düğmesi olan bir bileşen gördük. Daha fazla UI öğesi, mesela bir giriş alanı ekleyip araca argüman göndermeyi deneyelim. Bir FAQ (Sıkça Sorulan Sorular) işlevselliği gerçekleştirelim. Nasıl çalışmalı:
 
-- Bir buton ve kullanıcı aramak için "Shipping" gibi bir anahtar kelime yazdığı bir giriş elemanı olmalı. Bu, backend'de SSS verisinde arama yapan bir aracı çağırmalı.
-- Bahsedilen SSS aramasını destekleyen bir araç.
+- Bir düğme ve kullanıcı örneğin "Shipping" anahtar kelimesini aramak için yazdığı bir giriş öğesi olmalı. Bu, FAQ verilerinde arama yapan bir aracı arka uçta çağırmalı.
+- Belirtilen FAQ aramasını destekleyen bir araç.
 
-İlk olarak backend'e gerekli desteği ekleyelim:
+Öncelikle arka uca gerekli desteği ekleyelim:
 
 ```typescript
 const faq: { [key: string]: string } = {
@@ -214,7 +214,7 @@ registerAppTool(
   );
 ```
 
-Burada gördüğümüz, `inputSchema` nasıl dolduruyoruz ve `zod` şeması veriyoruz:
+Burada `inputSchema`'yı nasıl doldurduğumuzu ve `zod` şematını şöyle verdiğimizi görüyoruz:
 
 ```typescript
 inputSchema: zod.object({
@@ -222,7 +222,7 @@ inputSchema: zod.object({
 })
 ```
 
-Yukarıdaki şemada, `query` adlı bir giriş parametresi olduğumuzu ve bunun "shipping" varsayılan değerli isteğe bağlı olduğunu beyan ediyoruz.
+Yukarıdaki şemada, `query` adlı bir giriş parametresine sahip olduğumuzu ve bunun isteğe bağlı olduğunu "shipping" varsayılan değeriyle bildiriyoruz.
 
 Tamam, şimdi *mcp-app.html* dosyasına geçelim ve oluşturacağımız UI'ye bakalım:
 
@@ -235,7 +235,7 @@ Tamam, şimdi *mcp-app.html* dosyasına geçelim ve oluşturacağımız UI'ye ba
   </div>
 ```
 
-Harika, şimdi bir giriş elemanı ve buton var. Sonra bu olayları bağlamak için *mcp-app.ts* dosyasına geçelim:
+Harika, artık bir giriş alanımız ve bir düğmemiz var. Şimdi *mcp-app.ts* dosyasına geçip bu olayları bağlayalım:
 
 ```typescript
 const getFaqBtn = document.getElementById("get-faq-btn")!;
@@ -251,26 +251,26 @@ getFaqBtn.addEventListener("click", async () => {
 
 Yukarıdaki kodda:
 
-- İlginç UI elemanları için referanslar yaratıyoruz.
-- Bir buton tıklamasını ele alıyor, giriş elemanı değerini ayrıştırıyoruz ve ayrıca `app.callServerTool()` u `name` ve `arguments` ile çağırıyoruz. Burada `arguments` içinde `query` değeri gönderiliyor.
+- Etkileşimli UI öğelerine referanslar oluşturduk.
+- Giriş alanı değerini ayrıştırmak ve `app.callServerTool()`'u `name` ve `arguments` ile çağırmak için düğme tıklamasını işledik; burada argüman olarak `query` değeri gönderiliyor.
 
-Aslında `callServerTool` çağrıldığında, parent pencereye mesaj gönderiyor ve o pencere MCP Sunucusunu çağırıyor.
+Aslında `callServerTool` çağrıldığında, üst pencereye mesaj gönderiyor ve o pencere sonunda MCP Sunucusunu çağırıyor.
 
 ### Deneyin
 
-Bunu denediğimizde şu sonucu görmeliyiz:
+Bunu denediğinizde şunu görmelisiniz:
 
 ![](../../../../translated_images/tr/faq.f78abe6b2cc68c83.webp)
 
-ve işte "warranty" gibi bir girişle denediğimizde:
+ve şöyle bir girdi örneği ile "warranty" denemesi yapıyoruz
 
 ![](../../../../translated_images/tr/faq-input.3e276f1c3d7e061e.webp)
 
-Bu kodu çalıştırmak için, [Kod bölümü](./code/README.md) sayfasına gidin.
+Bu kodu çalıştırmak için [Kod bölümü](./code/README.md) sayfasına gidin.
 
 ## Visual Studio Code'da Test Etme
 
-Visual Studio Code, MVP Uygulamaları için harika destek sağlar ve MCP Uygulamalarınızı test etmenin muhtemelen en kolay yollarından biridir. Visual Studio Code’u kullanmak için, *mcp.json* dosyasına şu şekilde bir sunucu girişi ekleyin:
+Visual Studio Code, MCP Uygulamaları için harika destek sunar ve MCP Uygulamalarınızı test etmenin en kolay yollarından biridir. Visual Studio Code'u kullanmak için *mcp.json* dosyasına şu şekilde bir sunucu girişi ekleyin:
 
 ```json
 "my-mcp-server-7178eca7": {
@@ -279,29 +279,29 @@ Visual Studio Code, MVP Uygulamaları için harika destek sağlar ve MCP Uygulam
   }
 ```
 
-Sonra sunucuyu başlatın, GitHub Copilot yüklü olduğu sürece Chat Penceresi üzerinden MVP Uygulamanızla iletişim kurabilmelisiniz.
+Sonra sunucuyu başlatın, MCP Uygulamanızla sohbet penceresi aracılığıyla iletişim kurabilmelisiniz, tabii GitHub Copilot yüklüyse.
 
-örneğin "#get-faq" gibi bir prompt ile tetikleyerek:
+Örneğin "#get-faq" komutuyla tetikleyebilirsiniz:
 
 ![Visual Studio run prompt](../../../../translated_images/tr/vscode-run.16cbab9436499f32.webp)
 
-ve web tarayıcısından çalıştırdığınızda olduğu gibi, aynı şekilde render edilir:
+Web tarayıcısı üzerinden çalıştırdığınızda olduğu gibi aynı şekilde render eder:
 
 ![UI Visual Studio Code](../../../../translated_images/tr/vscode-ui.f2771dcfce25ca0f.webp)
 
 ## Ödev
 
-Bir taş-kağıt-makas oyunu oluşturun. Şu parçalardan oluşmalı:
+Taş-kağıt-makas oyunu oluşturun. Şu bileşenleri içermelidir:
 
 UI:
 
-- seçeneklerin olduğu bir açılır liste
-- seçim yapmak için buton
-- kim ne seçti ve kimin kazandığını gösteren bir etiket
+- seçenekler içeren açılır liste
+- bir seçim yapmak için düğme
+- kimin ne seçtiğini ve kimin kazandığını gösteren bir etiket
 
 Sunucu:
 
-- "choice" (seçim) giriş parametresi alan bir taş-kağıt-makas aracı olmalı. Ayrıca bilgisayarın seçimini render etmeli ve kazananı belirlemeli.
+- "choice" girdisini alan bir taş-kağıt-makas aracı olmalı. Bilgisayar seçimi render edilmeli ve kazanan belirlenmeli
 
 ## Çözüm
 
@@ -309,18 +309,18 @@ Sunucu:
 
 ## Özet
 
-Bu yeni paradigma MCP Uygulamaları hakkında bilgi edindik. MCP Sunucularının sadece veriye değil, bu verinin nasıl sunulacağına da dair görüş sahibi olmasına imkan veren yeni bir paradigmadır.
+Bu yeni paradigma MCP Uygulamaları hakkında bilgi edindik. MCP Sunucularının sadece veri değil, aynı zamanda bu verinin nasıl sunulacağı konusunda da görüş belirtebileceği yeni bir paradigma.
 
-Ayrıca, bu MCP Uygulamaların bir IFrame içinde barındırıldığını ve MCP Sunucularıyla iletişim kurmak için parent web uygulamaya mesaj göndermeleri gerektiğini öğrendik. Bu iletişimi kolaylaştıran hem saf JavaScript hem de React ve daha fazlası için pek çok kütüphane bulunmaktadır.
+Ayrıca, bu MCP Uygulamalarının bir IFrame içinde barındırıldığını ve MCP Sunucularıyla iletişim kurmak için üst web uygulamasına mesaj göndermeleri gerektiğini öğrendik. Düz JavaScript, React ve daha fazlası için bu iletişimi kolaylaştıran çeşitli kütüphaneler bulunmaktadır.
 
-## Temel Çıkarımlar
+## Önemli Noktalar
 
-Şunları öğrendiniz:
+Öğrendikleriniz şunlardır:
 
-- MCP Uygulamaları, hem veri hem de UI özelliklerini göndermek istediğinizde faydalı olabilecek yeni bir standarttır.
-- Bu tür uygulamalar güvenlik için bir IFrame içinde çalıştırılır.
+- MCP Uygulamaları, hem veri hem de UI özelliklerini göndermek istediğinizde işe yarayan yeni bir standarttır.
+- Bu tür uygulamalar güvenlik için bir IFrame içinde çalışır.
 
-## Sonraki Adım
+## Sonraki Adımlar
 
 - [Bölüm 4](../../04-PracticalImplementation/README.md)
 
@@ -328,5 +328,5 @@ Ayrıca, bu MCP Uygulamaların bir IFrame içinde barındırıldığını ve MCP
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Feragatname**:  
-Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hatalar veya yanlışlıklar içerebileceğini lütfen unutmayın. Orijinal belge, bulunduğu dildeki haliyle yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucu ortaya çıkabilecek yanlış anlamalar veya yorumlar nedeniyle sorumluluk kabul edilmemektedir.
+Bu belge, [Co-op Translator](https://github.com/Azure/co-op-translator) adlı yapay zeka çeviri hizmeti kullanılarak çevrilmiştir. Doğruluk için çaba sarf etsek de, otomatik çevirilerin hata veya yanlışlık içerebileceğini lütfen unutmayın. Orijinal belge, kendi ana dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucunda meydana gelebilecek yanlış anlamalar veya hatalı yorumlamalardan sorumlu değiliz.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -12,6 +12,7 @@
 
 import express from "express";
 import cors from "cors";
+import rateLimit from "express-rate-limit";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import type { AddressInfo } from "net";
@@ -178,6 +179,15 @@ function buildCspHeader(csp?: McpUiResourceCsp): string {
 
   return directives.join("; ");
 }
+
+const sandboxRateLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+sandboxApp.use(sandboxRateLimiter);
 
 // Serve sandbox.html with CSP from query params
 sandboxApp.get(["/", "/sandbox.html"], (req, res) => {

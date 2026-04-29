@@ -1,14 +1,14 @@
 # MCP Programėlės
 
-MCP Programėlės yra naujas MCP paradigma. Idėja ta, kad ne tik jūs atsakote su duomenimis iš įrankio kvietimo, bet ir pateikiate informaciją, kaip su šia informacija turėtų būti sąveikaujama. Tai reiškia, kad įrankių rezultatai dabar gali turėti Vartotojo Sąsajos (UI) informaciją. Kodėl to norėtume? Na, pagalvokite, kaip jūs šiandien tai darote. Tikėtina, kad jūs naudojate MCP serverio rezultatus, padėdami prieš jį kažkokį tipo frontend’ą, tai kodas, kurį reikia rašyti ir prižiūrėti. Kartais tai būtent tai, ko norite, bet kartais būtų puiku, jei galėtumėte tiesiog įtraukti savarankišką informacijos skiltį, kuri turi viską — nuo duomenų iki vartotojo sąsajos.
+MCP Programėlės yra naujas MCP požiūris. Idėja ta, kad ne tik grąžini duomenis iš įrankio kvietimo, bet ir pateiki informaciją, kaip su šia informacija turėtų būti sąveikaujama. Tai reiškia, kad įrankių rezultatai dabar gali turėti naudotojo sąsajos informaciją. Kodėl to norėtume? Na, pažiūrėkime, kaip tu tai darai šiandien. Tikriausiai naudoji kažkokį priekį, kad vartotum MCP Serverio rezultatus – tai kodas, kurį turi rašyti ir prižiūrėti. Kartais tai yra norima, bet kartais būtų puiku tik atsivežti savarankišką informacijos fragmentą, kuriame būtų viskas nuo duomenų iki naudotojo sąsajos.
 
 ## Apžvalga
 
-Ši pamoka suteikia praktines gaires apie MCP Programėles, kaip pradėti su jomis dirbti ir kaip jas integruoti į jau turimas internetines programas (Web Apps). MCP Programėlės yra labai naujas MCP Standarto papildymas.
+Ši pamoka suteikia praktinių nurodymų apie MCP Programėles, kaip pradėti su jomis dirbti ir kaip integruoti jas į esamas internetines programas. MCP Programėlės yra labai naujas MCP Standarto papildymas.
 
 ## Mokymosi tikslai
 
-Pamokos pabaigoje jūs gebėsite:
+Pamokos pabaigoje tu galėsi:
 
 - Paaiškinti, kas yra MCP Programėlės.
 - Kada naudoti MCP Programėles.
@@ -16,9 +16,9 @@ Pamokos pabaigoje jūs gebėsite:
 
 ## MCP Programėlės – kaip tai veikia
 
-Idėja su MCP Programėlėmis yra pateikti atsakymą, kuris iš esmės yra komponentas, skirtas atvaizduoti. Toks komponentas gali turėti tiek vizualinius elementus, tiek interaktyvumą, pvz., mygtukų paspaudimus, vartotojo įvestį ir dar daugiau. Pradėkime nuo serverio pusės ir mūsų MCP Serverio. Norint sukurti MCP Programėlės komponentą, reikia sukurti įrankį, bet taip pat ir programėlės resursą. Šios dvi dalys yra susietos per resourceUri.
+Idėja su MCP Programėlėmis yra pateikti atsakymą, kuris iš esmės yra komponentas, skirtas renderinti. Toks komponentas gali turėti tiek vizualizacijas, tiek interaktyvumą, pavyzdžiui, mygtukų paspaudimus, vartotojo įvestį ir daugiau. Pradėkime nuo serverio pusės ir mūsų MCP Serverio. Norėdamas sukurti MCP Programėlės komponentą, turi sukurti įrankį, bet ir programėlės resursą. Šios dvi dalys sujungiamos per resourceUri.
 
-Štai pavyzdys. Pabandykime vizualizuoti, kas įtraukiama ir kas ką atlieka:
+Štai pavyzdys. Pabandykime vizualizuoti, kas įeina ir ką atlieka kurios dalys:
 
 ```text
 server.ts -- responsible for registering tools and the component as a UI component
@@ -26,41 +26,41 @@ src/
   mcp-app.ts -- wiring up event handlers
 mcp-app.html -- the user interface
 ```
-  
-Šis vizualas aprašo architektūrą komponentei kurti ir jos logiką.
+
+Šis vaizdas aprašo komponento kūrimo architektūrą ir jo logiką.
 
 ```mermaid
 flowchart LR
   subgraph Backend[Backend: MCP Serveris]
-    T["Registruoti įrankius: registerAppTool()"]
-    C["Registruoti komponento resursą: registerAppResource()"]
+    T["Įrašyti įrankius: registerAppTool()"]
+    C["Įrašyti komponento išteklių: registerAppResource()"]
     U[resourceUri]
     T --- U
     C --- U
   end
 
-  subgraph Parent[Tėvinė interneto svetainė]
-    H[Šalinti programą]
+  subgraph Parent[Tėvinis tinklalapis]
+    H[Įrankių programa]
     IFRAME[IFrame konteineris]
-    H -->|Įinject MCP programos sąsaja| IFRAME
+    H -->|Įterpti MCP programos vartotojo sąsają| IFRAME
   end
 
-  subgraph Frontend[Frontend: MCP programa IFrame viduje]
+  subgraph Frontend[Frontendas: MCP programa IFrame viduje]
     UI["Vartotojo sąsaja: mcp-app.html"]
     EH["Įvykių tvarkyklės: src/mcp-app.ts"]
     UI --> EH
   end
 
   IFRAME --> UI
-  EH -->|Paspaudimas iškviečia serverio įrankio kvietimą| T
+  EH -->|Spustelėjimas sukelia serverio įrankio kvietimą| T
   T -->|Įrankio rezultatų duomenys| EH
-  EH -->|Siųsti žinutę tėvinės svetainės puslapiui| H
-```  
-Pabandykime aprašyti atsakomybes backend ir frontend pusėse atitinkamai.
+  EH -->|Siųsti žinutę tėviniam puslapiui| H
+```
+Pabandykime aprašyti atsakomybes atitinkamai backend ir frontend pusėse.
 
-### Backend
+### Backend'as
 
-Čia reikia įvykdyti du dalykus:
+Čia turime įvykdyti dvi užduotis:
 
 - Užregistruoti įrankius, su kuriais norime sąveikauti.
 - Apibrėžti komponentą.
@@ -75,7 +75,7 @@ registerAppTool(
       title: "Get Time",
       description: "Returns the current server time.",
       inputSchema: {},
-      _meta: { ui: { resourceUri } }, // Susieja šį įrankį su jo vartotojo sąsajos ištekliais
+      _meta: { ui: { resourceUri } }, // Susieja šį įrankį su jo UI resursu
     },
     async () => {
       const time = new Date().toISOString();
@@ -84,17 +84,17 @@ registerAppTool(
   );
 
 ```
-  
-Aukščiau pateiktas kodas aprašo elgseną, kai jis atskleidžia įrankį pavadinimu `get-time`. Įrankis nepriima jokių įėjimų, bet sukuria dabartinį laiką. Mes galime apibrėžti `inputSchema` įrankiams, kuriems reikia priimti vartotojo įvestį.
+
+Aukščiau pateiktas kodas aprašo elgesį, kai atskleidžiamas įrankis pavadinimu `get-time`. Jis neturi įvesties, bet grąžina esamą laiką. Turime galimybę apibrėžti `inputSchema` įrankiams, kur reikia priimti vartotojo įvestį.
 
 **Komponento registravimas**
 
-Tame pačiame faile taip pat reikia užregistruoti komponentą:
+Ta pati faile, taip pat turime užregistruoti komponentą:
 
 ```typescript
 const resourceUri = "ui://get-time/mcp-app.html";
 
-// Užregistruokite išteklių, kuris grąžina sujungtą HTML/JavaScript vartotojo sąsajai.
+// Užregistruokite resursą, kuris grąžina sujungtą HTML/JavaScript vartotojo sąsajai.
 registerAppResource(
   server,
   resourceUri,
@@ -111,19 +111,19 @@ registerAppResource(
   },
 );
 ```
-  
-Atkreipkite dėmesį, kaip minimas `resourceUri` sieja komponentą su jo įrankiais. Įdomus ir callback’as, kuriame užkraunamas UI failas ir komponentas grąžinamas.
+
+Atkreipk dėmesį į `resourceUri`, kuri sujungia komponentą su jo įrankiais. Įdomu yra ir callback funkcija, kur įkeliame UI failą ir grąžiname komponentą.
 
 ### Komponento frontend'as
 
-Kaip ir backend’e, čia yra du komponentai:
+Kaip ir backend'e, yra dvi dalys:
 
-- Frontend’as, parašytas grynais HTML.
-- Kodas, kuris valdo įvykius ir veiksmus, pvz., įrankių kvietimą ar žinučių siuntimą tėvinio langui.
+- Frontend'as parašytas grynai HTML kalba.
+- Kodas, kuris apdoroja įvykius ir sprendžia, ką daryti - pavyzdžiui, kviesti įrankius ar siųsti žinutes tėvinio lango atžvilgiu.
 
-**Vartotojo sąsaja**
+**Naudotojo sąsaja**
 
-Pažiūrėkime į vartotojo sąsają.
+Pažiūrėkime į naudotojo sąsają.
 
 ```html
 <!-- mcp-app.html -->
@@ -142,25 +142,25 @@ Pažiūrėkime į vartotojo sąsają.
   </body>
 </html>
 ```
-  
-**Įvykių susiejimas**
 
-Paskutinis elementas yra įvykių susiejimas. Tai reiškia, kad identifikuojame, kuri vieta mūsų UI reikia įvykių tvarkyklių ir ką daryti, jei įvykiai suveikia:
+**Įvykių prijungimas**
+
+Paskutinė dalis yra įvykių prijungimas. Tai reiškia, kad identifikuojame, kuri naudotojo sąsajos dalis privalo turėti įvykių apdorojimą ir ką daryti, kai įvykiai kyla:
 
 ```typescript
 // mcp-app.ts
 
 import { App } from "@modelcontextprotocol/ext-apps";
 
-// Gauti elementų nuorodas
+// Gauti elemento nuorodas
 const serverTimeEl = document.getElementById("server-time")!;
 const getTimeBtn = document.getElementById("get-time-btn")!;
 
 // Sukurti programos egzempliorių
 const app = new App({ name: "Get Time App", version: "1.0.0" });
 
-// Apdoroti įrankio rezultatus iš serverio. Nustatyti prieš `app.connect()`, kad būtų išvengta
-// praleisto pradinio įrankio rezultato.
+// Apdoroti įrankio rezultatus iš serverio. Nustatykite prieš `app.connect()`, kad būtų išvengta
+// pradinio įrankio rezultato praleidimo.
 app.ontoolresult = (result) => {
   const time = result.content?.find((c) => c.type === "text")?.text;
   serverTimeEl.textContent = time ?? "[ERROR]";
@@ -168,26 +168,26 @@ app.ontoolresult = (result) => {
 
 // Prijungti mygtuko paspaudimą
 getTimeBtn.addEventListener("click", async () => {
-  // `app.callServerTool()` leidžia vartotojo sąsajai užklausti naujų duomenų iš serverio
+  // `app.callServerTool()` leidžia vartotojo sąsajai prašyti naujų duomenų iš serverio
   const result = await app.callServerTool({ name: "get-time", arguments: {} });
   const time = result.content?.find((c) => c.type === "text")?.text;
   serverTimeEl.textContent = time ?? "[ERROR]";
 });
 
-// Prisijungti prie serverio
+// Prisijungti prie šeimininko
 app.connect();
 ```
-  
-Kaip matote viršuje, tai įprastas kodas, jungiantis DOM elementus su įvykiais. Vertėtų paminėti iškvietimą `callServerTool`, kuris iškviečia įrankį backend’e.
+
+Kaip matyti iš aukščiau pateikto kodo, tai yra įprasta DOM elementų prijungimo prie įvykių tvarka. Verta paminėti kvietimą `callServerTool`, kuris galiausiai kviečia įrankį backend'e.
 
 ## Darbas su vartotojo įvestimi
 
-Iki šiol matėme komponentą, kuris turi mygtuką, kuris paspaudus iškviečia įrankį. Pažiūrėkime, ar galime pridėti daugiau UI elementų, tokių kaip įvesties laukas, ir ar galime į rankas perduoti argumentus įrankiui. Įgyvendinkime DUK (FAQ) funkcionalumą. Štai kaip tai turėtų veikti:
+Iki šiol matėme komponentą, kuriame mygtuko paspaudimas kviečia įrankį. Pažiūrėkime, ar galime pridėti daugiau naudotojo sąsajos elementų, pavyzdžiui, įvesties lauką, ir ar galime perduoti argumentus įrankiui. Įgyvendinkime DUK funkcionalumą. Štai kaip tai turėtų veikti:
 
-- Turėtų būti mygtukas ir įvesties elementas, kuriame vartotojas įrašo raktinį žodį paieškai, pvz., „Shipping“ (Siuntimas). Tai turėtų iškviesti įrankį backend’e, kuris atlieka paiešką DUK duomenyse.
+- Turėtų būti mygtukas ir įvesties elementas, į kurį vartotojas įrašo raktažodį paieškai, pavyzdžiui, "Shipping". Tai turėtų kviesti įrankį backend'e, kuris atliktų paiešką DUK duomenyse.
 - Įrankis, palaikantis minėtą DUK paiešką.
 
-Pirmiausia pridėkime būtinas palaikymo funkcijas backend’e:
+Pirmiausia pridėkime reikalingą palaikymą backend'e:
 
 ```typescript
 const faq: { [key: string]: string } = {
@@ -213,18 +213,18 @@ registerAppTool(
     },
   );
 ```
-  
-Čia matome, kaip užpildome `inputSchema` ir suteikiame jam `zod` schemą taip:
+
+Čia matome, kaip užpildome `inputSchema` ir suteikiame jam `zod` schemą tokiu būdu:
 
 ```typescript
 inputSchema: zod.object({
   query: zod.string().default("shipping"),
 })
 ```
-  
-Aukščiau mes deklaruojame įvesties parametrą pavadinimu `query`, kuris yra neprivalomas ir turi numatytą reikšmę „shipping“.
 
-Gerai, eikime prie *mcp-app.html*, kad pamatytume, kokią UI turime sukurti šiam atvejui:
+Aukščiau schemoje deklaruojame, kad turime įvesties parametrą pavadinimu `query`, kuris yra neprivalomas ir turi numatytą reikšmę "shipping".
+
+Gerai, pereikime prie *mcp-app.html* ir pažiūrėkime, kokią sąsają turime sukurti:
 
 ```html
 <div class="faq">
@@ -234,8 +234,8 @@ Gerai, eikime prie *mcp-app.html*, kad pamatytume, kokią UI turime sukurti šia
     <button id="get-faq-btn">Get FAQ Response</button>
   </div>
 ```
-  
-Puiku, dabar turime įvesties elementą ir mygtuką. Dabar peržiūrėsime *mcp-app.ts* ir susiesime šiuos įvykius:
+
+Puiku, dabar turime įvesties elementą ir mygtuką. Eime prie *mcp-app.ts* prijungti šiuos įvykius:
 
 ```typescript
 const getFaqBtn = document.getElementById("get-faq-btn")!;
@@ -248,21 +248,21 @@ getFaqBtn.addEventListener("click", async () => {
   faqResponseEl.textContent = faq ?? "[ERROR]";
 });
 ```
-  
-Aukščiau pateiktame kode mes:
 
-- Sukuriame nuorodas į svarbius UI elementus.
-- Apdorojame mygtuko paspaudimą, išgauname įvesties elemento reikšmę ir kviečiame `app.callServerTool()` su `name` ir `arguments`, kur pastarasis perduoda `query` kaip reikšmę.
+Aukščiau esančiame kode mes:
 
-Iš tiesų, kai kviečiate `callServerTool`, yra išsiunčiama žinutė tėviniam langui, o tas langas iškviečia MCP Serverį.
+- Kuriame nuorodas į interaktyvius UI elementus.
+- Apdorojame mygtuko paspaudimą: nuskaityti įvesties elementą ir kviečiame `app.callServerTool()` su `name` ir `arguments`, kuriuose argumentai perduoda `query` reikšmę.
 
-### Išbandykite patys
+Kas vyksta kai kviečiama `callServerTool` - tai siunčiama žinutė tėviniam langui, o tas langas galiausiai kviečia MCP Serverį.
 
-Bandydami tai turėtume pamatyti tokį vaizdą:
+### Išbandykite tai
+
+Išbandę turėtume matyti kažką panašaus:
 
 ![](../../../../translated_images/lt/faq.f78abe6b2cc68c83.webp)
 
-ir štai čia, kai įvedame pvz., „warranty“ (garantija):
+o štai pavyzdys su įvestimi kaip "warranty":
 
 ![](../../../../translated_images/lt/faq-input.3e276f1c3d7e061e.webp)
 
@@ -270,7 +270,7 @@ Norėdami paleisti šį kodą, eikite į [Kodo skyrių](./code/README.md)
 
 ## Testavimas Visual Studio Code
 
-Visual Studio Code turi puikią paramą MVP Programėlėms ir tai tikriausiai vienas iš lengviausių būdų testuoti jūsų MCP Programėles. Norėdami naudoti Visual Studio Code, pridėkite serverio įrašą į *mcp.json* taip:
+Visual Studio Code puikiai palaiko MCP Programėles ir yra vienas iš paprasčiausių būdų jas testuoti. Norėdami naudoti Visual Studio Code, pridėkite serverio įrašą į *mcp.json* tokiu būdu:
 
 ```json
 "my-mcp-server-7178eca7": {
@@ -278,14 +278,14 @@ Visual Studio Code turi puikią paramą MVP Programėlėms ir tai tikriausiai vi
     "type": "http"
   }
 ```
-  
-Tada paleiskite serverį, turėtumėte galėti bendrauti su savo MVP Programėle per Pokalbių Langą, jei turite įdiegę GitHub Copilot.
 
-tai paleidžiant per komandinę eilutę, pvz., "#get-faq":
+Tuomet paleiskite serverį, turėtumėte galėti bendrauti su savo MCP Programėle per Pokalbių Langą, jei turite įdiegę GitHub Copilot.
+
+Jį galima iškviesti per užklausą, pavyzdžiui "#get-faq":
 
 ![Visual Studio run prompt](../../../../translated_images/lt/vscode-run.16cbab9436499f32.webp)
 
-Ir kaip naršyklėje, ji atvaizduojama vienodai:
+Ir, kaip kai paleidote per naršyklę, ji atvaizduojama taip pat:
 
 ![UI Visual Studio Code](../../../../translated_images/lt/vscode-ui.f2771dcfce25ca0f.webp)
 
@@ -295,30 +295,30 @@ Sukurkite akmens, popieriaus, žirklių žaidimą. Jame turėtų būti:
 
 UI:
 
-- išskleidžiamasis sąrašas su pasirinkimais
-- mygtukas pasirinkimui pateikti
-- žyma, rodanti, kas ką pasirinko ir kas laimėjo
+- Išskleidžiamas sąrašas su pasirinkimais
+- Mygtukas, skirtas pateikti pasirinkimą
+- Žymė, rodanti, kas ką pasirinko ir kas laimėjo
 
-Serveris:
+Serverio pusė:
 
-- turėtų būti įrankis akmuo, popierius, žirklės, kuris priima "choice" kaip įvestį. Jis taip pat turėtų sugeneruoti kompiuterio pasirinkimą ir nustatyti laimėtoją
+- Įrankis rock paper scissor, kuris priima "choice" kaip įvestį. Jis taip pat turėtų sugeneruoti kompiuterio pasirinkimą ir nustatyti laimėtoją
 
 ## Sprendimas
 
 [Sprendimas](./assignment/README.md)
 
-## Santrauka
+## Apibendrinimas
 
-Išmokome apie šį naują MCP Programėlių paradigmos modelį. Tai nauja paradigma, leidžianti MCP Serveriams turėti nuomonę ne tik apie duomenis, bet ir apie tai, kaip šie duomenys turi būti pateikiami.
+Sužinojome apie naują MCP Programėlių paradigmą. Tai naujas požiūris, leidžiantis MCP Serveriams turėti nuomonę ne tik apie duomenis, bet ir apie tai, kaip tie duomenys turi būti pateikiami.
 
-Be to, sužinojome, kad šios MCP Programėlės talpinamos IFrame’o viduje ir bendrauti su MCP Serveriais jos privalo siųsti žinutes tėviniam interneto programos langui. Yra kelios bibliotekos tiek paprastam JavaScript, tiek React ir kitoms technologijoms, kurios palengvina šią komunikaciją.
+Be to, sužinojome, kad šios MCP Programėlės yra talpinamos iFrame'e ir kad bendraudamos su MCP Serveriais jos turi siųsti žinutes tėviniam interneto programėlei. Yra keletas bibliotekų tiek grynam JavaScript, tiek React ir kitoms, kurios palengvina šią komunikaciją.
 
-## Pagrindinės išvados
+## Svarbiausios mintys
 
-Štai ką jūs išmokote:
+Štai ką išmokote:
 
-- MCP Programėlės yra naujas standartas, kuriuo naudinga pasiųsti tiek duomenis, tiek vartotojo sąsajos funkcijas.
-- Tokios programėlės dėl saugumo paleidžiamos IFrame viduje.
+- MCP Programėlės yra naujas standartas, naudingas, kai norite siųsti tiek duomenis, tiek naudotojo sąsajos funkcijas.
+- Tokios programėlės dėl saugumo veikia iFrame'e.
 
 ## Kas toliau
 
@@ -328,5 +328,5 @@ Be to, sužinojome, kad šios MCP Programėlės talpinamos IFrame’o viduje ir 
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Atsakomybės apribojimas**:  
-Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, atkreipkite dėmesį, kad automatizuoti vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojama profesionali žmogaus atliekama vertimo paslauga. Mes neatsakome už jokius nesusipratimus ar neteisingas interpretacijas, kylančias dėl šio vertimo naudojimo.
+Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors stengiamės užtikrinti tikslumą, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Pirminis dokumentas gimtąja kalba turi būti laikomas autoritetingu šaltiniu. Svarbiai informacijai rekomenduojamas profesionalus žmogaus vertimas. Mes neatskaitingi už bet kokius nesusipratimus ar neteisingus aiškinimus, kylančius naudojant šį vertimą.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

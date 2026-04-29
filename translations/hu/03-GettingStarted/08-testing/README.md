@@ -1,35 +1,35 @@
-## Tesztelés és Hibakeresés
+## Tesztelés és hibakeresés
 
-Mielőtt elkezdenéd tesztelni MCP szerveredet, fontos megérteni a rendelkezésre álló eszközöket és a hibakeresés legjobb gyakorlatait. A hatékony tesztelés biztosítja, hogy a szerver a várakozásoknak megfelelően működjön, és segít gyorsan azonosítani és megoldani a problémákat. A következő fejezet az MCP implementációd ellenőrzéséhez ajánlott megközelítéseket ismerteti.
+Mielőtt elkezdené tesztelni az MCP szerverét, fontos megérteni az elérhető eszközöket és a hibakeresés legjobb gyakorlatait. A hatékony tesztelés biztosítja, hogy a szervere a vártnak megfelelően működjön, és segít gyorsan azonosítani és megoldani a problémákat. A következő szakasz az MCP implementációjának érvényesítésére ajánlott megközelítéseket ismerteti.
 
 ## Áttekintés
 
-Ez a lecke bemutatja, hogyan válasszunk megfelelő tesztelési megközelítést és a leghatékonyabb tesztelő eszközt.
+Ez a lecke bemutatja, hogyan válasszuk ki a megfelelő tesztelési megközelítést és a leghatékonyabb tesztelő eszközt.
 
 ## Tanulási célok
 
-A lecke végére képes leszel:
+A lecke végére képes lesz:
 
-- Leírni különböző tesztelési megközelítéseket.
-- Különböző eszközöket használni a kód hatékony tesztelésére.
+- Leírni a különböző tesztelési megközelítéseket.
+- Különböző eszközöket használni a kód hatékony teszteléséhez.
 
 ## MCP szerverek tesztelése
 
 Az MCP eszközöket biztosít a szerverek teszteléséhez és hibakereséséhez:
 
-- **MCP Inspector**: Egy parancssori eszköz, amely futtatható CLI eszközként vagy vizuális eszközként.
-- **Manuális tesztelés**: Használhatsz olyan eszközt, mint a curl webes kérések futtatásához, de bármilyen HTTP-t futtatni képes eszköz megfelel.
-- **Egységtesztelés**: Lehetőség van a kedvenc tesztelési keretrendszered használatára is mind szerver-, mind kliensfunkciók teszteléséhez.
+- **MCP Inspector**: Egy parancssoros eszköz, amely CLI eszközként és vizuális eszközként is használható.
+- **Kézi tesztelés**: Használhat egy curl-hez hasonló eszközt webkérelmek futtatásához, de bármely, HTTP-t futtatni képes eszköz megteszi.
+- **Egységtesztelés**: Lehetséges kedvenc tesztelési keretrendszerével tesztelni a szerver és a kliens funkcióit is.
 
 ### MCP Inspector használata
 
-Ezt az eszközt korábbi leckékben már bemutattuk, de most egy általános áttekintést adunk róla. Ez egy Node.js-ben készült eszköz, amelyet az `npx` futtatható fájlon keresztül használhatsz, amely ideiglenesen letölti és telepíti magát az eszközt, majd a futtatás befejeztével törli azt.
+Ennek az eszköznek a használatát korábbi leckékben már leírtuk, de beszéljünk róla egy kicsit magasabb szinten. Ez egy Node.js-ben készült eszköz, amelyet az `npx` végrehajtható fájl hívásával használhat, amely ideiglenesen letölti és telepíti az eszközt, majd a futtatás után törli önmagát.
 
-A [MCP Inspector](https://github.com/modelcontextprotocol/inspector) ezekben segít:
+Az [MCP Inspector](https://github.com/modelcontextprotocol/inspector) segít Önnek:
 
-- **Szerver képességek felfedezése**: Automatikusan észleli az elérhető erőforrásokat, eszközöket és parancsokat
-- **Eszköz futtatásának tesztelése**: Különböző paraméterek kipróbálása és válaszok valós idejű megtekintése
-- **Szerver metaadatainak megtekintése**: A szerver információk, sémák és konfigurációk vizsgálata
+- **Szerver képességek felfedezése**: Automatikusan észleli az elérhető erőforrásokat, eszközöket és promptokat
+- **Eszköz végrehajtásának tesztelése**: Próbáljon ki különböző paramétereket, és valós időben lássa a válaszokat
+- **Szerver metaadatai megtekintése**: Vizsgálja meg a szerver információkat, sémákat és konfigurációkat
 
 Az eszköz tipikus futtatása így néz ki:
 
@@ -37,24 +37,24 @@ Az eszköz tipikus futtatása így néz ki:
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-A fenti parancs elindít egy MCP-t és annak vizuális felületét, valamint egy helyi webes felületet nyit meg a böngésződben. Olyan irányítópultot fogsz látni, amelyen a regisztrált MCP szervereid, azok elérhető eszközei, erőforrásai és parancsai jelennek meg. A felület lehetővé teszi az eszköz futtatásának interaktív tesztelését, a szerver metaadatainak ellenőrzését és a válaszok valós idejű megtekintését, megkönnyítve az MCP szerver implementációk ellenőrzését és hibakeresését.
+A fenti parancs elindít egy MCP-t és annak vizuális felületét, valamint megnyit egy helyi webes felületet a böngészőjében. Egy irányítópultot láthat majd, amely megjeleníti a regisztrált MCP szervereit, azok elérhető eszközeit, erőforrásait és promptjait. A felület lehetővé teszi az eszköz végrehajtásának interaktív tesztelését, a szerver metaadatainak ellenőrzését és a valós idejű válaszok megtekintését, megkönnyítve ezzel az MCP szerver implementációinak érvényesítését és hibakeresését.
 
 Így nézhet ki: ![Inspector](../../../../translated_images/hu/connect.141db0b2bd05f096.webp)
 
-Az eszközt CLI módban is futtathatod, ekkor a `--cli` paramétert kell hozzáadnod. Íme egy példa az eszköz CLI módban történő futtatására, amely felsorolja a szerveren elérhető eszközöket:
+Az eszközt CLI módban is futtathatja, ilyenkor hozzá kell adnia a `--cli` paramétert. Íme egy példa az eszköz „CLI” módban történő futtatására, amely listázza a szerveren lévő összes eszközt:
 
 ```sh
 npx @modelcontextprotocol/inspector --cli node build/index.js --method tools/list
 ```
 
-### Manuális tesztelés
+### Kézi tesztelés
 
-Az inspector eszköz szerverképességek tesztelésére való futtatása mellett egy másik hasonló megközelítés egy HTTP-képes kliens futtatása, mint például a curl.
+Az inspector eszköz futtatásán kívül egy másik hasonló megközelítés egy HTTP-képes kliens futtatása, például curl.
 
-Curl segítségével közvetlenül HTTP-kérésekkel tesztelheted az MCP szervereket:
+A curl segítségével közvetlenül HTTP kérésekkel tesztelheti az MCP szervereket:
 
 ```bash
-# Példa: Teszt szerver metaadatok
+# Példa: Teszt szerver metaadata
 curl http://localhost:3000/v1/metadata
 
 # Példa: Eszköz végrehajtása
@@ -63,11 +63,11 @@ curl -X POST http://localhost:3000/v1/tools/execute \
   -d '{"name": "calculator", "parameters": {"expression": "2+2"}}'
 ```
 
-A fenti curl használatából látható, hogy egy POST kéréssel egy eszközt hívsz meg, amelyhez a payload az eszköz nevét és paramétereit tartalmazza. Használd azt a megközelítést, amelyik neked a legjobban megfelel. A CLI eszközök általában gyorsabbak, és könnyen szkriptelhetőek, ami hasznos lehet CI/CD környezetben.
+Ahogy a fenti curl használatából látható, egy POST kérést használ az eszköz meghívására úgy, hogy a terhelés az eszköz nevét és paramétereit tartalmazza. Használja azt a megközelítést, amely a legjobban megfelel Önnek. Általában a CLI eszközök gyorsabbak és könnyebben szkriptezhetők, ami hasznos lehet CI/CD környezetben.
 
 ### Egységtesztelés
 
-Készíts egységteszteket az eszközeidhez és erőforrásaidhoz, hogy biztosítsd a várakozások szerinti működést. Íme egy példa tesztkód:
+Készítsen egységteszteket az eszközeihez és erőforrásaihoz, hogy biztosítsa, hogy azok a vártnak megfelelően működnek. Íme egy példa tesztkód.
 
 ```python
 import pytest
@@ -90,7 +90,7 @@ async def test_list_tools_cursor_parameter():
 
  server = FastMCP("test")
 
-    # Készíts néhány teszteszközt
+    # Hozz létre néhány teszteszközt
     @server.tool(name="test_tool_1")
     async def test_tool_1() -> str:
         """First test tool"""
@@ -106,11 +106,11 @@ async def test_list_tools_cursor_parameter():
         result1 = await client_session.list_tools()
         assert len(result1.tools) == 2
 
-        # Teszt kurzor=None értékkel
+        # Teszt kurzor None értékkel
         result2 = await client_session.list_tools(cursor=None)
         assert len(result2.tools) == 2
 
-        # Teszt kurzorral stringként
+        # Teszt kurzor stringként
         result3 = await client_session.list_tools(cursor="some_cursor_value")
         assert len(result3.tools) == 2
 
@@ -122,17 +122,17 @@ async def test_list_tools_cursor_parameter():
 
 A fenti kód a következőket teszi:
 
-- A pytest keretrendszert használja, amely lehetővé teszi, hogy funkcióként hozz létre teszteket és assert állításokat használj.
+- Használja a pytest keretrendszert, amely lehetővé teszi, hogy teszteket függvényekként hozzon létre, és assert állításokat használjon.
 - Létrehoz egy MCP szervert két különböző eszközzel.
-- Az `assert` állítással ellenőrzi, hogy bizonyos feltételek teljesülnek-e.
+- `assert` állítást használ bizonyos feltételek ellenőrzésére.
 
-Tekintsd meg a [teljes fájlt itt](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+Tekintse meg a [teljes fájlt itt](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
-Az említett fájl alapján a saját szerveredet is letesztelheted, hogy a képességek a megfelelő módon jönnek-e létre.
+A fenti fájl alapján tesztelheti saját szerverét, hogy megbizonyosodjon arról, hogy a képességek a kívánt módon jönnek létre.
 
-Minden nagyobb SDK-nak hasonló tesztelési szekciója van, így alkalmazkodhatsz a választott futtatási környezethez.
+Minden fő SDK hasonló tesztelési szakaszokkal rendelkezik, így alkalmazkodhat a kiválasztott futtatókörnyezethez.
 
-## Példák
+## Minta projektek
 
 - [Java Számológép](../samples/java/calculator/README.md)
 - [.Net Számológép](../../../../03-GettingStarted/samples/csharp)
@@ -144,13 +144,13 @@ Minden nagyobb SDK-nak hasonló tesztelési szekciója van, így alkalmazkodhats
 
 - [Python SDK](https://github.com/modelcontextprotocol/python-sdk)
 
-## Mi következik
+## Mi következik?
 
 - Következő: [Telepítés](../09-deployment/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Jogi nyilatkozat**:
-Ez a dokumentum az AI fordítószolgáltatás [Co-op Translator](https://github.com/Azure/co-op-translator) használatával készült. Bár igyekszünk a pontosságra, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti, anyanyelvű dokumentum tekintendő hiteles forrásnak. Fontos információk esetén szakmai, emberi fordítást javaslunk. Nem vállalunk felelősséget a fordítás használatából eredő félreértésekért vagy téves értelmezésekért.
+**Jogi nyilatkozat**:  
+Ez a dokumentum az [Co-op Translator](https://github.com/Azure/co-op-translator) AI fordító szolgáltatás segítségével készült. Bár a pontosságra törekszünk, kérjük, vegye figyelembe, hogy a gépi fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum a saját nyelvén tekintendő hiteles forrásnak. Kritikus információk esetén ajánlott professzionális emberi fordítást igénybe venni. Nem vállalunk felelősséget az ebből a fordításból eredő félreértésekért vagy félreértelmezésekért.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

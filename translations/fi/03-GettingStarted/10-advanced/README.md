@@ -1,20 +1,20 @@
 # Edistynyt palvelimen käyttö
 
-MCP SDK:ssa on kaksi erilaista palvelintyyppiä, tavallinen palvelimesi ja matalan tason palvelin. Yleensä käytät tavallista palvelinta lisätäksesi siihen ominaisuuksia. Joissain tapauksissa haluat kuitenkin turvautua matalan tason palvelimeen, kuten:
+MCP SDK:ssa on kaksi erilaista palvelintyyppiä, tavallinen palvelin ja matalan tason palvelin. Tavallisesti käytät tavallista palvelinta lisätäksesi siihen ominaisuuksia. Joissain tapauksissa kuitenkin haluat käyttää matalan tason palvelinta, esimerkiksi:
 
-- Parempi arkkitehtuuri. On mahdollista luoda puhdas arkkitehtuuri sekä tavallisella että matalan tason palvelimella, mutta voidaan väittää, että se on hieman helpompaa matalan tason palvelimella.
-- Ominaisuuksien saatavuus. Jotkut edistyneet ominaisuudet ovat käytettävissä vain matalan tason palvelimen kanssa. Näet tämän myöhemmissä luvuissa, kun lisäämme näytteenoton ja houkuttelun.
+- Parempi arkkitehtuuri. On mahdollista luoda siisti arkkitehtuuri sekä tavallisella palvelimella että matalan tason palvelimella, mutta voidaan väittää, että se on hieman helpompaa matalan tason palvelimella.
+- Ominaisuuksien saatavuus. Jotkin edistyneet ominaisuudet ovat käytettävissä vain matalan tason palvelimen kanssa. Näet tämän myöhemmissä luvuissa, kun lisäämme näytteistämistä ja villintämistä.
 
 ## Tavallinen palvelin vs matalan tason palvelin
 
-Näin MCP-palvelimen luominen näyttää tavallisella palvelimella
+Tältä MCP-palvelimen luominen näyttää tavallisella palvelimella
 
 **Python**
 
 ```python
 mcp = FastMCP("Demo")
 
-# Lisää lisäystyökalu
+# Lisää yhteenlaskutyökalu
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
@@ -29,7 +29,7 @@ const server = new McpServer({
   version: "1.0.0"
 });
 
-// Lisää yhdistämistyökalu
+// Lisää yhteenlaskutyökalu
 server.registerTool("add",
   {
     title: "Addition Tool",
@@ -42,18 +42,18 @@ server.registerTool("add",
 );
 ```
 
-Ajatus on, että lisäät eksplisiittisesti jokaisen työkalun, resurssin tai kehotteen, jonka haluat palvelimen sisältävän. Tässä ei ole mitään väärää.
+Ajatuksena on, että lisäät nimenomaan jokaisen työkalun, resurssin tai kehotteen, jonka haluat palvelimessa olevan. Tässä ei ole mitään vikaa.
 
-### Matalan tason palvelin -lähestymistapa
+### Matalan tason palvelimen lähestymistapa
 
-Kuitenkin, kun käytät matalan tason palvelimen lähestymistapaa, sinun täytyy ajatella asiat toisin. Sen sijaan, että rekisteröit jokaisen työkalun erikseen, luot kullekin ominaisuustyypille (työkalut, resurssit tai kehote) kaksi käsittelijää. Esimerkiksi työkaluilla on vain kaksi funktiota:
+Kuitenkin, kun käytät matalan tason palvelimen lähestymistapaa, sinun täytyy ajatella sitä eri tavalla. Sen sijaan, että rekisteröisit jokaisen työkalun, luot kaksi käsittelijää kutakin ominaisuustyyppiä (työkalut, resurssit tai kehote) varten. Esimerkiksi työkaluilla on vain kaksi toimintoa:
 
-- Kaikkien työkalujen listaaminen. Yksi funktio vastaa kaikista yrityksistä listata työkaluja.
-- Kaikkien työkalujen kutsujen käsittely. Tässäkin on vain yksi funktio, joka käsittelee työkalun kutsut.
+- Kaikkien työkalujen listaaminen. Yksi funktio huolehtii kaikista yrityksistä listata työkaluja.
+- Työkalujen kutsumisen käsittely. Täälläkin on vain yksi funktio käsittelemässä työkalun kutsuja.
 
-Se kuulostaa mahdollisesti vähemmän työtä vaativalta, eikö? Joten sen sijaan, että rekisteröisin työkalun, minun tarvitsee vain varmistaa, että työkalu listataan, kun listaan kaikki työkalut, ja että sitä kutsutaan, kun saapuu pyyntö kutsua työkalua.
+Kuulostaa ehkä vähemmän työtä vaativalta? Joten rekisteröinnin sijaan minun tarvitsee vain varmistaa, että työkalu listataan, kun listaan kaikki työkalut ja että sitä kutsutaan, kun tulee pyyntö kutsua työkalua.
 
-Katsotaanpa, miltä koodi nyt näyttää:
+Katsotaanpa, miltä koodi näyttää nyt:
 
 **Python**
 
@@ -81,15 +81,15 @@ async def handle_list_tools() -> list[types.Tool]:
 
 ```typescript
 server.setRequestHandler(ListToolsRequestSchema, async (request) => {
-  // Palauta rekisteröityjen työkalujen luettelo
+  // Palauta rekisteröityjen työkalujen lista
   return {
     tools: [{
-        name="add",
-        description="Add two numbers",
-        inputSchema={
+        name: "add",
+        description: "Add two numbers",
+        inputSchema: {
             "type": "object",
             "properties": {
-                "a": {"type": "number", "description": "number to add"}, 
+                "a": {"type": "number", "description": "number to add"},
                 "b": {"type": "number", "description": "number to add"}
             },
             "required": ["query"],
@@ -99,7 +99,7 @@ server.setRequestHandler(ListToolsRequestSchema, async (request) => {
 });
 ```
 
-Tässä meillä on nyt funktio, joka palauttaa ominaisuuksien listan. Jokaisessa työkalujen listan kohdassa on kenttiä kuten `name`, `description` ja `inputSchema` vastaamaan palautustyyppiä. Tämä mahdollistaa työkalujen ja ominaisuusmääritelmien sijoittamisen muualle. Voimme nyt luoda kaikki työkalut tools-hakemistoon ja sama pätee kaikkiin ominaisuuksiin, joten projektisi voidaan yhtäkkiä järjestää näin:
+Tässä meillä on nyt funktio, joka palauttaa ominaisuuksien listan. Jokaisella työkalun listan merkinnällä on nyt kenttiä, kuten `name`, `description` ja `inputSchema` vastaamaan paluuarvotyyppiä. Tämä mahdollistaa sen, että voimme sijoittaa työkalumme ja ominaisuusmäärittelymme muualle. Voimme luoda kaikki työkalumme *tools* -kansioon ja vastaavasti kaikki ominaisuutesi niin, että projektisi voi yhtäkkiä olla organisoitu näin:
 
 ```text
 app
@@ -113,9 +113,9 @@ app
 ----| product-description
 ```
 
-Hienoa, arkkitehtuurimme voi näyttää erittäin siistiltä.
+Hienoa, arkkitehtuurimme voidaan tehdä varsin siistiksi.
 
-Miten sitten työkalujen kutsuminen, onko se sama idea, yksi käsittelijä kutsumaan työkalua, mikä tahansa työkalu? Kyllä, juuri niin, tässä on koodi siihen:
+Entä työkalujen kutsuminen, onko sama idea, yksi käsittelijä kutsua työkalua, mikä tahansa työkalu? Kyllä, juuri niin, tässä on koodi siihen:
 
 **Python**
 
@@ -166,18 +166,18 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 });
 ```
 
-Kuten yllä olevasta koodista näkyy, meidän täytyy purkaa, mikä työkalu kutsutaan ja millä argumenteilla, ja sen jälkeen meidän täytyy jatkaa työkalun kutsumista.
+Kuten yllä olevasta koodista näet, meidän täytyy purkaa kutsuttava työkalu ja millä argumenteilla, ja sitten meidän täytyy jatkaa työkalun kutsumista.
 
 ## Lähestymistavan parantaminen validoinnilla
 
-Tähän mennessä olet nähnyt, kuinka kaikki rekisteröintisi työkalujen, resurssien ja kehotteiden lisäämiseksi voidaan korvata näillä kahdella käsittelijällä per ominaisuustyyppi. Mitä muuta meidän täytyy tehdä? No, meidän pitäisi lisätä jonkinlainen validointi varmistaaksemme, että työkalu kutsutaan oikeilla argumenteilla. Jokaisella ajonaikaisella ympäristöllä on oma ratkaisunsa tähän, esimerkiksi Python käyttää Pydanticia ja TypeScript käyttää Zodia. Ajatus on, että teemme seuraavaa:
+Tähän asti olet nähnyt, miten kaikki rekisteröintisi lisätäksesi työkaluja, resursseja ja kehotteita voidaan korvata näillä kahdella käsittelijällä kutakin ominaisuustyyppiä kohden. Mitä muuta meidän täytyy tehdä? No, meidän pitäisi lisätä jonkinlainen validointi varmistaaksemme, että työkalua kutsutaan oikeilla argumenteilla. Jokaisella suoritusympäristöllä on oma ratkaisunsa tähän, esimerkiksi Python käyttää Pydanticia ja TypeScript Zodia. Ajatus on, että teemme seuraavaa:
 
-- Siirrämme logiikan ominaisuuden (työkalu, resurssi tai kehote) luomiseksi siihen omistautuneeseen kansioon.
-- Lisätään tapa validoida saapuva pyyntö, joka esimerkiksi pyytää työkalun kutsua.
+- Siirrämme logiikan ominaisuuden (työkalun, resurssin tai kehotteen) luomiseen omalle kansiolleen.
+- Lisäämme tavan validoida sisään tuleva pyyntö, joka esimerkiksi pyytää työkalun kutsumista.
 
-### Ominaisuuden luominen
+### Luo ominaisuus
 
-Ominaisuuden luomiseksi meidän täytyy luoda tiedosto kyseiselle ominaisuudelle ja varmistaa, että sillä on pakolliset kentät, joita ominaisuus vaatii. Kentät eroavat hieman työkaluissa, resursseissa ja kehotteissa.
+Luodaksemme ominaisuuden, meidän täytyy luoda tiedosto kyseiselle ominaisuudelle ja varmistaa, että sillä on ominaisuudelle pakolliset kentät. Kentät eroavat hieman työkalujen, resurssien ja kehotteiden välillä.
 
 **Python**
 
@@ -195,7 +195,7 @@ from .schema import AddInputModel
 
 async def add_handler(args) -> float:
     try:
-        # Vahvista syöte Pydantic-mallin avulla
+        # Vahvista syöte käyttäen Pydantic-mallia
         input_model = AddInputModel(**args)
     except Exception as e:
         raise ValueError(f"Invalid input: {str(e)}")
@@ -213,21 +213,21 @@ tool_add = {
 }
 ```
 
-tässä näet kuinka teemme seuraavaa:
+tässä näet, miten teemme seuraavaa:
 
-- Luomme skeeman käyttäen Pydanticin `AddInputModel`-luokkaa kentillä `a` ja `b` tiedostossa *schema.py*.
-- Yritämme jäsentää saapuvan pyynnön tyypiksi `AddInputModel`. Jos parametrit eivät täsmää, tämä aiheuttaa virheen:
+- Luodaan skeema Pydanticilla `AddInputModel`, jossa on kentät `a` ja `b` tiedostossa *schema.py*.
+- Yritetään jäsentää sisään tuleva pyyntö tyypiksi `AddInputModel`; jos parametrit eivät täsmää, tämä kaatuu:
 
    ```python
    # add.py
     try:
-        # Vahvista syöte käyttämällä Pydantic-mallia
+        # Vahvista syöte Pydantic-mallin avulla
         input_model = AddInputModel(**args)
     except Exception as e:
         raise ValueError(f"Invalid input: {str(e)}")
    ```
 
-Voit valita, laitatko tämän jäsentämislogiikan työkalukutsuun itsessään vai käsittelijäfunktioon.
+Voit valita, sijoitatko tämän jäsennyslogiikan itse työkalukutsuun vai käsittelijäfunktioon.
 
 **TypeScript**
 
@@ -271,7 +271,7 @@ import { z } from 'zod';
 
 export const MathInputSchema = z.object({ a: z.number(), b: z.number() });
 
-// lisää.ts
+// add.ts
 import { Tool } from "./tool.js";
 import { MathInputSchema } from "./schema.js";
 import { zodToJsonSchema } from "zod-to-json-schema";
@@ -288,7 +288,7 @@ export default {
 } as Tool;
 ```
 
-- Käsittelijässä, joka käsittelee kaikkia työkalukutsuja, yritämme nyt jäsentää saapuvan pyynnön työkalun määrittelemään skeemaan:
+- Työkaluja käsittelevässä käsittelijässä yritämme nyt jäsentää tulevan pyynnön työkalun määritellyksi skeemaksi:
 
     ```typescript
     const Schema = tool.rawSchema;
@@ -297,27 +297,27 @@ export default {
        const input = Schema.parse(request.params.arguments);
     ```
 
-    jos se onnistuu, jatkamme työkalun varsinaista kutsua:
+    jos se onnistuu, jatkamme työkalun kutsua:
 
     ```typescript
     const result = await tool.callback(input);
     ```
 
-Kuten näet, tämä lähestymistapa luo hienon arkkitehtuurin, sillä kaikella on paikkansa. *server.ts* on hyvin pieni tiedosto, joka vain kytkee pyyntökäsittelijät paikoilleen, ja kukin ominaisuus on omassa kansiossaan, eli tools/, resources/ tai /prompts.
+Kuten näet, tämä lähestymistapa luo hyvän arkkitehtuurin, koska kaikella on oma paikkansa; *server.ts* on hyvin pieni tiedosto, joka vain yhdistää pyyntöjen käsittelijät, ja jokainen ominaisuus on omassa kansiossaan eli tools/, resources/ tai prompts/.
 
-Hienoa, kokeillaan seuraavaksi tämän rakentamista.
+Hienoa, kokeillaan tätä seuraavaksi rakentaa.
 
-## Harjoitus: Matala tason palvelimen luominen
+## Harjoitus: Matalan tason palvelimen luominen
 
 Tässä harjoituksessa teemme seuraavaa:
 
-1. Luomme matalan tason palvelimen, joka käsittelee työkalujen listauksen ja kutsumisen.
+1. Luomme matalan tason palvelimen, joka käsittelee työkalujen listaamista ja työkalujen kutsumista.
 1. Toteutamme arkkitehtuurin, jonka päälle voit rakentaa.
 1. Lisäämme validoinnin varmistaaksemme, että työkalukutsusi validoidaan oikein.
 
 ### -1- Luo arkkitehtuuri
 
-Ensimmäinen asia, johon meidän täytyy keskittyä, on arkkitehtuuri, joka auttaa meitä skaalaamaan, kun lisäämme ominaisuuksia. Näin se näyttää:
+Ensimmäinen asia, johon meidän pitää puuttua, on arkkitehtuuri, joka auttaa meitä skaalaamaan sitä, kun lisäämme ominaisuuksia; tältä se näyttää:
 
 **Python**
 
@@ -340,11 +340,11 @@ server.ts
 client.ts
 ```
 
-Nyt olemme luoneet arkkitehtuurin, joka varmistaa, että voimme helposti lisätä uusia työkaluja tools-kansioon. Voit vapaasti lisätä alihakemistoja resursseille ja kehotteille.
+Nyt olemme luoneet arkkitehtuurin, joka takaa, että voimme helposti lisätä uusia työkaluja *tools* -kansioon. Voit vapaasti seurata tätä alihakemistoja varten resursseille ja kehotteille.
 
-### -2- Työkalun luominen
+### -2- Luo työkalu
 
-Katsotaan seuraavaksi, miltä työkalun luominen näyttää. Ensin sen pitää olla luotuna omassa *tool*-alikansiossaan näin:
+Katsotaanpa, miltä työkalun luominen näyttää seuraavaksi. Ensin sen täytyy luoda *tool* alihakemistoon näin:
 
 **Python**
 
@@ -358,7 +358,7 @@ async def add_handler(args) -> float:
     except Exception as e:
         raise ValueError(f"Invalid input: {str(e)}")
 
-    # TODO: lisää Pydantic, jotta voimme luoda AddInputModelin ja vahvistaa argumentit
+    # TODO: lisää Pydantic, jotta voimme luoda AddInputModelin ja validoida argumentit
 
     """Handler function for the add tool."""
     return float(input_model.a) + float(input_model.b)
@@ -371,9 +371,9 @@ tool_add = {
 }
 ```
 
-Näet tässä, miten määrittelemme nimen, kuvauksen ja syötteen skeeman käyttäen Pydanticia sekä käsittelijän, jota kutsutaan, kun tätä työkalua käytetään. Lopuksi julkaisemme `tool_add`-sanakirjan, joka sisältää kaikki nämä ominaisuudet.
+Tässä näemme, miten määrittelemme nimen, kuvauksen ja syötteiden skeeman Pydanticilla sekä käsittelijän, joka kutsutaan, kun tätä työkalua kutsutaan. Lopuksi altistamme `tool_add`, joka on sanakirja, joka pitää sisällään nämä ominaisuudet.
 
-Mukana on myös *schema.py*, jota käytämme määrittelemään työkalun syötteen skeeman:
+On myös *schema.py*, jota käytetään määrittelemään työkalun käyttämä syöteskeema:
 
 ```python
 from pydantic import BaseModel
@@ -383,7 +383,7 @@ class AddInputModel(BaseModel):
     b: float
 ```
 
-Meidän täytyy myös täyttää *__init__.py* varmistaaksemme, että tools-kansio käsitellään moduulina. Lisäksi meidän pitää julkaista sen moduulit näin:
+Meidän myös täytyy täyttää *__init__.py* varmistaaksemme, että tools-hakemisto käsitellään moduulina. Lisäksi meidän on altistettava sen moduulit näin:
 
 ```python
 from .add import tool_add
@@ -393,7 +393,7 @@ tools = {
 }
 ```
 
-Voimme lisätä tähän tiedostoon lisää työkaluja, kun niitä tulee.
+Voimme lisätä tähän tiedostoon aina vain tiedostoja, kun lisäämme työkaluja.
 
 **TypeScript**
 
@@ -414,14 +414,14 @@ export default {
 } as Tool;
 ```
 
-Täällä luomme sanakirjan, joka sisältää ominaisuudet:
+Täällä luomme sanakirjan, joka koostuu seuraavista ominaisuuksista:
 
-- name, työkalun nimi.
-- rawSchema, Zod-skeema, jota käytetään validointiin saapuvissa syötteissä tätä työkalua kutsuttaessa.
+- name, työkaluun nimi.
+- rawSchema, Zod-skeema, jota käytetään syötteen validointiin työkalun kutsun yhteydessä.
 - inputSchema, tätä skeemaa käyttää käsittelijä.
 - callback, tätä käytetään työkalun kutsumiseen.
 
-Mukana on myös `Tool`, jolla tämä sanakirja muunnetaan tyypiksi, jonka mcp-palvelimen käsittelijä voi hyväksyä, ja se näyttää tältä:
+On myös `Tool`, jota käytetään muuttamaan tämä sanakirja tyypiksi, jonka mcp-palvelimen käsittelijä voi hyväksyä; se näyttää tältä:
 
 ```typescript
 import { z } from 'zod';
@@ -434,7 +434,7 @@ export interface Tool {
 }
 ```
 
-Ja siellä on *schema.ts*, jossa säilytämme syöteskeemat jokaiselle työkaluin, joka näyttää tältä, tällä hetkellä vain yhdellä skeemalla, mutta kun lisäämme työkaluja, lisäämme rivejä:
+Ja on *schema.ts*, jossa säilytämme kunkin työkalun syöteskeemat tällä hetkellä vain yhdellä skeemalla, mutta kun lisäämme työkaluja, voimme lisätä lisää merkintöjä:
 
 ```typescript
 import { z } from 'zod';
@@ -442,16 +442,16 @@ import { z } from 'zod';
 export const MathInputSchema = z.object({ a: z.number(), b: z.number() });
 ```
 
-Hienoa, siirrytään seuraavaksi työkalujen listauksen käsittelyyn.
+Hienoa, siirrytään seuraavaksi työkalujen listaamisen käsittelyyn.
 
-### -3- Käsittele työkalujen listausta
+### -3- Käsittele työkalujen listaaminen
 
-Seuraavaksi, työkalujen listaamisen käsittelemiseksi meidän täytyy määrittää pyyntökäsittelijä. Tässä mitä meidän tulee lisätä palvelintiedostoomme:
+Seuraavaksi, käsitelläksemme työkalujen listaamista, meidän täytyy asettaa pyyntöjen käsittelijä sitä varten. Tässä mitä meidän täytyy lisätä palvelintiedostoomme:
 
 **Python**
 
 ```python
-# koodi jätetty lyhyyden vuoksi
+# koodi jätetty lyhykäiseksi
 from tools import tools
 
 @server.list_tools()
@@ -470,11 +470,11 @@ async def handle_list_tools() -> list[types.Tool]:
     return tool_list
 ```
 
-Lisäämme koristeen `@server.list_tools` ja toteuttavan funktion `handle_list_tools`. Tässä meidän täytyy tuottaa lista työkaluista. Huomaa kuinka jokaisella työkalulla on nimi, kuvaus ja inputSchema.
+Tässä lisäämme dekorointiin `@server.list_tools` ja toteuttavaan funktioon `handle_list_tools`. Jälkimmäisessä meidän täytyy tuottaa lista työkaluista. Huomaa, että jokaisella työkalulla täytyy olla nimi, kuvaus ja inputSchema.
 
 **TypeScript**
 
-Työkalujen listauksen pyyntökäsittelijän asettamiseksi kutsumme `setRequestHandler`-funktiota palvelimessa skeemalla, joka sopii tehtävään, tässä tapauksessa `ListToolsRequestSchema`.
+Työkalujen listaamisen pyyntöjen käsittelijän määrittämiseen meidän täytyy kutsua `setRequestHandler` palvelimella skeeman kanssa, joka sopii siihen, mitä yritämme tehdä, tässä tapauksessa `ListToolsRequestSchema`.
 
 ```typescript
 // index.ts
@@ -488,7 +488,7 @@ tools.push(addTool);
 tools.push(subtractTool);
 
 // server.ts
-// Koodi jätetty pois lyhyyden vuoksi
+// koodi jätetty pois lyhyyden vuoksi
 import { tools } from './tools/index.js';
 
 server.setRequestHandler(ListToolsRequestSchema, async (request) => {
@@ -499,15 +499,15 @@ server.setRequestHandler(ListToolsRequestSchema, async (request) => {
 });
 ```
 
-Hienoa, nyt olemme ratkaisseet työkalujen listauksen osan. Katsotaan seuraavaksi, miten voisimme kutsua työkaluja.
+Hienoa, nyt olemme ratkaisseet työkalujen listaamisen osan, katsotaan seuraavaksi, miten voimme kutsua työkaluja.
 
-### -4- Käsittele työkalun kutsua
+### -4- Käsittele työkalun kutsu
 
-Työkalun kutsumiseksi meidän täytyy asettaa toinen pyyntökäsittelijä, joka keskittyy käsittelemään pyyntöjä, joissa määritellään, mitä ominaisuutta kutsutaan ja millä argumenteilla.
+Työkalun kutsumiseksi meidän täytyy määrittää toinen pyyntöjen käsittelijä, joka keskittyy käsittelemään pyyntöjä, joissa määritellään, mitä ominaisuutta kutsutaan ja millä argumenteilla.
 
 **Python**
 
-Käytetään koristetta `@server.call_tool` ja toteutetaan se funktiolla, kuten `handle_call_tool`. Funktion sisällä meidän täytyy purkaa työkalun nimi, sen argumentti ja varmistaa, että argumentit ovat päteviä kyseiselle työkalulle. Voimme validoida argumentit tässä funktiossa tai myöhemmin varsinaisessa työkalussa.
+Käytetään dekorointia `@server.call_tool` ja toteutetaan se funktiolla, kuten `handle_call_tool`. Funktiossa meidän täytyy purkaa työkalun nimi, sen argumentti ja varmistaa, että argumentit ovat kelvollisia kyseiselle työkalulle. Voimme validoida argumentit tässä funktiossa tai varsinaisessa työkalussa.
 
 ```python
 @server.call_tool()
@@ -515,7 +515,7 @@ async def handle_call_tool(
     name: str, arguments: dict[str, str] | None
 ) -> list[types.TextContent]:
     
-    # tools on sanakirja, jossa avaimina ovat työkalujen nimet
+    # tools on sanakirja, jossa työkalujen nimet ovat avaimina
     if name not in tools.tools:
         raise ValueError(f"Unknown tool: {name}")
     
@@ -530,36 +530,36 @@ async def handle_call_tool(
 
     return [
         types.TextContent(type="text", text=str(result))
-    ] 
+    ]
 ```
 
-Tässä tapahtuu seuraavaa:
+Tässä mitä tapahtuu:
 
-- Työkalun nimi on jo syöteparametrina `name`, ja argumentit ovat `arguments`-sanakirjassa.
+- Työkalun nimi on jo läsnä syötteenä parametrina `name`, mikä on totta argumenteille `arguments`-sanakirjassa.
 
-- Työkalu kutsutaan `result = await tool["handler"](../../../../03-GettingStarted/10-advanced/arguments)`. Argumenttien validointi tapahtuu `handler`-ominaisuudessa, joka on funktioon osoittava osoitin; jos validointi epäonnistuu, se nostaa poikkeuksen.
+- Työkalu kutsutaan `result = await tool["handler"](../../../../03-GettingStarted/10-advanced/arguments)`. Argumenttien validointi tapahtuu `handler`-ominaisuudessa, joka osoittaa funktioon; jos se epäonnistuu, se heittää poikkeuksen.
 
-Nyt meillä on täydellinen ymmärrys työkalujen listaamisesta ja kutsumisesta matalan tason palvelimella.
+Siinäpä se, nyt meillä on täysi ymmärrys työkalujen listaamisesta ja kutsumisesta matalan tason palvelimella.
 
-Katso [täysi esimerkki](./code/README.md) täältä
+Katso [kokonaisesimerkki](./code/README.md) täältä
 
 ## Tehtävä
 
-Laajenna sinulle annettua koodia lisäämällä useita työkaluja, resursseja ja kehotteita ja pohdi, kuinka huomaat, että sinun tarvitsee lisätä tiedostoja vain tools-kansioon, etkä minnekään muualle.
+Laajenna saamaasi koodia useilla työkaluilla, resursseilla ja kehotteilla ja pohdi, kuinka huomaat, että sinun tarvitsee lisätä tiedostoja vain *tools*-hakemistoon etkä muualle.
 
 *Ratkaisua ei anneta*
 
 ## Yhteenveto
 
-Tässä luvussa näimme, miten matalan tason palvelin toimii ja miten se voi auttaa meitä luomaan siistin arkkitehtuurin, jonka päälle voi rakentaa. Keskustelimme myös validoinnista, ja sinulle näytettiin, miten käytetään validointikirjastoja luomaan skeemoja syötteen validointiin.
+Tässä luvussa näimme, miten matalan tason palvelimen lähestymistapa toimii ja miten se voi auttaa meitä luomaan hyvän arkkitehtuurin, jonka päälle voimme jatkaa rakentamista. Keskustelimme myös validoinnista, ja sinut näytettiin työskentelemään validointikirjastojen kanssa luodaksesi skeemoja syötteen validointiin.
 
-## Mitä seuraavaksi
+## Seuraavaksi
 
 - Seuraavaksi: [Yksinkertainen todennus](../11-simple-auth/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Vastuuvapauslauseke**:
-Tämä asiakirja on käännetty tekoälypohjaisella käännöspalvelulla [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja omalla kielellään tulee pitää ensisijaisena lähteenä. Tärkeissä asioissa suositellaan ammattilaisen tekemää ihmiskäännöstä. Emme ole vastuussa tästä käännöksestä mahdollisesti aiheutuvista väärinymmärryksistä tai virhetulkinnoista.
+**Vastuuvapauslauseke**:  
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimmekin tarkkuuteen, on hyvä huomioida, että automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäisellä kielellä tulee pitää auktoritatiivisena lähteenä. Kriittisten tietojen osalta suosittelemme ammattilaisten tekemää ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

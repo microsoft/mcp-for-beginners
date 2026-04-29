@@ -1,25 +1,25 @@
-# Uidhinishaji rahisi
+# Uthibitishaji rahisi
 
-SDK za MCP zinaunga mkono matumizi ya OAuth 2.1 ambayo kwa kweli ni mchakato mgumu unaohusisha dhana kama seva ya uidhinishaji, seva ya rasilimali, kutuma vyeti, kupata msimbo, kubadilisha msimbo kwa tokeni ya kubeba hadi hatimaye uweze kupata data yako ya rasilimali. Ikiwa huna uzoefu na OAuth ambayo ni jambo zuri kutekeleza, ni wazo nzuri kuanza na kiwango cha msingi cha uidhinishaji na kujenga hadi usalama bora zaidi. Ndio maana sura hii ipo, kukuinua hadi uidhinishaji wa hali ya juu zaidi.
+SDK za MCP zinaunga mkono matumizi ya OAuth 2.1 ambayo kwa kusema kweli ni mchakato mgumu unaohusisha dhana kama seva ya uthibitishaji, seva ya rasilimali, kutuma vitambulisho, kupata msimbo, kubadilishana msimbo kwa tokeni za bearera hadi hatimaye uweze kupata data ya rasilimali yako. Ikiwa haujawa mzururu na OAuth ambayo ni jambo zuri kutekeleza, ni wazo zuri kuanza na kiwango cha msingi cha uthibitishaji na kuendelea hadi kwa usalama bora zaidi. Ndiyo maana sura hii ipo, kukuinua hadi kwa uthibitishaji wa juu zaidi.
 
-## Uidhinishaji, tunamaanisha nini?
+## Uthibitishaji, tunamaanisha nini?
 
-Uidhinishaji ni kifupi cha uthibitishaji na ruhusa. Wazo ni kwamba tunahitaji kufanya mambo mawili:
+Uthibitishaji ni kifupisho cha authentication na authorization. Wazo ni kwamba tunahitaji kufanya mambo mawili:
 
-- **Uthibitishaji**, ni mchakato wa kugundua kama tunamruhusu mtu kuingia katika nyumba yetu, kwamba ana haki ya "kuwa hapa" yaani kuweza kupata seva yetu ya rasilimali ambapo vipengele vyetu vya MCP Server vipo.
-- **Ruhusa**, ni mchakato wa kugundua kama mtumiaji anapaswa kuwa na ufikiaji wa rasilimali hizi maalum anaomba, kwa mfano agizo hizi au bidhaa hizi au kama anaruhusiwa kusoma maudhui lakini si kufuta kama mfano mwingine.
+- **Authentication**, ambayo ni mchakato wa kugundua ikiwa tunaruhusu mtu kuingia nyumbani kwetu, kwamba ana haki ya kuwa "hapa" yaani kupata rasilimali zetu kwenye seva ya rasilimali ambapo huduma za MCP Server ziko.
+- **Authorization**, ni mchakato wa kujua kama mtumiaji anapaswa kupata rasilimali hizi malao wanazozitaka, kwa mfano maagizo haya au bidhaa hizi au ikiwa wanaruhusiwa kusoma maudhui lakini si kufuta kama mfano mwingine.
 
-## Vyeti: jinsi tunavyomwambia mfumo ni nani sisi
+## Vitambulisho: jinsi tunavyoambia mfumo ni nani sisi
 
-Vizuri, wengi wa waendelezaji wa wavuti hufikiria kwa mujibu wa kutoa cheti kwa seva, kawaida siri inayosema kama wanaruhusiwa kuwa hapa "Uthibitishaji". Cheti hiki kawaida ni toleo lililosimbwa la base64 la jina la mtumiaji na nywila au kitambulisho cha API kinachoonyesha mtumiaji maalum.
+Naam, wahandisi wengi wa wavuti hutafakari kwa kutoa kitambulisho kwa seva, kawaida siri inayosema kama wanaruhusiwa kuwa hapa "Authentication". Kitambulisho hiki kawaida ni toleo la base64 la jina la mtumiaji na nywila au funguo ya API inayotambulisha mtumiaji maalum.
 
-Hii inahusisha kutuma kupitia kichwa kinachoitwa "Authorization" kama hii:
+Hii inahusisha kutuma kupitia kichwa kinachoitwa "Authorization" kama ifuatavyo:
 
 ```json
 { "Authorization": "secret123" }
 ```
 
-Hii kawaida huitwa uthibitishaji wa msingi. Mchakato mzima unavyofanya kazi kisha ni kama ifuatavyo:
+Hii kawaida huitwa uthibitishaji wa msingi. Jinsi mchakato mzima unavyofanya kazi ni kwa njia ifuatayo:
 
 ```mermaid
 sequenceDiagram
@@ -27,12 +27,12 @@ sequenceDiagram
    participant Client
    participant Server
 
-   User->>Client: nionyeshee data
-   Client->>Server: nionyeshee data, hii hapa cheti changu
-   Server-->>Client: 1a, nakujua, hii hapa data yako
+   User->>Client: nionyeshe data
+   Client->>Server: nionyeshe data, hili ni cheti changu
+   Server-->>Client: 1a, nakujua, hizi ni data zako
    Server-->>Client: 1b, sikujui, 401 
 ```
-Sasa tunapofahamu jinsi inavyofanya kazi kutoka mtazamo wa mchakato, tunaitekelezaje? Vizuri, seva nyingi za wavuti zina dhana ya middleware, kipande cha msimbo kinachoendeshwa kama sehemu ya ombi ambalo linaweza kuthibitisha vyeti, na ikiwa vyeti ni halali linaweza kuruhusu ombi liendelee. Ikiwa ombi halina vyeti halali basi unapata kosa la uidhinishaji. Tuwezaje kuitekeleza hii:
+Sasa tunapoelewa jinsi inavyofanya kazi kutoka mtazamo wa mchakato, tunawezaje kuitekeleza? Naam, seva nyingi za wavuti zina dhana inayoitwa middleware, kipande cha msimbo kinachofanya kazi kama sehemu ya ombi ambalo linaweza kuthibitisha vitambulisho, na ikiwa vitambulisho ni halali linaweza kuruhusu ombi lipite. Ikiwa ombi halina vitambulisho sahihi basi unapata kosa la uthibitishaji. Tuwone jinsi hii inaweza kutekelezwa:
 
 **Python**
 
@@ -52,7 +52,7 @@ class AuthMiddleware(BaseHTTPMiddleware):
         print("Valid token, proceeding...")
        
         response = await call_next(request)
-        # ongeza vichwa vya wateja vyovyote au badilisha jibu kwa namna fulani
+        # ongeza vichwa vya wateja yoyote au badilisho lolote kwenye jibu kwa njia fulani
         return response
 
 
@@ -61,14 +61,14 @@ starlette_app.add_middleware(CustomHeaderMiddleware)
 
 Hapa tuna:
 
-- Kuunda middleware iitwayo `AuthMiddleware` ambapo njia yake `dispatch` inaitwa na seva ya wavuti.
-- Kuongeza middleware kwenye seva ya wavuti:
+- Kuunda middleware iitwayo `AuthMiddleware` ambapo njia yake ya `dispatch` inaitwa na seva ya wavuti.
+- Kuongeza middleware kwa seva ya wavuti:
 
     ```python
     starlette_app.add_middleware(AuthMiddleware)
     ```
 
-- Kuandika mantiki ya uthibitishaji inayothibitisha kama kichwa cha Authorization kiko na siri inayotumwa ni halali:
+- Kuandika mantiki ya uthibitishaji inayokagua kama kichwa cha Authorization kipo na kama siri inayotumwa ni halali:
 
     ```python
     has_header = request.headers.get("Authorization")
@@ -81,19 +81,19 @@ Hapa tuna:
         return Response(status_code=403, content="Forbidden")
     ```
 
-    ikiwa siri ipo na ni halali basi tunaruhusu ombi liendelee kwa kuita `call_next` na kurudisha majibu.
+    ikiwa siri iko na ni halali basi tunaruhusu ombi lipite kwa kuita `call_next` na kurudisha majibu.
 
     ```python
     response = await call_next(request)
-    # ongeza vichwa vya wateja au badilisha jibu kwa namna fulani
+    # ongeza vichwa vya wateja wowote au badilisha jibu kwa njia fulani
     return response
     ```
 
-Inavyofanya kazi ni kwamba ikiwa ombi la wavuti limefanywa kuelekea seva, middleware itaitwa na kutokana na utekelezaji wake itaruhusu ombi liendelee au kurudisha kosa linalosema mteja haruhusiwi kuendelea.
+Jinsi inavyofanya kazi ni kwamba ikiwa ombi la wavuti limefanyika kuelekea seva, middleware itaitwa na kutokana na utekelezaji wake itauruhusu ombi lipite au kurudisha kosa linaloonyesha mteja hana ruhusa ya kuendelea.
 
 **TypeScript**
 
-Hapa tunaunda middleware kwa kutumia fremu maarufu Express na kuingilia ombi kabla halijafika MCP Server. Hapa ni msimbo wa hilo:
+Hapa tunaunda middleware kwa kutumia mfumo maarufu Express na kukamata ombi kabla halijafika MCP Server. Huu ndiyo msimbo kwa hili:
 
 ```typescript
 function isValid(secret) {
@@ -115,37 +115,37 @@ app.use((req, res, next) => {
 
    
     console.log('Middleware executed');
-    // 3. Pitia ombi kwa hatua inayofuata katika mfululizo wa maombi.
+    // 3. Pitisha ombi hadi hatua inayofuata katika mchakato wa ombi.
     next();
 });
 ```
 
 Katika msimbo huu tunafanya:
 
-1. Kukagua kama kichwa cha Authorization kiko hata katika hatua ya kwanza, kama hakipo, tunatuma kosa la 401.
-2. Kuhakikisha cheti/tokeni ni halali, ikiwa si halali, tunatuma kosa la 403.
-3. Hatimaye huruhusu ombi kuendelea katika mzunguko wa maombi na kurudisha rasilimali iliyoombwa.
+1. Angalia kama kichwa cha Authorization kipo katika nafasi ya kwanza, kama hakipo, tunatuma kosa la 401.
+2. Hakikisha kitambulisho/tokeni ni halali, ikiwa siyo, tunatuma kosa la 403.
+3. Mwishowe kuruhusu ombi liendelee katika mchakato wa ombi na kurudisha rasilimali inayotakiwa.
 
 ## Zoef: Tekeleza uthibitishaji
 
-Tuchukue maarifa yetu na tujue jinsi ya kuutekeleza. Hii hapa mpango:
+Tuchukue maarifa yetu na tujaribu kutekeleza. Hapa ni mpango:
 
 Seva
 
-- Tengeneza seva ya wavuti na mfano wa MCP.
+- Unda seva ya wavuti na mfano wa MCP.
 - Tekeleza middleware kwa seva.
 
-Mteja
+Mteja 
 
-- Tuma ombi la wavuti, kwa vyeti, kupitia kichwa.
+- Tuma ombi la wavuti, na kitambulisho, kupitia kichwa.
 
-### -1- Tengeneza seva ya wavuti na mfano wa MCP
+### -1- Unda seva ya wavuti na mfano wa MCP
 
 Katika hatua yetu ya kwanza, tunahitaji kuunda mfano wa seva ya wavuti na MCP Server.
 
 **Python**
 
-Hapa tunaunda mfano wa seva ya MCP, kuunda app ya wavuti ya starlette na kuiendesha kwa uvicorn.
+Hapa tunaunda mfano wa MCP server, kuunda app ya wavuti ya starlette na kuiendesha kwa uvicorn.
 
 ```python
 # kuunda Server ya MCP
@@ -158,10 +158,10 @@ app = FastMCP(
     debug=True
 )
 
-# kuunda app ya wavuti ya starlette
+# kuunda programu ya wavuti ya starlette
 starlette_app = app.streamable_http_app()
 
-# kuhudumia app kupitia uvicorn
+# kuhudumia programu kupitia uvicorn
 async def run(starlette_app):
     import uvicorn
     config = uvicorn.Config(
@@ -178,9 +178,9 @@ run(starlette_app)
 
 Katika msimbo huu tunafanya:
 
-- Kuunda MCP Server.
-- Kujenga app ya wavuti ya starlette kutoka MCP Server, `app.streamable_http_app()`.
-- Kuendesha na kuhudumia app ya wavuti kwa kutumia uvicorn `server.serve()`.
+- Tengeneza MCP Server.
+- Tengeneza app ya wavuti ya starlette kutoka MCP Server, `app.streamable_http_app()`.
+- Iendeshe app ya wavuti kwa kutumia uvicorn `server.serve()`.
 
 **TypeScript**
 
@@ -192,10 +192,10 @@ const server = new McpServer({
       version: "1.0.0"
     });
 
-    // ... seta rasilimali za seva, zana, na maagizo ...
+    // ... sanidi rasilimali za seva, zana, na maelekezo ...
 ```
 
-Uundaji huu wa MCP Server utahitaji kufanyika ndani ya ufafanua wa njia ya POST /mcp, kwa hivyo chukua msimbo uliotajwa hapo juu na uuhamishe kama ifuatavyo:
+Uundaji huu wa MCP Server utahitaji kufanyika ndani ya ufafanuzi wa njia ya POST /mcp, hivyo tuchukue msimbo hapo juu na kuuweka kama ifuatavyo:
 
 ```typescript
 import express from "express";
@@ -210,9 +210,9 @@ app.use(express.json());
 // Ramani ya kuhifadhi usafirishaji kwa ID ya kikao
 const transports: { [sessionId: string]: StreamableHTTPServerTransport } = {};
 
-// Shughulikia maombi ya POST kwa mawasiliano ya mteja-kwenda-server
+// Shughulikia ombi la POST kwa mawasiliano ya mteja-kwa-server
 app.post('/mcp', async (req, res) => {
-  // Angalia kama ID ya kikao tayari ipo
+  // Angalia kama ID ya kikao inapatikana
   const sessionId = req.headers['mcp-session-id'] as string | undefined;
   let transport: StreamableHTTPServerTransport;
 
@@ -220,20 +220,20 @@ app.post('/mcp', async (req, res) => {
     // Tumia tena usafirishaji uliopo
     transport = transports[sessionId];
   } else if (!sessionId && isInitializeRequest(req.body)) {
-    // Ombi jipya la kuanzisha
+    // Ombi jipya la uanzishaji
     transport = new StreamableHTTPServerTransport({
       sessionIdGenerator: () => randomUUID(),
       onsessioninitialized: (sessionId) => {
         // Hifadhi usafirishaji kwa ID ya kikao
         transports[sessionId] = transport;
       },
-      // Ulinzi wa DNS rebinding umezimwa kwa default kwa ajili ya ulinganifu wa nyuma. Ikiwa unafanya kazi na server hii
-      // kwa eneo lako, hakikisha umeweka:
-      // enableDnsRebindingProtection: true,
+      // Ulinzi wa DNS rebinding umezimwa kwa chaguo-msingi kwa ajili ya ulinganifu wa nyuma. Ikiwa unafanya kazi na server hii
+      // kwa karibu, hakikisha kuweka:
+      // enableDnsRebindingProtection: kweli,
       // allowedHosts: ['127.0.0.1'],
     });
 
-    // Safisha usafirishaji wakati unafungwa
+    // Safisha usafirishaji wakati unapo fungwa
     transport.onclose = () => {
       if (transport.sessionId) {
         delete transports[transport.sessionId];
@@ -244,9 +244,9 @@ app.post('/mcp', async (req, res) => {
       version: "1.0.0"
     });
 
-    // ... anza rasilimali za server, zana, na vidokezo ...
+    // ... panga rasilimali za server, zana, na maelekezo ...
 
-    // Unganisha kwenye server ya MCP
+    // Unganisha na server ya MCP
     await server.connect(transport);
   } else {
     // Ombi batili
@@ -265,7 +265,7 @@ app.post('/mcp', async (req, res) => {
   await transport.handleRequest(req, res, req.body);
 });
 
-// Mshughulikiaji wa kutumika tena kwa maombi ya GET na DELETE
+// Mshughulikiaji wa kutumia tena kwa maombi ya GET na DELETE
 const handleSessionRequest = async (req: express.Request, res: express.Response) => {
   const sessionId = req.headers['mcp-session-id'] as string | undefined;
   if (!sessionId || !transports[sessionId]) {
@@ -277,44 +277,44 @@ const handleSessionRequest = async (req: express.Request, res: express.Response)
   await transport.handleRequest(req, res);
 };
 
-// Shughulikia maombi ya GET kwa taarifa kutoka server hadi mteja kupitia SSE
+// Shughulikia maombi ya GET kwa arifa kutoka server-kwa-mteja kupitia SSE
 app.get('/mcp', handleSessionRequest);
 
-// Shughulikia maombi ya DELETE kwa kumalizika kwa kikao
+// Shughulikia maombi ya DELETE kwa kumaliza kikao
 app.delete('/mcp', handleSessionRequest);
 
 app.listen(3000);
 ```
 
-Sasa unaona jinsi uundaji wa MCP Server ulivyo hamishwa ndani ya `app.post("/mcp")`.
+Sasa unaona jinsi uundaji wa MCP Server ulivyohamishwa ndani ya `app.post("/mcp")`.
 
-Tuendelee na hatua inayofuata ya kuunda middleware ili tuweze kuthibitisha cheti kinachoingia.
+Tuelekee hatua inayofuata ya kuunda middleware ili tuweze kuthibitisha kitambulisho kinachokuja.
 
 ### -2- Tekeleza middleware kwa seva
 
-Hebu tuangalie sehemu ya middleware. Hapa tutaunda middleware inayotafuta cheti katika kichwa cha `Authorization` na kukithibitisha. Ikiwa kinakubalika basi ombi litaendelea kufanya kile kinachotakiwa (mfano orodha ya zana, soma rasilimali au kazi nyingine ya MCP anaomba mteja).
+Sasa tufike sehemu ya middleware. Hapa tutaunda middleware inayotafuta kitambulisho kwenye kichwa cha `Authorization` na kukithibitisha. Ikiwa kitakubalika basi ombi litaendelea kufanya kile kinachohitajika (kwa mfano kuorodheshwa zana, kusoma rasilimali au huduma nyingine yoyote ya MCP iliyoombwa na mteja).
 
 **Python**
 
-Ili kuunda middleware, tunahitaji kuunda darasa linaloachilia kutoka `BaseHTTPMiddleware`. Kuna sehemu mbili za kuvutia:
+Ili kuunda middleware, tunahitaji kuunda darasa linalo tuwalika `BaseHTTPMiddleware`. Kuna vipande viwili vya kupendeza:
 
-- Ombi `request`, ambayo tunasoma habari za kichwa kutoka.
-- `call_next` calli ya kawaida tunayotakiwa kuita ikiwa mteja ametua cheti tunayokubali.
+- Ombi `request` , tunachosoma taarifa za kichwa kutoka kwake.
+- `call_next` ni callback tunayohitaji kuitisha ikiwa mteja amekuja na kitambulisho tunachokubali.
 
 Kwanza, tunahitaji kushughulikia hali ikiwa kichwa cha `Authorization` hakipo:
 
 ```python
 has_header = request.headers.get("Authorization")
 
-# hakuna kichwa kilichopo, kosa na 401, vinginevyo endelea.
+# hakuna kichwa cha habari kinachopatikana, kosa na 401, vinginevyo endelea.
 if not has_header:
     print("-> Missing Authorization header!")
     return Response(status_code=401, content="Unauthorized")
 ```
 
-Hapa tunatuma ujumbe wa 401 unauthorized kwa sababu mteja ameshindwa uthibitishaji.
+Hapa tunatuma ujumbe wa 401 unauthorized kwa sababu mteja anashindwa uthibitishaji.
 
-Ifuatayo, ikiwa cheti kimetumwa, tunahitaji kukagua uhalali wake kama ifuatavyo:
+Ifuatayo, ikiwa kitambulisho kililetwa, tunahakikisha uhalali wake kama ifuatavyo:
 
 ```python
  if not valid_token(has_header):
@@ -322,7 +322,7 @@ Ifuatayo, ikiwa cheti kimetumwa, tunahitaji kukagua uhalali wake kama ifuatavyo:
     return Response(status_code=403, content="Forbidden")
 ```
 
-Angalia jinsi tunavyotuma ujumbe wa 403 forbidden hapo juu. Tazama middleware kamili hapa chini inatekeleza yote tuliotaja:
+Angalia jinsi tunavyotuma ujumbe wa 403 forbidden hapo juu. Tuwone middleware kamili hapa chini ikitekeleza yote tuliyosema hapo juu:
 
 ```python
 class AuthMiddleware(BaseHTTPMiddleware):
@@ -345,11 +345,10 @@ class AuthMiddleware(BaseHTTPMiddleware):
 
 ```
 
-Nzuri, lakini kuhusu kazi ya `valid_token`? Hii ipo hapa chini:
-:
+Nzuri, lakini vipi kuhusu kazi ya `valid_token`? Hii ipo hapa chini:
 
 ```python
-# USITUMIE kwa ajili ya uzalishaji - iboresha !!
+# USITUMIE kwa ajili ya uzalishaji - boresha !!
 def valid_token(token: str) -> bool:
     # ondoa kiambishi "Bearer "
     if token.startswith("Bearer "):
@@ -358,20 +357,20 @@ def valid_token(token: str) -> bool:
     return False
 ```
 
-Hii inapaswa kuboreshwa zaidi.
+Hii itakuwa bora zaidi kuendelezwa.
 
-MUHIMU: Haukufai kamwe kuweka siri kama hizi ndani ya msimbo. Unapaswa kupata thamani ya kulinganisha nayo kutoka chanzo cha data au kutoka kwa IDP (mtoa huduma wa kitambulisho) au bora zaidi, ruhusu IDP ifanye uthibitishaji.
+MUHIMU: Haujawahi kuweka siri kama hizi katika msimbo. Unapaswa kupata thamani za kulinganisha kutoka kwa chanzo cha data au kutoka kwa IDP (mtoa huduma wa kitambulisho) au bora zaidi, ruhusu IDP ifanye uthibitishaji.
 
 **TypeScript**
 
-Ili kutekeleza hii na Express, tunahitaji kuita njia ya `use` inayopokea middleware functions.
+Ili kutekeleza hili kwa Express, tunahitaji kuita njia `use` inayochukua kazi za middleware.
 
 Tunahitaji:
 
-- Kujishughulisha na variable ya ombi ili kukagua cheti kilichotumwa kupitia sifa ya `Authorization`.
-- Thibitisha cheti, na kama ni halali kuruhusu ombi liendelee na mteja akamilishe ombi lake la MCP (mfano orodha ya zana, soma rasilimali au huduma nyingine yoyote ya MCP).
+- Kuingiliana na variable ya ombi ili kuangalia kitambulisho kilichotumwa chini ya mali ya `Authorization`.
+- Thibitisha kitambulisho, na ikiwa ni halali, ruhusu ombi liendelee na ombi la MCP la mteja lifanye kinachotakiwa (kama orodha za zana, kusoma rasilimali au kingine chochote kinachohusiana na MCP).
 
-Hapa tunakagua kama kichwa cha `Authorization` kiko, na kama hakipo, tunazuia ombi haliji kuendelea:
+Hapa, tunakagua kama kichwa cha `Authorization` kiko na kama hakiko, tunazuia ombi jipite:
 
 ```typescript
 if(!req.headers["authorization"]) {
@@ -380,9 +379,9 @@ if(!req.headers["authorization"]) {
 }
 ```
 
-Kama kichwa hakikutumwa hata katika hatua ya kwanza, unapata kosa la 401.
+Ikiwa kichwa hakitumwi kabisa, unapata 401.
 
-Ifuatayo, tunakagua kama cheti ni halali, kama si halali tena tunazuia ombi lakini na ujumbe tofauti kidogo:
+Ifuatayo, tunakagua kama kitambulisho ni halali, ikiwa siyo tena tunazuia ombi lakini na ujumbe tofauti kidogo:
 
 ```typescript
 if(!isValid(token)) {
@@ -391,9 +390,9 @@ if(!isValid(token)) {
 } 
 ```
 
-Angalia sasa unapokea kosa la 403.
+Angalia jinsi sasa unapata kosa la 403.
 
-Hapa ni msimbo kamili:
+Huu ndiyo msimbo kamili:
 
 ```typescript
 app.use((req, res, next) => {
@@ -416,18 +415,18 @@ app.use((req, res, next) => {
 });
 ```
 
-Tumeandaa seva ya wavuti ili ikubali middleware kukagua cheti ambacho mteja anatumaini kututumia. Vipi kuhusu mteja mwenyewe?
+Tumeandaa seva ya wavuti kukubali middleware ili kuangalia kitambulisho kinachotumwa na mteja. Vipi kuhusu mteja?
 
-### -3- Tuma ombi la wavuti na cheti kupitia kichwa
+### -3- Tuma ombi la wavuti na kitambulisho kupitia kichwa
 
-Tunahitaji kuhakikisha mteja anapitisha cheti kupitia kichwa. Kwa kuwa tuta tumia mteja wa MCP kufanya hivyo, tunahitaji kufahamu jinsi ya kufanya hivyo.
+Tunahitaji kuhakikisha mteja anapita kitambulisho kupitia kichwa. Kama tunatumia mteja wa MCP kufanya hivyo, tunahitaji kujua jinsi ya kufanya hivyo.
 
 **Python**
 
-Kwa mteja, tunahitaji kupitisha kichwa chenye cheti chetu kama ifuatavyo:
+Kwa mteja, tunahitaji kupitisha kichwa na kitambulisho kama ifuatavyo:
 
 ```python
-# USIWEKE thamani moja kwa moja, iwe angalau katika variable ya mazingira au hifadhi salama zaidi
+# USIweke thamani moja kwa moja, iwe angalau katika variable ya mazingira au hifadhi salama zaidi
 token = "secret-token"
 
 async with streamablehttp_client(
@@ -444,24 +443,24 @@ async with streamablehttp_client(
         ) as session:
             await session.initialize()
       
-            # KUFANYA, unachotaka kifanyike kwenye mteja, kwa mfano orodha ya zana, kuita zana nk.
+            # TODO, unachotaka kifanyike katika mteja, mfano orodha ya zana, piga simu kwa zana n.k.
 ```
 
-Angalia jinsi tunavyojaza sifa ya `headers` kama ` headers = {"Authorization": f"Bearer {token}"}`.
+Angalia jinsi tunavyojaza mali ya `headers` kama ` headers = {"Authorization": f"Bearer {token}"}`.
 
 **TypeScript**
 
 Tunaweza kutatua hili kwa hatua mbili:
 
-1. Kujaza kitu cha usanidi na cheti chetu.
-2. Kupitisha kitu cha usanidi kwa usafirishaji.
+1. Jaza kitu cha usanidi na kitambulisho chetu.
+2. Pitisha kitu cha usanidi kwa usafirishaji.
 
 ```typescript
 
-// USIWEKE thamani moja kwa moja kama ilivyoonyeshwa hapa. Angalau iwe kama kigezo cha mazingira na tumia kitu kama dotenv (katika mode ya maendeleo).
+// USIANDIKE thamani moja kwa moja kama ilivyoonyeshwa hapa. Angalau iwe kama variable ya mazingira na tumia kitu kama dotenv (katika mode ya maendeleo).
 let token = "secret123"
 
-// fafanua chaguo la usafiri la mteja
+// eleza kitu cha chaguo la usafirishaji wa mteja
 let options: StreamableHTTPClientTransportOptions = {
   sessionId: sessionId,
   requestInit: {
@@ -471,7 +470,7 @@ let options: StreamableHTTPClientTransportOptions = {
   }
 };
 
-// pita kitu cha chaguo kwa usafiri
+// pita kitu cha chaguo kwa usafirishaji
 async function main() {
    const transport = new StreamableHTTPClientTransport(
       new URL(serverUrl),
@@ -479,46 +478,46 @@ async function main() {
    );
 ```
 
-Hapa unaona juu jinsi ilivyohitajika kuunda kitu cha `options` na kuweka vichwa vyetu chini ya sifa ya `requestInit`.
+Hapa unaona jinsi tulivyotakiwa kuunda kitu cha `options` na kuweka kichwa chetu chini ya mali ya `requestInit`.
 
-MUHIMU: Tunawezaje kuiboresha kutoka hapa? Vizuri, utekelezaji wa sasa una matatizo fulani. Kwanza, kupitisha cheti kama hiki ni hatari isipokuwa angalau unatumia HTTPS. Hata hivyo, cheti kinaweza kuibiwa hivyo unahitaji mfumo ambapo unaweza kufuta tokeni kwa urahisi na kuongeza ukaguzi wa ziada kama kutoka wapi duniani linatoka, kama maombi yanatokea mara nyingi sana (tabia ya bot), kwa ufupi, kuna mengi ya kuzingatia.
+MUHIMU: Tunawezaje kuboresha hili? Naam, utekelezaji huu wa sasa una changamoto. Kwanza, kupitisha kitambulisho kama hiki ni hatari isipokuwa kwa kiwango cha chini unatumia HTTPS. Hata hivyo, kitambulisho kinaweza kuibiwa hivyo unahitaji mfumo ambapo unaweza kukataa tokeni haraka na kuongeza ukaguzi zaidi kama ni wapi duniani kinatoka, kama ombi linafanyika mara nyingi sana (tabia ya bot), kwa kifupi, kuna masuala mengi ya kuzingatia.
 
-Hata hivyo, inapaswa kusemwa kwamba, kwa API rahisi sana ambapo hutaki mtu yeyote aitumie API yako bila kuwa na uthibitisho na kile tunachokifanya hapa ni mwanzo mzuri.
+Hata hivyo, kwa API rahisi sana ambapo hautaki mtu yeyote kupiga API yako bila kuthibitishwa na hiki kilichopo hapa ni mwanzo mzuri.
 
-Kwamba tuseme, najaribu kuimarisha usalama kidogo kwa kutumia muundo uliowekwa kama JSON Web Token, pia inajulikana kama JWT au tokeni za "JOT".
+Kwa kusema hivyo, tujaribu kuimarisha usalama kidogo kwa kutumia muundo uliowekwa kama JSON Web Token, pia inajulikana kama JWT au tokeni za "JOT".
 
 ## JSON Web Tokens, JWT
 
-Hivyo, tunajaribu kuboresha mambo kutoka kwa kupitisha vyeti rahisi sana. Maboresho ya papo hapo tunayopata kwa kutumia JWT ni yapi?
+Hivyo, tunajaribu kuboresha mambo kutoka kwa vitambulisho rahisi mno. Je, maboresho ya haraka tunayopata tunapokubali JWT ni gani?
 
-- **Maboresho ya usalama**. Katika uthibitishaji wa msingi, unatumia jina la mtumiaji na nywila kama tokeni iliyosimbwa base64 (au unatumia API key) mara kwa mara jambo linaloongeza hatari. Kwa JWT, unatumia jina la mtumiaji na nywila na unapata tokeni badala yake na ni tokeni yenye muda wa kumalizika. JWT hukuwezesha kutumia udhibiti wa ufikiaji uliobinafsishwa kwa kutumia majukumu, wigo na ruhusa.
-- **Ukiwa haina hali na unaongezeka kwa urahisi**. JWT ni zilizo na taarifa zinazojimiliki, zinabeba maelezo yote ya mtumiaji na hazihitaji kuhifadhi kikao upande wa seva. Tokeni pia zinaweza kuthibitishwa kiasili.
-- **Ushirikiano na ushirikiano**. JWT ni kiini cha Open ID Connect na hutumiwa na watoa huduma wa utambulisho kama Entra ID, Google Identity na Auth0. Pia hutoa uwezekano wa kutumia kuingia mara moja (single sign on) na mengine mengi yakifanya kuwa daraja la viwanda.
-- **Utaratibu na ufanisi**. JWT pia zinaweza kutumika na API Gateways kama Azure API Management, NGINX na mengine. Pia hutoa usaidizi wa hali za uthibitishaji na mawasiliano kati ya seva na huduma ikiwa ni pamoja na kuigiza na usimamizi wa ruhusa.
-- **Utendaji na caching**. JWT zinaweza kuwekwa cache baada ya kuondolewa usimbaji na hivyo kupunguza hitaji la utambuzi wa mara kwa mara. Hii husaidia hasa kwa programu zenye trafiki kubwa kwa kuboresha kasi na kupunguza mzigo kwenye miundombinu uliyochaguliwa.
-- **Sifa za hali ya juu**. Pia zinasaidia introspection (kukagua uhalali kwenye seva) na kurekebisha (kufanya tokeni isifanye kazi).
+- **Maboresho ya usalama**. Katika uthibitishaji wa msingi, unatumia jina la mtumiaji na nywila kama tokeni iliyosimbwa kwa base64 (au unatumia funguo ya API) mara kwa mara ambayo huongeza hatari. Kwa JWT, unatumia jina la mtumiaji na nywila na unapata tokeni kama kirejesho na tokeni hiyo pia ina kikomo cha muda yaani itakoma muda. JWT inakuwezesha kutumia udhibiti wa upatikanaji kwa usawa mdogo kwa kutumia majukumu, maeneo na ruhusa.
+- **Kutegemea hali ya kuishi au kutokuwa na hali na kuongezeka kwa uwezo.** JWT ni ibeba taarifa zote za mtumiaji na haitegemezi kuhifadhi kikao upande wa seva. Tokeni pia inaweza kuthibitishwa eneo husika.
+- **Uchakataji na ushirikiano.** JWT ni kiini cha Open ID Connect na hutumiwa na watoa kitambulisho wanaojulikana kama Entra ID, Google Identity na Auth0. Hii pia inawezesha kutumia single sign on na zaidi yenye viwango vya biashara.
+- **Ugawaji na kubadilika.** JWT pia inaweza kutumika na API Gateways kama Azure API Management, NGINX na zaidi. Pia huunga mkono hali za uthibitishaji na mawasiliano ya seva kwa seva ikiwa ni pamoja na kuigiza na kuaminisha.
+- **Utendaji na kuhifadhiwa kwa muda.** JWT inaweza kuhifadhiwa baada ya kusimbuliwa ambayo hupunguza hitaji la kuchambua tena. Hii husaidia hasa kwa programu za trafiki kubwa kwa kuboresha mtiririko na kupunguza mzigo kwenye miundombinu uliyochagua.
+- **Vipengele vya juu zaidi.** Pia huunga mkono utambuzi (kuangalia uhalali kwenye seva) na kukataa (kufanya tokeni isiwe halali).
 
-Kwa faida zote hizi, tusee jinsi ya kuboresha utekelezaji wetu hadi ngazi inayofuata.
+Kwa faida hizi zote, tuchunguze jinsi tunavyoweza kuboresha utekelezaji wetu hadi kiwango kingine.
 
 ## Kubadilisha uthibitishaji wa msingi kuwa JWT
 
-Hivyo, mabadiliko ambayo tunahitaji kwa kiwango kikubwa ni:
+Hivyo, mabadiliko tunayohitaji kufanya kwa mtazamo wa juu ni:
 
-- **Jifunze jinsi ya kujenga tokeni ya JWT** na kuifanya tayari kutumwa kutoka kwa mteja kwenda seva.
-- **Thibitisha tokeni ya JWT**, na ikiwa ni halali, ruhusu mteja kupata rasilimali zetu.
-- **Hifadhi ya tokeni salama**. Jinsi tunavyohifadhi tokeni hii.
-- **Linda njia za kufikia**. Tunahitaji kulinda njia, katika kesi yetu, tunahitaji kulinda njia na vipengele maalum vya MCP.
-- **Ongeza tokeni za ukarabati**. Hakikisha tunaunda tokeni za muda mfupi lakini tokeni za ukarabati za muda mrefu ambazo zinaweza kutumika kupata tokeni mpya ikiwa zinamalizika muda. Pia hakikisha kuna njia ya ukarabati na mkakati wa mzunguko.
+- **Jifunza kuunda tokeni ya JWT** na kuitayarisha kutumwa kutoka kwa mteja kwenda seva.
+- **Thibitisha tokeni ya JWT**, na ikiwa ndivyo, ruhusu mteja kupata rasilimali zetu.
+- **Hifadhi tokeni kwa usalama**. Jinsi tunavyohifadhi tokeni hii.
+- **Linda njia za kuingia**. Tunahitaji kulinda njia, katika kesi yetu, kulinda njia na huduma maalum za MCP.
+- **Ongeza tokeni za upya**. Hakikisha tunaunda tokeni fupi muda lakini tokeni za upya zenye maisha marefu zinazoweza kutumiwa kupata tokeni mpya ikiwa zitamalizika muda. Pia hakikisha kuna njia ya upya tokeni na mbinu ya mzunguko.
 
-### -1- Jenga tokeni ya JWT
+### -1- Tengeneza tokeni ya JWT
 
-Kwanza kabisa, tokeni ya JWT ina sehemu zifuatazo:
+Kwanza, tokeni ya JWT ina sehemu zifuatazo:
 
-- **kichwa**, algorithm inayotumiwa na aina ya tokeni.
-- **mzigo**, madai, kama sub (mtumiaji au kitu kinacho wakilishwa na tokeni. Katika tukio la uthibitishaji hili ni kawaida userid), exp (muda wa kumalizika) role (jina la jukumu)
-- **sahihi**, imesainiwa kwa siri au ufunguo wa kibinafsi.
+- **kichwa**, algoriti inayotumika na aina ya tokeni.
+- **mzigo**, madai, kama sub (mtumiaji au chombo kinachowakilishwa na tokeni. Katika hali ya uthibitishaji huu kawaida ni userid), exp (wakati wa ukomo) role (jajukumu)
+- **sahihi**, imesainiwa na siri au funguo binafsi.
 
-Kwa hili, tutahitaji kujenga kichwa, mzigo na tokeni iliyosimbwa.
+Kwa hili, tutahitaji kutengeneza kichwa, mzigo na tokeni iliyosimbwa.
 
 **Python**
 
@@ -529,7 +528,7 @@ import jwt
 from jwt.exceptions import ExpiredSignatureError, InvalidTokenError
 import datetime
 
-# Ufunguo wa siri unaotumika kusaini JWT
+# Funguo la siri linalotumika kusaini JWT
 secret_key = 'your-secret-key'
 
 header = {
@@ -537,29 +536,29 @@ header = {
     "typ": "JWT"
 }
 
-# taarifa za mtumiaji na madai yake na muda wake wa kumalizika
+# habari za mtumiaji na madai yake na wakati wa kumalizika
 payload = {
     "sub": "1234567890",               # Mada (kitambulisho cha mtumiaji)
-    "name": "User Userson",                # Dhamana maalum
-    "admin": True,                     # Dhamana maalum
-    "iat": datetime.datetime.utcnow(),# Imetolewa saa
-    "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=1)  # Muda wa kumalizika
+    "name": "User Userson",                # Dawa maalum
+    "admin": True,                     # Dawa maalum
+    "iat": datetime.datetime.utcnow(),# Imetolewa
+    "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=1)  # Kumalizika
 }
 
-# funga msingi
+# ficha
 encoded_jwt = jwt.encode(payload, secret_key, algorithm="HS256", headers=header)
 ```
 
-Katika msimbo hapo juu tume:
+Katika msimbo huu tulifanya:
 
-- Taja kichwa kwa kutumia HS256 kama algorithm na aina kuwa JWT.
-- Tunda mzigo wenye somo au kitambulisho cha mtumiaji, jina la mtumiaji, jukumu, wakati ulilotolewa na wakati utakapokamilika hivyo kutekeleza kipengele cha muda tulichotaja awali.
+- Kutoa kichwa tukiwa tumetumia HS256 kama algoriti na aina kuwa JWT.
+- Kutengeneza mzigo unaoonyesha somo au kitambulisho cha mtumiaji, jina la mtumiaji, jukumu, wakati ulipotolewa na wakati utakapoisha hivyo kutekeleza kipengele cha kikomo cha muda tulichosema mapema.
 
 **TypeScript**
 
-Hapa tutahitaji baadhi ya utegemezi utakaotusaidia kujenga tokeni ya JWT.
+Hapa tutahitaji tegemezi zinazotusaidia kuunda tokeni ya JWT.
 
-Utegemezi
+Tegemezi
 
 ```sh
 
@@ -567,29 +566,29 @@ npm install jsonwebtoken
 npm install --save-dev @types/jsonwebtoken
 ```
 
-Sasa tulipokuwa na hayo, tuunde kichwa, mzigo na kupitia hicho tunda tokeni iliyosimbwa.
+Sasa tunapokuwa na hayo, tutoe kichwa, mzigo na kupitia hilo tengeneza tokeni iliyosimbwa.
 
 ```typescript
 import jwt from 'jsonwebtoken';
 
-const secretKey = 'your-secret-key'; // Tumia mabadiliko ya mazingira katika uzalishaji
+const secretKey = 'your-secret-key'; // Tumia env vars katika uzalishaji
 
-// Elezea mzigo wa data
+// Fafanua payload
 const payload = {
   sub: '1234567890',
   name: 'User usersson',
   admin: true,
-  iat: Math.floor(Date.now() / 1000), // Imetolewa wakati
-  exp: Math.floor(Date.now() / 1000) + 60 * 60 // Huitimisha baada ya saa 1
+  iat: Math.floor(Date.now() / 1000), // Imetolewa saa
+  exp: Math.floor(Date.now() / 1000) + 60 * 60 // Inakaribia kumalizika baada ya saa 1
 };
 
-// Elezea kichwa (hiari, jsonwebtoken huweka vipaumbele)
+// Fafanua kichwa (hiari, jsonwebtoken huweka chaguo-msingi)
 const header = {
   alg: 'HS256',
   typ: 'JWT'
 };
 
-// Tengeneza tokeni
+// Unda tokeni
 const token = jwt.sign(payload, secretKey, {
   algorithm: 'HS256',
   header: header
@@ -600,15 +599,15 @@ console.log('JWT:', token);
 
 Tokeni hii ni:
 
-Imesainiwa kwa kutumia HS256
+Imeandikwa kwa kutumia HS256
 Inatumika kwa saa 1
 Inajumuisha madai kama sub, name, admin, iat, na exp.
 
 ### -2- Thibitisha tokeni
 
-Pia tunahitaji kuthibitisha tokeni, jambo hili linapaswa kufanyika kwenye seva ili kuhakikisha kile mteja anatuma ni halali. Kuna mambo mengi ya kukagua hapa kuanzia muundo wa tokeni hadi uhalali wake. Pia unahimizwa kuongeza ukaguzi mwingine kuona kama mtumiaji yupo kwenye mfumo wako na zaidi.
+Pia tutahitaji kuthibitisha tokeni, jambo ambalo tunapaswa kufanya kwenye seva ili kuhakikisha kile mteja anachotutumia ni halali. Kuna ukaguzi mwingi tunapaswa kufanya hapa kutoka kuthibitisha muundo wake hadi uhalali wake. Pia unahimizwa kuongeza ukaguzi mwingine kuona kama mtumiaji yupo kwenye mfumo wako na zaidi.
 
-Ili kuthibitisha tokeni, tunahitaji kuihariri ili tuisome na kuanza kuangalia uhalali wake:
+Ili kuthibitisha tokeni, tunahitaji kuisimbua ili tuliweze kusoma na kisha kuanza kuangalia uhalali wake:
 
 **Python**
 
@@ -628,11 +627,11 @@ except InvalidTokenError as e:
 
 ```
 
-Katika msimbo huu, tunaita `jwt.decode` tukitumia tokeni, ufunguo wa siri na algorithm iliyochaguliwa kama ingizo. Angalia jinsi tunavyotumia muundo wa jaribu-kamata kwani uthibitishaji usiofanikiwa husababisha kosa.
+Katika msimbo huu, tunaita `jwt.decode` tukitumia tokeni, funguo nyeti na algoriti iliyochaguliwa kama viingilio. Angalia jinsi tunavyotumia muundo wa try-catch kwani kuthibitisha kwa kushindwa husababisha kosa.
 
 **TypeScript**
 
-Hapa tunahitaji kuita `jwt.verify` kupata toleo lililosomwa la tokeni ambalo tunaweza kuchambua zaidi. Ikiwa wito huu utashindwa, inamaanisha muundo wa tokeni si sahihi au haifanyi kazi tena.
+Hapa tunahitaji kuitisha `jwt.verify` kupata toleo lililosimbuliwa la tokeni ambalo tunaweza kuchambua zaidi. Ikiwa mwito huu utashindwa, hiyo ina maana muundo wa tokeni si sahihi au haiko halali tena.
 
 ```typescript
 
@@ -644,18 +643,18 @@ try {
 }
 ```
 
-KUMBUKA: kama tulivyosema awali, tunapaswa kufanya ukaguzi wa ziada kuhakikisha tokeni hii inaonyesha mtumiaji katika mfumo wetu na kuhakikisha mtumiaji ana haki anazodai.
+KUMBUKA: kama ilivyotajwa awali, tunapaswa kufanya ukaguzi zaidi kuhakikisha tokeni hii inaonyesha mtumiaji katika mfumo wetu na kuhakikisha mtumiaji ana haki alizodai.
 
-Ifuatayo, tuchunguze udhibiti wa ufikiaji unaotegemea jukumu, pia unaojulikana kama RBAC.
-## Kuongeza udhibiti wa ufikiaji wa msingi wa majukumu
+Ifuatayo, tuchukulie udhibiti wa upatikanaji wa msingi wa majukumu, unaojulikana pia kama RBAC.
+## Kuongeza udhibiti wa upatikanaji kulingana na majukumu
 
-Wazo ni kwamba tunataka kueleza kwamba majukumu tofauti yana ruhusa tofauti. Kwa mfano, tunadhani admin anaweza kufanya kila kitu na kwamba watumiaji wa kawaida wanaweza kusoma/kuandika na kwamba mgeni anaweza kusoma tu. Kwa hivyo, hapa kuna viwango vya ruhusa vinavyowezekana:
+Dhana ni kwamba tunataka kusema kuwa majukumu tofauti yana ruhusa tofauti. Kwa mfano, tunadhani msimamizi anaweza kufanya kila kitu na mtumiaji wa kawaida anaweza kusoma/kuandika na mgeni anaweza kusoma tu. Kwa hiyo, hapa kuna viwango vya ruhusa vinavyowezekana:
 
 - Admin.Write 
 - User.Read
 - Guest.Read
 
-Tuchunguze jinsi tunaweza kutekeleza udhibiti kama huo kwa kutumia middleware. Middleware inaweza kuongezwa kwa kila njia pamoja na kwa njia zote.
+Tuchunguze jinsi tunaweza kutekeleza udhibiti huo kwa kutumia middleware. Middleware zinaweza kuongezwa kwa kila njia pamoja na kwa njia zote.
 
 **Python**
 
@@ -664,8 +663,8 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.responses import JSONResponse
 import jwt
 
-# USIWE na siri ndani ya msimbo kama huu, huu ni kwa madhumuni ya kuonyesha tu. Isome kutoka mahali salama.
-SECRET_KEY = "your-secret-key" # weka hii katika variable ya env
+# USIweke siri kwenye msimbo kama huu, huu ni kwa madhumuni ya kuonyesha tu. Iisome kutoka mahali salama.
+SECRET_KEY = "your-secret-key" # weka hii kwenye variable ya env
 REQUIRED_PERMISSION = "User.Read"
 
 class JWTPermissionMiddleware(BaseHTTPMiddleware):
@@ -696,17 +695,17 @@ Kuna njia chache tofauti za kuongeza middleware kama ifuatavyo:
 
 ```python
 
-# Jambo la 1: ongeza middleware wakati wa kujenga programu ya starlette
+# Alt 1: ongeza middleware wakati wa kuunda programu ya starlette
 middleware = [
     Middleware(JWTPermissionMiddleware)
 ]
 
 app = Starlette(routes=routes, middleware=middleware)
 
-# Jambo la 2: ongeza middleware baada ya programu ya starlette kujengwa tayari
+# Alt 2: ongeza middleware baada ya programu ya starlette kuundwa tayari
 starlette_app.add_middleware(JWTPermissionMiddleware)
 
-# Jambo la 3: ongeza middleware kwa kila njia
+# Alt 3: ongeza middleware kwa kila njia
 routes = [
     Route(
         "/mcp",
@@ -718,14 +717,14 @@ routes = [
 
 **TypeScript**
 
-Tunaweza kutumia `app.use` na middleware ambayo itafanya kazi kwa maombi yote. 
+Tunaweza kutumia `app.use` na middleware itakayotekelezwa kwa maombi yote.
 
 ```typescript
 app.use((req, res, next) => {
     console.log('Request received:', req.method, req.url, req.headers);
     console.log('Headers:', req.headers["authorization"]);
 
-    // 1. Angalia kama kichwa cha idhini kimetumwa
+    // 1. Angalia kama kichwa cha idhini kimesafirishwa
 
     if(!req.headers["authorization"]) {
         res.status(401).send('Unauthorized');
@@ -761,11 +760,11 @@ app.use((req, res, next) => {
 
 ```
 
-Kuna mambo kadhaa ambayo tunaweza kuruhusu middleware yetu na ambayo middleware yetu INASTAA kufanyia kazi, yaani:
+Kuna mambo kadhaa tunayoweza kuruhusu middleware yetu na ambayo middleware yetu INASTAHILI kufanya, yaani:
 
-1. Angalia kama kichwa cha idhini kipo
-2. Angalia kama tokeni ni halali, tunaita `isValid` ambayo ni njia tuliyoandika inayokagua uhalali na usahihi wa tokeni ya JWT.
-3. Thibitisha kuwa mtumiaji yupo katika mfumo wetu, tunapaswa kuangalia hili.
+1. Kagua kama kichwa cha idhini kipo
+2. Kagua kama tokeni ni halali, tunaita `isValid` ambayo ni njia tuliyoandika inayokagua uadilifu na uhalali wa tokeni ya JWT.
+3. Thibitisha mtumiaji yupo katika mfumo wetu, tunapaswa kuangalia hili.
 
    ```typescript
     // watumiaji katika DB
@@ -777,14 +776,14 @@ Kuna mambo kadhaa ambayo tunaweza kuruhusu middleware yetu na ambayo middleware 
    function isExistingUser(token) {
      let decodedToken = verifyToken(token);
 
-     // TODO, hakikisha kama mtumiaji yupo katika DB
+     // TODO, angalia kama mtumiaji yupo katika DB
      return users.includes(decodedToken?.name || "");
    }
    ```
 
-   Hapo juu, tumetengeneza orodha rahisi sana ya `users`, ambayo inapaswa kuwa katika hifadhidata bila shaka.
+   Hapo juu, tumetengeneza orodha rahisi sana ya `users`, ambayo inapaswa kuwepo kwenye database bila shaka.
 
-4. Zaidi ya hayo, tunapaswa pia kuangalia tokeni ina ruhusa sahihi.
+4. Zaidi ya hayo, tunapaswa pia kuhakikisha tokeni ina ruhusa sahihi.
 
    ```typescript
    if(!hasScopes(token, ["User.Read"])){
@@ -792,7 +791,7 @@ Kuna mambo kadhaa ambayo tunaweza kuruhusu middleware yetu na ambayo middleware 
    }
    ```
 
-   Katika msimbo huu hapo juu kutoka kwa middleware, tunakagua kwamba tokeni ina ruhusa ya User.Read, kama haiko tunatuma kosa la 403. Hapa chini ni njia ya msaada `hasScopes`.
+   Katika msimbo huu hapo juu unaotoka middleware, tunakagua kwamba tokeni ina ruhusa ya User.Read, ikiwa hapana tunatuma kosa la 403. Hapo chini ni njia ya msaada `hasScopes`.
 
    ```typescript
    function hasScopes(scope: string, requiredScopes: string[]) {
@@ -841,15 +840,15 @@ app.use((err, req, res, next) => {
 
 ```
 
-Sasa umeona jinsi middleware inavyoweza kutumika kwa uthibitishaji na idhini, vipi kuhusu MCP, je, hubadilisha jinsi tunavyofanya uthibitishaji? Tuchunguze katika sehemu inayofuata.
+Sasa umeona jinsi middleware inaweza kutumika kwa uthibitishaji na idhini, je, kuhusu MCP, je, inabadilisha jinsi tunavyofanya uthibitishaji? Tujifunze katika sehemu inayofuata.
 
 ### -3- Ongeza RBAC kwa MCP
 
-Umeona hadi sasa jinsi unavyoweza kuongeza RBAC kupitia middleware, hata hivyo, kwa MCP hakuna njia rahisi ya kuongeza RBAC kwa kipengele cha MCP kimoja, basi tunafanya nini? Naam, tunapaswa tu kuongeza msimbo kama huu unaokagua katika kesi hii kama mteja ana haki ya kutumia chombo fulani:
+Umeona hadi sasa jinsi unavyoweza kuongeza RBAC kupitia middleware, hata hivyo, kwa MCP hakuna njia rahisi ya kuongeza RBAC ya kipengele kwa kila MCP, basi tunafanya nini? Naam, tunahitaji tu kuongeza msimbo kama huu unaokagua katika kesi hii kama mteja ana haki ya kuita zana maalum:
 
-Una chaguo kadhaa tofauti jinsi ya kufanikisha RBAC kwa kila kipengele, hapa kuna baadhi:
+Una chaguzi kadhaa tofauti kuhusu jinsi ya kufanikisha RBAC kwa kila kipengele, hizi ni baadhi:
 
-- Ongeza ukaguzi kwa kila chombo, rasilimali, au maelekezo ambapo unahitaji kuangalia kiwango cha ruhusa.
+- Ongeza ukaguzi kwa kila zana, rasilimali, au ombi ambapo unahitaji kuangalia kiwango cha ruhusa.
 
    **python**
 
@@ -859,7 +858,7 @@ Una chaguo kadhaa tofauti jinsi ya kufanikisha RBAC kwa kila kipengele, hapa kun
       try:
           check_permissions(role="Admin.Write", request)
       catch:
-        pass # mteja alipata tatizo la idhini, onyesha kosa la idhini
+        pass # mteja ameshindwa idhini, onyesha kosa la idhini
    ```
 
    **typescript**
@@ -876,7 +875,7 @@ Una chaguo kadhaa tofauti jinsi ya kufanikisha RBAC kwa kila kipengele, hapa kun
       
       try {
         checkPermissions("Admin.Write", request);
-        // todo, tuma kitambulisho kwa productService na entry ya mbali
+        // kufanya, tuma kitambulisho kwa productService na ingizo la mbali
       } catch(Exception e) {
         console.log("Authorization error, you're not allowed");  
       }
@@ -889,7 +888,7 @@ Una chaguo kadhaa tofauti jinsi ya kufanikisha RBAC kwa kila kipengele, hapa kun
    ```
 
 
-- Tumia mbinu ya seva ya hali ya juu na wasindikaji wa maombi ili kupunguza idadi ya maeneo unayohitaji kufanya ukaguzi.
+- Tumia mbinu ya seva ya hali ya juu na wataalamu wa maombi ili kupunguza idadi ya sehemu unazotakiwa kufanya ukaguzi.
 
    **Python**
 
@@ -913,9 +912,9 @@ Una chaguo kadhaa tofauti jinsi ya kufanikisha RBAC kwa kila kipengele, hapa kun
      user_permissions = request.user.permissions
      required_permissions = tool_permission.get(name, [])
      if not has_permission(user_permissions, required_permissions):
-        # Inua kosa "Huna ruhusa ya kutumia zana {name}"
+        # Toa kosa "Huna ruhusa ya kutumia zana {name}"
         raise Exception(f"You don't have permission to call tool {name}")
-     # endelea na itumie zana
+     # endelea na kuitisha zana
      # ...
    ```   
    
@@ -925,7 +924,7 @@ Una chaguo kadhaa tofauti jinsi ya kufanikisha RBAC kwa kila kipengele, hapa kun
    ```typescript
    function hasPermission(userPermissions: string[], requiredPermissions: string[]): boolean {
        if (!Array.isArray(userPermissions) || !Array.isArray(requiredPermissions)) return false;
-       // Rudisha kweli ikiwa mtumiaji ana angalau ruhusa moja inayohitajika
+       // Rudisha kweli ikiwa mtumiaji ana angalau idhini moja inayohitajika
        
        return requiredPermissions.some(perm => userPermissions.includes(perm));
    }
@@ -943,49 +942,49 @@ Una chaguo kadhaa tofauti jinsi ya kufanikisha RBAC kwa kila kipengele, hapa kun
    });
    ```
 
-   Kumbuka, utahitaji kuhakikisha middleware yako inahifadhi tokeni iliyo shughulikiwa kwenye mali ya user ya ombi ili msimbo uliotajwa juu uwe rahisi.
+   Kumbuka, utahitaji kuhakikisha middleware yako inaweka tokeni iliyotafsiriwa kwenye mali ya user ya ombi ili msimbo hapo juu uwe rahisi.
 
 ### Muhtasari
 
-Sasa tumekutana na jinsi ya kuongeza msaada wa RBAC kwa ujumla na kwa MCP hasa, ni wakati wa kujaribu kutekeleza usalama kwa mwenyewe ili kuhakikisha umeelewa dhana zilizokuwezeshwa.
+Sasa tulipopitia jinsi ya kuongeza msaada wa RBAC kwa ujumla na kwa MCP hasa, ni wakati wa kujaribu kutekeleza usalama mwenyewe ili kuhakikisha umeelewa dhana zilizokuwasilishwa.
 
-## Kazi ya Kwanza: Tengeneza seva ya MCP na mteja wa MCP kwa kutumia uthibitishaji wa msingi
+## Kazi ya Nyumbani 1: Jenga seva ya mcp na mteja wa mcp kwa kutumia uthibitishaji wa msingi
 
-Hapa utachukua kile ulichojifunza kuhusu jinsi ya kutuma taarifa za kuingia kupitia vichwa vya maombi.
+Hapa utachukua kile ulichojifunza kuhusu kutuma vyeti kupitia vichwa.
 
-## Suluhisho la Kwanza
+## Suluhisho 1
 
-[Solution 1](./code/basic/README.md)
+[Suluhisho 1](./code/basic/README.md)
 
-## Kazi ya Pili: Boresha suluhisho kutoka Kazi ya Kwanza kutumia JWT
+## Kazi ya Nyumbani 2: Boresha suluhisho kutoka Kazi ya Nyumbani 1 kutumia JWT
 
-Chukua suluhisho la kwanza lakini wakati huu, tuiboreshe.
+Chukua suluhisho la kwanza lakini wakati huu, tujiboreshe.
 
 Badala ya kutumia Basic Auth, tumia JWT.
 
-## Suluhisho la Pili
+## Suluhisho 2
 
-[Solution 2](./solution/jwt-solution/README.md)
+[Suluhisho 2](./solution/jwt-solution/README.md)
 
 ## Changamoto
 
-Ongeza RBAC kwa kila chombo kama tulivyoelezea katika sehemu "Ongeza RBAC kwa MCP".
+Ongeza RBAC kwa kila zana kama tulivyoelezea katika sehemu "Ongeza RBAC kwa MCP".
 
 ## Muhtasari
 
-Tumekuwa tukijifunza mengi katika sura hii, kutoka usalama wa kutokuwa na usalama wowote, hadi usalama wa msingi, hadi JWT na jinsi inavyoweza kuongezwa kwa MCP.
+Tumepata mafunzo mengi katika sura hii, kutoka kwa ukosefu wa usalama kabisa, hadi usalama wa msingi, hadi JWT na jinsi inavyoweza kuongezwa kwa MCP.
 
-Tumetengeneza msingi imara na JWT maalum, lakini tunapokua, tunahamia kuelekea mfano wa utambulisho wa viwango. Kukubali IdP kama Entra au Keycloak kunatuwezesha kuhamisha utoaji tokeni, uhakiki, na usimamizi wa maisha kwa jukwaa la kuaminika — kuturuhusu kuzingatia mantiki ya programu na uzoefu wa mtumiaji.
+Tumejenga msingi imara na JWT maalum, lakini tunapokua, tunaelekea kwenye mfano wa utambulisho wa viwango. Kutumia IdP kama Entra au Keycloak kunatupa nafasi ya kuhamisha utoaji wa tokeni, uhakiki, na usimamizi wa mzunguko kutoka kwa jukwaa linaloaminika — kutuwezesha kuzingatia mantiki ya programu na uzoefu wa mtumiaji.
 
-Kwa hiyo, tuna sura ya [juu zaidi ya Entra](../../05-AdvancedTopics/mcp-security-entra/README.md)
+Kwa hilo, tuna sura ya [kina zaidi kuhusu Entra](../../05-AdvancedTopics/mcp-security-entra/README.md).
 
-## Nini Kifuatao
+## Ifuatayo
 
-- Ifuatayo: [Kuweka MCP Hosts](../12-mcp-hosts/README.md)
+- Ifuatayo: [Kuweka Wenyeji wa MCP](../12-mcp-hosts/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Tangazo la Kutojumuisha**:  
-Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kwa usahihi, tafadhali fahamu kuwa tafsiri za moja kwa moja zinaweza kuwa na makosa au ukosefu wa usahihi. Hati ya awali katika lugha yake ya asili inapaswa kuchukuliwa kama chanzo cha mamlaka. Kwa habari muhimu, tafsiri ya kitaalamu kutoka kwa mwanadamu inapendekezwa. Hatuwezi kuwajibika kwa maelewano mabaya au tafsiri potofu zinazotokana na matumizi ya tafsiri hii.
+**Ugawaji wa Jukumu**:  
+Hati hii imetafsiriwa kwa kutumia huduma ya kutafsiri kwa AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kwa usahihi, tafadhali fahamu kwamba tafsiri za moja kwa moja zinaweza kuwa na makosa au upotovu wa ukweli. Hati asilia katika lugha yake ya asili inapaswa kuchukuliwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu ya binadamu inashauriwa. Hatuwajibiki kwa kutafsiri vibaya au kutoelewana kunakotokana na matumizi ya tafsiri hii.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

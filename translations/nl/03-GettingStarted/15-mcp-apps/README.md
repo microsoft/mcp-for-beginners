@@ -1,24 +1,24 @@
 # MCP Apps
 
-MCP Apps is een nieuw paradigma in MCP. Het idee is dat je niet alleen gegevens teruggeeft vanuit een tool-aanroep, maar ook informatie verstrekt over hoe met deze informatie moet worden omgegaan. Dit betekent dat toolresultaten nu UI-informatie kunnen bevatten. Waarom zouden we dat willen? Nou, denk eens aan hoe je dingen tegenwoordig doet. Waarschijnlijk consumeer je de resultaten van een MCP Server door er een soort frontend voor te zetten, dat is code die je moet schrijven en onderhouden. Soms is dat wat je wilt, maar soms zou het geweldig zijn als je gewoon een stukje informatie kunt binnenhalen dat zelfstandig is, met alles erin van data tot gebruikersinterface.
+MCP Apps is een nieuw paradigma binnen MCP. Het idee is dat je niet alleen reageert met data terug van een toolaanroep, maar ook informatie geeft over hoe met deze informatie omgegaan moet worden. Dat betekent dat toolresultaten nu UI-informatie kunnen bevatten. Waarom zouden we dat willen? Nou, denk aan hoe je het tegenwoordig doet. Je consumeert waarschijnlijk de resultaten van een MCP Server door er een soort frontend voor te zetten, dat is code die je moet schrijven en onderhouden. Soms is dat wat je wilt, maar soms zou het fijn zijn als je gewoon een stukje informatie kunt binnenhalen dat zelfvoorzienend is en alles bevat, van data tot gebruikersinterface.
 
 ## Overzicht
 
-Deze les biedt praktische aanwijzingen over MCP Apps, hoe je ermee aan de slag kunt gaan en hoe je het kunt integreren in je bestaande Web Apps. MCP Apps is een zeer nieuwe toevoeging aan de MCP Standard.
+Deze les biedt praktische richtlijnen over MCP Apps, hoe je ermee kunt beginnen en hoe je het kunt integreren in je bestaande Web Apps. MCP Apps is een zeer nieuwe toevoeging aan de MCP-standaard.
 
 ## Leerdoelen
 
-Aan het einde van deze les kun je:
+Aan het einde van deze les ben je in staat om:
 
-- Uitleggen wat MCP Apps zijn.
-- Wanneer je MCP Apps moet gebruiken.
-- Je eigen MCP Apps bouwen en integreren.
+- Uit te leggen wat MCP Apps zijn.
+- Te bepalen wanneer je MCP Apps gebruikt.
+- Je eigen MCP Apps te bouwen en te integreren.
 
 ## MCP Apps - hoe werkt het
 
-Het idee met MCP Apps is om een respons te bieden die in wezen een component is om te renderen. Zo'n component kan zowel visuals als interactiviteit hebben, bijvoorbeeld knopklikken, gebruikersinvoer en meer. Laten we beginnen met de serverzijde en onze MCP Server. Om een MCP App-component te maken, moet je een tool creëren, maar ook de application resource. Deze twee helften zijn verbonden door een resourceUri. 
+Het idee van MCP Apps is om een antwoord te geven dat in wezen een component is die gerenderd kan worden. Zo’n component kan zowel visuele elementen als interactiviteit bevatten, bijvoorbeeld knopklikken, gebruikersinvoer en meer. Laten we beginnen met de serverzijde en onze MCP Server. Om een MCP App-component te maken, moet je een tool creëren maar ook de applicatieresource. Deze twee helften zijn verbonden door een resourceUri.
 
-Hier is een voorbeeld. Laten we proberen te visualiseren wat erbij betrokken is en welke delen wat doen:
+Hier is een voorbeeld. Laten we proberen te visualiseren wat erbij komt kijken en welke onderdelen wat doen:
 
 ```text
 server.ts -- responsible for registering tools and the component as a UI component
@@ -27,7 +27,7 @@ src/
 mcp-app.html -- the user interface
 ```
 
-Deze visual beschrijft de architectuur voor het maken van een component en de logica ervan.
+Deze visual beschrijft de architectuur voor het creëren van een component en de logica ervan.
 
 ```mermaid
 flowchart LR
@@ -39,33 +39,33 @@ flowchart LR
     C --- U
   end
 
-  subgraph Parent[Ouderwebpagina]
-    H[Hostapplicatie]
+  subgraph Parent[Ouder webpagina]
+    H[Host applicatie]
     IFRAME[IFrame-container]
     H -->|Injecteer MCP App UI| IFRAME
   end
 
   subgraph Frontend[Frontend: MCP App binnen IFrame]
     UI["Gebruikersinterface: mcp-app.html"]
-    EH["Evenementhandlers: src/mcp-app.ts"]
+    EH["Eventhandlers: src/mcp-app.ts"]
     UI --> EH
   end
 
   IFRAME --> UI
-  EH -->|Klik activeert server tool oproep| T
+  EH -->|Klik triggert server tool-aanroep| T
   T -->|Tool resultaatdata| EH
-  EH -->|Verzend bericht naar ouderpagina| H
+  EH -->|Verzend bericht naar de ouderpagina| H
 ```
-Laten we proberen de verantwoordelijkheden voor backend en frontend respectievelijk te beschrijven.
+Laten we vervolgens de verantwoordelijkheden voor backend en frontend respectievelijk beschrijven.
 
 ### De backend
 
-We moeten hier twee dingen doen:
+Er zijn twee dingen die we hier moeten bereiken:
 
-- De tools registreren waarmee we willen interacteren.
-- De component definiëren. 
+- Registreren van de tools waarmee we willen interacteren.
+- De component definiëren.
 
-**De tool registreren**
+**Het registreren van de tool**
 
 ```typescript
 registerAppTool(
@@ -85,9 +85,9 @@ registerAppTool(
 
 ```
 
-De bovenstaande code beschrijft het gedrag, waarbij het een tool genaamd `get-time` blootstelt. Deze neemt geen invoer, maar levert uiteindelijk de huidige tijd. We hebben de mogelijkheid om een `inputSchema` te definiëren voor tools waar we gebruikersinvoer voor moeten kunnen accepteren.
+De bovenstaande code beschrijft het gedrag, waarbij het een tool exposeert genaamd `get-time`. Deze neemt geen input maar genereert de huidige tijd. We hebben de mogelijkheid een `inputSchema` te definiëren voor tools waarin we gebruikersinvoer moeten accepteren.
 
-**De component registreren**
+**Het registreren van de component**
 
 In hetzelfde bestand moeten we ook de component registreren:
 
@@ -112,18 +112,18 @@ registerAppResource(
 );
 ```
 
-Merk op hoe we `resourceUri` vermelden om de component met zijn tools te verbinden. Ook interessant is de callback waarin we het UI-bestand laden en de component teruggeven.
+Let op hoe we `resourceUri` vermelden om de component met zijn tools te verbinden. Ook interessant is de callback waarmee we het UI-bestand laden en de component retourneren.
 
-### De frontend van de component
+### De component frontend
 
 Net als bij de backend zijn hier twee onderdelen:
 
-- Een frontend geschreven in pure HTML.
-- Code die evenementen afhandelt en wat te doen, bijvoorbeeld tools aanroepen of berichten naar het hoofdvenster sturen.
+- Een frontend geschreven in puur HTML.
+- Code die gebeurtenissen afhandelt en wat te doen, bijvoorbeeld tools aanroepen of berichten naar het oudervenster sturen.
 
 **Gebruikersinterface**
 
-Laten we eens kijken naar de gebruikersinterface.
+Laten we kijken naar de gebruikersinterface.
 
 ```html
 <!-- mcp-app.html -->
@@ -143,48 +143,48 @@ Laten we eens kijken naar de gebruikersinterface.
 </html>
 ```
 
-**Evenementkoppeling**
+**Evenementenkoppeling**
 
-Het laatste onderdeel is de evenementkoppeling. Dat betekent dat we identificeren welk deel van onze UI event handlers nodig heeft en wat te doen als er events worden opgewekt:
+Het laatste stuk is het koppelen van events. Dat betekent dat we identificeren welk deel van onze UI event handlers nodig heeft en wat te doen wanneer events worden geactiveerd:
 
 ```typescript
 // mcp-app.ts
 
 import { App } from "@modelcontextprotocol/ext-apps";
 
-// Elementreferenties ophalen
+// Verkrijg elementreferenties
 const serverTimeEl = document.getElementById("server-time")!;
 const getTimeBtn = document.getElementById("get-time-btn")!;
 
-// App-instantie maken
+// Maak app-instantie aan
 const app = new App({ name: "Get Time App", version: "1.0.0" });
 
-// Verwerk toolresultaten van de server. Zet dit vóór `app.connect()` om te voorkomen
-// dat het initiële toolresultaat mist.
+// Verwerk toolresultaten van de server. Zet vóór `app.connect()` om te voorkomen
+// dat het initiële toolresultaat ontbreekt.
 app.ontoolresult = (result) => {
   const time = result.content?.find((c) => c.type === "text")?.text;
   serverTimeEl.textContent = time ?? "[ERROR]";
 };
 
-// Koppeling knopklik
+// Verbind knopklik
 getTimeBtn.addEventListener("click", async () => {
-  // `app.callServerTool()` laat de UI verse data van de server opvragen
+  // `app.callServerTool()` laat de UI verse gegevens van de server opvragen
   const result = await app.callServerTool({ name: "get-time", arguments: {} });
   const time = result.content?.find((c) => c.type === "text")?.text;
   serverTimeEl.textContent = time ?? "[ERROR]";
 });
 
-// Verbinden met host
+// Verbind met host
 app.connect();
 ```
 
-Zoals je hierboven kunt zien, is dit normale code om DOM-elementen aan events te koppelen. Noemenswaardig is de aanroep van `callServerTool` die uiteindelijk een tool op de backend aanroept.
+Zoals je hierboven ziet is dit reguliere code om DOM-elementen aan events te koppelen. Het is het vermelden waard dat er een oproep is naar `callServerTool` die eindigt met het aanroepen van een tool op de backend.
 
 ## Omgaan met gebruikersinvoer
 
-Tot nu toe hebben we een component gezien die een knop heeft die bij klikken een tool aanroept. Laten we kijken of we meer UI-elementen kunnen toevoegen, zoals een invoerveld, en of we argumenten naar een tool kunnen sturen. Laten we een FAQ-functionaliteit implementeren. Zo zou het moeten werken:
+Tot nu toe hebben we een component gezien met een knop die bij klikken een tool aanroept. Laten we kijken of we meer UI-elementen kunnen toevoegen zoals een invoerveld en zien of we argumenten naar een tool kunnen sturen. Laten we een FAQ-functionaliteit implementeren. Zo zou het moeten werken:
 
-- Er moet een knop en een invoerelement zijn waar de gebruiker een trefwoord typt om bijvoorbeeld naar "Shipping" te zoeken. Dit moet een tool op de backend aanroepen die zoekt in de FAQ-gegevens.
+- Er moet een knop en een invoerelement zijn waar de gebruiker een trefwoord typt om te zoeken, bijvoorbeeld "Shipping". Dit zou een tool moeten aanroepen op de backend die zoekt in de FAQ-data.
 - Een tool die de genoemde FAQ-zoekfunctie ondersteunt.
 
 Laten we eerst de benodigde ondersteuning aan de backend toevoegen:
@@ -205,7 +205,7 @@ registerAppTool(
       inputSchema: zod.object({
         query: zod.string().default("shipping"),
       }),
-      _meta: { ui: { resourceUri: faqResourceUri } }, // Koppelt dit hulpmiddel aan zijn UI-bron
+      _meta: { ui: { resourceUri: faqResourceUri } }, // Koppelt deze tool aan zijn UI-bron
     },
     async ({ query }) => {
       const answer: string = faq[query.toLowerCase()] || "Sorry, I don't have an answer for that.";
@@ -214,7 +214,7 @@ registerAppTool(
   );
 ```
 
-Wat we hier zien is hoe we `inputSchema` vullen en het een `zod`-schema geven zoals:
+Wat we hier zien is hoe we `inputSchema` opbouwen en een `zod` schema geven zoals:
 
 ```typescript
 inputSchema: zod.object({
@@ -222,9 +222,9 @@ inputSchema: zod.object({
 })
 ```
 
-In bovenstaand schema geven we aan dat we een invoerparameter hebben genaamd `query` en dat deze optioneel is met een standaardwaarde van "shipping".
+In bovenstaand schema geven we aan dat we een inputparameter `query` hebben, die optioneel is met standaardwaarde "shipping".
 
-Oké, laten we verder gaan naar *mcp-app.html* om te zien welke UI we hiervoor moeten maken:
+Oké, laten we verder gaan naar *mcp-app.html* om te zien welke UI we ervoor moeten maken:
 
 ```html
 <div class="faq">
@@ -235,7 +235,7 @@ Oké, laten we verder gaan naar *mcp-app.html* om te zien welke UI we hiervoor m
   </div>
 ```
 
-Geweldig, nu hebben we een invoerelement en knop. Laten we naar *mcp-app.ts* gaan om deze events te koppelen:
+Top, nu hebben we een invoerelement en een knop. Laten we vervolgens naar *mcp-app.ts* gaan om deze events te koppelen:
 
 ```typescript
 const getFaqBtn = document.getElementById("get-faq-btn")!;
@@ -251,26 +251,26 @@ getFaqBtn.addEventListener("click", async () => {
 
 In bovenstaande code:
 
-- Maken we verwijzingen naar de interessante UI-elementen.
-- Handelen we een knopklik af door de waarde van het invoerelement te parsen en roepen we ook `app.callServerTool()` aan met `name` en `arguments`, waarbij het laatste `query` als waarde doorgeeft.
+- Maken we referenties naar de interactieve UI-elementen.
+- Handelen we een knopklik af om de waarde van het invoerveld te parsen en roepen we `app.callServerTool()` aan met `name` en `arguments` waarbij het laatste `query` als waarde doorgeeft.
 
-Wat er eigenlijk gebeurt wanneer je `callServerTool` aanroept, is dat er een bericht naar het hoofdvenster wordt gestuurd en dat venster uiteindelijk de MCP Server aanroept.
+Wat er feitelijk gebeurt als je `callServerTool` aanroept, is dat er een bericht wordt gestuurd naar het oudervenster en dat venster roept uiteindelijk de MCP Server aan.
 
 ### Probeer het uit
 
-Door dit uit te proberen zouden we nu het volgende moeten zien:
+Dit uitproberen zou het volgende moeten laten zien:
 
 ![](../../../../translated_images/nl/faq.f78abe6b2cc68c83.webp)
 
-en hier proberen we het met invoer zoals "warranty"
+en hier proberen we het met input zoals "warranty"
 
 ![](../../../../translated_images/nl/faq-input.3e276f1c3d7e061e.webp)
 
-Om deze code te draaien, ga naar de [Code sectie](./code/README.md)
+Om deze code uit te voeren, ga naar de [Code sectie](./code/README.md)
 
 ## Testen in Visual Studio Code
 
-Visual Studio Code heeft geweldige ondersteuning voor MVP Apps en is waarschijnlijk een van de makkelijkste manieren om je MCP Apps te testen. Om Visual Studio Code te gebruiken, voeg je een serververmelding toe aan *mcp.json* zoals:
+Visual Studio Code heeft uitstekende ondersteuning voor MCP Apps en is waarschijnlijk een van de gemakkelijkste manieren om je MCP Apps te testen. Voeg om Visual Studio Code te gebruiken een server entry toe aan *mcp.json* zoals:
 
 ```json
 "my-mcp-server-7178eca7": {
@@ -279,29 +279,29 @@ Visual Studio Code heeft geweldige ondersteuning voor MVP Apps en is waarschijnl
   }
 ```
 
-Start vervolgens de server, je zou in staat moeten zijn om te communiceren met je MVP App via het Chat Venster, mits je GitHub Copilot hebt geïnstalleerd.
+Start daarna de server, je zou moeten kunnen communiceren met je MCP App via het Chatvenster, mits je GitHub Copilot geïnstalleerd hebt.
 
-door te triggeren via prompt, bijvoorbeeld "#get-faq":
+Je kunt het triggeren via een prompt, bijvoorbeeld "#get-faq":
 
 ![Visual Studio run prompt](../../../../translated_images/nl/vscode-run.16cbab9436499f32.webp)
 
-en net als toen je het via een webbrowser draaide, wordt het op dezelfde manier gerenderd:
+en net zoals wanneer je het via een webbrowser uitvoerde, wordt het op dezelfde manier gerenderd:
 
 ![UI Visual Studio Code](../../../../translated_images/nl/vscode-ui.f2771dcfce25ca0f.webp)
 
 ## Opdracht
 
-Maak een steen-papier-schaar spel. Het moet het volgende bevatten:
+Maak een steen-papier-schaar spel. Dit moet bestaan uit het volgende:
 
 UI:
 
-- een dropdownlijst met opties
+- een dropdown lijst met opties
 - een knop om een keuze in te dienen
-- een label dat toont wie wat koos en wie won
+- een label die toont wie wat koos en wie er won
 
 Server:
 
-- moet een tool voor steen-papier-schaar hebben die "choice" als invoer neemt. Het moet ook een computerkeuze renderen en de winnaar bepalen
+- moet een steen-papier-schaar tool hebben die "choice" als input neemt. Het moet ook een computerkeuze renderen en de winnaar bepalen
 
 ## Oplossing
 
@@ -309,24 +309,24 @@ Server:
 
 ## Samenvatting
 
-We hebben geleerd over dit nieuwe paradigma MCP Apps. Het is een nieuw paradigma dat MCP Servers in staat stelt een mening te hebben over niet alleen de data, maar ook hoe deze data gepresenteerd moet worden.
+We hebben geleerd over het nieuwe paradigma MCP Apps. Het is een nieuw paradigma dat MCP Servers in staat stelt niet alleen een mening te hebben over data maar ook over hoe deze data gepresenteerd moet worden.
 
-Daarnaast hebben we geleerd dat deze MCP Apps worden gehost in een IFrame en om te communiceren met MCP Servers berichten naar de ouderwebapp moeten sturen. Er zijn verschillende libraries beschikbaar, zowel voor plain JavaScript als React en meer, die deze communicatie vergemakkelijken.
+Daarnaast hebben we geleerd dat deze MCP Apps in een IFrame draaien en om te communiceren met MCP Servers berichten moeten sturen naar de ouder webapp. Er bestaan verschillende bibliotheken voor zowel plain JavaScript als React en meer die deze communicatie gemakkelijker maken.
 
-## Belangrijke punten
+## Belangrijkste punten
 
 Dit heb je geleerd:
 
-- MCP Apps is een nieuwe standaard die nuttig kan zijn wanneer je zowel data als UI-functies wil leveren.
-- Dit soort apps draaien om veiligheidsredenen in een IFrame.
+- MCP Apps is een nieuwe standaard die nuttig kan zijn als je zowel data als UI-functionaliteit wilt leveren.
+- Dit soort apps draaien in een IFrame om veiligheidsredenen.
 
-## Wat nu?
+## Wat hierna
 
 - [Hoofdstuk 4](../../04-PracticalImplementation/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Disclaimer**:
-Dit document is vertaald met behulp van de AI-vertalingsdienst [Co-op Translator](https://github.com/Azure/co-op-translator). Hoewel we streven naar nauwkeurigheid, dient u er rekening mee te houden dat automatische vertalingen fouten of onnauwkeurigheden kunnen bevatten. Het oorspronkelijke document in de originele taal moet als gezaghebbende bron worden beschouwd. Voor belangrijke informatie wordt professionele menselijke vertaling aanbevolen. Wij zijn niet aansprakelijk voor enige misverstanden of verkeerde interpretaties die voortvloeien uit het gebruik van deze vertaling.
+**Disclaimer**:  
+Dit document is vertaald met behulp van de AI-vertalingsservice [Co-op Translator](https://github.com/Azure/co-op-translator). Hoewel we streven naar nauwkeurigheid, dient u er rekening mee te houden dat geautomatiseerde vertalingen fouten of onnauwkeurigheden kunnen bevatten. Het originele document in de oorspronkelijke taal moet als de gezaghebbende bron worden beschouwd. Voor belangrijke informatie wordt professionele menselijke vertaling aanbevolen. Wij zijn niet aansprakelijk voor eventuele misverstanden of verkeerde interpretaties die voortvloeien uit het gebruik van deze vertaling.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

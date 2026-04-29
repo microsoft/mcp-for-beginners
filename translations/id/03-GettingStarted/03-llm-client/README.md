@@ -1,48 +1,48 @@
 # Membuat klien dengan LLM
 
-Sejauh ini, Anda telah melihat cara membuat server dan klien. Klien telah dapat memanggil server secara eksplisit untuk daftar alat, sumber daya, dan prompt-nya. Namun, ini bukan pendekatan yang sangat praktis. Pengguna Anda hidup di era agen dan mengharapkan menggunakan prompt dan berkomunikasi dengan LLM sebagai gantinya. Mereka tidak peduli apakah Anda menggunakan MCP untuk menyimpan kapabilitas Anda; mereka hanya mengharapkan berinteraksi menggunakan bahasa alami. Jadi bagaimana kita menyelesaikan ini? Solusinya adalah menambahkan LLM ke klien.
+Sejauh ini, Anda telah melihat cara membuat server dan klien. Klien telah mampu memanggil server secara eksplisit untuk mencantumkan alat, sumber daya, dan prompt-nya. Namun, ini bukan pendekatan yang sangat praktis. Pengguna Anda hidup di era agen dan mengharapkan untuk menggunakan prompt dan berkomunikasi dengan LLM sebagai gantinya. Mereka tidak peduli apakah Anda menggunakan MCP untuk menyimpan kapabilitas Anda; mereka hanya mengharapkan untuk berinteraksi menggunakan bahasa alami. Jadi bagaimana kita menyelesaikan ini? Solusinya adalah menambahkan LLM ke klien.
 
 ## Ikhtisar
 
-Dalam pelajaran ini kami fokus pada menambahkan LLM ke klien Anda dan menunjukkan bagaimana ini memberikan pengalaman yang jauh lebih baik bagi pengguna Anda.
+Dalam pelajaran ini kita fokus pada penambahan LLM ke klien dan menunjukkan bagaimana ini memberikan pengalaman yang jauh lebih baik bagi pengguna Anda.
 
 ## Tujuan Pembelajaran
 
 Pada akhir pelajaran ini, Anda akan dapat:
 
 - Membuat klien dengan LLM.
-- Berinteraksi mulus dengan server MCP menggunakan LLM.
+- Berinteraksi secara mulus dengan server MCP menggunakan LLM.
 - Memberikan pengalaman pengguna akhir yang lebih baik di sisi klien.
 
 ## Pendekatan
 
-Mari kita coba pahami pendekatan yang perlu kita ambil. Menambahkan LLM terdengar sederhana, tapi apakah kita benar-benar akan melakukan ini?
+Mari kita coba pahami pendekatan yang perlu kita ambil. Menambahkan LLM terdengar sederhana, tapi apakah kita benar-benar akan melakukannya?
 
-Begini cara klien akan berinteraksi dengan server:
+Berikut cara klien akan berinteraksi dengan server:
 
-1. Menjalin koneksi dengan server.
+1. Membuat koneksi dengan server.
 
-1. Mendaftar kapabilitas, prompt, sumber daya dan alat, dan menyimpan skema mereka.
+1. Mendaftar kapabilitas, prompt, sumber daya, dan alat, lalu menyimpan skema mereka.
 
-1. Menambahkan sebuah LLM dan mengoper kapabilitas yang disimpan beserta skemanya dalam format yang dipahami LLM.
+1. Menambahkan LLM dan meneruskan kapabilitas yang disimpan dan skema mereka dalam format yang dipahami LLM.
 
-1. Menangani prompt pengguna dengan memberikannya ke LLM bersama dengan alat-alat yang didaftar oleh klien.
+1. Menangani prompt pengguna dengan meneruskannya ke LLM bersama alat yang telah dicantumkan oleh klien.
 
-Bagus, sekarang kita mengerti cara melakukannya secara garis besar, mari coba dalam latihan di bawah ini.
+Bagus, sekarang kita mengerti bagaimana kita bisa melakukan ini pada tingkat tinggi, mari coba latihan di bawah ini.
 
 ## Latihan: Membuat klien dengan LLM
 
 Dalam latihan ini, kita akan belajar menambahkan LLM ke klien kita.
 
-### Autentikasi menggunakan GitHub Personal Access Token
+### Otentikasi menggunakan GitHub Personal Access Token
 
-Membuat token GitHub adalah proses yang sederhana. Berikut caranya:
+Membuat token GitHub adalah proses yang mudah. Berikut caranya:
 
-- Pergi ke GitHub Settings – Klik foto profil Anda di pojok kanan atas dan pilih Settings.
-- Navigasi ke Developer Settings – Gulir ke bawah dan klik Developer Settings.
-- Pilih Personal Access Tokens – Klik Fine-grained tokens lalu Generate new token.
-- Konfigurasikan Token Anda – Tambahkan catatan untuk referensi, tetapkan tanggal kedaluwarsa, dan pilih cakupan yang diperlukan (izin). Pastikan untuk menambahkan izin Models.
-- Buat dan Salin Token – Klik Generate token, dan pastikan untuk langsung menyalinnya, karena Anda tidak dapat melihatnya lagi.
+- Pergi ke Pengaturan GitHub – Klik pada foto profil Anda di pojok kanan atas dan pilih Pengaturan.
+- Navigasi ke Pengaturan Pengembang – Gulir ke bawah dan klik Pengaturan Pengembang.
+- Pilih Personal Access Tokens – Klik pada token dengan granularitas halus dan kemudian Buat token baru.
+- Konfigurasi Token Anda – Tambahkan catatan sebagai referensi, atur tanggal kedaluwarsa, dan pilih cakupan yang diperlukan (izin). Dalam hal ini pastikan menambahkan izin Models.
+- Hasilkan dan Salin Token – Klik Buat token, dan pastikan untuk segera menyalinnya, karena Anda tidak akan bisa melihatnya lagi.
 
 ### -1- Menghubungkan ke server
 
@@ -83,11 +83,11 @@ class MCPClient {
 }
 ```
 
-Dalam kode sebelumnya kami telah:
+Dalam kode sebelumnya kita telah:
 
 - Mengimpor pustaka yang dibutuhkan
-- Membuat sebuah kelas dengan dua anggota, `client` dan `openai` yang akan membantu kita mengelola klien dan berinteraksi dengan LLM masing-masing.
-- Mengonfigurasi instance LLM kami untuk menggunakan GitHub Models dengan mengatur `baseUrl` mengarah ke API inferensi.
+- Membuat kelas dengan dua anggota, `client` dan `openai` yang akan membantu kita mengelola klien dan berinteraksi dengan LLM secara berturut-turut.
+- Mengonfigurasi instance LLM kita untuk menggunakan Model GitHub dengan mengatur `baseUrl` mengarah ke API inferensi.
 
 #### Python
 
@@ -97,7 +97,7 @@ from mcp.client.stdio import stdio_client
 
 # Buat parameter server untuk koneksi stdio
 server_params = StdioServerParameters(
-    command="mcp",  # Dapat dijalankan
+    command="mcp",  # Eksekusi
     args=["run", "server.py"],  # Argumen baris perintah opsional
     env=None,  # Variabel lingkungan opsional
 )
@@ -119,7 +119,7 @@ if __name__ == "__main__":
 
 ```
 
-Dalam kode sebelumnya kami telah:
+Dalam kode sebelumnya kita telah:
 
 - Mengimpor pustaka yang dibutuhkan untuk MCP
 - Membuat klien
@@ -146,7 +146,7 @@ await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 
 #### Java
 
-Pertama, Anda perlu menambahkan dependensi LangChain4j ke file `pom.xml` Anda. Tambahkan dependensi ini untuk mengaktifkan integrasi MCP dan dukungan GitHub Models:
+Pertama, Anda perlu menambahkan dependensi LangChain4j ke file `pom.xml` Anda. Tambahkan dependensi ini untuk mengaktifkan integrasi MCP dan dukungan Model GitHub:
 
 ```xml
 <properties>
@@ -183,7 +183,7 @@ Pertama, Anda perlu menambahkan dependensi LangChain4j ke file `pom.xml` Anda. T
 </dependencies>
 ```
 
-Lalu buat kelas klien Java Anda:
+Kemudian buat kelas klien Java Anda:
 
 ```java
 import dev.langchain4j.mcp.McpToolProvider;
@@ -225,20 +225,20 @@ public class LangChain4jClient {
 }
 ```
 
-Dalam kode sebelumnya kami telah:
+Dalam kode sebelumnya kita telah:
 
-- **Menambahkan dependensi LangChain4j**: Diperlukan untuk integrasi MCP, klien resmi OpenAI, dan dukungan GitHub Models
-- **Mengimpor pustaka LangChain4j**: Untuk integrasi MCP dan fungsionalitas model chat OpenAI
-- **Membuat `ChatLanguageModel`**: Dikonfigurasi untuk menggunakan GitHub Models dengan token GitHub Anda
-- **Menyiapkan transportasi HTTP**: Menggunakan Server-Sent Events (SSE) untuk menghubungkan ke server MCP
+- **Menambahkan dependensi LangChain4j**: Diperlukan untuk integrasi MCP, klien resmi OpenAI, dan dukungan Model GitHub
+- **Mengimpor pustaka LangChain4j**: Untuk integrasi MCP dan fungsi model chat OpenAI
+- **Membuat `ChatLanguageModel`**: Dikostumisasi untuk menggunakan Model GitHub dengan token GitHub Anda
+- **Mengatur transport HTTP**: Menggunakan Server-Sent Events (SSE) untuk terhubung ke server MCP
 - **Membuat klien MCP**: Yang akan menangani komunikasi dengan server
 - **Menggunakan dukungan MCP bawaan LangChain4j**: Yang menyederhanakan integrasi antara LLM dan server MCP
 
 #### Rust
 
-Contoh ini mengasumsikan Anda memiliki server MCP berbasis Rust yang berjalan. Jika belum punya, rujuk ke pelajaran [01-first-server](../01-first-server/README.md) untuk membuat server tersebut.
+Contoh ini mengasumsikan Anda memiliki server MCP berbasis Rust yang berjalan. Jika belum punya, lihat kembali pelajaran [01-first-server](../01-first-server/README.md) untuk membuat server tersebut.
 
-Setelah Anda memiliki server MCP Rust, buka terminal dan navigasikan ke direktori yang sama dengan server. Lalu jalankan perintah berikut untuk membuat proyek klien LLM baru:
+Setelah Anda memiliki server MCP Rust, buka terminal dan navigasikan ke direktori yang sama dengan server. Kemudian jalankan perintah berikut untuk membuat proyek klien LLM baru:
 
 ```bash
 mkdir calculator-llmclient
@@ -257,7 +257,7 @@ tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 ```
 
 > [!NOTE]
-> Tidak ada pustaka resmi Rust untuk OpenAI, namun `async-openai` adalah [pustaka yang dipelihara komunitas](https://platform.openai.com/docs/libraries/rust#rust) yang umum digunakan.
+> Tidak ada pustaka resmi Rust untuk OpenAI, namun crate `async-openai` adalah [pustaka yang dipelihara komunitas](https://platform.openai.com/docs/libraries/rust#rust) yang umum digunakan.
 
 Buka file `src/main.rs` dan ganti isinya dengan kode berikut:
 
@@ -309,16 +309,16 @@ async fn main() -> Result<(), Box<dyn Error>> {
 }
 ```
 
-Kode ini menyiapkan aplikasi Rust dasar yang akan terhubung ke server MCP dan GitHub Models untuk interaksi LLM.
+Kode ini menyiapkan aplikasi Rust dasar yang akan terhubung ke server MCP dan Model GitHub untuk interaksi LLM.
 
 > [!IMPORTANT]
 > Pastikan untuk mengatur variabel lingkungan `OPENAI_API_KEY` dengan token GitHub Anda sebelum menjalankan aplikasi.
 
-Bagus, untuk langkah selanjutnya, mari kita daftar kapabilitas pada server.
+Bagus, untuk langkah berikutnya, mari kita daftarkan kapabilitas di server.
 
-### -2- Daftar kapabilitas server
+### -2- Mendaftar kapabilitas server
 
-Sekarang kita akan menghubungkan ke server dan meminta kapabilitasnya:
+Sekarang kita akan terhubung ke server dan meminta kapabilitasnya:
 
 #### Typescript
 
@@ -334,15 +334,15 @@ async connectToServer(transport: Transport) {
 async run() {
     console.log("Asking server for available tools");
 
-    // alat daftar
+    // daftar alat
     const toolsResult = await this.client.listTools();
 }
 ```
 
-Dalam kode sebelumnya kami telah:
+Dalam kode sebelumnya kita telah:
 
 - Menambahkan kode untuk menghubungkan ke server, `connectToServer`.
-- Membuat metode `run` yang bertanggung jawab menangani alur aplikasi kita. Sejauh ini hanya mendaftar alat, tapi kita akan menambah lebih banyak nanti.
+- Membuat metode `run` yang bertanggung jawab untuk menangani alur aplikasi kita. Sejauh ini hanya mencantumkan alat tetapi kita akan menambahkannya nanti.
 
 #### Python
 
@@ -361,9 +361,9 @@ for tool in tools.tools:
     print("Tool", tool.inputSchema["properties"])
 ```
 
-Berikut yang kami tambahkan:
+Berikut yang kita tambahkan:
 
-- Mendaftar sumber daya dan alat serta mencetaknya. Untuk alat juga kami mendaftar `inputSchema` yang akan kami gunakan nanti.
+- Mendaftarkan sumber daya dan alat dan mencetaknya. Untuk alat kami juga mendaftar `inputSchema` yang akan kita gunakan nanti.
 
 #### .NET
 
@@ -388,10 +388,10 @@ async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
 }
 ```
 
-Dalam kode sebelumnya kami telah:
+Dalam kode sebelumnya kita telah:
 
-- Mendaftar alat yang tersedia pada Server MCP
-- Untuk setiap alat, mendaftar nama, deskripsi dan skemanya. Yang terakhir ini akan kami gunakan untuk memanggil alat sebentar lagi.
+- Mendaftar alat yang tersedia di Server MCP
+- Untuk setiap alat, mendaftarkan nama, deskripsi dan skemanya. Yang terakhir ini akan kita gunakan untuk memanggil alat sebentar lagi.
 
 #### Java
 
@@ -404,14 +404,14 @@ ToolProvider toolProvider = McpToolProvider.builder()
 // Penyedia alat MCP secara otomatis menangani:
 // - Daftar alat yang tersedia dari server MCP
 // - Mengonversi skema alat MCP ke format LangChain4j
-// - Mengelola eksekusi alat dan tanggapan
+// - Mengelola eksekusi alat dan responsnya
 ```
 
-Dalam kode sebelumnya kami telah:
+Dalam kode sebelumnya kita telah:
 
-- Membuat `McpToolProvider` yang secara otomatis menemukan dan mendaftarkan semua alat dari server MCP
+- Membuat `McpToolProvider` yang secara otomatis mendeteksi dan mendaftar semua alat dari server MCP
 - Penyedia alat menangani konversi antara skema alat MCP dan format alat LangChain4j secara internal
-- Pendekatan ini mengabstraksi proses manual listing dan konversi alat
+- Pendekatan ini mengabstraksi proses daftar dan konversi alat manual
 
 #### Rust
 
@@ -424,11 +424,11 @@ let tools = mcp_client.list_tools(Default::default()).await?;
 
 ### -3- Mengonversi kapabilitas server menjadi alat LLM
 
-Langkah berikutnya setelah mendaftarkan kapabilitas server adalah mengubahnya menjadi format yang dipahami LLM. Setelah itu, kita bisa menyediakan kapabilitas ini sebagai alat ke LLM kita.
+Langkah berikutnya setelah mendaftar kapabilitas server adalah mengonversinya ke format yang dipahami LLM. Setelah kita melakukan itu, kita dapat menyediakan kapabilitas ini sebagai alat untuk LLM kita.
 
 #### TypeScript
 
-1. Tambahkan kode berikut untuk mengonversi respons dari Server MCP menjadi format alat yang bisa digunakan LLM:
+1. Tambahkan kode berikut untuk mengonversi respons dari Server MCP ke format alat yang dapat digunakan LLM:
 
     ```typescript
     openAiToolAdapter(tool: {
@@ -455,9 +455,9 @@ Langkah berikutnya setelah mendaftarkan kapabilitas server adalah mengubahnya me
 
     ```
 
-    Kode di atas mengambil respons dari Server MCP dan mengubahnya ke format definisi alat yang dapat dipahami LLM.
+    Kode di atas mengambil respons dari Server MCP dan mengonversinya menjadi definisi alat dalam format yang dapat dipahami LLM.
 
-1. Mari kita perbarui metode `run` selanjutnya untuk mendaftar kapabilitas server:
+1. Selanjutnya perbarui metode `run` untuk mendaftar kapabilitas server:
 
     ```typescript
     async run() {
@@ -473,7 +473,7 @@ Langkah berikutnya setelah mendaftarkan kapabilitas server adalah mengubahnya me
     }
     ```
 
-    Dalam kode di atas, kami memperbarui metode `run` untuk memetakan hasilnya dan untuk setiap entri memanggil `openAiToolAdapter`.
+    Dalam kode sebelumnya, kita memperbarui metode `run` untuk memetakan hasil dan untuk setiap entri memanggil `openAiToolAdapter`.
 
 #### Python
 
@@ -497,7 +497,7 @@ Langkah berikutnya setelah mendaftarkan kapabilitas server adalah mengubahnya me
         return tool_schema
     ```
 
-    Dalam fungsi `convert_to_llm_tools` di atas kita mengambil respons alat MCP dan mengonversinya ke format yang bisa dipahami LLM.
+    Dalam fungsi di atas `convert_to_llm_tools` kita mengambil respons alat MCP dan mengonversinya ke format yang dapat dipahami LLM.
 
 1. Selanjutnya, perbarui kode klien kita untuk memanfaatkan fungsi ini seperti berikut:
 
@@ -509,11 +509,11 @@ Langkah berikutnya setelah mendaftarkan kapabilitas server adalah mengubahnya me
         functions.append(convert_to_llm_tool(tool))
     ```
 
-    Di sini, kita menambahkan panggilan ke `convert_to_llm_tool` untuk mengubah respons alat MCP menjadi sesuatu yang dapat kita berikan ke LLM nanti.
+    Di sini, kita menambahkan panggilan ke `convert_to_llm_tool` untuk mengonversi respons alat MCP menjadi sesuatu yang dapat kita berikan ke LLM nanti.
 
 #### .NET
 
-1. Mari tambahkan kode untuk mengonversi respons alat MCP menjadi sesuatu yang dapat dipahami LLM
+1. Mari kita tambahkan kode untuk mengonversi respons alat MCP menjadi format yang dapat dipahami LLM
 
 ```csharp
 ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonElement jsonElement)
@@ -536,12 +536,12 @@ ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonE
 }
 ```
 
-Dalam kode sebelumnya kami telah:
+Dalam kode sebelumnya kita telah:
 
 - Membuat fungsi `ConvertFrom` yang mengambil nama, deskripsi dan skema input.
-- Mendefinisikan fungsi yang membuat FunctionDefinition yang diteruskan ke ChatCompletionsDefinition. Yang terakhir ini adalah sesuatu yang dapat dipahami LLM.
+- Mendefinisikan fungsi yang membuat `FunctionDefinition` yang diteruskan ke `ChatCompletionsDefinition`. Yang terakhir ini adalah sesuatu yang dapat dipahami LLM.
 
-1. Mari kita lihat bagaimana kita bisa memperbarui beberapa kode yang ada untuk memanfaatkan fungsi di atas:
+1. Mari kita lihat bagaimana kita bisa memperbarui beberapa kode yang sudah ada untuk memanfaatkan fungsi ini:
 
     ```csharp
     async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
@@ -599,16 +599,16 @@ Bot bot = AiServices.builder(Bot.class)
         .build();
 ```
 
-Dalam kode sebelumnya kami telah:
+Dalam kode sebelumnya kita telah:
 
-- Mendefinisikan interface sederhana `Bot` untuk interaksi bahasa alami
-- Menggunakan `AiServices` LangChain4j untuk mengikat LLM secara otomatis dengan penyedia alat MCP
-- Framework secara otomatis menangani konversi skema alat dan pemanggilan fungsi di latar belakang
+- Mendefinisikan antarmuka `Bot` sederhana untuk interaksi bahasa alami
+- Menggunakan `AiServices` LangChain4j untuk mengikat otomatis LLM dengan penyedia alat MCP
+- Kerangka kerja secara otomatis menangani konversi skema alat dan pemanggilan fungsi di belakang layar
 - Pendekatan ini menghilangkan konversi alat manual - LangChain4j menangani semua kompleksitas konversi alat MCP ke format kompatibel LLM
 
 #### Rust
 
-Untuk mengonversi respons alat MCP ke format yang dipahami LLM, kita akan menambahkan fungsi pembantu yang memformat daftar alat. Tambahkan kode berikut ke file `main.rs` Anda di bawah fungsi `main`. Ini akan dipanggil saat membuat permintaan ke LLM:
+Untuk mengonversi respons alat MCP ke format yang dapat dipahami LLM, kita akan menambahkan fungsi pembantu yang memformat daftar alat. Tambahkan kode berikut ke file `main.rs` Anda di bawah fungsi `main`. Ini akan dipanggil saat membuat permintaan ke LLM:
 
 ```rust
 async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Error>> {
@@ -643,11 +643,11 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 }
 ```
 
-Bagus, sekarang kita sudah siap menangani permintaan pengguna, mari kita selesaikan itu.
+Bagus, sekarang kita sudah siap menangani permintaan pengguna, mari kita lanjutkan ke bagian itu selanjutnya.
 
 ### -4- Menangani permintaan prompt pengguna
 
-Di bagian kode ini, kita akan menangani permintaan pengguna.
+Dalam bagian kode ini, kita akan menangani permintaan pengguna.
 
 #### TypeScript
 
@@ -680,10 +680,10 @@ Di bagian kode ini, kita akan menangani permintaan pengguna.
     }
     ```
 
-    Dalam kode di atas kami:
+    Dalam kode sebelumnya kita:
 
     - Menambahkan metode `callTools`.
-    - Metode ini mengambil respons LLM dan memeriksa alat apa yang telah dipanggil, jika ada:
+    - Metode ini menerima respons LLM dan memeriksa alat apa yang dipanggil, jika ada:
 
         ```typescript
         for (const tool_call of tool_calls) {
@@ -696,7 +696,7 @@ Di bagian kode ini, kita akan menangani permintaan pengguna.
         }
         ```
 
-    - Memanggil alat, jika LLM mengindikasikan alat tersebut harus dipanggil:
+    - Memanggil alat, jika LLM menunjukkan bahwa harus dipanggil:
 
         ```typescript
         // 2. Panggil alat server
@@ -711,7 +711,7 @@ Di bagian kode ini, kita akan menangani permintaan pengguna.
         // TODO
         ```
 
-1. Perbarui metode `run` untuk memasukkan pemanggilan ke LLM dan pemanggilan `callTools`:
+1. Perbarui metode `run` untuk menyertakan panggilan ke LLM dan pemanggilan `callTools`:
 
     ```typescript
 
@@ -737,7 +737,7 @@ Di bagian kode ini, kita akan menangani permintaan pengguna.
 
     let results: any[] = [];
 
-    // 3. Memeriksa respons LLM, untuk setiap pilihan, periksa apakah ada panggilan alat
+    // 3. Periksa respons LLM, untuk setiap pilihan, cek apakah ada panggilan alat
     (await response).choices.map(async (choice: { message: any; }) => {
         const message = choice.message;
         if (message.tool_calls) {
@@ -747,7 +747,7 @@ Di bagian kode ini, kita akan menangani permintaan pengguna.
     });
     ```
 
-Bagus, berikut kode lengkapnya:
+Bagus, mari kita lihat kode secara lengkap:
 
 ```typescript
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
@@ -795,7 +795,7 @@ class MyClient {
           const schema = z.object(tool.input_schema);
       
           return {
-            type: "function" as const, // Tentukan tipe secara eksplisit ke "function"
+            type: "function" as const, // Secara eksplisit set tipe menjadi "function"
             function: {
               name: tool.name,
               description: tool.description,
@@ -863,7 +863,7 @@ class MyClient {
 
         let results: any[] = [];
     
-        // 1. Telusuri respons LLM, untuk setiap pilihan, periksa apakah ada panggilan alat
+        // 1. Periksa respons LLM, untuk setiap pilihan, cek apakah ada panggilan alat
         (await response).choices.map(async (choice: { message: any; }) => {
           const message = choice.message;
           if (message.tool_calls) {
@@ -886,7 +886,7 @@ client.connectToServer(transport);
 
 #### Python
 
-1. Mari tambahkan beberapa impor yang dibutuhkan untuk memanggil LLM
+1. Mari kita tambahkan beberapa impor yang diperlukan untuk memanggil LLM
 
     ```python
     # llm
@@ -947,19 +947,19 @@ client.connectToServer(transport);
         return functions_to_call
     ```
 
-    Dalam kode sebelumnya kami telah:
+    Dalam kode sebelumnya kita telah:
 
-    - Mengoper fungsi-fungsi yang kami temukan di server MCP dan sudah dikonversi ke LLM.
+    - Meneruskan fungsi-fungsi kita, yang ditemukan di server MCP dan dikonversi, ke LLM.
     - Kemudian memanggil LLM dengan fungsi tersebut.
-    - Lalu, memeriksa hasil untuk melihat fungsi apa yang harus dipanggil, jika ada.
-    - Terakhir, meneruskan array fungsi yang harus dipanggil.
+    - Lalu memeriksa hasil untuk melihat fungsi apa yang harus dipanggil, jika ada.
+    - Akhirnya, kita meneruskan array fungsi yang akan dipanggil.
 
 1. Langkah terakhir, perbarui kode utama kita:
 
     ```python
     prompt = "Add 2 to 20"
 
-    # tanya LLM alat apa yang tersedia, jika ada
+    # tanyakan kepada LLM alat apa yang tersedia, jika ada
     functions_to_call = call_llm(prompt, functions)
 
     # panggil fungsi yang disarankan
@@ -968,9 +968,9 @@ client.connectToServer(transport);
         print("TOOLS result: ", result.content)
     ```
 
-    Itu, langkah terakhir, dalam kode di atas kita:
+    Nah, itu langkah terakhir, dalam kode di atas kita:
 
-    - Memanggil alat MCP via `call_tool` menggunakan fungsi yang LLM kira harus kita panggil berdasarkan prompt.
+    - Memanggil alat MCP melalui `call_tool` menggunakan fungsi yang dianggap LLM harus dipanggil berdasarkan prompt kita.
     - Mencetak hasil panggilan alat ke Server MCP.
 
 #### .NET
@@ -1009,14 +1009,14 @@ client.connectToServer(transport);
 
     ```
 
-    Dalam kode sebelumnya kami telah:
+    Dalam kode sebelumnya kita telah:
 
     - Mengambil alat dari server MCP, `var tools = await GetMcpTools()`.
     - Mendefinisikan prompt pengguna `userMessage`.
-    - Membuat objek opsi dengan model dan alat.
+    - Membuat objek opsi yang menentukan model dan alat.
     - Membuat permintaan ke LLM.
 
-1. Satu langkah terakhir, mari lihat apakah LLM mengira kita harus memanggil suatu fungsi:
+1. Satu langkah terakhir, mari lihat apakah LLM menganggap kita harus memanggil fungsi:
 
     ```csharp
     // 4. Check if the response contains a function call
@@ -1039,10 +1039,10 @@ client.connectToServer(transport);
     }
     ```
 
-    Dalam kode sebelumnya kami telah:
+    Dalam kode sebelumnya kita telah:
 
     - Melakukan loop melalui daftar panggilan fungsi.
-    - Untuk setiap panggilan alat, mem-parse nama dan argumen dan memanggil alat di server MCP menggunakan klien MCP. Akhirnya mencetak hasilnya.
+    - Untuk tiap panggilan alat, mengurai nama dan argumen, dan memanggil alat di server MCP menggunakan klien MCP. Akhirnya kita mencetak hasilnya.
 
 Berikut kode lengkapnya:
 
@@ -1188,15 +1188,15 @@ try {
 }
 ```
 
-Dalam kode sebelumnya kami telah:
+Dalam kode sebelumnya kita telah:
 
 - Menggunakan prompt bahasa alami sederhana untuk berinteraksi dengan alat server MCP
-- Framework LangChain4j secara otomatis menangani:
-  - Mengonversi prompt pengguna menjadi panggilan alat saat diperlukan
+- Kerangka kerja LangChain4j secara otomatis menangani:
+  - Mengonversi prompt pengguna menjadi panggilan alat saat dibutuhkan
   - Memanggil alat MCP yang sesuai berdasarkan keputusan LLM
   - Mengelola alur percakapan antara LLM dan server MCP
-- Metode `bot.chat()` mengembalikan respons bahasa alami yang mungkin termasuk hasil dari eksekusi alat MCP
-- Pendekatan ini menyediakan pengalaman pengguna mulus di mana pengguna tidak perlu tahu tentang implementasi MCP di belakangnya
+- Metode `bot.chat()` mengembalikan respons bahasa alami yang mungkin mencakup hasil dari eksekusi alat MCP
+- Pendekatan ini memberikan pengalaman pengguna yang mulus di mana pengguna tidak perlu tahu tentang implementasi MCP di belakang layar
 
 Contoh kode lengkap:
 
@@ -1249,9 +1249,9 @@ public class LangChain4jClient {
 
 #### Rust
 
-Di sinilah sebagian besar kerja dilakukan. Kita akan memanggil LLM dengan prompt awal pengguna, lalu memproses respons untuk melihat apakah ada alat yang perlu dipanggil. Jika ada, kita akan memanggil alat tersebut dan melanjutkan percakapan dengan LLM sampai tidak ada lagi panggilan alat yang diperlukan dan kita mendapatkan respons akhir.
+Di sinilah sebagian besar pekerjaan terjadi. Kita akan memanggil LLM dengan prompt pengguna awal, lalu memproses respons untuk melihat apakah ada alat yang perlu dipanggil. Jika ya, kita akan memanggil alat tersebut dan melanjutkan percakapan dengan LLM sampai tidak ada lagi panggilan alat yang diperlukan dan kita mendapatkan respons akhir.
 
-Kita akan melakukan beberapa panggilan ke LLM, jadi mari definisikan fungsi yang akan menangani panggilan LLM tersebut. Tambahkan fungsi berikut ke file `main.rs` Anda:
+Kita akan membuat beberapa panggilan ke LLM, jadi mari definisikan fungsi yang akan menangani panggilan LLM. Tambahkan fungsi berikut ke file `main.rs` Anda:
 
 ```rust
 async fn call_llm(
@@ -1271,8 +1271,8 @@ async fn call_llm(
 }
 ```
 
-Fungsi ini menerima klien LLM, daftar pesan (termasuk prompt pengguna), alat dari server MCP, lalu mengirimkan permintaan ke LLM dan mengembalikan responsnya.
-Response dari LLM akan berisi array `choices`. Kita perlu memproses hasil tersebut untuk melihat apakah ada `tool_calls` yang hadir. Ini memberitahu kita bahwa LLM meminta alat tertentu untuk dipanggil dengan argumen. Tambahkan kode berikut ke bagian bawah file `main.rs` Anda untuk mendefinisikan fungsi yang menangani respons LLM:
+Fungsi ini menerima klien LLM, daftar pesan (termasuk prompt pengguna), alat dari server MCP, dan mengirim permintaan ke LLM, lalu mengembalikan respons.
+Respons dari LLM akan berisi array `choices`. Kita perlu memproses hasil tersebut untuk melihat apakah ada `tool_calls` yang hadir. Ini memberi tahu kita bahwa LLM meminta agar alat tertentu dipanggil dengan argumen. Tambahkan kode berikut ke bagian bawah file `main.rs` Anda untuk mendefinisikan fungsi yang menangani respons LLM:
 
 ```rust
 async fn process_llm_response(
@@ -1300,7 +1300,7 @@ async fn process_llm_response(
     if let Some(tool_calls) = message.get("tool_calls").and_then(|tc| tc.as_array()) {
         messages.push(message.clone()); // Tambahkan pesan asisten
 
-        // Eksekusi setiap panggilan alat
+        // Jalankan setiap panggilan alat
         for tool_call in tool_calls {
             let (tool_id, name, args) = extract_tool_call_info(tool_call)?;
             println!("⚡ Calling tool: {}", name);
@@ -1335,9 +1335,9 @@ async fn process_llm_response(
 }
 ```
 
-Jika `tool_calls` ada, fungsi ini mengekstrak informasi alat, memanggil server MCP dengan permintaan alat tersebut, dan menambahkan hasilnya ke pesan percakapan. Selanjutnya percakapan dilanjutkan dengan LLM dan pesan-pesan diperbarui dengan respons asisten dan hasil pemanggilan alat.
+Jika `tool_calls` hadir, fungsi ini akan mengekstrak informasi alat, memanggil server MCP dengan permintaan alat tersebut, dan menambahkan hasilnya ke pesan percakapan. Kemudian percakapan dilanjutkan dengan LLM dan pesan diperbarui dengan respons asisten serta hasil pemanggilan alat.
 
-Untuk mengekstrak informasi pemanggilan alat yang dikembalikan LLM untuk panggilan MCP, kita akan menambahkan fungsi pembantu lain untuk mengekstrak semua yang dibutuhkan agar panggilan dapat dilakukan. Tambahkan kode berikut ke bagian bawah file `main.rs` Anda:
+Untuk mengekstrak informasi pemanggilan alat yang dikembalikan LLM untuk panggilan MCP, kita akan menambahkan fungsi pembantu lain yang mengekstrak semua yang diperlukan untuk melakukan panggilan tersebut. Tambahkan kode berikut ke bagian bawah file `main.rs` Anda:
 
 ```rust
 fn extract_tool_call_info(tool_call: &Value) -> Result<(String, String, String), Box<dyn Error>> {
@@ -1361,7 +1361,7 @@ fn extract_tool_call_info(tool_call: &Value) -> Result<(String, String, String),
 }
 ```
 
-Dengan semua bagian telah siap, kita sekarang dapat menangani prompt awal pengguna dan memanggil LLM. Perbarui fungsi `main` Anda dengan kode berikut:
+Dengan semua bagian sudah lengkap, kita sekarang dapat menangani prompt pengguna awal dan memanggil LLM. Perbarui fungsi `main` Anda agar mencakup kode berikut:
 
 ```rust
 // Percakapan LLM dengan panggilan alat
@@ -1376,22 +1376,22 @@ process_llm_response(
 .await?;
 ```
 
-Ini akan mengajukan kueri ke LLM dengan prompt awal pengguna yang meminta jumlah dua angka, dan memproses respons tersebut untuk secara dinamis menangani pemanggilan alat.
+Ini akan mengajukan pertanyaan ke LLM dengan prompt pengguna awal yang meminta penjumlahan dua angka, dan akan memproses respons untuk secara dinamis menangani pemanggilan alat.
 
 Bagus, Anda berhasil!
 
-## Penugasan
+## Tugas
 
-Ambil kode dari latihan dan kembangkan server dengan beberapa alat tambahan. Kemudian buat klien dengan LLM, seperti pada latihan, dan uji dengan berbagai prompt untuk memastikan semua alat server Anda dipanggil secara dinamis. Cara membangun klien seperti ini berarti pengguna akhir akan memiliki pengalaman pengguna yang baik karena mereka dapat menggunakan prompt, bukan perintah klien yang tepat, dan tidak menyadari adanya pemanggilan server MCP.
+Ambil kode dari latihan dan bangun server dengan beberapa alat tambahan. Kemudian buat klien dengan LLM, seperti pada latihan, dan uji coba dengan berbagai prompt untuk memastikan semua alat server Anda dipanggil secara dinamis. Cara membangun klien seperti ini berarti pengguna akhir akan mendapatkan pengalaman pengguna yang bagus karena mereka dapat menggunakan prompt, bukan perintah klien yang tepat, dan tidak menyadari adanya panggilan ke server MCP.
 
 ## Solusi
 
-[Solusi](/03-GettingStarted/03-llm-client/solution/README.md)
+[Solusi](./solution/README.md)
 
-## Poin-Poin Penting
+## Poin Penting
 
 - Menambahkan LLM ke klien Anda memberikan cara yang lebih baik bagi pengguna untuk berinteraksi dengan Server MCP.
-- Anda perlu mengonversi respons Server MCP menjadi sesuatu yang bisa dipahami oleh LLM.
+- Anda perlu mengonversi respons Server MCP menjadi sesuatu yang dapat dimengerti oleh LLM.
 
 ## Contoh
 
@@ -1402,15 +1402,15 @@ Ambil kode dari latihan dan kembangkan server dengan beberapa alat tambahan. Kem
 - [Kalkulator Python](../../../../03-GettingStarted/samples/python)
 - [Kalkulator Rust](../../../../03-GettingStarted/samples/rust)
 
-## Sumber Tambahan
+## Sumber Daya Tambahan
 
-## Apa Selanjutnya
+## Selanjutnya
 
-- Selanjutnya: [Menggunakan server lewat Visual Studio Code](../04-vscode/README.md)
+- Selanjutnya: [Mengonsumsi server menggunakan Visual Studio Code](../04-vscode/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan layanan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Meskipun kami berupaya untuk mencapai akurasi, harap diingat bahwa terjemahan otomatis mungkin mengandung kesalahan atau ketidaktepatan. Dokumen asli dalam bahasa aslinya harus dianggap sebagai sumber otoritatif. Untuk informasi penting, dianjurkan menggunakan penerjemahan profesional oleh manusia. Kami tidak bertanggung jawab atas kesalahpahaman atau salah tafsir yang timbul dari penggunaan terjemahan ini.
+Dokumen ini telah diterjemahkan menggunakan layanan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Meskipun kami berupaya mencapai akurasi, harap diingat bahwa terjemahan otomatis mungkin mengandung kesalahan atau ketidakakuratan. Dokumen asli dalam bahasa aslinya harus dianggap sebagai sumber yang sahih. Untuk informasi penting, disarankan menggunakan terjemahan profesional oleh manusia. Kami tidak bertanggung jawab atas kesalahpahaman atau salah tafsir yang timbul dari penggunaan terjemahan ini.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

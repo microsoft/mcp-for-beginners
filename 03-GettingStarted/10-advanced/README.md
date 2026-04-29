@@ -46,7 +46,7 @@ The point being is that you explicitly add each tool, resource or prompt that yo
 
 ### Low-level server approach
 
-However, when you use the low-level server approach you need to think about differently. Instead of registering each tool, you instead create two handlers per feature type (tools, resources or prompts). So for example tools then only have two functions like so:
+However, when you use the low-level server approach you need to think about it differently. Instead of registering each tool, you instead create two handlers per feature type (tools, resources or prompts). So for example tools then only have two functions like so:
 
 - Listing all tools. One function would be responsible for all attempts to list tools.
 - handle calling all tools. Here also, there's only one function handling calls to a tool
@@ -84,12 +84,12 @@ server.setRequestHandler(ListToolsRequestSchema, async (request) => {
   // Return the list of registered tools
   return {
     tools: [{
-        name="add",
-        description="Add two numbers",
-        inputSchema={
+        name: "add",
+        description: "Add two numbers",
+        inputSchema: {
             "type": "object",
             "properties": {
-                "a": {"type": "number", "description": "number to add"}, 
+                "a": {"type": "number", "description": "number to add"},
                 "b": {"type": "number", "description": "number to add"}
             },
             "required": ["query"],
@@ -177,7 +177,7 @@ So far, you've seen how all your registrations to add tools, resources and promp
 
 ### Create a feature
 
-To create a feature, we will need to create a file for that feature and make sure it has the mandatory fields requred of that feature. Which fields differ a bit between tools, resources and prompts.
+To create a feature, we will need to create a file for that feature and make sure it has the mandatory fields required of that feature. Which fields differ a bit between tools, resources and prompts.
 
 **Python**
 
@@ -442,7 +442,7 @@ import { z } from 'zod';
 export const MathInputSchema = z.object({ a: z.number(), b: z.number() });
 ```
 
-Great, let's procced to handle the listing of our tools next.
+Great, let's proceed to handle the listing of our tools next.
 
 ### -3- Handle tool listing
 
@@ -530,7 +530,7 @@ async def handle_call_tool(
 
     return [
         types.TextContent(type="text", text=str(result))
-    ] 
+    ]
 ```
 
 Here's what goes on:

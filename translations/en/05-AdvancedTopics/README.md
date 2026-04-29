@@ -40,6 +40,7 @@ By the end of this lesson, you will be able to:
 | [5.14 Context Engineering](./mcp-contextengineering/README.md) | Context Engineering | The future opportunity of context engineering techniques for MCP servers, including context optimization, dynamic context management, and strategies for effective prompt engineering within MCP frameworks.|
 | [5.15 MCP Custom Transport](./mcp-transport/README.md) | Custom Transport | Learn how to implement custom transport mechanisms for specialized MCP communication scenarios.|
 | [5.16 Protocol Features Deep Dive](./mcp-protocol-features/README.md) | Protocol Features | Master advanced protocol features including progress notifications, request cancellation, resource templates, and error handling patterns.|
+| [5.17 Adversarial Multi-Agent Reasoning](./mcp-adversarial-agents/README.md) | Adversarial Agents | Use two agents with opposing positions, sharing a single MCP tool set, to catch hallucinations, surface edge cases, and produce better-calibrated outputs through structured debate.|
 
 > **New in MCP Specification 2025-11-25**: The specification now includes experimental support for **Tasks** (long-running operations with progress tracking), **Tool Annotations** (metadata about tool behavior for safety), **URL Mode Elicitation** (requesting specific URL content from clients), and enhanced **Roots** (for workspace context management). See the [MCP Specification changelog](https://spec.modelcontextprotocol.io/) for full details.
 
@@ -87,5 +88,5 @@ Once you've completed this module, continue to: [Module 6: Community Contributio
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Disclaimer**:
-This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
+This document has been translated using AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

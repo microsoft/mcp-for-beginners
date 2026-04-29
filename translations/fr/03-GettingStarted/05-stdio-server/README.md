@@ -1,39 +1,39 @@
 # Serveur MCP avec transport stdio
 
-> **⚠️ Mise à jour importante** : À partir de la spécification MCP 2025-06-18, le transport SSE autonome (Server-Sent Events) a été **abandonné** et remplacé par le transport "HTTP Streamable". La spécification MCP actuelle définit deux mécanismes de transport principaux :
+> **⚠️ Mise à jour importante** : À partir de la spécification MCP 2025-06-18, le transport SSE (Server-Sent Events) autonome a été **déprécié** et remplacé par le transport "Streamable HTTP". La spécification MCP actuelle définit deux mécanismes de transport principaux :
 > 1. **stdio** - Entrée/sortie standard (recommandé pour les serveurs locaux)
-> 2. **HTTP Streamable** - Pour les serveurs distants pouvant utiliser SSE en interne
+> 2. **Streamable HTTP** - Pour les serveurs distants pouvant utiliser SSE en interne
 >
-> Cette leçon a été mise à jour pour se concentrer sur le **transport stdio**, qui est l'approche recommandée pour la plupart des implémentations de serveurs MCP.
+> Cette leçon a été mise à jour pour se concentrer sur le **transport stdio**, qui est l'approche recommandée pour la plupart des implémentations de serveur MCP.
 
-Le transport stdio permet aux serveurs MCP de communiquer avec les clients via les flux d'entrée et sortie standard. C'est le mécanisme de transport le plus couramment utilisé et recommandé dans la spécification MCP actuelle, offrant une façon simple et efficace de construire des serveurs MCP pouvant être facilement intégrés avec diverses applications clientes.
+Le transport stdio permet aux serveurs MCP de communiquer avec les clients via les flux d'entrée et sortie standard. C'est le mécanisme de transport le plus couramment utilisé et recommandé dans la spécification MCP actuelle, offrant un moyen simple et efficace de construire des serveurs MCP qui peuvent être facilement intégrés à diverses applications clientes.
 
-## Aperçu
+## Vue d’ensemble
 
-Cette leçon explique comment construire et consommer des serveurs MCP utilisant le transport stdio.
+Cette leçon couvre comment créer et consommer des serveurs MCP utilisant le transport stdio.
 
-## Objectifs d'apprentissage
+## Objectifs d’apprentissage
 
 À la fin de cette leçon, vous serez capable de :
 
 - Construire un serveur MCP utilisant le transport stdio.
-- Déboguer un serveur MCP avec l’Inspector.
+- Déboguer un serveur MCP en utilisant l’Inspector.
 - Consommer un serveur MCP via Visual Studio Code.
 - Comprendre les mécanismes de transport MCP actuels et pourquoi stdio est recommandé.
 
-## Transport stdio - Comment ça marche
+## Transport stdio - Comment ça fonctionne
 
-Le transport stdio est l’un des deux types de transport pris en charge dans la spécification MCP actuelle (2025-06-18). Voici comment cela fonctionne :
+Le transport stdio est l’un des deux types de transport pris en charge dans la spécification MCP actuelle (2025-06-18). Voici son fonctionnement :
 
-- **Communication simple** : le serveur lit les messages JSON-RPC depuis l’entrée standard (`stdin`) et envoie des messages à la sortie standard (`stdout`).
-- **Basé sur un processus** : le client lance le serveur MCP comme un sous-processus.
-- **Format des messages** : les messages sont des requêtes, notifications ou réponses JSON-RPC individuelles, délimitées par des retours à la ligne.
-- **Journalisation** : le serveur PEUT écrire des chaînes UTF-8 dans l’erreur standard (`stderr`) pour les logs.
+- **Communication simple** : Le serveur lit des messages JSON-RPC depuis l’entrée standard (`stdin`) et envoie des messages à la sortie standard (`stdout`).
+- **Basé sur un processus** : Le client lance le serveur MCP comme un sous-processus.
+- **Format des messages** : Les messages sont des requêtes, notifications ou réponses JSON-RPC individuelles, délimitées par des sauts de ligne.
+- **Journalisation** : Le serveur PEUT écrire des chaînes UTF-8 dans l’erreur standard (`stderr`) à des fins de journalisation.
 
 ### Exigences clés :
-- Les messages DOIVENT être délimités par des retours à la ligne et NE DOIVENT PAS contenir de retours à la ligne intégrés
+- Les messages DOIVENT être délimités par des sauts de ligne et NE DOIVENT PAS contenir de sauts de ligne intégrés
 - Le serveur NE DOIT PAS écrire quoi que ce soit sur `stdout` qui ne soit pas un message MCP valide
-- Le client NE DOIT PAS écrire quoi que ce soit sur le `stdin` du serveur qui ne soit pas un message MCP valide
+- Le client NE DOIT PAS écrire quoi que ce soit dans `stdin` du serveur qui ne soit pas un message MCP valide
 
 ### TypeScript
 
@@ -52,12 +52,20 @@ const server = new Server(
     },
   }
 );
+
+async function runServer() {
+  const transport = new StdioServerTransport();
+  await server.connect(transport);
+}
+
+runServer().catch(console.error);
 ```
 
 Dans le code précédent :
 
 - Nous importons la classe `Server` et `StdioServerTransport` du SDK MCP
-- Nous créons une instance de serveur avec une configuration et des capacités basiques
+- Nous créons une instance de serveur avec une configuration et des capacités de base
+- Nous créons une instance de `StdioServerTransport` et connectons le serveur à celui-ci, activant la communication via stdin/stdout
 
 ### Python
 
@@ -89,8 +97,8 @@ if __name__ == "__main__":
 
 Dans le code précédent nous :
 
-- Créons une instance de serveur avec le SDK MCP
-- Définit les outils à l’aide de décorateurs
+- Créons une instance de serveur en utilisant le SDK MCP
+- Définissons des outils via des décorateurs
 - Utilisons le gestionnaire de contexte stdio_server pour gérer le transport
 
 ### .NET
@@ -116,26 +124,26 @@ await app.RunAsync();
 
 La différence clé avec SSE est que les serveurs stdio :
 
-- Ne nécessitent pas de configuration de serveur web ni de points d’accès HTTP
-- Sont lancés comme sous-processus par le client
+- Ne nécessitent pas de configuration de serveur web ni de points de terminaison HTTP
+- Sont lancés en tant que sous-processus par le client
 - Communiquent via les flux stdin/stdout
 - Sont plus simples à implémenter et à déboguer
 
-## Exercice : Créer un serveur stdio
+## Exercice : Création d’un serveur stdio
 
-Pour créer notre serveur, il faut garder deux choses à l’esprit :
+Pour créer notre serveur, nous devons garder deux choses à l’esprit :
 
-- Nous devons utiliser un serveur web pour exposer les points d’accès pour la connexion et les messages.
+- Nous devons utiliser un serveur web pour exposer des points de terminaison pour la connexion et les messages.
 
-## Laboratoire : Créer un serveur MCP simple avec stdio
+## Laboratoire : Création d’un serveur MCP stdio simple
 
-Dans ce laboratoire, nous allons créer un serveur MCP simple utilisant le transport stdio recommandé. Ce serveur exposera des outils que les clients pourront appeler via le protocole Model Context standard.
+Dans ce laboratoire, nous allons créer un serveur MCP simple utilisant le transport stdio recommandé. Ce serveur exposera des outils que les clients pourront appeler via le protocole standard Model Context Protocol.
 
 ### Prérequis
 
-- Python 3.8 ou version ultérieure
+- Python 3.8 ou supérieur
 - SDK MCP Python : `pip install mcp`
-- Compréhension de base de la programmation asynchrone
+- Notions de base sur la programmation asynchrone
 
 Commençons par créer notre premier serveur MCP stdio :
 
@@ -176,30 +184,30 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-## Différences clés avec l’ancienne approche SSE
+## Différences clés avec l’approche SSE dépréciée
 
-**Transport Stdio (standard actuel) :**
-- Modèle simple de sous-processus - le client lance le serveur comme processus enfant
-- Communication via stdin/stdout en utilisant des messages JSON-RPC
-- Pas besoin d’installer un serveur HTTP
+**Transport stdio (Standard actuel) :**
+- Modèle de sous-processus simple - le client lance le serveur en processus enfant
+- Communication via stdin/stdout avec des messages JSON-RPC
+- Pas de configuration de serveur HTTP nécessaire
 - Meilleure performance et sécurité
-- Débogage et développement facilités
+- Débogage et développement plus faciles
 
-**Transport SSE (abandonné depuis MCP 2025-06-18) :**
-- Requiert un serveur HTTP avec points d’accès SSE
-- Mise en place plus complexe avec infrastructure serveur web
-- Considérations de sécurité supplémentaires pour les points HTTP
-- Maintenant remplacé par HTTP Streamable pour les scénarios web
+**Transport SSE (Déprécié depuis MCP 2025-06-18) :**
+- Nécessitait un serveur HTTP avec points de terminaison SSE
+- Configuration plus complexe avec infrastructure serveur web
+- Considérations de sécurité supplémentaires pour les points de terminaison HTTP
+- Remplacé désormais par Streamable HTTP pour les scénarios web
 
-### Créer un serveur avec le transport stdio
+### Création d’un serveur avec le transport stdio
 
 Pour créer notre serveur stdio, nous devons :
 
-1. **Importer les bibliothèques requises** - composants serveur MCP et transport stdio
-2. **Créer une instance serveur** - définir le serveur avec ses capacités
-3. **Définir les outils** - ajouter la fonctionnalité à exposer
-4. **Configurer le transport** - configurer la communication stdio
-5. **Lancer le serveur** - démarrer le serveur et gérer les messages
+1. **Importer les bibliothèques requises** - Nous avons besoin des composants serveur MCP et du transport stdio
+2. **Créer une instance de serveur** - Définir le serveur avec ses capacités
+3. **Définir des outils** - Ajouter les fonctionnalités à exposer
+4. **Configurer le transport** - Configurer la communication stdio
+5. **Lancer le serveur** - Démarrer le serveur et gérer les messages
 
 Construisons cela étape par étape :
 
@@ -269,12 +277,12 @@ python server.py
 
 Le serveur démarrera et attendra les entrées depuis stdin. Il communique via des messages JSON-RPC sur le transport stdio.
 
-### Étape 4 : Test avec l’Inspector
+### Étape 4 : Tester avec l’Inspector
 
 Vous pouvez tester votre serveur avec l’Inspector MCP :
 
 1. Installez l’Inspector : `npx @modelcontextprotocol/inspector`
-2. Lancez l’Inspector et connectez-le à votre serveur
+2. Lancez l’Inspector et dirigez-le vers votre serveur
 3. Testez les outils que vous avez créés
 
 ### .NET
@@ -286,9 +294,9 @@ builder.Services
  ```
 ## Déboguer votre serveur stdio
 
-### Avec le MCP Inspector
+### Utilisation du MCP Inspector
 
-Le MCP Inspector est un outil précieux pour le débogage et le test des serveurs MCP. Voici comment l’utiliser avec votre serveur stdio :
+Le MCP Inspector est un outil précieux pour déboguer et tester les serveurs MCP. Voici comment l’utiliser avec votre serveur stdio :
 
 1. **Installer l’Inspector** :
    ```bash
@@ -300,13 +308,13 @@ Le MCP Inspector est un outil précieux pour le débogage et le test des serveur
    npx @modelcontextprotocol/inspector python server.py
    ```
 
-3. **Tester votre serveur** : L’Inspector offre une interface web où vous pouvez :
+3. **Tester votre serveur** : L’Inspector fournit une interface web où vous pouvez :
    - Voir les capacités du serveur
    - Tester les outils avec différents paramètres
    - Surveiller les messages JSON-RPC
    - Déboguer les problèmes de connexion
 
-### Avec VS Code
+### Utilisation de VS Code
 
 Vous pouvez également déboguer votre serveur MCP directement dans VS Code :
 
@@ -326,19 +334,19 @@ Vous pouvez également déboguer votre serveur MCP directement dans VS Code :
    }
    ```
 
-2. Placez des points d’arrêt dans le code serveur
+2. Placez des points d’arrêt dans votre code serveur
 3. Lancez le débogueur et testez avec l’Inspector
 
-### Conseils courants de débogage
+### Conseils courants pour le débogage
 
-- Utilisez `stderr` pour la journalisation – ne jamais écrire sur `stdout` qui est réservé aux messages MCP
-- Assurez-vous que tous les messages JSON-RPC sont délimités par des retours à la ligne
+- Utilisez `stderr` pour la journalisation - ne jamais écrire dans `stdout` car il est réservé aux messages MCP
+- Assurez-vous que tous les messages JSON-RPC soient délimités par des sauts de ligne
 - Testez d’abord avec des outils simples avant d’ajouter des fonctionnalités complexes
 - Utilisez l’Inspector pour vérifier le format des messages
 
 ## Consommer votre serveur stdio dans VS Code
 
-Une fois votre serveur MCP stdio construit, vous pouvez l’intégrer à VS Code pour l’utiliser avec Claude ou d’autres clients compatibles MCP.
+Une fois votre serveur MCP stdio construit, vous pouvez l’intégrer dans VS Code pour l’utiliser avec Claude ou d’autres clients compatibles MCP.
 
 ### Configuration
 
@@ -355,16 +363,16 @@ Une fois votre serveur MCP stdio construit, vous pouvez l’intégrer à VS Code
    }
    ```
 
-2. **Redémarrez Claude** : fermez et rouvrez Claude pour charger la nouvelle configuration du serveur.
+2. **Redémarrez Claude** : Fermez et rouvrez Claude pour charger la nouvelle configuration du serveur.
 
-3. **Testez la connexion** : démarrez une conversation avec Claude et essayez vos outils serveur :
+3. **Testez la connexion** : Démarrez une conversation avec Claude et essayez d’utiliser les outils de votre serveur :
    - "Peux-tu me saluer en utilisant l’outil de salutation ?"
    - "Calcule la somme de 15 et 27"
-   - "Quelles sont les infos du serveur ?"
+   - "Quelles sont les informations du serveur ?"
 
 ### Exemple de serveur stdio TypeScript
 
-Voici un exemple complet en TypeScript à titre de référence :
+Voici un exemple complet en TypeScript pour référence :
 
 ```typescript
 #!/usr/bin/env node
@@ -469,17 +477,17 @@ public class Tools
 
 Dans cette leçon mise à jour, vous avez appris à :
 
-- Construire des serveurs MCP avec le transport **stdio** actuel (approche recommandée)
-- Comprendre pourquoi le transport SSE a été déprécié au profit de stdio et HTTP Streamable
-- Créer des outils appelables par des clients MCP
-- Déboguer votre serveur avec MCP Inspector
+- Construire des serveurs MCP en utilisant le **transport stdio** actuel (approche recommandée)
+- Comprendre pourquoi le transport SSE a été déprécié au profit de stdio et Streamable HTTP
+- Créer des outils pouvant être appelés par des clients MCP
+- Déboguer votre serveur avec le MCP Inspector
 - Intégrer votre serveur stdio avec VS Code et Claude
 
-Le transport stdio offre une façon plus simple, sécurisée et performante de construire des serveurs MCP par rapport à l’approche SSE abandonnée. C’est le transport recommandé pour la plupart des implémentations serveur MCP depuis la spécification du 2025-06-18.
+Le transport stdio offre un moyen plus simple, plus sûr et plus performant de créer des serveurs MCP comparé à l’approche SSE dépréciée. C’est le transport recommandé pour la plupart des implémentations de serveurs MCP selon la spécification du 2025-06-18.
 
 ### .NET
 
-1. Créons d’abord quelques outils, pour cela nous allons créer un fichier *Tools.cs* avec le contenu suivant :
+1. Créons d’abord des outils, pour cela nous allons créer un fichier *Tools.cs* avec le contenu suivant :
 
   ```csharp
   using System.ComponentModel;
@@ -489,61 +497,61 @@ Le transport stdio offre une façon plus simple, sécurisée et performante de c
 
 ## Exercice : Tester votre serveur stdio
 
-Maintenant que vous avez construit votre serveur stdio, testons-le pour s’assurer qu’il fonctionne correctement.
+Maintenant que vous avez créé votre serveur stdio, testons-le pour s’assurer qu’il fonctionne correctement.
 
 ### Prérequis
 
-1. Assurez-vous d’avoir installé MCP Inspector :
+1. Assurez-vous d’avoir installé le MCP Inspector :
    ```bash
    npm install -g @modelcontextprotocol/inspector
    ```
 
-2. Votre code serveur doit être sauvegardé (ex. `server.py`)
+2. Votre code serveur doit être sauvegardé (ex. sous `server.py`)
 
-### Test avec l’Inspector
+### Tester avec l’Inspector
 
 1. **Démarrez l’Inspector avec votre serveur** :
    ```bash
    npx @modelcontextprotocol/inspector python server.py
    ```
 
-2. **Ouvrez l’interface web** : l’Inspector ouvrira une fenêtre dans le navigateur affichant les capacités de votre serveur.
+2. **Ouvrez l’interface web** : L’Inspector ouvrira une fenêtre de navigateur affichant les capacités de votre serveur.
 
-3. **Testez les outils** :
+3. **Testez les outils** : 
    - Essayez l’outil `get_greeting` avec différents noms
-   - Testez l’outil `calculate_sum` avec plusieurs nombres
+   - Testez l’outil `calculate_sum` avec divers nombres
    - Appelez l’outil `get_server_info` pour voir les métadonnées du serveur
 
-4. **Surveillez la communication** : L’Inspector montre les messages JSON-RPC échangés entre client et serveur.
+4. **Surveillez la communication** : L’Inspector affiche les messages JSON-RPC échangés entre client et serveur.
 
 ### Ce que vous devriez voir
 
-Quand votre serveur démarre bien, vous devriez voir :
+Lorsque votre serveur démarre correctement, vous devriez voir :
 - Les capacités du serveur listées dans l’Inspector
-- Les outils disponibles pour les tests
-- Des échanges de messages JSON-RPC réussis
+- Les outils disponibles pour test
+- Les échanges de messages JSON-RPC réussis
 - Les réponses des outils affichées dans l’interface
 
 ### Problèmes courants et solutions
 
 **Le serveur ne démarre pas :**
 - Vérifiez que toutes les dépendances sont installées : `pip install mcp`
-- Vérifiez la syntaxe et l’indentation Python
-- Cherchez des messages d’erreur dans la console
+- Vérifiez la syntaxe Python et l’indentation
+- Recherchez les messages d’erreur dans la console
 
-**Outils n’apparaissant pas :**
+**Les outils ne s’affichent pas :**
 - Assurez-vous que les décorateurs `@server.tool()` sont présents
 - Vérifiez que les fonctions outils sont définies avant `main()`
-- Assurez-vous que le serveur est bien configuré
+- Confirmez que le serveur est bien configuré
 
 **Problèmes de connexion :**
-- Vérifiez que le serveur utilise correctement le transport stdio
-- Assurez-vous qu’aucun autre processus n’interfère
+- Assurez-vous que le serveur utilise correctement le transport stdio
+- Vérifiez qu’aucun autre processus n’interfère
 - Vérifiez la syntaxe de la commande Inspector
 
 ## Devoir
 
-Essayez d’ajouter plus de capacités à votre serveur. Consultez [cette page](https://api.chucknorris.io/) pour, par exemple, ajouter un outil qui appelle une API. C’est vous qui décidez de l’apparence du serveur. Amusez-vous :)
+Essayez d’élargir les capacités de votre serveur. Consultez [cette page](https://api.chucknorris.io/) pour, par exemple, ajouter un outil qui appelle une API. Vous décidez à quoi doit ressembler le serveur. Amusez-vous bien :)
 
 ## Solution
 
@@ -554,40 +562,40 @@ Essayez d’ajouter plus de capacités à votre serveur. Consultez [cette page](
 Les points clés de ce chapitre sont les suivants :
 
 - Le transport stdio est le mécanisme recommandé pour les serveurs MCP locaux.
-- Le transport stdio permet une communication fluide entre serveurs MCP et clients en utilisant les flux standard d’entrée et sortie.
-- Vous pouvez utiliser à la fois Inspector et Visual Studio Code pour consommer directement les serveurs stdio, ce qui rend le débogage et l’intégration simples.
+- Le transport stdio permet une communication transparente entre serveurs MCP et clients via les flux standard d’entrée et sortie.
+- Vous pouvez utiliser à la fois l’Inspector et Visual Studio Code pour consommer directement les serveurs stdio, ce qui facilite le débogage et l’intégration.
 
-## Échantillons 
+## Exemples
 
 - [Calculatrice Java](../samples/java/calculator/README.md)
 - [Calculatrice .Net](../../../../03-GettingStarted/samples/csharp)
 - [Calculatrice JavaScript](../samples/javascript/README.md)
 - [Calculatrice TypeScript](../samples/typescript/README.md)
-- [Calculatrice Python](../../../../03-GettingStarted/samples/python) 
+- [Calculatrice Python](../../../../03-GettingStarted/samples/python)
 
 ## Ressources supplémentaires
 
 - [SSE](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events)
 
-## Et ensuite
+## Et après ?
 
-## Prochaines étapes
+## Étapes suivantes
 
-Maintenant que vous savez construire des serveurs MCP avec le transport stdio, vous pouvez explorer des sujets plus avancés :
+Maintenant que vous savez comment construire des serveurs MCP avec le transport stdio, vous pouvez explorer des sujets plus avancés :
 
-- **Suivant** : [Streaming HTTP avec MCP (HTTP Streamable)](../06-http-streaming/README.md) - Découvrez l’autre mécanisme de transport supporté pour les serveurs distants
-- **Avancé** : [Bonnes pratiques de sécurité MCP](../../02-Security/README.md) - Implémentez la sécurité dans vos serveurs MCP
-- **Production** : [Stratégies de déploiement](../09-deployment/README.md) - Déployez vos serveurs en production
+- **Suivant** : [Streaming HTTP avec MCP (Streamable HTTP)](../06-http-streaming/README.md) - Découvrez l’autre mécanisme de transport supporté pour les serveurs distants
+- **Avancé** : [Meilleures pratiques de sécurité MCP](../../02-Security/README.md) - Implémentez la sécurité dans vos serveurs MCP
+- **Production** : [Stratégies de déploiement](../09-deployment/README.md) - Déployez vos serveurs pour un usage en production
 
-## Ressources additionnelles
+## Ressources complémentaires
 
 - [Spécification MCP 2025-06-18](https://spec.modelcontextprotocol.io/specification/) - Spécification officielle
-- [Documentation SDK MCP](https://github.com/modelcontextprotocol/sdk) - Références SDK pour tous les langages
-- [Exemples communautaires](../../06-CommunityContributions/README.md) - Plus d’exemples de serveurs issus de la communauté
+- [Documentation MCP SDK](https://github.com/modelcontextprotocol/sdk) - Références SDK pour tous les langages
+- [Exemples communautaires](../../06-CommunityContributions/README.md) - Plus d’exemples de serveurs venant de la communauté
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Avertissement** :  
-Ce document a été traduit à l’aide du service de traduction automatique [Co-op Translator](https://github.com/Azure/co-op-translator). Bien que nous nous efforcions d’assurer l’exactitude, veuillez noter que les traductions automatiques peuvent contenir des erreurs ou des inexactitudes. Le document original dans sa langue d’origine doit être considéré comme la source faisant foi. Pour les informations critiques, une traduction professionnelle humaine est recommandée. Nous déclinons toute responsabilité en cas de malentendus ou d’interprétations erronées résultant de l’utilisation de cette traduction.
+**Avertissement** :
+Ce document a été traduit à l'aide du service de traduction automatique [Co-op Translator](https://github.com/Azure/co-op-translator). Bien que nous nous efforçions d'assurer la précision, veuillez noter que les traductions automatiques peuvent contenir des erreurs ou des inexactitudes. Le document original dans sa langue native doit être considéré comme la source faisant autorité. Pour des informations critiques, une traduction professionnelle humaine est recommandée. Nous déclinons toute responsabilité en cas de malentendus ou de mauvaises interprétations résultant de l'utilisation de cette traduction.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,39 +1,39 @@
-# MCP Server với phương thức truyền stdio
+# MCP Server với giao thức stdio
 
-> **⚠️ Cập nhật quan trọng**: Từ MCP Specification 2025-06-18, phương thức truyền SSE (Server-Sent Events) độc lập đã bị **khai tử** và được thay thế bằng phương thức "Streamable HTTP". Đặc tả MCP hiện tại định nghĩa hai cơ chế truyền chính:
-> 1. **stdio** - Đầu vào/đầu ra chuẩn (được khuyến nghị cho máy chủ nội bộ)
+> **⚠️ Cập nhật quan trọng**: Kể từ MCP Specification 2025-06-18, giao thức SSE (Server-Sent Events) độc lập đã bị **ngưng sử dụng** và được thay thế bằng giao thức "Streamable HTTP". Bộ tiêu chuẩn MCP hiện tại định nghĩa hai cơ chế giao thức chính:
+> 1. **stdio** - Đầu vào/đầu ra chuẩn (khuyến nghị cho các máy chủ cục bộ)
 > 2. **Streamable HTTP** - Dành cho các máy chủ từ xa có thể sử dụng SSE nội bộ
 >
-> Bài học này đã được cập nhật để tập trung vào **phương thức truyền stdio**, phương pháp được khuyến nghị cho hầu hết các triển khai máy chủ MCP.
+> Bài học này đã được cập nhật để tập trung vào **giao thức stdio**, đây là cách tiếp cận được khuyến nghị cho hầu hết các triển khai MCP server.
 
-Phương thức truyền stdio cho phép các máy chủ MCP giao tiếp với khách hàng thông qua các luồng đầu vào và đầu ra chuẩn. Đây là cơ chế truyền phổ biến nhất và được khuyến nghị trong đặc tả MCP hiện tại, cung cấp cách đơn giản và hiệu quả để xây dựng các máy chủ MCP có thể tích hợp dễ dàng với nhiều ứng dụng khách khác nhau.
+Giao thức stdio cho phép các MCP server giao tiếp với client thông qua các dòng dữ liệu đầu vào và đầu ra chuẩn. Đây là cơ chế giao thức phổ biến nhất và được khuyến nghị trong bộ tiêu chuẩn MCP hiện tại, cung cấp một cách đơn giản và hiệu quả để xây dựng MCP server có thể dễ dàng tích hợp với các ứng dụng client khác nhau.
 
 ## Tổng quan
 
-Bài học này hướng dẫn cách xây dựng và sử dụng các máy chủ MCP sử dụng phương thức truyền stdio.
+Bài học này sẽ hướng dẫn cách xây dựng và sử dụng MCP Server bằng giao thức stdio.
 
 ## Mục tiêu học tập
 
 Sau bài học này, bạn sẽ có thể:
 
-- Xây dựng máy chủ MCP sử dụng phương thức truyền stdio.
-- Gỡ lỗi máy chủ MCP sử dụng Inspector.
-- Sử dụng máy chủ MCP trong Visual Studio Code.
-- Hiểu các cơ chế truyền MCP hiện tại và lý do tại sao stdio được khuyến nghị.
+- Xây dựng MCP Server sử dụng giao thức stdio.
+- Gỡ lỗi MCP Server bằng Inspector.
+- Sử dụng MCP Server trong Visual Studio Code.
+- Hiểu các cơ chế giao thức MCP hiện tại và lý do vì sao stdio được khuyến nghị.
 
-## Phương thức truyền stdio - Cách hoạt động
+## Giao thức stdio - Cách hoạt động
 
-Phương thức truyền stdio là một trong hai loại phương thức truyền được hỗ trợ trong đặc tả MCP hiện tại (2025-06-18). Cách hoạt động như sau:
+Giao thức stdio là một trong hai loại giao thức được hỗ trợ trong tiêu chuẩn MCP hiện tại (2025-06-18). Cách hoạt động như sau:
 
-- **Giao tiếp đơn giản**: Máy chủ đọc các thông điệp JSON-RPC từ đầu vào chuẩn (`stdin`) và gửi thông điệp qua đầu ra chuẩn (`stdout`).
-- **Dựa trên tiến trình**: Khách hàng khởi chạy máy chủ MCP như một tiến trình con.
-- **Định dạng thông điệp**: Thông điệp là các yêu cầu, thông báo hoặc phản hồi JSON-RPC riêng biệt, được phân cách bằng dòng mới.
-- **Ghi nhật ký**: Máy chủ CÓ THỂ ghi các chuỗi UTF-8 vào đầu lỗi chuẩn (`stderr`) để phục vụ ghi nhận nhật ký.
+- **Giao tiếp đơn giản**: Server đọc các thông điệp JSON-RPC từ đầu vào chuẩn (`stdin`) và gửi thông điệp ra đầu ra chuẩn (`stdout`).
+- **Dựa trên tiến trình**: Client khởi chạy MCP server dưới dạng tiến trình con.
+- **Định dạng thông điệp**: Thông điệp là các yêu cầu, thông báo hoặc phản hồi JSON-RPC riêng biệt, phân cách bằng dòng mới.
+- **Ghi log**: Server CÓ THỂ ghi chuỗi UTF-8 vào đầu ra lỗi chuẩn (`stderr`) để phục vụ ghi log.
 
 ### Yêu cầu chính:
-- Các thông điệp PHẢI được phân cách bằng dòng mới và KHÔNG được chứa dòng mới bên trong
-- Máy chủ KHÔNG ĐƯỢC ghi bất cứ điều gì vào `stdout` không phải là thông điệp MCP hợp lệ
-- Khách hàng KHÔNG ĐƯỢC ghi vào `stdin` của máy chủ bất cứ điều gì không phải là thông điệp MCP hợp lệ
+- Thông điệp PHẢI được phân tách bằng dòng mới và KHÔNG được chứa dòng mới nhúng trong thông điệp
+- Server KHÔNG PHẢI ghi gì vào `stdout` mà không phải thông điệp MCP hợp lệ
+- Client KHÔNG PHẢI ghi gì vào `stdin` của server mà không phải thông điệp MCP hợp lệ
 
 ### TypeScript
 
@@ -52,12 +52,20 @@ const server = new Server(
     },
   }
 );
+
+async function runServer() {
+  const transport = new StdioServerTransport();
+  await server.connect(transport);
+}
+
+runServer().catch(console.error);
 ```
 
 Trong đoạn mã trên:
 
-- Chúng ta nhập lớp `Server` và `StdioServerTransport` từ MCP SDK
-- Tạo một thể hiện máy chủ với cấu hình và khả năng cơ bản
+- Chúng ta import lớp `Server` và `StdioServerTransport` từ MCP SDK
+- Tạo một instance server với cấu hình và khả năng cơ bản
+- Tạo một instance `StdioServerTransport` và kết nối server với nó, cho phép giao tiếp qua stdin/stdout
 
 ### Python
 
@@ -89,9 +97,9 @@ if __name__ == "__main__":
 
 Trong đoạn mã trên, chúng ta:
 
-- Tạo một thể hiện máy chủ sử dụng MCP SDK
-- Định nghĩa các công cụ sử dụng decorator
-- Sử dụng trình quản lý ngữ cảnh stdio_server để xử lý phương thức truyền
+- Tạo một instance server sử dụng MCP SDK
+- Định nghĩa các công cụ (tools) bằng cách sử dụng decorators
+- Sử dụng context manager stdio_server để xử lý giao thức
 
 ### .NET
 
@@ -114,29 +122,30 @@ var app = builder.Build();
 await app.RunAsync();
 ```
 
-Điểm khác biệt chính so với SSE là các máy chủ stdio:
+Điểm khác biệt chính so với SSE là các server stdio:
 
-- Không yêu cầu thiết lập máy chủ web hoặc các điểm cuối HTTP
-- Được khởi chạy như tiến trình con bởi khách hàng
-- Giao tiếp qua các luồng stdin/stdout
+- Không yêu cầu thiết lập web server hoặc các endpoint HTTP
+- Được client khởi chạy dưới dạng tiến trình con
+- Giao tiếp qua các dòng stdin/stdout
 - Đơn giản hơn để triển khai và gỡ lỗi
 
-## Bài tập: Tạo máy chủ stdio
+## Bài tập: Tạo server stdio
 
-Để tạo máy chủ, chúng ta cần nhớ hai điều:
+Để tạo server, chúng ta cần lưu ý hai điểm:
 
-- Cần sử dụng máy chủ web để mở các điểm cuối cho kết nối và thông điệp.
-## Bài thực hành: Tạo máy chủ MCP stdio đơn giản
+- Cần sử dụng web server để cung cấp các endpoint cho kết nối và tin nhắn.
 
-Trong bài thực hành này, chúng ta sẽ tạo một máy chủ MCP đơn giản sử dụng phương thức truyền stdio được khuyến nghị. Máy chủ này sẽ mở các công cụ mà khách hàng có thể gọi bằng giao thức Model Context Protocol chuẩn.
+## Thực hành: Tạo một MCP stdio server đơn giản
 
-### Yêu cầu
+Trong bài lab này, chúng ta sẽ tạo một MCP server đơn giản sử dụng giao thức stdio được khuyến nghị. Server này sẽ cung cấp các công cụ mà client có thể gọi thông qua giao thức Model Context Protocol chuẩn.
 
-- Python 3.8 trở lên
+### Điều kiện cần chuẩn bị
+
+- Python 3.8 hoặc mới hơn
 - MCP Python SDK: `pip install mcp`
-- Hiểu biết cơ bản về lập trình bất đồng bộ
+- Hiểu biết cơ bản về lập trình bất đồng bộ (async)
 
-Hãy bắt đầu bằng cách tạo máy chủ MCP stdio đầu tiên của bạn:
+Bắt đầu bằng cách tạo MCP stdio server đầu tiên:
 
 ```python
 import asyncio
@@ -145,7 +154,7 @@ from mcp.server import Server
 from mcp.server.stdio import stdio_server
 from mcp import types
 
-# Cấu hình ghi log
+# Cấu hình ghi nhật ký
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -163,7 +172,7 @@ def get_greeting(name: str) -> str:
     return f"Hello, {name}! Welcome to MCP stdio server."
 
 async def main():
-    # Sử dụng giao thức stdio
+    # Sử dụng phương thức truyền stdio
     async with stdio_server(server) as (read_stream, write_stream):
         await server.run(
             read_stream,
@@ -175,34 +184,35 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-## Các điểm khác biệt chính so với cách tiếp cận SSE đã bị khai tử
 
-**Phương thức truyền Stdio (Tiêu chuẩn hiện tại):**
-- Mô hình subprocess đơn giản - khách hàng khởi chạy máy chủ như tiến trình con
-- Giao tiếp qua stdin/stdout sử dụng thông điệp JSON-RPC
-- Không cần thiết lập máy chủ HTTP
-- Hiệu suất và bảo mật tốt hơn
-- Dễ dàng gỡ lỗi và phát triển
+## Sự khác biệt chính so với phương pháp SSE đã bị ngưng
 
-**Phương thức truyền SSE (Khai tử kể từ MCP 2025-06-18):**
-- Yêu cầu máy chủ HTTP với các điểm cuối SSE
-- Phức tạp hơn do cần hạ tầng máy chủ web
-- Cân nhắc bảo mật thêm cho các điểm cuối HTTP
+**Giao thức Stdio (Tiêu chuẩn hiện tại):**
+- Mô hình tiến trình con đơn giản - client khởi chạy server dưới dạng tiến trình con
+- Giao tiếp qua stdin/stdout dùng các thông điệp JSON-RPC
+- Không cần thiết lập web server HTTP
+- Hiệu năng và bảo mật tốt hơn
+- Dễ dàng gỡ lỗi và phát triển hơn
+
+**Giao thức SSE (Ngưng sử dụng từ MCP 2025-06-18):**
+- Yêu cầu web server HTTP với các endpoint SSE
+- Thiết lập phức tạp hơn với hạ tầng web server
+- Cần quan tâm nhiều hơn về bảo mật của các endpoint HTTP
 - Đã được thay thế bằng Streamable HTTP cho các kịch bản web
 
-### Tạo máy chủ với phương thức truyền stdio
+### Tạo server với giao thức stdio
 
-Để tạo máy chủ stdio, chúng ta cần:
+Để tạo server stdio, chúng ta cần:
 
-1. **Nhập các thư viện cần thiết** - Các thành phần máy chủ MCP và phương thức truyền stdio
-2. **Tạo một thể hiện máy chủ** - Định nghĩa máy chủ với các khả năng của nó
-3. **Định nghĩa công cụ** - Thêm chức năng muốn mở cho khách hàng
-4. **Cấu hình phương thức truyền** - Thiết lập giao tiếp stdio
-5. **Chạy máy chủ** - Khởi động máy chủ và xử lý thông điệp
+1. **Import thư viện cần thiết** - Bao gồm các thành phần MCP server và giao thức stdio
+2. **Tạo instance server** - Định nghĩa server với các khả năng của nó
+3. **Định nghĩa công cụ** - Thêm các chức năng muốn cung cấp
+4. **Cấu hình giao thức** - Thiết lập giao tiếp stdio
+5. **Khởi động server** - Bắt đầu server và xử lý tin nhắn
 
-Hãy xây dựng từng bước một:
+Hãy xây dựng theo từng bước:
 
-### Bước 1: Tạo máy chủ stdio cơ bản
+### Bước 1: Tạo server stdio cơ bản
 
 ```python
 import asyncio
@@ -258,23 +268,23 @@ def get_server_info() -> dict:
     }
 ```
 
-### Bước 3: Chạy máy chủ
+### Bước 3: Chạy server
 
-Lưu mã nguồn dưới tên `server.py` và chạy từ dòng lệnh:
+Lưu mã code dưới tên `server.py` và chạy từ dòng lệnh:
 
 ```bash
 python server.py
 ```
 
-Máy chủ sẽ khởi động và chờ đầu vào từ stdin. Nó giao tiếp bằng các thông điệp JSON-RPC qua phương thức truyền stdio.
+Server sẽ khởi động và đợi dữ liệu từ stdin. Nó giao tiếp bằng các thông điệp JSON-RPC qua giao thức stdio.
 
-### Bước 4: Kiểm tra với Inspector
+### Bước 4: Kiểm thử bằng Inspector
 
-Bạn có thể kiểm tra máy chủ bằng MCP Inspector:
+Bạn có thể kiểm thử server bằng MCP Inspector:
 
 1. Cài đặt Inspector: `npx @modelcontextprotocol/inspector`
-2. Chạy Inspector và trỏ đến máy chủ của bạn
-3. Kiểm tra các công cụ bạn đã tạo
+2. Chạy Inspector và trỏ đến server của bạn
+3. Thử nghiệm các công cụ bạn đã tạo
 
 ### .NET
 
@@ -283,11 +293,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddMcpServer();
  ```
-## Gỡ lỗi máy chủ stdio của bạn
+
+
+## Gỡ lỗi server stdio
 
 ### Sử dụng MCP Inspector
 
-MCP Inspector là công cụ hữu ích để gỡ lỗi và kiểm thử các máy chủ MCP. Đây là cách sử dụng nó với máy chủ stdio:
+Inspector MCP là công cụ hữu ích để gỡ lỗi và kiểm tra MCP server. Đây là cách dùng nó với server stdio của bạn:
 
 1. **Cài đặt Inspector**:
    ```bash
@@ -299,17 +311,17 @@ MCP Inspector là công cụ hữu ích để gỡ lỗi và kiểm thử các m
    npx @modelcontextprotocol/inspector python server.py
    ```
 
-3. **Kiểm tra máy chủ**: Inspector cung cấp giao diện web cho phép bạn:
-   - Xem các khả năng của máy chủ
-   - Kiểm thử các công cụ với các tham số khác nhau
+3. **Kiểm thử server**: Inspector cung cấp giao diện web cho phép bạn:
+   - Xem các khả năng của server
+   - Thử các công cụ với nhiều tham số khác nhau
    - Giám sát các thông điệp JSON-RPC
-   - Gỡ lỗi các vấn đề kết nối
+   - Gỡ lỗi các sự cố kết nối
 
 ### Sử dụng VS Code
 
-Bạn cũng có thể gỡ lỗi máy chủ MCP trực tiếp trong VS Code:
+Bạn cũng có thể gỡ lỗi MCP server trực tiếp trong VS Code:
 
-1. Tạo cấu hình khởi chạy trong `.vscode/launch.json`:
+1. Tạo cấu hình launch trong `.vscode/launch.json`:
    ```json
    {
      "version": "0.2.0",
@@ -325,23 +337,23 @@ Bạn cũng có thể gỡ lỗi máy chủ MCP trực tiếp trong VS Code:
    }
    ```
 
-2. Đặt breakpoint trong mã máy chủ
-3. Chạy trình gỡ lỗi và kiểm tra với Inspector
+2. Đặt breakpoint trong mã server
+3. Chạy debugger và kiểm thử với Inspector
 
-### Mẹo gỡ lỗi thường gặp
+### Mẹo gỡ lỗi phổ biến
 
-- Dùng `stderr` để ghi nhật ký - không bao giờ ghi vào `stdout` vì nó dành cho thông điệp MCP
-- Đảm bảo tất cả thông điệp JSON-RPC được phân cách bằng dòng mới
-- Kiểm tra với công cụ đơn giản trước khi thêm chức năng phức tạp
-- Dùng Inspector để xác minh định dạng thông điệp
+- Sử dụng `stderr` để ghi log - không bao giờ ghi vào `stdout` vì nó dành riêng cho thông điệp MCP
+- Đảm bảo tất cả thông điệp JSON-RPC được phân tách bằng dòng mới
+- Thử các công cụ đơn giản trước khi thêm chức năng phức tạp
+- Dùng Inspector để xác thực định dạng thông điệp
 
-## Sử dụng máy chủ stdio trong VS Code
+## Sử dụng server stdio trong VS Code
 
-Khi bạn đã tạo xong máy chủ MCP stdio, bạn có thể tích hợp nó với VS Code để dùng với Claude hoặc các khách hàng tương thích MCP khác.
+Khi đã xây dựng MCP stdio server, bạn có thể tích hợp với VS Code để dùng với Claude hoặc các client tương thích MCP khác.
 
 ### Cấu hình
 
-1. **Tạo tệp cấu hình MCP** tại `%APPDATA%\Claude\claude_desktop_config.json` (Windows) hoặc `~/Library/Application Support/Claude/claude_desktop_config.json` (Mac):
+1. **Tạo file cấu hình MCP** tại `%APPDATA%\Claude\claude_desktop_config.json` (Windows) hoặc `~/Library/Application Support/Claude/claude_desktop_config.json` (Mac):
 
    ```json
    {
@@ -354,16 +366,16 @@ Khi bạn đã tạo xong máy chủ MCP stdio, bạn có thể tích hợp nó 
    }
    ```
 
-2. **Khởi động lại Claude**: Đóng và mở lại Claude để tải cấu hình máy chủ mới.
+2. **Khởi động lại Claude**: Đóng và mở lại Claude để tải cấu hình server mới.
 
-3. **Kiểm tra kết nối**: Bắt đầu trò chuyện với Claude và thử sử dụng các công cụ của máy chủ:
-   - "Bạn có thể chào tôi dùng công cụ greeting không?"
-   - "Tính tổng của 15 và 27"
-   - "Thông tin máy chủ như thế nào?"
+3. **Kiểm thử kết nối**: Bắt đầu cuộc trò chuyện với Claude và thử sử dụng các công cụ của server:
+   - "Bạn có thể chào tôi bằng công cụ greeting không?"
+   - "Tính tổng 15 và 27"
+   - "Thông tin server là gì?"
 
-### Ví dụ máy chủ stdio TypeScript
+### Ví dụ server stdio TypeScript
 
-Dưới đây là ví dụ đầy đủ bằng TypeScript để tham khảo:
+Dưới đây là ví dụ TypeScript hoàn chỉnh để tham khảo:
 
 ```typescript
 #!/usr/bin/env node
@@ -428,7 +440,8 @@ async function runServer() {
 runServer().catch(console.error);
 ```
 
-### Ví dụ máy chủ stdio .NET
+
+### Ví dụ server stdio .NET
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
@@ -464,22 +477,21 @@ public class Tools
 }
 ```
 
-## Tóm tắt
+## Tổng kết
 
 Trong bài học cập nhật này, bạn đã học được cách:
 
-- Xây dựng máy chủ MCP sử dụng phương thức truyền **stdio** hiện tại (phương pháp được khuyến nghị)
-- Hiểu tại sao phương thức truyền SSE bị khai tử thay cho stdio và Streamable HTTP
-- Tạo các công cụ có thể được gọi bởi khách hàng MCP
-- Gỡ lỗi máy chủ bằng MCP Inspector
-- Tích hợp máy chủ stdio với VS Code và Claude
+- Xây dựng MCP server sử dụng **giao thức stdio hiện tại** (cách tiếp cận được khuyến nghị)
+- Hiểu lý do giao thức SSE bị ngưng và được thay thế bằng stdio và Streamable HTTP
+- Tạo công cụ có thể được gọi bởi client MCP
+- Gỡ lỗi server bằng MCP Inspector
+- Tích hợp server stdio với VS Code và Claude
 
-Phương thức truyền stdio cung cấp cách xây dựng máy chủ MCP đơn giản hơn, an toàn hơn và hiệu suất tốt hơn so với cách tiếp cận SSE đã bị khai tử. Đây là phương thức truyền được khuyến nghị cho hầu hết các triển khai máy chủ MCP theo đặc tả 2025-06-18.
-
+Giao thức stdio cung cấp cách đơn giản hơn, bảo mật hơn, và hiệu năng cao hơn để xây dựng MCP server so với phương pháp SSE đã ngưng sử dụng. Đây là giao thức được khuyến nghị cho phần lớn triển khai MCP server theo tiêu chuẩn 2025-06-18.
 
 ### .NET
 
-1. Trước tiên, hãy tạo một số công cụ, cho việc này ta tạo tệp *Tools.cs* với nội dung sau:
+1. Trước tiên chúng ta tạo một số công cụ, cho việc này chúng ta tạo file *Tools.cs* với nội dung sau:
 
   ```csharp
   using System.ComponentModel;
@@ -487,107 +499,108 @@ Phương thức truyền stdio cung cấp cách xây dựng máy chủ MCP đơn
   using ModelContextProtocol.Server;
   ```
 
-## Bài tập: Kiểm thử máy chủ stdio của bạn
 
-Bây giờ bạn đã xây dựng máy chủ stdio, hãy kiểm thử để chắc chắn nó hoạt động đúng.
+## Bài tập: Kiểm thử server stdio
 
-### Yêu cầu
+Khi đã xây dựng server stdio, hãy thử kiểm thử nó để đảm bảo hoạt động chính xác.
 
-1. Đảm bảo bạn đã cài MCP Inspector:
+### Điều kiện cần chuẩn bị
+
+1. Đảm bảo bạn đã cài đặt MCP Inspector:
    ```bash
    npm install -g @modelcontextprotocol/inspector
    ```
 
-2. Mã máy chủ của bạn đã được lưu (ví dụ, `server.py`)
+2. Mã server của bạn đã được lưu (ví dụ `server.py`)
 
 ### Kiểm thử với Inspector
 
-1. **Khởi động Inspector cùng máy chủ**:
+1. **Khởi động Inspector cùng server**:
    ```bash
    npx @modelcontextprotocol/inspector python server.py
    ```
 
-2. **Mở giao diện web**: Inspector sẽ mở cửa sổ trình duyệt hiển thị các khả năng máy chủ.
+2. **Mở giao diện web**: Inspector sẽ mở cửa sổ trình duyệt hiển thị khả năng của server bạn.
 
-3. **Kiểm thử các công cụ**: 
+3. **Thử các công cụ**:
    - Thử công cụ `get_greeting` với các tên khác nhau
-   - Kiểm thử công cụ `calculate_sum` với các số khác nhau
-   - Gọi công cụ `get_server_info` để xem thông tin meta máy chủ
+   - Kiểm tra công cụ `calculate_sum` với các số khác nhau
+   - Gọi công cụ `get_server_info` để xem metadata server
 
-4. **Giám sát giao tiếp**: Inspector hiển thị các thông điệp JSON-RPC được trao đổi giữa khách hàng và máy chủ.
+4. **Giám sát giao tiếp**: Inspector hiển thị các thông điệp JSON-RPC trao đổi giữa client và server.
 
-### Bạn nên thấy gì
+### Những gì bạn nên thấy
 
-Khi máy chủ bắt đầu đúng, bạn sẽ thấy:
-- Các khả năng máy chủ được liệt kê trong Inspector
-- Các công cụ sẵn sàng để kiểm thử
-- Các thông điệp JSON-RPC trao đổi thành công
-- Phản hồi của công cụ hiển thị trên giao diện
+Khi server khởi động đúng, bạn sẽ thấy:
+- Danh sách khả năng server trong Inspector
+- Các công cụ sẵn dùng để kiểm thử
+- Trao đổi thông điệp JSON-RPC thành công
+- Phản hồi của công cụ hiển thị trong giao diện
 
-### Các vấn đề thường gặp và giải pháp
+### Các vấn đề phổ biến và cách khắc phục
 
-**Máy chủ không khởi động:**
-- Kiểm tra xem tất cả các thư viện đã được cài đặt: `pip install mcp`
-- Xác thực cú pháp và thụt lề Python
-- Tìm lỗi trong bảng điều khiển
+**Server không khởi động:**
+- Kiểm tra đã cài đủ phụ thuộc: `pip install mcp`
+- Kiểm tra cú pháp và thụt lề Python
+- Xem lỗi trong console
 
-**Công cụ không hiển thị:**
-- Đảm bảo các decorator `@server.tool()` có mặt
+**Công cụ không hiện ra:**
+- Đảm bảo có decorators `@server.tool()`
 - Kiểm tra các hàm công cụ được định nghĩa trước `main()`
-- Đảm bảo máy chủ được cấu hình đúng
+- Đảm bảo server được cấu hình đúng
 
 **Vấn đề kết nối:**
-- Đảm bảo máy chủ sử dụng phương thức truyền stdio chính xác
-- Kiểm tra xem không có tiến trình khác xen vào
+- Đảm bảo server sử dụng giao thức stdio đúng cách
+- Kiểm tra không có tiến trình nào khác gây xung đột
 - Xác minh cú pháp lệnh Inspector
 
-## Bài tập lớn
+## Bài tập
 
-Thử phát triển thêm khả năng cho máy chủ của bạn. Tham khảo [trang này](https://api.chucknorris.io/) để ví dụ thêm công cụ gọi API. Bạn quyết định máy chủ sẽ trông như thế nào. Chúc bạn vui :)
+Hãy tiếp tục mở rộng server với nhiều khả năng hơn. Tham khảo [trang này](https://api.chucknorris.io/) để ví dụ thêm công cụ gọi API. Bạn quyết định server sẽ trông như thế nào. Chúc vui :)
 
 ## Giải pháp
 
 [Giải pháp](./solution/README.md) Đây là một giải pháp có mã hoạt động.
 
-## Những điểm chính cần nhớ
+## Những điểm chính cần ghi nhớ
 
-Những điểm chính rút ra từ chương này là:
+Điểm chính rút ra trong chương này:
 
-- Phương thức truyền stdio là cơ chế được khuyến nghị cho các máy chủ MCP nội bộ.
-- Phương thức stdio cho phép giao tiếp liền mạch giữa các máy chủ MCP và khách hàng sử dụng luồng đầu vào và đầu ra chuẩn.
-- Bạn có thể sử dụng cả Inspector và Visual Studio Code để sử dụng trực tiếp các máy chủ stdio, giúp việc gỡ lỗi và tích hợp dễ dàng.
+- Giao thức stdio là cơ chế được khuyến nghị cho các server MCP cục bộ.
+- Giao thức stdio cho phép giao tiếp liền mạch giữa server MCP và client sử dụng dòng đầu vào và đầu ra chuẩn.
+- Bạn có thể dùng cả Inspector và Visual Studio Code để sử dụng server stdio trực tiếp, giúp gỡ lỗi và tích hợp dễ dàng hơn.
 
-## Mẫu mã
+## Mẫu ví dụ
 
 - [Máy tính Java](../samples/java/calculator/README.md)
 - [Máy tính .Net](../../../../03-GettingStarted/samples/csharp)
 - [Máy tính JavaScript](../samples/javascript/README.md)
 - [Máy tính TypeScript](../samples/typescript/README.md)
-- [Máy tính Python](../../../../03-GettingStarted/samples/python) 
+- [Máy tính Python](../../../../03-GettingStarted/samples/python)
 
 ## Tài nguyên bổ sung
 
 - [SSE](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events)
 
-## Tiếp theo là gì
+## Tiếp theo
 
-## Các bước tiếp theo
+## Bước tiếp theo
 
-Bây giờ bạn đã học cách xây dựng máy chủ MCP với phương thức truyền stdio, bạn có thể khám phá các chủ đề nâng cao hơn:
+Sau khi bạn đã biết cách xây dựng MCP server với giao thức stdio, bạn có thể khám phá các chủ đề nâng cao hơn:
 
-- **Tiếp theo**: [HTTP Streaming với MCP (Streamable HTTP)](../06-http-streaming/README.md) - Tìm hiểu về cơ chế truyền khác được hỗ trợ cho máy chủ từ xa
-- **Nâng cao**: [Thực hành bảo mật MCP](../../02-Security/README.md) - Triển khai bảo mật trong máy chủ MCP
-- **Triển khai sản xuất**: [Chiến lược triển khai](../09-deployment/README.md) - Triển khai máy chủ cho môi trường sản xuất
+- **Tiếp theo**: [HTTP Streaming với MCP (Streamable HTTP)](../06-http-streaming/README.md) - Tìm hiểu về cơ chế giao thức khác được hỗ trợ cho server từ xa
+- **Nâng cao**: [Các thực hành bảo mật MCP tốt nhất](../../02-Security/README.md) - Triển khai bảo mật cho MCP server
+- **Sản xuất**: [Chiến lược triển khai](../09-deployment/README.md) - Triển khai server cho môi trường sản xuất
 
 ## Tài nguyên bổ sung
 
-- [Đặc tả MCP 2025-06-18](https://spec.modelcontextprotocol.io/specification/) - Đặc tả chính thức
-- [Tài liệu MCP SDK](https://github.com/modelcontextprotocol/sdk) - Tham khảo SDK cho các ngôn ngữ
-- [Ví dụ cộng đồng](../../06-CommunityContributions/README.md) - Thêm ví dụ máy chủ từ cộng đồng
+- [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/) - Tiêu chuẩn chính thức
+- [Tài liệu SDK MCP](https://github.com/modelcontextprotocol/sdk) - Tài liệu tham khảo SDK cho tất cả ngôn ngữ
+- [Ví dụ cộng đồng](../../06-CommunityContributions/README.md) - Thêm ví dụ server từ cộng đồng
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Tuyên bố từ chối trách nhiệm**:
-Tài liệu này đã được dịch bằng dịch vụ dịch thuật AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mặc dù chúng tôi cố gắng đảm bảo độ chính xác, xin lưu ý rằng bản dịch tự động có thể chứa lỗi hoặc không chính xác. Tài liệu gốc bằng ngôn ngữ gốc của nó nên được xem là nguồn thông tin chính xác và đáng tin cậy. Đối với những thông tin quan trọng, nên sử dụng dịch vụ dịch thuật chuyên nghiệp bởi con người. Chúng tôi không chịu trách nhiệm về bất kỳ hiểu lầm hoặc diễn giải sai nào phát sinh từ việc sử dụng bản dịch này.
+**Tuyên bố từ chối trách nhiệm**:  
+Tài liệu này đã được dịch bằng dịch vụ dịch thuật AI [Co-op Translator](https://github.com/Azure/co-op-translator). Trong khi chúng tôi cố gắng đảm bảo độ chính xác, xin lưu ý rằng bản dịch tự động có thể chứa lỗi hoặc sự không chính xác. Tài liệu gốc bằng ngôn ngữ bản địa nên được xem là nguồn chính xác và đáng tin cậy. Đối với các thông tin quan trọng, nên sử dụng dịch thuật chuyên nghiệp bởi con người. Chúng tôi không chịu trách nhiệm đối với bất kỳ sự hiểu nhầm hoặc giải thích sai nào phát sinh từ việc sử dụng bản dịch này.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

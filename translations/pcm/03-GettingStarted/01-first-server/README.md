@@ -1,18 +1,18 @@
 # Getting Started with MCP
 
-Welcome to your first steps with the Model Context Protocol (MCP)! Whether you dey new to MCP or you wan sabi am well well, dis guide go show you how to set up and develop am. You go learn how MCP dey make AI models and applications join well well, and how to quickly prepare your environment to build and test MCP-powered solutions.
+Welcome to your first steps with the Model Context Protocol (MCP)! Whether you new to MCP or you wan sabi am well well, dis guide go carry you waka through the important setup and development process. You go learn how MCP dey enable ai models and applications to work well well together, and how to quick quick ready your environment to build and test MCP-powered solutions.
 
-> TLDR; If you dey build AI apps, you sabi say you fit add tools and other resources to your LLM (large language model), to make the LLM sabi more. But if you put those tools and resources for server, the app and the server fit be used by any client with or without LLM.
+> TLDR; If you dey build AI apps, you sabi say you fit add tools and other resources to your LLM (large language model), to make the LLM sabi pass before. But if you put those tools and resources for one server, the app and the server fit be used by any client, whether dem get LLM or no get.
 
 ## Overview
 
-Dis lesson go give you practical guide on how to set up MCP environments and build your first MCP applications. You go learn how to set up the tools and frameworks wey you need, build basic MCP servers, create host applications, and test wetin you don build.
+Dis lesson go show you how to set up MCP environments and build your first MCP apps. You go learn how to set up the tools and frameworks wey you need, build basic MCP servers, create host apps, and test how you implement dem.
 
-The Model Context Protocol (MCP) na open protocol wey standardize how applications dey provide context to LLMs. Think am like USB-C port for AI applications - e dey provide one standard way to connect AI models to different data sources and tools.
+The Model Context Protocol (MCP) na open protocol wey standardize how applications go provide context to LLMs. Think of MCP like USB-C port for AI apps - e dey give one standard way to connect AI models to different data sources and tools.
 
 ## Learning Objectives
 
-By the end of dis lesson, you go fit:
+By the time you finish dis lesson, you go fit:
 
 - Set up development environments for MCP for C#, Java, Python, TypeScript, and Rust
 - Build and deploy basic MCP servers with custom features (resources, prompts, and tools)
@@ -21,27 +21,27 @@ By the end of dis lesson, you go fit:
 
 ## Setting Up Your MCP Environment
 
-Before you start to work with MCP, e important to prepare your development environment and understand the basic workflow. Dis section go guide you through the first setup steps to make sure say your start with MCP go smooth.
+Before you start to work with MCP, e get as e be say you go first prepare your development environment and understand the basic way wey e go flow. Dis section go guide you through the first setup steps to make sure say you start well with MCP.
 
 ### Prerequisites
 
-Before you start MCP development, make sure say you get:
+Before you dive into MCP development, make sure say you get:
 
-- **Development Environment**: For the language wey you choose (C#, Java, Python, TypeScript, or Rust)
+- **Development Environment**: For your chosen language (C#, Java, Python, TypeScript, or Rust)
 - **IDE/Editor**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm, or any modern code editor
 - **Package Managers**: NuGet, Maven/Gradle, pip, npm/yarn, or Cargo
-- **API Keys**: For any AI services wey you wan use for your host applications
+- **API Keys**: For any AI services wey you plan to use inside your host apps
 
 ## Basic MCP Server Structure
 
-MCP server usually get:
+One MCP server normally get:
 
 - **Server Configuration**: Setup port, authentication, and other settings
 - **Resources**: Data and context wey LLMs fit use
-- **Tools**: Functionality wey models fit call
-- **Prompts**: Templates to generate or arrange text
+- **Tools**: Wetin models fit call to do work
+- **Prompts**: Templates to generate or organize text
 
-Here na simple example for TypeScript:
+See example wey simple for TypeScript:
 
 ```typescript
 import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
@@ -65,7 +65,7 @@ server.tool("add",
 // Add one dynamic greeting resource
 server.resource(
   "file",
-  // Di 'list' parameter dey control how di resource go list di files wey dey available. If you set am to undefined, e go stop di listing for dis resource.
+  // Di 'list' parameter dey control how di resource dey list di files wey dey available. If you set am to undefined, e go stop di listing for dis resource.
   new ResourceTemplate("file://{path}", { list: undefined }),
   async (uri, { path }) => ({
     contents: [{
@@ -109,43 +109,43 @@ server.prompt(
   })
 );
 
-// Start to dey receive messages for stdin and send messages for stdout
+// Start to dey receive messages for stdin and dey send messages for stdout
 const transport = new StdioServerTransport();
 await server.connect(transport);
 ```
 
-For the code wey pass, we:
+For the code we show before, we:
 
 - Import the necessary classes from the MCP TypeScript SDK.
-- Create and configure new MCP server instance.
-- Register custom tool (`calculator`) with handler function.
-- Start the server to listen for MCP requests.
+- Create and configure one new MCP server instance.
+- Register one custom tool (`calculator`) with a handler function.
+- Start the server to listen for incoming MCP requests.
 
 ## Testing and Debugging
 
-Before you start to test your MCP server, e important to sabi the tools wey dey and best way to debug. Good testing go make sure say your server dey work as e suppose and e go help you quickly find and fix wahala. The next section go show you how to check your MCP implementation well.
+Before you begin to test your MCP server, e good make you sabi the tools wey dey and the best way to debug. Testing well go make sure say your server dey work as e suppose and e go help you find and fix wahala quick. The next section go talk about the correct ways to check if your MCP implementation dey okay.
 
 MCP get tools to help you test and debug your servers:
 
-- **Inspector tool**, dis graphical interface go allow you connect to your server and test your tools, prompts and resources.
-- **curl**, you fit also connect to your server using command line tool like curl or other clients wey fit create and run HTTP commands.
+- **Inspector tool**, dis graphical interface dey allow you connect to your server and test your tools, prompts and resources.
+- **curl**, you fit also connect to your server with command line tool like curl or other clients wey fit create and run HTTP commands.
 
 ### Using MCP Inspector
 
 The [MCP Inspector](https://github.com/modelcontextprotocol/inspector) na visual testing tool wey go help you:
 
-1. **Discover Server Capabilities**: Automatically find available resources, tools, and prompts
-2. **Test Tool Execution**: Try different parameters and see responses live
+1. **Discover Server Capabilities**: Automatically detect available resources, tools, and prompts
+2. **Test Tool Execution**: Try different parameters and see responses in real-time
 3. **View Server Metadata**: Check server info, schemas, and configurations
 
 ```bash
-# ex TypeScript, wey you go install and run MCP Inspector
+# ex TypeScript, di way wey you go take install an run MCP Inspector
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-When you run the commands wey dey above, MCP Inspector go open local web interface for your browser. You go see dashboard wey show your registered MCP servers, their tools, resources, and prompts. The interface go allow you test tool execution, check server metadata, and see live responses, e go make am easy to validate and debug your MCP server.
+When you run those commands, the MCP Inspector go open one local web interface for your browser. You fit expect to see dashboard wey dey show your registered MCP servers, their available tools, resources, and prompts. The interface go help you test tool execution, inspect server metadata, and see real-time responses, e go make am easy to check and debug your MCP server implementations.
 
-Here na screenshot of how e fit look:
+See one screenshot of how e fit be:
 
 ![MCP Inspector server connection](../../../../translated_images/pcm/connected.73d1e042c24075d3.webp)
 
@@ -153,53 +153,53 @@ Here na screenshot of how e fit look:
 
 | Issue | Possible Solution |
 |-------|-------------------|
-| Connection refused | Check if server dey run and port correct |
-| Tool execution errors | Check parameter validation and error handling |
+| Connection refused | Check if server dey run and port dey correct |
+| Tool execution errors | Review parameter validation and error handling |
 | Authentication failures | Check API keys and permissions |
-| Schema validation errors | Make sure parameters match the schema |
-| Server not starting | Check for port conflicts or missing dependencies |
+| Schema validation errors | Make sure parameters match the defined schema |
+| Server not starting | Check for port wahala or missing dependencies |
 | CORS errors | Configure correct CORS headers for cross-origin requests |
 | Authentication issues | Check token validity and permissions |
 
 ## Local Development
 
-For local development and testing, you fit run MCP servers directly for your machine:
+For local development and testing, you fit run MCP servers direct for your machine:
 
-1. **Start the server process**: Run your MCP server application
-2. **Configure networking**: Make sure server dey accessible on the port wey you expect
+1. **Start the server process**: Run your MCP server app
+2. **Configure networking**: Make sure the server fit dey accessible on the port wey you expect
 3. **Connect clients**: Use local connection URLs like `http://localhost:3000`
 
 ```bash
-# Example: Di TypeScript MCP server dey run for local machine
+# Exampul: De run TypeScript MCP server for local area
 npm run start
 # Server dey run for http://localhost:3000
 ```
 
 ## Building your first MCP Server
 
-We don cover [Core concepts](/01-CoreConcepts/README.md) for previous lesson, now na time to use that knowledge.
+We don talk about [Core concepts](../../01-CoreConcepts/README.md) for one previous lesson, now na time to put that wah knowledge to work.
 
-### What a server fit do
+### Wetin one server fit do
 
-Before we start to write code, make we remember wetin server fit do:
+Before we start to write code, make we just remember wetin one server fit do:
 
 MCP server fit for example:
 
 - Access local files and databases
 - Connect to remote APIs
-- Perform computations
+- Perform calculations
 - Join with other tools and services
 - Provide user interface for interaction
 
-Good, now we sabi wetin e fit do, make we start coding.
+Good, now we sabi wetin e fit do, make we start to write code.
 
 ## Exercise: Creating a server
 
 To create server, you need follow these steps:
 
-- Install MCP SDK.
-- Create project and set up project structure.
-- Write server code.
+- Install the MCP SDK.
+- Create one project and set up the project structure.
+- Write the server code.
 - Test the server.
 
 ### -1- Create project
@@ -219,7 +219,7 @@ npm init -y
 # Make project folder
 mkdir calculator-server
 cd calculator-server
-# Open di folder for Visual Studio Code - No do dis one if you dey use oda IDE
+# Open di folder for Visual Studio Code - No do dis if you use oda IDE
 code .
 ```
 
@@ -232,7 +232,7 @@ cd McpCalculatorServer
 
 #### Java
 
-For Java, create Spring Boot project:
+For Java, create one Spring Boot project:
 
 ```bash
 curl https://start.spring.io/starter.zip \
@@ -251,7 +251,7 @@ Extract the zip file:
 ```bash
 unzip calculator-server.zip -d calculator-server
 cd calculator-server
-# if you want fit comot di test wey no dey use
+# if you want fit remove di test wey no dey use
 rm -rf src/test/java
 ```
 
@@ -365,15 +365,15 @@ cargo init
 
 ### -2- Add dependencies
 
-Now wey you don create project, make we add dependencies:
+Now wey you don create your project, make we add dependencies next:
 
 #### TypeScript
 
 ```sh
-# If e never don install before, install TypeScript for everywhere
+# If you never install am before, make you install TypeScript for everywhere
 npm install typescript -g
 
-# Install the MCP SDK and Zod for check schema correctness
+# Make you install the MCP SDK and Zod to check schema correct correct
 npm install @modelcontextprotocol/sdk zod
 npm install -D @types/node typescript
 ```
@@ -381,7 +381,7 @@ npm install -D @types/node typescript
 #### Python
 
 ```sh
-# Make one virtual env and install di tins wey e need
+# Make virtual environment and install di tins wey e need
 python -m venv venv
 venv\Scripts\activate
 pip install "mcp[cli]"
@@ -406,7 +406,7 @@ cargo add tokio --features rt-multi-thread
 
 #### TypeScript
 
-Open *package.json* file and replace content with this to make sure you fit build and run server:
+Open the *package.json* file and replace the content with this one below to make sure say you fit build and run the server:
 
 ```json
 {
@@ -453,7 +453,7 @@ Create *tsconfig.json* with this content:
 }
 ```
 
-Create directory for your source code:
+Create one directory for your source code:
 
 ```sh
 mkdir src
@@ -470,7 +470,7 @@ touch server.py
 
 #### .NET
 
-Install required NuGet packages:
+Install the required NuGet packages:
 
 ```sh
 dotnet add package ModelContextProtocol --prerelease
@@ -479,17 +479,17 @@ dotnet add package Microsoft.Extensions.Hosting
 
 #### Java
 
-For Java Spring Boot projects, project structure dey created automatically.
+For Java Spring Boot project, the project structure go create automatically.
 
 #### Rust
 
-For Rust, *src/main.rs* file dey created by default when you run `cargo init`. Open am and delete the default code.
+For Rust, *src/main.rs* file go dey create by default when you run `cargo init`. Open the file and delete the default code.
 
 ### -4- Create server code
 
 #### TypeScript
 
-Create file *index.ts* and add this code:
+Create *index.ts* file and put the following code:
 
 ```typescript
 import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
@@ -503,7 +503,7 @@ const server = new McpServer({
 });
 ```
 
-Now you get server, but e no too do anything, make we fix am.
+Now you get server, but e no do much, make we fix am.
 
 #### Python
 
@@ -511,7 +511,7 @@ Now you get server, but e no too do anything, make we fix am.
 # server.py
 from mcp.server.fastmcp import FastMCP
 
-# Make one MCP server
+# Mak one MCP server
 mcp = FastMCP("Demo")
 ```
 
@@ -542,7 +542,7 @@ await builder.Build().RunAsync();
 
 #### Java
 
-For Java, create core server components. First, modify main application class:
+For Java, create the core server parts. First, change the main application class:
 
 *src/main/java/com/microsoft/mcp/sample/server/McpServerApplication.java*:
 
@@ -570,7 +570,7 @@ public class McpServerApplication {
 }
 ```
 
-Create calculator service *src/main/java/com/microsoft/mcp/sample/server/service/CalculatorService.java*:
+Create the calculator service *src/main/java/com/microsoft/mcp/sample/server/service/CalculatorService.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.service;
@@ -716,9 +716,9 @@ public class CalculatorService {
 }
 ```
 
-**Optional components for production-ready service:**
+**Optional parts for a production-ready service:**
 
-Create startup configuration *src/main/java/com/microsoft/mcp/sample/server/config/StartupConfig.java*:
+Create startup config *src/main/java/com/microsoft/mcp/sample/server/config/StartupConfig.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.config;
@@ -799,7 +799,7 @@ public class GlobalExceptionHandler {
             this.message = message;
         }
 
-        // Getters (dem wey dey get)
+        // Di getters dem
         public String getCode() { return code; }
         public String getMessage() { return message; }
     }
@@ -824,7 +824,7 @@ Spring Boot MCP Application
 
 #### Rust
 
-Add this code to top of *src/main.rs* file. E go import necessary libraries and modules for your MCP server.
+Add dis code to the top of *src/main.rs* file. E go import the libraries and modules wey your MCP server need.
 
 ```rust
 use rmcp::{
@@ -837,7 +837,7 @@ use rmcp::{
 use std::error::Error;
 ```
 
-Calculator server go be simple one wey fit add two numbers. Make we create struct to represent calculator request.
+The calculator server go simple one wey go add two numbers join. Make we create struct to represent calculator request.
 
 ```rust
 #[derive(Debug, serde::Deserialize, schemars::JsonSchema)]
@@ -847,7 +847,7 @@ pub struct CalculatorRequest {
 }
 ```
 
-Next, create struct to represent calculator server. Dis struct go hold tool router, wey dey register tools.
+Next, create struct to represent the calculator server. Dis struct go hold tool router, wey dey register tools.
 
 ```rust
 #[derive(Debug, Clone)]
@@ -856,7 +856,7 @@ pub struct Calculator {
 }
 ```
 
-Now, we fit implement `Calculator` struct to create new server instance and implement server handler to provide server info.
+Now, we fit implement the `Calculator` struct to create new server instance and implement server handler to give server info.
 
 ```rust
 #[tool_router]
@@ -880,7 +880,7 @@ impl ServerHandler for Calculator {
 }
 ```
 
-Finally, we need implement main function to start server. Dis function go create instance of `Calculator` struct and serve am over standard input/output.
+Finally, we go implement main function to start the server. Dis one go create `Calculator` instance and serve am over standard input/output.
 
 ```rust
 #[tokio::main]
@@ -891,7 +891,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
 }
 ```
 
-Server don ready to provide basic info about itself. Next, we go add tool to perform addition.
+The server don ready to give basic info about itself. Next, we go add tool to do addition.
 
 ### -5- Adding a tool and a resource
 
@@ -930,7 +930,7 @@ Your tool dey take parameters `a` and `b` and run function wey produce response 
 }
 ```
 
-Your resource dey accessed through string "greeting" and e take parameter `name` and produce similar response like tool:
+Your resource go dey accessed through string "greeting" and e go take parameter `name` and produce response like the tool:
 
 ```typescript
 {
@@ -942,28 +942,28 @@ Your resource dey accessed through string "greeting" and e take parameter `name`
 #### Python
 
 ```python
-# Add one tool wey dey do addition
+# Add one tool for add tins
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
     return a + b
 
 
-# Add one dynamic greeting resource
+# Add one dynamic greet resource
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
     return f"Hello, {name}!"
 ```
 
-For the code wey pass, we:
+For the code wey pass before we:
 
-- Define tool `add` wey take parameters `a` and `b`, both integers.
-- Create resource called `greeting` wey take parameter `name`.
+- Define tool `add` wey dey take parameters `a` and `b`, both na integers.
+- Create resource called `greeting` wey dey take parameter `name`.
 
 #### .NET
 
-Add this to your Program.cs file:
+Add dis one for your Program.cs file:
 
 ```csharp
 [McpServerToolType]
@@ -976,7 +976,7 @@ public static class CalculatorTool
 
 #### Java
 
-Tools don already create for previous step.
+Tools don already create for the previous step.
 
 #### Rust
 
@@ -994,7 +994,7 @@ async fn add(
 
 ### -6- Final code
 
-Make we add last code wey we need so server fit start:
+Make we add the last code wey we need so the server fit start:
 
 #### TypeScript
 
@@ -1004,7 +1004,7 @@ const transport = new StdioServerTransport();
 await server.connect(transport);
 ```
 
-Here na full code:
+Here be the full code:
 
 ```typescript
 // index.ts
@@ -1012,7 +1012,7 @@ import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mc
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 
-// Make one MCP server
+// Build one MCP server
 const server = new McpServer({
   name: "Calculator MCP Server",
   version: "1.0.0"
@@ -1039,7 +1039,7 @@ server.resource(
   })
 );
 
-// Begin to dey receive messages for stdin and send messages for stdout
+// Start to dey receive messages for stdin and send messages for stdout
 const transport = new StdioServerTransport();
 server.connect(transport);
 ```
@@ -1054,7 +1054,7 @@ from mcp.server.fastmcp import FastMCP
 mcp = FastMCP("Demo")
 
 
-# Add one tool wey dey add
+# Put one addition tool
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
@@ -1067,7 +1067,7 @@ def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
     return f"Hello, {name}!"
 
-# Main execution block - na dis one server need to run
+# Main run block - dis one na wetin e need to run di server
 if __name__ == "__main__":
     mcp.run()
 ```
@@ -1106,7 +1106,7 @@ public static class CalculatorTool
 
 #### Java
 
-Your complete main application class suppose look like this:
+Your complete main app class suppose look like this:
 
 ```java
 // McpServerApplication.java
@@ -1135,7 +1135,7 @@ public class McpServerApplication {
 
 #### Rust
 
-Final code for Rust server suppose look like this:
+The final code for Rust server suppose look like dis:
 
 ```rust
 use rmcp::{
@@ -1196,7 +1196,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
 ### -7- Test the server
 
-Start server with this command:
+Start the server with dis command:
 
 #### TypeScript
 
@@ -1210,7 +1210,7 @@ npm run build
 mcp run server.py
 ```
 
-> To use MCP Inspector, use `mcp dev server.py` wey go automatically launch Inspector and provide required proxy session token. If you dey use `mcp run server.py`, you go need start Inspector manually and configure connection.
+> To use MCP Inspector, use `mcp dev server.py` which go automatic launch the Inspector and give the required proxy session token. If you dey use `mcp run server.py`, you go need start the Inspector manually and configure the connection.
 
 #### .NET
 
@@ -1230,7 +1230,7 @@ java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
 
 #### Rust
 
-Run these commands to format and run server:
+Run these commands to format and run the server:
 
 ```sh
 cargo fmt
@@ -1239,10 +1239,10 @@ cargo run
 
 ### -8- Run using the inspector
 
-Inspector na beta tool wey fit start your server and allow you interact with am so you fit test if e dey work. Make we start am:
+The inspector na beta tool wey fit start your server and let you interact with am so you fit test say e dey work. Make we start am now:
 
 > [!NOTE]
-> e fit look different for "command" field as e get the command for running server with your specific runtime/
+> e fit look different for the "command" field as e get the command wey e dey run server with your specific runtime/
 
 #### TypeScript
 
@@ -1254,24 +1254,24 @@ or add am to your *package.json* like this: `"inspector": "npx @modelcontextprot
 
 #### Python
 
-Python dey wrap Node.js tool wey dem call inspector. E possible to call the tool like this:
+Python wrap one Node.js tool wey dem call inspector. You fit run the tool like this:
 
 ```sh
 mcp dev server.py
 ```
 
-But e no implement all the methods wey the tool get so e better make you run the Node.js tool directly like this:
+But e no get all the methods wey the tool get so e better make you run the Node.js tool directly like dis:
 
 ```sh
 npx @modelcontextprotocol/inspector mcp run server.py
 ```
 
-If you dey use tool or IDE wey fit configure commands and arguments for running scripts,
-make sure to set `python` for di `Command` field and `server.py` as `Arguments`. Dis one go make sure say di script dey run correct.
+If you dey use tool or IDE wey fit configure commands and arguments to run scripts,
+make sure to set `python` for `Command` field and `server.py` as `Arguments`. Dis go make sure say di script dey run well.
 
 #### .NET
 
-Make sure say you dey your project directory:
+Make sure say you dey inside your project directory:
 
 ```sh
 cd McpCalculatorServer
@@ -1300,18 +1300,18 @@ For di inspector web interface:
 
 Di next section na about how to interact with di server.
 
-You go see dis kain user interface:
+You go see di user interface like dis:
 
 ![Connect](../../../../translated_images/pcm/connect.141db0b2bd05f096.webp)
 
 1. Connect to di server by selecting di Connect button
-  Once you connect to di server, you go see dis one:
+  When you connect to di server, you go see dis:
 
   ![Connected](../../../../translated_images/pcm/connected.73d1e042c24075d3.webp)
 
 1. Select "Tools" and "listTools", you go see "Add" show, select "Add" and fill di parameter values.
 
-  You go see dis kain response, na result from "add" tool:
+  You go see dis response, wey be say na result from "add" tool:
 
   ![Result of running add](../../../../translated_images/pcm/ran-tool.a5a6ee878c1369ec.webp)
 
@@ -1327,21 +1327,21 @@ npx @modelcontextprotocol/inspector cargo run --cli --method tools/call --tool-n
 
 ### Official SDKs
 
-MCP dey provide official SDKs for plenty languages:
+MCP get official SDKs for many languages:
 
-- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - Dem dey maintain am with Microsoft
-- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Dem dey maintain am with Spring AI
+- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - Maintained with collaboration with Microsoft
+- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Maintained with collaboration with Spring AI
 - [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Di official TypeScript implementation
 - [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Di official Python implementation
 - [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - Di official Kotlin implementation
-- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - Dem dey maintain am with Loopwork AI
+- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - Maintained with collaboration with Loopwork AI
 - [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - Di official Rust implementation
 
 ## Key Takeaways
 
-- To set up MCP development environment easy with language-specific SDKs
-- To build MCP servers, you go create and register tools wey get clear schemas
-- Testing and debugging na important for reliable MCP implementations
+- Setting up MCP development environment easy with language-specific SDKs
+- Building MCP servers mean to create and register tools with clear schemas
+- Testing and debugging important for reliable MCP implementations
 
 ## Samples
 
@@ -1354,11 +1354,11 @@ MCP dey provide official SDKs for plenty languages:
 
 ## Assignment
 
-Create simple MCP server with tool wey you like:
+Create simple MCP server with any tool you like:
 
 1. Implement di tool for your preferred language (.NET, Java, Python, TypeScript, or Rust).
 2. Define input parameters and return values.
-3. Run di inspector tool to make sure say di server dey work as e suppose.
+3. Run di inspector tool to confirm say di server dey work as e suppose.
 4. Test di implementation with different inputs.
 
 ## Solution
@@ -1378,6 +1378,6 @@ Next: [Getting Started with MCP Clients](../02-client/README.md)
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Disclaimer**:
-Dis document na wetin AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator) translate. Even though we try make e correct, abeg sabi say automated translation fit get some mistakes or no too correct. Di original document wey e dey for im own language na di correct one. If na serious matter, e better make person wey sabi do professional human translation do am. We no go responsible for any misunderstanding or wrong meaning wey fit come from dis translation.
+**Disclaimer**:  
+Dis document don translate wit AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). Even though we dey try make am correct, abeg know say automated translations fit get errors or inaccuracies. Di original document inside di original language na di correct source. For important matter, e better make professional human translation dey used. We no go responsible for any misunderstanding or wrong interpretation wey fit come from dis translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

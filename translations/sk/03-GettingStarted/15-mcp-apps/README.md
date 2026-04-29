@@ -1,24 +1,24 @@
 # MCP Aplikácie
 
-MCP Aplikácie sú novým paradigmov v MCP. Myšlienka je taká, že nielen reagujete s dátami z volania nástroja, ale zároveň poskytujete informácie o tom, ako by sa s týmito informáciami malo interagovať. To znamená, že výsledky nástrojov teraz môžu obsahovať informácie o používateľskom rozhraní. Prečo by sme to však chceli? No, zvážte, ako veci robíte dnes. Pravdepodobne konzumujete výsledky MCP Servera tým, že pred ne nasadíte nejaký front-end, čo je kód, ktorý musíte písať a udržiavať. Niekedy je to to, čo chcete, ale niekedy by bolo skvelé, keby ste mohli priniesť útržok informácie, ktorý je samostatný a má všetko od dát po používateľské rozhranie.
+MCP Aplikácie sú nový paradigmat v MCP. Myšlienka je v tom, že nielenže vrátite dáta z volania nástroja, ale poskytujete aj informácie o tom, ako by sa s týmito informáciami malo interagovať. To znamená, že výsledky nástrojov teraz môžu obsahovať informácie o používateľskom rozhraní. Prečo by sme to však chceli? No, zvážte, ako toho robíte dnes. Pravdepodobne spotrebúvate výsledky MCP Servera tým, že pred neho umiestnite nejaký typ frontendu, čo je kód, ktorý musíte písať a udržiavať. Niekedy je to to, čo chcete, ale niekedy by bolo skvelé, keby ste mohli jednoducho priniesť úryvok informácií, ktorý je samostatný a má všetko od dát po používateľské rozhranie.
 
 ## Prehľad
 
-Táto lekcia poskytuje praktické usmernenie o MCP Aplikáciách, ako s nimi začať a ako ich integrovať do vašich existujúcich webových aplikácií. MCP Aplikácie sú veľmi novým prírastkom do MCP Štandardu.
+Táto lekcia poskytuje praktické usmernenie o MCP Aplikáciách, ako s nimi začať a ako ich integrovať do vašich existujúcich webových aplikácií. MCP Aplikácie sú veľmi novým prídavkom do MCP Štandardu.
 
-## Výukové ciele
+## Ciele učenia
 
-Na konci tejto lekcie budete vedieť:
+Na konci tejto lekcie budete schopní:
 
-- Vysvetliť, čo sú MCP Aplikácie.
+- Vysvetliť čo sú MCP Aplikácie.
 - Kedy použiť MCP Aplikácie.
-- Vytvoriť a integrovať vlastné MCP Aplikácie.
+- Postaviť a integrovať svoje vlastné MCP Aplikácie.
 
 ## MCP Aplikácie - ako to funguje
 
-Myšlienka MCP Aplikácií je poskytnúť odpoveď, ktorá je vlastne komponentom na vykreslenie. Takýto komponent môže mať vizuály aj interaktivitu, napríklad kliknutia na tlačidlá, vstup používateľa a ďalšie. Začnime na serverovej strane a našom MCP Serveri. Na vytvorenie komponentu MCP Aplikácie potrebujete vytvoriť nástroj, ale aj aplikačný zdroj. Tieto dve časti sú prepojené pomocou resourceUri. 
+Myšlienkou MCP Aplikácií je poskytnúť odpoveď, ktorá je v podstate komponentom na vykreslenie. Takýto komponent môže mať ako vizuály, tak aj interaktivitu, napríklad kliknutia na tlačidlo, vstup od používateľa a viac. Začnime na strane servera a našim MCP Serverom. Na vytvorenie MCP App komponentu je potrebné vytvoriť nástroj, ale aj aplikačný zdroj. Tieto dve polovice sú prepojené resourceUri.
 
-Tu je príklad. Skúsme si vizualizovať, čo je zapojené a ktorá časť čo robí:
+Tu je príklad. Skúsme si vizualizovať, čo všetko to zahŕňa a ktoré časti čo robia:
 
 ```text
 server.ts -- responsible for registering tools and the component as a UI component
@@ -27,7 +27,7 @@ src/
 mcp-app.html -- the user interface
 ```
 
-Tento vizuál popisuje architektúru na vytvorenie komponentu a jeho logiku.
+Tento obrázok popisuje architektúru vytvorenia komponentu a jeho logiku.
 
 ```mermaid
 flowchart LR
@@ -40,29 +40,29 @@ flowchart LR
   end
 
   subgraph Parent[Rodičovská webová stránka]
-    H[Hosťovská aplikácia]
+    H[Hostiteľská aplikácia]
     IFRAME[Kontajner IFrame]
-    H -->|Injektovať MCP App UI| IFRAME
+    H -->|Vložiť MCP App UI| IFRAME
   end
 
-  subgraph Frontend[Frontend: MCP App v rámci IFrame]
+  subgraph Frontend[Frontend: MCP App vo vnútri IFrame]
     UI["Používateľské rozhranie: mcp-app.html"]
     EH["Spracovatelia udalostí: src/mcp-app.ts"]
     UI --> EH
   end
 
   IFRAME --> UI
-  EH -->|Kliknutie spúšťa volanie nástroja na server| T
-  T -->|Výsledné dáta nástroja| EH
+  EH -->|Kliknutie spustí volanie serverového nástroja| T
+  T -->|Dáta výsledku nástroja| EH
   EH -->|Odoslať správu rodičovskej stránke| H
 ```
-Skúsme popísať zodpovednosti pre backend a frontend postupne.
+Skúsme opísať zodpovednosti backendu a frontendu.
 
 ### Backend
 
-Sú tu dve veci, ktoré potrebujeme dosiahnuť:
+Musíme tu splniť dve veci:
 
-- Registrácia nástrojov, s ktorými chceme interagovať.
+- Registrovať nástroje, s ktorými chceme komunikovať.
 - Definovať komponent.
 
 **Registrácia nástroja**
@@ -75,7 +75,7 @@ registerAppTool(
       title: "Get Time",
       description: "Returns the current server time.",
       inputSchema: {},
-      _meta: { ui: { resourceUri } }, // Pripojí tento nástroj k jeho UI zdroju
+      _meta: { ui: { resourceUri } }, // Prepojí tento nástroj s jeho zdrojom používateľského rozhrania
     },
     async () => {
       const time = new Date().toISOString();
@@ -85,16 +85,16 @@ registerAppTool(
 
 ```
 
-Predchádzajúci kód popisuje správanie, kde exponuje nástroj nazvaný `get-time`. Neberie žiadne vstupy, ale nakoniec produkuje aktuálny čas. Máme možnosť definovať `inputSchema` pre nástroje, kde potrebujeme prijať vstup používateľa.
+Predchádzajúci kód popisuje správanie, kde sa vystavuje nástroj s názvom `get-time`. Neprijíma žiadne vstupy, ale produkuje aktuálny čas. Máme možnosť definovať `inputSchema` pre nástroje, kde potrebujeme prijať vstup od používateľa.
 
 **Registrácia komponentu**
 
-V rovnakom súbore potrebujeme tiež zaregistrovať komponent:
+V tom istom súbore potrebujeme tiež registrovať komponent:
 
 ```typescript
 const resourceUri = "ui://get-time/mcp-app.html";
 
-// Zaregistrujte zdroj, ktorý vracia zabalený HTML/JavaScript pre používateľské rozhranie.
+// Zaregistrujte zdroj, ktorý vráti zabalený HTML/JavaScript pre rozhranie užívateľa.
 registerAppResource(
   server,
   resourceUri,
@@ -112,14 +112,14 @@ registerAppResource(
 );
 ```
 
-Všimnite si, ako spomíname `resourceUri` na prepojenie komponentu s jeho nástrojmi. Zaujímavá je aj spätná väzba, kde načítavame UI súbor a vraciame komponent.
+Všimnite si, že spomíname `resourceUri` na prepojenie komponentu s jeho nástrojmi. Zaujímavý je tiež callback, kde sa načíta súbor UI a vráti komponent.
 
 ### Frontend komponentu
 
-Rovnako ako backend, sú tu dve časti:
+Rovnako ako backend, aj tu sú dve časti:
 
 - Frontend napísaný v čistej HTML.
-- Kód, ktorý spracováva udalosti a čo robiť, napríklad volať nástroje alebo odosielať správy do rodičovského okna.
+- Kód, ktorý spracováva udalosti a čo robiť, napr. volať nástroje alebo posielať správy rodičovskému oknu.
 
 **Používateľské rozhranie**
 
@@ -143,49 +143,49 @@ Pozrime sa na používateľské rozhranie.
 </html>
 ```
 
-**Pripojenie udalostí**
+**Pripájanie udalostí**
 
-Poslednou časťou je prepojenie udalostí. To znamená, že identifikujeme, ktorá časť v našom UI potrebuje spracovanie udalostí a čo robiť, ak sú udalosti vyvolané:
+Poslednou časťou je pripájanie eventov. To znamená, že identifikujeme, ktorá časť nášho UI potrebuje event handlery a čo robiť, ak sa udalosti spustia:
 
 ```typescript
 // mcp-app.ts
 
 import { App } from "@modelcontextprotocol/ext-apps";
 
-// Získajte referencie na prvky
+// Získať referencie na elementy
 const serverTimeEl = document.getElementById("server-time")!;
 const getTimeBtn = document.getElementById("get-time-btn")!;
 
-// Vytvorte inštanciu aplikácie
+// Vytvoriť inštanciu aplikácie
 const app = new App({ name: "Get Time App", version: "1.0.0" });
 
-// Spracujte výsledky nástrojov zo servera. Nastavte pred `app.connect()`, aby ste predišli
+// Spracovať výsledky nástrojov zo servera. Nastavte pred `app.connect()`, aby sa zabránilo
 // strate počiatočného výsledku nástroja.
 app.ontoolresult = (result) => {
   const time = result.content?.find((c) => c.type === "text")?.text;
   serverTimeEl.textContent = time ?? "[ERROR]";
 };
 
-// Prepojte kliknutie na tlačidlo
+// Pripojiť kliknutie tlačidla
 getTimeBtn.addEventListener("click", async () => {
-  // `app.callServerTool()` umožňuje používateľskému rozhraniu vyžiadať si čerstvé údaje zo servera
+  // `app.callServerTool()` umožňuje používateľskému rozhraniu požadovať čerstvé údaje zo servera
   const result = await app.callServerTool({ name: "get-time", arguments: {} });
   const time = result.content?.find((c) => c.type === "text")?.text;
   serverTimeEl.textContent = time ?? "[ERROR]";
 });
 
-// Pripojte sa k hostiteľovi
+// Pripojiť sa k hostiteľovi
 app.connect();
 ```
 
-Ako vidíte, toto je normálny kód na prepojenie DOM elementov s udalosťami. Za zmienku stojí volanie `callServerTool`, ktoré nakoniec volá nástroj na backende.
+Ako vidíte vyššie, je to bežný kód na pripájanie DOM elementov k udalostiam. Za zmienku stojí volanie `callServerTool`, ktoré nakoniec volá nástroj na backende.
 
 ## Spracovanie vstupu používateľa
 
-Zatiaľ sme videli komponent, ktorý má tlačidlo, ktoré pri kliknutí volá nástroj. Pozrime sa, či môžeme pridať viac UI prvkov, ako napríklad vstupné pole, a či môžeme odosielať argumenty do nástroja. Implementujme funkciu FAQ (často kladené otázky). Takto by to malo fungovať:
+Doteraz sme videli komponent, ktorý má tlačidlo, ktoré po kliknutí volá nástroj. Skúsme pridať ďalšie prvky UI, ako vstupné pole a zistiť, či môžeme posielať argumenty nástroju. Implementujme funkciu FAQ. Fungovať by to malo takto:
 
-- Malo by tam byť tlačidlo a vstupný prvok, kde používateľ zadáva kľúčové slovo na vyhľadávanie napríklad "Shipping" (doručenie). Toto by malo volať nástroj na backende, ktorý vyhľadáva v dátach FAQ.
-- Nástroj, ktorý podporuje uvedené vyhľadávanie FAQ.
+- Malo by byť tlačidlo a vstupné pole, kde používateľ zadá kľúčové slovo na vyhľadávanie napríklad "Shipping". Toto by malo volať nástroj na backend, ktorý vyhľadá v dátach FAQ.
+- Nástroj, ktorý podporuje uvedené vyhľadávanie v FAQ.
 
 Najprv pridajme potrebnú podporu na backend:
 
@@ -205,7 +205,7 @@ registerAppTool(
       inputSchema: zod.object({
         query: zod.string().default("shipping"),
       }),
-      _meta: { ui: { resourceUri: faqResourceUri } }, // Prepojí tento nástroj s jeho zdrojom používateľského rozhrania
+      _meta: { ui: { resourceUri: faqResourceUri } }, // Pripája tento nástroj k jeho UI zdroju
     },
     async ({ query }) => {
       const answer: string = faq[query.toLowerCase()] || "Sorry, I don't have an answer for that.";
@@ -214,7 +214,7 @@ registerAppTool(
   );
 ```
 
-Vidíme tu, ako napĺňame `inputSchema` a dávame mu `zod` schému nasledovne:
+Vidíme tu, ako napĺňame `inputSchema` a dávame mu `zod` schému takto:
 
 ```typescript
 inputSchema: zod.object({
@@ -222,9 +222,9 @@ inputSchema: zod.object({
 })
 ```
 
-V vyššie uvedenej schéme deklarujeme, že máme vstupný parameter `query` a že je nepovinný s predvolenou hodnotou "shipping".
+V uvedenej schéme deklarujeme vstupný parameter `query`, ktorý je voliteľný s predvolenou hodnotou "shipping".
 
-Ok, prejdime teraz do *mcp-app.html*, aby sme videli, aké UI potrebujeme vytvoriť:
+Dobre, pokračujme do *mcp-app.html*, aby sme videli, aké UI musíme vytvoriť:
 
 ```html
 <div class="faq">
@@ -235,7 +235,7 @@ Ok, prejdime teraz do *mcp-app.html*, aby sme videli, aké UI potrebujeme vytvor
   </div>
 ```
 
-Skvelé, teraz máme vstupný prvok a tlačidlo. Prejdime teraz do *mcp-app.ts*, aby sme prepojili tieto udalosti:
+Výborne, teraz máme vstupné pole a tlačidlo. Poďme na *mcp-app.ts* ďalej na prepojenie týchto udalostí:
 
 ```typescript
 const getFaqBtn = document.getElementById("get-faq-btn")!;
@@ -249,28 +249,28 @@ getFaqBtn.addEventListener("click", async () => {
 });
 ```
 
-V kóde vyššie:
+V kóde vyššie sme:
 
-- Vytvárame odkazy na zaujímavé UI prvky.
-- Spracovávame kliknutie tlačidla na načítanie hodnoty vstupného prvku a voláme `app.callServerTool()` s `name` a `arguments`, kde posledné posiela `query` ako hodnotu.
+- Vytvorili odkazy na interaktívne UI prvky.
+- Spracovali kliknutie tlačidla tak, že vyparsujeme hodnotu z vstupného poľa a tiež voláme `app.callServerTool()` s `name` a `arguments`, kde posledný odovzdáva hodnotu `query`.
 
-Čo sa vlastne deje, keď voláte `callServerTool`, je, že odošle správu rodičovskému oknu a toto okno nakoniec volá MCP Server.
+Čo sa vlastne deje pri volaní `callServerTool`, je to, že sa posiela správa rodičovskému oknu, ktoré následne zavolá MCP Server.
 
 ### Vyskúšajte si to
 
-Ak to vyskúšame, teraz by sme mali vidieť nasledovné:
+Pri vyskúšaní by sme mali vidieť toto:
 
 ![](../../../../translated_images/sk/faq.f78abe6b2cc68c83.webp)
 
-a tu to skúšame so vstupom ako "warranty" (záruka)
+a tu skúšame s vstupom ako "warranty"
 
 ![](../../../../translated_images/sk/faq-input.3e276f1c3d7e061e.webp)
 
-Na spustenie tohto kódu prejdite do [Sekcie kódu](./code/README.md)
+Na spustenie tohto kódu navštívte [sekcia kódu](./code/README.md)
 
 ## Testovanie vo Visual Studio Code
 
-Visual Studio Code má skvelú podporu pre MCP Aplikácie a pravdepodobne je to jeden z najjednoduchších spôsobov, ako testovať vaše MCP Aplikácie. Na použitie Visual Studio Code pridajte serverový záznam do *mcp.json* takto:
+Visual Studio Code má skvelú podporu pre MCP Aplikácie a je pravdepodobne jedným z najjednoduchších spôsobov, ako testovať vaše MCP Aplikácie. Na použitie Visual Studio Code pridajte záznam servera do *mcp.json* takto:
 
 ```json
 "my-mcp-server-7178eca7": {
@@ -279,29 +279,29 @@ Visual Studio Code má skvelú podporu pre MCP Aplikácie a pravdepodobne je to 
   }
 ```
 
-Potom spustite server, mali by ste byť schopní komunikovať s vašou MCP Aplikáciou cez chatové okno, ak máte nainštalovaný GitHub Copilot.
+Potom spustite server, mali by ste byť schopní komunikovať so svojou MCP App cez chat okno, pokiaľ máte nainštalovaný GitHub Copilot.
 
-s vyvolaním cez prompt, napríklad "#get-faq":
+Môžete ho vyvolať napríklad príkazom "#get-faq":
 
 ![Visual Studio run prompt](../../../../translated_images/sk/vscode-run.16cbab9436499f32.webp)
 
-a rovnako ako keď ste to spúšťali cez webový prehliadač, vykreslí sa rovnako:
+a rovnako ako keď ste to spustili cez webový prehliadač, zobrazuje to UI rovnako takto:
 
 ![UI Visual Studio Code](../../../../translated_images/sk/vscode-ui.f2771dcfce25ca0f.webp)
 
 ## Zadanie
 
-Vytvorte hru kameň-papier-nožnice. Mala by obsahovať nasledovné:
+Vytvorte hru kameň, papier, nožnice. Mala by pozostávať z nasledovného:
 
 UI:
 
 - rozbaľovací zoznam s možnosťami
-- tlačidlo na odoslanie voľby
-- štítok zobrazujúci, kto čo vybral a kto vyhral
+- tlačidlo na potvrdenie voľby
+- štítok, ktorý ukáže, kto čo vybral a kto vyhral
 
 Server:
 
-- mal by mať nástroj kameň-papier-nožnice, ktorý berie "choice" ako vstup. Mal by tiež zobraziť výber počítača a určiť víťaza.
+- mal by mať nástroj rock paper scissor, ktorý prijíma "choice" ako vstup. Mal by tiež vykresliť výber počítača a určiť víťaza
 
 ## Riešenie
 
@@ -309,16 +309,16 @@ Server:
 
 ## Zhrnutie
 
-Naučili sme sa o tomto novom paradigme MCP Aplikácií. Je to nový prístup, ktorý umožňuje MCP Serverom mať názor nielen na dáta, ale aj na to, ako by tieto dáta mali byť prezentované.
+Naučili sme sa o tomto novom paradigmate MCP Aplikácií. Je to nový paradigmat, ktorý umožňuje MCP Serverom mať názor nielen na dáta, ale aj na to, ako by tieto dáta mali byť prezentované.
 
-Okrem toho sme sa dozvedeli, že tieto MCP Aplikácie sú hostované v IFrame a na komunikáciu s MCP Servermi musia odosielať správy rodičovskej webovej aplikácii. Existuje niekoľko knižníc pre čistý JavaScript, React a ďalšie, ktoré túto komunikáciu zjednodušujú.
+Okrem toho sme sa naučili, že tieto MCP Aplikácie sú hosťované v IFrame a na komunikáciu s MCP Servermi musia odosielať správy do rodičovskej webovej aplikácie. Existuje niekoľko knižníc pre čistý JavaScript, React a ďalšie, ktoré túto komunikáciu uľahčujú.
 
 ## Kľúčové poznatky
 
-Tu je čo ste sa naučili:
+Tu je to, čo ste sa naučili:
 
-- MCP Aplikácie sú nový štandard, ktorý môže byť užitočný, keď chcete poslať dáta i funkcie používateľského rozhrania.
-- Tento typ aplikácií beží v IFrame z dôvodu bezpečnosti.
+- MCP Aplikácie sú nový štandard, ktorý môže byť užitočný, keď chcete doručiť dáta aj funkcie UI.
+- Tieto typy aplikácií bežia v IFrame z bezpečnostných dôvodov.
 
 ## Čo ďalej
 
@@ -327,6 +327,6 @@ Tu je čo ste sa naučili:
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Zrieknutie sa zodpovednosti**:
-Tento dokument bol preložený pomocou AI prekladateľskej služby [Co-op Translator](https://github.com/Azure/co-op-translator). Hoci sa snažíme o presnosť, berte prosím na vedomie, že automatické preklady môžu obsahovať chyby alebo nepresnosti. Pôvodný dokument v jeho rodnom jazyku by mal byť považovaný za autoritatívny zdroj. Pre kritické informácie sa odporúča profesionálny ľudský preklad. Nezodpovedáme za akékoľvek nedorozumenia alebo mylné výklady vyplývajúce z použitia tohto prekladu.
+**Zrieknutie sa zodpovednosti**:  
+Tento dokument bol preložený pomocou AI prekladateľskej služby [Co-op Translator](https://github.com/Azure/co-op-translator). Aj keď sa snažíme o presnosť, vezmite prosím na vedomie, že automatické preklady môžu obsahovať chyby alebo nepresnosti. Originálny dokument v jeho pôvodnom jazyku by mal byť považovaný za autoritatívny zdroj. Pre kritické informácie sa odporúča profesionálny ľudský preklad. Nie sme zodpovední za akékoľvek nedorozumenia alebo nesprávne interpretácie vzniknuté použitím tohto prekladu.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

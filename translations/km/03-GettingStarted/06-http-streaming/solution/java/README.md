@@ -1,0 +1,197 @@
+# កម្មវិធីស្ទ្រីម HTTP របស់ Calculator
+
+គម្រោងនេះបង្ហាញពីការស្ទ្រីម HTTP ដោយប្រើ Server-Sent Events (SSE) ជាមួយ Spring Boot WebFlux។ វាមានកម្មវិធីពីរយ៉ាង៖
+
+- **Calculator Server**: សេវាផ្ទាល់វែបប្រតិកម្មដែលធ្វើការគណនា និងស្ទ្រីមលទ្ធផលដោយប្រើ SSE
+- **Calculator Client**: កម្មវិធីអតិថិជនដែលប្រើចំណុចបញ្ចេញស្ទ្រីម
+
+## លក្ខខណ្ឌជាមុន
+
+- Java 17 ឬខ្ពស់ជាងនេះ
+- Maven 3.6 ឬខ្ពស់ជាងនេះ
+
+## រចនាសម្ព័ន្ធគម្រោង
+
+```
+java/
+├── calculator-server/     # Spring Boot server with SSE endpoint
+│   ├── src/main/java/com/example/calculatorserver/
+│   │   ├── CalculatorServerApplication.java
+│   │   └── CalculatorController.java
+│   └── pom.xml
+├── calculator-client/     # Spring Boot client application
+│   ├── src/main/java/com/example/calculatorclient/
+│   │   └── CalculatorClientApplication.java
+│   └── pom.xml
+└── README.md
+```
+
+## វា​ដំណើរការ​ដូចម្តេច
+
+1. **Calculator Server** បង្ហាញចំណុចបញ្ចេញ `/calculate` ដែល៖
+   - ទទួលប៉ារ៉ាម៉ែត្រសំណួរៈ `a` (លេខ), `b` (លេខ), `op` (ប្រតិបត្តិការ)
+   - ប្រតិបត្តិការដែលគាំទ្រ៖ `add`, `sub`, `mul`, `div`
+   - ត្រឡប់ Server-Sent Events ជាមួយនឹងការរីកដំណើរការ និងលទ្ធផលនៃការគណនា
+
+2. **Calculator Client** តភ្ជាប់ទៅម៉ាស៊ីនមេ ហើយ៖
+   - ដាក់សំណើសម្រាប់គណនារ `7 * 5`
+   - ប្រើប្រាស់ចម្លើយស្ទ្រីមមកវិញ
+   - បង្ហាញព្រឹត្តិការណ៍នីមួយៗទៅទំព័រកុងសូល
+
+## រត់កម្មវិធី
+
+### ជម្រើសទី 1: ប្រើ Maven (ណែនាំ)
+
+#### 1. ចាប់ផ្ដើម Calculator Server
+
+បើកច្រកបញ្ជា និងបកបណ្តាញទៅថតម៉ាស៊ីនមេ៖
+
+```bash
+cd calculator-server
+mvn clean package
+mvn spring-boot:run
+```
+
+ម៉ាស៊ីនមេនឹងចាប់ផ្ដើមនៅ `http://localhost:8080`
+
+អ្នកគួរតែឃើញផលបង្ហាញដូចជា៖
+```
+Started CalculatorServerApplication in X.XXX seconds
+Netty started on port 8080 (http)
+```
+
+#### 2. រត់ Calculator Client
+
+បើក **ច្រកបញ្ជាថ្មី** និងបកបណ្តាញទៅថតអតិថិជន៖
+
+```bash
+cd calculator-client
+mvn clean package
+mvn spring-boot:run
+```
+
+អតិថិជននឹងភ្ជាប់ទៅម៉ាស៊ីនមេ បំពេញការគណនា ហើយបង្ហាញលទ្ធផលស្ទ្រីម។
+
+### ជម្រើសទី 2: ប្រើ Java យ៉ាងដ័រណ៍ត
+
+#### 1. រៀបចំ និងរត់ម៉ាស៊ីនមេ៖
+
+```bash
+cd calculator-server
+mvn clean package
+java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
+```
+
+#### 2. រៀបចំ និងរត់អតិថិជន៖
+
+```bash
+cd calculator-client
+mvn clean package
+java -jar target/calculator-client-0.0.1-SNAPSHOT.jar
+```
+
+## សាកល្បងម៉ាស៊ីនមេដោយដៃ
+
+អ្នកក៏អាចសាកល្បងម៉ាស៊ីនមេតាមរយៈកម្មវិធីរុករកវែប ឬ curl ផងដែរ៖
+
+### ប្រើកម្មវិធីរុករកវែប៖
+ចូល​ទៅ៖ `http://localhost:8080/calculate?a=10&b=5&op=add`
+
+### ប្រើ curl៖
+```bash
+curl "http://localhost:8080/calculate?a=10&b=5&op=add" -H "Accept: text/event-stream"
+```
+
+## លទ្ធផលដែលរំពឹងទុក
+
+ពេលរត់អតិថិជន អ្នកគួរតែឃើញលទ្ធផលស្ទ្រីមដូចជា៖
+
+```
+event:info
+data:Calculating: 7.0 mul 5.0
+
+event:result
+data:35.0
+```
+
+## ប្រតិបត្តិការដែលគាំទ្រ
+
+- `add` - ការបូក (a + b)
+- `sub` - ការដក (a - b)
+- `mul` - ការគុណ (a * b)
+- `div` - ការចែក (a / b, ត្រឡប់ NaN ប្រសិនបើ b = 0)
+
+## ឯកសារកូដសម្រាប់ API
+
+### GET /calculate
+
+**ប៉ារ៉ាម៉ែត្រៈ**
+- `a` (តម្រូវ): លេខទីមួយ (double)
+- `b` (តម្រូវ): លេខទីពីរ (double)
+- `op` (តម្រូវ): ប្រតិបត្តិការ (`add`, `sub`, `mul`, `div`)
+
+**ចម្លើយ៖**
+- ប្រភេទមាតិកា: `text/event-stream`
+- ត្រឡប់ Server-Sent Events ជាមួយនឹងការរីកដំណើរការ និងលទ្ធផល
+
+**សំណើរឧទាហរណ៍៖**
+```
+GET /calculate?a=7&b=5&op=mul HTTP/1.1
+Host: localhost:8080
+Accept: text/event-stream
+```
+
+**ចម្លើយឧទាហរណ៍៖**
+```
+event: info
+data: Calculating: 7.0 mul 5.0
+
+event: result
+data: 35.0
+```
+
+## ដោះស្រាយបញ្ហា
+
+### បញ្ហាពេញនិយម
+
+1. **ច្រក 8080 មានការប្រើប្រាស់រួចហើយ**
+   - បញ្ឈប់កម្មវិធីផ្សេងទៀតដែលកំពុងប្រើច្រក 8080
+   - ឬផ្លាស់ប្ដូរច្រកម៉ាស៊ីនមេក្នុង `calculator-server/src/main/resources/application.yml`
+
+2. **ការតភ្ជាប់ត្រូវបានបដិសេធ**
+   - ត្រួតពិនិត្យម៉ាស៊ីនមេកំពុងដំណើរការមុនពេលចាប់ផ្ដើមអតិថិជន
+   - ពិនិត្យថាម៉ាស៊ីនមេបើកដោយជោគជ័យលើច្រក 8080
+
+3. **បញ្ហាឈ្មោះប៉ារ៉ាម៉ែត្រ**
+   - គម្រោងនេះមានការកំណត់កូដ Maven ជាមួយទង់​នៃ `-parameters`
+   - ប្រសិនបើអ្នកប្រទះឃើញបញ្ហាការចាញ់ប៉ារ៉ាម៉ែត្រ សូមប្រាកដថាគម្រោងត្រូវបានបង្កើតជាមួយការកំណត់នេះ
+
+### បញ្ឈប់ការរត់កម្មវិធី
+
+- ចុច `Ctrl+C` នៅក្នុងច្រកបញ្ជា ដែលកម្មវិធីនីមួយៗកំពុងដំណើរការ
+- ឬប្រើ `mvn spring-boot:stop` ប្រសិនបើដំណើរការជាពីក្រោយ
+
+## បច្ចេកវិទ្យាដែលប្រើ
+
+- **Spring Boot 3.3.1** - ស៊ុមកម្មវិធី
+- **Spring WebFlux** - ស៊ុមវែបប្រតិកម្ម
+- **Project Reactor** - មណ្ឌលស្ទ្រីមប្រតិកម្ម
+- **Netty** - ម៉ាស៊ីនមេ I/O មិនរាំងខ្ទប់
+- **Maven** - ឧបករណ៍កសាង
+- **Java 17+** - ភាសាកម្មវិធី
+
+## ជំហានបន្ទាប់
+
+សាកល្បងកែប្រែកូដដើម្បី៖
+- បន្ថែមពិធីការគណនាគណិត
+- រួមបញ្ចូលការកែតម្រូវករណីកំហុសសម្រាប់ប្រតិបត្តិការមិនត្រឹមត្រូវ
+- បន្ថែមកំណត់ហេតុសំណើ/ចម្លើយ
+- អនុវត្តសន្តិសុខ
+- បន្ថែមតេស្តឯកត្តា
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**ការបដិសេធ**៖  
+ឯកសារនេះត្រូវបានបកប្រែដោយប្រើសេវាបកប្រែ AI [Co-op Translator](https://github.com/Azure/co-op-translator)។ ខណៈដែលយើងខិតខំប្រឹងប្រែងសំរាប់ភាពជាក់លាក់ សូមយល់ព្រមថាការបកប្រែដោយស្វ័យប្រវត្តិអាចមានកំហុស ឬការមិនត្រឹមត្រូវខ្លះៗ។ ឯកសារដើមនៅភាសា​ដើមគួរត្រូវបានគេយកទៅជាឯកសារយោងផ្លូវការសម្រាប់ព័ត៌មាន។ សម្រាប់ព័ត៌មានសំខាន់ៗ សូមផ្ដល់អាទិភាពការបកប្រែដោយមនុស្សជំនាញ។ យើងមិនទទួលខុសត្រូវចំពោះការយល់ច្រឡំ ឬការបកប្រែមិនត្រឹមត្រូវណាមួយដែលកើតឡើងពីការប្រើប្រាស់ការបកប្រែនេះឡើយ។
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

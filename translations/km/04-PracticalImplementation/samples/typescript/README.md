@@ -1,0 +1,87 @@
+# ឧទាហរណ៍
+
+នេះគឺជាឧទាហរណ៍ Typescript សម្រាប់ម៉ាស៊ីនមេ MCP
+
+នេះគឺជាគំរូការបង្កើតឧបករណ៍៖
+
+```typescript
+this.mcpServer.tool(
+'completion',
+{
+    model: z.string(),
+    prompt: z.string(),
+    options: z.object({
+        temperature: z.number().optional(),
+        max_tokens: z.number().optional(),
+        stream: z.boolean().optional()
+    }).optional()
+},
+async ({ model, prompt, options }) => {
+    console.log(`Processing completion request for model: ${model}`);
+
+    // បញ្ចាក់ម៉ូដែល
+    if (!this.models.includes(model)) {
+        throw new Error(`Model ${model} not supported`);
+    }
+
+    // ផ្គុំឲ្យមានព្រឹត្តិការណ៍សម្រាប់តាមដាន/វាស់វែង
+    this.events.emit('request', { 
+        type: 'completion', 
+        model, 
+        timestamp: new Date() 
+    });
+
+    // ក្នុងការអនុវត្តប្រាកដ នេះនឹងហៅម៉ូដែល AI
+    // នៅទីនេះ យើងគ្រាន់តែបំលែងផ្នែកនៃសំណើជាមួយនឹងតបស្មាន
+    const response = {
+        id: `mcp-resp-${Date.now()}`,
+        model,
+        text: `This is a response to: ${prompt.substring(0, 30)}...`,
+        usage: {
+        promptTokens: prompt.split(' ').length,
+        completionTokens: 20,
+        totalTokens: prompt.split(' ').length + 20
+        }
+    };
+
+    // ធ្វើឱ្យមានការពន្យារពេលបណ្តាញ
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    // ផ្គុំឲ្យមានព្រឹត្តិការណ៍បញ្ចប់
+    this.events.emit('completion', {
+        model,
+        timestamp: new Date()
+    });
+
+    return {
+        content: [
+        {
+            type: 'text',
+            text: JSON.stringify(response)
+        }
+        ]
+    };
+}
+);
+```
+
+## ដំឡើង
+
+ដំណើរការបញ្ជារទាំងមូល៖
+
+```bash
+npm install
+```
+
+## រត់
+
+```bash
+npm start
+```
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**ការប្រាប់សម្គាល់**៖
+ឯកសារនេះត្រូវបានប្រែសម្រួលដោយប្រើសេវាកម្មបកប្រែ AI [Co-op Translator](https://github.com/Azure/co-op-translator)។ ខណៈពេលដែលយើងខំប្រឹងសំរាប់ភាពត្រឹមត្រូវ សូមយល់ថាការបកប្រែដោយស្វ័យប្រវត្តិនោះអាចមានកំហុសឬភាពមិនត្រឹមត្រូវ។ ឯកសារដើមនៅក្នុងភាសាម្តដើមគួរត្រូវបានយកជា​ប្រភពដើមដែលមានសុពលភាព។ សម្រាប់ព័ត៌មានសំខាន់ៗ ការបកប្រែដោយមនុស្សវិជ្ជាជីវៈគឺត្រូវបានណែនាំ។ យើងមិនទទួលខុសត្រូវចំពោះការយល់ច្រឡំ ឬការបកស្រាយខុសដែលកើតឡើងពីការប្រើប្រាស់ការបកប្រែនេះឡើយ។
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

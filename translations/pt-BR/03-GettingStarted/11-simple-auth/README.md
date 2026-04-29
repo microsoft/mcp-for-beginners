@@ -1,17 +1,17 @@
 # Autenticação simples
 
-Os SDKs MCP suportam o uso do OAuth 2.1 que, para ser justo, é um processo bastante complexo envolvendo conceitos como servidor de autenticação, servidor de recursos, envio de credenciais, obtenção de um código, troca do código por um token bearer até que você finalmente obtenha os dados do recurso. Se você não está acostumado com OAuth, que é algo ótimo para implementar, é uma boa ideia começar com um nível básico de autenticação e evoluir para uma segurança cada vez melhor. É por isso que este capítulo existe, para prepará-lo para uma autenticação mais avançada.
+Os SDKs MCP suportam o uso do OAuth 2.1, que para ser justo é um processo bastante envolvido envolvendo conceitos como servidor de autenticação, servidor de recursos, postagem de credenciais, obtenção de um código, troca do código por um token bearer até que você finalmente possa obter seus dados de recurso. Se você não está acostumado com OAuth, que é uma ótima coisa para implementar, é uma boa ideia começar com algum nível básico de autenticação e evoluir para segurança cada vez melhor. É por isso que este capítulo existe, para levá-lo a autenticações mais avançadas.
 
 ## Autenticação, o que queremos dizer?
 
 Auth é abreviação de autenticação e autorização. A ideia é que precisamos fazer duas coisas:
 
-- **Autenticação**, que é o processo de descobrir se deixamos uma pessoa entrar na nossa casa, que ela tem o direito de estar "aqui", ou seja, ter acesso ao nosso servidor de recursos onde as funcionalidades do nosso MCP Server vivem.
-- **Autorização**, é o processo de descobrir se um usuário deve ter acesso a esses recursos específicos que ele está pedindo, por exemplo, esses pedidos ou esses produtos ou se ele está autorizado a ler o conteúdo, mas não excluir, como outro exemplo.
+- **Autenticação**, que é o processo de descobrir se deixamos uma pessoa entrar em nossa casa, se ela tem o direito de estar "aqui", isto é, ter acesso ao nosso servidor de recursos onde vivem as funcionalidades do nosso servidor MCP.
+- **Autorização**, é o processo de descobrir se um usuário deve ter acesso a esses recursos específicos que está solicitando, por exemplo, esses pedidos ou esses produtos ou se ele está autorizado a ler o conteúdo, mas não a deletar, como outro exemplo.
 
-## Credenciais: como informamos o sistema quem somos
+## Credenciais: como informamos ao sistema quem somos
 
-Bem, a maioria dos desenvolvedores web pensa em termos de fornecer uma credencial ao servidor, geralmente um segredo que diz se eles têm permissão para estar aqui ("Autenticação"). Essa credencial geralmente é uma versão codificada em base64 de nome de usuário e senha ou uma chave de API que identifica exclusivamente um usuário específico.
+Bem, a maioria dos desenvolvedores web pensa em termos de fornecer uma credencial ao servidor, normalmente um segredo que diz se eles têm permissão para estar aqui - "Autenticação". Essa credencial geralmente é uma versão codificada em base64 do nome de usuário e senha ou uma chave de API que identifica exclusivamente um usuário específico.
 
 Isso envolve enviá-la via um cabeçalho chamado "Authorization" assim:
 
@@ -19,7 +19,7 @@ Isso envolve enviá-la via um cabeçalho chamado "Authorization" assim:
 { "Authorization": "secret123" }
 ```
 
-Isso geralmente é referido como autenticação básica. O fluxo geral funciona da seguinte forma:
+Isso geralmente é referido como autenticação básica. Como o fluxo geral então funciona é da seguinte forma:
 
 ```mermaid
 sequenceDiagram
@@ -28,11 +28,11 @@ sequenceDiagram
    participant Server
 
    User->>Client: mostre-me os dados
-   Client->>Server: mostre-me os dados, aqui está minha credencial
+   Client->>Server: mostre-me os dados, aqui estão minhas credenciais
    Server-->>Client: 1a, eu te conheço, aqui estão seus dados
    Server-->>Client: 1b, eu não te conheço, 401 
 ```
-Agora que entendemos como funciona do ponto de vista do fluxo, como implementamos? Bem, a maioria dos servidores web possui um conceito chamado middleware, um pedaço de código que roda como parte da requisição que pode verificar as credenciais e, se forem válidas, permite que a requisição passe. Se a requisição não tiver credenciais válidas, você recebe um erro de autenticação. Vamos ver como isso pode ser implementado:
+Agora que entendemos como funciona do ponto de vista do fluxo, como o implementamos? Bem, a maioria dos servidores web tem um conceito chamado middleware, um pedaço de código que roda como parte da requisição que pode verificar credenciais e, se as credenciais forem válidas, pode deixar a requisição passar. Se a requisição não tiver credenciais válidas, você recebe um erro de autenticação. Vamos ver como isso pode ser implementado:
 
 **Python**
 
@@ -59,7 +59,7 @@ class AuthMiddleware(BaseHTTPMiddleware):
 starlette_app.add_middleware(CustomHeaderMiddleware)
 ```
 
-Aqui temos: 
+Aqui temos:
 
 - Criado um middleware chamado `AuthMiddleware` onde seu método `dispatch` é invocado pelo servidor web.
 - Adicionado o middleware ao servidor web:
@@ -68,7 +68,7 @@ Aqui temos:
     starlette_app.add_middleware(AuthMiddleware)
     ```
 
-- Escrito lógica de validação que verifica se o cabeçalho Authorization está presente e se o segredo enviado é válido:
+- Escrito a lógica de validação que verifica se o cabeçalho Authorization está presente e se o segredo enviado é válido:
 
     ```python
     has_header = request.headers.get("Authorization")
@@ -81,19 +81,19 @@ Aqui temos:
         return Response(status_code=403, content="Forbidden")
     ```
 
-    se o segredo está presente e válido, então deixamos a requisição passar chamando `call_next` e retornamos a resposta.
+    se o segredo estiver presente e válido, então deixamos a requisição passar chamando `call_next` e retornamos a resposta.
 
     ```python
     response = await call_next(request)
-    # adicionar quaisquer cabeçalhos personalizados ou alterar a resposta de alguma forma
+    # adicione quaisquer cabeçalhos personalizados ou altere a resposta de alguma forma
     return response
     ```
 
-Como funciona é que, se uma requisição web é feita ao servidor, o middleware será invocado e, dado sua implementação, ele deixará a requisição passar ou terminará retornando um erro que indica que o cliente não tem permissão para continuar.
+O funcionamento é que, se uma requisição web for feita ao servidor, o middleware será invocado e, dada sua implementação, ele deixará a requisição passar ou acabará retornando um erro que indica que o cliente não tem permissão para prosseguir.
 
 **TypeScript**
 
-Aqui criamos um middleware com o popular framework Express e interceptamos a requisição antes dela alcançar o MCP Server. Aqui está o código para isso:
+Aqui criamos um middleware com o popular framework Express e interceptamos a requisição antes de chegar ao servidor MCP. Aqui está o código para isso:
 
 ```typescript
 function isValid(secret) {
@@ -115,20 +115,20 @@ app.use((req, res, next) => {
 
    
     console.log('Middleware executed');
-    // 3. Passa a requisição para a próxima etapa no pipeline de requisição.
+    // 3. Passa a solicitação para a próxima etapa no pipeline de requisição.
     next();
 });
 ```
 
-Neste código nós:
+Neste código:
 
-1. Verificamos se o cabeçalho Authorization está presente inicialmente, se não estiver, enviamos um erro 401.
-2. Garantimos que a credencial/token é válido, se não for, enviamos um erro 403.
-3. Finalmente, passamos a requisição no pipeline e retornamos o recurso solicitado.
+1. Verificamos se o cabeçalho Authorization está presente, se não estiver, enviamos um erro 401.
+2. Asseguramos que a credencial/token é válido, se não for, enviamos um erro 403.
+3. Por fim, passamos a requisição na pipeline e retornamos o recurso solicitado.
 
-## Exercício: implementar autenticação
+## Exercício: Implemente a autenticação
 
-Vamos aplicar nosso conhecimento e tentar implementar. Aqui está o plano:
+Vamos pegar nosso conhecimento e tentar implementá-lo. Aqui está o plano:
 
 Servidor
 
@@ -137,15 +137,15 @@ Servidor
 
 Cliente
 
-- Enviar requisição web, com credencial, via cabeçalho.
+- Enviar uma requisição web, com credencial, via cabeçalho.
 
-### -1- Criar um servidor web e uma instância MCP
+### -1- Crie um servidor web e uma instância MCP
 
-No primeiro passo, precisamos criar a instância do servidor web e o MCP Server.
+No nosso primeiro passo, precisamos criar a instância do servidor web e do servidor MCP.
 
 **Python**
 
-Aqui criamos uma instância do MCP Server, criamos um app web starlette e o hospedamos com uvicorn.
+Aqui criamos uma instância do servidor MCP, criamos um app starlette e o hospedamos com uvicorn.
 
 ```python
 # criando servidor MCP
@@ -158,10 +158,10 @@ app = FastMCP(
     debug=True
 )
 
-# criando aplicativo web starlette
+# criando app web starlette
 starlette_app = app.streamable_http_app()
 
-# servindo aplicativo via uvicorn
+# servindo app via uvicorn
 async def run(starlette_app):
     import uvicorn
     config = uvicorn.Config(
@@ -176,15 +176,15 @@ async def run(starlette_app):
 run(starlette_app)
 ```
 
-Neste código nós:
+Neste código:
 
-- Criamos o MCP Server.
-- Construímos o app web starlette a partir do MCP Server, `app.streamable_http_app()`.
+- Criamos o servidor MCP.
+- Construímos o app starlette a partir do servidor MCP, `app.streamable_http_app()`.
 - Hospedamos e servimos o app web usando uvicorn `server.serve()`.
 
 **TypeScript**
 
-Aqui criamos uma instância do MCP Server.
+Aqui criamos uma instância do servidor MCP.
 
 ```typescript
 const server = new McpServer({
@@ -195,7 +195,7 @@ const server = new McpServer({
     // ... configurar recursos do servidor, ferramentas e prompts ...
 ```
 
-Essa criação do MCP Server precisa acontecer dentro da definição da rota POST /mcp, então vamos pegar o código acima e movê-lo assim:
+Essa criação do servidor MCP precisará acontecer dentro da definição da rota POST /mcp, então vamos pegar o código acima e movê-lo assim:
 
 ```typescript
 import express from "express";
@@ -212,7 +212,7 @@ const transports: { [sessionId: string]: StreamableHTTPServerTransport } = {};
 
 // Lidar com requisições POST para comunicação cliente-servidor
 app.post('/mcp', async (req, res) => {
-  // Verificar se existe ID de sessão
+  // Verificar existência de ID de sessão
   const sessionId = req.headers['mcp-session-id'] as string | undefined;
   let transport: StreamableHTTPServerTransport;
 
@@ -220,14 +220,14 @@ app.post('/mcp', async (req, res) => {
     // Reutilizar transporte existente
     transport = transports[sessionId];
   } else if (!sessionId && isInitializeRequest(req.body)) {
-    // Novo pedido de inicialização
+    // Nova requisição de inicialização
     transport = new StreamableHTTPServerTransport({
       sessionIdGenerator: () => randomUUID(),
       onsessioninitialized: (sessionId) => {
-        // Armazenar o transporte pelo ID de sessão
+        // Armazenar o transporte por ID de sessão
         transports[sessionId] = transport;
       },
-      // A proteção contra DNS rebinding está desabilitada por padrão para compatibilidade retroativa. Se você estiver executando este servidor
+      // A proteção contra rebinding de DNS está desativada por padrão para compatibilidade com versões anteriores. Se você estiver executando este servidor
       // localmente, certifique-se de definir:
       // enableDnsRebindingProtection: true,
       // allowedHosts: ['127.0.0.1'],
@@ -244,7 +244,7 @@ app.post('/mcp', async (req, res) => {
       version: "1.0.0"
     });
 
-    // ... configurar recursos do servidor, ferramentas e prompts ...
+    // ... configurar recursos, ferramentas e prompts do servidor ...
 
     // Conectar ao servidor MCP
     await server.connect(transport);
@@ -261,7 +261,7 @@ app.post('/mcp', async (req, res) => {
     return;
   }
 
-  // Lidar com a requisição
+  // Processar a requisição
   await transport.handleRequest(req, res, req.body);
 });
 
@@ -280,41 +280,41 @@ const handleSessionRequest = async (req: express.Request, res: express.Response)
 // Lidar com requisições GET para notificações do servidor para o cliente via SSE
 app.get('/mcp', handleSessionRequest);
 
-// Lidar com requisições DELETE para término de sessão
+// Lidar com requisições DELETE para encerramento de sessão
 app.delete('/mcp', handleSessionRequest);
 
 app.listen(3000);
 ```
 
-Agora você vê como a criação do MCP Server foi movida para dentro de `app.post("/mcp")`.
+Agora você vê como a criação do servidor MCP foi movida para dentro de `app.post("/mcp")`.
 
-Vamos passar para o próximo passo que é criar o middleware para podermos validar a credencial recebida.
+Vamos passar para o próximo passo de criar o middleware para que possamos validar a credencial recebida.
 
-### -2- Implementar um middleware para o servidor
+### -2- Implemente um middleware para o servidor
 
-Vamos para a parte do middleware agora. Aqui criaremos um middleware que busca uma credencial no cabeçalho `Authorization` e a valida. Se for aceitável, a requisição continuará para fazer o que precisa (ex: listar ferramentas, ler um recurso ou qualquer funcionalidade MCP que o cliente estava solicitando).
+Vamos para a parte do middleware a seguir. Aqui criaremos um middleware que procura uma credencial no cabeçalho `Authorization` e a valida. Se aceitável, a requisição seguirá para fazer o que precisa (por exemplo, listar ferramentas, ler um recurso ou qualquer funcionalidade MCP que o cliente pediu).
 
 **Python**
 
-Para criar o middleware, precisamos criar uma classe que herda de `BaseHTTPMiddleware`. Há dois pontos interessantes:
+Para criar o middleware, precisamos criar uma classe que herde de `BaseHTTPMiddleware`. Há duas partes interessantes:
 
-- A requisição `request`, de onde lemos a informação do cabeçalho.
-- `call_next`, a callback que precisamos invocar se o cliente trouxe uma credencial que aceitamos.
+- A requisição `request`, da qual lemos informações do cabeçalho.
+- `call_next`, o callback que precisamos invocar se o cliente trouxe uma credencial aceitável.
 
-Primeiro, precisamos lidar com o caso em que o cabeçalho `Authorization` está ausente:
+Primeiro, precisamos tratar o caso se o cabeçalho `Authorization` estiver ausente:
 
 ```python
 has_header = request.headers.get("Authorization")
 
-# nenhum cabeçalho presente, falhar com 401, caso contrário, continuar.
+# nenhum cabeçalho presente, falhe com 401, caso contrário, continue.
 if not has_header:
     print("-> Missing Authorization header!")
     return Response(status_code=401, content="Unauthorized")
 ```
 
-Aqui enviamos uma mensagem 401 unauthorized pois o cliente falhou na autenticação.
+Aqui enviamos a mensagem 401 unauthorized porque o cliente está falhando na autenticação.
 
-Depois, se uma credencial foi enviada, temos que verificar a validade dela assim:
+Em seguida, se uma credencial foi enviada, precisamos verificar sua validade assim:
 
 ```python
  if not valid_token(has_header):
@@ -322,7 +322,7 @@ Depois, se uma credencial foi enviada, temos que verificar a validade dela assim
     return Response(status_code=403, content="Forbidden")
 ```
 
-Note como enviamos uma mensagem 403 forbidden acima. Veja o middleware completo abaixo implementando tudo que mencionamos:
+Repare como enviamos uma mensagem 403 forbidden acima. Vamos ver o middleware completo abaixo implementando tudo que mencionamos:
 
 ```python
 class AuthMiddleware(BaseHTTPMiddleware):
@@ -345,11 +345,10 @@ class AuthMiddleware(BaseHTTPMiddleware):
 
 ```
 
-Ótimo, mas e a função `valid_token`? Aqui está ela abaixo:
-:
+Ótimo, mas e a função `valid_token`? Aqui está abaixo:
 
 ```python
-# NÃO use em produção - melhore isso !!
+# NÃO use para produção - melhore isso !!
 def valid_token(token: str) -> bool:
     # remova o prefixo "Bearer "
     if token.startswith("Bearer "):
@@ -358,20 +357,20 @@ def valid_token(token: str) -> bool:
     return False
 ```
 
-Isso obviamente deveria melhorar.
+Isso obviamente deve melhorar.
 
-IMPORTANTE: Você NUNCA deve ter segredos assim no código. Idealmente, deve recuperar o valor para comparar de uma fonte de dados ou de um IDP (provedor de serviço de identidade) ou melhor ainda, deixar o IDP fazer a validação.
+IMPORTANTE: Você NUNCA deve ter segredos assim no código. Idealmente, você deve recuperar o valor para comparação de uma fonte de dados ou de um IDP (provedor de serviço de identidade) ou melhor ainda, deixar que o IDP faça a validação.
 
 **TypeScript**
 
-Para implementar isso com Express, precisamos chamar o método `use` que aceita funções middleware.
+Para implementar isso com Express, precisamos chamar o método `use` que recebe funções middleware.
 
 Precisamos:
 
-- Interagir com a variável request para verificar a credencial passada na propriedade `Authorization`.
-- Validar a credencial, e se estiver ok deixar a requisição continuar e fazer com que a requisição MCP do cliente execute o que deve (ex: listar ferramentas, ler recurso ou qualquer coisa relacionada ao MCP).
+- Interagir com a variável de requisição para verificar a credencial passada na propriedade `Authorization`.
+- Validar a credencial, e se válida, permitir que a requisição continue e faça o que o MCP do cliente deveria fazer (ex: listar ferramentas, ler recursos ou qualquer outro relacionado ao MCP).
 
-Aqui, estamos verificando se o cabeçalho `Authorization` está presente e, se não estiver, bloqueamos a requisição:
+Aqui, verificamos se o cabeçalho `Authorization` está presente e, se não, interrompemos a requisição:
 
 ```typescript
 if(!req.headers["authorization"]) {
@@ -380,9 +379,9 @@ if(!req.headers["authorization"]) {
 }
 ```
 
-Se o cabeçalho não for enviado inicialmente, você recebe um 401.
+Se o cabeçalho não for enviado, você recebe um 401.
 
-Depois, verificamos se a credencial é válida, se não for, novamente bloqueamos a requisição, mas com uma mensagem um pouco diferente:
+Em seguida, verificamos se a credencial é válida, se não for, novamente paramos a requisição, mas com uma mensagem um pouco diferente:
 
 ```typescript
 if(!isValid(token)) {
@@ -391,7 +390,7 @@ if(!isValid(token)) {
 } 
 ```
 
-Note que agora você recebe um erro 403.
+Repare que agora você recebe um erro 403.
 
 Aqui está o código completo:
 
@@ -416,11 +415,11 @@ app.use((req, res, next) => {
 });
 ```
 
-Configuramos o servidor web para aceitar um middleware para checar a credencial que o cliente espera nos enviar. E o cliente?
+Configuramos o servidor web para aceitar um middleware que verifica a credencial que o cliente espera nos enviar. E o próprio cliente?
 
-### -3- Enviar requisição web com credencial via cabeçalho
+### -3- Envie a requisição web com credencial via cabeçalho
 
-Precisamos garantir que o cliente esteja passando a credencial pelo cabeçalho. Como vamos usar um cliente MCP para isso, precisamos descobrir como fazer.
+Precisamos garantir que o cliente passe a credencial através do cabeçalho. Como vamos usar um cliente MCP para isso, precisamos descobrir como é feito.
 
 **Python**
 
@@ -447,21 +446,21 @@ async with streamablehttp_client(
             # TODO, o que você quer que seja feito no cliente, por exemplo listar ferramentas, chamar ferramentas etc.
 ```
 
-Note como preenchemos a propriedade `headers` assim: ` headers = {"Authorization": f"Bearer {token}"}`.
+Repare como populamos a propriedade `headers` assim: ` headers = {"Authorization": f"Bearer {token}"}`.
 
 **TypeScript**
 
-Isso podemos resolver em dois passos:
+Podemos resolver isso em dois passos:
 
-1. Popular um objeto de configuração com nossa credencial.
-2. Passar esse objeto de configuração para o transporte.
+1. Preencher um objeto de configuração com nossa credencial.
+2. Passar o objeto de configuração para o transporte.
 
 ```typescript
 
 // NÃO codifique o valor diretamente como mostrado aqui. No mínimo, tenha-o como uma variável de ambiente e use algo como dotenv (no modo de desenvolvimento).
 let token = "secret123"
 
-// defina um objeto de opção de transporte do cliente
+// definir um objeto de opção de transporte do cliente
 let options: StreamableHTTPClientTransportOptions = {
   sessionId: sessionId,
   requestInit: {
@@ -479,46 +478,46 @@ async function main() {
    );
 ```
 
-Aqui você vê acima como precisamos criar um objeto `options` e colocar nossos cabeçalhos na propriedade `requestInit`.
+Aqui você vê acima como tivemos que criar um objeto `options` e colocar nossos cabeçalhos na propriedade `requestInit`.
 
-IMPORTANTE: Como melhorar isso daqui para frente? Bem, a implementação atual tem alguns problemas. Primeiro, passar uma credencial assim é bastante arriscado a menos que ao menos você tenha HTTPS. Mesmo assim, a credencial pode ser roubada, então você precisa de um sistema onde possa revogar facilmente o token e adicionar verificações adicionais como de onde no mundo ele está vindo, se a requisição acontece com muita frequência (comportamento de bot), em resumo, há uma série de preocupações.
+IMPORTANTE: Como melhorar isso a partir daqui? Bem, a implementação atual tem problemas. Primeiro, passar uma credencial assim é bastante arriscado, a menos que você tenha HTTPS no mínimo. Mesmo assim, a credencial pode ser roubada, então você precisa de um sistema onde possa revogar o token facilmente e adicionar verificações adicionais como de onde no mundo está vindo, se a requisição ocorre com muita frequência (comportamento de bot), em resumo, há uma série de preocupações.
 
-Deve-se dizer, entretanto, que para APIs muito simples onde você não quer que ninguém chame sua API sem estar autenticado, o que temos aqui é um bom começo.
+Deve-se dizer, porém, para APIs muito simples onde você não quer que ninguém chame sua API sem autenticação, o que temos aqui já é um bom começo.
 
-Dito isso, vamos tentar endurecer a segurança um pouco usando um formato padrão como JSON Web Token, também conhecido como JWT ou tokens "JOT".
+Dito isso, vamos tentar endurecer um pouco a segurança usando um formato padronizado como JSON Web Token, também conhecido como JWT ou tokens "JOT".
 
 ## JSON Web Tokens, JWT
 
-Então, estamos tentando melhorar as coisas além de enviar credenciais muito simples. Quais as melhorias imediatas que obtemos adotando JWT?
+Então, estamos tentando melhorar as coisas a partir do envio de credenciais muito simples. Quais são as melhorias imediatas ao adotar JWT?
 
-- **Melhorias de segurança**. Na autenticação básica, você envia nome de usuário e senha como um token codificado em base64 (ou envia uma chave API) várias vezes, aumentando o risco. Com JWT, você envia seu nome de usuário e senha e recebe um token em retorno que também é temporário, ou seja, vai expirar. JWT permite facilmente controlar acesso fino usando papéis, escopos e permissões.
-- **Ausência de estado e escalabilidade**. JWTs são auto-contidos, carregam todas as informações do usuário e eliminam a necessidade de armazenamento de sessões no servidor. O token também pode ser validado localmente.
-- **Interoperabilidade e federação**. JWTs são centrais no Open ID Connect e são usados com provedores de identidade conhecidos como Entra ID, Google Identity e Auth0. Eles também possibilitam o uso de login único (SSO) e muito mais, tornando-os de nível empresarial.
-- **Modularidade e flexibilidade**. JWTs também podem ser usados com API Gateways como Azure API Management, NGINX e outros. Suportam cenários de autenticação de uso e comunicação servidor-a-servidor, incluindo cenários de personificação e delegação.
-- **Desempenho e cache**. JWTs podem ser armazenados em cache após a decodificação, o que reduz a necessidade de parsing. Isso ajuda especialmente em apps de alto tráfego, melhorando a taxa de transferência e diminuindo a carga na infraestrutura escolhida.
-- **Recursos avançados**. Também suportam introspecção (verificar validade no servidor) e revogação (tornar um token inválido).
+- **Melhorias de segurança**. Na autenticação básica, você envia nome de usuário e senha codificados em base64 (ou uma chave de API) repetidamente, o que aumenta o risco. Com JWT, você envia seu nome de usuário e senha e recebe um token em retorno, que também tem tempo de expiração. JWT permite usar controle de acesso refinado usando papéis, escopos e permissões.
+- **Estado sem servidor e escalabilidade**. JWTs são autocontidos, carregam todas as informações do usuário e eliminam a necessidade de armazenamento de sessão no servidor. O token também pode ser validado localmente.
+- **Interoperabilidade e federação**. JWTs são centrais no Open ID Connect e usados com provedores de identidade conhecidos como Entra ID, Google Identity e Auth0. Também tornam possível usar single sign-on e muito mais, tornando-o adequado para nível empresarial.
+- **Modularidade e flexibilidade**. JWTs podem ser usados com API Gateways como Azure API Management, NGINX e outros. Suporta cenários de autenticação de usuário e comunicação servidor a servidor, incluindo impersonação e delegação.
+- **Desempenho e cache**. JWTs podem ser armazenados em cache após decodificação, reduzindo necessidade de parse. Isso ajuda especialmente em apps de alto tráfego, melhora o throughput e reduz carga na infraestrutura escolhida.
+- **Recursos avançados**. Também suporta introspecção (verificar validade no servidor) e revogação (tornar um token inválido).
 
-Com todos esses benefícios, vejamos como podemos levar nossa implementação para o próximo nível.
+Com todos esses benefícios, vamos ver como levar nossa implementação para o próximo nível.
 
-## Transformando autenticação básica em JWT
+## Transformando auth básica em JWT
 
 Então, as mudanças que precisamos fazer em alto nível são:
 
-- **Aprender a construir um token JWT** e prepará-lo para ser enviado do cliente para o servidor.
-- **Validar um token JWT**, e se for válido, permitir que o cliente acesse nossos recursos.
+- **Aprender a construir um token JWT** e deixá-lo pronto para ser enviado do cliente ao servidor.
+- **Validar um token JWT**, e se válido, liberar o cliente a acessar nossos recursos.
 - **Armazenamento seguro do token**. Como armazenamos esse token.
-- **Proteger as rotas**. Precisamos proteger as rotas, no nosso caso, proteger rotas e funcionalidades específicas do MCP.
-- **Adicionar tokens de atualização (refresh tokens)**. Garantir que criamos tokens com vida curta, mas tokens de atualização longos que podem ser usados para adquirir novos tokens se expirarem. Garantir também um endpoint de refresh e uma estratégia de rotação.
+- **Proteger as rotas**. Precisamos proteger as rotas e, no nosso caso, proteger as rotas e funcionalidades MCP específicas.
+- **Adicionar refresh tokens**. Garantir que criemos tokens de vida curta, mas refresh tokens de vida longa que possam ser usados para adquirir novos tokens se expirarem. Também garantir que haja um endpoint de refresh e uma estratégia de rotação.
 
 ### -1- Construir um token JWT
 
-Primeiro, um token JWT tem as seguintes partes:
+Primeiramente, um token JWT tem as seguintes partes:
 
-- **header**, algoritmo usado e tipo do token.
-- **payload**, claims, como sub (o usuário ou entidade que o token representa. Em um cenário de autenticação, tipicamente o userid), exp (quando expira), role (o papel)
-- **signature**, assinada com um segredo ou chave privada.
+- **cabeçalho**, algoritmo usado e tipo do token.
+- **payload**, claims, como sub (o usuário ou entidade que o token representa, tipicamente o userid em cenário de autenticação), exp (quando expira) e role (papel)
+- **assinatura**, assinada com um segredo ou chave privada.
 
-Para isso, precisaremos construir o header, payload e o token codificado.
+Para isso, precisaremos construir o cabeçalho, payload e o token codificado.
 
 **Python**
 
@@ -546,14 +545,14 @@ payload = {
     "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=1)  # Expiração
 }
 
-# codificar isso
+# codificá-lo
 encoded_jwt = jwt.encode(payload, secret_key, algorithm="HS256", headers=header)
 ```
 
-No código acima nós:
+No código acima:
 
-- Definimos um header usando HS256 como algoritmo e tipo JWT.
-- Construímos um payload que contém um sujeito ou id do usuário, um nome de usuário, um papel, quando foi emitido e quando vai expirar, implementando o aspecto temporal mencionado antes.
+- Definimos um cabeçalho usando HS256 como algoritmo e tipo JWT.
+- Construímos um payload que contém um sujeito ou id de usuário, um nome de usuário, um papel, quando foi emitido e quando expira, implementando assim o aspecto de tempo de expiração mencionado anteriormente.
 
 **TypeScript**
 
@@ -567,14 +566,14 @@ npm install jsonwebtoken
 npm install --save-dev @types/jsonwebtoken
 ```
 
-Agora que temos isso, vamos criar o header, payload e por meio disso criar o token codificado.
+Agora que temos isso configurado, vamos criar o cabeçalho, payload e, por meio disso, o token codificado.
 
 ```typescript
 import jwt from 'jsonwebtoken';
 
-const secretKey = 'your-secret-key'; // Use variáveis de ambiente na produção
+const secretKey = 'your-secret-key'; // Use variáveis de ambiente em produção
 
-// Defina a carga útil
+// Defina o payload
 const payload = {
   sub: '1234567890',
   name: 'User usersson',
@@ -598,23 +597,23 @@ const token = jwt.sign(payload, secretKey, {
 console.log('JWT:', token);
 ```
 
-Este token é:
+Este token está:
 
-Assinado usando HS256
-Válido por 1 hora
+Assinado usando HS256  
+Válido por 1 hora  
 Inclui claims como sub, name, admin, iat e exp.
 
 ### -2- Validar um token
 
-Também precisaremos validar um token, isso deve ser feito no servidor para garantir que o que o cliente está nos enviando seja realmente válido. Há muitas verificações que devemos fazer aqui, desde validar a estrutura até a validade. Você também é encorajado a adicionar outras checagens para ver se o usuário está no seu sistema e mais.
+Também precisaremos validar um token, algo que devemos fazer no servidor para garantir que o que o cliente está nos enviando é de fato válido. Há muitas verificações que devemos fazer, desde validar sua estrutura até sua validade. Também é recomendável adicionar outras verificações para ver se o usuário está no seu sistema e mais.
 
-Para validar um token, precisamos decodificá-lo para podermos lê-lo e então começar a verificar sua validade:
+Para validar um token, precisamos decodificá-lo para poder ler e então começar a verificar sua validade:
 
 **Python**
 
 ```python
 
-# Decodificar e verificar o JWT
+# Decodifique e verifique o JWT
 try:
     decoded = jwt.decode(token, secret_key, algorithms=["HS256"])
     print("✅ Token is valid.")
@@ -628,7 +627,7 @@ except InvalidTokenError as e:
 
 ```
 
-Neste código, chamamos `jwt.decode` usando o token, a chave secreta e o algoritmo escolhido como entrada. Note como usamos um try-catch, já que uma validação falha gera uma exceção.
+Nesse código, chamamos `jwt.decode` usando o token, a chave secreta e o algoritmo escolhido como entrada. Repare que usamos um bloco try-catch, pois uma validação falha gera um erro.
 
 **TypeScript**
 
@@ -644,18 +643,18 @@ try {
 }
 ```
 
-NOTA: como mencionado anteriormente, devemos realizar checagens adicionais para garantir que este token aponta para um usuário no nosso sistema e assegurar que o usuário tenha os direitos que afirma ter.
+NOTA: como mencionado anteriormente, devemos fazer verificações adicionais para garantir que esse token aponte para um usuário no nosso sistema e garantir que o usuário tenha os direitos que afirma ter.
 
-Agora, vamos olhar para o controle de acesso baseado em papéis, também conhecido como RBAC.
+A seguir, vamos olhar para controle de acesso baseado em papéis, também conhecido como RBAC.
 ## Adicionando controle de acesso baseado em função
 
-A ideia é que queremos expressar que diferentes funções têm diferentes permissões. Por exemplo, assumimos que um administrador pode fazer tudo e que um usuário normal pode ler/gravar e que um convidado só pode ler. Portanto, aqui estão alguns possíveis níveis de permissão:
+A ideia é que queremos expressar que diferentes funções têm diferentes permissões. Por exemplo, assumimos que um admin pode fazer tudo e que um usuário normal pode ler/escrever e que um convidado só pode ler. Portanto, aqui estão alguns níveis de permissão possíveis:
 
 - Admin.Write 
 - User.Read
 - Guest.Read
 
-Vamos ver como podemos implementar esse controle com middleware. Middlewares podem ser adicionados por rota assim como para todas as rotas.
+Vamos ver como podemos implementar esse controle com middleware. Middlewares podem ser adicionados por rota, assim como para todas as rotas.
 
 **Python**
 
@@ -692,7 +691,7 @@ class JWTPermissionMiddleware(BaseHTTPMiddleware):
 
 ```
 
-Existem algumas maneiras diferentes de adicionar o middleware como abaixo:
+Existem algumas maneiras diferentes de adicionar o middleware, como abaixo:
 
 ```python
 
@@ -748,7 +747,7 @@ app.use((req, res, next) => {
     }
     console.log("User exists");
 
-    // 4. Verifique se o token possui as permissões corretas
+    // 4. Verifique se o token tem as permissões corretas
     if(!hasScopes(token, ["User.Read"])){
         res.status(403).send('Forbidden - insufficient scopes');
     }
@@ -761,14 +760,14 @@ app.use((req, res, next) => {
 
 ```
 
-Há várias coisas que podemos permitir que nosso middleware faça e que nosso middleware DEVE fazer, a saber:
+Há várias coisas que podemos deixar para o middleware e que nosso middleware DEVE fazer, a saber:
 
 1. Verificar se o cabeçalho de autorização está presente
-2. Verificar se o token é válido, chamamos `isValid`, que é um método que escrevemos para verificar a integridade e validade do token JWT.
-3. Verificar se o usuário existe em nosso sistema, devemos verificar isso.
+2. Verificar se o token é válido, chamamos `isValid` que é um método que escrevemos que verifica a integridade e validade do token JWT.
+3. Verificar se o usuário existe no nosso sistema, devemos checar isso.
 
    ```typescript
-    // usuários no banco de dados
+    // usuários no BD
    const users = [
      "user1",
      "User usersson",
@@ -777,14 +776,14 @@ Há várias coisas que podemos permitir que nosso middleware faça e que nosso m
    function isExistingUser(token) {
      let decodedToken = verifyToken(token);
 
-     // TODO, verifique se o usuário existe no banco de dados
+     // TODO, verificar se o usuário existe no BD
      return users.includes(decodedToken?.name || "");
    }
    ```
 
-   Acima, criamos uma lista muito simples de `users`, que obviamente deveria estar em um banco de dados.
+   Acima, criamos uma lista `users` muito simples, que obviamente deveria estar em um banco de dados.
 
-4. Além disso, também devemos verificar se o token tem as permissões corretas.
+4. Além disso, também devemos verificar se o token possui as permissões corretas.
 
    ```typescript
    if(!hasScopes(token, ["User.Read"])){
@@ -841,15 +840,15 @@ app.use((err, req, res, next) => {
 
 ```
 
-Agora que você viu como o middleware pode ser usado tanto para autenticação quanto para autorização, e quanto ao MCP, ele muda a forma como fazemos autenticação? Vamos descobrir na próxima seção.
+Agora que você viu como o middleware pode ser usado tanto para autenticação quanto para autorização, e quanto ao MCP, ele muda como fazemos a autenticação? Vamos descobrir na próxima seção.
 
 ### -3- Adicionar RBAC ao MCP
 
-Você viu até agora como adicionar RBAC via middleware, porém, para MCP não há uma maneira fácil de adicionar RBAC por recurso MCP, então o que fazemos? Bem, só precisamos adicionar um código assim que verifica, neste caso, se o cliente tem os direitos para chamar uma ferramenta específica:
+Você viu até agora como pode adicionar RBAC via middleware, entretanto, para MCP não há uma maneira fácil de adicionar RBAC por recurso MCP, então o que fazemos? Bem, só precisamos adicionar um código como este que verifica neste caso se o cliente tem os direitos para chamar uma ferramenta específica:
 
-Você tem algumas opções diferentes para realizar RBAC por recurso, aqui estão algumas:
+Você tem algumas escolhas diferentes de como realizar RBAC por recurso, aqui estão algumas:
 
-- Adicionar uma verificação para cada ferramenta, recurso, prompt onde você precisa verificar o nível de permissão.
+- Adicionar uma verificação para cada ferramenta, recurso, prompt onde você precisa checar o nível de permissão.
 
    **python**
 
@@ -876,7 +875,7 @@ Você tem algumas opções diferentes para realizar RBAC por recurso, aqui estã
       
       try {
         checkPermissions("Admin.Write", request);
-        // todo, enviar id para productService e entrada remota
+        // fazer, enviar id para productService e entrada remota
       } catch(Exception e) {
         console.log("Authorization error, you're not allowed");  
       }
@@ -889,7 +888,7 @@ Você tem algumas opções diferentes para realizar RBAC por recurso, aqui estã
    ```
 
 
-- Usar uma abordagem avançada de servidor e os manipuladores de requisição para minimizar os lugares onde você precisa fazer a verificação.
+- Usar uma abordagem avançada de servidor e os manipuladores de requisição para minimizar quantos lugares você precisa fazer a verificação.
 
    **Python**
 
@@ -909,7 +908,7 @@ Você tem algumas opções diferentes para realizar RBAC por recurso, aqui estã
    async def handle_call_tool(
      name: str, arguments: dict[str, str] | None
    ) -> list[types.TextContent]:
-    # Suponha que request.user.permissions seja uma lista de permissões do usuário
+    # Assume que request.user.permissions é uma lista de permissões do usuário
      user_permissions = request.user.permissions
      required_permissions = tool_permission.get(name, [])
      if not has_permission(user_permissions, required_permissions):
@@ -925,7 +924,7 @@ Você tem algumas opções diferentes para realizar RBAC por recurso, aqui estã
    ```typescript
    function hasPermission(userPermissions: string[], requiredPermissions: string[]): boolean {
        if (!Array.isArray(userPermissions) || !Array.isArray(requiredPermissions)) return false;
-       // Retorna verdadeiro se o usuário tiver pelo menos uma permissão necessária
+       // Retorna true se o usuário tiver pelo menos uma permissão necessária
        
        return requiredPermissions.some(perm => userPermissions.includes(perm));
    }
@@ -939,45 +938,45 @@ Você tem algumas opções diferentes para realizar RBAC por recurso, aqui estã
          return new Error(`You don't have permission to call ${name}`);
       }
   
-      // continuar..
+      // continue..
    });
    ```
 
    Nota, você precisará garantir que seu middleware atribua um token decodificado à propriedade user da requisição para que o código acima seja simples.
 
-### Resumindo
+### Resumo
 
-Agora que discutimos como adicionar suporte a RBAC em geral e para MCP em particular, é hora de tentar implementar a segurança por conta própria para garantir que você entendeu os conceitos apresentados.
+Agora que discutimos como adicionar suporte para RBAC em geral e para MCP em particular, é hora de tentar implementar a segurança por conta própria para garantir que você compreendeu os conceitos apresentados.
 
-## Tarefa 1: Construir um servidor mcp e cliente mcp usando autenticação básica
+## Tarefa 1: Construir um servidor mcp e um cliente mcp usando autenticação básica
 
-Aqui você aplicará o que aprendeu em termos de envio de credenciais através de cabeçalhos.
+Aqui você vai aplicar o que aprendeu em termos de enviar credenciais através de headers.
 
 ## Solução 1
 
-[Soluzione 1](./code/basic/README.md)
+[Solução 1](./code/basic/README.md)
 
 ## Tarefa 2: Atualizar a solução da Tarefa 1 para usar JWT
 
-Pegue a primeira solução, mas desta vez, vamos melhorá-la.
+Pegue a primeira solução, mas desta vez, vamos melhorar.
 
 Em vez de usar Autenticação Básica, vamos usar JWT.
 
 ## Solução 2
 
-[Soluzione 2](./solution/jwt-solution/README.md)
+[Solução 2](./solution/jwt-solution/README.md)
 
 ## Desafio
 
-Adicione RBAC por ferramenta como descrevemos na seção "Adicionar RBAC ao MCP".
+Adicione o RBAC por ferramenta que descrevemos na seção "Adicionar RBAC ao MCP".
 
 ## Resumo
 
-Esperamos que você tenha aprendido muito neste capítulo, desde nenhuma segurança, à segurança básica, ao JWT e como pode ser adicionado ao MCP.
+Esperamos que você tenha aprendido muito neste capítulo, desde nenhuma segurança, até a segurança básica, até JWT e como ele pode ser adicionado ao MCP.
 
-Construímos uma base sólida com JWTs personalizados, mas à medida que escalamos, estamos avançando para um modelo de identidade baseado em padrões. Adotar um IdP como Entra ou Keycloak nos permite delegar emissão, validação e gerenciamento de ciclo de vida de tokens para uma plataforma confiável — liberando-nos para focar na lógica do aplicativo e na experiência do usuário.
+Construímos uma base sólida com JWTs customizados, mas conforme escalamos, estamos seguindo para um modelo de identidade baseado em padrões. Adotar um IdP como Entra ou Keycloak nos permite delegar emissão, validação e gestão do ciclo de vida dos tokens para uma plataforma confiável — liberando-nos para focar na lógica do app e experiência do usuário.
 
-Para isso, temos um capítulo mais [avançado sobre Entra](../../05-AdvancedTopics/mcp-security-entra/README.md)
+Para isso, temos um [capítulo mais avançado sobre Entra](../../05-AdvancedTopics/mcp-security-entra/README.md)
 
 ## O que vem a seguir
 
@@ -986,6 +985,6 @@ Para isso, temos um capítulo mais [avançado sobre Entra](../../05-AdvancedTopi
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Aviso Legal**:  
-Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, esteja ciente de que traduções automatizadas podem conter erros ou imprecisões. O documento original em seu idioma nativo deve ser considerado a fonte autorizada. Para informações críticas, é recomendada a tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes do uso desta tradução.
+**Aviso de isenção de responsabilidade**:  
+Este documento foi traduzido usando o serviço de tradução automática [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos pela precisão, por favor, esteja ciente de que traduções automatizadas podem conter erros ou imprecisões. O documento original em seu idioma nativo deve ser considerado a fonte autorizada. Para informações críticas, recomenda-se tradução profissional humana. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações errôneas decorrentes do uso desta tradução.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

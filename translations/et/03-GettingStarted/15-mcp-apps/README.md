@@ -1,24 +1,24 @@
 # MCP rakendused
 
-MCP rakendused on MCP uus paradigmäär. Idee on selles, et mitte ainult ei vastata tööriista kõne andmetega, vaid antakse ka teavet selle kohta, kuidas selle info kasutajaliidesega suhelda tuleks. See tähendab, et tööriista tulemused võivad nüüd sisaldada kasutajaliidese informatsiooni. Miks me seda tahaksime? Mõtle, kuidas sa tänapäeval asju teed. Sa tõenäoliselt tarbid MCP serveri tulemusi, pannes ette mingi kasutajaliidese, mille koodi pead ise kirjutama ja hooldama. Mõnikord on see just see, mida soovid, aga mõnikord oleks tore lihtsalt tuua sisse iseseisev info tükk, mis sisaldab kõike alates andmetest kuni kasutajaliideseni.
+MCP rakendused on uus paradigma MCP-s. Idee on selles, et mitte ainult ei vasta tööriista kutsele andmetega, vaid pakutakse ka teavet selle kohta, kuidas nende andmetega tuleks suhelda. See tähendab, et tööriista tulemused võivad nüüd sisaldada ka kasutajaliidese infot. Miks me seda siiski tahaksime? Noh, mõtle, kuidas sa täna asju teed. Tõenäoliselt tarbid MCP serveri tulemusi, pannes selle ette mingi tüüpi esipaneeli, see on kood, mida pead kirjutama ja hooldama. Mõnikord on see see, mida soovid, kuid mõnikord oleks tore, kui saaksid tuua sisse info lõigu, mis on iseseisev ja sisaldab kõike alates andmetest kuni kasutajaliideseni.
 
 ## Ülevaade
 
-See õppetund annab praktilisi juhiseid MCP rakenduste kohta, kuidas nendega alustada ja kuidas neid oma olemasolevatesse veebi rakendustesse integreerida. MCP rakendused on MCP standardi väga uus lisandus.
+See õppetund annab praktilist juhendit MCP rakenduste kohta, kuidas alustada ja kuidas integreerida neid oma olemasolevatesse veebi rakendustesse. MCP rakendused on MCP standardi väga uus täiendus.
 
 ## Õpieesmärgid
 
-Selle õppetunni lõpuks oskad:
+Selle õppetunni lõpuks oskad sa:
 
 - Selgitada, mis on MCP rakendused.
 - Millal kasutada MCP rakendusi.
 - Ehita ja integreeri oma MCP rakendused.
 
-## MCP rakendused – kuidas see töötab
+## MCP rakendused - kuidas see töötab
 
-MCP rakenduste idee on pakkuda vastust, mis on sisuliselt renderdatav komponent. Sellisel komponendil võivad olla nii visuaalid kui ka interaktiivsus, näiteks nupuvajutused, kasutaja sisend ja palju muud. Alustame serveri poolest ja meie MCP serverist. MCP rakenduse komponendi loomiseks pead looma nii tööriista kui ka rakenduse ressursi. Need kaks osa on ühendatud resourceUri kaudu.
+Idee MCP rakendustega on pakkuda vastust, mis põhimõtteliselt on komponent, mida renderdada. Sellisel komponendil võib olla nii visuaalid kui ka interaktiivsus, nagu nupu klikid, kasutaja sisend ja muud. Alustame serveripoolest ja meie MCP serverist. MCP rakenduse komponendi loomiseks pead looma tööriista ja ka rakenduse ressursi. Need kaks poolt on ühendatud resourceUri-ga.
 
-Siin on näide. Proovime visualiseerida, mis on asja sees ja mis osa tegeleb millega:
+Siin on näide. Proovime visualiseerida, mis on kaasatud ja millised osad mida teevad:
 
 ```text
 server.ts -- responsible for registering tools and the component as a UI component
@@ -27,11 +27,11 @@ src/
 mcp-app.html -- the user interface
 ```
 
-See visuaal kirjeldab komponendi loomise arhitektuuri ja selle loogikat.
+See visuaal kirjeldab arhitektuuri komponendi ja selle loogika loomiseks.
 
 ```mermaid
 flowchart LR
-  subgraph Backend[Backend: MCP Server]
+  subgraph Backend[Tagapool: MCP Server]
     T["Registreeri tööriistad: registerAppTool()"]
     C["Registreeri komponendi ressurss: registerAppResource()"]
     U[resourceUri]
@@ -40,30 +40,30 @@ flowchart LR
   end
 
   subgraph Parent[Ülemveebileht]
-    H[Host rakendus]
+    H[Kõlalisrakendus]
     IFRAME[IFrame konteiner]
-    H -->|Süstita MCP rakenduse kasutajaliides| IFRAME
+    H -->|Süsti MCP rakenduse kasutajaliides| IFRAME
   end
 
-  subgraph Frontend[Frontend: MCP rakendus IFrame'is]
+  subgraph Frontend[Esipool: MCP rakendus sees IFrame]
     UI["Kasutajaliides: mcp-app.html"]
-    EH["Sündmuse käsitlejad: src/mcp-app.ts"]
+    EH["Sündmusekäsitlejad: src/mcp-app.ts"]
     UI --> EH
   end
 
   IFRAME --> UI
-  EH -->|Klikk käivitab serveri tööriista kõne| T
-  T -->|Tööriista tulemusandmed| EH
+  EH -->|Klõps käivitab serveri tööriista kutsumise| T
+  T -->|Tööriista tulemuse andmed| EH
   EH -->|Saada sõnum ülemveebilehele| H
 ```
-Proovime järgmiseks kirjeldada vastutusalasid backendi ja frontendi jaoks.
+Proovime nüüd kirjeldada vastutusalasid backend ja frontend pool.
 
 ### Backend
 
-Siin peame saavutama kaks asja:
+Seal on kaks asja, mida peame saavutama:
 
 - Registreerima tööriistad, millega soovime suhelda.
-- Definleerima komponendi.
+- Määratlema komponendi.
 
 **Tööriista registreerimine**
 
@@ -75,7 +75,7 @@ registerAppTool(
       title: "Get Time",
       description: "Returns the current server time.",
       inputSchema: {},
-      _meta: { ui: { resourceUri } }, // Sidub selle tööriista selle kasutajaliidese ressursiga
+      _meta: { ui: { resourceUri } }, // Seob selle tööriista selle kasutajaliidese ressursiga
     },
     async () => {
       const time = new Date().toISOString();
@@ -85,16 +85,16 @@ registerAppTool(
 
 ```
 
-Ülalolev kood kirjeldab käitumist, kus avalikustatakse tööriist nimega `get-time`. See ei võta sisendeid, aga annab välja praeguse aja. Meil on võimalus defineerida `inputSchema` tööriistade jaoks, kus peame aktsepteerima kasutaja sisendi.
+Ülaltoodu kood kirjeldab käitumist, kus ta avaldab tööriista nimega `get-time`. See ei võta sisendeid, kuid toodab lõpuks praeguse aja. Meil on võimalus määratleda `inputSchema` tööriistadele, kus peame suutma kasutaja sisendit vastu võtta.
 
 **Komponendi registreerimine**
 
-Samas failis peame registreerima ka komponendi:
+Samas failis peame ka komponendi registreerima:
 
 ```typescript
 const resourceUri = "ui://get-time/mcp-app.html";
 
-// Registreeri ressurss, mis tagastab UI jaoks pakitud HTML/JavaScripti.
+// Registreeri ressurss, mis tagastab kasutajaliidese kogutud HTML/JavaScripti.
 registerAppResource(
   server,
   resourceUri,
@@ -112,14 +112,14 @@ registerAppResource(
 );
 ```
 
-Pange tähele, kuidas mainime `resourceUri`, mis ühendab komponendi selle tööriistadega. Huvi pakub ka tagasikutsumisfunktsioon, kus loeme kasutajaliidese faili ja tagastame komponendi.
+Pane tähele, kuidas mainime `resourceUri`, et ühendada komponent oma tööriistadega. Huvi pakub ka tagasikutsumine (callback), kus laadime kasutajaliidese faili ja tagastame komponendi.
 
-### Komponendi kasutajaliides
+### Komponendi frontend
 
-Nii nagu backendis, on siin kaks osa:
+Nii nagu backendil, on ka siin kaks osa:
 
-- Puhtas HTML-is kirjutatud front-end.
-- Kood, mis tegeleb sündmuste ja tegevustega, näiteks tööriistade kutsumine või vanema aknaga suhtlemine.
+- Puhas HTML-is kirjutatud frontend.
+- Kood, mis haldab sündmusi ja toiminguid, nt tööriistade kutsumine või sõnumite edastamine vanema aknale.
 
 **Kasutajaliides**
 
@@ -143,49 +143,49 @@ Vaatame kasutajaliidest.
 </html>
 ```
 
-**Sündmuste sidumine**
+**Sündmuste ühendamine**
 
-Viimane osa on sündmuste sidumine. See tähendab, et tuvastame, millises UI osas on sündmuse käsitlejad ja mida teha, kui sündmused vallanduvad:
+Viimane osa on sündmuse ühendamine. See tähendab, et määrame, millist osa meie kasutajaliideses on vaja sündmuse töötlejaid ja mida teha, kui sündmused käivituvad:
 
 ```typescript
 // mcp-app.ts
 
 import { App } from "@modelcontextprotocol/ext-apps";
 
-// Võta elementide viited
+// Hangi elemendi viited
 const serverTimeEl = document.getElementById("server-time")!;
 const getTimeBtn = document.getElementById("get-time-btn")!;
 
 // Loo rakenduse eksemplar
 const app = new App({ name: "Get Time App", version: "1.0.0" });
 
-// Töötle tööriista tulemusi serverist. Pane enne `app.connect()`, et vältida
-// algse tööriista tulemuse puudumist.
+// Töötle tööriista tulemusi serverist. Sea enne `app.connect()`, et vältida
+// esialgse tööriista tulemuse puudumist.
 app.ontoolresult = (result) => {
   const time = result.content?.find((c) => c.type === "text")?.text;
   serverTimeEl.textContent = time ?? "[ERROR]";
 };
 
-// Seo nupu klikk
+// Ühenda nupu klõpsamine
 getTimeBtn.addEventListener("click", async () => {
-  // `app.callServerTool()` lubab kasutajaliidesel serverist värskeid andmeid küsida
+  // `app.callServerTool()` võimaldab kasutajaliidesel serverist värskeid andmeid pärida
   const result = await app.callServerTool({ name: "get-time", arguments: {} });
   const time = result.content?.find((c) => c.type === "text")?.text;
   serverTimeEl.textContent = time ?? "[ERROR]";
 });
 
-// Ühenda hostiga
+// Ühendu hostiga
 app.connect();
 ```
 
-Nagu näed ülalolevast, on see tavaline kood DOM elementide ja sündmuste ühendamiseks. Tasub välja tuua kutse `callServerTool`, mis lõppkokkuvõttes kutsub backendis tööriista.
+Nagu ülal näha, on see normaalne kood DOM-elementide ühendamiseks sündmustega. Tasub välja tuua kutse `callServerTool`-ile, mis kutsub lõpuks tööriista backendis.
 
 ## Kasutaja sisendiga tegelemine
 
-Siiani oleme näinud komponenti, kus on nupp, mille klõpsamisel kutsutakse tööriista. Vaatame, kas saame lisada rohkem kasutajaliidese elemente nagu sisendväli ja saata argumente tööriistale. Rakendame KKK funktsionaalsuse. Nii see peaks toimima:
+Nii kaugele oleme näinud komponenti, millel on nupp, mis klikkimisel kutsub tööriista. Vaatame, kas saame lisada rohkem UI elemente, näiteks sisendvälja, ja kas saame saata tööriistale argumente. Rakendame KKK funktsionaalsuse. Selle toimimise põhimõte on järgmine:
 
-- Peab olema nupp ja sisendelement, kuhu kasutaja tippib märksõna otsinguks, näiteks "Shipping". See kutsub backendis tööriista, mis teeb otsingu KKK andmetes.
-- Tööriist, mis toetab nimetatud KKK otsingut.
+- Peaks olema nupp ja sisend element, kuhu kasutaja kirjutab märksõna, näiteks "Shipping", et otsida. See peaks kutsuma backendis tööriista, mis otsib KKK andmetest.
+- Tool, mis toetab mainitud KKK otsingut.
 
 Lisame esmalt vajaliku toe backendis:
 
@@ -214,7 +214,7 @@ registerAppTool(
   );
 ```
 
-Siin näeme, kuidas täidame `inputSchema` ja anname sellele `zod` skeemi järgmiselt:
+Siin näeme, kuidas täidame `inputSchema` ja anname talle `zod` skeemi järgmiselt:
 
 ```typescript
 inputSchema: zod.object({
@@ -222,9 +222,9 @@ inputSchema: zod.object({
 })
 ```
 
-Ülaltoodud skeemis deklareerime sisendparameetri nimega `query` ja et see on valikuline, vaikimisi väärtusega "shipping".
+Ülaltoodud skeemis deklareerime, et meil on sisendparameeter nimega `query`, mis on valikuline ja millel on vaikeväärtus "shipping".
 
-Hea, liigume edasi failile *mcp-app.html*, et vaadata, millist kasutajaliidest peame looma:
+Okei, liigume edasi *mcp-app.html*-i, et näha, millist kasutajaliidest peame looma:
 
 ```html
 <div class="faq">
@@ -235,7 +235,7 @@ Hea, liigume edasi failile *mcp-app.html*, et vaadata, millist kasutajaliidest p
   </div>
 ```
 
-Suurepärane, nüüd on meil sisendelement ja nupp. Järgmiseks läheme *mcp-app.ts* failile, et siduda need sündmused:
+Suurepärane, nüüd on meil sisendi element ja nupp. Liigume järgmise sammuna *mcp-app.ts*-i, et siduda need sündmused:
 
 ```typescript
 const getFaqBtn = document.getElementById("get-faq-btn")!;
@@ -249,16 +249,16 @@ getFaqBtn.addEventListener("click", async () => {
 });
 ```
 
-Ülaltoodud koodis me:
+Ülaltoodud koodis:
 
-- Loome viited huvipakkuvatele UI elementidele.
-- Käsitleme nupuvajutust, et parsida sisendvälja väärtus ja kutsume ka `app.callServerTool()` koos `name` ja `arguments` parameetritega, kus teine edastab `query` väärtusena.
+- Loome viited interaktiivsetele kasutajaliidese elementidele.
+- Käitleme nupu klikki, et välja lugeda sisendi väärtus ja kutsume ka `app.callServerTool()` koos `name` ja `arguments`-ga, kus viimane edastab `query` väärtusena.
 
-Tegelikult saadab `callServerTool` sõnumi vanema aknale, mis omakorda kutsub MCP serverit.
+Tegelikult, kui kutsud välja `callServerTool`, saadab see sõnumi vanemaknale ja see aken kutsub lõpuks MCP serveri.
 
-### Proovi järgi
+### Proovi järele
 
-Proovides peaksime nüüd nägema järgmist:
+Proovides seda, peaksime nüüd nägema järgmist:
 
 ![](../../../../translated_images/et/faq.f78abe6b2cc68c83.webp)
 
@@ -266,11 +266,11 @@ ja siin proovime sisendiga nagu "warranty"
 
 ![](../../../../translated_images/et/faq-input.3e276f1c3d7e061e.webp)
 
-Selle koodi käivitamiseks mine jaotisse [Code section](./code/README.md)
+Selle koodi käivitamiseks suundu [Koodi jaotisse](./code/README.md)
 
-## Testimine Visual Studio Code's
+## Testimine Visual Studio Code'is
 
-Visual Studio Code'il on suurepärane tugi MVP rakendustele ja see on tõenäoliselt üks lihtsamaid viise oma MCP rakenduste testimiseks. Visual Studio Code'i kasutamiseks lisa serveri kirje faili *mcp.json* järgmiselt:
+Visual Studio Code toetab suurepäraselt MCP rakendusi ja on tõenäoliselt üks lihtsamaid viise oma MCP rakenduste testimiseks. Visual Studio Code'i kasutamiseks lisa serveri kirje *mcp.json*-i nii:
 
 ```json
 "my-mcp-server-7178eca7": {
@@ -279,21 +279,21 @@ Visual Studio Code'il on suurepärane tugi MVP rakendustele ja see on tõenäoli
   }
 ```
 
-Seejärel alusta serverit, peaksid saama suhelda oma MVP rakendusega läbi vestluseaknaga, eeldusel, et sul on GitHub Copilot installitud.
+Seejärel käivita server, sa peaksid suutma oma MCP rakendusega suhelda Chat akna kaudu, eeldades, et sul on installitud GitHub Copilot.
 
-käivitades näiteks promptist, näiteks "#get-faq":
+Seda saab käivitada ka prompti kaudu, näiteks "#get-faq":
 
 ![Visual Studio run prompt](../../../../translated_images/et/vscode-run.16cbab9436499f32.webp)
 
-ja nii nagu veebibrauseris, renderdab ta samamoodi:
+ja nagu veebibrauseri kaudu jooksutades, renderdab see sama moodi:
 
 ![UI Visual Studio Code](../../../../translated_images/et/vscode-ui.f2771dcfce25ca0f.webp)
 
-## Kodune ülesanne
+## Ülesanne
 
-Loo kivi-paber-käärid mäng. See peaks koosnema järgmistest komponentidest:
+Loo kivi-paber-käärid mäng. Sellel peaksid olema järgmised osad:
 
-UI:
+Kasutajaliides:
 
 - rippmenüü valikutega
 - nupp valiku esitamiseks
@@ -301,7 +301,7 @@ UI:
 
 Server:
 
-- peaks olema tööriist kivi-paber-käärid, mis võtab sisendiks "choice". See peaks ka genereerima arvuti valiku ja määrama võitja
+- peaks olema tööriist kivi-paber-käärid, mis võtab sisendiks "choice". See peaks ka renderdama arvuti valiku ja määrama võitja.
 
 ## Lahendus
 
@@ -309,24 +309,25 @@ Server:
 
 ## Kokkuvõte
 
-Õppisime selle uue paradigmaina MCP rakendustest. See uus paradigma võimaldab MCP serveritel väljendada arvamust mitte ainult andmete üle, vaid ka selle üle, kuidas neid andmeid esitada tuleks.
+Õppisime selle uue paradigmasid, MCP rakendusi. See on uus paradigma, mis lubab MCP serveritel avaldada arvamust mitte ainult andmete kohta, vaid ka selle kohta, kuidas neid andmeid esitada.
 
-Lisaks õppisime, et MCP rakendused majutatakse IFrame'sse ja MCP serveritega suhtlemiseks tuleb saata sõnumeid vanemveebi rakendusele. Selleks on olemas mitmeid raamistikke nii puhta JavaScripti kui Reacti jaoks ja rohkem, mis muudavad suhtlemise lihtsamaks.
+Lisaks saime teada, et MCP rakendused majutatakse IFrame'is ning MCP serveritega suhtlemiseks peavad nad saatma sõnumeid vanemale veebirakendusele. Olemas on mitmeid raamistikke nii tavalise JavaScripti kui Reacti jaoks, mis muudavad selle suhtluse lihtsamaks.
 
-## Peamised teadmised
+## Olulised võtmed
 
-Siin on, mida õppisid:
+Siin on see, mida sa õppisid:
 
-- MCP rakendused on uus standard, mis võib olla kasulik, kui soovid tarnida nii andmeid kui kasutajaliidese funktsioone.
-- Sellised rakendused jooksevad turvalisuse huvides IFrame'is.
+- MCP rakendused on uus standard, mis võib olla kasulik, kui soovid saata nii andmeid kui ka kasutajaliidese funktsioone.
+- Need rakendused jooksevad turvalisuse huvides IFrame'is.
 
-## Mis järgmiseks
+
+## Mis järgmine
 
 - [4. peatükk](../../04-PracticalImplementation/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Vastutusest loobumine**:
-See dokument on tõlgitud AI tõlketeenuse [Co-op Translator](https://github.com/Azure/co-op-translator) abil. Kuigi püüame tagada täpsust, palun arvestage, et automaatsed tõlked võivad sisaldada vigu või ebatäpsusi. Originaaldokument selle emakeeles tuleks pidada usaldusväärseks allikaks. Tähtsa teabe puhul soovitatakse professionaalset inimtõlget. Me ei vastuta selle tõlke kasutamisest tulenevate arusaamatuste või valesti tõlgendamise eest.
+**Vastutühing**:
+See dokument on tõlgitud kasutades AI tõlketeenust [Co-op Translator](https://github.com/Azure/co-op-translator). Kuigi me püüame täpsust, palun arvestage, et automaatsed tõlked võivad sisaldada vigu või ebatäpsusi. Originaaldokument selle emakeeles peaks olema autoriteetne allikas. Olulise teabe puhul soovitatakse kasutada professionaalset inimtõlget. Me ei vastuta selle tõlke kasutamisest tulenevate arusaamatuste ega valesti mõistmiste eest.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

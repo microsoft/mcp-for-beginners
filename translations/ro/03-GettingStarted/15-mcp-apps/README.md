@@ -1,24 +1,24 @@
 # Aplicații MCP
 
-Aplicațiile MCP reprezintă un nou concept în MCP. Ideea este că nu doar răspunzi cu date în urma unui apel către un instrument, ci și oferi informații despre modul în care aceste informații ar trebui să fie interacționate. Asta înseamnă că rezultatele instrumentelor pot conține acum informații despre interfața utilizator. De ce am vrea asta? Ei bine, ia în considerare cum faci lucrurile astăzi. Probabil consumi rezultatele unui MCP Server punând un fel de interfață front-end în fața lui, cod pe care trebuie să îl scrii și să îl întreții. Uneori asta este ceea ce vrei, dar alteori ar fi grozav dacă ai putea să aduci doar un fragment de informație care este auto-conținută și are totul, de la date la interfața utilizator.
+Aplicațiile MCP reprezintă un nou paradigma în MCP. Ideea este că nu doar răspunzi cu date de la un apel al unui instrument, ci oferi și informații despre cum ar trebui să se interacționeze cu aceste informații. Asta înseamnă că rezultatele instrumentelor pot conține acum informații de interfață cu utilizatorul (UI). De ce am dori asta? Ei bine, ia în considerare cum faci lucrurile astăzi. Cel mai probabil consumi rezultatele unui MCP Server prin punerea în fața lui a unui tip de interfață frontend, acel cod trebuie scris și întreținut. Uneori acesta este scopul, dar alteori ar fi grozav dacă ai putea aduce doar un fragment de informații care este autonom, care are totul, de la date la interfața cu utilizatorul.
 
 ## Prezentare generală
 
-Această lecție oferă îndrumări practice despre Aplicațiile MCP, cum să începi cu ele și cum să le integrezi în Aplicațiile Web existente. Aplicațiile MCP sunt o completare foarte nouă la Standardul MCP.
+Această lecție oferă îndrumări practice despre Aplicațiile MCP, cum să începi cu ele și cum să le integrezi în Aplicațiile web existente. Aplicațiile MCP sunt o adiție foarte nouă la Standardul MCP.
 
 ## Obiective de învățare
 
-La finalul acestei lecții, vei fi capabil să:
+La finalul acestei lecții, vei putea:
 
-- Explici ce sunt Aplicațiile MCP.
+- Explica ce sunt Aplicațiile MCP.
 - Când să folosești Aplicațiile MCP.
-- Construiești și să integrezi propriile tale Aplicații MCP.
+- Să construiești și integrezi propriile Aplicații MCP.
 
 ## Aplicațiile MCP - cum funcționează
 
-Ideea cu Aplicațiile MCP este să oferi un răspuns care este, în esență, un component ce trebuie redat. Un astfel de component poate avea atât elemente vizuale, cât și interactivitate, de exemplu clicuri pe butoane, input de la utilizator și altele. Să începem cu partea de server și MCP Server-ul nostru. Pentru a crea un component MCP App trebuie să creezi un instrument dar și resursa aplicației. Aceste două părți sunt legate printr-un resourceUri.
+Ideea cu Aplicațiile MCP este să oferi un răspuns care este practic un component ce urmează să fie redat. Un astfel de component poate avea atât elemente vizuale, cât și interactivitate, de exemplu, clicuri pe butoane, input de la utilizator și altele. Să începem cu partea de server și MCP Serverul nostru. Pentru a crea un component MCP App trebuie să creezi un tool dar și resursa aplicației. Aceste două părți sunt conectate printr-un resourceUri.
 
-Iată un exemplu. Să încercăm să vizualizăm ce implică și ce parte face ce:
+Iată un exemplu. Să încercăm să vizualizăm ce este implicat și ce părți ce fac:
 
 ```text
 server.ts -- responsible for registering tools and the component as a UI component
@@ -26,43 +26,43 @@ src/
   mcp-app.ts -- wiring up event handlers
 mcp-app.html -- the user interface
 ```
-
+  
 Această reprezentare vizuală descrie arhitectura pentru crearea unui component și logica sa.
 
 ```mermaid
 flowchart LR
   subgraph Backend[Backend: Server MCP]
-    T["Înregistrați unelte: registerAppTool()"]
-    C["Înregistrați resursa componentă: registerAppResource()"]
+    T["Înregistrează unelte: registerAppTool()"]
+    C["Înregistrează resursă componentă: registerAppResource()"]
     U[resourceUri]
     T --- U
     C --- U
   end
 
-  subgraph Parent[Pagină Web Părinte]
+  subgraph Parent[Pagină web părinte]
     H[Aplicație gazdă]
     IFRAME[Container IFrame]
-    H -->|Injectează UI Aplicație MCP| IFRAME
+    H -->|Injectează UI aplicație MCP| IFRAME
   end
 
-  subgraph Frontend[Frontend: Aplicație MCP în interiorul IFrame-ului]
+  subgraph Frontend[Frontend: Aplicație MCP în interiorul IFrame]
     UI["Interfață utilizator: mcp-app.html"]
-    EH["Gestionari de evenimente: src/mcp-app.ts"]
+    EH["Gestionari evenimente: src/mcp-app.ts"]
     UI --> EH
   end
 
   IFRAME --> UI
-  EH -->|Click declanșează apelul uneltei server| T
+  EH -->|Click declanșează apel unealtă server| T
   T -->|Date rezultat unealtă| EH
   EH -->|Trimite mesaj către pagina părinte| H
-```
-Să încercăm să descriem responsabilitățile pentru backend și frontend, respectiv.
+```  
+Să încercăm să descriem responsabilitățile backend-ului și frontend-ului respective.
 
 ### Backend-ul
 
 Sunt două lucruri pe care trebuie să le realizăm aici:
 
-- Înregistrarea instrumentelor cu care vrem să interacționăm.
+- Înregistrarea instrumentelor cu care dorim să interacționăm.
 - Definirea componentului.
 
 **Înregistrarea instrumentului**
@@ -84,17 +84,17 @@ registerAppTool(
   );
 
 ```
-
-Codul precedent descrie comportamentul, unde expune un instrument numit `get-time`. Nu are inputuri, dar produce timpul curent. Avem posibilitatea să definim un `inputSchema` pentru instrumente unde trebuie să putem accepta input de la utilizatori.
+  
+Codul de mai sus descrie comportamentul, unde expune un tool numit `get-time`. Nu primește intrări, dar returnează timpul curent. Avem posibilitatea să definim un `inputSchema` pentru instrumente când avem nevoie să acceptăm input de la utilizator.
 
 **Înregistrarea componentului**
 
-În același fișier, trebuie de asemenea să înregistrăm componentul:
+În același fișier, trebuie să înregistrăm și componentul:
 
 ```typescript
 const resourceUri = "ui://get-time/mcp-app.html";
 
-// Înregistrează resursa, care returnează HTML/JavaScript-ul pachetizat pentru interfața utilizator.
+// Înregistrează resursa, care returnează HTML/JavaScript-ul împachetat pentru interfața utilizator.
 registerAppResource(
   server,
   resourceUri,
@@ -111,7 +111,7 @@ registerAppResource(
   },
 );
 ```
-
+  
 Observă cum menționăm `resourceUri` pentru a conecta componentul cu instrumentele sale. De interes este și callback-ul unde încărcăm fișierul UI și returnăm componentul.
 
 ### Frontend-ul componentului
@@ -119,11 +119,11 @@ Observă cum menționăm `resourceUri` pentru a conecta componentul cu instrumen
 La fel ca backend-ul, sunt două părți aici:
 
 - Un frontend scris în HTML pur.
-- Cod care gestionează evenimentele și ce trebuie făcut, de exemplu, apelarea instrumentelor sau trimiterea de mesaje către fereastra părinte.
+- Cod care gestionează evenimentele și ce să facă, de exemplu, apelarea unor instrumente sau trimiterea de mesaje către fereastra părinte.
 
-**Interfața utilizator**
+**Interfața cu utilizatorul**
 
-Să aruncăm o privire asupra interfeței utilizator.
+Să aruncăm o privire la interfața cu utilizatorul.
 
 ```html
 <!-- mcp-app.html -->
@@ -142,10 +142,10 @@ Să aruncăm o privire asupra interfeței utilizator.
   </body>
 </html>
 ```
+  
+**Asocierea evenimentelor**
 
-**Conectarea evenimentelor**
-
-Ultima parte este legarea evenimentelor. Asta înseamnă că identificăm care parte din UI-ul nostru are nevoie de manipulatori de evenimente și ce facem dacă aceste evenimente sunt declanșate:
+Ultima parte este asocierea evenimentelor. Aceasta înseamnă că identificăm ce parte din UI-ul nostru are nevoie de handler-e de evenimente și ce să facem când evenimentele sunt declanșate:
 
 ```typescript
 // mcp-app.ts
@@ -159,33 +159,33 @@ const getTimeBtn = document.getElementById("get-time-btn")!;
 // Creează o instanță a aplicației
 const app = new App({ name: "Get Time App", version: "1.0.0" });
 
-// Gestionează rezultatele uneltelor de la server. Setează înainte de `app.connect()` pentru a evita
+// Procesează rezultatele uneltei de la server. Setează înainte de `app.connect()` pentru a evita
 // pierderea rezultatului inițial al uneltei.
 app.ontoolresult = (result) => {
   const time = result.content?.find((c) => c.type === "text")?.text;
   serverTimeEl.textContent = time ?? "[ERROR]";
 };
 
-// Conectează evenimentul de clic pe buton
+// Leagă evenimentul de click al butonului
 getTimeBtn.addEventListener("click", async () => {
-  // `app.callServerTool()` permite interfeței să solicite date noi de la server
+  // `app.callServerTool()` permite UI-ului să solicite date noi de la server
   const result = await app.callServerTool({ name: "get-time", arguments: {} });
   const time = result.content?.find((c) => c.type === "text")?.text;
   serverTimeEl.textContent = time ?? "[ERROR]";
 });
 
-// Conectează la gazdă
+// Conectează-te la gazdă
 app.connect();
 ```
-
-După cum poți vedea în exemplul de mai sus, acesta este cod obișnuit pentru conectarea elementelor DOM la evenimente. Este util de menționat apelul către `callServerTool` care ajunge să apeleze un instrument pe backend.
+  
+După cum poți vedea mai sus, acesta este cod normal pentru legarea elementelor DOM la evenimente. Merită menționat apelul la `callServerTool` care apelează un instrument pe backend.
 
 ## Gestionarea inputului de la utilizator
 
-Până acum am văzut un component care are un buton și când este apăsat apelează un instrument. Să vedem dacă putem adăuga mai multe elemente UI, cum ar fi un câmp de input și să trimitem argumente către un instrument. Să implementăm o funcționalitate FAQ. Iată cum ar trebui să funcționeze:
+Până acum, am văzut un component cu un buton care atunci când este apăsat apelează un instrument. Să vedem dacă putem adăuga mai multe elemente UI, cum ar fi un câmp de input și să vedem dacă putem trimite argumente către un instrument. Să implementăm o funcționalitate FAQ. Iată cum ar trebui să funcționeze:
 
-- Ar trebui să existe un buton și un element input unde utilizatorul scrie un cuvânt-cheie, de exemplu „Shipping”. Acesta va apela un instrument pe backend care face o căutare în datele FAQ.
-- Un instrument care suportă căutarea FAQ menționată.
+- Ar trebui să existe un buton și un element input unde utilizatorul introduce un cuvânt cheie pentru căutare, de exemplu „Shipping”. Acesta ar trebui să apeleze un instrument pe backend care să efectueze o căutare în datele FAQ.
+- Un instrument care să suporte căutarea FAQ descrisă.
 
 Să adăugăm mai întâi suportul necesar pe backend:
 
@@ -213,18 +213,18 @@ registerAppTool(
     },
   );
 ```
-
-Ce vedem aici este cum populăm `inputSchema` și îi dăm un schema `zod` astfel:
+  
+Ce vedem aici este cum populăm `inputSchema` și îi oferim un schema `zod` astfel:
 
 ```typescript
 inputSchema: zod.object({
   query: zod.string().default("shipping"),
 })
 ```
+  
+În schema de mai sus declarăm că avem un parametru de input numit `query` și că este opțional cu o valoare implicită „shipping”.
 
-În schema de mai sus declarăm că avem un parametru de input numit `query` și că este opțional cu o valoare implicită "shipping".
-
-Ok, să trecem la *mcp-app.html* să vedem ce UI trebuie să creăm pentru asta:
+Ok, să trecem la *mcp-app.html* ca să vedem ce UI trebuie să creăm pentru asta:
 
 ```html
 <div class="faq">
@@ -234,8 +234,8 @@ Ok, să trecem la *mcp-app.html* să vedem ce UI trebuie să creăm pentru asta:
     <button id="get-faq-btn">Get FAQ Response</button>
   </div>
 ```
-
-Groza, acum avem un element de input și un buton. Să mergem la *mcp-app.ts* pentru a lega aceste evenimente:
+  
+Super, acum avem un element input și un buton. Să mergem la *mcp-app.ts* pentru a conecta aceste evenimente:
 
 ```typescript
 const getFaqBtn = document.getElementById("get-faq-btn")!;
@@ -248,29 +248,29 @@ getFaqBtn.addEventListener("click", async () => {
   faqResponseEl.textContent = faq ?? "[ERROR]";
 });
 ```
+  
+În codul de mai sus am:
 
-În codul de mai sus noi:
+- Creat referințe la elementele interactive din UI.
+- Gestionat un click pe buton pentru a extrage valoarea din input și am apelat `app.callServerTool()` cu `name` și `arguments`, unde argumentele conțin `query` ca valoare.
 
-- Cream referințe la elementele UI interesante.
-- Gestionăm clicul pe buton pentru a extrage valoarea din elementul de input și de asemenea apelăm `app.callServerTool()` cu `name` și `arguments`, unde ultimul trece `query` ca valoare.
+Ce se întâmplă practic când apelezi `callServerTool` este că trimite un mesaj către fereastra părinte și acea fereastră apelează MCP Serverul.
 
-Ce se întâmplă de fapt când apelezi `callServerTool` este că trimite un mesaj ferestrei părinte și acea fereastră ajunge să apeleze MCP Server-ul.
+### Încearcă singur
 
-### Încearcă
-
-Dacă încerci asta ar trebui să vezi acum următoarele:
+Testând asta, ar trebui să vedem următoarele:
 
 ![](../../../../translated_images/ro/faq.f78abe6b2cc68c83.webp)
 
-iar aici încercăm cu input "warranty"
+și aici încercăm cu input de exemplu „warranty”
 
 ![](../../../../translated_images/ro/faq-input.3e276f1c3d7e061e.webp)
 
-Pentru a rula acest cod, du-te la [Secțiunea Cod](./code/README.md)
+Pentru a rula acest cod, mergi la [Secțiunea Cod](./code/README.md)
 
 ## Testarea în Visual Studio Code
 
-Visual Studio Code oferă suport excelent pentru Aplicațiile MVP și probabil este una dintre cele mai simple metode de testare a Aplicațiilor MCP. Pentru a utiliza Visual Studio Code, adaugă o intrare de server în *mcp.json* astfel:
+Visual Studio Code are un suport excelent pentru Aplicațiile MCP și probabil este una dintre cele mai ușoare modalități de a testa Aplicațiile MCP. Pentru a folosi Visual Studio Code, adaugă o intrare de server în *mcp.json* astfel:
 
 ```json
 "my-mcp-server-7178eca7": {
@@ -278,30 +278,30 @@ Visual Studio Code oferă suport excelent pentru Aplicațiile MVP și probabil e
     "type": "http"
   }
 ```
+  
+Apoi pornește serverul, ar trebui să poți comunica cu Aplicația MCP prin Fereastra de Chat dacă ai instalat GitHub Copilot.
 
-Apoi pornește serverul, ar trebui să poți comunica cu aplicația ta MVP prin fereastra de chat, presupunând că ai instalat GitHub Copilot.
-
-activând prin prompt, de exemplu "#get-faq":
+Poți declanșa asta printr-un prompt, de exemplu "#get-faq":
 
 ![Visual Studio run prompt](../../../../translated_images/ro/vscode-run.16cbab9436499f32.webp)
 
-și la fel cum ai rulat-o printr-un browser web, se redă în același mod astfel:
+și la fel ca atunci când ai rulat printr-un browser web, este redat în același mod astfel:
 
 ![UI Visual Studio Code](../../../../translated_images/ro/vscode-ui.f2771dcfce25ca0f.webp)
 
 ## Tema
 
-Creează un joc de piatră-hârtie-foarfece. Ar trebui să conțină următoarele:
+Creează un joc piatră-hârtie-foarfece. Ar trebui să constea în următoarele:
 
 UI:
 
-- o listă derulantă cu opțiuni
+- o listă drop-down cu opțiuni
 - un buton pentru a trimite o alegere
 - o etichetă care arată cine a ales ce și cine a câștigat
 
 Server:
 
-- ar trebui să existe un instrument rock paper scissor care primește "choice" ca input. De asemenea, ar trebui să redea o alegere a calculatorului și să determine câștigătorul
+- ar trebui să aibă un instrument piatră-hârtie-foarfece care primește „choice” ca input. Ar trebui să genereze și o alegere a calculatorului și să determine câștigătorul
 
 ## Soluție
 
@@ -309,16 +309,16 @@ Server:
 
 ## Rezumat
 
-Am învățat despre acest nou concept Aplicațiile MCP. Este un nou concept care permite MCP Serverelor să aibă o opinie nu doar despre date, ci și despre modul în care aceste date ar trebui prezentate.
+Am învățat despre acest nou paradigma Aplicații MCP. Este un nou paradigma care permite MCP Serverelor să aibă o opinie nu doar asupra datelor, ci și asupra modului în care aceste date ar trebui prezentate.
 
-În plus, am învățat că aceste Aplicații MCP sunt găzduite într-un IFrame și pentru a comunica cu MCP Serverele trebuie să trimită mesaje către aplicația web părinte. Există mai multe biblioteci disponibile atât pentru JavaScript simplu cât și pentru React și altele, care fac această comunicare mai ușoară.
+De asemenea, am aflat că aceste Aplicații MCP sunt găzduite într-un IFrame și pentru a comunica cu MCP Serverele trebuie să trimită mesaje către aplicația web părinte. Există mai multe librării disponibile atât pentru JavaScript simplu, cât și pentru React și altele, care fac această comunicare mai ușoară.
 
-## Aspecte importante
+## Puncte cheie
 
 Iată ce ai învățat:
 
-- Aplicațiile MCP sunt un standard nou care poate fi util atunci când vrei să livrezi atât date, cât și funcționalități UI.
-- Aceste tipuri de aplicații rulează într-un IFrame din motive de securitate.
+- Aplicațiile MCP sunt un nou standard care poate fi util când vrei să transmiți atât date cât și caracteristici UI.
+- Acest tip de aplicații rulează într-un IFrame din motive de securitate.
 
 ## Ce urmează
 
@@ -327,6 +327,6 @@ Iată ce ai învățat:
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Declinare de responsabilitate**:  
-Acest document a fost tradus folosind serviciul de traducere automată [Co-op Translator](https://github.com/Azure/co-op-translator). Deși ne străduim să asigurăm acuratețea, vă rugăm să rețineți că traducerile automate pot conține erori sau inexactități. Documentul original, în limba sa nativă, trebuie considerat sursa autorizată. Pentru informații critice, se recomandă o traducere profesională realizată de un traducător uman. Nu ne asumăm responsabilitatea pentru eventualele neînțelegeri sau interpretări greșite rezultate din utilizarea acestei traduceri.
+**Declinare de responsabilitate**:
+Acest document a fost tradus utilizând serviciul automat de traducere AI [Co-op Translator](https://github.com/Azure/co-op-translator). Deși ne străduim pentru acuratețe, vă rugăm să rețineți că traducerile automate pot conține erori sau inexactități. Documentul original în limba sa nativă trebuie considerat sursa autoritară. Pentru informații critice, se recomandă traducerea profesională realizată de un specialist uman. Nu ne asumăm răspunderea pentru eventualele neînțelegeri sau interpretări greșite rezultate din utilizarea acestei traduceri.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

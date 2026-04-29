@@ -1,10 +1,10 @@
 # Muestreo - delegar funciones al Cliente
 
-A veces, necesitas que el Cliente MCP y el Servidor MCP colaboren para lograr un objetivo común. Puede que tengas un caso donde el Servidor requiera la ayuda de un LLM que se encuentra en el cliente. Para esta situación, el muestreo es lo que deberías usar.
+A veces, necesitas que el Cliente MCP y el Servidor MCP colaboren para lograr un objetivo común. Podrías tener un caso donde el Servidor requiera la ayuda de un LLM que está en el cliente. Para esta situación, el muestreo es lo que deberías usar.
 
 Exploremos algunos casos de uso y cómo construir una solución que involucre muestreo.
 
-## Visión general
+## Resumen
 
 En esta lección, nos enfocamos en explicar cuándo y dónde usar el Muestreo y cómo configurarlo.
 
@@ -18,7 +18,7 @@ En este capítulo, vamos a:
 
 ## ¿Qué es el Muestreo y por qué usarlo?
 
-El Muestreo es una característica avanzada que funciona de la siguiente manera:
+El muestreo es una función avanzada que funciona de la siguiente manera:
 
 ```mermaid
 sequenceDiagram
@@ -28,7 +28,7 @@ sequenceDiagram
     participant MCP Server
 
     User->>MCP Client: Escribir publicación de blog
-    MCP Client->>MCP Server: Llamada a herramienta (borrador de publicación)
+    MCP Client->>MCP Server: Llamada de herramienta (borrador de publicación)
     MCP Server->>MCP Client: Solicitud de muestreo (crear resumen)
     MCP Client->>LLM: Generar resumen de la publicación
     LLM->>MCP Client: Resultado del resumen
@@ -38,7 +38,7 @@ sequenceDiagram
 ```
 ### Solicitud de muestreo
 
-Ok, ahora que tenemos una vista panorámica de un escenario creíble, hablemos sobre la solicitud de muestreo que el servidor envía de vuelta al cliente. Así es como puede verse dicha solicitud en formato JSON-RPC:
+Ok, ahora que tenemos una visión general de un escenario creíble, hablemos de la solicitud de muestreo que el servidor envía de vuelta al cliente. Esto es lo que puede parecer dicha solicitud en formato JSON-RPC:
 
 ```json
 {
@@ -74,8 +74,8 @@ Hay algunas cosas aquí que vale la pena destacar:
 
 - Prompt, bajo content -> text, es nuestro prompt que es una instrucción para que el LLM resuma el contenido de una publicación de blog.
 
-- **modelPreferences**. Esta sección es exactamente eso, una preferencia, una recomendación sobre qué configuración usar con el LLM. El usuario puede elegir si seguir estas recomendaciones o cambiarlas. En este caso hay recomendaciones sobre qué modelo usar y prioridad entre velocidad e inteligencia.
-- **systemPrompt**, este es tu prompt normal del sistema que le da personalidad al LLM y contiene instrucciones de orientación.
+- **modelPreferences**. Esta sección es justamente eso, una preferencia, una recomendación de qué configuración usar con el LLM. El usuario puede elegir si seguir estas recomendaciones o cambiarlas. En este caso hay recomendaciones sobre el modelo a usar y prioridad en velocidad e inteligencia.
+- **systemPrompt**, este es tu prompt normal de sistema que le da personalidad a tu LLM y contiene instrucciones de guía.
 - **maxTokens**, esta es otra propiedad que se usa para indicar cuántos tokens se recomienda usar para esta tarea.
 
 ### Respuesta de muestreo
@@ -98,13 +98,13 @@ Esta respuesta es lo que el Cliente MCP termina enviando de vuelta al Servidor M
 }
 ```
 
-Observa cómo la respuesta es un resumen del blog tal como pedimos. También nota cómo el `model` usado no es el que pedimos sino "gpt-5" en lugar de "claude-3-sonnet". Esto es para ilustrar que el usuario puede cambiar de opinión sobre qué usar y que tu solicitud de muestreo es una recomendación.
+Nota cómo la respuesta es un resumen de la publicación del blog justo como pedimos. También nota cómo el `model` usado no es el que pedimos sino "gpt-5" sobre "claude-3-sonnet". Esto es para ilustrar que el usuario puede cambiar de opinión sobre qué usar y que tu solicitud de muestreo es una recomendación.
 
-Ok, ahora que entendemos el flujo principal y una tarea útil para usarlo "creación + resumen de publicación de blog", veamos qué necesitamos hacer para que funcione.
+Ok, ahora que entendemos el flujo principal y una tarea útil para usarlo "creación de publicación de blog + resumen", veamos qué necesitamos hacer para que funcione.
 
 ### Tipos de mensajes
 
-Los mensajes de muestreo no están limitados solo al texto, también puedes enviar imágenes y audio. Así es como se ve diferente el JSON-RPC:
+Los mensajes de muestreo no se limitan solo a texto, sino que también puedes enviar imágenes y audio. Así es como se ve diferente el JSON-RPC:
 
 **Texto**
 
@@ -135,11 +135,11 @@ Los mensajes de muestreo no están limitados solo al texto, también puedes envi
 }
 ```
 
-> NOTA: para información más detallada sobre Muestreo, consulta la [documentación oficial](https://modelcontextprotocol.io/specification/2025-06-18/client/sampling)
+> NOTA: para más información detallada sobre Muestreo, consulta la [documentación oficial](https://modelcontextprotocol.io/specification/2025-06-18/client/sampling)
 
 ## Cómo configurar el Muestreo en el Cliente
 
-> Nota: si solo estás construyendo un servidor, no necesitas hacer mucho aquí.
+> Nota: si solo estás creando un servidor, no necesitas hacer mucho aquí.
 
 En un cliente, necesitas especificar la siguiente función así:
 
@@ -151,11 +151,11 @@ En un cliente, necesitas especificar la siguiente función así:
 }
 ```
 
-Esto será tomado en cuenta cuando tu cliente elegido se inicialice con el servidor.
+Esto se detectará cuando tu cliente elegido se inicialice con el servidor.
 
 ## Ejemplo de Muestreo en acción - Crear una publicación de blog
 
-Vamos a programar un servidor de muestreo juntos, necesitaremos hacer lo siguiente:
+Vamos a codificar juntos un servidor de muestreo, necesitaremos hacer lo siguiente:
 
 1. Crear una herramienta en el Servidor.
 1. Dicha herramienta debe crear una solicitud de muestreo.
@@ -281,7 +281,7 @@ async def create_blog(title: str, content: str, ctx: Context[ServerSession, None
 
     posts.append(post)
 
-    # devuelve la publicación completa del blog
+    # devolver el artículo completo del blog
     return json.dumps({
         "id": post.title,
         "abstract": post.abstract
@@ -300,7 +300,7 @@ if __name__ == "__main__":
 Para probar esto en Visual Studio Code, haz lo siguiente:
 
 1. Inicia el servidor en la terminal.
-1. Agrégalo a *mcp.json* (y asegúrate que esté iniciado) algo así:
+1. Agrégalo a *mcp.json* (y asegúrate de que esté iniciado) algo como esto:
 
    ```json
    "servers": {
@@ -317,31 +317,31 @@ Para probar esto en Visual Studio Code, haz lo siguiente:
    create a blog post named "Where Python comes from", the content is "Python is actually named after Monty Python Flying Circus"
    ```
 
-1. Permite que el muestreo suceda. La primera vez que pruebes esto se te presentará un diálogo adicional que deberás aceptar, luego verás el diálogo normal para que ejecutes una herramienta.
+1. Permite que ocurra el muestreo. La primera vez que pruebes esto, se te presentará un diálogo adicional que deberás aceptar, luego verás el diálogo normal para pedirte que ejecutes una herramienta.
 
-1. Inspecciona los resultados. Verás los resultados bien renderizados en GitHub Copilot Chat pero también puedes inspeccionar la respuesta JSON cruda.
+1. Inspecciona los resultados. Verás los resultados renderizados correctamente en GitHub Copilot Chat pero también puedes inspeccionar la respuesta JSON sin procesar.
 
-**Bonus**. Las herramientas en Visual Studio Code tienen gran soporte para muestreo. Puedes configurar el acceso al Muestreo en tu servidor instalado navegando de la siguiente manera:
+**Bonus**. Las herramientas de Visual Studio Code tienen un gran soporte para muestreo. Puedes configurar el acceso al Muestreo en tu servidor instalado navegando de esta forma:
 
 1. Navega a la sección de extensiones.
 1. Selecciona el icono de engranaje para tu servidor instalado en la sección "MCP SERVERS - INSTALLED".
-1. Selecciona "Configure Model Access", aquí puedes seleccionar qué modelos puede usar GitHub Copilot cuando realiza muestreo. También puedes ver todas las solicitudes de muestreo recientes seleccionando "Show Sampling requests".
+1. Selecciona "Configure Model Access", aquí puedes seleccionar qué Modelos puede usar GitHub Copilot al realizar muestreos. También puedes ver todas las solicitudes de muestreo que han ocurrido últimamente al seleccionar "Show Sampling requests".
 
 ## Tarea
 
-En esta tarea, vas a construir un Muestreo ligeramente diferente, es decir, una integración de muestreo que soporte generar una descripción de producto. Aquí está tu escenario:
+En esta tarea, construirás un Muestreo ligeramente diferente, a saber, una integración de muestreo que soporte generar una descripción de producto. Este es tu escenario:
 
-**Escenario**: El trabajador de oficina en una tienda de comercio electrónico necesita ayuda, toma demasiado tiempo generar descripciones de productos. Por lo tanto, vas a construir una solución donde puedas llamar a una herramienta "create_product" con "title" y "keywords" como argumentos y debería producir un producto completo incluyendo un campo "description" que será llenado por un LLM del cliente.
+**Escenario**: El trabajador de back office en un e-commerce necesita ayuda, toma demasiado tiempo generar descripciones de productos. Por lo tanto, debes construir una solución donde puedas llamar a una herramienta "create_product" con "title" y "keywords" como argumentos y debería producir un producto completo incluyendo un campo "description" que debería ser poblado por el LLM del cliente.
 
-CONSEJO: usa lo que aprendiste antes sobre cómo construir este servidor y su herramienta usando una solicitud de muestreo.
+TIP: usa lo que aprendiste antes para construir este servidor y su herramienta usando una solicitud de muestreo.
 
 ## Solución
 
-[Solution](./solution/README.md)
+[Solución](./solution/README.md)
 
 ## Puntos clave
 
-El muestreo es una característica poderosa que permite al servidor delegar tareas al cliente cuando necesita la ayuda de un LLM.
+El Muestreo es una función poderosa que permite al servidor delegar tareas al cliente cuando necesita la ayuda de un LLM.
 
 ## Qué sigue
 
@@ -351,5 +351,5 @@ El muestreo es una característica poderosa que permite al servidor delegar tare
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Aviso Legal**:
-Este documento ha sido traducido utilizando el servicio de traducción automática [Co-op Translator](https://github.com/Azure/co-op-translator). Aunque nos esforzamos por lograr precisión, tenga en cuenta que las traducciones automáticas pueden contener errores o inexactitudes. El documento original en su idioma nativo debe considerarse la fuente autorizada. Para información crítica, se recomienda la traducción profesional realizada por un humano. No nos hacemos responsables de malentendidos o interpretaciones erróneas derivadas del uso de esta traducción.
+Este documento ha sido traducido utilizando el servicio de traducción automática [Co-op Translator](https://github.com/Azure/co-op-translator). Aunque nos esforzamos por la precisión, tenga en cuenta que las traducciones automáticas pueden contener errores o inexactitudes. El documento original en su idioma nativo debe considerarse la fuente autorizada. Para información crítica, se recomienda una traducción profesional realizada por humanos. No somos responsables de ningún malentendido o interpretación errónea derivada del uso de esta traducción.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

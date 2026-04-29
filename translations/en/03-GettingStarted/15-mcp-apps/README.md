@@ -16,7 +16,7 @@ By the end of this lesson, you will be able to:
 
 ## MCP Apps - how does it work
 
-The idea with MCP Apps is to provide a response that essentially is a component to be rendered. Such a component can have both visuals and interactivity, e.g button clicks, user input and more. Let's start with the server side and our MCP Server. To create an MCP App component you need two create a tool but also the application resource. These two halves are connected by a resourceUri. 
+The idea with MCP Apps is to provide a response that essentially is a component to be rendered. Such a component can have both visuals and interactivity, e.g., button clicks, user input and more. Let's start with the server side and our MCP Server. To create an MCP App component you need to create a tool but also the application resource. These two halves are connected by a resourceUri. 
 
 Here's an example. Let's try to visualize what's involved and what parts does what:
 
@@ -27,7 +27,7 @@ src/
 mcp-app.html -- the user interface
 ```
 
-This visual describes the architecture for create a component and it's logic.
+This visual describes the architecture for creating a component and its logic.
 
 ```mermaid
 flowchart LR
@@ -85,7 +85,7 @@ registerAppTool(
 
 ```
 
-The preceding code describe the behavior, where it exposes a tool called `get-time`. It takes no inputs but ends up producing the current time. We do have the ability to define an `inputSchema` for tools where we need to be able to accept user input. 
+The preceding code describes the behavior, where it exposes a tool called `get-time`. It takes no inputs but ends up producing the current time. We do have the ability to define an `inputSchema` for tools where we need to be able to accept user input. 
 
 **Registering the component**
 
@@ -145,7 +145,7 @@ Let's have a look at the user interface.
 
 **Event wireup**
 
-The last piece is the event wireup. That means we identifying which part in our UI needs event handlers and what to do if events are raised:
+The last piece is the event wireup. That means we identify which part in our UI needs event handlers and what to do if events are raised:
 
 ```typescript
 // mcp-app.ts
@@ -214,7 +214,7 @@ registerAppTool(
   );
 ```
 
-What we're seing here is how we populate `inputSchema` and give it a `zod` schema like so:
+What we're seeing here is how we populate `inputSchema` and give it a `zod` schema like so:
 
 ```typescript
 inputSchema: zod.object({
@@ -222,7 +222,7 @@ inputSchema: zod.object({
 })
 ```
 
-In above schema we declare we have an input parameter called `query` and that it's optional with a default value of "shipping". 
+In the above schema we declare we have an input parameter called `query` and that it's optional with a default value of "shipping". 
 
 Ok, let's move on to *mcp-app.html* to see what UI we need to create for this:
 
@@ -251,10 +251,10 @@ getFaqBtn.addEventListener("click", async () => {
 
 In the code above we:
 
-- Create references to the interesting UI elements.
+- Create references to the interactive UI elements.
 - Handle a button click to parse out the input element value and we also call `app.callServerTool()` with `name` and `arguments` where the latter is passing `query` as value. 
 
-What actually happens whwn you call `callServerTool` is that it sends a message to the parent window and that window ends up calling the MCP Server.
+What actually happens when you call `callServerTool` is that it sends a message to the parent window and that window ends up calling the MCP Server.
 
 ### Try it out
 
@@ -270,7 +270,7 @@ To run this code, head over to [Code section](./code/README.md)
 
 ## Testing in Visual Studio Code
 
-Visual Studio Code have great support for MVP Apps and is probably one of the easiest ways of testing your MCP Apps. To use Visual Studio Code, add a server entry to *mcp.json* like so:
+Visual Studio Code has great support for MCP Apps and is probably one of the easiest ways of testing your MCP Apps. To use Visual Studio Code, add a server entry to *mcp.json* like so:
 
 ```json
 "my-mcp-server-7178eca7": {
@@ -279,9 +279,9 @@ Visual Studio Code have great support for MVP Apps and is probably one of the ea
   }
 ```
 
-Then start the server, you should be able to communicate with your MVP App through the Chat Window providing you have GitHub Copilot installed. 
+Then start the server, you should be able to communicate with your MCP App through the Chat Window provided you have GitHub Copilot installed. 
 
-with by triggering via prompt, for example "#get-faq":
+You can trigger it via a prompt, for example "#get-faq":
 
 ![Visual Studio run prompt](../../../../translated_images/en/vscode-run.16cbab9436499f32.webp)
 
@@ -328,6 +328,6 @@ Here's what you learned:
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Disclaimer**:
-This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
+**Disclaimer**:  
+This document has been translated using AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

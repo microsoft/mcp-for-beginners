@@ -1,24 +1,24 @@
-# MCP Apps
+# MCP-apper
 
-MCP Apps er et nytt paradigme i MCP. Ideen er at du ikke bare svarer med data tilbake fra et verktøys kall, men også gir informasjon om hvordan denne informasjonen skal interageres med. Det betyr at verktøyresultater nå kan inneholde UI-informasjon. Hvorfor skulle vi ønske det? Vel, vurder hvordan du gjør ting i dag. Du bruker sannsynligvis resultatene av en MCP Server ved å legge et slags frontend foran den, det er kode du må skrive og vedlikeholde. Noen ganger er det det du ønsker, men noen ganger hadde det vært flott om du bare kunne hente inn et utdrag av informasjon som er selvstendig og har alt fra data til brukergrensesnitt.
+MCP-apper er et nytt paradigme i MCP. Ideen er at du ikke bare svarer med data fra et verktøysanrop, men også gir informasjon om hvordan denne informasjonen skal kunne interageres med. Det betyr at verktøyresultater nå kan inneholde UI-informasjon. Hvorfor skulle vi ønske det? Vel, tenk på hvordan du gjør ting i dag. Du konsumerer sannsynligvis resultatene fra en MCP-server ved å sette en slags frontend foran den, det er kode du må skrive og vedlikeholde. Noen ganger er det det du ønsker, men noen ganger hadde det vært flott om du bare kunne ta inn et utdrag av informasjon som er selvstendig og har alt fra data til brukergrensesnitt.
 
 ## Oversikt
 
-Denne leksjonen gir praktisk veiledning om MCP Apps, hvordan komme i gang med det og hvordan integrere det i dine eksisterende Web Apps. MCP Apps er et veldig nytt tillegg til MCP-standarden.
+Denne leksjonen gir praktisk veiledning om MCP-apper, hvordan komme i gang med det, og hvordan integrere det i dine eksisterende nettapper. MCP-apper er en veldig ny tillegg til MCP-standarden.
 
 ## Læringsmål
 
-Innen slutten av denne leksjonen vil du kunne:
+Etter denne leksjonen vil du kunne:
 
-- Forklare hva MCP Apps er.
-- Når man skal bruke MCP Apps.
-- Lage og integrere dine egne MCP Apps.
+- Forklare hva MCP-apper er.
+- Når du skal bruke MCP-apper.
+- Bygge og integrere dine egne MCP-apper.
 
-## MCP Apps - hvordan fungerer det
+## MCP-apper – hvordan fungerer det
 
-Ideen med MCP Apps er å gi et svar som i hovedsak er en komponent som skal rendres. En slik komponent kan ha både visuelle elementer og interaktivitet, f.eks. knappetrykk, brukerinput og mer. La oss starte med serversiden og vår MCP Server. For å lage en MCP App komponent må du opprette et verktøy men også applikasjonsressursen. Disse to halvdelene kobles sammen med en resourceUri.
+Ideen med MCP-apper er å tilby et svar som i realiteten er en komponent som skal rendres. En slik komponent kan ha både visuelle elementer og interaktivitet, f.eks. knappetrykk, brukerinput og mer. La oss starte med serversiden og vår MCP-server. For å lage en MCP-app-komponent må du lage et verktøy, men også applikasjonsressursen. Disse to delene knyttes sammen via en resourceUri.
 
-Her er et eksempel. La oss prøve å visualisere hva som er involvert og hvilke deler gjør hva:
+Her er et eksempel. La oss prøve å visualisere hva som er involvert og hvilke deler som gjør hva:
 
 ```text
 server.ts -- responsible for registering tools and the component as a UI component
@@ -27,7 +27,7 @@ src/
 mcp-app.html -- the user interface
 ```
   
-Denne visuelle illustrasjonen beskriver arkitekturen for å lage en komponent og dens logikk.
+Denne visualiseringen beskriver arkitekturen for å lage en komponent og dens logikk.
 
 ```mermaid
 flowchart LR
@@ -39,7 +39,7 @@ flowchart LR
     C --- U
   end
 
-  subgraph Parent[Forelder nett-side]
+  subgraph Parent[Forelder Nettsted]
     H[Vert applikasjon]
     IFRAME[IFrame beholder]
     H -->|Injiser MCP App UI| IFRAME
@@ -52,17 +52,17 @@ flowchart LR
   end
 
   IFRAME --> UI
-  EH -->|Klikk utløser server verktøy kall| T
-  T -->|Resultatdata fra verktøy| EH
-  EH -->|Send melding til forelder side| H
+  EH -->|Klikk utløser server verktøys kall| T
+  T -->|Verktøy resultatdata| EH
+  EH -->|Send melding til foreldreside| H
 ```  
-La oss forsøke å beskrive ansvarene for backend og frontend henholdsvis.
+La oss prøve å beskrive ansvarsområdene for backend og frontend henholdsvis.
 
 ### Backend
 
 Det er to ting vi må få til her:
 
-- Registrere verktøyene vi ønsker å bruke.
+- Registrere verktøyene vi ønsker å samhandle med.
 - Definere komponenten.
 
 **Registrere verktøyet**
@@ -85,7 +85,7 @@ registerAppTool(
 
 ```
   
-Koden ovenfor beskriver oppførselen, hvor den eksponerer et verktøy kalt `get-time`. Det tar ingen input, men produserer nåværende tid. Vi har mulighet til å definere en `inputSchema` for verktøy hvor vi må kunne akseptere brukerinput.
+Koden ovenfor beskriver oppførselen, hvor den eksponerer et verktøy kalt `get-time`. Det tar ingen input, men produserer nåværende tid. Vi har mulighet til å definere et `inputSchema` for verktøy der vi må kunne motta brukerinput.
 
 **Registrere komponenten**
 
@@ -94,7 +94,7 @@ I samme fil må vi også registrere komponenten:
 ```typescript
 const resourceUri = "ui://get-time/mcp-app.html";
 
-// Registrer ressursen, som returnerer den pakkede HTML/JavaScript for brukergrensesnittet.
+// Registrer ressursen, som returnerer den bundne HTML/JavaScript for brukergrensesnittet.
 registerAppResource(
   server,
   resourceUri,
@@ -112,14 +112,14 @@ registerAppResource(
 );
 ```
   
-Legg merke til hvordan vi nevner `resourceUri` for å koble komponenten med dens verktøy. Interessant er også callbacken hvor vi laster UI-filen og returnerer komponenten.
+Legg merke til hvordan vi nevner `resourceUri` for å knytte komponenten til verktøyene sine. Interessant er også callbacken hvor vi laster UI-filen og returnerer komponenten.
 
-### Frontend for komponenten
+### Komponentens frontend
 
 Akkurat som backend, er det to deler her:
 
 - En frontend skrevet i ren HTML.
-- Kode som håndterer hendelser og hva som skal gjøres, f.eks. å kalle verktøy eller sende meldinger til forelder-vinduet.
+- Kode som håndterer hendelser og hva som skal gjøres, f.eks. kalle verktøy eller sende meldinger til overordnet vindu.
 
 **Brukergrensesnitt**
 
@@ -143,9 +143,9 @@ La oss se på brukergrensesnittet.
 </html>
 ```
   
-**Kobling av hendelser**
+**Hendelsesoppsett**
 
-Det siste stykket er koblingen av hendelser. Det betyr at vi identifiserer hvilken del av UI-en vår som trenger hendelseshåndterere og hva som skal gjøres når hendelser utløses:
+Det siste er hendelsesoppsettet. Det betyr at vi identifiserer hvilken del av UI-et vårt som trenger hendelseshåndterere og hva som skal skje når hendelser trigges:
 
 ```typescript
 // mcp-app.ts
@@ -156,11 +156,11 @@ import { App } from "@modelcontextprotocol/ext-apps";
 const serverTimeEl = document.getElementById("server-time")!;
 const getTimeBtn = document.getElementById("get-time-btn")!;
 
-// Opprett app-instans
+// Opprett appinstans
 const app = new App({ name: "Get Time App", version: "1.0.0" });
 
 // Håndter verktøyresultater fra serveren. Sett før `app.connect()` for å unngå
-// å gå glipp av det første verktøyresultatet.
+// å gå glipp av det innledende verktøyresultatet.
 app.ontoolresult = (result) => {
   const time = result.content?.find((c) => c.type === "text")?.text;
   serverTimeEl.textContent = time ?? "[ERROR]";
@@ -168,7 +168,7 @@ app.ontoolresult = (result) => {
 
 // Koble til knappetrykk
 getTimeBtn.addEventListener("click", async () => {
-  // `app.callServerTool()` lar brukergrensesnittet be om oppdaterte data fra serveren
+  // `app.callServerTool()` lar UI be om ferske data fra serveren
   const result = await app.callServerTool({ name: "get-time", arguments: {} });
   const time = result.content?.find((c) => c.type === "text")?.text;
   serverTimeEl.textContent = time ?? "[ERROR]";
@@ -178,16 +178,16 @@ getTimeBtn.addEventListener("click", async () => {
 app.connect();
 ```
   
-Som du ser fra ovenstående er dette vanlig kode for å koble DOM-elementer til hendelser. Verdt å nevne er kallet til `callServerTool` som ender opp med å kalle et verktøy på backend.
+Som du kan se fra ovenfor, er dette vanlig kode for å koble DOM-elementer til hendelser. Viktig å nevne er kallet til `callServerTool` som ender opp med å kalle et verktøy på backend.
 
 ## Håndtering av brukerinput
 
-Så langt har vi sett en komponent som har en knapp som når trykket kaller et verktøy. La oss se om vi kan legge til flere UI-elementer som et inndatafelt og se om vi kan sende argumenter til et verktøy. La oss implementere en FAQ-funksjonalitet. Slik skal det fungere:
+Så langt har vi sett en komponent som har en knapp som når den klikkes kaller et verktøy. La oss se om vi kan legge til flere UI-elementer som et inndatafelt og om vi kan sende argumenter til et verktøy. La oss implementere en FAQ-funksjon. Slik skal det fungere:
 
-- Det skal være en knapp og et inndataelement hvor brukeren skriver et søkeord, for eksempel "Shipping". Dette skal kalle et verktøy på backend som søker i FAQ-dataene.
-- Et verktøy som støtter den nevnte FAQ-søket.
+- Det skal være en knapp og et inndataelement hvor brukeren skriver inn et søkeord, for eksempel "Shipping". Dette skal kalle et verktøy på backend som søker i FAQ-dataene.
+- Et verktøy som støtter den nevnte FAQ-søkefunksjonen.
 
-La oss først legge til nødvendig støtte på backend:
+La oss legge til nødvendig støtte i backend først:
 
 ```typescript
 const faq: { [key: string]: string } = {
@@ -205,7 +205,7 @@ registerAppTool(
       inputSchema: zod.object({
         query: zod.string().default("shipping"),
       }),
-      _meta: { ui: { resourceUri: faqResourceUri } }, // Kobler dette verktøyet til dets UI-ressurs
+      _meta: { ui: { resourceUri: faqResourceUri } }, // Knytt dette verktøyet til dets UI-ressurs
     },
     async ({ query }) => {
       const answer: string = faq[query.toLowerCase()] || "Sorry, I don't have an answer for that.";
@@ -214,7 +214,7 @@ registerAppTool(
   );
 ```
   
-Det vi ser her er hvordan vi fyller `inputSchema` og gir det et `zod`-skjema slik:
+Det vi ser her er hvordan vi fyller ut `inputSchema` og gir det et `zod`-skjema slik:
 
 ```typescript
 inputSchema: zod.object({
@@ -222,7 +222,7 @@ inputSchema: zod.object({
 })
 ```
   
-I skjemaet ovenfor deklarerer vi at vi har en inndataparamenter kalt `query` og at den er valgfri med en standardverdi "shipping".
+I skjemaet ovenfor erklærer vi at vi har en inndatapararmeter kalt `query` og at den er valgfri med standardverdien "shipping".
 
 Ok, la oss gå videre til *mcp-app.html* for å se hvilket UI vi må lage for dette:
 
@@ -235,7 +235,7 @@ Ok, la oss gå videre til *mcp-app.html* for å se hvilket UI vi må lage for de
   </div>
 ```
   
-Flott, nå har vi et inndataelement og en knapp. La oss gå til *mcp-app.ts* for å koble disse hendelsene:
+Flott, nå har vi et inndataelement og knapp. La oss gå til *mcp-app.ts* for å knytte disse hendelsene:
 
 ```typescript
 const getFaqBtn = document.getElementById("get-faq-btn")!;
@@ -249,20 +249,20 @@ getFaqBtn.addEventListener("click", async () => {
 });
 ```
   
-I koden ovenfor:
+I koden over:
 
-- Oppretter vi referanser til de interessante UI-elementene.
-- Håndterer et knappetrykk for å hente ut verdien fra inndataelementet, og vi kaller også `app.callServerTool()` med `name` og `arguments` hvor sistnevnte sender `query` som verdi.
+- Oppretter vi referanser til de interaktive UI-elementene.
+- Håndterer knappetrykk for å hente ut verdien fra inndataboksen, og kaller `app.callServerTool()` med `name` og `arguments` hvor det siste sender `query` som verdi.
 
-Det som faktisk skjer når du kaller `callServerTool` er at det sender en melding til forelder-vinduet, og det vinduet ender opp med å kalle MCP Serveren.
+Det som faktisk skjer når du kaller `callServerTool` er at den sender en melding til overordnet vindu, og det vinduet ender opp med å kalle MCP-serveren.
 
-### Prøv det ut
+### Prøv det
 
-Når vi prøver dette, bør vi nå se følgende:
+Ved å prøve dette bør vi nå se følgende:
 
 ![](../../../../translated_images/no/faq.f78abe6b2cc68c83.webp)
 
-og her prøver vi det med input som "warranty"
+og her prøver vi med input som "warranty"
 
 ![](../../../../translated_images/no/faq-input.3e276f1c3d7e061e.webp)
 
@@ -270,7 +270,7 @@ For å kjøre denne koden, gå til [Code section](./code/README.md)
 
 ## Testing i Visual Studio Code
 
-Visual Studio Code har god støtte for MVP Apps og er sannsynligvis en av de enkleste måtene å teste dine MCP Apps på. For å bruke Visual Studio Code, legg til en serveroppføring i *mcp.json* slik:
+Visual Studio Code har god støtte for MCP-apper og er sannsynligvis en av de enkleste måtene å teste MCP-appene dine på. For å bruke Visual Studio Code, legg til en serveroppføring i *mcp.json* slik:
 
 ```json
 "my-mcp-server-7178eca7": {
@@ -279,29 +279,29 @@ Visual Studio Code har god støtte for MVP Apps og er sannsynligvis en av de enk
   }
 ```
   
-Start deretter serveren, du skal kunne kommunisere med din MVP App via Chat Window forutsatt at du har GitHub Copilot installert.
+Deretter starter du serveren, og du skal kunne kommunisere med MCP-appen din gjennom Chatteditoren dersom du har GitHub Copilot installert.
 
-ved å trigge via prompt, for eksempel "#get-faq":
+Du kan trigge det via en prompt, for eksempel "#get-faq":
 
 ![Visual Studio run prompt](../../../../translated_images/no/vscode-run.16cbab9436499f32.webp)
 
-og akkurat som når du kjørte det gjennom en nettleser, rendres det på samme måte slik:
+Og akkurat som når du kjørte det i en nettleser, rendres det på samme måte slik:
 
 ![UI Visual Studio Code](../../../../translated_images/no/vscode-ui.f2771dcfce25ca0f.webp)
 
 ## Oppgave
 
-Lag et stein saks papir-spill. Det skal bestå av følgende:
+Lag et stein-saks-papir-spill. Det skal bestå av følgende:
 
 UI:
 
-- en rullegardinliste med alternativer
-- en knapp for å sende inn valget
+- en nedtrekksliste med valg
+- en knapp for å sende inn valg
 - en etikett som viser hvem som valgte hva og hvem som vant
 
 Server:
 
-- skal ha et verktøy for stein saks papir som tar "choice" som input. Det skal også generere et datamaskinvalg og bestemme vinner
+- skal ha et verktøy for stein-saks-papir som tar "choice" som input. Det skal også generere et datavalgt valg og avgjøre vinneren
 
 ## Løsning
 
@@ -309,24 +309,24 @@ Server:
 
 ## Oppsummering
 
-Vi har lært om dette nye paradigmet MCP Apps. Det er et nytt paradigme som lar MCP Servere ha en mening om ikke bare dataene, men også hvordan disse dataene skal presenteres.
+Vi lærte om det nye paradigmet MCP-apper. Det er et nytt paradigme som lar MCP-servere ha en mening om ikke bare dataene, men også hvordan disse dataene skal presenteres.
 
-I tillegg har vi lært at disse MCP Apps blir hostet i en IFrame og for å kommunisere med MCP Servere må de sende meldinger til forelder webappen. Det finnes mange biblioteker for både ren JavaScript og React og flere som gjør denne kommunikasjonen enklere.
+I tillegg lærte vi at disse MCP-appene hostes i et IFrame, og for å kommunisere med MCP-servere må de sende meldinger til den overordnede webappen. Det finnes flere biblioteker der ute for både vanlig JavaScript, React og mer som gjør denne kommunikasjonen enklere.
 
 ## Viktige punkter
 
 Her er hva du lærte:
 
-- MCP Apps er en ny standard som kan være nyttig når du vil sende både data og UI-funksjoner.
-- Disse typene apper kjører i en IFrame av sikkerhetsgrunner.
+- MCP-apper er en ny standard som kan være nyttig når du vil levere både data og UI-funksjoner.
+- Denne typen apper kjører i et IFrame av sikkerhetsgrunner.
 
-## Hva er neste
+## Hva kommer nå
 
 - [Kapittel 4](../../04-PracticalImplementation/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Ansvarsfraskrivelse**:  
-Dette dokumentet er oversatt ved hjelp av AI-oversettelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selv om vi streber etter nøyaktighet, vennligst vær oppmerksom på at automatiske oversettelser kan inneholde feil eller unøyaktigheter. Det opprinnelige dokumentet på dets opprinnelige språk skal betraktes som den autoritative kilden. For kritisk informasjon anbefales profesjonell menneskelig oversettelse. Vi påtar oss ikke ansvar for misforståelser eller feiltolkninger som følge av bruken av denne oversettelsen.
+**Ansvarsfraskrivelse**:
+Dette dokumentet er oversatt ved hjelp av AI-oversettelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selv om vi streber etter nøyaktighet, vennligst vær klar over at automatiserte oversettelser kan inneholde feil eller unøyaktigheter. Det opprinnelige dokumentet på dets originale språk skal anses som den autoritative kilden. For kritisk informasjon anbefales profesjonell menneskelig oversettelse. Vi er ikke ansvarlige for eventuelle misforståelser eller feiltolkninger som oppstår ved bruk av denne oversettelsen.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

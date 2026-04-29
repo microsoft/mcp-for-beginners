@@ -73,6 +73,7 @@ mindmap
       (Entra ID Integration)
       (Web Search MCP)
       (Protocol Features Deep Dive)
+      (Adversarial Multi-Agent Reasoning)
       
     06. Community
       ::icon(fa fa-users)
@@ -188,6 +189,7 @@ The repository is organized into eleven main sections, each focusing on differen
    - Security considerations
    - Entra ID security integration
    - Web search integration
+   - Adversarial multi-agent reasoning (debate patterns)
 
 7. **Community Contributions (06-CommunityContributions/)**
    - How to contribute code and documentation
@@ -342,5 +344,5 @@ This repository welcomes contributions from the community. See the Community Con
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Disclaimer**:
-This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
+This document has been translated using AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

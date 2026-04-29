@@ -1,45 +1,45 @@
 # Kuanzisha na MCP
 
-Karibu kwenye hatua zako za kwanza na Model Context Protocol (MCP)! Iwe wewe ni mpya kwa MCP au unatafuta kuongeza uelewa wako, mwongozo huu utakuelekeza kupitia mchakato muhimu wa usanidi na maendeleo. Utagundua jinsi MCP inavyowezesha muunganisho usio na mshono kati ya mifano ya AI na programu, na kujifunza jinsi ya kuandaa mazingira yako haraka kwa ajili ya kujenga na kujaribu suluhisho zinazotumia MCP.
+Karibu katika hatua zako za kwanza na Model Context Protocol (MCP)! Ikiwa wewe ni mpya kwa MCP au unatafuta kuimarisha uelewa wako, mwongozo huu utakuelekeza kupitia mchakato muhimu wa usanidi na maendeleo. Utagundua jinsi MCP inavyowezesha ushirikiano mzuri kati ya modeli za AI na programu, na kujifunza jinsi ya kuandaa mazingira yako haraka kwa ajili ya kujenga na kujaribu suluhisho zinazotumia MCP.
 
-> TLDR; Ikiwa unajenga programu za AI, unajua kuwa unaweza kuongeza zana na rasilimali nyingine kwenye LLM yako (mfano mkubwa wa lugha), ili kufanya LLM iwe na maarifa zaidi. Hata hivyo, ikiwa utaweka zana na rasilimali hizo kwenye seva, uwezo wa programu na seva unaweza kutumiwa na mteja yeyote akiwa na/au bila LLM.
+> TLDR; Ikiwa unajenga programu za AI, unajua kuwa unaweza kuongeza zana na rasilimali nyingine kwenye LLM yako (modeli kubwa ya lugha), ili kufanya LLM kuwa na maarifa zaidi. Hata hivyo, ikiwa utaweka zana na rasilimali hizo kwenye seva, uwezo wa programu na seva unaweza kutumika na mteja yeyote na/au bila LLM.
 
 ## Muhtasari
 
-Somo hili linatoa mwongozo wa vitendo juu ya kuanzisha mazingira ya MCP na kujenga programu zako za kwanza za MCP. Utajifunza jinsi ya kusanidi zana na mifumo muhimu, kujenga seva za msingi za MCP, kuunda programu za mwenyeji, na kujaribu utekelezaji wako.
+Somo hili linatoa mwongozo wa vitendo kwenye kuanzisha mazingira ya MCP na kujenga programu zako za kwanza za MCP. Utajifunza jinsi ya kusanidi zana na mifumo muhimu, kujenga seva za MCP za msingi, kuunda programu za mwenyeji, na kujaribu utekelezaji wako.
 
-Model Context Protocol (MCP) ni itifaki wazi inayobainisha jinsi programu zinavyotoa muktadha kwa LLMs. Fikiria MCP kama bandari ya USB-C kwa programu za AI - inatoa njia ya kawaida ya kuunganisha mifano ya AI na vyanzo tofauti vya data na zana.
+Model Context Protocol (MCP) ni itifaki ya wazi inayoweka viwango vya jinsi programu zinavyotoa muktadha kwa LLMs. Fikiria MCP kama bandari ya USB-C kwa programu za AI - inatoa njia ya viwango kuunganisha modeli za AI na vyanzo tofauti vya data na zana.
 
 ## Malengo ya Kujifunza
 
 Mwisho wa somo hili, utaweza:
 
-- Kuanzisha mazingira ya maendeleo kwa MCP kwa C#, Java, Python, TypeScript, na Rust
-- Kujenga na kupeleka seva za msingi za MCP zenye vipengele maalum (rasilimali, maelekezo, na zana)
+- Kusanidi mazingira ya maendeleo ya MCP kwa C#, Java, Python, TypeScript, na Rust
+- Kujenga na kupeleka seva za MCP za msingi zenye vipengele maalum (rasilimali, vidokezo, na zana)
 - Kuunda programu za mwenyeji zinazounganisha na seva za MCP
-- Kujaribu na kutatua matatizo ya utekelezaji wa MCP
+- Kuangalia na kurekebisha makosa katika utekelezaji wa MCP
 
 ## Kuandaa Mazingira Yako ya MCP
 
-Kabla ya kuanza kufanya kazi na MCP, ni muhimu kuandaa mazingira yako ya maendeleo na kuelewa mtiririko wa kazi wa msingi. Sehemu hii itakuongoza kupitia hatua za mwanzo za usanidi ili kuhakikisha kuanza kwa MCP kunakuwa laini.
+Kabla ya kuanza kazi na MCP, ni muhimu kuandaa mazingira yako ya maendeleo na kuelewa mtiririko wa kazi wa msingi. Sehemu hii itakuongoza kupitia hatua za usanidi wa awali kuhakikisha kuanza kwa laini na MCP.
 
-### Mahitaji ya Awali
+### Matakwa Ya Awali
 
-Kabla ya kuingia kwenye maendeleo ya MCP, hakikisha una:
+Kabla ya kuanza maendeleo ya MCP, hakikisha una:
 
-- **Mazingira ya Maendeleo**: Kwa lugha uliyochagua (C#, Java, Python, TypeScript, au Rust)
-- **IDE/Mhariri**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm, au mhariri wa kisasa wa msimbo wowote
+- **Mazingira ya Maendeleo**: Kwa lugha uliyochagua (C#, Java, Python, TypeScript au Rust)
+- **IDE/Editor**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm, au mhariri wa code wa kisasa wowote
 - **Wasimamizi wa Pakiti**: NuGet, Maven/Gradle, pip, npm/yarn, au Cargo
-- **Vifunguo vya API**: Kwa huduma zozote za AI unazopanga kutumia katika programu zako za mwenyeji
+- **Vifunguo vya API**: Kwa huduma yoyote ya AI unayopanga kutumia katika programu zako za mwenyeji
 
 ## Muundo wa Msingi wa Seva ya MCP
 
-Seva ya MCP kawaida inajumuisha:
+Seva ya MCP kawaida hujumuisha:
 
 - **Usanidi wa Seva**: Kusanidi bandari, uthibitishaji, na mipangilio mingine
-- **Rasilimali**: Data na muktadha unaopatikana kwa LLMs
-- **Zana**: Uwezo wa mifano kuitisha
-- **Maelekezo**: Violezo vya kuunda au kupanga maandishi
+- **Rasilimali**: Data na muktadha unaotolewa kwa LLMs
+- **Zana**: Uwezo ambao modeli zinaweza kuitisha
+- **Vidokezo**: Violezo vya kutengeneza au kuunda muundo wa maandishi
 
 Hapa kuna mfano rahisi kwa TypeScript:
 
@@ -65,7 +65,7 @@ server.tool("add",
 // Ongeza rasilimali ya salamu inayobadilika
 server.resource(
   "file",
-  // Kigezo 'list' kinaamua jinsi rasilimali inavyoorodhesha faili zinazopatikana. Kuweka kuwa undefined kunazuia orodha kwa rasilimali hii.
+  // Kigezo 'list' kinaadhibu jinsi rasilimali inavyoorodhesha faili zinazopatikana. Kuweka kuwa isiyoelezwa kunazuia kuratibu orodha kwa rasilimali hii.
   new ResourceTemplate("file://{path}", { list: undefined }),
   async (uri, { path }) => ({
     contents: [{
@@ -75,7 +75,7 @@ server.resource(
   })
 );
 
-// Ongeza rasilimali ya faili inayosoma yaliyomo kwenye faili
+// Ongeza rasilimali ya faili inayo soma yaliyomo kwenye faili
 server.resource(
   "file",
   new ResourceTemplate("file://{path}", { list: undefined }),
@@ -116,86 +116,86 @@ await server.connect(transport);
 
 Katika msimbo uliotangulia tulifanya:
 
-- Kuleta madarasa muhimu kutoka MCP TypeScript SDK.
+- Kuleta darasa muhimu kutoka MCP TypeScript SDK.
 - Kuunda na kusanidi mfano mpya wa seva ya MCP.
-- Kusajili zana maalum (`calculator`) na kazi ya mshughulikiaji.
-- Kuanza seva kusikiliza maombi ya MCP yanayoingia.
+- Kusajili zana maalum (`calculator`) yenye kifuata kazi.
+- Kuanza seva kusikiliza maombi yanayokuja ya MCP.
 
-## Kujifunza na Kutatua Matatizo
+## Kuangalia na Kurekebisha Makosa
 
-Kabla ya kuanza kujaribu seva yako ya MCP, ni muhimu kuelewa zana zinazopatikana na mbinu bora za kutatua matatizo. Upimaji mzuri huhakikisha seva yako inafanya kazi kama inavyotarajiwa na husaidia kutambua na kutatua matatizo haraka. Sehemu inayofuata inaelezea mbinu zinazopendekezwa za kuthibitisha utekelezaji wako wa MCP.
+Kabla ya kuanza kujaribu seva yako ya MCP, ni muhimu kuelewa zana zilizopo na mbinu bora za kurekebisha makosa. Upimaji madhubuti huhakikisha seva yako inafanya kazi kama inavyotarajiwa na hukusaidia haraka kubaini na kutatua masuala. Sehemu inayofuata inaelezea mbinu zinazopendekezwa za kuthibitisha utekelezaji wako wa MCP.
 
-MCP hutoa zana za kusaidia kujaribu na kutatua matatizo ya seva zako:
+MCP hutoa zana za kusaidia kujaribu na kurekebisha seva zako:
 
-- **Zana ya Inspector**, kiolesura hiki cha picha hukuwezesha kuungana na seva yako na kujaribu zana, maelekezo na rasilimali zako.
-- **curl**, pia unaweza kuungana na seva yako kwa kutumia zana ya mstari wa amri kama curl au wateja wengine wanaoweza kuunda na kuendesha amri za HTTP.
+- **Zana ya Mcheinza (Inspector)**, kiolesura hiki cha mchoro hukuruhusu kuunganisha seva yako na kujaribu zana, vidokezo na rasilimali zako.
+- **curl**, pia unaweza kuunganisha kwenye seva yako kwa kutumia zana ya mstari wa amri kama curl au wateja wengine wanaoweza kuunda na kuendesha amri za HTTP.
 
 ### Kutumia MCP Inspector
 
-[MCP Inspector](https://github.com/modelcontextprotocol/inspector) ni zana ya majaribio ya kuona inayokusaidia:
+[MCP Inspector](https://github.com/modelcontextprotocol/inspector) ni zana ya majaribio inayokuambia:
 
-1. **Gundua Uwezo wa Seva**: Kugundua moja kwa moja rasilimali, zana, na maelekezo yanayopatikana
+1. **Gundua Uwezo wa Seva**: Kugundua moja kwa moja rasilimali, zana, na vidokezo vinavyopatikana
 2. **Jaribu Utekelezaji wa Zana**: Jaribu vigezo tofauti na uone majibu kwa wakati halisi
-3. **Tazama Metadata ya Seva**: Chunguza taarifa za seva, skimu, na usanidi
+3. **Tazama Metadata ya Seva**: Chunguza taarifa za seva, mifumo ya data, na usanidi
 
 ```bash
 # mfano TypeScript, kusakinisha na kuendesha MCP Inspector
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-Unapotekeleza amri zilizo juu, MCP Inspector itazindua kiolesura cha wavuti cha ndani kwenye kivinjari chako. Unaweza kutarajia kuona dashibodi inayoonyesha seva zako za MCP zilizosajiliwa, zana zao zinazopatikana, rasilimali, na maelekezo. Kiolesura hiki hukuwezesha kujaribu utekelezaji wa zana kwa ushirikiano, kuchunguza metadata ya seva, na kuona majibu kwa wakati halisi, na kufanya iwe rahisi kuthibitisha na kutatua matatizo ya utekelezaji wa seva zako za MCP.
+Unapotekeleza amri zilizo hapo juu, MCP Inspector itazindua kiolesura cha wavuti cha eneo lako kwenye kivinjari chako. Unaweza kutegemea kuona dashibodi inaonyesha seva zako za MCP zilizosajiliwa, zana zao, rasilimali, na vidokezo. Kiolesura hukuruhusu kujaribu utekelezaji wa zana kwa njia ya maingiliano, kuchunguza metadata ya seva, na kuona majibu kwa wakati halisi, hivyo kurahisisha kuthibitisha na kurekebisha makosa katika utekelezaji wetu wa seva za MCP.
 
-Hapa kuna picha ya skrini inavyoweza kuonekana:
+Hapa kuna picha ya inavyoweza kuonekana:
 
 ![MCP Inspector server connection](../../../../translated_images/sw/connected.73d1e042c24075d3.webp)
 
 ## Masuala ya Kawaida ya Usanidi na Suluhisho
 
-| Tatizo | Suluhisho Linawezekana |
-|-------|------------------------|
-| Muunganisho umekataliwa | Angalia kama seva inaendesha na bandari ni sahihi |
-| Makosa ya utekelezaji wa zana | Kagua uthibitishaji wa vigezo na usimamizi wa makosa |
-| Kushindwa kwa uthibitishaji | Thibitisha funguo za API na ruhusa |
+| Tatizo | Suluhisho Linalowezekana |
+|--------|--------------------------|
+| Kuunganishwa kukataliwa | Angalia kama seva inaendeshwa na bandari ni sahihi |
+| Makosa ya utekelezaji wa zana | Kagua uthibitishaji wa vigezo na utendaji wa usimamizi wa makosa |
+| Kushindwa uthibitishaji | Thibitisha funguo za API na ruhusa |
 | Makosa ya uthibitishaji wa skimu | Hakikisha vigezo vinaendana na skimu iliyobainishwa |
-| Seva haianzi | Angalia migongano ya bandari au utegemezi uliokosekana |
-| Makosa ya CORS | Sanidi vichwa vya CORS vinavyofaa kwa maombi ya asili tofauti |
+| Seva haianzi | Angalia mizozo ya bandari au utegemezi usiokuwepo |
+| Makosa ya CORS | Sanidi vichwa sahihi vya CORS kwa maombi ya kuvuka asili |
 | Masuala ya uthibitishaji | Thibitisha uhalali wa tokeni na ruhusa |
 
-## Maendeleo ya Kiasili
+## Maendeleo ya Kiwanda cha Ndani
 
-Kwa maendeleo na majaribio ya ndani, unaweza kuendesha seva za MCP moja kwa moja kwenye mashine yako:
+Kwa maendeleo na kujaribu katika eneo lako, unaweza kuendesha seva za MCP moja kwa moja kwenye mashine yako:
 
-1. **Anza mchakato wa seva**: Endesha programu yako ya seva ya MCP
+1. **Anzisha mchakato wa seva**: Endesha programu yako ya seva ya MCP
 2. **Sanidi mtandao**: Hakikisha seva inapatikana kwenye bandari inayotarajiwa
-3. **Unganisha wateja**: Tumia URL za muunganisho wa ndani kama `http://localhost:3000`
+3. **Unganisha wateja**: Tumia URL za muunganisho za eneo kama `http://localhost:3000`
 
 ```bash
-# Mfano: Kuendesha seva ya TypeScript MCP kwa ndani
+# Mfano: Kuendesha seva ya TypeScript MCP katika eneo la karibu
 npm run start
 # Seva inaendesha kwenye http://localhost:3000
 ```
 
 ## Kujenga Seva yako ya Kwanza ya MCP
 
-Tumejifunza [Misingi ya Msingi](/01-CoreConcepts/README.md) katika somo lililopita, sasa ni wakati wa kutumia maarifa hayo kazini.
+Tumezungumzia [Mafundisho ya Msingi](../../01-CoreConcepts/README.md) katika somo lililopita, sasa ni wakati wa kutumia maarifa hayo.
 
 ### Seva inaweza kufanya nini
 
-Kabla ya kuanza kuandika msimbo, tukumbuke tu seva inaweza kufanya nini:
+Kabla ya kuanza kuandika msimbo, tukumbuke tunavyoweza kufanikisha:
 
 Seva ya MCP inaweza kwa mfano:
 
 - Kupata faili za ndani na hifadhidata
-- Kuungana na API za mbali
+- Kuunganisha na API za mbali
 - Kufanya mahesabu
-- Kuunganishwa na zana na huduma nyingine
-- Kutoa kiolesura cha mtumiaji kwa mwingiliano
+- Kuunganisha na zana na huduma nyingine
+- Kutoa kiolesura cha mtumiaji kwa maingiliano
 
-Nzuri, sasa tunajua tunachoweza kufanya kwa seva, hebu tuanze kuandika msimbo.
+Nzuri, sasa tunajua tunavyoweza kufanya, hebu tuanze kuandika msimbo.
 
-## Zoef: Kuunda seva
+## Mazoezi: Kuunda seva
 
-Ili kuunda seva, unahitaji kufuata hatua hizi:
+Kutengeneza seva, fuata hatua hizi:
 
 - Sakinisha MCP SDK.
 - Unda mradi na usanidi muundo wa mradi.
@@ -246,7 +246,7 @@ curl https://start.spring.io/starter.zip \
   -o calculator-server.zip
 ```
 
-Fungua faili la zip:
+Tenganisha faili la zipi:
 
 ```bash
 unzip calculator-server.zip -d calculator-server
@@ -365,15 +365,15 @@ cargo init
 
 ### -2- Ongeza utegemezi
 
-Sasa umeunda mradi wako, tuongeze utegemezi:
+Sasa baada ya kuunda mradi wako, tuongeze utegemezi:
 
 #### TypeScript
 
 ```sh
-# Ikiwa bado haijafunguliwa, weka TypeScript kwa kiwango cha ulimwengu
+# Ikiwa haijapakuliwa bado, pakua TypeScript kimataifa
 npm install typescript -g
 
-# Sakinisha MCP SDK na Zod kwa ajili ya uthibitishaji wa muundo
+# Pakua MCP SDK na Zod kwa uthibitishaji wa mfuniko
 npm install @modelcontextprotocol/sdk zod
 npm install -D @types/node typescript
 ```
@@ -381,7 +381,7 @@ npm install -D @types/node typescript
 #### Python
 
 ```sh
-# Unda mazingira ya virtual na usakinishe utegemezi
+# Unda mazingira pepe na usakinishe utegemezi
 python -m venv venv
 venv\Scripts\activate
 pip install "mcp[cli]"
@@ -406,7 +406,7 @@ cargo add tokio --features rt-multi-thread
 
 #### TypeScript
 
-Fungua faili *package.json* na badilisha yaliyomo na yafuatayo kuhakikisha unaweza kujenga na kuendesha seva:
+Fungua faili la *package.json* na badilisha maudhui na yafuatayo ili kuhakikisha unaweza kujenga na kuendesha seva:
 
 ```json
 {
@@ -433,7 +433,7 @@ Fungua faili *package.json* na badilisha yaliyomo na yafuatayo kuhakikisha unawe
 }
 ```
 
-Unda *tsconfig.json* na yaliyomo yafuatayo:
+Unda *tsconfig.json* na maudhui haya:
 
 ```json
 {
@@ -470,7 +470,7 @@ touch server.py
 
 #### .NET
 
-Sakinisha vifurushi vya NuGet vinavyohitajika:
+Sakinisha vifurushi vinavyohitajika vya NuGet:
 
 ```sh
 dotnet add package ModelContextProtocol --prerelease
@@ -479,11 +479,11 @@ dotnet add package Microsoft.Extensions.Hosting
 
 #### Java
 
-Kwa miradi ya Java Spring Boot, muundo wa mradi huundwa moja kwa moja.
+Kwa miradi ya Java Spring Boot, muundo wa mradi huundwa kiotomatiki.
 
 #### Rust
 
-Kwa Rust, faili *src/main.rs* huundwa kwa chaguo-msingi unapoendesha `cargo init`. Fungua faili na futa msimbo wa chaguo-msingi.
+Kwa Rust, faili *src/main.rs* huundwa kwa default unapotekeleza `cargo init`. Fungua faili na futa msimbo wa chaguomsingi.
 
 ### -4- Andika msimbo wa seva
 
@@ -496,14 +496,14 @@ import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mc
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
  
-// Tengeneza seva ya MCP
+// Unda seva ya MCP
 const server = new McpServer({
   name: "Calculator MCP Server",
   version: "1.0.0"
 });
 ```
 
-Sasa una seva, lakini haifanyi mengi, hebu tuirekebishe.
+Sasa una seva, lakini haifanyi mengi, hebu ifanye zaidi.
 
 #### Python
 
@@ -542,7 +542,7 @@ await builder.Build().RunAsync();
 
 #### Java
 
-Kwa Java, unda vipengele vya msingi vya seva. Kwanza, badilisha darasa kuu la programu:
+Kwa Java, unda vipengele vikuu vya seva. Kwanza, badilisha darasa kuu la programu:
 
 *src/main/java/com/microsoft/mcp/sample/server/McpServerApplication.java*:
 
@@ -716,7 +716,7 @@ public class CalculatorService {
 }
 ```
 
-**Vipengele vya hiari kwa huduma inayotayarishwa kwa uzalishaji:**
+**Vipengele hiari kwa huduma tayari kwa uzalishaji:**
 
 Unda usanidi wa kuanzisha *src/main/java/com/microsoft/mcp/sample/server/config/StartupConfig.java*:
 
@@ -743,7 +743,7 @@ public class StartupConfig {
 }
 ```
 
-Unda kidhibiti cha afya *src/main/java/com/microsoft/mcp/sample/server/controller/HealthController.java*:
+Unda kontrolleri ya afya *src/main/java/com/microsoft/mcp/sample/server/controller/HealthController.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.controller;
@@ -824,7 +824,7 @@ Spring Boot MCP Application
 
 #### Rust
 
-Ongeza msimbo ufuatao juu ya faili *src/main.rs*. Hii inaleta maktaba na moduli zinazohitajika kwa seva yako ya MCP.
+Ongeza msimbo ufuatao juu ya faili *src/main.rs*. Huu unaleta maktaba na moduli zinazohitajika kwa seva yako ya MCP.
 
 ```rust
 use rmcp::{
@@ -837,7 +837,7 @@ use rmcp::{
 use std::error::Error;
 ```
 
-Seva ya calculator itakuwa rahisi inayoweza kuongeza nambari mbili pamoja. Hebu unda struct kuwakilisha ombi la calculator.
+Seva ya calculator itakuwa rahisi ambayo inaweza kuongeza nambari mbili pamoja. Tundike struct kuwakilisha ombi la calculator.
 
 ```rust
 #[derive(Debug, serde::Deserialize, schemars::JsonSchema)]
@@ -847,7 +847,7 @@ pub struct CalculatorRequest {
 }
 ```
 
-Ifuatayo, unda struct kuwakilisha seva ya calculator. Struct hii itashikilia router ya zana, inayotumika kusajili zana.
+Ifuatayo, unda struct kuwakilisha seva ya calculator. Struct hii itashikilia router ya zana, ambayo hutumika kusajili zana.
 
 ```rust
 #[derive(Debug, Clone)]
@@ -856,7 +856,7 @@ pub struct Calculator {
 }
 ```
 
-Sasa, tunaweza kutekeleza struct `Calculator` kuunda mfano mpya wa seva na kutekeleza mshughulikiaji wa seva kutoa taarifa za seva.
+Sasa, tunaweza kutekeleza `Calculator` struct kuunda mfano mpya wa seva na kutekeleza mshughulikiaji wa seva kutoa taarifa za seva.
 
 ```rust
 #[tool_router]
@@ -880,7 +880,7 @@ impl ServerHandler for Calculator {
 }
 ```
 
-Mwishowe, tunahitaji kutekeleza kazi kuu kuanzisha seva. Kazi hii itaunda mfano wa struct `Calculator` na kuutumikia kupitia ingizo/mazao ya kawaida.
+Mwishowe, tunahitaji kutekeleza kazi kuu kuanzisha seva. Kazi hii itaumba mfano wa `Calculator` struct na kuihudumia kupitia pembejeo/pengo la kawaida.
 
 ```rust
 #[tokio::main]
@@ -920,7 +920,7 @@ server.resource(
 );
 ```
 
-Zana yako inachukua vigezo `a` na `b` na kuendesha kazi inayotoa jibu kwa muundo:
+Zana yako inachukua vigezo `a` na `b` na kuendesha kipengele kinachozalisha jibu kwa muundo:
 
 ```typescript
 {
@@ -930,7 +930,7 @@ Zana yako inachukua vigezo `a` na `b` na kuendesha kazi inayotoa jibu kwa muundo
 }
 ```
 
-Rasilimali yako inapatikana kupitia mfuatano wa herufi "greeting" na inachukua kigezo `name` na kutoa jibu linalofanana na la zana:
+Rasilimali yako inapatikana kupitia mnyororo "greeting" na inachukua kigezo `name` na kuzalisha jibu sawa na la zana:
 
 ```typescript
 {
@@ -949,21 +949,21 @@ def add(a: int, b: int) -> int:
     return a + b
 
 
-# Ongeza rasilimali ya salamu inayobadilika
+# Ongeza rasilimali ya salamu ya mabadiliko
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
     return f"Hello, {name}!"
 ```
 
-Katika msimbo uliotangulia tumefanya:
+Katika msimbo uliopita tumefanya:
 
-- Kueleza zana `add` inayochukua vigezo `a` na `b`, vyote ni nambari kamili.
-- Kuunda rasilimali iitwayo `greeting` inayochukua kigezo `name`.
+- Kufafanua zana `add` inayochukua vigezo `a` na `b`, vyote ni nambari za integer.
+- Kuunda rasilimali iliyoitwa `greeting` inayochukua kigezo `name`.
 
 #### .NET
 
-Ongeza hii kwenye faili yako Program.cs:
+Ongeza hili kwenye faili yako Program.cs:
 
 ```csharp
 [McpServerToolType]
@@ -976,11 +976,11 @@ public static class CalculatorTool
 
 #### Java
 
-Zana tayari zimetengenezwa katika hatua iliyopita.
+Zana zimekuwa zimeumbwa katika hatua iliyopita.
 
 #### Rust
 
-Ongeza zana mpya ndani ya block `impl Calculator`:
+Ongeza zana mpya ndani ya sehemu ya `impl Calculator`:
 
 ```rust
 #[tool(description = "Adds a and b")]
@@ -992,7 +992,7 @@ async fn add(
 }
 ```
 
-### -6- Msimbo wa mwisho
+### -6- Msimbo wa Mwisho
 
 Tuweke msimbo wa mwisho unaohitajika ili seva ianze:
 
@@ -1004,7 +1004,7 @@ const transport = new StdioServerTransport();
 await server.connect(transport);
 ```
 
-Hapa ni msimbo kamili:
+Huu ni msimbo kamili:
 
 ```typescript
 // index.ts
@@ -1012,7 +1012,7 @@ import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mc
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 
-// Unda seva ya MCP
+// Unda server ya MCP
 const server = new McpServer({
   name: "Calculator MCP Server",
   version: "1.0.0"
@@ -1061,20 +1061,20 @@ def add(a: int, b: int) -> int:
     return a + b
 
 
-# Ongeza rasilimali ya salamu inayobadilika
+# Ongeza rasilimali ya salamu ya mabadiliko
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
     return f"Hello, {name}!"
 
-# Sehemu kuu ya utekelezaji - hii inahitajika kuendesha seva
+# Kizuizi kikuu cha utekelezaji - hii inahitajika kuendesha seva
 if __name__ == "__main__":
     mcp.run()
 ```
 
 #### .NET
 
-Unda faili Program.cs yenye yaliyomo yafuatayo:
+Unda faili Program.cs yenye maudhui yafuatayo:
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
@@ -1106,7 +1106,7 @@ public static class CalculatorTool
 
 #### Java
 
-Darasa lako kamili la programu kuu linapaswa kuonekana hivi:
+Darasa lako kamili kuu la programu linapaswa kuonekana hivi:
 
 ```java
 // McpServerApplication.java
@@ -1135,7 +1135,7 @@ public class McpServerApplication {
 
 #### Rust
 
-Msimbo wa mwisho wa seva ya Rust unapaswa kuonekana hivi:
+Msimbo wa mwisho wa seva ya Rust unapaswa kuwa kama huu:
 
 ```rust
 use rmcp::{
@@ -1196,7 +1196,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
 ### -7- Jaribu seva
 
-Anza seva kwa amri ifuatayo:
+Anzisha seva kwa amri ifuatayo:
 
 #### TypeScript
 
@@ -1210,7 +1210,7 @@ npm run build
 mcp run server.py
 ```
 
-> Ili kutumia MCP Inspector, tumia `mcp dev server.py` ambayo huanzisha Inspector moja kwa moja na kutoa tokeni ya kikao cha wakala inayohitajika. Ikiwa unatumia `mcp run server.py`, utahitaji kuanzisha Inspector kwa mkono na kusanidi muunganisho.
+> Kutumia MCP Inspector, tumia `mcp dev server.py` ambayo huanzisha Inspector kiotomatiki na kutoa tokeni ya kikao cha wakala inahitajika. Ikiwa unatumia `mcp run server.py`, utahitaji kuanzisha Inspector kwa mikono na kusanidi muunganisho.
 
 #### .NET
 
@@ -1230,7 +1230,7 @@ java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
 
 #### Rust
 
-Endesha amri zifuatazo kuandaa na kuendesha seva:
+Endesha amri zifuatazo kuunda muundo na kuendesha seva:
 
 ```sh
 cargo fmt
@@ -1239,10 +1239,10 @@ cargo run
 
 ### -8- Endesha kwa kutumia inspector
 
-Inspector ni zana nzuri inayoweza kuanzisha seva yako na kukuruhusu kuingiliana nayo ili kujaribu kama inafanya kazi. Hebu tuianze:
+Inspector ni zana nzuri ambayo inaweza kuanzisha seva yako na inakuwezesha kuingiliana nayo ili kujaribu kama inafanya kazi. Hebu tuianze:
 
 > [!NOTE]
-> inaweza kuonekana tofauti katika sehemu ya "command" kwani ina amri ya kuendesha seva na runtime yako maalum/
+> inaweza kuonekana tofauti katika uwanja wa "amri" kwani ina amri ya kuendesha seva na mazingira yako maalum ya wakati wa utekelezaji/
 
 #### TypeScript
 
@@ -1250,23 +1250,23 @@ Inspector ni zana nzuri inayoweza kuanzisha seva yako na kukuruhusu kuingiliana 
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-au uiongeze kwenye *package.json* yako kama ifuatavyo: `"inspector": "npx @modelcontextprotocol/inspector node build/index.js"` kisha endesha `npm run inspector`
+au iunge kwenye *package.json* yako hivi: `"inspector": "npx @modelcontextprotocol/inspector node build/index.js"` kisha endesha `npm run inspector`
 
 #### Python
 
-Python inazunguka zana ya Node.js iitwayo inspector. Inawezekana kuitisha zana hiyo kama ifuatavyo:
+Python inaifunika zana ya Node.js inayoitwa inspector. Inawezekana kuita zana hiyo kama ifuatavyo:
 
 ```sh
 mcp dev server.py
 ```
 
-Hata hivyo, haitekelezi njia zote zinazopatikana kwenye zana hiyo hivyo unashauriwa kuendesha zana ya Node.js moja kwa moja kama ifuatavyo:
+Hata hivyo, haisimami mbinu zote zinazopatikana kwenye zana, hivyo unashauriwa kuendesha zana ya Node.js moja kwa moja kama ifuatavyo:
 
 ```sh
 npx @modelcontextprotocol/inspector mcp run server.py
 ```
 
-Ikiwa unatumia zana au IDE inayokuwezesha kusanidi amri na hoja za kuendesha skiripti,
+Ikiwa unatumia zana au IDE inayokuruhusu kusanidi amri na hoja za kuendesha skripti,
 hakikisha kuweka `python` katika uwanja wa `Command` na `server.py` kama `Arguments`. Hii inahakikisha script inafanya kazi ipasavyo.
 
 #### .NET
@@ -1280,7 +1280,7 @@ npx @modelcontextprotocol/inspector dotnet run
 
 #### Java
 
-Hakikisha server ya calculator yako inaendesha
+Hakikisha server ya calculator yako inafanya kazi
 Kisha endesha inspector:
 
 ```cmd
@@ -1296,7 +1296,7 @@ Katika kiolesura cha wavuti cha inspector:
 ![Connect](../../../../translated_images/sw/tool.163d33e3ee307e20.webp)
 
 **Sasa umeunganishwa na server**
-**Sehemu ya majaribio ya server ya Java imekamilika sasa**
+**Sehemu ya upimaji wa server ya Java imekamilika sasa**
 
 Sehemu inayofuata ni kuhusu kuingiliana na server.
 
@@ -1304,14 +1304,14 @@ Unapaswa kuona kiolesura cha mtumiaji kama ifuatavyo:
 
 ![Connect](../../../../translated_images/sw/connect.141db0b2bd05f096.webp)
 
-1. Unganisha na server kwa kuchagua kitufe cha Connect
-  Mara unapo ungana na server, unapaswa sasa kuona yafuatayo:
+1. Ungana na server kwa kuchagua kitufe cha Connect
+  Mara unapoungana na server, sasa unapaswa kuona yafuatayo:
 
   ![Connected](../../../../translated_images/sw/connected.73d1e042c24075d3.webp)
 
 1. Chagua "Tools" na "listTools", unapaswa kuona "Add" inaonekana, chagua "Add" na jaza thamani za vigezo.
 
-  Unapaswa kuona jibu lifuatalo, yaani matokeo kutoka kwa chombo cha "add":
+  Unapaswa kuona majibu yafuatayo, yaani matokeo kutoka kwa chombo cha "add":
 
   ![Result of running add](../../../../translated_images/sw/ran-tool.a5a6ee878c1369ec.webp)
 
@@ -1319,7 +1319,7 @@ Hongera, umefanikiwa kuunda na kuendesha server yako ya kwanza!
 
 #### Rust
 
-Kuendesha server ya Rust kwa MCP Inspector CLI, tumia amri ifuatayo:
+Ili kuendesha server ya Rust na MCP Inspector CLI, tumia amri ifuatayo:
 
 ```sh
 npx @modelcontextprotocol/inspector cargo run --cli --method tools/call --tool-name add --tool-arg a=1 b=2
@@ -1327,21 +1327,21 @@ npx @modelcontextprotocol/inspector cargo run --cli --method tools/call --tool-n
 
 ### SDK Rasmi
 
-MCP hutoa SDK rasmi kwa lugha nyingi:
+MCP inatoa SDK rasmi za lugha nyingi:
 
-- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - Inasimamiwa kwa ushirikiano na Microsoft
-- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Inasimamiwa kwa ushirikiano na Spring AI
+- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - Inadumishwa kwa ushirikiano na Microsoft
+- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Inadumishwa kwa ushirikiano na Spring AI
 - [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Utekelezaji rasmi wa TypeScript
 - [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Utekelezaji rasmi wa Python
 - [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - Utekelezaji rasmi wa Kotlin
-- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - Inasimamiwa kwa ushirikiano na Loopwork AI
+- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - Inadumishwa kwa ushirikiano na Loopwork AI
 - [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - Utekelezaji rasmi wa Rust
 
-## Muhimu Kuu
+## Mambo Muhimu ya Kumbuka
 
 - Kuanzisha mazingira ya maendeleo ya MCP ni rahisi kwa kutumia SDK za lugha maalum
-- Kujenga server za MCP kunahusisha kuunda na kusajili zana zenye skimu wazi
-- Kupima na kutatua matatizo ni muhimu kwa utekelezaji wa MCP unaotegemewa
+- Kujenga server za MCP kunahusisha kuunda na kusajili zana zenye miundo wazi
+- Kupima na kutatua matatizo ni muhimu kwa utekelezaji thabiti wa MCP
 
 ## Sampuli
 
@@ -1352,14 +1352,14 @@ MCP hutoa SDK rasmi kwa lugha nyingi:
 - [Python Calculator](../../../../03-GettingStarted/samples/python)
 - [Rust Calculator](../../../../03-GettingStarted/samples/rust)
 
-## Kazi
+## Kazi ya Nyumbani
 
-Unda server rahisi ya MCP na chombo cha uchaguzi wako:
+Tengeneza server rahisi ya MCP na chombo unachochagua:
 
-1. Tekeleza chombo katika lugha unayopendelea (.NET, Java, Python, TypeScript, au Rust).
-2. Eleza vigezo vya ingizo na thamani za kurudisha.
-3. Endesha chombo cha inspector kuhakikisha server inafanya kazi kama inavyotarajiwa.
-4. Jaribu utekelezaji kwa viingilio mbalimbali.
+1. Tekeleza chombo kwa lugha unayopendelea (.NET, Java, Python, TypeScript, au Rust).
+2. Fafanua vigezo vya ingizo na thamani za kurudisha.
+3. Endesha chombo cha inspector kuhakikisha server inafanya kazi kama inavyotakiwa.
+4. Jaribu utekelezaji na ingizo mbalimbali.
 
 ## Suluhisho
 
@@ -1367,17 +1367,17 @@ Unda server rahisi ya MCP na chombo cha uchaguzi wako:
 
 ## Rasilimali Zaidi
 
-- [Jenga Wakala kwa kutumia Model Context Protocol kwenye Azure](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)
+- [Jenga Maajenti kwa kutumia Model Context Protocol kwenye Azure](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)
 - [MCP ya Mbali na Azure Container Apps (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)
 - [.NET OpenAI MCP Agent](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)
 
-## Nini kinachofuata
+## Nini Kifuatayo
 
-Ifuatayo: [Kuanzia na Wateja wa MCP](../02-client/README.md)
+Kifuatacho: [Kuanzia na Wateja wa MCP](../02-client/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Kiarifa cha Kukataa**:
-Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kwa usahihi, tafadhali fahamu kuwa tafsiri za kiotomatiki zinaweza kuwa na makosa au upungufu wa usahihi. Hati ya asili katika lugha yake ya asili inapaswa kuchukuliwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu inayofanywa na binadamu inashauriwa. Hatubebei dhamana kwa kutoelewana au tafsiri potofu zinazotokana na matumizi ya tafsiri hii.
+**Kiasi cha maelezo**:  
+Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kufanikisha usahihi, tafadhali fahamu kuwa tafsiri za kiotomatiki zinaweza kuwa na makosa au kasoro za usahihi. Hati ya asili katika lugha yake ya mama inapaswa kuchukuliwa kama chanzo cha mamlaka. Kwa taarifa muhimu, inapendekezwa kutumia huduma ya tafsiri ya binadamu mtaalamu. Hatuwajibiki kwa kutoelewana au tafsiri zisizofaa zinazotokea kutokana na matumizi ya tafsiri hii.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

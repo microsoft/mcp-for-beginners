@@ -53,12 +53,20 @@ const server = new Server(
     },
   }
 );
+
+async function runServer() {
+  const transport = new StdioServerTransport();
+  await server.connect(transport);
+}
+
+runServer().catch(console.error);
 ```
 
 In the preceding code:
 
 - We import the `Server` class and `StdioServerTransport` from the MCP SDK
 - We create a server instance with basic configuration and capabilities
+- We create a `StdioServerTransport` instance and connect the server to it, enabling communication over stdin/stdout
 
 ### Python
 
@@ -68,7 +76,7 @@ import logging
 from mcp.server import Server
 from mcp.server.stdio import stdio_server
 
-# Create server instance
+# Create a server instance
 server = Server("example-server")
 
 @server.tool()
@@ -589,5 +597,5 @@ Now that you've learned how to build MCP servers with the stdio transport, you c
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Disclaimer**:
-This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
+This document has been translated using AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,24 +1,24 @@
 # Aplikacje MCP
 
-Aplikacje MCP to nowy paradygmat w MCP. Idea polega na tym, że nie tylko odpowiadasz danymi zwrotnymi z wywołania narzędzia, ale również dostarczasz informacje o tym, jak z tą informacją należy wchodzić w interakcję. Oznacza to, że wyniki narzędzi mogą teraz zawierać informacje o interfejsie użytkownika. Po co nam to jednak? Cóż, rozważ jak działasz dzisiaj. Prawdopodobnie konsumujesz wyniki serwera MCP, stawiając przed nim jakiś frontend, to kod, który musisz napisać i utrzymywać. Czasem tego właśnie chcesz, ale czasem byłoby świetnie, gdybyś mógł po prostu wziąć fragment informacji, który jest samowystarczalny i zawiera wszystko od danych po interfejs użytkownika.
+Aplikacje MCP to nowy paradygmat w MCP. Idea polega na tym, że nie tylko zwracasz dane z wywołania narzędzia, ale także dostarczasz informacje o tym, jak z tymi danymi powinno się wchodzić w interakcję. Oznacza to, że wyniki narzędzi mogą teraz zawierać informacje UI. Ale dlaczego mielibyśmy tego chcieć? Cóż, zastanów się, jak działasz dzisiaj. Prawdopodobnie korzystasz z wyników serwera MCP, umieszczając przed nim jakiś frontend, to kod, który musisz napisać i utrzymywać. Czasami tego właśnie chcesz, ale czasami byłoby świetnie, gdybyś mógł po prostu wprowadzić fragment informacji, który jest samowystarczalny i zawiera wszystko, od danych po interfejs użytkownika.
 
 ## Przegląd
 
-Ta lekcja dostarcza praktyczne wskazówki dotyczące Aplikacji MCP, jak zacząć z nimi pracę i jak je zintegrować z istniejącymi aplikacjami webowymi. Aplikacje MCP to bardzo nowe uzupełnienie standardu MCP.
+Ta lekcja dostarcza praktycznych wskazówek dotyczących aplikacji MCP, jak zacząć z nimi pracować i jak je integrować z istniejącymi aplikacjami webowymi. Aplikacje MCP to bardzo nowy dodatek do standardu MCP.
 
 ## Cele nauki
 
-Po ukończeniu tej lekcji będziesz potrafił:
+Po zakończeniu tej lekcji będziesz w stanie:
 
-- Wyjaśnić, czym są Aplikacje MCP.
-- Kiedy używać Aplikacji MCP.
-- Tworzyć i integrować własne Aplikacje MCP.
+- Wyjaśnić, czym są aplikacje MCP.
+- Kiedy stosować aplikacje MCP.
+- Tworzyć i integrować własne aplikacje MCP.
 
-## Aplikacje MCP — jak to działa
+## Aplikacje MCP – jak to działa
 
-Idea Aplikacji MCP polega na dostarczeniu odpowiedzi, która zasadniczo jest komponentem do wyrenderowania. Taki komponent może mieć zarówno elementy wizualne, jak i interaktywność, np. kliknięcia przycisków, dane wejściowe od użytkownika i więcej. Zacznijmy od strony serwera i naszego serwera MCP. Aby stworzyć komponent aplikacji MCP, potrzebujesz stworzyć narzędzie, ale także zasób aplikacji. Te dwie części łączą się przez resourceUri.
+Idea aplikacji MCP polega na dostarczaniu odpowiedzi, która w zasadzie jest komponentem do renderowania. Taki komponent może mieć zarówno wizualizacje, jak i interaktywność, np. kliknięcia przycisków, dane wejściowe użytkownika i więcej. Zacznijmy od strony serwera i naszego serwera MCP. Aby stworzyć komponent aplikacji MCP, musisz stworzyć narzędzie, ale także zasób aplikacji. Te dwie części są połączone przez resourceUri.
 
-Oto przykład. Spróbujmy zwizualizować, co jest zaangażowane i która część co robi:
+Oto przykład. Spróbujmy zobrazować, co jest zaangażowane i które części co robią:
 
 ```text
 server.ts -- responsible for registering tools and the component as a UI component
@@ -27,7 +27,7 @@ src/
 mcp-app.html -- the user interface
 ```
 
-To wizualne przedstawienie opisuje architekturę tworzenia komponentu i jego logikę.
+Ten wizual opisuje architekturę tworzenia komponentu i jego logikę.
 
 ```mermaid
 flowchart LR
@@ -42,10 +42,10 @@ flowchart LR
   subgraph Parent[Strona nadrzędna]
     H[Aplikacja hosta]
     IFRAME[Kontener IFrame]
-    H -->|Wstrzyknij interfejs MCP App| IFRAME
+    H -->|Wstrzyknięcie interfejsu MCP App| IFRAME
   end
 
-  subgraph Frontend[Frontend: MCP App wewnątrz IFrame]
+  subgraph Frontend[Frontend: Aplikacja MCP wewnątrz IFrame]
     UI["Interfejs użytkownika: mcp-app.html"]
     EH["Obsługa zdarzeń: src/mcp-app.ts"]
     UI --> EH
@@ -54,16 +54,16 @@ flowchart LR
   IFRAME --> UI
   EH -->|Kliknięcie wywołuje narzędzie serwera| T
   T -->|Dane wyniku narzędzia| EH
-  EH -->|Wyślij wiadomość do strony nadrzędnej| H
+  EH -->|Wysyłanie wiadomości do strony nadrzędnej| H
 ```
-Spróbujmy teraz opisać odpowiedzialności backendu i frontendu odpowiednio.
+Spróbujmy teraz opisać odpowiedzialności odpowiednio dla backendu i frontendu.
 
 ### Backend
 
-Musimy tu osiągnąć dwie rzeczy:
+Musimy tu zrealizować dwie rzeczy:
 
-- Zarejestrować narzędzia, z którymi chcemy wchodzić w interakcję.
-- Zdefiniować komponent.
+- Rejestrację narzędzi, z którymi chcemy się komunikować.
+- Definicję komponentu.
 
 **Rejestracja narzędzia**
 
@@ -85,16 +85,16 @@ registerAppTool(
 
 ```
 
-Powyższy kod opisuje zachowanie, gdzie udostępnia narzędzie o nazwie `get-time`. Nie przyjmuje ono danych wejściowych, ale zwraca aktualny czas. Mamy możliwość zdefiniowania `inputSchema` dla narzędzi, które powinny przyjmować dane od użytkownika.
+Powyższy kod opisuje zachowanie, gdzie udostępnia narzędzie o nazwie `get-time`. Nie przyjmuje żadnych danych wejściowych, ale zwraca bieżący czas. Mamy możliwość zdefiniowania `inputSchema` dla narzędzi, które muszą przyjmować dane wejściowe od użytkownika.
 
 **Rejestracja komponentu**
 
-W tym samym pliku musimy też zarejestrować komponent:
+W tym samym pliku musimy także zarejestrować komponent:
 
 ```typescript
 const resourceUri = "ui://get-time/mcp-app.html";
 
-// Zarejestruj zasób, który zwraca dołączony HTML/JavaScript dla interfejsu użytkownika.
+// Zarejestruj zasób, który zwraca połączony HTML/JavaScript dla interfejsu użytkownika.
 registerAppResource(
   server,
   resourceUri,
@@ -112,18 +112,18 @@ registerAppResource(
 );
 ```
 
-Zwróć uwagę, jak wspominamy `resourceUri` łączące komponent z jego narzędziami. Interesująca jest też funkcja zwrotna, w której ładujemy plik UI i zwracamy komponent.
+Zwróć uwagę, jak wspominamy `resourceUri`, aby połączyć komponent z jego narzędziami. Interesujące jest również wywołanie zwrotne, gdzie ładujemy plik UI i zwracamy komponent.
 
 ### Frontend komponentu
 
-Podobnie jak backend, mamy tutaj dwie części:
+Podobnie jak backend, tutaj mamy dwie części:
 
 - Frontend napisany w czystym HTML.
-- Kod, który obsługuje zdarzenia i decyduje, co zrobić, np. wywołanie narzędzi lub wysyłanie wiadomości do okna nadrzędnego.
+- Kod obsługujący zdarzenia i co robić, np. wywołać narzędzia lub przesłać wiadomość do nadrzędnego okna.
 
 **Interfejs użytkownika**
 
-Spójrzmy na interfejs użytkownika.
+Przyjrzyjmy się interfejsowi użytkownika.
 
 ```html
 <!-- mcp-app.html -->
@@ -143,23 +143,23 @@ Spójrzmy na interfejs użytkownika.
 </html>
 ```
 
-**Obsługa zdarzeń**
+**Podłączanie zdarzeń**
 
-Ostatni element to obsługa zdarzeń. To oznacza, że identyfikujemy, która część naszego UI potrzebuje obsługi zdarzeń i co robić, gdy zdarzenia zostaną wywołane:
+Ostatnim elementem jest podłączenie zdarzeń. To znaczy, że wskazujemy, która część naszego UI wymaga obsługi zdarzeń i co robić, gdy zdarzenia zostaną wywołane:
 
 ```typescript
 // mcp-app.ts
 
 import { App } from "@modelcontextprotocol/ext-apps";
 
-// Pobierz referencje do elementów
+// Pobierz odniesienia do elementów
 const serverTimeEl = document.getElementById("server-time")!;
 const getTimeBtn = document.getElementById("get-time-btn")!;
 
 // Utwórz instancję aplikacji
 const app = new App({ name: "Get Time App", version: "1.0.0" });
 
-// Obsłuż wyniki narzędzia z serwera. Ustaw przed `app.connect()`, aby uniknąć
+// Obsłuż wyniki narzędzi z serwera. Ustaw przed `app.connect()`, aby uniknąć
 // utraty początkowego wyniku narzędzia.
 app.ontoolresult = (result) => {
   const time = result.content?.find((c) => c.type === "text")?.text;
@@ -168,7 +168,7 @@ app.ontoolresult = (result) => {
 
 // Podłącz kliknięcie przycisku
 getTimeBtn.addEventListener("click", async () => {
-  // `app.callServerTool()` pozwala interfejsowi użytkownika żądać świeżych danych z serwera
+  // `app.callServerTool()` pozwala interfejsowi żądać świeżych danych z serwera
   const result = await app.callServerTool({ name: "get-time", arguments: {} });
   const time = result.content?.find((c) => c.type === "text")?.text;
   serverTimeEl.textContent = time ?? "[ERROR]";
@@ -178,16 +178,16 @@ getTimeBtn.addEventListener("click", async () => {
 app.connect();
 ```
 
-Jak widzisz powyżej, to normalny kod do podłączania elementów DOM do zdarzeń. Warto wyróżnić wywołanie `callServerTool`, które kończy się wywołaniem narzędzia na backendzie.
+Jak widać powyżej, jest to normalny kod do podłączania elementów DOM do zdarzeń. Warto zwrócić uwagę na wywołanie `callServerTool`, które wywołuje narzędzie po stronie backendu.
 
-## Obsługa danych wejściowych od użytkownika
+## Obsługa danych wejściowych użytkownika
 
-Do tej pory widzieliśmy komponent, który ma przycisk, który po kliknięciu wywołuje narzędzie. Zobaczmy, czy możemy dodać więcej elementów UI, np. pole wejściowe, i czy możemy przesłać argumenty do narzędzia. Zaimplementujmy funkcję FAQ (Najczęściej Zadawane Pytania). Oto jak to powinno działać:
+Jak dotąd widzieliśmy komponent z przyciskiem, który po kliknięciu wywołuje narzędzie. Zobaczmy, czy możemy dodać więcej elementów UI, takich jak pole tekstowe, i czy możemy wysłać argumenty do narzędzia. Zaimplementujmy funkcjonalność FAQ. Oto, jak powinno to działać:
 
-- Powinien istnieć przycisk i pole wejściowe, gdzie użytkownik wpisuje słowo kluczowe do wyszukania, np. "Shipping" (wysyłka). Powinno to wywołać narzędzie na backendzie, które przeszuka dane FAQ.
-- Narzędzie, które obsługuje wspomniane wyszukiwanie FAQ.
+- Powinien być przycisk i element wejściowy, w którym użytkownik wpisuje słowo kluczowe do wyszukania, na przykład „Shipping” (Wysyłka). Powinno to wywołać narzędzie na backendzie, które przeszuka dane FAQ.
+- Narzędzie obsługujące wspomniane wyszukiwanie FAQ.
 
-Dodajmy najpierw potrzebne wsparcie do backendu:
+Najpierw dodajmy potrzebne wsparcie do backendu:
 
 ```typescript
 const faq: { [key: string]: string } = {
@@ -205,7 +205,7 @@ registerAppTool(
       inputSchema: zod.object({
         query: zod.string().default("shipping"),
       }),
-      _meta: { ui: { resourceUri: faqResourceUri } }, // Łączy to narzędzie z jego zasobem UI
+      _meta: { ui: { resourceUri: faqResourceUri } }, // Łączy to narzędzie z jego zasobem interfejsu użytkownika
     },
     async ({ query }) => {
       const answer: string = faq[query.toLowerCase()] || "Sorry, I don't have an answer for that.";
@@ -214,7 +214,7 @@ registerAppTool(
   );
 ```
 
-To, co widzimy, to jak wypełniamy `inputSchema` i dajemy mu schemat `zod` w ten sposób:
+Widzimy tutaj, jak wypełniamy `inputSchema` i podajemy mu schemat `zod` w ten sposób:
 
 ```typescript
 inputSchema: zod.object({
@@ -222,9 +222,9 @@ inputSchema: zod.object({
 })
 ```
 
-W powyższym schemacie deklarujemy, że mamy parametr wejściowy o nazwie `query`, który jest opcjonalny, z domyślną wartością "shipping".
+W powyższym schemacie deklarujemy, że mamy parametr wejściowy o nazwie `query`, który jest opcjonalny z domyślną wartością „shipping”.
 
-Dobrze, przejdźmy teraz do *mcp-app.html*, aby zobaczyć, jaki interfejs użytkownika musimy stworzyć:
+Dobrze, przejdźmy do *mcp-app.html*, aby zobaczyć, jaki UI musimy stworzyć:
 
 ```html
 <div class="faq">
@@ -235,7 +235,7 @@ Dobrze, przejdźmy teraz do *mcp-app.html*, aby zobaczyć, jaki interfejs użytk
   </div>
 ```
 
-Super, teraz mamy element wejściowy i przycisk. Przejdźmy do *mcp-app.ts*, aby podłączyć te zdarzenia:
+Świetnie, teraz mamy element wejściowy i przycisk. Przejdźmy teraz do *mcp-app.ts*, aby podłączyć te zdarzenia:
 
 ```typescript
 const getFaqBtn = document.getElementById("get-faq-btn")!;
@@ -251,26 +251,26 @@ getFaqBtn.addEventListener("click", async () => {
 
 W powyższym kodzie:
 
-- Tworzymy referencje do interesujących elementów UI.
-- Obsługujemy kliknięcie przycisku, aby odczytać wartość z pola wejściowego i wywołujemy `app.callServerTool()` z `name` i `arguments`, gdzie argumenty przekazują `query` jako wartość.
+- Tworzymy referencje do interaktywnych elementów UI.
+- Obsługujemy kliknięcie przycisku, aby pobrać wartość elementu wejściowego oraz wywołać `app.callServerTool()` z `name` i `arguments`, gdzie w argumentach przekazujemy wartość `query`.
 
-Co faktycznie się dzieje po wywołaniu `callServerTool`, to wysyła wiadomość do okna nadrzędnego, które ostatecznie wywołuje serwer MCP.
+W rzeczywistości wywołanie `callServerTool` wysyła wiadomość do nadrzędnego okna, które następnie wywołuje serwer MCP.
 
-### Wypróbuj to
+### Wypróbuj
 
-Po wypróbowaniu powinniśmy zobaczyć następujące:
+Wypróbowując to, powinniśmy teraz zobaczyć następujące:
 
 ![](../../../../translated_images/pl/faq.f78abe6b2cc68c83.webp)
 
-a tutaj przykładowe użycie z wpisanym "warranty" (gwarancja)
+A oto przykład z wpisanym tekstem „warranty” (gwarancja):
 
 ![](../../../../translated_images/pl/faq-input.3e276f1c3d7e061e.webp)
 
-Aby uruchomić ten kod, przejdź do [sekcji z kodem](./code/README.md)
+Aby uruchomić ten kod, przejdź do [sekcji Kod](./code/README.md)
 
 ## Testowanie w Visual Studio Code
 
-Visual Studio Code oferuje świetne wsparcie dla aplikacji MVP i jest prawdopodobnie jednym z najłatwiejszych sposobów testowania Twoich Aplikacji MCP. Aby używać Visual Studio Code, dodaj wpis serwera do *mcp.json* w ten sposób:
+Visual Studio Code ma świetne wsparcie dla aplikacji MCP i prawdopodobnie jest jednym z najprostszych sposobów testowania aplikacji MCP. Aby użyć Visual Studio Code, dodaj wpis serwera do *mcp.json* w ten sposób:
 
 ```json
 "my-mcp-server-7178eca7": {
@@ -279,29 +279,29 @@ Visual Studio Code oferuje świetne wsparcie dla aplikacji MVP i jest prawdopodo
   }
 ```
 
-Następnie uruchom serwer, powinieneś być w stanie komunikować się ze swoją aplikacją MCP przez okno czatu, jeśli masz zainstalowanego GitHub Copilota.
+Następnie uruchom serwer, powinieneś być w stanie komunikować się z aplikacją MCP przez okno rozmowy, pod warunkiem, że masz zainstalowanego GitHub Copilot.
 
-wywołując np. przez prompt "#get-faq":
+Możesz wywołać to za pomocą prompta, na przykład "#get-faq":
 
 ![Visual Studio run prompt](../../../../translated_images/pl/vscode-run.16cbab9436499f32.webp)
 
-i tak jak przy uruchomieniu w przeglądarce, renderuje się to samo w ten sposób:
+I tak jak w przeglądarce, renderuje się to w ten sam sposób:
 
 ![UI Visual Studio Code](../../../../translated_images/pl/vscode-ui.f2771dcfce25ca0f.webp)
 
 ## Zadanie
 
-Stwórz grę kamień, papier, nożyce. Powinna się składać z:
+Stwórz grę Papier-Kamień-Nożyce. Powinna składać się z następujących elementów:
 
 UI:
 
-- listy rozwijanej z opcjami
-- przycisku do zatwierdzenia wyboru
-- etykiety pokazującej, kto co wybrał i kto wygrał
+- lista rozwijana z opcjami
+- przycisk do zatwierdzenia wyboru
+- etykieta pokazująca, kto co wybrał i kto wygrał
 
 Serwer:
 
-- powinien mieć narzędzie kamień, papier, nożyce, które przyjmuje "choice" jako dane wejściowe. Powinno też wygenerować wybór komputera i określić zwycięzcę.
+- powinien mieć narzędzie papier-kamień-nożyce, które przyjmuje "choice" jako wejście. Powinno także wygenerować wybór komputera i określić zwycięzcę.
 
 ## Rozwiązanie
 
@@ -309,15 +309,15 @@ Serwer:
 
 ## Podsumowanie
 
-Poznaliśmy ten nowy paradygmat Aplikacji MCP. To nowy paradygmat, który pozwala serwerom MCP mieć opinię nie tylko na temat danych, ale także jak te dane powinny być prezentowane.
+Poznaliśmy ten nowy paradygmat aplikacji MCP. To nowy paradygmat, który pozwala serwerom MCP mieć zdanie nie tylko o danych, ale także o tym, jak te dane powinny być prezentowane.
 
-Dodatkowo dowiedzieliśmy się, że te Aplikacje MCP są hostowane w IFrame i aby komunikować się z serwerami MCP, muszą wysyłać wiadomości do nadrzędnej aplikacji webowej. Istnieje wiele bibliotek zarówno dla czystego JavaScript, React i innych, które ułatwiają tę komunikację.
+Dodatkowo, dowiedzieliśmy się, że aplikacje MCP są osadzane w IFrame i aby komunikować się z serwerami MCP, muszą wysyłać wiadomości do nadrzędnej aplikacji webowej. Istnieje kilka bibliotek dla czystego JavaScript i React oraz innych, które ułatwiają tę komunikację.
 
 ## Kluczowe wnioski
 
-Oto czego się nauczyłeś:
+Oto, czego się nauczyłeś:
 
-- Aplikacje MCP to nowy standard, który może być użyteczny, gdy chcesz dostarczyć zarówno dane, jak i funkcje UI.
+- Aplikacje MCP to nowy standard, który może być przydatny, gdy chcesz dostarczyć zarówno dane, jak i funkcje UI.
 - Tego typu aplikacje działają w IFrame ze względów bezpieczeństwa.
 
 ## Co dalej
@@ -328,5 +328,5 @@ Oto czego się nauczyłeś:
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Zastrzeżenie**:  
-Niniejszy dokument został przetłumaczony za pomocą usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Chociaż dokładamy starań, aby tłumaczenie było jak najbardziej precyzyjne, prosimy mieć na uwadze, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w jego języku źródłowym powinien być uznawany za źródło autorytatywne. W przypadku informacji o kluczowym znaczeniu zaleca się skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z użycia tego tłumaczenia.
+Niniejszy dokument został przetłumaczony przy użyciu usługi tłumaczeń AI [Co-op Translator](https://github.com/Azure/co-op-translator). Chociaż dokładamy starań, aby tłumaczenie było precyzyjne, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w języku źródłowym powinien być uznawany za źródło autorytatywne. W przypadku informacji krytycznych zalecane jest skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z użycia tego tłumaczenia.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,0 +1,890 @@
+{
+  "00-Introduction/README.md": {
+    "original_hash": "588d386126af00e97debce8e38cf87da",
+    "translation_date": "2026-04-06T16:23:38+00:00",
+    "source_file": "00-Introduction/README.md",
+    "language_code": "km"
+  },
+  "01-CoreConcepts/README.md": {
+    "original_hash": "bfb0a1f4d43f5735079e4ca77a6f4a53",
+    "translation_date": "2026-04-06T16:15:17+00:00",
+    "source_file": "01-CoreConcepts/README.md",
+    "language_code": "km"
+  },
+  "02-Security/README.md": {
+    "original_hash": "af06ead89d1af282d9898a2531a57842",
+    "translation_date": "2026-04-06T16:50:51+00:00",
+    "source_file": "02-Security/README.md",
+    "language_code": "km"
+  },
+  "02-Security/azure-content-safety-implementation.md": {
+    "original_hash": "83015d26c7efa6f0b982e01f90e2ef1c",
+    "translation_date": "2026-04-06T16:46:17+00:00",
+    "source_file": "02-Security/azure-content-safety-implementation.md",
+    "language_code": "km"
+  },
+  "02-Security/azure-content-safety.md": {
+    "original_hash": "51c5134333a072ebf647acad9a43b3e0",
+    "translation_date": "2026-04-06T16:45:51+00:00",
+    "source_file": "02-Security/azure-content-safety.md",
+    "language_code": "km"
+  },
+  "02-Security/mcp-best-practices.md": {
+    "original_hash": "27778a74451603fa5398790cbc9d402f",
+    "translation_date": "2026-04-06T16:45:22+00:00",
+    "source_file": "02-Security/mcp-best-practices.md",
+    "language_code": "km"
+  },
+  "02-Security/mcp-security-best-practices-2025.md": {
+    "original_hash": "606558c3e83fcb10f685e2f42062c6b4",
+    "translation_date": "2026-04-06T16:43:35+00:00",
+    "source_file": "02-Security/mcp-security-best-practices-2025.md",
+    "language_code": "km"
+  },
+  "02-Security/mcp-security-controls-2025.md": {
+    "original_hash": "9b2c76b3456098efc83a6fc167d54e2f",
+    "translation_date": "2026-04-06T16:52:25+00:00",
+    "source_file": "02-Security/mcp-security-controls-2025.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/01-first-server/README.md": {
+    "original_hash": "e7d34112ae90a02725e7dc2d0f92c65c",
+    "translation_date": "2026-04-11T20:04:14+00:00",
+    "source_file": "03-GettingStarted/01-first-server/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/01-first-server/solution/README.md": {
+    "original_hash": "4117a42f3e7baae859515f7b8b911e56",
+    "translation_date": "2026-04-06T17:54:22+00:00",
+    "source_file": "03-GettingStarted/01-first-server/solution/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/01-first-server/solution/dotnet/README.md": {
+    "original_hash": "92af35e8c34923031f3d228dffad9ebb",
+    "translation_date": "2026-04-06T17:55:00+00:00",
+    "source_file": "03-GettingStarted/01-first-server/solution/dotnet/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/01-first-server/solution/java/README.md": {
+    "original_hash": "ed9cab32cc67c12d8969b407aa47100a",
+    "translation_date": "2026-04-06T17:55:37+00:00",
+    "source_file": "03-GettingStarted/01-first-server/solution/java/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/01-first-server/solution/python/README.md": {
+    "original_hash": "d4c162484df410632550a4a357d40341",
+    "translation_date": "2026-04-06T17:54:43+00:00",
+    "source_file": "03-GettingStarted/01-first-server/solution/python/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/01-first-server/solution/rust/README.md": {
+    "original_hash": "154876082e29d53dc2a2615a65627464",
+    "translation_date": "2026-04-06T17:55:44+00:00",
+    "source_file": "03-GettingStarted/01-first-server/solution/rust/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/01-first-server/solution/typescript/README.md": {
+    "original_hash": "6ebbb78b04c9b1f6c2367c713524fc95",
+    "translation_date": "2026-04-06T17:55:15+00:00",
+    "source_file": "03-GettingStarted/01-first-server/solution/typescript/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/02-client/README.md": {
+    "original_hash": "735bf71472d1957535928b0085788889",
+    "translation_date": "2026-04-06T17:37:30+00:00",
+    "source_file": "03-GettingStarted/02-client/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/02-client/complete_examples.md": {
+    "original_hash": "8358c13b5b6877e475674697cdc1a904",
+    "translation_date": "2026-04-06T17:35:20+00:00",
+    "source_file": "03-GettingStarted/02-client/complete_examples.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/02-client/solution/README.md": {
+    "original_hash": "4d5e8e6f105e4f6e6953c0c14c99b394",
+    "translation_date": "2026-04-06T17:51:51+00:00",
+    "source_file": "03-GettingStarted/02-client/solution/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/02-client/solution/dotnet/README.md": {
+    "original_hash": "84857cd27c06e9e5cb8bded78ab9c05c",
+    "translation_date": "2026-04-06T17:52:12+00:00",
+    "source_file": "03-GettingStarted/02-client/solution/dotnet/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/02-client/solution/java/README.md": {
+    "original_hash": "7074b9f4c8cd147c1c10f569d8508c82",
+    "translation_date": "2026-04-06T17:52:50+00:00",
+    "source_file": "03-GettingStarted/02-client/solution/java/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/02-client/solution/python/README.md": {
+    "original_hash": "0ab9613fc9595f493847f91275859a18",
+    "translation_date": "2026-04-06T17:52:03+00:00",
+    "source_file": "03-GettingStarted/02-client/solution/python/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/02-client/solution/rust/README.md": {
+    "original_hash": "e3813a6ea19657d0cff0c2d1a1ffd324",
+    "translation_date": "2026-04-06T17:53:00+00:00",
+    "source_file": "03-GettingStarted/02-client/solution/rust/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/02-client/solution/typescript/README.md": {
+    "original_hash": "fae57a69c2b62cb7d92ff12da65f36c3",
+    "translation_date": "2026-04-06T17:52:22+00:00",
+    "source_file": "03-GettingStarted/02-client/solution/typescript/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/03-llm-client/README.md": {
+    "original_hash": "a9f961c28ecf88d4e37e06c6e78c22ea",
+    "translation_date": "2026-04-11T20:02:00+00:00",
+    "source_file": "03-GettingStarted/03-llm-client/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/03-llm-client/solution/README.md": {
+    "original_hash": "4117a42f3e7baae859515f7b8b911e56",
+    "translation_date": "2026-04-06T17:53:07+00:00",
+    "source_file": "03-GettingStarted/03-llm-client/solution/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/03-llm-client/solution/dotnet/README.md": {
+    "original_hash": "c40c54fa74ded9c223bc0ebfc8a2de7c",
+    "translation_date": "2026-04-06T17:53:29+00:00",
+    "source_file": "03-GettingStarted/03-llm-client/solution/dotnet/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/03-llm-client/solution/java/README.md": {
+    "original_hash": "ac2459c0d5cc823922e3d9240a95028c",
+    "translation_date": "2026-04-06T17:54:14+00:00",
+    "source_file": "03-GettingStarted/03-llm-client/solution/java/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/03-llm-client/solution/python/README.md": {
+    "original_hash": "24531f2b6b0f7fa3839accf4dc10088a",
+    "translation_date": "2026-04-06T17:53:16+00:00",
+    "source_file": "03-GettingStarted/03-llm-client/solution/python/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/03-llm-client/solution/typescript/README.md": {
+    "original_hash": "6d6315e03f591fb5a39be91da88585dc",
+    "translation_date": "2026-04-06T17:53:41+00:00",
+    "source_file": "03-GettingStarted/03-llm-client/solution/typescript/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/04-vscode/README.md": {
+    "original_hash": "d940b5e0af75e3a3a4d1c3179120d1d9",
+    "translation_date": "2026-04-06T17:22:42+00:00",
+    "source_file": "03-GettingStarted/04-vscode/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/04-vscode/solution/README.md": {
+    "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
+    "translation_date": "2026-04-06T17:47:08+00:00",
+    "source_file": "03-GettingStarted/04-vscode/solution/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/05-stdio-server/README.md": {
+    "original_hash": "a5463f3f7f4d157c641d2a0163283081",
+    "translation_date": "2026-04-12T07:49:01+00:00",
+    "source_file": "03-GettingStarted/05-stdio-server/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/05-stdio-server/solution/README.md": {
+    "original_hash": "e378b47e0361b7a9b0dab7a0306878c8",
+    "translation_date": "2026-04-06T17:42:44+00:00",
+    "source_file": "03-GettingStarted/05-stdio-server/solution/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/05-stdio-server/solution/dotnet/README.md": {
+    "original_hash": "69372338676e01a2c97f42f70fdfbf42",
+    "translation_date": "2026-04-06T17:43:35+00:00",
+    "source_file": "03-GettingStarted/05-stdio-server/solution/dotnet/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/05-stdio-server/solution/python/README.md": {
+    "original_hash": "68cd055621b3370948a5a1dff7bedc9a",
+    "translation_date": "2026-04-06T17:43:09+00:00",
+    "source_file": "03-GettingStarted/05-stdio-server/solution/python/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/05-stdio-server/solution/typescript/README.md": {
+    "original_hash": "9d799c4a30a8383e0a74af9153262972",
+    "translation_date": "2026-04-06T17:44:00+00:00",
+    "source_file": "03-GettingStarted/05-stdio-server/solution/typescript/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/06-http-streaming/README.md": {
+    "original_hash": "5f1383103523fa822e1fec7ef81904d5",
+    "translation_date": "2026-04-06T17:26:51+00:00",
+    "source_file": "03-GettingStarted/06-http-streaming/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/06-http-streaming/solution/README.md": {
+    "original_hash": "96dbf17071ab774595ab8777468f0c83",
+    "translation_date": "2026-04-06T17:47:16+00:00",
+    "source_file": "03-GettingStarted/06-http-streaming/solution/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/06-http-streaming/solution/dotnet/README.md": {
+    "original_hash": "dde4e32e4b55ef4962c411b39d2340a7",
+    "translation_date": "2026-04-06T17:47:59+00:00",
+    "source_file": "03-GettingStarted/06-http-streaming/solution/dotnet/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/06-http-streaming/solution/java/README.md": {
+    "original_hash": "acd4010e430da00946a154f62847a169",
+    "translation_date": "2026-04-06T17:48:35+00:00",
+    "source_file": "03-GettingStarted/06-http-streaming/solution/java/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/06-http-streaming/solution/python/README.md": {
+    "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
+    "translation_date": "2026-04-06T17:47:40+00:00",
+    "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/06-http-streaming/solution/rust/calculator-httpclient/README.md": {
+    "original_hash": "aa5122c6d9868b4b566586f27577ca47",
+    "translation_date": "2026-04-06T17:48:43+00:00",
+    "source_file": "03-GettingStarted/06-http-streaming/solution/rust/calculator-httpclient/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/06-http-streaming/solution/rust/calculator-httpserver/README.md": {
+    "original_hash": "6240e78bb87f91bece16f8742472aeef",
+    "translation_date": "2026-04-06T17:48:52+00:00",
+    "source_file": "03-GettingStarted/06-http-streaming/solution/rust/calculator-httpserver/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/07-aitk/README.md": {
+    "original_hash": "98bcd044860716da5819e31c152813b7",
+    "translation_date": "2026-04-06T17:32:55+00:00",
+    "source_file": "03-GettingStarted/07-aitk/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/07-aitk/solution/README.md": {
+    "original_hash": "e9490aedc71f99bc774af57b207a7adb",
+    "translation_date": "2026-04-06T17:51:44+00:00",
+    "source_file": "03-GettingStarted/07-aitk/solution/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/08-testing/README.md": {
+    "original_hash": "b6e64cb54c38599a0c4395828b6c4977",
+    "translation_date": "2026-04-11T20:02:27+00:00",
+    "source_file": "03-GettingStarted/08-testing/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/09-deployment/README.md": {
+    "original_hash": "53297ef48b822eb83a9318a67ec179c7",
+    "translation_date": "2026-04-06T17:31:33+00:00",
+    "source_file": "03-GettingStarted/09-deployment/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/10-advanced/README.md": {
+    "original_hash": "56f63542fb918dfad6c74a8004c65b52",
+    "translation_date": "2026-04-25T11:10:04+00:00",
+    "source_file": "03-GettingStarted/10-advanced/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/10-advanced/code/README.md": {
+    "original_hash": "7b2e74021ff41e9ad5892ed5e07cd72f",
+    "translation_date": "2026-04-06T17:46:02+00:00",
+    "source_file": "03-GettingStarted/10-advanced/code/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/10-advanced/code/python/README.md": {
+    "original_hash": "c3c28b090a54f59374677200e23a809e",
+    "translation_date": "2026-04-06T17:46:10+00:00",
+    "source_file": "03-GettingStarted/10-advanced/code/python/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/10-advanced/code/typescript/README.md": {
+    "original_hash": "b4662e0a75e645f3eeb4e69e5ba905f4",
+    "translation_date": "2026-04-06T17:46:23+00:00",
+    "source_file": "03-GettingStarted/10-advanced/code/typescript/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/11-simple-auth/README.md": {
+    "original_hash": "e192af3a119f24896a3a0ab93ef848fd",
+    "translation_date": "2026-04-11T19:59:26+00:00",
+    "source_file": "03-GettingStarted/11-simple-auth/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/11-simple-auth/code/README.md": {
+    "original_hash": "c2cdd08d4e120558270e3f534841fab8",
+    "translation_date": "2026-04-06T17:50:00+00:00",
+    "source_file": "03-GettingStarted/11-simple-auth/code/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/11-simple-auth/code/basic/python/README.md": {
+    "original_hash": "3f68294760a11dd3fdd175bd7f904a92",
+    "translation_date": "2026-04-06T17:50:23+00:00",
+    "source_file": "03-GettingStarted/11-simple-auth/code/basic/python/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/11-simple-auth/code/basic/typescript/README.md": {
+    "original_hash": "67cc24a3a2d1cdd7d395ed5e67be8557",
+    "translation_date": "2026-04-06T17:50:32+00:00",
+    "source_file": "03-GettingStarted/11-simple-auth/code/basic/typescript/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/11-simple-auth/code/jwt-lab/python/README.md": {
+    "original_hash": "cc12267d65091b22e39026fccfcaa22b",
+    "translation_date": "2026-04-06T17:50:41+00:00",
+    "source_file": "03-GettingStarted/11-simple-auth/code/jwt-lab/python/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/11-simple-auth/code/jwt-lab/typescript/README.md": {
+    "original_hash": "0f756f0d5b712847bd7d21b5e45c4166",
+    "translation_date": "2026-04-06T17:50:50+00:00",
+    "source_file": "03-GettingStarted/11-simple-auth/code/jwt-lab/typescript/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/11-simple-auth/solution/README.md": {
+    "original_hash": "d6d1fa9e4295d1dff64bed2da94039a0",
+    "translation_date": "2026-04-06T17:50:09+00:00",
+    "source_file": "03-GettingStarted/11-simple-auth/solution/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/11-simple-auth/solution/python/README.md": {
+    "original_hash": "fd28e690667b8ad84bb153cb025cfd73",
+    "translation_date": "2026-04-06T17:51:04+00:00",
+    "source_file": "03-GettingStarted/11-simple-auth/solution/python/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/11-simple-auth/solution/typescript/README.md": {
+    "original_hash": "3880d89fa60abc699e1a17a82ae514ef",
+    "translation_date": "2026-04-06T17:51:19+00:00",
+    "source_file": "03-GettingStarted/11-simple-auth/solution/typescript/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/12-mcp-hosts/README.md": {
+    "original_hash": "b599855566b62f05f1911dff44a95d45",
+    "translation_date": "2026-04-06T17:34:39+00:00",
+    "source_file": "03-GettingStarted/12-mcp-hosts/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/13-mcp-inspector/README.md": {
+    "original_hash": "05b26e71d6c1f69bad8d96fef17b9804",
+    "translation_date": "2026-04-06T17:21:16+00:00",
+    "source_file": "03-GettingStarted/13-mcp-inspector/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/14-sampling/README.md": {
+    "original_hash": "272288dd38ea2187dc13cac51a8901d8",
+    "translation_date": "2026-04-11T19:57:28+00:00",
+    "source_file": "03-GettingStarted/14-sampling/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/14-sampling/code/python/README.md": {
+    "original_hash": "c79c50505f77088459a1e5d5e2f4d9f3",
+    "translation_date": "2026-04-06T17:46:39+00:00",
+    "source_file": "03-GettingStarted/14-sampling/code/python/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/14-sampling/solution/README.md": {
+    "original_hash": "dbf52003446143c9f3411720b01098f8",
+    "translation_date": "2026-04-06T17:46:30+00:00",
+    "source_file": "03-GettingStarted/14-sampling/solution/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/14-sampling/solution/python/README.md": {
+    "original_hash": "d5d7d4dbe15156bf34623de165992d86",
+    "translation_date": "2026-04-06T17:46:51+00:00",
+    "source_file": "03-GettingStarted/14-sampling/solution/python/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/15-mcp-apps/README.md": {
+    "original_hash": "1cffea8068711496c655e78a8ef6be27",
+    "translation_date": "2026-04-11T20:00:10+00:00",
+    "source_file": "03-GettingStarted/15-mcp-apps/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/15-mcp-apps/assignment/README.md": {
+    "original_hash": "a43163957900ba6256f2d8239397506e",
+    "translation_date": "2026-04-06T17:49:06+00:00",
+    "source_file": "03-GettingStarted/15-mcp-apps/assignment/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/15-mcp-apps/assignment/typescript/README.md": {
+    "original_hash": "9822fdcfb5f29d8ab39f73c9b6706eef",
+    "translation_date": "2026-04-06T17:49:53+00:00",
+    "source_file": "03-GettingStarted/15-mcp-apps/assignment/typescript/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/15-mcp-apps/code/README.md": {
+    "original_hash": "dc5a940dc7cc9b977a72d53f5ca0d7d1",
+    "translation_date": "2026-04-06T17:48:58+00:00",
+    "source_file": "03-GettingStarted/15-mcp-apps/code/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/15-mcp-apps/code/typescript/README.md": {
+    "original_hash": "b1ceeae9c52e0455f1b8751d966ed36f",
+    "translation_date": "2026-04-06T17:49:44+00:00",
+    "source_file": "03-GettingStarted/15-mcp-apps/code/typescript/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/15-mcp-apps/ext-apps/examples/basic-host/README.md": {
+    "original_hash": "421d499abf7928d97873e3f27956cb46",
+    "translation_date": "2026-04-06T17:49:23+00:00",
+    "source_file": "03-GettingStarted/15-mcp-apps/ext-apps/examples/basic-host/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/README.md": {
+    "original_hash": "ca652b136fbc15422809dc3ac262a9a4",
+    "translation_date": "2026-04-06T16:20:28+00:00",
+    "source_file": "03-GettingStarted/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/samples/csharp/README.md": {
+    "original_hash": "882aae00f1d3f007e20d03b883f44afa",
+    "translation_date": "2026-04-06T17:45:13+00:00",
+    "source_file": "03-GettingStarted/samples/csharp/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/samples/java/calculator/README.md": {
+    "original_hash": "13231e9951b68efd9df8c56bd5cdb27e",
+    "translation_date": "2026-04-06T17:45:55+00:00",
+    "source_file": "03-GettingStarted/samples/java/calculator/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/samples/javascript/README.md": {
+    "original_hash": "0f27f8c14853621d982185e6bbdd1dc6",
+    "translation_date": "2026-04-06T17:44:35+00:00",
+    "source_file": "03-GettingStarted/samples/javascript/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/samples/python/README.md": {
+    "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
+    "translation_date": "2026-04-06T17:44:12+00:00",
+    "source_file": "03-GettingStarted/samples/python/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/samples/rust/README.md": {
+    "original_hash": "5ffc7f32ed12664b640175f27f0a997a",
+    "translation_date": "2026-04-06T17:44:44+00:00",
+    "source_file": "03-GettingStarted/samples/rust/README.md",
+    "language_code": "km"
+  },
+  "03-GettingStarted/samples/typescript/README.md": {
+    "original_hash": "d1fd6d5079bee9fe4f6ed9cfd8031d98",
+    "translation_date": "2026-04-06T17:44:24+00:00",
+    "source_file": "03-GettingStarted/samples/typescript/README.md",
+    "language_code": "km"
+  },
+  "04-PracticalImplementation/README.md": {
+    "original_hash": "72b2f7cf2fe6bf94f5f24de4109a9081",
+    "translation_date": "2026-04-06T16:25:07+00:00",
+    "source_file": "04-PracticalImplementation/README.md",
+    "language_code": "km"
+  },
+  "04-PracticalImplementation/pagination/README.md": {
+    "original_hash": "a80a17cc4ae59dee36ecd37658f4369f",
+    "translation_date": "2026-04-06T18:23:46+00:00",
+    "source_file": "04-PracticalImplementation/pagination/README.md",
+    "language_code": "km"
+  },
+  "04-PracticalImplementation/samples/csharp/README.md": {
+    "original_hash": "0bc7bd48f55f1565f1d95ccb2c16f728",
+    "translation_date": "2026-04-06T18:25:06+00:00",
+    "source_file": "04-PracticalImplementation/samples/csharp/README.md",
+    "language_code": "km"
+  },
+  "04-PracticalImplementation/samples/java/containerapp/README.md": {
+    "original_hash": "e5ea5e7582f70008ea9bec3b3820f20a",
+    "translation_date": "2026-04-06T18:25:48+00:00",
+    "source_file": "04-PracticalImplementation/samples/java/containerapp/README.md",
+    "language_code": "km"
+  },
+  "04-PracticalImplementation/samples/java/containerapp/src/main/resources/static/images/sequence-diagram.md": {
+    "original_hash": "0eaf9f1f29c86311674013505e9202f3",
+    "translation_date": "2026-04-06T18:26:23+00:00",
+    "source_file": "04-PracticalImplementation/samples/java/containerapp/src/main/resources/static/images/sequence-diagram.md",
+    "language_code": "km"
+  },
+  "04-PracticalImplementation/samples/javascript/README.md": {
+    "original_hash": "8f12fc94cee9ed16a5eddf9f51fba755",
+    "translation_date": "2026-04-06T18:24:35+00:00",
+    "source_file": "04-PracticalImplementation/samples/javascript/README.md",
+    "language_code": "km"
+  },
+  "04-PracticalImplementation/samples/python/README.md": {
+    "original_hash": "706b9b075dc484b73a053e6e9c709b4b",
+    "translation_date": "2026-04-06T18:24:11+00:00",
+    "source_file": "04-PracticalImplementation/samples/python/README.md",
+    "language_code": "km"
+  },
+  "04-PracticalImplementation/samples/typescript/README.md": {
+    "original_hash": "f7a8ffd07682d554929968dfc6ae2ecb",
+    "translation_date": "2026-04-06T18:24:23+00:00",
+    "source_file": "04-PracticalImplementation/samples/typescript/README.md",
+    "language_code": "km"
+  },
+  "05-AdvancedTopics/README.md": {
+    "original_hash": "8474d2b783c0cedd3c9e8f994afb96c3",
+    "translation_date": "2026-04-12T07:48:05+00:00",
+    "source_file": "05-AdvancedTopics/README.md",
+    "language_code": "km"
+  },
+  "05-AdvancedTopics/mcp-adversarial-agents/README.md": {
+    "original_hash": "99f63ae76f32e5943c8f00fdfb157940",
+    "translation_date": "2026-04-12T07:50:01+00:00",
+    "source_file": "05-AdvancedTopics/mcp-adversarial-agents/README.md",
+    "language_code": "km"
+  },
+  "05-AdvancedTopics/mcp-contextengineering/README.md": {
+    "original_hash": "fd169ca3071b81b5ee282e194bc823df",
+    "translation_date": "2026-04-06T18:01:14+00:00",
+    "source_file": "05-AdvancedTopics/mcp-contextengineering/README.md",
+    "language_code": "km"
+  },
+  "05-AdvancedTopics/mcp-foundry-agent-integration/README.md": {
+    "original_hash": "036e01c8c6ecc8610809d52e4a738641",
+    "translation_date": "2026-04-06T18:17:27+00:00",
+    "source_file": "05-AdvancedTopics/mcp-foundry-agent-integration/README.md",
+    "language_code": "km"
+  },
+  "05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_dotnet.ipynb": {
+    "original_hash": "0c65c99362f53cba7a7b7fe21eb9c680",
+    "translation_date": "2026-04-06T18:30:47+00:00",
+    "source_file": "05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_dotnet.ipynb",
+    "language_code": "km"
+  },
+  "05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_python.ipynb": {
+    "original_hash": "39a035fea0d10767dfcb0662bd3528fa",
+    "translation_date": "2026-04-06T18:29:57+00:00",
+    "source_file": "05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_python.ipynb",
+    "language_code": "km"
+  },
+  "05-AdvancedTopics/mcp-integration/README.md": {
+    "original_hash": "f84eaea79c8fa9ab318a494f40891814",
+    "translation_date": "2026-04-06T18:15:47+00:00",
+    "source_file": "05-AdvancedTopics/mcp-integration/README.md",
+    "language_code": "km"
+  },
+  "05-AdvancedTopics/mcp-multi-modality/README.md": {
+    "original_hash": "e1d142978227a4bfc468bb0accab62e2",
+    "translation_date": "2026-04-06T17:58:20+00:00",
+    "source_file": "05-AdvancedTopics/mcp-multi-modality/README.md",
+    "language_code": "km"
+  },
+  "05-AdvancedTopics/mcp-oauth2-demo/README.md": {
+    "original_hash": "2194a9b3b0c56e07a7acfe8f7ab1792c",
+    "translation_date": "2026-04-06T18:09:06+00:00",
+    "source_file": "05-AdvancedTopics/mcp-oauth2-demo/README.md",
+    "language_code": "km"
+  },
+  "05-AdvancedTopics/mcp-oauth2-demo/apimoauth.md": {
+    "original_hash": "32c9a4263be08f9050c8044bb26267c4",
+    "translation_date": "2026-04-06T18:08:34+00:00",
+    "source_file": "05-AdvancedTopics/mcp-oauth2-demo/apimoauth.md",
+    "language_code": "km"
+  },
+  "05-AdvancedTopics/mcp-protocol-features/README.md": {
+    "original_hash": "f52288bba5076c60be03f0b0bffd82f9",
+    "translation_date": "2026-04-06T18:15:07+00:00",
+    "source_file": "05-AdvancedTopics/mcp-protocol-features/README.md",
+    "language_code": "km"
+  },
+  "05-AdvancedTopics/mcp-realtimesearch/README.md": {
+    "original_hash": "333a03e51f90bdf3e6f1ba1694c73f36",
+    "translation_date": "2026-04-06T18:22:28+00:00",
+    "source_file": "05-AdvancedTopics/mcp-realtimesearch/README.md",
+    "language_code": "km"
+  },
+  "05-AdvancedTopics/mcp-realtimestreaming/README.md": {
+    "original_hash": "195f7287638b77a549acadd96c8f981c",
+    "translation_date": "2026-04-06T18:19:32+00:00",
+    "source_file": "05-AdvancedTopics/mcp-realtimestreaming/README.md",
+    "language_code": "km"
+  },
+  "05-AdvancedTopics/mcp-root-contexts/README.md": {
+    "original_hash": "ebdb86db46113f1cbd59ce4c74caaa79",
+    "translation_date": "2026-04-06T18:10:17+00:00",
+    "source_file": "05-AdvancedTopics/mcp-root-contexts/README.md",
+    "language_code": "km"
+  },
+  "05-AdvancedTopics/mcp-routing/README.md": {
+    "original_hash": "2f1b473818b5a6cc9a9bbf777fffa6d4",
+    "translation_date": "2026-04-06T18:13:52+00:00",
+    "source_file": "05-AdvancedTopics/mcp-routing/README.md",
+    "language_code": "km"
+  },
+  "05-AdvancedTopics/mcp-sampling/README.md": {
+    "original_hash": "193889b580c86bbb1e4f577114a5ce4e",
+    "translation_date": "2026-04-06T18:03:21+00:00",
+    "source_file": "05-AdvancedTopics/mcp-sampling/README.md",
+    "language_code": "km"
+  },
+  "05-AdvancedTopics/mcp-scaling/README.md": {
+    "original_hash": "7b4d8d17fc1f501468cce40c3651aed1",
+    "translation_date": "2026-04-06T18:16:39+00:00",
+    "source_file": "05-AdvancedTopics/mcp-scaling/README.md",
+    "language_code": "km"
+  },
+  "05-AdvancedTopics/mcp-security-entra/README.md": {
+    "original_hash": "6e562d7e5a77c8982da4aa8f762ad1d8",
+    "translation_date": "2026-04-06T18:07:09+00:00",
+    "source_file": "05-AdvancedTopics/mcp-security-entra/README.md",
+    "language_code": "km"
+  },
+  "05-AdvancedTopics/mcp-security/README.md": {
+    "original_hash": "997c7119766a69552e23d7d681316902",
+    "translation_date": "2026-04-06T17:57:39+00:00",
+    "source_file": "05-AdvancedTopics/mcp-security/README.md",
+    "language_code": "km"
+  },
+  "05-AdvancedTopics/mcp-transport/README.md": {
+    "original_hash": "cf3e88e4c0b2d9d65c7f300986bd8c6c",
+    "translation_date": "2026-04-06T18:04:38+00:00",
+    "source_file": "05-AdvancedTopics/mcp-transport/README.md",
+    "language_code": "km"
+  },
+  "05-AdvancedTopics/web-search-mcp/README.md": {
+    "original_hash": "151265c9a2124d7c53e04d16ee3fb73b",
+    "translation_date": "2026-04-06T18:12:29+00:00",
+    "source_file": "05-AdvancedTopics/web-search-mcp/README.md",
+    "language_code": "km"
+  },
+  "06-CommunityContributions/README.md": {
+    "original_hash": "0fdbf2c12b4a71a29bd2c82617772c8b",
+    "translation_date": "2026-04-06T16:19:34+00:00",
+    "source_file": "06-CommunityContributions/README.md",
+    "language_code": "km"
+  },
+  "07-LessonsfromEarlyAdoption/README.md": {
+    "original_hash": "1f1a3ea30f183812f7fd7319e794b6da",
+    "translation_date": "2026-04-06T16:32:45+00:00",
+    "source_file": "07-LessonsfromEarlyAdoption/README.md",
+    "language_code": "km"
+  },
+  "07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md": {
+    "original_hash": "c8f283730b5421082ddd26cc85c07831",
+    "translation_date": "2026-04-06T16:38:08+00:00",
+    "source_file": "07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md",
+    "language_code": "km"
+  },
+  "08-BestPractices/README.md": {
+    "original_hash": "d36abb0ebf2567a2950cce1f1d45c524",
+    "translation_date": "2026-04-06T16:29:28+00:00",
+    "source_file": "08-BestPractices/README.md",
+    "language_code": "km"
+  },
+  "09-CaseStudy/README.md": {
+    "original_hash": "b3537be55d599dbfdca7bda72eef7741",
+    "translation_date": "2026-04-06T16:41:57+00:00",
+    "source_file": "09-CaseStudy/README.md",
+    "language_code": "km"
+  },
+  "09-CaseStudy/UpdateADOItemsFromYT.md": {
+    "original_hash": "9f75ae7898161d39308fb1744a537ead",
+    "translation_date": "2026-04-06T16:40:42+00:00",
+    "source_file": "09-CaseStudy/UpdateADOItemsFromYT.md",
+    "language_code": "km"
+  },
+  "09-CaseStudy/apimsample.md": {
+    "original_hash": "b0027ab7fc24fa80b1561e2406a88b28",
+    "translation_date": "2026-04-06T16:39:02+00:00",
+    "source_file": "09-CaseStudy/apimsample.md",
+    "language_code": "km"
+  },
+  "09-CaseStudy/docs-mcp/README.md": {
+    "original_hash": "398caee74c8ce870afc054426aa862ca",
+    "translation_date": "2026-04-06T18:27:18+00:00",
+    "source_file": "09-CaseStudy/docs-mcp/README.md",
+    "language_code": "km"
+  },
+  "09-CaseStudy/docs-mcp/solution/README.md": {
+    "original_hash": "c8c1a74c74f6c2d42d511daf12d0b6c5",
+    "translation_date": "2026-04-06T18:27:26+00:00",
+    "source_file": "09-CaseStudy/docs-mcp/solution/README.md",
+    "language_code": "km"
+  },
+  "09-CaseStudy/docs-mcp/solution/python/README.md": {
+    "original_hash": "6ef6015d29b95f1cab97fb88a045a991",
+    "translation_date": "2026-04-06T18:28:45+00:00",
+    "source_file": "09-CaseStudy/docs-mcp/solution/python/README.md",
+    "language_code": "km"
+  },
+  "09-CaseStudy/docs-mcp/solution/scenario3/README.md": {
+    "original_hash": "db532b1ec386c9ce38c791653dc3c881",
+    "translation_date": "2026-04-06T18:28:05+00:00",
+    "source_file": "09-CaseStudy/docs-mcp/solution/scenario3/README.md",
+    "language_code": "km"
+  },
+  "09-CaseStudy/travelagentsample.md": {
+    "original_hash": "931353e1f351e3cc760ae28eed7bee01",
+    "translation_date": "2026-04-06T16:40:04+00:00",
+    "source_file": "09-CaseStudy/travelagentsample.md",
+    "language_code": "km"
+  },
+  "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md": {
+    "original_hash": "875a03de12b1173cba8abbf69ebc4303",
+    "translation_date": "2026-04-06T16:17:40+00:00",
+    "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md",
+    "language_code": "km"
+  },
+  "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab1/README.md": {
+    "original_hash": "2aa9dbc165e104764fa57e8a0d3f1c73",
+    "translation_date": "2026-04-06T17:12:35+00:00",
+    "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab1/README.md",
+    "language_code": "km"
+  },
+  "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab2/README.md": {
+    "original_hash": "a22b7dd11cd7690f99f9195877cafdc3",
+    "translation_date": "2026-04-06T17:16:06+00:00",
+    "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab2/README.md",
+    "language_code": "km"
+  },
+  "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/README.md": {
+    "original_hash": "dd8da3f75addcef453fe11f02a270217",
+    "translation_date": "2026-04-06T17:14:20+00:00",
+    "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/README.md",
+    "language_code": "km"
+  },
+  "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/README.md": {
+    "original_hash": "36560cdff958db93957d572b7256e196",
+    "translation_date": "2026-04-06T17:17:17+00:00",
+    "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/README.md",
+    "language_code": "km"
+  },
+  "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/README.md": {
+    "original_hash": "d738f17f991e4060fa8244417cde037c",
+    "translation_date": "2026-04-06T17:13:28+00:00",
+    "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/README.md",
+    "language_code": "km"
+  },
+  "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/README.md": {
+    "original_hash": "f2db2c0d33c96cd9139c3e5fab86ecf0",
+    "translation_date": "2026-04-06T17:16:43+00:00",
+    "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/README.md",
+    "language_code": "km"
+  },
+  "11-MCPServerHandsOnLabs/00-Introduction/README.md": {
+    "original_hash": "1d375ae049e52c89287d533daa4ba348",
+    "translation_date": "2026-04-06T17:06:44+00:00",
+    "source_file": "11-MCPServerHandsOnLabs/00-Introduction/README.md",
+    "language_code": "km"
+  },
+  "11-MCPServerHandsOnLabs/01-Architecture/README.md": {
+    "original_hash": "d72a1d9e9ad1a7cc8d40d05d546b5ca0",
+    "translation_date": "2026-04-06T17:04:17+00:00",
+    "source_file": "11-MCPServerHandsOnLabs/01-Architecture/README.md",
+    "language_code": "km"
+  },
+  "11-MCPServerHandsOnLabs/02-Security/README.md": {
+    "original_hash": "3b3c9c3f033e59a30c92b5895e0dc9fd",
+    "translation_date": "2026-04-06T17:10:23+00:00",
+    "source_file": "11-MCPServerHandsOnLabs/02-Security/README.md",
+    "language_code": "km"
+  },
+  "11-MCPServerHandsOnLabs/03-Setup/README.md": {
+    "original_hash": "ec1d9eafbe697ada412ee4fd102ce5b8",
+    "translation_date": "2026-04-06T17:00:39+00:00",
+    "source_file": "11-MCPServerHandsOnLabs/03-Setup/README.md",
+    "language_code": "km"
+  },
+  "11-MCPServerHandsOnLabs/04-Database/README.md": {
+    "original_hash": "9525f06ed164e10f29e0f6b055d4f3d3",
+    "translation_date": "2026-04-06T17:03:03+00:00",
+    "source_file": "11-MCPServerHandsOnLabs/04-Database/README.md",
+    "language_code": "km"
+  },
+  "11-MCPServerHandsOnLabs/05-MCP-Server/README.md": {
+    "original_hash": "240e365cc324d23a0033e5615b5feb5e",
+    "translation_date": "2026-04-06T17:09:12+00:00",
+    "source_file": "11-MCPServerHandsOnLabs/05-MCP-Server/README.md",
+    "language_code": "km"
+  },
+  "11-MCPServerHandsOnLabs/06-Tools/README.md": {
+    "original_hash": "5854af7b7c1cf4a5193eabdca60a4c19",
+    "translation_date": "2026-04-06T16:56:09+00:00",
+    "source_file": "11-MCPServerHandsOnLabs/06-Tools/README.md",
+    "language_code": "km"
+  },
+  "11-MCPServerHandsOnLabs/07-Semantic-Search/README.md": {
+    "original_hash": "772b18b1ca4fb34af68e12eb2f2defda",
+    "translation_date": "2026-04-06T17:07:48+00:00",
+    "source_file": "11-MCPServerHandsOnLabs/07-Semantic-Search/README.md",
+    "language_code": "km"
+  },
+  "11-MCPServerHandsOnLabs/08-Testing/README.md": {
+    "original_hash": "ad02c1223d7861292651ffce2f52bb28",
+    "translation_date": "2026-04-06T16:58:17+00:00",
+    "source_file": "11-MCPServerHandsOnLabs/08-Testing/README.md",
+    "language_code": "km"
+  },
+  "11-MCPServerHandsOnLabs/09-VS-Code/README.md": {
+    "original_hash": "769c9794759f416450dce77286e98f00",
+    "translation_date": "2026-04-06T17:05:16+00:00",
+    "source_file": "11-MCPServerHandsOnLabs/09-VS-Code/README.md",
+    "language_code": "km"
+  },
+  "11-MCPServerHandsOnLabs/10-Deployment/README.md": {
+    "original_hash": "42c4bda55924cd1d6964c1a01fe65f28",
+    "translation_date": "2026-04-06T17:11:09+00:00",
+    "source_file": "11-MCPServerHandsOnLabs/10-Deployment/README.md",
+    "language_code": "km"
+  },
+  "11-MCPServerHandsOnLabs/11-Monitoring/README.md": {
+    "original_hash": "a603abf726c7d946f0b0f05a3a42d8ac",
+    "translation_date": "2026-04-06T16:57:08+00:00",
+    "source_file": "11-MCPServerHandsOnLabs/11-Monitoring/README.md",
+    "language_code": "km"
+  },
+  "11-MCPServerHandsOnLabs/12-Best-Practices/README.md": {
+    "original_hash": "cf8b2ca0cea03c09428ae042938995c1",
+    "translation_date": "2026-04-06T17:02:09+00:00",
+    "source_file": "11-MCPServerHandsOnLabs/12-Best-Practices/README.md",
+    "language_code": "km"
+  },
+  "11-MCPServerHandsOnLabs/README.md": {
+    "original_hash": "8347ef1970813e6c9581733a1f825bd3",
+    "translation_date": "2026-04-06T16:16:19+00:00",
+    "source_file": "11-MCPServerHandsOnLabs/README.md",
+    "language_code": "km"
+  },
+  "AGENTS.md": {
+    "original_hash": "b9e8de81a14b77abeeb98a20b4c894d0",
+    "translation_date": "2026-04-06T16:01:49+00:00",
+    "source_file": "AGENTS.md",
+    "language_code": "km"
+  },
+  "CODE_OF_CONDUCT.md": {
+    "original_hash": "c06b12caf3c901eb3156e3dd5b0aea56",
+    "translation_date": "2026-04-06T16:02:01+00:00",
+    "source_file": "CODE_OF_CONDUCT.md",
+    "language_code": "km"
+  },
+  "README.md": {
+    "original_hash": "775abcbde87fa2a5333459a6b3516291",
+    "translation_date": "2026-04-12T07:46:29+00:00",
+    "source_file": "README.md",
+    "language_code": "km"
+  },
+  "SECURITY.md": {
+    "original_hash": "57f14126c1c6add76b3aef3844dfe4e3",
+    "translation_date": "2026-04-06T16:02:24+00:00",
+    "source_file": "SECURITY.md",
+    "language_code": "km"
+  },
+  "SUPPORT.md": {
+    "original_hash": "b3cffaf217113101e21eba532be806ea",
+    "translation_date": "2026-04-06T15:58:44+00:00",
+    "source_file": "SUPPORT.md",
+    "language_code": "km"
+  },
+  "changelog.md": {
+    "original_hash": "f21295ca9afa7266c4b84780e6e8aa5b",
+    "translation_date": "2026-04-12T07:44:05+00:00",
+    "source_file": "changelog.md",
+    "language_code": "km"
+  },
+  "study_guide.md": {
+    "original_hash": "db167884425a24ec8baa57bd8013b177",
+    "translation_date": "2026-04-12T07:47:33+00:00",
+    "source_file": "study_guide.md",
+    "language_code": "km"
+  }
+}
