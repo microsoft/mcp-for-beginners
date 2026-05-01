@@ -677,7 +677,7 @@ Las tareas envuelven solicitudes estándar MCP para habilitar patrones de ejecuc
 - **Participantes**: El ecosistema incluye anfitriones (aplicaciones IA), clientes (conectores de protocolo) y servidores (proveedores de capacidades)  
 - **Mecanismos de transporte**: Soporta STDIO (local) y HTTP transmisible con SSE opcional (remoto)  
 - **Primitivas centrales**: Los servidores exponen herramientas (funciones ejecutables), recursos (fuentes de datos) y mensajes predefinidos (plantillas)  
-- **Primitivas de cliente**: Los servidores pueden solicitar muestreos (completaciones LLM con soporte de llamadas a herramientas), elicitud (entrada usuario incluyendo modo URL), límites (delimitadores del sistema de archivos) y registro desde clientes  
+- **Primitivas de cliente**: Los servidores pueden solicitar muestreos (completaciones LLM con soporte de llamadas a herramientas), elicitación (entrada usuario incluyendo modo URL), límites (delimitadores del sistema de archivos) y registro desde clientes  
 - **Funciones experimentales**: Las tareas proporcionan envoltorios duraderos para operaciones de larga duración  
 - **Base del protocolo**: Construido sobre JSON-RPC 2.0 con versionado basado en fechas (actual: 2025-11-25)  
 - **Capacidades en tiempo real**: Soporta notificaciones para actualizaciones dinámicas y sincronización en tiempo real  

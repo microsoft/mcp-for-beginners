@@ -55,7 +55,7 @@ Sigue estos pasos para empezar a usar estos recursos:
 
 Piensa en MCP como un traductor universal para aplicaciones de IA, así como los puertos USB permiten conectar cualquier dispositivo a tu computadora, MCP permite que los modelos de IA se conecten a cualquier herramienta o servicio de manera estandarizada. Ya sea que estés construyendo tu primer chatbot o trabajando en flujos de trabajo complejos de IA, entender MCP te dará el poder de crear aplicaciones más capaces y flexibles.
 
-Este currículo está diseñado con paciencia y cuidado para tu proceso de aprendizaje. Comenzaremos con conceptos simples que ya conoces y gradualmente construiremos tu experiencia con práctica práctica utilizando tu lenguaje de programación favorito. Cada paso incluye explicaciones claras, ejemplos prácticos y mucho ánimo en el camino.
+Este currículo está diseñado con paciencia y cuidado para tu proceso de aprendizaje. Comenzaremos con conceptos simples que ya conoces y gradualmente construiremos tu experiencia con experiencia práctica utilizando tu lenguaje de programación favorito. Cada paso incluye explicaciones claras, ejemplos prácticos y mucho ánimo en el camino.
 
 Al completar este viaje, tendrás la confianza para construir tus propios servidores MCP, integrarlos con plataformas populares de IA y entender cómo esta tecnología está remodelando el futuro del desarrollo de IA. ¡Comencemos esta emocionante aventura juntos!
 

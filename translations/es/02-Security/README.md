@@ -71,7 +71,7 @@ La [Guía de Seguridad MCP Azure OWASP](https://microsoft.github.io/mcp-azure-se
 | **MCP06** | Inyección de prompts vía cargas contextuales | Azure AI Content Safety, Prompt Shields |
 | **MCP07** | Autenticación y autorización insuficientes | Azure Entra ID, OAuth 2.1 con PKCE |
 | **MCP08** | Falta de auditoría y telemetría | Azure Monitor, Application Insights |
-| **MCP09** | Servidores MCP "ombra" | Gobernanza en API Center, aislamiento de red |
+| **MCP09** | Servidores MCP "sombra" | Gobernanza en API Center, aislamiento de red |
 | **MCP10** | Inyección de contexto y sobre-exposición | Clasificación de datos, exposición mínima |
 
 ### Evolución de Autenticación MCP
