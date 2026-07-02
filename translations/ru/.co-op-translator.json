@@ -6,14 +6,20 @@
     "language_code": "ru"
   },
   "01-CoreConcepts/README.md": {
-    "original_hash": "bfb0a1f4d43f5735079e4ca77a6f4a53",
-    "translation_date": "2026-03-15T23:32:04+00:00",
+    "original_hash": "a4bfc2f4d5a879b99141e2948de64a12",
+    "translation_date": "2026-07-02T15:16:35+00:00",
     "source_file": "01-CoreConcepts/README.md",
     "language_code": "ru"
   },
+  "01-CoreConcepts/mcp-2026-07-28-release-candidate.md": {
+    "original_hash": "1c6b345da067b7fac2b16362a05d3ce3",
+    "translation_date": "2026-07-02T15:49:02+00:00",
+    "source_file": "01-CoreConcepts/mcp-2026-07-28-release-candidate.md",
+    "language_code": "ru"
+  },
   "02-Security/README.md": {
-    "original_hash": "50fdf805206539d10e18ac760ebb219f",
-    "translation_date": "2026-06-08T09:09:44+00:00",
+    "original_hash": "422e906ace337954152cfb5aa32b4217",
+    "translation_date": "2026-07-02T15:19:13+00:00",
     "source_file": "02-Security/README.md",
     "language_code": "ru"
   },
@@ -181,7 +187,7 @@
   },
   "03-GettingStarted/04-vscode/solution/README.md": {
     "original_hash": "5ef8f5821c1a04f7b1fc4f15098ecab8",
-    "translation_date": "2025-07-13T19:38:50+00:00",
+    "translation_date": "2026-07-02T15:26:45+00:00",
     "source_file": "03-GettingStarted/04-vscode/solution/README.md",
     "language_code": "ru"
   },
@@ -216,8 +222,8 @@
     "language_code": "ru"
   },
   "03-GettingStarted/06-http-streaming/README.md": {
-    "original_hash": "0ae0bc20f9ecf18b1a3bd70485e56066",
-    "translation_date": "2026-05-19T10:05:39+00:00",
+    "original_hash": "f8d3d88350363416018b63662bbebb11",
+    "translation_date": "2026-07-02T15:24:11+00:00",
     "source_file": "03-GettingStarted/06-http-streaming/README.md",
     "language_code": "ru"
   },
@@ -306,8 +312,8 @@
     "language_code": "ru"
   },
   "03-GettingStarted/11-simple-auth/README.md": {
-    "original_hash": "e192af3a119f24896a3a0ab93ef848fd",
-    "translation_date": "2026-04-11T21:44:47+00:00",
+    "original_hash": "919ddbc7182045d54da7b2a6b88e0550",
+    "translation_date": "2026-07-02T15:26:37+00:00",
     "source_file": "03-GettingStarted/11-simple-auth/README.md",
     "language_code": "ru"
   },
@@ -372,8 +378,8 @@
     "language_code": "ru"
   },
   "03-GettingStarted/14-sampling/README.md": {
-    "original_hash": "f69890af1caa9dd7cfbf5d7722672426",
-    "translation_date": "2026-06-17T01:58:37+00:00",
+    "original_hash": "7d3d913f76e09d7d394e7018bb62d1b8",
+    "translation_date": "2026-07-02T15:24:42+00:00",
     "source_file": "03-GettingStarted/14-sampling/README.md",
     "language_code": "ru"
   },
@@ -499,7 +505,7 @@
   },
   "04-PracticalImplementation/samples/java/containerapp/src/main/resources/static/images/sequence-diagram.md": {
     "original_hash": "0eaf9f1f29c86311674013505e9202f3",
-    "translation_date": "2025-07-13T23:22:06+00:00",
+    "translation_date": "2026-07-02T15:22:58+00:00",
     "source_file": "04-PracticalImplementation/samples/java/containerapp/src/main/resources/static/images/sequence-diagram.md",
     "language_code": "ru"
   },
@@ -522,8 +528,8 @@
     "language_code": "ru"
   },
   "05-AdvancedTopics/README.md": {
-    "original_hash": "d0c5b9a4cc7e04922cdea25fb76ed877",
-    "translation_date": "2026-06-17T01:45:59+00:00",
+    "original_hash": "1630894019299d50f2c91321198b4e37",
+    "translation_date": "2026-07-02T15:14:25+00:00",
     "source_file": "05-AdvancedTopics/README.md",
     "language_code": "ru"
   },
@@ -570,8 +576,8 @@
     "language_code": "ru"
   },
   "05-AdvancedTopics/mcp-protocol-features/README.md": {
-    "original_hash": "f52288bba5076c60be03f0b0bffd82f9",
-    "translation_date": "2026-02-09T09:38:49+00:00",
+    "original_hash": "f8b3c22dc220fbf58bec5df006c9452f",
+    "translation_date": "2026-07-02T15:21:30+00:00",
     "source_file": "05-AdvancedTopics/mcp-protocol-features/README.md",
     "language_code": "ru"
   },
@@ -595,7 +601,7 @@
   },
   "05-AdvancedTopics/mcp-routing/README.md": {
     "original_hash": "2f1b473818b5a6cc9a9bbf777fffa6d4",
-    "translation_date": "2025-07-14T21:44:12+00:00",
+    "translation_date": "2026-07-02T15:20:36+00:00",
     "source_file": "05-AdvancedTopics/mcp-routing/README.md",
     "language_code": "ru"
   },
@@ -618,14 +624,14 @@
     "language_code": "ru"
   },
   "05-AdvancedTopics/mcp-security/README.md": {
-    "original_hash": "bd56dea4fcf8b1a5b686370f30bee8d6",
-    "translation_date": "2026-06-17T01:56:23+00:00",
+    "original_hash": "6e9e5ad6f15c7442add8eb92bba13453",
+    "translation_date": "2026-07-02T15:22:49+00:00",
     "source_file": "05-AdvancedTopics/mcp-security/README.md",
     "language_code": "ru"
   },
   "05-AdvancedTopics/mcp-transport/README.md": {
-    "original_hash": "c6eb6f13d1ff41dadb1460dd9e71972e",
-    "translation_date": "2026-06-17T01:53:44+00:00",
+    "original_hash": "f0bda0c5c6c21a756a7b626628c76aaf",
+    "translation_date": "2026-07-02T15:19:57+00:00",
     "source_file": "05-AdvancedTopics/mcp-transport/README.md",
     "language_code": "ru"
   },
@@ -858,8 +864,8 @@
     "language_code": "ru"
   },
   "README.md": {
-    "original_hash": "cd2e44a0f3306fc3b7625ce89d6c99bb",
-    "translation_date": "2026-06-25T01:09:04+00:00",
+    "original_hash": "8c09e6bcaa3074688645c3e5fcaa8681",
+    "translation_date": "2026-07-02T15:09:14+00:00",
     "source_file": "README.md",
     "language_code": "ru"
   },
@@ -876,14 +882,14 @@
     "language_code": "ru"
   },
   "changelog.md": {
-    "original_hash": "b9407ed4e52f36c623c69d5547498abd",
-    "translation_date": "2026-06-25T01:12:17+00:00",
+    "original_hash": "20f1f1af027c13294024fe6a9ea90e37",
+    "translation_date": "2026-07-02T15:12:46+00:00",
     "source_file": "changelog.md",
     "language_code": "ru"
   },
   "study_guide.md": {
-    "original_hash": "b3ba42e9b4c53f808820579d1729cfcb",
-    "translation_date": "2026-06-25T01:13:06+00:00",
+    "original_hash": "480f76e9b15e39d582fb276da670c983",
+    "translation_date": "2026-07-02T15:13:52+00:00",
     "source_file": "study_guide.md",
     "language_code": "ru"
   }

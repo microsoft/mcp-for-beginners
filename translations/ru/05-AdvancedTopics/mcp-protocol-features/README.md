@@ -1,21 +1,23 @@
-# Глубокое погружение в функции протокола MCP
+# Глубокое исследование возможностей протокола MCP
 
-Это руководство исследует расширенные функции протокола MCP, выходящие за рамки базовой обработки инструментов и ресурсов. Понимание этих функций поможет вам создавать более надежные, удобные для пользователей и готовые к производству серверы MCP.
+Это руководство исследует расширенные возможности протокола MCP, выходящие за рамки базовой работы с инструментами и ресурсами. Понимание этих функций помогает создавать более надежные, удобные для пользователя и готовые к промышленному использованию серверы MCP.
+
+> **Взгляд вперед:** кандидат на выпуск от `2026-07-28` объявляет устаревшим примитив Logging (в пользу `stderr` для stdio и OpenTelemetry для структурированной наблюдаемости), удаляет модель `initialize`/сессии, упоминаемую ниже в разделе События жизненного цикла сервера, и переносит экспериментальную функцию Tasks в отдельное расширение Tasks с новым жизненным циклом `tasks/get`/`tasks/update`/`tasks/cancel`. См. [Что меняется в MCP: кандидат на выпуск 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
 
 ## Рассмотренные функции
 
-1. **Уведомления о прогрессе** — Отчет о ходе длительных операций  
-2. **Отмена запросов** — Позволяет клиентам отменять текущие запросы  
+1. **Уведомления о прогрессе** — Отчет о ходе выполнения длительных операций  
+2. **Отмена запросов** — Позволяет клиентам отменять выполняющиеся запросы  
 3. **Шаблоны ресурсов** — Динамические URI ресурсов с параметрами  
-4. **События жизненного цикла сервера** — Корректная инициализация и завершение работы  
+4. **События жизненного цикла сервера** — Правильная инициализация и завершение работы  
 5. **Управление логированием** — Конфигурация логирования на стороне сервера  
-6. **Шаблоны обработки ошибок** — Последовательные ответы об ошибках
+6. **Обработка ошибок** — Согласованные ответы об ошибках
 
 ---
 
 ## 1. Уведомления о прогрессе
 
-Для операций, которые требуют времени (обработка данных, загрузка файлов, вызовы API), уведомления о прогрессе информируют пользователей.
+Для операций, которые занимают время (обработка данных, загрузка файлов, вызовы API), уведомления о прогрессе информируют пользователей.
 
 ### Как это работает
 
@@ -30,6 +32,7 @@ sequenceDiagram
     Server-->>Client: уведомление: прогресс 90%
     Server->>Client: результат (завершено)
 ```
+
 ### Реализация на Python
 
 ```python
@@ -43,13 +46,13 @@ app = Server("progress-server")
 async def process_large_file(file_path: str, ctx) -> str:
     """Process a large file with progress updates."""
     
-    # Получить размер файла для вычисления прогресса
+    # Получить размер файла для расчёта прогресса
     file_size = os.path.getsize(file_path)
     processed = 0
     
     with open(file_path, 'rb') as f:
         while chunk := f.read(8192):
-            # Обработать часть
+            # Обработать фрагмент
             await process_chunk(chunk)
             processed += len(chunk)
             
@@ -77,7 +80,7 @@ async def batch_operation(items: list[str], ctx) -> str:
         result = await process_item(item)
         results.append(result)
         
-        # Сообщить о прогрессе после каждого элемента
+        # Сообщать о прогрессе после каждого элемента
         await ctx.send_notification(
             ProgressNotification(
                 progressToken=ctx.request_id,
@@ -106,7 +109,7 @@ server.setRequestHandler(CallToolSchema, async (request, extra) => {
       const result = await processItem(items[i]);
       results.push(result);
       
-      // Отправить уведомление о прогрессе
+      // Отправить уведомление о ходе выполнения
       await extra.sendNotification({
         method: "notifications/progress",
         params: {
@@ -123,7 +126,7 @@ server.setRequestHandler(CallToolSchema, async (request, extra) => {
 });
 ```
 
-### Обработка на клиенте (Python)
+### Обработка на стороне клиента (Python)
 
 ```python
 async def handle_progress(notification):
@@ -134,7 +137,7 @@ async def handle_progress(notification):
 # Зарегистрировать обработчик
 session.on_notification("notifications/progress", handle_progress)
 
-# Вызвать инструмент (обновления прогресса будут поступать через обработчик)
+# Вызов инструмента (обновления прогресса будут поступать через обработчик)
 result = await session.call_tool("process_large_file", {"file_path": "/data/large.csv"})
 ```
 
@@ -160,16 +163,16 @@ async def long_running_search(query: str, ctx) -> str:
     results = []
     
     try:
-        for page in range(100):  # Поиск по многим страницам
-            # Проверить, был ли запрошен отказ
+        for page in range(100):  # Поиск по множеству страниц
+            # Проверить, был ли запрос на отмену
             if ctx.is_cancelled:
                 raise CancelledError("Search cancelled by user")
             
-            # Симулировать поиск по странице
+            # Симуляция поиска по странице
             page_results = await search_page(query, page)
             results.extend(page_results)
             
-            # Небольшая задержка позволяет проверять отмену
+            # Небольшая задержка позволяет выполнять проверки отмены
             await asyncio.sleep(0.1)
             
     except CancelledError:
@@ -364,7 +367,7 @@ server.setRequestHandler(ReadResourceSchema, async (request) => {
 
 ## 4. События жизненного цикла сервера
 
-Корректная обработка инициализации и завершения работы обеспечивает правильное управление ресурсами.
+Правильная обработка инициализации и завершения работы обеспечивает чистое управление ресурсами.
 
 ### Управление жизненным циклом на Python
 
@@ -374,7 +377,7 @@ from contextlib import asynccontextmanager
 
 app = Server("lifecycle-server")
 
-# Общие данные
+# Общий статус
 db_connection = None
 cache = None
 
@@ -389,7 +392,7 @@ async def lifespan(server: Server):
     cache = await create_cache_client()
     print("✅ Resources initialized")
     
-    yield  # Здесь работает сервер
+    yield  # Здесь запускается сервер
     
     # Завершение работы
     print("🛑 Server shutting down...")
@@ -452,7 +455,7 @@ class ManagedServer {
   }
 }
 
-// Использование с корректным завершением работы
+// Использование с плавным завершением работы
 const server = new ManagedServer();
 
 process.on('SIGINT', async () => {
@@ -467,7 +470,7 @@ await server.start();
 
 ## 5. Управление логированием
 
-MCP поддерживает уровни логирования на стороне сервера, которыми могут управлять клиенты.
+MCP поддерживает уровни логирования на стороне сервера, которые клиенты могут контролировать.
 
 ### Реализация уровней логирования
 
@@ -478,7 +481,7 @@ import logging
 
 app = Server("logging-server")
 
-# Преобразовать уровни MCP в уровни логирования Python
+# Отобразить уровни MCP на уровни логирования Python
 LEVEL_MAP = {
     LoggingLevel.DEBUG: logging.DEBUG,
     LoggingLevel.INFO: logging.INFO,
@@ -509,20 +512,20 @@ async def debug_operation(data: str) -> str:
         raise
 ```
 
-### Отправка лог-сообщений клиенту
+### Отправка сообщений логов клиенту
 
 ```python
 @app.tool()
 async def complex_operation(input: str, ctx) -> str:
     """Operation that logs to client."""
     
-    # Отправить уведомление о журнале клиенту
+    # Отправить уведомление о логе клиенту
     await ctx.send_log(
         level="info",
         message=f"Starting complex operation with input: {input}"
     )
     
-    # Выполняется работа...
+    # Выполнить работу...
     result = await do_work(input)
     
     await ctx.send_log(
@@ -535,9 +538,9 @@ async def complex_operation(input: str, ctx) -> str:
 
 ---
 
-## 6. Шаблоны обработки ошибок
+## 6. Обработка ошибок
 
-Единообразная обработка ошибок улучшает отладку и опыт пользователя.
+Согласованная обработка ошибок улучшает отладку и опыт пользователя.
 
 ### Коды ошибок MCP
 
@@ -601,12 +604,12 @@ async def safe_operation(input: str) -> str:
     except TimeoutError as e:
         raise InternalError(f"Operation timed out: {e}")
     except Exception as e:
-        # Записать непредвиденные ошибки
+        # Записать неожиданные ошибки
         logger.exception(f"Unexpected error in safe_operation")
         raise InternalError(f"Unexpected error: {type(e).__name__}")
 ```
 
-### Обработка ошибок в TypeScript
+### Обработка ошибок на TypeScript
 
 ```typescript
 import { McpError, ErrorCode } from "@modelcontextprotocol/sdk/types.js";
@@ -655,17 +658,17 @@ server.setRequestHandler(CallToolSchema, async (request) => {
 
 ## Экспериментальные функции (MCP 2025-11-25)
 
-Эти функции отмечены как экспериментальные в спецификации:
+Эти функции в спецификации отмечены как экспериментальные:
 
 ### Задачи (длительные операции)
 
 ```python
-# Задачи позволяют отслеживать длительно выполняющиеся операции со состоянием
+# Задачи позволяют отслеживать длительные операции с состоянием
 @app.task()
 async def training_task(model_id: str, data_path: str, ctx) -> str:
     """Long-running ML training task."""
     
-    # Сообщить о начале задачи
+    # Отчет о запуске задачи
     await ctx.report_status("running", "Initializing training...")
     
     # Цикл обучения
@@ -689,7 +692,7 @@ async def training_task(model_id: str, data_path: str, ctx) -> str:
 @app.tool(
     annotations={
         "destructive": False,      # Не изменяет данные
-        "idempotent": True,        # Безопасно повторять попытку
+        "idempotent": True,        # Можно безопасно повторить
         "timeout_seconds": 30,     # Ожидаемая максимальная продолжительность
         "requires_approval": False # Не требуется одобрение пользователя
     }
@@ -705,7 +708,7 @@ async def safe_query(query: str) -> str:
 
 - [Модуль 8 - Лучшие практики](../../08-BestPractices/README.md)  
 - [5.14 - Инженерия контекста](../mcp-contextengineering/README.md)  
-- [Изменения в спецификации MCP](https://spec.modelcontextprotocol.io/)  
+- [История изменений спецификации MCP](https://spec.modelcontextprotocol.io/)
 
 ---
 
@@ -713,12 +716,12 @@ async def safe_query(query: str) -> str:
 
 - [Спецификация MCP 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)  
 - [Коды ошибок JSON-RPC 2.0](https://www.jsonrpc.org/specification#error_object)  
-- [Примеры Python SDK](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples)  
-- [Примеры TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk/tree/main/examples)
+- [Примеры SDK на Python](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples)  
+- [Примеры SDK на TypeScript](https://github.com/modelcontextprotocol/typescript-sdk/tree/main/examples)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Отказ от ответственности**:  
-Этот документ был переведен с помощью сервиса автоматического перевода [Co-op Translator](https://github.com/Azure/co-op-translator). Несмотря на наши усилия обеспечить точность, имейте в виду, что автоматический перевод может содержать ошибки или неточности. Оригинальный документ на его исходном языке следует считать авторитетным источником. Для критически важной информации рекомендуется использовать профессиональный человеческий перевод. Мы не несем ответственности за любые недоразумения или неверные толкования, возникшие в результате использования этого перевода.
+**Отказ от ответственности**:
+Этот документ был переведен с использованием сервиса машинного перевода [Co-op Translator](https://github.com/Azure/co-op-translator). Несмотря на наши усилия по обеспечению точности, имейте в виду, что автоматический перевод может содержать ошибки или неточности. Оригинальный документ на его исходном языке следует считать авторитетным источником. Для получения критически важной информации рекомендуется обратиться к профессиональному человеческому переводу. Мы не несем ответственности за любые недоразумения или неправильные толкования, возникшие в результате использования этого перевода.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

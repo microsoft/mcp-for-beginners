@@ -1,21 +1,23 @@
-# الغوص العميق في ميزات بروتوكول MCP
+# نظرة متعمقة على ميزات بروتوكول MCP
 
-يستعرض هذا الدليل ميزات متقدمة في بروتوكول MCP تتجاوز التعامل الأساسي مع الأدوات والموارد. يساعد فهم هذه الميزات على بناء خوادم MCP أكثر قوة وسهولة في الاستخدام وجاهزة للإنتاج.
+يركز هذا الدليل على ميزات متقدمة في بروتوكول MCP تتجاوز التعامل الأساسي مع الأدوات والموارد. فهم هذه الميزات يساعدك في بناء خوادم MCP أكثر قوة وسهولة في الاستخدام وجاهزة للإنتاج.
 
-## الميزات المغطاة
+> **نظرة مستقبلية:** نسخة المرشح للإصدار بتاريخ `2026-07-28` تلغي العنصر الأساسي للتسجيل (مفضلة استخدام `stderr` لـ stdio و OpenTelemetry للمراقبة المنظمة)، وتزيل نموذج `initialize`/الجلسة المشار إليه في أحداث دورة حياة الخادم أدناه، وتنقل ميزة المهام التجريبية إلى امتداد مهام مخصص مع دورة حياة جديدة لـ `tasks/get`/`tasks/update`/`tasks/cancel`. راجع [ما الذي يتغير في MCP: نسخة المرشح لإصدار 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
 
-1. **إشعارات التقدم** - الإبلاغ عن التقدم للعمليات طويلة الأمد  
+## الميزات التي تم تغطيتها
+
+1. **إشعارات التقدم** - تقارير التقدم للعمليات طويلة الأمد  
 2. **إلغاء الطلبات** - السماح للعملاء بإلغاء الطلبات الجارية  
-3. **قوالب الموارد** - عناوين URI ديناميكية للموارد مع معلمات  
-4. **أحداث دورة حياة الخادم** - التهيئة والإيقاف السليم  
-5. **التحكم في السجلات** - تكوين السجلات على جانب الخادم  
-6. **أنماط معالجة الأخطاء** - ردود أخطاء متسقة  
+3. **قوالب الموارد** - عناوين URI الديناميكية مع معلمات  
+4. **أحداث دورة حياة الخادم** - التهيئة والإيقاف الصحيحان  
+5. **التحكم في التسجيل** - تكوين التسجيل على الخادم  
+6. **أنماط معالجة الأخطاء** - استجابات أخطاء متسقة
 
 ---
 
 ## 1. إشعارات التقدم
 
-للعمليات التي تستغرق وقتاً (معالجة البيانات، تنزيل الملفات، استدعاءات API)، تحافظ إشعارات التقدم على إعلام المستخدمين.
+لعمليات تستغرق وقتًا (معالجة بيانات، تنزيل ملفات، مكالمات API)، تبقي إشعارات التقدم المستخدمين على اطلاع.
 
 ### كيف يعمل
 
@@ -25,12 +27,14 @@ sequenceDiagram
     participant Server
     
     Client->>Server: tools/call (عملية طويلة)
-    Server-->>Client: إشعار: التقدم 10%
-    Server-->>Client: إشعار: التقدم 50%
-    Server-->>Client: إشعار: التقدم 90%
-    Server->>Client: النتيجة (مكتملة)
-```  
-### تنفيذ بايثون
+    Server-->>Client: إشعار: التقدم ١٠٪
+    Server-->>Client: إشعار: التقدم ٥٠٪
+    Server-->>Client: إشعار: التقدم ٩٠٪
+    Server->>Client: النتيجة (اكتمال)
+```
+
+
+### تنفيذ في بايثون
 
 ```python
 from mcp.server import Server, NotificationOptions
@@ -89,8 +93,9 @@ async def batch_operation(items: list[str], ctx) -> str:
     
     return f"Completed {total} items"
 ```
-  
-### تنفيذ TypeScript
+
+
+### تنفيذ في تايبسكريبت
 
 ```typescript
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
@@ -122,8 +127,9 @@ server.setRequestHandler(CallToolSchema, async (request, extra) => {
   }
 });
 ```
-  
-### التعامل من جهة العميل (بايثون)
+
+
+### التعامل على جهة العميل (بايثون)
 
 ```python
 async def handle_progress(notification):
@@ -134,17 +140,17 @@ async def handle_progress(notification):
 # تسجيل المعالج
 session.on_notification("notifications/progress", handle_progress)
 
-# استدعاء الأداة (ستصل تحديثات التقدم عبر المعالج)
+# استدعاء الأداة (سيتم استقبال تحديثات التقدم عبر المعالج)
 result = await session.call_tool("process_large_file", {"file_path": "/data/large.csv"})
 ```
-  
+
 ---
 
 ## 2. إلغاء الطلبات
 
-السماح للعملاء بإلغاء الطلبات التي لم تعد مطلوبة أو تستغرق وقتاً طويلاً.
+السماح للعملاء بإلغاء الطلبات التي لم تعد ضرورية أو تستغرق وقتًا طويلاً.
 
-### تنفيذ بايثون
+### تنفيذ في بايثون
 
 ```python
 from mcp.server import Server
@@ -165,7 +171,7 @@ async def long_running_search(query: str, ctx) -> str:
             if ctx.is_cancelled:
                 raise CancelledError("Search cancelled by user")
             
-            # محاكاة البحث في الصفحة
+            # محاكاة بحث الصفحة
             page_results = await search_page(query, page)
             results.extend(page_results)
             
@@ -173,7 +179,7 @@ async def long_running_search(query: str, ctx) -> str:
             await asyncio.sleep(0.1)
             
     except CancelledError:
-        # إرجاع نتائج جزئية
+        # إرجاع النتائج الجزئية
         return f"Cancelled. Found {len(results)} results before cancellation."
     
     return f"Found {len(results)} total results"
@@ -197,7 +203,8 @@ async def download_file(url: str, ctx) -> str:
             
             return f"Downloaded {downloaded} bytes"
 ```
-  
+
+
 ### تنفيذ سياق الإلغاء
 
 ```python
@@ -231,10 +238,11 @@ class CancellableContext:
             )
             raise CancelledError(self._cancel_reason)
         except asyncio.TimeoutError:
-            pass  # انتهاء المهلة العادية، استمر
+            pass  # انقضاء مهلة عادي، متابعة
 ```
-  
-### الإلغاء من جهة العميل
+
+
+### الإلغاء على جهة العميل
 
 ```python
 import asyncio
@@ -257,12 +265,12 @@ async def search_with_timeout(session, query, timeout=30):
         })
         return "Search timed out"
 ```
-  
+
 ---
 
 ## 3. قوالب الموارد
 
-تتيح قوالب الموارد بناء URI ديناميكي مع معلمات، مفيدة لواجهات برمجة التطبيقات وقواعد البيانات.
+تسمح قوالب الموارد بإنشاء URI ديناميكي مع معلمات، مفيد لـ APIs وقواعد البيانات.
 
 ### تعريف القوالب
 
@@ -300,7 +308,7 @@ async def list_templates() -> list[ResourceTemplate]:
 async def read_resource(uri: str) -> str:
     """Read resource, expanding template parameters."""
     
-    # تحليل عنوان URI لاستخراج المعاملات
+    # تحليل URI لاستخراج المعلمات
     if uri.startswith("db://users/"):
         user_id = uri.split("/")[-1]
         return await fetch_user(user_id)
@@ -316,8 +324,9 @@ async def read_resource(uri: str) -> str:
     
     raise ValueError(f"Unknown resource URI: {uri}")
 ```
-  
-### تنفيذ TypeScript
+
+
+### تنفيذ في تايبسكريبت
 
 ```typescript
 server.setRequestHandler(ListResourceTemplatesSchema, async () => {
@@ -342,7 +351,7 @@ server.setRequestHandler(ListResourceTemplatesSchema, async () => {
 server.setRequestHandler(ReadResourceSchema, async (request) => {
   const uri = request.params.uri;
   
-  // تحليل معرف مشكلة GitHub
+  // تحليل معرف المشكلة في GitHub
   const githubMatch = uri.match(/^github:\/\/repos\/([^/]+)\/([^/]+)\/issues\/(\d+)$/);
   if (githubMatch) {
     const [_, owner, repo, issueNumber] = githubMatch;
@@ -359,12 +368,12 @@ server.setRequestHandler(ReadResourceSchema, async (request) => {
   throw new Error(`Unknown resource URI: ${uri}`);
 });
 ```
-  
+
 ---
 
 ## 4. أحداث دورة حياة الخادم
 
-التعامل الصحيح مع التهيئة والإيقاف يضمن إدارة نظيفة للموارد.
+التهيئة والإيقاف الصحيحان يضمنان إدارة نظيفة للموارد.
 
 ### إدارة دورة الحياة في بايثون
 
@@ -405,8 +414,9 @@ async def query_database(sql: str) -> str:
     result = await db_connection.execute(sql)
     return str(result)
 ```
-  
-### دورة الحياة في TypeScript
+
+
+### دورة الحياة في تايبسكريبت
 
 ```typescript
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
@@ -446,13 +456,13 @@ class ManagedServer {
   
   private setupHandlers() {
     this.server.setRequestHandler(CallToolSchema, async (request) => {
-      // استخدم this.dbConnection بأمان
+      // استخدام this.dbConnection بأمان
       // ...
     });
   }
 }
 
-// الاستخدام مع الإيقاف الآمن
+// الاستخدام مع إيقاف التشغيل السلس
 const server = new ManagedServer();
 
 process.on('SIGINT', async () => {
@@ -462,12 +472,12 @@ process.on('SIGINT', async () => {
 
 await server.start();
 ```
-  
+
 ---
 
-## 5. التحكم في السجلات
+## 5. التحكم في التسجيل
 
-يدعم MCP مستويات تسجيل على جانب الخادم يمكن للعملاء التحكم بها.
+يدعم MCP مستويات التسجيل على جهة الخادم التي يمكن للعملاء التحكم فيها.
 
 ### تنفيذ مستويات التسجيل
 
@@ -478,7 +488,7 @@ import logging
 
 app = Server("logging-server")
 
-# قم بربط مستويات MCP بمستويات تسجيل الدخول في بايثون
+# خرائط مستويات MCP إلى مستويات تسجيل بايثون
 LEVEL_MAP = {
     LoggingLevel.DEBUG: logging.DEBUG,
     LoggingLevel.INFO: logging.INFO,
@@ -508,21 +518,22 @@ async def debug_operation(data: str) -> str:
         logger.error(f"Processing failed: {e}")
         raise
 ```
-  
-### إرسال رسائل السجل إلى العميل
+
+
+### إرسال رسائل التسجيل إلى العميل
 
 ```python
 @app.tool()
 async def complex_operation(input: str, ctx) -> str:
     """Operation that logs to client."""
     
-    # إرسال إشعار السجل إلى العميل
+    # إرسال إعلام السجل إلى العميل
     await ctx.send_log(
         level="info",
         message=f"Starting complex operation with input: {input}"
     )
     
-    # يقوم بالعمل...
+    # القيام بالعمل...
     result = await do_work(input)
     
     await ctx.send_log(
@@ -532,12 +543,12 @@ async def complex_operation(input: str, ctx) -> str:
     
     return result
 ```
-  
+
 ---
 
 ## 6. أنماط معالجة الأخطاء
 
-تعالج الأخطاء بأسلوب متناسق مما يحسن من التصحيح وتجربة المستخدم.
+تعامل متسق مع الأخطاء يحسن من عملية التصحيح وتجربة المستخدم.
 
 ### رموز أخطاء MCP
 
@@ -568,8 +579,9 @@ class InternalError(ToolError):
     def __init__(self, message: str):
         super().__init__(ErrorCode.INTERNAL_ERROR, message)
 ```
-  
-### ردود الأخطاء المهيكلة
+
+
+### استجابات الأخطاء المنظمة
 
 ```python
 @app.tool()
@@ -605,8 +617,9 @@ async def safe_operation(input: str) -> str:
         logger.exception(f"Unexpected error in safe_operation")
         raise InternalError(f"Unexpected error: {type(e).__name__}")
 ```
-  
-### معالجة الأخطاء في TypeScript
+
+
+### معالجة الأخطاء في تايبسكريبت
 
 ```typescript
 import { McpError, ErrorCode } from "@modelcontextprotocol/sdk/types.js";
@@ -633,7 +646,7 @@ server.setRequestHandler(CallToolSchema, async (request) => {
     
   } catch (error) {
     if (error instanceof McpError) {
-      throw error;  // خطأ MCP موجود بالفعل
+      throw error;  // خطأ MCP بالفعل
     }
     
     // تحويل الأخطاء الأخرى
@@ -650,12 +663,12 @@ server.setRequestHandler(CallToolSchema, async (request) => {
   }
 });
 ```
-  
+
 ---
 
 ## الميزات التجريبية (MCP 2025-11-25)
 
-تم تمييز هذه الميزات كتجريبية في المواصفة:
+تم وضع هذه الميزات كميزات تجريبية في المواصفة:
 
 ### المهام (العمليات طويلة الأمد)
 
@@ -665,10 +678,10 @@ server.setRequestHandler(CallToolSchema, async (request) => {
 async def training_task(model_id: str, data_path: str, ctx) -> str:
     """Long-running ML training task."""
     
-    # الإبلاغ عن بدء المهمة
+    # تقرير بدء المهمة
     await ctx.report_status("running", "Initializing training...")
     
-    # حلقة التدريب
+    # دورة التدريب
     for epoch in range(100):
         await train_epoch(model_id, data_path, epoch)
         await ctx.report_status(
@@ -681,31 +694,32 @@ async def training_task(model_id: str, data_path: str, ctx) -> str:
     await ctx.report_status("completed", "Training finished")
     return f"Model {model_id} trained successfully"
 ```
-  
-### تعليمات الأدوات
+
+
+### توضيحات الأدوات
 
 ```python
 # توفر التعليقات التوضيحية بيانات وصفية حول سلوك الأداة
 @app.tool(
     annotations={
-        "destructive": False,      # لا يُعدّل البيانات
-        "idempotent": True,        # آمن للمحاولة مرة أخرى
+        "destructive": False,      # لا يقوم بتعديل البيانات
+        "idempotent": True,        # آمن لإعادة المحاولة
         "timeout_seconds": 30,     # أقصى مدة متوقعة
-        "requires_approval": False # لا حاجة لموافقة المستخدم
+        "requires_approval": False # لا تحتاج إلى موافقة المستخدم
     }
 )
 async def safe_query(query: str) -> str:
     """A read-only database query tool."""
     return await execute_read_query(query)
 ```
-  
+
 ---
 
 ## ماذا بعد
 
 - [الوحدة 8 - أفضل الممارسات](../../08-BestPractices/README.md)  
 - [5.14 - هندسة السياق](../mcp-contextengineering/README.md)  
-- [سجل تغييرات مواصفة MCP](https://spec.modelcontextprotocol.io/)  
+- [سجل تغييرات مواصفة MCP](https://spec.modelcontextprotocol.io/)
 
 ---
 
@@ -713,12 +727,12 @@ async def safe_query(query: str) -> str:
 
 - [مواصفة MCP 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)  
 - [رموز أخطاء JSON-RPC 2.0](https://www.jsonrpc.org/specification#error_object)  
-- [أمثلة SDK بايثون](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples)  
-- [أمثلة SDK TypeScript](https://github.com/modelcontextprotocol/typescript-sdk/tree/main/examples)
+- [أمثلة SDK لبايثون](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples)  
+- [أمثلة SDK لتايبسكريبت](https://github.com/modelcontextprotocol/typescript-sdk/tree/main/examples)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**إخلاء المسؤولية**:
-تمت ترجمة هذا المستند باستخدام خدمة الترجمة بالذكاء الاصطناعي [Co-op Translator](https://github.com/Azure/co-op-translator). بينما نسعى لتحقيق الدقة، يُرجى العلم بأن الترجمات الآلية قد تحتوي على أخطاء أو عدم دقة. يجب اعتبار المستند الأصلي بلغته الأصلية المصدر الرسمي والمعتمد. للمعلومات الهامة، يُنصح بالترجمة الاحترافية البشرية. نحن غير مسؤولين عن أي سوء فهم أو تفسير ناتج عن استخدام هذه الترجمة.
+**تنويه**:
+تمت ترجمة هذا المستند باستخدام خدمة الترجمة بالذكاء الاصطناعي [Co-op Translator](https://github.com/Azure/co-op-translator). بينما نسعى للدقة، يرجى العلم أن الترجمات الآلية قد تحتوي على أخطاء أو عدم دقة. يجب اعتبار المستند الأصلي بلغته الأصلية المصدر الرسمي والمعتمد. للمعلومات الهامة، يُنصح بالاستعانة بترجمة بشرية محترفة. نحن غير مسؤولين عن أي سوء فهم أو تفسير ناتج عن استخدام هذه الترجمة.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,21 +1,23 @@
-# MCP-Protokollfunktionen im Detail
+# MCP Protokoll Features im Detail
 
-Diese Anleitung untersucht fortgeschrittene MCP-Protokollfunktionen, die über die grundlegende Handhabung von Tools und Ressourcen hinausgehen. Das Verständnis dieser Funktionen hilft Ihnen, robustere, benutzerfreundlichere und produktionsreife MCP-Server zu erstellen.
+Diese Anleitung untersucht erweiterte MCP-Protokollfunktionen, die über die grundlegende Handhabung von Tools und Ressourcen hinausgehen. Das Verständnis dieser Funktionen hilft Ihnen, robustere, benutzerfreundlichere und produktionsreife MCP-Server zu erstellen.
+
+> **Ausblick:** Der Release-Kandidat `2026-07-28` depreziert die Logging-Primitive (zugunsten von `stderr` für stdio und OpenTelemetry für strukturierte Beobachtbarkeit), entfernt das unten unter Server Lifecycle Events erwähnte `initialize`/Sitzungsmodell und verschiebt die experimentelle Tasks-Funktion in eine eigene Tasks-Erweiterung mit einem neuen `tasks/get`/`tasks/update`/`tasks/cancel`-Lebenszyklus. Siehe [Was sich im MCP ändert: Der Release-Kandidat 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
 
 ## Abgedeckte Funktionen
 
-1. **Fortschrittsbenachrichtigungen** – Fortschritt bei langwierigen Operationen melden  
-2. **Anfrageabbruch** – Clients erlauben, laufende Anfragen abzubrechen  
-3. **Ressourcenvorlagen** – Dynamische Ressourcen-URIs mit Parametern  
-4. **Server-Lifecycle-Ereignisse** – Ordentliche Initialisierung und Herunterfahren  
-5. **Logging-Steuerung** – Serverseitige Protokollierungskonfiguration  
-6. **Fehlerbehandlungsmuster** – Einheitliche Fehlerantworten
+1. **Fortschrittsbenachrichtigungen** – Melden den Fortschritt bei lang laufenden Operationen
+2. **Anfrageabbruch** – Ermöglichen es Clients, laufende Anfragen abzubrechen
+3. **Ressourcenvorlagen** – Dynamische Ressourcen-URIs mit Parametern
+4. **Server Lifecycle Events** – Korrekte Initialisierung und Herunterfahren
+5. **Logging-Steuerung** – Logging-Konfiguration auf Serverseite
+6. **Fehlerbehandlungsmuster** – Konsistente Fehlerantworten
 
 ---
 
 ## 1. Fortschrittsbenachrichtigungen
 
-Für Operationen, die Zeit in Anspruch nehmen (Datenverarbeitung, Dateidownloads, API-Aufrufe), halten Fortschrittsbenachrichtigungen die Benutzer informiert.
+Für Vorgänge, die Zeit in Anspruch nehmen (Datenverarbeitung, Dateidownloads, API-Aufrufe), halten Fortschrittsbenachrichtigungen die Benutzer informiert.
 
 ### Funktionsweise
 
@@ -30,6 +32,7 @@ sequenceDiagram
     Server-->>Client: Benachrichtigung: Fortschritt 90%
     Server->>Client: Ergebnis (abgeschlossen)
 ```
+
 ### Python-Implementierung
 
 ```python
@@ -43,17 +46,17 @@ app = Server("progress-server")
 async def process_large_file(file_path: str, ctx) -> str:
     """Process a large file with progress updates."""
     
-    # Dateigröße für Fortschrittsberechnung ermitteln
+    # Dateigröße für die Fortschrittsberechnung ermitteln
     file_size = os.path.getsize(file_path)
     processed = 0
     
     with open(file_path, 'rb') as f:
         while chunk := f.read(8192):
-            # Verarbeite Datenabschnitt
+            # Chunk verarbeiten
             await process_chunk(chunk)
             processed += len(chunk)
             
-            # Sende Fortschrittsbenachrichtigung
+            # Fortschrittsbenachrichtigung senden
             progress = (processed / file_size) * 100
             await ctx.send_notification(
                 ProgressNotification(
@@ -123,7 +126,7 @@ server.setRequestHandler(CallToolSchema, async (request, extra) => {
 });
 ```
 
-### Client-Verarbeitung (Python)
+### Client-Behandlung (Python)
 
 ```python
 async def handle_progress(notification):
@@ -131,10 +134,10 @@ async def handle_progress(notification):
     params = notification.params
     print(f"Progress: {params.progress}/{params.total} - {params.message}")
 
-# Handler registrieren
+# Registriere Handler
 session.on_notification("notifications/progress", handle_progress)
 
-# Werkzeug aufrufen (Fortschrittsaktualisierungen werden über den Handler eintreffen)
+# Rufe Werkzeug auf (Fortschrittsupdates werden über den Handler empfangen)
 result = await session.call_tool("process_large_file", {"file_path": "/data/large.csv"})
 ```
 
@@ -142,7 +145,7 @@ result = await session.call_tool("process_large_file", {"file_path": "/data/larg
 
 ## 2. Anfrageabbruch
 
-Clients ermöglichen, Anfragen abzubrechen, die nicht mehr benötigt werden oder zu lange dauern.
+Ermöglichen Sie es Clients, Anfragen abzubrechen, die nicht mehr benötigt werden oder zu lange dauern.
 
 ### Python-Implementierung
 
@@ -160,8 +163,8 @@ async def long_running_search(query: str, ctx) -> str:
     results = []
     
     try:
-        for page in range(100):  # Durch viele Seiten suchen
-            # Überprüfen, ob eine Stornierung angefordert wurde
+        for page in range(100):  # Durchsuche viele Seiten
+            # Prüfen, ob eine Stornierung angefordert wurde
             if ctx.is_cancelled:
                 raise CancelledError("Search cancelled by user")
             
@@ -231,10 +234,10 @@ class CancellableContext:
             )
             raise CancelledError(self._cancel_reason)
         except asyncio.TimeoutError:
-            pass  # Normale Zeitüberschreitung, fortfahren
+            pass  # Normaler Timeout, fortfahren
 ```
 
-### Client-seitiger Abbruch
+### Clientseitiger Abbruch
 
 ```python
 import asyncio
@@ -250,7 +253,7 @@ async def search_with_timeout(session, query, timeout=30):
         result = await asyncio.wait_for(task, timeout=timeout)
         return result
     except asyncio.TimeoutError:
-        # Anfrage zur Stornierung
+        # Stornierungsanfrage
         await session.send_notification({
             "method": "notifications/cancelled",
             "params": {"requestId": task.request_id, "reason": "Timeout"}
@@ -262,9 +265,9 @@ async def search_with_timeout(session, query, timeout=30):
 
 ## 3. Ressourcenvorlagen
 
-Ressourcenvorlagen erlauben die dynamische Konstruktion von URIs mit Parametern, nützlich für APIs und Datenbanken.
+Ressourcenvorlagen erlauben die dynamische URI-Erstellung mit Parametern und sind nützlich für APIs und Datenbanken.
 
-### Vorlagen definieren
+### Definition von Vorlagen
 
 ```python
 from mcp.server import Server
@@ -362,11 +365,11 @@ server.setRequestHandler(ReadResourceSchema, async (request) => {
 
 ---
 
-## 4. Server-Lifecycle-Ereignisse
+## 4. Server Lifecycle Events
 
-Ordentliche Initialisierung und Herunterfahren gewährleisten sauberes Ressourcenmanagement.
+Eine korrekte Initialisierung und Herunterfahren sorgt für eine saubere Ressourcenverwaltung.
 
-### Python-Lifecycle-Management
+### Python Lifecycle-Management
 
 ```python
 from mcp.server import Server
@@ -406,7 +409,7 @@ async def query_database(sql: str) -> str:
     return str(result)
 ```
 
-### TypeScript-Lifecycle
+### TypeScript Lifecycle
 
 ```typescript
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
@@ -467,9 +470,9 @@ await server.start();
 
 ## 5. Logging-Steuerung
 
-MCP unterstützt serverseitige Protokollierungsstufen, die Clients steuern können.
+MCP unterstützt Logging-Ebenen auf Serverseite, die Clients steuern können.
 
-### Implementierung von Protokollstufen
+### Implementierung von Logging-Leveln
 
 ```python
 from mcp.server import Server
@@ -478,7 +481,7 @@ import logging
 
 app = Server("logging-server")
 
-# Ordne MCP-Ebenen den Python-Protokollierungsebenen zu
+# Ordne MCP-Stufen Python-Protokollierungsstufen zu
 LEVEL_MAP = {
     LoggingLevel.DEBUG: logging.DEBUG,
     LoggingLevel.INFO: logging.INFO,
@@ -509,7 +512,7 @@ async def debug_operation(data: str) -> str:
         raise
 ```
 
-### Senden von Protokollnachrichten an den Client
+### Senden von Log-Nachrichten an den Client
 
 ```python
 @app.tool()
@@ -522,7 +525,7 @@ async def complex_operation(input: str, ctx) -> str:
         message=f"Starting complex operation with input: {input}"
     )
     
-    # Arbeit ausführen...
+    # Arbeite...
     result = await do_work(input)
     
     await ctx.send_log(
@@ -537,7 +540,7 @@ async def complex_operation(input: str, ctx) -> str:
 
 ## 6. Fehlerbehandlungsmuster
 
-Konsequente Fehlerbehandlung verbessert Debugging und Benutzererfahrung.
+Konsistente Fehlerbehandlung verbessert das Debugging und die Benutzererfahrung.
 
 ### MCP-Fehlercodes
 
@@ -653,14 +656,14 @@ server.setRequestHandler(CallToolSchema, async (request) => {
 
 ---
 
-## Experimentelle Funktionen (MCP 2025-11-25)
+## Experimentelle Features (MCP 2025-11-25)
 
 Diese Funktionen sind in der Spezifikation als experimentell gekennzeichnet:
 
-### Tasks (Langlaufende Operationen)
+### Tasks (Lang laufende Operationen)
 
 ```python
-# Aufgaben ermöglichen das Verfolgen lang andauernder Operationen mit Zustand
+# Aufgaben ermöglichen das Nachverfolgen von lang andauernden Operationen mit Status
 @app.task()
 async def training_task(model_id: str, data_path: str, ctx) -> str:
     """Long-running ML training task."""
@@ -682,13 +685,13 @@ async def training_task(model_id: str, data_path: str, ctx) -> str:
     return f"Model {model_id} trained successfully"
 ```
 
-### Werkzeug-Anmerkungen
+### Tool-Anmerkungen
 
 ```python
-# Anmerkungen bieten Metadaten zum Verhalten des Werkzeugs
+# Anmerkungen liefern Metadaten über das Verhalten des Werkzeugs
 @app.tool(
     annotations={
-        "destructive": False,      # Verändert keine Daten
+        "destructive": False,      # Ändert keine Daten
         "idempotent": True,        # Sicher zum erneuten Versuch
         "timeout_seconds": 30,     # Erwartete maximale Dauer
         "requires_approval": False # Keine Benutzerfreigabe erforderlich
@@ -703,22 +706,22 @@ async def safe_query(query: str) -> str:
 
 ## Was kommt als Nächstes
 
-- [Modul 8 - Best Practices](../../08-BestPractices/README.md)  
-- [5.14 - Context Engineering](../mcp-contextengineering/README.md)  
-- [MCP Spezifikations-Änderungsprotokoll](https://spec.modelcontextprotocol.io/)
+- [Modul 8 – Best Practices](../../08-BestPractices/README.md)
+- [5.14 – Context Engineering](../mcp-contextengineering/README.md)
+- [MCP Spezifikations-Changelog](https://spec.modelcontextprotocol.io/)
 
 ---
 
-## Weiterführende Ressourcen
+## Zusätzliche Ressourcen
 
-- [MCP Spezifikation 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)  
-- [JSON-RPC 2.0 Fehlercodes](https://www.jsonrpc.org/specification#error_object)  
-- [Python SDK Beispiele](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples)  
+- [MCP Spezifikation 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [JSON-RPC 2.0 Fehlercodes](https://www.jsonrpc.org/specification#error_object)
+- [Python SDK Beispiele](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples)
 - [TypeScript SDK Beispiele](https://github.com/modelcontextprotocol/typescript-sdk/tree/main/examples)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Haftungsausschluss**:  
-Dieses Dokument wurde mit dem KI-Übersetzungsdienst [Co-op Translator](https://github.com/Azure/co-op-translator) übersetzt. Obwohl wir uns um Genauigkeit bemühen, beachten Sie bitte, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner ursprünglichen Sprache ist als maßgebliche Quelle zu betrachten. Für wichtige Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die aus der Nutzung dieser Übersetzung entstehen.
+**Haftungsausschluss**:
+Dieses Dokument wurde mit dem KI-Übersetzungsdienst [Co-op Translator](https://github.com/Azure/co-op-translator) übersetzt. Obwohl wir uns um Genauigkeit bemühen, beachten Sie bitte, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner Ursprungssprache gilt als maßgebliche Quelle. Bei kritischen Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die aus der Verwendung dieser Übersetzung entstehen.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

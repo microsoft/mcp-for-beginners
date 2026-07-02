@@ -1,32 +1,34 @@
-# MCP النواقل المخصصة - دليل التنفيذ المتقدم
+# MCP النقل المخصص - دليل التنفيذ المتقدم
 
-يوفر بروتوكول نموذج السياق (MCP) مرونة في آليات النقل، مما يسمح بتنفيذات مخصصة للبيئات المؤسسية المتخصصة. يستكشف هذا الدليل المتقدم تنفيذات النقل المخصصة باستخدام Azure Event Grid و Azure Event Hubs كأمثلة عملية لبناء حلول MCP سحابية قابلة للتوسع.
+يوفر بروتوكول سياق النموذج (MCP) مرونة في آليات النقل، مما يسمح بتنفيذات مخصصة لبيئات المؤسسات المتخصصة. يستكشف هذا الدليل المتقدم تنفيذات النقل المخصصة باستخدام Azure Event Grid وAzure Event Hubs كمثال عملي لبناء حلول MCP قابلة للتوسع وموائمة للسحابة.
+
+> **نظرة مستقبلية:** هذا الدليل مكتوب وفقًا لـ **مواصفة MCP 2025-11-25**، حيث يجب الحفاظ على ترتيب الجلسة لكل جلسة (انظر بروتوكول الرسائل أدناه). تقوم نسخة الإطلاق المرشحة `2026-07-28` بإزالة جلسة البروتوكول بالكامل وتتطلب رؤوس `Mcp-Method`/`Mcp-Name` بحيث يمكن للبوابات والنقلات المخصصة التوجيه بناءً على كل طلب بدلاً من كل جلسة. راجع [ما الذي يتغير في MCP: إصدار المرشح 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
 
 ## المقدمة
 
-بينما تلبي ناقلات MCP القياسية (stdio وHTTP streaming) معظم حالات الاستخدام، فإن البيئات المؤسسية غالبًا ما تتطلب آليات نقل متخصصة لتحسين القابلية للتوسع والموثوقية والتكامل مع البنية التحتية السحابية الحالية. تتيح الناقلات المخصصة لـ MCP الاستفادة من خدمات المراسلة السحابية الأصلية للتواصل غير المتزامن، والهندسة المعتمدة على الأحداث، والمعالجة الموزعة.
+بينما تلبي وسائل النقل القياسية في MCP (stdio وHTTP streaming) معظم حالات الاستخدام، غالبًا ما تتطلب بيئات المؤسسات آليات نقل متخصصة لتحسين القابلية للتوسع والموثوقية والتكامل مع البنية التحتية السحابية الحالية. تتيح وسائل النقل المخصصة لـ MCP الاستفادة من خدمات الرسائل السحابية الأصلية للاتصالات اللامتزامنة، والهندسة المعمارية المدفوعة بالحدث، والمعالجة الموزعة.
 
-تستعرض هذه الدرس تنفيذات النقل المتقدمة بناءً على أحدث مواصفات MCP (2025-11-25)، وخدمات المراسلة في Azure، ونماذج التكامل المؤسسي المعتمدة.
+يستكشف هذا الدرس تنفيذات النقل المتقدمة استنادًا إلى أحدث مواصفات MCP (2025-11-25)، وخدمات الرسائل من Azure، وأنماط التكامل المؤسسي المعتمدة.
 
-### **هيكلية نقل MCP**
+### **هندسة نقل MCP**
 
 **من مواصفة MCP (2025-11-25):**
 
-- **النواقل القياسية**: stdio (موصى به)، HTTP streaming (للسيناريوهات البعيدة)  
-- **النواقل المخصصة**: أي ناقل ينفذ بروتوكول تبادل رسائل MCP  
-- **تنسيق الرسالة**: JSON-RPC 2.0 مع امتدادات خاصة بـ MCP  
-- **التواصل ثنائي الاتجاه**: مطلوب تواصل كامل الحجم للإشعارات والاستجابات  
+- **وسائل النقل القياسية**: stdio (موصى به)، HTTP streaming (للسيناريوهات البعيدة)
+- **وسائل النقل المخصصة**: أي وسيلة نقل تنفذ بروتوكول تبادل الرسائل MCP
+- **تنسيق الرسالة**: JSON-RPC 2.0 مع امتدادات محددة في MCP
+- **الاتصال ثنائي الاتجاه**: الاتصال المزدوج الكامل مطلوب للإشعارات والردود
 
 ## أهداف التعلم
 
-بنهاية هذا الدرس المتقدم، ستتمكن من:
+مع نهاية هذا الدرس المتقدم، ستكون قادرًا على:
 
-- **فهم متطلبات النواقل المخصصة**: تنفيذ بروتوكول MCP عبر أي طبقة ناقل مع الحفاظ على الامتثال  
-- **بناء ناقل Azure Event Grid**: إنشاء خوادم MCP قائمة على الأحداث باستخدام Azure Event Grid لتحقيق قابلية التوسع بدون خوادم  
-- **تنفيذ ناقل Azure Event Hubs**: تصميم حلول MCP ذات تدفق عالي باستخدام Azure Event Hubs للبث المباشر  
-- **تطبيق نماذج مؤسسية**: دمج النواقل المخصصة مع البنية التحتية والنماذج الأمنية الحالية لـ Azure  
-- **معالجة موثوقية النقل**: تنفيذ متانة الرسائل، وترتيب الرسائل، ومعالجة الأخطاء لحالات المؤسسات  
-- **تحسين الأداء**: تصميم حلول النقل لتلبية متطلبات الحجم، الكمون، ومعدل النقل  
+- **فهم متطلبات النقل المخصص**: تنفيذ بروتوكول MCP فوق أي طبقة نقل مع الحفاظ على الالتزام
+- **بناء نقل Azure Event Grid**: إنشاء خوادم MCP مدفوعة بالأحداث باستخدام Azure Event Grid من أجل قابلية التوسع بدون خادم
+- **تنفيذ نقل Azure Event Hubs**: تصميم حلول MCP عالية الإنتاجية باستخدام Azure Event Hubs للبث في الوقت الحقيقي
+- **تطبيق أنماط المؤسسات**: دمج وسائل النقل المخصصة مع بنية Azure التحتية ونماذج الأمان الحالية
+- **التعامل مع موثوقية النقل**: تنفيذ تحمل الرسائل، الترتيب، ومعالجة الأخطاء لسيناريوهات المؤسسات
+- **تحسين الأداء**: تصميم حلول النقل لمتطلبات الحجم، الكمون، والإنتاجية
 
 ## **متطلبات النقل**
 
@@ -49,11 +51,11 @@ Custom Transport:
   interoperability: "MUST maintain protocol compatibility"
 ```
 
-## **تنفيذ ناقل Azure Event Grid**
+## **تنفيذ نقل Azure Event Grid**
 
-يوفر Azure Event Grid خدمة توجيه أحداث بدون خوادم مثالية لهندسة MCP المعتمدة على الأحداث. يوضح هذا التنفيذ كيفية بناء أنظمة MCP قابلة للتوسع ومترابطة بشكل فضفاض.
+يوفر Azure Event Grid خدمة توجيه أحداث بدون خادم مثالية لهندسة MCP المدفوعة بالأحداث. توضح هذه التنفيذ كيفية بناء أنظمة MCP مرنة وم loosely-coupled.
 
-### **نظرة عامة على الهيكلية**
+### **نظرة عامة على الهندسة**
 
 ```mermaid
 graph TB
@@ -70,7 +72,7 @@ graph TB
     end
 ```
 
-### **تنفيذ C# - ناقل Event Grid**
+### **تنفيذ C# - نقل Event Grid**
 
 ```csharp
 using Azure.Messaging.EventGrid;
@@ -142,7 +144,7 @@ public async Task<IActionResult> HandleEventGridMessage(
 }
 ```
 
-### **تنفيذ TypeScript - ناقل Event Grid**
+### **تنفيذ TypeScript - نقل Event Grid**
 
 ```typescript
 import { EventGridPublisherClient, AzureKeyCredential } from "@azure/eventgrid";
@@ -176,9 +178,9 @@ export class EventGridMcpTransport implements McpTransport {
         await this.publisher.sendEvents([event]);
     }
     
-    // الاستقبال القائم على الأحداث عبر وظائف أزور
+    // الاستلام المدفوع بالأحداث عبر وظائف أزور
     onMessage(handler: (message: McpMessage) => Promise<void>): void {
-        // ستستخدم التنفيذ مشغل شبكة أحداث وظائف أزور
+        // سيتم استخدام مشغل شبكة أحداث وظائف أزور في التنفيذ
         // هذه واجهة مفاهيمية لمستقبل الويب هوك
     }
 }
@@ -194,7 +196,7 @@ app.eventGrid("mcpEventGridHandler", {
             // معالجة رسالة MCP
             const response = await mcpServer.processMessage(mcpMessage);
             
-            // إرسال الاستجابة عبر شبكة الأحداث
+            // إرسال الرد عبر شبكة الأحداث
             await transport.sendMessage(response);
             
         } catch (error) {
@@ -205,7 +207,7 @@ app.eventGrid("mcpEventGridHandler", {
 });
 ```
 
-### **تنفيذ Python - ناقل Event Grid**
+### **تنفيذ Python - نقل Event Grid**
 
 ```python
 from azure.eventgrid import EventGridPublisherClient, EventGridEvent
@@ -240,7 +242,7 @@ class EventGridMcpTransport:
         """Register message handler for incoming events"""
         self.message_handler = handler
 
-# تنفيذ وظائف أزور
+# تنفيذ وظائف Azure
 import azure.functions as func
 import logging
 
@@ -253,29 +255,29 @@ def main(event: func.EventGridEvent) -> None:
         # معالجة رسالة MCP
         response = process_mcp_message(mcp_message)
         
-        # إرسال الرد مرة أخرى عبر شبكة الأحداث
-        # (التنفيذ سينشئ عميل جديد لشبكة الأحداث)
+        # إرسال الرد عبر شبكة الأحداث
+        # (سيقوم التنفيذ بإنشاء عميل جديد لشبكة الأحداث)
         
     except Exception as e:
         logging.error(f"Error processing MCP Event Grid message: {e}")
         raise
 ```
 
-## **تنفيذ ناقل Azure Event Hubs**
+## **تنفيذ نقل Azure Event Hubs**
 
-يوفر Azure Event Hubs قدرات بث مباشر عالية النقل بالزمن الحقيقي لحالات MCP التي تتطلب زمن استجابة منخفض وحجم رسائل كبير.
+يوفر Azure Event Hubs قدرات بث عالي الإنتاجية وفي الوقت الحقيقي لسيناريوهات MCP التي تتطلب كمون منخفض وحجم رسائل مرتفع.
 
-### **نظرة عامة على الهيكلية**
+### **نظرة عامة على الهندسة**
 
 ```mermaid
 graph TB
-    Client[عميل MCP] --> EH[محاور أحداث Azure]
+    Client[عميل MCP] --> EH[مراكز أحداث أزور]
     EH --> Server[خادم MCP]
     Server --> EH
     EH --> Client
     
-    subgraph "ميزات محاور الأحداث"
-        Partition[تقسيم]
+    subgraph "ميزات مراكز الأحداث"
+        Partition[التقسيم]
         Retention[الاحتفاظ بالرسائل]
         Scaling[التحجيم التلقائي]
     end
@@ -285,7 +287,7 @@ graph TB
     EH --> Scaling
 ```
 
-### **تنفيذ C# - ناقل Event Hubs**
+### **تنفيذ C# - نقل Event Hubs**
 
 ```csharp
 using Azure.Messaging.EventHubs;
@@ -359,7 +361,7 @@ public class EventHubsMcpTransport : IMcpTransport, IDisposable
 }
 ```
 
-### **تنفيذ TypeScript - ناقل Event Hubs**
+### **تنفيذ TypeScript - نقل Event Hubs**
 
 ```typescript
 import { 
@@ -439,7 +441,7 @@ export class EventHubsMcpTransport implements McpTransport {
 }
 ```
 
-### **تنفيذ Python - ناقل Event Hubs**
+### **تنفيذ Python - نقل Event Hubs**
 
 ```python
 from azure.eventhub import EventHubProducerClient, EventHubConsumerClient
@@ -471,11 +473,11 @@ class EventHubsMcpTransport:
         """Send MCP message via Event Hubs"""
         event_data = EventData(json.dumps(message))
         
-        # أضف خصائص محددة لـ MCP
+        # إضافة خصائص محددة لـ MCP
         event_data.properties = {
             "messageType": message.get("method", "response"),
             "messageId": message.get("id"),
-            "timestamp": "2025-01-14T10:30:00Z"  # استخدم الطابع الزمني الفعلي
+            "timestamp": "2025-01-14T10:30:00Z"  # استخدام الطابع الزمني الفعلي
         }
         
         async with self.producer:
@@ -496,7 +498,7 @@ class EventHubsMcpTransport:
         async with self.consumer:
             await self.consumer.receive(
                 on_event=self._on_event_received(message_handler),
-                starting_position="-1"  # ابدأ من البداية
+                starting_position="-1"  # البدء من البداية
             )
     
     def _on_event_received(self, handler: Callable):
@@ -525,9 +527,9 @@ class EventHubsMcpTransport:
         await self.consumer.close()
 ```
 
-## **نماذج النقل المتقدمة**
+## **أنماط النقل المتقدمة**
 
-### **متانة الرسائل والموثوقية**
+### **تحمل الرسالة والموثوقية**
 
 ```csharp
 // Implementing message durability with retry logic
@@ -615,11 +617,11 @@ public class ObservableTransport : IMcpTransport
 }
 ```
 
-## **سيناريوهات تكامل المؤسسات**
+## **سيناريوهات التكامل المؤسسي**
 
-### **السيناريو 1: معالجة MCP موزعة**
+### **السيناريو 1: معالجة MCP الموزعة**
 
-استخدام Azure Event Grid لتوزيع طلبات MCP عبر عدة عقد معالجة:
+باستخدام Azure Event Grid لتوزيع طلبات MCP عبر عدة عقد معالجة:
 
 ```yaml
 Architecture:
@@ -633,9 +635,9 @@ Benefits:
   - Cost optimization with serverless compute
 ```
 
-### **السيناريو 2: بث MCP في الزمن الحقيقي**
+### **السيناريو 2: بث MCP في الوقت الحقيقي**
 
-استخدام Azure Event Hubs لتفاعلات MCP عالية التردد:
+باستخدام Azure Event Hubs لتفاعلات MCP عالية التردد:
 
 ```yaml
 Architecture:
@@ -649,9 +651,9 @@ Benefits:
   - Built-in partitioning for parallel processing
 ```
 
-### **السيناريو 3: هيكلية ناقل هجينة**
+### **السيناريو 3: هندسة النقل الهجينة**
 
-دمج عدة نواقل لحالات استخدام مختلفة:
+دمج عدة وسائل نقل لحالات استخدام مختلفة:
 
 ```csharp
 public class HybridMcpTransport : IMcpTransport
@@ -737,9 +739,9 @@ public class PartitionedEventHubsTransport : IMcpTransport
 }
 ```
 
-## **اختبار النواقل المخصصة**
+## **اختبار وسائل النقل المخصصة**
 
-### **اختبار الوحدة باستخدام اختبار المزدوج**
+### **اختبار الوحدة باستخدام Test Doubles**
 
 ```csharp
 [Test]
@@ -803,43 +805,43 @@ public async Task EventHubsTransport_IntegrationTest()
 
 ### **مبادئ تصميم النقل**
 
-1. **قابلية التشغيل المتكرر (Idempotency)**: ضمان معالجة الرسائل بشكل متكرر للتعامل مع التكرارات  
-2. **معالجة الأخطاء**: تنفيذ معالجة شاملة للأخطاء وقوائم الرسائل الميتة  
-3. **المراقبة**: إضافة تتبع تفصيلي وفحوصات صحة  
-4. **الأمان**: استخدام الهوية المُدارة وأدنى صلاحيات الوصول  
-5. **الأداء**: التصميم حسب متطلبات الكمون ومعدل النقل الخاصة بك  
+1. **القابلية للإعادة**: ضمان معالجة الرسائل قابلة للإعادة للتعامل مع التكرارات
+2. **معالجة الأخطاء**: تنفيذ معالجة شاملة للأخطاء وقوائم الرسائل الميتة
+3. **المراقبة**: إضافة بيانات القياس والتفقدات الصحية التفصيلية
+4. **الأمان**: استخدام الهويات المدارة وأقل صلاحيات
+5. **الأداء**: التصميم وفقًا لمتطلبات الكمون والإنتاجية الخاصة بك
 
-### **توصيات محددة لـ Azure**
+### **توصيات خاصة بـ Azure**
 
-1. **استخدام الهوية المُدارة**: تجنب سلاسل الاتصال في الإنتاج  
-2. **تنفيذ قواطع الدائرة**: الحماية من انقطاعات خدمات Azure  
-3. **مراقبة التكاليف**: تتبع حجم الرسائل وتكاليف المعالجة  
-4. **التخطيط للتوسع**: تصميم استراتيجيات التقسيم والتوسع مبكرًا  
-5. **اختبار شامل**: استخدام Azure DevTest Labs للاختبار الشامل  
+1. **استخدام الهوية المدارة**: تجنب سلاسل الاتصال في الإنتاج
+2. **تنفيذ قواطع الدائرة**: الحماية من انقطاعات خدمات Azure
+3. **مراقبة التكاليف**: تتبع حجم الرسائل وتكاليف المعالجة
+4. **التخطيط للتوسع**: تصميم استراتيجيات التقسيم والتوسع مبكرًا
+5. **الاختبار الشامل**: استخدم Azure DevTest Labs للاختبار الكامل
 
 ## **الخاتمة**
 
-تتيح نواقل MCP المخصصة تحقيق سيناريوهات مؤسسية قوية باستخدام خدمات المراسلة في Azure. من خلال تنفيذ ناقلات Event Grid أو Event Hubs، يمكنك بناء حلول MCP قابلة للتوسع وموثوقة تتكامل بسلاسة مع البنية التحتية الحالية لـ Azure.
+تمكّن وسائل نقل MCP المخصصة سيناريوهات مؤسسية قوية باستخدام خدمات الرسائل من Azure. من خلال تنفيذ نقل Event Grid أو Event Hubs، يمكنك بناء حلول MCP قابلة للتوسع وموثوقة تتكامل بسلاسة مع بنية Azure التحتية الحالية.
 
-توضح الأمثلة المقدمة نماذج جاهزة للإنتاج لتنفيذ النواقل المخصصة مع الحفاظ على الامتثال لبروتوكول MCP وأفضل ممارسات Azure.
+توضح الأمثلة المقدمة أنماطاً جاهزة للإنتاج لتنفيذ وسائل نقل مخصصة مع الالتزام ببروتوكول MCP وأفضل ممارسات Azure.
 
-## **الموارد الإضافية**
+## **موارد إضافية**
 
-- [مواصفة MCP 2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25/)  
-- [توثيق Azure Event Grid](https://docs.microsoft.com/azure/event-grid/)  
-- [توثيق Azure Event Hubs](https://docs.microsoft.com/azure/event-hubs/)  
-- [مشغل Azure Functions لـ Event Grid](https://docs.microsoft.com/azure/azure-functions/functions-bindings-event-grid)  
-- [Azure SDK لـ .NET](https://github.com/Azure/azure-sdk-for-net)  
-- [Azure SDK لـ TypeScript](https://github.com/Azure/azure-sdk-for-js)  
-- [Azure SDK لـ Python](https://github.com/Azure/azure-sdk-for-python)  
+- [مواصفة MCP 2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25/)
+- [توثيق Azure Event Grid](https://docs.microsoft.com/azure/event-grid/)
+- [توثيق Azure Event Hubs](https://docs.microsoft.com/azure/event-hubs/)
+- [محفز Azure Functions Event Grid](https://docs.microsoft.com/azure/azure-functions/functions-bindings-event-grid)
+- [Azure SDK لـ .NET](https://github.com/Azure/azure-sdk-for-net)
+- [Azure SDK لـ TypeScript](https://github.com/Azure/azure-sdk-for-js)
+- [Azure SDK لـ Python](https://github.com/Azure/azure-sdk-for-python)
 
 ---
 
-> *يركز هذا الدليل على نماذج تنفيذ عملية لأنظمة MCP الإنتاجية. تحقق دائمًا من تنفيذات النقل مقابل متطلباتك المحددة وحدود خدمات Azure.*
-> **المعيار الحالي**: يعكس هذا الدليل متطلبات نقل [مواصفة MCP 2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25/) ونماذج النقل المتقدمة للبيئات المؤسسية.
+> *يركز هذا الدليل على أنماط التنفيذ العملية لأنظمة MCP للإنتاج. تحقق دائمًا من تنفيذات النقل مقابل متطلباتك المحددة وحدود خدمات Azure.*
+> **المعيار الحالي**: يعكس هذا الدليل متطلبات النقل في [مواصفة MCP 2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25/) وأنماط النقل المتقدمة لبيئات المؤسسات.
 
 
-## ماذا بعد
+## ما التالي
 - [6. مساهمات المجتمع](../../06-CommunityContributions/README.md)
 
 ---
