@@ -1,46 +1,46 @@
-# MCP Core Concepts: Master di Model Context Protocol for AI Integration
+# MCP Core Concepts: Mastering di Model Context Protocol for AI Integration
 
 [![MCP Core Concepts](../../../translated_images/pcm/02.8203e26c6fb5a797.webp)](https://youtu.be/earDzWGtE84)
 
-_(Click di image wey dey above to watch video for dis lesson)_
+_(Click di image wey dey for top to watch video for dis lesson)_
 
-Di [Model Context Protocol (MCP)](https://github.com/modelcontextprotocol) na strong, standard framework wey dey optimize communication between Large Language Models (LLMs) and outside tools, applications, and data sources.  
-Dis guide go waka you through di main concepts of MCP. You go learn about im client-server architecture, important parts, communication way dem dey take work, and better ways to implement am.
+Di [Model Context Protocol (MCP)](https://github.com/modelcontextprotocol) na strong, standardized framework wey dey optimize how Large Language Models (LLMs) and outside tools, applications, and data sources dey communicate. 
+Dis guide go waka you through di main tins about MCP. You go learn about how e get client-server architecture, important parts, how dem dey take yarn, and beta way to use am well.
 
-- **Explicit User Consent**: All data access and operations need clear user approval before dem fit run am. Users suppose sabi well-well wetin data go dem access and wetin actions dem go perform, with fine control over permissions and authorizations.
+- **Clear User Permission**: All data wey person wan use or operation dem wan do, person gats first approve am clear clear before e start. People mus sabi well well which data dem wan access and which action dem wan take, plus make dem fit control permissions well well.
 
-- **Data Privacy Protection**: User data no dey show unless user approve and e suppose protected by strong access controls through all di interaction time. Implementations must stop unauthorized data transmission and keep privacy boundaries tight.
+- **Data Privacy Protection**: User data no go show unless person approve am plus dem gats protect am with strong access control for all di period dem dey use am. CD implementations gats stop any person wey no get permission from sending data and protect private areas well well.
 
-- **Tool Execution Safety**: Every tool wey dem wan run must get clear user approval, with full understanding of how di tool dey work, parameters, and possible effect. Strong security boundaries must stop any unintended, unsafe, or bad tool execution.
+- **Tool Execution Safety**: Any time dem wan use any tool, dem gats get clear approval from user, plus the user gots sabi how tool dey work, e parameters, and wetin e fit do. Strong security gats stop tool wey fit harm or misuse.
 
-- **Transport Layer Security**: All communication channels suppose use correct encryption and authentication ways. Remote connections must follow secure transport protocols and manage credentials well.
+- **Transport Layer Security**: All communication path dem gats use correct encryption plus authentication system. Remote connections suppose use secure transport protocol plus correct way to manage credentials.
 
-#### Implementation Guidelines:
+#### How to Implement Am:
 
-- **Permission Management**: Make fine-grained permission systems wey go allow users control which servers, tools, and resources dem fit access  
-- **Authentication & Authorization**: Use secure authentication methods (OAuth, API keys) with good token management and expiration  
-- **Input Validation**: Check all parameters and data input based on defined schemas to stop injection attacks  
-- **Audit Logging**: Keep full logs of all actions for security monitoring and compliance  
+- **Permission Management**: Make system wey go allow fine control so users fit decide which servers, tools, and resources dem fit access
+- **Authentication & Authorization**: Use secure authentication like OAuth, API keys wey get proper token control and expiry  
+- **Input Validation**: Check all data and parameters according to schema dem to stop injection attack
+- **Audit Logging**: Keep full log of all operations for security check and compliance
 
 ## Overview
 
-Dis lesson go explore di basic architecture and di parts wey make up di Model Context Protocol (MCP) ecosystem. You go learn about di client-server architecture, important parts, and communication ways wey dey make MCP interactions work.
+Dis lesson go show you how di basic design and parts wey dey Model Context Protocol (MCP) system dey work. You go learn about di client-server architecture, important parts, and communication ways dem wey dey power MCP connection.
 
 ## Key Learning Objectives
 
 By di end of dis lesson, you go:
 
-- Understand how di MCP client-server architecture dey work.  
-- Know di roles and responsibilities of Hosts, Clients, and Servers.  
-- Analyze di important features wey make MCP flexible for integration.  
-- Learn how information dey flow inside di MCP ecosystem.  
-- Get practical understanding through code examples for .NET, Java, Python, and JavaScript.
+- Understand di MCP client-server architecture.
+- Know di roles and responsibilities of Hosts, Clients, and Servers.
+- Check wetin be di core features wey make MCP flexible for integration.
+- Learn how info dey flow inside MCP system.
+- Get practical sense through code examples for .NET, Java, Python, and JavaScript.
 
 ## MCP Architecture: A Deeper Look
 
-Di MCP ecosystem na client-server model. Dis modular structure dey allow AI applications to interact with tools, databases, APIs, and contextual resources well well. Make we break dis architecture down to im main parts.
+MCP system dey follow client-server model. Dis format allow AI apps to interact with tools, databases, APIs, and other contextual resources sharply. Make we break down dis architecture into di main parts.
 
-At di core, MCP follow client-server architecture wey host application fit connect to plenty servers:
+For di center, MCP dey follow one client-server architecture where host app fit connect to many servers:
 
 ```mermaid
 flowchart LR
@@ -59,73 +59,77 @@ flowchart LR
         S3 <-->|"Web APIs"| D3[("Remote\Services")]
     end
 ```
-- **MCP Hosts**: Programs like VSCode, Claude Desktop, IDEs, or AI tools wey want access data through MCP  
-- **MCP Clients**: Protocol clients wey keep 1:1 connections with servers  
-- **MCP Servers**: Lightweight programs wey dem expose specific powers through di standardized Model Context Protocol  
-- **Local Data Sources**: Your computer own files, databases, and services wey MCP servers fit securely access  
-- **Remote Services**: Outside systems wey dey internet wey MCP servers fit connect to through APIs.
 
-Di MCP Protocol na one standard wey dey grow using date-based versioning (YYYY-MM-DD format). Di current protocol version na **2025-11-25**. You fit see di latest updates to di [protocol specification](https://modelcontextprotocol.io/specification/2025-11-25/)
+- **MCP Hosts**: Programs like VSCode, Claude Desktop, IDEs, or AI tools wey wan access data through MCP
+- **MCP Clients**: Protocol clients wey dey keep 1:1 connections with servers
+- **MCP Servers**: Lightweight programs wey dey show specific abilities through the standard Model Context Protocol
+- **Local Data Sources**: Your computer files, databases, and services wey MCP servers fit safely access
+- **Remote Services**: Systems wey dey outside anywhere online, MCP servers fit connect to dem through APIs.
+
+Di MCP Protocol na one evolving standard wey dey use date-based version (YYYY-MM-DD style). Di current protocol version na **2025-11-25**. You fit see di latest updates for di [protocol specification](https://modelcontextprotocol.io/specification/2025-11-25/)
+
+> **Look ahead:** One release candidate for di next specification version, **2026-07-28**, dem announce am for May 2026 and e dey scheduled to drop for July 28, 2026. E make di protocol stateless for transport layer (e remove di `initialize` handshake and session IDs), e formalize Extensions framework, plus e stop using Roots, Sampling, and Logging but replace them with new beta ways. Check [What's Changing in MCP: The 2026-07-28 Release Candidate](./mcp-2026-07-28-release-candidate.md) for full details.
 
 ### 1. Hosts
 
-For di Model Context Protocol (MCP), **Hosts** na AI applications wey be di main interface wey users dey use to interact with di protocol. Hosts dey organize and manage connections to multiple MCP servers by creating separate MCP clients for each server connection. Example of Hosts na:
+For Model Context Protocol (MCP), **Hosts** na AI applications wey dey serve as di primary front-end wey users take interact with di protocol. Hosts dey coordinate and manage connection to many MCP servers by creating special MCP clients for each server connection. Examples of Hosts include:
 
-- **AI Applications**: Claude Desktop, Visual Studio Code, Claude Code  
+- **AI Applications**: Claude Desktop, Visual Studio Code, Claude Code
 - **Development Environments**: IDEs and code editors wey get MCP integration  
-- **Custom Applications**: AI agents and tools wey dem build for special purposes  
+- **Custom Applications**: AI agents and tools wey dem build specially
 
 **Hosts** na applications wey dey coordinate AI model interactions. Dem:
 
-- **Orchestrate AI Models**: Dem fit run or interact with LLMs to create answers and manage AI workflows  
-- **Manage Client Connections**: Dem create and maintain one MCP client per MCP server connection  
-- **Control User Interface**: Handle conversation flow, user interactions, and show responses  
-- **Enforce Security**: Dem control permissions, security limits, and authentication  
-- **Handle User Consent**: Manage user approval for data sharing and tool running  
+- **Arrange AI Models**: Run or interact with LLMs to generate responses and coordinate AI work
+- **Manage Client Connections**: Create and maintain one MCP client for every MCP server connection
+- **Control User Interface**: Manage story flow, user talks, and response display  
+- **Enforce Security**: Control permissions, security rules, and authentication
+- **Handle User Consent**: Manage user ok for data sharing and tool use
+
 
 ### 2. Clients
 
-**Clients** na important parts wey keep one-to-one connections between Hosts and MCP servers well steady. Each MCP client na thing wey di Host create to connect to one MCP server, so communication fit dey organized and secure. Plenty clients mean Hosts fit connect to many servers at the same time.
+**Clients** na important parts wey keep one-to-one connection between Hosts and MCP servers. Each MCP client na one instance wey Host use connect to particular MCP server, so that communication go straight and secure. Plenty clients fit allow Hosts connect to many servers for same time.
 
-**Clients** na connectors wey dey inside di host application. Dem:
+**Clients** na connector parts inside di host app. Dem:
 
-- **Protocol Communication**: Send JSON-RPC 2.0 requests to servers with prompts and instructions  
-- **Capability Negotiation**: Discuss and agree supported features and protocol versions with servers during startup  
-- **Tool Execution**: Handle tool running requests from models and process their answers  
-- **Real-time Updates**: Manage notifications and real-time updates from servers  
-- **Response Processing**: Process and prepare server answers to show users  
+- **Protocol Communication**: Send JSON-RPC 2.0 requests to servers with prompts and commands
+- **Capability Negotiation**: Negotiate supported features and protocol versions with servers when e dey start
+- **Tool Execution**: Manage tool calls from models and handle responses
+- **Real-time Updates**: Handle notifications and real-time update from servers
+- **Response Processing**: Process and prepare server replies for user display
 
 ### 3. Servers
 
-**Servers** na programs wey give context, tools, and powers to MCP clients. Dem fit run local (for di same machine as Host) or remote (for outside platforms), and dem dey responsible to handle client requests and give proper answers. Servers dey show special functions through di standardized Model Context Protocol.
+**Servers** na programs wey provide context, tools, and abilities to MCP clients. Dem fit run locally (for the same computer as the Host) or remotely (on outside platforms), dem dey responsible to handle client requests and give structured responses. Servers show specific functions through di standardized Model Context Protocol.
 
-**Servers** na services wey provide context and powers. Dem:
+**Servers** na services wey provide context and abilities. Dem:
 
-- **Feature Registration**: Register and expose available things (resources, prompts, tools) to clients  
-- **Request Processing**: Receive and run tool calls, resource requests, and prompt requests from clients  
-- **Context Provision**: Provide contextual info and data to improve model answers  
-- **State Management**: Keep session state and handle interactions wey need im  
-- **Real-time Notifications**: Send news about capability changes and updates to connected clients  
+- **Feature Registration**: Register and show available primitives (resources, prompts, tools) to clients
+- **Request Processing**: Receive and do tool calls, resource requests, and prompt requests from clients
+- **Context Provision**: Provide context information and data to help model answer well
+- **State Management**: Keep session state and manage stateful talks if necessary
+- **Real-time Notifications**: Send notifications about capability changes and updates to clients wey connect
 
-Servers fit be developed by anybody to increase model powers with special functions, and dem dey support both local and remote deployment.
+Anybody fit build servers to increase model ability with special functions, and dem fit run both locally and remotely.
 
 ### 4. Server Primitives
 
-Servers for di Model Context Protocol (MCP) provide three main **primitives** wey describe the basic building blocks for plenty interactions between clients, hosts, and language models. These primitives talk about wetin kinds of contextual info and actions dem fit do through di protocol.
+Servers for Model Context Protocol (MCP) dey provide three main **primitives** wey define basic building blocks for strong interaction between clients, hosts, and language models. These primitives dey set di types of contextual information and actions wey dem fit take through di protocol.
 
-MCP servers fit show any combination of these three main primitives:
+MCP servers fit show any combination of these three core primitives:
 
 #### Resources 
 
-**Resources** na data sources wey provide contextual info to AI applications. Dem dey represent static or dynamic content wey fit help model understanding and decision-taking:
+**Resources** na data sources wey provide contextual info to AI apps. Dem fit be static or dynamic content wey go help model sabi well and make better decisions:
 
-- **Contextual Data**: Structured info and context for AI model use  
-- **Knowledge Bases**: Document stores, articles, manuals, and research papers  
-- **Local Data Sources**: Files, databases, and local system info  
-- **External Data**: API answers, web services, and outside system data  
-- **Dynamic Content**: Real-time data wey dey update based on outside conditions  
+- **Contextual Data**: Structured info and context for AI model to use
+- **Knowledge Bases**: Document storage, articles, manuals, and research papers
+- **Local Data Sources**: Files, databases, and local machine info  
+- **External Data**: API responses, web services, and outside system data
+- **Dynamic Content**: Real-time data wey update based on outside conditions
 
-Resources dey identified by URIs and dem fit discover am through `resources/list` and find am through `resources/read` methods:
+Resources dem dey identify by URIs and dem fit show `resources/list` and give am via `resources/read` methods:
 
 ```text
 file://documents/project-spec.md
@@ -135,15 +139,15 @@ api://weather/current
 
 #### Prompts
 
-**Prompts** na reusable templates wey help structure interactions with language models. Dem provide standard interaction patterns and templated workflows:
+**Prompts** na reusable templates wey help arrange interaction with language models. Dem give steady interaction ways and templated workflows:
 
-- **Template-based Interactions**: Pre-made messages and conversation starters  
-- **Workflow Templates**: Standard steps for common tasks and interactions  
-- **Few-shot Examples**: Example-based templates to guide model instruction  
-- **System Prompts**: Base prompts wey define model behavior and context  
-- **Dynamic Templates**: Parameterized prompts wey fit adjust to specific contexts  
+- **Template-based Interactions**: Pre-set messages and conversation openers
+- **Workflow Templates**: Standard sequences for normal tasks and talks
+- **Few-shot Examples**: Example-based templates wey teach model
+- **System Prompts**: Base prompts wey define how model go behave and context
+- **Dynamic Templates**: Parameterized prompts wey fit change to fit specific context
 
-Prompts support variable substitution and fit be discovered via `prompts/list` and retrieved with `prompts/get`:
+Prompts fit change variables and dem fit show via `prompts/list` and fetch with `prompts/get`:
 
 ```markdown
 Generate a {{task_type}} for {{product}} targeting {{audience}} with the following requirements: {{requirements}}
@@ -151,17 +155,17 @@ Generate a {{task_type}} for {{product}} targeting {{audience}} with the followi
 
 #### Tools
 
-**Tools** na executable functions wey AI models fit run to do specific actions. Dem be like "verbs" for di MCP ecosystem, making models fit interact with outside systems:
+**Tools** na functions wey AI models fit call to do certain action. Dem be di "verbs" for MCP system, wey make models fit interact with outside systems:
 
-- **Executable Functions**: Particular operations wey models fit run with specific parameters  
-- **External System Integration**: API calls, database queries, file actions, calculations  
-- **Unique Identity**: Every tool get one special name, description, and parameter schema  
-- **Structured I/O**: Tools accept checked parameters and return structured, typed answers  
-- **Action Capabilities**: Make models fit do real-world actions and collect live data  
+- **Executable Functions**: Separate operations wey models fit call with correct parameters
+- **External System Integration**: API calls, database queries, file works, calculations
+- **Unique Identity**: Each tool get separate name, description, and parameter rules
+- **Structured I/O**: Tools accept checked parameters and give structured, typed response
+- **Action Capabilities**: Allow models to do real-world actions and collect live data
 
-Tools be defined with JSON Schema for parameter validation and fit be discovered through `tools/list` and run with `tools/call`. Tools fit also get **icons** as extra metadata for better UI look.
+Tools dem define with JSON Schema to check parameters and dem fit show for `tools/list` and call for `tools/call`. Tools fit also get **icons** as extra info to make UI better.
 
-**Tool Annotations**: Tools support behavior notes (like `readOnlyHint`, `destructiveHint`) wey dey explain if tool na read-only or destructive, to help clients sabi well before dem run am.
+**Tool Annotations**: Tools fit carry behavioral notes (like `readOnlyHint`, `destructiveHint`) wey explain if tool na read-only or destructive, help clients decide well how to run tool.
 
 Example tool definition:
 
@@ -174,7 +178,7 @@ server.tool(
     max_results: z.number().default(10).describe("Maximum results to return")
   }, 
   async (params) => {
-    // Run di search and come back wit organized results
+    // Run search and bring back structured result dem
     return await productService.search(params);
   }
 );
@@ -182,145 +186,151 @@ server.tool(
 
 ## Client Primitives
 
-For di Model Context Protocol (MCP), **clients** fit show primitives wey make servers fit ask more capabilities from the host application. These client-side primitives allow better, more interactive server implementations wey fit access AI model powers and user interactions.
+For Model Context Protocol (MCP), **clients** fit show primitives wey make servers fit ask more abilities from the host app. These client-side primitives allow richer, more interactive server builds wey fit access AI model powers and user interaction.
 
 ### Sampling
 
-**Sampling** allow servers to ask language model completions from di client's AI application. Dis primitive dey enable servers to use LLM powers without carrying their own model dependencies:
+> **Deprecation notice:** di `2026-07-28` release candidate don mark Sampling as deprecated, replace am with direct connection to LLM provider APIs. E still dey work for `2025-11-25` and for at least one year after deprecation, but new designs suppose use di new pattern. See [What's Changing in MCP: The 2026-07-28 Release Candidate](./mcp-2026-07-28-release-candidate.md).
 
-- **Model-Independent Access**: Servers fit ask for completions without including LLM SDKs or managing model access  
-- **Server-Initiated AI**: Enable servers to create content themselves using client’s AI model  
-- **Recursive LLM Interactions**: Support complex cases where servers need AI help for processing  
-- **Dynamic Content Generation**: Make servers fit create contextual answers using host's model  
-- **Tool Calling Support**: Servers fit send `tools` and `toolChoice` parameters to allow client’s model invoke tools during sampling  
+**Sampling** allow servers to ask language model completion from the client’s AI app. Dis primitive let servers use LLM power without putting their own model dependencies inside:
 
-Sampling dey start through `sampling/complete` method, where servers send completion requests to clients.
+- **Model-Independent Access**: Servers fit ask for completions without LLM SDKs or managing model themselves
+- **Server-Initiated AI**: Servers fit generate content on their own using client’s AI model
+- **Recursive LLM Interactions**: Supports complex cases where servers need AI help to process
+- **Dynamic Content Generation**: Allows servers to create responses with context using host’s model
+- **Tool Calling Support**: Servers fit add `tools` and `toolChoice` parameters so client model fit call tools during sampling
+
+Sampling dey start with `sampling/complete` method, where servers send request to clients.
 
 ### Roots
 
-**Roots** provide standard way for clients to expose filesystem boundaries to servers, helping servers sabi which directories and files dem get access to:
+> **Deprecation notice:** di `2026-07-28` release candidate don mark Roots as deprecated, replacements na tool parameters, resource URIs, or server settings. E still dey work for `2025-11-25` and for at least one year after, but new design gats use new way. Check [What's Changing in MCP: The 2026-07-28 Release Candidate](./mcp-2026-07-28-release-candidate.md).
 
-- **Filesystem Boundaries**: Show where servers fit operate for filesystem  
-- **Access Control**: Help servers sabi which directories and files dem get permission to access  
-- **Dynamic Updates**: Clients fit alert servers when roots list change  
-- **URI-Based Identification**: Roots dey use `file://` URIs to identify allowed directories and files  
+**Roots** na standard way for clients to show filesystem limits to servers, to help servers sabi which directories and files dem fit access:
 
-Roots dey found through `roots/list` method, with clients sending `notifications/roots/list_changed` when roots change.
+- **Filesystem Boundaries**: Define places where servers fit work inside filesystem
+- **Access Control**: Help servers know which directories and files dem get permission to open
+- **Dynamic Updates**: Clients fit tell servers when roots list change
+- **URI-Based Identification**: Roots dey use `file://` URIs to show accessible directories and files
+
+Roots dey show via `roots/list` method, clients go send `notifications/roots/list_changed` if roots change.
 
 ### Elicitation  
 
-**Elicitation** allows servers to ask for more info or confirmation from users through client interface:
+**Elicitation** allow servers to ask for extra info or confirmation from users through client interface:
 
-- **User Input Requests**: Servers fit ask for extra info when dem need am for tool running  
-- **Confirmation Dialogs**: Request user approval for sensitive or important operations  
-- **Interactive Workflows**: Make servers fit create step-by-step user interactions  
-- **Dynamic Parameter Collection**: Collect missing or optional parameters during tool running  
+- **User Input Requests**: Servers fit ask for more info when dem need am for tool execution
+- **Confirmation Dialogs**: Ask user okay for sensitive or important actions
+- **Interactive Workflows**: Allow servers to do step-by-step user interaction
+- **Dynamic Parameter Collection**: Collect missing or optional parameters while tools dey run
 
-Elicitation requests dem dey made using `elicitation/request` method to collect user input through client interface.
+Elicitation requests dem send with `elicitation/request` method to collect user input via client interface.
 
-**URL Mode Elicitation**: Servers fit also ask for URL-based user interactions, allowing servers direct users go outside web pages for authentication, confirmation, or data input.
+**URL Mode Elicitation**: Servers fit also ask for URL-based user interaction, so servers fit direct user go outside web page for authentication, confirmation, or data entry.
 
 ### Logging
+> **Deprecation notice:** di `2026-07-28` release candidate don mark Logging as deprecated in favor of `stderr` for stdio transports and OpenTelemetry for structured observability. E still dey work for `2025-11-25` and for at least one year after any deprecation. See [What's Changing in MCP: The 2026-07-28 Release Candidate](./mcp-2026-07-28-release-candidate.md).
 
-**Logging** allow servers send structured log messages to clients for debugging, monitoring, and operational visibility:
+**Logging** dey allow servers to send structured log messages to clients for debugging, monitoring, and operational visibility:
 
-- **Debugging Support**: Makes servers fit provide detailed execution logs for troubleshooting  
-- **Operational Monitoring**: Send status updates and performance metrics to clients  
-- **Error Reporting**: Give detailed error context and diagnostics  
-- **Audit Trails**: Create full logs of server operations and decisions  
+- **Debugging Support**: Make servers fit provide detailed execution logs for troubleshooting
+- **Operational Monitoring**: Send status updates and performance metrics to clients
+- **Error Reporting**: Provide detailed error context and diagnostic information
+- **Audit Trails**: Create comprehensive logs of server operations and decisions
 
-Logging messages dey sent to clients to make server operations clear and support debugging.
+Logging messages dey sent go clients to provide transparency into server operations and make debugging easier.
 
 ## Information Flow in MCP
 
-Di Model Context Protocol (MCP) define structured flow of information between hosts, clients, servers, and models. To sabi dis flow go help understand how user requests dey process and how outside tools and data dey integrate into model answers.
-- **Host Dey Start Connection**  
-  Di host application (wey fit be IDE or chat interface) go connect wit MCP server, usually dem go use STDIO, WebSocket, or oda transport wey dem support.
+The Model Context Protocol (MCP) dey define structured flow of information between hosts, clients, servers, and models. To sabi dis flow go help make clear how user requests dey process and how external tools and data dey integrate inside model responses.
 
-- **Capability Talk**  
-  Di client (wey dey inside di host) and di server go exchange info about di features, tools, resources, and protocol versions wey dem fit use. Dis dey make sure say both sides sabi wetin dem fit use for di session.
+- **Host Initiates Connection**  
+  The host application (like IDE or chat interface) go establish connection to MCP server, normally via STDIO, WebSocket, or another supported transport.
+
+- **Capability Negotiation**  
+  The client (wey dey inside di host) and the server go exchange information about their features, tools, resources, and protocol versions wey dem support. Dis one go make sure both sides sabi the capabilities wey dey for the session.
 
 - **User Request**  
-  Di user go interact wit di host (like ety press prompt or command). Di host go collect dis input come send am go client for processing.
+  The user go interact with di host (for example, enter prompt or command). The host go collect dis input and pass am to di client for processing.
 
 - **Resource or Tool Use**  
-  - Di client fit ask di server for more context or resources (like files, database entries, or knowledge base articles) to make di model sabi better.  
-  - If di model see say tool need (like to collect data, do calculation, or call API), di client go send tool invocation request go di server, talk di tool name and parameters.
+  - Di client fit request additional context or resources from the server (like files, database entries, or knowledge base articles) to help di model understanding.
+  - If di model see say tool need (like to fetch data, do calculation, or call API), di client go send tool invocation request to di server, specify the tool name and parameters.
 
 - **Server Execution**  
-  Di server go get di resource or tool request, e go do wetin e need (like run function, ask database, or collect file), then e go send di result back to di client for structure format.
+  Di server go receive di resource or tool request, e go run di operations (like run function, query database, or find file), then e go return di results to di client inside structured format.
 
 - **Response Generation**  
-  Di client go combine di server tori (resource data, tool output, etc) join di model interaction wey dey happen. Di model go use dis info to create one better and correct answer.
+  Di client go join di server's responses (resource data, tool outputs, etc.) inside the ongoing model interaction. Di model go use this one generate comprehensive and contextually correct answer.
 
 - **Result Presentation**  
-  Di host go receive di final output from di client come show am to di user, sometimes e go show both di model talk and di output from tools or resource lookups.
+  Di host go receive di final output from di client and show am to di user, including both di model generated text and any results from tool executions or resource lookups.
 
-Dis flow dey make MCP fit support beta, interactive, and context-aware AI apps by join models to outside tools and data sources well well.
+Dis flow dey allow MCP support advanced, interactive, and context-aware AI apps by connecting models with external tools and data sources smoothly.
 
 ## Protocol Architecture & Layers
 
-MCP get two architecture layers wey dem dey use together to give full communication framework:
+MCP get two main architecture layers wey dey work together to give complete communication framework:
 
 ### Data Layer
 
-Di **Data Layer** dey run di main MCP protocol wit **JSON-RPC 2.0** as base. Dis layer na di one wey define message style, meaning, and how bodi go take interact:
+The **Data Layer** implement core MCP protocol using **JSON-RPC 2.0** as foundation. Dis layer dey define how message structure, semantics, and interaction patterns go be:
 
 #### Core Components:
 
-- **JSON-RPC 2.0 Protocol**: All communication dey use standard JSON-RPC 2.0 message style for method calls, responses, and notifications  
-- **Lifecycle Management**: E dey handle connection start, capability talk, and session end between clients and servers  
-- **Server Primitives**: E dey make servers fit offer main functionality thru tools, resources, and prompts  
-- **Client Primitives**: E dey make servers fit ask LLMs for sampling, get user input, and send log messages  
-- **Real-time Notifications**: E support asynchronous notifications for dynamic updates without make person dey ask repeatedly
+- **JSON-RPC 2.0 Protocol**: All communication dey use standardized JSON-RPC 2.0 message format for method calls, responses, and notifications
+- **Lifecycle Management**: E dey handle connection initialization, capability negotiation, and session termination between clients and servers
+- **Server Primitives**: E make servers fit provide core functions through tools, resources, and prompts
+- **Client Primitives**: E make servers fit ask for sampling from LLMs, request user input, and send log messages
+- **Real-time Notifications**: E support asynchronous notifications wey no need polling for updates
 
 #### Key Features:
 
-- **Protocol Version Negotiation**: E use date-based versioning (YYYY-MM-DD) make e sure sey dem still fit work together  
-- **Capability Discovery**: Clients and servers dey exchange info about wetin each fit do during initialization  
-- **Stateful Sessions**: E go remember connection state during many interactions for continuity
+- **Protocol Version Negotiation**: E use date-based versioning (YYYY-MM-DD) to make sure say dem compatible
+- **Capability Discovery**: Clients and servers go exchange supported feature info during initialization
+- **Stateful Sessions**: E maintain connection state for multiple interactions to keep context continuity
 
 ### Transport Layer
 
-Di **Transport Layer** dey manage communication channels, message framing, and authentication between MCP people:
+The **Transport Layer** dey manage communication channels, message framing, and authentication between MCP participants:
 
 #### Supported Transport Mechanisms:
 
-1. **STDIO Transport**:  
-   - E use ordinary input/output streams for direct process communication  
-   - Best for local processes on one machine with no network wahala  
-   - Dem dey mostly use am for local MCP server implementation
+1. **STDIO Transport**:
+   - E use standard input/output streams for direct process communication
+   - Best for local processes wey dey same machine without network wahala
+   - Commonly used for local MCP server implementations
 
-2. **Streamable HTTP Transport**:  
+2. **Streamable HTTP Transport**:
    - E use HTTP POST for client-to-server messages  
-   - Optional Server-Sent Events (SSE) for server-to-client stream  
-   - E fit make server talk from far side  
-   - E support standard HTTP authentication (bearer tokens, API keys, custom headers)  
-   - MCP recommend OAuth for secure token authentication
+   - Optional Server-Sent Events (SSE) for server-to-client streaming
+   - E enable remote server communication across networks
+   - E support standard HTTP authentication (bearer tokens, API keys, custom headers)
+   - MCP recommend OAuth for secure token-based authentication
 
 #### Transport Abstraction:
 
-Di transport layer dey hide communication detail from di data layer, so all transport fit use same JSON-RPC 2.0 message style. Dis abstraction make am easy for apps to switch between local and remote servers quick quick.
+The transport layer dey hide communication details from the data layer, so that di same JSON-RPC 2.0 message format fit work for all transport types. Dis abstraction make e easy for apps to change between local and remote servers.
 
 ### Security Considerations
 
-MCP implementations gots follow some important security principles to make sure say all protocol operations dey safe, trustworthy, and secure:
+MCP implementations must follow important security principles to make sure say interaction safe, trustworthy, and secure throughout all protocol operations:
 
-- **User Consent and Control**: Users gots give clear permission before any data fit access or operation fit run. Dem gots make sure say user fit control wetin dem share and which actions dem approve, wit easy-to-use UI for checking and approving.
+- **User Consent and Control**: Users must give clear permission before any data dem access or make any operations. Dem suppose get clear control over which data dem share and which actions dem allow, plus easy user interfaces for approving activities.
 
-- **Data Privacy**: User data suppose dey show only if user agree, and e gots dey protected wit correct access control. MCP implementations gots block unauthorized data spread and make sure privacy dey held tight for all interactions.
+- **Data Privacy**: User data suppose only dey accessed with clear permission and e must get proper access controls. MCP implementations must protect data from unauthorized transmission and keep privacy throughout all interactions.
 
-- **Tool Safety**: Before to use any tool, user gots give clear permission. Users gots sabi well well how each tool go work, and strong security limit gots dey to stop any tool wey no suppose run or wey fit cause wahala.
+- **Tool Safety**: Before call any tool, user consent must dey. Users suppose sabi wetin each tool fit do, and strong security boundaries must dey to stop unsafe or unintended tool usage.
 
-If dem follow these security rules, MCP go keep user trust, privacy, and safety across all protocol interactions and still enable strong AI integrations.
+If these security principles follow well, MCP go keep user trust, privacy, and safety for all protocol actions while still give strong AI integrations.
 
 ## Code Examples: Key Components
 
-Below na examples of code for popular programming languages wey show how to build key MCP server components and tools.
+Below na some code examples for different popular programming languages wey show how to build key MCP server components and tools.
 
 ### .NET Example: Creating a Simple MCP Server with Tools
 
-Here na simple .NET code example wey show how to build MCP server wit your own tools. This example dey show how to define and register tools, handle requests, and connect the server with the Model Context Protocol.
+Here na practical .NET code example wey show how to build simple MCP server with custom tools. The example show how to define and register tools, handle requests, and connect server using Model Context Protocol.
 
 ```csharp
 using System;
@@ -381,7 +391,7 @@ public class WeatherData
 
 ### Java Example: MCP Server Components
 
-Dis example dey show same MCP server and tool registration like di .NET example wey dey above, but done for Java.
+Dis example show di same MCP server and tool registration as di .NET example above, but e implement for Java.
 
 ```java
 import io.modelcontextprotocol.server.McpServer;
@@ -392,7 +402,7 @@ import io.modelcontextprotocol.server.tool.ToolResponse;
 
 public class WeatherMcpServer {
     public static void main(String[] args) throws Exception {
-        // Make one MCP server
+        // Mak one MCP server
         McpServer server = McpServer.builder()
             .name("Weather MCP Server")
             .version("1.0.0")
@@ -405,10 +415,10 @@ public class WeatherMcpServer {
             .execute((ToolExecutionContext ctx) -> {
                 String location = ctx.getParameter("location", String.class);
                 
-                // Collect weather data (simple)
+                // Comot weather data (simplified)
                 WeatherData data = getWeatherData(location);
                 
-                // Return correct formatted response
+                // Return formatted response
                 return ToolResponse.content(
                     String.format("Temperature: %.1f°F, Conditions: %s, Location: %s", 
                     data.getTemperature(), 
@@ -418,18 +428,18 @@ public class WeatherMcpServer {
             })
             .build());
         
-        // Join the server with stdio transport
+        // Join the server wit stdio transport
         try (StdioServerTransport transport = new StdioServerTransport()) {
             server.connect(transport);
             System.out.println("Weather MCP Server started");
-            // Make server dey run till process finish
+            // Make server dey run till dem kill the process
             Thread.currentThread().join();
         }
     }
     
     private static WeatherData getWeatherData(String location) {
-        // Implementation go call weather API
-        // E simple make e easy for example purposes
+        // Implementation go call one weather API
+        // Simplified for example sake
         return new WeatherData(72.5, "Sunny", location);
     }
 }
@@ -461,7 +471,7 @@ class WeatherData {
 
 ### Python Example: Building an MCP Server
 
-Dis example dey use fastmcp, so abeg make sure say you install am first:
+Dis example use fastmcp, so make sure you install am first:
 
 ```python
 pip install fastmcp
@@ -489,7 +499,7 @@ def get_weather(location: str) -> dict:
         "location": location
     }
 
-# Different waya wey use class
+# Different way wey use class
 class WeatherTools:
     @mcp.tool()
     def forecast(self, location: str, days: int = 1) -> dict:
@@ -502,39 +512,39 @@ class WeatherTools:
             ]
         }
 
-# Register tools for class
+# Register class tools
 weather_tools = WeatherTools()
 
-# Begin di server
+# Begin de server
 if __name__ == "__main__":
     asyncio.run(serve_stdio(mcp))
 ```
 
 ### JavaScript Example: Creating an MCP Server
 
-Dis example dey show how to create MCP server for JavaScript and how to register two tools wey get to do with weather.
+Dis example show how to create MCP server for JavaScript and how to register two tools wey dey relate to weather.
 
 ```javascript
-// Using di official Model Context Protocol SDK
+// De use di official Model Context Protocol SDK
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { z } from "zod"; // For parameter check
+import { z } from "zod"; // For parameter validation
 
-// Create one MCP server
+// Make MCP server
 const server = new McpServer({
   name: "Weather MCP Server",
   version: "1.0.0"
 });
 
-// Define one weather tool
+// Define weather tool
 server.tool(
   "weatherTool",
   {
     location: z.string().describe("The location to get weather for")
   },
   async ({ location }) => {
-    // Dis one normally dey call weather API
-    // Simplify am for show
+    // Normally dis one go dey call weather API
+    // E simplify for demonstration
     const weatherData = await getWeatherData(location);
     
     return {
@@ -548,7 +558,7 @@ server.tool(
   }
 );
 
-// Define one forecast tool
+// Define forecast tool
 server.tool(
   "forecastTool",
   {
@@ -556,8 +566,8 @@ server.tool(
     days: z.number().default(3).describe("Number of days for forecast")
   },
   async ({ location, days }) => {
-    // Dis one normally dey call weather API
-    // Simplify am for show
+    // Normally dis one go dey call weather API
+    // E simplify for demonstration
     const forecast = await getForecastData(location, days);
     
     return {
@@ -573,7 +583,7 @@ server.tool(
 
 // Helper functions
 async function getWeatherData(location) {
-  // Fake API call
+  // Simulate API call
   return {
     temperature: 72.5,
     conditions: "Sunny",
@@ -582,7 +592,7 @@ async function getWeatherData(location) {
 }
 
 async function getForecastData(location, days) {
-  // Fake API call
+  // Simulate API call
   return Array.from({ length: days }, (_, i) => ({
     day: i + 1,
     temperature: 70 + Math.floor(Math.random() * 10),
@@ -590,113 +600,117 @@ async function getForecastData(location, days) {
   }));
 }
 
-// Connect di server wit stdio transport
+// Join di server wit stdio transport
 const transport = new StdioServerTransport();
 server.connect(transport).catch(console.error);
 
 console.log("Weather MCP Server started");
 ```
 
-Dis JavaScript example dey show how to create MCP server wit Model Context Protocol SDK. E dey show how to register two tools named `weatherTool` and `forecastTool` and make am available for MCP clients through `StdioServerTransport`.
+Dis JavaScript example show how to create MCP server using Model Context Protocol SDK. E show how to register two tools wey dem call `weatherTool` and `forecastTool` and make dem available for MCP clients through `StdioServerTransport`.
 
 ## Security and Authorization
 
-MCP get plenti built-in concepts and ways to manage security and authorization for the whole protocol:
+MCP get built-in concepts and mechanisms for managing security and authorization through di protocol:
 
 1. **Tool Permission Control**:  
-  Clients fit talk which tools model fit use during session. Dis dey make sure say only tools wey dem allow fit use, so e reduce risk of unwanted or unsafe actions. Permissions fit change based on user preference, company rules, or interaction context.
+  Clients fit specify which tools model fit use during session. Dis one make sure say only tools wey user allow fit work, to reduce risk of unsafe or wrong operations. Permissions fit change based on user preferences, org policies, or interaction context.
 
 2. **Authentication**:  
-  Servers fit make authentication mandatory before tool, resource, or sensitive operation access. Dis fit be API keys, OAuth tokens, or other schemes. Correct authentication dey make sure say only trusted clients and users fit run server capabilities.
+  Servers fit require authentication before allow access to tools, resources, or sensitive operations. Dis fit include API keys, OAuth tokens, or other schemes. Proper authentication make sure only trusted clients and users fit call server functions.
 
 3. **Validation**:  
-  Every time tool use, parameters get to be checked. Each tool define wetin e expect for type, format, and limits for parameters, and server go check requests well. Dis go stop bad or harmful input from enter tool and maintain operation integrity.
+  Parameter validation dey enforced for all tool calls. Each tool define wetin types, formats, and limits for parameters dem dey expect, and server go validate incoming requests like that. Dis one go stop bad or dangerous input from reach tool code and keep operation correct.
 
 4. **Rate Limiting**:  
-  To prevent people from abusing and to balance fair use of server resources, MCP servers fit put rate limit for tool calls and resource access. Rate limit fit apply per user, per session, or for everywhere, and e help stop denial-of-service attack or too much usage of resources.
+  To avoid abuse and make sure server resources dey used well, MCP servers fit put rate limits for tool calls and resource access. Rate limits fit be per user, per session, or global, and dem go protect against denial-of-service or excess resource use.
 
-Combine all these things together, MCP go provide solid and safe place to join language models wit outside tools and data while dey give users and developers fine control over access and use.
+If these mechanisms combine, MCP go provide strong security base for language models wey connect with external tools and data, plus give users and developers correct control over access and usage.
 
 ## Protocol Messages & Communication Flow
 
-MCP communication dey use structured **JSON-RPC 2.0** messages to make conversation clear and dependable between hosts, clients, and servers. Di protocol get certain message pattern for different operations:
+MCP communication use structured **JSON-RPC 2.0** messages to enable clear and trustable interaction between hosts, clients, and servers. The protocol define specific message types for different actions:
 
 ### Core Message Types:
 
 #### **Initialization Messages**
-- **`initialize` Request**: To start connection and agree protocol version and capabilities  
-- **`initialize` Response**: To confirm wetin features and server info support  
-- **`notifications/initialized`**: To let people know say initialization finish and session ready
+- **`initialize` Request**: To start connection and negotiate protocol version and capabilities
+- **`initialize` Response**: To confirm supported features and server info  
+- **`notifications/initialized`**: Tell say initialization don finish and session ready
 
 #### **Discovery Messages**
-- **`tools/list` Request**: To find out tools wey server get  
-- **`resources/list` Request**: To list available resources (data sources)  
-- **`prompts/list` Request**: To collect prompt templates wey dey available
+- **`tools/list` Request**: To find tools wey server get available
+- **`resources/list` Request**: To list available resources (data sources)
+- **`prompts/list` Request**: To get available prompt templates
 
 #### **Execution Messages**  
-- **`tools/call` Request**: To run specific tool wit parameters wey dem give  
-- **`resources/read` Request**: To get content from specific resource  
-- **`prompts/get` Request**: To get prompt template wit optional parameters
+- **`tools/call` Request**: To run specific tool with given parameters
+- **`resources/read` Request**: To get content from specific resource
+- **`prompts/get` Request**: To fetch prompt template with optional parameters
 
 #### **Client-side Messages**
-- **`sampling/complete` Request**: Server dey ask client for LLM completion  
-- **`elicitation/request`**: Server dey ask user input thru client interface  
-- **Logging Messages**: Server dey send structured log message to client
+- **`sampling/complete` Request**: Server ask client for LLM completion
+- **`elicitation/request`**: Server ask user input through client
+- **Logging Messages**: Server send structured logs to client
 
 #### **Notification Messages**
-- **`notifications/tools/list_changed`**: Server dey tell client say tools change  
-- **`notifications/resources/list_changed`**: Server dey tell client say resource list change  
-- **`notifications/prompts/list_changed`**: Server dey tell client say prompt list change
+- **`notifications/tools/list_changed`**: Server notify client about tool changes
+- **`notifications/resources/list_changed`**: Server notify client about resource changes  
+- **`notifications/prompts/list_changed`**: Server notify client about prompt changes
 
 ### Message Structure:
 
 All MCP messages follow JSON-RPC 2.0 format with:
-- **Request Messages**: Dem get `id`, `method`, and optional `params`  
-- **Response Messages**: Dem get `id` and either `result` or `error`  
-- **Notification Messages**: Dem get `method` and optional `params` (no `id` or response expected)
+- **Request Messages**: Get `id`, `method`, and optional `params`
+- **Response Messages**: Get `id` and either `result` or `error`  
+- **Notification Messages**: Get `method` and optional `params` (dem no get `id` and no need response)
 
-Dis structure dey make interaction reliable, traceable, and extensible for advanced things like real-time updates, chaining tools, and strong error handling.
+Dis structured communication dey ensure say interaction go reliable, dey traceable, and easy to add new features, support real-time updates, tool chaining, and proper error handling.
 
 ### Tasks (Experimental)
 
-**Tasks** na experimental feature wey dey give durable execution wrappers wey fit delay result collection and status checking for MCP requests:
+> **Looking ahead:** di `2026-07-28` release candidate don graduate Tasks from experimental core spec into dedicated Tasks extension with redesigned lifecycle (`tasks/get`, `tasks/update`, `tasks/cancel`; `tasks/list` don comot). If you build with experimental API wey dey below, plan to migrate. See [What's Changing in MCP: The 2026-07-28 Release Candidate](./mcp-2026-07-28-release-candidate.md).
 
-- **Long-Running Operations**: To follow expensive calculations, workflow automation, and batch processing  
-- **Deferred Results**: To check task status and collect results when done  
-- **Status Tracking**: To monitor task progress with defined lifecycle states  
-- **Multi-Step Operations**: To support complex workflows wey fit span many interactions
+**Tasks** na experimental feature wey provide durable execution wrappers wey allow deferred result retrieval and status tracking for MCP requests:
 
-Tasks dey wrap standard MCP requests so dem fit run asynchronously for operations wey no fit finish quick.
+- **Long-Running Operations**: Fit track expensive computations, workflow automation, batch processing
+- **Deferred Results**: Fit poll for task status and get results when operation finish
+- **Status Tracking**: Fit monitor task progress with lifecycle states
+- **Multi-Step Operations**: Support complex workflows wey involve many interactions
+
+Tasks dey wrap standard MCP requests to allow asynchronous execution for operations wey no fit complete sharpaly.
 
 ## Key Takeaways
 
-- **Architecture**: MCP na client-server design wey host dey manage plenty client connection to servers  
-- **Participants**: Ecosystem get hosts (AI apps), clients (protocol connectors), and servers (capability providers)  
-- **Transport Mechanisms**: Communication fit use STDIO (local) and Streamable HTTP wit optional SSE (remote)  
-- **Core Primitives**: Servers dey expose tools (functions wey fit run), resources (data sources), and prompts (templates)  
-- **Client Primitives**: Servers fit ask for sampling (LLM completions with tool call support), elicitation (user input with URL mode), roots (filesystem boundaries), and logging from clients  
-- **Experimental Features**: Tasks dey provide durable wrappers for long operations  
-- **Protocol Foundation**: E build on JSON-RPC 2.0 with date-based versioning (latest: 2025-11-25)  
-- **Real-time Capabilities**: E support notifications for dynamic updates and real-time sync  
-- **Security First**: Explicit user consent, data privacy protection, and secure transport na core requirements
+- **Architecture**: MCP dey use client-server structure where hosts manage many client connections to servers
+- **Participants**: Ecosystem get hosts (AI apps), clients (protocol connectors), and servers (capability providers)
+- **Transport Mechanisms**: Communication support STDIO (local) and Streamable HTTP wit optional SSE (remote)
+- **Core Primitives**: Servers expose tools (executable functions), resources (data sources), and prompts (templates)
+- **Client Primitives**: Servers fit request sampling (LLM completions with tool calls), elicitation (user input including URL mode), roots (filesystem limits), and logging from clients
+- **Experimental Features**: Tasks fit provide durable wrappers for long-running ops
+- **Protocol Foundation**: Built on JSON-RPC 2.0 with date-based versioning (current: 2025-11-25)
+- **Real-time Capabilities**: Supports notifications for dynamic updates and real-time sync
+- **Security First**: Explicit user consent, data privacy protection, and secure transport na main requirements
 
 ## Exercise
 
-Design one simple MCP tool wey go useful for your own area. Define:
-1. Wetin the tool go be named  
-2. Wetin parameters e go accept  
-3. Wetin output e go give  
-4. How model fit use dis tool to solve problems from user
+Design simple MCP tool wey go useful for your work domain. Define:
+1. Wetin you go call the tool
+2. Wetin parameters e go accept
+3. Wetin output e go return
+4. How model fit use dis tool to solve user problems
+
 
 ---
 
 ## What's next
 
 Next: [Chapter 2: Security](../02-Security/README.md)
+Wuna curious wetin go happen afta `2025-11-25`? Read [Wetin Dey Change for MCP: The 2026-07-28 Release Candidate](./mcp-2026-07-28-release-candidate.md).
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Disclaimer**:  
-Dis document don translate wit AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). Even tho we dey try make am correct, make you sabi say automated translation fit get mistake or wahala. Di original document wey e dey for im own language na di correct one. If na important mata, better make person wey sabi translate am do am. We no go responsible if anybody missunderstand or misinterpret from dis translation.
+**Disclaimer**:
+Dis document don translate wit AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). Even tho we dey try make am correct, abeg make you know say automated translation fit get errors or mistakes. Di original document for dia own language na im be di correct source. For important info, make person wey sabi human translation do am. We no go responsible for any misunderstanding or wrong understanding wey fit happen because of dis translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,12 +1,14 @@
 # MCP Protocol Features Deep Dive
 
-Dis guide go explore advanced MCP protocol features wey pass basic tool and resource handling. To sabi these features go help you build more strong, easy-to-use, and ready-for-production MCP servers.
+Dis guide go explore advanced MCP protocol features wey dey pass basic tool and resource handling. To sabi dis features go help you build strong, user-friendly, and production-ready MCP servers.
 
-## Features We Cover
+> **Looking ahead:** di `2026-07-28` release candidate dey phase out di Logging primitive (preferring `stderr` for stdio and OpenTelemetry for structured observability), e go remove di `initialize`/session model wey dem talk about for Server Lifecycle Events below, and e go move di experimental Tasks feature go one special Tasks extension wey get new `tasks/get`/`tasks/update`/`tasks/cancel` lifecycle. See [Wetyn Dey Change for MCP: Di 2026-07-28 Release Candidate](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
 
-1. **Progress Notifications** - Report progress for operations wey long
-2. **Request Cancellation** - Allow clients cancel request wey dey go
-3. **Resource Templates** - Dynamic resource URIs wit parameters
+## Features Covered
+
+1. **Progress Notifications** - Report progress for long-running operations
+2. **Request Cancellation** - Allow clients to cancel in-flight requests
+3. **Resource Templates** - Dynamic resource URIs with parameters
 4. **Server Lifecycle Events** - Proper initialization and shutdown
 5. **Logging Control** - Server-side logging configuration
 6. **Error Handling Patterns** - Consistent error responses
@@ -15,9 +17,9 @@ Dis guide go explore advanced MCP protocol features wey pass basic tool and reso
 
 ## 1. Progress Notifications
 
-For operations wey dey take time (data processing, file downloads, API calls), progress notifications dey keep users informed.
+For operations wey go take time (data processing, file downloads, API calls), progress notifications dey keep users informed.
 
-### How E Dey Work
+### How It Works
 
 ```mermaid
 sequenceDiagram
@@ -30,6 +32,7 @@ sequenceDiagram
     Server-->>Client: notification: progress 90%
     Server->>Client: result (complete)
 ```
+
 ### Python Implementation
 
 ```python
@@ -43,13 +46,13 @@ app = Server("progress-server")
 async def process_large_file(file_path: str, ctx) -> str:
     """Process a large file with progress updates."""
     
-    # Find file size for progress calculation
+    # Get file size for progress calculation
     file_size = os.path.getsize(file_path)
     processed = 0
     
     with open(file_path, 'rb') as f:
         while chunk := f.read(8192):
-            # Process di chunk
+            # Process chunk
             await process_chunk(chunk)
             processed += len(chunk)
             
@@ -77,7 +80,7 @@ async def batch_operation(items: list[str], ctx) -> str:
         result = await process_item(item)
         results.append(result)
         
-        # Report progress after every item
+        # Report progress after each item
         await ctx.send_notification(
             ProgressNotification(
                 progressToken=ctx.request_id,
@@ -106,7 +109,7 @@ server.setRequestHandler(CallToolSchema, async (request, extra) => {
       const result = await processItem(items[i]);
       results.push(result);
       
-      // Send progres notifikeishon
+      // Send progress notification na im be dis
       await extra.sendNotification({
         method: "notifications/progress",
         params: {
@@ -131,10 +134,10 @@ async def handle_progress(notification):
     params = notification.params
     print(f"Progress: {params.progress}/{params.total} - {params.message}")
 
-# Register di handler
+# Register handler
 session.on_notification("notifications/progress", handle_progress)
 
-# Call tool (progress updates go dey come through handler)
+# Call tool (progress updates go come through handler)
 result = await session.call_tool("process_large_file", {"file_path": "/data/large.csv"})
 ```
 
@@ -142,7 +145,7 @@ result = await session.call_tool("process_large_file", {"file_path": "/data/larg
 
 ## 2. Request Cancellation
 
-Make clients fit cancel requests wey no need again or dey take too long.
+Make clients fit cancel requests wey dem no need again or wey dey take too long.
 
 ### Python Implementation
 
@@ -160,20 +163,20 @@ async def long_running_search(query: str, ctx) -> str:
     results = []
     
     try:
-        for page in range(100):  # Search truplenty pages
-            # Check if dem request make e cancel
+        for page in range(100):  # Search tru many pages
+            # Check if dem request cancel
             if ctx.is_cancelled:
                 raise CancelledError("Search cancelled by user")
             
-            # Try do like say you dey search page
+            # Make like you dey search page
             page_results = await search_page(query, page)
             results.extend(page_results)
             
-            # Small delay dey give time make e check cancellation
+            # Small delay let cancel check happen
             await asyncio.sleep(0.1)
             
     except CancelledError:
-        # Return small part of results
+        # Return part result
         return f"Cancelled. Found {len(results)} results before cancellation."
     
     return f"Found {len(results)} total results"
@@ -231,7 +234,7 @@ class CancellableContext:
             )
             raise CancelledError(self._cancel_reason)
         except asyncio.TimeoutError:
-            pass  # Normal timeout, make e continue
+            pass  # Normal timeout, continue
 ```
 
 ### Client-Side Cancellation
@@ -250,7 +253,7 @@ async def search_with_timeout(session, query, timeout=30):
         result = await asyncio.wait_for(task, timeout=timeout)
         return result
     except asyncio.TimeoutError:
-        # Make dem cancel the request
+        # Ask make dem stop am
         await session.send_notification({
             "method": "notifications/cancelled",
             "params": {"requestId": task.request_id, "reason": "Timeout"}
@@ -262,7 +265,7 @@ async def search_with_timeout(session, query, timeout=30):
 
 ## 3. Resource Templates
 
-Resource templates dey allow dynamic URI construction wit parameters, e dey useful for APIs and databases.
+Resource templates dey allow dynamic URI construction with parameters, e good for APIs and databases.
 
 ### Defining Templates
 
@@ -300,7 +303,7 @@ async def list_templates() -> list[ResourceTemplate]:
 async def read_resource(uri: str) -> str:
     """Read resource, expanding template parameters."""
     
-    # Comot di parameters dem from di URI
+    # Make we knack di URI so we fit comot parameters from am
     if uri.startswith("db://users/"):
         user_id = uri.split("/")[-1]
         return await fetch_user(user_id)
@@ -342,7 +345,7 @@ server.setRequestHandler(ListResourceTemplatesSchema, async () => {
 server.setRequestHandler(ReadResourceSchema, async (request) => {
   const uri = request.params.uri;
   
-  // Tori GitHub issue URI
+  // Break down GitHub wahala URI
   const githubMatch = uri.match(/^github:\/\/repos\/([^/]+)\/([^/]+)\/issues\/(\d+)$/);
   if (githubMatch) {
     const [_, owner, repo, issueNumber] = githubMatch;
@@ -364,7 +367,7 @@ server.setRequestHandler(ReadResourceSchema, async (request) => {
 
 ## 4. Server Lifecycle Events
 
-Proper initialization and shutdown make resource management clean.
+To do proper initialization and shutdown handling go make sure sey resource management clean.
 
 ### Python Lifecycle Management
 
@@ -374,7 +377,7 @@ from contextlib import asynccontextmanager
 
 app = Server("lifecycle-server")
 
-# Di state wey everybody dey share
+# State wey everybody share
 db_connection = None
 cache = None
 
@@ -383,15 +386,15 @@ async def lifespan(server: Server):
     """Manage server lifecycle."""
     global db_connection, cache
     
-    # Wen e just start
+    # We dey start
     print("🚀 Server starting...")
     db_connection = await create_database_connection()
     cache = await create_cache_client()
     print("✅ Resources initialized")
     
-    yield  # Di server dey run for here
+    yield  # Server dey run for here
     
-    # When e go shutdown
+    # We go shut am down
     print("🛑 Server shutting down...")
     await db_connection.close()
     await cache.close()
@@ -435,7 +438,7 @@ class ManagedServer {
   }
   
   async stop() {
-    // Comot resources wey no go need again
+    // Clear resources
     console.log("🛑 Server shutting down...");
     if (this.dbConnection) {
       await this.dbConnection.close();
@@ -446,7 +449,7 @@ class ManagedServer {
   
   private setupHandlers() {
     this.server.setRequestHandler(CallToolSchema, async (request) => {
-      // Use dis.dbConnection proper
+      // Use dis.dbConnection safely
       // ...
     });
   }
@@ -467,7 +470,7 @@ await server.start();
 
 ## 5. Logging Control
 
-MCP support server-side logging levels wey clients fit control.
+MCP dey support server-side logging levels wey clients fit control.
 
 ### Implementing Logging Levels
 
@@ -576,7 +579,7 @@ class InternalError(ToolError):
 async def safe_operation(input: str) -> str:
     """Tool with comprehensive error handling."""
     
-    # Mak sure say di input correct
+    # Make sure say di input correct
     if not input:
         raise ValidationError("Input cannot be empty")
     
@@ -584,7 +587,7 @@ async def safe_operation(input: str) -> str:
         raise ValidationError(f"Input too large: {len(input)} chars (max 10000)")
     
     try:
-        # Check if permission dey
+        # Check if person get permission
         if not await check_permission(input):
             raise PermissionError(f"read {input}")
         
@@ -601,7 +604,7 @@ async def safe_operation(input: str) -> str:
     except TimeoutError as e:
         raise InternalError(f"Operation timed out: {e}")
     except Exception as e:
-        # Put for log any kasala wey no suppose happen
+        # Write down any error wey no expect
         logger.exception(f"Unexpected error in safe_operation")
         raise InternalError(f"Unexpected error: {type(e).__name__}")
 ```
@@ -641,7 +644,7 @@ server.setRequestHandler(CallToolSchema, async (request) => {
       throw new McpError(ErrorCode.InvalidRequest, error.message);
     }
     
-    // Error we no sabi
+    // Error wey no sabi
     console.error("Unexpected error:", error);
     throw new McpError(
       ErrorCode.InternalError,
@@ -655,17 +658,17 @@ server.setRequestHandler(CallToolSchema, async (request) => {
 
 ## Experimental Features (MCP 2025-11-25)
 
-Dem mark these features as experimental for the specification:
+Dem mark dis features as experimental for di specification:
 
 ### Tasks (Long-Running Operations)
 
 ```python
-# Tasks dey help follow long-running operations wit state
+# Tasks dey allow make you fit track long-time work wey get state
 @app.task()
 async def training_task(model_id: str, data_path: str, ctx) -> str:
     """Long-running ML training task."""
     
-    # Tell say task don start
+    # Report say task don start
     await ctx.report_status("running", "Initializing training...")
     
     # Training loop
@@ -685,13 +688,13 @@ async def training_task(model_id: str, data_path: str, ctx) -> str:
 ### Tool Annotations
 
 ```python
-# Annotations de give metadata bout how tool go behave
+# Annotations dey provide info about how tool go behave
 @app.tool(
     annotations={
-        "destructive": False,      # E no dey change data
-        "idempotent": True,        # E safe to try am again
-        "timeout_seconds": 30,     # The maximum time wey dem expect
-        "requires_approval": False # No need user permission
+        "destructive": False,      # E no go change data
+        "idempotent": True,        # E safe to try again
+        "timeout_seconds": 30,     # Wetin max time suppose be
+        "requires_approval": False # No need user approval
     }
 )
 async def safe_query(query: str) -> str:
@@ -701,7 +704,7 @@ async def safe_query(query: str) -> str:
 
 ---
 
-## Wetin Next
+## What's Next
 
 - [Module 8 - Best Practices](../../08-BestPractices/README.md)
 - [5.14 - Context Engineering](../mcp-contextengineering/README.md)
@@ -720,5 +723,5 @@ async def safe_query(query: str) -> str:
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Disclaimer**:
-Dis document ebe dem don translate wit AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). Even though we dey try make am correct, abeg sabi say automated translations fit get mistakes or wrong things. Di original document for im own language na di correct one. If e be important information, e better make professional human person translate am. We no go responsible for any wahala or wrong understanding wey fit happen because you use dis translation.
+Dis document don translate wit AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). Even tho we dey try make am correct, abeg make you know say automated translation fit get errors or mistakes. Di original document for dia own language na im be di correct source. For important info, make person wey sabi human translation do am. We no go responsible for any misunderstanding or wrong understanding wey fit happen because of dis translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

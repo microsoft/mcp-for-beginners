@@ -1,10 +1,10 @@
-# Mudelikonteksti protokoll (MCP) algajatele - õppejuhend
+# Mudelikonteksti protokoll (MCP) algajatele – õpperaamat
 
-See õppejuhend annab ülevaate hoidla struktuurist ja sisust kursuse "Mudelikonteksti protokoll (MCP) algajatele" jaoks. Kasutage seda juhendit hoidla tõhusaks navigeerimiseks ja olemasolevate ressursside maksimaalseks kasutamiseks.
+See õpperaamat annab ülevaate hoidla struktuurist ja sisust "Mudelikonteksti protokoll (MCP) algajatele" õppekava jaoks. Kasutage seda juhendit, et hoidlas efektiivselt navigeerida ja kasutada kõiki saadaolevaid ressursse.
 
 ## Hoidla ülevaade
 
-Mudelikonteksti protokoll (MCP) on standardiseeritud raamistik AI mudelite ja kliendirakenduste vaheliseks suhtluseks. Esialgselt lõi selle Anthropic, nüüd haldab MCP-d laiem kogukond ametliku GitHubi organisatsiooni kaudu. See hoidla pakub põhjalikku õppekava praktiliste koodinäidetega C#, Java, JavaScripti, Pythoni ja TypeScripti keeltes, suunatud AI arendajatele, süsteemiarhitektidele ja tarkvarainseneridele.
+Mudelikonteksti protokoll (MCP) on standardiseeritud raamistik tehisintellekti mudelite ja kliendirakenduste vaheliseks suhtluseks. Algupäraselt lõi selle Anthropic, nüüd hooldab MCPd laiem kogukond ametliku GitHubi organisatsiooni kaudu. See hoidla pakub põhjalikku õppekava praktiliste koodinäidete ning C#, Java, JavaScripti, Pythoni ja TypeScripti keeltega, mis on mõeldud tehisintellekti arendajatele, süsteemiarhitektidele ja tarkvarainseneridele.
 
 ## Visuaalne õppekava kaart
 
@@ -15,48 +15,48 @@ mindmap
       ::icon(fa fa-book)
       (Protokolli ülevaade)
       (Standardiseerimise eelised)
-      (Tegeliku elu kasutusjuhtumid)
+      (Tegelikud kasutusjuhud)
       (Tehisintellekti integratsiooni alused)
     01. Põhikontseptsioonid
       ::icon(fa fa-puzzle-piece)
       (Kliendi-serveri arhitektuur)
       (Protokolli komponendid)
       (Sõnumside mustrid)
-      (Transpordimehhanismid)
-      (Ülesanded - Eksperimentaalne)
-      (Tööriista annotatsioonid)
+      (Ülekande mehhanismid)
+      (Ülesanded - eksperimentaalsed)
+      (Tööriistade annotatsioonid)
     02. Turvalisus
       ::icon(fa fa-shield)
       (Tehisintellekti spetsiifilised ohud)
       (Parimad tavad 2025)
-      (Azure'i sisu turvalisus)
-      (Autentimine ja volitamine)
+      (Azure sisu turvalisus)
+      (Autentimine ja autoriseerimine)
       (Microsofti prompti kilbid)
-      (OWASP MCP top 10)
-      (Sherpa turvatöötuba)
+      (OWASP MCP Top 10)
+      (Sherpa turva töötuba)
     03. Alustamine
       ::icon(fa fa-rocket)
       (Esimene serveri rakendus)
       (Kliendi arendus)
       (LLM kliendi integratsioon)
-      (VS Code'i laiendused)
-      (SSE serveri seadistamine)
-      (HTTP voogesitus)
-      (Tehisintellekti tööriistakomplekti integratsioon)
+      (VS Code laiendused)
+      (SSE serveri seadistus)
+      (HTTP voogedastus)
+      (Tehisintellekti tööriistade integratsioon)
       (Testimise raamistikud)
       (Täpsem serveri kasutus)
       (Lihtne autentimine)
-      (Haldamisstrateegiad)
+      (Haldusstrateegiad)
       (MCP hostide seadistamine)
       (MCP inspektor)
     04. Praktiline rakendamine
       ::icon(fa fa-code)
-      (Mitmekeelsed SDK-d)
+      (Mitmekeelised SDK-d)
       (Testimine ja silumine)
       (Prompti mallid)
-      (Näidisprojektid)
+      (Näidistööprojektid)
       (Tootmismustrid)
-      (Leheküljendamise strateegiad)
+      (Lehekülgede jagamise strateegiad)
     05. Täiustatud teemad
       ::icon(fa fa-graduation-cap)
       (Konteksti inseneritöö)
@@ -64,18 +64,18 @@ mindmap
       (Mitmemodaalsed tehisintellekti töövood)
       (OAuth2 autentimine)
       (Reaalajas otsing)
-      (Voogedastusprotokollid)
-      (Põhikontekstid)
+      (Vooprotokollid)
+      (Juure kontekstid)
       (Marsruutimise strateegiad)
       (Valimismeetodid)
       (Skaala lahendused)
       (Turvalisuse tugevdamine)
       (Entra ID integratsioon)
-      (Veebiotsing MCP)
-      (Protokolli funktsioonide põhjalik uurimine)
-      (Vastandlik mitmeagendiline mõtlemine)
+      (Veebi otsing MCP)
+      (Protokolli funktsioonide põhjalik analüüs)
+      (Vastandlik mitmeagendi mõtlemine)
       
-    06. Ühiskond
+    06. Ühendus
       ::icon(fa fa-users)
       (Koodi panused)
       (Dokumentatsioon)
@@ -85,42 +85,42 @@ mindmap
       (GitHub koostöö)
     07. Varajane kasutuselevõtt
       ::icon(fa fa-lightbulb)
-      (Tootmise juurutused)
-      (Microsofti MCP serverid)
+      (Tootmise kasutusele võtmine)
+      (Microsoft MCP serverid)
       (Azure MCP teenus)
       (Ettevõtete juhtumiuuringud)
-      (Tulevase teekaart)
+      (Tuleviku teekaart)
     08. Parimad tavad
       ::icon(fa fa-check)
       (Jõudluse optimeerimine)
-      (Vea taluvus)
+      (Rikke taluvus)
       (Süsteemi vastupidavus)
       (Jälgimine ja vaatlus)
     09. Juhtumiuuringud
       ::icon(fa fa-file-text)
       (Azure API haldus)
-      (Tehisintellekti reisibüroo)
+      (Tehisintellekt reisikonsultandina)
       (Azure DevOps integratsioon)
       (Dokumentatsiooni MCP)
       (GitHub MCP register)
       (VS Code integratsioon)
-      (Tegeliku elu rakendused)
-    10. Käed-külge töötuba
+      (Tegelikud rakendused)
+    10. Praktiline töötuba
       ::icon(fa fa-laptop)
       (MCP serveri alused)
       (Täpsem arendus)
-      (Tehisintellekti tööriistakomplekti integratsioon)
-      (Tootmise juurutamine)
-      (4-labori struktuur)
-    11. Andmebaasi integratsiooni laborid
+      (Tehisintellekti tööriistade integratsioon)
+      (Tootmise kasutuselevõtt)
+      (4-õpitoa struktuur)
+    11. Andmebaasi integratsiooni õpitoad
       ::icon(fa fa-database)
       (PostgreSQL integratsioon)
       (Jaemüügi analüütika kasutusjuht)
-      (Rea tasandi turvalisus)
-      (Sisemine otsing)
-      (Tootmise juurutamine)
-      (13-labori struktuur)
-      (Käed-külge õppimine)
+      (Rea-taseme turvalisus)
+      (Semantiline otsing)
+      (Tootmise kasutuselevõtt)
+      (13-õpitoa struktuur)
+      (Praktiline õppimine)
     12. Tööriistad
       ::icon(fa fa-wrench)
       (MCP Copiloti rakenduses)
@@ -128,89 +128,90 @@ mindmap
 
 ## Hoidla struktuur
 
-Hoidla on organiseeritud kaheteistkümneks põhiosaks, millest igaüks keskendub MCP erinevatele aspektidele:
+Hoidla on organiseeritud kaheteistkümneks peamiseks osaks, millest igaüks keskendub MCP erinevatele aspektidele:
 
 1. **Sissejuhatus (00-Introduction/)**
    - Mudelikonteksti protokolli ülevaade
-   - Miks standardiseerimine on AI torustikes oluline
+   - Miks on standardiseerimine AI torujuhtmetes oluline
    - Praktilised kasutusjuhtumid ja eelised
 
 2. **Põhikontseptsioonid (01-CoreConcepts/)**
    - Kliendi-serveri arhitektuur
-   - Peamised protokolli komponendid
-   - Sõnumivahetuse mustrid MCP-s
+   - Olulised protokolli komponendid
+   - Sõnumivahetuse mustrid MCPs
+   - Tulevikku vaatamine: [Mis MCP-s muutub: 2026-07-28 versiooni kandidaat](./01-CoreConcepts/mcp-2026-07-28-release-candidate.md) — olekuvaba protokolli süda, laiendusraamistik ning juurpõhiste/Sampling/Logimise eemaldamise ootused järgmisel spetsifikatsiooni versioonil
 
 3. **Turvalisus (02-Security/)**
-   - Turvaohtud MCP-l põhinevates süsteemides
-   - Parimad tavad turvalise rakenduse jaoks
+   - MCP-põhiste süsteemide turvaohtud
+   - Parimad tavad implementeerimise kaitsmiseks
    - Autentimise ja autoriseerimise strateegiad
-   - **Põhjalik turbedokumentatsioon**:
-     - MCP turvaparimad tavad 2025
-     - Azure sisuturbe rakendamise juhend
-     - MCP turvakontrollid ja tehnikad
-     - MCP parimate tavade kiire viide
-   - **Olulised turvateemad**:
-     - Prompt-injektsiooni ja tööriistamürgituse ründed
-     - Sessiooni kaaperdamine ja segaduses voltija probleemid
-     - Tokenite edastamise haavatavused
-     - Liigne õiguste andmine ja ligipääsu kontroll
-     - Tarneahela turvalisus AI komponentidele
-     - Microsoft Prompt Shields integratsioon
+   - **Kõikehõlmav turvalisuse dokumentatsioon**:
+     - MCP turvalisuse parimad praktikad 2025
+     - Azure Sisu turvalisuse kasutuselevõtujuhend
+     - MCP turvakontrollid ja meetodid
+     - MCP parimate tavade kiire ülevaade
+   - **Olulised turvalisuse teemad**:
+     - Käskluste süstimine ja tööriistade mürgitamise rünnakud
+     - Sessiooni kaaperdamine ja segadusseajamise probleemid
+     - Tokeni edasiandmise nõrkused
+     - Liiga ulatuslikud õigused ja juurdepääsu kontroll
+     - Tarneahela turvalisus tehisintellekti komponentide jaoks
+     - Microsofti käskluskaitsed integratsioon
 
 4. **Alustamine (03-GettingStarted/)**
    - Keskkonna seadistamine ja konfiguratsioon
    - Põhiliste MCP serverite ja klientide loomine
-   - Olemasolevate rakendustega integreerimine
-   - Sisaldab jaotisi:
-     - Esimene serveri rakendus
-     - Kliendi arendus
-     - LLM kliendi integratsioon
-     - VS Code integratsioon
+   - Integreerimine olemasolevate rakendustega
+   - Sisaldab alajaotusi:
+     - Esimene serveri implementatsioon
+     - Kliendi arendamine
+     - LLM kliendi integreerimine
+     - VS Code integreerimine
      - Server-Sent Events (SSE) server
-     - Täiustatud serverikasutus
-     - HTTP voogedastus
-     - AI tööriistakomplekti integratsioon
-     - Testimisstrateegiad
-     - Paigaldusjuhised
+     - Täiustatud serveri kasutus
+     - HTTP voogesitus
+     - AI komplekti integratsioon
+     - Testimise strateegiad
+     - Rakendamise juhendid
 
-5. **Praktiline rakendus (04-PracticalImplementation/)**
-   - SDKde kasutamine erinevates programmeerimiskeeltes
-   - Silumine, testimine ja valideerimine
-   - Taaskasutatavate promptide mallide ja töövoogude loomine
-   - Näidistööprojektid koos rakenduse näidetega
+5. **Praktiline rakendamine (04-PracticalImplementation/)**
+   - SDK-de kasutamine erinevates programmeerimiskeeltes
+   - Silumine, testimine ja valideerimise tehnikad
+   - Taaskasutatavate käskluse mallide ja töövoogude loomine
+   - Näidete projektid koos implementeerimisega
 
 6. **Täiustatud teemad (05-AdvancedTopics/)**
-   - Konteksti inseneritehnikad
+   - Konteksti insenerimise tehnikad
    - Foundry agendi integratsioon
-   - Multi-modaalsed AI töövood
-   - OAuth2 autentimise demo'd
-   - Reaalajas otsingu võimalused
-   - Reaalaja voogedastus
-   - Juurekonkestide rakendus
+   - Multi-modaalsed tehisintellekti töövood
+   - OAuth2 autentimise demo
+   - Reaalajas otsinguvõimalused
+   - Reaalajas voogedastus
+   - Juurekonkesti implementeerimine
    - Marsruutimise strateegiad
-   - Proovi võtmise tehnikad
-   - Skaalimise lähenemised
-   - Turvaküsimused
+   - Võtete proovid
+   - Skaalumise lähenemised
+   - Turvalisuse kaalutlused
    - Entra ID turvaintegratsioon
    - Veebipõhine otsing
-   - Vihaküllane multiagendi mõtlemine (debattimustrid)
+   - Vastandlik multi-agent arutelu (debattimismustrid)
 
 7. **Kogukonna panused (06-CommunityContributions/)**
    - Koodi ja dokumentatsiooni panustamine
-   - Koostöö GitHubis
-   - Kogukonna juhitud täiustused ja tagasiside
-   - Erinevate MCP klientide kasutamine (Claude Desktop, Cline, VSCode)
-   - Töö populaarsete MCP serveritega, sealhulgas pildigeneratsioon
+   - Koostöö GitHubi kaudu
+   - Kogukonnapõhised täiustused ja tagasiside
+   - Mitmesuguste MCP klientide kasutamine (Claude Desktop, Cline, VSCode)
+   - Populaarsete MCP serveritega töötamine, sh pildigeneratsioon
 
-8. **Õppetunnid varajasest kasutuselevõtust (07-LessonsfromEarlyAdoption/)**
-   - Tegeliku maailma rakendused ja edulood
-   - MCP-põhiste lahenduste ehitamine ja kasutuselevõtt
-   - Tendentsid ja tuleviku tee
-   - **Microsoft MCP serverite juhend**: Põhjalik juhend 10 tootmisküpse Microsoft MCP serveri kohta, sealhulgas:
+8. **Varajaste rakenduste õppetunnid (07-LessonsfromEarlyAdoption/)**
+   - Reaalse maailma rakendused ja edulood
+   - MCP-põhiste lahenduste loomine ja juurutamine
+   - Trendid ja tuleviku strateegia
+   - **Microsofti MCP serverite juhend**: Põhjalik juhend 10 tootmiskõlbuliku Microsofti MCP serveri kohta, nende seas:
      - Microsoft Learn Docs MCP server
-     - Azure MCP server (15+ spetsialiseeritud ühendajat)
+     - Azure MCP server (15+ spetsialiseeritud kontrollerit)
      - GitHub MCP server
-     - Azure DevOps MCP server
+     - Azure DevOpsi MCP server
      - MarkItDown MCP server
      - SQL Server MCP server
      - Playwright MCP server
@@ -218,54 +219,54 @@ Hoidla on organiseeritud kaheteistkümneks põhiosaks, millest igaüks keskendub
      - Microsoft Foundry MCP server
      - Microsoft 365 Agents Toolkit MCP server
 
-9. **Parimad tavad (08-BestPractices/)**
+9. **Parimad praktikad (08-BestPractices/)**
    - Jõudluse häälestamine ja optimeerimine
-   - Vigadekindlate MCP süsteemide kavandamine
-   - Testimiskomplektid ja vastupidavusstrateegiad
+   - Vigadele vastupidavate MCP süsteemide disain
+   - Testimise ja vastupanuvõime strateegiad
 
 10. **Juhtumiuuringud (09-CaseStudy/)**
-    - **7 põhjalikku juhtumiuuringut**, mis demonstreerivad MCP mitmekülgsust mitmes valdkonnas:
-    - **Azure AI reisikorraldajad**: Multi-agentide orkestreerimine Azure OpenAI ja AI Searchiga
-    - **Azure DevOps integratsioon**: Töövoo automatiseerimine YouTube andmete uuendustega
-    - **Reaalajas dokumentide päring**: Pythoni konsooliklient HTTP voogedastusega
-    - **Interaktiivne õppekava generaator**: Chainlit veebirakendus vestlusliku AI-ga
-    - **Toimetajasisesed dokumendid**: VS Code integratsioon GitHub Copiloti töövoogudega
+    - **Seitse põhjalikku juhtumiuuringut**, mis demonstreerivad MCP mitmekülgsust erinevates olukordades:
+    - **Azure AI Reisiaagentid**: Multi-agentide orkestreerimine Azure OpenAI ja AI Search abil
+    - **Azure DevOpsi integratsioon**: Töövoogude automatiseerimine YouTube andmete uuendamisega
+    - **Reaalajas dokumentide hankimine**: Python konsooliklient HTTP voogedastusega
+    - **Interaktiivne õppematerjalide generaator**: Chainlit veebirakendus vestleval AI-l
+    - **Toimetajasisene dokumentatsioon**: VS Code integratsioon GitHub Copiloti töövoogudega
     - **Azure API haldus**: Ettevõtte API integratsioon MCP serveri loomisega
-    - **GitHub MCP registri arendus**: Ökosüsteemi arendus ja ageneti integratsiooni platvorm
-    - Rakendusenäited hõlmavad ettevõtte integratsiooni, arendaja tootlikkust ja ökosüsteemi arengut
+    - **GitHub MCP register**: Ökosüsteemi arendamine ja agendi integratsiooniplatvorm
+    - Implementatsiooni näited hõlmavad ettevõtte integratsiooni, arendaja tootlikkust ja ökosüsteemi arengut
 
 11. **Praktiline töötuba (10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/)**
-    - Põhjalik praktiline töötuba, mis ühendab MCP ja AI tööriistakomplekti
-    - Nutikate rakenduste ehitamine AI mudelite ja reaalse maailma tööriistade ühendamiseks
-    - Praktilised moodulid, mis hõlmavad aluseid, kohandatud serveri arendust ja tootmisseadistust
-    - **Lab struktuur**:
-      - Lab 1: MCP serveri alused
-      - Lab 2: Täiustatud MCP serveri arendus
-      - Lab 3: AI tööriistakomplekti integratsioon
-      - Lab 4: Tootmispaigaldus ja skaleerimine
-    - Labipõhine õppemeetod samm-sammult juhistega
+    - Põhjalik praktiline töötuba, mis ühendab MCP ja AI komplekti
+    - Intelligentsed rakendused, mis liidavad AI mudelid ja reaalse maailma tööriistad
+    - Praktilised moodulid katavad põhialused, kohandatud serveri arenduse ning tootmise rakendamise strateegiad
+    - **Labori struktuur**:
+      - Labor 1: MCP serveri põhitõed
+      - Labor 2: Täiustatud MCP serveri arendus
+      - Labor 3: AI komplekti integratsioon
+      - Labor 4: Tootmisesse juurutamine ja skaleerimine
+    - Samm-sammult juhendatud laboripõhine õppimine
 
-12. **MCP serveri andmebaasi integratsiooni laborid (11-MCPServerHandsOnLabs/)**
-    - **Põhjalik 13-labori õppekava** tootmisküpsete MCP serverite loomiseks koos PostgreSQL integratsiooniga
-    - **Tegeliku maailma jaemüügi analüüsi rakendus** Zava Retail kasutusjuhtumiga
-    - **Ettevõttetaseme mustrid** nagu ridade tasandi turvalisus (RLS), semantiline otsing ja mitmekliendiline andmetele juurdepääs
-    - **Täielik laborite struktuur**:
-      - **Laborid 00-03: Alused** – sissejuhatus, arhitektuur, turvalisus, keskkonna seadistus
-      - **Laborid 04-06: MCP serveri ehitamine** – andmebaasi disain, MCP serveri rakendus, tööriistade arendus
-      - **Laborid 07-09: Täiustatud funktsioonid** – semantiline otsing, testimine ja silumine, VS Code integratsioon
-      - **Laborid 10-12: Tootmine ja parimad tavad** – paigaldus, jälgimine, optimeerimine
-    - **Kasutatavad tehnoloogiad**: FastMCP raamistik, PostgreSQL, Azure OpenAI, Azure Container Apps, Application Insights
-    - **Õpitulemused**: tootmisküpsed MCP serverid, andmebaasi integratsiooni mustrid, AI-põhine analüütika, ettevõtte turvalisus
+12. **MCP serveri andmebaasintegreerimise laborid (11-MCPServerHandsOnLabs/)**
+    - **Üksikasjalik 13-laboriline õppeprogramm** tootmiskõlblike MCP serverite ehitamiseks koos PostgreSQL integratsiooniga
+    - **Reaalse maailma jaekaupluste analüütika rakendus** kasutades Zava Retail juhtumit
+    - **Ettevõtte klassi mustrid** nagu ridade taseme turvalisus (RLS), semantiline otsing ja mitme üürniku andmejuurdepääs
+    - **Täielik laboristruktuur**:
+      - **Laborid 00-03: Alused** — Sissejuhatus, Arhitektuur, Turvalisus, Keskkonna seadistamine
+      - **Laborid 04-06: MCP serveri ehitamine** — Andmebaasi disain, MCP serveri implementatsioon, Tööriistade arendus
+      - **Laborid 07-09: Täiustatud funktsioonid** — Semantiline otsing, Testimine ja silumine, VS Code integreerimine
+      - **Laborid 10-12: Tootmine ja parimad praktikad** — Rakendamine, Jälgimine, Optimeerimine
+    - **Kasutatud tehnoloogiad**: FastMCP raamistik, PostgreSQL, Azure OpenAI, Azure Container Apps, Application Insights
+    - **Õpitulemused**: Tootmiskõlblikud MCP serverid, andmebaasi integratsiooni mustrid, AI-põhine analüütika, ettevõtte turvalisus
 
 13. **Tööriistad (12-tooling/)**
-    - Õppige kasutama MCP-d Copiloti rakenduses ja muudes tööriistades
+    - Kuidas kasutada MCP-d Copilot rakenduses ja teistes tööriistades
 
-## Lisavarad
+## Lisamaterjalid
 
-Hoidla sisaldab toetavaid ressursse:
+Hoidlas on saadaval tugimaterjalid:
 
-- **Pildikaust**: sisaldab skeeme ja illustratsioone üle õppekava
-- **Tõlked**: mitmekeelne tugi dokumentatsiooni automaatsete tõlgetega
+- **Pildid kaustas**: Sisaldab diagramme ja illustratsioone kogu õppekava jooksul
+- **Tõlked**: Mitmekeelne tugi dokumentatsiooni automaatsete tõlgetega
 - **Ametlikud MCP ressursid**:
   - [MCP dokumentatsioon](https://modelcontextprotocol.io/)
   - [MCP spetsifikatsioon](https://spec.modelcontextprotocol.io/)
@@ -273,30 +274,30 @@ Hoidla sisaldab toetavaid ressursse:
 
 ## Kuidas seda hoidlat kasutada
 
-1. **Järjestikuline õppimine**: Järgige peatükke järjest (00 kuni 11) struktureeritud õppe kogemuseks.
-2. **Keelepõhine fookus**: Kui huvitab konkreetne programmeerimiskeel, uurige näidiste katalooge oma eelistatud keeles.
-3. **Praktiline rakendus**: Alustage "Alustamise" osast, et seadistada keskkond ja luua esimene MCP server ja klient.
+1. **Samm-sammult õppimine**: Järgige peatükke järjest (00 kuni 11) struktureeritud õppeks.
+2. **Keele-spetsiifiline fookus**: Kui olete huvitatud konkreetsest programmeerimiskeelest, uurige prooviprojektide katalooge oma eelistatud keeles.
+3. **Praktiline rakendamine**: Alustage „Alustamine“ osast, et seadistada keskkond ja luua esimene MCP server ning klient.
 4. **Täiustatud uurimine**: Kui põhialused on selged, sukelduge täiustatud teemadesse teadmiste laiendamiseks.
-5. **Kogukonnaga suhtlemine**: Liituge MCP kogukonnaga GitHubi arutelude ja Discordi kanalite kaudu, et suhelda ekspertide ja kaasaarendajatega.
+5. **Kogukonna kaasamine**: Liituge MCP kogukonnaga GitHubi arutelude ja Discordi kanalite kaudu, et suhelda ekspertide ja teiste arendajatega.
 
 ## MCP kliendid ja tööriistad
 
-Õppekava hõlmab erinevaid MCP kliente ja tööriistu:
+Õppekava hõlmab mitmesuguseid MCP kliente ja tööriistu:
 
 1. **Ametlikud kliendid**:
    - Visual Studio Code
-   - MCP Visual Studio Codes
+   - MCP Visual Studio Code’is
    - Claude Desktop
-   - Claude VSCode-s
+   - Claude VSCode’is
    - Claude API
 
-2. **Kogukonnapõhised kliendid**:
+2. **Kogukonna kliendid**:
    - Cline (terminalipõhine)
    - Cursor (koodiredaktor)
    - ChatMCP
    - Windsurf
 
-3. **MCP juhtimistööriistad**:
+3. **MCP haldustööriistad**:
    - MCP CLI
    - MCP Manager
    - MCP Linker
@@ -304,11 +305,11 @@ Hoidla sisaldab toetavaid ressursse:
 
 ## Populaarsed MCP serverid
 
-Hoidla tutvustab erinevaid MCP servereid, sealhulgas:
+Hoidla tutvustab mitmeid MCP servereid, sealhulgas:
 
 1. **Ametlikud Microsofti MCP serverid**:
    - Microsoft Learn Docs MCP server
-   - Azure MCP server (15+ spetsialiseeritud ühendajat)
+   - Azure MCP server (15+ spetsialiseeritud kontrollerit)
    - GitHub MCP server
    - Azure DevOps MCP server
    - MarkItDown MCP server
@@ -318,18 +319,18 @@ Hoidla tutvustab erinevaid MCP servereid, sealhulgas:
    - Microsoft Foundry MCP server
    - Microsoft 365 Agents Toolkit MCP server
 
-2. **Ametlikud viitserverid**:
-   - Failisüsteem
+2. **Ametlikud referentsserverid**:
+   - Filesystem
    - Fetch
-   - Mälu
-   - Järjestikune mõtlemine
+   - Memory
+   - Sequential Thinking
 
 3. **Pildigeneratsioon**:
    - Azure OpenAI DALL-E 3
    - Stable Diffusion WebUI
    - Replicate
 
-4. **Arendusvahendid**:
+4. **Arendustööriistad**:
    - Git MCP
    - Terminal Control
    - Code Assistant
@@ -341,11 +342,13 @@ Hoidla tutvustab erinevaid MCP servereid, sealhulgas:
 
 ## Panustamine
 
-See hoidla ootab kogukonna panuseid. Vaadake jaotist Kogukonna panused, et saada juhiseid, kuidas MCP ökosüsteemi tõhusalt täiustada.
+See hoidla tervitab kogukonna panuseid. Vaadake jaotust Kogukonna panused, et saada juhiseid tõhusaks panustamiseks MCP ökosüsteemi.
 
 ----
 
-*Seda õppejuhendit uuendati viimati 5. veebruaril 2026, kajastades uusimat MCP spetsifikatsiooni 2025-11-25 ja see annab hoidla ülevaate sellel kuupäeval. Hoidla sisu võib pärast seda kuupäeva muutuda.*
+*See õpperaamat uuendati viimati 5. veebruaril 2026, kajastades viimast MCP spetsifikatsiooni 2025-11-25 ja annab ülevaate hoidlast selle kuupäeva seisuga. Hoidla sisu võib selle kuupäeva järel muutuda.*
+
+*Lisand (2. juuli 2026): lisati õppetund `2026-07-28` MCP spetsifikatsiooni versioonikandidaadi teemal jaotises [01-CoreConcepts](./01-CoreConcepts/mcp-2026-07-28-release-candidate.md); õppekava baasversioon on jätkuvalt 2025-11-25 kuni uus spetsifikatsioon välja lastakse.*
 
 ---
 

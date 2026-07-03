@@ -6,14 +6,20 @@
     "language_code": "pcm"
   },
   "01-CoreConcepts/README.md": {
-    "original_hash": "bfb0a1f4d43f5735079e4ca77a6f4a53",
-    "translation_date": "2026-03-15T23:01:37+00:00",
+    "original_hash": "a4bfc2f4d5a879b99141e2948de64a12",
+    "translation_date": "2026-07-03T11:20:17+00:00",
     "source_file": "01-CoreConcepts/README.md",
     "language_code": "pcm"
   },
+  "01-CoreConcepts/mcp-2026-07-28-release-candidate.md": {
+    "original_hash": "1c6b345da067b7fac2b16362a05d3ce3",
+    "translation_date": "2026-07-03T11:27:33+00:00",
+    "source_file": "01-CoreConcepts/mcp-2026-07-28-release-candidate.md",
+    "language_code": "pcm"
+  },
   "02-Security/README.md": {
-    "original_hash": "50fdf805206539d10e18ac760ebb219f",
-    "translation_date": "2026-06-08T13:28:54+00:00",
+    "original_hash": "422e906ace337954152cfb5aa32b4217",
+    "translation_date": "2026-07-03T11:21:28+00:00",
     "source_file": "02-Security/README.md",
     "language_code": "pcm"
   },
@@ -216,8 +222,8 @@
     "language_code": "pcm"
   },
   "03-GettingStarted/06-http-streaming/README.md": {
-    "original_hash": "0ae0bc20f9ecf18b1a3bd70485e56066",
-    "translation_date": "2026-05-19T10:18:35+00:00",
+    "original_hash": "f8d3d88350363416018b63662bbebb11",
+    "translation_date": "2026-07-03T11:23:53+00:00",
     "source_file": "03-GettingStarted/06-http-streaming/README.md",
     "language_code": "pcm"
   },
@@ -306,8 +312,8 @@
     "language_code": "pcm"
   },
   "03-GettingStarted/11-simple-auth/README.md": {
-    "original_hash": "e192af3a119f24896a3a0ab93ef848fd",
-    "translation_date": "2026-04-11T19:52:27+00:00",
+    "original_hash": "919ddbc7182045d54da7b2a6b88e0550",
+    "translation_date": "2026-07-03T11:25:23+00:00",
     "source_file": "03-GettingStarted/11-simple-auth/README.md",
     "language_code": "pcm"
   },
@@ -372,8 +378,8 @@
     "language_code": "pcm"
   },
   "03-GettingStarted/14-sampling/README.md": {
-    "original_hash": "f69890af1caa9dd7cfbf5d7722672426",
-    "translation_date": "2026-06-16T22:44:10+00:00",
+    "original_hash": "7d3d913f76e09d7d394e7018bb62d1b8",
+    "translation_date": "2026-07-03T11:24:12+00:00",
     "source_file": "03-GettingStarted/14-sampling/README.md",
     "language_code": "pcm"
   },
@@ -522,8 +528,8 @@
     "language_code": "pcm"
   },
   "05-AdvancedTopics/README.md": {
-    "original_hash": "d0c5b9a4cc7e04922cdea25fb76ed877",
-    "translation_date": "2026-06-16T22:30:16+00:00",
+    "original_hash": "1630894019299d50f2c91321198b4e37",
+    "translation_date": "2026-07-03T11:19:15+00:00",
     "source_file": "05-AdvancedTopics/README.md",
     "language_code": "pcm"
   },
@@ -570,8 +576,8 @@
     "language_code": "pcm"
   },
   "05-AdvancedTopics/mcp-protocol-features/README.md": {
-    "original_hash": "f52288bba5076c60be03f0b0bffd82f9",
-    "translation_date": "2026-02-09T01:06:15+00:00",
+    "original_hash": "f8b3c22dc220fbf58bec5df006c9452f",
+    "translation_date": "2026-07-03T11:22:38+00:00",
     "source_file": "05-AdvancedTopics/mcp-protocol-features/README.md",
     "language_code": "pcm"
   },
@@ -618,14 +624,14 @@
     "language_code": "pcm"
   },
   "05-AdvancedTopics/mcp-security/README.md": {
-    "original_hash": "bd56dea4fcf8b1a5b686370f30bee8d6",
-    "translation_date": "2026-06-16T22:41:41+00:00",
+    "original_hash": "6e9e5ad6f15c7442add8eb92bba13453",
+    "translation_date": "2026-07-03T11:23:20+00:00",
     "source_file": "05-AdvancedTopics/mcp-security/README.md",
     "language_code": "pcm"
   },
   "05-AdvancedTopics/mcp-transport/README.md": {
-    "original_hash": "c6eb6f13d1ff41dadb1460dd9e71972e",
-    "translation_date": "2026-06-16T22:39:00+00:00",
+    "original_hash": "f0bda0c5c6c21a756a7b626628c76aaf",
+    "translation_date": "2026-07-03T11:21:57+00:00",
     "source_file": "05-AdvancedTopics/mcp-transport/README.md",
     "language_code": "pcm"
   },
@@ -858,8 +864,8 @@
     "language_code": "pcm"
   },
   "README.md": {
-    "original_hash": "cd2e44a0f3306fc3b7625ce89d6c99bb",
-    "translation_date": "2026-06-25T00:02:37+00:00",
+    "original_hash": "8c09e6bcaa3074688645c3e5fcaa8681",
+    "translation_date": "2026-07-03T11:16:51+00:00",
     "source_file": "README.md",
     "language_code": "pcm"
   },
@@ -876,14 +882,14 @@
     "language_code": "pcm"
   },
   "changelog.md": {
-    "original_hash": "b9407ed4e52f36c623c69d5547498abd",
-    "translation_date": "2026-06-25T00:04:30+00:00",
+    "original_hash": "20f1f1af027c13294024fe6a9ea90e37",
+    "translation_date": "2026-07-03T11:18:32+00:00",
     "source_file": "changelog.md",
     "language_code": "pcm"
   },
   "study_guide.md": {
-    "original_hash": "b3ba42e9b4c53f808820579d1729cfcb",
-    "translation_date": "2026-06-25T00:05:01+00:00",
+    "original_hash": "480f76e9b15e39d582fb276da670c983",
+    "translation_date": "2026-07-03T11:19:00+00:00",
     "source_file": "study_guide.md",
     "language_code": "pcm"
   }

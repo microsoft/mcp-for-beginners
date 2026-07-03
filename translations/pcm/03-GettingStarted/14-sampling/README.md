@@ -1,24 +1,26 @@
 # Sampling - delegate features to the Client
 
-Sometimes, you need the MCP Client and the MCP Server to work together to achieve one common goal. You fit get one case where the Server need help from one LLM wey dey for the client side. For this kain situation, sampling na wetin you for use.
+> **Deprecation notice:** di `2026-07-28` MCP specification release candidate mark Sampling as deprecated in favor of direct integration wit LLM provider APIs. Sampling still dey work for `2025-11-25` and for at least one year afta any formal deprecation, so everytin for dis lesson still dey valid — but new server designs suppose evaluate di replacement pattern. See [What's Changing in MCP: The 2026-07-28 Release Candidate](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
 
-Make we explore some use cases and how to build one solution wey get sampling.
+Sometimes, you need make di MCP Client and di MCP Server work together to achieve one goal. You fit get case weh di Server need help from LLM wey dey on top di client. For dis kind matter, sampling na wetin you go use.
+
+Make we explore some use cases and how to build solution wey involve sampling.
 
 ## Overview
 
-For this lesson, we go focus on how to talk when and where you for use Sampling and how to set am up.
+For dis lesson, we go focus on explain when and where to use Sampling and how to configure am.
 
 ## Learning Objectives
 
-For this chapter, we go:
+For dis chapter, we go:
 
-- Explain wetin Sampling be and when you for use am.
-- Show how to set up Sampling for MCP.
-- Show examples of Sampling in action.
+- Explain wetin Sampling be and when to use am.
+- Show how to configure Sampling for MCP.
+- Provide examples of Sampling for action.
 
-## Wetin Sampling be and why you for use am?
+## Wetin Sampling be and why you go use am?
 
-Sampling na one advanced feature wey dey work like this:
+Sampling na advanced feature wey dey work dis way:
 
 ```mermaid
 sequenceDiagram
@@ -39,7 +41,7 @@ sequenceDiagram
 
 ### Sampling request
 
-Ok, now we get one high-level view of one gud scenario, make we talk about the sampling request wey the server dey send back to the client. Dis na how the request fit look for JSON-RPC format:
+Okay, now we get one big picture of how di scenario fit happen, make we talk about di sampling request wey di server go send back to di client. Dis na wetin dis kind request fit look like for JSON-RPC format:
 
 ```json
 {
@@ -71,17 +73,17 @@ Ok, now we get one high-level view of one gud scenario, make we talk about the s
 }
 ```
 
-Some tins dey here wey deserve to talk about:
+Some tins wey worth mention for here:
 
-- Prompt, under content -> text, na our prompt wey be instruction to the LLM to summarize blog post content.
+- Prompt, under content -> text, na our prompt weh be instruction for di LLM to summarize blog post content.
 
-- **modelPreferences**. Dis section na wetin e mean, preference, recommendation about the kind configuration to use with the LLM. The user fit decide whether to follow these recommendations or change am. For this case, dem recommend which model to use and speed plus intelligence priority.
-- **systemPrompt**, dis na your normal system prompt wey give your LLM personality and get guidance instructions.
-- **maxTokens**, dis na another property wey dem dey use talk how many tokens dem recommend make you use for this task.
+- **modelPreferences**. Dis section just be wetin e be, preference, recommendation on which configuration to use wit di LLM. Di user fit choose if e want follow dis recommendations or change dem. For dis case, dem give recommendations on which model to use, speed, and intelligence priority.
+- **systemPrompt**, dis na your normal system prompt wey dey give your LLM personality and guide am.
+- **maxTokens**, dis na another property wey dey tell how many tokens dem recommend make you use for dis task.
 
 ### Sampling response
 
-Dis response na wetin MCP Client go send back to the MCP Server. E be the result when the client call the LLM, wait for response, then put this message together. Dis na how e fit look for JSON-RPC:
+Dis response na wetin di MCP Client go end up sending back to di MCP Server and na result of di client wey call di LLM, wait for di response then build dis message. Dis na how e fit look for JSON-RPC:
 
 ```json
 {
@@ -99,13 +101,13 @@ Dis response na wetin MCP Client go send back to the MCP Server. E be the result
 }
 ```
 
-See how the response be abstract of the blog post as we ask for. Also note how the `model` wey dem use no be the one we ask for but "gpt-5" instead of "claude-3-sonnet". Dis one na to show say the user fit change their mind on which to use and that sampling request na just recommendation.
+Look as di response na summary of di blog post like how we request am. Also note say di `model` wey dem use no be di one wey we request but "gpt-5" instead of "claude-3-sonnet". Dis di show say di user fit change mind on which model to use and say your sampling request na recommendation.
 
-Ok, now we don sabi the main flow and wetin e good for do - "blog post creation + abstract", make we see wetin we for do to make am work.
+Okay, now we understand di main flow, and important task to use am for "blog post creation + abstract", make we see wetin we suppo do to make am work.
 
 ### Message types
 
-Sampling messages no dey limit to only text but you fit send images and audio too. Dis na how JSON-RPC different:
+Sampling messages no just dey limited to text, but you fit also send images and audio. Dis na how di JSON-RPC go look different:
 
 **Text**
 
@@ -136,13 +138,13 @@ Sampling messages no dey limit to only text but you fit send images and audio to
 }
 ```
 
-> NOTE: for more detailed info on Sampling, check out the [official docs](https://modelcontextprotocol.io/specification/2025-11-25/client/sampling)
+> NOTE: for more detailed info on Sampling, check out di [official docs](https://modelcontextprotocol.io/specification/2025-11-25/client/sampling)
 
 ## How to Configure Sampling in the Client
 
-> Note: if you just dey build server, you no need do much here.
+> Note: if you dey only build server, you no need do much here.
 
-For client, you need talk the feature like dis:
+For client, you need talk di feature like dis:
 
 ```json
 {
@@ -152,18 +154,18 @@ For client, you need talk the feature like dis:
 }
 ```
 
-This one go catch when your selected client connect to the server.
+Dis go later dey pick when your chosen client start wit di server.
 
 ## Example of Sampling in Action - Create a Blog Post
 
-Make we code one sampling server together, we go need do these:
+Make we code sampling server together, we go need do di following:
 
-1. Create one tool for the Server.
-1. The tool suppose create one sampling request
-1. Tool go wait till the client's sampling request answer finish.
-1. Then the tool go produce the result.
+1. Create tool for di Server.
+1. Di tool suppose create sampling request.
+1. Tool go wait make client answer sampling request.
+1. Later tool result go show.
 
-Make we see the code step by step:
+Make we see di code step by step:
 
 ### -1- Create the tool
 
@@ -176,9 +178,9 @@ async def create_blog(title: str, content: str, ctx: Context[ServerSession, None
 
 ```
 
-### -2- Create a sampling request
+### -2- Create sampling request
 
-Add this code join your tool:
+Add di code below to your tool:
 
 **python**
 
@@ -204,7 +206,7 @@ result = await ctx.session.create_message(
 
 ```
 
-### -3- Wait for the response and return response
+### -3- Wait for response and return response
 
 **python**
 
@@ -282,7 +284,7 @@ async def create_blog(title: str, content: str, ctx: Context[ServerSession, None
 
     posts.append(post)
 
-    # return di complete blog post
+    # return di full blog post
     return json.dumps({
         "id": post.title,
         "abstract": post.abstract
@@ -298,10 +300,10 @@ if __name__ == "__main__":
 
 ### -5- Testing am for Visual Studio Code
 
-To test this one for Visual Studio Code, do these:
+To test dis one for Visual Studio Code, do di following:
 
 1. Start server for terminal
-1. Add am to *mcp.json* (and make sure say e start) for example like dis:
+1. Add am to *mcp.json* (make sure e don start) e.g something like dis:
 
    ```json
    "servers": {
@@ -312,29 +314,29 @@ To test this one for Visual Studio Code, do these:
    }
    ```
 
-1. Type any prompt:
+1. Type prompt:
 
    ```text
    create a blog post named "Where Python comes from", the content is "Python is actually named after Monty Python Flying Circus"
    ```
 
-1. Allow sampling to happen. First time you test this, you go see one extra dialog wey you for accept, then you go see the normal dialog wey go ask you to run the tool
+1. Allow sampling to happen. Di first time wey you try dis, you go see extra dialog wey you need accept, afta dat you go see normal dialog asking you to run the tool.
 
-1. Check the results. You go see the results well rendered for GitHub Copilot Chat but you fit also check the raw JSON response.
+1. Check results. You go see di results nicely for GitHub Copilot Chat but you fit also check di raw JSON response.
 
-**Bonus**. Visual Studio Code get better support for sampling. You fit configure Sampling access for your installed server like dis:
+**Bonus**. Visual Studio Code get better support for sampling. You fit configure Sampling access on top your installed server like dis:
 
-1. Go the extension section.
-1. Select the cog icon for your installed server inside the "MCP SERVERS - INSTALLED" section.
-1 Select "Configure Model Access", here you fit choose which Models GitHub Copilot fit use for sampling. You fit also see all sampling requests wey happen recently by selecting "Show Sampling requests".
+1. Go extension section.
+1. Select di cog icon for your installed server under "MCP SERVERS - INSTALLED".
+1 Select "Configure Model Access", here you fit select which models GitHub Copilot fit use wen e dey do sampling. You fit also see all sampling requests wey don happen lately by selecting "Show Sampling requests".
 
 ## Assignment
 
-For this assignment, you go build one small different Sampling, that one na sampling integration wey fit generate product description. This na your scenario:
+For dis assignment, you go build one slight different Sampling, na sampling integration wey fit generate product description. Dis na your scenario:
 
-**Scenario**: The back office worker for one e-commerce need help, e dey take too much time to generate product descriptions. So, you go build one solution where you fit call one tool "create_product" with "title" and "keywords" as arguments and e go produce one complete product plus "description" field wey the client's LLM go fill.
+**Scenario**: Di back office worker for e-commerce dey need help, e dey take too much time to generate product descriptions. So, you go build solution wey fit call tool "create_product" wit "title" and "keywords" as arguments and e go produce full product including "description" field wey di client LLM go fill.
 
-TIP: use wetin you learn before to build this server and tool with sampling request.
+TIP: use wetin you learn before to build dis server and tool wit sampling request.
 
 ## Solution
 
@@ -342,7 +344,7 @@ TIP: use wetin you learn before to build this server and tool with sampling requ
 
 ## Key Takeaways
 
-Sampling na strong feature wey allow the server to pass task to the client when e need LLM help.
+Sampling na powerful feature wey allow server make e delegate tasks to client wen e need LLM help.
 
 ## What's Next
 

@@ -1,60 +1,62 @@
-# HTTPS voogedastus Model Context Protocoliga (MCP)
+# HTTPS voogedastus mudelikonteksti protokolliga (MCP)
 
-See peatükk annab põhjaliku juhendi turvalise, mastaapuva ja reaalajas voogedastuse rakendamiseks Model Context Protocoli (MCP) abil HTTPSi kaudu. Käsitletakse voogedastuse motivatsiooni, saadaval olevaid transpordimehhanisme, kuidas MCP-s voogedastavat HTTP-d rakendada, turvalisuse parimaid tavasid, üleminekut SSE-st ning praktilisi juhiseid oma voogedastuse MCP-rakenduste loomiseks.
+See peatükk annab põhjaliku juhendi turvalise, skaleeritava ja reaalajas voogedastuse rakendamiseks mudelikonteksti protokolli (MCP) abil, kasutades HTTPS-i. Käsitletakse voogedastuse motivatsiooni, saadaolevaid transpordimehhanisme, kuidas MCP-s voogedastatavat HTTP-d rakendada, turvalisuse parimaid tavasid, üleminekut SSE-st ning praktilisi juhiseid oma voogedastavate MCP-rakenduste ehitamiseks.
 
-## Transpordimehhanismid ja voogedastus MCP-s
+> **Vaatame ette:** see õppetund kirjeldab voogedastatavat HTTP-d MCP spetsifikatsiooni **2025-11-25** alusel, kus sessioon luuakse `initialize` ajal ja jäädvustatakse `Mcp-Session-Id` päisega. Väljalaske kandidaatversioon `2026-07-28` eemaldab tervitusisendi ja sessiooni ID täielikult, tehes iga päringu iseseisvaks ja suunatavaks mis tahes serveri eksemplarile ilma staatiliste sessioonideta. Täpsemate üksikasjade jaoks vaadake [Mis MCP-s muutub: 2026-07-28 väljalaske kandidaatversioon](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
 
-See jaotis uurib erinevaid MCP-s saadaval olevaid transpordimehhanisme ja nende rolli reaalajas suhtluse võimaldamisel klientide ja serverite vahel.
+## MCP transpordimehhanismid ja voogedastus
+
+Selles jaotises uuritakse MCP-s saadaolevaid erinevaid transpordimehhanisme ja nende rolli voogedastuse võimaldamisel klientide ja serverite vahel realoa suhtluses.
 
 ### Mis on transpordimehhanism?
 
-Transpordimehhanism määratleb, kuidas andmeid kliendi ja serveri vahel vahetatakse. MCP toetab mitut transporditüüpi, et sobituda erinevate keskkondade ja nõuetega:
+Transpordimehhanism määrab, kuidas andmeid vahetatakse kliendi ja serveri vahel. MCP toetab mitut transporditüüpi, et sobituda erinevate keskkondade ja nõuetega:
 
-- **stdio**: Standard sisend/väljund, sobib lokaalsetele ja käsureapõhistele tööriistadele. Lihtne, kuid ei sobi veebile ega pilve.
-- **SSE (Server-Sent Events)**: Võimaldab serveritel saata kliendile realajas uuendusi HTTP kaudu. Sobib veebiliidestele, kuid piiratud mastaapsuse ja paindlikkusega. MCP Spetsifikatsiooni 2025-06-18 alusel on iseseisev SSE transpordimehhanism deprekeeritud ja asendatud "Voogedastatava HTTP" transpordiga.
-- **Voogedastatav HTTP**: Kaasaegne HTTP-põhine voogedastuse transport, toetab teavitusi ja paremat mastaapsust. Soovitatav enamusele tootmis- ja pilve stsenaariumidele.
+- **stdio**: Standardne sisend/väljund, sobib kohalikeks ja käsureapõhisteks tööriistadeks. Lihtne, kuid ei sobi veebi ega pilve jaoks.
+- **SSE (Server-Sent Events)**: Võimaldab serveritel saata HTTP kaudu klientidele reaalajas värskendusi. Sobib veebi kasutajaliidestele, kuid on piiratud skaleeritavuse ja paindlikkusega. Alates MCP spetsifikatsiooni 2025-06-18 on iseseisev SSE transpordimehhanism kasutusest kõrvaldatud ja asendatud "voogedastatava HTTP" transpordiga.
+- **Voogedastatav HTTP**: Kaasaegne HTTP-põhine voogedastus, mis toetab teavitusi ja paremat skaleeritavust. Soovitatav enamusele tootmis- ja pilvesituatsioonidele.
 
 ### Võrdlustabel
 
-Vaata allolevat võrdlustabelit, et mõista nende transpordimehhanismide erinevusi:
+Vaadake allolevat võrdlustabelit, et mõista erinevusi nende transpordimehhanismide vahel:
 
-| Transport         | Reaalajas uuendused | Voogedastus | Mastaapsus | Kasutusjuht        |
-|-------------------|---------------------|-------------|------------|--------------------|
-| stdio             | Ei                  | Ei          | Madal      | Kohalikud CLI tööriistad |
-| SSE               | Jah                 | Jah         | Keskmine   | Veeb, reaalajas uuendused |
-| Voogedastatav HTTP| Jah                 | Jah         | Kõrge      | Pilv, mitme kliendiga |
+| Transport         | Reaalajas värskendused | Voogedastus | Skaleeritavus | Kasutusjuhtum          |
+|-------------------|------------------------|-------------|---------------|-----------------------|
+| stdio             | Ei                     | Ei          | Madal         | Kohalikud CLI tööriistad |
+| SSE               | Jah                    | Jah         | Keskmine      | Veeb, reaalajas värskendused |
+| Voogedastatav HTTP| Jah                    | Jah         | Kõrge         | Pilv, mitme kliendi tugi |
 
-> **Vihje:** Õige transpordi valimine mõjutab jõudlust, mastaapsust ja kasutajakogemust. **Voogedastatav HTTP** on soovitatav kaasaegsete, mastaapuvate ja pilvevalmis rakenduste jaoks.
+> **Vihje:** Õige transpordimehhanismi valik mõjutab jõudlust, skaleeritavust ja kasutajakogemust. **Voogedastatav HTTP** on soovitatav kaasaegsete, skaleeritavate ja pilvevalmis rakenduste jaoks.
 
-Pane tähele transpordeid stdio ja SSE, mida sulle eelnevates peatükkides näidati, ning kuidas voogedastatav HTTP on selle peatüki käsitletav transport.
+Pöörake tähelepanu transpordidele stdio ja SSE, mida teile varasemates peatükkides tutvustati, ning sellele, kui voogedastatav HTTP on selle peatüki käsitlemise transpordimehhanism.
 
-## Voogedastus: kontseptsioonid ja motivatsioon
+## Voogedastus: mõisted ja motivatsioon
 
-Voogedastuse põhikontseptsioonide ja motivatsioonide mõistmine on oluline tõhusa reaalajas suhtluse süsteemide rakendamiseks.
+Voogedastuse põhikontseptsioonide ja motivatsiooni mõistmine on oluline tõhusate reaalaja suhtlussüsteemide rakendamiseks.
 
-**Voogedastus** on võrguprogrammeerimise tehnika, mis võimaldab andmeid saata ja vastu võtta väikestes juhitavates osades või sündmuste jadana, mitte oodata kogu vastuse valmisolekut. See on eriti kasulik:
+**Voogedastus** on võrkude programmeerimise tehnik, mis võimaldab andmeid saata ja vastu võtta väikeste, hallatavate tükkidena või sündmuste jada kujul, mitte oodata kogu vastuse valmimist. See on eriti kasulik:
 
-- Suurte failide või andmestike puhul.
-- Reaalajas uuenduste puhul (nt vestlus, edenemisribad).
-- Pikaajaliste arvutuste puhul, kus soovitakse kasutajat pidevalt teavitada.
+- Suurte failide või andmebaaside puhul.
+- Reaalajas värskenduste jaoks (nt vestlus, edenemisribad).
+- Pikaajaliste arvutuste puhul, kus soovite kasutajat informeerida.
 
-Siin on voogedastuse põhitõed:
+Siin on ülevaade voogedastusest kõrgemas plaanis:
 
-- Andmeid edastatakse järk-järgult, mitte korraga.
-- Klient saab andmeid töödelda niipea, kui need saabuvad.
+- Andmed edastatakse järk-järgult, mitte korraga.
+- Klient saab andmeid töötlema hakata kohe, kui need saabuvad.
 - Vähendab tajutavat latentsust ja parandab kasutajakogemust.
 
 ### Miks kasutada voogedastust?
 
-Voogedastuse kasutamise põhjused on järgmised:
+Põhjused voogedastuse kasutamiseks on järgmised:
 
-- Kasutajad saavad kohe tagasisidet, mitte ainult lõpus.
+- Kasutajad saavad kohe tagasisidet, mitte alles lõpus.
 - Võimaldab reaalajas rakendusi ja reageerivaid kasutajaliideseid.
-- Võrguga ja arvutusressurssidega tõhusam kasutus.
+- Võrgu- ja arvutusressursside tõhusam kasutamine.
 
-### Lihtne näide: HTTP voogedastusserver ja klient
+### Lihtne näide: HTTP voogedastuse server ja klient
 
-Siin on lihtne näide, kuidas voogedastust rakendada:
+Siin on lihtne näide, kuidas voogedastust saab rakendada:
 
 #### Python
 
@@ -88,22 +90,22 @@ with requests.get("http://localhost:8000/stream", stream=True) as r:
             print(line.decode())
 ```
 
-See näide demonstreerib serveri saadetava sõnumite jada edastamist kliendile kohe, kui need muutuvad kättesaadavaks, selle asemel, et oodata kõigi sõnumite valmisolekut.
+See näide demonstreerib serveri saatmist sõnumite jada klienti, kui need on kättesaadavad, mitte ootamist kõikide sõnumite valmimiseni.
 
 **Kuidas see töötab:**
 
-- Server väljastab iga sõnumi kohe, kui see on valmis.
-- Klient võtab vastu ja prindib iga osa kohe, kui see saabub.
+- Server annab iga sõnumi välja kohe, kui see valmis saab.
+- Klient võtab iga osa vastu ja prindib selle kohe.
 
 **Nõuded:**
 
-- Server peab kasutama voogedastusvastust (näiteks `StreamingResponse` FastAPI-s).
-- Klient peab töötlema vastust vooguna (`stream=True` requestsis).
+- Server peab kasutama voogedastavat vastust (nt `StreamingResponse` FastAPI-s).
+- Klient peab vastust töötlema voonena (`stream=True` requests-is).
 - Sisutüübiks on tavaliselt `text/event-stream` või `application/octet-stream`.
 
 #### Java
 
-**Server (Java, kasutades Spring Booti ja Server-Sent Events):**
+**Server (Java, kasutades Spring Boot ja serveripoolseid sündmusi):**
 
 ```java
 @RestController
@@ -138,7 +140,7 @@ public class CalculatorController {
 }
 ```
 
-**Klient (Java, kasutades Spring WebFlux WebClienti):**
+**Klient (Java, kasutades Spring WebFlux WebClient-i):**
 
 ```java
 @SpringBootApplication
@@ -166,74 +168,76 @@ public class CalculatorClientApplication implements CommandLineRunner {
 }
 ```
 
-**Java rakenduse märkused:**
+**Java rakendusmärkused:**
 
-- Kasutab Spring Booti reaktiivset kihti koos `Flux`-iga voogedastuseks
-- `ServerSentEvent` tagab struktureeritud sündmuste voogedastuse sündmusetüüpidega
-- `WebClient` koos `bodyToFlux()` võimaldab reaktiivset voogedastuse kasutust
-- `delayElements()` simuleerib sündmustevahelist töötlemisaega
-- Sündmused võivad omada tüüpe (`info`, `result`), et klient saaks neid paremini töödelda
+- Kasutab Spring Boot reaktiivset virna koos `Flux`-iga voogedastuseks
+- `ServerSentEvent` võimaldab struktureeritud sündmuste voogedastust sündmuse tüüpidega
+- `WebClient` koos `bodyToFlux()` lubab reaktiivset voo tarbimist
+- `delayElements()` simuleerib töötlemisaja viivitust sündmuste vahel
+- Sündmustel võivad olla tüübid (`info`, `result`) paremaks kliendikäitlemiseks
 
 ### Võrdlus: klassikaline voogedastus vs MCP voogedastus
 
-Erinevused klassikalise ja MCP voogedastuse vahel on järgmised:
+Erinevused klassikalise voogedastuse ja MCP voogedastuse vahel saab esitada järgmiselt:
 
-| Omadus                 | Klassikaline HTTP voogedastus     | MCP voogedastus (teavitused)          |
-|------------------------|----------------------------------|---------------------------------------|
-| Peamine vastus         | Tükeldatud                        | Üksik, lõpus                          |
-| Edenemisuudised        | Saadetakse andmetükkidena         | Saadetakse teavitustena              |
-| Klientide nõuded        | Peab töötlema voogu               | Peab rakendama sõnumikäsitlejat      |
-| Kasutusjuht             | Suured failid, tehisintellekti tokenite vood | Edenemine, logid, reaalajas tagasiside |
+| Funktsioon             | Klassikaline HTTP voogedastus | MCP voogedastus (teavitused)     |
+|------------------------|-------------------------------|----------------------------------|
+| Peamine vastus         | Jagatud tükkidena              | Üks vastus lõpus                 |
+| Edenemisuuendused      | Saadetakse andmetükkidena      | Saadetakse teavitustena          |
+| Kliendi nõuded         | Peab töötlema voogu            | Peab rakendama sõnumikäitlejat   |
+| Kasutusjuhtum          | Suured failid, tehisintellekti tokeni vood | Edenemine, logid, reaalajas tagasiside |
 
-### Täheldatud võtmerdiffrentsid
+### Täheldatud olulisemad erinevused
 
-Lisaks mõningad võtme erinevused:
+Lisaks mõned võtmeaspektid:
 
-- **Suhtlusmuster:**
-  - Klassikaline HTTP voogedastus: Kasutab lihtsat tükeldatud andmeedastust
-  - MCP voogedastus: Kasutab struktureeritud teavitussüsteemi JSON-RPC protokolliga
+- **Suhtlemismudel:**
+  - Klassikaline HTTP voogedastus: kasutab lihtsat killustatud ülekandekodeerimist andmete saatmiseks tükkidena
+  - MCP voogedastus: kasutab struktureeritud teavitussüsteemi JSON-RPC protokolliga
 
-- **Sõnumivorming:**
-  - Klassikaline HTTP: Lihtteksti tükid, mille lõpus reavahetus
-  - MCP: Struktureeritud LoggingMessageNotification objektid metainfoga
+- **Sõnumi vorming:**
+  - Klassikaline HTTP: pelgalt lihttekstiga tükid reavahedega
+  - MCP: struktureeritud LoggingMessageNotification objektid metaandmetega
 
-- **Klientide rakendus:**
-  - Klassikaline HTTP: Lihtne klient, mis töötleb voogvastuseid
-  - MCP: Täpsem klient sõnumikäsitlejaga, mis töötab läbi erinevat tüüpi sõnumid
+- **Kliendi rakendus:**
+  - Klassikaline HTTP: lihtne klient, mis töötleb voogedastusvastuseid
+  - MCP: keerukam klient, millel on sõnumikäitleja erinevat tüüpi sõnumite töötlemiseks
 
-- **Edenemisuudised:**
-  - Klassikaline HTTP: Edenemine osa peamise vastuse voost
-  - MCP: Edenemine saadetakse eraldi teavitustena ning peamine vastus jõuab lõpus
+- **Edenemisuuendused:**
+  - Klassikaline HTTP: edenemine on osa põhivoo vastusest
+  - MCP: edenemist saadetakse eraldi teavitussõnumitena, põhivastus saabub alles lõpus
 
 ### Soovitused
 
-Mõned soovitused klassikalise voogedastuse (nagu üleval näidatud `/stream` lõpp-punkt) ja MCP voogedastuse vahel valides:
+Soovitusi klassikalise voogedastuse (nagu näidatud `/stream` endpoint) ja MCP voogedastuse vahel valimisel:
 
-- **Lihtsate voogedastusvajaduste korral:** Klassikaline HTTP voogedastus on lihtsam rakendada ja piisav põhivajaduste jaoks.
+- **Lihtsate voogedastuse vajaduste korral:** Klassikaline HTTP voogedastus on lihtsam rakendada ja piisav põhilistele vajadustele.
 
-- **Komplekssete, interaktiivsete rakenduste jaoks:** MCP voogedastus pakub struktureeritumat lähenemist, rikkalikumat metainfot ja eristab teavitusi lõplikest tulemustest.
+- **Komplekssete, interaktiivsete rakenduste jaoks:** MCP voogedastus pakub struktureeritumat lähenemist rikkalike metaandmete ja teavituste ning lõpptulemuse eraldamisega.
 
-- **Tehisintellekti rakendustele:** MCP teavitussüsteem on eriti kasulik pikaajaliste AI ülesannete puhul, kus kasutajatele soovitakse edusamme pidevalt näidata.
+- **Tehisintellekti rakenduste jaoks:** MCP teavitussüsteem on eriti kasulik pikkade jooksuaegadega AI ülesannete puhul, kus soovite kasutajaid edenemisest hoida kursis.
 
 ## Voogedastus MCP-s
 
-Nüüd, kui oled näinud varasemaid soovitusi ja võrdlusi klassikalise ja MCP voogedastuse erinevustest, vaatame detailselt, kuidas saate voogedastust MCP raamistiku sees kasutada.
+Nüüd, kui olete näinud mõned soovitused ja võrdlused klassikalise voogedastuse ja MCP voogedastuse erinevuse kohta, uurime täpsemalt, kuidas MCP-s voogedastust rakendada.
 
-MCP-s ei seisne voogedastus peamise vastuse tükeldamises, vaid **teavituste** saatmises kliendile tööriista päringu töötlemise ajal. Need teavitused võivad sisaldada edenemise uuendusi, logisid või muid sündmusi.
+Mõistmine, kuidas voogedastus MCP raamistiku sees töötab, on oluline reageerivate rakenduste loomiseks, mis annavad reaalajas tagasisidet kasutajatele pikkade operatsioonide ajal.
+
+MCP-s ei saadeta põhivastust tükkidena, vaid **teavitusi** kliendile selle asemel, et tööriist saadab sõnumeid taustal päringu töötlemise ajal. Need teavitused võivad sisaldada edenemisuuendusi, logisid või muid sündmusi.
 
 ### Kuidas see töötab
 
-Peamine tulemus saadetakse ikka ühe vastusena. Kuid teavitusi saab töötluse ajal saata eraldi sõnumitena ja seega värskendada klienti reaalajas. Klient peab suutma neid teavitusi töödelda ja kuvada.
+Peamine vastus saadetakse ikkagi ühe vastusena. Kuid teavitusi saab saata eraldi sõnumitena töötlemise ajal, et värskendada klienti reaalajas. Klient peab suutma need teavitused vastu võtta ja kuvada.
 
 ## Mis on teavitus?
 
-Me mainisime "teavitust", mis see MCP kontekstis täpsemalt tähendab?
+Mainisime "teavitus", mida see MCP kontekstis tähendab?
 
-Teavitus on serveri kliendile saadetav sõnum, mis informeerib edenemise, staatuse või muude sündmuste kohta pikaajalise töö ajal. Teavitused parandavad läbipaistvust ja kasutajakogemust.
+Teavitus on sõnum, mille server saadab kliendile, et informeerida edenemisest, olekust või muust sündmusest pikaajalise toimingu jooksul. Teavitused parandavad läbipaistvust ja kasutajakogemust.
 
-Näiteks peaks klient saatma teavituse kohe, kui algkättesaamine serveriga on tehtud.
+Näiteks peab klient saatma teavituse vahetult pärast esialgse käepigistuse sooritamist serveriga.
 
-Teavitus näeb välja järgmiselt JSON sõnumina:
+Teavitus näeb välja selline JSON sõnumina:
 
 ```json
 {
@@ -245,9 +249,9 @@ Teavitus näeb välja järgmiselt JSON sõnumina:
 }
 ```
 
-Teavitused kuuluvad MCP-s teema alla nimega ["Logging"](https://modelcontextprotocol.io/specification/draft/server/utilities/logging).
+Teavitused kuuluvad MCP teemasse, mida nimetatakse ["Logging"](https://modelcontextprotocol.io/specification/draft/server/utilities/logging).
 
-Logimise lubamiseks peab server lubama selle võimalusena järgmiselt:
+Logimise tööle saamiseks peab server selle lubama kui funktsiooni/omaduse järgnevalt:
 
 ```json
 {
@@ -258,28 +262,28 @@ Logimise lubamiseks peab server lubama selle võimalusena järgmiselt:
 ```
 
 > [!NOTE]
-> Sõltuvalt kasutatavast SDK-st võib logimine olla vaikimisi lubatud või vaja võib olla see serverikontseptsioonis eksplicitse aktiveerida.
+> Sõltuvalt kasutatavast SDK-st võib logimine olla vaikimisi lubatud või peate selle oma serveri konfiguratsioonis selgesõnaliselt aktiveerima.
 
-On erinevat tüüpi teavitusi:
+On mitut tüüpi teavitusi:
 
-| Tase      | Kirjeldus                     | Näite kasutusjuht            |
-|-----------|------------------------------|-----------------------------|
-| debug     | Üksikasjalik debugimise info  | Funktsiooni sisenemise/väljumise punktid |
-| info      | Üldine informatsioonisõnum    | Operatsiooni edenemisuuendused |
-| notice    | Tavalised, kuid olulised sündmused | Konfiguratsioonimuudatused    |
-| warning   | Hoiatusolukorrad             | Deprekeeritud funktsioonide kasutamine |
-| error     | Veateated                    | Operatsiooni ebaõnnestumised  |
-| critical  | Kriitilised olukorrad        | Süsteemikomponentide tõrked   |
-| alert     | Kohene tegevus on vajalik    | Andmekorruptsiooni tuvastamine |
-| emergency | Süsteem on kasutuskõlbmatu   | Täielik süsteemirike         |
+| Tase       | Kirjeldus                     | Näide kasutusjuhtum           |
+|------------|-------------------------------|------------------------------|
+| debug      | Detailne silumisinfo           | Funktsiooni sisenemine/väljaminek |
+| info       | Üldised informatiivsed sõnumid | Operatsiooni edenemise uuendused |
+| notice     | Tavapärased kuid olulised sündmused | Konfiguratsioonimuudatused  |
+| warning    | Hoiatusolukorrad              | Kasutatud aegunud funktsioonid |
+| error      | Vigade teated                 | Operatsioonitehted kukkusid läbi |
+| critical   | Kriitilised olukorrad         | Süsteemi komponendi rikete teated |
+| alert      | Kohene tegevus on kohustuslik | Andmete rikkumise tuvastamine |
+| emergency  | Süsteem kasutuskõlbmatu       | Täielik süsteemi rike        |
 
 ## Teavituste rakendamine MCP-s
 
-Teavituste rakendamiseks MCP-s tuleb nii serveri kui ka kliendi pool valmis seada reaalajas uuenduste käsitlemiseks. See võimaldab sinu rakendusel pakkuda kasutajatele kohest tagasisidet pikaajaliste operatsioonide jooksul.
+Teavituste rakendamiseks MCP-s peate seadistama nii serveri kui kliendi poole, et töödelda reaalajas uuendusi. See võimaldab teie rakendusel pakkuda kasutajatele viivitamatut tagasisidet pikkade toimingute jooksul.
 
-### Serveripool: teavituste saatmine
+### Serveripoolne: teavituste saatmine
 
-Alustame serveripoolest. MCP-s määratled tööriistad, mis saavad päringute töötlemise ajal teavitusi saata. Server kasutab kontekstobjekti (tavaliselt `ctx`), et saata sõnumeid kliendile.
+Alustame serveripoolsest. MCP-s määratlete tööriistad, mis saavad saata teavitusi päringute töötlemise ajal. Server kasutab konteksti objekti (tavaliselt `ctx`), et saata sõnumeid kliendile.
 
 #### Python
 
@@ -292,9 +296,9 @@ async def process_files(message: str, ctx: Context) -> TextContent:
     return TextContent(type="text", text=f"Done: {message}")
 ```
 
-Eelnevas näites saadab tööriist `process_files` kolm teavitust kliendile iga faili töötlemisel. `ctx.info()` meetodit kasutatakse informatiivsete sõnumite saatmiseks.
+Eelnevas näites saadab tööriist `process_files` kliendile kolm teavitust iga faili töötlemisel. Metoodikat `ctx.info()` kasutatakse informatiivsete sõnumite saatmiseks.
 
-Lisaks tuleb teavituste lubamiseks veenduda, et server kasutab voogedastavat transporti (näiteks `streamable-http`) ja klient rakendab sõnumikäsitleja teavituste töötlemiseks. Näiteks serveri seadistamine `streamable-http` transpordiks:
+Lisaks veenduge, et teie server kasutab voogedastuslikku transporti (näiteks `streamable-http`) ja teie klient rakendab sõnumikäitlejat teavituste töötlemiseks. Siin on, kuidas seadistada server, et kasutada `streamable-http` transporti:
 
 ```python
 mcp.run(transport="streamable-http")
@@ -317,9 +321,9 @@ public async Task<TextContent> ProcessFiles(string message, ToolContext ctx)
 }
 ```
 
-Selles .NET näites kaunistatakse tööriist `ProcessFiles` atribuudi `Tool` abil ning see saadab kolm teavitust kliendile iga faili töötlemisel. `ctx.Info()` meetodit kasutatakse informatiivsete sõnumite saatmiseks.
+Selles .NET näites on tööriist `ProcessFiles` märgistatud atribuudi `Tool` abil ja saadab kliendile kolm teavitust iga faili töötlemisel. `ctx.Info()` meetodiga saadetakse informatiivseid sõnumeid.
 
-Teavituste lubamiseks oma .NET MCP serveris tuleb kasutada voogedastavat transporti:
+Teavituste lubamiseks oma .NET MCP serveris veenduge, et kasutate voogedastuslikku transporti:
 
 ```csharp
 var builder = McpBuilder.Create();
@@ -329,9 +333,9 @@ await builder
     .RunAsync();
 ```
 
-### Kliendipool: teavituste vastuvõtt
+### Kliendipoolne: teavituste vastuvõtmine
 
-Klient peab rakendama sõnumikäsitleja, mis töötleb ja kuvab saabuvad teavitused.
+Klient peab rakendama sõnumikäitleja teavituste töötlemiseks ja kuvamiseks nende saabumisel.
 
 #### Python
 
@@ -350,7 +354,7 @@ async with ClientSession(
 ) as session:
 ```
 
-Eelnevas koodis kontrollib funktsioon `message_handler`, kas saabuv sõnum on teavitus. Kui on, trükitakse see välja; kui ei, töödeldakse sõnumit tavalise serveri sõnumina. Pane tähele, kuidas `ClientSession` initsialiseeritakse koos `message_handler`iga teavituste töötlemiseks.
+Eelnevas koodis kontrollib funktsioon `message_handler`, kas saabuv sõnum on teavitus. Kui on, siis prindib selle välja, vastasel korral töötleb seda kui tavapärast serveri sõnumit. Samuti märgake, kuidas `ClientSession` initsialiseeritakse koos `message_handler`-iga saabuvate teavituste töötlemiseks.
 
 #### .NET
 
@@ -381,15 +385,15 @@ await client.InitializeAsync();
 // Now the client will process notifications through the MessageHandler
 ```
 
-Selles .NET näites kontrollib funktsioon `MessageHandler`, kas saabuv sõnum on teavitus. Kui on, trükitakse see välja; kui ei, töödelakse võetud sõnumit tavalise serveri sõnumina. `ClientSession` initsialiseeritakse sõnumikäsitlejaga `ClientSessionOptions` kaudu.
+Selles .NET näites kontrollib funktsioon `MessageHandler`, kas saabuv sõnum on teavitus. Kui on, siis prindib selle välja, vastasel korral töötleb seda tavapärase serveri sõnumina. `ClientSession` initsialiseeritakse sõnumikäitlejaga läbi `ClientSessionOptions`.
 
-Teavituste lubamiseks veendu, et server kasutab voogedastavat transporti (näiteks `streamable-http`) ja klient töötab sõnumikäsitlejaga teavituste töötlemiseks.
+Teavituste lubamiseks veenduge, et teie server kasutab voogedastuslikku transporti (nt `streamable-http`) ja klient rakendab sõnumikäitlejat teavituste vastuvõtmiseks.
 
-## Edenemisteavitused & stsenaariumid
+## Edenemisuuendused & stsenaariumid
 
-See jaotis selgitab MCP edenemisteavituste kontseptsiooni, miks need on olulised ja kuidas neid voogedastatava HTTP abil rakendada. Lisaks on praktiline ülesanne arusaamise süvendamiseks.
+Selles jaotises selgitatakse edenemisuuenduste mõistet MCP-s, miks need on olulised ja kuidas neid implementeerida kasutades voogedastatavat HTTP-d. Samuti on seal praktiline ülesanne teie mõistmise kinnistamiseks.
 
-Edenemisteavitused on serveri poolt kliendile saadetavad realajas sõnumid pikaajaliste operatsioonide ajal. Selle asemel, et oodata kogu protsessi lõppu, hoiab server klienti kursis praeguse olekuga. See parandab läbipaistvust, kasutajakogemust ja muudab tõrkeotsingu lihtsamaks.
+Edenemisuuendused on reaalajas sõnumid, mis server saadab kliendile pikaajaliste toimingute jooksul. Selle asemel, et oodata kogu protsessi lõpulejõudmist, hoiab server klienti kursis hetkeolukorraga. See parandab läbipaistvust, kasutajakogemust ja lihtsustab silumist.
 
 **Näide:**
 
@@ -402,22 +406,22 @@ Edenemisteavitused on serveri poolt kliendile saadetavad realajas sõnumid pikaa
 
 ```
 
-### Miks kasutada edenemisteavitusi?
+### Miks kasutada edenemisuuendusi?
 
-Edenemisteavitused on olulised mitmel põhjusel:
+Edenemisuuendused on olulised mitmel põhjusel:
 
-- **Parem kasutajakogemus:** Kasutajad näevad uuendusi töö edenemise ajal, mitte ainult lõpus.
-- **Reaalajas tagasiside:** Kliendid saavad kuvada edenemisribasid või logisid, muutes rakenduse reageerivaks.
-- **Lihtsam tõrkeotsing ja jälgimine:** Arendajad ja kasutajad näevad, kus protsess võib olla aeglane või takerdunud.
+- **Parem kasutajakogemus:** Kasutajad näevad uuendusi töö edenemise käigus, mitte ainult lõpus.
+- **Reaalajas tagasiside:** Klient saab kuvada edenemisribasid või logisid, muutes rakenduse tajutavalt reageerivaks.
+- **Lihtsam silumine ja jälgimine:** Arendajad ja kasutajad näevad, kus protsess võib aeglustuda või kinni jääda.
 
-### Kuidas edenemisteavitusi rakendada
+### Kuidas edenemisuuendusi rakendada
 
-Siin on, kuidas edenemisteavitusi MCP-s rakendada:
+Selline on edenemisuuenduste rakendamise viis MCP-s:
 
-- **Serveris:** Kasuta `ctx.info()` või `ctx.log()` teavituste saatmiseks iga üksuse töötlemisel. See saadab sõnumi kliendile enne peamise tulemuse valmisolekut.
-- **Kliendis:** Rakenda sõnumikäsitleja, mis kuulab ja kuvab saabumisel teavitusi. See käsitleja eristab teavitusi ja lõplikku tulemust.
+- **Serveripoolselt:** Kasutage `ctx.info()` või `ctx.log()`, et saata teavitusi iga töödeldava üksuse kohta. See saadab sõnumi kliendile enne lõpptulemust.
+- **Kliendipoolselt:** Rakendage sõnumikäitleja, mis kuulab teavitusi ja kuvab neid pärast saabumist. Käitleja eristab teavitusi ja lõpptulemust.
 
-**Serveri näide:**
+**Serverinäide:**
 
 #### Python
 
@@ -430,7 +434,7 @@ async def process_files(message: str, ctx: Context) -> TextContent:
     return TextContent(type="text", text=f"Done: {message}")
 ```
 
-**Kliendi näide:**
+**Kliendinäide:**
 
 #### Python
 
@@ -442,128 +446,128 @@ async def message_handler(message):
         print("SERVER MESSAGE:", message)
 ```
 
-## Turvareconsideratsioonid
+## Turvaküsimused
 
-HTTP-põhiste transpordite kasutamisel MCP serverite juures muutub turvalisus äärmiselt oluliseks küsimuseks, mis nõuab mitmete ründevektorite ja kaitsemehhanismide hoolikat käsitlemist.
-
-### Ülevaade
-
-Turvalisus on kriitiline MCP serverite avalikustamisel HTTP kaudu. Voogedastatav HTTP toob kaasa uued ründealad ja vajab hoolikat konfiguratsiooni.
-
-### Peamised punktid
-
-- **Origin päise valideerimine**: Alati valideeri `Origin` päist, et vältida DNS-taasesitamisründeid.
-- **Localhosti sidumine**: Kohaliku arenduse puhul sidu serverid `localhost`-iga, et vältida nende avalikuks muutumist internetis.
-- **Autentimine**: Tootmiskeskkondades rakenda autentimist (nt API võtmed, OAuth).
-- **CORS**: Seadista rist- päritolu ressursside jagamise (CORS) poliitikad juurdepääsu piiramiseks.
-- **HTTPS**: Kasuta tootmises HTTPS-i, et krüpteerida liiklus.
-
-### Parimad tavad
-
-- Ära usalda saabuvat päringut valideerimata.
-- Logi ja jälgi kõiki ligipääse ja vigu.
-- Uuenda regulaarselt sõltuvusi, et parandada turvavigu.
-
-### Väljakutsed
-- Tasakaalustades turvalisust ja arendamise lihtsust
-- Tagades ühilduvuse erinevate kliendi keskkondadega
-
-## Üleminek SSE-st Streamable HTTP-le
-
-Rakenduste puhul, mis kasutavad praegu Server-Sent Events (SSE) tehnoloogiat, pakub üleminek Streamable HTTP-le täiustatud võimalusi ja paremat pikaajalist jätkusuutlikkust teie MCP lahendustele.
-
-### Miks teha uuendus?
-
-On kaks veenvat põhjust, miks uuendada SSE-st Streamable HTTP-le:
-
-- Streamable HTTP pakub paremat skaleeritavust, ühilduvust ja rikkalikumat teavituse tuge kui SSE.
-- See on soovitatud transport uutele MCP rakendustele.
-
-### Ülemineku sammud
-
-Siin on, kuidas saate oma MCP rakendustes üle minna SSE-st Streamable HTTP-le:
-
-- **Uuendage serveri koodi**, kasutades `transport="streamable-http"` `mcp.run()` sees.
-- **Uuendage kliendi koodi**, kasutades `streamablehttp_client` SSE kliendi asemel.
-- **Rakendage sõnumi töötleja** kliendis teavituste töötlemiseks.
-- **Testige ühilduvust** olemasolevate tööriistade ja töövoogudega.
-
-### Ühilduvuse säilitamine
-
-Soovitatakse hoida ühilduvust olemasolevate SSE klientidega ülemineku ajal. Siin on mõned strateegiad:
-
-- Võite toetada nii SSE kui ka Streamable HTTP transporti, juurutades mõlemad erinevatel otspunktidel.
-- Migreerige kliendid järk-järgult uuele transpordile.
-
-### Väljakutsed
-
-Veenduge, et käsitlete migreerimise ajal järgmisi väljakutseid:
-
-- Kliendi kõigi versioonide uuendamine
-- Erinevuste käsitlemine teavituste edastamisel
-
-## Turvalisuse kaalutlused
-
-Turvalisus peaks olema esmatähtis igas serveri rakenduses, eriti HTTP-põhiste transporditehnoloogiate nagu Streamable HTTP kasutamisel MCP-s.
-
-MCP serverite rakendamisel HTTP-põhiste transportidega tuleb pöörata erilist tähelepanu mitmele ründevektorile ja kaitsemehhanismile.
+MCP serverite HTTP-põhiste transpordide rakendamisel muutub turvalisus kriitiliseks teemaks, mis nõuab hoolikat tähelepanu mitmete ründevektorite ja kaitsmehhanismide vastu.
 
 ### Ülevaade
 
-Turvalisus on kriitilise tähtsusega MCP serverite HTTP kaudu avaldamisel. Streamable HTTP toob kaasa uued ründepinnad ja vajab hoolikat seadistust.
+Turvalisus on oluline MCP serverite HTTP kaudu kättesaadavaks tegemisel. Voogedastatav HTTP avab uusi ründevektoreid ja nõuab hoolikat konfigureerimist.
 
-Siin on mõned olulised turvalisuse kaalutlused:
-
-- **Origin päise valideerimine**: Alati kontrollige `Origin` päist, et vältida DNS rebind rünnakuid.
-- **Localhost-i sidumine**: Kohaliku arenduse jaoks siduge serverid `localhost`-iga, et mitte avada neid avalikus internetis.
-- **Autentimine**: Rakendage autentimist (näiteks API-võtmed, OAuth) tootmiskeskkonnas.
-- **CORS**: Seadistage Cross-Origin Resource Sharing (CORS) poliitikad juurdepääsu piiramiseks.
-- **HTTPS**: Kasutage tootmiskeskkonnas HTTPS-ühendust, et krüpteerida andmeedastus.
+### Olulised punktid
+- **Päritolu päise valideerimine**: Alati valideeri `Origin` päist, et vältida DNS-i taaskasutusrünnakuid.
+- **Localhosti sidumine**: Kohaliku arenduse jaoks seo serverid `localhost`-iga, et vältida nende avalikku internetti avamist.
+- **Autentimine**: Loo tootmiskeskkonna juurutusteks autentimine (näiteks API võtmed, OAuth).
+- **CORS**: Sea sisse Cross-Origin Resource Sharing (CORS) poliitikad juurdepääsu piiramiseks.
+- **HTTPS**: Kasuta tootmises HTTPS-i, et liiklust krüptida.
 
 ### Head tavad
 
-Lisaks järgige MCP streaming serveri turvalisuse rakendamisel järgmisi häid tavasid:
-
-- Ärge kunagi usaldage sissetulevaid päringuid ilma valideerimiseta.
-- Logige ja jälgige kõiki juurdepääse ja vigu.
-- Uuendage regulaarselt sõltuvusi turvaaukude parandamiseks.
+- Ära kunagi usalda saabuvate päringute valideerimisteta.
+- Logi ja jälgi kõiki juurdepääse ja vigu.
+- Uuenda regulaarselt sõltuvusi, et parandada turvavigu.
 
 ### Väljakutsed
 
-Turvalisuse rakendamisel MCP streaming serverites seisate silmitsi mõningate väljakutsetega:
+- Turvalisuse ja arendamise lihtsuse tasakaalustamine
+- Ühilduvuse tagamine erinevate kliendikeskkondadega
 
-- Tasakaalustama turvalisust ja arendamise lihtsust
-- Tagama ühilduvust erinevate kliendi keskkondadega
+## Üleminek SSE-st Streamable HTTP-le
 
-### Ülesanne: Ehita oma MCP voogedastusrakendus
+Rakenduste jaoks, mis hetkel kasutavad Server-Sent Events (SSE), annab üleminek Streamable HTTP-le täiustatud võimalused ja parema pikaajalise jätkusuutlikkuse MCP lahendustele.
+
+### Miks uuendada?
+
+On kaks mõjuvat põhjust SSE-st Streamable HTTP-le üleminekuks:
+
+- Streamable HTTP pakub paremat skaleeritavust, ühilduvust ja rikkalikumat teavitustuge kui SSE.
+- See on soovitatud transport uusimate MCP rakenduste jaoks.
+
+### Migratsiooni sammud
+
+Siin on, kuidas sa saad oma MCP rakendustes SSE-st Streamable HTTP-le üle minna:
+
+- **Uuenda serveri koodi**, et kasutada `transport="streamable-http"` `mcp.run()`-is.
+- **Uuenda kliendi koodi**, kasutades SSE kliendi asemel `streamablehttp_client`-i.
+- **Rakenda sõnumikäitleja** kliendis, et töödelda teavitusi.
+- **Testi ühilduvust** olemasolevate tööriistade ja töövoogudega.
+
+### Ühilduvuse säilitamine
+
+Soovitatav on säilitada ühilduvus olemasolevate SSE klientidega migratsiooni ajal. Mõned strateegiad:
+
+- Võid toetada nii SSE-d kui ka Streamable HTTP-d, käivitades mõlemad transpordid erinevatel lõpp-punktidel.
+- Migreeri kliente järk-järgult uuele transpordile.
+
+### Väljakutsed
+
+Tagada tuleb järgmiste probleemide lahendamine migratsiooni ajal:
+
+- Kõigi klientide uuendamine
+- Teavituste edastamise erinevuste käsitlemine
+
+## Turvalisuse kaalutlused
+
+Turvalisus peab olema kõrgeim prioriteet iga serveri juurutamisel, eriti HTTP-põhiste transpordide puhul nagu Streamable HTTP MCP-s.
+
+MCP serverite juurutamisel HTTP-põhiste transpordidega muutub turvalisus ülitähtsaks küsimuseks, mis nõuab põhjalikku tähelepanu erinevatele rünnete vektoritele ja kaitsemehhanismidele.
+
+### Ülevaade
+
+Turvalisus on hädavajalik, kui MCP servereid eksponeerida HTTP kaudu. Streamable HTTP toob kaasa uued rünnetekohad ja nõuab hoolikat seadistust.
+
+Siin on mõned peamised turvalisuse kaalutlused:
+
+- **Päritolu päise valideerimine**: Alati valideeri `Origin` päist, et vältida DNS-i taaskasutusrünnakuid.
+- **Localhosti sidumine**: Kohaliku arenduse jaoks seo serverid `localhost`-iga, et vältida nende avalikku internetti avamist.
+- **Autentimine**: Loo tootmiskeskkonna juurutusteks autentimine (näiteks API võtmed, OAuth).
+- **CORS**: Sea sisse Cross-Origin Resource Sharing (CORS) poliitikad juurdepääsu piiramiseks.
+- **HTTPS**: Kasuta tootmises HTTPS-i, et liiklust krüptida.
+
+### Head tavad
+
+Lisaks on siin mõned head tavad MCP voogesitusserveri turvalise juurutamise tagamiseks:
+
+- Ära kunagi usalda saabuvate päringute valideerimisteta.
+- Logi ja jälgi kõiki juurdepääse ja vigu.
+- Uuenda regulaarselt sõltuvusi, et parandada turvavigu.
+
+### Väljakutsed
+
+Turvaelementide juurutamisel MCP voogedastusserverites tuleb ette järgmisi väljakutseid:
+
+- Turvalisuse ja arendamise lihtsuse tasakaalustamine
+- Ühilduvuse tagamine erinevate kliendikeskkondadega
+
+### Ülesanne: Ehita oma voogedastav MCP rakendus
 
 **Stsenaarium:**
-Loo MCP server ja klient, kus server töötleb üksuste nimekirja (nt failid või dokumendid) ja saadab teate iga töödeldud üksuse kohta. Klient kuvab iga saabunud teate reaalajas.
+Ehita MCP server ja klient, kus server töötleb esemete (nt failide või dokumentide) nimekirja ja saadab teavituse iga töödeldud üksuse kohta. Klient kuvab iga saabuvat teavitust reaalajas.
 
 **Sammud:**
 
-1. Rakenda serveri tööriist, mis töötleb nimekirja ja saadab teavitusi iga üksuse kohta.
-2. Rakenda klient koos sõnumitöötlusega, mis kuvab teavitusi reaalajas.
-3. Testi oma lahendust, käivitades nii serveri kui kliendi ning jälgides teavitusi.
+1. Loo serveritööriist, mis töötleb nimekirja ja saadab teavitusi iga üksuse kohta.
+2. Loo klient sõnumikäitlejaga, mis kuvab teavitusi reaalajas.
+3. Testi oma lahendust, käivitades nii serveri kui ka kliendi, ning jälgi teavitusi.
 
 [Lahendus](./solution/README.md)
 
 ## Täiendav lugemine ja mis edasi?
 
-Et jätkata oma teekonda MCP voogedastusega ja laiendada oma teadmisi, pakub see jaotis lisamaterjale ja soovitusi järgmisteks sammudeks keerukamate rakenduste ehitamiseks.
+Järgmiste sammude ja põhjalikuma MCP voogedastuse tundmaõppimise abi saamiseks pakub see sektsioon lisamaterjale ja soovitatud teemasid keerukamate rakenduste ehitamiseks.
 
 ### Täiendav lugemine
 
-- [Microsoft: Sissejuhatus HTTP voogedastusse](https://learn.microsoft.com/aspnet/core/fundamentals/http-requests?view=aspnetcore-8.0&WT.mc_id=%3Fwt.mc_id%3DMVP_452430#streaming)
+- [Microsoft: Tutvustus HTTP voogedastusele](https://learn.microsoft.com/aspnet/core/fundamentals/http-requests?view=aspnetcore-8.0&WT.mc_id=%3Fwt.mc_id%3DMVP_452430#streaming)
 - [Microsoft: Server-Sent Events (SSE)](https://learn.microsoft.com/azure/application-gateway/for-containers/server-sent-events?tabs=server-sent-events-gateway-api&WT.mc_id=%3Fwt.mc_id%3DMVP_452430)
-- [Microsoft: CORS ASP.NET Core’is](https://learn.microsoft.com/aspnet/core/security/cors?view=aspnetcore-8.0&WT.mc_id=%3Fwt.mc_id%3DMVP_452430)
+- [Microsoft: CORS ASP.NET Core’s](https://learn.microsoft.com/aspnet/core/security/cors?view=aspnetcore-8.0&WT.mc_id=%3Fwt.mc_id%3DMVP_452430)
 - [Python requests: Voogedastuse päringud](https://requests.readthedocs.io/en/latest/user/advanced/#streaming-requests)
 
 ### Mis edasi?
 
-- Proovi ehitada keerukamaid MCP tööriistu, mis kasutavad voogedastust reaalaja analüütika, vestluse või koostöö toimetamise jaoks.
-- Uuri MCP voogedastuse integreerimist frontend raamistikudega (React, Vue jne) reaalajas kasutajaliidese uuenduste jaoks.
-- Edasi: [VSCode AI tööriistakasti kasutamine](../07-aitk/README.md)
+- Proovi ehitada keerukamaid MCP tööriistu, mis kasutavad voogedastust reaalajas analüütika, jutuvestluse või koostöötoimetamise jaoks.
+- Uuri MCP voogedastuse integreerimist frontend raamistikudega (React, Vue jne) elavaks liidese uuendamiseks.
+- Järgmine: [AI tööriistakomplekti kasutamine VSCode’is](../07-aitk/README.md)
 
 ---
 

@@ -1,23 +1,25 @@
-# MCP புரொட்டோகால் அம்சங்களின் ஆழ்ந்த ஆய்வு
+# MCP புரோடோக்கால் அம்சங்களின் ஆழமான ஆய்வு
 
-இந்த வழிகாட்டு MCP புரொட்டோகால் அம்சங்களை அடிப்படைக் கருவி மற்றும் வள மேலாண்மையை மீறும் முறையில் ஆராய்கிறது. இவை புரிதல் மூலம் நீங்கள் மிக வலுவான, பயனர் நட்பு மற்றும் உற்பத்தி தயாரான MCP சர்வர்களை உருவாக்க முடியும்.
+இந்த வழிகாட்டி அடிப்படை கருவி மற்றும் வள கையாளுதலை கடந்த முன்னேற்ற MCP புரோடோக்கால் அம்சங்களை ஆராய்கிறது. இந்த அம்சங்களைப் புரிந்துக்கொள்ளுவது, நீங்கள் மேலும் வலுவான, பயனர் நட்பு மற்றும் தயாரிப்பிற்குக்குட்பட்ட MCP சேவையகங்களை உருவாக்க உதவுகிறது.
 
-## கையாளப்பட்ட அம்சங்கள்
+> **எதிர்கொள்ள்போம்:** `2026-07-28` வெளியீட்டு வேடிக்கை Logging primitive ஐ (stdio க்கான `stderr` மற்றும் அமைந்துள்ள கண்காணிப்புக்கான OpenTelemetry ஆகியவற்றுக்கு முன்னுரிமையுடன்) சேலன்செய்கிறது, கீழே உள்ள Server Lifecycle Events இல் குறிப்பிடப்பட்ட `initialize`/session மாடலை நீக்குகிறது, மற்றும் பிழைபார்வை தவறு அம்சத்தை புதிய `tasks/get`/`tasks/update`/`tasks/cancel` வாழ்நாள் முறையுடன் தனி Tasks விரிவாக்கத்துக்கு நகர்த்துகிறது. விரிவாக பார்க்கவும் [MCP இல் என்ன மாற்றம்: 2026-07-28 வெளியீட்டு வேடிக்கை](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md) .
 
-1. **செயல்பாட்டுத் தகவல்கள்** - நீண்டநாள் இயங்கும் செயல்களுக்கு முன்னேற்றம் அறிவிப்பு
-2. **கோரிக்கை நிறுத்தல்** - கிளையன்ட்கள் நடுவே செல்லும் கோரிக்கைகளை நிறுத்த அனுமதிக்கவும்
-3. **வள வார்ப்புருக்கள்** - வரிவிதிகளுடன் இயக்கக்கூடிய வள URIகள்
-4. **சர்வர் வாழ்க்கைச் சுழற்சி நிகழ்வுகள்** - சரியான துவக்கம் மற்றும் மூடல்
-5. **பதில் பதிவு கட்டுப்பாடு** - சர்வர் பக்க பதிலியல் கட்டமைப்பு
-6. **பிழை கைமுறை முறைமைகள்** - ஒரே மாதிரியான பிழை பதில்கள்
+## உள்ளடக்கப்பட்ட அம்சங்கள்
+
+1. **முன்னேற்ற அறிவிப்புக்கள்** - நீண்டநேரம் நடைபெறும் செயல்களுக்கு முன்னேற்றத்தை அறிக்கை செயல்
+2. **கோரிக்கையினை ரத்துசெய்தல்** - வாடிக்கையாளர்கள் உள்ளடக்க கோரிக்கைகளை ரத்து செய்ய அனுமதி
+3. **வள Templateகள்** - மாற்றமுள்ள வள URIகள் பராமரிப்புகளுடன்
+4. **சேவையக வாழ்நாள் நிகழ்வுகள்** - சரியான துவக்கம் மற்றும் நிறைவு
+5. **பதிவு கட்டுப்பாடு** - சேவையக பக்க பதிவு கட்டமைப்பு
+6. **தவறு கையாளும் முறைகள்** - ஒரே மாதிரியான தவறு பிரதிகள்
 
 ---
 
-## 1. செயல்பாட்டுத் தகவல்கள்
+## 1. முன்னேற்ற அறிவிப்புக்கள்
 
-நேரம் گیرும் செயல்கள் (தரவு செயலாக்கம், கோப்பு பதிவிறக்கம், API அழைப்புகள்) பயன்பாட்டாளர்களை அறிய வைத்திருக்கும் முன்னேற்ற அறிவிப்புகள்.
+நேரம் எடுத்துச் செல்லும் செயல்கள் (தரவு செயல்முறை, கோப்பு பதிவிறக்கம், API அழைப்புகள்) குறித்த முன்னேற்ற அறிவிப்புக்கள் பயனாளர்களுக்கு தகவல் தருகின்றன.
 
-### அது எப்படி செயல்படுகிறது
+### இது எப்படி செயல்படுகிறது
 
 ```mermaid
 sequenceDiagram
@@ -30,7 +32,8 @@ sequenceDiagram
     Server-->>Client: அறிவிப்பு: முன்னேற்றம் 90%
     Server->>Client: முடிவு (முடிந்தது)
 ```
-### பைதான் நடைமுறை
+
+### Python செயலாக்கம்
 
 ```python
 from mcp.server import Server, NotificationOptions
@@ -43,17 +46,17 @@ app = Server("progress-server")
 async def process_large_file(file_path: str, ctx) -> str:
     """Process a large file with progress updates."""
     
-    # முன்னேற்ற கணக்கீட்டிற்கான கோப்பு அளவை பெறவும்
+    # முன்னேற்றம் கணக்கிட கோப்பு அளவை பெறுக
     file_size = os.path.getsize(file_path)
     processed = 0
     
     with open(file_path, 'rb') as f:
         while chunk := f.read(8192):
-            # துண்டை செயலாக்கவும்
+            # துண்டை செயலாக்குக
             await process_chunk(chunk)
             processed += len(chunk)
             
-            # முன்னேற்ற அறிவிப்பை அனுப்பவும்
+            # முன்னேற்ற அறிவிப்பை அனுப்புக
             progress = (processed / file_size) * 100
             await ctx.send_notification(
                 ProgressNotification(
@@ -77,7 +80,7 @@ async def batch_operation(items: list[str], ctx) -> str:
         result = await process_item(item)
         results.append(result)
         
-        # ஒவ்வொரு உருப்படியின் பின்னரும் முன்னேற்றத்தை அளிக்கவும்
+        # ஒவ்வொன்றும் பிறகு முன்னேற்றத்தை தகவல் அளிக்குக
         await ctx.send_notification(
             ProgressNotification(
                 progressToken=ctx.request_id,
@@ -90,7 +93,7 @@ async def batch_operation(items: list[str], ctx) -> str:
     return f"Completed {total} items"
 ```
 
-### டைப்ஸ்கிரிப்ட் நடைமுறை
+### TypeScript செயலாக்கம்
 
 ```typescript
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
@@ -106,7 +109,7 @@ server.setRequestHandler(CallToolSchema, async (request, extra) => {
       const result = await processItem(items[i]);
       results.push(result);
       
-      // முன்னேற்ற அறிவிப்பு அனுப்பு
+      // முன்னேற்ற அறிவிப்பை அனுப்புக
       await extra.sendNotification({
         method: "notifications/progress",
         params: {
@@ -123,7 +126,7 @@ server.setRequestHandler(CallToolSchema, async (request, extra) => {
 });
 ```
 
-### கிளையன்ட் கைமுறை (பைதான்)
+### வாடிக்கையாளர் கையாளுதல் (Python)
 
 ```python
 async def handle_progress(notification):
@@ -131,20 +134,20 @@ async def handle_progress(notification):
     params = notification.params
     print(f"Progress: {params.progress}/{params.total} - {params.message}")
 
-# ஹேண்ட்லரை பதிவு செய்க
+# கைையாளரை பதிவு செய்க
 session.on_notification("notifications/progress", handle_progress)
 
-# கருவியை அழைப்பு செய்க (முன்னேற்றத் தகவல்கள் ஹேண்ட்லரின் மூலம் வருவார்கள்)
+# கருவியை அழைக்கவும் (முன்னேற்ற மேம்பாடுகள் கைையாளரின் மூலம் வரும்)
 result = await session.call_tool("process_large_file", {"file_path": "/data/large.csv"})
 ```
 
 ---
 
-## 2. கோரிக்கை நிறுத்தல்
+## 2. கோரிக்கை ரத்துசெய்தல்
 
-கிளையன்ட்கள் தேவை இல்லாமல் போன அல்லது அதிக நேரம் எடுத்துக்கொள்ளும் கோரிக்கைகளை நிறுத்த அனுமதிக்கவும்.
+வேண்டாமையோ அல்லது மிகவும் நேரம் எடுத்துக் கொண்டால், வாடிக்கையாளர்கள் கோரிக்கைகளை ரத்து செய்ய அனுமதிக்கவும்.
 
-### பைதான் நடைமுறை
+### Python செயலாக்கம்
 
 ```python
 from mcp.server import Server
@@ -160,20 +163,20 @@ async def long_running_search(query: str, ctx) -> str:
     results = []
     
     try:
-        for page in range(100):  # பல பக்கங்களைத் தேடுதல்
-            # ரத்து செய்யுமாறு கேட்டுக்கொண்டாரா என்பதைச் சரிபார்க்கவும்
+        for page in range(100):  # பல பக்கங்களில் தேடவும்
+            # ரத்து கோரப்பட்டது என்பதை சரிபார்க்கவும்
             if ctx.is_cancelled:
                 raise CancelledError("Search cancelled by user")
             
-            # பக்கத் தேடலை நகலெடுக்கவும்
+            # பக்கத் தேடலை குறிக்கோள் செய்க
             page_results = await search_page(query, page)
             results.extend(page_results)
             
-            # சிறிய தாமதம் ரத்து பரிசோதனைகளை அனுமதிக்கிறது
+            # சிறிய தாமதம் ரத்து சரிபார்ப்புகளுக்கு அனுமதிக்கிறது
             await asyncio.sleep(0.1)
             
     except CancelledError:
-        # பகுதி முடிவுகளைத் திருப்பி அனுப்புக
+        # பகுதி முடிவுகளை திருப்பி வழங்கவும்
         return f"Cancelled. Found {len(results)} results before cancellation."
     
     return f"Found {len(results)} total results"
@@ -198,7 +201,7 @@ async def download_file(url: str, ctx) -> str:
             return f"Downloaded {downloaded} bytes"
 ```
 
-### நிறுத்தல் சூழல் செயல்படுத்தல்
+### ரத்துசெய்தல் சூழலைச் செயலாக்குதல்
 
 ```python
 class CancellableContext:
@@ -231,10 +234,10 @@ class CancellableContext:
             )
             raise CancelledError(self._cancel_reason)
         except asyncio.TimeoutError:
-            pass  # சாதாரண நேர அவகாசம், தொடரவும்
+            pass  # சாதாரண நேரம் முடிந்து, தொடரவும்
 ```
 
-### கிளையன்ட் பக்க நிறுத்தல்
+### வாடிக்கையாளர் பக்க ரத்துசெய்தல்
 
 ```python
 import asyncio
@@ -250,7 +253,7 @@ async def search_with_timeout(session, query, timeout=30):
         result = await asyncio.wait_for(task, timeout=timeout)
         return result
     except asyncio.TimeoutError:
-        # கோரிக்கை ரத்து செய்யப்பட்டது
+        # கோரிக்கை ரத்துசெய்
         await session.send_notification({
             "method": "notifications/cancelled",
             "params": {"requestId": task.request_id, "reason": "Timeout"}
@@ -260,11 +263,11 @@ async def search_with_timeout(session, query, timeout=30):
 
 ---
 
-## 3. வள வார்ப்புருக்கள்
+## 3. வள Templateகள்
 
-வள வார்ப்புருக்கள் இயக்கற்ற URI கட்டமைப்புக்கு பரிமாணங்களுடன் அனுமதி தருகின்றன, APIகள் மற்றும் தரவுத்தளங்களுக்கு பயனுள்ளதாக உள்ளது.
+வள Templateகள் பராமரிப்புகளுடன் நுண்மையான URI கட்டமைப்பை அனுமதிக்கிறது, APIகளுக்கும் தரவுத்தளங்களுக்கும் பயனுள்ளவை.
 
-### வார்ப்புருக்கள் வரையறுத்தல்
+### Templateகளை வரையறுத்தல்
 
 ```python
 from mcp.server import Server
@@ -300,7 +303,7 @@ async def list_templates() -> list[ResourceTemplate]:
 async def read_resource(uri: str) -> str:
     """Read resource, expanding template parameters."""
     
-    # URI ஐ பகுத்தறிந்து அளவுருக்களை எடுத்து வைக்க வேண்டும்
+    # URI ஐப் பகுப்பாய்வு செய்து அளவுருக்களை பிரிக்கவும்
     if uri.startswith("db://users/"):
         user_id = uri.split("/")[-1]
         return await fetch_user(user_id)
@@ -317,7 +320,7 @@ async def read_resource(uri: str) -> str:
     raise ValueError(f"Unknown resource URI: {uri}")
 ```
 
-### டைப்ஸ்கிரிப்ட் நடைமுறை
+### TypeScript செயலாக்கம்
 
 ```typescript
 server.setRequestHandler(ListResourceTemplatesSchema, async () => {
@@ -342,7 +345,7 @@ server.setRequestHandler(ListResourceTemplatesSchema, async () => {
 server.setRequestHandler(ReadResourceSchema, async (request) => {
   const uri = request.params.uri;
   
-  // GitHub பிரச்சனை URI-ஐ பகுப்பாய்வு செய்க
+  // GitHub பிரச்சினை URI-ஐ பகுப்பு செய்
   const githubMatch = uri.match(/^github:\/\/repos\/([^/]+)\/([^/]+)\/issues\/(\d+)$/);
   if (githubMatch) {
     const [_, owner, repo, issueNumber] = githubMatch;
@@ -362,11 +365,11 @@ server.setRequestHandler(ReadResourceSchema, async (request) => {
 
 ---
 
-## 4. சர்வர் வாழ்க்கைச் சுழற்சி நிகழ்வுகள்
+## 4. சேவையக வாழ்நாள் நிகழ்வுகள்
 
-சரியான துவக்கம் மற்றும் மூடல் கையாளுதல் வள மேலாண்மையை சுத்தமாக உறுதி செய்கிறது.
+சரியான துவக்கம் மற்றும் நிறைவு கையாளுதல், வள மேலாண்மையை சுத்தமாக வைக்கும்.
 
-### பைதான் வாழ்க்கைச் சுழற்சி மேலாண்மை
+### Python வாழ்நாள் மேலாண்மை
 
 ```python
 from mcp.server import Server
@@ -389,9 +392,9 @@ async def lifespan(server: Server):
     cache = await create_cache_client()
     print("✅ Resources initialized")
     
-    yield  # ச сервер இங்கு இயக்கப்படுகிறது
+    yield  # சேவையகம் இங்கே இயங்குகிறது
     
-    # அணைப்பு
+    # நிறுத்தம்
     print("🛑 Server shutting down...")
     await db_connection.close()
     await cache.close()
@@ -406,7 +409,7 @@ async def query_database(sql: str) -> str:
     return str(result)
 ```
 
-### டைப்ஸ்கிரிப்ட் வாழ்க்கைச் சுழற்சி
+### TypeScript வாழ்நாள்
 
 ```typescript
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
@@ -425,17 +428,17 @@ class ManagedServer {
   }
   
   async start() {
-    // வளங்களை துவக்கு
+    // வளங்களைக் ஆரம்பி
     console.log("🚀 Server starting...");
     this.dbConnection = await createDatabaseConnection();
     console.log("✅ Database connected");
     
-    // சர்வரை துவக்கு
+    // சேவையகத்தை தொடு
     await this.server.connect(transport);
   }
   
   async stop() {
-    // வளங்களை சுத்தம் செய்
+    // வளங்களை சுத்தப்படுத்து
     console.log("🛑 Server shutting down...");
     if (this.dbConnection) {
       await this.dbConnection.close();
@@ -446,7 +449,7 @@ class ManagedServer {
   
   private setupHandlers() {
     this.server.setRequestHandler(CallToolSchema, async (request) => {
-      // இதை this.dbConnectionி பாதுகாப்பாக பயன்படுத்தவும்
+      // இந்த this.dbConnection ஐ பாதுகாப்பாக பயன்படுத்து
       // ...
     });
   }
@@ -465,11 +468,11 @@ await server.start();
 
 ---
 
-## 5. பதில் பதிவு கட்டுப்பாடு
+## 5. பதிவு கட்டுப்பாடு
 
-MCP சர்வர் பக்க பதில் பதிவு நிலைகள் கிளையன்ட்கள் கட்டுப்படுத்தக்கூடியதாகும்.
+MCP சேவையக பக்க பதிவு மட்டங்களை ஆதரிக்கிறது, வாடிக்கையாளர்கள் அதை கட்டுப்படுத்த முடியும்.
 
-### பதில் பதிவு நிலைகள் செயல்படுத்தல்
+### பதிவு மட்டங்களைச் செயலாக்குவது
 
 ```python
 from mcp.server import Server
@@ -478,7 +481,7 @@ import logging
 
 app = Server("logging-server")
 
-# MCP மட்டங்களை Python பதிவேற்று மட்டங்களுடன் இணைக்கவும்
+# MCP நிலைகளை Python பதிவு நிலைகளுடன் வரைபடி
 LEVEL_MAP = {
     LoggingLevel.DEBUG: logging.DEBUG,
     LoggingLevel.INFO: logging.INFO,
@@ -509,20 +512,20 @@ async def debug_operation(data: str) -> str:
         raise
 ```
 
-### கிளையன்டுக்கு பதிவு செய்தி அனுப்புதல்
+### வாடிக்கையாளருக்கு பதிவு செய்திகளை அனுப்புதல்
 
 ```python
 @app.tool()
 async def complex_operation(input: str, ctx) -> str:
     """Operation that logs to client."""
     
-    # கிளையנטிற்கு பதிவு அறிவிப்பை அனுப்பவும்
+    # வாடிக்கையாளருக்கு பதிவு அறிவிப்பை அனுப்பவும்
     await ctx.send_log(
         level="info",
         message=f"Starting complex operation with input: {input}"
     )
     
-    # வேலை செய்க...
+    # வேலை செய்யவும்...
     result = await do_work(input)
     
     await ctx.send_log(
@@ -535,11 +538,11 @@ async def complex_operation(input: str, ctx) -> str:
 
 ---
 
-## 6. பிழை கைமுறை முறைமைகள்
+## 6. தவறு கையாளும் முறைகள்
 
-ஒற்றுமையான பிழை கையாளுதல் பிழைத் தீர்வையும் பயன்பாட்டாளர் அனுபவத்தையும் மேம்படுத்துகிறது.
+ஒற்றுமையான தவறு கையாளல் பிழைத்திருத்தம் மற்றும் பயனர் அனுபவத்தை மேம்படுத்துகிறது.
 
-### MCP பிழை குறியீடுகள்
+### MCP தவறு குறியீடுகள்
 
 ```python
 from mcp.types import McpError, ErrorCode
@@ -569,14 +572,14 @@ class InternalError(ToolError):
         super().__init__(ErrorCode.INTERNAL_ERROR, message)
 ```
 
-### கட்டமைக்கப்பட்ட பிழை பதில்கள்
+### அமைந்துவரும் தவறு பதில்கள்
 
 ```python
 @app.tool()
 async def safe_operation(input: str) -> str:
     """Tool with comprehensive error handling."""
     
-    # உள்ளீட்டை சரிபார்க்கவும்
+    # உள்ளீட்டைக் சரிபார்
     if not input:
         raise ValidationError("Input cannot be empty")
     
@@ -584,11 +587,11 @@ async def safe_operation(input: str) -> str:
         raise ValidationError(f"Input too large: {len(input)} chars (max 10000)")
     
     try:
-        # அனுமதிகளை சரிபார்க்கவும்
+        # அனுமதிகளைச் சரிபார்
         if not await check_permission(input):
             raise PermissionError(f"read {input}")
         
-        # செயல்பாட்டை நடத்தவும்
+        # செயல்பாட்டை மேற்கொள்
         result = await perform_operation(input)
         
         if result is None:
@@ -601,12 +604,12 @@ async def safe_operation(input: str) -> str:
     except TimeoutError as e:
         raise InternalError(f"Operation timed out: {e}")
     except Exception as e:
-        # எதிர்மறை பிழைகளை பதிவு செய்யவும்
+        # எதிர்பாராத பிழைகளை பதிவேடு செய்
         logger.exception(f"Unexpected error in safe_operation")
         raise InternalError(f"Unexpected error: {type(e).__name__}")
 ```
 
-### டைப்ஸ்கிரிப்ட் பிழை கையாளுதல்
+### TypeScript இல் தவறு கையாளல்
 
 ```typescript
 import { McpError, ErrorCode } from "@modelcontextprotocol/sdk/types.js";
@@ -618,7 +621,7 @@ function validateInput(data: unknown): asserts data is ValidInput {
       "Input must be an object"
     );
   }
-  // மேலும் சரிபார்க்கப்படுகிறது...
+  // மேலும் செல்லுபடியாகும் பரிசோதனை...
 }
 
 server.setRequestHandler(CallToolSchema, async (request) => {
@@ -633,10 +636,10 @@ server.setRequestHandler(CallToolSchema, async (request) => {
     
   } catch (error) {
     if (error instanceof McpError) {
-      throw error;  // ஏற்கனவே ஒரு MCP பிழை
+      throw error;  // ஏற்கனவே MCP பிழை
     }
     
-    // மற்ற பிழைகளை மாற்றவும்
+    // பிற பிழைகளை மாற்று
     if (error instanceof NotFoundError) {
       throw new McpError(ErrorCode.InvalidRequest, error.message);
     }
@@ -653,19 +656,19 @@ server.setRequestHandler(CallToolSchema, async (request) => {
 
 ---
 
-## பரிசோதனை அம்சங்கள் (MCP 2025-11-25)
+## பரிந்துரைக்கபட்ட அம்சங்கள் (MCP 2025-11-25)
 
-இந்த அம்சங்கள் சோதனைக்குரியவை என குறிப்பிடப்பட்டுள்ளன:
+இந்த அம்சங்கள் விவரத்தில் பரிந்துரைக்கப்பட்டவை:
 
-### பணிகள் (நீண்டநாள் செயல்பாடுகள்)
+### பணிகள் (நீண்டநேரம் நடைபெறும் செயல்கள்)
 
 ```python
-# பணிகள் நிலை உடைய நீண்ட நேரம் ஓடும் செயல்களைக் கண்காணிக்க அனுமதிக்கின்றன
+# பணிகள் நிலைமையுடன் நீண்டநீண்ட செயல்களை கண்காணிக்க அனுமதிக்கின்றன
 @app.task()
 async def training_task(model_id: str, data_path: str, ctx) -> str:
     """Long-running ML training task."""
     
-    # பணி தொடங்கியதை அறிக்கை செய்க
+    # பணி தொடங்கியதை அறிவிக்கவும்
     await ctx.report_status("running", "Initializing training...")
     
     # பயிற்சி வட்டம்
@@ -682,16 +685,16 @@ async def training_task(model_id: str, data_path: str, ctx) -> str:
     return f"Model {model_id} trained successfully"
 ```
 
-### கருவி குறிச்சொற்கள்
+### கருவி குறிப்பு
 
 ```python
-# கருவி நடத்தமுறை பற்றிய மேட்டா தகவல்களை அனுட்களங்கள் வழங்குகின்றன
+# கருவி நடத்தையைப் பற்றி மேட்டாடேட்டாவை வழங்குகிறது
 @app.tool(
     annotations={
-        "destructive": False,      # தரவை மாற்றாது
-        "idempotent": True,        # மீண்டும் முயற்சிக்க பாதுகாப்பானது
-        "timeout_seconds": 30,     # எதிர்பார்க்கப்படும் அதிகபட்ச காலம்
-        "requires_approval": False # பயனர் அங்கீகாரம் தேவையில்லை
+        "destructive": False,      # தரவை மாற்றுகொள்கிறது இல்லை
+        "idempotent": True,        # மீண்டும் முயற்சிக்க பாதுகாப்பாக உள்ளது
+        "timeout_seconds": 30,     # எதிர்பார்க்கப்பட்ட அதிகபட்ச காலம்
+        "requires_approval": False # பயனர் அனுமதி தேவையில்லை
     }
 )
 async def safe_query(query: str) -> str:
@@ -704,21 +707,21 @@ async def safe_query(query: str) -> str:
 ## அடுத்தது என்ன
 
 - [Module 8 - சிறந்த நடைமுறைகள்](../../08-BestPractices/README.md)
-- [5.14 - சூழல் பொறியியல்](../mcp-contextengineering/README.md)
-- [MCP விவரக்குறிப்பு மாற்றலரைக்குறிப்பு](https://spec.modelcontextprotocol.io/)
+- [5.14 - Context Engineering](../mcp-contextengineering/README.md)
+- [MCP விவர மாற்றம் பதிவுகள்](https://spec.modelcontextprotocol.io/)
 
 ---
 
 ## கூடுதல் வளங்கள்
 
-- [MCP விவரக்குறிப்பு 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [JSON-RPC 2.0 பிழை குறியீடுகள்](https://www.jsonrpc.org/specification#error_object)
-- [பைதான் SDK உதாரணங்கள்](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples)
-- [டைப்ஸ்கிரிப்ட் SDK உதாரணங்கள்](https://github.com/modelcontextprotocol/typescript-sdk/tree/main/examples)
+- [MCP விவரம் 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [JSON-RPC 2.0 தவறு குறியீடுகள்](https://www.jsonrpc.org/specification#error_object)
+- [Python SDK உதாரணங்கள்](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples)
+- [TypeScript SDK உதாரணங்கள்](https://github.com/modelcontextprotocol/typescript-sdk/tree/main/examples)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**கவனிக்கவும்**:  
-இந்த ஆவணம் AI மொழிபெயர்ப்பு சேவை [Co-op Translator](https://github.com/Azure/co-op-translator) பயன்படுத்தி மொழிபெயர்க்கப்பட்டுள்ளது. நாங்கள் துல்லியத்திற்காக முயலினாலும், தானியங்கி மொழிபெயர்ப்புகளில் பிழைகள் அல்லது தவறுகள் இருக்கலாம் என்பதை கவனிக்கவும். முதன்மை ஆதாரமாக அதன் சொந்த மொழியில் உள்ள அசல் ஆவணம் கருதப்பட வேண்டும். முக்கியமான தகவல்களுக்கு, தொழில்முறை மனித மொழிபெயர்ப்பை பரிந்துரைக்கிறோம். இந்த மொழிபெயர்ப்பின் பயன்பாட்டினால் ஏற்படக்கூடிய தவறான புரிதல்கள் அல்லது தவறான விலக்குகளுக்க 우리는 பொறுப்பல்ல.
+**மறுப்பு**:
+இந்த ஆவணம் AI மொழிபெயர்ப்பு சேவை [Co-op Translator](https://github.com/Azure/co-op-translator) பயன்படுத்தி மொழிபெயர்க்கப்பட்டுள்ளது. நாங்கள் துல்லியத்திற்காக முயற்சி செய்துள்ளோம், ஆனால் தானாக செய்யப்படும் மொழிபெயர்ப்புகளில் பிழைகள் அல்லது தவறுகள் இருக்கலாம் என்பதை கவனத்தில் கொள்ளவும். அசல் ஆவணம் அதன் தாய்மொழியில் அதிகாரப்பூர்வ ஆதாரமாக கருதப்பட வேண்டும். முக்கியமான தகவல்களுக்கு, தொழில்நுட்பமான மனித மொழிபெயர்ப்பு பரிந்துரைக்கப்படுகிறது. இந்த மொழிபெயர்ப்பைப் பயன்படுத்துவதால் ஏற்படும் எந்த தவறான புரிதல்கள் அல்லது தவறான விளக்கத்திற்கும் நாங்கள் பொறுப்பில்வில்லை.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
