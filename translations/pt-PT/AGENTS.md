@@ -2,12 +2,12 @@
 
 ## Visão Geral do Projeto
 
-**MCP para Iniciantes** é um currículo educativo de código aberto para aprender o Model Context Protocol (MCP) - uma estrutura padronizada para interações entre modelos de IA e aplicações cliente. Este repositório fornece materiais de aprendizagem abrangentes com exemplos práticos de código em várias linguagens de programação.
+**MCP para Iniciantes** é um currículo educativo open-source para aprender o Model Context Protocol (MCP) - um framework padronizado para interações entre modelos de IA e aplicações clientes. Este repositório disponibiliza materiais de aprendizagem completos com exemplos de código práticos em várias linguagens de programação.
 
-### Tecnologias Principais
+### Tecnologias-Chave
 
 - **Linguagens de Programação**: C#, Java, JavaScript, TypeScript, Python, Rust
-- **Frameworks & SDKs**: 
+- **Frameworks e SDKs**:
   - MCP SDK (`@modelcontextprotocol/sdk`)
   - Spring Boot (Java)
   - FastMCP (Python)
@@ -15,35 +15,35 @@
 - **Bases de Dados**: PostgreSQL com extensão pgvector
 - **Plataformas Cloud**: Azure (Container Apps, OpenAI, Content Safety, Application Insights)
 - **Ferramentas de Build**: npm, Maven, pip, Cargo
-- **Documentação**: Markdown com tradução automática multilíngue (48+ línguas)
+- **Documentação**: Markdown com tradução automática em múltiplas línguas (48+ línguas)
 
 ### Arquitetura
 
-- **11 Módulos Centrais (00-11)**: Trajeto de aprendizagem sequencial desde fundamentos a tópicos avançados
-- **Laboratórios Práticos**: Exercícios práticos com código de solução completo em várias linguagens
-- **Projetos de Exemplo**: Implementações de servidores e clientes MCP funcionais
+- **11 Módulos Principais (00-11)**: Caminho de aprendizagem sequencial desde os fundamentos até tópicos avançados
+- **Labs Práticos**: Exercícios práticos com código completo de solução em várias linguagens
+- **Projetos de Exemplo**: Implementações funcionais de servidor e cliente MCP
 - **Sistema de Tradução**: Workflow automatizado GitHub Actions para suporte multilíngue
-- **Recursos Gráficos**: Diretório centralizado de imagens com versões traduzidas
+- **Recursos de Imagem**: Diretório centralizado de imagens com versões traduzidas
 
 ## Comandos de Configuração
 
-Este é um repositório focado em documentação. A maior parte da configuração ocorre dentro dos projetos de exemplo e laboratórios individuais.
+Este é um repositório focado em documentação. A maior parte da configuração ocorre dentro de projetos de exemplo e labs individuais.
 
 ### Configuração do Repositório
 
 ```bash
-# Clone o repositório
+# Clonar o repositório
 git clone https://github.com/microsoft/mcp-for-beginners.git
 cd mcp-for-beginners
 ```
 
 ### Trabalhar com Projetos de Exemplo
 
-Os projetos de exemplo estão localizados em:
-- `03-GettingStarted/samples/` - Exemplos específicos por linguagem
-- `03-GettingStarted/01-first-server/solution/` - Implementações do primeiro servidor
-- `03-GettingStarted/02-client/solution/` - Implementações do cliente
-- `11-MCPServerHandsOnLabs/` - Laboratórios abrangentes de integração com base de dados
+Os projetos de exemplo encontram-se em:
+- `03-GettingStarted/samples/` - Exemplos por linguagem
+- `03-GettingStarted/01-first-server/solution/` - Primeiras implementações de servidores
+- `03-GettingStarted/02-client/solution/` - Implementações de clientes
+- `11-MCPServerHandsOnLabs/` - Labs abrangentes de integração com base de dados
 
 Cada projeto de exemplo contém as suas próprias instruções de configuração:
 
@@ -70,57 +70,156 @@ mvn clean install
 mvn spring-boot:run
 ```
 
-## Fluxo de Desenvolvimento
+## Workflow de Desenvolvimento
+
+### Preparação para MCP 7-28
+
+#### Lista de verificação de prontidão do repositório
+
+- [x] **Clareza para novos contribuidores**: Este ficheiro define propósito,
+  estrutura, regras de contribuição e caminhos de configuração de exemplo.
+- [x] **Comandos de build/test/lint com flags exatas**:
+  - Lint da documentação do repositório:
+    `npx --yes markdownlint-cli2 "**/*.md" "#node_modules" "#translations" "#translated_images"`
+  - Auditoria de padrão de links da documentação:
+    `find . -name "*.md" -not -path "*/node_modules/*" -not -path "./translations/*" -not -path "./translated_images/*" -print0 | xargs -0 grep -En "\[.*\]\(.*\)"`
+  - Validação do exemplo TypeScript:
+    `cd 03-GettingStarted/samples/typescript && npm ci && npm test && npm run build`
+  - Validação do exemplo Python:
+    `cd 10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp && python -m pip install -e . && pytest -q`
+  - Validação do exemplo Java:
+    `cd 03-GettingStarted/samples/java/calculator && mvn -B -ntp test verify`
+- [x] **Um workflow realista que pode tornar-se numa ferramenta MCP**:
+  `validate_curriculum_change`
+- [x] **Entradas/saídas são explícitas** (ver especificação abaixo).
+- [x] **Permissões e modos de falha estão documentados** (ver especificação abaixo).
+- [x] **Testabilidade em CI é explícita** (comandos determinísticos, códigos de saída explícitos e
+  outputs legíveis por máquina).
+
+#### Workflow candidato para ferramenta MCP: `validate_curriculum_change`
+
+##### Objetivo
+
+Validar alterações da documentação do currículo e integridade do código de exemplo representativo
+antes da fusão.
+
+##### Entradas
+
+- `changed_paths: string[]` (obrigatório) - caminhos relativos alterados no PR.
+- `run_docs_lint: boolean` (padrão `true`)
+- `run_links_audit: boolean` (padrão `true`)
+- `run_samples: { typescript?: boolean, python?: boolean, java?: boolean }`
+  (padrão todos `false`)
+
+##### Saídas
+
+- `status: "ok" | "failed"`
+- `checks: Array<{ name: string, command: string, exit_code: number,
+  summary: string }>`
+- `artifacts: Array<{ type: "log" | "report", path: string }>`
+- `failed_checks: string[]`
+
+##### Permissões
+
+- Apenas ler ficheiros da workspace e escrever artefactos gerados pela ferramenta (ex.: relatórios de lint,
+  logs de teste); sem escrever em `translations/` ou
+  `translated_images/`.
+- Executar comandos shell locais.
+- Acesso de rede opcional somente para restauração de pacotes (`npm ci`,
+  `python -m pip install`, resolução de dependências `mvn`).
+- Sem permissão para fazer push, merge, ou modificar `translations/` ou
+  `translated_images/`.
+
+##### Modos de falha
+
+- `E_NO_INPUT_PATHS`: `changed_paths` vazio.
+- `E_INVALID_PATH`: caminho de entrada fora do root do repositório.
+- `E_LINT_FAILED`: lint markdown terminou com código diferente de zero.
+- `E_LINK_AUDIT_FAILED`: comando de auditoria de links terminou com erro.
+- `E_SAMPLE_TEST_FAILED`: teste/build do exemplo terminou com erro.
+- `E_TIMEOUT`: comando ultrapassou tempo limite configurado.
+
+##### Contrato recomendado para CI
+
+Para automatizar a validação, configurar um job CI que:
+
+- Seja acionado por pull requests que afetem `*.md`, código de exemplo ou este ficheiro.
+- Execute os comandos exatos listados acima.
+- Persista logs como artefactos.
+- Falhe o job se houver qualquer código de saída não-zero.
+
+#### Se publicar um servidor MCP deste repositório
+
+- [ ] Leia o changelog preliminar para MCP 7-28:
+  <https://modelcontextprotocol.io/specification/draft/changelog>
+- [ ] Teste o seu servidor contra SDK betas:
+  <https://blog.modelcontextprotocol.io/posts/sdk-betas-2026-07-28/>
+- [ ] Remova pressupostos de sessão e handshake; trate cada pedido como
+  autónomo:
+  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#a-stateless-protocol>
+- [ ] Envie cabeçalhos `Mcp-Method` e `Mcp-Name` para pedidos HTTP brutos:
+  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#routable-cacheable-traceable>
+- [ ] Audite códigos de erro hard-coded (`missing resource` mudou de `-32002` para `-32602`).
+- [ ] Identifique e planeie migração para as raízes, amostragem e
+  logging obsoletos:
+  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#roots-sampling-and-logging-are-deprecated>
+- [ ] Migre da API experimental de Tasks `2025-11-25`:
+  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#tasks-graduates-to-an-extension>
+- [ ] Reveja autorização para fortificação OAuth e OpenID Connect:
+  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#authorization-hardening>
 
 ### Estrutura da Documentação
 
-- **Módulos 00-11**: Conteúdo central do currículo em ordem sequencial
-- **translations/**: Versões específicas por língua (geradas automaticamente, não editar diretamente)
-- **translated_images/**: Versões localizadas das imagens (geradas automaticamente)
-- **images/**: Imagens e diagramas-fonte
+- **Módulos 00-11**: Conteúdo principal do currículo em ordem sequencial
+- **translations/**: Versões específicas de idioma (geradas automaticamente, não editar diretamente)
+- **translated_images/**: Versões localizadas de imagens (geradas automaticamente)
+- **images/**: Imagens-fonte e diagramas
 
-### Realizar Alterações na Documentação
+### Efetuando Alterações na Documentação
 
-1. Edite apenas os ficheiros markdown em inglês nas diretórias principais dos módulos (00-11)
-2. Atualize imagens na diretória `images/` se necessário
-3. O GitHub Action co-op-translator gera automaticamente as traduções
-4. As traduções são regeneradas quando se realiza push para a branch main
+1. Edite apenas os ficheiros markdown em inglês nos diretórios principais dos módulos (00-11)
+2. Atualize as imagens na diretoria `images/` se necessário
+3. A ação GitHub co-op-translator gerará as traduções automaticamente
+4. As traduções são regeneradas ao fazer push na branch main
 
 ### Trabalhar com Traduções
 
-- **Tradução Automatizada**: Workflow GitHub Actions gere todas as traduções
-- **Não EDITE manualmente** ficheiros na diretória `translations/`
-- Metadados de tradução estão embutidos em cada ficheiro traduzido
-- Línguas suportadas: 48+ línguas incluindo Árabe, Chinês, Francês, Alemão, Hindi, Japonês, Coreano, Português, Russo, Espanhol, entre outras
+- **Tradução Automática**: workflow GitHub Actions trata todas as traduções
+- **Não edite manualmente** ficheiros na diretoria `translations/`
+- A metainformação da tradução está embutida em cada ficheiro traduzido
+- Línguas suportadas: mais de 48, incluindo Árabe, Chinês, Francês, Alemão, Hindi, Japonês, Coreano, Português, Russo, Espanhol e muitas outras
 
-## Instruções para Testes
+## Instruções de Testes
 
 ### Validação da Documentação
 
-Como este é principalmente um repositório de documentação, o foco dos testes é:
+Uma vez que este é principalmente um repositório de documentação, os testes focam-se em:
 
-1. **Validação de Links**: Garantir que todos os links internos funcionam
-```bash
-# Verificar links markdown quebrados
-find . -name "*.md" -type f | xargs grep -n "\[.*\](../../.*)"
-```
+1. **Auditoria de Padrão de Links**: Listar links Markdown para revisão
 
-2. **Validação de Exemplos de Código**: Testar que os exemplos de código compilam/executam
-```bash
-# Navegar para uma amostra específica e executar os seus testes
-cd 03-GettingStarted/samples/typescript
-npm install && npm test
-```
+   ```bash
+   # Listar ligações Markdown (auditoria de padrão)
+   find . -name "*.md" -not -path "*/node_modules/*" -not -path "./translations/*" -not -path "./translated_images/*" -print0 | xargs -0 grep -En "\[.*\]\(.*\)"
+   ```
 
-3. **Linting Markdown**: Verificar consistência da formatação
-```bash
-# Use markdownlint se necessário
-npx markdownlint-cli2 "**/*.md" "#node_modules"
-```
+2. **Validação de Exemplos de Código**: Testar que exemplos de código compilam/executam
 
-### Testes em Projetos de Exemplo
+   ```bash
+   # Navegar para uma amostra específica e executar os seus testes
+   cd 03-GettingStarted/samples/typescript
+   npm install && npm test
+   ```
 
-Cada exemplo específico por linguagem inclui a sua própria abordagem de teste:
+3. **Linting Markdown**: Verificar consistência de formatação
+
+   ```bash
+   # Utilize markdownlint se necessário
+   npx --yes markdownlint-cli2 "**/*.md" "#node_modules" "#translations" "#translated_images"
+   ```
+
+### Testes de Projetos de Exemplo
+
+Cada exemplo específico de linguagem inclui a sua própria abordagem de teste:
 
 #### TypeScript/JavaScript
 ```bash
@@ -142,34 +241,34 @@ mvn verify
 
 ## Diretrizes de Estilo de Código
 
-### Estilo de Documentação
+### Estilo da Documentação
 
-- Utilize linguagem clara e acessível para iniciantes
-- Inclua exemplos de código em várias linguagens onde aplicável
-- Siga boas práticas em markdown:
-  - Use cabeçalhos estilo ATX (`#` syntax)
-  - Use blocos de código delimitados com identificadores de linguagem
-  - Inclua texto alternativo descritivo para imagens
-  - Mantenha o comprimento das linhas razoável (sem limite rígido, mas sensato)
+- Use linguagem clara e amigável para iniciantes
+- Inclua exemplos de código em várias linguagens, sempre que aplicável
+- Siga as melhores práticas de markdown:
+  - Use cabeçalhos estilo ATX (sintaxe `#`)
+  - Use blocos de código cercados com identificadores de linguagem
+  - Inclua texto alt descritivo para imagens
+  - Mantenha comprimentos de linha razoáveis (sem limite rígido, mas seja sensato)
 
 ### Estilo dos Exemplos de Código
 
 #### TypeScript/JavaScript
 - Use módulos ES (`import`/`export`)
-- Siga as convenções do modo estrito do TypeScript
+- Siga as convenções do modo estrito TypeScript
 - Inclua anotações de tipo
-- Target ES2022
+- Alvo ES2022
 
 #### Python
-- Siga as diretrizes de estilo PEP 8
-- Use anotações de tipo quando apropriado
+- Siga as diretrizes do estilo PEP 8
+- Use type hints onde apropriado
 - Inclua docstrings para funções e classes
-- Utilize funcionalidades modernas do Python (3.8+)
+- Use funcionalidades modernas do Python (3.8+)
 
 #### Java
-- Siga as convenções do Spring Boot
+- Siga convenções do Spring Boot
 - Use funcionalidades do Java 21
-- Siga a estrutura padrão de projetos Maven
+- Siga estrutura padrão de projetos Maven
 - Inclua comentários Javadoc
 
 ### Organização dos Ficheiros
@@ -186,114 +285,115 @@ mvn verify
     └── <language>/
 ```
 
-## Construção e Deployment
+## Compilação e Deploy
 
 ### Deploy da Documentação
 
-O repositório utiliza GitHub Pages ou similar para alojamento da documentação (se aplicável). Alterações na branch main disparam:
+O repositório usa GitHub Pages ou similar para alojamento da documentação (se aplicável). Alterações na branch main desencadeiam:
 
 1. Workflow de tradução (`.github/workflows/co-op-translator.yml`)
-2. Tradução automática de todos os ficheiros markdown em inglês
+2. Tradução automatizada de todos os ficheiros markdown em inglês
 3. Localização de imagens conforme necessário
 
-### Nenhum Processo de Build Necessário
+### Sem Processo de Build Necessário
 
-Este repositório contém principalmente documentação markdown. Não é necessário nenhum passo de compilação ou build para o conteúdo central do currículo.
+Este repositório contém principalmente documentação em markdown. Não é necessário passo de compilação para o conteúdo principal do currículo.
 
-### Deployment de Projetos de Exemplo
+### Deploy de Projetos de Exemplo
 
-Projetos de exemplo individuais podem ter instruções de deployment:
-- Ver `03-GettingStarted/09-deployment/` para orientação sobre deployment do servidor MCP
-- Exemplos de deployment em Azure Container Apps em `11-MCPServerHandsOnLabs/`
+Projetos de exemplo individuais podem conter instruções de deploy:
+- Veja `03-GettingStarted/09-deployment/` para orientação de deploy do servidor MCP
+- Exemplos de deploy para Azure Container Apps em `11-MCPServerHandsOnLabs/`
 
-## Diretrizes para Contribuições
+## Diretrizes para Contribuição
 
 ### Processo de Pull Request
 
-1. **Fork e Clone**: Faça fork do repositório e clone localmente o seu fork
-2. **Criar Branch**: Use nomes descritivos para a branch (ex.: `fix/typo-module-3`, `add/python-example`)
-3. **Fazer Alterações**: Edite apenas ficheiros markdown em inglês (não traduções)
-4. **Testar Localmente**: Verifique se o markdown é renderizado corretamente
-5. **Submeter PR**: Use títulos e descrições claras no PR
-6. **CLA**: Assine a Microsoft Contributor License Agreement quando solicitado
+1. **Fork e Clone**: Faça fork do repositório e clone o seu fork localmente
+2. **Crie uma Branch**: Use nomes descritivos para branches (ex.: `fix/typo-module-3`, `add/python-example`)
+3. **Faça Alterações**: Edite apenas ficheiros markdown em inglês (não traduções)
+4. **Teste Localmente**: Verifique se o markdown é renderizado corretamente
+5. **Submeta o PR**: Use títulos e descrições claras para o PR
+6. **CLA**: Assine o Contrato de Licença para Contribuidores Microsoft quando solicitado
 
-### Formato dos Títulos dos PR
+### Formato do Título do PR
 
 Use títulos claros e descritivos:
-- `[Module XX] Breve descrição` para mudanças específicas de módulo
-- `[Samples] Descrição` para alterações em exemplos de código
-- `[Docs] Descrição` para atualizações gerais na documentação
+- `[Módulo XX] Descrição breve` para alterações específicas de módulo
+- `[Samples] Descrição` para alterações em código de exemplo
+- `[Docs] Descrição` para atualizações gerais de documentação
 
-### O Que Contribuir
+### O que Contribuir
 
 - Correções de bugs na documentação ou exemplos de código
-- Novos exemplos de código em línguas adicionais
-- Esclarecimentos e melhorias no conteúdo existente
+- Novos exemplos de código em linguagens adicionais
+- Esclarecimentos e melhorias em conteúdo existente
 - Novos estudos de caso ou exemplos práticos
-- Relatórios de issues para conteúdo incorreto ou pouco claro
+- Relatórios de problemas sobre conteúdo incorreto ou pouco claro
 
-### O Que NÃO Fazer
+### O que NÃO fazer
 
-- Não edite diretamente ficheiros na diretória `translations/`
-- Não edite a diretória `translated_images/`
-- Não adicione ficheiros binários grandes sem prévia discussão
-- Não altere ficheiros do workflow de tradução sem coordenação
+- Não edite diretamente ficheiros na diretoria `translations/`
+- Não edite a diretoria `translated_images/`
+- Não adicione ficheiros binários grandes sem discussão prévia
+- Não modifique ficheiros do workflow de tradução sem coordenação
 
 ## Notas Adicionais
 
 ### Manutenção do Repositório
 
 - **Changelog**: Todas as alterações significativas estão documentadas em `changelog.md`
-- **Guia de Estudo**: Use `study_guide.md` para uma visão geral da navegação do currículo
-- **Templates de Issues**: Use os templates GitHub para reportar bugs e pedidos de funcionalidades
-- **Código de Conduta**: Todos os colaboradores devem seguir o Microsoft Open Source Code of Conduct
+- **Guia de Estudo**: Use `study_guide.md` para visão geral da navegação do currículo
+- **Templates de Issue**: Use modelos de issues do GitHub para reportar bugs e pedir funcionalidades
+- **Código de Conduta**: Todos os contribuidores devem seguir o Código de Conduta Open Source da Microsoft
 
 ### Trajeto de Aprendizagem
 
-Siga os módulos em ordem sequencial (00-11) para melhor aprendizagem:
-1. **00-02**: Fundamentos (Introdução, Conceitos Centrais, Segurança)
-2. **03**: Início prático com implementação hands-on
+Siga os módulos em ordem sequencial (00-11) para aprendizagem ideal:
+1. **00-02**: Fundamentos (Introdução, Conceitos Principais, Segurança)
+2. **03**: Começando com implementação prática
 3. **04-05**: Implementação prática e tópicos avançados
-4. **06-10**: Comunidade, boas práticas e aplicações reais
-5. **11**: Laboratórios completos de integração com base de dados (13 laboratórios sequenciais)
+4. **06-10**: Comunidade, melhores práticas e aplicações reais
+5. **11**: Labs abrangentes de integração com base de dados (13 labs sequenciais)
 
 ### Recursos de Suporte
 
 - **Documentação**: https://modelcontextprotocol.io/
 - **Especificação**: https://spec.modelcontextprotocol.io/
 - **Comunidade**: https://github.com/orgs/modelcontextprotocol/discussions
-- **Discord**: Servidor Discord Microsoft Foundry
-- **Cursos Relacionados**: Ver README.md para outras trilhas de aprendizagem Microsoft
+- **Discord**: servidor Discord Microsoft Foundry
+- **Cursos Relacionados**: Veja README.md para outros percursos de aprendizagem Microsoft
 
-### Problemas Comuns
+### Problemas Comuns e Soluções
 
-**Q: O meu PR está a falhar no teste de tradução**  
-A: Certifique-se de que editou apenas ficheiros markdown em inglês nas diretórias principais dos módulos, não as versões traduzidas.
+**P: O meu PR está a falhar na verificação de tradução**
+R: Assegure-se de que editou apenas os ficheiros markdown em inglês nas diretorias principais dos módulos, não as versões traduzidas.
 
-**Q: Como adiciono uma nova língua?**  
-A: O suporte a línguas é gerido pelo workflow co-op-translator. Abra uma issue para discutir a adição de novas línguas.
+**P: Como acrescentar um novo idioma?**
+R: O suporte a idiomas é gerido pelo workflow co-op-translator. Abra um issue para discutir a adição de novos idiomas.
 
-**Q: Os exemplos de código não funcionam**  
-A: Verifique se seguiu as instruções de configuração no README do exemplo específico. Confirme que tem as versões corretas das dependências instaladas.
+**P: Os exemplos de código não estão a funcionar**
 
-**Q: As imagens não aparecem**  
-A: Verifique se os caminhos das imagens são relativos e usam barras normais. As imagens devem estar na diretória `images/` ou em `translated_images/` para versões localizadas.
+R: Certifique-se de que seguiu as instruções de configuração no README do exemplo específico. Verifique se tem as versões corretas das dependências instaladas.
 
-### Considerações sobre Performance
+**P: As imagens não estão a ser exibidas**
+R: Verifique se os caminhos das imagens são relativos e usam barras normais. As imagens devem estar na diretoria `images/` ou `translated_images/` para versões localizadas.
 
-- O workflow de tradução pode levar alguns minutos a completar
-- Imagens grandes devem ser otimizadas antes de commits
-- Mantenha ficheiros markdown focados e com tamanho razoável
-- Use links relativos para melhor portabilidade
+### Considerações de Performance
+
+- O fluxo de trabalho de tradução pode levar vários minutos a completar
+- As imagens grandes devem ser otimizadas antes de serem submetidas
+- Mantenha os ficheiros markdown individuais focados e de tamanho razoável
+- Utilize links relativos para melhor portabilidade
 
 ### Governação do Projeto
 
-Este projeto segue as práticas open source da Microsoft:  
-- Licença MIT para código e documentação  
-- Microsoft Open Source Code of Conduct  
-- CLA requerida para contribuições  
-- Questões de segurança: Siga diretrizes do SECURITY.md  
-- Suporte: Veja SUPPORT.md para recursos de ajuda
+Este projeto segue as práticas open source da Microsoft:
+- Licença MIT para código e documentação
+- Código de Conduta Open Source da Microsoft
+- CLA obrigatória para contribuições
+- Questões de segurança: Siga as diretrizes do SECURITY.md
+- Suporte: Veja o SUPPORT.md para recursos de ajuda
 
 ---
 
