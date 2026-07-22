@@ -1,7 +1,7 @@
 # server.py
 from fastapi import FastAPI
 from fastapi.responses import StreamingResponse, HTMLResponse
-from mcp.server.fastmcp import FastMCP, Context
+from mcp.server.fastmcp import FastMCP, Context 
 from mcp.types import (
     TextContent
 )
