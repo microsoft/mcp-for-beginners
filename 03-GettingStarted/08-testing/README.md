@@ -19,7 +19,7 @@ By the end of this lesson, you will be able to:
 MCP provides tools to help you test and debug your servers:
 
 - **MCP Inspector**: A command line tool that can be run both as a CLI tool and as a visual tool.
-- **Manual testing**: You can use a tool like curl to run web requests, but any tool capabable of running HTTP will do.
+- **Manual testing**: You can use a tool like curl to run web requests, but any tool capable of running HTTP will do.
 - **Unit testing**: It's possible to use your preferred testing framework to test the features of both server and client.
 
 ### Using MCP Inspector

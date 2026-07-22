@@ -19,7 +19,7 @@ By the end of this lesson, you will be able to:
 You can control your MCP server in two different ways:
 
 - User interface, you will see how this is done later in this chapter.
-- Terminal, it's possible to control things from the terminal using the `code` exectuable:
+- Terminal, it's possible to control things from the terminal using the `code` executable:
 
   To add an MCP server to your user profile, use the --add-mcp command line option, and provide the JSON server configuration in the form {\"name\":\"server-name\",\"command\":...}.
 
