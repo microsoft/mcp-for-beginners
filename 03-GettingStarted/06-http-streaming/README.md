@@ -450,7 +450,7 @@ async def message_handler(message):
 
 ## Security Considerations
 
-Security should be a top priority when implementing any server, especially when using HTTP-based transports like Streamable HTTP in MCP. 
+Security should be a top priority when implementing any server, especially when using HTTP-based transports like Streamable HTTP in MCP.
 
 When implementing MCP servers with HTTP-based transports, security becomes a paramount concern that requires careful attention to multiple attack vectors and protection mechanisms.
 
