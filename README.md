@@ -1,3 +1,5 @@
+[![MCP Toplist](https://mcptoplist.com/badge/mcp.so%2Fmcp-for-beginners%2Fmicrosoft.svg)](https://mcptoplist.com/server/mcp.so%2Fmcp-for-beginners%2Fmicrosoft)
+
 ![MCP-for-beginners](./images/mcp-beginners.png) 
 
 [![GitHub contributors](https://img.shields.io/github/contributors/microsoft/mcp-for-beginners.svg)](https://GitHub.com/microsoft/mcp-for-beginners/graphs/contributors)
