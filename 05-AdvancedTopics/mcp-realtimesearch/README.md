@@ -161,11 +161,11 @@ graph TD
     RA -->|Research| Users((Users))
     Alerts -->|Notifications| Users
     KB <-->|Knowledge Access| API
-    
-    classDef sources fill:#f9f,stroke:#333,stroke-width:2px
-    classDef mcp fill:#bbf,stroke:#333,stroke-width:2px
-    classDef processing fill:#bfb,stroke:#333,stroke-width:2px
-    classDef apps fill:#fbb,stroke:#333,stroke-width:2px
+
+    classDef sources fill:#f9f,stroke:#333,stroke-width:2px,color:#4a004a
+    classDef mcp fill:#bbf,stroke:#333,stroke-width:2px,color:#00004a
+    classDef processing fill:#bfb,stroke:#333,stroke-width:2px,color:#003300
+    classDef apps fill:#fbb,stroke:#333,stroke-width:2px,color:#4a0000
     
     class Web,APIs,DB,News sources
     class SC,PA,CH,SP,CS mcp
