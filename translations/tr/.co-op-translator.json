@@ -858,8 +858,8 @@
     "language_code": "tr"
   },
   "AGENTS.md": {
-    "original_hash": "e2c693d6340cc1fcbb2c84ab6a73e42a",
-    "translation_date": "2026-06-17T07:27:27+00:00",
+    "original_hash": "9b7d363f239420ed477289578eb589ed",
+    "translation_date": "2026-07-29T17:18:09+00:00",
     "source_file": "AGENTS.md",
     "language_code": "tr"
   },
@@ -886,19 +886,6 @@
     "translation_date": "2026-06-17T07:26:41+00:00",
     "source_file": "SUPPORT.md",
     "language_code": "tr"
-  },
-  "__translation_failures__": {
-    "AGENTS.md": {
-      "original_hash": "9b7d363f239420ed477289578eb589ed",
-      "source_file": "AGENTS.md",
-      "language_code": "tr",
-      "failure_date": "2026-07-17T20:24:28+00:00",
-      "status": "failed",
-      "error_type": "TranslationIncompleteError",
-      "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'AGENTS.md', and the chunk could not be split further.",
-      "translator_version": "0.20.0",
-      "failure_policy_version": 1
-    }
   },
   "changelog.md": {
     "original_hash": "20f1f1af027c13294024fe6a9ea90e37",

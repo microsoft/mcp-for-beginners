@@ -1,33 +1,33 @@
 # AGENTS.md
 
-## Proje Genel Bakışı
+## Proje Genel Bakış
 
-**Yeni Başlayanlar için MCP**, Model Context Protocol (MCP) - yapay zeka modelleri ile istemci uygulamalar arasındaki etkileşimler için standartlaştırılmış bir çerçeve - öğrenmek için açık kaynaklı eğitim müfredatıdır. Bu depo, birden çok programlama dilinde uygulamalı kod örnekleri ile kapsamlı öğrenme materyalleri sağlar.
+**Yeni Başlayanlar için MCP**, Model Context Protocol (MCP) - AI modelleri ile istemci uygulamalar arasındaki etkileşimler için standart bir çerçeve olan MCP'yi öğrenmek için açık kaynaklı bir eğitim müfredatıdır. Bu depo, birden çok programlama dilinde pratik kod örnekleriyle kapsamlı öğrenme malzemeleri sunar.
 
-### Ana Teknolojiler
+### Temel Teknolojiler
 
 - **Programlama Dilleri**: C#, Java, JavaScript, TypeScript, Python, Rust
-- **Çerçeveler ve SDK'lar**:  
-  - MCP SDK (`@modelcontextprotocol/sdk`)  
-  - Spring Boot (Java)  
-  - FastMCP (Python)  
+- **Çerçeveler ve SDK'lar**: 
+  - MCP SDK (`@modelcontextprotocol/sdk`)
+  - Spring Boot (Java)
+  - FastMCP (Python)
   - LangChain4j (Java)
-- **Veritabanları**: pgvector uzantılı PostgreSQL
+- **Veritabanları**: pgvector eklentili PostgreSQL
 - **Bulut Platformları**: Azure (Container Apps, OpenAI, İçerik Güvenliği, Application Insights)
-- **Derleme Araçları**: npm, Maven, pip, Cargo
-- **Dokümantasyon**: Otomatik çok dilli çeviri destekli Markdown (48+ dil)
+- **Yapı Araçları**: npm, Maven, pip, Cargo
+- **Dokümantasyon**: Otomatik çok dilli çeviri ile Markdown (48+ dil)
 
 ### Mimari
 
-- **11 Temel Modül (00-11)**: Temelden ileri konulara sıralı öğrenme yolu
-- **Uygulamalı Laboratuvarlar**: Birden çok dilde tam çözüm kodu ile pratik egzersizler
+- **11 Temel Modül (00-11)**: Temel konulardan ileri seviyelere sıralı öğrenme yolu
+- **Uygulamalı Laboratuvarlar**: Birden çok dilde tam çözüm kodlu pratik egzersizler
 - **Örnek Projeler**: Çalışan MCP sunucu ve istemci uygulamaları
-- **Çeviri Sistemi**: Çok dilli destek için otomatik GitHub Actions iş akışı
-- **Görsel Varlıklar**: Çevirilmiş versiyonlarıyla merkezi resimler dizini
+- **Çeviri Sistemi**: Çok dil desteği için otomatik GitHub Actions iş akışı
+- **Görsel Varlıklar**: Çevrilmiş sürümleri ile merkezi resim dizini
 
 ## Kurulum Komutları
 
-Bu depo belge odaklıdır. Çoğu kurulum bireysel örnek projeler ve laboratuvarlarda gerçekleşir.
+Bu, belge odaklı bir depodur. Çoğu kurulum bireysel örnek projeler ve laboratuvarlar içinde gerçekleşir.
 
 ### Depo Kurulumu
 
@@ -37,24 +37,24 @@ git clone https://github.com/microsoft/mcp-for-beginners.git
 cd mcp-for-beginners
 ```
 
-### Örnek Projeler ile Çalışma
+### Örnek Projelerle Çalışma
 
-Örnek projeler şu dizinlerde yer alır:  
-- `03-GettingStarted/samples/` - Dil bazlı örnekler  
-- `03-GettingStarted/01-first-server/solution/` - İlk sunucu uygulamaları  
-- `03-GettingStarted/02-client/solution/` - İstemci uygulamaları  
+Örnek projeler aşağıdaki konumlardadır:
+- `03-GettingStarted/samples/` - Dil spesifik örnekler
+- `03-GettingStarted/01-first-server/solution/` - İlk sunucu uygulamaları
+- `03-GettingStarted/02-client/solution/` - İstemci uygulamaları
 - `11-MCPServerHandsOnLabs/` - Kapsamlı veritabanı entegrasyon laboratuvarları
 
-Her örnek proje kendi kurulum talimatlarını içerir:
+Her örnek projenin kendi kurulum talimatları vardır:
 
-#### TypeScript/JavaScript Projeleri  
+#### TypeScript/JavaScript Projeleri
 ```bash
 cd <project-directory>
 npm install
 npm start
 ```
-  
-#### Python Projeleri  
+
+#### Python Projeleri
 ```bash
 cd <project-directory>
 pip install -r requirements.txt
@@ -62,114 +62,213 @@ pip install -r requirements.txt
 pip install -e .
 python main.py
 ```
-  
-#### Java Projeleri  
+
+#### Java Projeleri
 ```bash
 cd <project-directory>
 mvn clean install
 mvn spring-boot:run
 ```
-  
+
 ## Geliştirme İş Akışı
+
+### MCP 7-28 Hazırlığı
+
+#### Depo hazırlık kontrol listesi
+
+- [x] **Yeni katılımcılar için netlik**: Bu dosya depo amacını,
+  yapısını, katkı kurallarını ve örnek kurulum yollarını tanımlar.
+- [x] **Tam bayraklar ile build/test/lint komutları**:
+  - Depo dokümantasyonu lint:
+    `npx --yes markdownlint-cli2 "**/*.md" "#node_modules" "#translations" "#translated_images"`
+  - Depo doküman link kalıbı denetimi:
+    `find . -name "*.md" -not -path "*/node_modules/*" -not -path "./translations/*" -not -path "./translated_images/*" -print0 | xargs -0 grep -En "\[.*\]\(.*\)"`
+  - TypeScript örnek doğrulaması:
+    `cd 03-GettingStarted/samples/typescript && npm ci && npm test && npm run build`
+  - Python örnek doğrulaması:
+    `cd 10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp && python -m pip install -e . && pytest -q`
+  - Java örnek doğrulaması:
+    `cd 03-GettingStarted/samples/java/calculator && mvn -B -ntp test verify`
+- [x] **MCP aracı olabilecek gerçekçi bir iş akışı**:
+  `validate_curriculum_change`
+- [x] **Girdi/çıktılar açıkça belirtilmiş** (aşağıdaki spesifikasyona bakınız).
+- [x] **İzinler ve hata modları belgelenmiş** (aşağıdaki spesifikasyona bakınız).
+- [x] **CI test edilebilirliği açık** (deterministik komutlar, açık
+  çıkış kodları ve makine tarafından okunabilir çıktılar).
+
+#### Aday MCP araç iş akışı: `validate_curriculum_change`
+
+##### Amaç
+
+Müfredat dokümantasyonu değişikliklerinin ve temsilci örnek kodların
+birleşim öncesi sağlığını doğrulamak.
+
+##### Girdiler
+
+- `changed_paths: string[]` (zorunlu) - PR'de değişen göreli yollar.
+- `run_docs_lint: boolean` (varsayılan `true`)
+- `run_links_audit: boolean` (varsayılan `true`)
+- `run_samples: { typescript?: boolean, python?: boolean, java?: boolean }`
+  (varsayılan tümü `false`)
+
+##### Çıktılar
+
+- `status: "ok" | "failed"`
+- `checks: Array<{ name: string, command: string, exit_code: number,
+  summary: string }>`
+- `artifacts: Array<{ type: "log" | "report", path: string }>`
+- `failed_checks: string[]`
+
+##### İzinler
+
+- Sadece çalışma alanı dosyalarını okuyup araç tarafından oluşturulan çıktı dosyalarını yazmak (örneğin lint
+  raporları, test logları); `translations/` veya
+  `translated_images/` dizinlerine yazma yok.
+- Yerel shell komutlarını çalıştırmak.
+- Paket geri yükleme için isteğe bağlı ağ erişimi (`npm ci`,
+  `python -m pip install`, `mvn` bağımlılık çözme).
+- `translations/` veya
+  `translated_images/` dizinlerini itme, birleştirme veya değiştirme izni yok.
+
+##### Hata modları
+
+- `E_NO_INPUT_PATHS`: `changed_paths` boş.
+- `E_INVALID_PATH`: giriş yolu depo kökünün dışına çıkıyor.
+- `E_LINT_FAILED`: markdown lint sıfır olmayan çıkış verdi.
+- `E_LINK_AUDIT_FAILED`: link denetimi komutu sıfır olmayan çıkış verdi.
+- `E_SAMPLE_TEST_FAILED`: örnek test/derleme sıfır olmayan çıkış verdi.
+- `E_TIMEOUT`: komut ayarlanmış zaman aşımını aştı.
+
+##### Önerilen CI sözleşmesi
+
+Doğrulamayı otomatikleştirmek için, şu ayarlarda bir CI işi yapılandırın:
+
+- `*.md`, örnek kod veya bu dosyayı etkileyen pull requestlerde tetiklenir.
+- Yukarıda listelenen tam komutları çalıştırır.
+- Logları çıktı olarak saklar.
+- Herhangi bir sıfır olmayan çıkış kodunda işi başarısız kılar.
+
+#### Bu repodan bir MCP sunucusu yayımlarsanız
+
+- [ ] MCP 7-28 taslak değişiklik günlüğünü okuyun:
+  <https://modelcontextprotocol.io/specification/draft/changelog>
+- [ ] Sunucunuzu SDK beta sürümlerine karşı çalıştırın:
+  <https://blog.modelcontextprotocol.io/posts/sdk-betas-2026-07-28/>
+- [ ] Oturum ve el sıkışma varsayımlarını kaldırın; her isteği
+  kendi başına bağımsız ele alın:
+  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#a-stateless-protocol>
+- [ ] Ham HTTP istekleri için `Mcp-Method` ve `Mcp-Name` başlıklarını gönderin:
+  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#routable-cacheable-traceable>
+- [ ] Sert kodlanmış hata kodlarını denetleyin (`missing resource` `-32002` 'den `-32602`'ye taşındı).
+- [ ] Kullanımdan kaldırılan kökler, örnekleme ve
+  kayıt için bayrak işaretleyin ve göç planlayın:
+  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#roots-sampling-and-logging-are-deprecated>
+- [ ] Deneysel `2025-11-25` Görevler (Tasks) API'sinden geçiş yapın:
+  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#tasks-graduates-to-an-extension>
+- [ ] OAuth ve OpenID Connect sertleştirmesi için yetkilendirmeyi gözden geçirin:
+  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#authorization-hardening>
 
 ### Dokümantasyon Yapısı
 
-- **Modüller 00-11**: Sıralı temel müfredat içeriği  
-- **translations/**: Dil bazlı versiyonlar (otomatik oluşturulur, doğrudan düzenlemeyin)  
-- **translated_images/**: Yerelleştirilmiş görsel versiyonları (otomatik oluşturulur)  
+- **Modüller 00-11**: Sıralı sırayla temel müfredat içeriği
+- **translations/**: Dil spesifik sürümler (otomatik oluşturuluyor, doğrudan düzenlemeyin)
+- **translated_images/**: Yerelleştirilmiş resim sürümleri (otomatik oluşturuluyor)
 - **images/**: Kaynak resimler ve diyagramlar
 
 ### Dokümantasyon Değişiklikleri Yapma
 
-1. Yalnızca kök modül dizinlerindeki (00-11) İngilizce markdown dosyalarını düzenleyin  
-2. Gerekirse `images/` dizinindeki resimleri güncelleyin  
-3. co-op-translator GitHub Action çevirileri otomatik oluşturacaktır  
-4. Çeviriler main dalına push yapıldığında yeniden oluşturulur
+1. Sadece kök modül dizinlerindeki (00-11) İngilizce markdown dosyalarını düzenleyin
+2. Gerekirse `images/` dizinindeki resimleri güncelleyin
+3. co-op-translator GitHub Action otomatik olarak çeviriler oluşturacaktır
+4. Ana dala push edildiğinde çeviriler yeniden oluşturulur
 
 ### Çevirilerle Çalışma
 
-- **Otomatik Çeviri**: Tüm çeviriler GitHub Actions iş akışı tarafından yönetilir  
-- **Manuel olarak `translations/` klasöründeki dosyaları düzenlemeyin**  
-- Çeviri meta verisi her çevrilmiş dosyada gömülüdür  
-- Desteklenen diller: Arapça, Çince, Fransızca, Almanca, Hintçe, Japonca, Korece, Portekizce, Rusça, İspanyolca ve daha fazla (48+ dil)
+- **Otomatik Çeviri**: GitHub Actions iş akışı tüm çevirileri yönetir
+- `translations/` dizinindeki dosyaları elle düzenlemeyin
+- Çeviri meta verileri her çevrilmiş dosyada gömülüdür
+- Desteklenen diller: Arapça, Çince, Fransızca, Almanca, Hintçe, Japonca, Korece, Portekizce, Rusça, İspanyolca ve daha fazlası dahil 48+ dil
 
 ## Test Talimatları
 
 ### Dokümantasyon Doğrulaması
 
-Bu depo öncelikle belge odaklı olduğundan testler şunlara odaklanır:
+Bu öncelikle bir dokümantasyon deposu olduğundan, testler şunlara odaklanır:
 
-1. **Bağlantı Doğrulama**: Tüm dahili bağlantıların çalıştığından emin olun  
-```bash
-# Kırık markdown bağlantılarını kontrol edin
-find . -name "*.md" -type f | xargs grep -n "\[.*\](../../.*)"
-```
-  
-2. **Kod Örneği Doğrulama**: Kod örneklerinin derlenip/çalıştırıldığı test edilir  
-```bash
-# Belirli bir örneğe git ve testlerini çalıştır
-cd 03-GettingStarted/samples/typescript
-npm install && npm test
-```
-  
-3. **Markdown Linting**: Formatlama tutarlılığı kontrol edilir  
-```bash
-# Gerekirse markdownlint kullanın
-npx markdownlint-cli2 "**/*.md" "#node_modules"
-```
-  
+1. **Link Desen Denetimi**: İnceleme için Markdown linklerini listele
+
+   ```bash
+   # Markdown bağlantılarını listele (desen denetimi)
+   find . -name "*.md" -not -path "*/node_modules/*" -not -path "./translations/*" -not -path "./translated_images/*" -print0 | xargs -0 grep -En "\[.*\]\(.*\)"
+   ```
+
+2. **Kod Örneği Doğrulaması**: Kod örneklerinin derlenip çalıştığını test et
+
+   ```bash
+   # Belirli örneğe gidin ve testlerini çalıştırın
+   cd 03-GettingStarted/samples/typescript
+   npm install && npm test
+   ```
+
+3. **Markdown Linting**: Format tutarlılığını kontrol et
+
+   ```bash
+   # Gerekirse markdownlint kullanın
+   npx --yes markdownlint-cli2 "**/*.md" "#node_modules" "#translations" "#translated_images"
+   ```
+
 ### Örnek Proje Testi
 
-Her dil spesifik örnek kendi test yaklaşımına sahiptir:
+Her dil spesifik örnek kendine özgü test yaklaşımına sahiptir:
 
-#### TypeScript/JavaScript  
+#### TypeScript/JavaScript
 ```bash
 npm test
 npm run build
 ```
-  
-#### Python  
+
+#### Python
 ```bash
 pytest
 python -m pytest tests/
 ```
-  
-#### Java  
+
+#### Java
 ```bash
 mvn test
 mvn verify
 ```
-  
+
 ## Kod Stili Rehberi
 
 ### Dokümantasyon Stili
 
-- Açık, yeni başlayan dostu bir dil kullanın  
-- İlgili yerlerde birden çok dilde kod örneklerine yer verin  
-- Markdown en iyi uygulamalarını takip edin:  
-  - ATX tarzı başlıklar (`#` sözdizimi) kullanın  
-  - Dil tanımlı çitli kod blokları kullanın  
-  - Görseller için açıklayıcı alt metin ekleyin  
-  - Satır uzunluklarını makul tutun (katı sınır yok, ama akıllıca olun)
+- Açık, yeni başlayan dostu dil kullanın
+- Uygun yerlerde çoklu dillerde kod örnekleri ekleyin
+- Markdown en iyi uygulamalarına uyun:
+  - ATX stil başlıklar (`#` sözdizimi) kullanın
+  - Dil tanımlayıcıları ile çitli kod blokları kullanın
+  - Görseller için açıklayıcı alt metin ekleyin
+  - Satır uzunluklarını makul tutun (sabit sınır yok, ama makul olun)
 
 ### Kod Örneği Stili
 
-#### TypeScript/JavaScript  
-- ES modülleri (`import`/`export`) kullanın  
-- TypeScript katı mod kurallarına uyun  
-- Tür açıklamaları ekleyin  
-- Hedef: ES2022
+#### TypeScript/JavaScript
+- ES modülleri (`import`/`export`) kullanın
+- TypeScript sıkı mod kurallarına uyun
+- Tür açıklamaları ekleyin
+- Hedef ES2022
 
-#### Python  
-- PEP 8 stil kurallarını takip edin  
-- Uygun yerlerde tip ipuçları kullanın  
-- Fonksiyonlar ve sınıflar için docstring ekleyin  
-- Modern Python özelliklerini kullanın (3.8+)
+#### Python
+- PEP 8 stil yönergelerine uyun
+- Uygun yerlerde tip ipuçları kullanın
+- Fonksiyon ve sınıflar için docstring ekleyin
+- Modern Python özellikleri kullanın (3.8+)
 
-#### Java  
-- Spring Boot standartlarına uyun  
-- Java 21 özelliklerini kullanın  
-- Standart Maven proje yapısını takip edin  
+#### Java
+- Spring Boot yönergelerine uyun
+- Java 21 özellikleri kullanın
+- Standart Maven proje yapısına uyun
 - Javadoc yorumları ekleyin
 
 ### Dosya Organizasyonu
@@ -185,115 +284,116 @@ mvn verify
 └── solution/              # Complete working solutions
     └── <language>/
 ```
-  
+
 ## Derleme ve Dağıtım
 
 ### Dokümantasyon Dağıtımı
 
-Depo, dokümantasyon barındırmak için GitHub Pages veya benzeri servisler kullanır (varsa). Ana dalda yapılan değişiklikler tetikler:
+Depo, dokümantasyon barındırmak için GitHub Pages veya benzer bir yapı kullanır (uygunsa). Ana dalda yapılan değişiklikler şunları tetikler:
 
-1. Çeviri iş akışı (`.github/workflows/co-op-translator.yml`)  
-2. Tüm İngilizce markdown dosyalarının otomatik çevirisi  
-3. Gerekirse görsel yerelleştirme
+1. Çeviri iş akışı (`.github/workflows/co-op-translator.yml`)
+2. Tüm İngilizce markdown dosyalarının otomatik çevirisi
+3. Gerekirse görsel yerelleştirmesi
 
-### Derleme İşlemine Gerek Yok
+### Derleme Süreci Gerekmez
 
-Bu depo öncelikle markdown dokümantasyonu içerir. Temel müfredat içeriği için derleme veya build adımı gerekmez.
+Bu depo öncelikle markdown dokümantasyonu içerir. Temel müfredat içeriği için derleme veya build adımı gerektirmez.
 
 ### Örnek Proje Dağıtımı
 
-Bireysel örnek projelerin dağıtım talimatları olabilir:  
-- MCP sunucu dağıtımı için `03-GettingStarted/09-deployment/` dizinine bakın  
-- Azure Container Apps dağıtım örnekleri için `11-MCPServerHandsOnLabs/` dizinine bakın
+Bireysel örnek projelerin dağıtım talimatları olabilir:
+- MCP sunucu dağıtımı için `03-GettingStarted/09-deployment/` dizinine bakın
+- Azure Container Apps dağıtım örnekleri `11-MCPServerHandsOnLabs/` içinde
 
-## Katkıda Bulunma Kuralları
+## Katkı Rehberi
 
 ### Pull Request Süreci
 
-1. **Fork ve Kopyala:** Depoyu çatalla ve kopyanı yerelde klonla  
-2. **Bir Dal Oluştur:** Açıklayıcı dal isimleri kullan (ör. `fix/typo-module-3`, `add/python-example`)  
-3. **Değişiklik Yap:** Yalnızca İngilizce markdown dosyalarını düzenle (çeviriler değil)  
-4. **Yerelde Test Et:** Markdown'un doğru render edildiğini doğrula  
-5. **PR Gönder:** Açık PR başlıkları ve açıklamalar kullan  
-6. **CLA:** İstendiğinde Microsoft Katkı Lisans Sözleşmesi'ni imzala
+1. **Fork ve Klonlama**: Depoyu çatallayın ve yerel olarak kopyalayın
+2. **Bir Dal Oluşturma**: Anlamlı dal adları kullanın (ör. `fix/typo-module-3`, `add/python-example`)
+3. **Değişiklik Yapma**: Sadece İngilizce markdown dosyalarını düzenleyin (çeviriler değil)
+4. **Yerel Test**: Markdown'ın doğru render edildiğini doğrulayın
+5. **PR Gönderme**: Net PR başlıkları ve açıklamaları kullanın
+6. **CLA**: İstendiğinde Microsoft Katılımcı Lisans Anlaşmasını imzalayın
 
 ### PR Başlık Formatı
 
-Açık ve açıklayıcı başlıklar kullan:  
-- `[Modül XX] Kısa açıklama` modül spesifik değişiklikler için  
-- `[Örnekler] Açıklama` örnek kod değişiklikleri için  
-- `[Belgeler] Açıklama` genel dokümantasyon güncellemeleri için
+Açık ve açıklayıcı başlıklar kullanın:
+- Modül spesifik değişiklikler için `[Module XX] Kısa açıklama`
+- Örnek kod değişiklikleri için `[Samples] Açıklama`
+- Genel dokümantasyon güncellemeleri için `[Docs] Açıklama`
 
 ### Ne Katkıda Bulunmalı
 
-- Dokümantasyon veya kod örneklerinde hata düzeltmeleri  
-- Yeni programlama dillerinde kod örnekleri  
-- Mevcut içeriğe açıklama ve iyileştirmeler  
-- Yeni vaka çalışmaları veya pratik örnekler  
-- Anlaşılmaz veya hatalı içerik için sorun bildirimleri
+- Dokümantasyon veya kod örneklerindeki hata düzeltmeleri
+- Ek dillerde yeni kod örnekleri
+- Mevcut içeriği açıklama ve iyileştirmeler
+- Yeni vaka çalışmaları veya pratik örnekler
+- Belirsiz veya yanlış içerik için sorun bildirimleri
 
 ### Ne Yapmamalı
 
-- `translations/` klasöründeki dosyaları doğrudan düzenlemeyin  
-- `translated_images/` klasörünü düzenlemeyin  
-- Tartışmadan büyük ikili dosya eklemeyin  
-- Koordinasyon olmadan çeviri iş akışı dosyalarını değiştirmeyin
+- `translations/` dizinindeki dosyaları doğrudan düzenlemeyin
+- `translated_images/` dizinini düzenlemeyin
+- Büyük ikili dosyalar eklemeden önce tartışın
+- Çeviri iş akışı dosyalarını koordinasyon olmadan değiştirmeyin
 
 ## Ek Notlar
 
 ### Depo Bakımı
 
-- **Değişiklik Günlüğü:** Tüm önemli değişiklikler `changelog.md` içinde dökümante edilir  
-- **Çalışma Rehberi:** Müfredat navigasyonu için `study_guide.md` kullanın  
-- **Sorun Şablonları:** GitHub sorun şablonları hata bildirimi ve özellik talepleri için  
-- **Davranış Kuralları:** Tüm katkıda bulunanlar Microsoft Açık Kaynak Davranış Kuralları’na uymalıdır
+- **Değişiklik Günlüğü**: Tüm önemli değişiklikler `changelog.md` içinde belgelenir
+- **Çalışma Rehberi**: Müfredat navigasyonu için `study_guide.md` kullanın
+- **Sorun Şablonları**: Hata raporları ve özellik talepleri için GitHub sorun şablonları kullanın
+- **Davranış Kuralları**: Tüm katkıda bulunanlar Microsoft Açık Kaynak Davranış Kuralları'nı takip etmelidir
 
 ### Öğrenme Yolu
 
-En iyi öğrenme için modülleri sıralı takip edin (00-11):  
-1. **00-02**: Temeller (Giriş, Temel Kavramlar, Güvenlik)  
-2. **03**: Uygulamalı başlangıç  
-3. **04-05**: Pratik uygulamalar ve ileri konular  
-4. **06-10**: Topluluk, en iyi uygulamalar ve gerçek dünya uygulamaları  
+Optimal öğrenme için modülleri sıralı takip edin (00-11):
+1. **00-02**: Temeller (Giriş, Temel Kavramlar, Güvenlik)
+2. **03**: Uygulamalı başlangıç
+3. **04-05**: Pratik uygulamalar ve ileri konular
+4. **06-10**: Topluluk, en iyi uygulamalar ve gerçek dünya uygulamaları
 5. **11**: Kapsamlı veritabanı entegrasyon laboratuvarları (13 sıralı laboratuvar)
 
 ### Destek Kaynakları
 
-- **Dokümantasyon**: https://modelcontextprotocol.io/  
-- **Spesifikasyon**: https://spec.modelcontextprotocol.io/  
-- **Topluluk**: https://github.com/orgs/modelcontextprotocol/discussions  
-- **Discord**: Microsoft Foundry Discord sunucusu  
-- **İlgili Kurslar**: Diğer Microsoft öğrenme yolları için README.md’ye bakınız
+- **Dokümantasyon**: https://modelcontextprotocol.io/
+- **Spesifikasyon**: https://spec.modelcontextprotocol.io/
+- **Topluluk**: https://github.com/orgs/modelcontextprotocol/discussions
+- **Discord**: Microsoft Foundry Discord sunucusu
+- **İlgili Kurslar**: Diğer Microsoft öğrenme yolları için README.md'ye bakın
 
-### Yaygın Sorun Giderme
+### Ortak Sorun Giderme
 
-**S: PR’im çeviri kontrolünü geçemiyor**  
-C: Yalnızca kök modül dizinlerindeki İngilizce markdown dosyalarını düzenlediğinizden emin olun, çeviri dosyalarını değil.
+**S: PR'im çeviri denetiminde hata veriyor**
+C: Sadece kök modül dizinlerindeki İngilizce markdown dosyalarını düzenlediğinizden emin olun, çevrilmiş sürümler değil.
 
-**S: Yeni bir dil nasıl eklerim?**  
-C: Dil desteği co-op-translator iş akışı ile yönetilir. Yeni diller için tartışma başlatmak üzere bir sorun açın.
+**S: Yeni bir dil nasıl eklerim?**
+C: Dil desteği co-op-translator iş akışıyla yönetilir. Yeni dillerin eklenmesini tartışmak için bir sorun açın.
 
-**S: Kod örnekleri çalışmıyor**  
-C: Özel örneğin README'sindeki kurulum talimatlarını uyguladığınızdan emin olun. Gerekli bağımlılıkların doğru sürümlerini kontrol edin.
+**S: Kod örnekleri çalışmıyor**
 
-**S: Görseller görüntülenmiyor**  
-C: Görsel yollarının görece ve ileri eğik çizgi ile yazıldığını doğrulayın. Görseller `images/` veya yerelleştirilmiş için `translated_images/` dizininde olmalıdır.
+C: Belirli örneğin README dosyasındaki kurulum talimatlarını takip ettiğinizden emin olun. Doğru bağımlılık sürümlerinin yüklü olduğunu kontrol edin.
 
-### Performans Hususları
+**S: Resimler görüntülenmiyor**
+C: Resim yollarının göreli ve ileri eğik çizgi kullanılarak yazıldığını doğrulayın. Resimler `images/` dizininde veya yerelleştirilmiş sürümler için `translated_images/` dizininde olmalıdır.
 
-- Çeviri iş akışı tamamlanması birkaç dakika sürebilir  
-- Büyük görselleri commitlemeden önce optimize edin  
-- Bireysel markdown dosyalarını odaklı ve makul boyutta tutun  
-- Daha iyi taşınabilirlik için görece bağlantılar kullanın
+### Performans Dikkate Alınması Gerekenler
+
+- Çeviri iş akışı tamamlanması birkaç dakika sürebilir
+- Büyük resimler commit yapmadan önce optimize edilmelidir
+- Bireysel markdown dosyaları odaklı ve makul boyutta olmalıdır
+- Daha iyi taşınabilirlik için göreli bağlantılar kullanın
 
 ### Proje Yönetimi
 
-Bu proje Microsoft açık kaynak uygulamalarını uygular:  
-- Kod ve dokümantasyon için MIT Lisansı  
-- Microsoft Açık Kaynak Davranış Kuralları  
-- Katkılar için CLA gereklidir  
-- Güvenlik sorunları için SECURITY.md yönergelerini takip edin  
-- Destek için SUPPORT.md dosyasına bakın
+Bu proje Microsoft açık kaynak uygulamalarını takip eder:
+- Kod ve dokümantasyon için MIT Lisansı
+- Microsoft Açık Kaynak Davranış Kuralları
+- Katkılar için CLA gereklidir
+- Güvenlik sorunları: SECURITY.md yönergelerini takip edin
+- Destek: Yardım kaynakları için SUPPORT.md dosyasına bakın
 
 ---
 
