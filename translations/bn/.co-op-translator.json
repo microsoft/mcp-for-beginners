@@ -892,7 +892,7 @@
       "original_hash": "9b7d363f239420ed477289578eb589ed",
       "source_file": "AGENTS.md",
       "language_code": "bn",
-      "failure_date": "2026-07-17T21:25:30+00:00",
+      "failure_date": "2026-07-29T17:10:16+00:00",
       "status": "failed",
       "error_type": "TranslationIncompleteError",
       "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'AGENTS.md', and the chunk could not be split further.",
