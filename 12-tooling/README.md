@@ -1,4 +1,4 @@
-# 🚀 MCP Tooling
+# 🚀 MCP Tooling 
 
 ## 🧠 Overview of the MCP Database Integration Learning Path
 
