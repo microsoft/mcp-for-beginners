@@ -72,6 +72,102 @@ mvn spring-boot:run
 
 ## Development Workflow
 
+### MCP 7-28 Readiness
+
+#### Repo readiness checklist
+
+- [x] **New contributor clarity**: This file defines repository purpose,
+  structure, contribution rules, and sample setup paths.
+- [x] **Build/test/lint commands with exact flags**:
+  - Repository docs lint:
+    `npx --yes markdownlint-cli2 "**/*.md" "#node_modules" "#translations" "#translated_images"`
+  - Repository docs link pattern audit:
+    `find . -name "*.md" -not -path "*/node_modules/*" -not -path "./translations/*" -not -path "./translated_images/*" -print0 | xargs -0 grep -En "\[.*\]\(.*\)"`
+  - TypeScript sample validation:
+    `cd 03-GettingStarted/samples/typescript && npm ci && npm test && npm run build`
+  - Python sample validation:
+    `cd 10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp && python -m pip install -e . && pytest -q`
+  - Java sample validation:
+    `cd 03-GettingStarted/samples/java/calculator && mvn -B -ntp test verify`
+- [x] **One realistic workflow that can become an MCP tool**:
+  `validate_curriculum_change`
+- [x] **Inputs/outputs are explicit** (see specification below).
+- [x] **Permissions and failure modes are documented** (see specification below).
+- [x] **CI testability is explicit** (deterministic commands, explicit
+  exit codes, and machine-readable outputs).
+
+#### Candidate MCP tool workflow: `validate_curriculum_change`
+
+##### Goal
+
+Validate curriculum documentation changes and representative sample code
+health before merge.
+
+##### Inputs
+
+- `changed_paths: string[]` (required) - relative paths changed in PR.
+- `run_docs_lint: boolean` (default `true`)
+- `run_links_audit: boolean` (default `true`)
+- `run_samples: { typescript?: boolean, python?: boolean, java?: boolean }`
+  (default all `false`)
+
+##### Outputs
+
+- `status: "ok" | "failed"`
+- `checks: Array<{ name: string, command: string, exit_code: number,
+  summary: string }>`
+- `artifacts: Array<{ type: "log" | "report", path: string }>`
+- `failed_checks: string[]`
+
+##### Permissions
+
+- Read workspace files and write tool-generated artifacts (e.g., lint
+  reports, test logs) only; no writes to `translations/` or
+  `translated_images/`.
+- Execute local shell commands.
+- Optional network access only for package restore (`npm ci`,
+  `python -m pip install`, `mvn` dependency resolution).
+- No permission to push, merge, or modify `translations/` or
+  `translated_images/`.
+
+##### Failure modes
+
+- `E_NO_INPUT_PATHS`: `changed_paths` empty.
+- `E_INVALID_PATH`: input path escapes repository root.
+- `E_LINT_FAILED`: markdown lint exits non-zero.
+- `E_LINK_AUDIT_FAILED`: link audit command exits non-zero.
+- `E_SAMPLE_TEST_FAILED`: sample test/build exits non-zero.
+- `E_TIMEOUT`: command exceeded configured timeout.
+
+##### Recommended CI contract
+
+To automate validation, configure a CI job that:
+
+- Triggers on pull requests touching `*.md`, sample code, or this file.
+- Runs the exact commands listed above.
+- Persists logs as artifacts.
+- Fails the job on any non-zero exit code.
+
+#### If you ship an MCP server from this repo
+
+- [ ] Read the draft changelog for MCP 7-28:
+  <https://modelcontextprotocol.io/specification/draft/changelog>
+- [ ] Run your server against SDK betas:
+  <https://blog.modelcontextprotocol.io/posts/sdk-betas-2026-07-28/>
+- [ ] Remove session and handshake assumptions; treat each request as
+  self-contained:
+  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#a-stateless-protocol>
+- [ ] Send `Mcp-Method` and `Mcp-Name` headers for raw HTTP requests:
+  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#routable-cacheable-traceable>
+- [ ] Audit hardcoded error codes (`missing resource` moved from `-32002` to `-32602`).
+- [ ] Flag and plan migration for deprecated roots, sampling, and
+  logging:
+  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#roots-sampling-and-logging-are-deprecated>
+- [ ] Migrate off the experimental `2025-11-25` Tasks API:
+  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#tasks-graduates-to-an-extension>
+- [ ] Review authorization for OAuth and OpenID Connect hardening:
+  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#authorization-hardening>
+
 ### Documentation Structure
 
 - **Modules 00-11**: Core curriculum content in sequential order
@@ -99,24 +195,27 @@ mvn spring-boot:run
 
 Since this is primarily a documentation repository, testing focuses on:
 
-1. **Link Validation**: Ensure all internal links work
-```bash
-# Check for broken markdown links
-find . -name "*.md" -type f | xargs grep -n "\[.*\](../../.*)"
-```
+1. **Link Pattern Audit**: List Markdown links for review
+
+   ```bash
+   # List Markdown links (pattern audit)
+   find . -name "*.md" -not -path "*/node_modules/*" -not -path "./translations/*" -not -path "./translated_images/*" -print0 | xargs -0 grep -En "\[.*\]\(.*\)"
+   ```
 
 2. **Code Sample Validation**: Test that code examples compile/run
-```bash
-# Navigate to specific sample and run its tests
-cd 03-GettingStarted/samples/typescript
-npm install && npm test
-```
+
+   ```bash
+   # Navigate to specific sample and run its tests
+   cd 03-GettingStarted/samples/typescript
+   npm install && npm test
+   ```
 
 3. **Markdown Linting**: Check formatting consistency
-```bash
-# Use markdownlint if needed
-npx markdownlint-cli2 "**/*.md" "#node_modules"
-```
+
+   ```bash
+   # Use markdownlint if needed
+   npx --yes markdownlint-cli2 "**/*.md" "#node_modules" "#translations" "#translated_images"
+   ```
 
 ### Sample Project Testing
 
@@ -274,6 +373,7 @@ A: Ensure you only edited English markdown files in the root module directories,
 A: Language support is managed through the co-op-translator workflow. Open an issue to discuss adding new languages.
 
 **Q: Code samples aren't working**
+
 A: Ensure you've followed the setup instructions in the specific sample's README. Check that you have the correct versions of dependencies installed.
 
 **Q: Images aren't displaying**
