@@ -22,6 +22,9 @@ effects, aligned with the final `2026-07-28` specification.
   final `2026-07-28` stateless request model, distinguishes OpenTelemetry
   observability from the deprecated MCP logging feature, and limits its
   generic retry example to read-only operations.
+- **Optional**: The lesson maps its portable concepts to one tagged community
+  implementation without making the hosted service or a network call part of
+  the exercise.
 
 [reliability-sidecar]: ./08-BestPractices/reliability-sidecars/README.md
 

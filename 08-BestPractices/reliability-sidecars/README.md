@@ -262,6 +262,35 @@ The sample intentionally omits stale-claim leases. A production takeover
 policy needs a bounded lease, atomic ownership transfer, and another external
 check before executing.
 
+## Optional Community Implementation
+
+Agent Enhancer Utilities is one community implementation of this
+application-level pattern. Its planner selects a recovery approach, while its
+checkpoint records claim and uncertain-result states. The domain tool or MCP
+server still performs and verifies the real action. This service is not part
+of the MCP specification and is not required for this lesson.
+
+| Lesson concept | Agent Enhancer piece | Important limit |
+| --- | --- | --- |
+| Recovery plan | `workflow-guard-planner` | Does not call the domain tool |
+| Claim and recovery | `workflow-checkpoint` | `external_proof` stays `false` |
+| Exact sidecar replay | `lab.invoke_tool` | Uses a separate idempotency key |
+| Verify the real action | Destination search/read-back | Domain MCP owns it |
+
+For an exact retry of one sidecar call, `lab.invoke_tool` accepts an outer
+`idempotency_key`. That key identifies the sidecar invocation; it is not the
+business `operation_key` used for the ticket.
+
+The tagged public contract and an optional networked example are available
+here:
+
+- [Reliability Sidecar Contract v1](https://github.com/artiehinz/Agent-Enhancer-Utilities/blob/v1.6.0/docs/RELIABILITY_SIDECAR_CONTRACT_V1.md)
+- [Planner and mock-domain example](https://github.com/artiehinz/Agent-Enhancer-Utilities/tree/v1.6.0/examples/reliability-sidecar)
+
+These links illustrate the application pattern. They do not claim that the
+hosted service conforms to MCP `2026-07-28`, and checkpoint state never counts
+as external proof of the ticket.
+
 ## Production Checklist
 
 - [ ] Create and save the operation key before the first external attempt.
