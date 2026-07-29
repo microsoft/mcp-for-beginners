@@ -154,6 +154,22 @@ class ReliabilitySidecarTests(unittest.TestCase):
                 title="Cannot sign in",
             )
 
+        self.sidecar._mark_completed(
+            caller_id="customer-42",
+            operation_key=operation_key,
+            result={
+                "ticket_id": "T-0001",
+                "operation_key": operation_key,
+                "status": "completed",
+            },
+        )
+        with self.assertRaises(ReconciliationConflict):
+            self.sidecar.create_support_ticket(
+                caller_id="customer-42",
+                operation_key=operation_key,
+                title="Cannot sign in",
+            )
+
         self.assertEqual(0, self.ticket_service.ticket_count())
 
     def test_concurrent_claims_admit_one_owner_without_state_regression(

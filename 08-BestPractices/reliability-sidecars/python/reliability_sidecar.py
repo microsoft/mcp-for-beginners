@@ -190,6 +190,10 @@ class ReliabilitySidecar:
             )
             return result
         if not claim_created:
+            if record["state"] == "completed":
+                raise ReconciliationConflict(
+                    "completed operation has no matching external ticket"
+                )
             raise OperationInProgress(
                 "an existing claim has no terminal external evidence"
             )
