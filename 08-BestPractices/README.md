@@ -68,7 +68,7 @@ The following best practices are derived from the official Model Context Protoco
 
 4. **Observability**: Use `stderr` for stdio diagnostics and OpenTelemetry
    for structured observability. The MCP logging feature is deprecated in the
-   `2026-07-28` release candidate.
+   `2026-07-28` specification.
 
 5. **Progress Tracking**: For long-running operations, report progress updates to enable responsive user interfaces.
 
@@ -79,11 +79,11 @@ The following best practices are derived from the official Model Context Protoco
 For the most up-to-date information on MCP best practices, refer to:
 
 - [MCP Documentation](https://modelcontextprotocol.io/)
-- [MCP Specification (2025-11-25)](https://modelcontextprotocol.io/specification/2025-11-25)
-- [MCP 2026-07-28 Release Candidate][mcp-2026-rc]
+- [MCP Specification (2026-07-28)][mcp-2026-spec]
+- [Previous MCP Specification (2025-11-25)](https://modelcontextprotocol.io/specification/2025-11-25)
 - [MCP Tasks Extension][mcp-tasks-extension]
 - [GitHub Repository](https://github.com/modelcontextprotocol)
-- [Security Best Practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices)
+- [Security Best Practices](https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/security_best_practices)
 - [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/) - Security risks and mitigations
 - [MCP Security Summit Workshop (Sherpa)](https://azure-samples.github.io/sherpa/) - Hands-on security training
 
@@ -94,11 +94,11 @@ messages, deployments, or other real-world effects. A response can be lost
 after the effect commits.
 
 Use the reliability companion lesson,
-[Reliability Sidecars: Idempotency and Safe Retries][reliability-sidecar], to
-learn stable operation keys, duplicate admission, checkpointing,
+[Safe Retries for MCP Tools: A Reliability Sidecar Pattern][reliability-sidecar],
+to learn stable operation keys, duplicate admission, checkpointing,
 reconciliation, evidence levels, and failure injection.
 
-[mcp-2026-rc]: https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/
+[mcp-2026-spec]: https://modelcontextprotocol.io/specification/2026-07-28
 [mcp-tasks-extension]: https://modelcontextprotocol.io/extensions/tasks/overview
 [reliability-sidecar]: ./reliability-sidecars/README.md
 

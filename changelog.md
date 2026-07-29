@@ -6,22 +6,22 @@ This document serves as a record of all significant changes made to the Model Co
 
 ### New Module 08 Companion: Reliability Sidecars and Safe Retries
 
-Added a vendor-neutral companion lesson for effectful MCP tools, aligned with
-the `2026-07-28` release candidate while retaining a clear
-`2025-11-25`-current-version note.
+Added a vendor-neutral companion lesson for MCP tools that create real-world
+effects, aligned with the final `2026-07-28` specification.
 
 - **New**: The [reliability sidecar companion lesson][reliability-sidecar]
-  covers stable operation keys, atomic duplicate admission, durable lifecycle
-  records, reconciliation, evidence levels, the Tasks extension boundary, and
-  safe retry decisions.
+  uses one support-ticket story, two Mermaid diagrams, and a retry decision
+  flow to explain stable operation keys, atomic duplicate admission,
+  reconciliation, evidence, and the Tasks extension boundary.
 - **New**: A standard-library Python and SQLite failure-injection exercise
-  demonstrates a response lost after an external effect commits, plus
-  deterministic tests for naive duplication, guarded recovery, restart
-  recovery, payload conflicts, cached results, and active duplicate claims.
+  uses separate operation and ticket stores to demonstrate a response lost
+  after an external effect commits. Six deterministic tests cover naive
+  duplication, guarded restart recovery, payload conflicts, cached results,
+  active claims, and concurrent duplicate admission.
 - **Updated**: Module 08 now links the companion lesson, identifies the
-  `2026-07-28` stateless request model, distinguishes OpenTelemetry
-  observability from the deprecated MCP logging feature, and limits its generic
-  retry example to read-only operations.
+  final `2026-07-28` stateless request model, distinguishes OpenTelemetry
+  observability from the deprecated MCP logging feature, and limits its
+  generic retry example to read-only operations.
 
 [reliability-sidecar]: ./08-BestPractices/reliability-sidecars/README.md
 

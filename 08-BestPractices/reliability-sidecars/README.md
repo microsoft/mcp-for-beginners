@@ -1,105 +1,100 @@
-# Reliability Sidecars: Idempotency and Safe Retries
+# Safe Retries for MCP Tools: A Reliability Sidecar Pattern
 
-## Overview
+A missing response does not mean the action is missing. A support-ticket tool
+may create ticket `T-0001` and then lose its connection before the client sees
+the result. If the client retries blindly, it may create `T-0002`.
 
-A tool can finish its real-world action and still appear to fail. For example,
-a server may create a support ticket, but the connection can close before the
-client receives the result. A blind retry may then create a second ticket.
+This lesson shows how to recognize that uncertain outcome, keep one stable
+identity for the intended action, and check the ticket system before trying
+again. The accompanying Python exercise runs locally with the standard library
+and SQLite.
 
-This lesson introduces a vendor-neutral **reliability sidecar** pattern for
-effectful MCP tools. Here, "sidecar" means a small reliability boundary around
-a tool operation. It can be a library, middleware component, database-backed
-service, or part of the tool implementation. It is not an MCP protocol feature
-and does not have to be a separate process.
+## Why a Timeout Means "Outcome Unknown"
 
-The pattern combines:
+Suppose the client calls `create_support_ticket` with operation key
+`op-login-ticket-0001`:
 
-- a stable operation key created before the first effectful call;
-- an immutable binding between that key, the caller, the tool, and its input;
-- durable claim and progress records;
-- reconciliation when the result is unknown; and
-- separately recorded evidence that the effect really happened.
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Tool as MCP tool
+    participant Store as Operation store
+    participant Tickets as Ticket system
 
-## Specification Status
-
-This lesson is aligned with the `2026-07-28` MCP specification release
-candidate. That revision is still a draft. The current production-ready
-protocol revision remains `2025-11-25`.
-
-The reliability pattern works with both revisions. Two details are especially
-important when targeting the release candidate:
-
-1. MCP is stateless at the protocol layer. Cross-call state must use explicit
-   handles or ordinary tool arguments rather than connection-local session
-   state.
-2. Tasks moved from an experimental core feature to a negotiated extension.
-   A task ID can help resume a long-running request, but it is not an
-   idempotency key for the external action performed by that request.
-
-## Learning Objectives
-
-By the end of this lesson, you will be able to:
-
-- explain why a timeout does not prove that a tool failed;
-- distinguish request correlation from effect deduplication;
-- design a stable operation-key contract for an effectful tool;
-- choose between retry, reconciliation, and fail-closed behavior;
-- preserve evidence independently from an agent's success message; and
-- test the "effect committed, response lost" failure mode.
-
-## The Ambiguous-Success Problem
-
-Consider a tool named `create_support_ticket`:
-
-```text
-Client          MCP server          Ticket system
-  | tools/call       |                    |
-  |----------------->|                    |
-  |                  | create ticket      |
-  |                  |------------------->|
-  |                  | ticket T-1007      |
-  |                  |<-------------------|
-  |       connection closes               |
-  |<--------------- X |                    |
+    Client->>Tool: Create (op-login-ticket-0001)
+    Tool->>Store: Claim key
+    Store-->>Tool: Claimed
+    Tool->>Tickets: Create ticket
+    Tickets-->>Tool: Committed T-0001
+    Tool--xClient: Reply lost
+    Client->>Tool: Retry same key
+    Tool->>Store: Read claim
+    Tool->>Tickets: Find by key
+    Tickets-->>Tool: Found T-0001
+    Tool->>Store: Save verified result
+    Tool-->>Client: Return T-0001
 ```
 
-The client sees a transport failure. The ticket system already contains
-`T-1007`. Retrying with no duplicate guard can create `T-1008`.
+The connection fails after the ticket commits but before the result arrives.
+The client knows only that the reply is missing. It does not know whether the
+ticket is missing. Reusing the operation key lets the tool find and return
+`T-0001` instead of creating `T-0002`.
 
-This is an **ambiguous outcome**:
+## What a Reliability Sidecar Does
 
-- retrying may repeat a real-world effect;
-- not retrying may leave the workflow unfinished; and
-- the transport error alone cannot tell the client which case occurred.
+A reliability sidecar is application code that keeps recovery state around a
+tool. It might be a library, middleware, a database-backed service, or simply
+part of the tool implementation. It does not have to be a separate process,
+and it is not an MCP protocol feature.
 
-## What MCP Mechanisms Do—and Do Not—Prove
+The sidecar has four jobs:
 
-- **JSON-RPC request ID:** matches a response to an in-flight request. It does
-  not prove that a later retry is the same business operation.
-- **Progress notification:** reports progress for an active request. It does
-  not prove that an external effect committed.
-- **Cancellation:** says a result is no longer needed or asks work to stop. It
-  does not prove that work stopped before an external effect.
-- **Trace context:** correlates telemetry across services. It does not prevent
-  duplicate effects.
-- **MCP Tasks extension:** provides a durable handle for long-running work. It
-  does not make the downstream action idempotent.
-- **Tool execution error:** gives actionable failure information. It does not
-  prove that no side effect happened before the error.
+1. save the intended action before calling the external system;
+2. let only one worker claim that action;
+3. remember enough state to recover after a crash; and
+4. check the external system when the outcome is uncertain.
 
-These mechanisms are useful, but they solve different problems. Do not use a
-JSON-RPC request ID, progress token, trace ID, or task ID as an accidental
-substitute for an explicit operation contract.
+This lesson targets the final MCP specification `2026-07-28`. MCP has no
+protocol-level session, so the operation key is an ordinary tool argument
+backed by durable application state. The same pattern also works with earlier
+MCP versions.
 
-## Step 1: Add an Explicit Operation Key
+## Four IDs That Solve Different Problems
 
-For an effectful tool, include an application-level operation key in the input
-schema:
+These identifiers are related, but they are not interchangeable:
+
+| Identifier | What it identifies | Survives a retry? |
+| --- | --- | --- |
+| JSON-RPC ID | One request and response | No; use a new request ID |
+| MCP Task ID | One long-running task | Yes; keep it for polling |
+| Operation key | One intended action | Yes; reuse it for that action |
+| Ticket ID | The stored result | Yes; return it after verification |
+
+Progress notifications and trace context help you observe a request.
+Cancellation asks work to stop. None of them prevents a duplicate ticket.
+
+## Build the Guard
+
+Create the operation key before the first tool call and save it with the
+workflow. Every attempt to create the same intended ticket uses the same key:
+
+```json
+{
+  "operation_key": "op-login-ticket-0001",
+  "title": "Cannot sign in"
+}
+```
+
+A different intended ticket gets a new key. In production, generate an opaque,
+unguessable value instead of putting customer data into the key.
+
+Here is the complete MCP tool schema used in this lesson:
 
 ```json
 {
   "name": "create_support_ticket",
-  "description": "Creates one support ticket for a stable operation key.",
+  "title": "Create support ticket",
+  "description": "Creates or recovers one support ticket for an operation key.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "type": "object",
@@ -108,7 +103,7 @@ schema:
         "type": "string",
         "minLength": 16,
         "maxLength": 128,
-        "description": "Stable key reused for retries."
+        "description": "Stable key reused for the same intended action."
       },
       "title": {
         "type": "string",
@@ -131,7 +126,7 @@ schema:
       },
       "status": {
         "type": "string",
-        "enum": ["verified"]
+        "const": "verified"
       }
     },
     "required": ["ticket_id", "operation_key", "status"],
@@ -140,209 +135,147 @@ schema:
 }
 ```
 
-The client or workflow coordinator creates the key before the first attempt and
-stores it durably. Every retry of the same intended action uses the same key.
-A new intended action uses a new key.
+The authenticated caller identity comes from server context, not from
+model-supplied tool input. Scope each stored operation to:
 
-### Bind the Key to the Full Operation
+- that caller, tenant, or service account;
+- the tool name and version; and
+- a hash of the normalized inputs that define the external action.
 
-An operation key is not globally meaningful by itself. Scope it to:
+The input hash answers a simple question: "Is this retry asking for the same
+ticket?" If the key already belongs to a different title, reject the call.
+Returning an earlier result for changed input would hide a contract error.
 
-- the authenticated principal or tenant;
-- the tool name and version;
-- a canonical digest of effect-defining inputs; and
-- the authorization or policy context when relevant.
+Save the claim with one atomic database operation. "Atomic" means two workers
+cannot both observe an empty record and both become the owner. A process-local
+lock is not enough when another server instance can receive the retry.
 
-If the same scoped key arrives with different effect-defining inputs, reject
-the request. Silently accepting the new inputs could return an old result for a
-different intended action.
+The workflow creates the key while the action is `planned`. The sample then
+persists these states:
 
-Do not put secrets or personal data directly in the key. Use an opaque random
-value and store sensitive scope information on the server.
+- `claimed`: one worker has reserved the operation;
+- `completed`: the ticket system returned a result; and
+- `verified`: a read from the ticket system confirms the result.
 
-## Step 2: Record a Durable Lifecycle
+A crash can leave the stored state at `claimed` even after the ticket was
+created. Treat every nonterminal claim as uncertain until external evidence
+settles it. Do not assume that `claimed` means "nothing happened."
 
-A useful lifecycle is:
+## Recover Before You Retry
 
-```text
-planned -> claimed -> completed -> verified
-               \-> outcome_unknown
-               \-> failed
+When a tool call fails, decide what is known before sending another external
+write:
+
+```mermaid
+flowchart TD
+    A[Tool call failed] --> B{Before the external call?}
+    B -- Yes --> C[Retry the unchanged action with the same key]
+    B -- No or unsure --> D[Check the ticket system]
+    D --> E{What was found?}
+    E -- One match --> F[Verify and return it]
+    E -- Proven absent --> G{Is another attempt safe?}
+    G -- Yes --> H[Retry with the same key]
+    G -- No --> I[Stop for review]
+    E -- Unknown/conflict --> I
 ```
 
-- `planned`: the workflow has created the operation identity.
-- `claimed`: one worker owns admission for the operation.
-- `completed`: the tool or downstream service returned a result.
-- `verified`: authoritative state confirms the intended effect.
-- `outcome_unknown`: the effect may have happened, but evidence is incomplete.
-- `failed`: authoritative evidence says the effect did not complete.
+Validation that fails before the ticket API is called is a known failure.
+Retry an unchanged action with the same operation key. If correcting the input
+changes the intended ticket, create a new key for that new action.
 
-Terminal records should be immutable. If correction is necessary, append a
-new evidence record rather than rewriting history.
+If the request may have reached the ticket system, reconcile it first.
+Reconciliation means comparing the saved claim with the authoritative ticket
+record. Return the existing ticket when exactly one matching record is found.
+Retry only when the ticket is conclusively absent and the downstream contract
+makes another attempt safe.
 
-### Admission Must Be Atomic
+"Not found" is not always conclusive. A provider with eventually consistent
+search may need a bounded wait and another check. If the system cannot be
+searched, gives conflicting results, or cannot safely deduplicate another
+attempt, stop and report `outcome unknown`. Stopping here is sometimes called
+"failing closed": the workflow refuses to guess.
 
-Two workers can receive the same retry concurrently. Use a database uniqueness
-constraint, compare-and-set operation, or another atomic primitive so only one
-claim is admitted.
+## Evidence, Tasks, and Cancellation
 
-The unique identity should cover the scoped operation key. A process-local
-dictionary or lock is not sufficient when another server instance can receive
-the next request.
+A tool response says what the tool reported. A stored checkpoint says what the
+workflow recorded. The strongest evidence comes from the system that owns the
+result: for this example, a read from the ticket system that finds exactly one
+matching ticket.
 
-## Step 3: Reconcile Before Retrying
+Match the evidence to the risk. A provider message ID may be enough for a
+low-risk notification. Payments, deployments, and destructive actions may
+need provider status, ledger, or manual review evidence.
 
-When a claim exists but no terminal result is recorded:
-
-1. Query an authoritative system using the stable operation reference.
-2. If the intended effect exists exactly once, record verification and return
-   the existing result.
-3. If the effect definitely does not exist, retry with the same key only when
-   the downstream contract makes that safe.
-4. If reconciliation is unavailable or contradictory, fail closed and require
-   investigation.
-
-The strongest design forwards the operation key to a downstream API that
-supports idempotency. When that is unavailable, store the key as a searchable
-external reference or use another authoritative business identifier.
-
-If the downstream system supports neither deduplication nor reconciliation,
-the sidecar cannot manufacture exactly-once behavior. Human review may be the
-only safe response to an ambiguous outcome.
-
-## Safe Retry Decisions
-
-- **Input validation failed before admission:** this is a definite failure.
-  Correct the input; do not retry it unchanged.
-- **Rate limit or service unavailable before any effect:** this is a known-safe
-  transient failure. Retry with backoff and the same operation key.
-- **Connection closed after sending:** the outcome is ambiguous. Reconcile
-  first; never invent a new key.
-- **Existing key has a verified result:** this is a duplicate. Return the
-  recorded result.
-- **Existing claim and the effect exists:** the action previously completed.
-  Verify and return the external result.
-- **Existing claim and the effect is authoritatively absent:** the action did
-  not complete. Retry with the same key only when downstream execution is
-  safe.
-- **Same key has a different payload digest:** this is a contract conflict.
-  Reject it and investigate.
-- **Reconciliation is unavailable:** the outcome remains unknown. Fail closed
-  rather than guessing.
-
-Use bounded retries, exponential backoff, and jitter for retryable failures.
-Those controls reduce load; they do not prevent duplicate effects by
-themselves.
-
-## Step 4: Separate Responses from Evidence
-
-Treat evidence as a ladder:
-
-1. **Agent statement**: the model says the action succeeded.
-2. **Tool response**: the MCP tool returned a success result.
-3. **Durable checkpoint**: the operation store recorded a result.
-4. **External verification**: the authoritative system contains exactly the
-   intended effect.
-
-Higher levels are stronger. Promotion to `verified` should depend on the
-evidence required by the operation's risk.
-
-For a low-risk notification, a downstream message ID may be sufficient. For a
-payment, deployment, or destructive action, verification may also require
-ledger, provider, or reconciliation evidence.
-
-## MCP Tasks Complement the Pattern
-
-The `2026-07-28` Tasks extension is useful for long-running operations:
-
-- the server can return a durable task handle;
-- the client can poll `tasks/get`;
-- the client persists the task ID across restarts;
-- terminal task states do not change; and
-- cancellation is cooperative.
-
-Use a task ID to resume observation of a request. Use an operation key to
-deduplicate the business effect. A robust implementation may bind both:
+The MCP Tasks extension complements this pattern for long-running work. A Task
+ID lets the client resume polling after a disconnect, but it does not identify
+or deduplicate the ticket itself. When Tasks is used, the identities connect
+like this:
 
 ```text
-operation key -> task ID -> external effect ID -> verification evidence
+operation key -> Task ID -> ticket ID -> verification evidence
 ```
 
-The task must be durably created before its handle is returned. Even so, a
-connection can fail before the client receives that handle. The stable
-operation key still gives the server a way to recognize the retried intent.
+Cancellation is cooperative, not a rollback. The ticket may still be created
+after cancellation is acknowledged, so an uncertain result still needs
+reconciliation.
 
-Do not describe cancellation as rollback. The external action may finish even
-after cancellation is acknowledged, so reconciliation can still be necessary.
+## Run the Failure-Injection Exercise
 
-## Failure-Injection Exercise
+The sample uses two SQLite files: one represents the operation store and the
+other represents the external ticket system. There is no transaction spanning
+both files. The failure is injected after the ticket commits but before the
+sidecar records completion.
 
-The accompanying Python sample uses only the standard library and SQLite. It
-simulates a support-ticket service and deliberately raises an exception after
-the ticket commits but before the sidecar records completion.
+The direct Python method accepts `caller_id` as a stand-in for authenticated
+server context. Do not add `caller_id` to the model-controlled MCP input
+schema.
 
-Run the tests:
+Predict the result before running the tests:
+
+| Path | Result after retry | Ticket count |
+| --- | --- | --- |
+| Blind retry | Creates `T-0002` after losing the response for `T-0001` | 2 |
+| Guarded retry | Finds and returns `T-0001` | 1 |
+
+Run:
 
 ```bash
-python -m unittest discover \
-  -s 08-BestPractices/reliability-sidecars/python \
-  -p "test_*.py" \
-  -v
+cd 08-BestPractices/reliability-sidecars/python
+python -m unittest discover -p "test_*.py" -v
 ```
 
-The exercise demonstrates:
+The six tests show that:
 
-1. a naive retry creates two tickets;
-2. a guarded retry with the same key finds the first ticket;
-3. a new sidecar instance resumes from the durable claim;
-4. the verified result is reused without another effect; and
-5. reusing a key for different inputs is rejected; and
-6. a duplicate active claim with no external evidence fails closed.
-
-For clarity, the sample does not implement stale-claim leases. A production
-system that permits claim takeover needs an explicit lease-expiry policy,
-atomic ownership transfer, and another reconciliation check before execution.
+1. a blind retry creates a duplicate;
+2. response loss plus a restart recovers one ticket from a durable claim;
+3. a verified retry reuses the saved result;
+4. changed input or conflicting external evidence is rejected;
+5. an existing claim without external evidence stops safely; and
+6. concurrent claims admit one owner without regressing a verified result.
 
 Open the sample:
 
 - [Python implementation](./python/reliability_sidecar.py)
 - [Deterministic tests](./python/test_reliability_sidecar.py)
 
+The sample intentionally omits stale-claim leases. A production takeover
+policy needs a bounded lease, atomic ownership transfer, and another external
+check before executing.
+
 ## Production Checklist
 
-- [ ] Generate the operation key before the first attempt.
-- [ ] Persist the key before calling the effectful tool.
-- [ ] Scope the key to principal, tool, and canonical input digest.
-- [ ] Reject the same key with different effect-defining inputs.
-- [ ] Use atomic duplicate admission across server instances.
-- [ ] Keep records longer than the maximum retry and reconciliation window.
-- [ ] Forward the key to the downstream service when supported.
-- [ ] Reconcile ambiguous outcomes before executing again.
-- [ ] Treat progress, traces, and model statements as observations, not commit
-      evidence.
-- [ ] Treat cancellation as cooperative, not transactional rollback.
-- [ ] Record failures and conflicting evidence without overwriting history.
-- [ ] Test concurrent duplicates and the response-lost-after-commit boundary.
-- [ ] Require human review when authoritative reconciliation is impossible.
-
-## Key Takeaways
-
-1. A transport failure after an effectful call means **unknown**, not
-   necessarily **failed**.
-2. Retry safety is an application property; MCP does not promise exactly-once
-   side effects.
-3. The same intended action must keep the same scoped operation key.
-4. Reconciliation should use authoritative state, not an agent's description
-   of what happened.
-5. Tasks improve durable observation, while operation keys and reconciliation
-   prevent repeated business effects.
+- [ ] Create and save the operation key before the first external attempt.
+- [ ] Bind the key to caller, tool version, and normalized input hash.
+- [ ] Reject changed input under an existing key.
+- [ ] Admit one owner with an atomic shared-store operation.
+- [ ] Forward the key to the downstream provider when it supports idempotency.
+- [ ] Reconcile uncertain outcomes before another write.
+- [ ] Keep verified results and evidence for the full retry window.
+- [ ] Stop for review when the external outcome cannot be established safely.
 
 ## References
 
-- [MCP `2026-07-28` release candidate overview](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/)
-- [Curriculum: What's Changing in MCP `2026-07-28`](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md)
-- [MCP draft specification](https://modelcontextprotocol.io/specification/draft/)
-- [MCP draft tool guidance](https://modelcontextprotocol.io/specification/draft/server/tools)
+- [MCP Specification `2026-07-28`](https://modelcontextprotocol.io/specification/2026-07-28)
+- [MCP `2026-07-28` tool guidance](https://modelcontextprotocol.io/specification/2026-07-28/server/tools)
 - [MCP Tasks extension](https://modelcontextprotocol.io/extensions/tasks/overview)
-- [MCP versioning and compatibility](https://modelcontextprotocol.io/docs/2026-07-28/learn/versioning)
 - [JSON-RPC 2.0 specification](https://www.jsonrpc.org/specification)
