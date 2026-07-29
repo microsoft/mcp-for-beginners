@@ -2,12 +2,12 @@
 
 ## Prosjektoversikt
 
-**MCP for nybegynnere** er et åpen kildekode utdanningsprogram for å lære Model Context Protocol (MCP) - et standardisert rammeverk for interaksjoner mellom AI-modeller og klientapplikasjoner. Dette arkivet tilbyr omfattende læringsmateriell med praktiske kodeeksempler på flere programmeringsspråk.
+**MCP for nybegynnere** er en åpen kildekode utdanningsplan for læring av Model Context Protocol (MCP) - en standardisert rammeverk for interaksjoner mellom AI-modeller og klientapplikasjoner. Dette depotet gir omfattende læringsmateriell med praktiske kodeeksempler på flere programmeringsspråk.
 
-### Nøkkelteknologier
+### Viktige teknologier
 
 - **Programmeringsspråk**: C#, Java, JavaScript, TypeScript, Python, Rust
-- **Rammeverk og SDK-er**: 
+- **Rammeverk & SDK-er**: 
   - MCP SDK (`@modelcontextprotocol/sdk`)
   - Spring Boot (Java)
   - FastMCP (Python)
@@ -15,21 +15,21 @@
 - **Databaser**: PostgreSQL med pgvector-utvidelse
 - **Skyplattformer**: Azure (Container Apps, OpenAI, Content Safety, Application Insights)
 - **Byggeverktøy**: npm, Maven, pip, Cargo
-- **Dokumentasjon**: Markdown med automatisk flerspråklig oversettelse (48+ språk)
+- **Dokumentasjon**: Markdown med automatisert flerspråklig oversettelse (48+ språk)
 
 ### Arkitektur
 
 - **11 kjernermoduler (00-11)**: Sekvensiell læringssti fra grunnleggende til avanserte emner
-- **Praktiske laboratorier**: Øvelser med komplett løsningskode i flere språk
-- **Eksempelsprosjekter**: Funksjonelle MCP-server og klientimplementeringer
-- **Oversettelsessystem**: Automatisk GitHub Actions arbeidsflyt for flerspråklig støtte
-- **Bildegjenstander**: Sentralisert bildekatalog med oversatte versjoner
+- **Praktiske laboratorier**: Praktiske øvelser med komplett løsningskode i flere språk
+- **Eksempelprosjekter**: Funksjonelle MCP-server- og klientimplementeringer
+- **Oversettelsessystem**: Automatisert GitHub Actions arbeidsflyt for flerspråklig støtte
+- **Bildeelementer**: Sentral katalog for bilder med oversatte versjoner
 
 ## Oppsettkommandoer
 
-Dette er et dokumentasjonsfokusert arkiv. Det meste av oppsett skjer i individuelle eksempler og laboratorier.
+Dette er et depot fokusert på dokumentasjon. Mesteparten av oppsett skjer i individuelle eksempelprosjekter og laboratorier.
 
-### Arkivoppsett
+### Oppsett av depot
 
 ```bash
 # Klon depotet
@@ -37,15 +37,15 @@ git clone https://github.com/microsoft/mcp-for-beginners.git
 cd mcp-for-beginners
 ```
 
-### Arbeide med eksempelsprosjekter
+### Arbeide med eksempelprosjekter
 
-Eksempelsprosjekter finnes i:
-- `03-GettingStarted/samples/` - Språkspesifikke eksempler
-- `03-GettingStarted/01-first-server/solution/` - Første serverimplementasjoner
+Eksempelprosjekter finnes i:
+- `03-GettingStarted/samples/` - Språkspecifikke eksempler
+- `03-GettingStarted/01-first-server/solution/` - Første serverimplementeringer
 - `03-GettingStarted/02-client/solution/` - Klientimplementeringer
 - `11-MCPServerHandsOnLabs/` - Omfattende laboratorier for databaseintegrasjon
 
-Hvert eksempelsprosjekt inneholder egne oppsettinstruksjoner:
+Hvert eksempelprosjekt inneholder egne oppsettinstruksjoner:
 
 #### TypeScript/JavaScript-prosjekter
 ```bash
@@ -72,55 +72,154 @@ mvn spring-boot:run
 
 ## Utviklingsarbeidsflyt
 
+### MCP 7-28 Forberedelse
+
+#### Sjekkliste for repo-forberedelse
+
+- [x] **Ny bidragsyter klarhet**: Denne filen definerer depotets formål,
+  struktur, retningslinjer for bidrag og oppsettveier for eksempler.
+- [x] **Bygge/teste/lint-kommandoer med eksakte flagg**:
+  - Lint av depotdokumentasjon:
+    `npx --yes markdownlint-cli2 "**/*.md" "#node_modules" "#translations" "#translated_images"`
+  - Gjennomgang av lenkemønster i depotdokumentasjon:
+    `find . -name "*.md" -not -path "*/node_modules/*" -not -path "./translations/*" -not -path "./translated_images/*" -print0 | xargs -0 grep -En "\[.*\]\(.*\)"`
+  - Validering av TypeScript-eksempler:
+    `cd 03-GettingStarted/samples/typescript && npm ci && npm test && npm run build`
+  - Validering av Python-eksempler:
+    `cd 10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp && python -m pip install -e . && pytest -q`
+  - Validering av Java-eksempler:
+    `cd 03-GettingStarted/samples/java/calculator && mvn -B -ntp test verify`
+- [x] **Én realistisk arbeidsflyt som kan bli et MCP-verktøy**:
+  `validate_curriculum_change`
+- [x] **Inndata/utdata er eksplisitte** (se spesifikasjon nedenfor).
+- [x] **Tillatelser og feilmåter er dokumentert** (se spesifikasjon nedenfor).
+- [x] **CI-testbarhet er eksplisitt** (deterministiske kommandoer, eksplisitte
+  avslutningskoder og maskinlesbare utdata).
+
+#### Kandidat MCP-verktøy arbeidsflyt: `validate_curriculum_change`
+
+##### Mål
+
+Validere dokumentasjonsendringer i læreplan og representativ eksempelkode
+tilstand før sammenslåing.
+
+##### Inndata
+
+- `changed_paths: string[]` (obligatorisk) - relative baner endret i PR.
+- `run_docs_lint: boolean` (standard `true`)
+- `run_links_audit: boolean` (standard `true`)
+- `run_samples: { typescript?: boolean, python?: boolean, java?: boolean }`
+  (standard alle `false`)
+
+##### Utdata
+
+- `status: "ok" | "failed"`
+- `checks: Array<{ name: string, command: string, exit_code: number,
+  summary: string }>`
+- `artifacts: Array<{ type: "log" | "report", path: string }>`
+- `failed_checks: string[]`
+
+##### Tillatelser
+
+- Bare les arbeidsområdefiler og skriv verktøy-genererte artefakter (f.eks. lint
+  rapporter, testlogger); ikke skriv til `translations/` eller
+  `translated_images/`.
+- Utfør lokale shell-kommandoer.
+- Valgfri nettverkstilgang kun for pakke-gjenoppretting (`npm ci`,
+  `python -m pip install`, `mvn` avhengighetsoppløsning).
+- Ingen tillatelse til å pushe, merge eller redigere `translations/` eller
+  `translated_images/`.
+
+##### Feilmoduser
+
+- `E_NO_INPUT_PATHS`: `changed_paths` tom.
+- `E_INVALID_PATH`: inndata-bane går utenfor depotrot.
+- `E_LINT_FAILED`: markdown lint avslutter med feil.
+- `E_LINK_AUDIT_FAILED`: lenkegjennomgang kommando avslutter med feil.
+- `E_SAMPLE_TEST_FAILED`: eksempeltest/bygg avslutter med feil.
+- `E_TIMEOUT`: kommando overskred konfigurert tidsavbrudd.
+
+##### Anbefalt CI-kontrakt
+
+For å automatisere validering, konfigurer et CI-jobb som:
+
+- Trigger på pull requests som berører `*.md`, eksempelkode eller denne filen.
+- Kjører de nøyaktige kommandoene listet ovenfor.
+- Lagre logger som artefakter.
+- Feiler jobben ved alle ikke-null avkastningskoder.
+
+#### Hvis du leverer en MCP-server fra dette depotet
+
+- [ ] Les utkastet til endringslogg for MCP 7-28:
+  <https://modelcontextprotocol.io/specification/draft/changelog>
+- [ ] Kjør serveren din med SDK-betaer:
+  <https://blog.modelcontextprotocol.io/posts/sdk-betas-2026-07-28/>
+- [ ] Fjern sesjons- og håndtrykksantakelser; behandle hver forespørsel som
+  selvstendig:
+  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#a-stateless-protocol>
+- [ ] Send `Mcp-Method` og `Mcp-Name` headers for rå HTTP-forespørsler:
+  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#routable-cacheable-traceable>
+- [ ] Gjennomgå hardkodede feilkoder (`missing resource` flyttet fra `-32002` til `-32602`).
+- [ ] Flagge og planlegge migrasjon for utdatert røtter, sampling og
+  logging:
+  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#roots-sampling-and-logging-are-deprecated>
+- [ ] Migrer bort fra den eksperimentelle `2025-11-25` Tasks API:
+  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#tasks-graduates-to-an-extension>
+- [ ] Gjennomgå autorisasjon for OAuth og OpenID Connect-forsterkning:
+  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#authorization-hardening>
+
 ### Dokumentasjonsstruktur
 
 - **Moduler 00-11**: Kjernekursinnhold i sekvensiell rekkefølge
-- **translations/**: Språkspesifikke versjoner (auto-generert, ikke rediger direkte)
-- **translated_images/**: Lokalisert bildeversjoner (auto-generert)
+- **translations/**: Språkspesifikke versjoner (automatisk genererte, ikke rediger direkte)
+- **translated_images/**: Lokalisert bildeversjoner (automatisk generert)
 - **images/**: Kildebilder og diagrammer
 
-### Gjøre endringer i dokumentasjon
+### Gjøre endringer i dokumentasjonen
 
-1. Rediger kun engelske markdown-filer i rotmodulkatalogene (00-11)
-2. Oppdater bilder i `images/` katalogen om nødvendig
+1. Rediger kun de engelske markdown-filene i rotmodulmappene (00-11)
+2. Oppdater bilder i `images/`-katalogen om nødvendig
 3. co-op-translator GitHub Action genererer automatisk oversettelser
-4. Oversettelser regenereres ved push til main-branchen
+4. Oversettelser regenereres ved push til main branch
 
 ### Arbeide med oversettelser
 
-- **Automatisk oversettelse**: GitHub Actions håndterer alle oversettelser
-- **Ikke rediger manuelt** filer i `translations/` katalogen
-- Oversettelsesmetadata er innebygd i hver oversatte fil
-- Støttede språk: 48+ språk inkludert arabisk, kinesisk, fransk, tysk, hindi, japansk, koreansk, portugisisk, russisk, spansk og flere
+- **Automatisk oversettelse**: GitHub Actions arbeidsflyt håndterer alle oversettelser
+- Ikke rediger filer manuelt i `translations/`-katalogen
+- Oversettelsesmetadata er innebygd i hver oversatt fil
+- Støttede språk: 48+ språk inkludert arabisk, kinesisk, fransk, tysk, hindi, japansk, koreansk, portugisisk, russisk, spansk, og flere
 
 ## Testinstruksjoner
 
 ### Validering av dokumentasjon
 
-Siden dette primært er et dokumentasjonsarkiv, fokuserer testing på:
+Siden dette først og fremst er et dokumentasjonsdepot, fokuserer testing på:
 
-1. **Lenkevalidering**: Sørg for at alle interne lenker fungerer
-```bash
-# Sjekk etter ødelagte markdown-lenker
-find . -name "*.md" -type f | xargs grep -n "\[.*\](../../.*)"
-```
+1. **Lenkemønster-gjennomgang**: List Markdown-lenker til gjennomgang
 
-2. **Kodeeksempelsvalidering**: Test at kodeeksempler kompileres/kjører
-```bash
-# Naviger til spesifikk prøve og kjør testene dens
-cd 03-GettingStarted/samples/typescript
-npm install && npm test
-```
+   ```bash
+   # List Markdown-lenker (mønsterrevisjon)
+   find . -name "*.md" -not -path "*/node_modules/*" -not -path "./translations/*" -not -path "./translated_images/*" -print0 | xargs -0 grep -En "\[.*\]\(.*\)"
+   ```
 
-3. **Markdown-linting**: Sjekk formateringskonsistens
-```bash
-# Bruk markdownlint om nødvendig
-npx markdownlint-cli2 "**/*.md" "#node_modules"
-```
+2. **Validering av kodeeksempler**: Test at kodeeksempler kompileres/ kjøres
 
-### Testing av eksempelsprosjekter
+   ```bash
+   # Naviger til en spesifikk prøve og kjør testene dens
+   cd 03-GettingStarted/samples/typescript
+   npm install && npm test
+   ```
 
-Hvert språkspesifikt eksempel har sin egen testmetode:
+3. **Markdown linting**: Sjekk formateringskonsistens
+
+   ```bash
+   # Bruk markdownlint om nødvendig
+   npx --yes markdownlint-cli2 "**/*.md" "#node_modules" "#translations" "#translated_images"
+   ```
+
+### Testing av eksempelprosjekter
+
+Hvert språkspesifikke eksempel inkluderer egen testmetode:
 
 #### TypeScript/JavaScript
 ```bash
@@ -140,39 +239,39 @@ mvn test
 mvn verify
 ```
 
-## Kodeleggingsretningslinjer
+## Kodestil-retningslinjer
 
 ### Dokumentasjonsstil
 
 - Bruk klart, nybegynnervennlig språk
-- Inkluder kodeeksempler på flere språk der det er aktuelt
+- Inkluder kodeeksempler i flere språk der det er relevant
 - Følg markdown beste praksis:
   - Bruk ATX-stil overskrifter (`#` syntaks)
-  - Bruk avgrensede kodeblokker med språkendikatorer
+  - Bruk gjerdekoder med språkindikatorer
   - Inkluder beskrivende alt-tekst for bilder
-  - Hold linjelengde rimelig (ingen hard grense, men vær fornuftig)
+  - Hold linjelengder rimelige (ingen hard grense, men vær fornuftig)
 
-### Kodeeksempelstil
+### Stil for kodeeksempler
 
 #### TypeScript/JavaScript
 - Bruk ES-moduler (`import`/`export`)
-- Følg TypeScript streng modus konvensjoner
-- Inkluder typeannotasjoner
+- Følg streng TypeScript-modus konvensjoner
+- Inkluder typerdeklarasjoner
 - Målrett ES2022
 
 #### Python
 - Følg PEP 8 stilretningslinjer
-- Bruk typehint der hensiktsmessig
+- Bruk type hints der passende
 - Inkluder docstrings for funksjoner og klasser
 - Bruk moderne Python-funksjoner (3.8+)
 
 #### Java
-- Følg Spring Boot konvensjoner
+- Følg Spring Boot-konvensjoner
 - Bruk Java 21-funksjoner
 - Følg standard Maven prosjektstruktur
 - Inkluder Javadoc-kommentarer
 
-### Filorganisering
+### Filer og organisering
 
 ```
 <module-number>-<ModuleName>/
@@ -188,73 +287,73 @@ mvn verify
 
 ## Bygg og distribusjon
 
-### Dokumentasjons-distribusjon
+### Dokumentasjonsdistribusjon
 
-Arkivet bruker GitHub Pages eller lignende for hosting av dokumentasjon (dersom aktuelt). Endringer i main-branchen utløser:
+Depotet bruker GitHub Pages eller lignende for hosting av dokumentasjon (hvis aktuelt). Endringer i main branch utløser:
 
 1. Oversettelsesarbeidsflyt (`.github/workflows/co-op-translator.yml`)
-2. Automatisk oversettelse av alle engelske markdown-filer
-3. Bilde-lokalisering ved behov
+2. Automatisert oversettelse av alle engelske markdown-filer
+3. Bildeflokalisering etter behov
 
-### Ingen byggeprosess nødvendig
+### Ingen byggprosess nødvendig
 
-Dette arkivet inneholder primært markdown-dokumentasjon. Det kreves ikke kompilering eller byggeprosess for kjernekursinnholdet.
+Dette depotet inneholder primært markdown-dokumentasjon. Ingen kompilering eller byggeprosess kreves for kjernelæreplaninnholdet.
 
-### Distribusjon av eksempelsprosjekter
+### Distribusjon av eksempelprosjekter
 
-Enkeltstående eksempelsprosjekter kan ha egne distribusjonsinstruksjoner:
-- Se `03-GettingStarted/09-deployment/` for MCP server distribusjonsveiledning
-- Azure Container Apps distribusjonseksempler i `11-MCPServerHandsOnLabs/`
+Enkelte eksempelprosjekter kan ha distribusjonsinstruksjoner:
+- Se `03-GettingStarted/09-deployment/` for veiledning i MCP-serverdistribusjon
+- Eksempler på distribusjon til Azure Container Apps i `11-MCPServerHandsOnLabs/`
 
-## Bidragsretningslinjer
+## Retningslinjer for bidrag
 
-### Pull request-prosess
+### Pull Request-prosess
 
-1. **Fork og klon**: Fork repoet og klon ditt fork lokalt
-2. **Lag en branch**: Bruk beskrivende branchnavn (f.eks. `fix/typo-module-3`, `add/python-example`)
+1. **Fork og klon**: Fork depotet og klon din fork lokalt
+2. **Lag en gren**: Bruk beskrivende grennavn (f.eks. `fix/typo-module-3`, `add/python-example`)
 3. **Gjør endringer**: Rediger kun engelske markdown-filer (ikke oversettelser)
 4. **Test lokalt**: Verifiser at markdown rendres riktig
-5. **Send PR**: Bruk klare PR-titler og beskrivelser
-6. **CLA**: Signer Microsoft Contributor License Agreement når etterspurt
+5. **Send inn PR**: Bruk klare PR-titler og beskrivelser
+6. **CLA**: Signer Microsoft Contributor License Agreement ved forespørsel
 
-### Format for PR-titler
+### PR-tittelformat
 
 Bruk klare, beskrivende titler:
-- `[Module XX] Kort beskrivelse` for modulspesifikke endringer
-- `[Samples] Beskrivelse` for endringer i kodeeksempler
-- `[Docs] Beskrivelse` for generell dokumentasjonsoppdatering
+- `[Module XX] Kort beskrivelse` for modulspecifikke endringer
+- `[Samples] Beskrivelse` for endringer i eksempelkode
+- `[Docs] Beskrivelse` for generelle dokumentasjonsoppdateringer
 
-### Hva å bidra med
+### Hva man kan bidra med
 
 - Feilrettinger i dokumentasjon eller kodeeksempler
-- Nye kodeeksempler på flere språk
-- Presiseringer og forbedringer av eksisterende innhold
+- Nye kodeeksempler i flere språk
+- Klargjøringer og forbedringer i eksisterende innhold
 - Nye casestudier eller praktiske eksempler
-- Problemrapporter for uklar eller feilaktig innhold
+- Feilrapporter for uklart eller feil innhold
 
-### Hva IKKE å gjøre
+### Hva man IKKE skal gjøre
 
-- Ikke rediger filer direkte i `translations/` katalogen
-- Ikke rediger `translated_images/` katalogen
+- Ikke rediger filer direkte i `translations/`-katalogen
+- Ikke rediger `translated_images/`-katalogen
 - Ikke legg til store binærfiler uten diskusjon
 - Ikke endre oversettelsesarbeidsflyt-filer uten koordinering
 
-## Ytterligere notater
+## Tilleggsnotater
 
-### Vedlikehold av arkiv
+### Vedlikehold av depot
 
-- **Endringslogg**: Alle vesentlige endringer dokumenteres i `changelog.md`
-- **Studieveiledning**: Bruk `study_guide.md` for oversikt over kursnavigasjon
-- **Issue-maler**: Bruk GitHub issue-maler for feilrapporter og funksjonsforespørsler
-- **Adferdskodeks**: Alle bidragsytere må følge Microsoft Open Source Code of Conduct
+- **Endringslogg**: Alle betydelige endringer dokumenteres i `changelog.md`
+- **Studieveiledning**: Bruk `study_guide.md` for oversikt over læreplannavigasjon
+- **Issue-maler**: Bruk GitHub-issue-maler for feilrapporter og funksjonsforespørsler
+- **Oppførselskode**: Alle bidragsytere må følge Microsoft Open Source Code of Conduct
 
 ### Læringssti
 
-Følg modulene sekvensielt (00-11) for optimal læring:
-1. **00-02**: Grunnleggende (Introduksjon, kjernkonsepter, sikkerhet)
-2. **03**: Komme i gang med praktisk implementering
+Følg moduler i sekvensiell rekkefølge (00-11) for optimal læring:
+1. **00-02**: Grunnleggende (Introduksjon, kjernekonsepter, sikkerhet)
+2. **03**: Kom i gang med praktisk implementering
 3. **04-05**: Praktisk implementering og avanserte emner
-4. **06-10**: Fellesskap, beste praksis og reelle applikasjoner
+4. **06-10**: Fellesskap, beste praksis, og virkelige applikasjoner
 5. **11**: Omfattende laboratorier for databaseintegrasjon (13 sekvensielle laboratorier)
 
 ### Støtteressurser
@@ -263,37 +362,38 @@ Følg modulene sekvensielt (00-11) for optimal læring:
 - **Spesifikasjon**: https://spec.modelcontextprotocol.io/
 - **Fellesskap**: https://github.com/orgs/modelcontextprotocol/discussions
 - **Discord**: Microsoft Foundry Discord-server
-- **Beslektede kurs**: Se README.md for andre Microsoft læringsstier
+- **Relaterte kurs**: Se README.md for andre Microsoft læringsstier
 
 ### Vanlige feilsøkingstips
 
-**Q: Min PR feiler oversettelseskontrollen**  
-A: Sørg for at du kun har redigert engelske markdown-filer i rotmodulene, ikke oversatte versjoner.
+**Q: Min PR feiler oversettelsessjekken**
+A: Sørg for at du kun redigerte engelske markdown-filer i rotmodul-mappene, ikke oversatte versjoner.
 
-**Q: Hvordan legger jeg til et nytt språk?**  
-A: Språkstøtte styres gjennom co-op-translator arbeidsflyten. Åpne en issue for å diskutere nye språk.
+**Q: Hvordan legger jeg til et nytt språk?**
+A: Språkstøtte håndteres gjennom co-op-translator-arbeidsflyten. Åpne en issue for å diskutere nye språk.
 
-**Q: Kodeeksemplene virker ikke**  
-A: Sørg for at du har fulgt oppsettsinstruksjonene i den spesifikke eksempels README. Sjekk at riktige versjoner av avhengigheter er installert.
+**Q: Kodeeksempler fungerer ikke**
 
-**Q: Bilder vises ikke**  
-A: Kontroller at bildefilbaner er relative og bruker skråstreker. Bildene skal være i `images/` eller `translated_images/` for lokaliserte versjoner.
+Svar: Sørg for at du har fulgt oppsettinstruksjonene i README-filen til det spesifikke eksempelet. Sjekk at du har riktige versjoner av avhengigheter installert.
+
+**Spørsmål: Bilder vises ikke**
+Svar: Kontroller at bildefilene har relative stier og bruker skråstreker. Bildene bør være i `images/`-katalogen eller `translated_images/` for lokaliserte versjoner.
 
 ### Ytelseshensyn
 
 - Oversettelsesarbeidsflyten kan ta flere minutter å fullføre
-- Store bilder bør optimaliseres før innsjekk
+- Store bilder bør optimaliseres før innsending
 - Hold individuelle markdown-filer fokuserte og rimelig store
 - Bruk relative lenker for bedre portabilitet
 
 ### Prosjektstyring
 
-Dette prosjektet følger Microsoft åpne kildekode-praksiser:  
-- MIT-lisens for kode og dokumentasjon  
-- Microsoft Open Source Code of Conduct  
-- CLA kreves for bidrag  
-- Sikkerhetsproblemer: Følg retningslinjene i SECURITY.md  
-- Support: Se SUPPORT.md for hjelp-ressurser
+Dette prosjektet følger Microsofts praksiser for åpen kildekode:
+- MIT-lisens for kode og dokumentasjon
+- Microsofts åpen kildekode-atferdskodeks
+- CLA kreves for bidrag
+- Sikkerhetsproblemer: Følg retningslinjene i SECURITY.md
+- Support: Se SUPPORT.md for hjelperessurser
 
 ---
 
