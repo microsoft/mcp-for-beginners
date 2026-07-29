@@ -450,13 +450,15 @@ async def message_handler(message):
 
 ## Security Considerations
 
+Security should be a top priority when implementing any server, especially when using HTTP-based transports like Streamable HTTP in MCP.
+
 When implementing MCP servers with HTTP-based transports, security becomes a paramount concern that requires careful attention to multiple attack vectors and protection mechanisms.
 
 ### Overview
 
 Security is critical when exposing MCP servers over HTTP. Streamable HTTP introduces new attack surfaces and requires careful configuration.
 
-### Key Points
+Here are some key security considerations:
 
 - **Origin Header Validation**: Always validate the `Origin` header to prevent DNS rebinding attacks.
 - **Localhost Binding**: For local development, bind servers to `localhost` to avoid exposing them to the public internet.
@@ -466,14 +468,19 @@ Security is critical when exposing MCP servers over HTTP. Streamable HTTP introd
 
 ### Best Practices
 
+Additionally, here are some best practices to follow when implementing security in your MCP streaming server:
+
 - Never trust incoming requests without validation.
 - Log and monitor all access and errors.
 - Regularly update dependencies to patch security vulnerabilities.
 
 ### Challenges
 
+You will face some challenges when implementing security in MCP streaming servers:
+
 - Balancing security with ease of development
 - Ensuring compatibility with various client environments
+
 
 ## Upgrading from SSE to Streamable HTTP
 
@@ -508,39 +515,6 @@ Ensure you address the following challenges during migration:
 
 - Ensuring all clients are updated
 - Handling differences in notification delivery
-
-## Security Considerations
-
-Security should be a top priority when implementing any server, especially when using HTTP-based transports like Streamable HTTP in MCP. 
-
-When implementing MCP servers with HTTP-based transports, security becomes a paramount concern that requires careful attention to multiple attack vectors and protection mechanisms.
-
-### Overview
-
-Security is critical when exposing MCP servers over HTTP. Streamable HTTP introduces new attack surfaces and requires careful configuration.
-
-Here are some key security considerations:
-
-- **Origin Header Validation**: Always validate the `Origin` header to prevent DNS rebinding attacks.
-- **Localhost Binding**: For local development, bind servers to `localhost` to avoid exposing them to the public internet.
-- **Authentication**: Implement authentication (e.g., API keys, OAuth) for production deployments.
-- **CORS**: Configure Cross-Origin Resource Sharing (CORS) policies to restrict access.
-- **HTTPS**: Use HTTPS in production to encrypt traffic.
-
-### Best Practices
-
-Additionally, here are some best practices to follow when implementing security in your MCP streaming server:
-
-- Never trust incoming requests without validation.
-- Log and monitor all access and errors.
-- Regularly update dependencies to patch security vulnerabilities.
-
-### Challenges
-
-You will face some challenges when implementing security in MCP streaming servers:
-
-- Balancing security with ease of development
-- Ensuring compatibility with various client environments
 
 ### Assignment: Build Your Own Streaming MCP App
 
