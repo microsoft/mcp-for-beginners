@@ -131,6 +131,21 @@ For practitioners specializing in agent lifecycle management and reproducible wo
 
 This case study demonstrates that the MCP Registry is more than just a directory—it's a foundational platform for scalable, real-world model integration and agentic system deployment.
 
+### 8. [Publishing to Social Networks from an Agent](./publora-social-publishing.md)
+
+This case study walks through a **write-capable remote MCP server** — one whose tools take irreversible actions on a user's behalf — using social publishing as the worked example. An agent drafts a post, a human approves it, and the server schedules it across networks.
+
+The interesting part is the design constraints that publishing imposes, which apply to any server that writes rather than reads:
+
+- **Open discovery, authenticated execution** — `tools/list` served without credentials so registries and clients can introspect, while every `tools/call` requires a token
+- **OAuth with dynamic client registration**, so an unknown client can connect without a pre-issued `client_id` or a hand-copied key
+- **Tool annotations** (`readOnlyHint`, `destructiveHint`, `idempotentHint`) that clients use to decide what to confirm — and that connector directories now require for review
+- **Un-inventable identifiers**, so a hallucinated value fails loudly instead of acting on a plausible-looking one
+- **Idempotency keys**, so an agent runtime's retry does not become a duplicate publication
+- **A documented no-op target** that exercises the full write path and publishes nothing, for reviewers and CI
+
+The chapter closes with a short checklist you can apply to a server you are building.
+
 ## Conclusion
 
 These seven comprehensive case studies demonstrate the remarkable versatility and practical applications of the Model Context Protocol across diverse real-world scenarios. From complex multi-agent travel planning systems and enterprise API management to streamlined documentation workflows and the revolutionary GitHub MCP Registry, these examples showcase how MCP provides a standardized, scalable way to connect AI systems with the tools, data, and services they need to deliver exceptional value.
