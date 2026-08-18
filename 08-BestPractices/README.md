@@ -30,7 +30,9 @@ Before diving into specific implementation practices, it's important to understa
 
 4. **Modular Architecture**: Design your MCP servers with a modular approach, where each tool and resource has a clear, focused purpose.
 
-5. **Stateful Connections**: Leverage MCP's ability to maintain state across multiple requests for more coherent and context-aware interactions.
+5. **Explicit State**: MCP `2026-07-28` is stateless at the protocol
+   layer. When a workflow needs cross-call state, use explicit handles or
+   ordinary tool arguments backed by durable application state.
 
 ## Official MCP Best Practices
 
@@ -44,7 +46,9 @@ The following best practices are derived from the official Model Context Protoco
 
 3. **Tool Safety**: Require explicit user consent before invoking any tool. Ensure users understand each tool's functionality and enforce robust security boundaries.
 
-4. **Tool Permission Control**: Configure which tools a model is allowed to use during a session, ensuring only explicitly authorized tools are accessible.
+4. **Tool Permission Control**: Configure which tools a model may use for
+   each request and authorization context, ensuring only explicitly authorized
+   tools are accessible.
 
 5. **Authentication**: Require proper authentication before granting access to tools, resources, or sensitive operations using API keys, OAuth tokens, or other secure authentication methods.
 
@@ -54,13 +58,17 @@ The following best practices are derived from the official Model Context Protoco
 
 ### Implementation Best Practices
 
-1. **Capability Negotiation**: During connection setup, exchange information about supported features, protocol versions, available tools, and resources.
+1. **Capability Negotiation**: Negotiate supported protocol versions and
+   capabilities. In MCP `2026-07-28`, each request is self-contained and may
+   use `server/discover`; older revisions use the initialization handshake.
 
 2. **Tool Design**: Create focused tools that do one thing well, rather than monolithic tools that handle multiple concerns.
 
 3. **Error Handling**: Implement standardized error messages and codes to help diagnose issues, handle failures gracefully, and provide actionable feedback.
 
-4. **Logging**: Configure structured logs for auditing, debugging, and monitoring protocol interactions.
+4. **Observability**: Use `stderr` for stdio diagnostics and OpenTelemetry
+   for structured observability. The MCP logging feature is deprecated in the
+   `2026-07-28` specification.
 
 5. **Progress Tracking**: For long-running operations, report progress updates to enable responsive user interfaces.
 
@@ -71,11 +79,28 @@ The following best practices are derived from the official Model Context Protoco
 For the most up-to-date information on MCP best practices, refer to:
 
 - [MCP Documentation](https://modelcontextprotocol.io/)
-- [MCP Specification (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Specification (2026-07-28)][mcp-2026-spec]
+- [Previous MCP Specification (2025-11-25)](https://modelcontextprotocol.io/specification/2025-11-25)
+- [MCP Tasks Extension][mcp-tasks-extension]
 - [GitHub Repository](https://github.com/modelcontextprotocol)
-- [Security Best Practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices)
-- [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - Security risks and mitigations
+- [Security Best Practices](https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/security_best_practices)
+- [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/) - Security risks and mitigations
 - [MCP Security Summit Workshop (Sherpa)](https://azure-samples.github.io/sherpa/) - Hands-on security training
+
+### Reliability Companion Lesson
+
+Generic retry loops are unsafe for tools that create tickets, payments,
+messages, deployments, or other real-world effects. A response can be lost
+after the effect commits.
+
+Use the reliability companion lesson,
+[Safe Retries for MCP Tools: A Reliability Sidecar Pattern][reliability-sidecar],
+to learn stable operation keys, duplicate admission, checkpointing,
+reconciliation, evidence levels, and failure injection.
+
+[mcp-2026-spec]: https://modelcontextprotocol.io/specification/2026-07-28
+[mcp-tasks-extension]: https://modelcontextprotocol.io/extensions/tasks/overview
+[reliability-sidecar]: ./reliability-sidecars/README.md
 
 ## Practical Implementation Examples
 
@@ -870,7 +895,13 @@ public ToolResponse execute(ToolRequest request) {
 
 #### 3. Retry Logic
 
-Implement appropriate retry logic for transient failures:
+Use generic retry logic only for read-only calls or operations whose
+downstream contract is already idempotent. For effectful operations, a timeout
+after sending the request is ambiguous. Reconcile authoritative state and
+reuse the same stable operation key before executing again. See the
+[reliability sidecar companion lesson](./reliability-sidecars/README.md).
+
+The following bounded retry loop is suitable for a read-only lookup:
 
 ```python
 async def execute_async(self, request):
@@ -880,8 +911,8 @@ async def execute_async(self, request):
     
     while retry_count < max_retries:
         try:
-            # Call external API
-            return await self._call_api(request.parameters)
+            # Call a read-only external API
+            return await self._call_read_only_api(request.parameters)
         except TransientError as e:
             retry_count += 1
             if retry_count >= max_retries:
@@ -2345,7 +2376,8 @@ A comprehensive testing strategy is essential for developing reliable, high-qual
 
 1. **Tool Design**: Follow single responsibility principle, use dependency injection, and design for composability
 2. **Schema Design**: Create clear, well-documented schemas with proper validation constraints
-3. **Error Handling**: Implement graceful error handling, structured error responses, and retry logic
+3. **Error Handling**: Implement graceful error handling, structured error
+   responses, and outcome-aware retry logic
 4. **Performance**: Use caching, asynchronous processing, and resource throttling
 5. **Security**: Apply thorough input validation, authorization checks, and sensitive data handling
 6. **Testing**: Create comprehensive unit, integration, and end-to-end tests

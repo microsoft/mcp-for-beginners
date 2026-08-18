@@ -2,6 +2,32 @@
 
 This document serves as a record of all significant changes made to the Model Context Protocol (MCP) for Beginners curriculum. Changes are documented in reverse chronological order (newest changes first).
 
+## July 29th, 2026
+
+### New Module 08 Companion: Reliability Sidecars and Safe Retries
+
+Added a vendor-neutral companion lesson for MCP tools that create real-world
+effects, aligned with the final `2026-07-28` specification.
+
+- **New**: The [reliability sidecar companion lesson][reliability-sidecar]
+  uses one support-ticket story, two Mermaid diagrams, and a retry decision
+  flow to explain stable operation keys, atomic duplicate admission,
+  reconciliation, evidence, and the Tasks extension boundary.
+- **New**: A standard-library Python and SQLite failure-injection exercise
+  uses separate operation and ticket stores to demonstrate a response lost
+  after an external effect commits. Six deterministic tests cover naive
+  duplication, guarded restart recovery, payload conflicts, cached results,
+  active claims, and concurrent duplicate admission.
+- **Updated**: Module 08 now links the companion lesson, identifies the
+  final `2026-07-28` stateless request model, distinguishes OpenTelemetry
+  observability from the deprecated MCP logging feature, and limits its
+  generic retry example to read-only operations.
+- **Optional**: The lesson maps its portable concepts to one tagged community
+  implementation without making the hosted service or a network call part of
+  the exercise.
+
+[reliability-sidecar]: ./08-BestPractices/reliability-sidecars/README.md
+
 ## July 2nd, 2026
 
 ### New Lesson: The 2026-07-28 MCP Specification Release Candidate
