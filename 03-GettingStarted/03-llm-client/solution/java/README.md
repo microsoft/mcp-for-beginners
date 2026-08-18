@@ -91,7 +91,7 @@ The calculator service provides the following functions: add, subtract, multiply
 
 ### Common Issues
 
-1. **"OPENAI_API_KEY environment variable not set"**
+1. **"OPENAI_API_KEY environment variable is not set"**
    - Make sure you've set the `OPENAI_API_KEY` environment variable
    - Restart your terminal/command prompt after setting the variable
 
