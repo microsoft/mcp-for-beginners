@@ -1,62 +1,62 @@
 # Model Context Protocol (MCP) ile HTTPS Akışı
 
-Bu bölüm, Model Context Protocol (MCP) kullanarak HTTPS ile güvenli, ölçeklenebilir ve gerçek zamanlı akış uygulamaya yönelik kapsamlı bir rehber sunar. Akışın motivasyonu, mevcut taşıma mekanizmaları, MCP'de akış yapılabilir HTTP'nin nasıl uygulanacağı, güvenlik en iyi uygulamaları, SSE'den geçiş ve kendi akış uygulamanızı oluşturmak için pratik rehberlik konularını kapsar.
+Bu bölüm, Model Context Protocol (MCP) kullanarak HTTPS üzerinden güvenli, ölçeklenebilir ve gerçek zamanlı akış uygulamak için kapsamlı bir rehber sunar. Akış motivasyonunu, mevcut taşıma mekanizmalarını, MCP'de akış yapılabilir HTTP'nin nasıl uygulanacağını, güvenlik en iyi uygulamalarını, SSE'den geçişi ve kendi akış MCP uygulamalarınızı oluşturmak için pratik rehberliği kapsar.
 
-> **İleriye bakış:** Bu ders, bir oturumun `initialize` sırasında kurulduğu ve `Mcp-Session-Id` başlığı ile sabitlendiği **MCP Spesifikasyonu 2025-11-25** altındaki Akış Yapılabilir HTTP'yi anlatır. `2026-07-28` sürüm adayı, el sıkışmayı ve oturum kimliğini tamamen kaldırarak, her isteğin kendi içinde bağımsız olmasını ve herhangi bir sunucu örneğine yapışkan oturumlar olmadan yönlendirilmesini sağlar. Detaylar için [MCP'de Değişenler: 2026-07-28 Sürüm Adayı](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md) sayfasına bakınız.
+> **İleriye bakarken:** Bu ders, bir oturumun `initialize` sırasında kurulduğu ve `Mcp-Session-Id` başlığı ile sabitlendiği **MCP Spesifikasyonu 2025-11-25** altında Akış Yapılabilir HTTP'yi açıklar. `2026-07-28` sürüm adayı ise el sıkışmayı ve oturum kimliğini tamamen kaldırarak her isteğin kendi içinde bağımsız ve yapışkan oturum olmadan herhangi bir sunucu örneğine yönlendirilebilir olmasını sağlar. Ayrıntılar için [MCP'de Neler Değişiyor: 2026-07-28 Sürüm Adayı](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md) sayfasına bakınız.
 
-## MCP'deki Taşıma Mekanizmaları ve Akış
+## MCP'de Taşıma Mekanizmaları ve Akış
 
-Bu bölüm, MCP'de mevcut farklı taşıma mekanizmalarını ve istemciler ile sunucular arasında gerçek zamanlı iletişim için akış yeteneklerini etkinleştirmedeki rollerini incelemektedir.
+Bu bölüm, MCP'de mevcut farklı taşıma mekanizmalarını ve istemci ile sunucu arasında gerçek zamanlı iletişimi mümkün kılan akış yeteneklerindeki rollerini inceler.
 
 ### Taşıma Mekanizması Nedir?
 
-Bir taşıma mekanizması, verilerin istemci ve sunucu arasında nasıl değiştirileceğini tanımlar. MCP, farklı ortamlar ve gereksinimler için birden çok taşıma türünü destekler:
+Bir taşıma mekanizması, istemci ile sunucu arasında verinin nasıl değiş tokuş edildiğini tanımlar. MCP, farklı ortamlar ve gereksinimler için çeşitli taşıma türlerini destekler:
 
-- **stdio**: Standart giriş/çıkış, yerel ve CLI tabanlı araçlar için uygundur. Basit ama web veya bulut için uygun değildir.
-- **SSE (Sunucu Gönderimli Olaylar)**: Sunucuların HTTP üzerinden istemcilere gerçek zamanlı güncellemeler göndermesini sağlar. Web arayüzleri için iyidir, ancak ölçeklenebilirlik ve esneklik açısından sınırlıdır. MCP Spesifikasyonu 2025-06-18 itibariyle, bağımsız SSE taşıması kullanım dışı bırakılmış ve "Akış Yapılabilir HTTP" taşıması ile değiştirilmiştir.
-- **Akış Yapılabilir HTTP**: Bildirimler ve daha iyi ölçeklenebilirlik destekleyen modern HTTP tabanlı akış taşıması. Çoğu üretim ve bulut senaryosu için önerilir.
+- **stdio**: Standart giriş/çıkış, yerel ve CLI tabanlı araçlar için uygundur. Basittir ancak web veya bulut için uygun değildir.
+- **SSE (Server-Sent Events)**: Sunucuların HTTP üzerinden istemcilere gerçek zamanlı güncellemeler göndermesine olanak tanır. Web kullanıcı arayüzleri için iyidir, ancak ölçeklenebilirlik ve esneklik açısından sınırlıdır. MCP Spesifikasyonu 2025-06-18 itibariyle bağımsız SSE taşıması kullanımdan kaldırılmış ve yerine "Akış Yapılabilir HTTP" taşıması getirilmiştir.
+- **Akış Yapılabilir HTTP**: Bildirimleri destekleyen modern HTTP tabanlı akış taşıması, daha iyi ölçeklenebilirlik sunar. Çoğu üretim ve bulut senaryosu için önerilir.
 
 ### Karşılaştırma Tablosu
 
-Aşağıdaki karşılaştırma tablosuna bakarak bu taşıma mekanizmaları arasındaki farkları anlayabilirsiniz:
+Bu taşıma mekanizmaları arasındaki farkları anlamak için aşağıdaki karşılaştırma tablosuna göz atın:
 
-| Taşıma Türü      | Gerçek Zamanlı Güncellemeler | Akış       | Ölçeklenebilirlik | Kullanım Alanı          |
-|-------------------|------------------------------|------------|-------------------|-------------------------|
-| stdio             | Hayır                        | Hayır      | Düşük             | Yerel CLI araçları      |
-| SSE               | Evet                         | Evet       | Orta              | Web, gerçek zamanlı güncellemeler |
-| Akış Yapılabilir HTTP | Evet                      | Evet       | Yüksek            | Bulut, çoklu istemci     |
+| Taşıma          | Gerçek Zamanlı Güncellemeler | Akış       | Ölçeklenebilirlik | Kullanım Alanı            |
+|-----------------|------------------------------|------------|-------------------|--------------------------|
+| stdio           | Hayır                        | Hayır      | Düşük             | Yerel CLI araçları       |
+| SSE             | Evet                         | Evet       | Orta              | Web, gerçek zamanlı güncellemeler |
+| Akış Yapılabilir HTTP | Evet                    | Evet       | Yüksek            | Bulut, çoklu istemci     |
 
-> **İpucu:** Doğru taşıma seçimi performans, ölçeklenebilirlik ve kullanıcı deneyimini etkiler. Modern, ölçeklenebilir ve buluta hazır uygulamalar için **Akış Yapılabilir HTTP** önerilir.
+> **İpucu:** Doğru taşıma seçimi performansı, ölçeklenebilirliği ve kullanıcı deneyimini etkiler. Modern, ölçeklenebilir ve bulut hazır uygulamalar için **Akış Yapılabilir HTTP** önerilir.
 
-Önceki bölümlerde gösterilen stdio ve SSE taşıma türlerini ve bu bölümde ele alınan akış yapılabilir HTTP taşımasını not edin.
+Önceki bölümlerde gösterilen stdio ve SSE taşıma yöntemlerini ve bu bölümde kapsanan akış yapılabilir HTTP'nin taşıma yöntemi olduğunu unutmayın.
 
 ## Akış: Kavramlar ve Motivasyon
 
-Akışın temel kavramlarını ve motivasyonlarını anlamak, etkili gerçek zamanlı iletişim sistemlerini uygulamak için önemlidir.
+Akışın temel kavramlarını ve motivasyonlarını anlamak, etkili gerçek zamanlı iletişim sistemleri uygulamak için gereklidir.
 
-**Akış**, tüm yanıtın hazır olmasını beklemek yerine verilerin küçük, yönetilebilir parçalar halinde veya olaylar dizisi olarak gönderilip alınmasını sağlayan bir ağ programlama tekniğidir. Bu özellikle şunlar için faydalıdır:
+**Akış**, ağ programlamasında verinin tüm yanıtın hazır olmasını beklemek yerine küçük, yönetilebilir parçalarda veya olaylar dizisi olarak gönderilip alınmasına olanak tanıyan bir tekniktir. Bu özellikle şunlar için kullanışlıdır:
 
 - Büyük dosyalar veya veri setleri.
-- Gerçek zamanlı güncellemeler (örneğin sohbet, ilerleme çubukları).
-- Kullanıcıyı bilgilendirmek istediğiniz uzun süren hesaplamalar.
+- Gerçek zamanlı güncellemeler (ör. sohbet, ilerleme çubukları).
+- Kullanıcıyı bilgilendirmek istediğiniz uzun süre çalışan hesaplamalar.
 
-İşte akış hakkında üst düzey bilmeniz gerekenler:
+Akış hakkında bilmeniz gerekenler:
 
-- Veri kademeli olarak teslim edilir, hepsi bir anda değil.
-- İstemci, veriler geldikçe işleyebilir.
-- Algılanan gecikmeyi azaltır ve kullanıcı deneyimini geliştirir.
+- Veri kademeli olarak iletilir, hepsi birden değil.
+- İstemci veriyi geldiği gibi işleyebilir.
+- Algılanan gecikmeyi azaltır ve kullanıcı deneyimini iyileştirir.
 
 ### Neden akış kullanılır?
 
 Akış kullanmanın sebepleri şunlardır:
 
 - Kullanıcılar sadece sonunda değil, anında geri bildirim alır.
-- Gerçek zamanlı uygulamalara ve yanıt veren arayüzlere izin verir.
-- Ağ ve hesaplama kaynaklarının daha verimli kullanımı sağlar.
+- Gerçek zamanlı uygulamalar ve duyarlı kullanıcı arayüzleri sağlar.
+- Ağ ve hesaplama kaynaklarını daha verimli kullanır.
 
-### Basit Örnek: HTTP Akış Sunucusu ve İstemcisi
+### Basit Örnek: HTTP Akış Sunucu ve İstemcisi
 
-Akışın nasıl uygulanabileceğine dair basit bir örnek:
+İşte akış uygulamayı gösteren basit bir örnek:
 
 #### Python
 
@@ -90,18 +90,18 @@ with requests.get("http://localhost:8000/stream", stream=True) as r:
             print(line.decode())
 ```
 
-Bu örnek, sunucunun tüm mesajların hazır olmasını beklemek yerine mesajları hazır oldukça istemciye göndermesini gösterir.
+Bu örnek, sunucunun tüm mesajların hazır olmasını beklemek yerine, mesajlar hazır oldukça istemciye göndermesini gösterir.
 
 **Nasıl çalışır:**
 
-- Sunucu her mesaj hazır olur olmaz veri üretir.
+- Sunucu her mesajı hazır oldukça verir.
 - İstemci gelen her parçayı alır ve yazdırır.
 
 **Gereksinimler:**
 
-- Sunucu akış yanıtı kullanmalıdır (örneğin FastAPI'de `StreamingResponse`).
-- İstemci yanıtı akış olarak işlemelidir (`requests`'de `stream=True`).
-- İçerik Türü genellikle `text/event-stream` veya `application/octet-stream` olur.
+- Sunucu akış yapabilir yanıt (örneğin FastAPI’de `StreamingResponse`) kullanmalıdır.
+- İstemci yanıtı akış olarak işlemelidir (`requests`’te `stream=True`).
+- İçerik türü genellikle `text/event-stream` veya `application/octet-stream` olur.
 
 #### Java
 
@@ -170,74 +170,74 @@ public class CalculatorClientApplication implements CommandLineRunner {
 
 **Java Uygulama Notları:**
 
-- Akış için Spring Boot'un tepkisel yığını `Flux` kullanılır
-- `ServerSentEvent` yapılandırılmış olay akışı tipleri sağlar
-- `WebClient`'in `bodyToFlux()` tepkisel akışı tüketmeyi sağlar
-- `delayElements()` olaylar arasındaki işlem süresini simüle eder
-- Olaylar daha iyi istemci işleme için tipler (`info`, `result`) içerebilir
+- Akış için `Flux` kullanan Spring Boot reaktif yığını
+- `ServerSentEvent` olay türleriyle yapılandırılmış olay akışı sağlar
+- `WebClient` ve `bodyToFlux()` reaktif akış tüketimini sağlar
+- `delayElements()` olaylar arasında işleme süresi simüle eder
+- Olaylar (`info`, `result`) türlerine sahip olabilir, istemci için daha iyi işlem yapılır
 
-### Karşılaştırma: Klasik Akış vs MCP Akışı
+### Karşılaştırma: Klasik Akış ile MCP Akışı
 
-Klasik anlamda akış ile MCP'deki akış arasındaki farklar şöyle gösterilebilir:
+Klasik akış ve MCP akışının nasıl farklı çalıştığını şöyle gösterebiliriz:
 
-| Özellik                | Klasik HTTP Akışı           | MCP Akışı (Bildirimler)        |
-|------------------------|-----------------------------|--------------------------------|
-| Ana yanıt              | Parçalanmış                  | Tek parça, sonunda              |
-| İlerleme güncellemeleri | Veri parçaları olarak gönderilir | Bildirimler olarak gönderilir    |
-| İstemci gereksinimleri | Akışı işlemeli               | Mesaj işleyicisi uygulamalı     |
-| Kullanım alanı         | Büyük dosyalar, AI token akışları | İlerleme, günlükler, gerçek zamanlı geri bildirim  |
+| Özellik                | Klasik HTTP Akışı            | MCP Akışı (Bildirimler)         |
+|------------------------|------------------------------|--------------------------------|
+| Ana yanıt              | Parçalı (chunked)            | Tek, sonunda                   |
+| İlerleme güncellemeleri| Veri parçaları olarak gönderilir | Bildirimler olarak gönderilir      |
+| İstemci gereksinimleri  | Akışı işlemeli               | Mesaj işleyici uygulamalı      |
+| Kullanım alanı          | Büyük dosyalar, AI token akışları | İlerleme, günlükler, gerçek zamanlı geri bildirim |
 
-### Öne Çıkan Temel Farklar
+### Gözlemlenen Temel Farklar
 
 Ayrıca, bazı temel farklar şunlardır:
 
 - **İletişim Deseni:**
-  - Klasik HTTP akışı: Basit parçalanmış transfer kodlamasıyla veri gönderir
+  - Klasik HTTP akışı: Basit parçalı aktarım kodlaması kullanır
   - MCP akışı: JSON-RPC protokolü ile yapılandırılmış bildirim sistemi kullanır
 
 - **Mesaj Formatı:**
-  - Klasik HTTP: Yeni satırlı düz metin parçaları
-  - MCP: Meta verili yapılandırılmış LoggingMessageNotification nesneleri
+  - Klasik HTTP: Yeni satırlarla bölünmüş düz metin parçaları
+  - MCP: Meta veriye sahip yapılandırılmış LoggingMessageNotification nesneleri
 
 - **İstemci Uygulaması:**
-  - Klasik HTTP: Akış yanıtlarını işleyen basit istemci
-  - MCP: Farklı mesaj türlerini işlemek için mesaj işleyicisi içeren daha gelişmiş istemci
+  - Klasik HTTP: Akış yanıtları işleyen basit istemci
+  - MCP: Farklı mesaj türlerini işlemek için mesaj işleyici olan daha gelişmiş istemci
 
 - **İlerleme Güncellemeleri:**
-  - Klasik HTTP: İlerleme ana yanıt akışının bir parçasıdır
-  - MCP: İlerleme, ana yanıt sonunda gelmeden önce ayrı bildirim mesajlarıyla gönderilir
+  - Klasik HTTP: İlerleme ana yanıt akışının parçasıdır
+  - MCP: İlerleme, ana yanıt sonunda gelirken ayrı bildirim mesajlarıyla gönderilir
 
 ### Öneriler
 
-Klasik akış (yukarıda `/stream` ile gösterilen uç nokta gibi) ile MCP üzerinden akış arasında seçim yaparken bazı önerilerimiz var.
+Klasik akışı (yukarıda `/stream` kullanarak gösterildiği gibi) veya MCP akışını uygulama arasında seçim yaparken bazı önerilerimiz var.
 
-- **Basit akış ihtiyaçları için:** Klasik HTTP akışı uygulaması daha basittir ve temel ihtiyaçlar için yeterlidir.
+- **Basit akış ihtiyaçları için:** Klasik HTTP akışı uygulaması daha basittir ve temel akış ihtiyaçları için yeterlidir.
 
-- **Karmaşık, etkileşimli uygulamalar için:** MCP akışı, bildirimler ve sonuçlar arasında ayrım ve zengin meta verilerle daha yapılandırılmış bir yaklaşım sağlar.
+- **Karmaşık, etkileşimli uygulamalar için:** MCP akışı, bildirimler ve sonuçlar arasında net ayrım ile daha yapılandırılmış bir yaklaşım sunar.
 
-- **AI uygulamaları için:** MCP'nin bildirim sistemi, uzun süren AI görevlerinde kullanıcıları ilerleme hakkında bilgilendirmek için özellikle faydalıdır.
+- **AI uygulamaları için:** MCP'nin bildirim sistemi, kullanıcıları ilerleme hakkında bilgilendirmek istediğiniz uzun süreli AI görevleri için özellikle kullanışlıdır.
 
 ## MCP'de Akış
 
-Şimdiye kadar klasik akış ile MCP akışı arasındaki farklara ve önerilere baktınız. MCP'de akışı nasıl kullanabileceğinizi detaylarıyla görelim.
+Şimdiye kadar klasik akış ile MCP akışı arasındaki farklara ve önerilere baktınız. MCP'de tam olarak nasıl akış yapabileceğinize detaylı bakalım.
 
-MCP çerçevesinde akışın nasıl çalıştığını anlamak, uzun süren işlemler sırasında kullanıcılara gerçek zamanlı geri bildirim sağlayan yanıt veren uygulamalar oluşturmak için esastır.
+MCP çerçevesi içinde akışın nasıl işlediğini anlamak, uzun süreli işlemler sırasında kullanıcılara gerçek zamanlı geri bildirim veren duyarlı uygulamalar geliştirmek için çok önemlidir.
 
-MCP'de akış, ana yanıtı parçalara bölerek göndermek değildir; bir araç isteği işlerken istemciye **bildirimler** göndermektir. Bu bildirimler ilerleme güncellemeleri, günlükler veya diğer olayları içerebilir.
+MCP'de akış, ana yanıtı parçalara bölüp göndermek değil, bir aracın istekleri işlerken istemciye **bildirimler** göndermekle ilgilidir. Bu bildirimler ilerleme güncellemeleri, günlükler veya diğer olayları içerebilir.
 
 ### Nasıl çalışır
 
-Ana sonuç hala tek yanıt olarak gönderilir. Ancak, bildirimler işleme sırasında ayrı mesajlar olarak gönderilebilir ve böylece istemci gerçek zamanlı olarak güncellenir. İstemci bu bildirimleri işleyip gösterebilmelidir.
+Ana sonuç yine tek bir yanıt olarak gönderilir. Ancak, işlem sırasında bildirimler ayrı mesajlar halinde gönderilerek istemci gerçek zamanlı olarak güncellenir. İstemci bu bildirimleri işleyip gösterebilmelidir.
 
-## Bildirim Nedir?
+## Bildirim (Notification) Nedir?
 
-"Bildirim" dedik, MCP bağlamında bu ne anlama geliyor?
+"Bildirim" dedik, MCP bağlamında ne anlama geliyor?
 
-Bildirim, uzun süren bir işlem boyunca ilerleme, durum veya diğer olaylar hakkında bilgi vermek için sunucudan istemciye gönderilen mesajdır. Bildirimler şeffaflığı ve kullanıcı deneyimini artırır.
+Bildirim, uzun süren bir işlem sırasında ilerleme, durum veya diğer olaylar hakkında bilgilendirmek için sunucudan istemciye gönderilen mesajdır. Bildirimler şeffaflığı ve kullanıcı deneyimini artırır.
 
-Örneğin, istemcinin sunucu ile ilk el sıkışma yapıldıktan sonra bir bildirim göndermesi gerekir.
+Örneğin, istemci sunucu ile ilk el sıkışması tamamlandığında bir bildirim göndermelidir.
 
-Bir bildirim JSON mesajı olarak şöyle görünür:
+Bir bildirim JSON mesajı olarak şu şekildedir:
 
 ```json
 {
@@ -251,9 +251,9 @@ Bir bildirim JSON mesajı olarak şöyle görünür:
 
 Bildirimler, MCP'de ["Logging"](https://modelcontextprotocol.io/specification/draft/server/utilities/logging) olarak adlandırılan bir konuya aittir.
 
-> **Kaldırma bildirimi:** `2026-07-28` MCP spesifikasyon sürüm adayı, Logging özelliğini stdio taşıma türleri için `stderr` ve yapılandırılmış gözlemlenebilirlik için OpenTelemetry lehine kullanımdan kaldırma işaret eder. Logging özelliği `2025-11-25` sürümünde ve resmi kaldırmadan en az bir yıl sonra çalışmaya devam edecektir. Detaylar için [MCP'de Değişenler: 2026-07-28 Sürüm Adayı](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md) sayfasına bakınız.
+> **Kaldırma bildirimi:** `2026-07-28` MCP spesifikasyon sürüm adayı, Logging özelliğini stdio taşıma için `stderr` ve yapılandırılmış gözlemlenebilirlik için OpenTelemetry lehine kullanımdan kaldırmayı işaret eder. Logging, `2025-11-25` sürümünde ve resmi kaldırmadan sonra en az bir yıl daha çalışmaya devam eder. Detaylar için [MCP'de Neler Değişiyor: 2026-07-28 Sürüm Adayı](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md) sayfasına bakınız.
 
-Logging'in çalışması için sunucunun bunu özellik/kabiliyet olarak etkinleştirmesi gerekir:
+Logging'i etkinleştirmek için sunucu bunu özellik/yetenek olarak açmalıdır:
 
 ```json
 {
@@ -264,28 +264,28 @@ Logging'in çalışması için sunucunun bunu özellik/kabiliyet olarak etkinle�
 ```
 
 > [!NOTE]
-> Kullanılan SDK'ya bağlı olarak, logging varsayılan olarak etkin olabilir veya sunucu yapılandırmanızda bunu açıkça etkinleştirmeniz gerekebilir.
+> Kullanılan SDK'ya bağlı olarak logging varsayılan etkin olabilir veya sunucu yapılandırmanızda açıkça etkinleştirmeniz gerekebilir.
 
-Farklı bildirim türleri vardır:
+Farklı bildirim seviyeleri vardır:
 
-| Seviye    | Açıklama                     | Örnek Kullanım Durumu          |
-|-----------|------------------------------|-------------------------------|
-| debug     | Detaylı hata ayıklama bilgisi | Fonksiyon giriş/çıkış noktaları|
-| info      | Genel bilgi mesajları         | İşlem ilerleme güncellemeleri   |
-| notice    | Normal ama önemli olaylar     | Yapılandırma değişiklikleri    |
-| warning   | Uyarı durumları              | Kullanımdan kaldırılan özellik |
-| error     | Hata durumları               | İşlem başarısızlıkları          |
-| critical  | Kritik durumlar              | Sistem bileşeni hataları        |
-| alert     | Hemen müdahale gerek           | Veri bozulması tespiti          |
-| emergency | Sistem kullanılamaz durumda  | Tam sistem arızası              |
+| Seviye   | Açıklama                     | Örnek Kullanım Alanı          |
+|---------|------------------------------|------------------------------|
+| debug   | Detaylı hata ayıklama bilgisi | Fonksiyon giriş/çıkış noktaları |
+| info    | Genel bilgilendirici mesajlar | İşlem ilerleme güncellemeleri  |
+| notice  | Normal ama önemli olaylar      | Yapılandırma değişiklikleri    |
+| warning | Uyarı durumu                  | Kullanımdan kaldırılmış özellik kullanımı |
+| error   | Hata durumu                  | İşlem hataları                |
+| critical| Kritik durumlar              | Sistem bileşeni hataları      |
+| alert   | Acilen işlem yapılmalı        | Veri bozulması tespit edildi |
+| emergency| Sistem kullanılamaz durumda   | Tam sistem hatası             |
 
-## MCP'de Bildirimlerin Uygulanması
+## MCP'de Bildirimleri Uygulama
 
-MCP'de bildirimleri uygulamak için, hem sunucu hem de istemci taraflarını gerçek zamanlı güncellemeleri işleyebilecek şekilde ayarlamanız gerekir. Bu, uygulamanızın uzun süren işlemler sırasında kullanıcılara anlık geri bildirim sağlamasına imkan tanır.
+Bildirimleri MCP'de uygulamak için hem sunucu hem de istemci taraflarını gerçek zamanlı güncellemeleri işleyebilecek şekilde hazırlamanız gerekir. Bu, uygulamanızın uzun işlemler sırasında kullanıcılara anında geri bildirim sunmasını sağlar.
 
-### Sunucu tarafı: Bildirim Gönderimi
+### Sunucu tarafı: Bildirim Gönderme
 
-Sunucu tarafı ile başlayalım. MCP'de, istekler işlenirken bildirim gönderebilen araçlar tanımlanır. Sunucu, istemciye mesaj göndermek için genellikle `ctx` olan context nesnesini kullanır.
+Sunucu tarafından başlayalım. MCP'de, istekleri işlerken bildirim gönderebilen araçları tanımlarsınız. Sunucu, istemciye mesaj göndermek için genellikle `ctx` olan context nesnesini kullanır.
 
 #### Python
 
@@ -298,9 +298,9 @@ async def process_files(message: str, ctx: Context) -> TextContent:
     return TextContent(type="text", text=f"Done: {message}")
 ```
 
-Önceki örnekte, `process_files` aracı her dosya işlenirken istemciye üç bildirim gönderir. Bilgi mesajları göndermek için `ctx.info()` yöntemi kullanılır.
+Önceki örnekte, `process_files` aracı her dosyayı işledikçe istemciye üç bildirim gönderir. `ctx.info()` metodu bilgilendirici mesajlar göndermek için kullanılır.
 
-Ayrıca, bildirimleri etkinleştirmek için sunucunuzun akış taşımasını (örneğin `streamable-http`) kullanması ve istemcinizin bildirimleri işlemek için mesaj işleyicisi uygulaması gerekir. İşte sunucuyu `streamable-http` taşımayı kullanacak şekilde nasıl ayarlayabileceğiniz:
+Ayrıca, bildirimlerin etkinleşmesi için sunucunuzun `streamable-http` gibi akışla taşıma kullanması ve istemcinizin bildirimleri işlemek için mesaj işleyicisi uygulaması gerekir. Sunucunun `streamable-http` taşımayı kullanması şöyle ayarlanabilir:
 
 ```python
 mcp.run(transport="streamable-http")
@@ -323,9 +323,9 @@ public async Task<TextContent> ProcessFiles(string message, ToolContext ctx)
 }
 ```
 
-Bu .NET örneğinde, `ProcessFiles` aracı `Tool` niteliği ile süslenmiş ve her dosya işlenirken istemciye üç bildirim gönderir. Bilgi mesajları göndermek için `ctx.Info()` yöntemi kullanılır.
+Bu .NET örneğinde, `ProcessFiles` aracı her dosyayı işlerken istemciye üç bildirim gönderir. `ctx.Info()` metodu bilgilendirici mesajlar göndermek için kullanılır.
 
-.NET MCP sunucunuzda bildirimleri etkinleştirmek için akış taşıması kullandığınızdan emin olun:
+.NET MCP sunucunuzda bildirimleri etkinleştirmek için akış taşıma kullandığınızdan emin olun:
 
 ```csharp
 var builder = McpBuilder.Create();
@@ -337,7 +337,7 @@ await builder
 
 ### İstemci tarafı: Bildirim Alma
 
-İstemci, gelen bildirimleri işlemek ve görüntülemek için mesaj işleyicisi uygulamalıdır.
+İstemci, gelen bildirimleri işleyip görüntülemek için mesaj işleyicisi uygulamalıdır.
 
 #### Python
 
@@ -356,7 +356,7 @@ async with ClientSession(
 ) as session:
 ```
 
-Önceki kodda, `message_handler` fonksiyonu gelen mesajın bildirim olup olmadığını kontrol eder. Bildirimse yazdırır, değilse normal sunucu mesajı olarak işler. Ayrıca, alınan bildirimleri işlemek için `message_handler` ile `ClientSession` başlatılır.
+Önceki kodda, `message_handler` fonksiyonu gelen mesajın bildirim olup olmadığını kontrol eder. Bildirimse yazdırılır, değilse normal sunucu mesajı olarak işlenir. Ayrıca `ClientSession` gelen bildirimleri işlemek üzere `message_handler` ile başlatılır.
 
 #### .NET
 
@@ -387,15 +387,15 @@ await client.InitializeAsync();
 // Now the client will process notifications through the MessageHandler
 ```
 
-Bu .NET örneğinde, `MessageHandler` fonksiyonu gelen mesajın bildirim olup olmadığını kontrol eder. Bildirimse yazdırır, değilse normal sunucu mesajı olarak işler. `ClientSession`, `ClientSessionOptions` üzerinden mesaj işleyici ile başlatılır.
+Bu .NET örneğinde, `MessageHandler` fonksiyonu gelen mesajın bildirim olup olmadığını kontrol eder. Bildirimse yazdırılır, değilse normal sunucu mesajı olarak işlenir. `ClientSession`, mesaj işleyici ile `ClientSessionOptions` üzerinden başlatılır.
 
-Bildirimleri etkinleştirmek için, sunucunuzun akış taşıması (örneğin `streamable-http`) kullandığından ve istemcinizin bildirimleri işlemek için mesaj işleyicisi uyguladığından emin olun.
+Bildirimleri etkinleştirmek için sunucunuzun `streamable-http` gibi akış taşıma kullandığından ve istemcinizin bildirimleri işleyebilecek mesaj işleyicisi uyguladığından emin olun.
 
 ## İlerleme Bildirimleri ve Senaryolar
 
-Bu bölüm, MCP'de ilerleme bildirimleri kavramını, neden önemli olduklarını ve Akış Yapılabilir HTTP kullanarak nasıl uygulanacaklarını açıklar. Ayrıca, konuyu pekiştirmek için pratik bir görev bulabilirsiniz.
+Bu bölümde MCP'de ilerleme bildirimlerinin kavramı, önemi ve Streamable HTTP kullanarak nasıl uygulanacağı açıklanır. Ayrıca anlayışınızı pekiştirmek için pratik bir görev bulunur.
 
-İlerleme bildirimleri, uzun süren işlemler sırasında sunucunun istemciye gerçek zamanlı gönderdiği mesajlardır. Bütün süreç bitene kadar beklemek yerine, sunucu istemciyi mevcut durum hakkında güncellemeye devam eder. Bu, şeffaflığı artırır, kullanıcı deneyimini iyileştirir ve hata ayıklamayı kolaylaştırır.
+İlerleme bildirimleri, uzun süren işlemler boyunca sunucudan istemciye gönderilen gerçek zamanlı mesajlardır. Tüm işlemin bitmesini beklemek yerine, sunucu istemciyi mevcut durum hakkında güncel tutar. Bu şeffaflığı, kullanıcı deneyimini artırır ve hata ayıklamayı kolaylaştırır.
 
 **Örnek:**
 
@@ -410,18 +410,18 @@ Bu bölüm, MCP'de ilerleme bildirimleri kavramını, neden önemli oldukların�
 
 ### Neden İlerleme Bildirimleri Kullanılır?
 
-İlerleme bildirimleri birkaç sebepten dolayı önemlidir:
+İlerleme bildirimleri birkaç sebepten gereklidir:
 
-- **Daha iyi kullanıcı deneyimi:** Kullanıcılar iş ilerledikçe güncellemeleri görür, sadece sonunda değil.
-- **Gerçek zamanlı geri bildirim:** İstemciler ilerleme çubukları veya günlükler göstererek uygulamanın yanıt verdiğini hissettirir.
-- **Daha kolay hata ayıklama ve izleme:** Geliştiriciler ve kullanıcılar sürecin nerede yavaşladığını veya takıldığını görebilir.
+- **Daha iyi kullanıcı deneyimi:** Kullanıcılar iş ilerledikçe güncelleme görür, yalnızca sonunda değil.
+- **Gerçek zamanlı geri bildirim:** İstemciler ilerleme çubuğu veya günlük gösterebilir, uygulama daha duyarlı hissedilir.
+- **Daha kolay hata ayıklama ve izleme:** Geliştiriciler ve kullanıcılar işlemin nerede yavaşladığını veya takıldığını görebilir.
 
-### İlerleme Bildirimleri Nasıl Uygulanır?
+### İlerleme Bildirimleri Nasıl Uygulanır
 
-İşte MCP'de ilerleme bildirimlerini nasıl uygulayabileceğiniz:
+MCP'de ilerleme bildirimleri şöyle uygulanabilir:
 
-- **Sunucu tarafında:** İşlenen her öğe için `ctx.info()` veya `ctx.log()` kullanarak bildirim gönderin. Bu, ana sonuç hazır olmadan önce istemciye mesaj gönderir.
-- **İstemci tarafında:** Gelen bildirimleri dinleyen ve gösteren mesaj işleyici uygulayın. Bu işleyici bildirimler ile son sonuç arasında ayrım yapar.
+- **Sunucu tarafında:** Her öğe işlendiğinde `ctx.info()` veya `ctx.log()` kullanarak bildirim gönderilir. Bu, ana sonuç hazır olmadan istemciye mesaj gönderir.
+- **İstemci tarafında:** Gelen bildirimleri dinleyip gösteren bir mesaj işleyici uygulanır. Bu işleyici bildirimler ile nihai sonuçları ayırt eder.
 
 **Sunucu Örneği:**
 
@@ -451,86 +451,25 @@ async def message_handler(message):
 
 ## Güvenlik Hususları
 
-HTTP tabanlı taşıyıcılarla MCP sunucuları uygularken, güvenlik çok önemli bir endişe haline gelir ve birden çok saldırı vektörüne ve koruma mekanizmalarına dikkatli bir şekilde odaklanmayı gerektirir.
+Herhangi bir sunucu uygulaması geliştirirken, özellikle MCP'de Streamable HTTP gibi HTTP tabanlı taşıyıcılar kullanıldığında güvenlik öncelikli olmalıdır.
+
+HTTP tabanlı taşıyıcılarla MCP sunucuları uygularken, güvenlik çok sayıda saldırı vektörüne ve koruma mekanizmasına dikkat gerektiren en önemli husustur.
 
 ### Genel Bakış
 
-MCP sunucularını HTTP üzerinden açarken güvenlik kritik önemdedir. Akış yapılabilir HTTP yeni saldırı yüzeyleri sunar ve dikkatli yapılandırma gerektirir.
-
-### Ana Noktalar
-
-- **Origin Başlığı Doğrulaması**: DNS bağlama saldırılarını önlemek için `Origin` başlığını her zaman doğrulayın.
-- **Localhost Bağlama**: Yerel geliştirme için, sunucuları herkese açık internete maruz bırakmamak için `localhost` üzerine bağlayın.
-- **Kimlik Doğrulama**: Üretim dağıtımları için kimlik doğrulama (örn. API anahtarları, OAuth) uygulayın.
-- **CORS**: Erişimi kısıtlamak için Cross-Origin Resource Sharing (CORS) politikalarını yapılandırın.
-- **HTTPS**: Trafiği şifrelemek için üretimde HTTPS kullanın.
-
-### En İyi Uygulamalar
-
-- Gelen istekleri doğrulamadan asla güvenmeyin.
-- Tüm erişim ve hataları kaydedin ve izleyin.
-- Güvenlik açıklarını gidermek için bağımlılıkları düzenli olarak güncelleyin.
-
-### Zorluklar
-
-- Güvenlik ile geliştirme kolaylığını dengelemek
-- Çeşitli istemci ortamlarıyla uyumluluğu sağlamak
-
-## SSE'den Akış Yapılabilir HTTP'ye Geçiş
-
-Şu anda Server-Sent Events (SSE) kullanan uygulamalar için, Streamable HTTP'ye geçiş MCP uygulamalarınız için geliştirilmiş yetenekler ve daha iyi uzun vadeli sürdürülebilirlik sağlar.
-
-### Neden Geçiş Yapmalı?
-
-SSE'den Streamable HTTP'ye geçiş için iki güçlü neden vardır:
-
-- Streamable HTTP, SSE'ye kıyasla daha iyi ölçeklenebilirlik, uyumluluk ve daha zengin bildirim desteği sunar.
-- Yeni MCP uygulamaları için önerilen taşıyıcıdır.
-
-### Geçiş Adımları
-
-MCP uygulamalarınızda SSE'den Streamable HTTP'ye şu şekilde geçiş yapabilirsiniz:
-
-- Sunucu kodunu `mcp.run()` içinde `transport="streamable-http"` olacak şekilde güncelleyin.
-- İstemci kodunu SSE istemcisi yerine `streamablehttp_client` kullanacak şekilde güncelleyin.
-- İstemcide bildirimleri işlemek için bir mesaj işleyici uygulayın.
-- Mevcut araçlar ve iş akışlarıyla uyumluluğu test edin.
-
-### Uyumluluğu Korumak
-
-Geçiş sürecinde mevcut SSE istemcileriyle uyumluluğu korumanız önerilir. İşte bazı stratejiler:
-
-- Hem SSE hem de Streamable HTTP'yi farklı uç noktalarda çalıştırarak destekleyebilirsiniz.
-- İstemcileri kademeli olarak yeni taşıyıcıya geçiriniz.
-
-### Zorluklar
-
-Geçiş sırasında aşağıdaki zorlukları ele aldığınızdan emin olun:
-
-- Tüm istemcilerin güncellenmesini sağlamak
-- Bildirim iletimindeki farkları yönetmek
-
-## Güvenlik Hususları
-
-Güvenlik, özellikle MCP'de Streamable HTTP gibi HTTP tabanlı taşıyıcılar kullanılırken herhangi bir sunucu uygulamasında en üst düzey öncelik olmalıdır.
-
-HTTP tabanlı taşıyıcılarla MCP sunucuları uygularken, güvenlik çok önemli bir endişe haline gelir ve birden çok saldırı vektörüne ve koruma mekanizmalarına dikkatli bir şekilde odaklanmayı gerektirir.
-
-### Genel Bakış
-
-MCP sunucularını HTTP üzerinden açarken güvenlik kritik önemdedir. Akış yapılabilir HTTP yeni saldırı yüzeyleri sunar ve dikkatli yapılandırma gerektirir.
+MCP sunucularını HTTP üzerinden erişime açarken güvenlik kritik öneme sahiptir. Streamable HTTP yeni saldırı yüzeyleri oluşturur ve dikkatli yapılandırma gerektirir.
 
 İşte bazı önemli güvenlik hususları:
 
-- **Origin Başlığı Doğrulaması**: DNS bağlama saldırılarını önlemek için `Origin` başlığını her zaman doğrulayın.
-- **Localhost Bağlama**: Yerel geliştirme için, sunucuları herkese açık internete maruz bırakmamak için `localhost` üzerine bağlayın.
-- **Kimlik Doğrulama**: Üretim dağıtımları için kimlik doğrulama (örn. API anahtarları, OAuth) uygulayın.
-- **CORS**: Erişimi kısıtlamak için Cross-Origin Resource Sharing (CORS) politikalarını yapılandırın.
+- **Origin Başlığı Doğrulama**: DNS rebinding saldırılarını önlemek için `Origin` başlığını her zaman doğrulayın.
+- **Localhost Bağlama**: Yerel geliştirme için, sunucuları `localhost`'a bağlayarak genel internete açılmasını engelleyin.
+- **Kimlik Doğrulama**: Üretim dağıtımlarında kimlik doğrulamayı (ör. API anahtarları, OAuth) uygulayın.
+- **CORS**: Erişimi kısıtlamak için Çapraz Kaynak Paylaşımı (CORS) politikalarını yapılandırın.
 - **HTTPS**: Trafiği şifrelemek için üretimde HTTPS kullanın.
 
 ### En İyi Uygulamalar
 
-Ayrıca, MCP akış sunucunuzda güvenliği uygularken aşağıdaki en iyi uygulamaları takip edin:
+Ayrıca, MCP akış sunucunuzda güvenliği sağlarken şu en iyi uygulamaları izleyin:
 
 - Gelen istekleri doğrulamadan asla güvenmeyin.
 - Tüm erişim ve hataları kaydedin ve izleyin.
@@ -540,38 +479,73 @@ Ayrıca, MCP akış sunucunuzda güvenliği uygularken aşağıdaki en iyi uygul
 
 MCP akış sunucularında güvenlik uygularken bazı zorluklarla karşılaşacaksınız:
 
-- Güvenlik ile geliştirme kolaylığını dengelemek
+- Güvenlik ile geliştirme kolaylığı arasında denge kurmak
 - Çeşitli istemci ortamlarıyla uyumluluğu sağlamak
 
-### Ödev: Kendi Akış Yapan MCP Uygulamanızı Oluşturun
+
+## SSE'den Streamable HTTP'ye Geçiş
+
+Şu anda Server-Sent Events (SSE) kullanan uygulamalar için Streamable HTTP'ye geçiş, MCP uygulamalarınızda gelişmiş yetenekler ve daha iyi uzun vadeli sürdürülebilirlik sunar.
+
+### Neden Yükseltmeli?
+
+SSE'den Streamable HTTP'ye geçiş için iki önemli neden vardır:
+
+- Streamable HTTP, SSE'ye göre daha iyi ölçeklenebilirlik, uyumluluk ve zengin bildirim desteği sunar.
+- Yeni MCP uygulamaları için önerilen taşıyıcıdır.
+
+### Geçiş Adımları
+
+MCP uygulamalarınızda SSE'den Streamable HTTP'ye nasıl geçiş yapabileceğiniz aşağıda açıklanmıştır:
+
+- **Sunucu kodunu güncelleyin**: `mcp.run()` içinde `transport="streamable-http"` kullanın.
+- **İstemci kodunu güncelleyin**: SSE istemcisi yerine `streamablehttp_client` kullanın.
+- **İstemcide bir mesaj işleyici uygulayın**: Bildirimleri işlemek için.
+- **Mevcut araçlar ve iş akışlarıyla uyumluluğu test edin**.
+
+### Uyumluluğun Sürdürülmesi
+
+Geçiş sürecinde mevcut SSE istemcileriyle uyumluluğu sürdürmek önerilir. İşte bazı stratejiler:
+
+- Farklı uç noktalarda hem SSE hem Streamable HTTP taşıyıcılarını çalıştırarak her ikisini destekleyebilirsiniz.
+- İstemcileri kademeli olarak yeni taşıyıcıya geçirin.
+
+### Zorluklar
+
+Geçiş sırasında aşağıdaki zorluklara dikkat edin:
+
+- Tüm istemcilerin güncellendiğinden emin olmak
+- Bildirim iletimindeki farklılıkları yönetmek
+
+### Ödev: Kendi MCP Akış Uygulamanızı Oluşturun
 
 **Senaryo:**
-Sunucu bir öğe listesi (örn. dosya veya belge) işlesin ve işlenen her öğe için bildirim gönderilsin. İstemci her bildirimi geldiği anda görüntülemelidir.
+Bir MCP sunucusu ve istemcisi oluşturun; sunucu bir öğe listesini (ör. dosyalar veya belgeler) işler ve işlenen her öğe için bir bildirim gönderir. İstemci ise her bildirimi varır varmaz görüntülemelidir.
 
 **Adımlar:**
 
-1. Bir liste işleyen ve her öğe için bildirim gönderen bir sunucu aracı uygulayın.
-2. Bildirimleri gerçek zamanlı göstermek için bir mesaj işleyiciye sahip bir istemci uygulayın.
-3. Sunucu ve istemciyi çalıştırarak uygulamanızı test edin ve bildirimleri gözlemleyin.
+1. Bir listeyi işleyip her öğe için bildirim gönderen bir sunucu aracı uygulayın.
+2. Bildirimleri gerçek zamanlı göstermek için mesaj işleyiciye sahip bir istemci uygulayın.
+3. Hem sunucu hem istemciyi çalıştırarak uygulamanızı test edin ve bildirimleri gözlemleyin.
 
 [Çözüm](./solution/README.md)
 
-## Daha Fazla Okuma & Sonraki Adımlar
+## Daha Fazla Okuma ve Sonrası
 
-MCP akışıyla yolculuğunuza devam etmek ve bilginizi genişletmek için, bu bölüm daha gelişmiş uygulamalar oluşturmak üzere ek kaynaklar ve önerilen sonraki adımları sağlar.
+MCP akış ile yolculuğunuza devam etmek ve bilginizi genişletmek için bu bölüm, daha gelişmiş uygulamalar oluşturmanız adına ek kaynaklar ve önerilen sonraki adımları sunar.
 
 ### Daha Fazla Okuma
 
 - [Microsoft: HTTP Akışa Giriş](https://learn.microsoft.com/aspnet/core/fundamentals/http-requests?view=aspnetcore-8.0&WT.mc_id=%3Fwt.mc_id%3DMVP_452430#streaming)
 - [Microsoft: Server-Sent Events (SSE)](https://learn.microsoft.com/azure/application-gateway/for-containers/server-sent-events?tabs=server-sent-events-gateway-api&WT.mc_id=%3Fwt.mc_id%3DMVP_452430)
 - [Microsoft: ASP.NET Core'da CORS](https://learn.microsoft.com/aspnet/core/security/cors?view=aspnetcore-8.0&WT.mc_id=%3Fwt.mc_id%3DMVP_452430)
-- [Python requests: Akışlı İstekler](https://requests.readthedocs.io/en/latest/user/advanced/#streaming-requests)
+- [Python requests: Akış İstekleri](https://requests.readthedocs.io/en/latest/user/advanced/#streaming-requests)
 
 ### Sonraki Adımlar
 
 - Gerçek zamanlı analiz, sohbet veya ortak düzenleme için akış kullanan daha gelişmiş MCP araçları geliştirmeyi deneyin.
-- Canlı kullanıcı arayüzü güncellemeleri için MCP akışını frontend çerçeveleriyle (React, Vue, vb.) entegre etmeyi keşfedin.
-- Sonraki: [VSCode için AI Araç Kiti Kullanımı](../07-aitk/README.md)
+- Canlı UI güncellemeleri için MCP akışını frontend frameworkleri (React, Vue vb.) ile entegre etmeyi keşfedin.
+- Sonraki: [VSCode İçin AI Araç Seti Kullanımı](../07-aitk/README.md)
 
 ---
 

@@ -1,117 +1,117 @@
-# Gerçek Zamanlı Web Araması için Model Bağlam Protokolü
+# Gerçek Zamanlı Web Araması İçin Model Bağlam Protokolü
 
 ## Genel Bakış
 
-Gerçek zamanlı web araması, uygulamaların ilgili ve zamanında yanıtlar sunabilmek için internetteki güncel bilgilere anında erişmesi gereken günümüzün bilgi odaklı ortamında vazgeçilmez hale gelmiştir. Model Bağlam Protokolü (MCP), bu gerçek zamanlı arama süreçlerini optimize etmede önemli bir ilerlemeyi temsil eder; arama verimliliğini artırır, bağlamsal bütünlüğü korur ve genel sistem performansını geliştirir.
+Gerçek zamanlı web araması, uygulamaların ilgili ve zamanında yanıtlar sağlayabilmesi için internette güncel bilgilere anında erişim ihtiyacının arttığı günümüz bilgi odaklı ortamında vazgeçilmez hale gelmiştir. Model Bağlam Protokolü (MCP), bu gerçek zamanlı arama süreçlerini optimize etmede önemli bir ilerleme temsil eder; arama verimliliğini artırır, bağlamsal bütünlüğü korur ve genel sistem performansını iyileştirir.
 
-Bu modül, MCP'nin AI modelleri, arama motorları ve uygulamalar arasında bağlam yönetimine standart bir yaklaşım sunarak gerçek zamanlı web aramasını nasıl dönüştürdüğünü keşfetmektedir.
+Bu modül, MCP'nin AI modelleri, arama motorları ve uygulamalar arasında bağlam yönetimine standart bir yaklaşım sunarak gerçek zamanlı web aramasını nasıl dönüştürdüğünü inceler.
 
 ### Öğrenecekleriniz
 
 Bu kapsamlı rehberde şunları keşfedeceksiniz:
 
 - MCP'nin AI modelleri ile gerçek zamanlı web arama yetenekleri arasında nasıl kesintisiz bir köprü kurduğunu
-- MCP ile verimli ve ölçeklenebilir arama çözümleri uygulamak için mimari kalıpları
-- Birden fazla sorgu ve etkileşim boyunca arama bağlamını koruma tekniklerini
+- MCP ile verimli ve ölçeklenebilir arama çözümlerinin uygulanmasına yönelik mimari desenleri
+- Birden çok sorgu ve etkileşimde arama bağlamını koruma tekniklerini
 - Çeşitli arama senaryoları için Python ve JavaScript'te pratik kod uygulamalarını
-- MCP destekli arama sistemlerinde alaka, yenilik ve performans arasında denge kurma yöntemlerini
+- MCP destekli arama sistemlerinde alaka, güncellik ve performans arasında denge kurma yöntemlerini
 
-## Gerçek Zamanlı Web Aramasına Giriş
+## Gerçek Zamanlı Web Aramaya Giriş
 
-Gerçek zamanlı web araması, web tabanlı bilgilerin yayınlanır veya güncellenir güncellenmez sürekli sorgulanmasını, işlenmesini ve analiz edilmesini sağlayan teknolojik bir yaklaşımdır; böylece sistemler taze ve alakalı bilgileri minimal gecikmeyle sunabilir. Saatler veya günler önce indekslenmiş verilerle çalışan geleneksel arama sistemlerinden farklı olarak, gerçek zamanlı arama webdeki canlı verileri işleyerek çevrimiçi içeriğin mevcut durumunu yansıtan bilgiler sağlar.
+Gerçek zamanlı web araması, web tabanlı bilgilerin yayımlandığı veya güncellendiği anda sürekli sorgulanmasını, işlenmesini ve analiz edilmesini sağlayan teknolojik bir yaklaşımdır; böylece sistemler en az gecikmeyle taze ve ilgili bilgiler sunabilir. Saatler veya günler öncesine ait indekslenmiş verilerle çalışan geleneksel arama sistemlerinden farklı olarak, gerçek zamanlı arama webden canlı verileri işler ve çevrimiçi içeriğin mevcut durumunu yansıtan bilgiler sağlar.
 
-### Gerçek Zamanlı Web Aramasının Temel Kavramları:
+### Gerçek Zamanlı Web Aramanın Temel Kavramları:
 
-- **Sürekli Sorgu İşleme**: Arama sorguları sürekli güncellenen veri kaynaklarına karşı işlenir
-- **Yeniliği Önceliklendirme**: Sistemler taze bilgiyi öne çıkaracak şekilde tasarlanır
-- **Alaka Dengesi**: Alaka ve yenilik arasında denge kurmak
+- **Sürekli Sorgu İşleme**: Arama sorguları sürekli güncellenen veri kaynakları üzerinde işlenir
+- **Güncellik Önceliği**: Sistemler taze bilgiyi önceliklendirir
+- **Alaka Dengeleme**: Alaka ve güncellik arasında denge sağlanması
 - **Ölçeklenebilir Mimari**: Sistemler değişken sorgu yükleri ve veri hacimlerini yönetmelidir
-- **Bağlamsal Anlayış**: Anlamlı sonuçlar için arama yinelemeleri boyunca kullanıcı bağlamının korunması önemlidir
-- **Dinamik Sorgu Yeniden Biçimlendirme**: Bağlama ve önceki sonuçlara göre sorguların uyarlanması
-- **Çok Kaynaklı Entegrasyon**: Sonuçların birden fazla arama sağlayıcısı ve web kaynağından birleştirilmesi
-- **Anlamsal Anlayış**: Sorguların ve içeriğin sadece anahtar kelimeler değil, anlam bazında işlenmesi
+- **Bağlamsal Anlayış**: Arama yinelemeleri arasında kullanıcı bağlamının korunması anlamlı sonuçlar için kritik
+- **Dinamik Sorgu Yeniden Formülasyonu**: Bağlam ve önceki sonuçlara dayanarak sorguların uyarlanması
+- **Çok Kaynaklı Entegrasyon**: Birden fazla arama sağlayıcı ve web kaynağından gelen sonuçların birleştirilmesi
+- **Anlamsal Anlayış**: Anahtar kelimelerin ötesinde anlam temelinde sorgu ve içerik işleme
 - **Gerçek Zamanlı Sıralama**: Yeni bilgiler geldikçe sonuç sıralamalarının sürekli ayarlanması
 
 ### Model Bağlam Protokolü ve Gerçek Zamanlı Web Araması
 
-Model Bağlam Protokolü (MCP), gerçek zamanlı web arama ortamlarında kritik bazı zorluklara çözüm getirir:
+Model Bağlam Protokolü (MCP), gerçek zamanlı web arama ortamlarındaki birkaç kritik zorluğu ele alır:
 
-1. **Arama Bağlamının Korunması**: MCP, bağlamın dağıtılmış arama bileşenlerinde nasıl korunduğunu standartlaştırır ve böylece AI modelleri ile işleme düğümlerinin ilgili sorgu geçmişi ve kullanıcı tercihlerine erişimini sağlar.
+1. **Arama Bağlamının Korunması**: MCP, bağlamın dağıtık arama bileşenleri arasında nasıl korunduğunu standartlaştırır; böylece AI modelleri ve işlem düğümleri ilgili sorgu geçmişi ve kullanıcı tercihlerine erişebilir.
 
-2. **Verimli Sorgu Yönetimi**: Bağlamın iletiminde yapılandırılmış mekanizmalar sağlayarak, her arama yinelemesinde bağlamın tekrar edilme yükünü azaltır.
+2. **Verimli Sorgu Yönetimi**: MCP, bağlam iletimine yapılandırılmış mekanizmalar sağlayarak her arama yinelemesinde bağlamın tekrarlanmasının getirdiği yükü azaltır.
 
-3. **Birlikte Çalışabilirlik**: MCP, farklı arama teknolojileri ve AI modelleri arasında bağlam paylaşımı için ortak bir dil yaratarak daha esnek ve genişletilebilir mimariler mümkün kılar.
+3. **Birlikte Çalışabilirlik**: MCP, çeşitli arama teknolojileri ve AI modelleri arasında bağlam paylaşımı için ortak bir dil oluşturur; böylece daha esnek ve genişletilebilir mimariler mümkün olur.
 
-4. **Arama Optimizasyonlu Bağlam**: MCP uygulamaları, daha etkili arama için hangi bağlam öğelerinin en alakalı olduğunu önceliklendirebilir, performans ve doğruluk için optimizasyon sağlar.
+4. **Aramaya Özel Bağlam**: MCP uygulamaları, etkili arama için en alakalı bağlam öğelerinin önceliklendirilmesini sağlayarak performans ve doğruluk açısından optimizasyon yapabilir.
 
-5. **Uyarlanabilir Arama İşleme**: MCP aracılığıyla doğru bağlam yönetimi sayesinde, arama sistemleri kullanıcı ihtiyaçları ve bilgi ortamındaki değişimlere dinamik olarak uyum sağlayabilir.
+5. **Uyarlanabilir Arama İşleme**: MCP vasıtasıyla doğru bağlam yönetimi ile, arama sistemleri gelişen kullanıcı ihtiyaçları ve bilgi ortamlarına göre işleme süreçlerini dinamik şekilde ayarlayabilir.
 
-Haber toplama uygulamalarından araştırma asistanlarına kadar modern uygulamalarda, MCP’nin web arama teknolojileriyle entegrasyonu daha akıllı, bağlam farkında aramalar sunar ve kullanıcı etkileşimleri devam ettikçe artan alaka düzeyi sağlar.
+Haber toplanmasından araştırma asistanlarına kadar modern uygulamalarda, MCP'nin web arama teknolojileriyle entegrasyonu, kullanıcı etkileşimleri devam ettikçe giderek daha ilgili sonuçlar verebilen, daha akıllı ve bağlam farkındalığı olan arama sağlar.
 
 ## Öğrenme Hedefleri
 
-Bu dersin sonunda:
+Bu dersin sonunda şunları başarabileceksiniz:
 
-- Gerçek zamanlı web aramasının temellerini ve modern uygulamalardaki zorluklarını anlayabileceksiniz
-- Model Bağlam Protokolü (MCP)’nün gerçek zamanlı web arama yeteneklerini nasıl geliştirdiğini açıklayabileceksiniz
-- Popüler çerçeveler ve API'lar kullanarak MCP tabanlı arama çözümleri uygulayabileceksiniz
-- MCP ile ölçeklenebilir, yüksek performanslı arama mimarileri tasarlayıp kurabileceksiniz
-- MCP kavramlarını anlamsal arama, araştırma yardımı ve AI destekli gezinme gibi çeşitli kullanım durumlarına uygulayabileceksiniz
-- MCP tabanlı arama teknolojilerinde ortaya çıkan trendleri ve gelecek yenilikleri değerlendirebileceksiniz
-- Kullanıcı etkileşimlerinden öğrenen bağlam farkında arama sistemleri geliştirebileceksiniz
-- Standart MCP protokolleri kullanarak AI asistanlarına web arama özellikleri entegre edebileceksiniz
-- Bağlama dayalı olarak sonuçları adım adım iyileştiren çok aşamalı arama süreçleri oluşturabileceksiniz
-- Kapsamlı bağlam farkındalığını korurken arama performansını optimize edebileceksiniz
+- Gerçek zamanlı web aramanın temellerini ve modern uygulamalardaki zorluklarını anlamak
+- Model Bağlam Protokolü'nün (MCP) gerçek zamanlı web arama yeteneklerini nasıl geliştirdiğini açıklamak
+- Popüler frameworkler ve API'lerle MCP tabanlı arama çözümleri uygulamak
+- MCP ile ölçeklenebilir, yüksek performanslı arama mimarileri tasarlamak ve dağıtmak
+- Semantik arama, araştırma yardımı ve AI destekli gezinme gibi çeşitli kullanım durumlarına MCP kavramlarını uygulamak
+- MCP tabanlı arama teknolojilerindeki ortaya çıkan trendleri ve gelecekteki yenilikleri değerlendirmek
+- Kullanıcı etkileşimlerinden öğrenen bağlam farkındalığına sahip arama sistemleri geliştirmek
+- Standartlaştırılmış MCP protokolleri kullanarak web arama yeteneklerini AI asistanlarına entegre etmek
+- Bağlama dayalı olarak aşamalı şekilde sonuçları iyileştiren çok aşamalı arama boru hatları oluşturmak
+- Kapsamlı bağlam farkındalığını koruyarak arama performansını optimize etmek
 
 ### Tanım ve Önemi
 
-Gerçek zamanlı web araması, web tabanlı bilgilerin minimal gecikmeyle sürekli sorgulanması, alınması ve sunulmasını kapsar. Düzenli olarak webi tarayıp indeksleyen geleneksel arama motorlarının aksine, gerçek zamanlı arama bilgileri ortaya çıktıkça görünür hale getirerek en güncel içeriğe anında erişim sağlar.
+Gerçek zamanlı web arama, web tabanlı bilgilerin minimum gecikmeyle sürekli sorgulanması, alınması ve sunulmasını içerir. Periyodik olarak web'i tarayan ve indeksleyen geleneksel arama motorlarının aksine, gerçek zamanlı arama bilgi mevcut oldukça onu kullanıcıya sunmayı hedefler; böylece en güncel içeriğe anında erişim sağlanır.
 
-Gerçek zamanlı web aramasının temel özellikleri şunlardır:
+Gerçek zamanlı web aramanın temel özellikleri şunlardır:
 
-- **Tazelik**: Son içerik ve güncellemelerin önceliklendirilmesi
-- **Sürekli İşleme**: Yeni bilgiler için sürekli izleme
-- **Sorgu Uyarlaması**: Bağlam ve geri bildirimlere dayanarak arama sorgularını iyileştirme
-- **Anında Teslimat**: Arama sonuçlarını minimal gecikmeyle sağlama
-- **Bağlam Tutma**: Önceki sorguları baz alarak alaka düzeyini artırma
+- **Tazelik**: Yeni içerik ve güncellemelerin önceliklendirilmesi
+- **Sürekli İşleme**: Yeni bilgilerin sürekli izlenmesi
+- **Sorgu Uyarlaması**: Bağlam ve geribildirim temelinde arama sorgularının iyileştirilmesi
+- **Anında Sunum**: Arama sonuçlarının minimum gecikmeyle sağlanması
+- **Bağlam Koruma**: Geliştirilmiş alaka için önceki sorgulara dayalı inşa edilmesi
 
-### Geleneksel Web Arama Zorlukları
+### Geleneksel Web Aramasındaki Zorluklar
 
-Geleneksel web arama yöntemleri gerçek zamanlı senaryolarda aşağıdaki sınırlamalarla karşılaşır:
+Geleneksel web arama yöntemleri, gerçek zamanlı senaryolarda çeşitli sınırlamalarla karşılaşır:
 
-1. **Bağlam Parçalanması**: Birden çok sorgu arasında arama bağlamını korumakta zorluk
-2. **Bilgi Tazeliği**: En güncel bilgilere erişim ve önceliklendirme sorunları
-3. **Entegrasyon Karmaşıklığı**: Arama sistemleri ve uygulamalar arasında birlikte çalışabilirlik problemleri
-4. **Gecikme Sorunları**: Kapsamlı arama ile yanıt süresi gereksinimleri arasında denge kuramama
-5. **Alaka Ayarı**: Yeniliği önceliklendirirken doğruluk ve alakayı sağlama zorlukları
+1. **Bağlam Parçalanması**: Birden çok sorgu arasında arama bağlamını korumak zordur
+2. **Bilgi Tazeliği**: En güncel bilgilere erişim ve önceliklendirmede zorluklar
+3. **Entegrasyon Karmaşıklığı**: Arama sistemleri ve uygulamalar arasındaki birlikte çalışabilirlik sorunları
+4. **Gecikme Sorunları**: Kapsamlı arama ile yanıt süresi gereksinimleri arasında denge kurulması
+5. **Alaka Ayarı**: Güncelliği önceliklendirirken doğruluk ve alakanın sağlanması
 
-## Model Bağlam Protokolü (MCP) Arama İçin Anlama
+## Arama İçin Model Bağlam Protokolü (MCP) Anlayışı
 
-### MCP Nedir Arama Bağlamlarında?
+### MCP, Arama Bağlamlarında Nedir?
 
-Model Bağlam Protokolü (MCP), AI modelleri ile uygulamalar arasında verimli etkileşimi kolaylaştırmak için tasarlanmış standart bir iletişim protokolüdür. Gerçek zamanlı web arama bağlamında MCP, şu çerçeveyi sağlar:
+Model Bağlam Protokolü (MCP), AI modelleri ve uygulamalar arasında verimli etkileşim sağlamak için tasarlanmış standartlaştırılmış bir iletişim protokolüdür. Gerçek zamanlı web araması bağlamında MCP, şunları sağlar:
 
-- Sorgu dizileri boyunca arama bağlamını koruma
-- Arama sorgusu ve sonuç formatlarını standartlaştırma
-- Arama parametreleri ve sonuçlarının aktarımını optimize etme
-- Model ile arama motoru arasında iletişimi iyileştirme
+- Sorgu dizileri boyunca arama bağlamının korunmasını
+- Arama sorgusu ve sonuç formatlarının standartlaştırılmasını
+- Arama parametreleri ve sonuçlarının iletimini optimize etmeyi
+- Model ile arama motoru arasında iletişimin iyileştirilmesini
 
 ### Temel Bileşenler ve Mimari
 
-Gerçek zamanlı web araması için MCP mimarisi şu ana bileşenlerden oluşur:
+Gerçek zamanlı web araması için MCP mimarisi birkaç önemli bileşenden oluşur:
 
-1. **Sorgu Bağlam Yöneticileri**: Birden fazla sorgu boyunca arama bağlamını yönetir ve korur
-2. **Arama İşleyicileri**: Bağlam farkında tekniklerle gelen arama isteklerini işler
-3. **Protokol Adaptörleri**: Farklı arama API’leri arasında bağlamı koruyarak dönüştürme yapar
-4. **Bağlam Deposu**: Arama geçmişi ve tercihleri verimli şekilde depolar ve geri getirir
-5. **Arama Bağlayıcıları**: Çeşitli arama motorları ve web API’lerine bağlantı sağlar
+1. **Sorgu Bağlam Yöneticileri**: Birden çok sorgu arasında arama bağlamını yönetir ve korur
+2. **Arama İşleyicileri**: Bağlam farkındalığı ile gelen arama taleplerini işler
+3. **Protokol Adaptörleri**: Farklı arama API’leri arasında bağlamı koruyarak dönüşüm yapar
+4. **Bağlam Deposu**: Arama geçmişi ve tercihlerini verimli şekilde depolar ve geri çağırır
+5. **Arama Bağlayıcıları**: Çeşitli arama motorları ve web API’lerine bağlanır
 
 ```mermaid
 graph TD
     subgraph "Veri Kaynakları"
         Web[Web İçeriği]
-        APIs[Dış API'ler]
-        DB[Bilişim Tabanları]
+        APIs[Harici API'ler]
+        DB[Bilgi Tabanları]
         News[Haber Akışları]
     end
 
@@ -130,11 +130,11 @@ graph TD
         Rank[Sıralama Sistemi]
     end
 
-    subgraph "Uygulamalar & Servisler"
+    subgraph "Uygulamalar & Hizmetler"
         RA[Araştırma Asistanı]
         Alerts[Uyarı Sistemleri]
-        KB[Bilişim Tabanı]
-        API[API Servisleri]
+        KB[Bilgi Tabanı]
+        API[API Hizmetleri]
     end
 
     Web -->|İçerik| SC
@@ -143,9 +143,9 @@ graph TD
     News -->|Güncellemeler| SC
     
     SC -->|Ham Sonuçlar| PA
-    PA -->|Normalize Edilmiş Sonuçlar| CH
-    CH <-->|Bağlam İşlemleri| CS
-    CH -->|Bağlam Zenginleştirilmiş Sonuçlar| SP
+    PA -->|Normalleştirilmiş Sonuçlar| CH
+    CH <-->|Bağlam Operasyonları| CS
+    CH -->|Bağlamla Zenginleştirilmiş Sonuçlar| SP
     SP -->|İşlenmiş Sonuçlar| RE
     SP -->|Özellikler| ML
     SP -->|Metin| NLP
@@ -155,17 +155,17 @@ graph TD
     NLP -->|Varlıklar & İlişkiler| Rank
     
     Rank -->|Nihai Sonuçlar| RA
-    ML -->|Öngörüler| Alerts
+    ML -->|İçgörüler| Alerts
     NLP -->|Yapılandırılmış Veri| KB
     
-    RA -->|Araştırma| Users((Kullanıcılar))
+    RA -->|Araştırma| Users((Users))
     Alerts -->|Bildirimler| Users
     KB <-->|Bilgi Erişimi| API
-    
-    classDef sources fill:#f9f,stroke:#333,stroke-width:2px
-    classDef mcp fill:#bbf,stroke:#333,stroke-width:2px
-    classDef processing fill:#bfb,stroke:#333,stroke-width:2px
-    classDef apps fill:#fbb,stroke:#333,stroke-width:2px
+
+    classDef sources fill:#f9f,stroke:#333,stroke-width:2px,color:#4a004a
+    classDef mcp fill:#bbf,stroke:#333,stroke-width:2px,color:#00004a
+    classDef processing fill:#bfb,stroke:#333,stroke-width:2px,color:#003300
+    classDef apps fill:#fbb,stroke:#333,stroke-width:2px,color:#4a0000
     
     class Web,APIs,DB,News sources
     class SC,PA,CH,SP,CS mcp
@@ -173,42 +173,43 @@ graph TD
     class RA,Alerts,KB,API apps
 ```
 
-### MCP Gerçek Zamanlı Web Aramasını Nasıl İyileştirir?
+### MCP Gerçek Zamanlı Web Aramasını Nasıl Geliştirir
 
-MCP, geleneksel web arama zorluklarını şu yollarla aşar:
+MCP, geleneksel web arama zorluklarını şu şekillerde ele alır:
 
-- **Bağlamsal Süreklilik**: Arama oturumu boyunca sorgular arasındaki ilişkileri korur
-- **Optimizasyonlu Aktarım**: Akıllı bağlam yönetimiyle arama parametrelerinde tekrarları azaltır
-- **Standartlaştırılmış Arayüzler**: Arama bileşenleri için tutarlı API'lar sunar
-- **Azaltılmış Gecikme**: Verimli bağlam işleme ile işlem yükünü minimuma indirir
-- **Gelişmiş Alaka**: Birden çok sorguda kullanıcı niyetini koruyarak arama alakasını artırır
+- **Bağlamsal Süreklilik**: Tüm arama oturumu boyunca sorgular arası ilişkilerin korunması
+- **Optimize İletim**: Akıllı bağlam yönetimi ile arama parametrelerindeki tekrarların azaltılması
+- **Standartlaştırılmış Arayüzler**: Arama bileşenleri için tutarlı API’ler sağlanması
+- **Azaltılmış Gecikme**: Verimli bağlam işleme ile işlem yükünün minimize edilmesi
+- **Gelişmiş Alaka**: Birden çok sorguda kullanıcı niyetinin korunması ile arama alakasının artırılması
 
 ## Entegrasyon ve Uygulama
 
-Gerçek zamanlı web arama sistemleri, hem performansı hem de bağlamsal bütünlüğü korumak için dikkatli mimari tasarım ve uygulama gerektirir. Model Bağlam Protokolü, AI modelleri ve arama teknolojilerinin entegrasyonuna standart bir yaklaşım sunarak daha sofistike, bağlam farkında arama süreçleri oluşturulmasını sağlar.
+Gerçek zamanlı web arama sistemleri, hem performansı hem de bağlamsal bütünlüğü korumak için dikkatli mimari tasarım ve uygulama gerektirir. Model Bağlam Protokolü, AI modelleri ve arama teknolojilerinin entegrasyonunda standart bir yaklaşım sunar; böylece daha sofistike ve bağlam farkındalığına sahip arama boru hatları mümkündür.
 
 ### MCP Entegrasyonunun Arama Mimarilerindeki Genel Görünümü
 
-Gerçek zamanlı web arama ortamlarında MCP uygulaması birkaç temel hususu içerir:
+Gerçek zamanlı web arama ortamlarında MCP uygulaması birkaç ana noktayı içerir:
 
-1. **Arama Bağlamının Serileştirilmesi**: MCP, arama isteklerinde bağlamsal bilgiyi kodlamak için verimli mekanizmalar sunar; temel bağlam, işleme hattı boyunca sorguyu takip eder. Bu, arama ile ilgili meta veriler için optimize edilmiş standart serileştirme formatlarını içerir.
+1. **Arama Bağlamının Serileştirilmesi**: MCP, bağlamsal bilgilerin arama istekleri içine verimli biçimde kodlanması için mekanizmalar sağlar; böylece temel bağlam sorgu boyunca işleme hattını takip eder. Standartlaştırılmış serileştirme formatları arama ile ilgili meta veriler için optimize edilmiştir.
 
-2. **Durum Bilinçli Arama İşleme**: MCP, arama yinelemeleri boyunca tutarlı bağlam temsili sağlayarak daha akıllı durumlu işlemi mümkün kılar. Bu, bağlam iyileştirmesinin sonuçları geliştirdiği çok aşamalı arama süreçlerinde özellikle değerlidir.
+2. **Durumlu Arama İşlemleri**: MCP, arama yinelemeleri arasında tutarlı bağlam temsili sağlayarak daha akıllı durum takibi yapılmasına olanak tanır. Bu, bağlam iyileştirmesinin sonuçları geliştirdiği çok aşamalı arama boru hatlarında özellikle değerlidir.
 
-3. **Sorgu Genişletme ve İyileştirme**: MCP uygulamaları, birikmiş bağlama dayalı gelişmiş sorgu genişletme ve iyileştirme sağlar; böylece arama oturumu ilerledikçe sonuçlar daha alakalı olur.
+3. **Sorgu Genişletme ve İyileştirme**: MCP uygulamaları, biriken bağlama dayanarak gelişmiş sorgu genişletme ve iyileştirme imkanı sunarak arama oturumu ilerledikçe daha ilgili sonuçlar oluşturur.
 
-4. **Sonuç Önbellekleme ve Önceliklendirme**: MCP bağlam işleme standardıyla, bileşenlerin gelişen arama bağlamına göre sonuç önbellekleme ve önceliklendirmeyi yönetmesi kolaylaşır.
+4. **Sonuç Önbellekleme ve Önceliklendirme**: MCP, bağlam işleme standardizasyonu ile sonuç önbellekleme ve önceliklendirmeyi yönetmede yardımcı olur; bileşenlerin gelişen arama bağlamına göre uyum sağlamasına izin verir.
 
-5. **Arama Federasyonu ve Birleştirme**: MCP, çoklu arka uçlar arasında yapılandırılmış arama bağlamı temsilleri sağlayarak daha anlamlı kaynaklar arası sonuç birleşimini destekler.
+5. **Arama Federasyonu ve Birleştirme**: MCP, arama bağlamının yapılandırılmış temsillerini sağlayarak farklı backendlerdeki aramaların daha sofistike federasyonuna olanak tanır ve çeşitli kaynaklardan gelen sonuçların anlamlı şekilde birleştirilmesini mümkün kılar.
 
-MCP’nin çeşitli arama teknolojilerinde uygulanması, bağlam yönetimi için tek birleştirilmiş yaklaşım yaratarak özel entegrasyon kodu ihtiyacını azaltırken, arama sorguları geliştikçe anlamlı bağlam korumasını artırır.
+MCP'nin çeşitli arama teknolojileri genelinde uygulanması, bağlam yönetimi için birleşik bir yaklaşım yaratır; böylece özel entegrasyon kodu ihtiyacını azaltırken arama sorguları geliştikçe anlamlı bağlamın korunma yeteneğini artırır.
 
-### MCP’nin Çeşitli Web Arama Uygulamaları
+### MCP'nin Farklı Web Arama Uygulamalarındaki Yeri
 
-Aşağıdaki örnekler, JSON-RPC tabanlı ve farklı taşıma mekanizmalarına sahip mevcut MCP spesifikasyonunu takip eder. Kod, özel arama entegrasyonlarının MCP protokolleriyle tam uyumluluk içinde nasıl yapılabileceğini göstermektedir.
+Bu örnekler, JSON-RPC tabanlı ve ayrı taşıma mekanizmalarına sahip mevcut MCP spesifikasyonunu takip eder. Kod, tam MCP protokolü uyumluluğunu korurken özelleştirilmiş arama entegrasyonlarının nasıl yapılabileceğini gösterir.
+
 
 <details>
-<summary>Genel Arama API’si ile Python Uygulaması</summary>
+<summary>Genel Arama API'si ile Python Uygulaması</summary>
 
 ```python
 import asyncio
@@ -224,7 +225,7 @@ from mcp.client.streamable_http import streamablehttp_client
 from mcp.types import TextContent, CreateMessageRequestParams, CreateMessageResult
 from mcp.server.fastmcp import FastMCP
 
-# Web araması için bir FastMCP sunucusu oluştur
+# Web araması için FastMCP sunucusu oluştur
 search_server = FastMCP("WebSearch")
 
 # Web arama işlemlerini yönetmek için sınıf
@@ -301,7 +302,7 @@ search_handler = WebSearchHandler(
     api_key="your-api-key-here"
 )
 
-# Arama yöneticisini yönetmek için yaşam döngüsü ayarla
+# Arama yöneticisini yönetmek için yaşam süresi ayarla
 @asyncio.asynccontextmanager
 async def app_lifespan(server: FastMCP):
     """Manage application lifecycle"""
@@ -311,7 +312,7 @@ async def app_lifespan(server: FastMCP):
     finally:
         await search_handler.close()
 
-# Sunucu için yaşam döngüsünü belirle
+# Sunucu için yaşam süresini ayarla
 search_server = FastMCP("WebSearch", lifespan=app_lifespan)
 
 # Bir web arama aracı kaydet
@@ -348,7 +349,7 @@ async def web_search(query: str, max_results: int = 5,
 
 # Örnek istemci kullanımı
 async def client_example():
-    # Streamable HTTP taşıma kullanarak arama sunucusuna bağlan
+    # Streamable HTTP taşımayı kullanarak arama sunucusuna bağlan
     async with streamablehttp_client("http://localhost:8000/mcp") as (read, write, _):
         async with ClientSession(read, write) as session:
             # Bağlantıyı başlat
@@ -367,9 +368,9 @@ async def client_example():
             
             print(f"Search results: {search_results}")
 
-# Sunucu çalışma örneği
+# Sunucu çalıştırma örneği
 if __name__ == "__main__":
-    # Streamable HTTP taşıma ile sunucuyu çalıştır
+    # Streamable HTTP taşımayla sunucuyu çalıştır
     search_server.run(transport="streamable-http")
 ```
 </details> 
@@ -377,19 +378,20 @@ if __name__ == "__main__":
 <details>
 <summary>Tarayıcı Tabanlı Arama ile JavaScript Uygulaması</summary>
 
+
 ```javascript
 // Web araması için MCP sunucu uygulaması
 import { McpServer, ResourceTemplate } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import { z } from 'zod';
 
-// Web araması için bir MCP sunucu oluştur
+// Web araması için bir MCP sunucusu oluştur
 const searchServer = new McpServer({
     name: "BrowserSearch",
     description: "A server that provides web search capabilities"
 });
 
-// Arama servisi sınıfı
+// Arama servis sınıfı
 class SearchService {
     constructor(searchApiUrl, apiKey) {
         this.searchApiUrl = searchApiUrl;
@@ -435,7 +437,7 @@ class SearchService {
             
             const searchData = await response.json();
             
-            // API'ye özgü yanıtı standart bir formata dönüştür
+            // API'ye özgü yanıtı standart formata dönüştür
             const results = searchData.results?.map(item => ({
                 title: item.title || '',
                 url: item.url || '',
@@ -462,7 +464,7 @@ const searchService = new SearchService(
     'your-api-key-here'
 );
 
-// Sunucu için bağlam sağlayıcıyı ayarla
+// Sunucu için bağlam sağlayıcısını ayarla
 searchServer.setContextProvider(() => {
     return {
         searchService
@@ -540,7 +542,7 @@ async function connectToSearchServer() {
     
     console.log('Search results:', searchResults);
     
-    // Temizleme
+    // Temizlik işlemi
     await client.disconnect();
 }
 
@@ -549,56 +551,59 @@ const transport = new StreamableHTTPServerTransport();
 await searchServer.connect(transport);
 console.log('Search server running at http://localhost:8000/mcp');
 
-// Ayrı bir süreçte veya sunucu başlatıldıktan sonra
+// Ayrı bir işlemde veya sunucu başlatıldıktan sonra
 // connectToSearchServer().catch(console.error);
 ```
 </details> 
 
+
+
+
 ## Kod Örnekleri Uyarısı
 
-> **Önemli Not**: Aşağıdaki kod örnekleri Model Bağlam Protokolü (MCP) ile web arama işlevselliğinin entegrasyonunu göstermektedir. Resmi MCP SDK’larının kalıplarını ve yapısını takip etseler de, eğitim amacıyla basitleştirilmişlerdir.
+> **Önemli Not**: Aşağıdaki kod örnekleri Model Bağlam Protokolü (MCP) ile web arama işlevselliğinin entegrasyonunu göstermektedir. Resmi MCP SDK'larının desen ve yapısını takip etmekle birlikte, eğitim amaçlı sadeleştirilmiştir.
 > 
-> Bu örnekler şunları göstermektedir:
+> Bu örnekler şunları içermektedir:
 > 
-> 1. **Python Uygulaması**: Harici bir arama API’sine bağlanan ve web arama aracı sunan FastMCP sunucu uygulaması. Resmi MCP Python SDK ([github.com/modelcontextprotocol/python-sdk](https://github.com/modelcontextprotocol/python-sdk)) kalıplarına uygun olarak yaşam döngüsü yönetimi, bağlam işleme ve araç uygulaması içerir. Sunucu, daha eski SSE taşımasını geride bırakan önerilen Streamable HTTP taşımasını kullanmaktadır.
+> 1. **Python Uygulaması**: Dış bir arama API'sine bağlanan web arama aracı sağlayan bir FastMCP sunucu uygulaması. Bu örnek, [resmi MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) desenlerini takip ederek doğru yaşam döngüsü yönetimi, bağlam işleme ve araç uygulaması içerir. Sunucu, eski SSE taşımanın yerini alan önerilen Streamable HTTP taşımasını kullanır.
 > 
-> 2. **JavaScript Uygulaması**: Resmi MCP TypeScript SDK’dan ([github.com/modelcontextprotocol/typescript-sdk](https://github.com/modelcontextprotocol/typescript-sdk)) FastMCP kalıbı kullanılarak yazılmış, uygun araç tanımları ve istemci bağlantıları içeren TypeScript/JavaScript uygulaması. Oturum yönetimi ve bağlam koruma için en güncel önerilen kalıpları takip eder.
+> 2. **JavaScript Uygulaması**: [resmi MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) içindeki FastMCP desenini kullanarak düzgün araç tanımları ve istemci bağlantılarına sahip bir arama sunucusu oluşturan TypeScript/JavaScript uygulaması. En güncel oturum yönetimi ve bağlam koruma desenlerini takip eder.
 > 
-> Bu örnekler, üretim kullanımı için ek hata yönetimi, kimlik doğrulaması ve özel API entegrasyonu gerektirir. Gösterilen arama API uç noktaları (`https://api.search-service.example/search`) yer tutucudur ve gerçek arama servis uç noktaları ile değiştirilmelidir.
+> Bu örnekler, üretim kullanımı için ek hata yönetimi, kimlik doğrulama ve özel API entegrasyon kodları gerektirir. Gösterilen arama API uç noktaları (`https://api.search-service.example/search`) yer tutucudur ve gerçek arama hizmeti uç noktaları ile değiştirilmelidir.
 > 
-> Tam uygulama detayları ve en güncel yaklaşımlar için lütfen [resmi MCP spesifikasyonu](https://spec.modelcontextprotocol.io/) ve SDK dökümantasyonuna bakınız.
+> Tam uygulama detayları ve en güncel yaklaşımlar için lütfen [resmi MCP spesifikasyonuna](https://spec.modelcontextprotocol.io/) ve SDK belgelerine bakınız.
 
 ## Temel Kavramlar
 
 ### Model Bağlam Protokolü (MCP) Çerçevesi
 
-Temelinde, Model Bağlam Protokolü AI modelleri, uygulamalar ve servislerin bağlam alışverişi yapması için standartlaştırılmış bir yol sağlar. Gerçek zamanlı web aramada bu çerçeve, tutarlı ve çok aşamalı arama deneyimleri oluşturmak için gereklidir. Temel bileşenler şunlardır:
+Temelde, Model Bağlam Protokolü AI modelleri, uygulamalar ve servisler arasında bağlam alışverişi için standart bir yol sağlar. Gerçek zamanlı web aramasında, bu çerçeve tutarlı, çok aşamalı arama deneyimleri yaratmak için gereklidir. Ana bileşenler şunlardır:
 
-1. **İstemci-Sunucu Mimarisi**: MCP, arama istemcileri (istekte bulunanlar) ile arama sunucuları (sağlayıcılar) arasında net bir ayrım yapar ve esnek dağıtım modellerine imkan tanır.
+1. **İstemci-Sunucu Mimarisi**: MCP, arama istemcileri (talep edenler) ile arama sunucuları (sağlayıcılar) arasında net bir ayrım kurar; esnek dağıtım modellerine izin verir.
 
-2. **JSON-RPC İletişimi**: Protokol, mesaj alışverişinde JSON-RPC kullanır; bu da web teknolojileriyle uyumludur ve farklı platformlarda kolay uygulama sağlar.
+2. **JSON-RPC İletişimi**: Protokol, mesaj alışverişi için JSON-RPC kullanır; bu sayede web teknolojileriyle uyumludur ve farklı platformlarda kolay uygulanabilir.
 
-3. **Bağlam Yönetimi**: MCP, çoklu etkileşimler boyunca arama bağlamının korunması, güncellenmesi ve kullanılması için yapılandırılmış yöntemler tanımlar.
+3. **Bağlam Yönetimi**: MCP, çoklu etkileşimler boyunca arama bağlamını koruma, güncelleme ve kullanma için yapılandırılmış yöntemler tanımlar.
 
-4. **Araç Tanımları**: Arama yetenekleri iyi tanımlanmış parametreler ve dönüş değerleriyle standart araçlar olarak sunulur.
+4. **Araç Tanımları**: Arama yetenekleri, iyi tanımlanmış parametreler ve dönüş değerleri ile standart araçlar olarak sunulur.
 
-5. **Akış Desteği**: Protokol akış halinde sonuçlar sunmayı destekler; gerçek zamanlı aramalarda sonuçların ilerleyerek gelmesi için önemlidir.
+5. **Akış Desteği**: Protokol, sonuçların ilerleyici biçimde gelmesi gereken gerçek zamanlı arama için akış desteği sağlar.
 
-### Web Arama Entegrasyon Kalıpları
+### Web Arama Entegrasyon Desenleri
 
-MCP’yi web arama ile entegre ederken birkaç kalıp ortaya çıkar:
+MCP web araması ile entegre edilirken çeşitli desenler ortaya çıkar:
 
 #### 1. Doğrudan Arama Sağlayıcı Entegrasyonu
 
 ```mermaid
 graph LR
     Client[MCP İstemcisi] --> |MCP İsteği| Server[MCP Sunucusu]
-    Server --> |API Çağrısı| SearchAPI[Ara API'si]
+    Server --> |API Çağrısı| SearchAPI[Arama API'si]
     SearchAPI --> |Sonuçlar| Server
     Server --> |MCP Yanıtı| Client
 ```
 
-Bu kalıpta MCP sunucusu doğrudan bir veya daha fazla arama API’si ile arayüz kurar, MCP isteklerini API özgü çağrılara çevirir ve sonuçları MCP yanıtları olarak biçimlendirir.
+Bu desen MCP sunucusunun doğrudan bir veya daha fazla arama API'si ile arayüz kurmasını sağlar; MCP isteklerini API özgü çağrılara çevirir ve sonuçları MCP yanıtları olarak biçimlendirir.
 
 #### 2. Bağlam Koruma ile Federatif Arama
 
@@ -614,151 +619,154 @@ graph LR
     Federation --> |Toplanmış MCP Yanıtı| Client
 ```
 
-Bu kalıp, MCP uyumlu birden fazla arama sağlayıcısına sorguları dağıtarak, her birinin farklı içerik türleri veya arama yeteneklerinde uzmanlaşabileceği şekilde birleşik bir bağlam koruma sağlar.
+Bu desen, arama sorgularını birden fazla MCP uyumlu arama sağlayıcısına dağıtır; her biri farklı içerik türleri veya arama yeteneklerinde uzmanlaşabilir ve birleşik bir bağlamı korur.
 
-#### 3. Bağlam Geliştirilmiş Arama Zinciri
+#### 3. Bağlam Geliştirmeli Arama Zinciri
 
 ```mermaid
 graph LR
     Client[MCP İstemcisi] --> |Sorgu + Bağlam| Server[MCP Sunucusu]
-    Server --> |1. Sorgu Analizi| NLP[NLP Hizmeti]
+    Server --> |1. Sorgu Analizi| NLP[NLP Servisi]
     NLP --> |Geliştirilmiş Sorgu| Server
-    Server --> |2. Arama Gerçekleştirme| Search[Arama Motoru]
+    Server --> |2. Arama Yürütme| Search[Arama Motoru]
     Search --> |Ham Sonuçlar| Server
-    Server --> |3. Sonuç İşleme| Enhancement[Sonuç Geliştirme]
+    Server --> |3. Sonuç İşleme| Enhancement[Sonuç İyileştirme]
     Enhancement --> |Geliştirilmiş Sonuçlar| Server
     Server --> |Nihai Sonuçlar + Güncellenmiş Bağlam| Client
 ```
 
-Bu kalıpta arama süreci birden çok aşamaya bölünür, her adımda bağlam zenginleştirilir ve giderek daha alakalı sonuçlar elde edilir.
+Bu desen, arama sürecini birden çok aşamaya böler; her aşamada bağlam zenginleştirilir ve giderek daha ilgili sonuçlar elde edilir.
 
 ### Arama Bağlamı Bileşenleri
 
-MCP tabanlı web aramada bağlam genellikle şunları içerir:
+MCP tabanlı web aramada, bağlam tipik olarak şunları içerir:
 
 - **Sorgu Geçmişi**: Oturumdaki önceki arama sorguları
 - **Kullanıcı Tercihleri**: Dil, bölge, güvenli arama ayarları
-- **Etkileşim Geçmişi**: Tıklanan sonuçlar, sonuçlarda geçirilen zaman
-- **Arama Parametreleri**: Filtreler, sıralama ve diğer arama değiştiricileri
-- **Alan Bilgisi**: Aramayla ilgili konu özgü bağlam
-- **Zamansal Bağlam**: Zaman bazlı alaka faktörleri
-- **Kaynak Tercihleri**: Güvenilen veya tercih edilen bilgi kaynakları
+- **Etkileşim Geçmişi**: Hangi sonuçlara tıklandığı, sonuçlarda geçirilen süre
+- **Arama Parametreleri**: Filtreler, sıralama düzenleri ve diğer arama değiştiricileri
+- **Alan Bilgisi**: Arama ile ilgili konuya özel bağlam
+- **Zamansal Bağlam**: Zaman temelli alaka faktörleri
+- **Kaynak Tercihleri**: Güvenilir veya tercih edilen bilgi kaynakları
 
-## Kullanım Durumları ve Uygulamalar
+## Kullanım Alanları ve Uygulamalar
 
 ### Araştırma ve Bilgi Toplama
 
-MCP, araştırma iş akışlarını şu şekillerde geliştirir:
+MCP, araştırma iş akışlarını şu şekilde geliştirir:
 
-- Araştırma bağlamını arama oturumları boyunca koruma
-- Daha sofistike ve bağlamsal olarak alakalı sorgular yapılmasını sağlama
-- Çok kaynaklı arama federasyonunu destekleme
-- Arama sonuçlarından bilgi çıkarımı kolaylaştırma
+- Arama oturumları boyunca araştırma bağlamını koruyarak
+- Daha sofistike ve bağlamsal olarak ilgili sorguların yapılmasını sağlayarak
+- Çok kaynaklı arama federasyonunu destekleyerek
+- Arama sonuçlarından bilgi çıkarımını kolaylaştırarak
 
-### Gerçek Zamanlı Haber ve Trend Takibi
+### Gerçek Zamanlı Haber ve Trend İzleme
 
-MCP destekli arama haber takibinde avantajlar sunar:
+MCP destekli arama, haber izleme için avantajlar sunar:
 
-- Ortaya çıkan haber hikayelerinin neredeyse gerçek zamanlı keşfi
+- Ortaya çıkan haberlerin neredeyse gerçek zamanlı keşfi
 - İlgili bilgilerin bağlamsal filtrelenmesi
-- Çoklu kaynaklar arasında konu ve varlık takibi
-- Kullanıcı bağlamına dayalı kişiselleştirilmiş haber uyarıları
+- Birden fazla kaynakta konu ve varlık takibi
+- Kullanıcı bağlamına göre kişiselleştirilmiş haber uyarıları
 
 ### AI Destekli Gezinme ve Araştırma
 
-MCP, AI destekli gezinme için yeni imkanlar yaratır:
+MCP, AI destekli gezinme için yeni olanaklar yaratır:
 
-- Mevcut tarayıcı etkinliğine dayanarak bağlamsal arama önerileri
-- Web aramanın LLM destekli asistanlarla kesintisiz entegrasyonu
-- Korumalı bağlamla çok aşamalı arama iyileştirmesi
-- Geliştirilmiş doğruluk kontrolü ve bilgi doğrulama
+- Mevcut tarayıcı etkinliğine dayalı bağlamsal arama önerileri
+- LLM destekli asistanlarla web aramasının sorunsuz entegrasyonu
+- Korunan bağlam ile çok aşamalı arama iyileştirmesi
+- Gelişmiş gerçek kontrol ve bilgi doğrulama
 
-## Gelecek Trendler ve Yenilikler
+## Gelecekteki Trendler ve Yenilikler
 
-### Web Aramada MCP’nin Evrimi
+### MCP'nin Web Aramasındaki Gelişimi
 
-İleriye dönük olarak, MCP’nin şu alanlarda gelişmesini bekliyoruz:
-- **Multimodal Arama**: Metin, resim, ses ve video aramalarını bağlam korunarak entegre etme
-- **Merkezi Olmayan Arama**: Dağıtık ve federatif arama ekosistemlerini destekleme
-- **Arama Gizliliği**: Bağlam farkında gizliliği koruyan arama mekanizmaları
-- **Sorgu Anlama**: Doğal dil arama sorgularının derin anlam çözümlemesi
+Geleceğe bakarken, MCP'nin aşağıdaki konuları ele alacak şekilde gelişmesini bekliyoruz:
 
-### Teknolojide Olası Gelişmeler
+
+- **Multimodal Arama**: Metin, görüntü, ses ve video aramalarını korunan bağlam ile entegre etme
+- **Merkeziyetsiz Arama**: Dağıtık ve federatif arama ekosistemlerini destekleme
+- **Arama Gizliliği**: Bağlamdan haberdar gizliliği koruyan arama mekanizmaları
+- **Sorgu Anlama**: Doğal dil arama sorgularının derin anlamsal ayrıştırması
+
+### Teknolojide Potansiyel İlerlemler
 
 MCP aramasının geleceğini şekillendirecek gelişmekte olan teknolojiler:
 
-1. **Sinirsel Arama Mimarileri**: MCP için optimize edilmiş gömülü tabanlı arama sistemleri
-2. **Kişiselleştirilmiş Arama Bağlamı**: Kullanıcıların bireysel arama kalıplarını zamanla öğrenme
-3. **Bilgi Grafiği Entegrasyonu**: Alan bazlı bilgi grafikleri ile bağlam zenginleştirilmiş arama
-4. **Çapraz Modlu Bağlam**: Farklı arama modları arasında bağlamı koruma
+1. **Sinirsel Arama Mimarileri**: MCP için optimize edilmiş gömme tabanlı arama sistemleri
+2. **Kişiselleştirilmiş Arama Bağlamı**: Bireysel kullanıcı arama desenlerini zaman içinde öğrenme
+3. **Bilgi Grafiği Entegrasyonu**: Alan özelinde bilgi grafiklerinin sağladığı bağlamsal arama geliştirmeleri
+4. **Çok Modlu Bağlam**: Farklı arama modları arasında bağlamı koruma
 
 ## Uygulamalı Egzersizler
 
-### Egzersiz 1: Temel Bir MCP Arama İşlem Hattı Kurma
+### Egzersiz 1: Temel Bir MCP Arama Hattı Kurmak
 
 Bu egzersizde öğrenecekleriniz:
 - Temel bir MCP arama ortamı yapılandırmak
 - Web araması için bağlam işleyicileri uygulamak
-- Arama yinelemeleri arasında bağlam korumanın test edilmesi ve doğrulanması
+- Arama yinelemeleri boyunca bağlam korumasını test etmek ve doğrulamak
 
-### Egzersiz 2: MCP ile Araştırma Asistanı Oluşturma
+### Egzersiz 2: MCP Araması ile Araştırma Asistanı Oluşturmak
 
-Tam bir uygulama oluşturun:
-- Doğal dilde araştırma sorularını işleme
-- Bağlam farkında web aramaları gerçekleştirme
-- Birden çok kaynaktan bilgi sentezleme
-- Düzenlenmiş araştırma bulgularını sunma
+Tam uygulama oluşturun:
+- Doğal dilde araştırma sorularını işlemek
+- Bağlamdan haberdar web aramaları yapmak
+- Birden fazla kaynaktan bilgileri sentezlemek
+- Düzenlenmiş araştırma bulgularını sunmak
 
-### Egzersiz 3: MCP ile Çok Kaynaklı Arama Federasyonu Uygulama
+### Egzersiz 3: MCP ile Çok Kaynaklı Arama Federasyonu Gerçekleştirmek
 
-İleri seviye egzersiz:
-- Bağlam farkında sorgu yönlendirmeyi birden çok arama motoruna yapmak
-- Sonuçları sıralama ve toplama
-- Arama sonuçlarının bağlamsal tekrarsızlaştırılması
-- Kaynak spesifik meta verilerin yönetimi
+İleri seviye egzersiz şunları kapsar:
+- Bağlamdan haberdar sorgu yönlendirmesini birden fazla arama motoruna yapmak
+- Sonuç sıralaması ve birleştirmesi
+- Arama sonuçlarının bağlamsal çoğaltma önleme
+- Kaynağa özel meta verilerin işlenmesi
 
 ## Ek Kaynaklar
 
-- [Model Context Protocol Specification](https://spec.modelcontextprotocol.io/) - Resmi MCP spesifikasyonu ve detaylı protokol dokümantasyonu
-- [Model Context Protocol Documentation](https://modelcontextprotocol.io/) - Detaylı eğitimler ve uygulama rehberleri
-- [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) - MCP protokolünün resmi Python implementasyonu
-- [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - MCP protokolünün resmi TypeScript implementasyonu
-- [MCP Reference Servers](https://github.com/modelcontextprotocol/servers) - MCP sunucularının referans implementasyonları
-- [Bing Web Search API Documentation](https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/overview) - Microsoft'un web arama API'si
-- [Google Custom Search JSON API](https://developers.google.com/custom-search/v1/overview) - Google'ın programlanabilir arama motoru
-- [SerpAPI Documentation](https://serpapi.com/search-api) - Arama motoru sonuç sayfası API'si
-- [Meilisearch Documentation](https://www.meilisearch.com/docs) - Açık kaynak arama motoru
-- [Elasticsearch Documentation](https://www.elastic.co/guide/index.html) - Dağıtık arama ve analiz motoru
-- [LangChain Documentation](https://python.langchain.com/docs/get_started/introduction) - LLM ile uygulama geliştirmek
+- [Model Context Protocol Spesifikasyonu](https://spec.modelcontextprotocol.io/) - Resmi MCP spesifikasyonu ve detaylı protokol dokümantasyonu
+- [Model Context Protocol Dokümantasyonu](https://modelcontextprotocol.io/) - Detaylı eğitimler ve uygulama rehberleri
+- [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) - MCP protokolünün resmi Python uygulaması
+- [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - MCP protokolünün resmi TypeScript uygulaması
+- [MCP Referans Sunucuları](https://github.com/modelcontextprotocol/servers) - MCP sunucularının referans uygulamaları
+- [Bing Web Arama API Dokümantasyonu](https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/overview) - Microsoft’un web arama API'si
+- [Google Özel Arama JSON API](https://developers.google.com/custom-search/v1/overview) - Google'ın programlanabilir arama motoru
+- [SerpAPI Dokümantasyonu](https://serpapi.com/search-api) - Arama motoru sonuç sayfası API'si
+- [Meilisearch Dokümantasyonu](https://www.meilisearch.com/docs) - Açık kaynak arama motoru
+- [Elasticsearch Dokümantasyonu](https://www.elastic.co/guide/index.html) - Dağıtık arama ve analiz motoru
+- [LangChain Dokümantasyonu](https://python.langchain.com/docs/get_started/introduction) - LLM'lerle uygulama geliştirme
 
 ## Öğrenme Çıktıları
 
-Bu modülü tamamlayarak şunları yapabileceksiniz:
+Bu modülü tamamlayarak aşağıdakileri yapabileceksiniz:
 
 - Gerçek zamanlı web aramasının temellerini ve zorluklarını anlamak
-- Model Context Protocol (MCP)’ün gerçek zamanlı web arama yeteneklerini nasıl geliştirdiğini açıklamak
-- Popüler çerçeveler ve API'ler kullanarak MCP tabanlı arama çözümleri uygulamak
-- MCP ile ölçeklenebilir, yüksek performanslı arama mimarileri tasarlamak ve dağıtmak
-- Semantik arama, araştırma asistanlığı ve AI destekli gezinme gibi çeşitli kullanım senaryolarında MCP kavramlarını uygulamak
-- MCP tabanlı arama teknolojilerindeki gelişen trendleri ve gelecekteki yenilikleri değerlendirmek
+- Model Context Protocol (MCP) ile gerçek zamanlı web arama yeteneklerinin nasıl geliştirdiğini açıklamak
+- Popüler çerçeveler ve API’ler kullanarak MCP tabanlı arama çözümleri uygulamak
+- MCP ile ölçeklenebilir, yüksek performanslı arama mimarileri tasarlamak ve uygulamak
+- MCP kavramlarını anlamsal arama, araştırma asistanlığı ve yapay zeka destekli gezinme gibi çeşitli kullanım alanlarına uygulamak
+- MCP tabanlı arama teknolojilerindeki yeni trendleri ve gelecekteki yenilikleri değerlendirmek
 
-### Güven ve Emniyet Hususları
 
-MCP tabanlı web arama çözümleri uygularken MCP spesifikasyonundan önemli şu prensipleri unutmayın:
+### Güven ve Güvenlik Hususları
 
-1. **Kullanıcı Onayı ve Kontrolü**: Kullanıcılar tüm veri erişimine ve işlemlere açıkça onay vermeli ve bunları anlamalıdır. Bu, dış kaynaklara erişebilen web arama uygulamaları için özellikle önemlidir.
+MCP tabanlı web arama çözümleri uygularken, MCP spesifikasyonundan şu önemli ilkeleri unutmayın:
 
-2. **Veri Gizliliği**: Arama sorguları ve sonuçlarının özellikle hassas bilgiler içerebileceği durumlarda uygun şekilde yönetilmesini sağlayın. Kullanıcı verilerini korumak için uygun erişim kontrolleri uygulayın.
+1. **Kullanıcı Onayı ve Kontrolü**: Kullanıcılar tüm veri erişimi ve işlemlerine açıkça onay vermeli ve anlamalıdır. Bu, harici veri kaynaklarına erişebilen web arama uygulamaları için özellikle önemlidir.
 
-3. **Araç Güvenliği**: Arama araçları keyfi kod çalıştırma yoluyla potansiyel güvenlik riskleri taşır; bunlar için uygun yetkilendirme ve doğrulama uygulayın. Araç davranışı tanımları sadece güvenilir bir sunucudan alınmadığı sürece güvenilir sayılmamalıdır.
+2. **Veri Gizliliği**: Arama sorguları ve sonuçlarının uygun şekilde işlenmesini sağlayın, özellikle hassas bilgiler içerebilecek durumlarda. Kullanıcı verilerini korumak için uygun erişim kontrollerini uygulayın.
 
-4. **Açık Dokümantasyon**: MCP spesifikasyonundaki uygulama rehberlerine uyarak MCP tabanlı arama uygulamanızın yetenekleri, sınırlamaları ve güvenlik hususları hakkında açık dokümantasyon sağlayın.
+3. **Araç Güvenliği**: Arama araçları için uygun yetkilendirme ve doğrulama uygulayın, çünkü bu araçlar keyfi kod yürütme yoluyla potansiyel güvenlik riskleri oluşturabilir. Araç davranış açıklamaları, güvenilir bir sunucudan alınmadıkça güvensiz kabul edilmelidir.
 
-5. **Güçlü Onay Akışları**: Özellikle dış web kaynaklarıyla etkileşen araçlar için kullanımı yetkilendirmeden önce her aracın ne yaptığını net açıklayan güçlü onay ve yetkilendirme akışları oluşturun.
+4. **Açık Dokümantasyon**: MCP tabanlı arama uygulamanızın yetenekleri, sınırlamaları ve güvenlik hususları hakkında açık dokümantasyon sağlayın, MCP spesifikasyonundaki uygulama kılavuzlarını takip edin.
 
-MCP güvenlik ve güvenle ilgili tüm ayrıntılar için [resmi dokümantasyona](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) bakınız.
+5. **Dayanıklı Onay Akışları**: Özellikle harici web kaynaklarıyla etkileşimde bulunan araçlar için kullanımı yetkilendirmeden önce her aracın ne yaptığını açıkça açıklayan dayanıklı onay ve yetkilendirme akışları oluşturun.
 
-## Sonraki Adımlar
+MCP güvenlik ve güven esaslarıyla ilgili tam detaylar için [resmi dokümantasyona](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) bakabilirsiniz.
+
+## Sırada Ne Var
 
 - [5.12 Model Context Protocol Sunucuları için Entra ID Kimlik Doğrulaması](../mcp-security-entra/README.md)
 

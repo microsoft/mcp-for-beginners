@@ -1,27 +1,27 @@
-# GitHub Copilot Agent Modunda Bir Sunucu Kullanma
+# GitHub Copilot Agent modundan bir sunucu kullanmak
 
-Visual Studio Code ve GitHub Copilot, bir MCP Sunucusunu istemci olarak kullanabilir. Peki, neden bunu yapmak isteyelim diye sorabilirsiniz? Çünkü bu, MCP Sunucusunun sahip olduğu tüm özelliklerin artık IDE'nizden kullanılabileceği anlamına gelir. Örneğin, GitHub'ın MCP sunucusunu eklediğinizi düşünün; bu, terminalde belirli komutları yazmak yerine GitHub'ı istemler aracılığıyla kontrol etmenizi sağlar. Ya da genel olarak geliştirici deneyiminizi iyileştirebilecek her şeyin doğal dil ile kontrol edildiğini hayal edin. Şimdi bunun ne kadar faydalı olduğunu görebiliyorsunuz, değil mi?
+Visual Studio Code ve GitHub Copilot, bir MCP Sunucusunu istemci olarak kullanabilirler. Neden bunu yapmak isteyelim diye sorabilirsiniz? Çünkü bu, MCP Sunucusunun sahip olduğu özelliklerin artık IDE'nizden kullanılabileceği anlamına gelir. Örneğin GitHub'ın MCP sunucusunu eklediğinizi hayal edin, bu terminalde belirli komutları yazmak yerine istemlerle GitHub'ı kontrol etmeyi sağlar. Ya da geliştirici deneyiminizi doğal dil ile kontrol edilen herhangi bir şey genel olarak iyileştirebilir. Artık kazancı görmeye başlıyorsunuz değil mi?
 
 ## Genel Bakış
 
-Bu ders, Visual Studio Code ve GitHub Copilot'un Agent modunu MCP Sunucusu için bir istemci olarak nasıl kullanacağınızı kapsar.
+Bu ders, Visual Studio Code ve GitHub Copilot'un Agent modunu MCP Sunucunuz için bir istemci olarak nasıl kullanacağınızı kapsar.
 
 ## Öğrenme Hedefleri
 
-Bu dersin sonunda şunları yapabileceksiniz:
+Bu dersin sonunda yapabilecekleriniz:
 
-- Visual Studio Code aracılığıyla bir MCP Sunucusunu kullanmak.
-- GitHub Copilot üzerinden araçlar gibi yetenekleri çalıştırmak.
-- MCP Sunucunuzu bulmak ve yönetmek için Visual Studio Code'u yapılandırmak.
+- Visual Studio Code üzerinden bir MCP Sunucusunu kullanmak.
+- GitHub Copilot aracılığıyla araçları çalıştırmak.
+- MCP Sunucunuzu bulup yönetmek için Visual Studio Code'u yapılandırmak.
 
 ## Kullanım
 
 MCP sunucunuzu iki farklı şekilde kontrol edebilirsiniz:
 
-- Kullanıcı arayüzü: Bu bölümün ilerleyen kısımlarında bunun nasıl yapıldığını göreceksiniz.
-- Terminal: `code` çalıştırılabilir dosyasını kullanarak terminalden kontrol etmek mümkündür:
+- Kullanıcı arayüzü, bunun nasıl yapıldığını bu bölümün ilerleyen kısımlarında göreceksiniz.
+- Terminal, `code` yürütülebilir dosyasını kullanarak terminalden kontrol etmek mümkündür:
 
-  Kullanıcı profilinize bir MCP sunucusu eklemek için --add-mcp komut satırı seçeneğini kullanın ve JSON sunucu yapılandırmasını {\"name\":\"server-name\",\"command\":...} biçiminde sağlayın.
+  Kullanıcı profilinize bir MCP sunucusu eklemek için --add-mcp komut satırı seçeneğini kullanın ve JSON sunucu yapılandırmasını {\"name\":\"server-name\",\"command\":...} şeklinde sağlayın.
 
   ```
   code --add-mcp "{\"name\":\"my-server\",\"command\": \"uvx\",\"args\": [\"mcp-server-fetch\"]}"
@@ -29,48 +29,48 @@ MCP sunucunuzu iki farklı şekilde kontrol edebilirsiniz:
 
 ### Ekran Görüntüleri
 
-![Visual Studio Code'da Yönlendirmeli MCP Sunucu Yapılandırması](../../../../translated_images/tr/chat-mode-agent.729a22473f822216.webp)  
-![Her oturum için araç seçimi](../../../../translated_images/tr/agent-mode-select-tools.522c7ba5df0848f8.webp)  
-![MCP geliştirme sırasında hataları kolayca ayıklayın](../../../../translated_images/tr/mcp-list-servers.fce89eefe3f30032.webp)  
+![Visual Studio Code'da yönlendirilmiş MCP sunucu yapılandırması](../../../../translated_images/tr/chat-mode-agent.729a22473f822216.webp)
+![Her agent oturumu için araç seçimi](../../../../translated_images/tr/agent-mode-select-tools.522c7ba5df0848f8.webp)
+![MCP geliştirme sırasında hataları kolayca hata ayıklama](../../../../translated_images/tr/mcp-list-servers.fce89eefe3f30032.webp)
 
-Bir sonraki bölümlerde görsel arayüzü nasıl kullandığımızdan daha fazla bahsedelim.
+Şimdi görsel arayüzü nasıl kullandığımızı sonraki bölümlerde daha detaylı konuşalım.
 
 ## Yaklaşım
 
-Bu işlemi yüksek seviyede şu şekilde ele almalıyız:
+İşte bu konuya nasıl yaklaşmamız gerektiği yüksek seviyede:
 
-- MCP Sunucumuzu bulmak için bir dosya yapılandırın.
-- Sunucuyu başlatın/bağlanın ve yeteneklerini listelemesini sağlayın.
-- GitHub Copilot Sohbet arayüzü aracılığıyla bu yetenekleri kullanın.
+- MCP Sunucumuzu bulmak için bir dosya yapılandır.
+- Söz konusu sunucuyu başlat/bağlan ve yeteneklerini listele.
+- Bu yetenekleri GitHub Copilot Chat arayüzü üzerinden kullan.
 
-Harika, şimdi akışı anladığımıza göre, bir egzersizle Visual Studio Code üzerinden bir MCP Sunucusu kullanmayı deneyelim.
+Harika, akışı anladığımıza göre şimdi bir egzersiz aracılığıyla Visual Studio Code üzerinden bir MCP Sunucusu kullanmaya çalışalım.
 
-## Egzersiz: Bir sunucu kullanma
+## Egzersiz: Bir sunucuyu kullanmak
 
-Bu egzersizde, GitHub Copilot Sohbet arayüzü üzerinden kullanılabilmesi için Visual Studio Code'u MCP sunucunuzu bulacak şekilde yapılandıracağız.
+Bu egzersizde, GitHub Copilot Chat arayüzünden kullanılabilmesi için MCP sunucunuzu bulacak şekilde Visual Studio Code'u yapılandıracağız.
 
-### -0- Ön adım, MCP Sunucu keşfini etkinleştirin
+### -0- Ön adım, MCP Sunucu keşfini etkinleştir
 
-MCP Sunucularının keşfini etkinleştirmeniz gerekebilir.
+MCP Sunucularının keşfi için etkinleştirme yapmanız gerekebilir.
 
-1. Visual Studio Code'da `File -> Preferences -> Settings` menüsüne gidin.
+1. Visual Studio Code'da `Dosya -> Tercihler -> Ayarlar`a gidin.
 
-1. "MCP" araması yapın ve settings.json dosyasında `chat.mcp.discovery.enabled` seçeneğini etkinleştirin.
+1. "MCP" araması yapın ve settings.json dosyasındaki `chat.mcp.discovery.enabled` özelliğini etkinleştirin.
 
-### -1- Yapılandırma dosyası oluşturun
+### -1- Yapılandırma dosyası oluştur
 
-Proje kök dizininizde bir yapılandırma dosyası oluşturarak başlayın. *MCP.json* adında bir dosyaya ve bunu .vscode adlı bir klasöre yerleştirmeniz gerekecek. Şöyle görünmelidir:
+Proje kök dizininizde .vscode adlı bir klasörde MCP.json adında bir dosya oluşturarak başlayın. Aşağıdaki gibi olmalı:
 
 ```text
 .vscode
 |-- mcp.json
 ```
 
-Şimdi bir sunucu girişi nasıl eklenir, ona bakalım.
+Şimdi bir sunucu girdisi nasıl eklenir ona bakalım.
 
-### -2- Bir sunucu yapılandırın
+### -2- Bir sunucu yapılandır
 
-*mcp.json* dosyasına şu içeriği ekleyin:
+*mcp.json* dosyasına aşağıdaki içeriği ekleyin:
 
 ```json
 {
@@ -86,59 +86,61 @@ Proje kök dizininizde bir yapılandırma dosyası oluşturarak başlayın. *MCP
 }
 ```
 
-Yukarıdaki örnek, Node.js ile yazılmış bir sunucuyu başlatmanın basit bir örneğidir. Diğer çalışma zamanları için, sunucuyu başlatmak için uygun komutu `command` ve `args` kullanarak belirtin.
+Yukarıdaki basit örnek, Node.js ile yazılmış bir sunucuyu nasıl başlatacağınızı gösteriyor, diğer çalışma ortamları için `command` ve `args` kullanarak uygun sunucu başlatma komutunu belirtin.
 
-### -3- Sunucuyu başlatın
+### -3- Sunucuyu başlat
 
-Bir giriş eklediğinize göre, şimdi sunucuyu başlatalım:
+Artık bir giriş eklediğinize göre sunucuyu başlatalım:
 
-1. *mcp.json* dosyanızdaki girişinizi bulun ve "oynat" simgesini bulduğunuzdan emin olun:
+1. *mcp.json* dosyanızdaki girişinizi bulun ve "oynat" simgesini görebildiğinizden emin olun:
 
-  ![Visual Studio Code'da sunucuyu başlatma](../../../../translated_images/tr/vscode-start-server.8e3c986612e3555d.webp)  
+  ![Visual Studio Code'da sunucu başlatma](../../../../translated_images/tr/vscode-start-server.8e3c986612e3555d.webp)  
 
-1. "Oynat" simgesine tıklayın, GitHub Copilot Sohbet'teki araçlar simgesinin mevcut araç sayısını artırdığını görmelisiniz. Bu araçlar simgesine tıklarsanız, kayıtlı araçların bir listesini göreceksiniz. GitHub Copilot'un bunları bağlam olarak kullanmasını isteyip istemediğinize bağlı olarak her bir aracı işaretleyebilir/işaretini kaldırabilirsiniz:
+1. "Oynat" simgesine tıklayın, GitHub Copilot Chat içindeki araçlar simgesindeki mevcut araç sayısının arttığını görmelisiniz. Bu araç simgesine tıkladığınızda kayıtlı araçların listesini görürsünüz. GitHub Copilot'un onları bağlam olarak kullanmasını isteyip istemediğinize bağlı olarak her aracı işaretleyip kaldırabilirsiniz:
 
-  ![Visual Studio Code'da araçları başlatma](../../../../translated_images/tr/vscode-tool.0b3bbea2fb7d8c26.webp)
+  ![Visual Studio Code'da araç başlatma](../../../../translated_images/tr/vscode-tool.0b3bbea2fb7d8c26.webp)
 
-1. Bir aracı çalıştırmak için, araçlarınızdan birinin açıklamasına uyacağını bildiğiniz bir istem yazın, örneğin "22 ile 1'i topla" gibi bir istem:
+1. Bir aracı çalıştırmak için, araçlarınızdan birinin açıklamasıyla eşleşeceğini bildiğiniz bir istem yazın, örneğin "1'e 22 ekle" gibi bir istem:
 
-  ![GitHub Copilot'tan bir araç çalıştırma](../../../../translated_images/tr/vscode-agent.d5a0e0b897331060.webp)
+  ![GitHub Copilot'dan bir aracı çalıştırma](../../../../translated_images/tr/vscode-agent.d5a0e0b897331060.webp)
 
-  23 yanıtını görmelisiniz.
+  23 diyen bir yanıt görmelisiniz.
 
 ## Ödev
 
-*mcp.json* dosyanıza bir sunucu girişi eklemeyi deneyin ve sunucuyu başlatıp/durdurabildiğinizden emin olun. Ayrıca, GitHub Copilot Sohbet arayüzü aracılığıyla sunucunuzdaki araçlarla iletişim kurabildiğinizden emin olun.
+*mcp.json* dosyanıza bir sunucu girişi eklemeyi deneyin ve sunucuyu başlatıp durdurabildiğinizden emin olun. Ayrıca GitHub Copilot Chat arayüzü üzerinden sunucunuzdaki araçlarla iletişim kurabildiğinizden emin olun.
 
 ## Çözüm
 
 [Çözüm](./solution/README.md)
 
-## Temel Çıkarımlar
+## Anahtar Noktalar
 
-Bu bölümden çıkarılacaklar şunlardır:
+Bu bölümün anahtar çıkarımları şunlardır:
 
-- Visual Studio Code, birden fazla MCP Sunucusunu ve araçlarını kullanmanıza olanak tanıyan harika bir istemcidir.
-- GitHub Copilot Sohbet arayüzü, sunucularla nasıl etkileşim kurduğunuzdur.
-- *mcp.json* dosyasındaki sunucu girişini yapılandırırken MCP Sunucusuna iletilebilecek API anahtarları gibi girdiler için kullanıcıdan istemde bulunabilirsiniz.
+- Visual Studio Code, birden fazla MCP Sunucusu ve araçlarını kullanmanızı sağlayan harika bir istemcidir.
+- GitHub Copilot Chat arayüzü, sunucularla etkileşim kurmanın yoludur.
+- *mcp.json* dosyasındaki sunucu girişini yapılandırırken MCP Sunucusuna iletilmek üzere API anahtarları gibi girdiler için kullanıcıya istemde bulunabilirsiniz.
 
 ## Örnekler
 
-- [Java Hesap Makinesi](../samples/java/calculator/README.md)  
-- [.Net Hesap Makinesi](../../../../03-GettingStarted/samples/csharp)  
-- [JavaScript Hesap Makinesi](../samples/javascript/README.md)  
-- [TypeScript Hesap Makinesi](../samples/typescript/README.md)  
-- [Python Hesap Makinesi](../../../../03-GettingStarted/samples/python)  
+- [Java Hesap Makinesi](../samples/java/calculator/README.md)
+- [.Net Hesap Makinesi](../../../../03-GettingStarted/samples/csharp)
+- [JavaScript Hesap Makinesi](../samples/javascript/README.md)
+- [TypeScript Hesap Makinesi](../samples/typescript/README.md)
+- [Python Hesap Makinesi](../../../../03-GettingStarted/samples/python)
 
 ## Ek Kaynaklar
 
-- [Visual Studio belgeleri](https://code.visualstudio.com/docs/copilot/chat/mcp-servers)
+- [Visual Studio dökümantasyonu](https://code.visualstudio.com/docs/copilot/chat/mcp-servers)
 
-## Sıradaki
+## Sonraki Adım
 
-- Sıradaki: [Bir stdio Sunucusu Oluşturma](../05-stdio-server/README.md)
+- Sonraki: [stdio Sunucusu Oluşturma](../05-stdio-server/README.md)
 
 ---
 
-**Feragatname**:  
-Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hata veya yanlışlıklar içerebileceğini lütfen unutmayın. Belgenin orijinal dili, yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımından kaynaklanan yanlış anlamalar veya yanlış yorumlamalar için sorumluluk kabul etmiyoruz.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Feragatname**:
+Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba sarf etsek de, otomatik çevirilerin hata veya yanlışlık içerebileceğini lütfen unutmayınız. Orijinal belge, kendi dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucu ortaya çıkabilecek yanlış anlamalardan veya yanlış yorumlamalardan sorumlu değiliz.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

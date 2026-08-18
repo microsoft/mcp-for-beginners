@@ -1,48 +1,48 @@
 ## Test Etme ve Hata Ayıklama
 
-MCP sunucunuzu test etmeye başlamadan önce, kullanılabilir araçları ve hata ayıklama için en iyi uygulamaları anlamak önemlidir. Etkili test, sunucunuzun beklendiği gibi davrandığını garanti eder ve sorunları hızlıca tanımlamanıza ve çözmenize yardımcı olur. Aşağıdaki bölüm, MCP uygulamanızı doğrulamak için önerilen yaklaşımları özetlemektedir.
+MCP sunucunuzu test etmeye başlamadan önce, mevcut araçları ve hata ayıklama için en iyi uygulamaları anlamanız önemlidir. Etkili test, sunucunuzun beklenildiği gibi davrandığını garanti eder ve sorunları hızlıca tanımlayıp çözmenize yardımcı olur. Aşağıdaki bölüm, MCP uygulamanızı doğrulamak için önerilen yaklaşımları özetlemektedir.
 
 ## Genel Bakış
 
-Bu ders, doğru test yaklaşımının nasıl seçileceğini ve en etkili test aracını kapsar.
+Bu derste doğru test yaklaşımının nasıl seçileceği ve en etkili test aracının hangisi olduğu anlatılmaktadır.
 
 ## Öğrenme Hedefleri
 
-Bu dersin sonunda şu becerilere sahip olacaksınız:
+Bu dersi tamamladıktan sonra:
 
-- Test etme için çeşitli yaklaşımları tanımlamak.
-- Kodunuzu etkili şekilde test etmek için farklı araçları kullanmak.
+- Farklı test yaklaşımlarını tanımlayabileceksiniz.
+- Kodunuzu etkili bir şekilde test etmek için farklı araçlar kullanabileceksiniz.
 
 
 ## MCP Sunucularını Test Etme
 
-MCP, sunucularınızı test etmeniz ve hata ayıklamanız için araçlar sunar:
+MCP, sunucularınızı test edip hata ayıklamanıza yardımcı olacak araçlar sağlar:
 
-- **MCP Inspector**: Hem CLI aracı hem de görsel araç olarak çalıştırılabilen bir komut satırı aracı.
-- **Manuel test**: curl gibi bir araç kullanarak web istekleri yapabilirsiniz ancak HTTP yapabilen herhangi bir araç da iş görecektir.
-- **Birim testi**: Tercih ettiğiniz test framework’ünü kullanarak hem sunucu hem de istemci özelliklerini test etmek mümkündür.
+- **MCP Inspector**: Hem komut satırı aracı hem de görsel araç olarak çalıştırılabilen bir komut satırı aracıdır.
+- **Manuel test**: curl gibi web istekleri yapabilen bir araç kullanabilirsiniz, ancak HTTP çalıştırabilen herhangi bir araç iş görür.
+- **Birim testi**: Hem sunucu hem istemcinin özelliklerini test etmek için tercih ettiğiniz test çerçevesini kullanabilirsiniz.
 
 ### MCP Inspector Kullanımı
 
-Bu aracın kullanımını önceki derslerde anlattık ancak biraz üst düzeyde konuşalım. Node.js ile oluşturulmuş bir araçtır ve `npx` çalıştırılabilir dosyasını çağırarak kullanabilirsiniz; bu araç kendisini geçici olarak indirir ve kurar, çalıştırma bittikten sonra temizler.
+Bu aracın kullanımı önceki derslerde anlatıldı ama yüksek seviyede biraz daha bahsedelim. Node.js ile geliştirilmiş bir araçtır ve `npx` yürütülebilir dosyasıyla çağırarak kullanabilirsiniz; bu, aracı geçici olarak indirip kurar ve isteğiniz tamamlandıktan sonra kendini temizler.
 
 [MCP Inspector](https://github.com/modelcontextprotocol/inspector) size şu konularda yardımcı olur:
 
-- **Sunucu Yetkinliklerini Keşfetme**: Kullanılabilir kaynaklar, araçlar ve istemleri otomatik olarak algılar
-- **Araç Çalıştırmayı Test Etme**: Farklı parametreleri deneyip yanıtları gerçek zamanlı görebilirsiniz
-- **Sunucu Meta Verilerini Görüntüleme**: Sunucu bilgilerini, şemalarını ve yapılandırmalarını inceleyebilirsiniz
+- **Sunucu Yeteneklerini Keşfetme**: Kullanılabilir kaynakları, araçları ve istemleri otomatik olarak tespit eder
+- **Araç Çalıştırmayı Test Etme**: Farklı parametreler deneyip gerçek zamanlı yanıtları görme
+- **Sunucu Meta Verilerini Görüntüleme**: Sunucu bilgilerini, şemalarını ve yapılandırmalarını inceleme
 
-Aracın tipik çalıştırılması şu şekildedir:
+Aracın tipik çalıştırılması şöyle görünür:
 
 ```bash
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-Yukarıdaki komut bir MCP ve onun görsel arayüzünü başlatır ve tarayıcınızda yerel bir web arayüzü açar. Kaydettirdiğiniz MCP sunucularını, mevcut araçlarını, kaynaklarını ve istemlerini gösteren bir kontrol paneli görmeyi beklersiniz. Arayüz, araç çalıştırmayı etkileşimsel test etmenize, sunucu meta verilerini incelemenize ve gerçek zamanlı yanıtları görüntülemenize olanak tanır; bu da MCP sunucu uygulamalarınızı onaylamayı ve hata ayıklamayı kolaylaştırır.
+Yukarıdaki komut, bir MCP ve görsel arayüzünü başlatır ve tarayıcınızda yerel bir web arayüzü açar. Kayıtlı MCP sunucularınızı, mevcut araçlarını, kaynaklarını ve istemlerini gösteren bir kontrol paneli görürsünüz. Arayüz, araç çalıştırmasını etkileşimli test etmenize, sunucu meta verilerini incelemenize ve gerçek zamanlı yanıtları görüntülemenize izin verir; bu da MCP sunucu uygulamalarınızı doğrulamanızı ve hata ayıklamanızı kolaylaştırır.
 
-Şu şekilde görünebilir: ![Inspector](../../../../translated_images/tr/connect.141db0b2bd05f096.webp)
+İşte böyle görünebilir: ![Inspector](../../../../translated_images/tr/connect.141db0b2bd05f096.webp)
 
-Ayrıca bu aracı CLI modunda çalıştırabilirsiniz; bu durumda `--cli` parametresini eklersiniz. İşte sunucudaki tüm araçları listeleyen "CLI" modunda aracın çalıştırılmasına örnek:
+Bu aracı CLI modunda da çalıştırabilirsiniz, bu durumda `--cli` özniteliğini eklersiniz. İşte araçları sunucuda listeleyen "CLI" modunda çalıştırmaya bir örnek:
 
 ```sh
 npx @modelcontextprotocol/inspector --cli node build/index.js --method tools/list
@@ -50,25 +50,25 @@ npx @modelcontextprotocol/inspector --cli node build/index.js --method tools/lis
 
 ### Manuel Test
 
-Sunucu yeteneklerini test etmek için inspector aracını çalıştırmanın yanı sıra, başka benzer bir yaklaşım HTTP yapabilen bir istemci çalıştırmaktır, örneğin curl.
+Sunucu yeteneklerini test etmek için inspector aracını çalıştırmanın yanı sıra, HTTP kullanabilen bir istemciyi de çalıştırabilirsiniz; örneğin curl gibi.
 
-Curl ile MCP sunucularını HTTP istekleri ile doğrudan test edebilirsiniz:
+Curl ile MCP sunucularını doğrudan HTTP istekleriyle test edebilirsiniz:
 
 ```bash
-# Örnek: Test sunucusu meta verileri
+# Örnek: Test sunucu meta verisi
 curl http://localhost:3000/v1/metadata
 
-# Örnek: Bir aracı çalıştır
+# Örnek: Bir araç çalıştır
 curl -X POST http://localhost:3000/v1/tools/execute \
   -H "Content-Type: application/json" \
   -d '{"name": "calculator", "parameters": {"expression": "2+2"}}'
 ```
 
-Yukarıdaki curl kullanımından görebileceğiniz gibi, bir aracın adından ve parametrelerinden oluşan bir yükle POST isteği göndererek aracı çağırıyorsunuz. Kendinize en uygun olan yaklaşımı kullanın. CLI araçları genel olarak kullanımı daha hızlıdır ve betiklenmeye elverişlidir; bu da CI/CD ortamlarında faydalı olabilir.
+Yukarıdaki curl kullanımından da görebileceğiniz gibi, bir aracı çağırmak için araç adı ve parametrelerini içeren bir yükle POST isteği yaparsınız. Size en uygun yaklaşımı kullanın. CLI araçları genel olarak daha hızlıdır ve script yazmaya uygundur, bu da CI/CD ortamlarında faydalı olabilir.
 
 ### Birim Testi
 
-Araçlarınız ve kaynaklarınız için beklenildiği gibi çalıştıklarından emin olmak amacıyla birim testleri oluşturun. İşte örnek test kodu.
+Araçlarınız ve kaynaklarınız için beklediğiniz gibi çalıştığını garanti etmek üzere birim testleri oluşturun. İşte bazı örnek test kodları.
 
 ```python
 import pytest
@@ -78,7 +78,7 @@ from mcp.shared.memory import (
     create_connected_server_and_client_session as create_session,
 )
 
-# Asenkron testler için tüm modülü işaretle
+# Modülün tamamını asenkron testler için işaretle
 pytestmark = pytest.mark.anyio
 
 
@@ -103,15 +103,15 @@ async def test_list_tools_cursor_parameter():
         return "Result 2"
 
     async with create_session(server._mcp_server) as client_session:
-        # İmleç parametresi olmadan test (atlandı)
+        # İmleç parametresi olmadan test et (atlandı)
         result1 = await client_session.list_tools()
         assert len(result1.tools) == 2
 
-        # cursor=None ile test et
+        # İmleç=None ile test et
         result2 = await client_session.list_tools(cursor=None)
         assert len(result2.tools) == 2
 
-        # İmleç olarak string ile test et
+        # İmleci string olarak kullanarak test et
         result3 = await client_session.list_tools(cursor="some_cursor_value")
         assert len(result3.tools) == 2
 
@@ -123,29 +123,29 @@ async def test_list_tools_cursor_parameter():
 
 Yukarıdaki kod şunları yapar:
 
-- Testleri fonksiyonlar olarak oluşturmanıza ve assert ifadeleri kullanmanıza olanak tanıyan pytest framework'ünü kullanır.
-- İki farklı araç içeren bir MCP Sunucusu oluşturur.
-- Belirli koşulların sağlandığını kontrol etmek için `assert` ifadesi kullanır.
+- pytest çerçevesini kullanır; böylece testlerinizi fonksiyonlar şeklinde oluşturabilir ve assert ifadeleri kullanabilirsiniz.
+- İki farklı araç ile bir MCP Sunucusu oluşturur.
+- Bazı koşulların sağlanıp sağlanmadığını kontrol etmek için `assert` ifadesini kullanır.
 
-[Tam dosyaya buradan bakabilirsiniz](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+[Tam dosyaya buradan göz atabilirsiniz](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
-Yukarıdaki dosyaya dayanarak kendi sunucunuzu test edebilir ve yeteneklerin olması gerektiği gibi oluşturulduğundan emin olabilirsiniz.
+Yukarıdaki dosyaya bakarak, kendi sunucunuzu test edip yeteneklerin doğru oluşturulduğundan emin olabilirsiniz.
 
-Tüm önemli SDK'larda benzer test bölümleri bulunur, böylece seçtiğiniz çalışma zamanı ortamına uyarlayabilirsiniz.
+Tüm önemli SDK'lar benzer test bölümlerine sahiptir; böylece seçtiğiniz çalışma ortamına göre uyarlama yapabilirsiniz.
 
-## Örnekler
+## Örnekler 
 
 - [Java Hesap Makinesi](../samples/java/calculator/README.md)
 - [.Net Hesap Makinesi](../../../../03-GettingStarted/samples/csharp)
 - [JavaScript Hesap Makinesi](../samples/javascript/README.md)
 - [TypeScript Hesap Makinesi](../samples/typescript/README.md)
-- [Python Hesap Makinesi](../../../../03-GettingStarted/samples/python)
+- [Python Hesap Makinesi](../../../../03-GettingStarted/samples/python) 
 
 ## Ek Kaynaklar
 
 - [Python SDK](https://github.com/modelcontextprotocol/python-sdk)
 
-## Sonraki Adım
+## Sırada Ne Var
 
 - Sonraki: [Dağıtım](../09-deployment/README.md)
 
@@ -153,5 +153,5 @@ Tüm önemli SDK'larda benzer test bölümleri bulunur, böylece seçtiğiniz ç
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Feragatname**:
-Bu doküman, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hatalar veya yanlışlıklar içerebileceğini lütfen unutmayın. Orijinal doküman, kendi diliyle yetkili kaynak olarak kabul edilmelidir. Önemli bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucu oluşabilecek herhangi bir yanlış anlama veya yoruma karşı sorumluluk kabul edilmemektedir.
+Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba sarf etsek de, otomatik çevirilerin hata veya yanlışlık içerebileceğini lütfen unutmayınız. Orijinal belge, kendi dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucu ortaya çıkabilecek yanlış anlamalardan veya yanlış yorumlamalardan sorumlu değiliz.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
