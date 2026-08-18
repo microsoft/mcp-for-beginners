@@ -1,125 +1,125 @@
-# Model Context Protocol 用於即時網絡搜尋
+# 用於實時網絡搜索的模型上下文協議
 
-## 概覽
+## 總覽
 
-在今日以資訊為驅動的環境中，即時網絡搜尋變得不可或缺，應用程式需即時存取互聯網上最新資訊，以提供相關且及時的回應。Model Context Protocol（MCP）代表著優化這些即時搜尋流程的重要進展，提升搜尋效率、維持上下文完整性，並改善整體系統效能。
+實時網絡搜索已成為當今以資訊為驅動的環境中不可或缺的一部分，應用程序需要即時獲取互聯網上的最新資訊，以提供相關且及時的回應。模型上下文協議（MCP）代表了優化這些實時搜索流程的重要進展，提升搜索效率、維護上下文完整性並改善整體系統性能。
 
-本模組探討 MCP 如何透過標準化管理 AI 模型、搜尋引擎與應用程式間的上下文，有效改變即時網絡搜尋。
+本模塊探討 MCP 如何透過提供一種跨 AI 模型、搜索引擎和應用的標準化上下文管理方法，改造實時網絡搜索。
 
-### 你將學習到什麼
+### 您將學到的內容
 
-在此全面指南中，你將發現：
+在這份全面指南中，您將發現：
 
-- MCP 如何在 AI 模型與即時網絡搜尋功能之間架設無縫橋樑
-- 使用 MCP 實現高效且可擴展搜尋方案的架構範式
-- 保留多次查詢與互動中搜尋上下文的技術
-- 於多種搜尋場景中使用 Python 與 JavaScript 的實用程式碼實作
-- 在 MCP 支援的搜尋系統內平衡相關性、新鮮度與效能的方法
+- MCP 如何建立 AI 模型與實時網絡搜索能力之間的無縫橋樑
+- 使用 MCP 實現高效且可擴展搜索解決方案的架構模式
+- 保持多重查詢與互動中的搜索上下文的技術
+- 針對各種搜索場景的 Python 和 JavaScript 實作範例
+- 在 MCP 支援的搜索系統中平衡相關性、時效性與效能的方法
 
-## 即時網絡搜尋簡介
+## 實時網絡搜索簡介
 
-即時網絡搜尋是一種技術方法，使系統能不斷查詢、處理及分析發布或更新中的網絡資訊，從而以最低延遲提供新鮮且相關的資訊。與運作於可能已經延遲數小時甚至數日的索引資料的傳統搜尋系統不同，即時搜尋直接處理網絡的即時資料，交付反映線上內容即時狀態的洞見和資訊。
+實時網絡搜索是一種技術方法，能夠持續查詢、處理及分析網絡上的資訊，當資訊被發布或更新時即時反映，讓系統能以最小延遲提供新鮮且相關的資訊。不同於傳統依靠可能是數小時甚至數天前的索引資料來運作的搜索系統，實時搜索直接處理網絡上的即時資料，提供反映當前網絡內容狀態的見解與資訊。
 
-### 即時網絡搜尋核心概念：
+### 實時網絡搜索的核心概念：
 
-- <strong>持續查詢處理</strong>：搜尋查詢針對不斷更新的資料來源進行處理
-- <strong>新鮮度優先</strong>：系統設計強調優先呈現最新資訊
-- <strong>相關性平衡</strong>：在相關性與新鮮度之間維持平衡
-- <strong>可擴展架構</strong>：系統須能處理可變的查詢負載和資料量
-- <strong>上下文理解</strong>：在多次搜尋中維持使用者上下文對結果意義重大
-- <strong>動態查詢重構</strong>：基於上下文和先前結果自適應修改查詢
-- <strong>多來源整合</strong>：整合多個搜尋供應商及網絡來源的結果
-- <strong>語意理解</strong>：基於語意處理查詢與內容，而非僅是關鍵字
-- <strong>即時排名</strong>：隨著新資訊湧現持續調整結果排名
+- <strong>持續查詢處理</strong>：搜索查詢基於持續更新的資料來源進行處理
+- <strong>時效性優先</strong>：系統設計以優先處理新鮮資訊
+- <strong>相關性平衡</strong>：在相關性與時效性之間保持平衡
+- <strong>可擴展架構</strong>：系統必須能處理變動的查詢負載與資料量
+- <strong>上下文理解</strong>：維持用戶上下文於多次搜索迭代中對結果的意義至關重要
+- <strong>動態查詢重構</strong>：依據上下文與先前結果自適應調整查詢
+- <strong>多來源整合</strong>：結合多個搜索提供者和網絡來源的結果
+- <strong>語義理解</strong>：根據意義而非僅是關鍵字來處理查詢與內容
+- <strong>實時排名</strong>：隨著新資訊可用持續調整結果排名
 
-### Model Context Protocol 與即時網絡搜尋
+### 模型上下文協議與實時網絡搜索
 
-Model Context Protocol（MCP）針對即時網絡搜尋環境中的幾項重要挑戰提出解決方案：
+模型上下文協議（MCP）解決了實時網絡搜索環境中的多項關鍵挑戰：
 
-1. <strong>搜尋上下文保留</strong>：MCP 標準化如何在分散搜尋元件間維護上下文，確保 AI 模型與處理節點能存取相關查詢歷史及使用者喜好。
+1. <strong>搜索上下文維護</strong>：MCP 標準化跨分散搜索組件的上下文維護，確保 AI 模型與處理節點可存取相關查詢歷史與用戶喜好。
 
-2. <strong>高效查詢管理</strong>：透過提供結構化的上下文傳遞機制，MCP 減少每次搜尋迭代重複上下文的負擔。
+2. <strong>高效查詢管理</strong>：透過提供結構化的上下文傳輸機制，MCP 減少每次搜索迭代重複上下文的開銷。
 
-3. <strong>互通性</strong>：MCP 創造多元搜尋技術與 AI 模型間共通的上下文分享語言，促成更靈活且可擴展的架構。
+3. <strong>互操作性</strong>：MCP 建立了多種搜索技術和 AI 模型之間共享上下文的通用語言，促進更靈活與可擴展的架構。
 
-4. <strong>搜尋優化上下文</strong>：MCP 實作可優先處理對搜尋最有效的上下文元素，優化效能與準確度。
+4. <strong>搜索優化上下文</strong>：MCP 實作能優先考量對有效搜索最相關的上下文元素，於效能及準確性上優化。
 
-5. <strong>自適應搜尋處理</strong>：憑藉 MCP 的適當上下文管理，搜尋系統能根據使用者需求和資訊變化動態調整處理。
+5. <strong>自適應搜索處理</strong>：透過 MCP 妥善的上下文管理，搜索系統可根據用戶需求和資訊環境的演變動態調整處理。
 
-在新聞彙整、研究助理等現代應用中，將 MCP 與網絡搜尋技術整合，可創造更智慧、上下文感知的搜尋，隨著使用者互動持續提供更相關的結果。
+在從新聞聚合到研究助理等現代應用中，MCP 與網絡搜索技術的整合，讓搜索更加智慧且具有上下文感知能力，隨著用戶互動持續，能提供越來越相關的結果。
 
 ## 學習目標
 
-本課結束時，你將能：
+本課程結束時，您將能夠：
 
-- 理解即時網絡搜尋的基本原理及其於現代應用中的挑戰
-- 解釋 Model Context Protocol（MCP）如何強化即時網絡搜尋能力
-- 使用流行框架與 API 實作基於 MCP 的搜尋方案
-- 設計並部署可擴展且高性能的 MCP 搜尋架構
-- 將 MCP 概念應用於語意搜尋、研究助手及 AI 擴充瀏覽等多種用例
-- 評估 MCP 搜尋技術的未來趨勢與創新
-- 開發能從使用者互動中學習的上下文感知搜尋系統
-- 使用標準化 MCP 協定將網絡搜尋能力整合至 AI 助理
-- 建立分階段搜尋管線，依上下文逐步優化結果
-- 優化搜尋效能，同時保持完整的上下文感知
+- 理解實時網絡搜索的基本原理及其在現代應用中的挑戰
+- 解釋模型上下文協議（MCP）如何提升實時網絡搜索能力
+- 使用流行框架和 API 實作基於 MCP 的搜索解決方案
+- 設計及部署具可擴展性且高效能的 MCP 搜索架構
+- 將 MCP 概念應用於語義搜索、研究輔助及 AI 增強瀏覽等不同用例
+- 評估 MCP 基礎搜索技術的最新趨勢與未來創新
+- 開發從用戶互動中學習的上下文感知搜索系統
+- 利用標準化 MCP 協議將網絡搜索能力整合至 AI 助理
+- 創建多階段搜索管道，根據上下文逐步優化結果
+- 在維持全面上下文感知的同時優化搜索性能
 
-### 定義與意義
+### 定義與重要性
 
-即時網絡搜尋指的是以最低延遲不斷查詢、檢索及傳遞網絡資訊。與週期性爬蟲並建立索引的傳統搜尋引擎不同，即時搜尋目標是展示最新可用的資訊，使用者可即刻存取最新內容。
+實時網絡搜索涉及持續查詢、檢索及交付網絡信息，延遲極低。不同於定期爬網並索引網頁的傳統搜索引擎，實時搜索旨在曝光資訊於其可用時，使用戶能即時接觸最新內容。
 
-即時網絡搜尋的主要特徵包括：
+實時網絡搜索的關鍵特性包括：
 
-- <strong>新鮮度</strong>：優先最新內容與更新
-- <strong>持續處理</strong>：不斷監測新資訊
-- <strong>查詢調適</strong>：根據上下文與反饋優化查詢
-- <strong>即時傳遞</strong>：提供查詢結果的延遲極低
-- <strong>上下文保留</strong>：基於先前查詢累積資訊以提昇相關性
+- <strong>新鮮度</strong>：優先考慮最新內容及更新
+- <strong>持續處理</strong>：持續監控新資訊
+- <strong>查詢適應</strong>：依據上下文及反饋優化搜索查詢
+- <strong>即時交付</strong>：以最短延遲提供搜索結果
+- <strong>上下文保持</strong>：基於先前查詢累積提高相關性
 
-### 傳統網絡搜尋的挑戰
+### 傳統網絡搜索面臨的挑戰
 
-傳統網絡搜尋在即時場景中面臨多項限制：
+傳統網絡搜索方法在實時場景中存在多重限制：
 
-1. <strong>上下文碎片化</strong>：跨多次查詢難以維持搜尋上下文
-2. <strong>資訊新鮮度</strong>：難以存取與優先最新資訊
-3. <strong>整合複雜度</strong>：搜尋系統與應用程式間互通性問題
-4. <strong>延遲問題</strong>：在搜尋廣度與回應時間間取得平衡
-5. <strong>相關度調校</strong>：在優先新鮮度的同時保證準確性與相關性
+1. <strong>上下文碎片化</strong>：難以於多次查詢中維持搜索上下文
+2. <strong>資訊新鮮度</strong>：難以存取及優先最新資訊
+3. <strong>整合複雜性</strong>：搜索系統與應用間互操作問題
+4. <strong>延遲問題</strong>：在全面搜索與響應時間間的平衡
+5. <strong>相關性調整</strong>：在優先時效性的同時確保準確性與相關性
 
-## 認識搜尋用的 Model Context Protocol (MCP)
+## 理解搜索領域中的模型上下文協議（MCP）
 
-### 搜尋上下文中的 MCP 是什麼？
+### MCP 在搜索上下文中是什麼？
 
-Model Context Protocol（MCP）是一種標準化通訊協議，用於促進 AI 模型與應用程式間的高效互動。在即時網絡搜尋場景中，MCP 提供框架用於：
+模型上下文協議（MCP）是一種標準化的通訊協議，旨在促進 AI 模型與應用間高效互動。在實時網絡搜索領域，MCP 提供一個框架以：
 
-- 在多輪查詢過程中保留搜尋上下文
-- 標準化搜尋查詢和結果格式
-- 優化搜尋參數與結果的傳輸
-- 加強模型與搜尋引擎間的通訊
+- 在查詢序列中保存搜索上下文
+- 標準化搜索查詢與結果格式
+- 優化搜索參數與結果的傳輸
+- 強化模型與搜索引擎間的通信
 
 ### 核心組件與架構
 
-MCP 用於即時網絡搜尋的架構包含幾個關鍵元件：
+MCP 用於實時網絡搜索的架構包含數個關鍵組件：
 
-1. <strong>查詢上下文管理器</strong>：管理及維護跨多次查詢的搜尋上下文
-2. <strong>搜尋處理器</strong>：運用上下文感知技術處理傳入的查詢請求
-3. <strong>協議適配器</strong>：在不同搜尋 API 之間轉換並保留上下文
-4. <strong>上下文儲存庫</strong>：高效存取搜尋歷史和使用者偏好
-5. <strong>搜尋連接端</strong>：連結各種搜尋引擎與網絡 API
+1. <strong>查詢上下文處理器</strong>：管理及維持多重查詢中的搜索上下文
+2. <strong>搜索處理器</strong>：運用上下文感知技術處理進入的搜索請求
+3. <strong>協議轉換器</strong>：在保留上下文的情況下轉換不同搜索 API
+4. <strong>上下文存儲</strong>：高效存取搜索歷史和偏好設定
+5. <strong>搜索連接器</strong>：連接各種搜索引擎及網絡 API
 
 ```mermaid
 graph TD
     subgraph "數據來源"
-        Web[網絡內容]
+        Web[網頁內容]
         APIs[外部 API]
         DB[知識庫]
-        News[新聞來源]
+        News[新聞源]
     end
 
-    subgraph "MCP 搜索層"
-        SC[搜索連接器]
+    subgraph "MCP 搜尋層"
+        SC[搜尋連接器]
         PA[協議轉接器]
         CH[上下文處理器]
-        SP[搜索處理器]
+        SP[搜尋處理器]
         CS[上下文存儲]
     end
 
@@ -127,11 +127,11 @@ graph TD
         RE[相關性引擎]
         ML[機器學習模型]
         NLP[自然語言處理]
-        Rank[排序系統]
+        Rank[排名系統]
     end
 
     subgraph "應用與服務"
-        RA[研究助手]
+        RA[研究助理]
         Alerts[警報系統]
         KB[知識庫]
         API[API 服務]
@@ -146,11 +146,11 @@ graph TD
     PA -->|標準化結果| CH
     CH <-->|上下文操作| CS
     CH -->|上下文豐富結果| SP
-    SP -->|處理結果| RE
+    SP -->|處理後結果| RE
     SP -->|特徵| ML
-    SP -->|文本| NLP
+    SP -->|文字| NLP
     
-    RE -->|排序結果| Rank
+    RE -->|排名結果| Rank
     ML -->|預測| Rank
     NLP -->|實體與關係| Rank
     
@@ -158,14 +158,14 @@ graph TD
     ML -->|洞察| Alerts
     NLP -->|結構化數據| KB
     
-    RA -->|研究| Users((用戶))
+    RA -->|研究| Users((Users))
     Alerts -->|通知| Users
     KB <-->|知識存取| API
-    
-    classDef sources fill:#f9f,stroke:#333,stroke-width:2px
-    classDef mcp fill:#bbf,stroke:#333,stroke-width:2px
-    classDef processing fill:#bfb,stroke:#333,stroke-width:2px
-    classDef apps fill:#fbb,stroke:#333,stroke-width:2px
+
+    classDef sources fill:#f9f,stroke:#333,stroke-width:2px,color:#4a004a
+    classDef mcp fill:#bbf,stroke:#333,stroke-width:2px,color:#00004a
+    classDef processing fill:#bfb,stroke:#333,stroke-width:2px,color:#003300
+    classDef apps fill:#fbb,stroke:#333,stroke-width:2px,color:#4a0000
     
     class Web,APIs,DB,News sources
     class SC,PA,CH,SP,CS mcp
@@ -173,42 +173,43 @@ graph TD
     class RA,Alerts,KB,API apps
 ```
 
-### MCP 如何改善即時網絡搜尋
+### MCP 如何改善實時網絡搜索
 
-MCP 透過以下方式解決傳統網絡搜尋挑戰：
+MCP 通過以下方式解決傳統網絡搜索的挑戰：
 
-- <strong>上下文連續性</strong>：在整個搜尋會話中維持查詢間的關聯
-- <strong>優化傳輸</strong>：透過智慧上下文管理減少搜尋參數冗餘
-- <strong>標準介面</strong>：為搜尋元件提供一致的 API
-- <strong>降低延遲</strong>：藉由高效的上下文處理減少作業負荷
-- <strong>提升相關性</strong>：通過保留多輪查詢間的使用者意圖提高搜尋準確度
+- <strong>上下文連續性</strong>：於整個搜索期間維持查詢間關聯
+- <strong>傳輸優化</strong>：通過智能上下文管理減少搜索參數冗餘
+- <strong>標準化接口</strong>：為搜索組件提供一致 API
+- <strong>降低延遲</strong>：高效處理上下文降低處理負擔
+- <strong>提升相關性</strong>：透過保存多查詢用戶意圖提升搜索相關性
 
 ## 整合與實作
 
-即時網絡搜尋系統需謹慎設計與實作架構，兼顧效能與上下文完整性。Model Context Protocol 提供標準化方法整合 AI 模型與搜尋技術，構建更精巧且具上下文感知的搜尋管線。
+實時網絡搜索系統需要精心的架構設計與實作，以兼顧性能與上下文完整性。模型上下文協議提供了標準化方法來整合 AI 模型與搜索技術，實現更先進且具上下文感知的搜索管道。
 
-### MCP 在搜尋架構整合概述
+### MCP 在搜索架構中的整合概述
 
-在即時網絡搜尋環境實作 MCP 涉及若干要點：
+在實時網絡搜索環境中實施 MCP 需考慮多項要點：
 
-1. <strong>搜尋上下文序列化</strong>：MCP 提供有效機制將上下文編碼於搜尋請求中，確保重要上下文伴隨查詢流轉整個處理管線。包含針對搜尋相關元資料優化的標準序列格式。
+1. <strong>搜索上下文序列化</strong>：MCP 提供高效編碼上下文資訊於搜索請求中機制，確保關鍵上下文隨查詢流經處理流程。包括針對搜索相關元資料優化的標準化序列化格式。
 
-2. <strong>有狀態搜尋處理</strong>：MCP 透過始終如一的上下文呈現，促使搜尋具有更智慧的有狀態處理。對於多階段搜尋管線來說，上下文細緻化能帶來更佳結果。
+2. <strong>有狀態搜索處理</strong>：MCP 透過於多次搜索迭代中維持一致的上下文表示促進更智慧的有狀態處理。在多階段搜索管道中上下文的精煉能提升結果。
 
-3. <strong>查詢擴展與優化</strong>：在搜尋系統中，MCP 可促成基於累積上下文的複雜查詢擴展與微調，隨著搜尋進展提供更相關的結果。
+3. <strong>查詢擴展與優化</strong>：MCP 實作支援基於累積上下文的複雜查詢擴展與優化，使得搜索會話持續推進中結果更相關。
 
-4. <strong>結果快取與排序優先</strong>：標準化上下文處理助力管理結果快取與優先排序，使元件能隨搜尋上下文演進自我調整。
+4. <strong>結果快取與優先排序</strong>：經由標準化上下文處理，MCP 幫助管理結果快取與優先級，使組件能依據變化中的搜索上下文做調整。
 
-5. <strong>搜尋聯邦與彙整</strong>：MCP 促進跨多個後端更精巧的搜尋聯邦，因結構化表示搜尋上下文，能更有意義地匯聚多元來源結果。
+5. <strong>搜索聯邦與聚合</strong>：MCP 透過提供結構化的搜索上下文表示，促進跨多個後端更複雜的搜索聯邦，實現來自多元來源的結果有意義聚合。
 
-在多樣搜尋技術中實施 MCP，創造統一的上下文管理方式，減少客製化整合代碼需求，並強化系統在查詢演變過程中保持意義上下文的能力。
+MCP 在不同搜索技術中的實施創建了統一的上下文管理方法，減少了自訂整合代碼需求，並提升系統隨查詢演進維持有意義上下文的能力。
 
-### MCP 在各種網絡搜尋實作中
+### MCP 在多種網絡搜索實作中的應用
 
-以下範例遵循現行 MCP 規範，該規範基於 JSON-RPC 協議並採用不同傳輸機制。程式碼示範如何實作自訂搜尋整合，同時完整相容 MCP 協議。
+這些範例依據目前 MCP 規範，該規範集中於一種基於 JSON-RPC 的協議，含有明確的傳輸機制。程式碼示範如何實作自訂搜索整合，同時保持與 MCP 協議完全相容。
+
 
 <details>
-<summary>使用通用搜尋 API 的 Python 實作</summary>
+<summary>使用通用搜索 API 的 Python 實作</summary>
 
 ```python
 import asyncio
@@ -218,16 +219,16 @@ from typing import Dict, Any, Optional, List
 from contextlib import asynccontextmanager
 from collections.abc import AsyncIterator
 
-# 匯入標準 MCP 函式庫
+# 匯入標準MCP庫
 from mcp.client.session import ClientSession
 from mcp.client.streamable_http import streamablehttp_client
 from mcp.types import TextContent, CreateMessageRequestParams, CreateMessageResult
 from mcp.server.fastmcp import FastMCP
 
-# 建立用於網絡搜尋的 FastMCP 伺服器
+# 建立一個用於網絡搜索的FastMCP伺服器
 search_server = FastMCP("WebSearch")
 
-# 處理網絡搜尋操作的類別
+# 用於處理網絡搜索操作的類別
 class WebSearchHandler:
     def __init__(self, api_endpoint: str, api_key: str):
         self.api_endpoint = api_endpoint
@@ -250,7 +251,7 @@ class WebSearchHandler:
                            exclude_domains: List[str] = None,
                            time_period: str = "any") -> Dict[str, Any]:
         """Perform web search using the search API"""
-        # 建立搜尋參數
+        # 建構搜尋參數
         search_params = {
             "q": query,
             "limit": max_results,
@@ -263,7 +264,7 @@ class WebSearchHandler:
         if exclude_domains:
             search_params["exclude_site"] = ",".join(exclude_domains)
         
-        # 執行搜尋請求
+        # 執行搜索請求
         try:
             async with self.session.get(
                 self.api_endpoint,
@@ -275,7 +276,7 @@ class WebSearchHandler:
                 
                 search_data = await response.json()
                 
-                # 將 API 特定的回應轉換為標準格式
+                # 將API特定響應轉換為標準格式
                 results = []
                 for item in search_data.get("results", []):
                     results.append({
@@ -295,13 +296,13 @@ class WebSearchHandler:
             print(f"Search API request error: {e}")
             raise
 
-# 初始化搜尋處理器
+# 初始化搜索處理器
 search_handler = WebSearchHandler(
     api_endpoint="https://api.search-service.example/search",
     api_key="your-api-key-here"
 )
 
-# 設定生命週期以管理搜尋處理器
+# 設定壽命週期以管理搜索處理器
 @asyncio.asynccontextmanager
 async def app_lifespan(server: FastMCP):
     """Manage application lifecycle"""
@@ -311,10 +312,10 @@ async def app_lifespan(server: FastMCP):
     finally:
         await search_handler.close()
 
-# 設定伺服器的生命週期
+# 設定伺服器的壽命週期
 search_server = FastMCP("WebSearch", lifespan=app_lifespan)
 
-# 註冊一個網絡搜尋工具
+# 註冊一個網絡搜索工具
 @search_server.tool()
 async def web_search(query: str, max_results: int = 5, 
                    include_domains: List[str] = None,
@@ -346,15 +347,15 @@ async def web_search(query: str, max_results: int = 5,
     
     return results
 
-# 範例客戶端使用方法
+# 客戶端使用範例
 async def client_example():
-    # 使用可串流 HTTP 傳輸連接搜尋伺服器
+    # 使用Streamable HTTP傳輸連接搜索伺服器
     async with streamablehttp_client("http://localhost:8000/mcp") as (read, write, _):
         async with ClientSession(read, write) as session:
-            # 初始化連接
+            # 初始化連線
             await session.initialize()
             
-            # 呼叫 web_search 工具
+            # 呼叫web_search工具
             search_results = await session.call_tool(
                 "web_search", 
                 {
@@ -369,16 +370,17 @@ async def client_example():
 
 # 伺服器執行範例
 if __name__ == "__main__":
-    # 使用可串流 HTTP 傳輸執行伺服器
+    # 使用Streamable HTTP傳輸執行伺服器
     search_server.run(transport="streamable-http")
 ```
 </details> 
 
 <details>
-<summary>基於瀏覽器搜尋的 JavaScript 實作</summary>
+<summary>基於瀏覽器搜索的 JavaScript 實作</summary>
+
 
 ```javascript
-// MCP 伺服器實作用於網絡搜尋
+// 網絡搜尋的 MCP 伺服器實現
 import { McpServer, ResourceTemplate } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import { z } from 'zod';
@@ -405,7 +407,7 @@ class SearchService {
             timePeriod = 'any'
         } = parameters;
         
-        // 使用參數構建搜尋 URL
+        // 使用參數構造搜尋 URL
         const url = new URL(this.searchApiUrl);
         url.searchParams.append('q', query);
         url.searchParams.append('limit', maxResults);
@@ -435,7 +437,7 @@ class SearchService {
             
             const searchData = await response.json();
             
-            // 將特定 API 回應轉換為標準格式
+            // 將 API 特定的回應轉換為標準格式
             const results = searchData.results?.map(item => ({
                 title: item.title || '',
                 url: item.url || '',
@@ -462,7 +464,7 @@ const searchService = new SearchService(
     'your-api-key-here'
 );
 
-// 為伺服器設置上下文提供者
+// 為伺服器設定上下文提供者
 searchServer.setContextProvider(() => {
     return {
         searchService
@@ -510,7 +512,7 @@ searchServer.tool({
     }
 });
 
-// 連接搜尋伺服器的範例客戶端代碼
+// 連接至搜尋伺服器的範例客戶端代碼
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 
@@ -540,7 +542,7 @@ async function connectToSearchServer() {
     
     console.log('Search results:', searchResults);
     
-    // 清理
+    // 清理工作
     await client.disconnect();
 }
 
@@ -554,53 +556,56 @@ console.log('Search server running at http://localhost:8000/mcp');
 ```
 </details> 
 
+
+
+
 ## 程式碼範例免責聲明
 
-> <strong>重要提示</strong>：以下程式碼範例展示 Model Context Protocol（MCP）與網絡搜尋功能的整合。雖遵循官方 MCP SDK 的模式與結構，但為教育目的簡化。
+> <strong>重要提示</strong>：以下程式碼範例展示了模型上下文協議（MCP）與網絡搜索功能的整合。儘管遵循官方 MCP SDK 的模式與結構，但已簡化以利教學使用。
 > 
-> 範例特色包括：
+> 這些範例展示：
 > 
-> 1. **Python 實作**：一個 FastMCP 伺服器實作，提供網絡搜尋工具並連結外部搜尋 API。示範妥善的壽命管理、上下文處理及工具實作，依循 [官方 MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) 範例。伺服器使用新版推薦的 Streamable HTTP 傳輸，已取代舊的 SSE 傳輸以利生產環境部署。
+> 1. **Python 實作**：一個 FastMCP 伺服器實作，提供網絡搜索工具並連接至外部搜索 API。此範例展示依據[官方 MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) 的模式正確管理生命期、上下文處理與工具實作。服務器採用推薦的 Streamable HTTP 傳輸，已取代更舊的 SSE 傳輸，適合正式部署。
 > 
-> 2. **JavaScript 實作**：一個以 TypeScript/JavaScript 實作的 FastMCP 範例，參考 [官方 MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)，建立具適切工具定義與客戶端連線的搜尋伺服器，遵循最新的會話管理與上下文維護建議。
+> 2. **JavaScript 實作**：運用官方 MCP TypeScript SDK 的 FastMCP 模式，使用 TypeScript/JavaScript 編寫搜索伺服器，包含正確的工具定義和客戶端連接。遵循最新推薦模式管理會話與上下文保存。
 > 
-> 這些範例用於生產時仍需補充錯誤處理、認證及特定 API 整合程式碼。所示搜尋 API 端點 (`https://api.search-service.example/search`) 為佔位符，須換成實際搜尋服務端點。
+> 這些範例在正式使用中需增加錯誤處理、認證與特定 API 整合代碼。示範的搜索 API 端點（`https://api.search-service.example/search`）為預留位址，需替換為實際搜索服務地址。
 > 
-> 詳細實作與最新方法，請參閱[官方 MCP 規範](https://spec.modelcontextprotocol.io/)與 SDK 文件。
+> 詳盡實作細節及最新方法，請參考[官方 MCP 規範](https://spec.modelcontextprotocol.io/)與 SDK 文檔。
 
 ## 核心概念
 
-### Model Context Protocol (MCP) 框架
+### 模型上下文協議（MCP）框架
 
-MCP 的基礎是為 AI 模型、應用程式與服務建立標準化的上下文交換途徑。在即時網絡搜尋中，此框架對打造連貫、多輪搜尋體驗至關重要。核心元素包括：
+本質上，模型上下文協議為 AI 模型、應用與服務之間交換上下文提供標準化方式。在實時網絡搜索中，該框架是創建連貫多輪搜索體驗的要素。關鍵組件包括：
 
-1. **客戶端－伺服器架構**：MCP 明確區分搜尋客戶端（請求者）與搜尋伺服器（提供者），允許部署模型多樣。
+1. **客戶端-伺服器架構**：MCP 建立搜索客戶端（請求端）與搜索伺服器（提供端）間的明確分離，支持靈活部署模式。
 
-2. **JSON-RPC 通訊**：協議使用 JSON-RPC 交換訊息，兼容網路技術且易於跨平台實作。
+2. **JSON-RPC 通信**：協議使用 JSON-RPC 交換訊息，與網絡技術相容且跨平台易於實現。
 
-3. <strong>上下文管理</strong>：MCP 定義結構化方式來維護、更新及運用多次互動的搜尋上下文。
+3. <strong>上下文管理</strong>：MCP 定義結構化的方法以維護、更新及運用跨多次互動的搜索上下文。
 
-4. <strong>工具定義</strong>：搜尋功能以標準化工具形式暴露，擁有明確參數和回傳值。
+4. <strong>工具定義</strong>：搜索功能以標準化工具形式暴露，具備明確參數與返回值。
 
-5. <strong>串流支援</strong>：協議支援搜尋結果串流，對即時搜尋中逐步到達的結果至關重要。
+5. <strong>串流支持</strong>：協議支持串流結果，必要於實時搜索中結果逐步返回。
 
-### 網絡搜尋整合模式
+### 網絡搜索整合模式
 
-MCP 與網絡搜尋整合時，出現若干模式：
+MCP 與網絡搜索整合時，幾種模式浮現：
 
-#### 1. 直接搜尋供應商整合
+#### 1. 直接搜索提供者整合
 
 ```mermaid
 graph LR
-    Client[MCP 客戶端] --> |MCP 請求| Server[MCP 伺服器]
+    Client[MCP 用戶端] --> |MCP 請求| Server[MCP 伺服器]
     Server --> |API 呼叫| SearchAPI[搜尋 API]
     SearchAPI --> |結果| Server
     Server --> |MCP 回應| Client
 ```
 
-此模式中，MCP 伺服器直接對接一個或多個搜尋 API，將 MCP 請求轉換為特定 API 呼叫，並格式化回應作為 MCP 回覆。
+在此模式中，MCP 伺服器直接接口一個或多個搜索 API，將 MCP 請求轉為 API 專用調用並格式化為 MCP 回應。
 
-#### 2. 聯邦搜尋與上下文保留
+#### 2. 保持上下文的聯邦搜索
 
 ```mermaid
 graph LR
@@ -611,156 +616,159 @@ graph LR
     Search1 --> |MCP 回應 1| Federation
     Search2 --> |MCP 回應 2| Federation
     Search3 --> |MCP 回應 3| Federation
-    Federation --> |匯總的 MCP 回應| Client
+    Federation --> |彙總的 MCP 回應| Client
 ```
 
-此模式分散搜尋查詢至多個相容 MCP 的搜尋供應商，各專長不同內容或搜尋能力，並維持統一上下文。
+此模式將搜索查詢分散至多個 MCP 兼容的搜索提供者，各自由專長不同內容或搜索能力，同時維持統一上下文。
 
-#### 3. 上下文強化搜尋鏈
+#### 3. 強化上下文的搜索鏈
 
 ```mermaid
 graph LR
-    Client[MCP 用戶端] --> |查詢 + 上下文| Server[MCP 伺服器]
+    Client[MCP 客戶端] --> |查詢 + 上下文| Server[MCP 伺服器]
     Server --> |1. 查詢分析| NLP[NLP 服務]
-    NLP --> |增強查詢| Server
-    Server --> |2. 搜索執行| Search[搜索引擎]
+    NLP --> |強化查詢| Server
+    Server --> |2. 搜尋執行| Search[搜尋引擎]
     Search --> |原始結果| Server
-    Server --> |3. 結果處理| Enhancement[結果增強]
-    Enhancement --> |增強結果| Server
+    Server --> |3. 結果處理| Enhancement[結果強化]
+    Enhancement --> |強化結果| Server
     Server --> |最終結果 + 更新上下文| Client
 ```
 
-此模式將搜尋流程分為多階段，每階段豐富上下文，完成逐步更相關的結果。
+此模式將搜索流程分為多階段，於每階段豐富上下文，產生逐步更相關的結果。
 
-### 搜尋上下文組件
+### 搜索上下文組件
 
-基於 MCP 的網絡搜尋中，上下文通常包含：
+於基於 MCP 的網絡搜索中，上下文通常包含：
 
-- <strong>查詢歷史</strong>：目前會話中前次搜尋查詢
-- <strong>使用者偏好</strong>：語言、區域、安全搜尋設定
-- <strong>互動歷史</strong>：點選哪些結果、停留時間
-- <strong>搜尋參數</strong>：篩選、排序及其他搜尋修飾
-- <strong>領域知識</strong>：與搜尋相關的主題特定上下文
-- <strong>時間上下文</strong>：基於時間的相關度因子
-- <strong>來源偏好</strong>：可信或偏好的資訊來源
+- <strong>查詢歷史</strong>：會話中的先前搜索查詢
+- <strong>用戶偏好</strong>：語言、地區、安全搜索設定
+- <strong>互動歷史</strong>：被點擊結果、在結果上的停留時間
+- <strong>搜索參數</strong>：過濾器、排序方式及其他搜索修飾符
+- <strong>領域知識</strong>：與搜索相關的特定主題上下文
+- <strong>時間上下文</strong>：基於時間的相關因素
+- <strong>來源偏好</strong>：可信或首選資訊來源
 
 ## 用例與應用
 
 ### 研究與資訊收集
 
-MCP 強化研究流程：
+MCP 透過以下方式增強研究流程：
 
-- 在搜尋會話中保留研究上下文
-- 支持更精巧與上下文相關查詢
-- 支援多來源搜尋聯邦
-- 促進從搜尋結果中提取知識
+- 在搜索會話中保存研究上下文
+- 支援更複雜且具上下文相關性的查詢
+- 支持多來源搜索聯邦
+- 促進從搜索結果中萃取知識
 
-### 即時新聞與趨勢監控
+### 實時新聞與趨勢監控
 
-MCP 驅動搜尋於新聞監控上具優勢：
+MCP 驅動的搜索為新聞監控提供優勢：
 
-- 接近即時發現新興新聞事件
-- 上下文過濾相關資訊
-- 跨多來源追蹤主題與實體
-- 基於使用者上下文的個性化新聞警示
+- 近實時發現新興新聞事件
+- 相關資訊的上下文篩選
+- 跨多來源的主題與實體追蹤
+- 基於用戶上下文的個人化新聞提醒
 
-### AI 擴展瀏覽與研究
+### AI 增強瀏覽與研究
 
-MCP 給 AI 擴展瀏覽帶來新可能：
+MCP 為 AI 增強瀏覽創造新可能：
 
-- 根據瀏覽器當前活動提出上下文搜尋建議
-- 網絡搜尋無縫整合大型語言模型助理
-- 基於上下文持續多輪優化搜尋
-- 強化事實查證與資訊驗證
+- 基於當前瀏覽活動的上下文搜索建議
+- 網絡搜索與大型語言模型助理的無縫整合
+- 維持上下文的多輪搜索優化
+- 強化事實核查與信息驗證
 
 ## 未來趨勢與創新
 
-### MCP 在網絡搜尋中的演進
+### MCP 在網絡搜索的演進
 
-展望未來，預期 MCP 持續演進以解決：
+展望未來，我們預期 MCP 將發展以解決：
+
+
 - <strong>多模態搜尋</strong>：整合文字、圖片、音訊及影片搜尋並保留上下文
-- <strong>去中心化搜尋</strong>：支援分散式及聯邦式搜尋生態系統
+- <strong>去中心化搜尋</strong>：支援分散式及聯邦搜尋生態系統
 - <strong>搜尋隱私</strong>：具上下文感知的隱私保護搜尋機制
-- <strong>查詢理解</strong>：自然語言搜尋查詢的深度語意解析
+- <strong>查詢理解</strong>：深入語意解析自然語言搜尋查詢
 
-### 技術潛在進展
+### 潛在技術進展
 
 將塑造 MCP 搜尋未來的新興技術：
 
-1. <strong>神經搜尋架構</strong>：優化於 MCP 的嵌入式搜尋系統
-2. <strong>個人化搜尋上下文</strong>：隨時間學習個別使用者搜尋模式
-3. <strong>知識圖譜整合</strong>：以領域特定知識圖譜增強上下文搜尋
-4. <strong>跨模態上下文</strong>：維持不同搜尋模態間的上下文連貫性
+1. <strong>神經搜尋架構</strong>：為 MCP 優化的嵌入式搜尋系統
+2. <strong>個人化搜尋上下文</strong>：隨時間學習個別用戶搜尋模式
+3. <strong>知識圖譜整合</strong>：透過領域專屬知識圖譜強化上下文搜尋
+4. <strong>跨模態上下文</strong>：維持不同搜尋模態間的上下文
 
-## 實作練習
+## 動手練習
 
-### 練習一：設定基礎 MCP 搜尋流程
+### 練習 1：建立基本 MCP 搜尋管線
 
-此練習中，您將學習如何：
-- 配置一個基礎 MCP 搜尋環境
-- 實作網絡搜尋的上下文處理器
-- 測試並驗證搜尋迭代中上下文的保留
+在此練習中，您將學習如何：
+- 配置基本 MCP 搜尋環境
+- 為網絡搜尋實作上下文處理功能
+- 測試並驗證搜尋迭代間的上下文保留
 
-### 練習二：使用 MCP 搜尋打造研究助理
+### 練習 2：利用 MCP 搜尋打造研究助理
 
-建立一個完整應用程式以：
+製作完整應用程式，能夠：
 - 處理自然語言研究問題
 - 執行具上下文感知的網絡搜尋
-- 綜合多來源資訊
-- 呈現有組織的研究成果
+- 彙整多來源資訊
+- 呈現有組織的研究結果
 
-### 練習三：以 MCP 實作多來源搜尋聯邦
+### 練習 3：實作多來源搜尋聯邦與 MCP
 
-進階練習涵蓋：
-- 具上下文感知的查詢分派至多個搜尋引擎
-- 結果排名與彙總
-- 搜尋結果的上下文重複排除
+高階練習涵蓋：
+- 具上下文感知的查詢指派至多個搜尋引擎
+- 結果排名與整合
+- 搜尋結果的上下文去重
 - 處理來源特定的元資料
 
-## 附加資源
+## 額外資源
 
-- [Model Context Protocol Specification](https://spec.modelcontextprotocol.io/) - MCP 官方規範及詳細協定文件
-- [Model Context Protocol Documentation](https://modelcontextprotocol.io/) - 詳細教學與實作指南
-- [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) - MCP 協定官方 Python 實作
-- [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - MCP 協定官方 TypeScript 實作
-- [MCP Reference Servers](https://github.com/modelcontextprotocol/servers) - MCP 伺服器參考實作
-- [Bing Web Search API Documentation](https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/overview) - 微軟網路搜尋 API
-- [Google Custom Search JSON API](https://developers.google.com/custom-search/v1/overview) - Google 可程式化搜尋引擎
-- [SerpAPI Documentation](https://serpapi.com/search-api) - 搜尋引擎結果頁 API
-- [Meilisearch Documentation](https://www.meilisearch.com/docs) - 開源搜尋引擎
-- [Elasticsearch Documentation](https://www.elastic.co/guide/index.html) - 分散式搜尋與分析引擎
-- [LangChain Documentation](https://python.langchain.com/docs/get_started/introduction) - 利用大型語言模型構建應用程式
+- [Model Context Protocol 規格](https://spec.modelcontextprotocol.io/) - MCP 官方規格及詳細協定文件
+- [Model Context Protocol 文件](https://modelcontextprotocol.io/) - 詳盡教學與實作指南
+- [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) - MCP 協定 Python 官方實作
+- [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - MCP 協定 TypeScript 官方實作
+- [MCP 參考伺服器](https://github.com/modelcontextprotocol/servers) - MCP 伺服器參考實作
+- [Bing 網絡搜尋 API 文件](https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/overview) - 微軟網絡搜尋 API
+- [Google 自訂搜尋 JSON API](https://developers.google.com/custom-search/v1/overview) - 谷歌可程式搜尋引擎
+- [SerpAPI 文件](https://serpapi.com/search-api) - 搜尋結果頁面 API
+- [Meilisearch 文件](https://www.meilisearch.com/docs) - 開源搜尋引擎
+- [Elasticsearch 文件](https://www.elastic.co/guide/index.html) - 分散式搜尋與分析引擎
+- [LangChain 文件](https://python.langchain.com/docs/get_started/introduction) - 使用大型語言模型構建應用程式
 
-## 學習成果
+## 學習成效
 
-完成本模組後，您將能夠：
+完成本單元後，您將能夠：
 
-- 理解即時網路搜尋的基礎及挑戰
-- 說明 Model Context Protocol (MCP) 如何提升即時網路搜尋能力
+- 理解實時網絡搜尋的基本原理及挑戰
+- 說明 Model Context Protocol (MCP) 如何增強實時網絡搜尋功能
 - 使用流行框架與 API 實作基於 MCP 的搜尋解決方案
-- 設計及部署高擴展性、高效能的 MCP 搜尋架構
-- 將 MCP 概念應用於語意搜尋、研究助理與 AI 增強瀏覽等多種情境
-- 評估 MCP 基礎搜尋技術的最新趨勢與未來創新
+- 設計與部署具擴展性、高效能的 MCP 搜尋架構
+- 將 MCP 概念應用於語意搜尋、研究輔助及 AI 增強瀏覽等多種情境
+- 評估 MCP 基於搜尋技術的新興趨勢與未來創新
+
 
 ### 信任與安全考量
 
-在實作基於 MCP 的網路搜尋解決方案時，請記住 MCP 規範中的重要原則：
+實作基於 MCP 的網絡搜尋解決方案時，請記住 MCP 規格中的以下重要原則：
 
-1. <strong>使用者同意與控制</strong>：使用者必須明確同意並理解所有資料存取及操作。這點對於可能存取外部資料來源的網路搜尋尤其重要。
+1. <strong>用戶同意與控制權</strong>：用戶必須明確同意並理解所有資料存取和操作，這對於可能存取外部資料源的網絡搜尋實作尤其重要。
 
-2. <strong>資料隱私</strong>：確保適當處理搜尋查詢及結果，特別是可能包含敏感資訊時。實施適當的存取控制以保護使用者資料。
+2. <strong>資料隱私</strong>：確保適當處理搜尋查詢及結果，特別是其中可能包含敏感資訊的情況。實施適當存取控管以保護用戶資料。
 
-3. <strong>工具安全</strong>：妥善授權及驗證搜尋工具，因為它們可能透過任意程式碼執行引發安全風險。工具行為描述除非來自可信伺服器，否則不應視為可信。
+3. <strong>工具安全</strong>：為搜尋工具實作妥善授權與驗證，因其可能透過任意程式碼執行帶來安全風險。除非從可信伺服器取得，否則工具行為描述應視為不可信。
 
-4. <strong>清晰文件</strong>：根據 MCP 規範的實作指引，提供關於 MCP 搜尋實作的功能、限制與安全考量的明確文件。
+4. <strong>明確文件</strong>：根據 MCP 規格的實作指南，清楚說明 MCP 搜尋實作的能力、限制及安全考量。
 
-5. <strong>完善的同意流程</strong>：構建健全的同意與授權流程，於授權使用前明確說明每個工具的功能，特別是與外部網路資源互動的工具。
+5. <strong>強固的同意流程</strong>：建立強健的同意及授權流程，清楚解釋每個工具的功能，特別是與外部網絡資源互動的工具，在授權使用前告知用戶。
 
-關於 MCP 之安全與信任考量的完整細節，請參閱[官方文件](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices)。
+有關 MCP 安全性及信任考量的完整細節，請參閱 [官方文件](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices)。
 
-## 接下來的步驟
+## 下一步
 
-- [5.12 Entra ID Authentication for Model Context Protocol Servers](../mcp-security-entra/README.md)
+- [5.12 Entra ID 身份驗證給 Model Context Protocol 伺服器](../mcp-security-entra/README.md)
 
 ---
 
