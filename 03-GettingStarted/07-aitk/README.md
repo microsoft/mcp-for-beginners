@@ -157,7 +157,7 @@ You will run the calculator MCP server on your local dev machine via the **Agent
 1. Click the **Run** button to generate the agent's response.
 1. Review the agent output. The model should conclude that you paid **$55**.
 1. Here's a breakdown of what should occur:
-    - The agent selects the **multiply** and **substract** tools to aid in the calculation.
+    - The agent selects the **multiply** and **subtract** tools to aid in the calculation.
     - The respective `a` and `b` values are assigned for the **multiply** tool.
     - The respective `a` and `b` values are assigned for the **subtract** tool.
     - The response from each tool is provided in the respective **Tool Response**.
