@@ -161,11 +161,11 @@ graph TD
     RA -->|Research| Users((Users))
     Alerts -->|Notifications| Users
     KB <-->|Knowledge Access| API
-    
-    classDef sources fill:#f9f,stroke:#333,stroke-width:2px
-    classDef mcp fill:#bbf,stroke:#333,stroke-width:2px
-    classDef processing fill:#bfb,stroke:#333,stroke-width:2px
-    classDef apps fill:#fbb,stroke:#333,stroke-width:2px
+
+    classDef sources fill:#f9f,stroke:#333,stroke-width:2px,color:#4a004a
+    classDef mcp fill:#bbf,stroke:#333,stroke-width:2px,color:#00004a
+    classDef processing fill:#bfb,stroke:#333,stroke-width:2px,color:#003300
+    classDef apps fill:#fbb,stroke:#333,stroke-width:2px,color:#4a0000
     
     class Web,APIs,DB,News sources
     class SC,PA,CH,SP,CS mcp
@@ -225,7 +225,7 @@ from mcp.client.streamable_http import streamablehttp_client
 from mcp.types import TextContent, CreateMessageRequestParams, CreateMessageResult
 from mcp.server.fastmcp import FastMCP
 
-# Create a FastMCP server for web search
+# Create a FastMCP server for web searching
 search_server = FastMCP("WebSearch")
 
 # Class to handle web search operations
@@ -251,7 +251,7 @@ class WebSearchHandler:
                            exclude_domains: List[str] = None,
                            time_period: str = "any") -> Dict[str, Any]:
         """Perform web search using the search API"""
-        # Construct search parameters
+        # Build search parameters
         search_params = {
             "q": query,
             "limit": max_results,
@@ -264,7 +264,7 @@ class WebSearchHandler:
         if exclude_domains:
             search_params["exclude_site"] = ",".join(exclude_domains)
         
-        # Perform the search request
+        # Execute the search request
         try:
             async with self.session.get(
                 self.api_endpoint,
@@ -276,7 +276,7 @@ class WebSearchHandler:
                 
                 search_data = await response.json()
                 
-                # Transform API-specific response to a standard format
+                # Convert API-specific response to a standard format
                 results = []
                 for item in search_data.get("results", []):
                     results.append({
@@ -302,7 +302,7 @@ search_handler = WebSearchHandler(
     api_key="your-api-key-here"
 )
 
-# Setup lifespan to manage the search handler
+# Configure lifespan to manage the search handler
 @asyncio.asynccontextmanager
 async def app_lifespan(server: FastMCP):
     """Manage application lifecycle"""
@@ -355,7 +355,7 @@ async def client_example():
             # Initialize the connection
             await session.initialize()
             
-            # Call the web_search tool
+            # Invoke the web_search tool
             search_results = await session.call_tool(
                 "web_search", 
                 {
@@ -368,7 +368,7 @@ async def client_example():
             
             print(f"Search results: {search_results}")
 
-# Server execution example
+# Server run example
 if __name__ == "__main__":
     # Run the server with Streamable HTTP transport
     search_server.run(transport="streamable-http")
@@ -683,6 +683,8 @@ MCP creates new possibilities for AI-augmented browsing:
 ### Evolution of MCP in Web Search
 
 Looking ahead, we anticipate MCP evolving to address:
+
+
 - **Multimodal Search**: Integrating text, image, audio, and video search with preserved context
 - **Decentralized Search**: Supporting distributed and federated search ecosystems
 - **Search Privacy**: Context-aware privacy-preserving search mechanisms

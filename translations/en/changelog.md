@@ -2,6 +2,32 @@
 
 This document serves as a record of all significant changes made to the Model Context Protocol (MCP) for Beginners curriculum. Changes are documented in reverse chronological order (newest changes first).
 
+## July 29th, 2026
+
+### New Module 08 Companion: Reliability Sidecars and Safe Retries
+
+Added a vendor-neutral companion lesson for MCP tools that create real-world
+effects, aligned with the final `2026-07-28` specification.
+
+- **New**: The [reliability sidecar companion lesson][reliability-sidecar]
+  uses one support-ticket story, two Mermaid diagrams, and a retry decision
+  flow to explain stable operation keys, atomic duplicate admission,
+  reconciliation, evidence, and the Tasks extension boundary.
+- **New**: A standard-library Python and SQLite failure-injection exercise
+  uses separate operation and ticket stores to demonstrate a response lost
+  after an external effect commits. Six deterministic tests cover naive
+  duplication, guarded restart recovery, payload conflicts, cached results,
+  active claims, and concurrent duplicate admission.
+- **Updated**: Module 08 now links the companion lesson, identifies the
+  final `2026-07-28` stateless request model, distinguishes OpenTelemetry
+  observability from the deprecated MCP logging feature, and limits its
+  generic retry example to read-only operations.
+- **Optional**: The lesson maps its portable concepts to one tagged community
+  implementation without making the hosted service or a network call part of
+  the exercise.
+
+[reliability-sidecar]: ./08-BestPractices/reliability-sidecars/README.md
+
 ## July 2nd, 2026
 
 ### New Lesson: The 2026-07-28 MCP Specification Release Candidate
@@ -93,6 +119,7 @@ Updated all curriculum content to reflect Microsoft's product rebranding:
 
 #### Azure AI Foundry → Microsoft Foundry
 - **SUPPORT.md**: Updated Discord community link
+
 - **AGENTS.md**: Updated Discord server reference
 - **README.md**: Updated technology ecosystem references
 - **study_guide.md**: Updated case study references
@@ -109,7 +136,6 @@ Updated all curriculum content to reflect Microsoft's product rebranding:
 - **11-MCPServerHandsOnLabs/03-Setup/README.md**: Updated resource references
 
 #### AI Toolkit / AITK → Microsoft Foundry Toolkit Extension for VS Code
-
 - **README.md**: Updated main curriculum references
 - **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md**: Updated module title, overview, and all module headers
 - **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab1/README.md**: Updated title, learning objectives, setup instructions, and resources
@@ -305,6 +331,7 @@ Added lessons 5.15 (Custom Transport) and 5.16 (Protocol Features)
 
 #### New Resource Links Added
 - [MCP Security Summit Workshop (Sherpa)](https://azure-samples.github.io/sherpa/)
+
 - [OWASP MCP Azure Security Guide](https://microsoft.github.io/mcp-azure-security-guide/)
 - [OWASP MCP Top 10](https://owasp.org/www-project-mcp-top-10/)
 - Individual OWASP MCP risk pages (MCP01-MCP10)
@@ -328,7 +355,6 @@ Added lessons 5.15 (Custom Transport) and 5.16 (Protocol Features)
 - **Spec Reference**: Updated MCP Specification link to direct specification URL
 
 #### Module 07 - Lessons from Early Adoption
-
 - **Resource Updates**: Added MCP Specification 2025-11-25 link and OWASP MCP Top 10 to additional resources
 
 #### Module 08 - Best Practices
@@ -502,6 +528,7 @@ These additions provide practical, hands-on guidance for building more robust, s
 #### Context Engineering (05-AdvancedTopics/mcp-contextengineering/) - Emerging AI Discipline
 - **README.md**: Comprehensive exploration of context engineering as an emerging field
   - **Core Principles**: Complete context sharing, action decision awareness, and context window management
+
   - **MCP Protocol Alignment**: How MCP design addresses context engineering challenges
     - Context window limitations and progressive loading strategies
     - Relevance determination and dynamic context retrieval
@@ -528,7 +555,6 @@ These additions provide practical, hands-on guidance for building more robust, s
 ### Documentation Quality Enhancements
 - **MCP Specification Alignment**: All new content references current MCP Specification 2025-06-18
 - **Multi-Language Examples**: Comprehensive code examples in C#, TypeScript, and Python
-
 - **Enterprise Focus**: Production-ready patterns and Azure cloud integration throughout
 - **Visual Documentation**: Mermaid diagrams for architecture and flow visualization
 
