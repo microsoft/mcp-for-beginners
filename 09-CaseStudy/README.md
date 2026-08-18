@@ -148,7 +148,7 @@ The chapter closes with a short checklist you can apply to a server you are buil
 
 ## Conclusion
 
-These seven comprehensive case studies demonstrate the remarkable versatility and practical applications of the Model Context Protocol across diverse real-world scenarios. From complex multi-agent travel planning systems and enterprise API management to streamlined documentation workflows and the revolutionary GitHub MCP Registry, these examples showcase how MCP provides a standardized, scalable way to connect AI systems with the tools, data, and services they need to deliver exceptional value.
+These eight comprehensive case studies demonstrate the remarkable versatility and practical applications of the Model Context Protocol across diverse real-world scenarios. From complex multi-agent travel planning systems and enterprise API management to streamlined documentation workflows and the revolutionary GitHub MCP Registry, these examples showcase how MCP provides a standardized, scalable way to connect AI systems with the tools, data, and services they need to deliver exceptional value.
 
 The case studies span multiple dimensions of MCP implementation:
 - **Enterprise Integration**: Azure API Management and Azure DevOps automation
