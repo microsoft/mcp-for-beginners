@@ -1,27 +1,27 @@
-# GitHub Copilot Agentモードでサーバーを利用する
+# GitHub Copilot Agentモードからサーバーを利用する
 
-Visual Studio CodeとGitHub Copilotはクライアントとして動作し、MCPサーバーを利用することができます。なぜそれが必要なのかと思うかもしれませんね。それはつまり、MCPサーバーが持つ機能をIDE内で利用できるということです。例えば、GitHubのMCPサーバーを追加すると、ターミナルで特定のコマンドを入力する代わりに、プロンプトを使ってGitHubを操作できるようになります。また、開発者体験を向上させる何かを自然言語で制御できるとしたらどうでしょうか？その利点が見えてきましたね。
+Visual Studio CodeとGitHub Copilotはクライアントとして動作し、MCPサーバーを利用することができます。それでなぜそうしたいのかと思われるかもしれませんが、それはMCPサーバーが持つ機能をIDE内から利用できることを意味します。例えばGitHubのMCPサーバーを追加すると、特定のコマンドをターミナルで打つ代わりにプロンプトでGitHubを操作できるようになります。あるいは、自然言語で制御できる開発者体験を向上させる何かを想像してください。こうした利点がお分かりいただけたでしょう？
 
 ## 概要
 
-このレッスンでは、Visual Studio CodeとGitHub CopilotのAgentモードをクライアントとして使用し、MCPサーバーを利用する方法を学びます。
+このレッスンでは、Visual Studio CodeとGitHub CopilotのAgentモードをクライアントとして利用してMCPサーバーを使用する方法を解説します。
 
 ## 学習目標
 
 このレッスンの終わりまでに、以下ができるようになります：
 
-- Visual Studio Codeを使ってMCPサーバーを利用する。
+- Visual Studio Code経由でMCPサーバーを利用する。
 - GitHub Copilotを通じてツールなどの機能を実行する。
-- MCPサーバーを見つけて管理するためにVisual Studio Codeを設定する。
+- Visual Studio Codeを設定してMCPサーバーを見つけ管理する。
 
 ## 使用方法
 
-MCPサーバーを制御する方法は2つあります：
+MCPサーバーは2つの方法で操作できます：
 
-- ユーザーインターフェース：この章の後半でその方法を説明します。
-- ターミナル：`code`実行ファイルを使用してターミナルから制御することが可能です。
+- ユーザーインターフェイスで、本章の後半で方法を説明します。
+- ターミナルで、`code`実行ファイルを使って制御できます：
 
-  ユーザープロファイルにMCPサーバーを追加するには、`--add-mcp`コマンドラインオプションを使用し、JSON形式でサーバー構成を提供します。例：`{\"name\":\"server-name\",\"command\":...}`。
+  ユーザープロファイルにMCPサーバーを追加するには、--add-mcpコマンドラインオプションを使用し、{\"name\":\"server-name\",\"command\":...}の形でJSONサーバー設定を指定します。
 
   ```
   code --add-mcp "{\"name\":\"my-server\",\"command\": \"uvx\",\"args\": [\"mcp-server-fetch\"]}"
@@ -29,48 +29,48 @@ MCPサーバーを制御する方法は2つあります：
 
 ### スクリーンショット
 
-![Visual Studio CodeでのMCPサーバー設定ガイド](../../../../translated_images/ja/chat-mode-agent.729a22473f822216.webp)  
-![エージェントセッションごとのツール選択](../../../../translated_images/ja/agent-mode-select-tools.522c7ba5df0848f8.webp)  
-![MCP開発中のエラーを簡単にデバッグ](../../../../translated_images/ja/mcp-list-servers.fce89eefe3f30032.webp)  
+![Visual Studio CodeでのMCPサーバー設定のガイド](../../../../translated_images/ja/chat-mode-agent.729a22473f822216.webp)
+![エージェントセッションごとのツール選択](../../../../translated_images/ja/agent-mode-select-tools.522c7ba5df0848f8.webp)
+![MCP開発中のエラーを簡単にデバッグ](../../../../translated_images/ja/mcp-list-servers.fce89eefe3f30032.webp)
 
-次のセクションで、視覚的なインターフェースの使用方法について詳しく説明します。
+次のセクションでは、ビジュアルインターフェイスの使い方について詳しく説明します。
 
 ## アプローチ
 
-以下のような高レベルのアプローチで進めます：
+全体の流れは次のようになります：
 
 - MCPサーバーを見つけるためのファイルを設定する。
-- サーバーを起動/接続して、その機能をリストアップする。
-- GitHub Copilot Chatインターフェースを通じてその機能を利用する。
+- サーバーを起動/接続し、機能一覧を取得する。
+- その機能をGitHub Copilot Chatインターフェイスを通じて使用する。
 
-流れが理解できたところで、Visual Studio Codeを使ってMCPサーバーを利用する演習を試してみましょう。
+では流れが理解できたので、Visual Studio Codeを使ってMCPサーバーを利用する演習をしてみましょう。
 
-## 演習：サーバーを利用する
+## 演習：サーバー利用
 
-この演習では、Visual Studio Codeを設定してMCPサーバーを見つけ、GitHub Copilot Chatインターフェースから利用できるようにします。
+この演習では、Visual Studio Codeを設定してMCPサーバーを見つけ、GitHub Copilot Chatインターフェイスから利用できるようにします。
 
-### -0- 前準備：MCPサーバーの検出を有効化
+### -0- 事前準備、MCPサーバーディスカバリーの有効化
 
-MCPサーバーの検出を有効化する必要があるかもしれません。
+MCPサーバーのディスカバリーを有効化する必要があるかもしれません。
 
-1. Visual Studio Codeのメニューから`File -> Preferences -> Settings`を開きます。
+1. Visual Studio Codeの「ファイル -> 設定 -> 設定」に移動します。
 
-1. 「MCP」を検索し、`chat.mcp.discovery.enabled`をsettings.jsonファイルで有効化します。
+1. 「MCP」を検索し、settings.jsonファイル内で`chat.mcp.discovery.enabled`を有効化します。
 
 ### -1- 設定ファイルを作成する
 
-プロジェクトのルートに設定ファイルを作成します。`.vscode`フォルダー内にMCP.jsonというファイルを作成する必要があります。以下のようになります：
+プロジェクトルートに設定ファイルを作成します。.vscodeというフォルダーにMCP.jsonという名前でファイルを配置してください。内容は次のようになります：
 
 ```text
 .vscode
 |-- mcp.json
 ```
 
-次に、サーバーエントリを追加する方法を見てみましょう。
+次にサーバーエントリを追加する方法を見てみましょう。
 
 ### -2- サーバーを設定する
 
-*mcp.json*に以下の内容を追加します：
+<em>mcp.json</em>に以下の内容を追加してください：
 
 ```json
 {
@@ -86,59 +86,61 @@ MCPサーバーの検出を有効化する必要があるかもしれません�
 }
 ```
 
-上記はNode.jsで書かれたサーバーを起動する簡単な例です。他のランタイムの場合は、`command`と`args`を使用して適切なコマンドを指定してください。
+上の例はNode.jsで書かれたサーバーを起動するシンプルな例です。その他のランタイムの場合は、`command`と`args`でサーバー起動用の適切なコマンドを指定してください。
 
 ### -3- サーバーを起動する
 
-エントリを追加したら、サーバーを起動します：
+エントリを追加したので、サーバーを起動してみましょう：
 
-1. *mcp.json*内のエントリを見つけ、「再生」アイコンを確認します：
+1. <em>mcp.json</em>の自分のエントリを見つけ、「再生」アイコンがあることを確認します：
 
   ![Visual Studio Codeでサーバーを起動](../../../../translated_images/ja/vscode-start-server.8e3c986612e3555d.webp)  
 
-1. 「再生」アイコンをクリックすると、GitHub Copilot Chatのツールアイコンに利用可能なツールの数が増加するのがわかります。そのツールアイコンをクリックすると、登録されたツールのリストが表示されます。各ツールをチェック/チェック解除して、GitHub Copilotがそれらをコンテキストとして使用するかどうかを選択できます：
+1. 「再生」アイコンをクリックすると、GitHub Copilot Chatのツールアイコンに登録ツールの数が増えたのが見えます。そのツールアイコンをクリックすると、登録済みツールの一覧が表示されます。GitHub Copilotにコンテキストとして使用させたいツールのチェック/チェック解除ができます：
 
-  ![Visual Studio Codeでツールを起動](../../../../translated_images/ja/vscode-tool.0b3bbea2fb7d8c26.webp)
+  ![Visual Studio Codeでツールの操作](../../../../translated_images/ja/vscode-tool.0b3bbea2fb7d8c26.webp)
 
-1. ツールを実行するには、ツールの説明に一致するプロンプトを入力します。例えば、「22に1を加える」というプロンプトを入力します：
+1. ツールを実行するには、ツールの説明に合致するプロンプトを入力します。例えば、「add 22 to 1」のようなプロンプトです：
 
   ![GitHub Copilotからツールを実行](../../../../translated_images/ja/vscode-agent.d5a0e0b897331060.webp)
 
-  結果として「23」と表示されるはずです。
+  23と返答が表示されるはずです。
 
 ## 課題
 
-*mcp.json*ファイルにサーバーエントリを追加し、サーバーを開始/停止できることを確認してください。また、GitHub Copilot Chatインターフェースを通じてサーバー上のツールと通信できることを確認してください。
+<em>mcp.json</em>ファイルにサーバーエントリを追加し、サーバーの起動/停止ができるか試してみてください。また、GitHub Copilot Chatインターフェイス経由でサーバーのツールと通信できることを確認してください。
 
-## 解答
+## 解答例
 
-[解答](./solution/README.md)
+[解答例](./solution/README.md)
 
-## 重要なポイント
+## 重要ポイント
 
 この章の重要なポイントは以下の通りです：
 
-- Visual Studio Codeは、複数のMCPサーバーとそのツールを利用できる優れたクライアントです。
-- GitHub Copilot Chatインターフェースを通じてサーバーと対話します。
-- *mcp.json*ファイルでサーバーエントリを設定する際に、APIキーなどの入力をユーザーに求めることができます。
+- Visual Studio Codeは複数のMCPサーバーとそのツールを利用する優れたクライアントです。
+- GitHub Copilot Chatインターフェイスがサーバーとのやり取りの窓口です。
+- APIキーのような入力をユーザーにプロンプトし、<em>mcp.json</em>のサーバーエントリ設定時にMCPサーバーに渡すことが可能です。
 
 ## サンプル
 
-- [Java Calculator](../samples/java/calculator/README.md)  
-- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)  
-- [JavaScript Calculator](../samples/javascript/README.md)  
-- [TypeScript Calculator](../samples/typescript/README.md)  
-- [Python Calculator](../../../../03-GettingStarted/samples/python)  
+- [Java Calculator](../samples/java/calculator/README.md)
+- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
+- [JavaScript Calculator](../samples/javascript/README.md)
+- [TypeScript Calculator](../samples/typescript/README.md)
+- [Python Calculator](../../../../03-GettingStarted/samples/python)
 
 ## 追加リソース
 
-- [Visual Studioのドキュメント](https://code.visualstudio.com/docs/copilot/chat/mcp-servers)
+- [Visual Studio ドキュメント](https://code.visualstudio.com/docs/copilot/chat/mcp-servers)
 
 ## 次のステップ
 
-- 次へ：[Stdioサーバーの作成](../05-stdio-server/README.md)
+- 次へ: [stdioサーバーの作成](../05-stdio-server/README.md)
 
 ---
 
-**免責事項**:  
-この文書は、AI翻訳サービス [Co-op Translator](https://github.com/Azure/co-op-translator) を使用して翻訳されています。正確性を追求しておりますが、自動翻訳には誤りや不正確な部分が含まれる可能性があります。元の言語で記載された文書が正式な情報源とみなされるべきです。重要な情報については、専門の人間による翻訳を推奨します。この翻訳の使用に起因する誤解や誤解釈について、当社は責任を負いません。
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**免責事項**：
+本書類は AI 翻訳サービス [Co-op Translator](https://github.com/Azure/co-op-translator) を使用して翻訳されています。正確性を期していますが、自動翻訳には誤りや不正確な部分が含まれる可能性があることをご承知おきください。原文の原語版が正式な情報源とみなされるべきです。重要な情報については、専門の人間による翻訳を推奨します。本翻訳の利用により生じたいかなる誤解や解釈違いについても、当方は責任を負いかねます。
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
