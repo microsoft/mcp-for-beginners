@@ -1,27 +1,27 @@
-# Paggamit ng server mula sa GitHub Copilot Agent mode
+# Paggamit ng isang server mula sa GitHub Copilot Agent mode
 
-Ang Visual Studio Code at GitHub Copilot ay maaaring kumilos bilang isang client at gumamit ng MCP Server. Bakit natin gugustuhing gawin ito? Dahil ang anumang mga tampok na mayroon ang MCP Server ay maaari nang magamit mula sa loob ng iyong IDE. Isipin na idagdag mo, halimbawa, ang MCP server ng GitHub, magbibigay ito ng kakayahang kontrolin ang GitHub gamit ang mga prompt sa halip na mag-type ng mga partikular na command sa terminal. O isipin ang anumang bagay na maaaring mapabuti ang iyong karanasan bilang developer na kontrolado lahat gamit ang natural na wika. Ngayon nakikita mo na ang benepisyo, tama?
+Maaaring kumilos ang Visual Studio Code at GitHub Copilot bilang client at gamitin ang isang MCP Server. Bakit natin gusto gawin iyon, maaaring itanong mo? Well, ibig sabihin nito ay kahit anong feature na mayroon ang MCP Server ay maaari nang gamitin mula sa loob ng iyong IDE. Isipin mong idagdag mo halimbawa ang MCP server ng GitHub, ito ay magpapahintulot na makontrol ang GitHub gamit ang mga prompt kumpara sa pagsulat ng partikular na mga utos sa terminal. O isipin ang kahit ano pang maaaring mapabuti ang iyong karanasan bilang developer na nakokontrol ng natural na wika. Ngayon ay naiisip mo na ang benepisyo di ba?
 
 ## Pangkalahatang-ideya
 
-Saklaw ng araling ito kung paano gamitin ang Visual Studio Code at ang Agent mode ng GitHub Copilot bilang client para sa iyong MCP Server.
+Tinutukoy ng araling ito kung paano gamitin ang Visual Studio Code at GitHub Copilot Agent mode bilang client para sa iyong MCP Server.
 
-## Mga Layunin sa Pag-aaral
+## Mga Layunin sa Pagkatuto
 
-Sa pagtatapos ng araling ito, magagawa mo ang sumusunod:
+Sa katapusan ng araling ito, magagawa mong:
 
 - Gumamit ng MCP Server sa pamamagitan ng Visual Studio Code.
 - Patakbuhin ang mga kakayahan tulad ng mga tool gamit ang GitHub Copilot.
-- I-configure ang Visual Studio Code upang mahanap at pamahalaan ang iyong MCP Server.
+- I-configure ang Visual Studio Code upang mahanap at mapamahalaan ang iyong MCP Server.
 
 ## Paggamit
 
-Maaari mong kontrolin ang iyong MCP server sa dalawang paraan:
+Maaari mong kontrolin ang iyong MCP server sa dalawang magkakaibang paraan:
 
-- User interface, ipapakita kung paano ito ginagawa sa mga susunod na bahagi ng kabanatang ito.
-- Terminal, posible ang kontrolin ang mga bagay mula sa terminal gamit ang `code` executable:
+- Interface ng user, makikita mo kung paano ito gagawin sa mga susunod na bahagi ng kabanatang ito.
+- Terminal, posible na kontrolin ang mga bagay mula sa terminal gamit ang `code` executable:
 
-  Upang magdagdag ng MCP server sa iyong user profile, gamitin ang --add-mcp command line option, at ibigay ang JSON server configuration sa anyo ng {\"name\":\"server-name\",\"command\":...}.
+  Para idagdag ang isang MCP server sa iyong user profile, gamitin ang --add-mcp command line option, at ibigay ang JSON server configuration sa anyo na {\"name\":\"server-name\",\"command\":...}.
 
   ```
   code --add-mcp "{\"name\":\"my-server\",\"command\": \"uvx\",\"args\": [\"mcp-server-fetch\"]}"
@@ -29,29 +29,29 @@ Maaari mong kontrolin ang iyong MCP server sa dalawang paraan:
 
 ### Mga Screenshot
 
-![Guided MCP server configuration sa Visual Studio Code](../../../../translated_images/tl/chat-mode-agent.729a22473f822216.webp)
-![Pagpili ng tool sa bawat session ng agent](../../../../translated_images/tl/agent-mode-select-tools.522c7ba5df0848f8.webp)
-![Madaling i-debug ang mga error sa panahon ng MCP development](../../../../translated_images/tl/mcp-list-servers.fce89eefe3f30032.webp)
+![Guided MCP server configuration in Visual Studio Code](../../../../translated_images/tl/chat-mode-agent.729a22473f822216.webp)
+![Tool selection per agent session](../../../../translated_images/tl/agent-mode-select-tools.522c7ba5df0848f8.webp)
+![Easily debug errors during MCP development](../../../../translated_images/tl/mcp-list-servers.fce89eefe3f30032.webp)
 
-Pag-usapan natin nang mas detalyado kung paano gamitin ang visual interface sa mga susunod na seksyon.
+Pag-usapan natin nang higit pa kung paano gamitin ang visual interface sa mga susunod na bahagi.
 
-## Diskarte
+## Pamamaraan
 
-Narito kung paano natin dapat lapitan ito sa mataas na antas:
+Ganito ang pangkalahatang paraan ng paggawa nito:
 
-- Mag-configure ng file upang mahanap ang ating MCP Server.
-- I-start/Ikonekta ang server upang maipakita ang mga kakayahan nito.
-- Gamitin ang mga kakayahan nito sa pamamagitan ng GitHub Copilot Chat interface.
+- Mag-configure ng isang file upang mahanap ang aming MCP Server.
+- Simulan/Kumonekta sa nasabing server upang magkaroon ng listahan ng mga kakayahan nito.
+- Gamitin ang mga nasabing kakayahan sa pamamagitan ng GitHub Copilot Chat interface.
 
-Magaling, ngayong naiintindihan na natin ang daloy, subukan nating gumamit ng MCP Server sa pamamagitan ng Visual Studio Code sa isang ehersisyo.
+Magaling, ngayong nauunawaan na natin ang daloy, subukan nating gamitin ang MCP Server sa pamamagitan ng Visual Studio Code sa isang ehersisyo.
 
-## Ehersisyo: Paggamit ng server
+## Ehersisyo: Paggamit ng isang server
 
-Sa ehersisyong ito, iko-configure natin ang Visual Studio Code upang mahanap ang iyong MCP server upang magamit ito mula sa GitHub Copilot Chat interface.
+Sa ehersisyong ito, iko-configure natin ang Visual Studio Code upang mahanap ang iyong MCP server para magamit ito mula sa GitHub Copilot Chat interface.
 
-### -0- Prestep, paganahin ang MCP Server discovery
+### -0- Paunang hakbang, paganahin ang pagtuklas ng MCP Server
 
-Maaaring kailanganin mong paganahin ang discovery ng MCP Servers.
+Maaaring kailanganin mong paganahin ang pagtuklas ng MCP Servers.
 
 1. Pumunta sa `File -> Preferences -> Settings` sa Visual Studio Code.
 
@@ -59,16 +59,16 @@ Maaaring kailanganin mong paganahin ang discovery ng MCP Servers.
 
 ### -1- Gumawa ng config file
 
-Simulan sa paggawa ng config file sa root ng iyong proyekto, kakailanganin mo ng file na tinatawag na MCP.json at ilagay ito sa isang folder na tinatawag na .vscode. Dapat itong magmukhang ganito:
+Magsimula sa paggawa ng config file sa pinakapuno ng iyong proyekto, kailangan mo ng file na tinatawag na MCP.json at ilagay ito sa folder na tinatawag na .vscode. Dapat itong ganito ang anyo:
 
 ```text
 .vscode
 |-- mcp.json
 ```
 
-Susunod, tingnan natin kung paano magdagdag ng entry ng server.
+Sunod, tingnan natin kung paano magdadagdag ng entry ng server.
 
-### -2- I-configure ang server
+### -2- I-configure ang isang server
 
 Idagdag ang sumusunod na nilalaman sa *mcp.json*:
 
@@ -86,40 +86,40 @@ Idagdag ang sumusunod na nilalaman sa *mcp.json*:
 }
 ```
 
-Narito ang isang simpleng halimbawa kung paano magsimula ng server na isinulat sa Node.js, para sa ibang mga runtime, ituro ang tamang command para sa pagsisimula ng server gamit ang `command` at `args`.
+Heto ang isang simpleng halimbawa kung paano simulan ang isang server na nakasulat sa Node.js, para sa ibang runtimes tukuyin ang tamang utos para simulan ang server gamit ang `command` at `args`.
 
-### -3- I-start ang server
+### -3- Simulan ang server
 
-Ngayong naidagdag mo na ang entry, simulan ang server:
+Ngayong nadagdag mo na ang entry, simulan natin ang server:
 
-1. Hanapin ang iyong entry sa *mcp.json* at tiyaking makita ang "play" icon:
+1. Hanapin ang iyong entry sa *mcp.json* at siguruhing makita mo ang icon na "play":
 
-  ![Pagsisimula ng server sa Visual Studio Code](../../../../translated_images/tl/vscode-start-server.8e3c986612e3555d.webp)  
+  ![Starting server in Visual Studio Code](../../../../translated_images/tl/vscode-start-server.8e3c986612e3555d.webp)  
 
-1. I-click ang "play" icon, dapat mong makita ang tools icon sa GitHub Copilot Chat na nadagdagan ang bilang ng mga available na tool. Kung i-click mo ang tools icon, makikita mo ang listahan ng mga nakarehistrong tool. Maaari mong i-check/uncheck ang bawat tool depende kung gusto mong gamitin ito ng GitHub Copilot bilang context:
+1. I-click ang "play" icon, dapat makita mong dumami ang mga tools icon sa GitHub Copilot Chat bilang tanda na nadagdagan ang bilang ng mga available na tools. Kapag kinlick mo ang mga tools icon, makikita mo ang listahan ng mga rehistradong tools. Maaari mong i-check/uncheck ang bawat tool depende kung gusto mong gamitin ito ng GitHub Copilot bilang konteksto:
 
-  ![Pagsisimula ng server sa Visual Studio Code](../../../../translated_images/tl/vscode-tool.0b3bbea2fb7d8c26.webp)
+  ![Starting server in Visual Studio Code](../../../../translated_images/tl/vscode-tool.0b3bbea2fb7d8c26.webp)
 
-1. Upang patakbuhin ang isang tool, mag-type ng prompt na alam mong tumutugma sa deskripsyon ng isa sa iyong mga tool, halimbawa isang prompt na ganito "add 22 to 1":
+1. Para patakbuhin ang isang tool, mag-type ng prompt na alam mong tutugma sa paglalarawan ng isa sa iyong mga tools, halimbawa isang prompt na ganito "add 22 to 1":
 
-  ![Pagpapatakbo ng tool mula sa GitHub Copilot](../../../../translated_images/tl/vscode-agent.d5a0e0b897331060.webp)
+  ![Running a tool from GitHub Copilot](../../../../translated_images/tl/vscode-agent.d5a0e0b897331060.webp)
 
-  Dapat kang makakita ng sagot na nagsasabing 23.
+  Dapat makita mo ang tugon na nagsasabing 23.
 
 ## Takdang-Aralin
 
-Subukang magdagdag ng entry ng server sa iyong *mcp.json* file at tiyaking ma-start/stop mo ang server. Siguraduhin ding makipag-ugnayan sa mga tool sa iyong server sa pamamagitan ng GitHub Copilot Chat interface.
+Subukang magdagdag ng entry ng server sa iyong *mcp.json* file at siguraduhin na kaya mong simulan/patigilin ang server. Siguraduhin din na kaya mong makipag-usap sa mga tools sa iyong server gamit ang GitHub Copilot Chat interface.
 
 ## Solusyon
 
-[Solusyon](./solution/README.md)
+[Solution](./solution/README.md)
 
-## Mga Pangunahing Puntos
+## Mahahalagang Punto
 
-Ang mga pangunahing puntos mula sa kabanatang ito ay ang sumusunod:
+Ang mga mahahalagang puntos mula sa kabanatang ito ay ang sumusunod:
 
-- Ang Visual Studio Code ay isang mahusay na client na nagbibigay-daan sa iyong gamitin ang iba't ibang MCP Servers at ang kanilang mga tool.
-- Ang GitHub Copilot Chat interface ang paraan kung paano ka nakikipag-ugnayan sa mga server.
+- Ang Visual Studio Code ay isang mahusay na client na nagbibigay-daan sa iyong gamitin ang iba't ibang MCP Servers at mga tools nila.
+- Ang GitHub Copilot Chat interface ang paraan ng iyong pakikipag-ugnayan sa mga servers.
 - Maaari kang mag-prompt sa user para sa mga input tulad ng API keys na maaaring ipasa sa MCP Server kapag kino-configure ang server entry sa *mcp.json* file.
 
 ## Mga Halimbawa
@@ -130,15 +130,17 @@ Ang mga pangunahing puntos mula sa kabanatang ito ay ang sumusunod:
 - [TypeScript Calculator](../samples/typescript/README.md)
 - [Python Calculator](../../../../03-GettingStarted/samples/python)
 
-## Karagdagang Mga Mapagkukunan
+## Karagdagang Mga Sanggunian
 
 - [Visual Studio docs](https://code.visualstudio.com/docs/copilot/chat/mcp-servers)
 
-## Ano'ng Susunod
+## Ano ang Sunod
 
-- Susunod: [Paglikha ng stdio Server](../05-stdio-server/README.md)
+- Sunod: [Paglikha ng stdio Server](../05-stdio-server/README.md)
 
 ---
 
-**Paunawa**:  
-Ang dokumentong ito ay isinalin gamit ang AI translation service na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagama't sinisikap naming maging tumpak, tandaan na ang mga awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o hindi pagkakatugma. Ang orihinal na dokumento sa kanyang katutubong wika ang dapat ituring na opisyal na sanggunian. Para sa mahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang hindi pagkakaunawaan o maling interpretasyon na maaaring magmula sa paggamit ng pagsasaling ito.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Pagtatanggi**:
+Ang dokumentong ito ay isinalin gamit ang serbisyo ng AI translation na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagama't nagsusumikap kami para sa katumpakan, pakatandaan na ang awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o hindi pagkakatugma. Ang orihinal na dokumento sa orihinal nitong wika ang dapat ituring na pangunahing sanggunian. Para sa mahahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang maling pagkakaintindi o maling interpretasyon na nagmula sa paggamit ng pagsasaling ito.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
