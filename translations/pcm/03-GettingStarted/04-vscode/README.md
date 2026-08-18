@@ -1,27 +1,27 @@
 # How to use server from GitHub Copilot Agent mode
 
-Visual Studio Code and GitHub Copilot fit act like client wey go use MCP Server. You fit dey wonder why person go wan do am abi? Well, e mean say any feature wey MCP Server get, you fit use am inside your IDE. Imagine say you add GitHub MCP server, e go allow you control GitHub with prompts instead of typing commands for terminal. Or imagine anything wey go make your developer work easy, all controlled by natural language. You don dey see the benefit abi?
+Visual Studio Code and GitHub Copilot fit act like client to take MCP Server. Why you go want do am you fit ask? E mean say any beta feature wey MCP Server get, you fit use am for inside your IDE. Imagine say you add for example GitHub MCP server, e go allow you control GitHub with prompts instead make you type commands for terminal. Or imagine anything wey fit make your developer experience better all na natural language dey control am. Now you don dey see beta thing abi?
 
 ## Overview
 
-This lesson go show you how to use Visual Studio Code and GitHub Copilot Agent mode as client for your MCP Server.
+Dis lesson go show you how to use Visual Studio Code and GitHub Copilot Agent mode as client for your MCP Server.
 
 ## Learning Objectives
 
-By the time you finish this lesson, you go sabi:
+By the end of dis lesson, you go fit:
 
-- Use MCP Server through Visual Studio Code.
-- Run tools and other features through GitHub Copilot.
-- Set up Visual Studio Code to locate and manage your MCP Server.
+- Use MCP Server via Visual Studio Code.
+- Run things like tools via GitHub Copilot.
+- Arrange Visual Studio Code to find and manage your MCP Server.
 
 ## Usage
 
-You fit control your MCP server in two ways:
+You fit control your MCP server for two different ways:
 
-- User interface, we go show you how to do am later for this chapter.
-- Terminal, you fit control things from terminal using `code` executable:
+- User interface, you go see how e dey happen later for this chapter.
+- Terminal, e possible to control tins from terminal by using `code` executable:
 
-  To add MCP server to your user profile, use --add-mcp command line option, and provide JSON server configuration like this {\"name\":\"server-name\",\"command\":...}.
+  To add MCP server to your user profile, use --add-mcp command line option, then provide JSON server configuration for inside {\"name\":\"server-name\",\"command\":...}.
 
   ```
   code --add-mcp "{\"name\":\"my-server\",\"command\": \"uvx\",\"args\": [\"mcp-server-fetch\"]}"
@@ -29,25 +29,25 @@ You fit control your MCP server in two ways:
 
 ### Screenshots
 
-![How to set up MCP server for Visual Studio Code](../../../../translated_images/pcm/chat-mode-agent.729a22473f822216.webp)
-![Choose tools for each agent session](../../../../translated_images/pcm/agent-mode-select-tools.522c7ba5df0848f8.webp)
-![Debug errors easily during MCP development](../../../../translated_images/pcm/mcp-list-servers.fce89eefe3f30032.webp)
+![Guided MCP server configuration in Visual Studio Code](../../../../translated_images/pcm/chat-mode-agent.729a22473f822216.webp)
+![Tool selection per agent session](../../../../translated_images/pcm/agent-mode-select-tools.522c7ba5df0848f8.webp)
+![Easily debug errors during MCP development](../../../../translated_images/pcm/mcp-list-servers.fce89eefe3f30032.webp)
 
-We go talk more about how to use the visual interface for the next sections.
+Make we talk more about how we dey take use the visual interface for the next sections.
 
 ## Approach
 
-This na the high-level approach we go use:
+Dis na how we go take approach am for high level:
 
-- Set up file to locate MCP Server.
-- Start or connect to the server to see wetin e fit do.
-- Use the features through GitHub Copilot Chat interface.
+- Arrange file to find our MCP Server.
+- Start or Connect to that server make e list the capabilities.
+- Use the capabilities through GitHub Copilot Chat interface.
 
-Okay, now we don understand the flow, make we try use MCP Server through Visual Studio Code with exercise.
+Great, now we sabi di flow, make we try take use MCP Server through Visual Studio Code with exercise.
 
-## Exercise: How to use server
+## Exercise: Using server
 
-For this exercise, we go set up Visual Studio Code to locate your MCP server so you fit use am through GitHub Copilot Chat interface.
+For dis exercise, we go arrange Visual Studio Code to find your MCP server so e fit use from GitHub Copilot Chat interface.
 
 ### -0- Prestep, enable MCP Server discovery
 
@@ -55,20 +55,20 @@ You fit need to enable discovery for MCP Servers.
 
 1. Go `File -> Preferences -> Settings` for Visual Studio Code.
 
-1. Search "MCP" and enable `chat.mcp.discovery.enabled` for settings.json file.
+1. Search "MCP" then enable `chat.mcp.discovery.enabled` for settings.json file.
 
 ### -1- Create config file
 
-Start by creating config file for your project root, you go need file wey dem call MCP.json and put am inside folder wey dem call .vscode. E go look like this:
+Begin by creating config file for your project root, you go need file wey name MCP.json and put am for folder wey dem call .vscode. E go look like dis:
 
 ```text
 .vscode
 |-- mcp.json
 ```
 
-Next, make we see how to add server entry.
+Next, make we see how we fit add server entry.
 
-### -2- Configure server
+### -2- Arrange server
 
 Add this content to *mcp.json*:
 
@@ -86,29 +86,29 @@ Add this content to *mcp.json*:
 }
 ```
 
-The example above na simple way to start server wey dem write for Node.js. For other runtimes, make sure you use correct command to start server with `command` and `args`.
+Na simple example for how to start Node.js server, for other runtimes, point correct command to start server with `command` and `args`.
 
-### -3- Start server
+### -3- Start the server
 
-Now wey you don add entry, make we start server:
+Now wey you don add entry, make we start the server:
 
-1. Find your entry for *mcp.json* and look for "play" icon:
+1. Find your entry for *mcp.json* and make sure say you fit see "play" icon:
 
-  ![How to start server for Visual Studio Code](../../../../translated_images/pcm/vscode-start-server.8e3c986612e3555d.webp)  
+  ![Starting server in Visual Studio Code](../../../../translated_images/pcm/vscode-start-server.8e3c986612e3555d.webp)  
 
-1. Click "play" icon, you go see tools icon for GitHub Copilot Chat go increase the number of tools wey dey available. If you click the tools icon, you go see list of tools wey don register. You fit check/uncheck each tool if you wan GitHub Copilot use am as context:
+1. Click "play" icon, you go see tools icon for GitHub Copilot Chat go increase the number of tools wey dey. If you click the tools icon, you go see list of registered tools. You fit check or uncheck each tool depending if you want GitHub Copilot to use am as context:
 
-  ![How to start server for Visual Studio Code](../../../../translated_images/pcm/vscode-tool.0b3bbea2fb7d8c26.webp)
+  ![Starting server in Visual Studio Code](../../../../translated_images/pcm/vscode-tool.0b3bbea2fb7d8c26.webp)
 
-1. To run tool, type prompt wey match description of one of your tools, example prompt like "add 22 to 1":
+1. To run tool, type prompt wey go match description of one tool, example prompt like "add 22 to 1":
 
-  ![How to run tool from GitHub Copilot](../../../../translated_images/pcm/vscode-agent.d5a0e0b897331060.webp)
+  ![Running a tool from GitHub Copilot](../../../../translated_images/pcm/vscode-agent.d5a0e0b897331060.webp)
 
-  You go see response wey go show 23.
+  You go see answer wey say 23.
 
 ## Assignment
 
-Try add server entry to your *mcp.json* file and make sure you fit start/stop server. Make sure you fit communicate with tools for your server through GitHub Copilot Chat interface.
+Try add server entry for your *mcp.json* file and make sure say you fit start and stop server. Make sure you fit also communicate with tools for your server via GitHub Copilot Chat interface.
 
 ## Solution
 
@@ -116,11 +116,11 @@ Try add server entry to your *mcp.json* file and make sure you fit start/stop se
 
 ## Key Takeaways
 
-The main things wey you go learn for this chapter na:
+Takeaways from dis chapter na:
 
-- Visual Studio Code na good client wey fit use plenty MCP Servers and their tools.
-- GitHub Copilot Chat interface na how you go interact with the servers.
-- You fit ask user for inputs like API keys wey you fit pass to MCP Server when you dey set up server entry for *mcp.json* file.
+- Visual Studio Code na beta client for consume multiple MCP Servers and their tools.
+- GitHub Copilot Chat interface na how you dey interact with servers.
+- You fit ask user to input things like API keys wey you fit pass to MCP Server when you dey configure server entry inside *mcp.json* file.
 
 ## Samples
 
@@ -134,13 +134,13 @@ The main things wey you go learn for this chapter na:
 
 - [Visual Studio docs](https://code.visualstudio.com/docs/copilot/chat/mcp-servers)
 
-## What's Next
+## Wetin Next
 
-- Next: [How to create stdio Server](../05-stdio-server/README.md)
+- Next: [Creating a stdio Server](../05-stdio-server/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Disclaimer**:  
-Dis dokyument don use AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator) do di translation. Even as we dey try make am correct, abeg sabi say machine translation fit get mistake or no dey accurate well. Di original dokyument for im native language na di main source wey you go fit trust. For important information, e good make professional human translation dey use. We no go fit take blame for any misunderstanding or wrong interpretation wey fit happen because you use dis translation.
+**Disclaimer**:
+Dis document don translate wit AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). Even tho we dey try make am correct, abeg make you know say automated translation fit get errors or mistakes. Di original document for dia own language na im be di correct source. For important info, make person wey sabi human translation do am. We no go responsible for any misunderstanding or wrong understanding wey fit happen because of dis translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

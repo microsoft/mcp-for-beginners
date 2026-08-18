@@ -1,140 +1,140 @@
-# Mudelikonteksti protokoll reaalajas veebiotsinguks
+# Mudeli konteksti protokoll reaalajas veebipõhiseks otsinguks
 
 ## Ülevaade
 
-Reaalajas veebiotsing on tänapäeva infoküllases keskkonnas muutunud oluliseks, kus rakendused vajavad viivitamatult juurdepääsu ajakohasele teabele kogu internetis, et pakkuda asjakohaseid ja õigeaegseid vastuseid. Mudelikonteksti protokoll (MCP) tähistab olulist edasiminek otsingu protsesside optimeerimisel, parandades otsingu tõhusust, säilitades konteksti terviklikkuse ja suurendades süsteemi üldist jõudlust.
+Reaalajas veebipõhine otsing on tänapäeva infokeskses keskkonnas muutunud hädavajalikuks, kus rakendustel on vaja kohest ligipääsu internetis olevatele ajakohastele andmetele, et pakkuda asjakohaseid ja õigeaegseid vastuseid. Mudeli konteksti protokoll (MCP) tähistab olulist edasiminekut nende reaalajas otsingu protsesside optimeerimisel, parandades otsingu tõhusust, säilitades kontekstuaalse terviklikkuse ning täiustades süsteemi üldist toimivust.
 
-See moodul uurib, kuidas MCP muudab reaalajas veebiotsingu, pakkudes standardiseeritud lähenemist konteksti haldamiseks AI mudelite, otsingumootorite ja rakenduste vahel.
+Käesolev moodul uurib, kuidas MCP muudab reaalajas veebipõhist otsingut, pakkudes standardiseeritud lähenemist kontekstihaldusele AI mudelite, otsingumootorite ja rakenduste vahel.
 
-### Mida te õpite
+### Mida sa õpid
 
-Selles põhjalikus juhendis saate teada:
+Käesolevast põhjalikust juhendist leiad:
 
-- Kuidas MCP loob sujuva silla AI mudelite ja reaalajas veebiotsingu võimekuste vahel
-- Arhitektuurimustrid tõhusate ja skaleeritavate otsingulahenduste rakendamiseks MCP abil
-- Tehnikad otsingukonteksti säilitamiseks mitme päringu ja interaktsiooni vältel
-- Praktilised koodinäited Pythonis ja JavaScriptis erinevate otsingustsenaariumide jaoks
-- Võtted MCP-põhiste otsingusüsteemide asjakohasuse, värskuse ja jõudluse tasakaalustamiseks
+- Kuidas MCP loob sujuva silla AI mudelite ja reaalajas veebipõhiste otsinguvõimaluste vahel
+- Arhitektuurilised mustrid tõhusate ja skaleeritavate otsingulahenduste rakendamiseks MCP abil
+- Tehnikad otsingukonteksti säilitamiseks mitme päringu ja interaktsiooni jooksul
+- Praktilised koodinäited Pythonis ja JavaScriptis erinevates otsingustsenaariumides
+- Meetodid asjakohasuse, uuenduse järjekorra ja jõudluse tasakaalustamiseks MCP-toega otsingusüsteemides
 
-## Sissejuhatus reaalajas veebiotsingusse
+## Sissejuhatus reaalajas veebipõhisesse otsingusse
 
-Reaalajas veebiotsing on tehnoloogiline lähenemine, mis võimaldab pidevalt päringuid teha, töödelda ja analüüsida veebiinfo värskendamisel või avaldamisel, võimaldades süsteemidel pakkuda värsket ja asjakohast teavet minimaalse latentsusega. Erinevalt traditsioonilistest otsingusüsteemidest, mis töötlevad indekseeritud andmeid, mis võivad olla tunde või päevi vanad, töötleb reaalajas otsing veebist pärisajandmet ning annab ülevaateid ja teavet, mis kajastab veebisisu praegust seisundit.
+Reaalajas veebipõhine otsing on tehnoloogiline lähenemine, mis võimaldab pidevat veebipõhise informatsiooni päringut, töötlemist ja analüüsi selle avaldamisel või uuendamisel, võimaldades süsteemidel pakkuda värsket ja asjakohast teavet minimaalset latentsust kasutades. Erinevalt traditsioonilistest otsingusüsteemidest, mis töötavad indekseeritud andmete alusel, mis võivad olla tunde või päevi vanad, kasutab reaalajas otsing veebist live-andmeid, pakkudes teavet ja teadmisi, mis kajastavad veebisisu hetkeseisu.
 
-### Reaalajas veebiotsingu põhikontseptsioonid:
+### Reaalajas veebipõhise otsingu põhimõisted:
 
-- **Pidev päringute töötlemine**: päringud töödeldakse pidevalt uuenevate andmeallikate vastu
-- **Värskuse prioriteet**: süsteemid on loodud värske info eelistamiseks
-- **Asjakohasuse tasakaalustamine**: tasakaalu hoidmine asjakohasuse ja värskuse vahel
-- **Skaleeritav arhitektuur**: süsteemid peavad toime tulema muutuvate päringukoormuste ja andmemahtudega
-- **Kontekstiline mõistmine**: kasutajakonteksti säilitamine mitme otsingutsükli vältel on oluline tähenduslike tulemuste saamiseks
-- **Dünaamiline päringute täpsustamine**: päringute kohandamine konteksti ja varasemate tulemustega
-- **Mitme allika integreerimine**: tulemuste kombineerimine mitmest otsinguteenuse pakkujast ja veebiallikast
-- **Semantiline mõistmine**: päringute ja sisu töötlemine pigem tähenduse kui pelgalt märksõnade põhjal
-- **Reaalajas järjestamine**: tulemusjärjestuste pidev kohandamine uue info saabudes
+- **Pidev päringute töötlemine**: Otsingupäringud töötatakse läbi pidevalt uuenevate andmeallikate alusel
+- **UUenduse suurendamine**: Süsteemid on loodud eelistama värsket teavet
+- **Asjakohasuse tasakaalustamine**: Tasakaalu hoidmine asjakohasuse ja uuenduse vahel
+- **Skaleeritav arhitektuur**: Süsteemid peavad suutma käsitleda muutuvaid päringukoormuseid ja andmahulkasid
+- **Kontekstuaalne mõistmine**: Kasutaja konteksti säilitamine otsingutsüklite vahel on oluline tähenduslike tulemuste saamiseks
+- **Dünaamiline päringute ümberkujundamine**: Päringute kohandamine konteksti ja eelmiste tulemustega
+- **Mitme allika integreerimine**: Mitme otsinguteenuse ja veebiallika tulemuste kombineerimine
+- **Semantiline mõistmine**: Päringute ja sisu töötlemine tähenduse põhjal, mitte ainult märksõnade alusel
+- **Reaalajas järjestamine**: Tulemuste järjestuse pidev kohandamine uue teabe saabumisel
 
-### Mudelikonteksti protokoll ja reaalajas veebiotsing
+### Mudeli konteksti protokoll ja reaalajas veebipõhine otsing
 
-Mudelikonteksti protokoll (MCP) lahendab mitmeid kriitilisi väljakutseid reaalajas veebiotsingu keskkondades:
+Mudeli konteksti protokoll (MCP) lahendab mitmeid olulisi väljakutseid reaalajas veebipõhises otsingukeskkonnas:
 
-1. **Otsingukonteksti säilitamine**: MCP standardiseerib, kuidas konteksti hoitakse ja jagatakse jaotatud otsingukomponentide vahel, tagades, et AI mudelid ja töötlemissõlmed pääsevad ligi asjakohasele päringuajaloo ja kasutajasoovitustele.
+1. **Otsingukonteksti säilitamine**: MCP standardiseerib, kuidas konteksti hoitakse hajutatud otsingukomponentide vahel, tagades, et AI mudelid ja töötlemissõlmed pääsevad ligi asjakohasele päringuajaloo ja kasutajapreferentsidele.
 
-2. **Tõhus päringute haldamine**: pakkudes struktureeritud mehhanisme konteksti edastamiseks, vähendab MCP korduvat konteksti saatmist igas otsingutsüklis.
+2. **Tõhus päringute haldamine**: Pakkudes struktuurseid mehhanisme konteksti edastamiseks, vähendab MCP korduva konteksti töötlemise üldkulusid iga otsingutsükli jooksul.
 
-3. **Ühilduvus**: MCP loob ühise keele konteksti jagamiseks erinevate otsingutehnoloogiate ja AI mudelite vahel, võimaldades paindlikumaid ja laiendatavaid arhitektuure.
+3. **Koostalitlusvõime**: MCP loob ühise keele kontekstijagamiseks erinevate otsingutehnoloogiate ja AI mudelite vahel, võimaldades paindlikumaid ja laiendatavamaid arhitektuure.
 
-4. **Otsingule optimeeritud kontekst**: MCP rakendused saavad prioriseerida, millised konteksti elemendid on tõhusaks otsinguks kõige asjakohasemad, optimeerides nii jõudlust kui ka täpsust.
+4. **Otsinguks optimeeritud kontekst**: MCP rakendused saavad prioriseerida, millised konteksti elemendid on kõige olulisemad tõhusaks otsinguks, optimeerides nii jõudlust kui täpsust.
 
-5. **Kohanduv otsingutöötlus**: MCP kaudu korraldatud konteksti haldamisega saavad otsingusüsteemid dünaamiliselt kohandada töötlemist vastavalt kasutaja vajaduste ja info arengule.
+5. **Kohanduv otsingutöötlus**: Õige konteksti halduse abil MCP kaudu saavad otsingusüsteemid dünaamiliselt kohandada töötlemist vastavalt kasutaja muutuvale vajadusele ja infosüvasti.
 
-Kaasaegsetes rakendustes alates uudistekoondajatest kuni uurimisabilisteni võimaldab MCP integratsioon veebiotsingu tehnoloogiatega luua intelligentsemaid, kontekstiteadlikumaid otsinguid, mis pakuvad järjest asjakohasemaid tulemusi kasutaja jätkuvate interaktsioonide põhjal.
+Kaasaegsetes rakendustes, alates uudiste kogumisest kuni uurimistoetajateni, võimaldab MCP integreerimine veebipõhiste otsingutehnoloogiatega teadlikuma ja kontekstiteadlikuma otsingu, mis jätkuvalt kasutajate interaktsioonide edenedes pakub järjest asjakohasemaid tulemusi.
 
 ## Õpieesmärgid
 
-Selle õppetüki lõpuks oskate:
+Selle õppetunni lõpuks suudad:
 
-- Mõista reaalajas veebiotsingu põhimõtteid ja selle väljakutseid kaasaegsetes rakendustes
-- Selgitada, kuidas Mudelikonteksti protokoll (MCP) täiustab reaalajas veebiotsingu võimekusi
-- Rakendada MCP-põhiseid otsingulahendusi populaarses raamistikus ja API-de abil
-- Kujundada ja juurutada skaleeritavaid ning kõrge jõudlusega otsinguarhitektuure MCP abil
-- Kasutada MCP kontseptsioone erinevates kasutusjuhtumites, sealhulgas semantilises otsingus, uurimisabilistes ja AI-toega sirvimises
-- Hinnata MCP-põhiste otsingutehnoloogiate tekkivaid trende ja tuleviku uuendusi
-- Arendada kontekstiteadlikke otsingusüsteeme, mis õpivad kasutaja interaktsioonidest
-- Integreerida veebiotsingu võimekusi AI abilistesse, kasutades standardiseeritud MCP protokolle
-- Luua mitmeastmelisi otsingutorustikke, mis järk-järgult täpsustavad tulemusi konteksti põhjal
-- Optimeerida otsingu jõudlust hoides samal ajal terviklikku kontekstitunnetust
+- Mõista reaalajas veebipõhise otsingu põhimõtteid ja selle väljakutseid kaasaegsetes rakendustes
+- Selgitada, kuidas mudeli konteksti protokoll (MCP) täiustab reaalajas veebipõhiseid otsinguvõimalusi
+- Rakendada MCP-põhiseid otsingulahendusi populaarsete raamistikude ja API-de abil
+- Kujundada ja juurutada MCP-ga skaleeritavaid kõrge jõudlusega otsinguarhitektuure
+- Rakendada MCP kontseptsioone erinevatel kasutusjuhtudel, sealhulgas semantiline otsing, uurimistugi ja AI täiustatud sirvimine
+- Hinnata MCP-põhiste otsingutehnoloogiate tekkivaid suundumusi ja tulevikulahendusi
+- Arendada kontekstiteadlikke otsingusüsteeme, mis õpivad kasutajate interaktsioonidest
+- Integreerida veebipõhised otsinguvõimalused AI assistentidesse, kasutades standardiseeritud MCP protokolle
+- Luua mitmeastmelisi otsingutorusid, mis järk-järgult täiendavad tulemusi konteksti alusel
+- Optimeerida otsingujõudlust säilitades samal ajal põhjaliku kontekstiteadlikkuse
 
-### Määratlus ja tähtsus
+### Definitsioon ja tähtsus
 
-Reaalajas veebiotsing hõlmab veebiinfo pidevat päringute tegemist, hankimist ja edastamist minimaalse viivitusega. Erinevalt traditsioonilistest otsingumootoritest, mis perioodiliselt veebi indekseerivad ja skaneerivad, on reaalajas otsing suunatud info esiletoomisele kohe, kui see on kättesaadav, võimaldades kohest juurdepääsu kõige ajakohasemale sisule.
+Reaalajas veebipõhine otsing hõlmab veebipõhise teabe pidevat pärimist, toomist ja edastamist minimaalset latentsust rakendades. Erinevalt traditsioonilistest otsingumootoritest, mis perioodiliselt veebis kopeerivad ja indekseerivad, püüab reaalajas otsing tuua esile infot kohe kui see kättesaadavaks saab, võimaldades vahetut ligipääsu kõige värskematele sisudele.
 
-Peamised reaalajas veebiotsingu omadused on:
+Reaalajas veebipõhise otsingu peamised tunnused on:
 
-- **Värskus**: viimasel ajal lisatud või uuendatud sisu prioriteetimine
-- **Pidev töötlemine**: info pidev jälgimine uudsuse suhtes
-- **Päringute kohandamine**: päringute täpsustamine konteksti ja tagasiside põhjal
-- **Viivitamatu edastamine**: kiire otsingutulemuste etteanded
-- **Konteksti säilitamine**: eelnevate päringute põhjal parem asjakohasus
+- **Värskus**: Eelistatakse hiljutisi sisuuuendusi
+- **Pidev töötlemine**: Uue teabe pidev jälgimine
+- **Päringute kohandamine**: Otsingupäringute täpsustamine konteksti ja tagasiside alusel
+- **Viipeaja minimaalne**: Otsingutulemuste kiire esitamine
+- **Konteksti säilitamine**: Eelnevate päringute kasutamine asjakohasuse parandamiseks
 
-### Väljakutsed traditsioonilises veebiotsingus
+### Traditsioonilise veebipõhise otsingu väljakutsed
 
-Traditsioonilises veebiotsingus esinevad mitmed piirangud, kui need rakendada reaalajas stsenaariumitesse:
+Traditsioonilise veebipõhise otsingu lähenemised puutuvad reaalajas stsenaariumites kokku mitmete piirangutega:
 
-1. **Konteksti killustumine**: raske säilitada otsingukonteksti mitme päringu vältel
-2. **Info värskus**: raskused pääseda ligi ja eelistada kõige värskemaid andmeid
-3. **Integreerimisraskused**: ühilduvuse probleemid otsingusüsteemide ja rakenduste vahel
-4. **Latentsusprobleemid**: tasakaalustada põhjalikku otsingut ja vastuste kiirust
-5. **Asjakohasuse häälestamine**: täpsuse ja asjakohasuse tagamine samal ajal kui eelistatakse värskust
+1. **Konteksti killustumine**: Otsingukonteksti säilitamise raskused mitme päringu vahel
+2. **Teabe värskus**: Värskeima infole ligipääsu ja eelistamise väljakutsed
+3. **Integreerimise keerukus**: Koostalitlusvõime probleemid otsingusüsteemide ja rakenduste vahel
+4. **Latentsusprobleemid**: Tulemuste põhjalikkuse ja reageerimisaja nõuete tasakaalustamine
+5. **Asjakohasuse häälestamine**: Täpsuse ja asjakohasuse tagamine uuenduse järjekorda eelistades
 
-## MCP mõistmine otsingus
+## Mudeli konteksti protokolli (MCP) mõistmine otsingus
 
 ### Mis on MCP otsingukontekstis?
 
-Mudelikonteksti protokoll (MCP) on standardiseeritud suhtlusprotokoll, mis lihtsustab tõhusat suhtlust AI mudelite ja rakenduste vahel. Reaalajas veebiotsingu kontekstis pakub MCP raamistikku:
+Mudeli konteksti protokoll (MCP) on standardiseeritud kommunikatsiooniprotokoll, mis on loodud tõhusaks suhtluseks AI mudelite ja rakenduste vahel. Reaalajas veebipõhise otsingu kontekstis pakub MCP raamistiku:
 
-- Otsingukonteksti säilitamiseks kogu päringute jada vältel
-- Otsingupäringute ja tulemustele standardiseeritud vormingu kehtestamiseks
-- Otsinguparameetrite ja tulemuste edastuse optimeerimiseks
-- Mudeli ja otsingumootori vahelise suhtluse parandamiseks
+- Otsingukonteksti säilitamiseks päringute jadade jooksul
+- Otsingupäringu ja tulemuste vormingute standardiseerimiseks
+- Otsinguparameetrite ja tulemuste edastamise optimeerimiseks
+- Mudelite ja otsingumootorite tõhusamaks kommunikatsiooniks
 
 ### Põhikomponendid ja arhitektuur
 
-MCP arhitektuur, mis on mõeldud reaalajas veebiotsinguks, koosneb mitmest võtmekomponendist:
+MCP arhitektuur reaalajas veebipõhiseks otsinguks koosneb mitmetest võtmekomponentidest:
 
-1. **Päringukonteksti haldurid**: haldavad ja säilitavad otsingukonteksti mitme päringu vältel
-2. **Otsingutöötlajad**: töötlevad saabuvad otsingupäringud kontekstitundlikult
-3. **Protokolli adapterid**: teisendavad erinevate otsingu API-de kutsed, säilitades konteksti
-4. **Konteksti andmebaas**: otsinguajaloo ja eelistuste tõhus salvestamine ja hankimine
-5. **Otsingupistikud**: ühendused erinevate otsingumootorite ja veebipõhiste API-dega
+1. **Päringukonteksti haldurid**: Halduse ja konteksti säilitamine mitmete päringute vahel
+2. **Otsingu töötlejad**: Tulevate otsingupäringute töötlemine kontekstiteadliku lähenemisega
+3. **Protokolli adapterid**: Erinevate otsingu API-de konverteerimine konteksti säilitades
+4. **Konteksti hoidla**: Otsinguajaloo ja eelistuste tõhus salvestamine ja päring
+5. **Otsingu ühendajad**: Ühendus erinevate otsingumootorite ja veebipõhiste API-dega
 
 ```mermaid
 graph TD
     subgraph "Andmeallikad"
         Web[Veebisisu]
         APIs[Välised API-d]
-        DB[Teadmusbaasid]
+        DB[Teadmistebaasid]
         News[Uudistevood]
     end
 
-    subgraph "MCP Otsingukiht"
-        SC[Otsingukonnektorid]
-        PA[Protokolliadapterid]
-        CH[Kontekstihaldurid]
-        SP[Otsingutöötlejad]
-        CS[Kontekstipood]
+    subgraph "MCP otsingukiht"
+        SC[Otsingu ühendajad]
+        PA[Protokolli adapterid]
+        CH[Konteksti käsitlejad]
+        SP[Otsinguprotsessorid]
+        CS[Konteksti salvestus]
     end
 
-    subgraph "Töötlemine & Analüüs"
-        RE[Asjakohasusmootor]
-        ML[Masinõppemudelid]
-        NLP[NLP Töötlemine]
-        Rank[Reastamissüsteem]
+    subgraph "Töötlemine ja analüüs"
+        RE[Olulisuse mootor]
+        ML[ML mudelid]
+        NLP[NLP töötlemine]
+        Rank[Reastussüsteem]
     end
 
-    subgraph "Rakendused & Teenused"
+    subgraph "Rakendused ja teenused"
         RA[Uurimisassistent]
         Alerts[Hoiatussüsteemid]
-        KB[Teadmusbaas]
-        API[API Teenused]
+        KB[Teadmistebaas]
+        API[API teenused]
     end
 
     Web -->|Sisu| SC
@@ -142,30 +142,30 @@ graph TD
     DB -->|Teadmised| SC
     News -->|Uuendused| SC
     
-    SC -->|Töötlemata tulemused| PA
-    PA -->|Normeeritud tulemused| CH
+    SC -->|Tulemuste toormaterjal| PA
+    PA -->|Normaliseeritud tulemused| CH
     CH <-->|Konteksti toimingud| CS
     CH -->|Kontekstiga rikastatud tulemused| SP
     SP -->|Töödeldud tulemused| RE
     SP -->|Omadused| ML
     SP -->|Tekst| NLP
     
-    RE -->|Hinnatud tulemused| Rank
+    RE -->|Reastatud tulemused| Rank
     ML -->|Ennustused| Rank
-    NLP -->|Sõlmed & Seosed| Rank
+    NLP -->|Entiteedid ja seosed| Rank
     
     Rank -->|Lõplikud tulemused| RA
-    ML -->|Sissevaated| Alerts
+    ML -->|Tulemused| Alerts
     NLP -->|Struktureeritud andmed| KB
     
-    RA -->|Uurimistöö| Users((Kasutajad))
+    RA -->|Uurimistöö| Users((Users))
     Alerts -->|Teavitused| Users
-    KB <-->|Teadmusjuurdepääs| API
-    
-    classDef sources fill:#f9f,stroke:#333,stroke-width:2px
-    classDef mcp fill:#bbf,stroke:#333,stroke-width:2px
-    classDef processing fill:#bfb,stroke:#333,stroke-width:2px
-    classDef apps fill:#fbb,stroke:#333,stroke-width:2px
+    KB <-->|Juurdepääs teadmistele| API
+
+    classDef sources fill:#f9f,stroke:#333,stroke-width:2px,color:#4a004a
+    classDef mcp fill:#bbf,stroke:#333,stroke-width:2px,color:#00004a
+    classDef processing fill:#bfb,stroke:#333,stroke-width:2px,color:#003300
+    classDef apps fill:#fbb,stroke:#333,stroke-width:2px,color:#4a0000
     
     class Web,APIs,DB,News sources
     class SC,PA,CH,SP,CS mcp
@@ -173,42 +173,43 @@ graph TD
     class RA,Alerts,KB,API apps
 ```
 
-### Kuidas MCP parandab reaalajas veebiotsingut
+### Kuidas MCP parandab reaalajas veebipõhist otsingut
 
-MCP lahendab traditsioonilisi veebiotsingu väljakutseid järgmiste vahenditega:
+MCP lahendab traditsiooniliste veebipõhiste otsingute piiranguid järgmistel viisidel:
 
-- **Kontekstiline järjepidevus**: säilitab seosed päringute vahel kogu otsingusessiooni vältel
-- **Optimeeritud ülekandemehhanism**: vähendab otsinguparameetrite mitmekordset saatmist nutika konteksti haldamisega
-- **Standardiseeritud liidesed**: tagab ühtsed API-d otsingukomponentidele
-- **Vähenenud latentsus**: minimeerib töötlemiskulusid efektiivse kontekstitöötlusega
-- **Paranenud asjakohasus**: parandab otsingutulemuste täpsust, hoides kasutaja kavatsusi mitmes päringus
+- **Kontekstuaalne jätkusuutlikkus**: Päringutevaheliste suhete hoidmine kogu otsingsessiooni jooksul
+- **Optimeeritud edastamine**: Otsinguparameetrite liigse kordamise vähendamine nutika kontekstihaldusega
+- **Standardiseeritud liidesed**: Ühtsete API-de pakkumine otsingukomponentidele
+- **Vähendatud latentsus**: Töötlemiskulude minimeerimine efektiivse kontekstitöötluse kaudu
+- **Parem asjakohasus**: Otsingu asjakohasuse tõstmine, säilitades kasutajate kavatsused mitme päringu jooksul
 
 ## Integratsioon ja rakendamine
 
-Reaalajas veebiotsingusüsteemid nõuavad hoolikat arhitektuuri planeerimist ja rakendust, et hoida nii jõudlust kui ka konteksti terviklikkust. Mudelikonteksti protokoll pakub standardiseeritud lähenemise AI mudelite ja otsingutehnoloogiate ühendamiseks, võimaldades luua keerukamaid ja kontekstiteadlikumaid otsingutorustikke.
+Reaalajas veebipõhised otsingusüsteemid nõuavad hoolikat arhitektuurilist planeerimist ja rakendamist, et hoida nii jõudlust kui konteksti terviklikkust. Mudeli konteksti protokoll pakub standardiseeritud lähenemist AI mudelite ja otsingutehnoloogiate integreerimiseks, võimaldades luua keerukamaid ja kontekstiteadlikumaid otsingutorusid.
 
-### MCP integreerimise ülevaade otsinguarhitektuuridesse
+### MCP integreerimise ülevaade otsingu arhitektuurides
 
-MCP rakendamine reaalajas veebiotsingus võtab arvesse järgmisi aspekte:
+MCP rakendamine reaalajas veebipõhises otsingukeskkonnas hõlmab mitmeid võtmeküsimusi:
 
-1. **Otsingukonteksti serialiseerimine**: MCP pakub tõhusaid mehhanisme kontekstitalituse kodeerimiseks otsingupäringutes, tagades, et olulised kontekstiandmed järgivad päringut kogu töötlemise vältel. Selle hulka kuuluvad standardiseeritud serialiseerimisformaatid otsinguga seotud metaandmetele.
+1. **Otsingukonteksti serialiseerimine**: MCP pakub tõhusaid mehhanisme kontekstiteabe kodeerimiseks otsingupäringutes, tagades olulise konteksti alaletoomise päringu kogu töötlemistorus. See hõlmab standardiseeritud serialiseerimisvorminguid, mis on optimeeritud otsinguga seotud metainformatsiooni jaoks.
 
-2. **Seisundipõhine otsingutöötlus**: MCP võimaldab targemat seisundipõhist töötlemist, säilitades ühtse kontekstitalituse otsingutsüklite vahel. See on eriti oluline mitmeastmelistes otsingutorustikes, kus konteksti täpsustamine parandab tulemusi.
+2. **Seisundipõhine otsingutöötlus**: MCP võimaldab nutikamat seisundipõhist töötlemist, säilitades järjepideva konteksti esituse otsingsilmuste vahel. See on eriti väärtuslik mitmeastmelistes otsingutorudes, kus konteksti täiustamine parandab tulemusi.
 
-3. **Päringu laiendamine ja täpsustamine**: MCP rakendused otsingusüsteemides võimaldavad keerukaid päringu laiendamise ja täpsustamise mehhanisme kogutud konteksti põhjal, tuues otsingusessiooni edenedes järjest asjakohasemaid tulemusi.
+3. **Päringute laiendamine ja täpsustamine**: MCP rakendused otsingusüsteemides võivad hõlbustada keerukaid päringute laiendusi ja täpsustusi kogunenud konteksti alusel, võimaldades otsingsessiooni edenedes järjest asjakohasemaid tulemusi.
 
-4. **Tulemuste vahemällu salvestamine ja prioriseerimine**: konteksti käsitlemise standardiseerimisega aitab MCP hallata vahemällu salvestamist ja prioriseerimist, võimaldades komponentidel kohanduda muutuvate otsingukontekstidega.
+4. **Tulemuste vahemällu salvestamine ja prioriseerimine**: Standardiseeritud kontekstitöötluse abil aitab MCP hallata tulemuste vahemällu salvestamist ja prioriseerimist, võimaldades komponentidel kohaneda muutuvate otsingukontekstidega.
 
-5. **Otsingute föderatsioon ja agregatsioon**: MCP lihtsustab keerukamat otsingute föderatsiooni mitme taustasüsteemi vahel, pakkudes struktureeritud konteksti esitusi, mis võimaldavad palju tähenduslikumat suurettevõtteid erinevatest allikatest.
+5. **Otsingu föderatsioon ja agregatsioon**: MCP võimaldab keerukamat otsingute föderatsiooni mitme serveri vahel, pakkudes struktuurseid konteksti esitlusi, mis võimaldavad tähenduslikumat tulemuste kombineerimist erinevatest allikatest.
 
-MCP rakendamine erinevates otsingutehnoloogiates loob ühtse lähenemise konteksti haldamisele, vähendades erikoodi vajadust ja parandades süsteemi võimet hoida tähendusrikast konteksti otsingupäringute arengu vältel.
+MCP rakendamine erinevate otsingutehnoloogiate vahel loob ühtse lähenemise konteksti haldusele, vähendades kohandatud integratsioonikoodi vajadust ning parandades süsteemi võimet hoida mõtestatud konteksti, kui otsingupäringud arenevad.
 
-### MCP erinevates veebiotsingu rakendustes
+### MCP erinevates veebipõhise otsingu rakendustes
 
-Järgnevad näited järgivad kehtivat MCP spetsifikatsiooni, mis põhineb JSON-RPC protokollil koos erinevate transpordimehhanismidega. Kood demonstreerib kohandatud otsingute integratsioonide loomist, säilitades täieliku ühilduvuse MCP protokolliga.
+Järgnevad näited järgivad kehtivat MCP spetsifikatsiooni, mis keskendub JSON-RPC baasil protokollile koos eristuvate transpordimehhanismidega. Kood näitab, kuidas saab kohandada otsingute integratsioone, säilitades täieliku MCP protokolli ühilduvuse.
+
 
 <details>
-<summary>Python'i rakendus üldiseks otsinguks</summary>
+<summary>Python'i rakendus koos üldise otsingu API-ga</summary>
 
 ```python
 import asyncio
@@ -218,16 +219,16 @@ from typing import Dict, Any, Optional, List
 from contextlib import asynccontextmanager
 from collections.abc import AsyncIterator
 
-# Impordi standard MCP teegid
+# Impordi standardsed MCP teegid
 from mcp.client.session import ClientSession
 from mcp.client.streamable_http import streamablehttp_client
 from mcp.types import TextContent, CreateMessageRequestParams, CreateMessageResult
 from mcp.server.fastmcp import FastMCP
 
-# Loo FastMCP server veebipäringute jaoks
+# Loo FastMCP server veebiotsinguks
 search_server = FastMCP("WebSearch")
 
-# Klass veebipäringute haldamiseks
+# Klass veebiotsingu toimingute haldamiseks
 class WebSearchHandler:
     def __init__(self, api_endpoint: str, api_key: str):
         self.api_endpoint = api_endpoint
@@ -295,13 +296,13 @@ class WebSearchHandler:
             print(f"Search API request error: {e}")
             raise
 
-# Algata otsingu haldaja
+# Algata otsingu käsitleja
 search_handler = WebSearchHandler(
     api_endpoint="https://api.search-service.example/search",
     api_key="your-api-key-here"
 )
 
-# Sea lifespan otsingu haldaja haldamiseks
+# Sea eluea haldus otsingu käsitleja jaoks
 @asyncio.asynccontextmanager
 async def app_lifespan(server: FastMCP):
     """Manage application lifecycle"""
@@ -311,10 +312,10 @@ async def app_lifespan(server: FastMCP):
     finally:
         await search_handler.close()
 
-# Sea serveri lifespan
+# Sea serveri eluea haldus
 search_server = FastMCP("WebSearch", lifespan=app_lifespan)
 
-# Registreeri veebipäringu tööriist
+# Registreeri veebiotsingu tööriist
 @search_server.tool()
 async def web_search(query: str, max_results: int = 5, 
                    include_domains: List[str] = None,
@@ -346,15 +347,15 @@ async def web_search(query: str, max_results: int = 5,
     
     return results
 
-# Kliendi näidis kasutusest
+# Näide kliendi kasutamisest
 async def client_example():
-    # Ühendu otsinguserveriga Streamable HTTP transpordi kaudu
+    # Ühenda otsinguserveriga kasutades Streamable HTTP transpordimeetodit
     async with streamablehttp_client("http://localhost:8000/mcp") as (read, write, _):
         async with ClientSession(read, write) as session:
             # Algata ühendus
             await session.initialize()
             
-            # Kutsu veebipäringu tööriista
+            # Kutsu välja web_search tööriist
             search_results = await session.call_tool(
                 "web_search", 
                 {
@@ -367,23 +368,24 @@ async def client_example():
             
             print(f"Search results: {search_results}")
 
-# Serveri täitmise näidis
+# Serveri käivitamise näide
 if __name__ == "__main__":
-    # Käivita server Streamable HTTP transpordiga
+    # Käivita server kasutades Streamable HTTP transporti
     search_server.run(transport="streamable-http")
 ```
 </details> 
 
 <details>
-<summary>JavaScript'i rakendus brauseripõhiseks otsinguks</summary>
+<summary>JavaScript'i rakendus brauseripõhise otsinguga</summary>
+
 
 ```javascript
-// MCP serveri rakendus veebipäringuks
+// MCP serveri rakendus veebipäringu jaoks
 import { McpServer, ResourceTemplate } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import { z } from 'zod';
 
-// Loo MCP server veebipäringuks
+// Loo MCP server veebipäringu jaoks
 const searchServer = new McpServer({
     name: "BrowserSearch",
     description: "A server that provides web search capabilities"
@@ -405,7 +407,7 @@ class SearchService {
             timePeriod = 'any'
         } = parameters;
         
-        // Koosta otsingu URL koos parameetritega
+        // Koosta otsingu URL parameetritega
         const url = new URL(this.searchApiUrl);
         url.searchParams.append('q', query);
         url.searchParams.append('limit', maxResults);
@@ -456,13 +458,13 @@ class SearchService {
     }
 }
 
-// Algata otsinguteenuse töö
+// Alusta otsinguteenust
 const searchService = new SearchService(
     'https://api.search-service.example/search',
     'your-api-key-here'
 );
 
-// Seadista serveri konteksti pakkuja
+// Määra serveri konteksti pakkuja
 searchServer.setContextProvider(() => {
     return {
         searchService
@@ -510,7 +512,7 @@ searchServer.tool({
     }
 });
 
-// Näidis kliendikood ühendamiseks otsinguserveriga
+// Näidis kliendikood ühenduse loomiseks otsinguserveriga
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 
@@ -554,209 +556,215 @@ console.log('Search server running at http://localhost:8000/mcp');
 ```
 </details> 
 
-## Koodinäidiste vastutusest loobumine
 
-> **Oluline märkus**: Järgnevad koodinäited demonstreerivad Mudelikonteksti protokolli (MCP) integreerimist veebiotsingutega. Kuigi need järgivad ametlike MCP SDK-de mustreid ja struktuure, on nad lihtsustatud hariduslikel eesmärkidel.
+
+
+## Koodi näidiste vastutusest loobumine
+
+> **Oluline märkus**: Alljärgnevad koodinäited demonstreerivad Mudeli konteksti protokolli (MCP) integreerimist veebipõhise otsingutööga. Kuigi need järgivad ametlike MCP SDK-de mustreid ja struktuure, on need hariduslikel eesmärkidel lihtsustatud.
 > 
-> Need näited sisaldavad:
+> Need näited illustreerivad:
 > 
-> 1. **Python'i rakendust**: FastMCP serveri rakendust, mis pakub veebiotsingutööriista ja ühendub välise otsingu API-ga. Näide demonstreerib õigesti ajastatud ressursihaldust, kontekstitöötlust ja tööriista rakendamist vastavalt ametlikele MCP Python SDK mustritele ([link](https://github.com/modelcontextprotocol/python-sdk)). Server kasutab soovitatud Streamable HTTP transporti, mis on vanemat SSE transporti asendanud tootmiskeskkonda juurutamiseks.
+> 1. **Python'i rakendus**: FastMCP serveri rakendus, mis pakub veebipõhist otsinguvahendit ja ühendub välise otsingu API-ga. Näide demonstreerib eluaja haldust, kontekstitöötlust ja tööriista rakendamist, järgides [ametliku MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) mustreid. Server kasutab soovitatud Streamable HTTP transpordimehhanismi, mis on asendanud vanema SSE transpordi tootmiskeskkondades.
 > 
-> 2. **JavaScript'i rakendust**: TypeScript/JavaScript rakendust, mis baseerub FastMCP mustril ametliku MCP TypeScript SDK-st ([link](https://github.com/modelcontextprotocol/typescript-sdk)), et luua otsinguserver koos korrektselt määratletud tööriistade ja kliendühendustega. Järgitakse uusimaid soovitatud seansihaldus- ja kontekstisäilitamismustreid.
+> 2. **JavaScript'i rakendus**: TypeScript/JavaScript rakendus, kasutades FastMCP mustrit [ametliku MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) raames, et luua otsinguserver koos korrektsete tööriistade määratlustega ja kliendiühendustega. See järgib viimaseid soovitatud sessioonihalduse ja konteksti säilitamise mustreid.
 > 
-> Need näited vajaksid täiendavat veahaldust, autentimist ja konkreetset API integratsioonikoodi tootmises kasutamiseks. Näidatud otsingu API lõpp-punktid (`https://api.search-service.example/search`) on kohatäitjad ja tuleks asendada tegelike otsinguteenuse lõpp-punktidega.
+> Need näited vajaksid täiendavat vigade käsitlemist, autentimist ja spetsiifilist API integreerimiskoodi tootmiskeskkonnas kasutamiseks. Kuvatud otsingu API lõpp-punktid (`https://api.search-service.example/search`) on kohatäitjad ja tuleks asendada päris otsinguteenuste lõpp-punktidega.
 > 
-> Täielike rakenduse üksikasjade ja kõige uuemate lähenemiste kohta vaadake ametlikku MCP spetsifikatsiooni ja SDK dokumentatsiooni ([link](https://spec.modelcontextprotocol.io/)).
+> Täielike rakenduse üksikasjade ja ajakohaste lähenemiste jaoks vaata [ametlikku MCP spetsifikatsiooni](https://spec.modelcontextprotocol.io/) ja SDK dokumentatsiooni.
 
 ## Põhikontseptsioonid
 
-### Mudelikonteksti protokolli (MCP) raamistik
+### Mudeli konteksti protokolli (MCP) raamistik
 
-MCP põhiteguriks on standardiseeritud viis AI mudelite, rakenduste ja teenuste vahel konteksti vahetamiseks. Reaalajas veebiotsingus on see raamistik vältimatult vajalik koherentsete, mitmekäiguliste otsingukogemuste loomiseks. Peamised komponendid on:
+Mudeli konteksti protokoll pakub AI mudelitele, rakendustele ja teenustele standardiseeritud viisi konteksti vahetamiseks. Reaalajas veebipõhises otsingus on see raamistik hädavajalik sidusate, mitmekordsete otsinguvõimaluste loomiseks. Peamised komponendid on:
 
-1. **Kliendi-serveri arhitektuur**: MCP seab selge piiri otsinguklientide (pärijate) ja otsinguserverite (pakkujate) vahel, võimaldades paindlikke juurutusmudeleid.
+1. **Kliendi- ja serveriarhitektuur**: MCP loob selge eristuse otsingukliendi (pärija) ja otsinguserveri (pakkuja) vahel, võimaldades paindlikke juurutusmudeleid.
 
-2. **JSON-RPC kommunikatsioon**: protokoll kasutab sõnumivahetuseks JSON-RPC-t, muutes selle veebitehnoloogiatega ühilduvaks ja kergesti rakendatavaks platvormidel.
+2. **JSON-RPC kommunikatsioon**: Protokoll kasutab sõnumite vahetuseks JSON-RPC-d, muutes selle ühilduvaks veebitehnoloogiatega ning hõlpsasti rakendatavaks erinevatel platvormidel.
 
-3. **Konteksti haldamine**: MCP määratleb struktureeritud meetodid otsingukonteksti hoidmiseks, uuendamiseks ja kasutamiseks mitmete interaktsioonide vältel.
+3. **Konteksti haldus**: MCP määratleb struktureeritud meetodid otsingukonteksti säilitamiseks, uuendamiseks ja rakendamiseks mitme interaktsiooni jooksul.
 
-4. **Tööriistade määratlused**: otsinguvõimalused eksponeeritakse standardiseeritud tööriistadena selgelt määratletud parameetrite ja tagastusväärtustega.
+4. **Tööriistade määratlused**: Otsinguvõimalused eksponeeritakse standardiseeritud tööriistadena, millel on hästi määratletud parameetrid ja tagastatavad väärtused.
 
-5. **Andmestriimi tugi**: protokoll toetab tulemuste voogedastust, mis on hädavajalik reaalajas otsingus, kus tulemused võivad järk-järgult saabuda.
+5. **Jooksva voo toetus**: Protokoll toetab tulemuste voogesitust, mis on vajalik reaalajas otsinguks, kus tulemused võivad saabuda järk-järgult.
 
-### Veebiotsingu integratsioonimustrid
+### Veebipõhise otsingu integreerimise mustrid
 
-MCP ühendamisel veebiotsinguga ilmnevad mitmed mustrid:
+MCP integreerimisel veebipõhise otsinguga ilmnevad mitmed mustrid:
 
-#### 1. Otsese otsinguteenuse pakkuja integratsioon
+#### 1. Otsingu pakkuja otsene integratsioon
 
 ```mermaid
 graph LR
-    Client[MCP klient] --> |MCP päring| Server[MCP server]
-    Server --> |API kõne| SearchAPI[Otsingu API]
+    Client[MCP Klient] --> |MCP Päring| Server[MCP Server]
+    Server --> |API Kõne| SearchAPI[Otsingu API]
     SearchAPI --> |Tulemused| Server
-    Server --> |MCP vastus| Client
+    Server --> |MCP Vastus| Client
 ```
 
-Selles mustris suhtleb MCP server otseselt ühe või mitme otsingu API-ga, teisendades MCP päringud API-spetsiifilisteks kutsedeks ja vormindades tulemused MCP vastusteks.
+Selles mustris suhtleb MCP server otseselt ühe või mitme otsingu API-ga, teisendades MCP päringud API-spetsiifilisteks kõnedeks ja vormindades tulemused MCP vastusteks.
 
-#### 2. Konteksti säilitav föderatiivne otsing
+#### 2. Kontexti säilitava föderatiivse otsingu lahendus
 
 ```mermaid
 graph LR
     Client[MCP Klient] --> |MCP Päring| Federation[MCP Föderatsiooni Kiht]
-    Federation --> |MCP Päring 1| Search1[Otsingu Pakkuja 1]
-    Federation --> |MCP Päring 2| Search2[Otsingu Pakkuja 2]
-    Federation --> |MCP Päring 3| Search3[Otsingu Pakkuja 3]
-    Search1 --> |MCP Vasta 1| Federation
-    Search2 --> |MCP Vasta 2| Federation
-    Search3 --> |MCP Vasta 3| Federation
-    Federation --> |Kogutud MCP Vasta| Client
+    Federation --> |MCP Päring 1| Search1[Otsinguteenuse Pakkuja 1]
+    Federation --> |MCP Päring 2| Search2[Otsinguteenuse Pakkuja 2]
+    Federation --> |MCP Päring 3| Search3[Otsinguteenuse Pakkuja 3]
+    Search1 --> |MCP Vastus 1| Federation
+    Search2 --> |MCP Vastus 2| Federation
+    Search3 --> |MCP Vastus 3| Federation
+    Federation --> |Koondatud MCP Vastus| Client
 ```
 
-See muster jaotab päringud mitme MCP ühilduva otsinguteenuse pakkuja vahel, millest igaüks võib spetsialiseeruda erinevatele sisutüüpidele või otsinguvõimalustele, säilitades samal ajal ühtse konteksti.
+See muster jaotab otsingupäringud mitme MCP-ühilduva otsinguteenuse pakkuja vahel, kellel võib olla spetsiifilisi sisutüüpe või otsinguvõimalusi, säilitades samal ajal ühtse konteksti.
 
-#### 3. Kontekstiga täiustatud otsingukett
+#### 3. Kontekstiga täiustatud otsinguahel
 
 ```mermaid
 graph LR
-    Client[MCP Klient] --> |Päring + Kontekst| Server[MCP Server]
-    Server --> |1. Päringu analüüs| NLP[NLP Teenus]
+    Client[MCP klient] --> |Päring + kontekst| Server[MCP server]
+    Server --> |1. päringu analüüs| NLP[NLP teenus]
     NLP --> |Täiendatud päring| Server
-    Server --> |2. Otsingu teostamine| Search[Otsingumootor]
-    Search --> |Toorandmed| Server
-    Server --> |3. Tulemuste töötlemine| Enhancement[Tulemuste täiustamine]
+    Server --> |2. otsingu teostamine| Search[Otsingumootor]
+    Search --> |Toored tulemused| Server
+    Server --> |3. tulemuste töötlemine| Enhancement[Tulemuste täiendamine]
     Enhancement --> |Täiendatud tulemused| Server
-    Server --> |Lõplikud tulemused + Uuendatud kontekst| Client
+    Server --> |Lõplikud tulemused + uuendatud kontekst| Client
 ```
 
-Selles mustris jagatakse otsinguprotsess mitmeks etapiks, kus kontekst rikastub iga sammuga, tulemuseks järjest asjakohasemad otsingutulemused.
+Selles mustris jaguneb otsinguprotsess mitmeks etapiks, kus igal sammul rikastatakse konteksti, tulemuseks järjest asjakohasemad tulemused.
 
 ### Otsingukonteksti komponendid
 
-MCP-põhises veebiotsingus sisaldab kontekst tavaliselt:
+MCP-põhises veebipõhises otsingus sisaldab kontekst tavaliselt:
 
-- **Päringu ajalugu**: sessiooni eelmised otsingupäringud
-- **Kasutaja eelistused**: keel, piirkond, turvalise otsingu seaded
-- **Interaktsiooni ajalugu**: milliseid tulemusi klikiti, tulemuste vaatamise aeg
-- **Otsinguparameetrid**: filtrid, sortimisjärjekorrad ja muud otsingu modifikaatorid
-- **Domeeniteadmised**: otsinguga seotud erialane kontekst
-- **Ajutine kontekst**: aja põhised asjakohasuse tegurid
-- **Allika eelistused**: usaldusväärsed või eelistatud infoallikad
+- **Päringu ajalugu**: Eelmisel päringud sessioonis
+- **Kasutaja eelistused**: Keel, piirkond, turvalise otsingu seaded
+- **Interaktsiooni ajalugu**: Milliseid tulemusi klikiti, tulemuste vaatamiseks kulutatud aeg
+- **Otsingu parameetrid**: Filtrid, sortimisjärjestused ja muud otsingu modifikaatorid
+- **Domeeniteadmised**: Otsingule relevantsed teemaspetsiifilised kontekstid
+- **Ajutine kontekst**: Aega arvestavad asjakohasusfaktorid
+- **Allika eelistused**: Usaldusväärsed või eelistatud teabeallikad
 
-## Kasutusjuhtumid ja rakendused
+## Kasutusjuhud ja rakendused
 
-### Uurimistöö ja info kogumine
+### Uurimine ja info kogumine
 
-MCP täiustab uurimisprotsesse järgmiste võimalustega:
+MCP täiustab uurimistöövooge järgmiselt:
 
-- Uurimiskonteksti säilitamine otsingssessiioonide vahel
-- Keerukamate ja kontekstipõhiste päringute võimaldamine
-- Mitme allika otsinguföderatsiooni toetamine
-- Teadmiste väljavõtte hõlbustamine otsingutulemustest
+- Säilitades uurimiskonteksti otsingsessioonide vahel
+- Võimaldades keerukamaid ja kontekstuaalselt asjakohasemaid päringuid
+- Toetades mitme allika otsingu föderatsiooni
+- Võimaldades teadmiste eraldamist otsingutulemustest
 
 ### Reaalajas uudiste ja trendide jälgimine
 
-MCP-ga toidetud otsing pakub uudiste jälgimisel eeliseid:
+MCP-toega otsing pakub eeliseid uudiste jälgimisel:
 
-- Peaaegu reaalajas uute uudislugude avastamine
-- Asjakohase info kontekstipõhine filtreerimine
-- Teemade ja üksuste jälgimine mitme allika ulatuses
-- Personaliseeritud uudiseteavitused kasutajakonteksti põhjal
+- Peaaegu reaalajas tekkivate uudislugude avastamine
+- Kontekstuaalne filtreerimine asjakohase informatsiooni leidmiseks
+- Teemade ja üksuste jälgimine mitmest allikast
+- Isikupärastatud uudiste teavitused kasutajapõhise konteksti põhjal
 
-### AI-toega sirvimine ja uurimistöö
+### AI-ga täiustatud sirvimine ja uurimistöö
 
-MCP loob uusi võimalusi AI-toega sirvimiseks:
+MCP loob uusi võimalusi AI-ga täiustatud sirvimiseks:
 
-- Kontekstuaalsed otsingusoovitused vastavalt praegusele sirvimistegevusele
-- Sujuv veebiotsingu integratsioon LLM-jõuliste abilistega
-- Mitmekäiguline otsingu täpsustamine konteksti säilitades
-- Täiustatud faktikontroll ja info kinnitamine
+- Kontekstipõhised otsingusoovitused praeguse brauseri tegevuse põhjal
+- Veatu integreerimine veebipõhise otsingu ja LLM-toega assistentidega
+- Mitme-käigu otsingutäpsustus konteksti säilitamisega
+- Täiustatud faktikontroll ja infoverifitseerimine
 
 ## Tuleviku trendid ja uuendused
 
-### MCP areng veebiotsingus
+### MCP areng veebipõhises otsingus
 
-Edaspidi on oodata MCP arengut järgmiste valdkondade ettevõtmisel:
-- **Multimodaalne otsing**: Teksti, pildi, heli ja video otsingu integreerimine säilitades konteksti
-- **Detsentraliseeritud otsing**: Toetades hajutatud ja föderatiivseid otsinguekosüsteeme
+Tulevikku vaadates ootame MCP arenemist järgmistes suundades:
+
+
+- **Multimodaalne otsing**: Teksti, pildi, heli ja video otsingu integreerimine koos konteksti säilitamisega
+- **Detsentraliseeritud otsing**: Toetades hajutatud ja föderaalseid otsingusüsteeme
 - **Otsingu privaatsus**: Kontekstitundlikud privaatsust säilitavad otsingumehhanismid
-- **Päringu mõistmine**: Loodusliku keele otsingupäringute põhjalik semantiline analüüs
+- **Päringu mõistmine**: Loomuliku keele otsingupäringute sügav semantiline analüüs
 
-### Võimalikud tehnika arengud
+### Võimalikud tehnoloogilised arengud
 
-Tuleviku MCP otsingut kujundavad tekkivad tehnoloogiad:
+Uued tehnoloogiad, mis kujundavad MCP otsingu tulevikku:
 
-1. **Neuraalsed otsingu arhitektuurid**: MCP-le optimeeritud manustuspõhised otsingusüsteemid
+1. **Neuraalsed otsingu arhitektuurid**: MCP jaoks optimeeritud sisestuspõhised otsingusüsteemid
 2. **Isikupärastatud otsingu kontekst**: Individuaalsete kasutajate otsimismustrite õppimine aja jooksul
-3. **Teadmusgraafiku integreerimine**: Kontekstiotsing domeenipõhiste teadmusgraafikute toel
-4. **Ristmodaalne kontekst**: Konteksti säilitamine erinevate otsingumodaliteetide vahel
+3. **Teadmusgraafiku integratsioon**: Kontextipõhine otsing domeenispetsiifiliste teadmusgraafikutega täiustatud
+4. **Ristmodaalne kontekst**: Konteksti säilitamine erinevate otsingumoodalite vahel
 
 ## Praktilised harjutused
 
-### Harjutus 1: Põhjaliku MCP otsingu torujuhtme seadistamine
+### Harjutus 1: Põhjaliku MCP otsingupipeline seadistamine
 
 Selles harjutuses õpid:
-- Põhilise MCP otsingukeskkonna konfigureerimist
-- Konteksti töötlejate rakendamist veebipõhiseks otsinguks
-- Testima ja valideerima konteksti säilitamist otsingu iteratsioonide vahel
+- Põhjaliku MCP otsingukeskkonna seadistamist
+- Veebipõhise otsingu konteksti haldurite rakendamist
+- Konteksti säilitamise testimist ja valideerimist erinevate otsingutsüklite jooksul
 
-### Harjutus 2: Uurimisassistendi loomine MCP otsinguga
+### Harjutus 2: Uurimisabilise loomine MCP otsinguga
 
 Loo täielik rakendus, mis:
-- Töötleb looduspäraseid uurimisküsimusi
-- Teostab kontekstitundlikke veebiotsinguid
-- Sünthetiseerib infot mitmest allikast
+- Töötleb loomuliku keele uurimisküsimusi
+- Teostab kontekstitundlikke veebipõhiseid otsinguid
+- Sünteesib informatsiooni mitmest allikast
 - Esitab organiseeritud uurimistulemused
 
-### Harjutus 3: Mitme allika otsingu föderatsiooni rakendamine MCP-ga
+### Harjutus 3: Mitme allika otsinguföderatsiooni rakendamine MCP-ga
 
-Edelda harjutus, mis käsitleb:
-- Kontekstitundlikku päringu suunamist mitmele otsingumootorile
-- Tulemuste järjestamist ja kogumist
-- Otsingutulemuste kontekstuaalset duplikaatide eemaldamist
-- Allikaspetsiifilise metainfo käsitlemist
+Täiustatud harjutus hõlmates:
+- Kontextipõhist päringute suunamist mitmele otsingumootorile
+- Tulemuste järjestamist ja agregatsiooni
+- Kontekstipõhine tulemuste dubleerimise vältimine
+- Allikaspetsiifiliste metainfo töötlemist
 
-## Täiendavad ressursid
+## Lisamaterjalid
 
-- [Model Context Protocol Specification](https://spec.modelcontextprotocol.io/) - MCP ametlik spetsifikatsioon ja detailne protokoli dokumentatsioon
-- [Model Context Protocol Documentation](https://modelcontextprotocol.io/) - Detailsete juhendite ja implementeerimisjuhendite kogu
-- [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) - MCP protokolli ametlik Python'i rakendus
-- [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - MCP protokolli ametlik TypeScript'i rakendus
-- [MCP Reference Servers](https://github.com/modelcontextprotocol/servers) - MCP serverite referentsrakendused
+- [Model Context Protocol Specification](https://spec.modelcontextprotocol.io/) - MCP ametlik spetsifikatsioon ja üksikasjalik protokolli dokumentatsioon
+- [Model Context Protocol Documentation](https://modelcontextprotocol.io/) - Üksikasjalikud juhendid ja rakendusmaterjalid
+- [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) - MCP protokolli ametlik Python'i teostus
+- [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - MCP protokolli ametlik TypeScripti teostus
+- [MCP Reference Servers](https://github.com/modelcontextprotocol/servers) - MCP serverite viideteostused
 - [Bing Web Search API Documentation](https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/overview) - Microsofti veebipõhise otsingu API
-- [Google Custom Search JSON API](https://developers.google.com/custom-search/v1/overview) - Google programmeeritav otsingumootor
+- [Google Custom Search JSON API](https://developers.google.com/custom-search/v1/overview) - Google'i programmeeritav otsingumootor
 - [SerpAPI Documentation](https://serpapi.com/search-api) - Otsingumootori tulemuste lehe API
 - [Meilisearch Documentation](https://www.meilisearch.com/docs) - Avatud lähtekoodiga otsingumootor
-- [Elasticsearch Documentation](https://www.elastic.co/guide/index.html) - Hajutatud otsingu ja analüüsi mootor
-- [LangChain Documentation](https://python.langchain.com/docs/get_started/introduction) - Rakenduste ehitamine LLM-idega
+- [Elasticsearch Documentation](https://www.elastic.co/guide/index.html) - Hajutatud otsingu- ja analüütikamootor
+- [LangChain Documentation](https://python.langchain.com/docs/get_started/introduction) - LLM-idega rakenduste loomine
 
 ## Õpitulemused
 
-Selle mooduli läbimisel saad:
+Selle mooduli läbimisel suudad:
 
-- Mõista reaalajas veebiotsingu põhimõtteid ja väljakutseid
-- Selgitada, kuidas Model Context Protocol (MCP) parandab reaalajas veebiotsinguvõimekust
+- Mõista reaalajas veebipõhise otsingu aluseid ja selle väljakutseid
+- Selgitada, kuidas Model Context Protocol (MCP) parandab reaalajas veebipõhist otsinguvõimalust
 - Rakendada MCP-põhiseid otsingulahendusi populaarsete raamistikude ja API-de abil
-- Kujundada ja kasutusele võtta skaleeritavaid, kõrge jõudlusega otsingu arhitektuure MCP-ga
-- Rakendada MCP kontseptsioone erinevates kasutusstsenaariumides, sealhulgas semantiline otsing, uurimisabi ja tehisintellektiga täiendatud sirvimine
-- Hinnata MCP-põhise otsingutehnoloogia kasvavaid trende ja tulevikulahendusi
+- Kujundada ja juurutada skaleeritavaid, kõrge jõudlusega otsingu arhitektuure MCP abil
+- Rakendada MCP kontseptsioone erinevates kasutusjuhtudes nagu semantiline otsing, uurimisabi ja tehisintellektist toetatud sirvimine
+- Hinnata MCP-põhiste otsingutehnoloogiate tekkivaid trende ja tuleviku uuendusi
 
-### Usaldus ja turvalisuse kaalutlused
 
-MCP-põhiste veebiotsingu lahenduste rakendamisel pea meeles järgmisi olulisi põhimõtteid MCP spetsifikatsioonist:
+### Usaldus ja turvalisus
 
-1. **Kasutaja nõusolek ja kontroll**: Kasutajad peavad andma selgesõnalise nõusoleku ja mõistma kõiki andmetele ligipääsu ja toiminguid. See on eriti tähtis veebiotsingu rakenduste puhul, mis võivad pääseda ligi välistele andmeallikatele.
+MCP-põhiste veebipõhiste otsingulahenduste juurutamisel mäleta MCP spetsifikatsioonist järgmisi olulisi põhimõtteid:
 
-2. **Andmete privaatsus**: Tagada otsingupäringute ja -tulemuste nõuetekohane käsitlemine, eriti juhul, kui need sisaldavad tundlikku teavet. Rakenda sobivaid juurdepääsukontrolle kasutajaandmete kaitsmiseks.
+1. **Kasutaja nõusolek ja kontroll**: Kasutajad peavad selgesõnaliselt andma nõusoleku ja mõistma kogu andmete juurde pääsemist ja tegevusi. See on eriti oluline veebipõhiste otsingulahenduste puhul, mis võivad juurde pääseda välistele andmeallikatele.
 
-3. **Tööriistade turvalisus**: Rakenda otsingutööriistade korral korrektset volitamist ja valideerimist, kuna need võivad esindada turvariske suvalise koodi täitmise kaudu. Tööriistade käitumisikirjeldused tuleks pidada mittetruustatuks, kui neid ei ole saadud usaldusväärsest serverist.
+2. **Andmete privaatsus**: Tagada asjakohane käsitlemine otsingupäringute ja -tulemuste puhul, eriti siis, kui need võivad sisaldada tundlikku teavet. Rakendada asjakohaseid ligipääsuriske kasutajate andmete kaitseks.
 
-4. **Selge dokumentatsioon**: Paku selget dokumentatsiooni MCP-põhiste otsingulahenduste võimete, piirangute ja turvaküsimuste kohta, järgides MCP spetsifikatsiooni rakendusjuhiseid.
+3. **Tööriistade turvalisus**: Rakendada tööriistade korralik autoriseerimine ja valideerimine, kuna need võivad kujutada turvariski juhusliku koodi käivitamise kaudu. Tööriistade käitumise kirjeldusi tuleks pidada mittetruusteks, välja arvatud juhul, kui need pärinevad usaldusväärsest serverist.
 
-5. **Robustsed nõusolekute protsessid**: Ehita vastupidavad nõusoleku ja volituse protsessid, mis selgelt kirjeldavad iga tööriista ülesandeid enne selle kasutamise lubamist, eriti tööriistade puhul, mis suhtlevad väliste veebiallikatega.
+4. **Selge dokumentatsioon**: Pakkuda selget dokumentatsiooni oma MCP-põhise otsingu rakenduse võimekuse, piirangute ja turvalisuse kaalutluste kohta, järgides MCP spetsifikatsiooni juurutamisjuhiseid.
 
-Põhjalikumaks info ja MCP turva ning usaldusküsimuste kohta vt [ametlik dokumentatsioon](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).
+5. **Tugevad nõusolekuvood**: Luua tugevad nõusoleku- ja autoriseerimisprotsessid, mis selgelt selgitavad, mida iga tööriist teeb enne selle kasutuse lubamist, eriti tööriistade puhul, mis suhtlevad väliste veebiallikatega.
+
+MCP turvalisuse ja usalduslike kaalutluste täielike üksikasjade saamiseks vaata [ametlikku dokumentatsiooni](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).
 
 ## Mis järgmiseks
 
