@@ -228,8 +228,8 @@
     "language_code": "ro"
   },
   "03-GettingStarted/06-http-streaming/README.md": {
-    "original_hash": "b60da59101bd45984bf96bad2aecc280",
-    "translation_date": "2026-07-13T19:50:10+00:00",
+    "original_hash": "2798d47440fa8ef6e21beffe629a0407",
+    "translation_date": "2026-08-18T09:40:31+00:00",
     "source_file": "03-GettingStarted/06-http-streaming/README.md",
     "language_code": "ro"
   },
@@ -270,8 +270,8 @@
     "language_code": "ro"
   },
   "03-GettingStarted/07-aitk/README.md": {
-    "original_hash": "98bcd044860716da5819e31c152813b7",
-    "translation_date": "2025-08-19T16:35:09+00:00",
+    "original_hash": "7f6ec4f48cc1e1cedf645f6cdaa0afeb",
+    "translation_date": "2026-08-18T09:41:53+00:00",
     "source_file": "03-GettingStarted/07-aitk/README.md",
     "language_code": "ro"
   },
@@ -282,8 +282,8 @@
     "language_code": "ro"
   },
   "03-GettingStarted/08-testing/README.md": {
-    "original_hash": "b6e64cb54c38599a0c4395828b6c4977",
-    "translation_date": "2026-04-11T22:19:47+00:00",
+    "original_hash": "bfea0acdd9846028c4c3dc0b4be32d0f",
+    "translation_date": "2026-08-18T09:42:33+00:00",
     "source_file": "03-GettingStarted/08-testing/README.md",
     "language_code": "ro"
   },
@@ -588,8 +588,8 @@
     "language_code": "ro"
   },
   "05-AdvancedTopics/mcp-realtimesearch/README.md": {
-    "original_hash": "a6e5401a9a42dd1c2ad54b38e9d61911",
-    "translation_date": "2026-06-16T16:18:40+00:00",
+    "original_hash": "3891c266593a12eb4340ccf92f188539",
+    "translation_date": "2026-08-18T09:38:05+00:00",
     "source_file": "05-AdvancedTopics/mcp-realtimesearch/README.md",
     "language_code": "ro"
   },
@@ -666,8 +666,8 @@
     "language_code": "ro"
   },
   "08-BestPractices/README.md": {
-    "original_hash": "39f79aa826ea0f522e7073d4a82dbdb2",
-    "translation_date": "2026-06-16T16:13:11+00:00",
+    "original_hash": "8ba1781e6978308063cb698d13bcde43",
+    "translation_date": "2026-08-18T09:33:52+00:00",
     "source_file": "08-BestPractices/README.md",
     "language_code": "ro"
   },
@@ -870,8 +870,8 @@
     "language_code": "ro"
   },
   "README.md": {
-    "original_hash": "8c09e6bcaa3074688645c3e5fcaa8681",
-    "translation_date": "2026-07-08T23:04:11+00:00",
+    "original_hash": "70e26fed3fc555e89b34b9023deb392b",
+    "translation_date": "2026-08-18T09:13:51+00:00",
     "source_file": "README.md",
     "language_code": "ro"
   },
@@ -887,9 +887,33 @@
     "source_file": "SUPPORT.md",
     "language_code": "ro"
   },
+  "__translation_failures__": {
+    "03-GettingStarted/04-vscode/README.md": {
+      "original_hash": "ec1a82b705e6aa33eca703b42a169a70",
+      "source_file": "03-GettingStarted/04-vscode/README.md",
+      "language_code": "ro",
+      "failure_date": "2026-08-18T09:44:05+00:00",
+      "status": "failed",
+      "error_type": "TranslationIncompleteError",
+      "error_message": "Markdown translation remained incomplete for chunk 1 of 'README.md', and the chunk could not be split further.",
+      "translator_version": "0.20.0",
+      "failure_policy_version": 1
+    },
+    "08-BestPractices/reliability-sidecars/README.md": {
+      "original_hash": "6b8f1c4b9857b9e76d105f4bc6636b86",
+      "source_file": "08-BestPractices/reliability-sidecars/README.md",
+      "language_code": "ro",
+      "failure_date": "2026-08-18T10:16:19+00:00",
+      "status": "failed",
+      "error_type": "TranslationIncompleteError",
+      "error_message": "Markdown translation remained incomplete for chunk 1.1.2 of 'README.md', and the chunk could not be split further.",
+      "translator_version": "0.20.0",
+      "failure_policy_version": 1
+    }
+  },
   "changelog.md": {
-    "original_hash": "20f1f1af027c13294024fe6a9ea90e37",
-    "translation_date": "2026-07-08T23:06:16+00:00",
+    "original_hash": "60677e2e90cc496806c9a28dcebdc325",
+    "translation_date": "2026-08-18T09:22:31+00:00",
     "source_file": "changelog.md",
     "language_code": "ro"
   },
