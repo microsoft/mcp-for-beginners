@@ -137,12 +137,12 @@ This case study walks through a **write-capable remote MCP server** — one whos
 
 The interesting part is the design constraints that publishing imposes, which apply to any server that writes rather than reads:
 
-- **Open discovery, authenticated execution** — `tools/list` served without credentials so registries and clients can introspect, while every `tools/call` requires a token
-- **OAuth with dynamic client registration**, so an unknown client can connect without a pre-issued `client_id` or a hand-copied key
-- **Tool annotations** (`readOnlyHint`, `destructiveHint`, `idempotentHint`) that clients use to decide what to confirm — and that connector directories now require for review
+- **Open discovery, authenticated execution** — `tools/list` answered without credentials so registries and clients can introspect, while every `tools/call` requires a token and otherwise returns `401` with a `WWW-Authenticate` header
+- **OAuth registration without an out-of-band step** — dynamic client registration today, with Client ID Metadata Documents as the direction the `2026-07-28` specification points to
+- **Tool annotations** (`readOnlyHint`, `destructiveHint`, `idempotentHint`) that clients use to decide what to confirm — hints rather than enforcement, and something connector directories now expect at review
 - **Un-inventable identifiers**, so a hallucinated value fails loudly instead of acting on a plausible-looking one
-- **Idempotency keys**, so an agent runtime's retry does not become a duplicate publication
-- **A documented no-op target** that exercises the full write path and publishes nothing, for reviewers and CI
+- **Idempotency keys on the post-creating tools**, so an agent runtime's retry does not become a duplicate publication
+- **A no-op target described in the tool schema** that exercises the full write path and publishes nothing, for reviewers and CI
 
 The chapter closes with a short checklist you can apply to a server you are building.
 
