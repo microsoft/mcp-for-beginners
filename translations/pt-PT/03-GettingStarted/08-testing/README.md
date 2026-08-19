@@ -1,6 +1,6 @@
 ## Testes e Depuração
 
-Antes de começar a testar o seu servidor MCP, é importante compreender as ferramentas disponíveis e as melhores práticas para a depuração. Testes eficazes garantem que o seu servidor se comporta conforme esperado e ajudam a identificar e resolver problemas rapidamente. A secção seguinte descreve as abordagens recomendadas para validar a sua implementação MCP.
+Antes de começar a testar o seu servidor MCP, é importante compreender as ferramentas disponíveis e as melhores práticas para a depuração. Testes eficazes garantem que o seu servidor se comporta como esperado e ajudam a identificar e resolver problemas rapidamente. A secção seguinte descreve as abordagens recomendadas para validar a implementação do seu MCP.
 
 ## Visão Geral
 
@@ -13,45 +13,46 @@ No final desta lição, será capaz de:
 - Descrever várias abordagens para testes.
 - Utilizar diferentes ferramentas para testar eficazmente o seu código.
 
+
 ## Testar Servidores MCP
 
-O MCP fornece ferramentas para ajudar a testar e depurar os seus servidores:
+O MCP fornece ferramentas para o ajudar a testar e depurar os seus servidores:
 
-- **MCP Inspector**: Uma ferramenta de linha de comandos que pode ser executada tanto como ferramenta CLI como visual.
-- **Testes manuais**: Pode usar uma ferramenta como curl para executar pedidos web, mas qualquer ferramenta capaz de executar HTTP serve.
-- **Testes unitários**: É possível usar o seu framework preferido de teste para testar funcionalidades tanto do servidor como do cliente.
+- **MCP Inspector**: Uma ferramenta de linha de comandos que pode ser executada tanto como ferramenta CLI como ferramenta visual.
+- **Teste manual**: Pode usar uma ferramenta como o curl para executar pedidos web, mas qualquer ferramenta capaz de executar HTTP serve.
+- **Teste unitário**: É possível usar o seu framework de testes preferido para testar as funcionalidades tanto do servidor como do cliente.
 
 ### Usar o MCP Inspector
 
-Já descrevemos a utilização desta ferramenta em lições anteriores, mas vamos falar um pouco dela a nível geral. É uma ferramenta construída em Node.js que pode usar chamando o executável `npx`, que irá descarregar e instalar temporariamente a ferramenta, e limpá-la depois de terminar de executar o seu pedido.
+Descrevemos o uso desta ferramenta em lições anteriores, mas vamos falar um pouco sobre ela a um nível mais geral. É uma ferramenta construída em Node.js e pode usá-la chamando o executável `npx`, que fará o download e instalação temporária da ferramenta e limpará tudo assim que terminar de executar o seu pedido.
 
 O [MCP Inspector](https://github.com/modelcontextprotocol/inspector) ajuda-o a:
 
-- **Descobrir Capacidades do Servidor**: Detetar automaticamente recursos, ferramentas e prompts disponíveis
-- **Testar a Execução de Ferramentas**: Experimentar diferentes parâmetros e ver respostas em tempo real
-- **Visualizar Metadados do Servidor**: Examinar informações do servidor, esquemas e configurações
+- **Descobrir Capacidades do Servidor**: Detectar automaticamente recursos, ferramentas e prompts disponíveis
+- **Testar Execução das Ferramentas**: Experimentar diferentes parâmetros e ver respostas em tempo real
+- **Ver Metadados do Servidor**: Examinar informações do servidor, esquemas e configurações
 
-Uma execução típica da ferramenta é como segue:
+Uma execução típica da ferramenta é assim:
 
 ```bash
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-O comando acima inicia um MCP e a sua interface visual, lançando uma interface web local no seu navegador. Pode esperar ver um painel que exibe os seus servidores MCP registados, as ferramentas, recursos e prompts disponíveis. A interface permite-lhe testar interativamente a execução de ferramentas, inspecionar metadados do servidor e ver respostas em tempo real, facilitando a validação e depuração das suas implementações de servidor MCP.
+O comando acima inicia um MCP e sua interface visual, lançando uma interface web local no seu navegador. Pode esperar ver um painel que exibe os servidores MCP registados, as suas ferramentas, recursos e prompts disponíveis. A interface permite testar interativamente a execução das ferramentas, inspecionar os metadados do servidor e ver respostas em tempo real, facilitando a validação e depuração das suas implementações MCP.
 
-Aqui está como pode parecer: ![Inspector](../../../../translated_images/pt-PT/connect.141db0b2bd05f096.webp)
+Assim pode parecer: ![Inspector](../../../../translated_images/pt-PT/connect.141db0b2bd05f096.webp)
 
-Também pode executar esta ferramenta em modo CLI adicionando o atributo `--cli`. Aqui está um exemplo de execução da ferramenta no modo "CLI" que lista todas as ferramentas no servidor:
+Também pode executar esta ferramenta no modo CLI, caso em que adiciona o atributo `--cli`. Aqui está um exemplo de execução da ferramenta no modo "CLI" que lista todas as ferramentas no servidor:
 
 ```sh
 npx @modelcontextprotocol/inspector --cli node build/index.js --method tools/list
 ```
 
-### Testes Manuais
+### Teste Manual
 
-Além de executar a ferramenta inspector para testar as capacidades do servidor, outra abordagem semelhante é executar um cliente capaz de usar HTTP como, por exemplo, o curl.
+Para além de executar a ferramenta inspector para testar as capacidades do servidor, outra abordagem semelhante é executar um cliente capaz de usar HTTP, como por exemplo o curl.
 
-Com o curl, pode testar servidores MCP diretamente utilizando pedidos HTTP:
+Com o curl, pode testar servidores MCP diretamente usando pedidos HTTP:
 
 ```bash
 # Exemplo: Metadados do servidor de teste
@@ -63,11 +64,11 @@ curl -X POST http://localhost:3000/v1/tools/execute \
   -d '{"name": "calculator", "parameters": {"expression": "2+2"}}'
 ```
 
-Como pode ver a partir do uso acima do curl, utiliza um pedido POST para invocar uma ferramenta usando uma payload que consiste no nome da ferramenta e nos seus parâmetros. Use a abordagem que melhor lhe convier. Ferramentas CLI tendem geralmente a ser mais rápidas de usar e facilitam a criação de scripts, o que pode ser útil num ambiente CI/CD.
+Como pode ver no uso do curl acima, utiliza um pedido POST para invocar uma ferramenta usando uma carga útil que consiste no nome da ferramenta e nos seus parâmetros. Use a abordagem que melhor lhe convier. As ferramentas CLI tendem a ser mais rápidas de usar e permitem ser automatizadas, o que pode ser útil num ambiente CI/CD.
 
-### Testes Unitários
+### Teste Unitário
 
-Crie testes unitários para as suas ferramentas e recursos para garantir que funcionam conforme esperado. Aqui está algum código exemplo para testes.
+Crie testes unitários para as suas ferramentas e recursos para garantir que funcionam como esperado. Aqui está algum código de exemplo para testes.
 
 ```python
 import pytest
@@ -102,7 +103,7 @@ async def test_list_tools_cursor_parameter():
         return "Result 2"
 
     async with create_session(server._mcp_server) as client_session:
-        # Testar sem o parâmetro cursor (omisso)
+        # Testar sem o parâmetro cursor (omitido)
         result1 = await client_session.list_tools()
         assert len(result1.tools) == 2
 
@@ -120,19 +121,19 @@ async def test_list_tools_cursor_parameter():
     
 ```
 
-O código acima faz o seguinte:
+O código anterior faz o seguinte:
 
-- Utiliza o framework pytest que permite criar testes como funções e usar instruções assert.
+- Aproveita o framework pytest, que permite criar testes como funções e usar declarações assert.
 - Cria um Servidor MCP com duas ferramentas diferentes.
-- Usa a instrução `assert` para verificar que certas condições são cumpridas.
+- Usa a declaração `assert` para verificar que certas condições são cumpridas.
 
 Veja o [ficheiro completo aqui](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
-Dado o ficheiro acima, pode testar o seu próprio servidor para garantir que as capacidades são criadas como devem ser.
+Com base neste ficheiro, pode testar o seu próprio servidor para garantir que as capacidades são criadas como devem ser.
 
-Todos os principais SDKs têm secções semelhantes de testes, pelo que pode ajustar ao runtime que escolheu.
+Todos os principais SDKs têm secções de testes semelhantes, pelo que pode ajustar ao runtime escolhido.
 
-## Exemplos
+## Exemplos 
 
 - [Calculadora Java](../samples/java/calculator/README.md)
 - [Calculadora .Net](../../../../03-GettingStarted/samples/csharp)
@@ -142,15 +143,15 @@ Todos os principais SDKs têm secções semelhantes de testes, pelo que pode aju
 
 ## Recursos Adicionais
 
-- [Python SDK](https://github.com/modelcontextprotocol/python-sdk)
+- [SDK Python](https://github.com/modelcontextprotocol/python-sdk)
 
-## O Que Segue
+## O que vem a seguir
 
-- Segue: [Deployment](../09-deployment/README.md)
+- Seguir: [Deploy](../09-deployment/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Aviso Legal**:
-Este documento foi traduzido utilizando o serviço de tradução automática [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos por garantir a precisão, por favor tenha em consideração que as traduções automáticas podem conter erros ou imprecisões. O documento original no seu idioma nativo deve ser considerado a fonte autoritativa. Para informação crítica, recomendase tradução profissional humana. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes da utilização desta tradução.
+Este documento foi traduzido utilizando o serviço de tradução automática [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos pela precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autorizada. Para informações críticas, recomenda-se tradução profissional humana. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas resultantes da utilização desta tradução.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
