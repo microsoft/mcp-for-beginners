@@ -1,122 +1,122 @@
-# Model Context Protocol for Real-Time Web Search
+# Model Context Protocol for Realtids Websøgning
 
 ## Oversigt
 
-Real-time websearch er blevet essentielt i dagens informationsdrevne miljø, hvor applikationer har behov for øjeblikkelig adgang til opdateret information på internettet for at levere relevante og rettidige svar. Model Context Protocol (MCP) repræsenterer et betydeligt fremskridt i optimeringen af disse real-time søgeprocesser, forbedrer søgeeﬀektiviteten, opretholder kontekstuel integritet og forbedrer den samlede systemydelse.
+Realtids websøgning er blevet uundværlig i dagens informationsdrevne miljø, hvor applikationer behøver øjeblikkelig adgang til opdaterede oplysninger på tværs af internettet for at levere relevante og rettidige svar. Model Context Protocol (MCP) repræsenterer et betydeligt fremskridt i optimeringen af disse realtids søgeprocesser, forbedring af søgeeffektivitet, opretholdelse af kontekstens integritet og forbedring af den samlede systemydelse.
 
-Denne modul undersøger, hvordan MCP transformerer real-time websearch ved at tilbyde en standardiseret tilgang til kontekststyring på tværs af AI-modeller, søgemaskiner og applikationer.
+Denne modul udforsker, hvordan MCP transformerer realtids websøgning ved at tilbyde en standardiseret tilgang til kontekststyring på tværs af AI-modeller, søgemaskiner og applikationer.
 
-### Hvad du vil lære
+### Hvad Du Vil Lære
 
 I denne omfattende guide vil du opdage:
 
-- Hvordan MCP skaber en sømløs bro mellem AI-modeller og real-time websearch-kapaciteter
-- Arkitekturmodeller for implementering af effektive og skalerbare søgeløsninger med MCP
+- Hvordan MCP skaber en sømløs bro mellem AI-modeller og realtids websøgningsmuligheder
+- Arkitektoniske mønstre til implementering af effektive og skalerbare søgeløsninger med MCP
 - Teknikker til at bevare søgekontekst på tværs af flere forespørgsler og interaktioner
-- Praktiske kodeimplementeringer i Python og JavaScript for forskellige søgescenarier
+- Praktiske kodeimplementeringer i Python og JavaScript til forskellige søgescenarier
 - Metoder til at balancere relevans, aktualitet og ydeevne i MCP-drevne søgesystemer
 
-## Introduktion til Real-Time Web Search
+## Introduktion til Realtids Websøgning
 
-Real-time websearch er en teknologisk tilgang, der muliggør kontinuerlig forespørgsel, behandling og analyse af webbaseret information, efterhånden som den offentliggøres eller opdateres, hvilket giver systemer mulighed for at levere frisk og relevant information med minimal forsinkelse. I modsætning til traditionelle søgesystemer, der opererer på indekserede data, som kan være timer eller dage gamle, behandler real-time search live data fra nettet og leverer indsigt og information, der afspejler den aktuelle tilstand af onlineindhold.
+Realtids websøgning er en teknologisk tilgang, der muliggør kontinuerlig forespørgsel, behandling og analyse af webbaserede oplysninger, efterhånden som de bliver offentliggjort eller opdateret, hvilket gør det muligt for systemer at levere frisk og relevant information med minimal forsinkelse. I modsætning til traditionelle søgesystemer, der opererer på indekserede data, som kan være timer eller dage gamle, behandler realtids søgning levende data fra nettet og leverer indsigter og informationer, der afspejler den aktuelle tilstand af online-indhold.
 
-### Kernebegreber for Real-Time Web Search:
+### Kernebegreber for Realtids Websøgning:
 
-- **Kontinuerlig forespørgselsbehandling**: Søgeforespørgsler behandles mod konstant opdaterende datakilder
-- **Prioritering af aktualitet**: Systemer designes til at prioritere frisk information
-- **Balance mellem relevans og aktualitet**: Opnå en balance mellem relevans og aktualitet
-- **Skalerbar arkitektur**: Systemer skal kunne håndtere variabel belastning og datamængder
-- **Kontekstuel forståelse**: Opretholdelse af brugerkontekst på tværs af søgeiterationer er afgørende for meningsfulde resultater
-- **Dynamisk forespørgselsomformulering**: Adaptive ændringer af forespørgsler baseret på kontekst og tidligere resultater
-- **Integration af flere kilder**: Kombinering af resultater fra flere søgeudbydere og webkilder
-- **Semantisk forståelse**: Behandling af forespørgsler og indhold baseret på betydning fremfor blot nøgleord
-- **Real-time rangering**: Kontinuerlig justering af resultatplaceringer, efterhånden som ny information bliver tilgængelig
+- **Kontinuerlig Forespørgselsbehandling**: Søgeforespørgsler behandles mod konstant opdaterede datakilder
+- **Aktualitetsprioritering**: Systemer er designet til at prioritere frisk information
+- **Relevansbalance**: Opretholdelse af balance mellem relevans og aktualitet
+- **Skalerbar Arkitektur**: Systemer skal kunne håndtere variable forespørgselbelastninger og datamængder
+- **Kontekstuel Forståelse**: Opretholdelse af brugerkontekst på tværs af søgeiterationer er afgørende for meningsfulde resultater
+- **Dynamisk Forespørgselsreformulering**: Adaptiv tilpasning af forespørgsler baseret på kontekst og forudgående resultater
+- **Multi-Kilde Integration**: Kombinering af resultater fra flere søgeudbydere og webkilder
+- **Semantisk Forståelse**: Behandling af forespørgsler og indhold baseret på mening frem for blot nøgleord
+- **Realtids Rangering**: Kontinuerlig justering af resultatrangering, når nye oplysninger bliver tilgængelige
 
-### Model Context Protocol og Real-Time Web Search
+### Model Context Protocol og Realtids Websøgning
 
-Model Context Protocol (MCP) adresserer flere afgørende udfordringer i real-time websearch-miljøer:
+Model Context Protocol (MCP) adresserer flere kritiske udfordringer i realtids websøgningsmiljøer:
 
-1. **Bevarelse af søgekontekst**: MCP standardiserer, hvordan kontekst opretholdes på tværs af distribuerede søgekomponenter, hvilket sikrer, at AI-modeller og behandlingsnoder har adgang til relevant forespørgselshistorik og brugerpræferencer.
+1. **Bevarelse af Søgekontekst**: MCP standardiserer, hvordan kontekst opretholdes på tværs af distribuerede søgekomponenter, hvilket sikrer, at AI-modeller og behandlingsnoder har adgang til relevant forespørgselshistorik og brugerpræferencer.
 
-2. **Effektiv forespørgselsstyring**: Ved at tilbyde strukturerede mekanismer for konteksttransmission reducerer MCP overhead ved gentagen kontekst i hver søgeiteration.
+2. **Effektiv Forespørgselsstyring**: Ved at tilbyde strukturerede mekanismer for kontekstovertagelse reducerer MCP overhead ved gentagelse af kontekst i hver søgeiteration.
 
 3. **Interoperabilitet**: MCP skaber et fælles sprog for kontekstdeling mellem forskellige søgeteknologier og AI-modeller, hvilket muliggør mere fleksible og udvidelige arkitekturer.
 
-4. **Search-optimeret kontekst**: MCP-implementeringer kan prioritere hvilke kontekstelementer, der er mest relevante for effektiv søgning, og optimere både ydeevne og præcision.
+4. **Søgeoptimeret Kontekst**: MCP-implementeringer kan prioritere hvilke kontekstelementer der er mest relevante for effektiv søgning, optimeret for både ydeevne og nøjagtighed.
 
-5. **Adaptiv søgebehandling**: Med korrekt kontekststyring gennem MCP kan søgesystemer dynamisk tilpasse behandlingen baseret på skiftende brugerbehov og informationslandskaber.
+5. **Adaptiv Søgebehandling**: Med korrekt kontekststyring gennem MCP kan søgesystemer dynamisk justere behandlingen baseret på udviklende brugerbehov og informationslandskaber.
 
-I moderne applikationer — fra nyhedsaggregatorer til forskningsassistenter — muliggør integrationen af MCP med websearch-teknologier mere intelligente, kontekstbevidste søgninger, der kan levere stadig mere relevante resultater, efterhånden som brugerinteraktionerne fortsætter.
+I moderne applikationer, der spænder fra nyhedsaggregering til forskningsassistenter, muliggør integrationen af MCP med websøgningsteknologier mere intelligente, kontekstbevidste søgninger, som kan levere stadig mere relevante resultater efterhånden som brugerinteraktioner fortsætter.
 
 ## Læringsmål
 
 Ved slutningen af denne lektion vil du kunne:
 
-- Forstå grundprincipperne i real-time websearch og de udfordringer, som findes i moderne applikationer
-- Forklare, hvordan Model Context Protocol (MCP) forbedrer real-time websearch-kapaciteter
-- Implementere MCP-baserede søgeløsninger ved hjælp af populære frameworks og API’er
-- Designe og implementere skalerbare søgearkitekturer med høj ydeevne ved hjælp af MCP
-- Anvende MCP-konceptet til forskellige brugsscenarier, inklusive semantisk søgning, forskningsassistance og AI-udvidet browsing
-- Evaluere nye tendenser og fremtidige innovationer inden for MCP-baserede søgeteknologier
-- Udvikle kontekstbevidste søgesystemer, som lærer af brugerinteraktioner
-- Integrere websearch-kapaciteter i AI-assistenter ved brug af standardiserede MCP-protokoller
-- Skabe flertrins søgeprocesser, der løbende forbedrer resultater baseret på kontekst
-- Optimere søgeperformance samtidig med at omfattende kontekstbevidsthed opretholdes
+- Forstå grundlæggende om realtids websøgning og dets udfordringer i moderne applikationer
+- Forklare, hvordan Model Context Protocol (MCP) forbedrer realtids websøgningsmuligheder
+- Implementere MCP-baserede søgeløsninger ved hjælp af populære frameworks og API'er
+- Designe og implementere skalerbare, højtydende søgearkitekturer med MCP
+- Anvende MCP-koncepter til forskellige brugssager, inklusive semantisk søgning, forskningsassistance og AI-forstærket browsing
+- Vurdere nye trends og fremtidige innovationer inden for MCP-baserede søgeteknologier
+- Udvikle kontekstbevidste søgesystemer, der lærer af brugerinteraktioner
+- Integrere websøgningsevner i AI-assistenter ved brug af standardiserede MCP-protokoller
+- Skabe flerstadie søgepipeline, der progressivt forfiner resultater baseret på kontekst
+- Optimere søgeydelse samtidig med opretholdelse af omfattende kontekstbevidsthed
 
 ### Definition og Betydning
 
-Real-time websearch involverer kontinuerlig forespørgsel, hentning og levering af webbaseret information med minimal forsinkelse. I modsætning til traditionelle søgemaskiner, der periodisk crawler og indekserer nettet, søger real-time search at frembringe information, så snart den bliver tilgængelig, hvilket muliggør øjeblikkelig adgang til det nyeste indhold.
+Realtids websøgning involverer kontinuerlig forespørgsel, hentning og levering af webbaseret information med minimal forsinkelse. I modsætning til traditionelle søgemaskiner, der periodisk crawler og indekserer nettet, sigter realtids søgning mod at bringe information frem, efterhånden som den bliver tilgængelig, hvilket muliggør øjeblikkelig adgang til det mest aktuelle indhold.
 
-Nøglekarakteristika for real-time websearch inkluderer:
+Nøglekarakteristika for realtids websøgning inkluderer:
 
 - **Friskhed**: Prioritering af nyligt indhold og opdateringer
-- **Kontinuerlig behandling**: Konstant overvågning for ny information
-- **Forespørgselsjustering**: Forfining af søgeforespørgsler baseret på kontekst og feedback
-- **Øjeblikkelig levering**: Levering af søgeresultater med minimal forsinkelse
-- **Kontekstbevarelse**: Bygning videre på tidligere forespørgsler for forbedret relevans
+- **Kontinuerlig Behandling**: Konstant overvågning efter nye informationer
+- **Forespørgsels Tilpasning**: Forfining af søgeforespørgsler baseret på kontekst og feedback
+- **Øjeblikkelig Levering**: Tilvejebringelse af søgeresultater med minimal forsinkelse
+- **Kontekst Retention**: Opbygning på tidligere forespørgsler for forbedret relevans
 
-### Udfordringer ved Traditionel Web Search
+### Udfordringer i Traditionel Websøgning
 
-Traditionelle websearch-tilgange står over for flere begrænsninger, når de anvendes i real-time scenarier:
+Traditionelle websøgningsmetoder står over for flere begrænsninger, når de anvendes i realtidsscenarier:
 
-1. **Kontekstfragmentering**: Vanskeligheder med at bevare søgekontekst på tværs af flere forespørgsler
-2. **Informationsfriskhed**: Udfordringer med at tilgå og prioritere den mest opdaterede information
+1. **Kontekstfragmentering**: Vanskeligheder ved at opretholde søgekontekst på tværs af flere forespørgsler
+2. **Informationsfriskhed**: Udfordringer med adgang og prioritering af den mest nylige information
 3. **Integrationskompleksitet**: Problemer med interoperabilitet mellem søgesystemer og applikationer
-4. **Latency-problemer**: Balance mellem omfattende søgning og svartidskrav
-5. **Relevanstuning**: Sikring af nøjagtighed og relevans samtidig med prioritering af aktualitet
+4. **Forsinkelsesproblemer**: Balancering af omfattende søgning med responstidskrav
+5. **Relevansjustering**: Sikring af nøjagtighed og relevans samtidig med prioritering af aktualitet
 
-## Forstå Model Context Protocol (MCP) for Søgeanvendelser
+## Forståelse af Model Context Protocol (MCP) til Søgning
 
-### Hvad er MCP i søgekontekster?
+### Hvad er MCP i Søgekontekster?
 
-Model Context Protocol (MCP) er en standardiseret kommunikationsprotokol designet til at facilitere effektiv interaktion mellem AI-modeller og applikationer. I konteksten af real-time websearch tilbyder MCP en ramme for:
+Model Context Protocol (MCP) er en standardiseret kommunikationsprotokol designet til at lette effektiv interaktion mellem AI-modeller og applikationer. I konteksten af realtids websøgning giver MCP en ramme til:
 
-- Bevarelse af søgekontekst gennem forespørgselssekvenser
-- Standardisering af søgeforespørgsels- og resultatformater
-- Optimering af transmissionen af søgeparametre og resultater
-- Forbedring af model-til-søgemaskine kommunikation
+- At bevare søgekontekst gennem forespørgselssekvenser
+- At standardisere søgeforespørgsels- og resultatformater
+- At optimere transmissionen af søgeparametre og resultater
+- At forbedre kommunikation mellem model og søgemaskine
 
-### Kernekomponenter og Arkitektur
+### Centrale Komponenter og Arkitektur
 
-MCP-arkitekturen for real-time websearch består af flere nøglekomponenter:
+MCP-arkitektur for realtids websøgning består af flere nøglekomponenter:
 
-1. **Query Context Handlers**: Administrerer og opretholder søgekontekst på tværs af flere forespørgsler
-2. **Search Processors**: Behandler indkommende søgeanmodninger med kontekstbevidste teknikker
-3. **Protocol Adapters**: Konverterer mellem forskellige søge-API’er samtidig med at kontekst bevares
-4. **Context Store**: Effektivt lagrer og henter søgehistorik og præferencer
-5. **Search Connectors**: Forbinder til forskellige søgemaskiner og web-API’er
+1. **Forespørgselskontekst Håndterere**: Administrerer og vedligeholder søgekontekst på tværs af multiple forespørgsler
+2. **Søgeprocessorer**: Behandler indkommende søgeanmodninger ved brug af kontekstbevidste teknikker
+3. **Protokoladaptere**: Konverterer mellem forskellige søge-API'er mens konteksten bevares
+4. **Kontekstlager**: Effektivt lagrer og henter søgehistorik og præferencer
+5. **Søgeconnectorer**: Forbinder til forskellige søgemaskiner og web-API'er
 
 ```mermaid
 graph TD
     subgraph "Datakilder"
         Web[Webindhold]
         APIs[Eksterne API'er]
-        DB[Videnbaser]
+        DB[Vidensbaser]
         News[Nyhedsfeeds]
     end
 
     subgraph "MCP Søgelag"
-        SC[Søgeforbindelser]
+        SC[Søgeconnectorer]
         PA[Protokoladaptere]
         CH[Kontekstbehandlere]
         SP[Søgeprocessorer]
@@ -125,15 +125,15 @@ graph TD
 
     subgraph "Behandling & Analyse"
         RE[Relevansmotor]
-        ML[ML Modeller]
-        NLP[NLP Behandling]
-        Rank[Rangeringssystem]
+        ML[ML-modeller]
+        NLP[NLP-behandling]
+        Rank[Rangordningssystem]
     end
 
-    subgraph "Anvendelser & Tjenester"
+    subgraph "Applikationer & Tjenester"
         RA[Forskningsassistent]
         Alerts[Alertsystemer]
-        KB[Videnbase]
+        KB[Vidensbase]
         API[API-tjenester]
     end
 
@@ -145,7 +145,7 @@ graph TD
     SC -->|Rå resultater| PA
     PA -->|Normaliserede resultater| CH
     CH <-->|Kontekstoperationer| CS
-    CH -->|Kontekstrige resultater| SP
+    CH -->|Konstekstrigede resultater| SP
     SP -->|Behandlede resultater| RE
     SP -->|Funktioner| ML
     SP -->|Tekst| NLP
@@ -156,16 +156,16 @@ graph TD
     
     Rank -->|Endelige resultater| RA
     ML -->|Indsigter| Alerts
-    NLP -->|Strukturerede data| KB
+    NLP -->|Strukturerede Data| KB
     
-    RA -->|Forskning| Users((Brugere))
+    RA -->|Forskning| Users((Users))
     Alerts -->|Notifikationer| Users
     KB <-->|Videnadgang| API
-    
-    classDef sources fill:#f9f,stroke:#333,stroke-width:2px
-    classDef mcp fill:#bbf,stroke:#333,stroke-width:2px
-    classDef processing fill:#bfb,stroke:#333,stroke-width:2px
-    classDef apps fill:#fbb,stroke:#333,stroke-width:2px
+
+    classDef sources fill:#f9f,stroke:#333,stroke-width:2px,color:#4a004a
+    classDef mcp fill:#bbf,stroke:#333,stroke-width:2px,color:#00004a
+    classDef processing fill:#bfb,stroke:#333,stroke-width:2px,color:#003300
+    classDef apps fill:#fbb,stroke:#333,stroke-width:2px,color:#4a0000
     
     class Web,APIs,DB,News sources
     class SC,PA,CH,SP,CS mcp
@@ -173,43 +173,43 @@ graph TD
     class RA,Alerts,KB,API apps
 ```
 
-### Hvordan MCP forbedrer real-time websearch
+### Hvordan MCP Forbedrer Realtids Websøgning
 
-MCP løser traditionelle udfordringer ved websearch gennem:
+MCP adresserer traditionelle udfordringer i websøgning gennem:
 
-- **Kontekstuel kontinuitet**: Opretholder relationer mellem forespørgsler gennem hele søgesessionen
-- **Optimeret transmission**: Reducerer redundans i søgeparametre via intelligent kontekststyring
-- **Standardiserede interfaces**: Tilbyder konsistente API’er til søgekomponenter
-- **Reduceret latency**: Minimerer behandlingsomkostninger gennem effektiv kontekstbehandling
-- **Forbedret relevans**: Øger søgerelevans ved at bevare brugerintention på tværs af flere forespørgsler
+- **Kontekstuel Kontinuitet**: Opretholdelse af relationer mellem forespørgsler gennem hele søgesessionen
+- **Optimeret Transmission**: Reducering af redundans i søgeparametre gennem intelligent kontekststyring
+- **Standardiserede Interfaces**: Tilvejebringelse af konsistente API'er for søgekomponenter
+- **Reduceret Forsinkelse**: Minimere behandlings-overhead via effektiv konteksthåndtering
+- **Forbedret Relevans**: Forbedring af søgerelevans ved at bevare brugerens intention på tværs af flere forespørgsler
 
 ## Integration og Implementering
 
-Real-time websearch-systemer kræver omhyggeligt arkitekturdesign og implementering for at opretholde både ydeevne og kontekstuel integritet. Model Context Protocol tilbyder en standardiseret tilgang til integration af AI-modeller og søgeteknologier, hvilket muliggør mere sofistikerede, kontekst-aware søgepipelines.
+Realtids websøgningssystemer kræver omhyggelig arkitektonisk design og implementering for at opretholde både ydeevne og kontekstuelt integritet. Model Context Protocol tilbyder en standardiseret tilgang til integration af AI-modeller og søgeteknologier, hvilket muliggør mere sofistikerede, kontekstbevidste søgepipelines.
 
-### Oversigt over MCP-integration i søgearkitekturer
+### Oversigt over MCP-Integration i Søgearkitekturer
 
-Implementering af MCP i real-time websearch-miljøer involverer flere centrale overvejelser:
+Implementering af MCP i realtids websøgningsmiljøer involverer flere nøgleovervejelser:
 
-1. **Serialisering af søgekontekst**: MCP tilbyder effektive mekanismer til kodning af kontekstuel information i søgeanmodninger, hvilket sikrer, at vigtig kontekst følger med forespørgslen gennem hele behandlingspipelinjen. Dette inkluderer standardiserede serialiseringsformater optimeret til søgerelateret metadata.
+1. **Søgekontekst-Serialisering**: MCP tilbyder effektive mekanismer til kodning af kontekstuel information inden for søgeforespørgsler og sikrer, at essentiel kontekst følger forespørgslen gennem hele behandlingspipeline. Dette inkluderer standardiserede serialiseringsformater optimeret til søgerelateret metadata.
 
-2. **Stateful søgebehandling**: MCP muliggør mere intelligent stateful behandling ved at opretholde en konsistent kontekstrepræsentation på tværs af søgeiterationer. Dette er særligt værdifuldt i flertrins-søgepipelines, hvor kontekstforfining forbedrer resultater.
+2. **Stateful Søgebehandling**: MCP muliggør mere intelligent stateful behandling ved at opretholde konsistent kontekstrepræsentation på tværs af søgeiterationer. Dette er særligt værdifuldt i flerstadie søgepipelines, hvor kontekstforfining forbedrer resultater.
 
-3. **Forespørgselsekspansion og forfining**: MCP-implementeringer i søgesystemer kan understøtte avanceret forespørgselsekspansion og -forfining baseret på akkumuleret kontekst, hvilket muliggør stadig mere relevante resultater, efterhånden som søgesessionen skrider frem.
+3. **Forespørgselsudvidelse og Forfining**: MCP-implementeringer i søgesystemer kan facilitere avanceret forespørgselsudvidelse og -forfining baseret på akkumuleret kontekst, hvilket tillader stadigt mere relevante resultater efterhånden som søgesessionen skrider frem.
 
-4. **Resultatcache og prioritering**: Ved at standardisere kontekstbehandling hjælper MCP med at styre caching og prioritering af resultater, således at komponenter kan tilpasse sig den udviklende søgekontekst.
+4. **Resultatcache og Prioritering**: Ved at standardisere kontekstbehandling hjælper MCP med at håndtere resultatcache og prioritering, hvilket gør det muligt for komponenter at tilpasse sig baseret på den udviklende søgekontekst.
 
-5. **Søgefederation og aggregation**: MCP muliggør mere sofistikeret federation af søgning på tværs af flere backends ved at tilbyde strukturerede repræsentationer af søgekontekst, hvilket gør det muligt at aggregerer resultater meningsfuldt fra forskellige kilder.
+5. **Søgefederation og Aggregation**: MCP muliggør mere sofistikeret federation af søgning på tværs af flere backend-systemer ved at tilbyde strukturerede repræsentationer af søgekontekst, hvilket muliggør mere meningsfuld aggregering af resultater fra forskellige kilder.
 
-Implementeringen af MCP på tværs af forskellige søgeteknologier skaber en samlet tilgang til kontekststyring, reducerer behovet for specialudviklet integrationskode, samtidig med at systemets evne til at bevare meningsfuld kontekst, efterhånden som søgeforespørgsler udvikles, forbedres.
+Implementeringen af MCP på tværs af forskellige søgeteknologier skaber en ensartet tilgang til kontekststyring, reducerer behovet for tilpasset integrationskode samtidig med at systemets evne til at opretholde meningsfuld kontekst under udvikling af søgeforespørgsler forbedres.
 
-### MCP i forskellige websearch-implementeringer
+### MCP i Forskellige Websøgningsimplementeringer
 
-Disse eksempler følger den aktuelle MCP-specifikation, som fokuserer på en JSON-RPC-baseret protokol med forskellige transportmekanismer. Koden demonstrerer, hvordan du kan implementere brugerdefinerede søgeintegrationer, samtidig med at du opretholder fuld kompatibilitet med MCP-protokollen.
+Disse eksempler følger den nuværende MCP-specifikation, som fokuserer på en JSON-RPC-baseret protokol med forskellige transportmekanismer. Koden demonstrerer, hvordan du kan implementere brugerdefinerede søgeintegrationer, mens du bevarer fuld kompatibilitet med MCP-protokollen.
 
 
 <details>
-<summary>Python-implementering med generisk søge-API</summary>
+<summary>Python-implementering med Generisk Søge-API</summary>
 
 ```python
 import asyncio
@@ -225,10 +225,10 @@ from mcp.client.streamable_http import streamablehttp_client
 from mcp.types import TextContent, CreateMessageRequestParams, CreateMessageResult
 from mcp.server.fastmcp import FastMCP
 
-# Opret en FastMCP-server til websøgning
+# Opret en FastMCP-server til web-søgning
 search_server = FastMCP("WebSearch")
 
-# Klasse til håndtering af websøgningsoperationer
+# Klasse til håndtering af web-søgningsoperationer
 class WebSearchHandler:
     def __init__(self, api_endpoint: str, api_key: str):
         self.api_endpoint = api_endpoint
@@ -276,7 +276,7 @@ class WebSearchHandler:
                 
                 search_data = await response.json()
                 
-                # Transformer API-specifik respons til et standardformat
+                # Omform API-specifik respons til et standardformat
                 results = []
                 for item in search_data.get("results", []):
                     results.append({
@@ -296,13 +296,13 @@ class WebSearchHandler:
             print(f"Search API request error: {e}")
             raise
 
-# Initialiser søgehåndtereren
+# Initialiser søgehåndteringen
 search_handler = WebSearchHandler(
     api_endpoint="https://api.search-service.example/search",
     api_key="your-api-key-here"
 )
 
-# Opsæt livscyklus til at håndtere søgehåndtereren
+# Opsæt levetid til at styre søgehåndteringen
 @asyncio.asynccontextmanager
 async def app_lifespan(server: FastMCP):
     """Manage application lifecycle"""
@@ -312,10 +312,10 @@ async def app_lifespan(server: FastMCP):
     finally:
         await search_handler.close()
 
-# Indstil livscyklus for serveren
+# Indstil levetid for serveren
 search_server = FastMCP("WebSearch", lifespan=app_lifespan)
 
-# Registrer et websøgning værktøj
+# Registrer et web-søgning værktøj
 @search_server.tool()
 async def web_search(query: str, max_results: int = 5, 
                    include_domains: List[str] = None,
@@ -349,13 +349,13 @@ async def web_search(query: str, max_results: int = 5,
 
 # Eksempel på klientbrug
 async def client_example():
-    # Forbind til søgeserveren ved brug af Streamable HTTP transport
+    # Forbind til søgeserveren ved hjælp af Streamable HTTP-transport
     async with streamablehttp_client("http://localhost:8000/mcp") as (read, write, _):
         async with ClientSession(read, write) as session:
             # Initialiser forbindelsen
             await session.initialize()
             
-            # Kald web_search værktøjet
+            # Kald web_search-værktøjet
             search_results = await session.call_tool(
                 "web_search", 
                 {
@@ -368,24 +368,24 @@ async def client_example():
             
             print(f"Search results: {search_results}")
 
-# Serverkørselseksempel
+# Server eksekveringseksempel
 if __name__ == "__main__":
-    # Kør serveren med Streamable HTTP transport
+    # Kør serveren med Streamable HTTP-transport
     search_server.run(transport="streamable-http")
 ```
 </details> 
 
 <details>
-<summary>JavaScript-implementering med browserbaseret søgning</summary>
+<summary>JavaScript-implementering med Browser-baseret Søgning</summary>
 
 
 ```javascript
-// MCP-serverimplementering til websøgning
+// MCP serverimplementering til websøgnig
 import { McpServer, ResourceTemplate } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import { z } from 'zod';
 
-// Opret en MCP-server til websøgning
+// Opret en MCP-server til websøgnig
 const searchServer = new McpServer({
     name: "BrowserSearch",
     description: "A server that provides web search capabilities"
@@ -437,7 +437,7 @@ class SearchService {
             
             const searchData = await response.json();
             
-            // Transformer API-specifik respons til et standardformat
+            // Transformér API-specifik svar til et standardformat
             const results = searchData.results?.map(item => ({
                 title: item.title || '',
                 url: item.url || '',
@@ -464,14 +464,14 @@ const searchService = new SearchService(
     'your-api-key-here'
 );
 
-// Opsæt kontekstudbyderen til serveren
+// Opsæt kontekstudbyderen for serveren
 searchServer.setContextProvider(() => {
     return {
         searchService
     };
 });
 
-// Registrer websøgeværktøj
+// Registrer websøgningsværktøj
 searchServer.tool({
     name: 'web_search',
     description: 'Search the web for information',
@@ -512,12 +512,12 @@ searchServer.tool({
     }
 });
 
-// Eksempel på klientkode til at oprette forbindelse til søgeserver
+// Eksempel på klientkode til at oprette forbindelse til søgeserveren
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 
 async function connectToSearchServer() {
-    // Opret forbindelse til søgeserver
+    // Opret forbindelse til søgeserveren
     const transport = new StreamableHTTPClientTransport(
         new URL('http://localhost:8000/mcp')
     );
@@ -559,211 +559,214 @@ console.log('Search server running at http://localhost:8000/mcp');
 
 
 
-## Ansvarsfraskrivelse ved kodeeksempler
+## Ansvarsfraskrivelse for Kodeeksempler
 
-> **Vigtig note**: Kodeeksemplerne nedenfor demonstrerer integrationen af Model Context Protocol (MCP) med websearch-funktionalitet. Selvom de følger mønstre og strukturer fra de officielle MCP SDK’er, er de forenklet til undervisningsbrug.
+> **Vigtig Bemærkning**: Kodeeksemplerne nedenfor demonstrerer integrationen af Model Context Protocol (MCP) med websøgningsfunktionalitet. Selvom de følger mønstre og strukturer fra de officielle MCP SDK'er, er de blevet forenklet til uddannelsesmæssige formål.
 > 
 > Disse eksempler viser:
 > 
-> 1. **Python-implementering**: En FastMCP-serverimplementering, som tilbyder et websearch-værktøj og forbinder til en ekstern søge-API. Dette eksempel viser korrekt håndtering af levetid, kontekstbehandling og værktøjsimplementering efter mønstrene i [den officielle MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk). Serveren anvender den anbefalede Streamable HTTP-transport, som har afløst den ældre SSE-transport til produktionsbrug.
+> 1. **Python Implementering**: En FastMCP-serverimplementering, der leverer et websøgeværktøj og forbinder til en ekstern søge-API. Dette eksempel viser korrekt livscyklusstyring, kontekstbehandling og værktøjsimplementering i henhold til mønstrene i [den officielle MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk). Serveren anvender den anbefalede Streamable HTTP-transport, som har erstattet den ældre SSE-transport til produktionsudrulninger.
 > 
-> 2. **JavaScript-implementering**: En TypeScript/JavaScript-implementering ved brug af FastMCP-mønsteret fra [den officielle MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) til at skabe en søgeserver med korrekte værktøjsdefinitioner og klientforbindelser. Den følger de nyeste anbefalede mønstre for sessionsstyring og kontekstbevarelse.
+> 2. **JavaScript Implementering**: En TypeScript/JavaScript-implementering, der bruger FastMCP-mønstret fra [den officielle MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) for at skabe en søgeserver med korrekte værktøjsdefinitioner og klientforbindelser. Den følger de seneste anbefalede mønstre for sessionsstyring og kontekstbevarelse.
 > 
-> Disse eksempler vil kræve yderligere fejlhåndtering, autentificering og specifik API-integrationskode til produktionsbrug. De viste søge-API-endpoints (`https://api.search-service.example/search`) er pladsholdere og skal erstattes med egentlige søgeservice-endpoints.
+> Disse eksempler kræver yderligere fejlhåndtering, autentificering og specifik API-integration til produktionsbrug. De viste søge-API-endpoints (`https://api.search-service.example/search`) er pladsholdere og skal udskiftes med faktiske søgetjenesteendpoints.
 > 
-> For komplette implementeringsdetaljer og de mest opdaterede tilgange, se venligst [den officielle MCP-specifikation](https://spec.modelcontextprotocol.io/) og SDK-dokumentation.
+> For fuldstændige implementeringsdetaljer og de nyeste tilgange henvises til [den officielle MCP-specifikation](https://spec.modelcontextprotocol.io/) og SDK-dokumentation.
 
 ## Kernebegreber
 
 ### Model Context Protocol (MCP) Framework
 
-I sin grundform tilbyder Model Context Protocol en standardiseret måde for AI-modeller, applikationer og services til at udveksle kontekst. I real-time websearch er denne ramme essentiel for at skabe sammenhængende, flertrins søgeoplevelser. Nøglekomponenter inkluderer:
+Fundamentalt set tilbyder Model Context Protocol en standardiseret måde for AI-modeller, applikationer og tjenester at udveksle kontekst. I realtids websøgning er denne ramme essentiel for at skabe sammenhængende, flergangssøgeoplevelser. Nøglekomponenter inkluderer:
 
-1. **Client-Server Arkitektur**: MCP etablerer en klar adskillelse mellem søgeklienter (anmodere) og søgeservere (udbydere), hvilket muliggør fleksible implementeringsmodeller.
+1. **Klient-Server Arkitektur**: MCP etablerer en klar adskillelse mellem søgeklienter (anmodere) og søgeservere (udbydere), hvilket muliggør fleksible implementeringsmodeller.
 
-2. **JSON-RPC Kommunikation**: Protokollen bruger JSON-RPC til beskedudveksling, hvilket gør den kompatibel med webteknologier og nem at implementere på tværs af platforme.
+2. **JSON-RPC Kommunikation**: Protokollen bruger JSON-RPC til meddelelsesudveksling, hvilket gør den kompatibel med webteknologier og nem at implementere på tværs af forskellige platforme.
 
-3. **Kontekststyring**: MCP definerer strukturerede metoder til at opretholde, opdatere og udnytte søgekontekst gennem flere interaktioner.
+3. **Kontekststyring**: MCP definerer strukturerede metoder til at vedligeholde, opdatere og udnytte søgekontekst på tværs af flere interaktioner.
 
-4. **Værktøjsdefinitioner**: Søgefunktioner eksponeres som standardiserede værktøjer med veldokumenterede parametre og returværdier.
+4. **Værktøjsdefinitioner**: Søgefunktionaliteter eksponeres som standardiserede værktøjer med veldefinerede parametre og returværdier.
 
-5. **Streaming-understøttelse**: Protokollen understøtter streaming af resultater, hvilket er essentielt for real-time search, hvor resultater kan ankomme løbende.
+5. **Streaming Support**: Protokollen understøtter streaming af resultater, essentielt for realtids søgning, hvor resultater kan ankomme løbende.
 
-### Websearch-Integrationsmønstre
+### Mønstre for Websøgningsintegration
 
-Ved integration af MCP med websearch dukker flere mønstre op:
+Når MCP integreres med websøgning, fremkommer flere mønstre:
 
-#### 1. Direkte integration med søgeudbyder
+#### 1. Direkte Integration med Søgeudbyder
 
 ```mermaid
 graph LR
     Client[MCP Klient] --> |MCP Anmodning| Server[MCP Server]
-    Server --> |API Kald| SearchAPI[Søge API]
+    Server --> |API Kald| SearchAPI[Søg API]
     SearchAPI --> |Resultater| Server
     Server --> |MCP Svar| Client
 ```
 
-I dette mønster interfacer MCP-serveren direkte med en eller flere søge-API’er, oversætter MCP-anmodninger til API-specifikke kald og formaterer resultaterne som MCP-svar.
+I dette mønster interfacer MCP-serveren direkte med en eller flere søge-API'er, oversætter MCP-anmodninger til API-specifikke kald og formaterer resultaterne som MCP-svar.
 
-#### 2. Federeret søgning med kontekstbevarelse
+#### 2. Fødereret Søgning med Kontextbevarelse
 
 ```mermaid
 graph LR
-    Client[MCP-klient] --> |MCP Anmodning| Federation[MCP-føderationslag]
+    Client[MCP Klient] --> |MCP Anmodning| Federation[MCP Føderationslag]
     Federation --> |MCP Anmodning 1| Search1[Søgeudbyder 1]
     Federation --> |MCP Anmodning 2| Search2[Søgeudbyder 2]
     Federation --> |MCP Anmodning 3| Search3[Søgeudbyder 3]
     Search1 --> |MCP Svar 1| Federation
     Search2 --> |MCP Svar 2| Federation
     Search3 --> |MCP Svar 3| Federation
-    Federation --> |Aggregeret MCP-svar| Client
+    Federation --> |Aggregeret MCP Svar| Client
 ```
 
-Dette mønster distribuerer søgeforespørgsler til flere MCP-kompatible søgeudbydere, som hver især kan være specialiserede i forskellige typer indhold eller søgemuligheder, samtidig med at der opretholdes en samlet kontekst.
+Dette mønster distribuerer søgeforespørgsler på tværs af flere MCP-kompatible søgeudbydere, der hver potentielt specialiserer sig i forskellige typer indhold eller søgemuligheder, mens en samlet kontekst bevares.
 
-#### 3. Kontekstforstærket søgekæde
+#### 3. Kontekstforstærket Søgekæde
 
 ```mermaid
 graph LR
-    Client[MCP Klient] --> |Query + Kontekst| Server[MCP Server]
-    Server --> |1. Forespørgselsanalyse| NLP[NLP Service]
+    Client[MCP-klient] --> |Forespørgsel + Kontekst| Server[MCP-server]
+    Server --> |1. Forespørgselsanalyse| NLP[NLP-tjeneste]
     NLP --> |Forbedret forespørgsel| Server
-    Server --> |2. Søgeudførelse| Search[Søgemaskine]
+    Server --> |2. Søgeeksekvering| Search[Søgemaskine]
     Search --> |Rå resultater| Server
     Server --> |3. Resultatbehandling| Enhancement[Resultatforbedring]
     Enhancement --> |Forbedrede resultater| Server
-    Server --> |Endelige resultater + Opdateret kontekst| Client
+    Server --> |Endelige resultater + opdateret kontekst| Client
 ```
 
-I dette mønster opdeles søgeprocessen i flere trin, hvor kontekst beriges i hvert trin, hvilket resulterer i gradvist mere relevante resultater.
+I dette mønster opdeles søgeprocessen i flere faser, hvor konteksten beriges i hvert trin, hvilket resulterer i gradvist mere relevante resultater.
 
-### Søgekontekst-komponenter
+### Søgekontektskomponenter
 
-I MCP-baseret websearch inkluderer kontekst typisk:
+I MCP-baseret websøgning inkluderer kontekst typisk:
 
-- **Forespørgselslog**: Tidligere søgeforespørgsler i sessionen
+- **Forespørgsels Historik**: Tidligere søgeforespørgsler i sessionen
 - **Brugerpræferencer**: Sprog, region, sikker søgning-indstillinger
-- **Interaktionshistorik**: Klik på resultater, tidsforbrug på resultater
+- **Interaktions Historik**: Hvilke resultater der blev klikket på, tid brugt på resultater
 - **Søgeparametre**: Filtre, sorteringsordrer og andre søgemodifikatorer
-- **Domæneviden**: Emnespecifik kontekst relevant for søgningen
-- **Tidsmæssig kontekst**: Relevansfaktorer baseret på tid
-- **Kildepræferencer**: Tillid til eller foretrukne informationskilder
+- **Domæneviden**: Fagspecifik kontekst relevant for søgningen
+- **Tidsmæssig Kontekst**: Tidsbaserede relevansfaktorer
+- **Kildepræferencer**: Betroede eller foretrukne informationskilder
 
-## Anvendelsestilfælde og Applikationer
+## Brugssager og Anvendelser
 
 ### Forskning og Informationsindsamling
 
-MCP forbedrer forskningsarbejdsgange ved at:
+MCP forbedrer forskningsarbejdsgange ved:
 
-- Bevare forskningskontekst på tværs af søgesessioner
-- Muliggøre mere sofistikerede og kontekstafhængige forespørgsler
-- Understøtte multi-kilde søgefederation
-- Facilitere vidensudvinding fra søgeresultater
+- At bevare forskningskontekst på tværs af søgesessioner
+- At muliggøre mere sofistikerede og kontekstrelevante forespørgsler
+- At understøtte multi-kilde søgefederation
+- At lette videnudtræk fra søgeresultater
 
-### Real-Time Nyheds- og Trendovervågning
+### Realtids Nyheds- og Trendovervågning
 
 MCP-drevet søgning tilbyder fordele til nyhedsovervågning:
 
-- Næsten real-time opdagelse af nye nyhedshistorier
-- Kontekstuel filtrering af relevant information
-- Emne- og entitetssporing på tværs af flere kilder
-- Personlige nyhedsalarmer baseret på brugerkontekst
+- Nær-realtime opdagelse af nye nyhedshistorier
+- Kontextuel filtrering af relevant information
+- Emne- og entitets-sporing på tværs af flere kilder
+- Personlige nyhedsalarmer baseret på brugerens kontekst
 
-### AI-Forstærket Browsing og Forskning
+### AI-forstærket Browsing og Forskning
 
 MCP skaber nye muligheder for AI-forstærket browsing:
 
-- Kontekstuelle søgeforslag baseret på aktuel browseraktivitet
-- Sømløs integration af websearch med LLM-drevne assistenter
-- Flertrins søgeforfining med bevaret kontekst
+- Kontextuelle søgeforslag baseret på aktuel browseraktivitet
+- Sømløs integration af websøgning med LLM-drevne assistenter
+- Flergangssøgsforfining med opretholdt kontekst
 - Forbedret faktatjek og informationsverifikation
 
-## Fremtidige Tendenser og Innovationer
+## Fremtidige Trends og Innovationer
 
-### Udviklingen af MCP i Web Search
+### Udvikling af MCP i Websøgning
 
-Med blikket rettet fremad forventer vi, at MCP udvikler sig til at adressere:
-- **Multimodal søgning**: Integration af tekst-, billede-, lyd- og videosøgning med bevaret kontekst  
-- **Decentraliseret søgning**: Understøttelse af distribuerede og fødererede søgeøkosystemer  
-- **Søgeprivatliv**: Kontekstbevidste privatlivsbeskyttende søgemekanismer  
-- **Forespørgselsforståelse**: Dybt semantisk parsing af naturlige sprog-søgninger  
+Fremadskuende forventer vi, at MCP vil udvikle sig til at adressere:
 
-### Potentielle fremskridt inden for teknologi
 
-Nye teknologier, der vil forme fremtiden for MCP-søgning:
+- **Multimodal søgning**: Integration af tekst-, billede-, lyd- og videosøgning med bevaret kontekst
+- **Decentraliseret søgning**: Understøttelse af distribuerede og fødererede søgeøkosystemer
+- **Søgeprivatliv**: Kontekstbevidste privatlivsbevarende søgemekanismer
+- **Forespørgselsforståelse**: Dyb semantisk parsing af søgeforespørgsler i naturligt sprog
 
-1. **Neurale søgearkitekturer**: Embeddingsbaserede søgesystemer optimeret til MCP  
-2. **Personliggjort søgekontekst**: Læring af individuelle bruger søgemønstre over tid  
-3. **Integration af vidensgrafer**: Kontekstuel søgning forbedret af domænespecifikke vidensgrafer  
-4. **Tvær-modal kontekst**: Bevarelse af kontekst på tværs af forskellige søgemodaliteter  
+### Potentielle teknologiske fremskridt
+
+Fremvoksende teknologier, der vil forme fremtiden for MCP-søgning:
+
+1. **Neurale søgearkitekturer**: Søgesystemer baseret på indlejringer optimeret til MCP
+2. **Personliggjort søgekontekst**: Læring af individuelle brugeres søgemønstre over tid
+3. **Integration af vidensgraf**: Kontekstuel søgning forbedret af domænespecifikke vidensgrafer
+4. **Tværmodal kontekst**: Opretholdelse af kontekst på tværs af forskellige søgemodaliteter
 
 ## Praktiske øvelser
 
 ### Øvelse 1: Opsætning af en grundlæggende MCP-søgepipeline
 
-I denne øvelse lærer du at:  
-- Konfigurere et grundlæggende MCP-søgemiljø  
-- Implementere kontekst-håndterere til websøgning  
-- Teste og validere bevarelse af kontekst på tværs af søgeiterationer  
+I denne øvelse lærer du at:
+- Konfigurere et grundlæggende MCP-søgemiljø
+- Implementere kontekststyring for websøgning
+- Teste og validere kontekstbevarelse på tværs af søgeiterationer
 
-### Øvelse 2: Byg en forskningsassistent med MCP-søgning
+### Øvelse 2: Bygge en forskningsassistent med MCP-søgning
 
-Skab en komplet applikation, der:  
-- Behandler forskningsspørgsmål i naturligt sprog  
-- Udfører kontekstbevidst websøgning  
-- Syntetiserer information fra flere kilder  
-- Præsenterer velorganiserede forskningsresultater  
+Lav en komplet applikation, der:
+- Behandler spørgsmål i naturligt sprog inden for forskning
+- Udfører kontekstbevidste websøgninger
+- Syntetiserer information fra flere kilder
+- Præsenterer organiserede forskningsresultater
 
-### Øvelse 3: Implementering af multi-kilde søgeføderation med MCP
+### Øvelse 3: Implementering af multi-kilde søgefederation med MCP
 
-Avanceret øvelse der dækker:  
-- Kontextbevidst forespørgselsafsendelse til flere søgemaskiner  
-- Resultatrangering og aggregering  
-- Kontekstuel duplikatfjernelse af søgeresultater  
-- Håndtering af kilde-specifik metadata  
+Avanceret øvelse, der dækker:
+- Kontekstbevidst forespørgselsstyring til flere søgemaskiner
+- Resultatrangering og aggregering
+- Kontekstuel deduplikation af søgeresultater
+- Håndtering af kilde-specifik metadata
 
 ## Yderligere ressourcer
 
-- [Model Context Protocol Specification](https://spec.modelcontextprotocol.io/) - Officiel MCP-specifikation og detaljeret protokoldokumentation  
-- [Model Context Protocol Documentation](https://modelcontextprotocol.io/) - Detaljerede vejledninger og implementeringsguider  
-- [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Officiel Python-implementering af MCP-protokollen  
-- [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Officiel TypeScript-implementering af MCP-protokollen  
-- [MCP Reference Servers](https://github.com/modelcontextprotocol/servers) - Referenceimplementeringer af MCP-servere  
-- [Bing Web Search API Documentation](https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/overview) - Microsofts websøge-API  
-- [Google Custom Search JSON API](https://developers.google.com/custom-search/v1/overview) - Googles programmerbare søgemaskine  
-- [SerpAPI Documentation](https://serpapi.com/search-api) - API til søgemaskineresultater  
-- [Meilisearch Documentation](https://www.meilisearch.com/docs) - Open-source søgemaskine  
-- [Elasticsearch Documentation](https://www.elastic.co/guide/index.html) - Distribueret søge- og analysemotor  
-- [LangChain Documentation](https://python.langchain.com/docs/get_started/introduction) - Byg applikationer med LLM'er  
+- [Model Context Protocol Specification](https://spec.modelcontextprotocol.io/) - Officiel MCP-specifikation og detaljeret protokoldokumentation
+- [Model Context Protocol Documentation](https://modelcontextprotocol.io/) - Detaljerede vejledninger og implementeringsguider
+- [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Officiel Python-implementation af MCP-protokollen
+- [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Officiel TypeScript-implementation af MCP-protokollen
+- [MCP Reference Servers](https://github.com/modelcontextprotocol/servers) - Referenceimplementeringer af MCP-servere
+- [Bing Web Search API Documentation](https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/overview) - Microsofts websøge-API
+- [Google Custom Search JSON API](https://developers.google.com/custom-search/v1/overview) - Googles programmerbare søgemaskine
+- [SerpAPI Documentation](https://serpapi.com/search-api) - API til søgemaskineresultatside
+- [Meilisearch Documentation](https://www.meilisearch.com/docs) - Open source søgemaskine
+- [Elasticsearch Documentation](https://www.elastic.co/guide/index.html) - Distribueret søge- og analysemotor
+- [LangChain Documentation](https://python.langchain.com/docs/get_started/introduction) - Opbygning af applikationer med LLM'er
 
 ## Læringsmål
 
-Ved at gennemføre dette modul vil du kunne:  
+Ved at gennemføre denne modul vil du kunne:
 
-- Forstå grundprincipperne for realtids websøgning og dens udfordringer  
-- Forklare, hvordan Model Context Protocol (MCP) forbedrer realtids websøgningsmuligheder  
-- Implementere MCP-baserede søgeløsninger med populære frameworks og API'er  
-- Designe og implementere skalerbare, højtydende søgearkitekturer med MCP  
-- Anvende MCP-koncepter til forskellige brugsscenarier, herunder semantisk søgning, forskningsassistance og AI-forstærket browsing  
-- Evaluere kommende trends og fremtidige innovationer inden for MCP-baserede søgeteknologier  
+- Forstå grundlæggende principper for realtids-websøgning og dens udfordringer
+- Forklare hvordan Model Context Protocol (MCP) forbedrer realtids-websøgningskapaciteter
+- Implementere MCP-baserede søgeløsninger ved hjælp af populære frameworks og API'er
+- Designe og implementere skalerbare, højtydende søgearkitekturer med MCP
+- Anvende MCP-koncepter til forskellige brugstilfælde, herunder semantisk søgning, forskningsassistance og AI-augmented browsing
+- Evaluere nye trends og fremtidige innovationer inden for MCP-baserede søgeteknologier
 
-### Overvejelser vedrørende tillid og sikkerhed
 
-Når du implementerer MCP-baserede websøgeløsninger, skal du huske disse vigtige principper fra MCP-specifikationen:
+### Overvejelser om tillid og sikkerhed
 
-1. **Brugersamtykke og kontrol**: Brugere skal eksplicit give samtykke til og forstå alle dataadgang og operationer. Dette er særligt vigtigt for websøgningsimplementeringer, der kan tilgå eksterne datakilder.
+Når du implementerer MCP-baserede websøgningløsninger, skal du huske disse vigtige principper fra MCP-specifikationen:
+
+1. **Brugersamtykke og kontrol**: Brugere skal eksplicit give samtykke til og forstå al dataadgang og operationer. Dette er særligt vigtigt for websøgningsimplementeringer, der kan få adgang til eksterne datakilder.
 
 2. **Dataprivatliv**: Sørg for passende håndtering af søgeforespørgsler og resultater, især når de kan indeholde følsomme oplysninger. Implementer passende adgangskontroller for at beskytte brugerdata.
 
-3. **Sikkerhed for værktøjer**: Implementer korrekt autorisation og validering for søgeværktøjer, da de udgør potentielle sikkerhedsrisici via vilkårlig kodeeksekvering. Beskrivelser af værktøjers adfærd skal betragtes som utroværdige, medmindre de stammer fra en betroet server.
+3. **Værktøjssikkerhed**: Implementer korrekt autorisation og validering for søgeværktøjer, da de kan udgøre sikkerhedsrisici gennem arbitrær kodekørsel. Beskrivelser af værktøjets adfærd bør betragtes som uvederhæftige, medmindre de stammer fra en betroet server.
 
-4. **Klar dokumentation**: Giv klar dokumentation om kapabiliteter, begrænsninger og sikkerhedsovervejelser ved din MCP-baserede søgeimplementering i overensstemmelse med MCP-specifikationens implementeringsvejledninger.
+4. **Klar dokumentation**: Giv klar dokumentation om kapaciteter, begrænsninger og sikkerhedsovervejelser ved din MCP-baserede søgeimplementering, i overensstemmelse med implementeringsvejledningerne i MCP-specifikationen.
 
-5. **Robuste samtykkeforløb**: Byg robuste samtykke- og autorisationsforløb, der tydeligt forklarer, hvad hvert værktøj gør, før det autoriseres, især for værktøjer, der interagerer med eksterne webressourcer.
+5. **Robuste samtykkeforløb**: Udvikl robuste samtykke- og autorisationsflow, der tydeligt forklarer, hvad hvert værktøj gør, før det autoriseres til brug, især for værktøjer, der interagerer med eksterne webressourcer.
 
-For fuldstændige oplysninger om MCP-sikkerhed og tillidsovervejelser henvises til [den officielle dokumentation](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).  
+For fuldstændige oplysninger om MCP-sikkerhed og tillidsovervejelser, henvises til den [officielle dokumentation](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).
 
-## Hvad er det næste
+## Hvad er næste skridt
 
 - [5.12 Entra ID Authentication for Model Context Protocol Servers](../mcp-security-entra/README.md)
 
