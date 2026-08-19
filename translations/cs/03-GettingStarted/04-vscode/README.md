@@ -1,76 +1,76 @@
-# Spotřebovávání serveru v režimu agenta GitHub Copilot
+# Používání serveru v režimu GitHub Copilot Agent
 
-Visual Studio Code a GitHub Copilot mohou fungovat jako klient a využívat MCP Server. Proč by nás to mělo zajímat, ptáte se? No, to znamená, že jakékoli funkce, které MCP Server má, mohou být nyní využívány přímo z vašeho IDE. Představte si například přidání MCP serveru GitHubu, což by umožnilo ovládat GitHub pomocí příkazů v přirozeném jazyce místo psaní konkrétních příkazů do terminálu. Nebo si představte cokoli, co by mohlo zlepšit váš vývojářský zážitek, vše ovládané přirozeným jazykem. Už vidíte tu výhodu, že?
+Visual Studio Code a GitHub Copilot mohou fungovat jako klient a využívat MCP Server. Proč bychom to chtěli dělat, můžete se zeptat? No, to znamená, že všechny funkce MCP Serveru nyní můžete používat přímo z vašeho IDE. Představte si například přidání GitHubova MCP serveru, což by umožnilo ovládat GitHub pomocí příkazů v přirozeném jazyce místo zadávání konkrétních příkazů v terminálu. Nebo si představte cokoli obecně, co by mohlo zlepšit váš vývojářský zážitek, vše ovladatelné přirozeným jazykem. Už vidíte ten přínos, že?
 
 ## Přehled
 
-Tato lekce pokrývá, jak používat Visual Studio Code a režim agenta GitHub Copilot jako klienta pro váš MCP Server.
+Tato lekce popisuje, jak používat Visual Studio Code a režim GitHub Copilot Agent jako klienta pro váš MCP Server.
 
 ## Cíle učení
 
 Na konci této lekce budete schopni:
 
-- Využívat MCP Server prostřednictvím Visual Studio Code.
-- Spouštět funkce, jako jsou nástroje, přes GitHub Copilot.
-- Nastavit Visual Studio Code tak, aby našel a spravoval váš MCP Server.
+- Spotřebovávat MCP Server přes Visual Studio Code.
+- Spouštět funkce jako nástroje přes GitHub Copilot.
+- Nastavit Visual Studio Code tak, aby nalezlo a spravovalo váš MCP Server.
 
 ## Použití
 
-Svůj MCP server můžete ovládat dvěma různými způsoby:
+S vaším MCP serverem můžete ovládat dvěma různými způsoby:
 
-- Uživatelské rozhraní – jak to funguje, uvidíte později v této kapitole.
-- Terminál – je možné ovládat věci z terminálu pomocí spustitelného souboru `code`:
+- Uživatelské rozhraní, ukážeme si to později v této kapitole.
+- Terminál, je možné ovládat věci z terminálu pomocí spustitelného souboru `code`:
 
-  Pro přidání MCP serveru do vašeho uživatelského profilu použijte příkazovou volbu --add-mcp a poskytněte konfiguraci serveru ve formátu JSON {\"name\":\"server-name\",\"command\":...}.
+  Pro přidání MCP serveru do uživatelského profilu použijte přepínač --add-mcp a poskytněte konfiguraci serveru ve formátu JSON ve tvaru {\"name\":\"server-name\",\"command\":...}.
 
   ```
   code --add-mcp "{\"name\":\"my-server\",\"command\": \"uvx\",\"args\": [\"mcp-server-fetch\"]}"
   ```
 
-### Snímky obrazovky
+### Screenshoty
 
-![Konfigurování MCP serveru ve Visual Studio Code](../../../../translated_images/cs/chat-mode-agent.729a22473f822216.webp)
-![Výběr nástrojů pro každou relaci agenta](../../../../translated_images/cs/agent-mode-select-tools.522c7ba5df0848f8.webp)
+![Navigovaná konfigurace MCP serveru ve Visual Studio Code](../../../../translated_images/cs/chat-mode-agent.729a22473f822216.webp)
+![Výběr nástrojů pro relaci agenta](../../../../translated_images/cs/agent-mode-select-tools.522c7ba5df0848f8.webp)
 ![Snadné ladění chyb během vývoje MCP](../../../../translated_images/cs/mcp-list-servers.fce89eefe3f30032.webp)
 
-Pojďme si více povědět o tom, jak používat vizuální rozhraní v následujících sekcích.
+Pojďme si dál povědět, jak používáme vizuální rozhraní v dalších částech.
 
-## Přístup
+## Postup
 
-Zde je, jak bychom měli k tomu přistupovat na vysoké úrovni:
+Zde je, jak k tomu přistoupit z vysoké úrovně:
 
-- Nastavit soubor pro nalezení našeho MCP Serveru.
-- Spustit/Připojit se k danému serveru, aby zobrazil své funkce.
-- Používat tyto funkce prostřednictvím rozhraní GitHub Copilot Chat.
+- Nakonfigurujte soubor, aby našel váš MCP Server.
+- Spusťte/Připojte se k danému serveru, aby vám vypsal své schopnosti.
+- Použijte tyto schopnosti přes rozhraní GitHub Copilot Chat.
 
-Skvělé, teď, když rozumíme toku, pojďme si vyzkoušet použití MCP Serveru ve Visual Studio Code prostřednictvím cvičení.
+Výborně, nyní když známe postup, pojďme zkusit použít MCP Server přes Visual Studio Code v praktickém cvičení.
 
-## Cvičení: Využívání serveru
+## Cvičení: použití serveru
 
-V tomto cvičení nastavíme Visual Studio Code tak, aby našel váš MCP server, aby mohl být použit prostřednictvím rozhraní GitHub Copilot Chat.
+V tomto cvičení nakonfigurujeme Visual Studio Code tak, aby našel váš MCP server a umožnil jeho použití z rozhraní GitHub Copilot Chat.
 
-### -0- Předkrok: Povolení vyhledávání MCP Serverů
+### -0- Předkrok, povolení vyhledávání MCP Serveru
 
-Možná budete muset povolit vyhledávání MCP Serverů.
+Možná budete muset povolit objevování MCP Serverů.
 
-1. Přejděte na `Soubor -> Předvolby -> Nastavení` ve Visual Studio Code.
+1. V Visual Studio Code jděte do `File -> Preferences -> Settings`.
 
 1. Vyhledejte "MCP" a povolte `chat.mcp.discovery.enabled` v souboru settings.json.
 
 ### -1- Vytvoření konfiguračního souboru
 
-Začněte vytvořením konfiguračního souboru v kořenovém adresáři vašeho projektu. Budete potřebovat soubor s názvem MCP.json, který umístíte do složky .vscode. Mělo by to vypadat takto:
+Začněte vytvořením konfiguračního souboru v kořenovém adresáři projektu. Budete potřebovat soubor s názvem MCP.json umístěný ve složce .vscode. Měl by vypadat takto:
 
 ```text
 .vscode
 |-- mcp.json
 ```
 
-Dále se podíváme, jak přidat záznam serveru.
+Dále si ukážeme, jak přidat záznam o serveru.
 
 ### -2- Konfigurace serveru
 
-Přidejte následující obsah do souboru *mcp.json*:
+Přidejte následující obsah do *mcp.json*:
 
 ```json
 {
@@ -86,29 +86,29 @@ Přidejte následující obsah do souboru *mcp.json*:
 }
 ```
 
-Výše uvedený příklad ukazuje, jak spustit server napsaný v Node.js. Pro jiné runtime uveďte správný příkaz pro spuštění serveru pomocí `command` a `args`.
+Výše je jednoduchý příklad, jak spustit server napsaný v Node.js, u jiných běhových prostředí uveďte správný příkaz pro spuštění serveru pomocí `command` a `args`.
 
 ### -3- Spuštění serveru
 
-Nyní, když jste přidali záznam, spusťte server:
+Nyní, když jste přidali záznam, pojďme server spustit:
 
 1. Najděte svůj záznam v *mcp.json* a ujistěte se, že vidíte ikonu "play":
 
   ![Spuštění serveru ve Visual Studio Code](../../../../translated_images/cs/vscode-start-server.8e3c986612e3555d.webp)  
 
-1. Klikněte na ikonu "play". Měli byste vidět, že se počet dostupných nástrojů v ikoně nástrojů GitHub Copilot Chat zvýší. Pokud na tuto ikonu kliknete, zobrazí se seznam registrovaných nástrojů. Můžete zaškrtnout/odškrtnout každý nástroj podle toho, zda chcete, aby je GitHub Copilot používal jako kontext:
+1. Klikněte na ikonu "play", měli byste vidět, že ikonka nástrojů v GitHub Copilot Chat se zvýší v počtu dostupných nástrojů. Pokud kliknete na tuto ikonu nástrojů, uvidíte seznam registrovaných nástrojů. Každý nástroj můžete zaškrtnout nebo odškrtnout podle toho, zda chcete, aby jej GitHub Copilot používal jako kontext:
 
   ![Spuštění serveru ve Visual Studio Code](../../../../translated_images/cs/vscode-tool.0b3bbea2fb7d8c26.webp)
 
-1. Pro spuštění nástroje napište příkaz, o kterém víte, že odpovídá popisu jednoho z vašich nástrojů, například příkaz "přidej 22 k 1":
+1. Pro spuštění nástroje napište prompt, o kterém víte, že odpovídá popisu některého vašeho nástroje, například prompt „add 22 to 1“:
 
   ![Spuštění nástroje z GitHub Copilot](../../../../translated_images/cs/vscode-agent.d5a0e0b897331060.webp)
 
-  Měli byste vidět odpověď s výsledkem 23.
+  Měli byste vidět odpověď 23.
 
-## Zadání
+## Úkol
 
-Zkuste přidat záznam serveru do svého souboru *mcp.json* a ujistěte se, že můžete server spustit/zastavit. Ujistěte se také, že můžete komunikovat s nástroji na vašem serveru prostřednictvím rozhraní GitHub Copilot Chat.
+Zkuste přidat záznam o serveru do souboru *mcp.json* a ujistěte se, že můžete server spustit a zastavit. Také ověřte, že můžete komunikovat s nástroji na vašem serveru přes rozhraní GitHub Copilot Chat.
 
 ## Řešení
 
@@ -116,29 +116,31 @@ Zkuste přidat záznam serveru do svého souboru *mcp.json* a ujistěte se, že 
 
 ## Klíčové poznatky
 
-Klíčové poznatky z této kapitoly jsou následující:
+Klíčové poznatky z této kapitoly jsou:
 
-- Visual Studio Code je skvělý klient, který umožňuje využívat několik MCP Serverů a jejich nástrojů.
-- Rozhraní GitHub Copilot Chat je způsob, jak komunikovat se servery.
-- Můžete vyžádat od uživatele vstupy, jako jsou API klíče, které mohou být předány MCP Serveru při konfiguraci záznamu serveru v souboru *mcp.json*.
+- Visual Studio Code je skvělý klient, který dovoluje pracovat s více MCP Servery a jejich nástroji.
+- Rozhraní GitHub Copilot Chat je způsob interakce se servery.
+- Můžete uživatele vyzvat k zadání vstupů jako API klíče, které lze předat MCP Serveru při konfiguraci záznamu v souboru *mcp.json*.
 
 ## Ukázky
 
-- [Java Kalkulačka](../samples/java/calculator/README.md)
-- [.Net Kalkulačka](../../../../03-GettingStarted/samples/csharp)
-- [JavaScript Kalkulačka](../samples/javascript/README.md)
-- [TypeScript Kalkulačka](../samples/typescript/README.md)
-- [Python Kalkulačka](../../../../03-GettingStarted/samples/python)
+- [Java Calculator](../samples/java/calculator/README.md)
+- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
+- [JavaScript Calculator](../samples/javascript/README.md)
+- [TypeScript Calculator](../samples/typescript/README.md)
+- [Python Calculator](../../../../03-GettingStarted/samples/python)
 
 ## Další zdroje
 
-- [Dokumentace Visual Studio](https://code.visualstudio.com/docs/copilot/chat/mcp-servers)
+- [Visual Studio dokumentace](https://code.visualstudio.com/docs/copilot/chat/mcp-servers)
 
 ## Co dál
 
-- Další: [Vytváření stdio Serveru](../05-stdio-server/README.md)
+- Dále: [Vytvoření stdio Serveru](../05-stdio-server/README.md)
 
 ---
 
-**Upozornění**:  
-Tento dokument byl přeložen pomocí služby pro automatický překlad [Co-op Translator](https://github.com/Azure/co-op-translator). I když se snažíme o přesnost, mějte prosím na paměti, že automatické překlady mohou obsahovat chyby nebo nepřesnosti. Původní dokument v jeho původním jazyce by měl být považován za závazný zdroj. Pro důležité informace se doporučuje profesionální lidský překlad. Neodpovídáme za jakékoli nedorozumění nebo nesprávné interpretace vyplývající z použití tohoto překladu.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Prohlášení o omezení odpovědnosti**:
+Tento dokument byl přeložen pomocí AI překladatelské služby [Co-op Translator](https://github.com/Azure/co-op-translator). Přestože usilujeme o co největší přesnost, mějte prosím na paměti, že automatizované překlady mohou obsahovat chyby nebo nepřesnosti. Originální dokument v jeho mateřském jazyce by měl být považován za autoritativní zdroj. Pro kritické informace se doporučuje profesionální lidský překlad. Nejsme odpovědní za jakékoli nedorozumění nebo nesprávné interpretace vzniklé použitím tohoto překladu.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

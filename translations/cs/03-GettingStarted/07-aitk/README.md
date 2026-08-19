@@ -1,107 +1,107 @@
 # Používání serveru z rozšíření AI Toolkit pro Visual Studio Code
 
-Když vytváříte AI agenta, nejde jen o generování chytrých odpovědí; jde také o to, aby váš agent měl schopnost podnikat akce. A právě zde přichází na řadu Protokol kontextu modelu (Model Context Protocol, MCP). MCP umožňuje agentům snadný přístup k externím nástrojům a službám jednotným způsobem. Představte si to jako připojení vašeho agenta k sadě nástrojů, kterou *opravdu* může používat.
+Když vytváříte AI agenta, nejde jen o generování chytrých odpovědí; jde také o to, dát agentovi možnost jednat. Zde přichází na řadu Model Context Protocol (MCP). MCP usnadňuje agentům přístup k externím nástrojům a službám konzistentním způsobem. Představte si to jako připojení vašeho agenta do toolboxu, který *opravdu* může využívat.
 
-Řekněme, že propojujete agenta se serverem MCP kalkulačky. Najednou může váš agent provádět matematické operace jen tím, že obdrží požadavek jako „Kolik je 47 krát 89?“—bez potřeby pevné logiky nebo vytváření vlastního API.
+Řekněme, že připojíte agenta k vašemu MCP serveru kalkulačky. Najednou může váš agent provádět matematické operace pouze tím, že obdrží výzvu jako „Kolik je 47 krát 89?“ — není potřeba tvrdě kódovat logiku nebo budovat vlastní API.
 
 ## Přehled
 
-Tato lekce pokrývá, jak připojit server MCP kalkulačky k agentovi pomocí rozšíření [AI Toolkit](https://aka.ms/AIToolkit) ve Visual Studio Code, takže agent může provádět matematické operace jako sčítání, odčítání, násobení a dělení v přirozeném jazyce.
+V této lekci si ukážeme, jak připojit server kalkulačky MCP k agentovi pomocí rozšíření [AI Toolkit](https://aka.ms/AIToolkit) ve Visual Studio Code, což umožní vašemu agentovi provádět matematické operace, jako je sčítání, odčítání, násobení a dělení pomocí přirozeného jazyka.
 
-AI Toolkit je výkonné rozšíření pro Visual Studio Code, které zjednodušuje vývoj agentů. AI inženýři mohou snadno vytvářet AI aplikace vytvářením a testováním generativních AI modelů—lokálně nebo v cloudu. Rozšíření podporuje většinu hlavních dnes dostupných generativních modelů.
+AI Toolkit je výkonné rozšíření pro Visual Studio Code, které zjednodušuje vývoj agentů. AI inženýři mohou snadno vytvářet AI aplikace vyvíjením a testováním generativních AI modelů — lokálně nebo v cloudu. Rozšíření podporuje většinu hlavních generativních modelů dostupných dnes.
 
-*Poznámka*: AI Toolkit v současné době podporuje Python a TypeScript.
+*Poznámka*: AI Toolkit aktuálně podporuje Python a TypeScript.
 
 ## Cíle učení
 
-Na konci této lekce budete umět:
+Na konci této lekce budete schopni:
 
-- Spotřebovat MCP server přes AI Toolkit.
-- Nakonfigurovat nastavení agenta, aby mohl objevovat a využívat nástroje poskytované MCP serverem.
-- Využívat nástroje MCP přirozeným jazykem.
+- Používat MCP server přes AI Toolkit.
+- Konfigurovat agentovu konfiguraci tak, aby mohl objevit a využívat nástroje poskytované MCP serverem.
+- Využívat MCP nástroje pomocí přirozeného jazyka.
 
 ## Přístup
 
-Toto je náš přístup na vysoké úrovni:
+Zde je postup, jak k tomu přistoupit na vyšší úrovni:
 
-- Vytvořit agenta a definovat jeho systémový prompt.
-- Vytvořit MCP server s nástroji kalkulačky.
+- Vytvořit agenta a definovat jeho systémovou výzvu.
+- Vytvořit MCP server s kalkulačními nástroji.
 - Připojit Agent Builder k MCP serveru.
-- Otestovat vyvolání nástroje agenta přirozeným jazykem.
+- Otestovat vyvolání nástroje agenta přes přirozený jazyk.
 
-Skvěle, nyní když rozumíme postupu, nakonfigurujeme AI agenta tak, aby využíval externí nástroje přes MCP a rozšíříme jeho schopnosti!
+Skvělé, nyní když chápeme tok, nakonfigurujme AI agenta tak, aby využil externí nástroje přes MCP a vylepšil své schopnosti!
 
-## Předpoklady
+## Požadavky
 
 - [Visual Studio Code](https://code.visualstudio.com/)
-- [AI Toolkit for Visual Studio Code](https://aka.ms/AIToolkit)
+- [AI Toolkit pro Visual Studio Code](https://aka.ms/AIToolkit)
 
 ## Cvičení: Používání serveru
 
 > [!WARNING]
-> Poznámka pro uživatele macOS. V současné době vyšetřujeme problém, který ovlivňuje instalaci závislostí na macOS. Kvůli tomu uživatelé macOS nyní nebudou moci dokončit tento tutoriál. Pokyny aktualizujeme, jakmile bude k dispozici oprava. Děkujeme za vaši trpělivost a pochopení!
+> Poznámka pro uživatele macOS. Nyní zjišťujeme problém s instalací závislostí na macOS. V důsledku toho uživatelé macOS nyní tuto lekci nemohou dokončit. Jakmile bude k dispozici oprava, instrukce aktualizujeme. Děkujeme za trpělivost a pochopení!
 
-V tomto cvičení si vytvoříte, spustíte a vylepšíte AI agenta s nástroji ze serveru MCP přímo ve Visual Studio Code pomocí AI Toolkit.
+V tomto cvičení si vytvoříte, spustíte a vylepšíte AI agenta s nástroji z MCP serveru přímo ve Visual Studio Code pomocí AI Toolkitu.
 
-### -0- Předsázení: přidání modelu OpenAI GPT-4o do My Models
+### -0- Předkrok, přidat model OpenAI GPT-4o do My Models
 
-Cvičení využívá model **GPT-4o**. Model byste měli přidat do sekce **My Models** ještě před vytvořením agenta.
+Cvičení využívá model **GPT-4o**. Model by měl být přidán do **My Models** před vytvořením agenta.
 
-![Snímek rozhraní výběru modelu v rozšíření AI Toolkit pro Visual Studio Code. Nadpis zní "Najděte ten správný model pro vaše AI řešení" s podnadpisem vybízejícím uživatele, aby objevovali, testovali a nasazovali AI modely. Pod tím v sekci „Populární modely“ je zobrazeno šest karet modelů: DeepSeek-R1 (hostováno na GitHubu), OpenAI GPT-4o, OpenAI GPT-4.1, OpenAI o1, Phi 4 Mini (CPU - Malý, Rychlý), a DeepSeek-R1 (hostováno na Ollama). Každá karta obsahuje možnosti „Přidat“ model nebo „Vyzkoušet v Playground“.](../../../../translated_images/cs/aitk-model-catalog.2acd38953bb9c119.webp)
+![Screenshot rozhraní výběru modelu v AI Toolkit rozšíření Visual Studio Code. Nadpis říká „Find the right model for your AI Solution“ s podnadpisem vybízejícím objevit, testovat a nasadit AI modely. Pod tím, sekce “Popular Models” se šesti kartami modelů: DeepSeek-R1 (hostováno na GitHub), OpenAI GPT-4o, OpenAI GPT-4.1, OpenAI o1, Phi 4 Mini (CPU - Small, Fast) a DeepSeek-R1 (hostováno na Ollama). Každá karta obsahuje možnosti „Add“ nebo „Try in Playground“](../../../../translated_images/cs/aitk-model-catalog.2acd38953bb9c119.webp)
 
 1. Otevřete rozšíření **AI Toolkit** z **Activity Bar**.
 1. V sekci **Catalog** vyberte **Models** pro otevření **Model Catalog**. Výběr **Models** otevře **Model Catalog** v nové záložce editoru.
-1. Do vyhledávacího pole **Model Catalog** zadejte **OpenAI GPT-4o**.
-1. Klikněte na **+ Přidat** pro přidání modelu do vašeho seznamu **My Models**. Ujistěte se, že vybraný model je **hostovaný na GitHubu**.
-1. V **Activity Bar** potvrďte, že model **OpenAI GPT-4o** je v seznamu.
+1. Ve vyhledávacím poli **Model Catalog** zadejte **OpenAI GPT-4o**.
+1. Klikněte na **+ Add** pro přidání modelu do seznamu **My Models**. Ujistěte se, že jste vybrali model, který je **hostovaný na GitHub**.
+1. V **Activity Bar** potvrďte, že model **OpenAI GPT-4o** se objevil v seznamu.
 
-### -1- Vytvoření agenta
+### -1- Vytvořit agenta
 
-**Agent (Prompt) Builder** vám umožní vytvořit a přizpůsobit vlastní AI agenty. V této části vytvoříte nového agenta a nastavíte model, který bude pohánět konverzaci.
+**Agent (Prompt) Builder** umožňuje vytvářet a přizpůsobovat své vlastní AI-powered agenty. V této sekci vytvoříte nového agenta a přiřadíte model, který bude pohánět konverzaci.
 
-![Snímek rozhraní builderu „Calculator Agent“ v rozšíření AI Toolkit pro Visual Studio Code. V levém panelu je vybraný model „OpenAI GPT-4o (přes GitHub).“ Systémový prompt říká „Jste profesor na univerzitě, který vyučuje matematiku,“ a uživatelský prompt říká „Vysvětli mi Fourierovu rovnici jednoduše.“ Další možnosti zahrnují tlačítka pro přidání nástrojů, povolení MCP serveru a výběr strukturovaného výstupu. Ve spodní části modrý tlačítko „Spustit“. V pravém panelu jsou pod záložkou „Začínáme s příklady“ tři ukázkoví agenti: Web Developer (s MCP Serverem, zjednodušovačem pro druhou třídu a tlumočníkem snů, každý s krátkým popisem funkcí).](../../../../translated_images/cs/aitk-agent-builder.901e3a2960c3e477.webp)
+![Screenshot rozhraní "Calculator Agent" builderu v AI Toolkit rozšíření Visual Studio Code. Na levém panelu je vybraný model „OpenAI GPT-4o (via GitHub).“ Systémová výzva říká „Jste profesor na univerzitě, který vyučuje matematiku,“ a uživatelská výzva říká „Vysvětli mi Fourierovu rovnici jednoduše.“ Další možnosti zahrnují tlačítka pro přidání nástrojů, aktivaci MCP Server a výběr strukturovaného výstupu. Dole je modré tlačítko „Run.“ Na pravém panelu, pod „Get Started with Examples,“ jsou tři ukázkové agenti: Web Developer (s MCP Serverem, Second-Grade Simplifier a Dream Interpreter, každý s krátkým popisem jejich funkcí.](../../../../translated_images/cs/aitk-agent-builder.901e3a2960c3e477.webp)
 
 1. Otevřete rozšíření **AI Toolkit** z **Activity Bar**.
-1. V sekci **Tools** vyberte **Agent (Prompt) Builder**. Výběr otevře **Agent (Prompt) Builder** v nové záložce editoru.
-1. Klikněte na tlačítko **+ Nový agent**. Rozšíření spustí průvodce nastavením přes **Command Palette**.
-1. Zadejte název **Calculator Agent** a stiskněte **Enter**.
-1. V **Agent (Prompt) Builder**, u pole **Model** vyberte model **OpenAI GPT-4o (přes GitHub)**.
+1. V sekci **Tools** vyberte **Agent (Prompt) Builder**. Výběr **Agent (Prompt) Builder** otevře tuto funkci v nové záložce editoru.
+1. Klikněte na tlačítko **+ New Agent**. Rozšíření spustí průvodce nastavením přes **Command Palette**.
+1. Zadejte jméno **Calculator Agent** a stiskněte **Enter**.
+1. V **Agent (Prompt) Builder** u pole **Model** vyberte model **OpenAI GPT-4o (via GitHub)**.
 
-### -2- Vytvoření systémového promptu pro agenta
+### -2- Vytvořit systémovou výzvu pro agenta
 
-Po založení agenta je čas definovat jeho osobnost a účel. V této části použijete funkci **Generovat systémový prompt** k popisu zamýšleného chování agenta—v tomto případě kalkulačního agenta—a model pro vás napíše systémový prompt.
+Po zprovoznění agenta je čas definovat jeho osobnost a účel. V této sekci použijete funkci **Generate system prompt** k popsání zamýšleného chování agenta — v tomto případě kalkulačkového agenta — a nechat model, aby pro vás vytvořil systémovou výzvu.
 
-![Snímek rozhraní „Calculator Agent“ v AI Toolkit pro Visual Studio Code se zobrazeným modálním oknem s názvem „Vygenerovat prompt.“ Modál vysvětluje, že lze vygenerovat šablonu promptu sdílením základních informací, a obsahuje textové pole s ukázkovým systémovým promptem: „Jste užitečný a efektivní matematický asistent. Při zadání problému s základní aritmetikou odpovídáte správným výsledkem.“ Pod textovým polem jsou tlačítka „Zavřít“ a „Vygenerovat“. V pozadí je vidět část konfigurace agenta včetně vybraného modelu „OpenAI GPT-4o (přes GitHub)“ a polí pro systémový a uživatelský prompt.](../../../../translated_images/cs/aitk-generate-prompt.ba9e69d3d2bbe2a2.webp)
+![Screenshot rozhraní "Calculator Agent" v AI Toolkit pro Visual Studio Code s otevřeným modálním oknem s názvem "Generate a prompt." Modal vysvětluje, že lze vygenerovat šablonu výzvy sdílením základních detailů a obsahuje textové pole s ukázkovou systémovou výzvou: "You are a helpful and efficient math assistant. When given a problem involving basic arithmetic, you respond with the correct result." Pod textovým polem jsou tlačítka "Close" a "Generate." V pozadí je viditelná část konfigurace agenta, včetně vybraného modelu "OpenAI GPT-4o (via GitHub)" a polí pro systémovou a uživatelskou výzvu.](../../../../translated_images/cs/aitk-generate-prompt.ba9e69d3d2bbe2a2.webp)
 
-1. V sekci **Prompts** klikněte na tlačítko **Generovat systémový prompt**. Toto tlačítko otevře tvůrce promptu, který využívá AI pro generování systémového promptu pro agenta.
-1. V okně **Generovat prompt** zadejte toto: `Jste užitečný a efektivní matematický asistent. Při zadání problému s základní aritmetikou odpovídáte správným výsledkem.`
-1. Klikněte na tlačítko **Generovat**. V pravém dolním rohu se objeví oznámení potvrzující, že systémový prompt je generován. Po dokončení generování se prompt zobrazí v poli **Systémový prompt** v **Agent (Prompt) Builderu**.
-1. Zkontrolujte systémový prompt a případně jej upravte.
+1. V sekci **Prompts** klikněte na tlačítko **Generate system prompt**. Toto tlačítko otevře tvůrce výzev, který využívá AI k vytvoření systémové výzvy pro agenta.
+1. V okně **Generate a prompt** zadejte následující text: `You are a helpful and efficient math assistant. When given a problem involving basic arithmetic, you respond with the correct result.`
+1. Klikněte na tlačítko **Generate**. V pravém dolním rohu se zobrazí oznámení potvrzující, že se generuje systémová výzva. Po dokončení generování se výzva objeví v poli **System prompt** v **Agent (Prompt) Builder**.
+1. Zkontrolujte **System prompt** a případně ji upravte.
 
-### -3- Vytvoření MCP serveru
+### -3- Vytvořit MCP server
 
-Nyní, když jste definovali systémový prompt agenta—který řídí jeho chování a odpovědi—je čas agenta vybavit praktickými schopnostmi. V této části vytvoříte MCP server kalkulačky s nástroji pro provádění sčítání, odčítání, násobení a dělení. Tento server umožní vašemu agentovi provádět matematické operace v reálném čase na základě přirozeně formulovaných požadavků.
+Nyní, když jste definovali systémovou výzvu agenta — která řídí jeho chování a odpovědi — je čas vybavit agenta praktickými funkcemi. V této sekci vytvoříte kalkulační MCP server s nástroji pro provádění sčítání, odčítání, násobení a dělení. Tento server umožní vašemu agentovi provádět matematické operace v reálném čase na základě přirozených jazykových požadavků.
 
-![Snímek dolní části rozhraní Calculator Agent v rozšíření AI Toolkit pro Visual Studio Code. Zobrazuje rozbalitelné menu „Nástroje“ a „Strukturovaný výstup“, včetně rozevíracího menu „Vyberte formát výstupu“ nastaveného na „text.“ Vpravo je tlačítko „+ MCP Server“ pro přidání serveru pro Model Context Protocol. Nad sekcí Nástroje je zástupný obrázek ikony.](../../../../translated_images/cs/aitk-add-mcp-server.9742cfddfe808353.webp)
+![Screenshot dolní části rozhraní Calculator Agent v AI Toolkit rozšíření pro Visual Studio Code. Ukazuje rozbalovací menu “Tools” a “Structure output,” spolu s rozevíracím menu označeným „Choose output format“ nastaveným na „text.“ Vpravo je tlačítko „+ MCP Server“ pro přidání Model Context Protocol serveru. Nad sekcí Tools je zástupný symbol obrázku.](../../../../translated_images/cs/aitk-add-mcp-server.9742cfddfe808353.webp)
 
-AI Toolkit je vybaven šablonami, které usnadňují vytváření vlastních MCP serverů. Budeme používat Python šablonu pro vytvoření kalkulačního MCP serveru.
+AI Toolkit je vybaven šablonami pro snadné vytvoření vlastního MCP serveru. Použijeme Python šablonu pro vytvoření kalkulačního MCP serveru.
 
-*Poznámka*: AI Toolkit v současné době podporuje Python a TypeScript.
+*Poznámka*: AI Toolkit aktuálně podporuje Python a TypeScript.
 
-1. V sekci **Nástroje** v **Agent (Prompt) Builderu** klikněte na tlačítko **+ MCP Server**. Rozšíření spustí průvodce nastavením přes **Command Palette**.
-1. Vyberte **+ Přidat server**.
-1. Vyberte **Vytvořit nový MCP server**.
-1. Zvolte šablonu **python-weather**.
-1. Zvolte **Výchozí složku** pro uložení šablony MCP serveru.
-1. Zadejte jako název serveru: **Calculator**
-1. Otevře se nové okno Visual Studio Code. Vyberte **Ano, důvěřuji autorům**.
-1. V terminálu (**Terminál** > **Nový terminál**) vytvořte virtuální prostředí pomocí příkazu: `python -m venv .venv`
-1. V terminálu aktivujte virtuální prostředí:
+1. V sekci **Tools** v **Agent (Prompt) Builder** klikněte na tlačítko **+ MCP Server**. Rozšíření spustí průvodce nastavením přes **Command Palette**.
+1. Vyberte **+ Add Server**.
+1. Vyberte **Create a New MCP Server**.
+1. Vyberte šablonu **python-weather**.
+1. Vyberte **Default folder** pro uložení MCP server šablony.
+1. Zadejte následující název serveru: **Calculator**
+1. Otevře se nové okno Visual Studio Code. Vyberte **Yes, I trust the authors**.
+1. Pomocí terminálu (**Terminal** > **New Terminal**) vytvořte virtuální prostředí: `python -m venv .venv`
+1. Pomocí terminálu aktivujte virtuální prostředí:
     1. Windows - `.venv\Scripts\activate`
     1. macOS/Linux - `source .venv/bin/activate`
-1. V terminálu nainstalujte závislosti příkazem: `pip install -e .[dev]`
-1. V zobrazení **Explorer** v **Activity Bar** rozbalte složku **src** a vyberte soubor **server.py** pro otevření v editoru.
-1. Nahraďte kód v souboru **server.py** následujícím a soubor uložte:
+1. Pomocí terminálu nainstalujte závislosti: `pip install -e .[dev]`
+1. V zobrazení **Explorer** v **Activity Bar** rozbalte adresář **src** a vyberte soubor **server.py** pro otevření v editoru.
+1. Nahraďte kód v souboru **server.py** následujícím a uložte:
 
     ```python
     """
@@ -144,30 +144,30 @@ AI Toolkit je vybaven šablonami, které usnadňují vytváření vlastních MCP
         return a / b
     ```
 
-### -4- Spuštění agenta s MCP serverem kalkulačky
+### -4- Spustit agenta s MCP serverem kalkulačky
 
-Nyní, když má váš agent nástroje, je čas je použít! V této části odešlete agentovi požadavky, abyste otestovali a ověřili, zda agent využívá vhodný nástroj z MCP serveru kalkulačky.
+Nyní, když má váš agent nástroje, je čas je využít! V této sekci budete agentovi zadávat výzvy, abyste otestovali a ověřili, zda agent využívá správný nástroj z kalkulačního MCP serveru.
 
-![Screenshot rozhraní Calculator Agent v AI Toolkit pro Visual Studio Code. Na levém panelu je pod „Nástroji“ přidán MCP server nazvaný local-server-calculator_server, zobrazující čtyři dostupné nástroje: sčítat, odečítat, násobit a dělit. Odznak ukazuje, že čtyři nástroje jsou aktivní. Pod tím je sbalená sekce „Strukturovaný výstup“ a modré tlačítko „Spustit“. Pravý panel ukazuje v „Odpovědi modelu“, že agent vyvolal nástroje násobit a odečíst s vstupy {"a": 3, "b": 25} a {"a": 75, "b": 20}. Konečná „Odpověď nástroje“ je 75,0. Ve spodní části je tlačítko „Zobrazit kód“.](../../../../translated_images/cs/aitk-agent-response-with-tools.e7c781869dc8041a.webp)
+![Screenshot rozhraní Calculator Agent v AI Toolkit rozšíření pro Visual Studio Code. Na levém panelu, pod “Tools,” je přidán MCP server s názvem local-server-calculator_server, zobrazující čtyři dostupné nástroje: add, subtract, multiply a divide. Odznak ukazuje, že čtyři nástroje jsou aktivní. Pod tím je složená sekce „Structure output“ a modré tlačítko „Run.“ Na pravém panelu, pod „Model Response,“ agent vyvolává nástroje multiply a subtract s vstupy {"a": 3, "b": 25} a {"a": 75, "b": 20} respektive. Konečná „Tool Response“ je zobrazena jako 75.0. Tlačítko „View Code“ je na spodku.](../../../../translated_images/cs/aitk-agent-response-with-tools.e7c781869dc8041a.webp)
 
-MCP server kalkulačky spustíte na svém lokálním vývojovém počítači přes **Agent Builder** jako klient MCP.
+Kalkulační MCP server poběží na vašem lokálním vývojovém počítači přes **Agent Builder** jako MCP klient.
 
 1. Stiskněte `F5` pro spuštění ladění MCP serveru. **Agent (Prompt) Builder** se otevře v nové záložce editoru. Stav serveru je viditelný v terminálu.
-1. Do pole **User prompt** v **Agent (Prompt) Builderu** zadejte prompt: `Koupil jsem 3 položky za 25 dolarů každá a pak jsem použil slevu 20 dolarů. Kolik jsem zaplatil?`
-1. Klikněte na tlačítko **Spustit** pro vygenerování odpovědi agenta.
-1. Prohlédněte si výstup agenta. Model by měl dojít k závěru, že jste zaplatili **55 dolarů**.
-1. Zde je rozpis, co by mělo proběhnout:
+1. Do pole **User prompt** v **Agent (Prompt) Builder** zadejte následující výzvu: `I bought 3 items priced at $25 each, and then used a $20 discount. How much did I pay?`
+1. Klikněte na tlačítko **Run** pro vygenerování odpovědi agenta.
+1. Zkontrolujte výstup agenta. Model by měl dojít k závěru, že jste zaplatili **55 $**.
+1. Zde je rozpis, co by se mělo stát:
     - Agent vybere nástroje **multiply** a **subtract** pro pomoc s výpočtem.
-    - Pro nástroj **multiply** jsou přiřazeny hodnoty `a` a `b`.
-    - Pro nástroj **subtract** jsou přiřazeny hodnoty `a` a `b`.
-    - Odpověď každého nástroje je zobrazena v příslušné **Odpovědi nástroje**.
-    - Konečný výstup modelu je zobrazen v konečné **Odpovědi modelu**.
-1. Odešlete další prompt pro další testování agenta. Můžete upravit existující prompt v poli **User prompt** kliknutím do pole a přepsáním existujícího textu.
-1. Až dokončíte testování agenta, můžete server zastavit přes **terminál** zadáním **CTRL/CMD+C** pro ukončení.
+    - Příslušné hodnoty `a` a `b` jsou přiřazeny pro nástroj **multiply**.
+    - Příslušné hodnoty `a` a `b` jsou přiřazeny pro nástroj **subtract**.
+    - Odpověď z každého nástroje je uvedena v příslušném poli **Tool Response**.
+    - Konečný výstup z modelu je uveden v konečné **Model Response**.
+1. Zadejte další výzvy a otestujte agenta. Můžete upravit existující výzvu v poli **User prompt** kliknutím dovnitř a nahrazením textu.
+1. Po testování agenta server zastavíte v terminálu stisknutím **CTRL/CMD+C** pro ukončení.
 
 ## Zadání
 
-Zkuste přidat další nástroj do souboru **server.py** (například: vrátit druhou odmocninu čísla). Odešlete další požadavky, které budou vyžadovat využití vašeho nového (nebo existujících) nástroje. Nezapomeňte restartovat server, aby se nové nástroje načetly.
+Zkuste přidat další nástroj do souboru **server.py** (například vrácení druhé odmocniny čísla). Zadejte další výzvy, které budou vyžadovat, aby agent využil váš nový nástroj (nebo existující nástroje). Nezapomeňte restartovat server, aby se načetly nově přidané nástroje.
 
 ## Řešení
 
@@ -175,18 +175,18 @@ Zkuste přidat další nástroj do souboru **server.py** (například: vrátit d
 
 ## Klíčové poznatky
 
-Klíčové poznatky z této kapitoly jsou následující:
+Z této kapitoly si odnášíme následující:
 
-- Rozšíření AI Toolkit je skvělý klient, který umožňuje využívat MCP servery a jejich nástroje.
+- Rozšíření AI Toolkit je skvělý klient, který vám umožní používat MCP servery a jejich nástroje.
 - Můžete přidávat nové nástroje do MCP serverů, čímž rozšiřujete schopnosti agenta podle vyvíjejících se požadavků.
-- AI Toolkit obsahuje šablony (například Python šablony MCP serverů) pro zjednodušení vytváření vlastních nástrojů.
+- AI Toolkit obsahuje šablony (např. Python MCP server šablony), které usnadňují vytváření vlastních nástrojů.
 
 ## Další zdroje
 
-- [Dokumentace k AI Toolkit](https://aka.ms/AIToolkit/doc)
+- [Dokumentace AI Toolkit](https://aka.ms/AIToolkit/doc)
 
-## Co bude dál
-- Dále: [Testování a ladění](../08-testing/README.md)
+## Co dál
+- Další: [Testování a ladění](../08-testing/README.md)
 
 ---
 
