@@ -2,35 +2,37 @@
 
 [![Thực hành tốt nhất trong phát triển MCP](../../../translated_images/vi/09.d0f6d86c9d72134c.webp)](https://youtu.be/W56H9W7x-ao)
 
-_(Nhấp vào hình ảnh ở trên để xem video của bài học này)_
+_(Bấm vào hình trên để xem video bài học này)_
 
 ## Tổng quan
 
-Bài học này tập trung vào các thực hành tốt nhất nâng cao cho phát triển, kiểm thử và triển khai máy chủ và tính năng MCP trong môi trường sản xuất. Khi hệ sinh thái MCP ngày càng phức tạp và quan trọng, việc tuân theo các mẫu đã được thiết lập giúp đảm bảo tính đáng tin cậy, dễ bảo trì và khả năng tương tác. Bài học này tập hợp những kinh nghiệm thực tế thu được từ các triển khai MCP thực tế để hướng dẫn bạn tạo ra các máy chủ mạnh mẽ, hiệu quả với tài nguyên, lời nhắc và công cụ hiệu quả.
+Bài học này tập trung vào các thực hành tốt nâng cao để phát triển, kiểm thử và triển khai các máy chủ MCP và tính năng trong môi trường sản xuất. Khi hệ sinh thái MCP ngày càng phức tạp và quan trọng, việc tuân theo các mẫu đã được thiết lập đảm bảo độ tin cậy, khả năng bảo trì và khả năng tương tác. Bài học này tổng hợp kinh nghiệm thực tiễn thu được từ các triển khai MCP thực tế để hướng dẫn bạn tạo ra các máy chủ mạnh mẽ, hiệu quả với tài nguyên, lời nhắc và công cụ hiệu quả.
 
 ## Mục tiêu học tập
 
-Sau khi kết thúc bài học này, bạn sẽ có thể:
+Kết thúc bài học này, bạn sẽ có khả năng:
 
-- Áp dụng các thực hành tốt nhất trong ngành vào thiết kế máy chủ và tính năng MCP
-- Tạo các chiến lược kiểm thử toàn diện cho máy chủ MCP
-- Thiết kế các mẫu quy trình làm việc hiệu quả, có thể tái sử dụng cho các ứng dụng MCP phức tạp
-- Triển khai xử lý lỗi, ghi nhật ký và quan sát hợp lý trong máy chủ MCP
+- Áp dụng các thực hành tốt của ngành trong thiết kế máy chủ và tính năng MCP
+- Tạo chiến lược kiểm thử toàn diện cho các máy chủ MCP
+- Thiết kế các mẫu quy trình làm việc hiệu quả, tái sử dụng được cho các ứng dụng MCP phức tạp
+- Triển khai xử lý lỗi, ghi nhật ký và quan sát đúng cách trong các máy chủ MCP
 - Tối ưu hóa các triển khai MCP về hiệu suất, bảo mật và khả năng bảo trì
 
 ## Nguyên tắc cốt lõi của MCP
 
 Trước khi đi sâu vào các thực hành triển khai cụ thể, điều quan trọng là hiểu các nguyên tắc cốt lõi hướng dẫn phát triển MCP hiệu quả:
 
-1. **Giao tiếp chuẩn hóa**: MCP sử dụng JSON-RPC 2.0 làm nền tảng, cung cấp định dạng nhất quán cho các yêu cầu, phản hồi và xử lý lỗi trên tất cả các triển khai.
+1. **Giao tiếp tiêu chuẩn hóa**: MCP sử dụng JSON-RPC 2.0 làm nền tảng, cung cấp định dạng nhất quán cho các yêu cầu, phản hồi và xử lý lỗi trên tất cả các triển khai.
 
-2. **Thiết kế lấy người dùng làm trung tâm**: Luôn ưu tiên sự đồng thuận, kiểm soát và minh bạch của người dùng trong các triển khai MCP của bạn.
+2. **Thiết kế lấy người dùng làm trung tâm**: Luôn ưu tiên sự đồng ý, kiểm soát và minh bạch của người dùng trong các triển khai MCP của bạn.
 
-3. **Bảo mật là ưu tiên hàng đầu**: Triển khai các biện pháp bảo mật mạnh mẽ bao gồm xác thực, ủy quyền, xác nhận và giới hạn tỷ lệ.
+3. **Bảo mật ưu tiên hàng đầu**: Triển khai các biện pháp bảo mật mạnh mẽ bao gồm xác thực, phân quyền, xác thực dữ liệu và giới hạn tốc độ.
 
-4. **Kiến trúc mô-đun**: Thiết kế máy chủ MCP của bạn theo cách mô-đun, nơi mỗi công cụ và tài nguyên có mục đích rõ ràng, tập trung.
+4. **Kiến trúc mô-đun**: Thiết kế các máy chủ MCP của bạn theo cách mô-đun, trong đó mỗi công cụ và tài nguyên có mục đích rõ ràng và tập trung.
 
-5. **Kết nối có trạng thái**: Tận dụng khả năng của MCP để duy trì trạng thái qua nhiều yêu cầu nhằm tương tác mạch lạc và nhận thức bối cảnh hơn.
+5. **Trạng thái rõ ràng**: MCP `2026-07-28` không giữ trạng thái ở cấp giao thức
+   . Khi một quy trình làm việc cần trạng thái qua các lần gọi, sử dụng các handle rõ ràng hoặc
+   các đối số công cụ thông thường được hỗ trợ bởi trạng thái ứng dụng bền bỉ.
 
 ## Thực hành tốt nhất chính thức của MCP
 
@@ -38,52 +40,75 @@ Các thực hành tốt nhất sau đây được rút ra từ tài liệu chín
 
 ### Thực hành tốt nhất về bảo mật
 
-1. **Đồng thuận và kiểm soát của người dùng**: Luôn yêu cầu sự đồng thuận rõ ràng của người dùng trước khi truy cập dữ liệu hoặc thực hiện các thao tác. Cung cấp kiểm soát rõ ràng về dữ liệu được chia sẻ và các hành động được phép.
+1. **Sự đồng ý và kiểm soát của người dùng**: Luôn yêu cầu sự đồng ý rõ ràng của người dùng trước khi truy cập dữ liệu hoặc thực hiện các thao tác. Cung cấp kiểm soát rõ ràng về dữ liệu được chia sẻ và các hành động được cho phép.
 
-2. **Bảo mật dữ liệu**: Chỉ tiết lộ dữ liệu người dùng khi có sự đồng thuận rõ ràng và bảo vệ chúng bằng các biện pháp kiểm soát quyền truy cập phù hợp. Ngăn chặn việc truyền dữ liệu trái phép.
+2. **Bảo mật dữ liệu**: Chỉ tiết lộ dữ liệu người dùng với sự đồng ý rõ ràng và bảo vệ nó bằng các kiểm soát truy cập phù hợp. Ngăn ngừa truyền dữ liệu trái phép.
 
-3. **An toàn công cụ**: Yêu cầu sự đồng thuận rõ ràng của người dùng trước khi gọi bất kỳ công cụ nào. Đảm bảo người dùng hiểu chức năng của từng công cụ và thực thi ranh giới bảo mật chắc chắn.
+3. **An toàn công cụ**: Yêu cầu sự đồng ý rõ ràng của người dùng trước khi gọi bất kỳ công cụ nào. Đảm bảo người dùng hiểu chức năng của mỗi công cụ và áp dụng các ranh giới bảo mật mạnh mẽ.
 
-4. **Kiểm soát quyền công cụ**: Cấu hình các công cụ mà mô hình được phép sử dụng trong phiên làm việc, đảm bảo chỉ có công cụ được ủy quyền rõ ràng mới được truy cập.
+4. **Kiểm soát quyền công cụ**: Cấu hình công cụ mà mô hình có thể sử dụng cho
+   mỗi yêu cầu và ngữ cảnh ủy quyền, đảm bảo chỉ các công cụ được phép rõ ràng
+   mới được truy cập.
 
-5. **Xác thực**: Yêu cầu xác thực phù hợp trước khi cấp quyền truy cập công cụ, tài nguyên hoặc thao tác nhạy cảm, sử dụng khóa API, token OAuth hoặc các phương pháp xác thực an toàn khác.
+5. **Xác thực**: Yêu cầu xác thực đúng cách trước khi cấp quyền truy cập vào công cụ, tài nguyên hoặc các thao tác nhạy cảm sử dụng các khóa API, token OAuth hoặc các phương thức xác thực bảo mật khác.
 
-6. **Xác nhận tham số**: Thực thi xác nhận cho tất cả các lần gọi công cụ nhằm ngăn chặn đầu vào bị lỗi hoặc có thể gây hại đến các triển khai công cụ.
+6. **Xác thực tham số**: Thực thi xác thực cho tất cả các gọi công cụ để ngăn chặn dữ liệu đầu vào bị lỗi hoặc độc hại đến các triển khai công cụ.
 
-7. **Giới hạn tần suất**: Triển khai giới hạn tần suất để ngăn chặn lạm dụng và đảm bảo việc sử dụng tài nguyên máy chủ công bằng.
+7. **Giới hạn tốc độ**: Triển khai giới hạn tốc độ để ngăn chặn việc lạm dụng và đảm bảo việc sử dụng công bằng các tài nguyên máy chủ.
 
-### Thực hành tốt nhất về triển khai
+### Thực hành tốt nhất trong triển khai
 
-1. **Đàm phán khả năng**: Trong quá trình thiết lập kết nối, trao đổi thông tin về các tính năng được hỗ trợ, phiên bản giao thức, công cụ và tài nguyên có sẵn.
+1. **Đàm phán năng lực**: Đàm phán các phiên bản giao thức được hỗ trợ và
+   năng lực. Trong MCP `2026-07-28`, mỗi yêu cầu là tự chứa và có thể
+   sử dụng `server/discover`; các phiên bản cũ hơn dùng handshake khởi tạo.
 
-2. **Thiết kế công cụ**: Tạo các công cụ tập trung thực hiện tốt một chức năng duy nhất thay vì các công cụ khổng lồ xử lý nhiều mối quan tâm.
+2. **Thiết kế công cụ**: Tạo các công cụ tập trung vào một nhiệm vụ duy nhất thay vì các công cụ đơn khổng lồ xử lý nhiều mối quan tâm.
 
-3. **Xử lý lỗi**: Triển khai các thông báo lỗi và mã lỗi chuẩn hóa để giúp chẩn đoán vấn đề, xử lý lỗi một cách linh hoạt và cung cấp phản hồi có giá trị.
+3. **Xử lý lỗi**: Triển khai các thông điệp lỗi chuẩn hóa và mã lỗi giúp chẩn đoán sự cố, xử lý thất bại một cách nhẹ nhàng, và cung cấp phản hồi có thể hành động.
 
-4. **Ghi nhật ký**: Cấu hình các bản ghi có cấu trúc cho việc kiểm toán, gỡ lỗi và giám sát các tương tác giao thức.
+4. **Quan sát**: Sử dụng `stderr` để chẩn đoán stdio và OpenTelemetry
+   cho quan sát có cấu trúc. Tính năng ghi nhật ký MCP đã bị loại bỏ trong
+   đặc tả `2026-07-28`.
 
-5. **Theo dõi tiến độ**: Đối với các thao tác chạy dài, báo cáo cập nhật tiến độ để hỗ trợ giao diện người dùng phản hồi nhanh.
+5. **Theo dõi tiến trình**: Đối với các thao tác chạy lâu, báo cáo các cập nhật tiến độ để cho phép giao diện người dùng đáp ứng.
 
-6. **Hủy yêu cầu**: Cho phép khách hàng hủy các yêu cầu đang thực thi khi không còn cần hoặc mất quá nhiều thời gian.
+6. **Hủy yêu cầu**: Cho phép client hủy các yêu cầu đang thực hiện mà không còn cần thiết hoặc mất quá nhiều thời gian.
 
 ## Tài liệu tham khảo bổ sung
 
-Để có thông tin mới nhất về các thực hành tốt nhất của MCP, hãy tham khảo:
+Để có thông tin cập nhật nhất về các thực hành tốt MCP, tham khảo:
 
 - [Tài liệu MCP](https://modelcontextprotocol.io/)
-- [Đặc tả MCP (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [Đặc tả MCP (2026-07-28)][mcp-2026-spec]
+- [Đặc tả MCP trước đây (2025-11-25)](https://modelcontextprotocol.io/specification/2025-11-25)
+- [Phần mở rộng nhiệm vụ MCP][mcp-tasks-extension]
 - [Kho GitHub](https://github.com/modelcontextprotocol)
-- [Thực hành tốt nhất về bảo mật](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices)
-- [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - Rủi ro và biện pháp bảo mật
+- [Thực hành tốt về bảo mật](https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/security_best_practices)
+- [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/) - Rủi ro bảo mật và các phương án giảm thiểu
 - [Hội thảo MCP Security Summit (Sherpa)](https://azure-samples.github.io/sherpa/) - Đào tạo bảo mật thực hành
 
-## Ví dụ triển khai thực tế
+### Bài học kèm theo về Độ tin cậy
 
-### Thực hành tốt nhất về thiết kế công cụ
+Các vòng lặp thử lại tổng quát không an toàn cho các công cụ tạo vé, thanh toán,
+thông điệp, triển khai hoặc các hiệu ứng thực tế khác. Một phản hồi có thể bị mất
+sau khi hiệu ứng đã cam kết.
 
-#### 1. Nguyên tắc trách nhiệm đơn
+Sử dụng bài học kèm về độ tin cậy,
+[Thử lại an toàn cho công cụ MCP: Mẫu sidecar độ tin cậy][reliability-sidecar],
+để học các khóa hoạt động ổn định, nhận dạng trùng lặp, điểm kiểm tra,
+hòa giải, mức độ bằng chứng và tiêm lỗi.
 
-Mỗi công cụ MCP nên có mục đích rõ ràng và tập trung. Thay vì tạo các công cụ khổng lồ cố gắng xử lý nhiều vấn đề, hãy phát triển các công cụ chuyên biệt nổi bật trong các nhiệm vụ cụ thể.
+[mcp-2026-spec]: https://modelcontextprotocol.io/specification/2026-07-28
+[mcp-tasks-extension]: https://modelcontextprotocol.io/extensions/tasks/overview
+[reliability-sidecar]: ./reliability-sidecars/README.md
+
+## Ví dụ triển khai thực tiễn
+
+### Thực hành tốt trong thiết kế công cụ
+
+#### 1. Nguyên tắc Trách nhiệm Đơn lẻ
+
+Mỗi công cụ MCP nên có một mục đích rõ ràng, tập trung. Thay vì tạo các công cụ đơn khổng lồ cố gắng xử lý nhiều mối quan tâm, hãy phát triển các công cụ chuyên biệt xuất sắc trong các nhiệm vụ cụ thể.
 
 ```csharp
 // A focused tool that does one thing well
@@ -145,7 +170,7 @@ public class WeatherForecastTool : ITool
 
 #### 2. Xử lý lỗi nhất quán
 
-Triển khai xử lý lỗi mạnh mẽ với các thông báo lỗi đầy đủ thông tin và cơ chế phục hồi phù hợp.
+Triển khai xử lý lỗi mạnh mẽ với các thông điệp lỗi đầy đủ thông tin và cơ chế phục hồi phù hợp.
 
 ```python
 # Ví dụ Python với xử lý lỗi toàn diện
@@ -164,13 +189,13 @@ class DataQueryTool:
                 
             query = parameters["query"]
             
-            # Kiểm tra bảo mật
+            # Xác thực bảo mật
             if self._contains_unsafe_sql(query):
                 raise ToolSecurityError("Query contains potentially unsafe SQL")
             
             try:
-                # Thao tác cơ sở dữ liệu với thời gian chờ
-                async with timeout(10):  # Thời gian chờ 10 giây
+                # Thao tác cơ sở dữ liệu với giới hạn thời gian
+                async with timeout(10):  # Giới hạn thời gian 10 giây
                     result = await self._database.execute_query(query)
                     
                 return ToolResponse(
@@ -183,20 +208,20 @@ class DataQueryTool:
                 self._log_error("Database connection error", e)
                 raise ToolExecutionError(f"Database connection error: {str(e)}")
             except DatabaseQueryError as e:
-                # Lỗi truy vấn có khả năng là lỗi phía khách hàng
+                # Lỗi truy vấn có thể là lỗi phía khách hàng
                 self._log_error("Database query error", e)
                 raise ToolExecutionError(f"Invalid query: {str(e)}")
                 
         except ToolError:
-            # Cho phép lỗi cụ thể công cụ đi qua
+            # Cho phép lỗi đặc thù của công cụ đi qua
             raise
         except Exception as e:
-            # Bắt tất cả các lỗi không mong đợi
+            # Bắt tất cả lỗi không mong đợi
             self._log_error("Unexpected error in DataQueryTool", e)
             raise ToolExecutionError(f"An unexpected error occurred: {str(e)}")
     
     def _contains_unsafe_sql(self, query):
-        # Triển khai phát hiện tấn công SQL injection
+        # Triển khai phát hiện SQL injection
         pass
         
     def _log_error(self, message, error):
@@ -204,9 +229,9 @@ class DataQueryTool:
         pass
 ```
 
-#### 3. Xác nhận tham số
+#### 3. Xác thực tham số
 
-Luôn xác nhận kỹ lưỡng các tham số để ngăn ngừa đầu vào bị lỗi hoặc độc hại.
+Luôn xác thực kỹ lưỡng các tham số để ngăn ngừa đầu vào bị lỗi hoặc độc hại.
 
 ```javascript
 // Ví dụ JavaScript/TypeScript với xác thực tham số chi tiết
@@ -244,7 +269,7 @@ class FileOperationTool {
   }
   
   async execute(parameters) {
-    // 1. Xác thực sự tồn tại của tham số
+    // 1. Xác thực sự hiện diện của tham số
     if (!parameters.operation) {
       throw new ToolError("Missing required parameter: operation");
     }
@@ -268,7 +293,7 @@ class FileOperationTool {
       throw new ToolError(`Invalid operation. Must be one of: ${validOperations.join(", ")}`);
     }
     
-    // 4. Xác thực sự tồn tại nội dung cho thao tác ghi
+    // 4. Xác thực sự hiện diện nội dung cho thao tác ghi
     if (parameters.operation === "write" && !parameters.content) {
       throw new ToolError("Content parameter is required for write operation");
     }
@@ -291,7 +316,7 @@ class FileOperationTool {
 
 ### Ví dụ triển khai bảo mật
 
-#### 1. Xác thực và ủy quyền
+#### 1. Xác thực và Phân quyền
 
 ```java
 // Ví dụ Java với xác thực và phân quyền
@@ -337,7 +362,7 @@ public class SecureDataAccessTool implements Tool {
             return ToolResponse.error("Access denied: Insufficient permissions for this operation");
         }
         
-        // 4. Tiếp tục với thao tác được phép
+        // 4. Tiến hành thao tác đã được phép
         try {
             switch (operation) {
                 case "read":
@@ -357,7 +382,7 @@ public class SecureDataAccessTool implements Tool {
 }
 ```
 
-#### 2. Giới hạn tỉ lệ
+#### 2. Giới hạn tốc độ
 
 ```csharp
 // C# rate limiting implementation
@@ -433,14 +458,14 @@ public class RateLimitingMiddleware
 }
 ```
 
-## Thực hành tốt nhất kiểm thử
+## Thực hành tốt nhất trong kiểm thử
 
-### 1. Kiểm thử đơn vị cho công cụ MCP
+### 1. Kiểm thử đơn vị công cụ MCP
 
-Luôn kiểm thử công cụ của bạn trong môi trường tách biệt, giả lập các phụ thuộc bên ngoài:
+Luôn kiểm thử các công cụ của bạn một cách cô lập, giả lập các phụ thuộc bên ngoài:
 
 ```typescript
-// Ví dụ về kiểm thử đơn vị công cụ trong TypeScript
+// Ví dụ về unit test công cụ trong TypeScript
 describe('WeatherForecastTool', () => {
   let tool: WeatherForecastTool;
   let mockWeatherService: jest.Mocked<IWeatherService>;
@@ -456,7 +481,7 @@ describe('WeatherForecastTool', () => {
   });
   
   it('should return weather forecast for a location', async () => {
-    // Sắp xếp
+    // Chuẩn bị
     const mockForecast = {
       location: 'Seattle',
       forecasts: [
@@ -468,23 +493,23 @@ describe('WeatherForecastTool', () => {
     
     mockWeatherService.getForecasts.mockResolvedValue(mockForecast);
     
-    // Thực thi
+    // Thực hiện
     const response = await tool.execute({
       location: 'Seattle',
       days: 3
     });
     
-    // Khẳng định
+    // Kiểm tra
     expect(mockWeatherService.getForecasts).toHaveBeenCalledWith('Seattle', 3);
     expect(response.content[0].text).toContain('Seattle');
     expect(response.content[0].text).toContain('Sunny');
   });
   
   it('should handle errors from the weather service', async () => {
-    // Sắp xếp
+    // Chuẩn bị
     mockWeatherService.getForecasts.mockRejectedValue(new Error('Service unavailable'));
     
-    // Thực thi & Khẳng định
+    // Thực hiện & Kiểm tra
     await expect(tool.execute({
       location: 'Seattle',
       days: 3
@@ -495,19 +520,19 @@ describe('WeatherForecastTool', () => {
 
 ### 2. Kiểm thử tích hợp
 
-Kiểm thử luồng hoàn chỉnh từ yêu cầu khách hàng đến phản hồi máy chủ:
+Kiểm thử quy trình hoàn chỉnh từ yêu cầu client đến phản hồi máy chủ:
 
 ```python
 # Ví dụ kiểm thử tích hợp Python
 @pytest.mark.asyncio
 async def test_mcp_server_integration():
-    # Bắt đầu một máy chủ thử nghiệm
+    # Khởi động máy chủ thử nghiệm
     server = McpServer()
     server.register_tool(WeatherForecastTool(MockWeatherService()))
     await server.start(port=5000)
     
     try:
-        # Tạo một khách hàng
+        # Tạo một client
         client = McpClient("http://localhost:5000")
         
         # Kiểm thử phát hiện công cụ
@@ -532,9 +557,9 @@ async def test_mcp_server_integration():
 
 ## Tối ưu hóa hiệu suất
 
-### 1. Chiến lược lưu cache
+### 1. Chiến lược bộ nhớ đệm
 
-Triển khai lưu cache thích hợp để giảm độ trễ và sử dụng tài nguyên:
+Triển khai bộ nhớ đệm phù hợp để giảm độ trễ và sử dụng tài nguyên:
 
 ```csharp
 // C# example with caching
@@ -605,7 +630,7 @@ public class CachedWeatherTool : ITool
 
 #### 2. Tiêm phụ thuộc và khả năng kiểm thử
 
-Thiết kế công cụ nhận phụ thuộc qua hàm tạo, giúp dễ kiểm thử và cấu hình:
+Thiết kế công cụ nhận các phụ thuộc thông qua tiêm trong hàm khởi tạo, làm chúng có thể kiểm thử và cấu hình được:
 
 ```java
 // Ví dụ Java với tiêm phụ thuộc
@@ -614,7 +639,7 @@ public class CurrencyConversionTool implements Tool {
     private final CacheService cacheService;
     private final Logger logger;
     
-    // Các phụ thuộc được tiêm qua hàm khởi tạo
+    // Phụ thuộc được tiêm thông qua constructor
     public CurrencyConversionTool(
             ExchangeRateService exchangeService,
             CacheService cacheService,
@@ -631,10 +656,10 @@ public class CurrencyConversionTool implements Tool {
 
 #### 3. Công cụ có thể ghép nối
 
-Thiết kế các công cụ có thể ghép nối với nhau để tạo luồng công việc phức tạp hơn:
+Thiết kế các công cụ có thể kết hợp với nhau tạo thành các quy trình làm việc phức tạp hơn:
 
 ```python
-# Ví dụ Python cho thấy các công cụ có thể kết hợp
+# Ví dụ Python minh họa các công cụ có thể kết hợp
 class DataFetchTool(Tool):
     def get_name(self):
         return "dataFetch"
@@ -662,9 +687,9 @@ class DataVisualizationTool(Tool):
 # Các công cụ này có thể được sử dụng độc lập hoặc như một phần của quy trình làm việc
 ```
 
-### Thực hành tốt nhất về thiết kế sơ đồ
+### Thực hành tốt trong thiết kế schema
 
-Sơ đồ là hợp đồng giữa mô hình và công cụ của bạn. Sơ đồ thiết kế tốt sẽ nâng cao khả năng sử dụng công cụ.
+Schema là hợp đồng giữa mô hình và công cụ của bạn. Schema được thiết kế tốt giúp công cụ dễ sử dụng hơn.
 
 #### 1. Mô tả tham số rõ ràng
 
@@ -705,9 +730,9 @@ public object GetSchema()
 }
 ```
 
-#### 2. Ràng buộc xác nhận
+#### 2. Ràng buộc xác thực
 
-Bao gồm các ràng buộc xác nhận để ngăn đầu vào không hợp lệ:
+Bao gồm ràng buộc xác thực để ngăn đầu vào không hợp lệ:
 
 ```java
 Map<String, Object> getSchema() {
@@ -722,7 +747,7 @@ Map<String, Object> getSchema() {
     email.put("format", "email");
     email.put("description", "User email address");
     
-    // Thuộc tính tuổi với ràng buộc số học
+    // Thuộc tính tuổi với các ràng buộc số
     Map<String, Object> age = new HashMap<>();
     age.put("type", "integer");
     age.put("minimum", 13);
@@ -747,9 +772,9 @@ Map<String, Object> getSchema() {
 }
 ```
 
-#### 3. Cấu trúc trả về nhất quán
+#### 3. Cấu trúc phản hồi nhất quán
 
-Duy trì tính nhất quán trong cấu trúc phản hồi để mô hình dễ hiểu kết quả hơn:
+Duy trì tính nhất quán trong cấu trúc phản hồi giúp mô hình dễ dàng diễn giải kết quả hơn:
 
 ```python
 async def execute_async(self, request):
@@ -757,7 +782,7 @@ async def execute_async(self, request):
         # Xử lý yêu cầu
         results = await self._search_database(request.parameters["query"])
         
-        # Luôn trả về cấu trúc nhất quán
+        # Luôn trả về một cấu trúc nhất quán
         return ToolResponse(
             result={
                 "matches": [self._format_item(item) for item in results],
@@ -790,11 +815,11 @@ def _format_item(self, item):
 
 ### Xử lý lỗi
 
-Xử lý lỗi mạnh mẽ là điều thiết yếu để công cụ MCP duy trì độ tin cậy.
+Xử lý lỗi mạnh mẽ rất quan trọng để các công cụ MCP duy trì độ tin cậy.
 
-#### 1. Xử lý lỗi khéo léo
+#### 1. Xử lý lỗi nhẹ nhàng
 
-Xử lý lỗi ở mức phù hợp và cung cấp thông điệp đầy đủ thông tin:
+Xử lý lỗi ở các cấp phù hợp và cung cấp các thông điệp đầy đủ thông tin:
 
 ```csharp
 public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
@@ -838,7 +863,7 @@ public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
 
 #### 2. Phản hồi lỗi có cấu trúc
 
-Trả lại thông tin lỗi có cấu trúc khi có thể:
+Trả về thông tin lỗi có cấu trúc khi có thể:
 
 ```java
 @Override
@@ -870,7 +895,13 @@ public ToolResponse execute(ToolRequest request) {
 
 #### 3. Logic thử lại
 
-Triển khai logic thử lại phù hợp cho các lỗi tạm thời:
+Chỉ sử dụng logic thử lại tổng quát cho các cuộc gọi chỉ đọc hoặc các thao tác có
+hợp đồng xuống dòng đã đảm bảo idempotent. Đối với các thao tác có hiệu ứng, thời gian chờ
+sau khi gửi yêu cầu là không rõ ràng. Hòa giải trạng thái có thẩm quyền và
+tái sử dụng cùng một khóa hoạt động ổn định trước khi thực hiện lại. Xem bài học
+[bài học kèm sidecar độ tin cậy](./reliability-sidecars/README.md).
+
+Vòng lặp thử lại có giới hạn sau phù hợp cho tra cứu chỉ đọc:
 
 ```python
 async def execute_async(self, request):
@@ -880,14 +911,14 @@ async def execute_async(self, request):
     
     while retry_count < max_retries:
         try:
-            # Gọi API bên ngoài
-            return await self._call_api(request.parameters)
+            # Gọi API bên ngoài chỉ đọc
+            return await self._call_read_only_api(request.parameters)
         except TransientError as e:
             retry_count += 1
             if retry_count >= max_retries:
                 raise ToolExecutionException(f"Operation failed after {max_retries} attempts: {str(e)}")
                 
-            # Lùi lại theo cấp số nhân
+            # Phản hồi lùi theo cấp số nhân
             delay = base_delay * (2 ** (retry_count - 1))
             logging.warning(f"Transient error, retrying in {delay}s: {str(e)}")
             await asyncio.sleep(delay)
@@ -898,9 +929,9 @@ async def execute_async(self, request):
 
 ### Tối ưu hóa hiệu suất
 
-#### 1. Lưu cache
+#### 1. Bộ nhớ đệm
 
-Triển khai lưu cache cho các thao tác đắt đỏ:
+Triển khai bộ nhớ đệm cho các thao tác tốn tài nguyên:
 
 ```csharp
 public class CachedDataTool : IMcpTool
@@ -959,23 +990,23 @@ public class AsyncDocumentProcessingTool implements Tool {
     public ToolResponse execute(ToolRequest request) {
         String documentId = request.getParameters().get("documentId").asText();
         
-        // Đối với các thao tác kéo dài, trả về ID xử lý ngay lập tức
+        // Đối với các thao tác chạy lâu, trả về ID xử lý ngay lập tức
         String processId = UUID.randomUUID().toString();
         
         // Bắt đầu xử lý bất đồng bộ
         CompletableFuture.runAsync(() -> {
             try {
-                // Thực hiện thao tác kéo dài
+                // Thực hiện thao tác chạy lâu
                 documentService.processDocument(documentId);
                 
-                // Cập nhật trạng thái (thường sẽ được lưu trong cơ sở dữ liệu)
+                // Cập nhật trạng thái (thông thường sẽ được lưu trong cơ sở dữ liệu)
                 processStatusRepository.updateStatus(processId, "completed");
             } catch (Exception ex) {
                 processStatusRepository.updateStatus(processId, "failed", ex.getMessage());
             }
         }, executorService);
         
-        // Trả về phản hồi ngay lập tức với ID quy trình
+        // Trả về phản hồi ngay lập tức với ID tiến trình
         Map<String, Object> result = new HashMap<>();
         result.put("processId", processId);
         result.put("status", "processing");
@@ -997,29 +1028,29 @@ public class AsyncDocumentProcessingTool implements Tool {
 }
 ```
 
-#### 3. Kiểm soát tài nguyên
+#### 3. Giới hạn tài nguyên
 
-Triển khai kiểm soát tài nguyên để tránh quá tải:
+Triển khai giới hạn tài nguyên để ngăn chặn quá tải:
 
 ```python
 class ThrottledApiTool(Tool):
     def __init__(self):
         self.rate_limiter = TokenBucketRateLimiter(
             tokens_per_second=5,  # Cho phép 5 yêu cầu mỗi giây
-            bucket_size=10        # Cho phép bùng phát lên tới 10 yêu cầu
+            bucket_size=10        # Cho phép bùng phát lên đến 10 yêu cầu
         )
     
     async def execute_async(self, request):
-        # Kiểm tra xem có thể tiếp tục hay cần đợi
+        # Kiểm tra xem chúng ta có thể tiến hành hay cần phải đợi
         delay = self.rate_limiter.get_delay_time()
         
         if delay > 0:
-            if delay > 2.0:  # Nếu thời gian chờ quá dài
+            if delay > 2.0:  # Nếu thời gian chờ quá lâu
                 raise ToolExecutionException(
                     f"Rate limit exceeded. Please try again in {delay:.1f} seconds."
                 )
             else:
-                # Đợi thời gian trễ phù hợp
+                # Đợi trong thời gian trễ phù hợp
                 await asyncio.sleep(delay)
         
         # Tiêu thụ một token và tiếp tục với yêu cầu
@@ -1061,11 +1092,11 @@ class TokenBucketRateLimiter:
         self.last_refill = now
 ```
 
-### Thực hành tốt nhất về bảo mật
+### Thực hành tốt về bảo mật
 
-#### 1. Xác nhận đầu vào
+#### 1. Xác thực đầu vào
 
-Luôn xác nhận kỹ lưỡng các tham số đầu vào:
+Luôn xác thực kỹ lưỡng các tham số đầu vào:
 
 ```csharp
 public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
@@ -1106,9 +1137,9 @@ public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
 }
 ```
 
-#### 2. Kiểm tra ủy quyền
+#### 2. Kiểm tra phân quyền
 
-Triển khai kiểm tra ủy quyền đúng đắn:
+Triển khai kiểm tra phân quyền đúng cách:
 
 ```java
 @Override
@@ -1116,25 +1147,25 @@ public ToolResponse execute(ToolRequest request) {
     // Lấy ngữ cảnh người dùng từ yêu cầu
     UserContext user = request.getContext().getUserContext();
     
-    // Kiểm tra xem người dùng có quyền cần thiết không
+    // Kiểm tra nếu người dùng có quyền cần thiết
     if (!authorizationService.hasPermission(user, "documents:read")) {
         throw new ToolExecutionException("User does not have permission to access documents");
     }
     
-    // Đối với tài nguyên cụ thể, kiểm tra quyền truy cập tài nguyên đó
+    // Đối với tài nguyên cụ thể, kiểm tra quyền truy cập vào tài nguyên đó
     String documentId = request.getParameters().get("documentId").asText();
     if (!documentService.canUserAccess(user.getId(), documentId)) {
         throw new ToolExecutionException("Access denied to the requested document");
     }
     
-    // Tiếp tục thực thi công cụ
+    // Tiếp tục với việc thực thi công cụ
     // ...
 }
 ```
 
 #### 3. Xử lý dữ liệu nhạy cảm
 
-Xử lý dữ liệu nhạy cảm một cách cẩn trọng:
+Xử lý dữ liệu nhạy cảm một cách cẩn thận:
 
 ```python
 class SecureDataTool(Tool):
@@ -1155,41 +1186,41 @@ class SecureDataTool(Tool):
         # Lấy dữ liệu người dùng
         user_data = await self.user_service.get_user_data(user_id)
         
-        # Lọc các trường nhạy cảm trừ khi được yêu cầu rõ ràng VÀ có quyền
+        # Lọc các trường nhạy cảm trừ khi được yêu cầu rõ ràng VÀ được phép
         if not include_sensitive or not self._is_authorized_for_sensitive_data(request):
             user_data = self._redact_sensitive_fields(user_data)
         
         return ToolResponse(result=user_data)
     
     def _is_authorized_for_sensitive_data(self, request):
-        # Kiểm tra mức độ ủy quyền trong ngữ cảnh yêu cầu
+        # Kiểm tra cấp độ ủy quyền trong ngữ cảnh yêu cầu
         auth_level = request.context.get("authorizationLevel")
         return auth_level == "admin"
     
     def _redact_sensitive_fields(self, user_data):
-        # Tạo bản sao để tránh sửa đổi dữ liệu gốc
+        # Tạo bản sao để tránh sửa đổi bản gốc
         redacted = user_data.copy()
         
-        # Xóa thông tin các trường nhạy cảm cụ thể
+        # Che khuất các trường nhạy cảm cụ thể
         sensitive_fields = ["ssn", "creditCardNumber", "password"]
         for field in sensitive_fields:
             if field in redacted:
                 redacted[field] = "REDACTED"
         
-        # Xóa thông tin dữ liệu nhạy cảm lồng nhau
+        # Che khuất dữ liệu nhạy cảm lồng nhau
         if "financialInfo" in redacted:
             redacted["financialInfo"] = {"available": True, "accessRestricted": True}
         
         return redacted
 ```
 
-## Thực hành tốt nhất kiểm thử công cụ MCP
+## Thực hành tốt trong kiểm thử công cụ MCP
 
-Kiểm thử toàn diện đảm bảo các công cụ MCP hoạt động chính xác, xử lý các trường hợp biên, và tích hợp đúng với hệ thống còn lại.
+Kiểm thử toàn diện đảm bảo các công cụ MCP hoạt động đúng, xử lý các trường hợp biên và tích hợp đúng cách với hệ thống còn lại.
 
 ### Kiểm thử đơn vị
 
-#### 1. Kiểm thử từng công cụ trong môi trường tách biệt
+#### 1. Kiểm thử từng công cụ một cách cô lập
 
 Tạo các kiểm thử tập trung vào chức năng của từng công cụ:
 
@@ -1251,9 +1282,9 @@ public async Task WeatherTool_InvalidLocation_ThrowsToolExecutionException()
 }
 ```
 
-#### 2. Kiểm thử xác nhận sơ đồ
+#### 2. Kiểm thử xác thực schema
 
-Kiểm thử để đảm bảo sơ đồ hợp lệ và thực thi đúng các ràng buộc:
+Kiểm thử các schema hợp lệ và thực thi ràng buộc đúng cách:
 
 ```java
 @Test
@@ -1264,14 +1295,14 @@ public void testSchemaValidation() {
     // Lấy sơ đồ
     Object schema = searchTool.getSchema();
     
-    // Chuyển sơ đồ sang JSON để xác thực
+    // Chuyển đổi sơ đồ sang JSON để xác thực
     String schemaJson = objectMapper.writeValueAsString(schema);
     
     // Xác thực sơ đồ là JSONSchema hợp lệ
     JsonSchemaFactory factory = JsonSchemaFactory.byDefault();
     JsonSchema jsonSchema = factory.getJsonSchema(schemaJson);
     
-    // Kiểm tra tham số hợp lệ
+    // Kiểm tra các tham số hợp lệ
     JsonNode validParams = objectMapper.createObjectNode()
         .put("query", "test query")
         .put("limit", 5);
@@ -1286,7 +1317,7 @@ public void testSchemaValidation() {
     ProcessingReport missingReport = jsonSchema.validate(missingRequired);
     assertFalse(missingReport.isSuccess());
     
-    // Kiểm tra kiểu tham số không hợp lệ
+    // Kiểm tra loại tham số không hợp lệ
     JsonNode invalidType = objectMapper.createObjectNode()
         .put("query", "test")
         .put("limit", "not-a-number");
@@ -1298,19 +1329,19 @@ public void testSchemaValidation() {
 
 #### 3. Kiểm thử xử lý lỗi
 
-Tạo các kiểm thử cụ thể cho các điều kiện lỗi:
+Tạo các kiểm thử cụ thể cho điều kiện lỗi:
 
 ```python
 @pytest.mark.asyncio
 async def test_api_tool_handles_timeout():
     # Sắp xếp
-    tool = ApiTool(timeout=0.1)  # Thời gian chờ rất ngắn
+    tool = ApiTool(timeout=0.1)  # Timeout rất ngắn
     
-    # Giả lập một yêu cầu sẽ hết thời gian chờ
+    # Giả lập một yêu cầu sẽ bị timeout
     with aioresponses() as mocked:
         mocked.get(
             "https://api.example.com/data",
-            callback=lambda *args, **kwargs: asyncio.sleep(0.5)  # Dài hơn thời gian chờ
+            callback=lambda *args, **kwargs: asyncio.sleep(0.5)  # Dài hơn thời gian timeout
         )
         
         request = ToolRequest(
@@ -1318,7 +1349,7 @@ async def test_api_tool_handles_timeout():
             parameters={"url": "https://api.example.com/data"}
         )
         
-        # Thực hiện & Xác nhận
+        # Thực thi & Xác nhận
         with pytest.raises(ToolExecutionException) as exc_info:
             await tool.execute_async(request)
         
@@ -1330,7 +1361,7 @@ async def test_api_tool_handles_rate_limiting():
     # Sắp xếp
     tool = ApiTool()
     
-    # Giả lập một phản hồi bị giới hạn tỉ lệ
+    # Giả lập một phản hồi bị giới hạn tần suất
     with aioresponses() as mocked:
         mocked.get(
             "https://api.example.com/data",
@@ -1344,11 +1375,11 @@ async def test_api_tool_handles_rate_limiting():
             parameters={"url": "https://api.example.com/data"}
         )
         
-        # Thực hiện & Xác nhận
+        # Thực thi & Xác nhận
         with pytest.raises(ToolExecutionException) as exc_info:
             await tool.execute_async(request)
         
-        # Xác minh ngoại lệ chứa thông tin giới hạn tỉ lệ
+        # Xác minh ngoại lệ chứa thông tin giới hạn tần suất
         error_msg = str(exc_info.value).lower()
         assert "rate limit" in error_msg
         assert "try again" in error_msg
@@ -1358,7 +1389,7 @@ async def test_api_tool_handles_rate_limiting():
 
 #### 1. Kiểm thử chuỗi công cụ
 
-Kiểm thử các công cụ hoạt động cùng nhau trong những kết hợp dự kiến:
+Kiểm thử các công cụ hoạt động cùng nhau như dự kiến:
 
 ```csharp
 [Fact]
@@ -1399,7 +1430,7 @@ public async Task DataProcessingWorkflow_CompletesSuccessfully()
 
 #### 2. Kiểm thử máy chủ MCP
 
-Kiểm thử máy chủ MCP với đăng ký và thực thi đầy đủ các công cụ:
+Kiểm thử máy chủ MCP với đăng ký và thực thi đầy đủ công cụ:
 
 ```java
 @SpringBootTest
@@ -1467,7 +1498,7 @@ public class McpServerIntegrationTest {
 
 #### 3. Kiểm thử đầu-cuối
 
-Kiểm thử các luồng công việc hoàn chỉnh từ lời nhắc mô hình đến thực thi công cụ:
+Kiểm thử quy trình hoàn chỉnh từ lời nhắc mô hình đến thực thi công cụ:
 
 ```python
 @pytest.mark.asyncio
@@ -1475,7 +1506,7 @@ async def test_model_interaction_with_tool():
     # Sắp xếp - Thiết lập client MCP và mô hình giả lập
     mcp_client = McpClient(server_url="http://localhost:5000")
     
-    # Giả lập phản hồi mô hình
+    # Giả lập phản hồi của mô hình
     mock_model = MockLanguageModel([
         MockResponse(
             "What's the weather in Seattle?",
@@ -1513,7 +1544,7 @@ async def test_model_interaction_with_tool():
             allowed_tools=["weatherForecast"]
         )
         
-        # Khẳng định
+        # Xác nhận
         assert "Seattle" in response.generated_text
         assert "65" in response.generated_text
         assert "Sunny" in response.generated_text
@@ -1526,7 +1557,7 @@ async def test_model_interaction_with_tool():
 
 #### 1. Kiểm thử tải
 
-Kiểm thử khả năng xử lý bao nhiêu yêu cầu đồng thời của máy chủ MCP:
+Kiểm thử máy chủ MCP có thể xử lý bao nhiêu yêu cầu đồng thời:
 
 ```csharp
 [Fact]
@@ -1559,7 +1590,7 @@ public async Task McpServer_HandlesHighConcurrency()
 }
 ```
 
-#### 2. Kiểm thử sức bền
+#### 2. Kiểm thử chịu tải
 
 Kiểm thử hệ thống dưới tải cực đoan:
 
@@ -1570,13 +1601,13 @@ public void testServerUnderStress() {
     int rampUpTimeSeconds = 60;
     int testDurationSeconds = 300;
     
-    // Thiết lập JMeter để kiểm tra chịu tải
+    // Thiết lập JMeter để kiểm thử áp lực
     StandardJMeterEngine jmeter = new StandardJMeterEngine();
     
-    // Cấu hình kế hoạch kiểm tra JMeter
+    // Cấu hình kế hoạch kiểm thử JMeter
     HashTree testPlanTree = new HashTree();
     
-    // Tạo kế hoạch kiểm tra, nhóm luồng, bộ lấy mẫu, v.v.
+    // Tạo kế hoạch kiểm thử, nhóm luồng, bộ lấy mẫu, v.v.
     TestPlan testPlan = new TestPlan("MCP Server Stress Test");
     testPlanTree.add(testPlan);
     
@@ -1588,7 +1619,7 @@ public void testServerUnderStress() {
     
     testPlanTree.add(threadGroup);
     
-    // Thêm bộ lấy mẫu HTTP cho việc thực thi công cụ
+    // Thêm bộ lấy mẫu HTTP để thực thi công cụ
     HTTPSampler toolExecutionSampler = new HTTPSampler();
     toolExecutionSampler.setDomain("localhost");
     toolExecutionSampler.setPort(5000);
@@ -1599,11 +1630,11 @@ public void testServerUnderStress() {
     
     threadGroup.add(toolExecutionSampler);
     
-    // Thêm các trình nghe
+    // Thêm bộ lắng nghe
     SummaryReport summaryReport = new SummaryReport();
     threadGroup.add(summaryReport);
     
-    // Chạy kiểm tra
+    // Chạy kiểm thử
     jmeter.configure(testPlanTree);
     jmeter.run();
     
@@ -1614,14 +1645,14 @@ public void testServerUnderStress() {
 }
 ```
 
-#### 3. Giám sát và phân tích hiệu suất
+#### 3. Giám sát và phân tích
 
-Thiết lập giám sát để phân tích hiệu suất dài hạn:
+Thiết lập giám sát để phân tích hiệu suất lâu dài:
 
 ```python
 # Cấu hình giám sát cho máy chủ MCP
 def configure_monitoring(server):
-    # Thiết lập các số liệu Prometheus
+    # Thiết lập các chỉ số Prometheus
     prometheus_metrics = {
         "request_count": Counter("mcp_requests_total", "Total MCP requests"),
         "request_latency": Histogram(
@@ -1647,10 +1678,10 @@ def configure_monitoring(server):
         )
     }
     
-    # Thêm middleware để đo thời gian và ghi lại các số liệu
+    # Thêm middleware để đo thời gian và ghi lại các chỉ số
     server.add_middleware(PrometheusMiddleware(prometheus_metrics))
     
-    # Mở điểm cuối số liệu
+    # Mở endpoint cho các chỉ số
     @server.router.get("/metrics")
     async def metrics():
         return generate_latest()
@@ -1658,13 +1689,13 @@ def configure_monitoring(server):
     return server
 ```
 
-## Các mẫu thiết kế quy trình làm việc MCP
+## Các mẫu thiết kế quy trình MCP
 
-Các quy trình làm việc MCP được thiết kế tốt cải thiện hiệu quả, độ tin cậy và tính bảo trì. Dưới đây là các mẫu chính cần theo:
+Các quy trình MCP được thiết kế tốt cải thiện hiệu quả, độ tin cậy và khả năng bảo trì. Dưới đây là các mẫu chính cần theo:
 
 ### 1. Mẫu chuỗi công cụ
 
-Kết nối nhiều công cụ theo chuỗi, trong đó đầu ra của công cụ trước là đầu vào cho công cụ tiếp theo:
+Kết nối nhiều công cụ theo chuỗi, đầu ra của công cụ này trở thành đầu vào cho công cụ kế tiếp:
 
 ```python
 # Triển khai Chuỗi Công cụ Python
@@ -1705,7 +1736,7 @@ result = await data_processing_chain.execute(
 
 ### 2. Mẫu bộ điều phối
 
-Sử dụng một công cụ trung tâm để phân phối đến các công cụ chuyên biệt dựa trên đầu vào:
+Sử dụng một công cụ trung tâm phân phối tới các công cụ chuyên biệt dựa trên đầu vào:
 
 ```csharp
 public class ContentDispatcherTool : IMcpTool
@@ -1787,7 +1818,7 @@ public class ContentDispatcherTool : IMcpTool
 
 ### 3. Mẫu xử lý song song
 
-Thực thi nhiều công cụ đồng thời để tăng hiệu quả:
+Thực thi đồng thời nhiều công cụ để tăng hiệu quả:
 
 ```java
 public class ParallelDataProcessingWorkflow {
@@ -1798,7 +1829,7 @@ public class ParallelDataProcessingWorkflow {
     }
     
     public WorkflowResult execute(String datasetId) {
-        // Bước 1: Lấy siêu dữ liệu bộ dữ liệu (đồng bộ)
+        // Bước 1: Lấy metadata bộ dữ liệu (đồng bộ)
         ToolResponse metadataResponse = mcpClient.executeTool("datasetMetadata", 
             Map.of("datasetId", datasetId));
         
@@ -1824,12 +1855,12 @@ public class ParallelDataProcessingWorkflow {
             ))
         );
         
-        // Đợi tất cả các tác vụ song song hoàn thành
+        // Chờ tất cả các tác vụ song song hoàn thành
         CompletableFuture<Void> allAnalyses = CompletableFuture.allOf(
             statisticalAnalysis, correlationAnalysis, outlierDetection
         );
         
-        allAnalyses.join();  // Đợi hoàn tất
+        allAnalyses.join();  // Chờ hoàn tất
         
         // Bước 3: Kết hợp kết quả
         Map<String, Object> combinedResults = new HashMap<>();
@@ -1842,7 +1873,7 @@ public class ParallelDataProcessingWorkflow {
         ToolResponse summaryResponse = mcpClient.executeTool("reportGenerator", 
             Map.of("analysisResults", combinedResults));
         
-        // Trả về kết quả quy trình làm việc đầy đủ
+        // Trả về kết quả toàn bộ quy trình công việc
         WorkflowResult result = new WorkflowResult();
         result.setDatasetId(datasetId);
         result.setAnalysisResults(combinedResults);
@@ -1855,7 +1886,7 @@ public class ParallelDataProcessingWorkflow {
 
 ### 4. Mẫu phục hồi lỗi
 
-Triển khai các cơ chế thay thế khéo léo khi công cụ thất bại:
+Triển khai các giải pháp dự phòng nhẹ nhàng cho các lỗi công cụ:
 
 ```python
 class ResilientWorkflow:
@@ -1897,21 +1928,21 @@ class ResilientWorkflow:
     def _adapt_parameters(self, params, from_tool, to_tool):
         """Adapt parameters between different tools if needed"""
         # Việc triển khai này sẽ phụ thuộc vào các công cụ cụ thể
-        # Trong ví dụ này, chúng ta sẽ chỉ trả lại các tham số gốc
+        # Trong ví dụ này, chúng ta sẽ chỉ trả về các tham số ban đầu
         return params
 
 # Ví dụ sử dụng
 async def get_weather(workflow, location):
     return await workflow.execute_with_fallback(
-        "premiumWeatherService",  # API thời tiết chính (trả phí)
+        "premiumWeatherService",  # API thời tiết chính (có phí)
         "basicWeatherService",    # API thời tiết dự phòng (miễn phí)
         {"location": location}
     )
 ```
 
-### 5. Mẫu tổng hợp quy trình làm việc
+### 5. Mẫu phối hợp quy trình làm việc
 
-Xây dựng các quy trình phức tạp bằng cách tổng hợp các quy trình đơn giản hơn:
+Xây dựng các quy trình phức tạp bằng cách phối hợp các quy trình đơn giản hơn:
 
 ```csharp
 public class CompositeWorkflow : IWorkflow
@@ -1958,35 +1989,35 @@ var result = await documentWorkflow.ExecuteAsync(new WorkflowContext {
 });
 ```
 
-# Kiểm thử máy chủ MCP: Thực hành tốt nhất và lưu ý hàng đầu
+# Kiểm thử máy chủ MCP: Thực hành tốt nhất và mẹo hàng đầu
 
 ## Tổng quan
 
-Kiểm thử là một khía cạnh quan trọng trong phát triển máy chủ MCP đáng tin cậy và chất lượng cao. Hướng dẫn này cung cấp các thực hành tốt nhất toàn diện và các lưu ý để kiểm thử máy chủ MCP của bạn suốt vòng đời phát triển, từ kiểm thử đơn vị đến kiểm thử tích hợp và xác thực đầu-cuối.
+Kiểm thử là một khía cạnh quan trọng trong việc phát triển các máy chủ MCP đáng tin cậy, chất lượng cao. Hướng dẫn này cung cấp các thực hành tốt nhất toàn diện và mẹo để kiểm thử các máy chủ MCP của bạn trong suốt vòng đời phát triển, từ kiểm thử đơn vị đến kiểm thử tích hợp và xác nhận đầu-cuối.
 
-## Tại sao kiểm thử quan trọng đối với máy chủ MCP
+## Tại sao kiểm thử quan trọng đối với các máy chủ MCP
 
-Máy chủ MCP đóng vai trò trung gian quan trọng giữa các mô hình AI và ứng dụng khách. Kiểm thử kỹ lưỡng đảm bảo:
+Máy chủ MCP đóng vai trò quan trọng là tầng trung gian giữa các mô hình AI và ứng dụng client. Kiểm thử kỹ lưỡng đảm bảo:
 
 - Độ tin cậy trong môi trường sản xuất
 - Xử lý chính xác các yêu cầu và phản hồi
-- Triển khai đúng theo đặc tả MCP
-- Khả năng chịu lỗi và xử lý các trường hợp biên
-- Hiệu suất ổn định dưới các tải khác nhau
+- Triển khai đúng các đặc tả MCP
+- Khả năng chịu lỗi và các trường hợp biên
+- Hiệu suất ổn định dưới các mức tải khác nhau
 
 ## Kiểm thử đơn vị cho máy chủ MCP
 
-### Kiểm thử đơn vị (cơ sở)
+### Kiểm thử đơn vị (Nền tảng)
 
-Kiểm thử đơn vị xác minh các thành phần riêng lẻ của máy chủ MCP trong môi trường tách biệt.
+Kiểm thử đơn vị xác minh các thành phần riêng lẻ của máy chủ MCP của bạn một cách cô lập.
 
-#### Cần kiểm thử gì
+#### Những gì cần kiểm thử
 
-1. **Bộ xử lý tài nguyên**: Kiểm thử logic của từng bộ xử lý tài nguyên độc lập
+1. **Bộ xử lý tài nguyên**: Kiểm thử logic của từng bộ xử lý tài nguyên một cách độc lập
 2. **Triển khai công cụ**: Xác minh hành vi công cụ với các đầu vào khác nhau
-3. **Mẫu lời nhắc**: Đảm bảo mẫu lời nhắc hiển thị đúng
-4. **Xác nhận sơ đồ**: Kiểm thử logic xác nhận tham số
-5. **Xử lý lỗi**: Xác minh phản hồi lỗi với các đầu vào không hợp lệ
+3. **Mẫu lời nhắc**: Đảm bảo các mẫu lời nhắc hiển thị đúng
+4. **Xác thực schema**: Kiểm thử logic xác thực tham số
+5. **Xử lý lỗi**: Kiểm thử phản hồi lỗi đối với các đầu vào không hợp lệ
 
 #### Thực hành tốt nhất cho kiểm thử đơn vị
 
@@ -2014,7 +2045,7 @@ public async Task CalculatorTool_Add_ReturnsCorrectSum()
 ```
 
 ```python
-# Ví dụ kiểm thử đơn vị cho một công cụ tính toán trong Python
+# Ví dụ về bài kiểm tra đơn vị cho công cụ máy tính trong Python
 def test_calculator_tool_add():
     # Sắp xếp
     calculator = CalculatorTool()
@@ -2028,21 +2059,21 @@ def test_calculator_tool_add():
     response = calculator.execute(parameters)
     result = json.loads(response.content[0].text)
     
-    # Xác nhận
+    # Khẳng định
     assert result["value"] == 12
 ```
 
-### Kiểm thử tích hợp (lớp giữa)
+### Kiểm thử tích hợp (Tầng giữa)
 
-Kiểm thử tích hợp xác minh sự tương tác giữa các thành phần của máy chủ MCP.
+Kiểm thử tích hợp xác minh sự tương tác giữa các thành phần của máy chủ MCP của bạn.
 
-#### Cần kiểm thử gì
+#### Những gì cần kiểm thử
 
 1. **Khởi tạo máy chủ**: Kiểm thử khởi động máy chủ với các cấu hình khác nhau
-2. **Đăng ký tuyến**: Xác minh tất cả các điểm cuối được đăng ký chính xác
-3. **Xử lý yêu cầu**: Kiểm thử vòng đời yêu cầu-phản hồi đầy đủ
-4. **Truyền lỗi**: Đảm bảo lỗi được xử lý đúng qua các thành phần
-5. **Xác thực & Ủy quyền**: Kiểm thử các cơ chế bảo mật
+2. **Đăng ký tuyến đường**: Xác minh tất cả các điểm cuối được đăng ký chính xác
+3. **Xử lý yêu cầu**: Kiểm thử chu trình yêu cầu-phản hồi đầy đủ
+4. **Truyền lỗi**: Đảm bảo lỗi được xử lý đúng cách qua các thành phần
+5. **Xác thực & Phân quyền**: Kiểm thử các cơ chế bảo mật
 
 #### Thực hành tốt nhất cho kiểm thử tích hợp
 
@@ -2080,27 +2111,28 @@ public async Task Server_ProcessToolRequest_ReturnsValidResponse()
 }
 ```
 
-### Kiểm thử đầu-cuối (lớp trên)
+### Kiểm thử đầu-cuối (Tầng trên cùng)
 
-Kiểm thử đầu-cuối xác minh hành vi hệ thống hoàn chỉnh từ khách hàng đến máy chủ.
+Kiểm thử đầu-cuối xác minh hành vi toàn bộ hệ thống từ client đến máy chủ.
 
-#### Cần kiểm thử gì
+#### Những gì cần kiểm thử
 
-1. **Giao tiếp khách hàng - máy chủ**: Kiểm thử vòng đời yêu cầu-phản hồi đầy đủ
-2. **SDK khách hàng thực**: Kiểm thử với các triển khai khách hàng thực tế
+1. **Giao tiếp client-máy chủ**: Kiểm thử chu trình yêu cầu-phản hồi hoàn chỉnh
+2. **SDK client thực tế**: Kiểm thử với các triển khai client thật sự
 3. **Hiệu suất dưới tải**: Xác minh hành vi với nhiều yêu cầu đồng thời
-4. **Phục hồi lỗi**: Kiểm thử khả năng phục hồi hệ thống sau lỗi
-5. **Thao tác chạy dài**: Xác minh xử lý các luồng và thao tác dài
+4. **Phục hồi lỗi**: Kiểm thử phục hồi hệ thống từ các sự cố
 
-#### Thực hành tốt nhất cho kiểm thử E2E
+5. **Các hoạt động chạy dài**: Xác minh việc xử lý các hoạt động truyền và hoạt động dài hạn
+
+#### Các Thực Tiễn Tốt Nhất cho Kiểm Thử E2E
 
 ```typescript
-// Ví dụ kiểm thử E2E với một client trong TypeScript
+// Ví dụ kiểm thử E2E với một client bằng TypeScript
 describe('MCP Server E2E Tests', () => {
   let client: McpClient;
   
   beforeAll(async () => {
-    // Khởi động máy chủ trong môi trường kiểm thử
+    // Khởi động server trong môi trường kiểm thử
     await startTestServer();
     client = new McpClient('http://localhost:5000');
   });
@@ -2117,25 +2149,25 @@ describe('MCP Server E2E Tests', () => {
       b: 4
     });
     
-    // Xác nhận kết quả
+    // Kiểm tra kết quả
     expect(response.statusCode).toBe(200);
     expect(response.content[0].text).toContain('5');
   });
 });
 ```
 
-## Chiến lược giả lập cho kiểm thử MCP
+## Chiến Lược Giả Lập cho Kiểm Thử MCP
 
-Giả lập là cần thiết để tách biệt các thành phần khi kiểm thử.
+Giả lập rất cần thiết để cô lập các thành phần trong quá trình kiểm thử.
 
-### Các thành phần cần giả lập
+### Các Thành Phần Cần Giả Lập
 
-1. **Mô hình AI bên ngoài**: Giả lập phản hồi mô hình để kiểm thử có thể dự đoán
+1. **Mô hình AI bên ngoài**: Giả lập phản hồi mô hình để kiểm thử có thể dự đoán được
 2. **Dịch vụ bên ngoài**: Giả lập các phụ thuộc API (cơ sở dữ liệu, dịch vụ bên thứ ba)
-3. **Dịch vụ xác thực**: Giả lập nhà cung cấp danh tính
-4. **Nhà cung cấp tài nguyên**: Giả lập các bộ xử lý tài nguyên đắt đỏ
+3. **Dịch vụ xác thực**: Giả lập nhà cung cấp nhận dạng
+4. **Nhà cung cấp tài nguyên**: Giả lập các trình xử lý tài nguyên tốn kém
 
-### Ví dụ: Giả lập phản hồi mô hình AI
+### Ví dụ: Giả Lập Phản Hồi Mô Hình AI
 
 ```csharp
 // C# example with Moq
@@ -2162,31 +2194,31 @@ def test_with_mock_model(mock_model):
         "finish_reason": "completed"
     }
     
-    # Sử dụng mock trong kiểm thử
+    # Sử dụng mock trong bài kiểm tra
     server = McpServer(model_client=mock_model)
-    # Tiếp tục với kiểm thử
+    # Tiếp tục với bài kiểm tra
 ```
 
-## Kiểm thử hiệu suất
+## Kiểm Thử Hiệu Suất
 
-Kiểm thử hiệu suất rất quan trọng đối với máy chủ MCP trong môi trường sản xuất.
+Kiểm thử hiệu suất rất quan trọng cho các máy chủ MCP trong môi trường sản xuất.
 
-### Các chỉ số cần đo
+### Những Điều Cần Đo Lường
 
-1. **Độ trễ**: Thời gian phản hồi yêu cầu
-2. **Thông lượng**: Số yêu cầu được xử lý mỗi giây
-3. **Sử dụng tài nguyên**: Sử dụng CPU, bộ nhớ, mạng
+1. **Độ trễ**: Thời gian phản hồi cho các yêu cầu
+2. **Thông lượng**: Số lượng yêu cầu xử lý được mỗi giây
+3. **Sử dụng tài nguyên**: CPU, bộ nhớ, sử dụng mạng
 4. **Xử lý đồng thời**: Hành vi dưới các yêu cầu song song
-5. **Đặc tính mở rộng**: Hiệu suất khi tải tăng
+5. **Đặc điểm mở rộng**: Hiệu suất khi tải tăng lên
 
-### Công cụ kiểm thử hiệu suất
+### Công Cụ Kiểm Thử Hiệu Suất
 
-- **k6**: Công cụ kiểm thử tải mã nguồn mở
+- **k6**: Công cụ kiểm tra tải mã nguồn mở
 - **JMeter**: Kiểm thử hiệu suất toàn diện
-- **Locust**: Kiểm thử tải với Python
-- **Azure Load Testing**: Kiểm thử hiệu suất trên mây
+- **Locust**: Kiểm thử tải dựa trên Python
+- **Azure Load Testing**: Kiểm thử hiệu suất dựa trên đám mây
 
-### Ví dụ: Kiểm thử tải cơ bản với k6
+### Ví dụ: Kiểm Tra Tải Cơ Bản với k6
 
 ```javascript
 // k6 script để kiểm thử tải máy chủ MCP
@@ -2226,18 +2258,18 @@ export default function () {
 }
 ```
 
-## Tự động hóa kiểm thử cho máy chủ MCP
+## Tự Động Hóa Kiểm Thử cho Máy Chủ MCP
 
-Tự động hóa kiểm thử giúp đảm bảo chất lượng nhất quán và chu trình phản hồi nhanh hơn.
+Tự động hóa kiểm thử giúp đảm bảo chất lượng đồng nhất và vòng phản hồi nhanh hơn.
 
-### Tích hợp CI/CD
+### Tích Hợp CI/CD
 
-1. **Chạy kiểm thử đơn vị khi có Pull Request**: Đảm bảo các thay đổi mã không phá vỡ chức năng hiện có
-2. **Kiểm tra tích hợp trong môi trường Staging**: Chạy các bài kiểm tra tích hợp trong các môi trường tiền sản xuất  
-3. **Mốc hiệu suất**: Duy trì các chuẩn mực hiệu suất để phát hiện lỗi thoái lui  
-4. **Quét bảo mật**: Tự động hóa việc kiểm tra bảo mật như một phần của quy trình  
+1. **Chạy Kiểm Thử Đơn Vị trên Pull Requests**: Đảm bảo các thay đổi mã không phá vỡ chức năng hiện có
+2. **Kiểm Thử Tích Hợp trên môi trường Staging**: Chạy kiểm thử tích hợp ở môi trường tiền sản xuất
+3. **Cơ Sở Hiệu Suất**: Duy trì các chuẩn mực hiệu suất để phát hiện suy giảm
+4. **Quét An Ninh**: Tự động hóa kiểm thử an ninh như một phần của pipeline
 
-### Ví dụ về Pipeline CI (GitHub Actions)
+### Ví dụ Pipeline CI (GitHub Actions)
 
 ```yaml
 name: MCP Server Tests
@@ -2275,20 +2307,20 @@ jobs:
     - name: Performance Tests
       run: dotnet run --project tests/PerformanceTests/PerformanceTests.csproj
 ```
-  
-## Kiểm tra Tuân thủ với Đặc tả MCP
 
-Xác minh rằng máy chủ của bạn thực hiện đúng đặc tả MCP.
+## Kiểm Thử Tuân Thủ Đặc Tả MCP
 
-### Các Lĩnh vực Tuân thủ Chính
+Xác minh máy chủ của bạn thực thi đúng đặc tả MCP.
 
-1. **Các đầu cuối API**: Kiểm tra các đầu cuối cần thiết (/resources, /tools, v.v.)  
-2. **Định dạng Yêu cầu/Phản hồi**: Xác nhận tuân thủ theo sơ đồ  
-3. **Mã lỗi**: Xác minh mã trạng thái chính xác cho các kịch bản khác nhau  
-4. **Loại Nội dung**: Kiểm tra xử lý các loại nội dung khác nhau  
-5. **Quy trình Xác thực**: Xác minh các cơ chế xác thực tuân theo đặc tả  
+### Các Lĩnh Vực Tuân Thủ Chính
 
-### Bộ Kiểm tra Tuân thủ
+1. **Các Endpoint API**: Kiểm thử các endpoint bắt buộc (/resources, /tools, v.v.)
+2. **Định dạng Yêu cầu/Phản hồi**: Xác nhận tuân thủ schema
+3. **Mã lỗi**: Xác minh mã trạng thái đúng cho các kịch bản khác nhau
+4. **Loại Nội dung**: Kiểm thử xử lý các loại nội dung khác nhau
+5. **Quy trình Xác thực**: Xác minh các cơ chế xác thực phù hợp theo đặc tả
+
+### Bộ Kiểm Thử Tuân Thủ
 
 ```csharp
 [Fact]
@@ -2314,65 +2346,67 @@ public async Task Server_ResourceEndpoint_ReturnsCorrectSchema()
     });
 }
 ```
-  
-## 10 Mẹo Hàng đầu cho Việc Kiểm tra Máy chủ MCP Hiệu quả  
 
-1. **Kiểm tra Định nghĩa Công cụ Riêng biệt**: Xác minh định nghĩa sơ đồ độc lập với logic công cụ  
-2. **Sử dụng Kiểm tra Tham số hóa**: Kiểm tra công cụ với đa dạng đầu vào, bao gồm các trường hợp giới hạn  
-3. **Kiểm tra Phản hồi Lỗi**: Xác minh xử lý lỗi đúng đắn cho mọi điều kiện lỗi có thể  
-4. **Kiểm tra Logic Ủy quyền**: Đảm bảo kiểm soát truy cập hợp lý cho các vai trò người dùng khác nhau  
-5. **Theo dõi Mức độ Bao phủ Kiểm tra**: Nhắm tới bao phủ cao cho mã đường dẫn quan trọng  
-6. **Kiểm tra Phản hồi Truyền dữ liệu**: Xác minh xử lý đúng nội dung phát trực tiếp  
-7. **Mô phỏng Vấn đề Mạng**: Kiểm tra hành vi dưới điều kiện mạng kém  
-8. **Kiểm tra Giới hạn Tài nguyên**: Xác minh hành vi khi đạt hạn ngạch hoặc giới hạn tỷ lệ  
-9. **Tự động hóa Kiểm tra Thoái lui**: Xây dựng bộ bài kiểm tra chạy khi có mọi thay đổi mã  
-10. **Ghi lại Các Ca kiểm tra**: Duy trì tài liệu rõ ràng về các kịch bản kiểm tra  
+## 10 Mẹo Hàng Đầu cho Kiểm Thử Máy Chủ MCP Hiệu Quả
 
-## Những Cạm bẫy Thường Gặp khi Kiểm tra
+1. **Kiểm thử Định nghĩa Công cụ Riêng biệt**: Xác minh các định nghĩa schema độc lập với logic công cụ
+2. **Sử dụng Kiểm thử Tham số hóa**: Thử các công cụ với nhiều đầu vào đa dạng, bao gồm các trường hợp biên
+3. **Kiểm tra Phản hồi Lỗi**: Xác minh xử lý lỗi đúng đắn cho mọi điều kiện lỗi có thể xảy ra
+4. **Kiểm thử Logic Ủy quyền**: Đảm bảo kiểm soát truy cập phù hợp cho các vai trò người dùng khác nhau
+5. **Theo dõi Phủ sóng Kiểm thử**: Hướng tới phủ sóng cao của mã đường dẫn quan trọng
+6. **Kiểm thử Phản hồi Luồng**: Xác minh xử lý đúng nội dung luồng
+7. **Mô phỏng Sự cố Mạng**: Kiểm thử hành vi trong điều kiện mạng kém
+8. **Kiểm thử Giới hạn Tài nguyên**: Xác minh hành vi khi đạt hạn mức hoặc giới hạn tốc độ
+9. **Tự động hóa Kiểm thử Hồi quy**: Xây dựng bộ kiểm thử chạy mỗi khi có thay đổi mã
+10. **Tài liệu Hóa Các Tình Huống Kiểm Thử**: Duy trì tài liệu rõ ràng về các kịch bản kiểm thử
 
-- **Phụ thuộc quá mức vào kiểm tra đường đi thuận lợi**: Đảm bảo kiểm tra kỹ các trường hợp lỗi  
-- **Bỏ qua kiểm tra hiệu suất**: Xác định nút thắt cổ chai trước khi ảnh hưởng đến sản xuất  
-- **Chỉ kiểm tra riêng lẻ**: Kết hợp kiểm tra đơn vị, tích hợp và đầu-cuối  
-- **Bao phủ API không đầy đủ**: Đảm bảo tất cả các đầu cuối và tính năng được kiểm tra  
-- **Môi trường kiểm tra không nhất quán**: Sử dụng container để đảm bảo môi trường kiểm tra nhất quán  
+## Những Cạm Bẫy Thường Gặp trong Kiểm Thử
 
-## Kết luận
+- **Phụ thuộc quá mức vào kiểm thử đường dẫn thuận lợi**: Đảm bảo kiểm thử kỹ các trường hợp lỗi
+- **Bỏ qua kiểm thử hiệu suất**: Phát hiện nút thắt trước khi ảnh hưởng đến sản xuất
+- **Chỉ kiểm thử cô lập**: Kết hợp kiểm thử đơn vị, tích hợp và E2E
+- **Phủ sóng API không đầy đủ**: Đảm bảo mọi endpoint và tính năng đều được kiểm thử
+- **Môi trường kiểm thử không nhất quán**: Sử dụng container để đảm bảo môi trường kiểm thử nhất quán
 
-Một chiến lược kiểm tra toàn diện là thiết yếu để phát triển máy chủ MCP đáng tin cậy và chất lượng cao. Bằng cách thực thi các thực tiễn tốt nhất và mẹo được trình bày trong hướng dẫn này, bạn có thể đảm bảo các triển khai MCP của mình đạt tiêu chuẩn cao nhất về chất lượng, độ tin cậy và hiệu suất.  
+## Kết Luận
 
-## Những Điểm Chính Rút ra
+Chiến lược kiểm thử toàn diện là cần thiết để phát triển các máy chủ MCP đáng tin cậy, chất lượng cao. Bằng cách triển khai các thực tiễn tốt nhất và mẹo trong hướng dẫn này, bạn có thể đảm bảo các triển khai MCP đạt chuẩn mực cao nhất về chất lượng, độ tin cậy và hiệu suất.
 
-1. **Thiết kế Công cụ**: Tuân theo nguyên tắc trách nhiệm đơn, sử dụng tiêm phụ thuộc, và thiết kế để có thể hợp thành  
-2. **Thiết kế Sơ đồ**: Tạo các sơ đồ rõ ràng, được tài liệu hóa tốt với các ràng buộc xác thực hợp lý  
-3. **Xử lý Lỗi**: Thực hiện xử lý lỗi mềm mại, phản hồi lỗi có cấu trúc, và logic thử lại  
-4. **Hiệu suất**: Sử dụng bộ nhớ đệm, xử lý bất đồng bộ, và hạn chế tài nguyên  
-5. **Bảo mật**: Áp dụng xác thực đầu vào kỹ lưỡng, kiểm tra ủy quyền, và xử lý dữ liệu nhạy cảm  
-6. **Kiểm tra**: Tạo bộ kiểm tra đơn vị, tích hợp và đầu-cuối toàn diện  
-7. **Mẫu Quy trình làm việc**: Áp dụng các mẫu đã được thiết lập như chuỗi, bộ phân phối, và xử lý song song  
+
+## Những Điểm Chính Rút Ra
+
+1. **Thiết Kế Công Cụ**: Tuân theo nguyên tắc trách nhiệm đơn, sử dụng tiêm phụ thuộc, và thiết kế cho tính tổng hợp
+2. **Thiết Kế Schema**: Tạo các schema rõ ràng, có tài liệu đầy đủ với các ràng buộc xác thực phù hợp
+3. **Xử Lý Lỗi**: Thực hiện xử lý lỗi nhẹ nhàng, phản hồi lỗi có cấu trúc và logic thử lại có nhận thức kết quả
+
+4. **Hiệu Suất**: Sử dụng bộ đệm, xử lý bất đồng bộ và hạn chế tài nguyên
+5. **Bảo Mật**: Áp dụng xác thực đầu vào kỹ lưỡng, kiểm tra ủy quyền, và xử lý dữ liệu nhạy cảm
+6. **Kiểm Thử**: Tạo các kiểm thử đơn vị, tích hợp và đầu-cuối toàn diện
+7. **Mẫu Quy Trình Làm Việc**: Áp dụng các mẫu đã được thiết lập như chuỗi, bộ điều phối và xử lý song song
 
 ## Bài Tập
 
-Thiết kế một công cụ MCP và quy trình làm việc cho hệ thống xử lý tài liệu với các yêu cầu sau:  
+Thiết kế một công cụ MCP và quy trình làm việc cho hệ thống xử lý tài liệu mà:
 
-1. Chấp nhận tài liệu ở nhiều định dạng (PDF, DOCX, TXT)  
-2. Trích xuất văn bản và thông tin chính từ các tài liệu  
-3. Phân loại tài liệu theo loại và nội dung  
-4. Tạo bản tóm tắt cho mỗi tài liệu  
+1. Chấp nhận tài liệu ở nhiều định dạng (PDF, DOCX, TXT)
+2. Trích xuất văn bản và thông tin chính từ tài liệu
+3. Phân loại tài liệu theo loại và nội dung
+4. Tạo tóm tắt cho mỗi tài liệu
 
-Thực hiện các sơ đồ công cụ, xử lý lỗi, và mẫu quy trình làm việc phù hợp nhất với kịch bản này. Xem xét cách bạn sẽ kiểm tra triển khai đó.  
+Thực hiện các schema công cụ, xử lý lỗi và mẫu quy trình làm việc phù hợp nhất cho kịch bản này. Cân nhắc cách bạn sẽ kiểm thử triển khai này.
 
 ## Tài Nguyên
 
-1. Tham gia cộng đồng MCP trên [Microsoft Foundry Discord Community](https://aka.ms/foundrydevs) để cập nhật các phát triển mới nhất  
-2. Đóng góp vào các dự án mã nguồn mở [MCP](https://github.com/modelcontextprotocol)  
-3. Áp dụng các nguyên tắc MCP trong các sáng kiến AI của tổ chức bạn  
-4. Khám phá các triển khai MCP chuyên ngành cho ngành của bạn.  
-5. Cân nhắc tham gia các khóa học nâng cao về các chủ đề MCP cụ thể, như tích hợp đa phương thức hoặc tích hợp ứng dụng doanh nghiệp.  
-6. Thử nghiệm xây dựng các công cụ và quy trình làm việc MCP của riêng bạn sử dụng các nguyên tắc học được từ [Hands on Lab](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)  
+1. Tham gia cộng đồng MCP trên [Microsoft Foundry Discord Community](https://aka.ms/foundrydevs) để cập nhật các phát triển mới nhất
+2. Góp phần vào các dự án [MCP mã nguồn mở](https://github.com/modelcontextprotocol)
+3. Áp dụng các nguyên tắc MCP trong các sáng kiến AI của tổ chức bạn
+4. Khám phá các triển khai MCP chuyên ngành cho ngành của bạn.
+5. Cân nhắc tham gia các khóa học nâng cao về các chủ đề MCP cụ thể, như tích hợp đa mô-đun hoặc tích hợp ứng dụng doanh nghiệp.
+6. Thử nghiệm xây dựng công cụ và quy trình làm việc MCP riêng của bạn sử dụng các nguyên tắc học được trong [Hands on Lab](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)
 
 ## Tiếp theo
 
-Tiếp theo: [Nghiên cứu Trường hợp](../09-CaseStudy/README.md)
+Tiếp theo: [Nghiên Cứu Tình Huống](../09-CaseStudy/README.md)
 
 ---
 
