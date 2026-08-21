@@ -1,712 +1,738 @@
-# កំណត់ហេតុផ្លាស់ប្តូរ៖ មេរៀន MCP សម្រាប់អ្នកចាប់ផ្តើម
+# កំណត់ហេតុផ្លាស់ប្ដូរ៖ មុខវិជ្ជា MCP សម្រាប់អ្នកចាប់ផ្ដើម
 
-ឯកសារនេះធ្វើជា​កំណត់ត្រានៃការផ្លាស់ប្តូរសំខាន់ៗទាំងអស់ដែលបានធ្វើទៅលើមេរៀន Model Context Protocol (MCP) សម្រាប់អ្នកចាប់ផ្តើម។ ការផ្លាស់ប្តូរត្រូវបានចុះបញ្ជីតាមលំដាប់ពេល (ការផ្លាស់ប្តូរថ្មីបំផុតនៅខាងមុខ)។
+ឯកសារនេះមានគោលបំណងថតប្លែកនូវការផ្លាស់ប្ដូរសំខាន់ទាំងអស់ដែលបានធ្វើឡើងលើកម្មវិធី Model Context Protocol (MCP) សម្រាប់អ្នកចាប់ផ្ដើម។ ការផ្លាស់ប្ដូរត្រូវបានចុះបញ្ជីដោយលំដាប់ក្រោយមុខ (ការផ្លាស់ប្ដូរថ្មីៗបង្អស់នៅខាងមុខ)។
 
-## ថ្ងៃទី 2 ខែកក្កដា ២០២៦
+## ថ្ងៃទី ២៩ ខែកក្កដា ឆ្នាំ ២០២៦
 
-### មេរៀនថ្មី៖ 2026-07-28 MCP Specification Release Candidate
+### មុខវិជ្ជាថ្មី ០៨ ផ្នែករួម៖ វិភាគកថាអត្តនោមន៍ភាព និងការព្យាយាមសុវត្ថិភាព
 
-បន្ថែមការសង្កេតលើអត្ថបទសង្ខេបនៃបេក្ខជនចេញផ្សាយបញ្ជាក់ MCP `2026-07-28` ដែលនឹងមកដល់ (បានប្រកាសនៅ 21 ឧសភា ២០២៦; ការ​ចេញផ្សាយចុងក្រោយកំណត់នៅថ្ងៃទី 28 ខែកក្កដា ២០២៦) ចងក្រងពី [ព័ត៍មាន​ផ្លូវការផ្សាយ​នៅលើ​ប្លក់](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/)។ មូលដ្ឋាននៃមេរៀននៅតែមាន **MCP Specification 2025-11-25** រហូតដល់ប៊ិចកំណែថ្មីត្រូវបានចេញផ្សាយ ដូច្នេះនេះគ្រាន់តែជាការណែនាំមើលទៅមុខ មិនមែនជាការសរសេរឡើងវិញនៃមេរៀនដែលមានរួចមកទេ។
+បានបន្ថែមមេរៀនផ្នែករួមដែលមិនពាក់ព័ន្ធអ្នកផ្គត់ផ្គង់សម្រាប់ឧបករណ៍ MCP ដែលបង្កើតផលបាក្រិតជាក់ស្តែងក្នុងពិភពពិត,
+សមស្របតាមលក្ខណៈពិសេសចុងក្រោយ `2026-07-28`។
 
-- **ថ្មី**: [01-CoreConcepts/mcp-2026-07-28-release-candidate.md](./01-CoreConcepts/mcp-2026-07-28-release-candidate.md) — មេរៀនពេញលេញលើកមូលដ្ឋានរបស់ប្រព័ន្ធ protocol មិនមានស្ថានភាព (ដកហូត handshake `initialize` និង `Mcp-Session-Id`), ក្បាល​ការ​រៀប​ចំ​ថ្មី `Mcp-Method`/`Mcp-Name`, ព័ត៌មានដាក់ទុកប្រភេទ `ttlMs`/`cacheScope`, W3C Trace Context ក្នុង `_meta`, សំណុំ​ងារ​បន្ថែមបែបផ្លូវការ (កម្មវិធី MCP និងការបន្ថែមតួនាទីថ្មី), SEPs ប្រាំមួយសម្រាប់ធ្វើឲ្យសុវត្ថិភាព Authorization ទ័រ, ការដកចេញ Roots/Sampling/Logging, និងការផ្លាស់ប្តូរទៅកាន់ JSON Schema 2020-12 ពេញលេញសម្រាប់ schema ឧបករណ៍។
-- **បានបច្ចុប្បន្នភាព** ជាមួយការហៅមើលទៅមុខភ្ជាប់ទៅមេរៀនថ្មី៖
-  - [01-CoreConcepts/README.md](./01-CoreConcepts/README.md): សំាថាតំណ​ភាព protocol, កំណត់ផ្នែក Sampling/Roots/Logging/Tasks, និង "អ្វីទៅជារូបមន្តបន្ទាប់"
-  - [02-Security/README.md](./02-Security/README.md): ការហៅមើលទៅមុខសម្រាប់ការផ្លាស់ប្តូរសុវត្ថិភាព Authorization
-  - [03-GettingStarted/06-http-streaming/README.md](./03-GettingStarted/06-http-streaming/README.md): ការហៅកាន់ការដឹកជញ្ជូនរបៀបមិនមានស្ថានភាព
-  - [03-GettingStarted/14-sampling/README.md](./03-GettingStarted/14-sampling/README.md): ការហៅចេញពីការប្រើប្រាស់ Sampling
-  - [05-AdvancedTopics/mcp-protocol-features/README.md](./05-AdvancedTopics/mcp-protocol-features/README.md): ការហៅចេញ Logging និងការបន្ថែមតួនាទី Tasks
-  - [05-AdvancedTopics/mcp-transport/README.md](./05-AdvancedTopics/mcp-transport/README.md): ការហៅការដឹកជញ្ជូន/បម្រែបម្រួលស្ថានភាព
-  - [README.md](./README.md): កំណត់ចំណាំ "មើលទៅមុខ" នៅផ្នែកកំណត់បញ្ជាក់ និងចុះបញ្ជី `1.1` សម្រាប់តារាងមេរៀន
-  - [study_guide.md](./study_guide.md): ចំណុចមើលទៅមុខក្រោមការពិពណ៌នាគោលការណ៍ស្នូល និងកត់ចំណាំបន្ថែមមានកាលបរិច្ឆេទ
-  - [03-GettingStarted/11-simple-auth/README.md](./03-GettingStarted/11-simple-auth/README.md): ការហៅលើ `mcp-session-id` ផែនទីដឹកជញ្ជូនមុនគំរូសំណើមិនមានស្ថានភាព
-  - [05-AdvancedTopics/README.md](./05-AdvancedTopics/README.md): ការហៅមើលទូទៅអំពី Root Contexts/Sampling ការដកចេញ និងការបន្ថែមតួនាទី Tasks
-  - [05-AdvancedTopics/mcp-security/README.md](./05-AdvancedTopics/mcp-security/README.md): ការហៅការសុវត្ថិភាព Authorization
+- **ថ្មី**៖ មេរៀនរួម [reliability sidecar companion lesson][reliability-sidecar]
+  ប្រើរឿងសំបុត្រគាំទ្រមួយបី, គំនូស Mermaid ពីរជួរ និងដំណើរការជ្រើសរើសការព្យាយាមម្តងទៀត
+  ដើម្បីពន្យល់ពីគន្លឹះប្រតិបត្តិការមានស្ថិរភាព, ការទទួលមានសំណើច្រើនដដែលក្នុងលក្ខខណ្ឌបុព្វបទ,
+  ការចងក្រងឡើងវិញ, ភស្តុតាង និងព្រំប្រទល់ការពង្រីក Tasks។
+- **ថ្មី**៖ ឧបករណ៍បញ្ចូលកំហុស Python និង SQLite មួយដែលមានបណ្ដាស្ទុកប្រតិបត្តិការនិងសំបុត្រដាច់ពីគ្នា ដើម្បីបង្ហាញពីការបាត់បង់ចម្លើយ
+  បន្ទាប់ពីមានប្រតិបត្តិការបញ្ចូលក្រៅ។ មានតេស្តកំណត់ប្រាំមួយគ្របដណ្តប់អំពីការបង្កើតចម្លងមិនដូចគ្នា
+  ការស្តារឡើងវិញដែលមានការពារ, ការផ្សេងគ្នានៃផលិតផលដាក់បញ្ចូល, លទ្ធផលផ្ទុកក្នុងជាក់ស្ដែង,
+  ការទាមទារដែលមានសកម្មភាព និងការទទួលសំបុត្ររងចម្លងច្រើន។
+- **បានអាប់ដេត**៖ មុខវិជ្ជា ០៨ ឥឡូវភ្ជាប់មេរៀនរួម, កំណត់ម៉ូដែលសំណើ stateless ចុងក្រោយ `2026-07-28`,
+  បំបែកភាពខុសគ្នារវាងការត្រួតមើល OpenTelemetry និងមុខងារ MCP logging ដែលបន្ទុកដូចមុន,
+  និងកំណត់គំរូបញ្ជាក់ retry ទូទៅឱ្យមានតែប្រតិបត្តិការអានតែក្នុងលំហ។
+- **ជាជម្រើស**៖ មេរៀនភ្ជាប់យល់ដឹងផ្ទាល់ខ្លួនទៅកាន់ការអនុវត្តន៍សហគមន៍ដែលបានស្លាកព្រោះដោយមិនធ្វើឱ្យសេវាកម្មផ្ទុកឬសំរាប់ការហៅបណ្តាញជា
+  ផ្នែកនៃមេរៀន។
 
-## ថ្ងៃទី 24 ខែមិថុនា 2026
+[reliability-sidecar]: ./08-BestPractices/reliability-sidecars/README.md
+
+
+
+
+
+
+
+
+  ក្បាលមុខថ្មីៗ `Mcp-Method`/`Mcp-Name` ដើម្បីបញ្ជូន, ព័ត៌មានចងចាំ `ttlMs`/`cacheScope` នៅ metadata,
+
+  SEP ៦ ជុំវិញការពង្រឹងសិទិ្ធ, ការចោល Roots/Sampling/Logging, និងការប្រើប្រាស់ JSON Schema 2020-12 សម្រាប់ schemas ឧបករណ៍។
+- **បានអាប់ដេត** ជាមួយការហៅមើលទៅមុខភ្ជាប់ទៅមេរៀនថ្មី៖
+  - [01-CoreConcepts/README.md](./01-CoreConcepts/README.md): កំណត់សំគាល់កំណែព្រមទាំងផ្នែក Sampling/Roots/Logging/Tasks និង "អ្វីដែលនៅខាងមុខ"
+  - [02-Security/README.md](./02-Security/README.md): ការហៅពង្រឹងសិទិ្ធ
+  - [03-GettingStarted/06-http-streaming/README.md](./03-GettingStarted/06-http-streaming/README.md): ការហៅចរន្ត stateless
+  - [03-GettingStarted/14-sampling/README.md](./03-GettingStarted/14-sampling/README.md): ការហៅលុបឈប់ Sampling
+  - [05-AdvancedTopics/mcp-protocol-features/README.md](./05-AdvancedTopics/mcp-protocol-features/README.md): ការហៅលុបឈប់ Logging និងការពង្រីក Tasks
+  - [05-AdvancedTopics/mcp-transport/README.md](./05-AdvancedTopics/mcp-transport/README.md): ការហៅ stateless/session-routing
+  - [README.md](./README.md): កំណត់សំគាល់ "មើលទៅមុខ" នៅផ្នែកលក្ខណៈពិសេស និងបញ្ចូលទិន្នន័យថ្មីក្នុងតារាងមុខវិជ្ជា
+  - [study_guide.md](./study_guide.md): ការហៅមើលទៅមុខនៅក្រោមការណែនាំ Core Concepts និងកំណត់ចំណាំបន្ថែមជាលំនាំលំអិត
+  - [03-GettingStarted/11-simple-auth/README.md](./03-GettingStarted/11-simple-auth/README.md): ការហៅលើ `mcp-session-id` មុខងារទូរស័ព្ទមុនម៉ូដែលសំណើ stateless
+  - [05-AdvancedTopics/README.md](./05-AdvancedTopics/README.md): ការហៅទិដ្ឋភាពមុខវិជ្ជា លើការលុបឈប់ Root Contexts/Sampling និងការពង្រីក Tasks
+  - [05-AdvancedTopics/mcp-security/README.md](./05-AdvancedTopics/mcp-security/README.md): ការហៅពង្រឹងសិទិ្ធ
+
+## ថ្ងៃទី ២៤ ខែមិថុនា ឆ្នាំ ២០២៦
 
 ### មេរៀនថ្មី៖ ការប្រើ MCP ក្នុងកម្មវិធី Copilot
 
-- [ផ្នែក Tooling](./12-tooling/README.md) បានបន្ថែម​ផ្នែក tooling។
-- [MCP ក្នុងកម្មវិធី Copilot](./12-tooling/01-copilot-app/README.md)
+- [ផ្នែក Tooling](./12-tooling/README.md) បានបន្ថែមផ្នែក tooling។
+- [MCP នៅក្នុងកម្មវិធី Copilot](./12-tooling/01-copilot-app/README.md)
 
-## ថ្ងៃទី 16 មិថុនា 2026
+## ថ្ងៃទី ១៦ មិថុនា ២០២៦
 
-### តម្រូវការផ្ទៀងផ្ទាត់ MCP Specification និងគំរូទិន្នន័យ
+### ការសម្របសម្រួលលក្ខណៈពិសេស MCP និងការត្រួតពិនិត្យគំរូ
 
-ផ្ទៀងផ្ទាត់មេរៀន ទល់នឹង **MCP Specification 2025-11-25** បច្ចុប្បន្ន និង SDK ផ្លូវការថ្មីៗ បន្ទាប់មកកែប្រែការភ្ជាប់ពាក្យបញ្ជាក់ specification ចាស់ៗ និងបញ្ជាក់ថាគំរូស្នូលនៅតែអាចបង្កើត និងដំណើរការបាន។
+បានធ្វើការធ្វើតេស្តកម្មវិធីជាមួយ **MCP Specification 2025-11-25** និង SDK ផ្លូវការថ្មីបំផុត បន្ទាប់មកបានកែសម្រួលការចង្អុលបណ្ដាញ​លក្ខណៈពិសេសបណ្ដោះអាសន្នដែលនៅសល់ និងបញ្ចាក់ថាគំរូស្នាដៃនៅតែអាចដំឡើង និងដំណើរការ។
 
-#### កែសម្រួលកំណែ Specification (ពី 2025-06-18 / 2025-03-26 → 2025-11-25)
+#### ការកែតម្រូវកំណែលក្ខណៈពិសេស (2025-06-18 / 2025-03-26 → 2025-11-25)
 
-ធ្វើបច្ចុប្បន្នភាព​អត្ថបទអង់គ្លេស ដែលនៅតែបញ្ជាក់ថា​កំណែស្តង់ដារចាស់ជាកំណែ *បច្ចុប្បន្ន/ចុងក្រោយ* ហើយប្ដូរតំណទៅលើផ្លូវ canonical `modelcontextprotocol.io` ៖
-- **05-AdvancedTopics/mcp-security/README.md**: កែសម្រួលប៉ាន់ប៉ាល "ស្តង់ដារបច្ចុប្បន្ន", បណ្តុំទិដ្ឋភាពនិងក្បាលផ្នែកសុវត្ថិភាពស្នូល, ក្បាលកិច្ចការរឹតត្បិត, ផ្នែក Microsoft Entra ID, តំណភ្ជាប់ឯកសារ & ធនធាន, និងសេចក្ដីណែនាំសុវត្ថិភាពចុងក្រោយ (យោង ៨ ទី) ទៅកាន់ 2025-11-25
-- **05-AdvancedTopics/mcp-transport/README.md**: ផ្លាស់ប្តូរតំណលើឯកសារថែមទៀត និងបង្អួច "ស្តង់ដារបច្ចុប្បន្ន" ទៅកាន់ 2025-11-25
-- **05-AdvancedTopics/mcp-realtimesearch/README.md**: ជំនួសតំណបញ្ជាក់សុវត្ថិភាពចាស់ `2025-03-26` ជាតំណ​ទំនើប​ប្រើបាន ២០២៥-១១-២៥
-- **03-GettingStarted/14-sampling/README.md**: ផ្លាស់ប្តូរតំណលើឯកសារស្ទង់ទិន្នន័យស្ទង់សម្រាប់ ២០២៥-១១-២៥
-- **03-GettingStarted/05-stdio-server/README.md**: កែសម្រួលការចងក្រង "បច្ចុប្បន្ន MCP Specification" ដោយប្រើពេលបច្ចុប្បន្ន និងផ្លាស់ទីតំណថ្មី ២០២៥-១១-២៥ (ការដកចេញ SSE បុរាណនៅតែបន្តរក្សាគុណភាព)
+បានកែសម្រួលខ្លឹមសារជាភាសាអង់គ្លេសដែលនៅតែបានចោលថាកែប្រែលក្ខណៈពិសេសចាស់ជាកំណត់ស្តង់ដា *បច្ចុប្បន្ន/ថ្មីបំផុត* ហើយប្តូរតំណទៅរស់រាង canonical `modelcontextprotocol.io`:
+- **05-AdvancedTopics/mcp-security/README.md**: ធ្វើបច្ចុប្បន្នភាព “Current Standard” ខ្ទង់បដិសណ្ឋារកិច្ច បទបង្ហាញ គោលការណ៍សន្តិសុខសំខាន់ ចំណងជើងនូវតម្រូវការសំរាប់ Microsoft Entra ID ផ្នែកយោង និងធនធាន និងកំណត់សន្តិសុខចុងក្រោយ (យោង 8 នេះ) ទៅកាន់ 2025-11-25
+- **05-AdvancedTopics/mcp-transport/README.md**: បច្ចុប្បន្នភាពតំណមធ្យោបាយតំណនិង "Current Standard" ទៅ 2025-11-25
+- **05-AdvancedTopics/mcp-realtimesearch/README.md**: ជំនួសតំណបណ្តាញសន្តិសុខ 2025-03-26 ជាមួយទំព័រពិធីការល្អបំផុត 2025-11-25
+- **03-GettingStarted/14-sampling/README.md**: បច្ចុប្បន្នភាពតំណឯកសារសំពាធទៅ 2025-11-25
+- **03-GettingStarted/05-stdio-server/README.md**: បច្ចុប្បន្នភាពយោងទីបច្ចុប្បន្ន "lspc របស់ MCP" និងតំណ Additional Resources ទៅកាន់ 2025-11-25 (កំណត់ចំណាំ SSE-deprecation បុរាណនៅសល់សម្រាប់ភាពត្រឹមត្រូវ)
 
-#### ផ្ទៀងផ្ទាត់គំរូ ទល់នឹង SDK បច្ចុប្បន្ន
+#### ត្រួតពិនិត្យគំរូប្រឆាំង SDK បច្ចុប្បន្ន
 
-- **TypeScript (03-GettingStarted/01-first-server/solution/typescript)**: `npm install` ផ្ទៀងផ្ទាត់សមាសភាព `@modelcontextprotocol/sdk@1.29.0`; `tsc --noEmit` បានជោគជ័យគ្មានកំហុសប្រភេទ — API `McpServer`/`StdioServerTransport` នៅតែដំណើរការបានត្រឹមត្រូវ
-- **Python (03-GettingStarted/01-first-server/solution/python)**: ផ្ទៀងផ្ទាត់ក្នុង `.venv` ផ្ទាល់ខ្លួនជាមួយ `mcp[cli]` (1.27.2); `py_compile` បានជោគជ័យ និង `FastMCP.list_tools()` បង្ហាញឧបករណ៍ `add` និង `subtract` ត្រឹមត្រូវ
-- ប្រាកដថាកំណែគំរូ `@modelcontextprotocol/sdk` ទាំងអស់ (`>=1.26.0` / `^1.26.0` / `^1.27.0`) គឺទៅដល់ `1.29.0` បច្ចុប្បន្ន ដោយគ្មានការប្រែប្រួល API ដែលបាក់
+- **TypeScript (03-GettingStarted/01-first-server/solution/typescript)**៖ `npm install` បានដោះស្រាយ `@modelcontextprotocol/sdk@1.29.0`; បញ្ជើ `tsc --noEmit` បានរួចជាមួយគ្មានបញ្ហាប្រភេទ — ប្រើ API `McpServer`/`StdioServerTransport` ដែលមានស្រាប់។
+- **Python (03-GettingStarted/01-first-server/solution/python)**៖ បានត្រួតពិនិត្យក្នុង `.venv` ខាងក្នុងជាមួយ `mcp[cli]` (1.27.2); `py_compile` បានឆ្លុះបញ្ជាក់ និង `FastMCP.list_tools()` បានដំណើរការបង្រៀនឧបករណ៍ `add` និង `subtract`
+- ប្រាកដថាតួការវាយស៊ីធី `@modelcontextprotocol/sdk` ទាំងអស់ (`>=1.26.0` / `^1.26.0` / `^1.27.0`) ឆ្លងទៅបានថ្មីៗ `1.29.0` ដោយគ្មានបម្លាស់ប្តូរ API ដែលខូចខាត
 
-#### កំណត់រមុំ​ភាព Pin ភាពដាក់ពាក្យ (បិទជំហានកំណែ)
+#### ការតម្លើងដាក់ពិនិត្យភាពសមស្របនៃការ Pin (បិទការចន្លោះកំណែ)
 
-កែលម្អ version pin សម្រាប់ SDK ចាស់ៗ ដើម្បីឲ្យគំរូទាំងអស់តាមកំណែ MCP បច្ចុប្បន្ន តាមបែបបទណែនាំក្នុង repo:
-- **03-GettingStarted/05-stdio-server/solution/typescript/package.json**: បន្ថែមកំណែ `@modelcontextprotocol/sdk` ពី `^1.8.0` ទៅ `>=1.26.0` ហើយកែការពិពណ៌នាកញ្ចប់ពី `"updated for MCP 2025-06-18"` ទៅ `"aligned with MCP Specification 2025-11-25"`
-- **10-StreamliningAIWorkflows.../lab3/code/weather_mcp/pyproject.toml** និង **lab4/code/github_mcp_server/pyproject.toml**: បញ្ជាក់ pin `mcp==1.23.0` ទៅ `mcp>=1.26.0`; បង្កើតឡើងវិញ​ឯកសារ `uv.lock` ទាំងពីរ ដើម្បីធានាថា lockfiles គាំទ្រកំណែ `mcp 1.27.2` បច្ចុប្បន្ន និងសម្របតាម manifests
+បានលើកស្ទួន pin SDK ចាស់ៗ ដើម្បីឱ្យគំរូនៅតែមើលឃើញកំណែ MCP បច្ចុប្បន្ន ដោយស្របទៅនឹងទំនៀមទម្រាំភាគហ៊ុនទូលំទូលាយ:
+- **03-GettingStarted/05-stdio-server/solution/typescript/package.json**៖ បានលើក pin `@modelcontextprotocol/sdk` ពី `^1.8.0` → `>=1.26.0` និងកែសម្រួលពណ៌នាបណ្ដុំ `"updated for MCP 2025-06-18"` ទៅជា `"aligned with MCP Specification 2025-11-25"`
+- **10-StreamliningAIWorkflows.../lab3/code/weather_mcp/pyproject.toml** និង **lab4/code/github_mcp_server/pyproject.toml**៖ បានលើក pin ត្រឹមត្រូវ `mcp==1.23.0` → `mcp>=1.26.0`; បានបង្កើតឡើងវិញ `uv.lock` ពីររបស់ខ្លួន ដើម្បីឱ្យស្ដុកឡុកស៊ុមទៅកំណែថ្មី `mcp 1.27.2` ហើយសម្របសម្រួលជាមួយ manifests។
 
-#### ការវិភាគលំហរបណ្តុះបណ្តាល — ការគ្របដណ្តប់លើលក្ខណៈពិសេសថ្មីៗ
+#### វិភាគចន្លោះមុខវិទ្យា — គ្របដណ្តប់លក្ខណៈពិសេសស្ដង់ដាត الأخيرة
 
-បញ្ជាក់ថាមេរៀនគ្របដណ្តប់លើ primitive ទាំងអស់ដែលបានផ្សព្វផ្សាយ/ពង្រីកក្នុង MCP 2025-11-25 ដូច្នេះគ្មានលំហរក្នុងមាតិកា៖
-- **Sampling**: មេរៀន 03-GettingStarted/14-sampling និង 05-AdvancedTopics/mcp-sampling
-- **Elicitation (រួមមានរបៀប URL)**: បានចុះបញ្ជីក្នុង 01-CoreConcepts និង 05-AdvancedTopics/mcp-protocol-features
-- **Roots**: ចុះបញ្ជីក្នុង 00-Introduction, 01-CoreConcepts, និង 05-AdvancedTopics/mcp-root-contexts
-- **Tasks (សាកល្បង, ប្រតិបត្ដការដែលរយៈពេលវែង)**: ចុះបញ្ជីក្នុង 01-CoreConcepts និង 05-AdvancedTopics/mcp-protocol-features
-- **Tool Annotations** (`readOnlyHint` / `destructiveHint`): ចុះបញ្ជីក្នុង 01-CoreConcepts និង 05-AdvancedTopics/mcp-protocol-features
+បានផ្ទៀងផ្ទាត់ថាកម្មវិធីអប់រំមានគ្របដណ្តប់គ្រប់វិមាត្រដែលបានណែនាំ / ពង្រីកនៅ MCP 2025-11-25 ដូច្នេះគ្មានចន្លោះមុខទេ៖
+- **Sampling**៖ មេរៀន 03-GettingStarted/14-sampling បូកបន្ថែម 05-AdvancedTopics/mcp-sampling
+- **Elicitation (រួម URL mode)**៖ បានចូលក្នុងឯកសារ 01-CoreConcepts និង 05-AdvancedTopics/mcp-protocol-features
+- **Roots**៖ បញ្ចូលនៅ 00-Introduction, 01-CoreConcepts និង 05-AdvancedTopics/mcp-root-contexts
+- **Tasks (ចំណាំស្ទាកម៉ាកកម្មវិធីរយៈពេលវែង)**៖ ផ្សំក្នុង 01-CoreConcepts និង 05-AdvancedTopics/mcp-protocol-features
+- **Tool Annotations** (`readOnlyHint` / `destructiveHint`)៖ ចូលក្នុង 01-CoreConcepts និង 05-AdvancedTopics/mcp-protocol-features
 
-### ការរឹតត្បិតសុវត្ថិភាព និងការកែប្រែការរួមបញ្ចូលធាតុទន់
+### ការពង្រឹងសន្តិសុខ និងកែលម្អចំពោះចំងល់សុវត្ថិភាព Dependency
 
-បានអនុវត្តសុវត្ថិភាពពេញលេញលើរាល់ manifest ធាតុចូលរួម និងកូដគំរូ ដូច្នេះកែសម្រួលកំហុស npm advisories និងកូដមួយ ចុងក្រោយ `npm audit` បង្ហាញ **គ្មានចម្លង់** នៅរាល់ថតដែលបានធ្វើការ។
+បានអនុវត្តការត្រួតពិនិត្យសន្តិសុខពេញលេញលើ manifests គ្រប់មួយ និងកូដគំរូ បន្ទាប់មកបានជួសជុលអ្វីៗដែលរកឃើញនៅ npm និង code-level។ បន្ទាប់ការជួសជុល `npm audit` បង្ហាញ **0 ចំងល់** នៅក្នុងថតគ្រប់កន្លែង។
 
-#### ចម្លង់ npm Dependency (ផ្ទាល់ចំរ៉ង) — បានជួសជុល
+#### ចំងល់ npm Dependency (ជា transitives) — ជួសជុលរួច
 
-បានស៊ើបអង្កេត ១៥ ឯកសារ `package-lock.json` ដែលបានបញ្ចូល។ ចម្លង់មានតែ dependency ផ្ទាល់ចំរ៉ងដែលត្រូវបានយកមកពីឧបករណ៍ MCP Inspector, ពាក់ព័ន្ធ OpenAI client, និង MCP SDK; គ្រប់ករណីបានដោះស្រាយដោយមិនប៉ះពាល់គំរូទាំងអស់៖
-- **10-StreamliningAIWorkflows.../lab4/code/github_mcp_server/inspector** និង **lab3/code/weather_mcp/inspector**: បន្ថែមកំណែ `@modelcontextprotocol/inspector` (`0.16.6` / `0.14.1` → `0.22.0`), ដែលដំណើរការដើម្បីលុបចោល `ajv`, `brace-expansion`, `diff`, `path-to-regexp` និង `ws` advisory។ បន្ថែម npm `overrides` ដើម្បីបង្ខំផ្លែលើ `shell-quote@1.8.4` បំបាត់ critical advisory ស៊ើបអង្កេត `concurrently`; បញ្ជាឡើងវិញ lockfiles ទាំងពីរ (ឥឡូវ 0 ចម្លង)
-- **03-GettingStarted/samples/typescript**: `npm audit fix` កែលម្អវើស្យុង `qs` (មធ្យម) ដើម្បីជំរុញ
-- **03-GettingStarted/samples/javascript**: `npm audit fix` កែលម្អវើស្យុង `hono` (មធ្យម) ដើម្បីជំរុញ
-- **03-GettingStarted/03-llm-client/solution/typescript**: `npm audit fix` កែលម្អវើស្យុង `form-data` (ខ្ពស់) ដើម្បីជំរុញ
-- **03-GettingStarted/11-simple-auth/solution/typescript**: បង្កើតឯកសារ `package-lock.json` ខ្វះ ដើម្បីឲ្យគម្រោងអាចបង្កើតឡើងវិញ និងស្រាវជ្រាវបាន (0 ចម្លង)
+បានត្រួតពិនិត្យឯកសារ `package-lock.json` ចំនួន ១៥ គ្រប់គ្រាន់។ ចំងល់ត្រូវបានកំណត់ថាជាចំងល់ transitives ដែលយកមកដោយឧបករណ៍ dev MCP Inspector, កម្មវិធី OpenAI client និង MCP SDK។ ទាំងអស់បានដោះស្រាយដោយគ្មានបញ្ហាគំរូ៖
+- **10-StreamliningAIWorkflows.../lab4/code/github_mcp_server/inspector** និង **lab3/code/weather_mcp/inspector**៖ បានលើក `@modelcontextprotocol/inspector` (`0.16.6` / `0.14.1` → `0.22.0`), ដែលជួយសម្អាតការជូនដំណឹងកំហុស `ajv`, `brace-expansion`, `diff`, `path-to-regexp` និង `ws`។ បន្ថែមចំណុច npm `overrides` ដើម្បីបង្ខំបញ្ចប់ `shell-quote@1.8.4` ដែលលុបចោលចំងល់ដ៏សំខាន់នៅក្នុង `concurrently`; បង្កើតឡើងវិញ lockfiles ទាំងពីរ (ឥឡូវមិនមានចំងល់ទេ)
+- **03-GettingStarted/samples/typescript**៖ បានធ្វើ `npm audit fix` ដល់ `qs` ដែលមានកម្រិតមធ្យមទៅជា version patched
+- **03-GettingStarted/samples/javascript**៖ បានធ្វើ `npm audit fix` ដល់ `hono` ដែលមានកម្រិតមធ្យមទៅជា version patched
+- **03-GettingStarted/03-llm-client/solution/typescript**៖ បានធ្វើ `npm audit fix` ដល់ `form-data` ដែលមានកម្រិតខ្ពស់ទៅជា version patched
+- **03-GettingStarted/11-simple-auth/solution/typescript**៖ បង្កើតឯកសារ `package-lock.json` ដែលអវារីសល់ ដើម្បី​ឲ្យគំរោងអាចបង្កើតឡើងវិញ និងត្រួតពិនិត្យបាន (0 ចំងល់)
 
-#### ការកែសម្រួលកូដសុវត្ថិភាព (OWASP A03: Injection)
+#### ការជួសជុលកូដសន្តិសុខកម្រិតគោល (OWASP A03: Injection)
 
-- **10-StreamliningAIWorkflows.../lab4/code/github_mcp_server/src/server.py**: ដក `shell=True` ចេញពីឧបករណ៍ `open_in_vscode`។ ការ `subprocess.run(["start", "", vscode_path, folder_path], shell=True)` មុននេះអនុញ្ញាតឲ្យមាន shell metacharacters នៅក្នុងផ្លូវថតត្រូវបានបកប្រែដោយ `cmd.exe` (កន្លែងបញ្ចូលកម្មង់ inject)។ ឥឡូវនេះ វាចាប់ផ្តើម `Code.exe` ត្រូវបានដោះស្រាយផ្ទាល់ជាមួយផ្លូវថតជាអាគុយម៉ិន — គ្មាន shell ហើយ — ដែលមានមុខងារត្រូវគ្នា និងមានសុវត្ថិភាព
+- **10-StreamliningAIWorkflows.../lab4/code/github_mcp_server/src/server.py**៖ បានយក `shell=True` ចេញពីឧបករណ៍ `open_in_vscode`។ មុននេះ `subprocess.run(["start", "", vscode_path, folder_path], shell=True)` អនុញ្ញាតឱ្យមាន shell metacharacters នៅក្នុងផ្លូវថតដែល cmd.exe អាចបកស្រាយ (vector ដាក់ការបញ្ចូលពាក្យបញ្ជាចូល)។ ឥឡូវនេះវាបើក `Code.exe` ដោយផ្ទាល់ជាមួយថតជាអថេរ — គ្មាន shell — ដែលមានសមត្ថភាពដូចគ្នានិងសុវត្ថិភាព
 
-#### ការត្រួតពិនិត្យ Python Dependency
+#### ការត្រួតពិនិត្យ Dependency Python
 
-- បានត្រួតពិនិត្យរាល់តំរូវការ Python ដោយ `pip-audit`។ `05-AdvancedTopics` និង `03-GettingStarted/samples/python` បានរាយការណ៍ **គ្មានចម្លងសុវត្ថិភាព** (៥/ជា `mcp` / `httpx` / `pydantic` / `python-dotenv` បានដោះស្រាយជាលើកថ្មី)
-- **09-CaseStudy/docs-mcp/solution/python/requirements.txt**: `pip-audit` បង្ហាញតម្កើង dependency ផ្ទាល់ចំរ៉ង **`werkzeug` 3.1.1** មានបញ្ហា DoS `safe_join` Windows device-name ទៅរួច — `CVE-2025-66221`, `CVE-2026-21860`, និង `CVE-2026-27199` (ទាំងអស់បានជួសជុលក្នុង 3.1.6)। បន្ថែម pinned security version `werkzeug>=3.1.6` ដើម្បីដោះស្រាយ។ ធានាថាកំណត់ត្រាដំណោះស្រាយបានត្រឹមត្រូវជាមួយ `chainlit` / `mcp` / `semantic-kernel`
+- បានត្រួតពិនិត្យហើយនូវ requirements Python ទាំងអស់ជាមួយ `pip-audit`។ ផ្នែក `05-AdvancedTopics` និង `03-GettingStarted/samples/python` បង្ហាញថា **គ្មានចំងល់សុវត្ថិភាព** (version `mcp` / `httpx` / `pydantic` / `python-dotenv` នៅក្នុងរង្វង់នេះមានកំណែ patched ថ្មីបំផុត)
+- **09-CaseStudy/docs-mcp/solution/python/requirements.txt**៖ `pip-audit` រកឃើញ dependency តម្រូវការ transitive **`werkzeug` ទំហំ 3.1.1** មានចំងល់ 3 ក្នុង `safe_join` ឥស្សរជាតិឧបករណ៍ Windows — `CVE-2025-66221`, `CVE-2026-21860`, និង `CVE-2026-27199` (ទាំងអស់បានកែសម្រួលនៅ 3.1.6)។ បានបន្ថែម pin សន្តិសុខឱ្យច្បាស់ថា `werkzeug>=3.1.6` ដើម្បីដោះស្រាយ release patched; បានបញ្ជាក់ថារបៀបនេះអាចសម្របសម្រួលបានល្អជាមួយជាប់ផ្សារពី `chainlit` / `mcp` / `semantic-kernel`
 
-### ការប្ដូរឈ្មោះផលិតផល
+### ការផ្លាស់ប្ដូរឈ្មោះផលិតផល
 
-បានកែសម្រួលមេរៀនទាំងអស់ដើម្បីបង្ហាញពីការប្ដូរឈ្មោះផលិតផលរបស់ Microsoft៖
+បានធ្វើបច្ចុប្បន្នភាពគ្រប់ខ្នាតមេរៀននៅក្នុងកម្មវិធី ដើម្បីបង្ហាញពីការផ្លាស់ប្ដូរឈ្មោះផលិតផល Microsoft:
 
 #### Azure AI Foundry → Microsoft Foundry
-- **SUPPORT.md**: កែតំណ Discord community
-- **AGENTS.md**: កែតំណ server Discord
-- **README.md**: កែតំណជុំវិញបច្ចេកវិទ្យា
-- **study_guide.md**: កែតំណសិក្សា
-- **05-AdvancedTopics/README.md**: កែចំណងជើង Module 5.13 និងការពិពណ៌នា
-- **05-AdvancedTopics/mcp-integration/README.md**: កែចំណងជើងផ្នែក និងការពិពណ៌នា
-- **05-AdvancedTopics/mcp-foundry-agent-integration/README.md**: កែសម្រួលចំណងជើងនិងមាតិកាមូលដ្ឋាន
-- **05-AdvancedTopics/mcp-security-entra/README.md**: កែតំណភ្ជាប់
-- **07-LessonsfromEarlyAdoption/README.md**: កែតំណសិក្សា
-- **07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md**: កែចំណងជើងផ្នែក 9 ស្លាកនិងសមត្ថភាព
-- **08-BestPractices/README.md**: កែតំណ Discord community
-- **09-CaseStudy/docs-mcp/solution/scenario3/README.md**: កែតំណ Discord channel
-- **09-CaseStudy/docs-mcp/solution/python/README.md**: កែតំណបញ្ចូនម៉ូដែល
-- **11-MCPServerHandsOnLabs/00-Introduction/README.md**: កែតារាងសេវាកម្ម AI
-- **11-MCPServerHandsOnLabs/03-Setup/README.md**: កែតំណធនធាន
+- **SUPPORT.md**៖ បានបន្ថែមតំណ Discord សហគមន៍
 
-#### AI Toolkit / AITK → Microsoft Foundry Toolkit Extension for VS Code
+- **AGENTS.md**: បានធ្វើបច្ចុប្បន្នភាពការបញ្ជាក់ម៉ាស៊ីនមេ Discord
+- **README.md**: បានធ្វើបច្ចុប្បន្នភាពការបញ្ជាក់ប្រព័ន្ធបច្ចេកវិទ្យា
+- **study_guide.md**: បានធ្វើបច្ចុប្បន្នភាពការបញ្ជាក់ករណីសិក្សា
+- **05-AdvancedTopics/README.md**: បានធ្វើបច្ចុប្បន្នភាពចំណងជើង និងការពិពណ៌នាផ្នែកម៉ូឌុល 5.13
+- **05-AdvancedTopics/mcp-integration/README.md**: បានធ្វើបច្ចុប្បន្នភាពចំណងជើងផ្នែក និងការពិពណ៌នា
+- **05-AdvancedTopics/mcp-foundry-agent-integration/README.md**: បានធ្វើបច្ចុប្បន្នភាពចំណងជើងម៉ូឌុល និងមាតិកាទាំងមូល
+- **05-AdvancedTopics/mcp-security-entra/README.md**: បានធ្វើបច្ចុប្បន្នភាពតំណភ្ជាប់ឆ្លាស់
+- **07-LessonsfromEarlyAdoption/README.md**: បានធ្វើបច្ចុប្បន្នភាពការបញ្ជាក់ករណីសិក្សា
+- **07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md**: បានធ្វើបច្ចុប្បន្នភាពចំណងជើងផ្នែក 9, ម៉ាក និងសមត្ថភាព
+- **08-BestPractices/README.md**: បានធ្វើបច្ចុប្បន្នភាពតំណភ្ជាប់សហគមន៍ Discord
+- **09-CaseStudy/docs-mcp/solution/scenario3/README.md**: បានធ្វើបច្ចុប្បន្នភាពការបញ្ជាក់បន្ទាត់ Discord
+- **09-CaseStudy/docs-mcp/solution/python/README.md**: បានធ្វើបច្ចុប្បន្នភាពការបញ្ជាក់ការចេញផ្សាយម៉ូដែល
+- **11-MCPServerHandsOnLabs/00-Introduction/README.md**: បានធ្វើបច្ចុប្បន្នភាពតារាងសេវាកម្ម AI
+- **11-MCPServerHandsOnLabs/03-Setup/README.md**: បានធ្វើបច្ចុប្បន្នភាពការបញ្ជាក់ធនធាន
 
-- **README.md**: ធ្វើបច្ចុប្បន្នភាពយោងមេរៀនសំខាន់
-- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md**: ធ្វើបច្ចុប្បន្នភាពចំណងជើងមេរៀន, យល់បរិយាយ និងក្បាលមេរៀនទាំងអស់
-- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab1/README.md**: ធ្វើបច្ចុប្បន្នភាពចំណងជើង, គោលបំណងសិក្សារ, សេចក្តីណែនាំដំណើរការ, និងធនធាន
-- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab2/README.md**: ធ្វើបច្ចុប្បន្នភាពចំណងជើង, គោលបំណងសិក្សារ, តារាងម៉ាស៊ីនម៉ាស៊ីន MCP, និងយោងគ្នាទៅវិញទៅមក
-- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/README.md**: ធ្វើបច្ចុប្បន្នភាពចំណងជើង, បដិសណ្ឋារកម្ម, លក្ខខណ្ឌមុន, និងធនធាន
-- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/README.md**: ធ្វើបច្ចុប្បន្នភាពយោងអ្នកសាងសង់ភ្នាក់ងារ និងតំណកម្រងតប
-- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/README.md**: ធ្វើបច្ចុប្បន្នភាពលក្ខខណ្ឌមុន និងយោងវូតមួយចំនួន
+#### ឧបករណ៍ AI / AITK → ការពង្រីកឧបករណ៍ Microsoft Foundry សម្រាប់ VS Code
+- **README.md**: បានធ្វើបច្ចុប្បន្នភាពការបញ្ជាក់មេរៀនសិក្សាចម្បង
+- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md**: បានធ្វើបច្ចុប្បន្នភាពចំណងជើងម៉ូឌុល, សេចក្តីសង្ខេប និងចំណងជើងម៉ូឌុលទាំងអស់
+- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab1/README.md**: បានធ្វើបច្ចុប្បន្នភាពចំណងជើង, គោលបំណងការរៀន, សេចក្តីណែនាំដំឡើង, និងធនធាន
+- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab2/README.md**: បានធ្វើបច្ចុប្បន្នភាពចំណងជើង, គោលបំណងការរៀន, តារាងម៉ាស៊ីនមេ MCP, និងការបញ្ជាក់ឆ្លាស់
+- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/README.md**: បានធ្វើបច្ចុប្បន្នភាពចំណងជើង, ម៉ាក,លក្ខខណ្ឌមុន, និងធនធាន
+- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/README.md**: បានធ្វើបច្ចុប្បន្នភាពការបញ្ជាក់ Agent Builder និងតំណភ្ជាប់មតិ
+- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/README.md**: បានធ្វើបច្ចុប្បន្នភាពលក្ខខណ្ឌមុន និងការបញ្ជាក់ការពង្រីក
 
 ---
 
 ## ១១ មេសា ២០២៦
 
-### មេរៀនថ្មី, ការជួសជុលឯកសារ, និងការធ្វើបច្ចុប្បន្នភាពការពឹងផ្អែក
+### មេរៀនថ្មី, ការជួសជុលឯកសារ, និងការធ្វើបច្ចុប្បន្នភាពផ្នែកពឹងផ្អែក
 
-#### បន្ថែមមាតិកាមេរៀនថ្មី
+#### គន្លងមេរៀនថ្មីបានបន្ថែម
 
-**Module 05 - ប្រធានបទជំនាន់ខ្ពស់**
-- **មេរៀន 5.17: ការគិតយុទ្ធសាស្រ្តចម្រុះភ្នាក់ងារប្រឆាំងជាមួយ MCP** (`05-AdvancedTopics/mcp-adversarial-agents/README.md`): មេរៀនថ្មីទូលំទូលាយលើរូបแบบវាស់វែងប្រឆាំងសម្រាប់ប្រព័ន្ធភ្នាក់ងារចម្រុះ
-  - គំនូរអាគារមេរីមេដ: ភ្នាក់ងារពីរនាក់ → ម៉ាស៊ីនមេ MCP ចែករំលែក → កំណត់កិច្ចប្រជុំ → អ្នក វាយតម្លៃ → ការសម្រេចចិត្ត
-  - ម៉ាស៊ីនមេឧបករណ៍ MCP ចែករំលែក (`web_search` + `run_python`) អនុវត្តនៅក្នុង Python និង TypeScript
-  - សេចក្ដីសម្តែងប្រព័ន្ធប្រឆាំង (សម្រាប់ / ប្រឆាំង / អ្នកវាយតម្លៃ) ជាមួយតម្រូវការប្រើប្រាស់ឧបករណ៍ច្បាស់លាស់
-  - អ្នករៀបចំប្រជុំក្នុងភាសា Python, TypeScript និង C# ដែលគ្រប់គ្រងជំរើស និងបញ្ជូនអាគុយម៉ង់
-  - ខ្សែភ្ជាប់ MCP `ClientSession` សម្រាប់អ្នករៀបចំនៅហៅឧបករណ៍ពិត
-  - តារាងករណីប្រើប្រាស់ (សម្គាល់អាគុយម៉ង់, ម៉ូដែលការគំរាម, សង្ខេបការត្រួតពិនិត្យរចនាប័ទ្ម API, វាយតម្លៃកំណត់អត្ថបទ)
-  - គោលការណ៍សុវត្ថិភាព: ការដំណើរការជាចំណត់, ការត្រួតពិនិត្យហៅឧបករណ៍, ការរឹតបន្តឹងអត្រា, ការចុះកំណត់ហេតុត្រួតពិនិត្យ
-  - លំហាត់រៀបចំដោយរចនាសម្ព័ន្ធមានបីស្ថានการณ์អនុវត្ត (ពិនិត្យកូដ, សម្រេចចិត្តស្ថាបត្យកម្ម, ការត្រួតពិនិត្យមាតិកា)
+**ម៉ូឌុល 05 - ប្រធានបទកម្រិតខ្ពស់**
+- **មេរៀន 5.17: ការគិតជាមួយភាគីច្រើនប្រឆាំងគ្នាជាមួយ MCP** (`05-AdvancedTopics/mcp-adversarial-agents/README.md`): គន្លងមេរៀនថ្មីពេញលេញរៀបរាប់អំពីរបៀបប្រឆាំងគ្នាទៅវិញទៅមកសម្រាប់ប្រព័ន្ធភាគីច្រើន
+  - គំនូរសំណុំនិម្មិត: ភាគីពីរ → ម៉ាស៊ីនមេ MCP ខ្សែបញ្ចាត់ร่วม → បទបង្ហាញប្រឆាំង → គណៈយុត្តិធម៌ → សេចក្តីសំចេញ
+  - មាស៊ីនមេឧបករណ៍ MCP រួមគ្នា (`web_search` + `run_python`) ដែលអនុវត្តនៅ Python និង TypeScript
+  - ប្រព័ន្ធប្រឆាំងគ្នាការហៅ (សម្រាប់ / ប្រឆាំង / គណៈយុត្តិធម៌) ជាមួយលក្ខខណ្ឌត្រឹមត្រូវនៃការប្រើឧបករណ៍
+  - អ្នករៀបចំប្រឆាំងក្នុង Python, TypeScript និង C# គ្រប់គ្រងជុំ និងផ្លូវអភ័យទោស
+  - ខ្សែភ្ជាប់ MCP `ClientSession` សម្រាប់អ្នករៀបចំទៅកាន់ការហៅឧបករណ៍ពិត
+  - តារាងប្រើគំរូ (រកឃើញភាពច្រឡំ, គំរូគ្រោះថ្នាក់, ការត្រួតពិនិត្យ API, បញ្ចាក់ភាពត្រឹមត្រូវ, ជ្រើសរើសបច្ចេកវិទ្យា)
+  - ការពិចារណាសុវត្ថិភាព: ការប្រតិបត្តិការស៊េនបុក, ការផ្ទៀងផ្ទាត់ការហៅឧបករណ៍, ការរក្សាទុកកំណត់ហេតុ, ការកំណត់កម្រិតដំណើរការ
+  - វិស្វកម្មរចនាសម្ព័ន្ធជាមួយសំនួរបីសម្រាប់អនុវត្ត (ការត្រួតពិនិត្យកូដ, ការសម្រេចចិត្តរចនាសម្ព័ន្ធ, ការត្រួតពិនិត្យមាតិកា)
 
 #### ការជួសជុលឯកសារ
 
-**Module 03 - ការចាប់ផ្តើម**
-- **05-stdio-server/README.md**: កែសម្រួលឧទាហរណ៍ម៉ាស៊ីនមេ TypeScript stdio មិនពេញ — បន្ថែមការបង្កើត ការដឹកជញ្ជូន (`new StdioServerTransport()`) និងហៅ `server.connect(transport)` ដើម្បីសម្របសម្រួលទៅឧទាហរណ៍ Python និង .NET ក្នុងផ្នែកដូចគ្នា
-- **14-sampling/README.md**: កែសម្រួលកំហុសវាយភាគ — ពិនិត្យកែ `"Sampling is an davanced features"` → `"Sampling is an advanced feature"`
+**ម៉ូឌុល 03 - ចាប់ផ្តើម**
+- **05-stdio-server/README.md**: បន្តិចបង្ហាញគំរូមាស៊ីនមេ stdio TypeScript បញ្ចប់មិនពេញលេញ — បានបន្ថែមការបង្កើតការដឹកជញ្ជូន (`new StdioServerTransport()`) និងការហៅ `server.connect(transport)` ដើម្បីផ្គូផ្គងគំរូ Python និង .NET នៅផ្នែកដូចគ្នា
+- **14-sampling/README.md**: ជួសជុលអក្សរខុស — ផ្លាស់ប្តូរ `"Sampling is an davanced features"` ទៅជា `"Sampling is an advanced feature"`
 
-#### ការធ្វើបច្ចុប្បន្នភាពមេរៀន
+#### បច្ចុប្បន្នភាពមេរៀន
 
-**README.md សំខាន់**
-- បន្ថែមធាតុ 5.17 (ការគិតយុទ្ធសាស្រ្តចម្រុះភ្នាក់ងារប្រឆាំងជាមួយ MCP) ទៅតារាងមេរៀនជាមួយតំណភ្ជាប់ផ្ទាល់ទៅមេរៀនថ្មី
+**README.md ផ្នែកចម្បង**
+- បន្ថែមចំណុច 5.17 (ការគិតជាមួយភាគីច្រើនប្រឆាំងគ្នាជាមួយ MCP) ទៅតារាងមេរៀនជាមួយតំណភ្ជាប់ផ្ទាល់ទៅមេរៀនថ្មី
 
 **05-AdvancedTopics/README.md**
-- បន្ថែមបន្ទាត់មេរៀន 5.17 ទៅតារាងមេរៀន
+- បន្ថែមជួរដេកមេរៀន 5.17 ទៅតារាងមេរៀន
 
 **study_guide.md**
-- បន្ថែមប្រធានបទការគិតយុទ្ធសាស្រ្តចម្រុះភ្នាក់ងារប្រឆាំងទៅនឹងផែនទីចិត្ត និងការពិពណ៌នាពីប្រធានបទជំនាន់ខ្ពស់
+- បន្ថែមប្រធានបទការគិតជាមួយភាគីច្រើនប្រឆាំងក្នុងផែនទីគំនិត និងការពិពណ៌នាម៉ត់ម៉ាត់ពីប្រធានបទកម្រិតខ្ពស់
 
-#### កូដ និងការជួសជុលសុវត្ថិភាព
+#### ការជួសជុលកូដ និងសុវត្ថិភាព
 
-**Module 05 - ភ្នាក់ងារប្រឆាំង (`mcp-adversarial-agents`)**
-- **ជួសជុលសុវត្ថិភាព — ការចាក់ទិន្នន័យបញ្ជា**: ជំនួសការបញ្ចូល(execSync) បញ្ជាជួរពេលនៅ shell ជាមួយ `execFile` + `promisify` ក្នុងឧបករណ៍ `run_python` របស់ TypeScript ដើម្បីបំបាត់ផ្ទៃការចាក់ទិន្នន័យ (កូដដែលត្រូវគ្រប់គ្រងដោយ LLM ឥឡូវនេះត្រូវបានបញ្ជូនជាធាតុលារី argv ដោយគ្មានការចូលរួម shell)
-- **ខ្សែភ្ជាប់ MCP tool loop**: ធ្វើបច្ចុប្បន្នភាពអ្នករៀបចំប្រជុំ Python ដើម្បីប្រើ `AsyncAnthropic` client (ជំនួស sync `Anthropic` រង់ចាំ), ផ្ញើ `ClientSession` តួចលីវទៅមួយខ្ទង់ភ្នាក់ងារនីមួយ, ទាញយកការកំណត់ឧបករណ៍តាម `session.list_tools()` រៀងរាល់ខ្ទង់, ហើយផ្ញើប្លុក `tool_use` តាម `session.call_tool()` ក្នុងលំហូរទៅមុនដល់ពេលម៉ូដែលបញ្ចេញចម្លើយអក្សរចុងក្រោយ
+**ម៉ូឌុល 05 - ភាគីប្រឆាំង (`mcp-adversarial-agents`)**
+- **ការជួសជុលសុវត្ថិភាព — ការវាយប្រហារបញ្ជា**: ប្ដូរ `execSync` ដែលប្រើការចម្លងបញ្ជា shell ជា `execFile` + `promisify` ក្នុងឧបករណ៍ `run_python` TypeScript ដើម្បីកាត់បន្ថយមុខងារវាយប្រហារបញ្ជា (កូដគ្រប់គ្រងដោយ LLM ឥឡូវត្រូវបានផ្តល់ជាធាតុកថារូបធាតុ argv ដោយគ្មានការចូលរួម shell)
+- **ខ្សែភ្ជាប់រង្វង់ឧបករណ៍ MCP**: ធ្វើបច្ចុប្បន្នភាពអ្នករៀបចំប្រឆាំង Python ដើម្បីប្រើហត្ថលេខា `AsyncAnthropic` ដែលមិនរាំងខ្សែ (ជំនួស `Anthropic` blocking sync), ផ្តល់ `ClientSession` បន្តផ្ទាល់ទៅភាគីតាមលំដាប់, ទាញយកនិយមន័យឧបករណ៍តាម `session.list_tools()` រាល់ជុំ, និងផ្ញើប្លុក `tool_use` តាម `session.call_tool()` ជារង្វង់រហូតតែម៉ូដែលផ្ដល់ចម្លើយអត្ថបទចុងក្រោយ
 
-#### ការធ្វើបច្ចុប្បន្នភាពការពឹងផ្អែក
+#### ការធ្វើបច្ចុប្បន្នភាពផ្នែកពឹងផ្អែក
 
-- ធ្វើបច្ចុប្បន្នភាព `hono` ទៅ 4.12.12 ក្នុងកញ្ចប់ច្រើន (03-GettingStarted, 04-PracticalImplementation, 10-StreamliningAIWorkflows)
-- ធ្វើបច្ចុប្បន្នភាព `@hono/node-server` ពី 1.19.11 ទៅ 1.19.13 ក្នុងកញ្ចប់ TypeScript
-- ធ្វើបច្ចុប្បន្នភាព `cryptography` ពី 46.0.5 ទៅ 46.0.7 ក្នុងកញ្ចប់ Python (10-StreamliningAIWorkflows បន្ទប់ 3 និង 4)
-- ធ្វើបច្ចុប្បន្នភាព `lodash` ពី 4.17.23 ទៅ 4.18.1 ក្នុងអ្នកត្រួតពិនិត្យ 10-StreamliningAIWorkflows
+- បានបន្ថែមកំណែ `hono` ទៅ 4.12.12 នៅក្នុងកញ្ចប់ច្រើន (03-GettingStarted, 04-PracticalImplementation, 10-StreamliningAIWorkflows)
+- បានបន្ថែមកំណែ `@hono/node-server` ពី 1.19.11 ទៅ 1.19.13 នៅក្នុងកញ្ចប់ TypeScript
+- បានបន្ថែមកំណែ `cryptography` ពី 46.0.5 ទៅ 46.0.7 នៅក្នុងកញ្ចប់ Python (មេរៀន 3 និង 4 នៃ 10-StreamliningAIWorkflows)
+- បានបន្ថែមកំណែ `lodash` ពី 4.17.23 ទៅ 4.18.1 នៅក្នុងអ្នកត្រួតពិនិត្យ 10-StreamliningAIWorkflows
 
 #### ការប្រែសម្រួល
 
-- ទំទាញការប្រែសម្រួលសម្រាប់ ៤៨+ ភាសា ជាមួយនឹងការផ្លាស់ប្តូរសូម្បីចុងក្រោយ (បច្ចុប្បន្នភាព i18n)
+- បានសម្រួលការប្រែសម្រួលសម្រាប់ភាសា 48+ ជាមួយបម្លាស់ប្ដូរប្រភពថ្មីបំផុត (បច្ចុប្បន្នភាព i18n)
 
 ---
 
-## ៥ ខែកុម្ភៈ ២០២៦
+## ៥ កុម្ភៈ ២០២៦
 
-### ការត្រួតពិនិត្យទូទាំងឃ្លាំងតាមទៅ និងការកែលម្អការរុករក
+### ការត្រួតពិនិត្យគ្រប់ទិសផ្ទាត់ និងការកែលម្អការរុករកក្នុងឃ្លាំង
 
-#### បន្ថែមមាតិកាមេរៀនថ្មី
+#### គន្លងមេរៀនថ្មីបានបន្ថែម
 
-**Module 03 - ការចាប់ផ្តើម**
-- **12-mcp-hosts/README.md**: មេរៀនទូលំទូលាយថ្មីសម្រាប់ការតំឡើងម៉ាស៊ីនម៉ាស៊ីន MCP
+**ម៉ូឌុល 03 - ចាប់ផ្តើម**
+- **12-mcp-hosts/README.md**: គន្លងមេរៀនពេញលេញថ្មីសម្រាប់ការតំឡើងម៉ាស៊ីនមេ MCP
   - គំរូការកំណត់ Claude Desktop, VS Code, Cursor, Cline, Windsurf
-  - គំរូការកំណត់ JSON សម្រាប់ម៉ាស៊ីនទាំងអស់សំខាន់ៗ
-  - តារាងប្រៀបធៀបប្រភេទការដឹកជញ្ជូន (stdio, SSE/HTTP, WebSocket)
-  - ការដោះស្រាយបញ្ហាច្រើនពេលភ្ជាប់
-  - វិធីសាស្រ្តប្រសើរសម្រាប់សុវត្ថិភាពនៃការកំណត់ម៉ាស៊ីន
+  - គំរូ JSON សម្រាប់ការកំណត់ម៉ាស៊ីនមេធំទាំងអស់
+  - តារាងប្រៀបធៀបប្រភេទការផ្ទេរ (stdio, SSE/HTTP, WebSocket)
+  - ការជួសជុលបញ្ហាការតភ្ជាប់ធម្មតា
+  - مូតវិធីសាស្រ្តសុវត្ថិភាពល្អបំផុតសម្រាប់ការកំណត់ម៉ាស៊ីនមេ
 
-- **13-mcp-inspector/README.md**: មេរៀនបំបែកកំហុសថ្មីសម្រាប់ MCP Inspector
-  - វិធីសាស្រ្តដំឡើង (npx, npm global, ពីប្រភព)
-  - ភ្ជាប់ទៅម៉ាស៊ីនតាម stdio និង HTTP/SSE
-  - ការធ្វើតេស្តឧបករណ៍, ធនធាន, និងដំណើរការប្រើប្រាស់ prompts
-  - សម្ព័ន្ធ VS Code ជាមួយ MCP Inspector
-  - ស្ថានភាពបំបែកកំហុសពេញនិយមជាមួយដំណោះស្រាយ
+- **13-mcp-inspector/README.md**: គន្លងមេរៀនកែតម្រូវកំហុសសម្រាប់ MCP Inspector
+  - វិធីដំឡើង (npx, npm global, ពីប្រភព)
+  - ការតភ្ជាប់ទៅម៉ាស៊ីនមេតាម stdio និង HTTP/SSE
+  - ឧបករណ៍សាកល្បង, ធនធាន, និងរបៀបការងារជាមួយបណ្ដាញដំណើរការ
+  - ការរួមបញ្ចូល VS Code ជាមួយ MCP Inspector
+  - គំរូរៀបចំកំហុសជាទូទៅជាមួយដំណោះស្រាយ
 
-**Module 04 - ការអនុវត្តជាក់ស្តែង**
-- **pagination/README.md**: មេរៀនអនុវត្តpaginationថ្មី
-  - គំរូpagination ប្រើ cursor ក្នុង Python, TypeScript, Java
-  - ការគ្រប់គ្រងpagination ផ្នែកម៉ាស៊ីនអតិថិជន
-  - នីតិវិធីរចនារបស់ cursor (មិនថ្លៃ vs រចនាសម្ព័ន្ធ)
-  - ការផ្តល់អនុសាសន៍ខាងចំណុចសមត្ថភាព
+**ម៉ូឌុល 04 - អនុវត្តជាក់ស្តែង**
+- **pagination/README.md**: គន្លងបច្ចេកទេស pagination ថ្មី
+  - គំរូ pagination ផ្អែកលើ Cursor ក្នុង Python, TypeScript, Java
+  - ការគ្រប់គ្រង pagination មុខClient
+  - រចនាម៉ូត Cursor (មិនច្បាស់ vs រៀបចំតាមរចនា)
+  - ការណែនាំលឿនប្រសិទ្ធភាព
 
-**Module 05 - ប្រធានបទជំនាន់ខ្ពស់**
-- **mcp-protocol-features/README.md**: មេរៀនលម្អិតលើមុខងារពិធីសម្ព័ន្ធថ្មី
-  - អនុវត្តការជូនដំណឹងកំណើត
-  - គំរូការលុបបញ្ចូលស្នើរសុំ
-  - គំរូទំព័ររបស់ធនធានជាមួយរចនាសម្ព័ន្ធ URI
+**ម៉ូឌុល 05 - ប្រធានបទកម្រិតខ្ពស់**
+- **mcp-protocol-features/README.md**: ការពិចារណាអំពីលក្ខណៈ protocol ថ្មី
+  - ការអនុវត្តការ​ណែនាំ​ការ‌រំលឹក​ផុតកំណត់
+  - គំរូការលុបសំណើ
+  - គំរូតារាងធនធានជាមួយណែនាំ URI
   - ការគ្រប់គ្រងជីវិតម៉ាស៊ីនមេ
-  - ការត្រួតពិនិត្យកម្រិតកំណត់ហេតុ
-  - គំរូដោះស្រាយកំហុសជាមួយកូដ JSON-RPC
+  - ការគ្រប់គ្រងកម្រិតកំណត់ហេតុ
+  - គំរូគ្រប់គ្រងកំហុសជាមួយកូដ JSON-RPC
 
-#### ការជួសជុលការរុករក (ធ្វើបច្ចុប្បន្នភាព 24+ ឯកសារ)
+#### ការជួសជុលការរុករក (បានធ្វើបច្ចុប្បន្នភាព 24+ ឯកសារ)
 
-**README សំខាន់ៗរបស់ Module**
- ឥឡូវភ្ជាប់ទៅមេរៀនដំបូង និងម៉ូឌុលបន្ទាប់
+**README រោទ៍ម៉ូឌុលសំខាន់ៗ**
+ ឥឡូវមានតំណទៅមេរៀនដំបូង និងម៉ូឌុលបន្ទាប់ទាំងពីរ
 
 **ឯកសារផ្នែកសុវត្ថិភាព 02**
-- ឯកសារសុវត្ថិភាពជំនួយទាំង ៥ ត្រូវបានបន្ថែមផ្នែក "What's Next" សម្រាប់ការរុករកទៅមុខ
+- ឯកសារសុវត្ថិភាពបន្ថែមទាំង 5 ឥឡូវមានការរុករក "What’s Next":
 
-**ឯកសារសិក្សាឧទាហរណ៍ 09**
-- ឥឡូវនេះឯកសារសិក្សាឧទាហរណ៍ទាំងអស់មានការរុករកតាមលំដាប់ជាប់គ្នា
+**ឯកសារករណីសិក្សា 09**
+- ឯកសារករណីសិក្សាទាំងអស់មានរបៀបរុករកលំដាប់ជាប់លាប់
 
-**បន្ទប់ 10-StreamliningAI**
-បន្ថែមផ្នែក What's Next ទៅការពិពណ៌នារបស់ Module 10 និង Module 11
+**មេរៀនការងារ ១០ StreamliningAI**
+បានបន្ថែមផ្នែក What’s Next ទៅលើការអធិប្បាយម៉ូឌុល ១០ និងម៉ូឌុល ១១
 
-#### កូដ និងការជួសជុលមាតិកា
+#### ការជួសជុលកូដ និងមាតិកា
 
-**ការធ្វើបច្ចុប្បន្នភាព SDK និងការពឹងផ្អែក**
-កែសម្រួលកំណែ openai ទទេ ទៅ `^4.95.0`
-ធ្វើបច្ចុប្បន្នភាព SDK ពី `^1.8.0` ទៅ `>=1.26.0`
-ធ្វើបច្ចុប្បន្នភាពកំណត់ម៉ូឌុល mcp ទៅ `>=1.26.0`
+**ការធ្វើបច្ចុប្បន្នភាព SDK និងផ្នែកពឹងផ្អែក**
+បានជួសជុលកំណែ openai ឆ្ងាយទទេទៅជា `^4.95.0`
+បានធ្វើបច្ចុប្បន្នភាព SDK ពី `^1.8.0` ទៅ `>=1.26.0`
+បានធ្វើបច្ចុប្បន្នភាពកំណែការពារ mcp ទៅ `>=1.26.0`
 
 **ការជួសជុលកូដ**
-កែសម្រួលម៉ូដែលមិនត្រឹមត្រូវ `gpt-4o-mini` ទៅ `gpt-4.1-mini`
+បានជួសជុលម៉ូដែលមិនត្រឹមត្រូវ `gpt-4o-mini` ទៅ `gpt-4.1-mini`
 
 **ការជួសជុលមាតិកា**
-កែសម្រួលតំណភ្ជាប់ខូច `READMEmd` → `README.md`, កែសំណុំបែបបទមេរៀន `Module 1-3` → `Module 0-3`, កែសម្រួលផ្លូវដែលមានអក្សរធំ/តូចខុសគ្នា
-ដកចេញមាតិកាដែលជាប្តុំស្ទួនមិនស្អាតនៃ Case Study 5
+បានជួសជុលតំណខូច `READMEmd` → `README.md`, បានកែចំណងជើងគណនេយ្យ `Module 1-3` → `Module 0-3`, បានកែបន្ទាត់ផ្លូវចាំបាច់ទ្បើងខ្ពស់
+បានដកខ្លឹម​សារ​ករណី​សិក្សា 5 ដែលខូចផ្សេងគ្នា
 
-**ការកែលម្អការណែនាំសម្រាប់អ្នកថ្មី**
-បន្ថែមការណែនាំត្រឹមត្រូវ, គោលបំណងសិក្សា, និងលក្ខខណ្ឌមុនសម្រាប់អ្នកថ្មី
+**ការកែលម្អការណែនាំសម្រាប់អ្នកចាប់ផ្ដើម**
+បានបន្ថែមការណែនាំត្រឹមត្រូវ, គោលបំណងរៀន, និងលក្ខខណ្ឌមុនសម្រាប់អ្នកចាប់ផ្ដើម
 
-#### ការធ្វើបច្ចុប្បន្នភាព មេរៀន
+#### ការធ្វើបច្ចុប្បន្នភាពគណនេយ្យ
 
-**README.md សំខាន់**
-- បន្ថែមធាតុ 3.12 (ម៉ាស៊ីនម៉ាស៊ីន MCP), 3.13 (MCP Inspector), 4.1 (Pagination), 5.16 (មុខងារពិធីសម្ព័ន្ធ) ទៅតារាងមេរៀន
+**README.md ផ្នែកចម្បង**
+- បានបន្ថែមចំណុច 3.12 (ម៉ាស៊ីនមេ MCP), 3.13 (MCP Inspector), 4.1 (Pagination), 5.16 (លក្ខណៈ Protocol) ទៅក្នុងតារាងគណនេយ្យ
 
-**README របស់ Module**
-បន្ថែមមេរៀន 12 និង 13 ទៅបញ្ជីមេរៀន
-បន្ថែមផ្នែកមគ្គុទេសក៍អនុវត្តជាក់ស្តែងជាមួយតំណភ្ជាប់pagination
-បន្ថែមមេរៀន 5.15 (ដឹកជញ្ជូនប្តូរតាមតម្រូវការ) និង 5.16 (មុខងារពិធីសម្ព័ន្ធ)
+**README ម៉ូឌុល**
+បានបន្ថែមមេរៀន 12 និង 13 ទៅតារាងមេរៀន
+បានបន្ថែមផ្នែកគន្លងអនុវត្តជាក់ស្តែងសម្រាប់ pagination
+បានបន្ថែមមេរៀន 5.15 (ការផ្ទេរបញ្ជូនផ្ទាល់ខ្លួន) និង 5.16 (លក្ខណៈ Protocol)
 
 **study_guide.md**
-- ធ្វើបច្ចុប្បន្នភាពផែនទីចិត្តជាមួយប្រធានបទថ្មីៗទាំងអស់: ការតំឡើងម៉ាស៊ីនម៉ាស៊ីន MCP, MCP Inspector, វិធីសាស្រ្តpagination, បកស្រាយមុខងារពិធីសម្ព័ន្ធ
+- បានធ្វើបច្ចុប្បន្នភាពផែនទីគំនិតជាមួយប្រធានបទថ្មីៗទាំងអស់៖ ការតំឡើងម៉ាស៊ីនមេ MCP, MCP Inspector, ផែនការផ្ទេរបញ្ជូន Pagination, ការពិនិត្យលំអិតលក្ខណៈ Protocol
 
 ## ២៨ មករា ២០២៦
 
-### ការត្រួតពិនិត្យការអនុវត្តលំដាប់ MCP 2025-11-25
+### ការត្រួតពិនិត្យការអនុលោម MCP Specification 2025-11-25
 
-#### ការកែលម្អគំនិតមូលដ្ឋាន (01-CoreConcepts/)
-- **Client Primitive ថ្មី - Roots**: បន្ថែមឯកសារទូលំទូលាយអំពី Root client primitive ដែលអោយម៉ាស៊ីនម៉ាស៊ីនយល់ពីដែនកំណត់filesystem និងសិទិ្ធចូលដំណើរការ
-- **កំណត់សម្គាល់ឧបករណ៍**: បន្ថែមឯកសារអំពីកំណត់សម្គាល់អាកប្បកិរិយាឧបករណ៍ (`readOnlyHint`, `destructiveHint`) សម្រាប់សម្រេចចិត្តប្រតិបត្តិឧបករណ៍ល្អប្រសើរជាងមុន
-- **ការហៅឧបករណ៍នៅក្នុងការរើសតំណ**: ធ្វើបច្ចុប្បន្នភាពឯកសារសម្រាប់ Sampling ដើម្បីរួមបញ្ចូល `tools` និង `toolChoice` ពីសំណើរចុងក្រោយដែលត្រួតពិនិត្យដោយម៉ូដែល
-- **URL Mode Elicitation**: បន្ថែមឯកសារអំពីការរើសតំណមួយជាមួយ URL សម្រាប់ការប្រតិបត្ដិពីម៉ាស៊ីនមេ
-- **ការងារជាក់ស្តែង (ពិសោធន៍)**: បន្ថែមផ្នែកថ្មីចុះបញ្ជីលើការងារជាក់ស្តែងសម្រាប់ការប្រតិបត្ដិរយៈពេលវែងនិងការទាញយកលទ្ធផលពេលក្រោយ
-- **គាំទ្រប្លាក**: បញ្ជាក់ថា ឧបករណ៍, ធនធាន, គំរូធនធាន និង prompts អាចរួមបញ្ចូលប្លាកបានជាមាតិកាបន្ថែម
+#### ការពង្រីកគំនិតមូលដ្ឋាន (01-CoreConcepts/)
+- **មុខងារ Client ថ្មី - Roots**: បន្ថែមឯកសារលម្អិតអំពីមុខងារ Roots នៃ client ដែលអាចអោយម៉ាស៊ីនមេយល់ពីអាណាតិចភាពfilesystem និងសិទ្ធិចូលប្រើ
+- **កំណត់សម្គាល់ឧបករណ៍**: បន្ថែមឯកសារពិពណ៌នាអំពីកំណត់សម្គាល់អាកប្បកិរិយា (`readOnlyHint`, `destructiveHint`) សម្រាប់សម្រេចចិត្តអំពីការអនុវត្តឧបករណ៍ល្អប្រសើរជាងមុន
+- **ការហៅឧបករណ៍នៅក្នុង Sampling**: ធ្វើបច្ចុប្បន្នភាពឯកសារ Sampling ដើម្បីបញ្ចូលប៉ារ៉ាម៉ែត្រ `tools` និង `toolChoice` សម្រាប់ការហៅឧបករណ៍ដោយម៉ូដែលពេលសំណើការនំំណួល
+- **ការបំពាន URL Mode Elicitation**: បន្ថែមឯកសារអំពីការបង្កើត URL Mode Elicitation សម្រាប់អន្តរកម្មបណ្ដាញកន្លែងខាងក្រៅដែលចាប់ផ្តើមដោយម៉ាស៊ីនមេ
+- **ការងារជាអ្នកសាកល្បង**: បន្ថែមផ្នែកថ្មីពិពណ៌នាអំពីលក្ខណៈការងារស្រាវជ្រាវសម្រាប់ការអនុវត្តប្រកបដោយភាពរឹងមាំនិងការទាញយកលទ្ធផលក្រោយពេលពន្យាពេល
+- **ការគាំទ្រអាយគុន**: បានសម្គាល់ថាឧបករណ៍ធនធាន មូដែលធនធាន និងបណ្ដាំអាចមានអាយគុនជាបន្ថែម
 
 #### ការធ្វើបច្ចុប្បន្នភាពឯកសារ
-- **README.md**: បន្ថែមយោងកំណែ MCP Specification 2025-11-25 និងការពន្យល់អំពីកាលបរិច្ឆេទកំណែ
-- **study_guide.md**: ធ្វើបច្ចុប្បន្នភាពផែនទីការសិក្សារួមបញ្ចូល Tasks និង គណនេយ្យឧបករណ៍ ក្នុងផ្នែកគំនិតមូលដ្ឋាន; ធ្វើបច្ចុប្បន្នភាពម៉ោងឯកសារ
+- **README.md**: បន្ថែមមាតិកា MCP Specification 2025-11-25 និងការពន្យល់អំពីការកំណត់កំណែដោយកាលបរិច្ឆេទ
+- **study_guide.md**: ធ្វើបច្ចុប្បន្នភាពផែនទីគណនេយ្យដើម្បីបញ្ចូលការងារ និងកំណត់សម្គាល់ឧបករណ៍នៅក្នុងផ្នែកគំនិតមូលដ្ឋាន; បច្ចុប្បន្នភាពកាលបរិច្ឆេទឯកសារ
 
-#### ការត្រួតពិនិត្យការបំពេញលក្ខណៈនៃការបញ្ជាក់ឯកសារ
-- **កំណែបញ្ជាក់**: បញ្ជាក់ឯកសារទាំងអស់ថាអនុវត្ត MCP Specification 2025-11-25
-- **ការ​ផ្គូផ្គងស្ថាបត្យកម្ម**: បញ្ជាក់ភាពត្រឹមត្រូវនៃឯកសាររៀបចំសំណុំពីរជាន់ (Data Layer + Transport Layer)
-- **ឯកសារការពិពណ៌នាពី primitives**: បញ្ជាក់សាកសមគ្នានៃ client primitives (Resources, Prompts, Tools) និង server primitives (Sampling, Elicitation, Logging, Roots)
-- **មេកានិចដឹកជញ្ជូន**: បញ្ជាក់សាកសមផ្នែកការពិពណ៌នាត្រួតពិនិត្យ STDIO និង Streamable HTTP
-- **ការណែនាំសុវត្ថិភាព**: បញ្ជាក់ការផ្គូផ្គងជាមួយឯកសារអនុវត្តន៍សុវត្ថិភាព MCP បច្ចុប្បន្ន
+#### ការត្រួតពិនិត្យការអនុលោមនៃការបញ្ជាក់
+- **កំណែ Protocol**: បានពិនិត្យឯកសារទាំងអស់ឲ្យត្រូវនឹង MCP Specification 2025-11-25
+- **ការយោងស្ថាបត្យកម្ម**: បានបញ្ជាក់ឲ្យបានច្បាស់ស្ថាបត្យកម្មស្រទាប់ពីរណាក់ (ស្រទាប់ទិន្នន័យ + ស្រទាប់ផ្ទេរ)
+- **ឯកសារមុខងារ Primitives**: បានធ្វើការផ្ទៀងផ្ទាត់មុខងារមាស៊ីនមេ (ធនធាន, បណ្ដាំ, ឧបករណ៍) និងមុខងារ client (Sampling, Elicitation, Logging, Roots)
+- **មធ្យោបាយផ្ទេរ**: បានបញ្ជាក់ឯកសារពាក់ព័ន្ធការ​ផ្ទេរ STDIO និង Streamable HTTP
+- **ការណែនាំសុវត្ថិភាព**: បានបញ្ជាក់ឲ្យឆាប់ទៅនឹងការណែនាំសុវត្ថិភាពល្អបំផុត MCP ប្រកបដោយភាពសម្របសម្រួលបច្ចុប្បន្ន
 
-#### លក្ខណៈសំខាន់នៃ MCP 2025-11-25 ដែលបានរាយការណ៍
-- **ការស្វែងរក OpenID Connect**: ការស្វែងរកម៉ាស៊ីនបម្រើតាម OIDC
-- **ឯកសារព័ត៌មាន Client IDOAuth**: វិធីសាស្រ្តកត់ត្រាអតិថិជនដែលបានណែនាំ
-- **JSON Schema 2020-12**: ភាសារូបមន្តលំនាំដើមសម្រាប់ schema MCP
-- **ប្រព័ន្ធជាន់ SDK**: ការតំរូវការផ្លូវការ សម្រាប់គាំទ្រនិងថែទាំមុខងារ SDK
-- **រចនាសម្ព័ន្ធការគ្រប់គ្រង**: កំណត់ជាក្រុមការងារ និងក្រុមចំណាប់អារម្មណ៍ក្នុងការគ្រប់គ្រង MCP
+#### លក្ខណៈសំខាន់ MCP 2025-11-25 ដែលបានចុះបញ្ជី
+- **ការរកឃើញ OpenID Connect**: ការរកឃើញម៉ាស៊ីនមេផ្ទាល់ខ្លួនតាម OIDC
+- **ឯកសារព័ត៌មានអត្រាបញ្ជាក់អ្នកប្រើ OAuth Client ID**: ការណែនាំវិធីចុះបញ្ជីអត្រាអ្នកប្រើ
+- **JSON Schema 2020-12**: អក្សរកំណត់លំនាំដើមសម្រាប់ស្កេម៉ាគម្រោង MCP
+- **ប្រព័ន្ធចំណាត់ថ្នាក់ SDK**: ការតម្រៀបផ្លូវការសម្រាប់ហៅសមត្ថភាព និងថែទាំ SDK
+- **រចនាសម្ព័ន្ធរដ្ឋាភិបាល**: ការតម្រៀបផ្លូវការសម្រាប់ក្រុមការងារ និងក្រុមចំណាប់អារម្មណ៍ក្នុងរដ្ឋាភិបាល MCP
 
-### ការធ្វើបច្ចុប្បន្នភាពធំលើឯកសារសុវត្ថិភាព (02-Security/)
+### ការធ្វើបច្ចុប្បន្នភាពធំនៅឯកសារសុវត្ថិភាព (02-Security/)
 
 #### ការរួមបញ្ចូល MCP Security Summit Workshop (Sherpa)
-- **ធនធានហ្វឹកហាត់អោយដៃ**: បន្ថែមការរួមបញ្ចូលទូលំទូលាយជាមួយ [MCP Security Summit Workshop (Sherpa)](https://azure-samples.github.io/sherpa/) តាមឯកសារសុវត្ថិភាពទាំងអស់
-- **ការបង្កើតផ្លូវដំណើរការ**: រាយការណ៍ពីកំណត់បញ្ជួនពីBase Camp ដល់ Summit
-- **ការផ្គូផ្គង OWASP**: គោលការណ៍សុវត្ថិភាពទាំងអស់ធ្វើ​ផ្គូផ្គងទៅការណែនាំសុវត្ថិភាព OWASP MCP Azure
+- **ធនធានបណ្តុះបណ្តាលអនុវត្តថ្មី**: បន្ថែមការរួមបញ្ចូលពេញលេញជាមួយ [MCP Security Summit Workshop (Sherpa)](https://azure-samples.github.io/sherpa/) ក្នុងឯកសារសុវត្ថិភាពទាំងអស់
+- **គន្លងការយកដំណើរទៅរកគេហដ្ឋាន**: បង្ហាញដំណើរការតាំងពី Base Camp រហូតដល់ Summit
+- **ការផ្គូផ្គង OWASP**: ការណែនាំសុវត្ថិភាពទាំងអស់ឥឡូវបានផ្គូផ្គងទៅនឹងការគ្រប់គ្រងហានិភ័យ OWASP MCP Azure Security Guide
 
 #### ការរួមបញ្ចូល OWASP MCP Top 10
-- **ផ្នែកថ្មី**: បន្ថែមតារាងហានិភ័យសុវត្ថិភាព OWASP MCP Top 10 ជាមួយវិធានការពារប្រើ Azure ទៅ README សុវត្ថិភាពសំខាន់
-- **ឯកសារផ្អែកលើហានិភ័យ**: ធ្វើបច្ចុប្បន្នភាព mcp-security-controls-2025.md ដោយបញ្ចូលតំណភ្ជាប់ហានិភ័យ OWASP MCP សម្រាប់ដែនសុវត្ថិភាពនីមួយៗ
-- **រចនាសម្ព័ន្ធយោង**: ភ្ជាប់ទៅការអនុវត្តន៍រចនាសម្ព័ន្ធ OWASP MCP Azure Security Guide និងគំរូអនុវត្ត
+- **ផ្នែកថ្មី**: បានបន្ថែមតារាងហានិភ័យសុវត្ថិភាព OWASP MCP Top 10 ជាមួយការការពាររបស់ Azure ទៅក្នុង README សុវត្ថិភាព
+- **ឯកសារដែលផ្អែកលើហានិភ័យ**: ធ្វើបច្ចុប្បន្នភាព mcp-security-controls-2025.md ជាមួយការដាក់ឲ្យប្រកបដោយហានិភ័យ OWASP MCP ក្នុងដែនសុវត្ថិភាពនីមួយៗ
+- **ស្ថាបត្យកម្មយោង**: តភ្ជាប់ទៅ OWASP MCP Azure Security Guide ស្ថាបត្យកម្មយោង និងគំរូអនុវត្ត
 
-#### ឯកសារសុវត្ថិភាពបានធ្វើបច្ចុប្បន្នភាព
-- **README.md**: បន្ថែមការពិពណ៌នាអំពី Sherpa Workshop, តារាងផ្លូវដំណើរ, សេចក្ដីសង្ខេបហានិភ័យ OWASP MCP Top 10 និងផ្នែកហ្វឹកហាត់ផ្ទាល់ខ្លួន
-- **mcp-security-controls-2025.md**: សំណុំបែបបទបានធ្វើបច្ចុប្បន្នភាពទៅខែកុម្ភៈ ២០២៦, បន្ថែមតំណភ្ជាប់ហានិភ័យ OWASP (MCP01-MCP08), និងកែសម្រួលភាពមិនសមរម្យនៅកំណែសេចក្ដីពិពណ៌នា
-- **mcp-security-best-practices-2025.md**: បន្ថែមផ្នែកធនធាន Sherpa និង OWASP, ធ្វើបច្ចុប្បន្នភាពម៉ោង
-- **mcp-best-practices.md**: បន្ថែមផ្នែកហ្វឹកហាត់ផ្ទាល់ខ្លួនជាមួយតំណ Sherpa និង OWASP
-- **azure-content-safety-implementation.md**: បន្ថែមតំណ OWASP MCP06, ផ្គូផ្គងទៅ Camp 3 Sherpa, និងផ្នែកធនធានបន្ថែម
+#### ឯកសារសុវត្ថិភាពដែលបានធ្វើបច្ចុប្បន្នភាព
+- **README.md**: បានបន្ថែមសង្ខេបអំពី Sherpa Workshop, តារាងគន្លងដំណើរការ, សង្ខេបហានិភ័យ OWASP MCP Top 10, និងផ្នែកបណ្តុះបណ្តាលអនុវត្ត
+- **mcp-security-controls-2025.md**: បានធ្វើបច្ចុប្បន្នភាពចំណងជើងទៅកាន់ខែកុម្ភៈ ២០២៦, បន្ថែមតំណរការ OWASP MCP (MCP01-MCP08), និងជួសជុលកំហុសកំណែមិនត្រូវ
+- **mcp-security-best-practices-2025.md**: បន្ថែមផ្នែកធនធាន Sherpa និង OWASP, ធ្វើបច្ចុប្បន្នភាពកាលបរិច្ឆេទ
+- **mcp-best-practices.md**: បន្ថែមផ្នែកបណ្តុះបណ្តាលអនុវត្តជាមួយតំណ Sherpa និង OWASP
+- **azure-content-safety-implementation.md**: បន្ថែមយោង OWASP MCP06, ការផ្គូផ្គង Sherpa Camp 3, និងផ្នែកធនធានបន្ថែម
 
 #### តំណធនធានថ្មីបានបន្ថែម
 - [MCP Security Summit Workshop (Sherpa)](https://azure-samples.github.io/sherpa/)
+
 - [OWASP MCP Azure Security Guide](https://microsoft.github.io/mcp-azure-security-guide/)
 - [OWASP MCP Top 10](https://owasp.org/www-project-mcp-top-10/)
-- ទំព័រហានិភ័យ OWASP MCP ផ្ទាល់ខ្លួន (MCP01-MCP10)
+- ផ្ទាំងហានិភ័យ OWASP MCP ផ្ទាល់ខ្លួន (MCP01-MCP10)
 
-### ការផ្គូផ្គង MCP Specification 2025-11-25 ទូទាំងមេរៀន
+### ការសមujúា Specification MCP ទូទៅ 2025-11-25
 
-#### Module 03 - ការចាប់ផ្តើម
-- **ឯកសារបង្ហាញ SDK**: បន្ថែម Go SDK ទៅបញ្ជី SDK ផ្លូវការ; ធ្វើបច្ចុប្បន្នភាពការយោង SDK ទាំងអស់ឲ្យផ្គូផ្គង MCP Specification 2025-11-25
-- **ការពន្យល់ការដឹកជញ្ជូន**: ធ្វើបច្ចុប្បន្នភាពការពិពណ៌នាការផ្ទេរកម្ម STDIO និង HTTP Streaming ជាមួយយោង spec ច្បាស់លាស់
+#### មូឌុល 03 - ចាប់ផ្តើម
+- **ឯកសារ SDK**: បានបន្ថែម Go SDK ទៅក្នុងបញ្ជី SDK ផ្លូវការ; បានធ្វើបច្ចុប្បន្នភាពយោង SDK ទាំងអស់ឲ្យស្របជាមួយ Specification MCP 2025-11-25
+- **ការបកស្រាយការដឹកជញ្ជូន**: បានធ្វើបច្ចុប្បន្នភាពការពិពណ៌នាដឹកជញ្ជូន STDIO និង HTTP Streaming ជាមួយយោងនៃសេចក្តីបញ្ជាក់ច្បាស់លាស់
 
-#### Module 04 - ការអនុវត្តជាក់ស្តែង
-- **ការធ្វើបច្ចុប្បន្នភាព SDK**: បន្ថែម Go SDK; ធ្វើបច្ចុប្បន្នភាពបញ្ជី SDK ជាមួយយោងកំណែ spec
-- **សេចក្តីពិពណ៌នាផ្លូវការ**: ធ្វើបច្ចុប្បន្នភាពតំណតំណ MCP Authorization ទៅកំណែបច្ចុប្បន្ន 2025-11-25
+#### មូឌុល 04 - អនុវត្តជាក់ស្តែង
+- **បច្ចុប្បន្នភាព SDK**: បានបន្ថែម Go SDK; បានធ្វើបច្ចុប្បន្នភាពបញ្ជី SDK ជាមួយបញ្ជាក់កំណែសេចក្តីបញ្ជាក់
+- **Authorization Spec**: បានធ្វើបច្ចុប្បន្នភាពតំណភ្ជាប់សេចក្តីបញ្ជាក់ MCP Authorization ទៅកំណែបច្ចុប្បន្ន 2025-11-25
 
-#### Module 05 - ប្រធានបទជំនាន់ខ្ពស់
-- **មុខងារថ្មី**: បន្ថែមកំណត់សម្គាល់អំពីមុខងារថ្មីៗនៅក្នុង MCP Specification 2025-11-25 (Tasks, Tool Annotations, URL Mode Elicitation, Roots)
-- **ធនធានសុវត្ថិភាព**: បន្ថែមតំណ OWASP MCP Top 10 និង Sherpa workshopទៅយោងបន្ថែម
+#### មូឌុល 05 - ប្រធានបទខ្ពស់
+- **មុខងារ​ថ្មី**: បានបន្ថែមកំណត់ចំណាំអំពីមុខងារ MCP Specification ថ្មី 2025-11-25 (កិច្ចការកិច្ចការ, កំណត់សម្គាល់ឧបករណ៍, ការអះអាងម៉ូដ URL, Roots)
+- **ប្រភពធនធានសន្តិសុខ**: បានបន្ថែមតំណភ្ជាប់ OWASP MCP Top 10 និងវគ្គបណ្តុះបណ្តាល Sherpa ទៅក្នុងយោងបន្ថែម
 
-#### Module 06 - ការរួមចំណែកសហគមន៍
-- **បញ្ជី SDK**: បន្ថែម Swift និង Rust SDKs; ធ្វើបច្ចុប្បន្នភាពការយោង spec ទៅ 2025-11-25
-- **យោង spec**: ធ្វើបច្ចុប្បន្នភាពតំណ MCP Specification ទៅ URL ផ្ទាល់
+#### មូឌុល 06 - ការចូលរួមសហគមន៍
+- **បញ្ជី SDK**: បានបន្ថែម Swift និង Rust SDKs; បានធ្វើបច្ចុប្បន្នភាពតំណភ្ជាប់ប្រាប់Specification ទៅ 2025-11-25
+- **យោង Specification**: បានធ្វើបច្ចុប្បន្នភាពតំណភ្ជាប់ MCP Specification ទៅ URL ផ្ទាល់
 
-#### Module 07 - មេរៀនពីការអនុវត្តដំបូង
+#### មូឌុល 07 - មេរៀនពីការបានទទួលយកដំបូង
+- **បច្ចុប្បន្នភាពធនធាន**: បានបន្ថែមតំណភ្ជាប់ MCP Specification 2025-11-25 និង OWASP MCP Top 10 ទៅក្នុងធនធានបន្ថែម
 
-- **ការអាប់ដេតធនធាន**: បានបន្ថែមតំណភ្ជាប់ MCP Specification 2025-11-25 និង OWASP MCP Top 10 ទៅធនធានបន្ថែម
+#### មូឌុល 08 - អនុវត្តល្អបំផុត
+- **កំណែ Specification**: បានធ្វើបច្ចុប្បន្នភាពយោង MCP Specification ទៅកំណែ 2025-11-25
+- **ធនធានសន្តិសុខ**: បានបន្ថែម OWASP MCP Top 10 និងវគ្គ Sherpa ទៅការយោងបន្ថែម
 
-#### ម៉ូឌុល 08 - អនុស្សរណៈល្អបំផុត
-- **កំណែបញ្ជាក់**: បានធ្វើបច្ចុប្បន្នភាពយោង MCP Specification ទៅកាន់កំណែ 2025-11-25
-- **ធនធានសុវត្ថិភាព**: បានបន្ថែម OWASP MCP Top 10 និង សិក្ខាសាលា Sherpa ទៅឯកសារយោងបន្ថែម
+#### មូឌុល 10 - ការធ្វើឲ្យមានប្រសិទ្ធភាពសេចក្តីអាជីវកម្ម AI
+- **បោះពុម្ពជាស់**: បានផ្លាស់ប្ដូរកំណែបោះពុម្ពជាស់ MCP ពីកំណែ SDK (1.9.3) ទៅកំណែសេចក្តីបញ្ជាក់ (2025-11-25)
+- **តំណភ្ជាប់ធនធាន**: បានធ្វើបច្ចុប្បន្នភាពតំណភ្ជាប់ MCP Specification; បានបន្ថែម OWASP MCP Top 10
 
-#### ម៉ូឌុល 10 - បង្រួមដំណើរការការងារ AI
-- **ការអាប់ដេតស្លាក**: ប្តូរស្លាកកំណែ MCP ពីកំណែ SDK (1.9.3) ទៅកំណែបញ្ជាក់ (2025-11-25)
-- **តំណភ្ជាប់ធនធាន**: បានអាប់ដេតតំណភ្ជាប់ MCP Specification និងបន្ថែម OWASP MCP Top 10
-
-#### ម៉ូឌុល 11 - ការប្រព្រឹត្តLabs MCP Server ប្រកបដោយការអនុវត្ត
-- **យោងបញ្ជាក់**: អាប់ដេតតំណភ្ជាប់ MCP Specification ទៅកំណែ 2025-11-25
-- **ធនធានសុវត្ថិភាព**: បានបន្ថែម OWASP MCP Top 10 ទៅធនធានផ្លូវការ
+#### មូឌុល 11 - មន្ទីរសេវា MCP Hands-On Labs
+- **យោង Specification**: បានធ្វើបច្ចុប្បន្នភាពតំណភ្ជាប់ MCP Specification ទៅកំណែ 2025-11-25
+- **ធនធានសន្តិសុខ**: បានបន្ថែម OWASP MCP Top 10 ទៅធនធានផ្លូវការ
 
 ## ថ្ងៃទី 18 ខែធ្នូ ឆ្នាំ 2025
 
-### ការអាប់ដេតឯកសារសុវត្ថភាព - MCP Specification 2025-11-25
+### ការអាប់ដេតឯកសារសន្តិសុខ - MCP Specification 2025-11-25
 
-#### MCP Security Best Practices (02-Security/mcp-best-practices.md) - ការអាប់ដេតកំណែបញ្ជាក់
-- **ការអាប់ដេតកំណែប្រព័ន្ធ**: បានធ្វើបច្ចុប្បន្នភាពយោងទៅកាន់ MCP Specification 2025-11-25 (ចេញផ្សាយថ្ងៃទី 25 ខែវិច្ឆិកា ឆ្នាំ 2025)
-  - ផ្លាស់ប្តូរយោងកំណែបញ្ជាក់ពី 2025-06-18 ទៅ 2025-11-25
-  - អាប់ដេតថ្ងៃឯកសារពី 18 ខែសីហា 2025 ទៅ 18 ខែធ្នូ 2025
-  - ធ្វើការត្រួតពិនិត្យថាតំណភ្ជាប់ភ្ជាប់ទៅឯកសារបច្ចុប្បន្នទាំងអស់
-- **ការត្រួតពិនិត្យមាតិកា**: បានធ្វើការត្រួតពិនិត្យលម្អិតលើអនុស្សរណៈល្អបំផុតសុវត្ថិភាពតាមបច្ចេកទេសថ្មីៗ
-  - **ដំណោះស្រាយសុវត្ថិភាព Microsoft**: ត្រួតពិនិត្យពាក្យទឹកប្រាក់ និងតំណភ្ជាប់សម្រាប់ Prompt Shields (មុនគេហៅថា ការស្វែងរកហានិភ័យ Jailbreak), Azure Content Safety, Microsoft Entra ID និង Azure Key Vault
-  - **សុវត្ថិភាព OAuth 2.1**: បញ្ជាក់ការសម្របសម្រួលជាមួយអនុស្សរណៈសុវត្ថិភាពថ្មីៗ OAuth
-  - **ស្តង់ដារ OWASP**: ធ្វើការបញ្ជាក់ថា OWASP Top 10 សម្រាប់ LLMs នៅតែទាន់សម័យ
-  - **សេវាកម្ម Azure**: ត្រួតពិនិត្យតំណភ្ជាប់ឯកសារ Microsoft Azure ទាំងអស់ និងអនុស្សរណៈល្អបំផុត
-- **ការសម្របសម្រួលស្តង់ដារ**: បញ្ជាក់ថាស្តង់ដារសុវត្ថិភាពទាំងអស់នៅទាន់សម័យ
-  - កំណត់ត្រា NIST AI Risk Management Framework
+#### MCP Security Best Practices (02-Security/mcp-best-practices.md) - ការអាប់ដេតកំណែសេចក្តីបញ្ជាក់
+- **ការអាប់ដេតកំណែបណ្តាញ**: បានធ្វើបច្ចុប្បន្នភាពយោងទៅកាន់ MCP Specification 2025-11-25 ថ្មីបំផុត (បានចេញផ្សាយនៅថ្ងៃទី 25 ខែវិច្ឆិកា ឆ្នាំ 2025)
+  - បានធ្វើបច្ចុប្បន្នភាពយោងកំណែសេចក្តីបញ្ជាក់ទាំងអស់ពី 2025-06-18 ទៅ 2025-11-25
+  - បានធ្វើបច្ចុប្បន្នភាពយោងកាលបរិច្ឆេទឯកសារពី ថ្ងៃទី 18 ខែសីហា ឆ្នាំ 2025 ទៅ ថ្ងៃទី 18 ខែធ្នូ ឆ្នាំ 2025
+  - បានផ្ទៀងផ្ទាត់ URL សេចក្តីបញ្ជាក់ទាំងអស់ឲ្យបង្ហាញទៅឯកសារចុងក្រោយ
+- **ការផ្ទៀងផ្ទាត់មាតិកា**: ការផ្ទៀងផ្ទាត់ដោយទូលំទូលាយលើអនុវត្តន៍ល្អបំផុតសន្តិសុខតាមស្តង់ដាចុងក្រោយ
+  - **ដំណោះស្រាយសន្តិសុខ Microsoft**: បានផ្ទៀងផ្ទាត់ពាក្យបច្ចុប្បន្ននិងតំណភ្ជាប់សម្រាប់ Prompt Shields (ដែលត្រូវបានហៅថា "ការស្វែងរកហានិភ័យ Jailbreak"), Azure Content Safety, Microsoft Entra ID, និង Azure Key Vault
+  - **សន្តិសុខ OAuth 2.1**: បានបញ្ជាក់ស្របតាមអនុសាសន៍អំពីសន្តិសុខ OAuth ថ្មីបំផុត
+  - **ស្តង់ដាររបស់ OWASP**: បានផ្ទៀងផ្ទាត់ឲ្យបានត្រឹមត្រូវភាគី OWASP Top 10 សម្រាប់ LLMs នៅសព្វថ្ងៃ
+  - **សេវាកម្ម Azure**: បានផ្ទៀងផ្ទាត់តំណភ្ជាប់ឯកសារ Microsoft Azure និងអនុវត្តល្អបំផុតទាំងអស់
+- **ការតំរូវស្តង់ដារ**: បញ្ជាក់ថាស្តង់ដារសន្តិសុខទាំងអស់ដែលបានយោងជាបច្ចុប្បន្ន
+  - ស៊ុមគ្នារបស់ NIST AI Risk Management Framework
   - ISO 27001:2022
-  - អនុស្សរណៈសុវត្ថិភាព OAuth 2.1
-  - សំណុំរចនាសម្ព័ន្ធសុវត្ថិភាព និងការអនុវត្ត Azure
-- **ធនធានអនុវត្តន៍**: ត្រួតពិនិត្យតំណភ្ជាប់មគ្គុទេសក៍អនុវត្តន៍ និងធនធានទាំងអស់
-  - បុព្វហេតុកំណត់អត្តសញ្ញាណ Azure API Management
-  - មគ្គុទេសក៍បញ្ជូល Microsoft Entra ID
-  - គ្រប់គ្រងអាណាតំណ Key Vault Azure
-  - របប DevSecOps និងដំណោះស្រាយត្រួតពិនិត្យ
+  - អនុវត្តន៍ល្អបំផុតសន្តិសុខ OAuth 2.1
+  - សមត្ថភាពនិងគ្រឹះស្ថានការពារ Azure
+- **ធនធានអនុវត្តកម្ម**: បានផ្ទៀងផ្ទាត់តំណភ្ជាប់និងធនធានគ្រប់គ្រាន់សម្រាប់ការណែនាំអនុវត្ត
+  - វិធីសាស្ត្របញ្ចូលសម្គាល់ចូលក្នុង Azure API Management
+  - មេរៀនរួម Microsoft Entra ID
+  - ការគ្រប់គ្រងអំណាចសម្ងាត់ Azure Key Vault
+  - បណ្តាញ DevSecOps និងដំណោះស្រាយត្រួតពិនិត្យ
 
 ### ការធានាគុណភាពឯកសារ
-- **ការអនុវត្តស្តង់ដាគ្រប់គ្រង**: ធានាថា តម្រូវការសុវត្ថិភាព MCP ទាំងអស់ (ត្រូវ/មិនត្រូវ) សម្របសម្រួលជាមួយកំណែបញ្ជាក់
-- **ភាពទាន់សម័យធនធាន**: បញ្ជាក់ថាតំណភ្ជាប់ខាងក្រៅទាំងអស់ទៅឯកសារមីក្រូសូហ្វ ការស្តង់ដារ សនិងមគ្គុទេសក៍អនុវត្តន៍នៅជាមួយនិងទាន់សម័យ
-- **ការស្រាវជ្រាវអនុស្សរណៈល្អបំផុត**: បញ្ជាក់ការគ្របដណ្ដប់ទូលំទូលាយលើការផ្ទៀងផ្ទាត់ អំណាច និងការជៀសវាងការគំរាមកំហែង AI, សុវត្ថិភាពខ្សែបណ្ដាញ, និងរចនាបថអង្គភាព
+- **ការអនុវត្តតាមសេចក្តីបញ្ជាក់**: ប្រាកដថាតំរូវការសន្តិសុខ MCP ទាំងអស់ (MUST/MUST NOT) ស្របតាមសេចក្តីបញ្ជាក់បច្ចុប្បន្ន
+- **ភាពទាន់សម័យធនធាន**: បានផ្ទៀងផ្ទាត់តំណភ្ជាប់ខាងក្រៅទាំងអស់ទៅឯកសារ Microsoft, ស្តង់ដាសន្តិសុខ និងណែនាំអនុវត្ត
+- **ការត្រួតពិនិត្យអនុវត្តអនុស្សារណៈល្អបំផុត**: ប្រាកដថាគ្របដណ្តប់យ៉ាងទូលំទូលាយលើការផ្ទៀងផ្ទាត់ការចូលដំណើរការ ការអនុញ្ញាតគន្លង, បទនគរកម្ម AI, សន្តិសុខខ្សែផ្គត់ផ្គង់ និងគំរូសហគ្រាស
 
-## ថ្ងៃទី 6 ខែតុលា 2025
+## ថ្ងៃទី 6 ខែតុលា ឆ្នាំ 2025
 
-### ការពង្រីកផ្នែក Getting Started – ការប្រើប្រាស់ម៉ាស៊ីនមេបច្ចេកទេសខ្ពស់ និងការផ្ទៀងផ្ទាត់សាមញ្ញ
+### ការពង្រីកផ្នែកចាប់ផ្តើម – ការប្រើប្រាស់ម៉ាស៊ីន Server ខ្ពស់ និងការផ្ទៀងផ្ទាត់ឆាប់រហ័ស
 
-#### ការប្រើប្រាស់ម៉ាស៊ីនមេខ្ពស់ (03-GettingStarted/10-advanced)
-- **បានបន្ថែមជំពូកថ្មី**: បង្ហាញមគ្គុទេសក៍ពេញលេញស្តីពីការប្រើប្រាស់ម៉ាស៊ីនមេ MCP ខ្ពស់ ទាំងរចនាសម្ព័ន្ធម៉ាស៊ីនមេធម្មតា និងកម្រិតទាប។
-  - **ម៉ាស៊ីនមេធម្មតា និងកម្រិតទាប**: បានប្រៀបធៀបលម្អិត និងមានឧទាហរណ៍កូដ Python និង TypeScript សម្រាប់ទាំងពីរ។
-  - **រចនាបថផ្អែកលើអ្នកគ្រប់គ្រង**: ពណ៌នាពីការគ្រប់គ្រងឧបករណ៍/ធនធាន/Prompt តាមអ្នកគ្រប់គ្រងសម្រាប់អនុវត្តម៉ាស៊ីនមេមានភាពបត់បែន និងអាចពង្រីកបាន។
-  - **គំរូជាក់ស្តែង**: ស្ថានការណ៍ពិតដែលគំរូម៉ាស៊ីនមេកម្រិតទាបមានប្រយោជន៍សម្រាប់លក្ខណៈពិសេស និងរចនាសម្ព័ន្ធខ្ពស់។
+#### ការប្រើប្រាស់ម៉ាស៊ីន Server ខ្ពស់ (03-GettingStarted/10-advanced)
+- **បានបន្ថែមជំពូកថ្មី**: បានណែនាំមគ្គុទេសក៍ពេញលេញសម្រាប់ការប្រើប្រាស់ម៉ាស៊ីន MCP ខ្ពស់ ដោយគ្របដណ្តប់ពីស្ថាបត្យកម្មម៉ាស៊ីនធម្មតា និង​ low-level server
+  - **ម៉ាស៊ីនធម្មតា ប្រៀបធៀប Low-Level Server**: ការប្រៀបធៀបលម្អិត និងឧទាហរណ៍កូដ Python និង TypeScript សម្រាប់វិធីទាំងពីរ
+  - **រចនាបថផ្អែកលើយន្តចាប់ផ្តើម (Handler-Based Design)**: ការពន្យល់អំពីការគ្រប់គ្រងឧបករណ៍/ធនធាន/សំនួរតាម handler សម្រាប់ការអនុវត្តម៉ាស៊ីនដែលអាចពង្រីក និងបត់បែនបាន
+  - **គំរូប្រើប្រាស់ជាក់ស្តែង**: ស្ថានការណ៍ពិតនៅក្នុងពិភពលោក ដែលគំរូ server low-level ត្រូវបានប្រើសម្រាប់មុខងារខ្ពស់ និងស្ថាបត្យកម្ម
 
-#### ការផ្ទៀងផ្ទាត់សាមញ្ញ (03-GettingStarted/11-simple-auth)
-- **បានបន្ថែមជំពូកថ្មី**: មគ្គុទេសក៍ជំហានៗសម្រាប់អនុវត្តការផ្ទៀងផ្ទាត់សាមញ្ញនៅម៉ាស៊ីនមេ MCP។
-  - **គំនិតអ_AUTH**: ពណ៌នាច្បាស់អំពីការផ្ទៀងផ្ទាត់ និងការផ្តល់សិទ្ធិ, និងការដោះស្រាយសញ្ញាប័ត្រ។
-  - **ការអនុវត្ត Auth មូលដ្ឋាន**: គំរូមេធៅម៉ាស៊ីនមេផ្អែកលើមេធោ (Middleware) ក្នុង Python (Starlette) និង TypeScript (Express) ជាមួយឧទាហរណ៍កូដ។
-  - **ការរីកចម្រើនទៅសុវត្ថិភាពខ្ពស់**: ណែនាំពីការចាប់ផ្ដើមជាមួយ Auth សាមញ្ញ ហើយបន្តទៅ OAuth 2.1 និង RBAC ជាមួយយោងម៉ូឌុលសុវត្ថិភាពខ្ពស់។
+#### ការផ្ទៀងផ្ទាត់ឆាប់រហ័ស (03-GettingStarted/11-simple-auth)
+- **បានបន្ថែមជំពូកថ្មី**: មគ្គុទេសក៍ជំហានមួយទៅមួយសម្រាប់អនុវត្តការផ្ទៀងផ្ទាត់ឆាប់រហ័សនៅក្នុងម៉ាស៊ីន MCP
+  - **គំនិត Auth**: ការពន្យល់ច្បាស់អំពីការផ្ទៀងផ្ទាត់ និងការអនុញ្ញាត, ការគ្រប់គ្រងគណនី
+  - **អនុវត្តការផ្ទៀងផ្ទាត់មូលដ្ឋាន**: គំរូផង middleware នៅ Python (Starlette) និង TypeScript (Express) ជាមួយឧទាហរណ៍កូដ
+  - **ជំហានទៅសន្តិសុខខ្ពស់**: មគ្គុទេសក៍ចាប់ផ្តើមពីការផ្ទៀងផ្ទាត់ឆាប់រហ័ស ហើយធ្វើទៅ OAuth 2.1 និង RBAC ជាមួយយោងទៅមូឌុលសន្តិសុខខ្ពស់
 
-ការបន្ថែមទាំងនេះផ្តល់មគ្គុទេសក៍ជាក់ស្តែង និងអនុវត្តផ្ទាល់ដើម្បីកសាងម៉ាស៊ីនមេ MCP ដែលមានភាពរឹងមាំ សុវត្ថិភាព ខ្មែរច្នៃប្រឌិត និងអាចបត់បែនបាន ដោយភ្ជាប់គំនិតមូលដ្ឋានជាមួយគំរូអនុវត្តដ៏ខ្ពស់។
+ការបន្ថែមទាំងនេះផ្តល់នូវមគ្គុទេសក៍ជាក់ស្តែង និងអនុវត្តន៍ដល់ការបង្កើតម៉ាស៊ីន MCP ដែលមានសុវត្ថិភាពខ្ពស់ បត់បែនបាន និងរឹងមាំបន្ថែមទៀត ដើម្បីភ្ជាប់មូលដ្ឋានគំនិតជាមួយគំរូផលិតកម្មកម្រិតខ្ពស់
 
-## ថ្ងៃទី 29 ខែកញ្ញា 2025
+## ថ្ងៃទី 29 ខែកញ្ញា ឆ្នាំ 2025
 
-### មហាវិទ្យាល័យការបញ្ចូលមូលដ្ឋានទិន្នន័យ MCP - ផ្លូវខ្សែសិក្សាផ្ទាល់ដ៏ទូលំទូលាយ
+### មន្ទីរសាកល្បងបញ្ចូលគ្នា MCP Server Database - ផ្លូវការសិក្សា អនុវត្តដ៏ទូលំទូលាយ
 
-#### 11-MCPServerHandsOnLabs - មូលដ្ឋានការសិក្សាសហគ្រាសថ្មីទាំងមូល
-- **ផ្លូវសិក្សា 13 labs ទាំងមូល**: បានបន្ថែមវគ្គសិក្សាផ្ទាល់ដ៏ទូលំទូលាយសម្រាប់កសាងម៉ាស៊ីនមេ MCP រួមបញ្ចូលមូលដ្ឋានទិន្នន័យ PostgreSQL
-  - **ការអនុវត្តពិត**: ករណីអនុវត្តវិភាគ Zava Retail មើលហាងស្តុក
-  - **វគ្គសិក្សា​សង់ចែក​ត្រៀម​ថ្ងៃ**:
-    - **Labs 00-03: មូលដ្ឋាន** - ការណែនាំ, រចនាសម្ព័ន្ធគ្រឹះ, សុវត្ថិភាព និងអាណាចក្រ​ច្រើន, ការតំឡើងបរិស្ថាន
-    - **Labs 04-06: កសាងម៉ាស៊ីនមេ MCP** - ការរចនាផ្នែកទិន្នន័យ និងស្កេមា, ការអនុវត្តម៉ាស៊ីនមេ MCP, ការអភិវឌ្ឍឧបករណ៍  
-    - **Labs 07-09: លក្ខណៈពិសេសខ្ពស់** - ការជាប់បញ្ចូល Semantic Search, ការធ្វើតេស្ត និងកំណត់កំហុស, ការជាប់បញ្ចូល VS Code
-    - **Labs 10-12: ផលិតកម្ម និង អនុស្សរណៈល្អបំផុត** - យុទ្ធសាស្ត្រដំឡើង, ការត្រួតពិនិត្យ និងការមើលសុខភាព, អនុស្សរណៈល្អបំផុត និង ការបង្កើតកំណត់ត្រា
-  - **បច្ចេកវិទ្យាសហគ្រាស**: សំណុំបែបបទ FastMCP, PostgreSQL ជាមួយ pgvector, ការបញ្ចូល Azure OpenAI, Azure Container Apps, Application Insights
-  - **លក្ខណៈពិសេសខ្ពស់**: សុវត្ថិភាពកម្រិតជួរ (RLS), ស្វែងរកបែប Semantic, ការចូលប្រើទិន្នន័យច្រើនវឌ្ឍនៈ, vector embeddings, ការត្រួតពិនិត្យពេលវេលាពិត
+#### 11-MCPServerHandsOnLabs - កម្មវិធីសិក្សាផ្តោតលើការតំរូវបញ្ចូលគ្នាផ្ទាល់
+- **ព្រឹត្តិការណ៍សិក្សាទាំងមូល 13-Lab**: បានបន្ថែមសិក្សា​ដំណើរការប្រតិបត្តិការ​មាស៊ីន MCP ជាមួយបញ្ចូលគ្នាឃ្លាំងទិន្នន័យ PostgreSQL
+  - **អនុវត្តជាក់ស្តែងក្នុងពិភពជាក់ស្តែង**: ករណីប្រើប្រាស់វិនិយោគវិភាគ Zava Retail បង្ហាញលំដាប់នៃគំរូសហគ្រាស
+  - **ការសិក្សាដែលមានរៀបចំយ៉ាងល្អ**:
+    - **Labs 00-03: មូលដ្ឋាន** - ការណែនាំ, ស្ថាបត្យកម្មស្នូល, សន្តិសុខ និង បន្ទប់ធ្វើការសម្រាប់ភាគីច្រើន, ការតំឡើងបរិស្ថាន
+    - **Labs 04-06: ការសង់ម៉ាស៊ីន MCP** - ការរចនាឃ្លាំងទិន្នន័យ និងស្ពెకម្មាឌេ, អនុវត្តម៉ាស៊ីន MCP, ការអភិវឌ្ឍឧបករណ៍  
+    - **Labs 07-09: មុខងារខ្ពស់** - ការតំរូវចំណាត់ថ្នាក់សាមញ្ញ, ការធ្វើតេស្ត និងត្រួតពិនិត្យកំហុស, ការចូលបញ្ជូល VS Code
+    - **Labs 10-12: ផលិតកម្ម និង អនុវត្តល្អបំផុត** - វិធីសាស្ត្រដាក់ឲ្យដំណើរការ, ការត្រួតពិនិត្យ និងកំណត់ទស្សនវិស័យ, អនុវត្តល្អបំផុត និងការបង្កើតប្រសិទ្ធិភាព
+  - **បច្ចេកវិទ្យាសហគ្រាស**: សំណង់ FastMCP, PostgreSQL ជាមួយ pgvector, Azure OpenAI embeddings, Azure Container Apps, Application Insights
+  - **មុខងារខ្ពស់**: សន្តិសុខលើកម្រិតជួរដេក(RLS), ការស្វែងរកសេមង់ទិច, ការចូលប្រើទិន្នន័យរួមភាគី, vector embeddings, ការត្រួតពិនិត្យពេលវេលាច_REAL_TIME
 
-#### ការបម្លែងពាក្យវចនានុក្រម - ការបម្លែង Module ទៅ Lab
-- **ការអាប់ដេតឯកសារយ៉ាងទូលំទូលាយ**: បានធ្វើបច្ចុប្បន្នភាពឯកសារ README ទាំងអស់នៅក្នុង 11-MCPServerHandsOnLabs ដើម្បីប្រើពាក្យ "Lab" ជំនួស "Module"
-  - **ចំណងជើងផ្នែក**: បានប្តូរ "What This Module Covers" ទៅជា "What This Lab Covers" នៅក្នុងវគ្គទាំង 13
-  - **ការពិពណ៌នាមាតិកា**: ប្ដូរ "This module provides..." ទៅ "This lab provides..." នៅសំដីទាំងអស់
-  - **គោលបំណងការសិក្សា**: ប្ដូរ "By the end of this module..." ទៅ "By the end of this lab..."
-  - **តំណភ្ជាប់នាវិកយ៉ាងច្បាស់**: បម្លែងយោង "Module XX:" ទៅ "Lab XX:" និយាយទូទៅ និងក្នុងមីនុយ
-  - **ការតាមដានការសម្រេច**: អាប់ដេត "After completing this module..." ទៅ "After completing this lab..."
-  - **រក្សាការយោងបច្ចេកទេស**: រក្សាការយោងម៉ូឌុល Python នៅក្នុងឯកសារបញ្ជាក់ (ឧ. `"module": "mcp_server.main"`)
+#### ការបំលែងពាក្យវចនទូទៅ - ពីមូឌុលទៅហ្គ្រាប Lab
+- **ការអាប់ដេតឯកសារជាស៊ីស្ទាំ**: បានធ្វើបច្ចុប្បន្នភាព README ទាំងអស់ក្នុង 11-MCPServerHandsOnLabs ដើម្បីប្រើពាក្យ "Lab" ជំនួស "Module"
+  - **ចំណងជើងផ្នែក**: បានបម្លែង "អ្វីដែលមូឌុលនេះគ្របដណ្តប់" ទៅជា "អ្វីដែលLabនេះគ្របដណ្តប់" នៅឆ្លងកាត់ហ្គ្រាបទាំង 13
+  - **ការពិពណ៌នាមាតិកា**: បម្លែង "មូឌុលនេះផ្ដល់ជូន..." ទៅ "Labនេះផ្ដល់ជូន..." នៅក្នុងឯកសារ
+  - **គោលបំណងសិក្សា**: បានបម្លែង "នៅចុងមូឌុលនេះ..." ទៅ "នៅចុង lab នេះ..."
+  - **តំណភ្ជាប់ការរុករក**: បម្លែង "Module XX:" ទៅ "Lab XX:" នៅក្នុងយោង និងការរុករក
+  - **ការតាមដានការសម្រេច**: មានការអាប់ដេត "បន្ទាប់ពីបញ្ចប់មូឌុលនេះ..." ទៅ "បន្ទាប់ពីបញ្ចប់ lab នេះ..."
+  - **រក្សាទុកយោងបច្ចេកទេស**: រាល់យោង Python module នៅក្នុងកំណត់រចនា (ឧទាហរណ៍ `"module": "mcp_server.main"`) ត្រូវបានរក្សាទុក
 
 #### ការកែលម្អមគ្គុទេសក៍សិក្សា (study_guide.md)
-- **ផែនទីផ្នែកសិក្សាមើលឃើញ**: បន្ថែមផ្នែកថ្មី "11. Database Integration Labs" ជាមួយរចនាសម្ព័ន្ធផ្នែកសិក្សាលម្អិត
-- **រចនាសម្ព័ន្ធ Repository**: អាប់ដេតពីដប់ទៅ១១ផ្នែកសំខាន់ ជាមួយការពិពណ៌នាផ្នែក 11-MCPServerHandsOnLabs
-- **ការណែនាំផ្លូវសិក្សា**: កែលម្អការណែនាំនាវិកគ្រប់ផ្នែក 00-11
-- **គ្របដណ្ដប់បច្ចេកវិទ្យា**: បន្ថែម FastMCP, PostgreSQL, ការបញ្ចូលសេវាកម្ម Azure
-- **លទ្ធផលការសិក្សា**: បញ្ជាក់ករណីអភិវឌ្ឍម៉ាស៊ីនមេដែលអាចប្រើក្នុងផលិតកម្ម, គំរូបញ្ចូលមូលដ្ឋានទិន្នន័យ, និងសុវត្ថិភាពសហគ្រាស
+- **ផែនទីគណៈកម្មការសិក្សា**: បានបន្ថែមផ្នែកថ្មី "11. Database Integration Labs" ជាមួយការបង្ហាញរចនាសម្ព័ន្ធហ្គ្រាបដ៏ទូលំទូលាយ
+- **រចនាសម្ព័ន្ធប្រតិបត្តិការ Repository**: បានបន្ថែមពី ១០ ផ្នែកទៅ ១១ ផ្នែក ដោយមានការពិពណ៌នាអំពី 11-MCPServerHandsOnLabs យ៉ាងលម្អិត
+- **មគ្គុទេសក៍ផ្លូវកាយសិក្សា**: បានបូកបន្ថែមការណែនាំជាក់លាក់សម្រាប់ផ្នែកទាំងពីរ 00-11
+- **ការអនុវត្តបច្ចេកវិទ្យា**: បានបន្ថែមព័ត៌មានអំពី FastMCP, PostgreSQL, និងការចូលរួមសេវាកម្ម Azure
+- **លទ្ធផលសិក្សា**: បានផ្តោតលើការអភិវឌ្ឍម៉ាស៊ីនដែលមានស្រាប់ក្នុងផលិតកម្ម, លំនាំបញ្ចូលគ្នាឃ្លាំងទិន្នន័យ និងសន្តិសុខសហគ្រាស
 
-#### កែលម្អរចនាសម្ព័ន្ធ README សំខាន់
-- **ពាក្យវចនានុក្រមលើបន្ទុក Lab**: បានអាប់ដេត README.md សំខាន់នៅ 11-MCPServerHandsOnLabs ដើម្បីប្រើប្លុក "Lab" យ៉ាងខ្ជាប់ខ្ជួន
-- **រៀបចំផ្លូវសិក្សា**: ជំហានច្បាស់ពីគំនិតមូលដ្ឋាន ដល់អនុវត្តខ្ពស់ និងដំឡើងផលិតកម្ម
-- **មើលទៅការអនុវត្តពិត**: ផ្តោតលើការសិក្សាផ្ទាល់ដែលមានគំរូសហគ្រាសនិងបច្ចេកវិទ្យា
+#### ការកែលម្អរចនាសម្ព័ន្ធ README ដ៏សំខាន់
+- **ពាក្យវចនបណ្តាញសម្រាប់ Lab**: បានធ្វើបច្ចុប្បន្នភាព README.md នៅក្នុង 11-MCPServerHandsOnLabs ដើម្បីប្រើពាក្យ "Lab" ក្នុងរចនាសម្ព័ន្ធជាបន្តបន្ទាប់
+- **ការរៀបចំផ្លូវកាយសិក្សា**: វាយតម្លៃពីមូលដ្ឋានគំនិតដល់ការអនុវត្តខ្ពស់ និងដល់ការដាក់ឲ្យដំណើរការ
+- **ការផ្ដោតលើពិភពជាក់ស្តែង**: ផ្តល់ការបង្ហាញជាក់ស្តែង អនុវត្ត ដោយដៃជាមួយគំរូនិងបច្ចេកវិទ្យាសហគ្រាស
 
-### ការកែលម្អគុណភាព និងភាពសមរម្យឯកសារ
-- **ការផ្តោតលើការសិក្សាផ្ទាល់**: ការបញ្ជាក់ដំណើរការបែបជាក់ស្តែងក្នុងឯកសារ
-- **ផ្តោតលើគំរូសហគ្រាស**: ដាក់ចំណុចសំខាន់លើការអនុវត្តផលិតកម្ម និងសុវត្ថិភាពសហគ្រាស
-- **ការរួមបញ្ចូលបច្ចេកវិទ្យា**: គ្របដណ្ដប់បានល្អលើសេវាកម្ម Azure សម័យថ្មី និងគំរូបញ្ចូល AI
-- **ដំណើរការសិក្សា**: ផ្លូវមានរចនាសម្ព័ន្ធច្បាស់ពីគំនិតមូលដ្ឋានដល់ដំឡើងផលិតកម្ម
+### ការកែលម្អគុណភាព និងភាពស្មើរភាពឯកសារ
+- **ការផ្ដោតលើការសិក្សាដោយដៃ**: បានពង្រឹងវិធីសាស្ត្រអនុវត្តដោយផ្អែកលើ lab ទាំងមូល
+- **ការផ្ដោតលើលំនាំសហគ្រាស**: បានបង្ហាញអំពីការអនុវត្តផលិតកម្មជាសម័យ និងការពិចារណាសន្តិសុខសហគ្រាស
+- **ការចូលរួមបច្ចេកវិទ្យា**: បានគ្របដណ្តប់លម្អិតលើសេវាកម្ម Azure សម័យទំនើប និងលំនាំបញ្ចូលគ្នា AI
+- **ការរៀបចំផ្លូវកាយសិក្សា**: ផ្លូវកាយលំអិតចាប់ពីគំនិតមូលដ្ឋានដល់ការដាក់ឲ្យដំណើរការជាក់ស្តែង
 
-## ថ្ងៃទី 26 ខែកញ្ញា 2025
+## ថ្ងៃទី 26 ខែកញ្ញា ឆ្នាំ 2025
 
-### ការកែលម្អករណីសិក្សា - ការបញ្ចូល GitHub MCP Registry
+### ការកែលម្អករណីសិក្សា - ការចូលរួម GitHub MCP Registry
 
-#### ករណីសិក្សា (09-CaseStudy/) - ផ្តោតលើការអភិវឌ្ឍប្រព័ន្ធអេកូស៊ីស្ទែម
-- **README.md**: ការពង្រីកយ៉ាងខ្លាំងជាមួយករណីសិក្សា GitHub MCP Registry លម្អិត
-  - **ករណីសិក្សា GitHub MCP Registry**: ករណីសិក្សាថ្មីពេញលេញ ស្វែងយល់ពីការចាប់ផ្ដើម GitHub MCP Registry ខែកញ្ញា 2025
-    - **វិភាគបញ្ហា**: វិភាគលម្អិតលើបញ្ហាការស្វែងរក និងដំឡើងម៉ាស៊ីនមេ MCP បែកចេញ
-    - **រចនាសម្ព័ន្ធដំណោះស្រាយ**: មុខងារស្តុកចម្រុះ GitHub ដោយស្វ័យប្រវត្តិដំឡើង VS Code ក្នុងចំណុចជាប់មួយ
-    - **ផលប៉ះពាល់អាជីវកម្ម**: ការកែលម្អយ៉ាងឆាប់រហ័សលើការចូលរួមរបស់អ្នកអភិវឌ្ឍន៍ និងផលិតភាព
-    - **តម្លៃយុទ្ធសាស្ត្រ**: ផ្តោតលើការចែកចាយតាមមូឌុល និងសហប្រតិបត្តិករ
-    - **ការអភិវឌ្ឍប្រព័ន្ធអេកូស៊ីស្ទែម**: ការតាំងថ្នាក់ជាមជ្ឈមណ្ឌលសម្រាប់ការបញ្ចូលប្រព័ន្ធប្រតិបត្តិការជាមួយតំណាង
-  - **រចនាសម្ព័ន្ធករណីសិក្សាលម្អិត**: បានធ្វើបច្ចុប្បន្នភាពទាំង 7 ករណីសិក្សាដោយមានទម្រង់តែមួយ និងការពិពណ៌យ៉ាងទូលំទូលាយ
-    - អ្នកជំនួយដំណើរការដំណើរកម្តៅ Azure AI: ផ្តោតលើកម្មវិធីច្រើនអ្នកប្រើ
-    - ការបញ្ចូល Azure DevOps: ផ្តោតលើស្វ័យប្រវត្តិការងារ
-    - ការទាញយកឯកសារពេលវេលាពិត: អ្នកអតិថិជន Python console
-    - កម្មវិធីបង្កើតផែនការសិក្សាផ្ទាល់គ្នា: កម្មវិធីវែប Chainlit
-    - ឯកសារផ្ទាល់ក្នុងកម្មវិធីបញ្ចូល VS Code និង GitHub Copilot
-    - ការគ្រប់គ្រង API Azure: គំរូបញ្ចូល API សហគ្រាស
-    - GitHub MCP Registry: ការអភិវឌ្ឍប្រព័ន្ធអេកូស៊ីស្ទែម និងវេទិកាសហគមន៍
-  - **សេចក្តីសន្និដ្ឋានទូលំទូលាយ**: បានសរសេរឡើងវិញផ្នែកសន្និដ្ឋាន ដោយពោរពេញទៅដោយ 7 ករណីសិក្សា លើមុខងារច្រើនទំហំ MCP
-    - ការបញ្ចូលក្នុងសហគ្រាស, ការគ្រប់គ្រងកម្មវិធីច្រើនអ្នកប្រើ, ផលិតភាពអ្នកអភិវឌ្ឍន៍
-    - ការអភិវឌ្ឍប្រព័ន្ធអេកូស៊ីស្ទែម, ការដាក់ចំណងជើងកម្មវិធីអប់រំ
-    - ចក្ខុវិស័យល្អលើរចនាសម្ព័ន្ធ, វិធីសាស្រ្តអនុវត្តន៍ និងអនុស្សរណៈល្អបំផុត
-    - ផ្តោតលើ MCP ជាព្រឹត្តិការណ៍ទន់ខ្សោយ សម្រាប់ផលិតកម្ម
+#### ករណីសិក្សា (09-CaseStudy/) - ផ្ដោតលើការអភិវឌ្ឍប្រព័ន្ធ Eco-system
+- **README.md**: ការពង្រីកធំជាមួយករណីសិក្សា GitHub MCP Registry ដ៏ទូលំទូលាយ
+  - **ករណីសិក្សា GitHub MCP Registry**: ករណីសិក្សាជ្រៅស្ដីពីការចេញផ្សាយ MCP Registry របស់ GitHub នៅខែកញ្ញា 2025
+    - **ការ​វិភាគ​បញ្ហា**: ការវិភាគលម្អិតអំពីបញ្ហាការស្វែងរក និងដាក់ឲ្យដំណើរការ MCP server ដែលខកខានបែកបាក់
+    - **រចនាសម្ព័ន្ធដំណោះស្រាយ**: វិធីសាស្ត្រការចុះបញ្ជីកណ្តាលរបស់ GitHub ជាមួយការតំឡើង VS Code មួយចុច
+    - **ផលប៉ះពាល់អាជីវកម្ម**: ការកែលម្អដែលវាស់បានពីការចូលរួមអ្នកអភិវឌ្ឍន័និងផលិតភាព
+    - **តម្លៃយុទ្ធសាស្ត្រ**: ផ្ដោតលើការដាក់ឲ្យដំណើរការផ្នែកភ្នាក់ងារមុថុនា និងការសម្របសម្រួលឧបករណ៍ពហុ
+    - **អភិវឌ្ឍ Eco-system**: ការបង្កើតជាវេទិកាគ្រឹះសម្រាប់ការចូលរួមភ្នាក់ងារជាឧបករណ៍
+  - **រចនាសម្ព័ន្ធករណីសិក្សាដែលបានកែលម្អ**: បានធ្វើបច្ចុប្បន្នភាពករណីសិក្សា ៧ គ្រឿង ដោយរសៀលណែរច្នៃសម្បទា និងពិពណ៌នា
+    - ការបញ្ជូនរ៉ឺម៉ាញ Azure AI: ផ្ដោតលើការតំរូវពហុភ្នាក់ងារ
+    - ការចូលរួម Azure DevOps: ផ្ដោតលើស្វ័យប្រវត្តិកម្មការងារ
+    - ការទាញយកឯកសារពេលវេលាដែលបង្ហាញជាក់ស្តែង: ការអនុវត្ត Python console client
+    - កម្មវិធីបង្កើតផែនការសិក្សា Interactive: កម្មវិធីវេប Chainlit ជាជំហានការលើកទឹកចិត្ត
+    - ឯកសារនៅក្នុងអ្នកកែសម្រួល: ការចូលបញ្ជូល VS Code និង GitHub Copilot
+    - Azure API Management: លំនាំការចូលរួម API សហគ្រាស
+    - GitHub MCP Registry: ការអភិវឌ្ឍ Eco-system និងវេទិកាសហគមន៍
+  - **ចំណុចសន្និដ្ឋានទូលំទូលាយ**: បានសរសេរក្នុងផ្នែកចប់ជាមួយករណីសិក្សា ៧ គ្រឿងដែលគ្របដណ្តប់លើវិមាត្រផ្សេងៗនៃការអនុវត្ត MCP
+    - ការចូលរួមសហគ្រាស, ការតំរូវភ្នាក់ងារពហុ, ផលិតភាពអ្នកអភិវឌ្ឍ
+    - ការអភិវឌ្ឍ Eco-system, ការបែងចែកកម្មវិធីសិក្សាអប់រំ
+    - ដំណឹងល្អបំផុតអំពីលំនាំស្ថាបត្យកម្ម, យុទ្ធសាស្ត្រអនុវត្ត, និងអនុវត្តល្អបំផុត
+    - ផ្ដោតលើ MCP ជាបច្ចេកទេសដែលមានភាពរឹងមាំ និងជាសម័យ
 
-#### ការអាប់ដេតមគ្គុទេសក៍សិក្សា (study_guide.md)
-- **ផែនទីផ្នែកសិក្សាមើលឃើញ**: កែលម្អ mindmap ដើម្បីបញ្ចូល GitHub MCP Registry ក្នុងផ្នែកករណីសិក្សា
-- **ការពិពណ៌នាករណីសិក្សា**: ពង្រីកពីការពិពណ៌នាទូទៅ ទៅជាការបំបែកលម្អិត នៃ 7 ករណីសិក្សាផ្សេងៗ
-- **រចនាសម្ព័ន្ធ Repository**: អាប់ដេតផ្នែក 10 ដើម្បីបង្ហាញការគ្របដណ្ដប់ករណីសិក្សាទូលំទូលាយជាមួយព័ត៌មានអនុវត្តច្បាស់
-- **ការរួមបញ្ចូល Changelog**: បន្ថែមចូលថ្ងៃទី 26 ខែកញ្ញា 2025 ដើម្បីបញ្ចូល GitHub MCP Registry និងការពង្រីកករណីសិក្សា
-- **ការអាប់ដេតកាលបរិច្ឆេទ**: បន្ទាប់បន្សល់ timestamp ទៅកាលបរិច្ឆេទផ្លូវ(26 ខែកញ្ញា 2025)
+#### ការអាប់ដេត Study Guide (study_guide.md)
+- **ផែនទីគណៈកម្មការសិក្សា**: បានធ្វើបច្ចុប្បន្នភាព mindmap ដើម្បីបញ្ចូល GitHub MCP Registry ក្នុងផ្នែកករណីសិក្សា
+- **ការពិពណ៌នាករណីសិក្សា**: បានពង្រឹងពីការពិពណ៌នាទូទៅទៅសេចក្តីលម្អិតនៃករណីសិក្សា ៧ គ្រឿង
+- **រចនាសម្ព័ន្ធ Repository**: បានបន្ថែមផ្នែក ១០ ដើម្បីបង្ហាញការលម្អិតនៃការអនុវត្តករណីសិក្សាទាំងមូល
+- **ការបញ្ចូល Changelog**: បានបន្ថែមការចុះបញ្ជី ថ្ងៃទី 26 ខែកញ្ញា ឆ្នាំ 2025 ដើម្បីបង្ហាញការបន្ថែម GitHub MCP Registry និងការកែលម្អករណីសិក្សា
+- **ការអាប់ដេតកាលបរិច្ឆេទ**: បានធ្វើបច្ចុប្បន្នភាពគំរូរបស់ក្រោមទំព័រ ឲ្យបញ្ចាក់កំណែទាន់សម័យ (ថ្ងៃទី 26 ខែកញ្ញា 2025)
 
 ### ការកែលម្អគុណភាពឯកសារ
-- **ការបង្កាត់ភាពសមរម្យ**: ធានាទម្រង់ និងរចនាសម្ព័ន្ធករណីសិក្សាអោយស្មើគ្នាទាំង 7 តំណាង
-- **ការគ្របដណ្ដប់ទូលំទូលាយ**: ករណីសិក្សាគ្របដណ្ដប់ជាសហគ្រាស, ផលិតភាពអ្នកអភិវឌ្ឍន៍ និងការអភិវឌ្ឍប្រព័ន្ធអេកូស៊ីស្ទែម
-- **ទីតាំងយុទ្ធសាស្ត្រ**: ផ្តោតលើ MCP ជាវេទិកាប្រព័ន្ធគ្រឹះសម្រាប់ការចែកចាយប្រព័ន្ធតំណាងច្រើន
-- **ការរួមបញ្ចូលធនធាន**: ធនធានបន្ថែមបានបន្ថែមតំណភ្ជាប់ GitHub MCP Registry
+- **ការពង្រឹងភាពស្មើរ**: បានស្តង់ដាគន្លង និងរចនាសម្ព័ន្ធករណីសិក្សាទាំង ៧ គ្រឿង
+- **គ្របដណ្តប់ទូលំទូលាយ**: ករណីសិក្សាទាំងអស់បានគ្របដណ្តប់លើសហគ្រាស, ផលិតភាពអ្នកអភិវឌ្ឍ, និងការអភិវឌ្ឍ Eco-system
+- **ទីតាំងយុទ្ធសាស្ត្រ**: បានផ្ដោតយ៉ាងច្បាស់លើ MCP ជាវេទិកាគ្រឹះសម្រាប់ការដាក់បញ្ចូលប្រព័ន្ធភ្នាក់ងារទាំងមូល
+- **ការចូលរួមធនធាន**: បានធ្វើបច្ចុប្បន្នភាពធនធានបន្ថែមដូចជា តំណភ្ជាប់ GitHub MCP Registry
 
-## ថ្ងៃទី 15 ខែកញ្ញា 2025
+## ថ្ងៃទី 15 ខែកញ្ញា ឆ្នាំ 2025
 
-### ការពង្រីកប្រធានបទខ្ពស់ - ជញ្ជូនប្តូរផ្ទាល់ខ្លួន និងវិស្វកម្មបរិបទ
+### ការពង្រីកប្រធានបទខ្ពស់ - ការដឹកជញ្ជូនផ្ទាល់ខ្លួន និងវិស្វកម្ម Context
 
-#### MCP Custom Transports (05-AdvancedTopics/mcp-transport/) - មគ្គុទេសក៍អនុវត្តខ្ពស់ថ្មី
-- **README.md**: មគ្គុទេសក៍អនុវត្តពេញលេញស្តីពីប្រព័ន្ធជញ្ជូន MCP ផ្ទាល់ខ្លួន
-  - **Azure Event Grid Transport**: ការអនុវត្តប្រព័ន្ធជញ្ជូនព្រឹត្តិការណ៍មិនមានម៉ាស៊ីនមេ ដាច់ដោយឡែក
-    - ឧទាហរណ៍ C#, TypeScript និង Python ជាមួយការតភ្ជាប់ Azure Functions
-    - គំរូស្ថาปតិកម្មព្រឹត្តិការណ៍សម្រាប់ដំណោះស្រាយ MCP អាចពង្រីកបាន
-    - អ្នកទទួល Webhook និងការដោះស្រាយសារ push
-  - **Azure Event Hubs Transport**: ការអនុវត្តជញ្ជូនចរាចរលឿនខ្ពស់
-    - សមត្ថភាពចម្លងទិន្នន័យពេលវេលាពិត សម្រាប់ស្ថានភាពទៅលឿន
-    - យុទ្ធសាស្ត្របែងចែក និងគ្រប់គ្រងចំណុចត្រួតពិនិត្យ
-    - ការបិទសារប្រមូល និងបង្កើនសមត្ថភាព
-  - **គំរូបញ្ចូលសហគ្រាស**: ឧទាហរណ៍រចនាសម្ព័ន្ធរួចរាល់សម្រាប់ផលិតកម្ម
-    - ការចែកចាយ MCP តាម Azure Functions ច្រើន
-    - រចនាសម្ព័ន្ធជញ្ជូនផ្សំគ្នា ប្រើប្រភេទជញ្ជូនជាច្រើន
-    - សមត្ថភាពថ្មោងសារ, ភាពជឿជាក់ និងយុទ្ធសាស្ត្រដោះស្រាយកំហុស
-  - **សុវត្ថិភាព និងការត្រួតពិនិត្យ**: ការតភ្ជាប់ Azure Key Vault និងគំរូមើលសុខភាព
-    - ការអត្តសញ្ញាណគ្រប់គ្រង និងការអនុញ្ញាតតិចតួចបំផុត
-    - ការត្រួតពិនិត្យទីផ្សារ Application Insights និងការត្រួតពិនិត្យសមត្ថភាព
-    - ព្រឹត្តិការណ៍ Breaker និងគំរូភាពធន់នឹងកំហុស
-  - **សំណុំតេស្ត**: យុទ្ធសាស្ត្រតេស្តពេញលេញសម្រាប់ប្រព័ន្ធជញ្ជូនផ្ទាល់ខ្លួន
-    - តេស្តថ្នាក់ឯកតា ជាមួយទ្រទ្រង់សាកល្បង និងសំណុំបែបបទ mocking
-    - តេស្តរួមបញ្ចូលជាមួយ Azure Test Containers
-    - ការពិចារណាតេស្តប្រសិទ្ធភាព និងបន្ទុក
+#### ម៉ូឌុល MCP Custom Transports (05-AdvancedTopics/mcp-transport/) - មគ្គុទេសក៍អនុវត្តខ្ពស់ថ្មី
+- **README.md**: មគ្គុទេសក៍ពេញលេញសម្រាប់ការអនុវត្តយន្តការដឹកជញ្ជូនផ្ទាល់ខ្លួន MCP
+  - **Azure Event Grid Transport**: ការអនុវត្តផ្នែកដឹកជញ្ជូនបែបសេវាកម្ម serverless លើកព្រឹត្តិការណ៍
+    - ឧទាហរណ៍ C#, TypeScript, និង Python រួមបញ្ចូល Azure Functions
+    - លំនាំស្ថាបត្យកម្មលើកព្រឹត្តិការណ៍សម្រាប់ដំណោះស្រាយ MCP ដែលអាចពង្រីកបាន
+    - ការទទួលអត្ថបទ webhook និងគ្រប់គ្រងសារ push-based
+  - **Azure Event Hubs Transport**: ការអនុវត្តផ្នែកកញ្ចប់ចរន្តដ៏ល្អឥតខ្ចោះ
+    - សមត្ថភាពចរន្តពេលពិតសម្រាប់ស្ថានភាព latency ទាប
+    - វិធីសាស្ត្របំបែកភាគី និងគ្រប់គ្រង checkpoint
+    - ការចងក្រងសារជាកញ្ចប់ និងបង្កើតប្រសិទ្ធិភាព
+  - **លំនាំអភិវឌ្ឍសហគ្រាស**: ឧទាហរណ៍ស្ថាបត្យកម្មរួចរាល់សម្រាប់ផលិតកម្ម
+    - ការចែកចាយភាពដំណើរការ MCP តាមរយៈ Azure Functions ជាច្រើន
+    - ស្ថាបត្យកម្មធ្វើជាគ្រាប់ដែករួមបញ្ចូលការដឹកជញ្ជូនជាប្រភេទផ្សេងៗ
+    - ការពារ & អាចទុកចិត្តបានសារនិងយុទ្ធសាស្ត្រគ្រប់គ្រងកំហុស
+  - **សន្តិសុខ និងការត្រួតពិនិត្យ**: ការចូលរួម Azure Key Vault និងលំនាំការមើលឃើញ
+    - សម្គាល់ភេទ managed និងការចូលដំណើរការរាបស្មើ
+    - ការត្រួតពិនិត្យបច្ចុប្បន្នភាព Application Insights និងប្រសិទ្ធភាព
+    - គន្លងបិទបញ្ចូល (Circuit breakers) និងលំនាំការអត់ទ្រាំកំហុស
+  - **ហ្វ្រេមវើកបន្ទាប់ការតេស្ត**: យុទ្ធសាស្ត្រតេស្តពេញលេញសម្រាប់ការដឹកជញ្ជូនផ្ទាល់ខ្លួន
+    - តេស្តឯកតាជាមួយ test doubles និង mocking frameworks
+    - តេស្តការចូលរួមជាមួយ Azure Test Containers
+    - ការពិចារណាតេស្តប្រសិទ្ធិភាព និងការបន្ទាញ់ទំងន់
 
-#### វិស្វកម្មបរិបទ (05-AdvancedTopics/mcp-contextengineering/) - វិស័យ AI ឡើងដំណើរ
-- **README.md**: ស្វែងយល់ពេញលេញអំពីវិស្វកម្មបរិបទ ជាវិស័យកំពុងលូតលាស់
-  - **គោលការណ៍មូលដ្ឋាន**: ការចែករំលែកបរិបទពេញលេញ, ការយល់ដឹងស្ថានភាពសំរេចចិត្ត, ការគ្រប់គ្រងបរិបទផ្លាស់ប្តូរ
-  - **ការសម្របសម្រួលប្រព័ន្ធ MCP**: របៀប MCP រចនាដោះស្រាយបញ្ហាវិស្វកម្មបរិបទ
-    - កំណត់ដែនបរិបទ និងយុទ្ធសាស្ត្រផ្ទុកវឌ្ឍនៈ
-    - ការកំណត់សារៈសំខាន់ និងការទាញយកបរិបទ δυναмически
-    - ការចែកចាយបរិបទបែបមូលហើយកិច្ចការសុវត្ថិភាព
-  - **វិធីសាស្ត្រអនុវត្ត**: រចនាសម្ព័ន្ធបុគ្គលអត្រាបាននិងច្រើនអ្នកដំណើរការ
-    - បំបែកបរិបទ និងបច្ចេកទេសអាទិភាព
-    - យុទ្ធសាស្ត្រផ្ទុកបរិបទវឌ្ឍនៈ និងសង្ខេប
-    - វិធីសាស្ត្របរិបទបង់ស្រទាប់ និងបង្កើតបរិបទអប្បបរមា
-  - **សំណុំវាស់វែង**: ការវាស់វែងឡើងវិញសម្រាប់ប្រសិទ្ធភាពបរិបទ
-    - ប្រសិទ្ធភាពការចាក់បញ្ចូល, សមត្ថភាព, គុណភាព, និងបទពិសោធន៍អ្នកប្រើ
-    - វិធីសាស្ត្រប្រកាសសាកល្បងសម្រាប់ការបង្កើតបរិបទល្អប្រសើរ
+#### វិស្វកម្ម Context (05-AdvancedTopics/mcp-contextengineering/) - វិស័យកំពុងកើតមាន AI
+- **README.md**: ការស្រាវជ្រាវពេញលេញអំពីវិស្វកម្ម context ជាវិស័យកំពុងកើតមាន
+  - **គោលការណ៍ស្នូល**: ការចែករំលែក context ពេញលេញ, ការយល់ដឹងសេចក្ដីសម្រេចចិត្តសកម្មភាព, និងការគ្រប់គ្រងបង្អួច context
+
+  - **ការតំរូវតាមប្រព័ន្ធ MCP**: របៀបដែលការរចនាផ្នែក MCP ដោះស្រាយបញ្ហាវិស្វកម្មបរិបទ
+    - ការកំណត់វិញនៃបង្អួចបរិបទ និងយុទ្ធសាស្ត្រការផ្ទុកជាបន្ត
+    - ការបញ្ជាក់ភាពស័ក្តិសម និងការយកបរិបទយ៉ាង الديناميكية
+    - ការដោះស្រាយបរិបទចម្រុះ និងការពិចារណាអំពីសុវត្ថិភាព
+  - **វិធីសាស្ត្រ​អនុវត្ត**: ស្ថាបត្យកម្មៈ single-threaded ប្រៀបធៀប multi-agent
+    - យូរអនុប្បទាននិងបច្ចេកទេសអាទិភាពបរិបទ
+    - ការផ្ទុកបរិបទជាបន្ត និងយុទ្ធសាស្ត្របង្រួម
+    - វិធីសាស្ត្រប្រមូលបណ្តាស់បរិបទស្រទាប់និងបង្កើនប្រសិទ្ធភាព
+  - **ស៊ុមវាស់**: ម៉ែត្រកំពុងអភិវឌ្ឍសម្រាប់ការវាយតម្លៃប្រសិទ្ធភាពបរិបទ
+    - ប្រសិទ្ធភាពការបញ្ចូល, ប្រតិបត្តិការ, គុណភាព, និងការពិចារណាបទពិសោធន៍អ្នកប្រើ
+    - វិធីសាស្ត្រសាកល្បងសម្រាប់បង្កើនប្រសិទ្ធភាពបរិបទ
     - ការវិភាគបរាជ័យ និងវិធីសាស្ត្រកែលម្អ
 
-#### ការអាប់ដេតនាវិកគំនិតសិក្សា (README.md)
-- **រចនាសម្ព័ន្ធម៉ូឌុលកែលម្អ**: អាប់ដេតតារាងវគ្គសិក្សាដើម្បីបញ្ចូលប្រធានបទខ្ពស់ថ្មីៗ
+#### ការអាប់ដេតការស្វែងរកមួលដ្ឋាន (README.md)
+- **រចនាសម្ព័ន្ធម៉ូឌុលឲ្យប្រសើរឡើង**: តារាងមួលដ្ឋានបានអាប់ដេត ដើម្បីបញ្ចូលប្រធានបទកម្រិតខ្ពស់ថ្មីៗ
   - បញ្ចូល Context Engineering (5.14) និង Custom Transport (5.15)
-  - រចនាបថ និងតំណភ្ជាប់នាវិការស្មើគ្នាទាំងអស់ម៉ូឌុល
-  - អាប់ដេតការពិពណ៌នាដើម្បីបង្ហាញមាតិកាទំនើប
+  - បណ្ដាញរៀបចំឲ្យស្របគ្នានិងតំណភ្ជាប់ការស្វែងរកគ្រប់ម៉ូឌុល
+  - កែប្រែការពិពណ៌នាឲ្យត្រូវនឹងវិសាលភាពមាតិកាបច្ចុប្បន្ន
 
-### ការកែលម្អរចនាសម្ព័ន្ធផ្ទាំងភ្ជាប់
-- **ការតម្រូវឈ្មោះស្ដង់ដារ**: ប្ដូរឈ្មោះ "mcp transport" ទៅ "mcp-transport" ដើម្បីសម្រួលជាមួយថតប្រធានបទខ្ពស់ផ្សេងទៀត
-- **ការរៀបចំមាតិកា**: ថត 05-AdvancedTopics ទាំងអស់ក្រោមទម្រង់ឈ្មោះសម្រួល (mcp-[topic])
+### កែលម្អរចនាសម្ព័ន្ធថតឯកសារ
+- **ការតំរូវឈ្មោះ**: ផ្លាស់ប្តូរឈ្មោះ "mcp transport" ទៅជា "mcp-transport" ដើម្បីស្របគ្នាជាមួយថតប្រធានបទកម្រិតខ្ពស់ផ្សេងទៀត
+- **រចនាសម្ព័ន្ធមាតិកា**: ថតទាំងអស់ 05-AdvancedTopics ឥឡូវនេះអនុវត្តនាមបែបណែនាំស្របគ្នា (mcp-[topic])
+
+### កែលម្អគុណភាពឯកសារព័ត៌មាន
+- **ការ​តំរូវ MCP សំខាន់**: មាតិកាថ្មីៗទាំងអស់យោងទៅលើ MCP Specification ថ្មី 2025-06-18
+- **ឧទាហរណ៍ភាសាច្រើន**: ឧទាហរណ៍កូដពេញលេញក្នុង C#, TypeScript, និង Python
+- **ផ្តោតលើសហគ្រាស**: លំនាំផលិតផលដែលរួចរាល់និងការរួមបញ្ចូល Azure cloud
+- **ឯកសារមើលឃើញ**: គំនូរជួរឈរ Mermaid សម្រាប់បង្ហាញស្ថាបត្យកម្មនិងលំនាំដំណើរ
+
+## ខោទៅ 18, 2025
+
+### ការអាប់ដេតឯកសារប្រឹក្សាពេញលេញ - ស្តង់ដារលេខ MCP 2025-06-18
+
+#### វិធីសាស្ត្រច្បាប់សុវត្ថិភាព MCP (02-Security/) - ការប្ដូរទំនើបពេញលេញ
+- **MCP-SECURITY-BEST-PRACTICES-2025.md**: ការវិលបញ្ចូលសរសេរថ្មីពេញលេញ តំរូវតាម MCP Specification 2025-06-18
+  - **តំរូវការតាមបច្ចេកទេស**: បន្ថែមតំរូវការត្រូវ/មិនត្រូវ ច្បាស់លាស់នៅក្នុងការដាក់សញ្ញាពណ៌
+  - **ការអនុវត្តសុវត្ថិភាពក៏ដូចជា១២**: កែប្រែពីបញ្ជី១៥ធាតុទៅជាវិស័យសុវត្ថិភាពទូលំទូលាយ
+    - សុវត្ថិភាព Token & ការផ្ទៀងផ្ទាត់អត្តសញ្ញាណ ជាមួយការរួមបញ្ចូលអ្នកផ្តល់អត្តសញ្ញាណបញ្ចូលក្រៅ
+    - ការគ្រប់គ្រងសម័យសេស្យុង & សុវត្ថិភាពផ្ទេរទិន្នន័យ ជាមួយតំរូវការអ៊ុយគ្រីបយ៉ាងម៉ត់ចត់
+    - ការពារគ្រោះថ្នាក់ AI ជាក់លាក់ ជាមួយ Microsoft Prompt Shields
+    - ការគ្រប់គ្រងការចូលប្រើ & សិទ្ធិសកម្ម ជាមួយគោលការណ៍ធំលើសិទ្ធិអប្បបរមា
+    - សុវត្ថិភាពមាតិកា & ការត្រួតពិនិត្យ ជាមួយការរួមបញ្ចូល Azure Content Safety
+    - សុវត្ថិភាពសមាសភាគធន់បន្ទុក ជាមួយការត្រួតពិនិត្យសមាសភាគយ៉ាងទូលំទូលាយ
+    - សុវត្ថិភាព OAuth & ការពារការប្រយុទ្ធ Confused Deputy ជាមួយអនុវត្ត PKCE
+    - ការឆ្លើយតបនិងការស្ដារ នូវហេតុការណ៍ជាមួយសមត្ថភាពស្វ័យប្រវត្តិ
+    - ភាពស្របច្បាប់ & ការគ្រប់គ្រង ជាមួយការស្របច្បាប់ត្រឹមត្រូវ
+    - ការគ្រប់គ្រងសុវត្ថិភាពកម្រិតខ្ពស់ជាមួយស្ថាបត្យកម្មទំនុកចិត្តសូន្យ
+    - ការរួមបញ្ចូល Microsoft Security Ecosystem ជាមួយដំណោះស្រាយទូលំទូលាយ
+    - ការវឌ្ឍន៍សុវត្ថិភាពជាបន្តជាមួយបច្ចេកទេសអាចបត់បែនបាន
+  - **ដំណោះស្រាយសុវត្ថិភាព Microsoft**: ការណែនាំបន្ថែមសម្រាប់ Prompt Shields, Azure Content Safety, Entra ID និង GitHub Advanced Security
+  - **ធនធានអនុវត្ត**: តំរៀបតំណភ្ជាប់ធនធានតាមប្រភពគ្រាន់ MCP, Microsoft Security Solutions, ស្តង់ដារសុវត្ថិភាព និងមគ្គុទ្ទេសក៍អនុវត្ត
+
+#### ការគ្រប់គ្រងសុវត្ថិភាពកម្រិតខ្ពស់ (02-Security/) - អនុវត្តសហគ្រាស
+- **MCP-SECURITY-CONTROLS-2025.md**: ការប្តូរទៅប្រព័ន្ធសុវត្ថិភាពកម្រិតសហគ្រាស
+  - **៩ វិស័យសុវត្ថិភាពទូលំទូលាយ**: ផ្លាស់ប្តូរពីការគ្រប់គ្រងមូលដ្ឋាន ទៅស៊ុមថ្នាក់សហគ្រាសលម្អិត
+    - ការផ្ទៀងផ្ទាត់ និងអនុម័តអំពើកម្រិតខ្ពស់ ជាមួយ Microsoft Entra ID
+    - សុវត្ថិភាព Token និងការគ្រប់គ្រងមិនអនុញ្ញាតបណ្តោះអាសន្នកម្ម
+    - ការគ្រប់គ្រងសុវត្ថិភាពសម័យសេស្យុង បញ្ចៀសការចំណាយប្រើ
+    - ការគ្រប់គ្រងសុវត្ថិភាព AI ជាក់លាក់ ដោយការចាក់បញ្ចូល prompt និងការលាបពន្លេច
+    - ការពារការប្រយុទ្ធ Confused Deputy ជាមួយសុវត្ថិភាពកម្មវិធី OAuth proxy
+    - ការគ្រប់គ្រងការប្រតិបត្តិគ្រឿងឧបករណ៍ ជាមួយសុវត្ថិភាព sandbox និងបំបែក
+    - ការគ្រប់គ្រងសុវត្ថិភាពសមាសភាគធន់បន្ទុក ជាមួយការផ្ទៀងផ្ទាត់ការពឹងពាក់
+    - ការត្រួតពិនិត្យនិងការរកឃើញ ជាមួយការរួមបញ្ចូល SIEM
+    - ការឆ្លើយតបនិងស្ដារឡើងវិញដោយស្វ័យប្រវត្តិ
+  - **ឧទាហរណ៍អនុវត្ត**: បន្ថែម YAML configuration ដ៏លម្អិត និងឧទាហរណ៍កូដ
+  - **ការរួមបញ្ចូលដំណោះស្រាយ Microsoft**: ខ្ទង់ពេញលេញសេវាសុវត្ថិភាព Azure, GitHub Advanced Security និងការគ្រប់គ្រងអត្តសញ្ញាណសហគ្រាស
+
+#### ប្រធានបទសុវត្ថិភាពកម្រិតខ្ពស់ (05-AdvancedTopics/mcp-security/) - អនុវត្តផលិតផល
+- **README.md**: សរសេរឡើងវិញពេញលេញសម្រាប់ការអនុវត្តសុវត្ថិភាពសហគ្រាស
+  - **សមតុល្យតំរូវការបច្ចុប្បន្ន**: អាប់ដេតទៅ MCP Specification 2025-06-18 ជាមួយតំរូវការសុវត្ថិភាពចាំបាច់
+  - **ការផ្ទៀងផ្ទាត់កម្រិតខ្ពស់**: រួមបញ្ចូល Microsoft Entra ID ជាមួយឧទាហរណ៍សុវត្ថិភាព .NET និង Java Spring Security ដ៏លម្អិត
+  - **ការរួមបញ្ចូលសុវត្ថិភាព AI**: Microsoft Prompt Shields និង Azure Content Safety ជាមួយឧទាហរណ៍ Python ដ៏លម្អិត
+  - **ការកាត់បន្ថយគ្រោះថ្នាក់កម្រិតខ្ពស់**: ឧទាហរណ៍អនុវត្តជាច្រើនសម្រាប់
+    - ការពារការប្រយុទ្ធ Confused Deputy ជាមួយ PKCE និងការត្រួតពិនិត្យការយល់ព្រមអ្នកប្រើ
+    - ការពារចរាចរណ៍ Token ជាមួយការត្រួតពិនិត្យអ្នកទស្សនា និងការគ្រប់គ្រង Token យ៉ាងសុវត្ថិភាព
+    - ការការពារការចំណាយសម័យសេស្យុងជាមួយការចងភ្ជាប់អ៊ុយគ្រីប និងវិភាគអាកប្បកិរិយា
+  - **ការរួមបញ្ចូលសុវត្ថិភាពសហគ្រាស**: ការត្រួតពិនិត្យ Azure Application Insights, ខ្សែបញ្ជូនរកឃើញគ្រោះថ្នាក់ និងសុវត្ថិភាពសម្ព័ន្ធផ្គត់ផ្គង់
+  - **បញ្ជីត្រួតពិនិត្យអនុវត្ត**: ការបង្ហាញច្បាស់លាស់ចំពោះការគ្រប់គ្រងសុវត្ថិភាពណែនាំ និងដែលត្រូវហៅត្រូវបានគេចាត់ទុក
+
+### គុណភាពឯកសារនិងការស្របតាមស្តង់ដារ
+- **យោងឯកសារ**: អាប់ដេតយោងទាំងអស់ទៅ MCP Specification 2025-06-18
+- **Microsoft Security Ecosystem**: ការណែនាំការរួមបញ្ចូលដើម្បីឯកសារសុវត្ថិភាពទាំងអស់កាន់តែប្រសើរ
+- **អនុវត្តជាក់ស្តែង**: បន្ថែមឧទាហរណ៍កូដលម្អិតនៅ .NET, Java, និង Python ជាមួយលំនាំសហគ្រាស
+- **ការរៀបចំធនធាន**: ការតំរៀបចំណាត់ថ្នាក់លម្អិតរបស់ឯកសារផ្លូវការនិងស្តង់ដារសុវត្ថិភាព
+- **សញ្ញាដូចមើលឃើញ**: ការជម្រាបច្បាស់ពីតំរូវការដែលត្រូវធ្វើ និងការណែនាំបន្ថែម
+
+
+#### គំនិតមូលដ្ឋាន (01-CoreConcepts/) - បច្ចុប្បន្នភាពពេញលេញ
+- **ការអាប់ដេតកំណែប្រព័ន្ធ**: ធ្វើឲ្យស្របតាម MCP Specification 2025-06-18 មានទ្រង់ទ្រាយកំណែហើយ (YYYY-MM-DD)
+- **កែលម្អស្ថាបត្យកម្ម**: ការពិពណ៌នាពន្យល់ការជួនដំណើរជាក់លាក់ របស់ Hosts, Clients និង Servers ក្នុងលំនាំស្ថាបត្យកម្ម MCP បច្ចុប្បន្ន
+  - Hosts បានកំណត់ច្បាស់ជាកម្មវិធី AI ដែលសម្របសម្រួលការតភ្ជាប់លើក្រុម MCP client ច្រើន
+  - Clients ពិពណ៌នាថាជាឧបករណ៍ភ្ជាប់ប្រព័ន្ធ ដែលរក្សាទំនាក់ទំនងម៉ាស៊ីនមេមួយទៅមួយ
+  - Servers មានកំណត់ដំណើរការផ្ទាល់ខ្លួន និងចម្ងាយៗ
+- **កែប្រែផ្នែក Primitive**: ប្តូរជារួមគ្រប់ផ្នែក primitive របស់ server និង client
+  - Server Primitives: ធនធាន (ប្រភពទិន្នន័យ), Prompts (ទម្រង់), ឧបករណ៍ (មុខងារអាចដំណើរការ) ជាមួយពន្យល់និងឧទាហរណ៍លម្អិត
+  - Client Primitives: ការជម្រុញ (LLM completions), ការលើកឡើង (ការបញ្ចូលអ្នកប្រើ), ការចុះផ្សាយ (debugging/monitoring)
+  - អាប់ដេតទៅលំនាំសម្រាប់វិធីសាស្តរ `*/list`, `*/get`, និង `*/call`
+- **ស្ថាបត្យកម្មប្រព័ន្ធ**: រៀបចំបែបស្ថាបត្យកម្មពីរដំណាក់កាល
+  - ស្រទាប់ទិន្នន័យ: មូលដ្ឋាន JSON-RPC 2.0 ជាមួយការគ្រប់គ្រងជីវិតនិង primitive
+  - ស្រទាប់ផ្ទេរ: STDIO (តំបន់) និង HTTP Streamable ជាមួយ SSE (ចម្ងាយ)
+- **ក្របខណ្ឌសុវត្ថិភាព**: គោលការណ៍សុវត្ថិភាពទូលំទូលាយរួមមានការយល់ព្រមយ៉ាងច្បាស់ពីអ្នកប្រើ, ការការពារឯកជនភាពទិន្នន័យ, សុវត្ថិភាពការដំណើរការឧបករណ៍ និងសុវត្ថិភាពស្រទាប់ផ្ទេរ
+- **លំនាំសហការទំនាក់ទំនង**: ការអាប់ដេតសារ protocol សម្រាប់ដំណើរការ initialization, discovery, execution និងការជូនដំណឹង
+- **ឧទាហរណ៍កូដ**: បន្ថែមឧទាហរណ៍ភាសាច្រើន (.NET, Java, Python, JavaScript) ដើម្បីបង្ហាញលំនាំ MCP SDK បច្ចុប្បន្ន
+
+#### សុវត្ថិភាព (02-Security/) - ការប្ដូរច្រាស់សុវត្ថិភាព
+- **ការស្របតាមស្តង់ដារ**: ស្របតាមតំរូវការសុវត្ថិភាព MCP Specification 2025-06-18
+- **ការវឌ្ឍន៍ការផ្ទៀងផ្ទាត់អត្តសញ្ញាណ**: កំណត់ឯកសារពីការរីកចម្រើនពីម៉ាស៊ីនមេ OAuth ពិសេស ទៅការផ្ដល់ភារកិច្ចអ្នកផ្តល់អត្តសញ្ញាណក្រៅ (Microsoft Entra ID)
+- **វិភាគគ្រោះថ្នាក់ AI ជាក់លាក់**: បន្ថែមការចំណាត់ថ្នាក់វគ្គប្រយុទ្ធ AI ទំនើប
+  - សេចក្ដីលម្អិតនៃស្ថានភាពការប្រយុទ្ធប្រើ prompt injection ដោយឧទាហរណ៍ជាក់ស្តែង
+  - គ្រឿងញៀនគ្រឿងពុលឧបករណ៍ និងវិធីរាងភាពប្រយុទ្ធ "rug pull"
+  - ការមិនស្អាតក្នុងបង្អួចបរិបទ និងប្រយុទ្ធច្របាច់ម៉ូដែល
+- **ដំណោះស្រាយសុវត្ថិភាព Microsoft AI**: គ្របដណ្តប់លម្អិតកាលពី Microsoft security ecosystem
+  - AI Prompt Shields ជាមួយការចាប់កាន់ប្រកបដោយភាពចៃដន្យ និងបច្ចេកទេស delimiter
+  - លំនាំរួម Azure Content Safety
+  - GitHub Advanced Security ផ្ទាល់ខ្លួនសម្រាប់ការការពារសម្ពន្ធផ្គត់ផ្គង់
+- **ការកាត់បន្ថយគ្រោះថ្នាក់​នៅកម្រិតខ្ពស់**: ការគ្រប់គ្រងសុវត្ថិភាពលម្អិតសម្រាប់
+  - ការចាប់សម័យសេស្យុងជាមួយស្ថានភាពប្រយុទ្ធ MCP ជាក់លាក់ និងតំរូវការការចុះ ID session ជាអ៊ុយគ្រីប
+  - ប្រព័ន្ធ Confused Deputy នៅក្នុងស្ថានភាពម៉ាស៊ីនមាន MCP proxy ជាមួយតំរូវការយល់ព្រមច្បាស់លាស់
+  - ចំណុចខ្សោយ Token passthrough ជាមួយបច្ចេកទេសត្រួតពិនិត្យដែលតម្រូវ
+- **សុវត្ថិភាពសម្ព័ន្ធផ្គត់ផ្គង់**: ពង្រីកលើការវិភាគផ្គត់ផ្គង់ AI រួមមាន ម៉ូដែលមូលដ្ឋាន, សេវាកម្ម embeddings, អ្នកផ្គត់ផ្គង់បរិបទ និង API ពីភាគីទីបី
+- **សុវត្ថិភាពមូលដ្ឋាន**: កែលម្អការរួមបញ្ចូលជាមួយលំនាំសុវត្ថិភាពសហគ្រាស រួមមានស្ថាបត្យកម្មទំនុកចិត្តសូន្យ និង Microsoft security ecosystem
+- **ការរៀបចំធនធាន**: តំរៀបតំណភ្ជាប់ធនធានលម្អិត តាមប្រភេទ (ឯកសារផ្លូវការលេខ, ស្តង់ដារ, ការស្រាវជ្រាវ, ដំណោះស្រាយ Microsoft, មគ្គុទ្ទេសក៍អនុវត្ត)
 
 ### ការកែលម្អគុណភាពឯកសារ
-- **ការសម្របសម្រួល MCP Specification**: យោងទាំងអស់ជាមួយ MCP Specification 2025-06-18 ថ្មី
-- **ឧទាហរណ៍ភាសាច្រើន**: គំរូកូដពេញលេញនៅ C#, TypeScript, និង Python
+- **គោលបំណងរៀនដែលមានរចនាសម្ព័ន្ធ**: កែលម្អគោលបំណងរៀនជាមួយលទ្ធផលច្បាស់លាស់អាចអនុវត្ដបាន
+- **ការតភ្ជាប់ជាផ្លូវការ**: បន្ថែមតំណភ្ជាប់រវាងប្រធានបទសុវត្ថិភាព និងគំនិតមូលដ្ឋាន
+- **ព័ត៌មានបច្ចុប្បន្ន**: កែលម្អកាលបរិច្ឆេទនិងតំណភ្ជាប់ស្តង់ដារពេញលេញទៅស្តង់ដារបច្ចុប្បន្ន
+- **ការណែនាំអនុវត្ត**: បន្ថែមណែនាំអនុវត្ដច្បាស់និងអាចអនុវត្ដបានក្នុងសេវាកម្មទាំងពីរ
 
-- **ផ្តោតលើសហគ្រាស**: គំរូផលិតផលដែលមានភាពរួមបញ្ចូលគ្នា និងការតភ្ជាប់ខ្យល់ Azure Cloud ទាំងមូល
-- **ឯកសារពីរូបភាព**: គំនូសគំនី Mermaid សម្រាប់ស្ថាបត្យកម្ម និងការបង្ហាញហ្វ្លូ
+## ខែមិថុនា 16, 2025
 
-## ១៨សីហា ឆ្នាំ ២០២៥
+### README និងការស្វែងរកជំនួយកែលម្អ
+- រៀបចំការស្វែងរកមួលដ្ឋានក្នុងREADME.md ជាថ្មីគ្រប់វិញ
+- ជំនួស `<details>` ជាជួរតារាងងាយប្រើប្រាស់ជាង
+- បង្កើតជម្រើសកំណត់ទំរង់បម្លែងថ្មីក្នុងថត "alternative_layouts"
+- បន្ថែមឧទាហរណ៍ស្វែងរកជាមួយប្លង់កាត, ដាក់ក្នុងទំព័រ និងប្លង់Accordion
+- អាប់ដេតផ្នែករចនាសម្ព័ន្ធឃ្លាំង​​ឯកសារ ដើម្បីរួមបញ្ចូលគ្រប់ឯកសារថ្មីៗ
+- បន្ថែមផ្នែក "របៀបប្រើប្រាស់មួលដ្ឋាននេះ" ជាមួយការណែនាំច្បាស់លាស់
+- អាប់ដេតតំណ MCP specification ទៅ URL ត្រឹមត្រូវ
+- បន្ថែមផ្នែក Context Engineering (5.14) ទៅរចនាសម្ព័ន្ធមួលដ្ឋាន
 
-### ការអាប់ដេតឯកសារយ៉ាងពេញលេញ - ស្តង់ដារ MCP ២០២៥-០៦-១៨
+### កែលម្អមេរៀន
+- កែប្រែច្បាស់លាស់មេរៀនឲ្យស្របនឹងរចនាសម្ព័ន្ធឃ្លាំងទិន្នន័យបច្ចុប្បន្ន
+- បន្ថែមផ្នែកថ្មីសម្រាប់ MCP Clients និង Tools, និង MCP Servers ដែលពេញនិយម
+- អាប់ដេតផែនទីមួលដ្ឋាន Visual Curriculum ដោយពិតប្រាកដមើលឃើញគ្រប់ប្រធានបទ
+- កែលម្អការពិពណ៌នាប្រធានបទកម្រិតខ្ពស់ ដើម្បីគ្របដណ្តប់គ្រប់ដែនជំនាញពិសេស
+- អាប់ដេតផ្នែក Case Studies ដើម្បីបង្ហាញឧទាហរណ៍ជាក់លាក់
+- បន្ថែមសៀវភៅកំណត់ប្រែនេះ
 
-#### ការអនុវត្តសុវត្ថិភាពល្អបំផុត MCP (០២-សុវត្ថិភាព/) - ការធ្វើអោយទាន់សម័យសព្វថ្ងៃ
-- **MCP-SECURITY-BEST-PRACTICES-2025.md**: ការសរសេរសារថ្មីទាំងមូលស្របតាមលក្ខណៈ MCP ២០២៥-០៦-១៨
-  - **លក្ខខណ្ឌបញ្ជាប់**: បន្ថែមលក្ខខណ្ឌ MUST/MUST NOT យ៉ាងច្បាស់ពីឯកសារផ្លូវការជាមួយសញ្ញាទស្សនៈច្បាស់លាស់
-  - **១២អនុវត្តសុវត្ថិភាពស្នូល**: រៀបចំឡើងវិញពីបញ្ជី ១៥ធាតុទៅជាតំបន់សុវត្ថិភាពពេញលេញ
-    - សុវត្ថិភាពស្លាកសញ្ញា និងការផ្ទៀងផ្ទាត់ជាមួយការតភ្ជាប់អ្នកផ្តល់អត្តសញ្ញាណខាងក្រៅ
-    - ការគ្រប់គ្រងសម័យ និងសុវត្ថិភាពការដឹកជញ្ជូនជាមួយលក្ខខណ្ឌគ្រប់គ្រងកូដសម្ងាត់
-    - ការពារគំរាមបំពានពិសេស AI ជាមួយការតភ្ជាប់ Microsoft Prompt Shields
-    - ការគ្រប់គ្រងការចូលទៅ និងការអនុញ្ញាតជាមួយគោលការណ៍អនុញ្ញាតតិចបំផុត
-    - សុវត្ថិភាពមាតិកា និងការត្រួតពិនិត្យជាមួយការតភ្ជាប់ Azure Content Safety
-    - សុវត្ថិភាពខ្សែ​ផ្គត់​ផ្គង់ជាមួយការត្រួតពិនិត្យសមាសធាតុពេញលេញ
-    - សុវត្ថិភាព OAuth និងការពារមនុស្សជំនួសជាប់ច្របូកច្របល់ជាមួយការអនុវត្ត PKCE
-    - ការឆ្លើយតបនឹងហេតុការណ៍និងសម្រួលវិញជាមួយសមត្ថភាពស្វ័យប្រវត្តិ
-    - ការអនុវត្ត និងរដ្ឋបាលជាមួយការចុះសម្សោតតាមបទបញ្ជា
-    - តម្រង់ការគ្រប់គ្រងសុវត្ថិភាពខ្ពស់ជាមួយស្ថាបត្យកម្មគ្មានការជឿជាក់
-    - ការតភ្ជាប់បរិស្ថានសុវត្ថិភាព Microsoft ជាមួយដំណោះស្រាយពេញលេញ
-    - ការវិវឌ្ឍសុវត្ថិភាពបន្តជាមួយអនុវត្តន៍បត់បែន
-  - **ដំណោះស្រាយសុវត្ថិភាព Microsoft**: ណែនាំការតភ្ជាប់កាន់តែលម្អសម្រាប់ Prompt Shields, Azure Content Safety, Entra ID និង GitHub Advanced Security
-  - **ធនធានសម្រាប់អនុវត្ត**: ចាត់ថ្នាក់តំណភ្ជាប់ធនធានពេញលេញដោយឯកសារផ្លូវការរបស់ MCP, ដំណោះស្រាយសុវត្ថិភាព Microsoft, ស្តង់ដារសុវត្ថិភាព និងមគ្គុទ្ទេសក៍អនុវត្ត
+### អរិយធម៌សហគមន៍ (06-CommunityContributions/)
+- បន្ថែមព័ត៌មានលម្អិតអំពី MCP servers សម្រាប់បង្កើតរូបភាព
+- បន្ថែមផ្នែកទូលំទូលាយលើការប្រើប្រាស់ Claude ក្នុង VSCode
+- បន្ថែមការតំឡើងនិងការប្រើប្រាស់ Client terminal Cline
+- អាប់ដេតផ្នែក MCP client រួមបញ្ចូលជម្រើសរបៀបclientដែលពេញនិយមទាំងអស់
+- កែលម្អឧទាហរណ៍ចូលរួមជាមួយគំរូកូដដែលត្រឹមត្រូវបំផុត
 
-#### តម្រង់ការគ្រប់គ្រងសុវត្ថិភាពខ្ពស់ (០២-សុវត្ថិភាព/) - ការអនុវត្តសហគ្រាស
-- **MCP-SECURITY-CONTROLS-2025.md**: ការកែប្រែលម្អពេញលេញជាមួយស៊ុមបន្ទុកសុវត្ថិភាពកម្រិតសហគ្រាស
-  - **៩ តំបន់សុវត្ថិភាពពេញលេញ**: ពង្រីកពីការគ្រប់គ្រងមូលដ្ឋានទៅស៊ុមបន្ទុកសហគ្រាសលម្អិត
-    - ការផ្ទៀងផ្ទាត់ និងការអនុញ្ញាតខ្ពស់ជាមួយការតភ្ជាប់ Microsoft Entra ID
-    - សុវត្ថិភាពស្លាកសញ្ញា និងការត្រួតពិនិត្យការចូលបែបអនុញ្ញាតពេញលេញ
-    - តម្រង់ការសុវត្ថិភាពសម័យជួយការពារ​ការ​ចាប់យក
-    - តម្រង់ការអនុវត្តសុវត្ថិភាពពិសេស AI ជាមួយការពារចាក់បញ្ចូលជំនួសនិងការពារត្រូវពុលឧបករណ៍
-    - ការពារការវាយប្រហារមនុស្សជំនួសជាប់ច្របូកច្របល់ជាមួយសុវត្ថិភាពប្រព័ន្ធ​អ៊ុយធីធី OAuth
-    - សុវត្ថិភាពការប្រតិបត្តិឧបករណ៍ជាមួយការបញ្ចប់ការដំណើរការ និងការបំបែក
-    - តម្រង់ការសុវត្ថិភាពខ្សែ​ផ្គត់​ផ្គង់ជាមួយការត្រួតពិនិត្យលើការពឹងផ្អែក
-    - តម្រង់ការត្រួតពិនិត្យនិងរកឃើញជាមួយការតភ្ជាប់ SIEM
-    - ការឆ្លើយតបនិងសម្រួលវិញជាមួយសម្ថភាពស្វ័យប្រវត្តិ
-  - **ឧទាហរណ៍អនុវត្ត**: បន្ថែមឯកសារកំណត់រចនាសម្ព័ន្ធ YAML និងឧទាហរណ៍កូដលម្អិត
-  - **ការតភ្ជាប់ដំណោះស្រាយ Microsoft**: គ្របដណ្តប់កាន់តែពេញលេញលើសេវាសុវត្ថិភាព Azure, GitHub Advanced Security និងការគ្រប់គ្រងអត្តសញ្ញាណសហគ្រាស
+### ប្រធានបទកម្រិតខ្ពស់ (05-AdvancedTopics/)
+- រៀបចំថតប្រធានបទពិសេសគ្រប់គ្រងមានការតំរូវឈ្មោះជាមួយគ្នា
+- បន្ថែមសំភារៈការវិ工程បរិបទនិងឧទាហរណ៍
+- បន្ថែមឯកសាររួមបញ្ចូល Foundry agent
+- កែលម្អការរួមបញ្ចូលសុវត្ថិភាព Entra ID
 
-#### ប្រធានបទកម្រិតខ្ពស់សុវត្ថិភាព (០៥-ប្រធានបទកម្រិតខ្ពស់/mcp-security/) - ការអនុវត្តផលិតផលស្រេច
-- **README.md**: ការសរសេរថ្មីទាំងមូលសម្រាប់អនុវត្តសុវត្ថិភាពសហគ្រាស
-  - **ការចុះសម្រួលលក្ខណៈបច្ចុប្បន្ន**: បានធ្វើបច្ចុប្បន្នភាពទៅ MCP Specification ២០២៥-០៦-១៨ ជាមួយលក្ខខណ្ឌសុវត្ថិភាពចាំបាច់
-  - **ការផ្ទៀងផ្ទាត់កាន់តែប្រសើរ**: ការតភ្ជាប់ Microsoft Entra ID ជាមួយឧទាហរណ៍ពេញលេញ .NET និង Java Spring Security
-  - **ការតភ្ជាប់សុវត្ថិភាព AI**: ការអនុវត្ត Microsoft Prompt Shields និង Azure Content Safety ជាមួយឧទាហរណ៍ Python រៀបរាប់លម្អិត
-  - **ការកាត់បន្ថយគំរាមបំពានកម្រិតខ្ពស់**: ឧទាហរណ៍អនុវត្តន៍ពេញលេញសម្រាប់
-    - ការពារជាប់ច្របល់មនុស្សជំនួសជាមួយ PKCE និងការត្រួតពិនិត្យការយល់ព្រមអ្នកប្រើ
-    - ការការពារការចូលកាត់ផ្សព្វផ្សាយស្លាកសញ្ញាជាមួយការត្រួតពិនិត្យទស្សនិកជន និងការគ្រប់គ្រងស្លាកសញ្ញាសុវត្ថិភាព
-    - ការពារការចាប់យកសម័យជាមួយការចងបង្សុកូដសម្ងាត់ និងវិភាគសីលធម៌
-  - **ការតភ្ជាប់សុវត្ថិភាពសហគ្រាស**: ការត្រួតពិនិត្យ Azure Application Insights, បំពង់ចាប់ផ្ដើមការគំរាមបំពាន និងសុវត្ថិភាពខ្សែ​ផ្គត់​ផ្គង់
-  - **បញ្ជីពិនិត្យអនុវត្ត**: សញ្ញាថ្លែងលើតម្រូវការចាំបាច់ និងការគ្រប់គ្រងតំណាងតាមដំណោះស្រាយសុវត្ថិភាព Microsoft
+## មិថុនា 11, 2025
 
-### គុណភាពឯកសារ និងការចុះសម្រួលស្តង់ដារ
-- **យោងទៅលើសេចក្ដីសង្ខេប**: បន្ថែមការអាប់ដេតយោងទាំងអស់ទៅ MCP Specification ២០២៥-០៦-១៨ បច្ចុប្បន្ន
-- **បរិស្ថានសុវត្ថិភាព Microsoft**: ណែនាំការតភ្ជាប់កាន់តែលម្អនៅឯកសារ​សុវត្ថិភាពទាំងអស់
-- **ការអនុវត្តជាក់ស្តែង**: បន្ថែមឧទាហរណ៍កូដលម្អិតក្នុង .NET, Java និង Python ជាមួយគំរូសហគ្រាស
-- **ការរៀបចំធនធាន**: ចាត់ថ្នាក់លម្អិតឯកសារផ្លូវការ ស្តង់ដារ​សុវត្ថិភាព និងមគ្គុទ្ទេសក៍អនុវត្ត
-- **សញ្ញាទស្សនៈ**: សញ្ញាច្បាស់លាស់លើតម្រូវការចាំបាច់ និងអនុវត្តណែនាំ
+### បង្កើតដំបូង
+- ចេញផ្សាយកំណែដំបូងនៃមួលដ្ឋាន MCP សម្រាប់អ្នកចាប់ផ្តើម
+- បង្កើតរចនាសម្ព័ន្ធមូលដ្ឋានសម្រាប់គ្រប់ ១០ ផ្នែកចម្បង
+- អនុវត្ត Visual Curriculum Map សម្រាប់ការស្វែងរក
+- បន្ថែមគំរូគម្រោងដំបូងក្នុងភាសាកម្មង់ជាច្រើន
 
+### ចាប់ផ្តើម (03-GettingStarted/)
+- បង្កើតឧទាហរណ៍ Server Implementation ដំបូង
+- បន្ថែមការណែនាំអភិវឌ្ឍ Client
+- រួមបញ្ចូលការរួមបញ្ចូល Client LLM
+- បន្ថែមឯកសារបង្កើត VS Code Integration
+- អនុវត្ត Server-Sent Events (SSE) ដែលមានឧទាហរណ៍ Server
 
-#### គំនិតស្នូល (០១-គំនិតស្នូល/) - ការធ្វើទាន់សម័យពេញលេញ
-- **ការអាប់ដេតកំណែកប្រព័ន្ធពិភាក្សា**: បានធ្វើបច្ចុប្បន្នភាពឲ្យស្របទៅ MCP Specification ២០២៥-០៦-១៨ ជាមួយកំណត់ខែថ្ងៃឆ្នាំ (ទ្រង់ទ្រាយ YYYY-MM-DD)
-- **ការតែងស្ថាបត្យកម្ម**: ពណ៌នាលម្អិតអំពីម៉ាស៊ីនម៉ាស៊ីនដំណើរការ, អតិថិជន និងម៉ាស៊ីនបម្រើ ដើម្បីបង្ហាញលក្ខណៈស្ថាបត្យកម្ម MCP បច្ចុប្បន្ន
-  - ម៉ាស៊ីនម៉ាស៊ីនដំណើរការបច្ចុប្បន្នបានកំណត់យ៉ាងច្បាស់ឲ្យជាកម្មវិធី AI ដែលចាត់ចែងការតភ្ជាប់អតិថិជន MCP ច្រើន
-  - អតិថិជនត្រូវបានពណ៌នាជាឧបករណ៍ភាគហ៊ុនកាន់តែខ្ពស់សម្រាប់រក្សាសម្រង់មួយទៅមួយជាមួយម៉ាស៊ីនបម្រើ
-  - ម៉ាស៊ីនបម្រើបានលំអិតបន្ថែមពីស្ថានភាពដាក់ចូលក្នុងតំបន់ និងចម្ងាយ
-- **ការរៀបចំគ្រឿងចម្បង**: ការកែប្រែលម្អសម្បូរបែបលើគ្រឿងម៉ាស៊ីនបម្រើនិងអតិថិជន
-  - គ្រឿងម៉ាស៊ីនបម្រើ: ធនធាន (ប្រភពទិន្នន័យ), ការធ្វើអត្ថបទ (ពញ្ញាណ), ឧបករណ៍ (មុខងារដំណើរការ) ជាមួយពិពណ៌នាមានលម្អិតនិងឧទាហរណ៍
-  - គ្រឿងអតិថិជន: សែំព្រីង (ការបញ្ចប់ LLM), ការសុំពថ៌ (ការបញ្ចូលអ្នកប្រើ), ការចុះកំណត់ហេតុ (ការធ្វើឱ្យពន្យាពេល/ត្រួតពិនិត្យ)
-  - ធ្វើបច្ចុប្បន្នភាពជាមួយគំរូវិធីសាស្ត្រស្វែងរក (`*/list`), ទាញយក (`*/get`), និងអនុវត្ត (`*/call`)
-- **ស្ថាបត្យកម្មពិភាក្សា**: បង្ហាញគំរូស្ថាបត្យកម្មទីពីរជាន់
-  - ស្រទាប់ទិន្នន័យ: មូលដ្ឋាន JSON-RPC 2.0 ជាមួយការគ្រប់គ្រងជីវិត និងគ្រឿងចម្បង
-  - ស្រទាប់ដឹកជញ្ជូន: STDIO (ក្នុងតំបន់) និង Streamable HTTP ជាមួយ SSE (ចម្ងាយ) ជាវិធីសាស្ត្រដឹកជញ្ជូន
-- **ស៊ុមសុវត្ថិភាព**: គោលការណ៍សុវត្ថិភាពពេញលេញ រួមមានការយល់ព្រមអ្នកប្រើយ៉ាងច្បាស់, ការពារប្រព័ន្ធទិន្នន័យឯកជន, សុវត្ថិភាព​ការដំណើរការឧបករណ៍, និងសុវត្ថិភាពស្រទាប់ដឹកជញ្ជូន
-- **គំរូទំនាក់ទំនង**: ការធ្វើបច្ចុប្បន្នភាពសារ ពិភាក្សា ធ្វើការ និងប្រកាសប៉ារីតិច
-- **ឧទាហរណ៍កូដ**: បានធ្វើបច្ចុប្បន្នភាពឧទាហរណ៍ភាសាច្រើន (.NET, Java, Python, JavaScript) ដើម្បីបង្ហាញគំរូ MCP SDK បច្ចុប្បន្ន
+### គំនិតមូលដ្ឋាន (01-CoreConcepts/)
+- បន្ថែមការពិពណ៌នាលម្អិតអំពីស្ថាបត្យកម្ម Client-Server
+- បង្កើតឯកសារពិពណ៌នាអំពីធាតុគ្រប់គ្រងសំខាន់ៗនៃប្រព័ន្ធ
+- ឯកសារការ Messenger Patterns ក្នុង MCP
 
-#### សុវត្ថិភាព (០២-សុវត្ថិភាព/) - ការប្រែប្រួលសុវត្ថិភាពពេញលេញ  
-- **ការចុះសម្រួលស្តង់ដារ**: ស្របពេញលេញទៅលក្ខខណ្ឌសុវត្ថិភាព MCP Specification ២០២៥-០៦-១៨
-- **ការវិវឌ្ឍការផ្ទៀងផ្ទាត់**: ចំណាំពីការវិវឌ្ឍពីម៉ាស៊ីនបម្រើ OAuth ផ្ទាល់ ទៅកម្មវិធីអ្នកផ្គត់ផ្គង់អត្តសញ្ញាណខាងក្រៅ (Microsoft Entra ID)
-- **វិភាគគំរាមបំពានពិសេស AI**: ចម្រង់កម្រិតខ្ពស់លើវ៉ិចទ័រការវាយប្រហារពហុភាសា AI
-  - ស្ថានភាពពេញលេញនៃការចាក់បញ្ចូលការវាយប្រហារ Prompt ជាមួយឧទាហរណ៍ពិភពលោកជាក់ស្តែង
-  - វិធីសាស្ត្រពុលឧបករណ៍ និងគំរូវាយប្រហារ "rug pull"
-  - ការពុលប្រអប់បរិបទ និងការវាយប្រហារច្របូកច្របល់ម៉ូដែល
-- **ដំណោះស្រាយសុវត្ថិភាព Microsoft AI**: គ្របដណ្តប់ពេញលេញលើបរិស្ថានសុវត្ថិភាព Microsoft
-  - AI Prompt Shields ជាមួយការរកឃើញកម្រិតខ្ពស់, ការលេចត្រា, និងបច្ចេកទេសសញ្ញាឆ្លាស់
-  - គំរូការតភ្ជាប់ Azure Content Safety
-  - GitHub Advanced Security សម្រាប់ការការពារខ្សែ​ផ្គត់​ផ្គង់
-- **ការកាត់បន្ថយគំរាមបំពានកម្រិតខ្ពស់**: ការត្រួតពិនិត្យសុវត្ថិភាពលម្អិតសម្រាប់
-  - ការចាប់យកសម័យជាមួយស្ថានភាពវាយប្រហារពិសេស MCP និងតម្រូវការកូដសម្ងាត់សម័យ
-  - បញ្ហាមនុស្សជំនួសច្របូកច្របល់នៅក្នុងស្ថានភាពប្រព័ន្ធជំនួយ MCP ជាមួយតម្រូវការយល់ព្រមច្បាស់លាស់
-  - ភាពងាយរងគ្រោះលើការចូលកាត់ផ្សព្វផ្សាយស្លាកសញ្ញា ជាមួយតម្រូវការត្រួតពិនិត្យបាំបែប
-- **សុវត្ថិភាពខ្សែ​ផ្គត់​ផ្គង់**: បានពង្រីកអ្នកលើលក្ខណៈខ្សែ​ផ្គត់​ផ្គង់ AI រួមមានគំរូមូលដ្ឋាន, សេវាកម្ម embeddings, អ្នកផ្គត់ផ្គង់បរិបទ និង API ភាគីទីបី
-- **សុវត្ថិភាពមូលដ្ឋាន**: បានលើកកម្ពស់ការតភ្ជាប់ជាមួយគំរូសុវត្ថិភាពសហគ្រាស រួមមានស្ថាបត្យកម្មគ្មានការជឿជាក់ និងបរិស្ថានសុវត្ថិភាព Microsoft
-- **ការរៀបចំធនធាន**: ចាត់ថ្នាក់តំណភ្ជាប់ធនធានពេញលេញជាយថាភាព (ឯកសារផ្លូវការ, ស្តង់ដារ, ការស្រាវជ្រាវ, ដំណោះស្រាយ Microsoft, មគ្គុទ្ទេសក៍អនុវត្ត)
+## មិថុនា 23, 2025
 
-### ការកែលម្អគុណភាពឯកសារ
-- **គោលបំណងរៀនរាល់ចំណុច**: បានលើកកម្ពស់គោលបំណងរៀនជាមួយលទ្ធផលច្បាស់លាស់ និងអាចអនុវត្ត
-- **យោងបង្កើតតាមគ្នា**: បន្ថែមតំណភ្ជាប់រវាងប្រធានបទសុវត្ថិភាព និងគំនិតស្នូល
-- **ព័ត៌មានបច្ចុប្បន្ន**: អាប់ដេតថ្ងៃខែឆ្នាំ និងតំណភ្ជាប់លក្ខណៈនៃស្តង់ដារបច្ចុប្បន្ន
-- **ការណែនាំអនុវត្ត**: បន្ថែមបទបញ្ជា ដំណើរការអនុវត្តជាក់លាក់គ្រប់ទីកន្លែង
-
-## ១៦ ខែកក្កដា ២០២៥
-
-### ការ README និងការកែលម្អការរុករក
-- កែសម្រួលប្លង់មើលកូដនៅ README.md ឲ្យស្រួលប្រើ
-- ប្ដូរតួ `<details>` ជារចនាសម្ព័ន្ធតារាងដែលងាយប្រើកាន់តែប្រសើរ
-- បង្កើតជម្រើសការតំរូវសម្រាប់ប្លង់ជំនួស ក្នុងថត "alternative_layouts"
-- បន្ថែមឧទាហរណ៍រុករកនៅរចនាប័ទ្មកាត, តាប, និងអាកឌីយ៉ុង
-- អាប់ដេតផ្នែកស្ថាបត្យកម្មឃ្លាំងឯកសារដើម្បីរួមបញ្ចូលឯកសារថ្មីៗទាំងអស់
-- លើកកម្ពស់ផ្នែក "របៀបប្រើផែនការ" ជាមួយសំណើណែនាំច្បាស់លាស់
-- អាប់ដេតតំណរភ្ជាប់ MCP Specification ទៅ URL ត្រឹមត្រូវ
-- បន្ថែមផ្នែក Context Engineering (5.14) ទៅក្នុងស្ថាបត្យកម្មកម្មវិធី
-
-### ការអាប់ដេតសៀវភៅសិក្សា
-- កែប្រែសៀវភៅសិក្សាទាំងមូលឲ្យស្របទៅស្ថាបត្យកម្មឃ្លាំងឯកសារបច្ចុប្បន្ន
-- បន្ថែមផ្នែកថ្មីសម្រាប់ MCP Clients និង Tools, និងម៉ាស៊ីនបម្រើ MCP អ្វីដែលពេញនិយម
-- អាប់ដេតផែនទីឥណេស្គលវិស្វកម្មដើម្បីបង្ហាញច្បាស់លាស់គ្រប់ប្រធានបទ
-- លម្អតពណ៌នារបស់ប្រធានបទកម្រិតខ្ពស់ដើម្បីគ្របដណ្តប់គ្រប់ផ្នែកឯកទេស
-- អាប់ដេតផ្នែកករណីសិក្សាទៅឧទាហរណ៍ពិតប្រាកដ
-- បន្ថែមកំណត់ហេតុការផ្លាស់ប្តូរពេញលេញនេះ
-
-### ការរួមចំណែកសហគមន៍ (០៦-CommunityContributions/)
-- បន្ថែមព័ត៌មានលម្អិតអំពីម៉ាស៊ីនបម្រើ MCP សម្រាប់បង្កើតរូបភាព
-- បន្ថែមផ្នែកពេញលេញអំពីការប្រើ Claude ក្នុង VSCode
-- បន្ថែមការតំឡើង និងការប្រើប្រាស់តាមរយៈអតិថិជន Cline terminal
-- អាប់ដេតផ្នែកអតិថិជន MCP ដើម្បីរួមបញ្ចូលជម្រើសអតិថិជនពេញនិយមទាំងអស់
-- លម្អឧទាហរណ៍ការរួមចំណែកជាមួយឧទាហរណ៍កូដត្រឹមត្រូវជាងមុន
-
-### ប្រធានបទកម្រិតខ្ពស់ (០៥-ប្រធានបទកម្រិតខ្ពស់/)
-- រៀបចំថតប្រធានបទឯកទេសទាំងអស់ដោយគោលការណ៍ផ្ទាល់ខ្លួន
-- បន្ថែមសម្ភារៈនិងឧទាហរណ៍ Context Engineering
-- បន្ថែមឯកសារចងក្រង Foundry agent integration
-- លម្អឯកសារតភ្ជាប់សុវត្ថិភាព Entra ID
-
-## ១១ មិថុនា ២០២៥
-
-### ការបង្កើតដំបូង
-- ចេញផ្សាយកំណែដំបូងនៃវគ្គសិក្សា MCP សម្រាប់អ្នកចាប់ផ្តើម
-- បង្កើតរចនាសម្ព័ន្ធមូលដ្ឋានសម្រាប់ផ្នែកធំទាំង ១០
-- អនុវត្តផែនទីវិស្វកម្មឥណេស្គលសម្រាប់ការរុករក
-- បន្ថែមគំរូគម្រោងដំបូងនៅភាសាកម្មវិធីច្រើន
-
-### ចាប់ផ្ដើម (០៣-GettingStarted/)
-- បង្កើតឧទាហរណ៍អនុវត្តម៉ាស៊ីនបម្រើដំបូង
-- បន្ថែមណែនាំការអភិវឌ្ឍអតិថិជន
-- រួមបញ្ចូលការតភ្ជាប់អតិថិជន LLM
-- បន្ថែមឯកសារតភ្ជាប់ VS Code
-- អនុវត្តឧទាហរណ៍ Server-Sent Events (SSE)
-
-### គំនិតស្នូល (០១-CoreConcepts/)
-- បន្ថែមការពិពណ៌នាលម្អិតអំពីស្ថាបត្យកម្មអតិថិជន-ម៉ាស៊ីនបម្រើ
-- បង្កើតឯកសារអំពីគ្រឿងចម្បងប្រព័ន្ធពិភាក្សា
-- ឯកសារទំនាក់ទំនងសារនៅ MCP
-
-## ២៣ ឧសភា ២០២៥
-
-### ស្ថាបត្យកម្មឃ្លាំងឯកសារ
-- ចាប់ផ្ដើមឃ្លាំងឯកសារជាមួយរចនាសម្ព័ន្ធថតមូលដ្ឋាន
-- បង្កើតឯកសារ README សម្រាប់និទាឃរដូវធំៗ
-- រៀបចំគ្រប់គ្រងការប្រែសម្រួល
-- បន្ថែមតុភាពរូបភាពនិងគំនូសគំនី
+### រចនាសម្ព័ន្ធឃ្លាំងឯកសារ
+- បង្កើតឃ្លាំងជាមូលដ្ឋានជាមួយរចនាសម្ព័ន្ធថតមូលដ្ឋាន
+- បង្កើតឯកសារ README សម្រាប់គ្រប់ផ្នែកចម្បង
+- រៀបចំហេដ្ឋារចនាសម្ព័ន្ធបកប្រែ
+- បន្ថែមរូបភាពនិងគំនូរ
 
 ### ឯកសារ
-- បង្កើត README.md ដំបូងជាមួយការបង្ហាញគម្រោងសិក្សា
+- បង្កើត README.md ដំបូងសម្រាប់ទិដ្ឋភាពមួលដ្ឋាន
 - បន្ថែម CODE_OF_CONDUCT.md និង SECURITY.md
-- រៀបចំ SUPPORT.md ជាមួយណែនាំសម្រាប់ស្នើរសុំជំនួយ
-- បង្កើតស្ថាបត្យកម្មសៀវភៅសិក្សាមុន
+- រៀបចំ SUPPORT.md សម្រាប់ណែនាំការជួយ
+- បង្កើតរចនាសម្ព័ន្ធមេរៀនដំបូង
 
-## ១៥ មេសា ២០២៥
+## មេសា 15, 2025
 
-### ការរៀបចំនិងស៊ុមបច្ចេកទេស
-- ការបញ្ចប់ផែនការចាប់ផ្ដើមសម្រាប់វគ្គសិក្សា MCP សម្រាប់អ្នកចាប់ផ្ដើម
-- កំណត់គោលបំណងរៀន និងក្រុមគោលដៅ
-- សង្ខេបរចនាសម្ព័ន្ធវគ្គសិក្សាចំនួន ១០ ផ្នែក
-- បង្កើតស៊ុមទ្រឹស្តីសម្រាប់ឧទាហរណ៍ និងករណីសិក្សា
-- បង្កើតឧទាហរណ៍ប៉្រូតូតាយបដំបូងសម្រាប់គំនិតស្នូល
+### ការធ្វើផែនការ និងស៊ុម
+- គម្រោងដំបូងសម្រាប់មួលដ្ឋាន MCP សម្រាប់អ្នកចាប់ផ្តើម
+- កំណត់គោលដៅរៀន និងអ្នកគោលដៅ
+- បរិយាយរចនាសម្ព័ន្ធ១០ផ្នែកមួលដ្ឋាន
+- អភិវឌ្ឍស៊ុមគំនិតសម្រាប់ឧទាហរណ៍និងការសិក្សាទីបញ្ចប់
+- បង្កើតឧទាហរណ៍កម្រិតដំបូងសម្រាប់គំនិតសំខាន់ៗ
 
 ---
 
