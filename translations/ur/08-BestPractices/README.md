@@ -1,89 +1,114 @@
-# MCP کی ترقی کے بہترین طریقے
+# MCP ترقی کے بہترین طریقے
 
-[![MCP کی ترقی کے بہترین طریقے](../../../translated_images/ur/09.d0f6d86c9d72134c.webp)](https://youtu.be/W56H9W7x-ao)
+[![MCP Development Best Practices](../../../translated_images/ur/09.d0f6d86c9d72134c.webp)](https://youtu.be/W56H9W7x-ao)
 
-_(اس سبق کی ویڈیو دیکھنے کے لیے اوپر تصویر پر کلک کریں)_
+_(فصلے کے اس سبق کی ویڈیو دیکھنے کے لیے اوپر تصویر پر کلک کریں)_
 
 ## جائزہ
 
-یہ سبق پروڈکشن ماحول میں MCP سرورز اور خصوصیات کی ترقی، ٹیسٹنگ، اور تعیناتی کے لیے اعلیٰ درجے کے بہترین طریقوں پر مرکوز ہے۔ جیسا کہ MCP ماحولیاتی نظام پیچیدگی اور اہمیت میں بڑھتا ہے، قائم کردہ نمونوں کی پیروی کرنا قابل اعتبار، قابلِ بحالی، اور بین العملیت کو یقینی بناتا ہے۔ یہ سبق حقیقی دنیا کی MCP نفاذات سے حاصل شدہ عملی حکمتِ عملی کو یکجا کرتا ہے تاکہ آپ کو مستحکم، موثر سرورز تخلیق کرنے میں رہنمائی فراہم کی جائے جن میں مؤثر وسائل، پروپمٹ، اور اوزار شامل ہوں۔
+یہ سبق MCP سرورز اور فیچرز کو پروڈکشن ماحول میں تیار کرنے، جانچنے اور تعینات کرنے کے لیے جدید بہترین طریقوں پر توجہ مرکوز کرتا ہے۔ جیسے جیسے MCP ایکو سسٹمز کی پیچیدگی اور اہمیت بڑھتی ہے، قائم شدہ طریقہ کار پر عمل کرنا یقین دہانی کرتا ہے کہ بھروسہ مندی، برقرار رکھنے کی آسانی، اور باہمی تعاون ممکن ہو۔ یہ سبق حقیقی دنیا کی MCP عمل درآمد سے حاصل شدہ عملی حکمت عملی کو یکجا کرتا ہے تاکہ آپ کو مضبوط، مؤثر سرورز بنانے کے لیے رہنمائی فراہم کی جا سکے جن میں مؤثر وسائل، پرامپٹس، اور آلات شامل ہوں۔
 
 ## سیکھنے کے مقاصد
 
-اس سبق کے اختتام تک، آپ قابل ہو جائیں گے:
+اس سبق کے اختتام تک، آپ قابل ہوں گے:
 
-- MCP سرور اور فیچر کے ڈیزائن میں صنعتی بہترین طریقے اپنانا
-- MCP سرورز کے لیے جامع ٹیسٹنگ حکمت عملی تیار کرنا
-- پیچیدہ MCP ایپلیکیشنز کے لیے موثر، دوبارہ استعمال کے قابل ورک فلو پیٹرنز ڈیزائن کرنا
-- MCP سرورز میں مناسب غلطی ہینڈلنگ، لاگنگ، اور قابلِ مشاہدہ کاری نافذ کرنا
-- کارکردگی، سیکیورٹی، اور قابلِ بحالی کے لیے MCP نفاذات کو بہتر بنانا
+- MCP سرور اور فیچر ڈیزائن میں صنعتی بہترین طریقے اپنانا
+- MCP سرورز کے لیے جامع جانچ کی حکمت عملیاں تیار کرنا
+- پیچیدہ MCP ایپلیکیشنز کے لیے مؤثر، قابل دوبارہ استعمال ورک فلو پیٹرنز ڈیزائن کرنا
+- MCP سرورز میں مناسب ایرر ہینڈلنگ، لاگنگ، اور آبزرویبیلٹی نافذ کرنا
+- کارکردگی، سلامتی، اور برقرار رکھنے کے لیے MCP عمل درآمد کو بہتر بنانا
 
 ## MCP کے بنیادی اصول
 
-خصوصی نفاذی طریقوں میں جانے سے پہلے، ان بنیادی اصولوں کو سمجھنا ضروری ہے جو مؤثر MCP ترقی کی رہنمائی کرتے ہیں:
+مخصوص عمل درآمد کے طریقوں میں غوطہ لگانے سے پہلے، یہ ضروری ہے کہ ان بنیادی اصولوں کو سمجھا جائے جو مؤثر MCP ترقی کی رہنمائی کرتے ہیں:
 
-1. **معیاری رابطہ**: MCP JSON-RPC 2.0 کو بنیاد کے طور پر استعمال کرتا ہے، جو تمام نفاذات میں درخواستوں، جوابات، اور غلطی ہینڈلنگ کے لیے ایک مستقل فارمیٹ فراہم کرتا ہے۔
+1. **معیاری مواصلات**: MCP اپنی بنیاد کے طور پر JSON-RPC 2.0 استعمال کرتا ہے، جو تمام عمل درآمدات میں درخواستوں، جوابات، اور ایرر ہینڈلنگ کے لیے ایک مستقل فارمیٹ فراہم کرتا ہے۔
 
-2. **صارف مرکزیت کا ڈیزائن**: ہمیشہ اپنے MCP نفاذات میں صارف کی رضا، کنٹرول، اور شفافیت کو اولین ترجیح دیں۔
+2. **صارف مرکزیت طراحی**: ہمیشہ اپنے MCP عمل درآمدات میں صارف کی رضا، کنٹرول، اور شفافیت کو ترجیح دیں۔
 
-3. **سیکیورٹی پہلے**: مستحکم سیکیورٹی اقدامات نافذ کریں جن میں تصدیق، اجازت، توثیق، اور ریٹ لمٹنگ شامل ہیں۔
+3. **سلامتی پہلے**: مضبوط سلامتی کے اقدامات نافذ کریں جن میں تصدیق، اجازت، توثیق، اور ریٹ لمیٹنگ شامل ہو۔
 
-4. **ماڈیولر فن تعمیر**: اپنے MCP سرورز کو ماڈیولر نقطہ نظر سے ڈیزائن کریں، جہاں ہر ٹول اور وسیلہ کا ایک واضح اور مخصوص مقصد ہو۔
+4. **ماڈیولر فن تعمیر**: اپنے MCP سرورز کو ماڈیولر انداز میں ڈیزائن کریں، جہاں ہر آلہ اور وسیلہ کا واضح، مرکوز مقصد ہو۔
 
-5. **ریاست دار کنکشنز**: متعدد درخواستوں کے درمیان حالت کو برقرار رکھنے کی MCP کی صلاحیت سے فائدہ اٹھائیں تاکہ زیادہ مربوط اور سیاق و سباق سے واقف تعاملات ممکن ہوں۔
+5. **واضح حالت**: MCP `2026-07-28` پروٹوکول کی سطح پر بے حالت ہے۔
+   جب ورک فلو کو کراس کال حالت کی ضرورت ہو، تو واضح ہینڈلز یا
+   عام آلے کے دلائل استعمال کریں جنہیں مستقل ایپلیکیشن حالت کی حمایت حاصل ہو۔
 
 ## سرکاری MCP بہترین طریقے
 
-مندرجہ ذیل بہترین طریقے ماڈل کانٹیکسٹ پروٹوکول کی سرکاری دستاویزات سے ماخوذ ہیں:
+مندرجہ ذیل بہترین طریقے سرکاری ماڈل کانٹیکسٹ پروٹوکول دستاویزات سے اخذ کیے گئے ہیں:
 
-### سیکیورٹی کے بہترین طریقے
+### سلامتی کے بہترین طریقے
 
-1. **صارف کی رضا اور کنٹرول**: ڈیٹا تک رسائی یا کارروائیاں انجام دینے سے پہلے ہمیشہ واضح صارف کی رضا طلب کریں۔ واضح کنٹرول فراہم کریں کہ کون سا ڈیٹا شیئر کیا جائے اور کونسی کارروائیاں مجاز ہوں۔
+1. **صارف کی رضا اور کنٹرول**: کسی بھی ڈیٹا تک رسائی یا آپریشن انجام دینے سے پہلے ہمیشہ واضح صارف کی رضا حاصل کریں۔ یہ واضح کنٹرول فراہم کریں کہ کون سا ڈیٹا شیئر کیا جاتا ہے اور کون سے عمل مجاز ہیں۔
 
-2. **ڈیٹا کی رازداری**: صرف واضح رضامندی کے ساتھ صارف کا ڈیٹا ظاہر کریں اور اسے مناسب رسائی کنٹرولز سے محفوظ رکھیں۔ غیر مجاز ڈیٹا کی منتقلی سے بچاؤ کریں۔
+2. **ڈیٹا کی رازداری**: صرف واضح رضا کے ساتھ صارف کا ڈیٹا ظاہر کریں اور اسے مناسب رسائی کنٹرولز سے محفوظ رکھیں۔ غیر مجاز ڈیٹا ترسیل کے خلاف حفاظت کریں۔
 
-3. **آلات کی سلامتی**: کسی بھی ٹول کو کال کرنے سے پہلے واضح صارف کی رضا حاصل کریں۔ صارفین کو ہر ٹول کی فعالیت سمجھائیں اور مستحکم سیکیورٹی حدود نافذ کریں۔
+3. **آلے کی حفاظت**: کسی بھی آلے کو بلانے سے پہلے واضح صارف کی رضا درکار ہے۔ یقینی بنائیں کہ صارفین ہر آلے کی فعالیت کو سمجھیں اور مضبوط سلامتی کی حدود نافذ کریں۔
 
-4. **ٹول اجازت کنٹرول**: سیشن کے دوران کون سے ٹولز استعمال کیے جا سکتے ہیں اس کی وضاحت کریں تاکہ صرف واضح طور پر مجاز ٹولز قابل رسائی ہوں۔
+4. **آلے کی اجازت کنٹرول**: طے کریں کہ ماڈل ہر درخواست اور اجازت سیاق و سباق کے لیے کون سے آلات استعمال کر سکتا ہے، اس بات کو یقینی بنائیں کہ صرف واضح طور پر مجاز آلات تک رسائی حاصل ہو۔
 
-5. **تصدیق**: ٹولز، وسائل، یا حساس کارروائیوں تک رسائی دینے سے پہلے مناسب تصدیق کا مطالبہ کریں، جیسے API کیز، OAuth ٹوکنز، یا دیگر محفوظ طریقے۔
 
-6. **پیرا میٹر کی توثیق**: تمام ٹول کالز کے لیے توثیق نافذ کریں تاکہ خراب یا نقصان دہ ان پٹ ٹول نفاذات تک نہ پہنچ سکے۔
 
-7. **ریٹ لمٹنگ**: غلط استعمال سے بچاؤ کے لیے اور سرور وسائل کی منصفانہ استعمال کو یقینی بنانے کے لیے ریٹ لمٹنگ نافذ کریں۔
+5. **تصدیق**: آلات، وسائل، یا حساس آپریشنز تک رسائی سے پہلے مناسب تصدیق کی ضرورت ہوتی ہے، جیسے API کیز، OAuth ٹوکنز، یا دیگر محفوظ تصدیقی طریقے۔
 
-### نفاذ کے بہترین طریقے
+6. **پیرامیٹر توثیق**: تمام آلے کی کالز کے لیے توثیق نافذ کریں تاکہ خراب یا بدنیتی پر مبنی ان پٹ کے آلات کی عمل درآمد تک پہنچنے سے روکا جا سکے۔
 
-1. **صلاحیت کی بات چیت**: کنکشن قائم کرتے وقت، سپورٹ شدہ خصوصیات، پروٹوکول ورژنز، دستیاب ٹولز، اور وسائل کے بارے میں معلومات کا تبادلہ کریں۔
+7. **ریٹ لمیٹنگ**: غلط استعمال کو روکنے اور سرور وسائل کے منصفانہ استعمال کو یقینی بنانے کے لیے ریٹ لمیٹنگ نافذ کریں۔
 
-2. **ٹول ڈیزائن**: ایسے ٹول تیار کریں جو ایک کام پر واضح توجہ دیں، بجائے اس کے کہ کثیر الجہتی مسائل کو سنبھالنے والے بڑے ٹولز بنائیں۔
+### عمل درآمد کے بہترین طریقے
 
-3. **غلطی ہینڈلنگ**: معیاری غلطی پیغامات اور کوڈز نافذ کریں تاکہ مسائل کی نشاندہی، ہموار ناکامیوں کا انتظام، اور قابل عمل فیڈبیک فراہم کیا جا سکے۔
+1. **صلاحیت کی گفت و شنید**: سپورٹڈ پروٹوکول ورژنز اور صلاحیتوں پر بات چیت کریں۔ MCP `2026-07-28` میں، ہر درخواست خود مختار ہوتی ہے اور `server/discover` استعمال کر سکتی ہے؛ پرانے ریویژن initialization handshake استعمال کرتے ہیں۔
 
-4. **لاگنگ**: آڈٹ، ڈیبگنگ، اور پروٹوکول تعاملات کی نگرانی کے لیے منظم لاگز ترتیب دیں۔
 
-5. **ترقی کی نگرانی**: طویل دورانیے کی کارروائیوں کے لیے ترقی کی تازہ کاری رپورٹ کریں تاکہ صارف کے انٹرفیس کو فوری ردعمل دیا جا سکے۔
 
-6. **درخواست منسوخی**: کلائنٹس کو اجازت دیں کہ وہ فضول یا طویل عرصے سے جاری درخواستوں کو منسوخ کر سکیں۔
+2. **آلے کا ڈیزائن**: ایسے مرکوز آلات تیار کریں جو ایک کام بخوبی انجام دیں، بجائے اس کے کہ ایسے بڑے آلات تیار کریں جو متعدد پہلوؤں کو سنبھالیں۔
+
+3. **ایرر ہینڈلنگ**: معیاری ایرر پیغامات اور کوڈز نافذ کریں تاکہ مسائل کی تشخیص میں مدد ملے، ناکامیوں کو ہنر مندی سے سنبھالا جا سکے، اور قابل عمل تاثرات فراہم کیے جا سکیں۔
+
+4. **آبزرویبیلٹی**: stdio تجزیہ کے لیے `stderr` استعمال کریں اور ساخت شدہ آبزرویبیلٹی کے لیے OpenTelemetry استعمال کریں۔ MCP لاگنگ فیچر `2026-07-28` وضاحت میں ختم کر دیا گیا ہے۔
+
+
+
+5. **ترقی کا سراغ لگانا**: طویل مدتی آپریشنز کے لیے، پیش رفت کی اپ ڈیٹس رپورٹ کریں تاکہ جوابدہ صارف انٹرفیسز ممکن ہوں۔
+
+6. **درخواست کی منسوخی**: کلائنٹس کو اجازت دیں کہ وہ ایسے ان فلائٹ درخواستوں کو منسوخ کر سکیں جو اب درکار نہیں یا زیادہ وقت لے رہی ہوں۔
 
 ## اضافی حوالہ جات
 
-MCP کے بہترین طریقوں پر تازہ ترین معلومات کے لیے رجوع کریں:
+MCP کے بہترین طریقوں پر تازہ ترین معلومات کے لیے، رجوع کریں:
 
-- [MCP دستاویزات](https://modelcontextprotocol.io/)
-- [MCP وضاحت (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [گٹ ہب ریپوزیٹری](https://github.com/modelcontextprotocol)
-- [سیکیورٹی کے بہترین طریقے](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices)
-- [OWASP MCP ٹاپ 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - سیکیورٹی خطرات اور ان کا تدارک
-- [MCP سیکیورٹی سمٹ ورکشاپ (شرپا)](https://azure-samples.github.io/sherpa/) - عملی سیکیورٹی تربیت
+- [MCP Documentation](https://modelcontextprotocol.io/)
+- [MCP Specification (2026-07-28)][mcp-2026-spec]
+- [Previous MCP Specification (2025-11-25)](https://modelcontextprotocol.io/specification/2025-11-25)
+- [MCP Tasks Extension][mcp-tasks-extension]
+- [GitHub Repository](https://github.com/modelcontextprotocol)
+- [Security Best Practices](https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/security_best_practices)
+- [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/) - سلامتی کے خطرات اور ان کے تدارک
+- [MCP Security Summit Workshop (Sherpa)](https://azure-samples.github.io/sherpa/) - عملی سلامتی کی تربیت
 
-## عملی نفاذ کی مثالیں
+### اعتماد پذیری ساتھی سبق
 
-### ٹول ڈیزائن کے بہترین طریقے
+عمومی ری ٹرائی لوپس ایسے آلات کے لیے غیر محفوظ ہیں جو ٹکٹس، ادائیگیاں، پیغامات، تعیناتیاں، یا دیگر حقیقی دنیا کے اثرات پیدا کرتے ہیں۔
+ایک جواب اثرات کے کمٹ ہونے کے بعد کھو بھی سکتا ہے۔
 
-#### 1. واحد ذمہ داری کا اصول
 
-ہر MCP ٹول کا ایک واضح اور مخصوص مقصد ہونا چاہیے۔ کثیر الجہتی مسائل سنبھالنے والے بڑے ٹولز بنانے کی بجائے، مخصوص کاموں میں مہارت رکھنے والے منتخب شدہ ٹول تیار کریں۔
+اعتماد پذیری ساتھی سبق کا استعمال کریں،
+[MCP آلے کے لیے محفوظ ری ٹرائیز: ایک اعتماد پذیری سائڈ کار پیٹرن][reliability-sidecar],
+تاکہ آپ مستحکم آپریشن کیز، نقل داخلہ، چیک پوائنٹنگ، مفاہمت، ثبوت کی سطحیں، اور ناکامی کا انجیکشن سیکھ سکیں۔
+
+
+[mcp-2026-spec]: https://modelcontextprotocol.io/specification/2026-07-28
+[mcp-tasks-extension]: https://modelcontextprotocol.io/extensions/tasks/overview
+[reliability-sidecar]: ./reliability-sidecars/README.md
+
+## عملی عمل درآمد کی مثالیں
+
+### آلے کے ڈیزائن کے بہترین طریقے
+
+#### 1. ایک ذمہ داری کا اصول
+
+ہر MCP آلے کا ایک واضح، مرکوز مقصد ہونا چاہیے۔ متعدد پہلوؤں کو سنبھالنے کی کوشش کرنے والے بڑے آلات بنانے کی بجائے، ایسے خصوصی آلات تیار کریں جو مخصوص کاموں میں مہارت رکھتے ہوں۔
 
 ```csharp
 // A focused tool that does one thing well
@@ -143,12 +168,12 @@ public class WeatherForecastTool : ITool
 }
 ```
 
-#### 2. یکساں غلطی ہینڈلنگ
+#### 2. یکساں ایرر ہینڈلنگ
 
-مضبوط غلطی ہینڈلنگ نافذ کریں جس میں معلوماتی غلطی پیغامات اور مناسب بازیابی کے طریقے شامل ہوں۔
+مضبوط ایرر ہینڈلنگ نافذ کریں جس میں معلوماتی ایرر پیغامات اور مناسب بازیابی کے طریقے شامل ہوں۔
 
 ```python
-# پایتھن کی مثال مکمل ایرر ہینڈلنگ کے ساتھ
+# جامع نقص کی سنبھال کے ساتھ پائتھن کی مثال
 class DataQueryTool:
     def get_name(self):
         return "dataQuery"
@@ -158,7 +183,7 @@ class DataQueryTool:
     
     async def execute(self, parameters):
         try:
-            # پیرامیٹر کی تصدیق
+            # پیرا میٹر کی تصدیق
             if "query" not in parameters:
                 raise ToolParameterError("Missing required parameter: query")
                 
@@ -169,8 +194,8 @@ class DataQueryTool:
                 raise ToolSecurityError("Query contains potentially unsafe SQL")
             
             try:
-                # ڈیٹا بیس آپریشن وقت کی حد کے ساتھ
-                async with timeout(10):  # 10 سیکنڈ کی وقت کی حد
+                # ڈیٹا بیس آپریشن ٹائم آؤٹ کے ساتھ
+                async with timeout(10):  # 10 سیکنڈ کا ٹائم آؤٹ
                     result = await self._database.execute_query(query)
                     
                 return ToolResponse(
@@ -179,37 +204,37 @@ class DataQueryTool:
             except asyncio.TimeoutError:
                 raise ToolExecutionError("Database query timed out after 10 seconds")
             except DatabaseConnectionError as e:
-                # کنکشن کی غلطیاں عارضی ہو سکتی ہیں
+                # کنکشن کی خرابی عارضی ہو سکتی ہیں
                 self._log_error("Database connection error", e)
                 raise ToolExecutionError(f"Database connection error: {str(e)}")
             except DatabaseQueryError as e:
-                # سوال کی غلطیاں ممکنہ طور پر کلائنٹ کی غلطیاں ہیں
+                # سوال کی خرابی ممکنہ طور پر کلائنٹ کی خرابی ہے
                 self._log_error("Database query error", e)
                 raise ToolExecutionError(f"Invalid query: {str(e)}")
                 
         except ToolError:
-            # ٹول مخصوص غلطیوں کو گزرنے دیں
+            # مخصوص ٹول کی خرابیوں کو گزرنے دیں
             raise
         except Exception as e:
-            # غیر متوقع غلطیوں کے لیے مکمل گرفت
+            # غیر متوقع خرابیوں کے لیے جامع گرفت
             self._log_error("Unexpected error in DataQueryTool", e)
             raise ToolExecutionError(f"An unexpected error occurred: {str(e)}")
     
     def _contains_unsafe_sql(self, query):
-        # ایس کیو ایل انجیکشن کے پتہ لگانے کا نفاذ
+        # ایس کیو ایل انجیکشن کی نشاندہی کا نفاذ
         pass
         
     def _log_error(self, message, error):
-        # غلطی کی لاگنگ کا نفاذ
+        # نقصاندہی کے ریکارڈ کا نفاذ
         pass
 ```
 
-#### 3. پیرا میٹر کی توثیق
+#### 3. پیرامیٹر کی توثیق
 
-ہمیشہ پیرا میٹرز کی مکمل جانچ پڑتال کریں تاکہ خراب یا نقصان دہ ان پٹ سے بچا جا سکے۔
+ہمیشہ پیرامیٹرز کی مکمل توثیق کریں تاکہ خراب یا بدنیتی پر مبنی ان پٹ کو روکا جا سکے۔
 
 ```javascript
-// تفصیلی پیرامیٹر کی توثیق کے ساتھ جاوا اسکرپٹ/ٹائپ اسکرپٹ کی مثال
+// جاوا اسکرپٹ/ٹائپ اسکرپٹ کی مثال تفصیلی پیرامیٹر کی توثیق کے ساتھ
 class FileOperationTool {
   getName() {
     return "fileOperation";
@@ -244,7 +269,7 @@ class FileOperationTool {
   }
   
   async execute(parameters) {
-    // 1. پیرامیٹر کی موجودگی کی تصدیق کریں
+    // 1. پیرامیٹر کی موجودگی کی توثیق کریں
     if (!parameters.operation) {
       throw new ToolError("Missing required parameter: operation");
     }
@@ -253,7 +278,7 @@ class FileOperationTool {
       throw new ToolError("Missing required parameter: path");
     }
     
-    // 2. پیرامیٹر کی اقسام کی تصدیق کریں
+    // 2. پیرامیٹر کی اقسام کی توثیق کریں
     if (typeof parameters.operation !== "string") {
       throw new ToolError("Parameter 'operation' must be a string");
     }
@@ -262,39 +287,39 @@ class FileOperationTool {
       throw new ToolError("Parameter 'path' must be a string");
     }
     
-    // 3. پیرامیٹر کی قدروں کی تصدیق کریں
+    // 3. پیرامیٹر کے اقدار کی توثیق کریں
     const validOperations = ["read", "write", "delete"];
     if (!validOperations.includes(parameters.operation)) {
       throw new ToolError(`Invalid operation. Must be one of: ${validOperations.join(", ")}`);
     }
     
-    // 4. تحریری عمل کے لیے مواد کی موجودگی کی تصدیق کریں
+    // 4. تحریری آپریشن کے لیے مواد کی موجودگی کی توثیق کریں
     if (parameters.operation === "write" && !parameters.content) {
       throw new ToolError("Content parameter is required for write operation");
     }
     
-    // 5. راستے کی حفاظت کی توثیق
+    // 5. راستے کی سلامتی کی توثیق
     if (!this.isPathWithinAllowedDirectories(parameters.path)) {
       throw new ToolError("Access denied: path is outside of allowed directories");
     }
     
-    // توثیق شدہ پیرامیٹروں کی بنیاد پر نفاذ
+    // توثیق شدہ پیرامیٹرز کی بنیاد پر نفاذ
     // ...
   }
   
   isPathWithinAllowedDirectories(path) {
-    // راستے کی حفاظت کے چیک کا نفاذ
+    // راستے کی سلامتی کی جانچ کا نفاذ
     // ...
   }
 }
 ```
 
-### سیکیورٹی نفاذ کی مثالیں
+### سلامتی کے عمل درآمد کی مثالیں
 
 #### 1. تصدیق اور اجازت
 
 ```java
-// تصدیق اور اجازت کے ساتھ جاوا مثال
+// جاوا کی مثال مصدقہ کاری اور اجازت کے ساتھ
 public class SecureDataAccessTool implements Tool {
     private final AuthenticationService authService;
     private final AuthorizationService authzService;
@@ -357,7 +382,7 @@ public class SecureDataAccessTool implements Tool {
 }
 ```
 
-#### 2. ریٹ لمٹنگ
+#### 2. ریٹ لمیٹنگ
 
 ```csharp
 // C# rate limiting implementation
@@ -433,11 +458,11 @@ public class RateLimitingMiddleware
 }
 ```
 
-## ٹیسٹنگ کے بہترین طریقے
+## جانچ کے بہترین طریقے
 
-### 1. یونٹ ٹیسٹنگ MCP ٹولز
+### 1. MCP آلات کی یونٹ جانچ
 
-ہمیشہ اپنے ٹولز کو تنہائی میں ٹیسٹ کریں، بیرونی انحصار کو موک کریں:
+ہمیشہ اپنے آلات کو تنہا ٹیسٹ کریں، بیرونی انحصار کو موک کرکے:
 
 ```typescript
 // ٹائپ اسکرپٹ کی مثال ایک ٹول یونٹ ٹیسٹ کی
@@ -446,7 +471,7 @@ describe('WeatherForecastTool', () => {
   let mockWeatherService: jest.Mocked<IWeatherService>;
   
   beforeEach(() => {
-    // ایک جعلی موسمی سروس بنائیں
+    // ایک جعلی موسم کی خدمت بنائیں
     mockWeatherService = {
       getForecasts: jest.fn()
     } as any;
@@ -474,7 +499,7 @@ describe('WeatherForecastTool', () => {
       days: 3
     });
     
-    // یقین دہانی کریں
+    // تصدیق کریں
     expect(mockWeatherService.getForecasts).toHaveBeenCalledWith('Seattle', 3);
     expect(response.content[0].text).toContain('Seattle');
     expect(response.content[0].text).toContain('Sunny');
@@ -484,7 +509,7 @@ describe('WeatherForecastTool', () => {
     // ترتیب دیں
     mockWeatherService.getForecasts.mockRejectedValue(new Error('Service unavailable'));
     
-    // عمل کریں اور یقین دہانی کریں
+    // عمل اور تصدیق کریں
     await expect(tool.execute({
       location: 'Seattle',
       days: 3
@@ -495,10 +520,10 @@ describe('WeatherForecastTool', () => {
 
 ### 2. انٹیگریشن ٹیسٹنگ
 
-کلائنٹ کی درخواستوں سے سرور کے جوابات تک مکمل عمل کو ٹیسٹ کریں:
+کلائنٹ درخواستوں سے لے کر سرور جوابات تک مکمل عمل کا ٹیسٹ کریں:
 
 ```python
-# پائیتھن انٹیگریشن ٹیسٹ کی مثال
+# پائتھن انٹیگریشن ٹیسٹ کی مثال
 @pytest.mark.asyncio
 async def test_mcp_server_integration():
     # ایک ٹیسٹ سرور شروع کریں
@@ -510,11 +535,11 @@ async def test_mcp_server_integration():
         # ایک کلائنٹ بنائیں
         client = McpClient("http://localhost:5000")
         
-        # ٹول کی دریافت کا ٹیسٹ کریں
+        # ٹیسٹ ٹول کی دریافت کریں
         tools = await client.discover_tools()
         assert "weatherForecast" in [t.name for t in tools]
         
-        # ٹول کی اجرا کا ٹیسٹ کریں
+        # ٹیسٹ ٹول کی اجرا کریں
         response = await client.execute_tool("weatherForecast", {
             "location": "Seattle",
             "days": 3
@@ -532,9 +557,10 @@ async def test_mcp_server_integration():
 
 ## کارکردگی کی بہتری
 
-### 1. کیشنگ حکمت عملی
+### 1. کیشنگ کی حکمت عملیاں
 
-تاخیر کو کم کرنے اور وسائل کی کھپت کم کرنے کے لیے مناسب کیشنگ نافذ کریں:
+تاخیر اور وسائل کے استعمال کو کم کرنے کے لیے مناسب کیشنگ نافذ کریں:
+
 
 ```csharp
 // C# example with caching
@@ -603,18 +629,18 @@ public class CachedWeatherTool : ITool
 }
 ```
 
-#### 2. انحصار کی انجیکشن اور قابلِ ٹیسٹ ہونا
+#### 2. انحصار انجیکشن اور جانچ پذیری
 
-ٹولز کو اپنے انحصارات کنسٹرکٹر انجیکشن کے ذریعے وصول کرنے کے لیے ڈیزائن کریں، تاکہ وہ ٹیسٹ کے قابل اور ترتیب پذیر ہوں:
+ایسے آلات ڈیزائن کریں جو اپنے انحصارات کنسٹرکٹر انجیکشن کے ذریعہ وصول کریں، اس طرح انہیں جانچنے اور ترتیب دینے کے قابل بنایا جا سکے:
 
 ```java
-// جیوہ مثال انحصار انجیکشن کے ساتھ
+// جاوا کی مثال ساتھ انحصار انجکشن
 public class CurrencyConversionTool implements Tool {
     private final ExchangeRateService exchangeService;
     private final CacheService cacheService;
     private final Logger logger;
     
-    // انحصار کنسٹرکٹر کے ذریعے انجیکٹ کیے گئے
+    // کنسٹرکٹر کے ذریعے انجکت شدہ انحصار
     public CurrencyConversionTool(
             ExchangeRateService exchangeService,
             CacheService cacheService,
@@ -624,17 +650,17 @@ public class CurrencyConversionTool implements Tool {
         this.logger = logger;
     }
     
-    // آلہ کی عملداری
+    // ٹول کا نفاذ
     // ...
 }
 ```
 
-#### 3. ترکیبی ٹولز
+#### 3. تشکیل پذیر آلات
 
-ایسے ٹولز ڈیزائن کریں جو ایک ساتھ مرکب ہو کر زیادہ پیچیدہ ورک فلو بنا سکیں:
+ایسے آلات ڈیزائن کریں جو ایک ساتھ جوڑے جا سکیں تاکہ مزید پیچیدہ ورک فلو بنائے جا سکیں:
 
 ```python
-# پائتھون کی مثال جو مرکب اوزار دکھاتی ہے
+# پائتھن کی مثال جو قابل ملاپ اوزار دکھا رہی ہے
 class DataFetchTool(Tool):
     def get_name(self):
         return "dataFetch"
@@ -659,16 +685,16 @@ class DataVisualizationTool(Tool):
         # نفاذ...
         pass
 
-# یہ اوزار آزادانہ طور پر یا کام کے بہاؤ کے حصے کے طور پر استعمال کیے جا سکتے ہیں
+# یہ اوزار خود مختار طور پر یا ورک فلو کے حصہ کے طور پر استعمال کیے جا سکتے ہیں
 ```
 
-### اسکیمہ ڈیزائن کے بہترین طریقے
+### اسکیمہ ڈیزائن کی بہترین مشقیں
 
-اسکیمہ ماڈل اور آپ کے ٹول کے درمیان معاہدہ ہے۔ اچھے ڈیزائن شدہ اسکیمے بہتر ٹول استعمالیت کی طرف لے جاتے ہیں۔
+اسکیمہ ماڈل اور آپ کے آلے کے درمیان معاہدہ ہے۔ اچھی طرح ڈیزائن کیے گئے اسکیمے بہتر آلے کی قابلِ استعمالیت کا باعث بنتے ہیں۔
 
-#### 1. واضح پیرا میٹر کی وضاحت
+#### 1. واضح پیرامیٹر کی تفصیلات
 
-ہمیشہ ہر پیرا میٹر کے لیے وضاحتی معلومات شامل کریں:
+ہر پیرامیٹر کے لئے وضاحتی معلومات ہمیشہ شامل کریں:
 
 ```csharp
 public object GetSchema()
@@ -705,9 +731,9 @@ public object GetSchema()
 }
 ```
 
-#### 2. توثیق کی پابندیاں
+#### 2. توثیقی پابندیاں
 
-غلط ان پٹ کو روکنے کے لیے توثیق پابندیاں شامل کریں:
+غلط ان پٹ کو روکنے کے لیے توثیقی پابندیاں شامل کریں:
 
 ```java
 Map<String, Object> getSchema() {
@@ -716,20 +742,20 @@ Map<String, Object> getSchema() {
     
     Map<String, Object> properties = new HashMap<>();
     
-    // ای میل کی خصوصیت جس میں فارمیٹ کی تصدیق ہو
+    // ای میل پراپرٹی فارمیٹ کی تصدیق کے ساتھ
     Map<String, Object> email = new HashMap<>();
     email.put("type", "string");
     email.put("format", "email");
     email.put("description", "User email address");
     
-    // عمر کی خصوصیت جو عددی پابندیوں کے ساتھ ہو
+    // عمر پراپرٹی عددی پابندیوں کے ساتھ
     Map<String, Object> age = new HashMap<>();
     age.put("type", "integer");
     age.put("minimum", 13);
     age.put("maximum", 120);
     age.put("description", "User age in years");
     
-    // گنا گیا خاصہ
+    // گنتی کی گئی پراپرٹی
     Map<String, Object> subscription = new HashMap<>();
     subscription.put("type", "string");
     subscription.put("enum", Arrays.asList("free", "basic", "premium"));
@@ -747,14 +773,14 @@ Map<String, Object> getSchema() {
 }
 ```
 
-#### 3. یکساں واپسی کا ڈھانچہ
+#### 3. مستقل واپسی کے ڈھانچے
 
-اپنے جواب کے ڈھانچے میں تسلسل برقرار رکھیں تاکہ ماڈلز کے لیے نتائج کی تشریح آسان ہو:
+نتائج کی تشریح کو آسان بنانے کے لیے آپ کے جواب کے ڈھانچے میں مستقل مزاجی برقرار رکھیں:
 
 ```python
 async def execute_async(self, request):
     try:
-        # درخواست کو پراسیس کریں
+        # درخواست کو پروسیس کریں
         results = await self._search_database(request.parameters["query"])
         
         # ہمیشہ ایک مستقل ساخت واپس کریں
@@ -788,13 +814,13 @@ def _format_item(self, item):
     }
 ```
 
-### غلطی ہینڈلنگ
+### ایرر ہینڈلنگ
 
-مضبوط غلطی ہینڈلنگ MCP ٹولز کی قابل اعتماد برقرار رکھنے کے لیے ضروری ہے۔
+معتبر ایرر ہینڈلنگ MCP آلات کی پائداری کو برقرار رکھنے کے لیے اہم ہے۔
 
-#### 1. نرمی سے غلطی سنبھالنا
+#### 1. نرم مزاج ایرر ہینڈلنگ
 
-مناسب سطحوں پر غلطیوں کو ہینڈل کریں اور معلوماتی پیغامات فراہم کریں:
+مناسب سطحوں پر ایرر کو سنبھالیں اور معلوماتی پیغامات فراہم کریں:
 
 ```csharp
 public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
@@ -836,15 +862,15 @@ public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
 }
 ```
 
-#### 2. منظم غلطی کے جوابات
+#### 2. منظم ایرر جوابات
 
-ممکن ہو تو منظم غلطی کی معلومات واپس کریں:
+جب ممکن ہو تو منظم ایرر معلومات واپس کریں:
 
 ```java
 @Override
 public ToolResponse execute(ToolRequest request) {
     try {
-        // نفاذ
+        // عمل درآمد
     } catch (Exception ex) {
         Map<String, Object> errorResult = new HashMap<>();
         
@@ -862,15 +888,21 @@ public ToolResponse execute(ToolRequest request) {
                 .build();
         }
         
-        // دیگر استثنیات کو دوبارہ ToolExecutionException کے طور پر پھینکیں
+        // دیگر استثنائیں ToolExecutionException کے طور پر دوبارہ پھینکیں
         throw new ToolExecutionException("Tool execution failed: " + ex.getMessage(), ex);
     }
 }
 ```
 
-#### 3. دوبارہ کوشش کرنے کی منطق
+#### 3. ریٹری لاجک
 
-عارضی ناکامیوں کے لیے مناسب دوبارہ کوشش کی منطق نافذ کریں:
+عمومی ریٹری لاجک صرف پڑھنے-صرف کالز یا ایسی کارروائیوں کے لیے استعمال کریں جن کے
+نیچے کے معاہدے پہلے ہی مطلق ہوں۔ مؤثر کارروائیوں کے لیے، درخواست بھیجنے کے بعد
+ٹائم آؤٹ مبہم ہوتا ہے۔ مقتدر اسٹیٹ کو درست کریں اور
+دوبارہ چلانے سے پہلے ایک ہی مستحکم آپریشن کلید کو دوبارہ استعمال کریں۔ دیکھیں
+[reliability sidecar companion lesson](./reliability-sidecars/README.md).
+
+درج ذیل محدود ریٹری لوپ پڑھنے-صرف تلاش کے لیے مناسب ہے:
 
 ```python
 async def execute_async(self, request):
@@ -880,27 +912,27 @@ async def execute_async(self, request):
     
     while retry_count < max_retries:
         try:
-            # بیرونی API کو کال کریں
-            return await self._call_api(request.parameters)
+            # ایک ریڈ اونلی بیرونی API کال کریں
+            return await self._call_read_only_api(request.parameters)
         except TransientError as e:
             retry_count += 1
             if retry_count >= max_retries:
                 raise ToolExecutionException(f"Operation failed after {max_retries} attempts: {str(e)}")
                 
-            # نمایاں پسپائی
+            # نمایاں بیک آف
             delay = base_delay * (2 ** (retry_count - 1))
             logging.warning(f"Transient error, retrying in {delay}s: {str(e)}")
             await asyncio.sleep(delay)
         except Exception as e:
-            # مستقل غلطی نہیں، دوبارہ کوشش نہ کریں
+            # غیر عارضی خرابی، دوبارہ کوشش نہ کریں
             raise ToolExecutionException(f"Operation failed: {str(e)}")
 ```
 
-### کارکردگی کی بہتری
+### کارکردگی کی اصلاح
 
 #### 1. کیشنگ
 
-مہنگی کارروائیوں کے لیے کیشنگ نافذ کریں:
+مہنگی کارروائیوں کے لیے کیشنگ کو نافذ کریں:
 
 ```csharp
 public class CachedDataTool : IMcpTool
@@ -946,9 +978,9 @@ public class CachedDataTool : IMcpTool
 }
 ```
 
-#### 2. غیر ہم وقت ساز عمل کاری
+#### 2. غیر ہم آہنگی پراسیسنگ
 
-I/O سے منسلک کارروائیوں کے لیے غیر ہم وقت ساز پروگرامنگ کے نمونے استعمال کریں:
+آئی/او-باؤنڈ کارروائیوں کے لیے غیر ہم آہنگی پروگرامنگ نمونوں کا استعمال کریں:
 
 ```java
 public class AsyncDocumentProcessingTool implements Tool {
@@ -959,23 +991,23 @@ public class AsyncDocumentProcessingTool implements Tool {
     public ToolResponse execute(ToolRequest request) {
         String documentId = request.getParameters().get("documentId").asText();
         
-        // طویل چلنے والے آپریشنز کے لیے، فوری طور پر پروسیسنگ آئی ڈی واپس کریں
+        // طویل مدتی آپریشنز کے لیے فوری طور پر پراسیسنگ ID لوٹائیں
         String processId = UUID.randomUUID().toString();
         
-        // غیر متزامن پراسیسنگ شروع کریں
+        // اسینک پروسیسنگ شروع کریں
         CompletableFuture.runAsync(() -> {
             try {
-                // طویل چلنے والا آپریشن انجام دیں
+                // طویل مدتی آپریشن انجام دیں
                 documentService.processDocument(documentId);
                 
-                // حالت کو اپ ڈیٹ کریں (عام طور پر ڈیٹابیس میں محفوظ کی جاتی ہے)
+                // اسٹیٹس اپڈیٹ کریں (عام طور پر ڈیٹا بیس میں محفوظ کی جاتی ہے)
                 processStatusRepository.updateStatus(processId, "completed");
             } catch (Exception ex) {
                 processStatusRepository.updateStatus(processId, "failed", ex.getMessage());
             }
         }, executorService);
         
-        // پروسیس آئی ڈی کے ساتھ فوری جواب واپس کریں
+        // عمل کی ID کے ساتھ فوری جواب دیں
         Map<String, Object> result = new HashMap<>();
         result.put("processId", processId);
         result.put("status", "processing");
@@ -984,7 +1016,7 @@ public class AsyncDocumentProcessingTool implements Tool {
         return new ToolResponse.Builder().setResult(result).build();
     }
     
-    // ساتھی اسٹیٹس چیک کا آلہ
+    // ساتھی اسٹیٹس چیک ٹول
     public class ProcessStatusTool implements Tool {
         @Override
         public ToolResponse execute(ToolRequest request) {
@@ -997,16 +1029,16 @@ public class AsyncDocumentProcessingTool implements Tool {
 }
 ```
 
-#### 3. وسائل کی محدودیت
+#### 3. وسائل کی تھروٹلنگ
 
-اوور لوڈ سے بچنے کے لیے وسائل کی محدودیت نافذ کریں:
+اوورلوڈ روکنے کے لیے وسائل کی تھروٹلنگ نافذ کریں:
 
 ```python
 class ThrottledApiTool(Tool):
     def __init__(self):
         self.rate_limiter = TokenBucketRateLimiter(
-            tokens_per_second=5,  # ہر سیکنڈ 5 درخواستوں کی اجازت دیں
-            bucket_size=10        # زیادہ سے زیادہ 10 درخواستوں کی اجازت دیں
+            tokens_per_second=5,  # ہر سیکنڈ 5 درخواستیں اجازت دیں
+            bucket_size=10        # ایک دم میں 10 درخواستیں تک کی اجازت دیں
         )
     
     async def execute_async(self, request):
@@ -1014,12 +1046,12 @@ class ThrottledApiTool(Tool):
         delay = self.rate_limiter.get_delay_time()
         
         if delay > 0:
-            if delay > 2.0:  # اگر انتظار بہت زیادہ ہو
+            if delay > 2.0:  # اگر انتظار بہت زیادہ ہو جائے
                 raise ToolExecutionException(
                     f"Rate limit exceeded. Please try again in {delay:.1f} seconds."
                 )
             else:
-                # مناسب تاخیر کے وقت کا انتظار کریں
+                # مناسب تأخیر کے وقت کے لئے انتظار کریں
                 await asyncio.sleep(delay)
         
         # ایک ٹوکن استعمال کریں اور درخواست کے ساتھ آگے بڑھیں
@@ -1043,7 +1075,7 @@ class TokenBucketRateLimiter:
             if self.tokens >= 1:
                 return 0
             
-            # اگلے دستیاب ٹوکن تک وقت کا حساب لگائیں
+            # اگلے دستیاب ٹوکن تک کا وقت حساب کریں
             return (1 - self.tokens) / self.tokens_per_second
     
     async def consume(self):
@@ -1055,17 +1087,17 @@ class TokenBucketRateLimiter:
         now = time.time()
         elapsed = now - self.last_refill
         
-        # گزرے ہوئے وقت کی بنیاد پر نئے ٹوکن شامل کریں
+        # گذرے ہوئے وقت کی بنیاد پر نئے ٹوکن شامل کریں
         new_tokens = elapsed * self.tokens_per_second
         self.tokens = min(self.bucket_size, self.tokens + new_tokens)
         self.last_refill = now
 ```
 
-### سیکیورٹی کے بہترین طریقے
+### سیکیورٹی کی بہترین مشقیں
 
 #### 1. ان پٹ کی توثیق
 
-ہمیشہ ان پٹ پیرا میٹرز کو مکمل طور پر جانچیں:
+ان پٹ پیرامیٹرز کی مکمل جانچ کریں:
 
 ```csharp
 public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
@@ -1108,7 +1140,7 @@ public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
 
 #### 2. اجازت کی جانچ
 
-مناسب اجازت کی جانچ کریں:
+مناسب اجازت کی جانچ نافذ کریں:
 
 ```java
 @Override
@@ -1116,23 +1148,23 @@ public ToolResponse execute(ToolRequest request) {
     // درخواست سے صارف کا سیاق و سباق حاصل کریں
     UserContext user = request.getContext().getUserContext();
     
-    // چیک کریں کہ صارف کے پاس مطلوبہ اجازتیں ہیں
+    // چیک کریں کہ آیا صارف کے پاس مطلوبہ اجازتیں ہیں
     if (!authorizationService.hasPermission(user, "documents:read")) {
         throw new ToolExecutionException("User does not have permission to access documents");
     }
     
-    // مخصوص وسائل کے لیے، اس وسیلہ تک رسائی چیک کریں
+    // مخصوص وسائل کے لیے، اس وسیلہ تک رسائی کی جانچ کریں
     String documentId = request.getParameters().get("documentId").asText();
     if (!documentService.canUserAccess(user.getId(), documentId)) {
         throw new ToolExecutionException("Access denied to the requested document");
     }
     
-    // ٹول کے نفاذ کے ساتھ آگے بڑھیں
+    // آلے کے نفاذ کے ساتھ آگے بڑھیں
     // ...
 }
 ```
 
-#### 3. حساس ڈیٹا کا انتظام
+#### 3. حساس ڈیٹا کی ہینڈلنگ
 
 حساس ڈیٹا کو احتیاط سے سنبھالیں:
 
@@ -1155,14 +1187,14 @@ class SecureDataTool(Tool):
         # صارف کا ڈیٹا حاصل کریں
         user_data = await self.user_service.get_user_data(user_id)
         
-        # حساس فیلڈز کو فلٹر کریں جب تک کہ واضح طور پر درخواست نہ کی گئی ہو اور اجازت یافتہ نہ ہو
+        # حساس فیلڈز کو فلٹر کریں جب تک کہ کھلے عام درخواست نہ کی گئی ہو اور اجازت نہ دی گئی ہو
         if not include_sensitive or not self._is_authorized_for_sensitive_data(request):
             user_data = self._redact_sensitive_fields(user_data)
         
         return ToolResponse(result=user_data)
     
     def _is_authorized_for_sensitive_data(self, request):
-        # درخواست کے سیاق و سباق میں اجازت کی سطح کی جانچ کریں
+        # درخواست کے سیاق و سباق میں اجازت کی سطح چیک کریں
         auth_level = request.context.get("authorizationLevel")
         return auth_level == "admin"
     
@@ -1170,28 +1202,28 @@ class SecureDataTool(Tool):
         # اصل کو تبدیل کرنے سے بچنے کے لیے ایک نقل بنائیں
         redacted = user_data.copy()
         
-        # مخصوص حساس فیلڈز کو مخفی کریں
+        # مخصوص حساس فیلڈز کو مسخ کریں
         sensitive_fields = ["ssn", "creditCardNumber", "password"]
         for field in sensitive_fields:
             if field in redacted:
                 redacted[field] = "REDACTED"
         
-        # اندرونی حساس ڈیٹا کو مخفی کریں
+        # نیسٹڈ حساس ڈیٹا کو مسخ کریں
         if "financialInfo" in redacted:
             redacted["financialInfo"] = {"available": True, "accessRestricted": True}
         
         return redacted
 ```
 
-## MCP ٹولز کے لیے ٹیسٹنگ کے بہترین طریقے
+## MCP آلات کے لیے جانچ کی بہترین مشقیں
 
-جامع ٹیسٹنگ یقینی بناتی ہے کہ MCP ٹولز درست کام کریں، کنارے کے معاملات کو ہینڈل کریں، اور نظام کے بقایا حصوں کے ساتھ مناسب انضمام کرتے ہوں۔
+مکمل جانچ اس بات کو یقینی بناتی ہے کہ MCP آلات درست طریقے سے کام کریں، ایج کیسز کو سنبھالیں، اور نظام کے باقی حصے کے ساتھ مناسب انضمام کریں۔
 
 ### یونٹ ٹیسٹنگ
 
-#### 1. ہر ٹول کو تنہائی میں ٹیسٹ کریں
+#### 1. ہر آلے کی علیحدہ جانچ کریں
 
-ہر ٹول کی فعالیت کے لیے مرکوز ٹیسٹ بنائیں:
+ہر آلے کی فعالیت کے لیے مخصوص ٹیسٹ بنائیں:
 
 ```csharp
 [Fact]
@@ -1251,27 +1283,27 @@ public async Task WeatherTool_InvalidLocation_ThrowsToolExecutionException()
 }
 ```
 
-#### 2. اسکیمہ کی توثیق کی ٹیسٹنگ
+#### 2. اسکیمہ توثیق کی جانچ
 
-ٹیسٹ کریں کہ اسکیمے درست اور پابندیاں مناسب طریقے سے نافذ کرتے ہیں:
+جانچ کریں کہ اسکیمے درست ہیں اور پابندیاں مناسب طریقے سے لاگو کر رہے ہیں:
 
 ```java
 @Test
 public void testSchemaValidation() {
-    // اوزار کا ایک نمونہ بنائیں
+    // ٹول کی مثال بنائیں
     SearchTool searchTool = new SearchTool();
     
     // خاکہ حاصل کریں
     Object schema = searchTool.getSchema();
     
-    // درستگی کے لیے خاکے کو JSON میں تبدیل کریں
+    // تصدیق کے لئے خاکہ کو JSON میں تبدیل کریں
     String schemaJson = objectMapper.writeValueAsString(schema);
     
-    // تصدیق کریں کہ خاکہ جائز JSONSchema ہے
+    // تصدیق کریں کہ خاکہ درست JSONSchema ہے
     JsonSchemaFactory factory = JsonSchemaFactory.byDefault();
     JsonSchema jsonSchema = factory.getJsonSchema(schemaJson);
     
-    // درست پیرامیٹرز کا ٹیسٹ کریں
+    // درست پیرا میٹرز کا آزمائش کریں
     JsonNode validParams = objectMapper.createObjectNode()
         .put("query", "test query")
         .put("limit", 5);
@@ -1279,14 +1311,14 @@ public void testSchemaValidation() {
     ProcessingReport validReport = jsonSchema.validate(validParams);
     assertTrue(validReport.isSuccess());
     
-    // ضروری پیرامیٹر کے غائب ہونے کا ٹیسٹ کریں
+    // مطلوبہ پیرا میٹر کے بغیر آزمائش کریں
     JsonNode missingRequired = objectMapper.createObjectNode()
         .put("limit", 5);
         
     ProcessingReport missingReport = jsonSchema.validate(missingRequired);
     assertFalse(missingReport.isSuccess());
     
-    // غلط پیرامیٹر قسم کا ٹیسٹ کریں
+    // غلط پیرا میٹر قسم کا آزمائش کریں
     JsonNode invalidType = objectMapper.createObjectNode()
         .put("query", "test")
         .put("limit", "not-a-number");
@@ -1296,21 +1328,21 @@ public void testSchemaValidation() {
 }
 ```
 
-#### 3. غلطی ہینڈلنگ کے ٹیسٹ
+#### 3. ایرر ہینڈلنگ ٹیسٹس
 
-غلطی کی حالتوں کے لیے مخصوص ٹیسٹ بنائیں:
+مخصوص ایرر حالات کے لیے ٹیسٹ بنائیں:
 
 ```python
 @pytest.mark.asyncio
 async def test_api_tool_handles_timeout():
     # ترتیب دیں
-    tool = ApiTool(timeout=0.1)  # بہت چھوٹا وقت ختم ہونا
+    tool = ApiTool(timeout=0.1)  # بہت کم وقت ختم ہونا
     
-    # ایک درخواست کا مذاق بنائیں جو وقت ختم ہو جائے گی
+    # ایک درخواست کی نقاب کشائی کریں جو وقت ختم ہو جائے گی
     with aioresponses() as mocked:
         mocked.get(
             "https://api.example.com/data",
-            callback=lambda *args, **kwargs: asyncio.sleep(0.5)  # وقت کے ختم ہونے سے زیادہ طویل
+            callback=lambda *args, **kwargs: asyncio.sleep(0.5)  # وقت ختم ہونے سے زیادہ طویل
         )
         
         request = ToolRequest(
@@ -1318,11 +1350,11 @@ async def test_api_tool_handles_timeout():
             parameters={"url": "https://api.example.com/data"}
         )
         
-        # عمل کریں اور تصدیق کریں
+        # عمل کریں اور یقین دہانی کریں
         with pytest.raises(ToolExecutionException) as exc_info:
             await tool.execute_async(request)
         
-        # استثناء کا پیغام تصدیق کریں
+        # استثناء کے پیغام کی تصدیق کریں
         assert "timed out" in str(exc_info.value).lower()
 
 @pytest.mark.asyncio
@@ -1330,7 +1362,7 @@ async def test_api_tool_handles_rate_limiting():
     # ترتیب دیں
     tool = ApiTool()
     
-    # ریٹ-لمیٹڈ جواب کا مذاق بنائیں
+    # ایک حد شدہ ردعمل کی نقاب کشائی کریں
     with aioresponses() as mocked:
         mocked.get(
             "https://api.example.com/data",
@@ -1344,21 +1376,21 @@ async def test_api_tool_handles_rate_limiting():
             parameters={"url": "https://api.example.com/data"}
         )
         
-        # عمل کریں اور تصدیق کریں
+        # عمل کریں اور یقین دہانی کریں
         with pytest.raises(ToolExecutionException) as exc_info:
             await tool.execute_async(request)
         
-        # استثناء میں ریٹ لمٹ کی معلومات موجود ہونے کی تصدیق کریں
+        # استثناء میں حد رفتار کی معلومات شامل ہونے کی تصدیق کریں
         error_msg = str(exc_info.value).lower()
         assert "rate limit" in error_msg
         assert "try again" in error_msg
 ```
 
-### انٹیگریشن ٹیسٹنگ
+### انضمامی جانچ
 
 #### 1. ٹول چین ٹیسٹنگ
 
-متوقع امتزاج میں ٹولز کے ایک ساتھ کام کرنے کی جانچ کریں:
+متوقع امتزاج میں مل کر کام کرنے والے آلات کی جانچ کریں:
 
 ```csharp
 [Fact]
@@ -1397,9 +1429,9 @@ public async Task DataProcessingWorkflow_CompletesSuccessfully()
 }
 ```
 
-#### 2. MCP سرور ٹیسٹنگ
+#### 2. MCP سرور کی جانچ
 
-مکمل ٹول رجسٹریشن اور عمل درآمد کے ساتھ MCP سرور کو ٹیسٹ کریں:
+مکمل ٹول رجسٹریشن اور عمل درآمد کے ساتھ MCP سرور کی جانچ کریں:
 
 ```java
 @SpringBootTest
@@ -1414,7 +1446,7 @@ public class McpServerIntegrationTest {
     
     @Test
     public void testToolDiscovery() throws Exception {
-        // انکشاف اینڈ پوائنٹ کا امتحان کریں
+        // دریافت کے اینڈ پوائنٹ کا ٹیسٹ کریں
         mockMvc.perform(get("/mcp/tools"))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.tools").isArray())
@@ -1425,7 +1457,7 @@ public class McpServerIntegrationTest {
     
     @Test
     public void testToolExecution() throws Exception {
-        // ٹول درخواست بنائیں
+        // ٹول کی درخواست بنائیں
         Map<String, Object> request = new HashMap<>();
         request.put("toolName", "calculator");
         
@@ -1445,14 +1477,14 @@ public class McpServerIntegrationTest {
     
     @Test
     public void testToolValidation() throws Exception {
-        // غلط ٹول درخواست بنائیں
+        // غلط ٹول کی درخواست بنائیں
         Map<String, Object> request = new HashMap<>();
         request.put("toolName", "calculator");
         
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("operation", "divide");
         parameters.put("a", 10);
-        // "b" پیرا میٹر غائب ہے
+        // پیرامیٹر "b" غائب ہے
         request.put("parameters", parameters);
         
         // درخواست بھیجیں اور غلطی کے جواب کی تصدیق کریں
@@ -1465,17 +1497,18 @@ public class McpServerIntegrationTest {
 }
 ```
 
-#### 3. اختتام سے اختتام تک ٹیسٹنگ
+#### 3. مکمل ورک فلو کی جانچ
 
-ماڈل کے پروپمٹ سے ٹول کے اجرا تک مکمل ورک فلو کی جانچ کریں:
+ماڈل پرامپٹ سے لے کر ٹول کے عمل درآمد تک مکمل ورک فلو کی جانچ کریں:
+
 
 ```python
 @pytest.mark.asyncio
 async def test_model_interaction_with_tool():
-    # ترتیب دیں - MCP کلائنٹ اور جعلی ماڈل سیٹ اپ کریں
+    # ترتیب دیں - MCP کلائنٹ اور ماک ماڈل ترتیب دیں
     mcp_client = McpClient(server_url="http://localhost:5000")
     
-    # جعلی ماڈل کے جوابات
+    # ماک ماڈل جوابات
     mock_model = MockLanguageModel([
         MockResponse(
             "What's the weather in Seattle?",
@@ -1490,7 +1523,7 @@ async def test_model_interaction_with_tool():
         )
     ])
     
-    # جعلی موسمی آلے کا جواب
+    # ماک موسم کا آلہ جواب
     with aioresponses() as mocked:
         mocked.post(
             "http://localhost:5000/mcp/execute",
@@ -1513,7 +1546,7 @@ async def test_model_interaction_with_tool():
             allowed_tools=["weatherForecast"]
         )
         
-        # تصدیق کریں
+        # یقین دہانی کریں
         assert "Seattle" in response.generated_text
         assert "65" in response.generated_text
         assert "Sunny" in response.generated_text
@@ -1526,7 +1559,7 @@ async def test_model_interaction_with_tool():
 
 #### 1. لوڈ ٹیسٹنگ
 
-ٹیسٹ کریں کہ آپ کا MCP سرور کتنی بیک وقت درخواستیں سنبھال سکتا ہے:
+جانچیں کہ آپ کا MCP سرور کتنے متوازی درخواستیں سنبھال سکتا ہے:
 
 ```csharp
 [Fact]
@@ -1559,9 +1592,9 @@ public async Task McpServer_HandlesHighConcurrency()
 }
 ```
 
-#### 2. دباؤ ٹیسٹنگ
+#### 2. اسٹریس ٹیسٹنگ
 
-انتہائی لوڈ میں نظام کو ٹیسٹ کریں:
+نظام کو انتہائی بوجھ کے تحت جانچیں:
 
 ```java
 @Test
@@ -1570,10 +1603,10 @@ public void testServerUnderStress() {
     int rampUpTimeSeconds = 60;
     int testDurationSeconds = 300;
     
-    // JMeter کو اسٹریس ٹیسٹنگ کے لیے ترتیب دیں
+    // جے میٹر کو اسٹریس ٹیسٹنگ کے لیے سیٹ اپ کریں
     StandardJMeterEngine jmeter = new StandardJMeterEngine();
     
-    // JMeter ٹیسٹ پلان تشکیل دیں
+    // جے میٹر ٹیسٹ پلان کو ترتیب دیں
     HashTree testPlanTree = new HashTree();
     
     // ٹیسٹ پلان، تھریڈ گروپ، سیمپلرز وغیرہ بنائیں
@@ -1588,7 +1621,7 @@ public void testServerUnderStress() {
     
     testPlanTree.add(threadGroup);
     
-    // ٹول کے اجرا کے لیے HTTP سیمپلر شامل کریں
+    // ٹول کے نفاذ کے لیے HTTP سیمپلر شامل کریں
     HTTPSampler toolExecutionSampler = new HTTPSampler();
     toolExecutionSampler.setDomain("localhost");
     toolExecutionSampler.setPort(5000);
@@ -1599,7 +1632,7 @@ public void testServerUnderStress() {
     
     threadGroup.add(toolExecutionSampler);
     
-    // لسٹنرز شامل کریں
+    // لسنرز شامل کریں
     SummaryReport summaryReport = new SummaryReport();
     threadGroup.add(summaryReport);
     
@@ -1607,21 +1640,21 @@ public void testServerUnderStress() {
     jmeter.configure(testPlanTree);
     jmeter.run();
     
-    // نتائج کی تصدیق کریں
+    // نتائج کی توثیق کریں
     assertEquals(0, summaryReport.getErrorCount());
-    assertTrue(summaryReport.getAverage() < 200); // اوسط ردعمل کا وقت < 200ms
-    assertTrue(summaryReport.getPercentile(90.0) < 500); // 90ویں پرسنٹائل < 500ms
+    assertTrue(summaryReport.getAverage() < 200); // اوسط ردعمل کا وقت < 200 ملی سیکنڈ
+    assertTrue(summaryReport.getPercentile(90.0) < 500); // 90 ویں فیصدی < 500 ملی سیکنڈ
 }
 ```
 
-#### 3. نگرانی اور پروفائلنگ
+#### 3. مانیٹرنگ اور پروفائلنگ
 
-طویل مدتی کارکردگی کے تجزیے کے لیے نگرانی قائم کریں:
+طویل مدتی کارکردگی کے تجزیے کے لیے مانیٹرنگ قائم کریں:
 
 ```python
-# MCP سرور کے لیے نگرانی ترتیب دیں
+# ایم سی پی سرور کے لیے مانیٹرنگ کو ترتیب دیں
 def configure_monitoring(server):
-    # Prometheus میٹرکس سیٹ کریں
+    # پرومیٹھیئس میٹرکس کو سیٹ اپ کریں
     prometheus_metrics = {
         "request_count": Counter("mcp_requests_total", "Total MCP requests"),
         "request_latency": Histogram(
@@ -1647,7 +1680,7 @@ def configure_monitoring(server):
         )
     }
     
-    # میٹرکس کی وقت ناپنے اور ریکارڈنگ کے لیے مڈل ویئر شامل کریں
+    # میٹرکس کی وقت بندی اور ریکارڈنگ کے لیے مڈل ویئر شامل کریں
     server.add_middleware(PrometheusMiddleware(prometheus_metrics))
     
     # میٹرکس اینڈ پوائنٹ کو ظاہر کریں
@@ -1660,24 +1693,24 @@ def configure_monitoring(server):
 
 ## MCP ورک فلو ڈیزائن پیٹرنز
 
-اچھی طرح ڈیزائن شدہ MCP ورک فلو کارکردگی، قابل اعتماد، اور قابلِ بحالی کو بہتر بناتے ہیں۔ یہاں کلیدی پیٹرنز ہیں جن کی پیروی کریں:
+اچھی طرح سے ڈیزائن کیے گئے MCP ورک فلو افادیت، بھروسے مندی، اور دیکھ بھال کی صلاحیت کو بہتر بناتے ہیں۔ یہاں کلیدی پیٹرنز درج ہیں جن پر عمل کرنا چاہیے:
 
-### 1. ٹولز کی زنجیر کا نمونہ
+### 1. چین آف ٹولز پیٹرن
 
-متعدد ٹولز کو اس طرح سلسلہ وار جوڑیں کہ ہر ٹول کی پیداوار اگلے کے ان پٹ بن جائے:
+متعدد ٹولز کو ایک سلسلہ وار طور پر مربوط کریں جہاں ہر ٹول کی آؤٹ پٹ اگلے کے ان پٹ بن جائے:
 
 ```python
-# پائتھن چین آف ٹولز کا نفاذ
+# پائتھن چین آف ٹولز کی تنفیذ
 class ChainWorkflow:
     def __init__(self, tools_chain):
-        self.tools_chain = tools_chain  # ٹولز کے ناموں کی فہرست جو ترتیب سے چلائی جائے
+        self.tools_chain = tools_chain  # تسلسل میں چلانے کے لیے ٹولز کے ناموں کی فہرست
     
     async def execute(self, mcp_client, initial_input):
         current_result = initial_input
         all_results = {"input": initial_input}
         
         for tool_name in self.tools_chain:
-            # چین میں ہر ٹول کو چلائیں، پچھلا نتیجہ پاس کرتے ہوئے
+            # چین میں ہر ٹول کو چلائیں، پچھلا نتیجہ پاس کریں
             response = await mcp_client.execute_tool(tool_name, current_result)
             
             # نتیجہ محفوظ کریں اور اگلے ٹول کے لیے ان پٹ کے طور پر استعمال کریں
@@ -1689,7 +1722,7 @@ class ChainWorkflow:
             "all_results": all_results
         }
 
-# مثال کے طور پر استعمال
+# استعمال کی مثال
 data_processing_chain = ChainWorkflow([
     "dataFetch",
     "dataCleaner",
@@ -1705,7 +1738,7 @@ result = await data_processing_chain.execute(
 
 ### 2. ڈسپیچر پیٹرن
 
-مرکزی ٹول استعمال کریں جو ان پٹ کی بنیاد پر مخصوص ٹولز کو ڈسپیچ کرتا ہے:
+ایک مرکزی ٹول استعمال کریں جو ان پٹ کی بنیاد پر مخصوص ٹولز کو تقسیم کرے:
 
 ```csharp
 public class ContentDispatcherTool : IMcpTool
@@ -1785,9 +1818,9 @@ public class ContentDispatcherTool : IMcpTool
 }
 ```
 
-### 3. متوازی عمل کاری کا نمونہ
+### 3. متوازی پروسیسنگ پیٹرن
 
-کارکردگی کے لیے متعدد ٹولز کو بیک وقت چلائیں:
+افادیت کے لیے متعدد ٹولز کو بیک وقت چلائیں:
 
 ```java
 public class ParallelDataProcessingWorkflow {
@@ -1798,7 +1831,7 @@ public class ParallelDataProcessingWorkflow {
     }
     
     public WorkflowResult execute(String datasetId) {
-        // مرحلہ 1: ڈیٹا سیٹ کے میٹا ڈیٹا کو بازیافت کریں (ہم وقت ساز)
+        // مرحلہ 1: ڈیٹا سیٹ میٹا ڈیٹا حاصل کریں (ہم وقت ساز)
         ToolResponse metadataResponse = mcpClient.executeTool("datasetMetadata", 
             Map.of("datasetId", datasetId));
         
@@ -1829,7 +1862,7 @@ public class ParallelDataProcessingWorkflow {
             statisticalAnalysis, correlationAnalysis, outlierDetection
         );
         
-        allAnalyses.join();  // مکمل ہونے کا انتظار کریں
+        allAnalyses.join();  // تکمیل کے انتظار میں رہیں
         
         // مرحلہ 3: نتائج کو یکجا کریں
         Map<String, Object> combinedResults = new HashMap<>();
@@ -1842,7 +1875,7 @@ public class ParallelDataProcessingWorkflow {
         ToolResponse summaryResponse = mcpClient.executeTool("reportGenerator", 
             Map.of("analysisResults", combinedResults));
         
-        // مکمل ورک فلو نتیجہ واپس کریں
+        // مکمل ورک فلو کے نتائج واپس کریں
         WorkflowResult result = new WorkflowResult();
         result.setDatasetId(datasetId);
         result.setAnalysisResults(combinedResults);
@@ -1853,9 +1886,9 @@ public class ParallelDataProcessingWorkflow {
 }
 ```
 
-### 4. غلطی کی بازیابی کا نمونہ
+### 4. ایرر ریکوری پیٹرن
 
-ٹول کی ناکامیوں کے لیے نرمی سے متبادل راستے نافذ کریں:
+ٹول ناکامیوں کے لیے نرم تبدیلیاں نافذ کریں:
 
 ```python
 class ResilientWorkflow:
@@ -1875,9 +1908,9 @@ class ResilientWorkflow:
             # ناکامی کو لاگ کریں
             logging.warning(f"Primary tool '{primary_tool}' failed: {str(e)}")
             
-            # دوسرے آلے پر واپس جائیں
+            # ثانوی آلے کی طرف رجوع کریں
             try:
-                # واپس جانے والے آلے کے لیے پیرامیٹرز کو تبدیل کرنے کی ضرورت ہو سکتی ہے
+                # شايد فالبیک آلے کے لئے پیرامیٹرز کی تبدیلی کی ضرورت ہو
                 fallback_params = self._adapt_parameters(parameters, primary_tool, fallback_tool)
                 
                 response = await self.client.execute_tool(fallback_tool, fallback_params)
@@ -1888,7 +1921,7 @@ class ResilientWorkflow:
                     "primaryError": str(e)
                 }
             except ToolExecutionException as fallback_error:
-                # دونوں آلات ناکام ہو گئے
+                # دونوں آلے ناکام ہوگئے
                 logging.error(f"Both primary and fallback tools failed. Fallback error: {str(fallback_error)}")
                 raise WorkflowExecutionException(
                     f"Workflow failed: primary error: {str(e)}; fallback error: {str(fallback_error)}"
@@ -1896,22 +1929,22 @@ class ResilientWorkflow:
     
     def _adapt_parameters(self, params, from_tool, to_tool):
         """Adapt parameters between different tools if needed"""
-        # اس نفاذ کا انحصار مخصوص آلات پر ہوگا
-        # اس مثال کے لیے، ہم صرف اصل پیرامیٹرز واپس کریں گے
+        # یہ عمل درآمد مخصوص آلے پر منحصر ہوگا
+        # اس مثال کے لئے، ہم صرف اصل پیرامیٹرز واپس کریں گے
         return params
 
-# استعمال کی مثال
+# مثال کا استعمال
 async def get_weather(workflow, location):
     return await workflow.execute_with_fallback(
-        "premiumWeatherService",  # بنیادی (ادا شدہ) موسم کا API
-        "basicWeatherService",    # واپس جانے والا (مفت) موسم کا API
+        "premiumWeatherService",  # بنیادی (ادائیگی والا) موسم کا API
+        "basicWeatherService",    # فالبیک (مفت) موسم کا API
         {"location": location}
     )
 ```
 
-### 5. ورک فلو ترکیب پیٹرن
+### 5. ورک فلو کمپوزیشن پیٹرن
 
-سادہ ورکس کو ملا کر پیچیدہ ورک فلو تیار کریں:
+آسان ورک فلو کو کمپوز کرکے پیچیدہ ورک فلو تعمیر کریں:
 
 ```csharp
 public class CompositeWorkflow : IWorkflow
@@ -1958,37 +1991,37 @@ var result = await documentWorkflow.ExecuteAsync(new WorkflowContext {
 });
 ```
 
-# MCP سرورز کی ٹیسٹنگ: بہترین طریقے اور اعلیٰ نکات
+# MCP سرورز کی جانچ: بہترین طریقے اور اعلیٰ تجاویز
 
 ## جائزہ
 
-ٹیسٹنگ MCP سرورز کی ترقی میں قابل اعتماد، اعلیٰ معیار کے قیام کا ایک اہم پہلو ہے۔ یہ رہنما پورے ترقیاتی عمل کے دوران، یونٹ ٹیسٹ سے لے کر انٹیگریشن ٹیسٹ اور اختتام سے اختتام کی ویلیڈیشن تک، آپ کے MCP سرورز کی ٹیسٹنگ کے لیے جامع بہترین طریقے اور نکات فراہم کرتا ہے۔
+جانچ معتبر، اعلیٰ معیار کے MCP سرورز کی ترقی کا ایک اہم پہلو ہے۔ یہ رہنما آپ کے MCP سرورز کی پورے ترقیاتی عمل کے دوران یونٹ ٹیسٹس سے لے کر انٹیگریشن ٹیسٹس اور اختتامی سے اختتامی تصدیق تک جامع بہترین طریقے اور تجاویز فراہم کرتی ہے۔
 
-## MCP سرورز کے لیے ٹیسٹنگ کی اہمیت
+## MCP سرورز کے لیے جانچ کیوں ضروری ہے
 
-MCP سرورز AI ماڈلز اور کلائنٹ ایپلیکیشنز کے درمیان اہم مڈل ویئر کے طور پر کام کرتے ہیں۔ مکمل ٹیسٹنگ یقینی بناتی ہے:
+MCP سرورز AI ماڈلز اور کلائنٹ ایپلیکیشنز کے درمیان ایک اہم مڈل ویئر کے طور پر کام کرتے ہیں۔ جامع جانچ یقینی بناتی ہے کہ:
 
-- پروڈکشن ماحول میں قابل اعتماد کارکردگی  
-- درخواستوں اور جوابات کی درست ہینڈلنگ  
-- MCP وضاحتوں کا مناسب نفاذ  
-- ناکامیوں اور کنارے کے معاملات کے خلاف مزاحمت  
-- مختلف بوجھ کے تحت مستقل کارکردگی  
+- پروڈکشن ماحول میں بھروسے مندی
+- درخواستوں اور جوابات کی درست ہینڈلنگ
+- MCP مواصفات کا مناسب نفاذ
+- ناکامیوں اور حدی معاملات کے خلاف مضبوطی
+- مختلف بوجھ کے تحت یکساں کارکردگی
 
 ## MCP سرورز کے لیے یونٹ ٹیسٹنگ
 
 ### یونٹ ٹیسٹنگ (بنیاد)
 
-یونٹ ٹیسٹ آپ کے MCP سرور کے انفرادی کمپونینٹس کو تنہائی میں چیک کرتے ہیں۔
+یونٹ ٹیسٹ آپ کے MCP سرور کے ہر ایک جزو کی علیحدہ جانچ کرتے ہیں۔
 
-#### کیا ٹیسٹ کرنا ہے
+#### کیا جانچنا ہے
 
-1. **وسائل کے ہینڈلرز**: ہر وسیلہ ہینڈلر کی منطق کو علیحدہ سے جانچیں  
-2. **ٹول نفاذات**: مختلف ان پٹ کے ساتھ ٹول کے رویے کی تصدیق کریں  
-3. **پروپمٹ ٹیمپلیٹس**: یقینی بنائیں کہ پروپمٹ ٹیمپلیٹس صحیح ظاہر ہوتے ہیں  
-4. **اسکیمہ کی توثیق**: پیرا میٹر توثیق کی منطق کو ٹیسٹ کریں  
-5. **غلطی ہینڈلنگ**: ناقابل قبول ان پٹ کے لیے غلطی کے جوابات کی تصدیق کریں  
+1. **وسائل کے ہینڈلرز**: ہر وسائل کی ہینڈلر کی منطق کو آزادانہ طور پر جانچیں
+2. **ٹول کی تنفیذ**: مختلف ان پٹس کے ساتھ ٹول کے رویے کی تصدیق کریں
+3. **پرومپٹ ٹیمپلیٹس**: یقین کریں کہ پرومپٹ ٹیمپلیٹس درست طریقے سے رینڈر ہوتے ہیں
+4. **اسکیمہ کی توثیق**: پیرامیٹر کی توثیق کی منطق کو جانچیں
+5. **ایرر ہینڈلنگ**: نا جائز ان پٹس کے لیے ایرر جوابات کی تصدیق کریں
 
-#### یونٹ ٹیسٹنگ کے بہترین طریقے
+#### یونٹ ٹیسٹنگ کے لیے بہترین طریقے
 
 ```csharp
 // Example unit test for a calculator tool in C#
@@ -2012,11 +2045,11 @@ public async Task CalculatorTool_Add_ReturnsCorrectSum()
     Assert.Equal(12, result.Value);
 }
 ```
-  
+
 ```python
-# پائتھن میں کیلکولیٹر ٹول کے لیے مثال یونٹ ٹیسٹ
+# پائیتھن میں کیلکولیٹر ٹول کے لیے مثال یونٹ ٹیسٹ
 def test_calculator_tool_add():
-    # ترتیب دیں
+    # بندوبست کریں
     calculator = CalculatorTool()
     parameters = {
         "operation": "add",
@@ -2028,23 +2061,23 @@ def test_calculator_tool_add():
     response = calculator.execute(parameters)
     result = json.loads(response.content[0].text)
     
-    # تصدیق کریں
+    # یقین دہانی کریں
     assert result["value"] == 12
 ```
-  
-### انٹیگریشن ٹیسٹنگ (درمیانی سطح)
 
-انٹیگریشن ٹیسٹ آپ کے MCP سرور کے اجزاء کے درمیان تعامل کی تصدیق کرتے ہیں۔
+### انٹیگریشن ٹیسٹنگ (درمیانی تہہ)
 
-#### کیا ٹیسٹ کرنا ہے
+انٹیگریشن ٹیسٹس آپ کے MCP سرور کے اجزاء کے مابین تعاملات کی جانچ کرتے ہیں۔
 
-1. **سرور کی شروعات**: مختلف کنفیگریشن کے ساتھ سرور کی شروعات کو ٹیسٹ کریں  
-2. **راٹنگ رجسٹریشن**: یقینی بنائیں کہ تمام اینڈ پوائنٹس درست طور پر رجسٹر ہیں  
-3. **درخواست کی پروسیسنگ**: مکمل درخواست-جواب کے عمل کی جانچ کریں  
-4. **غلطی کی منتقلی**: یقینی بنائیں کہ غلطیاں اجزاء کے درمیان صحیح طریقے سے ہینڈل ہوں  
-5. **تصدیق اور اجازت**: سیکیورٹی کے طریقہ کار کو ٹیسٹ کریں  
+#### کیا جانچنا ہے
 
-#### انٹیگریشن ٹیسٹنگ کے بہترین طریقے
+1. **سرور کی شروعات**: مختلف کنفیگریشنز کے ساتھ سرور کے آغاز کی جانچ کریں
+2. **روٹ رجسٹریشن**: تمام اینڈپوائنٹس کی درست رجسٹریشن کی تصدیق کریں
+3. **درخواست کا عمل**: درخواست-جواب کے مکمل چکر کی جانچ کریں
+4. **ایرر کی منتقلی**: یقینی بنائیں کہ غلطیاں مناسب طریقے سے تمام اجزاء میں سنبھالی جاتی ہیں
+5. **توثیق اور اجازت**: سیکورٹی میکانزم کی جانچ کریں
+
+#### انٹیگریشن ٹیسٹنگ کے لیے بہترین طریقے
 
 ```csharp
 // Example integration test for MCP server in C#
@@ -2079,23 +2112,24 @@ public async Task Server_ProcessToolRequest_ReturnsValidResponse()
     await server.StopAsync();
 }
 ```
-  
-### اختتام سے اختتام تک ٹیسٹنگ (بالائی سطح)
 
-اختتام سے اختتام ٹیسٹ کلائنٹ سے سرور تک مکمل نظام کے رویے کی تصدیق کرتے ہیں۔
+### اختتامی سے اختتامی جانچ (اوپری تہہ)
 
-#### کیا ٹیسٹ کرنا ہے
+اختتامی سے اختتامی ٹیسٹس مکمل نظام کے رویے کی جانچ کرتے ہیں، کلائنٹ سے سرور تک۔
 
-1. **کلائنٹ-سرور رابطہ**: مکمل درخواست-جواب سائیکل کو ٹیسٹ کریں  
-2. **حقیقی کلائنٹ SDKs**: اصلی کلائنٹ نفاذات کے ساتھ ٹیسٹ کریں  
-3. **بوجھ کے تحت کارکردگی**: متعدد بیک وقت درخواستوں کے ساتھ رویہ کی تصدیق کریں  
-4. **غلطی سے بازیابی**: ناکامی سے نظام کی بحالی کو ٹیسٹ کریں  
-5. **طویل دورانیے کی کارروائیاں**: سٹریمنگ اور طویل کارروائیوں کی ہینڈلنگ کی تصدیق کریں  
+#### کیا جانچنا ہے
 
-#### اختتام سے اختتام ٹیسٹنگ کے بہترین طریقے
+1. **کلائنٹ-سرور مواصلات**: مکمل درخواست-جواب کے چکروں کی جانچ کریں
+2. **حقیقی کلائنٹ SDKs**: اصل کلائنٹ تنفیذات کے ساتھ جانچ کریں
+3. **لوڈ کے تحت کارکردگی**: متعدد متوازی درخواستوں کے ساتھ رویے کی تصدیق کریں
+4. **ایرر کی بحالی**: ناکامیوں سے نظام کی بحالی کی جانچ کریں
+
+5. **طویل مدتی آپریشنز**: اسٹریمینگ اور طویل آپریشنز کی ہینڈلنگ کی تصدیق کریں
+
+#### ای2ای ٹیسٹنگ کے لیے بہترین طریقے
 
 ```typescript
-// ٹائپ اسکرپٹ میں کلائنٹ کے ساتھ مثال کا اینڈ ٹو اینڈ ٹیسٹ
+// ٹائپ اسکرپٹ میں کلائنٹ کے ساتھ مثال E2E ٹیسٹ
 describe('MCP Server E2E Tests', () => {
   let client: McpClient;
   
@@ -2123,19 +2157,19 @@ describe('MCP Server E2E Tests', () => {
   });
 });
 ```
-  
-## MCP ٹیسٹنگ کے لیے موکنگ کی حکمت عملی
 
-موکنگ ٹیسٹنگ کے دوران کمپونینٹس کو علیحدہ کرنے کے لیے ضروری ہے۔
+## MCP ٹیسٹنگ کے لیے نقلی حکمت عملیاں
 
-### جن کمپونینٹس کو موک کرنا ہے
+ٹیسٹنگ کے دوران اجزاء کو الگ تھلگ کرنے کے لیے نقلی کرنا ضروری ہے۔
 
-1. **بیرونی AI ماڈلز**: پیش گوئی کے لیے ماڈل کے جوابات موک کریں  
-2. **بیرونی خدمات**: API انحصارات (ڈیٹا بیس، تیسرے فریق کی خدمات) کو موک کریں  
-3. **تصدیقی خدمات**: شناخت دہندگان کو موک کریں  
-4. **وسائل کے فراہم کنندگان**: مہنگے وسائل ہینڈلرز کو موک کریں  
+### نقلی کرنے کے لیے اجزاء
 
-### مثال: AI ماڈل کے ردعمل کا موکنگ
+1. **بیرونی AI ماڈلز**: قابل پیش گوئی ٹیسٹنگ کے لیے ماڈل کے جوابات کی نقلی کریں
+2. **بیرونی خدمات**: API انحصارات کی نقلی (ڈیٹا بیس، تیسرے فریق کی خدمات)
+3. **تصدیقی خدمات**: شناخت فراہم کرنے والوں کی نقلی کریں
+4. **وسیلہ فراہم کرنے والے**: مہنگے وسائل کے ہینڈلرز کی نقلی کریں
+
+### مثال: AI ماڈل کے جواب کی نقلی
 
 ```csharp
 // C# example with Moq
@@ -2151,7 +2185,7 @@ mockModel
 
 var server = new McpServer(modelClient: mockModel.Object);
 ```
-  
+
 ```python
 # پائتھن کی مثال unittest.mock کے ساتھ
 @patch('mcp_server.models.OpenAIModel')
@@ -2164,37 +2198,37 @@ def test_with_mock_model(mock_model):
     
     # ٹیسٹ میں موک کا استعمال کریں
     server = McpServer(model_client=mock_model)
-    # ٹیسٹ کے ساتھ جاری رکھیں
+    # ٹیسٹ جاری رکھیں
 ```
-  
+
 ## کارکردگی کی جانچ
 
-کارکردگی کی جانچ پروڈکشن MCP سرورز کے لیے انتہائی اہم ہے۔
+پیداوار MCP سرورز کے لیے کارکردگی کی جانچ بہت اہم ہے۔
 
 ### کیا ماپنا ہے
 
-1. **دیرینہ (لیٹنسی)**: درخواست کے جوابات کا وقت  
-2. **گزرگاہ (تھرپٹ)**: فی سیکنڈ ہینڈل کی جانے والی درخواستیں  
-3. **وسائل کا استعمال**: CPU، میموری، نیٹ ورک کا استعمال  
-4. **ہم وقت سازی کا انتظام**: متوازی درخواستوں کے تحت رویہ  
-5. **اسکیلنگ کی خصوصیات**: بوجھ بڑھنے پر کارکردگی  
+1. **لاکافتہ**: درخواستوں کے جوابی وقت
+2. **تھروپٹ**: فی سیکنڈ ہینڈل کی گئی درخواستیں
+3. **وسائل کا استعمال**: CPU، میموری، نیٹ ورک کا استعمال
+4. **ہم وقتی ہینڈلنگ**: متوازی درخواستوں کے تحت رویہ
+5. **اسکیلنگ کی خصوصیات**: بوجھ بڑھنے پر کارکردگی
 
-### کارکردگی کی جانچ کے اوزار
+### کارکردگی کی جانچ کے لیے اوزار
 
-- **k6**: اوپن سورس لوڈ ٹیسٹنگ ٹول  
-- **JMeter**: جامع کارکردگی کی جانچ  
-- **Locust**: پائتھن پر مبنی لوڈ ٹیسٹنگ  
-- **Azure Load Testing**: کلاؤڈ بیسڈ کارکردگی ٹیسٹنگ  
+- **k6**: اوپن سورس لوڈ ٹیسٹنگ ٹول
+- **JMeter**: جامع کارکردگی کی جانچ
+- **Locust**: پائتھون پر مبنی لوڈ ٹیسٹنگ
+- **Azure Load Testing**: کلاؤڈ پر مبنی کارکردگی کی جانچ
 
 ### مثال: k6 کے ساتھ بنیادی لوڈ ٹیسٹ
 
 ```javascript
-// MCP سرور کے لیے لوڈ ٹیسٹنگ کے لیے k6 اسکرپٹ
+// MCP سرور کے لوڈ ٹیسٹنگ کے لیے k6 اسکرپٹ
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 
 export const options = {
-  vus: 10,  // 10 ورچوئل صارفین
+  vus: 10,  // ۱۰ ورچوئل صارفین
   duration: '30s',
 };
 
@@ -2225,17 +2259,17 @@ export default function () {
   sleep(1);
 }
 ```
-  
+
 ## MCP سرورز کے لیے ٹیسٹ آٹومیشن
 
-اپنے ٹیسٹ خودکار بنائیں تاکہ معیار مستقل رہے اور فیڈبیک فوری ملے۔
+آپ کے ٹیسٹ کو خودکار بنانے سے مستقل معیار اور تیز تر فیڈبیک لوپ یقینی بنتے ہیں۔
 
 ### CI/CD انضمام
 
-1. **پُل ریکویسٹ پر یونٹ ٹیسٹ چلائیں**: یقینی بنائیں کہ کوڈ تبدیلیاں موجودہ فعالیت کو توڑتی نہیں ہیں
-2. **اسٹیجنگ میں انٹیگریشن ٹیسٹ**: پری-پروڈکشن ماحول میں انٹیگریشن ٹیسٹ چلائیں  
-3. **کارکردگی کے بیس لائنز**: ریگریشنز کو پکڑنے کے لیے کارکردگی کے معیارات کو برقرار رکھیں  
-4. **سیکیورٹی اسکینز**: پائپ لائن کے حصے کے طور پر سیکیورٹی ٹیسٹنگ کو خودکار بنائیں  
+1. **پُل درخواستوں پر یونٹ ٹیسٹ چلائیں**: یقینی بنائیں کہ کوڈ تبدیلیاں موجودہ فعالیت کو خراب نہ کریں
+2. **اسٹیجنگ میں انضمامی ٹیسٹ**: پیشگی پیداوار ماحول میں انضمامی ٹیسٹ چلائیں
+3. **کارکردگی کی بنچ مارکس**: پس ماندگی کو پکڑنے کے لیے کارکردگی کے معیار کو برقرار رکھیں
+4. **سیکیورٹی اسکینز**: پائپ لائن کے حصے کے طور پر سیکیورٹی ٹیسٹنگ کو خودکار کریں
 
 ### مثال CI پائپ لائن (GitHub Actions)
 
@@ -2275,20 +2309,20 @@ jobs:
     - name: Performance Tests
       run: dotnet run --project tests/PerformanceTests/PerformanceTests.csproj
 ```
-  
-## MCP تفصیلی وضاحت کی تعمیل کے لیے ٹیسٹنگ
 
-اپنے سرور کی MCP وضاحت پر درست عمل درآمد کو تصدیق کریں۔  
+## MCP وضاحت کے مطابق جانچ
 
-### کلیدی تعمیل والے علاقے
+تصدیق کریں کہ آپ کا سرور MCP وضاحت کو صحیح طریقے سے نافذ کرتا ہے۔
 
-1. **API اینڈپوائنٹس**: ضروری اینڈپوائنٹس کی جانچ کریں (/resources، /tools، وغیرہ)  
-2. **درخواست/جواب کا فارمٹ**: اسکیمہ کی تعمیل کی توثیق کریں  
-3. **ایرر کوڈز**: مختلف حالات کے لیے درست اسٹیٹس کوڈز کی تصدیق کریں  
-4. **مواد کی اقسام**: مختلف مواد کی اقسام کی ہینڈلنگ کی جانچ کریں  
-5. **توثیق کا عمل**: وضاحت کے مطابق اتھ mechanisms mechanisms کے نفاذ کی تصدیق کریں  
+### کلیدی تعمیل کے علاقے
 
-### تعمیل ٹیسٹ سوئٹ
+1. **API اینڈ پوائنٹس**: ضروری اینڈ پوائنٹس کی جانچ کریں (/resources, /tools, وغیرہ)
+2. **درخواست/جواب کا فارمیٹ**: اسکیمہ کی تعمیل کی توثیق کریں
+3. **ایرر کوڈز**: مختلف حالات کے لیے درست اسٹیٹس کوڈز کی تصدیق کریں
+4. **مواد کی اقسام**: مختلف مواد کی اقسام کی ہینڈلنگ کی جانچ کریں
+5. **تصدیق کے عمل**: وضاحت کے مطابق توثیقی طریقہ کار کی تصدیق کریں
+
+### تعمیل کا ٹیسٹ سوئٹ
 
 ```csharp
 [Fact]
@@ -2314,62 +2348,63 @@ public async Task Server_ResourceEndpoint_ReturnsCorrectSchema()
     });
 }
 ```
-  
-## MCP سرور کی موثر جانچ کے لیے ٹاپ 10 نکات  
 
-1. **ٹیسٹ ٹول کی تعریفات کو الگ الگ جانچیں**: ٹول لاجک سے آزاد اسکیمہ تعریفات کی توثیق کریں  
-2. **پیرا میٹرائزڈ ٹیسٹس استعمال کریں**: مختلف ان پٹس کے ساتھ ٹولز کی جانچ کریں، بشمول ایج کیسز  
-3. **ایرر ردعمل چیک کریں**: تمام ممکنہ غلطی کی صورتوں کے لیے مناسب ایرر ہینڈلنگ کی تصدیق کریں  
-4. **اتھورائزیشن لاجک ٹیسٹ کریں**: مختلف یوزر رولز کے لیے درست رسائی کنٹرول کو یقینی بنائیں  
-5. **ٹیسٹ کوریج مانیٹر کریں**: اہم راستے کے کوڈ کی زیادہ سے زیادہ کوریج کا ہدف رکھیں  
-6. **سٹریمنگ ردعمل کی جانچ کریں**: سٹریمنگ مواد کی صحیح ہینڈلنگ کی تصدیق کریں  
-7. **نیٹ ورک مسائل کی تمثیل کریں**: خراب نیٹ ورک حالات میں رویے کی جانچ کریں  
-8. **وسائل کی حدود کی جانچ کریں**: کوٹاز یا ریٹ لمٹس تک پہنچنے پر رویے کی تصدیق کریں  
-9. **ریگریشن ٹیسٹس کو خودکار بنائیں**: ہر کوڈ تبدیلی پر چلنے والا سوئٹ بنائیں  
-10. **ٹیسٹ کیسز کو دستاویزی شکل دیں**: ٹیسٹ منظرناموں کی واضح دستاویزات رکھیں  
+## MCP سرور کی موثر جانچ کے لیے ٹاپ 10 ٹپس
 
-## عام ٹیسٹنگ میں دشواریاں
+1. **ٹول کی تعریفوں کو الگ سے ٹیسٹ کریں**: ٹول کی منطق سے اسکیمہ کی تعریفوں کی الگ سے تصدیق کریں
+2. **پیرامیٹرائزڈ ٹیسٹ استعمال کریں**: مختلف ان پٹس بشمول ایج کیسز کے ساتھ ٹولز کی جانچ کریں
+3. **ایرر جوابات کی جانچ کریں**: تمام ممکنہ ایرر شرائط کے لیے مناسب ہینڈلنگ کی تصدیق کریں
+4. **اجازت کے منطقی ٹیسٹ کریں**: مختلف صارف کرداروں کے لیے مناسب رسائی کنٹرول کو یقینی بنائیں
+5. **ٹیسٹ کوریج مانیٹر کریں**: اہم راستہ کوڈ کی اعلیٰ کوریج کا ہدف رکھیں
+6. **اسٹریمینگ جوابات کی جانچ کریں**: اسٹریمینگ مواد کی مناسب ہینڈلنگ کی تصدیق کریں
+7. **نیٹ ورک مسائل کی تقلید کریں**: خراب نیٹ ورک حالات کے تحت رویے کی جانچ کریں
+8. **وسیلہ کی حدود کی جانچ کریں**: کوٹہ یا ریٹ لمٹس تک پہنچنے پر رویے کی تصدیق کریں
+9. **ریگریشن ٹیسٹ کو خودکار کریں**: ہر کوڈ تبدیلی پر چلنے والا سوئٹ بنائیں
+10. **ٹیسٹ کیسز کی دستاویزات بنائیں**: ٹیسٹ منظرناموں کی واضح دستاویزات رکھیں
 
-- **ہپی پاتھ ٹیسٹنگ پر ضرورت سے زیادہ انحصار**: غلطی کے کیسز کو مکمل طور پر جانچنا یقینی بنائیں  
-- **کارکردگی کی جانچ سے غفلت**: پروڈکشن پر اثر انداز ہونے سے پہلے کمزوریوں کی نشاندہی کریں  
-- **صرف الگ تھلگ ٹیسٹ کرنا**: یونٹ، انٹیگریشن اور E2E ٹیسٹس کو یکجا کریں  
-- **ناکافی API کوریج**: تمام اینڈپوائنٹس اور خصوصیات کی جانچ کریں  
-- **غیر مستقل ٹیسٹ ماحول**: مستقل ٹیسٹ ماحول کو یقینی بنانے کے لیے کنٹینرز استعمال کریں  
+## عام ٹیسٹنگ کی غلطیاں
+
+- **صرف خوشگوار راستے کی جانچ پر زیادہ انحصار**: یقینی بنائیں کہ ایرر کیسز کو مکمل طور پر ٹیسٹ کیا جائے
+- **کارکردگی کی جانچ کو نظر انداز کرنا**: پیداوار کو متاثر کرنے والے رکاوٹوں کی شناخت کریں
+- **صرف الگ تھلگ ٹیسٹنگ**: یونٹ، انضمامی، اور ای2ای ٹیسٹ کو یکجا کریں
+- **ادھوری API کوریج**: یقینی بنائیں کہ تمام اینڈ پوائنٹس اور خصوصیات کی جانچ کی گئی ہو
+- **ٹیسٹ ماحول کا غیر مستقل ہونا**: مستقل ماحول کے لیے کنٹینرز استعمال کریں
 
 ## نتیجہ
 
-ایک جامع جانچ حکمت عملی قابل اعتماد، اعلیٰ معیار کے MCP سرورز تیار کرنے کے لیے ضروری ہے۔ اس گائیڈ میں بیان کردہ بہترین طریقوں اور نکات کو نافذ کرکے، آپ اپنے MCP اطلاقات کو معیار، قابل اعتماد، اور کارکردگی کے اعلیٰ معیارات پر پورا اترتا ہوا یقینی بنا سکتے ہیں۔  
+ایک جامع ٹیسٹنگ حکمت عملی قابل اعتماد، اعلی معیار کے MCP سرورز کی ترقی کے لیے ضروری ہے۔ اس گائیڈ میں دی گئی بہترین طریقوں اور نکات کو نافذ کر کے آپ یقینی بنا سکتے ہیں کہ آپ کی MCP امپلیمنٹیشنز اعلی ترین معیار، اعتماد اور کارکردگی کے معیار پر پورا اترتی ہیں۔
 
 
-## اہم نتائج
+## اہم نکات
 
-1. **ٹول ڈیزائن**: سنگل ریسپانسبلٹی پرنسپل کی پیروی کریں، ڈپینڈنسی انجیکشن استعمال کریں، اور کمپوز ایبلٹی کے لیے ڈیزائن کریں  
-2. **اسکیمہ ڈیزائن**: واضح، دستاویزی اسکیمہ تیار کریں جس میں مناسب ویلیڈیشن کنسٹرینٹس ہوں  
-3. **ایرر ہینڈلنگ**: نرم ہینڈلنگ، منظم ایرر ردعمل، اور ریٹری لاجک کا نفاذ کریں  
-4. **کارکردگی**: کیشنگ، غیر متزامن پروسیسنگ، اور وسائل کی تھروٹلنگ استعمال کریں  
-5. **سیکیورٹی**: مکمل ان پٹ ویلیڈیشن، اتھورائزیشن چیکس، اور حساس ڈیٹا ہینڈلنگ نافذ کریں  
-6. **جانچ**: جامع یونٹ، انٹیگریشن، اور اینڈ-ٹو-اینڈ ٹیسٹ بنائیں  
-7. **ورک فلو پیٹرنز**: چینز، ڈسپیچرز، اور پیرالل پروسیسنگ جیسے قائم شدہ پیٹرنز کا اطلاق کریں  
+1. **ٹول ڈیزائن**: سنگل ذمہ داری اصول کی پیروی کریں، انحصاری انجیکشن استعمال کریں، اور مرکب سازی کے لیے ڈیزائن کریں
+2. **اسکیمہ ڈیزائن**: واضح، اچھی دستاویزی اسکیمہ بنائیں جس میں مناسب تصدیقی قیود ہوں
+3. **ایرر ہینڈلنگ**: نرم ہینڈلنگ، منظم ایرر جوابات، اور نتیجہ سے آگاہ ریٹری منطق نافذ کریں
+   جوابات اور نتیجہ آگاہ ریٹری منطق
+4. **کارکردگی**: کیشنگ، غیر ہم وقت پروسیسنگ، اور وسائل کی تھروٹلنگ استعمال کریں
+5. **سیکیورٹی**: مکمل ان پٹ ویلیڈیشن، اجازت جانچ، اور حساس ڈیٹا کی ہینڈلنگ اپنائیں
+6. **ٹیسٹنگ**: جامع یونٹ، انضمامی، اور اختتامی ٹیسٹ بنائیں
+7. **ورک فلو پیٹرنز**: قائم شدہ پیٹرنز جیسے چینز، ڈسپیچرز، اور متوازی پروسیسنگ اپنائیں
 
 ## مشق
 
-ایک MCP ٹول اور ورک فلو ڈیزائن کریں جو دستاویز پراسیسنگ سسٹم کے لیے ہو جو کہ:
+ایک MCP ٹول اور ورک فلو ڈیزائن کریں جو ایک دستاویزی پراسیسنگ سسٹم کے لیے ہو جو:
 
-1. متعدد فارمیٹس (PDF، DOCX، TXT) میں دستاویزات قبول کرے  
-2. دستاویزات سے متن اور اہم معلومات نکالے  
-3. دستاویزات کو قسم اور مواد کے لحاظ سے درجہ‌بندی کرے  
-4. ہر دستاویز کا خلاصہ تیار کرے  
+1. دستاویزات کو متعدد فارمیٹس میں قبول کرے (PDF, DOCX, TXT)
+2. دستاویزات سے متن اور کلیدی معلومات نکالے
+3. دستاویزات کو قسم اور مواد کے لحاظ سے درجہ بندی کرے
+4. ہر دستاویز کا خلاصہ تیار کرے
 
-ٹول اسکیمہ، ایرر ہینڈلنگ، اور ورک فلو پیٹرن کو نافذ کریں جو اس منظرنامے کے لیے سب سے زیادہ موزوں ہو۔ غور کریں کہ آپ اس نفاذ کی جانچ کیسے کریں گے۔  
+اس منظرنامے کے لیے موزوں بہترین ٹول اسکیمہ، ایرر ہینڈلنگ، اور ورک فلو پیٹرن نافذ کریں۔ غور کریں کہ آپ اس نفاذ کی جانچ کیسے کریں گے۔
 
 ## وسائل
 
-1. تازہ ترین ترقیات سے آگاہ رہنے کے لیے [Microsoft Foundry Discord Community](https://aka.ms/foundrydevs) پر MCP کمیونٹی میں شامل ہوں  
-2. اوپن سورس [MCP پروجیکٹس](https://github.com/modelcontextprotocol) میں تعاون کریں  
-3. اپنی تنظیم کی AI پہل کاریوں میں MCP اصولوں کا اطلاق کریں  
-4. اپنی صنعت کے لیے مخصوص MCP نفاذ کو دریافت کریں  
-5. مخصوص MCP موضوعات جیسے ملٹی-موڈل انٹیگریشن یا انٹرپرائز اپلیکیشن انٹیگریشن پر اعلیٰ سطحی کورسز لینے پر غور کریں  
-6. [Hands on Lab](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md) کے ذریعے سیکھی گئی اصولوں کا استعمال کرتے ہوئے اپنے MCP ٹولز اور ورک فلو بنانے کا تجربہ کریں  
+1. MCP کمیونٹی جوائن کریں [Microsoft Foundry Discord Community](https://aka.ms/foundrydevs) پر تاکہ تازہ ترین ترقیات سے باخبر رہیں
+2. اوپن سورس [MCP پروجیکٹس](https://github.com/modelcontextprotocol) میں تعاون کریں
+3. اپنے ادارے کی AI پہل کاریوں میں MCP اصول نافذ کریں
+4. اپنی صنعت کے لیے مخصوص MCP نفاذ کو دریافت کریں۔
+5. مخصوص MCP موضوعات جیسے کہ کثیرالمسیری انضمام یا انٹرپرائز ایپلیکیشن انضمام پر اعلیٰ کورسز لینے پر غور کریں۔
+6. [Hands on Lab](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md) کے ذریعہ سیکھی گئی اصولوں کا استعمال کرتے ہوئے اپنے MCP ٹولز اور ورک فلو بنانے کا تجربہ کریں
 
 ## اگلا کیا ہے
 
