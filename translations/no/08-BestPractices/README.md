@@ -1,89 +1,114 @@
-# MCP Utviklingsbeste Praksiser
+# MCP Utviklings Beste Praksiser
 
-[![MCP Development Best Practices](../../../translated_images/no/09.d0f6d86c9d72134c.webp)](https://youtu.be/W56H9W7x-ao)
+[![MCP Utviklings Beste Praksiser](../../../translated_images/no/09.d0f6d86c9d72134c.webp)](https://youtu.be/W56H9W7x-ao)
 
-_(Klikk på bildet ovenfor for å se video av denne leksjonen)_
+_(Klikk på bildet ovenfor for å se videoen til denne leksjonen)_
 
 ## Oversikt
 
-Denne leksjonen fokuserer på avanserte beste praksiser for utvikling, testing og utrulling av MCP-servere og funksjoner i produksjonsmiljøer. Etter hvert som MCP-økosystemer vokser i kompleksitet og betydning, sikrer det å følge etablerte mønstre pålitelighet, vedlikeholdbarhet og interoperabilitet. Denne leksjonen samler praktisk visdom hentet fra virkelige MCP-implementeringer for å veilede deg i å lage robuste, effektive servere med effektive ressurser, prompt og verktøy.
+Denne leksjonen fokuserer på avanserte beste praksiser for utvikling, testing og distribusjon av MCP-servere og funksjoner i produksjonsmiljøer. Etter hvert som MCP-økosystemer blir mer komplekse og viktige, sikrer det å følge etablerte mønstre pålitelighet, vedlikeholdbarhet og interoperabilitet. Denne leksjonen samler praktisk visdom fra virkelige MCP-implementasjoner for å veilede deg i å lage robuste, effektive servere med effektive ressurser, prompts og verktøy.
 
 ## Læringsmål
 
 Ved slutten av denne leksjonen vil du kunne:
 
-- Anvende bransjens beste praksiser i MCP-server- og funksjonsdesign
+- Anvende bransjens beste praksiser i design av MCP-servere og funksjoner
 - Lage omfattende teststrategier for MCP-servere
 - Designe effektive, gjenbrukbare arbeidsflytmønstre for komplekse MCP-applikasjoner
-- Implementere korrekt feilbehandling, logging og observasjon i MCP-servere
-- Optimalisere MCP-implementeringer for ytelse, sikkerhet og vedlikeholdbarhet
+- Implementere korrekt feilhåndtering, logging og observabilitet i MCP-servere
+- Optimalisere MCP-implementasjoner for ytelse, sikkerhet og vedlikeholdbarhet
 
-## MCP Kjerneprinsipper
+## MCP Kjære Prinsipper
 
-Før du går inn i spesifikke implementeringspraksiser, er det viktig å forstå kjerneprinsippene som veileder effektiv MCP-utvikling:
+Før vi dykker ned i spesifikke implementeringspraksiser, er det viktig å forstå kjerneprinsippene som leder effektiv MCP-utvikling:
 
-1. **Standardisert kommunikasjon**: MCP bruker JSON-RPC 2.0 som grunnlag, og gir et konsistent format for forespørsler, svar og feilbehandling på tvers av alle implementeringer.
+1. **Standardisert Kommunikasjon**: MCP bruker JSON-RPC 2.0 som grunnlag, og gir et konsekvent format for forespørsler, svar og feilhåndtering på tvers av alle implementasjoner.
 
-2. **Brukersentrert design**: Prioriter alltid brukerens samtykke, kontroll og åpenhet i dine MCP-implementeringer.
+2. **Brukersentrert Design**: Prioriter alltid brukerens samtykke, kontroll og åpenhet i dine MCP-implementasjoner.
 
-3. **Sikkerhet først**: Implementer robuste sikkerhetstiltak inkludert autentisering, autorisasjon, validering og ratebegrensning.
+3. **Sikkerhet Først**: Implementer robuste sikkerhetstiltak inkludert autentisering, autorisasjon, validering og begrensning av forespørselsfrekvens.
 
-4. **Modulær arkitektur**: Design MCP-serverne dine med en modulær tilnærming, hvor hvert verktøy og ressurs har et klart, fokusert formål.
+4. **Modulær Arkitektur**: Design dine MCP-servere med en modulær tilnærming, hvor hvert verktøy og ressurs har et klart, fokusert formål.
 
-5. **Tilstandsbevarende tilkoblinger**: Utnytt MCPs evne til å opprettholde tilstand over flere forespørsler for mer sammenhengende og kontekstbevisste interaksjoner.
+5. **Eksplisitt Tilstand**: MCP `2026-07-28` er tilstandsløs på protokollnivå.
+   Når en arbeidsflyt trenger tilstand på tvers av kall, bruk eksplisitte håndtak eller
+   vanlige verktøysargumenter støttet av varig applikasjonstilstand.
 
 ## Offisielle MCP Beste Praksiser
 
-Følgende beste praksiser er hentet fra den offisielle Model Context Protocol-dokumentasjonen:
+Følgende beste praksiser er avledet fra den offisielle Model Context Protocol dokumentasjonen:
 
-### Sikkerhets Beste Praksis
+### Sikkerhets Beste Praksiser
 
-1. **Brukersamtykke og kontroll**: Krev alltid eksplisitt brukersamtykke før tilgang til data eller utføring av operasjoner. Gi klar kontroll over hvilke data som deles og hvilke handlinger som er autorisert.
+1. **Brukersamtykke og Kontroll**: Krev alltid eksplisitt brukersamtykke før du får tilgang til data eller utfører operasjoner. Gi klar kontroll over hvilke data som deles og hvilke handlinger som er autorisert.
 
-2. **Dataprivacy**: Eksponer kun brukerdata med eksplisitt samtykke og beskytt dem med hensiktsmessige tilgangskontroller. Beskytt mot uautorisert datatransmisjon.
+2. **Datapersonvern**: Eksponer kun brukerdata med eksplisitt samtykke og beskytt det med passende tilgangskontroller. Beskytt mot uautorisert datatransmisjon.
 
-3. **Verktøysikkerhet**: Krev eksplisitt brukersamtykke før kall til noe verktøy. Sørg for at brukerne forstår hvert verktøys funksjonalitet og håndhev robuste sikkerhetsgrenser.
+3. **Verktøysikkerhet**: Krev eksplisitt brukersamtykke før du påkaller noe verktøy. Sørg for at brukerne forstår hvert verktøys funksjonalitet og håndhev robuste sikkerhetsgrenser.
 
-4. **Verktøytillatelseskontroll**: Konfigurer hvilke verktøy en modell har lov til å bruke under en økt, slik at kun eksplisitt autoriserte verktøy er tilgjengelige.
+4. **Verktøystillatelseskontroll**: Konfigurer hvilke verktøy en modell kan bruke for
+   hver forespørsel og autorisasjonskontekst, slik at bare eksplisitt autoriserte
+   verktøy er tilgjengelige.
 
-5. **Autentisering**: Krev riktig autentisering før verktøy, ressurser eller sensitive operasjoner gis tilgang ved bruk av API-nøkler, OAuth-tokener eller andre sikre autentiseringsmetoder.
+5. **Autentisering**: Krev korrekt autentisering før du gir tilgang til verktøy, ressurser eller sensitive operasjoner ved bruk av API-nøkler, OAuth-tokens eller andre sikre autentiseringsmetoder.
 
-6. **Parameter-validering**: Påkrevd validering for alle verktøykall for å hindre feilformaterte eller ondsinnede input fra å nå verktøyimplementeringene.
+6. **Parameter Validering**: Håndhev validering for alle verktøypårop for å forhindre malformed eller ondsinnet input fra å nå verktøyimplementeringene.
 
-7. **Ratebegrensning**: Implementer ratebegrensning for å hindre misbruk og sikre rettferdig bruk av serverressurser.
+7. **Begrensning av forespørselsfrekvens**: Implementer begrensning av forespørselsfrekvens for å forhindre misbruk og sikre rettferdig bruk av serverressurser.
 
-### Implementerings Beste Praksis
+### Implementerings Beste Praksiser
 
-1. **Evneforhandling**: Under tilkoblingsoppsett, utveksle informasjon om støttede funksjoner, protokollversjoner, tilgjengelige verktøy og ressurser.
+1. **Funksjonsforhandling**: Forhandle støttede protokollversjoner og
+   funksjoner. I MCP `2026-07-28` er hver forespørsel selvstendig og kan
+   bruke `server/discover`; eldre revisjoner bruker initialiseringshåndtrykket.
 
-2. **Verktøydesign**: Lag fokuserte verktøy som gjør én ting godt, heller enn monolittiske verktøy som håndterer flere bekymringer.
+2. **Verktøydesign**: Lag fokuserte verktøy som gjør én ting godt, istedenfor monolittiske verktøy som håndterer flere bekymringer.
 
-3. **Feilhåndtering**: Implementer standardiserte feilmeldinger og koder for å hjelpe med å diagnostisere problemer, håndtere feil grasiøst og gi handlingsrettet tilbakemelding.
+3. **Feilhåndtering**: Implementer standardiserte feilmeldinger og -koder for å hjelpe med å diagnostisere problemer, håndtere feil på en elegant måte og gi handlingsrettet tilbakemelding.
 
-4. **Logging**: Konfigurer strukturerte logger for revisjon, feilsøking og overvåking av protokollinteraksjoner.
+4. **Observabilitet**: Bruk `stderr` for stdio-diagnostikk og OpenTelemetry
+   for strukturert observabilitet. MCP logging-funksjonen er avskrevet i
+   `2026-07-28` spesifikasjonen.
 
 5. **Fremdriftssporing**: For langvarige operasjoner, rapporter fremdriftsoppdateringer for å muliggjøre responsive brukergrensesnitt.
 
-6. **Avbrytelse av forespørsler**: La klienter avbryte forespørsler som er under behandling men ikke lenger er nødvendige eller tar for lang tid.
+6. **Kansellering av Forespørsler**: Tillat klienter å kansellere pågående forespørsler som ikke lengre er nødvendige eller tar for lang tid.
 
-## Tilleggsreferanser
+## Ytterligere Referanser
 
 For den mest oppdaterte informasjonen om MCP beste praksiser, se:
 
 - [MCP Dokumentasjon](https://modelcontextprotocol.io/)
-- [MCP Spesifikasjon (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Spesifikasjon (2026-07-28)][mcp-2026-spec]
+- [Forrige MCP Spesifikasjon (2025-11-25)](https://modelcontextprotocol.io/specification/2025-11-25)
+- [MCP Oppgaveutvidelse][mcp-tasks-extension]
 - [GitHub Repository](https://github.com/modelcontextprotocol)
-- [Sikkerhets Beste Praksiser](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices)
-- [OWASP MCP Topp 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - Sikkerhetsrisikoer og mitigeringer
-- [MCP Security Summit Workshop (Sherpa)](https://azure-samples.github.io/sherpa/) - Praktisk sikkerhetstrening
+- [Sikkerhets Beste Praksiser](https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/security_best_practices)
+- [OWASP MCP Topp 10](https://microsoft.github.io/mcp-azure-security-guide/) - Sikkerhetsrisikoer og mitigering
+- [MCP Sikkerhetstoppmøte Workshop (Sherpa)](https://azure-samples.github.io/sherpa/) - Praktisk sikkerhetstrening
+
+### Pålitelighets Følgeleksjon
+
+Generiske retry-løkker er usikre for verktøy som lager billetter, betalinger,
+meldinger, distribusjoner eller andre virkelige effekter. Et svar kan gå tapt
+etter at effekten har blitt utført.
+
+Bruk pålitelighets-følgeleksjonen,
+[Sikre Retry for MCP Verktøy: Et Pålitelighets Sidecar-mønster][reliability-sidecar],
+for å lære stabile operasjonsnøkler, duplikatopptak, checkpointing,
+forsoning, bevisnivåer og feilinjeksjon.
+
+[mcp-2026-spec]: https://modelcontextprotocol.io/specification/2026-07-28
+[mcp-tasks-extension]: https://modelcontextprotocol.io/extensions/tasks/overview
+[reliability-sidecar]: ./reliability-sidecars/README.md
 
 ## Praktiske Implementeringseksempler
 
-### Beste Praksiser for Verktøydesign
+### Verktøydesign Beste Praksiser
 
-#### 1. Prinsippet om Eneansvar
+#### 1. Enkelt Ansvar Prinsipp
 
-Hvert MCP-verktøy bør ha et klart, fokusert formål. I stedet for å lage monolittiske verktøy som prøver å håndtere flere bekymringer, utvikle spesialiserte verktøy som utmerker seg på spesifikke oppgaver.
+Hvert MCP-verktøy bør ha et klart og fokusert formål. I stedet for å lage monolittiske verktøy som prøver å håndtere flere bekymringer, utvikle spesialiserte verktøy som utmerker seg på spesifikke oppgaver.
 
 ```csharp
 // A focused tool that does one thing well
@@ -145,10 +170,10 @@ public class WeatherForecastTool : ITool
 
 #### 2. Konsistent Feilhåndtering
 
-Implementer robust feilbehandling med informative feilmeldinger og passende mekanismer for gjenoppretting.
+Implementer robust feilhåndtering med informative feilmeldinger og passende gjenopprettingsmekanismer.
 
 ```python
-# Python-eksempel med omfattende feilbehandling
+# Python-eksempel med omfattende feilhåndtering
 class DataQueryTool:
     def get_name(self):
         return "dataQuery"
@@ -183,12 +208,12 @@ class DataQueryTool:
                 self._log_error("Database connection error", e)
                 raise ToolExecutionError(f"Database connection error: {str(e)}")
             except DatabaseQueryError as e:
-                # Forespørselsfeil er sannsynligvis klientfeil
+                # Spørringsfeil er sannsynligvis klientfeil
                 self._log_error("Database query error", e)
                 raise ToolExecutionError(f"Invalid query: {str(e)}")
                 
         except ToolError:
-            # La verktøyspesifikke feil passere
+            # La verktøyspesifikke feil gå gjennom
             raise
         except Exception as e:
             # Fangst for uventede feil
@@ -196,7 +221,7 @@ class DataQueryTool:
             raise ToolExecutionError(f"An unexpected error occurred: {str(e)}")
     
     def _contains_unsafe_sql(self, query):
-        # Implementering av SQL-injeksjonsdeteksjon
+        # Implementering av påvisning av SQL-injeksjon
         pass
         
     def _log_error(self, message, error):
@@ -204,9 +229,9 @@ class DataQueryTool:
         pass
 ```
 
-#### 3. Parameter-validering
+#### 3. Parameter Validering
 
-Alltid valider parametere grundig for å forhindre feilformaterte eller ondsinnede innspill.
+Alltid valider parametere grundig for å forhindre malformed eller ondsinnet input.
 
 ```javascript
 // JavaScript/TypeScript-eksempel med detaljert parametervalidering
@@ -262,7 +287,7 @@ class FileOperationTool {
       throw new ToolError("Parameter 'path' must be a string");
     }
     
-    // 3. Valider parametverdier
+    // 3. Valider parameterverdier
     const validOperations = ["read", "write", "delete"];
     if (!validOperations.includes(parameters.operation)) {
       throw new ToolError(`Invalid operation. Must be one of: ${validOperations.join(", ")}`);
@@ -273,23 +298,23 @@ class FileOperationTool {
       throw new ToolError("Content parameter is required for write operation");
     }
     
-    // 5. Validering av stisikkerhet
+    // 5. Valideringssikkerhet for sti
     if (!this.isPathWithinAllowedDirectories(parameters.path)) {
       throw new ToolError("Access denied: path is outside of allowed directories");
     }
     
-    // Implementasjon basert på validerte parametere
+    // Implementering basert på validerte parametere
     // ...
   }
   
   isPathWithinAllowedDirectories(path) {
-    // Implementasjon av kontroll av stisikkerhet
+    // Implementering av sikkerhetssjekk for sti
     // ...
   }
 }
 ```
 
-### Eksempler på Sikkerhetsimplementering
+### Sikkerhetsimplementeringseksempler
 
 #### 1. Autentisering og Autorisasjon
 
@@ -317,7 +342,7 @@ public class SecureDataAccessTool implements Tool {
     
     @Override
     public ToolResponse execute(ToolRequest request) {
-        // 1. Hent autentiseringskontekst
+        // 1. Hent ut autentiseringskontekst
         String authToken = request.getContext().getAuthToken();
         
         // 2. Autentiser bruker
@@ -357,7 +382,7 @@ public class SecureDataAccessTool implements Tool {
 }
 ```
 
-#### 2. Ratebegrensning
+#### 2. Begrensning av Forespørselsfrekvens
 
 ```csharp
 // C# rate limiting implementation
@@ -435,23 +460,23 @@ public class RateLimitingMiddleware
 
 ## Beste Praksiser for Testing
 
-### 1. Enhetstesting av MCP-verktøy
+### 1. Enhetstesting av MCP-Verktøy
 
-Test alltid dine verktøy isolert, og bruk mock av eksterne avhengigheter:
+Test alltid dine verktøy i isolasjon, ved å mocke eksterne avhengigheter:
 
 ```typescript
-// TypeScript-eksempel på en enhetstest for et verktøy
+// TypeScript-eksempel på en enhetstest for verktøy
 describe('WeatherForecastTool', () => {
   let tool: WeatherForecastTool;
   let mockWeatherService: jest.Mocked<IWeatherService>;
   
   beforeEach(() => {
-    // Lag en mock vær-tjeneste
+    // Opprett en falsk vær-tjeneste
     mockWeatherService = {
       getForecasts: jest.fn()
     } as any;
     
-    // Lag verktøyet med mock-avhengigheten
+    // Opprett verktøyet med den falske avhengigheten
     tool = new WeatherForecastTool(mockWeatherService);
   });
   
@@ -495,7 +520,7 @@ describe('WeatherForecastTool', () => {
 
 ### 2. Integrasjonstesting
 
-Test hele flyten fra klientforespørsler til serverresponser:
+Test hele flyten fra klientforespørsler til serversvar:
 
 ```python
 # Python integrasjonstest eksempel
@@ -514,7 +539,7 @@ async def test_mcp_server_integration():
         tools = await client.discover_tools()
         assert "weatherForecast" in [t.name for t in tools]
         
-        # Test verktøyutførelse
+        # Test verktøykjøring
         response = await client.execute_tool("weatherForecast", {
             "location": "Seattle",
             "days": 3
@@ -534,7 +559,7 @@ async def test_mcp_server_integration():
 
 ### 1. Cache-strategier
 
-Implementer passende caching for å redusere ventetid og ressursbruk:
+Implementer passende caching for å redusere forsinkelse og ressursbruk:
 
 ```csharp
 // C# example with caching
@@ -605,7 +630,7 @@ public class CachedWeatherTool : ITool
 
 #### 2. Avhengighetsinjeksjon og Testbarhet
 
-Design verktøy for å motta sine avhengigheter via konstruktørinjeksjon, som gjør dem testbare og konfigurerbare:
+Design verktøy til å motta sine avhengigheter gjennom konstruktørinjeksjon, slik at de blir testbare og konfigurerbare:
 
 ```java
 // Java-eksempel med avhengighetsinjeksjon
@@ -614,7 +639,7 @@ public class CurrencyConversionTool implements Tool {
     private final CacheService cacheService;
     private final Logger logger;
     
-    // Avhengigheter injisert gjennom konstruktøren
+    // Avhengigheter injisert gjennom konstruktør
     public CurrencyConversionTool(
             ExchangeRateService exchangeService,
             CacheService cacheService,
@@ -634,7 +659,7 @@ public class CurrencyConversionTool implements Tool {
 Design verktøy som kan komponeres sammen for å lage mer komplekse arbeidsflyter:
 
 ```python
-# Python-eksempel som viser komponerbare verktøy
+# Python-eksempel som viser sammenstillbare verktøy
 class DataFetchTool(Tool):
     def get_name(self):
         return "dataFetch"
@@ -662,13 +687,13 @@ class DataVisualizationTool(Tool):
 # Disse verktøyene kan brukes uavhengig eller som en del av en arbeidsflyt
 ```
 
-### Beste Praksiser for Skjema-design
+### Skjema Design Beste Praksiser
 
-Skjemaet er kontrakten mellom modellen og ditt verktøy. Velutformede skjemaer fører til bedre brukervennlighet.
+Skjemaet er kontrakten mellom modellen og ditt verktøy. Godt designede skjemaer fører til bedre verktøybrukervennlighet.
 
-#### 1. Klare parameterbeskrivelser
+#### 1. Klare Parameterbeskrivelser
 
-Alltid inkluder beskrivende informasjon for hver parameter:
+Inkluder alltid beskrivende informasjon for hver parameter:
 
 ```csharp
 public object GetSchema()
@@ -707,7 +732,7 @@ public object GetSchema()
 
 #### 2. Valideringsbegrensninger
 
-Inkluder valideringsbegrensninger for å forhindre ugyldige innspill:
+Inkluder valideringsbegrensninger for å forhindre ugyldige input:
 
 ```java
 Map<String, Object> getSchema() {
@@ -729,7 +754,7 @@ Map<String, Object> getSchema() {
     age.put("maximum", 120);
     age.put("description", "User age in years");
     
-    // Enumerert egenskap
+    // Enumerert eiendom
     Map<String, Object> subscription = new HashMap<>();
     subscription.put("type", "string");
     subscription.put("enum", Arrays.asList("free", "basic", "premium"));
@@ -747,9 +772,9 @@ Map<String, Object> getSchema() {
 }
 ```
 
-#### 3. Konsistente returstrukturer
+#### 3. Konsistente Returstrukturer
 
-Oppretthold konsistens i responsstrukturene dine for å gjøre det enklere for modeller å tolke resultater:
+Oppretthold konsistens i dine responsstrukturer for å gjøre det enklere for modeller å tolke resultater:
 
 ```python
 async def execute_async(self, request):
@@ -757,7 +782,7 @@ async def execute_async(self, request):
         # Behandle forespørsel
         results = await self._search_database(request.parameters["query"])
         
-        # Returner alltid en konsekvent struktur
+        # Returner alltid en konsistent struktur
         return ToolResponse(
             result={
                 "matches": [self._format_item(item) for item in results],
@@ -790,9 +815,9 @@ def _format_item(self, item):
 
 ### Feilhåndtering
 
-Robust feilhåndtering er avgjørende for at MCP-verktøy skal opprettholde pålitelighet.
+Robust feilhåndtering er avgjørende for MCP-verktøy for å opprettholde pålitelighet.
 
-#### 1. Grasiøs feilhåndtering
+#### 1. Elegant Feilhåndtering
 
 Håndter feil på passende nivåer og gi informative meldinger:
 
@@ -836,9 +861,9 @@ public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
 }
 ```
 
-#### 2. Strukturerte feilsvar
+#### 2. Strukturerte Feilresponser
 
-Returner strukturert feilinformasjons hvor mulig:
+Returner strukturert feilinformasjon når mulig:
 
 ```java
 @Override
@@ -868,9 +893,15 @@ public ToolResponse execute(ToolRequest request) {
 }
 ```
 
-#### 3. Gjenforsøkslogikk
+#### 3. Retry-Logikk
 
-Implementer passende gjenforsøkslogikk for forbigående feil:
+Bruk generisk retry-logikk kun for lesebaserte kall eller operasjoner hvis
+nedstrøms kontrakt allerede er idempotent. For effektfulle operasjoner er en timeout
+etter å ha sendt forespørselen tvetydig. Forson autoritativ tilstand og
+gjenbruk samme stabile operasjonsnøkkel før du utfører igjen. Se
+[pålitelighets sidecar følgeleksjon](./reliability-sidecars/README.md).
+
+Følgende begrensede retry-løkke er egnet for et leseoppslag:
 
 ```python
 async def execute_async(self, request):
@@ -880,19 +911,19 @@ async def execute_async(self, request):
     
     while retry_count < max_retries:
         try:
-            # Kall ekstern API
-            return await self._call_api(request.parameters)
+            # Kall en ekstern API med lese-only tilgang
+            return await self._call_read_only_api(request.parameters)
         except TransientError as e:
             retry_count += 1
             if retry_count >= max_retries:
                 raise ToolExecutionException(f"Operation failed after {max_retries} attempts: {str(e)}")
                 
-            # Eksponentiell tilbakekobling
+            # Eksponensiell tilbakeoff
             delay = base_delay * (2 ** (retry_count - 1))
             logging.warning(f"Transient error, retrying in {delay}s: {str(e)}")
             await asyncio.sleep(delay)
         except Exception as e:
-            # Ikke-forbigående feil, prøv ikke på nytt
+            # Ikke-overgangsfeil, ikke prøv på nytt
             raise ToolExecutionException(f"Operation failed: {str(e)}")
 ```
 
@@ -900,7 +931,7 @@ async def execute_async(self, request):
 
 #### 1. Caching
 
-Implementer caching for dyre operasjoner:
+Implementer caching for kostbare operasjoner:
 
 ```csharp
 public class CachedDataTool : IMcpTool
@@ -946,7 +977,7 @@ public class CachedDataTool : IMcpTool
 }
 ```
 
-#### 2. Asynkron behandling
+#### 2. Asynkron Behandling
 
 Bruk asynkrone programmeringsmønstre for I/O-bundne operasjoner:
 
@@ -968,14 +999,14 @@ public class AsyncDocumentProcessingTool implements Tool {
                 // Utfør langvarig operasjon
                 documentService.processDocument(documentId);
                 
-                // Oppdater status (vil vanligvis lagres i en database)
+                // Oppdater status (ville vanligvis bli lagret i en database)
                 processStatusRepository.updateStatus(processId, "completed");
             } catch (Exception ex) {
                 processStatusRepository.updateStatus(processId, "failed", ex.getMessage());
             }
         }, executorService);
         
-        // Returner umiddelbar respons med prosess-ID
+        // Returner umiddelbart svar med behandlings-ID
         Map<String, Object> result = new HashMap<>();
         result.put("processId", processId);
         result.put("status", "processing");
@@ -984,7 +1015,7 @@ public class AsyncDocumentProcessingTool implements Tool {
         return new ToolResponse.Builder().setResult(result).build();
     }
     
-    // Følgesjekkverktøy for status
+    // Tilhørende verktøy for statuskontroll
     public class ProcessStatusTool implements Tool {
         @Override
         public ToolResponse execute(ToolRequest request) {
@@ -999,14 +1030,14 @@ public class AsyncDocumentProcessingTool implements Tool {
 
 #### 3. Ressursbegrensning
 
-Implementer ressursbegrensning for å hindre overbelastning:
+Implementer ressursbegrensning for å forhindre overbelastning:
 
 ```python
 class ThrottledApiTool(Tool):
     def __init__(self):
         self.rate_limiter = TokenBucketRateLimiter(
             tokens_per_second=5,  # Tillat 5 forespørsler per sekund
-            bucket_size=10        # Tillat spreng opptil 10 forespørsler
+            bucket_size=10        # Tillat opptil 10 forespørsler i raske sekvenser
         )
     
     async def execute_async(self, request):
@@ -1019,13 +1050,13 @@ class ThrottledApiTool(Tool):
                     f"Rate limit exceeded. Please try again in {delay:.1f} seconds."
                 )
             else:
-                # Vent i riktig tidsperiode
+                # Vent i passende tidsperiode
                 await asyncio.sleep(delay)
         
         # Forbruk en token og fortsett med forespørselen
         self.rate_limiter.consume()
         
-        # Ring API
+        # Kall API
         result = await self._call_api(request.parameters)
         return ToolResponse(result=result)
 
@@ -1063,9 +1094,9 @@ class TokenBucketRateLimiter:
 
 ### Sikkerhets Beste Praksiser
 
-#### 1. Inndata-validering
+#### 1. Inndata Validering
 
-Alltid valider inndataparametere grundig:
+Alltid valider inngangsparametere grundig:
 
 ```csharp
 public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
@@ -1113,7 +1144,7 @@ Implementer korrekte autorisasjonskontroller:
 ```java
 @Override
 public ToolResponse execute(ToolRequest request) {
-    // Hent brukerkontekst fra forespørsel
+    // Få brukerens kontekst fra forespørselen
     UserContext user = request.getContext().getUserContext();
     
     // Sjekk om brukeren har nødvendige tillatelser
@@ -1127,14 +1158,14 @@ public ToolResponse execute(ToolRequest request) {
         throw new ToolExecutionException("Access denied to the requested document");
     }
     
-    // Fortsett med verktøyutførelse
+    // Fortsett med verktøykjøring
     // ...
 }
 ```
 
-#### 3. Håndtering av sensitiv data
+#### 3. Håndtering av Sensitive Data
 
-Håndter sensitiv data forsiktig:
+Håndter sensitive data med forsiktighet:
 
 ```python
 class SecureDataTool(Tool):
@@ -1155,7 +1186,7 @@ class SecureDataTool(Tool):
         # Hent brukerdata
         user_data = await self.user_service.get_user_data(user_id)
         
-        # Filtrer sensitive felt med mindre det er eksplisitt forespurt OG godkjent
+        # Filtrer sensitive felt med mindre det eksplisitt er forespurt OG autorisert
         if not include_sensitive or not self._is_authorized_for_sensitive_data(request):
             user_data = self._redact_sensitive_fields(user_data)
         
@@ -1170,26 +1201,26 @@ class SecureDataTool(Tool):
         # Lag en kopi for å unngå å endre originalen
         redacted = user_data.copy()
         
-        # Sladd spesifikke sensitive felt
+        # Sensurer spesifikke sensitive felt
         sensitive_fields = ["ssn", "creditCardNumber", "password"]
         for field in sensitive_fields:
             if field in redacted:
                 redacted[field] = "REDACTED"
         
-        # Sladd nestede sensitive data
+        # Sensurer innhyllede sensitive data
         if "financialInfo" in redacted:
             redacted["financialInfo"] = {"available": True, "accessRestricted": True}
         
         return redacted
 ```
 
-## Beste Praksiser for Testing av MCP-verktøy
+## Test Beste Praksiser for MCP Verktøy
 
-Omfattende testing sikrer at MCP-verktøy fungerer korrekt, håndterer kanttilfeller, og integreres godt med resten av systemet.
+Omfattende testing sikrer at MCP-verktøy fungerer korrekt, håndterer spesialtilfeller og integreres riktig med resten av systemet.
 
 ### Enhetstesting
 
-#### 1. Test hvert verktøy isolert
+#### 1. Test Hvert Verktøy i Isolasjon
 
 Lag fokuserte tester for hver verktøys funksjonalitet:
 
@@ -1251,9 +1282,9 @@ public async Task WeatherTool_InvalidLocation_ThrowsToolExecutionException()
 }
 ```
 
-#### 2. Testing av skjema-validering
+#### 2. Skjemavalideringstesting
 
-Test at skjemaene er gyldige og riktig håndhever begrensninger:
+Test at skjemaer er gyldige og håndhever begrensninger korrekt:
 
 ```java
 @Test
@@ -1267,7 +1298,7 @@ public void testSchemaValidation() {
     // Konverter skjema til JSON for validering
     String schemaJson = objectMapper.writeValueAsString(schema);
     
-    // Valider at skjema er gyldig JSONSchema
+    // Valider at skjemaet er gyldig JSONSchema
     JsonSchemaFactory factory = JsonSchemaFactory.byDefault();
     JsonSchema jsonSchema = factory.getJsonSchema(schemaJson);
     
@@ -1298,7 +1329,7 @@ public void testSchemaValidation() {
 
 #### 3. Feilhåndteringstester
 
-Lag spesifikke tester for feilsituasjoner:
+Lag spesifikke tester for feiltilstander:
 
 ```python
 @pytest.mark.asyncio
@@ -1306,7 +1337,7 @@ async def test_api_tool_handles_timeout():
     # Ordne
     tool = ApiTool(timeout=0.1)  # Veldig kort tidsavbrudd
     
-    # Simuler en forespørsel som vil tidsavbrytes
+    # Simuler en forespørsel som vil gå ut på tid
     with aioresponses() as mocked:
         mocked.get(
             "https://api.example.com/data",
@@ -1318,11 +1349,11 @@ async def test_api_tool_handles_timeout():
             parameters={"url": "https://api.example.com/data"}
         )
         
-        # Utfør og påse
+        # Utfør og påstå
         with pytest.raises(ToolExecutionException) as exc_info:
             await tool.execute_async(request)
         
-        # Verifiser unntaksbeskjed
+        # Bekreft unntaksmelding
         assert "timed out" in str(exc_info.value).lower()
 
 @pytest.mark.asyncio
@@ -1330,7 +1361,7 @@ async def test_api_tool_handles_rate_limiting():
     # Ordne
     tool = ApiTool()
     
-    # Simuler et svar med hastighetsbegrensning
+    # Simuler et svar med begrenset hastighet
     with aioresponses() as mocked:
         mocked.get(
             "https://api.example.com/data",
@@ -1344,11 +1375,11 @@ async def test_api_tool_handles_rate_limiting():
             parameters={"url": "https://api.example.com/data"}
         )
         
-        # Utfør og påse
+        # Utfør og påstå
         with pytest.raises(ToolExecutionException) as exc_info:
             await tool.execute_async(request)
         
-        # Verifiser at unntaket inneholder informasjon om hastighetsbegrensning
+        # Bekreft at unntaket inneholder informasjon om hastighetsbegrensning
         error_msg = str(exc_info.value).lower()
         assert "rate limit" in error_msg
         assert "try again" in error_msg
@@ -1356,9 +1387,9 @@ async def test_api_tool_handles_rate_limiting():
 
 ### Integrasjonstesting
 
-#### 1. Testing av verktøykjeder
+#### 1. Verktøykjedetesting
 
-Test verktøy som samarbeider i forventede kombinasjoner:
+Test verktøy som fungerer sammen i forventede kombinasjoner:
 
 ```csharp
 [Fact]
@@ -1397,9 +1428,9 @@ public async Task DataProcessingWorkflow_CompletesSuccessfully()
 }
 ```
 
-#### 2. Testing av MCP-server
+#### 2. MCP Server Testing
 
-Test MCP-serveren med full registrering og utførelse av verktøy:
+Test MCP-serveren med full verktøyregistrering og kjøring:
 
 ```java
 @SpringBootTest
@@ -1425,7 +1456,7 @@ public class McpServerIntegrationTest {
     
     @Test
     public void testToolExecution() throws Exception {
-        // Opprett forespørsel om verktøy
+        // Opprett verktøyforespørsel
         Map<String, Object> request = new HashMap<>();
         request.put("toolName", "calculator");
         
@@ -1435,7 +1466,7 @@ public class McpServerIntegrationTest {
         parameters.put("b", 7);
         request.put("parameters", parameters);
         
-        // Send forespørsel og verifiser svar
+        // Send forespørsel og bekreft svar
         mockMvc.perform(post("/mcp/execute")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(request)))
@@ -1445,17 +1476,17 @@ public class McpServerIntegrationTest {
     
     @Test
     public void testToolValidation() throws Exception {
-        // Opprett ugyldig forespørsel om verktøy
+        // Opprett ugyldig verktøyforespørsel
         Map<String, Object> request = new HashMap<>();
         request.put("toolName", "calculator");
         
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("operation", "divide");
         parameters.put("a", 10);
-        // Mangler parameter "b"
+        // Manglende parameter "b"
         request.put("parameters", parameters);
         
-        // Send forespørsel og verifiser feilsvar
+        // Send forespørsel og bekreft feilsvar
         mockMvc.perform(post("/mcp/execute")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(request)))
@@ -1465,9 +1496,9 @@ public class McpServerIntegrationTest {
 }
 ```
 
-#### 3. Slutt-til-slutt Testing
+#### 3. End-to-End Testing
 
-Test hele arbeidsflyter fra modell-prompt til verktøykjøring:
+Test komplette arbeidsflyter fra modellprompt til verktøykjøring:
 
 ```python
 @pytest.mark.asyncio
@@ -1475,7 +1506,7 @@ async def test_model_interaction_with_tool():
     # Ordne - Sett opp MCP-klient og mock-modell
     mcp_client = McpClient(server_url="http://localhost:5000")
     
-    # Mock-modellresponser
+    # Mock modellresponser
     mock_model = MockLanguageModel([
         MockResponse(
             "What's the weather in Seattle?",
@@ -1490,7 +1521,7 @@ async def test_model_interaction_with_tool():
         )
     ])
     
-    # Mock-værverktøyrespons
+    # Mock værverktøyrespons
     with aioresponses() as mocked:
         mocked.post(
             "http://localhost:5000/mcp/execute",
@@ -1506,7 +1537,7 @@ async def test_model_interaction_with_tool():
             }
         )
         
-        # Handle
+        # Utfør
         response = await mcp_client.send_prompt(
             "What's the weather in Seattle?",
             model=mock_model,
@@ -1526,7 +1557,7 @@ async def test_model_interaction_with_tool():
 
 #### 1. Belastningstesting
 
-Test hvor mange samtidige forespørsler MCP-serveren din kan håndtere:
+Test hvor mange samtidige forespørsler din MCP-server kan håndtere:
 
 ```csharp
 [Fact]
@@ -1576,7 +1607,7 @@ public void testServerUnderStress() {
     // Konfigurer JMeter testplan
     HashTree testPlanTree = new HashTree();
     
-    // Opprett testplan, trådgruppe, samplere, osv.
+    // Lag testplan, trådgruppe, samplere, osv.
     TestPlan testPlan = new TestPlan("MCP Server Stress Test");
     testPlanTree.add(testPlan);
     
@@ -1588,7 +1619,7 @@ public void testServerUnderStress() {
     
     testPlanTree.add(threadGroup);
     
-    // Legg til HTTP sampler for verktøyutførelse
+    // Legg til HTTP-sampler for verktøykjøring
     HTTPSampler toolExecutionSampler = new HTTPSampler();
     toolExecutionSampler.setDomain("localhost");
     toolExecutionSampler.setPort(5000);
@@ -1610,18 +1641,18 @@ public void testServerUnderStress() {
     // Valider resultater
     assertEquals(0, summaryReport.getErrorCount());
     assertTrue(summaryReport.getAverage() < 200); // Gjennomsnittlig responstid < 200ms
-    assertTrue(summaryReport.getPercentile(90.0) < 500); // 90. prosentil < 500ms
+    assertTrue(summaryReport.getPercentile(90.0) < 500); // 90. persentil < 500ms
 }
 ```
 
-#### 3. Overvåking og profilering
+#### 3. Overvåking og Profilering
 
 Sett opp overvåking for langsiktig ytelsesanalyse:
 
 ```python
 # Konfigurer overvåking for en MCP-server
 def configure_monitoring(server):
-    # Sett opp Prometheus-metrikker
+    # Sett opp Prometheus-målinger
     prometheus_metrics = {
         "request_count": Counter("mcp_requests_total", "Total MCP requests"),
         "request_latency": Histogram(
@@ -1647,10 +1678,10 @@ def configure_monitoring(server):
         )
     }
     
-    # Legg til mellomvare for tidsmåling og registrering av metrikker
+    # Legg til mellomvare for timing og opptak av målinger
     server.add_middleware(PrometheusMiddleware(prometheus_metrics))
     
-    # Eksponer metrikker-endepunkt
+    # Eksponer målepunktsendepunktet
     @server.router.get("/metrics")
     async def metrics():
         return generate_latest()
@@ -1660,27 +1691,27 @@ def configure_monitoring(server):
 
 ## MCP Arbeidsflytdesignmønstre
 
-Velutformede MCP arbeidsflyter forbedrer effektivitet, pålitelighet og vedlikeholdbarhet. Her er nøkkelmønstre å følge:
+Godt designede MCP-arbeidsflyter forbedrer effektivitet, pålitelighet og vedlikeholdbarhet. Her er viktige mønstre å følge:
 
-### 1. Kjede av verktøy-mønster
+### 1. Kjede av Verktøy-mønsteret
 
-Koble flere verktøy i rekkefølge der hvert verktøys utdata blir inndata for neste:
+Koble flere verktøy i en sekvens der hver verktøys output blir input for neste:
 
 ```python
-# Python-kjede av verktøy-implementasjon
+# Implementasjon av Python Chain of Tools
 class ChainWorkflow:
     def __init__(self, tools_chain):
-        self.tools_chain = tools_chain  # Liste over verktøynavn som skal kjøres i rekkefølge
+        self.tools_chain = tools_chain  # Liste over verktøynavn som skal utføres i rekkefølge
     
     async def execute(self, mcp_client, initial_input):
         current_result = initial_input
         all_results = {"input": initial_input}
         
         for tool_name in self.tools_chain:
-            # Kjør hvert verktøy i kjeden, og send forrige resultat videre
+            # Utfør hvert verktøy i kjeden, og send forrige resultat videre
             response = await mcp_client.execute_tool(tool_name, current_result)
             
-            # Lagre resultat og bruk det som input for neste verktøy
+            # Lagre resultat og bruk som input for neste verktøy
             all_results[tool_name] = response.result
             current_result = response.result
         
@@ -1703,9 +1734,9 @@ result = await data_processing_chain.execute(
 )
 ```
 
-### 2. Dispatcher-mønster
+### 2. Dispatcher-mønsteret
 
-Bruk et sentralt verktøy som videresender til spesialiserte verktøy basert på inndata:
+Bruk et sentralt verktøy som sender videre til spesialiserte verktøy basert på input:
 
 ```csharp
 public class ContentDispatcherTool : IMcpTool
@@ -1785,7 +1816,7 @@ public class ContentDispatcherTool : IMcpTool
 }
 ```
 
-### 3. Parallell prosessering-mønster
+### 3. Parallell Behandlingsmønster
 
 Utfør flere verktøy samtidig for effektivitet:
 
@@ -1853,9 +1884,9 @@ public class ParallelDataProcessingWorkflow {
 }
 ```
 
-### 4. Feilgjenopprettings-mønster
+### 4. Feilgjenopprettingsmønster
 
-Implementer grasiøse fallback for verktøyfeil:
+Implementer elegante fallback-løsninger ved verktøyfeil:
 
 ```python
 class ResilientWorkflow:
@@ -1864,7 +1895,7 @@ class ResilientWorkflow:
     
     async def execute_with_fallback(self, primary_tool, fallback_tool, parameters):
         try:
-            # Prøv hovedverktøyet først
+            # Prøv primærverktøyet først
             response = await self.client.execute_tool(primary_tool, parameters)
             return {
                 "result": response.result,
@@ -1875,9 +1906,9 @@ class ResilientWorkflow:
             # Logg feilen
             logging.warning(f"Primary tool '{primary_tool}' failed: {str(e)}")
             
-            # Gå over til sekundært verktøy
+            # Gå over til sekundærverktøyet
             try:
-                # Det kan hende det er nødvendig å transformere parametere for tilbakefallsverktøyet
+                # Kan hende må parametere transformeres for tilbakefallsverktøyet
                 fallback_params = self._adapt_parameters(parameters, primary_tool, fallback_tool)
                 
                 response = await self.client.execute_tool(fallback_tool, fallback_params)
@@ -1897,19 +1928,19 @@ class ResilientWorkflow:
     def _adapt_parameters(self, params, from_tool, to_tool):
         """Adapt parameters between different tools if needed"""
         # Denne implementeringen vil avhenge av de spesifikke verktøyene
-        # For dette eksempelet returnerer vi bare de originale parameterne
+        # For dette eksempelet returnerer vi bare de opprinnelige parameterne
         return params
 
 # Eksempel på bruk
 async def get_weather(workflow, location):
     return await workflow.execute_with_fallback(
         "premiumWeatherService",  # Primær (betalt) vær-API
-        "basicWeatherService",    # Tilbakefalls- (gratis) vær-API
+        "basicWeatherService",    # Tilbakefall (gratis) vær-API
         {"location": location}
     )
 ```
 
-### 5. Komponerings-mønster for arbeidsflyt
+### 5. Arbeidsflytsammensetningsmønster
 
 Bygg komplekse arbeidsflyter ved å komponere enklere:
 
@@ -1958,37 +1989,37 @@ var result = await documentWorkflow.ExecuteAsync(new WorkflowContext {
 });
 ```
 
-# Testing av MCP-servere: Beste Praksiser og Topp Tips
+# Testing av MCP-servere: Beste praksiser og topp tips
 
 ## Oversikt
 
-Testing er et kritisk aspekt ved å utvikle pålitelige, høy-kvalitets MCP-servere. Denne guiden gir omfattende beste praksiser og tips for testing av dine MCP-servere gjennom hele utviklingslivssyklusen, fra enhetstester til integrasjonstester og ende-til-ende validering.
+Testing er en kritisk del av utviklingen av pålitelige, høy-kvalitets MCP-servere. Denne guiden gir omfattende beste praksiser og tips for testing av MCP-servere gjennom hele utviklingslivssyklusen, fra enhetstester til integrasjonstester og ende-til-ende-validering.
 
-## Hvorfor testing er viktig for MCP-servere
+## Hvorfor Testing Er Viktig for MCP-servere
 
-MCP-servere fungerer som avgjørende mellomvare mellom AI-modeller og klientapplikasjoner. Grundig testing sikrer:
+MCP-servere fungerer som kritisk middleware mellom AI-modeller og klientapplikasjoner. Grundig testing sikrer:
 
 - Pålitelighet i produksjonsmiljøer
-- Nøyaktig håndtering av forespørsler og svar
+- Korrekt håndtering av forespørsler og svar
 - Korrekt implementering av MCP-spesifikasjoner
-- Robusthet mot feil og kanttilfeller
+- Robusthet mot feil og spesialtilfeller
 - Konsistent ytelse under ulike belastninger
 
-## Enhetstesting av MCP-servere
+## Enhetstesting for MCP-servere
 
 ### Enhetstesting (Grunnlag)
 
-Enhetstester verifiserer individuelle komponenter i MCP-serveren isolert.
+Enhetstester verifiserer individuelle komponenter i din MCP-server isolert.
 
-#### Hva som skal testes
+#### Hva skal testes
 
-1. **Ressurshåndterere**: Test logikken i hver ressursbehandler uavhengig  
-2. **Verktøyimplementeringer**: Verifiser verktøyoppførsel med ulike inndata  
-3. **Prompt-maler**: Sørg for at prompt-maler rendres korrekt  
-4. **Skjema-validering**: Test parameter-valideringslogikk  
-5. **Feilhåndtering**: Verifiser feilsvar for ugyldige inndata
+1. **Ressurshåndterere**: Test hver ressurshåndterers logikk uavhengig
+2. **Verktøyimplementasjoner**: Verifiser verktøyets atferd med ulike inndata
+3. **Promptmaler**: Sørg for at promptmalene rendres korrekt
+4. **Skjema Validering**: Test parameter valideringslogikk
+5. **Feilhåndtering**: Verifiser feilrespons for ugyldige inndata
 
-#### Beste praksis for enhetstesting
+#### Beste praksiser for enhetstesting
 
 ```csharp
 // Example unit test for a calculator tool in C#
@@ -2032,19 +2063,19 @@ def test_calculator_tool_add():
     assert result["value"] == 12
 ```
 
-### Integrasjonstesting (Mellomlag)
+### Integrasjonstesting (Mellomnivå)
 
-Integrasjonstester verifiserer samhandling mellom komponenter i MCP-serveren.
+Integrasjonstester verifiserer samspill mellom komponenter i din MCP-server.
 
-#### Hva som skal testes
+#### Hva skal testes
 
-1. **Serverinitialisering**: Test serverstart med ulike konfigurasjoner  
-2. **Rute-registrering**: Verifiser at alle endepunkter er korrekt registrert  
-3. **Forespørselsbehandling**: Test hele forespørsels- og respons-syklusen  
-4. **Feilpropagering**: Sørg for korrekt håndtering av feil på tvers av komponenter  
-5. **Autentisering og autorisasjon**: Test sikkerhetsmekanismer
+1. **Serverinitialisering**: Test serveroppstart med ulike konfigurasjoner
+2. **Rute-registrering**: Verifiser at alle endepunkter er riktig registrert
+3. **Forespørselsbehandling**: Test hele forespørsel-svar syklusen
+4. **Feil-propagasjon**: Sørg for at feil håndteres korrekt på tvers av komponenter
+5. **Autentisering & Autorisasjon**: Test sikkerhetsmekanismer
 
-#### Beste praksis for integrasjonstesting
+#### Beste praksiser for integrasjonstesting
 
 ```csharp
 // Example integration test for MCP server in C#
@@ -2082,17 +2113,18 @@ public async Task Server_ProcessToolRequest_ReturnsValidResponse()
 
 ### Ende-til-ende Testing (Topplag)
 
-Ende-til-ende tester verifiserer komplett systemoppførsel fra klient til server.
+Ende-til-ende tester verifiserer fullstendig systematferd fra klient til server.
 
-#### Hva som skal testes
+#### Hva skal testes
 
-1. **Klient-server kommunikasjon**: Test komplette forespørsels- og svarsykluser  
-2. **Reelle klient-SDKer**: Test med faktiske klientimplementeringer  
-3. **Ytelse under belastning**: Verifiser oppførsel med flere samtidige forespørsler  
-4. **Feilgjenoppretting**: Test systemets gjenoppretting etter feil  
-5. **Langvarige operasjoner**: Verifiser håndtering av streaming og lange operasjoner
+1. **Klient-server kommunikasjon**: Test komplette forespørsel-svar sykluser
+2. **Reelle klient SDKer**: Test med faktiske klientimplementasjoner
+3. **Ytelse under belastning**: Verifiser oppførsel med flere samtidige forespørsler
+4. **Feilgjenoppretting**: Test systemets gjenoppretting fra feil
 
-#### Beste praksis for e2e testing
+5. **Langvarige operasjoner**: Verifiser håndtering av streaming og langvarige operasjoner
+
+#### Beste praksis for ende-til-ende-testing
 
 ```typescript
 // Eksempel på E2E-test med en klient i TypeScript
@@ -2117,7 +2149,7 @@ describe('MCP Server E2E Tests', () => {
       b: 4
     });
     
-    // Påse
+    // Bekreft
     expect(response.statusCode).toBe(200);
     expect(response.content[0].text).toContain('5');
   });
@@ -2126,16 +2158,16 @@ describe('MCP Server E2E Tests', () => {
 
 ## Mocking-strategier for MCP-testing
 
-Mocking er nødvendig for isolering av komponenter under testing.
+Mocking er essensielt for å isolere komponenter under testing.
 
 ### Komponenter å mocke
 
-1. **Eksterne AI-modeller**: Mock modellresponser for forutsigbar testing  
-2. **Eksterne tjenester**: Mock API-avhengigheter (databaser, tredjepartstjenester)  
-3. **Autentiseringstjenester**: Mock identitetsleverandører  
+1. **Eksterne AI-modeller**: Mock modellresponser for forutsigbar testing
+2. **Eksterne tjenester**: Mock API-avhengigheter (databaser, tredjepartstjenester)
+3. **Autentiseringstjenester**: Mock identitetsleverandører
 4. **Ressursleverandører**: Mock dyre ressursbehandlere
 
-### Eksempel: Mocking av AI-modellrespons
+### Eksempel: Mocking av en AI-modellrespons
 
 ```csharp
 // C# example with Moq
@@ -2162,9 +2194,9 @@ def test_with_mock_model(mock_model):
         "finish_reason": "completed"
     }
     
-    # Bruk mock i test
+    # Bruk mock i testen
     server = McpServer(model_client=mock_model)
-    # Fortsett med test
+    # Fortsett med testen
 ```
 
 ## Ytelsestesting
@@ -2173,17 +2205,17 @@ Ytelsestesting er avgjørende for produksjons-MCP-servere.
 
 ### Hva som skal måles
 
-1. **Forsinkelse**: Responstid for forespørsler  
-2. **Gjennomstrømning**: Forespørsler håndtert per sekund  
-3. **Ressursutnyttelse**: CPU, minne, nettverksbruk  
-4. **Samtidighethåndtering**: Oppførsel under parallelle forespørsler  
-5. **Skaleringskarakteristikker**: Ytelse når belastningen øker
+1. **Ventetid**: Responstid for forespørsler
+2. **Gjennomstrømning**: Forespørsler håndtert per sekund
+3. **Ressursbruk**: CPU, minne, nettverksbruk
+4. **Parallell håndtering**: Oppførsel under samtidige forespørsler
+5. **Skaleringskarakteristikker**: Ytelse ved økende belastning
 
 ### Verktøy for ytelsestesting
 
-- **k6**: Open-source belastningstestverktøy  
-- **JMeter**: Omfattende ytelsestesting  
-- **Locust**: Python-basert belastningstesting  
+- **k6**: Open source verktøy for belastningstesting
+- **JMeter**: Omfattende ytelsestesting
+- **Locust**: Python-basert belastningstesting
 - **Azure Load Testing**: Skybasert ytelsestesting
 
 ### Eksempel: Grunnleggende belastningstest med k6
@@ -2228,14 +2260,14 @@ export default function () {
 
 ## Testautomatisering for MCP-servere
 
-Automatisering av testene dine sikrer konsistent kvalitet og raskere tilbakemeldingssløyfer.
+Automatisering av testene dine sikrer konsekvent kvalitet og raskere tilbakemeldingssløyfer.
 
 ### CI/CD-integrasjon
 
-1. **Kjør enhetstester på pull requests**: Sørg for at kodeendringer ikke bryter eksisterende funksjonalitet
-2. **Integrasjonstester i staging**: Kjør integrasjonstester i pre-produksjonsmiljøer  
-3. **Ytelsesgrunnlag**: Oppretthold ytelsesbenchmark for å fange opp regresjoner  
-4. **Sikkerhetsskanninger**: Automatiser sikkerhetstesting som en del av pipeline  
+1. **Kjør enhetstester ved pull-forespørsler**: Sørg for at kodeendringer ikke bryter eksisterende funksjonalitet
+2. **Integrasjonstester i staging**: Kjør integrasjonstester i pre-produksjonsmiljøer
+3. **Ytelsesbaseliner**: Oppretthold ytelsesmål for å fange regresjoner
+4. **Sikkerhetsskanninger**: Automatiser sikkerhetstesting som en del av pipeline
 
 ### Eksempel på CI-pipeline (GitHub Actions)
 
@@ -2276,19 +2308,19 @@ jobs:
       run: dotnet run --project tests/PerformanceTests/PerformanceTests.csproj
 ```
 
-## Testing for Overholdelse av MCP-spesifikasjonen
+## Testing for samsvar med MCP-spesifikasjonen
 
 Verifiser at serveren din korrekt implementerer MCP-spesifikasjonen.
 
-### Viktige Overholdelsesområder
+### Viktige samsvarsområder
 
-1. **API-endepunkter**: Test nødvendige endepunkter (/resources, /tools, osv.)  
-2. **Forespørsel/svar-format**: Valider skjemaoverholdelse  
-3. **Feilkoder**: Verifiser riktige statuskoder for ulike scenarier  
-4. **Innholdstyper**: Test håndtering av forskjellige innholdstyper  
-5. **Autentiseringsflyt**: Verifiser spesifikasjonskompatible autentiseringsmekanismer  
+1. **API-endepunkter**: Test nødvendige endepunkter (/resources, /tools, osv.)
+2. **Forespørsel-/responsskjema**: Valider skjemaoverholdelse
+3. **Feilkoder**: Verifiser riktige statuskoder for ulike scenarioer
+4. **Innholdstyper**: Test håndtering av forskjellige innholdstyper
+5. **Autentiseringsflyt**: Verifiser spesifikasjonskompatible autentiseringsmekanismer
 
-### Overholdelsestestpakke
+### Samsvarstestsett
 
 ```csharp
 [Fact]
@@ -2317,60 +2349,62 @@ public async Task Server_ResourceEndpoint_ReturnsCorrectSchema()
 
 ## Topp 10 tips for effektiv MCP-servertesting
 
-1. **Test verktøydefinisjoner separat**: Verifiser skjemadefinisjoner uavhengig av verktøylogikk  
-2. **Bruk parameteriserte tester**: Test verktøy med ulike innganger, inkludert grenseverdier  
-3. **Sjekk feilsvar**: Verifiser riktig feilhåndtering for alle mulige feilsituasjoner  
-4. **Test autorisasjonslogikk**: Sørg for korrekt tilgangskontroll for ulike brukertyper  
-5. **Overvåk testdekning**: Sikt mot høy dekning av kritisk kode  
-6. **Test strømming av svar**: Verifiser korrekt håndtering av strømmende innhold  
-7. **Simuler nettverksproblemer**: Test oppførsel under dårlige nettverksforhold  
-8. **Test ressursgrenser**: Verifiser oppførsel ved kvoter eller hastighetsbegrensninger  
-9. **Automatiser regresjonstester**: Bygg en testpakke som kjører ved hver kodeendring  
-10. **Dokumenter testtilfeller**: Oppretthold klar dokumentasjon av testscenarier  
+1. **Test verktøydefinisjoner separat**: Verifiser skjema-definisjoner uavhengig av verktøylogikk
+2. **Bruk parameteriserte tester**: Test verktøy med ulike input, inkludert kanttilfeller
+3. **Sjekk feilsvar**: Verifiser korrekt feilhåndtering for alle mulige feilsituasjoner
+4. **Test autorisasjonslogikk**: Sørg for korrekt tilgangskontroll for forskjellige brukerroller
+5. **Overvåk testdekning**: Sikt mot høy dekning av kritisk kodevei
+6. **Test streaming-responser**: Verifiser korrekt håndtering av streaming-innhold
+7. **Simuler nettverksproblemer**: Test oppførsel under dårlige nettverksforhold
+8. **Test ressursgrenser**: Verifiser oppførsel ved kvoter eller hastighetsbegrensninger
+9. **Automatiser regresjonstester**: Bygg et testsett som kjører på hver kodeendring
+10. **Dokumenter testtilfeller**: Oppretthold tydelig dokumentasjon av testscenarier
 
-## Vanlige testfeller
+## Vanlige fallgruver i testing
 
-- **Overavhengighet av “happy path”-testing**: Sørg for grundig testing av feiltilfeller  
-- **Ignorere ytelsestesting**: Identifiser flaskehalser før de påvirker produksjon  
-- **Testing kun i isolasjon**: Kombiner enhetstester, integrasjonstester og ende-til-ende-tester  
-- **Ufullstendig API-dekning**: Sikre at alle endepunkter og funksjoner testes  
-- **Uensartede testmiljøer**: Bruk containere for konsistente testmiljøer  
+- **Overavhengighet på "happy path"-testing**: Sørg for å teste feilsituasjoner grundig
+- **Ignorering av ytelsestesting**: Identifiser flaskehalser før de påvirker produksjon
+- **Testing kun i isolasjon**: Kombiner enhetstester, integrasjonstester og end-to-end-tester
+- **Manglende API-dekning**: Sikre at alle endepunkter og funksjoner er testet
+- **Ulike testmiljøer**: Bruk containere for å sikre konsistente testmiljøer
 
 ## Konklusjon
 
-En omfattende teststrategi er essensiell for å utvikle pålitelige og høykvalitets MCP-servere. Ved å implementere beste praksis og tips beskrevet i denne guiden kan du sikre at MCP-implementasjonene dine møter de høyeste standardene for kvalitet, pålitelighet og ytelse.  
+En omfattende teststrategi er avgjørende for å utvikle pålitelige, høy-kvalitets MCP-servere. Ved å implementere beste praksis og tips skissert i denne guiden, kan du sikre at dine MCP-implementasjoner møter de høyeste standardene for kvalitet, pålitelighet og ytelse.
+
 
 ## Viktige punkter
 
-1. **Verktøydesign**: Følg prinsippet om ett ansvar, bruk dependency injection, og design for sammensetning  
-2. **Skjemadesign**: Lag klare, godt dokumenterte skjemaer med riktige valideringsbegrensninger  
-3. **Feilhåndtering**: Implementer elegant feilhåndtering, strukturert feilsvar og retry-logikk  
-4. **Ytelse**: Bruk caching, asynkron behandling og ressursbegrensninger  
-5. **Sikkerhet**: Anvend grundig inndata-validering, autorisasjonskontroller og håndtering av sensitiv data  
-6. **Testing**: Lag omfattende enhetstester, integrasjonstester og ende-til-ende-tester  
-7. **Arbeidsflytmønstre**: Bruk etablerte mønstre som kjeder, dispatcher og parallell prosessering  
+1. **Verktøydesign**: Følg prinsippet om enkeltansvar, bruk dependency injection og design for komponérbarhet
+2. **Skjemadesign**: Lag klare, godt dokumenterte skjemaer med riktige valideringsbegrensninger
+3. **Feilhåndtering**: Implementer grasiøs feilhåndtering, strukturerte feilresponser og utfallsbevisst retry-logikk
+4. **Ytelse**: Bruk caching, asynkron behandling og ressursbegrensning
+5. **Sikkerhet**: Anvend grundig validering av input, autorisasjonskontroller og håndtering av sensitiv data
+6. **Testing**: Lag omfattende enhetstester, integrasjonstester og ende-til-ende-tester
+7. **Workflow-mønstre**: Bruk etablerte mønstre som kjeder, dispachere og parallell behandling
 
-## Øvelse
 
-Design et MCP-verktøy og arbeidsflyt for et dokumentbehandlingssystem som:
 
-1. Aksepterer dokumenter i flere formater (PDF, DOCX, TXT)  
-2. Ekstraherer tekst og nøkkelinformasjon fra dokumentene  
-3. Klassifiserer dokumenter etter type og innhold  
-4. Genererer en oppsummering av hvert dokument  
 
-Implementer verktøyskjemaer, feilhåndtering og et arbeidsflytmønster som passer best til dette scenariet. Vurder hvordan du vil teste denne implementasjonen.  
 
-## Ressurser
 
-1. Bli med i MCP-fellesskapet på [Microsoft Foundry Discord Community](https://aka.ms/foundrydevs) for å holde deg oppdatert på de siste utviklingene  
-2. Bidra til open source [MCP-prosjekter](https://github.com/modelcontextprotocol)  
-3. Anvend MCP-prinsipper i din egen organisasjons AI-initiativ  
-4. Utforsk spesialiserte MCP-implementasjoner for din bransje.  
-5. Vurder å ta avanserte kurs om spesifikke MCP-emner, som multimodal integrasjon eller bedriftsapplikasjonsintegrasjon.  
-6. Eksperimenter med å bygge dine egne MCP-verktøy og arbeidsflyter ved hjelp av prinsippene lært gjennom [Hands on Lab](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)  
+2. Ekstraherer tekst og nøkkelinformasjon fra dokumentene
+3. Klassifiserer dokumenter etter type og innhold
+4. Genererer et sammendrag av hvert dokument
 
-## Hva Nå
+
+
+
+## Ressurser 
+
+1. Bli med i MCP-fellesskapet på [Microsoft Foundry Discord Community](https://aka.ms/foundrydevs) for å holde deg oppdatert på siste utvikling 
+2. Bidra til open source [MCP-prosjekter](https://github.com/modelcontextprotocol)
+3. Anvend MCP-prinsipper i dine egne organisasjons AI-initiativer
+4. Utforsk spesialiserte MCP-implementasjoner for din bransje. 
+5. Vurder å ta avanserte kurs i spesifikke MCP-temaer, som multimodal integrasjon eller enterprise applikasjonsintegrasjon.
+6. Eksperimenter med å bygge dine egne MCP-verktøy og workflows ved bruk av prinsippene lært gjennom [Hands on Lab](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)  
+
+## Hva nå
 
 Neste: [Case Studies](../09-CaseStudy/README.md)
 
