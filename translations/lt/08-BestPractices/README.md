@@ -1,36 +1,38 @@
-# MCP kūrimo geriausios praktikos
+# Geriausios MCP kūrimo praktikos
 
-[![MCP kūrimo geriausios praktikos](../../../translated_images/lt/09.d0f6d86c9d72134c.webp)](https://youtu.be/W56H9W7x-ao)
+[![Geriausios MCP kūrimo praktikos](../../../translated_images/lt/09.d0f6d86c9d72134c.webp)](https://youtu.be/W56H9W7x-ao)
 
-_(Spustelėkite aukščiau pateiktą paveikslėlį, kad peržiūrėtumėte šios pamokos vaizdo įrašą)_
+_(Spustelėkite aukščiau esantį paveikslėlį, kad peržiūrėtumėte šios pamokos vaizdo įrašą)_
 
 ## Apžvalga
 
-Ši pamoka skirta pažangioms geriausioms praktikoms, susijusioms su MCP serverių ir funkcijų kūrimu, testavimu ir diegimu gamybinėse aplinkose. Kadangi MCP ekosistemos vis sudėtingesnės ir svarbesnės, laikymasis nustatytų modelių užtikrina patikimumą, prižiūrimumą ir tarpusavio suderinamumą. Ši pamoka apima praktinę patirtį, sukauptą realiose MCP įdiegimuose, padedant jums kurti nepažeidžiamus, efektyvius serverius su veiksmingais ištekliais, užklausomis ir įrankiais.
+Ši pamoka skirta pažangioms geriausioms praktikoms kurti, testuoti ir diegti MCP serverius bei funkcijas gamybos aplinkose. Kadangi MCP ekosistemos tampa vis sudėtingesnės ir svarbesnės, vadovavimasis nustatytais šablonais užtikrina patikimumą, priežiūrą ir tarpusavio suderinamumą. Ši pamoka apibendrina praktinę patirtį, gautą iš realių MCP įgyvendinimų, kad padėtų jums kurti patikimus, efektyvius serverius su veiksmingais resursais, kvietimais ir įrankiais.
 
 ## Mokymosi tikslai
 
-Pamokos pabaigoje galėsite:
+Baigę šią pamoką galėsite:
 
 - Taikyti pramonės geriausias praktikas MCP serverių ir funkcijų kūrime
-- Kurti išsamias MCP serverių testavimo strategijas
-- Kurti efektyvius, pakartotinai naudojamus darbo srautų modelius sudėtingoms MCP programoms
-- Įgyvendinti tinkamą klaidų valdymą, registravimą ir observavimą MCP serveriuose
-- Optimizuoti MCP įgyvendinimus dėl našumo, saugumo ir prižiūrimumo
+- Kurti išsamią MCP serverių testavimo strategiją
+- Projektuoti efektyvius, pakartotinai naudojamus darbo eigų šablonus sudėtingoms MCP programoms
+- Įgyvendinti tinkamą klaidų valdymą, registravimą ir stebėjimą MCP serveriuose
+- Optimizuoti MCP įgyvendinimus našumui, saugumui ir priežiūrai
 
-## MCP pagrindinės principai
+## MCP pagrindiniai principai
 
-Prieš pasineriant į konkrečias įgyvendinimo praktikas, svarbu suprasti pagrindinius principus, kurie vadovauja veiksmingam MCP kūrimui:
+Prieš gilindamiesi į konkrečias įgyvendinimo praktikas, svarbu suprasti pagrindinius principus, kurie leidžia efektyviai kurti MCP:
 
-1. **Standartizuotas ryšys**: MCP naudoja JSON-RPC 2.0 kaip pagrindą, užtikrinant nuoseklią užklausų, atsakymų ir klaidų valdymo formą visuose įgyvendinimuose.
+1. **Standartizuotas bendravimas**: MCP pagrįstas JSON-RPC 2.0, užtikrinančiu nuoseklią formato struktūrą užklausoms, atsakymams ir klaidų valdymui visuose įgyvendinimuose.
 
-2. **Vartotojo poreikių prioritetas**: Visada teikite prioritetą vartotojo sutikimui, kontrolei ir skaidrumui savo MCP įgyvendinimuose.
+2. **Vartotojui orientuotas dizainas**: Visada pirmiausia dėmesį skirkite vartotojo sutikimui, kontrolei ir skaidrumui MCP įgyvendinimuose.
 
-3. **Saugumas pirmiausia**: Įgyvendinkite tvirtas saugumo priemones, įskaitant autentifikaciją, autorizavimą, patikrinimą ir ribojimą pagal dažnį.
+3. **Saugumas pirmiausia**: Įgyvendinkite tvirtas saugumo priemones, įskaitant autentifikaciją, autorizaciją, patvirtinimą bei užklausų dažnio ribojimą.
 
-4. **Modulinė architektūra**: Kurkite MCP serverius moduliariai, kur kiekvienas įrankis ir išteklius turi aiškią, tikslinę paskirtį.
+4. **Modulinė architektūra**: Projektuokite MCP serverius moduline struktūra, kur kiekvienas įrankis ir resursas turi aiškią, tikslinę paskirtį.
 
-5. **Būsena palaikantys ryšiai**: Pasinaudokite MCP gebėjimu palaikyti būseną per kelias užklausas, kad užtikrintumėte darnesnę ir kontekstu pagrįstą sąveiką.
+5. **Aiški būsena**: MCP `2026-07-28` protokolo sluoksnyje yra be valstybės
+   informacijos. Kai darbo eiga reikalauja tarpinių kvietimų būsenos, naudokite aiškius identifikatorius arba
+   įprastus įrankių argumentus, palaikomus patvarios programinės būsenos.
 
 ## Oficialios MCP geriausios praktikos
 
@@ -38,52 +40,76 @@ Toliau pateiktos geriausios praktikos yra iš oficialios Model Context Protocol 
 
 ### Saugumo geriausios praktikos
 
-1. **Vartotojo sutikimas ir kontrolė**: Visada reikalaukite aiškaus vartotojo sutikimo prieš prieigą prie duomenų ar operacijų vykdymą. Užtikrinkite aiškią kontrolę, kokie duomenys dalijami ir kokios veiksmai autorizuoti.
+1. **Vartotojo sutikimas ir kontrolė**: Visada reikalaukite aiškaus vartotojo sutikimo prieš prieigą prie duomenų ar atliekant veiksmus. Užtikrinkite aiškią kontrolę, kokie duomenys dalijami ir kokios veiksmai leidžiami.
 
-2. **Duomenų privatumas**: Rodomas tik aiškiai sutikti vartotojo duomenys ir apsaugokite juos tinkamais prieigos valdymo mechanizmais. Apsaugokite nuo nesankcionuoto duomenų perdavimo.
+2. **Duomenų privatumą**: Rodykite vartotojo duomenis tik gavus aiškų sutikimą ir apsaugokite juos tinkamomis prieigos kontrolėmis. Saugokite nuo nesankcionuoto duomenų perdavimo.
 
-3. **Įrankių sauga**: Prieš kviečiant bet kurį įrankį, visada reikalaukite aiškaus vartotojo sutikimo. Užtikrinkite, kad vartotojai suprastų kiekvieno įrankio funkcionalumą ir įgyvendinkite tvirtas saugumo ribas.
+3. **Įrankių saugumas**: Reikalaukite aiškaus vartotojo sutikimo prieš paleidžiant bet kurį įrankį. Užtikrinkite, kad vartotojai suprastų kiekvieno įrankio funkcionalumą ir taikykite tvirtas saugumo ribas.
 
-4. **Įrankių leidimų valdymas**: Konfigūruokite, kokius įrankius modelis gali naudoti sesijos metu, užtikrindami, kad galima pasiekti tik aiškiai autorizuotus įrankius.
+4. **Įrankių leidimų kontrolė**: Konfigūruokite, kuriuos įrankius modelis gali naudoti
+   kiekvienai užklausai ir autorizacijos kontekstui, užtikrindami, kad būtų pasiekiami tik aiškiai autorizuoti
+   įrankiai.
 
-5. **Autentifikacija**: Prieigai prie įrankių, išteklių ar jautrių operacijų reikalaukite tinkamos autentifikacijos naudojant API raktus, OAuth žetonus ar kitas saugias autentifikacijos priemones.
+5. **Autentifikacija**: Reikalaukite tinkamos autentifikacijos prieš leidžiant prieigą prie įrankių, resursų ar jautrių operacijų, naudojant API raktus, OAuth žetonus ar kitas saugias autentifikavimo priemones.
 
-6. **Parametro validacija**: Visiems įrankių iškvietimams taikykite validaciją, kad nebūtų perduota netinkama ar kenksminga informacija į įrankių įgyvendinimus.
+6. **Parametrų patvirtinimas**: Užtikrinkite visų įrankių kvietimų patvirtinimą, kad būtų išvengta klaidingų ar kenksmingų įvesties duomenų pateikimo į įrankių įgyvendinimą.
 
-7. **Dažnio ribojimas**: Įgyvendinkite dažnio ribojimą, kad apsaugotumėte nuo piktnaudžiavimo ir užtikrintumėte serverio išteklių sąžiningą naudojimą.
+7. **Užklausų dažnio ribojimas**: Įgyvendinkite užklausų dažnio ribojimą, kad būtų išvengta piktnaudžiavimo ir užtikrintas serverio resursų teisingas naudojimas.
 
 ### Įgyvendinimo geriausios praktikos
 
-1. **Galimybių derinimas**: Prijungiant mainykitės informacija apie palaikomas funkcijas, protokolo versijas, prieinamus įrankius ir išteklius.
+1. **Galimybių derybos**: Derėkitės dėl palaikomų protokolo versijų ir
+   galimybių. MCP `2026-07-28` kiekviena užklausa yra savarankiška ir gali
+   naudoti `server/discover`; senesnės versijos naudoja inicializacijos rankos paspaudimą.
 
-2. **Įrankių projektavimas**: Kurkite specializuotus įrankius, kurie atlieka vieną užduotį gerai vietoj monolitinių, kurie tvarko daug skirtingų aspektų.
 
-3. **Klaidų valdymas**: Įgyvendinkite standartizuotas klaidų žinutes ir kodus, padedančius diagnozuoti problemas, tvarkyti klaidas sklandžiai ir pateikti veiksmingą atsakymą.
+2. **Įrankių dizainas**: Kurkite orientuotus įrankius, kurie gerai atlieka vieną užduotį, o ne monolitinius įrankius, apimančius daugelį funkcijų.
 
-4. **Registravimas**: Nustatykite struktūrizuotą registravimą audito, derinimo ir protokolo sąveikų stebėsenai.
+3. **Klaidų tvarkymas**: Įgyvendinkite standartizuotas klaidų žinutes ir kodus, kurie padeda diagnozuoti problemas, tinkamai tvarkyti nesėkmes ir suteikti naudingą atsiliepimą.
 
-5. **Progreso sekimas**: Ilgai trunkančiose operacijose praneškite apie pažangą, kad būtų užtikrinta ypač jautri vartotojo sąsaja.
+4. **Stebėjimas**: Naudokite `stderr` stdio diagnostikai ir OpenTelemetry
+   struktūrizuotam stebėjimui. MCP žurnalo funkcija yra pasenusi
+   pagal `2026-07-28` specifikaciją.
 
-6. **Užklausos atšaukimas**: Leiskite klientams atšaukti užklausas, kurios nebereikalingos arba užtrunka per ilgai.
+5. **Progreso stebėjimas**: Ilgai trunkančioms operacijoms teikite progreso atnaujinimus, kad būtų užtikrinta reaguojanti vartotojo sąsaja.
+
+6. **Užklausos atšaukimas**: Leiskite klientams atšaukti vykdomas užklausas, kurios nebėra reikalingos arba užtrunka per ilgai.
 
 ## Papildomi šaltiniai
 
-Naujausią informaciją apie MCP geriausias praktikas rasite:
+Norėdami gauti naujausią informaciją apie MCP geriausias praktikas, žiūrėkite:
 
 - [MCP dokumentacija](https://modelcontextprotocol.io/)
-- [MCP specifikacija (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP specifikacija (2026-07-28)][mcp-2026-spec]
+- [Ankstesnė MCP specifikacija (2025-11-25)](https://modelcontextprotocol.io/specification/2025-11-25)
+- [MCP užduočių išplėtimas][mcp-tasks-extension]
 - [GitHub saugykla](https://github.com/modelcontextprotocol)
-- [Saugumo geriausios praktikos](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices)
-- [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Saugumo rizikos ir jų šalinimas
-- [MCP Saugumo viršūnių susitikimo dirbtuvės (Sherpa)](https://azure-samples.github.io/sherpa/) – praktinis saugumo mokymas
+- [Saugumo geriausios praktikos](https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/security_best_practices)
+- [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/) - Saugumo rizikos ir jų mažinimas
+- [MCP saugumo viršūnių dirbtuvės (Sherpa)](https://azure-samples.github.io/sherpa/) - Praktinis saugumo mokymas
+
+### Patikimumo lydimosios pamokos
+
+Bendri pakartotinių bandymų ciklai nėra saugūs įrankiams, kurie kuria bilietus, mokėjimus,
+žinutes, diegimus ar kitus realaus pasaulio veiksmus. Atsakas gali būti pamestas
+po to, kai poveikis jau įvykdytas.
+
+Naudokite patikimumo lydimosios pamoką,
+[Saugūs pakartotiniai bandymai MCP įrankiams: patikimumo šoninio automobilio šablonas][reliability-sidecar],
+kad sužinotumėte apie stabilumo veikimo klavišus, dubliuotą admisiją, kontrolinius taškus,
+sinchronizavimą, įrodymų lygius ir gedimų įpurškimą.
+
+[mcp-2026-spec]: https://modelcontextprotocol.io/specification/2026-07-28
+[mcp-tasks-extension]: https://modelcontextprotocol.io/extensions/tasks/overview
+[reliability-sidecar]: ./reliability-sidecars/README.md
 
 ## Praktiniai įgyvendinimo pavyzdžiai
 
-### Įrankių projektavimo geriausios praktikos
+### Įrankių dizaino gerosios praktikos
 
-#### 1. Vieno atsakomybės principas
+#### 1. Vienos atsakomybės principas
 
-Kiekvienas MCP įrankis turi turėti aiškią, specializuotą paskirtį. Vietoje monolitinių įrankių, kurie bando spręsti daug skirtingų klausimų, kurkite specializuotus įrankius, kurie puikiai atlieka konkrečias užduotis.
+Kiekvienas MCP įrankis turėtų turėti aiškų, konkrečią paskirtį. Vietoje monolitinių įrankių, kurie bando spręsti kelias problemas, kurkite specializuotus įrankius, kurie puikiai atlieka tam tikras užduotis.
 
 ```csharp
 // A focused tool that does one thing well
@@ -143,12 +169,12 @@ public class WeatherForecastTool : ITool
 }
 ```
 
-#### 2. Nuoseklus klaidų valdymas
+#### 2. Nuoseklus klaidų tvarkymas
 
-Įgyvendinkite tvirtą klaidų valdymą su informatyviomis klaidų žinutėmis ir tinkamomis atkūrimo priemonėmis.
+Įgyvendinkite patikimą klaidų tvarkymą su informatyviomis klaidų žinutėmis ir tinkamais atkūrimo mechanizmais.
 
 ```python
-# Python pavyzdys su išsamiu klaidų valdymu
+# Python pavyzdys su išsamia klaidų tvarka
 class DataQueryTool:
     def get_name(self):
         return "dataQuery"
@@ -164,7 +190,7 @@ class DataQueryTool:
                 
             query = parameters["query"]
             
-            # Saugumo tikrinimas
+            # Saugumo patikra
             if self._contains_unsafe_sql(query):
                 raise ToolSecurityError("Query contains potentially unsafe SQL")
             
@@ -183,33 +209,33 @@ class DataQueryTool:
                 self._log_error("Database connection error", e)
                 raise ToolExecutionError(f"Database connection error: {str(e)}")
             except DatabaseQueryError as e:
-                # Užklausos klaidos tikėtina yra kliento klaidos
+                # Užklausų klaidos greičiausiai yra kliento klaidos
                 self._log_error("Database query error", e)
                 raise ToolExecutionError(f"Invalid query: {str(e)}")
                 
         except ToolError:
-            # Leisti įrankiui specifines klaidas praeiti
+            # Leisti specifinėms įrankių klaidoms prasiskverbti
             raise
         except Exception as e:
-            # Bendras fiksavimas netikėtoms klaidoms
+            # Visų netikėtų klaidų sugavimas
             self._log_error("Unexpected error in DataQueryTool", e)
             raise ToolExecutionError(f"An unexpected error occurred: {str(e)}")
     
     def _contains_unsafe_sql(self, query):
-        # SQL injekcijos nustatymo įgyvendinimas
+        # SQL injekcijos aptikimo įgyvendinimas
         pass
         
     def _log_error(self, message, error):
-        # Klaidos žurnalo įgyvendinimas
+        # Klaidos registravimo įgyvendinimas
         pass
 ```
 
-#### 3. Parametrų validacija
+#### 3. Parametrų tikrinimas
 
-Visada kruopščiai validuokite parametrus, kad būtų išvengta netinkamos ar kenksmingos įvesties.
+Visada kruopščiai tikrinkite parametrus, kad išvengtumėte klaidingo arba kenksmingo įvesties.
 
 ```javascript
-// JavaScript/TypeScript pavyzdys su detalia valida parametrų tikrinimu
+// JavaScript/TypeScript pavyzdys su detalizuotu parametrų tikrinimu
 class FileOperationTool {
   getName() {
     return "fileOperation";
@@ -273,7 +299,7 @@ class FileOperationTool {
       throw new ToolError("Content parameter is required for write operation");
     }
     
-    // 5. Kelio saugumo patikra
+    // 5. Kelio saugumo tikrinimas
     if (!this.isPathWithinAllowedDirectories(parameters.path)) {
       throw new ToolError("Access denied: path is outside of allowed directories");
     }
@@ -283,7 +309,7 @@ class FileOperationTool {
   }
   
   isPathWithinAllowedDirectories(path) {
-    // Kelio saugumo patikros įgyvendinimas
+    // Kelio saugumo tikrinimo įgyvendinimas
     // ...
   }
 }
@@ -291,10 +317,10 @@ class FileOperationTool {
 
 ### Saugumo įgyvendinimo pavyzdžiai
 
-#### 1. Autentifikacija ir autorizavimas
+#### 1. Autentifikavimas ir autorizavimas
 
 ```java
-// Java pavyzdys su autentifikavimu ir autorizacija
+// Java pavyzdys su autentifikacija ir autorizacija
 public class SecureDataAccessTool implements Tool {
     private final AuthenticationService authService;
     private final AuthorizationService authzService;
@@ -317,7 +343,7 @@ public class SecureDataAccessTool implements Tool {
     
     @Override
     public ToolResponse execute(ToolRequest request) {
-        // 1. Ištraukti autentifikavimo kontekstą
+        // 1. Ištraukti autentifikacijos kontekstą
         String authToken = request.getContext().getAuthToken();
         
         // 2. Autentifikuoti vartotoją
@@ -337,7 +363,7 @@ public class SecureDataAccessTool implements Tool {
             return ToolResponse.error("Access denied: Insufficient permissions for this operation");
         }
         
-        // 4. Vykdyti autorizuotą operaciją
+        // 4. Vykdyti įgaliotą operaciją
         try {
             switch (operation) {
                 case "read":
@@ -357,7 +383,7 @@ public class SecureDataAccessTool implements Tool {
 }
 ```
 
-#### 2. Dažnio ribojimas
+#### 2. Užklausų ribojimas
 
 ```csharp
 // C# rate limiting implementation
@@ -433,25 +459,25 @@ public class RateLimitingMiddleware
 }
 ```
 
-## Testavimo geriausios praktikos
+## Testavimo gerosios praktikos
 
 ### 1. Vienetinis MCP įrankių testavimas
 
-Visada testuokite įrankius izoliuotai, naudodami imitacijas išorinėms priklausomybėms:
+Visada testuokite savo įrankius izoliuotai, imituodami išorines priklausomybes:
 
 ```typescript
-// TypeScript įrankio vieneto testavimo pavyzdys
+// TypeScript pavyzdys įrankio vienetiniam testui
 describe('WeatherForecastTool', () => {
   let tool: WeatherForecastTool;
   let mockWeatherService: jest.Mocked<IWeatherService>;
   
   beforeEach(() => {
-    // Sukurti melagingą oro sąlygų paslaugą
+    // Sukurti imituotą orų paslaugą
     mockWeatherService = {
       getForecasts: jest.fn()
     } as any;
     
-    // Sukurti įrankį su melagingu priklausomybės objektu
+    // Sukurti įrankį su imituota priklausomybe
     tool = new WeatherForecastTool(mockWeatherService);
   });
   
@@ -474,7 +500,7 @@ describe('WeatherForecastTool', () => {
       days: 3
     });
     
-    // Patvirtinti
+    // Patikrinti
     expect(mockWeatherService.getForecasts).toHaveBeenCalledWith('Seattle', 3);
     expect(response.content[0].text).toContain('Seattle');
     expect(response.content[0].text).toContain('Sunny');
@@ -484,7 +510,7 @@ describe('WeatherForecastTool', () => {
     // Paruošti
     mockWeatherService.getForecasts.mockRejectedValue(new Error('Service unavailable'));
     
-    // Veikti ir patvirtinti
+    // Veikti ir patikrinti
     await expect(tool.execute({
       location: 'Seattle',
       days: 3
@@ -495,13 +521,13 @@ describe('WeatherForecastTool', () => {
 
 ### 2. Integracinis testavimas
 
-Testuokite pilna srautą nuo kliento užklausų iki serverio atsakymų:
+Testuokite visą srautą nuo kliento užklausų iki serverio atsakymų:
 
 ```python
-# Python integracijos testų pavyzdys
+# Python integracinio testo pavyzdys
 @pytest.mark.asyncio
 async def test_mcp_server_integration():
-    # Paleisti testų serverį
+    # Paleisti testinį serverį
     server = McpServer()
     server.register_tool(WeatherForecastTool(MockWeatherService()))
     await server.start(port=5000)
@@ -510,7 +536,7 @@ async def test_mcp_server_integration():
         # Sukurti klientą
         client = McpClient("http://localhost:5000")
         
-        # Išbandyti įrankio radimą
+        # Išbandyti įrankio aptikimą
         tools = await client.discover_tools()
         assert "weatherForecast" in [t.name for t in tools]
         
@@ -526,15 +552,17 @@ async def test_mcp_server_integration():
         assert len(json.loads(response.content[0].text)["forecasts"]) == 3
         
     finally:
-        # Sutvarkyti po testų
+        # Sutvarkyti išteklius
         await server.stop()
 ```
 
-## Našumo optimizavimas
+## Veikimo optimizavimas
 
-### 1. Talpyklos (caching) strategijos
 
-Įgyvendinkite tinkamą talpyklos naudojimą, kad sumažintumėte delsą ir išteklių sąnaudas:
+### 1. Talpinimo strategijos
+
+Įgyvendinkite tinkamą talpinimą, kad sumažintumėte vėlinimą ir resursų naudojimą:
+
 
 ```csharp
 // C# example with caching
@@ -603,9 +631,9 @@ public class CachedWeatherTool : ITool
 }
 ```
 
-#### 2. Priklausomybių injekcija ir testavimas
+#### 2. Priklausomybių įpurškimas ir testavimas
 
-Kurti įrankius, kurie gauna priklausomybes per konstruktorių, kad būtų testuojami ir konfigūruojami:
+Kurkite įrankius taip, kad jų priklausomybės būtų perduodamos per konstruktorių, padarant juos testuojamus ir konfigūruojamus:
 
 ```java
 // Java pavyzdys su priklausomybių injekcija
@@ -614,7 +642,7 @@ public class CurrencyConversionTool implements Tool {
     private final CacheService cacheService;
     private final Logger logger;
     
-    // Priklausomybės įšvirkščiuojamos per konstruktorių
+    // Priklausomybės įšvirkščiuotos per konstruktorių
     public CurrencyConversionTool(
             ExchangeRateService exchangeService,
             CacheService cacheService,
@@ -629,12 +657,12 @@ public class CurrencyConversionTool implements Tool {
 }
 ```
 
-#### 3. Komponuojami įrankiai
+#### 3. Suderinami įrankiai
 
-Projektuokite įrankius taip, kad juos būtų galima komponuoti kartu, kuriant sudėtingesnius darbo srautus:
+Kurkite įrankius, kurie gali būti sujungti kartu, kad būtų galima sukurti sudėtingesnius darbo srautus:
 
 ```python
-# Python pavyzdys, rodantis sudedamus įrankius
+# Python pavyzdys, rodantis suderinamus įrankius
 class DataFetchTool(Tool):
     def get_name(self):
         return "dataFetch"
@@ -645,7 +673,7 @@ class DataAnalysisTool(Tool):
     def get_name(self):
         return "dataAnalysis"
     
-    # Šis įrankis gali naudoti dataFetch įrankio rezultatus
+    # Šis įrankis gali naudoti rezultatus iš dataFetch įrankio
     async def execute_async(self, request):
         # Įgyvendinimas...
         pass
@@ -654,7 +682,7 @@ class DataVisualizationTool(Tool):
     def get_name(self):
         return "dataVisualize"
     
-    # Šis įrankis gali naudoti dataAnalysis įrankio rezultatus
+    # Šis įrankis gali naudoti rezultatus iš dataAnalysis įrankio
     async def execute_async(self, request):
         # Įgyvendinimas...
         pass
@@ -662,9 +690,9 @@ class DataVisualizationTool(Tool):
 # Šie įrankiai gali būti naudojami nepriklausomai arba kaip darbo eigos dalis
 ```
 
-### Schemos projektavimo geriausios praktikos
+### Šemų kūrimo geriausios praktikos
 
-Schema yra sutartis tarp modelio ir jūsų įrankio. Gerai suprojektuotos schemos pagerina įrankio naudojimo patogumą.
+Šema yra sutartis tarp modelio ir jūsų įrankio. Gerai suprojektuotos šemos užtikrina geresnį įrankio naudojimo patogumą.
 
 #### 1. Aiškūs parametrų aprašymai
 
@@ -707,7 +735,7 @@ public object GetSchema()
 
 #### 2. Validacijos apribojimai
 
-Įtraukite validacijos apribojimus, kad būtų išvengta neteisingos įvesties:
+Įtraukite validacijos apribojimus, kad būtų užkirstas kelias netinkamoms įvestims:
 
 ```java
 Map<String, Object> getSchema() {
@@ -747,9 +775,9 @@ Map<String, Object> getSchema() {
 }
 ```
 
-#### 3. Nuoseklios grąžinimo struktūros
+#### 3. Nuoseklios atsakymų struktūros
 
-Išlaikykite nuoseklumą atsakymų struktūrose, kad modeliams būtų lengviau interpretuoti rezultatus:
+Išlaikykite atsakymų struktūrų nuoseklumą, kad modeliams būtų lengviau interpretuoti rezultatus:
 
 ```python
 async def execute_async(self, request):
@@ -788,13 +816,13 @@ def _format_item(self, item):
     }
 ```
 
-### Klaidų valdymas
+### Klaidų tvarkymas
 
-Tvirtas klaidų valdymas yra kritiškai svarbus MCP įrankiams patikimumo palaikymui.
+Patikimas klaidų tvarkymas yra labai svarbus MCP įrankiams, kad būtų užtikrintas patikimumas.
 
-#### 1. Sklandus klaidų tvarkymas
+#### 1. Malonus klaidų tvarkymas
 
-Tvarkykite klaidas tinkamu lygiu ir pateikite informatyvias žinutes:
+Tvarkykite klaidas tinkamuose lygiuose ir pateikite informatyvias žinutes:
 
 ```csharp
 public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
@@ -836,9 +864,9 @@ public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
 }
 ```
 
-#### 2. Struktūrizuoti klaidų atsakymai
+#### 2. Struktūruoti klaidų atsakymai
 
-Kiek įmanoma, grąžinkite struktūrizuotą klaidų informaciją:
+Kai įmanoma, grąžinkite struktūruotą klaidų informaciją:
 
 ```java
 @Override
@@ -862,15 +890,21 @@ public ToolResponse execute(ToolRequest request) {
                 .build();
         }
         
-        // Perkrauti kitas išimtis kaip ToolExecutionException
+        // Perkraukite kitas išimtis kaip ToolExecutionException
         throw new ToolExecutionException("Tool execution failed: " + ex.getMessage(), ex);
     }
 }
 ```
 
-#### 3. Pakartotinių bandymų logika
+#### 3. Perbandymo logika
 
-Įgyvendinkite tinkamą pakartotinių bandymų logiką laikiniems gedimams:
+Naudokite bendrą perbandymo logiką tik skaitymo režimo skambučiams ar operacijoms, kurių
+sekančioji sutartis jau yra idempotentinė. Efektyvioms operacijoms po užklausos siuntimo
+nustatytas laikmatis yra neaiškus. Suderinkite autoritetingą būseną ir
+pakartotinai naudokite tą patį stabilų operacijos raktą prieš vėl vykdydami. Žr.
+[patikimumo šoninio modulio pamoką](./reliability-sidecars/README.md).
+
+Šis ribotas perbandymo ciklas tinka skaitymo režimo paieškai:
 
 ```python
 async def execute_async(self, request):
@@ -880,27 +914,27 @@ async def execute_async(self, request):
     
     while retry_count < max_retries:
         try:
-            # Skambinti išoriniam API
-            return await self._call_api(request.parameters)
+            # Iškvieskite tik skaitymui skirtą išorinį API
+            return await self._call_read_only_api(request.parameters)
         except TransientError as e:
             retry_count += 1
             if retry_count >= max_retries:
                 raise ToolExecutionException(f"Operation failed after {max_retries} attempts: {str(e)}")
                 
-            # Eksponentinis atidėjimas
+            # Eksponentinis atsitraukimas
             delay = base_delay * (2 ** (retry_count - 1))
             logging.warning(f"Transient error, retrying in {delay}s: {str(e)}")
             await asyncio.sleep(delay)
         except Exception as e:
-            # Netemporinė klaida, bandyti iš naujo nereikia
+            # Netvarioji klaida, nebandykite dar kartą
             raise ToolExecutionException(f"Operation failed: {str(e)}")
 ```
 
-### Našumo optimizavimas
+### Veikimo optimizavimas
 
-#### 1. Talpyklos naudojimas
+#### 1. Talpyklavimas
 
-Įgyvendinkite talpyklą reikalaujančioms daugybę resursų operacijoms:
+Įgyvendinkite talpyklavimą brangioms operacijoms:
 
 ```csharp
 public class CachedDataTool : IMcpTool
@@ -948,7 +982,7 @@ public class CachedDataTool : IMcpTool
 
 #### 2. Asinchroninis apdorojimas
 
-Naudokite asinchroninius programavimo modelius I/O pagrįstoms operacijoms:
+Naudokite asinchroninius programavimo modelius I/O ribojamoms operacijoms:
 
 ```java
 public class AsyncDocumentProcessingTool implements Tool {
@@ -959,23 +993,23 @@ public class AsyncDocumentProcessingTool implements Tool {
     public ToolResponse execute(ToolRequest request) {
         String documentId = request.getParameters().get("documentId").asText();
         
-        // Ilgai trunkančioms operacijoms iškart grąžinkite apdorojimo ID
+        // Ilgai trunkančioms operacijoms grąžinkite apdorojimo ID iškart
         String processId = UUID.randomUUID().toString();
         
-        // Pradėti asinchroninį apdorojimą
+        // Pradėkite asinchroninį apdorojimą
         CompletableFuture.runAsync(() -> {
             try {
-                // Atlikti ilgai trunkančią operaciją
+                // Vykdykite ilgai trunkančią operaciją
                 documentService.processDocument(documentId);
                 
-                // Atnaujinti būseną (dažniausiai saugoma duomenų bazėje)
+                // Atnaujinkite būseną (dažniausiai saugoma duomenų bazėje)
                 processStatusRepository.updateStatus(processId, "completed");
             } catch (Exception ex) {
                 processStatusRepository.updateStatus(processId, "failed", ex.getMessage());
             }
         }, executorService);
         
-        // Grąžinti tiesioginį atsakymą su procesų ID
+        // Grąžinkite momentinį atsakymą su proceso ID
         Map<String, Object> result = new HashMap<>();
         result.put("processId", processId);
         result.put("status", "processing");
@@ -984,7 +1018,7 @@ public class AsyncDocumentProcessingTool implements Tool {
         return new ToolResponse.Builder().setResult(result).build();
     }
     
-    // Papildomas būsenos tikrinimo įrankis
+    // Pagalbinė būsenos tikrinimo priemonė
     public class ProcessStatusTool implements Tool {
         @Override
         public ToolResponse execute(ToolRequest request) {
@@ -997,35 +1031,35 @@ public class AsyncDocumentProcessingTool implements Tool {
 }
 ```
 
-#### 3. Išteklių ribojimas
+#### 3. Resursų apribojimas
 
-Įgyvendinkite išteklių ribojimą, kad išvengtumėte apkrovos:
+Įgyvendinkite resursų apribojimus, kad išvengtumėte perkrovos:
 
 ```python
 class ThrottledApiTool(Tool):
     def __init__(self):
         self.rate_limiter = TokenBucketRateLimiter(
-            tokens_per_second=5,  # Leidžiama 5 užklausos per sekundę
-            bucket_size=10        # Leidžiama pikai iki 10 užklausų
+            tokens_per_second=5,  # Leisti 5 užklausas per sekundę
+            bucket_size=10        # Leisti sprogimą iki 10 užklausų
         )
     
     async def execute_async(self, request):
-        # Patikrinkite, ar galime tęsti, ar reikia laukti
+        # Patikrinti, ar galime tęsti, ar reikia palaukti
         delay = self.rate_limiter.get_delay_time()
         
         if delay > 0:
-            if delay > 2.0:  # Jei laukti per ilgai
+            if delay > 2.0:  # Jei laukimas per ilgas
                 raise ToolExecutionException(
                     f"Rate limit exceeded. Please try again in {delay:.1f} seconds."
                 )
             else:
-                # Palaukite tinkamą vėlavimo laiką
+                # Palaukti reikiamą delsos laiką
                 await asyncio.sleep(delay)
         
-        # Suvartokite žetoną ir tęskite užklausą
+        # Panaudoti žetoną ir tęsti užklausą
         self.rate_limiter.consume()
         
-        # Iškvieskite API
+        # Iškvieti API
         result = await self._call_api(request.parameters)
         return ToolResponse(result=result)
 
@@ -1043,7 +1077,7 @@ class TokenBucketRateLimiter:
             if self.tokens >= 1:
                 return 0
             
-            # Apskaičiuokite laiką iki kito žetono prieinamumo
+            # Apskaičiuoti laiką iki kito žetono prieinamumo
             return (1 - self.tokens) / self.tokens_per_second
     
     async def consume(self):
@@ -1055,7 +1089,7 @@ class TokenBucketRateLimiter:
         now = time.time()
         elapsed = now - self.last_refill
         
-        # Pridėkite naujus žetonus pagal praėjusį laiką
+        # Pridėti naujus žetonus pagal praėjusį laiką
         new_tokens = elapsed * self.tokens_per_second
         self.tokens = min(self.bucket_size, self.tokens + new_tokens)
         self.last_refill = now
@@ -1065,7 +1099,7 @@ class TokenBucketRateLimiter:
 
 #### 1. Įvesties validacija
 
-Visada kruopščiai validuokite įvesties parametrus:
+Visada kruopščiai tikrinkite įvesties parametrus:
 
 ```csharp
 public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
@@ -1121,7 +1155,7 @@ public ToolResponse execute(ToolRequest request) {
         throw new ToolExecutionException("User does not have permission to access documents");
     }
     
-    // Konkretiems ištekliams patikrinti prieigą prie to ištekliaus
+    // Tikrinti prieigą prie konkrečių išteklių
     String documentId = request.getParameters().get("documentId").asText();
     if (!documentService.canUserAccess(user.getId(), documentId)) {
         throw new ToolExecutionException("Access denied to the requested document");
@@ -1134,7 +1168,7 @@ public ToolResponse execute(ToolRequest request) {
 
 #### 3. Jautrių duomenų tvarkymas
 
-Tvarkykite jautrius duomenis atsargiai:
+Kruopščiai tvarkykite jautrius duomenis:
 
 ```python
 class SecureDataTool(Tool):
@@ -1152,46 +1186,46 @@ class SecureDataTool(Tool):
         user_id = request.parameters["userId"]
         include_sensitive = request.parameters.get("includeSensitiveData", False)
         
-        # Gauti vartotojo duomenis
+        # Gauti naudotojo duomenis
         user_data = await self.user_service.get_user_data(user_id)
         
-        # Filtruoti jautrius laukus, nebent tai būtų aiškiai prašoma IR autorizuota
+        # Filtruoti jautrius laukus, jei nėra aiškiai prašoma IR leidžiama
         if not include_sensitive or not self._is_authorized_for_sensitive_data(request):
             user_data = self._redact_sensitive_fields(user_data)
         
         return ToolResponse(result=user_data)
     
     def _is_authorized_for_sensitive_data(self, request):
-        # Patikrinti autorizacijos lygį užklausos kontekste
+        # Patikrinti autorizacijos lygį užklausoje
         auth_level = request.context.get("authorizationLevel")
         return auth_level == "admin"
     
     def _redact_sensitive_fields(self, user_data):
-        # Sukurti kopiją, kad nebūtų keičiama originali versija
+        # Sukurti kopiją, kad nebūtų modifikuojamas originalas
         redacted = user_data.copy()
         
-        # Užtušuoti konkrečius jautrius laukus
+        # Uždrausti konkrečius jautrius laukus
         sensitive_fields = ["ssn", "creditCardNumber", "password"]
         for field in sensitive_fields:
             if field in redacted:
                 redacted[field] = "REDACTED"
         
-        # Užtušuoti įdėtus jautrius duomenis
+        # Uždrausti įdėtus jautrius duomenis
         if "financialInfo" in redacted:
             redacted["financialInfo"] = {"available": True, "accessRestricted": True}
         
         return redacted
 ```
 
-## Testavimo geriausios praktikos MCP įrankiams
+## MCP įrankių testavimo geriausios praktikos
 
-Išsamus testavimas užtikrina, kad MCP įrankiai veiktų tinkamai, tvarkytų kraštutinius atvejus ir tinkamai integruotųsi su likusia sistema.
+Išsamus testavimas užtikrina, kad MCP įrankiai veikia teisingai, tvarko ekstremalias situacijas ir tinkamai integruojasi su sistema.
 
 ### Vienetinis testavimas
 
-#### 1. Testuokite kiekvieną įrankį izoliuotai
+#### 1. Testuokite kiekvieną įrankį atskirai
 
-Sukurkite specializuotus testus kiekvienos įrankio funkcijoms:
+Kurkite fokusuotus testus kiekvienos įrankio funkcijos tikrinimui:
 
 ```csharp
 [Fact]
@@ -1251,27 +1285,27 @@ public async Task WeatherTool_InvalidLocation_ThrowsToolExecutionException()
 }
 ```
 
-#### 2. Schemos validacijos testavimas
+#### 2. Šemų validacijos testai
 
-Testuokite, ar schemos yra galiojančios ir tinkamai taiko apribojimus:
+Testuokite, ar šemos yra galiojančios ir tinkamai taiko apribojimus:
 
 ```java
 @Test
 public void testSchemaValidation() {
-    // Sukurkite įrankio egzempliorių
+    // Sukurti įrankio egzempliorių
     SearchTool searchTool = new SearchTool();
     
-    // Gaukite schemą
+    // Gauti schemą
     Object schema = searchTool.getSchema();
     
-    // Konvertuokite schemą į JSON validacijai
+    // Konvertuoti schemą į JSON validavimui
     String schemaJson = objectMapper.writeValueAsString(schema);
     
-    // Patikrinkite, ar schema yra galiojantis JSONSchema
+    // Patikrinti, ar schema yra galiojanti JSONSchema
     JsonSchemaFactory factory = JsonSchemaFactory.byDefault();
     JsonSchema jsonSchema = factory.getJsonSchema(schemaJson);
     
-    // Išbandykite galiojančius parametrus
+    // Išbandyti galiojančius parametrus
     JsonNode validParams = objectMapper.createObjectNode()
         .put("query", "test query")
         .put("limit", 5);
@@ -1279,14 +1313,14 @@ public void testSchemaValidation() {
     ProcessingReport validReport = jsonSchema.validate(validParams);
     assertTrue(validReport.isSuccess());
     
-    // Išbandykite trūkstamą privalomą parametrą
+    // Išbandyti trūkstamą privalomą parametrą
     JsonNode missingRequired = objectMapper.createObjectNode()
         .put("limit", 5);
         
     ProcessingReport missingReport = jsonSchema.validate(missingRequired);
     assertFalse(missingReport.isSuccess());
     
-    // Išbandykite netinkamą parametro tipą
+    // Išbandyti neteisingo parametro tipą
     JsonNode invalidType = objectMapper.createObjectNode()
         .put("query", "test")
         .put("limit", "not-a-number");
@@ -1296,21 +1330,21 @@ public void testSchemaValidation() {
 }
 ```
 
-#### 3. Klaidos valdymo testai
+#### 3. Klaidų tvarkymo testai
 
-Sukurkite specifinius testus klaidų sąlygoms:
+Kurkite specifinius testus klaidų sąlygoms:
 
 ```python
 @pytest.mark.asyncio
 async def test_api_tool_handles_timeout():
-    # Surinkti
-    tool = ApiTool(timeout=0.1)  # Labai trumpas laiko limitas
+    # Sutvarkyti
+    tool = ApiTool(timeout=0.1)  # Labai trumpas laukimo laikas
     
-    # Imituoti užklausą, kuri baigsis laiko limitu
+    # Sukurkite užklausos imitaciją, kuri baigsis laiko limitu
     with aioresponses() as mocked:
         mocked.get(
             "https://api.example.com/data",
-            callback=lambda *args, **kwargs: asyncio.sleep(0.5)  # Ilgesnis nei laiko limitas
+            callback=lambda *args, **kwargs: asyncio.sleep(0.5)  # Ilgesnis nei laukimo laikas
         )
         
         request = ToolRequest(
@@ -1322,15 +1356,15 @@ async def test_api_tool_handles_timeout():
         with pytest.raises(ToolExecutionException) as exc_info:
             await tool.execute_async(request)
         
-        # Patikrinti išimties pranešimą
+        # Patikrinkite išimties pranešimą
         assert "timed out" in str(exc_info.value).lower()
 
 @pytest.mark.asyncio
 async def test_api_tool_handles_rate_limiting():
-    # Surinkti
+    # Sutvarkyti
     tool = ApiTool()
     
-    # Imituoti greičio ribojimo atsakymą
+    # Sukurkite riboto greičio atsakymo imitaciją
     with aioresponses() as mocked:
         mocked.get(
             "https://api.example.com/data",
@@ -1348,7 +1382,7 @@ async def test_api_tool_handles_rate_limiting():
         with pytest.raises(ToolExecutionException) as exc_info:
             await tool.execute_async(request)
         
-        # Patikrinti, ar išimtis turi greičio ribojimo informaciją
+        # Patikrinkite, ar išimtis yra su informacija apie greičio ribojimą
         error_msg = str(exc_info.value).lower()
         assert "rate limit" in error_msg
         assert "try again" in error_msg
@@ -1358,7 +1392,7 @@ async def test_api_tool_handles_rate_limiting():
 
 #### 1. Įrankių grandinės testavimas
 
-Testuokite įrankius dirbančius kartu numatytomis kombinacijomis:
+Testuokite įrankius dirbančius kartu numatomose kombinacijose:
 
 ```csharp
 [Fact]
@@ -1399,7 +1433,7 @@ public async Task DataProcessingWorkflow_CompletesSuccessfully()
 
 #### 2. MCP serverio testavimas
 
-Testuokite MCP serverį su pilnu įrankių registravimu ir vykdymu:
+Testuokite MCP serverį su pilnu įrankių registracijos ir vykdymo procesu:
 
 ```java
 @SpringBootTest
@@ -1435,7 +1469,7 @@ public class McpServerIntegrationTest {
         parameters.put("b", 7);
         request.put("parameters", parameters);
         
-        // Siųsti užklausą ir patikrinti atsakymą
+        // Išsiųsti užklausą ir patikrinti atsakymą
         mockMvc.perform(post("/mcp/execute")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(request)))
@@ -1452,10 +1486,10 @@ public class McpServerIntegrationTest {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("operation", "divide");
         parameters.put("a", 10);
-        // Trūksta parametro "b"
+        // Trūksta parametro „b“
         request.put("parameters", parameters);
         
-        // Siųsti užklausą ir patikrinti klaidos atsakymą
+        // Išsiųsti užklausą ir patikrinti klaidos atsakymą
         mockMvc.perform(post("/mcp/execute")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(request)))
@@ -1465,17 +1499,17 @@ public class McpServerIntegrationTest {
 }
 ```
 
-#### 3. Pabaigos iki pabaigos testavimas
+#### 3. E2E testavimas
 
 Testuokite pilnus darbo srautus nuo modelio užklausos iki įrankio vykdymo:
 
 ```python
 @pytest.mark.asyncio
 async def test_model_interaction_with_tool():
-    # Tvarkyti - Nustatyti MCP klientą ir imituoti modelį
+    # Surinkti - sukonfigūruokite MCP klientą ir imitacijos modelį
     mcp_client = McpClient(server_url="http://localhost:5000")
     
-    # Imituoti modelio atsakymus
+    # Imitacijos modelio atsakymai
     mock_model = MockLanguageModel([
         MockResponse(
             "What's the weather in Seattle?",
@@ -1490,7 +1524,7 @@ async def test_model_interaction_with_tool():
         )
     ])
     
-    # Imituoti oro sąlygų įrankio atsakymą
+    # Imituokite orų įrankio atsakymą
     with aioresponses() as mocked:
         mocked.post(
             "http://localhost:5000/mcp/execute",
@@ -1506,7 +1540,7 @@ async def test_model_interaction_with_tool():
             }
         )
         
-        # Veikti
+        # Veiksmas
         response = await mcp_client.send_prompt(
             "What's the weather in Seattle?",
             model=mock_model,
@@ -1522,11 +1556,11 @@ async def test_model_interaction_with_tool():
         assert response.tool_calls[0].tool_name == "weatherForecast"
 ```
 
-### Našumo testavimas
+### Veikimo testavimas
 
 #### 1. Apkrovos testavimas
 
-Testuokite, kiek lygiagrečių užklausų gali apdoroti jūsų MCP serveris:
+Testuokite, kiek daug lygiagrečių užklausų jūsų MCP serveris gali apdoroti:
 
 ```csharp
 [Fact]
@@ -1561,7 +1595,7 @@ public async Task McpServer_HandlesHighConcurrency()
 
 #### 2. Streso testavimas
 
-Testuokite sistemą esant ekstremaliai apkrovai:
+Testuokite sistemą ekstremaliomis apkrovomis:
 
 ```java
 @Test
@@ -1570,13 +1604,13 @@ public void testServerUnderStress() {
     int rampUpTimeSeconds = 60;
     int testDurationSeconds = 300;
     
-    // Paruošti JMeter stresiniam testavimui
+    // Paruošti JMeter apkrovos testavimui
     StandardJMeterEngine jmeter = new StandardJMeterEngine();
     
-    // Konfigūruoti JMeter testavimo planą
+    // Konfigūruoti JMeter testo planą
     HashTree testPlanTree = new HashTree();
     
-    // Sukurti testavimo planą, gijų grupę, mėgintuvėlius ir pan.
+    // Sukurti testo planą, mazgų grupę, mėgintuvėlius ir kt.
     TestPlan testPlan = new TestPlan("MCP Server Stress Test");
     testPlanTree.add(testPlan);
     
@@ -1607,19 +1641,19 @@ public void testServerUnderStress() {
     jmeter.configure(testPlanTree);
     jmeter.run();
     
-    // Patikrinti rezultatus
+    // Patvirtinti rezultatus
     assertEquals(0, summaryReport.getErrorCount());
-    assertTrue(summaryReport.getAverage() < 200); // Vidutinis atsako laikas < 200ms
-    assertTrue(summaryReport.getPercentile(90.0) < 500); // 90-asis procentilis < 500ms
+    assertTrue(summaryReport.getAverage() < 200); // Vidutinis atsako laikas < 200 ms
+    assertTrue(summaryReport.getPercentile(90.0) < 500); // 90 procentilis < 500 ms
 }
 ```
 
-#### 3. Stebėsena ir profiliavimas
+#### 3. Stebėsena ir profilavimas
 
-Nustatykite stebėseną ilgalaikei našumo analizei:
+Įrenkite stebėseną ilgalaikiam veikimo analizės režimui:
 
 ```python
-# Konfigūruoti MCP serverio stebėjimą
+# Konfigūruoti stebėjimą MCP serveriui
 def configure_monitoring(server):
     # Nustatyti Prometheus metrikas
     prometheus_metrics = {
@@ -1647,10 +1681,10 @@ def configure_monitoring(server):
         )
     }
     
-    # Pridėti tarpinę programinę įrangą, skirtą laiko matavimui ir metrikų registravimui
+    # Pridėti tarpinį programinį sluoksnį laikui matuoti ir metrikoms įrašyti
     server.add_middleware(PrometheusMiddleware(prometheus_metrics))
     
-    # Atidengti metrikų galinį tašką
+    # Atidaryti metrikų galinį tašką
     @server.router.get("/metrics")
     async def metrics():
         return generate_latest()
@@ -1658,29 +1692,29 @@ def configure_monitoring(server):
     return server
 ```
 
-## MCP darbo srautų projektavimo modeliai
+## MCP darbo srautų dizaino šablonai
 
-Gerai suprojektuoti MCP darbo srautai pagerina efektyvumą, patikimumą ir prižiūrimumą. Čia pateikti svarbūs modeliai, kurių verta laikytis:
+Gerai suprojektuoti MCP darbo srautai pagerina efektyvumą, patikimumą ir priežiūrą. Štai pagrindiniai šablonai:
 
-### 1. Įrankių grandinės modelis
+### 1. Įrankių grandinės šablonas
 
-Jungia kelis įrankius nuosekliai, kur kiekvieno įrankio išvestis tampa kito įvestimi:
+Sujunkite kelis įrankius seka, kur kiekvieno įrankio išvestis tampa įvestimi kitam:
 
 ```python
 # Python įrankių grandinės įgyvendinimas
 class ChainWorkflow:
     def __init__(self, tools_chain):
-        self.tools_chain = tools_chain  # Įrankių pavadinimų sąrašas, kuriuos vykdyti iš eilės
+        self.tools_chain = tools_chain  # Vykdomų įrankių pavadinimų sąrašas
     
     async def execute(self, mcp_client, initial_input):
         current_result = initial_input
         all_results = {"input": initial_input}
         
         for tool_name in self.tools_chain:
-            # Vykdyti kiekvieną grandinės įrankį, perduodant ankstesnį rezultatą
+            # Vykdykite kiekvieną įrankį grandinėje, perduodami ankstesnį rezultatą
             response = await mcp_client.execute_tool(tool_name, current_result)
             
-            # Išsaugoti rezultatą ir naudoti kaip įvestį kitam įrankiui
+            # Išsaugokite rezultatą ir naudokite jį kaip įvestį kitam įrankiui
             all_results[tool_name] = response.result
             current_result = response.result
         
@@ -1689,7 +1723,7 @@ class ChainWorkflow:
             "all_results": all_results
         }
 
-# Pavyzdžio naudojimas
+# Naudojimo pavyzdys
 data_processing_chain = ChainWorkflow([
     "dataFetch",
     "dataCleaner",
@@ -1703,9 +1737,9 @@ result = await data_processing_chain.execute(
 )
 ```
 
-### 2. Išsiuntėjo modelis
+### 2. Dispečerio šablonas
 
-Naudokite centrinį įrankį, kuris nukreipia į specializuotus įrankius pagal įvestį:
+Naudokite centrinį įrankį, kuris paskirsto specializuotiems įrankiams pagal įvestį:
 
 ```csharp
 public class ContentDispatcherTool : IMcpTool
@@ -1785,9 +1819,9 @@ public class ContentDispatcherTool : IMcpTool
 }
 ```
 
-### 3. Lygiagretus apdorojimo modelis
+### 3. Lygiagretus apdorojimo šablonas
 
-Vykdykite kelis įrankius vienu metu siekiant efektyvumo:
+Vykdykite kelis įrankius tuo pačiu metu dėl efektyvumo:
 
 ```java
 public class ParallelDataProcessingWorkflow {
@@ -1802,7 +1836,7 @@ public class ParallelDataProcessingWorkflow {
         ToolResponse metadataResponse = mcpClient.executeTool("datasetMetadata", 
             Map.of("datasetId", datasetId));
         
-        // 2 žingsnis: Paleisti kelias analizės lygiagrečiai
+        // 2 žingsnis: Paleisti kelias analizės užduotis lygiagrečiai
         CompletableFuture<ToolResponse> statisticalAnalysis = CompletableFuture.supplyAsync(() ->
             mcpClient.executeTool("statisticalAnalysis", Map.of(
                 "datasetId", datasetId,
@@ -1831,7 +1865,7 @@ public class ParallelDataProcessingWorkflow {
         
         allAnalyses.join();  // Laukti užbaigimo
         
-        // 3 žingsnis: Sujungti rezultatus
+        // 3 žingsnis: Apjungti rezultatus
         Map<String, Object> combinedResults = new HashMap<>();
         combinedResults.put("metadata", metadataResponse.getResult());
         combinedResults.put("statistics", statisticalAnalysis.join().getResult());
@@ -1842,7 +1876,7 @@ public class ParallelDataProcessingWorkflow {
         ToolResponse summaryResponse = mcpClient.executeTool("reportGenerator", 
             Map.of("analysisResults", combinedResults));
         
-        // Grąžinti pilną darbo eigos rezultatą
+        // Grąžinti visos darbo eigos rezultatą
         WorkflowResult result = new WorkflowResult();
         result.setDatasetId(datasetId);
         result.setAnalysisResults(combinedResults);
@@ -1853,9 +1887,9 @@ public class ParallelDataProcessingWorkflow {
 }
 ```
 
-### 4. Klaidų atstatymo modelis
+### 4. Klaidos atkūrimo šablonas
 
-Įgyvendinkite sklandžius atsarginius variantus įrankių gedimams:
+Įgyvendinkite malonius atsitraukimus įrankių klaidoms:
 
 ```python
 class ResilientWorkflow:
@@ -1872,12 +1906,12 @@ class ResilientWorkflow:
                 "tool": primary_tool
             }
         except ToolExecutionException as e:
-            # Užfiksuokite nesėkmę
+            # Užfiksuokite klaidą
             logging.warning(f"Primary tool '{primary_tool}' failed: {str(e)}")
             
-            # Pereikite prie atsarginio įrankio
+            # Grįžkite prie atsarginio įrankio
             try:
-                # Gali prireikti transformuoti parametrus atsarginio įrankio atveju
+                # Gali prireikti transformuoti parametrus atsarginiam įrankiui
                 fallback_params = self._adapt_parameters(parameters, primary_tool, fallback_tool)
                 
                 response = await self.client.execute_tool(fallback_tool, fallback_params)
@@ -1896,22 +1930,22 @@ class ResilientWorkflow:
     
     def _adapt_parameters(self, params, from_tool, to_tool):
         """Adapt parameters between different tools if needed"""
-        # Ši implementacija priklausytų nuo konkrečių įrankių
-        # Šiame pavyzdyje tiesiog grąžinsime originalius parametrus
+        # Ši įgyvendinimo dalis priklausys nuo konkrečių įrankių
+        # Šiame pavyzdyje tiesiog grąžinsime pradines reikšmes
         return params
 
 # Pavyzdinis naudojimas
 async def get_weather(workflow, location):
     return await workflow.execute_with_fallback(
-        "premiumWeatherService",  # Pagrindinis (mokamas) oro sąlygų API
-        "basicWeatherService",    # Atsarginis (nemokamas) oro sąlygų API
+        "premiumWeatherService",  # Pagrindinis (mokamas) orų API
+        "basicWeatherService",    # Atsarginis (nemokamas) orų API
         {"location": location}
     )
 ```
 
-### 5. Darbo srautų komponavimo modelis
+### 5. Darbo srauto sudarymo šablonas
 
-Kurti sudėtingus darbo srautus komponuojant paprastesnius:
+Kuriate sudėtingus darbo srautus sudedant paprastesnius:
 
 ```csharp
 public class CompositeWorkflow : IWorkflow
@@ -1958,37 +1992,37 @@ var result = await documentWorkflow.ExecuteAsync(new WorkflowContext {
 });
 ```
 
-# MCP serverių testavimas: geriausios praktikos ir svarbiausi patarimai
+# MCP serverių testavimas: geriausios praktikos ir svarbiausios patarimai
 
 ## Apžvalga
 
-Testavimas yra kritiškai svarbi MCP serverių kūrimo dalis, siekiant užtikrinti patikimumą ir aukštą kokybę. Šis vadovas pateikia išsamias geriausias praktikas ir patarimus MCP serverių testavimui viso kūrimo ciklo metu – nuo vienetinių testų iki integracinių ir pilno veikimo patikrinimų.
+Testavimas yra labai svarbus patikimų, aukštos kokybės MCP serverių kūrimo aspektas. Šiame vadove pateikiamos išsamios geriausios praktikos ir patarimai jūsų MCP serverių testavimui per visą kūrimo ciklą nuo vienetinių testų iki integracinių ir galutinių patikrinimų.
 
-## Kodėl testavimas svarbus MCP serveriams
+## Kodėl testavimas yra svarbus MCP serveriams
 
-MCP serveriai yra svarbus posistemis tarp dirbtinio intelekto modelių ir klientų programėlių. Kruopštus testavimas užtikrina:
+MCP serveriai yra svarbi tarpinė grandis tarp DI modelių ir kliento programų. Kruopštus testavimas užtikrina:
 
 - Patikimumą gamybos aplinkose
 - Teisingą užklausų ir atsakymų apdorojimą
 - Tinkamą MCP specifikacijų įgyvendinimą
-- Atsparumą gedimams ir ribinėms situacijoms
-- Nuoseklų našumą įvairiomis apkrovomis
+- Atsparumą gedimams ir kraštutinėms situacijoms
+- Nuoseklų veikimą esant įvairioms apkrovoms
 
-## Vienetiniai MCP serverių testai
+## Vienetiniai testai MCP serveriams
 
-### Vienetinis testavimas (pagrindas)
+### Vienetiniai testai (pagrindas)
 
-Vienetiniai testai tikrina atskirus jūsų MCP serverio komponentus izoliuotai.
+Vienetiniai testai tikrina atskiras jūsų MCP serverio dalis izoliacijoje.
 
 #### Ką testuoti
 
-1. **Išteklių tvarkytuvai**: Testuokite kiekvieno išteklių tvarkytuvo logiką atskirai
-2. **Įrankių įgyvendinimai**: Tikrinkite įrankių elgseną su įvairiomis įvestimis
-3. **Užklausų šablonai**: Užtikrinkite, kad šablonai teisingai atvaizduojami
-4. **Schemos validacija**: Testuokite parametrų validavimo logiką
-5. **Klaidų valdymas**: Tikrinkite klaidų atsakymus netinkamai įvestai informacijai
+1. **Resursų tvarkytojai**: nepriklausomai testuokite kiekvieno resurso tvarkytojo logiką
+2. **Įrankių įgyvendinimas**: patikrinkite įrankių elgesį su įvairiomis įvestimis
+3. **Užklausų šablonai**: užtikrinkite, kad šablonai teisingai renderintųsi
+4. **Šemų validacija**: testuokite parametrų validacijos logiką
+5. **Klaidų tvarkymas**: patikrinkite klaidų atsakymus netinkamoms įvestims
 
-#### Vienetinio testavimo geriausios praktikos
+#### Vienetinių testų geriausios praktikos
 
 ```csharp
 // Example unit test for a calculator tool in C#
@@ -2014,9 +2048,9 @@ public async Task CalculatorTool_Add_ReturnsCorrectSum()
 ```
 
 ```python
-# Pavyzdinis vieneto testas skaičiuotuvo įrankiui Python kalboje
+# Pavyzdinis vieneto testas skaičiuotuvo įrankiui Python kalba
 def test_calculator_tool_add():
-    # Paruošti
+    # Paruoškite
     calculator = CalculatorTool()
     parameters = {
         "operation": "add",
@@ -2024,27 +2058,27 @@ def test_calculator_tool_add():
         "b": 7
     }
     
-    # Vykdyti
+    # Veikite
     response = calculator.execute(parameters)
     result = json.loads(response.content[0].text)
     
-    # Patvirtinti
+    # Patikrinkite
     assert result["value"] == 12
 ```
 
-### Integracinis testavimas (tarpinis sluoksnis)
+### Integraciniai testai (vidurinis sluoksnis)
 
-Integraciniai testai tikrina sąveikas tarp MCP serverio komponentų.
+Integraciniai testai tikrina komponentų bendravimą jūsų MCP serveryje.
 
 #### Ką testuoti
 
-1. **Serverio paleidimas**: Testuokite serverio startavimą su skirtingomis konfigūracijomis
-2. **Maršrutų registravimas**: Patikrinkite, ar visi galiniai taškai tinkamai užregistruoti
-3. **Užklausų apdorojimas**: Testuokite visą užklausų-atsakymų ciklą
-4. **Klaidų perdavimas**: Užtikrinkite, kad klaidos teisingai valdomos tarp komponentų
-5. **Autentifikacija ir autorizacija**: Testuokite saugumo mechanizmus
+1. **Serverio inicijavimas**: testuokite serverio paleidimą su įvairiomis konfigūracijomis
+2. **Maršrutų registracija**: patikrinkite, ar visi galiniai taškai tinkamai užregistruoti
+3. **Užklausų apdorojimas**: testuokite visą užklausų ir atsakymų ciklą
+4. **Klaidų perdavimas**: užtikrinkite, kad klaidos tinkamai tvarkomos tarp komponentų
+5. **Autentifikacija ir autorizacija**: testuokite saugumo mechanizmus
 
-#### Integracinio testavimo geriausios praktikos
+#### Integracinių testų geriausios praktikos
 
 ```csharp
 // Example integration test for MCP server in C#
@@ -2080,19 +2114,20 @@ public async Task Server_ProcessToolRequest_ReturnsValidResponse()
 }
 ```
 
-### Pabaigos iki pabaigos testavimas (viršutinis sluoksnis)
+### End-to-End testavimas (aukščiausias sluoksnis)
 
-Pabaigos iki pabaigos testai tikrina pilną sistemos elgseną nuo kliento iki serverio.
+End-to-end testai tikrina viso sistemos elgesį nuo kliento iki serverio.
 
 #### Ką testuoti
 
-1. **Kliento ir serverio komunikacija**: Testuokite pilnus užklausų-atsakymų ciklus
-2. **Tikri klientų SDK**: Testuokite su tikrais klientų įgyvendinimais
-3. **Našumas apkrovos sąlygomis**: Patikrinkite elgseną su daugeliu lygiagrečių užklausų
-4. **Klaidų atstatymas**: Testuokite sistemos atkūrimą po gedimų
-5. **Ilgai trunkančios operacijos**: Patikrinkite srautinio ir ilgai trunkančio apdorojimo tvarkymą
+1. **Kliento ir serverio komunikacija**: testuokite pilnus užklausų ir atsakymų ciklus
+2. **Tikri kliento SDK**: testuokite su tikrais kliento įgyvendinimais
+3. **Veikimas esant apkrovai**: patikrinkite elgesį su daugeliu lygiagrečių užklausų
+4. **Klaidų atkūrimas**: testuokite sistemos atsistatymą po gedimų
 
-#### Pabaigos iki pabaigos testavimo geriausios praktikos
+5. **Ilgai trunkančios operacijos**: Patikrinkite srautinio duomenų perdavimo ir ilgų operacijų valdymą
+
+#### Geriausios E2E testavimo praktikos
 
 ```typescript
 // Pavyzdinis E2E testas su klientu TypeScript kalba
@@ -2100,7 +2135,7 @@ describe('MCP Server E2E Tests', () => {
   let client: McpClient;
   
   beforeAll(async () => {
-    // Paleisti serverį testavimo aplinkoje
+    // Paleisti serverį testų aplinkoje
     await startTestServer();
     client = new McpClient('http://localhost:5000');
   });
@@ -2117,7 +2152,7 @@ describe('MCP Server E2E Tests', () => {
       b: 4
     });
     
-    // Patikrinimas
+    // Patvirtinti
     expect(response.statusCode).toBe(200);
     expect(response.content[0].text).toContain('5');
   });
@@ -2126,14 +2161,14 @@ describe('MCP Server E2E Tests', () => {
 
 ## MCP testavimo imitavimo strategijos
 
-Testavimo izoliacijai būtina naudoti imitacijas.
+Imitavimas yra būtinas komponentų izoliuotam testavimui.
 
-### Kuriuos komponentus imituoti
+### Komponentai, kuriuos reikia imituoti
 
-1. **Išoriniai DI modeliai**: Imituokite modelio atsakymus prognozuojamam testavimui
+1. **Išoriniai DI modeliai**: Imituokite modelio atsakymus, kad testavimas būtų nuspėjamas
 2. **Išorinės paslaugos**: Imituokite API priklausomybes (duomenų bazes, trečiųjų šalių paslaugas)
-3. **Autentifikacijos paslaugos**: Imituokite identiteto tiekėjus
-4. **Išteklių teikėjai**: Imituokite brangius išteklių tvarkytuvus
+3. **Autentifikacijos paslaugos**: Imituokite tapatybės teikėjus
+4. **Išteklių tiekėjai**: Imituokite brangių išteklių tvarkykles
 
 ### Pavyzdys: DI modelio atsakymo imitavimas
 
@@ -2156,37 +2191,37 @@ var server = new McpServer(modelClient: mockModel.Object);
 # Python pavyzdys su unittest.mock
 @patch('mcp_server.models.OpenAIModel')
 def test_with_mock_model(mock_model):
-    # Sukonfigūruokite imitaciją
+    # Konfigūruoti mock objektą
     mock_model.return_value.generate_response.return_value = {
         "text": "Mocked model response",
         "finish_reason": "completed"
     }
     
-    # Naudokite imitaciją teste
+    # Naudoti mock testuojant
     server = McpServer(model_client=mock_model)
-    # Tęskite testą
+    # Tęsti su testu
 ```
 
-## Našumo testavimas
+## Veiklos testavimas
 
-Našumo testavimas yra būtinas gamybos MCP serveriams.
+Veiklos testavimas yra itin svarbus MCP gamybos serveriams.
 
 ### Ką matuoti
 
-1. **Uždelsimas**: Užklausos atsako laikas
-2. **Pralaidumas**: Užklausų kiekis per sekundę
+1. **Vėlavimas**: Užklausų atsakymo laikas
+2. **Pralaidumas**: Per sekundę apdorotų užklausų skaičius
 3. **Išteklių naudojimas**: CPU, atminties, tinklo naudojimas
-4. **Lygiagrečių užklausų valdymas**: Elgsena vykdant lygiagrečiai
-5. **Mastelio keitimo charakteristikos**: Našumas didėjant apkrovai
+4. **Lygiagretumo valdymas**: Elgesys paralelių užklausų metu
+5. **Mastelio keitimo charakteristikos**: Veiklos pokyčiai didėjant apkrovai
 
-### Našumo testavimo įrankiai
+### Veiklos testavimo įrankiai
 
-- **k6**: Atviro kodo apkrovos testavimo įrankis
-- **JMeter**: Išsamus našumo testavimas
-- **Locust**: Į Python pagrįstas apkrovos testavimas
-- **Azure apkrovos testavimas**: Debesų našumo testavimas
+- **k6**: Atviro kodo našumo testavimo įrankis
+- **JMeter**: Išsamus veiklos testavimas
+- **Locust**: Python pagrindu veikiantis apkrovos testavimas
+- **Azure Load Testing**: Debesų pagrindu veikiantis našumo testavimas
 
-### Pavyzdys: Pagrindinis apkrovos testas su k6
+### Pavyzdys: Bazinis apkrovos testas su k6
 
 ```javascript
 // k6 scenarijus MCP serverio apkrovos testavimui
@@ -2194,7 +2229,7 @@ import http from 'k6/http';
 import { check, sleep } from 'k6';
 
 export const options = {
-  vus: 10,  // 10 virtualių vartotojų
+  vus: 10,  // 10 virtualių naudotojų
   duration: '30s',
 };
 
@@ -2228,16 +2263,16 @@ export default function () {
 
 ## Testų automatizavimas MCP serveriams
 
-Testų automatizavimas užtikrina nuoseklią kokybę ir greitesnį atsiliepimų ciklą.
+Testų automatizavimas užtikrina nuolatinę kokybę ir greitesnį atsiliepimą.
 
 ### CI/CD integracija
 
-1. **Vienetinių testų vykdymas pull request'uose**: Užtikrinkite, kad kodo pakeitimai nesugadintų esamos funkcionalumo
-2. **Integraciniai testai etape**: Vykdykite integracinius testus priešprodukcinėse aplinkose  
-3. **Veikimo pagrindai**: Išlaikykite veikimo rodiklių ribas regresijų nustatymui  
-4. **Saugumo skenavimai**: Automatizuokite saugumo testavimą kaip proceso dalį  
+1. **Vienetinių testų vykdymas prie pull requestų**: Užtikrinkite, kad kodų pakeitimai nesugadintų egzistuojančios funkcionalumo
+2. **Integracijos testai testinėje aplinkoje**: Vykdykite integracijos testus prieš gamybą
+3. **Veiklos bazės linijos**: Laikykite veiklos rodiklius, kad būtų galima aptikti regresijas
+4. **Saugumo skenavimas**: Automatizuokite saugumo testus kaip CI/CD proceso dalį
 
-### Pavyzdinė CI grandinė (GitHub Actions)
+### Pavyzdys CI proceso (GitHub Actions)
 
 ```yaml
 name: MCP Server Tests
@@ -2275,18 +2310,18 @@ jobs:
     - name: Performance Tests
       run: dotnet run --project tests/PerformanceTests/PerformanceTests.csproj
 ```
-  
-## Atitikties MCP specifikacijai testavimas
 
-Patikrinkite, ar jūsų serveris teisingai įgyvendina MCP specifikaciją.
+## MCP specifikacijos atitikties testavimas
+
+Patikrinkite, ar jūsų serveris tinkamai įgyvendina MCP specifikaciją.
 
 ### Pagrindinės atitikties sritys
 
-1. **API galiniai taškai**: Testuokite privalomus galinius taškus (/resources, /tools ir kt.)  
-2. **Užklausos/atsakymo formatas**: Patikrinkite schemos atitikimą  
-3. **Klaidų kodai**: Patvirtinkite taisyklingus būsenos kodus įvairioms situacijoms  
-4. **Turinio tipai**: Testuokite skirtingų turinio tipų apdorojimą  
-5. **Autentifikacijos srautas**: Patikrinkite specifikacijai pritaikytas autentifikacijos mechanizmus  
+1. **API galiniai taškai**: Testuokite privalomus galinius taškus (/resources, /tools ir kt.)
+2. **Užklausų/atsakymų formatas**: Patvirtinkite schemos atitiktį
+3. **Klaidų kodai**: Patikrinkite teisingus statuso kodus įvairioms situacijoms
+4. **Turinio tipai**: Testuokite įvairių turinio tipų valdymą
+5. **Autentifikacijos srautas**: Patikrinkite spec. atitinkančias autentifikacijos mechanizmus
 
 ### Atitikties testų rinkinys
 
@@ -2314,65 +2349,67 @@ public async Task Server_ResourceEndpoint_ReturnsCorrectSchema()
     });
 }
 ```
-  
-## 10 pagrindinių patarimų efektyviam MCP serverio testavimui
 
-1. **Įrankių apibrėžimus testuokite atskirai**: Patikrinkite schemos apibrėžimus nepriklausomai nuo įrankių logikos  
-2. **Naudokite parametrinius testus**: Testuokite įrankius su įvairiais įėjimais, įskaitant kraštutinius atvejus  
-3. **Tikrinkite klaidų atsakymus**: Patvirtinkite tinkamą klaidų tvarkymą visoms galimoms klaidų situacijoms  
-4. **Testuokite autorizacijos logiką**: Užtikrinkite tinkamą prieigos kontrolę skirtingoms naudotojų rolėms  
-5. **Stebėkite testų aprėptį**: Siekite aukštos kritinių kodo kelių aprėpties  
-6. **Testuokite srautinius atsakymus**: Patvirtinkite tinkamą srautinio turinio apdorojimą  
-7. **Simuliuokite tinklo problemas**: Testuokite elgseną esant prastam tinklui  
-8. **Testuokite resursų apribojimus**: Patikrinkite elgesį pasiekus kvotas ar tempimo ribas  
-9. **Automatizuokite regresijos testus**: Sukurkite rinkinį, kuris paleidžiamas su kiekvienu kodo pakeitimu  
-10. **Dokumentuokite testų atvejus**: Išlaikykite aiškią testavimo scenarijų dokumentaciją  
+## 10 pagrindinių patarimų efektyviam MCP serverių testavimui
+
+1. **Testuokite įrankių apibrėžimus atskirai**: Tikrinkite schemų aprašymus nepriklausomai nuo įrankių logikos
+2. **Naudokite parametrinius testus**: Testuokite įrankius su įvairiais įvesties duomenimis, įskaitant kraštutinius atvejus
+3. **Tikrinkite klaidų atsakymus**: Patikrinkite teisingą klaidų tvarkymą visomis galimomis klaidų sąlygomis
+4. **Testuokite autorizacijos logiką**: Užtikrinkite tinkamą prieigos kontrolę skirtingoms vartotojų rolėms
+5. **Stebėkite testų aprėptį**: Siekite aukšto kritinių kodo kelių aprėpties
+6. **Testuokite srauto atsakymus**: Patikrinkite teisingą srautinių turinio atsakymų valdymą
+7. **Simuliuokite tinklo problemas**: Testuokite elgesį prastų tinklo sąlygų metu
+8. **Testuokite išteklių ribas**: Patikrinkite elgesį pasiekiant kvotas ar greičio limitus
+9. **Automatizuokite regresijos testus**: Sukurkite rinkinį, kuris veikia su kiekvienu kodo pakeitimu
+10. **Dokumentuokite testų scenarijus**: Laikykite aiškią testavimo scenarijų dokumentaciją
 
 ## Dažnos testavimo klaidos
 
-- **Per didelis pasikliaujamumas sėkmingais atvejais**: Būtinai kruopščiai testuokite klaidų atvejus  
-- **Ignoruojamas veikimo testavimas**: Nustatykite kliūtis prieš jas paveikiant gamybą  
-- **Testavimas tik izoliuotai**: Kombinuokite vienetinius, integracinius ir E2E testus  
-- **Nevisiška API aprėptis**: Užtikrinkite, kad visi galiniai taškai ir funkcijos būtų ištestuoti  
-- **Nenuoseklūs testų aplinkos nustatymai**: Naudokite konteinerius vienodai testavimo aplinkai užtikrinti  
+- **Per didelis pasikliovimas „akučių“ keliu**: Būtinai kruopščiai testuokite klaidų atvejus
+- **Veiklos testavimo ignoravimas**: Identifikuokite našumo kliūtis prieš jas paveikiant gamybą
+- **Testavimas tik izoliuotai**: Kombinuokite vienetinius, integracijos ir E2E testus
+- **Nepilna API aprėptis**: Užtikrinkite testavimą visų galinių taškų ir savybių
+- **Nenuoseklios testų aplinkos**: Naudokite konteinerius, kad užtikrintumėte nuoseklią testų aplinką
 
 ## Išvada
 
-Išsami testavimo strategija yra būtina norint kurti patikimus, aukštos kokybės MCP serverius. Įgyvendindami geriausias praktikas ir patarimus iš šio vadovo, galite užtikrinti, kad jūsų MCP sprendimai atitiktų aukščiausius kokybės, patikimumo ir veikimo standartus.  
+Išsami testavimo strategija yra būtina kuriant patikimus, aukštos kokybės MCP serverius. Įgyvendindami geriausias praktikas ir patarimus, pateiktus šiame vadove, užtikrinsite, kad jūsų MCP sprendimai atitiktų aukščiausius kokybės, patikimumo ir veiklos standartus.
 
-## Svarbiausios mintys
 
-1. **Įrankių dizainas**: Vadovaukitės vienos atsakomybės principu, naudokite priklausomybių injekciją ir projektuokite sudedamumui  
-2. **Schemų kūrimas**: Kurkite aiškias, gerai dokumentuotas schemas su tinkamomis validacijos sąlygomis  
-3. **Klaidų tvarkymas**: Įgyvendinkite gražų klaidų tvarkymą, struktūruotus klaidų atsakymus ir pakartotinio bandymo logiką  
-4. **Veikimo kokybė**: Naudokite talpyklavimą, asinchroninį apdorojimą ir resursų ribojimą  
-5. **Sauga**: Taikykite nuodugnų įvesties validavimą, autorizacijos patikrinimus ir jautrių duomenų tvarkymą  
-6. **Testavimas**: Kurkite išsamius vienetinius, integracinius ir end-to-end testus  
-7. **Darbo eigos modeliai**: Naudokite įprastus modelius kaip grandinės, siuntėjai ir lygiagretus apdorojimas  
+## Pagrindinės išvados
+
+1. **Įrankių dizainas**: Laikykitės vienos atsakomybės principo, naudokite priklausomybių injekciją ir projektuokite kompoziciškumui
+2. **Schemų dizainas**: Kurkite aiškias, gerai dokumentuotas schemas su tinkamais validacijos apribojimais
+3. **Klaidų valdymas**: Įgyvendinkite malonų klaidų tvarkymą, struktūrizuotus klaidų atsakymus ir atsargumo retry logiką
+   pagal rezultatus
+4. **Veikla**: Naudokite talpyklą, asinchroninį apdorojimą ir išteklių ribojimą
+5. **Sauga**: Taikykite kruopščią įvesties patikrą, autorizacijos tikrinimus ir jautrių duomenų valdymą
+6. **Testavimas**: Kurkite išsamius vienetinius, integracijos ir galutinio naudojimo testus
+7. **Darbo eigų šablonai**: Naudokite įtvirtintus šablonus, tokius kaip grandinės, dispečeriai ir lygiagretus apdorojimas
 
 ## Užduotis
 
-Sukurkite MCP įrankį ir darbo eigą dokumentų apdorojimo sistemai, kuri:  
+Sukurkite MCP įrankį ir darbo eigą dokumentų apdorojimo sistemai, kuri:
 
-1. Priima dokumentus keliais formatais (PDF, DOCX, TXT)  
-2. Ištraukia tekstą ir svarbią informaciją iš dokumentų  
-3. Klasifikuoja dokumentus pagal tipą ir turinį  
-4. Generuoja dokumentų santraukas  
+1. Priima dokumentus įvairiais formatais (PDF, DOCX, TXT)
+2. Ištraukia tekstą ir svarbią informaciją iš dokumentų
+3. Klasifikuoja dokumentus pagal tipą ir turinį
+4. Generuoja kiekvieno dokumento santrauką
 
-Įgyvendinkite įrankių schemas, klaidų tvarkymą ir darbo eigos modelį, kuris geriausiai tinka šiai situacijai. Apsvarstykite, kaip testuotumėte šią įgyvendinimą.  
+Įgyvendinkite įrankių schemas, klaidų valdymą ir darbo eigų šabloną, kuris geriausiai tinka šiai situacijai. Apsvarstykite, kaip testuotumėte šią implementaciją.
 
-## Ištekliai  
+## Ištekliai
 
-1. Prisijunkite prie MCP bendruomenės [Microsoft Foundry Discord bendruomenėje](https://aka.ms/foundrydevs), kad pasitikrintumėte naujausią informaciją  
-2. Dalyvaukite atvirojo kodo [MCP projektuose](https://github.com/modelcontextprotocol)  
-3. Taikykite MCP principus savo organizacijos DI iniciatyvose  
-4. Tyrinėkite specializuotus MCP sprendimus savo pramonės šakai  
-5. Svarstykite pažangių kursų apie specifines MCP temas, pvz., daugiamodulinę integraciją arba įmonių programų integraciją  
-6. Eksperimentuokite kurdami savo MCP įrankius ir darbo eigas naudodami principus, išmoktas per [Hands on Lab](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)  
+1. Prisijunkite prie MCP bendruomenės [Microsoft Foundry Discord bendruomenėje](https://aka.ms/foundrydevs), kad būtumėte informuoti apie naujausias naujienas
+2. Prisidėkite prie atviro kodo [MCP projektų](https://github.com/modelcontextprotocol)
+3. Taikykite MCP principus savo organizacijos DI iniciatyvose
+4. Tyrinėkite specializuotas MCP įgyvendinimo galimybes jūsų pramonės sektoriuje
+5. Apsvarstykite galimybę lankyti pažangius kursus apie tam tikras MCP temas, pavyzdžiui, daugiadatai integracijai ar įmonių programų integracijai
+6. Eksperimentuokite kurdami savo MCP įrankius ir darbo eigas, pasinaudoję per [Hands on Lab](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md) išmoktomis pamokomis
 
 ## Kas toliau
 
-Toliau: [Atvejų analizės](../09-CaseStudy/README.md)
+Toliau: [Atvejų studijos](../09-CaseStudy/README.md)
 
 ---
 

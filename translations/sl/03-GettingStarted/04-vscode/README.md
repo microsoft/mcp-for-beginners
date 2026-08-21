@@ -1,27 +1,27 @@
-# Uporaba strežnika v načinu agenta GitHub Copilot
+# Uporaba strežnika v načinu GitHub Copilot Agent
 
-Visual Studio Code in GitHub Copilot lahko delujeta kot odjemalec in uporabljata MCP strežnik. Zakaj bi to želeli? No, to pomeni, da lahko vse funkcije MCP strežnika uporabljate neposredno v svojem IDE-ju. Predstavljajte si, da dodate na primer GitHubov MCP strežnik – to bi omogočilo upravljanje GitHuba prek ukazov v naravnem jeziku namesto tipkanja specifičnih ukazov v terminalu. Ali pa si zamislite karkoli, kar bi lahko izboljšalo vašo izkušnjo razvijalca, vse nadzorovano z naravnim jezikom. Zdaj vidite prednosti, kajne?
+Visual Studio Code in GitHub Copilot lahko delujeta kot odjemalec in uporabljata MCP strežnik. Zakaj bi to želeli narediti, se morda sprašujete? No, to pomeni, da je mogoče vse funkcije, ki jih ima MCP strežnik, uporabljati neposredno znotraj vašega IDE. Predstavljajte si, da dodate na primer GitHubov MCP strežnik, kar bi omogočilo nadzor GitHuba prek pozivov namesto tipkanja posebnih ukazov v terminalu. Ali pa si predstavljajte karkoli, kar bi lahko izboljšalo vašo izkušnjo razvijalca, vse to pa bi bilo nadzorovano z naravnim jezikom. Zdaj začnete videti prednosti, kajne?
 
 ## Pregled
 
-Ta lekcija pokriva, kako uporabljati Visual Studio Code in način agenta GitHub Copilot kot odjemalec za vaš MCP strežnik.
+Ta lekcija govori o tem, kako uporabljati Visual Studio Code in način GitHub Copilot Agent kot odjemalca za vaš MCP strežnik.
 
 ## Cilji učenja
 
-Na koncu te lekcije boste lahko:
+Ob koncu te lekcije boste znali:
 
-- Uporabljali MCP strežnik prek Visual Studio Code.
-- Zagnali funkcionalnosti, kot so orodja, prek GitHub Copilot.
-- Konfigurirali Visual Studio Code za iskanje in upravljanje vašega MCP strežnika.
+- Uporabljati MCP strežnik preko Visual Studio Code.
+- Zagnati funkcionalnosti, kot so orodja preko GitHub Copilot.
+- Konfigurirati Visual Studio Code za iskanje in upravljanje vašega MCP strežnika.
 
 ## Uporaba
 
-Svoj MCP strežnik lahko upravljate na dva različna načina:
+Vaš MCP strežnik lahko upravljate na dva načina:
 
-- Uporabniški vmesnik – kako to storiti, boste videli kasneje v tem poglavju.
-- Terminal – možno je upravljati stvari iz terminala z uporabo ukaza `code`:
+- Grafični vmesnik, ki ga boste spoznali kasneje v tem poglavju.
+- Terminal, možno je upravljati stvari iz terminala z ukazno vrstico `code`:
 
-  Za dodajanje MCP strežnika v svoj uporabniški profil uporabite ukazno vrstico z možnostjo --add-mcp in zagotovite konfiguracijo strežnika JSON v obliki {\"name\":\"server-name\",\"command\":...}.
+  Da dodate MCP strežnik v svoj uporabniški profil, uporabite ukazno možnost --add-mcp in zagotovite JSON konfiguracijo strežnika v obliki {\"name\":\"server-name\",\"command\":...}.
 
   ```
   code --add-mcp "{\"name\":\"my-server\",\"command\": \"uvx\",\"args\": [\"mcp-server-fetch\"]}"
@@ -30,45 +30,45 @@ Svoj MCP strežnik lahko upravljate na dva različna načina:
 ### Posnetki zaslona
 
 ![Vodena konfiguracija MCP strežnika v Visual Studio Code](../../../../translated_images/sl/chat-mode-agent.729a22473f822216.webp)
-![Izbira orodij za vsako sejo agenta](../../../../translated_images/sl/agent-mode-select-tools.522c7ba5df0848f8.webp)
-![Preprosto odpravljanje napak med razvojem MCP](../../../../translated_images/sl/mcp-list-servers.fce89eefe3f30032.webp)
+![Izbira orodij za sejo agenta](../../../../translated_images/sl/agent-mode-select-tools.522c7ba5df0848f8.webp)
+![Enostavno odpravljanje napak med razvojem MCP](../../../../translated_images/sl/mcp-list-servers.fce89eefe3f30032.webp)
 
-V naslednjih razdelkih bomo podrobneje govorili o uporabi vizualnega vmesnika.
+Pogovorimo se malo več o uporabi grafičnega vmesnika v naslednjih razdelkih.
 
 ## Pristop
 
-Tukaj je, kako se moramo lotiti tega na visoki ravni:
+Tako se je treba lotiti tega na višji ravni:
 
-- Konfigurirajte datoteko za iskanje MCP strežnika.
-- Zaženite/Povežite se s strežnikom, da prikaže svoje funkcionalnosti.
-- Uporabljajte te funkcionalnosti prek vmesnika za klepet GitHub Copilot.
+- Konfigurirati datoteko za iskanje našega MCP strežnika.
+- Zagnati/Se povezati z navedenim strežnikom za prikaz njegovih funkcionalnosti.
+- Uporabiti navedene funkcionalnosti skozi vmesnik GitHub Copilot Chat.
 
-Odlično, zdaj ko razumemo potek, poskusimo uporabiti MCP strežnik prek Visual Studio Code z vajo.
+Odlično, zdaj ko razumemo potek, poskusimo uporabiti MCP strežnik skozi Visual Studio Code z vajo.
 
 ## Vaja: Uporaba strežnika
 
-V tej vaji bomo konfigurirali Visual Studio Code za iskanje vašega MCP strežnika, da ga boste lahko uporabljali prek vmesnika za klepet GitHub Copilot.
+V tej vaji bomo konfigurirali Visual Studio Code, da najde vaš MCP strežnik, tako da bo mogoče uporabljati GitHub Copilot Chat vmesnik.
 
-### -0- Predkorak: omogočite odkrivanje MCP strežnikov
+### -0- Predpriprava, omogočite odkrivanje MCP strežnikov
 
 Morda boste morali omogočiti odkrivanje MCP strežnikov.
 
-1. Pojdite na `File -> Preferences -> Settings` v Visual Studio Code.
+1. Pojdite na `Datoteka -> Nastavitve -> Nastavitve` v Visual Studio Code.
 
 1. Poiščite "MCP" in omogočite `chat.mcp.discovery.enabled` v datoteki settings.json.
 
 ### -1- Ustvarite konfiguracijsko datoteko
 
-Začnite z ustvarjanjem konfiguracijske datoteke v korenskem imeniku vašega projekta. Potrebovali boste datoteko MCP.json, ki jo postavite v mapo .vscode. Videti bi morala takole:
+Začnite z ustvarjanjem konfiguracijske datoteke v korenu vašega projekta, potrebovali boste datoteko z imenom MCP.json in jo postaviti v mapo .vscode. Naj bo videti takole:
 
 ```text
 .vscode
 |-- mcp.json
 ```
 
-Nato si poglejmo, kako dodati vnos strežnika.
+Naslednji korak, poglejmo, kako dodati zapis o strežniku.
 
-### -2- Konfigurirajte strežnik
+### -2- Konfiguracija strežnika
 
 Dodajte naslednjo vsebino v *mcp.json*:
 
@@ -86,41 +86,41 @@ Dodajte naslednjo vsebino v *mcp.json*:
 }
 ```
 
-Zgornji primer prikazuje, kako zagnati strežnik, napisan v Node.js. Za druge izvajalne okolje navedite ustrezen ukaz za zagon strežnika z uporabo `command` in `args`.
+Zgoraj je prikazan preprost primer, kako zagnati strežnik napisan v Node.js, za druge okolja navedite ustrezni ukaz za zagon strežnika z uporabo `command` in `args`.
 
 ### -3- Zaženite strežnik
 
-Ko ste dodali vnos, zaženite strežnik:
+Zdaj, ko ste dodali vnos, zaženimo strežnik:
 
-1. Poiščite svoj vnos v *mcp.json* in se prepričajte, da najdete ikono "play":
+1. Poiščite svoj vnos v *mcp.json* in preverite, ali najdete ikono "play":
 
   ![Zagon strežnika v Visual Studio Code](../../../../translated_images/sl/vscode-start-server.8e3c986612e3555d.webp)  
 
-1. Kliknite ikono "play". Videti bi morali, da se število razpoložljivih orodij v ikoni orodij GitHub Copilot Chat poveča. Če kliknete to ikono orodij, boste videli seznam registriranih orodij. Vsako orodje lahko označite/odznačite, odvisno od tega, ali želite, da jih GitHub Copilot uporablja kot kontekst:
+1. Kliknite na ikono "play", ikona orodij v GitHub Copilot Chat naj bi se povečala glede na število razpoložljivih orodij. Če kliknete na to ikono orodij, boste videli seznam registriranih orodij. Vsako orodje lahko označite ali odznačite glede na to, ali želite, da jih GitHub Copilot uporablja kot kontekst:
 
   ![Zagon strežnika v Visual Studio Code](../../../../translated_images/sl/vscode-tool.0b3bbea2fb7d8c26.webp)
 
-1. Za zagon orodja vnesite ukaz, za katerega veste, da ustreza opisu enega od vaših orodij, na primer ukaz "add 22 to 1":
+1. Za zagon orodja vnesite poziv, za katerega veste, da bo ustrezal opisu enega izmed vaših orodij, na primer poziv, kot je "add 22 to 1":
 
-  ![Zagon orodja iz GitHub Copilot](../../../../translated_images/sl/vscode-agent.d5a0e0b897331060.webp)
+  ![Zagon orodja preko GitHub Copilot](../../../../translated_images/sl/vscode-agent.d5a0e0b897331060.webp)
 
-  Videti bi morali odgovor, ki pravi 23.
+  Videli boste odgovor "23".
 
 ## Naloga
 
-Poskusite dodati vnos strežnika v svojo datoteko *mcp.json* in se prepričajte, da lahko zaženete/ustavite strežnik. Prav tako se prepričajte, da lahko komunicirate z orodji na vašem strežniku prek vmesnika za klepet GitHub Copilot.
+Poskusite dodati zapis o strežniku v svojo datoteko *mcp.json* in preverite, ali lahko začnete/ustavite strežnik. Preverite tudi, ali lahko preko GitHub Copilot Chat vmesnika komunicirate z orodji na vašem strežniku.
 
 ## Rešitev
 
 [Rešitev](./solution/README.md)
 
-## Ključne točke
+## Ključna spoznanja
 
-Ključne točke tega poglavja so naslednje:
+Ključna spoznanja iz tega poglavja so:
 
-- Visual Studio Code je odličen odjemalec, ki omogoča uporabo več MCP strežnikov in njihovih orodij.
-- Vmesnik za klepet GitHub Copilot je način interakcije s strežniki.
-- Uporabnika lahko pozovete k vnosu, kot so API ključi, ki jih je mogoče posredovati MCP strežniku pri konfiguriranju vnosa strežnika v datoteki *mcp.json*.
+- Visual Studio Code je odličen odjemalec, ki vam omogoča uporabo več MCP strežnikov in njihovih orodij.
+- Vmesnik GitHub Copilot Chat je način, kako komunicirate s strežniki.
+- Uporabnika lahko povprašate po vhodnih podatkih, kot so API ključi, ki jih lahko posredujete MCP strežniku ob konfiguraciji vnosa strežnika v datoteki *mcp.json*.
 
 ## Primeri
 
@@ -132,7 +132,7 @@ Ključne točke tega poglavja so naslednje:
 
 ## Dodatni viri
 
-- [Dokumentacija Visual Studio](https://code.visualstudio.com/docs/copilot/chat/mcp-servers)
+- [Visual Studio dokumentacija](https://code.visualstudio.com/docs/copilot/chat/mcp-servers)
 
 ## Kaj sledi
 
@@ -140,5 +140,7 @@ Ključne točke tega poglavja so naslednje:
 
 ---
 
-**Omejitev odgovornosti**:  
-Ta dokument je bil preveden z uporabo storitve za strojno prevajanje [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, vas prosimo, da se zavedate, da lahko avtomatizirani prevodi vsebujejo napake ali netočnosti. Izvirni dokument v njegovem izvirnem jeziku je treba obravnavati kot avtoritativni vir. Za ključne informacije priporočamo strokovno človeško prevajanje. Ne prevzemamo odgovornosti za morebitna nesporazumevanja ali napačne razlage, ki izhajajo iz uporabe tega prevoda.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Omejitev odgovornosti**:
+Ta dokument je bil preveden z uporabo AI prevajalske storitve [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, vas prosimo, da upoštevate, da avtomatizirani prevodi lahko vsebujejo napake ali netočnosti. Izvirni dokument v njegovem izvirnem jeziku je treba obravnavati kot avtoritativni vir. Za kritične informacije je priporočljiv strokovni človeški prevod. Ne odgovarjamo za morebitna nesporazume ali napačne interpretacije, ki izhajajo iz uporabe tega prevoda.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

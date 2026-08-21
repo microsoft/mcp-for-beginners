@@ -30,7 +30,9 @@ Before diving into specific implementation practices, it's important to understa
 
 4. **Modular Architecture**: Design your MCP servers with a modular approach, where each tool and resource has a clear, focused purpose.
 
-5. **Stateful Connections**: Leverage MCP's ability to maintain state across multiple requests for more coherent and context-aware interactions.
+5. **Explicit State**: MCP `2026-07-28` is stateless at the protocol
+   layer. When a workflow needs cross-call state, use explicit handles or
+   ordinary tool arguments backed by durable application state.
 
 ## Official MCP Best Practices
 
@@ -44,7 +46,9 @@ The following best practices are derived from the official Model Context Protoco
 
 3. **Tool Safety**: Require explicit user consent before invoking any tool. Ensure users understand each tool's functionality and enforce robust security boundaries.
 
-4. **Tool Permission Control**: Configure which tools a model is allowed to use during a session, ensuring only explicitly authorized tools are accessible.
+4. **Tool Permission Control**: Configure which tools a model may use for
+   each request and authorization context, ensuring only explicitly authorized
+   tools are accessible.
 
 5. **Authentication**: Require proper authentication before granting access to tools, resources, or sensitive operations using API keys, OAuth tokens, or other secure authentication methods.
 
@@ -54,13 +58,17 @@ The following best practices are derived from the official Model Context Protoco
 
 ### Implementation Best Practices
 
-1. **Capability Negotiation**: During connection setup, exchange information about supported features, protocol versions, available tools, and resources.
+1. **Capability Negotiation**: Negotiate supported protocol versions and
+   capabilities. In MCP `2026-07-28`, each request is self-contained and may
+   use `server/discover`; older revisions use the initialization handshake.
 
 2. **Tool Design**: Create focused tools that do one thing well, rather than monolithic tools that handle multiple concerns.
 
 3. **Error Handling**: Implement standardized error messages and codes to help diagnose issues, handle failures gracefully, and provide actionable feedback.
 
-4. **Logging**: Configure structured logs for auditing, debugging, and monitoring protocol interactions.
+4. **Observability**: Use `stderr` for stdio diagnostics and OpenTelemetry
+   for structured observability. The MCP logging feature is deprecated in the
+   `2026-07-28` specification.
 
 5. **Progress Tracking**: For long-running operations, report progress updates to enable responsive user interfaces.
 
@@ -71,11 +79,28 @@ The following best practices are derived from the official Model Context Protoco
 For the most up-to-date information on MCP best practices, refer to:
 
 - [MCP Documentation](https://modelcontextprotocol.io/)
-- [MCP Specification (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Specification (2026-07-28)][mcp-2026-spec]
+- [Previous MCP Specification (2025-11-25)](https://modelcontextprotocol.io/specification/2025-11-25)
+- [MCP Tasks Extension][mcp-tasks-extension]
 - [GitHub Repository](https://github.com/modelcontextprotocol)
-- [Security Best Practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices)
-- [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - Security risks and mitigations
+- [Security Best Practices](https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/security_best_practices)
+- [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/) - Security risks and mitigations
 - [MCP Security Summit Workshop (Sherpa)](https://azure-samples.github.io/sherpa/) - Hands-on security training
+
+### Reliability Companion Lesson
+
+Generic retry loops are unsafe for tools that create tickets, payments,
+messages, deployments, or other real-world effects. A response can be lost
+after the effect commits.
+
+Use the reliability companion lesson,
+[Safe Retries for MCP Tools: A Reliability Sidecar Pattern][reliability-sidecar],
+to learn stable operation keys, duplicate admission, checkpointing,
+reconciliation, evidence levels, and failure injection.
+
+[mcp-2026-spec]: https://modelcontextprotocol.io/specification/2026-07-28
+[mcp-tasks-extension]: https://modelcontextprotocol.io/extensions/tasks/overview
+[reliability-sidecar]: ./reliability-sidecars/README.md
 
 ## Practical Implementation Examples
 
@@ -862,7 +887,7 @@ public ToolResponse execute(ToolRequest request) {
                 .build();
         }
         
-        // Re-throw other exceptions as ToolExecutionException
+        // Rethrow other exceptions as ToolExecutionException
         throw new ToolExecutionException("Tool execution failed: " + ex.getMessage(), ex);
     }
 }
@@ -870,7 +895,13 @@ public ToolResponse execute(ToolRequest request) {
 
 #### 3. Retry Logic
 
-Implement appropriate retry logic for transient failures:
+Use generic retry logic only for read-only calls or operations whose
+downstream contract is already idempotent. For effectful operations, a timeout
+after sending the request is ambiguous. Reconcile authoritative state and
+reuse the same stable operation key before executing again. See the
+[reliability sidecar companion lesson](./reliability-sidecars/README.md).
+
+The following bounded retry loop is suitable for a read-only lookup:
 
 ```python
 async def execute_async(self, request):
@@ -880,8 +911,8 @@ async def execute_async(self, request):
     
     while retry_count < max_retries:
         try:
-            # Call external API
-            return await self._call_api(request.parameters)
+            # Call a read-only external API
+            return await self._call_read_only_api(request.parameters)
         except TransientError as e:
             retry_count += 1
             if retry_count >= max_retries:
@@ -1261,17 +1292,17 @@ public void testSchemaValidation() {
     // Create tool instance
     SearchTool searchTool = new SearchTool();
     
-    // Obtain schema
+    // Get schema
     Object schema = searchTool.getSchema();
     
     // Convert schema to JSON for validation
     String schemaJson = objectMapper.writeValueAsString(schema);
     
-    // Validate that the schema is a valid JSONSchema
+    // Validate schema is valid JSONSchema
     JsonSchemaFactory factory = JsonSchemaFactory.byDefault();
     JsonSchema jsonSchema = factory.getJsonSchema(schemaJson);
     
-    // Test with valid parameters
+    // Test valid parameters
     JsonNode validParams = objectMapper.createObjectNode()
         .put("query", "test query")
         .put("limit", 5);
@@ -1279,14 +1310,14 @@ public void testSchemaValidation() {
     ProcessingReport validReport = jsonSchema.validate(validParams);
     assertTrue(validReport.isSuccess());
     
-    // Test with missing required parameter
+    // Test missing required parameter
     JsonNode missingRequired = objectMapper.createObjectNode()
         .put("limit", 5);
         
     ProcessingReport missingReport = jsonSchema.validate(missingRequired);
     assertFalse(missingReport.isSuccess());
     
-    // Test with invalid parameter type
+    // Test invalid parameter type
     JsonNode invalidType = objectMapper.createObjectNode()
         .put("query", "test")
         .put("limit", "not-a-number");
@@ -2090,6 +2121,7 @@ End-to-end tests verify the complete system behavior from client to server.
 2. **Real Client SDKs**: Test with actual client implementations
 3. **Performance Under Load**: Verify behavior with multiple concurrent requests
 4. **Error Recovery**: Test system recovery from failures
+
 5. **Long-Running Operations**: Verify handling of streaming and long operations
 
 #### Best Practices for E2E Testing
@@ -2233,9 +2265,9 @@ Automating your tests ensures consistent quality and faster feedback loops.
 ### CI/CD Integration
 
 1. **Run Unit Tests on Pull Requests**: Ensure code changes don't break existing functionality
-2. **Integration Tests in Staging**: Run integration tests in pre-production environments  
-3. **Performance Baselines**: Maintain performance benchmarks to catch regressions  
-4. **Security Scans**: Automate security testing as part of the pipeline  
+2. **Integration Tests in Staging**: Run integration tests in pre-production environments
+3. **Performance Baselines**: Maintain performance benchmarks to catch regressions
+4. **Security Scans**: Automate security testing as part of the pipeline
 
 ### Example CI Pipeline (GitHub Actions)
 
@@ -2275,18 +2307,18 @@ jobs:
     - name: Performance Tests
       run: dotnet run --project tests/PerformanceTests/PerformanceTests.csproj
 ```
-  
+
 ## Testing for Compliance with MCP Specification
 
 Verify your server correctly implements the MCP specification.
 
 ### Key Compliance Areas
 
-1. **API Endpoints**: Test required endpoints (/resources, /tools, etc.)  
-2. **Request/Response Format**: Validate schema compliance  
-3. **Error Codes**: Verify correct status codes for various scenarios  
-4. **Content Types**: Test handling of different content types  
-5. **Authentication Flow**: Verify spec-compliant auth mechanisms  
+1. **API Endpoints**: Test required endpoints (/resources, /tools, etc.)
+2. **Request/Response Format**: Validate schema compliance
+3. **Error Codes**: Verify correct status codes for various scenarios
+4. **Content Types**: Test handling of different content types
+5. **Authentication Flow**: Verify spec-compliant auth mechanisms
 
 ### Compliance Test Suite
 
@@ -2314,60 +2346,62 @@ public async Task Server_ResourceEndpoint_ReturnsCorrectSchema()
     });
 }
 ```
-  
+
 ## Top 10 Tips for Effective MCP Server Testing
 
-1. **Test Tool Definitions Separately**: Verify schema definitions independently from tool logic  
-2. **Use Parameterized Tests**: Test tools with a variety of inputs, including edge cases  
-3. **Check Error Responses**: Verify proper error handling for all possible error conditions  
-4. **Test Authorization Logic**: Ensure proper access control for different user roles  
-5. **Monitor Test Coverage**: Aim for high coverage of critical path code  
-6. **Test Streaming Responses**: Verify proper handling of streaming content  
-7. **Simulate Network Issues**: Test behavior under poor network conditions  
-8. **Test Resource Limits**: Verify behavior when reaching quotas or rate limits  
-9. **Automate Regression Tests**: Build a suite that runs on every code change  
-10. **Document Test Cases**: Maintain clear documentation of test scenarios  
+1. **Test Tool Definitions Separately**: Verify schema definitions independently from tool logic
+2. **Use Parameterized Tests**: Test tools with a variety of inputs, including edge cases
+3. **Check Error Responses**: Verify proper error handling for all possible error conditions
+4. **Test Authorization Logic**: Ensure proper access control for different user roles
+5. **Monitor Test Coverage**: Aim for high coverage of critical path code
+6. **Test Streaming Responses**: Verify proper handling of streaming content
+7. **Simulate Network Issues**: Test behavior under poor network conditions
+8. **Test Resource Limits**: Verify behavior when reaching quotas or rate limits
+9. **Automate Regression Tests**: Build a suite that runs on every code change
+10. **Document Test Cases**: Maintain clear documentation of test scenarios
 
 ## Common Testing Pitfalls
 
-- **Over-reliance on happy path testing**: Make sure to test error cases thoroughly  
-- **Ignoring performance testing**: Identify bottlenecks before they affect production  
-- **Testing in isolation only**: Combine unit, integration, and E2E tests  
-- **Incomplete API coverage**: Ensure all endpoints and features are tested  
-- **Inconsistent test environments**: Use containers to ensure consistent test environments  
+- **Over-reliance on happy path testing**: Make sure to test error cases thoroughly
+- **Ignoring performance testing**: Identify bottlenecks before they affect production
+- **Testing in isolation only**: Combine unit, integration, and E2E tests
+- **Incomplete API coverage**: Ensure all endpoints and features are tested
+- **Inconsistent test environments**: Use containers to ensure consistent test environments
 
 ## Conclusion
 
-A comprehensive testing strategy is essential for developing reliable, high-quality MCP servers. By implementing the best practices and tips outlined in this guide, you can ensure your MCP implementations meet the highest standards of quality, reliability, and performance.  
+A comprehensive testing strategy is essential for developing reliable, high-quality MCP servers. By implementing the best practices and tips outlined in this guide, you can ensure your MCP implementations meet the highest standards of quality, reliability, and performance.
+
 
 ## Key Takeaways
 
-1. **Tool Design**: Follow single responsibility principle, use dependency injection, and design for composability  
-2. **Schema Design**: Create clear, well-documented schemas with proper validation constraints  
-3. **Error Handling**: Implement graceful error handling, structured error responses, and retry logic  
-4. **Performance**: Use caching, asynchronous processing, and resource throttling  
-5. **Security**: Apply thorough input validation, authorization checks, and sensitive data handling  
-6. **Testing**: Create comprehensive unit, integration, and end-to-end tests  
-7. **Workflow Patterns**: Apply established patterns like chains, dispatchers, and parallel processing  
+1. **Tool Design**: Follow single responsibility principle, use dependency injection, and design for composability
+2. **Schema Design**: Create clear, well-documented schemas with proper validation constraints
+3. **Error Handling**: Implement graceful error handling, structured error
+   responses, and outcome-aware retry logic
+4. **Performance**: Use caching, asynchronous processing, and resource throttling
+5. **Security**: Apply thorough input validation, authorization checks, and sensitive data handling
+6. **Testing**: Create comprehensive unit, integration, and end-to-end tests
+7. **Workflow Patterns**: Apply established patterns like chains, dispatchers, and parallel processing
 
 ## Exercise
 
 Design an MCP tool and workflow for a document processing system that:
 
-1. Accepts documents in multiple formats (PDF, DOCX, TXT)  
-2. Extracts text and key information from the documents  
-3. Classifies documents by type and content  
-4. Generates a summary of each document  
+1. Accepts documents in multiple formats (PDF, DOCX, TXT)
+2. Extracts text and key information from the documents
+3. Classifies documents by type and content
+4. Generates a summary of each document
 
 Implement the tool schemas, error handling, and a workflow pattern that best suits this scenario. Consider how you would test this implementation.
 
-## Resources  
+## Resources 
 
-1. Join the MCP community on the [Microsoft Foundry Discord Community](https://aka.ms/foundrydevs) to stay updated on the latest developments  
-2. Contribute to open-source [MCP projects](https://github.com/modelcontextprotocol)  
-3. Apply MCP principles in your own organization's AI initiatives  
-4. Explore specialized MCP implementations for your industry.  
-5. Consider taking advanced courses on specific MCP topics, such as multi-modal integration or enterprise application integration.  
+1. Join the MCP community on the [Microsoft Foundry Discord Community](https://aka.ms/foundrydevs) to stay updated on the latest developments 
+2. Contribute to open-source [MCP projects](https://github.com/modelcontextprotocol)
+3. Apply MCP principles in your own organization's AI initiatives
+4. Explore specialized MCP implementations for your industry. 
+5. Consider taking advanced courses on specific MCP topics, such as multi-modal integration or enterprise application integration.
 6. Experiment with building your own MCP tools and workflows using the principles learned through the [Hands on Lab](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)  
 
 ## What's Next

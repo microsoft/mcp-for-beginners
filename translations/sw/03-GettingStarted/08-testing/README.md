@@ -1,74 +1,74 @@
-## Kupima na Kurekebisha Hitilafu
+## Kupima na Kuchunguza Hitilafu
 
-Kabla ya kuanza kupima seva yako ya MCP, ni muhimu kuelewa zana zilizopo na mbinu bora za kurekebisha hitilafu. Kupima kwa ufanisi kunahakikisha seva yako inafanya kazi kama inavyotarajiwa na kunakusaidia utambue na kutatua matatizo haraka. Sehemu ifuatayo inaelezea mbinu zilizopendekezwa za kuthibitisha utekelezaji wako wa MCP.
+Kabla hujaanza kupima server yako ya MCP, ni muhimu kuelewa zana zilizopo na mbinu bora za kuchunguza hitilafu. Kupima kwa ufanisi kunahakikisha server yako inafanya kazi kama inavyotarajiwa na kukusaidia kubaini na kutatua matatizo haraka. Sehemu inayofuata inaelezea mbinu zinazopendekezwa za kuthibitisha utekelezaji wa MCP wako.
 
 ## Muhtasari
 
-Somo hili linajumuisha jinsi ya kuchagua mbinu sahihi ya kupima na zana bora zaidi za kupima.
+Somo hili linashughulikia jinsi ya kuchagua mbinu sahihi ya kupima na zana bora zaidi za kupima.
 
 ## Malengo ya Kujifunza
 
 Mwisho wa somo hili, utaweza:
 
-- Kuelezea mbinu mbalimbali za kupima.
-- Kutumia zana tofauti kupima msimbo wako kwa ufanisi.
+- Eleza mbinu mbalimbali za kupima.
+- Tumia zana tofauti kupima msimbo wako kwa ufanisi.
 
 
-## Kupima Seva za MCP
+## Kupima Servers za MCP
 
-MCP huleta zana za kusaidia kupima na kurekebisha hitilafu za seva zako:
+MCP hutoa zana zinazokusaidia kupima na kuchunguza hitilafu za seva zako:
 
-- **MCP Inspector**: Zana ya mstari wa amri inayoweza kutumika kama zana ya CLI na pia kama zana ya kuona.
-- **Kupima kwa mkono**: Unaweza kutumia zana kama curl kutekeleza ombi za wavuti, lakini zana yoyote inayoweza kutekeleza HTTP itafanya.
-- **Kupima kwa vipande**: Inawezekana kutumia mfumo wako wa kupima unaopendelea kupima vipengele vya seva na mteja.
+- **MCP Inspector**: Zana ya amri inayoweza kuendeshwa kama zana ya CLI na pia kama zana ya kuona.
+- **Upimaji kwa mkono**: Unaweza kutumia zana kama curl kuendesha maombi ya wavuti, lakini zana yoyote inayoweza kuendesha HTTP itatosha.
+- **Upimaji wa vitengo**: Inawezekana kutumia mfumo wa upimaji unaouc prefer ili kupima vipengele vya server na mteja.
 
 ### Kutumia MCP Inspector
 
-Tumesema matumizi ya zana hii katika masomo ya awali lakini tuzungumzie kwa kiwango cha juu. Ni zana iliyojengwa kwa Node.js na unaweza kuitumia kwa kuitisha executable ya `npx` ambayo itapakua na kusanidi zana hiyo kwa muda mfupi na kuiondoa yenyewe mara baada ya kuendeshwa kwa ombi lako.
+Tumeelezea matumizi ya zana hii katika masomo yaliyopita lakini hebu tuchukulie kidogo kwa kiwango cha juu. Ni zana iliyojengwa kwa Node.js na unaweza kuitumia kwa kuwaita faili la `npx` ambalo litasakinisha na kuendesha zana kwa muda wa ombi lako na kisha kujisafisha.
 
-[MCP Inspector](https://github.com/modelcontextprotocol/inspector) hukusaidia:
+[MCP Inspector](https://github.com/modelcontextprotocol/inspector) inakusaidia:
 
-- **Gundua Uwezo wa Seva**: Kugundua moja kwa moja rasilimali, zana, na maelezo yaliyopo
-- **Jaribu Uendeshaji wa Zana**: Jaribu vigezo tofauti na uone majibu kwa wakati halisi
-- **Tazama Metadata ya Seva**: Chunguza taarifa za seva, skimu, na usanidi
+- **Kugundua Uwezo wa Server**: Kugundua kwa moja kwa moja rasilimali, zana na maelekezo yanayopatikana
+- **Kujaribu Uendeshaji wa Zana**: Jaribu vigezo tofauti na uone majibu kwa wakati halisi
+- **Kuangalia Metadata za Server**: Chunguza taarifa za server, skimu, na usanidi
 
-Uzito wa kawaida wa zana unaonekana kama ifuatavyo:
+Kuendesha zana kawaida huenda hivi:
 
 ```bash
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-Amri hapo juu inaanzisha MCP na kiolesura chake cha kuona na kuanzisha interface ya wavuti ya ndani kwenye kivinjari chako. Unaweza kutarajia kuona dashibodi inayoonyesha seva zako za MCP zilizosajiliwa, zana zao zinazopatikana, rasilimali, na maelezo. Kiolesura huru kuruhusu kupima kwa mwingiliano wa uendeshaji wa zana, kuchunguza metadata ya seva, na kuona majibu kwa wakati halisi, na kufanya iwe rahisi kuthibitisha na kurekebisha utekelezaji wa seva zako za MCP.
+Amri hapo juu inaanzisha MCP na kiolesura chake cha kuona na kuanzisha kiolesura cha wavuti cha ndani kwenye kivinjari chako. Unaweza kutarajia kuona dashibodi ikionyesha seva zako za MCP zilizosajiliwa, zana zao zinazopatikana, rasilimali, na maelekezo. Kiolesura kinakuruhusu kujaribu uendeshaji wa zana kwa njia ya mwingiliano, kuchunguza metadata ya server, na kuona majibu kwa wakati halisi, kufanya iwe rahisi kuthibitisha na kuchunguza hitilafu katika utekelezaji wa seva zako za MCP.
 
-Hivi ndivyo zinaweza kuonekana: ![Inspector](../../../../translated_images/sw/connect.141db0b2bd05f096.webp)
+Hivi ndivyo kinaweza kuonekana: ![Inspector](../../../../translated_images/sw/connect.141db0b2bd05f096.webp)
 
-Unaweza pia kuendesha zana hii katika hali ya CLI ambapo unazidisha alama `--cli`. Hapa ni mfano wa kuendesha zana katika hali ya "CLI" inayoorodhesha zana zote kwenye seva:
+Pia unaweza kuendesha zana hii kwa hali ya CLI ambapo unatumia sifa `--cli`. Hapa kuna mfano wa kuendesha zana kwa "CLI" ambayo inaorodhesha zana zote kwenye server:
 
 ```sh
 npx @modelcontextprotocol/inspector --cli node build/index.js --method tools/list
 ```
 
-### Kupima kwa Mkono
+### Upimaji kwa Mkono
 
-Mbali na kuendesha zana ya inspector kupima uwezo wa seva, njia nyingine inayofanana ni kuendesha mteja anayeweza kutumia HTTP kama curl kwa mfano.
+Mbali na kuendesha zana ya inspector kupima uwezo wa server, njia nyingine kama hiyo ni kuendesha mteja anayeweza kutumia HTTP kama curl.
 
-Kwa curl, unaweza kupima seva za MCP moja kwa moja kwa kutumia maombi ya HTTP:
+Kwa kutumia curl, unaweza kupima seva za MCP moja kwa moja kwa maombi ya HTTP:
 
 ```bash
-# Mfano: Metadata ya seva ya mtihani
+# Mfano: Metadata ya seva ya majaribio
 curl http://localhost:3000/v1/metadata
 
-# Mfano: Endesha chombo
+# Mfano: Endesha zana
 curl -X POST http://localhost:3000/v1/tools/execute \
   -H "Content-Type: application/json" \
   -d '{"name": "calculator", "parameters": {"expression": "2+2"}}'
 ```
 
-Kama unavyoweza kuona kutoka matumizi ya curl hapo juu, unatumia ombi la POST kuitisha zana kwa kutumia payload inayojumuisha jina la zana na vigezo vyake. Tumia njia inayokufaa zaidi. Zana za CLI kwa ujumla huwa rahisi na zinaweza kuandikwa kwa maandishi ambayo inaweza kuwa muhimu katika mazingira ya CI/CD.
+Kama unavyoona katika matumizi ya curl hapo juu, unatumia ombi la POST kuitisha zana kwa kutumia payload inayojumuisha jina la zana na vigezo vyake. Tumia mbinu inayokufaa zaidi. Zana za CLI kwa ujumla huwa za haraka kutumia na zinafaa kuandikwa kwenye skiripti ambayo inaweza kuwa muhimu katika mazingira ya CI/CD.
 
-### Kupima kwa Vipande
+### Upimaji wa Vitengo
 
-Tengeneza vipimo vya vipande kwa zana na rasilimali zako ili kuhakikisha zinafanya kazi kama inavyotarajiwa. Hapa kuna mfano wa msimbo wa kupima.
+Unda vipimo vya vitengo kwa zana na rasilimali zako kuhakikisha zinafanya kazi kama inavyotarajiwa. Hapa kuna mfano wa msimbo wa upimaji.
 
 ```python
 import pytest
@@ -78,7 +78,7 @@ from mcp.shared.memory import (
     create_connected_server_and_client_session as create_session,
 )
 
-# Taja moduli yote kwa ajili ya majaribio ya async
+# Tambaza moduli yote kwa majaribio async
 pytestmark = pytest.mark.anyio
 
 
@@ -91,7 +91,7 @@ async def test_list_tools_cursor_parameter():
 
  server = FastMCP("test")
 
-    # Tengeneza baadhi ya zana za majaribio
+    # Tengeneza zana chache za majaribio
     @server.tool(name="test_tool_1")
     async def test_tool_1() -> str:
         """First test tool"""
@@ -103,7 +103,7 @@ async def test_list_tools_cursor_parameter():
         return "Result 2"
 
     async with create_session(server._mcp_server) as client_session:
-        # Jaribu bila kipengele cha cursor (kimeachwa)
+        # Jaribu bila parameter ya cursor (imeachwa)
         result1 = await client_session.list_tools()
         assert len(result1.tools) == 2
 
@@ -111,47 +111,47 @@ async def test_list_tools_cursor_parameter():
         result2 = await client_session.list_tools(cursor=None)
         assert len(result2.tools) == 2
 
-        # Jaribu na cursor kama mfuatiliaji wa maandishi
+        # Jaribu na cursor kama mfuatano wa herufi
         result3 = await client_session.list_tools(cursor="some_cursor_value")
         assert len(result3.tools) == 2
 
-        # Jaribu na cursor kama mfuatiliaji wa maandishi mtupu
+        # Jaribu na cursor tupu mfuatano wa herufi
         result4 = await client_session.list_tools(cursor="")
         assert len(result4.tools) == 2
     
 ```
 
-Msimbo huu ulio hapo juu hufanya yafuatayo:
+Msimbo uliotangulia hufanya yafuatayo:
 
-- Kutumia mfumo wa pytest unaokuwezesha kuunda vipimo kama kazi na kutumia taarifa za assert.
-- Kuunda Seva ya MCP yenye zana mbili tofauti.
-- Kutumia taarifa ya `assert` kuhakikisha hali fulani zimekutana.
+- Inatumia mfumo wa pytest unaokuwezesha kuunda vipimo kama kazi na kutumia kauli za assert.
+- Unda Server ya MCP yenye zana mbili tofauti.
+- Inatumia kauli ya `assert` kuangalia kwamba masharti fulani yametimizwa.
 
 Tazama [faili kamili hapa](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
-Kwa kutumia faili hapo juu, unaweza kupima seva yako mwenyewe kuhakikisha uwezo umeundwa kama unavyotakiwa.
+Kutokana na faili hapo juu, unaweza kupima server yako mwenyewe kuhakikisha uwezo umeundwa kama ilivyo lazima.
 
-SDK zote kuu zina sehemu sawa za kupima hivyo unaweza kubadilisha kulingana na runtime uliyochagua.
+Maktaba kubwa za SDK zote zina sehemu za upimaji kama hizo hivyo unaweza kuzoea mazingira yako ya utekelezaji.
 
 ## Sampuli
 
-- [Java Calculator](../samples/java/calculator/README.md)
-- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
-- [JavaScript Calculator](../samples/javascript/README.md)
-- [TypeScript Calculator](../samples/typescript/README.md)
-- [Python Calculator](../../../../03-GettingStarted/samples/python)
+- [Kalkuleta ya Java](../samples/java/calculator/README.md)
+- [Kalkuleta ya .Net](../../../../03-GettingStarted/samples/csharp)
+- [Kalkuleta ya JavaScript](../samples/javascript/README.md)
+- [Kalkuleta ya TypeScript](../samples/typescript/README.md)
+- [Kalkuleta ya Python](../../../../03-GettingStarted/samples/python)
 
-## Rasilimali Zaidi
+## Vyanzo Zaidi
 
-- [Python SDK](https://github.com/modelcontextprotocol/python-sdk)
+- [SDK ya Python](https://github.com/modelcontextprotocol/python-sdk)
 
-## Kitu Kinachofuata
+## Nini Kifuatacho
 
-- Ifuatayo: [Deployment](../09-deployment/README.md)
+- Ifuatayo: [Uwekaji wa mazingira](../09-deployment/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Tangazo la Hukumu**:
-Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Wakati tunajitahidi kwa usahihi, tafadhali fahamu kwamba tafsiri za kiotomatiki zinaweza kuwa na makosa au upungufu wa usahihi. Hati asili katika lugha yake ya asili inapaswa kuzingatiwa kama chanzo cha mwaminifu. Kwa habari muhimu, tafsiri ya mtaalamu wa kibinadamu inapendekezwa. Hatuwajibiki kwa kutoelewana au tafsiri potofu zinazotokana na matumizi ya tafsiri hii.
+**Kionyozo**:
+Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kupata usahihi, tafadhali fahamu kwamba tafsiri za kiotomatiki zinaweza kuwa na makosa au upungufu wa usahihi. Hati ya asili katika lugha yake halisi inapaswa kuchukuliwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu inayofanywa na binadamu inapendekezwa. Hatutojibu kwa kuelewa vibaya au tafsiri potofu zinazotokea kutokana na matumizi ya tafsiri hii.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

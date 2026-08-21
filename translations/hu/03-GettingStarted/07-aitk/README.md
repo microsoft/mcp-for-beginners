@@ -1,99 +1,107 @@
-# Az AI Toolkit kiterjesztés használata Visual Studio Code-ban egy szerver fogyasztásához
+# Egy szerver használata az AI Toolkit kiterjesztésből a Visual Studio Code-ban  
 
-Amikor AI ügynököt építesz, nem csak az okos válaszok generálásáról van szó; az is fontos, hogy az ügynök képes legyen cselekedni. Itt jön képbe a Model Context Protocol (MCP). Az MCP lehetővé teszi az ügynökök számára, hogy külső eszközökhöz és szolgáltatásokhoz férjenek hozzá egységes módon. Gondolj rá úgy, mint egy szerszámosládára, amit az ügynök *valóban* használni tud.
+Amikor AI ügynököt építesz, nem csak az okos válaszok generálásáról van szó; az is fontos, hogy az ügynök képes legyen cselekedni. Erre szolgál a Model Context Protocol (MCP). Az MCP megkönnyíti, hogy az ügynökök következetes módon férjenek hozzá külső eszközökhöz és szolgáltatásokhoz. Olyan, mintha az ügynöködet egy valóban használható szerszámosláda csatlakoztatnád.  
 
-Tegyük fel, hogy egy ügynököt csatlakoztatsz a számológép MCP szerveredhez. Hirtelen az ügynök képes matematikai műveleteket végezni, csak egy olyan utasítás alapján, mint például: „Mennyi 47 szorozva 89-cel?”—nincs szükség a logika kódolására vagy egyedi API-k létrehozására.
+Tegyük fel, hogy egy ügynököt csatlakoztatsz a kalkulátor MCP szerveredhez. Hirtelen az ügynököd képes matematikai műveleteket végrehajtani egyszerűen azáltal, hogy kap egy promptot, például „Mennyi 47 szor 89?” — nem kell logikát beépíteni vagy egyedi API-kat készíteni.  
 
-## Áttekintés
+## Áttekintés  
 
-Ez a lecke bemutatja, hogyan lehet egy számológép MCP szervert csatlakoztatni egy ügynökhöz a [AI Toolkit](https://aka.ms/AIToolkit) kiterjesztés segítségével a Visual Studio Code-ban, lehetővé téve az ügynök számára, hogy természetes nyelven keresztül végezzen matematikai műveleteket, például összeadást, kivonást, szorzást és osztást.
+Ez a lecke bemutatja, hogyan lehet egy kalkulátor MCP szervert csatlakoztatni egy ügynökhöz az [AI Toolkit](https://aka.ms/AIToolkit) kiterjesztéssel a Visual Studio Code-ban, lehetővé téve az ügynök számára matematikai műveletek, például összeadás, kivonás, szorzás és osztás elvégzését természetes nyelven keresztül.  
 
-Az AI Toolkit egy erőteljes kiterjesztés a Visual Studio Code-hoz, amely leegyszerűsíti az ügynökfejlesztést. Az AI mérnökök könnyedén építhetnek AI alkalmazásokat generatív AI modellek fejlesztésével és tesztelésével—helyben vagy a felhőben. A kiterjesztés támogatja a legtöbb ma elérhető generatív modellt.
+Az AI Toolkit egy hatékony Visual Studio Code kiterjesztés, amely egyszerűsíti az ügynökfejlesztést. AI mérnökök könnyedén építhetnek AI alkalmazásokat generatív AI modellek fejlesztésével és tesztelésével — helyileg vagy felhőben. A kiterjesztés a legtöbb ma elérhető jelentős generatív modellt támogatja.  
 
-*Megjegyzés*: Az AI Toolkit jelenleg Python és TypeScript nyelveket támogat.
+*Megjegyzés*: Az AI Toolkit jelenleg a Python-t és a TypeScript-et támogatja.  
 
-## Tanulási célok
+## Tanulási célok  
 
-A lecke végére képes leszel:
+E lecke végére képes leszel:  
 
-- MCP szervert használni az AI Toolkit segítségével.
-- Konfigurálni egy ügynököt, hogy felfedezze és használja az MCP szerver által biztosított eszközöket.
-- MCP eszközöket használni természetes nyelven keresztül.
+- MCP szerver fogyasztása az AI Toolkit-en keresztül.  
+- Ügynök konfiguráció létrehozása az MCP szerver által biztosított eszközök felfedezéséhez és használatához.  
+- MCP eszközök használata természetes nyelven keresztül.  
 
-## Megközelítés
+## Megközelítés  
 
-Íme, hogyan kell magas szinten megközelíteni a feladatot:
+Itt van, hogyan kell ezt nagy vonalakban megközelíteni:  
 
-- Hozz létre egy ügynököt, és definiáld a rendszerutasítását.
-- Hozz létre egy MCP szervert számológép eszközökkel.
-- Csatlakoztasd az Agent Builder-t az MCP szerverhez.
-- Teszteld az ügynök eszközhasználatát természetes nyelven keresztül.
+- Ügynök létrehozása és a rendszer promptjának definiálása.  
+- MCP szerver létrehozása kalkulátor eszközökkel.  
+- Az Agent Builder csatlakoztatása az MCP szerverhez.  
+- Az ügynök eszközfelhívásának tesztelése természetes nyelv használatával.  
 
-Remek, most, hogy megértettük a folyamatot, konfiguráljunk egy AI ügynököt, hogy külső eszközöket használjon az MCP segítségével, és ezzel bővítse képességeit!
+Nagyszerű, most hogy értjük a folyamatot, konfiguráljuk az AI ügynököt, hogy MCP-n keresztül külső eszközöket használhasson, ezáltal kibővítve képességeit!  
 
-## Előfeltételek
+## Előfeltételek  
 
-- [Visual Studio Code](https://code.visualstudio.com/)
-- [AI Toolkit for Visual Studio Code](https://aka.ms/AIToolkit)
+- [Visual Studio Code](https://code.visualstudio.com/)  
+- [AI Toolkit a Visual Studio Code-hoz](https://aka.ms/AIToolkit)  
 
-## Gyakorlat: Egy szerver használata
+## Gyakorlat: Egy szerver használata  
 
-> [!WARNING]
-> Megjegyzés macOS felhasználóknak. Jelenleg vizsgálunk egy problémát, amely a függőségek telepítését érinti macOS rendszeren. Ennek eredményeként a macOS felhasználók jelenleg nem tudják befejezni ezt az oktatóanyagot. Amint elérhető lesz a javítás, frissítjük az utasításokat. Köszönjük a türelmet és a megértést!
+> [!WARNING]  
+> Megjegyzés macOS felhasználóknak. Jelenleg egy olyan probléma vizsgálata folyik, amely érinti a függőség telepítést macOS-en. Emiatt macOS felhasználók jelenleg nem tudják befejezni ezt az oktatóanyagot. Amint elérhető javítás, frissítjük az útmutatót. Köszönjük türelmüket és megértésüket!  
 
-Ebben a gyakorlatban egy AI ügynököt fogsz építeni, futtatni és bővíteni MCP szerver eszközökkel a Visual Studio Code-ban az AI Toolkit segítségével.
+Ebben a gyakorlatban egy AI ügynököt építesz, futtatsz és fejlesztesz MCP szerver eszközeivel a Visual Studio Code-ban az AI Toolkit segítségével.  
 
-### -0- Előkészítő lépés: Add hozzá az OpenAI GPT-4o modellt a Saját modellekhez
+### -0- Előkészület, add hozzá az OpenAI GPT-4o modellt a Saját Modellekhez  
 
-A gyakorlat a **GPT-4o** modellt használja. A modellt hozzá kell adni a **Saját modellek** listához, mielőtt létrehoznád az ügynököt.
+A gyakorlat a **GPT-4o** modellt használja. A modellt hozzá kell adni a **Saját Modellek** listához az ügynök létrehozása előtt.  
 
-1. Nyisd meg az **AI Toolkit** kiterjesztést az **Aktivitás sávból**.
-1. A **Katalógus** szekcióban válaszd a **Modellek** lehetőséget a **Modellek katalógusának** megnyitásához. A **Modellek** kiválasztása egy új szerkesztőfülön nyitja meg a katalógust.
-1. A **Modellek katalógusa** keresősávjába írd be: **OpenAI GPT-4o**.
-1. Kattints a **+ Hozzáadás** gombra, hogy a modellt hozzáadd a **Saját modellek** listádhoz. Győződj meg róla, hogy a **GitHub által hosztolt** modellt választottad.
-1. Az **Aktivitás sávban** ellenőrizd, hogy az **OpenAI GPT-4o** modell megjelenik a listában.
+![Képernyőkép egy modellválasztó felületről a Visual Studio Code AI Toolkit kiterjesztésében. A címsorban „Find the right model for your AI Solution” szerepel, alatta egy alcím, amely arra ösztönzi a felhasználókat, hogy fedezzenek fel, teszteljenek és telepítsenek AI modelleket. Alatta, a “Popular Models” (népszerű modellek) alatt hat modell kártya látható: DeepSeek-R1 (GitHub-hostolt), OpenAI GPT-4o, OpenAI GPT-4.1, OpenAI o1, Phi 4 Mini (CPU - Kicsi, Gyors), és DeepSeek-R1 (Ollama-hostolt). Minden kártyán van lehetőség „Add” (Hozzáadás) vagy „Try in Playground” (Próbáld ki a játéktéren) kiválasztására](../../../../translated_images/hu/aitk-model-catalog.2acd38953bb9c119.webp)  
 
-### -1- Ügynök létrehozása
+1. Nyisd meg az **AI Toolkit** kiterjesztést az **Activity Bar**-ról.  
+1. A **Katalógus** szekcióban válaszd ki a **Modelleket**, hogy megnyisd a **Modell katalógust**. A modellek kiválasztása új szerkesztőfülön nyitja meg a katalógust.  
+1. Írd be a **OpenAI GPT-4o**-t a keresősávba a **Modell katalógusban**.  
+1. Kattints a **+ Hozzáadás** gombra, hogy a modellt a **Saját Modellek** listához add. Győződj meg arról, hogy a GitHub által hostolt modellt választottad.  
+1. Az **Activity Bar**-on ellenőrizd, hogy az **OpenAI GPT-4o** modell megjelenik a listában.  
 
-Az **Agent (Prompt) Builder** lehetővé teszi, hogy saját AI-alapú ügynököket hozz létre és testre szabj. Ebben a szekcióban létrehozol egy új ügynököt, és hozzárendelsz egy modellt, amely a beszélgetést vezérli.
+### -1- Ügynök létrehozása  
 
-1. Nyisd meg az **AI Toolkit** kiterjesztést az **Aktivitás sávból**.
-1. A **Tools** szekcióban válaszd az **Agent (Prompt) Builder** lehetőséget. Az **Agent (Prompt) Builder** kiválasztása egy új szerkesztőfülön nyitja meg az eszközt.
-1. Kattints az **+ Új ügynök** gombra. A kiterjesztés egy beállítási varázslót indít el a **Command Palette** segítségével.
-1. Add meg az ügynök nevét: **Calculator Agent**, majd nyomj **Enter**-t.
-1. Az **Agent (Prompt) Builder**-ben a **Model** mezőhöz válaszd az **OpenAI GPT-4o (via GitHub)** modellt.
+Az **Agent (Prompt) Builder** lehetővé teszi, hogy saját AI alapú ügynököket hozz létre és testre szabj. Ebben a részben létrehozol egy új ügynököt és hozzárendelsz egy modellt a beszélgetéshez.  
 
-### -2- Rendszerutasítás létrehozása az ügynök számára
+![Képernyőkép a „Calculator Agent” felépítő felületéről az AI Toolkit kiterjesztésben Visual Studio Code-hoz. Bal oldali panelen az „OpenAI GPT-4o (via GitHub)” modell van kiválasztva. A rendszer prompt így szól: „Ön egy egyetemi matematikaprofesszor,” a felhasználói prompt: „Magyarázza el nekem a Fourier-egyenletet egyszerű szavakkal.” További opciók: gombok eszközök hozzáadásához, MCP szerver engedélyezése, strukturált kimenet választása. Alul kék „Futtatás” gomb látható. Jobb oldali panelen az „Indulás mintákkal” alatt három példa agent látható: Webfejlesztő (MCP szerverrel, másodikos egyszerűsítővel, álomfejtővel, rövid leírásokkal a funkcióikról).](../../../../translated_images/hu/aitk-agent-builder.901e3a2960c3e477.webp)  
 
-Miután az ügynök alapját létrehoztad, ideje meghatározni a személyiségét és célját. Ebben a szekcióban az **Generate system prompt** funkciót használod, hogy leírd az ügynök szándékolt viselkedését—jelen esetben egy számológép ügynököt—és a modell megírja helyetted a rendszerutasítást.
+1. Nyisd meg az **AI Toolkit** kiterjesztést az **Activity Bar**-ról.  
+1. A **Tools** (eszközök) részben válaszd az **Agent (Prompt) Builder** opciót. Ez új szerkesztőfülön nyitja meg az ügynök felépítőt.  
+1. Kattints a **+ Új Ügynök** gombra. A kiterjesztés elindít egy telepítő varázslót a **Command Palette**-en keresztül.  
+1. Írd be a nevet: **Calculator Agent** és nyomj Entert.  
+1. Az **Agent (Prompt) Builder**-ben a **Modell** mezőnél válaszd az **OpenAI GPT-4o (via GitHub)** modellt.  
 
-1. A **Prompts** szekcióban kattints a **Generate system prompt** gombra. Ez megnyitja a prompt generátort, amely AI-t használ az ügynök rendszerutasításának létrehozásához.
-1. A **Generate a prompt** ablakban írd be a következőt: `Te egy segítőkész és hatékony matematikai asszisztens vagy. Ha alapvető aritmetikai problémát kapsz, a helyes eredménnyel válaszolsz.`
-1. Kattints a **Generate** gombra. Egy értesítés jelenik meg a jobb alsó sarokban, amely megerősíti, hogy a rendszerutasítás generálása folyamatban van. Amint a generálás befejeződik, az utasítás megjelenik az **Agent (Prompt) Builder** **System prompt** mezőjében.
-1. Nézd át a **System prompt** mezőt, és szükség esetén módosítsd.
+### -2- Rendszer prompt létrehozása az ügynöknek  
 
-### -3- MCP szerver létrehozása
+Az ügynök vázlat elkészítése után itt az ideje meghatározni a személyiségét és célját. Ebben a részben a **Generate system prompt** funkciót használod annak leírására, hogy az ügynök mit várjunk el — jelen esetben egy kalkulátor ügynököt — és a modell automatikusan megírja a rendszer promptot.  
 
-Most, hogy meghatároztad az ügynök rendszerutasítását—amely irányítja a viselkedését és válaszait—ideje gyakorlati képességekkel felruházni. Ebben a szekcióban létrehozol egy számológép MCP szervert, amely eszközöket biztosít összeadáshoz, kivonáshoz, szorzáshoz és osztáshoz. Ez a szerver lehetővé teszi az ügynök számára, hogy valós idejű matematikai műveleteket végezzen természetes nyelvű utasítások alapján.
+![Képernyőkép a „Calculator Agent” felületről a Visual Studio Code AI Toolkitjében egy modális ablak nyitva „Prompt generálása” címmel. Az ablak arról tájékoztat, hogy egy prompt sablon generálható alapadatok megadásával, valamint egy szövegdoboz látható a mintaszöveggel: „Ön egy segítőkész és hatékony matematikai asszisztens. Amikor egyszerű aritmetikai problémát kap, helyes eredménnyel válaszol.” Az ablak alatt „Bezárás” és „Generálás” gombok láthatók. Háttérben részben látható az ügynök konfigurációja, beleértve a kiválasztott modellt: „OpenAI GPT-4o (via GitHub)” és mezők a rendszer- és felhasználói promptokhoz.](../../../../translated_images/hu/aitk-generate-prompt.ba9e69d3d2bbe2a2.webp)  
 
-Az AI Toolkit sablonokat biztosít az MCP szerverek egyszerű létrehozásához. A számológép MCP szerver létrehozásához a Python sablont fogjuk használni.
+1. A **Prompts** részben kattints a **Generate system prompt** gombra. Ez a gomb megnyit egy prompt építőt, amely AI segítséggel generálja az ügynök rendszer promptját.  
+1. A **Generate a prompt** ablakban írd be a következőt: `Ön egy segítőkész és hatékony matematikai asszisztens. Amikor egyszerű aritmetikai problémát kap, helyes eredménnyel válaszol.`  
+1. Kattints a **Generate** gombra. A képernyő jobb alsó sarkában értesítés jelenik meg, amely jelzi, hogy a rendszer prompt generálása folyamatban van. Amint befejeződik, a prompt megjelenik az **Agent (Prompt) Builder** **Rendszer prompt** mezőjében.  
+1. Ellenőrizd a **Rendszer promptot**, és szükség esetén módosítsd.  
 
-*Megjegyzés*: Az AI Toolkit jelenleg Python és TypeScript nyelveket támogat.
+### -3- MCP szerver létrehozása  
 
-1. Az **Agent (Prompt) Builder** **Tools** szekciójában kattints a **+ MCP Server** gombra. A kiterjesztés egy beállítási varázslót indít el a **Command Palette** segítségével.
-1. Válaszd a **+ Add Server** lehetőséget.
-1. Válaszd a **Create a New MCP Server** lehetőséget.
-1. Válaszd a **python-weather** sablont.
-1. Válaszd az **Alapértelmezett mappa** lehetőséget az MCP szerver sablon mentéséhez.
-1. Add meg a szerver nevét: **Calculator**.
-1. Egy új Visual Studio Code ablak nyílik meg. Válaszd a **Yes, I trust the authors** lehetőséget.
-1. A terminálban (**Terminal** > **New Terminal**) hozz létre egy virtuális környezetet: `python -m venv .venv`
-1. A terminálban aktiváld a virtuális környezetet:
-    - Windows: `.venv\Scripts\activate`
-    - macOS/Linux: `source .venv/bin/activate`
-1. A terminálban telepítsd a függőségeket: `pip install -e .[dev]`
-1. Az **Activity Bar** **Explorer** nézetében bontsd ki a **src** könyvtárat, és válaszd ki a **server.py** fájlt, hogy megnyisd a szerkesztőben.
-1. Cseréld ki a **server.py** fájl tartalmát a következőre, majd mentsd el:
+Miután meghatároztad az ügynök rendszer promptját — amely irányítja a viselkedését és válaszait — ideje gyakorlati képességekkel felszerelni. Ebben a részben létrehozol egy kalkulátor MCP szervert eszközökkel az összeadás, kivonás, szorzás és osztás műveletek végrehajtásához. Ez a szerver lehetővé teszi az ügynök számára, hogy valós időben hajtson végre matematikai műveleteket természetes nyelvű promptokra válaszul.  
+
+![Képernyőkép a Calculator Agent felület alsó részéről a Visual Studio Code AI Toolkit kiterjesztésében. Kihajtható menük láthatók "Tools" és "Structure output" címmel, egy legördülő menüvel „Choose output format” felirattal, ami „text”-re van állítva. Jobb oldalon egy gomb „+ MCP Server” a Model Context Protocol szerver hozzáadásához. Az eszközök része felett egy kép ikon helyőrzője látható.](../../../../translated_images/hu/aitk-add-mcp-server.9742cfddfe808353.webp)  
+
+Az AI Toolkit sablonokat kínál, hogy megkönnyítse a saját MCP szerver létrehozását. A kalkulátor MCP szerver készítéséhez a Python sablont fogjuk használni.  
+
+*Megjegyzés*: Az AI Toolkit jelenleg Python-t és TypeScript-et támogat.  
+
+1. Az **Agent (Prompt) Builder** **Tools** részében kattints a **+ MCP Server** gombra. A kiterjesztés elindít egy telepítő varázslót a **Command Palette**-n keresztül.  
+1. Válaszd a **+ Szerver hozzáadása** opciót.  
+1. Válaszd a **Új MCP szerver létrehozása** lehetőséget.  
+1. Válaszd a **python-weather** sablont.  
+1. Válaszd az **Alapértelmezett mappa** opciót az MCP szerver sablon mentéséhez.  
+1. Írd be a szerver nevét: **Calculator**  
+1. Egy új Visual Studio Code ablak nyílik meg. Válaszd az **Igen, megbízok a szerzőkben** lehetőséget.  
+1. A terminálban (Terminal > New Terminal) hozz létre egy virtuális környezetet: `python -m venv .venv`  
+1. A terminálban aktiváld a virtuális környezetet:  
+    1. Windows - `.venv\Scripts\activate`  
+    1. macOS/Linux - `source .venv/bin/activate`  
+1. A terminálban telepítsd a függőségeket: `pip install -e .[dev]`  
+1. Az **Explorer** nézetben az **Activity Bar**-on bontsd ki a **src** mappát, és nyisd meg a **server.py** fájlt szerkesztésre.  
+1. Cseréld le a **server.py** fájl tartalmát a következőre, majd mentsd el:  
 
     ```python
     """
@@ -135,46 +143,54 @@ Az AI Toolkit sablonokat biztosít az MCP szerverek egyszerű létrehozásához.
             raise ValueError("Cannot divide by zero")
         return a / b
     ```
+  
+### -4- Az ügynök futtatása a kalkulátor MCP szerverrel  
 
-### -4- Az ügynök futtatása a számológép MCP szerverrel
+Most, hogy az ügynöknek eszközei vannak, ideje használni őket! Ebben a részben promptokat küldesz az ügynöknek, hogy teszteld és érvényesítsd, vajon az ügynök megfelelően használja-e a kalkulátor MCP szerver által biztosított eszközöket.  
 
-Most, hogy az ügynököd rendelkezik eszközökkel, ideje használni őket! Ebben a szekcióban utasításokat küldesz az ügynöknek, hogy teszteld és ellenőrizd, vajon az ügynök megfelelően használja-e a számológép MCP szerver eszközeit.
+![Képernyőkép a Calculator Agent felületről az AI Toolkit Visual Studio Code kiterjesztésében. Bal oldalt, az „Eszközök” alatt egy MCP szerver: local-server-calculator_server van hozzáadva, négy elérhető eszközzel: add, subtract, multiply és divide. Egy jelvény mutatja, hogy négy eszköz aktív. Lent egy összehajtható „Structure output” rész és egy kék „Futtatás” gomb látható. Jobb oldalt, a „Model Response” alatt az ügynök használja a multiply és subtract eszközöket bemenetekkel {"a": 3, "b": 25} és {"a": 75, "b": 20}. A végső „Eszköz válasz” 75.0. Alul egy „View Code” gomb található.](../../../../translated_images/hu/aitk-agent-response-with-tools.e7c781869dc8041a.webp)  
 
-1. Nyomd meg az `F5` gombot az MCP szerver hibakeresésének elindításához. Az **Agent (Prompt) Builder** új szerkesztőfülön nyílik meg. A szerver állapota látható a terminálban.
-1. Az **Agent (Prompt) Builder** **User prompt** mezőjébe írd be a következő utasítást: `Vettem 3 darab terméket, darabonként 25 dollárért, majd felhasználtam egy 20 dolláros kedvezményt. Mennyit fizettem?`
-1. Kattints a **Run** gombra az ügynök válaszának generálásához.
-1. Nézd át az ügynök válaszát. A modellnek arra kell jutnia, hogy **55 dollárt** fizettél.
-1. Íme, mi történik:
-    - Az ügynök kiválasztja a **multiply** és **subtract** eszközöket a számítás elvégzéséhez.
-    - A megfelelő `a` és `b` értékek kerülnek hozzárendelésre a **multiply** eszközhöz.
-    - A megfelelő `a` és `b` értékek kerülnek hozzárendelésre a **subtract** eszközhöz.
-    - Az egyes eszközök válaszai megjelennek a **Tool Response** mezőben.
-    - A modell végső válasza a **Model Response** mezőben jelenik meg.
-1. Küldj további utasításokat az ügynök további teszteléséhez. Az **User prompt** mezőben módosíthatod a meglévő utasítást, ha rákattintasz a mezőre, és kicseréled a meglévő szöveget.
-1. Miután befejezted az ügynök tesztelését, a szervert leállíthatod a **terminálban** a **CTRL/CMD+C** beírásával.
+A kalkulátor MCP szervert a helyi fejlesztői gépeden futtatod a **Agent Builder**-en keresztül, mint MCP kliens.  
 
-## Feladat
+1. Nyomd meg az `F5` billentyűt az MCP szerver hibakereső indításához. Az **Agent (Prompt) Builder** új szerkesztőfülön nyílik meg. A szerver státusza látható a terminálban.  
+1. Az **Agent (Prompt) Builder** **User prompt** mezőjébe írd be a következő promptot: `Vettem 3 terméket egyenként 25 dollárért, majd használtam egy 20 dolláros kedvezményt. Mennyi pénzt fizettem?`  
+1. Kattints a **Futtatás** gombra az ügynök válaszának generálásához.  
+1. Ellenőrizd az ügynök kimenetét. A modellnek arra kell következtetnie, hogy **55 dollárt** fizettél.  
+1. Íme, hogy mi kell történjen:  
+    - Az ügynök kiválasztja a **multiply** és **subtract** eszközöket, hogy segítsenek a számításban.  
+    - A megfelelő `a` és `b` értékek kiadódnak a **multiply** eszköznek.  
+    - A megfelelő `a` és `b` értékek kiadódnak a **subtract** eszköznek.  
+    - Az eszközök válaszai megjelennek a megfelelő **Eszköz válasz** mezőkben.  
+    - A modell végső kimenete megjelenik a **Végső válasz** mezőben.  
+1. Küldj be további promptokat az ügynök teszteléséhez. A meglévő promptot módosíthatod a **User prompt** mezőben azzal, hogy belekattintasz és átírod a szöveget.  
+1. Miután befejezted az ügynök tesztelését, a szervert leállíthatod a **terminálban** a **CTRL/CMD+C** megnyomásával.  
 
-Próbálj meg egy új eszközt hozzáadni a **server.py** fájlodhoz (például: egy szám négyzetgyökének visszaadása). Küldj olyan további utasításokat, amelyek az ügynököt az új eszköz (vagy meglévő eszközök) használatára késztetik. Ne felejtsd el újraindítani a szervert az új eszközök betöltéséhez.
+## Feladat  
 
-## Megoldás
+Próbálj meg egy további eszközt hozzáadni a **server.py** fájlodhoz (például számítsd ki egy szám négyzetgyökét). Küldj be új promptokat, amelyekhez az ügynök a te új eszközödet (vagy a meglévő eszközöket) használná. Ne felejtsd el újraindítani a szervert, hogy betöltse az új eszközöket.  
 
-[Megoldás](./solution/README.md)
+## Megoldás  
 
-## Főbb tanulságok
+[Megoldás](./solution/README.md)  
 
-A fejezet főbb tanulságai a következők:
+## Legfontosabb tanulságok  
 
-- Az AI Toolkit kiterjesztés kiváló kliens, amely lehetővé teszi MCP szerverek és azok eszközeinek használatát.
-- Új eszközöket adhatsz hozzá MCP szerverekhez, bővítve az ügynök képességeit az új igények kielégítésére.
-- Az AI Toolkit sablonokat tartalmaz (például Python MCP szerver sablonokat), amelyek egyszerűsítik az egyedi eszközök létrehozását.
+A fejezet tanulságai a következők:  
 
-## További források
+- Az AI Toolkit kiterjesztés nagyszerű kliens, amely lehetővé teszi MCP szerverek és eszközeik használatát.  
+- Új eszközöket adhatsz hozzá az MCP szerverekhez, így bővítve az ügynök képességeit az igények változásával.  
+- Az AI Toolkit sablonokat is tartalmaz (pl. Python MCP szerver sablonokat), hogy megkönnyítse az egyedi eszközök létrehozását.  
 
-- [AI Toolkit dokumentáció](https://aka.ms/AIToolkit/doc)
+## További erőforrások  
 
-## Mi következik?
-- Következő: [Tesztelés és hibakeresés](../08-testing/README.md)
+- [AI Toolkit dokumentáció](https://aka.ms/AIToolkit/doc)  
 
-**Felelősségkizárás**:  
-Ez a dokumentum az [Co-op Translator](https://github.com/Azure/co-op-translator) AI fordítási szolgáltatás segítségével készült. Bár törekszünk a pontosságra, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az eredeti nyelvén tekintendő hiteles forrásnak. Kritikus információk esetén javasolt a professzionális, emberi fordítás igénybevétele. Nem vállalunk felelősséget a fordítás használatából eredő félreértésekért vagy téves értelmezésekért.
+## Mi következik  
+- Következő: [Tesztelés & Hibakeresés](../08-testing/README.md)  
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Jogi nyilatkozat**:
+Ez a dokumentum az AI fordítási szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár az pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Fontos információk esetén professzionális emberi fordítást javasolunk. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely ebből a fordításból ered.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

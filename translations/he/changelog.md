@@ -1,121 +1,150 @@
-# יומן שינויים: תכנית MCP למתחילים
+# יומן שינויים: תוכנית הלימודים MCP למתחילים
 
-מסמך זה משמש כרשומה של כל השינויים המשמעותיים שהוכנסו לתכנית הלימודים של פרוטוקול הקשר המודלי (MCP) למתחילים. השינויים מתועדים בסדר כרונולוגי הפוך (השינויים החדשים ביותר ראשונים).
+מסמך זה משמש כרשומה של כל השינויים המשמעותיים שנעשו בתוכנית הלימודים של פרוטוקול הקשר המדגם (MCP) למתחילים. השינויים מתועדים בסדר כרונולוגי הפוך (החדשים ביותר תחילה).
+
+## 29 ביולי, 2026
+
+### מודול חדש 08 מלווה: רכיבי אמינות וניסיונות חוזרים בטוחים
+
+נוספה שיעור מלווה ניטרלי לספק עבור כלי MCP שיוצרים השפעות בעולם האמיתי,
+תואם למפרט הסופי `2026-07-28`.
+
+- **חדש**: [שיעור ליווי רכיב אמינות][reliability-sidecar]
+  משתמש בסיפור קריאת תמיכה אחת, שני דיאגרמות Mermaid, וזרימת החלטות
+  לניסיון חוזר להסביר מפתחות פעולה יציבים, כניסת כפילויות אטומית,
+  פיוס, ראיות, וגבול הרחבת המשימות.
+- **חדש**: תרגיל הכשל החדרת Python ו-SQLite בספריית סטנדרטית
+  משתמש בחנויות נפרדות לפעולות ולכרטיסי תמיכה להדגים תגובה אבודה
+  לאחר שהשפעה חיצונית התקבעה. שישה מבחנים דטרמיניסטיים מכסים כפילות נאיבית,
+  התאוששות איתחול מוגנת, קונפליקטים בעומס, תוצאות שמורות במטמון,
+  תביעות פעילות, וכניסת כפילויות מתחרות.
+- **עודכן**: מודול 08 עכשיו מקשר לשיעור המלווה, מזהה את
+  מודל הבקשות ללא מצב הסופי `2026-07-28`, מבדיל בין OpenTelemetry
+  לאפשרות ניפוי באגים הישנה של MCP, ומגביל את
+  דוגמת הניסיון החוזר הכללית שלו לפעולות לקריאה בלבד.
+- **אופציונלי**: השיעור מקשר בין המושגים הניידים שלו למימוש קהילתי מסומן אחד
+  מבלי להפוך את השירות המתארח או קריאת רשת לחלק מה
+  התרגיל.
+
+[reliability-sidecar]: ./08-BestPractices/reliability-sidecars/README.md
 
 ## 2 ביולי, 2026
 
-### שיעור חדש: מועמד לפרסום מפרט MCP ב-2026-07-28
+### שיעור חדש: מועמד לשחרור מפרט MCP 2026-07-28
 
-התוספה כוללת סקירה של מועמד הפרסום הקרוב של מפרט ה-MCP של 2026-07-28 (הוכרז ב-21 במאי 2026; פרסום סופי מתוכנן ל-28 ביולי 2026), מסוכם מ[פוסט הבלוג הרשמי על ההכרזה](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/). הבסיס של תכנית הלימודים נשאר **מפרט MCP מ-25 בנובמבר 2025** עד לפרסום הגרסה החדשה, ולכן זה מוצג כהכוונה לעתיד ולא כמהפך של השיעורים הקיימים.
+נוספה כיסוי למועמד לשחרור מפרט MCP הקרוב `2026-07-28` (הוכרז ב-21 במאי 2026; שחרור סופי מתוכנן ב-28 ביולי 2026), מסוכם מהפוסט בבלוג ההכרזה הרשמי [הודעת בלוג רשמית](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/). הבסיס של תוכנית הלימודים נשאר **מפרט MCP מ-25 בנובמבר 2025** עד שהגרסה החדשה תשלח, כך שזה מוצג כהנחייה עתידית יותר מאשר כתיבה מחדש של שיעורים קיימים.
 
-- **חדש**: [01-CoreConcepts/mcp-2026-07-28-release-candidate.md](./01-CoreConcepts/mcp-2026-07-28-release-candidate.md) — שיעור מלא המכסה את ליבת הפרוטוקול ללא מדינה (הסרת ״initialize״ handshake ו-`Mcp-Session-Id`), הכותרות החדשות `Mcp-Method`/`Mcp-Name` לניתוב, מטא-נתוני cache `ttlMs`/`cacheScope`, מעקב W3C Trace Context ב-`_meta`, מסגרת ההרחבות הרשמית (אפליקציות MCP וההרחבה החדשה Tasks), שישה SEPs להקשחת הרשאות, הסרת Roots/Sampling/Logging, ומעבר ל-JSON Schema 2020-12 מלא לסכמות כלים.
-- **עודכן** עם קריאות קדימה שמקשרות אל השיעור החדש:
-  - [01-CoreConcepts/README.md](./01-CoreConcepts/README.md): הערת גרסת פרוטוקול, חלקים של Sampling/Roots/Logging/Tasks, ו-"מה הלאה"
-  - [02-Security/README.md](./02-Security/README.md): קריאה להקשחת הרשאות
-  - [03-GettingStarted/06-http-streaming/README.md](./03-GettingStarted/06-http-streaming/README.md): קריאה להובלת פרוטוקול ללא מדינה
-  - [03-GettingStarted/14-sampling/README.md](./03-GettingStarted/14-sampling/README.md): קריאה להסרת Sampling
-  - [05-AdvancedTopics/mcp-protocol-features/README.md](./05-AdvancedTopics/mcp-protocol-features/README.md): קריאה להסרת Logging והרחבת Tasks
-  - [05-AdvancedTopics/mcp-transport/README.md](./05-AdvancedTopics/mcp-transport/README.md): קריאה לניתוב ללא מדינה/עם סשן
-  - [README.md](./README.md): הערת "מבט קדימה" בחלק המפרט וכניסה חדשה `1.1` בטבלת מודולי התכנית
-  - [study_guide.md](./study_guide.md): כדור הבא פתיחת דרכים בסקירת מושגי ליבה והערת תוספת מתויגת
-  - [03-GettingStarted/11-simple-auth/README.md](./03-GettingStarted/11-simple-auth/README.md): קריאה למפת הובלת `mcp-session-id` לפני מודל הבקשה ללא מדינה
-  - [05-AdvancedTopics/README.md](./05-AdvancedTopics/README.md): קריאה בסקירת מודולים להסרות Root Contexts/Sampling והרחבת Tasks
-  - [05-AdvancedTopics/mcp-security/README.md](./05-AdvancedTopics/mcp-security/README.md): קריאה להקשחת הרשאות
+- **חדש**: [01-CoreConcepts/mcp-2026-07-28-release-candidate.md](./01-CoreConcepts/mcp-2026-07-28-release-candidate.md) — שיעור מלא המכסה את הליבה של הפרוטוקול ללא מצב (הסרת חילופי הידיים `initialize` ואת `Mcp-Session-Id`), כותרות ניתוב חדשות `Mcp-Method`/`Mcp-Name`, מטא נתוני מטמון `ttlMs`/`cacheScope`, W3C Trace Context ב-`_meta`, מסגרת ההרחבות הפורמלית (יישומי MCP והרחבת המשימות החדשה), שישה SEPs להקשחת הרשאות, הפסקת השימוש ב-Roots/Sampling/Logging, ומעבר למפרט JSON Schema מלא 2020-12 לסכמות כלים.
+- **עודכן** עם קריאות מביטות קדימה המקשרות לשיעור החדש:
+  - [01-CoreConcepts/README.md](./01-CoreConcepts/README.md): הערת גרסת פרוטוקול, חלקים Sampling/Roots/Logging/Tasks, ו"מה הלאה"
+  - [02-Security/README.md](./02-Security/README.md): קריאת הקשחת הרשאות
+  - [03-GettingStarted/06-http-streaming/README.md](./03-GettingStarted/06-http-streaming/README.md): קריאת הובלה ללא מצב
+  - [03-GettingStarted/14-sampling/README.md](./03-GettingStarted/14-sampling/README.md): קריאות הפסקת Sampling
+  - [05-AdvancedTopics/mcp-protocol-features/README.md](./05-AdvancedTopics/mcp-protocol-features/README.md): קריאת הפסקת Logging והרחבת המשימות
+  - [05-AdvancedTopics/mcp-transport/README.md](./05-AdvancedTopics/mcp-transport/README.md): קריאת הובלה / ניתוב ללא מצב / מושב
+  - [README.md](./README.md): הערת "מבט קדימה" בסעיף המפרט וכניסה חדשה `1.1` בטבלת מודולי התוכנית
+  - [study_guide.md](./study_guide.md): נקודה מביטה קדימה בסקירת העקרונות העיקריים והערת תוספת מתוארכת
+  - [03-GettingStarted/11-simple-auth/README.md](./03-GettingStarted/11-simple-auth/README.md): קריאה על מפת ההובלה `mcp-session-id` לפני מודל הבקשות ללא מצב
+  - [05-AdvancedTopics/README.md](./05-AdvancedTopics/README.md): קריאת סקירת מודול על הפסקות Root Contexts/Sampling והרחבת המשימות
+  - [05-AdvancedTopics/mcp-security/README.md](./05-AdvancedTopics/mcp-security/README.md): קריאת הקשחת הרשאות
 
 ## 24 ביוני, 2026
 
 ### שיעור חדש: שימוש ב-MCP באפליקציית Copilot
 
-- [חלק הכלים](./12-tooling/README.md) הוסף חלק כלים.
+- [סעיף כלים](./12-tooling/README.md) נוסף סעיף כלים.
 - [MCP באפליקציית Copilot](./12-tooling/01-copilot-app/README.md)
 
 ## 16 ביוני, 2026
 
-### התאמת מפרט MCP ואימות דוגמאות
+### יישור מפרט MCP ואימות דוגמאות
 
-בוצעה אימות התכנית מול **מפרט MCP 2025-11-25** וה-SDKs הרשמיים העדכניים, ותוקנו הפניות למפרטים מיושנים שנשארו, וכן אושר שהדוגמאות העיקריות עדיין נבנות ופועלות.
+אומתה התוכנית אל מול מפרט MCP הנוכחי **2025-11-25** ו-SDKs הרשמיים החדשים ביותר, ולאחר מכן תוקנו הפניות ישנות למפרט ואושר שהדוגמאות המרכזיות עדיין בונות ורצות.
 
 #### תיקוני גרסת מפרט (2025-06-18 / 2025-03-26 → 2025-11-25)
 
-עודכנו תוכן באנגלית שטען שגרסה ישנה יותר היא התקן *הנוכחי/העדכני*, והכיוונו מחדש קישורים לנתיבי המפרט canonical ב-`modelcontextprotocol.io`:
-- **05-AdvancedTopics/mcp-security/README.md**: עודכן באנר "תקן נוכחי", מבוא, כותרת עקרונות אבטחה מרכזיים, כותרת דרישות מחייבות, סעיף Microsoft Entra ID, קישורי הפניות ומשאבים, והודעת סיום אבטחה (8 הפניות) ל-2025-11-25
-- **05-AdvancedTopics/mcp-transport/README.md**: עודכן קישור משאבים נוספים ומודגש באנר "תקן נוכחי" ל-2025-11-25
-- **05-AdvancedTopics/mcp-realtimesearch/README.md**: הוחלף הקישור הישן `2025-03-26` לדף פרקטיקות האבטחה הטובות ביותר הנוכחי 2025-11-25
-- **03-GettingStarted/14-sampling/README.md**: עודכן קישור למסמכי Sampling הרשמיים ל-2025-11-25
-- **03-GettingStarted/05-stdio-server/README.md**: עודכנה התייחסות בזמני הווה ל"מפרט MCP נוכחי" וקישור המשאבים הנוספים ל-2025-11-25 (הערות היסטוריות להסרת SSE נשמרו בדיוק)
+עודכן התוכן באנגלית שבו עדיין נכתב שמפרט ותיקון ישן יותר הוא התקן *הנוכחי/האחרון*, והפניות קישורים הועברו לנתיבי המפרט הקנוניים של `modelcontextprotocol.io`:
+- **05-AdvancedTopics/mcp-security/README.md**: עודכן הבאנר "התקן הנוכחי", הפתיחה, כותרות עיקרי אבטחה, דרישות חובה, סעיף Microsoft Entra ID, קישורים למקורות ומשאבים, והודעת סגירת אבטחה (8 הפניות) ל-2025-11-25
+- **05-AdvancedTopics/mcp-transport/README.md**: עודכן קישור למקורות נוספים ולהבאנר "התקן הנוכחי" ל-2025-11-25
+- **05-AdvancedTopics/mcp-realtimesearch/README.md**: הוחלף קישור הישן `2025-03-26` לדף שיטות אבטחה ואמון עכשווי ב-2025-11-25
+- **03-GettingStarted/14-sampling/README.md**: עודכן קישור למסמכי דגימות הרשמיים ל-2025-11-25
 
-#### אימות דוגמאות מול SDKs נוכחיים
+- **03-GettingStarted/05-stdio-server/README.md**: עודכן אזכור הזמני של "מפרט MCP הנוכחי" וקישור המפרט למשאבים נוספים לתאריך 2025-11-25 (הערות SSE-היסטוריות נותרו שלמות לצורך דיוק)
 
-- **TypeScript (03-GettingStarted/01-first-server/solution/typescript)**: `npm install` פתר `@modelcontextprotocol/sdk@1.29.0`; `tsc --noEmit` עבר ללא שגיאות טיפוס — ה-APIs הקיימים של `McpServer`/`StdioServerTransport` תקינים
-- **Python (03-GettingStarted/01-first-server/solution/python)**: אומת בסביבת `.venv` מבודדת עם `mcp[cli]` (1.27.2); `py_compile` עבר ו-`FastMCP.list_tools()` החזירה כראוי את הכלים `add` ו-`subtract`
-- אושר שכל טווחי גרסאות הדוגמא של `@modelcontextprotocol/sdk` (`>=1.26.0` / `^1.26.0` / `^1.27.0`) מתעדכנים כראוי לגרסה העדכנית `1.29.0` ללא שינויים מפריעים ב-API
+#### בדיקת דוגמה נגד ערכות הפיתוח הנוכחיות
 
-#### יישור סיכות תלויות (סגירת פערי גירסאות)
+- **TypeScript (03-GettingStarted/01-first-server/solution/typescript)**: `npm install` פתר את `@modelcontextprotocol/sdk@1.29.0`; `tsc --noEmit` עבר ללא שגיאות טיפוס — ממשקי ה-API הנוכחיים של `McpServer`/`StdioServerTransport` נשארו תקפים
+- **Python (03-GettingStarted/01-first-server/solution/python)**: אובחן בסביבת `.venv` מבודדת עם `mcp[cli]` (1.27.2); `py_compile` עבר ו-`FastMCP.list_tools()` החזיר בצורה נכונה את הכלים `add` ו-`subtract`
+- אושר שכל טווחי הגרסאות של דוגמת `@modelcontextprotocol/sdk` (`>=1.26.0` / `^1.26.0` / `^1.27.0`) מתאימים בצורה נקייה לגרסה הנוכחית `1.29.0` ללא שינויים משבשים בממשק ה-API
 
-הועלו סיכות SDK מיושנות כך שכל דוגמה תעקוב אחרי גרסת MCP הנוכחית, בהתאם לקונבנציה בריפו:
-- **03-GettingStarted/05-stdio-server/solution/typescript/package.json**: הועלתה גרסת `@modelcontextprotocol/sdk` מ-`^1.8.0` ל-`>=1.26.0` והודעת החבילה `"updated for MCP 2025-06-18"` עודכנה ל-`"aligned with MCP Specification 2025-11-25"`
-- **10-StreamliningAIWorkflows.../lab3/code/weather_mcp/pyproject.toml** ו-**lab4/code/github_mcp_server/pyproject.toml**: הועלתה סיכה מדויקת מ-`mcp==1.23.0` ל-`mcp>=1.26.0`; נוצרו מחדש שני קבצי `uv.lock` כך שנעילות הקבצים מכוונות לגרסת `mcp 1.27.2` העדכנית ונשמרות בסנכרון עם המניפסטים
+#### יישור סימני תלות (סגירת פערי גרסאות)
 
-#### ניתוח פערי תוכן — כיסוי תכונות מפרט עדכני
+הוגברו סימני ה-SDK שהיו מיושנים כך שכל דוגמה תעקוב אחרי גרסת MCP הנוכחית, בהתאם לקונבנציה כלל המחסן:
+- **03-GettingStarted/05-stdio-server/solution/typescript/package.json**: הוגבר `@modelcontextprotocol/sdk` מ-`^1.8.0` ל-`>=1.26.0` ועודכן תיאור החבילה הישן `"updated for MCP 2025-06-18"` ל-`"aligned with MCP Specification 2025-11-25"`
+- **10-StreamliningAIWorkflows.../lab3/code/weather_mcp/pyproject.toml** ו-**lab4/code/github_mcp_server/pyproject.toml**: הוגבר הסימון המדויק `mcp==1.23.0` ל-`mcp>=1.26.0`; הורצו מחדש שני קבצי `uv.lock` (`uv lock`) כך שקבצי הנעילה יתאימו לגרסה הנוכחית `mcp 1.27.2` וישארו מסונכרנים עם המניפסטים
 
-אושר שכבר כל הפרימיטיבים שהוצגו והורחבו במפרט MCP 2025-11-25 מכוסים בתכנית:
-- **Sampling**: שיעור 03-GettingStarted/14-sampling ו-05-AdvancedTopics/mcp-sampling
-- **אליסיטציה (כולל מצב URL)**: מתועד ב-01-CoreConcepts ו-05-AdvancedTopics/mcp-protocol-features
-- **Roots**: מתועד ב-00-Introduction, 01-CoreConcepts, ו-05-AdvancedTopics/mcp-root-contexts
-- **Tasks (ניסיוני, תהליכים ארוכי זמן)**: מתועד ב-01-CoreConcepts ו-05-AdvancedTopics/mcp-protocol-features
-- **הערות כלים** (`readOnlyHint` / `destructiveHint`): מתועד ב-01-CoreConcepts ו-05-AdvancedTopics/mcp-protocol-features
+#### ניתוח פערי תוכן - כיסוי תכונות מפרט העדכני
 
-### הקשחת אבטחה ותיקון חולשות תלות
+אושר שהתוכנית הלימודית כבר מכסה את כל הפרימיטיבים שהוצגו/הורחבו ב-MCP 2025-11-25, כך שאין פערי תוכן:
+- **דגימה**: שיעור 03-GettingStarted/14-sampling בתוספת 05-AdvancedTopics/mcp-sampling
+- **שאילתות (כולל מצב URL)**: מתועדות ב-01-CoreConcepts ו-05-AdvancedTopics/mcp-protocol-features
+- **שורשים**: מתועדים ב-00-Introduction, 01-CoreConcepts, ו-05-AdvancedTopics/mcp-root-contexts
+- **משימות (ניסיוניות, פעולות ארוכות-ריצה)**: מתועדות ב-01-CoreConcepts ו-05-AdvancedTopics/mcp-protocol-features
+- **הערות לכלים** (`readOnlyHint` / `destructiveHint`): מתועדות ב-01-CoreConcepts ו-05-AdvancedTopics/mcp-protocol-features
 
-בוצע סריקה מלאה של כל מניפסטי התלות וקוד הדוגמאות, ותוקנו כל האזהרות המדווחות של npm ופגם אחד ברמת הקוד. לאחר התיקונים, `npm audit` מדווח על **0 פרצות** בכל ספריית הסריקה.
+### החמרת אבטחה ותיקון פגיעויות תלות
 
-#### פרצות תלות npm (עקיפות) — תוקנו
+בוצעה סריקה מלאה של אבטחה על כל מניפסט תלות וקוד מקור של דוגמה, ולאחר מכן תוקנו כל האזהרות של npm יחד עם ממצא אבטחה ברמת קוד אחת. לאחר התיקון, `npm audit` מדווח על **0 פגיעויות** בכל ספריית בדיקה.
 
-יסקרו כל 15 קבצי `package-lock.json` שהתחייבו. הפרצות היו בגבולות תלות עקיפות שנמשכות על ידי כלי הפיתוח MCP Inspector, לקוח OpenAI, ו-SDK MCP; כולן תוקנו כעת ללא הפרעת דוגמאות:
-- **10-StreamliningAIWorkflows.../lab4/code/github_mcp_server/inspector** ו-**lab3/code/weather_mcp/inspector**: הוגדל `@modelcontextprotocol/inspector` (`0.16.6` / `0.14.1` ל-`0.22.0`), שפטר את האזהרות של `ajv`, `brace-expansion`, `diff`, `path-to-regexp` ו-`ws`. נוסף רשומת `overrides` ב-npm שחייבה את `shell-quote@1.8.4` המתוקנת לביטול האזהרה הקריטית הנותרת מ-`concurrently`; נוצרו מחדש שני קבצי נעילה (כעת ללא פרצות)
-- **03-GettingStarted/samples/typescript**: `npm audit fix` עדכן את תלות `qs` (בינונית) לגרסה מתוקנת
-- **03-GettingStarted/samples/javascript**: `npm audit fix` עדכן את תלות `hono` (בינונית) לגרסה מתוקנת
-- **03-GettingStarted/03-llm-client/solution/typescript**: `npm audit fix` עדכן את תלות `form-data` (גבוהה) לגרסה מתוקנת
-- **03-GettingStarted/11-simple-auth/solution/typescript**: נוצר קובץ `package-lock.json` חסר כך שהפרויקט ניתן לשחזור וסריקה (0 פרצות)
+#### פגיעויות תלות npm (עקיפות) — תוקנו
+
+בוצעה בדיקה על כל 15 הקבצים `package-lock.json` שהועלו. הפגיעויות היו מוגבלות לתלויות עקיפות שמביאות כלי הפיתוח MCP Inspector, לקוח OpenAI, ו-SDK של MCP; כולם כעת מתוקנים ללא שבירת הדוגמאות:
+- **10-StreamliningAIWorkflows.../lab4/code/github_mcp_server/inspector** ו-**lab3/code/weather_mcp/inspector**: הוגבר `@modelcontextprotocol/inspector` (`0.16.6` / `0.14.1` → `0.22.0`), מה שהסיר אזהרות של `ajv`, `brace-expansion`, `diff`, `path-to-regexp` ו-`ws` שהיה כלול. נוספה כניסת `overrides` ב-npm שאילצה את ה-`shell-quote@1.8.4` המתוקן להסיר את אזהרת הקריטית הנותרת שנשאה `concurrently`; חוברו מחדש שני קבצי הנעילה (כעת 0 פגיעויות)
+- **03-GettingStarted/samples/typescript**: `npm audit fix` עדכן את תלויות העקיפות של `qs` (בינונית) לגרסה מתוקנת
+- **03-GettingStarted/samples/javascript**: `npm audit fix` עדכן את תלויות העקיפות של `hono` (בינונית) לגרסה מתוקנת
+- **03-GettingStarted/03-llm-client/solution/typescript**: `npm audit fix` עדכן את תלויות העקיפות של `form-data` (גבוהה) לגרסה מתוקנת
+- **03-GettingStarted/11-simple-auth/solution/typescript**: נוצר קובץ `package-lock.json` חסר כדי שהפרויקט יהיה ניתן לשחזור ובדיקה (0 פגיעויות)
 
 #### תיקון אבטחה ברמת קוד (OWASP A03: הזרקה)
 
-- **10-StreamliningAIWorkflows.../lab4/code/github_mcp_server/src/server.py**: הוסר `shell=True` מכלי `open_in_vscode`. השם `subprocess.run(["start", "", vscode_path, folder_path], shell=True)` אפשר מחרוזות מעטפת בנתיב תיקייה להתפרש על ידי `cmd.exe` (וקטור הזרקה). כעת מופעל ישירות הקובץ `Code.exe` עם התיקייה כארגומנט — ללא מעטפת — הפעלה פונקציונלית זהה ובטוחה
+- **10-StreamliningAIWorkflows.../lab4/code/github_mcp_server/src/server.py**: הוסרה אפשרות `shell=True` מהכלי `open_in_vscode`. הקריאה הקודמת `subprocess.run(["start", "", vscode_path, folder_path], shell=True)` אפשרה תווים מטא-של מעטפת בנתיב תיקייה להתפרש על ידי `cmd.exe` (וקטור הזרקת פקודות). כעת היא מפעילה את `Code.exe` המסונכרן ישירות עם התיקייה כארגומנט — ללא שימוש ב-shell — דבר שקול פונקציונלית ובטוח
 
-#### סריקת תלות Python
+#### ביקורת על תלויות Python
 
-- סקרו כל קבוצות הדרישות של Python עם `pip-audit`. `05-AdvancedTopics` ו-`03-GettingStarted/samples/python` לא דיווחו על פרצות ידועות (טווחי `mcp` / `httpx` / `pydantic` / `python-dotenv` שלהם נפתרים לגרסאות מתוקנות נוכחיות)
-- **09-CaseStudy/docs-mcp/solution/python/requirements.txt**: `pip-audit` סימן תלות עקיפה **`werkzeug` 3.1.1** עם שלוש אזהרות DoS בשמות התקנים של ווינדוס `safe_join` — `CVE-2025-66221`, `CVE-2026-21860`, ו-`CVE-2026-27199` (כולן תוקנו ב-3.1.6). נוסף סיכה אבטחה מפורשת `werkzeug>=3.1.6` כך שהגרסה המתוקנת תטען; אושר שהמגבלה מתממשקת חלק עם הסטאק `chainlit` / `mcp` / `semantic-kernel`
+- בוצעה בדיקה כלילית של כל קבוצות התלויות ב-Python באמצעות `pip-audit`. ב-`05-AdvancedTopics` ו-`03-GettingStarted/samples/python` לא דווחו **פגיעויות ידועות** (תחומי הגרסאות של `mcp` / `httpx` / `pydantic` / `python-dotenv` מתאימות לגרסאות מתוקנות עכשוויות)
+- **09-CaseStudy/docs-mcp/solution/python/requirements.txt**: `pip-audit` זיהה תלות עקיפה בפגיעות **`werkzeug` 3.1.1** עם שלוש אזהרות DoS במכשירי Windows בשם `safe_join` — `CVE-2025-66221`, `CVE-2026-21860`, ו-`CVE-2026-27199` (כולן תוקנו ב-3.1.6). נוספה נעילת אבטחה מפורשת `werkzeug>=3.1.6` כך שהגרסה המתוקנת תופיע; אושר שהמגבלה מתקבלת היטב עם ממשק `chainlit` / `mcp` / `semantic-kernel`
 
-### מיתוג מחדש של שם מוצר
+### שינויים בשם המוצר
 
-עודכן כל תוכן תכנית הלימודים כדי לשקף את המיתוג מחדש של מוצר Microsoft:
+עודכן כל תוכן התוכנית הלימודית כדי לשקף את שחזור שם המוצר של מיקרוסופט:
+
 
 #### Azure AI Foundry → Microsoft Foundry
-- **SUPPORT.md**: עדכון קישור קהילת Discord
-- **AGENTS.md**: עדכון הפניה לשרת Discord
-- **README.md**: עדכון הפניות במערכת הטכנולוגית
-- **study_guide.md**: עדכון הפניות למקרים לדוגמה
+- **SUPPORT.md**: עדכון קישור קהילת דיסקורד
+
+- **AGENTS.md**: עדכון הפנייה לשרת Discord
+- **README.md**: עדכון הפניות לאקוסיסטם של הטכנולוגיה
+- **study_guide.md**: עדכון הפניות למקרה לימוד
 - **05-AdvancedTopics/README.md**: עדכון כותרת ותיאור מודול 5.13
-- **05-AdvancedTopics/mcp-integration/README.md**: עדכון כותרת וסעיף תיאור
-- **05-AdvancedTopics/mcp-foundry-agent-integration/README.md**: עדכון כותרת תוכן מלא
-- **05-AdvancedTopics/mcp-security-entra/README.md**: עדכון קישור הפניות חוצות
-- **07-LessonsfromEarlyAdoption/README.md**: עדכון הפניות למקרים לדוגמה
-- **07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md**: עדכון כותרת סעיף 9 תגי יכולות ויכולות
-- **08-BestPractices/README.md**: עדכון קישור קהילת Discord
-- **09-CaseStudy/docs-mcp/solution/scenario3/README.md**: עדכון הפניה לערוץ Discord
+- **05-AdvancedTopics/mcp-integration/README.md**: עדכון כותרת הסעיף והתיאור
+- **05-AdvancedTopics/mcp-foundry-agent-integration/README.md**: עדכון מלא של כותרת ותוכן המודול
+- **05-AdvancedTopics/mcp-security-entra/README.md**: עדכון קישור הפניה
+- **07-LessonsfromEarlyAdoption/README.md**: עדכון הפניות למקרה לימוד
+- **07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md**: עדכון כותרת סעיף 9, תגים ויכולות
+- **08-BestPractices/README.md**: עדכון קישור לקהילת Discord
+- **09-CaseStudy/docs-mcp/solution/scenario3/README.md**: עדכון הפנייה לערוץ Discord
 - **09-CaseStudy/docs-mcp/solution/python/README.md**: עדכון הפניה לפריסת מודל
-- **11-MCPServerHandsOnLabs/00-Introduction/README.md**: עדכון הטבלה של שירותי AI
+- **11-MCPServerHandsOnLabs/00-Introduction/README.md**: עדכון טבלת שירותי AI
 - **11-MCPServerHandsOnLabs/03-Setup/README.md**: עדכון הפניות למשאבים
 
-#### AI Toolkit / AITK → הרחבת Microsoft Foundry Toolkit עבור VS Code
-- **README.md**: עדכון הפניות לתוכנית הלימודים הראשית  
-- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md**: עדכון כותרת המודול, סקירה כללית, וכל כותרות המשנה במודול  
-- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab1/README.md**: עדכון כותרת, מטרות למידה, הוראות התקנה, ומשאבים  
-- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab2/README.md**: עדכון כותרת, מטרות למידה, טבלת מארחים ל-MCP, וקישורים חוצי-הפניות  
-- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/README.md**: עדכון כותרת, תגיות, דרישות מוקדמות, ומשאבים  
-- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/README.md**: עדכון הפניות לבונה הסוכן וקישור למשוב  
-- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/README.md**: עדכון דרישות מוקדמות והפניות להרחבות  
+#### ערכת כלים ל-AI / AITK → Microsoft Foundry Toolkit Extension עבור VS Code
+- **README.md**: עדכון הפניות לתכנית הלימודים הראשית
+- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md**: עדכון כותרת המודול, סקירה, וכל כותרות המודולים
+- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab1/README.md**: עדכון כותרת, יעדים לימודיים, הוראות התקנה, ומשאבים
+- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab2/README.md**: עדכון כותרת, יעדים לימודיים, טבלת מארחי MCP, וקישורים חוצי הפניה
+- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/README.md**: עדכון כותרת, תגיות, דרישות מוקדמות, ומשאבים
+- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/README.md**: עדכון הפניות לבונה הסוכנים וקישור למשוב
+- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/README.md**: עדכון דרישות מוקדמות והפניות להרחבות
 
 ---
 
@@ -123,587 +152,589 @@
 
 ### שיעור חדש, תיקוני תיעוד ועדכוני תלות
 
-#### תוכן חדש נוסף לתוכנית הלימודים
+#### תכנים חדשים בתכנית הלימודים
 
-**מודול 05 - נושאים מתקדמים**  
-- **שיעור 5.17: רציונליזציה רב-סוכנית עוינת עם MCP** (`05-AdvancedTopics/mcp-adversarial-agents/README.md`): מדריך מקיף חדש המכסה את תבנית הדיון העוינת למערכות רב-סוכניות  
-  - דיאגרמת ארכיטקטורה Mermaid: שני סוכנים → שרת MCP משותף → תמלול הדיון → שופט → הכרעה  
-  - שרת כלי MCP משותף (`web_search` + `run_python`) מיושם בפייתון וטייפסקריפט  
-  - פרומפטים מערכתיים מנוגדים (בעד / נגד / שופט) עם דרישות מפורשות לשימוש בכלים  
-  - מנחה הדיון בפייתון, טייפסקריפט ו-C# שמנהל סבבים וניתוב טיעונים  
-  - חיבור MCP `ClientSession` למנחה לקריאות כלים אמיתיות  
-  - טבלת מקרים לשימוש (גילוי הזיות, דוגמנות איומים, ביקורת עיצוב API, אימות עובדות, בחירת טכנולוגיה)  
-  - שיקולי אבטחה: הרצה בסנדבוקס, אימות קריאות כלי, הגבלת קצב, רישום ביקורת  
-  - תרגיל מובנה עם שלושה תרחישים מעשיים (סקירת קוד, החלטות ארכיטקטורה, פיקוח תוכן)  
+**מודול 05 - נושאים מתקדמים**
+- **שיעור 5.17: חשיבה רב-סוכנית עוינת עם MCP** (`05-AdvancedTopics/mcp-adversarial-agents/README.md`): מדריך מקיף חדש המכסה דפוס דיון עוינת למערכות רב-סוכניות
+  - דיאגרמת ארכיטקטורה במרמיד: שני סוכנים → שרת MCP משותף → תמלול הדיון → שופט → פסק דין
+  - שרת כלי MCP משותף (`web_search` + `run_python`) ממומש בפייתון וטייפסקריפט
+  - הנחיות מערכת מנוגדות (בעד / נגד / שופט) עם דרישות מפורשות לשימוש בכלים
+  - מתזמן הדיון בפייתון, טייפסקריפט ו-C# שמנהל סבבים ונתיב טיעונים
+  - חיבור `ClientSession` ל-MCP עבור המתזמן לקריאות כלי ממשיות
+  - טבלת תרחישי שימוש (זיהוי הזיה, מודלאי איומים, סקירת עיצוב API, אימות עובדות, בחירת טכנולוגיה)
+  - שיקולי אבטחה: הרצה בסביבה מבודדת, אימות קריאות כלי, הגבלת שיעורים, רישום ביקורת
+  - תרגיל מובנה עם שלושה תרחישים מעשיים (סקירת קוד, החלטות ארכיטקטוניות, פיקוח תוכן)
 
 #### תיקוני תיעוד
 
-**מודול 03 - התחלה**  
-- **05-stdio-server/README.md**: תוקן דוגמת שרת stdio בטייפסקריפט עם חיבור תחבורה (`new StdioServerTransport()`) ושליחת `server.connect(transport)` כמו בדוגמאות בפייתון ו-.NET  
-- **14-sampling/README.md**: תוקן טעות כתיב — תוקן מ-"Sampling is an davanced features" ל-"Sampling is an advanced feature"  
+**מודול 03 - התחלה ראשונית**
+- **05-stdio-server/README.md**: תיקון דוגמת שרת stdio בטייפסקריפט הלא מלאה — הוספת יצירת האובייקט להעברת נתונים (`new StdioServerTransport()`) וקול `server.connect(transport)` להתאמה לדוגמאות בפייתון וב-.NET באותו הסעיף
+- **14-sampling/README.md**: תיקון שגיאת כתיב — תיקון `"Sampling is an davanced features"` → `"Sampling is an advanced feature"`
 
-#### עדכוני תוכנית לימודים
+#### עדכוני תכניות לימודים
 
-**README.md הראשי**  
-- הוסף כניסה 5.17 (רציונליזציה רב-סוכנית עוינת עם MCP) לטבלת תוכנית הלימודים עם קישור ישיר לשיעור החדש  
+**README.md ראשי**
+- הוספת הרשומה 5.17 (חשיבה רב-סוכנית עוינת עם MCP) לטבלת התכנית עם קישור ישיר לשיעור החדש
 
-**05-AdvancedTopics/README.md**  
-- הוספת שורה לשיעור 5.17 בטבלת השיעורים  
+**05-AdvancedTopics/README.md**
+- הוספת שורה לשיעור 5.17 לטבלת השיעורים
 
-**study_guide.md**  
-- הוספת נושא רציונליזציה רב-סוכנית עוינת למפת חשיבה ותיאור טקסטואלי של נושאים מתקדמים  
+**study_guide.md**
+- הוספת נושא החשיבה הרב-סוכנית העוינת למפת המחשבות ותיאור פרוזה של נושאי נושאים מתקדמים
 
 #### תיקוני קוד ואבטחה
 
-**מודול 05 - סוכנים עוינים (`mcp-adversarial-agents`)**  
-- **תיקון אבטחה — הזרקת פקודות**: החלפת ביצוע סינכרוני של פקודות shell(`execSync`) לשימוש ב-`execFile` + `promisify` בטייפסקריפט בכלי `run_python`, בביטול סצנת ההזרקה (הקוד הנשלט ע"י LLM מועבר כפרמטר argv מילולי ללא מעורבות shell)  
-- **חיבור לולאת כלי MCP**: עדכון המנחה בפייתון לשימוש בלקוח AsyncAnthropic (במקום Anthropic חסום), העבר session `ClientSession` חי לכל סיבוב סוכן, שליפת הגדרות כלים עם `session.list_tools()` בכל סיבוב, ושליחת בלוקים של `tool_use` עם `session.call_tool()` בלולאה עד תוצאת טקסט סופית מהמודל  
+**מודול 05 - סוכנים עוינים (`mcp-adversarial-agents`)**
+- **תיקון אבטחה — הזרקת פקודות**: הוחלף interpolation של `execSync` בשימוש ב-`execFile` + `promisify` בכלי `run_python` בטייפסקריפט, הסרה של נקודת ההזרקה של הפקודות (הקוד המנוהל על ידי LLM מועבר כפרמטר argv מילולי ללא מעורבות 쉘)
+- **חיבור לולאת כלי MCP**: עדכון מפעיל הדיונים בפייתון לשימוש בלקוח `AsyncAnthropic` (מחליף את המתנה חסימתית `Anthropic`), העברת `ClientSession` חי ישירות לכל תור סוכן, קבלת הגדרת כלים דרך `session.list_tools()` בכל תור, ושליחת בלוקי `tool_use` דרך `session.call_tool()` בלולאה עד שהמודל פולט תגובת טקסט סופית
 
 #### עדכוני תלות
 
-- עדכון `hono` לגרסה 4.12.12 במגוון חבילות (03-GettingStarted, 04-PracticalImplementation, 10-StreamliningAIWorkflows)  
-- עדכון `@hono/node-server` מ-1.19.11 ל-1.19.13 בחבילות טייפסקריפט  
-- עדכון `cryptography` מ-46.0.5 ל-46.0.7 בחבילות פייתון (מעבדות 3 ו-4 ב-10-StreamliningAIWorkflows)  
-- עדכון `lodash` מ-4.17.23 ל-4.18.1 בבודק 10-StreamliningAIWorkflows  
+- העלאת גרסת `hono` ל-4.12.12 במספר חבילות (03-GettingStarted, 04-PracticalImplementation, 10-StreamliningAIWorkflows)
+- העלאת גרסת `@hono/node-server` מ-1.19.11 ל-1.19.13 בחבילות טייפסקריפט
+- העלאת גרסת `cryptography` מ-46.0.5 ל-46.0.7 בחבילות פייתון (מעבדות 3 ו-4 ב-10-StreamliningAIWorkflows)
+- העלאת גרסת `lodash` מ-4.17.23 ל-4.18.1 במפקח של 10-StreamliningAIWorkflows
 
 #### תרגומים
 
-- סינכרון תרגומים ל-48+ שפות עם העדכונים האחרונים במקור (עדכון i18n)  
+- סנכרון תרגומים ל-48+ שפות עם שינויים אחרונים בקוד המקור (עדכון i18n)
 
 ---
 
 ## 5 בפברואר, 2026
 
-### שיפורי אימות ניווט וארגון בכל המאגר
+### אימות בריאות וניווט מקיף במאגר
 
-#### תוכן חדש נוסף לתוכנית הלימודים
+#### תכנים חדשים בתכנית הלימודים
 
-**מודול 03 - התחלה**  
-- **12-mcp-hosts/README.md**: מדריך מקיף חדש להקמת מארחי MCP  
-  - דוגמאות קונפיגורציה ל-Claude Desktop, VS Code, Cursor, Cline, Windsurf  
-  - תבניות קונפיגורציה JSON לכל המארחים הראשיים  
-  - טבלת השוואות סוגי תחבורה (stdio, SSE/HTTP, WebSocket)  
-  - פתרון תקלות בחיבור נפוץ  
-  - המלצות אבטחה לקונפיגורציית מארחים  
+**מודול 03 - התחלה ראשונית**
+- **12-mcp-hosts/README.md**: מדריך מקיף חדש להגדרת מארחי MCP
+  - דוגמאות תצורה ל-Claude Desktop, VS Code, Cursor, Cline, Windsurf
+  - תבניות תצורת JSON לכל המארחים הראשיים
+  - טבלת השוואת סוגי התחבורה (stdio, SSE/HTTP, WebSocket)
+  - פתרון בעיות חיבור נפוצות
+  - שיטות אבטחה מומלצות להגדרת המארחים
 
-- **13-mcp-inspector/README.md**: מדריך ניפוי שגיאות חדש ל-MCP Inspector  
-  - דרכי התקנה (npx, npm גלובלי, מהמקור)  
-  - חיבור לשרתי stdio ו-HTTP/SSE  
-  - בדיקות כלים, משאבים, וזרימות פרומפט  
-  - אינטגרציה עם VS Code ל-MCP Inspector  
-  - תרחישי ניפוי שגיאות נפוצים עם פתרונות  
+- **13-mcp-inspector/README.md**: מדריך חדש לניפוי באגים ל-MCP Inspector
+  - דרכי התקנה (npx, npm גלובלי, ממקור)
+  - חיבור לשרתים דרך stdio ו-HTTP/SSE
+  - בדיקות כלים, משאבים, וזרימות עבודה של הנחיות
+  - אינטגרציה עם VS Code ל-MCP Inspector
+  - תרחישי ניפוי באגים נפוצים עם פתרונות
 
-**מודול 04 - יישום מעשי**  
-- **pagination/README.md**: מדריך חדש ליישום דפדוף  
-  - דפוסי דפדוף מבוסס סמן בפייתון, טייפסקריפט ו-Java  
-  - טיפול בדפדוף בצד הלקוח  
-  - אסטרטגיות עיצוב סמן (אטום נגד מובנה)  
-  - המלצות לאופטימיזציית ביצועים  
+**מודול 04 - יישום מעשי**
+- **pagination/README.md**: מדריך יישום ניווט עמודים חדש
+  - דפוסי ניווט מבוססי קורסור בפייתון, טייפסקריפט, ג'אווה
+  - ניהול ניווט צד לקוח
+  - אסטרטגיות עיצוב קורסור (אטום מול מובנה)
+  - המלצות לאופטימיזציית ביצועים
 
-**מודול 05 - נושאים מתקדמים**  
-- **mcp-protocol-features/README.md**: סקירה מעמיקה ליכולות הפרוטוקול החדשות  
-  - יישום הודעות התקדמות  
-  - דפוסי ביטול בקשות  
-  - תבניות משאבים עם דפוסי URI  
-  - ניהול מחזור חיי השרת  
-  - שליטה ברמות רישום  
-  - דפוסי טיפול בשגיאות עם קודי JSON-RPC  
+**מודול 05 - נושאים מתקדמים**
+- **mcp-protocol-features/README.md**: ניתוח מעמיק של תכונות הפרוטוקול החדשות
+  - מימוש התראות התקדמות
+  - דפוסי ביטול בקשות
+  - תבניות משאבים עם דפוסי URI
+  - ניהול מחזור חיי השרת
+  - שליטה ברמת רישום
+  - דפוסי טיפול בשגיאות עם קודי JSON-RPC
 
-#### תיקוני ניווט (24+ קבצים עודכנו)
+#### תיקוני ניווט (עודכנו 24+ קבצים)
 
-**קריאות ראשיות למודולים**  
-קישורים לשיעור הראשון וגם למודול הבא  
+**קבצי README ראשיים**
+ כעת מקשרים הן לשיעור הראשון והן למודול הבא
 
-**קבצים משניים 02-בטיחות**  
-כל 5 המסמכים התומכים כעת כוללים ניווט "מה הלאה"  
+**תתי קבצי אבטחה 02-Security**
+- כל 5 המסמכים המשניים בנושא אבטחה כוללים כעת ניווט "מה הלאה":
 
-**קבצי 09-מקרי מבחן**  
-כל קבצי מקרה מבחן עם ניווט סדור עוקב  
+**קבצי מחקר מקרה 09-CaseStudy**
+- כל קבצי מחקר המקרה כוללים כעת ניווט רציף:
 
-**מעבדות 10-StreamliningAI**  
-נוספה אפסקט "מה הלאה" לתצוגה הכוללת של מודול 10 ומודול 11  
+**מעבדות 10-StreamliningAI**
+נוסף סעיף "מה הלאה" לסקירות מודול 10 ו-11
 
 #### תיקוני קוד ותוכן
 
-**עדכוני SDK ותלות**  
-תוקן גירסת openai ריקה ל-`^4.95.0`  
-עודכן SDK מ-`^1.8.0` ל-`>=1.26.0`  
-עדכון סיכות גרסאות MCP ל-`>=1.26.0`  
+**עדכוני SDK ותלויות**
+תוקנה גרסת openai ריקה ל-`^4.95.0`
+עדכון SDK מ-`^1.8.0` ל-`>=1.26.0`
+עדכון איתותים של גרסת mcp ל-`>=1.26.0`
 
-**תיקוני קוד**  
-תוקן דגם שגוי `gpt-4o-mini` ל-`gpt-4.1-mini`  
+**תיקוני קוד**
+תוקנה דגם לא תקין `gpt-4o-mini` ל-`gpt-4.1-mini`
 
-**תיקוני תוכן**  
-תוקן קישור שבור `READMEmd` ל-`README.md`  
-תוקן כותרת תוכנית הלימודים מ-"Module 1-3" ל-"Module 0-3"  
-תוקן רגישות נתיב במקרה    
-הוסר תוכן שגוי משוכפל של מקרה מבחן 5  
+**תיקוני תוכן**
+תוקן קישור שבור `READMEmd` ל-`README.md`, תוקנה כותרת תכנית `Module 1-3` ל-`Module 0-3`, תוקן נתיב תלוי רישיות
+הוסרו duplicated פגומים של תוכן Case Study 5
 
-**שיפורים להדרכה למתחילים**  
-הוספו הקדמה מתאימה, מטרות למידה, ודרישות מוקדמות למתחילים  
+**שיפורי הדרכה למתחילים**
+נוספה הקדמה ראויה, יעדי למידה ודרישות מוקדמות למתחילים
 
-#### עדכוני תוכנית לימודים
+#### עדכוני תכנית לימודים
 
-**README.md הראשי**  
-- הוספו כניסות 3.12 (מארחי MCP), 3.13 (MCP Inspector), 4.1 (דפדוף), 5.16 (יכולות פרוטוקול) לטבלת תוכנית הלימודים  
+**README.md ראשי**
+- הוספת רשומות 3.12 (מארחי MCP), 3.13 (מפקח MCP), 4.1 (ניווט עמודים), 5.16 (תכונות פרוטוקול) לטבלת התכנית
 
-**קראמי מודולים**  
-הוספו שיעורים 12 ו-13 לרשימת השיעורים  
-הוספת מדור מדריכים מעשיים עם קישור לדפדוף  
-הוספו שיעורים 5.15 (תחבורה מותאמת אישית) ו-5.16 (יכולות פרוטוקול)  
+**קבצי README של מודולים**
+הוספת שיעורים 12 ו-13 לרשימת השיעורים
+הוספת סעיף מדריכים מעשיים עם קישור לניווט עמודים
+הוספת שיעורים 5.15 (העברת מידע מותאמת) ו-5.16 (תכונות פרוטוקול)
 
-**study_guide.md**  
-- עדכון מפת חשיבה עם כל הנושאים החדשים: הקמת מארחי MCP, MCP Inspector, אסטרטגיות דפדוף, סקירת יכולות פרוטוקול  
+**study_guide.md**
+- עדכון מפת מחשבות עם כל הנושאים החדשים: הגדרת מארחי MCP, מפקח MCP, אסטרטגיות ניווט עמודים, ניתוח מעמיק של תכונות פרוטוקול
 
 ## 28 בינואר, 2026
 
-### סקירת תאימות למפרט MCP תאריך 2025-11-25
+### סקירת התאימות למפרט MCP מ-25-11-2025
 
-#### שדרוג מושגים מרכזיים (01-CoreConcepts/)  
-- **Primitive לקוח חדש - Roots**: תיעוד מקיף על Primitive Roots ללקוח, המאפשר לשרתים להבין גבולות מערכת הקבצים והרשאות גישה  
-- **הערות לכלי עבודה**: תיעוד הערות התנהגות לכלים (`readOnlyHint`, `destructiveHint`) להחלטות ביצוע טובות יותר לכלים  
-- **קריאת כלים בדגימה**: עדכון תיעוד הדגימה לכלול פרמטרים `tools` ו-`toolChoice` לקריאה מודלניית לכלי בזמן בקשות דגימה  
-- **מצב URL לאיחוי**: תיעוד איחוי מבוסס URL לאינטראקציות חיצוניות מונעות שרת  
-- **משימות (ניסוי)**: מדור חדש לתיעוד תכונת המשימות הניסיונית למעטפות ביצוע עמידות והחזרת תוצאות באיחור  
-- **תמיכה באיקונים**: צוין שכלים, משאבים, תבניות משאבים ופרומפטים יכולים כעת לכלול אייקונים כמטא-נתונים נוספים  
+#### שיפור מושגי ליבה (01-CoreConcepts/)
+- **Primitive לקוח חדש - Roots**: הוספת תיעוד מקיף על primitive Roots של הלקוח, המאפשר לשרתים להבין גבולות מערכת הקבצים והרשאות גישה
+- **הערות על כלים**: הוספת תיעוד על הערות התנהגות של כלים (`readOnlyHint`, `destructiveHint`) להחלטות ביצוע כלי משופרות
+- **קריאת כלי בדגימתיות**: עדכון תיעוד הדגימה לכלול פרמטרים `tools` ו-`toolChoice` לקריאות כלי מונחות מודל במהלך בקשות דגימה
+- **אישור מצב URL**: הוספת תיעוד על השלכת URL להתקשרויות אינטרנטיות חיצוניות ביוזמת השרת
+- **משימות (בטא)**: הוספת מדור חדש המתעד את תכונת המשימות המניסיונית לריפודי ביצוע עמידים ואיחור קבלת תוצאות
+- **תמיכה באייקונים**: צוין שכלים, משאבים, תבניות משאבים, והנחיות יכולים כעת לכלול אייקונים כמטא-דאטה נוספת
 
-#### עדכוני תיעוד  
-- **README.md**: הוספת הפניה לגרסת מפרט MCP 2025-11-25 והסבר על ניהול גרסאות מבוסס תאריך  
-- **study_guide.md**: עדכון מפת תוכנית הלימודים לכלול משימות והערות לכלי עבודה במדור מושגי יסוד; עדכון חותמת זמן של המסמך  
+#### עדכוני תיעוד
+- **README.md**: הוספת קישור לגרסת מפרט MCP מ-25-11-2025 והסבר על גרסת תיעוד מבוססת תאריך
+- **study_guide.md**: עדכון מפת התכנית לכלול משימות והערות כלי במדור מושגי ליבה; עדכון חותמת זמן
 
-#### אימות תאימות למפרט  
-- **גרסת פרוטוקול**: ווידוא שכל התיעוד מתייחס למפרט MCP 2025-11-25 הנוכחי  
-- **יישור ארכיטקטורה**: אישור נכונות תיעוד ארכיטקטורת שתי שכבות (שכבת נתונים + שכבת תחבורה)  
-- **תיעוד פרימיטיבים**: אימות פרימיטיבי שרת (משאבים, פרומפטים, כלים) ופרימיטיבי לקוח (דגימה, איחוי, רישום, Roots)  
-- **מנגנוני תחבורה**: ווידוא דיוק תיעוד תחבורה STDIO ו-HTTP סטרימינג  
-- **הנחיות אבטחה**: אימות התאמה להנחיות אבטחה טובות למפרט MCP הנוכחי  
+#### אימות תאימות למפרט
+- **גרסת פרוטוקול**: אימות שכל התיעוד מתייחס לגרסת מפרט MCP מ-25-11-2025
+- **התאמת ארכיטקטורה**: אימות נכונות תיעוד הארכיטקטורה בשני שכבות (שכבת נתונים + שכבת תחבורה)
+- **תיעוד Primitive**: אימות primitive של השרתים (משאבים, הנחיות, כלים) ופרימיטיבים של הלקוח (דגימה, השלכה, רישום, Roots)
+- **מנגנוני תחבורה**: אימות נכונות תיעוד ההעברה STDIO ו-Streamable HTTP
+- **הנחיית אבטחה**: אימות התאמה למדריכי אבטחה הטובים ביותר של MCP הנוכחיים
 
-#### תכונות מרכזיות במפרט MCP 2025-11-25 המתועדות  
-- **גילוי OpenID Connect**: גילוי שרת אימות באמצעות OIDC  
-- **מסמכי מטא-נתונים ל-OAuth Client ID**: מנגנון הרשמת לקוח מומלץ  
-- **JSON Schema 2020-12**: דיאלקט ברירת מחדל להגדרת סכמות MCP  
-- **מנגנון Tiering SDK**: דרישות פורמליות לתמיכה ותחזוקה של תכונות SDK  
-- **מבנה ממשלתי**: פורמליזציה של קבוצות עבודה וקבוצות עניין בממשל MCP  
+#### תכונות מפתח של MCP 25-11-2025 תועדו
+- **OpenID Connect Discovery**: גילוי שרת אימות באמצעות OIDC
+- **מסמכי מטא-דאטה של מזהה לקוח OAuth**: המלצה על מנגנון רישום לקוחות
+- **JSON Schema 2020-12**: שפת ברירת המחדל להגדרות סכמות MCP
+- **מערכת Tiering SDK**: פורמליזציה של דרישות תמיכה ותחזוקה של תכונות SDK
+- **מבנה ממשלתי**: פורמליזציה של קבוצות עבודה וקבוצות עניין בממשל MCP
 
-### עדכון משמעותי בתיעוד אבטחה (02-Security/)
+### עדכון גדול בתיעוד אבטחה (02-Security/)
 
-#### אינטגרציה עם סדנת פסגת אבטחת MCP (Sherpa)  
-- **משאב הדרכה מעשי חדש**: הוספת אינטגרציה מקיפה עם [סדנת פסגת אבטחת MCP (Sherpa)](https://azure-samples.github.io/sherpa/) בכל מסמכי האבטחה  
-- **כיסוי מסלול ההתקדמות**: תיעוד התקדמות מהמחנה הבסיסי ועד הפסגה  
-- **התאמה ל-OWASP**: כל הנחיות האבטחה מתואמות כעת עם סיכוני OWASP MCP Azure Security Guide  
+#### אינטגרציה עם סדנת פסגת האבטחה של MCP (שרפה)
+- **משאב הדרכה מעשי חדש**: הוספת אינטגרציה מקיפה עם [MCP Security Summit Workshop (Sherpa)](https://azure-samples.github.io/sherpa/) בכל תיעוד האבטחה
+- **תיעוד שביל מסע**: תיעוד ההתקדמות המלאה מבסיס למחנה הפסגה
+- **התאמה ל-OWASP**: כל ההנחיות לאבטחה מפורטות כעת ביחס לסיכוני OWASP MCP במדריך האבטחה של Azure
 
-#### אינטגרציה OWASP MCP Top 10  
-- **מדור חדש**: טבלת סיכוני אבטחה מובילים OWASP MCP עם הטמעות Azure להנחיית קריאת אבטחה ראשית  
-- **תיעוד מבוסס סיכונים**: עדכון mcp-security-controls-2025.md עם הפניות לסיכוני OWASP MCP לכל תחום אבטחה  
-- **ארכיטקטורת הפניה**: קישור למדריך אבטחת MCP Azure של OWASP ולדפוסי יישום  
+#### אינטגרציה של OWASP MCP עשרת הסיכונים המובילים
+- **סעיף חדש**: הוספת טבלה של סיכוני אבטחה עיקריים של OWASP MCP עם הקלות Azure לתיעוד האבטחה הראשי
+- **תיעוד מבוסס סיכון**: עדכון mcp-security-controls-2025.md עם הפניות לסיכוני OWASP MCP בכל תחום אבטחה
+- **ארכיטקטורת הפניה**: קישור לארכיטקטורת הפניה ולתבניות יישום של מדריך אבטחת Azure של OWASP MCP
 
-#### קבצי אבטחה מעודכנים  
-- **README.md**: הוספת סיכום סדנת Sherpa, טבלת מסלול ההתקדמות, סיכום סיכוני OWASP MCP Top 10 ומדור הדרכה מעשית  
-- **mcp-security-controls-2025.md**: עדכון כותרת לפברואר 2026, הוספת הפניות לסיכוני OWASP (MCP01-MCP08), תיקון חוסר עקביות בגרסת מפרט  
-- **mcp-security-best-practices-2025.md**: הוספת מקטע משאבי Sherpa ו-OWASP, עדכון חותמת זמן  
-- **mcp-best-practices.md**: הוספת מדור הדרכה מעשית עם קישורים ל-Sherpa ו-OWASP  
-- **azure-content-safety-implementation.md**: הוספת הפניה ל-OWASP MCP06, התאמה למחנה 3 בסרפה, והוספת מדור משאבים  
+#### עדכון קבצי אבטחה
+- **README.md**: הוספת סקירת סדנת שרפה, טבלת מסלול המסע, סיכום סיכוני OWASP MCP עשרת המובילים, וסעיף הדרכה מעשי
+- **mcp-security-controls-2025.md**: עדכון כותרת לפברואר 2026, הוספת הפניות לסיכוני OWASP (MCP01-MCP08), תיקון אי-התאמות בגרסת המפרט
+- **mcp-security-best-practices-2025.md**: הוספת חלק משאבים של שרפה ו-OWASP, עדכון חותמת זמן
+- **mcp-best-practices.md**: הוספת סעיף הדרכה מעשי עם קישורי שרפה ו-OWASP
+- **azure-content-safety-implementation.md**: הוספת הפניה ל-OWASP MCP06, התאמה למחנה 3 של שרפה, וסעיף משאבים נוסף
 
-#### קישורי משאבים חדשים  
-- [סדנת פסגת אבטחת MCP (Sherpa)](https://azure-samples.github.io/sherpa/)  
-- [מדריך אבטחת MCP Azure של OWASP](https://microsoft.github.io/mcp-azure-security-guide/)  
-- [OWASP MCP Top 10](https://owasp.org/www-project-mcp-top-10/)  
-- דפי סיכוני OWASP MCP אינדיבידואלים (MCP01-MCP10)  
+#### הוספת קישורי משאבים חדשים
+- [MCP Security Summit Workshop (Sherpa)](https://azure-samples.github.io/sherpa/)
 
-### יישור תוכנית הלימודים למפרט MCP 2025-11-25
+- [מדריך אבטחת OWASP MCP Azure](https://microsoft.github.io/mcp-azure-security-guide/)
+- [OWASP MCP עשרת הגדולים](https://owasp.org/www-project-mcp-top-10/)
+- דפי סיכוני OWASP MCP פרטניים (MCP01-MCP10)
 
-#### מודול 03 - התחלה  
-- **תיעוד SDK**: הוספת Go SDK לרשימת ה-SDK הרשמית; עדכון כל ההפניות ל-SDK ליישור למפרט MCP 2025-11-25  
-- **הבהרת תחבורה**: עדכון תיאורי תחבורה STDIO ו-HTTP Streaming עם הפניות מפורשות למפרט  
+### התאמת מפרט MCP רחב קורס 2025-11-25
 
-#### מודול 04 - יישום מעשי  
-- **עדכוני SDK**: הוספת Go SDK; עדכון רשימת SDK עם הפנייה לגרסת המפרט  
-- **מפרט הרשאות**: עדכון קישור למפרט הרישוי MCP לגרסה הנוכחית 2025-11-25  
+#### מודול 03 - התחלת עבודה
+- **תיעוד SDK**: נוסף SDK של Go לרשימת SDK הרשמית; עודכנו כל הפניות ל-SDK כדי להתאים למפרט MCP 2025-11-25
+- **הבהרת אמצעי הסעה**: עודכנו תיאורי הסעת STDIO ו-HTTP Streaming עם הפניות מפורשות למפרט
 
-#### מודול 05 - נושאים מתקדמים  
-- **תכונות חדשות**: הוספת הערה על תכונות חדשות במפרט MCP 2025-11-25 (משימות, הערות כלי עבודה, איחוי במצב URL, Roots)  
-- **משאבי אבטחה**: הוספת קישורים ל-OWASP MCP Top 10 ולסדנת Sherpa כהפניות נוספות  
+#### מודול 04 - יישום מעשי
+- **עדכוני SDK**: נוסף SDK של Go; עדכון רשימת ה-SDK עם הפניה לגרסת המפרט
+- **מפרט הרשאה**: עדכון קישור למפרט ההרשאה MCP לגרסת 2025-11-25 העדכנית
 
-#### מודול 06 - תרומות מהקהילה  
-- **רשימת SDK**: הוספת Swift ו-Rust SDK; עדכון קישור למפרט MCP לגרסה 2025-11-25  
+#### מודול 05 - נושאים מתקדמים
+- **תכונות חדשות**: נוספה הערה על תכונות חדשות במפרט MCP 2025-11-25 (משימות, הערות כלי, מצבי URL, שורשים)
+- **משאבי אבטחה**: נוספו קישורים ל-OWASP MCP עשרת הגדולים ולסדנת שרפה בהפניות נוספות
 
-#### מודול 07 - שיעורים מהטמעה מוקדמת
-- **עדכוני משאבים**: נוסף קישור למפרט MCP 2025-11-25 ו-OWASP MCP Top 10 למשאבים נוספים
+#### מודול 06 - תרומות קהילתיות
+- **רשימת SDK**: נוספו SDK של Swift ו-Rust; עדכון קישור המפרט ל-2025-11-25
+- **הפניה למפרט**: עדכון קישור למפרט MCP לכתובת URL ישירה
 
-#### מודול 08 - נהלים מומלצים
-- **גרסת המפרט**: עדכון הפניה למפרט MCP לגרסה 2025-11-25
-- **משאבי אבטחה**: נוסף OWASP MCP Top 10 וסדנת Sherpa להפניות נוספות
+#### מודול 07 - לקחים מאימוץ מוקדם
+- **עדכוני משאבים**: נוסף קישור למפרט MCP 2025-11-25 ו-OWASP MCP עשרת הגדולים למשאבים נוספים
 
-#### מודול 10 - ייעול זרימות עבודה של AI
-- **עדכון תג**: שינוי תג גרסת MCP מגרסת SDK (1.9.3) לגרסת המפרט (2025-11-25)
-- **קישורי משאבים**: עדכון קישור למפרט MCP; נוסף OWASP MCP Top 10
+#### מודול 08 - שיטות עבודה מומלצות
+- **גרסת מפרט**: עדכון הפניה למפרט MCP לגרסת 2025-11-25
+- **משאבי אבטחה**: נוספו OWASP MCP עשרת הגדולים וסדנת שרפה להפניות נוספות
+
+#### מודול 10 - ייעול זרימות עבודה בינה מלאכותית
+- **עדכון תג**: שונה תג גרסת MCP מגרסת SDK (1.9.3) לגרסת מפרט (2025-11-25)
+- **קישורי משאבים**: עדכון קישור למפרט MCP; הוספת OWASP MCP עשרת הגדולים
 
 #### מודול 11 - מעבדות מעשיות לשרת MCP
-- **הפניה למפרט**: עדכון קישור למפרט MCP לגרסה 2025-11-25
-- **משאבי אבטחה**: נוסף OWASP MCP Top 10 למשאבים רשמיים
+- **הפניה למפרט**: עדכון קישור למפרט MCP לגרסת 2025-11-25
+- **משאבי אבטחה**: נוספה OWASP MCP עשרת הגדולים למשאבים רשמיים
 
 ## 18 בדצמבר 2025
 
 ### עדכון תיעוד אבטחה - מפרט MCP 2025-11-25
 
-#### נהלים מומלצים לאבטחת MCP (02-Security/mcp-best-practices.md) – עדכון גרסת מפרט
-- **עדכון גרסת פרוטוקול**: העדכון מתייחס למפרט MCP העדכני ביותר מ-25 בנובמבר 2025
-  - כל הפניות לגרסת המפרט עודכנו מ-18 ביוני 2025 ל-25 בנובמבר 2025
-  - כל הפניות לתאריכים במסמכים עודכנו מ-18 באוגוסט 2025 ל-18 בדצמבר 2025
-  - אימות שכל כתובות ה-URL של המפרט מצביעות על התיעוד העדכני
-- **אימות תוכן**: אימות מקיף של נהלי אבטחה מומלצים בהתאם לסטנדרטים העדכניים
-  - **פתרונות אבטחה של מיקרוסופט**: אימות מונחים וקישורים נוכחיים ל-Prompt Shields (לשעבר "זיהוי סיכון jailbreak"), Azure Content Safety, Microsoft Entra ID, ו-Azure Key Vault
-  - **אבטחת OAuth 2.1**: אימות התאמה לנהלי האבטחה המעודכנים של OAuth
-  - **סטנדרטים של OWASP**: אימות כי הפניות ל-OWASP Top 10 ל-LLMs עדכניות
-  - **שירותי Azure**: אימות כל קישורי התיעוד של Microsoft Azure ונהלים מומלצים
-- **יישור לסטנדרטים**: כל תקני האבטחה שהופנו אליהם מאושרים כעדכניים
+#### שיטות עבודה מומלצות לאבטחת MCP (02-Security/mcp-best-practices.md) - עדכון גרסת מפרט
+- **עדכון גרסת פרוטוקול**: עודכן להפנייה למפרט MCP העדכני ביותר 2025-11-25 (שוחרר ב-25 בנובמבר 2025)
+  - עודכן כל הפניות לגרסאות המפרט מ-2025-06-18 ל-2025-11-25
+  - עודכנו הפניות לתאריך המסמך מ-18 באוגוסט 2025 ל-18 בדצמבר 2025
+  - אושרה שכל כתובות ה-URL למפרט מפנות לתיעוד העדכני
+- **אימות תוכן**: אימות מקיף של שיטות עבודה מומלצות לאבטחה מול התקנים העדכניים
+  - **פתרונות אבטחת מיקרוסופט**: אושרה התאמת מונחים וקישורים ל-Prompt Shields (בעבר "זיהוי סיכון Jailbreak"), Azure Content Safety, Microsoft Entra ID, ו-Azure Key Vault
+  - **אבטחת OAuth 2.1**: אושרה התאמה לשיטות האבטחה העדכניות של OAuth
+  - **תקני OWASP**: ואושר שהפניות ל-OWASP עשרת הגדולים ל-LLMs הן עדכניות
+  - **שירותי Azure**: אושרו כל קישורי התיעוד של מיקרוסופט אזור ושיטות עבודה מומלצות
+- **התאמת תקנים**: כל תקני האבטחה המוזכרים אושרו כעדכניים
   - מסגרת ניהול סיכוני AI של NIST
   - ISO 27001:2022
-  - נהלי אבטחת OAuth 2.1
+  - שיטות עבודה מומלצות לאבטחת OAuth 2.1
   - מסגרות אבטחה וציות של Azure
-- **משאבי יישום**: אימות כל הקישורים למדריכי יישום ומשאבים
-  - תבניות אימות עבור ניהול API ב-Azure
-  - מדריכי אינטגרציה ל-Microsoft Entra ID
+- **משאבי יישום**: אומתו כל הקישורים למדריכי היישום והמשאבים
+  - דפוסי אימות בניהול API של Azure
+  - מדריכי השתלבות עם Microsoft Entra ID
   - ניהול סודות ב-Azure Key Vault
   - צינורות DevSecOps ופתרונות ניטור
 
-### הבטחת איכות תיעוד
-- **עמידה בדרישות מפרט**: נבדקה התאמה של כל דרישות האבטחה המחייבות (חובה/אסור) ב-MCP לגרסה העדכנית
+### אבטחת איכות התיעוד
+- **ציות למפרט**: הבטחת התאמת כל דרישות האבטחה החיוניות ב-MCP (חובה/אסור) לגרסת המפרט העדכנית
 - **עדכניות משאבים**: אימות כל הקישורים החיצוניים לתיעוד מיקרוסופט, תקני אבטחה ומדריכי יישום
-- **כיסוי נהלים מומלצים**: אושר כיסוי מקיף של אימות, הרשאה, איומי AI ספציפיים, אבטחת שרשרת אספקה ודפוסי ארגון
+- **כיסוי שיטות מיטביות**: אישור כיסוי מקיף של אימות, הרשאה, איומי AI ספציפיים, אבטחת שרשרת אספקה ודפוסי ארגון
 
 ## 6 באוקטובר 2025
 
-### הרחבת סעיף התחלה – שימוש מתקדם בשרת ואימות פשוט
+### הרחבת מדור התחלת עבודה – שימוש מתקדם בשרת ואימות פשוט
 
 #### שימוש מתקדם בשרת (03-GettingStarted/10-advanced)
-- **פרק חדש נוסף**: הוצג מדריך מקיף לשימוש מתקדם בשרת MCP, הכולל ארכיטקטורות שרת רגילות ונמוכות-רמה.
-  - **שרת רגיל מול שרת נמוך-רמה**: השוואה מפורטת ודוגמאות קוד בפייתון ו-TypeScript לשתי הגישות.
-  - **עיצוב מבוסס Handler**: הסבר על ניהול כלים/משאבים/פרומפט מבוסס Handler ליישומים גמישים ומדרגיים.
-  - **דפוסים מעשיים**: תרחישים מהעולם האמיתי בהם דפוסי שרת נמוכי-רמה מועילים לתכונות וארכיטקטורה מתקדמות.
+- **מודל חדש נוסף**: הובא מדריך מקיף לשימוש מתקדם בשרת MCP, כולל ארכיטקטורות שרת רגילות ונמוכות רמה.
+  - **שרת רגיל מול שרת נמוך-רמה**: השוואה מפורטת ודוגמאות קוד בפייתון וטייפסקריפט לשתי הגישות.
+  - **עיצוב מבוסס מטפל**: הסבר על ניהול כלים/משאבים/פירמוט מבוסס מטפל ליישומי שרת גמישים ומדרגיים.
+  - **דפוסים מעשיים**: תרחישים מהעולם האמיתי בהם דפוסי שרת נמוך-רמה מועילים לתכונות וארכיטקטורה מתקדמות.
 
 #### אימות פשוט (03-GettingStarted/11-simple-auth)
-- **פרק חדש נוסף**: מדריך שלב-אחר-שלב ליישום אימות פשוט בשרת MCP.
-  - **מושגי אימות**: הסבר ברור על אימות מול הרשאה וטיפול באישורים.
-  - **יישום אימות בסיסי**: דפוסי אימות מבוססי Middleware בפייתון (Starlette) ו-TypeScript (Express), עם דוגמאות קוד.
+- **מודל חדש נוסף**: מדריך שלב-אחר-שלב ליישום אימות פשוט בשרת MCP.
+  - **מושגי אימות**: הסבר ברור על אימות לעומת הרשאה, וטיפול באסמכתאות.
+  - **יישום אימות בסיסי**: דפוסי אימות מבוססי Middleware בפייתון (Starlette) וטייפסקריפט (Express), עם דוגמאות קוד.
   - **התקדמות לאבטחה מתקדמת**: הנחיות להתחלה עם אימות פשוט והתקדמות ל-OAuth 2.1 ו-RBAC, עם הפניות למודולי אבטחה מתקדמים.
 
-תוספות אלו מספקות הדרכה מעשית וידנית לבניית יישומי שרת MCP יציבים, מאובטחים וגמישים, ומשלבות מושגי יסוד עם דפוסי ייצור מתקדמים.
+תוספות אלה מספקות הנחיות מעשיות ובפועל לבניית יישומי שרת MCP אמינים, מאובטחים וגמישים יותר, המקשרות מושגים יסודיים עם דפוסי ייצור מתקדמים.
 
 ## 29 בספטמבר 2025
 
-### מעבדות אינטגרציה למסד נתונים בשרת MCP - מסלול למידה מעשי מקיף
+### מעבדות שילוב מסדי נתונים לשרת MCP - מסלול למידה מעשי ומקיף
 
-#### 11-MCPServerHandsOnLabs - תוכנית לימודים מלאה למעבדות אינטגרציה למסד נתונים
-- **מסלול למידה שלם עם 13 מעבדות**: נוסף מסלול למידה מעשי לבניית שרתי MCP מוכנים לייצור עם אינטגרציית מסד נתונים PostgreSQL
-  - **יישום מהעולם האמיתי**: מקרה שימוש Zava Retail Analytics הממחיש דפוסי ארגון ברמת ארגון
+#### 11-MCPServerHandsOnLabs - תכנית לימודים מלאה לשילוב מסדי נתונים
+- **מסלול לימודים מקיף ב-13 מעבדות**: נוסף תכנית מלאה מעשית לבניית שרתי MCP מוכנים לייצור עם שילוב מסד נתונים PostgreSQL
+  - **יישום בעולם האמיתי**: מקרה שימוש אנליטיקה של Zava Retail המדגים דפוסי ארגון ברמה ארגונית
   - **התקדמות למידה מובנית**:
-    - **מעבדות 00-03: יסודות** - מבוא, ארכיטקטורה בסיסית, אבטחה וריבוי לקוחות, הגדרת סביבה
-    - **מעבדות 04-06: בניית שרת MCP** - עיצוב מסד נתונים וסכימה, יישום שרת MCP, פיתוח כלים
-    - **מעבדות 07-09: תכונות מתקדמות** - אינטגרציית חיפוש סמנטי, בדיקות וניפוי שגיאות, אינטגרציה עם VS Code
-    - **מעבדות 10-12: ייצור ונהלים מומלצים** - אסטרטגיות פריסה, ניטור ותצפית, נהלים מומלצים ואופטימיזציה
-  - **טכנולוגיות ארגוניות**: מסגרת FastMCP, PostgreSQL עם pgvector, Azure OpenAI embeddings, Azure Container Apps, Application Insights
-  - **תכונות מתקדמות**: אבטחת שורות (RLS), חיפוש סמנטי, גישה לריבוי לקוחות, הטמעות וקטור, ניטור בזמן אמת
+    - **מעבדות 00-03: יסודות** - מבוא, ארכיטקטורה ליבה, אבטחה ורב-משתמשיות, הקמת סביבה
+    - **מעבדות 04-06: בניית שרת MCP** - עיצוב מסד נתונים וסכמה, יישום שרת MCP, פיתוח כלים
+    - **מעבדות 07-09: תכונות מתקדמות** - אינטגרציית חיפוש סמנטי, בדיקות ואיתור תקלות, אינטגרציית VS Code
+    - **מעבדות 10-12: ייצור ושיטות עבודה מומלצות** - אסטרטגיות פריסה, ניטור והתבוננות, שיטות עבודה מיטביות ואופטימיזציה
+  - **טכנולוגיות ארגוניות**: מסגרת FastMCP, PostgreSQL עם pgvector, אמבדינג של Azure OpenAI, אפליקציות מכולה של Azure, Application Insights
+  - **תכונות מתקדמות**: אבטחת רמת שורה (RLS), חיפוש סמנטי, גישה לנתונים רב-שוכנתית, וקטורי אמבדינג, ניטור בזמן אמת
 
-#### ייעוד מונחי – שינוי מ"מודול" ל"מעבדה"
-- **עדכון תיעוד נרחב**: תוכן כל קבצי README במעבדות 11-MCPServerHandsOnLabs עודכן למונח "מעבדה" במקום "מודול"
-  - **כותרות סעיפים**: הוחלף "מה מכסה מודול זה" ל-"מה מכסה מעבדה זו" בכל 13 המעבדות
-  - **תיאור תוכן**: שונה מ-"מודול זה מספק..." ל-"מעבדה זו מספקת..." בכל התיעוד
-  - **יעדי למידה**: הותאם מ-"בתום מודול זה..." ל-"בתום מעבדה זו..." 
-  - **קישורי ניווט**: הומרו כל הפניות מ"מודול XX:" ל"מעבדה XX:"
-  - **מעקב השלמה**: הותאם מ-"לאחר השלמת מודול זה..." ל-"לאחר השלמת מעבדה זו..."
-  - **הפניות טכניות שמורות**: שמירת הפניות למודול Python בקבצי קונפיגורציה (למשל `"module": "mcp_server.main"`)
+#### סטנדרטיזציה של טרמינולוגיה - המרת מודול למעבדה
+- **עדכון תיעוד מקיף**: עדכון שיטתי לכל קבצי README ב-11-MCPServerHandsOnLabs לשימוש במונח "מעבדה" במקום "מודול"
+  - **כותרות מדורים**: שינוי "מה מכסה מודול זה" ל-"מה מכסה מעבדה זו" בכל 13 המעבדות
+  - **תיאור תוכן**: שינוי "מודול זה מספק..." ל-"מעבדה זו מספקת..." לאורך כל התיעוד
+  - **מטרות למידה**: שינוי "עם סיום מודול זה..." ל-"עם סיום מעבדה זו..."
+  - **קישורי ניווט**: המרת כל הפניות "מודול XX:" ל-"מעבדה XX:" בהפניות רוחב וניווט
+  - **מעקב השלמה**: שינוי "לאחר סיום מודול זה..." ל-"לאחר סיום מעבדה זו..."
+  - **הפניות טכניות שנשמרו**: שמירת הפניות למודולי פייתון בקבצי קונפיגורציה (כגון `"module": "mcp_server.main"`)
 
-#### שדרוג מדריך לימוד (study_guide.md)
-- **מפת תוכנית לימודים ויזואלית**: נוסף סעיף חדש "11. מעבדות אינטגרציית מסדי נתונים" עם מבנה מעבדה מפורט
-- **מבנה מאגר**: עודכן מ-עשרה ל-אחד עשר סעיפים עיקריים עם תיאור מלא של 11-MCPServerHandsOnLabs
-- **הנחיות למסלול למידה**: הוגבר הניתוב לכיסוי סעיפים 00-11
-- **כיסוי טכנולוגיות**: נוסף מידע על FastMCP, PostgreSQL, אינטגרציית שירותי Azure
-- **תוצאות למידה**: הודגש פיתוח שרתים מוכנים לייצור, דפוסי אינטגרציית מסדי נתונים ואבטחה ארגונית
+#### שדרוג מדריך הלימוד (study_guide.md)
+- **מפת קורס ויזואלית**: הוספת מדור חדש "11. מעבדות שילוב מסדי נתונים" עם ויזואליזציה מקיפה של מבנה המעבדות
+- **מבנה המאגר**: עדכון מעשרה לאחת עשרה מדורים עיקריים עם תיאור מפורט של 11-MCPServerHandsOnLabs
+- **הנחיות מסלול למידה**: שיפור הוראות הניווט לכיסוי מדורים 00-11
+- **כיסוי טכנולוגי**: הוספת פרטים על FastMCP, PostgreSQL ואינטגרציה עם שירותי Azure
+- **תוצאות למידה**: הדגשת פיתוח שרתים מוכנים לייצור, דפוסי אינטגרציית מסדי נתונים ואבטחה ארגונית
 
-#### שדרוג מבנה README ראשי
-- **מונחי מעבדה**: עדכון README.md הראשי ב-11-MCPServerHandsOnLabs לשימוש עקבי במונח "מבנה מעבדה"
-- **ארגון מסלול למידה**: התקדמות ברורה מהקונספטים הבסיסיים ועד יישום מתקדם ופריסה לייצור
-- **מוקד בעולם האמיתי**: הדגשת למידה מעשית עם דפוסי ארגון וטכנולוגיות ארגוניות
+#### שדרוג מבנה README הראשי
+- **טרמינולוגיה מבוססת מעבדות**: עדכון README.md הראשי ב-11-MCPServerHandsOnLabs לשימוש עקבי במבנה "מעבדה"
+- **ארגון מסלול למידה**: התקדמות ברורה ממושגי יסוד דרך יישום מתקדם ועד פריסת ייצור
+- **מיקוד בעולם האמיתי**: הדגשה של למידה פרקטית עם דפוסי ארגון וגישות ארגוניות
 
-### שיפורי איכות ועקביות תיעוד
-- **מוקד על למידה מעשית**: חיזוק גישת למידה מבוססת מעבדות לאורך כל התיעוד
-- **מוקד על דפוסי ארגון ארגוניים**: הדגשה של יישומים מוכנים לייצור ואבטחה ארגונית
-- **אינטגרציית טכנולוגיות**: כיסוי מקיף של שירותי Azure מודרניים ודפוסי אינטגרצית AI
-- **התקדמות למידה**: מסלול מובנה וברור מקונספטים בסיסיים לפריסה לייצור
+### שיפורי איכות ועקביות התיעוד
+- **הדגשת למידה מעשית**: חיזוק גישה מעשית, מבוססת מעבדות לאורך כל התיעוד
+- **מיקוד בדפוסים ארגוניים**: הדגשת יישומים מוכנים ייצור ושיקולי אבטחה ארגוניים
+- **אינטגרציה טכנולוגית**: כיסוי מקיף של שירותי Azure מודרניים ודפוסי אינטגרציית AI
+- **התקדמות למידה**: מסלול ברור ומבוסס מבנה ממושגים בסיסיים ועד פריסת ייצור
 
 ## 26 בספטמבר 2025
 
-### שדרוג מקרי בוחן - אינטגרציית רשם MCP ב-GitHub
+### שיפור מקרים מבחן - אינטגרציית רישום MCP ב-GitHub
 
-#### מקרי בוחן (09-CaseStudy/) - מוקד פיתוח אקוסיסטם
-- **README.md**: הרחבה משמעותית עם מקרה בוחן מקיף לרשם MCP של GitHub
-  - **מקרה בוחן רשם MCP של GitHub**: מקרה בוחן חדש ומקיף הבוחן השקת רשם MCP של GitHub בספטמבר 2025
-    - **ניתוח בעיות**: בחינה מפורטת של פיצול גילוי ופריסת שרתי MCP ואתגרי הפעלה
-    - **ארכיטקטורת פתרון**: גישת רשם מרכזית עם התקנת VS Code בלחיצת כפתור
-    - **השפעה עסקית**: שיפורים נמדדים בהכנסת מפתחים והגברת הפרודוקטיביות
-    - **ערך אסטרטגי**: מיקוד בפריסת סוכנים מודולרית ואינטראופרביליות בין כלים
-    - **פיתוח אקוסיסטם**: מיצוב כתשתית יסודית לאינטגרציית סוכנים
-  - **מבנה משופר למקרי בוחן**: עדכון כל שבעת מקרי הבוחן עם פורמט עקבי ותיאורים מפורטים
-    - סוכני Azure AI: מיקוד בתזמור רב-סוכנים
-    - אינטגרציית Azure DevOps: מיקוד באוטומציית זרימות עבודה
+#### מקרים מבחן (09-CaseStudy/) - מיקוד בפיתוח מערכת אקולוגית
+- **README.md**: הרחבה משמעותית עם מקרה מבחן מלא לרישום MCP ב-GitHub
+  - **מקרה מבחן רישום MCP ב-GitHub**: מקרה מבחן מקיף חדש הבוחן את השקת רישום MCP של GitHub בספטמבר 2025
+    - **ניתוח בעיות**: בחינה מפורטת של אתגרי גילוי ופריסת שרת MCP מפוצל
+    - **ארכיטקטורת פתרון**: גישת רישום מרכזי של GitHub עם התקנת VS Code בלחיצה אחת
+    - **השפעה עסקית**: שיפורים מדידים בקבלת מפתחים לפרויקט ופרודוקטיביות
+    - **ערך אסטרטגי**: מיקוד בפריסת סוכנים מודולרית ואינטראופרביליות בין כלים שונים
+    - **פיתוח מערכת אקולוגית**: מיצוב כפלטפורמה יסודית לאינטגרציה סוכנית
+  - **מבנה משופר של מקרה מבחן**: עדכון כל שבעת מקרי המבחן עם פורמט עקבי ותיאורים מקיפים
+    - סוכני נסיעות AI של Azure: דגש על תזמור סוכנים מרובים
+    - אינטגרציית Azure DevOps: דגש על אוטומציה של זרימות עבודה
     - אחזור תיעוד בזמן אמת: יישום לקוח קונסול בפייתון
-    - מחולל תוכנית לימוד אינטראקטיבי: אפליקציית שיחה Chainlit
-    - תיעוד בתוך עורך: אינטגרציית VS Code ו-GitHub Copilot
-    - ניהול API של Azure: דפוסי אינטגרציית API ארגוניים
-    - רשם MCP של GitHub: פיתוח אקוסיסטם ופלטפורמת קהילה
-  - **סיכום מקיף**: ניסוח מחדש של סעיף הסיכום המדגיש שבעת מקרי הבוחן החוצים ממדים שונים של יישום MCP
-    - אינטגרציה ארגונית, תזמור רב-סוכנים, פרודוקטיביות מפתחים
-    - פיתוח אקוסיסטם, סיווג יישומים חינוכיים
-    - תובנות מורחבות על דפוסי ארכיטקטורה, אסטרטגיות יישום ונהלים מומלצים
-    - הדגשה של MCP כפרוטוקול בשל, מוכן לייצור
+    - מחולל תוכנית לימודים אינטראקטיבי: אפליקציית רשת שיחנית Chainlit
+    - תיעוד בתוך העורך: אינטגרציה של VS Code ו-GitHub Copilot
+    - ניהול API של Azure: דפוסי אינטגרציה של API ארגוניים
+    - רישום MCP של GitHub: פיתוח מערכת אקולוגית ופלטפורמת קהילה
+  - **סיכום מקיף**: ניסוח מחדש של תחום הסיכום המדגיש שבעה מקרים מבחן המכסים ממדים מרובים ביישום MCP
+    - אינטגרציית ארגון, תזמור סוכנים מרובים, פרודוקטיביות מפתחים
+    - פיתוח מערכת אקולוגית, סיווג יישומים חינוכיים
+    - תובנות משופרות לתבניות ארכיטקטוניות, אסטרטגיות יישום ושיטות עבודה מיטביות
+    - דגש על MCP כפרוטוקול בוגר ומוכן לייצור
 
-#### עדכוני מדריך לימוד (study_guide.md)
-- **מפת תוכנית לימודים ויזואלית**: עדכון מפת המוח לכלול את רשם MCP של GitHub בסעיף מקרי בוחן
-- **תיאור מקרי בוחן**: שדרוג מתיאורים גנריים לפירוט מפורק של שבעת מקרי הבוחן המקיפים
-- **מבנה מאגר**: עדכון סעיף 10 לשקף כיסוי מקיף של מקרי בוחן עם פרטי יישום ספציפיים
-- **אינטגרציית שינויים**: הוספת כניסה ל-26 בספטמבר 2025 המתעדכנת להוספת רשם MCP של GitHub ושדרוג מקרי בוחן
-- **עדכוני תאריך**: עדכון חותמת הזמן בתחתית לדחיפה האחרונה (26 בספטמבר 2025)
+#### עדכוני מדריך הלימוד (study_guide.md)
+- **מפת קורס ויזואלית**: עדכון מפת חשיבה להכללת רישום MCP של GitHub במדור מקרי מבחן
+- **תיאור מקרים**: שיפור מתיאורים גנריים לפירוט של שבעת מקרי מבחן מקיפים
+- **מבנה המאגר**: עדכון מדור 10 לשקף כיסוי מקרה מבחן מקיף עם פרטי יישום ספציפיים
+- **אינטגרציית יומן שינויים**: הוספת כניסה לתאריך 26 בספטמבר 2025 לתיעוד הוספת רישום MCP של GitHub ושיפורי מקרים
+- **עדכוני תאריך**: עדכון חותמת תאריך תחתונה לשקף את הגרסה העדכנית ביותר (26 בספטמבר 2025)
 
 ### שיפורי איכות תיעוד
-- **שיפור עקביות**: סטנדרטיזציה של פורמט ומבנה מקרי בוחן בכל שבע הדוגמאות
-- **כיסוי מקיף**: מקרי הבוחן כוללים כעת תרחישים של ארגון, פרודוקטיביות מפתחים ופיתוח אקוסיסטם
-- **מיצוב אסטרטגי**: הדגשה מוגברת של MCP כבסיס לפריסת מערכות סוכנים
-- **אינטגרציית משאבים**: עדכון משאבים נוספים לכלול קישור לרשם MCP של GitHub
+- **שיפור עקביות**: סטנדרטיזציה של פורמט ומבנה מקרים מבחן בכל שבע הדוגמאות
+- **כיסוי מקיף**: מקרי מבחן הכוללים תרחישי ארגון, פרודוקטיביות מפתחים ופיתוח מערכת אקולוגית
+- **מיצוב אסטרטגי**: חיזוק מיקוד ב-MCP כפלטפורמה יסודית להפעלת מערכות סוכנים
+- **אינטגרציית משאבים**: עדכון משאבים נוספים לכלול קישור לרישום MCP של GitHub
 
 ## 15 בספטמבר 2025
 
-### הרחבת נושאים מתקדמים – תחבורה מותאמת והנדסת הקשר
+### הרחבת נושאים מתקדמים - אמצעי הסעה מותאמים והנדסת הקשר
 
-#### תחבורה מותאמת ב-MCP (05-AdvancedTopics/mcp-transport/) - מדריך יישום מתקדם חדש
-- **README.md**: מדריך יישום מלא למנגנוני תחבורה מותאמים ב-MCP
-  - **תחבורה מבוססת Azure Event Grid**: יישום תחבורה מבוססת אירועים ללא שרתים
-    - דוגמאות ב-C#, TypeScript, ופייתון עם אינטגרציית Azure Functions
-    - דפוסי ארכיטקטורת אירועים ליישומי MCP מדרגיים
-    - מקבלי webhook וטיפול בהודעות מבוססות דחיפה
-  - **תחבורה מבוססת Azure Event Hubs**: יישום תחבורה סטרימינג בקצב גבוה
+#### אמצעי הסעה מותאמים של MCP (05-AdvancedTopics/mcp-transport/) - מדריך יישום מתקדם חדש
+- **README.md**: מדריך יישום מלא למנגנוני הסעה מותאמים של MCP
+  - **הסעת Azure Event Grid**: יישום הסעת אירועים ללא שרת מקיף
+    - דוגמאות ב-C#, TypeScript, ופייתון עם אינטגרציה של Azure Functions
+    - דפוסי ארכיטקטורה מונחי אירועים לפתרונות MCP מדרגיים
+    - מקלטי webhook וטיפול בהודעות מבוסס דחיפה
+  - **הסעת Azure Event Hubs**: יישום הסעה מבוסס סטרימינג בקצבים גבוהים
     - יכולות סטרימינג בזמן אמת לתרחישי זמן השהייה נמוך
-    - אסטרטגיות חלוקה וניהול נקודות ביקורת
+    - אסטרטגיות פרישת מחיצות וניהול נקודות ביקורת
     - אצירת הודעות ואופטימיזציית ביצועים
   - **דפוסי אינטגרציה ארגוניים**: דוגמאות ארכיטקטוניות מוכנות לייצור
-    - עיבוד MCP מבוזר ברחבי פונקציות Azure מרובות
-    - ארכיטקטורות תחבורה היברידיות המשלבות סוגי תחבורה שונים
-    - עקרונות דיוק, אמינות וטיפול בשגיאות בהודעות
-  - **אבטחה וניטור**: אינטגרציה עם Azure Key Vault ודפוסי תצפית
-    - אימות זהות מנוהלת וגישה בזכויות מינימום
+    - עיבוד MCP מבוזר על פני מספר Azure Functions
+    - ארכיטקטורות הסעה היברידיות המשלבות סוגי הסעה מרובים
+    - עמידות הודעות, אמינות, ואסטרטגיות טיפול בשגיאות
+  - **אבטחה וניטור**: אינטגרציה עם Azure Key Vault ודפוסי התבוננות
+    - אימות זהות מנוהלת וגישה לפי הפריבילגיות המינימליות
     - טלמטריה של Application Insights וניטור ביצועים
-    - מעגלי הגנה (Circuit breakers) ודפוסי עמידות בפני תקלות
-  - **מסגרות בדיקה**: אסטרטגיות בדיקה מקיפות לתחבורה מותאמת
-    - בדיקות יחידה עם כפילי בדיקה ומסגרות mocking
-    - בדיקות אינטגרציה עם מכולות בדיקה של Azure
-    - התחשבות בבדיקות ביצועים ועומסים
+    - שבירות מעגל ודפוסי סבילות לתקלות
+  - **מסגרות בדיקה**: אסטרטגיות בדיקה מקיפות לאמצעי הסעה מותאמים
+    - בדיקות יחידה עם תבניות אינטרפולציה ומסגרות דמה
+    - בדיקות אינטגרציה עם Azure Test Containers
+    - שיקולי ביצועים ובדיקות עומס
 
-#### הנדסת הקשר (05-AdvancedTopics/mcp-contextengineering/) - תחום AI מתפתח
-- **README.md**: חקר מקיף של הנדסת הקשר כתחום מתהווה
+#### הנדסת הקשר (05-AdvancedTopics/mcp-contextengineering/) - דיסציפלינה צומחת ב-AI
+- **README.md**: חקר מקיף של הנדסת הקשר כדיסציפלינה צומחת
   - **עקרונות מרכזיים**: שיתוף הקשר מלא, מודעות להחלטות פעולה, וניהול חלון הקשר
-  - **יישור לפרוטוקול MCP**: כיצד עיצוב MCP מתמודד עם אתגרי הנדסת הקשר
-    - מגבלות חלון הקשר ואסטרטגיות טעינה מתקדמת
-    - קביעת רלוונטיות ואחזור דינמי של הקשר
-    - טיפול רב-מצבי בקשר ושיקולי אבטחה
-  - **גישות יישום**: ארכיטקטורות חד-חוטיות מול רב-סוכניות
-    - פירוק הקשר וטכניקות תיעדוף
-    - טעינה פרוגרסיבית ודחיסת קשר
-    - גישות שכבתיות ושיפור אחזור
+
+  - **התאמת פרוטוקול MCP**: כיצד עיצוב MCP מתמודד עם אתגרי מהנדסי הקשר
+    - מגבלות חלון הקשר ואסטרטגיות טעינה התקדמות
+    - קביעת רלוונטיות ושליפת הקשר דינמית
+    - טיפול בקשר רב-מודאלי ושיקולי אבטחה
+  - **גישות יישום**: ארכיטקטורות חד-תהליכיות לעומת רב-סוכנים
+    - טכניקות חיתוך הקשר ופריוריטיזציה
+    - טעינה התקדמותית של הקשר ואסטרטגיות דחיסה
+    - גישות שכבתיות לקשר ואופטימיזציית שליפה
   - **מסגרת מדידה**: מדדים מתהווים להערכת יעילות הקשר
-    - יעילות קלט, ביצועים, איכות וחוויית משתמש
+    - שיקולי יעילות קלט, ביצועים, איכות וחוויית משתמש
     - גישות ניסיוניות לאופטימיזציית הקשר
-    - ניתוח כשלים ומתודולוגיות שיפור
+    - ניתוח כשל ושיטות שיפור
 
-#### עדכוני ניווט תוכנית לימודים (README.md)
-- **שדרוג מבנה מודולים**: הוספת נושאים מתקדמים חדשים לטבלת תוכנית הלימודים
-  - נוסף הנדסת הקשר (5.14) ותחבורה מותאמת (5.15)
+#### עדכוני ניווט בתוכנית הלימודים (README.md)
+- **מבנה מודול משודרג**: טבלת תוכנית לימודים מעודכנת לכלול נושאים מתקדמים חדשים
+  - נוספו ערכים למהנדסי הקשר (5.14) ולהובלה מותאמת (5.15)
   - עיצוב עקבי וקישורי ניווט בכל המודולים
-  - תיאורים מעודכנים לשקף היקף תוכן נוכחי
+  - תיאורים מעודכנים לשיקוף היקף התוכן הנוכחי
 
-### שיפורי מבנה ספריית קבצים
-- **תקנון שמות**: שינוי שם התיקייה "mcp transport" ל-"mcp-transport" להתאמה עם תיקיות נושאים מתקדמים אחרות
-- **ארגון תוכן**: כל תיקיות 05-AdvancedTopics עוקבות כעת בדפוס שמות עקבי (mcp-[topic])
+### שיפורים במבנה התיקייה
+- **סטנדרטיזציה של שמות**: שונה שם "mcp transport" ל-"mcp-transport" לתיאום עם תיקיות נושאים מתקדמות אחרות
+- **ארגון תוכן**: כל תיקיות 05-AdvancedTopics עוקבות כעת אחר דפוס שם עקבי (mcp-[topic])
 
-### שדרוג איכות תיעוד
-- **יישור למפרט MCP**: כל התוכן החדש מתייחס למפרט MCP העדכני מ-18 ביוני 2025
-- **דוגמאות רב-שפתיות**: דוגמאות קוד מקיפות ב-C#, TypeScript ופייתון
-- **מיקוד בארגון**: תבניות מוכנות לייצור ואינטגרציה עם ענן Azure לאורך כל הדרך  
-- **תיעוד ויזואלי**: דיאגרמות Mermaid להצגת ארכיטקטורה ויזואלית של זרימות
+### שיפורי איכות תיעוד
+- **התאמת מפרט MCP**: כל התוכן החדש מתייחס למפרט MCP הנוכחי מ-2025-06-18
+- **דוגמאות רב-שפתיות**: דוגמאות קידוד מקיפות ב-C#, TypeScript ו-Python
+- **מיקוד ארגוני**: דפוסי ייצור מוכנים ואינטגרציית ענן Azure ברמה כוללת
+- **תיעוד חזותי**: דיאגרמות Mermaid לאדריכלות והדמיית זרימה
 
-## 18 באוגוסט, 2025
+## 18 באוגוסט 2025
 
 ### עדכון מקיף בתיעוד - תקני MCP 2025-06-18
 
-#### שיטות עבודה מומלצות לאבטחה ב-MCP (02-Security/) - מודרניזציה מלאה  
-- **MCP-SECURITY-BEST-PRACTICES-2025.md**: כתיבה מחדש מלאה בהתאמה למפרט MCP 2025-06-18  
-  - **דרישות חובה**: נוספו דרישות MUST/MUST NOT מפורשות מהמפרט הרשמי עם אינדיקטורים ויזואליים ברורים  
-  - **12 תחומי אבטחה מרכזיים**: ארגון מחדש מרשימת 15 פריטים לתחומי אבטחה מקיפים  
-    - אבטחת טוקנים ואימות עם אינטגרציה לספק זהות חיצוני  
-    - ניהול סשנים ואבטחת הובלה עם דרישות קריפטוגרפיות  
-    - הגנה ייחודית לאיומי AI עם אינטגרציה ל-Microsoft Prompt Shields  
-    - בקרת גישה והרשאות עם עיקרון ההרשאה המינימלית  
-    - בטיחות תוכן ומעקב עם אינטגרציה ל-Azure Content Safety  
-    - אבטחת שרשרת אספקה עם אימות רכיבים מקיף  
-    - אבטחת OAuth ומניעת Confused Deputy עם יישום PKCE  
-    - תגובה לאירועים ושחזור עם יכולות אוטומטיות  
-    - תאימות וממשל עם יישור לרגולציות  
-    - בקרות אבטחה מתקדמות עם ארכיטקטורת אפס אמון  
-    - אינטגרציה במערכת האקולוגית של אבטחת Microsoft עם פתרונות מקיפים  
-    - אבטחה מתמשכת עם שיטות הסתגלות   
-  - **פתרונות אבטחת Microsoft**: הנחיות אינטגרציה לשימוש ב-Prompt Shields, Azure Content Safety, Entra ID ו-GitHub Advanced Security  
-  - **משאבים ליישום**: קישורים למשאבים מקיפים לפי תיעוד רשמי, פתרונות אבטחה של Microsoft, תקני אבטחה ומדריכים ליישום
+#### שיטות אבטחה מומלצות ב-MCP (02-Security/) - מודרניזציה מלאה
+- **MCP-SECURITY-BEST-PRACTICES-2025.md**: ניסוח מחודש מלא בהתאמה למפרט MCP מ-2025-06-18
+  - **דרישות חובה**: נוספו דרישות MUST/MUST NOT מפורשות מהמפרט הרשמי עם אינדיקטורים ויזואליים ברורים
+  - **12 שיטות אבטחה מרכזיות**: עיצוב מחדש מרשימה בת 15 פריטים לתחומי אבטחה מקיפים
+    - אבטחת טוקן ואימות עם אינטגרציה לספק זהות חיצוני
+    - ניהול סשנים ואבטחת תעבורה עם דרישות קריפטוגרפיות
+    - הגנה מיוחדת לאיומים מבוססי_AI עם אינטגרציית Microsoft Prompt Shields
+    - בקרה על גישה והרשאות לפי עקרון המינימום הנדרש
+    - בטיחות תוכן וניטור עם אינטגרציית Azure Content Safety
+    - אבטחת שרשרת אספקה עם אימות מקיף של רכיבים
+    - אבטחת OAuth ומניעת בעיית "Deputy Confused" עם יישום PKCE
+    - תגובה ותיקון מקרים עם יכולות אוטומטיות
+    - תאימות וממשל בהתאם לייעודים רגולטוריים
+    - בקרות אבטחה מתקדמות עם ארכיטקטורת Zero Trust
+    - אינטגרציית אקוסיסטם האבטחה של Microsoft עם פתרונות מקיפים
+    - אבטחה מתמשכת עם שיטות אדפטיביות
+  - **פתרונות אבטחה של Microsoft**: הנחיות אינטגרציה משופרות ל-Prompt Shields, Azure Content Safety, Entra ID, ו-GitHub Advanced Security
+  - **משאבי יישום**: קישורים מקוטלגים למשאבים מקיפים של תיעוד MCP רשמי, פתרונות אבטחה Microsoft, תקנים, ומדריכי יישום
 
-#### בקרות אבטחה מתקדמות (02-Security/) - יישום ארגוני  
-- **MCP-SECURITY-CONTROLS-2025.md**: שדרוג מלא עם מסגרת אבטחה ברמת ארגון  
-  - **9 תחומי אבטחה מקיפים**: הרחבה מבקרות בסיסיות למסגרת מפורטת ארגונית  
-    - אימות והרשאה מתקדמים עם אינטגרציה ל-Microsoft Entra ID  
-    - אבטחת טוקנים ובקרות anti-passthrough עם אימות מקיף  
-    - בקרות אבטחת סשן עם מניעת חטיפה  
-    - בקרות אבטחה ייחודיות ל-AI עם מניעת prompt injection ורעלים בכלים  
-    - מניעת מתקפת Confused Deputy עם אבטחת פרוקסי OAuth  
-    - אבטחת ביצוע כלים עם סנדבוקסינג ובידוד  
-    - בקרות אבטחת שרשרת אספקה כולל אימות תלותיות  
-    - בקרות ניטור וגילוי עם אינטגרציה ל-SIEM  
-    - תגובה לאירועים ושחזור עם יכולות אוטומטיות  
-  - **דוגמאות יישום**: הוספת בלוקים מפורטים של YAML ודוגמאות קוד  
-  - **אינטגרציה עם פתרונות Microsoft**: כיסוי מקיף של שירותי אבטחת Azure, GitHub Advanced Security וניהול זהויות ארגוני
+#### בקרות אבטחה מתקדמות (02-Security/) - יישום ארגוני
+- **MCP-SECURITY-CONTROLS-2025.md**: שדרוג מלא עם מסגרת אבטחה ברמת ארגונית
+  - **9 תחומי אבטחה מקיפים**: הוגדלו מבקרות בסיסיות למסגרת מפורטת לארגונים
+    - אימות ואישור מתקדם עם אינטגרציה ל-Microsoft Entra ID
+    - אבטחת טוקן ובקרות נגד מעבר ישיר עם אימות מקיף
+    - בקרות אבטחת סשנים עם מניעת חטיפה
+    - בקרות אבטחה ייעודיות ל-AI עם מניעת הזרקות פקודות והרעלה של כלים
+    - מניעת מתקפות Confused Deputy באירועי פרוקסי MCP
+    - אבטחת ביצוע כלים עם תהליכי סנדבוקס ובידוד
+    - בקרות אבטחת שרשרת אספקה עם אימות תלותיות
+    - בקרות ניטור וזיהוי עם אינטגרציה ל-SIEM
+    - תגובה ותיקון מקרים עם יכולות אוטומטיות
+  - **דוגמאות יישום**: נוספו בלוקים מפורטים של תצורת YAML ודוגמאות קוד
+  - **אינטגרציית פתרונות Microsoft**: כיסוי מקיף של שירותי אבטחת Azure, GitHub Advanced Security, וניהול זהויות ארגוני
 
-#### אבטחה בנושאים מתקדמים (05-AdvancedTopics/mcp-security/) - יישום מוכנים לייצור  
-- **README.md**: כתיבה מחדש מלאה ליישום אבטחה ארגוני  
-  - **יישור למפרט הנוכחי**: עדכון לפי MCP Specification 2025-06-18 עם דרישות אבטחה חובה  
-  - **אימות משופר**: אינטגרציה ל-Microsoft Entra ID עם דוגמאות .NET ו-Java Spring Security מפורטות  
-  - **אינטגרציה לאבטחת AI**: יישום Microsoft Prompt Shields ו-Azure Content Safety עם דוגמאות Python מפורטות  
-  - **הפחתת איומים מתקדמים**: דוגמאות יישום מקיפות ל-  
-    - מניעת מתקפות Confused Deputy עם PKCE ואימות הסכמה  
-    - מניעת token passthrough עם אימות קהל וניהול טוקן מאובטח  
-    - מניעת חטיפת סשן עם קשירה קריפטוגרפית וניתוח התנהגותי  
-  - **אינטגרציה אבטחת ארגונית**: ניטור Azure Application Insights, צינורות גילוי איומים ואבטחת שרשרת אספקה  
-  - **רשימת ביקורת ליישום**: הבדלה ברורה בין בקרות חובה למומלצות עם יתרונות מערכת האקולוגית של Microsoft
+#### אבטחה בנושאים מתקדמים (05-AdvancedTopics/mcp-security/) - יישום מוכן לייצור
+- **README.md**: ניסוח מחודש מלא ליישום אבטחה ארגוני
+  - **התאמת מפרט עכשווי**: עודכן למפרט MCP מ-2025-06-18 עם דרישות אבטחה חובה
+  - **אימות משופר**: אינטגרציית Microsoft Entra ID עם דוגמאות מקיפות ל-.NET ו-Java Spring Security
+  - **אינטגרציית אבטחת AI**: יישום Microsoft Prompt Shields ו-Azure Content Safety עם דוגמאות מפורטות ב-Python
+  - **הפחתת איומים מתקדמת**: דוגמאות יישום מקיפות ל-
+    - מניעת מתקפות Confused Deputy עם PKCE ואימות הסכמת משתמש
+    - מניעת מעבר טוקן עם אימות קהל וניהול טוקן מאובטח
+    - מניעת חטיפת סשנים עם קישור קריפטוגרפי וניתוח התנהגותי
+  - **אינטגרציית אבטחה ארגונית**: ניטור Azure Application Insights, צינורות זיהוי איומים, ואבטחת שרשרת אספקה
+  - **רשימת בדיקה ליישום**: הבדל ברור בין בקרות אבטחה חובה ומומלצות עם יתרונות אקוסיסטם האבטחה של Microsoft
 
-### איכות התיעוד ויישור לסטנדרטים  
-- **הפניות למפרט**: עדכון כל ההפניות למפרט MCP 2025-06-18  
-- **מערכת האקולוגית לאבטחת Microsoft**: הנחיות אינטגרציה משופרות לאורך כל תיעוד האבטחה  
-- **יישום מעשי**: הוספת דוגמאות קוד מפורטות ב-.NET, Java ו-Python עם תבניות ארגוניות  
-- **ארגון משאבים**: קטגוריזציה מקיפה לפי תיעוד רשמי, תקני אבטחה ומדריכים  
-- **סמנים ויזואליים**: סמן ברור של דרישות חובה מול שיטות מומלצות
+### איכות תיעוד והתאמת תקנים
+- **אזכורי מפרט**: עודכנו כל האזכורים למפרט MCP מ-2025-06-18
+- **אקוסיסטם אבטחה Microsoft**: הנחיות אינטגרציה משופרות לאורך כל תיעודי האבטחה
+- **יישום מעשי**: נוספו דוגמאות קוד מפורטות ב-.NET, Java ו-Python עם דפוסי ארגונים
+- **ארגון משאבים**: מיון מקיף של תיעוד רשמי, תקנים, ומדריכי יישום
+- **אינדיקטורים חזותיים**: סימון ברור של דרישות חובה מול שיטות מומלצות
 
-#### מושגי יסוד (01-CoreConcepts/) - מודרניזציה מלאה  
-- **עדכון גרסת פרוטוקול**: הפניות מעודכנות למפרט MCP 2025-06-18 בפורמט תאריך (YYYY-MM-DD)  
-- **שיפור ארכיטקטורה**: תיאורים משודרגים של Hosts, Clients ו-Servers המשקפים את תבניות הארכיטקטורה הנוכחיות  
-  - Hosts מוגדרים כעת כתוכנות AI המנהליות חיבורי לקוח MCP מרובים  
-  - Clients מתוארים כמחברי פרוטוקול השומרים על יחס אחד-על-אחד עם השרתים  
-  - Servers משודרגים לתרחישי פריסה מקומיים מול מרוחקים  
-- **ארגון מחדש של פרימיטיבים**: שדרוג מלא של פרימיטיבים בשרת ובלקוח  
-  - פרימיטיבים של שרת: משאבים (מקורות נתונים), Prompts (תבניות), כלים (פונקציות לביצוע) עם הסברים ודוגמאות מפורטות  
-  - פרימיטיבים של לקוח: דגימה (השלמות LLM), יצירתיות (קלט משתמש), רישום (ניפוי שגיאות/מעקב)  
-  - עדכון דפוסי שיטות discovery (`*/list`), recovery (`*/get`), execution (`*/call`)  
-- **ארכיטקטורת פרוטוקול**: הצגת מודל ארכיטקטורה דו שכבתית  
-  - שכבת נתונים: בסיס JSON-RPC 2.0 עם ניהול מחזור חיים ופרימיטיבים  
-  - שכבת הובלה: STDIO (מקומית) ו-HTTP סטרימינג עם SSE כמנגנוני הובלה מרוחקים  
-- **מסגרת אבטחה**: עקרונות אבטחה מקיפים הכוללים הסכמה מפורשת של המשתמש, הגנת פרטיות נתונים, בטיחות ביצוע כלים, ואבטחת שכבת ההובלה  
-- **דפוסי תקשורת**: הודעות פרוטוקול מעודכנות המראות זרימות לאתחול, גילוי, ביצוע והודעה  
-- **דוגמאות קוד**: רענון דוגמאות רב-שפתיות ב-.NET, Java, Python, JavaScript בהתאם לתבניות SDK הנוכחיות
+
+#### מושגי יסוד (01-CoreConcepts/) - מודרניזציה מלאה
+- **עדכון גרסת פרוטוקול**: עודכן לאזכור מפרט MCP הנוכחי 2025-06-18 עם גרסת תאריך (YYYY-MM-DD)
+- **שיפור תכנון אדריכלות**: תיאורים משופרים של מארחים, לקוחות, ושרתים לשיקוף דפוסי הארכיטקטורה הנוכחיים של MCP
+  - מארחים מוגדרים כעת אפליקציות AI המתקשרות עם מספר לקוחות MCP
+  - לקוחות מתוארים כחיבורים פרוטוקוליים השומרים על יחסי שרת-לקוח אחד לאחד
+  - שרתים משופרים עם תרחישי פריסה מקומית מול מרוחקת
+- **עיצוב מחדש של ראשוני פרימיטיביים**: שיפוץ מלא של פרימיטיבי השרת והלקוח
+  - פרימיטיבי שרת: משאבים (מקורות מידע), בקשות (תבניות), כלים (פונקציות הרצה) עם הסברים ודוגמאות מפורטות
+  - פרימיטיבי לקוח: דגימה (סיום LLM), הפעלה (קלט משתמש), רישום (דיבוג/ניטור)
+  - עדכון דפוסי גילוי (`*/list`), שליפה (`*/get`), והרצה (`*/call`)
+- **ארכיטקטורת פרוטוקול**: הצגת מודל ארכיטקטורה דו-שכבתית
+  - שכבת נתונים: בסיס JSON-RPC 2.0 עם ניהול מחזור חיים ופרימיטיבים
+  - שכבת הובלה: STDIO (מקומית) ו-Streamable HTTP עם SSE (מרוחקת)
+- **מסגרת אבטחה**: עקרונות אבטחה מקיפים כולל הסכמה מפורשת של המשתמש, הגנת פרטיות, בטיחות הרצת כלים, ואבטחת שכבת הובלה
+- **דפוסי תקשורת**: הודעות פרוטוקול מעודכנות להצגת זרימות אתחול, גילוי, הרצה, והודעה
+- **דוגמאות קוד**: רענון דוגמאות רב-שפתיות (.NET, Java, Python, JavaScript) לשיקוף דפוסי MCP SDK הנוכחיים
 
 #### אבטחה (02-Security/) - שדרוג אבטחה מקיף  
-- **יישור לתקנים**: יישור מלא לדרישות האבטחה במפרט MCP 2025-06-18  
-- **אבולוציית אימות**: תיעוד מעבר משרתי OAuth מותאמים לספקי זהות חיצוניים (Microsoft Entra ID)  
-- **ניתוח איומי AI**: כיסוי משופר של וקטורי התקפה מודרניים ב-AI  
-  - תרחישי התקפות prompt injection מפורטים עם דוגמאות מעשיות  
-  - מנגנוני רעל עבור כלים ותבניות מתקפת "rug pull"  
-  - זיהום חלון הקשר ומתקפות בלבול מודל  
-- **פתרונות אבטחת AI של Microsoft**: כיסוי מקיף של מערכת האקולוגית של Microsoft  
-  - AI Prompt Shields עם זיהוי מתקדם, הדגשה וטכניקות מווסתות  
-  - תבניות אינטגרציה ל-Azure Content Safety  
-  - GitHub Advanced Security להגנת שרשרת אספקה  
-- **הפחתת איומים מתקדמים**: בקרות אבטחה מפורטות ל-  
-  - חטיפת סשן עם תרחישי מתקפה ב-MCP ודרישות קריפטוגרפיות ל-ID סשן  
-  - בעיות Confused Deputy בתרחישי פרוקסי MCP עם דרישות הסכמה מפורשות  
-  - פגיעויות ב-token passthrough עם בקרות אימות חובה  
-- **אבטחת שרשרת אספקה**: הרחבת כיסוי שרשרת אספקת AI כולל מודלים בסיסיים, שירותי הטמעות, ספקי הקשר ו-API צד שלישי  
-- **אבטחת בסיס**: אינטגרציה משופרת לתבניות אבטחה ארגוניות כולל ארכיטקטורת אפס אמון ומערכת האקולוגית של Microsoft  
-- **ארגון משאבים**: קטגוריזציה של קישורי משאבים מקיפים לפי סוג (תיעוד רשמי, תקנים, מחקר, פתרונות Microsoft, מדריכי יישום)
+- **התאמת תקנים**: התאמה מלאה לדרישות האבטחה במפרט MCP 2025-06-18
+- **התפתחות אימות**: תיעוד התפתחות משרתי OAuth מותאמים לפסילה חיצונית באמצעות ספק זהות (Microsoft Entra ID)
+- **ניתוח איומים מיוחדים ל-AI**: כיסוי משופר של וקטורי התקפה מודרניים מבוססי AI
+  - תרחישי התקפות הזרקת פקודות מיטביים עם דוגמאות מהעולם האמיתי
+  - מנגנוני הרעלת כלים ודפוסי התקפת "רוג פול"
+  - הרעלת חלון הקשר והתקפות בלבול מודל
+- **פתרונות אבטחת AI של Microsoft**: כיסוי מקיף של אקוסיסטם האבטחה של Microsoft
+  - Microsoft AI Prompt Shields עם טכניקות זיהוי מתקדמות, הדגשה והפרדה
+  - דפוסי אינטגרציית Azure Content Safety
+  - GitHub Advanced Security להגנת שרשרת אספקה
+- **הפחתת איומים מתקדמת**: בקרות אבטחה מפורטות עבור
+  - חטיפת סשנים עם תרחישי התקפה ספציפיים ל-MCP ודרישות מזהה סשן קריפטוגרפי
+  - בעיות Deputy Confused בתרחישי פרוקסי MCP עם דרישות הסכמה מפורשות
+  - פגיעויות מעבר טוקן עם בקרות אימות חובה
+- **אבטחת שרשרת אספקה**: הרחבה לכיסוי שרשרת אספקת AI כולל מודלים בסיסיים, שירותי אנבידינג, ספקי הקשר, ו-API של צד שלישי
+- **אבטחת תשתית**: אינטגרציה משופרת עם דפוסי אבטחה ארגוניים כולל ארכיטקטורת Zero Trust ואקוסיסטם אבטחת Microsoft
+- **ארגון משאבים**: מיון קישורי משאבים מקיף לפי סוג (תיעוד רשמי, תקנים, מחקר, פתרונות Microsoft, מדריכי יישום)
 
-### שיפורים באיכות התיעוד  
-- **יעדי למידה מובנים**: שיפור יעדי למידה עם תוצרים ספציפיים וישימים  
-- **הפניות צולבות**: הוספת קישורים בין אבטחה למושגי יסוד  
-- **מידע עדכני**: עדכון כל התאריכים והקישורים למפרטים לתקנים עדכניים  
-- **הנחיות יישום**: הוספת הנחיות יישום ספציפיות ופרקטיות לאורך הערכים
+### שיפורי איכות תיעוד
+- **יעדי למידה מובנים**: שיפור יעדי הלמידה עם תוצאות ממוקדות וברת ביצוע
+- **אזכורים בין-תחומיים**: נוספו קישורים בין נושאי אבטחה ומושגי יסוד קשורים
+- **מידע עדכני**: עדכון כל התאריכים והקישורים למפרטים לתקנים הנוכחיים
+- **הנחיות יישום**: נוספו הנחיות יישום ממוקדות וברי ביצוע לאורך שני הסעיפים
 
-## 16 ביולי, 2025
+## 16 ביולי 2025
 
-### שיפור README וניווט  
-- עיצוב מחודש של ניווט התכנית ב-README.md  
-- החלפת תגיות `<details>` בפורמט מבוסס טבלאות נגיש יותר  
-- יצירת אפשרויות פריסה חלופיות בתיקיית "alternative_layouts"  
-- נוספו דוגמאות ניווט מבוססות כרטיסים, לשוניות ואקורדיון  
-- עדכון מדור מבנה המאגר לכל הקבצים העדכניים  
-- שדרוג מדור "כיצד להשתמש בתכנית" עם המלצות ברורות  
-- עדכון קישורי מפרט MCP לכתובות נכונות  
-- הוספת פרק על הנדסת הקשר (5.14) במבנה הקורס
+### שיפורי README וניווט
+- עיצוב מחדש מלא של ניווט תוכנית הלימודים ב-README.md
+- החלפת תגי `<details>` בפורמט טבלאי נגיש יותר
+- יצירת אפשרויות תצורה חלופיות בתיקיית "alternative_layouts" חדשה
+- הוספת דוגמאות ניווט בסגנון כרטיסיות, טאבים, ואקורדיון
+- עדכון מדור מבנה המאגר לכלול את כל הקבצים המעודכנים
+- שדרוג מדור "איך להשתמש בתוכנית לימודים זו" עם המלצות ברורות
+- עדכון קישורי מפרט MCP לנקודה לכתובות מדויקות
+- הוספת מדור מהנדסי הקשר (5.14) למבנה התוכנית
 
-### עדכוני מדריך לימוד  
-- שכתוב מלא של מדריך הלימוד להתאמה למבנה המאגר הנוכחי  
-- הוספת מדורים חדשים ללקוחות MCP וכלים, ושרתי MCP פופולריים  
-- עדכון מפת התכנית הויזואלית להציג את כל הנושאים במדויק  
-- שיפור תיאורי נושאי מתקדמים לכיסוי כל התחומים המיוחדים  
-- עדכון פרק מחקרי מקרה עם דוגמאות ממשיות  
-- הוספת סיכום שינויים מקיף זה
+### עדכוני מדריך לימוד
+- עיצוב מחדש מלא של מדריך הלימוד להתאמה למבנה המאגר הנוכחי
+- הוספת מדורים חדשים ללקוחות MCP וכלים, ושרתים פופולריים של MCP
+- עדכון מפת התוכנית הוויזואלית לשיקוף מדויק של כל הנושאים
+- שדרוג תיאורי נושאים מתקדמים לכסות את כל התחומים המיוחדים
+- עדכון מדור מחקרי מקרה לשיקוף דוגמאות אמיתיות
+- הוספת יומן שינויים מקיף זה
 
-### תרומות קהילתיות (06-CommunityContributions/)  
-- הוספת מידע מפורט על שרתי MCP ליצירת תמונות  
-- הוספת מדור מקיף לשימוש ב-Claude ב-VSCode  
-- הוספת הוראות התקנה ושימוש ללקוח טרמינל Cline  
-- עדכון פרק לקוח MCP לכל האפשרויות הפופולריות  
-- שיפור דוגמאות לתרומות עם דגמי קוד מדויקים יותר
+### תרומות קהילתיות (06-CommunityContributions/)
+- הוספת מידע מפורט על שרתי MCP להפקת תמונות
+- הוספת מדור מקיף לשימוש ב-Claude ב-VSCode
+- הוספת הנחיות התקנה ושימוש ללקוח מסוף Cline
+- עדכון מדור לקוחות MCP לכלול את כל אפשרויות הלקוח הפופולריות
+- שדרוג דוגמאות תרומה עם דוגמאות קוד מדויקות יותר
 
-### נושאים מתקדמים (05-AdvancedTopics/)  
-- ארגון כל תיקיות הנושאים המיוחדים עם שמות עקביים  
-- הוספת חומרי הנדסת הקשר ודוגמאות  
-- הוספת תיעוד אינטגרציה לסוכן Foundry  
-- שיפור תיעוד אינטגרציה אבטחת Entra ID
+### נושאים מתקדמים (05-AdvancedTopics/)
+- ארגון כל תיקיות הנושאים המיוחדים בשם עקבי
+- הוספת חומרים ודוגמאות למהנדסי הקשר
+- הוספת תיעוד אינטגרציית סוכן Foundry
+- שדרוג תיעוד אינטגרציית אבטחת Entra ID
 
-## 11 ביוני, 2025
+## 11 ביוני 2025
 
-### יצירה ראשונית  
-- שחרור הגרסה הראשונה של קורס MCP למתחילים  
-- יצירת מבנה בסיסי לכל 10 המדורים הראשיים  
-- יישום מפת תכנית ויזואלית לניווט  
-- הוספת פרויקטי דוגמה ראשוניים בשפות תכנות מגוונות
+### יצירה ראשונית
+- שחרור גרסת הבכורה של תוכנית MCP למתחילים
+- יצירת מבנה בסיסי לכל 10 הסעיפים העיקריים
+- יישום מפת תוכנית לימודים ויזואלית לניווט
+- הוספת פרויקטים לדוגמה ראשוניים בשפות תכנות מגוונות
 
-### התחלה (03-GettingStarted/)  
-- יצירת דוגמאות יישום ראשוניות לשרת  
-- הוספת הנחיות לפיתוח לקוח  
-- כללת הוראות אינטגרציה ללקוחות LLM  
-- הוספת תיעוד אינטגרציה ל-VS Code  
-- יישום דוגמאות שרת Server-Sent Events (SSE)
+### התחלה (03-GettingStarted/)
+- יצירת דוגמאות יישום ראשוניות לשרת
+- הוספת הנחיות לפיתוח לקוח
+- הכללת הוראות אינטגרציית לקוח LLM
+- הוספת תיעוד אינטגרציית VS Code
+- יישום דוגמאות שרת עם Server-Sent Events (SSE)
 
-### מושגי יסוד (01-CoreConcepts/)  
-- הוספת הסבר מפורט על ארכיטקטורת לקוח-שרת  
-- יצירת תיעוד על רכיבי פרוטוקול מרכזיים  
-- תיעוד דפוסי מסרים ב-MCP
+### מושגי יסוד (01-CoreConcepts/)
+- הוספת הסבר מפורט לאדריכלות לקוח-שרת
+- יצירת תיעוד על רכיבי פרוטוקול מרכזיים
+- תיעוד דפוסי הודעות ב-MCP
 
-## 23 במאי, 2025
+## 23 במאי 2025
 
-### מבנה מאגר  
-- איתחול המאגר עם מבנה תיקיות בסיסי  
-- יצירת README לכל מדור ראשי  
-- הקמת תשתית תרגום  
-- הוספת משאבי איורים ודיאגרמות
+### מבנה מאגר
+- אתחול המאגר עם מבנה תיקיות בסיסי
+- יצירת קבצי README לכל מדור ראשי
+- הקמת תשתית לתרגום
+- הוספת נכסי תמונה ודיאגרמות
 
-### תיעוד  
-- יצירת README.md ראשוני עם סקירת הקורס  
-- הוספת CODE_OF_CONDUCT.md ו-SECURITY.md  
-- הקמת SUPPORT.md עם הנחיות לקבלת עזרה  
+### תיעוד
+- יצירת README.md ראשוני עם סקירת תוכנית הלימודים
+- הוספת CODE_OF_CONDUCT.md ו-SECURITY.md
+- הקמת SUPPORT.md עם הנחיות לקבלת עזרה
 - יצירת מבנה ראשוני למדריך לימוד
 
-## 15 באפריל, 2025
+## 15 באפריל 2025
 
-### תכנון ומסגרת  
-- תכנון ראשוני לקורס MCP למתחילים  
-- הגדרת מטרות למידה וקהל יעד  
-- סקירת מבנה קורס ב-10 מדורים  
-- פיתוח מסגרת מושגית לדוגמאות ומחקרי מקרה  
-- יצירת דוגמאות אב-טיפוס ראשוניות למושגי מפתח
+### תכנון ומסגרת עבודה
+- תכנון ראשוני לתוכנית MCP למתחילים
+- הגדרת יעדי למידה וקהל יעד
+- מתווה מבנה עשר הסעיפים של התוכנית
+- פיתוח מסגרת מושגית לדוגמאות ומחקרי מקרה
+- יצירת דוגמאות אבטיפוס ראשוניות למושגי יסוד
 
 ---
 

@@ -1,89 +1,115 @@
-# MCP ಅಭಿವೃದ್ಧಿ ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು
+# MCP ಅಭಿವೃದ್ಧಿ ಉತ್ತಮ ಆಚರಣೆಗಳು
 
-[![MCP Development Best Practices](../../../translated_images/kn/09.d0f6d86c9d72134c.webp)](https://youtu.be/W56H9W7x-ao)
+[![MCP ಅಭಿವೃದ್ಧಿ ಉತ್ತಮ ಆಚರಣೆಗಳು](../../../translated_images/kn/09.d0f6d86c9d72134c.webp)](https://youtu.be/W56H9W7x-ao)
 
 _(ಈ ಪಾಠದ ವೀಡಿಯೋವನ್ನು ವೀಕ್ಷಿಸಲು ಮೇಲಿನ ಚಿತ್ರವನ್ನು ಕ್ಲಿಕ್ ಮಾಡಿ)_
 
 ## ಅವಲೋಕನ
 
-ಈ ಪಾಠವು ಉತ್ಪಾದನಾ ಪರಿಸರಗಳಲ್ಲಿ MCP ಸರ್ವರ್‌ಗಳು ಮತ್ತು ವೈಶಿಷ್ಟ್ಯಗಳನ್ನು ಅಭಿವೃದ್ಧಿಪಡಿಸುವುದು, ಪರೀಕ್ಷಿಸುವುದು ಮತ್ತು ನಿಯೋಜಿಸುವುದು ಕುರಿತು ಪ್ರಗತಿಶೀಲ ಉತ್ತಮ ಅಭ್ಯಾಸಗಳನ್ನು ಹೊಂದಿದೆ. MCP ಪರಿಸರಗಳು ಸಂಕೀರ್ಣತೆ ಮತ್ತು ಮಹತ್ವದಲ್ಲಿ ಬೆಳೆಯುತ್ತಲೇ ಇದ್ದಂತೆ, ಸ್ಥಿರತೆ, ನಿರ್ವಹಣಾತ್ಮಕತೆ ಮತ್ತು ಪರಸ್ಪರ ಓಪನತೆ ಖಚಿತಪಡಿಸಲು ಸ್ಥಾಪಿತ ಮಾದರಿಗಳನ್ನು ಅನುಸರಿಸುವುದು ಅಗತ್ಯ. ಈ ಪಾಠವು ನೈಜ MCP ಜಾರಿಗೆ ಕಾಣಿಸಿಕೊಂಡ ಉಪಯುಕ್ತ ಜ್ಞಾನವನ್ನು ಸಂಗ್ರಹಿಸಿ, ಪರಿಣಾಮಕಾರಿಯಾದ ಸಂಪನ್ಮೂಲಗಳು, ಪ್ರಾಂಪ್ಟ್‌ಗಳು ಮತ್ತು ಸಾಧನಗಳೊಂದಿಗೆ ದಿಟ್ಟ, ಪರಿಣಾಮಕಾರಿ ಸರ್ವರ್‌ಗಳನ್ನು ರಚಿಸಲು ಮಾರ್ಗದರ್ಶನ ನೀಡುತ್ತದೆ.
+ಈ ಪಾಠವು ಉತ್ಪಾದನಾ ಪರಿಸರಗಳಲ್ಲಿ MCP ಸರ್ವರ್‌ಗಳು ಮತ್ತು ಲಕ್ಷಣಗಳನ್ನು ಅಭಿವೃದ್ಧಿಪಡಿಸುವ, ಪರೀಕ್ಷಿಸುವ ಮತ್ತು ನಿಯೋಜಿಸುವ ಉನ್ನತ ಮಟ್ಟದ ಉತ್ತಮ ಅಭ್ಯಾಸಗಳ ಮೇಲೆ ಕೇಂದ್ರೀಕರಿಸಿದೆ. MCP ಪರಿಸರಗಳು ಜಟಿಲತೆ ಮತ್ತು ಮಹತ್ವವನ್ನು ಹೆಚ್ಚಿಸಿಕೊಂಡಂತೆ, ಸ್ಥಾಪಿತ ಮಾದರಿಗಳನ್ನು ಅನುಸರಿಸುವುದರಿಂದ ವಿಶ್ವಾಸಾರ್ಹತೆ, ನಿರ್ವಹಣೆ ಮತ್ತು ಸಹಕಾರ ಸಾಧ್ಯತೆ ಖಚಿತಗೊಳ್ಳುತ್ತದೆ. ಈ ಪಾಠವು ನೈಜ ಜಗತ್ತಿನ MCP ಜಾರಿಗೆ ಸಿಗುವ ಪ್ರಾಯೋಗಿಕ ಪ್ರಜ್ಞೆಯನ್ನು ಸಂಯೋಜಿಸಿ, ಪರಿಣಾಮಕಾರಿ ಸಂಪನ್ಮೂಲಗಳು, ಪ್ರಾಂಪ್ಟ್‌ಗಳು ಮತ್ತು ಸಾಧನಗಳೊಂದಿಗೆ ದಟ್ಟ, ಪರಿಣಾಮಕಾರಿ ಸರ್ವರ್‌ಗಳನ್ನು ಸೃಷ್ಟಿಸಲು ಮಾರ್ಗದರ್ಶನ ಮಾಡುತ್ತದೆ.
 
 ## ಕಲಿಕೆಯ ಉದ್ದೇಶಗಳು
 
-ಈ ಪಾಠದ ಕೊನೆಗೆ, ನೀವು ಸಾಮರ್ಥ್ಯ ಹೊಂದಿರುತ್ತೀರಿ:
+ಈ ಪಾಠದ ಅಂತ್ಯಕ್ಕೆ ನೀವು ಎಲ್ಲವನ್ನು ಕಲಿತುಕೊಳ್ಳಬಹುದು:
 
-- MCP ಸರ್ವರ್ ಮತ್ತು ವೈಶಿಷ್ಟ್ಯ ವಿನ್ಯಾಸದಲ್ಲಿ ಕೈಗಾರಿಕಾ ಉತ್ತಮ ಅಭ್ಯಾಸಗಳನ್ನು ಅನ್ವಯಿಸುವುದು
-- MCP ಸರ್ವರ್‌ಗಳಿಗೆ ವ್ಯಾಪಕವಾದ ಪರೀಕ್ಷಾ ತಂತ್ರಗಳನ್ನು ರಚಿಸುವುದು
-- ಸಂಕೀರ್ಣ MCP ಅನ್ವಯಿಕೆಗಳಿಗೆ ಪರಿಣಾಮಕಾರಿ, ಪುನಃಬಳಕೆಯಾದ ಕಾರ್ಯವાહી ಮಾದರಿಗಳನ್ನು ವಿನ್ಯಾಸಗೊಳಿಸುವುದು
-- MCP ಸರ್ವರ್‌ಗಳಲ್ಲಿ ಸರಿಯಾದ ದೋಷ ನಿರ್ವಹಣೆ, ಲಾಗಿಂಗ್ ಮತ್ತು ದೃಶ್ಯೀಕರಣವನ್ನು ಜಾರಿ ಮಾಡುವುದು
-- ಕಾರ್ಯಕ್ಷಮತೆ, ಭದ್ರತೆ ಮತ್ತು ನಿರ್ವಹಣಾತ್ಮಕತೆಗಾಗಿ MCP ಜಾರಿಗೆ ಗರಿಷ್ಠಗೊಳಿಸುವುದು
+- MCP ಸರ್ವರ್ ಮತ್ತು ವೈಶಿಷ್ಟ್ಯ ವಿನ್ಯಾಸದಲ್ಲಿ ಉದ್ಯಮದ ಉತ್ತಮ ಅಭ್ಯಾಸಗಳನ್ನು ಅನ್ವಯಿಸು
+- MCP ಸರ್ವರ್‌ಗಳಿಗಾಗಿ ಸಮಗ್ರ ಪರೀಕ್ಷಾ ತಂತ್ರಗಳನ್ನು ರಚಿಸು
+- ಸಂಕೀರ್ಣ MCP ಅನ್ವಯಿಕೆಗಳಿಗೆ ಪರಿಣಾಮಕಾರಿ, ಪುನರಾವರ್ತಿಸಬಹುದಾದ ಕಾರ್ಯಪಟು ಮಾದರಿಗಳನ್ನು ವಿನ್ಯಾಸ ಮಾಡು
+- MCP ಸರ್ವರ್‌ಗಳಲ್ಲಿ ಸರಿಯಾದ ದೋಷ ನಿರ್ವಹಣೆ, ಲಾಗಿಂಗ್ ಮತ್ತು ಆವಲೋಕನವನ್ನು ಜಾರಿಗೋಡು
+- ಕಾರ್ಯಕ್ಷಮತೆ, ಭದ್ರತೆ ಮತ್ತು ನಿರ್ವಹಣಾತ್ಮಕತೆಯಿಗಾಗಿ MCP ಜಾರಿಗೋಡಿಕೆಗಳನ್ನು ಗತಿಯುತಗೊಳಿಸು
 
-## MCP ಮೂಲ ತತ್ವಗಳು
+## MCP ಮೂಲ ತತ್ತ್ವಗಳು
 
-ನಿಖರ ಜಾರಿಗೆ ಮುನ್ನ, ಪರಿಣಾಮಕಾರಿ MCP ಅಭಿವೃದ್ಧಿಯನ್ನು ಮಾರ್ಗದರ್ಶನ ಮಾಡುವ ಮೂಲ ತತ್ವಗಳನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳುವುದು ಮಹತ್ವದ್ದಾಗಿದ್ದು:
+ನಿಖರ ಜಾರಿಗೋಡು ಅಭ್ಯಾಸಗಳಿಗೆ ಮುನ್ನಡೆಯುವುದಕ್ಕಾಗಿ, ಪರಿಣಾಮಕಾರಿ MCP ಅಭಿವೃದ್ಧಿಯನ್ನು ಮಾರ್ಗದರ್ಶಿಸುವ ಮೂಲ ತತ್ತ್ವಗಳನ್ನು ಗ್ರಹಿಸುವುದು ಮುಖ್ಯವಾಗಿದೆ:
 
-1. **ಮೌಲ್ಯಮಾಪಕ ಸಂವಹನ**: MCP ಇದರ ಆಧಾರದಾಗಿ JSON-RPC 2.0 ಅನ್ನು ಬಳಸುತ್ತದೆ, ಇದರಿಂದ ಎಲ್ಲಾ ಜಾರಿಗೆ ಸಮಾನ ವಿನಂತಿಗಳು, ಪ್ರತಿಕ್ರಿಯೆಗಳು ಮತ್ತು ದೋಷ ನಿರ್ವಹಣೆಗೆ ಸದೃಢರೂಪ ನೀಡುತ್ತದೆ.
+1. **ಪ್ರಮಾಣೀಕೃತ ಸಂವಹನ**: MCP JSON-RPC 2.0 ಅನ್ನು ತನ್ನ ಅಡಿಪಾಯವಾಗಿ ಬಳಸುತ್ತದೆ, ಎಲ್ಲಾ ಜಾರಿಗೋಡಿಕೆಗಳಲ್ಲಿ ವಿನಂತಿಗಳು, ಪ್ರತಿಕ್ರಿಯೆಗಳು ಮತ್ತು ದೋಷ ನಿರ್ವಹಣೆಗೆ ಸಮರಸ್ಯವಿರುವ ಸ್ವರೂಪವನ್ನು ಒದಗಿಸುತ್ತದೆ.
 
-2. **ಬಳಕೆದಾರ ಕೇಂದ್ರಿತ ವಿನ್ಯಾಸ**: ನಿಮ್ಮ MCP ಜಾರಿಗೆ ಯಾವಾಗಲೂ ಬಳಕೆದಾರರ ಅನುಮತಿ, ನಿಯಂತ್ರಣ ಮತ್ತು ಪಾರದರ್ಶಕತೆಯನ್ನು ಮೊದಲು ಇಡಿ.
+2. **ಬಳಕೆದಾರ ಕೇಂದ್ರೀಯ ವಿನ್ಯಾಸ**: ನಿಮ್ಮ MCP ಜಾರಿಗೋಡಿಕೆಗಳಲ್ಲಿ ಯಾವಾಗಲೂ ಬಳಕೆದಾರाचा ಅನುಮತಿ, ನಿಯಂತ್ರಣ ಮತ್ತು ಪಾರದರ್ಶಕತೆಯ ಮೇಲಾಗಿರಲಿ.
 
-3. **ಭದ್ರತೆ ಮೊದಲನೇ ಸ್ಥಾನದಲ್ಲಿ**: ದೃಢ ಭದ್ರತಾ ಕ್ರಮಗಳನ್ನು ಜಾರಿ ಮಾಡಿರಿ, ಇದರಲ್ಲಿ ಪ್ರಮಾಣೀಕರಣ, ಅನುಮತಿ, ಮಾನ್ಯತೆ ಮತ್ತು ದರ ಮಿತಿ ಸೇರಿವೆ.
+3. **ಭದ್ರತೆ ಮೊದಲು**: ಪ್ರಾಮಾಣೀಕರಣ, ಪ್ರಾಧಿಕಾರ, ಪ್ರಮಾಣೀಕರಣ ಮತ್ತು ದರ್ಜಾ ನಿಯಂತ್ರಣ ಸೇರಿದಂತೆ ಬಲವಾದ ಭದ್ರತಾ ಕ್ರಮಗಳನ್ನು ಜಾರಿಗೋಡು.
 
-4. **ಮಾಡ್ಯುಲರ್ ವಾಸ್ತುಶಿಲ್ಪ**: ಪ್ರತಿ ಸಾಧನ ಮತ್ತು ಸಂಪನ್ಮೂಲಕ್ಕೆ ಸ್ಪಷ್ಟ, ಕೇಂದ್ರೀಕೃತ ಉದ್ದೇಶವಿರುವ ಮಾದ್ಯುಲರ್ ಪರಿಕಲ್ಪನೆಗೆ ಹೊಂದುವಂತೆ MCP ಸರ್ವರ್‌ಗಳನ್ನು ವಿನ್ಯಾಸಗೊಳಿಸಿ.
+4. **ಮಾಳಿಗೆ ನಿರ್ಮಾಣಶೈಲಿ**: ಪ್ರತಿ ಸಾಧನ ಮತ್ತು ಸಂಪನ್ಮೂಲಕ್ಕೆ ಸ್ಪಷ್ಟ, ನಿಖರ ಉದ್ದೇಶವಿರುವಂತೆ ನಿಮ್ಮ MCP ಸರ್ವರ್‌ಗಳನ್ನು ಮಾಳಿಗೆ ರೀತಿಯಲ್ಲಿ ವಿನ್ಯಾಸ ಮಾಡು.
 
-5. **ಸ್ಥಿತಿಸ್ಥಾಪಕ ಸಂಪರ್ಕಗಳು**: ಅನೇಕ ವಿನಂತಿಗಳಲ್ಲಿ ಸ್ಥಿತಿಯನ್ನು ಸ್ಥಾಪಿಸುವ MCP ಸಾಮರ್ಥ್ಯವನ್ನು ಉಪಯೋಗಿಸಿ, ಪರಿಣಾಮಕಾರಿಯಾದ ಮತ್ತು ಪೃ контекст-ಜಾಗೃತ ಸಂವಾದಗಳನ್ನು ಸಾಧ್ಯ ಮಾಡುವುದು.
+5. **ಸ್ಪಷ್ಟ ಸ್ಥಿತಿ**: MCP `2026-07-28` ಪ್ರೋಟೋಕೋಲ್ ಶ್ರೇಣಿಯಲ್ಲಿ ನಿರ್ದಿಷ್ಟ ಸ್ಥಿತಿಯಿಲ್ಲದದ್ದು.  
+   ಕಾರ್ಯಪಟುದುಂಡಾಗಿರುವಾಗ ಕ್ರಾಸ್-ಕಾಲ್ ಸ್ಥಿತಿಗೆ ಸ್ಪಷ್ಟ ಹ್ಯಾಂಡಲ್ಸ್ ಅಥವಾ  
+   ಸ್ಥಿರ ಅಪ್ಲಿಕೇಶನ್ ಸ್ಥಿತಿಯಿಂದ ಬೆಂಬಲಿತ ಸಾಮಾನ್ಯ ಸಾಧನ ವಾದಗಳನ್ನು ಬಳಸು.
 
 ## ಅಧಿಕೃತ MCP ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು
 
-ಕೆಳಗಿನ ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು ಅಧಿಕೃತ ಮಾದಲ್ ಕಾಂಟೆಕ್ಸ್ಟ್ ಪ್ರೋಟೋಕಾಲ್ ಡಾಕ್ಯುಮೆಂಟೇಶನಿಂದ ಪಡೆಯಲಾಗಿದೆ:
+ಕೆಳಗಿನ ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು ಅಧಿಕೃತ ಮಾದರಿ ಸಂಧರ್ಭ ಪ್ರೋಟೋಕೋಲ್ ಡಾಕ್ಯುಮೆಂಟೇಶನಿನಿಂದ ಮಾಡಲ್ಪಟ್ಟಿವೆ:
 
-### ಭದ್ರತೆ ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು
+### ಭದ್ರತಾ ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು
 
-1. **ಬಳಕೆದಾರ ಅನುಮತಿ ಮತ್ತು ನಿಯಂತ್ರಣ**: ಡೇಟಾ ಪ್ರವೇಶಿಸಲು ಅಥವಾ ಕಾರ್ಯಾಚರಣೆಗಳನ್ನು ಮಾಡಿಕೊಳ್ಳಲು ಯಾವಾಗಲೂ ಸ್ಪಷ್ಟ ಬಳಕೆದಾರ ಅನುಮತಿಯನ್ನು ಕೇಳಿ. ಯಾವ ಡೇಟಾ ಹಂಚಿಕೊಳ್ಳಲಾಗುತ್ತದೆ ಮತ್ತು ಯಾವ ಕ್ರಿಯಾ ಅನುಮತಿಗೊಂಡಿವೆ ಎಂಬುದರ ಮೇಲಿನ ನಿಯಂತ್ರಣವನ್ನು ನೀಡಿರಿ.
+1. **ಬಳಕೆದಾರ ಅನುಮತಿ ಮತ್ತು ನಿಯಂತ್ರಣ**: ಡೇಟಾ ಪ್ರವೇಶಿಸುವ ಮೊದಲು ಅಥವಾ ಕಾರ್ಯಗಳನ್ನು ನಿರ್ವಹಿಸುವ ಮೊದಲು ಯಾವಾಗಲೂ ಸ್ಪಷ್ಟ ಬಳಕೆದಾರ ಅನುಮತಿಯನ್ನು ಬೇಡಿಕೆಮಾಡಿ. ಯಾವ ಡೇಟಾ ಹಂಚಿಕೊಳ್ಳಲಾಗುವುದು ಮತ್ತು ಯಾವ ಕ್ರಿಯೆಗಳು ಅನುಮತಿಪಡಿಸಲ್ಪಟ್ಟಿವೆ ಎಂಬ ಸ್ಪಷ್ಟ ನಿಯಂತ್ರಣವನ್ನು ಒದಗಿಸಿ.
 
-2. **ಡೇಟಾ ಗೌಪ್ಯತೆ**: ಸ್ಪಷ್ಟ ಅನುಮತಿಯೊಂದಿಗೆ ಮಾತ್ರ ಬಳಕೆದಾರ ಡೇಟಾವನ್ನು ಬಹಿರಂಗ ಮಾಡಿಕೊಂಡು, ಸೂಕ್ತ ಪ್ರವೇಶ ನಿಯಂತ್ರಣಗಳಿಂದ ಅದನ್ನು ರಕ್ಷಿಸಿ. ಅನಧಿಕೃತ ಡೇಟಾ ಪ್ರಸಾರವನ್ನು ತಡೆಹಿಡಿಯಿರಿ.
+2. **ಡೇಟಾ ಗೌಪ್ಯತೆ**: ಸ್ಪಷ್ಟ ಅನುಮತಿದೊಂದಿಗೆ ಮಾತ್ರ ಬಳಕೆದಾರರ 데이터를 ಬಹಿರಂಗಪಡಿಸಿ ಮತ್ತು ಸೂಕ್ತ ಪ್ರವೇಶ ನಿಯಂತ್ರಣಗಳಿಂದ ಅದನ್ನು ರಕ್ಷಿಸು. ಅನುಮತಿಸದ ಡೇಟಾ ಪ್ರಸರಣದ ವಿರುದ್ಧ ರಕ್ಷಣೆ ಒಪ್ಪಿಸಿ.
 
-3. **ಸಾಧನ ಭದ್ರತೆ**: ಯಾವುದೇ ಸಾಧನವನ್ನು ಕರೆಯುವುದಕ್ಕೆ ಮುನ್ನ ಸ್ಪಷ್ಟ ಬಳಕೆದಾರ ಅನುಮತಿ ಬೇಕಾಗುತ್ತದೆ. ಬಳಕೆದಾರರು ಪ್ರತಿಯೊಂದು ಸಾಧನದ ಕಾರ್ಯವಿಧಾನವನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳುತ್ತಾರೆ ಎಂಬುದು ಖಚಿತಪಡಿಸಿ ಮತ್ತು ದೃಢ ಭದ್ರತಾ ಗಡಿ ಹಾಕಿ.
+3. **ಸಾಧನ ಸುರಕ್ಷತೆ**: ಯಾವುದೇ ಸಾಧನವನ್ನು ಕರೆಮಾಡುವ ಮೊದಲು ಸ್ಪಷ್ಟ ಬಳಕೆದಾರ ಅನುಮತಿಯನ್ನು ಬೇಡಿಕೆಮಾಡಿ. ಪ್ರತಿ ಸಾಧನದ ಕಾರ್ಯಕ್ಷಮತೆಯನ್ನು ಬಳಕೆದಾರರು ಅರಿತುಕೊಳ್ಳಬೇಕು ಮತ್ತು ಬಲವಾದ ಭದ್ರತಾ ಗಡಿಗಳನ್ನು ಜಾರಿಗೋಡು.
 
-4. **ಸಾಧನ ಅನುಮತಿ ನಿಯಂತ್ರಣ**: ಸೆಷನ್ ಸಮಯದಲ್ಲಿ ಯಾವ ಸಾಧನಗಳನ್ನು ಮಾದರಿ ಬಳಸಬಹುದು ಎಂದು ಸಂರಚಿಸಿ, ಸ್ಪಷ್ಟವಾಗಿ ಅನುಮತಿಸಿದ ಸಾಧನಗಳಿಗಷ್ಟೇ ಪ್ರವೇಶ ಇರಲಿ.
+4. **ಸಾಧನ ಅನುಮತಿ ನಿಯಂತ್ರಣ**: ಪ್ರತಿ ವಿನಂತಿಗೆ ಮತ್ತು ಪ್ರಾಧಿಕಾರ ಸಂಧರ್ಭಕ್ಕೆ ಯಾವ ಸಾಧನಗಳನ್ನು ಮಾದರಿ ಬಳಸಬಹುದು ಎಂಬುದನ್ನು ಕಾನ್ಫಿಗರ್ ಮಾಡು, ಸ್ಪಷ್ಟವಾಗಿ ಅನುಮೋದಿತ ಸಾಧನಗಳಿಗೆ ಮಾತ್ರ ಪ್ರವೇಶ ಸಾಧ್ಯವಿರಲಿ.
+ 
+ 
 
-5. **ಪ್ರಮಾಣೀಕರಣ**: ಸಾಧನಗಳು, ಸಂಪನ್ಮೂಲಗಳು ಅಥವಾ ಸಂವೇದನಶೀಲ ಕಾರ್ಯಾಚರಣೆಗಳಿಗೆ ಪ್ರವೇಶ ನೀಡುವ ಮೊದಲು ಸರಿಯಾದ ಪ್ರಮಾಣೀಕರಣವನ್ನು ನೀವೂ ಜಾರಿ ಮಾಡಬೇಕು, ಇದಕ್ಕಾಗಿ API ಕೀಗಳು, OAuth ಟೋಕನ್‌ಗಳು ಅಥವಾ ಇತರ ಸುರಕ್ಷಿತ ಪ್ರಮಾಣೀಕರಣ ವಿಧಾನಗಳನ್ನು ಉಪಯೋಗಿಸಿ.
+5. **ಪ್ರಾಮಾಣೀಕರಣ**: ಸಾಧನಗಳು, ಸಂಪನ್ಮೂಲಗಳು ಅಥವಾ ಸಂವೇದನಶೀಲ ಕಾರ್ಯಗಳಿಗೆ ಪ್ರವೇಶ ನೀಡುವ ಮುನ್ನ ಸರಿಯಾದ ಪ್ರಾಮಾಣೀಕರಣವನ್ನು ಬೇಡಿಕೊಳ. API ಕೀಗಳು, OAuth ಟೋಕನ್‌ಗಳು ಅಥವಾ ಇತರ ಸುರಕ್ಷಿತ ಪ್ರಾಮಾಣೀಕರಣ ವಿಧಾನಗಳನ್ನು ಬಳಸಿಕೊಳ್ಳಿ.
 
-6. **ಪರಿಮಿತಿ ಮಾನ್ಯತೆ**: ತಪ್ಪು ರೂಪದಲ್ಲಿದ್ದಾ ಅಥವಾ ಅಪಾಯಕಾರಿಯಾದ ಇನ್ಪುಟ್ ಸಾಧನ ಜಾರಿಗೆ ತಲುಪದಂತೆ ಎಲ್ಲ ಸಾಧನ ಕರೆಗಳಿಗೆ ಮಾನ್ಯತಾ ಪರಿಶೀಲನೆಯನ್ನು ಜಾರಿಗೊಳಿಸಿ.
+6. **ಪ್ಯಾರಾಮೀಟರ್ ಮಾನ್ಯತೆ**: ಎಲ್ಲಾ ಸಾಧನ ಕರೆಯುಗಳಿಗೆ ಮಾನ್ಯತೆ ವಿಧಿಸಿ, ತಪ್ಪು ಅಥವಾ ದೂರುಹೂರು ಇನ್‌ಪುಟ್‌ಗಳು ಸಾಧನ ಜಾರಿಗೋಡಿಕೆಗೆ ತಲುಪದಂತೆ ತಡೆಹಿಡಿಯಿರಿ.
 
-7. **ದರ ಮಿತಿ**: ದುರ್ಬಳಕೆ ತಪ್ಪಿಸುವುದಕ್ಕೆ ಮತ್ತು ಸರ್ವರ್ ಸಂಪನ್ಮೂಲಗಳ ನ್ಯಾಯವಾದ ಬಳಕೆಯನ್ನು ಖಚಿತಪಡಿಸಲು ದರ ಮಿತಿಯನ್ನು ಜಾರಿಗೊಳಿಸಿ.
+7. **ಗತಿ ನಿಯಂತ್ರಣ**: ದುರ್ಬಳಕೆಯನ್ನು ತಡೆಯಲು ಮತ್ತು ಸರ್ವರ್ ಸಂಪನ್ಮೂಲಗಳ ನ್ಯಾಯಸಮ್ಮತ ಬಳಕೆಯನ್ನು ಖಚಿತಪಡಿಸಲು ದರ್ಜಾ ನಿಯಂತ್ರಣ ಜಾರಿಗೋಡು.
 
-### ಜಾರಿಗೊಳಿಸುವ ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು
+### ಜಾರಿಗೋಡು ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು
 
-1. **ಸಾಧ್ಯತೆ ಮಾತನಾಡಿಕೆ**: ಸಂಪರ್ಕ ಸ್ಥಾಪನೆಯ ಸಮಯದಲ್ಲಿ ಬೆಂಬಲಿತ ವೈಶಿಷ್ಟ್ಯಗಳು, ಪ್ರೋಟೋಕಾಲ್ ಆವೃತ್ತಿಗಳು, ಲಭ್ಯವಿರುವ ಸಾಧನಗಳು ಮತ್ತು ಸಂಪನ್ಮೂಲಗಳ ಕುರಿತು ಮಾಹಿತಿಯನ್ನು ವಿನಿಮಯಮಾಡಿಕೊಳ್ಳಿ.
+1. **ಸಾಧ್ಯತೆ ಸಂಮುಖ ಸಂಧಾನ**: ಬೆಂಬಲಿಸಲಾಗುವ ಪ್ರೋಟೋಕಾಲ್ ಆವೃತ್ತಿಗಳು ಮತ್ತು  
+   ಸಾಧ್ಯತೆಗಳನ್ನು ಸಂಮುಖ ಸಂಧಾನ ಮಾಡು. MCP `2026-07-28` ನಲ್ಲಿ, ಪ್ರತಿಯೊಂದು ವಿನಂತಿಯೂ ಸ್ವಯಂ-ಸಾಮಗ್ರಿಯಾಗಿದೆ ಮತ್ತು  
+   `server/discover` ಅನ್ನು ಬಳಸಬಹುದು; ಹಳೆಯ ಆವೃತ್ತಿಗಳು ಆರಂಭಿಕ ಸಂವಾದವನ್ನು ಬಳಸುತ್ತವೆ.  
 
-2. **ಸಾಧನ ವಿನ್ಯಾಸ**: ಅನೇಕ ವಿಚಾರಗಳನ್ನು ನಿಭಾಯಿಸುವ ಬದಲು ಒಂದೇ ಕಾರ್ಯದಲ್ಲಿ ಉತ್ತಮವಾದ ಕೇಂದ್ರೀಕೃತ ಸಾಧನಗಳನ್ನು ರಚಿಸಿ.
 
-3. **ದೋಷ ನಿರ್ವಹಣೆ**: ಸಮಸ್ಯೆಗಳನ್ನು ಗುರುತಿಸಲು, ವೈಫಲ್ಯಗಳನ್ನು ಶಾಂತಿಯಿಂದವಾಗಿ ನಿರ್ವಹಿಸಲು ಮತ್ತು ಪರಿಣಾಮಕಾರಿ ಪ್ರತಿಕ್ರಿಯೆ ನೀಡಲು ಮಾನ್ಯ ದೋಷ ಸಂದೇಶಗಳು ಮತ್ತು ಕೋಡ್‌ಗಳನ್ನು ಜಾರಿಗೊಳಿಸಿ.
+2. **ಉಪಕರಣ ವಿನ್ಯಾಸ**: ಬಹುಮುಖವಾದ ಸಮಸ್ಯೆಗಳನ್ನು ನಿರ್ವಹಿಸುವ ಬದಲು, ಒಮ್ಮೆ ಕಾರ್ಯನ್ನೂ ಚೆನ್ನಾಗಿ ಮಾಡುವ ಕೇಂದ್ರೀಕೃತ ಉಪಕರಣಗಳನ್ನು ರಚಿಸಿ.
 
-4. **ಲಾಗಿಂಗ್**: ಪ್ರೋಟೋಕಾಲ್ ಸಂವಾದಗಳನ್ನು ಪರಿಶೀಲನೆ, ಡಿಬಗಿಂಗ್ ಮತ್ತು ಮೇಲ್ವಿಚಾರಣೆಗೆ ರಚನಾತ್ಮಕ ಲಾಗ್‌ಗಳನ್ನು ಸಂರಚಿಸಿ.
+3. **ದೋಷ ನಿರ್ವಹಣೆ**: ಸಮಸ್ಯೆಗಳನ್ನು ಗುರುತಿಸಲು, ವಿಫಲತೆಗಳನ್ನು ಸೌಮ್ಯವಾಗಿ ನಿರ್ವಹಿಸಲು ಮತ್ತು ಕಾರ್ಯನಿರ್ವಹಣೀಯ ಪ್ರತಿಕ್ರಿಯೆಯನ್ನು ಒದಗಿಸಲು ಮಾನ್ಯತೆಯಾದ ದೋಷ ಸಂದೇಶಗಳು ಮತ್ತು ಕೋಡ್‌ಗಳನ್ನು ಅನುಷ್ಠಾನಗೊಳಿಸಿ.
 
-5. **ಪ್ರಗತಿಯ ಟ್ರ್ಯಾಕಿಂಗ್**: ದೀರ್ಘಕಾಲದ ಆಪರೇಷನ್ಗಳು ಹೆಚ್ಚಿನ ಸಂವೇದನಾಶೀಲ ಬಳಕೆದಾರ ಇಂಟರ್‌ಫೇಸ್ಗಳಕ್ಕೆ ವರದಿಮಾಡುವ ಪ್ರಗತಿ ನವೀಕರಣಗಳನ್ನು ನೀಡಲಿ.
+4. **ನೋಡಣಿಗೆ ಸೌಲಭ್ಯ**: `stderr` ಅನ್ನು stdio ರೋಗನಿರ್ಣಯಗಳಿಗೆ ಮತ್ತು OpenTelemetry
+   ಅನ್ನು ರಚನಾತ್ಮಕ ಕಂಡುಬರುವಿಕೆಗೆ ಬಳಸಿರಿ. MCP ಲಾಗಿಂಗ್ ವೈಶಿಷ್ಟ್ಯವನ್ನು
+   `2026-07-28` ವಿವರಣದಲ್ಲಿ ಬದಲಾಯಿಸಲಾಗಿದೆ.
 
-6. **ವಿನಂತಿ ರದ್ಧು**: ಅಗತ್ಯವಿಲ್ಲದ ಅಥವಾ ತುಂಬಾ ಸಮಯ ತೆಗೆದುಕೊಳ್ಳುತ್ತಿರುವ ಮಧ್ಯ-ಪ್ರಕ್ರಿಯೆಯಲ್ಲಿ ಇರುವ ವಿನಂತಿಗಳನ್ನು ಗ್ರಾಹಕರು ರದ್ದುಮಾಡಲು ಅನುಮತಿಸಿ.
+5. **ಪ್ರಗತಿ ಟ್ರ್ಯಾಕಿಂಗ್**: ದೀರ್ಘಾವಧಿ ಕಾರ್ಯಾಚರಣೆಗಳಿಗೆ, ಪ್ರತಿಕ್ರಿಯಾತ್ಮಕ ಬಳಕೆದಾರ ಇಂಟರ್ಫೇಸ್‌ಗಳಿಗೆ ಪ್ರಗತಿ ನವೀಕರಣಗಳನ್ನು ವರದಿ ಮಾಡಿ.
 
-## ಹೆಚ್ಚುವರಿ ಉಲ್ಲೇಖಗಳು
+6. ** ವಿನಂತಿ ರದ್ದು ಮಾಡುವಿಕೆ**: ಅಗತ್ಯವಿಲ್ಲದ ಅಥವಾ ಹೆಚ್ಚು ಸಮಯ ತೆಗೆದುಕೊಳ್ಳುತ್ತಿರುವ ನ ಸಮಯದಲ್ಲಿ ಪ್ರಯೋಜಕರೇ ವಿನಂತಿಗಳನ್ನು ರದ್ದುಮಾಡಲು ಅವಕಾಶ ನೀಡಿ.
 
-MCP ಉತ್ತಮ ಅಭ್ಯಾಸಗಳ ಇತ್ತೀಚಿನ ಮಾಹಿತಿಗಾಗಿ ನೋಡಿ:
+## ಹೆಚ್ಚಿನ ಉಲ್ಲೇಖಗಳು
 
-- [MCP Documentation](https://modelcontextprotocol.io/)
-- [MCP Specification (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [GitHub Repository](https://github.com/modelcontextprotocol)
-- [Security Best Practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices)
-- [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - ಭದ್ರತಾ ಅಪಾಯಗಳು ಮತ್ತು ಪರಿಹಾರಗಳು
-- [MCP Security Summit Workshop (Sherpa)](https://azure-samples.github.io/sherpa/) - ಕೈಗೊಂಡ ಭದ್ರತಾ ತರಬೇತಿ
+MCP ಉತ್ತಮ ಅಭ್ಯಾಸಗಳ ಕುರಿತು ಇತ್ತೀಚಿನ ಮಾಹಿತಿಗಾಗಿ, ಈ ಕೆಳಗಿನ ವಿಸರಣೆಯನ್ನು ನೋಡಿ:
 
-## ಪ್ರಾಯೋಗಿಕ ಜಾರಿಗೊಳಿಸುವ ಉದಾಹರಣೆಗಳು
+- [MCP ದಾಖಲೆ](https://modelcontextprotocol.io/)
+- [MCP ನಿರ್ದಿಷ್ಟತೆ (2026-07-28)][mcp-2026-spec]
+- [ಹಿಂದಿನ MCP ನಿರ್ದಿಷ್ಟತೆ (2025-11-25)](https://modelcontextprotocol.io/specification/2025-11-25)
+- [MCP ಕಾರ್ಯವಿಸ್ತರಣೆ][mcp-tasks-extension]
+- [GitHub ಸಂಗ್ರಹಾಲಯ](https://github.com/modelcontextprotocol)
+- [ಭದ್ರತಾ ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು](https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/security_best_practices)
+- [OWASP MCP ಟಾಪ್ 10](https://microsoft.github.io/mcp-azure-security-guide/) - ಭದ್ರತಾ ಅಪಾಯಗಳು ಮತ್ತು ಪರಿಹಾರಗಳು
+- [MCP ಭದ್ರತಾ ಶಿಬಿರ ಕಾರ್ಯಾಗಾರ (ಶೆರಪಾ)](https://azure-samples.github.io/sherpa/) - ಕೈಗೊಳ್ಳುವ ಭದ್ರತಾ ತರಬೇತಿ
 
-### ಸಾಧನ ವಿನ್ಯಾಸ ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು
+### ವಿಶ್ವಾಸಾರ್ಹಪಣೆ ಸಹಚರಿ ಪಾಠ
 
-#### 1. ಏಕ ಜವಾಬ್ದಾರಿ ತತ್ವ
+ಟಿಕ್‌ಟಿಕ ಏರ್ಪಡಿಸುವುದು, ಪಾವತಿಗಳು, ಸಂದೇಶಗಳು, ಡಿಪ್ಲಾಯ್‌ಮೆಂಟ್‌ಗಳು ಅಥವಾ ಇತರ ನೈಜ ಪ್ರಭಾವಗಳನ್ನು ಸೃಷ್ಟಿಸುವ ಉಪಕರಣಗಳಿಗೆ ಸಾಮಾನ್ಯ ಮರುಪ್ರಯತ್ನ ಲೂಪ್‌ಗಳು ಸುರಕ್ಷಿತವಲ್ಲ. ಪರಿಣಾಮದ ಜಾರಿ ಆದ ನಂತರ ಪ್ರತಿಕ್ರಿಯೆ ಕಳೆದುಕೊಂಡುಹೋಗಬಹುದು.
 
-ಪ್ರತಿ MCP ಸಾಧನಕ್ಕೆ ಸ್ಪಷ್ಟ, ಕೇಂದ್ರೀಕೃತ ಉದ್ದೇಶವಿರಬೇಕು. ಹಲವು ವಿಚಾರಗಳನ್ನು ನಿಭಾಯಿಸುವ ಮೊನೊಲಿಥಿಕ್ ಸಾಧನಗಳನ್ನು ರಚಿಸುವ ಬದಲು ನಿರ್ದಿಷ್ಟ ಕಾರ್ಯಗಳಲ್ಲಿ ಪರಿಣತಿ ಹೊಂದಿರುವ ವಿಶಿಷ್ಟ ಸಾಧನಗಳನ್ನು ಅಭಿವೃದ್ಧಿಪಡಿಸಿ.
+ಪರಿಣಾಮ ಪ್ರಭಾವ ತರಿಸುವ ನಂತರ ಪ್ರತಿಕ್ರಿಯೆ ಕಳೆದುಕೊಳ್ಳಬಹುದು.
+
+ವಿಶ್ವಾಸಾರ್ಹಪಣೆ ಸಹಚರಿ ಪಾಠವನ್ನು ಬಳಸಿ,
+[MCP ಉಪಕರಣಗಳಿಗಾಗಿ ಸುರಕ್ಷಿತ ಮರುಪ್ರಯತ್ನಗಳು: ವಿಶ್ವಾಸಾರ್ಹತೆ ಸೈಡ್‌ಕಾರ್ ಮಾದರಿ][reliability-sidecar],
+ಸ್ಥಿರ ಕಾರ್ಯಾಚರಣೆ ಕೀಗಳು, ನಕಲಿ ಪ್ರವೇಶ, ಚेक್ಪಾಯಿಂಟಿಂಗ್,
+ಸಮನ್ವಯ, ಸಾಕ್ಷ್ಯ ಮಟ್ಟಗಳು ಮತ್ತು ವಿಫಲತೆ ಪ್ರತಿಕ್ರಿಯೆಯ ಕುರಿತು ಕಲಿಯಿರಿ.
+
+[mcp-2026-spec]: https://modelcontextprotocol.io/specification/2026-07-28
+[mcp-tasks-extension]: https://modelcontextprotocol.io/extensions/tasks/overview
+[reliability-sidecar]: ./reliability-sidecars/README.md
+
+## Практиಕಲ್ ಕಾರ್‌ಗಗತಿಕ ಉದಾಹರಣೆಗಳು
+
+### ಉಪಕರಣ ವಿನ್ಯಾಸ ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು
+
+#### 1. ಏಕ ದಾಯಿತ್ವ ಸಿದ್ಧಾಂತ
+
+ಪ್ರತಿ MCP ಉಪಕರಣಕ್ಕು ಸ್ಪಷ್ಟವಾದ, ಕೇಂದ್ರೀಯ ಗುರಿ ಇರಬೇಕು. ಬಹುಮುಖ ಸಮಸ್ಯೆಗಳನ್ನು ನಿರ್ವಹಿಸುವ ಬದಲು, ನಿರ್ದಿಷ್ಟ ಕಾರ್ಯಗಳಲ್ಲಿ ಪ್ರావೀಣ್ಯ ಹೊಂದಿರುವ ವಿಶೇಷ ಉಪಕರಣಗಳನ್ನು ಅಭಿವೃದ್ಧಿಪಡಿಸಿ.
 
 ```csharp
 // A focused tool that does one thing well
@@ -143,12 +169,12 @@ public class WeatherForecastTool : ITool
 }
 ```
 
-#### 2. ಸಹಜ ದೋಷ ನಿರ್ವಹಣೆ
+#### 2. ನಿಯತ ದೋಷ ನಿರ್ವಹಣೆ
 
-ಮಾಹಿತಿಯುತ ದೋಷ ಸಂದೇಶಗಳ ಮತ್ತು ಸೂಕ್ತ পুনರುದ್ಧಾರ ಕ್ರಮಗಳೊಂದಿಗೆ ದೃಢ ದೋಷ ನಿರ್ವಹಣೆಯನ್ನು ಜಾರಿಗೊಳಿಸಿ.
+ಮಾಹಿತಿ ಪೂರ್ಣವಾದ ದೋಷ ಸಂದೇಶಗಳು ಮತ್ತು ಸೂಕ್ತ ಪುನರುದ್ಧಾರ ಯಂತ್ರಗಳನ್ನು ಒಳಗೊಂಡ.robust error handling ಉಪಸ್ಥಾಪಿಸಿ.
 
 ```python
-# ಸಮಗ್ರ ದೋಷ ನಿರ್ವಹಣೆಯೊಂದಿಗೆ ಪೈಥಾನ್ ಉದಾಹರಣೆ
+# ವ್ಯಾಪಕ ದೋಷ ನಿರ್ವಹಣೆಯೊಂದಿಗೆ ಪೈಥಾನ್ ಉದಾಹರಣೆ
 class DataQueryTool:
     def get_name(self):
         return "dataQuery"
@@ -158,7 +184,7 @@ class DataQueryTool:
     
     async def execute(self, parameters):
         try:
-            # ಪರಿಮಿತಿ ಪರಿಶೀಲನೆ
+            # ಪರಿಮಾಣದ ಪರಿಶೀಲನೆ
             if "query" not in parameters:
                 raise ToolParameterError("Missing required parameter: query")
                 
@@ -169,8 +195,8 @@ class DataQueryTool:
                 raise ToolSecurityError("Query contains potentially unsafe SQL")
             
             try:
-                # ಟೈಮ್‌ಔಟ್‌ನೊಂದಿಗೆ ಡೇಟಾಬೇಸ್ ಕಾರ್ಯಾಚರಣೆ
-                async with timeout(10):  # 10 ಸೆಕೆಂಡಿನ ಟೈಮ್‌ಔಟ್
+                # ಸಮಯ ಮುಗಿಯುವಿಕೆಯೊಂದಿಗೆ ಡೇಟಾಬೇಸ್ ಕಾರ್ಯಾಚರಣೆ
+                async with timeout(10):  # 10 ಸೆಕೆಂಡು ಸಮಯ ಮುಗియುವಿಕೆ
                     result = await self._database.execute_query(query)
                     
                 return ToolResponse(
@@ -183,33 +209,33 @@ class DataQueryTool:
                 self._log_error("Database connection error", e)
                 raise ToolExecutionError(f"Database connection error: {str(e)}")
             except DatabaseQueryError as e:
-                # ಪ್ರಶ್ನೆ ದೋಷಗಳು ಸಾಧ್ಯತೆಯು 클ೈಂಟ್ ದೋಷಗಳು
+                # ಪ್ರಶ್ನೆ ದೋಷಗಳು ಸಾಧ್ಯವಾದರೆ ಗ್ರಾಹಕ ದೋಷಗಳಾಗಿವೆ
                 self._log_error("Database query error", e)
                 raise ToolExecutionError(f"Invalid query: {str(e)}")
                 
         except ToolError:
-            # ಸಾಧನ-ನಿರ್ದಿಷ್ಟ ದೋಷಗಳನ್ನು ಹಾದುಹೋಗಲು ಬಿಡಿ
+            # ಸಾಧನ-ನಿರ್ದಿಷ್ಟ ದೋಷಗಳನ್ನು ಓದಿಹೋಗಲು ಅವಕಾಶ ನೀಡಿ
             raise
         except Exception as e:
-            # ಅಪ್ರತೀಕ್ಷಿತ ದೋಷಗಳಿಗಾಗಿ catch-all
+            # ಅಪ್ರತೀಕ್ಷಿತ ದೋಷಗಳಿಗಾಗಿ ಸೆರೆಹಿಡಿಯಿರಿ
             self._log_error("Unexpected error in DataQueryTool", e)
             raise ToolExecutionError(f"An unexpected error occurred: {str(e)}")
     
     def _contains_unsafe_sql(self, query):
-        # SQL ಇಂಜೆಕ್ಷನ್ ಪತ್ತೆಮಾಡುವಿಕೆ ಅನುಷ್ಠಾನ
+        # SQL ಇಂಜೆಕ್ಟ್ ಪತ್ತೆಮಾಡುವಿಕೆಯ ಕಾರ್ಯಗತಿಸು
         pass
         
     def _log_error(self, message, error):
-        # ದೋಷ ಲಾಗಿಂಗ್ ಅನುಷ್ಠಾನ
+        # ದೋಷ ದಾಖಲಿಸುವಿಕೆಯ ಕಾರ್ಯಗತಿಸು
         pass
 ```
 
-#### 3. ಪರಿಮಿತಿ ಮಾನ್ಯತೆ
+#### 3. ಪ್ಯಾರಾಮೀಟರ್ ಪರಿಶೀಲನೆ
 
-ತಪ್ಪಾದ ಅಥವಾ ದೋಷಭರಿತ ಇನ್ಪುಟ್ ತಡೆಯಲು ಯಾವಾಗಲೂ ಪರಿಮಿತಿಗಳನ್ನು ಸಂಪೂರ್ಣವಾಗಿ ಪರಿಶೀಲಿಸಿ.
+ಸದಾ ಪ್ಯಾರಾಮೀಟರ್‌ಗಳನ್ನು ಸಮಗ್ರವಾಗಿ ಪರಿಶೀಲಿಸಿ, ತಪ್ಪು ಅಥವಾ ಕಪಟ ಇನ್ಪುಟ್ ಅನ್ನು ತಡೆಯಲು.
 
 ```javascript
-// ವಿಸ್ತೃತ ಪ್ಯಾರಮೀಟರ್ ಮಾನ್ಯತೆೊಂದಿಗೆ JavaScript/TypeScript ಉದಾಹರಣೆ
+// ವಿವರವಾದ ಪ್ಯಾರಾಮೀಟರ್ ಪರಿಶೀಲನೆಯೊಂದಿಗೆ JavaScript/TypeScript ಉದಾಹರಣೆ
 class FileOperationTool {
   getName() {
     return "fileOperation";
@@ -244,7 +270,7 @@ class FileOperationTool {
   }
   
   async execute(parameters) {
-    // 1. ಪ್ಯಾರಮೀಟರ್ ಇದ್ದವು ಎಂದು ಪರಿಶೀಲಿಸಿ
+    // 1. ಪ್ಯಾರಾಮೀಟರ್ ಹಾಜರಾತು ಪರಿಶೀಲಿಸಿ
     if (!parameters.operation) {
       throw new ToolError("Missing required parameter: operation");
     }
@@ -253,7 +279,7 @@ class FileOperationTool {
       throw new ToolError("Missing required parameter: path");
     }
     
-    // 2. ಪ್ಯಾರಮೀಟರ್ ಪ್ರಕಾರಗಳನ್ನು ಪರಿಶೀಲಿಸಿ
+    // 2. ಪ್ಯಾರಾಮೀಟರ್ ಬಗைகள் ಪರಿಶೀಲಿಸಿ
     if (typeof parameters.operation !== "string") {
       throw new ToolError("Parameter 'operation' must be a string");
     }
@@ -262,45 +288,45 @@ class FileOperationTool {
       throw new ToolError("Parameter 'path' must be a string");
     }
     
-    // 3. ಪ್ಯಾರಮೀಟರ್ ಮೌಲ್ಯಗಳನ್ನು ಪರಿಶೀಲಿಸಿ
+    // 3. ಪ್ಯಾರಾಮೀಟರ್ ಮೌಲ್ಯಗಳು ಪರಿಶೀಲಿಸಿ
     const validOperations = ["read", "write", "delete"];
     if (!validOperations.includes(parameters.operation)) {
       throw new ToolError(`Invalid operation. Must be one of: ${validOperations.join(", ")}`);
     }
     
-    // 4. ಬರೆಹ ಕಾರ್ಯಕ್ಕಾಗಿ ವಿಷಯದ ಉಪಸ್ಥಿತಿ ಪರಿಶೀಲಿಸಿ
+    // 4. ಬರೆಯುವ ಕಾರ್ಯಕ್ಕಾಗಿ ವಿಷಯ ಹಾಜರಾತು ಪರಿಶೀಲಿಸಿ
     if (parameters.operation === "write" && !parameters.content) {
       throw new ToolError("Content parameter is required for write operation");
     }
     
-    // 5. ಮಾರ್ಗ ಸುರಕ್ಷತೆ ಪರಿಶೀಲನೆ
+    // 5. ಮಾರ್ಗ ಸುರಕ್ಷತೆಯ ಪರಿಶೀಲನೆ
     if (!this.isPathWithinAllowedDirectories(parameters.path)) {
       throw new ToolError("Access denied: path is outside of allowed directories");
     }
     
-    // ಮಾನ್ಯಗೊಂಡ ಪ್ಯಾರಮೀಟರ್ ಆಧಾರಿತ ಜಾರಿಗೊಳಿಸುವಿಕೆ
+    // ಪರಿಶೀಲಿಸಿದ ಪ್ಯಾರಾಮೀಟರ್ ಆಧಾರಿತ ಅನುಷ್ಠಾನ
     // ...
   }
   
   isPathWithinAllowedDirectories(path) {
-    // ಮಾರ್ಗ ಸುರಕ್ಷತೆ ಪರೀಕ್ಷೆಯ ಜಾರಿಗೊಳಿಸುವಿಕೆ
+    // ಮಾರ್ಗ ಸುರಕ್ಷತೆ ಪರಿಶೀಲನೆಯ ಅನುಷ್ಠಾನ
     // ...
   }
 }
 ```
 
-### ಭದ್ರತೆ ಜಾರಿಗೊಳಿಸುವ ಉದಾಹರಣೆಗಳು
+### ಭದ್ರತಾ ಅನುಷ್ಠಾನ ಉದಾಹರಣೆಗಳು
 
-#### 1. ಪ್ರಮಾಣೀಕರಣ ಮತ್ತು ಅನುಮತಿ
+#### 1. ಪರಿಶೀಲನೆ ಮತ್ತು ಪ್ರಾಧಿಕಾರ
 
 ```java
-// ಪ್ರಮಾಣೀಕರಣ ಮತ್ತು ಪ್ರಾಧಿಕರಣದಿಂದ ಜಾವಾ ಉದಾಹರಣೆ
+// ಪ್ರಮಾಣೀಕರಣ ಮತ್ತು ಪ್ರಾಧಿಕರೀಕರಣದೊಂದಿಗೆ ಜಾವಾ ಉದಾಹರಣೆ
 public class SecureDataAccessTool implements Tool {
     private final AuthenticationService authService;
     private final AuthorizationService authzService;
     private final DataService dataService;
     
-    // ಅವಲಂಬನೆ ಎಂಜೆಕ್ಷನ್
+    // ಡಿಪೆಂಡೆನ್ಸಿ ಇಂಜೆಕ್ಷನ್
     public SecureDataAccessTool(
             AuthenticationService authService,
             AuthorizationService authzService,
@@ -317,10 +343,10 @@ public class SecureDataAccessTool implements Tool {
     
     @Override
     public ToolResponse execute(ToolRequest request) {
-        // 1. ಪ್ರಮಾಣೀಕರಣ ಸಂದರ್ಭವನ್ನು ಹೊರತೆಗೆದುಕೊಳ್ಳಿ
+        // 1. ಪ್ರಮಾಣೀಕರಣ ಸಂದರ್ಭವನ್ನು ತೆಗೆದುಕೊಳ್ಳಿ
         String authToken = request.getContext().getAuthToken();
         
-        // 2. ಬಳಕೆದಾರರನ್ನು ಪ್ರಮಾಣೀಕರಿಸಿ
+        // 2. ಬಳಕೆದಾರರನ್ನು ಪ್ರಮಾಣೀಕೃತಗೊಳಿಸಿ
         UserIdentity user;
         try {
             user = authService.validateToken(authToken);
@@ -328,7 +354,7 @@ public class SecureDataAccessTool implements Tool {
             return ToolResponse.error("Authentication failed: " + e.getMessage());
         }
         
-        // 3. ನಿರ್ದಿಷ್ಟ ಕಾರ್ಯಕ್ಕಾಗಿ ಪ್ರಾಧಿಕರಣವನ್ನು ಪರಿಶೀಲಿಸಿ
+        // 3. ನಿರ್ದಿಷ್ಟ ಕಾರ್ಯಕ್ಕಾಗಿ ಪ್ರಾಧಿಕರಣ ಪರಿಶೀಲಿಸಿ
         String dataId = request.getParameters().get("dataId").getAsString();
         String operation = request.getParameters().get("operation").getAsString();
         
@@ -337,7 +363,7 @@ public class SecureDataAccessTool implements Tool {
             return ToolResponse.error("Access denied: Insufficient permissions for this operation");
         }
         
-        // 4. ಪ್ರಾಧಿಕೃತ ಕಾರ್ಯನಿರ್ವಹಣೆಯನ್ನು ಮುಂದುವರಿಸಿ
+        // 4. ಪ್ರಾಧಿಕೃತ ಕಾರ್ಯವನ್ನು ಮುಂದುವರೆಸಿ
         try {
             switch (operation) {
                 case "read":
@@ -357,7 +383,7 @@ public class SecureDataAccessTool implements Tool {
 }
 ```
 
-#### 2. ದರ ಮಿತಿ  
+#### 2. ದರ ಗಡುವು ನಿಗದಾರಿಕೆ
 
 ```csharp
 // C# rate limiting implementation
@@ -435,12 +461,12 @@ public class RateLimitingMiddleware
 
 ## ಪರೀಕ್ಷಾ ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು
 
-### 1. MCP ಸಾಧನಗಳ ಒಂದುಗೂಡಿಕೆ ಪರೀಕ್ಷೆ
+### 1. MCP ಉಪಕರಣಗಳ ಯುನಿಟ್ ಪರೀಕ್ಷೆ
 
-ನಿಮ್ಮ ಸಾಧನಗಳನ್ನು ಪ್ರತ್ಯೇಕವಾಗಿ ಪರೀಕ್ಷಿಸಿ, ಹೊರಗಿನ ಅವಲಂಬನೆಗಳನ್ನು ಮೌಕ್ ಮಾಡಿ:
+ಸದಾ ನಿಮ್ಮ ಉಪಕರಣಗಳನ್ನು ವಿಭಜಿತವಾಗಿ ಪರೀಕ್ಷಿಸಿ, ಬಾಹ್ಯ ಅವಲಂಬನೆಗಳನ್ನು ನಕಲು ಮಾಡಿ:
 
 ```typescript
-// ಟೈಪ್‌ಸ್ಕ್ರಿಪ್ಟ್ ಉದಾಹರಣೆಯೊಂದರ ಬಳಕೆಯ ಸಾಧನ ಘಟಕ ಪರೀಕ್ಷೆ
+// ಟೈಪ್‌ಸ್ಕ್ರಿಪ್ಟ್ ಉಪಕರಣ ಘಟಕ ಪರೀಕ್ಷೆಯ ಉದಾಹರಣೆ
 describe('WeatherForecastTool', () => {
   let tool: WeatherForecastTool;
   let mockWeatherService: jest.Mocked<IWeatherService>;
@@ -451,12 +477,12 @@ describe('WeatherForecastTool', () => {
       getForecasts: jest.fn()
     } as any;
     
-    // ನಕಲಿ ಅವಲಂಬನೆಯೊಂದಿಗೆ ಸಾಧನವನ್ನು ರಚಿಸಿ
+    // ನಕಲಿ ಅವಲಂಬನೆಯೊಂದಿಗೆ ಉಪಕರಣವನ್ನು ರಚಿಸಿ
     tool = new WeatherForecastTool(mockWeatherService);
   });
   
   it('should return weather forecast for a location', async () => {
-    // ವ್ಯವಸ್ಥೆಮಾಡು
+    // ತೆರವಾಗಿಸು
     const mockForecast = {
       location: 'Seattle',
       forecasts: [
@@ -468,23 +494,23 @@ describe('WeatherForecastTool', () => {
     
     mockWeatherService.getForecasts.mockResolvedValue(mockForecast);
     
-    // ಕಾರ್ಯ
+    // ಕಾರ್ಯಾಚರಣೆ
     const response = await tool.execute({
       location: 'Seattle',
       days: 3
     });
     
-    // ದೃಢೀಕರಿಸಿ
+    // ದೃಢೀಕರಿಸು
     expect(mockWeatherService.getForecasts).toHaveBeenCalledWith('Seattle', 3);
     expect(response.content[0].text).toContain('Seattle');
     expect(response.content[0].text).toContain('Sunny');
   });
   
   it('should handle errors from the weather service', async () => {
-    // ವ್ಯವಸ್ಥೆಮಾಡು
+    // ತೆರವಾಗಿಸು
     mockWeatherService.getForecasts.mockRejectedValue(new Error('Service unavailable'));
     
-    // ಕಾರ್ಯ ಮತ್ತು ದೃಢೀಕರಿಸಿ
+    // ಕಾರ್ಯಾಚರಣೆ ಮತ್ತು ದೃಢೀಕರಿಸು
     await expect(tool.execute({
       location: 'Seattle',
       days: 3
@@ -493,12 +519,12 @@ describe('WeatherForecastTool', () => {
 });
 ```
 
-### 2. ಇಂಟಿಗ್ರೇಶನ್ ಪರೀಕ್ಷೆ
+### 2. ಸಂಯೋಜನೆ ಪರೀಕ್ಷೆ
 
-ಗ್ರಾಹಕ ವಿನಂತಿಯಿಂದ ಸರ್ವರ್ ಪ್ರತಿಕ್ರಿಯೆ ವರೆಗೆ ಪೂರ್ಣ ಪ್ರಕ್ರಿಯೆಯನ್ನು ಪರೀಕ್ಷಿಸಿ:
+ಕ್ಲೈಂಟ್ ವಿನಂತಿಗಳಿಂದ ಸರ್ವರ್ ಪ್ರತಿಕ್ರಿಯೆಗಳ ವರೆಗೆ ಪೂರ್ಣ ಪ್ರಕ್ರಿಯೆಯನ್ನು ಪರೀಕ್ಷಿಸಿ:
 
 ```python
-# Python ಎಲ್ವಿಕೆ ಪರೀಕ್ಷಾ ಉದಾಹರಣೆ
+# ಪೈಥಾನ್ ಸಂಯೋಜನೆ ಪರೀಕ್ಷಾ ಉದಾಹರಣೆ
 @pytest.mark.asyncio
 async def test_mcp_server_integration():
     # ಪರೀಕ್ಷಾ ಸರ್ವರ್ ಪ್ರಾರಂಭಿಸಿ
@@ -507,34 +533,36 @@ async def test_mcp_server_integration():
     await server.start(port=5000)
     
     try:
-        # ಗ್ರಾಹಕ ರಚಿಸಿ
+        # ಕ್ಲೈಂಟ್ ರಚಿಸಿ
         client = McpClient("http://localhost:5000")
         
-        # ಸಾಧನ ಕಂಡುಹಿಡಿಯುವಿಕೆಯನ್ನು ಪರೀಕ್ಷಿಸಿ
+        # ಸಾಧನ ಪತ್ತೆಮಾಡುವಿಕೆ ಪರೀಕ್ಷೆ
         tools = await client.discover_tools()
         assert "weatherForecast" in [t.name for t in tools]
         
-        # ಸಾಧನ ಕಾರ್ಯಗತಗೊಳಿಸುವಿಕೆಯನ್ನು ಪರೀಕ್ಷಿಸಿ
+        # ಸಾಧನ ಕಾರ್ಯಗತಿ ಪರೀಕ್ಷೆ
         response = await client.execute_tool("weatherForecast", {
             "location": "Seattle",
             "days": 3
         })
         
-        # ಪ್ರತಿಕ್ರಿಯೆಯನ್ನು ಪರಿಶೀಲಿಸಿ
+        # ಪ್ರತಿಕ್ರಿಯೆ ಪರಿಶೀಲಿಸಿ
         assert response.status_code == 200
         assert "Seattle" in response.content[0].text
         assert len(json.loads(response.content[0].text)["forecasts"]) == 3
         
     finally:
-        # ಸ್ವಚ್ಛಮಾಡಿ
+        # ಸ್ವಚ್ಛತೆ ಮಾಡಿ
         await server.stop()
 ```
 
-## ಕಾರ್ಯಕ್ಷಮತೆ ಗರಿಷ್ಠಗೊಳಿಸುವಿಕೆ
+## ಕಾರ್ಯಕ್ಷಮತೆ ಆಪ್ಟಿಮೈಸೇಶನ್
 
-### 1. ಕ್ಯಾಶಿಂಗ್ ತಂತ್ರಗಳು
 
-ಅವಕಾಶೋಚಿತ ಕ್ಯಾಶಿಂಗ್ ಅನ್ನು ಜಾರಿಗೊಳಿಸಿ, ವಿಳಂಬ ಮತ್ತು ಸಂಪನ್ಮೂಲ ಬಳಕೆಯನ್ನು ಕಡಿಮೆ ಮಾಡಿ:
+### 1. ಕ್ಯಾಸಿಂಗ್ ತಂತ್ರಗಳು
+
+ತಪ್ಪು ಹಾಗೂ ಸಂಪನ್ಮೂಲ ಉಪಯೋಗವನ್ನು ಕಡಿಮೆ ಮಾಡಲು ಸೂಕ್ತ ಕ್ಯಾಸಿಂಗ್ ಅನ್ನು ಅನುಷ್ಠಾನಗೊಳಿಸಿ:
+
 
 ```csharp
 // C# example with caching
@@ -603,18 +631,18 @@ public class CachedWeatherTool : ITool
 }
 ```
 
-#### 2. ಅವಲಂಬನೆ ಇಂಜೆಕ್ಷನ್ ಮತ್ತು ಪರೀಕ್ಷಾಸಾಧ್ಯತೆ
+#### 2. ಡಿಪೆಂಡೆನ್ಸಿ ಇಂಜೆಕ್ಷನ್ ಮತ್ತು ಟೆಸ್ಟಬಿಲಿಟಿ
 
-ಕನ್ಸ್ಟ್ರಕ್ಟರ್ ಇಂಜೆಕ್ಷನ್ ಮೂಲಕ ಅವಲಂಬನೆಗಳನ್ನು ಪಡೆಯುವಂತೆ ಸಾಧನಗಳನ್ನು ವಿನ್ಯಾಸಗೊಳಿಸಿ, ಅವುಗಳನ್ನು ಪರೀಕ್ಷಿಸಲು ಮತ್ತು ಸಂರಚಿಸಲು ಅನುಕೂಲವಾಗುವಂತೆ:
+ವಿನ್ಯಾಸ ಸಾಧನಗಳನ್ನು ಅದರ ಡಿಪೆಂಡೆನ್ಸಿಗಳನ್ನು ಕন্স್ಟ್ರಕ್ಟರ್ ಇಂಜೆಕ್ಷನ್ ಮೂಲಕ ಸ್ವೀಕರಿಸುವಂತೆ ಮಾಡಿ, ಅವುಗಳನ್ನು ಪರೀಕ್ಷಿಸಲು ಮತ್ತು ಕಾನ್ಫಿಗರ್ ಮಾಡಲು ಅನುಕೂಲವಾಗುವ ರೀತಿಯಲ್ಲಿ ರೂಪಿಸಿ:
 
 ```java
-// ಅವಲಂಬನೆಯ ಒಳಗೊಳ್ಳಿಕೊಳ್ಳುವ ಜಾವಾ ಉದಾಹರಣೆ
+// ಡಿಪೆಂಡೆನ್ಸಿ ಇಂಜೆಕ್ಷನ್ ಸಹಿತ ಜಾವಾ ಉದಾಹರಣೆ
 public class CurrencyConversionTool implements Tool {
     private final ExchangeRateService exchangeService;
     private final CacheService cacheService;
     private final Logger logger;
     
-    // ನಿರ್ಮಾಪಕ ಮೂಲಕ ಒಳಗೊಳ್ಳಿಸಲಾದ ಅವಲಂಬನೆಗಳು
+    // ಕಾನ್ಸ್ಟ್ರಕ್ಟರ್ ಮೂಲಕ ಡಿಪೆಂಡೆನ್ಸಿಗಳನ್ನು ಇಂಜೆಕ್ಟ್ ಮಾಡಲಾಗಿದೆ
     public CurrencyConversionTool(
             ExchangeRateService exchangeService,
             CacheService cacheService,
@@ -624,51 +652,51 @@ public class CurrencyConversionTool implements Tool {
         this.logger = logger;
     }
     
-    // ಸಾಧನದ ಅನುಷ್ಠಾನ
+    // ಸಾಧನ ಅನುಷ್ಠಾನ
     // ...
 }
 ```
 
 #### 3. ಸಂಯೋಜಿಸಬಹುದಾದ ಸಾಧನಗಳು
 
-ವೈವಿಧ್ಯಮಯ ಕಾರ್ಯವಾಹಿಗಳನ್ನು ರಚಿಸಲು ಪರಸ್ಪರ ಸಂಯೋಜಿಸಬಹುದಾದ ಸಾಧನಗಳನ್ನು ವಿನ್ಯಾಸಮಾಡಿ:
+ಹೆಚ್ಚು ಸಂಕೀರ್ಣ ಕಾರ್ಯಪ್ರವಾಹಗಳನ್ನು ರಚಿಸಲು ಸೇರಿಸಬಹುದಾದ ಸಾಧನಗಳನ್ನು ವಿನ್ಯಾಸಗೊಳಿಸಿ:
 
 ```python
-# ಸಂಯೋಜಿಸಬಹುದಾದ ಸಾಧನಗಳನ್ನು ತೋರಿಸುವ ಪೈತಾನ್ ಉದಾಹರಣೆ
+# ಸಮ್ಮಿಶ್ರಣ ಸಾಧ್ಯವಾಗಿರುವ ಉಪಕರಣಗಳನ್ನು ತೋರಿಸುವ ಪೈಥಾನ್ ಉದಾಹರಣೆ
 class DataFetchTool(Tool):
     def get_name(self):
         return "dataFetch"
     
-    # ಅನುಷ್ಠಾನ...
+    # ಅನುಷ್ಟಾನಣೆ...
 
 class DataAnalysisTool(Tool):
     def get_name(self):
         return "dataAnalysis"
     
-    # ಈ ಸಾಧನವು dataFetch ಸಾಧನದಿಂದ ಫಲಿತಾಂಶಗಳನ್ನು ಬಳಸಬಹುದು
+    # ಈ ಸಾಧನ dataFetch ಸಾಧನದ ಫಲಿತಾಂಶಗಳನ್ನು ಬಳಸಬಹುದು
     async def execute_async(self, request):
-        # ಅನುಷ್ಠಾನ...
+        # ಅನುಷ್ಟಾನಣೆ...
         pass
 
 class DataVisualizationTool(Tool):
     def get_name(self):
         return "dataVisualize"
     
-    # ಈ ಸಾಧನವು dataAnalysis ಸಾಧನದಿಂದ ಫಲಿತಾಂಶಗಳನ್ನು ಬಳಸಬಹುದು
+    # ಈ ಸಾಧನ dataAnalysis ಸಾಧನದ ಫಲಿತಾಂಶಗಳನ್ನು ಬಳಸಬಹುದು
     async def execute_async(self, request):
-        # ಅನುಷ್ಠಾನ...
+        # ಅನುಷ್ಟಾನಣೆ...
         pass
 
-# ಈ ಸಾಧನಗಳನ್ನು ಸ್ವತಂತ್ರವಾಗಿ ಅಥವಾ ಕಾರ್ಯಪ್ರವಾಹದ ಭಾಗವಾಗಿ ಬಳಸಬಹುದು
+# ಈ ಉಪಕರಣಗಳನ್ನು ಸ್ವತಂತ್ರವಾಗಿ ಅಥವಾ ಕಾರ್ಯಪ್ರವಾಹ ಭಾಗವಾಗಿ ಬಳಸಬಹುದಾಗಿದೆ
 ```
 
-### ತಂತ್ರಾಂಶ ರೂಪರೇಖೆಯ ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು
+### ಸ್ಕೀಮಾ ವಿನ್ಯಾಸ ಅತ್ಯುತ್ತಮ ಅಭ್ಯಾಸಗಳು
 
-ರೂಪರೇಖೆ ಮಾದರಿ ಮತ್ತು ನಿಮ್ಮ ಸಾಧನಗಳ ನಡುವೆ ಒಪ್ಪಂದವಾಗಿದೆ. ಉತ್ತಮ ವಿನ್ಯಾಸಗೊಳಿಸಲಾದ ರೂಪರೇಖೆಗಳು ಸಾಧನ ಬಳಕೆಯ ಸುಗಮತೆಯನ್ನು ತರುತ್ತವೆ.
+ಸ್ಕೀಮಾ ಮಾದರಿ ಮತ್ತು ನಿಮ್ಮ ಸಾಧನದ ನಡುವೆ ಇರುವ ಒಪ್ಪಂದವಾಗಿದೆ. ಚೆನ್ನಾಗಿ ರೂಪಗೊಂಡ ಸ್ಕೀಮಾಗಳು ಉತ್ತಮ ಸಾಧನ ಬಳಕೆಯನ್ನು ಆಯ್ದುಮಾಡುತ್ತವೆ.
 
-#### 1. ಸ್ಪಷ್ಟ ಪರಿಮಿತಿ ವಿವರಣೆಗಳು
+#### 1. ಸ್ಪಷ್ಟ ಪ್ಯಾರಾಮೀಟರ್ ವಿವರಣೆಗಳು
 
-ಪ್ರತಿ ಪರಿಮಿತಿಗೆ ವಿವರಣಾತ್ಮಕ ಮಾಹಿತಿಯನ್ನು ಯಾವಾಗಲೂ ಸೇರಿಸಿ:
+ಪ್ರತಿ ಪ್ಯಾರಾಮೀಟರ್‌ಗಾಗಿ ವಿವರಕಾರಿ ಮಾಹಿತಿಯನ್ನು ಯಾವಾಗಲೂ ಒದಗಿಸಿ:
 
 ```csharp
 public object GetSchema()
@@ -705,9 +733,9 @@ public object GetSchema()
 }
 ```
 
-#### 2. ಮಾನ್ಯತಾ ನಿಯಮಗಳು
+#### 2. ಮಾನ್ಯತೆ ನಿರ್ಬಂಧಗಳು
 
-ಅಮಾನ್ಯ ಇನ್ಪುಟ್ ತಡೆಯಲು ಮಾನ್ಯತಾ ನಿಯಮಗಳನ್ನು ಸೇರಿಸಿ:
+ಅವৈಧ ಇನ್‌ಪುಟ್‌ಗಳನ್ನು ತಡೆಗಟ್ಟಲು ಮಾನ್ಯತೆ ನಿರ್ಬಂಧಗಳನ್ನು ಸೇರಿಸಿ:
 
 ```java
 Map<String, Object> getSchema() {
@@ -716,20 +744,20 @@ Map<String, Object> getSchema() {
     
     Map<String, Object> properties = new HashMap<>();
     
-    // ಇಮೇಲ್ ಗುಣಲಕ್ಷಣವು ಸ್ವರೂಪ ಮಾನ್ಯತೆಯೊಂದಿಗೆ
+    // ಫಾರ್ಮ್ಯಾಟ್ ಪರಿಶೀಲನೆಯೊಂದಿಗೆ ಇಮೇಲ್ ಗುಣಲಕ್ಷಣ
     Map<String, Object> email = new HashMap<>();
     email.put("type", "string");
     email.put("format", "email");
     email.put("description", "User email address");
     
-    // ಸಂಖ್ಯೆ ಮಿತிகளಿರುವ ವಯಸ್ಸಿನ ಗುಣಲಕ್ಷಣ
+    // ಸಂಖ್ಯಾತ್ಮಕ ನಿಯಮಿತೆಗಳೊಂದಿಗೆ ವಯಸ್ಸು ಗುಣಲಕ್ಷಣ
     Map<String, Object> age = new HashMap<>();
     age.put("type", "integer");
     age.put("minimum", 13);
     age.put("maximum", 120);
     age.put("description", "User age in years");
     
-    // ಪಟ್ಟಿಮಾಡಲಾದ ಗುಣಲಕ್ಷಣ
+    // ಪರಿಮಿತಿಪಡಿಸಲಾದ ಗುಣಲಕ್ಷಣ
     Map<String, Object> subscription = new HashMap<>();
     subscription.put("type", "string");
     subscription.put("enum", Arrays.asList("free", "basic", "premium"));
@@ -747,9 +775,9 @@ Map<String, Object> getSchema() {
 }
 ```
 
-#### 3. ಸಮನ್ವಿತ ಪ್ರತಿಕ್ರಿಯಾ ರಚನೆಗಳು
+#### 3. ಸಮ್ಮತ ಹೊಂದಿರುವ ರಿಟರ್ನ್ ರಚನೆಗಳು
 
-ಮಾದರಿಗಳು ಫಲಿತಾಂಶಗಳನ್ನು ತಿಳಿದುಕೊಳ್ಳಲು ಸುಲభವಾಗುವಂತೆ ಪ್ರತಿಕ್ರಿಯಾ ವಿನ್ಯಾಸಗಳಲ್ಲಿ ಸಮನ್ವಯವಾಗಿರಿ:
+ಫಲಿತಾಂಶಗಳನ್ನು ಮಾದರಿಗಳು ಸುಲಭವಾಗಿ ಅರ್ಥಮಾಡಿಕೊಳ್ಳಲು ನಿಮ್ಮ ಪ್ರತಿಕ್ರಿಯೆ ರಚನೆಗಳಲ್ಲಿ ಸಮ್ಮತವನ್ನು ಅಳವಡಿಸಿ:
 
 ```python
 async def execute_async(self, request):
@@ -757,7 +785,7 @@ async def execute_async(self, request):
         # ವಿನಂತಿಯನ್ನು ಪ್ರಕ್ರಿಯೆಗೊಳಿಸಿ
         results = await self._search_database(request.parameters["query"])
         
-        # ಎಂದಿಗೂ ಅಕ್ಕಟದ ರಚನೆಯನ್ನು ಮರಳಿಸಿ
+        # ಸದಾ ಅನುಕ್ರಮಣಿಕೆಯನ್ನು ಸಮನ್ವಯಿತವಾಗಿರಿಸಿ
         return ToolResponse(
             result={
                 "matches": [self._format_item(item) for item in results],
@@ -790,11 +818,11 @@ def _format_item(self, item):
 
 ### ದೋಷ ನಿರ್ವಹಣೆ
 
-ದೃಢ ದೋಷ ನಿರ್ವಹಣೆ MCP ಸಾಧನಗಳಿಗೆ ಸ್ಥಿತಿಸ್ಥಾಪಕತೆ ಕಾಪಾಡಲು ಅವಶ್ಯಕ.
+MCP ಸಾಧನಗಳ ವಿಶ್ವಾಸಾರ್ಹತೆಯನ್ನು ಕಾಯ್ದು ಕೊಳ್ಳಲು ದೃಢವಾದ ದೋಷ ನಿರ್ವಹಣೆ ಅತ್ಯಾವಶ್ಯಕ.
 
-#### 1. ಶ್ರೇಯೋಭಿವೃದ್ಧಿ ದೋಷ ನಿರ್ವಹಣೆ
+#### 1. ಸಮಾಧಾನಕರ ದೋಷ ನಿರ್ವಹಣೆ
 
-ತಕ್ಕ ಮಟ್ಟಿಗೆ ದೋಷಗಳನ್ನು ನಿರ್ವಹಿಸಿ ಮತ್ತು ಮಾಹಿತಿಪೂರ್ಣ ಸಂದೇಶಗಳನ್ನು ಒದಗಿಸಿ:
+ಸೂಕ್ತ ಮಟ್ಟದಲ್ಲಿ ದೋಷವನ್ನು ನಿರ್ವಹಿಸಿ ಮತ್ತು ವಿವರವಾದ ಸಂದೇಶಗಳನ್ನು ಒದಗಿಸಿ:
 
 ```csharp
 public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
@@ -838,13 +866,13 @@ public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
 
 #### 2. ರಚನಾತ್ಮಕ ದೋಷ ಪ್ರತಿಕ್ರಿಯೆಗಳು
 
-ಸಾಧ್ಯವಾದಲ್ಲಿ ರಚನಾತ್ಮಕ ದೋಷ ಮಾಹಿತಿಯನ್ನು ಹಿಂತಿರುಗಿಸಿ:
+ಸಾಧ್ಯವಾದರೆ ರಚನಾತ್ಮಕ ದೋಷ ಮಾಹಿತಿಯನ್ನು ನೀಡಿರಿ:
 
 ```java
 @Override
 public ToolResponse execute(ToolRequest request) {
     try {
-        // ಅನುಷ್ಠಾನ
+        // ಕಾರ್ಯಾನ್ವಯಿಕೆ
     } catch (Exception ex) {
         Map<String, Object> errorResult = new HashMap<>();
         
@@ -862,15 +890,21 @@ public ToolResponse execute(ToolRequest request) {
                 .build();
         }
         
-        // ಇತರ ತಪ್ಪುಗಳನ್ನು ToolExecutionException ಆಗಿ ಮರುಬಿಡಿ
+        // ಇತರ ವಿನ್ಯಾಸ ದೋಷಗಳನ್ನು ToolExecutionException ಎಂಬಾಗಿ ಪುನಃ ಎಸೆದು ಬಿಡು
         throw new ToolExecutionException("Tool execution failed: " + ex.getMessage(), ex);
     }
 }
 ```
 
-#### 3. ಮರುಪ್ರಯತ್ನ ತಂತ್ರಜ್ಞಾನ
+#### 3. ಮರುಪ್ರಯತ್ನ ಲಾಜಿಕ್ಸ್
 
-ತಾತ್ಕಾಲಿಕ ವೈಫಲ್ಯಗಳಿಗೆ ಸೂಕ್ತ ಮರುಪ್ರಯತ್ನ ತಂತ್ರಜ್ಞಾನವನ್ನು ಜಾರಿಗೊಳಿಸಿ:
+ಓದಿಕೊಳ್ಳುವ ಕಾಲ್ಗಳಿಗೆ ಅಥವಾ ಪ್ರಕ್ರಿಯೆಗೆ ಮಾತ್ರ ಸಾಮಾನ್ಯ ಮರುಪ್ರಯತ್ನ ಲಾಜಿಕ್ ಬಳಸಿ, 
+ದಕ್ಷಿಣಗಾಮಿ ಒಪ್ಪಂದ ಮೊದಲೇ ಐಡಂಪೆಂಡೆಂಟ್ ಆಗಿದ್ದಾಗ. ಪರಿಣಾಮಕಾರಿಯಾದ ಕಾರ್ಯಗಳಿಗೆ, ವಿನಂತಿ ಕಳಿಸಿದ ನಂತರ
+ಸಮಯವಿವರಣೆ ಸ್ಪಷ್ಟತೆ ಇಲ್ಲದದ್ದು. ಅಧಿಕಾರಾಧರಿತ ಸ್ಥಿತಿಯನ್ನು ಸಮನ್ವಯ ಮಾಡಿ ಮತ್ತು
+ಮತ್ತೆ ಕಾರ್ಯಾಚರಣೆ ಮಾಡಲು ಮೊದಲು ಅದೇ ಸ್ಥಿರ ಕಾರ್ಯಚಟುವಟಿಕೆ ಕಿಯನ್ನು ಮರುಬಳಕೆ ಮಾಡಿ. 
+[ವಿಶ್ವಾಸಾರ್ಹತೆಯ ಸೈಡ್‌ಕಾರ್ ಸಹಪಾಠ](./reliability-sidecars/README.md) ನೋಡಿ.
+
+ಕೆಳಗಿನ ಸೀಮಿತ ಮರುಪ್ರಯತ್ನ ಲೂಪ್ ಓದುವ ಲೂಕಪ್‌ಗಾಗಿ ಸೂಕ್ತವಾಗಿದೆ:
 
 ```python
 async def execute_async(self, request):
@@ -880,27 +914,27 @@ async def execute_async(self, request):
     
     while retry_count < max_retries:
         try:
-            # ಬಾಹ್ಯ APIನ್ನು ಕರೆದೊಯ್ಯಿ
-            return await self._call_api(request.parameters)
+            # ಓದ-only ಬಾಹ್ಯ API ಅನ್ನು ಕರೆಮಾಡಿ
+            return await self._call_read_only_api(request.parameters)
         except TransientError as e:
             retry_count += 1
             if retry_count >= max_retries:
                 raise ToolExecutionException(f"Operation failed after {max_retries} attempts: {str(e)}")
                 
-            # ಘಾತಾಂಕ ಬ್ಯಾಕ್ಓಫ್
+            # ಘಾತಾಂಕ ಹಿಂಪಡೆಯುವಿಕೆ
             delay = base_delay * (2 ** (retry_count - 1))
             logging.warning(f"Transient error, retrying in {delay}s: {str(e)}")
             await asyncio.sleep(delay)
         except Exception as e:
-            # ಅಸ್ಥಿರವಲ್ಲದ ದೋಷ, ಪುನಃ ಪ್ರಯತ್ನಿಸಬೇಡಿ
+            # ಅಸ್ಥಾಯಿ ತಪ್ಪು ಅಲ್ಲ, ಮರುಪ್ರಯತ್ನಿಸಬೇಡಿ
             raise ToolExecutionException(f"Operation failed: {str(e)}")
 ```
 
-### ಕಾರ್ಯಕ್ಷಮತೆ ಗರಿಷ್ಠಗೊಳಿಸುವಿಕೆ
+### ಕಾರ್ಯಕ್ಷಮತೆ ಉನ್ನತಿ
 
-#### 1. ಕ್ಯಾಶಿಂಗ್
+#### 1. ಕಾಶಿಂಗ್
 
-ಖರ್ಚುಹೊಂದುವ ಕಾರ್ಯಾಚರಣೆಗಳುಗಾಗಿ ಕ್ಯಾಶಿಂಗ್ ಜಾರಿಗೊಳಿಸಿ:
+ದುಬಾರಿ ಕಾರ್ಯಾಚರಣೆಗಳಿಗೆ ಕಾಶಿಂಗ್ ಅನ್ನು ಅನುಷ್ಠಾನಗೊಳಿಸಿ:
 
 ```csharp
 public class CachedDataTool : IMcpTool
@@ -946,9 +980,9 @@ public class CachedDataTool : IMcpTool
 }
 ```
 
-#### 2. ಅಸಿಂಕ್ರೋನಸ್ ಪ್ರೊಸೆಸ್
+#### 2. ಅಸಂಕೇತಿತ ಪ್ರಕ್ರಿಯೆ
 
-I/O ಬೌಂಡ್ ಕಾರ್ಯಾಚರಣೆಗಳಿಗೆ ಅಸಿಂಕ್ರೋನಸ್ ಪ್ರೋಗ्रामಿಂಗ್ ಮಾದರಿಗಳನ್ನು ಬಳಸಿ:
+I/O-ಬೌಂಡ್ ಕಾರ್ಯಗಳಿಗೆ ಅಸಂಕೇತಿತ ಪ್ರೋಗ್ರಾಮಿಂಗ್ ಮಾದರಿಗಳನ್ನು ಬಳಸಿ:
 
 ```java
 public class AsyncDocumentProcessingTool implements Tool {
@@ -959,23 +993,23 @@ public class AsyncDocumentProcessingTool implements Tool {
     public ToolResponse execute(ToolRequest request) {
         String documentId = request.getParameters().get("documentId").asText();
         
-        // ದೀರ್ಘಕಾಲ ನಡೆಯುವ ಕಾರ್ಯಗಳಿಗಾಗಿ, ಪ್ರಾಸಂಗೇಕ ID ಅನ್ನು ತಕ್ಷಣ ಮರಳಿಸಿ
+        // ದೀರ್ಘಕಾಲೀನ ಕೆಲಸಗಳಿಗೆ, ತಕ್ಷಣ ಪ್ರೊಸೆಸಿಂಗ್ ಐಡಿಯನ್ನು ಹಿಂತಿರುಗಿಸಿ
         String processId = UUID.randomUUID().toString();
         
-        // ಅಸಿಂಕ್ರೋನಸ್ ಪ್ರಕ್ರಿಯೆಯನ್ನು ಪ್ರಾರಂಭಿಸಿ
+        // ಅಸಿಂಕ್ರೋನಸ್ ಪ್ರೊಸೆಸಿಂಗ್ ಪ್ರಾರಂಭಿಸಿ
         CompletableFuture.runAsync(() -> {
             try {
-                // ದೀರ್ಘಕಾಲ ನಡೆಯುವ ಕಾರ್ಯವನ್ನು ನಿರ್ವಹಿಸಿ
+                // ದೀರ್ಘಕಾಲೀನ ಕಾರ್ಯಾಚರಣೆ ಮಾಡಿ
                 documentService.processDocument(documentId);
                 
-                // ಸ್ಥಿತಿಯನ್ನು ನವೀಕರಿಸಿ (ಸಾಮಾನ್ಯವಾಗಿ ಡೇಟಾಬೇಸ್‌ನಲ್ಲಿ ಸಂಗ್ರಹಿಸಲಾಗುತ್ತದೆ)
+                // ಸ್ಥಿತಿಯನ್ನು تازهಗೊಳಿಸಿ (ಸಾಮಾನ್ಯವಾಗಿ ಡೇಟಾಬೇಸ್ನಲ್ಲಿ ಸಂಗ್ರಹಿಸಲಾಗುತ್ತದೆ)
                 processStatusRepository.updateStatus(processId, "completed");
             } catch (Exception ex) {
                 processStatusRepository.updateStatus(processId, "failed", ex.getMessage());
             }
         }, executorService);
         
-        // ಪ್ರಕ್ರಿಯಾ ID ರೊಂದಿಗೆ ತಕ್ಷಣದ ಪ್ರತಿಕ್ರಿಯೆಯನ್ನು ಮರಳಿಸಿ
+        // ಪ್ರಕ್ರಿಯೆ ಐಡಿಯೊಂದಿಗೆ ತಕ್ಷಣದ ಪ್ರತಿಕ್ರಿಯೆಯನ್ನು ಹಿಂತಿರುಗಿಸಿ
         Map<String, Object> result = new HashMap<>();
         result.put("processId", processId);
         result.put("status", "processing");
@@ -984,7 +1018,7 @@ public class AsyncDocumentProcessingTool implements Tool {
         return new ToolResponse.Builder().setResult(result).build();
     }
     
-    // ಸಂಗಾತಿ ಸ್ಥಿತಿ ಪರಿಶೀಲನಾ ಉಪಕರಣ
+    // ಜೊತೆಯಲ್ಲಿರುವ ಸ್ಥಿತಿ ಪರಿಶೀಲನಾ ಸಾಧನ
     public class ProcessStatusTool implements Tool {
         @Override
         public ToolResponse execute(ToolRequest request) {
@@ -997,35 +1031,35 @@ public class AsyncDocumentProcessingTool implements Tool {
 }
 ```
 
-#### 3. ಸಂಪನ್ಮೂಲ ನಿಯಂತ್ರಣ
+#### 3. ಸಂಪನ್ಮೂಲ ತ್ರೋಟ್ಲಿಂಗ್
 
-ಒತ್ತಡ ತಪ್ಪಿಸಲು ಸಂಪನ್ಮೂಲ ನಿಯಂತ್ರಣವನ್ನು ಜಾರಿಗೊಳಿಸಿ:
+ಮರೆದು ಹೋಗುವುದನ್ನು ತಡೆಯಲು ಸಂಪನ್ಮೂಲ ತ್ರೋಟ್ಲಿಂಗ್ ಅನುಷ್ಠಾನಗೊಳಿಸಿ:
 
 ```python
 class ThrottledApiTool(Tool):
     def __init__(self):
         self.rate_limiter = TokenBucketRateLimiter(
             tokens_per_second=5,  # ಪ್ರತಿ ಸೆಕೆಂಡಿಗೆ 5 ವಿನಂತಿಗಳನ್ನು ಅನುಮತಿಸಿ
-            bucket_size=10        # 10 ವಿನಂತಿಗಳವರೆಗಿನ ಸ್ಫೋಟಗಳನ್ನು ಅನುಮತಿಸಿ
+            bucket_size=10        # 10 ವಿನಂತಿಗಳựa ಕರೆಗಳು ಮಾಡಲಾಗುತ್ತದೆ
         )
     
     async def execute_async(self, request):
-        # ನಾವು ಮುಂದುವರೆಯಬಹುದೇ ಅಥವಾ ಕಾಯಬೇಕೇ ನೋಡುವುದು
+        # ಮುಂದುವರೆಯಬಹುದೇ ಅಥವಾ ಕಾಯಬೇಕೇ ಎಂದು ಪರಿಶೀಲಿಸಿ
         delay = self.rate_limiter.get_delay_time()
         
         if delay > 0:
-            if delay > 2.0:  # ಕಾಯುವ ಸಮಯ ಹೆಚ್ಚು ಇದ್ದರೆ
+            if delay > 2.0:  # ಕಾಯುವ ಸಮಯ ತುಂಬಾ ಉದ್ದವಾದರೆ
                 raise ToolExecutionException(
                     f"Rate limit exceeded. Please try again in {delay:.1f} seconds."
                 )
             else:
-                # ಸೂಕ್ತ ವಿಳಂಬ ಸಮಯಕ್ಕೆ ಕಾಯಿರಿ
+                # ಸೂಕ್ತ ತಡ ಸಮಯಕ್ಕಾಗಿ ಕಾಯಿರಿ
                 await asyncio.sleep(delay)
         
-        # ಒಂದು ಟೋಕೆನ್ ಬಳಸಿ ವಿನಂತಿಯನ್ನು ಮುಂದುವರೆಸಿ
+        # ಒಂದು ಟೋಕನ್ ಅನ್ನು ಬಳಸಿಕೊಂಡು ವಿನಂತಿಯನ್ನು ಮುಂದುವರೆಸಿ
         self.rate_limiter.consume()
         
-        # ಎಪಿಐ ಕರೆಯಿರಿ
+        # API ಕರೆ ಮಾಡಿ
         result = await self._call_api(request.parameters)
         return ToolResponse(result=result)
 
@@ -1043,7 +1077,7 @@ class TokenBucketRateLimiter:
             if self.tokens >= 1:
                 return 0
             
-            # ಮುಂದಿನ ಟೋಕೆನ್ ಲಭ್ಯವಾಗುವವರೆಗೆ ಸಮಯವನ್ನು ಲೆಕ್ಕಹಾಕಿ
+            # ಮುಂದಿನ ಟೋಕನ್ ಲಭ್ಯವಿರುವವರೆಗೆ ಸಮಯವನ್ನು ಲೆಕ್ಕಿಸಿ
             return (1 - self.tokens) / self.tokens_per_second
     
     async def consume(self):
@@ -1055,17 +1089,17 @@ class TokenBucketRateLimiter:
         now = time.time()
         elapsed = now - self.last_refill
         
-        # ಕಳೆದ ಸಮಯದ ಆಧಾರದ ಮೇಲೆ ಹೊಸ ಟೋಕೆನ್ಗಳನ್ನು ಸೇರಿಸಿ
+        # ಕಳೆದ ಸಮಯದ ಆಧಾರದ ಮೇಲೆ ಹೊಸ ಟೋಕನ್ಗಳನ್ನು ಸೇರಿಸಿ
         new_tokens = elapsed * self.tokens_per_second
         self.tokens = min(self.bucket_size, self.tokens + new_tokens)
         self.last_refill = now
 ```
 
-### ಭದ್ರತೆ ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು
+### ಭದ್ರತಾ ಅತ್ಯುತ್ತಮ ಕ್ರಮಗಳು
 
-#### 1. ಇನ್ಪುಟ್ ಮಾನ್ಯತೆ
+#### 1. ಇನ್‌ಪುಟ್ ಮಾನ್ಯತೆ
 
-ಪ್ರವೇಶಿಸುವ ಪರಿಮಿತಿಗಳನ್ನು ಯಾವಾಗಲೂ ಸಂಪೂರ್ಣ ಪರಿಶೀಲಿಸಿ:
+ಇನ್‌ಪುಟ್ ಪ್ಯಾರಾಮೀಟರ್‌ಗಳನ್ನು ಸಂಪೂರ್ಣವಾಗಿ ಮಾನ್ಯತೆಗೊಳಿಸಿ:
 
 ```csharp
 public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
@@ -1106,35 +1140,35 @@ public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
 }
 ```
 
-#### 2. ಅನುಮತಿ ಪರಿಶೀಲನೆಗಳು
+#### 2. ಅಧಿಕೃತತೆ ಪರಿಶೀಲನೆಗಳು
 
-ಸರಿಯಾದ ಅನುಮತಿ ಪರಿಶೀಲನೆಗಳನ್ನು ಜಾರಿಗೊಳಿಸಿ:
+ಸರಿಯಾದ ಅಧಿಕೃತತೆ ಪರಿಶೀಲನೆಗಳನ್ನು ಅನುಷ್ಠಾನಗೊಳಿಸಿ:
 
 ```java
 @Override
 public ToolResponse execute(ToolRequest request) {
-    // ವಿನಂತಿಯಿಂದ ಬಳಕೆದಾರರ_CONTEXTವನ್ನು ಪಡೆಯಿರಿ
+    // ವಿನಂತಿಯಿಂದ ಬಳಕೆದಾರ ಪರಿಸರವನ್ನು ಪಡೆಯಿರಿ
     UserContext user = request.getContext().getUserContext();
     
-    // ಬಳಕೆದಾರರಿಗೆ ಅಗತ್ಯ ಅನುಮತಿಗಳು ಇದ್ದಾರೆಯೇ ಎಂದು ಪರಿಶೀಲಿಸಿ
+    // ಬಳಕೆದಾರನಿಗೆ ಬೇಕಾದ ಅನುಮತಿಗಳು ಇದ್ದಾರೆಯೇ ಎಂದು ಪರಿಶೀಲಿಸಿ
     if (!authorizationService.hasPermission(user, "documents:read")) {
         throw new ToolExecutionException("User does not have permission to access documents");
     }
     
-    // ನಿರ್ದಿಷ್ಟ ಸಂಪನ್ಮೂಲಗಳಿಗೆ, ಆ ಸಂಪನ್ಮೂಲವನ್ನು ಪ್ರವೇಶಿಸುವುದನ್ನು ತನಿಖಿಸು
+    // ನಿರ್ದಿಷ್ಟ ಸಂಪನ್ಮೂಲಗಳಿಗಾಗಿ, ಆ ಸಂಪನ್ಮೂಲಕ್ಕೆ ಪ್ರವೇಶವಿದೆಯೇ ಎಂದು ಪರಿಶೀಲಿಸಿ
     String documentId = request.getParameters().get("documentId").asText();
     if (!documentService.canUserAccess(user.getId(), documentId)) {
         throw new ToolExecutionException("Access denied to the requested document");
     }
     
-    // ಸಾಧನವನ್ನು ಕಾರ್ಯಗತಗೊಳಿಸುವುದನ್ನು ಮುಂದುವರೆಸಿ
+    // ಉಪಕರಣ ಕಾರ್ಯಗತಗೊಳಿಸುವಿಕೆಯನ್ನು ಮುಂದುವರೆಸಿ
     // ...
 }
 ```
 
-#### 3. ಸಂವೇದನಶೀಲ ಡೇಟಾ ನಿರ್ವಹಣೆ
+#### 3. ಸಂವೇದನಾಶೀಲ ದತ್ತಾಂಶ ನಿರ್ವಹಣೆ
 
-ಸಂವೇದನಶೀಲ ಡೇಟಾವನ್ನು ಎಚ್ಚರಿಕೆಯಿಂದ ನಿರ್ವಹಿಸಿ:
+ಸಂವೇದನಾಶೀಲ ದತ್ತಾಂಶವನ್ನು ಜಾಗರೂಕತೆಯಿಂದ ನಿರ್ವಹಿಸಿ:
 
 ```python
 class SecureDataTool(Tool):
@@ -1155,43 +1189,43 @@ class SecureDataTool(Tool):
         # ಬಳಕೆದಾರ ಡೇಟಾವನ್ನು ಪಡೆಯಿರಿ
         user_data = await self.user_service.get_user_data(user_id)
         
-        # ಸ್ಪಷ್ಟವಾಗಿ ವಿನಂತಿಸದಿದ್ದರೆ ಮತ್ತು ಅನುಮತಿಸದಿದ್ದರೆ ಸಂವೇದನಶೀಲ ಕ್ಷೇತ್ರಗಳನ್ನು ಫಿಲ್ಟರ್ ಮಾಡಿ
+        # ಸ್ಪಷ್ಟವಾಗಿ ಕೇಳಲಾಗದ ಹಾಗೆಯೇ ಮತ್ತು ಅನುಮೋದಿತವಾಗದಿದ್ದಲ್ಲಿ ಸಂವೇದನಾಶೀಲ ಕ್ಷೇತ್ರಗಳನ್ನು ಫಿಲ್ಟರ್ ಮಾಡಿ
         if not include_sensitive or not self._is_authorized_for_sensitive_data(request):
             user_data = self._redact_sensitive_fields(user_data)
         
         return ToolResponse(result=user_data)
     
     def _is_authorized_for_sensitive_data(self, request):
-        # ವಿನಂತಿ ಸನ್ನಿವೇಶದಲ್ಲಿನ ಅನುಮತಿ ಮಟ್ಟವನ್ನು ಪರಿಶೀಲಿಸಿ
+        # ವಿನಂತಿ ಪ್ರ_Context_ ನಲ್ಲಿ ಅನುಮತಿ ಮಟ್ಟವನ್ನು ಪರಿಶೀಲಿಸಿ
         auth_level = request.context.get("authorizationLevel")
         return auth_level == "admin"
     
     def _redact_sensitive_fields(self, user_data):
-        # ಮೂಲವನ್ನು ಬದಲಾಯಿಸುವುದರಿಂದ ತಪ್ಪಿಸಲು ಪ್ರತಿಯನ್ನು ರಚಿಸಿ
+        # ಮೂಲವನ್ನ ಪರಿವರ್ತಿಸುವುದನ್ನು ತಪ್ಪಿಸಲು ಒಂದು ಪ್ರತಿಯನ್ನು ರಚಿಸಿ
         redacted = user_data.copy()
         
-        # ನಿರ್ದಿಷ್ಟ ಸಂವೇದನಶೀಲ ಕ್ಷೇತ್ರಗಳನ್ನು ರೆಡ್ಯಾಕ್ಟ್ ಮಾಡಿ
+        # ನಿರ್ದಿಷ್ಟ ಸಂವೇದನಾಶೀಲ ಕ್ಷೇತ್ರಗಳನ್ನು ರೆಡ್ಯಾಕ್ಟ್ ಮಾಡಿ
         sensitive_fields = ["ssn", "creditCardNumber", "password"]
         for field in sensitive_fields:
             if field in redacted:
                 redacted[field] = "REDACTED"
         
-        # ನೆಸ್ಟೆಡ್ ಸಂವೇದನಶೀಲ ಡೇಟಾವನ್ನು ರೆಡ್ಯಾಕ್ಟ್ ಮಾಡಿ
+        # ನೆಸ್ಟ್ ಆದ ಸಂವೇದನಾಶೀಲ ಡೇಟಾವನ್ನು ರೆಡ್ಯಾಕ್ಟ್ ಮಾಡಿ
         if "financialInfo" in redacted:
             redacted["financialInfo"] = {"available": True, "accessRestricted": True}
         
         return redacted
 ```
 
-## MCP ಸಾಧನಗಳ ಪರೀಕ್ಷಾ ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು
+## MCP ಸಾಧನಗಳಿಗೆ ಪರೀಕ್ಷಾ ಅತ್ಯುತ್ತಮ ಕ್ರಮಗಳು
 
-ಸಂಪೂರ್ಣ ಪರೀಕ್ಷೆಯು MCP ಸಾಧನಗಳು ಸರಿಯಾಗಿ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತವೆ, ಅಂಚು ಪ್ರಕರಣಗಳನ್ನು ನಿರ್ವಹಿಸುತ್ತವೆ ಮತ್ತು ವ್ಯವಸ್ಥೆಯೊಂದಿಗೆ ಸಮರ್ಪಕವಾಗಿ ಸಂಯೋಜಿಸುತ್ತವೆ ಎಂದು ಖಚಿತಪಡಿಸುತ್ತದೆ.
+ಸಮಗ್ರ ಪರೀಕ್ಷೆ MCP ಸಾಧನಗಳು ಸರಿಯಾಗಿ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತಿವೆ, ಎಡ್ಜ್ ಪ್ರಕರಣಗಳನ್ನು ಸರಾಗವಾಗಿ ತಡೆಯುತ್ತಿವೆ ಮತ್ತು ವ್ಯವಸ್ಥೆಯ ಉಳಿದ ಭಾಗದೊಂದಿಗೆ ಸರಿಯಾಗಿ ಪ್ರೇಕ್ಷಣೆಯಾಗುತ್ತಿವೆ ಎಂಬುದನ್ನು ಖಚಿತಪಡಿಸುತ್ತದೆ.
 
 ### ಘಟಕ ಪರೀಕ್ಷೆ
 
 #### 1. ಪ್ರತಿ ಸಾಧನವನ್ನು ಪ್ರತ್ಯೇಕವಾಗಿ ಪರೀಕ್ಷಿಸಿ
 
-ಪ್ರತಿ ಸಾಧನ ಕಾರ್ಯಚಟುವಟಿಕೆಗೆ ಕೇಂದ್ರೀಕೃತ ಪರೀಕ್ಷೆಗಳನ್ನು ರಚಿಸಿ:
+ಪ್ರತಿ ಸಾಧನದ ಕಾರ್ಯಕ್ಷಮತೆಗೆ ವಾಸ್ತವಿಕ ಪರೀಕ್ಷೆಗಳನ್ನು ರಚಿಸಿ:
 
 ```csharp
 [Fact]
@@ -1251,27 +1285,27 @@ public async Task WeatherTool_InvalidLocation_ThrowsToolExecutionException()
 }
 ```
 
-#### 2. ರೂಪರೇಖೆ ಮಾನ್ಯತೆ ಪರೀಕ್ಷೆ
+#### 2. ಸ್ಕೀಮಾ ಮಾನ್ಯತೆ ಪರೀಕ್ಷೆ
 
-ರೂಪರೇಖೆಗಳು ಮಾನ್ಯವಾಗಿವೆ ಮತ್ತು ನಿಯಮಗಳನ್ನು ಸರಿಯಾಗಿ ಜಾರಿಗೊಳಿಸುತ್ತವೆ ಎಂದು ಪರೀಕ್ಷಿಸಿ:
+ಸ್ಕೀಮಾಗಳು ಮಾನ್ಯವಾಗಿವೆ ಮತ್ತು ಸರಿಯಾಗಿ ನಿಯಂತ್ರಣಗಳನ್ನು ಜಾರಿಗೊಳಿಸುತ್ತಿವೆ ಎಂಬುದನ್ನು ಪರೀಕ್ಷಿಸಿ:
 
 ```java
 @Test
 public void testSchemaValidation() {
-    // ಉಪಕರಣದ ಉದಾಹರಣೆ ಸೃಷ್ಟಿಸಿ
+    // ಉಪಕರಣ ಉದಾಹರಣೆ ರಚಿಸಿ
     SearchTool searchTool = new SearchTool();
     
-    // ಸ್ಕೀಮಾ ಪಡೆಯಿರಿ
+    // ಸ್ಕೀಮಾ ಪಡೆದು ಕೊಳ್ಳಿ
     Object schema = searchTool.getSchema();
     
-    // ಪರಿಶೀಲನೆಗಾಗಿ ಸ್ಕೀಮಾವನ್ನು JSON ಗೆ ಪರಿವರ್ತಿಸಿ
+    // ಮಾನ್ಯತೆಗಾಗಿ ಸ್ಕೀಮಾನ್ನು JSON ಗೆ ಪರಿವರ್ತಿಸಿ
     String schemaJson = objectMapper.writeValueAsString(schema);
     
-    // ಸ್ಕೀಮಾ ಮಾನ್ಯ JSONSchema ಆಗಿರುವುದನ್ನು ಪರಿಶೀಲಿಸಿ
+    // ಸ್ಕೀಮಾ ಮಾನ್ಯ JSONSchema ಆಗಿದೆಯೇ ಎಂದು ಪರಿಶೀಲಿಸಿ
     JsonSchemaFactory factory = JsonSchemaFactory.byDefault();
     JsonSchema jsonSchema = factory.getJsonSchema(schemaJson);
     
-    // ಮಾನ್ಯವಾದ ನಿಯಮಿತಗಳನ್ನು ಪರೀಕ್ಷಿಸಿ
+    // ಸರಿಯಾದ ಪ್ಯಾರಾಮೀಟರ್ಗಳನ್ನು ಪರೀಕ್ಷಿಸಿ
     JsonNode validParams = objectMapper.createObjectNode()
         .put("query", "test query")
         .put("limit", 5);
@@ -1279,14 +1313,14 @@ public void testSchemaValidation() {
     ProcessingReport validReport = jsonSchema.validate(validParams);
     assertTrue(validReport.isSuccess());
     
-    // ತಪ್ಪಿದ್ದ ಅಗತ್ಯ ನಿಯಮಿತವನ್ನು ಪರೀಕ್ಷಿಸಿ
+    // ಅಗತ್ಯವಿರುವ ಪ್ಯಾರಾಮೀಟರ್ ಕಳೆದುಕೊಂಡಿದ್ದರೆ ಪರೀಕ್ಷಿಸಿ
     JsonNode missingRequired = objectMapper.createObjectNode()
         .put("limit", 5);
         
     ProcessingReport missingReport = jsonSchema.validate(missingRequired);
     assertFalse(missingReport.isSuccess());
     
-    // ಅಮಾನ್ಯ ನಿಯಮಿತ ಪ್ರಕಾರವನ್ನು ಪರೀಕ್ಷಿಸಿ
+    // ಅಮಾನ್ಯ ಪ್ಯಾರಾಮೀಟರ್ ಪ್ರಕಾರವನ್ನು ಪರೀಕ್ಷಿಸಿ
     JsonNode invalidType = objectMapper.createObjectNode()
         .put("query", "test")
         .put("limit", "not-a-number");
@@ -1296,21 +1330,21 @@ public void testSchemaValidation() {
 }
 ```
 
-#### 3. ದೋಷ ನಿರ್ವಹಣೆ ಪರೀಕ್ಷೆಗಳು
+#### 3. ದೋಷ ನಿರ್ವಹಣೆ ಟೆಸ್ಟ್‌ಗಳು
 
 ದೋಷ ಪರಿಸ್ಥಿತಿಗಳಿಗಾಗಿ ವಿಶೇಷ ಪರೀಕ್ಷೆಗಳನ್ನು ರಚಿಸಿ:
 
 ```python
 @pytest.mark.asyncio
 async def test_api_tool_handles_timeout():
-    # ಜೋಡಣೆ ಮಾಡಿ
-    tool = ApiTool(timeout=0.1)  # ತುಂಬಾ ಚಿಕ್ಕ ಟೈಮೌಟ್
+    # ವ್ಯವಸ್ಥೆ ಮಾಡಿ
+    tool = ApiTool(timeout=0.1)  # ಬಹಳ ಚಿಕ್ಕ ಸಮಯ ಮೀರಿಕೆಯು
     
-    # ಟೈಮೌಟ್ ಆಗುವ ವಿನಂತಿಯನ್ನು ನಕಲಿ ಮಾಡಿ
+    # ಸಮಯ ಮೀರಿಕೆಯಾಗುವ ವಿನಂತಿಯನ್ನು ನಕಲು ಮಾಡಿ
     with aioresponses() as mocked:
         mocked.get(
             "https://api.example.com/data",
-            callback=lambda *args, **kwargs: asyncio.sleep(0.5)  # ಟೈಮೌಟಿಗಿಂತ ಹೆಚ್ಚು ಸಮಯ
+            callback=lambda *args, **kwargs: asyncio.sleep(0.5)  # ಸಮಯ ಮೀರಿಕೆಯಿಂದ ಹೆಚ್ಚು
         )
         
         request = ToolRequest(
@@ -1318,19 +1352,19 @@ async def test_api_tool_handles_timeout():
             parameters={"url": "https://api.example.com/data"}
         )
         
-        # ಕಾರ್ಯನಿರ್ವಹಿಸಿ ಮತ್ತು ದೃಢೀಕರಿಸಿ
+        # ಕಾರ್ಯ ಮಾಡಿ ಮತ್ತು ದೃಢೀಕರಿಸಿ
         with pytest.raises(ToolExecutionException) as exc_info:
             await tool.execute_async(request)
         
-        # ಹೊರತುಪಡಿಸುವ ಸಂದೇಶವನ್ನು ಪರಿಶೀಲಿಸಿ
+        # исключения ಸಂದೇಶವನ್ನು ಪರಿಶೀಲಿಸಿ
         assert "timed out" in str(exc_info.value).lower()
 
 @pytest.mark.asyncio
 async def test_api_tool_handles_rate_limiting():
-    # ಜೋಡಣೆ ಮಾಡಿ
+    # ವ್ಯವಸ್ಥೆ ಮಾಡಿ
     tool = ApiTool()
     
-    # ದರ-ಹದ ಗಡಿಯಲ್ಲಿ ಪ್ರತಿಕ್ರಿಯೆಯನ್ನು ನಕಲಿ ಮಾಡಿ
+    # ದರ-ಮಿತಿಯ ಪ್ರತಿಕ್ರಿಯೆಯನ್ನು ನಕಲು ಮಾಡಿ
     with aioresponses() as mocked:
         mocked.get(
             "https://api.example.com/data",
@@ -1344,21 +1378,21 @@ async def test_api_tool_handles_rate_limiting():
             parameters={"url": "https://api.example.com/data"}
         )
         
-        # ಕಾರ್ಯನಿರ್ವಹಿಸಿ ಮತ್ತು ದೃಢೀಕರಿಸಿ
+        # ಕಾರ್ಯ ಮಾಡಿ ಮತ್ತು ದೃಢೀಕರಿಸಿ
         with pytest.raises(ToolExecutionException) as exc_info:
             await tool.execute_async(request)
         
-        # ಹೊರತುಪಡಿಸುವುದು ದರ-ಹದ ಮಾಹಿತಿ ಹೊಂದಿದೆ ಎಂದು ಪರಿಶೀಲಿಸಿ
+        # исключения ದರ ಮಿತಿ ಮಾಹಿತಿಯನ್ನು ಹೊಂದಿರುವುದನ್ನು ಪರಿಶೀಲಿಸಿ
         error_msg = str(exc_info.value).lower()
         assert "rate limit" in error_msg
         assert "try again" in error_msg
 ```
 
-### ಸಂಯೋಜನೆ ಪರೀಕ್ಷೆ
+### ಸಂಯೋಜಿತ ಪರೀಕ್ಷೆ
 
-#### 1. ಸಾಧನ ಸರಪಳಿ ಪರೀಕ್ಷೆ
+#### 1. ಸಾಧನ ಶೃಂಗ ಪರೀಕ್ಷೆ
 
-ನಿರೀಕ್ಷಿತ ಸಂಯೋಜನೆಯಲ್ಲಿ ಸಾಧನಗಳು ಒಟ್ಟಾಗಲು ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತಾವೆಯೇ ಎಂದು ಪರೀಕ್ಷಿಸಿ:
+ನಿರೀಕ್ಷಿತ ಸಂಯೋಜನೆಯಲ್ಲಿ ಸಾಧನಗಳು ಸಹ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತಿವೆ ಎಂದು ಪರೀಕ್ಷಿಸಿ:
 
 ```csharp
 [Fact]
@@ -1399,7 +1433,7 @@ public async Task DataProcessingWorkflow_CompletesSuccessfully()
 
 #### 2. MCP ಸರ್ವರ್ ಪರೀಕ್ಷೆ
 
-ಪೂರ್ಣ ಸಾಧನ ನೋಂದಣಿ ಮತ್ತು ಜಾರಿಗೊಳಿಸುವಿಕೆ ಸಹಿತ MCP ಸರ್ವರ್ ಅನ್ನು ಪರೀಕ್ಷಿಸಿ:
+MCP ಸರ್ವರ್ ಅನ್ನು ಪೂರ್ಣ ಸಾಧನ ನೋಂದಣಿ ಮತ್ತು ಕಾರ್ಯಾಚರಣೆ ಹೊಂದಿಸಿ ಪರೀಕ್ಷಿಸಿ:
 
 ```java
 @SpringBootTest
@@ -1414,7 +1448,7 @@ public class McpServerIntegrationTest {
     
     @Test
     public void testToolDiscovery() throws Exception {
-        // ಡಿಸ್ಕವರಿ ಎಂಡ್‌ಪಾಯಿಂಟ್ ಅನ್ನು ಪರೀಕ್ಷಿಸಿ
+        // ಕಂಡುಹಿಡಿಯುವ ಎಂಡ್‌ಪಾಯಿಂಟ್ ಪರೀಕ್ಷಿಸಿ
         mockMvc.perform(get("/mcp/tools"))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.tools").isArray())
@@ -1425,7 +1459,7 @@ public class McpServerIntegrationTest {
     
     @Test
     public void testToolExecution() throws Exception {
-        // ಉಪಕರಣ ವಿನಂತಿ ಸೃಷ್ಟಿಸಿ
+        // ಉಪಕರಣ ವಿನಂತಿ ರಚಿಸಿ
         Map<String, Object> request = new HashMap<>();
         request.put("toolName", "calculator");
         
@@ -1435,7 +1469,7 @@ public class McpServerIntegrationTest {
         parameters.put("b", 7);
         request.put("parameters", parameters);
         
-        // ವಿನಂತಿ ಕಳುಹಿಸಿ ಮತ್ತು ಪ್ರತಿಕ್ರಿಯೆಯನ್ನು ದೃಢೀಕರಿಸಿ
+        // ವಿನಂತಿಯನ್ನು ಕಳುಹಿಸಿ ಮತ್ತು ಪ್ರತಿಕ್ರಿಯೆಯನ್ನು ಪರಿಶೀಲಿಸಿ
         mockMvc.perform(post("/mcp/execute")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(request)))
@@ -1445,17 +1479,17 @@ public class McpServerIntegrationTest {
     
     @Test
     public void testToolValidation() throws Exception {
-        // ಅಮಾನ್ಯ ಉಪಕರಣ ವಿನಂತಿ ಸೃಷ್ಟಿಸಿ
+        // ಅಮಾನ್ಯ ಉಪಕರಣ ವಿನಂತಿ ರಚಿಸಿ
         Map<String, Object> request = new HashMap<>();
         request.put("toolName", "calculator");
         
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("operation", "divide");
         parameters.put("a", 10);
-        // "b" ಪರಿಮಾಣ ಕೊರತೆ
+        // "b" ಎಂಬ ನಿಯತಾಂಕ ತಪ್ಪಿದೆ
         request.put("parameters", parameters);
         
-        // ವಿನಂತಿ ಕಳುಹಿಸಿ ಮತ್ತು ದೋಷ ಪ್ರತಿಕ್ರಿಯೆಯನ್ನು ದೃಢೀಕರಿಸಿ
+        // ವಿನಂತಿಯನ್ನು ಕಳುಹಿಸಿ ಮತ್ತು ದೋಷ ಪ್ರತಿಕ್ರಿಯೆಯನ್ನು ಪರಿಶೀಲಿಸಿ
         mockMvc.perform(post("/mcp/execute")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(request)))
@@ -1465,17 +1499,18 @@ public class McpServerIntegrationTest {
 }
 ```
 
-#### 3. ಪೂರ್ಣವಿಧಿ ಪರೀಕ್ಷೆ
+#### 3. ಕೊನೆ-ನಂತರ ಪರೀಕ್ಷೆ
 
-ಮಾದರಿ ಪ್ರಾಂಪ್ಟ್‌ನಿಂದ ಸಾಧನ ಜಾರಿಗೊಳಿಸುವಿಕೆ ವರೆಗೆ ಸಂಪೂರ್ಣ ಕಾರ್ಯವಾಹಿಗಳನ್ನು ಪರೀಕ್ಷಿಸಿ:
+ಮಾದರಿ ಪ್ರಾಂಪ್ಟ್‌ನಿಂದ ಸಾಧನ ಕಾರ್ಯಾಚರಣೆ ತನಕ ಪೂರ್ಣ ಕಾರ್ಯಪ್ರವಾಹಗಳನ್ನು ಪರೀಕ್ಷಿಸಿ:
+
 
 ```python
 @pytest.mark.asyncio
 async def test_model_interaction_with_tool():
-    # ಅಳವಡಿಸು - MCP ಕ್ಲೈಂಟ್ ಮತ್ತು ಮೋಕ್ ಮಾದರಿಯನ್ನು ಸೆಟ್‌ಅಪ್ ಮಾಡು
+    # ಏರ್ಪಡಿಸಿ - MCP ಕ್ಲೈಂಟ್ ಮತ್ತು ನಕಲಿ ಮಾದರಿಯನ್ನು ಸೆಟ್ ಮಾಡಿ
     mcp_client = McpClient(server_url="http://localhost:5000")
     
-    # ಮೋಕ್ ಮಾದರಿ ಪ್ರತಿಕ್ರಿಯೆಗಳು
+    # ನಕಲಿ ಮಾದರಿ ಪ್ರತಿಕ್ರಿಯೆಗಳು
     mock_model = MockLanguageModel([
         MockResponse(
             "What's the weather in Seattle?",
@@ -1490,7 +1525,7 @@ async def test_model_interaction_with_tool():
         )
     ])
     
-    # ಮೋಕ್ ಹವಾಮಾನ ಉಪಕರಣ ಪ್ರತಿಕ್ರಿಯೆ
+    # ನಕಲಿ ಹವಾಮಾನ ಉಪಕರಣ ಪ್ರತಿಕ್ರಿಯೆ
     with aioresponses() as mocked:
         mocked.post(
             "http://localhost:5000/mcp/execute",
@@ -1506,14 +1541,14 @@ async def test_model_interaction_with_tool():
             }
         )
         
-        # ಕಾರ್ಯನಿರ್ವಹಿಸು
+        # ಕ್ರಿಯೆ ಮಾಡಿ
         response = await mcp_client.send_prompt(
             "What's the weather in Seattle?",
             model=mock_model,
             allowed_tools=["weatherForecast"]
         )
         
-        # ಖಚಿತಪಡಿಸಿಕೊಳ್ಳು
+        # ಖಚಿತಪಡಿಸಿ
         assert "Seattle" in response.generated_text
         assert "65" in response.generated_text
         assert "Sunny" in response.generated_text
@@ -1522,11 +1557,11 @@ async def test_model_interaction_with_tool():
         assert response.tool_calls[0].tool_name == "weatherForecast"
 ```
 
-### ಕಾರ್ಯಕ್ಷಮತೆ ಪರೀಕ್ಷೆ
+### ಕಾರ್ಯಕ್ಷಮತೆ ಪರೀಕ್ಷಣೆ
 
-#### 1. ಲೋಡ್ ಪರೀಕ್ಷೆ
+#### 1. ಲೋಡ್ ಪರೀಕ್ಷಣೆ
 
-ನಿಮ್ಮ MCP ಸರ್ವರ್ ಎಷ್ಟು ಕ್ಲೈಂಟ್ ವಿನಂತಿಗಳನ್ನು ಸಮಕಾಲೀನವಾಗಿ ನಿಭಾಯಿಸಬಹುದೆಂದು ಪರೀಕ್ಷಿಸಿ:
+ನಿಮ್ಮ MCP ಸರ್ವರ್ ಎಷ್ಟು ಸಮಕಾಲೀನ ವಿನಂತಿಗಳನ್ನು ಕೈಗಾರಿಕೆ ಮಾಡಬಹುದು ಎಂದು ಪರೀಕ್ಷಿಸಿ:
 
 ```csharp
 [Fact]
@@ -1559,9 +1594,9 @@ public async Task McpServer_HandlesHighConcurrency()
 }
 ```
 
-#### 2. ಸ್ಟ್ರೆಸ್ಸ್ ಪರೀಕ್ಷೆ
+#### 2. ಒತ್ತಡ ಪರೀಕ್ಷಣೆ
 
-ಅತ್ಯಧಿಕ ಒತ್ತಡದಡಿ ವ್ಯವಸ್ಥೆಯ ಸಾಮರ್ಥ್ಯವನ್ನು ಪರೀಕ್ಷಿಸಿ:
+ಅತ್ಯುತ್ತಮ ಲೋಡ್ ಅಡಿ ವ್ಯವಸ್ಥೆಯನ್ನು ಪರೀಕ್ಷಿಸಿ:
 
 ```java
 @Test
@@ -1570,13 +1605,13 @@ public void testServerUnderStress() {
     int rampUpTimeSeconds = 60;
     int testDurationSeconds = 300;
     
-    // ಸ್ಟ್ರೆಸ್ ಟೆಸ್ಟಿಂಗ್‌ಗಾಗಿ ಜೆಮೀಟರ್ ಅನ್ನು ಸೆಟ್ ಅಪ್ ಮಾಡಿ
+    // ಒತ್ತಡ ಪರೀಕ್ಷೆಗಾಗಿ JMeter ಅನ್ನು ಸ್ಥಾಪಿಸಿ
     StandardJMeterEngine jmeter = new StandardJMeterEngine();
     
-    // ಜೆಮೀಟರ್ ಟೆಸ್ಟ್ ಪ್ಲಾನ್ ಅನ್ನು ಸಂರಚಿಸಿ
+    // JMeter ಪರೀಕ್ಷಾ ಯೋಜನೆಯನ್ನು ರಚಿಸಿ
     HashTree testPlanTree = new HashTree();
     
-    // ಟೆಸ್ಟ್ ಪ್ಲಾನ್, ಥ್ರೆಡ್ ಗುಂಪು, ಸ್ಯಾಂಪ್ಲರ್‌ಗಳು ಇತ್ಯಾದಿ ರಚಿಸಿ
+    // ಪರೀಕ್ಷಾ ಯೋಜನೆ, ತಂತಿ ಗುಂಪು, ಸ್ಯಾಂಪಲರ್‌ಗಳು ಇತ್ಯಾದಿಗಳನ್ನು ರಚಿಸಿ
     TestPlan testPlan = new TestPlan("MCP Server Stress Test");
     testPlanTree.add(testPlan);
     
@@ -1588,7 +1623,7 @@ public void testServerUnderStress() {
     
     testPlanTree.add(threadGroup);
     
-    // ಉಪಕರಣ ಕಾರ್ಯಗತಗೊಳಿಸಲು HTTP ಸ್ಯಾಂಪ್ಲರ್ ಸೇರಿಸಿ
+    // ಸಾಧನ ಕಾರ್ಯಾಚರಣೆಗೆ HTTP ಸ್ಯಾಂಪಲರ್ ಅನ್ನು ಸೇರಿಸಿ
     HTTPSampler toolExecutionSampler = new HTTPSampler();
     toolExecutionSampler.setDomain("localhost");
     toolExecutionSampler.setPort(5000);
@@ -1599,29 +1634,29 @@ public void testServerUnderStress() {
     
     threadGroup.add(toolExecutionSampler);
     
-    // ಶ್ರೋತೃಗಳನ್ನು ಸೇರಿಸಿ
+    // ಶ್ರೋತೆಗಳನ್ನು ಸೇರಿಸಿ
     SummaryReport summaryReport = new SummaryReport();
     threadGroup.add(summaryReport);
     
-    // ಟೆಸ್ಟ್ ಚಾಲನೆ ಮಾಡಿ
+    // ಪರೀಕ್ಷೆ ನಡೆಸಿ
     jmeter.configure(testPlanTree);
     jmeter.run();
     
-    // ಫಲಿತಾಂಶಗಳನ್ನು ಮಾನ್ಯಗೊಳಿಸಿ
+    // ಫಲಿತಾಂಶಗಳನ್ನು ಪರಿಶೀಲಿಸಿ
     assertEquals(0, summaryReport.getErrorCount());
     assertTrue(summaryReport.getAverage() < 200); // ಸರಾಸರಿ ಪ್ರತಿಕ್ರಿಯೆ ಸಮಯ < 200ms
-    assertTrue(summaryReport.getPercentile(90.0) < 500); // 90ನೇ ಶೇಕಡಾವಾರು < 500ms
+    assertTrue(summaryReport.getPercentile(90.0) < 500); // 90ನೇ ಶತಮಾನ < 500ms
 }
 ```
 
-#### 3. ಮೇಲ್ವಿಚಾರಣೆ ಮತ್ತು ಪ್ರೊಫೈಲಿಂಗ್
+#### 3. ನಿರೀಕ್ಷಣೆ ಮತ್ತು ಪ್ರೊಫೈಲಿಂಗ್
 
-ದೀರ್ಘಕಾಲದ ಕಾರ್ಯಕ್ಷಮತೆ ವಿಶ್ಲೇಷಣೆಗೆ ಮೇಲ್ವಿಚಾರಣೆಯನ್ನು ಸ್ಥಾಪಿಸಿ:
+ದೀರ್ಘಾವಧಿ ಕಾರ್ಯಕ್ಷಮತೆ ವಿಶ್ಲೇಷಣೆಗೆ ನಿರೀಕ್ಷಣೆಯನ್ನು ಸ್ಥಾಪಿಸಿ:
 
 ```python
-# MCP ಸರ್ವರ್‌ಗಾಗಿ ಮಾನಿಟರಿಂಗ್ ಅನ್ನು ಸಂರಚಿಸಿ
+# MCP ಸರ್ವರ್‌ನಿಗೆ ಮಾನಿಟರಿಂಗ್ ಆವ್ಯವಸ್ಥೆಯನ್ನೂ ಮಾಡು
 def configure_monitoring(server):
-    # ಪ್ರೊಮೆಥಿಯಸ್ ಮೆಟ್ರಿಕ್ಸ್‌ಗಳನ್ನು ಸೆಟ್ ಅಪ್ ಮಾಡಿ
+    # ಪ್ರೊಮೀತಿಯಸ್ ಮೌಲ್ಯಗಳನ್ನು ಸೆಟ್ ಮಾಡು
     prometheus_metrics = {
         "request_count": Counter("mcp_requests_total", "Total MCP requests"),
         "request_latency": Histogram(
@@ -1647,10 +1682,10 @@ def configure_monitoring(server):
         )
     }
     
-    # ಸಮಯಮಾಪನ ಮತ್ತು ಮೆಟ್ರಿಕ್ಸ್ ರೆಕಾರ್ಡಿಂಗ್‌ಗೆ ಮಧ್ಯವರ್ತಿ ಅನ್ನು ಸೇರಿಸಿ
+    # ಸಮಯ ಮಾಪನ ಮತ್ತು ದಾಖಲೆ ತರಲು ಮಧ್ಯಮಧಾನಿಗಳನ್ನು ಸೇರಿಸು
     server.add_middleware(PrometheusMiddleware(prometheus_metrics))
     
-    # ಮೆಟ್ರಿಕ್ಸ್ ಎಂಡ್ಪಾಯಿಂಟ್ ಅನ್ನು ಪ್ರಾರಂಭಿಸಿ
+    # ಮೌಲ್ಯಗಳು ಎಂಡ್‌ಪಾಯಿಂಟ್ ಅನ್ನು ಬಾಹ್ಯಗೊಳಿಸು
     @server.router.get("/metrics")
     async def metrics():
         return generate_latest()
@@ -1658,29 +1693,29 @@ def configure_monitoring(server):
     return server
 ```
 
-## MCP ಕಾರ್ಯವಾಹಿ ವಿನ್ಯಾಸ ಮಾದರಿಗಳು
+## MCP ವರ್ಕ್ಫ್ಲೋ ವಿನ್ಯಾಸ ಮಾದರಿಗಳು
 
-ಚಿಕ್ಕ-ಚಿಕ್ಕವಾಗಿ ವಿನ್ಯಾಸಗೊಳಿಸಿದ MCP ಕಾರ್ಯವಾಹಿಗಳು ಕಾರ್ಯಕ್ಷಮತೆ, ಸ್ಥಿರತೆ ಮತ್ತು ನಿರ್ವಹಣಾತ್ಮಕತೆಯನ್ನು ಸುಧಾರಿಸುತ್ತವೆ. ಪಾಲನೆಯ ಪ್ರಮುಖ ಮಾದರಿಗಳು ಇಲ್ಲಿವೆ:
+ಚೆನ್ನಾಗಿ ವಿನ್ಯಾಸಗೊಳಿಸಿದ MCP ವರ್ಕ್ಫ್ಲೋಗಳು ಕಾರ್ಯಕ್ಷಮತೆ, ನಂಬಿಕೆಯಾಗುವಿಕೆ ಮತ್ತು ನಿರ್ವಹಣೀಯತೆಯನ್ನು ಸುಧಾರಿಸಬರುತ್ತವೆ. ಅನುಸರಿಸಲು ಪ್ರಮುಖ ಮಾದರಿಗಳು ಇಲ್ಲಿವೆ:
 
-### 1. ಸಾಧನ ಸರಪಳಿ ಮಾದರಿ
+### 1. ಟೂಲ್ ಸರಪಳಿ ಮಾದರಿ
 
-ಪ್ರತಿ ಸಾಧನದ ಔಟ್‌ಪುಟ್ ಮುಂದಿನ ಸಾಧನದ ಇನ್ಪುಟ್ ಆಗುವ ಕ್ರಮಬದ್ಧ ಸರಣಿಯನ್ನು ಸಂಪರ್ಕಿಸಿ:
+ಪ್ರತಿ ಟೂಲಿನ ಔಟ್ಪುಟ್ ಮುಂದಿನ ಟೂಲಿನ ಇನ್ಪುಟ್ ಆಗಿರುವ ಸರಣಿಯಲ್ಲಿ ಹಲವಾರು ಟೂಲಗಳನ್ನು ಜೋಡಿಸಿ:
 
 ```python
-# ಪೈಥಾನ್ ಚೈನ್ ಆಫ್ ಟೂಲ್‌ಗಳ ಜಾರಿಗೊಳಿಸುವಿಕೆ
+# ಪೈಥಾನ್ ಟೂಲ್ಸ್ ಸರ سلسلة ಅನುಷ್ಠಾನ
 class ChainWorkflow:
     def __init__(self, tools_chain):
-        self.tools_chain = tools_chain  # ಕ್ರಮವಾಗಿ ನಿರ್ವಹಿಸಲು ಟೂಲ್ ಹೆಸರುಗಳ ಪಟ್ಟಿ
+        self.tools_chain = tools_chain  # ಕ್ರಮವಾಗಿ ಕಾರ್ಯಗತಗೊಳಿಸಲು ಟೂಲಿನ ಹೆಸರುಗಳ ಪಟ್ಟಿ
     
     async def execute(self, mcp_client, initial_input):
         current_result = initial_input
         all_results = {"input": initial_input}
         
         for tool_name in self.tools_chain:
-            # ಚೈನ್‌ನಲ್ಲಿ ಪ್ರತಿ ಟೂಲ್ ಅನ್ನು ನಡೆಸಿ, ಹಿಂದಿನ ಫಲಿತಾಂಶವನ್ನು ಪಾಸು ಮಾಡುವುದು
+            # ಸರ سلسلةಯಲ್ಲಿನ ಪ್ರತಿ ಟೂಲನ್ನು ಕಾರ್ಯಗತಗೊಳಿಸಿ, ಹಿಂದಿನ ಫಲಿತಾಂಶವನ್ನು ಪಾಸ್ ಮಾಡಿ
             response = await mcp_client.execute_tool(tool_name, current_result)
             
-            # ಫಲಿತಾಂಶವನ್ನು ಸಂಗ್ರಹಿಸಿ, ಮುಂದಿನ ಟೂಲ್ಗೆ ಇನ್ಪುಟ್ ಆಗಿ ಉಪಯೋಗಿಸಿ
+            # ಫಲಿತಾಂಶವನ್ನು ಸಂಗ್ರಹಿಸಿ ಮತ್ತು ಮುಂದಿನ ಟೂಲಿಗೆ ಇನ್ಪುಟ್ ಆಗಿ ಬಳಸಿರಿ
             all_results[tool_name] = response.result
             current_result = response.result
         
@@ -1689,7 +1724,7 @@ class ChainWorkflow:
             "all_results": all_results
         }
 
-# ಉದಾಹರಣೆಯ ಬಳಕೆ
+# ಉದಾಹರಣೆಯ ಉಪಯೋಗ
 data_processing_chain = ChainWorkflow([
     "dataFetch",
     "dataCleaner",
@@ -1705,7 +1740,7 @@ result = await data_processing_chain.execute(
 
 ### 2. ಡಿಸ್ಪ್ಯಾಚರ್ ಮಾದರಿ
 
-ಇನ್ಪುಟ್ನ ಆಧಾರದ ಮೇಲೆ ವಿಶೇಷ ಸಾಧನಗಳಿಗೆ ನಿಯೋಜಿಸುವ ಕೇಂದ್ರ ಸಾಧನವನ್ನು ಬಳಸಿ:
+ಇನ್ಪುಟ್ ಆಧಾರವಾಗಿ ವಿಶೇಷ ಟೂಲ್ಗಳಿಗೆ ಕಳುಹಿಸುವ ಕೇಂದ್ರಿಕೃತ ಟೂಲನ್ನು ಉಪಯೋಗಿಸಿ:
 
 ```csharp
 public class ContentDispatcherTool : IMcpTool
@@ -1785,9 +1820,9 @@ public class ContentDispatcherTool : IMcpTool
 }
 ```
 
-### 3. ಸಮಪಾಲು ಪ್ರಕ್ರಿಯೆ ಮಾದರಿ
+### 3. ಸಮಾಂತರ ಪ್ರಕ್ರಿಯೆ ಮಾದರಿ
 
-ಕಾರ್ಯಕ್ಷಮತೆಗಾಗಿ ಬಹುಸಾಧನಗಳನ್ನು ಒಂದೇ ಸಮಯದಲ್ಲಿ ಜಾರಿಗೊಳಿಸಿ:
+ಕಾರ್ಯಕ್ಷಮತೆಯಿಗಾಗಿ ಹಲವಾರು ಟೂಲ್ಗಳನ್ನು ಸಮಕಾಲೀನವಾಗಿ ಕಾರ್ಯಗತಗೊಳಿಸಿ:
 
 ```java
 public class ParallelDataProcessingWorkflow {
@@ -1798,11 +1833,11 @@ public class ParallelDataProcessingWorkflow {
     }
     
     public WorkflowResult execute(String datasetId) {
-        // ಹಂತ 1: ಡೇಟಾಸೆಟ್ ಮೆಟಾಡೇಟಾ ಪಡೆಯಿರಿ (ಸಿಂಕ್ರೋನಸ್)
+        // ಹಂತ 1: ಡೇಟಾಸೆಟ್ ಮೆಟಾ ಡೇಟಾ (ಸಿಂಕ್ರೊನಸ್) ಪಡೆಯಿರಿ
         ToolResponse metadataResponse = mcpClient.executeTool("datasetMetadata", 
             Map.of("datasetId", datasetId));
         
-        // ಹಂತ 2: ಬಹು ವಿಶ್ಲೇಷಣೆಗಳನ್ನು ಸಮಾನಾಂತರವಾಗಿ ಪ್ರಾರಂಭಿಸಿ
+        // ಹಂತ 2: ಹಲವಾರು ವಿಶ್ಲೇಷಣೆಗಳನ್ನು ಸಮಾಂತರವಾಗಿ ಪ್ರಾರಂಭಿಸಿ
         CompletableFuture<ToolResponse> statisticalAnalysis = CompletableFuture.supplyAsync(() ->
             mcpClient.executeTool("statisticalAnalysis", Map.of(
                 "datasetId", datasetId,
@@ -1824,12 +1859,12 @@ public class ParallelDataProcessingWorkflow {
             ))
         );
         
-        // ಎಲ್ಲಾ ಸಮಾನಾಂತರ ಕಾರ್ಯಗಳು ಪೂರ್ಣಗೊಳ್ಳುವವರೆಗೂ ಕಾಯಿರಿ
+        // ಎಲ್ಲಾ ಸಮಾಂತರ ಕೆಲಸಗಳು ಪೂರ್ಣಗೊಳ್ಳುವವರೆಗೆ ಕಾಯಿರಿ
         CompletableFuture<Void> allAnalyses = CompletableFuture.allOf(
             statisticalAnalysis, correlationAnalysis, outlierDetection
         );
         
-        allAnalyses.join();  // ಪೂರ್ಣಗೊಂಡ ಹಿನ್ನೆಲೆಯಲ್ಲಿ ಕಾಯಿರಿ
+        allAnalyses.join();  // ಪೂರ್ಣಗೊಳ್ಳುವವರೆಗೆ ಕಾಯಿರಿ
         
         // ಹಂತ 3: ಫಲಿತಾಂಶಗಳನ್ನು ಸಂಯೋಜಿಸಿ
         Map<String, Object> combinedResults = new HashMap<>();
@@ -1838,7 +1873,7 @@ public class ParallelDataProcessingWorkflow {
         combinedResults.put("correlations", correlationAnalysis.join().getResult());
         combinedResults.put("outliers", outlierDetection.join().getResult());
         
-        // ಹಂತ 4: ಸಂಕ್ಷಿಪ್ತ ವರದಿಯನ್ನು ರಚಿಸಿ
+        // ಹಂತ 4: ಸಾರಾಂಶ ವರದಿಯನ್ನು ರಚಿಸಿ
         ToolResponse summaryResponse = mcpClient.executeTool("reportGenerator", 
             Map.of("analysisResults", combinedResults));
         
@@ -1853,9 +1888,9 @@ public class ParallelDataProcessingWorkflow {
 }
 ```
 
-### 4. ದೋಷ ಪುನರುದ್ಧಾರ ಮಾದರಿ
+### 4. ದೋಷ ಚೇತರಿಕೆ ಮಾದರಿ
 
-ಸಾಧನ ವೈಫಲ್ಯಕ್ಕೆ ಶ್ರೇಯೋಭಿವೃದ್ಧಿ ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ಜಾರಿಗೊಳಿಸಿ:
+ಟೂಲ್ಗಳ ವಿಫಲತೆಗಳಿಗೆ ಸೌಮ್ಯ ಫಾಲ್ಬ್ಯಾಕ್‌ಗಳನ್ನು ಅನುಷ್ಠಾನಗೊಳಿಸಿ:
 
 ```python
 class ResilientWorkflow:
@@ -1864,7 +1899,7 @@ class ResilientWorkflow:
     
     async def execute_with_fallback(self, primary_tool, fallback_tool, parameters):
         try:
-            # ಮೊದಲು ಪ್ರಾಥಮಿಕ ಸಾಧನವನ್ನು ಪ್ರಯತ್ನಿಸಿ
+            # ಮೊದಲನೆಯ ಸಲಕರಣೆ ಪ್ರಯತ್ನಿಸಿ
             response = await self.client.execute_tool(primary_tool, parameters)
             return {
                 "result": response.result,
@@ -1872,12 +1907,12 @@ class ResilientWorkflow:
                 "tool": primary_tool
             }
         except ToolExecutionException as e:
-            # ವೈಫಲ್ಯವನ್ನು ಲಾಗ್ ಮಾಡಿ
+            # ವಿಫಲತೆಯನ್ನು ದಾಖಲೆಮಾಡಿ
             logging.warning(f"Primary tool '{primary_tool}' failed: {str(e)}")
             
-            # ದ್ವಿತೀಯ ಸಾಧನಕ್ಕೆ ಮರಳಿ ಬನ್ನಿ
+            # ದ್ವಿತೀಯ ಸಲಕರಣೆಗೆ ಬದಲಾಯಿಸಿ
             try:
-                # ಮರಳಿ ಬರುವ ಸಾಧನಕ್ಕಾಗಿ ನಿಯಮಗಳನ್ನು ಪರಿವರ್ತನೆ ಮಾಡಲು ಅವಶ್ಯಕತೆ ಇರಬಹುದು
+                # ಬದಲಾಯಿಸುವ ಸಲಕರಣೆಗೆ ಪರಿಮಾಣಗಳನ್ನು ಪರಿವರ್ತಿಸುವ ಅಗತ್ಯವಿರಬಹುದು
                 fallback_params = self._adapt_parameters(parameters, primary_tool, fallback_tool)
                 
                 response = await self.client.execute_tool(fallback_tool, fallback_params)
@@ -1888,7 +1923,7 @@ class ResilientWorkflow:
                     "primaryError": str(e)
                 }
             except ToolExecutionException as fallback_error:
-                # ಎರಡೂ ಸಾಧನಗಳು ವಿಫಲವಾದವು
+                # ಎರಡೂ ಸಲಕರಣೆಗಳು ವಿಫಲವಾಯಿತು
                 logging.error(f"Both primary and fallback tools failed. Fallback error: {str(fallback_error)}")
                 raise WorkflowExecutionException(
                     f"Workflow failed: primary error: {str(e)}; fallback error: {str(fallback_error)}"
@@ -1896,22 +1931,22 @@ class ResilientWorkflow:
     
     def _adapt_parameters(self, params, from_tool, to_tool):
         """Adapt parameters between different tools if needed"""
-        # ಈ ಅನುಷ್ಠಾನವು ನಿರ್ದಿಷ್ಟ ಸಾಧನಗಳ ಮೇಲೆ ಅವಲಂಬಿತವಾಗಿರುತ್ತದೆ
-        # ಈ ಉದಾಹರಣೆಗೆ, ನಾವು ಮೂಲ ನಿಯಮಗಳನ್ನು ಹಿಂದಿರುಗಿಸುತ್ತೇವೆ
+        # ಈ ಜಾರಿಗೋಷ್ಠಿ ನಿರ್ದಿಷ್ಟ ಸಲಕರಣೆಗಳ ಮೇಲೆ ಅವಲಂಬಿತವಾಗಿರುತ್ತದೆ
+        # ಈ ಉದಾಹರಣೆಗೆ, ನಾವು ಮೂಲ ಪರಿಮಾಣಗಳನ್ನು ಮಾತ್ರ ಹಿಂದಿರುಗಿಸುವೆವು
         return params
 
 # ಉದಾಹರಣೆಯ ಬಳಕೆ
 async def get_weather(workflow, location):
     return await workflow.execute_with_fallback(
-        "premiumWeatherService",  # ಪ್ರಾಥಮಿಕ (ಪಾವತಿಸಿದ) ಹವಾಮಾನ API
-        "basicWeatherService",    # ಮರಳಿ ಬರುವ ( ಉಚಿತ) ಹವಾಮಾನ API
+        "premiumWeatherService",  # ಪ್ರಾಥಮಿಕ (ಪಾವತಿಸಲಾದ) ಹವಾಮಾನ API
+        "basicWeatherService",    # ಬ್ಯಾಕ್‌ಅಪ್ (ಉಚಿತ) ಹವಾಮಾನ API
         {"location": location}
     )
 ```
 
-### 5. ಕಾರ್ಯವಾಹಿ ಸಂಯೋಜನೆ ಮಾದರಿ
+### 5. ವರ್ಕ್ಫ್ಲೋ ರಚನೆ ಮಾದರಿ
 
-ಸರಳ ಕಾರ್ಯವಾಹಿಗಳನ್ನು ಸಂಯೋಜಿಸುವ ಮೂಲಕ ಸಂಕೀರ್ಣ ಕಾರ್ಯವಾಹಿಗಳನ್ನು ರಚಿಸಿ:
+ಸರಳದಾಗಿರುವ ವರ್ಕ್ಫ್ಲೋಗಳನ್ನು ಸಂಯೋಜಿಸುವ ಮೂಲಕ ಸಂಕೀರ್ಣ ವರ್ಕ್ಫ್ಲೋಗಳನ್ನು ನಿರ್ಮಿಸಿ:
 
 ```csharp
 public class CompositeWorkflow : IWorkflow
@@ -1958,37 +1993,37 @@ var result = await documentWorkflow.ExecuteAsync(new WorkflowContext {
 });
 ```
 
-# MCP ಸರ್ವರ್‌ಗಳ ಪರೀಕ್ಷೆ: ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು ಮತ್ತು ಪ್ರಮುಖ ಸಲಹೆಗಳು
+# MCP ಸರ್ವರ್‌ಗಳನ್ನು ಪರೀಕ್ಷಿಸುವುದು: ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು ಮತ್ತು ಪ್ರಮುಖ ಸಲಹೆಗಳು
 
 ## ಅವಲೋಕನ
 
-ಪರೀಕ್ಷೆ MCP ಸರ್ವರ್‌ಗಳ ಉಳಿವು, ಉನ್ನತ ಗುಣಮಟ್ಟದ ಅಭಿವೃದ್ಧಿಯಲ್ಲಿ ಮುಖ್ಯಭಾಗ ವಹಿಸುತ್ತದೆ. ಈ ಮಾರ್ಗದರ್ಶಿಯಲ್ಲಿ ಘಟಕ ಪರೀಕ್ಷೆಯಿಂದ ಇಂಟಿಗ್ರೇಶನ್ ಮತ್ತು ಪೂರ್ಣವಿಧಿ ಪರಿಶೀಲನೆಗಳವರೆಗೆ ನಿಮ್ಮ MCP ಸರ್ವರ್‌ಗಳ ಅಭಿವೃದ್ಧಿ ಜೀವನಚರ್ಯೆದಲ್ಲಿ ವಿಸ್ತೃತ ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು ಮತ್ತು ಸಲಹೆಗಳು ನೀಡಲಾಗಿದೆ.
+ಪರೀಕ್ಷಣೆ ನಂಬಿಕೊಳ್ಳಬಹುದಾದ, ಉನ್ನತ ಗುಣಮಟ್ಟದ MCP ಸರ್ವರ್‌ಗಳನ್ನು ಅಭಿವೃದ್ಧಿಪಡಿಸುವ ಪ್ರಮುಖ ಅಂಶವಾಗಿದೆ. ಈ ಗೈಡ್ ನಿಮ್ಮ MCP ಸರ್ವರ್‌ಗಳನ್ನು ಅಭಿವೃದ್ಧಿ ಚಕ್ರದಲ್ಲಿ, ಯುನಿಟ್ ಪರೀಕ್ಷೆಗಳಿಂದ ಒಂದಿಗುಮ್ಮಲು ಪರೀಕ್ಷೆಗಳು ಮತ್ತು ಅಂತ್ಯದಿಂದ ಅಂತ್ಯ ಪರಿಶೀಲನೆಗಳವರೆಗೆ ಸಂಪೂರ್ಣ ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು ಮತ್ತು ಸಲಹೆಗಳನ್ನು ಒದಗಿಸುತ್ತದೆ.
 
-## ಯಾಕೆ MCP ಸರ್ವರ್‌ಗಳ ಪರೀಕ್ಷೆ ಮುಖ್ಯ?
+## MCP ಸರ್ವರ್‌ಗಳಿಗೆ ಪರೀಕ್ಷೆಯ ಪ್ರಾಮುಖ್ಯತೆ
 
-MCP ಸರ್ವರ್‌ಗಳು AI ಮಾದರಿಗಳ ಮತ್ತು ಗ್ರಾಹಕ ಅನ್ವಯಿಕೆಗಳ ನಡುವಣ ಮುಖ್ಯ ಮಧ್ಯಮ ಸ್ಥಿತಿಸ್ಥಾಪಕವಾಗಿವೆ. ಸಮಗ್ರ ಪರೀಕ್ಷೆಯು ಕಾಣಿಸುತ್ತದೆ:
+MCP ಸರ್ವರ್‌ಗಳು AI ಮಾದರಿಗಳು ಮತ್ತು ಗ್ರಾಹಕ ಅಪ್ಲಿಕೇಶನ್‌ಗಳ ನಡುವೆ ಮಹತ್ತರ ಮಧ್ಯಸ್ಥ ಸೇವೆಗಳಾಗಿ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತವೆ. ಸಂಪೂರ್ಣ ಪರೀಕ್ಷೆ ಖಚಿತಪಡಿಸುತ್ತದೆ:
 
-- ಉತ್ಪಾ ದನಾ ಪರಿಸರದಲ್ಲಿ ವಿಶ್ವಸನೀಯತೆ
-- ವಿನಂತಿಗಳು ಮತ್ತು ಪ್ರತಿಕ್ರಿಯೆಗಳ ನಿಖರ ನಿರ್ವಹಣೆ
-- MCP ವಿಶೇಷಣಗಳ ಸರಿಯಾದ ಜಾರಿಗೊಳಿಸುವಿಕೆ
-- ವೈಫಲ್ಯಗಳು ಮತ್ತು ಅಂಚು ಪ್ರಕರಣಗಳ ವಿರುದ್ಧ ಪ್ರತಿರೋಧ
-- ವಿವಿಧ ಒತ್ತಡದಡಿಯಲ್ಲಿ ಸಮನ್ವಿತ ಕಾರ್ಯಾಗಾರ
+- ಉತ್ಪಾದನಾ ಪರಿಸರಗಳಲ್ಲಿ ನಂಬಿಕೆಯುತತೆ
+- ವಿನಂತಿಗಳು ಮತ್ತು ಪ್ರತಿಕ್ರಿಯೆಗಳ ನಿಖರ ಸ್ವಾರಸ್ಯ
+- MCP ವಿನ್ಯಾಸ ನಿರ್ದೇಶಗಳ ಸರಿಯಾದ ಅನುಷ್ಠಾನ
+- ವೈಫಲ್ಯಗಳು ಮತ್ತು ಅಡ್ಡಮುಖ ಪ್ರಕರಣಗಳಿಗೆ ಪ್ರತಿರೋಧಕತೆ
+- ವಿಭಿನ್ನ ಲೋಡ್‌ಗಳ ಅಡಿಯಲ್ಲಿ ಸ್ಥಿರ ಕಾರ್ಯಕ್ಷಮತೆ
 
-## MCP ಸರ್ವರ್‌ಗಳಿಗೆ ಘಟಕ ಪರೀಕ್ಷೆ
+## MCP ಸರ್ವರ್‌ಗಳಿಗಾಗಿ ಯುನಿಟ್ ಪರೀಕ್ಷೆ
 
-### ಘಟಕ ಪರೀಕ್ಷೆ (ಆಧಾರ)
+### ಯುನಿಟ್ ಪರೀಕ್ಷೆ (ಮೂಲ)
 
-ಘಟಕ ಪರೀಕ್ಷೆಗಳು ನಿಮ್ಮ MCP ಸರ್ವರ್‌ನ ಪ್ರತ್ಯೇಕ ಘಟಕಗಳನ್ನು ಪ್ರತ್ಯೇಕವಾಗಿ ಪರಿಶೀಲಿಸುತ್ತವೆ.
+ಯುನಿಟ್ ಪರೀಕ್ಷೆಗಳು ನಿಮ್ಮ MCP ಸರ್ವರ್‌ನ ಪ್ರತ್ಯೇಕ ಘಟಕಗಳನ್ನು ಪ್ರತ್ಯೇಕವಾಗಿ ಪರಿಶೀಲಿಸುತ್ತವೆ.
 
-#### ಏನನ್ನು ಪರೀಕ್ಷಿಸಬೇಕು
+#### ಏನನ್ನು ಪರೀಕ್ಷಿಸುವುದು
 
-1. **ಸಂಪನ್ಮೂಲ ಹ್ಯಾಂಡ್ಲರ್‌ಗಳು**: ಪ್ರತಿ ಸಂಪನ್ಮೂಲ ಹ್ಯಾಂಡ್ಲರ್ ಲಾಜಿಕ್ನ ಸ್ವತಂತ್ರ ಪರೀಕ್ಷೆ
-2. **ಸಾಧನ ಜಾರಿಗೊಳಿಸುವಿಕೆಗಳು**: ವಿಭಿನ್ನ ಇನ್ಪುಟ್‌ಗಳೊಂದಿಗೆ ಸಾಧನ ವರ್ತನೆಯನ್ನು ಪರಿಶೀಲಿಸಿ
-3. **ಪ್ರಾಂಪ್ಟ್ ಟೆಂಪ್ಲೇಟುಗಳು**: ಪ್ರಾಂಪ್ಟ್ ಟೆಂಪ್ಲೇಟುಗಳು ಸರಿಯಾಗಿ ರೆಂಡರ್ ಆಗುತ್ತಿವೆಯೇ ಎಂದು ಖಚಿತಪಡಿಸಿ
-4. **ರೂಪರೇಖೆ ಮಾನ್ಯತೆ**: ಪರಿಮಿತಿ ಮಾನ್ಯತಾ ಲಾಜಿಕ್ನ ಪರೀಕ್ಷೆ
-5. **ದೋಷ ನಿರ್ವಹಣೆ**: ಅಮಾನ್ಯ ಇನ್ಪುಟ್‌ಗೆ ದೋಷ ಪ್ರತಿಕ್ರಿಯೆಯನ್ನು ಪರಿಶೀಲಿಸಿ
+1. **ಸಂಪನ್ಮೂಲ ಹ್ಯಾಂಡ್ಲರ್‌ಗಳು**: ಪ್ರತಿಯೊಂದು ಸಂಪನ್ಮೂಲ ಹ್ಯಾಂಡ್ಲರ್ ಲಾಜಿಕ್ ಅನ್ನು ಸ್ವತಂತ್ರವಾಗಿ ಪರೀಕ್ಷಿಸಿ
+2. **ಟೂಲ್ ಅನುಷ್ಠಾನಗಳು**: ವಿವಿಧ ಇನ್ಪುಟ್‌ಗಳೊಂದಿಗೆ ಟೂಲಿನ ತಂತ್ರವನ್ನು ಪರಿಶೀಲಿಸಿ
+3. **ಪ್ರಾಂಪ್ಟ್ ಟೆಂಪ್ಲೇಟುಗಳು**: ಪ್ರಾಂಪ್ಟ್ ಟೆಂಪ್ಲೇಟುಗಳು ಸರಿಯಾಗಿ ರೆಂಡರ್ ಆಗುತ್ತವೆಯೇ ಎಂದು ಖಚಿತಪಡಿಸಿ
+4. **ಸ್ಕೀಮಾ ಮಾನ್ಯತೆ**: ಪರಿಮಾಣ ಮಾನ್ಯತೆ ಲಾಜಿಕ್ ಅನ್ನು ಪರೀಕ್ಷಿಸಿ
+5. **ದೋಷ ನಿರ್ವಹಣೆ**: ಅಮಾನ್ಯ ಇನ್ಪುಟ್‌ಗಳಿಗೆ ದೋಷ ಪ್ರತಿಕ್ರಿಯೆಗಳು ಸರಿಯಾಗುತ್ತವೆಯೇ ಎಂದು ಪರಿಶೀಲಿಸಿ
 
-#### ಘಟಕ ಪರೀಕ್ಷೆಗೆ ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು
+#### ಯುನಿಟ್ ಪರೀಕ್ಷೆಯ ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು
 
 ```csharp
 // Example unit test for a calculator tool in C#
@@ -2014,7 +2049,7 @@ public async Task CalculatorTool_Add_ReturnsCorrectSum()
 ```
 
 ```python
-# ಪೈಥಾನ್‌ನಲ್ಲಿ ಕ್ಯಾಲ್ಕ್ಯುಲೇಟರ್ ಉಪಕರಣಕ್ಕೆ ಉದಾಹರಣೆ ಘಟಕ ಪರೀಕ್ಷೆ
+# ಪೈಥಾನ್‌ನಲ್ಲಿ ಕ್ಯಾಲ್ಕುಲೇಟರ್ ಸಾಧನದ ಉದಾಹರಣೆಯಾಗಿ ಯುನಿಟ್ ಪರೀಕ್ಷೆ
 def test_calculator_tool_add():
     # ವ್ಯವಸ್ಥೆ ಮಾಡು
     calculator = CalculatorTool()
@@ -2024,27 +2059,27 @@ def test_calculator_tool_add():
         "b": 7
     }
     
-    # ಕ್ರಮ ಕೈಗೊಳ್ಳು
+    # ಕಾರ್ಯಗತಗೊಳಿಸು
     response = calculator.execute(parameters)
     result = json.loads(response.content[0].text)
     
-    # ಖಚಿತಪಡಿಸಿಕೊಳ್ಳು
+    # ದೃಢೀಕರಿಸು
     assert result["value"] == 12
 ```
 
-### ಸಂಯೋಜನೆ ಪರೀಕ್ಷೆ (ಮಧ್ಯಮ ಪದವಿ)
+### ಸಂಯೋಜನೆ ಪರೀಕ್ಷೆ (ಮಧ್ಯಮ ಪದರ)
 
-ಸಂಯೋಜನೆ ಪರೀಕ್ಷೆಗಳು MCP ಸರ್ವರ್‌ನ ಘಟಕಗಳ ನಡುವೆ ಸಂವಾದಗಳನ್ನು ಪರಿಶೀಲಿಸುತ್ತವೆ.
+ಸಂಯೋಜನೆ ಪರೀಕ್ಷೆಗಳು ನಿಮ್ಮ MCP ಸರ್ವರ್‌ನ ಘಟಕಗಳ ನಡುವಿನ ಪರಸ್ಪರ ಕ್ರಿಯೆಯನ್ನು ಪರಿಶೀಲಿಸುತ್ತವೆ.
 
-#### ಏನನ್ನು ಪರೀಕ್ಷಿಸಬೇಕು
+#### ಏನನ್ನು ಪರೀಕ್ಷಿಸುವುದು
 
-1. **ಸರ್ವರ್ ಆರಂಭ**: ವಿಭಿನ್ನ ಸಂರಚನೆಗಳೊಂದಿಗೆ ಸರ್ವರ್ ಪ್ರಾರಂಭವನ್ನು ಪರೀಕ್ಷಿಸಿ
-2. **ರూట್ ನೋಂದಣಿ**: ಎಲ್ಲ ಅಂತಿಮ ಬಿಂದುಗಳು ಸರಿಯಾಗಿ ನೋಂದಾಯಿಸಲಾಗಿದೆ ಎಂದು ಪರಿಶೀಲಿಸಿ
-3. **ವಿನಂತಿ ಪ್ರಕ್ರಿಯೆ**: ಸಂಪೂರ್ಣ ವಿನಂತಿ-ಪ್ರತಿಕ್ರಿಯೆ ಚಕ್ರವನ್ನು ಪರೀಕ್ಷಿಸಿ
-4. **ದೋಷ ಪ್ರಸರಣ**: ಘಟಕಗಳ ನಡುವೆ ದೋಷಗಳು ಹೇಗೆ ನಿರ್ವಹಿಸಲ್ಪಡುತ್ತವೆಯೋ ಖಚಿತಪಡಿಸಿ
-5. **ಪ್ರಮಾಣೀಕರಣ ಮತ್ತು ಅನುಮತಿ**: ಭದ್ರತಾ ಕ್ರಿಯಾವಳಿಗಳನ್ನು ಪರೀಕ್ಷಿಸಿ
+1. **ಸರ್ವರ್ ಆರಂಭಿಕೆ**: ವಿವಿಧ ಸಂರಚನೆಗಳೊಂದಿಗೆ ಸರ್ವರ್ ಆರಂಭಿಕೆಯನ್ನು ಪರೀಕ್ಷಿಸಿ
+2. **ರೂಟು ನೋಂದಣಿ**: ಎಲ್ಲಾ ಎಂಡ್ಪಾಯಿಂಟ್‌ಗಳು ಸರಿಯಾಗಿ ನೋಂದಾಯಿತವಾಗಿದೆಯೇ ಎಂದು ಪರಿಶೀಲಿಸಿ
+3. **ವಿನಂತಿ ಪ್ರಕ್ರಿಯೆ**: ಪೂರ್ಣ ವಿನಂತಿ-ಪ್ರತಿಕ್ರಿಯೆ ಚಕ್ರವನ್ನು ಪರೀಕ್ಷಿಸಿ
+4. **ದೋಷ ಹರಡುವಿಕೆ**: ಘಟಕಗಳಲ್ಲಿ ದೋಷಗಳು ಸರಿಯಾಗಿ ನಿರ್ವಹಿಸಲ್ಪಡುತ್ತವೆಯೇ ಎಂದು ಖಚಿತಪಡಿಸಿ
+5. **ಪ್ರಮಾಣೀಕರಣ ಮತ್ತು ಅಧಿಕಾರ**: ಭದ್ರತಾ ವ್ಯವಸ್ಥೆಗಳನ್ನು ಪರೀಕ್ಷಿಸಿ
 
-#### ಸಂಯೋಜನೆ ಪರೀಕ್ಷೆಗೆ ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು
+#### ಸಂಯೋಜನೆ ಪರೀಕ್ಷೆಯ ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು
 
 ```csharp
 // Example integration test for MCP server in C#
@@ -2080,27 +2115,28 @@ public async Task Server_ProcessToolRequest_ReturnsValidResponse()
 }
 ```
 
-### ಪೂರ್ಣವಿಧಿ ಪರೀಕ್ಷೆ (ಎತ್ತರದ ಪದವಿ)
+### ಅಂತ್ಯದಿಂದ ಅಂತ್ಯ ಪರೀಕ್ಷೆ (ಉತ್ತರ ಶ್ರೇಣಿ)
 
-ಪೂರ್ಣವಿಧಿ ಪರೀಕ್ಷೆಗಳು ಗ್ರಾಹಕದಿಂದ ಸರ್ವರ್‌ಗೆ ಪೂರ್ಣ ವ್ಯವಸ್ಥೆಯ ವರ್ತನೆಯನ್ನು ಪರಿಶೀಲಿಸುತ್ತವೆ.
+ಅಂತ्यದಿಂದ ಅಂತ್ಯ ಪರೀಕ್ಷೆಗಳು ಗ್ರಾಹಕದಿಂದ ಸರ್ವರ್ ತನಕ ಸಂಪೂರ್ಣ ವ್ಯವಸ್ಥೆಯ ವರ್ತನೆಯನ್ನು ಪರಿಶೀಲಿಸುತ್ತವೆ.
 
-#### ಏನನ್ನು ಪರೀಕ್ಷಿಸಬೇಕು
+#### ಏನನ್ನು ಪರೀಕ್ಷಿಸುವುದು
 
-1. **ಗ್ರಾಹಕ-ಸರ್ವರ್ ಸಂವಹನ**: ಪೂರ್ಣ ವಿನಂತಿ-ಪ್ರತಿಕ್ರಿಯೆ ಚಕ್ರಗಳನ್ನು ಪರೀಕ್ಷಿಸಿ
-2. **ನೈಜ ಗ್ರಾಹಕ SDKಗಳು**: ನೈಜ ಗ್ರಾಹಕ ಜಾರಿಗೊಳಿಸುವಿಕೆಗಳೊಂದಿಗೆ ಪರೀಕ್ಷಿಸಿರಿ
-3. **ಒತ್ತಡದಡಿಯಲ್ಲಿ ಕಾರ್ಯಕ್ಷಮತೆ**: ಅನೇಕ ಸಮಕಾಲೀನ ವಿನಂತಿಗಳೊಂದಿಗೆ ಕಾರ್ಯನಿರ್ವಹಣೆಯನ್ನು ಪರೀಕ್ಷಿಸಿ
-4. **ದೋಷ ಪುನರುದ್ಧಾರ**: ವೈಫಲ್ಯಗಳಿಂದ ವ್ಯವಸ್ಥೆಯ ಪುನರುತ್ಥಾನವನ್ನು ಪರೀಕ್ಷಿಸಿ
-5. **ದೀರ್ಘಕಾಲಿಕ ಕಾರ್ಯಾಚರಣೆಗಳು**: ಸ್ಟ್ರೀಮಿಂಗ್ ಮತ್ತು ದೀರ್ಘ ಕಾರ್ಯಾಚರಣೆಗಳ ನಿರ್ವಹಣೆಯನ್ನು ಖಚಿತಪಡಿಸಿ
+1. **ಗ್ರಾಹಕ-ಸರ್ವರ್ ಸಂವಹನ**: ಸಂಪೂರ್ಣ ವಿನಂತಿ-ಪ್ರತಿಕ್ರಿಯೆ ಚಕ್ರಗಳನ್ನು ಪರೀಕ್ಷಿಸಿ
+2. **ನಿಜವಾದ ಗ್ರಾಹಕ SDKಗಳು**: ನಿಜವಾದ ಗ್ರಾಹಕ ಅನುಷ್ಠಾನಗಳೊಂದಿಗೆ ಪರೀಕ್ಷಿಸಿ
+3. **ಲೋಡ್ ಅಡಿಯಲ್ಲಿ ಕಾರ್ಯಕ್ಷಮತೆ**: ಒಟ್ಟಿನಲ್ಲಿ ಹಲವಾರು ಸಮಕಾಲೀನ ವಿನಂತಿಗಳೊಂದಿಗೆ ವರ್ತನೆಯನ್ನು ಖಚಿತಪಡಿಸಿ
+4. **ದೋಷ ಚೇತರಿಕೆ**: ವೈಫಲ್ಯಗಳಿಂದ ವ್ಯವಸ್ಥೆ ಚೇತರಿಕೆಯಾಗುವುದನ್ನು ಪರೀಕ್ಷಿಸಿ
 
-#### E2E ಪರೀಕ್ಷೆಗೆ ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು
+5. **ದೀರ್ಘಾವಧಿಯ ಕಾರ್ಯಾಚರಣೆಗಳು**: ಸ್ಟ್ರೀಮಿಂಗ್ ಮತ್ತು ದೀರ್ಘ ಕಾರ್ಯಗಳ ನಿರ್ವಹಣೆಯನ್ನು ಪರಿಶೀಲಿಸಿ
+
+#### E2E ಪರೀಕ್ಷೆಗಾಗಿ ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು
 
 ```typescript
-// ಟೈಪ್‌ಸ್ಕ್ರಿಪ್ಟ್‌ನಲ್ಲಿ ಕ್ಲೈಂಟ್ ಜೊತೆಗೆ ಉದಾಹರಣೆಯ E2E ಪರೀಕ್ಷೆ
+// ಟೈಪ್‌ಸ್ಕ್ರಿಪ್ಟ್‌ನಲ್ಲಿ ಕ್ಲೈಂಟ್‌ನೊಂದಿಗೆ ಉದಾಹರಣೆಯ E2E ಪರೀಕ್ಷೆ
 describe('MCP Server E2E Tests', () => {
   let client: McpClient;
   
   beforeAll(async () => {
-    // ಪರೀಕ್ಷಾ ವಾತಾವರಣದಲ್ಲಿ ಸರ್ವರ್ ಪ್ರಾರಂಭಿಸಿ
+    // ಪರೀಕ್ಷಾ ಪರಿಸರದಲ್ಲಿ ಸರ್ವರ್ ಪ್ರಾರಂಭಿಸಿ
     await startTestServer();
     client = new McpClient('http://localhost:5000');
   });
@@ -2110,32 +2146,32 @@ describe('MCP Server E2E Tests', () => {
   });
   
   test('Client can invoke calculator tool and get correct result', async () => {
-    // ಕ್ರಿಯೆ
+    // ಕ್ರಮ
     const response = await client.invokeToolAsync('calculator', {
       operation: 'divide',
       a: 20,
       b: 4
     });
     
-    // ದೃಢಪಡಿಸಿ
+    // ದೃಢೀಕರಿಸಿ
     expect(response.statusCode).toBe(200);
     expect(response.content[0].text).toContain('5');
   });
 });
 ```
 
-## MCP ಪರೀಕ್ಷೆಗೆ ಮೌಕಿಂಗ್ ತಂತ್ರಗಳು
+## MCP ಪರೀಕ್ಷೆಗೆ ನಕಲಿ ತಂತ್ರಗಳು
 
-ಪರೀಕ್ಷೆಯ ಸಮಯದಲ್ಲಿ ಘಟಕಗಳನ್ನು ಪ್ರತ್ಯೇಕಗೊಳಿಸುವುದಕ್ಕೆ ಮೌಕಿಂಗ್ ಅಗತ್ಯ.
+ಪರೀಕ್ಷೆಯ ಸಮಯದಲ್ಲಿ ಘಟಕಗಳನ್ನು ವಿಭಜಿಸಲು ನಕಲಿ ಮಾಡುವುದು ಅಗತ್ಯ.
 
-### ಮೌಕ್ ಮಾಡಬೇಕಾದ ಘಟಕಗಳು
+### ನಕಲು ಮಾಡಬೇಕಾದ ಘಟಕಗಳು
 
-1. **ಹೊರಗಿನ AI ಮಾದರಿಗಳು**: ನಿರೀಕ್ಷಿತ ಪರೀಕ್ಷೆಗೆ ಮಾದರಿ ಪ್ರತಿಕ್ರಿಯೆಗಳನ್ನು ಮೌಕ್ ಮಾಡಿ
-2. **ಹೊರಗಿನ ಸೇವೆಗಳು**: API ಅವಲಂಬನೆಗಳನ್ನು (ಡೇಟಾಬೇಸ್‌ಗಳು, ಮೂರನೇ ಪಕ್ಷದ ಸೇವೆಗಳು) ಮೌಕ್ ಮಾಡಿ
-3. **ಪ್ರಮಾಣೀಕರಣ ಸೇವೆಗಳು**: ಗುರುತಿಸಿಕೊಳ್ಳುವವರನ್ನು ಮೌಕ್ ಮಾಡಿ
-4. **ಸಂಪನ್ಮೂಲ ಒದಗಿಸುವವರು**: ದುಬಾರಿ ಸಂಪನ್ಮೂಲ ಹ್ಯಾಂಡ್ಲರ್‌ಗಳನ್ನು ಮೌಕ್ ಮಾಡಿ
+1. **ಬಾಹ್ಯ AI ಮಾದರಿಗಳು**: ನಿರೀಕ್ಷಿತ ಪರೀಕ್ಷೆಗೆ ಮಾದರಿ ಪ್ರತಿಕ್ರಿಯೆಗಳನ್ನು ನಕಲು ಮಾಡಿರಿ
+2. **ಬಾಹ್ಯ ಸೇವೆಗಳು**: API ಅವಲಂಬನೆಯನ್ನು ನಕಲು ಮಾಡಿರಿ (ಡೇಟಾಬೇಸ್‌ಗಳು, ಮೂರನೇ પક્ષ ಸೇವೆಗಳು)
+3. **ಪ್ರಾಮಾಣೀಕರಣ ಸೇವೆಗಳು**: ಗುರುತಿನ ಒದಗಿಸುವವರನ್ನು ನಕಲು ಮಾಡಿರಿ
+4. **ಸಾಧನ ಒದಗಿಸುವವರು**: ದುಬಾರಿ ಸಂಪನ್ಮೂಲ ಹ್ಯಾಂಡ್ಲರ್‌ಗಳನ್ನು ನಕಲು ಮಾಡಿರಿ
 
-### ಉದಾಹರಣೆ: AI ಮಾದರಿ ಪ್ರತಿಕ್ರಿಯೆ ಮೌಕಿಂಗ್
+### ಉದಾಹರಣೆ: AI ಮಾದರಿ ಪ್ರತಿಕ್ರಿಯೆಯ ನಕಲಿಸುವಿಕೆ
 
 ```csharp
 // C# example with Moq
@@ -2153,48 +2189,48 @@ var server = new McpServer(modelClient: mockModel.Object);
 ```
 
 ```python
-# Python ಉದಾಹರಣೆ unittest.mock ನೊಂದಿಗೆ
+# Python ಉದಾಹರಣೆ unittest.mock ಜೊತೆಗೆ
 @patch('mcp_server.models.OpenAIModel')
 def test_with_mock_model(mock_model):
-    # mock ಅನ್ನು ಸಂರಚನೆ ಮಾಡಿ
+    # ಮೋಕ್ ಜೋಡಣೆ
     mock_model.return_value.generate_response.return_value = {
         "text": "Mocked model response",
         "finish_reason": "completed"
     }
     
-    # ಪರೀಕ್ಷೆಯಲ್ಲಿ mock ಅನ್ನು ಬಳಸಿರಿ
+    # ಪರೀಕ್ಷೆಯಲ್ಲಿ ಮೋಕ್ ಬಳಸಿ
     server = McpServer(model_client=mock_model)
-    # ಪರೀಕ್ಷೆ ಮುಂದುವರೆಸಿ
+    # ಪರೀಕ್ಷೆ ಮುಂದುವರಿಸಿ
 ```
 
 ## ಕಾರ್ಯಕ್ಷಮತೆ ಪರೀಕ್ಷೆ
 
-ಕಾರ್ಯಕ್ಷಮತೆ ಪರೀಕ್ಷೆ ಉತ್ಪಾದನಾ MCP ಸರ್ವರ್‌ಗಳಿಗೆ ಬಹುಮುಖ್ಯ.
+ಉತ್ಪಾದನಾ MCP ಸರ್ವರ್‌ಗಳಿಗಾಗಿ ಕಾರ್ಯಕ್ಷಮತೆ ಪರೀಕ್ಷೆ ಅತ್ಯಗತ್ಯ.
 
-### ಯಾವುದನ್ನು ಅಳೆಯಬೇಕು
+### ಏನು ಅಳೆಯಬೇಕು
 
-1. **ವಿಳಂಬ**: ವಿನಂತಿಗಳ ಪ್ರತಿಕ್ರಿಯೆಗೆ ಉಡುಪಿನ ಸಮಯ
-2. **ಥ್ರೂಪುಟ್**: ಸೆಕೆಂಡಿಗೆ ನಿಭಾಯಿಸುವ ವಿನಂತಿಗಳ ಸಂಖ್ಯೆ
-3. **ಸಂಪನ್ಮೂಲ ಬಳಕೆ**: CPU, ಮೆಮೊರಿ, ನೆಟ್‌ವರ್ಕ್ ಬಳಕೆ
-4. **ಸಮಕಾಲೀನ ನಿರ್ವಹಣೆ**: ಸಮಕಾಲೀನ ವಿನಂತಿಗಳಲ್ಲಿನ ವರ್ತನೆ
-5. **ವಿಸ್ತರಣೆ ಲಕ್ಷಣಗಳು**: ಒತ್ತಡ ಹೆಚ್ಚಾದರೆ ಕಾರ್ಯಕ್ಷಮತೆ
+1. **ವಿಲಂಬ**: ವಿನಂತಿಗಳ ಪ್ರತಿಕ್ರಿಯೆ ಸಮಯ
+2. **ತ್ರಾಹು**: ಸೆಕೆಂಡಿಗೆ ನಿರ್ವಹಿಸಲಾದ ವಿನಂತಿಗಳು
+3. **ಸಂಪನ್ಮೂಲ ಬಳಕೆ**: CPU, ಮೆಮರಿ, ನೆಟ್ವರ್ಕ್ ಬಳಕೆ
+4. **ಸಹಕಾರ ನಿರ್ವಹಣೆ**: ಸಮಾಂತರ ವಿನಂತಿಗಳಡಿ ವರ್ತನೆ
+5. **ಮಾಪನ ಗುಣಲಕ್ಷಣಗಳು**: ಲೋಡ್ ಹೆಚ್ಚಾಗುತ್ತಾ ಕಾರ್ಯಕ್ಷಮತೆ
 
 ### ಕಾರ್ಯಕ್ಷಮತೆ ಪರೀಕ್ಷೆಗೆ ಉಪಕರಣಗಳು
 
-- **k6**: ಓಪನ್-ಸೋರ್ಸ್ ಲೋಡ್ ಟೆಸ್ಟಿಂಗ್ ಸಾಧನ
-- **JMeter**: ವ್ಯಾಪಕ ಕಾರ್ಯಕ್ಷಮತೆ ಪರೀಕ್ಷೆ
-- **Locust**: ಪೈಥಾನ್ ಆಧಾರಿತ ಲೋಡ್ ಪರೀಕ್ಷೆ
+- **k6**: ಮುಕ್ತ ಮೂಲ ಲೋಡ್ ಪರೀಕ್ಷೆ ಉಪಕರಣ
+- **JMeter**: ಸಮಗ್ರ ಕಾರ್ಯಕ್ಷಮತೆ ಪರೀಕ್ಷೆ
+- **Locust**: ಪೈಥನ್ ಆಧಾರಿತ ಲೋಡ್ ಪರೀಕ್ಷೆ
 - **Azure Load Testing**: ಕ್ಲೌಡ್ ಆಧಾರಿತ ಕಾರ್ಯಕ್ಷಮತೆ ಪರೀಕ್ಷೆ
 
-### ಉದಾಹರಣೆ: k6 ಮೂಲಕ ಮೂಲಭೂತ ಲೋಡ್ ಟೆಸ್ಟ್
+### ಉದಾಹರಣೆ: k6 ಜೊತೆಗೆ ಸರಳ ಲೋಡ್ ಪರೀಕ್ಷೆ
 
 ```javascript
-// MCP ಸರ್ವರ್ ಲೋಡ್ ಪರೀಕ್ಷೆಗೆ k6 ಸ್ಕ್ರಿಪ್ಟ್
+// MCP ಸರ್ವರ್ ಲೋಡ್ ಟೆಸ್ಟಿಂಗ್‌ಗೆ k6 ಸ್ಕ್ರಿಪ್ಟ್
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 
 export const options = {
-  vus: 10,  // 10 ನಕಲಿ ಬಳಕೆದಾರರು
+  vus: 10,  // 10 ವರ್ಚುವಲ್ ಬಳಕೆದಾರರು
   duration: '30s',
 };
 
@@ -2226,18 +2262,18 @@ export default function () {
 }
 ```
 
-## MCP ಸರ್ವರ್‌ಗಳಿಗೆ ಟೆಸ್ಟ್ ಸ್ವಯಂಕ್ರಿಯೆ
+## MCP ಸರ್ವರ್‌ಗಳಿಗೆ ಪರೀಕ್ಷೆ ಸ್ವಯಂಕ್ರಿಯತೆ
 
-ನಿಮ್ಮ ಪರೀಕ್ಷೆಗಳನ್ನು ಸ್ವಯಂಚಾಲಿತಗೊಳಿಸುವ ಮೂಲಕ ಉತ್ತಮ ಗುಣಮಟ್ಟ ಮತ್ತು ದ್ರುತ ಪ್ರತಿಕ್ರಿಯಾ ಚಕ್ರಗಳನ್ನು ಖಚಿತಮಾಡಿ.
+ನಿಮ್ಮ ಪರೀಕ್ಷೆಗಳನ್ನು ಸ್ವಯಂಚಾಲಿತಗೊಳಿಸುವುದರಿಂದ ನಿರಂತರ ಗುಣಮಟ್ಟ ಮತ್ತು ವೇಗವಾದ ಪ್ರತಿಕ್ರಿಯೆ ಸಾಧ್ಯ.
 
-### CI/CD ಏಕೀಕರಣ
+### CI/CD ಸಮನ್ವಯ
 
-1. **ಪುಲ್ ವಿನಂತಿಗಳ ನಲ್ಲಿ ಘಟಕ ಪರೀಕ್ಷೆಗಳನ್ನು ಚಾಲನೆ ಮಾಡಿ**: ಕೋಡ್ ಬದಲಾವಣೆಗಳಿಂದ ಇದ್ದಂತಹ ಕಾರ್ಯಚಟುವಟಿಕೆ ಒಡೆತನವಾಗದಿರುವುದನ್ನು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ
-2. **ಸ್ಟೇಜಿಂಗ್‌ನಲ್ಲಿ ಇಂಟಿಗ್ರೇಷನ್ ಪರೀಕ್ಷೆಗಳು**: ಪೂರ್ವ ಉತ್ಪಾದನಾ ಪರಿಸರಗಳಲ್ಲಿ ಇಂಟಿಗ್ರೇಷನ್ ಪರೀಕ್ಷೆಗಳನ್ನು ನಡೆಸಿ
-3. **ಕಾರ್ಯಕ್ಷಮತೆ ಬೇಸ್‌ಲೈನ್ಸ್**: ಹಿಂದುಳಿದತೆಗಳನ್ನು ಕಾಣಲು ಕಾರ್ಯಕ್ಷಮತೆ ಮಾನದಂಡಗಳನ್ನು ಕಾಪಾಡಿಕೊಳ್ಳಿ
-4. **ಸುರಕ್ಷತಾ ಸ್ಕ್ಯಾನ್ಗಳು**: ಪೈಪಲೈನಿನ ಭಾಗವಾಗಿ ಸ್ವಯಂಚಾಲಿತ ಸುರಕ್ಷತಾ ಪರೀಕ್ಷೆಗಳನ್ನು ನಡೆಸಿ
+1. **ಪುಲ್ ವಿನಂತಿಗಳ ಮೇಲೆ ಯುನಿಟ್ ಪರೀಕ್ಷೆಗಳು ನಡೆಸಿ**: ಕೋಡ್ ಬದಲಾವಣೆಗಳು ಹಳೆಯ ಕಾರ್ಯಕ್ಷಮತೆಯನ್ನು ಒಡೆದಿಲ್ಲವೆಂದು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ
+2. **ಸ್ಟೇಜಿಂಗ್‌ನಲ್ಲಿ ಒಂದುಗೂಡಿಸುವಿಕೆ ಪರೀಕ್ಷೆ**: ಉತ್ಪಾದನೆ ಪೂರ್ವ ಪರಿಸರಗಳಲ್ಲಿ ಪರೀಕ್ಷೆ ನಡೆಸಿ
+3. **ಕಾರ್ಯಕ್ಷಮತೆ ಆಧಾರಶಿಲೆಗಳು**: ಓಟ ತಪ್ಪಿಸಲು ಕಾರ್ಯಕ್ಷಮತೆ ಮಾನದಂಡಗಳನ್ನು ಕಾಪಾಡಿ
+4. **ಭದ್ರತಾ ಸ್ಕ್ಯಾನ್‌ಗಳು**: পাইಪ್ಲೈನ್ ಭಾಗವಾಗಿ ಭದ್ರತಾ ಪರೀಕ್ಷೆಯನ್ನು ಸ್ವಯಂಕ್ರಿಯಗೊಳಿಸಿ
 
-### ಉದಾಹರಣೆ ಸಿಐ ಪೈಪಲೈನ್ (GitHub ಕ್ರಿಯೆಗಳು)
+### ಉದಾಹರಣೆ CI ಪೈಪ್ಲೈನ್ (GitHub Actions)
 
 ```yaml
 name: MCP Server Tests
@@ -2276,19 +2312,19 @@ jobs:
       run: dotnet run --project tests/PerformanceTests/PerformanceTests.csproj
 ```
 
-## MCP ಸ್ಪೆಸಿಫಿಕೇಶನ್‌ಗಾಗಿ ಅನುಕ್ರಮಣಿಕೆ ಪರೀಕ್ಷೆ
+## MCP ಸ್ಪೆಸಿಫಿಕೇಷನ್ ಅನುಕೂಲತೆಗಾಗಿ ಪರೀಕ್ಷೆ
 
-ನಿಮ್ಮ ಸರ್ವರ್ ಸರಿಯಾಗಿ MCP ಸ್ಪೆಸಿಫಿಕೇಶನ್ ಅನ್ನು ಜಾರಿಗೊಳಿಸುತ್ತಿದೆ ಎಂದು ದೃಢೀಕರಿಸಿ.
+ನಿಮ್ಮ ಸರ್ವರ್ ಸರಿಯಾಗಿ MCP ಸ್ಪೆಸಿಫಿಕೇಷನ್ ಅನ್ನು ಅನುಷ್ಠಾನಗೊಳಿಸಿರುವುದೇನು ಎಂದು ಪರಿಶೀಲಿಸಿ.
 
-### ಮುಖ್ಯ ಅನುಕ್ರಮಣಿಕೆ ಪ್ರದೇಶಗಳು
+### ಪ್ರಮುಖ ಅನುಕೂಲತೆ ಕ್ಷೇತ್ರಗಳು
 
-1. **API ಎಂಡ್‌ಪಾಯಿಂಟ್‌ಗಳು**: ಅಗತ್ಯವಿರುವ ಎಂಡ್‌ಪಾಯಿಂಟ್‌ಗಳನ್ನು ಪರೀಕ್ಷಿಸಿ (/resources, /tools ಮುಂತಾದವು)
-2. ** ವಿನಂತಿ/ಪ್ರತಿಕ್ರಿಯಾ ಫಾರ್ಮ್ಯಾಟ್**: ಸ್ಕೀಮಾ ಅನುಕ್ರಮಣಿಕೆಯನ್ನು ಮೌಲ್ಯಮಾಪನ ಮಾಡಿ
-3. **ದೋಷ ಕೋಡ್‌ಗಳು**: ವಿವಿಧ ಸಂದರ್ಭಗಳಿಗಾಗಿ ಸರಿಯಾದ ಸ್ಥಿತಿಗತಿಕೋಡ್‌ಗಳನ್ನು ಪರಿಶೀಲಿಸಿ
-4. **ವಿಷಯ ತರಗತಿಗಳು**: ಬಗೆಬಗೆಯ ವಿಷಯ ತರಗತಿಗಳ ನಿರ್ವಹಣೆಯನ್ನು ಪರೀಕ್ಷಿಸಿ
-5. **ಪ್ರಮಾಣೀಕರಣ ಹರಿವು**: ಸ್ಪೆಕ್-ಅನುಕ್ರಮಣಿಕೆಯ ಮಾನ್ಯತೆ ಮೆಕ್ಯಾನಿಸಂಗಳನ್ನು ಪರಿಶೀಲಿಸಿ
+1. **API ಅಂತಿಮ ಬಿಂದುವುಗಳು**: ಅಗತ್ಯ ಅಂತಿಮ ಬಿಂದುವುಗಳನ್ನು ಪರೀಕ್ಷಿಸಿ (/resources, /tools, ಇತ್ಯಾದಿ)
+2. **ವಿನಂತಿ/ಪ್ರತಿಕ್ರಿಯೆ ಫಾರ್ಮ್ಯಾಟ್**: ಸ್ಕೀಮಾ ಅನುಕೂಲತೆಯನ್ನು ದೃಢೀಕರಿಸಿ
+3. **ತಪ್ಪು ಕೋಡ್‌ಗಳು**: ವಿಭಿನ್ನ ಸಂದರ್ಭಗಳಿಗೆ ಸೂಕ್ತ ಸ್ಥಿತಿಗತಿಗಳ ಕೋಡ್‌ಗಳು ಈಡೇರಿಸಿವೆ ಎಂದು ಪರಿಶೀಲಿಸಿ
+4. **ವಿಷಯ ಪ್ರಕಾರಗಳು**: ವಿಭಿನ್ನ ವಿಷಯ ಪ್ರಕಾರಗಳ ನಿರ್ವಹಣೆಯನ್ನು ಪರೀಕ್ಷಿಸಿ
+5. **ಪ್ರಾಮಾಣೀಕರಣ ಪ್ರವಾಹ**: ಸ್ಪೆಸಿಫಿಕೇಷನ್ ಅನುಕೂಲ auth ತಂತ್ರಗಳನ್ನು ಪರಿಶೀಲಿಸಿ
 
-### ಅನುಕ್ರಮಣಿಕೆ ಟೆಸ್ಟ್ ಸೂಟ್
+### ಅನುಕೂಲತೆ ಪರೀಕ್ಷಾ ಸೆಟ್
 
 ```csharp
 [Fact]
@@ -2315,64 +2351,66 @@ public async Task Server_ResourceEndpoint_ReturnsCorrectSchema()
 }
 ```
 
-## ಪರಿಣಾಮಕಾರಿ MCP ಸರ್ವರ್ ಪರೀಕ್ಷೆಗಾಗಿ ಟಾಪ್ 10 ಸಲಹೆಗಳು
+## ಪರಿಣಾಮಕಾರಿ MCP ಸರ್ವರ್ ಪರೀಕ್ಷೆಗೆ ಶಿರೋನಾಮ೦ 10 ಸಲಹೆಗಳು
 
-1. **ಟೂಲ್ ವ್ಯಾಖ್ಯಾನಗಳನ್ನು ಪ್ರತ್ಯೇಕವಾಗಿ ಪರೀಕ್ಷಿಸಿ**: ಟೂಲ್ ಲಾಜಿಕ್‌ನಿಂದ ಪ್ರತ್ಯೇಕವಾಗಿ ಸ್ಕೀಮಾ ವ್ಯಾಖ್ಯಾನಗಳನ್ನು ಪರಿಶೀಲಿಸಿ
-2. **ಪ್ಯಾರಾಮೆಟರ್‌ಗಳುಳ್ಳ ಟೆಸ್ಟ್‌ಗಳನ್ನು ಬಳಸಿ**: ವಿವಿಧ ಇನ್‌ಪುಟ್‌ಗಳೊಂದಿಗೆ, ಅಡ್ಡದೃಷ್ಟಿ ಪ್ರಕರಣಗಳು ಒಳಗೊಂಡಂತೆ, ಟೂಲ್‌ಗಳನ್ನು ಪರೀಕ್ಷಿಸಿ
-3. **ದೋಷ ಪ್ರತಿಕ್ರಿಯೆಗಳನ್ನು ಪರೀಕ್ಷಿಸಿ**: ಎಲ್ಲಾ ಸಾಧ್ಯ ದೋಷ ಪರಿಸ್ಥಿತಿಗಳಿಗಾಗಿ ಸರಿಯಾದ ದೋಷ ನಿರ್ವಹಣೆಯನ್ನು ಪರಿಶೀಲಿಸಿ
-4. **ಅಧಿಕಾರ ಲಾಜಿಕ್ ಪರೀಕ್ಷಿಸಿ**: ವಿವಿಧ ಬಳಕೆದಾರ ಪಾತ್ರಗಳಿಗಾಗಿ ಸರಿಯಾದ ಪ್ರಾಪ್ತಿಯ ನಿಯಂತ್ರಣವನ್ನು ಖಚಿತಪಡಿಸಿ
-5. **ಪರೀಕ್ಷಾ ವ್ಯಾಪ್ತಿಯನ್ನು ಮೇಲ್ವಿಚಾರಣೆ ಮಾಡಿ**: ಪ್ರಮುಖ ಮಾರ್ಗ ಕೋಡ್‌ನ ಹೆಚ್ಚಿನ ವ್ಯಾಪ್ತಿಗೆ ಧ್ಯಾನ ಕೊಡಿ
-6. **ಸ್ಟ್ರೀಮಿಂಗ್ ಪ್ರತಿಕ್ರಿಯೆಗಳನ್ನು ಪರೀಕ್ಷಿಸಿ**: ಸ್ಟ್ರೀಮಿಂಗ್ ವಿಷಯದ ಸರಿಯಾದ ನಿರ್ವಹಣೆಯನ್ನು ಪರಿಶೀಲಿಸಿ
-7. **ನೆಟ್ವರ್ಕ್ ಸಮಸ್ಯೆಗಳನ್ನು ಅನುಕರಿಸಿ**: ದುರ್ಬಲ ನೆಟ್ವರ್ಕ್ ಪರಿಸ್ಥಿತಿಗಳಲ್ಲಿ ಪ್ರವರ್ತನೆಯನ್ನು ಪರೀಕ್ಷಿಸಿ
-8. **ಸಂಪನ್ಮೂಲ ಮಿತಿಗಳನ್ನು ಪರೀಕ್ಷಿಸಿ**: ಕಾರ್ಮಿಕತೆ ಅಥವಾ ದರ ಮಿತಿಗಳನ್ನು ತಲುಪಿದಾಗ ಪ್ರವರ್ತನೆಯನ್ನು ಪರಿಶೀಲಿಸಿ
-9. **ಹಿಂದುಳಿದ ಪರೀಕ್ಷೆಗಳನ್ನು ಸ್ವಯಂಚಾಲಿತಗೊಳಿಸಿ**: ಪ್ರತಿ ಕೋಡ್ ಬದಲಾವಣೆಗೂ ನಡೆಯುವ ಸೂಟನ್ನು ನಿರ್ಮಿಸಿ
-10. **ಟೆಸ್ಟ್ ಪ್ರಕರಣಗಳನ್ನು ದಾಖಲೆ ಮಾಡಿ**: ಪರೀಕ್ಷಾ ಸಂದರ್ಭಗಳ ಸ್ಪಷ್ಟ ದಾಖಲೆಗಳನ್ನು ಕಾಪಾಡಿ
+1. **ಉಪಕರಣ ವ್ಯಾಖ್ಯಾನಗಳನ್ನು ವಿಭಿನ್ನವಾಗಿ ಪರೀಕ್ಷಿಸಿ**: ಉಪಕರಣ ತರ್ಕದಿಂದ ಸುಳಿವು ವ್ಯಾಖ್ಯಾನಗಳನ್ನು ಪ್ರತ್ಯೇಕವಾಗಿ ಪರಿಶೀಲಿಸಿ
+2. **ಪ್ಯಾರಾಮೀಟರಿಗೆ ಸಂಬಂಧಿಸಿದ ಪರೀಕ್ಷೆ ಬಳಸಿ**: ವಿವಿಧ ಇನ್‌ಪುಟ್‌ಗಳೊಂದಿಗೆ, ಎಡ್ಜ್ ಪ್ರಕರಣಗಳೊಂದಿಗೆ ಉಪಕರಣಗಳನ್ನು ಪರೀಕ್ಷಿಸಿ
+3. **ತಪ್ಪು ಪ್ರತಿಕ್ರಿಯೆಗಳನ್ನು ಪರಿಶೀಲಿಸಿ**: ಎಲ್ಲಾ ಸಾಧ್ಯವಾದ ತಪ್ಪು ಪರಿಸ್ಥಿತಿಗಳಿಗೆ ಸರಿಯಾದ ಹ್ಯಾಂಡ್ಲಿಂಗ್ ಅನ್ನು ದೃಢೀಕರಿಸಿ
+4. **ಅಧಿಕೃತ ಲಾಜಿಕನ್ನು ಪರೀಕ್ಷಿಸಿ**: ಬ iba'tಯ ಬಳಕೆದಾರ ಪಾತ್ರಗಳಿಗೆ ಸರಿಯಾದ ಪ್ರವೇಶ ನಿಯಂತ್ರಣ ಸ್ಥಾಪಿಸಿ
+5. **ಪరీక్షೆ ವ್ಯಾಪ್ತಿಯನ್ನು ಮೇಲ್ವಿಚಾರಣೆ ಮಾಡಿ**: ಮಹತ್ವಪೂರ್ಣ ಕೋಡ್ ಮಾರ್ಗದ ಹೆಚ್ಚಿನ ವ್ಯಾಪ್ತಿಗೆ ಗುರಿಯಾಗಿರಿ
+6. **ಸ್ಟ್ರೀಮಿಂಗ್ ಪ್ರತಿಕ್ರಿಯೆಗಳನ್ನು ಪರೀಕ್ಷಿಸಿ**: ಸ್ಟ್ರೀಮಿಂಗ್ ವಿಷಯದ ಸರಿಯಾದ ನಿರ್ವಹಣೆಯನ್ನು ದೃಢೀಕರಿಸಿ
+7. **ನೆಟ್ವರ್ಕ್ ಸಮಸ್ಯೆಗಳನ್ನು ಅನುಕರಣ ಮಾಡಿ**: ಕೆಟ್ಟ ನೆಟ್ವರ್ಕ್ ಪರಿಸ್ಥಿತಿಗಳಡಿ ವರ್ತನೆಯನ್ನು ಪರೀಕ್ಷಿಸಿ
+8. **ಸಂಪನ್ಮೂಲ ಮಿತಿಗಳನ್ನು ಪರೀಕ್ಷಿಸಿ**: ಕ್ವೋಟಾ ಅಥವಾ ರೇಟ್ ಮಿತಿಗಳನ್ನು ತಲುಪಿದಾಗ ವರ್ತನೆಯನ್ನು ದೃಢೀಕರಿಸಿ
+9. **ರಿಗ್ರೆಶನ್ ಪರೀಕ್ಷೆಗಳನ್ನು ಸ್ವಯಂಕ್ರಿಯಗೊಳಿಸಿ**: ಪ್ರತಿಯೊಂದು ಕೋಡ್ ಬದಲಾವಣೆಯಲ್ಲೂ ಚಾಲನೆಗೊಳ್ಳುವಂತೆ ಒಂದು ಸೆಟ್ ನಿರ್ಮಿಸಿ
+10. **ಪರೀಕ್ಷಾ ಪ್ರಕರಣಗಳನ್ನು ಡಾಕ್ಯುಮೆಂಟ್ ಮಾಡಿ**: ಪರೀಕ್ಷಾ ಸಂದರ್ಭಗಳ ಸ್ಪಷ್ಟ ದಾಖಲೆ ನಿರ್ವಹಿಸಿ
 
-## ಸಾಮಾನ್ಯ ಪರೀಕ್ಷಾ ವ್ಯತ್ಯಾಸಗಳು
+## ಸಾಮಾನ್ಯ ಪರೀಕ್ಷಾ ತಪ್ಪುಗಳು
 
-- **ಸಂತೋಷಕರ ಮಾರ್ಗದ ಪರೀಕ್ಷೆಯ ಮಿತಿಯಾದ ನಂಬಿಕೆ**: ದೋಷ ಪ್ರಕರಣಗಳನ್ನು ಸಂಪೂರ್ಣವಾಗಿ ಪರೀಕ್ಷಿಸುವುದನ್ನು ಖಚಿತಪಡಿಸಿ
-- **ಕಾರ್ಯಕ್ಷಮತೆ ಪರೀಕ್ಷೆಯನ್ನು ತ್ಯಜಿಸುವುದು**: ಉತ್ಪಾದನೆಗೆ ಪ್ರಭಾವ ಬೀರುವ ಮೊದಲು ತಡೆಬರುವ ಅಡೆತಡಿ ಗುರುತಿಸಿ
-- **ಒಂಟಿತನದಲ್ಲಿ ಮಾತ್ರ ಪರೀಕ್ಷೆ**: ಘಟಕ, ಇಂಟಿಗ್ರೇಷನ್ ಮತ್ತು ಎ2ಇ ಪರೀಕ್ಷೆಗಳನ್ನು ಸಂಯೋಜಿಸಿ
-- **ಅಪೂರ್ಣ API ವ್ಯಾಪ್ತಿ**: ಎಲ್ಲಾ ಎಂಡ್‌ಪಾಯಿಂಟ್‌ಗಳು ಮತ್ತು ವೈಶಿಷ್ಟ್ಯಗಳನ್ನು ಪರೀಕ್ಷಿಸಲಾಗುತ್ತದೆ ಎಂದು ಖಚಿತಪಡಿಸಿ
-- **ಅನಿಯಮಿತ ಪರೀಕ್ಷಾ ಪರಿಸರಗಳು**: ಸ್ಥಿರ ಪರೀಕ್ಷಾ ಪರಿಸರಗಳನ್ನು ಖಚಿತಪಡಿಸಲು ಕಾಂಟೈನರ್‌ಗಳನ್ನು ಬಳಸಿ
+- **ಸಂತೋಷಕರ ಮಾರ್ಗ ಪರೀಕ್ಷೆಯ ಮೇಲೆ ಅವಲಂಬನೆ**: ತಪ್ಪು ಪ್ರಕರಣಗಳನ್ನು ಸಂಪೂರ್ಣವಾಗಿ ಪರೀಕ್ಷಿಸಬೇಕು
+- **ಕಾರ್ಯಕ್ಷಮತೆ ಪರೀಕ್ಷೆಯ ನಿರ್ಲಕ್ಷ್ಯ**: ಉತ್ಪಾದನೆಯನ್ನು ಪ್ರಭಾವಿಸುವ ಮೊದಲು ಅಡಚಣೆಗಳನ್ನು ಗುರುತಿಸಿ
+- **ಒಂಟಿ ಪ್ರಕಾರದ ಪರೀಕ್ಷೆ ಮಾತ್ರ**: ಯುನಿಟ್, ಇಂಟಿಗ್ರೇಶನ್, ಮತ್ತು E2E ಪರೀಕ್ಷೆಗಳನ್ನು ಸಂಯೋಜಿಸಿ
+- **ಅಪೂರ್ಣ API ವ್ಯಾಪ್ತಿ**: ಎಲ್ಲಾ ಅಂತಿಮ ಬಿಂದುವುಗಳು ಮತ್ತು ವೈಶಿಷ್ಟ್ಯಗಳನ್ನು ಪರೀಕ್ಷಿಸಿ
+- **ಅಸಮ್ಮತ ಪರೀಕ್ಷಾ ಪರಿಸರಗಳು**: ನಿರಂತರ ಪರೀಕ್ಷಾ ಪರಿಸರಕ್ಕಾಗಿ ಕಂಟೈನರ್ಗಳನ್ನು ಬಳಸಿ
 
-## ತಿರುಗುಮಟ
+## ಸಮಾರೋಪ
 
-ವಿಶ್ವಾಸಾರ್ಹ, ಉನ್ನತ ಗುಣಮಟ್ಟದ MCP ಸರ್ವರ್‌ಗಳನ್ನು ಅಭಿವೃದ್ಧಿಪಡಿಸಲು ಸಮಗ್ರ ಪರೀಕ್ಷಾ ತಂತ್ರವು ಅಗತ್ಯವಿದೆ. ಈ ಮಾರ್ಗದರ್ಶಿಯಲ್ಲಿ ಉಲ್ಲೇಖಿಸಿರುವ ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು ಮತ್ತು ಸಲಹೆಗಳನ್ನು ಅನುಷ್ಠಾನಗೊಳಿಸುವ ಮೂಲಕ, ನೀವು ನಿಮ್ಮ MCP ಜಾರಿಗೊಳಿಕೆಗಳು ಅತ್ಯುಚ್ಚ ಗುಣಮಟ್ಟ, ವಿಶ್ವಾಸಾರ್ಹತೆ ಮತ್ತು ಕಾರ್ಯಕ್ಷಮತೆಯ ಮಾನದಂಡಗಳನ್ನು ಪೂರೈಸುವಂತೆ ನೋಡಿಕೊಳ್ಳಬಹುದು.
+ವಿಶ್ವಾಸಾರ್ಹ, ಉನ್ನತ ಗುಣಮಟ್ಟದ MCP ಸರ್ವರ್‌ಗಳನ್ನು ಅಭಿವೃದ್ಧಿಪಡಿಸಲು ಸಮಗ್ರ ಪರೀಕ್ಷಾ ಯುಜನೆ ಅಗತ್ಯ. ಈ ಮಾರ್ಗದರ್ಶನದಲ್ಲಿ ವಿವರಿಸಿದ ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು ಮತ್ತು ಸಲಹೆಗಳನ್ನು ಅನುಸರಿಸುವ ಮೂಲಕ ನಿಮ್ಮ MCP ಅನ್ವಯಣೆಗಳು ಅತ್ಯುದಯಮಟ್ಟದ ಗುಣಮಟ್ಟ, ವಿಶ್ವಾಸಾರ್ಹತೆ, ಮತ್ತು ಕಾರ್ಯಕ್ಷಮತೆಗೆ ತಕ್ಕಂತೆ ಇರುತ್ತವೆ ಎನ್ನುವುದು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಬಹುದು.
 
-## ಪ್ರಮುಖ ತಿಳಿವಳಿಕೆಗಳು
 
-1. **ಟೂಲ್ ವಿನ್ಯಾಸ**: ಏಕ ಜವಾಬ್ದಾರಿ ಸ 원칙 ಪಾಲಿಸಿ, ಅವಲಂಬನೆ ಇಂಜೆಕ್ಷನ್‌ ಬಳಸಿ, ಮತ್ತು ಸಂಯೋಜನೀಯತೆಗಾಗಿ ವಿನ್ಯಾಸ ಗೊಳಿಸಿ
-2. **ಸ್ಕೀಮಾ ವಿನ್ಯಾಸ**: ಸ್ಫಟಿಕ, ಚೆನ್ನಾಗಿ ದಾಖಲಾಗಿರುವ ಸ್ಕೀಮಾಗಳು ಮತ್ತು ಸರಿಯಾದ ಮಾನ್ಯತೆ ನಿಯಮಗಳನ್ನು ರಚಿಸಿ
-3. **ದೋಷ ನಿರ್ವಹಣೆ**: ಸೌಮ್ಯ ದೋಷ ನಿರ್ವಹಣೆ, ಸಂರಚಿತ ದೋಷ ಪ್ರತಿಕ್ರಿಯೆಗಳು ಮತ್ತು ಮರುಪ್ರಯತ್ನ ತಂತ್ರಗಳನ್ನು ಜಾರಿಗೊಳಿಸಿ
-4. **ಕಾರ್ಯಕ್ಷಮತೆ**: ಕ್ಯಾಶಿಂಗ್, ಅಸಿಂಕ್ರೋನಸ್ ಪ್ರಕ್ರಿಯೆ ಮತ್ತು ಸಂಪನ್ಮೂಲ ನಿಯಂತ್ರಣಗಳನ್ನು ಬಳಸಿ
-5. **ಸುರಕ್ಷತೆ**: ಸಂಪೂರ್ಣ ಇನ್‌ಪುಟ್ ಮಾನ್ಯತೆ, ಪ್ರಾಧಿಕರ ಪರಿಶೀಲನೆ ಮತ್ತು ಸಂವೇದನಶೀಲ ದತ್ತಾಂಶ ನಿರ್ವಹಣೆಯನ್ನು ಅನ್ವಯಿಸಿ
-6. **ಪರೀಕ್ಷೆ**: ಸಮಗ್ರ ಘಟಕ, ಇಂಟಿಗ್ರೇಷನ್ ಮತ್ತು ಅಂತಿಮ-ಮುಗಿಲು ಪರೀಕ್ಷೆಗಳನ್ನು ರಚಿಸಿ
-7. **ಕಾರ್ಯಪ್ರವಾಹ ಮಾದರಿಗಳು**: ಸರಣಿಗಳು, ಡಿಸ್ಪ್ಯಾಚರ್ಸ್ ಮತ್ತು ಸಮಾಂತರ ಪ್ರಕ್ರಿಯೆಗಳಂತಹ ಸ್ಥಾಪಿತ ಮಾದರಿಗಳನ್ನು ಅನ್ವಯಿಸಿ
+## ಪ್ರಮುಖ ತೆಗೆದುಕೊಳ್ಳಲು ವಿಷಯಗಳು
+
+1. **ಉಪಕರಣ ವಿನ್ಯಾಸ**: ಏಕ ಹೊಣೆಗಾರಿಕೆ ತತ್ವವನ್ನು ಅನುಸರಿಸಿ, ಅವಲಂಬನೆ ಇಂಜೆಕ್ಷನ್ ಬಳಸಿ, ನಿರ್ಮಾಣಕ್ಕೆ ವಿನ್ಯಾಸ ಮಾಡಿ
+2. **ಸ್ಕೀಮಾ ವಿನ್ಯಾಸ**: ಸ್ಪಷ್ಟ, ಚೆನ್ನಾಗಿ ದಾಖಲಾದ ಸ್ಕೀಮಾ ರಚಿಸಿ ಸರಿಯಾದ ಪೂರ್ವಾಪಷ್ಟತ ನಿಯಮಗಳೊಂದಿಗೆ
+3. **ತಪ್ಪು ನಿರ್ವಹಣೆ**: ಸೌಮ್ಯ ತಪ್ಪು ನಿರ್ವಹಣೆ, ರಚನಾತ್ಮಕ ತಪ್ಪು ಪ್ರತಿಕ್ರಿಯೆಗಳು, ಫಲಿತಾಂಶವನ್ನು ಗಮನಿಸುವ ಮರುಪ್ರಯತ್ನ ಲಾಜಿಕ್ ಅನ್ನು ಅನುಷ್ಠಾನಗೊಳಿಸಿ
+   ಪ್ರತಿಕ್ರಿಯೆಗಳು, ಮತ್ತು ಫಲಿತಾಂಶ-ಅನ್ವೇಷಿತ ಮರುಪ್ರಯತ್ನ ಲಾಜಿಕ್ಗಳು
+4. **ಕಾರ್ಯಕ್ಷಮತೆ**: ಕ್ಯಾಷಿಂಗ್, ಅಸಿಂಕ್ರೋನಸ್ ಪ್ರೊಸೆಸಿಂಗ್, ಮತ್ತು ಸಂಪನ್ಮೂಲ ನಿರ್ಬಂಧನ ಬಳಸಿ
+5. **ಭದ್ರತೆ**: ಸಮಗ್ರ ಇನ್‌ಪುಟ್ ಮಾನ್ಯತೆ, ಅನುಮತಿ ಪರಿಶೀಲನೆಗಳು, ಮತ್ತು ಸಂವೇದನಾಶೀಲ ಡೇಟಾ ನಿರ್ವಹಣೆ
+6. **ಪರೀಕ್ಷೆ**: ಸಮಗ್ರ ಯುನಿಟ್, ಇಂಟಿಗ್ರೇಶನ್, ಮತ್ತು ಅಂತ್ಯ-ರಿಂದ-ಅಂತ್ಯ ಪರೀಕ್ಷೆಗಳು ರಚಿಸಿ
+7. **ಕಾರ್ಯಪ್ರವಾಹ ಮಾದರಿಗಳು**: ಸರಣಿಗಳು, ಡಿಸ್ಪ್ಯಾಚರ್‌ಗಳು, ಮತ್ತು ಸಮಾಂತರ ಪ್ರೊಸೆಸಿಂಗ್ ಮುಂತಾದ ಸ್ಥಾಪಿತ ಮಾದರಿಗಳನ್ನು ಅನ್ವಯಿಸಿ
 
 ## ವ್ಯಾಯಾಮ
 
-ಡಾಕ್ಯುಮೆಂಟ್ ಪ್ರಕ್ರಿಯೆಗಾಗಿ MCP ಟೂಲ್ ಮತ್ತು ಕಾರ್ಯಪ್ರವಾಹವನ್ನು ವಿನ್ಯಾಸ ಮಾಡಿ, ಅದು:
+ಡಾಕ್ಯುಮೆಂಟ್ ಪ್ರೊಸೆಸಿಂಗ್ ವ್ಯವಸ್ಥೆಗಾಗಿ MCP ಉಪಕರಣ ಮತ್ತು ಕಾರ್ಯಪ್ರವಾಹವನ್ನು ವಿನ್ಯಾಸಮಾಡಿ:
 
-1. ಹಲವು ಫಾರ್ಮ್ಯಾಟ್‌ಗಳಲ್ಲಿ ಡಾಕ್ಯುಮೆಂಟ್‌ಗಳನ್ನು ಸ್ವೀಕರಿಸುತ್ತದೆ (PDF, DOCX, TXT)
-2. ಡಾಕ್ಯುಮೆಂಟ್‌ಗಳಿಂದ ಪಠ್ಯ ಮತ್ತು ಪ್ರಮುಖ ಮಾಹಿತಿಯನ್ನು ಹೊರತೆಗೆಯುತ್ತದೆ
-3. ಡಾಕ್ಯುಮೆಂಟ್‌ಗಳನ್ನು ಪ್ರಕಾರ ಮತ್ತು ವಿಷಯದ ಮೂಲಕ ವರ್ಗೀಕರಿಸುತ್ತದೆ
+1. ಬಹುಫಾರ್ಮ್ಯಾಟ್ ಡಾಕ್ಯುಮೆಂಟ್‌ಗಳನ್ನು ಸ್ವೀಕರಿಸುತ್ತದೆ (PDF, DOCX, TXT)
+2. ಡಾಕ್ಯುಮೆಂಟ್‌ಗಳಿಂದ ಪಠ್ಯ ಮತ್ತು ಮುಖ್ಯ ಮಾಹಿತಿಯನ್ನು ತೆಗೆಯುತ್ತದೆ
+3. ಡಾಕ್ಯುಮೆಂಟ್‌ಗಳನ್ನು ಪ್ರಕಾರ ಮತ್ತು ವಿಷಯದಿಂದ ವರ್ಗೀಕರಿಸುತ್ತದೆ
 4. ಪ್ರತಿ ಡಾಕ್ಯುಮೆಂಟ್‌ನ ಸಾರಾಂಶವನ್ನು ರಚಿಸುತ್ತದೆ
 
-ಈ ಸಂದರ್ಭದಲ್ಲಿ ಅತ್ಯುತ್ತಮವಾಗಿರುವ ಟೂಲ್ ಸ್ಕೀಮಾಗಳು, ದೋಷ ನಿರ್ವಹಣೆ, ಮತ್ತು ಕಾರ್ಯಪ್ರವಾಹ ಮಾದರಿಯನ್ನು ಜಾರಿಗೊಳಿಸಿ. ಈ ಜಾರಿಗೊಳಿಕೆಯನ್ನು ನೀವು ಹೇಗೆ ಪರೀಕ್ಷಿಸುವಿರೋ ಪರಿಗಣಿಸಿ.
+ಈ сценарಿಯಿಗಾಗಿ ಅತ್ಯುತ್ತಮವಾಗಿ ಹೊಂದಿಕೊಳ್ಳುವ ಉಪಕರಣ ಸ್ಕೀಮಾಗಳು, ತಪ್ಪು ನಿರ್ವಹಣೆ, ಮತ್ತು ಕಾರ್ಯಪ್ರವಾಹ ಮಾದರಿಯನ್ನು ಅನುಷ್ಠಾನಗೊಳಿಸಿ. ಈ ಅನ್ವಯಣೆಯನ್ನು ನೀವು ಹೇಗೆ ಪರೀಕ್ಷಿಸುವಿರೋ ಆಲೋಚಿಸಿ.
 
-## ಸಂಪನ್ಮೂಲಗಳು
+## ಸಂಪನ್ಮೂಲಗಳು 
 
-1. MCP ಸಮುದಾಯದಲ್ಲಿ ಸೇರಿ [Microsoft Foundry Discord Community](https://aka.ms/foundrydevs) ನಲ್ಲಿ ಇತ್ತೀಚಿನ ಅಭಿವೃದ್ಧಿಗಳನ್ನು ತಿಳಿದುಕೊಳ್ಳಿ
-2. ಮುಕ್ತಸೋರ್ಸ್ [MCP ಪ್ರಾಜೆಕ್ಟ್‌ಗಳಲ್ಲಿ](https://github.com/modelcontextprotocol) ಕೊಡುಗೆ ನೀಡಿರಿ
+1. ತಾಜಾ ಬೆಳವಣಿಗೆಗಳಿಗಾಗಿ [Microsoft Foundry Discord Community](https://aka.ms/foundrydevs) ನಲ್ಲಿ MCP ಸಮುದಾಯದಲ್ಲಿ ಸೇರಿರಿ
+2. ಮುಕ್ತ ಮೂಲ [MCP ಪ್ರಾಜೆಕ್ಟ್‌ಗಳಿಗೆ](https://github.com/modelcontextprotocol) ಕೊಡುಗೆ ನೀಡಿರಿ
 3. ನಿಮ್ಮ ಸಂಸ್ಥೆಯ AI ಉಪಕ್ರಮಗಳಲ್ಲಿ MCP ತತ್ವಗಳನ್ನು ಅನ್ವಯಿಸಿ
-4. ನಿಮ್ಮ ಉದ್ಯಮಕ್ಕೆ ವಿಶೇಷ MCP ಜಾರಿಗೊಳಿಕೆಗಳನ್ನು ಅನ್ವೇಷಿಸಿ
-5. ಬಹು-ಮುದ್ರಣ ಇಂಟಿಗ್ರೇಷನ್ ಅಥವಾ ಎಂಟರ್ಪ್ರೈಸ್ ಅಪ್ಲಿಕೇಶನ್ ಇಂಟಿಗ್ರೇಷನ್ ಮುಂತಾದ ನಿರ್ದಿಷ್ಟ MCP ವಿಷಯಗಳ ಮೇಲೆ ಅદ્યತನ ಕೋರ್ಸುಗಳನ್ನು ಪರಿಗಣಿಸಿ
-6. [Hands on Lab](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md) ಮೂಲಕ ಕಲಿತ ತತ್ವಗಳನ್ನು ಬಳಸಿ ನಿಮ್ಮ ಸ್ವಂತ MCP ಟೂಲ್ ಮತ್ತು ಕಾರ್ಯಪ್ರವಾಹಗಳನ್ನು ನಿರ್ಮಿಸುವ ಪ್ರಯೋಗ ಮಾಡಿ
+4. ನಿಮ್ಮ ಉದ್ಯಮಕ್ಕಾಗಿ ವಿಶಿಷ್ಟ MCP ಅನ್ವಯಣೆಗಳನ್ನು ಪರಿಶೀಲಿಸಿ.
+5. ಮಲ್ಟಿ-ಮೋಡಲ್ ಸಂಯೋಜನೆ ಅಥವಾ ಎಂಟರ್‌ಪ್ರೈಸ್ ಅಪ್ಲಿಕೇಶನ್ ಸಂಯೋಜನೆ ಮುಂತಾದ ವಿಶೇಷ MCP ವಿಷಯಗಳ ಮೇಲೆ ಉತ್ತೀರ್ಣ ಕೋರ್ಸುಗಳನ್ನು ಪರಿಗಣಿಸಿ.
+6. [Hands on Lab](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md) ಮೂಲಕ ಕಲಿತ ತತ್ವಗಳನ್ನು ಬಳಸಿ ನಿಮ್ಮ ಸ್ವಂತ MCP ಉಪಕರಣಗಳು ಮತ್ತು ಕಾರ್ಯಪ್ರವಾಹಗಳನ್ನು ಪರಕೀಯಿಸಿ 
 
-## ಮುಂದೇನು
+## ಮುಂದಿನದು ಏನು
 
-ಮುಂದೆ: [ಕೇಸ್ ಅಧ್ಯಯನಗಳು](../09-CaseStudy/README.md)
+ಮುಂದಿನದು: [ಕೇಸ್ ಸ್ಟಡಿಗಳು](../09-CaseStudy/README.md)
 
 ---
 

@@ -1,65 +1,65 @@
-# Naudojimasis serveriu iš GitHub Copilot Agent režimo
+# Serverio naudojimas GitHub Copilot agento režimu
 
-Visual Studio Code ir GitHub Copilot gali veikti kaip klientas ir naudoti MCP serverį. Kodėl tai gali būti naudinga? Na, tai reiškia, kad visos MCP serverio funkcijos dabar gali būti pasiekiamos tiesiai iš jūsų IDE. Įsivaizduokite, kad pridėjote, pavyzdžiui, GitHub MCP serverį – tai leistų valdyti GitHub naudojant užklausas, o ne rašant konkrečias komandas terminale. Arba įsivaizduokite bet kokį kitą įrankį, kuris galėtų pagerinti jūsų kūrėjo patirtį, valdomą natūralia kalba. Dabar jau pradedate matyti privalumus, tiesa?
+Visual Studio Code ir GitHub Copilot gali veikti kaip klientai ir naudoti MCP serverį. Klausiate, kodėl to norėtume? Na, tai reiškia, kad bet kurios MCP serverio funkcijos dabar gali būti naudojamos iš jūsų IDE. Įsivaizduokite, jei pridėtumėte, pavyzdžiui, GitHub MCP serverį – tai leistų valdyti GitHub naudojant užklausas, o ne rašant konkrečias komandas terminale. Arba įsivaizduokite bet ką, kas galėtų pagerinti jūsų kūrėjo patirtį, viską valdant natūralia kalba. Dabar pradeda būti aišku, koks čia privalumas, tiesa?
 
 ## Apžvalga
 
-Ši pamoka apima, kaip naudoti Visual Studio Code ir GitHub Copilot Agent režimą kaip klientą jūsų MCP serveriui.
+Ši pamoka aprašo, kaip naudoti Visual Studio Code ir GitHub Copilot agento režimą kaip klientą jūsų MCP serveriui.
 
 ## Mokymosi tikslai
 
-Šios pamokos pabaigoje jūs galėsite:
+Pamokos pabaigoje jūs sugebėsite:
 
 - Naudoti MCP serverį per Visual Studio Code.
-- Paleisti funkcijas, tokias kaip įrankiai, per GitHub Copilot.
-- Suprasti, kaip sukonfigūruoti Visual Studio Code, kad rastumėte ir valdytumėte savo MCP serverį.
+- Vykdyti funkcijas ir įrankius per GitHub Copilot.
+- Konfigūruoti Visual Studio Code, kad jis rastų ir valdytų jūsų MCP serverį.
 
 ## Naudojimas
 
-Savo MCP serverį galite valdyti dviem būdais:
+Galite valdyti savo MCP serverį dviem būdais:
 
-- Naudojant vartotojo sąsają – kaip tai padaryti, pamatysite vėliau šiame skyriuje.
-- Terminale – galima valdyti dalykus iš terminalo naudojant `code` vykdomąjį failą:
+- Per vartotojo sąsają, kaip matysite vėliau šiame skyriuje.
+- Terminale, galima valdyti dalykus naudojant `code` vykdomąjį failą:
 
-  Norėdami pridėti MCP serverį prie savo vartotojo profilio, naudokite komandų eilutės parinktį --add-mcp ir pateikite JSON serverio konfigūraciją formatu {\"name\":\"server-name\",\"command\":...}.
+  Norėdami pridėti MCP serverį prie vartotojo profilio, naudokite komandų eilutės parinktį --add-mcp ir pateikite JSON serverio konfigūraciją formatu {\"name\":\"server-name\",\"command\":...}.
 
   ```
   code --add-mcp "{\"name\":\"my-server\",\"command\": \"uvx\",\"args\": [\"mcp-server-fetch\"]}"
   ```
 
-### Ekrano nuotraukos
+### Ekrano kopijos
 
 ![Vadovaujama MCP serverio konfigūracija Visual Studio Code](../../../../translated_images/lt/chat-mode-agent.729a22473f822216.webp)
 ![Įrankių pasirinkimas kiekvienai agento sesijai](../../../../translated_images/lt/agent-mode-select-tools.522c7ba5df0848f8.webp)
 ![Lengvas klaidų derinimas MCP kūrimo metu](../../../../translated_images/lt/mcp-list-servers.fce89eefe3f30032.webp)
 
-Apie tai, kaip naudoti vizualinę sąsają, kalbėsime kitose dalyse.
+Toliau aptarsime, kaip naudojame vizualinę sąsają kitose skiltyse.
 
 ## Požiūris
 
-Štai kaip turime prieiti prie šio proceso aukštu lygiu:
+Čia yra pagrindiniai žingsniai, kaip turime elgtis:
 
-- Sukonfigūruoti failą, kad rastume savo MCP serverį.
-- Paleisti/prisijungti prie serverio, kad jis išvardintų savo galimybes.
+- Konfigūruoti failą, kad rastume MCP serverį.
+- Paleisti/Prisijungti prie minėto serverio, kad jis pademonstruotų savo galimybes.
 - Naudoti šias galimybes per GitHub Copilot pokalbių sąsają.
 
-Puiku, dabar, kai suprantame procesą, pabandykime naudoti MCP serverį per Visual Studio Code atlikdami pratimą.
+Puiku, dabar, kai suprantame eigą, pabandykime naudoti MCP serverį Visual Studio Code kartu atlikdami pratimą.
 
-## Pratimas: Naudojimasis serveriu
+## Pratimas: serverio naudojimas
 
-Šiame pratime sukonfigūruosime Visual Studio Code, kad rastume jūsų MCP serverį ir galėtume jį naudoti per GitHub Copilot pokalbių sąsają.
+Šiame pratime konfigūruosime Visual Studio Code, kad jis rastų jūsų MCP serverį ir jį galėsite naudoti per GitHub Copilot pokalbių sąsają.
 
-### -0- Paruošiamasis žingsnis: įgalinkite MCP serverio aptikimą
+### -0- Pradinė sąlyga, įgalinti MCP serverių atradimą
 
-Gali reikėti įjungti MCP serverių aptikimą.
+Gali tekti įjungti MCP serverių atradimą.
 
 1. Eikite į `File -> Preferences -> Settings` Visual Studio Code.
 
-1. Ieškokite „MCP“ ir įjunkite `chat.mcp.discovery.enabled` nustatymuose.json faile.
+1. Paieškoje įveskite "MCP" ir įgalinkite `chat.mcp.discovery.enabled` nustatymų faile settings.json.
 
 ### -1- Sukurkite konfigūracijos failą
 
-Pradėkite kurdami konfigūracijos failą savo projekto šaknyje. Jums reikės failo pavadinimu MCP.json, kurį turėsite įdėti į aplanką .vscode. Jis turėtų atrodyti taip:
+Pradėkite kurdami konfigūracijos failą savo projekto šaknyje, jums reikės failo pavadinimu MCP.json, kurį reikės įdėti į aplanką .vscode. Jis turėtų atrodyti taip:
 
 ```text
 .vscode
@@ -68,7 +68,7 @@ Pradėkite kurdami konfigūracijos failą savo projekto šaknyje. Jums reikės f
 
 Toliau pažiūrėkime, kaip pridėti serverio įrašą.
 
-### -2- Sujunkite serverį
+### -2- Konfigūruokite serverį
 
 Pridėkite šį turinį į *mcp.json*:
 
@@ -86,29 +86,29 @@ Pridėkite šį turinį į *mcp.json*:
 }
 ```
 
-Aukščiau pateiktas paprastas pavyzdys, kaip paleisti serverį, parašytą Node.js. Kitoms aplinkoms nurodykite tinkamą komandą serveriui paleisti naudojant `command` ir `args`.
+Aukščiau pateiktas paprastas pavyzdys, kaip paleisti Node.js parašytą serverį, kitoms aplinkoms nurodykite tinkamą komandą serverio paleidimui naudojant `command` ir `args`.
 
 ### -3- Paleiskite serverį
 
 Dabar, kai pridėjote įrašą, paleiskime serverį:
 
-1. Suraskite savo įrašą *mcp.json* faile ir įsitikinkite, kad matote „play“ piktogramą:
+1. Suraskite savo įrašą *mcp.json* faile ir įsitikinkite, kad matote "play" piktogramą:
 
   ![Serverio paleidimas Visual Studio Code](../../../../translated_images/lt/vscode-start-server.8e3c986612e3555d.webp)  
 
-1. Spustelėkite „play“ piktogramą. Turėtumėte matyti, kad GitHub Copilot pokalbių įrankių piktograma padidino galimų įrankių skaičių. Jei spustelėsite šią įrankių piktogramą, pamatysite registruotų įrankių sąrašą. Galite pažymėti/nuimti kiekvieną įrankį, priklausomai nuo to, ar norite, kad GitHub Copilot juos naudotų kaip kontekstą:
+1. Paspauskite "play" piktogramą, turėtumėte matyti, kaip įrankių piktograma GitHub Copilot pokalbių sąsajoje didina galimų įrankių skaičių. Paspaudę šią įrankių piktogramą matysite registruotų įrankių sąrašą. Galite pažymėti/atžymėti kiekvieną įrankį pagal tai, ar norite, kad GitHub Copilot jį naudotų kaip kontekstą:
 
   ![Serverio paleidimas Visual Studio Code](../../../../translated_images/lt/vscode-tool.0b3bbea2fb7d8c26.webp)
 
-1. Norėdami paleisti įrankį, įveskite užklausą, kuri atitinka vieno iš jūsų įrankių aprašymą, pavyzdžiui, užklausą „pridėk 22 prie 1“:
+1. Norėdami vykdyti įrankį, įveskite užklausą, kuri, jūsų žiniomis, atitiks vieno iš įrankių aprašymą, pavyzdžiui, "add 22 to 1":
 
-  ![Įrankio paleidimas iš GitHub Copilot](../../../../translated_images/lt/vscode-agent.d5a0e0b897331060.webp)
+  ![Įrankio vykdymas per GitHub Copilot](../../../../translated_images/lt/vscode-agent.d5a0e0b897331060.webp)
 
-  Turėtumėte matyti atsakymą „23“.
+  Turėtumėte pamatyti atsakymą 23.
 
 ## Užduotis
 
-Pabandykite pridėti serverio įrašą į savo *mcp.json* failą ir įsitikinkite, kad galite paleisti/sustabdyti serverį. Taip pat įsitikinkite, kad galite bendrauti su serverio įrankiais per GitHub Copilot pokalbių sąsają.
+Pabandykite pridėti serverio įrašą į savo *mcp.json* failą ir įsitikinkite, kad galite paleisti bei sustabdyti serverį. Taip pat įsitikinkite, kad per GitHub Copilot pokalbių sąsają galite bendrauti su savo serverio įrankiais.
 
 ## Sprendimas
 
@@ -116,19 +116,19 @@ Pabandykite pridėti serverio įrašą į savo *mcp.json* failą ir įsitikinkit
 
 ## Pagrindinės išvados
 
-Šio skyriaus pagrindinės išvados:
+Šio skyriaus pagrindinės išvados yra:
 
 - Visual Studio Code yra puikus klientas, leidžiantis naudoti kelis MCP serverius ir jų įrankius.
 - GitHub Copilot pokalbių sąsaja yra būdas bendrauti su serveriais.
-- Galite paprašyti vartotojo įvesties, pvz., API raktų, kuriuos galima perduoti MCP serveriui konfigūruojant serverio įrašą *mcp.json* faile.
+- Galite prašyti vartotojo įvesti duomenis, tokius kaip API raktus, kuriuos galima perduoti MCP serveriui konfigūruojant serverio įrašą *mcp.json* faile.
 
 ## Pavyzdžiai
 
-- [Java skaičiuotuvas](../samples/java/calculator/README.md)
-- [.Net skaičiuotuvas](../../../../03-GettingStarted/samples/csharp)
-- [JavaScript skaičiuotuvas](../samples/javascript/README.md)
-- [TypeScript skaičiuotuvas](../samples/typescript/README.md)
-- [Python skaičiuotuvas](../../../../03-GettingStarted/samples/python)
+- [Java skaičiuoklė](../samples/java/calculator/README.md)
+- [.Net skaičiuoklė](../../../../03-GettingStarted/samples/csharp)
+- [JavaScript skaičiuoklė](../samples/javascript/README.md)
+- [TypeScript skaičiuoklė](../samples/typescript/README.md)
+- [Python skaičiuoklė](../../../../03-GettingStarted/samples/python)
 
 ## Papildomi ištekliai
 
@@ -136,9 +136,11 @@ Pabandykite pridėti serverio įrašą į savo *mcp.json* failą ir įsitikinkit
 
 ## Kas toliau
 
-- Toliau: [Stdio serverio kūrimas](../05-stdio-server/README.md)
+- Toliau: [stdIO serverio kūrimas](../05-stdio-server/README.md)
 
 ---
 
-**Atsakomybės apribojimas**:  
-Šis dokumentas buvo išverstas naudojant AI vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojama profesionali žmogaus vertimo paslauga. Mes neprisiimame atsakomybės už nesusipratimus ar klaidingus interpretavimus, atsiradusius naudojant šį vertimą.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Atsakomybės apribojimas**:
+Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba laikomas autoritetingu šaltiniu. Svarbiai informacijai rekomenduojama naudoti profesionalų žmogiškąjį vertimą. Mes neatsakome už jokius nesusipratimus ar neteisingą interpretaciją, kilusią naudojantis šiuo vertimu.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

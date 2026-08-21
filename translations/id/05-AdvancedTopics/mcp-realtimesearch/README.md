@@ -1,110 +1,110 @@
-# Protokol Konteks Model untuk Pencarian Web Waktu Nyata
+# Protokol Konteks Model untuk Pencarian Web Real-Time
 
 ## Ikhtisar
 
-Pencarian web waktu nyata telah menjadi esensial dalam lingkungan yang dipenuhi informasi saat ini, di mana aplikasi membutuhkan akses langsung ke informasi terbaru di seluruh internet untuk memberikan respons yang relevan dan tepat waktu. Protokol Konteks Model (MCP) merupakan kemajuan signifikan dalam mengoptimalkan proses pencarian waktu nyata ini, meningkatkan efisiensi pencarian, menjaga keutuhan konteks, dan memperbaiki kinerja sistem secara keseluruhan.
+Pencarian web real-time telah menjadi hal penting di lingkungan yang didorong oleh informasi saat ini, di mana aplikasi membutuhkan akses segera ke informasi terkini dari seluruh internet untuk menyediakan respons yang relevan dan tepat waktu. Model Context Protocol (MCP) merupakan kemajuan signifikan dalam mengoptimalkan proses pencarian real-time ini, meningkatkan efisiensi pencarian, menjaga integritas konteks, dan meningkatkan kinerja sistem secara keseluruhan.
 
-Modul ini mengeksplorasi bagaimana MCP mengubah pencarian web waktu nyata dengan menyediakan pendekatan standar untuk manajemen konteks di seluruh model AI, mesin pencari, dan aplikasi.
+Modul ini mengeksplorasi bagaimana MCP mengubah pencarian web real-time dengan menyediakan pendekatan standar untuk pengelolaan konteks di seluruh model AI, mesin pencari, dan aplikasi.
 
 ### Apa yang Akan Anda Pelajari
 
 Dalam panduan komprehensif ini, Anda akan menemukan:
 
-- Bagaimana MCP menciptakan jembatan mulus antara model AI dan kemampuan pencarian web waktu nyata
-- Pola arsitektural untuk menerapkan solusi pencarian yang efisien dan skalabel dengan MCP
-- Teknik untuk mempertahankan konteks pencarian di banyak kueri dan interaksi
+- Bagaimana MCP menciptakan jembatan mulus antara model AI dan kemampuan pencarian web real-time
+- Pola arsitektur untuk menerapkan solusi pencarian yang efisien dan skalabel dengan MCP
+- Teknik untuk mempertahankan konteks pencarian di berbagai kueri dan interaksi
 - Implementasi kode praktis dalam Python dan JavaScript untuk berbagai skenario pencarian
-- Metode untuk menyeimbangkan relevansi, kebaruan, dan kinerja dalam sistem pencarian bertenaga MCP
+- Metode untuk menyeimbangkan relevansi, kekinian, dan kinerja dalam sistem pencarian berbasis MCP
 
-## Pengenalan Pencarian Web Waktu Nyata
+## Pengenalan Pencarian Web Real-Time
 
-Pencarian web waktu nyata adalah pendekatan teknologi yang memungkinkan kueri, pemrosesan, dan analisis informasi berbasis web secara terus-menerus saat dipublikasikan atau diperbarui, memungkinkan sistem menyediakan informasi segar dan relevan dengan latensi minimal. Berbeda dengan sistem pencarian tradisional yang beroperasi pada data terindeks yang mungkin sudah berjam-jam atau berhari-hari, pencarian waktu nyata memproses data hidup dari web, menghadirkan wawasan dan informasi yang mencerminkan keadaan konten online saat ini.
+Pencarian web real-time adalah pendekatan teknologi yang memungkinkan pengajuan kueri, pemrosesan, dan analisis informasi berbasis web secara terus-menerus saat diterbitkan atau diperbarui, memungkinkan sistem menyediakan informasi segar dan relevan dengan latensi minimal. Berbeda dengan sistem pencarian tradisional yang beroperasi pada data terindeks yang mungkin berusia berjam-jam atau berhari-hari, pencarian real-time memproses data langsung dari web, memberikan wawasan dan informasi yang mencerminkan kondisi terkini konten online.
 
-### Konsep Inti Pencarian Web Waktu Nyata:
+### Konsep Inti Pencarian Web Real-Time:
 
-- **Pemrosesan Kueri Berkelanjutan**: Kueri pencarian diproses terhadap sumber data yang terus diperbarui
-- **Prioritas Kebaruan**: Sistem dirancang untuk memprioritaskan informasi segar
-- **Penyeimbangan Relevansi**: Menjaga keseimbangan antara relevansi dan kebaruan
+- **Pemrosesan Kuery Berkelanjutan**: Kueri pencarian diproses terhadap sumber data yang terus diperbarui
+- **Prioritas Kekinian**: Sistem dirancang untuk memprioritaskan informasi terbaru
+- **Penyeimbangan Relevansi**: Menjaga keseimbangan antara relevansi dan kekinian
 - **Arsitektur Skalabel**: Sistem harus mampu menangani beban kueri dan volume data yang bervariasi
-- **Pemahaman Kontekstual**: Mempertahankan konteks pengguna sepanjang iterasi pencarian sangat penting untuk hasil bermakna
-- **Reformulasi Kueri Dinamis**: Memodifikasi kueri dengan adaptif berdasarkan konteks dan hasil sebelumnya
+- **Pemahaman Kontekstual**: Mempertahankan konteks pengguna di seluruh iterasi pencarian sangat penting untuk hasil yang bermakna
+- **Reformulasi Kuery Dinamis**: Memodifikasi kueri secara adaptif berdasarkan konteks dan hasil sebelumnya
 - **Integrasi Multi-Sumber**: Menggabungkan hasil dari berbagai penyedia pencarian dan sumber web
-- **Pemahaman Semantik**: Memproses kueri dan konten berdasarkan makna, bukan hanya kata kunci
-- **Peringkat Waktu Nyata**: Menyesuaikan peringkat hasil secara berkelanjutan saat informasi baru tersedia
+- **Pemahaman Semantik**: Memproses kueri dan konten berdasarkan makna dan bukan hanya kata kunci
+- **Peringkat Real-Time**: Terus-menerus menyesuaikan peringkat hasil saat informasi baru tersedia
 
-### Protokol Konteks Model dan Pencarian Web Waktu Nyata
+### Model Context Protocol dan Pencarian Web Real-Time
 
-Protokol Konteks Model (MCP) mengatasi beberapa tantangan kritis dalam lingkungan pencarian web waktu nyata:
+Model Context Protocol (MCP) mengatasi beberapa tantangan penting dalam lingkungan pencarian web real-time:
 
-1. **Pemusatan Konteks Pencarian**: MCP menstandardisasi bagaimana konteks dipertahankan di seluruh komponen pencarian yang terdistribusi, memastikan model AI dan node pemrosesan memiliki akses ke riwayat kueri yang relevan dan preferensi pengguna.
+1. **Preservasi Konteks Pencarian**: MCP menstandarisasi bagaimana konteks dipertahankan di seluruh komponen pencarian terdistribusi, memastikan bahwa model AI dan node pemrosesan memiliki akses ke riwayat kueri yang relevan dan preferensi pengguna.
 
-2. **Manajemen Kueri yang Efisien**: Dengan menyediakan mekanisme terstruktur untuk transmisi konteks, MCP mengurangi overhead pengulangan konteks di setiap iterasi pencarian.
+2. **Manajemen Kuery yang Efisien**: Dengan menyediakan mekanisme terstruktur untuk transmisi konteks, MCP mengurangi overhead pengulangan konteks di setiap iterasi pencarian.
 
-3. **Interoperabilitas**: MCP menciptakan bahasa umum untuk berbagi konteks antara teknologi pencarian dan model AI yang beragam, memungkinkan arsitektur yang lebih fleksibel dan dapat dikembangkan.
+3. **Interoperabilitas**: MCP menciptakan bahasa umum untuk berbagi konteks antara teknologi pencarian dan model AI yang beragam, memungkinkan arsitektur yang lebih fleksibel dan dapat diperluas.
 
-4. **Konteks yang Dioptimalkan untuk Pencarian**: Implementasi MCP dapat memprioritaskan elemen konteks yang paling relevan untuk pencarian yang efektif, mengoptimalkan kinerja dan akurasi.
+4. **Konteks yang Dioptimalkan untuk Pencarian**: Implementasi MCP dapat memprioritaskan elemen konteks mana yang paling relevan untuk pencarian yang efektif, mengoptimalkan kinerja dan akurasi.
 
-5. **Pemrosesan Pencarian Adaptif**: Dengan manajemen konteks yang tepat melalui MCP, sistem pencarian dapat menyesuaikan pemrosesan secara dinamis berdasarkan kebutuhan pengguna yang berkembang dan lanskap informasi.
+5. **Pemrosesan Pencarian Adaptif**: Dengan pengelolaan konteks yang tepat melalui MCP, sistem pencarian dapat menyesuaikan pemrosesan secara dinamis berdasarkan kebutuhan pengguna dan lanskap informasi yang berkembang.
 
 Dalam aplikasi modern mulai dari agregasi berita hingga asisten penelitian, integrasi MCP dengan teknologi pencarian web memungkinkan pencarian yang lebih cerdas dan sadar konteks yang dapat memberikan hasil yang semakin relevan seiring interaksi pengguna berlanjut.
 
 ## Tujuan Pembelajaran
 
-Pada akhir pelajaran ini, Anda akan bisa:
+Pada akhir pelajaran ini, Anda akan dapat:
 
-- Memahami dasar-dasar pencarian web waktu nyata dan tantangannya dalam aplikasi modern
-- Menjelaskan bagaimana Protokol Konteks Model (MCP) meningkatkan kemampuan pencarian web waktu nyata
-- Mengimplementasikan solusi pencarian berbasis MCP menggunakan kerangka kerja dan API populer
-- Merancang dan menerapkan arsitektur pencarian yang skalabel dan berkinerja tinggi dengan MCP
-- Menerapkan konsep MCP pada berbagai kasus penggunaan termasuk pencarian semantik, bantuan penelitian, dan browsing yang diperkuat AI
-- Mengevaluasi tren muncul dan inovasi masa depan dalam teknologi pencarian berbasis MCP
+- Memahami dasar-dasar pencarian web real-time dan tantangannya dalam aplikasi modern
+- Menjelaskan bagaimana Model Context Protocol (MCP) meningkatkan kemampuan pencarian web real-time
+- Mengimplementasikan solusi pencarian berbasis MCP menggunakan framework dan API populer
+- Merancang dan menerapkan arsitektur pencarian yang skalabel dan berperforma tinggi dengan MCP
+- Menerapkan konsep MCP ke berbagai kasus penggunaan termasuk pencarian semantik, asistensi penelitian, dan penjelajahan yang diperkuat AI
+- Mengevaluasi tren yang muncul dan inovasi masa depan dalam teknologi pencarian berbasis MCP
 - Mengembangkan sistem pencarian sadar konteks yang belajar dari interaksi pengguna
 - Mengintegrasikan kemampuan pencarian web ke dalam asisten AI menggunakan protokol MCP yang distandarisasi
 - Membuat pipeline pencarian multi-tahap yang secara progresif menyempurnakan hasil berdasarkan konteks
-- Mengoptimalkan kinerja pencarian sambil menjaga kesadaran konteks yang komprehensif
+- Mengoptimalkan kinerja pencarian sambil mempertahankan kesadaran konteks yang komprehensif
 
 ### Definisi dan Signifikansi
 
-Pencarian web waktu nyata melibatkan kueri, pengambilan, dan penyampaian informasi berbasis web secara berkelanjutan dengan latensi minimal. Berbeda dengan mesin pencari tradisional yang secara berkala meng-crawl dan mengindeks web, pencarian waktu nyata bertujuan menampilkan informasi segera setelah tersedia, memungkinkan akses langsung ke konten terkini.
+Pencarian web real-time melibatkan pengajuan kueri, pengambilan, dan penyampaian informasi berbasis web secara terus-menerus dengan latensi minimal. Berbeda dengan mesin pencari tradisional yang secara berkala merayapi dan mengindeks web, pencarian real-time bertujuan menampilkan informasi saat tersedia, memungkinkan akses segera ke konten paling terkini.
 
-Karakteristik utama pencarian web waktu nyata meliputi:
+Karakteristik utama pencarian web real-time meliputi:
 
-- **Kebaruan**: Memprioritaskan konten dan pembaruan terbaru
-- **Pemrosesan Berkelanjutan**: Terus memantau informasi baru
-- **Adaptasi Kueri**: Menyempurnakan kueri pencarian berdasarkan konteks dan masukan
-- **Pengiriman Langsung**: Menyediakan hasil pencarian dengan keterlambatan minimal
-- **Retensi Konteks**: Membangun di atas kueri sebelumnya untuk meningkatkan relevansi
+- **Kesegaran**: Memprioritaskan konten dan pembaruan terbaru
+- **Pemrosesan Berkelanjutan**: Terus-menerus memantau informasi baru
+- **Adaptasi Kuery**: Memperbaiki kueri pencarian berdasarkan konteks dan umpan balik
+- **Pengantaran Segera**: Menyediakan hasil pencarian dengan penundaan minimal
+- **Retensi Konteks**: Membangun pada kueri sebelumnya untuk relevansi yang lebih baik
 
 ### Tantangan dalam Pencarian Web Tradisional
 
-Pendekatan pencarian web tradisional menghadapi beberapa keterbatasan saat diterapkan pada skenario waktu nyata:
+Pendekatan pencarian web tradisional menghadapi beberapa keterbatasan saat diterapkan pada skenario real-time:
 
-1. **Fragmentasi Konteks**: Kesulitan mempertahankan konteks pencarian di antar banyak kueri
-2. **Kebaruan Informasi**: Tantangan dalam mengakses dan memprioritaskan informasi terbaru
+1. **Fragmentasi Konteks**: Kesulitan mempertahankan konteks pencarian di berbagai kueri
+2. **Kesegaran Informasi**: Tantangan dalam mengakses dan memprioritaskan informasi terbaru
 3. **Kompleksitas Integrasi**: Masalah interoperabilitas antara sistem pencarian dan aplikasi
 4. **Masalah Latensi**: Menyeimbangkan pencarian komprehensif dengan kebutuhan waktu respons
-5. **Penyesuaian Relevansi**: Menjamin akurasi dan relevansi sambil memprioritaskan kebaruan
+5. **Penyesuaian Relevansi**: Memastikan akurasi dan relevansi sambil memprioritaskan kekinian
 
-## Memahami Protokol Konteks Model (MCP) untuk Pencarian
+## Memahami Model Context Protocol (MCP) untuk Pencarian
 
-### Apa itu MCP dalam Konteks Pencarian?
+### Apa Itu MCP dalam Konteks Pencarian?
 
-Protokol Konteks Model (MCP) adalah protokol komunikasi yang distandarisasi yang dirancang untuk memfasilitasi interaksi efisien antara model AI dan aplikasi. Dalam konteks pencarian web waktu nyata, MCP menyediakan kerangka kerja untuk:
+Model Context Protocol (MCP) adalah protokol komunikasi terstandarisasi yang dirancang untuk memfasilitasi interaksi yang efisien antara model AI dan aplikasi. Dalam konteks pencarian web real-time, MCP menyediakan kerangka kerja untuk:
 
-- Mempertahankan konteks pencarian sepanjang urutan kueri
+- Mempertahankan konteks pencarian sepanjang rangkaian kueri
 - Menstandarisasi format kueri pencarian dan hasil
 - Mengoptimalkan transmisi parameter dan hasil pencarian
 - Meningkatkan komunikasi antara model dan mesin pencari
 
 ### Komponen Inti dan Arsitektur
 
-Arsitektur MCP untuk pencarian web waktu nyata terdiri dari beberapa komponen kunci:
+Arsitektur MCP untuk pencarian web real-time terdiri dari beberapa komponen utama:
 
-1. **Pengelola Konteks Kueri**: Mengelola dan mempertahankan konteks pencarian di banyak kueri
+1. **Pengelola Konteks Kuery**: Mengelola dan mempertahankan konteks pencarian di berbagai kueri
 2. **Pemroses Pencarian**: Memproses permintaan pencarian yang masuk menggunakan teknik sadar konteks
-3. **Adapter Protokol**: Mengonversi antar API pencarian berbeda sambil mempertahankan konteks
-4. **Penyimpanan Konteks**: Menyimpan dan mengambil riwayat pencarian serta preferensi secara efisien
-5. **Konektor Pencarian**: Menghubungkan ke berbagai mesin pencari dan API web
+3. **Adaptor Protokol**: Mengonversi antar API pencarian yang berbeda sambil mempertahankan konteks
+4. **Penyimpanan Konteks**: Menyimpan dan mengambil riwayat pencarian dan preferensi secara efisien
+5. **Penghubung Pencarian**: Menghubungkan ke berbagai mesin pencari dan API web
 
 ```mermaid
 graph TD
@@ -116,17 +116,17 @@ graph TD
     end
 
     subgraph "Lapisan Pencarian MCP"
-        SC[Penghubung Pencarian]
+        SC[Konektor Pencarian]
         PA[Adaptor Protokol]
-        CH[Penangani Konteks]
+        CH[Pengelola Konteks]
         SP[Pemroses Pencarian]
-        CS[Penyimpan Konteks]
+        CS[Penyimpanan Konteks]
     end
 
     subgraph "Pemrosesan & Analisis"
         RE[Mesin Relevansi]
         ML[Model ML]
-        NLP[Pengolahan NLP]
+        NLP[Pemrosesan NLP]
         Rank[Sistem Peringkat]
     end
 
@@ -143,14 +143,14 @@ graph TD
     News -->|Pembaruan| SC
     
     SC -->|Hasil Mentah| PA
-    PA -->|Hasil Normal| CH
+    PA -->|Hasil Normalisasi| CH
     CH <-->|Operasi Konteks| CS
     CH -->|Hasil Berbasis Konteks| SP
     SP -->|Hasil Terproses| RE
     SP -->|Fitur| ML
     SP -->|Teks| NLP
     
-    RE -->|Hasil Terperingkat| Rank
+    RE -->|Hasil Berperingkat| Rank
     ML -->|Prediksi| Rank
     NLP -->|Entitas & Relasi| Rank
     
@@ -158,14 +158,14 @@ graph TD
     ML -->|Wawasan| Alerts
     NLP -->|Data Terstruktur| KB
     
-    RA -->|Riset| Users((Pengguna))
-    Alerts -->|Pemberitahuan| Users
+    RA -->|Riset| Users((Users))
+    Alerts -->|Notifikasi| Users
     KB <-->|Akses Pengetahuan| API
-    
-    classDef sources fill:#f9f,stroke:#333,stroke-width:2px
-    classDef mcp fill:#bbf,stroke:#333,stroke-width:2px
-    classDef processing fill:#bfb,stroke:#333,stroke-width:2px
-    classDef apps fill:#fbb,stroke:#333,stroke-width:2px
+
+    classDef sources fill:#f9f,stroke:#333,stroke-width:2px,color:#4a004a
+    classDef mcp fill:#bbf,stroke:#333,stroke-width:2px,color:#00004a
+    classDef processing fill:#bfb,stroke:#333,stroke-width:2px,color:#003300
+    classDef apps fill:#fbb,stroke:#333,stroke-width:2px,color:#4a0000
     
     class Web,APIs,DB,News sources
     class SC,PA,CH,SP,CS mcp
@@ -173,42 +173,43 @@ graph TD
     class RA,Alerts,KB,API apps
 ```
 
-### Bagaimana MCP Meningkatkan Pencarian Web Waktu Nyata
+### Bagaimana MCP Meningkatkan Pencarian Web Real-Time
 
 MCP mengatasi tantangan pencarian web tradisional melalui:
 
-- **Kontinuitas Kontekstual**: Mempertahankan hubungan antara kueri sepanjang sesi pencarian
-- **Transmisi Teroptimasi**: Mengurangi redundansi parameter pencarian melalui manajemen konteks cerdas
-- **Antarmuka Standar**: Menyediakan API yang konsisten untuk komponen pencarian
-- **Pengurangan Latensi**: Meminimalkan overhead pemrosesan melalui penanganan konteks yang efisien
-- **Peningkatan Relevansi**: Meningkatkan relevansi pencarian dengan mempertahankan maksud pengguna di banyak kueri
+- **Kontinuitas Kontekstual**: Mempertahankan hubungan antar kueri sepanjang sesi pencarian
+- **Transmisi yang Dioptimalkan**: Mengurangi redundansi parameter pencarian melalui pengelolaan konteks yang cerdas
+- **Antarmuka Terstandarisasi**: Menyediakan API konsisten untuk komponen pencarian
+- **Latensi Berkurang**: Meminimalkan overhead pemrosesan melalui penanganan konteks yang efisien
+- **Relevansi Ditingkatkan**: Memperbaiki relevansi pencarian dengan mempertahankan niat pengguna di berbagai kueri
 
 ## Integrasi dan Implementasi
 
-Sistem pencarian web waktu nyata memerlukan desain arsitektur dan implementasi yang hati-hati untuk menjaga baik kinerja maupun integritas konteks. Protokol Konteks Model menawarkan pendekatan standar untuk mengintegrasikan model AI dan teknologi pencarian, memungkinkan pipeline pencarian yang lebih canggih dan sadar konteks.
+Sistem pencarian web real-time membutuhkan desain arsitektur dan implementasi yang cermat untuk menjaga kinerja dan integritas konteks. Model Context Protocol menawarkan pendekatan terstandarisasi untuk mengintegrasikan model AI dan teknologi pencarian, memungkinkan pipeline pencarian yang lebih canggih dan sadar konteks.
 
 ### Ikhtisar Integrasi MCP dalam Arsitektur Pencarian
 
-Mengimplementasikan MCP dalam lingkungan pencarian web waktu nyata melibatkan beberapa pertimbangan utama:
+Implementasi MCP dalam lingkungan pencarian web real-time melibatkan beberapa pertimbangan kunci:
 
-1. **Serialisasi Konteks Pencarian**: MCP menyediakan mekanisme efisien untuk encoding informasi kontekstual dalam permintaan pencarian, memastikan konteks penting mengikuti kueri sepanjang pipeline pemrosesan. Ini termasuk format serialisasi standar yang dioptimalkan untuk metadata terkait pencarian.
+1. **Serialisasi Konteks Pencarian**: MCP menyediakan mekanisme efisien untuk mengkodekan informasi kontekstual dalam permintaan pencarian, memastikan konteks penting mengikuti kueri sepanjang pipeline pemrosesan. Ini termasuk format serialisasi terstandarisasi yang dioptimalkan untuk metadata terkait pencarian.
 
-2. **Pemrosesan Pencarian Berstatus**: MCP memungkinkan pemrosesan berstatus yang lebih cerdas dengan mempertahankan representasi konteks yang konsisten di seluruh iterasi pencarian. Ini sangat berharga dalam pipeline pencarian multi-tahap di mana penyempurnaan konteks memperbaiki hasil.
+2. **Pemrosesan Pencarian Berstatus**: MCP memungkinkan pemrosesan berstatus yang lebih cerdas dengan mempertahankan representasi konteks yang konsisten di seluruh iterasi pencarian. Hal ini sangat berharga dalam pipeline pencarian multi-tahap di mana penyempurnaan konteks meningkatkan hasil.
 
-3. **Perluasan dan Penyempurnaan Kueri**: Implementasi MCP dalam sistem pencarian dapat memfasilitasi perluasan dan penyempurnaan kueri yang canggih berdasarkan konteks yang terkumpul, memungkinkan hasil yang semakin relevan seiring sesi pencarian berjalan.
+3. **Perluasan dan Penyempurnaan Kuery**: Implementasi MCP dalam sistem pencarian dapat memfasilitasi perluasan dan penyempurnaan kueri yang canggih berdasarkan akumulasi konteks, memungkinkan hasil yang semakin relevan saat sesi pencarian berlangsung.
 
-4. **Caching dan Prioritas Hasil**: Dengan menstandarisasi penanganan konteks, MCP membantu mengelola caching dan prioritas hasil, memungkinkan komponen beradaptasi berdasarkan konteks pencarian yang berkembang.
+4. **Caching dan Prioritisasi Hasil**: Dengan menstandarisasi penanganan konteks, MCP membantu mengelola caching hasil dan prioritisasi, membiarkan komponen menyesuaikan berdasarkan konteks pencarian yang berkembang.
 
-5. **Federasi dan Agregasi Pencarian**: MCP memfasilitasi federasi pencarian yang lebih canggih di banyak backend dengan menyediakan representasi kontekstual terstruktur, memungkinkan agregasi hasil yang lebih bermakna dari sumber yang beragam.
+5. **Federasi dan Agregasi Pencarian**: MCP memfasilitasi federasi pencarian yang lebih canggih di berbagai backend dengan menyediakan representasi kontekstual terstruktur, memungkinkan agregasi hasil yang lebih bermakna dari sumber yang beragam.
 
-Implementasi MCP di berbagai teknologi pencarian menciptakan pendekatan terpadu untuk manajemen konteks, mengurangi kebutuhan kode integrasi khusus sekaligus meningkatkan kemampuan sistem dalam mempertahankan konteks bermakna saat kueri pencarian berkembang.
+Implementasi MCP di berbagai teknologi pencarian menciptakan pendekatan terpadu untuk pengelolaan konteks, mengurangi kebutuhan kode integrasi khusus sekaligus meningkatkan kemampuan sistem untuk mempertahankan konteks bermakna saat kueri pencarian berkembang.
 
 ### MCP dalam Berbagai Implementasi Pencarian Web
 
 Contoh-contoh ini mengikuti spesifikasi MCP saat ini yang berfokus pada protokol berbasis JSON-RPC dengan mekanisme transportasi yang berbeda. Kode ini menunjukkan bagaimana Anda dapat mengimplementasikan integrasi pencarian khusus sambil mempertahankan kompatibilitas penuh dengan protokol MCP.
 
+
 <details>
-<summary>Implementasi Python dengan API Pencarian Umum</summary>
+<summary>Implementasi Python dengan API Pencarian Generik</summary>
 
 ```python
 import asyncio
@@ -250,7 +251,7 @@ class WebSearchHandler:
                            exclude_domains: List[str] = None,
                            time_period: str = "any") -> Dict[str, Any]:
         """Perform web search using the search API"""
-        # Bangun parameter pencarian
+        # Susun parameter pencarian
         search_params = {
             "q": query,
             "limit": max_results,
@@ -275,7 +276,7 @@ class WebSearchHandler:
                 
                 search_data = await response.json()
                 
-                # Ubah respons spesifik API ke format standar
+                # Ubah respons spesifik API menjadi format standar
                 results = []
                 for item in search_data.get("results", []):
                     results.append({
@@ -295,13 +296,13 @@ class WebSearchHandler:
             print(f"Search API request error: {e}")
             raise
 
-# Inisialisasi pengelola pencarian
+# Inisialisasi handler pencarian
 search_handler = WebSearchHandler(
     api_endpoint="https://api.search-service.example/search",
     api_key="your-api-key-here"
 )
 
-# Atur lifespan untuk mengelola pengelola pencarian
+# Atur lifespan untuk mengelola handler pencarian
 @asyncio.asynccontextmanager
 async def app_lifespan(server: FastMCP):
     """Manage application lifecycle"""
@@ -348,13 +349,13 @@ async def web_search(query: str, max_results: int = 5,
 
 # Contoh penggunaan klien
 async def client_example():
-    # Sambungkan ke server pencarian menggunakan transport HTTP Streamable
+    # Hubungkan ke server pencarian menggunakan transport HTTP yang dapat dialirkan
     async with streamablehttp_client("http://localhost:8000/mcp") as (read, write, _):
         async with ClientSession(read, write) as session:
             # Inisialisasi koneksi
             await session.initialize()
             
-            # Panggil alat pencarian web
+            # Panggil alat web_search
             search_results = await session.call_tool(
                 "web_search", 
                 {
@@ -369,13 +370,14 @@ async def client_example():
 
 # Contoh eksekusi server
 if __name__ == "__main__":
-    # Jalankan server dengan transport HTTP Streamable
+    # Jalankan server dengan transport HTTP yang dapat dialirkan
     search_server.run(transport="streamable-http")
 ```
 </details> 
 
 <details>
 <summary>Implementasi JavaScript dengan Pencarian Berbasis Browser</summary>
+
 
 ```javascript
 // Implementasi server MCP untuk pencarian web
@@ -405,7 +407,7 @@ class SearchService {
             timePeriod = 'any'
         } = parameters;
         
-        // Buat URL pencarian dengan parameter
+        // Membuat URL pencarian dengan parameter
         const url = new URL(this.searchApiUrl);
         url.searchParams.append('q', query);
         url.searchParams.append('limit', maxResults);
@@ -435,7 +437,7 @@ class SearchService {
             
             const searchData = await response.json();
             
-            // Ubah respons spesifik API ke format standar
+            // Mengubah respons spesifik API ke format standar
             const results = searchData.results?.map(item => ({
                 title: item.title || '',
                 url: item.url || '',
@@ -462,14 +464,14 @@ const searchService = new SearchService(
     'your-api-key-here'
 );
 
-// Atur penyedia konteks untuk server
+// Mengatur penyedia konteks untuk server
 searchServer.setContextProvider(() => {
     return {
         searchService
     };
 });
 
-// Daftarkan alat pencarian web
+// Mendaftarkan alat pencarian web
 searchServer.tool({
     name: 'web_search',
     description: 'Search the web for information',
@@ -510,12 +512,12 @@ searchServer.tool({
     }
 });
 
-// Contoh kode klien untuk terhubung ke server pencarian
+// Contoh kode klien untuk menghubungkan ke server pencarian
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 
 async function connectToSearchServer() {
-    // Terhubung ke server pencarian
+    // Menghubungkan ke server pencarian
     const transport = new StreamableHTTPClientTransport(
         new URL('http://localhost:8000/mcp')
     );
@@ -527,7 +529,7 @@ async function connectToSearchServer() {
     
     await client.connect(transport);
     
-    // Jalankan alat pencarian
+    // Menjalankan alat pencarian
     const searchResults = await client.callTool({
         name: 'web_search',
         arguments: {
@@ -540,49 +542,52 @@ async function connectToSearchServer() {
     
     console.log('Search results:', searchResults);
     
-    // Bersihkan
+    // Membersihkan
     await client.disconnect();
 }
 
-// Mulai server
+// Memulai server
 const transport = new StreamableHTTPServerTransport();
 await searchServer.connect(transport);
 console.log('Search server running at http://localhost:8000/mcp');
 
-// Dalam proses terpisah atau setelah server dimulai
+// Di proses terpisah atau setelah server dimulai
 // connectToSearchServer().catch(console.error);
 ```
 </details> 
 
+
+
+
 ## Penafian Contoh Kode
 
-> **Catatan Penting**: Contoh kode di bawah ini menunjukkan integrasi Protokol Konteks Model (MCP) dengan fungsionalitas pencarian web. Walaupun mereka mengikuti pola dan struktur SDK MCP resmi, contoh ini telah disederhanakan untuk tujuan edukasi.
+> **Catatan Penting**: Contoh kode di bawah ini menunjukkan integrasi Model Context Protocol (MCP) dengan fungsi pencarian web. Meskipun mengikuti pola dan struktur SDK MCP resmi, kode ini telah disederhanakan untuk tujuan edukasi.
 > 
-> Contoh-contoh ini menunjukkan:
+> Contoh ini menampilkan:
 > 
-> 1. **Implementasi Python**: Implementasi server FastMCP yang menyediakan alat pencarian web dan terhubung ke API pencarian eksternal. Contoh ini menunjukkan manajemen siklus hidup yang tepat, penanganan konteks, dan implementasi alat mengikuti pola dari [SDK MCP Python resmi](https://github.com/modelcontextprotocol/python-sdk). Server menggunakan transportasi HTTP Streamable yang direkomendasikan dan telah menggantikan transportasi SSE lama untuk deployment produksi.
+> 1. **Implementasi Python**: Implementasi server FastMCP yang menyediakan alat pencarian web dan menghubungkan ke API pencarian eksternal. Contoh ini menunjukkan manajemen umur kode yang tepat, pengelolaan konteks, dan implementasi alat mengikuti pola dari [SDK Python MCP resmi](https://github.com/modelcontextprotocol/python-sdk). Server menggunakan transportasi HTTP Streamable yang direkomendasikan yang menggantikan transportasi SSE lama untuk deployment produksi.
 > 
-> 2. **Implementasi JavaScript**: Implementasi TypeScript/JavaScript menggunakan pola FastMCP dari [SDK MCP TypeScript resmi](https://github.com/modelcontextprotocol/typescript-sdk) untuk membuat server pencarian dengan definisi alat yang benar dan koneksi klien. Ini mengikuti pola terbaru yang direkomendasikan untuk manajemen sesi dan pemeliharaan konteks.
+> 2. **Implementasi JavaScript**: Implementasi TypeScript/JavaScript menggunakan pola FastMCP dari [SDK TypeScript MCP resmi](https://github.com/modelcontextprotocol/typescript-sdk) untuk membuat server pencarian dengan definisi alat yang tepat dan koneksi klien. Ini mengikuti pola terkini yang direkomendasikan untuk manajemen sesi dan pelestarian konteks.
 > 
-> Contoh-contoh ini memerlukan penanganan kesalahan tambahan, otentikasi, dan kode integrasi API spesifik untuk penggunaan produksi. Endpoint API pencarian yang ditampilkan (`https://api.search-service.example/search`) adalah placeholder dan harus diganti dengan endpoint layanan pencarian yang sesungguhnya.
+> Contoh ini memerlukan penanganan error tambahan, autentikasi, dan kode integrasi API spesifik untuk penggunaan produksi. Endpoint API pencarian yang ditunjukkan (`https://api.search-service.example/search`) adalah placeholder dan harus diganti dengan endpoint layanan pencarian yang sebenarnya.
 > 
 > Untuk detail implementasi lengkap dan pendekatan terbaru, silakan merujuk ke [spesifikasi MCP resmi](https://spec.modelcontextprotocol.io/) dan dokumentasi SDK.
 
 ## Konsep Inti
 
-### Kerangka Kerja Protokol Konteks Model (MCP)
+### Kerangka Kerja Model Context Protocol (MCP)
 
-Pada dasarnya, Protokol Konteks Model menyediakan cara standar bagi model AI, aplikasi, dan layanan untuk bertukar konteks. Dalam pencarian web waktu nyata, kerangka ini penting untuk menciptakan pengalaman pencarian multi-langkah yang koheren. Komponen kunci meliputi:
+Pada dasarnya, Model Context Protocol menyediakan cara standar bagi model AI, aplikasi, dan layanan untuk bertukar konteks. Dalam pencarian web real-time, kerangka kerja ini esensial untuk menciptakan pengalaman pencarian multi-putaran yang koheren. Komponen kunci meliputi:
 
-1. **Arsitektur Klien-Server**: MCP menetapkan pemisahan jelas antara klien pencarian (peminta) dan server pencarian (penyedia), memungkinkan model deployment yang fleksibel.
+1. **Arsitektur Klien-Server**: MCP menetapkan pemisahan yang jelas antara klien pencarian (peminta) dan server pencarian (penyedia), memungkinkan model penyebaran yang fleksibel.
 
-2. **Komunikasi JSON-RPC**: Protokol menggunakan JSON-RPC untuk pertukaran pesan, membuatnya kompatibel dengan teknologi web dan mudah diimplementasikan di berbagai platform.
+2. **Komunikasi JSON-RPC**: Protokol menggunakan JSON-RPC untuk pertukaran pesan, membuatnya kompatibel dengan teknologi web dan mudah diterapkan di berbagai platform.
 
-3. **Manajemen Konteks**: MCP mendefinisikan metode terstruktur untuk memelihara, memperbarui, dan memanfaatkan konteks pencarian di banyak interaksi.
+3. **Pengelolaan Konteks**: MCP mendefinisikan metode terstruktur untuk memelihara, memperbarui, dan memanfaatkan konteks pencarian di berbagai interaksi.
 
-4. **Definisi Alat**: Kemampuan pencarian diekspos sebagai alat standar dengan parameter dan nilai kembalian yang terdefinisi dengan baik.
+4. **Definisi Alat**: Kemampuan pencarian diekspos sebagai alat standar dengan parameter dan nilai kembalian yang jelas.
 
-5. **Dukungan Streaming**: Protokol mendukung hasil streaming, penting untuk pencarian waktu nyata di mana hasil dapat tiba secara bertahap.
+5. **Dukungan Streaming**: Protokol mendukung streaming hasil, penting untuk pencarian real-time di mana hasil dapat tiba secara progresif.
 
 ### Pola Integrasi Pencarian Web
 
@@ -592,57 +597,57 @@ Saat mengintegrasikan MCP dengan pencarian web, beberapa pola muncul:
 
 ```mermaid
 graph LR
-    Client[MCP Klien] --> |Permintaan MCP| Server[MCP Server]
+    Client[Klien MCP] --> |Permintaan MCP| Server[Server MCP]
     Server --> |Panggilan API| SearchAPI[API Pencarian]
     SearchAPI --> |Hasil| Server
     Server --> |Respon MCP| Client
 ```
 
-Dalam pola ini, server MCP langsung berinteraksi dengan satu atau lebih API pencarian, menerjemahkan permintaan MCP menjadi panggilan spesifik API dan memformat hasil sebagai respons MCP.
+Dalam pola ini, server MCP langsung berinteraksi dengan satu atau lebih API pencarian, menerjemahkan permintaan MCP ke panggilan API spesifik dan memformat hasil sebagai respons MCP.
 
-#### 2. Pencarian Federasi dengan Pemeliharaan Konteks
+#### 2. Federasi Pencarian dengan Pelestarian Konteks
 
 ```mermaid
 graph LR
-    Client[MCP Klien] --> |Permintaan MCP| Federation[Layer Federasi MCP]
+    Client[Klien MCP] --> |Permintaan MCP| Federation[Lapisan Federasi MCP]
     Federation --> |Permintaan MCP 1| Search1[Penyedia Pencarian 1]
     Federation --> |Permintaan MCP 2| Search2[Penyedia Pencarian 2]
     Federation --> |Permintaan MCP 3| Search3[Penyedia Pencarian 3]
     Search1 --> |Respon MCP 1| Federation
     Search2 --> |Respon MCP 2| Federation
     Search3 --> |Respon MCP 3| Federation
-    Federation --> |Respon MCP Agregat| Client
+    Federation --> |Respon MCP Teragregasi| Client
 ```
 
-Pola ini mendistribusikan kueri pencarian ke beberapa penyedia pencarian kompatibel MCP, masing-masing mungkin mengkhususkan diri dalam jenis konten atau kemampuan pencarian yang berbeda, sambil menjaga konteks yang terpadu.
+Pola ini mendistribusikan kueri pencarian di banyak penyedia pencarian kompatibel MCP, yang masing-masing mungkin mengkhususkan diri dalam berbagai jenis konten atau kemampuan pencarian, sekaligus mempertahankan konteks terpadu.
 
-#### 3. Rantai Pencarian yang Ditingkatkan Konteks
+#### 3. Rantai Pencarian yang Ditingkatkan Konteksnya
 
 ```mermaid
 graph LR
-    Client[MCP Klien] --> |Pertanyaan + Konteks| Server[MCP Server]
-    Server --> |1. Analisis Pertanyaan| NLP[Layanan NLP]
-    NLP --> |Pertanyaan yang Ditingkatkan| Server
-    Server --> |2. Pelaksanaan Pencarian| Search[Mesin Pencari]
+    Client[Klien MCP] --> |Kuery + Konteks| Server[Server MCP]
+    Server --> |1. Analisis Kuery| NLP[Layanan NLP]
+    NLP --> |Kuery yang Ditingkatkan| Server
+    Server --> |2. Eksekusi Pencarian| Search[Mesin Pencari]
     Search --> |Hasil Mentah| Server
-    Server --> |3. Pengolahan Hasil| Enhancement[Peningkatan Hasil]
+    Server --> |3. Pemrosesan Hasil| Enhancement[Peningkatan Hasil]
     Enhancement --> |Hasil yang Ditingkatkan| Server
     Server --> |Hasil Akhir + Konteks yang Diperbarui| Client
 ```
 
-Dalam pola ini, proses pencarian dibagi menjadi beberapa tahap, dengan konteks diperluas di setiap langkah, menghasilkan hasil yang semakin relevan secara bertahap.
+Dalam pola ini, proses pencarian dibagi menjadi beberapa tahap, dengan konteks diperkaya di setiap langkah, menghasilkan hasil yang semakin relevan.
 
 ### Komponen Konteks Pencarian
 
-Dalam pencarian web berbasis MCP, konteks biasanya mencakup:
+Dalam pencarian web berbasis MCP, konteks biasanya meliputi:
 
-- **Riwayat Kueri**: Kueri pencarian sebelumnya dalam sesi
-- **Preferensi Pengguna**: Bahasa, wilayah, pengaturan pencarian aman
-- **Riwayat Interaksi**: Hasil mana yang diklik, waktu yang dihabiskan pada hasil
-- **Parameter Pencarian**: Filter, urutan sortir, dan modifikasi pencarian lain
-- **Pengetahuan Domain**: Konteks spesifik subjek yang relevan dengan pencarian
+- **Riwayat Kuery**: Kueri pencarian sebelumnya dalam sesi
+- **Preferensi Pengguna**: Bahasa, wilayah, pengaturan safe search
+- **Riwayat Interaksi**: Hasil yang diklik, waktu yang dihabiskan pada hasil
+- **Parameter Pencarian**: Filter, urutan sortir, dan modifikasi pencarian lainnya
+- **Pengetahuan Domain**: Konteks khusus subjek yang relevan untuk pencarian
 - **Konteks Temporal**: Faktor relevansi berbasis waktu
-- **Preferensi Sumber**: Sumber informasi yang dipercaya atau diutamakan
+- **Preferensi Sumber**: Sumber informasi tepercaya atau favorit
 
 ## Kasus Penggunaan dan Aplikasi
 
@@ -650,117 +655,120 @@ Dalam pencarian web berbasis MCP, konteks biasanya mencakup:
 
 MCP meningkatkan alur kerja penelitian dengan:
 
-- Mempertahankan konteks penelitian di seluruh sesi pencarian
-- Memungkinkan kueri yang lebih canggih dan relevan secara kontekstual
+- Melestarikan konteks penelitian di seluruh sesi pencarian
+- Memungkinkan kueri yang lebih canggih dan kontekstual
 - Mendukung federasi pencarian multi-sumber
 - Memfasilitasi ekstraksi pengetahuan dari hasil pencarian
 
-### Pemantauan Berita dan Tren Waktu Nyata
+### Pemantauan Berita dan Tren Real-Time
 
-Pencarian bertenaga MCP menawarkan keunggulan untuk pemantauan berita:
+Pencarian berbasis MCP menawarkan keuntungan untuk pemantauan berita:
 
-- Penemuan cerita berita yang muncul hampir secara waktu nyata
-- Penyaringan kontekstual informasi relevan
+- Penemuan cerita berita yang muncul hampir secara real-time
+- Penyaringan kontekstual informasi yang relevan
 - Pelacakan topik dan entitas dari berbagai sumber
-- Pemberitahuan berita personal berdasarkan konteks pengguna
+- Pemberitahuan berita personalisasi berdasarkan konteks pengguna
 
-### Browsing dan Penelitian yang Diperkuat AI
+### Penjelajahan dan Penelitian yang Didukung AI
 
-MCP menciptakan kemungkinan baru untuk browsing yang diperkuat AI:
+MCP menciptakan kemungkinan baru untuk penjelajahan yang diperkuat AI:
 
 - Saran pencarian kontekstual berdasarkan aktivitas browser saat ini
-- Integrasi mulus antara pencarian web dan asisten bertenaga LLM
-- Penyempurnaan pencarian multi-langkah dengan konteks terjaga
+- Integrasi mulus pencarian web dengan asisten berbasis LLM
+- Penyempurnaan pencarian multi-putaran dengan konteks yang dipertahankan
 - Peningkatan pemeriksaan fakta dan verifikasi informasi
 
 ## Tren dan Inovasi Masa Depan
 
 ### Evolusi MCP dalam Pencarian Web
 
-Ke depan, kami memperkirakan MCP akan berkembang untuk mengatasi:
-- **Pencarian Multimodal**: Mengintegrasikan pencarian teks, gambar, audio, dan video dengan konteks yang dipertahankan  
-- **Pencarian Terdesentralisasi**: Mendukung ekosistem pencarian terdistribusi dan federasi  
-- **Privasi Pencarian**: Mekanisme pencarian yang melindungi privasi berbasis konteks  
-- **Pemahaman Query**: Parsing semantik mendalam dari query pencarian bahasa alami  
+Melihat ke depan, kami mengantisipasi MCP akan berkembang untuk mengatasi:
 
-### Kemajuan Potensial dalam Teknologi  
 
-Teknologi yang muncul yang akan membentuk masa depan pencarian MCP:  
+- **Pencarian Multimodal**: Mengintegrasikan pencarian teks, gambar, audio, dan video dengan konteks yang dipertahankan
+- **Pencarian Terdesentralisasi**: Mendukung ekosistem pencarian terdistribusi dan federasi
+- **Privasi Pencarian**: Mekanisme pencarian yang menjaga privasi dengan kesadaran konteks
+- **Pemahaman Query**: Pemahaman semantik mendalam dari kueri pencarian bahasa alami
 
-1. **Arsitektur Pencarian Neural**: Sistem pencarian berbasis embedding yang dioptimalkan untuk MCP  
-2. **Konteks Pencarian Personalisasi**: Mempelajari pola pencarian pengguna individu dari waktu ke waktu  
-3. **Integrasi Knowledge Graph**: Pencarian kontekstual yang ditingkatkan dengan knowledge graph spesifik domain  
-4. **Konteks Lintas Modalitas**: Mempertahankan konteks di berbagai modalitas pencarian  
+### Kemajuan Potensial dalam Teknologi
 
-## Latihan Praktis  
+Teknologi baru yang akan membentuk masa depan pencarian MCP:
 
-### Latihan 1: Menyiapkan Pipeline Pencarian MCP Dasar  
+1. **Arsitektur Pencarian Neural**: Sistem pencarian berbasis embedding yang dioptimalkan untuk MCP
+2. **Konteks Pencarian Personalisasi**: Mempelajari pola pencarian pengguna individu dari waktu ke waktu
+3. **Integrasi Grafik Pengetahuan**: Pencarian kontekstual yang ditingkatkan oleh grafik pengetahuan domain-spesifik
+4. **Konteks Lintas Modalitas**: Mempertahankan konteks di berbagai modalitas pencarian
 
-Dalam latihan ini, Anda akan belajar cara:  
-- Mengonfigurasi lingkungan pencarian MCP dasar  
-- Mengimplementasikan pengelola konteks untuk pencarian web  
-- Menguji dan memvalidasi pemeliharaan konteks di seluruh iterasi pencarian  
+## Latihan Praktik
 
-### Latihan 2: Membangun Asisten Riset dengan Pencarian MCP  
+### Latihan 1: Menyiapkan Pipeline Pencarian MCP Dasar
 
-Buat aplikasi lengkap yang:  
-- Memproses pertanyaan riset berbahasa alami  
-- Melakukan pencarian web yang sadar konteks  
-- Mensintesis informasi dari berbagai sumber  
-- Menyajikan temuan riset yang terorganisir  
+Dalam latihan ini, Anda akan belajar bagaimana:
+- Mengonfigurasi lingkungan pencarian MCP dasar
+- Mengimplementasikan pengelola konteks untuk pencarian web
+- Menguji dan memvalidasi pemeliharaan konteks di berbagai iterasi pencarian
 
-### Latihan 3: Mengimplementasikan Federasi Pencarian Multi-Sumber dengan MCP  
+### Latihan 2: Membangun Asisten Riset dengan Pencarian MCP
 
-Latihan lanjutan yang mencakup:  
-- Pengiriman query sadar konteks ke berbagai mesin pencari  
-- Peringkat dan agregasi hasil  
-- Deduplicasi hasil pencarian secara kontekstual  
-- Menangani metadata spesifik sumber  
+Buat aplikasi lengkap yang:
+- Memproses pertanyaan riset bahasa alami
+- Melakukan pencarian web dengan kesadaran konteks
+- Mensintesis informasi dari berbagai sumber
+- Menyajikan temuan riset yang terorganisir
 
-## Sumber Daya Tambahan  
+### Latihan 3: Mengimplementasikan Federasi Pencarian Multi-Sumber dengan MCP
 
-- [Model Context Protocol Specification](https://spec.modelcontextprotocol.io/) - Spesifikasi resmi MCP dan dokumentasi protokol terperinci  
-- [Model Context Protocol Documentation](https://modelcontextprotocol.io/) - Tutorial terperinci dan panduan implementasi  
-- [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Implementasi Python resmi protokol MCP  
-- [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Implementasi TypeScript resmi protokol MCP  
-- [MCP Reference Servers](https://github.com/modelcontextprotocol/servers) - Implementasi referensi server MCP  
-- [Bing Web Search API Documentation](https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/overview) - API pencarian web Microsoft  
-- [Google Custom Search JSON API](https://developers.google.com/custom-search/v1/overview) - Mesin pencari programatik Google  
-- [SerpAPI Documentation](https://serpapi.com/search-api) - API halaman hasil mesin pencari  
-- [Meilisearch Documentation](https://www.meilisearch.com/docs) - Mesin pencari open-source  
-- [Elasticsearch Documentation](https://www.elastic.co/guide/index.html) - Mesin pencarian dan analitik terdistribusi  
-- [LangChain Documentation](https://python.langchain.com/docs/get_started/introduction) - Membangun aplikasi dengan LLM  
+Latihan lanjutan yang mencakup:
+- Pengiriman kueri yang sadar konteks ke beberapa mesin pencari
+- Peringkat hasil dan agregasi
+- Deduplicasi hasil pencarian secara kontekstual
+- Menangani metadata spesifik sumber
 
-## Hasil Pembelajaran  
+## Sumber Daya Tambahan
 
-Dengan menyelesaikan modul ini, Anda akan dapat:  
+- [Spesifikasi Model Context Protocol](https://spec.modelcontextprotocol.io/) - Spesifikasi resmi MCP dan dokumentasi protokol terperinci
+- [Dokumentasi Model Context Protocol](https://modelcontextprotocol.io/) - Tutorial terperinci dan panduan implementasi
+- [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Implementasi resmi MCP dalam Python
+- [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Implementasi resmi MCP dalam TypeScript
+- [Server Referensi MCP](https://github.com/modelcontextprotocol/servers) - Implementasi referensi server MCP
+- [Dokumentasi API Pencarian Web Bing](https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/overview) - API pencarian web Microsoft
+- [Google Custom Search JSON API](https://developers.google.com/custom-search/v1/overview) - Mesin pencari yang dapat diprogram dari Google
+- [Dokumentasi SerpAPI](https://serpapi.com/search-api) - API halaman hasil mesin pencari
+- [Dokumentasi Meilisearch](https://www.meilisearch.com/docs) - Mesin pencari sumber terbuka
+- [Dokumentasi Elasticsearch](https://www.elastic.co/guide/index.html) - Mesin pencarian dan analitik terdistribusi
+- [Dokumentasi LangChain](https://python.langchain.com/docs/get_started/introduction) - Membangun aplikasi dengan LLM
 
-- Memahami dasar-dasar pencarian web real-time dan tantangannya  
-- Menjelaskan bagaimana Model Context Protocol (MCP) meningkatkan kemampuan pencarian web real-time  
-- Mengimplementasikan solusi pencarian berbasis MCP menggunakan framework dan API populer  
-- Merancang dan menerapkan arsitektur pencarian yang skalabel dan berperforma tinggi dengan MCP  
-- Menerapkan konsep MCP untuk berbagai use case termasuk pencarian semantik, asisten riset, dan browsing yang ditingkatkan AI  
-- Mengevaluasi tren yang muncul dan inovasi masa depan dalam teknologi pencarian berbasis MCP  
+## Hasil Pembelajaran
 
-### Pertimbangan Kepercayaan dan Keamanan  
+Dengan menyelesaikan modul ini, Anda akan mampu:
 
-Saat mengimplementasikan solusi pencarian web berbasis MCP, ingat prinsip penting berikut dari spesifikasi MCP:  
+- Memahami dasar-dasar pencarian web waktu nyata dan tantangannya
+- Menjelaskan bagaimana Model Context Protocol (MCP) meningkatkan kemampuan pencarian web waktu nyata
+- Mengimplementasikan solusi pencarian berbasis MCP menggunakan kerangka kerja dan API populer
+- Merancang dan menerapkan arsitektur pencarian yang skalabel dan berkinerja tinggi dengan MCP
+- Menerapkan konsep MCP pada berbagai kasus penggunaan termasuk pencarian semantik, asisten riset, dan penelusuran yang ditingkatkan oleh AI
+- Mengevaluasi tren baru dan inovasi masa depan dalam teknologi pencarian berbasis MCP
 
-1. **Persetujuan dan Kontrol Pengguna**: Pengguna harus secara eksplisit menyetujui dan memahami semua akses data dan operasi. Ini sangat penting untuk implementasi pencarian web yang mungkin mengakses sumber data eksternal.  
 
-2. **Privasi Data**: Pastikan penanganan yang tepat terhadap query dan hasil pencarian, terutama yang mungkin mengandung informasi sensitif. Terapkan kontrol akses yang sesuai untuk melindungi data pengguna.  
+### Pertimbangan Kepercayaan dan Keamanan
 
-3. **Keamanan Alat**: Terapkan otorisasi dan validasi yang tepat pada alat pencarian, karena alat ini berpotensi menjadi risiko keamanan melalui eksekusi kode arbitrer. Deskripsi perilaku alat harus dianggap tidak terpercaya kecuali diperoleh dari server yang dipercaya.  
+Saat mengimplementasikan solusi pencarian web berbasis MCP, ingat prinsip penting berikut dari spesifikasi MCP:
 
-4. **Dokumentasi yang Jelas**: Berikan dokumentasi yang jelas tentang kemampuan, keterbatasan, dan pertimbangan keamanan dari implementasi pencarian berbasis MCP Anda, sesuai pedoman implementasi dari spesifikasi MCP.  
+1. **Persetujuan dan Kontrol Pengguna**: Pengguna harus secara eksplisit memberikan persetujuan dan memahami semua akses data dan operasi. Ini sangat penting untuk implementasi pencarian web yang mungkin mengakses sumber data eksternal.
 
-5. **Alur Persetujuan yang Kuat**: Bangun alur persetujuan dan otorisasi yang kuat yang dengan jelas menjelaskan fungsi setiap alat sebelum mengotorisasi penggunaannya, terutama untuk alat yang berinteraksi dengan sumber daya web eksternal.  
+2. **Privasi Data**: Pastikan penanganan yang tepat terhadap kueri dan hasil pencarian, terutama jika mengandung informasi sensitif. Terapkan kontrol akses yang tepat untuk melindungi data pengguna.
 
-Untuk detail lengkap mengenai keamanan dan pertimbangan kepercayaan MCP, lihat [dokumentasi resmi](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).  
+3. **Keamanan Alat**: Terapkan otorisasi dan validasi yang tepat untuk alat pencarian, karena alat tersebut berpotensi menjadi risiko keamanan melalui eksekusi kode arbitrer. Deskripsi perilaku alat harus dianggap tidak terpercaya kecuali diperoleh dari server tepercaya.
 
-## Apa Selanjutnya  
+4. **Dokumentasi Jelas**: Berikan dokumentasi yang jelas tentang kemampuan, keterbatasan, dan pertimbangan keamanan dari implementasi pencarian berbasis MCP Anda, sesuai dengan panduan implementasi dari spesifikasi MCP.
 
-- [5.12 Autentikasi Entra ID untuk Server Model Context Protocol](../mcp-security-entra/README.md)
+5. **Alur Persetujuan yang Kuat**: Bangun alur persetujuan dan otorisasi yang kuat yang menjelaskan dengan jelas apa yang dilakukan setiap alat sebelum mengizinkan penggunaannya, terutama untuk alat yang berinteraksi dengan sumber daya web eksternal.
+
+Untuk rincian lengkap tentang keamanan dan pertimbangan kepercayaan MCP, lihat [dokumentasi resmi](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).
+
+## Selanjutnya
+
+- [5.12 Otentikasi Entra ID untuk Server Model Context Protocol](../mcp-security-entra/README.md)
 
 ---
 

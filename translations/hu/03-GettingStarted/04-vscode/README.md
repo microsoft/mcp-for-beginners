@@ -1,27 +1,27 @@
-# GitHub Copilot Agent mód használata egy szerver fogyasztására
+# Egy szerver használata a GitHub Copilot Agent módból
 
-A Visual Studio Code és a GitHub Copilot kliensként működhet, és képes egy MCP szervert fogyasztani. Miért lenne ez hasznos, kérdezhetnéd? Nos, ez azt jelenti, hogy az MCP szerver bármilyen funkciója mostantól elérhető az IDE-n belül. Képzeld el például, hogy hozzáadod a GitHub MCP szerverét, így természetes nyelvű utasításokkal vezérelheted a GitHubot ahelyett, hogy konkrét parancsokat írnál a terminálba. Vagy gondolj bármire, ami javíthatja a fejlesztői élményt, mindezt természetes nyelvvel irányítva. Most már látod, miért előnyös ez, igaz?
+A Visual Studio Code és a GitHub Copilot képesek ügyfélként működni és fogyasztani egy MCP Szervert. Ön talán megkérdezheti, miért is szeretnénk ezt? Nos, ez azt jelenti, hogy az MCP Szerver bármilyen funkcióját mostantól az IDE-ből is használhatja. Képzelje el például, hogy hozzáadja a GitHub MCP szerverét, amely lehetővé teszi, hogy a GitHubot parancsszó hozzárendelésekkel vezérelje, ahelyett, hogy a terminálban konkrét parancsokat gépelne. Vagy képzeljen el bármit, ami általánosságban javíthatja a fejlesztői élményt, mindez természetes nyelvű vezérlés alatt. Most már látja, hogy ez mekkora előny, ugye?
 
 ## Áttekintés
 
-Ez a lecke bemutatja, hogyan használhatod a Visual Studio Code-ot és a GitHub Copilot Agent módját egy MCP szerver kliensként való használatához.
+Ez a lecke bemutatja, hogyan használható a Visual Studio Code és a GitHub Copilot Agent módja ügyfélként az MCP Szerverhez.
 
 ## Tanulási célok
 
-A lecke végére képes leszel:
+A lecke végére képes lesz:
 
-- MCP szervert fogyasztani a Visual Studio Code-on keresztül.
-- Eszközöket futtatni a GitHub Copilot segítségével.
-- Beállítani a Visual Studio Code-ot az MCP szerverek megtalálására és kezelésére.
+- MCP Szervert használni a Visual Studio Code-on keresztül.
+- Képességeket futtatni, például eszközöket kezelni a GitHub Copilot segítségével.
+- Beállítani a Visual Studio Code-ot az MCP Szerver keresésére és kezelésére.
 
 ## Használat
 
-Kétféleképpen vezérelheted az MCP szervert:
+Kétféleképpen vezérelheti az MCP szerverét:
 
-- Felhasználói felületen keresztül, ennek módját később bemutatjuk ebben a fejezetben.
-- Terminálon keresztül, ahol a `code` végrehajtható fájlt használhatod:
+- Felhasználói felületen, ezt később ebben a fejezetben részletezzük.
+- Terminálon keresztül, lehetséges a `code` végrehajtható használatával a terminálból is vezérelni:
 
-  Az MCP szerver felhasználói profilhoz való hozzáadásához használd a --add-mcp parancssori opciót, és add meg a JSON szerverkonfigurációt a következő formában: {\"name\":\"server-name\",\"command\":...}.
+  Ahhoz, hogy MCP szervert adjon hozzá a felhasználói profiljához, használja a --add-mcp parancssori opciót, és adja meg a JSON szerverkonfigurációt a következő formátumban: {\"name\":\"server-name\",\"command\":...}.
 
   ```
   code --add-mcp "{\"name\":\"my-server\",\"command\": \"uvx\",\"args\": [\"mcp-server-fetch\"]}"
@@ -29,48 +29,48 @@ Kétféleképpen vezérelheted az MCP szervert:
 
 ### Képernyőképek
 
-![Irányított MCP szerver konfiguráció a Visual Studio Code-ban](../../../../translated_images/hu/chat-mode-agent.729a22473f822216.webp)
-![Eszközválasztás ügynök munkamenetenként](../../../../translated_images/hu/agent-mode-select-tools.522c7ba5df0848f8.webp)
-![Hibák egyszerű hibakeresése MCP fejlesztés közben](../../../../translated_images/hu/mcp-list-servers.fce89eefe3f30032.webp)
+![Vezérelt MCP szerver konfiguráció a Visual Studio Code-ban](../../../../translated_images/hu/chat-mode-agent.729a22473f822216.webp)
+![Eszközök kiválasztása ügynök munkamenetenként](../../../../translated_images/hu/agent-mode-select-tools.522c7ba5df0848f8.webp)
+![Hibakeresés könnyedén MCP fejlesztés közben](../../../../translated_images/hu/mcp-list-servers.fce89eefe3f30032.webp)
 
-A következő szakaszokban részletesebben beszélünk arról, hogyan használjuk a vizuális felületet.
+Beszéljünk részletesebben a vizuális felület használatáról a következő szakaszokban.
 
 ## Megközelítés
 
-Íme, hogyan kell megközelíteni ezt magas szinten:
+Íme, hogyan kell ezt magas szinten megközelíteni:
 
-- Konfigurálj egy fájlt az MCP szerver megtalálásához.
-- Indítsd el vagy csatlakozz a szerverhez, hogy megjelenítse a képességeit.
-- Használd ezeket a képességeket a GitHub Copilot Chat felületén keresztül.
+- Konfigurálni egy fájlt az MCP Szerver megtalálásához.
+- Elindítani / csatlakozni a szerverhez, hogy listázza a képességeit.
+- Használni a képességeket a GitHub Copilot Chat felületen keresztül.
 
-Remek, most, hogy megértettük a folyamatot, próbáljunk meg egy MCP szervert használni a Visual Studio Code-on keresztül egy gyakorlat során.
+Remek, most, hogy értjük a folyamatot, próbáljunk meg egy MCP Szervert használni Visual Studio Code-on egy gyakorlat keretében.
 
-## Gyakorlat: Szerver fogyasztása
+## Gyakorlat: Egy szerver használata
 
-Ebben a gyakorlatban beállítjuk a Visual Studio Code-ot, hogy megtalálja az MCP szerveredet, így az használható lesz a GitHub Copilot Chat felületén keresztül.
+Ebben a gyakorlatban beállítjuk a Visual Studio Code-ot, hogy megtalálja az MCP szerverét, így az használható a GitHub Copilot Chat interfészen keresztül.
 
-### -0- Előkészítő lépés: MCP szerverek felfedezésének engedélyezése
+### -0- Előzetes lépés, MCP Szerver felfedezés engedélyezése
 
-Lehet, hogy engedélyezned kell az MCP szerverek felfedezését.
+Előfordulhat, hogy engedélyezni kell az MCP Szerverek felfedezését.
 
-1. Lépj a `File -> Preferences -> Settings` menüpontra a Visual Studio Code-ban.
+1. Lépjen a `File -> Preferences -> Settings` menüpontra a Visual Studio Code-ban.
 
-1. Keresd meg az "MCP" kifejezést, és engedélyezd a `chat.mcp.discovery.enabled` beállítást a settings.json fájlban.
+1. Keressen rá a "MCP" kifejezésre, és engedélyezze a `chat.mcp.discovery.enabled` beállítást a settings.json fájlban.
 
 ### -1- Konfigurációs fájl létrehozása
 
-Kezdd egy konfigurációs fájl létrehozásával a projekt gyökérkönyvtárában. Szükséged lesz egy MCP.json nevű fájlra, amelyet egy .vscode nevű mappába kell helyezned. Így kell kinéznie:
+Kezdje azzal, hogy létrehoz egy konfigurációs fájlt a projekt gyökerében, szüksége lesz egy MCP.json nevű fájlra, amelyet a .vscode mappába kell helyezni. Így nézzen ki:
 
 ```text
 .vscode
 |-- mcp.json
 ```
 
-Ezután nézzük meg, hogyan adhatunk hozzá egy szerverbejegyzést.
+Ezután nézzük meg, hogyan adhatunk hozzá szerver bejegyzést.
 
 ### -2- Szerver konfigurálása
 
-Add hozzá a következő tartalmat az *mcp.json* fájlhoz:
+Adja hozzá a következő tartalmat az *mcp.json* fájlhoz:
 
 ```json
 {
@@ -86,29 +86,29 @@ Add hozzá a következő tartalmat az *mcp.json* fájlhoz:
 }
 ```
 
-A fenti példa egy egyszerű példát mutat be egy Node.js-ben írt szerver indítására. Más futtatókörnyezetek esetén add meg a megfelelő parancsot a `command` és `args` használatával.
+A fenti egyszerű példában, hogyan indítsunk egy Node.js-ben írt szervert; más futtatókörnyezeteknél adja meg a megfelelő indító parancsot `command` és `args` segítségével.
 
-### -3- Szerver indítása
+### -3- A szerver indítása
 
-Most, hogy hozzáadtál egy bejegyzést, indítsd el a szervert:
+Miután hozzáadta a bejegyzést, indítsa el a szervert:
 
-1. Keresd meg a bejegyzést az *mcp.json* fájlban, és győződj meg róla, hogy megtalálod a "lejátszás" ikont:
+1. Keresse meg a bejegyzést az *mcp.json* fájlban, és győződjön meg arról, hogy megtalálja a "play" ikont:
 
-  ![Szerver indítása a Visual Studio Code-ban](../../../../translated_images/hu/vscode-start-server.8e3c986612e3555d.webp)  
+  ![Szerver indítása Visual Studio Code-ban](../../../../translated_images/hu/vscode-start-server.8e3c986612e3555d.webp)  
 
-1. Kattints a "lejátszás" ikonra. Látnod kell, hogy a GitHub Copilot Chat eszközikonja növeli az elérhető eszközök számát. Ha rákattintasz az eszközikonra, látni fogod a regisztrált eszközök listáját. Kipipálhatod vagy kiveheted az egyes eszközöket attól függően, hogy szeretnéd-e, hogy a GitHub Copilot használja őket kontextusként:
+1. Kattintson a "play" ikonra, ekkor a GitHub Copilot Chat eszköz ikonja meg fogja jeleníteni az elérhető eszközök számát. Ha erre az ikonra kattint, egy regisztrált eszközök listáját fogja látni. Ki/bejelölhet minden eszközt attól függően, hogy szeretné-e, hogy a GitHub Copilot használja őket kontextusként:
 
-  ![Szerver indítása a Visual Studio Code-ban](../../../../translated_images/hu/vscode-tool.0b3bbea2fb7d8c26.webp)
+  ![Szerver indítása Visual Studio Code-ban](../../../../translated_images/hu/vscode-tool.0b3bbea2fb7d8c26.webp)
 
-1. Egy eszköz futtatásához írj be egy olyan promptot, amelyről tudod, hogy illeszkedik az egyik eszköz leírására, például egy ilyen promptot: "add 22 to 1":
+1. Egy eszköz futtatásához írjon egy olyan utasítást, ami megfelel valamelyik eszköz leírásának, például egy ilyen promptot: "add 22 to 1":
 
-  ![Eszköz futtatása a GitHub Copilotból](../../../../translated_images/hu/vscode-agent.d5a0e0b897331060.webp)
+  ![Eszköz futtatása GitHub Copilotból](../../../../translated_images/hu/vscode-agent.d5a0e0b897331060.webp)
 
-  Látnod kell egy választ, amely 23-at mond.
+  Válaszként 23-at kell kapnia.
 
 ## Feladat
 
-Próbálj meg hozzáadni egy szerverbejegyzést az *mcp.json* fájlodhoz, és győződj meg róla, hogy el tudod indítani/leállítani a szervert. Győződj meg róla, hogy kommunikálni tudsz a szerver eszközeivel a GitHub Copilot Chat felületén keresztül.
+Próbáljon meg egy szerver bejegyzést hozzáadni az *mcp.json* fájlhoz, és győződjön meg arról, hogy el tudja indítani/leállítani a szervert. Ellenőrizze, hogy a GitHub Copilot Chat interfészen keresztül tud-e kommunikálni a szervere eszközeivel.
 
 ## Megoldás
 
@@ -116,29 +116,31 @@ Próbálj meg hozzáadni egy szerverbejegyzést az *mcp.json* fájlodhoz, és gy
 
 ## Főbb tanulságok
 
-A fejezet főbb tanulságai a következők:
+A fejezet fő tanulságai a következők:
 
-- A Visual Studio Code kiváló kliens, amely lehetővé teszi több MCP szerver és azok eszközeinek fogyasztását.
-- A GitHub Copilot Chat felület az, ahol a szerverekkel interakcióba lépsz.
-- Kérhetsz bemeneteket, például API kulcsokat, amelyeket az MCP szervernek továbbíthatsz a szerverbejegyzés konfigurálásakor az *mcp.json* fájlban.
+- A Visual Studio Code kiváló ügyfél, amely lehetővé teszi több MCP Szerver és azok eszközeinek használatát.
+- A GitHub Copilot Chat felület az, amelyen keresztül a szerverekkel interakcióba lép.
+- A felhasználótól kérhetünk be bemeneti adatokat, például API-kulcsokat, amelyeket át lehet adni az MCP Szervernek a szerver bejegyzés konfigurálásakor az *mcp.json* fájlban.
 
 ## Minták
 
-- [Java Számológép](../samples/java/calculator/README.md)
-- [.Net Számológép](../../../../03-GettingStarted/samples/csharp)
-- [JavaScript Számológép](../samples/javascript/README.md)
-- [TypeScript Számológép](../samples/typescript/README.md)
-- [Python Számológép](../../../../03-GettingStarted/samples/python)
+- [Java Kalkulátor](../samples/java/calculator/README.md)
+- [.Net Kalkulátor](../../../../03-GettingStarted/samples/csharp)
+- [JavaScript Kalkulátor](../samples/javascript/README.md)
+- [TypeScript Kalkulátor](../samples/typescript/README.md)
+- [Python Kalkulátor](../../../../03-GettingStarted/samples/python)
 
 ## További források
 
 - [Visual Studio dokumentáció](https://code.visualstudio.com/docs/copilot/chat/mcp-servers)
 
-## Mi következik?
+## Mi a következő lépés
 
-- Következő: [Stdio szerver létrehozása](../05-stdio-server/README.md)
+- Következő: [Egy stdio Szerver létrehozása](../05-stdio-server/README.md)
 
 ---
 
-**Felelősség kizárása**:  
-Ez a dokumentum az AI fordítási szolgáltatás [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével lett lefordítva. Bár törekszünk a pontosságra, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az eredeti nyelvén tekintendő hiteles forrásnak. Fontos információk esetén javasolt professzionális emberi fordítást igénybe venni. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely a fordítás használatából eredhet.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Jogi nyilatkozat**:
+Ez a dokumentum az AI fordítási szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár az pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Fontos információk esetén professzionális emberi fordítást javasolunk. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely ebből a fordításból ered.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

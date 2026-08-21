@@ -1,89 +1,114 @@
-# MCP Development Best Practices
+# Mga Pinakamahusay na Gawi sa Pag-unlad ng MCP
 
-[![MCP Development Best Practices](../../../translated_images/tl/09.d0f6d86c9d72134c.webp)](https://youtu.be/W56H9W7x-ao)
+[![Mga Pinakamahusay na Gawi sa Pag-unlad ng MCP](../../../translated_images/tl/09.d0f6d86c9d72134c.webp)](https://youtu.be/W56H9W7x-ao)
 
-_(I-click ang larawan sa itaas upang mapanood ang video ng araling ito)_
+_(I-click ang larawan sa itaas upang panoorin ang video ng araling ito)_
 
-## Overview
+## Pangkalahatang-ideya
 
-Ang araling ito ay nakatuon sa mga advanced na pinakamahusay na gawain para sa pagbuo, pagsubok, at pag-deploy ng mga MCP server at mga tampok sa mga production environment. Habang lumalaki ang kompleksidad at kahalagahan ng mga MCP ecosystem, ang pagsunod sa mga itinatag na pattern ay nagsisiguro ng pagiging maaasahan, madaling mapanatili, at interoperable. Pinagsasama-sama ng araling ito ang praktikal na karunungan mula sa mga totoong implementasyon ng MCP upang gabayan ka sa paglikha ng matibay, mahusay na mga server na may epektibong mga resources, prompts, at mga tool.
+Ang araling ito ay tumutuon sa mga advanced na pinakamahusay na gawi para sa pagbuo, pagsubok, at pag-deploy ng mga server at tampok ng MCP sa mga production na kapaligiran. Habang lumalalim ang mga MCP ecosystem sa pagiging kumplikado at kahalagahan, ang pagsunod sa mga itinatag na pattern ay nagsisiguro ng pagiging maaasahan, madaling mapanatili, at interoperability. Ang araling ito ay nagpapakilala ng praktikal na karunungan mula sa mga totoong implementasyon ng MCP upang gabayan ka sa paglikha ng matibay, mahusay na mga server na may mga epektibong resource, prompt, at kasangkapan.
 
-## Learning Objectives
+## Mga Layunin sa Pagkatuto
 
-Sa pagtatapos ng araling ito, magagawa mong:
+Sa katapusan ng araling ito, magagawa mong:
 
-- Ipatupad ang mga pinakamahusay na pamantayan sa industriya sa disenyo ng MCP server at tampok
+- Ipatupad ang mga pinakamahusay na gawi sa industriya sa disenyo ng MCP server at tampok
 - Gumawa ng komprehensibong mga estratehiya sa pagsubok para sa mga MCP server
-- Magdisenyo ng mahusay at magagamit muli na mga workflow pattern para sa komplikadong mga MCP application
-- Magpatupad ng tamang paghawak ng error, pag-log, at obserbabilidad sa mga MCP server
-- I-optimize ang mga implementasyon ng MCP para sa performance, seguridad, at maintainability
+- Magdisenyo ng mahusay, muling magagamit na mga pattern ng workflow para sa mga kumplikadong aplikasyon ng MCP
+- Magpatupad ng tamang paghawak ng error, pag-log, at observability sa mga MCP server
+- I-optimize ang mga implementasyon ng MCP para sa pagganap, seguridad, at kakayahang mapanatili
 
-## MCP Core Principles
+## Mga Pangunahing Prinsipyo ng MCP
 
-Bago sumisid sa mga tiyak na praksis sa implementasyon, mahalagang maunawaan ang mga pangunahing prinsipyo na gumagabay sa epektibong pag-develop ng MCP:
+Bago sumabak sa mga tiyak na gawi sa implementasyon, mahalagang maunawaan ang mga pangunahing prinsipyo na gumagabay sa epektibong pag-unlad ng MCP:
 
-1. **Standardized Communication**: Ginagamit ng MCP ang JSON-RPC 2.0 bilang pundasyon nito, na nagbibigay ng pare-parehong format para sa mga request, response, at paghawak ng error sa lahat ng implementasyon.
+1. **Standardisadong Komunikasyon**: Gumagamit ang MCP ng JSON-RPC 2.0 bilang pundasyon nito, na nagbibigay ng pare-parehong format para sa mga hiling, tugon, at paghawak ng error sa lahat ng implementasyon.
 
-2. **User-Centric Design**: Laging unahin ang pahintulot, kontrol, at transparency ng user sa iyong mga implementasyon ng MCP.
+2. **Disenyong Nakatuon sa Gumagamit**: Laging unahin ang pahintulot ng gumagamit, kontrol, at transparency sa iyong mga implementasyon ng MCP.
 
-3. **Security First**: Magpatupad ng matatag na mga hakbang sa seguridad kabilang na ang authentication, authorization, validation, at rate limiting.
+3. **Seguridad ang Pangunahing Prayoridad**: Magpatupad ng matibay na mga hakbang sa seguridad kabilang ang authentication, authorization, validation, at rate limiting.
 
-4. **Modular Architecture**: Disenyohin ang iyong mga MCP server gamit ang modular na pamamaraan, kung saan bawat tool at resource ay may malinaw at nakatuong layunin.
+4. **Modular na Arkitektura**: Idisenyo ang iyong mga MCP server gamit ang modular na pamamaraan, kung saan bawat kasangkapan at resource ay may malinaw at pokus na layunin.
 
-5. **Stateful Connections**: Gamitin ang kakayahan ng MCP na mapanatili ang estado sa maraming mga request para sa mas magkakaugnay at kontekstong-pansin na mga interaksyon.
+5. **Eksplisit na Estado**: Stateless ang MCP `2026-07-28` sa protocol
+   layer. Kapag nangangailangan ang isang workflow ng cross-call state, gumamit ng eksplisit na mga handle o
+   ordinaryong mga argumento ng kasangkapan na sinusuportahan ng matibay na estado ng aplikasyon.
 
-## Official MCP Best Practices
+## Opisyal na Pinakamahusay na Gawi ng MCP
 
-Ang mga sumusunod na pinakamahusay na praxis ay hango mula sa opisyal na dokumentasyon ng Model Context Protocol:
+Ang mga sumusunod na pinakamahusay na gawi ay hango mula sa opisyal na dokumentasyon ng Model Context Protocol:
 
-### Security Best Practices
+### Pinakamahusay na Gawi sa Seguridad
 
-1. **User Consent and Control**: Laging humingi ng malinaw na pahintulot ng user bago i-access ang data o magsagawa ng mga operasyon. Magbigay ng malinaw na kontrol kung anong data ang ibinabahagi at anong mga gawain ang pinahihintulutan.
+1. **Pahintulot at Kontrol ng Gumagamit**: Palaging humingi ng malinaw na pahintulot mula sa gumagamit bago ma-access ang data o gumawa ng operasyon. Magbigay ng malinaw na kontrol sa kung anong data ang ibinabahagi at kung aling mga aksyon ang pinapayagan.
 
-2. **Data Privacy**: Ipakita lamang ang data ng user kapag may malinaw na pahintulot at protektahan ito gamit ang akmang mga access control. Ingatan laban sa hindi awtorisadong transmisyon ng data.
+2. **Pagkapribado ng Data**: Ipakita lamang ang data ng gumagamit na may malinaw na pahintulot at protektahan ito gamit ang angkop na mga kontrol sa pag-access. Iwasan ang hindi awtorisadong transmission ng data.
 
-3. **Tool Safety**: Hilingin ang malinaw na pahintulot ng user bago gamitin ang anumang tool. Siguraduhing nauunawaan ng mga user ang functionality ng bawat tool at ipatupad ang matatag na mga hangganan ng seguridad.
+3. **Kaligtasan ng Kasangkapan**: Humingi ng malinaw na pahintulot ng gumagamit bago gamitin ang anumang kasangkapan. Siguraduhing nauunawaan ng mga gumagamit ang functionality ng bawat kasangkapan at ipatupad ang matibay na mga hangganan ng seguridad.
 
-4. **Tool Permission Control**: I-configure kung alin sa mga tool ang pinapayagan ng modelo na gamitin sa isang sesyon, tinitiyak na tanging ang mga hayagang pinahintulutang tool lamang ang maa-access.
+4. **Kontrol sa Pahintulot ng Kasangkapan**: I-configure kung aling mga kasangkapan ang maaaring gamitin ng isang modelo para sa
+   bawat hiling at konteksto ng awtorisasyon, na nagsisiguro na tanging mga hayagang pinahintulutang
+   kasangkapan lamang ang maa-access.
 
-5. **Authentication**: Hilingin ang tamang authentication bago bigyan ng access sa mga tool, resource, o sensitibong operasyon gamit ang mga API key, OAuth token, o iba pang secure na pamamaraan ng authentication.
+5. **Authentication**: Humingi ng wastong authentication bago payagan ang pag-access sa mga kasangkapan, resources, o sensitibong operasyon gamit ang mga API key, OAuth token, o iba pang ligtas na pamamaraan ng authentication.
 
-6. **Parameter Validation**: Ipatupad ang validation para sa lahat ng pagtawag ng tool upang pigilan ang mala-malawak o malisyosong input na makarating sa implementasyon ng tool.
+6. **Validation ng Parameter**: Ipatupad ang pagsusuri para sa lahat ng paggamit ng kasangkapan upang maiwasan ang mga maling hugis o mapanirang input na makarating sa mga implementasyon ng kasangkapan.
 
-7. **Rate Limiting**: Magpatupad ng rate limiting upang maiwasan ang abusong paggamit at matiyak ang patas na paggamit ng mga resource ng server.
+7. **Rate Limiting**: Magpatupad ng rate limiting upang maiwasan ang abuso at matiyak ang patas na paggamit ng mga resource ng server.
 
-### Implementation Best Practices
+### Pinakamahusay na Gawi sa Implementasyon
 
-1. **Capability Negotiation**: Sa panahon ng pag-setup ng koneksyon, magpalitan ng impormasyon tungkol sa mga suportadong tampok, bersyon ng protocol, magagamit na mga tool, at mga resource.
+1. **Negosasyon ng Kakayahan**: Makipagnegosasyon ng mga suportadong bersyon ng protocol at
+   kakayahan. Sa MCP `2026-07-28`, ang bawat hiling ay naglalaman ng sarili nitong impormasyon at maaaring
+   gumamit ng `server/discover`; ang mga mas lumang bersyon ay gumagamit ng initialization handshake.
 
-2. **Tool Design**: Gumawa ng mga naka-tutok na tool na mahusay sa isang gawain kaysa sa mga monolitikong tool na humahawak ng maraming usapin.
+2. **Disenyo ng Kasangkapan**: Gumawa ng mga nakatutok na kasangkapan na mahusay sa isang bagay, sa halip na monolitikong mga kasangkapan na humahawak ng maraming alalahanin.
 
-3. **Error Handling**: Magpatupad ng standardized na mga mensahe ng error at mga code upang makatulong sa pag-diagnose ng mga isyu, maayos na paghawak ng mga pagkabigo, at pagbibigay ng kapaki-pakinabang na feedback.
+3. **Paghawak ng Error**: Magpatupad ng standardisadong mga mensahe ng error at code upang makatulong sa pag-diagnose ng mga isyu, maghawak nang maayos sa mga pagkabigo, at magbigay ng kapaki-pakinabang na puna.
 
-4. **Logging**: I-configure ang mga istrakturadong log para sa auditing, debugging, at pagmomonitor ng mga interaksyon sa protocol.
+4. **Observability**: Gumamit ng `stderr` para sa stdio diagnostics at OpenTelemetry
+   para sa istrukturang observability. Ang tampok na pag-log ng MCP ay hindi na ginagamit sa
+   `2026-07-28` na espesipikasyon.
 
-5. **Progress Tracking**: Para sa mga mahabang operasyon, mag-ulat ng mga update ng progreso upang payagan ang mga responsive na user interface.
+5. **Pagsubaybay ng Progreso**: Para sa mga operasyon na tumatagal, iulat ang mga update sa progreso upang mapadali ang mga responsibong interface ng gumagamit.
 
-6. **Request Cancellation**: Payagan ang mga kliyente na kanselahin ang mga kasalukuyang kahilingang hindi na kailangan o masyadong matagal.
+6. **Pagkansela ng Hiling**: Payagan ang mga kliyente na kanselahin ang mga kasalukuyang hiling na hindi na kailangan o masyadong matagal.
 
-## Additional References
+## Karagdagang Sanggunian
 
-Para sa pinakabagong impormasyon tungkol sa pinakamahusay na mga praksis ng MCP, sumangguni sa:
+Para sa pinaka-sariwang impormasyon tungkol sa mga pinakamahusay na gawi ng MCP, sumangguni sa:
 
 - [MCP Documentation](https://modelcontextprotocol.io/)
-- [MCP Specification (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Specification (2026-07-28)][mcp-2026-spec]
+- [Previous MCP Specification (2025-11-25)](https://modelcontextprotocol.io/specification/2025-11-25)
+- [MCP Tasks Extension][mcp-tasks-extension]
 - [GitHub Repository](https://github.com/modelcontextprotocol)
-- [Security Best Practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices)
-- [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - Mga panganib sa seguridad at mga mitigasyon
+- [Security Best Practices](https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/security_best_practices)
+- [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/) - Mga panganib sa seguridad at mga mitigasyon
 - [MCP Security Summit Workshop (Sherpa)](https://azure-samples.github.io/sherpa/) - Hands-on na pagsasanay sa seguridad
 
-## Practical Implementation Examples
+### Aralin sa Katambal ng Katatagan
 
-### Tool Design Best Practices
+Ang mga generic na retry loop ay hindi ligtas para sa mga kasangkapan na lumilikha ng mga tiket, pagbabayad,
+mga mensahe, deployment, o iba pang mga totoong epekto. Ang isang tugon ay maaaring mawala
+pagkatapos matupad ang epekto.
 
-#### 1. Single Responsibility Principle
+Gamitin ang aralin sa katambal ng katatagan,
+[Ligtas na mga Retry para sa mga Kasangkapan ng MCP: Isang Pattern ng Reliability Sidecar][reliability-sidecar],
+upang matutunan ang mga stable operation key, duplicate admission, checkpointing,
+reconciliation, mga antas ng ebidensya, at failure injection.
 
-Dapat ang bawat MCP tool ay may malinaw at nakatutok na layunin. Sa halip na gumawa ng monolitikong mga tool na sumusubok hawakan ang maraming usapin, bumuo ng mga espesyal na tool na mahusay sa partikular na mga gawain.
+[mcp-2026-spec]: https://modelcontextprotocol.io/specification/2026-07-28
+[mcp-tasks-extension]: https://modelcontextprotocol.io/extensions/tasks/overview
+[reliability-sidecar]: ./reliability-sidecars/README.md
+
+## Mga Praktikal na Halimbawa ng Implementasyon
+
+### Mga Pinakamahusay na Gawi sa Disenyo ng Kasangkapan
+
+#### 1. Prinsipyo ng Solong Responsibilidad
+
+Bawat kasangkapan ng MCP ay dapat may malinaw at pokus na layunin. Sa halip na gumawa ng monolitikong mga kasangkapan na sumusubok hawakan ang maraming alalahanin, bumuo ng mga espesyalisadong kasangkapan na mahusay sa mga partikular na gawain.
 
 ```csharp
 // A focused tool that does one thing well
@@ -143,12 +168,12 @@ public class WeatherForecastTool : ITool
 }
 ```
 
-#### 2. Consistent Error Handling
+#### 2. Konsistenteng Paghawak ng Error
 
-Magpatupad ng matatag na paghawak ng error na may nagbibigay-informasyong mga mensahe ng error at tamang mga mekanismo ng pag-recover.
+Magpatupad ng matibay na paghawak ng error na may informativong mga mensahe ng error at angkop na mga mekanismo sa pagbawi.
 
 ```python
-# Halimbawa ng Python na may komprehensibong paghawak ng error
+# Halimbawa ng Python na may malawak na paghawak ng error
 class DataQueryTool:
     def get_name(self):
         return "dataQuery"
@@ -170,7 +195,7 @@ class DataQueryTool:
             
             try:
                 # Operasyon sa database na may timeout
-                async with timeout(10):  # 10 segundo ang timeout
+                async with timeout(10):  # 10 segundong timeout
                     result = await self._database.execute_query(query)
                     
                 return ToolResponse(
@@ -183,15 +208,15 @@ class DataQueryTool:
                 self._log_error("Database connection error", e)
                 raise ToolExecutionError(f"Database connection error: {str(e)}")
             except DatabaseQueryError as e:
-                # Ang mga error sa query ay malamang client errors
+                # Ang mga error sa query ay malamang na error ng kliyente
                 self._log_error("Database query error", e)
                 raise ToolExecutionError(f"Invalid query: {str(e)}")
                 
         except ToolError:
-            # Hayaan ang mga tool-specific na error na dumaan
+            # Pabayaan na dumaan ang mga error na partikular sa tool
             raise
         except Exception as e:
-            # Pangkalahatang panghuli para sa hindi inaasahang mga error
+            # Pangkalahatang pagkuha para sa hindi inaasahang mga error
             self._log_error("Unexpected error in DataQueryTool", e)
             raise ToolExecutionError(f"An unexpected error occurred: {str(e)}")
     
@@ -200,16 +225,16 @@ class DataQueryTool:
         pass
         
     def _log_error(self, message, error):
-        # Pagpapatupad ng paglog ng error
+        # Pagpapatupad ng pag-log ng error
         pass
 ```
 
-#### 3. Parameter Validation
+#### 3. Pagsusuri ng Parameter
 
-Laging maingat na i-validate ang mga parameter upang maiwasan ang mala-malawak o malisyosong input.
+Palaging suriin ng mabuti ang mga parameter upang maiwasan ang maling hugis o mapanirang input.
 
 ```javascript
-// Halimbawa ng JavaScript/TypeScript na may detalyadong beripikasyon ng parameter
+// Halimbawa ng JavaScript/TypeScript na may detalyadong pag-validate ng mga parameter
 class FileOperationTool {
   getName() {
     return "fileOperation";
@@ -244,7 +269,7 @@ class FileOperationTool {
   }
   
   async execute(parameters) {
-    // 1. Beripikahin ang presensya ng parameter
+    // 1. I-validate ang presensya ng parameter
     if (!parameters.operation) {
       throw new ToolError("Missing required parameter: operation");
     }
@@ -253,7 +278,7 @@ class FileOperationTool {
       throw new ToolError("Missing required parameter: path");
     }
     
-    // 2. Beripikahin ang mga uri ng parameter
+    // 2. I-validate ang mga uri ng parameter
     if (typeof parameters.operation !== "string") {
       throw new ToolError("Parameter 'operation' must be a string");
     }
@@ -262,45 +287,45 @@ class FileOperationTool {
       throw new ToolError("Parameter 'path' must be a string");
     }
     
-    // 3. Beripikahin ang mga halaga ng parameter
+    // 3. I-validate ang mga halaga ng parameter
     const validOperations = ["read", "write", "delete"];
     if (!validOperations.includes(parameters.operation)) {
       throw new ToolError(`Invalid operation. Must be one of: ${validOperations.join(", ")}`);
     }
     
-    // 4. Beripikahin ang presensya ng nilalaman para sa operasyon ng pagsulat
+    // 4. I-validate ang presensya ng nilalaman para sa operasyon ng pagsusulat
     if (parameters.operation === "write" && !parameters.content) {
       throw new ToolError("Content parameter is required for write operation");
     }
     
-    // 5. Beripikasyon ng kaligtasan ng path
+    // 5. Pag-validate ng kaligtasan ng path
     if (!this.isPathWithinAllowedDirectories(parameters.path)) {
       throw new ToolError("Access denied: path is outside of allowed directories");
     }
     
-    // Pagpapatupad base sa mga beripikadong parameter
+    // Implementasyon batay sa na-validate na mga parameter
     // ...
   }
   
   isPathWithinAllowedDirectories(path) {
-    // Pagpapatupad ng pag-check ng kaligtasan ng path
+    // Implementasyon ng pag-check sa kaligtasan ng path
     // ...
   }
 }
 ```
 
-### Security Implementation Examples
+### Mga Halimbawa ng Implementasyon sa Seguridad
 
-#### 1. Authentication and Authorization
+#### 1. Authentication at Authorization
 
 ```java
-// Halimbawa ng Java na may pagpapatotoo at awtorisasyon
+// Halimbawa ng Java na may pagpapatunay at awtorisasyon
 public class SecureDataAccessTool implements Tool {
     private final AuthenticationService authService;
     private final AuthorizationService authzService;
     private final DataService dataService;
     
-    // Dependency injection
+    // Injection ng dependency
     public SecureDataAccessTool(
             AuthenticationService authService,
             AuthorizationService authzService,
@@ -317,10 +342,10 @@ public class SecureDataAccessTool implements Tool {
     
     @Override
     public ToolResponse execute(ToolRequest request) {
-        // 1. Kunin ang konteksto ng pagpapatotoo
+        // 1. Kunin ang konteksto ng pagpapatunay
         String authToken = request.getContext().getAuthToken();
         
-        // 2. Patunayan ang gumagamit
+        // 2. Patunayan ang user
         UserIdentity user;
         try {
             user = authService.validateToken(authToken);
@@ -337,7 +362,7 @@ public class SecureDataAccessTool implements Tool {
             return ToolResponse.error("Access denied: Insufficient permissions for this operation");
         }
         
-        // 4. Ipatuloy ang awtorisadong operasyon
+        // 4. Magpatuloy sa awtorisadong operasyon
         try {
             switch (operation) {
                 case "read":
@@ -433,11 +458,11 @@ public class RateLimitingMiddleware
 }
 ```
 
-## Testing Best Practices
+## Pinakamahusay na Gawi sa Pagsubok
 
-### 1. Unit Testing MCP Tools
+### 1. Unit Testing ng Mga Kasangkapan ng MCP
 
-Laging subukin ang iyong mga tool nang hiwalay, gamit ang mocking ng mga panlabas na dependencies:
+Palaging subukan ang iyong mga kasangkapan nang hiwalay, gamit ang pagmomock ng mga eksternal na dependensya:
 
 ```typescript
 // Halimbawa ng unit test ng tool sa TypeScript
@@ -446,12 +471,12 @@ describe('WeatherForecastTool', () => {
   let mockWeatherService: jest.Mocked<IWeatherService>;
   
   beforeEach(() => {
-    // Gumawa ng mock na serbisyo ng panahon
+    // Gumawa ng pekeng serbisyong pang-panahon
     mockWeatherService = {
       getForecasts: jest.fn()
     } as any;
     
-    // Gumawa ng tool gamit ang mock na dependency
+    // Gumawa ng tool gamit ang pekeng dependency
     tool = new WeatherForecastTool(mockWeatherService);
   });
   
@@ -474,7 +499,7 @@ describe('WeatherForecastTool', () => {
       days: 3
     });
     
-    // Tiyakin
+    // Patunayan
     expect(mockWeatherService.getForecasts).toHaveBeenCalledWith('Seattle', 3);
     expect(response.content[0].text).toContain('Seattle');
     expect(response.content[0].text).toContain('Sunny');
@@ -484,7 +509,7 @@ describe('WeatherForecastTool', () => {
     // Ayusin
     mockWeatherService.getForecasts.mockRejectedValue(new Error('Service unavailable'));
     
-    // Gawin at tiyakin
+    // Gawin at Patunayan
     await expect(tool.execute({
       location: 'Seattle',
       days: 3
@@ -495,46 +520,46 @@ describe('WeatherForecastTool', () => {
 
 ### 2. Integration Testing
 
-Subukin ang buong daloy mula sa mga kahilingan ng kliyente hanggang sa mga tugon ng server:
+Subukan ang kumpletong daloy mula sa mga kahilingan ng kliyente hanggang sa mga tugon ng server:
 
 ```python
-# Halimbawa ng pagsasama ng pagsubok sa Python
+# Halimbawa ng pagsubok sa integrasyon ng Python
 @pytest.mark.asyncio
 async def test_mcp_server_integration():
-    # Simulan ang test server
+    # Simulan ang isang test server
     server = McpServer()
     server.register_tool(WeatherForecastTool(MockWeatherService()))
     await server.start(port=5000)
     
     try:
-        # Gumawa ng client
+        # Gumawa ng isang kliyente
         client = McpClient("http://localhost:5000")
         
         # Subukan ang pagtuklas ng tool
         tools = await client.discover_tools()
         assert "weatherForecast" in [t.name for t in tools]
         
-        # Subukan ang pagpapatupad ng tool
+        # Subukan ang pagpapatakbo ng tool
         response = await client.execute_tool("weatherForecast", {
             "location": "Seattle",
             "days": 3
         })
         
-        # Suriin ang tugon
+        # Beripikahin ang tugon
         assert response.status_code == 200
         assert "Seattle" in response.content[0].text
         assert len(json.loads(response.content[0].text)["forecasts"]) == 3
         
     finally:
-        # Linisin ang mga gamit
+        # Linisin pagkatapos
         await server.stop()
 ```
 
-## Performance Optimization
+## Pag-optimize ng Pagganap
 
-### 1. Caching Strategies
+### 1. Mga Estratehiya ng Caching
 
-Magpatupad ng angkop na caching upang mabawasan ang latency at paggamit ng mga resource:
+Magpatupad ng angkop na caching upang mabawasan ang latency at paggamit ng resource:
 
 ```csharp
 // C# example with caching
@@ -603,9 +628,9 @@ public class CachedWeatherTool : ITool
 }
 ```
 
-#### 2. Dependency Injection and Testability
+#### 2. Dependency Injection at Kakayahang Masubukan
 
-Disenyohin ang mga tool upang matanggap ang kanilang dependencies sa pamamagitan ng constructor injection, na ginagawa silang easily testable at configurable:
+Disenyuhin ang mga kasangkapan na tumanggap ng kanilang mga dependensya sa pamamagitan ng constructor injection, na ginagawang masusubukan at nako-configure ang mga ito:
 
 ```java
 // Halimbawa ng Java na may dependency injection
@@ -629,12 +654,12 @@ public class CurrencyConversionTool implements Tool {
 }
 ```
 
-#### 3. Composable Tools
+#### 3. Mga Kasangkapang Puwedeng Pagsamahin
 
-Disenyohin ang mga tool na maaaring pagsamahin upang makalikha ng mas kumplikadong mga workflow:
+Disenyuhin ang mga kasangkapan na puwedeng pagsamahin upang lumikha ng mas kumplikadong mga workflow:
 
 ```python
-# Halimbawa ng Python na nagpapakita ng mga kasangkapang maaaring pagsamahin
+# Halimbawa ng Python na nagpapakita ng mga pwedeng pagsamahin na kasangkapan
 class DataFetchTool(Tool):
     def get_name(self):
         return "dataFetch"
@@ -645,7 +670,7 @@ class DataAnalysisTool(Tool):
     def get_name(self):
         return "dataAnalysis"
     
-    # Maaaring gamitin ng kasangkapang ito ang mga resulta mula sa kasangkapang dataFetch
+    # Ang tool na ito ay maaaring gumamit ng mga resulta mula sa tool na dataFetch
     async def execute_async(self, request):
         # Implementasyon...
         pass
@@ -654,21 +679,21 @@ class DataVisualizationTool(Tool):
     def get_name(self):
         return "dataVisualize"
     
-    # Maaaring gamitin ng kasangkapang ito ang mga resulta mula sa kasangkapang dataAnalysis
+    # Ang tool na ito ay maaaring gumamit ng mga resulta mula sa tool na dataAnalysis
     async def execute_async(self, request):
         # Implementasyon...
         pass
 
-# Maaaring gamitin ang mga kasangkapang ito nang mag-isa o bilang bahagi ng isang workflow
+# Ang mga tool na ito ay maaaring gamitin nang magkakahiwalay o bilang bahagi ng isang workflow
 ```
 
-### Schema Design Best Practices
+### Mga Pinakamahusay na Gawi sa Disenyo ng Schema
 
-Ang schema ang kontrata sa pagitan ng modelo at ng iyong tool. Ang mga mahusay na disenyo ng schema ay nagreresulta sa mas mahusay na usability ng tool.
+Ang schema ay ang kontrata sa pagitan ng modelo at ng iyong kasangkapan. Ang magagandang disenyo ng schema ay nagreresulta sa mas mahusay na pagiging gamit ng kasangkapan.
 
-#### 1. Clear Parameter Descriptions
+#### 1. Malinaw na Mga Paglalarawan ng Parameter
 
-Laging magsama ng naglalarawang impormasyon para sa bawat parameter:
+Laging isama ang mga mapanlarawang impormasyon para sa bawat parameter:
 
 ```csharp
 public object GetSchema()
@@ -705,9 +730,9 @@ public object GetSchema()
 }
 ```
 
-#### 2. Validation Constraints
+#### 2. Mga Limitasyon sa Validation
 
-Isama ang mga validation constraints upang pigilan ang mga invalid na input:
+Isama ang mga constraint sa validation upang maiwasan ang mga hindi wastong input:
 
 ```java
 Map<String, Object> getSchema() {
@@ -716,20 +741,20 @@ Map<String, Object> getSchema() {
     
     Map<String, Object> properties = new HashMap<>();
     
-    // Katangian ng Email na may pag-validate ng format
+    // Katangian ng email na may pag-validate sa format
     Map<String, Object> email = new HashMap<>();
     email.put("type", "string");
     email.put("format", "email");
     email.put("description", "User email address");
     
-    // Katangian ng Edad na may mga numerong limitasyon
+    // Katangian ng edad na may mga numerikong limitasyon
     Map<String, Object> age = new HashMap<>();
     age.put("type", "integer");
     age.put("minimum", 13);
     age.put("maximum", 120);
     age.put("description", "User age in years");
     
-    // Napiling katangian
+    // Katangiang may naka-enumerate na halaga
     Map<String, Object> subscription = new HashMap<>();
     subscription.put("type", "string");
     subscription.put("enum", Arrays.asList("free", "basic", "premium"));
@@ -747,9 +772,9 @@ Map<String, Object> getSchema() {
 }
 ```
 
-#### 3. Consistent Return Structures
+#### 3. Konsistenteng Mga Istruktura ng Return
 
-Panatilihin ang consistency sa iyong mga estruktura ng tugon upang mapadali ang pag-intindi ng mga resulta ng mga modelo:
+Panatilihin ang konsistensi sa iyong mga istruktura ng tugon upang mapadali para sa mga modelo na bigyang-kahulugan ang mga resulta:
 
 ```python
 async def execute_async(self, request):
@@ -757,7 +782,7 @@ async def execute_async(self, request):
         # Proseso ng kahilingan
         results = await self._search_database(request.parameters["query"])
         
-        # Laging magbalik ng pare-parehong istruktura
+        # Palaging magbalik ng pare-parehong istruktura
         return ToolResponse(
             result={
                 "matches": [self._format_item(item) for item in results],
@@ -788,13 +813,13 @@ def _format_item(self, item):
     }
 ```
 
-### Error Handling
+### Paghawak ng Error
 
-Mahalaga ang matatag na paghawak ng error para mapanatili ang pagiging maaasahan ng mga MCP tool.
+Mahalaga ang matibay na paghawak ng error para sa mga kasangkapan ng MCP upang mapanatili ang katatagan.
 
-#### 1. Graceful Error Handling
+#### 1. Maayos na Paghawak ng Error
 
-Ihawak ang mga error sa angkop na mga antas at magbigay ng impormatibong mga mensahe:
+Hawakan ang mga error sa naaangkop na mga antas at magbigay ng mga informativong mensahe:
 
 ```csharp
 public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
@@ -836,9 +861,9 @@ public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
 }
 ```
 
-#### 2. Structured Error Responses
+#### 2. Istrakturang Tugon sa Error
 
-Magbalik ng istrakturadong impormasyon ng error kung maaari:
+Magbalik ng istrakturang impormasyon ng error kung maaari:
 
 ```java
 @Override
@@ -862,15 +887,21 @@ public ToolResponse execute(ToolRequest request) {
                 .build();
         }
         
-        // Muling itapon ang ibang mga eksepsiyon bilang ToolExecutionException
+        // Muling ihagis ang ibang mga eksepsyon bilang ToolExecutionException
         throw new ToolExecutionException("Tool execution failed: " + ex.getMessage(), ex);
     }
 }
 ```
 
-#### 3. Retry Logic
+#### 3. Loob ng Retry
 
-Magpatupad ng angkop na retry logic para sa mga pansamantalang pagkabigo:
+Gumamit ng generic na retry logic lamang para sa read-only na mga tawag o operasyon kung saan ang
+downstream contract ay idempotent na. Para sa mga effectful na operasyon, ang timeout
+pagkatapos magpadala ng hiling ay hindi tiyak. Pagsamahin ang authoritative state at
+muling gamitin ang parehong stable operation key bago muling magpatupad. Tingnan ang
+[aralin sa katambal ng reliability sidecar](./reliability-sidecars/README.md).
+
+Ang sumusunod na bounded retry loop ay angkop para sa isang read-only lookup:
 
 ```python
 async def execute_async(self, request):
@@ -880,27 +911,27 @@ async def execute_async(self, request):
     
     while retry_count < max_retries:
         try:
-            # Tawagan ang panlabas na API
-            return await self._call_api(request.parameters)
+            # Tumawag sa external API na read-only
+            return await self._call_read_only_api(request.parameters)
         except TransientError as e:
             retry_count += 1
             if retry_count >= max_retries:
                 raise ToolExecutionException(f"Operation failed after {max_retries} attempts: {str(e)}")
                 
-            # Eksponentiyal na pagbalik
+            # Eksponensyal na pagbawi
             delay = base_delay * (2 ** (retry_count - 1))
             logging.warning(f"Transient error, retrying in {delay}s: {str(e)}")
             await asyncio.sleep(delay)
         except Exception as e:
-            # Hindi pansamantalang error, huwag subukan muli
+            # Hindi pansamantalang error, huwag ulitin
             raise ToolExecutionException(f"Operation failed: {str(e)}")
 ```
 
-### Performance Optimization
+### Pag-optimize ng Pagganap
 
 #### 1. Caching
 
-Magpatupad ng caching para sa mga operasyong mahal:
+Magpatupad ng caching para sa mga mamahaling operasyon:
 
 ```csharp
 public class CachedDataTool : IMcpTool
@@ -946,9 +977,9 @@ public class CachedDataTool : IMcpTool
 }
 ```
 
-#### 2. Asynchronous Processing
+#### 2. Asynchronous na Pagpoproseso
 
-Gumamit ng mga pattern ng asynchronous programming para sa mga operasyon na nakabatay sa I/O:
+Gumamit ng mga asynchronous na pattern sa programming para sa mga I/O-bound na operasyon:
 
 ```java
 public class AsyncDocumentProcessingTool implements Tool {
@@ -959,23 +990,23 @@ public class AsyncDocumentProcessingTool implements Tool {
     public ToolResponse execute(ToolRequest request) {
         String documentId = request.getParameters().get("documentId").asText();
         
-        // Para sa mga operasyong tumatagal, agad na ibalik ang isang processing ID
+        // Para sa mga pangmatagalang operasyon, ibalik agad ang isang processing ID
         String processId = UUID.randomUUID().toString();
         
-        // Simulan ang async na pagproseso
+        // Simulan ang async na proseso
         CompletableFuture.runAsync(() -> {
             try {
-                // Isagawa ang operasyong tumatagal
+                // Isagawa ang pangmatagalang operasyon
                 documentService.processDocument(documentId);
                 
-                // I-update ang status (karaniwang iniimbak sa isang database)
+                // I-update ang status (karaniwan itong iniimbak sa isang database)
                 processStatusRepository.updateStatus(processId, "completed");
             } catch (Exception ex) {
                 processStatusRepository.updateStatus(processId, "failed", ex.getMessage());
             }
         }, executorService);
         
-        // Ibalik ang agarang tugon na may process ID
+        // Ibalik ang agarang tugon na may prosesong ID
         Map<String, Object> result = new HashMap<>();
         result.put("processId", processId);
         result.put("status", "processing");
@@ -984,7 +1015,7 @@ public class AsyncDocumentProcessingTool implements Tool {
         return new ToolResponse.Builder().setResult(result).build();
     }
     
-    // Kasamang tool para sa pag-check ng status
+    // Kasamang tool para sa pagsuri ng status
     public class ProcessStatusTool implements Tool {
         @Override
         public ToolResponse execute(ToolRequest request) {
@@ -997,20 +1028,20 @@ public class AsyncDocumentProcessingTool implements Tool {
 }
 ```
 
-#### 3. Resource Throttling
+#### 3. Paghihigpit sa Resource
 
-Magpatupad ng pag-throttle sa mga resource upang maiwasan ang sobrang load:
+Magpatupad ng paghihigpit sa resource upang maiwasan ang sobrang paggamit:
 
 ```python
 class ThrottledApiTool(Tool):
     def __init__(self):
         self.rate_limiter = TokenBucketRateLimiter(
-            tokens_per_second=5,  # Payagan ang 5 kahilingan bawat segundo
-            bucket_size=10        # Payagan ang biglaang pagsabog hanggang 10 kahilingan
+            tokens_per_second=5,  # Pahintulutan ang 5 kahilingan kada segundo
+            bucket_size=10        # Pahintulutan ang biglaang pagtaas hanggang 10 kahilingan
         )
     
     async def execute_async(self, request):
-        # Suriin kung maaari na tayong magpatuloy o kailangang maghintay
+        # Suriin kung maaari tayong magpatuloy o kailangang maghintay
         delay = self.rate_limiter.get_delay_time()
         
         if delay > 0:
@@ -1022,7 +1053,7 @@ class ThrottledApiTool(Tool):
                 # Maghintay para sa angkop na oras ng pagkaantala
                 await asyncio.sleep(delay)
         
-        # Gumamit ng isang token at ipagpatuloy ang kahilingan
+        # Gumamit ng isang token at magpatuloy sa kahilingan
         self.rate_limiter.consume()
         
         # Tawagan ang API
@@ -1043,7 +1074,7 @@ class TokenBucketRateLimiter:
             if self.tokens >= 1:
                 return 0
             
-            # Kalkulahin ang oras hanggang sa maging available ang susunod na token
+            # Kalkulahin ang oras hanggang sa susunod na token ay magagamit
             return (1 - self.tokens) / self.tokens_per_second
     
     async def consume(self):
@@ -1055,17 +1086,17 @@ class TokenBucketRateLimiter:
         now = time.time()
         elapsed = now - self.last_refill
         
-        # Magdagdag ng bagong mga token base sa lumipas na oras
+        # Magdagdag ng mga bagong token batay sa lumipas na oras
         new_tokens = elapsed * self.tokens_per_second
         self.tokens = min(self.bucket_size, self.tokens + new_tokens)
         self.last_refill = now
 ```
 
-### Security Best Practices
+### Pinakamahusay na Gawi sa Seguridad
 
-#### 1. Input Validation
+#### 1. Validation ng Input
 
-Laging suriin nang mabuti ang mga input na parameter:
+Palaging masusi suriin ang mga input parameter:
 
 ```csharp
 public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
@@ -1106,17 +1137,17 @@ public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
 }
 ```
 
-#### 2. Authorization Checks
+#### 2. Mga Pagsusuri sa Awtorisasyon
 
-Magpatupad ng tamang pagsusuri sa awtorisasyon:
+Magpatupad ng wastong mga pagsusuri sa awtorisasyon:
 
 ```java
 @Override
 public ToolResponse execute(ToolRequest request) {
-    // Kunin ang konteksto ng gumagamit mula sa kahilingan
+    // Kumuha ng konteksto ng user mula sa kahilingan
     UserContext user = request.getContext().getUserContext();
     
-    // Suriin kung ang gumagamit ay may kinakailangang mga pahintulot
+    // Suriin kung ang user ay may kinakailangang mga pahintulot
     if (!authorizationService.hasPermission(user, "documents:read")) {
         throw new ToolExecutionException("User does not have permission to access documents");
     }
@@ -1127,14 +1158,14 @@ public ToolResponse execute(ToolRequest request) {
         throw new ToolExecutionException("Access denied to the requested document");
     }
     
-    // Magpatuloy sa pagpapatupad ng tool
+    // Ipatuloy ang pagpapatakbo ng tool
     // ...
 }
 ```
 
-#### 3. Sensitive Data Handling
+#### 3. Paghawak ng Sensitibong Data
 
-Humawak nang maingat sa sensitibong data:
+Hawakan nang maingat ang sensitibong data:
 
 ```python
 class SecureDataTool(Tool):
@@ -1152,10 +1183,10 @@ class SecureDataTool(Tool):
         user_id = request.parameters["userId"]
         include_sensitive = request.parameters.get("includeSensitiveData", False)
         
-        # Kumuha ng datos ng gumagamit
+        # Kunin ang data ng user
         user_data = await self.user_service.get_user_data(user_id)
         
-        # Salain ang mga sensitibong patlang maliban kung hayagang hiniling AT pinahintulutan
+        # Salain ang mga sensitibong patlang maliban kung hayagang hinihiling AT pinahintulutan
         if not include_sensitive or not self._is_authorized_for_sensitive_data(request):
             user_data = self._redact_sensitive_fields(user_data)
         
@@ -1167,31 +1198,31 @@ class SecureDataTool(Tool):
         return auth_level == "admin"
     
     def _redact_sensitive_fields(self, user_data):
-        # Gumawa ng kopya upang maiwasang mabago ang orihinal
+        # Gumawa ng kopya upang maiwasang baguhin ang orihinal
         redacted = user_data.copy()
         
-        # Itago ang mga partikular na sensitibong patlang
+        # Itago ang tiyak na sensitibong mga patlang
         sensitive_fields = ["ssn", "creditCardNumber", "password"]
         for field in sensitive_fields:
             if field in redacted:
                 redacted[field] = "REDACTED"
         
-        # Itago ang nakapaloob na sensitibong datos
+        # Itago ang isinusubong sensitibong data
         if "financialInfo" in redacted:
             redacted["financialInfo"] = {"available": True, "accessRestricted": True}
         
         return redacted
 ```
 
-## Testing Best Practices for MCP Tools
+## Pinakamahusay na Gawi sa Pagsubok para sa Mga Kasangkapan ng MCP
 
-Ang komprehensibong pagsubok ay nagsisiguro na ang mga MCP tool ay tamang gumagana, nahahandle ang mga edge case, at tamang nakikipag-integrate sa iba pang bahagi ng sistema.
+Ang komprehensibong pagsubok ay nagsisigurong ang mga kasangkapan ng MCP ay gumagana nang tama, humahawak ng mga edge case, at maayos na nakikisalamuha sa natitirang bahagi ng sistema.
 
 ### Unit Testing
 
-#### 1. Test Each Tool in Isolation
+#### 1. Subukan Bawat Kasangkapan nang Hiwalay
 
-Gumawa ng nakatutok na pagsubok para sa bawat functionality ng tool:
+Gumawa ng mga nakatutok na pagsubok para sa functionality ng bawat kasangkapan:
 
 ```csharp
 [Fact]
@@ -1251,27 +1282,27 @@ public async Task WeatherTool_InvalidLocation_ThrowsToolExecutionException()
 }
 ```
 
-#### 2. Schema Validation Testing
+#### 2. Pagsubok ng Validation ng Schema
 
-Subukin na ang mga schema ay wasto at maayos na pumapatupad ng mga constraints:
+Subukan na balido ang mga schema at wastong ipinapatupad ang mga constraint:
 
 ```java
 @Test
 public void testSchemaValidation() {
-    // Lumikha ng halimbawa ng tool
+    // Gumawa ng halimbawa ng tool
     SearchTool searchTool = new SearchTool();
     
-    // Kumuha ng schema
+    // Kunin ang iskema
     Object schema = searchTool.getSchema();
     
-    // I-convert ang schema sa JSON para sa beripikasyon
+    // I-convert ang iskema sa JSON para sa beripikasyon
     String schemaJson = objectMapper.writeValueAsString(schema);
     
-    // I-beripika kung ang schema ay wastong JSONSchema
+    // Suriin kung ang iskema ay valid na JSONSchema
     JsonSchemaFactory factory = JsonSchemaFactory.byDefault();
     JsonSchema jsonSchema = factory.getJsonSchema(schemaJson);
     
-    // Subukan ang wastong mga parameter
+    // Subukan ang mga wastong parameter
     JsonNode validParams = objectMapper.createObjectNode()
         .put("query", "test query")
         .put("limit", 5);
@@ -1296,9 +1327,9 @@ public void testSchemaValidation() {
 }
 ```
 
-#### 3. Error Handling Tests
+#### 3. Mga Pagsubok sa Paghawak ng Error
 
-Gumawa ng mga espesipikong pagsubok para sa mga kondisyon ng error:
+Gumawa ng espesyal na pagsubok para sa mga kalagayan ng error:
 
 ```python
 @pytest.mark.asyncio
@@ -1306,11 +1337,11 @@ async def test_api_tool_handles_timeout():
     # Ayusin
     tool = ApiTool(timeout=0.1)  # Napakaikling timeout
     
-    # Gawing panlilinlang ang isang kahilingan na mauubos ang oras
+    # Gawing mock ang isang request na magti-time out
     with aioresponses() as mocked:
         mocked.get(
             "https://api.example.com/data",
-            callback=lambda *args, **kwargs: asyncio.sleep(0.5)  # Mas mahaba kaysa timeout
+            callback=lambda *args, **kwargs: asyncio.sleep(0.5)  # Higit sa timeout
         )
         
         request = ToolRequest(
@@ -1318,11 +1349,11 @@ async def test_api_tool_handles_timeout():
             parameters={"url": "https://api.example.com/data"}
         )
         
-        # Gawin at Patunayan
+        # Gawin at I-assert
         with pytest.raises(ToolExecutionException) as exc_info:
             await tool.execute_async(request)
         
-        # Suriin ang mensahe ng eksepsyon
+        # Suriin ang mensahe ng exception
         assert "timed out" in str(exc_info.value).lower()
 
 @pytest.mark.asyncio
@@ -1330,7 +1361,7 @@ async def test_api_tool_handles_rate_limiting():
     # Ayusin
     tool = ApiTool()
     
-    # Gawing panlilinlang ang isang tugon na may limitasyon sa rate
+    # Gawing mock ang isang rate-limited na tugon
     with aioresponses() as mocked:
         mocked.get(
             "https://api.example.com/data",
@@ -1344,11 +1375,11 @@ async def test_api_tool_handles_rate_limiting():
             parameters={"url": "https://api.example.com/data"}
         )
         
-        # Gawin at Patunayan
+        # Gawin at I-assert
         with pytest.raises(ToolExecutionException) as exc_info:
             await tool.execute_async(request)
         
-        # Suriin kung ang eksepsyon ay naglalaman ng impormasyon tungkol sa limitasyon ng rate
+        # Suriin kung ang exception ay naglalaman ng impormasyon tungkol sa rate limit
         error_msg = str(exc_info.value).lower()
         assert "rate limit" in error_msg
         assert "try again" in error_msg
@@ -1356,9 +1387,9 @@ async def test_api_tool_handles_rate_limiting():
 
 ### Integration Testing
 
-#### 1. Tool Chain Testing
+#### 1. Pagsubok ng Chain ng Kasangkapan
 
-Subukin ang mga tool na nagtutulungan sa inaasahang mga kumbinasyon:
+Subukan ang mga kasangkapan na nagtutulungan sa inaasahang mga kumbinasyon:
 
 ```csharp
 [Fact]
@@ -1397,9 +1428,9 @@ public async Task DataProcessingWorkflow_CompletesSuccessfully()
 }
 ```
 
-#### 2. MCP Server Testing
+#### 2. Pagsubok sa MCP Server
 
-Subukin ang MCP server na may buong pagrehistro at pagpapatupad ng mga tool:
+Subukan ang MCP server gamit ang buong pagrerehistro at pagpapatupad ng kasangkapan:
 
 ```java
 @SpringBootTest
@@ -1435,7 +1466,7 @@ public class McpServerIntegrationTest {
         parameters.put("b", 7);
         request.put("parameters", parameters);
         
-        // Ipadala ang kahilingan at suriin ang tugon
+        // Ipadala ang kahilingan at tiyakin ang tugon
         mockMvc.perform(post("/mcp/execute")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(request)))
@@ -1445,17 +1476,17 @@ public class McpServerIntegrationTest {
     
     @Test
     public void testToolValidation() throws Exception {
-        // Gumawa ng invalid na kahilingan para sa tool
+        // Gumawa ng hindi wastong kahilingan para sa tool
         Map<String, Object> request = new HashMap<>();
         request.put("toolName", "calculator");
         
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("operation", "divide");
         parameters.put("a", 10);
-        // Nawawalang parameter na "b"
+        // Nawawalang parametro na "b"
         request.put("parameters", parameters);
         
-        // Ipadala ang kahilingan at suriin ang tugon sa error
+        // Ipadala ang kahilingan at tiyakin ang tugon ng error
         mockMvc.perform(post("/mcp/execute")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(request)))
@@ -1467,15 +1498,15 @@ public class McpServerIntegrationTest {
 
 #### 3. End-to-End Testing
 
-Subukin ang buong workflow mula sa prompt ng modelo hanggang sa pagpapatupad ng tool:
+Subukan ang kumpletong workflow mula sa prompt ng modelo hanggang sa pagpapatupad ng kasangkapan:
 
 ```python
 @pytest.mark.asyncio
 async def test_model_interaction_with_tool():
-    # Ayusin - I-set up ang MCP client at i-mock ang modelo
+    # Ayusin - I-set up ang MCP client at mock model
     mcp_client = McpClient(server_url="http://localhost:5000")
     
-    # I-mock ang mga tugon ng modelo
+    # Mock na mga tugon ng modelo
     mock_model = MockLanguageModel([
         MockResponse(
             "What's the weather in Seattle?",
@@ -1490,7 +1521,7 @@ async def test_model_interaction_with_tool():
         )
     ])
     
-    # I-mock ang tugon ng tool sa panahon
+    # Mock na tugon ng weather tool
     with aioresponses() as mocked:
         mocked.post(
             "http://localhost:5000/mcp/execute",
@@ -1522,11 +1553,11 @@ async def test_model_interaction_with_tool():
         assert response.tool_calls[0].tool_name == "weatherForecast"
 ```
 
-### Performance Testing
+### Pagsubok sa Pagganap
 
 #### 1. Load Testing
 
-Subukin kung ilan ang sabay-sabay na kahilingan na kaya ng iyong MCP server:
+Subukan kung ilang magkakasabay na hiling ang kayang hawakan ng iyong MCP server:
 
 ```csharp
 [Fact]
@@ -1561,7 +1592,7 @@ public async Task McpServer_HandlesHighConcurrency()
 
 #### 2. Stress Testing
 
-Subukin ang sistema sa ilalim ng matinding load:
+Subukan ang sistema sa ilalim ng matinding load:
 
 ```java
 @Test
@@ -1570,7 +1601,7 @@ public void testServerUnderStress() {
     int rampUpTimeSeconds = 60;
     int testDurationSeconds = 300;
     
-    // I-set up ang JMeter para sa pagsubok ng stress
+    // I-set up ang JMeter para sa stress testing
     StandardJMeterEngine jmeter = new StandardJMeterEngine();
     
     // I-configure ang plano ng pagsubok ng JMeter
@@ -1599,7 +1630,7 @@ public void testServerUnderStress() {
     
     threadGroup.add(toolExecutionSampler);
     
-    // Magdagdag ng mga tagapakinig
+    // Magdagdag ng mga listener
     SummaryReport summaryReport = new SummaryReport();
     threadGroup.add(summaryReport);
     
@@ -1607,21 +1638,21 @@ public void testServerUnderStress() {
     jmeter.configure(testPlanTree);
     jmeter.run();
     
-    // I-validate ang mga resulta
+    // Patunayan ang mga resulta
     assertEquals(0, summaryReport.getErrorCount());
-    assertTrue(summaryReport.getAverage() < 200); // Karaniwang oras ng tugon < 200ms
+    assertTrue(summaryReport.getAverage() < 200); // Average na oras ng tugon < 200ms
     assertTrue(summaryReport.getPercentile(90.0) < 500); // 90th percentile < 500ms
 }
 ```
 
-#### 3. Monitoring and Profiling
+#### 3. Pagmomonitor at Profiling
 
-Mag-set up ng monitoring para sa pangmatagalang pagsusuri ng performance:
+Mag-set up ng pagmomonitor para sa pangmatagalang pagsusuri ng pagganap:
 
 ```python
 # I-configure ang pagmamanman para sa isang MCP server
 def configure_monitoring(server):
-    # I-set up ang Prometheus metrics
+    # Isaayos ang mga sukatan ng Prometheus
     prometheus_metrics = {
         "request_count": Counter("mcp_requests_total", "Total MCP requests"),
         "request_latency": Histogram(
@@ -1647,10 +1678,10 @@ def configure_monitoring(server):
         )
     }
     
-    # Magdagdag ng middleware para sa pagtala at pagbabantay ng metrics
+    # Magdagdag ng middleware para sa pagsukat ng oras at pagtatala ng mga sukatan
     server.add_middleware(PrometheusMiddleware(prometheus_metrics))
     
-    # I-expose ang metrics endpoint
+    # I-expose ang endpoint ng mga sukatan
     @server.router.get("/metrics")
     async def metrics():
         return generate_latest()
@@ -1658,19 +1689,19 @@ def configure_monitoring(server):
     return server
 ```
 
-## MCP Workflow Design Patterns
+## Mga Pattern ng Disenyo ng MCP Workflow
 
-Ang mga maayos na disenyo ng MCP workflow ay nagpapabuti ng kahusayan, pagiging maaasahan, at kakayahang mapanatili. Narito ang mga mahahalagang pattern na sundin:
+Ang mga maayos na disenyo ng MCP workflow ay nagpapabuti ng kahusayan, pagiging maaasahan, at kakayahang mapanatili. Narito ang mahahalagang pattern na sundin:
 
-### 1. Chain of Tools Pattern
+### 1. Pattern ng Chain ng Kasangkapan
 
-Ikonekta ang maraming tool sa isang sunod-sunod na proseso kung saan ang output ng isang tool ay nagiging input ng susunod:
+Ikonekta ang maraming kasangkapan sa isang sunod-sunod na proseso kung saan ang output ng bawat kasangkapan ay nagsisilbing input para sa kasunod:
 
 ```python
-# Implementasyon ng Chain of Tools sa Python
+# Implementasyon ng Python Chain of Tools
 class ChainWorkflow:
     def __init__(self, tools_chain):
-        self.tools_chain = tools_chain  # Listahan ng mga pangalan ng tool na isasagawa nang sunud-sunod
+        self.tools_chain = tools_chain  # Listahan ng mga pangalan ng tool na isasagawa ng sunud-sunod
     
     async def execute(self, mcp_client, initial_input):
         current_result = initial_input
@@ -1703,9 +1734,9 @@ result = await data_processing_chain.execute(
 )
 ```
 
-### 2. Dispatcher Pattern
+### 2. Pattern ng Dispatcher
 
-Gumamit ng sentral na tool na gumagabay sa mga espesyalisadong tool batay sa input:
+Gumamit ng sentral na kasangkapan na nagdi-dispatch sa mga espesyalisadong kasangkapan batay sa input:
 
 ```csharp
 public class ContentDispatcherTool : IMcpTool
@@ -1785,9 +1816,9 @@ public class ContentDispatcherTool : IMcpTool
 }
 ```
 
-### 3. Parallel Processing Pattern
+### 3. Pattern ng Parallel Processing
 
-Isagawa ang maraming tool nang sabay para sa kahusayan:
+Isagawa ang maraming kasangkapan nang sabay-sabay para sa kahusayan:
 
 ```java
 public class ParallelDataProcessingWorkflow {
@@ -1802,7 +1833,7 @@ public class ParallelDataProcessingWorkflow {
         ToolResponse metadataResponse = mcpClient.executeTool("datasetMetadata", 
             Map.of("datasetId", datasetId));
         
-        // Hakbang 2: Ilunsad ang maraming pagsusuri nang sabay-sabay
+        // Hakbang 2: Ilunsad ang maramihang pagsusuri nang sabay-sabay
         CompletableFuture<ToolResponse> statisticalAnalysis = CompletableFuture.supplyAsync(() ->
             mcpClient.executeTool("statisticalAnalysis", Map.of(
                 "datasetId", datasetId,
@@ -1824,7 +1855,7 @@ public class ParallelDataProcessingWorkflow {
             ))
         );
         
-        // Maghintay hanggang makumpleto ang lahat ng sabayang gawain
+        // Maghintay hanggang matapos ang lahat ng parallel na gawain
         CompletableFuture<Void> allAnalyses = CompletableFuture.allOf(
             statisticalAnalysis, correlationAnalysis, outlierDetection
         );
@@ -1838,7 +1869,7 @@ public class ParallelDataProcessingWorkflow {
         combinedResults.put("correlations", correlationAnalysis.join().getResult());
         combinedResults.put("outliers", outlierDetection.join().getResult());
         
-        // Hakbang 4: Gumawa ng buod na ulat
+        // Hakbang 4: Gumawa ng ulat ng buod
         ToolResponse summaryResponse = mcpClient.executeTool("reportGenerator", 
             Map.of("analysisResults", combinedResults));
         
@@ -1853,9 +1884,9 @@ public class ParallelDataProcessingWorkflow {
 }
 ```
 
-### 4. Error Recovery Pattern
+### 4. Pattern ng Pagbawi sa Error
 
-Magpatupad ng mahinahong mga fallback para sa pagkabigo ng mga tool:
+Magpatupad ng maayos na mga fallback para sa mga pagkabigo ng kasangkapan:
 
 ```python
 class ResilientWorkflow:
@@ -1864,7 +1895,7 @@ class ResilientWorkflow:
     
     async def execute_with_fallback(self, primary_tool, fallback_tool, parameters):
         try:
-            # Subukan muna ang pangunahing kasangkapan
+            # Subukan munang gamitin ang pangunahing kasangkapan
             response = await self.client.execute_tool(primary_tool, parameters)
             return {
                 "result": response.result,
@@ -1872,12 +1903,12 @@ class ResilientWorkflow:
                 "tool": primary_tool
             }
         except ToolExecutionException as e:
-            # Itala ang pagkabigo
+            # I-log ang pagkabigo
             logging.warning(f"Primary tool '{primary_tool}' failed: {str(e)}")
             
             # Lumipat sa pangalawang kasangkapan
             try:
-                # Maaaring kailanganin na baguhin ang mga parameter para sa kasangkapang fallback
+                # Maaaring kailanganing baguhin ang mga parametro para sa pangalawang kasangkapan
                 fallback_params = self._adapt_parameters(parameters, primary_tool, fallback_tool)
                 
                 response = await self.client.execute_tool(fallback_tool, fallback_params)
@@ -1888,7 +1919,7 @@ class ResilientWorkflow:
                     "primaryError": str(e)
                 }
             except ToolExecutionException as fallback_error:
-                # Parehong nabigo ang mga kasangkapan
+                # Nabigo ang parehong mga kasangkapan
                 logging.error(f"Both primary and fallback tools failed. Fallback error: {str(fallback_error)}")
                 raise WorkflowExecutionException(
                     f"Workflow failed: primary error: {str(e)}; fallback error: {str(fallback_error)}"
@@ -1896,22 +1927,22 @@ class ResilientWorkflow:
     
     def _adapt_parameters(self, params, from_tool, to_tool):
         """Adapt parameters between different tools if needed"""
-        # Ang pagpapatupad na ito ay naka-depende sa mga tiyak na kasangkapan
-        # Para sa halimbawang ito, ibabalik lang namin ang orihinal na mga parameter
+        # Ang implementasyong ito ay depende sa mga espesipikong kasangkapan
+        # Sa halimbawa na ito, ibabalik lang natin ang orihinal na mga parametro
         return params
 
 # Halimbawa ng paggamit
 async def get_weather(workflow, location):
     return await workflow.execute_with_fallback(
-        "premiumWeatherService",  # Pangunahing (may bayad) na weather API
-        "basicWeatherService",    # Pangalawang (libreng) weather API
+        "premiumWeatherService",  # Pangunahing (bayad) na weather API
+        "basicWeatherService",    # Pangalawang (libre) na weather API
         {"location": location}
     )
 ```
 
-### 5. Workflow Composition Pattern
+### 5. Pattern ng Komposisyon ng Workflow
 
-Buuin ang kumplikadong mga workflow sa pamamagitan ng pagsasama ng mas payak na mga workflow:
+Bumuo ng mga kumplikadong workflow sa pamamagitan ng pagsasama-sama ng mga mas simpleng workflow:
 
 ```csharp
 public class CompositeWorkflow : IWorkflow
@@ -1958,37 +1989,37 @@ var result = await documentWorkflow.ExecuteAsync(new WorkflowContext {
 });
 ```
 
-# Testing MCP Servers: Best Practices and Top Tips
+# Pagsubok sa Mga MCP Server: Pinakamahusay na Gawi at Mga Pangunahing Tip
 
-## Overview
+## Pangkalahatang-ideya
 
-Ang pagsubok ay isang kritikal na aspeto sa pag-develop ng mga maaasahan at mataas na kalidad na MCP server. Ang gabay na ito ay nagbibigay ng komprehensibong pinakamahusay na prakisis at mga tip para sa pagsubok ng iyong mga MCP server sa buong lifecycle ng pag-develop, mula sa unit test hanggang integration test at end-to-end validation.
+Ang pagsubok ay isang kritikal na aspeto ng pagbuo ng mga maaasahan at mataas na kalidad na MCP server. Ang gabay na ito ay nagbibigay ng komprehensibong pinakamahusay na gawi at tip sa pagsubok ng iyong mga MCP server sa buong lifecycle ng pag-unlad, mula sa unit tests hanggang integration tests at end-to-end validation.
 
-## Why Testing Matters for MCP Servers
+## Bakit Mahalaga ang Pagsubok para sa Mga MCP Server
 
-Ang mga MCP server ay nagsisilbing mahalagang middleware sa pagitan ng mga AI model at mga client application. Ang masusing pagsubok ay nagsisiguro ng:
+Ang mga MCP server ay nagsisilbing mahalagang middleware sa pagitan ng mga AI model at ng mga aplikasyon ng kliyente. Ang masusing pagsubok ay nagsisiguro ng:
 
-- Katatagan sa mga production environment
-- Tumpak na paghawak ng mga kahilingan at tugon
-- Tamang implementasyon ng mga specifikasyon ng MCP
-- Tibay laban sa mga pagkabigo at edge cases
-- Pare-parehong performance sa ilalim ng iba't ibang mga load
+- Katatagan sa mga production na kapaligiran
+- Tumpak na paghawak ng mga hiling at tugon
+- Wastong implementasyon ng mga espesipikasyon ng MCP
+- Kakayahang makabangon mula sa mga error at mga edge case
+- Konsistenteng pagganap sa ilalim ng iba't ibang mga load
 
-## Unit Testing for MCP Servers
+## Unit Testing para sa Mga MCP Server
 
-### Unit Testing (Foundation)
+### Unit Testing (Pundasyon)
 
-Ang mga unit test ay nagvaverify ng bawat indibiduwal na bahagi ng iyong MCP server nang hiwalay.
+Tine-verify ng mga unit test ang bawat indibidwal na bahagi ng iyong MCP server nang hiwalay.
 
-#### What to Test
+#### Ano ang Susubukan
 
-1. **Resource Handlers**: Subukin nang hiwalay ang lohika ng bawat resource handler
-2. **Tool Implementations**: Beripikahin ang ugali ng tool gamit ang iba't ibang input
-3. **Prompt Templates**: Siguraduhing tama ang rendering ng mga prompt template
-4. **Schema Validation**: Subukin ang lohika ng validation ng mga parameter
-5. **Error Handling**: Beripikahin ang mga tugon sa error para sa mga maling input
+1. **Mga Tagahawak ng Resource**: Subukan nang hiwalay ang lohika ng bawat tagahawak ng resource
+2. **Mga Implementasyon ng Kasangkapan**: Suriin ang pag-uugali ng kasangkapan gamit ang iba't ibang input
+3. **Templates ng Prompt**: Tiyakin na maayos na nairender ang mga template ng prompt
+4. **Validation ng Schema**: Subukan ang lohika ng pag-validate ng parameter
+5. **Paghawak ng Error**: Tiyakin ang mga tugon sa error para sa mga maling input
 
-#### Best Practices for Unit Testing
+#### Mga Pinakamahusay na Gawi para sa Unit Testing
 
 ```csharp
 // Example unit test for a calculator tool in C#
@@ -2024,7 +2055,7 @@ def test_calculator_tool_add():
         "b": 7
     }
     
-    # Kumilos
+    # Gawin
     response = calculator.execute(parameters)
     result = json.loads(response.content[0].text)
     
@@ -2032,19 +2063,19 @@ def test_calculator_tool_add():
     assert result["value"] == 12
 ```
 
-### Integration Testing (Middle Layer)
+### Integration Testing (Gitnang Layer)
 
-Sinusuri ng integration test ang mga interaksyon sa pagitan ng mga bahagi ng iyong MCP server.
+Tine-verify ng integration test ang pakikipag-ugnayan sa pagitan ng mga bahagi ng iyong MCP server.
 
-#### What to Test
+#### Ano ang Susubukan
 
-1. **Server Initialization**: Subukin ang pagsisimula ng server gamit ang iba't ibang mga configuration
-2. **Route Registration**: Siguraduhing lahat ng mga endpoint ay tama ang pagrehistro
-3. **Request Processing**: Subukin ang buong cycle ng kahilingan-tugon
-4. **Error Propagation**: Siguraduhing maayos ang paghawak ng mga error sa iba't ibang bahagi
-5. **Authentication & Authorization**: Subukin ang mga mekanismo ng seguridad
+1. **Initialization ng Server**: Subukan ang pagsisimula ng server gamit ang iba't ibang configuration
+2. **Rehistrasyon ng Ruta**: Tiyakin na ang lahat ng endpoint ay tama na nairehistro
+3. **Pagpoproseso ng Hiling**: Subukan ang buong cycle ng request-response
+4. **Pagpapalaganap ng Error**: Siguraduhing maayos ang paghawak ng error sa mga bahagi
+5. **Authentication at Authorization**: Subukan ang mga mekanismo sa seguridad
 
-#### Best Practices for Integration Testing
+#### Mga Pinakamahusay na Gawi para sa Integration Testing
 
 ```csharp
 // Example integration test for MCP server in C#
@@ -2080,22 +2111,23 @@ public async Task Server_ProcessToolRequest_ReturnsValidResponse()
 }
 ```
 
-### End-to-End Testing (Top Layer)
+### End-to-End Testing (Pinakatuktok na Layer)
 
-Sinusuri ng end-to-end tests ang buong pag-uugali ng sistema mula sa client hanggang sa server.
+Tine-verify ng end-to-end test ang kompletong pag-uugali ng sistema mula kliyente hanggang server.
 
-#### What to Test
+#### Ano ang Susubukan
 
-1. **Client-Server Communication**: Subukin ang buong cycle ng kahilingan at tugon
-2. **Real Client SDKs**: Subukin gamit ang totoong mga implementasyon ng client
-3. **Performance Under Load**: Beripikahin ang pag-uugali ng sistema sa maraming sabay-sabay na kahilingan
-4. **Error Recovery**: Subukin ang pagbangon ng sistema matapos ang mga pagkabigo
-5. **Long-Running Operations**: Siguraduhing maayos ang paghawak sa streaming at mahahabang operasyon
+1. **Komunikasyon ng Client-Server**: Subukan ang kompletong cycles ng request-response
+2. **Tunay na Client SDKs**: Subukan gamit ang totoong mga implementasyon ng kliyente
+3. **Pagganap sa Ilalim ng Load**: Tiyakin ang pag-uugali sa maraming sabay-sabay na hiling
+4. **Pagbawi mula sa Error**: Subukan ang pagbawi ng sistema mula sa mga pagkabigo
 
-#### Best Practices for E2E Testing
+5. **Pang-matagalang Operasyon**: Siguraduhing maayos ang paghawak ng streaming at pang-matagalang operasyon
+
+#### Mga Pinakamahusay na Kasanayan para sa E2E Testing
 
 ```typescript
-// Halimbawang E2E test na may kliyente sa TypeScript
+// Halimbawa ng E2E test gamit ang kliyente sa TypeScript
 describe('MCP Server E2E Tests', () => {
   let client: McpClient;
   
@@ -2124,18 +2156,18 @@ describe('MCP Server E2E Tests', () => {
 });
 ```
 
-## Mocking Strategies for MCP Testing
+## Mga Estratehiya sa Mocking para sa MCP Testing
 
-Ang mocking ay mahalaga para sa paghiwalay ng mga bahagi sa panahon ng pagsubok.
+Mahalaga ang mocking para sa pag-isolate ng mga bahagi habang nagte-testing.
 
-### Components to Mock
+### Mga Bahaging Imo-mock
 
-1. **External AI Models**: Gumamit ng mock na tugon ng modelo para sa predictable na pagsubok
-2. **External Services**: Mock ang mga API dependency (database, third-party services)
-3. **Authentication Services**: Mock ang mga identity provider
-4. **Resource Providers**: Mock ang mga mahal na resource handler
+1. **Mga Panlabas na AI Models**: Imock ang mga tugon ng modelo para sa predictable na testing
+2. **Mga Panlabas na Serbisyo**: Imock ang mga dependency ng API (databases, third-party services)
+3. **Mga Serbisyo sa Authentication**: Imock ang mga identity providers
+4. **Mga Provider ng Resource**: Imock ang mahahalagang resource handlers
 
-### Example: Mocking an AI Model Response
+### Halimbawa: Pagmo-mock ng Tugon mula sa AI Model
 
 ```csharp
 // C# example with Moq
@@ -2162,31 +2194,31 @@ def test_with_mock_model(mock_model):
         "finish_reason": "completed"
     }
     
-    # Gamitin ang mock sa test
+    # Gamitin ang mock sa pagsusulit
     server = McpServer(model_client=mock_model)
-    # Ipagpatuloy ang test
+    # Magpatuloy sa pagsusulit
 ```
 
 ## Performance Testing
 
 Mahalaga ang performance testing para sa mga production MCP server.
 
-### What to Measure
+### Ano ang Dapat Sukatin
 
-1. **Latency**: Oras ng pagtugon para sa mga kahilingan
-2. **Throughput**: Bilang ng mga kahilingan na hawak kada segundo
-3. **Resource Utilization**: Paggamit ng CPU, memorya, network
-4. **Concurrency Handling**: Pag-uugali sa ilalim ng sabay-sabay na mga kahilingan
-5. **Scaling Characteristics**: Performance habang tumataas ang load
+1. **Latency**: Oras ng tugon sa mga kahilingan
+2. **Throughput**: Mga kahilingang naiproseso kada segundo
+3. **Paggamit ng Resource**: CPU, memorya, paggamit ng network
+4. **Paghawak ng Concurrency**: Ugali sa ilalim ng sabayang kahilingan
+5. **Katangian ng Pag-scale**: Performance habang tumataas ang load
 
-### Tools for Performance Testing
+### Mga Tool para sa Performance Testing
 
-- **k6**: Open-source na kasangkapan para sa load testing
+- **k6**: Open-source na load testing tool
 - **JMeter**: Komprehensibong performance testing
-- **Locust**: Load testing na batay sa Python
-- **Azure Load Testing**: Cloud-based na performance testing
+- **Locust**: Python-based load testing
+- **Azure Load Testing**: Cloud-based performance testing
 
-### Example: Basic Load Test with k6
+### Halimbawa: Basic Load Test gamit ang k6
 
 ```javascript
 // k6 script para sa load testing ng MCP server
@@ -2194,7 +2226,7 @@ import http from 'k6/http';
 import { check, sleep } from 'k6';
 
 export const options = {
-  vus: 10,  // 10 virtual na gumagamit
+  vus: 10,  // 10 virtual na mga gumagamit
   duration: '30s',
 };
 
@@ -2226,16 +2258,16 @@ export default function () {
 }
 ```
 
-## Test Automation for MCP Servers
+## Test Automation para sa MCP Servers
 
-Ang automation ng mga pagsubok ay nagsisiguro ng consistent na kalidad at mas mabilis na pagbibigay ng feedback.
+Tinitiyak ng pag-aautomat ng iyong mga test ang tuloy-tuloy na kalidad at mas mabilis na feedback loops.
 
 ### CI/CD Integration
 
-1. **Run Unit Tests on Pull Requests**: Siguraduhing hindi nasisira ang umiiral na functionality sa mga pagbabago ng code
-2. **Mga Pagsubok sa Integrasyon sa Staging**: Patakbuhin ang mga pagsubok sa integrasyon sa mga pre-production na kapaligiran  
-3. **Mga Baseline ng Performance**: Panatilihin ang mga benchmark ng performance upang mahuli ang mga regression  
-4. **Mga Security Scan**: Awtomatikong isagawa ang security testing bilang bahagi ng pipeline  
+1. **Patakbuhin ang Unit Tests sa Pull Requests**: Siguraduhing hindi nasisira ang umiiral na functionality ng mga pagbabago sa code
+2. **Integration Tests sa Staging**: Patakbuhin ang integration tests sa pre-production environment
+3. **Mga Baseline ng Performance**: Panatilihin ang performance benchmarks para makita ang mga regression
+4. **Security Scans**: I-automate ang security testing bilang bahagi ng pipeline
 
 ### Halimbawa ng CI Pipeline (GitHub Actions)
 
@@ -2275,18 +2307,18 @@ jobs:
     - name: Performance Tests
       run: dotnet run --project tests/PerformanceTests/PerformanceTests.csproj
 ```
-  
+
 ## Pagsusuri para sa Pagsunod sa MCP Specification
 
-Suriin kung tama ang pagpapatupad ng iyong server sa MCP specification.
+Siguraduhing tama ang implementasyon ng iyong server sa MCP specification.
 
 ### Mga Pangunahing Lugar ng Pagsunod
 
-1. **Mga API Endpoint**: Subukan ang mga kinakailangang endpoints (/resources, /tools, atbp.)  
-2. **Format ng Request/Response**: I-validate ang pagsunod sa schema  
-3. **Mga Error Code**: Suriin ang tamang status codes para sa iba't ibang mga senaryo  
-4. **Mga Uri ng Nilalaman**: Subukan ang paghawak ng iba't ibang uri ng nilalaman  
-5. **Daloy ng Authentication**: Suriin ang mga mekanismong auth na sumusunod sa spec  
+1. **API Endpoints**: Subukan ang mga kinakailangang endpoints (/resources, /tools, atbp.)
+2. **Request/Response Format**: Suriin ang pagsunod sa schema
+3. **Error Codes**: Siguraduhing tama ang mga status code para sa iba't ibang sitwasyon
+4. **Uri ng Nilalaman**: Subukan ang paghawak ng iba't ibang uri ng nilalaman
+5. **Daloy ng Authentication**: Siguraduhing sumusunod ang auth mechanism sa spec
 
 ### Compliance Test Suite
 
@@ -2314,61 +2346,63 @@ public async Task Server_ResourceEndpoint_ReturnsCorrectSchema()
     });
 }
 ```
-  
-## Nangungunang 10 Tips para sa Mabisang Pagsubok ng MCP Server
 
-1. **Subukan ang mga Depinisyon ng Tool nang Hiwa-hiwalay**: Suriin ang mga schema definition nang hiwalay mula sa lohika ng tool  
-2. **Gumamit ng Parameterized Tests**: Subukan ang mga tool gamit ang iba’t ibang input, kasama ang mga edge case  
-3. **Suriin ang mga Tugon sa Error**: Siguraduhing tama ang paghawak ng error para sa lahat ng posibleng kondisyon ng error  
-4. **Subukan ang Lohika ng Awtorisasyon**: Tiyakin ang tamang control sa access para sa iba’t ibang tungkulin ng user  
-5. **Subaybayan ang Saklaw ng Pagsubok**: Sikaping mataas ang coverage ng critical path code  
-6. **Subukan ang Streaming Responses**: Suriin ang tamang paghawak ng streaming content  
-7. **Gayahin ang mga Isyu sa Network**: Subukan ang pag-uugali sa mahina o sirang network  
-8. **Subukan ang Mga Limitasyon ng Resource**: Suriin ang pag-uugali kapag naabot ang mga quota o rate limits  
-9. **Awtomatikong Pagsubok ng Regression**: Gumawa ng suite na tumatakbo sa bawat pagbabago ng code  
-10. **Idokumento ang mga Test Case**: Panatilihin ang malinaw na dokumentasyon ng mga senaryo ng pagsubok  
+## Nangungunang 10 Tips para sa Epektibong MCP Server Testing
 
-## Mga Karaniwang Pagkakamali sa Pagsubok
+1. **Subukin nang Hiwa-hiwalay ang Tool Definitions**: Suriin ang schema definitions nang independent sa logic ng tools
+2. **Gumamit ng Parameterized Tests**: Subukin ang mga tool gamit ang iba't ibang input, kabilang ang mga edge case
+3. **Suriin ang mga Tugon sa Error**: Siguraduhing maayos ang paghawak ng error sa lahat ng posibleng kondisyon ng error
+4. **Subukan ang Authorization Logic**: Siguraduhin ang tamang access control para sa iba't ibang role ng user
+5. **Subaybayan ang Test Coverage**: Sikaping mataas ang coverage sa mga critical na parte ng code
+6. **Subukan ang mga Tugon sa Streaming**: Siguraduhing maayos ang paghawak ng streaming content
+7. **Gamitin ang Simulasyon ng Problema sa Network**: Subukin ang ugali sa ilalim ng mahirap na kondisyon ng network
+8. **Subukan ang Limitasyon ng Resource**: Siguraduhing maayos ang ugali kapag naabot ang mga quota o rate limits
+9. **I-automate ang Regression Tests**: Bumuo ng suite na tatakbo sa bawat pagbabago ng code
+10. **Idokumento ang mga Test Case**: Panatilihin ang malinaw na dokumentasyon ng mga test scenario
 
-- **Sobrang pagtitiwala sa happy path testing**: Siguraduhing puspusang subukan ang mga kaso ng error  
-- **Hindi pagtuon sa performance testing**: Tuklasin ang mga bottleneck bago makaapekto sa production  
-- **Pagsubok na nag-iisa lamang**: Pagsamahin ang unit, integration, at E2E tests  
-- **Hindi kumpletong coverage ng API**: Siguraduhing nasubukan lahat ng endpoints at features  
-- **Hindi consistent na mga kapaligiran sa pagsubok**: Gumamit ng mga container upang matiyak ang consistent na kapaligiran sa pagsubok  
+## Mga Karaniwang Pagkakamali sa Testing
+
+- **Sobrang pagtitiwala sa happy path testing**: Siguraduhing subukan nang mabuti ang mga kaso ng error
+- **Pagsasantabi sa performance testing**: Tuklasin ang mga bottleneck bago ito makaapekto sa produksyon
+- **Pagsusuri lang nang hiwalay**: Pagsamahin ang unit, integration, at E2E tests
+- **Hindi kumpletong API coverage**: Siguraduhing nasusubukan lahat ng endpoints at features
+- **Hindi pantay na mga test environment**: Gamitin ang containers para sa consistent na test environment
 
 ## Konklusyon
 
-Isang komprehensibong stratehiya sa pagsubok ang mahalaga para sa pagbuo ng maaasahan at mataas na kalidad na MCP server. Sa pamamagitan ng pagpapatupad ng pinakamahusay na mga kasanayan at mga tip na nakasaad sa gabay na ito, masisiguro mong matutugunan ng iyong mga implementasyon ng MCP ang pinakamataas na pamantayan ng kalidad, pagiging maaasahan, at performance.  
+Mahalaga ang komprehensibong estratehiya sa testing para makabuo ng maaasahan, mataas ang kalidad na MCP servers. Sa pagpapatupad ng mga pinakamahusay na kasanayan at mga tip na nakalista sa gabay na ito, masisiguro mong ang iyong mga implementasyon ng MCP ay tumutugon sa pinakamataas na pamantayan ng kalidad, pagiging maaasahan, at performance.
 
-## Mga Pangunahing Punto
 
-1. **Disenyo ng Tool**: Sundin ang prinsipyo ng single responsibility, gumamit ng dependency injection, at magdisenyo para sa composability  
-2. **Disenyo ng Schema**: Gumawa ng malinaw at maayos na dokumentadong mga schema na may tamang mga validation constraint  
-3. **Paghawak ng Error**: Magpatupad ng maayos na paghawak ng error, istrakturadong mga tugon sa error, at retry logic  
-4. **Performance**: Gumamit ng caching, asynchronous processing, at resource throttling  
-5. **Seguridad**: Ipatupad ang masusing input validation, mga tseke sa awtorisasyon, at tamang paghawak ng sensitibong data  
-6. **Pagsubok**: Gumawa ng komprehensibong unit, integration, at end-to-end na mga pagsubok  
-7. **Mga Pattern sa Workflow**: Ipatupad ang mga kilalang pattern tulad ng chains, dispatchers, at parallel processing  
+## Mahahalagang Takeaway
+
+1. **Disenyo ng Tool**: Sundin ang prinsipyo ng single responsibility, gumamit ng dependency injection, at magdisenyo para sa composability
+2. **Disenyo ng Schema**: Gumawa ng malinaw, mahusay na dokumentadong mga schema na may tamang validation constraints
+3. **Paghawak ng Error**: Magpatupad ng maayos na paghawak ng error, istraktura ng error responses, at outcome-aware retry logic
+
+4. **Performance**: Gumamit ng caching, asynchronous processing, at resource throttling
+5. **Seguridad**: Magpatupad ng masusing input validation, mga pagsusuri sa authorization, at paghawak ng sensitibong datos
+6. **Testing**: Gumawa ng komprehensibong unit, integration, at end-to-end tests
+7. **Mga Pattern sa Workflow**: Ilapat ang mga itinatag na pattern tulad ng chains, dispatchers, at parallel processing
 
 ## Ehersisyo
 
-Magdisenyo ng isang MCP tool at workflow para sa isang sistema ng pagproseso ng dokumento na:
+Disenyuhin ang isang MCP tool at workflow para sa isang sistema ng pagproseso ng dokumento na:
 
-1. Tumanggap ng mga dokumento sa iba’t ibang format (PDF, DOCX, TXT)  
-2. Kunin ang teksto at mga pangunahing impormasyon mula sa mga dokumento  
-3. Iklasipika ang mga dokumento ayon sa uri at nilalaman  
-4. Gumawa ng buod ng bawat dokumento  
+1. Tumatanggap ng mga dokumento sa iba't ibang format (PDF, DOCX, TXT)
+2. Nag-eextract ng teksto at mga mahahalagang impormasyon mula sa mga dokumento
+3. Nagsusuri ng mga dokumento ayon sa uri at nilalaman
+4. Gumagawa ng buod ng bawat dokumento
 
-Ipapatupad ang mga schema ng tool, paghawak ng error, at isang workflow pattern na pinakaangkop sa senaryong ito. Isaalang-alang kung paano mo susubukan ang implementasyong ito.  
+Ipatupad ang mga schema ng tool, paghawak ng error, at isang workflow pattern na pinakaangkop sa senaryong ito. Isipin kung paano mo susubukan ang implementasyon na ito.
 
-## Mga Resources
+## Mga Resource 
 
-1. Sumali sa MCP community sa [Microsoft Foundry Discord Community](https://aka.ms/foundrydevs) upang manatiling updated sa mga pinakabagong balita  
-2. Mag-ambag sa open-source na [MCP projects](https://github.com/modelcontextprotocol)  
-3. Ipatupad ang mga prinsipyo ng MCP sa sariling AI initiatives ng iyong organisasyon  
-4. Tuklasin ang mga espesyal na implementasyon ng MCP para sa iyong industriya  
-5. Isaalang-alang ang pagkuha ng mga advanced na kurso sa mga partikular na paksa ng MCP, tulad ng multi-modal integration o enterprise application integration  
-6. Subukan ang pagbuo ng sarili mong mga MCP tool at workflow gamit ang mga prinsipyong natutunan sa pamamagitan ng [Hands on Lab](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)  
+1. Sumali sa komunidad ng MCP sa [Microsoft Foundry Discord Community](https://aka.ms/foundrydevs) para manatiling updated sa mga pinakabagong pag-unlad 
+2. Mag-ambag sa open-source na [MCP projects](https://github.com/modelcontextprotocol)
+3. Ilapat ang mga prinsipyo ng MCP sa mga inisyatiba ng AI sa iyong sariling organisasyon
+4. Tuklasin ang mga espesyalisadong implementasyon ng MCP para sa iyong industriya. 
+5. Isaalang-alang ang pagkuha ng mga advanced na kurso sa partikular na paksa ng MCP, tulad ng multi-modal integration o enterprise application integration.
+6. Subukan ang paggawa ng sarili mong mga MCP tool at workflow gamit ang mga prinsipyong natutunan sa pamamagitan ng [Hands on Lab](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)  
 
 ## Ano ang Susunod
 

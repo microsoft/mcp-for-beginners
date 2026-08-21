@@ -1,171 +1,171 @@
 # Giao Thức Ngữ Cảnh Mô Hình cho Tìm Kiếm Web Thời Gian Thực
 
-## Tổng Quan
+## Tổng quan
 
-Tìm kiếm web thời gian thực đã trở thành điều thiết yếu trong môi trường thông tin hiện nay, nơi các ứng dụng cần truy cập ngay lập tức vào thông tin cập nhật trên internet để cung cấp câu trả lời phù hợp và kịp thời. Giao Thức Ngữ Cảnh Mô Hình (MCP) đại diện cho bước tiến quan trọng trong việc tối ưu hóa các quy trình tìm kiếm thời gian thực này, nâng cao hiệu quả tìm kiếm, duy trì tính toàn vẹn của ngữ cảnh và cải thiện hiệu suất hệ thống tổng thể.
+Tìm kiếm web thời gian thực đã trở nên thiết yếu trong môi trường thông tin ngày nay, nơi các ứng dụng cần truy cập ngay lập tức vào thông tin cập nhật trên Internet để cung cấp phản hồi chính xác và kịp thời. Giao Thức Ngữ Cảnh Mô Hình (MCP) đại diện cho một bước tiến đáng kể trong việc tối ưu hóa các quy trình tìm kiếm thời gian thực này, nâng cao hiệu quả tìm kiếm, duy trì tính nguyên vẹn của ngữ cảnh và cải thiện hiệu suất tổng thể của hệ thống.
 
-Module này khám phá cách MCP biến đổi tìm kiếm web thời gian thực bằng cách cung cấp một phương pháp tiếp cận chuẩn hóa cho quản lý ngữ cảnh giữa các mô hình AI, công cụ tìm kiếm và ứng dụng.
+Mô-đun này khám phá cách MCP biến đổi tìm kiếm web thời gian thực bằng cách cung cấp một phương pháp tiêu chuẩn để quản lý ngữ cảnh giữa các mô hình AI, công cụ tìm kiếm và ứng dụng.
 
-### Những Gì Bạn Sẽ Học
+### Những gì bạn sẽ học
 
 Trong hướng dẫn toàn diện này, bạn sẽ khám phá:
 
 - Cách MCP tạo cầu nối liền mạch giữa các mô hình AI và khả năng tìm kiếm web thời gian thực
-- Các mẫu kiến trúc để triển khai các giải pháp tìm kiếm hiệu quả và có thể mở rộng với MCP
-- Kỹ thuật bảo tồn ngữ cảnh tìm kiếm qua nhiều truy vấn và tương tác
-- Các hiện thực mã thực tiễn bằng Python và JavaScript cho các kịch bản tìm kiếm khác nhau
-- Phương pháp cân bằng tính liên quan, tính cập nhật và hiệu suất trong các hệ thống tìm kiếm sử dụng MCP
+- Các mẫu kiến trúc để triển khai giải pháp tìm kiếm hiệu quả và có thể mở rộng với MCP
+- Kỹ thuật duy trì ngữ cảnh tìm kiếm qua nhiều truy vấn và tương tác
+- Triển khai mã thực tế trong Python và JavaScript cho nhiều kịch bản tìm kiếm khác nhau
+- Phương pháp cân bằng giữa tính liên quan, tính mới và hiệu suất trong hệ thống tìm kiếm sử dụng MCP
 
-## Giới Thiệu về Tìm Kiếm Web Thời Gian Thực
+## Giới thiệu về Tìm kiếm Web Thời gian Thực
 
-Tìm kiếm web thời gian thực là một phương pháp công nghệ cho phép truy vấn, xử lý và phân tích thông tin trên web liên tục khi nó được xuất bản hoặc cập nhật, giúp các hệ thống cung cấp thông tin tươi mới và phù hợp với độ trễ tối thiểu. Khác với các hệ thống tìm kiếm truyền thống hoạt động trên dữ liệu được lập chỉ mục có thể đã bị cũ hàng giờ hoặc hàng ngày, tìm kiếm thời gian thực xử lý dữ liệu trực tiếp từ web, cung cấp kiến thức và thông tin phản ánh trạng thái hiện tại của nội dung trực tuyến.
+Tìm kiếm web thời gian thực là một phương pháp công nghệ cho phép truy vấn, xử lý và phân tích thông tin trên web liên tục khi thông tin được đăng tải hoặc cập nhật, giúp các hệ thống cung cấp thông tin mới và liên quan với độ trễ tối thiểu. Khác với hệ thống tìm kiếm truyền thống hoạt động trên dữ liệu đã được lập chỉ mục có thể đã cũ vài giờ hoặc vài ngày, tìm kiếm thời gian thực xử lý dữ liệu trực tiếp từ web, cung cấp những góc nhìn và thông tin phản ánh trạng thái hiện tại của nội dung trực tuyến.
 
-### Các Khái Niệm Cốt Lõi của Tìm Kiếm Web Thời Gian Thực:
+### Các khái niệm cốt lõi của Tìm kiếm Web Thời gian Thực:
 
-- **Xử Lý Truy Vấn Liên Tục**: Các truy vấn tìm kiếm được xử lý trên các nguồn dữ liệu không ngừng cập nhật
-- **Ưu Tiên Tính Cập Nhật**: Hệ thống thiết kế để ưu tiên thông tin mới nhất
-- **Cân Bằng Tính Liên Quan**: Duy trì sự cân đối giữa tính liên quan và tính cập nhật
-- **Kiến Trúc Có Khả Năng Mở Rộng**: Hệ thống phải xử lý khối lượng truy vấn và dữ liệu biến động
-- **Hiểu Biết Ngữ Cảnh**: Duy trì ngữ cảnh người dùng qua nhiều lần tìm kiếm là quan trọng để có kết quả có ý nghĩa
-- **Định Nghĩa Lại Truy Vấn Linh Hoạt**: Điều chỉnh truy vấn theo ngữ cảnh và kết quả trước đó
-- **Tích Hợp Nhiều Nguồn**: Kết hợp kết quả từ nhiều nhà cung cấp tìm kiếm và nguồn web khác nhau
-- **Hiểu Biết Ngữ Nghĩa**: Xử lý truy vấn và nội dung dựa trên ý nghĩa thay vì chỉ từ khóa
-- **Xếp Hạng Thời Gian Thực**: Điều chỉnh thứ hạng kết quả liên tục khi thông tin mới có sẵn
+- **Xử lý truy vấn liên tục**: Truy vấn tìm kiếm được xử lý dựa trên nguồn dữ liệu liên tục cập nhật
+- **Ưu tiên tính mới**: Hệ thống được thiết kế để ưu tiên thông tin mới nhất
+- **Cân bằng tính liên quan**: Duy trì sự cân bằng giữa tính liên quan và tính mới
+- **Kiến trúc có thể mở rộng**: Hệ thống phải xử lý được tải truy vấn và khối lượng dữ liệu biến đổi
+- **Hiểu ngữ cảnh**: Duy trì ngữ cảnh người dùng qua các lượt tìm kiếm là rất quan trọng để có kết quả có ý nghĩa
+- **Điều chỉnh truy vấn động**: Thay đổi truy vấn một cách linh hoạt dựa trên ngữ cảnh và kết quả trước đó
+- **Tích hợp đa nguồn**: Kết hợp kết quả từ nhiều nhà cung cấp tìm kiếm và nguồn web
+- **Hiểu ngữ nghĩa**: Xử lý truy vấn và nội dung dựa trên nghĩa, thay vì chỉ từ khóa
+- **Xếp hạng thời gian thực**: Điều chỉnh liên tục thứ hạng kết quả khi có thông tin mới
 
-### Giao Thức Ngữ Cảnh Mô Hình và Tìm Kiếm Web Thời Gian Thực
+### Giao Thức Ngữ Cảnh Mô Hình và Tìm kiếm Web Thời gian Thực
 
-Giao Thức Ngữ Cảnh Mô Hình (MCP) giải quyết một số thách thức quan trọng trong môi trường tìm kiếm web thời gian thực:
+Giao Thức Ngữ Cảnh Mô Hình (MCP) giải quyết nhiều thách thức then chốt trong môi trường tìm kiếm web thời gian thực:
 
-1. **Bảo Tồn Ngữ Cảnh Tìm Kiếm**: MCP chuẩn hóa cách duy trì ngữ cảnh trong các thành phần tìm kiếm phân tán, đảm bảo mô hình AI và các nút xử lý có quyền truy cập vào lịch sử truy vấn và sở thích người dùng phù hợp.
+1. **Duy trì ngữ cảnh tìm kiếm**: MCP chuẩn hóa cách thức duy trì ngữ cảnh trên các thành phần tìm kiếm phân tán, đảm bảo các mô hình AI và nút xử lý truy cập được lịch sử truy vấn và sở thích người dùng có liên quan.
 
-2. **Quản Lý Truy Vấn Hiệu Quả**: Bằng cách cung cấp cơ chế cấu trúc để truyền tải ngữ cảnh, MCP giảm bớt chi phí lặp lại ngữ cảnh trong mỗi lần tìm kiếm.
+2. **Quản lý truy vấn hiệu quả**: Bằng cách cung cấp các cơ chế có cấu trúc để truyền ngữ cảnh, MCP giảm thiểu gánh nặng việc phải lặp lại ngữ cảnh trong mỗi lượt tìm kiếm.
 
-3. **Khả Năng Tương Tác**: MCP tạo ra một ngôn ngữ chung để chia sẻ ngữ cảnh giữa các công nghệ tìm kiếm đa dạng và mô hình AI, cho phép kiến trúc linh hoạt và dễ mở rộng hơn.
+3. **Tính tương tác**: MCP tạo ra ngôn ngữ chung cho việc chia sẻ ngữ cảnh giữa các công nghệ tìm kiếm đa dạng và mô hình AI, cho phép kiến trúc linh hoạt và có thể mở rộng hơn.
 
-4. **Ngữ Cảnh Tối Ưu Cho Tìm Kiếm**: Các hiện thực MCP có thể ưu tiên các yếu tố ngữ cảnh quan trọng nhất cho tìm kiếm hiệu quả, tối ưu cho cả hiệu suất và độ chính xác.
+4. **Ngữ cảnh tối ưu cho tìm kiếm**: Các triển khai MCP có thể ưu tiên các yếu tố ngữ cảnh quan trọng nhất cho tìm kiếm hiệu quả, tối ưu hóa cả về hiệu năng và độ chính xác.
 
-5. **Xử Lý Tìm Kiếm Thích Ứng**: Với quản lý ngữ cảnh đúng cách qua MCP, hệ thống tìm kiếm có thể điều chỉnh xử lý một cách linh hoạt dựa trên nhu cầu người dùng và bối cảnh thông tin đang thay đổi.
+5. **Xử lý tìm kiếm thích ứng**: Với quản lý ngữ cảnh phù hợp qua MCP, hệ thống tìm kiếm có thể tự động điều chỉnh xử lý dựa trên nhu cầu người dùng và tình hình thông tin thay đổi.
 
-Trong các ứng dụng hiện đại từ tổng hợp tin tức đến trợ lý nghiên cứu, tích hợp MCP với công nghệ tìm kiếm web cho phép tìm kiếm thông minh hơn, nhận biết ngữ cảnh và mang lại kết quả ngày càng phù hợp khi tương tác của người dùng tiếp tục.
+Trong các ứng dụng hiện đại, từ tổng hợp tin tức đến trợ lý nghiên cứu, việc tích hợp MCP với công nghệ tìm kiếm web giúp tạo ra các trải nghiệm tìm kiếm thông minh, có nhận thức ngữ cảnh và cung cấp kết quả ngày càng phù hợp hơn khi tương tác với người dùng tiếp tục.
 
-## Mục Tiêu Học Tập
+## Mục tiêu học tập
 
-Kết thúc bài học này, bạn sẽ có khả năng:
+Vào cuối bài học này, bạn sẽ có khả năng:
 
-- Hiểu các nguyên tắc cơ bản của tìm kiếm web thời gian thực và các thách thức trong ứng dụng hiện đại
+- Hiểu được các nguyên lý cơ bản của tìm kiếm web thời gian thực và những thách thức trong ứng dụng hiện đại
 - Giải thích cách Giao Thức Ngữ Cảnh Mô Hình (MCP) nâng cao khả năng tìm kiếm web thời gian thực
-- Triển khai các giải pháp tìm kiếm dựa trên MCP sử dụng các framework và API phổ biến
+- Triển khai các giải pháp tìm kiếm dựa trên MCP bằng các framework và API phổ biến
 - Thiết kế và triển khai kiến trúc tìm kiếm có thể mở rộng, hiệu suất cao với MCP
-- Áp dụng các khái niệm MCP vào các trường hợp sử dụng khác nhau bao gồm tìm kiếm ngữ nghĩa, trợ giúp nghiên cứu và duyệt web tăng cường AI
-- Đánh giá các xu hướng mới nổi và đổi mới tương lai trong công nghệ tìm kiếm dựa trên MCP
-- Phát triển hệ thống tìm kiếm nhận biết ngữ cảnh học hỏi từ tương tác người dùng
-- Tích hợp khả năng tìm kiếm web vào trợ lý AI sử dụng các giao thức MCP chuẩn hóa
-- Tạo quy trình tìm kiếm đa giai đoạn tinh chỉnh kết quả dựa trên ngữ cảnh
+- Áp dụng các khái niệm MCP cho các trường hợp sử dụng khác nhau bao gồm tìm kiếm ngữ nghĩa, trợ giúp nghiên cứu, và duyệt web tăng cường AI
+- Đánh giá các xu hướng mới nổi và các đổi mới tương lai trong các công nghệ tìm kiếm dựa trên MCP
+- Phát triển hệ thống tìm kiếm có nhận thức ngữ cảnh học hỏi từ tương tác người dùng
+- Tích hợp khả năng tìm kiếm web vào trợ lý AI sử dụng giao thức MCP tiêu chuẩn
+- Tạo các pipeline tìm kiếm đa giai đoạn được cải tiến dần dựa trên ngữ cảnh
 - Tối ưu hiệu suất tìm kiếm trong khi duy trì nhận thức ngữ cảnh toàn diện
 
-### Định Nghĩa và Ý Nghĩa
+### Định nghĩa và Ý nghĩa
 
-Tìm kiếm web thời gian thực liên quan đến việc truy vấn, truy xuất và cung cấp thông tin trên web liên tục với độ trễ tối thiểu. Khác với các công cụ tìm kiếm truyền thống định kỳ thu thập và lập chỉ mục web, tìm kiếm thời gian thực nhắm đến việc hiển thị thông tin ngay khi nó có sẵn, cho phép truy cập tức thì vào nội dung cập nhật nhất.
+Tìm kiếm web thời gian thực liên quan đến việc truy vấn, truy xuất và cung cấp thông tin web liên tục với độ trễ tối thiểu. Khác với công cụ tìm kiếm truyền thống quét và lập chỉ mục web theo chu kỳ, tìm kiếm thời gian thực nhằm đưa thông tin ra ngay khi nó có sẵn, cho phép truy cập tức thì vào nội dung mới nhất.
 
 Các đặc điểm chính của tìm kiếm web thời gian thực bao gồm:
 
-- **Tính Tươi Mới**: Ưu tiên nội dung và cập nhật gần đây
-- **Xử Lý Liên Tục**: Theo dõi liên tục để phát hiện thông tin mới
-- **Điều Chỉnh Truy Vấn**: Tinh chỉnh truy vấn tìm kiếm dựa trên ngữ cảnh và phản hồi
-- **Cung Cấp Ngay Lập Tức**: Đưa kết quả tìm kiếm với độ trễ tối thiểu
-- **Bảo Tồn Ngữ Cảnh**: Xây dựng dựa trên các truy vấn trước đó để cải thiện tính liên quan
+- **Tính mới**: Ưu tiên nội dung và cập nhật mới nhất
+- **Xử lý liên tục**: Liên tục theo dõi thông tin mới
+- **Thích nghi truy vấn**: Tinh chỉnh truy vấn dựa trên ngữ cảnh và phản hồi
+- **Cung cấp tức thì**: Đưa ra kết quả tìm kiếm với độ trễ tối thiểu
+- **Giữ ngữ cảnh**: Xây dựng dựa trên truy vấn trước để cải thiện tính liên quan
 
-### Thách Thức Trong Tìm Kiếm Web Truyền Thống
+### Thách thức trong Tìm kiếm Web Truyền thống
 
-Các phương pháp tìm kiếm web truyền thống gặp một số hạn chế khi áp dụng cho kịch bản thời gian thực:
+Các phương pháp tìm kiếm web truyền thống gặp phải nhiều hạn chế khi áp dụng vào các tình huống thời gian thực:
 
-1. **Phân Mảnh Ngữ Cảnh**: Khó khăn trong việc duy trì ngữ cảnh tìm kiếm qua nhiều truy vấn
-2. **Tính Tươi Mới của Thông Tin**: Thách thức trong truy cập và ưu tiên thông tin cập nhật nhất
-3. **Phức Tạp Tích Hợp**: Vấn đề khả năng tương tác giữa các hệ thống tìm kiếm và ứng dụng
-4. **Vấn Đề Độ Trễ**: Cân bằng giữa tìm kiếm toàn diện và yêu cầu thời gian phản hồi
-5. **Điều Chỉnh Tính Liên Quan**: Đảm bảo độ chính xác và tính phù hợp đồng thời ưu tiên tính cập nhật
+1. **Phân mảnh ngữ cảnh**: Khó duy trì ngữ cảnh tìm kiếm qua nhiều truy vấn
+2. **Tính mới của thông tin**: Thách thức trong việc truy cập và ưu tiên thông tin mới nhất
+3. **Độ phức tạp tích hợp**: Vấn đề tương tác giữa các hệ thống và ứng dụng tìm kiếm
+4. **Vấn đề độ trễ**: Cân bằng giữa tìm kiếm toàn diện và yêu cầu thời gian phản hồi
+5. **Chỉnh độ liên quan**: Đảm bảo độ chính xác và liên quan khi ưu tiên tính mới
 
-## Hiểu Về Giao Thức Ngữ Cảnh Mô Hình (MCP) cho Tìm Kiếm
+## Hiểu Về Giao Thức Ngữ Cảnh Mô Hình (MCP) cho Tìm kiếm
 
-### MCP Trong Ngữ Cảnh Tìm Kiếm Là Gì?
+### MCP là gì trong bối cảnh tìm kiếm?
 
-Giao Thức Ngữ Cảnh Mô Hình (MCP) là một giao thức truyền thông chuẩn hóa được thiết kế để tạo điều kiện tương tác hiệu quả giữa các mô hình AI và ứng dụng. Trong ngữ cảnh tìm kiếm web thời gian thực, MCP cung cấp một khung làm việc để:
+Giao Thức Ngữ Cảnh Mô Hình (MCP) là một giao thức truyền thông tiêu chuẩn được thiết kế để tạo điều kiện cho tương tác hiệu quả giữa các mô hình AI và ứng dụng. Trong bối cảnh tìm kiếm web thời gian thực, MCP cung cấp một khung cho:
 
-- Bảo tồn ngữ cảnh tìm kiếm xuyên suốt chuỗi truy vấn
+- Duy trì ngữ cảnh tìm kiếm xuyên suốt chuỗi truy vấn
 - Chuẩn hóa định dạng truy vấn và kết quả tìm kiếm
-- Tối ưu hóa truyền tải các tham số và kết quả tìm kiếm
+- Tối ưu hóa việc truyền tham số truy vấn và kết quả
 - Nâng cao giao tiếp giữa mô hình và công cụ tìm kiếm
 
-### Các Thành Phần Cốt Lõi và Kiến Trúc
+### Các thành phần và kiến trúc cốt lõi
 
 Kiến trúc MCP cho tìm kiếm web thời gian thực bao gồm một số thành phần chính:
 
-1. **Bộ Xử Lý Ngữ Cảnh Truy Vấn**: Quản lý và duy trì ngữ cảnh tìm kiếm qua nhiều truy vấn
-2. **Bộ Xử Lý Tìm Kiếm**: Xử lý yêu cầu tìm kiếm đến bằng các kỹ thuật nhận biết ngữ cảnh
-3. **Bộ Chuyển Đổi Giao Thức**: Chuyển đổi giữa các API tìm kiếm khác nhau trong khi bảo tồn ngữ cảnh
-4. **Kho Ngữ Cảnh**: Lưu trữ và truy xuất hiệu quả lịch sử tìm kiếm và sở thích người dùng
-5. **Bộ Kết Nối Tìm Kiếm**: Kết nối với các công cụ tìm kiếm và API web khác nhau
+1. **Bộ xử lý ngữ cảnh truy vấn**: Quản lý và duy trì ngữ cảnh tìm kiếm qua nhiều truy vấn
+2. **Bộ xử lý tìm kiếm**: Xử lý các yêu cầu tìm kiếm đến bằng kỹ thuật có nhận thức ngữ cảnh
+3. **Bộ chuyển đổi giao thức**: Chuyển đổi giữa các API tìm kiếm khác nhau trong khi giữ nguyên ngữ cảnh
+4. **Kho lưu trữ ngữ cảnh**: Lưu trữ và truy xuất lịch sử tìm kiếm và sở thích một cách hiệu quả
+5. **Kết nối tìm kiếm**: Kết nối với nhiều công cụ tìm kiếm và API web khác nhau
 
 ```mermaid
 graph TD
     subgraph "Nguồn Dữ Liệu"
-        Web[Nội Dung Web]
-        APIs[API Bên Ngoài]
-        DB[Cơ Sở Tri Thức]
-        News[Dòng Tin Tức]
+        Web[Nội dung Web]
+        APIs[Các API bên ngoài]
+        DB[Cơ sở Kiến thức]
+        News[Kênh Tin tức]
     end
 
-    subgraph "Lớp Tìm Kiếm MCP"
-        SC[Đầu Kết Nối Tìm Kiếm]
-        PA[Bộ Chuyển Giao Thức]
-        CH[Bộ Xử Lý Ngữ Cảnh]
-        SP[Bộ Xử Lý Tìm Kiếm]
-        CS[Cửa Hàng Ngữ Cảnh]
+    subgraph "Lớp Tìm kiếm MCP"
+        SC[Bộ kết nối Tìm kiếm]
+        PA[Bộ chuyển đổi Giao thức]
+        CH[Bộ xử lý Ngữ cảnh]
+        SP[Bộ xử lý Tìm kiếm]
+        CS[Kho Ngữ cảnh]
     end
 
-    subgraph "Xử Lý & Phân Tích"
-        RE[Động Cơ Liên Quan]
-        ML[Mô Hình ML]
-        NLP[Xử Lý NLP]
-        Rank[Hệ Thống Xếp Hạng]
+    subgraph "Xử lý & Phân tích"
+        RE[Bộ máy Liên quan]
+        ML[Mô hình ML]
+        NLP[Xử lý NLP]
+        Rank[Hệ thống Xếp hạng]
     end
 
-    subgraph "Ứng Dụng & Dịch Vụ"
-        RA[Trợ Lý Nghiên Cứu]
-        Alerts[Hệ Thống Cảnh Báo]
-        KB[Cơ Sở Tri Thức]
-        API[Dịch Vụ API]
+    subgraph "Ứng dụng & Dịch vụ"
+        RA[Trợ lý Nghiên cứu]
+        Alerts[Hệ thống Cảnh báo]
+        KB[Cơ sở Kiến thức]
+        API[Dịch vụ API]
     end
 
-    Web -->|Nội Dung| SC
-    APIs -->|Dữ Liệu| SC
-    DB -->|Tri Thức| SC
-    News -->|Cập Nhật| SC
+    Web -->|Nội dung| SC
+    APIs -->|Dữ liệu| SC
+    DB -->|Kiến thức| SC
+    News -->|Cập nhật| SC
     
-    SC -->|Kết Quả Thô| PA
-    PA -->|Kết Quả Chuẩn Hóa| CH
-    CH <-->|Các Hoạt Động Ngữ Cảnh| CS
-    CH -->|Kết Quả Bổ Sung Ngữ Cảnh| SP
-    SP -->|Kết Quả Đã Xử Lý| RE
-    SP -->|Đặc Trưng| ML
-    SP -->|Văn Bản| NLP
+    SC -->|Kết quả Thô| PA
+    PA -->|Kết quả Chuẩn hóa| CH
+    CH <-->|Các hoạt động Ngữ cảnh| CS
+    CH -->|Kết quả Được làm giàu Ngữ cảnh| SP
+    SP -->|Kết quả Đã xử lý| RE
+    SP -->|Tính năng| ML
+    SP -->|Văn bản| NLP
     
-    RE -->|Kết Quả Xếp Hạng| Rank
-    ML -->|Dự Đoán| Rank
-    NLP -->|Thực Thể & Quan Hệ| Rank
+    RE -->|Kết quả Được xếp hạng| Rank
+    ML -->|Dự đoán| Rank
+    NLP -->|Thực thể & Mối quan hệ| Rank
     
-    Rank -->|Kết Quả Cuối Cùng| RA
-    ML -->|Thông Tin Thấu Hiểu| Alerts
-    NLP -->|Dữ Liệu Cấu Trúc| KB
+    Rank -->|Kết quả Cuối cùng| RA
+    ML -->|Thông tin Sâu sắc| Alerts
+    NLP -->|Dữ liệu Cấu trúc| KB
     
-    RA -->|Nghiên Cứu| Users((Người Dùng))
-    Alerts -->|Thông Báo| Users
-    KB <-->|Truy Cập Tri Thức| API
-    
-    classDef sources fill:#f9f,stroke:#333,stroke-width:2px
-    classDef mcp fill:#bbf,stroke:#333,stroke-width:2px
-    classDef processing fill:#bfb,stroke:#333,stroke-width:2px
-    classDef apps fill:#fbb,stroke:#333,stroke-width:2px
+    RA -->|Nghiên cứu| Users((Users))
+    Alerts -->|Thông báo| Users
+    KB <-->|Truy cập Kiến thức| API
+
+    classDef sources fill:#f9f,stroke:#333,stroke-width:2px,color:#4a004a
+    classDef mcp fill:#bbf,stroke:#333,stroke-width:2px,color:#00004a
+    classDef processing fill:#bfb,stroke:#333,stroke-width:2px,color:#003300
+    classDef apps fill:#fbb,stroke:#333,stroke-width:2px,color:#4a0000
     
     class Web,APIs,DB,News sources
     class SC,PA,CH,SP,CS mcp
@@ -173,43 +173,43 @@ graph TD
     class RA,Alerts,KB,API apps
 ```
 
-### MCP Cải Thiện Tìm Kiếm Web Thời Gian Thực Như Thế Nào
+### MCP cải thiện việc Tìm kiếm Web Thời gian Thực như thế nào
 
 MCP giải quyết các thách thức của tìm kiếm web truyền thống thông qua:
 
-- **Tính Liên Tục Ngữ Cảnh**: Duy trì mối quan hệ giữa các truy vấn trong toàn bộ phiên tìm kiếm
-- **Truyền Tải Tối Ưu**: Giảm bớt sự trùng lặp trong các tham số tìm kiếm bằng quản lý ngữ cảnh thông minh
-- **Giao Diện Chuẩn Hóa**: Cung cấp API nhất quán cho các thành phần tìm kiếm
-- **Giảm Độ Trễ**: Tối thiểu chi phí xử lý thông qua quản lý ngữ cảnh hiệu quả
-- **Tăng Tính Liên Quan**: Nâng cao tính liên quan tìm kiếm bằng cách bảo tồn ý định người dùng qua nhiều truy vấn
+- **Tính liên tục của ngữ cảnh**: Duy trì mối quan hệ giữa các truy vấn trong toàn bộ phiên tìm kiếm
+- **Truyền tải tối ưu**: Giảm lặp lại tham số truy vấn thông qua quản lý ngữ cảnh thông minh
+- **Giao diện tiêu chuẩn**: Cung cấp API nhất quán cho các thành phần tìm kiếm
+- **Giảm độ trễ**: Tối thiểu hóa tải xử lý qua quản lý ngữ cảnh hiệu quả
+- **Cải thiện tính liên quan**: Nâng cao độ liên quan bằng cách giữ nguyên ý định người dùng qua nhiều truy vấn
 
-## Tích Hợp và Triển Khai
+## Tích hợp và Triển khai
 
-Hệ thống tìm kiếm web thời gian thực yêu cầu thiết kế kiến trúc và triển khai cẩn thận để duy trì cả hiệu suất lẫn tính toàn vẹn ngữ cảnh. Giao Thức Ngữ Cảnh Mô Hình cung cấp một phương pháp chuẩn hóa để tích hợp các mô hình AI và công nghệ tìm kiếm, cho phép xây dựng các quy trình tìm kiếm nhận biết ngữ cảnh tinh vi hơn.
+Các hệ thống tìm kiếm web thời gian thực đòi hỏi thiết kế kiến trúc và triển khai cẩn thận để duy trì hiệu suất và tính toàn vẹn ngữ cảnh. Giao Thức Ngữ Cảnh Mô Hình cung cấp cách tiếp cận tiêu chuẩn để tích hợp mô hình AI và công nghệ tìm kiếm, cho phép các pipeline tìm kiếm tinh vi, có nhận thức ngữ cảnh hơn.
 
-### Tổng Quan về Tích Hợp MCP trong Kiến Trúc Tìm Kiếm
+### Tổng quan về Tích hợp MCP trong Kiến trúc Tìm kiếm
 
-Việc triển khai MCP trong môi trường tìm kiếm web thời gian thực liên quan đến một số cân nhắc quan trọng sau:
+Việc triển khai MCP trong môi trường tìm kiếm web thời gian thực cần chú ý một số điều chính:
 
-1. **Tuần Tự Hóa Ngữ Cảnh Tìm Kiếm**: MCP cung cấp các cơ chế hiệu quả để mã hóa thông tin ngữ cảnh trong yêu cầu tìm kiếm, đảm bảo ngữ cảnh thiết yếu đi theo truy vấn xuyên suốt quy trình xử lý. Điều này bao gồm các định dạng tuần tự hóa chuẩn được tối ưu hóa cho siêu dữ liệu liên quan đến tìm kiếm.
+1. **Tuần tự hóa ngữ cảnh tìm kiếm**: MCP cung cấp cơ chế hiệu quả để mã hóa thông tin ngữ cảnh trong yêu cầu tìm kiếm, đảm bảo ngữ cảnh cần thiết đi theo truy vấn trong toàn bộ quy trình xử lý. Điều này bao gồm các định dạng tuần tự hóa tiêu chuẩn được tối ưu cho siêu dữ liệu liên quan tới tìm kiếm.
 
-2. **Xử Lý Tìm Kiếm Có Trạng Thái**: MCP cho phép xử lý trạng thái thông minh hơn bằng cách duy trì biểu diễn ngữ cảnh nhất quán qua các lần tìm kiếm. Điều này đặc biệt có giá trị trong các quy trình tìm kiếm đa giai đoạn, nơi việc tinh chỉnh ngữ cảnh nâng cao kết quả.
+2. **Xử lý tìm kiếm có trạng thái**: MCP cho phép xử lý thông minh có trạng thái bằng cách duy trì biểu diễn ngữ cảnh nhất quán qua các lượt tìm kiếm. Điều này đặc biệt hữu ích trong các pipeline tìm kiếm đa giai đoạn nơi việc tinh chỉnh ngữ cảnh cải thiện kết quả.
 
-3. **Mở Rộng và Tinh Chỉnh Truy Vấn**: Các hiện thực MCP trong hệ thống tìm kiếm có thể hỗ trợ mở rộng và tinh chỉnh truy vấn phức tạp dựa trên ngữ cảnh tích lũy, cho phép kết quả ngày càng liên quan hơn khi phiên tìm kiếm tiến triển.
+3. **Mở rộng và tinh chỉnh truy vấn**: Các triển khai MCP trong hệ thống tìm kiếm có thể hỗ trợ mở rộng và tinh chỉnh truy vấn phức tạp dựa trên ngữ cảnh tích lũy, cho phép kết quả ngày càng phù hợp hơn khi phiên tìm kiếm tiến triển.
 
-4. **Lưu Trữ Bộ Nhớ Đệm Kết Quả và Ưu Tiên**: Bằng cách chuẩn hóa việc xử lý ngữ cảnh, MCP giúp quản lý bộ nhớ đệm kết quả và ưu tiên, cho phép các thành phần điều chỉnh dựa trên ngữ cảnh tìm kiếm thay đổi.
+4. **Bộ nhớ đệm và ưu tiên kết quả**: Bằng cách chuẩn hóa xử lý ngữ cảnh, MCP giúp quản lý bộ nhớ đệm kết quả và ưu tiên, cho phép các thành phần thích ứng dựa trên ngữ cảnh tìm kiếm thay đổi.
 
-5. **Liên Kết và Tổng Hợp Tìm Kiếm**: MCP tạo điều kiện thực hiện việc liên kết tìm kiếm phức tạp hơn qua nhiều backend bằng cách cung cấp các biểu diễn cấu trúc của ngữ cảnh tìm kiếm, cho phép tổng hợp kết quả có ý nghĩa hơn từ các nguồn đa dạng.
+5. **Liên kết và Tập hợp tìm kiếm**: MCP tạo điều kiện cho việc liên kết tìm kiếm tinh vi hơn trên nhiều backend bằng cách cung cấp các biểu diễn ngữ cảnh tìm kiếm có cấu trúc, giúp tổng hợp kết quả từ các nguồn đa dạng có ý nghĩa hơn.
 
-Việc triển khai MCP trên các công nghệ tìm kiếm khác nhau tạo ra phương pháp thống nhất để quản lý ngữ cảnh, giảm nhu cầu mã tích hợp tùy chỉnh trong khi nâng cao khả năng của hệ thống trong việc duy trì ngữ cảnh có ý nghĩa khi truy vấn tìm kiếm phát triển.
+Việc triển khai MCP trên các công nghệ tìm kiếm khác nhau tạo ra một phương pháp thống nhất để quản lý ngữ cảnh, giảm thiểu nhu cầu viết mã tích hợp tùy chỉnh đồng thời nâng cao khả năng của hệ thống trong việc duy trì ngữ cảnh có ý nghĩa khi các truy vấn phát triển.
 
-### MCP Trong Các Triển Khai Tìm Kiếm Web Đa Dạng
+### MCP trong các Triển khai Tìm kiếm Web Khác nhau
 
-Những ví dụ này tuân theo đặc tả MCP hiện nay tập trung vào giao thức dựa trên JSON-RPC với các cơ chế truyền tải riêng biệt. Mã minh họa cách bạn có thể triển khai tích hợp tìm kiếm tùy chỉnh trong khi vẫn duy trì tương thích đầy đủ với giao thức MCP.
+Các ví dụ này tuân theo đặc tả MCP hiện tại tập trung vào giao thức dựa trên JSON-RPC với các cơ chế vận chuyển khác biệt. Mã minh họa cách bạn có thể triển khai tích hợp tìm kiếm tùy chỉnh trong khi vẫn duy trì tương thích hoàn toàn với giao thức MCP.
 
 
 <details>
-<summary>Triển Khai Python với API Tìm Kiếm Tổng Quát</summary>
+<summary>Triển khai Python với API Tìm kiếm Chung</summary>
 
 ```python
 import asyncio
@@ -225,10 +225,10 @@ from mcp.client.streamable_http import streamablehttp_client
 from mcp.types import TextContent, CreateMessageRequestParams, CreateMessageResult
 from mcp.server.fastmcp import FastMCP
 
-# Tạo máy chủ FastMCP cho tìm kiếm web
+# Tạo một máy chủ FastMCP cho tìm kiếm web
 search_server = FastMCP("WebSearch")
 
-# Lớp để xử lý các hoạt động tìm kiếm web
+# Lớp để xử lý các thao tác tìm kiếm web
 class WebSearchHandler:
     def __init__(self, api_endpoint: str, api_key: str):
         self.api_endpoint = api_endpoint
@@ -276,7 +276,7 @@ class WebSearchHandler:
                 
                 search_data = await response.json()
                 
-                # Chuyển đổi phản hồi đặc thù API sang định dạng chuẩn
+                # Chuyển đổi phản hồi đặc thù API thành định dạng chuẩn
                 results = []
                 for item in search_data.get("results", []):
                     results.append({
@@ -296,13 +296,13 @@ class WebSearchHandler:
             print(f"Search API request error: {e}")
             raise
 
-# Khởi tạo trình xử lý tìm kiếm
+# Khởi tạo bộ xử lý tìm kiếm
 search_handler = WebSearchHandler(
     api_endpoint="https://api.search-service.example/search",
     api_key="your-api-key-here"
 )
 
-# Thiết lập vòng đời để quản lý trình xử lý tìm kiếm
+# Thiết lập lifespan để quản lý bộ xử lý tìm kiếm
 @asyncio.asynccontextmanager
 async def app_lifespan(server: FastMCP):
     """Manage application lifecycle"""
@@ -312,10 +312,10 @@ async def app_lifespan(server: FastMCP):
     finally:
         await search_handler.close()
 
-# Đặt vòng đời cho máy chủ
+# Thiết lập lifespan cho máy chủ
 search_server = FastMCP("WebSearch", lifespan=app_lifespan)
 
-# Đăng ký công cụ tìm kiếm web
+# Đăng ký một công cụ tìm kiếm web
 @search_server.tool()
 async def web_search(query: str, max_results: int = 5, 
                    include_domains: List[str] = None,
@@ -347,9 +347,9 @@ async def web_search(query: str, max_results: int = 5,
     
     return results
 
-# Ví dụ sử dụng của client
+# Ví dụ sử dụng client
 async def client_example():
-    # Kết nối đến máy chủ tìm kiếm sử dụng giao thức Streamable HTTP
+    # Kết nối với máy chủ tìm kiếm bằng giao thức Streamable HTTP
     async with streamablehttp_client("http://localhost:8000/mcp") as (read, write, _):
         async with ClientSession(read, write) as session:
             # Khởi tạo kết nối
@@ -376,7 +376,7 @@ if __name__ == "__main__":
 </details> 
 
 <details>
-<summary>Triển Khai JavaScript với Tìm Kiếm Trình Duyệt</summary>
+<summary>Triển khai JavaScript với Tìm kiếm trên Trình duyệt</summary>
 
 
 ```javascript
@@ -385,7 +385,7 @@ import { McpServer, ResourceTemplate } from '@modelcontextprotocol/sdk/server/mc
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import { z } from 'zod';
 
-// Tạo máy chủ MCP cho tìm kiếm web
+// Tạo một máy chủ MCP cho tìm kiếm web
 const searchServer = new McpServer({
     name: "BrowserSearch",
     description: "A server that provides web search capabilities"
@@ -437,7 +437,7 @@ class SearchService {
             
             const searchData = await response.json();
             
-            // Chuyển đổi phản hồi riêng của API sang định dạng chuẩn
+            // Chuyển đổi phản hồi cụ thể của API sang định dạng chuẩn
             const results = searchData.results?.map(item => ({
                 title: item.title || '',
                 url: item.url || '',
@@ -512,7 +512,7 @@ searchServer.tool({
     }
 });
 
-// Ví dụ mã khách hàng để kết nối đến máy chủ tìm kiếm
+// Ví dụ mã khách kết nối tới máy chủ tìm kiếm
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 
@@ -546,7 +546,7 @@ async function connectToSearchServer() {
     await client.disconnect();
 }
 
-// Bắt đầu máy chủ
+// Khởi động máy chủ
 const transport = new StreamableHTTPServerTransport();
 await searchServer.connect(transport);
 console.log('Search server running at http://localhost:8000/mcp');
@@ -559,214 +559,216 @@ console.log('Search server running at http://localhost:8000/mcp');
 
 
 
-## Lời Cảnh Báo Về Ví Dụ Mã
+## Tuyên bố về Ví dụ Mã
 
-> **Lưu ý Quan Trọng**: Các ví dụ mã dưới đây minh họa việc tích hợp Giao Thức Ngữ Cảnh Mô Hình (MCP) với chức năng tìm kiếm web. Mặc dù chúng tuân theo các mẫu và cấu trúc của các SDK MCP chính thức, các ví dụ này đã được đơn giản hóa cho mục đích giáo dục.
+> **Lưu ý Quan trọng**: Các ví dụ mã dưới đây minh họa việc tích hợp Giao Thức Ngữ Cảnh Mô Hình (MCP) với chức năng tìm kiếm web. Mặc dù chúng tuân theo các mẫu và cấu trúc của SDK chính thức MCP, chúng đã được đơn giản hóa cho mục đích giáo dục.
 > 
-> Những ví dụ này trình bày:
+> Các ví dụ này trình bày:
 > 
-> 1. **Triển Khai Python**: Một máy chủ FastMCP triển khai công cụ tìm kiếm web và kết nối với API tìm kiếm bên ngoài. Ví dụ này minh họa quản lý vòng đời thích hợp, xử lý ngữ cảnh và triển khai công cụ theo mẫu của [SDK Python MCP chính thức](https://github.com/modelcontextprotocol/python-sdk). Máy chủ sử dụng cơ chế truyền tải HTTP Streamable được khuyến nghị đã thay thế cơ chế SSE cũ cho các triển khai sản xuất.
+> 1. **Triển khai Python**: Một máy chủ FastMCP cung cấp công cụ tìm kiếm web và kết nối với API tìm kiếm bên ngoài. Ví dụ này minh họa quản lý vòng đời đúng cách, xử lý ngữ cảnh và triển khai công cụ theo mẫu của [SDK Python MCP chính thức](https://github.com/modelcontextprotocol/python-sdk). Máy chủ sử dụng phương thức vận chuyển HTTP Streamable được khuyến nghị, thay thế phương thức SSE cũ hơn trong triển khai thực tế.
 > 
-> 2. **Triển Khai JavaScript**: Một hiện thực TypeScript/JavaScript sử dụng mẫu FastMCP từ [SDK TypeScript MCP chính thức](https://github.com/modelcontextprotocol/typescript-sdk) để tạo máy chủ tìm kiếm với định nghĩa công cụ và kết nối client đúng cách. Nó tuân theo mẫu mới nhất được khuyến cáo cho quản lý phiên và bảo tồn ngữ cảnh.
+> 2. **Triển khai JavaScript**: Một triển khai TypeScript/JavaScript sử dụng mẫu FastMCP từ [SDK TypeScript MCP chính thức](https://github.com/modelcontextprotocol/typescript-sdk) để tạo máy chủ tìm kiếm với định nghĩa công cụ và kết nối khách hàng thích hợp. Nó tuân theo các mẫu được khuyến nghị mới nhất cho quản lý phiên và duy trì ngữ cảnh.
 > 
-> Các ví dụ này cần bổ sung xử lý lỗi, xác thực và mã tích hợp API cụ thể cho việc sử dụng trong thực tế sản xuất. Các điểm cuối API tìm kiếm được hiển thị (`https://api.search-service.example/search`) chỉ là chỗ giữ chỗ và cần được thay thế bằng các điểm cuối dịch vụ tìm kiếm thực tế.
+> Các ví dụ này cần bổ sung thêm xử lý lỗi, xác thực và mã tích hợp API cụ thể cho việc sử dụng trong sản xuất. Các điểm cuối API tìm kiếm được hiển thị (`https://api.search-service.example/search`) là chỗ giữ chỗ và cần được thay thế bằng các điểm cuối dịch vụ tìm kiếm thực tế.
 > 
-> Để biết chi tiết triển khai đầy đủ và các phương pháp cập nhật nhất, vui lòng tham khảo [đặc tả MCP chính thức](https://spec.modelcontextprotocol.io/) và tài liệu SDK tương ứng.
+> Để biết chi tiết triển khai đầy đủ và các phương pháp cập nhật nhất, vui lòng tham khảo [đặc tả MCP chính thức](https://spec.modelcontextprotocol.io/) và tài liệu SDK.
 
 ## Các Khái Niệm Cốt Lõi
 
 ### Khung Giao Thức Ngữ Cảnh Mô Hình (MCP)
 
-Về cơ bản, Giao Thức Ngữ Cảnh Mô Hình cung cấp một cách chuẩn hóa cho các mô hình AI, ứng dụng và dịch vụ trao đổi ngữ cảnh. Trong tìm kiếm web thời gian thực, khung này rất cần thiết để tạo ra trải nghiệm tìm kiếm đa lượt mạch lạc. Các thành phần chính bao gồm:
+Ở nền tảng cơ bản, Giao Thức Ngữ Cảnh Mô Hình cung cấp cách chuẩn hóa cho các mô hình AI, ứng dụng và dịch vụ trao đổi ngữ cảnh. Trong tìm kiếm web thời gian thực, khung này là thiết yếu để tạo ra trải nghiệm tìm kiếm mạch lạc qua nhiều lượt. Các thành phần chính bao gồm:
 
-1. **Kiến Trúc Client-Server**: MCP thiết lập sự phân tách rõ ràng giữa client tìm kiếm (người yêu cầu) và server tìm kiếm (người cung cấp), cho phép mô hình triển khai linh hoạt.
+1. **Kiến trúc Khách hàng - Máy chủ**: MCP thiết lập sự phân tách rõ ràng giữa các khách hàng tìm kiếm (bên yêu cầu) và các máy chủ tìm kiếm (bên cung cấp), cho phép các mô hình triển khai linh hoạt.
 
-2. **Giao Tiếp JSON-RPC**: Giao thức sử dụng JSON-RPC để trao đổi thông điệp, làm cho nó tương thích với công nghệ web và dễ dàng triển khai trên các nền tảng khác nhau.
+2. **Truyền thông JSON-RPC**: Giao thức sử dụng JSON-RPC để trao đổi thông điệp, làm cho nó tương thích với công nghệ web và dễ dàng triển khai trên các nền tảng khác nhau.
 
-3. **Quản Lý Ngữ Cảnh**: MCP định nghĩa các phương pháp cấu trúc để duy trì, cập nhật và tận dụng ngữ cảnh tìm kiếm qua nhiều tương tác.
+3. **Quản lý ngữ cảnh**: MCP định nghĩa các phương pháp có cấu trúc để duy trì, cập nhật và khai thác ngữ cảnh tìm kiếm qua nhiều tương tác.
 
-4. **Định Nghĩa Công Cụ**: Khả năng tìm kiếm được phơi bày như các công cụ chuẩn hóa với các tham số và giá trị trả về rõ ràng.
+4. **Định nghĩa công cụ**: Khả năng tìm kiếm được phơi bày như các công cụ tiêu chuẩn với các tham số và giá trị trả về được định nghĩa rõ ràng.
 
-5. **Hỗ Trợ Streaming**: Giao thức hỗ trợ phát trực tiếp kết quả, điều cần thiết cho tìm kiếm thời gian thực khi kết quả có thể đến theo tiến trình.
+5. **Hỗ trợ streaming**: Giao thức hỗ trợ streaming kết quả, cần thiết cho tìm kiếm thời gian thực nơi kết quả có thể đến dần dần.
 
-### Mẫu Tích Hợp Tìm Kiếm Web
+### Mẫu tích hợp Tìm kiếm Web
 
-Khi tích hợp MCP với tìm kiếm web, xuất hiện một số mẫu:
+Khi tích hợp MCP với tìm kiếm web, một số mẫu xuất hiện:
 
-#### 1. Tích Hợp Trực Tiếp Nhà Cung Cấp Tìm Kiếm
+#### 1. Tích hợp trực tiếp nhà cung cấp tìm kiếm
 
 ```mermaid
 graph LR
-    Client[MCP Client] --> |Yêu Cầu MCP| Server[MCP Server]
-    Server --> |Gọi API| SearchAPI[API Tìm Kiếm]
-    SearchAPI --> |Kết Quả| Server
-    Server --> |Phản Hồi MCP| Client
+    Client[Khách hàng MCP] --> |Yêu cầu MCP| Server[Máy chủ MCP]
+    Server --> |Gọi API| SearchAPI[API Tìm kiếm]
+    SearchAPI --> |Kết quả| Server
+    Server --> |Phản hồi MCP| Client
 ```
 
-Trong mẫu này, máy chủ MCP trực tiếp giao tiếp với một hoặc nhiều API tìm kiếm, chuyển đổi các yêu cầu MCP thành các gọi API cụ thể và định dạng kết quả thành phản hồi MCP.
+Trong mẫu này, máy chủ MCP giao tiếp trực tiếp với một hoặc nhiều API tìm kiếm, chuyển đổi yêu cầu MCP thành các cuộc gọi API đặc thù và định dạng kết quả như các phản hồi MCP.
 
-#### 2. Tìm Kiếm Liên Bang Với Bảo Tồn Ngữ Cảnh
+#### 2. Tìm kiếm liên kết với duy trì ngữ cảnh
 
 ```mermaid
 graph LR
-    Client[MCP Khách hàng] --> |Yêu cầu MCP| Federation[Lớp Liên minh MCP]
-    Federation --> |Yêu cầu MCP 1| Search1[Nhà cung cấp Tìm kiếm 1]
-    Federation --> |Yêu cầu MCP 2| Search2[Nhà cung cấp Tìm kiếm 2]
-    Federation --> |Yêu cầu MCP 3| Search3[Nhà cung cấp Tìm kiếm 3]
+    Client[Khách hàng MCP] --> |Yêu cầu MCP| Federation[Lớp Liên kết MCP]
+    Federation --> |Yêu cầu MCP 1| Search1[Nhà cung cấp tìm kiếm 1]
+    Federation --> |Yêu cầu MCP 2| Search2[Nhà cung cấp tìm kiếm 2]
+    Federation --> |Yêu cầu MCP 3| Search3[Nhà cung cấp tìm kiếm 3]
     Search1 --> |Phản hồi MCP 1| Federation
     Search2 --> |Phản hồi MCP 2| Federation
     Search3 --> |Phản hồi MCP 3| Federation
-    Federation --> |Phản hồi MCP Tổng hợp| Client
+    Federation --> |Phản hồi MCP được tổng hợp| Client
 ```
 
-Mẫu này phân phối các truy vấn tìm kiếm trên nhiều nhà cung cấp tìm kiếm tương thích MCP, mỗi nhà cung cấp có thể chuyên về các loại nội dung hoặc khả năng tìm kiếm khác nhau, đồng thời duy trì ngữ cảnh thống nhất.
+Mẫu này phân phối các truy vấn tìm kiếm qua nhiều nhà cung cấp tìm kiếm tương thích MCP, mỗi nhà có thể chuyên về các loại nội dung hoặc khả năng tìm kiếm khác nhau, đồng thời duy trì ngữ cảnh thống nhất.
 
-#### 3. Chuỗi Tìm Kiếm Tăng Cường Ngữ Cảnh
+#### 3. Chuỗi tìm kiếm tăng cường ngữ cảnh
 
 ```mermaid
 graph LR
-    Client[MCP Client] --> |Truy vấn + Ngữ cảnh| Server[MCP Server]
+    Client[Khách hàng MCP] --> |Truy vấn + Ngữ cảnh| Server[Máy chủ MCP]
     Server --> |1. Phân tích truy vấn| NLP[Dịch vụ NLP]
-    NLP --> |Truy vấn cải tiến| Server
+    NLP --> |Truy vấn được cải tiến| Server
     Server --> |2. Thực thi tìm kiếm| Search[Công cụ tìm kiếm]
     Search --> |Kết quả thô| Server
     Server --> |3. Xử lý kết quả| Enhancement[Cải tiến kết quả]
-    Enhancement --> |Kết quả cải tiến| Server
-    Server --> |Kết quả cuối + Ngữ cảnh cập nhật| Client
+    Enhancement --> |Kết quả được cải tiến| Server
+    Server --> |Kết quả cuối cùng + Cập nhật ngữ cảnh| Client
 ```
 
-Trong mẫu này, quy trình tìm kiếm được chia thành nhiều giai đoạn, với ngữ cảnh được làm giàu tại mỗi bước, dẫn đến kết quả ngày càng phù hợp theo tiến trình.
+Trong mẫu này, quá trình tìm kiếm được chia thành nhiều giai đoạn, với ngữ cảnh được làm phong phú tại mỗi bước, dẫn đến kết quả ngày càng liên quan hơn.
 
-### Các Thành Phần Ngữ Cảnh Tìm Kiếm
+### Thành phần ngữ cảnh tìm kiếm
 
 Trong tìm kiếm web dựa trên MCP, ngữ cảnh thường bao gồm:
 
-- **Lịch Sử Truy Vấn**: Các truy vấn tìm kiếm trước đó trong phiên
-- **Sở Thích Người Dùng**: Ngôn ngữ, vùng miền, cài đặt tìm kiếm an toàn
-- **Lịch Sử Tương Tác**: Các kết quả được nhấp, thời gian dành cho kết quả
-- **Tham Số Tìm Kiếm**: Bộ lọc, thứ tự sắp xếp và các yếu tố thay đổi khác
-- **Kiến Thức Chuyên Môn**: Ngữ cảnh liên quan đến chủ đề tìm kiếm
-- **Ngữ Cảnh Thời Gian**: Yếu tố liên quan dựa trên mốc thời gian
-- **Sở Thích Nguồn Thông Tin**: Nguồn tin cậy hoặc ưu tiên
+- **Lịch sử truy vấn**: Các truy vấn tìm kiếm trước đó trong phiên
+- **Sở thích người dùng**: Ngôn ngữ, khu vực, các thiết lập tìm kiếm an toàn
+- **Lịch sử tương tác**: Kết quả nào được nhấp, thời gian dành cho kết quả
+- **Tham số tìm kiếm**: Bộ lọc, thứ tự sắp xếp, và các bộ điều chỉnh tìm kiếm khác
+- **Kiến thức chuyên ngành**: Ngữ cảnh liên quan đến chủ đề tìm kiếm
+- **Ngữ cảnh theo thời gian**: Các yếu tố liên quan theo thời gian
+- **Sở thích nguồn tin**: Nguồn thông tin đáng tin cậy hoặc ưu tiên
 
-## Trường Hợp Sử Dụng và Ứng Dụng
+## Trường hợp sử dụng và Ứng dụng
 
-### Nghiên Cứu và Thu Thập Thông Tin
+### Nghiên cứu và Thu thập Thông tin
 
 MCP nâng cao quy trình nghiên cứu bằng cách:
 
-- Bảo tồn ngữ cảnh nghiên cứu qua các phiên tìm kiếm
-- Cho phép các truy vấn tinh vi và phù hợp hơn theo ngữ cảnh
-- Hỗ trợ liên bang tìm kiếm đa nguồn
-- Tạo điều kiện trích xuất kiến thức từ kết quả tìm kiếm
+- Duy trì ngữ cảnh nghiên cứu qua các phiên tìm kiếm
+- Cho phép truy vấn tinh vi và phù hợp ngữ cảnh hơn
+- Hỗ trợ liên kết tìm kiếm đa nguồn
+- Hỗ trợ trích xuất kiến thức từ kết quả tìm kiếm
 
-### Giám Sát Tin Tức và Xu Hướng Thời Gian Thực
+### Giám sát Tin tức và Xu hướng Thời gian Thực
 
-Tìm kiếm sử dụng MCP mang lại lợi thế cho theo dõi tin tức:
+Tìm kiếm sử dụng MCP mang lại lợi thế trong giám sát tin tức:
 
-- Phát hiện gần như tức thời các câu chuyện tin tức mới nổi
-- Lọc thông tin phù hợp theo ngữ cảnh
-- Theo dõi chủ đề và thực thể qua nhiều nguồn
+- Khám phá tin tức mới nổi gần như thời gian thực
+- Lọc thông tin có liên quan dựa trên ngữ cảnh
+- Theo dõi chủ đề và thực thể trên nhiều nguồn
 - Cảnh báo tin tức cá nhân hóa dựa trên ngữ cảnh người dùng
 
-### Duyệt Web và Nghiên Cứu Tăng Cường AI
+### Duyệt web và Nghiên cứu Tăng cường AI
 
 MCP tạo ra các khả năng mới cho duyệt web tăng cường AI:
 
-- Gợi ý tìm kiếm theo ngữ cảnh dựa trên hoạt động trình duyệt hiện tại
-- Tích hợp liền mạch giữa tìm kiếm web và trợ lý vận hành LLM
-- Tinh chỉnh tìm kiếm đa lượt với ngữ cảnh được bảo tồn
-- Nâng cao kiểm chứng sự thật và xác minh thông tin
+- Đề xuất tìm kiếm theo ngữ cảnh dựa trên hoạt động trình duyệt hiện tại
+- Tích hợp mượt mà tìm kiếm web với trợ lý AI dựa trên LLM
+- Tinh chỉnh tìm kiếm đa lượt với ngữ cảnh được duy trì
+- Cải thiện kiểm chứng sự thật và xác minh thông tin
 
-## Xu Hướng và Đổi Mới Tương Lai
+## Xu hướng và Đổi mới tương lai
 
-### Sự Tiến Hóa của MCP Trong Tìm Kiếm Web
+### Sự phát triển của MCP trong Tìm kiếm Web
 
-Nhìn về phía trước, chúng tôi kỳ vọng MCP sẽ phát triển để giải quyết:
-- **Tìm kiếm Đa phương thức**: Tích hợp tìm kiếm văn bản, hình ảnh, âm thanh và video với việc giữ nguyên bối cảnh
-- **Tìm kiếm Phi tập trung**: Hỗ trợ hệ sinh thái tìm kiếm phân tán và liên kết
-- **Bảo mật Tìm kiếm**: Cơ chế tìm kiếm bảo vệ quyền riêng tư dựa trên nhận thức bối cảnh
-- **Hiểu Biết Truy vấn**: Phân tích ngữ nghĩa sâu sắc các truy vấn tìm kiếm ngôn ngữ tự nhiên
+Nhìn về phía trước, chúng ta kỳ vọng MCP sẽ phát triển để giải quyết:
 
-### Tiềm năng Tiến bộ Công nghệ
+
+- **Tìm kiếm đa phương thức**: Tích hợp tìm kiếm văn bản, hình ảnh, âm thanh và video với ngữ cảnh được bảo toàn
+- **Tìm kiếm phi tập trung**: Hỗ trợ hệ sinh thái tìm kiếm phân tán và liên kết
+- **Bảo mật tìm kiếm**: Cơ chế tìm kiếm bảo vệ quyền riêng tư dựa trên ngữ cảnh
+- **Hiểu truy vấn**: Phân tích ngữ nghĩa sâu sắc các truy vấn tìm kiếm bằng ngôn ngữ tự nhiên
+
+### Tiến bộ tiềm năng trong công nghệ
 
 Các công nghệ mới nổi sẽ định hình tương lai của tìm kiếm MCP:
 
-1. **Kiến trúc Tìm kiếm Thần kinh**: Hệ thống tìm kiếm dựa trên nhúng được tối ưu hóa cho MCP
-2. **Bối cảnh Tìm kiếm Cá nhân hóa**: Học mẫu tìm kiếm cá nhân của người dùng theo thời gian
-3. **Tích hợp Đồ thị Kiến thức**: Tìm kiếm ngữ cảnh được nâng cao bằng đồ thị kiến thức chuyên ngành
-4. **Bối cảnh Đa phương thức**: Duy trì bối cảnh qua các phương thức tìm kiếm khác nhau
+1. **Kiến trúc Tìm kiếm Thần kinh**: Hệ thống tìm kiếm dựa trên nhúng tối ưu cho MCP
+2. **Ngữ cảnh tìm kiếm cá nhân hóa**: Học các mẫu tìm kiếm của người dùng theo thời gian
+3. **Tích hợp Đồ thị Tri thức**: Tìm kiếm có ngữ cảnh được nâng cao bằng đồ thị tri thức chuyên ngành
+4. **Ngữ cảnh đa phương thức**: Duy trì ngữ cảnh xuyên suốt các phương thức tìm kiếm khác nhau
 
-## Bài Tập Thực hành
+## Bài tập thực hành
 
-### Bài Tập 1: Thiết lập Chuỗi Tìm kiếm MCP Cơ bản
+### Bài tập 1: Thiết lập quy trình tìm kiếm MCP cơ bản
 
 Trong bài tập này, bạn sẽ học cách:
 - Cấu hình môi trường tìm kiếm MCP cơ bản
-- Triển khai bộ xử lý bối cảnh cho tìm kiếm web
-- Kiểm tra và xác thực việc giữ nguyên bối cảnh qua các lần tìm kiếm
+- Triển khai các trình xử lý ngữ cảnh cho tìm kiếm web
+- Kiểm tra và xác thực việc bảo toàn ngữ cảnh qua các lần tìm kiếm
 
-### Bài Tập 2: Xây dựng Trợ lý Nghiên cứu với Tìm kiếm MCP
+### Bài tập 2: Xây dựng trợ lý nghiên cứu với tìm kiếm MCP
 
 Tạo một ứng dụng hoàn chỉnh mà:
-- Xử lý các câu hỏi nghiên cứu dạng ngôn ngữ tự nhiên
-- Thực hiện tìm kiếm web dựa trên nhận thức bối cảnh
+- Xử lý các câu hỏi nghiên cứu ngôn ngữ tự nhiên
+- Thực hiện tìm kiếm web có nhận thức ngữ cảnh
 - Tổng hợp thông tin từ nhiều nguồn
 - Trình bày các kết quả nghiên cứu được tổ chức
 
-### Bài Tập 3: Triển khai Liên kết Tìm kiếm Đa Nguồn với MCP
+### Bài tập 3: Triển khai liên kết tìm kiếm đa nguồn với MCP
 
 Bài tập nâng cao bao gồm:
-- Phân phối truy vấn nhận thức bối cảnh tới nhiều công cụ tìm kiếm
+- Phân phối truy vấn có ngữ cảnh tới nhiều công cụ tìm kiếm
 - Xếp hạng và tổng hợp kết quả
-- Loại trừ trùng lặp theo bối cảnh của kết quả tìm kiếm
+- Loại bỏ kết quả trùng lặp có ngữ cảnh
 - Xử lý siêu dữ liệu đặc thù nguồn
 
-## Tài Nguyên Bổ Sung
+## Tài nguyên bổ sung
 
-- [Model Context Protocol Specification](https://spec.modelcontextprotocol.io/) - Đặc tả chính thức MCP và tài liệu giao thức chi tiết
-- [Model Context Protocol Documentation](https://modelcontextprotocol.io/) - Hướng dẫn và tài liệu triển khai chi tiết
-- [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Triển khai Python chính thức của giao thức MCP
-- [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Triển khai TypeScript chính thức của giao thức MCP
-- [MCP Reference Servers](https://github.com/modelcontextprotocol/servers) - Triển khai tham chiếu các máy chủ MCP
+- [Model Context Protocol Specification](https://spec.modelcontextprotocol.io/) - Tài liệu chính thức về MCP và hướng dẫn chi tiết giao thức
+- [Model Context Protocol Documentation](https://modelcontextprotocol.io/) - Hướng dẫn chi tiết và tài liệu triển khai
+- [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Triển khai chính thức MCP bằng Python
+- [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Triển khai chính thức MCP bằng TypeScript
+- [MCP Reference Servers](https://github.com/modelcontextprotocol/servers) - Các triển khai tham chiếu máy chủ MCP
 - [Bing Web Search API Documentation](https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/overview) - API tìm kiếm web của Microsoft
 - [Google Custom Search JSON API](https://developers.google.com/custom-search/v1/overview) - Công cụ tìm kiếm lập trình của Google
 - [SerpAPI Documentation](https://serpapi.com/search-api) - API trang kết quả công cụ tìm kiếm
 - [Meilisearch Documentation](https://www.meilisearch.com/docs) - Công cụ tìm kiếm mã nguồn mở
-- [Elasticsearch Documentation](https://www.elastic.co/guide/index.html) - Công cụ tìm kiếm phân tán và phân tích
-- [LangChain Documentation](https://python.langchain.com/docs/get_started/introduction) - Xây dựng ứng dụng với LLMs
+- [Elasticsearch Documentation](https://www.elastic.co/guide/index.html) - Công cụ tìm kiếm và phân tích phân tán
+- [LangChain Documentation](https://python.langchain.com/docs/get_started/introduction) - Xây dựng ứng dụng với LLM
 
-## Kết Quả Học Tập
+## Kết quả học tập
 
-Khi hoàn thành mô-đun này, bạn sẽ có thể:
+Khi hoàn thành module này, bạn sẽ có khả năng:
 
 - Hiểu các nguyên tắc cơ bản của tìm kiếm web thời gian thực và các thách thức liên quan
 - Giải thích cách Model Context Protocol (MCP) nâng cao khả năng tìm kiếm web thời gian thực
-- Triển khai các giải pháp tìm kiếm dựa trên MCP sử dụng các framework và API phổ biến
-- Thiết kế và triển khai kiến trúc tìm kiếm có khả năng mở rộng và hiệu suất cao với MCP
-- Áp dụng các khái niệm MCP cho các trường hợp sử dụng khác nhau bao gồm tìm kiếm ngữ nghĩa, trợ lý nghiên cứu và duyệt web hỗ trợ AI
-- Đánh giá các xu hướng mới nổi và đổi mới tương lai trong công nghệ tìm kiếm dựa trên MCP
+- Triển khai các giải pháp tìm kiếm dựa trên MCP bằng các framework và API phổ biến
+- Thiết kế và triển khai kiến trúc tìm kiếm có khả năng mở rộng, hiệu suất cao với MCP
+- Ứng dụng các khái niệm MCP vào các trường hợp sử dụng đa dạng như tìm kiếm ngữ nghĩa, trợ lý nghiên cứu, và duyệt web tăng cường AI
+- Đánh giá các xu hướng nổi bật và đổi mới tương lai trong công nghệ tìm kiếm dựa trên MCP
 
 
-### Cân nhắc về Niềm tin và An toàn
+### Các cân nhắc về Độ tin cậy và An toàn
 
-Khi triển khai các giải pháp tìm kiếm web dựa trên MCP, hãy nhớ các nguyên tắc quan trọng sau từ đặc tả MCP:
+Khi triển khai các giải pháp tìm kiếm web dựa trên MCP, hãy nhớ các nguyên tắc quan trọng sau đây từ tài liệu MCP:
 
-1. **Sự Đồng ý và Kiểm soát của Người dùng**: Người dùng phải đồng ý rõ ràng và hiểu tất cả truy cập dữ liệu và các hành động. Điều này đặc biệt quan trọng với các triển khai tìm kiếm web có thể truy cập nguồn dữ liệu bên ngoài.
+1. **Sự đồng ý và kiểm soát của người dùng**: Người dùng phải đồng ý rõ ràng và hiểu tất cả các quyền truy cập và thao tác dữ liệu. Điều này đặc biệt quan trọng với triển khai tìm kiếm web có thể truy cập các nguồn dữ liệu bên ngoài.
 
-2. **Bảo mật Dữ liệu**: Đảm bảo xử lý thích hợp các truy vấn và kết quả tìm kiếm, đặc biệt khi chúng có thể chứa thông tin nhạy cảm. Triển khai kiểm soát truy cập phù hợp để bảo vệ dữ liệu người dùng.
+2. **Bảo mật dữ liệu**: Đảm bảo xử lý phù hợp các truy vấn và kết quả tìm kiếm, nhất là khi chứa thông tin nhạy cảm. Triển khai kiểm soát truy cập thích hợp để bảo vệ dữ liệu người dùng.
 
-3. **An toàn Công cụ**: Triển khai xác thực và kiểm tra hợp lệ đúng đắn cho các công cụ tìm kiếm, vì chúng có thể là nguy cơ an ninh thông qua việc thực thi mã tùy ý. Mô tả hành vi công cụ nên được coi là không tin cậy trừ khi lấy từ máy chủ tin cậy.
+3. **An toàn công cụ**: Triển khai cấp phép và xác thực đúng đắn cho các công cụ tìm kiếm, vì chúng có thể gây rủi ro bảo mật qua việc thực thi mã tùy ý. Mô tả hành vi công cụ nên được coi là không tin cậy trừ khi lấy từ máy chủ tin cậy.
 
-4. **Tài liệu Rõ ràng**: Cung cấp tài liệu rõ ràng về khả năng, giới hạn và các cân nhắc về bảo mật của triển khai tìm kiếm dựa trên MCP, theo hướng dẫn triển khai từ đặc tả MCP.
+4. **Tài liệu rõ ràng**: Cung cấp tài liệu rõ ràng về khả năng, giới hạn và các cân nhắc bảo mật của triển khai tìm kiếm MCP, tuân theo hướng dẫn triển khai từ tài liệu MCP.
 
-5. **Quy trình Đồng ý Mạnh mẽ**: Xây dựng quy trình đồng ý và ủy quyền mạnh mẽ giải thích rõ công dụng của từng công cụ trước khi cho phép sử dụng, đặc biệt với các công cụ tương tác với tài nguyên web bên ngoài.
+5. **Luồng đồng ý chắc chắn**: Xây dựng các luồng đồng ý và ủy quyền chắc chắn giải thích rõ ràng công cụ làm gì trước khi được cấp phép, đặc biệt với các công cụ tương tác với tài nguyên web bên ngoài.
 
-Để biết chi tiết đầy đủ về bảo mật và cân nhắc niềm tin MCP, vui lòng tham khảo [tài liệu chính thức](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).
+Để biết chi tiết đầy đủ về bảo mật và các cân nhắc độ tin cậy MCP, tham khảo [tài liệu chính thức](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).
 
 ## Tiếp theo là gì
 
-- [5.12 Xác thực Entra ID cho Máy chủ Model Context Protocol](../mcp-security-entra/README.md)
+- [5.12 Xác thực Entra ID cho máy chủ Model Context Protocol](../mcp-security-entra/README.md)
 
 ---
 

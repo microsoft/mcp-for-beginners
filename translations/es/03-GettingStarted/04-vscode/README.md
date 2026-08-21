@@ -1,27 +1,27 @@
-# Consumir un servidor desde el modo Agente de GitHub Copilot
+# Consumiendo un servidor desde el modo Agente de GitHub Copilot
 
-Visual Studio Code y GitHub Copilot pueden actuar como un cliente y consumir un servidor MCP. ¿Por qué querríamos hacer eso, te preguntarás? Bueno, eso significa que las características que tenga el servidor MCP ahora pueden ser utilizadas desde tu IDE. Imagina que agregas, por ejemplo, el servidor MCP de GitHub; esto permitiría controlar GitHub mediante comandos en lenguaje natural en lugar de escribir comandos específicos en el terminal. O imagina cualquier cosa en general que pueda mejorar tu experiencia como desarrollador, todo controlado por lenguaje natural. ¿Empiezas a ver las ventajas, verdad?
+Visual Studio Code y GitHub Copilot pueden actuar como clientes y consumir un Servidor MCP. ¿Por qué querríamos hacer eso, te preguntarás? Bueno, eso significa que cualquier función que tenga el Servidor MCP ahora puede usarse desde dentro de tu IDE. Imagina que agregas, por ejemplo, el servidor MCP de GitHub, esto permitiría controlar GitHub mediante indicaciones en lugar de escribir comandos específicos en la terminal. O imagina cualquier cosa en general que pueda mejorar tu experiencia como desarrollador todo controlado por lenguaje natural. Ahora ya empiezas a ver la ventaja, ¿verdad?
 
 ## Resumen
 
-Esta lección cubre cómo usar Visual Studio Code y el modo Agente de GitHub Copilot como cliente para tu servidor MCP.
+Esta lección cubre cómo usar Visual Studio Code y el modo Agente de GitHub Copilot como cliente para tu Servidor MCP.
 
-## Objetivos de aprendizaje
+## Objetivos de Aprendizaje
 
-Al final de esta lección, serás capaz de:
+Al final de esta lección, podrás:
 
-- Consumir un servidor MCP a través de Visual Studio Code.
-- Ejecutar capacidades como herramientas mediante GitHub Copilot.
-- Configurar Visual Studio Code para encontrar y gestionar tu servidor MCP.
+- Consumir un Servidor MCP a través de Visual Studio Code.
+- Ejecutar capacidades como herramientas a través de GitHub Copilot.
+- Configurar Visual Studio Code para encontrar y administrar tu Servidor MCP.
 
 ## Uso
 
 Puedes controlar tu servidor MCP de dos maneras diferentes:
 
-- Interfaz de usuario: verás cómo se hace esto más adelante en este capítulo.
-- Terminal: es posible controlar las cosas desde el terminal usando el ejecutable `code`:
+- Interfaz de usuario, verás cómo se hace más adelante en este capítulo.
+- Terminal, es posible controlar cosas desde la terminal usando el ejecutable `code`:
 
-  Para agregar un servidor MCP a tu perfil de usuario, utiliza la opción de línea de comandos --add-mcp y proporciona la configuración del servidor JSON en la forma {\"name\":\"server-name\",\"command\":...}.
+  Para agregar un servidor MCP a tu perfil de usuario, usa la opción de línea de comando --add-mcp, y proporciona la configuración del servidor en JSON en la forma {\"name\":\"server-name\",\"command\":...}.
 
   ```
   code --add-mcp "{\"name\":\"my-server\",\"command\": \"uvx\",\"args\": [\"mcp-server-fetch\"]}"
@@ -30,28 +30,28 @@ Puedes controlar tu servidor MCP de dos maneras diferentes:
 ### Capturas de pantalla
 
 ![Configuración guiada del servidor MCP en Visual Studio Code](../../../../translated_images/es/chat-mode-agent.729a22473f822216.webp)
-![Selección de herramientas por sesión de agente](../../../../translated_images/es/agent-mode-select-tools.522c7ba5df0848f8.webp)
-![Depuración sencilla de errores durante el desarrollo MCP](../../../../translated_images/es/mcp-list-servers.fce89eefe3f30032.webp)
+![Selección de herramientas por sesión del agente](../../../../translated_images/es/agent-mode-select-tools.522c7ba5df0848f8.webp)
+![Depura fácilmente errores durante el desarrollo de MCP](../../../../translated_images/es/mcp-list-servers.fce89eefe3f30032.webp)
 
-Hablemos más sobre cómo usar la interfaz visual en las siguientes secciones.
+Hablemos más sobre cómo usamos la interfaz visual en las siguientes secciones.
 
 ## Enfoque
 
-Aquí está el enfoque que necesitamos seguir a alto nivel:
+Así es como debemos abordar esto a alto nivel:
 
-- Configurar un archivo para encontrar nuestro servidor MCP.
-- Iniciar/Conectar al servidor para que liste sus capacidades.
-- Usar dichas capacidades a través de la interfaz de chat de GitHub Copilot.
+- Configurar un archivo para encontrar nuestro Servidor MCP.
+- Iniciar/Conectarse a dicho servidor para que liste sus capacidades.
+- Usar dichas capacidades a través de la interfaz de GitHub Copilot Chat.
 
-Genial, ahora que entendemos el flujo, intentemos usar un servidor MCP en Visual Studio Code mediante un ejercicio.
+Genial, ahora que entendemos el flujo, intentemos usar un Servidor MCP a través de Visual Studio Code mediante un ejercicio.
 
-## Ejercicio: Consumir un servidor
+## Ejercicio: Consumiendo un servidor
 
-En este ejercicio, configuraremos Visual Studio Code para encontrar tu servidor MCP y que pueda ser utilizado desde la interfaz de chat de GitHub Copilot.
+En este ejercicio, configuraremos Visual Studio Code para encontrar tu servidor MCP para que pueda usarse desde la interfaz GitHub Copilot Chat.
 
-### -0- Paso previo: habilitar el descubrimiento del servidor MCP
+### -0- Paso previo, habilitar el descubrimiento del Servidor MCP
 
-Es posible que necesites habilitar el descubrimiento de servidores MCP.
+Es posible que necesites habilitar el descubrimiento de Servidores MCP.
 
 1. Ve a `Archivo -> Preferencias -> Configuración` en Visual Studio Code.
 
@@ -59,18 +59,18 @@ Es posible que necesites habilitar el descubrimiento de servidores MCP.
 
 ### -1- Crear archivo de configuración
 
-Comienza creando un archivo de configuración en la raíz de tu proyecto. Necesitarás un archivo llamado MCP.json y colocarlo en una carpeta llamada .vscode. Debería verse así:
+Comienza creando un archivo de configuración en la raíz de tu proyecto, necesitarás un archivo llamado MCP.json y colocarlo en una carpeta llamada .vscode. Debería verse así:
 
 ```text
 .vscode
 |-- mcp.json
 ```
 
-A continuación, veamos cómo agregar una entrada de servidor.
+A continuación, veamos cómo podemos agregar una entrada de servidor.
 
 ### -2- Configurar un servidor
 
-Agrega el siguiente contenido a *mcp.json*:
+Añade el siguiente contenido a *mcp.json*:
 
 ```json
 {
@@ -86,29 +86,29 @@ Agrega el siguiente contenido a *mcp.json*:
 }
 ```
 
-El ejemplo anterior muestra cómo iniciar un servidor escrito en Node.js. Para otros entornos de ejecución, especifica el comando adecuado para iniciar el servidor usando `command` y `args`.
+Aquí hay un ejemplo simple arriba de cómo iniciar un servidor escrito en Node.js, para otros entornos apunta el comando correcto para iniciar el servidor usando `command` y `args`.
 
 ### -3- Iniciar el servidor
 
-Ahora que has agregado una entrada, iniciemos el servidor:
+Ahora que has añadido una entrada, vamos a iniciar el servidor:
 
 1. Localiza tu entrada en *mcp.json* y asegúrate de encontrar el ícono de "play":
 
-  ![Iniciar servidor en Visual Studio Code](../../../../translated_images/es/vscode-start-server.8e3c986612e3555d.webp)  
+  ![Iniciando servidor en Visual Studio Code](../../../../translated_images/es/vscode-start-server.8e3c986612e3555d.webp)  
 
-1. Haz clic en el ícono de "play". Deberías ver que el ícono de herramientas en el chat de GitHub Copilot aumenta el número de herramientas disponibles. Si haces clic en dicho ícono de herramientas, verás una lista de herramientas registradas. Puedes marcar/desmarcar cada herramienta dependiendo de si deseas que GitHub Copilot las use como contexto:
+1. Haz clic en el ícono de "play", deberías ver que el ícono de herramientas en GitHub Copilot Chat aumenta el número de herramientas disponibles. Si haces clic en dicho ícono de herramientas, verás una lista de herramientas registradas. Puedes marcar/desmarcar cada herramienta dependiendo si quieres que GitHub Copilot las use como contexto:
 
-  ![Iniciar servidor en Visual Studio Code](../../../../translated_images/es/vscode-tool.0b3bbea2fb7d8c26.webp)
+  ![Iniciando servidor en Visual Studio Code](../../../../translated_images/es/vscode-tool.0b3bbea2fb7d8c26.webp)
 
-1. Para ejecutar una herramienta, escribe un comando que coincida con la descripción de una de tus herramientas, por ejemplo, un comando como "suma 22 y 1":
+1. Para ejecutar una herramienta, escribe una indicación que sepas que coincidirá con la descripción de una de tus herramientas, por ejemplo una indicación como "añadir 22 a 1":
 
-  ![Ejecutar una herramienta desde GitHub Copilot](../../../../translated_images/es/vscode-agent.d5a0e0b897331060.webp)
+  ![Ejecutando una herramienta desde GitHub Copilot](../../../../translated_images/es/vscode-agent.d5a0e0b897331060.webp)
 
   Deberías ver una respuesta diciendo 23.
 
 ## Tarea
 
-Intenta agregar una entrada de servidor a tu archivo *mcp.json* y asegúrate de que puedes iniciar/detener el servidor. También asegúrate de que puedes comunicarte con las herramientas en tu servidor mediante la interfaz de chat de GitHub Copilot.
+Intenta añadir una entrada de servidor en tu archivo *mcp.json* y asegúrate de que puedes iniciar/detener el servidor. Asegúrate también de poder comunicarte con las herramientas en tu servidor a través de la interfaz GitHub Copilot Chat.
 
 ## Solución
 
@@ -118,17 +118,17 @@ Intenta agregar una entrada de servidor a tu archivo *mcp.json* y asegúrate de 
 
 Los puntos clave de este capítulo son los siguientes:
 
-- Visual Studio Code es un excelente cliente que te permite consumir varios servidores MCP y sus herramientas.
-- La interfaz de chat de GitHub Copilot es cómo interactúas con los servidores.
-- Puedes solicitar al usuario entradas como claves API que pueden ser pasadas al servidor MCP al configurar la entrada del servidor en el archivo *mcp.json*.
+- Visual Studio Code es un gran cliente que te permite consumir varios Servidores MCP y sus herramientas.
+- La interfaz GitHub Copilot Chat es cómo interactúas con los servidores.
+- Puedes solicitar al usuario entradas como claves de API que se pueden pasar al Servidor MCP al configurar la entrada del servidor en el archivo *mcp.json*.
 
 ## Ejemplos
 
-- [Calculadora en Java](../samples/java/calculator/README.md)
-- [Calculadora en .Net](../../../../03-GettingStarted/samples/csharp)
-- [Calculadora en JavaScript](../samples/javascript/README.md)
-- [Calculadora en TypeScript](../samples/typescript/README.md)
-- [Calculadora en Python](../../../../03-GettingStarted/samples/python)
+- [Calculadora Java](../samples/java/calculator/README.md)
+- [Calculadora .Net](../../../../03-GettingStarted/samples/csharp)
+- [Calculadora JavaScript](../samples/javascript/README.md)
+- [Calculadora TypeScript](../samples/typescript/README.md)
+- [Calculadora Python](../../../../03-GettingStarted/samples/python)
 
 ## Recursos adicionales
 
@@ -136,9 +136,11 @@ Los puntos clave de este capítulo son los siguientes:
 
 ## Qué sigue
 
-- Siguiente: [Crear un servidor stdio](../05-stdio-server/README.md)
+- Siguiente: [Creando un servidor stdio](../05-stdio-server/README.md)
 
 ---
 
-**Descargo de responsabilidad**:  
-Este documento ha sido traducido utilizando el servicio de traducción automática [Co-op Translator](https://github.com/Azure/co-op-translator). Aunque nos esforzamos por garantizar la precisión, tenga en cuenta que las traducciones automatizadas pueden contener errores o imprecisiones. El documento original en su idioma nativo debe considerarse como la fuente autorizada. Para información crítica, se recomienda una traducción profesional realizada por humanos. No nos hacemos responsables de malentendidos o interpretaciones erróneas que puedan surgir del uso de esta traducción.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Descargo de responsabilidad**:
+Este documento ha sido traducido utilizando el servicio de traducción automática [Co-op Translator](https://github.com/Azure/co-op-translator). Aunque nos esforzamos por la precisión, tenga en cuenta que las traducciones automatizadas pueden contener errores o inexactitudes. El documento original en su idioma nativo debe considerarse la fuente autorizada. Para información crítica, se recomienda una traducción profesional humana. No somos responsables de cualquier malentendido o interpretación errónea que surja del uso de esta traducción.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,74 +1,74 @@
 ## Testavimas ir derinimas
 
-Prieš pradėdami testuoti savo MCP serverį, svarbu suprasti prieinamus įrankius ir geriausias derinimo praktikas. Efektyvus testavimas užtikrina, kad jūsų serveris elgtųsi kaip tikėtasi, ir padeda greitai identifikuoti bei išspręsti problemas. Toliau pateikiama skyriuje apžvelgiami rekomenduojami metodai, kaip patikrinti savo MCP įgyvendinimą.
+Prieš pradėdami testuoti savo MCP serverį, svarbu suprasti turimus įrankius ir geriausią praktiką derinant. Efektyvus testavimas užtikrina, kad jūsų serveris veiktų taip, kaip numatyta, ir padeda greitai nustatyti bei spręsti problemas. Toliau pateiktoje skiltyje apžvelgiamos rekomenduojamos MCP įgyvendinimo patikros priemonės.
 
 ## Apžvalga
 
-Šioje pamokoje aptarsime, kaip pasirinkti tinkamą testavimo metodą ir efektyviausią testavimo įrankį.
+Šiame pamokoje aptariama, kaip pasirinkti tinkamą testavimo metodą ir efektyviausią testavimo įrankį.
 
 ## Mokymosi tikslai
 
-Šios pamokos pabaigoje galėsite:
+Pamokos pabaigoje galėsite:
 
 - Apibūdinti įvairius testavimo metodus.
-- Naudoti skirtingus įrankius savo kodo efektyviam testavimui.
+- Naudoti skirtingus įrankius efektyviam kodo testavimui.
+
 
 ## MCP serverių testavimas
 
-MCP suteikia įrankius, kurie padeda jums testuoti ir derinti serverius:
+MCP suteikia įrankius, kurie padeda testuoti ir derinti jūsų serverius:
 
-- **MCP Inspector**: Komandinės eilutės įrankis, kurį galima naudoti tiek kaip CLI, tiek kaip vizualinį įrankį.
-- **Rankinis testavimas**: Galite naudoti įrankį, pvz., curl, norėdami vykdyti tinklo užklausas, tačiau tinkami bet kokie įrankiai, galintys vykdyti HTTP užklausas.
-- **Vienetinis testavimas**: Galima naudoti savo norimą testavimo sistemą, kad išbandytumėte tiek serverio, tiek kliento funkcionalumus.
+- **MCP Inspector**: Komandinės eilutės įrankis, kurį galima naudoti tiek CLI režimu, tiek vizualiai.
+- **Rankinis testavimas**: Galite naudoti įrankį, pavyzdžiui, curl, vykdyti interneto užklausas, tačiau tinka bet koks HTTP palaikantis įrankis.
+- **Vienetinis testavimas**: Galima naudoti pageidaujamą testavimo karkasą, kad būtų testuojamos tiek serverio, tiek kliento funkcijos.
 
-### Naudojant MCP Inspector
+### MCP Inspector naudojimas
 
-Šio įrankio naudojimą aprašėme ankstesnėse pamokose, bet apžvelkime jį aukštesnio lygio požiūriu. Tai Node.js pagrindu sukurtas įrankis, kurį galite naudoti iškviesdami `npx` vykdomąjį failą, kuris laikinai parsisiųs ir įdiegs įrankį ir išvalys save baigus vykdyti jūsų užklausą.
+Šio įrankio naudojimą aprašėme ankstesnėse pamokose, tačiau aptarkime jį trumpai. Tai Node.js pagrindu sukurtas įrankis, kurį galite naudoti iškviesdami vykdomąjį failą `npx`; jis laikinai atsisiunčia ir įdiegia įrankį, o po užklausos paleidimo savarankiškai išvalomas.
 
-[MCP Inspector](https://github.com/modelcontextprotocol/inspector) padeda jums:
+[MCP Inspector](https://github.com/modelcontextprotocol/inspector) padeda:
 
-- **Aptikti serverio galimybes**: Automatiškai nustatyti prieinamus išteklius, įrankius ir užklausas
-- **Testuoti įrankių vykdymą**: Išbandyti įvairius parametrus ir matyti atsakymus realiuoju laiku
-- **Peržiūrėti serverio metaduomenis**: Tirti serverio informaciją, schemas ir konfigūracijas
+- **Aptikti serverio galimybes**: Automatiškai surasti turimus išteklius, įrankius ir užklausų šablonus
+- **Testuoti įrankių vykdymą**: Išbandyti skirtingus parametrus ir matyti atsakymus realiuoju laiku
+- **Peržiūrėti serverio metaduomenis**: Išnagrinėti serverio informaciją, schemas ir konfigūracijas
 
-Tipinis įrankio paleidimas atrodo taip:
+Įprastas įrankio paleidimas atrodo taip:
 
 ```bash
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-Aukščiau pateikta komanda paleidžia MCP ir jo vizualinę sąsają bei atidaro vietinę žiniatinklio sąsają jūsų naršyklėje. Galite tikėtis pamatyti informacinę skydelį, rodantį jūsų registruotus MCP serverius, jų prieinamus įrankius, išteklius ir užklausas. Sąsaja leidžia interaktyviai testuoti įrankių vykdymą, tikrinti serverio metaduomenis ir matyti atsakymus realiuoju laiku, kas palengvina MCP serverio įgyvendinimų validavimą ir derinimą.
+Aukščiau pateiktas komandos pavyzdys paleidžia MCP ir jo vizualią sąsają bei atidaro vietinį interneto naršyklės langą. Galite tikėtis matyti informacijos suvestinę, kurioje rodomi užregistruoti MCP serveriai, jų turimi įrankiai, ištekliai ir užklausų šablonai. Sąsaja leidžia interaktyviai testuoti įrankių vykdymą, tikrinti serverio metaduomenis ir matyti atsakymus realiuoju laiku, todėl paprasčiau patikrinti ir derinti MCP serverio įgyvendinimus.
 
-Taip tai gali atrodyti: ![Inspector](../../../../translated_images/lt/connect.141db0b2bd05f096.webp)
+Štai kaip tai gali atrodyti: ![Inspector](../../../../translated_images/lt/connect.141db0b2bd05f096.webp)
 
-Taip pat galite paleisti šį įrankį CLI režimu pridėdami atributą `--cli`. Štai pavyzdys, kaip paleisti įrankį "CLI" režimu, kuris išveda visus įrankius serveryje:
+Taip pat galite paleisti šį įrankį CLI režimu pridėdami atributą `--cli`. Štai pavyzdys, kaip paleisti įrankį "CLI" režimu, kuris išrašo visus serverio įrankius:
 
 ```sh
 npx @modelcontextprotocol/inspector --cli node build/index.js --method tools/list
 ```
 
-
 ### Rankinis testavimas
 
-Be MCP Inspector įrankio naudojimo serverio galimybėms tikrinti, galima naudoti panašų metodą – paleisti klientą, galintį naudoti HTTP, pavyzdžiui, curl.
+Be Inspectoriaus įrankio naudojimo serverio galimybėms tikrinti, panašią funkciją atlieka klientas, galintis naudoti HTTP, pavyzdžiui, curl.
 
-Su curl galite tiesiogiai testuoti MCP serverius vykdydami HTTP užklausas:
+Naudodami curl galite tiesiogiai testuoti MCP serverius HTTP užklausomis:
 
 ```bash
-# Pavyzdys: Testavimo serverio metaduomenys
+# Pavyzdys: Testavimo serverio meta duomenys
 curl http://localhost:3000/v1/metadata
 
-# Pavyzdys: Įvykdyti įrankį
+# Pavyzdys: Vykdyti įrankį
 curl -X POST http://localhost:3000/v1/tools/execute \
   -H "Content-Type: application/json" \
   -d '{"name": "calculator", "parameters": {"expression": "2+2"}}'
 ```
 
-Kaip matote iš aukščiau pateikto curl panaudojimo, POST užklausa skirta įrankio iškvietimui su siuntinio duomenimis, kur nurodytas įrankio pavadinimas ir jo parametrai. Pasirinkite jums labiausiai tinkantį metodą. CLI įrankiai paprastai greičiau naudojami ir gali būti automatizuojami, kas naudinga CI/CD aplinkose.
+Kaip matote iš aukščiau pateikto curl pavyzdžio, naudojama POST užklausa įrankiui iškviesti su kroviniu, kuriame nurodytas įrankio pavadinimas ir jo parametrai. Pasirinkite jums tinkamą būdą. CLI įrankiai paprastai yra greitesni naudoti ir juos lengva aprašyti kaip scenarijus, kas naudinga CI/CD aplinkoje.
 
-### Vienetiniai testai
+### Vienetinis testavimas
 
-Sukurkite savo įrankių ir išteklių vienetinius testus, kad įsitikintumėte jų veikimu kaip numatyta. Štai pavyzdinis testavimo kodas.
+Sukurkite vienetinius testus savo įrankiams ir ištekliams, kad įsitikintumėte jų teisingu veikimu. Štai keletas testavimo kodo pavyzdžių.
 
 ```python
 import pytest
@@ -103,7 +103,7 @@ async def test_list_tools_cursor_parameter():
         return "Result 2"
 
     async with create_session(server._mcp_server) as client_session:
-        # Testuoti be žymeklio parametro (praleista)
+        # Testuoti be cursor parametro (praleista)
         result1 = await client_session.list_tools()
         assert len(result1.tools) == 2
 
@@ -111,27 +111,27 @@ async def test_list_tools_cursor_parameter():
         result2 = await client_session.list_tools(cursor=None)
         assert len(result2.tools) == 2
 
-        # Testuoti su cursor kaip eilute
+        # Testuoti su cursor kaip eilutė
         result3 = await client_session.list_tools(cursor="some_cursor_value")
         assert len(result3.tools) == 2
 
-        # Testuoti su tuščiu eilutės žymekliu
+        # Testuoti su tuščios eilutės cursor
         result4 = await client_session.list_tools(cursor="")
         assert len(result4.tools) == 2
     
 ```
 
-Aukščiau pateiktas kodas daro šiuos veiksmus:
+Aukščiau pateiktas kodas atlieka šiuos veiksmus:
 
-- Naudoja pytest sistemą, leidžiančią kurti testus kaip funkcijas ir naudoti assert sakinius.
+- Naudoja pytest karkasą, kuris leidžia kurti testus kaip funkcijas ir naudoti assert sakinius.
 - Sukuria MCP serverį su dviem skirtingais įrankiais.
-- Naudoja `assert` sakinį, kad patikrintų tam tikrų sąlygų įvykdymą.
+- Naudoja `assert` sakinį tikrinti, ar tam tikros sąlygos yra įvykdytos.
 
-Peržiūrėkite [visą failą čia](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+Peržiūrėkite [pilną failą čia](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
-Turėdami aukščiau pateiktą failą, galite testuoti savo serverį ir įsitikinti, kad galimybės sukurtos kaip turėtų.
+Turėdamas aukščiau nurodytą failą, galite testuoti savo serverį, kad įsitikintumėte, jog galimybės yra sukurtos tinkamai.
 
-Visos svarbiausios SDK turi panašius testavimo skyrius, tad galite prisitaikyti prie savo pasirinktos vykdymo aplinkos.
+Visi pagrindiniai SDK turi panašias testavimo dalis, tad galėsite jas pritaikyti pasirinktai vykdymo aplinkai.
 
 ## Pavyzdžiai
 
@@ -145,7 +145,7 @@ Visos svarbiausios SDK turi panašius testavimo skyrius, tad galite prisitaikyti
 
 - [Python SDK](https://github.com/modelcontextprotocol/python-sdk)
 
-## Kas toliau
+## Toliau
 
 - Toliau: [Diegimas](../09-deployment/README.md)
 
@@ -153,5 +153,5 @@ Visos svarbiausios SDK turi panašius testavimo skyrius, tad galite prisitaikyti
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Atsakomybės apribojimas**:
-Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatizuoti vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Svarbiai informacijai rekomenduojamas profesionalus žmogiškas vertimas. Mes neprisiimame atsakomybės už bet kokius nesusipratimus ar klaidingus aiškinimus, kylantčius dėl šio vertimo naudojimo.
+Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba laikomas autoritetingu šaltiniu. Svarbiai informacijai rekomenduojama naudoti profesionalų žmogiškąjį vertimą. Mes neatsakome už jokius nesusipratimus ar neteisingą interpretaciją, kilusią naudojantis šiuo vertimu.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

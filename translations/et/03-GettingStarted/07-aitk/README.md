@@ -1,107 +1,107 @@
-# Serveri kasutamine Visual Studio Code'i AI Toolkit laienduses
+# Serveri kasutamine AI Toolkit laiendusest Visual Studio Code jaoks
 
-AI-agendi loomisel ei ole oluline ainult nutikate vastuste genereerimine, vaid ka agendi võimekus tegutseda. Siin tuleb mängu Model Context Protocol (MCP). MCP muudab agentidele väliste tööriistade ja teenuste ühtse viisi kaudu ligipääsu lihtsaks. Kujutage ette, et ühendate oma agendi tööriistakastiga, mida ta *päriselt* kasutada saab.
+Kui ehitate tehisintellekti agendi, pole asi ainult nutikate vastuste genereerimises; oluline on anda agentidele ka võime tegutseda. Just siin tuleb mängu Model Context Protocol (MCP). MCP teeb lihtsaks agentide ligipääsu välistele tööriistadele ja teenustele ühtsel viisil. Mõelge sellele kui agenti ühendamine tööriistakasti, mida ta *tõesti* kasutada saab.
 
-Oletame, et ühendate agendi oma kalkulaatori MCP serveriga. Järsku saab teie agent matemaatilisi tehteid teha lihtsalt vastates küsimusele nagu „Mis on 47 korda 89?“—ilma vajaduseta koodida loogikat või luua kohandatud API-sid.
+Oletame, et ühendate agendi kalkulaatori MCP serveriga. Äkitselt saab teie agent teha matemaatilisi operatsioone lihtsalt küsides näiteks “Mis on 47 korda 89?” — pole vaja keerulist loogikat kodeerida ega luua kohandatud API-sid.
 
 ## Ülevaade
 
-Selles peatükis õpite, kuidas ühendada kalkulaatori MCP server agendiga, kasutades [AI Toolkit](https://aka.ms/AIToolkit) laiendust Visual Studio Code'is. See võimaldab teie agendil teha matemaatilisi tehteid, nagu liitmine, lahutamine, korrutamine ja jagamine, kasutades loomulikku keelt.
+See õppetund käsitleb, kuidas ühendada kalkulaatori MCP server agentiga, kasutades Visual Studio Code'is [AI Toolkit](https://aka.ms/AIToolkit) laiendust, võimaldades agendil läbi loomuliku keele teostada liitmist, lahutamist, korrutamist ja jagamist.
 
-AI Toolkit on võimas Visual Studio Code'i laiendus, mis lihtsustab agendi arendamist. AI-insenerid saavad hõlpsasti luua AI-rakendusi, arendades ja testides generatiivseid AI-mudeleid—kohapeal või pilves. Laiendus toetab enamikku tänapäeval saadaolevatest generatiivsetest mudelitest.
+AI Toolkit on võimas Visual Studio Code'i laiendus, mis lihtsustab agentide arendamist. Tehisintellekti insenerid saavad hõlpsalt arendada ja testida generatiivseid AI mudeleid nii lokaalselt kui pilves. Laiendus toetab enamikku tänapäeval saadaolevaid suurimaid generatiivseid mudeleid.
 
-*NB*: AI Toolkit toetab praegu Pythonit ja TypeScripti.
+*Märkus*: AI Toolkit toetab praegu Pythoni ja TypeScripti.
 
 ## Õpieesmärgid
 
-Selle peatüki lõpuks oskate:
+Selle õppetunni lõpuks oskate:
 
-- Kasutada MCP serverit AI Toolkiti kaudu.
-- Konfigureerida agendi seadistust, et võimaldada tal avastada ja kasutada MCP serveri pakutavaid tööriistu.
-- Kasutada MCP tööriistu loomuliku keele kaudu.
+- Kasutada MCP serverit AI Toolkit'i kaudu.
+- Konfigureerida agendi seadistus selliselt, et see oskaks MCP serveri tööriistu avastada ja kasutada.
+- Kasutada MCP tööriistu loomuliku keele abil.
 
 ## Lähenemine
 
-Siin on üldine lähenemisviis:
+Siin on kõrgetasemeline plaan:
 
-- Looge agent ja määratlege selle süsteemiprompt.
-- Looge MCP server kalkulaatori tööriistadega.
-- Ühendage Agent Builder MCP serveriga.
-- Testige agendi tööriistade kasutamist loomuliku keele kaudu.
+- Luua agent ja määratleda tema süsteemipäring.
+- Luua MCP server kalkulaatori tööriistadega.
+- Ühenduda Agent Builderiga MCP serveri külge.
+- Testida agendi tööriistade kutsumist loomuliku keele abil.
 
-Suurepärane, nüüd kui mõistame protsessi, konfigureerime AI-agendi, et MCP kaudu väliseid tööriistu kasutada ja selle võimekust suurendada!
+Väga hästi, nüüd kui voog on selge, seadistame AI agendi, et ta kasutaks väliseid tööriistu MCP kaudu ja tõstaks oma võimekust!
 
 ## Eeltingimused
 
 - [Visual Studio Code](https://code.visualstudio.com/)
-- [AI Toolkit for Visual Studio Code](https://aka.ms/AIToolkit)
+- [AI Toolkit Visual Studio Code jaoks](https://aka.ms/AIToolkit)
 
 ## Harjutus: Serveri kasutamine
 
 > [!WARNING]
-> Märkus macOS-i kasutajatele. Uurime praegu probleemi, mis mõjutab sõltuvuste installimist macOS-is. Selle tulemusena ei saa macOS-i kasutajad praegu seda juhendit lõpule viia. Uuendame juhiseid niipea, kui lahendus on saadaval. Täname teid kannatlikkuse ja mõistmise eest!
+> Märkus macOS kasutajatele. Hetkel uurime macOS-il sõltuvuste paigaldamise probleemi. Seetõttu ei saa macOS kasutajad seda juhendit praegu lõpule viia. Täiendame juhiseid niipea, kui lahendus on olemas. Täname kannatlikkuse ja mõistva suhtumise eest!
 
-Selles harjutuses loote, käivitate ja täiustate AI-agenti MCP serveri tööriistadega Visual Studio Code'is, kasutades AI Toolkiti.
+Selles harjutuses ehitate, käivitate ja täiustate AI agendi MCP serveri tööriistadega Visual Studio Code'is, kasutades AI Toolkit'i.
 
-### -0- Eelnev samm: lisage OpenAI GPT-4o mudel Minu Mudelitesse
+### -0- Eeltöö: lisage OpenAI GPT-4o mudel My Models sektsiooni
 
-Harjutus kasutab **GPT-4o** mudelit. Mudel tuleks lisada **Minu Mudelitesse** enne agendi loomist.
+Harjutus kasutab **GPT-4o** mudelit. Mudel tuleks lisada enne agendi loomist sektsiooni **My Models**.
 
-![Kuvapilt Visual Studio Code'i AI Toolkiti laienduse mudelivaliku liidesest. Pealkiri on "Leia õige mudel oma AI lahenduse jaoks" koos alapealkirjaga, mis julgustab kasutajaid avastama, testima ja juurutama AI-mudeleid. Allpool, jaotises “Populaarsed mudelid,” kuvatakse kuus mudelikaarti: DeepSeek-R1 (GitHub-hostitud), OpenAI GPT-4o, OpenAI GPT-4.1, OpenAI o1, Phi 4 Mini (CPU - Väike, Kiire) ja DeepSeek-R1 (Ollama-hostitud). Igal kaardil on valikud “Lisa” mudel või “Proovi mänguväljakus.”](../../../../translated_images/et/aitk-model-catalog.2acd38953bb9c119.webp)
+![Kuvatõmmis mudelivaliku liidesest Visual Studio Code'i AI Toolkit laienduses. Pealkirjas on "Leia oma AI lahendusele sobiv mudel" ja alapealkirjas julgustatakse avastama, testima ja juurutama AI mudeleid. All “Popular Models” rubriigis on kuus mudelikaarte: DeepSeek-R1 (GitHub-hostitud), OpenAI GPT-4o, OpenAI GPT-4.1, OpenAI o1, Phi 4 Mini (CPU - väike, kiire) ja DeepSeek-R1 (Ollama-hostitud). Iga kaart sisaldab valikuid “Lisa” või “Proovi mänguväljakul”.](../../../../translated_images/et/aitk-model-catalog.2acd38953bb9c119.webp)
 
-1. Avage **AI Toolkit** laiendus **Activity Bar**-ist.
-1. **Kataloogi** jaotises valige **Mudelid**, et avada **Mudelite kataloog**. Mudelite valimine avab **Mudelite kataloogi** uues redaktori vahekaardil.
-1. **Mudelite kataloogi** otsinguribale sisestage **OpenAI GPT-4o**.
-1. Klõpsake **+ Lisa**, et lisada mudel oma **Minu Mudelitesse**. Veenduge, et olete valinud mudeli, mis on **GitHubi poolt hostitud**.
-1. **Activity Bar**-is kinnitage, et **OpenAI GPT-4o** mudel ilmub loendisse.
+1. Ava **AI Toolkit** laiendus **Activity Bar**'st.
+1. Osas **Catalog** vali **Models**, et avada **Model Catalog**. Mudelite valimine avab uue editori vahekaardil **Model Catalog**.
+1. Sisesta otsinguribale **OpenAI GPT-4o**.
+1. Klõpsa **+ Add**, et lisada mudel oma **My Models** nimekirja. Veendu, et valitud mudel on **GitHub-hostitud**.
+1. Kontrolli, et mudel **OpenAI GPT-4o** kuvatakse **Activity Bar'i** nimekirjas.
 
-### -1- Looge agent
+### -1- Agent looja
 
-**Agent (Prompt) Builder** võimaldab teil luua ja kohandada oma AI-põhiseid agente. Selles jaotises loote uue agendi ja määrate mudeli vestluse juhtimiseks.
+**Agent (Prompt) Builder** võimaldab sul luua ja kohandada AI-agente. Selles osas lood uue agendi ja määrad sellele mudeli, mis juhib vestlust.
 
-![Kuvapilt "Kalkulaatori agendi" ehitaja liidesest Visual Studio Code'i AI Toolkiti laienduses. Vasakul paneelil on valitud mudel "OpenAI GPT-4o (GitHubi kaudu)." Süsteemiprompt on "Olete ülikooli professor, kes õpetab matemaatikat," ja kasutajaprompt on "Selgitage Fourier'i võrrandit lihtsate sõnadega." Täiendavad valikud hõlmavad nuppe tööriistade lisamiseks, MCP serveri lubamiseks ja struktureeritud väljundi valimiseks. Allosas on sinine “Käivita” nupp. Paremal paneelil, jaotises "Alustage näidetega," on loetletud kolm näidisagenti: Veebiarendaja (koos MCP serveriga), Teise klassi lihtsustaja ja Unenäotõlgendaja, igaühe lühikirjeldustega nende funktsioonidest.](../../../../translated_images/et/aitk-agent-builder.901e3a2960c3e477.webp)
+![Kuvatõmmis "Calculator Agent" liidesest AI Toolkit laienduses Visual Studio Code'is. Vasakul valitud mudel on "OpenAI GPT-4o (via GitHub)." Süsteemipäringuks on "Oled ülikooli matemaatikaprofessor" ja kasutaja päringuks "Selgita mulle Fourier võrrandit lihtsate sõnadega." Lisavõimalused sisaldavad nuppe tööriistade lisamiseks, MCP serveri lubamiseks ja struktureeritud väljundi valimiseks. Alumine sinine nupp on “Run.” Paremal on "Get Started with Examples" sektsioonis kolm näidisagenti: Veebiarendaja (MCP Server, teise klassi lihtsustaja ja unistuste tõlgendaja), igaühel lühikirjeldus funktsioonidest.](../../../../translated_images/et/aitk-agent-builder.901e3a2960c3e477.webp)
 
-1. Avage **AI Toolkit** laiendus **Activity Bar**-ist.
-1. **Tööriistade** jaotises valige **Agent (Prompt) Builder**. Agendi valimine avab **Agent (Prompt) Builder** uues redaktori vahekaardil.
-1. Klõpsake **+ Uus agent** nuppu. Laiendus käivitab seadistusviisardi **Command Palette** kaudu.
-1. Sisestage nimi **Kalkulaatori agent** ja vajutage **Enter**.
-1. **Agent (Prompt) Builder**-is valige **Mudel**-väljal **OpenAI GPT-4o (GitHubi kaudu)** mudel.
+1. Ava **AI Toolkit** laiendus **Activity Bar** kaudu.
+1. Osas **Tools** vali **Agent (Prompt) Builder**. Valik avab uues editori vahekaardis **Agent (Prompt) Builder**.
+1. Klõpsa nuppu **+ New Agent**. Laiendus avab seadistusviisardi **Command Palette** kaudu.
+1. Sisesta nimi **Calculator Agent** ja vajuta **Enter**.
+1. **Agent (Prompt) Builder** lahtris **Model** vali mudeliks **OpenAI GPT-4o (via GitHub)**.
 
-### -2- Looge agendi süsteemiprompt
+### -2- Loo agendile süsteemipäring
 
-Kui agent on loodud, on aeg määratleda selle isiksus ja eesmärk. Selles jaotises kasutate **Generate system prompt** funktsiooni, et kirjeldada agendi kavandatud käitumist—antud juhul kalkulaatori agenti—ja lasete mudelil süsteemiprompti teie eest kirjutada.
+Kui agent on loodud, on aeg määratleda tema iseloom ja eesmärk. Selles osas kasutad funktsiooni **Generate system prompt**, et kirjeldada agendi käitumist—sel juhul kalkulaatori agenti—ja mudel genereerib süsteemipäringu sinu eest.
 
-![Kuvapilt "Kalkulaatori agendi" liidesest Visual Studio Code'i AI Toolkiti laienduses, kus on avatud modaalaken pealkirjaga "Loo prompt." Modaal selgitab, et prompti mall saab luua, jagades põhiandmeid, ja sisaldab tekstikasti näidissüsteemipromptiga: "Olete abivalmis ja tõhus matemaatikaassistent. Kui teile antakse probleem, mis hõlmab põhiaritmeetikat, vastate õige tulemusega." Tekstikasti all on nupud "Sulge" ja "Loo." Taustal on näha osa agendi konfiguratsioonist, sealhulgas valitud mudel "OpenAI GPT-4o (GitHubi kaudu)" ja väljad süsteemi- ja kasutajapromptide jaoks.](../../../../translated_images/et/aitk-generate-prompt.ba9e69d3d2bbe2a2.webp)
+![Kuvatõmmis "Calculator Agent" liidesest AI Toolkitis Visual Studio Code'is, kus avaneb modalaken pealkirjaga "Generate a prompt." Modalaken selgitab, et päringu mall genereeritakse põhiteadete jagamisega ja sisaldab teksti sisestusvälja näidis süsteemipäringuga: "Oled abivalmis ja tõhus matemaatika assistent. Kui sulle antakse probleem põhilise aritmeetika kohta, vastad õige tulemusega." All on nupud "Close" ja "Generate." Taustal on nähtav osa agendi seadistusest koos valitud mudeliga "OpenAI GPT-4o (via GitHub)" ning lahtrid süsteemipäringu ja kasutaja päringu jaoks.](../../../../translated_images/et/aitk-generate-prompt.ba9e69d3d2bbe2a2.webp)
 
-1. **Promptide** jaotises klõpsake **Generate system prompt** nuppu. See nupp avab prompti generaatori, mis kasutab AI-d agendi süsteemiprompti loomiseks.
-1. **Generate a prompt** aknas sisestage järgmine: `Olete abivalmis ja tõhus matemaatikaassistent. Kui teile antakse probleem, mis hõlmab põhiaritmeetikat, vastate õige tulemusega.`
-1. Klõpsake **Loo** nuppu. Teade ilmub paremas alanurgas, kinnitades, et süsteemiprompti genereerimine on käimas. Kui prompti genereerimine on lõpule jõudnud, ilmub prompt **System prompt**-väljal **Agent (Prompt) Builder**-is.
-1. Vaadake üle **System prompt** ja vajadusel muutke seda.
+1. Sektsioonis **Prompts** klõpsa nuppu **Generate system prompt**. See avab päringu koostaja, mis kasutab AI-d süsteemipäringu genereerimiseks agenti jaoks.
+1. Kõneaknas **Generate a prompt** sisesta järgnev: `Oled abivalmis ja tõhus matemaatika assistent. Kui sulle antakse probleem põhilise aritmeetika kohta, vastad õige tulemusega.`
+1. Klõpsa nuppu **Generate**. Alumises paremas nurgas kuvatakse teavitus, et süsteemipäringu genereerimine on alanud. Kui genereerimine lõpeb, kuvatakse päring väljal **System prompt** **Agent (Prompt) Builderis**.
+1. Vaata üle **System prompt** ja vajadusel muuda.
 
-### -3- Looge MCP server
+### -3- Loo MCP server
 
-Nüüd, kui olete määratlenud oma agendi süsteemiprompti—juhendades selle käitumist ja vastuseid—on aeg varustada agent praktiliste võimekustega. Selles jaotises loote kalkulaatori MCP serveri tööriistadega, mis võimaldavad teostada liitmise, lahutamise, korrutamise ja jagamise arvutusi. See server võimaldab teie agendil teha reaalajas matemaatilisi tehteid vastuseks loomuliku keele promptidele.
+Kui oled agendi süsteemipäringu määratlenud—mida juhib tema käitumine ja vastused—on aeg anda agentidele praktilised võimed. Selles osas lood kalkulaatori MCP serveri, mille tööriistad teostavad liitmist, lahutamist, korrutamist ja jagamist. See server võimaldab agendil teha reaalajas matemaatilisi operatsioone loomulike keelepäringute põhjal.
 
-!["Kuvapilt Kalkulaatori agendi liidese alumisest osast Visual Studio Code'i AI Toolkiti laienduses. Näidatud on laiendatavad menüüd “Tööriistad” ja “Struktureeritud väljund,” koos rippmenüüga “Vali väljundi formaat,” mis on seatud “tekst.” Paremal on nupp “+ MCP Server” Model Context Protocol serveri lisamiseks. Tööriistade jaotise kohal on pildiikooni kohatäide.](../../../../translated_images/et/aitk-add-mcp-server.9742cfddfe808353.webp)
+![Kuvatõmmis Kalkulaatori Agendi liidese alumisest osast AI Toolkit laienduses Visual Studio Code'is. Kuvatud on laiendatavad menüüd “Tools” ja “Structure output,” samuti rippmenüü “Choose output format” väärtusega “text.” Paremal on nupp “+ MCP Server” Model Context Protocoli serveri lisamiseks. Üles on pildikoha ikoon.](../../../../translated_images/et/aitk-add-mcp-server.9742cfddfe808353.webp)
 
-AI Toolkit on varustatud mallidega, mis lihtsustavad oma MCP serveri loomist. Kasutame kalkulaatori MCP serveri loomiseks Python-malli.
+AI Toolkit sisaldab malle, mis lihtsustavad oma MCP serveri loomist. Siin kasutame kalkulaatori MCP serveri loomisel Python malle.
 
-*NB*: AI Toolkit toetab praegu Pythonit ja TypeScripti.
+*Märkus*: AI Toolkit toetab praegu Pythoni ja TypeScripti.
 
-1. **Agent (Prompt) Builder**-i **Tööriistade** jaotises klõpsake **+ MCP Server** nuppu. Laiendus käivitab seadistusviisardi **Command Palette** kaudu.
-1. Valige **+ Lisa server**.
-1. Valige **Loo uus MCP server**.
-1. Valige malliks **python-weather**.
-1. Valige **Vaikimisi kaust**, et salvestada MCP serveri mall.
-1. Sisestage serveri nimeks: **Kalkulaator**
-1. Avaneb uus Visual Studio Code'i aken. Valige **Jah, usaldan autoreid**.
-1. Kasutades terminali (**Terminal** > **Uus terminal**), looge virtuaalne keskkond: `python -m venv .venv`
-1. Kasutades terminali, aktiveerige virtuaalne keskkond:
+1. Sektsioonis **Tools** **Agent (Prompt) Builder** aknas klõpsa nuppu **+ MCP Server**. Laiendus käivitab seadistusviisardi **Command Palette** kaudu.
+1. Vali **+ Add Server**.
+1. Vali **Create a New MCP Server**.
+1. Vali malliks **python-weather**.
+1. Vali salvestamiseks **Default folder**.
+1. Sisesta serveri nimeks: **Calculator**
+1. Avaneb uus Visual Studio Code'i aken. Vali **Yes, I trust the authors**.
+1. Terminalis (**Terminal** > **New Terminal**) loo virtuaalne keskkond: `python -m venv .venv`
+1. Terminalis aktiveeri virtuaalne keskkond:
     1. Windows - `.venv\Scripts\activate`
     1. macOS/Linux - `source .venv/bin/activate`
-1. Kasutades terminali, installige sõltuvused: `pip install -e .[dev]`
-1. **Activity Bar**-i **Explorer** vaates laiendage **src** kataloogi ja valige **server.py**, et avada fail redaktoris.
-1. Asendage **server.py** failis olev kood järgmisega ja salvestage:
+1. Terminalis paigalda sõltuvused: `pip install -e .[dev]`
+1. **Exploreri** vaates **Activity Bar'is** ava kataloog **src** ja vali fail **server.py**, et faili editoris avada.
+1. Asenda faili **server.py** sisu järgnevaga ja salvesta:
 
     ```python
     """
@@ -144,51 +144,53 @@ AI Toolkit on varustatud mallidega, mis lihtsustavad oma MCP serveri loomist. Ka
         return a / b
     ```
 
-### -4- Käivitage agent kalkulaatori MCP serveriga
+### -4- Käivita agent kalkulaatori MCP serveriga
 
-Nüüd, kui teie agendil on tööriistad, on aeg neid kasutada! Selles jaotises esitate agendile promptid, et testida ja valideerida, kas agent kasutab kalkulaatori MCP serveri sobivat tööriista.
+Nüüd, kui agendil on tööriistad, on aeg neid kasutada! Selles osas saad agendile esitada päringuid, et testida ja kontrollida, kas agent kasutab kalkulaatori MCP serveri sobivat tööriista.
 
-![Kuvapilt Kalkulaatori agendi liidesest Visual Studio Code'i AI Toolkiti laienduses. Vasakul paneelil, jaotises “Tööriistad,” on lisatud MCP server nimega local-server-calculator_server, mis näitab nelja saadaval olevat tööriista: liitmine, lahutamine, korrutamine ja jagamine. Märk näitab, et neli tööriista on aktiivsed. Allpool on kokkuvolditud “Struktureeritud väljund” ja sinine “Käivita” nupp. Paremal paneelil, jaotises “Mudelivastus,” kutsub agent esile korrutamise ja lahutamise tööriistad sisenditega {"a": 3, "b": 25} ja {"a": 75, "b": 20} vastavalt. Lõplik “Tööriistavastus” on näidatud kui 75.0. Allosas on nupp “Vaata koodi.”](../../../../translated_images/et/aitk-agent-response-with-tools.e7c781869dc8041a.webp)
+![Kuvatõmmis Kalkulaatori Agendi liidesest AI Toolkit laienduses Visual Studio Code'is. Vasakul paneelil on “Tools” all lisatud MCP server nimega local-server-calculator_server, mis kuvab neli saadaolevat tööriista: add, subtract, multiply ja divide. Märge näitab, et neli tööriista on aktiivsed. All on kokkupandud sektsioon “Structure output” ja sinine nupp “Run.” Paremal paneelil “Model Response” osas kutsub agent korrutamise ja lahutamise tööriistu sisenditega {"a": 3, "b": 25} ja {"a": 75, "b": 20}. Lõplik “Tool Response” on 75.0. All on nupp “View Code.”](../../../../translated_images/et/aitk-agent-response-with-tools.e7c781869dc8041a.webp)
 
-Kalkulaatori MCP server käivitatakse teie kohalikus arendusmasinas **Agent Builder**-i kaudu MCP kliendina.
+Sa jooksutad kalkulaatori MCP serverit oma lokaalses arenduskeskkonnas läbi **Agent Builderi** MCP kliendina.
 
-1. Vajutage `F5`, et alustada MCP serveri silumist. **Agent (Prompt) Builder** avaneb uues redaktori vahekaardil. Serveri olek on nähtav terminalis.
-1. **Agent (Prompt) Builder**-i **Kasutajaprompti** väljal sisestage järgmine prompt: `Ostsin 3 eset hinnaga $25 tükk ja kasutasin $20 soodustust. Kui palju ma maksin?`
-1. Klõpsake **Käivita** nuppu, et genereerida agendi vastus.
-1. Vaadake üle agendi väljund. Mudel peaks järeldama, et maksite **$55**.
-1. Siin on ülevaade, mis peaks toimuma:
-    - Agent valib **korrutamise** ja **lahutamise** tööriistad, et aidata arvutuses.
-    - Vastavad `a` ja `b` väärtused määratakse **korrutamise** tööriistale.
-    - Vastavad `a` ja `b` väärtused määratakse **lahutamise** tööriistale.
-    - Iga tööriista vastus esitatakse vastavas **Tööriistavastuses**.
-    - Lõplik mudeli väljund esitatakse lõplikus **Mudelivastuses**.
-1. Esitage täiendavaid prompti, et agenti edasi testida. Saate olemasolevat prompti **Kasutajaprompti** väljal muuta, klõpsates väljal ja asendades olemasoleva prompti.
-1. Kui olete agendi testimise lõpetanud, saate serveri terminali kaudu peatada, sisestades **CTRL/CMD+C**, et väljuda.
+1. Vajuta `F5`, et alustada MCP serveri silumist. **Agent (Prompt) Builder** avaneb uues editori vahekaardis. Serveri olek on nähtav terminalis.
+1. Sisesta **User prompt** väljale **Agent (Prompt) Builderis** järgmine päring: `Ma ostsin 3 eset hinnaga 25 dollarit tükk ja kasutasin 20 dollari suurust allahindlust. Kui palju ma maksin?`
+1. Klõpsa nuppu **Run**, et genereerida agendi vastus.
+1. Vaata üle agendi väljund. Mudel peaks jõudma järeldusele, et maksisite **55 dollarit**.
+1. Tööprotsessi jagunemine peaks olema järgmine:
+    - Agent valib arvutamiseks tööriistad **multiply** ja **subtract**.
+    - Tööriistale **multiply** määratakse vastavad väärtused `a` ja `b`.
+    - Tööriistale **subtract** määratakse vastavad väärtused `a` ja `b`.
+    - Mõlema tööriista vastused kuvatakse välja **Tool Response** all.
+    - Mudeli lõplik väljund kuvatakse välja **Model Response** all.
+1. Esita agendile täiendavaid päringuid testi laiendamiseks. Sa võid muuta olemasolevat päringut **User prompt** väljal, klõpsates sinna ja asendades tekst.
+1. Kui testimine on tehtud, saad serveri terminalis peatada vajutades **CTRL/CMD+C**.
 
-## Ülesanne
+## Kodutöö
 
-Proovige lisada oma **server.py** faili täiendav tööriista kirje (nt tagastage arvu ruutjuur). Esitage täiendavaid prompti, mis nõuaksid agendilt teie uue tööriista (või olemasolevate tööriistade) kasutamist. Veenduge, et server taaskäivituks, et laadida äsja lisatud tööriistad.
+Proovi lisada lisatööriist oma faili **server.py** (näiteks ruutjuure leidmine). Esita agendile päringuid, mis nõuavad sinu uue või olemasolevate tööriistade kasutamist. Ära unusta server uuesti käivitada uus lisatud tööriistade laadimiseks.
 
 ## Lahendus
 
 [Lahendus](./solution/README.md)
 
-## Peamised õppetunnid
+## Peamised mõtted
 
-Selle peatüki peamised õppetunnid on järgmised:
+Selle peatüki peamised mõtted on järgmised:
 
-- AI Toolkiti laiendus on suurepärane klient, mis võimaldab MCP serverite ja nende tööriistade kasutamist.
-- MCP serveritele saab lisada uusi tööriistu, laiendades agendi võimekust vastavalt muutuvatele nõuetele.
-- AI Toolkit sisaldab malle (nt Python MCP serveri mallid), et lihtsustada kohandatud tööriistade loomist.
+- AI Toolkit laiendus on suurepärane klient, mis võimaldab MCP servereid ja nende tööriistu kasutada.
+- Sa saad MCP serveritele lisada uusi tööriistu, laiendades agendi võimekust vastavalt muutuvatele nõudmistele.
+- AI Toolkit sisaldab malle (näiteks Python MCP serveri malle), mis lihtsustavad kohandatud tööriistade loomist.
 
-## Täiendavad ressursid
+## Lisamaterjalid
 
-- [AI Toolkiti dokumentatsioon](https://aka.ms/AIToolkit/doc)
+- [AI Toolkit dokumentatsioon](https://aka.ms/AIToolkit/doc)
 
-## Mis edasi
+## Mis järgnevalt
 - Järgmine: [Testimine ja silumine](../08-testing/README.md)
 
 ---
 
-**Lahtiütlus**:  
-See dokument on tõlgitud AI tõlketeenuse [Co-op Translator](https://github.com/Azure/co-op-translator) abil. Kuigi püüame tagada täpsust, palume arvestada, et automaatsed tõlked võivad sisaldada vigu või ebatäpsusi. Algne dokument selle algses keeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitame kasutada professionaalset inimtõlget. Me ei vastuta selle tõlke kasutamisest tulenevate arusaamatuste või valesti tõlgenduste eest.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Lahtiütlus**:
+See dokument on tõlgitud kasutades AI tõlketeenust [Co-op Translator](https://github.com/Azure/co-op-translator). Kuigi me püüdleme täpsuse poole, palun pange tähele, et automatiseeritud tõlgetes võib esineda vigu või ebatäpsusi. Originaaldokument selle emakeeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitatakse kasutada professionaalset inimtõlget. Me ei vastuta selle tõlkega seotud eksimustest või valesti mõistmistest.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

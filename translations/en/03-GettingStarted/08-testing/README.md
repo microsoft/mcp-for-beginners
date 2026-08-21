@@ -19,7 +19,7 @@ By the end of this lesson, you will be able to:
 MCP provides tools to help you test and debug your servers:
 
 - **MCP Inspector**: A command line tool that can be run both as a CLI tool and as a visual tool.
-- **Manual testing**: You can use a tool like curl to run web requests, but any tool capabable of running HTTP will do.
+- **Manual testing**: You can use a tool like curl to run web requests, but any tool capable of running HTTP will do.
 - **Unit testing**: It's possible to use your preferred testing framework to test the features of both server and client.
 
 ### Using MCP Inspector
@@ -50,7 +50,7 @@ npx @modelcontextprotocol/inspector --cli node build/index.js --method tools/lis
 
 ### Manual Testing
 
-Apart from running the inspector tool to test server capabilities, another similar approach is to run a client capable of using HTTP lik for example curl.
+Apart from running the inspector tool to test server capabilities, another similar approach is to run a client capable of using HTTP like for example curl.
 
 With curl, you can test MCP servers directly using HTTP requests:
 
@@ -64,7 +64,7 @@ curl -X POST http://localhost:3000/v1/tools/execute \
   -d '{"name": "calculator", "parameters": {"expression": "2+2"}}'
 ```
 
-As you can see from above usage of curl, you use a POST request  to invoke a tool using a payload consisting of the tools name and its parameters. Use the approach that fits you best. CLI tools in general tends to be faster to use and lends themselves to be scripted which can be useful in a CI/CD environment.
+As you can see from above usage of curl, you use a POST request to invoke a tool using a payload consisting of the tool's name and its parameters. Use the approach that fits you best. CLI tools in general tend to be faster to use and lend themselves to be scripted which can be useful in a CI/CD environment.
 
 ### Unit Testing
 
