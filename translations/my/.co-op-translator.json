@@ -870,8 +870,8 @@
     "language_code": "my"
   },
   "README.md": {
-    "original_hash": "8c09e6bcaa3074688645c3e5fcaa8681",
-    "translation_date": "2026-07-09T05:25:39+00:00",
+    "original_hash": "70e26fed3fc555e89b34b9023deb392b",
+    "translation_date": "2026-08-21T16:26:03+00:00",
     "source_file": "README.md",
     "language_code": "my"
   },
@@ -888,22 +888,11 @@
     "language_code": "my"
   },
   "__translation_failures__": {
-    "README.md": {
-      "original_hash": "70e26fed3fc555e89b34b9023deb392b",
-      "source_file": "README.md",
-      "language_code": "my",
-      "failure_date": "2026-08-18T11:42:16+00:00",
-      "status": "failed",
-      "error_type": "TranslationIncompleteError",
-      "error_message": "Markdown translation remained incomplete for chunk 3.2.1 of 'README.md', and the chunk could not be split further.",
-      "translator_version": "0.20.0",
-      "failure_policy_version": 1
-    },
     "08-BestPractices/README.md": {
       "original_hash": "8ba1781e6978308063cb698d13bcde43",
       "source_file": "08-BestPractices/README.md",
       "language_code": "my",
-      "failure_date": "2026-08-18T11:51:35+00:00",
+      "failure_date": "2026-08-21T16:36:12+00:00",
       "status": "failed",
       "error_type": "TranslationIncompleteError",
       "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'README.md', and the chunk could not be split further.",
