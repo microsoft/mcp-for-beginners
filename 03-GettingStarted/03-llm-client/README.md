@@ -176,7 +176,9 @@ First, you'll need to add the LangChain4j dependencies to your `pom.xml` file. A
 </dependencies>
 ```
 
-Set your MiniMax API key and, optionally, the endpoint and model. `MINIMAX_MODEL_ID` supports `MiniMax-M3` and `MiniMax-M2.7`.
+Set your MiniMax API key and, optionally, the endpoint and model.
+`MINIMAX_MODEL_ID` supports `MiniMax-M3` and `MiniMax-M2.7`. If
+`OPENAI_BASE_URL` is not set, `MINIMAX_REGION` supports `global_en` and `cn_zh`.
 
 ```bash
 export OPENAI_API_KEY=your_minimax_api_key_here
