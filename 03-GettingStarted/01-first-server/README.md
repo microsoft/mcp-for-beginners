@@ -509,10 +509,10 @@ Now you have a server, but it doesn't do much, let' fix that.
 
 ```python
 # server.py
-from mcp.server.fastmcp import FastMCP
+from mcp.server import MCPServer
 
 # Create an MCP server
-mcp = FastMCP("Demo")
+mcp = MCPServer("Demo")
 ```
 
 #### .NET
