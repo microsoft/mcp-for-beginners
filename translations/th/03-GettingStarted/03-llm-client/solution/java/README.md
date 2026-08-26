@@ -1,68 +1,66 @@
-# Calculator LLM Client
+# ลูกค้าเครื่องคิดเลข LLM
 
-แอปพลิเคชัน Java ที่แสดงตัวอย่างการใช้ LangChain4j เพื่อเชื่อมต่อกับบริการเครื่องคิดเลข MCP (Model Context Protocol) พร้อมการผสานรวมกับ GitHub Models
+แอปพลิเคชัน Java ที่สาธิตวิธีใช้ LangChain4j เพื่อเชื่อมต่อกับบริการเครื่องคิดเลข MCP (Model Context Protocol) ผ่าน API ที่เข้ากันได้กับ MiniMax OpenAI
 
-## ข้อกำหนดเบื้องต้น
+## สิ่งที่ต้องเตรียม
 
-- Java 21 ขึ้นไป
-- Maven 3.6+ (หรือใช้ Maven wrapper ที่แนบมา)
-- บัญชี GitHub ที่มีสิทธิ์เข้าถึง GitHub Models
-- บริการเครื่องคิดเลข MCP ที่รันอยู่บน `http://localhost:8080`
+- Java 21 หรือสูงกว่า
+- Maven 3.6+ (หรือใช้ Maven wrapper ที่มาในแพ็กเกจ)
+- คีย์ MiniMax API
+- บริการเครื่องคิดเลข MCP ที่กำลังทำงานอยู่บน `http://localhost:8080`
 
-## การขอรับ GitHub Token
+## การรับคีย์ API
 
-แอปนี้ใช้ GitHub Models ซึ่งต้องใช้ GitHub personal access token ทำตามขั้นตอนเหล่านี้เพื่อรับ token ของคุณ:
+แอปพลิเคชันนี้ใช้ API ที่เข้ากันได้กับ MiniMax OpenAI ทำตามขั้นตอนเหล่านี้เพื่อรับคีย์และ endpoint ของคุณ:
 
-### 1. เข้าถึง GitHub Models
-1. ไปที่ [GitHub Models](https://github.com/marketplace/models)
-2. ลงชื่อเข้าใช้ด้วยบัญชี GitHub ของคุณ
-3. ขอสิทธิ์เข้าถึง GitHub Models หากยังไม่ได้รับ
+### 1. เลือก endpoint
+1. ใช้ `https://api.minimax.io/v1` สำหรับ endpoint ทั่วโลก
+2. ใช้ `https://api.minimaxi.com/v1` สำหรับ endpoint ประเทศจีน
 
-### 2. สร้าง Personal Access Token
-1. ไปที่ [GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)](https://github.com/settings/tokens)
-2. คลิก "Generate new token" → "Generate new token (classic)"
-3. ตั้งชื่อ token ให้ชัดเจน (เช่น "MCP Calculator Client")
-4. กำหนดวันหมดอายุตามต้องการ
-5. เลือก scope ดังนี้:
-   - `repo` (ถ้าต้องการเข้าถึง repository ส่วนตัว)
-   - `user:email`
-6. คลิก "Generate token"
-7. **สำคัญ**: คัดลอก token ทันที - คุณจะไม่สามารถดูได้อีกครั้ง!
+### 2. สร้างคีย์ API
+1. สร้างคีย์ MiniMax API จากบัญชี MiniMax ของคุณ
+2. เก็บคีย์ไว้ในที่ปลอดภัย
 
-### 3. ตั้งค่าตัวแปรสภาพแวดล้อม
+### 3. ตั้งค่าตัวแปรแวดล้อม
 
 #### บน Windows (Command Prompt):
 ```cmd
-set GITHUB_TOKEN=your_github_token_here
+set OPENAI_API_KEY=your_minimax_api_key_here
+set OPENAI_BASE_URL=https://api.minimax.io/v1
+set MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
 #### บน Windows (PowerShell):
 ```powershell
-$env:GITHUB_TOKEN="your_github_token_here"
+$env:OPENAI_API_KEY="your_minimax_api_key_here"
+$env:OPENAI_BASE_URL="https://api.minimax.io/v1"
+$env:MINIMAX_MODEL_ID="MiniMax-M3"
 ```
 
 #### บน macOS/Linux:
 ```bash
-export GITHUB_TOKEN=your_github_token_here
+export OPENAI_API_KEY=your_minimax_api_key_here
+export OPENAI_BASE_URL=https://api.minimax.io/v1
+export MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
-## การตั้งค่าและติดตั้ง
+## การตั้งค่าและการติดตั้ง
 
-1. **โคลนหรือไปยังไดเรกทอรีโปรเจกต์**
+1. **โคลน หรือเข้าไปยังไดเรกทอรีโปรเจกต์**
 
 2. **ติดตั้ง dependencies**:
    ```cmd
    mvnw clean install
    ```
-   หรือถ้าคุณติดตั้ง Maven ไว้ในระบบแล้ว:
+   หรือถ้าคุณติดตั้ง Maven ไว้ทั่วระบบ:
    ```cmd
    mvn clean install
    ```
 
-3. **ตั้งค่าตัวแปรสภาพแวดล้อม** (ดูหัวข้อ "การขอรับ GitHub Token" ข้างต้น)
+3. **ตั้งค่าตัวแปรแวดล้อม** (ดูที่หัวข้อ "การรับคีย์ API" ข้างต้น)
 
-4. **เริ่มบริการ MCP Calculator**:
-   ตรวจสอบให้แน่ใจว่าบริการ MCP calculator จากบทที่ 1 กำลังรันอยู่ที่ `http://localhost:8080/sse` ก่อนเริ่มใช้งาน client
+4. **เริ่มต้นบริการ MCP Calculator**:
+   ตรวจสอบให้แน่ใจว่าบริการ MCP calculator ในบทที่ 1 กำลังทำงานอยู่บน `http://localhost:8080/sse` ควรเปิดบริการนี้ก่อนเริ่มไคลเอนต์
 
 ## การรันแอปพลิเคชัน
 
@@ -73,15 +71,15 @@ java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 
 ## แอปพลิเคชันทำอะไร
 
-แอปนี้แสดงตัวอย่างการโต้ตอบหลัก 3 แบบกับบริการเครื่องคิดเลข:
+แอปพลิเคชันสาธิตการโต้ตอบหลักสามอย่างกับบริการเครื่องคิดเลข:
 
 1. **การบวก**: คำนวณผลรวมของ 24.5 และ 17.3
-2. **การหารากที่สอง**: คำนวณรากที่สองของ 144
+2. **รากที่สอง**: คำนวณรากที่สองของ 144
 3. **ช่วยเหลือ**: แสดงฟังก์ชันเครื่องคิดเลขที่มีให้ใช้งาน
 
 ## ผลลัพธ์ที่คาดหวัง
 
-เมื่อรันสำเร็จ คุณจะเห็นผลลัพธ์คล้ายกับ:
+เมื่อรันสำเร็จ คุณควรเห็นผลลัพธ์ที่คล้ายกับ:
 
 ```
 The sum of 24.5 and 17.3 is 41.8.
@@ -91,27 +89,27 @@ The calculator service provides the following functions: add, subtract, multiply
 
 ## การแก้ไขปัญหา
 
-### ปัญหาที่พบบ่อย
+### ปัญหาทั่วไป
 
-1. **"GITHUB_TOKEN environment variable not set"**
-   - ตรวจสอบว่าคุณได้ตั้งค่าตัวแปรสภาพแวดล้อม `GITHUB_TOKEN` แล้ว
-   - รีสตาร์ทเทอร์มินัลหรือ command prompt หลังตั้งค่า
+1. **"ตัวแปรแวดล้อม OPENAI_API_KEY ยังไม่ได้ตั้งค่า"**
+   - ตรวจสอบว่าคุณได้ตั้งค่าตัวแปรแวดล้อม `OPENAI_API_KEY` แล้ว
+   - รีสตาร์ทเทอร์มินัล/คอนโซลหลังจากตั้งค่าตัวแปรเสร็จ
 
-2. **"Connection refused to localhost:8080"**
+2. **"เชื่อมต่อ localhost:8080 ถูกปฏิเสธ"**
    - ตรวจสอบว่าบริการ MCP calculator กำลังรันบนพอร์ต 8080
-   - ตรวจสอบว่าบริการอื่นไม่ได้ใช้พอร์ต 8080 อยู่
+   - ตรวจสอบว่าไม่มีบริการอื่นใช้พอร์ต 8080 อยู่
 
-3. **"Authentication failed"**
-   - ตรวจสอบว่า token GitHub ของคุณถูกต้องและมีสิทธิ์ที่เหมาะสม
-   - ตรวจสอบว่าคุณมีสิทธิ์เข้าถึง GitHub Models
+3. **"การตรวจสอบสิทธิ์ล้มเหลว"**
+   - ตรวจสอบว่าคีย์ API ของคุณถูกต้อง
+   - ตรวจสอบว่า `OPENAI_BASE_URL` ตรงกับ endpoint ที่คุณตั้งใจใช้
 
-4. **ข้อผิดพลาดในการ build ด้วย Maven**
-   - ตรวจสอบว่าใช้ Java 21 ขึ้นไป: `java -version`
-   - ลองทำความสะอาด build: `mvnw clean`
+4. **ข้อผิดพลาดในการ build Maven**
+   - ตรวจสอบให้แน่ใจว่าคุณใช้ Java 21 หรือสูงกว่า: `java -version`
+   - ลองล้างการ build ด้วยคำสั่ง: `mvnw clean`
 
 ### การดีบัก
 
-เพื่อเปิดใช้งานการบันทึก debug ให้เพิ่มอาร์กิวเมนต์ JVM ต่อไปนี้เมื่อรัน:
+เพื่อเปิดใช้งานการล็อกดีบัก ให้เพิ่มอาร์กิวเมนต์ JVM ต่อไปนี้เมื่อรัน:
 ```cmd
 java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
@@ -119,22 +117,26 @@ java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0
 ## การตั้งค่า
 
 แอปพลิเคชันตั้งค่าให้:
-- ใช้ GitHub Models กับโมเดล `gpt-4.1-nano`
+- ใช้ MiniMax-M3 เป็นค่าเริ่มต้น หรือ MiniMax-M2.7 เมื่อมีการตั้งค่า `MINIMAX_MODEL_ID`
+- เชื่อมต่อกับ `OPENAI_BASE_URL` เมื่อถูกตั้งค่า; หากไม่กำหนด ให้ใช้ `https://api.minimaxi.com/v1` เมื่อ `MINIMAX_REGION=cn_zh` หรือ `https://api.minimax.io/v1` เป็นค่าเริ่มต้น
 - เชื่อมต่อกับบริการ MCP ที่ `http://localhost:8080/sse`
-- ตั้งเวลาหมดเวลา (timeout) สำหรับคำขอ 60 วินาที
-- เปิดใช้งานการบันทึกคำขอ/คำตอบเพื่อช่วยดีบัก
+- ใช้การหมดเวลา 60 วินาทีสำหรับคำขอ
 
-## Dependencies
+## ไลบรารีที่ใช้
 
 ไลบรารีหลักที่ใช้ในโปรเจกต์นี้:
-- **LangChain4j**: สำหรับการผสาน AI และจัดการเครื่องมือ
-- **LangChain4j MCP**: สำหรับรองรับ Model Context Protocol
-- **LangChain4j GitHub Models**: สำหรับการผสานรวม GitHub Models
+- **LangChain4j**: สำหรับการผนวก AI และการจัดการเครื่องมือ
+- **LangChain4j MCP**: สำหรับการสนับสนุน Model Context Protocol
+- **LangChain4j OpenAI official**: สำหรับการผนวก MiniMax API ที่เข้ากันได้กับ OpenAI
 - **Spring Boot**: สำหรับเฟรมเวิร์กแอปพลิเคชันและการฉีดพึ่งพา
 
 ## ใบอนุญาต
 
-โปรเจกต์นี้ได้รับอนุญาตภายใต้ Apache License 2.0 - ดูรายละเอียดได้ที่ไฟล์ [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE)
+โปรเจกต์นี้ได้รับอนุญาตภายใต้ใบอนุญาต Apache License 2.0 - ดูรายละเอียดได้ในไฟล์ [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE)
 
-**ข้อจำกัดความรับผิดชอบ**:  
-เอกสารนี้ได้รับการแปลโดยใช้บริการแปลภาษาอัตโนมัติ [Co-op Translator](https://github.com/Azure/co-op-translator) แม้เราจะพยายามให้ความถูกต้องสูงสุด แต่โปรดทราบว่าการแปลอัตโนมัติอาจมีข้อผิดพลาดหรือความไม่ถูกต้อง เอกสารต้นฉบับในภาษาต้นทางถือเป็นแหล่งข้อมูลที่เชื่อถือได้ สำหรับข้อมูลที่สำคัญ ขอแนะนำให้ใช้บริการแปลโดยผู้เชี่ยวชาญมนุษย์ เราไม่รับผิดชอบต่อความเข้าใจผิดหรือการตีความผิดใด ๆ ที่เกิดจากการใช้การแปลนี้
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**ปฏิเสธความรับผิดชอบ**:
+เอกสารนี้ได้รับการแปลโดยใช้บริการแปลภาษา AI [Co-op Translator](https://github.com/Azure/co-op-translator) ขณะที่เราพยายามให้ความถูกต้อง โปรดทราบว่าการแปลโดยอัตโนมัติอาจมีข้อผิดพลาดหรือความไม่ถูกต้อง เอกสารต้นฉบับในภาษาต้นทางควรถูกพิจารณาเป็นแหล่งข้อมูลที่เชื่อถือได้ สำหรับข้อมูลที่สำคัญ แนะนำให้ใช้การแปลโดยมนุษย์มืออาชีพ เราไม่รับผิดชอบต่อความเข้าใจผิดหรือการตีความที่ผิดพลาดที่เกิดขึ้นจากการใช้การแปลนี้
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
