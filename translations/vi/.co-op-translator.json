@@ -893,22 +893,9 @@
     "source_file": "SUPPORT.md",
     "language_code": "vi"
   },
-  "__translation_failures__": {
-    "changelog.md": {
-      "original_hash": "60677e2e90cc496806c9a28dcebdc325",
-      "source_file": "changelog.md",
-      "language_code": "vi",
-      "failure_date": "2026-08-19T04:48:31+00:00",
-      "status": "failed",
-      "error_type": "TranslationIncompleteError",
-      "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'changelog.md', and the chunk could not be split further.",
-      "translator_version": "0.20.0",
-      "failure_policy_version": 1
-    }
-  },
   "changelog.md": {
-    "original_hash": "20f1f1af027c13294024fe6a9ea90e37",
-    "translation_date": "2026-07-07T06:51:38+00:00",
+    "original_hash": "60677e2e90cc496806c9a28dcebdc325",
+    "translation_date": "2026-08-21T18:22:03+00:00",
     "source_file": "changelog.md",
     "language_code": "vi"
   },

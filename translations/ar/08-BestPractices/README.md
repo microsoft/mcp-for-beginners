@@ -2,11 +2,11 @@
 
 [![أفضل ممارسات تطوير MCP](../../../translated_images/ar/09.d0f6d86c9d72134c.webp)](https://youtu.be/W56H9W7x-ao)
 
-_(اضغط على الصورة أعلاه لمشاهدة فيديو هذا الدرس)_
+_(انقر على الصورة أعلاه لمشاهدة فيديو هذا الدرس)_
 
 ## نظرة عامة
 
-يركز هذا الدرس على أفضل الممارسات المتقدمة لتطوير واختبار ونشر خوادم وميزات MCP في بيئات الإنتاج. مع تعقيد وأهمية أنظمة MCP التي تتزايد، فإن اتباع الأنماط المعتمدة يضمن الموثوقية وسهولة الصيانة والتشغيل البيني. يجمع هذا الدرس الحكمة العملية المكتسبة من تطبيقات MCP الحقيقية لتوجيهك في إنشاء خوادم قوية وفعالة مع موارد ومطالبات وأدوات فعالة.
+يركز هذا الدرس على أفضل الممارسات المتقدمة لتطوير واختبار ونشر خوادم وميزات MCP في بيئات الإنتاج. مع زيادة تعقيد وأهمية نظم MCP، يضمن اتباع الأنماط المعتمدة الموثوقية وقابلية الصيانة وقابلية التشغيل البيني. يجمع هذا الدرس الحكمة العملية المستفادة من تطبيقات MCP الواقعية لتوجيهك نحو إنشاء خوادم قوية وفعالة باستخدام موارد ومحفزات وأدوات فعالة.
 
 ## أهداف التعلم
 
@@ -15,75 +15,101 @@ _(اضغط على الصورة أعلاه لمشاهدة فيديو هذا ال�
 - تطبيق أفضل الممارسات الصناعية في تصميم خوادم وميزات MCP
 - إنشاء استراتيجيات اختبار شاملة لخوادم MCP
 - تصميم أنماط سير عمل فعالة وقابلة لإعادة الاستخدام لتطبيقات MCP المعقدة
-- تنفيذ التعامل السليم مع الأخطاء، والتسجيل، ورصد الأداء في خوادم MCP
-- تحسين تطبيقات MCP لأداء أفضل، وأمان، وسهولة صيانة
+- تنفيذ معالجة أخطاء صحيحة، وتسجيل، وإمكانية مراقبة في خوادم MCP
+- تحسين تطبيقات MCP من حيث الأداء والأمن وقابلية الصيانة
 
-## مبادئ MCP الأساسية
+## المبادئ الأساسية لـ MCP
 
 قبل الخوض في ممارسات التنفيذ المحددة، من المهم فهم المبادئ الأساسية التي توجه تطوير MCP الفعال:
 
-1. **الاتصال الموحد**: يستخدم MCP JSON-RPC 2.0 كأساس له، مما يوفر تنسيقًا متسقًا للطلبات، والاستجابات، والتعامل مع الأخطاء عبر جميع التطبيقات.
+1. **التواصل الموحد**: يستخدم MCP بروتوكول JSON-RPC 2.0 كأساس له، موفرًا تنسيقًا موحدًا للطلبات والاستجابات ومعالجة الأخطاء عبر جميع التطبيقات.
 
-2. **تصميم يركز على المستخدم**: دائمًا أعطِ الأولوية لموافقة المستخدم، والسيطرة، والشفافية في تطبيقات MCP الخاصة بك.
+2. **تصميم موجه للمستخدم**: دائمًا أولي أهمية لموافقة المستخدم، والتحكم، والشفافية في تطبيقات MCP الخاصة بك.
 
-3. **الأمان أولاً**: نفذ تدابير أمان قوية تشمل المصادقة، والتفويض، والتحقق، وتحديد المعدل.
+3. **الأمن أولاً**: طبق تدابير أمنية قوية تشمل التوثيق، والتفويض، والتحقق، وتحديد المعدل.
 
-4. **بنية معيارية**: صمّم خوادم MCP الخاصة بك بنهج معياري، حيث يكون لكل أداة وموارد هدف واضح ومركز.
+4. **هندسة معيارية**: صمم خوادم MCP الخاصة بك بنهج معياري، حيث يكون لكل أداة وموارد هدف واضح ومركز.
 
-5. **اتصالات محافظة على الحالة**: استفد من قدرة MCP على الحفاظ على الحالة عبر عدة طلبات لتفاعلات أكثر تماسكًا ووعيًا بالسياق.
+5. **الحالة الصريحة**: MCP `2026-07-28` هو بلا حالة على مستوى البروتوكول
+   . عندما يحتاج سير العمل إلى حالة عبر المكالمات، استخدم مقابض صريحة أو
+   وسائط أداة عادية مدعومة بحالة تطبيق دائمة.
 
 ## أفضل الممارسات الرسمية لـ MCP
 
-أفضل الممارسات التالية مستمدة من وثائق بروتوكول سياق النموذج الرسمية:
+تستند أفضل الممارسات التالية إلى مستندات بروتوكول نموذج السياق الرسمي:
 
-### أفضل ممارسات الأمان
+### أفضل الممارسات الأمنية
 
-1. **موافقة وسيطرة المستخدم**: يتطلب دائمًا موافقة صريحة من المستخدم قبل الوصول إلى البيانات أو أداء العمليات. قدم سيطرة واضحة على البيانات المشتركة والإجراءات المصرح بها.
+1. **موافقة المستخدم والتحكم**: دائمًا اطلب موافقة صريحة من المستخدم قبل الوصول إلى البيانات أو تنفيذ العمليات. قدِّم تحكمًا واضحًا بما يُشارك من بيانات والإجراءات المصرح بها.
 
-2. **خصوصية البيانات**: اكشف عن بيانات المستخدم فقط بموافقة صريحة وحمها بضوابط وصول مناسبة. احمِ ضد النقل غير المصرح به للبيانات.
+2. **خصوصية البيانات**: عرض بيانات المستخدم فقط بموافقته الصريحة واحمها بضوابط وصول مناسبة. حميها ضد نقل البيانات غير المصرح به.
 
-3. **أمان الأدوات**: يتطلب موافقة صريحة من المستخدم قبل استدعاء أي أداة. تأكد من فهم المستخدم لكل وظيفة أداة وفرض حدود أمان قوية.
+3. **سلامة الأدوات**: اطلب موافقة صريحة من المستخدم قبل استدعاء أي أداة. تأكد من فهم المستخدمين لوظيفة كل أداة وفرض حدود أمنية قوية.
 
-4. **التحكم في أذونات الأدوات**: قم بتكوين الأدوات المسموح للنموذج باستخدامها أثناء الجلسة، لضمان وصول الأدوات المصرح بها فقط.
+4. **التحكم في صلاحية الأدوات**: قم بتكوين الأدوات التي يمكن للنموذج استخدامها لكل طلب وسياق تفويض، مع التأكد من أن الأدوات المصرح بها صراحة فقط هي المتاحة.
+   
+   
 
-5. **المصادقة**: تطلب مصادقة صحيحة قبل منح الوصول إلى الأدوات أو الموارد أو العمليات الحساسة باستخدام مفاتيح API أو رموز OAuth أو طرق مصادقة آمنة أخرى.
+5. **المصادقة**: طلب المصادقة الصحيحة قبل منح الوصول إلى الأدوات أو الموارد أو العمليات الحساسة باستخدام مفاتيح API، أو رموز OAuth، أو طرق مصادقة آمنة أخرى.
 
-6. **التحقق من المعلمات**: فرض التحقق لجميع استدعاءات الأدوات لمنع وصول مدخلات مشوهة أو خبيثة إلى تطبيقات الأدوات.
+6. **التحقق من المعاملات**: فرض التحقق لجميع استدعاءات الأدوات لمنع إدخال خاطئ أو ضار من الوصول إلى تنفيذ الأدوات.
 
-7. **تحديد المعدل**: نفّذ تحديد معدل لمنع سوء الاستخدام وضمان الاستخدام العادل لموارد الخادم.
+7. **تحديد المعدل**: تنفيذ تحديد معدل لمنع الإساءة وضمان الاستخدام العادل لموارد الخادم.
 
 ### أفضل ممارسات التنفيذ
 
-1. **تفاوض القدرات**: أثناء إعداد الاتصال، تبادل المعلومات حول الميزات المدعومة، وإصدارات البروتوكول، والأدوات، والموارد المتاحة.
+1. **التفاوض على القدرات**: تفاوض على إصدارات البروتوكول المدعومة
+   والقدرات. في MCP `2026-07-28`، كل طلب مستقل وقد
+   يستخدم `server/discover`; الإصدارات الأقدم تستخدم مصافحة التهيئة.
 
-2. **تصميم الأدوات**: أنشئ أدوات مركزة تقوم بمهمة واحدة بشكل جيد، بدلاً من أدوات متكاملة تعالج عدة اهتمامات.
 
-3. **معالجة الأخطاء**: نفذ رسائل وأكواد خطأ موحدة للمساعدة في تشخيص المشكلات، والتعامل مع الإخفاقات بشكل سلس، وتوفير تعليقات قابلة للتنفيذ.
+2. **تصميم الأدوات**: أنشئ أدوات مركزة تقوم بمهمة واحدة بشكل جيد، بدلاً من الأدوات الضخمة التي تتعامل مع عدة اهتمامات.
 
-4. **التسجيل**: قم بتكوين سجلات منظمة للمراجعة، وتصحيح الأخطاء، ومراقبة تفاعلات البروتوكول.
+3. **معالجة الأخطاء**: نفذ رسائل وأكواد أخطاء موحدة لمساعدة في تشخيص المشكلات، والتعامل مع الإخفاقات بشكل سلس، وتقديم تعليقات قابلة للتنفيذ.
 
-5. **تتبع التقدم**: للعمليات طويلة الأمد، أبلغ عن تحديثات التقدم لتمكين واجهات مستخدم تفاعلية.
+4. **المراقبة**: استخدم `stderr` لتشخيصات stdio و OpenTelemetry
+   للمراقبة المهيكلة. ميزة تسجيل MCP مهجورة في
+   مواصفة `2026-07-28`.
 
-6. **إلغاء الطلبات**: اسمح للعملاء بإلغاء الطلبات قيد التنفيذ التي لم تعد مطلوبة أو تأخذ وقتًا طويلاً.
+5. **تتبع التقدم**: بالنسبة للعمليات طويلة الأمد، قم بالإبلاغ عن تحديثات التقدم لتمكين واجهات مستخدم استجابية.
+
+6. **إلغاء الطلبات**: اسمح للعملاء بإلغاء الطلبات الجارية التي لم تعد ضرورية أو تستغرق وقتًا طويلاً.
 
 ## مراجع إضافية
 
-للحصول على أحدث المعلومات حول أفضل ممارسات MCP، راجع:
+لمزيد من المعلومات المحدثة حول أفضل ممارسات MCP، راجع:
 
-- [وثائق MCP](https://modelcontextprotocol.io/)
-- [مواصفات MCP (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [توثيق MCP](https://modelcontextprotocol.io/)
+- [مواصفة MCP (2026-07-28)][mcp-2026-spec]
+- [مواصفة MCP السابقة (2025-11-25)](https://modelcontextprotocol.io/specification/2025-11-25)
+- [امتداد مهام MCP][mcp-tasks-extension]
 - [مستودع GitHub](https://github.com/modelcontextprotocol)
-- [أفضل ممارسات الأمن](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices)
-- [أعلى 10 مخاطر أمنية في MCP من OWASP](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - المخاطر الأمنية والتدابير الوقائية
-- [ورشة MCP Security Summit (شربا)](https://azure-samples.github.io/sherpa/) - تدريب عملي على الأمان
+- [أفضل ممارسات الأمان](https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/security_best_practices)
+- [OWASP MCP أفضل 10](https://microsoft.github.io/mcp-azure-security-guide/) - مخاطر الأمان وطرق التخفيف
+- [ورشة عمل قمة أمان MCP (Sherpa)](https://azure-samples.github.io/sherpa/) - تدريب عملي على الأمان
 
-## أمثلة تطبيقية
+### درس رفيق الموثوقية
+
+حلقات إعادة المحاولة العامة غير آمنة للأدوات التي تنشئ تذاكر أو مدفوعات،
+رسائل، نشرات، أو تأثيرات أخرى في العالم الحقيقي. قد تُفقد الاستجابة
+بعد تفعيل التأثير.
+
+استخدم درس رفيق الموثوقية،
+[إعادة المحاولة الآمنة لأدوات MCP: نمط الجناح الجانبي للموثوقية][reliability-sidecar],
+لتعلم مفاتيح التشغيل المستقرة، وإدخال التكرار، والنقاط المرجعية،
+والمصالحة، ومستويات الأدلة، وحقن الإخفاق.
+
+[mcp-2026-spec]: https://modelcontextprotocol.io/specification/2026-07-28
+[mcp-tasks-extension]: https://modelcontextprotocol.io/extensions/tasks/overview
+[reliability-sidecar]: ./reliability-sidecars/README.md
+
+## أمثلة تطبيقية عملية
 
 ### أفضل ممارسات تصميم الأدوات
 
 #### 1. مبدأ المسؤولية الواحدة
 
-يجب أن يكون لكل أداة MCP هدف واضح ومركز. بدلاً من إنشاء أدوات متكاملة تحاول معالجة عدة مشكلات، طور أدوات متخصصة تتقن مهامًا محددة.
+يجب أن يكون لكل أداة MCP غرض واضح ومركّز. بدلاً من إنشاء أدوات ضخمة تحاول معالجة عدة اهتمامات، طوّر أدوات متخصصة تتفوق في مهام محددة.
 
 ```csharp
 // A focused tool that does one thing well
@@ -143,12 +169,12 @@ public class WeatherForecastTool : ITool
 }
 ```
 
-#### 2. التعامل المتسق مع الأخطاء
+#### 2. معالجة الأخطاء المتسقة
 
-نفذ معالجة قوية للأخطاء مع رسائل خطأ إعلامية وآليات استرداد مناسبة.
+نفّذ معالجة أخطاء قوية مع رسائل أخطاء إعلامية وآليات تعافي مناسبة.
 
 ```python
-# مثال بايثون مع معالجة أخطاء شاملة
+# مثال بايثون مع معالجة شاملة للأخطاء
 class DataQueryTool:
     def get_name(self):
         return "dataQuery"
@@ -164,13 +190,13 @@ class DataQueryTool:
                 
             query = parameters["query"]
             
-            # التحقق من الأمان
+            # التحقق الأمني
             if self._contains_unsafe_sql(query):
                 raise ToolSecurityError("Query contains potentially unsafe SQL")
             
             try:
-                # عملية قاعدة بيانات مع مهلة
-                async with timeout(10):  # مهلة 10 ثوانٍ
+                # عملية قاعدة البيانات مع مهلة زمنية
+                async with timeout(10):  # مهلة ثانية 10
                     result = await self._database.execute_query(query)
                     
                 return ToolResponse(
@@ -183,12 +209,12 @@ class DataQueryTool:
                 self._log_error("Database connection error", e)
                 raise ToolExecutionError(f"Database connection error: {str(e)}")
             except DatabaseQueryError as e:
-                # أخطاء الاستعلام من المحتمل أن تكون أخطاء من جانب العميل
+                # أخطاء الاستعلام على الأرجح أخطاء من العميل
                 self._log_error("Database query error", e)
                 raise ToolExecutionError(f"Invalid query: {str(e)}")
                 
         except ToolError:
-            # دع أخطاء الأدوات الخاصة تمر
+            # السماح بمرور الأخطاء المحددة بالأداة
             raise
         except Exception as e:
             # التقاط جميع الأخطاء غير المتوقعة
@@ -196,7 +222,7 @@ class DataQueryTool:
             raise ToolExecutionError(f"An unexpected error occurred: {str(e)}")
     
     def _contains_unsafe_sql(self, query):
-        # تنفيذ كشف حقن SQL
+        # تنفيذ اكتشاف حقن SQL
         pass
         
     def _log_error(self, message, error):
@@ -204,12 +230,12 @@ class DataQueryTool:
         pass
 ```
 
-#### 3. التحقق من المعلمات
+#### 3. التحقق من المعاملات
 
-تحقق دائمًا من المعلمات بدقة لمنع المدخلات المشوهة أو الخبيثة.
+تحقق دائمًا من المعاملات بشكل شامل لمنع المدخلات المشوهة أو الخبيثة.
 
 ```javascript
-// مثال على JavaScript/TypeScript مع التحقق التفصيلي من المعاملات
+// مثال على JavaScript/TypeScript مع التحقق المفصل من المعلمات
 class FileOperationTool {
   getName() {
     return "fileOperation";
@@ -268,7 +294,7 @@ class FileOperationTool {
       throw new ToolError(`Invalid operation. Must be one of: ${validOperations.join(", ")}`);
     }
     
-    // 4. التحقق من وجود المحتوى لعملية الكتابة
+    // 4. التحقق من وجود محتوى لعملية الكتابة
     if (parameters.operation === "write" && !parameters.content) {
       throw new ToolError("Content parameter is required for write operation");
     }
@@ -278,7 +304,7 @@ class FileOperationTool {
       throw new ToolError("Access denied: path is outside of allowed directories");
     }
     
-    // التنفيذ بناءً على المعاملات التي تم التحقق منها
+    // التنفيذ بناءً على المعلمات التي تم التحقق منها
     // ...
   }
   
@@ -289,18 +315,18 @@ class FileOperationTool {
 }
 ```
 
-### أمثلة على تنفيذ الأمان
+### أمثلة تنفيذ الأمان
 
-#### 1. المصادقة والتفويض
+#### 1. التوثيق والتفويض
 
 ```java
-// مثال جافا مع المصادقة والتفويض
+// مثال على جافا مع المصادقة والتفويض
 public class SecureDataAccessTool implements Tool {
     private final AuthenticationService authService;
     private final AuthorizationService authzService;
     private final DataService dataService;
     
-    // الحقن التبعي
+    // حقن التبعيات
     public SecureDataAccessTool(
             AuthenticationService authService,
             AuthorizationService authzService,
@@ -337,7 +363,7 @@ public class SecureDataAccessTool implements Tool {
             return ToolResponse.error("Access denied: Insufficient permissions for this operation");
         }
         
-        // 4. المتابعة بالعملية المصرح بها
+        // 4. المتابعة مع العملية المصرح بها
         try {
             switch (operation) {
                 case "read":
@@ -437,7 +463,7 @@ public class RateLimitingMiddleware
 
 ### 1. اختبار وحدات أدوات MCP
 
-اختبر أدواتك دائمًا بمعزل، محاكياً التبعيات الخارجية:
+اختبر أدواتك دائمًا في عزلة، معتمداً على تمويه التبعيات الخارجية:
 
 ```typescript
 // مثال TypeScript لاختبار وحدة أداة
@@ -451,12 +477,12 @@ describe('WeatherForecastTool', () => {
       getForecasts: jest.fn()
     } as any;
     
-    // إنشاء الأداة بالاعتماد الوهمي
+    // إنشاء الأداة مع الاعتماد الوهمي
     tool = new WeatherForecastTool(mockWeatherService);
   });
   
   it('should return weather forecast for a location', async () => {
-    // ترتيب
+    // التهيئة
     const mockForecast = {
       location: 'Seattle',
       forecasts: [
@@ -468,23 +494,23 @@ describe('WeatherForecastTool', () => {
     
     mockWeatherService.getForecasts.mockResolvedValue(mockForecast);
     
-    // تنفيذ
+    // التنفيذ
     const response = await tool.execute({
       location: 'Seattle',
       days: 3
     });
     
-    // تأكيد
+    // التأكيد
     expect(mockWeatherService.getForecasts).toHaveBeenCalledWith('Seattle', 3);
     expect(response.content[0].text).toContain('Seattle');
     expect(response.content[0].text).toContain('Sunny');
   });
   
   it('should handle errors from the weather service', async () => {
-    // ترتيب
+    // التهيئة
     mockWeatherService.getForecasts.mockRejectedValue(new Error('Service unavailable'));
     
-    // تنفيذ وتأكيد
+    // التنفيذ والتأكيد
     await expect(tool.execute({
       location: 'Seattle',
       days: 3
@@ -495,13 +521,13 @@ describe('WeatherForecastTool', () => {
 
 ### 2. اختبار التكامل
 
-اختبر التدفق الكامل من طلبات العملاء إلى ردود الخادم:
+اختبر التدفق الكامل من طلبات العميل إلى استجابات الخادم:
 
 ```python
 # مثال اختبار تكامل بايثون
 @pytest.mark.asyncio
 async def test_mcp_server_integration():
-    # بدء خادم اختبار
+    # بدء خادم الاختبار
     server = McpServer()
     server.register_tool(WeatherForecastTool(MockWeatherService()))
     await server.start(port=5000)
@@ -526,15 +552,17 @@ async def test_mcp_server_integration():
         assert len(json.loads(response.content[0].text)["forecasts"]) == 3
         
     finally:
-        # تنظيف البيانات
+        # التنظيف بعد الاختبار
         await server.stop()
 ```
 
 ## تحسين الأداء
 
+
 ### 1. استراتيجيات التخزين المؤقت
 
-نفذ التخزين المؤقت المناسب لتقليل التأخير واستهلاك الموارد:
+نفذ تخزينًا مؤقتًا مناسبًا لتقليل زمن الاستجابة واستخدام الموارد:
+
 
 ```csharp
 // C# example with caching
@@ -603,18 +631,18 @@ public class CachedWeatherTool : ITool
 }
 ```
 
-#### 2. حقن الاعتمادية وقابلية الاختبار
+#### 2. حقن التبعيات وقابلية الاختبار
 
-صمم الأدوات لتتلقى تبعياتها عبر حقن المكوّنات، مما يجعلها قابلة للاختبار والتكوين:
+صمم الأدوات لتستقبل تبعياتها من خلال حقن المُنشئ، مما يجعلها قابلة للاختبار وقابلة للتكوين:
 
 ```java
-// مثال جافا مع حقن التبعيات
+// مثال جافا مع حقن التبعية
 public class CurrencyConversionTool implements Tool {
     private final ExchangeRateService exchangeService;
     private final CacheService cacheService;
     private final Logger logger;
     
-    // التبعيات محقونة من خلال المُنشئ
+    // التبعيات محقونة من خلال الباني
     public CurrencyConversionTool(
             ExchangeRateService exchangeService,
             CacheService cacheService,
@@ -629,12 +657,12 @@ public class CurrencyConversionTool implements Tool {
 }
 ```
 
-#### 3. أدوات قابلة للتركيب
+#### 3. أدوات قابلة للتكوین
 
 صمم أدوات يمكن تركيبها معًا لإنشاء سير عمل أكثر تعقيدًا:
 
 ```python
-# مثال بايثون يوضح الأدوات القابلة للتركيب
+# مثال بيثون يوضح الأدوات القابلة للتكوين
 class DataFetchTool(Tool):
     def get_name(self):
         return "dataFetch"
@@ -645,7 +673,7 @@ class DataAnalysisTool(Tool):
     def get_name(self):
         return "dataAnalysis"
     
-    # يمكن لهذه الأداة استخدام النتائج من أداة جلب البيانات
+    # يمكن لهذه الأداة استخدام نتائج أداة جلب البيانات
     async def execute_async(self, request):
         # التنفيذ...
         pass
@@ -654,21 +682,21 @@ class DataVisualizationTool(Tool):
     def get_name(self):
         return "dataVisualize"
     
-    # يمكن لهذه الأداة استخدام النتائج من أداة تحليل البيانات
+    # يمكن لهذه الأداة استخدام نتائج أداة تحليل البيانات
     async def execute_async(self, request):
         # التنفيذ...
         pass
 
-# يمكن استخدام هذه الأدوات بشكل مستقل أو كجزء من سير عمل
+# يمكن استخدام هذه الأدوات بشكل مستقل أو كجزء من سير العمل
 ```
 
-### أفضل ممارسات تصميم المخططات
+### أفضل ممارسات تصميم المخطط
 
-المخطط هو العقد بين النموذج وأداتك. تؤدي المخططات المصممة جيدًا إلى سهولة استخدام أفضل للأداة.
+المخطط هو العقد بين النموذج وأداتك. تؤدي المخططات المصممة جيدًا إلى تحسين سهولة استخدام الأدوات.
 
-#### 1. وصف واضح للمعلمات
+#### 1. أوصاف واضحة للمعلمات
 
-ضمن معلومات وصفية لكل معلمة:
+دائمًا قم بتضمين معلومات وصفية لكل معلمة:
 
 ```csharp
 public object GetSchema()
@@ -707,7 +735,7 @@ public object GetSchema()
 
 #### 2. قيود التحقق
 
-ضمن قيود تحقق لمنع المدخلات غير الصالحة:
+قم بتضمين قيود تحقق لمنع المدخلات غير الصالحة:
 
 ```java
 Map<String, Object> getSchema() {
@@ -716,7 +744,7 @@ Map<String, Object> getSchema() {
     
     Map<String, Object> properties = new HashMap<>();
     
-    // خاصية البريد الإلكتروني مع التحقق من صحة التنسيق
+    // خاصية البريد الإلكتروني مع التحقق من التنسيق
     Map<String, Object> email = new HashMap<>();
     email.put("type", "string");
     email.put("format", "email");
@@ -747,9 +775,9 @@ Map<String, Object> getSchema() {
 }
 ```
 
-#### 3. تناسق في هياكل الاستجابة
+#### 3. هياكل الإرجاع المتسقة
 
-حافظ على التناسق في هياكل الاستجابة لتسهيل تفسير النتائج من قبل النماذج:
+حافظ على الاتساق في هياكل الاستجابة لتسهيل تفسير النتائج على النماذج:
 
 ```python
 async def execute_async(self, request):
@@ -757,7 +785,7 @@ async def execute_async(self, request):
         # معالجة الطلب
         results = await self._search_database(request.parameters["query"])
         
-        # دائماً إعادة هيكل متسق
+        # دائمًا أعد هيكلًا متسقًا
         return ToolResponse(
             result={
                 "matches": [self._format_item(item) for item in results],
@@ -790,9 +818,9 @@ def _format_item(self, item):
 
 ### التعامل مع الأخطاء
 
-معالجة قوية للأخطاء ضرورية لأدوات MCP للحفاظ على الموثوقية.
+التعامل القوي مع الأخطاء أمر حاسم لأدوات MCP للحفاظ على الموثوقية.
 
-#### 1. التعامل الراقي مع الأخطاء
+#### 1. التعامل الأنيق مع الأخطاء
 
 تعامل مع الأخطاء على المستويات المناسبة وقدم رسائل إعلامية:
 
@@ -836,9 +864,9 @@ public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
 }
 ```
 
-#### 2. استجابات خطأ منظمة
+#### 2. ردود الأخطاء المنظمة
 
-أرجع معلومات خطأ منظمة عند الإمكان:
+أعِد معلومات الأخطاء بشكل منظم عندما يكون ذلك ممكنًا:
 
 ```java
 @Override
@@ -868,9 +896,15 @@ public ToolResponse execute(ToolRequest request) {
 }
 ```
 
-#### 3. منطق المحاولة مجددًا
+#### 3. منطق إعادة المحاولة
 
-نفذ منطق إعادة المحاولة المناسب للفشل العابر:
+استخدم منطق إعادة المحاولة العام فقط للمكالمات أو العمليات التي تكون
+عقودها السفلية متسامحة مع التكرار بالفعل. بالنسبة للعمليات المؤثرة، فإن المهلة
+بعد إرسال الطلب تكون غامضة. قم بمصالحة الحالة الموثوقة
+وأعد استخدام نفس مفتاح العملية المستقر قبل التنفيذ مرة أخرى. راجع
+[درس مرافق الجوانب المتعلقة بالموثوقية](./reliability-sidecars/README.md).
+
+حلقة إعادة المحاولة المحدودة التالية مناسبة للبحث فقط للقراءة:
 
 ```python
 async def execute_async(self, request):
@@ -880,14 +914,14 @@ async def execute_async(self, request):
     
     while retry_count < max_retries:
         try:
-            # استدعاء واجهة برمجة التطبيقات الخارجية
-            return await self._call_api(request.parameters)
+            # استدعاء واجهة برمجة تطبيقات خارجية للقراءة فقط
+            return await self._call_read_only_api(request.parameters)
         except TransientError as e:
             retry_count += 1
             if retry_count >= max_retries:
                 raise ToolExecutionException(f"Operation failed after {max_retries} attempts: {str(e)}")
                 
-            # تراجع أُسّي
+            # التراجع الأسّي
             delay = base_delay * (2 ** (retry_count - 1))
             logging.warning(f"Transient error, retrying in {delay}s: {str(e)}")
             await asyncio.sleep(delay)
@@ -900,7 +934,7 @@ async def execute_async(self, request):
 
 #### 1. التخزين المؤقت
 
-نفذ التخزين المؤقت للعمليات المكلفة:
+قم بتنفيذ التخزين المؤقت للعمليات المكلفة:
 
 ```csharp
 public class CachedDataTool : IMcpTool
@@ -959,23 +993,23 @@ public class AsyncDocumentProcessingTool implements Tool {
     public ToolResponse execute(ToolRequest request) {
         String documentId = request.getParameters().get("documentId").asText();
         
-        // لعمليات طويلة، قم بإرجاع معرف العملية فورًا
+        // للعمليات التي تستغرق وقتًا طويلاً، قم بإرجاع معرف المعالجة فورًا
         String processId = UUID.randomUUID().toString();
         
-        // بدء المعالجة غير المتزامنة
+        // ابدأ المعالجة غير المتزامنة
         CompletableFuture.runAsync(() -> {
             try {
-                // إجراء العملية الطويلة
+                // نفّذ العملية طويلة الأمد
                 documentService.processDocument(documentId);
                 
-                // تحديث الحالة (عادةً ما يتم تخزينها في قاعدة بيانات)
+                // حدّث الحالة (عادةً ما تُخزن في قاعدة بيانات)
                 processStatusRepository.updateStatus(processId, "completed");
             } catch (Exception ex) {
                 processStatusRepository.updateStatus(processId, "failed", ex.getMessage());
             }
         }, executorService);
         
-        // إرجاع استجابة فورية بمعرف العملية
+        // أرجع استجابة فورية مع معرف العملية
         Map<String, Object> result = new HashMap<>();
         result.put("processId", processId);
         result.put("status", "processing");
@@ -984,7 +1018,7 @@ public class AsyncDocumentProcessingTool implements Tool {
         return new ToolResponse.Builder().setResult(result).build();
     }
     
-    // أداة فحص حالة مرافقة
+    // أداة فحص الحالة المصاحبة
     public class ProcessStatusTool implements Tool {
         @Override
         public ToolResponse execute(ToolRequest request) {
@@ -997,20 +1031,20 @@ public class AsyncDocumentProcessingTool implements Tool {
 }
 ```
 
-#### 3. تحديد الموارد
+#### 3. تقييد الموارد
 
-نفذ تحديد الموارد لمنع الحمل الزائد:
+قم بتنفيذ تقييد الموارد لمنع التحميل الزائد:
 
 ```python
 class ThrottledApiTool(Tool):
     def __init__(self):
         self.rate_limiter = TokenBucketRateLimiter(
-            tokens_per_second=5,  # السماح بخمسة طلبات في الثانية
-            bucket_size=10        # السماح بتدفقات تصل إلى عشرة طلبات
+            tokens_per_second=5,  # السماح بـ 5 طلبات في الثانية
+            bucket_size=10        # السماح بفجوات تصل إلى 10 طلبات
         )
     
     async def execute_async(self, request):
-        # التحقق مما إذا كان بإمكاننا المتابعة أو نحتاج إلى الانتظار
+        # التحقق مما إذا كان بإمكاننا المتابعة أو الحاجة للانتظار
         delay = self.rate_limiter.get_delay_time()
         
         if delay > 0:
@@ -1019,13 +1053,13 @@ class ThrottledApiTool(Tool):
                     f"Rate limit exceeded. Please try again in {delay:.1f} seconds."
                 )
             else:
-                # الانتظار لمدة التأخير المناسبة
+                # الانتظار للمدة الزمنية المناسبة
                 await asyncio.sleep(delay)
         
-        # استهلاك رمز والمتابعة بالطلب
+        # استهلاك رمز والمضي قدمًا في الطلب
         self.rate_limiter.consume()
         
-        # استدعاء API
+        # استدعاء واجهة برمجة التطبيقات
         result = await self._call_api(request.parameters)
         return ToolResponse(result=result)
 
@@ -1043,7 +1077,7 @@ class TokenBucketRateLimiter:
             if self.tokens >= 1:
                 return 0
             
-            # حساب الوقت حتى يتوفر الرمز التالي
+            # حساب الوقت حتى يصبح الرمز التالي متوفرًا
             return (1 - self.tokens) / self.tokens_per_second
     
     async def consume(self):
@@ -1063,9 +1097,9 @@ class TokenBucketRateLimiter:
 
 ### أفضل ممارسات الأمان
 
-#### 1. التحقق من المدخلات
+#### 1. التحقق من صحة المدخلات
 
-تحقق دائمًا من معلمات الإدخال بدقة:
+دائمًا تحقق من صحة معلمات الإدخال بدقة:
 
 ```csharp
 public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
@@ -1108,15 +1142,15 @@ public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
 
 #### 2. فحوصات التفويض
 
-نفذ فحوصات التفويض المناسبة:
+قم بتنفيذ فحوصات التفويض السليمة:
 
 ```java
 @Override
 public ToolResponse execute(ToolRequest request) {
-    // احصل على سياق المستخدم من الطلب
+    // الحصول على سياق المستخدم من الطلب
     UserContext user = request.getContext().getUserContext();
     
-    // تحقق مما إذا كان لدى المستخدم الأذونات المطلوبة
+    // التحقق مما إذا كان المستخدم لديه الأذونات المطلوبة
     if (!authorizationService.hasPermission(user, "documents:read")) {
         throw new ToolExecutionException("User does not have permission to access documents");
     }
@@ -1127,7 +1161,7 @@ public ToolResponse execute(ToolRequest request) {
         throw new ToolExecutionException("Access denied to the requested document");
     }
     
-    // تابع تنفيذ الأداة
+    // المتابعة في تنفيذ الأداة
     // ...
 }
 ```
@@ -1152,46 +1186,46 @@ class SecureDataTool(Tool):
         user_id = request.parameters["userId"]
         include_sensitive = request.parameters.get("includeSensitiveData", False)
         
-        # جلب بيانات المستخدم
+        # احصل على بيانات المستخدم
         user_data = await self.user_service.get_user_data(user_id)
         
-        # تصفية الحقول الحساسة ما لم يتم طلبها صراحةً والموافقة عليها
+        # فلتر الحقول الحساسة ما لم يتم طلبها صراحةً وتفويضها
         if not include_sensitive or not self._is_authorized_for_sensitive_data(request):
             user_data = self._redact_sensitive_fields(user_data)
         
         return ToolResponse(result=user_data)
     
     def _is_authorized_for_sensitive_data(self, request):
-        # التحقق من مستوى التفويض في سياق الطلب
+        # تحقق من مستوى التفويض في سياق الطلب
         auth_level = request.context.get("authorizationLevel")
         return auth_level == "admin"
     
     def _redact_sensitive_fields(self, user_data):
-        # إنشاء نسخة لتجنب تعديل النسخة الأصلية
+        # أنشئ نسخة لتجنب تعديل الأصل
         redacted = user_data.copy()
         
-        # حذف حقول حساسة محددة
+        # حجب حقول حساسة محددة
         sensitive_fields = ["ssn", "creditCardNumber", "password"]
         for field in sensitive_fields:
             if field in redacted:
                 redacted[field] = "REDACTED"
         
-        # حذف بيانات حساسة متداخلة
+        # حجب البيانات الحساسة المتداخلة
         if "financialInfo" in redacted:
             redacted["financialInfo"] = {"available": True, "accessRestricted": True}
         
         return redacted
 ```
 
-## أفضل ممارسات اختبار أدوات MCP
+## أفضل ممارسات الاختبار لأدوات MCP
 
-يضمن الاختبار الشامل أن أدوات MCP تعمل بشكل صحيح، وتعالج الحالات الحدية، وتتكامل بشكل صحيح مع بقية النظام.
+يضمن الاختبار الشامل أن أدوات MCP تعمل بشكل صحيح، تتعامل مع حالات الحافة، وتتفاعل بشكل سليم مع بقية النظام.
 
-### اختبار الوحدات
+### اختبار الوحدة
 
-#### 1. اختبار كل أداة بمعزل
+#### 1. اختبار كل أداة بشكل معزول
 
-أنشئ اختبارات مركزة لوظائف كل أداة:
+أنشئ اختبارات مركزة لكل وظيفة من وظائف الأداة:
 
 ```csharp
 [Fact]
@@ -1251,14 +1285,14 @@ public async Task WeatherTool_InvalidLocation_ThrowsToolExecutionException()
 }
 ```
 
-#### 2. اختبار التحقق من المخطط
+#### 2. اختبار التحقق من صحة المخطط
 
-اختبر أن المخططات صحيحة وتفرض القيود بشكل صحيح:
+اختبر أن المخططات صالحة وتفرض القيود بشكل صحيح:
 
 ```java
 @Test
 public void testSchemaValidation() {
-    // إنشاء مثيل الأداة
+    // إنشاء مثال للأداة
     SearchTool searchTool = new SearchTool();
     
     // الحصول على المخطط
@@ -1267,11 +1301,11 @@ public void testSchemaValidation() {
     // تحويل المخطط إلى JSON للتحقق
     String schemaJson = objectMapper.writeValueAsString(schema);
     
-    // التحقق من صحة المخطط كـ JSONSchema
+    // التحقق من أن المخطط هو JSONSchema صالح
     JsonSchemaFactory factory = JsonSchemaFactory.byDefault();
     JsonSchema jsonSchema = factory.getJsonSchema(schemaJson);
     
-    // اختبار المعاملات الصالحة
+    // اختبار المعلمات الصحيحة
     JsonNode validParams = objectMapper.createObjectNode()
         .put("query", "test query")
         .put("limit", 5);
@@ -1279,14 +1313,14 @@ public void testSchemaValidation() {
     ProcessingReport validReport = jsonSchema.validate(validParams);
     assertTrue(validReport.isSuccess());
     
-    // اختبار المعامل المطلوب المفقود
+    // اختبار فقدان المعلمة المطلوبة
     JsonNode missingRequired = objectMapper.createObjectNode()
         .put("limit", 5);
         
     ProcessingReport missingReport = jsonSchema.validate(missingRequired);
     assertFalse(missingReport.isSuccess());
     
-    // اختبار نوع المعامل غير صالح
+    // اختبار نوع المعلمة غير الصالح
     JsonNode invalidType = objectMapper.createObjectNode()
         .put("query", "test")
         .put("limit", "not-a-number");
@@ -1298,15 +1332,15 @@ public void testSchemaValidation() {
 
 #### 3. اختبارات التعامل مع الأخطاء
 
-أنشئ اختبارات محددة لحالات الخطأ:
+أنشئ اختبارات محددة لحالات الأخطاء:
 
 ```python
 @pytest.mark.asyncio
 async def test_api_tool_handles_timeout():
     # رتب
-    tool = ApiTool(timeout=0.1)  # مهلة قصيرة جدًا
+    tool = ApiTool(timeout=0.1)  # مهلة قصيرة جداً
     
-    # تزييف طلب سينتهي وقته
+    # قم بمحاكاة طلب سينتهي وقت انتظاره
     with aioresponses() as mocked:
         mocked.get(
             "https://api.example.com/data",
@@ -1330,7 +1364,7 @@ async def test_api_tool_handles_rate_limiting():
     # رتب
     tool = ApiTool()
     
-    # تزييف استجابة مقيدة بمعدل
+    # قم بمحاكاة استجابة محدودة بمعدل
     with aioresponses() as mocked:
         mocked.get(
             "https://api.example.com/data",
@@ -1348,7 +1382,7 @@ async def test_api_tool_handles_rate_limiting():
         with pytest.raises(ToolExecutionException) as exc_info:
             await tool.execute_async(request)
         
-        # تحقق من أن الاستثناء يحتوي على معلومات عن حد المعدل
+        # تحقق من أن الاستثناء يحتوي على معلومات حدود المعدل
         error_msg = str(exc_info.value).lower()
         assert "rate limit" in error_msg
         assert "try again" in error_msg
@@ -1358,7 +1392,7 @@ async def test_api_tool_handles_rate_limiting():
 
 #### 1. اختبار سلسلة الأدوات
 
-اختبر عمل الأدوات معًا في التراكيب المتوقعة:
+اختبر الأدوات للعمل معًا في التراكيب المتوقعة:
 
 ```csharp
 [Fact]
@@ -1399,7 +1433,7 @@ public async Task DataProcessingWorkflow_CompletesSuccessfully()
 
 #### 2. اختبار خادم MCP
 
-اختبر خادم MCP مع تسجيل وتشغيل الأدوات بالكامل:
+اختبر خادم MCP مع تسجيل الأدوات والتنفيذ الكامل:
 
 ```java
 @SpringBootTest
@@ -1465,14 +1499,15 @@ public class McpServerIntegrationTest {
 }
 ```
 
-#### 3. اختبار شامل من البداية للنهاية
+#### 3. اختبار من البداية إلى النهاية
 
-اختبر سير العمل الكامل من مطالبات النموذج إلى تنفيذ الأداة:
+اختبر سير العمل الكامل من موجه النموذج إلى تنفيذ الأداة:
+
 
 ```python
 @pytest.mark.asyncio
 async def test_model_interaction_with_tool():
-    # ترتيب - إعداد عميل MCP ونموذج محاكاة
+    # رتب - إعداد عميل MCP ونموذج المحاكاة
     mcp_client = McpClient(server_url="http://localhost:5000")
     
     # استجابات نموذج المحاكاة
@@ -1506,7 +1541,7 @@ async def test_model_interaction_with_tool():
             }
         )
         
-        # تنفيذ
+        # نفّذ
         response = await mcp_client.send_prompt(
             "What's the weather in Seattle?",
             model=mock_model,
@@ -1524,9 +1559,9 @@ async def test_model_interaction_with_tool():
 
 ### اختبار الأداء
 
-#### 1. اختبار التحميل
+#### 1. اختبار الحمولة
 
-اختبر عدد الطلبات المتزامنة التي يمكن لخادم MCP التعامل معها:
+اختبر عدد الطلبات المتزامنة التي يمكن لخادم MCP الخاص بك التعامل معها:
 
 ```csharp
 [Fact]
@@ -1570,13 +1605,13 @@ public void testServerUnderStress() {
     int rampUpTimeSeconds = 60;
     int testDurationSeconds = 300;
     
-    // إعداد JMeter لاختبار التحميل
+    // إعداد JMeter لاختبار الضغط
     StandardJMeterEngine jmeter = new StandardJMeterEngine();
     
     // تكوين خطة اختبار JMeter
     HashTree testPlanTree = new HashTree();
     
-    // إنشاء خطة اختبار، مجموعة الخيوط، العينات، وما إلى ذلك
+    // إنشاء خطة اختبار، مجموعة الخيوط، المانِعين، إلخ
     TestPlan testPlan = new TestPlan("MCP Server Stress Test");
     testPlanTree.add(testPlan);
     
@@ -1588,7 +1623,7 @@ public void testServerUnderStress() {
     
     testPlanTree.add(threadGroup);
     
-    // إضافة عينة HTTP لتنفيذ الأداة
+    // إضافة مانِع HTTP لتنفيذ الأداة
     HTTPSampler toolExecutionSampler = new HTTPSampler();
     toolExecutionSampler.setDomain("localhost");
     toolExecutionSampler.setPort(5000);
@@ -1609,19 +1644,19 @@ public void testServerUnderStress() {
     
     // التحقق من النتائج
     assertEquals(0, summaryReport.getErrorCount());
-    assertTrue(summaryReport.getAverage() < 200); // متوسط زمن الاستجابة < 200 مللي ثانية
-    assertTrue(summaryReport.getPercentile(90.0) < 500); // النسبة المئوية 90 < 500 مللي ثانية
+    assertTrue(summaryReport.getAverage() < 200); // متوسط زمن الاستجابة أقل من 200 مللي ثانية
+    assertTrue(summaryReport.getPercentile(90.0) < 500); // النسبة المئوية التسعين أقل من 500 مللي ثانية
 }
 ```
 
 #### 3. المراقبة والتحليل
 
-قم بإعداد مراقبة لتحليل الأداء طويل الأمد:
+قم بإعداد المراقبة لتحليل الأداء على المدى الطويل:
 
 ```python
 # تكوين المراقبة لخادم MCP
 def configure_monitoring(server):
-    # إعداد مقاييس بروميثيوس
+    # إعداد مقاييس بروجيثيوس
     prometheus_metrics = {
         "request_count": Counter("mcp_requests_total", "Total MCP requests"),
         "request_latency": Histogram(
@@ -1647,10 +1682,10 @@ def configure_monitoring(server):
         )
     }
     
-    # إضافة وسيطة لتوقيت وتسجيل المقاييس
+    # إضافة وسيط للتوقيت وتسجيل المقاييس
     server.add_middleware(PrometheusMiddleware(prometheus_metrics))
     
-    # عرض نقطة نهاية المقاييس
+    # كشف نقطة نهاية المقاييس
     @server.router.get("/metrics")
     async def metrics():
         return generate_latest()
@@ -1658,19 +1693,19 @@ def configure_monitoring(server):
     return server
 ```
 
-## أنماط تصميم سير عمل MCP
+## أنماط تصميم تدفقات عمل MCP
 
-تحسن سير عمل MCP المصمم جيدًا الكفاءة، والموثوقية، وسهولة الصيانة. فيما يلي الأنماط الرئيسية التي يجب اتباعها:
+تحسن تدفقات عمل MCP المصممة بشكل جيد الكفاءة والموثوقية وقابلية الصيانة. فيما يلي الأنماط الأساسية التي يجب اتباعها:
 
 ### 1. نمط سلسلة الأدوات
 
-وصل عدة أدوات في تسلسل حيث تصبح مخرجات أداة ما إدخالاً للأداة التالية:
+ربط عدة أدوات في تسلسل حيث يصبح مخرج كل أداة هو المدخل للأداة التالية:
 
 ```python
 # تنفيذ سلسلة أدوات بايثون
 class ChainWorkflow:
     def __init__(self, tools_chain):
-        self.tools_chain = tools_chain  # قائمة بأسماء الأدوات للتنفيذ بالتسلسل
+        self.tools_chain = tools_chain  # قائمة بأسماء الأدوات للتنفيذ بالترتيب
     
     async def execute(self, mcp_client, initial_input):
         current_result = initial_input
@@ -1689,7 +1724,7 @@ class ChainWorkflow:
             "all_results": all_results
         }
 
-# مثال على الاستخدام
+# مثال للاستخدام
 data_processing_chain = ChainWorkflow([
     "dataFetch",
     "dataCleaner",
@@ -1703,9 +1738,9 @@ result = await data_processing_chain.execute(
 )
 ```
 
-### 2. نمط المرسل المركزي
+### 2. نمط الموزع
 
-استخدم أداة مركزية توجه إلى أدوات متخصصة بناءً على الإدخال:
+استخدم أداة مركزية تقوم بتوزيع العمل إلى أدوات متخصصة بناءً على المدخلات:
 
 ```csharp
 public class ContentDispatcherTool : IMcpTool
@@ -1787,7 +1822,7 @@ public class ContentDispatcherTool : IMcpTool
 
 ### 3. نمط المعالجة المتوازية
 
-نفذ عدة أدوات في الوقت ذاته لزيادة الكفاءة:
+نفذ عدة أدوات في وقت واحد لتحسين الكفاءة:
 
 ```java
 public class ParallelDataProcessingWorkflow {
@@ -1798,11 +1833,11 @@ public class ParallelDataProcessingWorkflow {
     }
     
     public WorkflowResult execute(String datasetId) {
-        // الخطوة 1: جلب بيانات وصفية لمجموعة البيانات (بشكل متزامن)
+        // الخطوة 1: جلب بيانات وصف مجموعة البيانات (متزامن)
         ToolResponse metadataResponse = mcpClient.executeTool("datasetMetadata", 
             Map.of("datasetId", datasetId));
         
-        // الخطوة 2: تشغيل تحليلات متعددة بالتوازي
+        // الخطوة 2: تشغيل تحليلات متعددة بشكل متوازي
         CompletableFuture<ToolResponse> statisticalAnalysis = CompletableFuture.supplyAsync(() ->
             mcpClient.executeTool("statisticalAnalysis", Map.of(
                 "datasetId", datasetId,
@@ -1824,7 +1859,7 @@ public class ParallelDataProcessingWorkflow {
             ))
         );
         
-        // الانتظار حتى اكتمال جميع المهام المتوازية
+        // الانتظار حتى تكتمل جميع المهام المتوازية
         CompletableFuture<Void> allAnalyses = CompletableFuture.allOf(
             statisticalAnalysis, correlationAnalysis, outlierDetection
         );
@@ -1853,9 +1888,9 @@ public class ParallelDataProcessingWorkflow {
 }
 ```
 
-### 4. نمط استرداد الخطأ
+### 4. نمط استرجاع الأخطاء
 
-نفذ استجابات احتياطية سلسة لفشل الأدوات:
+نفذ استرجاعا سلسا في حال فشل الأدوات:
 
 ```python
 class ResilientWorkflow:
@@ -1872,12 +1907,12 @@ class ResilientWorkflow:
                 "tool": primary_tool
             }
         except ToolExecutionException as e:
-            # سجّل الفشل
+            # سجل الفشل
             logging.warning(f"Primary tool '{primary_tool}' failed: {str(e)}")
             
-            # التراجع للأداة الثانوية
+            # العودة إلى الأداة الثانوية
             try:
-                # قد تحتاج إلى تحويل المعلمات للأداة الاحتياطية
+                # قد تحتاج إلى تحويل المعلمات لأداة الاستFallbackل
                 fallback_params = self._adapt_parameters(parameters, primary_tool, fallback_tool)
                 
                 response = await self.client.execute_tool(fallback_tool, fallback_params)
@@ -1888,7 +1923,7 @@ class ResilientWorkflow:
                     "primaryError": str(e)
                 }
             except ToolExecutionException as fallback_error:
-                # فشلت كلتا الأداتين
+                # كلتا الأداتين فشلتا
                 logging.error(f"Both primary and fallback tools failed. Fallback error: {str(fallback_error)}")
                 raise WorkflowExecutionException(
                     f"Workflow failed: primary error: {str(e)}; fallback error: {str(fallback_error)}"
@@ -1896,22 +1931,22 @@ class ResilientWorkflow:
     
     def _adapt_parameters(self, params, from_tool, to_tool):
         """Adapt parameters between different tools if needed"""
-        # يعتمد هذا التنفيذ على الأدوات المحددة
-        # في هذا المثال، سنعيد فقط المعلمات الأصلية
+        # هذا التنفيذ يعتمد على الأدوات المحددة
+        # في هذا المثال، سنُعيد فقط المعلمات الأصلية
         return params
 
 # مثال على الاستخدام
 async def get_weather(workflow, location):
     return await workflow.execute_with_fallback(
         "premiumWeatherService",  # واجهة برمجة تطبيقات الطقس الأساسية (مدفوعة)
-        "basicWeatherService",    # واجهة برمجة تطبيقات الطقس الاحتياطية (مجانية)
+        "basicWeatherService",    # واجهة برمجة تطبيقات الطقس البديلة (مجاناً)
         {"location": location}
     )
 ```
 
-### 5. نمط تركيب سير العمل
+### 5. نمط تركيب تدفقات العمل
 
-ابنِ سير عمل معقد بتركيب سير عمل أبسط:
+بناء تدفقات عمل معقدة بتكوين تدفقات أبسط:
 
 ```csharp
 public class CompositeWorkflow : IWorkflow
@@ -1958,37 +1993,37 @@ var result = await documentWorkflow.ExecuteAsync(new WorkflowContext {
 });
 ```
 
-# اختبار خوادم MCP: أفضل الممارسات والنصائح الرئيسية
+# اختبار خوادم MCP: أفضل الممارسات والنصائح الهامة
 
 ## نظرة عامة
 
-الاختبار هو جانب حاسم في تطوير خوادم MCP موثوقة وعالية الجودة. يوفر هذا الدليل أفضل الممارسات الشاملة ونصائح لاختبار خوادم MCP الخاصة بك طوال دورة التطوير، من اختبارات الوحدات إلى اختبارات التكامل والتحقق الشامل من البداية للنهاية.
+يعد الاختبار جانبًا حاسمًا في تطوير خوادم MCP موثوقة وعالية الجودة. يوفر هذا الدليل أفضل الممارسات الشاملة والنصائح لاختبار خوادم MCP الخاصة بك طوال دورة التطوير، من اختبارات الوحدة إلى اختبارات التكامل والتحقق الشامل.
 
-## لماذا الاختبار مهم لخوادم MCP
+## لماذا يعتبر الاختبار مهما لخوادم MCP
 
-تعمل خوادم MCP كوسيط حاسم بين نماذج الذكاء الاصطناعي وتطبيقات العملاء. يضمن الاختبار الدقيق:
+تعمل خوادم MCP كوسيطات حيوية بين نماذج الذكاء الاصطناعي وتطبيقات العملاء. يضمن الاختبار الشامل:
 
-- الاعتمادية في بيئات الإنتاج
-- التعامل الصحيح مع الطلبات والاستجابات
+- الموثوقية في بيئات الإنتاج
+- المعالجة الدقيقة للطلبات والاستجابات
 - التنفيذ الصحيح لمواصفات MCP
-- الصمود ضد الإخفاقات والحالات الحدية
+- الصمود ضد الأخطاء والحالات الحدية
 - أداء ثابت تحت أحمال مختلفة
 
 ## اختبار الوحدة لخوادم MCP
 
 ### اختبار الوحدة (الأساس)
 
-تتحقق اختبارات الوحدة من مكونات MCP الفردية بمعزل.
+تختبر اختبارات الوحدة مكونات وحدة خادم MCP الخاصة بك بشكل مستقل.
 
-#### ماذا تختبر
+#### ما يجب اختباره
 
-1. **معالجات الموارد**: اختبار منطق معالجات الموارد بمعزل
-2. **تطبيقات الأدوات**: التحقق من سلوك الأدوات مع مدخلات مختلفة
-3. **قوالب المطالبات**: التأكد من عرض قوالب المطالبات بشكل صحيح
+1. **معالجات الموارد**: اختبار منطق كل معالج موارد بشكل مستقل
+2. **تنفيذ الأدوات**: التحقق من سلوك الأداة مع مدخلات مختلفة
+3. **نماذج النصوص التوجيهية**: التأكد من عرض نماذج النصوص بشكل صحيح
 4. **التحقق من المخطط**: اختبار منطق التحقق من المعلمات
-5. **التعامل مع الأخطاء**: التحقق من ردود الأخطاء للمدخلات غير الصالحة
+5. **معالجة الأخطاء**: التحقق من ردود الخطأ للمدخلات غير الصالحة
 
-#### أفضل الممارسات لاختبارات الوحدة
+#### أفضل الممارسات لاختبار الوحدة
 
 ```csharp
 // Example unit test for a calculator tool in C#
@@ -2014,7 +2049,7 @@ public async Task CalculatorTool_Add_ReturnsCorrectSum()
 ```
 
 ```python
-# مثال على اختبار وحدة لأداة آلة حاسبة في بايثون
+# اختبار وحدة مثال لأداة الآلة الحاسبة في بايثون
 def test_calculator_tool_add():
     # ترتيب
     calculator = CalculatorTool()
@@ -2028,23 +2063,23 @@ def test_calculator_tool_add():
     response = calculator.execute(parameters)
     result = json.loads(response.content[0].text)
     
-    # تحقق
+    # تأكيد
     assert result["value"] == 12
 ```
 
-### اختبار التكامل (الطبقة المتوسطة)
+### اختبار التكامل (الطبقة الوسطى)
 
-تتحقق اختبارات التكامل من التفاعلات بين مكونات خادم MCP.
+تتحقق اختبارات التكامل من التفاعلات بين مكونات خادم MCP الخاص بك.
 
-#### ماذا تختبر
+#### ما يجب اختباره
 
-1. **تهيئة الخادم**: اختبار بدء التشغيل مع تكوينات مختلفة
-2. **تسجيل المسارات**: التحقق من تسجيل جميع النقاط النهائية بشكل صحيح
-3. **معالجة الطلبات**: اختبار دورة الطلب-الاستجابة كاملة
-4. **انتشار الأخطاء**: التأكد من معالجة الأخطاء بشكل صحيح عبر المكونات
+1. **تهيئة الخادم**: اختبار بدء تشغيل الخادم مع تكوينات مختلفة
+2. **تسجيل المسارات**: التحقق من تسجيل جميع نقاط النهاية بشكل صحيح
+3. **معالجة الطلبات**: اختبار دورة الطلب والاستجابة كاملة
+4. **انتشار الأخطاء**: التأكد من معالجة الأخطاء بشكل صحيح بين المكونات
 5. **المصادقة والتفويض**: اختبار آليات الأمان
 
-#### أفضل الممارسات لاختبارات التكامل
+#### أفضل الممارسات لاختبار التكامل
 
 ```csharp
 // Example integration test for MCP server in C#
@@ -2080,22 +2115,23 @@ public async Task Server_ProcessToolRequest_ReturnsValidResponse()
 }
 ```
 
-### اختبار من البداية للنهاية (الطبقة العليا)
+### اختبار شامل من البداية للنهاية (الطبقة العليا)
 
-تتحقق اختبارات من البداية للنهاية من سلوك النظام الكامل من العميل إلى الخادم.
+تتحقق اختبارات البداية للنهاية من سلوك النظام الكامل من العميل إلى الخادم.
 
-#### ماذا تختبر
+#### ما يجب اختباره
 
-1. **الاتصال بين العميل والخادم**: اختبار دورات الطلب-الاستجابة كاملة
-2. **SDKs العملاء الحقيقية**: الاختبار باستخدام تطبيقات العميل الفعلية
-3. **الأداء تحت الحمل**: التحقق من السلوك مع طلبات متزامنة متعددة
-4. **استرداد الأخطاء**: اختبار استرداد النظام من الإخفاقات
-5. **العمليات طويلة الأمد**: التحقق من التعامل مع البث والعمليات الطويلة
+1. **التواصل بين العميل والخادم**: اختبار دورات الطلب والاستجابة كاملة
+2. **مجموعات تطوير البرامج لعملاء حقيقيين**: اختبار باستخدام تطبيقات عملاء فعلية
+3. **الأداء تحت الحمل**: التحقق من السلوك مع طلبات متعددة متزامنة
+4. **استرجاع الأخطاء**: اختبار استرداد النظام من حالات الفشل
 
-#### أفضل الممارسات لاختبارات E2E
+5. **العمليات طويلة الأمد**: تحقق من معالجة البث والعمليات الطويلة
+
+#### أفضل الممارسات لاختبار نهاية إلى نهاية
 
 ```typescript
-// مثال على اختبار نهاية إلى نهاية مع عميل في تايب سكريبت
+// مثال لاختبار E2E مع عميل بلغة TypeScript
 describe('MCP Server E2E Tests', () => {
   let client: McpClient;
   
@@ -2110,14 +2146,14 @@ describe('MCP Server E2E Tests', () => {
   });
   
   test('Client can invoke calculator tool and get correct result', async () => {
-    // تنفيذ
+    // نفذ
     const response = await client.invokeToolAsync('calculator', {
       operation: 'divide',
       a: 20,
       b: 4
     });
     
-    // تأكيد
+    // تحقق من صحة النتائج
     expect(response.statusCode).toBe(200);
     expect(response.content[0].text).toContain('5');
   });
@@ -2130,12 +2166,12 @@ describe('MCP Server E2E Tests', () => {
 
 ### المكونات التي يجب محاكاتها
 
-1. **نماذج الذكاء الاصطناعي الخارجية**: محاكاة ردود النماذج لاختبار قابل للتوقع
-2. **الخدمات الخارجية**: محاكاة تبعيات API (قواعد البيانات، خدمات الطرف الثالث)
-3. **خدمات المصادقة**: محاكاة موفري الهوية
-4. **موفرو الموارد**: محاكاة معالجات الموارد المكلفة
+1. **نماذج الذكاء الاصطناعي الخارجية**: محاكاة استجابات النماذج لاختبارات متوقعة
+2. **الخدمات الخارجية**: محاكاة تبعيات واجهات برمجة التطبيقات (قواعد البيانات، خدمات الطرف الثالث)
+3. **خدمات المصادقة**: محاكاة مزودي الهوية
+4. **مزودو الموارد**: محاكاة معالجات الموارد المكلفة
 
-### مثال: محاكاة استجابة نموذج ذكاء اصطناعي
+### مثال: محاكاة استجابة نموذج الذكاء الاصطناعي
 
 ```csharp
 // C# example with Moq
@@ -2153,7 +2189,7 @@ var server = new McpServer(modelClient: mockModel.Object);
 ```
 
 ```python
-# مثال بيثون مع unittest.mock
+# مثال بايثون باستخدام unittest.mock
 @patch('mcp_server.models.OpenAIModel')
 def test_with_mock_model(mock_model):
     # تكوين الموك
@@ -2164,37 +2200,37 @@ def test_with_mock_model(mock_model):
     
     # استخدام الموك في الاختبار
     server = McpServer(model_client=mock_model)
-    # متابعة الاختبار
+    # الاستمرار في الاختبار
 ```
 
 ## اختبار الأداء
 
-اختبار الأداء ضروري لخوادم MCP في الإنتاج.
+اختبار الأداء أمر حيوي لخوادم MCP الإنتاجية.
 
 ### ما الذي يجب قياسه
 
 1. **الكمون**: زمن استجابة الطلبات
-2. **الإنتاجية**: الطلبات المعالجة في الثانية
-3. **استهلاك الموارد**: استخدام CPU، والذاكرة، والشبكة
-4. **تعامل التزامن**: السلوك تحت الطلبات المتوازية
+2. **معدل المعالجة**: الطلبات التي يتم التعامل معها في الثانية
+3. **استخدام الموارد**: استخدام وحدة المعالجة المركزية، الذاكرة، الشبكة
+4. **معالجة التزامن**: السلوك تحت الطلبات المتوازية
 5. **خصائص التوسع**: الأداء مع زيادة الحمل
 
 ### أدوات اختبار الأداء
 
 - **k6**: أداة اختبار تحميل مفتوحة المصدر
-- **JMeter**: اختبار الأداء الشامل
-- **Locust**: اختبار تحميل بلغة البايثون
-- **Azure Load Testing**: اختبار الأداء على السحابة
+- **JMeter**: اختبار أداء شامل
+- **Locust**: اختبار تحميل معتمد على Python
+- **Azure Load Testing**: اختبار أداء قائم على السحابة
 
 ### مثال: اختبار تحميل أساسي باستخدام k6
 
 ```javascript
-// برنامج k6 لاختبار التحميل على خادم MCP
+// برنامج نصي k6 لاختبار تحميل خادم MCP
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 
 export const options = {
-  vus: 10,  // ١٠ مستخدمين افتراضيين
+  vus: 10,  // 10 مستخدمين افتراضيين
   duration: '30s',
 };
 
@@ -2226,18 +2262,18 @@ export default function () {
 }
 ```
 
-## أتمتة الاختبارات لخوادم MCP
+## أتمتة الاختبار لخوادم MCP
 
-أتمتة اختباراتك تضمن جودة ثابتة وسرعة في التغذية الراجعة.
+أتمتة اختباراتك تضمن جودة متسقة ودورات تغذية راجعة أسرع.
 
-### دمج CI/CD
+### التكامل مع CI/CD
 
-1. **تشغيل اختبارات الوحدة على طلبات السحب**: لضمان عدم تعطل الوظائف القائمة
-2. **اختبارات التكامل في بيئة الاختبار**: تشغيل اختبارات التكامل في بيئات ما قبل الإنتاج  
-3. **خطوط أساس الأداء**: الحفاظ على معايير الأداء لاكتشاف التراجع  
-4. **فحوصات الأمان**: أتمتة اختبارات الأمان كجزء من خط الأنابيب  
+1. **تشغيل اختبارات الوحدة على طلبات السحب**: تأكد من أن تغييرات الكود لا تكسر الوظائف القائمة
+2. **اختبارات التكامل في بيئة الاختبار**: تشغيل اختبارات التكامل في بيئات ما قبل الإنتاج
+3. **مقاييس الأداء الأساسية**: الحفاظ على معايير الأداء لاكتشاف الانحدارات
+4. **فحوصات الأمان**: أتمتة اختبارات الأمان كجزء من خط الأنابيب
 
-### مثال على خط أنابيب التكامل المستمر (GitHub Actions)
+### مثال على خط أنابيب CI (GitHub Actions)
 
 ```yaml
 name: MCP Server Tests
@@ -2275,20 +2311,20 @@ jobs:
     - name: Performance Tests
       run: dotnet run --project tests/PerformanceTests/PerformanceTests.csproj
 ```
-  
-## اختبار الالتزام بمواصفات MCP  
 
-تحقق من أن الخادم الخاص بك ينفذ مواصفات MCP بشكل صحيح.  
+## اختبار الالتزام بمواصفة MCP
 
-### مجالات الالتزام الرئيسية  
+تحقق من أن خادمك ينفذ مواصفة MCP بشكل صحيح.
 
-1. **نقاط النهاية لواجهة برمجة التطبيقات**: اختبار النقاط المطلوبة (/resources، /tools، إلخ)  
-2. **تنسيق الطلب/الاستجابة**: التحقق من الالتزام بالمخطط  
-3. **رموز الخطأ**: التحقق من رموز الحالة الصحيحة لمختلف السيناريوهات  
-4. **أنواع المحتوى**: اختبار التعامل مع أنواع المحتوى المختلفة  
-5. **تدفق المصادقة**: التحقق من آليات المصادقة المتوافقة مع المواصفات  
+### المجالات الرئيسية للامتثال
 
-### مجموعة اختبارات الالتزام  
+1. **نقاط نهاية API**: اختبار النقاط المطلوبة (/resources, /tools, إلخ)
+2. **تنسيق الطلب/الاستجابة**: التحقق من توافق المخطط
+3. **رموز الخطأ**: تحقق من رموز الحالة الصحيحة لمختلف السيناريوهات
+4. **أنواع المحتوى**: اختبار التعامل مع أنواع محتوى مختلفة
+5. **تدفق المصادقة**: تحقق من آليات المصادقة المتوافقة مع المواصفة
+
+### مجموعة اختبار الامتثال
 
 ```csharp
 [Fact]
@@ -2314,65 +2350,67 @@ public async Task Server_ResourceEndpoint_ReturnsCorrectSchema()
     });
 }
 ```
-  
-## أفضل 10 نصائح لاختبار خادم MCP بفعالية  
 
-1. **اختبر تعريفات الأدوات بشكل منفصل**: تحقق من تعريفات المخطط بشكل مستقل عن منطق الأداة  
-2. **استخدم اختبارات معلماتية**: اختبار الأدوات مع مجموعة متنوعة من المدخلات بما في ذلك الحالات الحافة  
-3. **تحقق من استجابات الأخطاء**: التحقق من التعامل الصحيح مع الأخطاء في جميع حالات الخطأ الممكنة  
-4. **اختبر منطق التفويض**: التأكد من التحكم السليم في الوصول لأدوار المستخدم المختلفة  
-5. **راقب تغطية الاختبارات**: استهدف تغطية عالية لشفرة المسار الحرج  
-6. **اختبر استجابات البث**: تحقق من التعامل الصحيح مع المحتوى المتدفق  
-7. **حاكي مشاكل الشبكة**: اختبر السلوك في ظروف الشبكة الضعيفة  
-8. **اختبر حدود الموارد**: تحقق من السلوك عند الوصول إلى الحصص أو حدود السعر  
-9. **أتمتة اختبارات التراجع**: انشئ مجموعة اختبارات تعمل عند كل تغيير في الشفرة  
-10. **وثق حالات الاختبار**: حافظ على توثيق واضح لسيناريوهات الاختبار  
+## أفضل 10 نصائح لاختبار خادم MCP بفعالية
 
-## المشكلات الشائعة في الاختبار  
+1. **اختبر تعريفات الأدوات بشكل منفصل**: تحقق من تعريفات المخطط بشكل مستقل عن منطق الأداة
+2. **استخدم اختبارات مع معاملات**: اختبر الأدوات بمجموعة متنوعة من المدخلات، بما في ذلك الحالات الحدية
+3. **تحقق من استجابات الأخطاء**: تحقق من التعامل الصحيح مع الأخطاء لكل الحالات الممكنة
+4. **اختبر منطق التفويض**: تأكد من التحكم السليم في الوصول لأدوار المستخدم المختلفة
+5. **راقب تغطية الاختبار**: استهدف تغطية عالية لكود المسار الحرج
+6. **اختبر استجابات البث**: تحقق من المعالجة الصحيحة للمحتوى المتدفق
+7. **حاكي مشاكل الشبكة**: اختبر السلوك تحت ظروف شبكة ضعيفة
+8. **اختبر حدود الموارد**: تحقق من السلوك عند الوصول إلى الحصص أو حدود المعدل
+9. **أتمتة اختبارات الانحدار**: أنشئ مجموعة تشغيل على كل تغيير في الكود
+10. **وثق حالات الاختبار**: احتفظ بوثائق واضحة لسيناريوهات الاختبار
 
-- **الاعتماد المفرط على اختبار المسار السعيد**: تأكد من اختبار حالات الخطأ بدقة  
-- **تجاهل اختبارات الأداء**: تحديد نقاط الاختناق قبل تأثيرها على الإنتاج  
-- **الاختبار في عزلة فقط**: دمج اختبارات الوحدة، التكامل، والنهائية  
-- **تغطية واجهة برمجة التطبيقات غير كاملة**: تأكد من اختبار جميع النقاط والميزات  
-- **بيئات اختبار غير متناسقة**: استخدم الحاويات لضمان بيئات اختبار متناسقة  
+## الأخطاء الشائعة في الاختبار
 
-## الخلاصة  
+- **الاعتماد المفرط على اختبارات الطريق السلس**: تأكد من اختبار حالات الخطأ بدقة
+- **تجاهل اختبار الأداء**: حدد الاختناقات قبل أن تؤثر على الإنتاج
+- **الاختبار في عزلة فقط**: اجمع بين اختبارات الوحدة، التكامل، واختبارات نهاية إلى نهاية
+- **تغطية غير كاملة لواجهة API**: تأكد من اختبار كل النقاط والميزات
+- **بيئات اختبار غير متسقة**: استخدم الحاويات لضمان بيئات اختبار متناسقة
 
-تعد استراتيجية اختبار شاملة ضرورية لتطوير خوادم MCP موثوقة وعالية الجودة. من خلال تطبيق أفضل الممارسات والنصائح الموضحة في هذا الدليل، يمكنك ضمان أن تنفيذات MCP الخاصة بك تلبي أعلى معايير الجودة والموثوقية والأداء.  
+## الخلاصة
 
-## النقاط الرئيسية  
+استراتيجية اختبار شاملة ضرورية لتطوير خوادم MCP موثوقة وعالية الجودة. من خلال تنفيذ أفضل الممارسات والنصائح الموضحة في هذا الدليل، يمكنك ضمان أن تطبيقات MCP الخاصة بك تلبي أعلى معايير الجودة والموثوقية والأداء.
 
-1. **تصميم الأدوات**: اتبع مبدأ المسؤولية الواحدة، استخدم حقن التبعيات، وصمم للتركيب  
-2. **تصميم المخطط**: أنشئ مخططات واضحة وموثقة جيدًا مع قيود تحقق مناسبة  
-3. **معالجة الأخطاء**: نفذ معالجة أخطاء مرنة، واستجابات خطأ منظمة، ومنطق إعادة المحاولة  
-4. **الأداء**: استخدم التخزين المؤقت، المعالجة غير المتزامنة، وتقييد الموارد  
-5. **الأمان**: طبق تحقق شامل من المدخلات، فحوصات التفويض، وتعامل مع البيانات الحساسة  
-6. **الاختبار**: أنشئ اختبارات شاملة للوحدة، التكامل، والنهائية  
-7. **أنماط سير العمل**: طبق الأنماط المعروفة مثل السلاسل، الموزعين، والمعالجة المتوازية  
 
-## التمرين  
+## النقاط الرئيسية المستفادة
 
-صمم أداة MCP وسير عمل لنظام معالجة المستندات الذي:  
+1. **تصميم الأدوات**: اتبع مبدأ المسؤولية الوحيدة، استخدم حقن التبعية، وصمم لتكون قابلة للتركيب
+2. **تصميم المخططات**: أنشئ مخططات واضحة وموثقة جيدًا مع قيود تحقق مناسبة
+3. **معالجة الأخطاء**: نفذ معالجة أخطاء سلسة، استجابات أخطاء منظمة، ومنطق إعادة المحاولة الواعي للنتائج
 
-1. يقبل مستندات بصيغ متعددة (PDF, DOCX, TXT)  
-2. يستخرج النص والمعلومات الرئيسية من المستندات  
-3. يصنف المستندات حسب النوع والمحتوى  
-4. ينشئ ملخصًا لكل مستند  
+4. **الأداء**: استخدم التخزين المؤقت، المعالجة غير المتزامنة، وتخفيض الموارد
+5. **الأمان**: طبق تحققًا شاملاً من المدخلات، فحوصات التفويض، والتعامل مع البيانات الحساسة
+6. **الاختبار**: أنشئ اختبارات وحدة شاملة، تكامل، ونهاية إلى نهاية
+7. **أنماط سير العمل**: طبق أنماط معتمدة مثل السلاسل، المرسلات، والمعالجة المتوازية
 
-نفذ مخططات الأداة، معالجة الأخطاء، وأنماط سير العمل التي تناسب هذا السيناريو. فكر في كيفية اختبار هذا التنفيذ.  
+## التمرين
 
-## الموارد  
+صمم أداة MCP وسير عمل لنظام معالجة الوثائق الذي:
 
-1. انضم إلى مجتمع MCP على [Microsoft Foundry Discord Community](https://aka.ms/foundrydevs) للبقاء على اطلاع بأحدث التطورات  
-2. ساهم في مشاريع [MCP مفتوحة المصدر](https://github.com/modelcontextprotocol)  
-3. طبق مبادئ MCP في مبادرات الذكاء الاصطناعي في منظمتك  
-4. استكشف تطبيقات MCP المتخصصة لصناعتك  
-5. فكر في الالتحاق بدورات متقدمة حول مواضيع MCP محددة، مثل التكامل متعدد الوسائط أو تكامل تطبيقات المؤسسات  
-6. جرب بناء أدوات MCP وسير العمل الخاصة بك باستخدام المبادئ التي تعلمتها من خلال [مختبر التدريب العملي](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)  
+1. يقبل المستندات بعدة صيغ (PDF, DOCX, TXT)
+2. يستخرج النص والمعلومات الرئيسية من المستندات
+3. يصنف الوثائق حسب النوع والمحتوى
+4. يولد ملخصًا لكل وثيقة
 
-## التالي  
+نفذ مخططات الأداة، معالجة الأخطاء، ونمط سير العمل الذي يناسب هذا السيناريو. ضع في اعتبارك كيفية اختبار هذا التنفيذ.
 
-التالي: [دراسات الحالة](../09-CaseStudy/README.md)
+## الموارد
+
+1. انضم إلى مجتمع MCP على [Microsoft Foundry Discord Community](https://aka.ms/foundrydevs) للبقاء على اطلاع على أحدث التطورات
+2. ساهم في مشاريع MCP مفتوحة المصدر [MCP projects](https://github.com/modelcontextprotocol)
+3. طبق مبادئ MCP في مبادرات الذكاء الاصطناعي بمنظمتك الخاصة
+4. استكشف تطبيقات MCP المتخصصة لصناعتك.
+5. فكّر في خوض دورات متقدمة حول مواضيع MCP محددة، مثل التكامل متعدد الوسائط أو تكامل تطبيقات المؤسسات.
+6. جرب بناء أدوات MCP وسير العمل الخاصة بك باستخدام المبادئ التي تعلمتها من خلال [Hands on Lab](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)
+
+## ما التالي
+
+التالي: [دراسات حالة](../09-CaseStudy/README.md)
 
 ---
 
