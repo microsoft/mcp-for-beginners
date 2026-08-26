@@ -12,6 +12,9 @@
   "author": "",
   "license": "ISC",
   "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
   "dependencies": {
     "@modelcontextprotocol/ext-apps": "^1.1.1",
     "@modelcontextprotocol/sdk": "^1.27.0",
