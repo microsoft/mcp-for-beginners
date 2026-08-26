@@ -162,8 +162,8 @@
     "language_code": "uk"
   },
   "03-GettingStarted/03-llm-client/solution/java/README.md": {
-    "original_hash": "ac2459c0d5cc823922e3d9240a95028c",
-    "translation_date": "2025-07-13T19:14:10+00:00",
+    "original_hash": "3efd351ab69decd299a49aaa34ac9245",
+    "translation_date": "2026-08-26T18:50:59+00:00",
     "source_file": "03-GettingStarted/03-llm-client/solution/java/README.md",
     "language_code": "uk"
   },
@@ -672,8 +672,8 @@
     "language_code": "uk"
   },
   "09-CaseStudy/README.md": {
-    "original_hash": "b3537be55d599dbfdca7bda72eef7741",
-    "translation_date": "2026-02-08T09:20:43+00:00",
+    "original_hash": "701e053b411650c0afcde985a2ef939d",
+    "translation_date": "2026-08-26T18:43:07+00:00",
     "source_file": "09-CaseStudy/README.md",
     "language_code": "uk"
   },
@@ -711,6 +711,12 @@
     "original_hash": "d44c9447c434354a77dfcb421bbdc260",
     "translation_date": "2026-06-16T20:55:20+00:00",
     "source_file": "09-CaseStudy/docs-mcp/solution/scenario3/README.md",
+    "language_code": "uk"
+  },
+  "09-CaseStudy/publora-social-publishing.md": {
+    "original_hash": "9c860d3fea4a5cfd58ea714fd608aad4",
+    "translation_date": "2026-08-26T18:55:04+00:00",
+    "source_file": "09-CaseStudy/publora-social-publishing.md",
     "language_code": "uk"
   },
   "09-CaseStudy/travelagentsample.md": {
@@ -892,7 +898,7 @@
       "original_hash": "8ba1781e6978308063cb698d13bcde43",
       "source_file": "08-BestPractices/README.md",
       "language_code": "uk",
-      "failure_date": "2026-08-21T16:43:38+00:00",
+      "failure_date": "2026-08-26T18:50:28+00:00",
       "status": "failed",
       "error_type": "TranslationIncompleteError",
       "error_message": "Markdown translation remained incomplete for chunk 1.2.1 of 'README.md', and the chunk could not be split further.",
