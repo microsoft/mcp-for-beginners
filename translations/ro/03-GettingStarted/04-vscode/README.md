@@ -118,7 +118,7 @@ Acum că ai adăugat o intrare, să pornim serverul:
 
 Reperele din acest capitol sunt următoarele:
 
-- Visual Studio Code este un client excelent care vă permite să consumați mai mulți Servere MCP și uneltele lor.
+- Visual Studio Code este un client excelent care vă permite să consumați mai multe servere MCP și uneltele lor.
 - Interfața GitHub Copilot Chat este modul în care interacționezi cu serverele.
 - Poți solicita utilizatorului să introducă date precum chei API care pot fi transmise Serverului MCP la configurarea intrării serverului în fișierul *mcp.json*.
 
