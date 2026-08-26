@@ -162,8 +162,8 @@
     "language_code": "zh-CN"
   },
   "03-GettingStarted/03-llm-client/solution/java/README.md": {
-    "original_hash": "ac2459c0d5cc823922e3d9240a95028c",
-    "translation_date": "2025-07-13T19:06:42+00:00",
+    "original_hash": "3efd351ab69decd299a49aaa34ac9245",
+    "translation_date": "2026-08-26T15:42:34+00:00",
     "source_file": "03-GettingStarted/03-llm-client/solution/java/README.md",
     "language_code": "zh-CN"
   },
@@ -672,8 +672,8 @@
     "language_code": "zh-CN"
   },
   "09-CaseStudy/README.md": {
-    "original_hash": "b3537be55d599dbfdca7bda72eef7741",
-    "translation_date": "2026-02-08T08:09:37+00:00",
+    "original_hash": "701e053b411650c0afcde985a2ef939d",
+    "translation_date": "2026-08-26T15:33:29+00:00",
     "source_file": "09-CaseStudy/README.md",
     "language_code": "zh-CN"
   },
@@ -711,6 +711,12 @@
     "original_hash": "d44c9447c434354a77dfcb421bbdc260",
     "translation_date": "2026-06-17T11:40:55+00:00",
     "source_file": "09-CaseStudy/docs-mcp/solution/scenario3/README.md",
+    "language_code": "zh-CN"
+  },
+  "09-CaseStudy/publora-social-publishing.md": {
+    "original_hash": "9c860d3fea4a5cfd58ea714fd608aad4",
+    "translation_date": "2026-08-26T15:44:57+00:00",
+    "source_file": "09-CaseStudy/publora-social-publishing.md",
     "language_code": "zh-CN"
   },
   "09-CaseStudy/travelagentsample.md": {
@@ -858,8 +864,8 @@
     "language_code": "zh-CN"
   },
   "AGENTS.md": {
-    "original_hash": "e2c693d6340cc1fcbb2c84ab6a73e42a",
-    "translation_date": "2026-06-17T11:17:42+00:00",
+    "original_hash": "9b7d363f239420ed477289578eb589ed",
+    "translation_date": "2026-08-26T15:32:36+00:00",
     "source_file": "AGENTS.md",
     "language_code": "zh-CN"
   },
@@ -888,36 +894,14 @@
     "language_code": "zh-CN"
   },
   "__translation_failures__": {
-    "AGENTS.md": {
-      "original_hash": "9b7d363f239420ed477289578eb589ed",
-      "source_file": "AGENTS.md",
-      "language_code": "zh-CN",
-      "failure_date": "2026-08-21T15:08:16+00:00",
-      "status": "failed",
-      "error_type": "TranslationIncompleteError",
-      "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'AGENTS.md', and the chunk could not be split further.",
-      "translator_version": "0.20.0",
-      "failure_policy_version": 1
-    },
-    "changelog.md": {
-      "original_hash": "60677e2e90cc496806c9a28dcebdc325",
-      "source_file": "changelog.md",
-      "language_code": "zh-CN",
-      "failure_date": "2026-08-21T15:11:20+00:00",
-      "status": "failed",
-      "error_type": "TranslationIncompleteError",
-      "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'changelog.md', and the chunk could not be split further.",
-      "translator_version": "0.20.0",
-      "failure_policy_version": 1
-    },
     "08-BestPractices/README.md": {
       "original_hash": "8ba1781e6978308063cb698d13bcde43",
       "source_file": "08-BestPractices/README.md",
       "language_code": "zh-CN",
-      "failure_date": "2026-08-21T15:16:42+00:00",
+      "failure_date": "2026-08-26T15:41:51+00:00",
       "status": "failed",
       "error_type": "TranslationIncompleteError",
-      "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'README.md', and the chunk could not be split further.",
+      "error_message": "Markdown translation remained incomplete for chunk 1.2.1 of 'README.md', and the chunk could not be split further.",
       "translator_version": "0.20.0",
       "failure_policy_version": 1
     },
@@ -934,8 +918,8 @@
     }
   },
   "changelog.md": {
-    "original_hash": "20f1f1af027c13294024fe6a9ea90e37",
-    "translation_date": "2026-07-08T17:52:08+00:00",
+    "original_hash": "60677e2e90cc496806c9a28dcebdc325",
+    "translation_date": "2026-08-26T15:27:21+00:00",
     "source_file": "changelog.md",
     "language_code": "zh-CN"
   },
