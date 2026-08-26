@@ -1,54 +1,52 @@
-# Calculator LLM Client
+# Khách hàng LLM Máy tính
 
-Một ứng dụng Java minh họa cách sử dụng LangChain4j để kết nối với dịch vụ máy tính MCP (Model Context Protocol) tích hợp GitHub Models.
+Một ứng dụng Java minh họa cách sử dụng LangChain4j để kết nối với dịch vụ máy tính MCP (Model Context Protocol) qua API tương thích MiniMax OpenAI.
 
 ## Yêu cầu trước
 
-- Java 21 trở lên
-- Maven 3.6+ (hoặc sử dụng Maven wrapper đi kèm)
-- Tài khoản GitHub có quyền truy cập GitHub Models
+- Java 21 hoặc cao hơn
+- Maven 3.6+ (hoặc sử dụng Maven wrapper kèm theo)
+- Một khóa API MiniMax
 - Dịch vụ máy tính MCP đang chạy trên `http://localhost:8080`
 
-## Lấy GitHub Token
+## Lấy khóa API
 
-Ứng dụng này sử dụng GitHub Models, yêu cầu token truy cập cá nhân GitHub. Thực hiện các bước sau để lấy token:
+Ứng dụng này sử dụng API tương thích MiniMax OpenAI. Làm theo các bước sau để lấy khóa và điểm cuối của bạn:
 
-### 1. Truy cập GitHub Models
-1. Truy cập [GitHub Models](https://github.com/marketplace/models)
-2. Đăng nhập bằng tài khoản GitHub của bạn
-3. Yêu cầu quyền truy cập GitHub Models nếu bạn chưa có
+### 1. Chọn điểm cuối
+1. Sử dụng `https://api.minimax.io/v1` cho điểm cuối toàn cầu
+2. Sử dụng `https://api.minimaxi.com/v1` cho điểm cuối Trung Quốc
 
-### 2. Tạo Personal Access Token
-1. Truy cập [GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)](https://github.com/settings/tokens)
-2. Nhấn "Generate new token" → "Generate new token (classic)"
-3. Đặt tên mô tả cho token (ví dụ: "MCP Calculator Client")
-4. Chọn thời hạn hết hạn phù hợp
-5. Chọn các phạm vi sau:
-   - `repo` (nếu truy cập kho riêng tư)
-   - `user:email`
-6. Nhấn "Generate token"
-7. **Quan trọng**: Sao chép token ngay lập tức - bạn sẽ không thể xem lại!
+### 2. Tạo khóa API
+1. Tạo khóa API MiniMax từ tài khoản MiniMax của bạn
+2. Giữ khóa ở nơi an toàn
 
-### 3. Thiết lập biến môi trường
+### 3. Đặt biến môi trường
 
 #### Trên Windows (Command Prompt):
 ```cmd
-set GITHUB_TOKEN=your_github_token_here
+set OPENAI_API_KEY=your_minimax_api_key_here
+set OPENAI_BASE_URL=https://api.minimax.io/v1
+set MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
 #### Trên Windows (PowerShell):
 ```powershell
-$env:GITHUB_TOKEN="your_github_token_here"
+$env:OPENAI_API_KEY="your_minimax_api_key_here"
+$env:OPENAI_BASE_URL="https://api.minimax.io/v1"
+$env:MINIMAX_MODEL_ID="MiniMax-M3"
 ```
 
 #### Trên macOS/Linux:
 ```bash
-export GITHUB_TOKEN=your_github_token_here
+export OPENAI_API_KEY=your_minimax_api_key_here
+export OPENAI_BASE_URL=https://api.minimax.io/v1
+export MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
-## Cài đặt và Thiết lập
+## Thiết lập và cài đặt
 
-1. **Clone hoặc chuyển đến thư mục dự án**
+1. **Sao chép hoặc vào thư mục dự án**
 
 2. **Cài đặt các phụ thuộc**:
    ```cmd
@@ -59,12 +57,12 @@ export GITHUB_TOKEN=your_github_token_here
    mvn clean install
    ```
 
-3. **Thiết lập biến môi trường** (xem phần "Lấy GitHub Token" ở trên)
+3. **Thiết lập biến môi trường** (xem phần "Lấy khóa API" phía trên)
 
-4. **Khởi động dịch vụ MCP Calculator**:
-   Đảm bảo dịch vụ MCP calculator của chương 1 đang chạy trên `http://localhost:8080/sse`. Dịch vụ này phải chạy trước khi bạn khởi động client.
+4. **Khởi động Dịch vụ Máy tính MCP**:
+   Đảm bảo dịch vụ máy tính MCP của chương 1 đang chạy trên `http://localhost:8080/sse`. Dịch vụ này phải chạy trước khi bạn khởi động client.
 
-## Chạy Ứng dụng
+## Chạy ứng dụng
 
 ```cmd
 mvnw clean package
@@ -91,27 +89,27 @@ The calculator service provides the following functions: add, subtract, multiply
 
 ## Khắc phục sự cố
 
-### Các vấn đề thường gặp
+### Vấn đề thường gặp
 
-1. **"GITHUB_TOKEN environment variable not set"**
-   - Đảm bảo bạn đã thiết lập biến môi trường `GITHUB_TOKEN`
+1. **"Biến môi trường OPENAI_API_KEY chưa được thiết lập"**
+   - Đảm bảo bạn đã thiết lập biến môi trường `OPENAI_API_KEY`
    - Khởi động lại terminal/command prompt sau khi thiết lập biến
 
-2. **"Connection refused to localhost:8080"**
-   - Đảm bảo dịch vụ MCP calculator đang chạy trên cổng 8080
-   - Kiểm tra xem có dịch vụ khác đang chiếm cổng 8080 không
+2. **"Kết nối bị từ chối với localhost:8080"**
+   - Đảm bảo dịch vụ máy tính MCP đang chạy trên cổng 8080
+   - Kiểm tra xem có dịch vụ nào khác đang dùng cổng 8080 không
 
-3. **"Authentication failed"**
-   - Xác nhận token GitHub của bạn hợp lệ và có quyền phù hợp
-   - Kiểm tra xem bạn có quyền truy cập GitHub Models không
+3. **"Xác thực không thành công"**
+   - Xác minh khóa API của bạn hợp lệ
+   - Kiểm tra xem `OPENAI_BASE_URL` có khớp với điểm cuối bạn muốn dùng không
 
-4. **Lỗi build Maven**
+4. **Lỗi khi build Maven**
    - Đảm bảo bạn đang dùng Java 21 trở lên: `java -version`
-   - Thử dọn dẹp build: `mvnw clean`
+   - Thử làm sạch build: `mvnw clean`
 
 ### Gỡ lỗi
 
-Để bật ghi log debug, thêm đối số JVM sau khi chạy:
+Để bật ghi nhật ký gỡ lỗi, thêm đối số JVM sau khi chạy:
 ```cmd
 java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
@@ -119,22 +117,26 @@ java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0
 ## Cấu hình
 
 Ứng dụng được cấu hình để:
-- Sử dụng GitHub Models với model `gpt-4.1-nano`
+- Sử dụng MiniMax-M3 theo mặc định, hoặc MiniMax-M2.7 khi `MINIMAX_MODEL_ID` được đặt
+- Kết nối tới `OPENAI_BASE_URL` khi được đặt; nếu không dùng `https://api.minimaxi.com/v1` khi `MINIMAX_REGION=cn_zh`, hoặc `https://api.minimax.io/v1` theo mặc định
 - Kết nối tới dịch vụ MCP tại `http://localhost:8080/sse`
-- Sử dụng timeout 60 giây cho các yêu cầu
-- Bật ghi log yêu cầu/phản hồi để hỗ trợ gỡ lỗi
+- Sử dụng thời gian chờ 60 giây cho các yêu cầu
 
 ## Phụ thuộc
 
-Các phụ thuộc chính trong dự án:
-- **LangChain4j**: Cho tích hợp AI và quản lý công cụ
-- **LangChain4j MCP**: Hỗ trợ Model Context Protocol
-- **LangChain4j GitHub Models**: Tích hợp GitHub Models
-- **Spring Boot**: Framework ứng dụng và tiêm phụ thuộc
+Các phụ thuộc chính được sử dụng trong dự án này:
+- **LangChain4j**: Để tích hợp AI và quản lý công cụ
+- **LangChain4j MCP**: Để hỗ trợ Model Context Protocol
+- **LangChain4j OpenAI official**: Để tích hợp API tương thích MiniMax OpenAI
+- **Spring Boot**: Để làm framework ứng dụng và tiêm phụ thuộc
 
 ## Giấy phép
 
-Dự án này được cấp phép theo Apache License 2.0 - xem file [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) để biết chi tiết.
+Dự án này được cấp phép theo Giấy phép Apache 2.0 - xem file [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) để biết chi tiết.
 
-**Tuyên bố từ chối trách nhiệm**:  
-Tài liệu này đã được dịch bằng dịch vụ dịch thuật AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mặc dù chúng tôi cố gắng đảm bảo độ chính xác, xin lưu ý rằng các bản dịch tự động có thể chứa lỗi hoặc không chính xác. Tài liệu gốc bằng ngôn ngữ gốc của nó nên được coi là nguồn chính xác và đáng tin cậy. Đối với các thông tin quan trọng, nên sử dụng dịch vụ dịch thuật chuyên nghiệp do con người thực hiện. Chúng tôi không chịu trách nhiệm về bất kỳ sự hiểu lầm hoặc giải thích sai nào phát sinh từ việc sử dụng bản dịch này.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Tuyên bố miễn trừ trách nhiệm**:
+Tài liệu này đã được dịch bằng dịch vụ dịch thuật AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mặc dù chúng tôi cố gắng đảm bảo độ chính xác, xin lưu ý rằng bản dịch tự động có thể chứa lỗi hoặc sai sót. Tài liệu gốc bằng ngôn ngữ gốc nên được coi là nguồn tin chính thức. Đối với thông tin quan trọng, nên sử dụng dịch vụ dịch thuật chuyên nghiệp bởi con người. Chúng tôi không chịu trách nhiệm về bất kỳ hiểu lầm hoặc giải thích sai nào phát sinh từ việc sử dụng bản dịch này.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
