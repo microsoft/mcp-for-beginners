@@ -1,49 +1,47 @@
-# Calculator LLM Client
+# Hesap Makinesi LLM İstemcisi
 
-LangChain4j kullanarak MCP (Model Context Protocol) hesap makinesi servisine GitHub Models entegrasyonu ile nasıl bağlanılacağını gösteren bir Java uygulaması.
+LangChain4j kullanarak MCP (Model Context Protocol) hesap makinesi servisine MiniMax OpenAI uyumlu API üzerinden nasıl bağlanılacağını gösteren bir Java uygulaması.
 
 ## Gereksinimler
 
 - Java 21 veya üzeri
-- Maven 3.6+ (veya dahil edilen Maven wrapper'ı kullanabilirsiniz)
-- GitHub Models erişimi olan bir GitHub hesabı
+- Maven 3.6+ (veya dahil edilen Maven sarmalayıcısını kullanabilirsiniz)
+- Bir MiniMax API anahtarı
 - `http://localhost:8080` adresinde çalışan bir MCP hesap makinesi servisi
 
-## GitHub Token'ını Alma
+## API Anahtarının Alınması
 
-Bu uygulama GitHub Models kullanır ve bu da bir GitHub kişisel erişim tokenı gerektirir. Tokenınızı almak için şu adımları izleyin:
+Bu uygulama MiniMax OpenAI uyumlu API'sini kullanmaktadır. Anahtarınızı ve uç noktanızı almak için şu adımları izleyin:
 
-### 1. GitHub Models'a Erişim
-1. [GitHub Models](https://github.com/marketplace/models) sayfasına gidin
-2. GitHub hesabınızla giriş yapın
-3. Henüz erişiminiz yoksa GitHub Models için erişim talep edin
+### 1. Bir uç nokta seçin
+1. Küresel uç nokta için `https://api.minimax.io/v1` adresini kullanın
+2. Çin uç noktası için `https://api.minimaxi.com/v1` adresini kullanın
 
-### 2. Kişisel Erişim Tokenı Oluşturma
-1. [GitHub Ayarları → Geliştirici ayarları → Kişisel erişim tokenları → Tokenlar (klasik)](https://github.com/settings/tokens) sayfasına gidin
-2. "Generate new token" → "Generate new token (classic)" seçeneğine tıklayın
-3. Tokenınıza açıklayıcı bir isim verin (örneğin, "MCP Calculator Client")
-4. Gerekirse süresini ayarlayın
-5. Aşağıdaki izinleri seçin:
-   - `repo` (özel depolara erişim için)
-   - `user:email`
-6. "Generate token" butonuna tıklayın
-7. **Önemli**: Tokenı hemen kopyalayın - bir daha göremeyeceksiniz!
+### 2. Bir API anahtarı oluşturun
+1. MiniMax hesabınızdan bir MiniMax API anahtarı oluşturun
+2. Anahtarı güvenli bir yerde saklayın
 
-### 3. Ortam Değişkenini Ayarlama
+### 3. Ortam Değişkenlerini Ayarlayın
 
-#### Windows (Komut İstemi) için:
+#### Windows'da (Komut İstemi):
 ```cmd
-set GITHUB_TOKEN=your_github_token_here
+set OPENAI_API_KEY=your_minimax_api_key_here
+set OPENAI_BASE_URL=https://api.minimax.io/v1
+set MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
-#### Windows (PowerShell) için:
+#### Windows'da (PowerShell):
 ```powershell
-$env:GITHUB_TOKEN="your_github_token_here"
+$env:OPENAI_API_KEY="your_minimax_api_key_here"
+$env:OPENAI_BASE_URL="https://api.minimax.io/v1"
+$env:MINIMAX_MODEL_ID="MiniMax-M3"
 ```
 
-#### macOS/Linux için:
+#### macOS/Linux'ta:
 ```bash
-export GITHUB_TOKEN=your_github_token_here
+export OPENAI_API_KEY=your_minimax_api_key_here
+export OPENAI_BASE_URL=https://api.minimax.io/v1
+export MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
 ## Kurulum ve Yükleme
@@ -59,10 +57,10 @@ export GITHUB_TOKEN=your_github_token_here
    mvn clean install
    ```
 
-3. **Ortam değişkenini ayarlayın** (yukarıdaki "GitHub Token'ını Alma" bölümüne bakın)
+3. **Ortam değişkenlerini ayarlayın** (yukarıdaki "API Anahtarının Alınması" bölümüne bakın)
 
-4. **MCP Calculator Servisini Başlatın**:
-   1. bölümdeki MCP hesap makinesi servisini `http://localhost:8080/sse` adresinde çalıştırdığınızdan emin olun. İstemciyi başlatmadan önce servis çalışıyor olmalı.
+4. **MCP Hesap Makinesi Servisini başlatın**:
+   MCP hesap makinesi servisini `http://localhost:8080/sse` adresinde, bölüm 1'deki gibi çalıştırdığınızdan emin olun. Bu, istemciyi başlatmadan önce çalışıyor olmalıdır.
 
 ## Uygulamayı Çalıştırma
 
@@ -73,15 +71,15 @@ java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 
 ## Uygulamanın Yaptıkları
 
-Uygulama hesap makinesi servisi ile üç temel etkileşimi gösterir:
+Uygulama, hesap makinesi servisi ile üç ana etkileşimi gösterir:
 
-1. **Toplama**: 24.5 ile 17.3'ün toplamını hesaplar
-2. **Karekök**: 144'ün karekökünü hesaplar
+1. **Toplama**: 24.5 ve 17.3 sayılarının toplamını hesaplar
+2. **Karekök**: 144 sayısının karekökünü hesaplar
 3. **Yardım**: Kullanılabilir hesap makinesi fonksiyonlarını gösterir
 
 ## Beklenen Çıktı
 
-Başarıyla çalıştığında aşağıdakine benzer bir çıktı görmelisiniz:
+Başarıyla çalıştırıldığında, benzer bir çıktı görmelisiniz:
 
 ```
 The sum of 24.5 and 17.3 is 41.8.
@@ -93,17 +91,17 @@ The calculator service provides the following functions: add, subtract, multiply
 
 ### Yaygın Sorunlar
 
-1. **"GITHUB_TOKEN ortam değişkeni ayarlanmadı"**
-   - `GITHUB_TOKEN` ortam değişkenini ayarladığınızdan emin olun
-   - Değişkeni ayarladıktan sonra terminal/komut istemcisini yeniden başlatın
+1. **"OPENAI_API_KEY ortam değişkeni ayarlı değil"**
+   - `OPENAI_API_KEY` ortam değişkenini ayarladığınızdan emin olun
+   - Değişkeni ayarladıktan sonra terminalinizi/komut istemcinizi yeniden başlatın
 
 2. **"localhost:8080 bağlantısı reddedildi"**
    - MCP hesap makinesi servisinin 8080 portunda çalıştığından emin olun
-   - Başka bir servisin 8080 portunu kullanmadığını kontrol edin
+   - 8080 portunu kullanan başka bir servisin olup olmadığını kontrol edin
 
 3. **"Kimlik doğrulama başarısız"**
-   - GitHub tokenınızın geçerli ve doğru izinlere sahip olduğunu doğrulayın
-   - GitHub Models erişiminizin olduğundan emin olun
+   - API anahtarınızın geçerli olduğunu doğrulayın
+   - `OPENAI_BASE_URL` değişkeninin kullanmak istediğiniz uç nokta ile eşleştiğini kontrol edin
 
 4. **Maven derleme hataları**
    - Java 21 veya üzeri kullandığınızdan emin olun: `java -version`
@@ -111,30 +109,34 @@ The calculator service provides the following functions: add, subtract, multiply
 
 ### Hata Ayıklama
 
-Hata ayıklama kayıtlarını etkinleştirmek için uygulamayı çalıştırırken aşağıdaki JVM argümanını ekleyin:
+Hata ayıklama günlüklerini etkinleştirmek için, çalıştırırken şu JVM argümanını ekleyin:
 ```cmd
 java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
 
-## Konfigürasyon
+## Yapılandırma
 
 Uygulama şu şekilde yapılandırılmıştır:
-- GitHub Models ile `gpt-4.1-nano` modelini kullanır
+- Varsayılan olarak MiniMax-M3 kullanır veya `MINIMAX_MODEL_ID` ayarlandığında MiniMax-M2.7 kullanır
+- `OPENAI_BASE_URL` ayarlanmışsa ona bağlanır; aksi takdirde `MINIMAX_REGION=cn_zh` ise `https://api.minimaxi.com/v1`, yoksa varsayılan olarak `https://api.minimax.io/v1` kullanır
 - MCP servisine `http://localhost:8080/sse` adresinden bağlanır
-- İstekler için 60 saniyelik zaman aşımı uygular
-- Hata ayıklama için istek/yanıt kayıtlarını etkinleştirir
+- İstekler için 60 saniyelik zaman aşımı kullanır
 
 ## Bağımlılıklar
 
 Bu projede kullanılan temel bağımlılıklar:
-- **LangChain4j**: AI entegrasyonu ve araç yönetimi için
+- **LangChain4j**: Yapay Zeka entegrasyonu ve araç yönetimi için
 - **LangChain4j MCP**: Model Context Protocol desteği için
-- **LangChain4j GitHub Models**: GitHub Models entegrasyonu için
-- **Spring Boot**: Uygulama çatısı ve bağımlılık yönetimi için
+- **LangChain4j OpenAI resmi**: MiniMax OpenAI uyumlu API entegrasyonu için
+- **Spring Boot**: Uygulama çatısı ve bağımlılık enjeksiyonu için
 
 ## Lisans
 
-Bu proje Apache License 2.0 altında lisanslanmıştır - detaylar için [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) dosyasına bakınız.
+Bu proje Apache Lisans 2.0 altında lisanslanmıştır - ayrıntılar için [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) dosyasına bakınız.
 
-**Feragatname**:  
-Bu belge, AI çeviri servisi [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hatalar veya yanlışlıklar içerebileceğini lütfen unutmayınız. Orijinal belge, kendi dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucu oluşabilecek yanlış anlamalar veya yorum hatalarından sorumlu değiliz.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Feragatname**:
+Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba sarf etsek de, otomatik çevirilerin hata veya yanlışlık içerebileceğini lütfen unutmayınız. Orijinal belge, kendi dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucu ortaya çıkabilecek yanlış anlamalardan veya yanlış yorumlamalardan sorumlu değiliz.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
