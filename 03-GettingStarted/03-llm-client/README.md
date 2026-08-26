@@ -210,6 +210,7 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class LangChain4jClient {
 
@@ -255,7 +256,8 @@ public class LangChain4jClient {
 
         String regionalBaseUrl = REGIONAL_BASE_URLS.get(region);
         if (regionalBaseUrl == null) {
-            throw new IllegalArgumentException("Unsupported MINIMAX_REGION value: " + region);
+            throw new IllegalArgumentException("Unsupported MINIMAX_REGION value: " + region
+                    + ". Supported values: " + new TreeSet<>(REGIONAL_BASE_URLS.keySet()));
         }
         return regionalBaseUrl;
     }
@@ -266,7 +268,8 @@ public class LangChain4jClient {
             return DEFAULT_MODEL_ID;
         }
         if (!SUPPORTED_MODEL_IDS.contains(modelId)) {
-            throw new IllegalArgumentException("Unsupported MINIMAX_MODEL_ID value: " + modelId);
+            throw new IllegalArgumentException("Unsupported MINIMAX_MODEL_ID value: " + modelId
+                    + ". Supported values: " + new TreeSet<>(SUPPORTED_MODEL_IDS));
         }
         return modelId;
     }
@@ -1271,6 +1274,7 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class LangChain4jClient {
 
@@ -1336,7 +1340,8 @@ public class LangChain4jClient {
 
         String regionalBaseUrl = REGIONAL_BASE_URLS.get(region);
         if (regionalBaseUrl == null) {
-            throw new IllegalArgumentException("Unsupported MINIMAX_REGION value: " + region);
+            throw new IllegalArgumentException("Unsupported MINIMAX_REGION value: " + region
+                    + ". Supported values: " + new TreeSet<>(REGIONAL_BASE_URLS.keySet()));
         }
         return regionalBaseUrl;
     }
@@ -1347,7 +1352,8 @@ public class LangChain4jClient {
             return DEFAULT_MODEL_ID;
         }
         if (!SUPPORTED_MODEL_IDS.contains(modelId)) {
-            throw new IllegalArgumentException("Unsupported MINIMAX_MODEL_ID value: " + modelId);
+            throw new IllegalArgumentException("Unsupported MINIMAX_MODEL_ID value: " + modelId
+                    + ". Supported values: " + new TreeSet<>(SUPPORTED_MODEL_IDS));
         }
         return modelId;
     }
