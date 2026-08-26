@@ -2,172 +2,187 @@
 
 [![MCP 實戰：真實案例研究](../../../translated_images/zh-MO/10.3262cc80b4de5071.webp)](https://youtu.be/IxshWb2Az5w)
 
-_(點擊上方圖片觀看本課視頻)_
+_(點擊上圖觀看本課程影片)_
 
-模型上下文協定（MCP）正在改變 AI 應用如何與數據、工具和服務互動。本節展示了多個真實案例，說明 MCP 在各種企業場景中的實際應用。
+模型上下文協議（Model Context Protocol，MCP）正在改變 AI 應用程式與資料、工具和服務互動的方式。本節展示了多個真實案例，說明 MCP 在各種企業場景中的實際應用。
 
-## 概述
+## 概覽
 
-本節展示了 MCP 實施的具體範例，突顯組織如何利用此協定來解決複雜的業務挑戰。通過研究這些案例，您將獲悉 MCP 在真實場景中的多樣性、可擴展性及實用價值。
+本節呈現 MCP 實作的具體範例，強調組織如何利用此協議解決複雜商業挑戰。透過這些案例研究，你將瞭解 MCP 在現實場景中多樣性、可擴展性以及實用效益。
 
 ## 主要學習目標
 
-透過探索這些案例，您將能夠：
+探討這些案例後，你將能夠：
 
-- 理解 MCP 如何應用於解決特定業務問題
-- 了解不同的整合模式和架構方法
-- 認識企業環境中實施 MCP 的最佳實踐
-- 探索現實實施中遇到的挑戰與解決方案
-- 識別在自身項目中應用類似模式的機會
+- 理解 MCP 如何應用於解決特定商業問題
+- 了解不同的整合模式與架構方法
+- 識別企業環境下實施 MCP 的最佳實踐
+- 獲得真實實作中遇到的挑戰與解決方案洞見
+- 發現將相似模式應用於自身專案的機會
 
-## 精選案例研究
+## 特色案例研究
 
-### 1. [Azure AI 旅遊代理 — 參考實作](./travelagentsample.md)
+### 1. [Azure AI 旅遊代理 – 參考實作範例](./travelagentsample.md)
 
-本案例探討微軟的綜合參考解決方案，展示如何使用 MCP、Azure OpenAI 和 Azure AI 搜索建立多代理的 AI 驅動旅遊規劃應用。項目亮點：
+此案例研究探討微軟完整的參考解決方案，示範如何利用 MCP、Azure OpenAI 與 Azure AI 搜尋建構一個多代理、AI 驅動的旅遊計劃應用。專案亮點包括：
 
-- 通過 MCP 進行多代理協調
-- 企業數據整合以 Azure AI 搜索為核心
-- 使用 Azure 服務構建安全且可擴展的架構
-- 可擴展的工具支持與可重用 MCP 元件
-- 由 Azure OpenAI 支持的對話式使用者體驗
+- 透過 MCP 實現多代理協調
+- 與 Azure AI 搜尋的企業資料整合
+- 使用 Azure 服務打造安全且可擴展的架構
+- 可擴充且可重複使用的 MCP 元件工具
+- 由 Azure OpenAI 推動的對話式用戶體驗
 
-架構與實作細節提供了使用 MCP 作為協調層來構建複雜多代理系統的寶貴見解。
+架構與實作詳情提供了以 MCP 作為協調層建構複雜多代理系統的寶貴洞察。
 
-### 2. [從 YouTube 數據更新 Azure DevOps 項目](./UpdateADOItemsFromYT.md)
+### 2. [從 YouTube 資料更新 Azure DevOps 項目](./UpdateADOItemsFromYT.md)
 
-本案例展示 MCP 在自動化工作流程中的實際應用，說明 MCP 工具如何用於：
+此案例演示 MCP 在自動化工作流程中的實際應用。展示了如何使用 MCP 工具：
 
-- 從線上平台（YouTube）提取數據
+- 從線上平台（YouTube）提取資料
 - 更新 Azure DevOps 系統中的工作項目
-- 建立可重複的自動化流程
-- 整合跨異系統數據
+- 創建可重複使用的自動化工作流
+- 整合各異系統之間的資料
 
-該範例展現即使是相對簡單的 MCP 實施，也能透過自動化例行任務與提升系統數據一致性帶來顯著效率提升。
+此範例說明即使相對簡單的 MCP 實現，也能透過自動化例行任務與改進系統間資料一致性，提供顯著效率提升。
 
-### 3. [使用 MCP 實現即時文件檢索](./docs-mcp/README.md)
+### 3. [使用 MCP 進行即時文件檢索](./docs-mcp/README.md)
 
-本案例引導您如何將 Python 終端客戶端連接至模型上下文協定（MCP）伺服器，即時檢索並記錄具有上下文智能的微軟文件。您將學會：
+此案例指導你如何連接 Python 命令列客戶端與 Model Context Protocol (MCP) 伺服器，檢索並記錄即時、上下文感知的 Microsoft 文件。你將學習如何：
 
-- 使用 Python 客戶端與官方 MCP SDK 連接 MCP 伺服器
-- 利用串流 HTTP 客戶端實現高效即時數據獲取
-- 調用伺服器上的文件工具並將回應直接記錄於終端
-- 在不離開終端的情況下整合最新的微軟文件進入工作流
+- 使用 Python 客戶端及官方 MCP SDK 連接 MCP 伺服器
+- 使用串流 HTTP 客戶端高效即時檢索資料
+- 呼叫伺服器上的文件工具並將回應直接記錄於命令列
+- 不離開終端機即整合最新 Microsoft 文件入工作流程
 
-本章節附有實作任務、極簡示範代碼及深度學習資源連結。詳見連結章節中的完整步驟與代碼，了解 MCP 如何革新基於終端的文件存取與開發者生產力。
+本章節包含實作作業、一個最小可用程式碼範例及進階學習資源連結。請參考連結章節的完整步驟和程式碼，了解 MCP 如何在以命令行為主的環境中改變文件訪問及開發者生產力。
 
-### 4. [基於 MCP 的互動式學習計劃生成器 Web 應用](./docs-mcp/README.md)
+### 4. [使用 MCP 建立互動式學習計劃產生器網頁應用](./docs-mcp/README.md)
 
-本案例展示如何使用 Chainlit 和模型上下文協定（MCP）構建互動式網頁應用，為任意主題生成個人化學習計劃。使用者可指定主題（如「AI-900 認證」）及學習時長（例如 8 週），應用將按週詳列推薦內容。Chainlit 提供聊天室式的對話界面，讓體驗生動且具適應性。
+此案例展示如何使用 Chainlit 與 Model Context Protocol (MCP) 建構一款互動式網頁應用，為任一主題生成個人化學習計劃。使用者可指定主題（如「AI-900 認證」）和學習時長（例如 8 週），應用程式會提供逐週的推薦內容。Chainlit 提供對話式聊天介面，使體驗生動且可適應需求。
 
-- 由 Chainlit 推動的對話式網頁應用
-- 使用者驅動的主題及時長提示
-- 依據 MCP 提供逐週內容推薦
-- 於聊天介面實時適應回應
+- 使用 Chainlit 推動的對話式網頁應用
+- 使用者主導輸入主題及時長
+- 透過 MCP 提供逐週內容建議
+- 聊天介面中即時且可適應的回應
 
-該項目展示如何結合對話式 AI 及 MCP 創建動態、使用者主導的現代網頁教育工具。
+專案說明對話式 AI 與 MCP 如何結合，創造動態且用戶驅動的現代網頁教育工具。
 
-### 5. [在 VS Code 中使用 MCP 伺服器實現編輯器內文件](./docs-mcp/README.md)
+### 5. [在 VS Code 中使用 MCP 伺服器直接查看文件](./docs-mcp/README.md)
 
-本案例展示如何利用 MCP 伺服器將 Microsoft Learn 文檔直接帶入 VS Code 環境，省去頻繁切換瀏覽器標籤的麻煩。您將看到如何：
+本案例示範如何將 Microsoft Learn 文件直接引入 VS Code 環境，使用 MCP 伺服器—毋須切換瀏覽器分頁！你將看到如何：
 
-- 使用 MCP 面板或命令面板在 VS Code 內即時搜尋和閱讀文檔
-- 在 README 或課程 Markdown 文件中直接引用文檔並插入連結
-- 結合 GitHub Copilot 與 MCP，實現無縫的 AI 驅動文檔與代碼工作流
-- 實時檢驗並提升文檔品質，保證微軟官方準確性
-- 整合 MCP 與 GitHub 工作流程，實現持續文檔驗證
+- 利用 MCP 面板或命令面板即時搜尋並閱讀 VS Code 內文件
+- 直接引用文件並將連結插入 README 或課程 Markdown 檔案
+- 結合 GitHub Copilot 與 MCP，實現 AI 加持的文件與程式碼工作流
+- 透過即時回饋與 Microsoft 資料來源提升文檔的驗證與品質
+- 將 MCP 與 GitHub 工作流整合，實現持續文件驗證
 
-實施內容包括：
+實作內容包括：
 
-- 範例 `.vscode/mcp.json` 配置，方便設置
-- 編輯器體驗的截圖式說明
-- 結合 Copilot 與 MCP 的生產力提升技巧
+- 範例 `.vscode/mcp.json` 配置，簡化設定流程
+- 內置編輯器體驗的截圖導覽
+- 結合 Copilot 與 MCP 的生產力技巧
 
-本場景適合課程作者、文檔撰寫者及開發者，助其在編輯器中專注完成文檔、Copilot協同及驗證工作，全面由 MCP 支持。
+此方案非常適合課程作者、文件編寫者及開發者，讓他們能在編輯器中專注於文件、Copilot 及驗證工具，這一切都由 MCP 支持。
 
-### 6. [APIM MCP 伺服器建立](./apimsample.md)
+### 6. [建立 APIM MCP 伺服器](./apimsample.md)
 
-本案例提供使用 Azure API 管理（APIM）建立 MCP 伺服器的逐步指南，涵蓋：
+本案例提供逐步指南，說明如何使用 Azure API Management (APIM) 建立 MCP 伺服器。內容包括：
 
-- 在 Azure API 管理中設置 MCP 伺服器
-- 將 API 操作暴露為 MCP 工具
-- 配置速率限制與安全政策
-- 使用 Visual Studio Code 和 GitHub Copilot 測試 MCP 伺服器
+- 在 Azure API Management 設置 MCP 伺服器
+- 將 API 操作作為 MCP 工具公開
+- 配置流量限制與安全策略
+- 使用 Visual Studio Code 與 GitHub Copilot 測試 MCP 伺服器
 
-此範例示範如何利用 Azure 的能力構建強健 MCP 伺服器，促進 AI 系統與企業 API 的整合。
+此範例說明如何利用 Azure 能力打造強大 MCP 伺服器，使其能用於多種應用，提升 AI 系統與企業 API 整合。
 
-### 7. [GitHub MCP Registry — 加速代理集成](https://github.com/mcp)
+### 7. [GitHub MCP 註冊中心 — 加速智能代理整合](https://github.com/mcp)
 
-本案例剖析 GitHub MCP Registry，該平台於 2025 年 9 月推出，解決 AI 生態中一個關鍵痛點：MCP 伺服器分散發現與部署的困難。
+本案例探討 GitHub MCP 註冊中心於 2025 年 9 月推出，如何解決 AI 生態系中的一大難題：MCP 伺服器的分散發現與部署。
 
 #### 概覽
-**MCP Registry** 針對 MCP 伺服器散佈在多個倉庫與註冊中心，整合難以快速而準確整合的問題提供解決方案。這些伺服器使 AI 代理能與外部系統如 API、資料庫和文檔來源互動。
+**MCP 註冊中心** 解決了過去 MCP 伺服器散落在多個倉庫和註冊庫，導致整合緩慢且易出錯的痛點。這些伺服器使得 AI 代理能與外部系統如 API、資料庫和文檔源互動。
 
 #### 問題陳述
-開發者在打造代理工作流程時面臨多重挑戰：
-- MCP 伺服器在不同平台間難以發現
-- 設置重複問題分散於論壇和文件中
-- 不受信任或未驗證來源帶來的安全風險
-- 伺服器品質與相容性缺乏標準化
+構建代理工作流的開發者面臨多項挑戰：
+- **MCP 伺服器於不同平台間發現困難**
+- <strong>論壇與文檔中零散的重複設定問題</strong>
+- <strong>來自未驗證與不信任來源的安全風險</strong>
+- <strong>伺服器品質與相容性缺乏標準化</strong>
 
-#### 解決架構
-GitHub MCP Registry 集中可信任的 MCP 伺服器，具備關鍵特性：
-- 透過 VS Code 一鍵安裝整合，簡化設置
-- 以星星數、活動度和社群驗證進行噪音過濾排序
-- 與 GitHub Copilot 及其他 MCP 兼容工具直接整合
-- 開放社群及企業合作者共建模式
+#### 解決方案架構
+GitHub MCP 註冊中心集中管理受信任的 MCP 伺服器，核心特點：
+- 透過 VS Code 一鍵安裝整合，簡化設定
+- 根據星標、活躍度及社群驗證做降噪排序
+- 直接整合 GitHub Copilot 與其他兼容 MCP 的工具
+- 採用開放貢獻模式，允許社群與企業夥伴共同貢獻
 
 #### 商業影響
-該註冊中心帶來明顯效益：
-- 加快開發者上手速度，如 Microsoft Learn MCP 伺服器能直接串流官方文檔至代理
-- 專用伺服器如 `github-mcp-server` 促進自然語言的 GitHub 自動化（PR 建立、CI 重新運行、代碼掃描）
-- 透過策展清單與透明配置標準提升生態系信任度
+註冊中心帶來明顯改善：
+- 透過 Microsoft Learn MCP 伺服器等工具加速開發者上手，文件直接串流至代理
+- 透過專業伺服器如 `github-mcp-server` 強化生產力，支援自然語言 GitHub 自動化（PR 建立、CI 重跑、程式碼掃描）
+- 透過策劃清單和透明配置標準提升生態系信任
 
 #### 策略價值
-對專攻代理生命週期管理和可重現工作流程的實務者，MCP Registry 提供：
-- 標準元件的模組化代理部署能力
-- 註冊中心支持的評測管線，確保一致測試驗證
-- 跨工具互操作性，促進不同 AI 平台的無縫整合
+對專注代理生命週期管理和可重現工作流程的從業者，MCP 註冊中心提供：
+- 具標準化元件的模組化代理部署能力
+- 具註冊中心支持的評估管線，實現一致測試與驗證
+- 跨工具互通，促進不同 AI 平台間無縫整合
 
-本案例顯示 MCP Registry 不僅是目錄平台，更是實現可擴展、真實模型整合及代理系統部署的基礎平台。
+本案例說明 MCP 註冊中心不僅是目錄，更是實現可擴展、真實世界模型整合和代理系統部署的基石平台。
 
-## 總結
+### 8. [代理發布至社交網絡](./publora-social-publishing.md)
 
-這七個完整案例充分展示了模型上下文協定在多元真實場景中的卓越多樣性與實用價值。從複雜多代理旅遊規劃系統和企業 API 管理，到精簡文檔工作流以及革命性的 GitHub MCP Registry，這些範例展示 MCP 如何提供標準化、可擴展的方式，連接 AI 系統與工具、數據和服務，進而帶來卓越價值。
+本案例示範一個 **可寫遠端 MCP 伺服器**—其工具可代表使用者執行不可逆動作—以社交發布為示例。代理起草貼文，使用者核准，伺服器再於各社交網絡排程發佈。
 
-這些案例涵蓋 MCP 實施的多重面向：
-- **企業整合**：Azure API 管理與 Azure DevOps 自動化
-- **多代理協調**：協調 AI 代理的旅遊規劃
-- **開發者生產力**：VS Code 整合與即時文檔存取
-- **生態系發展**：GitHub MCP Registry 作為基礎平台
-- **教育應用**：互動式學習計劃生成器與對話介面
+設計上的挑戰是這種發布對伺服器施加的限制，且此限制適用於所有寫入而非僅讀的伺服器：
 
-透過研究這些實作，您將深入獲得：
-- 各種規模和用例的架構範式
-- 平衡功能性和可維護性的實作策略
-- 用於正式部署的安全性與可擴展性考量
+- **公開發現，需授權執行** — `tools/list` 無需憑證即可回應，方便註冊表與客戶端檢視；但所有 `tools/call` 需認證，否則回傳帶有 `WWW-Authenticate` 標頭的 `401`
+- **無需離線流程的 OAuth 註冊** — 現行為動態客戶端註冊，`2026-07-28` 規範未來將導向客戶端 ID 元資料文件
+- <strong>工具標註</strong>（`readOnlyHint`、`destructiveHint`、`idempotentHint`），供客戶端決定確定操作—為提示非強制，且連接器目錄審核現在期望含此屬性
+- <strong>無法憑空編造的識別碼</strong>，使幻覺值大聲失敗，避免對貌似合理的值執行
+- <strong>貼文創建工具中的冪等鍵</strong>，確保代理執行時重試不會造成重複貼文
+- <strong>工具架構中描述的空操作目標</strong>，用以完整測試寫入流程且不發布任何內容，供審核者和 CI 使用
+
+本章節最後提供一份可用於正在建立伺服器的簡短檢查清單。
+
+## 結論
+
+這八個完整的案例研究展示了模型上下文協議在多樣真實世界場景中的卓越彈性與實用應用。從複雜的多代理旅遊規劃系統與企業 API 管理，到簡化文檔工作流程與劃時代的 GitHub MCP 註冊中心，這些範例展現 MCP 如何標準化、可擴展地連結 AI 系統與所需工具、資料和服務，創造卓越價值。
+
+案例涵蓋 MCP 實作的多個面向：
+- <strong>企業整合</strong>：Azure API Management 與 Azure DevOps 自動化
+- <strong>多代理協調</strong>：協調的 AI 代理旅遊規劃
+- <strong>開發者生產力</strong>：VS Code 整合與即時文檔存取
+- <strong>生態系發展</strong>：GitHub MCP 註冊中心為基礎平台
+- <strong>教育應用</strong>：互動式學習計劃產生器及對話介面
+
+透過研讀這些實作，你將獲得關鍵洞察：
+- 不同規模與使用案例的架構模式
+- 功能與可維護性平衡的實施策略
+- 生產部署的安全與可擴展性考量
 - MCP 伺服器開發與客戶端整合的最佳實踐
-- 建構互連 AI 解決方案的生態思維
+- 建設相互連結 AI 聯動解決方案的生態系思維
 
-這些範例共同證明 MCP 不單是理論框架，而是成熟的、可投入生產的協定，支援解決複雜業務挑戰的實際方案。無論是構建簡單自動化工具還是先進的多代理系統，這裡展現的模式與方法都為您自己的 MCP 項目奠定堅實基礎。
+這些範例共同示範 MCP 不僅僅是理論架構，更是成熟、可投入生產的協議，推動解決複雜商業挑戰的實用方案。無論你是打造簡單自動化工具或複雜的多代理系統，這裡呈現的模式與方法都提供了你 MCP 專案的堅實基礎。
 
-## 額外資源
+## 附加資源
 
-- [Azure AI Travel Agents GitHub 倉庫](https://github.com/Azure-Samples/azure-ai-travel-agents)
+- [Azure AI 旅遊代理 GitHub 倉庫](https://github.com/Azure-Samples/azure-ai-travel-agents)
 - [Azure DevOps MCP 工具](https://github.com/microsoft/azure-devops-mcp)
 - [Playwright MCP 工具](https://github.com/microsoft/playwright-mcp)
-- [Microsoft Docs MCP 伺服器](https://github.com/MicrosoftDocs/mcp)
-- [GitHub MCP Registry — 加速代理集成](https://github.com/mcp)
+- [Microsoft 文件 MCP 伺服器](https://github.com/MicrosoftDocs/mcp)
+- [GitHub MCP 註冊中心 — 加速智能代理整合](https://github.com/mcp)
 - [MCP 社群範例](https://github.com/microsoft/mcp)
 
-## 後續學習
+## 後續安排
 
-- 上一章節：[第 8 章：最佳實踐](../08-BestPractices/README.md)
-- 下一章節：[第 10 章：簡化 AI 工作流：使用 AI 工具包構建 MCP 伺服器](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)
+- 上一章節：[第 8 模組：最佳實踐](../08-BestPractices/README.md)
+- 下一章節：[第 10 模組：簡化 AI 工作流程：使用 AI 工具包建立 MCP 伺服器](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**免責聲明**：  
-本文件由人工智能翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 翻譯而成。儘管我們力求準確，請注意，自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應視為權威來源。對於重要資訊，建議採用專業人工翻譯。我們對因使用本翻譯而引起的任何誤解或誤譯概不負責。
+**免責聲明**：
+本文件使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。雖然我們力求準確，但請注意，自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於重要資訊，建議尋求專業人工翻譯。我們不對因使用本翻譯而引起的任何誤解或曲解承擔責任。
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
