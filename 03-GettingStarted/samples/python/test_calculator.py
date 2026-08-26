@@ -66,7 +66,9 @@ def request_server(method, params=None):
         timeout=10,
         check=True,
     )
-    return json.loads(process.stdout.splitlines()[0])["result"]
+    response = json.loads(process.stdout.splitlines()[0])
+    assert "error" not in response, response.get("error")
+    return response["result"]
 
 
 def test_protocol_discovery():

@@ -17,6 +17,7 @@ PROTOCOL_VERSION = "2026-07-28"
 LEGACY_PROTOCOL_VERSION = "2025-11-25"
 PROTOCOL_VERSION_KEY = "io.modelcontextprotocol/protocolVersion"
 CLIENT_CAPABILITIES_KEY = "io.modelcontextprotocol/clientCapabilities"
+UNSUPPORTED_PROTOCOL_VERSION_ERROR = -32022
 
 
 class _DefaultVersionStream:
@@ -67,7 +68,10 @@ class _SupportedVersionsStream:
 
     async def send(self, message: SessionMessage):
         response = message.message
-        if isinstance(response, JSONRPCError) and response.error.code == -32022:
+        if (
+            isinstance(response, JSONRPCError)
+            and response.error.code == UNSUPPORTED_PROTOCOL_VERSION_ERROR
+        ):
             data = dict(response.error.data or {})
             data["supported"] = [PROTOCOL_VERSION, LEGACY_PROTOCOL_VERSION]
             error = response.error.model_copy(update={"data": data})
