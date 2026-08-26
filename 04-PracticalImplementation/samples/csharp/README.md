@@ -4,7 +4,7 @@ The previous example shows how to use a local .NET project with the `stdio` type
 
 Looking at the solution in the `04-PracticalImplementation` folder, it may look much more complex than the previous one. But in reality, it is not. If you look closely to the project `src/Calculator`, you will see that it is mostly the same code as the previous example. The only difference is that we are using a different library `ModelContextProtocol.AspNetCore` to handle the HTTP requests. And we change the method `IsPrime` to make it private, just to show that you can have private methods in your code. The rest of the code is the same as before.
 
-The other projects are from [.NET Aspire](https://learn.microsoft.com/dotnet/aspire/get-started/aspire-overview). Having .NET Aspire in the solution will improve the experience of the developer while developing and testing and help with observability. It is not required to run the server, but it is a good practice to have it in your solution.
+The other projects are from [Aspire](https://aspire.dev/get-started/what-is-aspire/). Having Aspire in the solution will improve the experience of the developer while developing and testing and help with observability. It is not required to run the server, but it is a good practice to have it in your solution.
 
 ## Start the server locally
 
@@ -15,9 +15,9 @@ The other projects are from [.NET Aspire](https://learn.microsoft.com/dotnet/asp
     dotnet watch run --project ./src/AppHost
    ```
 
-1. When a web browser opens the .NET Aspire dashboard, note the `http` URL. It should be something like `http://localhost:5058/`.
+1. When a web browser opens the Aspire dashboard, note the `http` URL. It should be something like `http://localhost:5058/`.
 
-   ![.NET Aspire Dashboard](./images/dotnet-aspire-dashboard.png)
+   ![Aspire Dashboard](./images/dotnet-aspire-dashboard.png)
 
 ## Test Streamable HTTP with the MCP Inspector
 
