@@ -1,70 +1,68 @@
-# Calculator LLM Client
+# Calculator LLM-klient
 
-En Java-applikation, der demonstrerer, hvordan man bruger LangChain4j til at forbinde til en MCP (Model Context Protocol) calculator-service med GitHub Models-integration.
+En Java-applikation, der demonstrerer, hvordan man bruger LangChain4j til at forbinde til en MCP (Model Context Protocol) lommeregner-tjeneste gennem MiniMax OpenAI-kompatibel API.
 
 ## Forudsætninger
 
-- Java 21 eller nyere  
-- Maven 3.6+ (eller brug den medfølgende Maven wrapper)  
-- En GitHub-konto med adgang til GitHub Models  
-- En MCP calculator-service kørende på `http://localhost:8080`
+- Java 21 eller højere
+- Maven 3.6+ (eller brug den medfølgende Maven-wrapper)
+- En MiniMax API-nøgle
+- En MCP lommeregner-tjeneste, der kører på `http://localhost:8080`
 
-## Sådan får du GitHub-tokenet
+## Sådan får du API-nøglen
 
-Denne applikation bruger GitHub Models, som kræver et personligt adgangstoken fra GitHub. Følg disse trin for at få dit token:
+Denne applikation bruger MiniMax OpenAI-kompatibel API. Følg disse trin for at få din nøgle og endpoint:
 
-### 1. Få adgang til GitHub Models  
-1. Gå til [GitHub Models](https://github.com/marketplace/models)  
-2. Log ind med din GitHub-konto  
-3. Anmod om adgang til GitHub Models, hvis du ikke allerede har det
+### 1. Vælg en endpoint
+1. Brug `https://api.minimax.io/v1` for den globale endpoint
+2. Brug `https://api.minimaxi.com/v1` for Kina-endpoint
 
-### 2. Opret et personligt adgangstoken  
-1. Gå til [GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)](https://github.com/settings/tokens)  
-2. Klik på "Generate new token" → "Generate new token (classic)"  
-3. Giv dit token et beskrivende navn (f.eks. "MCP Calculator Client")  
-4. Sæt udløbsdato efter behov  
-5. Vælg følgende scopes:  
-   - `repo` (hvis du skal have adgang til private repositories)  
-   - `user:email`  
-6. Klik på "Generate token"  
-7. **Vigtigt**: Kopiér tokenet med det samme – du kan ikke se det igen!
+### 2. Opret en API-nøgle
+1. Opret en MiniMax API-nøgle fra din MiniMax-konto
+2. Opbevar nøglen sikkert
 
-### 3. Sæt miljøvariablen
+### 3. Indstil miljøvariablerne
 
-#### På Windows (Command Prompt):  
+#### På Windows (Kommandoprompt):
 ```cmd
-set GITHUB_TOKEN=your_github_token_here
+set OPENAI_API_KEY=your_minimax_api_key_here
+set OPENAI_BASE_URL=https://api.minimax.io/v1
+set MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
-#### På Windows (PowerShell):  
+#### På Windows (PowerShell):
 ```powershell
-$env:GITHUB_TOKEN="your_github_token_here"
+$env:OPENAI_API_KEY="your_minimax_api_key_here"
+$env:OPENAI_BASE_URL="https://api.minimax.io/v1"
+$env:MINIMAX_MODEL_ID="MiniMax-M3"
 ```
 
-#### På macOS/Linux:  
+#### På macOS/Linux:
 ```bash
-export GITHUB_TOKEN=your_github_token_here
+export OPENAI_API_KEY=your_minimax_api_key_here
+export OPENAI_BASE_URL=https://api.minimax.io/v1
+export MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
 ## Opsætning og installation
 
 1. **Klon eller naviger til projektmappen**
 
-2. **Installer afhængigheder**:  
+2. **Installer afhængigheder**:
    ```cmd
    mvnw clean install
-   ```  
-   Eller hvis du har Maven installeret globalt:  
+   ```
+   Eller hvis du har Maven installeret globalt:
    ```cmd
    mvn clean install
    ```
 
-3. **Sæt miljøvariablen** (se afsnittet "Sådan får du GitHub-tokenet" ovenfor)
+3. **Opsæt miljøvariablerne** (se afsnittet "Sådan får du API-nøglen" ovenfor)
 
-4. **Start MCP Calculator Service**:  
-   Sørg for, at MCP calculator-servicen fra kapitel 1 kører på `http://localhost:8080/sse`. Den skal være kørende, før du starter klienten.
+4. **Start MCP lommeregner-tjenesten**:
+   Sørg for, at MCP lommeregner-tjenesten fra kapitel 1 kører på `http://localhost:8080/sse`. Den skal køre, før du starter klienten.
 
-## Kørsel af applikationen
+## Sådan kører du applikationen
 
 ```cmd
 mvnw clean package
@@ -73,15 +71,15 @@ java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 
 ## Hvad applikationen gør
 
-Applikationen demonstrerer tre hovedinteraktioner med calculator-servicen:
+Applikationen demonstrerer tre hovedinteraktioner med lommeregner-tjenesten:
 
-1. **Addition**: Beregner summen af 24.5 og 17.3  
-2. **Kvadratrod**: Beregner kvadratroden af 144  
-3. **Hjælp**: Viser tilgængelige calculator-funktioner
+1. **Addition**: Beregner summen af 24.5 og 17.3
+2. **Kvadratrod**: Beregner kvadratroden af 144
+3. **Hjælp**: Viser tilgængelige lommeregner-funktioner
 
 ## Forventet output
 
-Når det kører korrekt, bør du se output, der ligner:
+Når det kører korrekt, bør du se output svarende til:
 
 ```
 The sum of 24.5 and 17.3 is 41.8.
@@ -93,48 +91,52 @@ The calculator service provides the following functions: add, subtract, multiply
 
 ### Almindelige problemer
 
-1. **"GITHUB_TOKEN environment variable not set"**  
-   - Sørg for, at du har sat miljøvariablen `GITHUB_TOKEN`  
-   - Genstart dit terminal- eller kommandopromptvindue efter opsætning
+1. **"OPENAI_API_KEY miljøvariablen er ikke sat"**
+   - Sørg for, at du har sat miljøvariablen `OPENAI_API_KEY`
+   - Genstart din terminal/kommandoprompt efter at have sat variablen
 
-2. **"Connection refused to localhost:8080"**  
-   - Tjek at MCP calculator-servicen kører på port 8080  
-   - Undersøg om en anden service bruger port 8080
+2. **"Forbindelse nægtet til localhost:8080"**
+   - Sikr dig, at MCP lommeregner-tjenesten kører på port 8080
+   - Tjek om en anden tjeneste bruger port 8080
 
-3. **"Authentication failed"**  
-   - Bekræft at dit GitHub-token er gyldigt og har de rette tilladelser  
-   - Tjek om du har adgang til GitHub Models
+3. **"Godkendelse mislykkedes"**
+   - Bekræft at din API-nøgle er gyldig
+   - Kontrollér at `OPENAI_BASE_URL` matcher den endpoint, du ønskede at bruge
 
-4. **Maven build-fejl**  
-   - Sørg for, at du bruger Java 21 eller nyere: `java -version`  
-   - Prøv at rydde build: `mvnw clean`
+4. **Maven build-fejl**
+   - Sørg for at du bruger Java 21 eller højere: `java -version`
+   - Prøv at rense byggeriet: `mvnw clean`
 
 ### Debugging
 
-For at aktivere debug-logging, tilføj følgende JVM-argument ved kørsel:  
+For at aktivere debug-logning, tilføj følgende JVM-argument ved kørsel:
 ```cmd
 java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
 
 ## Konfiguration
 
-Applikationen er konfigureret til at:  
-- Bruge GitHub Models med modellen `gpt-4.1-nano`  
-- Forbinde til MCP-servicen på `http://localhost:8080/sse`  
-- Bruge en timeout på 60 sekunder for forespørgsler  
-- Aktivere logging af forespørgsler/svar til debugging
+Applikationen er konfigureret til:
+- At bruge MiniMax-M3 som standard, eller MiniMax-M2.7 når `MINIMAX_MODEL_ID` er sat
+- At forbinde til `OPENAI_BASE_URL` når den er sat; ellers bruge `https://api.minimaxi.com/v1` når `MINIMAX_REGION=cn_zh`, eller `https://api.minimax.io/v1` som standard
+- At forbinde til MCP-tjenesten på `http://localhost:8080/sse`
+- At bruge en timeout på 60 sekunder for forespørgsler
 
 ## Afhængigheder
 
-Vigtige afhængigheder i dette projekt:  
-- **LangChain4j**: Til AI-integration og værktøjsstyring  
-- **LangChain4j MCP**: Til Model Context Protocol-support  
-- **LangChain4j GitHub Models**: Til GitHub Models-integration  
+Vigtige afhængigheder brugt i dette projekt:
+- **LangChain4j**: Til AI-integration og værktøjsstyring
+- **LangChain4j MCP**: Til Model Context Protocol-understøttelse
+- **LangChain4j OpenAI officiel**: Til integration med MiniMax OpenAI-kompatibel API
 - **Spring Boot**: Til applikationsframework og dependency injection
 
 ## Licens
 
 Dette projekt er licenseret under Apache License 2.0 – se [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) filen for detaljer.
 
-**Ansvarsfraskrivelse**:  
-Dette dokument er blevet oversat ved hjælp af AI-oversættelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selvom vi bestræber os på nøjagtighed, bedes du være opmærksom på, at automatiserede oversættelser kan indeholde fejl eller unøjagtigheder. Det oprindelige dokument på dets oprindelige sprog bør betragtes som den autoritative kilde. For kritisk information anbefales professionel menneskelig oversættelse. Vi påtager os intet ansvar for misforståelser eller fejltolkninger, der opstår som følge af brugen af denne oversættelse.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Ansvarsfraskrivelse**:
+Dette dokument er blevet oversat ved hjælp af AI-oversættelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selvom vi bestræber os på nøjagtighed, skal du være opmærksom på, at automatiserede oversættelser kan indeholde fejl eller unøjagtigheder. Det originale dokument på dets oprindelige sprog bør betragtes som den autoritative kilde. For kritisk information anbefales professionel menneskelig oversættelse. Vi påtager os intet ansvar for misforståelser eller fejltolkninger, der opstår som følge af brugen af denne oversættelse.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
