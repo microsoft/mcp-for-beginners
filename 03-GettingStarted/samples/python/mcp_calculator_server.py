@@ -103,6 +103,11 @@ class CalculatorMCPServer(MCPServer):
             instructions=self.instructions,
         )
 
+    def run(self) -> None:
+        import asyncio
+
+        asyncio.run(self.run_stdio_async())
+
     async def run_stdio_async(self) -> None:
         async with stdio_server() as (read_stream, write_stream):
             await self._lowlevel_server.run(
@@ -110,7 +115,6 @@ class CalculatorMCPServer(MCPServer):
                 _SupportedVersionsStream(write_stream),
                 self._lowlevel_server.create_initialization_options(),
             )
-
 # Create an MCP server
 mcp = CalculatorMCPServer("Calculator MCP Server")
 
