@@ -1,173 +1,188 @@
-# MCP käytännössä: todellisia tapaustutkimuksia
+# MCP käytännössä: Todellisia tapaustutkimuksia
 
-[![MCP käytännössä: todellisia tapaustutkimuksia](../../../translated_images/fi/10.3262cc80b4de5071.webp)](https://youtu.be/IxshWb2Az5w)
+[![MCP käytännössä: Todellisia tapaustutkimuksia](../../../translated_images/fi/10.3262cc80b4de5071.webp)](https://youtu.be/IxshWb2Az5w)
 
-_(Napsauta yllä olevaa kuvaa katsellaksesi tämän oppitunnin videota)_
+_(Napsauta yllä olevaa kuvaa nähdäksesi videon tästä oppitunnista)_
 
-Model Context Protocol (MCP) muuttaa tapaa, jolla tekoälysovellukset ovat vuorovaikutuksessa datan, työkalujen ja palveluiden kanssa. Tässä osiossa esitellään todellisia tapaustutkimuksia, jotka demonstroivat MCP:n käytännön sovelluksia erilaisissa yritysympäristöissä.
+Model Context Protocol (MCP) muuttaa sitä, miten tekoälysovellukset ovat vuorovaikutuksessa datan, työkalujen ja palveluiden kanssa. Tässä osassa esitellään todellisia tapaustutkimuksia, jotka demonstroivat MCP:n käytännön sovelluksia erilaisissa yritystilanteissa.
 
 ## Yleiskatsaus
 
-Tässä osiossa esitellään konkreettisia MCP:n toteutusesimerkkejä, korostaen sitä, miten organisaatiot hyödyntävät tätä protokollaa monimutkaisten liiketoimintaongelmien ratkaisemiseksi. Tarkastelemalla näitä tapaustutkimuksia saat näkemyksiä MCP:n monipuolisuudesta, skaalautuvuudesta ja käytännön hyödyistä todellisissa tilanteissa.
+Tässä osassa esitellään konkreettisia esimerkkejä MCP:n toteutuksista, korostaen sitä, miten organisaatiot hyödyntävät tätä protokollaa ratkaistakseen monimutkaisia liiketoiminnan haasteita. Tarkastelemalla näitä tapaustutkimuksia saat oivalluksia MCP:n monipuolisuudesta, skaalautuvuudesta ja käytännön hyödyistä todellisissa tilanteissa.
 
 ## Keskeiset oppimistavoitteet
 
-Näitä tapaustutkimuksia tutkimalla opit:
+Tutkimalla näitä tapaustutkimuksia:
 
-- Ymmärtämään, miten MCP:tä voidaan soveltaa tiettyjen liiketoimintaongelmien ratkaisuun
-- Tutustumaan erilaisiin integraatiokuvioihin ja arkkitehtonisiin lähestymistapoihin
-- Tunnistamaan best practise -käytännöt MCP:n käyttöönotossa yritysympäristöissä
-- Saamaan näkemyksiä todellisten toteutusten haasteista ja ratkaisuista
-- Havaitsemaan mahdollisuuksia soveltaa samankaltaisia kuvioita omissa projekteissasi
+- Ymmärrät, miten MCP:tä voidaan soveltaa tiettyjen liiketoiminnan ongelmien ratkaisuun
+- Opit erilaisista integraatiokuvioista ja arkkitehtonisista lähestymistavoista
+- Tunnistat parhaat käytännöt MCP:n toteuttamiseksi yritysympäristöissä
+- Saat näkemyksiä haasteista ja ratkaisuista, jotka on kohdattu todellisissa käyttöönotossa
+- Löydät mahdollisuuksia soveltaa samanlaisia kuvioita omissa projekteissasi
 
 ## Esitellyt tapaustutkimukset
 
-### 1. [Azure AI Travel Agents – referenssitoteutus](./travelagentsample.md)
+### 1. [Azure AI Travel Agents – Viittausratkaisu](./travelagentsample.md)
 
-Tässä tapaustutkimuksessa tarkastellaan Microsoftin kattavaa referenssiratkaisua, joka havainnollistaa, miten rakentaa moniedustajainen, tekoälyllä toimiva matkasuunnitteluapplikaatio MCP:n, Azure OpenAI:n ja Azure AI Searchin avulla. Projekti esittelee:
+Tämä tapaustutkimus tarkastelee Microsoftin kattavaa viittausratkaisua, joka näyttää, miten rakentaa moniedustajaisten, tekoälyllä toimivien matkasuunnittelu-sovellusten MCP:n, Azure OpenAI:n ja Azure AI Searchin avulla. Projekti esittelee:
 
-- Moniedustajaorkestraation MCP:n kautta
-- Yritysdatan integroinnin Azure AI Searchin avulla
-- Turvallisen, skaalautuvan arkkitehtuurin Azure-palveluiden avulla
-- Laajennettavat työkalut uudelleenkäytettävillä MCP-komponenteilla
-- Keskustelupohjaisen käyttäjäkokemuksen Azure OpenAI:n voimin
+- Moniedustajien orkestroinnin MCP:n kautta
+- Yritysdata-integraation Azure AI Searchin avulla
+- Turvallisen ja skaalautuvan arkkitehtuurin Azure-palveluilla
+- Laajennettavat työkalut uudelleenkäytettävien MCP-komponenttien kanssa
+- Vuorovaikutteinen käyttäjäkokemus Azure OpenAI:n voimin
 
-Arkkitehtuuri ja toteutuksen yksityiskohdat tarjoavat arvokkaita näkemyksiä monimutkaisten moniedustajajärjestelmien rakentamiseen MCP:n orkestrointikerroksena.
+Arkkitehtuuri ja toteutuksen yksityiskohdat tarjoavat arvokkaita näkemyksiä monimutkaisten moniedustajajärjestelmien rakentamisesta MCP:n koordinointikerroksena.
 
-### 2. [Azure DevOps -työkohtien päivittäminen YouTube-datasta](./UpdateADOItemsFromYT.md)
+### 2. [Azure DevOps -kohteiden päivitys YouTube-datan avulla](./UpdateADOItemsFromYT.md)
 
-Tämä tapaustutkimus demonstroi MCP:n käytännön sovellusta työnkulkujen automaatiossa. Se näyttää, miten MCP-työkaluja voidaan käyttää:
+Tämä tapaustutkimus näyttää käytännön sovelluksen MCP:stä työnkulkujen automaatiossa. Se esittää miten MCP-työkaluja voi käyttää:
 
 - Datan poimimiseen verkkopalveluista (YouTube)
 - Työkohteiden päivittämiseen Azure DevOps -järjestelmissä
 - Toistettavien automaatiotyönkulkujen luomiseen
-- Datan integrointiin hajanaisista järjestelmistä
+- Datan integrointiin eri järjestelmien välillä
 
-Esimerkki osoittaa, miten jopa suhteellisen yksinkertaiset MCP-toteutukset voivat tuottaa merkittäviä tehokkuusetuja automatisoimalla rutiinitehtäviä ja parantamalla datan yhdenmukaisuutta järjestelmien välillä.
+Esimerkki havainnollistaa, miten jopa suhteellisen yksinkertaiset MCP-toteutukset voivat tuoda merkittäviä tehokkuusetuja automatisoimalla rutiinitehtäviä ja parantamalla datan yhdenmukaisuutta järjestelmien välillä.
 
 ### 3. [Reaaliaikainen dokumentaation hakeminen MCP:llä](./docs-mcp/README.md)
 
-Tämä tapaustutkimus opastaa yhdistämään Python-konsoliasiakkaan Model Context Protocol (MCP) -palvelimeen reaaliaikaisen, kontekstin tuntevan Microsoft-dokumentaation hakemiseksi ja lokittamiseksi. Opit:
+Tämä tapaustutkimus opastaa Python-konsoliasiakkaan yhdistämisessä Model Context Protocol (MCP) -palvelimeen reaaliaikaisen, kontekstitietoisen Microsoftin dokumentaation hakemiseksi ja kirjaamiseksi. Opit:
 
 - Yhdistämään MCP-palvelimeen Python-asiakkaalla ja virallisella MCP SDK:lla
-- Käyttämään suoratoistavia HTTP-asiakkaita tehokkaaseen, reaaliaikaiseen datan hakemiseen
-- Kutsumaan dokumentaatiotyökaluja palvelimella ja lokittamaan vastaukset suoraan konsoliin
-- Integroimaan ajantasaisen Microsoft-dokumentaation työnkulkuusi ilman terminaalin ulkopuolelle poistumista
+- Käyttämään striimaavia HTTP-asiakkaita tehokkaaseen reaaliaikaiseen datanhakuun
+- Kutsumaan dokumentointityökaluja palvelimella ja kirjaamaan vastaukset suoraan konsoliin
+- Integroimaan ajantasaisen Microsoft-dokumentaation työnkulkuusi ilman terminaalista poistumista
 
-Luku sisältää käytännön harjoituksen, minimalistisen toimivan koodiesimerkin ja linkit lisäresursseihin syvempää oppimista varten. Katso koko läpikäynti ja koodi linkitetyssä luvussa, jotta ymmärrät, miten MCP voi mullistaa dokumentaatioiden saatavuuden ja kehittäjien tuottavuuden konsolipohjaisissa ympäristöissä.
+Luvussa on käytännön harjoitustehtävä, minimaalinen toimiva koodinäyte ja linkkejä lisäresursseihin syvällisempää oppimista varten. Katso koko läpikäynti ja koodi linkitetystä luvusta ymmärtääksesi, miten MCP voi muuttaa dokumentaation saatavuutta ja kehittäjien tuottavuutta konsolipohjaisissa ympäristöissä.
 
-### 4. [Interaktiivinen opintosuunnitelman generaattorisovellus MCP:llä](./docs-mcp/README.md)
+### 4. [Interaktiivinen opintosuunnitelman generaattori MCP:llä -verkkosovellus](./docs-mcp/README.md)
 
-Tämä tapaustutkimus osoittaa, miten rakentaa interaktiivinen web-sovellus Chainlitin ja Model Context Protocolin (MCP) avulla henkilökohtaisten opintosuunnitelmien luomiseksi mille tahansa aiheelle. Käyttäjät voivat määrittää aiheen (esim. "AI-900 -sertifiointi") ja opiskeluajan (esim. 8 viikkoa), ja sovellus antaa viikottaisen suositussisällön erittelyn. Chainlit mahdollistaa keskustelupohjaisen chat-käyttöliittymän, tehden käyttökokemuksesta mukaansatempaavan ja adaptiivisen.
+Tämä tapaustutkimus näyttää, miten rakentaa interaktiivinen verkkosovellus Chainlitin ja Model Context Protocolin (MCP) avulla henkilökohtaisten opintosuunnitelmien luomiseksi mille tahansa aiheelle. Käyttäjät voivat määrittää aiheen (esim. "AI-900 -sertifiointi") ja opiskeluajan (esim. 8 viikkoa), ja sovellus antaa viikko kerrallaan suositellun sisällön erittelyn. Chainlit mahdollistaa keskustelupohjaisen chat-käyttöliittymän, tehden kokemuksesta mukaansatempaavan ja mukautuvan.
 
-- Keskustelupohjainen web-sovellus Chainlitin voimalla
-- Käyttäjävetoiset kehotteet aiheelle ja kestolle
-- Viikko-viikolta etenevät sisältösuositukset MCP:n avulla
-- Reaaliaikaiset, adaptiiviset vastaukset chat-käyttöliittymässä
+- Vuorovaikutteinen verkkosovellus Chainlitin voimin
+- Käyttäjälähtöiset kehotteet aiheen ja keston määrittämiseen
+- Viikkokohtaiset sisältösuositukset MCP:n avulla
+- Reaaliaikaiset, mukautuvat vastaukset chat-käyttöliittymässä
 
-Projekti havainnollistaa, miten keskusteleva tekoäly ja MCP voidaan yhdistää dynaamisten, käyttäjälähtöisten opetustyökalujen luomiseksi nykyaikaisessa web-ympäristössä.
+Projekti havainnollistaa, miten keskusteluäly ja MCP voidaan yhdistää luomaan dynaamisia, käyttäjälähtöisiä opetusvälineitä nykyaikaisessa verkkoympäristössä.
 
-### 5. [Editorissa toimiva dokumentaatio MCP-palvelimen avulla VS Codessa](./docs-mcp/README.md)
+### 5. [Sisäänrakennetut dokumentit MCP-palvelimella VS Codessa](./docs-mcp/README.md)
 
-Tämä tapaustutkimus näyttää, miten voit tuoda Microsoft Learn Docs -dokumentaation suoraan VS Code -ympäristöön käyttäen MCP-palvelinta—ei enää selainvälilehtien välillä hyppimistä! Näet, miten:
+Tämä tapaustutkimus näyttää, miten voit tuoda Microsoft Learn -dokumentit suoraan VS Code -ympäristöön MCP-palvelimen avulla – ei enää selaimen välilehtien vaihto! Näet, miten:
 
-- Dokumentaatio voidaan hakea ja lukea välittömästi VS Codessa MCP-paneelin tai komentopalettien avulla
-- Dokumentaatiota voidaan viitata ja linkkejä lisätä suoraan README- tai kurssimarkdown-tiedostoihin
-- GitHub Copilot ja MCP toimivat saumattomasti yhdessä AI-avusteisessa dokumentaatio- ja koodityönkulussa
-- Dokumentaatiota validoidaan ja parannetaan reaaliaikaisin palauttein Microsoftin lähteiden tarkkuudella
-- MCP integroidaan GitHub-työnkulkuihin jatkuvaa dokumentaation validointia varten
+- Etsiä ja lukea dokumentteja välittömästi VS Codessa MCP-paneelin tai komentopalettin avulla
+- Viitata dokumentaatioon ja lisätä linkkejä suoraan README- tai kurssin markdown-tiedostoihin
+- Käyttää GitHub Copilotia ja MCP:tä saumattomasti tekoälyllä toteutettuihin dokumentaatio- ja koodityönkulkuihin
+- Varmistaa ja parantaa dokumentaatiota reaaliaikaisella palautteella ja Microsoftin tarjoamalla tarkkuudella
+- Integroi MCP GitHub-työnkulkuihin jatkuvaa dokumentaation validointia varten
 
 Toteutus sisältää:
 
-- Esimerkkikonfiguraation `.vscode/mcp.json` helppoon käyttöönottoon
-- Kuvakaappauskävelyt editorissa toimivasta käyttökokemuksesta
-- Vinkkejä Copilotin ja MCP:n yhdistämiseen maksimaalisen tuottavuuden saavuttamiseksi
+- Esimerkkikonfiguraatio `.vscode/mcp.json` helppoon käyttöönottoon
+- Kuvakaappauspohjaiset läpikäynnit editorin sisäisestä kokemuksesta
+- Vinkkejä Copilotin ja MCP:n yhdistämiseen optimaalisen tuottavuuden saavuttamiseksi
 
-Tämä skenaario on ihanteellinen kurssien tekijöille, dokumentaatiokirjoittajille ja kehittäjille, jotka haluavat pysyä keskittyneenä editorissa työskennellessään dokumentaatioiden, Copilotin ja validointityökalujen kanssa—kaikki MCP:n voimalla.
+Tämä tilanne on ihanteellinen kurssin kirjoittajille, dokumentaatiokirjoittajille ja kehittäjille, jotka haluavat pysyä keskittyneinä editorissaan työskennellessään dokumenttien, Copilotin ja validointityökalujen kanssa – kaikki MCP:n voimalla.
 
 ### 6. [APIM MCP -palvelimen luominen](./apimsample.md)
 
-Tämä tapaustutkimus tarjoaa vaiheittaiset ohjeet MCP-palvelimen luomiseen käyttämällä Azure API Managementia (APIM). Se kattaa:
+Tämä tapaustutkimus tarjoaa askel askeleelta -ohjeet MCP-palvelimen luomiseksi Azure API Managementin (APIM) avulla. Se kattaa:
 
 - MCP-palvelimen perustamisen Azure API Managementiin
-- API-operaatioiden julkaisun MCP-työkaluina
-- Politiikkojen konfiguroinnin nopeusrajoituksia ja turvaa varten
-- MCP-palvelimen testaamisen Visual Studio Codella ja GitHub Copilotilla
+- API-toimintojen altistamisen MCP-työkaluina
+- Politiikoiden määrittämisen nopeuden rajoittamiseksi ja turvallisuuden varmistamiseksi
+- MCP-palvelimen testaamisen Visual Studio Coden ja GitHub Copilotin avulla
 
-Esimerkki havainnollistaa, miten hyödyntää Azuren kyvykkyyksiä luodaksesi vankan MCP-palvelimen, jota voidaan käyttää erilaisissa sovelluksissa ja joka tehostaa tekoälyjärjestelmien integraatiota yritysten API-rajapintoihin.
+Tämä esimerkki havainnollistaa, miten hyödyntää Azuren mahdollisuuksia luodaksesi vankan MCP-palvelimen, jota voi käyttää erilaisissa sovelluksissa, parantaen tekoälyjärjestelmien integraatiota yritysten rajapintojen kanssa.
 
-### 7. [GitHub MCP Registry — agenteille tarkoitetun integraation kiihdyttäjä](https://github.com/mcp)
+### 7. [GitHub MCP -rekisteri — Agenttien integraation nopeuttaminen](https://github.com/mcp)
 
-Tämä tapaustutkimus tarkastelee, miten GitHubin MCP Registry, joka lanseerattiin syyskuussa 2025, ratkaisee keskeisen haasteen tekoälyekosysteemissä: Model Context Protocol (MCP) -palvelimien sirpaleisen löydettävyyden ja käyttöönoton.
+Tämä tapaustutkimus tarkastelee GitHubin MCP-rekisteriä, joka käynnistettiin syyskuussa 2025, ja jonka tavoitteena on ratkaista tekoälyekosysteemin keskeinen haaste: hajautuneet Model Context Protocol (MCP) -palvelimien löytyminen ja käyttöönotto.
 
 #### Yleiskatsaus
-**MCP Registry** ratkaisee kasvavan ongelman MCP-palvelimien hajanaisuudesta eri repositorioissa ja rekistereissä, mikä aiemmin teki integraatiosta hidasta ja virhealtista. Nämä palvelimet mahdollistavat tekoälyagenttien vuorovaikutuksen ulkoisten järjestelmien, kuten API:iden, tietokantojen ja dokumentaatiolähteiden kanssa.
+**MCP-rekisteri** ratkaisee kasvavan ongelman, jossa MCP-palvelimet ovat hajallaan eri arkistoissa ja rekistereissä, mikä aiemmin teki integroinnista hidasta ja virhealtista. Nämä palvelimet mahdollistavat tekoälyagenttien vuorovaikutuksen ulkoisten järjestelmien, kuten rajapintojen, tietokantojen ja dokumentaatiolähteiden kanssa.
 
-#### Ongelmanasettelu
-Agenttipohjaisia työnkulkuja rakentavat kehittäjät kohtasivat useita haasteita:
+#### Ongelman määritelmä
+Agenttityönkulkuja rakentavat kehittäjät kohtasivat useita haasteita:
 - **Huono löydettävyys** MCP-palvelimille eri alustoilla
-- **Monistuvat asetuskysymykset** eri foorumeilla ja dokumentaatiossa
-- **Turvariskit** vahvistamattomista ja epäluotettavista lähteistä
-- **Standardoinnin puute** palvelinten laadussa ja yhteensopivuudessa
+- **Turhat käyttöönottoon liittyvät kysymykset** hajallaan foorumeilla ja dokumentaatiossa
+- **Turvallisuusriskit** varmennamattomista ja epäluotettavista lähteistä
+- **Laadun ja yhteensopivuuden standardoinnin puute** palvelimissa
 
-#### Ratkaisun arkkitehtuuri
-GitHubin MCP Registry keskittää luotetut MCP-palvelimet keskeisillä ominaisuuksilla:
-- **Yhdellä klikkauksella asennus** VS Code -integraation kautta helppoa käyttöönottoa varten
-- **Signaali-melusuhde** tähtien, aktiivisuuden ja yhteisön validoinnin mukainen lajittelu
+#### Ratkaisuarkkitehtuuri
+GitHubin MCP-rekisteri keskittää luotetut MCP-palvelimet seuraavin keskeisin ominaisuuksin:
+- **Yhdellä klikkauksella asennus** VS Coden kautta sujuvaan käyttöönottoon
+- **Signaali-kohina-lajittelu** tähtien, aktiivisuuden ja yhteisön vahvistusten mukaan
 - **Suora integraatio** GitHub Copilotin ja muiden MCP-yhteensopivien työkalujen kanssa
-- **Avoin kontribuutio-malli** mahdollistaa sekä yhteisön että yrityskumppaneiden osallistumisen
+- **Avoin kontribuutiomalli**, joka mahdollistaa sekä yhteisön että yrityskumppaneiden panokset
 
-#### Liiketoiminnallinen vaikutus
-Rekisteri on tuonut mitattavia parannuksia:
-- **Nopeampi käyttöönotto** kehittäjille, jotka käyttävät esimerkiksi Microsoft Learn MCP -palvelinta, joka suoratoistaa virallista dokumentaatiota suoraan agenteille
-- **Parantunut tuottavuus** erikoistuneiden palvelinten, kuten `github-mcp-server`, avulla, mahdollistaen luonnollisen kielen GitHub-automaatioita (PR:n luonti, CI:n uudelleenajot, koodin skannaus)
+#### Liiketoiminnan vaikutus
+Rekisteri on tuottanut mitattavissa olevia parannuksia:
+- **Nopeampi käyttöönotto** kehittäjille kuten Microsoft Learn MCP Server, joka striimaa virallista dokumentaatiota suoraan agenteille
+- **Parantunut tuottavuus** erikoistuneiden palvelimien kuten `github-mcp-server` avulla, mahdollistaen luonnolliskielisen GitHub-automaatio (PR:n luonti, CI:n uudelleenkäynnistys, koodin skannaus)
 - **Vahvempi ekosysteemin luottamus** kuratoitujen listojen ja läpinäkyvien konfiguraatiostandardien kautta
 
 #### Strateginen arvo
-Agenttielinkaaren hallintaan ja toistettaviin työnkulkuihin erikoistuneille MCP Registry tarjoaa:
-- **Modulaarisen agenttien käyttöönoton** standardoitujen komponenttien avulla
-- **Rekisteripohjaiset arviointiputket** johdonmukaiseen testaukseen ja validointiin
-- **Työkalujen välinen yhteensopivuus** erilaisissa tekoälyalustoissa saumattomaan integraatioon
+Agenttien elinkaaren hallintaan ja toistettaviin työnkulkuihin erikoistuneille MCP-rekisteri tarjoaa:
+- **Modulaariset agenttien käyttöönotto** -mahdollisuudet standardoitujen komponenttien avulla
+- **Rekisteripohjaiset arviointiputket** yhdenmukaisiin testeihin ja validointiin
+- **Työkalujen välinen yhteentoimivuus** erilaisten tekoälyalustojen integraatioon
 
-Tämä tapaustutkimus osoittaa, että MCP Registry on enemmän kuin pelkkä hakemisto—se on perustava alusta skaalautuville, todellisen maailman malli-intgraatioille ja agenttipohjaisten järjestelmien käyttöönotolle.
+Tämä tapaustutkimus osoittaa, että MCP-rekisteri ei ole vain hakemisto – se on perustavanlaatuinen alusta skaalautuvaan, todellisen maailman mallien integrointiin ja agenttipohjaisten järjestelmien käyttöönottoon.
+
+### 8. [Julkaisu sosiaalisiin verkostoihin agentin kautta](./publora-social-publishing.md)
+
+Tämä tapaustutkimus käy läpi **kirjoitusoikeudet omaavan etä-MCP-palvelimen** – sellaisen, jonka työkalut tekevät peruuttamattomia toimia käyttäjän puolesta – käyttäen esimerkkinä sosiaalisen median julkaisemista. Agentti luonnostelee julkaisun, ihminen hyväksyy sen ja palvelin aikatauluttaa sen verkostoihin.
+
+Mielenkiintoinen osa ovat julkaisemiseen liittyvät suunnittelurajoitteet, jotka koskevat mitä tahansa palvelinta, joka kirjoittaa eikä vain lue:
+
+- **Avoin löytyminen, todennettu suoritus** — `tools/list` vastataan ilman tunnuksia, jotta rekisterit ja asiakkaat voivat tutkia, kun taas jokainen `tools/call` vaatii tokenin ja muuten palauttaa `401` ja `WWW-Authenticate`-otsikon
+- **OAuth-rekisteröinti ilman erillistä tapaa** — dynaaminen asiakasrekisteröinti tänään, Client ID Metadata Documentsin suuntaan, johon `2026-07-28` määrittely tähtää
+- **Työkalumuistiinpanot** (`readOnlyHint`, `destructiveHint`, `idempotentHint`), joita asiakkaat käyttävät päätöksissä mitä vahvistetaan — vihjeitä, ei pakkoa, ja jotain, mitä liitännäishakemistolta nyt vaaditaan tarkastelussa
+- **Keksimättömät tunnisteet**, jotta harhainen arvo epäonnistuu selkeästi eikä toimi uskottavalta näyttävän sijaan
+- **Idempotenssiavaimet julkaisutyökaluissa**, joten agentin suorituskerroinyritykset eivät johda kaksoisjulkaisuihin
+- **Ei-toiminnallinen (no-op) kohde työkalumallissa**, joka käyttää koko kirjoituspolun eikä julkaise mitään, arvioijille ja jatkuvan integraation käyttöön
+
+Luku päättyy lyhyeen tarkistuslistaan, jota voit soveltaa rakennettavaasi palvelimeen.
 
 ## Yhteenveto
 
-Nämä seitsemän kattavaa tapaustutkimusta havainnollistavat Model Context Protocolin merkittävää monipuolisuutta ja käytännön sovelluksia monenlaisissa todellisissa tilanteissa. Monimutkaisista moniedustajaiset matkasuunnittelujärjestelmistä ja yrityksen API-hallinnasta sujuviin dokumentaatiotyönkulkuihin ja mullistavaan GitHub MCP Registryyn – nämä esimerkit osoittavat, miten MCP tarjoaa standardoidun, skaalautuvan tavan yhdistää tekoälyjärjestelmät niihin työkaluihin, datoihin ja palveluihin, joita ne tarvitsevat poikkeuksellisen arvon tuottamiseen.
+Nämä kahdeksan kattavaa tapaustutkimusta osoittavat Model Context Protocolin poikkeuksellisen monipuolisuuden ja käytännön sovellukset erilaisissa todellisissa tilanteissa. Monimutkaisista moniedustajaisista matkasuunnittelujärjestelmistä ja yritysrajapintojen hallinnasta sujuviin dokumentaatiotyönkulkuihin ja mullistavaan GitHub MCP -rekisteriin nämä esimerkit näyttävät, miten MCP tarjoaa standardoidun ja skaalautuvan tavan yhdistää tekoälyjärjestelmät tarvitsemiinsa työkaluihin, dataan ja palveluihin tuottaakseen poikkeuksellista arvoa.
 
-Tapaustutkimukset kattavat MCP:n toteutuksen eri ulottuvuuksia:
-- **Yritysintegrointi**: Azure API Management ja Azure DevOps -automaatio
-- **Moniedustajaorchestration**: Matkasuunnittelu koordinoiduilla tekoälyedustajilla
-- **Kehittäjien tuottavuus**: VS Code -integraatio ja reaaliaikainen dokumentaation saatavuus
-- **Ekosysteemin kehitys**: GitHub MCP Registry perustavana alustana
-- **Koulutussovellukset**: Interaktiiviset opintosuunnitelman generaattorit ja keskustelupohjaiset käyttöliittymät
+Tapaustutkimukset kattavat MCP:n toteutuksen monia ulottuvuuksia:
+- **Yritysintegraatio**: Azure API Management ja Azure DevOps -automaatio
+- **Moniedustajien orkestrointi**: matkasuunnittelu koordinoitujen tekoälyagenttien avulla
+- **Kehittäjien tuottavuus**: VS Code -integraatio ja reaaliaikainen dokumentaatio
+- **Ekosysteemin kehitys**: GitHub MCP -rekisteri perustana
+- **Koulutussovellukset**: interaktiiviset opintosuunnitelman generointityökalut ja keskustelu-liittymät
 
-Näitä toteutuksia tutkiessa saat ratkaisevia näkemyksiä:
-- **Arkkitehtuurikuviot** eri mittakaavoissa ja käyttötapauksissa
-- **Toteutusstrategiat**, jotka yhdistävät toiminnallisuuden ylläpidettävyyteen
-- **Turva- ja skaalautuvuusnäkökohdat** tuotantokäyttöönotossa
-- **Best practise** -käytännöt MCP-palvelimen kehityksessä ja asiakasintegraatiossa
+Näiden toteutusten tutkiminen antaa sinulle keskeisiä oivalluksia:
+- **Arkkitehtoniset kuviot** eri kokoihin ja käyttötarkoituksiin
+- **Toteutusstrategiat**, jotka tasapainottavat toiminnallisuutta ja ylläpidettävyyttä
+- **Turvallisuus ja skaalautuvuus** tuotantokäyttöön
+- **Parhaat käytännöt** MCP-palvelimen kehitykseen ja asiakasintegraatioon
 - **Ekosysteemiajattelu** yhdistettyjen tekoälyratkaisujen rakentamiseen
 
-Nämä esimerkit ilmentävät yhdessä, että MCP ei ole pelkästään teoreettinen kehys, vaan kypsä, tuotantovalmiiksi kehitetty protokolla, joka mahdollistaa käytännölliset ratkaisut monimutkaisiin liiketoimintahaasteisiin. Olipa kyse yksinkertaisista automaatiotyökaluista tai kehittyneistä moniedustajajärjestelmistä, tässä kuvattujen kuvioiden ja lähestymistapojen avulla sinulla on vankka perusta omille MCP-projekteillesi.
+Nämä esimerkit yhdessä osoittavat, että MCP ei ole pelkästään teoreettinen kehys, vaan kypsä, tuotantovalmiiksi suunniteltu protokolla, joka mahdollistaa käytännön ratkaisut monimutkaisiin liiketoiminnan haasteisiin. Rakensitpa yksinkertaisia automaatiotyökaluja tai monimutkaisia moniedustajajärjestelmiä, tässä esitellyt kuviot ja lähestymistavat tarjoavat vankan perustan omille MCP-projekteillesi.
 
 ## Lisäresurssit
 
-- [Azure AI Travel Agents GitHub Repository](https://github.com/Azure-Samples/azure-ai-travel-agents)
-- [Azure DevOps MCP Tool](https://github.com/microsoft/azure-devops-mcp)
-- [Playwright MCP Tool](https://github.com/microsoft/playwright-mcp)
-- [Microsoft Docs MCP Server](https://github.com/MicrosoftDocs/mcp)
-- [GitHub MCP Registry — Accelerating Agentic Integration](https://github.com/mcp)
-- [MCP Community Examples](https://github.com/microsoft/mcp)
+- [Azure AI Travel Agents GitHub -arkisto](https://github.com/Azure-Samples/azure-ai-travel-agents)
+- [Azure DevOps MCP -työkalu](https://github.com/microsoft/azure-devops-mcp)
+- [Playwright MCP -työkalu](https://github.com/microsoft/playwright-mcp)
+- [Microsoft Docs MCP -palvelin](https://github.com/MicrosoftDocs/mcp)
+- [GitHub MCP -rekisteri — agenttien integraation nopeuttaminen](https://github.com/mcp)
+- [MCP-yhteisön esimerkit](https://github.com/microsoft/mcp)
 
-## Seuraavaksi
+## Mitä seuraavaksi
 
-- Edellinen: [Moduuli 8: Best Practices](../08-BestPractices/README.md)
-- Seuraava: [Moduuli 10: AI-työnkulkujen virtaviivaistaminen: MCP-palvelimen rakentaminen AI-työkalupakilla](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)
+- Edellinen: [Moduuli 8: Parhaat käytännöt](../08-BestPractices/README.md)
+- Seuraava: [Moduuli 10: AI-työnkulkujen virtaviivaistaminen: MCP-palvelimen rakentaminen AI Toolkitillä](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Vastuuvapauslauseke**:
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme täsmällisyyteen, on hyvä ottaa huomioon, että automaattikäännöksissä saattaa esiintyä virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäiskielellä tulee pitää virallisena lähteenä. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä johtuvista väärinymmärryksistä tai virhetulkinoista.
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, otathan huomioon, että automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäiskielellä on virallinen lähde. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
