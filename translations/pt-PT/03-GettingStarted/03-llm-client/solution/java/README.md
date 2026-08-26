@@ -1,49 +1,47 @@
-# Calculator LLM Client
+# Cliente LLM Calculadora
 
-Uma aplicação Java que demonstra como usar o LangChain4j para se conectar a um serviço de calculadora MCP (Model Context Protocol) com integração dos GitHub Models.
+Uma aplicação Java que demonstra como usar LangChain4j para se conectar a um serviço de calculadora MCP (Model Context Protocol) através da API MiniMax compatível com OpenAI.
 
 ## Pré-requisitos
 
 - Java 21 ou superior
 - Maven 3.6+ (ou use o Maven wrapper incluído)
-- Uma conta GitHub com acesso aos GitHub Models
+- Uma chave de API MiniMax
 - Um serviço de calculadora MCP a correr em `http://localhost:8080`
 
-## Obter o Token do GitHub
+## Obter a Chave de API
 
-Esta aplicação usa os GitHub Models, que requerem um token de acesso pessoal do GitHub. Siga estes passos para obter o seu token:
+Esta aplicação usa a API MiniMax compatível com OpenAI. Siga estes passos para obter a sua chave e endpoint:
 
-### 1. Aceder aos GitHub Models
-1. Vá a [GitHub Models](https://github.com/marketplace/models)
-2. Inicie sessão com a sua conta GitHub
-3. Solicite acesso aos GitHub Models, caso ainda não o tenha feito
+### 1. Escolha um endpoint
+1. Use `https://api.minimax.io/v1` para o endpoint global
+2. Use `https://api.minimaxi.com/v1` para o endpoint da China
 
-### 2. Criar um Token de Acesso Pessoal
-1. Vá a [GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)](https://github.com/settings/tokens)
-2. Clique em "Generate new token" → "Generate new token (classic)"
-3. Dê um nome descritivo ao seu token (ex.: "MCP Calculator Client")
-4. Defina a expiração conforme necessário
-5. Selecione os seguintes scopes:
-   - `repo` (se for aceder a repositórios privados)
-   - `user:email`
-6. Clique em "Generate token"
-7. **Importante**: Copie o token imediatamente - não poderá vê-lo novamente!
+### 2. Crie uma chave de API
+1. Crie uma chave de API MiniMax na sua conta MiniMax
+2. Guarde a chave num local seguro
 
-### 3. Definir a Variável de Ambiente
+### 3. Defina as Variáveis de Ambiente
 
-#### No Windows (Command Prompt):
+#### No Windows (Prompt de Comando):
 ```cmd
-set GITHUB_TOKEN=your_github_token_here
+set OPENAI_API_KEY=your_minimax_api_key_here
+set OPENAI_BASE_URL=https://api.minimax.io/v1
+set MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
 #### No Windows (PowerShell):
 ```powershell
-$env:GITHUB_TOKEN="your_github_token_here"
+$env:OPENAI_API_KEY="your_minimax_api_key_here"
+$env:OPENAI_BASE_URL="https://api.minimax.io/v1"
+$env:MINIMAX_MODEL_ID="MiniMax-M3"
 ```
 
 #### No macOS/Linux:
 ```bash
-export GITHUB_TOKEN=your_github_token_here
+export OPENAI_API_KEY=your_minimax_api_key_here
+export OPENAI_BASE_URL=https://api.minimax.io/v1
+export MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
 ## Configuração e Instalação
@@ -54,15 +52,15 @@ export GITHUB_TOKEN=your_github_token_here
    ```cmd
    mvnw clean install
    ```
-   Ou, se tiver o Maven instalado globalmente:
+   Ou se tiver o Maven instalado globalmente:
    ```cmd
    mvn clean install
    ```
 
-3. **Configure a variável de ambiente** (veja a secção "Obter o Token do GitHub" acima)
+3. **Configure as variáveis de ambiente** (veja a seção "Obter a Chave de API" acima)
 
 4. **Inicie o Serviço de Calculadora MCP**:
-   Certifique-se de que o serviço de calculadora MCP do capítulo 1 está a correr em `http://localhost:8080/sse`. Este deve estar ativo antes de iniciar o cliente.
+   Certifique-se que o serviço de calculadora MCP do capítulo 1 está a correr em `http://localhost:8080/sse`. Este deve estar em execução antes de iniciar o cliente.
 
 ## Executar a Aplicação
 
@@ -71,7 +69,7 @@ mvnw clean package
 java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
 
-## O que a Aplicação Faz
+## O Que a Aplicação Faz
 
 A aplicação demonstra três interações principais com o serviço de calculadora:
 
@@ -93,25 +91,25 @@ The calculator service provides the following functions: add, subtract, multiply
 
 ### Problemas Comuns
 
-1. **"GITHUB_TOKEN environment variable not set"**
-   - Certifique-se de que definiu a variável de ambiente `GITHUB_TOKEN`
-   - Reinicie o terminal/linha de comandos após definir a variável
+1. **"A variável de ambiente OPENAI_API_KEY não está definida"**
+   - Certifique-se que definiu a variável de ambiente `OPENAI_API_KEY`
+   - Reinicie o terminal/prompt de comando após definir a variável
 
-2. **"Connection refused to localhost:8080"**
+2. **"Conexão recusada para localhost:8080"**
    - Verifique se o serviço de calculadora MCP está a correr na porta 8080
-   - Confirme se outro serviço não está a usar a porta 8080
+   - Verifique se outro serviço está a usar a porta 8080
 
-3. **"Authentication failed"**
-   - Verifique se o seu token GitHub é válido e tem as permissões corretas
-   - Confirme se tem acesso aos GitHub Models
+3. **"Falha na autenticação"**
+   - Verifique se a sua chave de API é válida
+   - Confira se `OPENAI_BASE_URL` corresponde ao endpoint que pretende usar
 
-4. **Erros na compilação com Maven**
-   - Certifique-se de que está a usar Java 21 ou superior: `java -version`
-   - Tente limpar a compilação: `mvnw clean`
+4. **Erros na construção com Maven**
+   - Certifique-se que está a usar Java 21 ou superior: `java -version`
+   - Tente limpar a construção: `mvnw clean`
 
 ### Depuração
 
-Para ativar o logging de depuração, adicione o seguinte argumento JVM ao executar:
+Para ativar a escrita de logs de debug, adicione o seguinte argumento JVM ao correr:
 ```cmd
 java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
@@ -119,22 +117,26 @@ java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0
 ## Configuração
 
 A aplicação está configurada para:
-- Usar os GitHub Models com o modelo `gpt-4.1-nano`
+- Usar MiniMax-M3 por defeito, ou MiniMax-M2.7 quando `MINIMAX_MODEL_ID` está definido
+- Conectar ao `OPENAI_BASE_URL` se estiver definido; caso contrário usar `https://api.minimaxi.com/v1` quando `MINIMAX_REGION=cn_zh`, ou `https://api.minimax.io/v1` por defeito
 - Conectar ao serviço MCP em `http://localhost:8080/sse`
-- Usar um timeout de 60 segundos para pedidos
-- Ativar logging de pedidos/respostas para depuração
+- Usar um timeout de 60 segundos para requisições
 
 ## Dependências
 
-Principais dependências usadas neste projeto:
-- **LangChain4j**: Para integração de IA e gestão de ferramentas
+Dependências principais usadas neste projeto:
+- **LangChain4j**: Para integração AI e gestão de ferramentas
 - **LangChain4j MCP**: Para suporte ao Model Context Protocol
-- **LangChain4j GitHub Models**: Para integração com GitHub Models
-- **Spring Boot**: Para framework da aplicação e injeção de dependências
+- **LangChain4j OpenAI oficial**: Para integração com a API MiniMax compatível com OpenAI
+- **Spring Boot**: Para framework de aplicação e injeção de dependências
 
 ## Licença
 
-Este projeto está licenciado sob a Apache License 2.0 - consulte o ficheiro [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) para mais detalhes.
+Este projeto está licenciado sob a Licença Apache 2.0 - veja o ficheiro [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) para detalhes.
 
-**Aviso Legal**:  
-Este documento foi traduzido utilizando o serviço de tradução automática [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos por garantir a precisão, por favor tenha em conta que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autorizada. Para informações críticas, recomenda-se tradução profissional humana. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes da utilização desta tradução.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Aviso Legal**:
+Este documento foi traduzido utilizando o serviço de tradução automática [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos pela precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autorizada. Para informações críticas, recomenda-se tradução profissional humana. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas resultantes da utilização desta tradução.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
