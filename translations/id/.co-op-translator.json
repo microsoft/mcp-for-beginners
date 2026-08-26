@@ -162,8 +162,8 @@
     "language_code": "id"
   },
   "03-GettingStarted/03-llm-client/solution/java/README.md": {
-    "original_hash": "ac2459c0d5cc823922e3d9240a95028c",
-    "translation_date": "2025-07-13T19:11:36+00:00",
+    "original_hash": "3efd351ab69decd299a49aaa34ac9245",
+    "translation_date": "2026-08-26T18:01:10+00:00",
     "source_file": "03-GettingStarted/03-llm-client/solution/java/README.md",
     "language_code": "id"
   },
@@ -672,8 +672,8 @@
     "language_code": "id"
   },
   "09-CaseStudy/README.md": {
-    "original_hash": "b3537be55d599dbfdca7bda72eef7741",
-    "translation_date": "2026-02-08T19:02:20+00:00",
+    "original_hash": "701e053b411650c0afcde985a2ef939d",
+    "translation_date": "2026-08-26T18:00:30+00:00",
     "source_file": "09-CaseStudy/README.md",
     "language_code": "id"
   },
@@ -711,6 +711,12 @@
     "original_hash": "d44c9447c434354a77dfcb421bbdc260",
     "translation_date": "2026-06-16T12:13:13+00:00",
     "source_file": "09-CaseStudy/docs-mcp/solution/scenario3/README.md",
+    "language_code": "id"
+  },
+  "09-CaseStudy/publora-social-publishing.md": {
+    "original_hash": "9c860d3fea4a5cfd58ea714fd608aad4",
+    "translation_date": "2026-08-26T18:05:16+00:00",
+    "source_file": "09-CaseStudy/publora-social-publishing.md",
     "language_code": "id"
   },
   "09-CaseStudy/travelagentsample.md": {
