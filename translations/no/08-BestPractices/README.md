@@ -18,7 +18,7 @@ Ved slutten av denne leksjonen vil du kunne:
 - Implementere korrekt feilhåndtering, logging og observabilitet i MCP-servere
 - Optimalisere MCP-implementasjoner for ytelse, sikkerhet og vedlikeholdbarhet
 
-## MCP Kjære Prinsipper
+## MCP Kjerneprinsipper
 
 Før vi dykker ned i spesifikke implementeringspraksiser, er det viktig å forstå kjerneprinsippene som leder effektiv MCP-utvikling:
 
@@ -52,7 +52,7 @@ Følgende beste praksiser er avledet fra den offisielle Model Context Protocol d
 
 5. **Autentisering**: Krev korrekt autentisering før du gir tilgang til verktøy, ressurser eller sensitive operasjoner ved bruk av API-nøkler, OAuth-tokens eller andre sikre autentiseringsmetoder.
 
-6. **Parameter Validering**: Håndhev validering for alle verktøypårop for å forhindre malformed eller ondsinnet input fra å nå verktøyimplementeringene.
+6. **Parameter Validering**: Håndhev validering for alle verktøypårop for å forhindre feilformet eller ondsinnet input fra å nå verktøyimplementeringene.
 
 7. **Begrensning av forespørselsfrekvens**: Implementer begrensning av forespørselsfrekvens for å forhindre misbruk og sikre rettferdig bruk av serverressurser.
 
@@ -231,7 +231,7 @@ class DataQueryTool:
 
 #### 3. Parameter Validering
 
-Alltid valider parametere grundig for å forhindre malformed eller ondsinnet input.
+Alltid valider parametere grundig for å forhindre feilformet eller ondsinnet input.
 
 ```javascript
 // JavaScript/TypeScript-eksempel med detaljert parametervalidering
@@ -2383,17 +2383,16 @@ En omfattende teststrategi er avgjørende for å utvikle pålitelige, høy-kvali
 6. **Testing**: Lag omfattende enhetstester, integrasjonstester og ende-til-ende-tester
 7. **Workflow-mønstre**: Bruk etablerte mønstre som kjeder, dispachere og parallell behandling
 
+## Øvelse
 
+Design et MCP-verktøy og en arbeidsflyt for et dokumentbehandlingssystem som:
 
-
-
-
+1. Godtar dokumenter i flere formater (PDF, DOCX, TXT)
 2. Ekstraherer tekst og nøkkelinformasjon fra dokumentene
 3. Klassifiserer dokumenter etter type og innhold
 4. Genererer et sammendrag av hvert dokument
 
-
-
+Implementer verktøyskjemaene, feilhåndteringen og et arbeidsflytmønster som passer best for dette scenarioet. Vurder hvordan du vil teste denne implementeringen.
 
 ## Ressurser 
 
