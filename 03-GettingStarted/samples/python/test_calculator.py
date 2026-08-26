@@ -8,6 +8,8 @@ before running the MCP server.
 
 import sys
 import os
+import json
+import subprocess
 
 # Add the current directory to the path so we can import the calculator server
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -49,5 +51,53 @@ def test_calculator_functions():
     
     print("\nAll calculator function tests passed! ✅")
 
+
+def request_server(method, params=None):
+    """Send one version-less JSON-RPC request to a fresh server."""
+    server = os.path.join(os.path.dirname(os.path.abspath(__file__)), "mcp_calculator_server.py")
+    request = {"jsonrpc": "2.0", "id": 1, "method": method}
+    if params is not None:
+        request["params"] = params
+    process = subprocess.run(
+        [sys.executable, server],
+        input=json.dumps(request) + "\n",
+        capture_output=True,
+        text=True,
+        timeout=10,
+        check=True,
+    )
+    return json.loads(process.stdout.splitlines()[0])["result"]
+
+
+def test_protocol_discovery():
+    """Test draft discovery and default version negotiation."""
+    discovery = request_server("server/discover")
+    assert "2026-07-28" in discovery["supportedVersions"]
+    assert "2025-11-25" in discovery["supportedVersions"]
+    assert discovery["capabilities"]["tools"] is not None
+    assert discovery["resultType"] == "complete"
+    assert discovery["ttlMs"] >= 0
+    assert discovery["cacheScope"] in {"public", "private"}
+
+    tools = request_server("tools/list")
+    assert {tool["name"] for tool in tools["tools"]} == {
+        "add",
+        "subtract",
+        "multiply",
+        "divide",
+    }
+
+    initialized = request_server(
+        "initialize",
+        {
+            "protocolVersion": "2025-11-25",
+            "capabilities": {},
+            "clientInfo": {"name": "calculator-test", "version": "1.0"},
+        },
+    )
+    assert initialized["protocolVersion"] == "2025-11-25"
+
+
 if __name__ == "__main__":
     test_calculator_functions()
+    test_protocol_discovery()
