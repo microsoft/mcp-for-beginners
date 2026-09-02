@@ -708,7 +708,7 @@ MCP通信は構造化された **JSON-RPC 2.0** メッセージを使い、ホ�
 
 ## 次に進むには
 
-次へ: [Chapter 2: Security](../02-Security/README.md)
+次へ: [第2章：セキュリティ](../02-Security/README.md)
 
 
 `2025-11-25`の後に何が来るのか気になりますか？[MCPの変更点：2026-07-28リリース候補版](./mcp-2026-07-28-release-candidate.md)をお読みください。
