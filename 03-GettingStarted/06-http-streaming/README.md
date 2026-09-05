@@ -260,6 +260,7 @@ from mcp.client.streamable_http import streamablehttp_client
 
 
 async def main() -> None:
+    session_id = str(uuid4())
     async with streamablehttp_client("https://search.parallel.ai/mcp") as (
         read_stream,
         write_stream,
@@ -275,7 +276,7 @@ async def main() -> None:
                 {
                     "objective": "Find the official MCP Streamable HTTP documentation",
                     "search_queries": ["MCP Streamable HTTP documentation"],
-                    "session_id": str(uuid4()),
+                    "session_id": session_id,
                 },
             )
             if result.isError:
@@ -289,7 +290,8 @@ async def run() -> None:
     await asyncio.wait_for(main(), timeout=60)
 
 
-asyncio.run(run())
+if __name__ == "__main__":
+    asyncio.run(run())
 ```
 
 Expect discovery to include `web_search` and `web_fetch`, followed by a search
