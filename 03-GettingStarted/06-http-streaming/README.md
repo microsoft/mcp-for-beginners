@@ -229,6 +229,82 @@ In MCP, streaming is not about sending the main response in chunks, but about se
 
 The main result is still sent as a single response. However, notifications can be sent as separate messages during processing and thereby update the client in real time. The client must be able to handle and display these notifications.
 
+### Optional exercise: connect to a hosted MCP server
+
+You can also use Streamable HTTP without running a local server. This example
+connects to [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp),
+discovers its tools, and searches for public MCP documentation using the same
+Python SDK as the [local client](./solution/python/client.py).
+
+Parallel's anonymous endpoint requires no account or API key. Free access is
+rate limited. Running this script sends the search queries, objective, and a
+random session identifier to Parallel. The service also offers `web_fetch`,
+which sends requested URLs and any supplied context to Parallel. Use public
+information for this exercise; see its [terms](https://parallel.ai/customer-terms)
+and [privacy policy](https://parallel.ai/privacy-policy).
+
+With Python 3.10 or newer and a virtual environment activated, install the SDK:
+
+```sh
+python -m pip install "mcp>=1.10,<2"
+```
+
+Save this as `hosted_search.py` and run `python hosted_search.py`:
+
+```python
+import asyncio
+from uuid import uuid4
+
+from mcp import ClientSession
+from mcp.client.streamable_http import streamablehttp_client
+
+
+async def main() -> None:
+    async with streamablehttp_client("https://search.parallel.ai/mcp") as (
+        read_stream,
+        write_stream,
+        _,
+    ):
+        async with ClientSession(read_stream, write_stream) as session:
+            await session.initialize()
+            tools = await session.list_tools()
+            print("Available tools:", [tool.name for tool in tools.tools])
+
+            result = await session.call_tool(
+                "web_search",
+                {
+                    "objective": "Find the official MCP Streamable HTTP documentation",
+                    "search_queries": ["MCP Streamable HTTP documentation"],
+                    "session_id": str(uuid4()),
+                },
+            )
+            if result.isError:
+                raise RuntimeError(f"Search tool failed: {result.content}")
+            for block in result.content:
+                if block.type == "text":
+                    print(block.text)
+
+
+async def run() -> None:
+    await asyncio.wait_for(main(), timeout=60)
+
+
+asyncio.run(run())
+```
+
+Expect discovery to include `web_search` and `web_fetch`, followed by a search
+response containing source URLs and excerpts. Results can vary or be empty.
+The script checks `isError` because a tool can fail even when the HTTP request
+succeeds. If access is rate limited, wait before trying again. Reuse the same
+`session_id` if you extend the script with related search or fetch calls.
+
+Streamable HTTP permits both JSON and SSE responses; this server can return a
+complete JSON result without progress notifications. The SDK handles the
+transport. Continue with the local example below to learn about notifications.
+This optional script makes one explicit search and closes its connection when
+it finishes. If you later expose these tools to an agent, the agent may invoke
+them during its work; treat retrieved web text as untrusted data.
+
 ## What is a Notification?
 
 We said "Notification", what does that mean in the context of MCP?
