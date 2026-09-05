@@ -4,7 +4,7 @@
 
 ## 🏔️ ハンズオンセキュリティトレーニング
 
-実践的な実装経験のために、**[MCPセキュリティサミットワークショップ（Sherpa）](https://azure-samples.github.io/sherpa/)**を推奨します。Azure上のMCPサーバーのセキュリティ確保に関する包括的なガイド付きエクスペディションです。ワークショップでは「脆弱性 → 攻撃 → 修正 → 検証」という手法でOWASP MCP Top 10のリスクを網羅します。
+実践的な実装経験のために、**[MCPセキュリティサミットワークショップ（Sherpa）](https://azure-samples.github.io/sherpa/)** を推奨します。Azure上のMCPサーバーのセキュリティ確保に関する包括的なガイド付きエクスペディションです。ワークショップでは「脆弱性 → 攻撃 → 修正 → 検証」という手法でOWASP MCP Top 10のリスクを網羅します。
 
 本ドキュメントのすべての実践はAzure特有の実装ガイダンスとして**[OWASP MCP Azureセキュリティガイド](https://microsoft.github.io/mcp-azure-security-guide/)**と整合しています。
 
@@ -191,7 +191,7 @@
 - [MCPセキュリティサミットワークショップ（Sherpa）](https://azure-samples.github.io/sherpa/) - Azure対応MCP向けハンズオンセキュリティトレーニング  
 
 ### **Microsoftセキュリティソリューション**
-- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
+- [Microsoftプロンプトシールド](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 - [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)
 - [Microsoft Entra IDセキュリティ](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
 - [GitHub Advanced Security](https://github.com/security/advanced-security)
