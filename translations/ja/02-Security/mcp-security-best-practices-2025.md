@@ -191,7 +191,7 @@
 - [MCPセキュリティサミットワークショップ（Sherpa）](https://azure-samples.github.io/sherpa/) - Azure対応MCP向けハンズオンセキュリティトレーニング  
 
 ### **Microsoftセキュリティソリューション**
-- [マイクロソフトプロンプトシールド](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
+- [Microsoftプロンプトシールド](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 - [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)
 - [Microsoft Entra IDセキュリティ](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
 - [GitHub Advanced Security](https://github.com/security/advanced-security)
