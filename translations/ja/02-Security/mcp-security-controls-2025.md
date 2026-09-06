@@ -427,7 +427,7 @@ Recovery Procedures:
 - [MCPセキュリティサミットワークショップ (Sherpa)](https://azure-samples.github.io/sherpa/) - Azure上のMCP向け実践的セキュリティトレーニング
 
 ### **Microsoftセキュリティソリューション**
-- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
+- [Microsoft プロンプト シールド](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 - [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)
 - [GitHub Advanced Security](https://github.com/security/advanced-security)
 - [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/)
