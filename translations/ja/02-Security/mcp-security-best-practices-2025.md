@@ -6,7 +6,7 @@
 
 実践的な実装経験のために、**[MCPセキュリティサミットワークショップ（Sherpa）](https://azure-samples.github.io/sherpa/)** を推奨します。Azure上のMCPサーバーのセキュリティ確保に関する包括的なガイド付きエクスペディションです。ワークショップでは「脆弱性 → 攻撃 → 修正 → 検証」という手法でOWASP MCP Top 10のリスクを網羅します。
 
-本ドキュメントのすべての実践はAzure特有の実装ガイダンスとして**[OWASP MCP Azureセキュリティガイド](https://microsoft.github.io/mcp-azure-security-guide/)**と整合しています。
+本ドキュメントのすべての実践はAzure特有の実装ガイダンスとして **[OWASP MCP Azureセキュリティガイド](https://microsoft.github.io/mcp-azure-security-guide/)** と整合しています。
 
 ## MCP実装における必須セキュリティプラクティス
 
