@@ -307,7 +307,7 @@ Windsurf configuration is managed through the settings UI:
 
 ## Connecting to a Remote Server
 
-Every example above starts a local server with `command` and `args`. A remote server is already running somewhere else, so the host only needs its URL and talks to it over Streamable HTTP. The snippets below use the hosted MCP server from [Keenable](https://keenable.ai) at `https://api.keenable.ai/mcp`, which is free to use without an account or API key; anonymous requests are rate limited per IP.
+Every example above starts a local server with `command` and `args`. A remote server is already running somewhere else, so instead of a command you give the host the server's URL (each host has its own field for it, shown below) and it talks to the server over Streamable HTTP. The snippets below use the hosted MCP server from [Keenable](https://keenable.ai) at `https://api.keenable.ai/mcp`, which is free to use without an account or API key; anonymous requests are rate limited per IP.
 
 **VS Code** (`.vscode/mcp.json`):
 
@@ -361,7 +361,7 @@ Every example above starts a local server with `command` and `args`. A remote se
 
 Claude Desktop does not read an HTTP entry from its configuration file (see the table below), so this example skips it.
 
-After you save the file and reload the host, two tools should appear in its tool list: `search_web_pages` (search the web) and `fetch_page_content` (read a page). Ask something like "Search the web for the latest MCP specification release" and the assistant should call `search_web_pages`.
+After you save the file and reload the host, check its tool list: once the connection succeeds it shows two tools, `search_web_pages` (search the web) and `fetch_page_content` (read a page). If they do not show up, look at the host's MCP output for a connection or rate-limit error before changing the configuration. Then ask something like "Search the web for the latest MCP specification release" and the assistant should call `search_web_pages`.
 
 ---
 
@@ -380,7 +380,7 @@ Different hosts support different transport mechanisms:
 **stdio** (standard input/output): Best for local servers started by the host
 **SSE/HTTP**: Best for remote servers or servers shared between multiple clients
 
-See [Connecting to a Remote Server](#connecting-to-a-remote-server) above for a working HTTP configuration in each host.
+See [Connecting to a Remote Server](#connecting-to-a-remote-server) above for an HTTP configuration example for the hosts that support it.
 
 ---
 
