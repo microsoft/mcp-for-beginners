@@ -305,6 +305,66 @@ Windsurf configuration is managed through the settings UI:
 
 ---
 
+## Connecting to a Remote Server
+
+Every example above starts a local server with `command` and `args`. A remote server is already running somewhere else, so the host only needs its URL and talks to it over Streamable HTTP. The snippets below use the hosted MCP server from [Keenable](https://keenable.ai) at `https://api.keenable.ai/mcp`, which is free to use without an account or API key; anonymous requests are rate limited per IP.
+
+**VS Code** (`.vscode/mcp.json`):
+
+```json
+{
+  "servers": {
+    "keenable": {
+      "type": "http",
+      "url": "https://api.keenable.ai/mcp"
+    }
+  }
+}
+```
+
+**Cursor** (`~/.cursor/mcp.json`):
+
+```json
+{
+  "mcpServers": {
+    "keenable": {
+      "url": "https://api.keenable.ai/mcp"
+    }
+  }
+}
+```
+
+**Cline** (MCP Servers icon → Configure → Configure MCP Servers):
+
+```json
+{
+  "mcpServers": {
+    "keenable": {
+      "type": "streamableHttp",
+      "url": "https://api.keenable.ai/mcp"
+    }
+  }
+}
+```
+
+**Windsurf** (`~/.codeium/windsurf/mcp_config.json`):
+
+```json
+{
+  "mcpServers": {
+    "keenable": {
+      "serverUrl": "https://api.keenable.ai/mcp"
+    }
+  }
+}
+```
+
+Claude Desktop does not read an HTTP entry from its configuration file (see the table below), so this example skips it.
+
+After you save the file and reload the host, two tools should appear in its tool list: `search_web_pages` (search the web) and `fetch_page_content` (read a page). Ask something like "Search the web for the latest MCP specification release" and the assistant should call `search_web_pages`.
+
+---
+
 ## Transport Types Comparison
 
 Different hosts support different transport mechanisms:
@@ -319,6 +379,8 @@ Different hosts support different transport mechanisms:
 
 **stdio** (standard input/output): Best for local servers started by the host
 **SSE/HTTP**: Best for remote servers or servers shared between multiple clients
+
+See [Connecting to a Remote Server](#connecting-to-a-remote-server) above for a working HTTP configuration in each host.
 
 ---
 
@@ -386,3 +448,4 @@ Different hosts support different transport mechanisms:
 - [VS Code MCP Extension](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-mcp)
 - [MCP Specification - Transports](https://spec.modelcontextprotocol.io/specification/2025-11-25/basic/transports/)
 - [Official MCP Servers Registry](https://github.com/modelcontextprotocol/servers)
+- [Keenable Hosted MCP Server](https://docs.keenable.ai/mcp-server)
