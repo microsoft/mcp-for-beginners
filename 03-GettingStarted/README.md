@@ -90,7 +90,7 @@ MCP provides official SDKs for multiple languages (aligned with [MCP Specificati
 We have a set of samples that complements the exercises you will see in all chapters in this section. Additionally each chapter also has their own exercises and assignments
 
 - [Java Calculator](./samples/java/calculator/README.md)
-- [.Net Calculator](./samples/csharp/)
+- [.NET Calculator](./samples/csharp/)
 - [JavaScript Calculator](./samples/javascript/README.md)
 - [TypeScript Calculator](./samples/typescript/README.md)
 - [Python Calculator](./samples/python/)
