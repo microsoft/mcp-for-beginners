@@ -90,7 +90,7 @@ MCPは複数言語向けに公式SDKを提供しています（[MCP仕様 2025-1
 このセクションのすべての章で行う演習を補完するサンプルセットがあります。さらに各章には独自の演習と課題もあります。
 
 - [Java 計算機](./samples/java/calculator/README.md)
-- [.Net 計算機](../../../03-GettingStarted/samples/csharp)
+- [.NET 計算機](../../../03-GettingStarted/samples/csharp)
 - [JavaScript 計算機](./samples/javascript/README.md)
 - [TypeScript 計算機](./samples/typescript/README.md)
 - [Python 計算機](../../../03-GettingStarted/samples/python)
@@ -103,7 +103,7 @@ MCPは複数言語向けに公式SDKを提供しています（[MCP仕様 2025-1
 
 ## 次に進むべきこと
 
-最初のレッスンから始めましょう：[あなたの最初のMCPサーバーを作成する](01-first-server/README.md)
+最初のレッスンから始めましょう：[はじめてのMCPサーバーを作成する](01-first-server/README.md)
 
 このモジュールを完了したら、次に以下を続けてください：[モジュール4：実践的な実装](../04-PracticalImplementation/README.md)
 
