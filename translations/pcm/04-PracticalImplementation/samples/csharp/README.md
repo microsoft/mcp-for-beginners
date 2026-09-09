@@ -1,29 +1,29 @@
 # Sample
 
-Di example wey we show before don explain how you fit use local .NET project wit di `stdio` type. E also show how you fit run di server for container for your local machine. Dis na better solution for many situations. But sometimes, e go make sense to run di server for remote place, like for cloud environment. Na here di `http` type go help.
+Di previous example show how to use one local .NET project wit di `stdio` type. An how to run di server locally inside container. Dis na beta solution for plenty situations. But e fit beta to get di server wey dey run remotely, like for cloud environment. Na here di `http` type come.
 
-If you check di solution for di `04-PracticalImplementation` folder, e fit look like say e complex pass di one wey we do before. But truth be say, e no too different. If you look di project `src/Calculator` well, you go see say na almost di same code as di one wey we do before. Di only difference be say we dey use another library `ModelContextProtocol.AspNetCore` to handle di HTTP requests. We also change di method `IsPrime` to make am private, just to show say you fit get private methods for your code. Di rest of di code na di same as before.
+If you look di solution for di `04-PracticalImplementation` folder, e fit look as e get plenty wahala pass di previous one. But tru tru, e no be so. If you look wella for di project `src/Calculator`, you go see say na almost di same code as di previous example. Di only difference be say we dey use different library `ModelContextProtocol.AspNetCore` to handle di HTTP requests. An we change di method `IsPrime` to make am private, just to show say you fit get private methods inside your code. Di rest of di code na di same as before.
 
-Di other projects dey come from [.NET Aspire](https://learn.microsoft.com/dotnet/aspire/get-started/aspire-overview). If you get .NET Aspire for di solution, e go make di developer experience better when dem dey develop and test, and e go help for observability. E no dey compulsory to run di server, but e good make you put am for your solution.
+Di oda projects come from [Aspire](https://aspire.dev/get-started/what-is-aspire/). Getting Aspire inside di solution go improve di developer experience as dem dey develop an test an e go help wit observability. E no necessary make you run di server, but e good practice to get am inside your solution.
 
-## Start di server for your local machine
+## Start di server locally
 
-1. From VS Code (wey get di C# DevKit extension), go down to di `04-PracticalImplementation/samples/csharp` directory.
+1. From VS Code (wit di C# DevKit extension), waka go `04-PracticalImplementation/samples/csharp` directory.
 1. Run dis command to start di server:
 
    ```bash
     dotnet watch run --project ./src/AppHost
    ```
 
-1. When web browser open di .NET Aspire dashboard, note di `http` URL. E go look like `http://localhost:5058/`.
+1. When web browser open di Aspire dashboard, make note of di `http` URL. E suppose be like `http://localhost:5058/`.
 
-   ![.NET Aspire Dashboard](../../../../../translated_images/pcm/dotnet-aspire-dashboard.0a7095710e9301e9.webp)
+   ![Aspire Dashboard](../../../../../translated_images/pcm/dotnet-aspire-dashboard.0a7095710e9301e9.webp)
 
 ## Test Streamable HTTP wit di MCP Inspector
 
-If you get Node.js 22.7.5 or higher, you fit use di MCP Inspector to test your server.
+If you get Node.js 22.7.5 or above, you fit use di MCP Inspector to test your server.
 
-Start di server and run dis command for terminal:
+Start di server an run dis command for terminal:
 
 ```bash
 npx @modelcontextprotocol/inspector http://localhost:5058
@@ -31,18 +31,18 @@ npx @modelcontextprotocol/inspector http://localhost:5058
 
 ![MCP Inspector](../../../../../translated_images/pcm/mcp-inspector.c223422b9b494fb4.webp)
 
-- Select `Streamable HTTP` as di Transport type.
-- For di Url field, put di server URL wey you note before, and add `/mcp`. E suppose be `http` (no be `https`) like dis `http://localhost:5058/mcp`.
+- Select di `Streamable HTTP` as di Transport type.
+- For di Url field, put di URL of di server wey you note before, an join `/mcp` for di end. E suppose be `http` (no be `https`) like `http://localhost:5058/mcp`.
 - Select di Connect button.
 
-One better thing about di Inspector be say e dey show wetin dey happen well well.
+One beta tin about di Inspector na say e dey give beta visibility of wetin dey happen.
 
-- Try list di tools wey dey available.
+- Try list all di available tools
 - Try some of dem, e suppose work like before.
 
-## Test MCP Server wit GitHub Copilot Chat for VS Code
+## Test MCP Server wit GitHub Copilot Chat inside VS Code
 
-To use di Streamable HTTP transport wit GitHub Copilot Chat, change di configuration of di `calc-mcp` server wey you create before to look like dis:
+To use Streamable HTTP transport wit GitHub Copilot Chat, change di configuration of di `calc-mcp` server wey you create before to look like dis:
 
 ```jsonc
 // .vscode/mcp.json
@@ -58,25 +58,25 @@ To use di Streamable HTTP transport wit GitHub Copilot Chat, change di configura
 
 Do some tests:
 
-- Ask for "3 prime numbers after 6780". See as Copilot go use di new tools `NextFivePrimeNumbers` and e go only return di first 3 prime numbers.
-- Ask for "7 prime numbers after 111", to see wetin go happen.
-- Ask for "John get 24 lollies and e wan share dem give e 3 pikin. How many lollies each pikin go get?", to see wetin go happen.
+- Ask for "3 prime numbers after 6780". Make you notice how Copilot go use di new tools `NextFivePrimeNumbers` to only return di first 3 prime numbers.
+- Ask for "7 prime numbers after 111", make you see wetin go happen.
+- Ask for "John get 24 lollies an wan give all dem to im 3 pikin dem. How many lollies each pikin get?", make you see wetin go happen.
 
 ## Deploy di server go Azure
 
-Make we deploy di server go Azure so say more people fit use am.
+Make we deploy di server go Azure so more people go fit use am.
 
-From terminal, go di folder `04-PracticalImplementation/samples/csharp` and run dis command:
+From one terminal, waka go di folder `04-PracticalImplementation/samples/csharp` an run dis command:
 
 ```bash
 azd up
 ```
 
-When di deployment finish, you suppose see message like dis:
+After di deployment finish, you go see message like dis:
 
 ![Azd deployment success](../../../../../translated_images/pcm/azd-deployment-success.bd42940493f1b834.webp)
 
-Collect di URL and use am for di MCP Inspector and for di GitHub Copilot Chat.
+Collect di URL an use am for MCP Inspector an for GitHub Copilot Chat.
 
 ```jsonc
 // .vscode/mcp.json
@@ -90,13 +90,13 @@ Collect di URL and use am for di MCP Inspector and for di GitHub Copilot Chat.
 }
 ```
 
-## Wetin next?
+## Wetin dey next?
 
-We don try different transport types and testing tools. We also deploy your MCP server go Azure. But wetin if our server need access to private resources? For example, database or private API? For di next chapter, we go see how we fit improve di security of our server.
+We try different transport types an testing tools. We also deploy your MCP server go Azure. But wetin if our server need access to private resources? For example, one database or one private API? For di next chapter, we go see how we fit improve di security of our server.
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Disclaimer**:  
-Dis dokyument don use AI transleshion service [Co-op Translator](https://github.com/Azure/co-op-translator) do di transleshion. Even though we dey try make am accurate, abeg make you sabi say automatik transleshion fit get mistake or no dey correct well. Di original dokyument wey dey for im native language na di one wey you go take as di correct source. For important informashon, e good make you use professional human transleshion. We no go fit take blame for any misunderstanding or wrong meaning wey fit happen because you use dis transleshion.
+**Disclaimer**:
+Dis document don translate wit AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). Even tho we dey try make am correct, abeg make you know say automated translation fit get errors or mistakes. Di original document for dia own language na im be di correct source. For important info, make person wey sabi human translation do am. We no go responsible for any misunderstanding or wrong understanding wey fit happen because of dis translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
