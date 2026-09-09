@@ -1,27 +1,27 @@
 # Khách hàng LLM Máy tính
 
-Một ứng dụng Java minh họa cách sử dụng LangChain4j để kết nối với dịch vụ máy tính MCP (Model Context Protocol) qua API tương thích MiniMax OpenAI.
+Một ứng dụng Java minh họa cách sử dụng LangChain4j để kết nối với dịch vụ máy tính MCP (Model Context Protocol) thông qua API MiniMax tương thích OpenAI.
 
 ## Yêu cầu trước
 
-- Java 21 hoặc cao hơn
-- Maven 3.6+ (hoặc sử dụng Maven wrapper kèm theo)
+- Java 21 trở lên
+- Maven 3.6+ (hoặc dùng Maven wrapper đi kèm)
 - Một khóa API MiniMax
-- Dịch vụ máy tính MCP đang chạy trên `http://localhost:8080`
+- Một dịch vụ máy tính MCP chạy trên `http://localhost:8080`
 
-## Lấy khóa API
+## Lấy Khóa API
 
-Ứng dụng này sử dụng API tương thích MiniMax OpenAI. Làm theo các bước sau để lấy khóa và điểm cuối của bạn:
+Ứng dụng này sử dụng API MiniMax tương thích OpenAI. Thực hiện các bước sau để lấy khóa và endpoint của bạn:
 
-### 1. Chọn điểm cuối
-1. Sử dụng `https://api.minimax.io/v1` cho điểm cuối toàn cầu
-2. Sử dụng `https://api.minimaxi.com/v1` cho điểm cuối Trung Quốc
+### 1. Chọn endpoint
+1. Dùng `https://api.minimax.io/v1` cho endpoint toàn cầu
+2. Dùng `https://api.minimaxi.com/v1` cho endpoint Trung Quốc
 
 ### 2. Tạo khóa API
 1. Tạo khóa API MiniMax từ tài khoản MiniMax của bạn
 2. Giữ khóa ở nơi an toàn
 
-### 3. Đặt biến môi trường
+### 3. Thiết lập Biến Môi Trường
 
 #### Trên Windows (Command Prompt):
 ```cmd
@@ -44,36 +44,36 @@ export OPENAI_BASE_URL=https://api.minimax.io/v1
 export MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
-## Thiết lập và cài đặt
+## Cài đặt và Thiết lập
 
-1. **Sao chép hoặc vào thư mục dự án**
+1. **Sao chép hoặc điều hướng đến thư mục dự án**
 
 2. **Cài đặt các phụ thuộc**:
    ```cmd
    mvnw clean install
    ```
-   Hoặc nếu bạn đã cài Maven toàn cục:
+   Hoặc nếu đã cài Maven toàn cục:
    ```cmd
    mvn clean install
    ```
 
-3. **Thiết lập biến môi trường** (xem phần "Lấy khóa API" phía trên)
+3. **Thiết lập các biến môi trường** (xem phần "Lấy Khóa API" ở trên)
 
-4. **Khởi động Dịch vụ Máy tính MCP**:
-   Đảm bảo dịch vụ máy tính MCP của chương 1 đang chạy trên `http://localhost:8080/sse`. Dịch vụ này phải chạy trước khi bạn khởi động client.
+4. **Khởi động dịch vụ Máy tính MCP**:
+   Đảm bảo bạn đã chạy dịch vụ máy tính MCP chương 1 trên `http://localhost:8080/sse`. Dịch vụ này phải đang chạy trước khi bạn khởi động client.
 
-## Chạy ứng dụng
+## Chạy Ứng dụng
 
 ```cmd
 mvnw clean package
 java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
 
-## Ứng dụng làm gì
+## Ứng dụng Làm Gì
 
 Ứng dụng minh họa ba tương tác chính với dịch vụ máy tính:
 
-1. **Phép cộng**: Tính tổng của 24.5 và 17.3
+1. **Cộng**: Tính tổng 24.5 và 17.3
 2. **Căn bậc hai**: Tính căn bậc hai của 144
 3. **Trợ giúp**: Hiển thị các chức năng máy tính có sẵn
 
@@ -89,23 +89,23 @@ The calculator service provides the following functions: add, subtract, multiply
 
 ## Khắc phục sự cố
 
-### Vấn đề thường gặp
+### Các vấn đề phổ biến
 
 1. **"Biến môi trường OPENAI_API_KEY chưa được thiết lập"**
    - Đảm bảo bạn đã thiết lập biến môi trường `OPENAI_API_KEY`
-   - Khởi động lại terminal/command prompt sau khi thiết lập biến
+   - Khởi động lại terminal/cửa sổ command prompt sau khi thiết lập biến
 
-2. **"Kết nối bị từ chối với localhost:8080"**
-   - Đảm bảo dịch vụ máy tính MCP đang chạy trên cổng 8080
-   - Kiểm tra xem có dịch vụ nào khác đang dùng cổng 8080 không
+2. **"Kết nối bị từ chối đến localhost:8080"**
+   - Đảm bảo dịch vụ máy tính MCP đang chạy ở cổng 8080
+   - Kiểm tra xem có dịch vụ khác đang dùng cổng 8080 không
 
 3. **"Xác thực không thành công"**
-   - Xác minh khóa API của bạn hợp lệ
-   - Kiểm tra xem `OPENAI_BASE_URL` có khớp với điểm cuối bạn muốn dùng không
+   - Kiểm tra xem khóa API của bạn có hợp lệ không
+   - Xác nhận rằng `OPENAI_BASE_URL` khớp với endpoint bạn định sử dụng
 
-4. **Lỗi khi build Maven**
+4. **Lỗi khi xây dựng bằng Maven**
    - Đảm bảo bạn đang dùng Java 21 trở lên: `java -version`
-   - Thử làm sạch build: `mvnw clean`
+   - Thử xóa build trước: `mvnw clean`
 
 ### Gỡ lỗi
 
@@ -117,22 +117,22 @@ java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0
 ## Cấu hình
 
 Ứng dụng được cấu hình để:
-- Sử dụng MiniMax-M3 theo mặc định, hoặc MiniMax-M2.7 khi `MINIMAX_MODEL_ID` được đặt
-- Kết nối tới `OPENAI_BASE_URL` khi được đặt; nếu không dùng `https://api.minimaxi.com/v1` khi `MINIMAX_REGION=cn_zh`, hoặc `https://api.minimax.io/v1` theo mặc định
+- Mặc định dùng MiniMax-M3; đặt `MINIMAX_MODEL_ID` để chọn `MiniMax-M3` hoặc `MiniMax-M2.7`
+- Kết nối tới `OPENAI_BASE_URL` khi được thiết lập; nếu không sẽ dùng `https://api.minimaxi.com/v1` khi `MINIMAX_REGION=cn_zh`, hoặc `https://api.minimax.io/v1` theo mặc định
 - Kết nối tới dịch vụ MCP tại `http://localhost:8080/sse`
-- Sử dụng thời gian chờ 60 giây cho các yêu cầu
+- Dùng timeout 60 giây cho các yêu cầu
 
-## Phụ thuộc
+## Các phụ thuộc
 
 Các phụ thuộc chính được sử dụng trong dự án này:
 - **LangChain4j**: Để tích hợp AI và quản lý công cụ
-- **LangChain4j MCP**: Để hỗ trợ Model Context Protocol
-- **LangChain4j OpenAI official**: Để tích hợp API tương thích MiniMax OpenAI
-- **Spring Boot**: Để làm framework ứng dụng và tiêm phụ thuộc
+- **LangChain4j MCP**: Cho hỗ trợ Model Context Protocol
+- **LangChain4j OpenAI official**: Tích hợp API MiniMax tương thích OpenAI
+- **Spring Boot**: Làm framework ứng dụng và tiêm phụ thuộc
 
 ## Giấy phép
 
-Dự án này được cấp phép theo Giấy phép Apache 2.0 - xem file [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) để biết chi tiết.
+Dự án này được cấp phép theo Giấy phép Apache 2.0 - xem tệp [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) để biết chi tiết.
 
 ---
 
