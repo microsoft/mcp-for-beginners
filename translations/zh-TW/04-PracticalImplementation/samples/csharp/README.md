@@ -1,29 +1,29 @@
 # 範例
 
-前一個範例展示了如何使用本地的 .NET 專案搭配 `stdio` 類型，以及如何在容器中本地執行伺服器。這在許多情況下都是不錯的解決方案。不過，有時候讓伺服器遠端運行，例如在雲端環境中，也會很有用。這時候就會用到 `http` 類型。
+先前的範例展示了如何使用本地 .NET 專案搭配 `stdio` 類型，還有如何在容器中本地執行伺服器。這在許多情況下是個不錯的解決方案。不過，有時候讓伺服器遠端執行，例如在雲端環境中，也是很有用的。這時 `http` 類型就派上用場了。
 
-看看 `04-PracticalImplementation` 資料夾中的解決方案，可能看起來比之前複雜許多，但實際上並非如此。如果仔細看 `src/Calculator` 專案，你會發現它大部分程式碼和之前的範例相同。唯一的差別是我們使用了不同的函式庫 `ModelContextProtocol.AspNetCore` 來處理 HTTP 請求，並且將 `IsPrime` 方法改成 private，這只是為了示範你可以在程式碼中使用 private 方法。其餘程式碼和之前一樣。
+看看 `04-PracticalImplementation` 資料夾中的解決方案，看起來可能比先前例子複雜許多。但實際上並不是這樣。如果仔細觀察 `src/Calculator` 專案，你會發現它的程式碼大多和之前的例子相同。唯一的差別是我們使用了另一個函式庫 `ModelContextProtocol.AspNetCore` 來處理 HTTP 請求。同時，我們將方法 `IsPrime` 改為私有，以示範程式碼中也能有私有方法。其餘程式碼則和之前一樣。
 
-其他專案來自 [.NET Aspire](https://learn.microsoft.com/dotnet/aspire/get-started/aspire-overview)。在解決方案中加入 .NET Aspire 可以提升開發者在開發和測試時的體驗，並有助於可觀察性。雖然不是執行伺服器的必要條件，但在解決方案中加入它是個好習慣。
+其他專案來自於 [Aspire](https://aspire.dev/get-started/what-is-aspire/)。在方案中加入 Aspire 可以提升開發者在開發與測試時的體驗，並協助提高可觀察性。雖然運行伺服器時不一定要用 Aspire，但把它納入方案中是個好習慣。
 
-## 本地啟動伺服器
+## 在本機啟動伺服器
 
-1. 在 VS Code（安裝 C# DevKit 擴充功能）中，切換到 `04-PracticalImplementation/samples/csharp` 目錄。
-1. 執行以下指令啟動伺服器：
+1. 從 VS Code（搭配 C# DevKit 擴充套件）導航至 `04-PracticalImplementation/samples/csharp` 目錄。
+1. 執行以下指令來啟動伺服器：
 
    ```bash
     dotnet watch run --project ./src/AppHost
    ```
 
-1. 當瀏覽器開啟 .NET Aspire 儀表板時，注意 `http` 的 URL，應該會是類似 `http://localhost:5058/` 的格式。
+1. 當瀏覽器打開 Aspire 儀表板時，注意 `http` URL，應是類似 `http://localhost:5058/` 的網址。
 
-   ![.NET Aspire Dashboard](../../../../../translated_images/zh-TW/dotnet-aspire-dashboard.0a7095710e9301e9.webp)
+   ![Aspire Dashboard](../../../../../translated_images/zh-TW/dotnet-aspire-dashboard.0a7095710e9301e9.webp)
 
-## 使用 MCP Inspector 測試 Streamable HTTP
+## 使用 MCP Inspector 測試可串流 HTTP
 
-如果你有安裝 Node.js 22.7.5 或以上版本，可以使用 MCP Inspector 來測試你的伺服器。
+如果你有 Node.js 22.7.5 以上版本，可以使用 MCP Inspector 來測試你的伺服器。
 
-啟動伺服器後，在終端機執行以下指令：
+啟動伺服器後，在終端機執行下列指令：
 
 ```bash
 npx @modelcontextprotocol/inspector http://localhost:5058
@@ -32,17 +32,17 @@ npx @modelcontextprotocol/inspector http://localhost:5058
 ![MCP Inspector](../../../../../translated_images/zh-TW/mcp-inspector.c223422b9b494fb4.webp)
 
 - 選擇 `Streamable HTTP` 作為傳輸類型。
-- 在 Url 欄位輸入先前記下的伺服器 URL，並在後面加上 `/mcp`，應該是 `http`（非 `https`），例如 `http://localhost:5058/mcp`。
-- 點選 Connect 按鈕。
+- 在 Url 欄位輸入之前記下的伺服器網址，並在後面加上 `/mcp`。它應該是 `http`（非 `https`），像 `http://localhost:5058/mcp` 這樣。
+- 點選連線按鈕。
 
-Inspector 的優點是能清楚顯示目前的運作狀況。
+Inspector 的好處是它能清楚顯示正在發生的事情。
 
-- 試著列出可用的工具
-- 試用其中幾個，應該和之前一樣能正常運作。
+- 試著列出可用的工具清單。
+- 試著使用其中一些工具，應該會像之前一樣正常運作。
 
-## 在 VS Code 使用 GitHub Copilot Chat 測試 MCP Server
+## 在 VS Code 使用 GitHub Copilot Chat 測試 MCP 伺服器
 
-要在 GitHub Copilot Chat 中使用 Streamable HTTP 傳輸，請將先前建立的 `calc-mcp` 伺服器設定改成如下：
+要讓 GitHub Copilot Chat 使用 Streamable HTTP 傳輸，請修改之前建立的 `calc-mcp` 伺服器設定如下：
 
 ```jsonc
 // .vscode/mcp.json
@@ -56,27 +56,27 @@ Inspector 的優點是能清楚顯示目前的運作狀況。
 }
 ```
 
-進行一些測試：
+做一些測試：
 
-- 詢問「3 個大於 6780 的質數」，注意 Copilot 會使用新的工具 `NextFivePrimeNumbers`，並只回傳前三個質數。
-- 詢問「7 個大於 111 的質數」，看看結果如何。
-- 詢問「John 有 24 顆棒棒糖，要分給他的 3 個小孩，每個小孩會有多少顆？」，看看結果如何。
+- 詢問「6780 之後的 3 個質數」。注意 Copilot 將會使用新工具 `NextFivePrimeNumbers` ，且只回傳前三個質數。
+- 詢問「111 之後的 7 個質數」，看看會發生什麼事情。
+- 詢問「John 有 24 顆棒棒糖，想要分給他 3 個孩子，每個孩子會分到多少顆？」看看結果如何。
 
-## 將伺服器部署到 Azure
+## 部署伺服器至 Azure
 
-讓我們把伺服器部署到 Azure，讓更多人可以使用。
+讓我們把伺服器部署到 Azure，好讓更多人能使用它。
 
-在終端機中切換到 `04-PracticalImplementation/samples/csharp` 資料夾，執行以下指令：
+於終端機中導航至 `04-PracticalImplementation/samples/csharp` 資料夾並執行下列指令：
 
 ```bash
 azd up
 ```
 
-部署完成後，你應該會看到類似以下的訊息：
+部署完成後，應該會看到類似以下訊息：
 
 ![Azd deployment success](../../../../../translated_images/zh-TW/azd-deployment-success.bd42940493f1b834.webp)
 
-複製該 URL，並在 MCP Inspector 及 GitHub Copilot Chat 中使用。
+拿取該 URL，並將其用於 MCP Inspector 與 GitHub Copilot Chat。
 
 ```jsonc
 // .vscode/mcp.json
@@ -90,9 +90,13 @@ azd up
 }
 ```
 
-## 接下來呢？
+## 下一步？
 
-我們嘗試了不同的傳輸類型和測試工具，也將 MCP 伺服器部署到 Azure。但如果伺服器需要存取私有資源呢？例如資料庫或私有 API？下一章我們將探討如何提升伺服器的安全性。
+我們嘗試了不同的傳輸類型和測試工具，也將 MCP 伺服器部署到 Azure。不過如果伺服器需要存取私人資源呢？例如資料庫或私人 API？在下一章，我們將了解如何加強伺服器的安全性。
 
-**免責聲明**：  
-本文件係使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。雖然我們力求準確，但請注意，自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應視為權威來源。對於重要資訊，建議採用專業人工翻譯。我們不對因使用本翻譯而產生的任何誤解或誤釋負責。
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**免責聲明**：
+此文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。雖然我們努力追求準確性，但請注意自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應視為權威來源。對於關鍵資訊，建議採用專業人工翻譯。我們不對因使用此翻譯所產生的任何誤解或誤譯承擔責任。
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
