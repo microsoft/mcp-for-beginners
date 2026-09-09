@@ -10,7 +10,7 @@
 > the issuing authorization server. Dynamic Client Registration is deprecated;
 > new implementations should use Client ID Metadata Documents. Protocol
 > sessions must not be used for authentication. See
-> [What's Changed in MCP: The 2026-07-28 Specification](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> [What's Changed in MCP: The 2026-07-28 Specification](../../01-CoreConcepts/mcp-2026-07-28.md).
 
 Security is critical for MCP implementations, especially in enterprise environments. This advanced guide explores comprehensive security practices for production MCP deployments, addressing both traditional security concerns and AI-specific threats unique to the Model Context Protocol.
 

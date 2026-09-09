@@ -7,7 +7,7 @@ This guide explores advanced MCP protocol features that go beyond basic tool and
 > sessions are removed. The Logging section below is retained for legacy
 > implementations; new servers should use `stderr` or OpenTelemetry. Tasks is
 > now a separately versioned extension. See
-> [What's Changed in MCP: The 2026-07-28 Specification](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> [What's Changed in MCP: The 2026-07-28 Specification](../../01-CoreConcepts/mcp-2026-07-28.md).
 
 ## Features Covered
 

@@ -9,7 +9,7 @@ This chapter provides a comprehensive guide to implementing secure, scalable, an
 > removes those features. Current Streamable HTTP requests are self-contained
 > POST requests with `MCP-Protocol-Version` and `Mcp-Method` headers, plus
 > `Mcp-Name` where required. See
-> [What's Changed in MCP: The 2026-07-28 Specification](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md)
+> [What's Changed in MCP: The 2026-07-28 Specification](../../01-CoreConcepts/mcp-2026-07-28.md)
 > before using these examples in a new implementation.
 
 ## Transport Mechanisms and Streaming in MCP

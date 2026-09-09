@@ -11,7 +11,7 @@ and require both endpoints to agree on the custom mapping.
 > requirements of the standard Streamable HTTP transport; a non-HTTP transport
 > needs an equivalent, explicitly agreed mapping if intermediaries must route
 > without decoding the JSON-RPC body. See
-> [What's Changed in MCP: The 2026-07-28 Specification](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> [What's Changed in MCP: The 2026-07-28 Specification](../../01-CoreConcepts/mcp-2026-07-28.md).
 
 ## Introduction
 

@@ -15,7 +15,7 @@ This lesson explores advanced concepts in Model Context Protocol implementation,
 > experimental Tasks feature referenced in Protocol Features (5.16) to a
 > dedicated Tasks extension. Those lessons are retained for legacy
 > `2025-11-25` implementations and include migration guidance. See
-> [What's Changed in MCP: The 2026-07-28 Specification](../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> [What's Changed in MCP: The 2026-07-28 Specification](../01-CoreConcepts/mcp-2026-07-28.md).
 
 ## Learning Objectives
 

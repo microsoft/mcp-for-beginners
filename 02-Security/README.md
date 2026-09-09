@@ -39,7 +39,7 @@ Research from the [Microsoft Digital Defense Report](https://aka.ms/mddr) demons
 > `iss` parameter on authorization responses (RFC 9207) and bind registered
 > credentials to the issuing authorization server. Dynamic Client Registration
 > is deprecated; new implementations should use Client ID Metadata Documents.
-> See [What's Changed in MCP: The 2026-07-28 Specification](../01-CoreConcepts/mcp-2026-07-28-release-candidate.md)
+> See [What's Changed in MCP: The 2026-07-28 Specification](../01-CoreConcepts/mcp-2026-07-28.md)
 > for the full list of authorization changes.
 
 ## 🏔️ MCP Security Summit Workshop (Sherpa)
@@ -499,9 +499,9 @@ These foundational practices create a robust security baseline that enhances the
 
 For comprehensive security guidance, refer to these specialized documents in this section:
 
-- **[MCP Security Best Practices 2025](./mcp-security-best-practices-2025.md)** - Complete security best practices for MCP implementations
+- **[MCP Security Best Practices](./mcp-security-best-practices.md)** - Complete security best practices for MCP implementations
 - **[Azure Content Safety Implementation](./azure-content-safety-implementation.md)** - Practical implementation examples for Azure Content Safety integration  
-- **[MCP Security Controls 2025](./mcp-security-controls-2025.md)** - Latest security controls and techniques for MCP deployments
+- **[MCP Security Controls](./mcp-security-controls.md)** - Latest security controls and techniques for MCP deployments
 - **[MCP Best Practices Quick Reference](./mcp-best-practices.md)** - Quick reference guide for essential MCP security practices
 - **[BlueHat 2026: Securing the future of AI: Securing MCP with defense in depth patterns](https://www.youtube.com/watch?v=cVWB58kEt-Y)** - Defense-in-depth patterns from the Microsoft Security Response Center (MSRC)
 
