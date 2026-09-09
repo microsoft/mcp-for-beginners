@@ -144,8 +144,8 @@
     "language_code": "sv"
   },
   "03-GettingStarted/03-llm-client/README.md": {
-    "original_hash": "3b5e39c78f62deafcb60929f8036daf3",
-    "translation_date": "2026-06-16T07:34:33+00:00",
+    "original_hash": "e7951e45ea065c33cf0fe73f6d3ed687",
+    "translation_date": "2026-09-09T22:21:15+00:00",
     "source_file": "03-GettingStarted/03-llm-client/README.md",
     "language_code": "sv"
   },
@@ -162,8 +162,8 @@
     "language_code": "sv"
   },
   "03-GettingStarted/03-llm-client/solution/java/README.md": {
-    "original_hash": "3efd351ab69decd299a49aaa34ac9245",
-    "translation_date": "2026-08-26T12:59:38+00:00",
+    "original_hash": "b21e6bd48c46004ac5a4a4d47ea40a64",
+    "translation_date": "2026-09-09T22:21:33+00:00",
     "source_file": "03-GettingStarted/03-llm-client/solution/java/README.md",
     "language_code": "sv"
   },
@@ -468,8 +468,8 @@
     "language_code": "sv"
   },
   "03-GettingStarted/samples/python/README.md": {
-    "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
-    "translation_date": "2025-10-17T20:05:58+00:00",
+    "original_hash": "3a5754207a68ad8272820d1a1a353fde",
+    "translation_date": "2026-09-09T22:21:39+00:00",
     "source_file": "03-GettingStarted/samples/python/README.md",
     "language_code": "sv"
   },
@@ -498,8 +498,8 @@
     "language_code": "sv"
   },
   "04-PracticalImplementation/samples/csharp/README.md": {
-    "original_hash": "0bc7bd48f55f1565f1d95ccb2c16f728",
-    "translation_date": "2025-07-13T23:07:22+00:00",
+    "original_hash": "6cddd296fe965d6b941fc77950679238",
+    "translation_date": "2026-09-09T22:21:56+00:00",
     "source_file": "04-PracticalImplementation/samples/csharp/README.md",
     "language_code": "sv"
   },
@@ -660,8 +660,8 @@
     "language_code": "sv"
   },
   "07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md": {
-    "original_hash": "f7d8cfb6528a2280913da17f622b7b08",
-    "translation_date": "2026-06-17T16:29:43+00:00",
+    "original_hash": "6a98b49b0cde0040ab13aec5709f3a76",
+    "translation_date": "2026-09-09T22:19:22+00:00",
     "source_file": "07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md",
     "language_code": "sv"
   },

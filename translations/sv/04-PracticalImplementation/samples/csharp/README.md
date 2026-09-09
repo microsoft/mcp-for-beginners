@@ -1,23 +1,23 @@
 # Exempel
 
-Det föregående exemplet visar hur man använder ett lokalt .NET-projekt med typen `stdio`. Och hur man kör servern lokalt i en container. Detta är en bra lösning i många situationer. Men det kan vara användbart att ha servern igång på distans, till exempel i en molnmiljö. Det är här typen `http` kommer in i bilden.
+Föregående exempel visar hur man använder ett lokalt .NET-projekt med typen `stdio`. Och hur man kör servern lokalt i en container. Detta är en bra lösning i många situationer. Men det kan vara användbart att ha servern igång på distans, till exempel i en molnmiljö. Här kommer typen `http` in i bilden.
 
-Om man tittar på lösningen i mappen `04-PracticalImplementation` kan det se mycket mer komplext ut än det föregående exemplet. Men i verkligheten är det inte det. Om du tittar noga på projektet `src/Calculator` kommer du att se att det till största delen är samma kod som i det tidigare exemplet. Den enda skillnaden är att vi använder ett annat bibliotek, `ModelContextProtocol.AspNetCore`, för att hantera HTTP-förfrågningarna. Och vi ändrar metoden `IsPrime` till att vara privat, bara för att visa att du kan ha privata metoder i din kod. Resten av koden är densamma som tidigare.
+Tittar man på lösningen i mappen `04-PracticalImplementation` kan den se mycket mer komplex ut än den föregående. Men i verkligheten är det inte så. Om du tittar noga på projektet `src/Calculator` kommer du att se att det är mest samma kod som i det tidigare exemplet. Den enda skillnaden är att vi använder ett annat bibliotek `ModelContextProtocol.AspNetCore` för att hantera HTTP-förfrågningar. Och vi ändrar metoden `IsPrime` till att vara privat, bara för att visa att du kan ha privata metoder i din kod. Resten av koden är densamma som innan.
 
-De andra projekten kommer från [.NET Aspire](https://learn.microsoft.com/dotnet/aspire/get-started/aspire-overview). Att ha .NET Aspire i lösningen förbättrar utvecklarens upplevelse under utveckling och testning och hjälper till med observabilitet. Det är inte nödvändigt för att köra servern, men det är en god vana att ha det i din lösning.
+De andra projekten är från [Aspire](https://aspire.dev/get-started/what-is-aspire/). Att ha Aspire i lösningen förbättrar utvecklarens upplevelse under utveckling och testning och hjälper med observabilitet. Det är inte obligatoriskt för att köra servern, men det är god praxis att ha det i din lösning.
 
 ## Starta servern lokalt
 
-1. Från VS Code (med C# DevKit-tillägget), navigera till katalogen `04-PracticalImplementation/samples/csharp`.
+1. I VS Code (med C# DevKit-tillägget) navigera till katalogen `04-PracticalImplementation/samples/csharp`.
 1. Kör följande kommando för att starta servern:
 
    ```bash
     dotnet watch run --project ./src/AppHost
    ```
 
-1. När en webbläsare öppnar .NET Aspire-dashboarden, notera `http`-URL:en. Den bör vara något i stil med `http://localhost:5058/`.
+1. När en webbläsare öppnar Aspire dashboard, notera `http`-URL:en. Den bör vara något som `http://localhost:5058/`.
 
-   ![.NET Aspire Dashboard](../../../../../translated_images/sv/dotnet-aspire-dashboard.0a7095710e9301e9.webp)
+   ![Aspire Dashboard](../../../../../translated_images/sv/dotnet-aspire-dashboard.0a7095710e9301e9.webp)
 
 ## Testa Streamable HTTP med MCP Inspector
 
@@ -31,18 +31,18 @@ npx @modelcontextprotocol/inspector http://localhost:5058
 
 ![MCP Inspector](../../../../../translated_images/sv/mcp-inspector.c223422b9b494fb4.webp)
 
-- Välj `Streamable HTTP` som transporttyp.
-- I fältet Url, ange den URL för servern som noterades tidigare och lägg till `/mcp`. Det ska vara `http` (inte `https`), något i stil med `http://localhost:5058/mcp`.
-- Klicka på Connect-knappen.
+- Välj `Streamable HTTP` som Transporttyp.
+- I Url-fältet, ange URL:en till servern som noterades tidigare, och lägg till `/mcp`. Den bör vara `http` (inte `https`) och se ut ungefär som `http://localhost:5058/mcp`.
+- tryck på Connect-knappen.
 
-En fördel med Inspector är att den ger bra insyn i vad som händer.
+En trevlig sak med Inspector är att den ger bra insyn i vad som händer.
 
-- Försök lista de tillgängliga verktygen
+- Prova att lista de tillgängliga verktygen
 - Testa några av dem, det ska fungera precis som tidigare.
 
 ## Testa MCP Server med GitHub Copilot Chat i VS Code
 
-För att använda Streamable HTTP-transporten med GitHub Copilot Chat, ändra konfigurationen för `calc-mcp`-servern som skapades tidigare så att den ser ut så här:
+För att använda Streamable HTTP transport med GitHub Copilot Chat, ändra konfigurationen av `calc-mcp` servern som skapades tidigare till följande:
 
 ```jsonc
 // .vscode/mcp.json
@@ -58,9 +58,9 @@ För att använda Streamable HTTP-transporten med GitHub Copilot Chat, ändra ko
 
 Gör några tester:
 
-- Be om "3 prime numbers after 6780". Notera hur Copilot använder de nya verktygen `NextFivePrimeNumbers` och bara returnerar de första 3 primtalen.
-- Be om "7 prime numbers after 111" för att se vad som händer.
-- Be om "John has 24 lollies and wants to distribute them all to his 3 kids. How many lollies does each kid have?" för att se vad som händer.
+- Be om "3 primtal efter 6780". Notera hur Copilot använder verktygen `NextFivePrimeNumbers` och returnerar endast de första 3 primtalen.
+- Be om "7 primtal efter 111", för att se vad som händer.
+- Be om "John har 24 klubbor och vill fördela dem till sina 3 barn. Hur många klubbor får varje barn?", för att se vad som händer.
 
 ## Distribuera servern till Azure
 
@@ -72,7 +72,7 @@ Från en terminal, navigera till mappen `04-PracticalImplementation/samples/csha
 azd up
 ```
 
-När distributionen är klar bör du se ett meddelande som detta:
+När distributionen är klar ska du se ett meddelande som detta:
 
 ![Azd deployment success](../../../../../translated_images/sv/azd-deployment-success.bd42940493f1b834.webp)
 
@@ -92,7 +92,11 @@ Ta URL:en och använd den i MCP Inspector och i GitHub Copilot Chat.
 
 ## Vad händer härnäst?
 
-Vi har testat olika transporttyper och testverktyg. Vi har också distribuerat din MCP-server till Azure. Men vad händer om vår server behöver åtkomst till privata resurser? Till exempel en databas eller ett privat API? I nästa kapitel kommer vi att se hur vi kan förbättra säkerheten för vår server.
+Vi har testat olika transporttyper och testverktyg. Vi har också distribuerat din MCP-server till Azure. Men vad händer om vår server behöver åtkomst till privata resurser? Till exempel en databas eller ett privat API? I nästa kapitel ska vi se hur vi kan förbättra säkerheten för vår server.
 
-**Ansvarsfriskrivning**:  
-Detta dokument har översatts med hjälp av AI-översättningstjänsten [Co-op Translator](https://github.com/Azure/co-op-translator). Även om vi strävar efter noggrannhet, vänligen observera att automatiska översättningar kan innehålla fel eller brister. Det ursprungliga dokumentet på dess modersmål bör betraktas som den auktoritativa källan. För kritisk information rekommenderas professionell mänsklig översättning. Vi ansvarar inte för några missförstånd eller feltolkningar som uppstår vid användning av denna översättning.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Ansvarsfriskrivning**:
+Detta dokument har översatts med hjälp av AI-översättningstjänsten [Co-op Translator](https://github.com/Azure/co-op-translator). Även om vi strävar efter noggrannhet, var vänlig notera att automatiska översättningar kan innehålla fel eller brister. Det ursprungliga dokumentet på dess modersmål bör betraktas som den auktoritativa källan. För kritisk information rekommenderas professionell mänsklig översättning. Vi ansvarar inte för några missförstånd eller feltolkningar som uppstår till följd av användningen av denna översättning.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
