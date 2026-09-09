@@ -1,25 +1,25 @@
 # 電卓LLMクライアント
 
-LangChain4j を使用して、MiniMax OpenAI互換APIを介してMCP（モデルコンテキストプロトコル）電卓サービスに接続する方法を示すJavaアプリケーションです。
+LangChain4jを使用して、MiniMaxのOpenAI互換APIを介してMCP（モデルコンテキストプロトコル）電卓サービスに接続する方法を示すJavaアプリケーションです。
 
 ## 前提条件
 
 - Java 21以上
-- Maven 3.6以上（または同梱のMavenラッパーを使用）
+- Maven 3.6+（または同梱のMavenラッパーを使用）
 - MiniMax APIキー
-- `http://localhost:8080` で動作中のMCP電卓サービス
+- `http://localhost:8080`で実行中のMCP電卓サービス
 
 ## APIキーの取得
 
-本アプリケーションはMiniMax OpenAI互換APIを使用します。キーとエンドポイントを取得するには以下の手順に従ってください：
+本アプリケーションはMiniMaxのOpenAI互換APIを使用します。キーとエンドポイントを取得する手順は以下の通りです：
 
 ### 1. エンドポイントの選択
-1. グローバルエンドポイントには `https://api.minimax.io/v1` を使用
-2. 中国向けエンドポイントには `https://api.minimaxi.com/v1` を使用
+1. グローバルエンドポイントの場合は`https://api.minimax.io/v1`を使用
+2. 中国エンドポイントの場合は`https://api.minimaxi.com/v1`を使用
 
 ### 2. APIキーの作成
-1. MiniMaxアカウントからAPIキーを作成
-2. キーを安全な場所に保管
+1. MiniMaxアカウントからMiniMax APIキーを作成
+2. キーは安全な場所に保管
 
 ### 3. 環境変数の設定
 
@@ -48,19 +48,19 @@ export MINIMAX_MODEL_ID=MiniMax-M3
 
 1. <strong>プロジェクトディレクトリをクローンまたは移動</strong>
 
-2. <strong>依存関係をインストール</strong>：
+2. <strong>依存関係のインストール</strong>：
    ```cmd
    mvnw clean install
    ```
-   もしくは、Mavenがグローバルにインストールされていれば：
+   または Maven がグローバルにインストールされている場合：
    ```cmd
    mvn clean install
    ```
 
 3. <strong>環境変数の設定</strong>（上記「APIキーの取得」セクション参照）
 
-4. **MCP電卓サービスを起動**：
-   1章のMCP電卓サービスが `http://localhost:8080/sse` で起動していることを確認してください。クライアント起動前に動作している必要があります。
+4. **MCP電卓サービスの起動**：
+   chapter 1のMCP電卓サービスが`http://localhost:8080/sse`で実行されていることを確認してください。クライアントを起動する前にサービスが稼働中である必要があります。
 
 ## アプリケーションの実行
 
@@ -69,17 +69,17 @@ mvnw clean package
 java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
 
-## アプリケーション概要
+## アプリケーションの機能
 
-アプリケーションは電卓サービスとの3つの主なやり取りを示します：
+本アプリケーションは電卓サービスとの3つの主なやり取りを示します：
 
 1. <strong>加算</strong>：24.5と17.3の合計を計算
 2. <strong>平方根</strong>：144の平方根を計算
-3. <strong>ヘルプ</strong>：利用可能な電卓機能を表示
+3. <strong>ヘルプ</strong>：利用可能な電卓関数を表示
 
-## 期待される出力
+## 予想される出力
 
-正常に実行されると、以下のような出力が表示されます:
+正常に実行された場合、以下のような出力が表示されます：
 
 ```
 The sum of 24.5 and 17.3 is 41.8.
@@ -92,47 +92,47 @@ The calculator service provides the following functions: add, subtract, multiply
 ### よくある問題
 
 1. **"OPENAI_API_KEY環境変数が設定されていません"**
-   - `OPENAI_API_KEY`環境変数の設定を確認
-   - 変数設定後にターミナル/コマンドプロンプトを再起動
+   - `OPENAI_API_KEY`環境変数を設定したか確認
+   - 変数設定後に端末/コマンドプロンプトを再起動
 
 2. **"localhost:8080への接続が拒否されました"**
-   - MCP電卓サービスがポート8080で動作していることを確認
-   - 別のサービスがポート8080を使用していないか確認
+   - MCP電卓サービスがポート8080で実行中か確認
+   - 他に8080番ポートを使用しているサービスがないか確認
 
 3. **"認証に失敗しました"**
-   - APIキーの有効性を確認
-   - `OPENAI_BASE_URL`が意図したエンドポイントと一致しているか確認
+   - APIキーが有効か確認
+   - `OPENAI_BASE_URL`が使用する予定のエンドポイントに合っているか確認
 
 4. **Mavenビルドエラー**
-   - Java 21以上を使用しているか確認: `java -version`
-   - ビルドのクリーンを試みる: `mvnw clean`
+   - Java 21以上を使用しているか確認：`java -version`
+   - ビルドをクリーンしてみる：`mvnw clean`
 
 ### デバッグ
 
-デバッグログを有効にするには、実行時に以下のJVM引数を追加してください:
+デバッグログを有効にするには、実行時に以下のJVM引数を追加してください：
 ```cmd
 java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
 
 ## 設定
 
-アプリケーションの設定内容:
-- デフォルトでMiniMax-M3を使用、`MINIMAX_MODEL_ID`が設定されている場合はMiniMax-M2.7を使用
-- `OPENAI_BASE_URL`が設定されている場合はそこへ接続し、設定がなければ`MINIMAX_REGION=cn_zh`の際は`https://api.minimaxi.com/v1`、デフォルトは`https://api.minimax.io/v1`を使用
-- MCPサービスへは`http://localhost:8080/sse`で接続
+本アプリケーションの設定：
+- デフォルトでMiniMax-M3を使用。`MINIMAX_MODEL_ID`で`MiniMax-M3`または`MiniMax-M2.7`を選択可能
+- `OPENAI_BASE_URL`が設定されている場合はそこに接続。未設定の場合`MINIMAX_REGION=cn_zh`時は`https://api.minimaxi.com/v1`、それ以外は`https://api.minimax.io/v1`を使用
+- MCPサービスには`http://localhost:8080/sse`で接続
 - リクエストのタイムアウトは60秒
 
 ## 依存関係
 
-本プロジェクトで使用されている主な依存関係：
-- **LangChain4j**：AI統合およびツール管理用
-- **LangChain4j MCP**：モデルコンテキストプロトコル対応用
+本プロジェクトで使用される主な依存関係：
+- **LangChain4j**：AI統合とツール管理用
+- **LangChain4j MCP**：モデルコンテキストプロトコルサポート用
 - **LangChain4j OpenAI公式**：MiniMax OpenAI互換API統合用
-- **Spring Boot**：アプリケーションフレームワークと依存性注入用
+- **Spring Boot**：アプリケーションフレームワークおよび依存性注入用
 
 ## ライセンス
 
-本プロジェクトはApache License 2.0のもとでライセンスされています。詳細は[LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE)ファイルを参照してください。
+本プロジェクトはApache License 2.0の下でライセンスされています。詳細は [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) ファイルをご覧ください。
 
 ---
 

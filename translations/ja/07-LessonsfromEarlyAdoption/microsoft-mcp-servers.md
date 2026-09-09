@@ -1,94 +1,94 @@
-# 🚀 開発者の生産性を変革する 10 の Microsoft MCP サーバー
+# 🚀 開発者の生産性を変革する10のMicrosoft MCPサーバー
 
-## 🎯 本ガイドで学べること
+## 🎯 このガイドで学べること
 
-この実践的なガイドでは、開発者が AI アシスタントと連携して作業する方法を実際に変革している 10 の Microsoft MCP サーバーを紹介します。MCP サーバーが「何ができるか」を説明するだけでなく、Microsoft およびその先の現場で日々の開発ワークフローに大きな違いをもたらしているサーバーの実例をお見せします。
+本実践ガイドでは、AIアシスタントとの開発作業を積極的に変革している10のMicrosoft MCPサーバーをご紹介します。MCPサーバーが「何ができるか」を説明するだけでなく、Microsoftやその他の現場で実際に日々の開発フローを変えつつあるサーバーの事例を示します。
 
-本ガイドに掲載されている各サーバーは、実際の利用状況と開発者のフィードバックを基に選定されています。各サーバーが何をするのかだけでなく、なぜ重要なのか、そして自分のプロジェクトで最大限に活用する方法を発見できます。MCP が全く初めてでも、既存の環境を拡張したい場合でも、本ガイドのサーバーは Microsoft エコシステムで利用できる最も実用的で効果的なツールの一部を代表しています。
+本ガイドに登場するサーバーは、実際の利用例と開発者のフィードバックを元に選定されています。各サーバーの機能だけでなく、その重要性や自身のプロジェクトで最大限に活用する方法も学べます。MCP初心者も既存の環境を拡充したい方も、本ガイドのサーバーはMicrosoftエコシステムで最も実用的かつ効果的なツールの代表例です。
 
 > **💡 クイックスタートのヒント**
 > 
-> MCP が初めてですか？ご安心ください！このガイドは初心者にも分かりやすい設計になっています。進めながら概念も説明しますし、いつでも[Introduction to MCP](../00-Introduction/README.md)および[Core Concepts](../01-CoreConcepts/README.md)モジュールに戻って詳細を参照可能です。
+> MCPが初めてでもご安心ください！本ガイドは初心者に優しい設計です。概念は順を追って解説し、より深い背景は [Introduction to MCP](../00-Introduction/README.md) や [Core Concepts](../01-CoreConcepts/README.md) モジュールをいつでも参照できます。
 
 ## 概要
 
-本ガイドでは、開発者が AI アシスタントや外部ツールと連携する方法を変革している 10 の Microsoft MCP サーバーについて詳しく紹介します。Azure リソース管理から文書処理まで、これらのサーバーは Model Context Protocol の力を活かし、シームレスで生産性の高い開発ワークフローを実現しています。
+本総合ガイドは、開発者がAIアシスタントや外部ツールと連携する方法を革新している10のMicrosoft MCPサーバーを解説します。Azureのリソース管理からドキュメント処理まで、これらサーバーはModel Context Protocolの力を活かし、シームレスで生産性の高い開発ワークフローを実現しています。
 
 ## 学習目標
 
-本ガイドを読み終える頃には、以下を理解できます：
-- MCP サーバーが開発者の生産性をどのように向上させるか
-- Microsoft の最も効果的な MCP サーバー実装について
-- 各サーバーの実用的な利用ケースの発見
-- VS Code および Visual Studio でのこれらサーバーの設定と構成方法
-- 広範な MCP エコシステムと今後の展望の探究
+本ガイドの終了までに、以下を習得します：
+- MCPサーバーが開発者の生産性をどのように高めるか理解する
+- Microsoftの最も効果的なMCPサーバーの実装事例を知る
+- 各サーバーの実用的なユースケースを発見する
+- VS CodeやVisual Studioでのサーバー設定と構成方法を習得する
+- 広範なMCPエコシステムと将来の展望を探る
 
-## 🔧 MCP サーバーの理解：初心者ガイド
+## 🔧 MCPサーバーの基礎：初心者ガイド
 
-### MCP サーバーとは？
+### MCPサーバーとは？
 
-Model Context Protocol (MCP) の初心者として、「MCP サーバーとは何か、なぜ重要なのか？」と疑問に思うかもしれません。ここでは簡単な例えで説明しましょう。
+Model Context Protocol (MCP) 初心者の皆さんは、「MCPサーバーって何？なぜ重要なの？」と思うかもしれません。まずは簡単な例え話から始めましょう。
 
-MCP サーバーは、AI コーディングアシスタント（例えば GitHub Copilot）が外部ツールやサービスに接続できるようにする特化型アシスタントのようなものです。スマホで天気予報用アプリ、ナビゲーション用アプリ、銀行用アプリなど用途ごとに異なるアプリを使い分けるのと同様に、MCP サーバーは AI アシスタントに様々な開発ツールやサービスと連携する能力を与えます。
+MCPサーバーはAIコーディングアシスタント（例：GitHub Copilot）が外部ツールやサービスと連携できるようにサポートする専門アシスタントのようなものです。スマホで天気アプリやナビアプリ、銀行アプリなどを使い分けるように、MCPサーバーはAIアシスタントに様々な開発ツールやサービスとやり取りする能力を与えます。
 
-### MCP サーバーが解決する問題
+### MCPサーバーが解決する問題
 
-MCP サーバーがなければ、例えば：
-- Azure リソースの確認
-- GitHub イシューの作成
-- データベースのクエリ
-- ドキュメントの検索
+以前は、もしあなたが：
+- Azureのリソースを確認したい
+- GitHubのIssueを作成したい
+- データベースにクエリをしたい
+- ドキュメントを検索したい
 
-といった作業は、コーディングを中断してブラウザーを開き、該当サイトにアクセスし、手動で操作する必要があります。この頻繁なコンテキスト切り替えはワークフローを阻害し、生産性を下げます。
+そのたびにコーディングを中断し、ブラウザでサイトにアクセスして手動で操作していました。こうしたコンテキストの頻繁な切り替えは集中を妨げ、生産性を下げてしまいます。
 
-### MCP サーバーが開発体験を変える仕組み
+### MCPサーバーが変える開発体験
 
-MCP サーバーを使うと、VS Code や Visual Studio などの開発環境内で AI アシスタントにこれらの作業を依頼できます。具体例：
+MCPサーバーを使えば、VS CodeやVisual Studioなどの開発環境に居ながらAIアシスタントに直接これらの作業を任せられます。例えば：
 
-**従来の流れ：**
-1. コーディングを中断
+**従来のワークフローでは：**
+1. コーディングを止める
 2. ブラウザを開く
-3. Azure ポータルにアクセス
-4. ストレージアカウントの詳細を調べる
-5. VS Code に戻る
+3. Azureポータルにアクセス
+4. ストレージアカウント情報を調べる
+5. VS Codeに戻る
 6. コーディング再開
 
-**今はこうなります：**
-1. AI に尋ねる：「Azure ストレージアカウントの状況はどうなっていますか？」
-2. 取得した情報をもとにコーディングを続ける
+**今はこうできます：**
+1. AIに「Azureストレージアカウントの状態は？」と聞く
+2. 提供された情報を活用してコーディングを続ける
 
-### 初心者にとっての主な利点
+### 初心者に嬉しい主な利点
 
-#### 1. 🔄 <strong>作業の集中状態を維持</strong>
-- 複数のアプリケーション間の切り替えが不要
+#### 1. 🔄 <strong>集中を途切れさせない</strong>
+- 複数アプリの切り替え不要
 - 書いているコードに集中できる
-- 複数ツール管理の負荷を軽減
+- ツール管理の精神的な負担を軽減
 
-#### 2. 🤖 <strong>複雑なコマンドではなく自然言語で操作</strong>
-- SQL 構文を覚えなくても必要なデータを説明するだけ
-- Azure CLI のコマンドを暗記せずに実現したいことを伝えられる
-- 技術的な詳細は AI に任せて、ロジックに集中できる
+#### 2. 🤖 <strong>複雑なコマンドではなく自然言語で指示</strong>
+- SQL文法を覚える代わりに必要なデータを説明
+- Azure CLIコマンドを覚える代わりにやりたいことを伝える
+- 技術的詳細はAIに任せ、論理に集中
 
-#### 3. 🔗 <strong>複数ツールを連携させる</strong>
-- サービスを組み合わせて強力なワークフロー作成が可能
-- 例：「最近の GitHub イシューをすべて取得し、対応する Azure DevOps ワークアイテムを作成する」
-- 複雑なスクリプトを書かずに自動化を構築
+#### 3. 🔗 <strong>複数のツールを連携</strong>
+- 様々なサービスを組み合わせた強力なワークフローを作れる
+- 例：「最新のGitHub Issueを取得してAzure DevOpsの作業項目を作成」
+- 複雑なスクリプトを書かずに自動化を実現
 
-#### 4. 🌐 <strong>拡大するエコシステムにアクセス</strong>
-- Microsoft、GitHub、その他ベンダーが提供するサーバーを利用
+#### 4. 🌐 <strong>拡大し続けるエコシステムにアクセス</strong>
+- Microsoft、GitHub、他企業のサーバーを利用可能
 - 異なるベンダーのツールをシームレスに組み合わせ可能
-- さまざまな AI アシスタントで動作する標準化されたエコシステム参加
+- 各種AIアシスタント横断で使える標準化されたエコシステムに参加
 
-#### 5. 🛠️ <strong>実践で学ぶ</strong>
-- まず既存のサーバーで概念を理解
-- 慣れてきたら自作サーバーの構築にも挑戦
-- 利用可能な SDK やドキュメントを通じて学習支援
+#### 5. 🛠️ <strong>実践しながら学べる</strong>
+- 既製のサーバーからスタートして概念を理解
+- 慣れてきたら自分でサーバーを作成
+- 利用可能なSDKやドキュメントを活用して学習を進める
 
 ### 初心者向けの実例
 
-例えば、ウェブ開発を始めたばかりで最初のプロジェクトに取り組んでいる場合、MCP サーバーの助けで：
+初めてのWeb開発プロジェクトに取り組んでいるときのMCPサーバー活用例です：
 
-**従来のやり方：**
+**従来の方法：**
 ```
 1. Code a feature
 2. Open browser → Navigate to GitHub
@@ -99,7 +99,7 @@ MCP サーバーを使うと、VS Code や Visual Studio などの開発環境�
 7. Try to remember what you were doing
 ```
 
-**MCP サーバーを使う場合：**
+**MCPサーバー使用時：**
 ```
 1. Code a feature
 2. Ask AI: "Create a GitHub issue for testing this login feature"
@@ -108,299 +108,304 @@ MCP サーバーを使うと、VS Code や Visual Studio などの開発環境�
 5. Continue coding with all the information you need
 ```
 
-### エンタープライズ標準の利点
+### エンタープライズ標準のメリット
 
-MCP は業界標準になりつつあり、次の特徴があります：
-- <strong>一貫性</strong>：異なるツールや会社で類似した体験を提供
-- <strong>相互運用性</strong>：異なるベンダーのサーバーが連携可能
-- <strong>将来性</strong>：スキルや設定が異なる AI アシスタント間で継続利用可能
-- <strong>コミュニティ</strong>：豊富な知識やリソースの大規模エコシステム
+MCPは業界標準になりつつあり、以下の意味を持ちます：
+- <strong>一貫性</strong>：異なるツールや企業でも似た体験
+- <strong>相互運用性</strong>：異なるベンダーのサーバーが協調動作
+- <strong>将来対応</strong>：習得済みスキルやセットアップを他のAIアシスタントで活用可能
+- <strong>コミュニティ</strong>：共有の知識・リソースを持つ大規模なエコシステム
 
-### はじめに：学べる内容
+### 始め方：学ぶ内容
 
-本ガイドでは、あらゆるレベルの開発者に役立つ 10 の Microsoft MCP サーバーを紹介します。各サーバーは以下を目標に設計されています：
-- よくある開発の課題を解決
+本ガイドでは、あらゆるレベルの開発者に便利な10のMicrosoft MCPサーバーを紹介します。各サーバーは：
+- よくある開発課題を解決
 - 繰り返し作業を軽減
 - コード品質を向上
-- 学習機会を拡充
+- 学習機会を拡大
 
-> **💡 学習のヒント**
+> **💡 学習のコツ**
 > 
-> MCP が全く初めてなら、まず[Introduction to MCP](../00-Introduction/README.md)と[Core Concepts](../01-CoreConcepts/README.md)モジュールをご覧ください。その後、本ガイドに戻って Microsoft の実際のツールでの活用例を確認しましょう。
+> MCPが初めての方は、まず [Introduction to MCP](../00-Introduction/README.md) と [Core Concepts](../01-CoreConcepts/README.md) のモジュールを学習しましょう。次にここに戻り、Microsoftツールでの実践例をご覧ください。
 >
-> MCP の重要性に関する追加情報は、Maria Naggaga の投稿も参考にしてください：[Connect Once, Integrate Anywhere with MCP](https://devblogs.microsoft.com/blog/connect-once-integrate-anywhere-with-mcps)。
+> MCPの重要性についての追加情報はMaria Naggagaの投稿も参考にしてください：[Connect Once, Integrate Anywhere with MCP](https://devblogs.microsoft.com/blog/connect-once-integrate-anywhere-with-mcps)。
 
-## VS Code と Visual Studio での MCP の始め方 🚀
+## VS CodeとVisual StudioでMCPを始める 🚀
 
-GitHub Copilot と一緒に Visual Studio Code または Visual Studio 2022 を使う場合、これらの MCP サーバーのセットアップは簡単です。
+GitHub Copilot付きのVisual Studio CodeやVisual Studio 2022を使えば、MCPサーバーの設定は簡単です。
 
-### VS Code のセットアップ
+### VS Codeのセットアップ
 
-VS Code での基本的な流れは以下の通りです：
+基本的な手順は以下の通りです：
 
-1. <strong>エージェントモードを有効化</strong>：VS Code の Copilot Chat ウィンドウでエージェントモードに切り替え
-2. **MCP サーバーの設定**：VS Code の `settings.json` にサーバー構成を追加
-3. <strong>サーバー起動</strong>：使いたいサーバーごとに「Start」ボタンをクリック
-4. <strong>ツール選択</strong>：現在のセッションで有効にする MCP サーバーを選択
+1. <strong>エージェントモードを有効化</strong>：VS CodeでCopilot Chatウィンドウのエージェントモードに切り替える
+2. **MCPサーバーを設定**：VS Codeのsettings.jsonにサーバーの設定を追加
+3. <strong>サーバーを起動</strong>：使いたいサーバーの「Start」ボタンをクリック
+4. <strong>ツールを選択</strong>：現在のセッションで有効にするMCPサーバーを選ぶ
 
-詳細な設定手順は[VS Code MCP ドキュメント](https://code.visualstudio.com/docs/copilot/copilot-mcp)を参照してください。
+詳細な設定手順は [VS Code MCPドキュメント](https://code.visualstudio.com/docs/copilot/copilot-mcp) を参照してください。
 
-> **💡 プロのヒント：MCP サーバー管理をもっと簡単に！**
+> **💡 プロのコツ：MCPサーバー管理を極めよう！**
 > 
-> VS Code の拡張機能ビューには[インストール済み MCP サーバーを管理する便利な新 UI](https://code.visualstudio.com/docs/copilot/chat/mcp-servers#_use-mcp-tools-in-agent-mode)が追加されました。起動、停止、管理を直感的なインターフェースで素早く操作可能です。ぜひお試しください！
+> VS Codeの拡張機能ビューには、[インストール済みMCPサーバーを管理する便利な新UI](https://code.visualstudio.com/docs/copilot/chat/mcp-servers#_use-mcp-tools-in-agent-mode)が追加されています！インストール済みMCPサーバーを簡単に起動・停止・管理できる明快なインターフェイスです。ぜひお試しください！
 
-### Visual Studio 2022 のセットアップ
+### Visual Studio 2022のセットアップ
 
-Visual Studio 2022（バージョン 17.14 以降）では：
+Visual Studio 2022（バージョン17.14以降）では：
 
-1. <strong>エージェントモードを有効化</strong>：GitHub Copilot Chat ウィンドウの「Ask」ドロップダウンから「Agent」を選択
-2. <strong>設定ファイル作成</strong>：ソリューションディレクトリに `.mcp.json` ファイルを作成（推奨場所：`<SOLUTIONDIR>\.mcp.json`）
-3. <strong>サーバー設定</strong>：標準の MCP 形式でサーバー設定を追加
-4. <strong>ツール承認</strong>：ツール使用時に求められるスコープ権限を付与して承認
+1. <strong>エージェントモードを有効化</strong>：GitHub Copilot Chatウィンドウの「Ask」ドロップダウンから「Agent」を選択
+2. <strong>設定ファイル作成</strong>：ソリューションディレクトリに `.mcp.json` ファイルを作成（推奨場所は `<SOLUTIONDIR>\.mcp.json`）
+3. <strong>サーバーを構成</strong>：標準MCP形式でMCPサーバー設定を追加
+4. <strong>ツール承認</strong>：求められたら使用したいツールのスコープ権限を承認
 
-詳細は[Visual Studio MCP ドキュメント](https://learn.microsoft.com/visualstudio/ide/mcp-servers)を参照してください。
+詳細なVisual Studio設定手順は [Visual Studio MCPドキュメント](https://learn.microsoft.com/visualstudio/ide/mcp-servers) を参照してください。
 
-MCP サーバーごとに接続文字列や認証情報など固有の設定はありますが、両 IDE でセットアップパターンは一貫しています。
+各MCPサーバーは接続文字列や認証など独自の設定要件がありますが、両IDEでセットアップパターンは一貫しています。
 
-## Microsoft MCP サーバーから学んだ教訓 🛠️
+## Microsoft MCPサーバーから学んだ教訓 🛠️
 
-### 1. 📚 Microsoft Learn Docs MCP Server
+### 1. 📚 Microsoft Learn Docs MCPサーバー
 
-[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Microsoft_Docs_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=microsoft.docs.mcp&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Flearn.microsoft.com%2Fapi%2Fmcp%22%7D) [![Install in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_Microsoft_Docs_MCP-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=microsoft.docs.mcp&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Flearn.microsoft.com%2Fapi%2Fmcp%22%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/microsoft/mcp)
+[![VS Codeにインストール](https://img.shields.io/badge/VS_Code-Install_Microsoft_Docs_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=microsoft.docs.mcp&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Flearn.microsoft.com%2Fapi%2Fmcp%22%7D) [![VS Code Insidersにインストール](https://img.shields.io/badge/VS_Code_Insiders-Install_Microsoft_Docs_MCP-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=microsoft.docs.mcp&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Flearn.microsoft.com%2Fapi%2Fmcp%22%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/microsoft/mcp)
 
-<strong>概要</strong>: Microsoft Learn Docs MCP サーバーは、Model Context Protocol を介して AI アシスタントに Microsoft の公式ドキュメントへのリアルタイムアクセスを提供するクラウドホスティングサービスです。`https://learn.microsoft.com/api/mcp` に接続し、Microsoft Learn、Azure ドキュメント、Microsoft 365 ドキュメントなどの公式情報を意味検索可能にします。
+<strong>機能概要</strong>：Microsoft Learn Docs MCPサーバーはクラウドホストサービスで、AIアシスタントにModel Context Protocolを通じて公式Microsoftドキュメントへのリアルタイムアクセスを提供します。`https://learn.microsoft.com/api/mcp` に接続し、Microsoft Learn、Azureドキュメント、Microsoft 365ドキュメントなど公式情報の意味検索を可能にします。
 
-<strong>利点</strong>: 「ただのドキュメント」ように見えますが、Microsoft テクノロジーを使うすべての開発者にとって極めて重要です。AI コーディングアシスタントに対し、最新の .NET および C# のリリース情報が更新されていないという不満がよく聞かれます。Microsoft Learn Docs MCP サーバーは、最新のドキュメント、API リファレンス、ベストプラクティスをリアルタイムで提供し、この問題を解決します。最新の Azure SDK、C# 13 の新機能、最先端の .NET Aspire パターンを使用している場合でも、このサーバーがあれば AI アシスタントは正確で最新の情報に基づくコードを生成できます。
+<strong>有用性</strong>：「ドキュメントだけ」と思われがちですが、Microsoft技術を使うすべての開発者にとって必須のサーバーです。多くの.NET開発者がAIコードアシスタントが最新の.NETやC#の情報を持っていないと不満を持っていますが、このサーバーは最新のドキュメント、APIリファレンス、ベストプラクティスをリアルタイムで提供することでそれを解決します。最新のAzure SDK、C# 13の新機能、先端のAspireパターンの実装など、AIアシスタントが正確かつ最新の情報に基づいてコードを生成できるように支援します。
 
-<strong>実際の利用例</strong>：「公式 Microsoft Learn ドキュメントによると、Azure コンテナーアプリを作成する az cli コマンドは？」や「ASP.NET Core で依存性注入を使って Entity Framework を設定する方法は？」、さらには「このコードが Microsoft Learn ドキュメントのパフォーマンス推奨に沿っているか確認して」といった質問に対応します。サーバーは高度な意味検索を使い、Microsoft Learn、Azure ドキュメント、Microsoft 365 ドキュメントを包括的にカバーし、最大 10 件の高品質なコンテンツチャンク（記事タイトルと URL）を提供し、常に最新のドキュメントにアクセスします。
+<strong>実利用例</strong>：「Microsoft公式Learnドキュメントに従いAzureコンテナアプリを作成するaz cliコマンドは？」「ASP.NET Coreで依存性注入を使ったEntity Frameworkの設定方法は？」「このコードがMicrosoft Learnドキュメントの性能推奨に合致しているか確認して」などの質問に対応。高度な意味検索でMicrosoft Learn、Azure、Microsoft 365ドキュメント全体を対象に最も関連する情報を取得し、記事タイトルとURLを含む最大10件の高品質コンテンツを返します。公開された最新ドキュメントに常にアクセス可能です。
 
-<strong>注目の例</strong>: サーバーは `microsoft_docs_search` ツールを公開しており、Microsoft の公式技術ドキュメントに対する意味検索を実行します。設定後、「ASP.NET Core で JWT 認証を実装するには？」などの質問に対し、詳細かつ公式の回答と出典リンクが得られます。検索品質は非常に高く、文脈を理解します。たとえば「containers」という用語でも、Azure の文脈なら Azure Container Instances ドキュメントが、.NET の文脈なら C# コレクションの情報が返されます。
+<strong>代表例</strong>：`microsoft_docs_search` ツールがMicrosoft公式技術ドキュメントに対して意味検索を実行します。一度設定すれば「ASP.NET CoreでJWT認証を実装するには？」などの質問に対して、詳細な公式回答とソースへのリンクを得られます。検索品質は文脈を理解しているため、Azureの「container」と質問すればAzure Container Instancesのドキュメントを、.NETの文脈ならC#のコレクション情報が返るなど高精度です。
 
-これは特に頻繁に更新されるライブラリやユースケースで有用です。最近のプロジェクトでは最新の .NET Aspire と Microsoft.Extensions.AI のリリース機能を活用したい場面がありましたが、Microsoft Learn Docs MCP サーバーを利用することで、API ドキュメントだけでなく最新のウォークスルーやガイダンスも役立てられました。
+これは急速に変化する、あるいは最近アップデートされたライブラリやユースケースで特に有効です。例えば私が最近手掛けたAspireやMicrosoft.Extensions.AIの最新リリースを利用するプロジェクトにおいて、Microsoft Learn Docs MCPサーバーを導入することでAPIドキュメントだけでなく新たに公開されたウォークスルーやガイダンスも活用できました。
 
-> **💡 プロのヒント**
+> **💡 プロのコツ**
 > 
-> ツールに対応したモデルでも MCP ツールを使うよう誘導が必要です。例えば以下のようなシステムプロンプトや[コパイロット用カスタム指示ファイル](https://docs.github.com/copilot/how-tos/custom-instructions/adding-repository-custom-instructions-for-github-copilot)を追加してみましょう：「`microsoft.docs.mcp` にアクセスできます。C#、Azure、ASP.NET Core、Entity Framework など Microsoft 技術に関する質問の際は、このツールを使って最新の公式ドキュメントを検索してください。」
+> ツールへのアクセスが可能なモデルでもMCPツール使用の促しは必要です！システムプロンプトや [copilot-instructions.md](https://docs.github.com/copilot/how-tos/custom-instructions/adding-repository-custom-instructions-for-github-copilot) に「`microsoft.docs.mcp` へのアクセスがあるため、C#、Azure、ASP.NET Core、Entity FrameworkなどMicrosoft技術の質問時はこのツールを使って最新公式ドキュメントを検索してください」といった指示を加えると良いでしょう。
 >
-> 実例として、Awesome GitHub Copilot リポジトリの[C# .NET Janitor チャットモード](https://github.com/awesome-copilot/chatmodes/blob/main/csharp-dotnet-janitor.chatmode.md)をご覧ください。このモードは Microsoft Learn Docs MCP サーバーを活用し、最新のパターンとベストプラクティスで C# コードのクリーンアップとモダナイズを支援します。
+> これを実践した優れた例はAwesome GitHub Copilotリポジトリの [C# .NET Janitor chat mode](https://github.com/awesome-copilot/chatmodes/blob/main/csharp-dotnet-janitor.chatmode.md) にあります。このモードはMicrosoft Learn Docs MCPサーバーを活用し、最新パターンとベストプラクティスに則ったC#コードのクリーンアップとモダナイズを支援します。
+### 2. ☁️ Azure MCPサーバー
 
-### 2. ☁️ Azure MCP Server
+
 [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Azure_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=Azure%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40azure%2Fazure-mcp%40latest%22%5D%7D) [![Install in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_Azure_MCP-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Azure%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40azure%2Fazure-mcp%40latest%22%5D%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/Azure/azure-mcp)
 
-<strong>何をするのか</strong>: Azure MCPサーバーは、Azureエコシステム全体をAIワークフローに取り込む、15以上の専門的なAzureサービスコネクターからなる包括的なスイートです。これは単なるサーバーではなく、リソース管理やデータベース接続（PostgreSQL、SQL Server）、KQLによるAzure Monitorのログ分析、Cosmos DB統合などを含む強力なコレクションです。
+<strong>機能概要</strong>: Azure MCP サーバーは、AI ワークフローに Azure エコシステム全体を取り込むための、15以上の専門的な Azure サービスコネクターを備えた包括的なスイートです。単一のサーバーに留まらず、リソース管理、データベース接続 (PostgreSQL、SQL Server)、KQL を用いた Azure Monitor ログ解析、Cosmos DB 統合など、多彩な機能を含む強力なコレクションです。
 
-<strong>なぜ便利か</strong>: Azureリソースの管理だけでなく、このサーバーはAzure SDKを使用する際のコード品質を大幅に向上させます。Azure MCPをAgentモードで使用すると、コードを「書く手助け」をするだけでなく、最新の認証パターン、エラーハンドリングのベストプラクティス、最新SDK機能を活かした<em>より良い</em>Azureコードを書く支援をします。動作する可能性のある一般的なコードではなく、Azureでの本番ワークロード向け推奨パターンに準拠するコードを得られます。
+<strong>利点</strong>: Azure リソースの管理に留まらず、このサーバーは Azure SDK を使う際のコード品質を飛躍的に向上させます。Agent モードで Azure MCP を使用すると、単にコードを書くだけでなく、現在の認証パターン、エラーハンドリングのベストプラクティスを踏まえ、最新の SDK 機能を活用したより優れた Azure コードを書く手助けができます。動作するかもしれない汎用コードではなく、Azure が推奨する本番用ワークロードのパターンに沿ったコードを得られます。
 
-<strong>主なモジュールには以下が含まれます</strong>:
-- **🗄️ データベースコネクター**: Azure Database for PostgreSQLとSQL Serverへの自然言語による直接アクセス
-- **📊 Azure Monitor**: KQLによるログ分析と運用インサイト
-- **🌐 リソース管理**: フルAzureリソースのライフサイクル管理
-- **🔐 認証**: DefaultAzureCredentialとマネージドIDパターン
-- **📦 ストレージサービス**: Blob Storage、Queue Storage、Table Storageの操作
-- **🚀 コンテナサービス**: Azure Container Apps、Container Instances、AKSの管理
-- <strong>その他多くの専門コネクター</strong>
+<strong>主なモジュール</strong>：
+- **🗄️ データベースコネクター**: Azure Database for PostgreSQL と SQL Server への自然言語による直接アクセス
+- **📊 Azure Monitor**: KQL によるログ解析と運用インサイト
+- **🌐 リソース管理**: Azure リソースのライフサイクル管理全般
+- **🔐 認証**: DefaultAzureCredential とマネージド アイデンティティパターン
+- **📦 ストレージサービス**: Blob ストレージ、キュー ストレージ、テーブル ストレージ操作
+- **🚀 コンテナーサービス**: Azure Container Apps、コンテナー インスタンス、AKS 管理
+- <strong>その他多くの専門的なコネクター</strong>
 
-<strong>実際の利用例</strong>: 「私のAzureストレージアカウントを一覧表示して」「過去1時間のエラーをLog Analyticsワークスペースでクエリして」「Node.jsで適切な認証を使ったAzureアプリケーションの作成を手伝って」
+<strong>実際の使用例</strong>: 「Azure ストレージアカウントを一覧表示して」、「過去1時間のエラーをログアナリティクス ワークスペースでクエリして」、「適切な認証付きで Node.js を使った Azure アプリケーションを構築する手助けをして」
 
-<strong>完全なデモシナリオ</strong>: ここでは、Azure MCPとGitHub Copilot for Azure拡張機能をVS Codeで組み合わせる力を示す完全なウォークスルーを紹介します。両方がインストールされている状態で以下のプロンプトを入力すると：
+<strong>完全なデモシナリオ</strong>: ここでは、Azure MCP と VS Code の GitHub Copilot for Azure 拡張機能を組み合わせた強力なデモを紹介します。両方をインストール後、以下のプロンプトを入力します：
 
-> 「DefaultAzureCredential認証を使用してAzure Blob StorageにファイルをアップロードするPythonスクリプトを作成してください。スクリプトは'mycompanystorage'という名前のAzureストレージアカウントに接続し、'documents'というコンテナにアップロードします。現在のタイムスタンプでテストファイルを作成し、エラー処理を適切に行い、情報量の多い出力を提供し、Azureの認証とエラーハンドリングのベストプラクティスに従い、DefaultAzureCredential認証の仕組みを説明するコメントを含め、関数とドキュメンテーションで構造化されたスクリプトにしてください。」
+> 「DefaultAzureCredential 認証を用いて Azure Blob Storage にファイルをアップロードする Python スクリプトを作成してください。スクリプトは 'mycompanystorage' という名前の Azure ストレージアカウントに接続し、'documents' というコンテナーにアップロードします。現在のタイムスタンプを付けたテストファイルを作成し、エラーを適切に処理し有益な出力を提供し、Azure の認証とエラーハンドリングのベストプラクティスに従い、DefaultAzureCredential の動作方法を説明するコメントを含み、適切な関数とドキュメント付きで構造化されたスクリプトにしてください。」
 
-Azure MCPサーバーは完全な本番対応のPythonスクリプトを生成します。このスクリプトは：
-- 最新のAzure Blob Storage SDKを適切な非同期パターンで使用
-- DefaultAzureCredentialを包括的なフォールバックチェーンの説明と共に実装
-- 特定のAzure例外型を用いた堅牢なエラーハンドリングを含む
-- Azure SDKのリソース管理と接続処理のベストプラクティスに従う
-- 詳細なログと情報提供のコンソール出力を実装
-- 関数、ドキュメント、型ヒントで適切に構造化
+Azure MCP サーバーは、以下を備えた本番対応の完全な Python スクリプトを生成します：
+- 最新の Azure Blob Storage SDK を適切な非同期パターンで使用
+- 包括的なフォールバックチェーンの説明付き DefaultAzureCredential の実装
+- 特定の Azure 例外タイプによる強力なエラーハンドリング
+- Azure SDK のリソース管理と接続処理のベストプラクティスに則る
+- 詳細なログ出力と有益なコンソール情報
+- 関数、ドキュメント、型ヒントを含む適切に構造化されたスクリプト
 
-このスクリプトの優れている点は、Azure MCPを使わなければ、動くかもしれない一般的なBlobストレージコードしか得られない可能性が高いところです。Azure MCPを使うことで最新の認証方法を活かし、Azure固有のエラーシナリオを処理し、Microsoft推奨の本番アプリケーション用プラクティスに従うコードが得られます。
+この特徴的な点は、Azure MCP がなければ動作するかもしれない汎用的な Blob ストレージコードが得られるだけですが、Azure MCP があれば最新の認証方法を活用し、Azure 特有のエラー処理を行い、Microsoft が推奨する本番アプリケーション向けのプラクティスに従ったコードを得られることです。
 
-<strong>特典の例</strong>: azやazd CLIの具体的なコマンドを覚えておくのに苦労していました。いつもまず構文を調べてからコマンドを実行する二段階のプロセスでした。CLI構文を覚えていないことを認めたくなくて、ポータルでクリックして済ませていたこともあります。やりたいことを自然に説明できるのは素晴らしく、しかもIDEから離れずにできるのはさらに良いです！
+<strong>おすすめの例</strong>: 日常的に `az` や `azd` CLI のコマンドを思い出すのに苦労してきました。いつも最初に構文を調べてからコマンドを実行する二段階手順です。記憶できない CLI 構文を認めたくなくて、ポータルに飛んでクリック操作で済ませることもよくあります。欲しいことを自然に説明できるのは素晴らしく、その上 IDE を離れずにできるのはもっと良いです！
 
-開始するには[Azure MCPリポジトリ](https://github.com/Azure/azure-mcp?tab=readme-ov-file#-what-can-you-do-with-the-azure-mcp-server)の豊富なユースケース一覧を見ると良いでしょう。セットアップガイドや高度な設定については[公式Azure MCPドキュメント](https://learn.microsoft.com/azure/developer/azure-mcp-server/)を参照してください。
+活用例の素晴らしいリストは [Azure MCP repository](https://github.com/Azure/azure-mcp?tab=readme-ov-file#-what-can-you-do-with-the-azure-mcp-server) にあります。包括的なセットアップガイドや高度な設定オプションについては、[公式 Azure MCP ドキュメント](https://learn.microsoft.com/azure/developer/azure-mcp-server/) をご覧ください。
 
 ### 3. 🐙 GitHub MCP Server
 
 [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Server-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=github&config=%7B%22type%22%3A%20%22http%22%2C%22url%22%3A%20%22https%3A%2F%2Fapi.githubcopilot.com%2Fmcp%2F%22%7D) [![Install in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_Server-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=github&config=%7B%22type%22%3A%20%22http%22%2C%22url%22%3A%20%22https%3A%2F%2Fapi.githubcopilot.com%2Fmcp%2F%22%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/github/github-mcp-server)
 
-<strong>何をするのか</strong>: 公式GitHub MCPサーバーはGitHubの全エコシステムとシームレスに統合し、ホストされたリモートアクセスおよびローカルDocker展開の両方のオプションを提供します。単なる基本的なリポジトリ操作に留まらず、GitHub Actionsの管理、プルリクエストワークフロー、イシュートラッキング、セキュリティスキャン、通知、そして高度な自動化機能を含む包括的なツールキットです。
+<strong>機能概要</strong>: 公式の GitHub MCP サーバーは、GitHub のエコシステム全体とシームレスに統合し、ホストされたリモートアクセスとローカル Docker 展開オプションの両方を提供します。基本的なリポジトリ操作だけでなく、GitHub Actions 管理、プルリクエストワークフロー、イシュー追跡、セキュリティスキャン、通知、そして高度な自動化機能を含む包括的なツールキットです。
 
-<strong>なぜ便利か</strong>: このサーバーはGitHubとのやりとりの仕方を変革し、プラットフォームの全機能を直接開発環境に持ち込みます。VS CodeとGitHub.comを行き来してプロジェクト管理、コードレビュー、CI/CDの監視をする代わりに、自然言語コマンドで全てを扱いながらコードに集中できます。
+<strong>利点</strong>: このサーバーは、GitHub の完全なプラットフォーム体験を開発環境に直接持ち込み、GitHub.com と VS Code を行き来することなく、プロジェクト管理、コードレビュー、CI/CD モニタリングを自然言語コマンドで行えるように変革します。
 
-> **ℹ️ 注意：異なる種類の「エージェント」について**
+> **ℹ️ 注意: 'Agent' の種類の違い**
 > 
-> このGitHub MCPサーバーはGitHubのCoding Agent（GitHub課題に割り当てて自動コーディングを行うAIエージェント）とは別物です。GitHub MCPサーバーはVS CodeのAgentモード内でGitHub API統合を提供し、Coding AgentはGitHub課題に割り当てられた場合にプルリクエストを作成する別の機能です。
+> この GitHub MCP サーバーを、GitHub の Coding Agent（自動コーディングタスク用にイシューに割り当てられる AI エージェント）と混同しないでください。GitHub MCP サーバーは VS Code の Agent モード内で GitHub API 統合を提供するのに対し、Coding Agent は GitHub イシューに割り当てられたときにプルリクエストを作成する別の機能です。
 
-<strong>主な機能</strong>:
-- **⚙️ GitHub Actions**: 完全なCI/CDパイプライン管理、ワークフローモニタリング、アーティファクトの操作
-- **🔀 プルリクエスト**: PRの作成、レビュー、マージ、包括的なステータストラッキング
-- **🐛 イシュー**: イシューのライフサイクル管理、コメント、ラベル付与、担当者管理
-- **🔒 セキュリティ**: コードスキャン警告、秘密情報検出、Dependabot統合
-- **🔔 通知**: スマート通知管理とリポジトリの購読制御
-- **📁 リポジトリ管理**: ファイル操作、ブランチ管理、リポジトリ運用
+<strong>主な機能</strong>：
+- **⚙️ GitHub Actions**: 完全な CI/CD パイプライン管理、ワークフローモニタリング、アーティファクト操作
+- **🔀 プルリクエスト**: 作成、レビュー、マージ、詳細なステータス追跡
+- **🐛 イシュー**: 全イシューのライフサイクル管理、コメント、ラベル付け、割り当て
+- **🔒 セキュリティ**: コードスキャンアラート、秘密情報検出、Dependabot 統合
+- **🔔 通知**: スマートな通知管理とリポジトリ購読制御
+- **📁 リポジトリ管理**: ファイル操作、ブランチ管理、リポジトリアドミニストレーション
 - **👥 コラボレーション**: ユーザー・組織検索、チーム管理、アクセス制御
 
-<strong>実際の利用例</strong>: 「フィーチャーブランチからプルリクエストを作成して」「今週の失敗したCIランを全部見せて」「リポジトリのオープンなセキュリティアラートを一覧表示して」「自分に割り当てられている全イシューを組織横断で探して」
+<strong>実際の使用例</strong>: 「機能ブランチからプルリクエストを作成して」、「今週の失敗した CI 実行をすべて表示して」、「リポジトリの開いているセキュリティアラートを一覧して」、「自分に割り当てられた全てのイシューを組織横断で見つけて」
 
-<strong>完全なデモシナリオ</strong>: GitHub MCPサーバーの機能を示す強力なワークフローはこちら：
+<strong>完全なデモシナリオ</strong>: GitHub MCP サーバーの機能を示す強力なワークフローはこちらです：
 
-> 「スプリントレビューの準備が必要です。今週私が作成したすべてのプルリクエストを表示し、CI/CDパイプラインのステータスを確認し、対処すべきセキュリティ警告をまとめて作成し、'feature'ラベルの付いたマージ済みPRからリリースノートの草案を手伝ってほしい。」
+> 「スプリントレビューの準備をしたい。今週作成した自分のプルリクエストをすべて見せて、CI/CD パイプラインの状態をチェックし、対応が必要なセキュリティアラートの概要を作成し、'feature' ラベル付きマージ済みプルリクエストに基づいてリリースノートのドラフト作成を手伝ってほしい。」
 
-GitHub MCPサーバーは：
-- 直近のプルリクエストを詳細なステータス情報付きで取得
-- ワークフロー実行を分析し失敗やパフォーマンス問題を強調
-- セキュリティスキャン結果をまとめ、重要な警告を優先表示
-- マージ済みPRから情報を抽出し包括的なリリースノートを生成
-- スプリント計画とリリース準備に向けた実行可能な次のステップを提案
+GitHub MCP サーバーは以下を行います：
+- 最近のプルリクエストを詳細なステータス情報付きで照会
+- ワークフロー実行を分析し、失敗やパフォーマンス問題を強調表示
+- セキュリティスキャン結果をまとめ、重要度の高いアラートを優先提示
+- マージされたプルリクエストから情報を抽出し、包括的なリリースノートを生成
+- スプリント計画とリリース準備のための具体的な次のステップを提示
 
-<strong>特典の例</strong>: コードレビューのワークフローで重宝しています。VS Code、GitHub通知、プルリクエストページを行き来せず、「今レビュー待ちのPRを全部見せて」と言い、「PR #123にエラーハンドリングについてのコメントを追加して」と続けるだけです。サーバーはGitHub APIコールを処理し、会話の文脈を保持し、より建設的なレビューコメントの作成まで支援してくれます。
+<strong>おすすめの例</strong>: コードレビューワークフローでの利用が気に入っています。VS Code、GitHub 通知、プルリクエストページ間を行き来する代わりに、「レビュー待ちのプルリクエストをすべて見せて」と言い、「プルリクエスト #123 に認証メソッドのエラーハンドリングについてコメントを追加して」と続けるだけです。サーバーは GitHub API 呼び出しを処理し、議論のコンテキストを維持し、より建設的なレビューコメントの作成も手伝ってくれます。
 
-<strong>認証オプション</strong>: OAuth（VS Code内でシームレス）と個人アクセストークンの両方をサポートし、必要なGitHub機能だけを有効にするツールセット設定が可能です。リモートホスト型サービスとしてすぐにセットアップできるほか、Dockerでローカル実行して完全制御も可能です。
+<strong>認証オプション</strong>: サーバーは OAuth（VS Code 内でシームレスに利用可能）と Personal Access Tokens をサポートし、必要な GitHub 機能のみを有効化できるツールセット設定があります。リモートホストサービスとして即時セットアップや、ローカル Docker での完全制御での実行が可能です。
 
-> **💡 プロのコツ**
+> **💡 プロのヒント**
 > 
-> MCPサーバー設定の`--toolsets`パラメータを調整して必要なツールセットだけを有効化し、コンテキストサイズを減らしAIツール選択を最適化しましょう。例えばコア開発ワークフローには`"--toolsets", "repos,issues,pull_requests,actions"`を、主にGitHub監視用途なら`"--toolsets", "notifications, security"`を設定します。
+> コンテキストサイズを削減し AI ツールの選択を改善するため、MCP サーバー設定の `--toolsets` パラメーターで必要なツールセットのみを有効にしましょう。例えば、コア開発ワークフローなら `"--toolsets", "repos,issues,pull_requests,actions"`、主に GitHub 監視機能が欲しい場合は `"--toolsets", "notifications, security"` を MCP 構成引数に追加します。
 ### 4. 🔄 Azure DevOps MCP Server
 
 [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Azure_DevOps_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=Azure%20DevOps%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-azure-devops%40latest%22%5D%7D) [![Install in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_Azure_DevOps_MCP-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Azure%20DevOps%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-azure-devops%40latest%22%5D%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/microsoft/azure-devops-mcp)
 
-<strong>何をするのか</strong>: Azure DevOpsサービスに接続し、プロジェクト管理、作業項目追跡、ビルドパイプライン管理、リポジトリ操作を包括的に行えます。
+<strong>機能概要</strong>: Azure DevOps サービスに接続し、包括的なプロジェクト管理、作業項目追跡、ビルドパイプライン管理、リポジトリ操作を行います。
 
-<strong>なぜ便利か</strong>: Azure DevOpsをメインのDevOpsプラットフォームとして使うチームにとって、このMCPサーバーは開発環境とAzure DevOpsのWebインターフェイス間での面倒なタブ切り替えをなくします。作業項目管理やビルドステータス確認、リポジトリ照会、プロジェクト管理作業をAIアシスタントから直接行えます。
+<strong>利点</strong>: Azure DevOps を主要な DevOps プラットフォームとして使うチームにとって、この MCP サーバーは開発環境と Azure DevOps ウェブインターフェース間の切り替えをなくします。AI アシスタントから作業項目の管理、ビルド状態の確認、リポジトリのクエリ、プロジェクト管理が直接可能です。
 
-<strong>実際の利用例</strong>: 「WebAppプロジェクトの現在のスプリントでアクティブな作業項目を全部見せて」「今見つけたログイン問題のバグ報告を作成して」「私たちのビルドパイプラインの状態を確認し最近の失敗を教えて」
+<strong>実際の使用例</strong>: 「WebApp プロジェクトの現在のスプリントでアクティブな作業項目をすべて見せて」、「見つけたログイン問題のバグレポートを作成して」、「ビルドパイプラインの状態をチェックし最近の失敗を表示して」
 
-<strong>特典の例</strong>: 「WebAppプロジェクトの現在のスプリントでアクティブな作業項目を全部見せて」や「今見つけたログイン問題のバグ報告を作成して」といった簡単なクエリでチームのスプリント状況を手軽にチェックできます。開発環境を離れる必要がありません。
+<strong>おすすめの例</strong>: 「WebApp プロジェクトの現在のスプリントにおけるアクティブな作業項目をすべて見せて」や「見つけたログイン問題のバグレポートを作成して」という単純なクエリでチームの現在スプリント状況を簡単に確認できます。開発環境を離れる必要はありません。
 
 ### 5. 📝 MarkItDown MCP Server
-[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_MarkItDown_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=MarkItDown%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-markitdown%40latest%22%5D%7D) [![Install in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_MarkItDown_MCP-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=MarkItDown%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-markitdown%40latest%22%5D%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/microsoft/markitdown)
 
-<strong>内容</strong>: MarkItDown は、多様なファイル形式を高品質な Markdown に変換する包括的なドキュメント変換サーバーであり、LLM の活用やテキスト分析ワークフローに最適化されています。
 
-<strong>役立つ理由</strong>: 現代のドキュメントワークフローに不可欠な存在です！ MarkItDown は見出し、リスト、表、リンクなどの重要なドキュメント構造を維持しつつ、多種多様なファイル形式を処理します。単純なテキスト抽出ツールとは異なり、AI 処理および人間の可読性の両方に価値のある意味情報と形式を保つことに注力しています。
+[![VS Codeにインストール](https://img.shields.io/badge/VS_Code-Install_MarkItDown_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=MarkItDown%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-markitdown%40latest%22%5D%7D) [![VS Code Insidersにインストール](https://img.shields.io/badge/VS_Code_Insiders-Install_MarkItDown_MCP-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=MarkItDown%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-markitdown%40latest%22%5D%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/microsoft/markitdown)
+
+<strong>概要</strong>: MarkItDownは、多様なファイル形式を高品質なMarkdownに変換する包括的なドキュメント変換サーバーで、LLMの利用やテキスト分析ワークフローに最適化されています。
+
+<strong>なぜ役立つか</strong>: モダンなドキュメントワークフローに必須！MarkItDownは見出し、リスト、表、リンクなどの重要なドキュメント構造を維持しつつ、幅広いファイル形式を処理します。単なるテキスト抽出ツールとは異なり、AI処理と人間の読みやすさの両方に価値のある意味論的な意味とフォーマットの保持に焦点を当てています。
 
 <strong>対応ファイル形式</strong>:
-- <strong>オフィス文書</strong>: PDF、PowerPoint（PPTX）、Word（DOCX）、Excel（XLSX/XLS）
-- <strong>メディアファイル</strong>: 画像（EXIF メタデータおよび OCR 対応）、音声（EXIF メタデータおよび音声転写対応）
-- <strong>ウェブコンテンツ</strong>: HTML、RSS フィード、YouTube URL、Wikipedia ページ
-- <strong>データ形式</strong>: CSV、JSON、XML、ZIP ファイル（内容を再帰的に処理）
-- <strong>出版形式</strong>: EPub、Jupyter ノートブック（.ipynb）
-- <strong>メール</strong>: Outlook メッセージ（.msg）
-- <strong>高度な機能</strong>: PDF 処理強化のための Azure Document Intelligence 統合対応
+- **Officeドキュメント**: PDF、PowerPoint(PPTX)、Word(DOCX)、Excel(XLSX/XLS)
+- <strong>メディアファイル</strong>: 画像 (EXIFメタデータとOCR付き)、音声 (EXIFメタデータと音声文字起こし付き)
+- **Webコンテンツ**: HTML、RSSフィード、YouTube URL、Wikipediaページ
+- <strong>データ形式</strong>: CSV、JSON、XML、ZIPファイル（内容を再帰的に処理）
+- <strong>出版フォーマット</strong>: EPub、Jupyterノートブック(.ipynb)
+- <strong>メール</strong>: Outlookメッセージ(.msg)
+- <strong>高度な機能</strong>: Azure Document Intelligence連携による高度なPDF処理
 
-<strong>高度な機能</strong>: MarkItDown は OpenAI クライアント提供時に LLM による画像説明をサポートし、Azure Document Intelligence による高度な PDF 処理、音声内容の文字起こし、および追加のファイル形式拡張のためのプラグインシステムを備えています。
+<strong>高度な機能</strong>: MarkItDownはOpenAIクライアントを利用したLLMベースの画像説明、Azure Document IntelligenceによるPDF強化処理、音声の文字起こし、さらに追加のファイル形式に対応するプラグインシステムをサポートしています。
 
-<strong>実際の活用例</strong>: 「この PowerPoint プレゼンテーションをドキュメントサイト用の Markdown に変換する」「この PDF から適切な見出し構造でテキストを抽出する」「この Excel スプレッドシートを読みやすい表形式に変換する」など。
+<strong>実際の利用例</strong>: 「このPowerPointプレゼンテーションをMarkdownに変換してドキュメントサイト用に使いたい」「このPDFから適切な見出し構造でテキストを抽出したい」「このExcelスプレッドシートを読みやすい表形式に変換したい」など
 
-<strong>注目の例</strong>: [MarkItDown ドキュメント](https://github.com/microsoft/markitdown#why-markdown)から引用：
+<strong>注目の例</strong>: [MarkItDownのドキュメント](https://github.com/microsoft/markitdown#why-markdown)からの引用：
 
-> Markdown はシンプルなテキストに非常に近く、最小限のマークアップまたは書式設定ながら、重要なドキュメント構造を表現できます。OpenAI の GPT-4o などの主流 LLM は、Markdown をネイティブに「話し」、しばしば応答に無意識のうちに Markdown を組み込んでいます。これは大量の Markdown 形式テキストを学習して理解していることを示唆しています。副次的に、Markdown の文法はトークン効率も非常に高いです。
+> Markdownは非常にプレーンテキストに近く、最小限のマークアップやフォーマットでありながら、重要なドキュメント構造を表現する方法を提供します。OpenAIのGPT-4oなどの主流LLMはMarkdownをネイティブに「話し」、多くはプロンプトなしにMarkdownを応答に取り入れます。これは大量のMarkdownフォーマットのテキストで訓練されていることを示唆しており、その理解も深いです。副次的な利点として、Markdownの慣習はトークン効率も非常に高いです。
 
-MarkItDown はドキュメントの構造を保持することに非常に優れており、AI ワークフローで重要な役割を果たします。例えば PowerPoint プレゼンテーションを変換するときは、スライドの整理を適切な見出しで維持し、表は Markdown 表として抽出し、画像の alt テキストも含み、発表者ノートも処理します。チャートは読みやすいデータ表に変換され、生成された Markdown は元のプレゼンテーションの論理的な流れを保ちます。これにより、発表内容を AI システムに供給したり、既存スライドからドキュメントを作成したりするのに最適です。
+MarkItDownはドキュメント構造の保持に非常に優れており、AIワークフローに重要です。たとえばPowerPointプレゼンテーション変換時には、スライドの構成を正しい見出しで保持し、表をMarkdown表として抽出し、画像には代替テキストを含み、スピーカーノートも処理します。チャートは読みやすいデータ表に変換され、生成されたMarkdownは元のプレゼンテーションの論理的な流れを保ちます。これにより、プレゼンテーションの内容をAIシステムに供給したり、既存スライドからドキュメントを作成したりするのに最適です。
 ### 6. 🗃️ SQL Server MCP Server
 
-[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_SQL_Database-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=Azure%20SQL%20Database&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40azure%2Fmcp%40latest%22%2C%22server%22%2C%22start%22%2C%22--namespace%22%2C%22sql%22%5D%7D) [![Install in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_SQL_Database-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Azure%20SQL%20Database&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40azure%2Fmcp%40latest%22%2C%22server%22%2C%22start%22%2C%22--namespace%22%2C%22sql%22%5D%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/Azure/azure-mcp)
+[![VS Codeにインストール](https://img.shields.io/badge/VS_Code-Install_SQL_Database-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=Azure%20SQL%20Database&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40azure%2Fmcp%40latest%22%2C%22server%22%2C%22start%22%2C%22--namespace%22%2C%22sql%22%5D%7D) [![VS Code Insidersにインストール](https://img.shields.io/badge/VS_Code_Insiders-Install_SQL_Database-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Azure%20SQL%20Database&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40azure%2Fmcp%40latest%22%2C%22server%22%2C%22start%22%2C%22--namespace%22%2C%22sql%22%5D%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/Azure/azure-mcp)
 
-<strong>内容</strong>: SQL Server データベース（オンプレミス、Azure SQL、Fabric）への対話型アクセスを提供します
+<strong>概要</strong>: SQL Serverデータベース（オンプレミス、Azure SQL、またはFabric）への対話型アクセスを提供
 
-<strong>役立つ理由</strong>: PostgreSQL サーバーと同様ですが、Microsoft SQL エコシステム向けです。簡単な接続文字列で接続し、自然言語でクエリを開始できます。コンテキスト切り替えが不要です！
+<strong>なぜ役立つか</strong>: PostgreSQLサーバーに類似していますが、Microsoft SQLエコシステム向けです。接続文字列1つで接続し、自然言語でクエリを開始できるため、コンテキスト切替が不要です！
 
-<strong>実際の活用例</strong>: 「過去30日間に未完了の注文をすべて見つける」という要求を適切な SQL クエリに翻訳し、フォーマット済み結果を返します
+<strong>実際の利用例</strong>: 「過去30日間に完了していない全ての注文を検索する」という自然言語クエリが適切なSQLクエリに変換され、整形された結果を返します。
 
-<strong>注目の例</strong>: データベース接続を設定すれば、すぐにデータとの対話が始められます。ブログ投稿では「どのデータベースに接続していますか？」という簡単な質問で紹介しています。MCP サーバーは適切なデータベースツールを呼び出し、SQL Server インスタンスに接続し、現在のデータベース接続の詳細を返します。SQL 文を書かずにこれが可能です。サーバーはスキーマ管理からデータ操作まで包括的なデータベース操作を自然言語プロンプトでサポートしています。VS Code と Claude Desktop での完全なセットアップ手順および構成例は、[Introducing MSSQL MCP Server (Preview)](https://devblogs.microsoft.com/azure-sql/introducing-mssql-mcp-server/) を参照してください。
+<strong>注目の例</strong>: データベース接続を設定すると、すぐにデータとの対話を始められます。ブログ記事では「接続中のデータベースは何か？」という単純な質問を例示。MCPサーバーは適切なデータベースツールを呼び出し、SQL Serverインスタンスに接続し、SQL文を1行も書かずに現在のデータベース接続情報を返します。スキーマ管理からデータ操作までの完全なデータベース操作を自然言語プロンプトでサポートします。VS CodeやClaude Desktopでのセットアップ手順や構成例は[Introducing MSSQL MCP Server (Preview)](https://devblogs.microsoft.com/azure-sql/introducing-mssql-mcp-server/)をご覧ください。
 
 
 ### 7. 🎭 Playwright MCP Server
 
-[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Playwright_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=Playwright%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-playwright%40latest%22%5D%7D) [![Install in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_Playwright_MCP-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Playwright%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-playwright%40latest%22%5D%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/microsoft/playwright-mcp)
+[![VS Codeにインストール](https://img.shields.io/badge/VS_Code-Install_Playwright_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=Playwright%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-playwright%40latest%22%5D%7D) [![VS Code Insidersにインストール](https://img.shields.io/badge/VS_Code_Insiders-Install_Playwright_MCP-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Playwright%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-playwright%40latest%22%5D%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/microsoft/playwright-mcp)
 
-<strong>内容</strong>: AI エージェントがテストや自動化のためにウェブページと対話できるようにする
+<strong>概要</strong>: AIエージェントがウェブページでテストや自動化操作を行えるようにします
 
-> **ℹ️ GitHub Copilot を支援**
+> **ℹ️ GitHub Copilotに搭載**
 > 
-> Playwright MCP Server は GitHub Copilot のコーディングエージェントにウェブ閲覧機能を提供しています！[この機能について詳しくはこちら](https://github.blog/changelog/2025-07-02-copilot-coding-agent-now-has-its-own-web-browser/)。
+> Playwright MCP ServerはGitHub CopilotのCoding Agentにウェブ閲覧機能を提供しています！[この機能について詳しくはこちら](https://github.blog/changelog/2025-07-02-copilot-coding-agent-now-has-its-own-web-browser/)。
 
-<strong>役立つ理由</strong>: 自然言語の説明に基づいた自動テストに最適です。AI はウェブサイトをナビゲートし、フォームに入力し、構造化されたアクセシビリティスナップショットを通じたデータ抽出が可能です。非常に強力な機能です！
+<strong>なぜ役立つか</strong>: 自然言語の説明による自動テストに最適。AIがウェブサイトをナビゲートし、フォームに入力、アクセシビリティのスナップショットを通じてデータを抽出できるのは非常に強力です！
 
-<strong>実際の活用例</strong>: 「ログインフローをテストしてダッシュボードが正しく読み込まれることを検証する」や「製品を検索して結果ページを検証するテストを生成する」など、アプリケーションのソースコードなしで実行可能。
+<strong>実際の利用例</strong>: 「ログインフローをテストして、ダッシュボードが正しく読み込まれるか検証する」や「製品検索テストを生成して結果ページを検証する」を、アプリのソースコードなしで実行可能
 
-<strong>注目の例</strong>: チームメイトの Debbie O'Brien は Playwright MCP Server を使って素晴らしい仕事をしています。例えば、アプリのソースコードにアクセスできなくても完全な Playwright テストを生成できる方法を最近示しました。彼女のケースでは、Copilot に映画検索アプリのテスト作成を依頼しました。サイトにアクセスし、「Garfield」を検索、結果に映画が表示されることを確認するテストです。MCP はブラウザセッションを起動し、DOM スナップショットでページ構造を調査、適切なセレクターを特定し、一度の実行で成功した完全な TypeScript テストコードを生成しました。
+<strong>注目の例</strong>: 私のチームメイト、デビー・オブライエンはPlaywright MCP Serverで素晴らしい成果をあげています！たとえば、彼女は最近、アプリのソースコードを一切持たずに完全なPlaywrightテストを生成する方法を示しました。彼女のシナリオでは、映画検索アプリのテストをCopilotに依頼し、サイトにアクセスして「Garfield」で検索し、結果にその映画が表示されることを確認しました。MCPはブラウザセッションを立ち上げ、DOMスナップショットでページ構造を調べ、適切なセレクターを特定し、初回実行で合格する完全なTypeScriptテストを生成しました。
 
-この強力な点は、自然言語指示と実行可能なテストコードの橋渡しをすることです。従来は手動でのテスト作成かコードベースのアクセスが必要でしたが、Playwright MCP なら外部サイトやクライアントアプリ、ブラックボックステストシナリオでコードアクセスがなくてもテストできます。
+これが非常に強力なのは、自然言語の指示と実行可能なテストコードの橋渡しをしている点です。従来の方法は手動のテスト作成か、コードベースへのアクセスが必要でしたが、Playwright MCPなら外部サイト、クライアントアプリケーション、コードアクセスできないブラックボックステストも可能になります。
 
 
 ### 8. 💻 Dev Box MCP Server
 
-[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Dev_Box_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=Dev%20Box%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-devbox%40latest%22%5D%7D) [![Install in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_Dev_Box_MCP-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Dev%20Box%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-devbox%40latest%22%5D%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/microsoft/mcp)
+[![VS Codeにインストール](https://img.shields.io/badge/VS_Code-Install_Dev_Box_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=Dev%20Box%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-devbox%40latest%22%5D%7D) [![VS Code Insidersにインストール](https://img.shields.io/badge/VS_Code_Insiders-Install_Dev_Box_MCP-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Dev%20Box%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-devbox%40latest%22%5D%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/microsoft/mcp)
 
-<strong>内容</strong>: 自然言語で Microsoft Dev Box 環境を管理
+<strong>概要</strong>: Microsoft Dev Box環境を自然言語で管理
 
-<strong>役立つ理由</strong>: 開発環境管理を非常に簡素化します！特定コマンドを覚えずに開発環境の作成、設定、管理が可能です。
+<strong>なぜ役立つか</strong>: 開発環境管理が大幅に簡素化！特定のコマンドを覚えなくても、環境の作成・設定・管理ができます。
 
-<strong>実際の活用例</strong>: 「最新の .NET SDK 付きの新しい Dev Box をセットアップし、プロジェクト用に設定する」「自分のすべての開発環境の状態を確認する」「チームのプレゼン用に標準化されたデモ環境を作成する」など。
+<strong>実際の利用例</strong>: 「最新の.NET SDKを備えた新しいDev Boxを作成し、プロジェクト用に設定する」「全開発環境の状態を確認する」「チームプレゼン用の標準デモ環境を作成する」など
 
-<strong>注目の例</strong>: 私は個人開発用に Dev Box の利用が大好きです。印象に残ったのは James Montemagno が、会議やホテル、飛行機の WiFi が不安定な場合でも超高速イーサネット接続が利用できるため、会議デモに Dev Box が非常に優れていると説明した時です。実際、私は最近、バスでブルージュからアントワープへ移動中にスマホのホットスポットにラップトップを接続して会議用デモ練習をしました！次の課題は複数の開発環境管理や標準化されたチームデモ環境の運用を掘り下げることです。また、多くの顧客や同僚から聞く大きな用途は、事前設定済みの開発環境の利用です。どちらの場合でも、MCP を使って Dev Box の設定・管理を自然言語で行い、開発環境内で完結できます。
+<strong>注目の例</strong>: 私は個人的にDev Boxを開発用途でよく使っています。ジェームズ・モンテマーニョが、Dev Boxは会議デモに最適だと説明したのが大きな気づきでした。会議やホテル、飛行機のWi-Fi環境にかかわらず超高速イーサネット接続があるからです。実際、最近もブルージュからアントワープへバスで移動しながらスマホのホットスポット経由でノートPCを接続し、会議デモ練習をしました！次の課題は複数チームの開発環境管理や標準化されたデモ環境の掘り下げです。お客様や同僚からよく聞くもう一つの大きな利用ケースは、事前構成済み開発環境としてのDev Box利用です。どちらの場合も、MCPを使った自然言語でのDev Box設定・管理により、開発環境の中にいながら対話操作が可能です。
 
 ### 9. 🤖 Microsoft Foundry MCP Server
+
+
 [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Microsoft_Foundry_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Azure%20Foundry%20MCP%20Server&config=%7B%22type%22%3A%22stdio%22%2C%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22--prerelease%3Dallow%22%2C%22--from%22%2C%22git%2Bhttps%3A%2F%2Fgithub.com%2Fazure-ai-foundry%2Fmcp-foundry.git%22%2C%22run-azure-ai-foundry-mcp%22%5D%7D) [![Install in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_Microsoft_Foundry_MCP-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Azure%20Foundry%20MCP%20Server&config=%7B%22type%22%3A%22stdio%22%2C%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22--prerelease%3Dallow%22%2C%22--from%22%2C%22git%2Bhttps%3A%2F%2Fgithub.com%2Fazure-ai-foundry%2Fmcp-foundry.git%22%2C%22run-azure-ai-foundry-mcp%22%5D%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/azure-ai-foundry/mcp-foundry)
 
-<strong>機能概要</strong>: Microsoft Foundry MCP サーバーは、モデルカタログ、デプロイ管理、Azure AI Search を用いた知識インデックス作成、評価ツールなど、Azure の AI エコシステムへの包括的なアクセスを開発者に提供します。この実験的サーバーは AI 開発と Azure の強力な AI インフラストラクチャとのギャップを埋め、AI アプリケーションの構築、デプロイ、評価を容易にします。
+<strong>内容</strong>: Microsoft Foundry MCP Server は、モデルカタログ、デプロイ管理、Azure AI Search を使った知識インデクシング、評価ツールなど、Azure の AI エコシステムへの包括的なアクセスを開発者に提供します。この実験的なサーバーは、AI 開発と Azure の強力な AI インフラストラクチャの橋渡しを行い、AI アプリケーションの構築、デプロイ、評価をより簡単にします。
 
-<strong>有用性</strong>: このサーバーは、エンタープライズレベルの AI 機能を直接開発ワークフローに取り入れることで、Azure AI サービスの利用方法を変革します。Azure ポータル、ドキュメント、IDE 間を行き来する代わりに、自然言語コマンドを使ってモデルの発見、サービスのデプロイ、知識ベースの管理、AI のパフォーマンス評価が可能です。特に RAG (Retrieval-Augmented Generation) アプリケーションの構築、多数モデルのデプロイ管理、包括的な AI 評価パイプラインの実装に強力です。
+<strong>有用性</strong>: このサーバーは、エンタープライズグレードの AI 機能を開発ワークフローに直接取り込み、Azure AI サービスの利用方法を変革します。Azure ポータルやドキュメント、IDE 間を切り替える代わりに、自然言語コマンドでモデルの探索、サービスのデプロイ、知識ベースの管理、AI パフォーマンスの評価が可能です。特に RAG（Retrieval-Augmented Generation）アプリケーションの構築、マルチモデルデプロイの管理、総合的な AI 評価パイプラインの実装に強力です。
 
-<strong>主な開発者機能</strong>:
-- **🔍 モデルの探索とデプロイ**: Microsoft Foundry のモデルカタログを探索し、コードサンプル付きの詳細モデル情報を取得し、Azure AI サービスへモデルをデプロイ
-- **📚 知識管理**: Azure AI Search のインデックス作成と管理、ドキュメントの追加、インデクサー設定、洗練された RAG システムの構築
-- **⚡ AI エージェント連携**: Azure AI エージェントと接続し、既存エージェントを照会、運用シナリオでのエージェント性能評価
-- **📊 評価フレームワーク**: 文章およびエージェントの包括的な評価実行、マークダウンレポート生成、AI アプリケーションの品質保証実装
-- **🚀 プロトタイピングツール**: GitHub ベースのプロトタイピング設定方法を提供し、Microsoft Foundry Labs の最先端研究モデルにアクセス
+<strong>主な開発者向け機能</strong>:
+- **🔍 モデルの探索とデプロイ**: Microsoft Foundry のモデルカタログを探索し、コードサンプル付きで詳細情報を取得、モデルを Azure AI サービスへデプロイ
+- **📚 知識管理**: Azure AI Search のインデックスを作成・管理し、ドキュメントを追加、インデクサーを設定し、高度な RAG システムを構築
+- **⚡ AI エージェント統合**: Azure AI エージェントと接続し、エージェントを照会し、本番環境でエージェントのパフォーマンスを評価
+- **📊 評価フレームワーク**: テキストとエージェントの包括的な評価を実行、マークダウンレポートを生成し、AI アプリケーションの品質保証を実装
+- **🚀 プロトタイピングツール**: GitHub ベースのプロトタイプ設置手順を取得し、Microsoft Foundry Labs の最先端研究モデルにアクセス
 
-<strong>実用例</strong>: 「Phi-4 モデルを自分のアプリ用に Azure AI サービスへデプロイする」「ドキュメント RAG システム用に新しい検索インデックスを作成する」「エージェントの応答を品質指標で評価する」「複雑な分析タスクに最適な推論モデルを探す」
+<strong>実際の開発者利用例</strong>: 「Phi-4 モデルを Azure AI サービスにデプロイ」、「ドキュメントの RAG システム用に新しい検索インデックスを作成」、「エージェントの応答を品質指標で評価」、「複雑な分析タスクに最適な推論モデルを探す」
 
-<strong>フルデモシナリオ</strong>: 効果的な AI 開発ワークフロー例:
+<strong>フルデモシナリオ</strong>: 強力な AI 開発ワークフローをご紹介します：
 
-> 「カスタマーサポートエージェントを構築中。モデルカタログから優れた推論モデルを見つけて Azure AI サービスへデプロイし、ドキュメントから知識ベースを作成、応答品質テスト用の評価フレームワークをセットアップし、GitHub トークンを用いた統合プロトタイプも試したい。」
+> 「カスタマーサポートエージェントを開発中。カタログから良い推論モデルを探し、Azure AI サービスにデプロイし、ドキュメントから知識ベースを作成し、応答品質をテストする評価フレームワークを設定し、その後 GitHub トークンを使った統合プロトタイプ構築を手伝ってほしい。」
 
-Microsoft Foundry MCP サーバーは以下を実施します：
-- 要件に基づき最適な推論モデルをモデルカタログから推薦
-- 選択した Azure リージョン向けのデプロイコマンドとクォータ情報を提供
-- ドキュメントに最適なスキーマの Azure AI Search インデックスを設定
-- 品質指標と安全チェックを備えた評価パイプラインを構成
-- 即時テスト用の GitHub 認証を含むプロトタイピングコード生成
-- 利用技術スタックに合わせた包括的セットアップガイドを提供
+Microsoft Foundry MCP Server は以下を行います：
+- 要件に基づいて最適な推論モデルをモデルカタログから推奨
+- 希望の Azure リージョンでのデプロイコマンドとクォータ情報を提供
+- ドキュメント用に適切なスキーマを持つ Azure AI Search インデックスを設定
+- 品質指標と安全チェックを設定した評価パイプラインを構築
+- GitHub 認証付きのプロトタイピングコードを生成し、即時テストを可能に
+- 特定の技術スタックに合わせた包括的なセットアップガイドを提供
 
-<strong>注目の例</strong>: 私はこれまで多数の LLM モデルを追いきれていませんでした。知っている主要モデルは数点ですが、生産性や効率向上を逃している感覚があります。トークンやクォータ管理もストレスで、適切なタスクに適切なモデルを選べているのか、予算を無駄遣いしているのか分からず不安でした。今回チームメイトから MCP サーバーの話を聞いて James Montemagno から紹介を受け、導入を楽しみにしています。モデル探索機能は、普段使われるモデル以外の特定用途に最適化されたモデルを探りたい私のニーズに非常にマッチしています。評価フレームワークは、単に新しいことを試すだけでなく、本当に結果が向上しているか検証するのに役立ちます。
+<strong>特徴的な例</strong>: 私は利用可能な異なる LLM モデルの把握に苦労してきました。主要な数モデルは知っていますが、生産性と効率の向上を逃している気がしていました。トークンとクォータの管理もストレスで、適切なモデルを選んでいるのか予算を無駄に使っているのか分からないことが多かったです。James Montemagno からこの MCP Server の話を聞いて、使うのが楽しみです！モデル発見機能は、普通のモデル以外で特定タスクに最適化されたモデルを探したい私のような人に特に魅力的です。評価フレームワークは、単に新しいことを試すだけでなく、実際に良い結果が出ているか検証するのに役立つはずです。
 
-> **ℹ️ 実験的ステータス**
+> **ℹ️ 実験的状況**
 > 
-> 本 MCP サーバーは実験的であり、活発に開発中です。機能や API は変更される可能性があります。Azure AI 機能の探索やプロトタイプ作成に最適ですが、本番利用時は安定性を必ず検証してください。
+> この MCP サーバーは実験的で、積極的に開発中です。機能や API は変わる可能性があります。Azure AI の機能探索やプロトタイプ開発に最適ですが、本番利用時は安定性の検証が必要です。
 ### 10. 🏢 Microsoft 365 Agents Toolkit MCP Server
 
 [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_M365_Agents_Toolkit-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=M365AgentsToolkit%20Server&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22@microsoft%2Fm365agentstoolkit-mcp%40latest%22%2C%22server%22%2C%22start%22%5D%7D) [![Install in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_M365_Agents_Toolkit-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=M365AgentsToolkit%20Server&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22@microsoft%2Fm365agentstoolkit-mcp%40latest%22%2C%22server%22%2C%22start%22%5D%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/OfficeDev/microsoft-365-agents-toolkit)
 
-<strong>機能概要</strong>: Microsoft 365 および Microsoft 365 Copilot と統合する AI エージェントやアプリケーション構築のために、スキーマ検証、サンプルコード取得、トラブルシューティング支援などの必須ツールを開発者に提供します。
+<strong>内容</strong>: Microsoft 365 と Microsoft 365 Copilot と連携する AI エージェントやアプリケーションを構築するために必要なツールを提供します。スキーマバリデーション、サンプルコード取得、トラブルシューティング支援などが含まれます。
 
-<strong>有用性</strong>: Microsoft 365 および Copilot 向け開発は複雑なマニフェストスキーマや特定の開発パターンを伴います。本 MCP サーバーは必須の開発リソースをコーディング環境に直接もたらし、スキーマ検証、サンプルコード探索、よくある問題のトラブルシューティングをドキュメント参照なしで支援します。
+<strong>有用性</strong>: Microsoft 365 と Copilot 向けの開発は複雑なマニフェストスキーマと特有の開発パターンを伴います。この MCP サーバーは、スキーマの検証、サンプルコードの検索、よくある問題のトラブルシューティングをコーディング環境内で直接支援し、ドキュメント参照の手間を軽減します。
 
-<strong>実用例</strong>: 「宣言型エージェントマニフェストの検証とスキーマエラーの修正」「Microsoft Graph API プラグイン実装のサンプルコード表示」「Teams アプリ認証問題のトラブルシューティング支援」
+<strong>実際の利用例</strong>: 「宣言型エージェントマニフェストの検証とスキーマエラー修正」、「Microsoft Graph API プラグイン実装用のサンプルコード提示」、「Teams アプリの認証問題のトラブルシューティング支援」
 
-<strong>注目の例</strong>: Build イベントで M365 エージェントについて友人の John Miller と話した際、この MCP を勧められました。ドキュメントに埋もれずに入門できるテンプレートやサンプルコード、スキャフォールディングがあるので M365 エージェント初心者に最適だと思います。スキーマ検証機能はマニフェスト構造の誤りによる長時間のデバッグ回避に特に有用そうです。
+<strong>特徴的な例</strong>: Build の際に友人の John Miller に M365 Agents について話したところ、この MCP を薦めてもらいました。ドキュメントに埋もれることなく、新しい開発者が使い始めるのに最適なテンプレート、サンプルコード、スキャフォールドが提供されます。スキーマバリデーション機能は、マニフェスト構造エラーを避けるために特に役立ち、長時間のデバッグを防止できます。
 
-> **💡 プロのヒント**
+> **💡 プロのコツ**
 > 
-> 本サーバーは Microsoft Learn Docs MCP サーバーと併用すると包括的な M365 開発支援が得られます。一方が公式ドキュメントを提供し、もう一方が実用的な開発ツールとトラブルシューティング支援を提供します。
+> このサーバーは Microsoft Learn Docs MCP Server と併用することで、包括的な M365 開発支援が可能です。一方は公式ドキュメント、もう一方は実践的な開発ツールとトラブルシューティング支援を提供します。
 
 
-## 次は？ 🔮
+## 次のステップ 🔮
 
 ## 📋 結論
 
-モデルコンテキストプロトコル (MCP) は、開発者が AI アシスタントや外部ツールとやり取りする方法を変革しています。これら 10 の Microsoft MCP サーバーは、標準化された AI 統合の力を示し、強力な外部機能にアクセスしつつ開発者が作業の流れを維持できるシームレスなワークフローを実現します。
+モデルコンテキストプロトコル（MCP）は、開発者が AI アシスタントや外部ツールとやり取りする方法を変革しています。これら 10 の Microsoft MCP サーバーは、強力な外部機能にアクセスしながら開発者の集中状態を維持するシームレスなワークフローを実現する標準化された AI 統合の力を示しています。
 
-包括的な Azure エコシステムとの統合から、ブラウザ自動化の Playwright やドキュメント処理の MarkItDown といった専門ツールまで、これらのサーバーは多様な開発シナリオでの生産性向上に MCP がどのように寄与するかを明示しています。標準化されたプロトコルにより、これらのツールは互いに連携し、統一された開発体験を創出します。
+包括的な Azure エコシステム統合から、Playwright によるブラウザ自動化や MarkItDown によるドキュメント処理などの専門ツールまで、これらのサーバーは多様な開発シナリオで生産性を高める MCP の利点を示しています。標準化されたプロトコルにより、これらのツールはシームレスに連携し、統一された開発体験を創出します。
 
-MCP エコシステムは引き続き進化しており、コミュニティとの関わり、新たなサーバーの探索、カスタムソリューションの構築が開発生産性最大化の鍵となります。MCP はオープンスタンダードであるため、異なるベンダーのツールを組み合わせて特定ニーズに最適なワークフローを作成可能です。
+MCP エコシステムが進化し続ける中で、コミュニティとの関わりを持ち、新しいサーバーを探索し、カスタムソリューションを構築することが開発生産性最大化の鍵となります。MCP のオープンスタンダードの特性により、異なるベンダーのツールを組み合わせて特定のニーズに最適なワークフローを作成できます。
 
 ## 🔗 追加リソース
 
@@ -414,16 +419,16 @@ MCP エコシステムは引き続き進化しており、コミュニティと�
 - [C# MCP SDK](https://developer.microsoft.com/blog/microsoft-partners-with-anthropic-to-create-official-c-sdk-for-model-context-protocol)
 - [MCP Dev Days Live 29th/30th July or watch on Demand ](https://aka.ms/mcpdevdays)
 
-## 🎯 演習課題
+## 🎯 演習
 
-1. <strong>インストールと設定</strong>: VS Code 環境にいずれかの MCP サーバーをセットアップし、基本機能をテストする。
-2. <strong>ワークフロー統合</strong>: 少なくとも 3 つの異なる MCP サーバーを組み合わせた開発ワークフローを設計する。
-3. <strong>カスタムサーバー計画</strong>: 日常の開発タスクでカスタム MCP サーバーが役立つ場面を特定し、その仕様を作成する。
-4. <strong>パフォーマンス分析</strong>: MCP サーバー利用と従来手法の共通開発タスクにおける効率を比較する。
-5. <strong>セキュリティ評価</strong>: MCP サーバーを開発環境で利用する際のセキュリティ影響を評価し、ベストプラクティスを提案する。
+1. <strong>インストールと設定</strong>: お好きな MCP サーバーを VS Code 環境にセットアップし、基本機能をテストしてください。
+2. <strong>ワークフロー統合</strong>: 少なくとも 3 つの異なる MCP サーバーを組み合わせた開発ワークフローを設計してください。
+3. <strong>カスタムサーバー計画</strong>: 日々の開発ルーチンの中でカスタム MCP サーバーが役立つタスクを特定し、その仕様を作成してください。
+4. <strong>パフォーマンス分析</strong>: 一般的な開発タスクで MCP サーバー使用と従来の方法の効率を比較してください。
+5. <strong>セキュリティ評価</strong>: 開発環境で MCP サーバーを使用する際のセキュリティ面の影響を評価し、ベストプラクティスを提案してください。
 
 
-Next:[Best Practices](../08-BestPractices/README.md)
+次へ: [Best Practices](../08-BestPractices/README.md)
 
 ---
 
