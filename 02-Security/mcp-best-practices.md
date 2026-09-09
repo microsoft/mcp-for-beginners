@@ -12,9 +12,7 @@ unique to MCP deployments.
 
 1. **Token Validation**: MCP servers **MUST NOT** accept any tokens that were not explicitly issued for the MCP server itself
 2. **Authorization Verification**: MCP servers implementing authorization **MUST** verify ALL inbound requests and **MUST NOT** use sessions for authentication  
-3. **User Consent**: MCP proxy servers using static third-party client IDs
-	**MUST** obtain explicit consent for each MCP client before forwarding an
-	authorization flow
+3. **User Consent**: MCP proxy servers using static third-party client IDs **MUST** obtain explicit consent for each MCP client before forwarding an authorization flow
 4. **State Handle Security**: MCP servers **MUST NOT** treat possession of an
 	application state handle as authentication and **MUST** authorize every
 	request that uses one
