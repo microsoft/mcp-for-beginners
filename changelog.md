@@ -37,6 +37,11 @@ baseline guidance to the final MCP `2026-07-28` specification.
 - **Stable filenames**: Renamed the final specification guide and two security
   guides to remove release-candidate and year suffixes, then updated all English
   hyperlinks to their stable paths.
+- **New authorization sample**: Added a tested
+  [TypeScript MCP `2026-07-28` resource server](./02-Security/samples/cimd-dcr-auth/README.md)
+  that compares preferred Client ID Metadata Documents with deprecated Dynamic
+  Client Registration fallback. The sample includes RFC 9728 discovery, JWKS
+  validation, per-tool scopes, nine tests, and an Auth0 setup walkthrough.
 - **Translation scope**: Only English source files were edited; generated
   translations and translated images remain unchanged as these are auto-translated.
 

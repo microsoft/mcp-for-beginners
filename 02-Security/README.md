@@ -499,6 +499,7 @@ These foundational practices create a robust security baseline that enhances the
 
 For comprehensive security guidance, refer to these specialized documents in this section:
 
+- **[CIMD and DCR Authorization Sample](./samples/cimd-dcr-auth/README.md)** - Runnable TypeScript MCP `2026-07-28` resource server comparing preferred Client ID Metadata Documents with deprecated Dynamic Client Registration fallback
 - **[MCP Security Best Practices](./mcp-security-best-practices.md)** - Complete security best practices for MCP implementations
 - **[Azure Content Safety Implementation](./azure-content-safety-implementation.md)** - Practical implementation examples for Azure Content Safety integration  
 - **[MCP Security Controls](./mcp-security-controls.md)** - Latest security controls and techniques for MCP deployments

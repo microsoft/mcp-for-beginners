@@ -1,0 +1,27 @@
+{
+  "name": "mcp-cimd-dcr-auth-sample",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "register:dcr": "node --env-file=.env dist/src/register-dcr.js",
+    "start": "node --env-file=.env dist/src/server.js",
+    "test": "node --test --import=tsx test/**/*.test.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/express": "^2.0.0",
+    "@modelcontextprotocol/node": "^2.0.0",
+    "@modelcontextprotocol/server": "^2.0.0",
+    "express": "^5.2.1",
+    "jose": "^6.2.12",
+    "zod": "^4.5.4"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/client": "^2.0.0",
+    "@types/express": "^5.0.6",
+    "@types/node": "^24.10.0",
+    "tsx": "^4.21.0",
+    "typescript": "^7.0.2"
+  }
+}
