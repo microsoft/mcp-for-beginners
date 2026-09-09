@@ -139,14 +139,15 @@ The repository is organized into twelve main sections, each focusing on differen
    - Client-server architecture
    - Key protocol components
    - Messaging patterns in MCP
-    - Current specification: [What's Changed in MCP: The 2026-07-28 Specification](./01-CoreConcepts/mcp-2026-07-28.md) — the stateless protocol core, Extensions framework, and Roots/Sampling/Logging deprecations
+   - Current specification: [What's Changed in MCP: The 2026-07-28 Specification](./01-CoreConcepts/mcp-2026-07-28.md) — the stateless protocol core, Extensions framework, and Roots/Sampling/Logging deprecations
 
 3. **Security (02-Security/)**
    - Security threats in MCP-based systems
    - Best practices for securing implementations
    - Authentication and authorization strategies
+   - Hands-on [CIMD and DCR authorization sample](./02-Security/samples/cimd-dcr-auth/README.md)
    - **Comprehensive Security Documentation**:
-     - MCP Security Best Practices 2025
+    - MCP Security Best Practices
      - Azure Content Safety Implementation Guide
      - MCP Security Controls and Techniques
      - MCP Best Practices Quick Reference

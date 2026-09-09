@@ -161,6 +161,7 @@ Module 11 deserves special mention - it's a complete 13-lab hands-on learning pa
 | 01 | Core Concepts Explained | In-depth exploration of core MCP concepts | [Read more](./01-CoreConcepts/README.md) |
 | 1.1 | What's Changed in MCP (2026-07-28) | Stateless protocol, Extensions framework, and feature deprecations in the current specification | [Guide](./01-CoreConcepts/mcp-2026-07-28.md) |
 | 02 | Security in MCP | Security threats and best practices | [Read more](./02-Security/README.md) |
+| 2.1 | CIMD and DCR Authorization | Compare preferred CIMD registration with deprecated DCR fallback using a protected MCP server | [Sample](./02-Security/samples/cimd-dcr-auth/README.md) |
 | 03 | Getting Started with MCP | Environment setup, basic servers/clients, integration | [Read more](./03-GettingStarted/README.md) |
 | **Module 3: Building Your First Server & Client** | | | |
 | 3.1 | First Server | Create your first MCP server | [Guide](./03-GettingStarted/01-first-server/README.md) |
