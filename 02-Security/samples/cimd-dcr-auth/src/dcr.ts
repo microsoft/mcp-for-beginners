@@ -36,6 +36,7 @@ export async function registerDynamicClient(
   const secureEndpoint = requireSecureUrl(registrationEndpoint, "registration_endpoint");
   const response = await fetch(secureEndpoint, {
     method: "POST",
+    redirect: "error",
     headers: { "content-type": "application/json" },
     body: JSON.stringify(request)
   });
