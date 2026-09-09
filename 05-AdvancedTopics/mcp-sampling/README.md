@@ -8,7 +8,7 @@
 > Sampling remains in the `2026-07-28` specification for compatibility and is
 > eligible for removal in the first revision released on or after July 28,
 > 2027. Examples in this lesson may use SDK APIs that implement `2025-11-25`.
-> See [What's Changed in MCP: The 2026-07-28 Specification](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> See [What's Changed in MCP: The 2026-07-28 Specification](../../01-CoreConcepts/mcp-2026-07-28.md).
 
 In legacy MCP implementations, Sampling allows servers to request LLM
 completions through the client. This lesson explains that deprecated protocol

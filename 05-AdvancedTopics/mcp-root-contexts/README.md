@@ -143,4 +143,4 @@ Whichever replacement you choose:
 
 - [Roots in MCP 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/client/roots)
 - [Deprecated features registry](https://modelcontextprotocol.io/specification/2026-07-28/deprecated)
-- [What's Changed in MCP: The 2026-07-28 Specification](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md)
+- [What's Changed in MCP: The 2026-07-28 Specification](../../01-CoreConcepts/mcp-2026-07-28.md)

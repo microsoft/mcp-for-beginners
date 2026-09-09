@@ -34,8 +34,11 @@ baseline guidance to the final MCP `2026-07-28` specification.
 - **Canonical links**: Replaced retired and draft specification URLs in English
   source Markdown with versioned `2026-07-28` links, while preserving explicit
   links to legacy versions where a sample remains pinned to older tooling.
+- **Stable filenames**: Renamed the final specification guide and two security
+  guides to remove release-candidate and year suffixes, then updated all English
+  hyperlinks to their stable paths.
 - **Translation scope**: Only English source files were edited; generated
-  translations and translated images remain unchanged.
+  translations and translated images remain unchanged as these are auto translated
 
 ## July 29th, 2026
 
@@ -69,7 +72,7 @@ effects, aligned with the final `2026-07-28` specification.
 
 Added coverage of the upcoming `2026-07-28` MCP specification release candidate (announced May 21, 2026; final release scheduled July 28, 2026), summarized from the [official announcement blog post](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/). The curriculum's baseline remains **MCP Specification 2025-11-25** until the new version ships, so this is presented as forward-looking guidance rather than a rewrite of existing lessons.
 
-- **New**: [01-CoreConcepts/mcp-2026-07-28-release-candidate.md](./01-CoreConcepts/mcp-2026-07-28-release-candidate.md) — a full lesson covering the stateless protocol core (removal of the `initialize` handshake and `Mcp-Session-Id`), the new `Mcp-Method`/`Mcp-Name` routing headers, `ttlMs`/`cacheScope` caching metadata, W3C Trace Context in `_meta`, the formal Extensions framework (MCP Apps and the new Tasks extension), six authorization-hardening SEPs, the deprecation of Roots/Sampling/Logging, and the move to full JSON Schema 2020-12 for tool schemas.
+- **New**: [01-CoreConcepts/mcp-2026-07-28.md](./01-CoreConcepts/mcp-2026-07-28.md) — a full lesson covering the stateless protocol core (removal of the `initialize` handshake and `Mcp-Session-Id`), the new `Mcp-Method`/`Mcp-Name` routing headers, `ttlMs`/`cacheScope` caching metadata, W3C Trace Context in `_meta`, the formal Extensions framework (MCP Apps and the new Tasks extension), six authorization-hardening SEPs, the deprecation of Roots/Sampling/Logging, and the move to full JSON Schema 2020-12 for tool schemas.
 - **Updated** with forward-looking callouts linking to the new lesson:
   - [01-CoreConcepts/README.md](./01-CoreConcepts/README.md): protocol version note, Sampling/Roots/Logging/Tasks sections, and "What's next"
   - [02-Security/README.md](./02-Security/README.md): authorization hardening callout

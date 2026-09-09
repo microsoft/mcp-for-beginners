@@ -228,6 +228,6 @@ passthrough vulnerabilities.
 
 ## What's Next
 
-- Read: [MCP Security Controls 2025](./mcp-security-controls-2025.md)
+- Read: [MCP Security Controls](./mcp-security-controls.md)
 - Return to: [Security Module Overview](./README.md)
 - Continue to: [Module 3: Getting Started](../03-GettingStarted/README.md)

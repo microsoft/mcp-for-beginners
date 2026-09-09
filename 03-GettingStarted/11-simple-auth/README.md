@@ -147,7 +147,7 @@ Client
 > by `mcp-session-id` and is not a current `2026-07-28` transport example. MCP
 > `2026-07-28` removes the `initialize` handshake and protocol session ID; new
 > implementations use self-contained requests. See
-> [What's Changed in MCP: The 2026-07-28 Specification](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> [What's Changed in MCP: The 2026-07-28 Specification](../../01-CoreConcepts/mcp-2026-07-28.md).
 
 In our first step, we need to create the web server instance and the MCP Server.
 

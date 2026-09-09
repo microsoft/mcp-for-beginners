@@ -200,6 +200,6 @@ reviewed as the protocol and threat landscape evolve.*
 
 ## What's Next
 
-- Read: [MCP Security Best Practices 2025](./mcp-security-best-practices-2025.md)
+- Read: [MCP Security Best Practices](./mcp-security-best-practices.md)
 - Return to: [Security Module Overview](./README.md)
 - Continue to: [Module 3: Getting Started](../03-GettingStarted/README.md)

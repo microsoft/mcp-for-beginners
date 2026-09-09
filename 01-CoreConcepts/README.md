@@ -84,7 +84,7 @@ The MCP Protocol is an evolving standard using date-based versioning
 > transport layer by removing the `initialize` handshake and protocol-level
 > session IDs. It also formalizes an Extensions framework and deprecates
 > Roots, Sampling, and Logging in favor of newer patterns. See
-> [What's Changed in MCP: The 2026-07-28 Specification](./mcp-2026-07-28-release-candidate.md)
+> [What's Changed in MCP: The 2026-07-28 Specification](./mcp-2026-07-28.md)
 > for a full breakdown and migration guidance. Examples that explicitly target
 > `2025-11-25` are retained as legacy compatibility lessons.
 
@@ -218,7 +218,7 @@ In the Model Context Protocol (MCP), **clients** can expose primitives that enab
 > compatibility, but new implementations should integrate directly with an LLM
 > provider API. It is eligible for removal in the first specification revision
 > released on or after July 28, 2027. See
-> [What's Changed in MCP: The 2026-07-28 Specification](./mcp-2026-07-28-release-candidate.md).
+> [What's Changed in MCP: The 2026-07-28 Specification](./mcp-2026-07-28.md).
 
 **Sampling** allows servers to request language model completions from the client's AI application. This primitive enables servers to access LLM capabilities without embedding their own model dependencies:
 
@@ -238,7 +238,7 @@ completion from clients.
 > tool parameters, resource URIs, or server configuration. Roots are eligible
 > for removal in the first specification revision released on or after July
 > 28, 2027. See
-> [What's Changed in MCP: The 2026-07-28 Specification](./mcp-2026-07-28-release-candidate.md).
+> [What's Changed in MCP: The 2026-07-28 Specification](./mcp-2026-07-28.md).
 
 **Roots** provide a standardized way for clients to identify filesystem
 locations that are relevant to servers:
@@ -272,7 +272,7 @@ Elicitation uses the `elicitation/create` method inside an
 > compatibility, but new implementations should use `stderr` with stdio and
 > OpenTelemetry for structured observability. Logging is eligible for removal
 > in the first specification revision released on or after July 28, 2027. See
-> [What's Changed in MCP: The 2026-07-28 Specification](./mcp-2026-07-28-release-candidate.md).
+> [What's Changed in MCP: The 2026-07-28 Specification](./mcp-2026-07-28.md).
 
 **Logging** allows servers to send structured log messages to clients for debugging, monitoring, and operational visibility:
 
@@ -733,7 +733,7 @@ In MCP `2026-07-28`, Tasks is an official extension rather than an experimental
 core feature. It uses a redesigned `tasks/get`, `tasks/update`, and
 `tasks/cancel` lifecycle; `tasks/list` was removed. The experimental
 `2025-11-25` Tasks API is not backward compatible with this extension. See
-[What's Changed in MCP: The 2026-07-28 Specification](./mcp-2026-07-28-release-candidate.md).
+[What's Changed in MCP: The 2026-07-28 Specification](./mcp-2026-07-28.md).
 
 **Tasks** provide durable execution wrappers for deferred result retrieval and
 status tracking:
@@ -776,5 +776,5 @@ Design a simple MCP tool that would be useful in your domain. Define:
 
 Next: [Chapter 2: Security](../02-Security/README.md)
 
-Read [What's Changed in MCP: The 2026-07-28 Specification](./mcp-2026-07-28-release-candidate.md)
+Read [What's Changed in MCP: The 2026-07-28 Specification](./mcp-2026-07-28.md)
 for migration guidance from `2025-11-25`.

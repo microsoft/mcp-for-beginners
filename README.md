@@ -70,7 +70,7 @@ compatibility explicit.
 > concepts, including stateless requests, the Extensions framework, and the
 > deprecation of Roots, Sampling, and Logging. Some hands-on examples remain
 > explicitly versioned to `2025-11-25` while SDK support catches up. See
-> [What's Changed in MCP: The 2026-07-28 Specification](./01-CoreConcepts/mcp-2026-07-28-release-candidate.md)
+> [What's Changed in MCP: The 2026-07-28 Specification](./01-CoreConcepts/mcp-2026-07-28.md)
 > for the changes and migration guidance.
 
 These resources become more valuable as your understanding grows, but don't feel pressured to read everything immediately. Start with the areas that interest you most!
@@ -159,7 +159,7 @@ Module 11 deserves special mention - it's a complete 13-lab hands-on learning pa
 | **Module 0-3: Fundamentals** | | | |
 | 00 | Introduction to MCP | Overview of the Model Context Protocol and its significance in AI pipelines | [Read more](./00-Introduction/README.md) |
 | 01 | Core Concepts Explained | In-depth exploration of core MCP concepts | [Read more](./01-CoreConcepts/README.md) |
-| 1.1 | What's Changing in MCP (2026-07-28 RC) | Stateless protocol, Extensions framework, and feature deprecations coming in the next spec version | [Guide](./01-CoreConcepts/mcp-2026-07-28-release-candidate.md) |
+| 1.1 | What's Changed in MCP (2026-07-28) | Stateless protocol, Extensions framework, and feature deprecations in the current specification | [Guide](./01-CoreConcepts/mcp-2026-07-28.md) |
 | 02 | Security in MCP | Security threats and best practices | [Read more](./02-Security/README.md) |
 | 03 | Getting Started with MCP | Environment setup, basic servers/clients, integration | [Read more](./03-GettingStarted/README.md) |
 | **Module 3: Building Your First Server & Client** | | | |
