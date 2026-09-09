@@ -2,6 +2,41 @@
 
 This document serves as a record of all significant changes made to the Model Context Protocol (MCP) for Beginners curriculum. Changes are documented in reverse chronological order (newest changes first).
 
+## September 9th, 2026
+
+### MCP 2026-07-28 Final Specification Alignment
+
+Updated the English curriculum from release-candidate and `2025-11-25`
+baseline guidance to the final MCP `2026-07-28` specification.
+
+- **Updated**: Current-version references, specification links, stateless
+  request guidance, `server/discover`, Streamable HTTP headers, and the Tasks
+  extension lifecycle across 38 English documentation files.
+- **Corrected**: Elicitation now uses `elicitation/create`, Sampling uses
+  `sampling/createMessage`, and `InputRequiredResult.resultType` uses
+  `"input_required"`.
+- **Replaced**: The inaccurate Root Context conversation-state lesson with a
+  protocol-accurate Roots lesson covering informational filesystem hints, the
+  current multi-round-trip flow, security boundaries, and migration options.
+- **Clarified**: Roots, Sampling, Logging, and Dynamic Client Registration are
+  deprecated in `2026-07-28`, with their recommended replacements and earliest
+  removal date documented.
+- **Labeled**: Samples that still depend on MCP `2025-11-25`, HTTP+SSE,
+  initialization handshakes, or protocol sessions are retained as legacy
+  compatibility examples rather than presented as current implementations.
+- **Security guidance**: Updated the standalone security guides to use
+  per-request authorization and explicit application state handles instead of
+  removed protocol session IDs. Client ID Metadata Documents are now the
+  preferred registration path, with DCR documented as compatibility-only.
+- **Supporting material**: Updated the study guide, contributor checklist,
+  Publora case study, and APIM case study. The APIM walkthrough now recommends
+  its current Streamable HTTP `/mcp` endpoint instead of deprecated `/sse`.
+- **Canonical links**: Replaced retired and draft specification URLs in English
+  source Markdown with versioned `2026-07-28` links, while preserving explicit
+  links to legacy versions where a sample remains pinned to older tooling.
+- **Translation scope**: Only English source files were edited; generated
+  translations and translated images remain unchanged.
+
 ## July 29th, 2026
 
 ### New Module 08 Companion: Reliability Sidecars and Safe Retries

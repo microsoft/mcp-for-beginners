@@ -571,7 +571,9 @@ console.log('Search server running at http://localhost:8000/mcp');
 > 
 > These examples would require additional error handling, authentication, and specific API integration code for production use. The search API endpoints shown (`https://api.search-service.example/search`) are placeholders and would need to be replaced with actual search service endpoints.
 > 
-> For complete implementation details and the most up-to-date approaches, please refer to the [official MCP specification](https://spec.modelcontextprotocol.io/) and SDK documentation.
+> For complete implementation details and the most up-to-date approaches,
+> refer to the [official MCP specification](https://modelcontextprotocol.io/specification/2026-07-28/)
+> and SDK documentation.
 
 ## Core Concepts
 
@@ -725,7 +727,7 @@ Advanced exercise covering:
 
 ## Additional Resources
 
-- [Model Context Protocol Specification](https://spec.modelcontextprotocol.io/) - Official MCP specification and detailed protocol documentation
+- [Model Context Protocol Specification](https://modelcontextprotocol.io/specification/2026-07-28/) - Official MCP specification and detailed protocol documentation
 - [Model Context Protocol Documentation](https://modelcontextprotocol.io/) - Detailed tutorials and implementation guides
 - [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Official Python implementation of the MCP protocol
 - [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Official TypeScript implementation of the MCP protocol

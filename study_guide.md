@@ -139,7 +139,7 @@ The repository is organized into twelve main sections, each focusing on differen
    - Client-server architecture
    - Key protocol components
    - Messaging patterns in MCP
-   - Forward-looking: [What's Changing in MCP: The 2026-07-28 Release Candidate](./01-CoreConcepts/mcp-2026-07-28-release-candidate.md) — the stateless protocol core, Extensions framework, and Roots/Sampling/Logging deprecations expected in the next specification version
+   - Current specification: [What's Changed in MCP: The 2026-07-28 Specification](./01-CoreConcepts/mcp-2026-07-28-release-candidate.md) — the stateless protocol core, Extensions framework, and Roots/Sampling/Logging deprecations
 
 3. **Security (02-Security/)**
    - Security threats in MCP-based systems
@@ -269,7 +269,7 @@ The repository includes supporting resources:
 - **Translations**: Multi-language support with automated translations of documentation
 - **Official MCP Resources**:
   - [MCP Documentation](https://modelcontextprotocol.io/)
-  - [MCP Specification](https://spec.modelcontextprotocol.io/)
+  - [MCP Specification](https://modelcontextprotocol.io/specification/2026-07-28/)
   - [MCP GitHub Repository](https://github.com/modelcontextprotocol)
 
 ## How to Use This Repository
@@ -346,6 +346,7 @@ This repository welcomes contributions from the community. See the Community Con
 
 ----
 
-*This study guide was last updated on February 5, 2026, reflecting the latest MCP Specification 2025-11-25 and provides an overview of the repository as of that date. Repository content may be updated after this date.*
-
-*Addendum (July 2, 2026): a lesson on the `2026-07-28` MCP Specification Release Candidate was added under [01-CoreConcepts](./01-CoreConcepts/mcp-2026-07-28-release-candidate.md); the curriculum baseline remains 2025-11-25 until the new specification ships.*
+*This study guide was last updated on September 9, 2026. It reflects MCP
+Specification `2026-07-28`, the current protocol revision. Some hands-on
+examples remain explicitly versioned to `2025-11-25` while their SDKs and tools
+adopt the stateless protocol APIs.*
