@@ -11,7 +11,7 @@ python -m venv venv
 ## -1- Activate the virtual environment
 
 ```bash
-venv\Scrips\activate
+venv\Scripts\activate
 ```
 
 ## -2- Install the dependencies
@@ -21,7 +21,6 @@ pip install "mcp[cli]"
 ```
 
 ## -3- Run the sample
-
 
 ```bash
 python client.py
@@ -34,12 +33,12 @@ LISTING RESOURCES
 Resource:  ('meta', None)
 Resource:  ('nextCursor', None)
 Resource:  ('resources', [])
-                    INFO     Processing request of type ListToolsRequest                                                                               server.py:534
+INFO Processing request of type ListToolsRequest server.py:534
 LISTING TOOLS
 Tool:  add
 READING RESOURCE
-                    INFO     Processing request of type ReadResourceRequest                                                                            server.py:534
+INFO Processing request of type ReadResourceRequest server.py:534
 CALL TOOL
-                    INFO     Processing request of type CallToolRequest                                                                                server.py:534
+INFO Processing request of type CallToolRequest server.py:534
 [TextContent(type='text', text='8', annotations=None)]
 ```
