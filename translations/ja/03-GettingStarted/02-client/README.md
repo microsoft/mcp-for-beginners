@@ -896,7 +896,7 @@ solution/
 ## サンプル
 
 - [Java 計算機](../samples/java/calculator/README.md)
-- [.Net 計算機](../../../../03-GettingStarted/samples/csharp)
+- [.NET 計算機](../../../../03-GettingStarted/samples/csharp)
 - [JavaScript 計算機](../samples/javascript/README.md)
 - [TypeScript 計算機](../samples/typescript/README.md)
 - [Python 計算機](../../../../03-GettingStarted/samples/python)
