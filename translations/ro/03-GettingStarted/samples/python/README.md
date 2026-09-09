@@ -1,6 +1,9 @@
-# Server MCP Calculator (Python)
+# Server Calculator MCP (Python)
 
-O implementare simplă a unui server Model Context Protocol (MCP) în Python care oferă funcționalități de bază pentru un calculator.
+
+
+O implementare simplă a unui server Model Context Protocol (MCP) în Python care oferă funcționalitate de calculator de bază.
+
 
 ## Instalare
 
@@ -9,48 +12,50 @@ Instalează dependențele necesare:
 ```bash
 pip install -r requirements.txt
 ```
-  
-Sau instalează direct MCP Python SDK:
+
+Sau instalează direct SDK-ul MCP pentru Python:
 
 ```bash
-pip install mcp>=1.18.0
+pip install "mcp>=2.1.1,<3.0.0"
 ```
-  
+
 ## Utilizare
 
-### Rularea Serverului
+### Pornirea serverului
 
-Serverul este conceput pentru a fi utilizat de clienți MCP (cum ar fi Claude Desktop). Pentru a porni serverul:
+Serverul este proiectat să fie folosit de clienți MCP (ca Claude Desktop). Pentru a porni serverul:
 
 ```bash
 python mcp_calculator_server.py
 ```
-  
-**Notă**: Când este rulat direct într-un terminal, vei vedea erori de validare JSON-RPC. Acest comportament este normal - serverul așteaptă mesaje formatate corect de la clienții MCP.
 
-### Testarea Funcțiilor
+**Notă**: Când este rulat direct într-un terminal, vei vedea erori de validare JSON-RPC. Acest comportament este normal - serverul așteaptă mesaje MCP de la clienți, corect formatate.
 
-Pentru a testa dacă funcțiile calculatorului funcționează corect:
+### Testarea funcțiilor
+
+Pentru a testa că funcțiile calculatorului funcționează corect:
 
 ```bash
 python test_calculator.py
 ```
-  
+
 ## Depanare
 
-### Erori de Import
+### Erori la import
 
-Dacă vezi `ModuleNotFoundError: No module named 'mcp'`, instalează MCP Python SDK:
+Dacă vezi `ModuleNotFoundError: No module named 'mcp'`, instalează SDK-ul MCP pentru Python:
 
 ```bash
-pip install mcp>=1.18.0
+pip install "mcp>=2.1.1,<3.0.0"
 ```
-  
-### Erori JSON-RPC la Rularea Directă
 
-Erori precum "Invalid JSON: EOF while parsing a value" atunci când rulezi serverul direct sunt de așteptat. Serverul are nevoie de mesaje de la clienți MCP, nu de input direct din terminal.
+### Erori JSON-RPC când rulezi direct
+
+Erori de genul "Invalid JSON: EOF while parsing a value" când rulezi serverul direct sunt așteptate. Serverul are nevoie de mesaje MCP de la clienți, nu de input direct din terminal.
 
 ---
 
-**Declinare de responsabilitate**:  
-Acest document a fost tradus folosind serviciul de traducere AI [Co-op Translator](https://github.com/Azure/co-op-translator). Deși ne străduim să asigurăm acuratețea, vă rugăm să fiți conștienți că traducerile automate pot conține erori sau inexactități. Documentul original în limba sa maternă ar trebui considerat sursa autoritară. Pentru informații critice, se recomandă traducerea profesională realizată de un specialist uman. Nu ne asumăm responsabilitatea pentru eventualele neînțelegeri sau interpretări greșite care pot apărea din utilizarea acestei traduceri.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Declinare a responsabilității**:
+Acest document a fost tradus folosind serviciul de traducere AI [Co-op Translator](https://github.com/Azure/co-op-translator). În timp ce ne străduim pentru acuratețe, vă rugăm să rețineți că traducerile automate pot conține erori sau inexactități. Documentul original în limba sa nativă trebuie considerat sursa autorizată. Pentru informații critice, se recomandă traducerea profesională realizată de un om. Nu ne asumăm responsabilitatea pentru eventualele neînțelegeri sau interpretări greșite care decurg din utilizarea acestei traduceri.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

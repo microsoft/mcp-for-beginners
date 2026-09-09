@@ -1,6 +1,9 @@
-# MCP Kalkulačka Server (Python)
+# MCP Kalkulačný Server (Python)
 
-Jednoduchá implementácia servera Model Context Protocol (MCP) v Pythone, ktorá poskytuje základnú funkcionalitu kalkulačky.
+
+
+Jednoduchá implementácia Model Context Protocol (MCP) servera v Pythone, ktorý poskytuje základnú kalkulačnú funkcionalitu.
+
 
 ## Inštalácia
 
@@ -10,47 +13,49 @@ Nainštalujte potrebné závislosti:
 pip install -r requirements.txt
 ```
 
-Alebo nainštalujte priamo MCP Python SDK:
+Alebo nainštalujte MCP Python SDK priamo:
 
 ```bash
-pip install mcp>=1.18.0
+pip install "mcp>=2.1.1,<3.0.0"
 ```
 
 ## Použitie
 
-### Spustenie servera
+### Spustenie Servera
 
-Server je navrhnutý na použitie klientmi MCP (napríklad Claude Desktop). Na spustenie servera:
+Server je navrhnutý na použitie MCP klientmi (ako Claude Desktop). Na spustenie servera:
 
 ```bash
 python mcp_calculator_server.py
 ```
 
-**Poznámka**: Pri priamom spustení v termináli uvidíte chyby validácie JSON-RPC. Toto je normálne správanie - server čaká na správne formátované správy od MCP klienta.
+**Poznámka**: Pri spustení priamo v termináli uvidíte chyby overenia JSON-RPC. Toto je normálne správanie - server čaká na správne naformátované správy od MCP klientov.
 
-### Testovanie funkcií
+### Testovanie Funkcií
 
-Na otestovanie, či funkcie kalkulačky fungujú správne:
+Ak chcete otestovať, či kalkulačné funkcie fungujú správne:
 
 ```bash
 python test_calculator.py
 ```
 
-## Riešenie problémov
+## Riešenie Problémov
 
-### Chyby pri importe
+### Chyby Importu
 
-Ak sa zobrazí `ModuleNotFoundError: No module named 'mcp'`, nainštalujte MCP Python SDK:
+Ak sa objaví `ModuleNotFoundError: No module named 'mcp'`, nainštalujte MCP Python SDK:
 
 ```bash
-pip install mcp>=1.18.0
+pip install "mcp>=2.1.1,<3.0.0"
 ```
 
-### Chyby JSON-RPC pri priamom spustení
+### Chyby JSON-RPC Pri Priamo Spustení
 
-Chyby ako "Invalid JSON: EOF while parsing a value" pri priamom spustení servera sú očakávané. Server potrebuje správy od MCP klienta, nie priamy vstup z terminálu.
+Očakávajú sa chyby ako „Invalid JSON: EOF while parsing a value“ pri priamom spustení servera. Server potrebuje správy od MCP klienta, nie priame vstupy z terminálu.
 
 ---
 
-**Zrieknutie sa zodpovednosti**:  
-Tento dokument bol preložený pomocou služby AI prekladu [Co-op Translator](https://github.com/Azure/co-op-translator). Aj keď sa snažíme o presnosť, prosím, berte na vedomie, že automatizované preklady môžu obsahovať chyby alebo nepresnosti. Pôvodný dokument v jeho rodnom jazyku by mal byť považovaný za autoritatívny zdroj. Pre kritické informácie sa odporúča profesionálny ľudský preklad. Nenesieme zodpovednosť za akékoľvek nedorozumenia alebo nesprávne interpretácie vyplývajúce z použitia tohto prekladu.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Vyhlásenie o zodpovednosti**:
+Tento dokument bol preložený pomocou AI prekladateľskej služby [Co-op Translator](https://github.com/Azure/co-op-translator). Hoci sa snažíme o presnosť, vezmite prosím na vedomie, že automatické preklady môžu obsahovať chyby alebo nepresnosti. Pôvodný dokument v jeho natívnom jazyku by mal byť považovaný za autoritatívny zdroj. Pre kritické informácie sa odporúča profesionálny ľudský preklad. Nie sme zodpovední za žiadne nedorozumenia alebo nesprávne interpretácie vyplývajúce z použitia tohto prekladu.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
