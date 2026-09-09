@@ -1,5 +1,10 @@
 # Debugging with MCP Inspector
 
+> [!NOTE]
+> Commands using `--sse` and URLs ending in `/sse` test the legacy HTTP+SSE
+> transport. For a new MCP `2026-07-28` server, use an Inspector version that
+> supports Streamable HTTP and select that transport instead.
+
 The **MCP Inspector** is an essential debugging tool that lets you interactively test and troubleshoot your MCP servers without needing a full AI host application. Think of it as "Postman for MCP" - it provides a visual interface to send requests, view responses, and understand how your server behaves.
 
 ## Why Use MCP Inspector?
@@ -225,7 +230,10 @@ Content-Type: application/json
 
 ## Message Log Analysis
 
-The message log shows all MCP protocol messages:
+The message log shows all MCP protocol messages. The transcript below is from a
+legacy `2025-11-25` server and includes the removed `initialize` handshake. A
+`2026-07-28` server uses self-contained request metadata and `server/discover`
+instead.
 
 ```
 14:32:01 → {"jsonrpc":"2.0","id":1,"method":"initialize",...}
@@ -430,5 +438,5 @@ You've completed Module 3: Getting Started! Continue your learning:
 ## Additional Resources
 
 - [MCP Inspector GitHub Repository](https://github.com/modelcontextprotocol/inspector)
-- [MCP Specification - Protocol Messages](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Specification - Protocol Messages](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [JSON-RPC 2.0 Specification](https://www.jsonrpc.org/specification)

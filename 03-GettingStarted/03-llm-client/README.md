@@ -1,5 +1,10 @@
 # Creating a client with LLM
 
+> [!NOTE]
+> The Java client examples connect through the legacy HTTP+SSE transport and
+> target MCP `2025-11-25` SDK APIs. Use a `2026-07-28`-compatible SDK and
+> Streamable HTTP for new remote clients.
+
 So far, you've seen how to create a server and a client. The client has been able to call the server explicitly to list its tools, resources, and prompts. However, this is not a very practical approach. Your users live in the agentic era and expect to use prompts and communicate with an LLM instead. They do not care whether you use MCP to store your capabilities; they simply expect to interact using natural language. So how do we solve this? The solution is to add an LLM to the client.
 
 ## Overview

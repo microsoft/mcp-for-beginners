@@ -457,6 +457,6 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ## Additional Resources
 
-- [MCP Specification - Pagination](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Specification - Pagination](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [Cursor-Based Pagination Explained](https://slack.engineering/evolving-api-pagination-at-slack/)
 - [Python SDK pagination tests](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)

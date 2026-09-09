@@ -1,5 +1,10 @@
 # Setting Up Popular MCP Host Clients
 
+> [!NOTE]
+> Host configurations that point to `/sse` are legacy HTTP+SSE examples for
+> MCP `2025-11-25`. For MCP `2026-07-28`, select Streamable HTTP in hosts that
+> support it and use the endpoint configured by the server.
+
 This guide covers how to configure and use MCP servers with popular AI host applications. Each host has its own configuration approach, but once set up, they all communicate with MCP servers using the standardized protocol.
 
 ## What is an MCP Host?
@@ -384,5 +389,5 @@ Different hosts support different transport mechanisms:
 
 - [Claude Desktop MCP Documentation](https://docs.anthropic.com/en/docs/claude-desktop/mcp)
 - [VS Code MCP Extension](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-mcp)
-- [MCP Specification - Transports](https://spec.modelcontextprotocol.io/specification/2025-11-25/basic/transports/)
+- [MCP Specification - Transports](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/)
 - [Official MCP Servers Registry](https://github.com/modelcontextprotocol/servers)

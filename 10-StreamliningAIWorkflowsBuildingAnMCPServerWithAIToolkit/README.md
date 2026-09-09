@@ -14,6 +14,12 @@ _(Click the image above to view video of this lesson)_
 
 Welcome to the **Model Context Protocol (MCP) Workshop**! This comprehensive hands-on workshop combines two cutting-edge technologies to revolutionize AI application development:
 
+> **Compatibility note:** the workshop code was built and tested with MCP
+> `2025-11-25`, as shown by the badge above. Use the
+> [current `2026-07-28` specification](https://modelcontextprotocol.io/specification/2026-07-28/)
+> for new protocol implementations and review SDK release notes before
+> migrating the labs.
+
 - **🔗 Model Context Protocol (MCP)**: An open standard for seamless AI-tool integration
 - **🛠️ Microsoft Foundry Toolkit Extension for VS Code**: Microsoft's powerful AI development extension
 
@@ -203,7 +209,7 @@ By completing this workshop, you will achieve mastery in:
 
 ## 📖 Additional Resources
 
-- [MCP Specification (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Specification (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [Microsoft Foundry Toolkit GitHub Repository](https://github.com/microsoft/vscode-ai-toolkit)
 - [Sample MCP Servers Collection](https://github.com/modelcontextprotocol/servers)
 - [Best Practices Guide](https://modelcontextprotocol.io/docs/best-practices)

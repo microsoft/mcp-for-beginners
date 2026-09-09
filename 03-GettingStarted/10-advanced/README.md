@@ -3,7 +3,9 @@
 There are two different types of servers exposed in the MCP SDK, your normal server and the low-level server. Normally, you would use the regular server to add features to it. For some cases though, you want to rely on the low-level server such as:
 
 - Better architecture. It's possible to create a clean architecture with both the regular server and a low-level server but it can be argued that it's slightly easier with a low-level server.
-- Feature availability. Some advanced features can only be used with a low-level server. You will see this in later chapters as we add sampling (deprecated in `2026-07-28` release candidate) and elicitation.
+- Feature availability. Some advanced features can only be used with a
+    low-level server. Later chapters cover Elicitation and the legacy Sampling
+    feature, which is deprecated in MCP `2026-07-28`.
 
 ## Regular server vs low-level server
 

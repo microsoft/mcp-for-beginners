@@ -1,5 +1,11 @@
 # Securing AI Workflows: Entra ID Authentication for Model Context Protocol Servers
 
+> [!NOTE]
+> The remote server code in this lesson protects legacy `/sse` and `/message`
+> endpoints and targets MCP `2025-11-25`. Keep its identity and token-validation
+> practices, but use a `2026-07-28`-compatible Streamable HTTP transport for new
+> implementations.
+
 ## Introduction
 Securing your Model Context Protocol (MCP) server is as important as locking the front door of your house. Leaving your MCP server open exposes your tools and data to unauthorized access, which can lead to security breaches. Microsoft Entra ID provides a robust cloud-based identity and access management solution, helping ensure that only authorized users and applications can interact with your MCP server. In this section, you’ll learn how to protect your AI workflows using Entra ID authentication.
 
