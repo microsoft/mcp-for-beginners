@@ -1,10 +1,18 @@
-> [DEPRECATED: 2026-07-28 RELEASE CANDIDATE](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/)
+> [!WARNING]
+> Sampling is deprecated in MCP `2026-07-28`. This lesson is retained for
+> legacy implementations. New servers should integrate directly with an LLM
+> provider API.
 
 # Sampling - delegate features to the Client
 
-> **Deprecation notice:** the `2026-07-28` MCP specification release candidate marks Sampling as deprecated in favor of direct integration with LLM provider APIs. Sampling continues to work in `2025-11-25` and for at least a year after any formal deprecation, so everything in this lesson remains valid — but new server designs should evaluate the replacement pattern. See [What's Changing in MCP: The 2026-07-28 Release Candidate](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> Sampling remains in the `2026-07-28` specification for compatibility and is
+> eligible for removal in the first revision released on or after July 28,
+> 2027. Examples in this lesson may use SDK APIs that implement `2025-11-25`.
+> See [What's Changed in MCP: The 2026-07-28 Specification](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
 
-Sometimes, you need the MCP Client and the MCP Server to collaborate to achieve a common goal. You might have a case where the Server requires the help of an LLM that sits on the client. For this situation, sampling is what you should use.
+In legacy implementations, Sampling lets an MCP server request help from an LLM
+managed by the client. For new implementations, call the chosen LLM provider
+directly instead.
 
 Let's explore some use cases and how to build a solution involving sampling.
 
@@ -140,7 +148,8 @@ Sampling messages aren't constrained to just text but you can also send, images 
 }
 ```
 
-> NOTE: for more detailed info on Sampling, check out the [official docs](https://modelcontextprotocol.io/specification/2025-11-25/client/sampling)
+> NOTE: For current status and migration guidance, see the
+> [deprecated Sampling documentation](https://modelcontextprotocol.io/specification/2026-07-28/client/sampling).
 
 ## How to Configure Sampling in the Client
 

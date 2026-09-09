@@ -16,7 +16,10 @@ This section consists of several lessons:
 
 - **5 stdio Transport Server** stdio transport is the recommended standard for local MCP server-to-client communication, providing secure subprocess-based communication with built-in process isolation [to the lesson](05-stdio-server/README.md)
 
-- **6 HTTP Streaming with MCP (Streamable HTTP)**. Learn about modern HTTP streaming transport (the recommended approach for remote MCP servers per [MCP Specification 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/basic/transports/#streamable-http)), progress notifications, and how to implement scalable, real-time MCP servers and clients using Streamable HTTP. [to the lesson](06-http-streaming/README.md)
+- **6 HTTP Streaming with MCP (Streamable HTTP)**. Learn about the standard
+	remote transport in [MCP Specification 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http),
+	plus the legacy session-based implementation retained in the lesson.
+	[to the lesson](06-http-streaming/README.md)
 
 - **7 Utilising AI Toolkit for VSCode** to consume and test your MCP Clients and Servers [to the lesson](07-aitk/README.md)
 
@@ -32,7 +35,9 @@ This section consists of several lessons:
 
 - **13 MCP Inspector**. Debug and test your MCP servers interactively using the MCP Inspector tool. Learn to troubleshoot tools, resources, and protocol messages, [to the lesson](./13-mcp-inspector/README.md)
 
-- **14 Sampling**. Create MCP Servers that collaborate with MCP clients on LLM related tasks (deprecated in `2026-07-28` release candidate; still valid for `2025-11-25`). [to the lesson](./14-sampling/README.md)
+- **14 Sampling**. Learn the legacy Sampling primitive for `2025-11-25` and
+	how to migrate new designs to direct LLM provider integration. Sampling is
+	deprecated in MCP `2026-07-28`. [to the lesson](./14-sampling/README.md)
 
 - **15 MCP Apps**. Build MCP Servers that also reply with UI instructions, [to the lesson](./15-mcp-apps/README.md)
 
@@ -65,9 +70,13 @@ Before diving into MCP development, ensure you have:
 
 ### Official SDKs
 
-In the upcoming chapters you will see solutions built using Python, TypeScript, Java and .NET. Here are all the officially supported SDKs.
+In the upcoming chapters you will see solutions built using Python, TypeScript,
+Java and .NET. Here are the official SDKs.
 
-MCP provides official SDKs for multiple languages (aligned with [MCP Specification 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)):
+SDK support for MCP `2026-07-28` is rolling out independently by language.
+Before running an example, check its package version and the SDK's release notes
+for supported protocol revisions. See the
+[official SDK list](https://modelcontextprotocol.io/docs/sdk):
 - [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - Maintained in collaboration with Microsoft
 - [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Maintained in collaboration with Spring AI
 - [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - The official TypeScript implementation

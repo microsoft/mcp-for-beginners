@@ -569,7 +569,7 @@ The Model Context Protocol (MCP) is rapidly shaping the future of standardized, 
 - [MCP GitHub Repository (Microsoft)](https://github.com/microsoft/mcp)
 - [MCP Resources Directory (Sample Prompts, Tools, and Resource Definitions)](https://github.com/microsoft/mcp/tree/main/Resources)
 - [MCP Community & Documentation](https://modelcontextprotocol.io/introduction)
-- [MCP Specification (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Specification (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [Azure MCP Documentation](https://aka.ms/azmcp)
 - [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - Security best practices
 - [Playwright MCP Server GitHub Repository](https://github.com/microsoft/playwright-mcp)

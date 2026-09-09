@@ -1,5 +1,10 @@
 # Getting Started with MCP
 
+> [!NOTE]
+> The Java HTTP example in this lesson uses the legacy HTTP+SSE transport and
+> targets an SDK compatible with MCP `2025-11-25`. For new remote servers, use
+> the `2026-07-28` Streamable HTTP transport and verify support in your SDK.
+
 Welcome to your first steps with the Model Context Protocol (MCP)! Whether you're new to MCP or looking to deepen your understanding, this guide will walk you through the essential setup and development process. You'll discover how MCP enables seamless integration between AI models and applications, and learn how to quickly get your environment ready for building and testing MCP-powered solutions.
 
 > TLDR; If you build AI apps, you know that you can add tools and other resources to your LLM (large language model), to make the LLM more knowledgeable. However if you place those tools and resources on a server, the app and the server capabilities can be used by any client with/without an LLM.

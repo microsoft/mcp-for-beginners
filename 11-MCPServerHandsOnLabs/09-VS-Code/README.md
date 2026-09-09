@@ -1,5 +1,11 @@
 # VS Code Integration
 
+> [!NOTE]
+> The `initializationOptions` settings in this lab target the sample's MCP
+> `2025-11-25` handshake. MCP `2026-07-28` removes the initialization handshake;
+> use a host and SDK that support per-request metadata and `server/discover`
+> when migrating this sample.
+
 ## 🎯 What This Lab Covers
 
 This lab provides comprehensive guidance on integrating your MCP server with VS Code to enable natural language queries through AI Chat. You'll learn to configure VS Code for optimal MCP usage, debug server connections, and leverage the full power of AI-assisted database interactions.

@@ -1,5 +1,10 @@
 # Run the sample
 
+> [!WARNING]
+> This sample uses deprecated Sampling and a legacy HTTP+SSE endpoint. It is
+> retained for MCP `2025-11-25` compatibility. New implementations should call
+> an LLM provider directly and use Streamable HTTP for remote MCP traffic.
+
 ## Create virtual environment
 
 ```sh

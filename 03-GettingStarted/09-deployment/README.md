@@ -1,5 +1,10 @@
 # Deploying MCP Servers
 
+> [!NOTE]
+> Configuration examples that use a `/sse` endpoint target the legacy HTTP+SSE
+> transport. MCP `2026-07-28` remote servers use Streamable HTTP, normally at a
+> server-defined endpoint such as `/mcp`.
+
 Deploying your MCP server allows others to access its tools and resources beyond your local environment. There are several deployment strategies to consider, depending on your requirements for scalability, reliability, and ease of management. Below you'll find guidance for deploying MCP servers locally, in containers, and to the cloud.
 
 ## Overview

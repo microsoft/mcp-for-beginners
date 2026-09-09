@@ -1,5 +1,10 @@
 # Basic Calculator MCP Service
 
+> [!NOTE]
+> This sample uses the legacy HTTP+SSE transport and targets an SDK compatible
+> with MCP `2025-11-25`. New remote servers should use `2026-07-28` Streamable
+> HTTP support.
+
 This service provides basic calculator operations through the Model Context Protocol (MCP) using Spring Boot with WebFlux transport. It's designed as a simple example for beginners learning about MCP implementations.
 
 For more information, see the [MCP Server Boot Starter](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html) reference documentation.

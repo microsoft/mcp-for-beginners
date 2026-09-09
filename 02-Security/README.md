@@ -28,9 +28,19 @@ Research from the [Microsoft Digital Defense Report](https://aka.ms/mddr) demons
 
 ## Current Security Landscape
 
-> **Note:** This information reflects MCP security standards as of **February 5, 2026**, aligned with **MCP Specification 2025-11-25**. The MCP protocol continues evolving rapidly, and future implementations may introduce new authentication patterns and enhanced controls. Always refer to the current [MCP Specification](https://spec.modelcontextprotocol.io/), [MCP GitHub repository](https://github.com/modelcontextprotocol), and [security best practices documentation](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) for the latest guidance.
+> **Note:** This chapter combines established MCP security controls with the
+> current **MCP Specification 2026-07-28** authorization guidance. Always refer
+> to the current [MCP Specification](https://modelcontextprotocol.io/specification/2026-07-28/),
+> [MCP GitHub repository](https://github.com/modelcontextprotocol), and
+> [security best practices documentation](https://modelcontextprotocol.io/specification/2026-07-28/basic/security_best_practices)
+> when implementing security-sensitive code.
 
-> **Looking ahead:** the `2026-07-28` release candidate hardens authorization further — clients must validate the `iss` parameter on authorization responses (RFC 9207), declare an OpenID Connect `application_type` during Dynamic Client Registration, and bind registered credentials to the issuing authorization server. See [What's Changing in MCP: The 2026-07-28 Release Candidate](../01-CoreConcepts/mcp-2026-07-28-release-candidate.md) for the full list of authorization SEPs.
+> **Authorization update:** MCP `2026-07-28` requires clients to validate the
+> `iss` parameter on authorization responses (RFC 9207) and bind registered
+> credentials to the issuing authorization server. Dynamic Client Registration
+> is deprecated; new implementations should use Client ID Metadata Documents.
+> See [What's Changed in MCP: The 2026-07-28 Specification](../01-CoreConcepts/mcp-2026-07-28-release-candidate.md)
+> for the full list of authorization changes.
 
 ## 🏔️ MCP Security Summit Workshop (Sherpa)
 
@@ -81,7 +91,9 @@ The [OWASP MCP Azure Security Guide](https://microsoft.github.io/mcp-azure-secur
 The MCP specification has evolved significantly in its approach to authentication and authorization:
 
 - **Original Approach**: Early specifications required developers to implement custom authentication servers, with MCP servers acting as OAuth 2.0 Authorization Servers managing user authentication directly
-- **Current Standard (2025-11-25)**: Updated specification allows MCP servers to delegate authentication to external identity providers (such as Microsoft Entra ID), improving security posture and reducing implementation complexity
+- **Current Standard (`2026-07-28`)**: MCP servers can delegate authentication
+  to external identity providers such as Microsoft Entra ID. Clients must also
+  apply the current issuer-validation and credential-binding requirements.
 - **Transport Layer Security**: Enhanced support for secure transport mechanisms with proper authentication patterns for both local (STDIO) and remote (Streamable HTTP) connections
 
 ## Authentication & Authorization Security
@@ -445,9 +457,9 @@ These foundational practices create a robust security baseline that enhances the
 ## Comprehensive Resources
 
 ### **Official MCP Security Documentation**
-- [MCP Specification (Current: 2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices)
-- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)
+- [MCP Specification (Current: 2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2026-07-28/basic/security_best_practices)
+- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization)
 - [MCP GitHub Repository](https://github.com/modelcontextprotocol)
 
 ### **OWASP MCP Security Resources**

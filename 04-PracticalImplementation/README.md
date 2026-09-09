@@ -26,7 +26,10 @@ By the end of this lesson, you will be able to:
 
 ## Official SDK Resources
 
-The Model Context Protocol offers official SDKs for multiple languages (aligned with [MCP Specification 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)):
+The Model Context Protocol offers official SDKs for multiple languages. SDK
+support for MCP `2026-07-28` rolls out independently, so check each SDK's
+release notes and the example's package version before assuming protocol
+compatibility. See the [official SDK list](https://modelcontextprotocol.io/docs/sdk):
 
 - [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk)
 - [Java with Spring SDK](https://github.com/modelcontextprotocol/java-sdk) **Note:** requires dependency on [Project Reactor](https://projectreactor.io). (See [discussion issue 246](https://github.com/orgs/modelcontextprotocol/discussions/246).)
@@ -177,7 +180,8 @@ Let's have a look at the authorization flow more in detail:
 
 #### MCP authorization specification
 
-Learn more about the [MCP Authorization specification](https://spec.modelcontextprotocol.io/specification/2025-11-25/basic/authorization/)
+Learn more about the
+[MCP Authorization specification](https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization/).
 
 ## Deploy Remote MCP Server to Azure
 
