@@ -139,7 +139,7 @@ The repository is organized into twelve main sections, each focusing on differen
    - Client-server architecture
    - Key protocol components
    - Messaging patterns in MCP
-  - Current specification: [What's Changed in MCP: The 2026-07-28 Specification](./01-CoreConcepts/mcp-2026-07-28.md) — the stateless protocol core, Extensions framework, and Roots/Sampling/Logging deprecations
+    - Current specification: [What's Changed in MCP: The 2026-07-28 Specification](./01-CoreConcepts/mcp-2026-07-28.md) — the stateless protocol core, Extensions framework, and Roots/Sampling/Logging deprecations
 
 3. **Security (02-Security/)**
    - Security threats in MCP-based systems
