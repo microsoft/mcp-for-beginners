@@ -1,174 +1,188 @@
-# MCP a gyakorlatban: Valós esettanulmányok
+# Az MCP a gyakorlatban: Valós esettanulmányok
 
-[![MCP a gyakorlatban: Valós esettanulmányok](../../../translated_images/hu/10.3262cc80b4de5071.webp)](https://youtu.be/IxshWb2Az5w)
+[![Az MCP a gyakorlatban: Valós esettanulmányok](../../../translated_images/hu/10.3262cc80b4de5071.webp)](https://youtu.be/IxshWb2Az5w)
 
 _(Kattintson a fenti képre a lecke videójának megtekintéséhez)_
 
-A Model Context Protocol (MCP) átalakítja, hogyan lépnek kapcsolatba az AI alkalmazások az adatokkal, eszközökkel és szolgáltatásokkal. Ez a rész valós esettanulmányokat mutat be, amelyek a MCP gyakorlati alkalmazásait szemléltetik különböző vállalati helyzetekben.
+A Model Context Protocol (MCP) átalakítja, hogy az MI-alkalmazások hogyan lépnek kapcsolatba adatokkal, eszközökkel és szolgáltatásokkal. Ez a rész valós esettanulmányokat mutat be, amelyek bemutatják az MCP gyakorlati alkalmazásait különböző vállalati forgatókönyvekben.
 
-## Összefoglaló
+## Áttekintés
 
-Ebben a szakaszban konkrét MCP megvalósítási példákat láthat, amelyek kiemelik, hogyan használják a szervezetek ezt a protokollt összetett üzleti kihívások megoldására. Ezeknek az esettanulmányoknak a megvizsgálásával betekintést nyerhet a MCP sokoldalúságába, skálázhatóságába és gyakorlati előnyeibe valós élethelyzetekben.
+Ez a rész konkrét példákat mutat be az MCP implementációira, kiemelve, hogyan használják a szervezetek ezt a protokollt összetett üzleti kihívások megoldására. Ezeknek az esettanulmányoknak a vizsgálatával betekintést nyerhet az MCP sokoldalúságába, skálázhatóságába és gyakorlati előnyeibe valódi helyzetekben.
 
 ## Fő tanulási célok
 
-Ezeknek az esettanulmányoknak a megismerésével Ön:
+Ezeknek az esettanulmányoknak a felfedezésével Ön:
 
-- Megérti, hogyan alkalmazható a MCP konkrét üzleti problémák megoldására
-- Megismeri a különböző integrációs mintákat és architekturális megközelítéseket
-- Felismeri a MCP vállalati környezetben történő bevezetésének legjobb gyakorlatait
-- Megtudja azokat a kihívásokat és megoldásokat, amelyek a valós megvalósítások során felmerülnek
-- Azonosítja azokat a lehetőségeket, amelyeken keresztül hasonló mintákat alkalmazhat saját projektjeiben
+- Megérti, hogyan alkalmazható az MCP konkrét üzleti problémák megoldására
+- Megismeri a különféle integrációs mintákat és architekturális megközelítéseket
+- Felismeri a legjobb gyakorlatokat az MCP vállalati környezetben történő bevezetéséhez
+- Megismeri a valós implementációk során felmerülő kihívásokat és megoldásokat
+- Azonosítja a lehetőségeket hasonló minták alkalmazására saját projektjeiben
 
 ## Kiemelt esettanulmányok
 
-### 1. [Azure AI Utazási ügynökök – Referenciaimplementáció](./travelagentsample.md)
+### 1. [Azure AI utazási ügynökök – Referencia implementáció](./travelagentsample.md)
 
-Ez az esettanulmány bemutatja a Microsoft átfogó referencia megoldását, amely szemlélteti, hogyan lehet MCP-vel, Azure OpenAI-val és Azure AI Search-sel többügynökös, AI-alapú utazástervező alkalmazást építeni. A projekt bemutatja:
+Ez az esettanulmány bemutatja a Microsoft átfogó referencia megoldását, amely bemutatja, hogyan építhető fel egy többügynökös, MI-vezérelt utazástervező alkalmazás az MCP, az Azure OpenAI és az Azure AI Search használatával. A projekt bemutatja:
 
 - Többügynökös összehangolás MCP-n keresztül
 - Vállalati adatintegráció Azure AI Search segítségével
 - Biztonságos, skálázható architektúra Azure szolgáltatásokkal
-- Kiterjeszthető eszköztár újrafelhasználható MCP komponensekkel
-- Beszélgetésalapú felhasználói élmény Azure OpenAI erőforrásokkal
+- Bővíthető eszközök újrahasználható MCP komponensekkel
+- Beszélgető felhasználói élmény Azure OpenAI segítségével
 
-Az architektúra és megvalósítás részletei értékes betekintést adnak összetett, többügynökös rendszerek építésébe MCP koordinációs rétegként történő alkalmazásával.
+Az architektúra és a megvalósítási részletek értékes betekintést nyújtanak összetett, többügynökös rendszerek építéséhez az MCP koordinációs rétegként való alkalmazásával.
 
-### 2. [Azure DevOps elemek frissítése YouTube adatból](./UpdateADOItemsFromYT.md)
+### 2. [Azure DevOps elemek frissítése YouTube adatokból](./UpdateADOItemsFromYT.md)
 
-Ez az esettanulmány a MCP gyakorlati alkalmazását mutatja be munkafolyamatok automatizálására. Megmutatja, hogyan lehet MCP eszközökkel:
+Ez az esettanulmány bemutat egy MCP gyakorlati alkalmazását a munkafolyamatok automatizálásához. Bemutatja, hogyan használhatók MCP eszközök a következőkre:
 
-- Adatokat kinyerni online platformokról (YouTube)
-- Munkafolyamat-elemeket frissíteni Azure DevOps rendszerekben
-- Ismételhető automatizált munkafolyamatokat létrehozni
-- Adatokat integrálni eltérő rendszerek között
+- Adatok kinyerése online platformokról (YouTube)
+- Munkafolyamat elemek frissítése Azure DevOps rendszerekben
+- Ismételhető automatizációs munkafolyamatok létrehozása
+- Adatok integrálása eltérő rendszerek között
 
-Ez a példa illusztrálja, hogy még viszonylag egyszerű MCP megvalósítások is jelentős hatékonyságnövekedést eredményezhetnek rutin feladatok automatizálásával és az adatok konzisztenciájának javításával.
+Ez a példa bemutatja, hogyan nyújthatnak még viszonylag egyszerű MCP implementációk is jelentős hatékonyságnövekedést az ismétlődő feladatok automatizálásával és az adatok konzisztenciájának javításával a rendszerek között.
 
-### 3. [Valós idejű dokumentáció lekérése MCP-vel](./docs-mcp/README.md)
+### 3. [Valós idejű dokumentáció-lekérés MCP-vel](./docs-mcp/README.md)
 
-Ez az esettanulmány végigvezeti Önt egy Python konzol kliens MCP szerverhez történő csatlakoztatásán, hogy valós idejű, kontextus-érzékeny Microsoft dokumentációt kérjen le és naplózzon. Megtanulhatja, hogyan lehet:
+Ez az esettanulmány végigvezeti Önt egy Python konzol kliens MCP szerverhez való csatlakoztatásán, hogy valós idejű, kontextusérzékeny Microsoft dokumentációt kérjen le és naplózzon. Megtanulja, hogyan:
 
-- Egy MCP szerverhez csatlakozni Python klienssel és az hivatalos MCP SDK-val
-- Streaming HTTP kliens használatával hatékony, valós idejű adatlekérést végezni
-- A szerveren dokumentációs eszközöket hívni, és a válaszokat közvetlenül a konzolra naplózni
-- Naprakész Microsoft dokumentációt integrálni a munkafolyamatba anélkül, hogy elhagyná a terminált
+- Csatlakozzon MCP szerverhez Python kliens és hivatalos MCP SDK segítségével
+- Felhasználjon streaming HTTP kliensségeket a hatékony, valós idejű adatkéréshez
+- Hívjon dokumentációs eszközöket a szerveren, és naplózza a válaszokat közvetlenül a konzolra
+- Integrálja az aktuális Microsoft dokumentációt a munkafolyamatába anélkül, hogy elhagyná a terminált
 
-A fejezet gyakorlati feladatot, minimális működő kódmintát és további mélyebb tanulási forrásokat tartalmaz. Tekintse meg a teljes lépésről-lépésre leírást és a kódot a linkelt fejezetben, hogy megértse, hogyan képes a MCP forradalmasítani a dokumentációhoz való hozzáférést és a fejlesztői termelékenységet konzolos környezetekben.
+A fejezet tartalmaz egy gyakorlati feladatot, egy minimális működő kódpéldát és linkeket további mélyebb tanuláshoz. Teljes ismertető és kód a kapcsolt fejezetben található, hogy megértse, hogyan változtathatja meg az MCP a dokumentáció-hozzáférést és a fejlesztői termelékenységet konzolos környezetben.
 
 ### 4. [Interaktív tanulási terv generátor webalkalmazás MCP-vel](./docs-mcp/README.md)
 
-Ez az esettanulmány bemutatja, hogyan lehet Chainlit és a Model Context Protocol (MCP) használatával interaktív webalkalmazást építeni, amely személyre szabott tanulási terveket generál bármilyen témához. A felhasználók megadhatnak egy témakört (például "AI-900 tanúsítás") és egy tanulási időszakot (pl. 8 hét), és az alkalmazás heti bontásban ajánlja a tartalmakat. A Chainlit beszélgetés-alapú csevegőfelületet biztosít, így az élmény vonzó és alkalmazkodó.
+Ez az esettanulmány bemutatja, hogyan lehet interaktív webalkalmazást építeni a Chainlit és a Model Context Protocol (MCP) használatával személyre szabott tanulási tervek generálására bármilyen témához. A felhasználók megadhatnak egy tantárgyat (például „AI-900 tanúsítvány”) és tanulási időtartamot (például 8 hét), és az app heti bontásban ajánlja a tartalmat. A Chainlit beszélgetős chat felületet biztosít, amely élménnyé és igazodóvá teszi a használatot.
 
-- Chainlit által működtetett beszélgetésalapú webalkalmazás
-- Felhasználói által vezérelt témamegjelölés és időtartam
-- Heti bontású tartalomajánlások MCP segítségével
-- Valós idejű, adaptív válaszok egy csevegőfelületen
+- Beszélgetős webalkalmazás Chainlit-tel
+- Felhasználó vezérelte promptok téma és időtartam szerint
+- Heti bontású tartalom ajánlások MCP segítségével
+- Valós idejű, adaptív válaszok chat felületen
 
-A projekt szemlélteti, hogyan lehet ötvözni a beszélgetéses AI-t és az MCP-t dinamikus, felhasználó-központú oktatási eszközök létrehozásához modern webkörnyezetben.
+A projekt illusztrálja, hogyan kombinálható a beszélgető MI és az MCP dinamikus, felhasználó-központú oktatási eszközök létrehozásához modern webkörnyezetben.
 
-### 5. [Dokumentációk szerkesztőben MCP szerverrel VS Code-ban](./docs-mcp/README.md)
+### 5. [Szerkesztőben lévő dokumentációk MCP szerverrel VS Code-ban](./docs-mcp/README.md)
 
-Ez az esettanulmány bemutatja, hogyan hozhatja be a Microsoft Learn Dokumentációkat közvetlenül a VS Code környezetébe az MCP szerver segítségével – semmi több böngészőfül váltás! Megtapasztalhatja, hogyan lehet:
+Ez az esettanulmány megmutatja, hogyan hozhatja be a Microsoft Learn Docs dokumentációt közvetlenül a VS Code környezetbe MCP szerver használatával – nincs több böngészőfül váltás! Bemutatja, hogyan:
 
-- Azonnal keresni és olvasni dokumentációkat VS Code-ban az MCP panel vagy parancspaletta segítségével
-- Hivatkozásokat beszúrni közvetlenül README vagy tanfolyam markdown fájlokba
-- Használni a GitHub Copilot-ot és MCP-t együtt zökkenőmentes, AI-alapú dokumentációs és kód munkafolyamatokhoz
-- Valós idejű visszacsatolással validálni és fejleszteni dokumentációját, Microsoft-hitelesített pontossággal
-- Integrálni az MCP-t GitHub munkafolyamatokkal a folyamatos dokumentáció validáció érdekében
+- Azonnal keressen és olvasson dokumentációkat a VS Code-on belül az MCP panel vagy parancskereső segítségével
+- Hivatkozzon dokumentációkra és illesszen be linkeket közvetlenül README vagy kurzus markdown fájlokba
+- Használja együtt a GitHub Copilot-ot és az MCP-t zökkenőmentes, MI-vezérelt dokumentációs és kód munkafolyamatokhoz
+- Érvényesítse és javítsa dokumentációit valós idejű visszajelzésekkel és Microsoft által hitelesített pontossággal
+- Integrálja az MCP-t GitHub munkafolyamatokkal folyamatos dokumentációellenőrzéshez
 
 A megvalósítás tartalmazza:
 
-- Példát `.vscode/mcp.json` konfigurációra az egyszerű beállításhoz
-- Képernyőképes bemutatót a szerkesztőbeli élményről
-- Tippeket a Copilot és MCP együttes használatához a maximális termelékenység érdekében
+- Példa `.vscode/mcp.json` konfiguráció könnyű beállításhoz
+- Képernyőképes útmutatók az in-editor élményről
+- Tippek a Copilot és MCP kombinálásához a maximális termelékenység érdekében
 
-Ez a forgatókönyv ideális tanfolyamkészítőknek, dokumentáció íróknak és fejlesztőknek, akik a szerkesztőjükben szeretnének maradni, miközben dokumentációval, Copilot-tal és validációs eszközökkel dolgoznak – mindezt MCP támogatással.
+Ez a forgatókönyv ideális tananyag szerzők, dokumentáció írók és fejlesztők számára, akik a szerkesztőjükben akarják tartani a fókuszt, miközben dokumentációval, Copilot-tal és érvényesítő eszközökkel dolgoznak – mindezt az MCP hajtja.
 
 ### 6. [APIM MCP szerver létrehozása](./apimsample.md)
 
-Ez az esettanulmány lépésről lépésre bemutatja, hogyan hozhat létre MCP szervert Azure API Menedzsment (APIM) használatával. Lefedi:
+Ez az esettanulmány lépésről lépésre bemutatja, hogyan hozhat létre MCP szervert az Azure API Management (APIM) segítségével. Témák:
 
-- MCP szerver beállítása Azure API Menedzsmentben
-- API műveletek MCP eszközökként történő megjelenítése
-- Szabályok konfigurálása sebességkorlátozásra és biztonságra
+- MCP szerver beállítása az Azure API Management-ben
+- API műveletek MCP eszközökként történő közzététele
+- Szabályok konfigurálása a forgalomkorlátozásra és biztonságra
 - MCP szerver tesztelése Visual Studio Code és GitHub Copilot segítségével
 
-Ez a példa bemutatja, hogyan használhatja ki az Azure képességeit egy robusztus MCP szerver létrehozásához, amely különféle alkalmazásokban használható az AI rendszerek vállalati API-kkal történő integrációjának fejlesztésére.
+Ez a példa bemutatja, hogyan használja ki az Azure képességeit egy robusztus MCP szerver létrehozásához, amely különféle alkalmazásokban használható az MI rendszerek és vállalati API-k integrációjának erősítésére.
 
-### 7. [GitHub MCP Registry — Ügynöki integráció gyorsítása](https://github.com/mcp)
+### 7. [GitHub MCP Registry – Az ügynöki integráció gyorsítása](https://github.com/mcp)
 
-Ez az esettanulmány azt vizsgálja, hogyan kezeli a GitHub 2025 szeptemberében indított MCP Registry-je az AI ökoszisztéma egyik kritikus kihívását: a Model Context Protocol (MCP) szerverek széttöredezett felfedezését és telepítését.
+Ez az esettanulmány azt elemzi, hogy a GitHub 2025 szeptemberében indított MCP Registry-je hogyan oldja meg az MI ökoszisztéma egyik kritikus kihívását: a Model Context Protocol (MCP) szerverek darabos felfedezését és telepítését.
 
 #### Áttekintés
-Az **MCP Registry** megoldja a különböző tárhelyeken és regiszterekben szétszórt MCP szerverek használatával járó nehézségeket, amelyek korábban lassúvá és hibaforrássá tették az integrációt. Ezek a szerverek lehetővé teszik, hogy AI ügynökök külső rendszerekkel (API-k, adatbázisok, dokumentációs források) lépjenek kapcsolatba.
+A **MCP Registry** megszünteti a szétszórt MCP szerverek növekvő problémáját a repozitóriumokban és regisztrációkban, amelyek korábban lassúvá és hibára hajlamossá tették az integrációt. Ezek a szerverek lehetővé teszik, hogy az MI ügynökök API-kkal, adatbázisokkal és dokumentációs forrásokkal lépjenek kapcsolatba.
 
 #### Problémafelvetés
-Az ügynöki munkafolyamatokat építő fejlesztők számos kihívással szembesültek:
-- **Alacsony felfedezhetőség** különböző platformokon átívelően
-- **Ismétlődő kérdések** elterjedve fórumokon és dokumentációkban
+Az ügynöki munkafolyamatokat építő fejlesztők több kihívással szembesültek:
+- **Gyenge felfedezhetőség** az MCP szerverek esetében különböző platformokon
+- **Ismétlődő beállítási kérdések** szétaprózva fórumokon és dokumentációkban
 - **Biztonsági kockázatok** nem ellenőrzött és nem megbízható forrásokból
-- **Szabványosítás hiánya** a szerverek minőségében és kompatibilitásában
+- **Standardizáció hiánya** a szerverek minősége és kompatibilitása tekintetében
 
-#### Megoldás architektúra
-A GitHub MCP Registry központosítja a megbízható MCP szervereket kulcsfontosságú jellemzőkkel:
-- **Egykattintásos telepítés** VS Code integráción keresztül a gördülékeny beállításhoz
-- **Jel-zaj arány szerinti rendezés** csillagok, aktivitás és közösségi validáció alapján
-- **Közvetlen integráció** a GitHub Copilot és más MCP-kompatibilis eszközökkel
-- **Nyílt hozzájárulási modell**, amely lehetővé teszi a közösségi és vállalati partnerek számára a részvételt
+#### Megoldás architektúrája
+A GitHub MCP Registry központosítja a megbízható MCP szervereket kulcsfunkciókkal:
+- **Egykattintásos telepítés** integráció VS Code-on keresztül az egyszerű beállításhoz
+- **Zajszűrés jel alapján** csillagok, aktivitás és közösségi érvényesítés szerint
+- **Közvetlen integráció** a GitHub Copilot-tal és más MCP-kompatibilis eszközökkel
+- **Nyitott hozzájárulási modell**, amely lehetővé teszi a közösség és vállalati partnerek részvételét
 
 #### Üzleti hatás
-A regiszter mérhető javulásokat hozott:
-- **Gyorsabb belépés** a fejlesztőknek Microsoft Learn MCP szerverével, amely közvetlenül továbbítja a hivatalos dokumentációt az ügynököknek
-- **Jobb termelékenység** specializált szerverekkel, például a `github-mcp-server`-rel, amely természetes nyelvű GitHub automatizációt tesz lehetővé (PR létrehozás, CI újrafuttatás, kódfelmérés)
-- **Erősebb ökoszisztéma bizalom** gondosan válogatott listákkal és átlátható konfigurációs szabványokkal
+A regisztráció mérhető javulásokat hozott:
+- **Gyorsabb belépés** fejlesztők számára olyan eszközök használatával, mint a Microsoft Learn MCP Server, amely hivatalos dokumentációt streamel közvetlenül az ügynökökbe
+- **Javított termelékenység** speciális szerverekkel, például a `github-mcp-server`-rel, mely természetes nyelvű GitHub automatizációt tesz lehetővé (PR létrehozás, CI újrafuttatás, kódvizsgálat)
+- **Erősebb ökoszisztéma bizalom** kurált listák és átlátható konfigurációs szabványok révén
 
 #### Stratégiai érték
-Az ügynök-életciklus menedzsmentjére és reprodukálható munkafolyamatokra szakosodott gyakorlatiasok számára az MCP Registry:
-
+Az ügynöki életciklus kezeléssel és reprodukálható munkafolyamatokkal foglalkozó szakemberek számára az MCP Registry a következőket kínálja:
 - **Moduláris ügynök telepítési képességek** szabványosított komponensekkel
-- **Regiszter által támogatott értékelési csővezetékek** következetes tesztelés és validáció érdekében
-- **Eszközök közötti interoperabilitás** a különböző AI platformok zökkenőmentes integrációjához
+- **Regisztráció-alapú értékelési csővezetékek** az egységes teszteléshez és validáláshoz
+- **Kereszt-eszköz interoperabilitás** zökkenőmentes integráció különböző MI platformok között
 
-Ez az esettanulmány azt mutatja, hogy az MCP Registry nem csupán egy katalógus – alapvető platform a skálázható, valós modellekkel való integrációhoz és ügynöki rendszerek telepítéséhez.
+Ez az esettanulmány rámutat, hogy az MCP Registry nem csupán egy könyvtár – hanem egy alapvető platform a skálázható, valós modelintegráció és ügynöki rendszertelepítés számára.
 
-## Összegzés
+### 8. [Közösségi hálózatokra való publikálás ügynökből](./publora-social-publishing.md)
 
-Ezek a hét átfogó esettanulmány kiemelik a Model Context Protocol kivételes sokoldalúságát és gyakorlati alkalmazásait különféle valós helyzetekben. Az összetett többügynökös utazástervező rendszerektől és vállalati API menedzsmenttől a dokumentációs munkafolyamatok egyszerűsítéséig és a forradalmi GitHub MCP Registry-ig ezek a példák bemutatják, hogyan biztosít a MCP egy szabványosított, skálázható megoldást az AI rendszerek és a szükséges eszközök, adatok, szolgáltatások összekapcsolásához, amelyekkel kiemelkedő értéket nyújtanak.
+Ez az esettanulmány bemutat egy **írásra képes távoli MCP szervert** — olyat, amelynek eszközei visszafordíthatatlan műveleteket hajtanak végre a felhasználó nevében — a közösségi publikálás példáján keresztül. Egy ügynök megír egy posztot, egy ember jóváhagyja, és a szerver ütemezi azt hálózatokon keresztül.
 
-Az esettanulmányok több szempontból lefedik a MCP megvalósítását:
-- **Vállalati integráció**: Azure API Menedzsment és Azure DevOps automatizáció
-- **Többügynökös összehangolás**: Utazástervezés koordinált AI ügynökökkel
+Az érdekes rész a tervezési korlátokban rejlik, amelyeket a publikálás szab meg, és amelyek bármely író szerverre érvényesek az olvasó helyett:
+
+- **Nyílt felfedezés, hitelesített végrehajtás** — `tools/list` hitelesítő adatok nélkül válaszol, így a regisztrációk és kliensek tudják introspektálni, míg minden `tools/call` tokenhez kötött és különben `401` válasszal és `WWW-Authenticate` fejlécet ad vissza
+- **OAuth regisztráció out-of-band lépés nélkül** — dinamikus kliens regisztráció ma, a Client ID Metaadat dokumentumokkal, ahogy a `2026-07-28` specifikáció irányt mutat
+- **Eszköz annotációk** (`readOnlyHint`, `destructiveHint`, `idempotentHint`), amelyeket a kliensek arra használnak, hogy eldöntsék, mit erősítsenek meg — inkább utalások, mint kötelező érvényűek, és amit a csatlakozó könyvtárak mostanában várnak el áttekintéskor
+- **Nem kitalálható azonosítók**, így egy kitalált érték hangos hibát okoz ahelyett, hogy egy látszólag valószerű értéken járna el
+- **Idempotencia kulcsok a poszt létrehozó eszközökön**, hogy az ügynök futtatásának újrapróbálása ne legyen duplikált közzététel
+- **Nullművelet célpont eszköz sémában** amely végigjárja a teljes írási utat és semmit sem tesz közzé, a felülvizsgálók és CI számára
+
+A fejezet egy rövid ellenőrzőlistával zárul, amelyet alkalmazhat egy saját építésű szerverre.
+
+## Összefoglalás
+
+Ezek a nyolc átfogó esettanulmány bizonyítják a Model Context Protocol figyelemre méltó sokoldalúságát és gyakorlati alkalmazásait különféle valós forgatókönyvekben. Az összetett többügynökös utazástervező rendszerektől és vállalati API menedzsmenttől a egyszerűsített dokumentációs munkafolyamatokig és a forradalmi GitHub MCP Registry-ig ezek a példák megmutatják, hogy az MCP szabványosított, skálázható módot biztosít az MI rendszerek összekapcsolására azokkal az eszközökkel, adatokkal és szolgáltatásokkal, amelyek kivételes értéket nyújtanak.
+
+Az esettanulmányok számos MCP implementációs dimenziót lefednek:
+- **Vállalati integráció**: Azure API Management és Azure DevOps automatizáció
+- **Többügynökös összehangolás**: Utazástervezés összehangolt MI ügynökökkel
 - **Fejlesztői termelékenység**: VS Code integráció és valós idejű dokumentáció-hozzáférés
-- **Ökoszisztéma fejlesztés**: GitHub MCP Registry mint alapvető platform
-- **Oktatási alkalmazások**: Interaktív tanulási terv generátorok és beszélgetésalapú felületek
+- **Ökoszisztéma fejlődés**: GitHub MCP Registry mint alapvető platform
+- **Oktatási alkalmazások**: Interaktív tanulási terv generátorok és beszélgetős felületek
 
-Ezeknek a megvalósításoknak a tanulmányozásával kardinális ismereteket szerezhet:
-- **Architekturális mintákat** különböző méretekhez és használati esetekhez
-- **Megvalósítási stratégiákat**, amelyek egyensúlyt teremtenek a funkcionalitás és fenntarthatóság között
-- **Biztonsági és skálázhatósági** szempontokat éles környezetben
-- **Legjobb gyakorlatokat** MCP szerver fejlesztés és kliens integráció terén
-- **Ökoszisztéma szemléletet** összekapcsolt AI-megoldások építéséhez
+Ezeknek az implementációknak a tanulmányozásával kulcsfontosságú betekintést nyer:
+- **Architekturális minták** különböző méretekhez és használati esetekhez
+- **Megvalósítási stratégiák**, amelyek egyensúlyozzák a funkcionalitást és fenntarthatóságot
+- **Biztonsági és skálázhatósági** szempontok a termelési környezetekhez
+- **Legjobb gyakorlatok** az MCP szerver fejlesztésében és kliens integrációban
+- **Ökoszisztéma szemlélet** összekapcsolt MI-megoldások építéséhez
 
-Ezek a példák együttesen bizonyítják, hogy a MCP nem csupán elméleti keretrendszer, hanem egy kiforrott, gyártásra kész protokoll, amely gyakorlati megoldásokat tesz lehetővé összetett üzleti kihívásokra. Legyen szó egyszerű automatizációs eszközökről vagy kifinomult többügynökös rendszerekről, a bemutatott minták és megközelítések szilárd alapot biztosítanak saját MCP projektjeihez.
+Ezek a példák együttesen bizonyítják, hogy az MCP nem pusztán elméleti keretrendszer, hanem érett, termelésre kész protokoll, amely gyakorlati megoldásokat tesz lehetővé összetett üzleti kihívásokra. Akár egyszerű automatizációs eszközöket, akár kifinomult többügynökös rendszereket épít, az itt bemutatott minták és megközelítések szilárd alapot biztosítanak saját MCP projektjeihez.
 
 ## További források
 
-- [Azure AI Travel Agents GitHub tároló](https://github.com/Azure-Samples/azure-ai-travel-agents)
+- [Azure AI Travel Agents GitHub tárhely](https://github.com/Azure-Samples/azure-ai-travel-agents)
 - [Azure DevOps MCP eszköz](https://github.com/microsoft/azure-devops-mcp)
 - [Playwright MCP eszköz](https://github.com/microsoft/playwright-mcp)
 - [Microsoft Docs MCP szerver](https://github.com/MicrosoftDocs/mcp)
-- [GitHub MCP Registry — Ügynöki integráció gyorsítása](https://github.com/mcp)
-- [MCP közösségi példák](https://github.com/microsoft/mcp)
+- [GitHub MCP Registry – Az ügynöki integráció gyorsítása](https://github.com/mcp)
+- [MCP Közösségi példák](https://github.com/microsoft/mcp)
 
-## Mi következik?
+## Mi következik
 
 - Előző: [8. modul: Legjobb gyakorlatok](../08-BestPractices/README.md)
-- Következő: [10. modul: AI munkafolyamatok egyszerűsítése: MCP szerver építése AI eszköztárral](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)
+- Következő: [10. modul: AI munkafolyamatok egyszerűsítése: MCP szerver építése AI eszközkészlettel](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Nyilatkozat**:
-Ezt a dokumentumot az AI fordító szolgáltatásával, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével fordítottuk le. Bár igyekszünk a pontosságra, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti, anyanyelvi dokumentum tekinthető hiteles forrásnak. Kritikus információk esetén profi emberi fordítást javaslunk. Nem vállalunk felelősséget a fordítás használatából eredő félreértésekért vagy téves értelmezésekért.
+**Jogi nyilatkozat**:
+Ez a dokumentum az AI fordítási szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár az pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Fontos információk esetén professzionális emberi fordítást javasolunk. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely ebből a fordításból ered.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

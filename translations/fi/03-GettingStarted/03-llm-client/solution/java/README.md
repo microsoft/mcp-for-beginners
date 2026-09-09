@@ -1,68 +1,66 @@
-# Calculator LLM Client
+# Laskin LLM -asiakas
 
-Java-sovellus, joka näyttää, miten LangChain4j:ta käytetään yhdistämään MCP (Model Context Protocol) -laskinpalveluun GitHub Models -integraation kanssa.
+Java-sovellus, joka havainnollistaa, miten käyttää LangChain4j:ta yhdistääkseen MCP (Model Context Protocol) -laskinpalveluun MiniMax OpenAI-yhteensopivan API:n kautta.
 
-## Vaatimukset
+## Ennen aloittamista
 
 - Java 21 tai uudempi
-- Maven 3.6+ (tai käytä mukana tulevaa Maven-wrapperia)
-- GitHub-tili, jolla on pääsy GitHub Models -palveluun
+- Maven 3.6+ (tai käytä mukana toimitettua Maven-wrapperia)
+- MiniMax API-avain
 - MCP-laskinpalvelu käynnissä osoitteessa `http://localhost:8080`
 
-## GitHub-tokenin hankkiminen
+## API-avaimen hankkiminen
 
-Tämä sovellus käyttää GitHub Models -palvelua, joka vaatii GitHubin henkilökohtaisen käyttöoikeustunnuksen. Noudata näitä ohjeita saadaksesi tokenin:
+Tämä sovellus käyttää MiniMax OpenAI-yhteensopivaa API:a. Noudata näitä ohjeita saadaksesi avaimen ja päätepisteen:
 
-### 1. Siirry GitHub Models -palveluun
-1. Mene osoitteeseen [GitHub Models](https://github.com/marketplace/models)
-2. Kirjaudu sisään GitHub-tililläsi
-3. Pyydä pääsy GitHub Models -palveluun, jos et ole sitä vielä tehnyt
+### 1. Valitse päätepiste
+1. Käytä `https://api.minimax.io/v1` globaalin päätepisteen kohdalla
+2. Käytä `https://api.minimaxi.com/v1` Kiinan päätepisteelle
 
-### 2. Luo henkilökohtainen käyttöoikeustunnus
-1. Mene osoitteeseen [GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)](https://github.com/settings/tokens)
-2. Klikkaa "Generate new token" → "Generate new token (classic)"
-3. Anna tokenillesi kuvaava nimi (esim. "MCP Calculator Client")
-4. Aseta vanhenemisaika tarpeen mukaan
-5. Valitse seuraavat oikeudet:
-   - `repo` (jos käytät yksityisiä repositorioita)
-   - `user:email`
-6. Klikkaa "Generate token"
-7. **Tärkeää**: Kopioi token heti – et näe sitä enää uudelleen!
+### 2. Luo API-avain
+1. Luo MiniMax API-avain MiniMax-tililtäsi
+2. Säilytä avain turvallisessa paikassa
 
-### 3. Aseta ympäristömuuttuja
+### 3. Aseta ympäristömuuttujat
 
 #### Windowsissa (Komentokehote):
 ```cmd
-set GITHUB_TOKEN=your_github_token_here
+set OPENAI_API_KEY=your_minimax_api_key_here
+set OPENAI_BASE_URL=https://api.minimax.io/v1
+set MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
 #### Windowsissa (PowerShell):
 ```powershell
-$env:GITHUB_TOKEN="your_github_token_here"
+$env:OPENAI_API_KEY="your_minimax_api_key_here"
+$env:OPENAI_BASE_URL="https://api.minimax.io/v1"
+$env:MINIMAX_MODEL_ID="MiniMax-M3"
 ```
 
 #### macOS/Linux:
 ```bash
-export GITHUB_TOKEN=your_github_token_here
+export OPENAI_API_KEY=your_minimax_api_key_here
+export OPENAI_BASE_URL=https://api.minimax.io/v1
+export MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
 ## Asennus ja käyttöönotto
 
-1. **Kloonaa tai siirry projektin kansioon**
+1. **Kloonaa tai siirry projektihakemistoon**
 
 2. **Asenna riippuvuudet**:
    ```cmd
    mvnw clean install
    ```
-   Tai jos Maven on asennettuna globaalisti:
+   Tai jos Maven on asennettu globaalisti:
    ```cmd
    mvn clean install
    ```
 
-3. **Aseta ympäristömuuttuja** (katso "GitHub-tokenin hankkiminen" yllä)
+3. **Aseta ympäristömuuttujat** (katso yllä oleva "API-avaimen hankkiminen" -osio)
 
-4. **Käynnistä MCP Calculator Service**:
-   Varmista, että luku 1:n MCP-laskinpalvelu on käynnissä osoitteessa `http://localhost:8080/sse`. Palvelun tulee olla käynnissä ennen asiakkaan käynnistämistä.
+4. **Käynnistä MCP-laskinpalvelu**:
+   Varmista, että luvun 1 MCP-laskinpalvelu on käynnissä osoitteessa `http://localhost:8080/sse`. Tämä tulee olla käynnissä ennen asiakkaan käynnistämistä.
 
 ## Sovelluksen käynnistäminen
 
@@ -73,15 +71,15 @@ java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 
 ## Mitä sovellus tekee
 
-Sovellus näyttää kolme pääasiallista vuorovaikutusta laskinpalvelun kanssa:
+Sovellus havainnollistaa kolme pääasiallista vuorovaikutusta laskinpalvelun kanssa:
 
-1. **Yhteenlasku**: Laskee luvut 24.5 ja 17.3 yhteen
+1. **Lisäys**: Laskee lukujen 24.5 ja 17.3 summan
 2. **Neliöjuuri**: Laskee luvun 144 neliöjuuren
 3. **Ohje**: Näyttää käytettävissä olevat laskintoiminnot
 
 ## Odotettu tulos
 
-Onnistuneen suorituksen jälkeen näet tulosteen, joka näyttää suunnilleen tältä:
+Jos suoritus onnistuu, näet samankaltaisen tuloksen kuin:
 
 ```
 The sum of 24.5 and 17.3 is 41.8.
@@ -89,29 +87,29 @@ The square root of 144 is 12.
 The calculator service provides the following functions: add, subtract, multiply, divide, sqrt, power...
 ```
 
-## Vianetsintä
+## Vianmääritys
 
 ### Yleisiä ongelmia
 
-1. **"GITHUB_TOKEN environment variable not set"**
-   - Varmista, että olet asettanut `GITHUB_TOKEN`-ympäristömuuttujan
-   - Käynnistä komentokehote/terminaali uudelleen muuttujan asettamisen jälkeen
+1. **"OPENAI_API_KEY ympäristömuuttujaa ei ole asetettu"**
+   - Varmista, että olet asettanut `OPENAI_API_KEY` ympäristömuuttujan
+   - Käynnistä komentorivisi tai terminaalisi uudelleen muuttujan asettamisen jälkeen
 
-2. **"Connection refused to localhost:8080"**
+2. **"Yhteys localhost:8080 estetty"**
    - Varmista, että MCP-laskinpalvelu on käynnissä portissa 8080
-   - Tarkista, ettei jokin muu palvelu käytä porttia 8080
+   - Tarkista, käyttääkö jokin toinen palvelu porttia 8080
 
-3. **"Authentication failed"**
-   - Tarkista, että GitHub-tokenisi on voimassa ja sillä on oikeat oikeudet
-   - Varmista, että sinulla on pääsy GitHub Models -palveluun
+3. **"Todennus epäonnistui"**
+   - Tarkista, että API-avaimesi on voimassa
+   - Varmista, että `OPENAI_BASE_URL` vastaa käyttämääsi päätepistettä
 
 4. **Maven-käännösvirheet**
    - Varmista, että käytössäsi on Java 21 tai uudempi: `java -version`
-   - Kokeile puhdistaa käännös: `mvnw clean`
+   - Yritä puhdistaa käännös: `mvnw clean`
 
-### Virheenkorjaus
+### Debuggaus
 
-Ota debug-lokit käyttöön lisäämällä seuraava JVM-argumentti sovelluksen käynnistyksen yhteydessä:
+Ota debug-lokit käyttöön lisäämällä seuraava JVM-parametri käynnistyksen yhteydessä:
 ```cmd
 java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
@@ -119,22 +117,26 @@ java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0
 ## Konfiguraatio
 
 Sovellus on konfiguroitu seuraavasti:
-- Käyttää GitHub Models -palvelua mallilla `gpt-4.1-nano`
-- Yhdistää MCP-palveluun osoitteessa `http://localhost:8080/sse`
-- Käyttää 60 sekunnin aikakatkaisua pyyntöihin
-- Ottaa käyttöön pyyntöjen ja vastausten lokituksen virheenkorjausta varten
+- Käyttämään oletuksena MiniMax-M3:ta, tai MiniMax-M2.7:ää, kun `MINIMAX_MODEL_ID` on asetettu
+- Yhdistämään `OPENAI_BASE_URL`-osoitteeseen kun se on asetettu; muuten käyttää `https://api.minimaxi.com/v1` kun `MINIMAX_REGION=cn_zh`, tai oletuksena `https://api.minimax.io/v1`
+- Yhdistämään MCP-palveluun osoitteessa `http://localhost:8080/sse`
+- Käyttämään 60 sekunnin aikakatkaisua pyyntöihin
 
 ## Riippuvuudet
 
 Tämän projektin keskeiset riippuvuudet:
-- **LangChain4j**: AI-integraatioon ja työkalujen hallintaan
+- **LangChain4j**: AI-integraatioon ja työkaluhallintaan
 - **LangChain4j MCP**: Model Context Protocol -tuen tarjoamiseen
-- **LangChain4j GitHub Models**: GitHub Models -integraatioon
+- **LangChain4j OpenAI official**: MiniMax OpenAI-yhteensopivan API:n integrointiin
 - **Spring Boot**: Sovelluskehykseen ja riippuvuuksien injektointiin
 
 ## Lisenssi
 
-Tämä projekti on lisensoitu Apache License 2.0 -lisenssillä – katso lisätiedot [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) -tiedostosta.
+Tämä projekti on lisensoitu Apache License 2.0 -lisenssillä - katso lisätiedot tiedostosta [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE).
 
-**Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattikäännöksissä saattaa esiintyä virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäiskielellä tulee pitää virallisena lähteenä. Tärkeissä tiedoissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Vastuuvapauslauseke**:
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, otathan huomioon, että automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäiskielellä on virallinen lähde. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

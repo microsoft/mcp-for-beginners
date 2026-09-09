@@ -1,68 +1,66 @@
-# Calculator LLM Client
+# Клијент за Калкулатор LLM
 
-Java апликација која показује како користити LangChain4j за повезивање са MCP (Model Context Protocol) сервисом калкулатора уз интеграцију GitHub Models.
+Јава апликација која демонстрира како користити LangChain4j за повезивање са MCP (Model Context Protocol) сервисом за калкулатор преко MiniMax OpenAI-са компатибилног API-ја.
 
 ## Захтеви
 
-- Java 21 или новија верзија
+- Јава 21 или новији
 - Maven 3.6+ (или користите укључени Maven wrapper)
-- GitHub налог са приступом GitHub Models
-- MCP сервис калкулатора који ради на `http://localhost:8080`
+- MiniMax API кључ
+- MCP сервис за калкулатор који ради на `http://localhost:8080`
 
-## Како добити GitHub Token
+## Прибављање API кључа
 
-Ова апликација користи GitHub Models који захтева GitHub personal access token. Пратите ове кораке да бисте добили свој token:
+Ова апликација користи MiniMax OpenAI-са компатибилни API. Пратите ове кораке да добијете свој кључ и крајњу тачку:
 
-### 1. Приступите GitHub Models
-1. Идите на [GitHub Models](https://github.com/marketplace/models)
-2. Пријавите се са својим GitHub налогом
-3. Затражите приступ GitHub Models ако га већ немате
+### 1. Изаберите крајњу тачку
+1. Користите `https://api.minimax.io/v1` за глобалну крајњу тачку
+2. Користите `https://api.minimaxi.com/v1` за крајњу тачку у Кини
 
-### 2. Креирајте Personal Access Token
-1. Идите на [GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)](https://github.com/settings/tokens)
-2. Кликните на "Generate new token" → "Generate new token (classic)"
-3. Дајте свом token-у описно име (нпр. "MCP Calculator Client")
-4. Подесите рок важења по потреби
-5. Изаберите следеће опсеге:
-   - `repo` (ако приступате приватним репозиторијумима)
-   - `user:email`
-6. Кликните на "Generate token"
-7. **Важно**: Одмах копирајте token - нећете га поново видети!
+### 2. Направите API кључ
+1. Направите MiniMax API кључ преко свог MiniMax налога
+2. Чувајте кључ на сигурном месту
 
-### 3. Подесите Environment Variable
+### 3. Поставите променљиве окружења
 
 #### На Windows (Command Prompt):
 ```cmd
-set GITHUB_TOKEN=your_github_token_here
+set OPENAI_API_KEY=your_minimax_api_key_here
+set OPENAI_BASE_URL=https://api.minimax.io/v1
+set MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
 #### На Windows (PowerShell):
 ```powershell
-$env:GITHUB_TOKEN="your_github_token_here"
+$env:OPENAI_API_KEY="your_minimax_api_key_here"
+$env:OPENAI_BASE_URL="https://api.minimax.io/v1"
+$env:MINIMAX_MODEL_ID="MiniMax-M3"
 ```
 
 #### На macOS/Linux:
 ```bash
-export GITHUB_TOKEN=your_github_token_here
+export OPENAI_API_KEY=your_minimax_api_key_here
+export OPENAI_BASE_URL=https://api.minimax.io/v1
+export MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
-## Подешавање и инсталација
+## Подешавање и Инсталација
 
-1. **Клонирајте или идите у директоријум пројекта**
+1. **Клонирајте или се преусмерите у директоријум пројекта**
 
 2. **Инсталирајте зависности**:
    ```cmd
    mvnw clean install
    ```
-   Или ако имате Maven инсталиран глобално:
+   Или ако имате глобално инсталиран Maven:
    ```cmd
    mvn clean install
    ```
 
-3. **Подесите environment variable** (погледајте одељак "Како добити GitHub Token" изнад)
+3. **Поставите променљиве окружења** (погледајте одељак "Прибављање API кључа" изнад)
 
-4. **Покрените MCP Calculator Service**:
-   Уверите се да је MCP сервис калкулатора из поглавља 1 покренут на `http://localhost:8080/sse`. Ово мора бити покренуто пре него што стартујете клијента.
+4. **Покрените MCP сервис Калкулатора**:
+   Проверите да ли MCP сервис калкулатора из поглавља 1 ради на `http://localhost:8080/sse`. Ово мора бити покренуто пре него што покренете клијент.
 
 ## Покретање апликације
 
@@ -79,9 +77,9 @@ java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 2. **Корен квадратни**: Израчунава корен квадратни од 144
 3. **Помоћ**: Приказује доступне функције калкулатора
 
-## Очекујени излаз
+## Очекујани резултат
 
-Када апликација успешно ради, требало би да видите излаз сличан овоме:
+Када ради успешно, требало би да видите излаз сличан овоме:
 
 ```
 The sum of 24.5 and 17.3 is 41.8.
@@ -93,25 +91,25 @@ The calculator service provides the following functions: add, subtract, multiply
 
 ### Чести проблеми
 
-1. **"GITHUB_TOKEN environment variable not set"**
-   - Проверите да ли сте поставили `GITHUB_TOKEN` environment variable
+1. **"OPENAI_API_KEY environment variable is not set"**
+   - Уверите се да сте поставили променљиву окружења `OPENAI_API_KEY`
    - Поново покрените терминал/command prompt након постављања променљиве
 
 2. **"Connection refused to localhost:8080"**
-   - Уверите се да MCP сервис калкулатора ради на порту 8080
+   - Проверите да MCP сервис калкулатора ради на порту 8080
    - Проверите да ли неки други сервис користи порт 8080
 
 3. **"Authentication failed"**
-   - Проверите да ли је ваш GitHub token важећи и да има одговарајуће дозволе
-   - Проверите да ли имате приступ GitHub Models
+   - Проверите да ли је ваш API кључ важећи
+   - Проверите да ли `OPENAI_BASE_URL` одговара крајњој тачки коју сте желели да користите
 
-4. **Грешке при Maven build-у**
-   - Уверите се да користите Java 21 или новију верзију: `java -version`
-   - Покушајте да очистите build: `mvnw clean`
+4. **Грешке у Maven изградњи**
+   - Уверите се да користите Јаву 21 или новију: `java -version`
+   - Покушајте очистити изградњу: `mvnw clean`
 
-### Дебаговање
+### Отклоните грешке са дебаговањем
 
-Да бисте омогућили debug логовање, додајте следећи JVM аргумент приликом покретања:
+За укључивање дебаг логовања, додајте следећи JVM аргумент приликом покретања:
 ```cmd
 java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
@@ -119,22 +117,26 @@ java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0
 ## Конфигурација
 
 Апликација је конфигурисана да:
-- Користи GitHub Models са моделом `gpt-4.1-nano`
+- По дефаулту користи MiniMax-M3, или MiniMax-M2.7 када је подешен `MINIMAX_MODEL_ID`
+- Повезује се на `OPENAI_BASE_URL` ако је подешен; у супротном користи `https://api.minimaxi.com/v1` када је `MINIMAX_REGION=cn_zh`, или `https://api.minimax.io/v1` по дефаулту
 - Повезује се на MCP сервис на `http://localhost:8080/sse`
-- Користи timeout од 60 секунди за захтеве
-- Омогућава логовање захтева/одговора ради дебаговања
+- Користи тајмаут од 60 секунди за захтеве
 
 ## Зависности
 
 Кључне зависности коришћене у овом пројекту:
-- **LangChain4j**: За AI интеграцију и управљање алатима
+- **LangChain4j**: За интеграцију AI и управљање алатима
 - **LangChain4j MCP**: За подршку Model Context Protocol-а
-- **LangChain4j GitHub Models**: За интеграцију GitHub Models
-- **Spring Boot**: За апликациони фрејмворк и dependency injection
+- **LangChain4j OpenAI official**: За интеграцију са MiniMax OpenAI-са компатибилним API-јем
+- **Spring Boot**: За оквир апликације и dependency injection
 
 ## Лиценца
 
 Овај пројекат је лиценциран под Apache License 2.0 - погледајте [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) фајл за детаље.
 
-**Одрицање од одговорности**:  
-Овај документ је преведен коришћењем AI услуге за превођење [Co-op Translator](https://github.com/Azure/co-op-translator). Иако се трудимо да превод буде тачан, молимо вас да имате у виду да аутоматски преводи могу садржати грешке или нетачности. Оригинални документ на његовом изворном језику треба сматрати ауторитетним извором. За критичне информације препоручује се професионални људски превод. Нисмо одговорни за било каква неспоразума или погрешна тумачења која произилазе из коришћења овог превода.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Изјава о одрицању одговорности**:
+Овај документ је преведен коришћењем услуге за аутоматски превод [Co-op Translator](https://github.com/Azure/co-op-translator). Иако тежимо тачности, имајте у виду да аутоматски преводи могу садржати грешке или нетачности. Оригинални документ на његовом изворном језику треба сматрати ауторитативним извором. За критичне информације препоручује се професионални људски превод. Нисмо одговорни за било каква неспоразума или погрешна тумачења која произилазе из коришћења овог превода.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

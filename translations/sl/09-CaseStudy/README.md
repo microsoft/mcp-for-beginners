@@ -1,173 +1,188 @@
-# MCP v praksi: primeri iz resničnega sveta
+# MCP v akciji: Študije primerov iz resničnega sveta
 
-[![MCP v praksi: primeri iz resničnega sveta](../../../translated_images/sl/10.3262cc80b4de5071.webp)](https://youtu.be/IxshWb2Az5w)
+[![MCP v akciji: Študije primerov iz resničnega sveta](../../../translated_images/sl/10.3262cc80b4de5071.webp)](https://youtu.be/IxshWb2Az5w)
 
-_(Kliknite na zgornjo sliko za ogled videa tega lekcija)_
+_(Kliknite na zgornjo sliko za ogled videoposnetka te lekcije)_
 
-Model Context Protocol (MCP) spreminja način, kako aplikacije AI komunicirajo s podatki, orodji in storitvami. Ta razdelek predstavlja primere iz resničnega sveta, ki prikazujejo praktične uporabe MCP v različnih podjetniških scenarijih.
+Protokol konteksta modela (MCP) spreminja način, kako aplikacije AI sodelujejo s podatki, orodji in storitvami. Ta oddelek predstavlja študije primerov iz resničnega sveta, ki prikazujejo praktične uporabe MCP v različnih podjetniških scenarijih.
 
 ## Pregled
 
-Ta razdelek prikazuje konkretne primere implementacij MCP, ki poudarjajo, kako organizacije izkoriščajo ta protokol za reševanje zapletenih poslovnih izzivov. Z analizo teh primerov pridobite vpoglede v vsestranskost, razširljivost in praktične koristi MCP v resničnih primerih.
+Ta oddelek prikazuje konkretne primere implementacij MCP, ki poudarjajo, kako organizacije izkoriščajo ta protokol za reševanje zapletenih poslovnih izzivov. S preučevanjem teh študij primerov boste pridobili vpoglede v vsestranskost, razširljivost in praktične koristi MCP v resničnih situacijah.
 
-## Ključni cilji učenja
+## Glavni učni cilji
 
-Z raziskovanjem teh primerov boste:
+Z raziskovanjem teh študij primerov boste:
 
-- Razumeli, kako je mogoče MCP uporabiti za reševanje specifičnih poslovnih težav
-- Spoznali različne integracijske vzorce in arhitekturne pristope
-- Prepoznali najboljše prakse za implementacijo MCP v podjetniških okoljih
-- Pridobili vpoglede v izzive in rešitve, s katerimi so se srečali pri resničnih implementacijah
-- Prepoznali priložnosti za uporabo podobnih vzorcev v svojih projektih
+- Razumeli, kako lahko MCP uporabimo za reševanje specifičnih poslovnih problemov
+- Spoznali različne vzorce integracije in arhitekturne pristope
+- Prepoznali najboljše prakse za izvajanje MCP v podjetniških okoljih
+- Pridobili vpoglede v izzive in rešitve, s katerimi smo se srečevali v resničnih implementacijah
+- Identificirali priložnosti za uporabo podobnih vzorcev v lastnih projektih
 
-## Predstavljeni primeri
+## Izpostavljene študije primerov
 
-### 1. [Azure AI potovalni agenti – referenčna implementacija](./travelagentsample.md)
+### 1. [Azure AI Travel Agents – Referenčna implementacija](./travelagentsample.md)
 
-Ta primer analizira Microsoftovo celovito referenčno rešitev, ki prikazuje, kako z MCP, Azure OpenAI in Azure AI Search zgraditi večagentno, z AI podprto aplikacijo za načrtovanje potovanj. Projekt prikazuje:
+Ta študija primera preučuje Microsoftovo celovito referenčno rešitev, ki prikazuje, kako zgraditi večagentno, na AI-u temelječo aplikacijo za načrtovanje potovanj z uporabo MCP, Azure OpenAI in Azure AI Search. Projekt prikazuje:
 
-- Orkestracijo več agentov preko MCP
-- Podjetniško integracijo podatkov z Azure AI Search
+- Upravljanje več agentov prek MCP
+- Integracijo podjetniških podatkov z Azure AI Search
 - Varnostno in razširljivo arhitekturo z uporabo Azure storitev
-- Razširljiva orodja z znova uporabnimi MCP komponentami
-- Pogovorno uporabniško izkušnjo, ki jo poganja Azure OpenAI
+- Razširljive pripomočke z večkratno uporabo komponent MCP
+- Pogovorno uporabniško izkušnjo z močjo Azure OpenAI
 
-Arhitekturni in implementacijski detajli nudijo dragocene vpoglede v gradnjo zapletenih večagentnih sistemov z MCP kot koordinacijskim slojem.
+Arhitektura in podrobnosti implementacije nudijo dragocene vpoglede v gradnjo kompleksnih večagentnih sistemov z MCP kot koordinacijsko plastjo.
 
-### 2. [Posodabljanje elementov Azure DevOps iz podatkov YouTube](./UpdateADOItemsFromYT.md)
+### 2. [Posodabljanje elementov Azure DevOps z YouTube podatki](./UpdateADOItemsFromYT.md)
 
-Ta primer prikazuje praktično uporabo MCP za avtomatizacijo procesov delovnega toka. Prikazuje, kako lahko MCP orodja uporabimo za:
+Ta študija primera prikazuje praktično uporabo MCP za avtomatizacijo delovnih potekov. Pokaže, kako se lahko MCP orodja uporabijo za:
 
-- Izvlečenje podatkov s spletnih platform (YouTube)
+- Izvleček podatkov s spletnih platform (YouTube)
 - Posodabljanje delovnih elementov v sistemih Azure DevOps
-- Ustvarjanje ponovljivih avtomatiziranih delovnih tokov
+- Ustvarjanje ponovljivih avtomatiziranih tokov dela
 - Integracijo podatkov med različnimi sistemi
 
-Primer prikazuje, kako lahko tudi relativno preproste implementacije MCP zagotovijo pomembne izboljšave učinkovitosti z avtomatizacijo rutinskih opravil ter izboljšajo skladnost podatkov med sistemi.
+Ta primer kaže, kako tudi razmeroma preproste implementacije MCP lahko prinesejo pomembne izboljšave učinkovitosti z avtomatizacijo rutinskih opravil in izboljšanjem skladnosti podatkov med sistemi.
 
 ### 3. [Pridobivanje dokumentacije v realnem času z MCP](./docs-mcp/README.md)
 
-Ta primer vas vodi skozi povezavo konzolnega Python klienta na MCP strežnik za pridobivanje in beleženje kontekstno zavedne Microsoftove dokumentacije v realnem času. Naučili se boste, kako:
+Ta študija primera vas vodi skozi povezovanje Python konzolnega odjemalca s strežnikom Model Context Protocol (MCP) za pridobivanje in beleženje dokumentacije Microsofta v realnem času, ki je kontekstno ozaveščena. Naučili se boste, kako:
 
-- Povezati se na MCP strežnik z uporabo Python klienta in uradnega MCP SDK
-- Uporabljati pretočne HTTP kliente za učinkovito pridobivanje podatkov v realnem času
-- Klicati orodja za dokumentacijo na strežniku in odzive beležiti neposredno v konzolo
-- Integrirati posodobljeno Microsoftovo dokumentacijo v svojo delovno rutino brez zapuščanja terminala
+- Povezati se s strežnikom MCP z uporabo Python odjemalca in uradnega MCP SDK
+- Uporabiti streaming HTTP odjemalce za učinkovito pridobivanje podatkov v realnem času
+- Klicati orodja za dokumentacijo na strežniku in neposredno beležiti odzive v konzolo
+- Integrirati posodobljeno Microsoftovo dokumentacijo v svoj delovni proces brez zapuščanja terminala
 
-Poglavje vključuje praktično nalogo, minimalen delovni primer kode in povezave do dodatnih virov za poglobljeno učenje. Oglejte si celoten potek in kodo v navedenem poglavju, da razumete, kako MCP lahko spremeni dostop do dokumentacije in produktivnost razvijalcev v konzolnih okoljih.
+Poglavje vključuje praktično nalogo, minimalen delujoč vzorec kode in povezave do dodatnih virov za poglobljeno učenje. Oglejte si celoten pregled in kodo v povezanem poglavju, da boste razumeli, kako lahko MCP preoblikuje dostop do dokumentacije in produktivnost razvijalcev v konzolnih okoljih.
 
 ### 4. [Interaktivna spletna aplikacija za generiranje študijskih načrtov z MCP](./docs-mcp/README.md)
 
-Ta primer prikazuje, kako ustvariti interaktivno spletno aplikacijo s Chainlit in Model Context Protocol (MCP) za generiranje personaliziranih študijskih načrtov za katerokoli temo. Uporabniki lahko določijo predmet (npr. "certifikat AI-900") in trajanje študija (npr. 8 tednov), aplikacija pa ponudi tedensko razporeditev priporočenih vsebin. Chainlit omogoča pogovorni klepetalni vmesnik, kar naredi izkušnjo zanimivo in prilagodljivo.
+Ta študija primera prikazuje, kako zgraditi interaktivno spletno aplikacijo z Chainlit in Model Context Protocol (MCP) za generiranje personaliziranih študijskih načrtov za katerokoli temo. Uporabniki lahko določijo predmet (npr. "certifikat AI-900") in trajanje študija (npr. 8 tednov), aplikacija pa bo zagotovila tedenski razpored priporočene vsebine. Chainlit omogoča pogovorni klepetalni vmesnik, ki je privlačen in prilagodljiv.
 
-- Pogovorna spletna aplikacija, podprta s Chainlit
+- Pogovorna spletna aplikacija na osnovi Chainlit
 - Uporabniški pozivi za temo in trajanje
-- Tedenski predlog vsebine z uporabo MCP
-- Prilagodljivi odzivi v realnem času v klepetalnem vmesniku
+- Tedenske priporočitve vsebine z uporabo MCP
+- Odzivi v realnem času z adaptivnim klepetalnim vmesnikom
 
-Projekt prikazuje, kako lahko združimo pogovorno AI in MCP za ustvarjanje dinamičnih, uporabniku prilagojenih izobraževalnih orodij v sodobnem spletnem okolju.
+Projekt prikazuje, kako se lahko pogovorna AI in MCP združita za ustvarjanje dinamičnih, uporabniško usmerjenih izobraževalnih orodij v sodobnem spletnem okolju.
 
 ### 5. [Dokumentacija v urejevalniku z MCP strežnikom v VS Code](./docs-mcp/README.md)
 
-Ta primer prikazuje, kako lahko Microsoft Learn Docs prinesete neposredno v svoje okolje VS Code z MCP strežnikom — ni vam treba več preklapljati med zavihki brskalnika! Videli boste, kako:
+Ta študija primera prikazuje, kako lahko Microsoft Learn Docs pripeljete neposredno v svoje okolje VS Code z MCP strežnikom — brez preklapljanja med zavihki brskalnika! Videli boste, kako:
 
-- Takoj iskati in brati dokumentacijo znotraj VS Code s pomočjo MCP panela ali ukazne palete
-- Navedbo dokumentacije vstaviti neposredno v README ali datoteke s tečajnimi zapiski
-- Uporabljati GitHub Copilot in MCP skupaj za nemoteno, z AI podprto delo z dokumentacijo in kodo
-- Validirati ter izboljševati dokumentacijo z realnočasnim vprašanjem in natančnostjo, ki jo zagotavlja Microsoft
-- Integrirati MCP z GitHub delovnimi tokovi za neprekinjeno validacijo dokumentacije
+- Takojšnje iskanje in branje dokumentacije znotraj VS Code z MCP panelom ali ukazno vrstico
+- Navajanje dokumentacije in vstavljanje povezav neposredno v README ali markdown datoteke tečajev
+- Uporaba GitHub Copilota in MCP skupaj za nemotene AI-podprte delovne tokove dokumentacije in kode
+- Preverjanje ter izboljševanje dokumentacije z odzivi v realnem času in natančnostjo iz Microsofta
+- Integracija MCP z GitHub delovnimi tokovi za stalno validacijo dokumentacije
 
 Implementacija vključuje:
 
 - Primer konfiguracije `.vscode/mcp.json` za enostavno nastavitev
-- Vodiče z zaslonskimi posnetki znotraj urejevalnika
-- Nasvete za kombinacijo Copilota in MCP za največjo produktivnost
+- Prikaze zaslona (screenshot) izkušnje v urejevalniku
+- Nasvete za kombiniranje Copilota in MCP za največjo produktivnost
 
-Ta scenarij je idealen za avtorje tečajev, pisce dokumentacije in razvijalce, ki želijo ostati osredotočeni v urejevalniku med delom z dokumentacijo, Copilotom in orodji za validacijo — vse podprto z MCP.
+Ta scenarij je idealen za avtorje tečajev, pisce dokumentacije in razvijalce, ki želijo ostati osredotočeni v svojem urejevalniku med delom z dokumentacijo, Copilotom in orodji za validacijo — vse, podprto z MCP.
 
 ### 6. [Ustvarjanje MCP strežnika z APIM](./apimsample.md)
 
-Ta primer nudi korak-po-koraku navodila, kako ustvariti MCP strežnik z uporabo Azure API Management (APIM). Vključuje:
+Ta študija primera zagotavlja korak-po-korak vodnik, kako ustvariti MCP strežnik z uporabo Azure API Management (APIM). Pokriva:
 
 - Nastavitev MCP strežnika v Azure API Management
-- Izpostavitev API operacij kot MCP orodij
-- Konfiguracijo pravil za omejevanje hitrosti in varnost
-- Testiranje MCP strežnika s pomočjo Visual Studio Code in GitHub Copilot
+- Izpostavljanje API operacij kot MCP orodij
+- Konfiguriranje politik za omejitev hitrosti in varnost
+- Testiranje MCP strežnika z Visual Studio Code in GitHub Copilot
 
-Primer prikazuje, kako izkoristiti zmogljivosti Azure za ustvarjanje robustnega MCP strežnika, ki ga je mogoče uporabiti v različnih aplikacijah ter izboljšati integracijo AI sistemov s podjetniškimi API-ji.
+Ta primer prikazuje, kako izkoristiti zmogljivosti Azure za ustvarjanje robustnega MCP strežnika, ki se lahko uporablja v različnih aplikacijah in izboljšuje integracijo AI sistemov s podjetniškimi API-ji.
 
-### 7. [GitHub MCP Registry — pospeševanje agentne integracije](https://github.com/mcp)
+### 7. [GitHub MCP Register — Pospeševanje agentne integracije](https://github.com/mcp)
 
-Ta primer preučuje, kako GitHub MCP Registry, ki je bil predstavljen septembra 2025, rešuje ključen izziv v AI ekosistemu: razdrobljeno iskanje in uvajanje Model Context Protocol (MCP) strežnikov.
+Ta študija primera preučuje GitHub MCP Register, ki je bil lansiran septembra 2025 in rešuje ključen izziv v AI ekosistemu: razdrobljeno odkrivanje in nameščanje strežnikov Model Context Protocol (MCP).
 
 #### Pregled
-**MCP Registry** rešuje naraščajočo težavo razpršenih MCP strežnikov po različnih repozitorijih in registrov, kar je prej upočasnjevalo in oteževalo integracijo. Ti strežniki omogočajo AI agentom interakcijo z zunanjimi sistemi, kot so API-ji, baze podatkov in viri dokumentacije.
+**MCP Register** rešuje vedno večje težave raztresenih MCP strežnikov med repozitoriji in registri, zaradi katerih je bila integracija počasna in nagnjena k napakam. Ti strežniki omogočajo AI agentom interakcijo z zunanjimi sistemi, kot so API-ji, baze podatkov in viri dokumentacije.
 
 #### Opis problema
-Razvijalci, ki gradijo agentne delovne tokove, so se soočali z več izzivi:
-- **Slaba prepoznavnost** MCP strežnikov na različnih platformah
-- **Podvojena vprašanja o nastavitvah** razpršena po forumih in dokumentaciji
-- **Varnostna tveganja** iz nepreverjenih in nezanesljivih virov
-- **Pomanjkanje standardizacije** glede kakovosti in združljivosti strežnikov
+Razvijalci, ki so gradili agentne delovne tokove, so se soočali z več izzivi:
+- **Slaba odkritev** MCP strežnikov na različnih platformah
+- **Podvajajoča se vprašanja o nastavitvah** po forumih in dokumentaciji
+- **Varnostna tveganja** iz nepreverjenih in nezaupljivih virov
+- **Pomanjkanje standardizacije** v kakovosti in združljivosti strežnikov
 
 #### Arhitektura rešitve
-GitHub MCP Registry centralizira zanesljive MCP strežnike z več ključnimi funkcijami:
+GitHub MCP Register centralizira zaupanja vredne MCP strežnike z glavnim funkcionalnostmi:
 - **Namestitev z enim klikom** preko VS Code za enostavno nastavitev
-- **Razvrščanje signalov preko šuma** glede na zvezdice, aktivnost in potrditev skupnosti
-- **Neposredna integracija** z GitHub Copilotom in drugimi MCP združljivimi orodji
-- **Odprt model prispevkov**, ki omogoča sodelovanje skupnosti in podjetij
+- **Razvrščanje signalov preko šuma** po številu zvezdic, aktivnosti in potrditvah skupnosti
+- **Neposredna integracija** z GitHub Copilot in drugimi MCP združljivimi orodji
+- **Odprt model prispevkov**, ki omogoča tako skupnosti kot podjetjem sodelovanje
 
 #### Poslovni vpliv
 Register je prinesel merljive izboljšave:
-- **Hitrejše uvajanje** za razvijalce, ki uporabljajo orodja, kot je Microsoft Learn MCP Server, ki pretaka uradno dokumentacijo neposredno agentom
-- **Povečana produktivnost** z uporabo specializiranih strežnikov, kot je `github-mcp-server`, ki omogoča naravno jezikovno avtomatizacijo GitHuba (ustvarjanje PR-jev, ponovni zagon CI, pregled kode)
-- **Močnejše zaupanje v ekosistem** preko skrbno urejenih seznamov in preglednih standardov konfiguracije
+- **Hitrejše vključevanje** razvijalcev z orodji, kot je Microsoft Learn MCP Server, ki pretaka uradno dokumentacijo neposredno agentom
+- **Izboljšana produktivnost** z namenskimi strežniki, kot je `github-mcp-server`, ki omogoča avtomatizacijo GitHub naravnega jezika (ustvarjanje PR, ponovni zagon CI, pregled kode)
+- **Močnejše zaupanje v ekosistem** prek kuriranih seznamov in transparentnih standardov konfiguracije
 
 #### Strateška vrednost
-Za praktične uporabnike, specializirane za upravljanje življenjskega cikla agentov in reproducibilne delovne tokove, MCP Registry nudi:
-- **Modularno nameščanje agentov** z uveljavljenimi komponentami
-- **Ocene podprte z registrom** za dosledno testiranje in validacijo
-- **Medorodna interoperabilnost** za nemoten prehod med različnimi AI platformami
+Za praktike, specializirane za upravljanje življenjskega cikla agentov in reproducibilne delovne tokove, MCP Register ponuja:
+- **Modularno nameščanje agentov** s standardiziranimi komponentami
+- **Ocene, podprte z registri** za dosledno testiranje in validacijo
+- **Medorodna združljivost** omogoča nemoteno integracijo med različnimi AI platformami
 
-Ta primer dokazuje, da MCP Registry ni zgolj imenik — je temeljna platforma za skalabilno, resnično integracijo modelov in uvajanje agentnih sistemov.
+Ta študija primera dokazuje, da MCP Register ni zgolj imenik — je temeljna platforma za razširljivo, resnično integracijo modelov in nameščanje agentnih sistemov.
+
+### 8. [Objavljanje na družbenih omrežjih iz agenta](./publora-social-publishing.md)
+
+Ta študija primera vodi skozi **remote MCP strežnik s pisanjem** — katerega orodja izvajajo nepovratne ukrepe v imenu uporabnika — z uporabo socialnega objavljanja kot deljenega primera. Agent pripravi objavo, človek jo odobri, strežnik pa jo razporedi po omrežjih.
+
+Zanimiv del so oblikovne omejitve, ki jih objavljanje nalaga, in veljajo za vsak strežnik, ki piše namesto le branja:
+
+- **Odprto odkrivanje, preverjena izvedba** — `tools/list` je dostopen brez poverilnic, tako da lahko registri in odjemalci pregledujejo, medtem ko vsak `tools/call` zahteva žeton in sicer vrne `401` z glavo `WWW-Authenticate`
+- **OAuth registracija brez zunanjega koraka** — dinamična registracija odjemalca danes, s smernicami v Client ID Metadata Documents v specifikaciji `2026-07-28`
+- **Oznake orodij** (`readOnlyHint`, `destructiveHint`, `idempotentHint`), ki jih odjemalci uporabljajo za odločitev, kaj potrditi — namigi namesto prisile, nekaj, kar zdaj pričakujejo direktoriji priključkov ob pregledu
+- **Neizumljivi identifikatorji**, tako da halucinirana vrednost glasno neuspe, namesto da bi delovala po verjetno zgledajoči vrednosti
+- **Idempotentni ključi na orodjih, ki ustvarjajo objavo**, da ponovni poskus izvajanja agenta ne ustvari podvajajoče objave
+- **Brez-op cilj opisan v shemi orodja**, ki preizkuša celotno pot pisanja in ne objavi ničesar, za pregledovalce in CI
+
+Poglavje se zaključi s kratkim kontrolnim seznamom, ki ga lahko uporabite za strežnik, ki ga gradite.
 
 ## Zaključek
 
-Ti sedem obsežnih primerov prikazuje neverjetno vsestranskost in praktične uporabe Model Context Protocol v različnih realnih scenarijih. Od zapletenih večagentnih sistemov za načrtovanje potovanj in podjetniškega upravljanja API-jev do poenostavljenih delovnih tokov dokumentacije in revolucionarnega GitHub MCP Registry, ti primeri prikazujejo, kako MCP zagotavlja standardiziran, razširljiv način povezovanja AI sistemov z orodji, podatki in storitvami za zagotavljanje izjemne vrednosti.
+Te osem obsežnih študij primerov prikazuje izjemno vsestranskost in praktične uporabe Model Context Protocol v različnih resničnih scenarijih. Od kompleksnih večagentnih sistemov za načrtovanje potovanj in upravljanja API-jev podjetij do poenostavljenih delovnih tokov dokumentacije in revolucionarnega GitHub MCP registra, ti primeri prikazujejo, kako MCP zagotavlja standardiziran, razširljiv način povezovanja AI sistemov z orodji, podatki in storitvami, ki jih potrebujejo za izjemno vrednost.
 
-Primeri zajemajo več dimenzij implementacije MCP:
+Študije primerov pokrivajo več dimenzij implementacije MCP:
 - **Podjetniška integracija**: Azure API Management in avtomatizacija Azure DevOps
-- **Orkestracija več agentov**: načrtovanje potovanj s koordiniranimi AI agenti
-- **Produktivnost razvijalcev**: integracija v VS Code in dostop do dokumentacije v realnem času
-- **Razvoj ekosistema**: GitHub MCP Registry kot temeljna platforma
-- **Izobraževalne aplikacije**: generatorji študijskih načrtov in pogovorni vmesniki
+- **Večagentna orkestracija**: Načrtovanje potovanj z usklajenimi AI agenti
+- **Produktivnost razvijalcev**: Integracija VS Code in dostop do dokumentacije v realnem času
+- **Razvoj ekosistema**: GitHub MCP Register kot temeljna platforma
+- **Izobraževalne aplikacije**: Interaktivni generatorji študijskih načrtov in pogovorni vmesniki
 
-Z analizo teh implementacij pridobite ključne vpoglede v:
-- **Arhitekturne vzorce** za različne obsege in primere uporabe
-- **Strategije implementacije**, ki uravnotežijo funkcionalnost in vzdržnost
-- **Varnost in razširljivost** za produkcijske uvedbe
-- **Najboljše prakse** za razvoj MCP strežnikov in integracijo klientov
-- **Razmišljanje v kontekstu ekosistema** za gradnjo povezanih AI rešitev
+S preučevanjem teh implementacij pridobite ključne vpoglede v:
+- **Arhitekturne vzorce** za različne razsežnosti in uporabe
+- **Strategije implementacije**, ki uravnotežijo funkcionalnost z vzdržnostjo
+- **Varnostne in razširljivostne** premisleke za produkcijske namestitve
+- **Najboljše prakse** za razvoj MCP strežnikov in integracijo odjemalcev
+- **Ekosistemsko razmišljanje** za gradnjo povezanih AI-podprtih rešitev
 
-Primeri skupaj dokazujejo, da MCP ni zgolj teoretični okvir, ampak zrel, produkcijsko pripravljen protokol, ki omogoča praktične rešitve za zapletene poslovne izzive. Ne glede na to, ali gradite preprosta avtomatizacijska orodja ali sofisticirane večagentne sisteme, vzorci in pristopi, prikazani tukaj, nudijo trdno podlago za vaše lastne MCP projekte.
+Ti primeri skupaj dokazujejo, da MCP ni zgolj teoretični okvir, temveč zrel, produkcijsko pripravljen protokol, ki omogoča praktične rešitve za zapletene poslovne izzive. Ne glede na to, ali gradite preprosta avtomatizirana orodja ali sofisticirane večagentne sisteme, vzorci in pristopi, prikazani tukaj, nudijo trdno osnovo za vaše lastne MCP projekte.
 
 ## Dodatni viri
 
-- [Azure AI Travel Agents GitHub repozitorij](https://github.com/Azure-Samples/azure-ai-travel-agents)
-- [Azure DevOps MCP orodje](https://github.com/microsoft/azure-devops-mcp)
-- [Playwright MCP orodje](https://github.com/microsoft/playwright-mcp)
-- [Microsoft Docs MCP strežnik](https://github.com/MicrosoftDocs/mcp)
-- [GitHub MCP Registry — pospeševanje agentne integracije](https://github.com/mcp)
-- [MCP primeri skupnosti](https://github.com/microsoft/mcp)
+- [Azure AI Travel Agents GitHub Repozitorij](https://github.com/Azure-Samples/azure-ai-travel-agents)
+- [Azure DevOps MCP Orodje](https://github.com/microsoft/azure-devops-mcp)
+- [Playwright MCP Orodje](https://github.com/microsoft/playwright-mcp)
+- [Microsoft Docs MCP Strežnik](https://github.com/MicrosoftDocs/mcp)
+- [GitHub MCP Register — Pospeševanje agentne integracije](https://github.com/mcp)
+- [Skupnostni primeri MCP](https://github.com/microsoft/mcp)
 
 ## Kaj sledi
 
 - Prejšnje: [Modul 8: Najboljše prakse](../08-BestPractices/README.md)
-- Naslednje: [Modul 10: Poenostavitev AI delovnih tokov: gradnja MCP strežnika z AI orodji](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)
+- Naslednje: [Modul 10: Poenostavljanje AI delovnih tokov: Gradnja MCP strežnika z AI kompletom orodij](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Opozorilo**:  
-Ta dokument je bil preveden z uporabo storitve za prevajanje AI [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, upoštevajte, da lahko avtomatizirani prevodi vsebujejo napake ali netočnosti. Izvirni dokument v izvirnem jeziku velja za zanesljiv vir. Za pomembne informacije priporočamo strokovni človeški prevod. Za morebitna nesporazume ali napačne interpretacije, ki izhajajo iz uporabe tega prevoda, ne prevzemamo odgovornosti.
+**Omejitev odgovornosti**:
+Ta dokument je bil preveden z uporabo AI prevajalske storitve [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, vas prosimo, da upoštevate, da avtomatizirani prevodi lahko vsebujejo napake ali netočnosti. Izvirni dokument v njegovem izvirnem jeziku je treba obravnavati kot avtoritativni vir. Za kritične informacije je priporočljiv strokovni človeški prevod. Ne odgovarjamo za morebitna nesporazume ali napačne interpretacije, ki izhajajo iz uporabe tega prevoda.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

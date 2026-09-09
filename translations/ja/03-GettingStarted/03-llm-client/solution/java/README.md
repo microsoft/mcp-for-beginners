@@ -1,68 +1,66 @@
-# Calculator LLM Client
+# 電卓LLMクライアント
 
-LangChain4jを使って、GitHub Modelsと連携したMCP（Model Context Protocol）電卓サービスに接続するJavaアプリケーションのデモです。
+LangChain4j を使用して、MiniMax OpenAI互換APIを介してMCP（モデルコンテキストプロトコル）電卓サービスに接続する方法を示すJavaアプリケーションです。
 
 ## 前提条件
 
 - Java 21以上
 - Maven 3.6以上（または同梱のMavenラッパーを使用）
-- GitHub ModelsにアクセスできるGitHubアカウント
-- `http://localhost:8080`で動作しているMCP電卓サービス
+- MiniMax APIキー
+- `http://localhost:8080` で動作中のMCP電卓サービス
 
-## GitHubトークンの取得
+## APIキーの取得
 
-このアプリケーションはGitHub Modelsを使用するため、GitHubのパーソナルアクセストークンが必要です。以下の手順でトークンを取得してください。
+本アプリケーションはMiniMax OpenAI互換APIを使用します。キーとエンドポイントを取得するには以下の手順に従ってください：
 
-### 1. GitHub Modelsにアクセス
-1. [GitHub Models](https://github.com/marketplace/models)にアクセス
-2. GitHubアカウントでサインイン
-3. まだアクセス権がない場合は、GitHub Modelsへのアクセスをリクエスト
+### 1. エンドポイントの選択
+1. グローバルエンドポイントには `https://api.minimax.io/v1` を使用
+2. 中国向けエンドポイントには `https://api.minimaxi.com/v1` を使用
 
-### 2. パーソナルアクセストークンの作成
-1. [GitHub設定 → 開発者設定 → パーソナルアクセストークン → トークン（クラシック）](https://github.com/settings/tokens)に移動
-2. 「新しいトークンを生成」→「新しいトークンを生成（クラシック）」をクリック
-3. トークンにわかりやすい名前を付ける（例：「MCP Calculator Client」）
-4. 必要に応じて有効期限を設定
-5. 以下のスコープを選択：
-   - `repo`（プライベートリポジトリにアクセスする場合）
-   - `user:email`
-6. 「トークンを生成」をクリック
-7. **重要**：トークンはこの時点でしか表示されないので、必ずコピーしてください！
+### 2. APIキーの作成
+1. MiniMaxアカウントからAPIキーを作成
+2. キーを安全な場所に保管
 
 ### 3. 環境変数の設定
 
-#### Windows（コマンドプロンプト）:
+#### Windows（コマンドプロンプト）での設定：
 ```cmd
-set GITHUB_TOKEN=your_github_token_here
+set OPENAI_API_KEY=your_minimax_api_key_here
+set OPENAI_BASE_URL=https://api.minimax.io/v1
+set MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
-#### Windows（PowerShell）:
+#### Windows（PowerShell）での設定：
 ```powershell
-$env:GITHUB_TOKEN="your_github_token_here"
+$env:OPENAI_API_KEY="your_minimax_api_key_here"
+$env:OPENAI_BASE_URL="https://api.minimax.io/v1"
+$env:MINIMAX_MODEL_ID="MiniMax-M3"
 ```
 
-#### macOS/Linux:
+#### macOS/Linuxでの設定：
 ```bash
-export GITHUB_TOKEN=your_github_token_here
+export OPENAI_API_KEY=your_minimax_api_key_here
+export OPENAI_BASE_URL=https://api.minimax.io/v1
+export MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
 ## セットアップとインストール
 
-1. **プロジェクトディレクトリをクローンまたは移動**
+1. <strong>プロジェクトディレクトリをクローンまたは移動</strong>
 
-2. **依存関係のインストール**:
+2. <strong>依存関係をインストール</strong>：
    ```cmd
    mvnw clean install
    ```
-   または、Mavenがグローバルにインストールされている場合：
+   もしくは、Mavenがグローバルにインストールされていれば：
    ```cmd
    mvn clean install
    ```
 
-3. **環境変数の設定**（上記「GitHubトークンの取得」セクション参照）
+3. <strong>環境変数の設定</strong>（上記「APIキーの取得」セクション参照）
 
-4. **MCP電卓サービスの起動**:
-   1章のMCP電卓サービスが`http://localhost:8080/sse`で動作していることを確認してください。クライアントを起動する前にサービスが稼働している必要があります。
+4. **MCP電卓サービスを起動**：
+   1章のMCP電卓サービスが `http://localhost:8080/sse` で起動していることを確認してください。クライアント起動前に動作している必要があります。
 
 ## アプリケーションの実行
 
@@ -71,17 +69,17 @@ mvnw clean package
 java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
 
-## アプリケーションの動作内容
+## アプリケーション概要
 
-このアプリケーションは電卓サービスとの3つの主なやり取りを示します：
+アプリケーションは電卓サービスとの3つの主なやり取りを示します：
 
-1. **加算**：24.5と17.3の合計を計算
-2. **平方根**：144の平方根を計算
-3. **ヘルプ**：利用可能な電卓関数を表示
+1. <strong>加算</strong>：24.5と17.3の合計を計算
+2. <strong>平方根</strong>：144の平方根を計算
+3. <strong>ヘルプ</strong>：利用可能な電卓機能を表示
 
 ## 期待される出力
 
-正常に実行されると、以下のような出力が表示されます：
+正常に実行されると、以下のような出力が表示されます:
 
 ```
 The sum of 24.5 and 17.3 is 41.8.
@@ -93,48 +91,52 @@ The calculator service provides the following functions: add, subtract, multiply
 
 ### よくある問題
 
-1. **「GITHUB_TOKEN環境変数が設定されていません」**
-   - `GITHUB_TOKEN`環境変数が設定されているか確認
-   - 変数設定後にターミナルやコマンドプロンプトを再起動
+1. **"OPENAI_API_KEY環境変数が設定されていません"**
+   - `OPENAI_API_KEY`環境変数の設定を確認
+   - 変数設定後にターミナル/コマンドプロンプトを再起動
 
-2. **「localhost:8080への接続が拒否されました」**
-   - MCP電卓サービスがポート8080で動作しているか確認
-   - 他のサービスがポート8080を使用していないか確認
+2. **"localhost:8080への接続が拒否されました"**
+   - MCP電卓サービスがポート8080で動作していることを確認
+   - 別のサービスがポート8080を使用していないか確認
 
-3. **「認証に失敗しました」**
-   - GitHubトークンが有効で正しい権限を持っているか確認
-   - GitHub Modelsへのアクセス権があるか確認
+3. **"認証に失敗しました"**
+   - APIキーの有効性を確認
+   - `OPENAI_BASE_URL`が意図したエンドポイントと一致しているか確認
 
 4. **Mavenビルドエラー**
-   - Java 21以上を使用しているか確認：`java -version`
-   - ビルドのクリーンを試す：`mvnw clean`
+   - Java 21以上を使用しているか確認: `java -version`
+   - ビルドのクリーンを試みる: `mvnw clean`
 
 ### デバッグ
 
-デバッグログを有効にするには、実行時に以下のJVM引数を追加してください：
+デバッグログを有効にするには、実行時に以下のJVM引数を追加してください:
 ```cmd
 java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
 
 ## 設定
 
-アプリケーションの設定内容：
-- GitHub Modelsの`gpt-4.1-nano`モデルを使用
-- MCPサービスに`http://localhost:8080/sse`で接続
+アプリケーションの設定内容:
+- デフォルトでMiniMax-M3を使用、`MINIMAX_MODEL_ID`が設定されている場合はMiniMax-M2.7を使用
+- `OPENAI_BASE_URL`が設定されている場合はそこへ接続し、設定がなければ`MINIMAX_REGION=cn_zh`の際は`https://api.minimaxi.com/v1`、デフォルトは`https://api.minimax.io/v1`を使用
+- MCPサービスへは`http://localhost:8080/sse`で接続
 - リクエストのタイムアウトは60秒
-- デバッグ用にリクエスト/レスポンスのログを有効化
 
 ## 依存関係
 
-本プロジェクトで使用している主な依存関係：
-- **LangChain4j**：AI統合とツール管理用
-- **LangChain4j MCP**：Model Context Protocol対応
-- **LangChain4j GitHub Models**：GitHub Models連携用
+本プロジェクトで使用されている主な依存関係：
+- **LangChain4j**：AI統合およびツール管理用
+- **LangChain4j MCP**：モデルコンテキストプロトコル対応用
+- **LangChain4j OpenAI公式**：MiniMax OpenAI互換API統合用
 - **Spring Boot**：アプリケーションフレームワークと依存性注入用
 
 ## ライセンス
 
-本プロジェクトはApache License 2.0の下でライセンスされています。詳細は[LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE)ファイルをご覧ください。
+本プロジェクトはApache License 2.0のもとでライセンスされています。詳細は[LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE)ファイルを参照してください。
 
-**免責事項**：  
-本書類はAI翻訳サービス「[Co-op Translator](https://github.com/Azure/co-op-translator)」を使用して翻訳されました。正確性の向上に努めておりますが、自動翻訳には誤りや不正確な部分が含まれる可能性があります。原文の言語によるオリジナル文書が正式な情報源とみなされるべきです。重要な情報については、専門の人間による翻訳を推奨します。本翻訳の利用により生じたいかなる誤解や誤訳についても、当方は一切の責任を負いかねます。
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**免責事項**：
+本書類は AI 翻訳サービス [Co-op Translator](https://github.com/Azure/co-op-translator) を使用して翻訳されています。正確性を期していますが、自動翻訳には誤りや不正確な部分が含まれる可能性があることをご承知おきください。原文の原語版が正式な情報源とみなされるべきです。重要な情報については、専門の人間による翻訳を推奨します。本翻訳の利用により生じたいかなる誤解や解釈違いについても、当方は責任を負いかねます。
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

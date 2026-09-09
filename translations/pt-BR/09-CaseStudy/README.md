@@ -4,19 +4,19 @@
 
 _(Clique na imagem acima para assistir ao vídeo desta lição)_
 
-O Model Context Protocol (MCP) está transformando a forma como aplicações de IA interagem com dados, ferramentas e serviços. Esta seção apresenta estudos de caso do mundo real que demonstram aplicações práticas do MCP em diversos cenários empresariais.
+O Protocolo de Contexto de Modelo (MCP) está transformando a maneira como aplicações de IA interagem com dados, ferramentas e serviços. Esta seção apresenta estudos de caso do mundo real que demonstram aplicações práticas do MCP em vários cenários empresariais.
 
 ## Visão Geral
 
-Esta seção exibe exemplos concretos de implementações do MCP, destacando como organizações estão aproveitando este protocolo para resolver desafios complexos de negócios. Ao examinar esses estudos de caso, você obterá insights sobre a versatilidade, escalabilidade e benefícios práticos do MCP em cenários reais.
+Esta seção apresenta exemplos concretos de implementações do MCP, destacando como organizações estão aproveitando este protocolo para resolver desafios complexos de negócio. Ao examinar esses estudos de caso, você obterá insights sobre a versatilidade, escalabilidade e benefícios práticos do MCP em cenários reais.
 
 ## Principais Objetivos de Aprendizagem
 
-Ao explorar estes estudos de caso, você irá:
+Ao explorar esses estudos de caso, você irá:
 
-- Entender como o MCP pode ser aplicado para resolver problemas específicos de negócios
-- Conhecer diferentes padrões de integração e abordagens arquitetônicas
-- Reconhecer boas práticas para implementar MCP em ambientes empresariais
+- Entender como o MCP pode ser aplicado para resolver problemas específicos de negócio
+- Aprender sobre diferentes padrões de integração e abordagens arquiteturais
+- Reconhecer melhores práticas para implementar MCP em ambientes empresariais
 - Obter insights sobre os desafios e soluções encontrados em implementações reais
 - Identificar oportunidades para aplicar padrões semelhantes em seus próprios projetos
 
@@ -24,132 +24,147 @@ Ao explorar estes estudos de caso, você irá:
 
 ### 1. [Azure AI Travel Agents – Implementação de Referência](./travelagentsample.md)
 
-Este estudo de caso examina a solução de referência abrangente da Microsoft que demonstra como construir uma aplicação de planejamento de viagens com múltiplos agentes e inteligência artificial usando MCP, Azure OpenAI e Azure AI Search. O projeto apresenta:
+Este estudo de caso examina a solução de referência abrangente da Microsoft que demonstra como construir uma aplicação de planejamento de viagens com múltiplos agentes e IA usando MCP, Azure OpenAI, e Azure AI Search. O projeto apresenta:
 
-- Orquestração multi-agente através do MCP
+- Orquestração multi-agente via MCP
 - Integração de dados empresariais com Azure AI Search
 - Arquitetura segura e escalável usando serviços Azure
 - Ferramentas extensíveis com componentes MCP reutilizáveis
-- Experiência conversacional para o usuário respaldada pelo Azure OpenAI
+- Experiência de usuário conversacional alimentada pelo Azure OpenAI
 
-A arquitetura e detalhes da implementação fornecem insights valiosos para construir sistemas complexos multi-agente com MCP como camada de coordenação.
+A arquitetura e os detalhes de implementação fornecem insights valiosos para construir sistemas complexos multi-agente com o MCP como camada de coordenação.
 
 ### 2. [Atualizando Itens do Azure DevOps a partir de Dados do YouTube](./UpdateADOItemsFromYT.md)
 
-Este estudo de caso demonstra uma aplicação prática do MCP para automatizar processos de fluxo de trabalho. Mostra como ferramentas MCP podem ser usadas para:
+Este estudo de caso demonstra uma aplicação prática do MCP para automatizar processos de workflow. Mostra como as ferramentas MCP podem ser usadas para:
 
 - Extrair dados de plataformas online (YouTube)
 - Atualizar itens de trabalho em sistemas Azure DevOps
-- Criar fluxos de trabalho de automação repetíveis
+- Criar fluxos de automação repetíveis
 - Integrar dados entre sistemas distintos
 
-Este exemplo ilustra como implementações MCP relativamente simples podem promover ganhos significativos de eficiência automatizando tarefas rotineiras e melhorando a consistência dos dados entre sistemas.
+Este exemplo ilustra como implementações relativamente simples do MCP podem proporcionar ganhos significativos de eficiência ao automatizar tarefas rotineiras e melhorar a consistência dos dados entre sistemas.
 
 ### 3. [Recuperação de Documentação em Tempo Real com MCP](./docs-mcp/README.md)
 
-Este estudo de caso guia você na conexão de um cliente de console Python a um servidor Model Context Protocol (MCP) para recuperar e registrar documentação Microsoft contextual e em tempo real. Você aprenderá a:
+Este estudo de caso guia você pela conexão de um cliente de console Python a um servidor Model Context Protocol (MCP) para recuperar e registrar documentação Microsoft em tempo real e consciente do contexto. Você aprenderá como:
 
-- Conectar-se a um servidor MCP usando cliente Python e o SDK oficial MCP
+- Conectar-se a um servidor MCP usando um cliente Python e o SDK oficial MCP
 - Usar clientes HTTP streaming para recuperação eficiente de dados em tempo real
 - Chamar ferramentas de documentação no servidor e registrar respostas diretamente no console
-- Integrar documentação Microsoft atualizada ao seu fluxo de trabalho sem sair do terminal
+- Integrar documentação Microsoft atualizada em seu fluxo de trabalho sem sair do terminal
 
-O capítulo inclui uma tarefa prática, um exemplo mínimo de código funcional e links para recursos adicionais para aprofundamento. Veja o passo a passo completo e o código no capítulo vinculado para entender como o MCP pode transformar o acesso à documentação e a produtividade do desenvolvedor em ambientes baseados em console.
+O capítulo inclui uma tarefa prática, um exemplo mínimo de código funcional e links para recursos adicionais para aprendizado aprofundado. Veja o passo a passo completo e o código no capítulo vinculado para entender como o MCP pode transformar o acesso à documentação e a produtividade do desenvolvedor em ambientes de console.
 
-### 4. [Aplicativo Web Interativo Gerador de Plano de Estudos com MCP](./docs-mcp/README.md)
+### 4. [Aplicativo Web Gerador de Plano de Estudo Interativo com MCP](./docs-mcp/README.md)
 
-Este estudo de caso demonstra como construir uma aplicação web interativa usando Chainlit e o Model Context Protocol (MCP) para gerar planos de estudo personalizados para qualquer tema. Usuários podem especificar um assunto (como "certificação AI-900") e uma duração de estudo (ex: 8 semanas), e o app fornecerá uma divisão semanal do conteúdo recomendado. Chainlit permite uma interface de chat conversacional, tornando a experiência envolvente e adaptativa.
+Este estudo de caso demonstra como construir um aplicativo web interativo usando Chainlit e o Model Context Protocol (MCP) para gerar planos de estudo personalizados para qualquer tópico. Usuários podem especificar um assunto (como "certificação AI-900") e uma duração de estudo (por exemplo, 8 semanas), e o app fornecerá um detalhamento semana a semana do conteúdo recomendado. O Chainlit habilita uma interface de chat conversacional, tornando a experiência envolvente e adaptativa.
 
-- Aplicativo web conversacional alimentado pelo Chainlit
-- Solicitações do usuário para tópico e duração
-- Recomendações semanais de conteúdo usando MCP
-- Respostas adaptativas em tempo real na interface de chat
+- Aplicativo web conversacional alimentado por Chainlit
+- Comandos direcionados pelo usuário para tópico e duração
+- Recomendações de conteúdo semana a semana usando MCP
+- Respostas adaptativas e em tempo real na interface de chat
 
-O projeto ilustra como IA conversacional e MCP podem ser combinados para criar ferramentas educacionais dinâmicas e orientadas pelo usuário em um ambiente web moderno.
+O projeto ilustra como a IA conversacional e o MCP podem ser combinados para criar ferramentas educacionais dinâmicas e orientadas pelo usuário em um ambiente web moderno.
 
-### 5. [Documentação Dentro do Editor com Servidor MCP no VS Code](./docs-mcp/README.md)
+### 5. [Documentação no Editor com MCP Server no VS Code](./docs-mcp/README.md)
 
-Este estudo de caso demonstra como levar a documentação Microsoft Learn diretamente para seu ambiente VS Code usando o servidor MCP — sem precisar alternar abas do navegador! Você verá como:
+Este estudo de caso demonstra como trazer a documentação Microsoft Learn diretamente para seu ambiente VS Code usando o servidor MCP—sem precisar alternar abas do navegador! Você verá como:
 
 - Pesquisar e ler docs instantaneamente dentro do VS Code usando o painel MCP ou a paleta de comandos
-- Referenciar documentação e inserir links diretamente em arquivos README ou markdown de cursos
-- Usar GitHub Copilot e MCP juntos para fluxos de trabalho de documentação e código integrados e impulsionados por IA
-- Validar e aprimorar sua documentação com feedback em tempo real e precisão proveniente da Microsoft
-- Integrar MCP com fluxos de trabalho GitHub para validação contínua da documentação
+- Referenciar documentação e inserir links diretamente em seus arquivos README ou markdown de curso
+- Usar GitHub Copilot e MCP juntos para workflows de documentação e código com IA integrados
+- Validar e melhorar sua documentação com feedback em tempo real e precisão originada pela Microsoft
+- Integrar MCP com workflows do GitHub para validação contínua de documentação
 
 A implementação inclui:
 
-- Exemplo de configuração `.vscode/mcp.json` para configuração fácil
-- Guias ilustrados por capturas de tela da experiência dentro do editor
+- Configuração de exemplo `.vscode/mcp.json` para fácil setup
+- Tutoriais baseados em capturas de tela da experiência no editor
 - Dicas para combinar Copilot e MCP para máxima produtividade
 
-Este cenário é ideal para autores de cursos, redatores técnicos e desenvolvedores que desejam manter o foco no editor enquanto trabalham com docs, Copilot e ferramentas de validação — tudo alimentado pelo MCP.
+Este cenário é ideal para autores de curso, escritores técnicos e desenvolvedores que querem manter o foco no editor enquanto trabalham com docs, Copilot e ferramentas de validação—all powered by MCP.
 
-### 6. [Criação de Servidor APIM MCP](./apimsample.md)
+### 6. [Criação de Servidor MCP com APIM](./apimsample.md)
 
-Este estudo de caso oferece um guia passo a passo sobre como criar um servidor MCP usando Azure API Management (APIM). Cobre:
+Este estudo de caso oferece um guia passo a passo sobre como criar um servidor MCP usando o Azure API Management (APIM). Ele abrange:
 
 - Configuração de um servidor MCP no Azure API Management
-- Exposição de operações de API como ferramentas MCP
-- Configuração de políticas para controle de taxa e segurança
+- Exposição de operações API como ferramentas MCP
+- Configuração de políticas para limitação de taxa e segurança
 - Testes do servidor MCP usando Visual Studio Code e GitHub Copilot
 
-Este exemplo ilustra como aproveitar as capacidades do Azure para criar um servidor MCP robusto, que pode ser utilizado em diversas aplicações, aprimorando a integração de sistemas de IA com APIs empresariais.
+Este exemplo ilustra como aproveitar as capacidades do Azure para criar um servidor MCP robusto que pode ser utilizado em várias aplicações, aprimorando a integração de sistemas de IA com APIs empresariais.
 
-### 7. [Registro GitHub MCP — Acelerando a Integração Agentic](https://github.com/mcp)
+### 7. [Registro MCP do GitHub — Acelerando a Integração Agentiva](https://github.com/mcp)
 
-Este estudo de caso examina como o Registro MCP do GitHub, lançado em setembro de 2025, soluciona um desafio crítico no ecossistema de IA: a descoberta e implantação fragmentadas dos servidores Model Context Protocol (MCP).
+Este estudo de caso examina como o Registro MCP do GitHub, lançado em setembro de 2025, resolve um desafio crítico no ecossistema de IA: a descoberta fragmentada e implantação de servidores Model Context Protocol (MCP).
 
 #### Visão Geral
-O **Registro MCP** resolve a dor crescente dos servidores MCP dispersos entre repositórios e registros, o que anteriormente tornava a integração lenta e sujeita a erros. Esses servidores permitem que agentes de IA interajam com sistemas externos como APIs, bancos de dados e fontes de documentação.
+O **Registro MCP** resolve a dor crescente dos servidores MCP dispersos em repositórios e registros, que anteriormente tornavam a integração lenta e propensa a erros. Esses servidores permitem que agentes de IA interajam com sistemas externos como APIs, bancos de dados e fontes de documentação.
 
 #### Declaração do Problema
-Desenvolvedores criando fluxos agentic enfrentavam vários desafios:
-- **Má descobribilidade** de servidores MCP em diferentes plataformas
-- **Perguntas redundantes de configuração** espalhadas em fóruns e documentos
-- **Riscos de segurança** oriundos de fontes não verificadas e não confiáveis
+Desenvolvedores que constroem workflows agentivos enfrentam vários desafios:
+- **Baixa descobribilidade** de servidores MCP em diferentes plataformas
+- **Perguntas repetidas de configuração** espalhadas em fóruns e documentação
+- **Riscos de segurança** vindos de fontes não verificadas e não confiáveis
 - **Falta de padronização** na qualidade e compatibilidade dos servidores
 
 #### Arquitetura da Solução
 O Registro MCP do GitHub centraliza servidores MCP confiáveis com recursos chave:
-- **Instalação com um clique** via VS Code para configuração simplificada
-- **Classificação signal-over-noise** por estrelas, atividade e validação comunitária
+- **Instalação com um clique** via VS Code para setup simplificado
+- **Ordenação sinal-sobre-ruído** por estrelas, atividade e validação comunitária
 - **Integração direta** com GitHub Copilot e outras ferramentas compatíveis MCP
-- **Modelo aberto de contribuição** permitindo participação da comunidade e parceiros empresariais
+- **Modelo aberto de contribuição** permitindo contribuições tanto da comunidade quanto de parceiros empresariais
 
 #### Impacto nos Negócios
-O registro entregou melhorias mensuráveis:
-- **Onboarding mais rápido** para desenvolvedores usando ferramentas como o Microsoft Learn MCP Server, que transmite documentação oficial diretamente para agentes
-- **Produtividade aprimorada** por meio de servidores especializados como `github-mcp-server`, que possibilitam automações naturais em linguagem GitHub (criação de PR, reinício de CI, análise de código)
-- **Maior confiança no ecossistema** via listagens curadas e padrões transparentes de configuração
+O registro trouxe melhorias mensuráveis:
+- **Onboarding mais rápido** para desenvolvedores usando ferramentas como o Microsoft Learn MCP Server, que transmite documentação oficial diretamente aos agentes
+- **Produtividade aprimorada** via servidores especializados como o `github-mcp-server`, habilitando automação natural em linguagem GitHub (criação de PR, reexecução de CI, varredura de código)
+- **Confiança mais forte no ecossistema** por meio de listagens curadas e padrões de configuração transparentes
 
 #### Valor Estratégico
-Para profissionais especializados em gerenciamento do ciclo de vida de agentes e fluxos de trabalho reprodutíveis, o Registro MCP fornece:
-- **Capacidades modulares para implantação de agentes** com componentes padronizados
-- **Pipelines de avaliação com suporte do registro** para testes e validação consistentes
-- **Interoperabilidade entre ferramentas** para integração fluida em diferentes plataformas de IA
+Para profissionais especializados em gestão do ciclo de vida do agente e workflows reproduzíveis, o Registro MCP oferece:
+- **Capacidades modulares de implantação de agentes** com componentes padronizados
+- **Pipelines de avaliação baseados no registro** para testes e validação consistentes
+- **Interoperabilidade entre ferramentas** permitindo integração fluida entre diferentes plataformas de IA
 
-Este estudo de caso demonstra que o Registro MCP é mais que um diretório — é uma plataforma fundamental para integração escalável de modelos e implantação de sistemas agentic no mundo real.
+Este estudo de caso demonstra que o Registro MCP é mais que um diretório—é uma plataforma fundamental para integração escalável de modelos no mundo real e implantação de sistemas agentivos.
+
+### 8. [Publicação em Redes Sociais a partir de um Agente](./publora-social-publishing.md)
+
+Este estudo de caso guia através de um **servidor MCP remoto com capacidade de escrita** — cujas ferramentas realizam ações irreversíveis em nome do usuário — usando publicação social como exemplo prático. Um agente elabora uma postagem, um humano aprova, e o servidor agenda a publicação nas redes.
+
+A parte interessante são as restrições de design que a publicação impõe, aplicáveis a qualquer servidor que escreva em vez de apenas ler:
+
+- **Descoberta aberta, execução autenticada** — `tools/list` respondida sem credenciais para que registros e clientes possam inspecionar, enquanto cada `tools/call` exige um token e, caso contrário, retorna `401` com um cabeçalho `WWW-Authenticate`
+- **Registro OAuth sem etapa fora de banda** — registro dinâmico de cliente hoje, com Documentos de Metadados de ID de Cliente conforme especificação `2026-07-28`
+- **Anotações de ferramentas** (`readOnlyHint`, `destructiveHint`, `idempotentHint`) usadas pelos clientes para decidir o que confirmar—sugestões em vez de imposição, e algo que diretórios de conectores agora esperam durante revisão
+- **Identificadores não inventáveis**, para que um valor alucinado falhe claramente em vez de agir em um valor plausível
+- **Chaves de idempotência nas ferramentas de criação de postagens**, para que uma nova tentativa do runtime do agente não cause publicação duplicada
+- **Um alvo no-op descrito no esquema da ferramenta** que exercita todo o caminho de escrita mas não publica nada, para revisores e CI
+
+O capítulo encerra com uma breve checklist que pode ser aplicada a um servidor que você esteja construindo.
 
 ## Conclusão
 
-Estes sete estudos de caso abrangentes demonstram a notável versatilidade e as aplicações práticas do Model Context Protocol em diversos cenários reais. Desde sistemas complexos de planejamento de viagens multi-agente e gerenciamento empresarial de API até fluxos de trabalho simplificados de documentação e o revolucionário Registro MCP do GitHub, estes exemplos mostram como o MCP oferece uma forma padronizada e escalável de conectar sistemas de IA com as ferramentas, dados e serviços necessários para entregar valor excepcional.
+Estes oito estudos de caso abrangentes demonstram a notável versatilidade e aplicações práticas do Protocolo de Contexto de Modelo em diversos cenários do mundo real. Desde sistemas complexos multi-agentes para planejamento de viagens e gestão de APIs empresariais até workflows de documentação otimizados e o revolucionário Registro MCP do GitHub, esses exemplos mostram como o MCP fornece uma maneira padronizada e escalável para conectar sistemas de IA com as ferramentas, dados e serviços necessários para entregar valor excepcional.
 
-Os estudos de caso abrangem múltiplas dimensões de implementação do MCP:
-- **Integração Empresarial**: Azure API Management e automação Azure DevOps
+Os estudos de caso abrangem múltiplas dimensões da implementação MCP:
+- **Integração Empresarial**: Azure API Management e automatização Azure DevOps
 - **Orquestração Multi-Agente**: Planejamento de viagens com agentes de IA coordenados
-- **Produtividade do Desenvolvedor**: Integração VS Code e acesso em tempo real a documentação
+- **Produtividade do Desenvolvedor**: Integração no VS Code e acesso em tempo real à documentação
 - **Desenvolvimento do Ecossistema**: Registro MCP do GitHub como plataforma fundamental
 - **Aplicações Educacionais**: Geradores interativos de planos de estudo e interfaces conversacionais
 
 Ao estudar essas implementações, você obtém insights críticos sobre:
 - **Padrões arquiteturais** para diferentes escalas e casos de uso
-- **Estratégias de implementação** que equilibram funcionalidade e manutenção
-- **Considerações de segurança e escalabilidade** para implantações de produção
-- **Boas práticas** para desenvolvimento de servidores MCP e integração de clientes
-- **Pensamento de ecossistema** para construir soluções interconectadas movidas a IA
+- **Estratégias de implementação** que equilibram funcionalidade com manutenção
+- **Considerações de segurança e escalabilidade** para implantações em produção
+- **Melhores práticas** para desenvolvimento de servidores MCP e integração de clientes
+- **Pensamento de ecossistema** para construção de soluções interconectadas com IA integrada
 
-Esses exemplos demonstram coletivamente que o MCP não é apenas um framework teórico, mas um protocolo maduro e pronto para produção que permite soluções práticas para desafios complexos de negócios. Seja construindo ferramentas simples de automação ou sistemas multi-agente sofisticados, os padrões e abordagens ilustrados aqui fornecem uma base sólida para seus próprios projetos MCP.
+Esses exemplos coletivamente demonstram que o MCP não é apenas um framework teórico, mas um protocolo maduro e pronto para produção que possibilita soluções práticas para desafios empresariais complexos. Seja construindo ferramentas de automação simples ou sistemas sofisticados multi-agentes, os padrões e abordagens ilustrados aqui fornecem uma base sólida para seus próprios projetos MCP.
 
 ## Recursos Adicionais
 
@@ -157,17 +172,17 @@ Esses exemplos demonstram coletivamente que o MCP não é apenas um framework te
 - [Ferramenta MCP Azure DevOps](https://github.com/microsoft/azure-devops-mcp)
 - [Ferramenta MCP Playwright](https://github.com/microsoft/playwright-mcp)
 - [Servidor MCP Microsoft Docs](https://github.com/MicrosoftDocs/mcp)
-- [Registro GitHub MCP — Acelerando a Integração Agentic](https://github.com/mcp)
+- [Registro MCP do GitHub — Acelerando a Integração Agentiva](https://github.com/mcp)
 - [Exemplos da Comunidade MCP](https://github.com/microsoft/mcp)
 
 ## O que vem a seguir
 
 - Anterior: [Módulo 8: Melhores Práticas](../08-BestPractices/README.md)
-- Próximo: [Módulo 10: Otimizando Fluxos de Trabalho de IA: Construindo um Servidor MCP com AI Toolkit](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)
+- Próximo: [Módulo 10: Otimizando Workflows de IA: Construindo um Servidor MCP com AI Toolkit](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Aviso Legal**:  
-Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original em seu idioma nativo deve ser considerado a fonte autorizada. Para informações críticas, recomenda-se tradução profissional feita por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes do uso desta tradução.
+**Aviso Legal**:
+Este documento foi traduzido usando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos pela precisão, por favor, esteja ciente de que traduções automatizadas podem conter erros ou imprecisões. O documento original em seu idioma nativo deve ser considerado a fonte autorizada. Para informações críticas, recomenda-se tradução profissional humana. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes do uso desta tradução.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

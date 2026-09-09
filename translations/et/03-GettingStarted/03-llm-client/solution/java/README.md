@@ -1,68 +1,66 @@
 # Kalkulaatori LLM klient
 
-Java-rakendus, mis demonstreerib, kuidas kasutada LangChain4j, et ühendada MCP (Model Context Protocol) kalkulaatoriteenusega koos GitHub Models integratsiooniga.
+Java rakendus, mis demonstreerib, kuidas kasutada LangChain4j ühendamiseks MCP (Model Context Protocol) kalkulaatoriteenusega läbi MiniMax OpenAI-ühilduva API.
 
-## Eeltingimused
+## Eeldused
 
 - Java 21 või uuem
-- Maven 3.6+ (või kasutage kaasasolevat Maven wrapperit)
-- GitHubi konto koos juurdepääsuga GitHub Modelsile
-- MCP kalkulaatoriteenus, mis töötab aadressil `http://localhost:8080`
+- Maven 3.6+ (või kasuta kaasasolevat Maven wrapperit)
+- MiniMax API võti
+- MCP kalkulaatori teenus töötab aadressil `http://localhost:8080`
 
-## GitHubi tokeni hankimine
+## API võtme hankimine
 
-See rakendus kasutab GitHub Modelsit, mis nõuab GitHubi isiklikku juurdepääsutokenit. Järgige neid samme, et saada oma token:
+See rakendus kasutab MiniMax OpenAI-ühilduvat API-d. Järgi neid samme, et saada oma võti ja lõpp-punkt:
 
-### 1. Juurdepääs GitHub Modelsile
-1. Minge lehele [GitHub Models](https://github.com/marketplace/models)
-2. Logige sisse oma GitHubi kontoga
-3. Taotlege juurdepääsu GitHub Modelsile, kui te pole seda veel teinud
+### 1. Vali lõpp-punkt
+1. Kasuta globaalset lõpp-punkti jaoks `https://api.minimax.io/v1`
+2. Kasuta Hiina lõpp-punkti jaoks `https://api.minimaxi.com/v1`
 
-### 2. Looge isiklik juurdepääsutoken
-1. Minge lehele [GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)](https://github.com/settings/tokens)
-2. Klõpsake "Generate new token" → "Generate new token (classic)"
-3. Andke oma tokenile kirjeldav nimi (nt "MCP Calculator Client")
-4. Määrake aegumistähtaeg vastavalt vajadusele
-5. Valige järgmised õigused:
-   - `repo` (kui pääsete ligi privaatsetele repositooriumidele)
-   - `user:email`
-6. Klõpsake "Generate token"
-7. **Oluline**: Kopeerige token kohe - te ei saa seda hiljem uuesti näha!
+### 2. Loo API võti
+1. Loo MiniMax API võti oma MiniMax konto kaudu
+2. Hoia võti turvalises kohas
 
-### 3. Keskkonnamuutuja seadistamine
+### 3. Määra keskkonnamuutujad
 
-#### Windowsis (Command Prompt):
+#### Windowsis (käsklusrida):
 ```cmd
-set GITHUB_TOKEN=your_github_token_here
+set OPENAI_API_KEY=your_minimax_api_key_here
+set OPENAI_BASE_URL=https://api.minimax.io/v1
+set MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
 #### Windowsis (PowerShell):
 ```powershell
-$env:GITHUB_TOKEN="your_github_token_here"
+$env:OPENAI_API_KEY="your_minimax_api_key_here"
+$env:OPENAI_BASE_URL="https://api.minimax.io/v1"
+$env:MINIMAX_MODEL_ID="MiniMax-M3"
 ```
 
-#### macOS/Linuxis:
+#### macOS/Linux:
 ```bash
-export GITHUB_TOKEN=your_github_token_here
+export OPENAI_API_KEY=your_minimax_api_key_here
+export OPENAI_BASE_URL=https://api.minimax.io/v1
+export MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
-## Seadistamine ja paigaldamine
+## Paigaldus ja seadistamine
 
-1. **Kloonige või liikuge projekti kataloogi**
+1. **Klooni või mine projekti kausta**
 
-2. **Paigaldage sõltuvused**:
+2. **Paigalda sõltuvused**:
    ```cmd
    mvnw clean install
    ```
-   Või kui teil on Maven globaalselt paigaldatud:
+   Või kui sul on Maven globaalne:
    ```cmd
    mvn clean install
    ```
 
-3. **Seadistage keskkonnamuutuja** (vt "GitHubi tokeni hankimine" sektsiooni eespool)
+3. **Määra keskkonnamuutujad** (loe "API võtme hankimine" jaotisest ülespoole)
 
-4. **Käivitage MCP kalkulaatoriteenus**:
-   Veenduge, et teil on 1. peatüki MCP kalkulaatoriteenus käimas aadressil `http://localhost:8080/sse`. See peaks olema käimas enne kliendi käivitamist.
+4. **Käivita MCP kalkulaatori teenus**:
+   Veendu, et 1. peatüki MCP kalkulaatori teenus töötab aadressil `http://localhost:8080/sse`. See peab olema käivitatud enne kliendi käivitamist.
 
 ## Rakenduse käivitamine
 
@@ -73,15 +71,15 @@ java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 
 ## Mida rakendus teeb
 
-Rakendus demonstreerib kolme peamist interaktsiooni kalkulaatoriteenusega:
+Rakendus demonstreerib kolme peamist suhtlust kalkulaatori teenusega:
 
-1. **Liitmine**: Arvutab 24.5 ja 17.3 summa
-2. **Ruutjuur**: Arvutab 144 ruutjuure
-3. **Abi**: Kuvab saadaval olevad kalkulaatori funktsioonid
+1. **Liitmine**: Arvutab kokku 24.5 ja 17.3 summa
+2. **Ruutjuur**: Arvutab välja 144 ruutjuure
+3. **Abi**: Näitab saadaval olevaid kalkulaatori funktsioone
 
 ## Oodatav väljund
 
-Eduka käivitamise korral peaksite nägema väljundit, mis on sarnane järgmisega:
+Eduka töö korral näed väljundit, mis näeb välja umbes selline:
 
 ```
 The sum of 24.5 and 17.3 is 41.8.
@@ -91,52 +89,54 @@ The calculator service provides the following functions: add, subtract, multiply
 
 ## Tõrkeotsing
 
-### Levinud probleemid
+### Levinumad probleemid
 
-1. **"GITHUB_TOKEN keskkonnamuutuja pole seadistatud"**
-   - Veenduge, et olete seadistanud `GITHUB_TOKEN` keskkonnamuutuja
-   - Taaskäivitage oma terminal/Command Prompt pärast muutuja seadistamist
+1. **"OPENAI_API_KEY keskkonnamuutuja pole määratud"**
+   - Veendu, et oled määranud `OPENAI_API_KEY` keskkonnamuutuja
+   - Taaskäivita terminal / käsklusrida pärast muutuja seadistamist
 
-2. **"Ühendus localhost:8080 keeldus"**
-   - Veenduge, et MCP kalkulaatoriteenus töötab pordil 8080
-   - Kontrollige, kas mõni teine teenus kasutab porti 8080
+2. **"Ühendus localhost:8080 keelatud"**
+   - Veendu, et MCP kalkulaatori teenus töötab pordil 8080
+   - Kontrolli, kas mõni teine teenus ei kasuta juba porti 8080
 
 3. **"Autentimine ebaõnnestus"**
-   - Kontrollige, kas teie GitHubi token on kehtiv ja omab õigeid õigusi
-   - Kontrollige, kas teil on juurdepääs GitHub Modelsile
+   - Kontrolli, kas sinu API võti on kehtiv
+   - Kontrolli, et `OPENAI_BASE_URL` vastab lõpp-punktile, mida kavatsesid kasutada
 
-4. **Maveni ehitustõrked**
-   - Veenduge, et kasutate Java 21 või uuemat: `java -version`
-   - Proovige ehitust puhastada: `mvnw clean`
+4. **Maveni build-vead**
+   - Veendu, et kasutad Java 21 või uuemat versiooni: `java -version`
+   - Proovi puhastada build: `mvnw clean`
 
 ### Silumine
 
-Silumise logimise lubamiseks lisage rakenduse käivitamisel järgmine JVM argument:
+Et lubada silumise logi, lisa käivitamisel järgmine JVM argument:
 ```cmd
 java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
 
 ## Konfiguratsioon
 
-Rakendus on konfigureeritud:
-- Kasutama GitHub Modelsit koos `gpt-4.1-nano` mudeliga
-- Ühenduma MCP teenusega aadressil `http://localhost:8080/sse`
-- Kasutama 60-sekundilist taimerit päringute jaoks
-- Lubama päringu/vastuse logimist silumiseks
+Rakendus on seadistatud nii:
+- Vaikimisi kasutab MiniMax-M3, või MiniMax-M2.7 kui on määratud `MINIMAX_MODEL_ID`
+- Ühendub `OPENAI_BASE_URL`-iga kui see on määratud; muidu kasutab `https://api.minimaxi.com/v1`, kui `MINIMAX_REGION=cn_zh`, või vaikimisi `https://api.minimax.io/v1`
+- Ühendub MCP teenusega aadressil `http://localhost:8080/sse`
+- Kasutab päringute jaoks 60-sekundilist ajapiirangut
 
 ## Sõltuvused
 
-Projekti peamised sõltuvused:
-- **LangChain4j**: AI integratsiooni ja tööriistade haldamiseks
-- **LangChain4j MCP**: Model Context Protocoli toetuseks
-- **LangChain4j GitHub Models**: GitHub Models integratsiooniks
-- **Spring Boot**: Rakenduse raamistik ja sõltuvuste süstimine
+Peamised selles projektis kasutatavad sõltuvused:
+- **LangChain4j**: AI integreerimiseks ja tööriistade haldamiseks
+- **LangChain4j MCP**: Model Context Protocol toe jaoks
+- **LangChain4j OpenAI ametlik**: MiniMax OpenAI-ühilduva API integratsiooniks
+- **Spring Boot**: Rakenduse raamistikuks ja sõltuvuste süstimiseks
 
 ## Litsents
 
-See projekt on litsentseeritud Apache License 2.0 alusel - vaadake [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) faili üksikasjade jaoks.
+See projekt on litsentseeritud Apache litsentsi 2.0 alusel - vaata üksikasju failist [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE).
 
 ---
 
-**Lahtiütlus**:  
-See dokument on tõlgitud AI tõlketeenuse [Co-op Translator](https://github.com/Azure/co-op-translator) abil. Kuigi püüame tagada täpsust, palume arvestada, et automaatsed tõlked võivad sisaldada vigu või ebatäpsusi. Algne dokument selle algses keeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitame kasutada professionaalset inimtõlget. Me ei vastuta selle tõlke kasutamisest tulenevate arusaamatuste või valesti tõlgenduste eest.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Lahtiütlus**:
+See dokument on tõlgitud kasutades AI tõlketeenust [Co-op Translator](https://github.com/Azure/co-op-translator). Kuigi me püüdleme täpsuse poole, palun pange tähele, et automatiseeritud tõlgetes võib esineda vigu või ebatäpsusi. Originaaldokument selle emakeeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitatakse kasutada professionaalset inimtõlget. Me ei vastuta selle tõlkega seotud eksimustest või valesti mõistmistest.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

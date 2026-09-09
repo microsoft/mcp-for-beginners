@@ -1,52 +1,50 @@
-# Calculator LLM Client
+# Calculator LLM-klient
 
-En Java-applikation som visar hur man använder LangChain4j för att ansluta till en MCP (Model Context Protocol) kalkylatortjänst med GitHub Models-integration.
+En Java-applikation som demonstrerar hur man använder LangChain4j för att ansluta till en MCP (Model Context Protocol) kalkylatortjänst via MiniMax OpenAI-kompatibla API.
 
 ## Förutsättningar
 
 - Java 21 eller högre
-- Maven 3.6+ (eller använd den medföljande Maven-wrappern)
-- Ett GitHub-konto med tillgång till GitHub Models
+- Maven 3.6+ (eller använd medföljande Maven wrapper)
+- En MiniMax API-nyckel
 - En MCP kalkylatortjänst som körs på `http://localhost:8080`
 
-## Skaffa GitHub-token
+## Skaffa API-nyckeln
 
-Denna applikation använder GitHub Models som kräver en personlig åtkomsttoken från GitHub. Följ dessa steg för att få din token:
+Den här applikationen använder MiniMax OpenAI-kompatibla API. Följ dessa steg för att få din nyckel och endpoint:
 
-### 1. Gå till GitHub Models
-1. Besök [GitHub Models](https://github.com/marketplace/models)
-2. Logga in med ditt GitHub-konto
-3. Begär åtkomst till GitHub Models om du inte redan har det
+### 1. Välj en endpoint
+1. Använd `https://api.minimax.io/v1` för global endpoint
+2. Använd `https://api.minimaxi.com/v1` för Kina-endpoint
 
-### 2. Skapa en personlig åtkomsttoken
-1. Gå till [GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)](https://github.com/settings/tokens)
-2. Klicka på "Generate new token" → "Generate new token (classic)"
-3. Ge din token ett beskrivande namn (t.ex. "MCP Calculator Client")
-4. Ställ in utgångsdatum efter behov
-5. Välj följande scopes:
-   - `repo` (om du behöver åtkomst till privata repositories)
-   - `user:email`
-6. Klicka på "Generate token"
-7. **Viktigt**: Kopiera token direkt – du kommer inte kunna se den igen!
+### 2. Skapa en API-nyckel
+1. Skapa en MiniMax API-nyckel från ditt MiniMax-konto
+2. Spara nyckeln på en säker plats
 
-### 3. Sätt miljövariabeln
+### 3. Ställ in miljövariablerna
 
-#### På Windows (Command Prompt):
+#### På Windows (Kommandotolk):
 ```cmd
-set GITHUB_TOKEN=your_github_token_here
+set OPENAI_API_KEY=your_minimax_api_key_here
+set OPENAI_BASE_URL=https://api.minimax.io/v1
+set MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
 #### På Windows (PowerShell):
 ```powershell
-$env:GITHUB_TOKEN="your_github_token_here"
+$env:OPENAI_API_KEY="your_minimax_api_key_here"
+$env:OPENAI_BASE_URL="https://api.minimax.io/v1"
+$env:MINIMAX_MODEL_ID="MiniMax-M3"
 ```
 
 #### På macOS/Linux:
 ```bash
-export GITHUB_TOKEN=your_github_token_here
+export OPENAI_API_KEY=your_minimax_api_key_here
+export OPENAI_BASE_URL=https://api.minimax.io/v1
+export MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
-## Installation och uppsättning
+## Installation och konfiguration
 
 1. **Klona eller navigera till projektmappen**
 
@@ -59,10 +57,10 @@ export GITHUB_TOKEN=your_github_token_here
    mvn clean install
    ```
 
-3. **Sätt miljövariabeln** (se avsnittet "Skaffa GitHub-token" ovan)
+3. **Ställ in miljövariablerna** (se avsnittet "Skaffa API-nyckeln" ovan)
 
-4. **Starta MCP Calculator Service**:
-   Se till att kapitel 1:s MCP kalkylatortjänst körs på `http://localhost:8080/sse`. Den måste vara igång innan du startar klienten.
+4. **Starta MCP kalkylatortjänsten**:
+   Se till att du har kapitel 1:s MCP kalkylatortjänst igång på `http://localhost:8080/sse`. Den ska köras innan klienten startar.
 
 ## Köra applikationen
 
@@ -73,7 +71,7 @@ java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 
 ## Vad applikationen gör
 
-Applikationen visar tre huvudsakliga interaktioner med kalkylatortjänsten:
+Applikationen demonstrerar tre huvudsakliga interaktioner med kalkylatortjänsten:
 
 1. **Addition**: Beräknar summan av 24.5 och 17.3
 2. **Kvadratrot**: Beräknar kvadratroten av 144
@@ -81,7 +79,7 @@ Applikationen visar tre huvudsakliga interaktioner med kalkylatortjänsten:
 
 ## Förväntad utdata
 
-När allt fungerar korrekt bör du se en utdata liknande denna:
+Vid lyckad körning bör du se output liknande:
 
 ```
 The sum of 24.5 and 17.3 is 41.8.
@@ -93,25 +91,25 @@ The calculator service provides the following functions: add, subtract, multiply
 
 ### Vanliga problem
 
-1. **"GITHUB_TOKEN environment variable not set"**
-   - Kontrollera att du har satt miljövariabeln `GITHUB_TOKEN`
-   - Starta om terminalen/kommandoprompten efter att du satt variabeln
+1. **"OPENAI_API_KEY miljövariabel är inte satt"**
+   - Kontrollera att du har satt miljövariabeln `OPENAI_API_KEY`
+   - Starta om terminalen/kommandotolken efter att du satt variabeln
 
 2. **"Connection refused to localhost:8080"**
-   - Kontrollera att MCP kalkylatortjänsten körs på port 8080
-   - Se om någon annan tjänst använder port 8080
+   - Säkerställ att MCP kalkylatortjänsten körs på port 8080
+   - Kontrollera om en annan tjänst använder port 8080
 
-3. **"Authentication failed"**
-   - Verifiera att din GitHub-token är giltig och har rätt behörigheter
-   - Kontrollera att du har åtkomst till GitHub Models
+3. **"Autentisering misslyckades"**
+   - Verifiera att din API-nyckel är giltig
+   - Kontrollera att `OPENAI_BASE_URL` stämmer överens med den endpoint du tänkt använda
 
 4. **Maven build-fel**
-   - Säkerställ att du använder Java 21 eller högre: `java -version`
-   - Prova att rensa bygget: `mvnw clean`
+   - Kontrollera att du använder Java 21 eller högre: `java -version`
+   - Försök att göra en ren build: `mvnw clean`
 
-### Felsökning
+### Debugging
 
-För att aktivera debug-loggning, lägg till följande JVM-argument när du kör:
+För att aktivera debug-loggning, lägg till följande JVM-argument vid körning:
 ```cmd
 java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
@@ -119,22 +117,26 @@ java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0
 ## Konfiguration
 
 Applikationen är konfigurerad för att:
-- Använda GitHub Models med modellen `gpt-4.1-nano`
+- Använda MiniMax-M3 som standard, eller MiniMax-M2.7 när `MINIMAX_MODEL_ID` är satt
+- Ansluta till `OPENAI_BASE_URL` när den är satt; annars använda `https://api.minimaxi.com/v1` när `MINIMAX_REGION=cn_zh`, eller `https://api.minimax.io/v1` som standard
 - Ansluta till MCP-tjänsten på `http://localhost:8080/sse`
 - Använda en timeout på 60 sekunder för förfrågningar
-- Aktivera loggning av förfrågningar/svar för felsökning
 
 ## Beroenden
 
-Viktiga beroenden i detta projekt:
+Nyckelberoenden som används i detta projekt:
 - **LangChain4j**: För AI-integration och verktygshantering
 - **LangChain4j MCP**: För stöd av Model Context Protocol
-- **LangChain4j GitHub Models**: För integration med GitHub Models
-- **Spring Boot**: För applikationsramverk och beroendeinjektion
+- **LangChain4j OpenAI official**: För MiniMax OpenAI-kompatibel API-integration
+- **Spring Boot**: För applikationsramverk och dependency injection
 
 ## Licens
 
-Detta projekt är licensierat under Apache License 2.0 - se [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) för detaljer.
+Detta projekt är licensierat under Apache License 2.0 - se [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE)-filen för detaljer.
 
-**Ansvarsfriskrivning**:  
-Detta dokument har översatts med hjälp av AI-översättningstjänsten [Co-op Translator](https://github.com/Azure/co-op-translator). Även om vi strävar efter noggrannhet, vänligen observera att automatiska översättningar kan innehålla fel eller brister. Det ursprungliga dokumentet på dess modersmål bör betraktas som den auktoritativa källan. För kritisk information rekommenderas professionell mänsklig översättning. Vi ansvarar inte för några missförstånd eller feltolkningar som uppstår vid användning av denna översättning.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Ansvarsfriskrivning**:
+Detta dokument har översatts med hjälp av AI-översättningstjänsten [Co-op Translator](https://github.com/Azure/co-op-translator). Även om vi strävar efter noggrannhet, var vänlig notera att automatiska översättningar kan innehålla fel eller brister. Det ursprungliga dokumentet på dess modersmål bör betraktas som den auktoritativa källan. För kritisk information rekommenderas professionell mänsklig översättning. Vi ansvarar inte för några missförstånd eller feltolkningar som uppstår till följd av användningen av denna översättning.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

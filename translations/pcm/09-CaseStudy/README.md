@@ -1,157 +1,172 @@
-# MCP for Action: Real-World Case Studies
+# MCP for Work: Real-Life Case Studies
 
-[![MCP for Action: Real-World Case Studies](../../../translated_images/pcm/10.3262cc80b4de5071.webp)](https://youtu.be/IxshWb2Az5w)
+[![MCP for Work: Real-Life Case Studies](../../../translated_images/pcm/10.3262cc80b4de5071.webp)](https://youtu.be/IxshWb2Az5w)
 
-_(Click the image wey dey above to watch video for this lesson)_
+_(Click di picture wey dey top to watch video for dis lesson)_
 
-Di Model Context Protocol (MCP) dey change how AI applications dey take interact wit data, tools, and services. Dis section dey show real-life case studies wey dey demonstrate wetin MCP fit do for different business palava.
+Di Model Context Protocol (MCP) dey change how AI apps dey connect wit data, tools, and services. Dis section show real-life case studies wey show how people fit use MCP for different business levels.
 
 ## Overview
 
-Dis section go show correct examples of MCP implementations, to show how organisations dey use dis protocol take solve complex business problems. If you check dis case studies, you go understand how MCP fit work well, how e fit grow, and di real benefits e get for real-life situations.
+Dis part show real examples of MCP use, talk about how companies dey use dis protocol to solve gbege for business. If you look these case studies, you go understand better how MCP fit do different work, grow, and help for real business matter dem.
 
-## Key Learning Objectives
+## Wetin You Go Learn
 
-If you explore dis case studies, you go:
+If you check dis case studies, you go:
 
-- Understand how MCP fit help solve particular business wahala
-- Learn different kain integration style and architecture approach
-- Know di better way to implement MCP inside business systems
-- See the challenges and solutions dem wey happen for real life implementations
-- Find ways to apply similar methods for your own projects
+- Understand how MCP fit take solve specific business gbege
+- Learn different ways to join systems and how dem take arrange am
+- Know di beta method to use MCP for enterprise work
+- See di kind challenges and beta ways wey dem find for real life MCP work
+- Find chance to use di same ways for your own project dem
 
-## Featured Case Studies
+## Case Studies Wey Dem Show Pass
 
 ### 1. [Azure AI Travel Agents – Reference Implementation](./travelagentsample.md)
 
-Dis case na Microsoft official reference solution wey show how to build multi-agent, AI-powered travel planning app using MCP, Azure OpenAI, and Azure AI Search. Di project show:
+Dis case study look Microsoft complete reference solution wey show how to build travel planning app wey get plenty AI agents, use MCP, Azure OpenAI, and Azure AI Search. Di project show:
 
-- Multi-agent coordination through MCP
-- Enterprise data integration wit Azure AI Search
-- Secure and scalable structure using Azure services
-- Extensible tools wey get reusable MCP parts
-- Conversational user experience powered by Azure OpenAI
+- How multiple agents dey work together wit MCP
+- How enterprise data join using Azure AI Search
+- Strong and scalable design using Azure services
+- Easy to extend with MCP reusable parts
+- User-friendly talk experience powered by Azure OpenAI
 
-Di structure and implementation details go give you beta insight about how to build waka multi-agent systems with MCP as di control layer.
+Di design and how dem take build am dey give beta understanding on how to make complex multi-agent system with MCP as control center.
 
 ### 2. [Updating Azure DevOps Items from YouTube Data](./UpdateADOItemsFromYT.md)
 
-Dis case show practical way to use MCP for automate workflow. E show how MCP tools fit do:
+Dis case study show wetin MCP fit do for automatic workflow process. E show how MCP tools fit:
 
-- Extract data from online sites like YouTube
-- Update work items for Azure DevOps systems
-- Create repeatable automation workflow dem
-- Connect data across different systems
+- Take data from online platform like YouTube
+- Update work items for Azure DevOps system
+- Create automation wey fit run again and again
+- Join data from different system dem
 
-Dis example show as even small small MCP implementation fit bring better efficiency by automat routine work and make data consistent for different systems.
+Dis example show say even simple MCP use fit bring strong work speed by automating normal work and making data hold well across system.
 
 ### 3. [Real-Time Documentation Retrieval with MCP](./docs-mcp/README.md)
 
-Dis case study go guide you to connect Python console client to MCP server to fetch and log real-time, context-aware Microsoft documentation. You go learn how to:
+Dis case study guide you how to connect Python console client to MCP server for bring and log Microsoft documentation wey dey real-time and smart. You go learn how:
 
-- Connect MCP server wit Python client and official MCP SDK
-- Use streaming HTTP clients for efficient real-time data fetching
-- Call documentation tools on di server and log the response direct to console
-- Integrate up-to-date Microsoft documentation for your workflow without comot terminal
+- Connect MCP server with Python client and official MCP SDK
+- Use streaming HTTP clients to collect data fast, real-time
+- Call documentation tools for server and log answers directly to console
+- Join the recent Microsoft documentation into your work without comot for terminal
 
-Di chapter get hands-on assignment, small working code sample, and tori links for deep learning. See full walkthrough and code for linked chapter to understand how MCP fit change how to access documentation and boost developer productivity for console environment.
+The chapter get hands-on project, small working code, and link to more resources for better learning. Check di full walkthrough and code so you understand how MCP fit change documentation access and developer work for console.
 
 ### 4. [Interactive Study Plan Generator Web App with MCP](./docs-mcp/README.md)
 
-Dis case show how to build interactive web app using Chainlit and MCP to generate personalized study plans for any subject. Users fit specify subject (like "AI-900 certification") and study duration (like 8 weeks), and di app go give week-by-week content guide. Chainlit dey enable conversational chat interface, making the experience interesting and flexible.
+Dis case study show how to build interactive web app wey use Chainlit and MCP to create personalized study plan for any topic. Users fit choose subject (like "AI-900 certification") and study time (like 8 weeks) and app go give week-by-week guide for recommended content. Chainlit dey enable chat wey person fit talk, make di experience sweet and flexible.
 
-- Conversational web app powered by Chainlit
-- User-driven prompts for subject and duration
-- Week-by-week content recommendations using MCP
-- Real-time, flexible responses inside chat interface
+- Chat web app powered by Chainlit
+- User dey give topic and time
+- Week by week content suggestions using MCP
+- Real-time, flexible answers for chat
 
-Di project show how conversational AI and MCP fit join body to create active, user-driven education tool inside modern web app.
+Di project show how conversational AI and MCP fit work together to make beta, user-driven learning tools for modern web.
 
 ### 5. [In-Editor Docs with MCP Server in VS Code](./docs-mcp/README.md)
 
-Dis case show how you fit bring Microsoft Learn Docs directly inside your VS Code environment using MCP server—no need to shift browse tab again! You go see how to:
+Dis case study show how to bring Microsoft Learn Docs enter your VS Code environment using MCP server – no more waka go browser tab! You go see how to:
 
-- Immediately search and read docs inside VS Code using MCP panel or command palette
-- Reference docs and insert links inside your README or course markdown files
-- Use GitHub Copilot and MCP together for smooth AI-powered docs and code workflows
-- Validate and improve your docs with live feedback and Microsoft-verified accuracy
-- Integrate MCP with GitHub workflow for continuous docs validation
+- Quick search and read docs inside VS Code using MCP panel or command palette
+- Reference docs and put links direct to your README or course markdown files
+- Use GitHub Copilot and MCP together for clean AI-powered documentation and code workflow
+- Check and improve your documentation with real-time feedback and true Microsoft info
+- Join MCP with GitHub workflow to keep documentation validation steady
 
-Implementation get:
+Di implementation get:
 
-- Example `.vscode/mcp.json` setup for easy configuration
-- Screenshot walkthroughs for in-editor experience
-- Tips for combining Copilot and MCP for max productivity
+- Sample `.vscode/mcp.json` setup for easy configuration
+- Screenshot guides of in-editor experience
+- Tips for combining Copilot and MCP for beta work
 
-Dis scenario perfect for course authors, document writers, and developers wey wan focus for their editor while dem dey work with docs, Copilot, and validation tool—everything powered by MCP.
+Dis one good for course authors, documentation writers, and developers wey want to focus for editor while working with docs, Copilot, and validation tools—everything run by MCP.
 
 ### 6. [APIM MCP Server Creation](./apimsample.md)
 
-Dis case dey give step-by-step guide on how to create MCP server using Azure API Management (APIM). E cover:
+Dis case study give step-by-step guide on how to create MCP server using Azure API Management (APIM). E cover:
 
 - Setup MCP server inside Azure API Management
-- Expose API operations as MCP tools
-- Configure policy dem for rate limiting and security
-- Test MCP server with Visual Studio Code and GitHub Copilot
+- Show API operations as MCP tools
+- Setup policies for rate limiting and security
+- Test MCP server using Visual Studio Code and GitHub Copilot
 
-Dis example show how to use Azure power to create strong MCP server wey fit work for many apps, improve AI system integration with enterprise APIs.
+Dis example show how to use Azure power to create strong MCP server wey fit work for many apps, improving how AI systems fit join enterprise APIs.
 
 ### 7. [GitHub MCP Registry — Accelerating Agentic Integration](https://github.com/mcp)
 
-Dis case dey look GitHub MCP Registry wey dem launch for September 2025, to solve big problem for AI ecosystem: scattered discovery and deployment of MCP servers.
+Dis case study talk about how GitHub's MCP Registry, wey dem launch for September 2025, dey solve big gbege for AI world: scattered discovery and deployment of Model Context Protocol (MCP) servers.
 
 #### Overview
-**MCP Registry** dey solve di big wahala wey scattered MCP servers for different repos and registries dey bring, wey before dey make integration slow and get error. Dem MCP servers dey help AI agents interact with outside systems like APIs, databases, and document sources.
+Di **MCP Registry** solve di wahala of MCP servers scatter for many repository and registry places, wey before make joining slow and error full. Di servers allow AI agents to interact with systems outside like APIs, databases, and documentation.
 
 #### Problem Statement
-Developers wey dey build agentic workflows get plenty challenges:
-- **Hard to find MCP servers** cross different platforms
-- **Repeat questions** scatter for forums and docs
-- **Security risk** from unverified and untrusted sources
-- **No standards** for server quality and compatibility
+Developers wey dey build agent workflows face many gbege:
+- **Hard to find** MCP servers for different platform
+- **Repeat setup questions** for different forum and docs
+- **Security risk** from untrusted and unverified sources
+- **No standard** for server quality and how dem connect
 
 #### Solution Architecture
-GitHub MCP Registry centralize trusted MCP servers with key features:
-- **One-click install** via VS Code to setup sharp sharp
-- **Signal-over-noise sorting** by stars, activity, and community validation
-- **Direct integration** with GitHub Copilot and other MCP tools
-- **Open contribution model** wey allow community and enterprise partners make contributions
+GitHub MCP Registry centralize trustworthy MCP servers with en beta feature dem:
+- **One-click install** with VS Code for easy setup
+- **Sort by stars, activity and community validation** to show correct choice
+- **Direct join with GitHub Copilot and other MCP tools**
+- **Open contribution model** wey community and businesses fit add to
 
 #### Business Impact
-The registry don bring clear improvements:
-- **Faster onboarding** for developers using tools like Microsoft Learn MCP Server, wey streams official docs directly into agents
-- **Better productivity** via special servers like `github-mcp-server`, wey enable natural language GitHub automation (PR creation, CI rerun, code scanning)
-- **Stronger trust** through curated listings and transparent configuration standards
+Di registry don bring clear beta changes:
+- **Faster developer onboarding** with tools like Microsoft Learn MCP Server wey dey stream official docs inside agents
+- **Better productivity** with special servers like `github-mcp-server`, allowing natural language GitHub work (PR creation, CI reruns, code scan)
+- **Stronger community trust** through curated list and open config standards
 
 #### Strategic Value
-For practitioners wey specialize for agent lifecycle management and reproducible workflows, MCP Registry provide:
-- **Modular agent deployment** with standard parts
-- **Registry-backed evaluation pipelines** for consistent testing and validation
-- **Cross-tool interoperability** for smooth integration across AI platforms
+For people wey sabi agent management and workflow repeat, MCP Registry dey give:
+- **Modular agent deployment** wit standard parts
+- **Registry-backed testing pipelines** for consistent checks and validation
+- **Cross-tool join** for smooth integration across AI platforms
 
-Dis case show say MCP Registry no be just directory—na base platform for scalable real-world model integration and agentic system deployment.
+Dis case study show say MCP Registry na more than directory—na important platform for scalable, real-world model join and agent system deployment.
+
+### 8. [Publishing to Social Networks from an Agent](./publora-social-publishing.md)
+
+Dis case study explain **write-capable remote MCP server** – server wey get tools wey fit do irreversible action for user — use social publishing as example. Agent go draft post, human go approve am, then server go schedule am for different network.
+
+Di interesting part na design limit wey publishing impose, wey go apply to any server wey dey write instead of read:
+
+- **Open discovery, authenticated execution** — `tools/list` no need token so registries and clients fit look am, but every `tools/call` need token and else go return `401` with `WWW-Authenticate` header
+- **OAuth registration without out-of-band step** — dynamic client registration now, with Client ID Metadata Documents as di way di `2026-07-28` spec dey point
+- **Tool annotations** (`readOnlyHint`, `destructiveHint`, `idempotentHint`) wey clients dey use to decide wetin to confirm – na hints no be enforcement, and na wetin connector directories dey expect for review
+- **Un-inventable identifiers**, so fake value go loud fail no go act like correct one
+- **Idempotency keys on post tools**, so retry no go cause double post
+- **No-op target for tool schema** wey test full write path but no publish anything, good for reviewers and CI
+
+Di chapter close with short checklist you fit use for server wey you dey build.
 
 ## Conclusion
 
-Dis seven complete case studies show strong flexiblity and practical use of Model Context Protocol across different real-world business situations. From complex multi-agent travel planning and enterprise API management to streamlined docs workflow and revolutionary GitHub MCP Registry, these examples show how MCP provide standardized and scalable way to connect AI systems with tools, data, and services to deliver top value.
+These eight full case studies show how flexible and practical Model Context Protocol be across real-life work. From complex multi-agent travel planning and enterprise API management to easy documentation workflow and strong GitHub MCP Registry, dem show how MCP provide standard, scalable way to connect AI systems with tools, data, and services to deliver beta value.
 
-The case studies cover different aspects of MCP:
+Di case studies cover many part of MCP use:
 - **Enterprise Integration**: Azure API Management and Azure DevOps automation
-- **Multi-Agent Orchestration**: Travel planning wit coordinated AI agents
-- **Developer Productivity**: VS Code integration and live docs access
-- **Ecosystem Development**: GitHub MCP Registry as base platform
-- **Educational Applications**: Interactive study plans and conversational interfaces
+- **Multi-Agent Orchestration**: Travel planning with coordinated AI agents
+- **Developer Productivity**: VS Code integration and real-time documentation access
+- **Ecosystem Development**: GitHub's MCP Registry as basic platform
+- **Educational Applications**: Interactive study plan generators and conversational interfaces
 
-If you study these, you go see:
-- **Architecture patterns** for different size and usage
-- **Implementation plans** wey balance work and maintainability
-- **Security and scalability** concerns for production use
-- **Best practices** for MCP server and client integration
-- **Ecosystem ideas** for building interconnected AI-powered solutions
+By learning from these, you go get beta understand of:
+- **Architectural patterns** for different scales and use cases
+- **Implementation strategies** wey balance function and maintenance
+- **Security and scalability** for production
+- **Best practices** for MCP server build and client join
+- **Ecosystem idea** for building joined AI solutions
 
-Dis examples together show say MCP no be just theory but mature, production-ready protocol wey enable practical solutions to complex business wahala. Whether you dey build simple automation or advanced multi-agent systems, di patterns and approach for here na strong base for your MCP projects.
+These examples show say MCP no be just theory but serious, production-ready protocol wey fit solve beta business gbege. Whether you dey build simple automation or complex multi-agent system, di patterns and ways wey dem show here go set better foundation for your own MCP project.
 
-## Additional Resources
+## More Resources
 
 - [Azure AI Travel Agents GitHub Repository](https://github.com/Azure-Samples/azure-ai-travel-agents)
 - [Azure DevOps MCP Tool](https://github.com/microsoft/azure-devops-mcp)
@@ -160,7 +175,7 @@ Dis examples together show say MCP no be just theory but mature, production-read
 - [GitHub MCP Registry — Accelerating Agentic Integration](https://github.com/mcp)
 - [MCP Community Examples](https://github.com/microsoft/mcp)
 
-## What's Next
+## Wetin Follow Next
 
 - Previous: [Module 8: Best Practices](../08-BestPractices/README.md)
 - Next: [Module 10: Streamlining AI Workflows: Building an MCP Server with AI Toolkit](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)
@@ -169,5 +184,5 @@ Dis examples together show say MCP no be just theory but mature, production-read
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Disclaimer**:
-Dis document na wetin AI translation service wey be [Co-op Translator](https://github.com/Azure/co-op-translator) translate. Even though we dey try make everything correct, abeg sabi say automated translation fit get mistake or no too correct. The og document wey e start from for e own language still be the correct one. For important mata, make person wey sabi translate am humanly do am. We no go responsible if anybody misundersand or commot wrong meaning from this translation.
+Dis document don translate wit AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). Even tho we dey try make am correct, abeg make you know say automated translation fit get errors or mistakes. Di original document for dia own language na im be di correct source. For important info, make person wey sabi human translation do am. We no go responsible for any misunderstanding or wrong understanding wey fit happen because of dis translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

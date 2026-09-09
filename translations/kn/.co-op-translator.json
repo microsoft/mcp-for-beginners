@@ -162,8 +162,8 @@
     "language_code": "kn"
   },
   "03-GettingStarted/03-llm-client/solution/java/README.md": {
-    "original_hash": "ac2459c0d5cc823922e3d9240a95028c",
-    "translation_date": "2025-12-11T13:00:41+00:00",
+    "original_hash": "3efd351ab69decd299a49aaa34ac9245",
+    "translation_date": "2026-08-26T17:46:49+00:00",
     "source_file": "03-GettingStarted/03-llm-client/solution/java/README.md",
     "language_code": "kn"
   },
@@ -672,8 +672,8 @@
     "language_code": "kn"
   },
   "09-CaseStudy/README.md": {
-    "original_hash": "b3537be55d599dbfdca7bda72eef7741",
-    "translation_date": "2026-02-08T06:38:45+00:00",
+    "original_hash": "701e053b411650c0afcde985a2ef939d",
+    "translation_date": "2026-08-26T17:46:25+00:00",
     "source_file": "09-CaseStudy/README.md",
     "language_code": "kn"
   },
@@ -711,6 +711,12 @@
     "original_hash": "d44c9447c434354a77dfcb421bbdc260",
     "translation_date": "2026-06-17T00:37:16+00:00",
     "source_file": "09-CaseStudy/docs-mcp/solution/scenario3/README.md",
+    "language_code": "kn"
+  },
+  "09-CaseStudy/publora-social-publishing.md": {
+    "original_hash": "9c860d3fea4a5cfd58ea714fd608aad4",
+    "translation_date": "2026-08-26T17:50:12+00:00",
+    "source_file": "09-CaseStudy/publora-social-publishing.md",
     "language_code": "kn"
   },
   "09-CaseStudy/travelagentsample.md": {
@@ -892,7 +898,7 @@
       "original_hash": "9b7d363f239420ed477289578eb589ed",
       "source_file": "AGENTS.md",
       "language_code": "kn",
-      "failure_date": "2026-08-21T16:04:03+00:00",
+      "failure_date": "2026-08-26T17:45:26+00:00",
       "status": "failed",
       "error_type": "TranslationIncompleteError",
       "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'AGENTS.md', and the chunk could not be split further.",
@@ -903,7 +909,7 @@
       "original_hash": "60677e2e90cc496806c9a28dcebdc325",
       "source_file": "changelog.md",
       "language_code": "kn",
-      "failure_date": "2026-08-21T16:12:58+00:00",
+      "failure_date": "2026-08-26T17:41:17+00:00",
       "status": "failed",
       "error_type": "TranslationIncompleteError",
       "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'changelog.md', and the chunk could not be split further.",

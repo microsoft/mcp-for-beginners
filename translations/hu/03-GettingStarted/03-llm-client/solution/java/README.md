@@ -1,54 +1,52 @@
-# Calculator LLM Client
+# Számológép LLM kliens
 
-Egy Java alkalmazás, amely bemutatja, hogyan használható a LangChain4j az MCP (Model Context Protocol) kalkulátor szolgáltatáshoz való kapcsolódáshoz GitHub Models integrációval.
+Egy Java alkalmazás, amely bemutatja, hogyan lehet a LangChain4j használatával MCP (Model Context Protocol) számológép szolgáltatáshoz csatlakozni a MiniMax OpenAI-kompatibilis API-n keresztül.
 
 ## Előfeltételek
 
 - Java 21 vagy újabb
-- Maven 3.6+ (vagy használd a mellékelt Maven wrappert)
-- GitHub fiók, amely hozzáfér a GitHub Models-hez
-- Egy MCP kalkulátor szolgáltatás fut a `http://localhost:8080` címen
+- Maven 3.6+ (vagy használd a mellékelt Maven wrapper-t)
+- Egy MiniMax API kulcs
+- Egy MCP számológép szolgáltatás futtatása `http://localhost:8080` címen
 
-## A GitHub Token beszerzése
+## Az API kulcs beszerzése
 
-Ez az alkalmazás GitHub Models-t használ, amihez szükség van egy GitHub személyes hozzáférési tokenre. Kövesd az alábbi lépéseket a token megszerzéséhez:
+Ez az alkalmazás a MiniMax OpenAI-kompatibilis API-t használja. Kövesd az alábbi lépéseket az API kulcsod és a végpont beszerzéséhez:
 
-### 1. Lépj be a GitHub Models-be
-1. Nyisd meg a [GitHub Models](https://github.com/marketplace/models) oldalt
-2. Jelentkezz be a GitHub fiókoddal
-3. Kérj hozzáférést a GitHub Models-hez, ha még nem tetted meg
+### 1. Válassz egy végpontot
+1. Használd a `https://api.minimax.io/v1` globális végponthoz
+2. Használd a `https://api.minimaxi.com/v1` Kínai végponthoz
 
-### 2. Hozz létre egy személyes hozzáférési tokent
-1. Menj a [GitHub Beállítások → Fejlesztői beállítások → Személyes hozzáférési tokenek → Tokenek (klasszikus)](https://github.com/settings/tokens) oldalra
-2. Kattints a "Generate new token" → "Generate new token (classic)" gombra
-3. Adj a tokennek egy beszédes nevet (pl. "MCP Calculator Client")
-4. Állítsd be a lejárati időt igény szerint
-5. Válaszd ki a következő jogosultságokat:
-   - `repo` (ha privát repókhoz is hozzáférsz)
-   - `user:email`
-6. Kattints a "Generate token" gombra
-7. **Fontos**: Másold ki a tokent azonnal – később már nem fogod látni!
+### 2. API kulcs létrehozása
+1. Hozz létre egy MiniMax API kulcsot a MiniMax fiókodból
+2. Tárold el biztonságos helyen a kulcsot
 
-### 3. Állítsd be a környezeti változót
+### 3. Állítsd be a környezeti változókat
 
-#### Windows (Parancssor):
+#### Windows rendszeren (Parancssor):
 ```cmd
-set GITHUB_TOKEN=your_github_token_here
+set OPENAI_API_KEY=your_minimax_api_key_here
+set OPENAI_BASE_URL=https://api.minimax.io/v1
+set MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
-#### Windows (PowerShell):
+#### Windows rendszeren (PowerShell):
 ```powershell
-$env:GITHUB_TOKEN="your_github_token_here"
+$env:OPENAI_API_KEY="your_minimax_api_key_here"
+$env:OPENAI_BASE_URL="https://api.minimax.io/v1"
+$env:MINIMAX_MODEL_ID="MiniMax-M3"
 ```
 
-#### macOS/Linux:
+#### macOS/Linux rendszeren:
 ```bash
-export GITHUB_TOKEN=your_github_token_here
+export OPENAI_API_KEY=your_minimax_api_key_here
+export OPENAI_BASE_URL=https://api.minimax.io/v1
+export MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
 ## Beállítás és telepítés
 
-1. **Klónozd vagy lépj be a projekt könyvtárába**
+1. **Klónozd vagy lépj be a projekt könyvtárba**
 
 2. **Telepítsd a függőségeket**:
    ```cmd
@@ -59,10 +57,10 @@ export GITHUB_TOKEN=your_github_token_here
    mvn clean install
    ```
 
-3. **Állítsd be a környezeti változót** (lásd a "A GitHub Token beszerzése" részt fent)
+3. **Állítsd be a környezeti változókat** (lásd a fenti "Az API kulcs beszerzése" részt)
 
-4. **Indítsd el az MCP Calculator szolgáltatást**:
-   Győződj meg róla, hogy az 1. fejezetben bemutatott MCP kalkulátor szolgáltatás fut a `http://localhost:8080/sse` címen. Ennek el kell indulnia, mielőtt elindítod a klienst.
+4. **Indítsd el az MCP Számológép Szolgáltatást**:
+   Győződj meg róla, hogy az 1. fejezetbeli MCP számológép szolgáltatás fut `http://localhost:8080/sse` címen. Ennek futnia kell, mielőtt elindítanád a klienst.
 
 ## Az alkalmazás futtatása
 
@@ -73,11 +71,11 @@ java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 
 ## Mit csinál az alkalmazás
 
-Az alkalmazás három fő interakciót mutat be a kalkulátor szolgáltatással:
+Az alkalmazás három fő interakciót mutat be a számológép szolgáltatással:
 
-1. **Összeadás**: Kiszámolja 24.5 és 17.3 összegét
+1. **Összeadás**: Kiszámolja 24,5 és 17,3 összegét
 2. **Négyzetgyök**: Kiszámolja 144 négyzetgyökét
-3. **Segítség**: Megjeleníti a rendelkezésre álló kalkulátor funkciókat
+3. **Súgó**: Megjeleníti a rendelkezésre álló számológép funkciókat
 
 ## Várt kimenet
 
@@ -89,52 +87,56 @@ The square root of 144 is 12.
 The calculator service provides the following functions: add, subtract, multiply, divide, sqrt, power...
 ```
 
-## Hibakeresés
+## Hibaelhárítás
 
 ### Gyakori problémák
 
-1. **"GITHUB_TOKEN környezeti változó nincs beállítva"**
-   - Ellenőrizd, hogy beállítottad-e a `GITHUB_TOKEN` környezeti változót
+1. **"OPENAI_API_KEY környezeti változó nincs beállítva"**
+   - Győződj meg róla, hogy beállítottad az `OPENAI_API_KEY` környezeti változót
    - Indítsd újra a terminált/parancssort a változó beállítása után
 
-2. **"Connection refused to localhost:8080"**
-   - Győződj meg róla, hogy az MCP kalkulátor szolgáltatás fut a 8080-as porton
-   - Ellenőrizd, hogy nem foglalja-e más szolgáltatás a 8080-as portot
+2. **"Csatlakozás megtagadva a localhost:8080-hoz"**
+   - Ellenőrizd, hogy az MCP számológép szolgáltatás fut-e a 8080-as porton
+   - Nézd meg, hogy nincs-e más szolgáltatás, ami használja a 8080-as portot
 
-3. **"Authentication failed"**
-   - Ellenőrizd, hogy a GitHub token érvényes és megfelelő jogosultságokkal rendelkezik
-   - Győződj meg róla, hogy hozzáférsz a GitHub Models-hez
+3. **"Hitelesítés sikertelen"**
+   - Ellenőrizd, hogy az API kulcs érvényes-e
+   - Győződj meg róla, hogy az `OPENAI_BASE_URL` megfelel annak a végpontnak, amit használni akartál
 
 4. **Maven build hibák**
-   - Ellenőrizd, hogy Java 21 vagy újabb verziót használsz: `java -version`
-   - Próbáld meg tisztítani a buildet: `mvnw clean`
+   - Ellenőrizd, hogy Java 21 vagy újabb van használatban: `java -version`
+   - Próbáld meg kitisztítani a buildet: `mvnw clean`
 
 ### Hibakeresés
 
-A debug naplózás engedélyezéséhez add hozzá a következő JVM argumentumot a futtatáskor:
+A hibakereső naplózás engedélyezéséhez add hozzá a következő JVM argumentumot a futtatáskor:
 ```cmd
 java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
 
 ## Konfiguráció
 
-Az alkalmazás a következő beállításokkal működik:
-- GitHub Models használata a `gpt-4.1-nano` modellel
-- Kapcsolódás az MCP szolgáltatáshoz a `http://localhost:8080/sse` címen
-- 60 másodperces timeout a kérésekhez
-- Kérés/válasz naplózás engedélyezve a hibakereséshez
+Az alkalmazás a következőképpen van konfigurálva:
+- Alapértelmezettként MiniMax-M3 modellt használ, vagy MiniMax-M2.7-et, ha a `MINIMAX_MODEL_ID` be van állítva
+- Csatlakozik az `OPENAI_BASE_URL`-hez, ha az be van állítva; különben használja a `https://api.minimaxi.com/v1` címet, ha a `MINIMAX_REGION=cn_zh`, vagy egyébként a `https://api.minimax.io/v1` címet
+- Csatlakozik az MCP szolgáltatáshoz a `http://localhost:8080/sse` címen
+- 60 másodperces időkorlátot használ a kérésekhez
 
 ## Függőségek
 
-A projekt főbb függőségei:
+A projektben használt kulcsfontosságú függőségek:
 - **LangChain4j**: AI integrációhoz és eszközkezeléshez
-- **LangChain4j MCP**: Model Context Protocol támogatáshoz
-- **LangChain4j GitHub Models**: GitHub Models integrációhoz
+- **LangChain4j MCP**: Model Context Protocol támogatásához
+- **LangChain4j OpenAI hivatalos**: MiniMax OpenAI-kompatibilis API integrációhoz
 - **Spring Boot**: Alkalmazás keretrendszerhez és függőség injektáláshoz
 
 ## Licenc
 
-Ez a projekt az Apache License 2.0 alatt áll - részletekért lásd a [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) fájlt.
+Ez a projekt az Apache License 2.0 alatt van licencelve - részletekért lásd a [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) fájlt.
 
-**Jogi nyilatkozat**:  
-Ez a dokumentum az AI fordító szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár a pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Kritikus információk esetén professzionális emberi fordítást javaslunk. Nem vállalunk felelősséget a fordítás használatából eredő félreértésekért vagy téves értelmezésekért.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Jogi nyilatkozat**:
+Ez a dokumentum az AI fordítási szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár az pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Fontos információk esetén professzionális emberi fordítást javasolunk. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely ebből a fordításból ered.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
