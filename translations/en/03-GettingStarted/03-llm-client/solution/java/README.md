@@ -117,7 +117,7 @@ java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0
 ## Configuration
 
 The application is configured to:
-- Use MiniMax-M3 by default, or MiniMax-M2.7 when `MINIMAX_MODEL_ID` is set
+- Use MiniMax-M3 by default; set `MINIMAX_MODEL_ID` to select either `MiniMax-M3` or `MiniMax-M2.7`
 - Connect to `OPENAI_BASE_URL` when it is set; otherwise use `https://api.minimaxi.com/v1` when `MINIMAX_REGION=cn_zh`, or `https://api.minimax.io/v1` by default
 - Connect to MCP service at `http://localhost:8080/sse`
 - Use a 60-second timeout for requests

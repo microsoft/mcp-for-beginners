@@ -1,10 +1,13 @@
 # MCP Calculator Server (Python)
 
-A simple implementation of a Model Context Protocol (MCP) server in Python that offers basic calculator functionality.
+
+
+A simple Model Context Protocol (MCP) server implementation in Python that provides basic calculator functionality.
+
 
 ## Installation
 
-Install the necessary dependencies:
+Install the required dependencies:
 
 ```bash
 pip install -r requirements.txt
@@ -13,24 +16,24 @@ pip install -r requirements.txt
 Or install the MCP Python SDK directly:
 
 ```bash
-pip install mcp>=1.18.0
+pip install "mcp>=2.1.1,<3.0.0"
 ```
 
 ## Usage
 
 ### Running the Server
 
-The server is intended for use with MCP clients (such as Claude Desktop). To start the server:
+The server is designed to be used by MCP clients (like Claude Desktop). To start the server:
 
 ```bash
 python mcp_calculator_server.py
 ```
 
-**Note**: If you run the server directly in a terminal, you may encounter JSON-RPC validation errors. This is normal behavior—the server is waiting for properly formatted messages from an MCP client.
+**Note**: When run directly in a terminal, you'll see JSON-RPC validation errors. This is normal behavior - the server is waiting for properly formatted MCP client messages.
 
 ### Testing the Functions
 
-To verify that the calculator functions are working correctly:
+To test that the calculator functions work correctly:
 
 ```bash
 python test_calculator.py
@@ -40,17 +43,19 @@ python test_calculator.py
 
 ### Import Errors
 
-If you encounter `ModuleNotFoundError: No module named 'mcp'`, install the MCP Python SDK:
+If you see `ModuleNotFoundError: No module named 'mcp'`, install the MCP Python SDK:
 
 ```bash
-pip install mcp>=1.18.0
+pip install "mcp>=2.1.1,<3.0.0"
 ```
 
 ### JSON-RPC Errors When Running Directly
 
-Errors like "Invalid JSON: EOF while parsing a value" when running the server directly are expected. The server is designed to process messages from MCP clients, not direct input from the terminal.
+Errors like "Invalid JSON: EOF while parsing a value" when running the server directly are expected. The server needs MCP client messages, not direct terminal input.
 
 ---
 
-**Disclaimer**:  
-This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we aim for accuracy, please note that automated translations may include errors or inaccuracies. The original document in its native language should be regarded as the authoritative source. For critical information, professional human translation is advised. We are not responsible for any misunderstandings or misinterpretations resulting from the use of this translation.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Disclaimer**:
+This document has been translated using AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
