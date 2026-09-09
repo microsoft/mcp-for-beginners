@@ -1,52 +1,52 @@
 # إنشاء عميل مع LLM
 
-حتى الآن، لقد رأيت كيفية إنشاء خادم وعميل. كان العميل قادرًا على استدعاء الخادم صراحةً لقائمة أدواته، موارده، والنماذج المُحَدَّدة. ومع ذلك، هذه ليست طريقة عملية جدًا. يعيش مستخدموك في عصر الوكلاء ويتوقعون استخدام النماذج والتواصل مع LLM بدلاً من ذلك. لا يهتمون إذا كنت تستخدم MCP لتخزين إمكانياتك؛ فهم ببساطة يتوقعون التفاعل باستخدام اللغة الطبيعية. فكيف نحل هذه المشكلة؟ الحل هو إضافة LLM إلى العميل.
+حتى الآن، رأيت كيف تنشئ خادمًا وعميلًا. تمكن العميل من الاتصال بالخادم بشكل صريح لعرض أدواته وموارده واستفساراته. مع ذلك، هذه ليست طريقة عملية جدًا. يعيش مستخدموك في عصر الوكلاء ويتوقعون استخدام الاستفسارات والتواصل مع نموذج لغوي ضخم بدلاً من ذلك. لا يهمهم ما إذا كنت تستخدم MCP لتخزين إمكانياتك؛ فهم ببساطة يتوقعون التفاعل باستخدام اللغة الطبيعية. فكيف نحل هذه المشكلة؟ الحل هو إضافة نموذج لغوي ضخم إلى العميل.
 
 ## نظرة عامة
 
-في هذا الدرس نركز على إضافة LLM إلى عميلك ونوضح كيف يقدم هذا تجربة أفضل بكثير للمستخدم.
+في هذا الدرس نركز على إضافة نموذج لغوي ضخم ليعمل مع عميلك ونوضح كيف يوفر هذا تجربة أفضل بكثير لمستخدمك.
 
 ## أهداف التعلم
 
-بحلول نهاية هذا الدرس، ستتمكن من:
+بنهاية هذا الدرس، ستكون قادرًا على:
 
-- إنشاء عميل يحتوي على LLM.
-- التفاعل بسلاسة مع خادم MCP باستخدام LLM.
-- توفير تجربة مستخدم أفضل على جانب العميل.
+- إنشاء عميل مع نموذج لغوي ضخم.
+- التفاعل بسلاسة مع خادم MCP باستخدام نموذج لغوي ضخم.
+- تقديم تجربة مستخدم أفضل على جانب العميل.
 
-## المنهجية
+## النهج
 
-لنحاول فهم النهج الذي نحتاج إلى اتخاذه. إضافة LLM تبدو بسيطة، لكن هل سنقوم بذلك بالفعل؟
+لنحاول فهم النهج الذي نحتاج إلى اتخاذه. إضافة نموذج لغوي ضخم تبدو بسيطة، لكن هل سنفعل ذلك فعليًا؟
 
 إليك كيف سيتفاعل العميل مع الخادم:
 
 1. إقامة اتصال مع الخادم.
 
-1. قائمة الإمكانيات، النماذج، الموارد والأدوات، وحفظ مخططهم.
+1. عرض الإمكانيات، الاستفسارات، الموارد والأدوات، وحفظ مخططها.
 
-1. إضافة LLM وتمرير الإمكانيات المحفوظة ومخططها في صيغة يفهمها LLM.
+1. إضافة نموذج لغوي ضخم وتمرير الإمكانيات المحفوظة ومخططها بصيغة يفهمها النموذج.
 
-1. التعامل مع استعلام المستخدم بتمريره إلى LLM مع الأدوات المدرجة من قبل العميل.
+1. التعامل مع استفسار المستخدم بتمريره إلى النموذج مع الأدوات التي قدّمها العميل.
 
-رائع، الآن بعد أن فهمنا كيف يمكننا القيام بذلك على المستوى العالي، دعنا نجرب ذلك في التمرين أدناه.
+عظيم، الآن نفهم كيف يمكن أن نفعل هذا على مستوى عالي، لنجرّب ذلك في التمرين أدناه.
 
-## تمرين: إنشاء عميل مع LLM
+## تمرين: إنشاء عميل مع نموذج لغوي ضخم
 
-في هذا التمرين، سوف نتعلم إضافة LLM إلى عميلنا.
+في هذا التمرين، سنتعلم كيف نضيف نموذج لغوي ضخم لعميلنا.
 
-### المصادقة باستخدام رمز وصول شخصي من GitHub
+### المصادقة باستخدام رمز الوصول الشخصي لـ GitHub
 
-إنشاء رمز GitHub هو عملية مباشرة. إليك كيف يمكنك فعل ذلك:
+إنشاء رمز GitHub هو عملية بسيطة. إليك كيف يمكنك القيام بها:
 
-- اذهب إلى إعدادات GitHub – انقر على صورة ملفك الشخصي في الزاوية العليا اليمنى واختر إعدادات.
-- انتقل إلى إعدادات المطور – مرر للأسفل وانقر على إعدادات المطور.
-- اختر رموز الوصول الشخصية – انقر على الرموز محددة النطاق ثم انشئ رمزًا جديدًا.
-- قم بتكوين الرمز الخاص بك – أضف ملاحظة للرجوع إليها، اضبط تاريخ الانتهاء، واختر الصلاحيات الضرورية (الأذونات). في هذه الحالة تأكد من إضافة إذن النماذج.
-- انشئ وانسخ الرمز – انقر على إنشاء الرمز، وتأكد من نسخه فورًا، حيث لن تستطيع رؤيته مرة أخرى.
+- اذهب إلى إعدادات GitHub – انقر على صورة ملفك الشخصي في الزاوية العليا اليمنى واختر الإعدادات.
+- انتقل إلى إعدادات المطور – قم بالتمرير لأسفل وانقر على إعدادات المطور.
+- اختر رموز الوصول الشخصية – انقر على الرموز الدقيقة التحديد ثم إنشاء رمز جديد.
+- قم بتكوين رمزك – أضف ملاحظة للرجوع إليها، وضع تاريخ انتهاء الصلاحية، وحدد الأذونات الضرورية. في هذه الحالة تأكد من إضافة إذن النماذج.
+- أنشئ وانسخ الرمز – انقر على إنشاء الرمز، وتأكد من نسخه فورًا، لأنه لن يكون بإمكانك رؤيته مرة أخرى.
 
 ### -1- الاتصال بالخادم
 
-لنقم بإنشاء عميلنا أولاً:
+لننشئ عميلنا أولاً:
 
 #### TypeScript
 
@@ -86,8 +86,8 @@ class MCPClient {
 في الكود السابق قمنا بـ:
 
 - استيراد المكتبات اللازمة
-- إنشاء فئة تحتوي على عضوين، `client` و `openai` سيساعداننا في إدارة عميل والتفاعل مع LLM على التوالي.
-- ضبط مثيل LLM لاستخدام نماذج GitHub عن طريق تعيين `baseUrl` للإشارة إلى API الاستدلال.
+- إنشاء فئة تحتوي على عضوين، `client` و `openai` لمساعدتنا في إدارة العميل والتفاعل مع نموذج لغوي ضخم على التوالي.
+- تهيئة مثيل النموذج اللغوي لاستخدام نماذج GitHub بتعيين `baseUrl` للإشارة إلى واجهة برمجة التطبيقات الخاصة بالاستدلال.
 
 #### Python
 
@@ -97,8 +97,8 @@ from mcp.client.stdio import stdio_client
 
 # إنشاء معلمات الخادم لاتصال stdio
 server_params = StdioServerParameters(
-    command="mcp",  # قابل للتنفيذ
-    args=["run", "server.py"],  # معلمات سطر الأوامر الاختيارية
+    command="mcp",  # الملف التنفيذي
+    args=["run", "server.py"],  # وسائط سطر الأوامر الاختيارية
     env=None,  # متغيرات البيئة الاختيارية
 )
 
@@ -146,7 +146,7 @@ await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 
 #### Java
 
-أولاً، ستحتاج إلى إضافة تبعيات LangChain4j إلى ملف `pom.xml` الخاص بك. أضف هذه التبعيات لتمكين تكامل MCP ودعم نماذج GitHub:
+أولًا، ستحتاج إلى إضافة تبعيات LangChain4j إلى ملف `pom.xml` الخاص بك. أضف هذه التبعيات لتمكين تكامل MCP وواجهة برمجة التطبيقات MiniMax المتوافقة مع OpenAI:
 
 ```xml
 <properties>
@@ -168,19 +168,29 @@ await using var mcpClient = await McpClient.CreateAsync(clientTransport);
         <version>${langchain4j.version}</version>
     </dependency>
     
-    <!-- GitHub Models Support -->
-    <dependency>
-        <groupId>dev.langchain4j</groupId>
-        <artifactId>langchain4j-github-models</artifactId>
-        <version>${langchain4j.version}</version>
-    </dependency>
-    
     <!-- Spring Boot Starter (optional, for production apps) -->
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
 </dependencies>
+```
+
+اضبط مفتاح واجهة برمجة تطبيقات MiniMax الخاص بك، وبشكل اختياري، نقطة النهاية والنموذج.
+يدعم `MINIMAX_MODEL_ID` النموذجين `MiniMax-M3` و `MiniMax-M2.7`. إذا
+لم يُضبط `OPENAI_BASE_URL`، يدعم `MINIMAX_REGION` المناطق `global_en` و `cn_zh`.
+
+```bash
+export OPENAI_API_KEY=your_minimax_api_key_here
+export OPENAI_BASE_URL=https://api.minimax.io/v1
+export MINIMAX_MODEL_ID=MiniMax-M3
+```
+
+لاختيار نقطة النهاية بحسب المنطقة بدلاً من ذلك، تجاهل `OPENAI_BASE_URL`:
+
+```bash
+unset OPENAI_BASE_URL
+export MINIMAX_REGION=cn_zh
 ```
 
 ثم أنشئ فئة عميل Java الخاصة بك:
@@ -198,15 +208,25 @@ import dev.langchain4j.service.tool.ToolProvider;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class LangChain4jClient {
-    
-    public static void main(String[] args) throws Exception {        // إعداد نموذج اللغة الكبير لاستخدام نماذج GitHub
+
+    private static final String DEFAULT_BASE_URL = "https://api.minimax.io/v1";
+    private static final String DEFAULT_MODEL_ID = "MiniMax-M3";
+    private static final Map<String, String> REGIONAL_BASE_URLS = Map.of(
+            "global_en", "https://api.minimax.io/v1",
+            "cn_zh", "https://api.minimaxi.com/v1");
+    private static final Set<String> SUPPORTED_MODEL_IDS = Set.of("MiniMax-M3", "MiniMax-M2.7");
+
+    public static void main(String[] args) throws Exception {
         ChatLanguageModel model = OpenAiOfficialChatModel.builder()
-                .isGitHubModels(true)
-                .apiKey(System.getenv("GITHUB_TOKEN"))
+                .baseUrl(resolveBaseUrl())
+                .apiKey(requireEnv("OPENAI_API_KEY"))
                 .timeout(Duration.ofSeconds(60))
-                .modelName("gpt-4.1-nano")
+                .modelName(resolveModelName())
                 .build();
 
         // إنشاء ناقل MCP للاتصال بالخادم
@@ -222,23 +242,62 @@ public class LangChain4jClient {
                 .transport(transport)
                 .build();
     }
+
+    private static String resolveBaseUrl() {
+        String baseUrl = System.getenv("OPENAI_BASE_URL");
+        if (baseUrl != null && !baseUrl.isBlank()) {
+            return baseUrl;
+        }
+
+        String region = System.getenv("MINIMAX_REGION");
+        if (region == null || region.isBlank()) {
+            return DEFAULT_BASE_URL;
+        }
+
+        String regionalBaseUrl = REGIONAL_BASE_URLS.get(region);
+        if (regionalBaseUrl == null) {
+            throw new IllegalArgumentException("Unsupported MINIMAX_REGION value: " + region
+                    + ". Supported values: " + new TreeSet<>(REGIONAL_BASE_URLS.keySet()));
+        }
+        return regionalBaseUrl;
+    }
+
+    private static String resolveModelName() {
+        String modelId = System.getenv("MINIMAX_MODEL_ID");
+        if (modelId == null || modelId.isBlank()) {
+            return DEFAULT_MODEL_ID;
+        }
+        if (!SUPPORTED_MODEL_IDS.contains(modelId)) {
+            throw new IllegalArgumentException("Unsupported MINIMAX_MODEL_ID value: " + modelId
+                    + ". Supported values: " + new TreeSet<>(SUPPORTED_MODEL_IDS));
+        }
+        return modelId;
+    }
+
+    private static String requireEnv(String name) {
+        String value = System.getenv(name);
+        if (value == null || value.isBlank()) {
+            throw new IllegalStateException(name + " environment variable is not set");
+        }
+        return value;
+    }
 }
 ```
 
 في الكود السابق قمنا بـ:
 
-- **إضافة تبعيات LangChain4j**: المطلوبة لتكامل MCP، عميل OpenAI الرسمي، ودعم نماذج GitHub
-- **استيراد مكتبات LangChain4j**: لتكامل MCP ووظيفة طراز المحادثة OpenAI
-- **إنشاء `ChatLanguageModel`**: تم ضبطه لاستخدام نماذج GitHub مع رمز GitHub الخاص بك
-- **إعداد النقل عبر HTTP**: باستخدام Server-Sent Events (SSE) للاتصال بخادم MCP
-- **إنشاء عميل MCP**: الذي سيتولى التواصل مع الخادم
-- **استخدام دعم MCP المدمج في LangChain4j**: وهو ما يبسط التكامل بين LLMs وخوادم MCP
+- **إضافة تبعيات LangChain4j**: اللازمة لتكامل MCP وواجهة برمجة التطبيقات MiniMax المتوافقة مع OpenAI
+- **استيراد مكتبات LangChain4j**: لتكامل MCP ووظائف موديل المحادثة OpenAI
+- **إنشاء نموذج لغة محادثة `ChatLanguageModel`**: مُهيأ لاستخدام MiniMax مع مفتاح API الخاص بك، نقطة النهاية، ومعرف النموذج المدعوم
+- **إعداد نقل HTTP**: باستخدام Server-Sent Events (SSE) للاتصال بخادم MCP
+- **إنشاء عميل MCP**: للتواصل مع الخادم
+- **استخدام دعم MCP المدمج في LangChain4j**: الذي يبسط التكامل بين النماذج اللغوية وخوادم MCP
 
 #### Rust
 
-يفترض هذا المثال وجود خادم MCP مبني على Rust يعمل. إذا لم يكن لديك واحد، ارجع إلى درس [01-first-server](../01-first-server/README.md) لإنشاء الخادم.
+يفترض هذا المثال أنك تمتلك خادم MCP مبني بلغة Rust يعمل. إن لم يكن لديك، راجع درس [01-first-server](../01-first-server/README.md) لإنشاء الخادم.
 
-بعد أن يكون لديك خادم MCP لـ Rust، افتح محطة الأوامر وانتقل إلى نفس مجلد الخادم. ثم شغل الأمر التالي لإنشاء مشروع عميل LLM جديد:
+بمجرد أن تملك خادم MCP بلغة Rust، افتح الطرفية وانتقل إلى نفس مسار الخادم. ثم نفذ الأمر التالي لإنشاء مشروع عميل نموذج لغوي ضخم جديد:
 
 ```bash
 mkdir calculator-llmclient
@@ -246,7 +305,7 @@ cd calculator-llmclient
 cargo init
 ```
 
-أضف التبعيات التالية إلى ملف `Cargo.toml` الخاص بك:
+أضف التبعيات التالية إلى ملف `Cargo.toml`:
 
 ```toml
 [dependencies]
@@ -257,7 +316,7 @@ tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 ```
 
 > [!NOTE]
-> لا توجد مكتبة رسمية لـ OpenAI في Rust، ولكن crate `async-openai` هي [مكتبة مدارة من المجتمع](https://platform.openai.com/docs/libraries/rust#rust) وتستخدم بشكل شائع.
+> لا توجد مكتبة رسمية لـ OpenAI بلغة Rust، لكن `async-openai` هي مكتبة يديرها المجتمع تستخدم بشكل شائع.
 
 افتح ملف `src/main.rs` واستبدل محتواه بالكود التالي:
 
@@ -275,7 +334,7 @@ use tokio::process::Command;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
-    // الرسالة الأولية
+    // رسالة أولية
     let mut messages = vec![json!({"role": "user", "content": "What is the sum of 3 and 2?"})];
 
     // إعداد عميل OpenAI
@@ -301,28 +360,28 @@ async fn main() -> Result<(), Box<dyn Error>> {
         )
         .await?;
 
-    // مهم: الحصول على قائمة أدوات MCP
+    // TODO: الحصول على قائمة أدوات MCP
 
-    // مهم: محادثة LLM مع استدعاءات الأدوات
+    // TODO: محادثة LLM مع استدعاءات الأدوات
 
     Ok(())
 }
 ```
 
-يقوم هذا الكود بإعداد تطبيق Rust أساسي سيتصل بخادم MCP ونماذج GitHub للتفاعلات مع LLM.
+هذا الكود ينشئ تطبيق Rust أساسي سيتصل بخادم MCP ونماذج GitHub للتفاعل مع النموذج اللغوي.
 
 > [!IMPORTANT]
 > تأكد من تعيين متغير البيئة `OPENAI_API_KEY` برمز GitHub الخاص بك قبل تشغيل التطبيق.
 
-رائع، للخطوة التالية، دعنا ندرج إمكانيات الخادم.
+عظيم، للخطوة التالية، لنلق نظرة على عرض الإمكانيات على الخادم.
 
-### -2- سرد إمكانيات الخادم
+### -2- عرض إمكانيات الخادم
 
-الآن سنتصل بالخادم ونطلب منه إمكانياته:
+الآن سنوصل الاتصال بالخادم ونسأل عن إمكانياته:
 
 #### Typescript
 
-في نفس الفئة، أضف الطرق التالية:
+أضف إلى نفس الفئة الطرق التالية:
 
 ```typescript
 async connectToServer(transport: Transport) {
@@ -334,7 +393,7 @@ async connectToServer(transport: Transport) {
 async run() {
     console.log("Asking server for available tools");
 
-    // عرض الأدوات
+    // أدوات الإدراج
     const toolsResult = await this.client.listTools();
 }
 ```
@@ -342,7 +401,7 @@ async run() {
 في الكود السابق قمنا بـ:
 
 - إضافة كود للاتصال بالخادم، `connectToServer`.
-- إنشاء دالة `run` مسؤولة عن إدارة تدفق التطبيق. حتى الآن تعرض فقط الأدوات ولكننا سنضيف المزيد قريبًا.
+- إنشاء طريقة `run` مسؤولة عن تدفق تطبيقنا. حتى الآن تكتفي بعرض الأدوات لكننا سنضيف المزيد قريبًا.
 
 #### Python
 
@@ -361,9 +420,9 @@ for tool in tools.tools:
     print("Tool", tool.inputSchema["properties"])
 ```
 
-ما أضفناه:
+هذا ما أضفناه:
 
-- سرد الموارد والأدوات وطباعتها. بالنسبة للأدوات سردنا أيضًا `inputSchema` الذي سنستخدمه لاحقًا.
+- عرض الموارد والأدوات وطبعها. بالنسبة للأدوات نعرض أيضًا `inputSchema` والذي نستخدمه لاحقًا.
 
 #### .NET
 
@@ -390,8 +449,8 @@ async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
 
 في الكود السابق قمنا بـ:
 
-- سرد الأدوات المتاحة على خادم MCP
-- لكل أداة سرد الاسم، الوصف ومخططها. هذا الأخير سنستخدمه قريبًا لاستدعاء الأدوات.
+- عرض الأدوات المتاحة على خادم MCP
+- لكل أداة تم عرض الاسم والوصف ومخططها. الأخير هو ما سنستخدمه لاستدعاء الأدوات قريبًا.
 
 #### Java
 
@@ -401,34 +460,34 @@ ToolProvider toolProvider = McpToolProvider.builder()
         .mcpClients(List.of(mcpClient))
         .build();
 
-// يتعامل موفر أدوات MCP تلقائيًا مع:
+// يتولى موفر أدوات MCP التعامل تلقائيًا مع:
 // - سرد الأدوات المتاحة من خادم MCP
-// - تحويل مخططات أدوات MCP إلى تنسيق LangChain4j
-// - إدارة تنفيذ الأدوات والاستجابات
+// - تحويل مخططات أدوات MCP إلى صيغة LangChain4j
+// - إدارة تنفيذ الأدوات والردود
 ```
 
 في الكود السابق قمنا بـ:
 
-- إنشاء `McpToolProvider` يكتشف ويسجل تلقائيًا كل الأدوات من خادم MCP
-- موفر الأدوات يتولى التحويل بين مخططات أدوات MCP وصيغة أدوات LangChain4j داخليًا
-- هذا النهج يلغي الحاجة إلى السرد اليدوي والتحويل للأدوات
+- إنشاء `McpToolProvider` يكتشف ويسجل جميع الأدوات من خادم MCP تلقائيًا
+- مزود الأدوات يتعامل مع تحويل مخططات أدوات MCP إلى صيغة أدوات LangChain4j داخليًا
+- هذا النهج يلغي الحاجة للقائمة اليدوية وتحويل الأدوات
 
 #### Rust
 
-استدعاء الأدوات من خادم MCP يتم باستخدام طريقة `list_tools`. في دالة `main` بعد إعداد عميل MCP، أضف الكود التالي:
+استرجاع الأدوات من خادم MCP يتم باستخدام دالة `list_tools`. في دالة `main` الخاصة بك، بعد إعداد عميل MCP، أضف الكود التالي:
 
 ```rust
-// احصل على قائمة أدوات MCP
+// الحصول على قائمة أدوات MCP
 let tools = mcp_client.list_tools(Default::default()).await?;
 ```
 
-### -3- تحويل إمكانيات الخادم إلى أدوات LLM
+### -3- تحويل إمكانيات الخادم إلى أدوات نموذج لغوي
 
-الخطوة التالية بعد سرد إمكانيات الخادم هي تحويلها إلى صيغة يفهمها LLM. بمجرد القيام بذلك، يمكننا تقديم هذه الإمكانيات كأدوات لـ LLM.
+الخطوة التالية بعد عرض إمكانيات الخادم هي تحويلها إلى صيغة يفهمها النموذج اللغوي. بعد ذلك يمكننا تقديم هذه الإمكانيات كأدوات لنموذجنا.
 
 #### TypeScript
 
-1. أضف الكود التالي لتحويل الاستجابة من خادم MCP إلى صيغة أداة يمكن لـ LLM استخدامها:
+1. أضف الكود التالي لتحويل استجابة خادم MCP إلى صيغة أداة يمكن للنموذج استخدامها:
 
     ```typescript
     openAiToolAdapter(tool: {
@@ -436,11 +495,11 @@ let tools = mcp_client.list_tools(Default::default()).await?;
         description?: string;
         input_schema: any;
         }) {
-        // إنشاء مخطط زيت بناءً على input_schema
+        // إنشاء مخطط زود بناءً على input_schema
         const schema = z.object(tool.input_schema);
     
         return {
-            type: "function" as const, // تعيين النوع صراحةً إلى "دالة"
+            type: "function" as const, // تعيين النوع صراحة إلى "دالة"
             function: {
             name: tool.name,
             description: tool.description,
@@ -455,9 +514,9 @@ let tools = mcp_client.list_tools(Default::default()).await?;
 
     ```
 
-    الكود أعلاه يأخذ استجابة من خادم MCP ويحولها إلى صيغة تعريف أدوات يمكن لـ LLM فهمها.
+    الكود أعلاه يأخذ استجابة من خادم MCP ويحولها إلى تعريف أداة يفهمه النموذج اللغوي.
 
-2. دعنا نحدث دالة `run` بعد ذلك لسرد إمكانيات الخادم:
+2. دعنا نحدث طريقة `run` بعد ذلك لعرض إمكانيات الخادم:
 
     ```typescript
     async run() {
@@ -473,11 +532,11 @@ let tools = mcp_client.list_tools(Default::default()).await?;
     }
     ```
 
-    في الكود السابق، قمنا بتحديث دالة `run` للتنقل عبر النتيجة ولكل إدخال استدعاء `openAiToolAdapter`.
+    في الكود السابق، قمنا بتحديث طريقة `run` لتوسيط النتيجة ولكل إدخال يتم استدعاء `openAiToolAdapter`.
 
 #### Python
 
-1. أولاً، دعنا ننشئ دالة المحول التالية
+1. أولًا، لننشئ دالة تحويل كما يلي
 
     ```python
     def convert_to_llm_tool(tool):
@@ -497,9 +556,9 @@ let tools = mcp_client.list_tools(Default::default()).await?;
         return tool_schema
     ```
 
-    في الدالة أعلاه `convert_to_llm_tools` نأخذ استجابة أداة MCP ونحولها إلى صيغة يمكن لـ LLM فهمها.
+    في الدالة أعلاه `convert_to_llm_tools` نأخذ استجابة أداة MCP ونحولها إلى صيغة يفهمها النموذج اللغوي.
 
-2. بعد ذلك، دعنا نحدث كود العميل للاستفادة من هذه الدالة هكذا:
+2. بعد ذلك، لنحدث كود عميلنا للاستفادة من هذه الدالة كما يلي:
 
     ```python
     functions = []
@@ -509,11 +568,11 @@ let tools = mcp_client.list_tools(Default::default()).await?;
         functions.append(convert_to_llm_tool(tool))
     ```
 
-    هنا، نضيف استدعاء لـ `convert_to_llm_tool` لتحويل استجابة أداة MCP إلى شيء يمكننا تمريره لـ LLM لاحقًا.
+    هنا، نضيف استدعاء إلى `convert_to_llm_tool` لتحويل استجابة أداة MCP إلى صيغة يمكن تقديمها للنموذج لاحقًا.
 
 #### .NET
 
-1. دعنا نضيف كودًا لتحويل استجابة أداة MCP إلى شيء يمكن لـ LLM فهمه
+1. دعنا نضيف كودًا لتحويل استجابة أداة MCP إلى صيغة يفهمها النموذج اللغوي
 
 ```csharp
 ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonElement jsonElement)
@@ -538,10 +597,10 @@ ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonE
 
 في الكود السابق قمنا بـ:
 
-- إنشاء دالة `ConvertFrom` تأخذ الاسم والوصف ومخطط الإدخال.
-- تعريف وظيفة تنشئ FunctionDefinition يتم تمريرها إلى ChatCompletionsDefinition. هذا الأخير شيء يفهمه LLM.
+- إنشاء دالة `ConvertFrom` التي تأخذ الاسم، الوصف، ومخطط الإدخال.
+- تعريف دالة تقوم بإنشاء تعريف الدالة `FunctionDefinition` الذي يُمرر إلى تعريف محادثة `ChatCompletionsDefinition`. الأخير صيغة يفهمها النموذج اللغوي.
 
-2. دعنا نرى كيف يمكننا تحديث بعض الأكواد الحالية للاستفادة من هذه الدالة بالأعلى:
+2. لنرى كيف نحدث بعض الكود الحالي للاستفادة من الدالة أعلاه:
 
     ```csharp
     async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
@@ -587,12 +646,12 @@ ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonE
 #### Java
 
 ```java
-// إنشاء واجهة بوت للتفاعل مع اللغة الطبيعية
+// إنشاء واجهة بوت للتفاعل باللغة الطبيعية
 public interface Bot {
     String chat(String prompt);
 }
 
-// إعداد خدمة الذكاء الاصطناعي بأدوات LLM و MCP
+// تكوين خدمة الذكاء الاصطناعي باستخدام أدوات LLM و MCP
 Bot bot = AiServices.builder(Bot.class)
         .chatLanguageModel(model)
         .toolProvider(toolProvider)
@@ -601,14 +660,14 @@ Bot bot = AiServices.builder(Bot.class)
 
 في الكود السابق قمنا بـ:
 
-- تعريف واجهة بسيطة `Bot` للتفاعل باللغة الطبيعية
-- استخدمنا خدمات LangChain4j `AiServices` لربط LLM تلقائيًا مع موفر أدوات MCP
-- الإطار يتولى تلقائيًا تحويل مخطط الأدوات واستدعاء الدوال في الخلفية
-- هذا النهج يلغي التحويل اليدوي للأدوات - LangChain4j يتعامل مع كل تعقيدات تحويل أدوات MCP إلى صيغة متوافقة مع LLM
+- تعريف واجهة `Bot` بسيطة للتفاعل باستخدام اللغة الطبيعية
+- استخدام `AiServices` من LangChain4j لربط النموذج اللغوي تلقائيًا مع مزود أدوات MCP
+- الإطار يتعامل تلقائيًا مع تحويل المخطط الأداتي واستدعاء الوظائف خلف الكواليس
+- هذا النهج يلغي الحاجة لتحويل الأدوات يدويًا - LangChain4j يتولى كل تعقيدات تحويل أدوات MCP إلى صيغة متوافقة مع النموذج اللغوي
 
 #### Rust
 
-لتحويل استجابة أداة MCP إلى صيغة يفهمها LLM، سنضيف دالة مساعدة تنسق قائمة الأدوات. أضف الكود التالي إلى ملف `main.rs` أسفل دالة `main`. سيتم استدعاؤها عند إجراء طلبات إلى LLM:
+لتحويل استجابة أداة MCP إلى صيغة يفهمها النموذج اللغوي، سنضيف دالة مساعدة تقوم بتنسيق قائمة الأدوات. أضف الكود التالي إلى ملف `main.rs` تحت دالة `main`. سيتم استدعاؤها عند تقديم طلبات للنموذج اللغوي:
 
 ```rust
 async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Error>> {
@@ -643,15 +702,15 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 }
 ```
 
-رائع، الآن نحن مستعدون للتعامل مع أي طلبات من المستخدم، فلنتناول ذلك في القسم التالي.
+عظيم، لقد أعددنا للتعامل مع أي طلبات من المستخدم، لننتقل لهذه الخطوة التالية.
 
-### -4- التعامل مع طلب استعلام المستخدم
+### -4- التعامل مع طلب استفسار المستخدم
 
 في هذا الجزء من الكود، سنتعامل مع طلبات المستخدم.
 
 #### TypeScript
 
-1. أضف دالة تُستخدم لاستدعاء LLM الخاص بنا:
+1. أضف طريقة ستُستخدم لاستدعاء النموذج اللغوي:
 
     ```typescript
     async callTools(
@@ -673,8 +732,8 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 
         console.log("Tool result: ", toolResult);
 
-        // ٣. قم بشيء ما مع النتيجة
-        // يجب القيام به
+        // ٣. القيام بشيء ما مع النتيجة
+        // للقيام به
 
         }
     }
@@ -682,8 +741,8 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 
     في الكود السابق قمنا بـ:
 
-    - إضافة دالة `callTools`.
-    - الدالة تأخذ رد LLM وتتحقق لمعرفة الأدوات التي تم استدعاؤها، إن وجدت:
+    - إضافة الطريقة `callTools`.
+    - الطريقة تأخذ استجابة نموذج لغوي وتتحقق من الأدوات التي يجب استدعاؤها إذا وُجدت:
 
         ```typescript
         for (const tool_call of tool_calls) {
@@ -696,7 +755,7 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
         }
         ```
 
-    - تستدعي أداة، إذا أشار LLM إلى أنه يجب استدعاؤها:
+    - استدعاء أداة إذا أشار النموذج اللغوي بوجوب استدعائها:
 
         ```typescript
         // ٢. استدعاء أداة الخادم
@@ -707,15 +766,15 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 
         console.log("Tool result: ", toolResult);
 
-        // ٣. القيام بشيء ما بالنتيجة
-        // يجب القيام به
+        // ٣. القيام بشيء ما مع النتيجة
+        // للقيام به
         ```
 
-2. حدّث دالة `run` لتشمل استدعاءات إلى LLM واستدعاء `callTools`:
+2. حدث طريقة `run` لتتضمن استدعاءات للنموذج اللغوي واستدعاء `callTools`:
 
     ```typescript
 
-    // 1. إنشاء الرسائل التي تمثل مدخلات لنموذج اللغة الكبير
+    // 1. إنشاء رسائل تعتبر مدخلاً لنموذج اللغة الكبير
     const prompt = "What is the sum of 2 and 3?"
 
     const messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
@@ -737,7 +796,7 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 
     let results: any[] = [];
 
-    // 3. مراجعة استجابة نموذج اللغة الكبير، لكل خيار، التحقق مما إذا كان يحتوي على استدعاءات أدوات
+    // 3. مراجعة استجابة نموذج اللغة الكبير، لكل خيار، تحقق مما إذا كان يحتوي على استدعاءات أدوات
     (await response).choices.map(async (choice: { message: any; }) => {
         const message = choice.message;
         if (message.tool_calls) {
@@ -747,14 +806,14 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
     });
     ```
 
-رائع، دعنا نعرض الكود بالكامل:
+عظيم، لنستعرض الكود كاملًا:
 
 ```typescript
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 import { Transport } from "@modelcontextprotocol/sdk/shared/transport.js";
 import OpenAI from "openai";
-import { z } from "zod"; // استيراد zod من أجل التحقق من صحة المخطط
+import { z } from "zod"; // استيراد zod للتحقق من صحة المخطط
 
 class MyClient {
     private openai: OpenAI;
@@ -795,7 +854,7 @@ class MyClient {
           const schema = z.object(tool.input_schema);
       
           return {
-            type: "function" as const, // تحديد النوع صراحة إلى "دالة"
+            type: "function" as const, // تعيين النوع صراحة إلى "دالة"
             function: {
               name: tool.name,
               description: tool.description,
@@ -827,8 +886,8 @@ class MyClient {
     
           console.log("Tool result: ", toolResult);
     
-          // 3. القيام بشيء ما بالنتيجة
-          // للقيام به
+          // 3. قم بعمل شيء بالنتيجة
+          // يجب القيام به
     
          }
     }
@@ -863,7 +922,7 @@ class MyClient {
 
         let results: any[] = [];
     
-        // 3. مراجعة استجابة LLM، لكل خيار، التحقق مما إذا كان يحتوي على استدعاءات أدوات
+        // 3. المرور على استجابة LLM، لكل اختيار، تحقق مما إذا كان يحتوي على استدعاءات أداة
         (await response).choices.map(async (choice: { message: any; }) => {
           const message = choice.message;
           if (message.tool_calls) {
@@ -886,10 +945,10 @@ client.connectToServer(transport);
 
 #### Python
 
-1. دعنا نضيف بعض الاستيرادات اللازمة لاستدعاء LLM
+1. دعنا نضيف بعض الاستيرادات اللازمة لاستدعاء النموذج اللغوي
 
     ```python
-    # نموذج لغة كبير
+    # نموذج اللغة الكبير
     import os
     from azure.ai.inference import ChatCompletionsClient
     from azure.ai.inference.models import SystemMessage, UserMessage
@@ -897,10 +956,10 @@ client.connectToServer(transport);
     import json
     ```
 
-2. بعد ذلك، دعنا نضيف الدالة التي ستتصل بـ LLM:
+2. بعد ذلك، لنضيف الدالة التي ستستدعي النموذج اللغوي:
 
     ```python
-    # نماذج اللغة الكبيرة
+    # نموذج اللغة الكبير
 
     def call_llm(prompt, functions):
         token = os.environ["GITHUB_TOKEN"]
@@ -949,20 +1008,20 @@ client.connectToServer(transport);
 
     في الكود السابق قمنا بـ:
 
-    - تمرير الدوال التي وجدناها على خادم MCP وقمنا بتحويلها إلى LLM.
-    - ثم استدعاء LLM بهذه الدوال.
-    - ثم، نقوم بفحص النتيجة لمعرفة الدوال التي يجب استدعاؤها، إن وجدت.
-    - وأخيرًا، نمرر مجموعات الدوال لاستدعائها.
+    - تمرير الوظائف التي وجدناها على خادم MCP وقمنا بتحويلها إلى النموذج اللغوي.
+    - بعدها قمنا باستدعاء النموذج اللغوي بهذه الوظائف.
+    - ثم نفحص النتيجة لنرى الوظائف التي ينبغي استدعاؤها إذا وُجدت.
+    - أخيرًا، نمرر مصفوفة الوظائف التي يجب استدعاؤها.
 
-3. الخطوة الأخيرة، دعنا نحدث كودنا الأساسي:
+3. الخطوة الأخيرة، لنحدث الكود الرئيسي لدينا:
 
     ```python
     prompt = "Add 2 to 20"
 
-    # اسأل النموذج الكبير عن الأدوات المستخدمة، إذا وجدت
+    # اسأل LLM عن الأدوات التي يجب استخدامها، إن وجدت
     functions_to_call = call_llm(prompt, functions)
 
-    # استدعاء الدوال المقترحة
+    # استدعاء الوظائف المقترحة
     for f in functions_to_call:
         result = await session.call_tool(f["name"], arguments=f["args"])
         print("TOOLS result: ", result.content)
@@ -970,12 +1029,12 @@ client.connectToServer(transport);
 
     ها هي الخطوة النهائية، في الكود أعلاه نحن:
 
-    - نستدعي أداة من MCP عبر `call_tool` باستخدام دالة اعتقد LLM أنه يجب استدعاؤها بناءً على استعلامنا.
-    - نطبع نتيجة استدعاء الأداة إلى خادم MCP.
+    - نستدعي أداة MCP عبر `call_tool` باستخدام دالة اعتقد النموذج اللغوي أننا بحاجة لاستدعائها بناءً على استفسارنا.
+    - نطبع نتيجة استدعاء الأداة على خادم MCP.
 
 #### .NET
 
-1. لنُر شرحًا لبعض الأكواد التي تقوم بطلب من LLM:
+1. دعنا نعرض بعض الكود لطلب استفسار من النموذج اللغوي:
 
     ```csharp
     var tools = await GetMcpTools();
@@ -1012,11 +1071,11 @@ client.connectToServer(transport);
     في الكود السابق قمنا بـ:
 
     - جلب الأدوات من خادم MCP، `var tools = await GetMcpTools()`.
-    - تحديد استعلام المستخدم `userMessage`.
+    - تعريف استفسار المستخدم `userMessage`.
     - إنشاء كائن خيارات يحدد النموذج والأدوات.
-    - إجراء طلب إلى LLM.
+    - تقديم طلب للنموذج اللغوي.
 
-2. خطوة أخيرة، لنرَ ما إذا كان LLM يعتقد أننا يجب أن نستدعي دالة:
+2. آخر خطوة، لنرى إذا اعتقد النموذج اللغوي أننا بحاجة لاستدعاء دالة:
 
     ```csharp
     // 4. Check if the response contains a function call
@@ -1041,10 +1100,10 @@ client.connectToServer(transport);
 
     في الكود السابق قمنا بـ:
 
-    - التكرار عبر قائمة استدعاءات الدوال.
-    - لكل استدعاء أداة، تحليل الاسم والوسيطات واستدعاء الأداة على خادم MCP باستخدام عميل MCP. وأخيرًا نطبع النتائج.
+    - اجتزنا قائمة استدعاءات الدوال.
+    - لكل استدعاء أداة، حللنا الاسم والوسائط واستدعينا الأداة على خادم MCP باستخدام عميل MCP. وأخيرًا طبعنا النتائج.
 
-ها هو الكود كاملًا:
+إليك الكود كاملًا:
 
 ```csharp
 using Azure;
@@ -1190,25 +1249,48 @@ try {
 
 في الكود السابق قمنا بـ:
 
-- استخدام نماذج لغة طبيعية بسيطة للتفاعل مع أدوات خادم MCP
+- استخدام استفسارات طبيعية بسيطة للتفاعل مع أدوات خادم MCP
 - إطار LangChain4j يتولى تلقائيًا:
-  - تحويل استعلامات المستخدم إلى استدعاءات أدوات عند الحاجة
-  - استدعاء أدوات MCP المناسبة بناءً على قرار LLM
-  - إدارة تدفق المحادثة بين LLM وخادم MCP
-- دالة `bot.chat()` تُرجع ردودًا بلغة طبيعية قد تتضمن نتائج من تنفيذ أدوات MCP
-- هذا النهج يوفر تجربة مستخدم سلسة حيث لا يحتاج المستخدمون لمعرفة تفاصيل تنفيذ MCP
+  - تحويل استفسارات المستخدم إلى استدعاءات أدوات عند اللزوم
+  - استدعاء أدوات MCP المناسبة بناءً على قرار النموذج اللغوي
+  - إدارة تدفق المحادثة بين النموذج اللغوي وخادم MCP
+- طريقة `bot.chat()` تُرجع استجابات لغة طبيعية قد تتضمن نتائج تنفيذ أدوات MCP
+- هذا النهج يقدم تجربة مستخدم سلسة حيث لا يحتاج المستخدمون لمعرفة تفاصيل تنفيذ MCP الأساسية
 
-مثال كود كامل:
+مثال الكود الكامل:
 
 ```java
+import dev.langchain4j.mcp.McpToolProvider;
+import dev.langchain4j.mcp.client.DefaultMcpClient;
+import dev.langchain4j.mcp.client.McpClient;
+import dev.langchain4j.mcp.client.transport.McpTransport;
+import dev.langchain4j.mcp.client.transport.http.HttpMcpTransport;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.openaiofficial.OpenAiOfficialChatModel;
+import dev.langchain4j.service.AiServices;
+import dev.langchain4j.service.tool.ToolProvider;
+
+import java.time.Duration;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+
 public class LangChain4jClient {
-    
-    public static void main(String[] args) throws Exception {        ChatLanguageModel model = OpenAiOfficialChatModel.builder()
-                .isGitHubModels(true)
-                .apiKey(System.getenv("GITHUB_TOKEN"))
+
+    private static final String DEFAULT_BASE_URL = "https://api.minimax.io/v1";
+    private static final String DEFAULT_MODEL_ID = "MiniMax-M3";
+    private static final Map<String, String> REGIONAL_BASE_URLS = Map.of(
+            "global_en", "https://api.minimax.io/v1",
+            "cn_zh", "https://api.minimaxi.com/v1");
+    private static final Set<String> SUPPORTED_MODEL_IDS = Set.of("MiniMax-M3", "MiniMax-M2.7");
+
+    public static void main(String[] args) throws Exception {
+        ChatLanguageModel model = OpenAiOfficialChatModel.builder()
+                .baseUrl(resolveBaseUrl())
+                .apiKey(requireEnv("OPENAI_API_KEY"))
                 .timeout(Duration.ofSeconds(60))
-                .modelName("gpt-4.1-nano")
-                .timeout(Duration.ofSeconds(60))
+                .modelName(resolveModelName())
                 .build();
 
         McpTransport transport = new HttpMcpTransport.Builder()
@@ -1244,14 +1326,54 @@ public class LangChain4jClient {
             mcpClient.close();
         }
     }
+
+    private static String resolveBaseUrl() {
+        String baseUrl = System.getenv("OPENAI_BASE_URL");
+        if (baseUrl != null && !baseUrl.isBlank()) {
+            return baseUrl;
+        }
+
+        String region = System.getenv("MINIMAX_REGION");
+        if (region == null || region.isBlank()) {
+            return DEFAULT_BASE_URL;
+        }
+
+        String regionalBaseUrl = REGIONAL_BASE_URLS.get(region);
+        if (regionalBaseUrl == null) {
+            throw new IllegalArgumentException("Unsupported MINIMAX_REGION value: " + region
+                    + ". Supported values: " + new TreeSet<>(REGIONAL_BASE_URLS.keySet()));
+        }
+        return regionalBaseUrl;
+    }
+
+    private static String resolveModelName() {
+        String modelId = System.getenv("MINIMAX_MODEL_ID");
+        if (modelId == null || modelId.isBlank()) {
+            return DEFAULT_MODEL_ID;
+        }
+        if (!SUPPORTED_MODEL_IDS.contains(modelId)) {
+            throw new IllegalArgumentException("Unsupported MINIMAX_MODEL_ID value: " + modelId
+                    + ". Supported values: " + new TreeSet<>(SUPPORTED_MODEL_IDS));
+        }
+        return modelId;
+    }
+
+    private static String requireEnv(String name) {
+        String value = System.getenv(name);
+        if (value == null || value.isBlank()) {
+            throw new IllegalStateException(name + " environment variable is not set");
+        }
+        return value;
+    }
 }
 ```
 
 #### Rust
 
-هنا يحدث غالبية العمل. سنستدعي LLM بالاستعلام المبدئي للمستخدم، ثم نُعالج الرد لنرى إذا كان هناك حاجة لاستدعاء أي أدوات. إذا كان الأمر كذلك، سنستدعي تلك الأدوات ونواصل المحادثة مع LLM حتى لا تكون هناك حاجة لأي استدعاءات أدوات إضافية ولدينا رد نهائي.
+هنا يحدث معظم العمل. سنستدعي النموذج اللغوي بالاستفسار الأولي للمستخدم، ثم نعالج الاستجابة لنرى إن كان ينبغي استدعاء أدوات. إذا كان الأمر كذلك، سنستدعي هذه الأدوات ونستمر بالمحادثة مع النموذج حتى لا تبقى استدعاءات أدوات أخرى ويصل لدينا رد نهائي.
 
-سنقوم بعدد من الاستدعاءات إلى LLM، لذا دعنا نعرّف دالة تتولى استدعاء LLM. أضف الدالة التالية إلى ملف `main.rs`:
+
+سنقوم بإجراء عدة مكالمات إلى LLM، لذلك دعنا نعرّف دالة ستتولى استدعاء LLM. أضف الدالة التالية إلى ملف `main.rs` الخاص بك:
 
 ```rust
 async fn call_llm(
@@ -1271,8 +1393,9 @@ async fn call_llm(
 }
 ```
 
-تأخذ هذه الدالة عميل LLM، قائمة من الرسائل (بما في ذلك استعلام المستخدم)، الأدوات من خادم MCP، وترسل طلبًا إلى LLM، وتعيد الرد.
-سيحتوي الرد من LLM على مصفوفة من `choices`. سنحتاج إلى معالجة النتيجة لمعرفة ما إذا كانت هناك أي `tool_calls` موجودة. هذا يتيح لنا معرفة أن LLM يطلب استدعاء أداة محددة مع الوسائط. أضف الكود التالي إلى أسفل ملف `main.rs` لتعريف دالة للتعامل مع رد LLM:
+تأخذ هذه الدالة عميل LLM، قائمة من الرسائل (بما في ذلك مطالبة المستخدم)، الأدوات من خادم MCP، وترسل طلبًا إلى LLM، ثم تُعيد الاستجابة.
+
+ستحتوي الاستجابة من LLM على مصفوفة من `choices`. سنحتاج لمعالجة النتيجة لنرى ما إذا كانت هناك أي `tool_calls` موجودة. هذا يُعلِمنا أن LLM يطلب استدعاء أداة معينة مع الوسائط. أضف الكود التالي إلى أسفل ملف `main.rs` لتعريف دالة لمعالجة استجابة LLM:
 
 ```rust
 async fn process_llm_response(
@@ -1320,7 +1443,7 @@ async fn process_llm_response(
             }));
         }
 
-        // متابعة المحادثة بنتائج الأدوات
+        // متابعة المحادثة باستخدام نتائج الأداة
         let response = call_llm(openai_client, messages, mcp_tools).await?;
         Box::pin(process_llm_response(
             &response,
@@ -1335,9 +1458,9 @@ async fn process_llm_response(
 }
 ```
 
-إذا كانت هناك `tool_calls` موجودة، فإنها تستخرج معلومات الأداة، وتستدعي خادم MCP بطلب الأداة، وتضيف النتائج إلى رسائل المحادثة. ثم تستمر المحادثة مع LLM ويتم تحديث الرسائل برد المساعد ونتائج استدعاء الأداة.
+إذا كانت هناك `tool_calls`، فإنها تستخرج معلومات الأداة، وتستدعي خادم MCP مع طلب الأداة، وتضيف النتائج إلى رسائل المحادثة. ثم تتابع المحادثة مع LLM وتُحدَّث الرسائل باستجابة المساعد ونتائج استدعاء الأداة.
 
-لاستخراج معلومات استدعاء الأداة التي يعيدها LLM لمكالمات MCP، سنضيف دالة مساعدة أخرى لاستخراج كل ما يلزم لإجراء المكالمة. أضف الكود التالي إلى أسفل ملف `main.rs`:
+لاستخراج معلومات استدعاء الأداة التي يُعيدها LLM لمكالمات MCP، سنضيف دالة مساعدة أخرى لاستخراج كل ما يلزم لإجراء المكالمة. أضف الكود التالي إلى أسفل ملف `main.rs` الخاص بك:
 
 ```rust
 fn extract_tool_call_info(tool_call: &Value) -> Result<(String, String, String), Box<dyn Error>> {
@@ -1361,10 +1484,10 @@ fn extract_tool_call_info(tool_call: &Value) -> Result<(String, String, String),
 }
 ```
 
-مع وجود كل الأجزاء في مكانها، يمكننا الآن التعامل مع المطالبة الأولية للمستخدم واستدعاء LLM. حدّث دالة `main` لتشمل الكود التالي:
+مع وجود كل الأجزاء في مكانها، يمكننا الآن معالجة مطالبة المستخدم الأولية واستدعاء LLM. حدّث دالة `main` الخاصة بك لتشمل الكود التالي:
 
 ```rust
-// محادثة نموذج اللغة الكبير مع استدعاءات الأدوات
+// محادثة LLM مع استدعاءات الأدوات
 let response = call_llm(&openai_client, &messages, &tools).await?;
 process_llm_response(
     &response,
@@ -1376,35 +1499,35 @@ process_llm_response(
 .await?;
 ```
 
-سيستعلم هذا الـ LLM بالمطالبة الأولية للمستخدم طالبًا مجموع رقمين، وسيعالج الرد للتعامل ديناميكيًا مع استدعاءات الأدوات.
+هذا سيستعلم LLM بمطالبة المستخدم الأولية لطلب مجموع رقمين، وسيعالج الاستجابة للتعامل ديناميكيًا مع استدعاءات الأدوات.
 
-رائع، لقد أنجزت ذلك!
+رائع، لقد فعلتها!
 
-## المهمة
+## الواجب
 
-خذ الكود من التمرين ووسع الخادم بإضافة المزيد من الأدوات. ثم أنشئ عميلًا مع LLM، كما في التمرين، واختبره مع مطالبات مختلفة للتأكد من أنه يتم استدعاء جميع أدوات الخادم ديناميكيًا. تعني هذه الطريقة في بناء العميل أن المستخدم النهائي سيحصل على تجربة مستخدم ممتازة حيث يتمكن من استخدام المطالبات بدلاً من أوامر العميل الدقيقة، ويكون غير مدرك لأي استدعاء لخادم MCP.
+خذ الكود من التمرين ووسع الخادم ببعض الأدوات الإضافية. ثم أنشئ عميلًا مع LLM، كما في التمرين، واختبره بمطالبات مختلفة لتتأكد من أن جميع أدوات الخادم الخاصة بك تُستدعى ديناميكيًا. هذه الطريقة في بناء العميل تعني أن المستخدم النهائي سيحصل على تجربة مستخدم رائعة حيث يمكنه استخدام المطالبات بدلاً من الأوامر الدقيقة للعميل، ويكون غير مدرك لأي استدعاء لخادم MCP.
 
 ## الحل
 
 [الحل](./solution/README.md)
 
-## النقاط الرئيسية
+## نقاط رئيسية
 
-- إضافة LLM إلى عميلك توفر طريقة أفضل للمستخدمين للتفاعل مع خوادم MCP.
-- تحتاج إلى تحويل رد خادم MCP إلى شيء يمكن لـ LLM فهمه.
+- إضافة LLM إلى عميلك يوفر طريقة أفضل للمستخدمين للتفاعل مع خوادم MCP.
+- تحتاج إلى تحويل استجابة خادم MCP إلى شيء يمكن لـ LLM فهمه.
 
 ## عينات
 
-- [آلة حاسبة جافا](../samples/java/calculator/README.md)
-- [آلة حاسبة .Net](../../../../03-GettingStarted/samples/csharp)
-- [آلة حاسبة جافا سكريبت](../samples/javascript/README.md)
-- [آلة حاسبة تايب سكريبت](../samples/typescript/README.md)
-- [آلة حاسبة بايثون](../../../../03-GettingStarted/samples/python)
-- [آلة حاسبة رست](../../../../03-GettingStarted/samples/rust)
+- [حاسبة جافا](../samples/java/calculator/README.md)
+- [حاسبة .Net](../../../../03-GettingStarted/samples/csharp)
+- [حاسبة جافا سكريبت](../samples/javascript/README.md)
+- [حاسبة تايب سكريبت](../samples/typescript/README.md)
+- [حاسبة بايثون](../../../../03-GettingStarted/samples/python)
+- [حاسبة رست](../../../../03-GettingStarted/samples/rust)
 
 ## موارد إضافية
 
-## ما التالي
+## التالي
 
 - التالي: [استهلاك خادم باستخدام Visual Studio Code](../04-vscode/README.md)
 
