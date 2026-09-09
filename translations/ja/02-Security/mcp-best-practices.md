@@ -182,9 +182,9 @@
 
 ## 次に読むべき内容
 
-- 読む: [MCP Security Best Practices 2025](./mcp-security-best-practices-2025.md)
-- 戻る: [Security Module Overview](./README.md)
-- 続ける: [Module 3: Getting Started](../03-GettingStarted/README.md)
+- 読む: [MCP セキュリティのベストプラクティス 2025](./mcp-security-best-practices-2025.md)
+- 戻る: [セキュリティモジュールの概要](./README.md)
+- 続ける: [モジュール3: はじめに](../03-GettingStarted/README.md)
 
 ---
 
