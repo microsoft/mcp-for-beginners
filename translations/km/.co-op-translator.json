@@ -144,8 +144,8 @@
     "language_code": "km"
   },
   "03-GettingStarted/03-llm-client/README.md": {
-    "original_hash": "3b5e39c78f62deafcb60929f8036daf3",
-    "translation_date": "2026-06-16T07:20:15+00:00",
+    "original_hash": "e7951e45ea065c33cf0fe73f6d3ed687",
+    "translation_date": "2026-09-09T22:43:29+00:00",
     "source_file": "03-GettingStarted/03-llm-client/README.md",
     "language_code": "km"
   },
@@ -468,8 +468,8 @@
     "language_code": "km"
   },
   "03-GettingStarted/samples/python/README.md": {
-    "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
-    "translation_date": "2026-04-06T17:44:12+00:00",
+    "original_hash": "3a5754207a68ad8272820d1a1a353fde",
+    "translation_date": "2026-09-09T22:44:12+00:00",
     "source_file": "03-GettingStarted/samples/python/README.md",
     "language_code": "km"
   },
@@ -498,8 +498,8 @@
     "language_code": "km"
   },
   "04-PracticalImplementation/samples/csharp/README.md": {
-    "original_hash": "0bc7bd48f55f1565f1d95ccb2c16f728",
-    "translation_date": "2026-04-06T18:25:06+00:00",
+    "original_hash": "6cddd296fe965d6b941fc77950679238",
+    "translation_date": "2026-09-09T22:44:31+00:00",
     "source_file": "04-PracticalImplementation/samples/csharp/README.md",
     "language_code": "km"
   },
@@ -672,14 +672,14 @@
     "language_code": "km"
   },
   "07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md": {
-    "original_hash": "f7d8cfb6528a2280913da17f622b7b08",
-    "translation_date": "2026-06-17T01:01:16+00:00",
+    "original_hash": "6a98b49b0cde0040ab13aec5709f3a76",
+    "translation_date": "2026-09-09T22:27:03+00:00",
     "source_file": "07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md",
     "language_code": "km"
   },
   "08-BestPractices/README.md": {
-    "original_hash": "39f79aa826ea0f522e7073d4a82dbdb2",
-    "translation_date": "2026-06-17T01:04:42+00:00",
+    "original_hash": "8ba1781e6978308063cb698d13bcde43",
+    "translation_date": "2026-09-09T22:36:26+00:00",
     "source_file": "08-BestPractices/README.md",
     "language_code": "km"
   },
@@ -906,17 +906,6 @@
     "language_code": "km"
   },
   "__translation_failures__": {
-    "08-BestPractices/README.md": {
-      "original_hash": "8ba1781e6978308063cb698d13bcde43",
-      "source_file": "08-BestPractices/README.md",
-      "language_code": "km",
-      "failure_date": "2026-08-26T12:08:54+00:00",
-      "status": "failed",
-      "error_type": "TranslationIncompleteError",
-      "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'README.md', and the chunk could not be split further.",
-      "translator_version": "0.20.0",
-      "failure_policy_version": 1
-    },
     "08-BestPractices/reliability-sidecars/README.md": {
       "original_hash": "6b8f1c4b9857b9e76d105f4bc6636b86",
       "source_file": "08-BestPractices/reliability-sidecars/README.md",
@@ -925,6 +914,17 @@
       "status": "failed",
       "error_type": "TranslationIncompleteError",
       "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'README.md', and the chunk could not be split further.",
+      "translator_version": "0.20.0",
+      "failure_policy_version": 1
+    },
+    "03-GettingStarted/03-llm-client/solution/java/README.md": {
+      "original_hash": "b21e6bd48c46004ac5a4a4d47ea40a64",
+      "source_file": "03-GettingStarted/03-llm-client/solution/java/README.md",
+      "language_code": "km",
+      "failure_date": "2026-09-09T22:44:05+00:00",
+      "status": "failed",
+      "error_type": "TranslationIncompleteError",
+      "error_message": "Markdown translation remained incomplete for chunk 1 of 'README.md', and the chunk could not be split further.",
       "translator_version": "0.20.0",
       "failure_policy_version": 1
     }
