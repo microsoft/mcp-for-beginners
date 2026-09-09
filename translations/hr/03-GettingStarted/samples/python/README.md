@@ -1,6 +1,9 @@
-# MCP Kalkulator Server (Python)
+# MCP Calculator Server (Python)
+
+
 
 Jednostavna implementacija Model Context Protocol (MCP) servera u Pythonu koja pruža osnovnu funkcionalnost kalkulatora.
+
 
 ## Instalacija
 
@@ -10,27 +13,27 @@ Instalirajte potrebne ovisnosti:
 pip install -r requirements.txt
 ```
 
-Ili izravno instalirajte MCP Python SDK:
+Ili instalirajte MCP Python SDK izravno:
 
 ```bash
-pip install mcp>=1.18.0
+pip install "mcp>=2.1.1,<3.0.0"
 ```
 
 ## Upotreba
 
-### Pokretanje Servera
+### Pokretanje servera
 
-Server je dizajniran za korištenje od strane MCP klijenata (poput Claude Desktopa). Za pokretanje servera:
+Server je namijenjen za korištenje od strane MCP klijenata (kao što je Claude Desktop). Za pokretanje servera:
 
 ```bash
 python mcp_calculator_server.py
 ```
 
-**Napomena**: Kada se pokrene izravno u terminalu, vidjet ćete JSON-RPC pogreške validacije. Ovo je normalno ponašanje - server čeka pravilno formatirane poruke MCP klijenta.
+**Napomena**: Kada se pokreće izravno u terminalu, vidjet ćete JSON-RPC pogreške provjere valjanosti. To je normalno ponašanje – server čeka ispravno formatirane poruke MCP klijenta.
 
-### Testiranje Funkcija
+### Testiranje funkcija
 
-Za testiranje ispravnosti funkcija kalkulatora:
+Za testiranje da kalkulator funkcije rade ispravno:
 
 ```bash
 python test_calculator.py
@@ -38,19 +41,21 @@ python test_calculator.py
 
 ## Rješavanje problema
 
-### Pogreške pri uvozu
+### Pogreške u uvozu
 
 Ako vidite `ModuleNotFoundError: No module named 'mcp'`, instalirajte MCP Python SDK:
 
 ```bash
-pip install mcp>=1.18.0
+pip install "mcp>=2.1.1,<3.0.0"
 ```
 
-### JSON-RPC pogreške pri izravnom pokretanju
+### JSON-RPC pogreške kod izravnog pokretanja
 
-Pogreške poput "Invalid JSON: EOF while parsing a value" pri izravnom pokretanju servera su očekivane. Server zahtijeva poruke MCP klijenta, a ne izravni unos u terminal.
+Pogreške poput "Invalid JSON: EOF while parsing a value" kod izravnog pokretanja servera su očekivane. Server treba poruke MCP klijenta, ne izravni unos u terminal.
 
 ---
 
-**Odricanje od odgovornosti**:  
-Ovaj dokument je preveden pomoću AI usluge za prevođenje [Co-op Translator](https://github.com/Azure/co-op-translator). Iako nastojimo osigurati točnost, imajte na umu da automatski prijevodi mogu sadržavati pogreške ili netočnosti. Izvorni dokument na izvornom jeziku treba smatrati autoritativnim izvorom. Za ključne informacije preporučuje se profesionalni prijevod od strane čovjeka. Ne odgovaramo za nesporazume ili pogrešna tumačenja koja proizlaze iz korištenja ovog prijevoda.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Napomena**:
+Ovaj dokument je preveden korištenjem AI prevoditeljskog servisa [Co-op Translator](https://github.com/Azure/co-op-translator). Iako težimo točnosti, imajte na umu da automatski prijevodi mogu sadržavati greške ili netočnosti. Izvorni dokument na izvornom jeziku treba smatrati autoritativnim izvorom. Za važne informacije preporuča se profesionalni ljudski prijevod. Nismo odgovorni za bilo kakva nesporazumevanja ili pogrešne interpretacije koje proizlaze iz korištenja ovog prijevoda.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
