@@ -150,23 +150,23 @@ To automate validation, configure a CI job that:
 
 #### If you ship an MCP server from this repo
 
-- [ ] Read the draft changelog for MCP 7-28:
-  <https://modelcontextprotocol.io/specification/draft/changelog>
-- [ ] Run your server against SDK betas:
-  <https://blog.modelcontextprotocol.io/posts/sdk-betas-2026-07-28/>
+- [ ] Read the final MCP `2026-07-28` changelog:
+  <https://modelcontextprotocol.io/specification/2026-07-28/changelog>
+- [ ] Verify that the selected SDK release supports MCP `2026-07-28`:
+  <https://modelcontextprotocol.io/docs/sdk>
 - [ ] Remove session and handshake assumptions; treat each request as
   self-contained:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#a-stateless-protocol>
+  <https://modelcontextprotocol.io/specification/2026-07-28/basic/lifecycle>
 - [ ] Send `Mcp-Method` and `Mcp-Name` headers for raw HTTP requests:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#routable-cacheable-traceable>
+  <https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http>
 - [ ] Audit hardcoded error codes (`missing resource` moved from `-32002` to `-32602`).
-- [ ] Flag and plan migration for deprecated roots, sampling, and
-  logging:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#roots-sampling-and-logging-are-deprecated>
+- [ ] Migrate deprecated Roots, Sampling, Logging, and Dynamic Client
+  Registration:
+  <https://modelcontextprotocol.io/specification/2026-07-28/deprecated>
 - [ ] Migrate off the experimental `2025-11-25` Tasks API:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#tasks-graduates-to-an-extension>
+  <https://modelcontextprotocol.io/extensions/tasks>
 - [ ] Review authorization for OAuth and OpenID Connect hardening:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#authorization-hardening>
+  <https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization>
 
 ### Documentation Structure
 
@@ -359,7 +359,7 @@ Follow modules in sequential order (00-11) for optimal learning:
 ### Support Resources
 
 - **Documentation**: https://modelcontextprotocol.io/
-- **Specification**: https://spec.modelcontextprotocol.io/
+- **Specification**: https://modelcontextprotocol.io/specification/2026-07-28/
 - **Community**: https://github.com/orgs/modelcontextprotocol/discussions
 - **Discord**: Microsoft Foundry Discord server
 - **Related Courses**: See README.md for other Microsoft learning paths

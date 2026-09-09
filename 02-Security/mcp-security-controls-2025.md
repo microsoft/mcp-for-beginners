@@ -1,6 +1,9 @@
-# MCP Security Controls - February 2026 Update
+# MCP Security Controls - September 2026 Update
 
-> **Current Standard**: This document reflects [MCP Specification 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) security requirements and official [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).
+> **Current standard:** This document reflects
+> [MCP Specification 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/)
+> and the official
+> [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2026-07-28/basic/security_best_practices).
 
 The Model Context Protocol (MCP) has matured significantly with enhanced security controls addressing both traditional software security and AI-specific threats. This document provides comprehensive security controls for secure MCP implementations aligned with the OWASP MCP Top 10 framework.
 
@@ -20,7 +23,8 @@ All security controls in this document align with the **[OWASP MCP Azure Securit
 >
 > **REQUIRED**: MCP servers implementing authorization **MUST** verify ALL inbound requests
 >
-> **MANDATORY**: MCP proxy servers using static client IDs **MUST** obtain user consent for each dynamically registered client
+> **MANDATORY**: MCP proxy servers using a static third-party client ID
+> **MUST** obtain consent for each MCP client before forwarding authorization
 
 ---
 
@@ -28,7 +32,10 @@ All security controls in this document align with the **[OWASP MCP Azure Securit
 
 ### **External Identity Provider Integration**
 
-**Current MCP Standard (2025-11-25)** allows MCP servers to delegate authentication to external identity providers, representing a significant security improvement:
+**MCP Specification `2026-07-28`** allows MCP servers to delegate
+authentication to external identity providers. Authorization for HTTP
+transports is evaluated per request; local stdio servers obtain credentials
+from their environment instead.
 
 **OWASP MCP Risk Addressed**: [MCP07 - Insufficient Authentication & Authorization](https://microsoft.github.io/mcp-azure-security-guide/mcp/mcp07-authz/)
 
@@ -40,6 +47,9 @@ All security controls in this document align with the **[OWASP MCP Azure Securit
 5. **Conditional Access Policies**: Benefits from risk-based access controls and adaptive authentication
 
 **Implementation Requirements:**
+- **Client Registration**: Prefer Client ID Metadata Documents or
+  pre-registration; use deprecated Dynamic Client Registration only for
+  compatibility
 - **Token Audience Validation**: Verify all tokens are explicitly issued for the MCP server
 - **Issuer Verification**: Validate token issuer matches expected identity provider
 - **Signature Verification**: Cryptographic validation of token integrity
@@ -92,54 +102,57 @@ Token Lifecycle Management:
 - **Short-Lived Tokens**: Minimize exposure window with frequent token rotation
 - **Just-in-Time Issuance**: Issue tokens only when needed for specific operations
 - **Secure Storage**: Use hardware security modules (HSMs) or secure key vaults
-- **Token Binding**: Bind tokens to specific clients, sessions, or operations where possible
+- **Token Binding**: Validate token audience and issuer for the intended MCP
+  resource, client, and operation
 - **Monitoring & Alerting**: Real-time detection of token misuse or unauthorized access patterns
 
-## 3. **Session Security Controls**
+## 3. **Application State Security Controls**
 
-### **Session Hijacking Prevention**
+### **State Handle Hijacking Prevention**
 
 **Attack Vectors Addressed:**
-- **Session Hijack Prompt Injection**: Malicious events injected into shared session state
-- **Session Impersonation**: Unauthorized use of stolen session IDs to bypass authentication
-- **Resumable Stream Attacks**: Exploitation of server-sent event resumption for malicious content injection
+- **Handle Guessing**: Predictable identifiers expose another caller's state
+- **Cross-user Reuse**: A stolen handle is used with a different identity
+- **Implicit Authorization**: Possession of a handle is incorrectly treated as
+  proof of access
 
-**Mandatory Session Controls:**
+**State Handle Controls:**
+
 ```yaml
-Session ID Generation:
+State Handle Generation:
   randomness_source: "Cryptographically secure RNG"
   entropy_bits: 128 # Minimum recommended
   format: "Base64url encoded"
   predictability: "MUST be non-deterministic"
 
-Session Binding:
-  user_binding: "REQUIRED - <user_id>:<session_id>"
-  additional_identifiers: "Device fingerprint, IP validation"
-  context_binding: "Request origin, user agent validation"
+State Binding:
+  user_binding: "Bind server-side to the authenticated principal"
+  authorization: "Recheck on every request"
+  client_input: "Never trust a client-supplied user ID"
   
-Session Lifecycle:
+State Lifecycle:
   expiration: "Configurable timeout policies"
   rotation: "After privilege escalation events"
   invalidation: "Immediate on security events"
-  cleanup: "Automated expired session removal"
+  cleanup: "Automated expired state removal"
 ```
 
 **Transport Security:**
-- **HTTPS Enforcement**: All session communication over TLS 1.3
-- **Secure Cookie Attributes**: HttpOnly, Secure, SameSite=Strict
-- **Certificate Pinning**: For critical connections to prevent MITM attacks
+- **HTTPS Enforcement**: Require HTTPS for remote HTTP transports
+- **Credential Handling**: Send and validate authorization on every HTTP request
+- **stdio Isolation**: Protect local stdio servers through process isolation and
+  environment credential controls
 
 ### **Stateful vs Stateless Considerations**
 
-**For Stateful Implementations:**
-- Shared session state requires additional protection against injection attacks
-- Queue-based session management needs integrity verification
-- Multiple server instances require secure session state synchronization
+MCP `2026-07-28` is stateless at the protocol layer. Applications may still
+maintain state by returning an explicit handle from one tool call and accepting
+it as an ordinary argument on later calls.
 
-**For Stateless Implementations:**
-- JWT or similar token-based session management
-- Cryptographic verification of session state integrity
-- Reduced attack surface but requires robust token validation
+- Store state independently of any one transport connection.
+- Bind state handles to the authenticated principal server-side.
+- Treat a handle as a name, not as a bearer credential.
+- Define expiration and recovery behavior for stale handles.
 
 ## 4. **AI-Specific Security Controls**
 
@@ -211,8 +224,11 @@ Tool Definition Protection:
 **Attack Prevention Controls:**
 ```yaml
 Client Registration:
-  static_client_protection:
-    - "Explicit user consent for dynamic registration"
+  preferred_methods:
+    - "Pre-registration when client and server have an existing relationship"
+    - "Client ID Metadata Documents for clients without prior registration"
+  compatibility_fallback:
+    - "Dynamic Client Registration only when CIMD is unavailable"
     - "Consent bypass prevention mechanisms"  
     - "Cookie-based consent validation"
     - "Redirect URI strict validation"
@@ -225,7 +241,10 @@ Client Registration:
 ```
 
 **Implementation Requirements:**
-- **User Consent Verification**: Never skip consent screens for dynamic client registration
+- **Client Registration**: Prefer pre-registration or Client ID Metadata
+  Documents; treat Dynamic Client Registration as a compatibility fallback
+- **User Consent Verification**: MCP proxies using a static third-party client
+  ID must obtain per-client consent before forwarding authorization
 - **Redirect URI Validation**: Strict whitelist-based validation of redirect destinations
 - **Authorization Code Protection**: Short-lived codes with single-use enforcement
 - **Client Identity Verification**: Robust validation of client credentials and metadata
@@ -417,9 +436,9 @@ Recovery Procedures:
 ## **Implementation Resources**
 
 ### **Official MCP Documentation**
-- [MCP Specification (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices)
-- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)
+- [MCP Specification (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2026-07-28/basic/security_best_practices)
+- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization)
 
 ### **OWASP MCP Security Resources**
 - [OWASP MCP Azure Security Guide](https://microsoft.github.io/mcp-azure-security-guide/) - Comprehensive OWASP MCP Top 10 with Azure implementation
@@ -439,7 +458,10 @@ Recovery Procedures:
 
 ---
 
-> **Important**: These security controls reflect the current MCP specification (2025-11-25). Always verify against the latest [official documentation](https://spec.modelcontextprotocol.io/) as standards continue to evolve rapidly.
+> **Important:** These security controls reflect MCP Specification
+> `2026-07-28`. Always verify against the
+> [current official documentation](https://modelcontextprotocol.io/specification/2026-07-28/)
+> as standards continue to evolve.
 
 ## What's Next
 

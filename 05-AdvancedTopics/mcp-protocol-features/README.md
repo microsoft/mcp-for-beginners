@@ -691,7 +691,7 @@ authorization or safety guarantees unless they come from a trusted server.
 
 - [Module 8 - Best Practices](../../08-BestPractices/README.md)
 - [5.14 - Context Engineering](../mcp-contextengineering/README.md)
-- [MCP Specification Changelog](https://spec.modelcontextprotocol.io/)
+- [MCP Specification Changelog](https://modelcontextprotocol.io/specification/2026-07-28/changelog)
 
 ---
 

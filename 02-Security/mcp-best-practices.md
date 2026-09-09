@@ -1,6 +1,10 @@
-# MCP Security Best Practices 2025
+# MCP Security Best Practices - September 2026 Update
 
-This comprehensive guide outlines essential security best practices for implementing Model Context Protocol (MCP) systems based on the latest **MCP Specification 2025-11-25** and current industry standards. These practices address both traditional security concerns and AI-specific threats unique to MCP deployments.
+This comprehensive guide outlines essential security best practices for
+implementing Model Context Protocol (MCP) systems based on
+**MCP Specification 2026-07-28** and current industry standards. These
+practices address both traditional security concerns and AI-specific threats
+unique to MCP deployments.
 
 ## Critical Security Requirements
 
@@ -8,8 +12,12 @@ This comprehensive guide outlines essential security best practices for implemen
 
 1. **Token Validation**: MCP servers **MUST NOT** accept any tokens that were not explicitly issued for the MCP server itself
 2. **Authorization Verification**: MCP servers implementing authorization **MUST** verify ALL inbound requests and **MUST NOT** use sessions for authentication  
-3. **User Consent**: MCP proxy servers using static client IDs **MUST** obtain explicit user consent for each dynamically registered client
-4. **Secure Session IDs**: MCP servers **MUST** use cryptographically secure, non-deterministic session IDs generated with secure random number generators
+3. **User Consent**: MCP proxy servers using static third-party client IDs
+	**MUST** obtain explicit consent for each MCP client before forwarding an
+	authorization flow
+4. **State Handle Security**: MCP servers **MUST NOT** treat possession of an
+	application state handle as authentication and **MUST** authorize every
+	request that uses one
 
 ## Core Security Practices
 
@@ -21,18 +29,25 @@ This comprehensive guide outlines essential security best practices for implemen
 
 ### 2. Authentication & Authorization Excellence  
 - **External Identity Providers**: Delegate authentication to established identity providers (Microsoft Entra ID, OAuth 2.1 providers) rather than implementing custom authentication
+- **Client Registration**: Prefer Client ID Metadata Documents or
+	pre-registration; use deprecated Dynamic Client Registration only for
+	compatibility
 - **Fine-grained Permissions**: Implement granular, tool-specific permissions following the principle of least privilege
 - **Token Lifecycle Management**: Use short-lived access tokens with secure rotation and proper audience validation
 - **Multi-Factor Authentication**: Require MFA for all administrative access and sensitive operations
 
 ### 3. Secure Communication Protocols
-- **Transport Layer Security**: Use HTTPS/TLS 1.3 for all MCP communications with proper certificate validation
+- **Transport Layer Security**: Use HTTPS with proper certificate validation
+	for remote HTTP MCP communications; use process isolation and environment
+	credentials for local stdio servers
 - **End-to-End Encryption**: Implement additional encryption layers for highly sensitive data in transit and at rest
 - **Certificate Management**: Maintain proper certificate lifecycle management with automated renewal processes
-- **Protocol Version Enforcement**: Use the current MCP protocol version (2025-11-25) with proper version negotiation.
+- **Protocol Version Enforcement**: Use MCP `2026-07-28`, include the required
+	version metadata on every request, and reject unsupported versions
 
 ### 4. Advanced Rate Limiting & Resource Protection
-- **Multi-layer Rate Limiting**: Implement rate limiting at user, session, tool, and resource levels to prevent abuse
+- **Multi-layer Rate Limiting**: Implement rate limiting by user, credential,
+  operation, tool, and resource to prevent abuse
 - **Adaptive Rate Limiting**: Use machine learning-based rate limiting that adapts to usage patterns and threat indicators
 - **Resource Quota Management**: Set appropriate limits for computational resources, memory usage, and execution time
 - **DDoS Protection**: Deploy comprehensive DDoS protection and traffic analysis systems
@@ -53,13 +68,19 @@ This comprehensive guide outlines essential security best practices for implemen
 - **Token Passthrough Prevention**: Explicitly prohibit token passthrough patterns that bypass security controls
 - **Audience Validation**: Always verify token audience claims match the intended MCP server identity
 - **Claims-based Authorization**: Implement fine-grained authorization based on token claims and user attributes
-- **Token Binding**: Bind tokens to specific sessions, users, or devices where appropriate
+- **Token Binding**: Validate that tokens target the intended MCP resource and
+	bind application state handles server-side to the authenticated principal
 
-### 8. Secure Session Management
-- **Cryptographic Session IDs**: Generate session IDs using cryptographically secure random number generators (not predictable sequences)
-- **User-specific Binding**: Bind session IDs to user-specific information using secure formats like `<user_id>:<session_id>`
-- **Session Lifecycle Controls**: Implement proper session expiration, rotation, and invalidation mechanisms
-- **Session Security Headers**: Use appropriate HTTP security headers for session protection
+### 8. Secure Application State
+
+- **Cryptographic State Handles**: Generate opaque, non-deterministic handles
+	for state that spans requests
+- **User-specific Binding**: Bind each handle server-side to the authenticated
+	principal; do not trust a user ID supplied by the client
+- **Lifecycle Controls**: Expire and revoke handles, and define how callers
+	recover from stale state
+- **Per-request Authorization**: Recheck authorization whenever a handle is
+	presented; a handle is a name, not a credential
 
 ### 9. AI-Specific Security Controls
 - **Prompt Injection Defense**: Deploy Microsoft Prompt Shields with spotlighting, delimiters, and datamarking techniques
@@ -112,10 +133,10 @@ This comprehensive guide outlines essential security best practices for implemen
 - **[OWASP MCP Azure Security Guide](https://microsoft.github.io/mcp-azure-security-guide/)** - Reference architecture and OWASP MCP Top 10 implementation guidance
 
 ### Official MCP Documentation
-- [MCP Specification 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) - Current MCP protocol specification
-- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) - Official security guidance
-- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization) - Authentication and authorization patterns
-- [MCP Transport Security](https://modelcontextprotocol.io/specification/2025-11-25/transports/) - Transport layer security requirements
+- [MCP Specification 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/) - Current MCP protocol specification
+- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2026-07-28/basic/security_best_practices) - Official security guidance
+- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization) - HTTP authorization patterns
+- [MCP Transports](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/) - Transport requirements
 
 ### Microsoft Security Solutions
 - [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection) - Advanced prompt injection protection
@@ -177,7 +198,9 @@ This comprehensive guide outlines essential security best practices for implemen
 
 ---
 
-*This document reflects MCP security best practices as of December 18, 2025, based on MCP Specification 2025-11-25. Security practices should be regularly reviewed and updated as the protocol and threat landscape evolve.*
+*This document reflects MCP security best practices as of September 9, 2026,
+based on MCP Specification `2026-07-28`. Security practices should be regularly
+reviewed as the protocol and threat landscape evolve.*
 
 ## What's Next
 

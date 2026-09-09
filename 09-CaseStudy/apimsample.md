@@ -80,6 +80,11 @@ Here's how you can set up a policy to rate limit your MCP Server:
 
 Let's ensure our MCP Server is working as intended.
 
+> [!NOTE]
+> Azure API Management currently exposes this server through the Streamable
+> HTTP `/mcp` endpoint. The older HTTP+SSE `/sse` transport is deprecated and
+> should be used only with legacy clients.
+
 For this, we will use Visual Studio Code and GitHub Copilot and its Agent mode. We will add the MCP server to a *mcp.json* while. By doing so, Visual Studio Code will act as a client with agentic capabilities and end users will be able to type a prompt and interact with said server.
 
 Let's see how, to add the MCP server in Visual Studio Code:
@@ -88,7 +93,9 @@ Let's see how, to add the MCP server in Visual Studio Code:
 
 1. When prompted, select the server type: **HTTP (HTTP or Server Sent Events)**.
 
-1. Enter the URL of the MCP server in API Management. Example: **https://<apim-service-name>.azure-api.net/<api-name>-mcp/sse** (for SSE endpoint) or **https://<apim-service-name>.azure-api.net/<api-name>-mcp/mcp** (for MCP endpoint), note how the difference between the transports is `/sse` or `/mcp`.
+1. Enter the Streamable HTTP URL shown for the MCP server in API Management.
+    For example:
+    `https://<apim-service-name>.azure-api.net/<api-name>-mcp/mcp`.
 
 1. Enter a server ID of your choice. This is not an important value but it will help you remember what this server instance is.
 
@@ -97,17 +104,6 @@ Let's see how, to add the MCP server in Visual Studio Code:
   - **Workspace settings** - The server configuration is saved to a .vscode/mcp.json file only available in the current workspace.
 
     *mcp.json*
-
-    ```json
-    "servers": {
-        "APIM petstore" : {
-            "type": "sse",
-            "url": "url-to-mcp-server/sse"
-        }
-    }
-    ```
-
-    or if you choose streaming HTTP as transport it would be slightly different:
 
     ```json
     "servers": {
