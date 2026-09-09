@@ -1,5 +1,10 @@
 # Deploying the Spring AI MCP App to Azure Container Apps
 
+> [!WARNING]
+> This combined authorization/resource server is intended for learning and
+> dev/test use. Production systems should use a dedicated identity provider,
+> persistent signing keys, and credentials stored in a managed secret store.
+
  ([Securing Spring AI MCP servers with OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2)) *Figure: Spring AI MCP server secured with Spring Authorization Server. The server issues access tokens to clients and validates them on incoming requests (source: Spring blog) ([Securing Spring AI MCP servers with OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2#:~:text=,server%20with%20the%20MCP%20inspector)).* To deploy the Spring MCP server, build it as a container and use Azure Container Apps with external ingress. For example, using the Azure CLI you can run:
 
 ```bash
@@ -22,10 +27,8 @@ In your Spring Boot app’s code, include the Spring Authorization Server and Re
 
 ```properties
 # OAuth2 client (for testing token issuance)
-spring.security.oauth2.authorizationserver.client.oidc-client.registration.client-id=mcp-client
-spring.security.oauth2.authorizationserver.client.oidc-client.registration.client-secret={noop}secret
-spring.security.oauth2.authorizationserver.client.oidc-client.registration.authorization-grant-types=client_credentials
-spring.security.oauth2.authorizationserver.client.oidc-client.registration.client-authentication-methods=client_secret_basic
+demo.oauth.client-id=${OAUTH_CLIENT_ID:mcp-client}
+demo.oauth.client-secret=${OAUTH_CLIENT_SECRET}
 ```
 
 Enable the Authorization Server and Resource Server by defining a security filter chain. For example:
@@ -53,10 +56,13 @@ public class SecurityConfiguration {
 
     // Define an in-memory client (RegisteredClient) and a JWK source:
     @Bean
-    public RegisteredClientRepository registeredClientRepository() {
+    public RegisteredClientRepository registeredClientRepository(
+        @Value("${demo.oauth.client-id}") String clientId,
+        @Value("${demo.oauth.client-secret}") String clientSecret) {
+      PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         RegisteredClient client = RegisteredClient.withId("1")
-            .clientId("mcp-client")
-            .clientSecret("{noop}secret")
+        .clientId(clientId)
+        .clientSecret(encoder.encode(clientSecret))
             .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
             .scope("mcp.read")
             .clientSettings(ClientSettings.builder().build())

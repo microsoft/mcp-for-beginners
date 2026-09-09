@@ -31,11 +31,24 @@ function required(name: string): string {
   return value;
 }
 
-export function loadConfig(): SampleConfig {
-  const port = Number.parseInt(process.env.PORT ?? "3001", 10);
+export function parsePort(value: string): number {
+  const normalized = value.trim();
+  if (!/^\d+$/.test(normalized)) {
+    throw new Error("PORT must be an integer between 1 and 65535");
+  }
+  const port = Number(normalized);
   if (!Number.isInteger(port) || port < 1 || port > 65535) {
     throw new Error("PORT must be an integer between 1 and 65535");
   }
+  return port;
+}
+
+export function mcpRoutePath(serverUrl: URL): string {
+  return serverUrl.pathname;
+}
+
+export function loadConfig(): SampleConfig {
+  const port = parsePort(process.env.PORT ?? "3001");
 
   const jwtAlgorithm = process.env.JWT_ALGORITHM?.trim() || "RS256";
   if (!ALLOWED_JWT_ALGORITHMS.has(jwtAlgorithm)) {

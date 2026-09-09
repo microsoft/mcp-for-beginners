@@ -6,13 +6,24 @@ export interface RegistrationDetails {
   explanation: string;
 }
 
+function hasCimdUrlShape(url: URL): boolean {
+  return (
+    url.protocol === "https:" &&
+    url.pathname !== "/" &&
+    !url.username &&
+    !url.password &&
+    !url.search &&
+    !url.hash
+  );
+}
+
 export function classifyRegistration(
   clientId: string,
   dcrClientIdPrefix?: string
 ): RegistrationDetails {
   try {
     const url = new URL(clientId);
-    if (url.protocol === "https:" && url.pathname !== "/") {
+    if (hasCimdUrlShape(url)) {
       return {
         mechanism: "cimd",
         clientId,
@@ -56,6 +67,9 @@ export function createClientMetadata(
 ): ClientMetadataDocument {
   if (clientMetadataUrl.protocol !== "https:" || clientMetadataUrl.pathname === "/") {
     throw new Error("CLIENT_METADATA_URL must be an HTTPS URL with a non-root path");
+  }
+  if (clientMetadataUrl.username || clientMetadataUrl.password) {
+    throw new Error("CLIENT_METADATA_URL must not contain user information");
   }
   if (clientMetadataUrl.search || clientMetadataUrl.hash) {
     throw new Error("CLIENT_METADATA_URL must not contain a query string or fragment");

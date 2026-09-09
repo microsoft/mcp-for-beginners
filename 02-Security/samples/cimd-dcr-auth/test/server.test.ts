@@ -4,7 +4,18 @@ import { test } from "node:test";
 import { Client, StreamableHTTPClientTransport } from "@modelcontextprotocol/client";
 import { createMcpHandler, type AuthInfo } from "@modelcontextprotocol/server";
 
+import { mcpRoutePath, parsePort } from "../src/config.js";
 import { buildServer } from "../src/mcp.js";
+
+test("parses only a complete integer port", () => {
+  assert.equal(parsePort("3001"), 3001);
+  assert.throws(() => parsePort("3001abc"), /PORT must be an integer/);
+  assert.throws(() => parsePort("3001.5"), /PORT must be an integer/);
+});
+
+test("uses the configured MCP server pathname", () => {
+  assert.equal(mcpRoutePath(new URL("https://server.example.com/api/mcp")), "/api/mcp");
+});
 
 test("serves registration information over MCP 2026-07-28", async () => {
   const authInfo: AuthInfo = {

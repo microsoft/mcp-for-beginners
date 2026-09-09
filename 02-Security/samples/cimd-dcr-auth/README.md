@@ -83,7 +83,7 @@ test/
 
 ## Prerequisites
 
-- Node.js 20 or newer.
+- Node.js 20.6 or newer. The scripts use `--env-file` and `--import`.
 - An OAuth 2.1/OpenID Connect authorization server that supports:
   - Authorization code flow with S256 PKCE.
   - OAuth Protected Resource Metadata and Resource Indicators.
@@ -101,7 +101,7 @@ npm run build
 npm test
 ```
 
-The nine tests use local keys and mock HTTP endpoints. They do not require an
+The twelve tests use local keys and mock HTTP endpoints. They do not require an
 authorization server account. They verify:
 
 - CIMD document shape and URL constraints.

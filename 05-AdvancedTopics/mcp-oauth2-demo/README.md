@@ -1,5 +1,10 @@
 # MCP OAuth2 Demo
 
+> [!WARNING]
+> This is a local learning sample, not a production authorization service. It
+> uses an in-memory client and generates a new signing key at startup. Never
+> deploy it with a shared, default, or source-controlled client secret.
+
 ## Introduction
 
 OAuth2 is the industry-standard protocol for authorization, enabling secure access to resources without sharing credentials. In MCP (Model Context Protocol) implementations, OAuth2 provides a robust way to authenticate and authorize clients (such as AI agents) to access MCP servers and their tools.
@@ -36,11 +41,12 @@ It mirrors the setup shown in the [Spring blog post (2 Apr 2025)](https://spring
 ## Quick start (local)
 
 ```bash
-# build & run
-./mvnw spring-boot:run
+# Use a unique local value and keep it out of shell history where possible.
+export OAUTH_CLIENT_SECRET="replace-with-a-random-local-secret"
+mvn spring-boot:run
 
 # obtain a token
-curl -u mcp-client:secret -d grant_type=client_credentials \
+curl -u "mcp-client:${OAUTH_CLIENT_SECRET}" -d grant_type=client_credentials \
      http://localhost:8081/oauth2/token | jq -r .access_token > token.txt
 
 # call the protected endpoint
@@ -66,17 +72,22 @@ curl -v http://localhost:8081/
 # Get and extract the full token response
 curl -v -X POST http://localhost:8081/oauth2/token \
   -H "Content-Type: application/x-www-form-urlencoded" \
-  -H "Authorization: Basic bWNwLWNsaWVudDpzZWNyZXQ=" \
+  -u "mcp-client:${OAUTH_CLIENT_SECRET}" \
   -d "grant_type=client_credentials&scope=mcp.access"
 
 # Or to extract just the token (requires jq)
 curl -s -X POST http://localhost:8081/oauth2/token \
   -H "Content-Type: application/x-www-form-urlencoded" \
-  -H "Authorization: Basic bWNwLWNsaWVudDpzZWNyZXQ=" \
+  -u "mcp-client:${OAUTH_CLIENT_SECRET}" \
   -d "grant_type=client_credentials&scope=mcp.access" | jq -r .access_token > token.txt
 ```
 
-Note: The Basic Authentication header (`bWNwLWNsaWVudDpzZWNyZXQ=`) is the Base64 encoding of `mcp-client:secret`.
+On PowerShell, set the local secret before running Maven:
+
+```powershell
+$env:OAUTH_CLIENT_SECRET = "replace-with-a-random-local-secret"
+mvn spring-boot:run
+```
 
 ### 3. Access the protected endpoint using the token
 
@@ -96,8 +107,22 @@ A successful response with "Hello from MCP OAuth2 Demo!" confirms that the OAuth
 
 ```bash
 docker build -t mcp-oauth2-demo .
-docker run -p 8081:8081 mcp-oauth2-demo
+docker run --rm -p 8081:8081 \
+  -e OAUTH_CLIENT_SECRET="$OAUTH_CLIENT_SECRET" \
+  mcp-oauth2-demo
 ```
+
+## Production Security
+
+For a production deployment, use a dedicated identity provider rather than
+this in-process demo authorization server. Store credentials in a managed
+secret store, rotate them, use persistent signing keys, restrict scopes, and
+set an explicit issuer. Never place a client secret in source code, container
+images, deployment manifests, or command output.
+
+For Azure Container Apps, store the value as a Container Apps secret backed by
+Key Vault where possible, then expose only a secret reference through the
+`OAUTH_CLIENT_SECRET` environment variable.
 
 ---
 

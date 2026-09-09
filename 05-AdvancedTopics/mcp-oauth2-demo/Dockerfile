@@ -1,7 +1,7 @@
-FROM eclipse-temurin:17-jammy AS build
+FROM maven:3.9-eclipse-temurin-17 AS build
 WORKDIR /workspace
 COPY . .
-RUN ./mvnw -ntp -B clean package -DskipTests
+RUN mvn -ntp -B clean package -DskipTests
 
 FROM eclipse-temurin:17-jammy
 WORKDIR /app

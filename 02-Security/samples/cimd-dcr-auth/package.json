@@ -7,7 +7,7 @@
     "build": "tsc",
     "register:dcr": "node --env-file=.env dist/src/register-dcr.js",
     "start": "node --env-file=.env dist/src/server.js",
-    "test": "node --test --import=tsx test/**/*.test.ts"
+    "test": "node --test --import=tsx test/dcr.test.ts test/oauth.test.ts test/registration.test.ts test/server.test.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/express": "^2.0.0",
