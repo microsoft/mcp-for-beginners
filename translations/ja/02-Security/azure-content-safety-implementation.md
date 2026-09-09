@@ -44,8 +44,8 @@ Azure Content SafetyをMCPサーバーに統合するには、リクエスト処
 
 ## 次のステップ
 
-- 戻る：[Security Module Overview](./README.md)
-- 続ける：[Module 3: Getting Started](../03-GettingStarted/README.md)
+- 戻る：[セキュリティモジュール概要](./README.md)
+- 続ける：[モジュール3: はじめに](../03-GettingStarted/README.md)
 
 ---
 
