@@ -10,7 +10,7 @@ export interface SampleConfig {
   dcrClientIdPrefix?: string;
 }
 
-const LOOPBACK_HOSTS = new Set(["127.0.0.1", "localhost", "[::1]"]);
+const LOOPBACK_HOSTS = new Set(["127.0.0.1", "localhost", "::1"]);
 const ALLOWED_JWT_ALGORITHMS = new Set(["RS256", "PS256", "ES256"]);
 
 export function requireSecureUrl(url: URL, name: string): URL {
