@@ -1,6 +1,9 @@
-# Serwer MCP Kalkulator (Python)
+# Serwer Kalkulatora MCP (Python)
 
-Prosta implementacja serwera Model Context Protocol (MCP) w Pythonie, oferująca podstawową funkcjonalność kalkulatora.
+
+
+Prosta implementacja serwera Model Context Protocol (MCP) w Pythonie, który zapewnia podstawową funkcjonalność kalkulatora.
+
 
 ## Instalacja
 
@@ -13,24 +16,24 @@ pip install -r requirements.txt
 Lub zainstaluj bezpośrednio MCP Python SDK:
 
 ```bash
-pip install mcp>=1.18.0
+pip install "mcp>=2.1.1,<3.0.0"
 ```
 
-## Użycie
+## Użytkowanie
 
 ### Uruchamianie serwera
 
-Serwer jest przeznaczony do użytku przez klientów MCP (np. Claude Desktop). Aby uruchomić serwer:
+Serwer jest zaprojektowany do użytku przez klientów MCP (np. Claude Desktop). Aby uruchomić serwer:
 
 ```bash
 python mcp_calculator_server.py
 ```
 
-**Uwaga**: Podczas uruchamiania bezpośrednio w terminalu zobaczysz błędy walidacji JSON-RPC. To normalne zachowanie - serwer oczekuje na poprawnie sformatowane wiadomości od klienta MCP.
+**Uwaga**: Uruchamiając bezpośrednio w terminalu, zobaczysz błędy walidacji JSON-RPC. To normalne zachowanie - serwer oczekuje na poprawnie sformatowane wiadomości klientów MCP.
 
 ### Testowanie funkcji
 
-Aby przetestować, czy funkcje kalkulatora działają poprawnie:
+Aby przetestować poprawność działania funkcji kalkulatora:
 
 ```bash
 python test_calculator.py
@@ -43,14 +46,16 @@ python test_calculator.py
 Jeśli pojawi się `ModuleNotFoundError: No module named 'mcp'`, zainstaluj MCP Python SDK:
 
 ```bash
-pip install mcp>=1.18.0
+pip install "mcp>=2.1.1,<3.0.0"
 ```
 
-### Błędy JSON-RPC podczas uruchamiania bezpośredniego
+### Błędy JSON-RPC przy bezpośrednim uruchomieniu
 
-Błędy takie jak "Invalid JSON: EOF while parsing a value" podczas bezpośredniego uruchamiania serwera są oczekiwane. Serwer wymaga wiadomości od klienta MCP, a nie bezpośredniego wejścia z terminala.
+Błędy takie jak "Invalid JSON: EOF while parsing a value" podczas bezpośredniego uruchamiania serwera są spodziewane. Serwer potrzebuje wiadomości od klientów MCP, a nie bezpośredniego wejścia z terminala.
 
 ---
 
-**Zastrzeżenie**:  
-Ten dokument został przetłumaczony za pomocą usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Chociaż staramy się zapewnić dokładność, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w jego rodzimym języku powinien być uznawany za źródło autorytatywne. W przypadku informacji krytycznych zaleca się profesjonalne tłumaczenie przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z użycia tego tłumaczenia.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Zastrzeżenie**:
+Niniejszy dokument został przetłumaczony za pomocą usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Choć dążymy do dokładności, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub niedokładności. Oryginalny dokument w jego języku źródłowym należy uznawać za autorytatywne źródło. W przypadku informacji krytycznych zalecane jest skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z użycia tego tłumaczenia.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

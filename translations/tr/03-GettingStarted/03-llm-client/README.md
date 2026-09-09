@@ -1,50 +1,50 @@
 # LLM ile bir istemci oluşturma
 
-Şimdiye kadar, bir sunucu ve istemcinin nasıl oluşturulacağını gördünüz. İstemci, sunucuya açıkça çağrı yaparak araçlarını, kaynaklarını ve istemlerini listeleyebildi. Ancak bu çok pratik bir yaklaşım değil. Kullanıcılarınız ajan çağına yaşıyor ve istemleri kullanmayı ve bir LLM ile iletişim kurmayı bekliyorlar. Yeteneklerinizi depolamak için MCP kullanıp kullanmadığınız onları ilgilendirmiyor; onlar doğal dil kullanarak etkileşimde bulunmayı bekliyor. Peki bunu nasıl çözeriz? Çözüm, istemciye bir LLM eklemektir.
+Şimdiye kadar bir sunucu ve istemci oluşturmayı gördünüz. İstemci, araçlarını, kaynaklarını ve istemleri listelemek için sunucuyu açıkça çağırabildi. Ancak bu pek pratik bir yaklaşım değil. Kullanıcılarınız ajan çağı içinde yaşıyor ve istemleri kullanmayı ve bir LLM ile iletişim kurmayı bekliyorlar. Yeteneklerinizi depolamak için MCP kullanıp kullanmadığınız onları ilgilendirmiyor; onlar sadece doğal dil kullanarak etkileşim bekliyor. Peki bunu nasıl çözeriz? Çözüm, istemciye bir LLM eklemektir.
 
 ## Genel Bakış
 
-Bu derste, istemcinize bir LLM eklemeye odaklanıyoruz ve bunun kullanıcı deneyimini nasıl çok daha iyi hale getirdiğini gösteriyoruz.
+Bu derste, istemcinize bir LLM eklemeye odaklanacağız ve bunun kullanıcı deneyimi için çok daha iyi bir deneyim nasıl sağladığını göstereceğiz.
 
 ## Öğrenme Hedefleri
 
-Bu dersin sonunda, şunları yapabileceksiniz:
+Bu derste sonunda şunları yapabileceksiniz:
 
-- Bir LLM ile bir istemci oluşturmak.
-- Bir LLM kullanarak MCP sunucusu ile sorunsuz etkileşim sağlamak.
-- İstemci tarafında daha iyi bir son kullanıcı deneyimi sunmak.
+- LLM ile bir istemci oluşturmak.
+- LLM kullanarak bir MCP sunucusuyla sorunsuz etkileşim kurmak.
+- İstemci tarafında daha iyi bir son kullanıcı deneyimi sağlamak.
 
 ## Yaklaşım
 
-İzlememiz gereken yaklaşımı anlamaya çalışalım. Bir LLM eklemek basit görünüyor, ancak gerçekten bunu yapacak mıyız?
+Almamız gereken yaklaşımı anlamaya çalışalım. LLM eklemek basit görünüyor ama gerçekten bunu yapacak mıyız?
 
-İstemcinin sunucu ile nasıl etkileşime gireceği şöyle olacak:
+İşte istemcinin sunucu ile nasıl etkileşim kuracağı:
 
-1. Sunucu ile bağlantı kurmak.
+1. Sunucu ile bağlantı kur.
 
-1. Yetenekleri, istemleri, kaynakları ve araçları listelemek, ve bunların şemasını kaydetmek.
+1. Yetenekleri, istemleri, kaynakları ve araçları listele ve bunların şemasını kaydet.
 
-1. Bir LLM eklemek ve kaydedilen yetenekleri ve şemasını LLM’nin anlayacağı bir biçimde iletmek.
+1. Bir LLM ekle ve kaydedilmiş yetenekler ile şemalarını LLM'nin anlayacağı formata geçir.
 
-1. Bir kullanıcı istemini alıp istemci tarafından listelenen araçlarla birlikte LLM’ye iletmek.
+1. Kullanıcının istemini, istemci tarafından listelenen araçlarla birlikte LLM'ye ilet ve işle.
 
-Harika, şimdi bunu yüksek düzeyde nasıl yapabileceğimizi anladık, aşağıdaki alıştırmada bunu deneyelim.
+Harika, şimdi bunu yüksek düzeyde nasıl yapabileceğimizi anladık, aşağıdaki egzersizde bunu deneyelim.
 
-## Alıştırma: Bir LLM ile İstemci Oluşturma
+## Egzersiz: LLM ile bir istemci oluşturmak
 
-Bu alıştırmada, istemcimize bir LLM eklemeyi öğreneceğiz.
+Bu egzersizde istemcimize bir LLM eklemeyi öğreneceğiz.
 
-### GitHub Kişisel Erişim Jetonu ile Kimlik Doğrulama
+### GitHub Kişisel Erişim Tokenı ile Kimlik Doğrulama
 
-GitHub tokenı oluşturmak basit bir işlemdir. İşte nasıl yapacağınız:
+GitHub tokenı oluşturmak basit bir süreçtir. İşte nasıl yapacağınız:
 
-- GitHub Ayarlarına gidin – Sağ üstteki profil resminize tıklayın ve Ayarlar’ı seçin.
-- Geliştirici Ayarlarına gidin – Aşağı kaydırın ve Geliştirici Ayarları’na tıklayın.
-- Kişisel Erişim Jetonlarını Seçin – Hassas jetonlara tıklayın ve ardından Yeni jeton oluştur’a tıklayın.
-- Jetonunuzu Yapılandırın – Referans için bir not ekleyin, bir son kullanma tarihi belirleyin ve gerekli kapsamları (izinleri) seçin. Bu durumda Models iznini eklediğinizden emin olun.
-- Jetonu Oluşturun ve Kopyalayın – Jeton oluştur’a tıklayın ve hemen kopyaladığınızdan emin olun, çünkü tekrar göremeyeceksiniz.
+- GitHub Ayarlarına git – Sağ üst köşedeki profil resminize tıklayın ve Ayarlar'ı seçin.
+- Geliştirici Ayarlarına gidin – Aşağı kaydırın ve Geliştirici Ayarları'na tıklayın.
+- Kişisel Erişim Tokenlarını seçin – İnce taneli tokenlara tıklayın ve ardından Yeni token oluşturun.
+- Tokenınızı yapılandırın – Referans için bir not ekleyin, bir son kullanma tarihi belirleyin ve gerekli izinleri seçin. Bu durumda Modeller iznini eklediğinizden emin olun.
+- Tokenı oluşturun ve kopyalayın – Oluştur'a tıklayın ve hemen kopyalayın, çünkü tekrar göremeyeceksiniz.
 
-### -1- Sunucuya Bağlanma
+### -1- Sunucuya Bağlan
 
 Öncelikle istemcimizi oluşturalım:
 
@@ -83,11 +83,11 @@ class MCPClient {
 }
 ```
 
-Yukarıdaki kodda:
+Önceki kodda:
 
 - Gerekli kütüphaneleri içe aktardık.
-- `client` ve `openai` olmak üzere iki üyeye sahip bir sınıf oluşturduk, bunlar sırasıyla istemciyi yönetmemize ve bir LLM ile etkileşim kurmamıza yardımcı olacak.
-- LLM örneğimizi `baseUrl` ayarını inference API’sine yönlendirerek GitHub Modelleri’ni kullanacak şekilde yapılandırdık.
+- İstemciyi yönetmemize ve LLM ile etkileşim kurmamıza yardımcı olacak iki üyeye, `client` ve `openai` sahip bir sınıf oluşturduk.
+- LLM örneğimizi, `baseUrl`u MCP API'sine işaret edecek şekilde GitHub Modellerini kullanacak biçimde yapılandırdık.
 
 #### Python
 
@@ -97,7 +97,7 @@ from mcp.client.stdio import stdio_client
 
 # stdio bağlantısı için sunucu parametreleri oluştur
 server_params = StdioServerParameters(
-    command="mcp",  # Çalıştırılabilir dosya
+    command="mcp",  # Çalıştırılabilir
     args=["run", "server.py"],  # İsteğe bağlı komut satırı argümanları
     env=None,  # İsteğe bağlı ortam değişkenleri
 )
@@ -119,10 +119,10 @@ if __name__ == "__main__":
 
 ```
 
-Yukarıdaki kodda:
+Önceki kodda:
 
-- MCP için gerekli kütüphaneler içe aktarıldı.
-- Bir istemci oluşturuldu.
+- MCP için gerekli kütüphaneleri içe aktardık.
+- Bir istemci oluşturduk.
 
 #### .NET
 
@@ -146,7 +146,7 @@ await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 
 #### Java
 
-Öncelikle, `pom.xml` dosyanıza LangChain4j bağımlılıklarını eklemeniz gerekecek. MCP entegrasyonu ve GitHub Modelleri desteğini etkinleştirmek için aşağıdaki bağımlılıkları ekleyin:
+Öncelikle, MCP entegrasyonunu ve OpenAI uyumlu MiniMax API'sini etkinleştirmek için `pom.xml` dosyanıza LangChain4j bağımlılıklarını eklemeniz gerekir:
 
 ```xml
 <properties>
@@ -168,19 +168,29 @@ await using var mcpClient = await McpClient.CreateAsync(clientTransport);
         <version>${langchain4j.version}</version>
     </dependency>
     
-    <!-- GitHub Models Support -->
-    <dependency>
-        <groupId>dev.langchain4j</groupId>
-        <artifactId>langchain4j-github-models</artifactId>
-        <version>${langchain4j.version}</version>
-    </dependency>
-    
     <!-- Spring Boot Starter (optional, for production apps) -->
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
 </dependencies>
+```
+
+MiniMax API anahtarınızı ve isteğe bağlı olarak uç noktayı ve modeli ayarlayın.
+`MINIMAX_MODEL_ID`, `MiniMax-M3` ve `MiniMax-M2.7`'yi destekler. Eğer
+`OPENAI_BASE_URL` ayarlanmazsa, `MINIMAX_REGION` `global_en` ve `cn_zh` değerlerini destekler.
+
+```bash
+export OPENAI_API_KEY=your_minimax_api_key_here
+export OPENAI_BASE_URL=https://api.minimax.io/v1
+export MINIMAX_MODEL_ID=MiniMax-M3
+```
+
+Bölgeye göre uç noktayı seçmek için `OPENAI_BASE_URL`'i kullanmayın:
+
+```bash
+unset OPENAI_BASE_URL
+export MINIMAX_REGION=cn_zh
 ```
 
 Sonra Java istemci sınıfınızı oluşturun:
@@ -198,18 +208,28 @@ import dev.langchain4j.service.tool.ToolProvider;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class LangChain4jClient {
-    
-    public static void main(String[] args) throws Exception {        // LLM'yi GitHub Modellerini kullanacak şekilde yapılandır
+
+    private static final String DEFAULT_BASE_URL = "https://api.minimax.io/v1";
+    private static final String DEFAULT_MODEL_ID = "MiniMax-M3";
+    private static final Map<String, String> REGIONAL_BASE_URLS = Map.of(
+            "global_en", "https://api.minimax.io/v1",
+            "cn_zh", "https://api.minimaxi.com/v1");
+    private static final Set<String> SUPPORTED_MODEL_IDS = Set.of("MiniMax-M3", "MiniMax-M2.7");
+
+    public static void main(String[] args) throws Exception {
         ChatLanguageModel model = OpenAiOfficialChatModel.builder()
-                .isGitHubModels(true)
-                .apiKey(System.getenv("GITHUB_TOKEN"))
+                .baseUrl(resolveBaseUrl())
+                .apiKey(requireEnv("OPENAI_API_KEY"))
                 .timeout(Duration.ofSeconds(60))
-                .modelName("gpt-4.1-nano")
+                .modelName(resolveModelName())
                 .build();
 
-        // Sunucuya bağlanmak için MCP taşıma oluştur
+        // Sunucuya bağlanmak için MCP taşıyıcı oluştur
         McpTransport transport = new HttpMcpTransport.Builder()
                 .sseUrl("http://localhost:8080/sse")
                 .timeout(Duration.ofSeconds(60))
@@ -222,23 +242,62 @@ public class LangChain4jClient {
                 .transport(transport)
                 .build();
     }
+
+    private static String resolveBaseUrl() {
+        String baseUrl = System.getenv("OPENAI_BASE_URL");
+        if (baseUrl != null && !baseUrl.isBlank()) {
+            return baseUrl;
+        }
+
+        String region = System.getenv("MINIMAX_REGION");
+        if (region == null || region.isBlank()) {
+            return DEFAULT_BASE_URL;
+        }
+
+        String regionalBaseUrl = REGIONAL_BASE_URLS.get(region);
+        if (regionalBaseUrl == null) {
+            throw new IllegalArgumentException("Unsupported MINIMAX_REGION value: " + region
+                    + ". Supported values: " + new TreeSet<>(REGIONAL_BASE_URLS.keySet()));
+        }
+        return regionalBaseUrl;
+    }
+
+    private static String resolveModelName() {
+        String modelId = System.getenv("MINIMAX_MODEL_ID");
+        if (modelId == null || modelId.isBlank()) {
+            return DEFAULT_MODEL_ID;
+        }
+        if (!SUPPORTED_MODEL_IDS.contains(modelId)) {
+            throw new IllegalArgumentException("Unsupported MINIMAX_MODEL_ID value: " + modelId
+                    + ". Supported values: " + new TreeSet<>(SUPPORTED_MODEL_IDS));
+        }
+        return modelId;
+    }
+
+    private static String requireEnv(String name) {
+        String value = System.getenv(name);
+        if (value == null || value.isBlank()) {
+            throw new IllegalStateException(name + " environment variable is not set");
+        }
+        return value;
+    }
 }
 ```
 
-Yukarıdaki kodda:
+Önceki kodda:
 
-- **LangChain4j bağımlılıkları eklendi**: MCP entegrasyonu, OpenAI resmi istemcisi ve GitHub Modelleri desteği için gerekli.
-- **LangChain4j kütüphaneleri içe aktarıldı**: MCP entegrasyonu ve OpenAI sohbet modeli işlevselliği için.
-- **GitHub token’ınızla yapılandırılmış bir `ChatLanguageModel` oluşturuldu**: GitHub Modelleri kullanmak için.
-- **HTTP taşıma ayarlandı**: MCP sunucusuna bağlanmak için Server-Sent Events (SSE) kullanıldı.
-- **MCP istemcisi oluşturuldu**: Sunucu ile iletişimi yönetecek.
-- **LangChain4j’nin yerleşik MCP desteği kullanıldı**: LLM’ler ile MCP sunucuları arasındaki entegrasyonu basitleştiriyor.
+- **LangChain4j bağımlılıklarını ekledik**: MCP entegrasyonu ve OpenAI uyumlu MiniMax API için gerekli.
+- **LangChain4j kütüphanelerini içe aktardık**: MCP entegrasyonu ve OpenAI sohbet modeli işlevselliği için.
+- **Bir `ChatLanguageModel` oluşturduk**: MiniMax, MiniMax API anahtarınız, uç noktanız ve desteklenen model ID'nizle yapılandırıldı.
+- **HTTP iletişimini ayarladık**: MCP sunucusuna bağlanmak için Sunucu Gönderilen Olaylar (SSE) kullanıldı.
+- **Bir MCP istemcisi oluşturduk**: Sunucu ile iletişimi yönetmek için.
+- **LangChain4j'nin dahili MCP desteğini kullandık**: Bu, LLM'ler ile MCP sunucuları arasındaki entegrasyonu kolaylaştırır.
 
 #### Rust
 
-Bu örnek, Rust tabanlı bir MCP sunucusunun çalıştığını varsayar. Eğer henüz yoksa, sunucuyu oluşturmak için [01-first-server](../01-first-server/README.md) dersine geri dönün.
+Bu örnek, Rust tabanlı bir MCP sunucusunun çalıştığını varsayar. Eğer yoksa, sunucu oluşturmak için [01-first-server](../01-first-server/README.md) dersine başvurun.
 
-Rust MCP sunucunuz hazır olduğunda, bir terminal açın ve sunucuyla aynı dizine gidin. Ardından yeni bir LLM istemci projesi oluşturmak için aşağıdaki komutu çalıştırın:
+Rust MCP sunucunuz olduğunda, bir terminal açın ve sunucuyla aynı dizine gidin. Ardından yeni bir LLM istemci projesi oluşturmak için aşağıdaki komutu çalıştırın:
 
 ```bash
 mkdir calculator-llmclient
@@ -257,7 +316,7 @@ tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 ```
 
 > [!NOTE]
-> Resmi bir Rust OpenAI kütüphanesi yoktur ancak `async-openai` crate'i, yaygın kullanılan bir [topluluk tarafından desteklenen kütüphanedir](https://platform.openai.com/docs/libraries/rust#rust).
+> OpenAI için resmi Rust kütüphanesi yoktur, ancak `async-openai` crate'i yaygın kullanılan [topluluk destekli bir kütüphanedir](https://platform.openai.com/docs/libraries/rust#rust).
 
 `src/main.rs` dosyasını açın ve içeriğini aşağıdaki kodla değiştirin:
 
@@ -278,7 +337,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
     // Başlangıç mesajı
     let mut messages = vec![json!({"role": "user", "content": "What is the sum of 3 and 2?"})];
 
-    // OpenAI istemcisi kurulumu
+    // OpenAI istemcisi ayarlanıyor
     let api_key = std::env::var("OPENAI_API_KEY")?;
     let openai_client = Client::with_config(
         OpenAIConfig::new()
@@ -286,7 +345,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
             .with_api_key(api_key),
     );
 
-    // MCP istemcisi kurulumu
+    // MCP istemcisi ayarlanıyor
     let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .unwrap()
@@ -309,16 +368,16 @@ async fn main() -> Result<(), Box<dyn Error>> {
 }
 ```
 
-Bu kod, MCP sunucusuna ve LLM etkileşimleri için GitHub Modellerine bağlanacak temel bir Rust uygulaması kurar.
+Bu kod, MCP sunucusuna ve GitHub Modellerine LLM etkileşimleri için bağlanacak temel bir Rust uygulaması kurar.
 
 > [!IMPORTANT]
-> Uygulamayı çalıştırmadan önce `OPENAI_API_KEY` ortam değişkenini GitHub token’ınızla ayarladığınızdan emin olun.
+> Uygulamayı çalıştırmadan önce `OPENAI_API_KEY` ortam değişkenini GitHub tokenınızla ayarlamayı unutmayın.
 
-Harika, bir sonraki adım için sunucudaki yetenekleri listeleyelim.
+Harika, sıradaki adımımız, sunucunun yeteneklerini listelemek.
 
-### -2- Sunucu Yeteneklerini Listeleme
+### -2- Sunucu yeteneklerini listele
 
-Şimdi sunucuya bağlanıp yeteneklerini isteyeceğiz:
+Şimdi sunucuya bağlanacağız ve yeteneklerini isteyeceğiz:
 
 #### Typescript
 
@@ -339,10 +398,10 @@ async run() {
 }
 ```
 
-Yukarıdaki kodda:
+Önceki kodda:
 
-- Sunucuya bağlanmak için `connectToServer` metodunu ekledik.
-- Uygulama akışını yöneten `run` metodunu oluşturduk. Şimdilik sadece araçları listeliyor ama yakında daha fazlasını ekleyeceğiz.
+- Sunucuya bağlanmak için `connectToServer` kodu ekledik.
+- Uygulama akışımızı yönetecek `run` metodunu oluşturduk. Şimdiye kadar yalnızca araçları listeliyor, ama yakında daha fazlasını ekleyeceğiz.
 
 #### Python
 
@@ -361,9 +420,9 @@ for tool in tools.tools:
     print("Tool", tool.inputSchema["properties"])
 ```
 
-Eklediğimiz:
+Eklediklerimiz:
 
-- Kaynakları ve araçları listelemek ve bunları yazdırmak. Araçlar için ayrıca daha sonra kullanacağımız `inputSchema`’yı da listeledik.
+- Kaynakları ve araçları listeledik, yazdırdık. Araçlar için ayrıca `inputSchema` listesini ekledik, bunu daha sonra kullanacağız.
 
 #### .NET
 
@@ -388,10 +447,10 @@ async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
 }
 ```
 
-Yukarıdaki kodda:
+Önceki kodda:
 
-- MCP Sunucusunda bulunan araçları listeledik.
-- Her bir araç için isim, açıklama ve şema bilgisini listeledik. Bu şema, araçları çağırmak için kullanılacak.
+- MCP Sunucusundaki mevcut araçları listeledik.
+- Her araç için isim, açıklama ve şemasını listeledik. Bu şema, araçları yakında çağırmak için kullanacağımız şey.
 
 #### Java
 
@@ -401,34 +460,34 @@ ToolProvider toolProvider = McpToolProvider.builder()
         .mcpClients(List.of(mcpClient))
         .build();
 
-// MCP araç sağlayıcı otomatik olarak şunları yapar:
-// - MCP sunucusundan mevcut araçları listeleme
-// - MCP araç şemalarını LangChain4j formatına dönüştürme
-// - Araç yürütme ve yanıtları yönetme
+// MCP araç sağlayıcı otomatik olarak şunları yönetir:
+// - MCP sunucusundan mevcut araçların listelenmesi
+// - MCP araç şemalarının LangChain4j formatına dönüştürülmesi
+// - Araç yürütme ve yanıtlarının yönetilmesi
 ```
 
-Yukarıdaki kodda:
+Önceki kodda:
 
-- MCP sunucusundaki tüm araçları otomatik keşfedip kaydeden bir `McpToolProvider` oluşturduk.
-- Araç sağlayıcı, MCP araç şemaları ile LangChain4j araç formatı arasındaki dönüşümü dahili olarak yönetiyor.
-- Bu yaklaşım, manuel araç listeleme ve dönüşüm sürecini soyutluyor.
+- MCP sunucusundaki tüm araçları otomatik keşfeden ve kaydeden bir `McpToolProvider` oluşturduk.
+- Araç sağlayıcı, MCP araç şemaları ile LangChain4j araç formatı arasında dönüştürmeyi dahili olarak yapıyor.
+- Bu yaklaşım manuel araç listeleme ve dönüştürme sürecini soyutlar.
 
 #### Rust
 
-MCP sunucusundan araçları almak için `list_tools` yöntemi kullanılır. `main` fonksiyonunuzda, MCP istemcisini ayarladıktan sonra aşağıdaki kodu ekleyin:
+MCP sunucusundan araçları almak `list_tools` metodu ile yapılır. `main` fonksiyonunuzda, MCP istemcisini kurduktan sonra aşağıdaki kodu ekleyin:
 
 ```rust
-// MCP aracını listele
+// MCP aracını listele al
 let tools = mcp_client.list_tools(Default::default()).await?;
 ```
 
-### -3- Sunucu Yeteneklerini LLM Araçlarına Dönüştürme
+### -3- Sunucu yeteneklerini LLM araçlarına dönüştürme
 
-Sunucunun yeteneklerini listeledikten sonraki adım, bunları LLM’nin anlayabileceği biçime çevirmektir. Bunu yaptıktan sonra bu yetenekleri LLM için araç olarak sağlayabiliriz.
+Sunucu yeteneklerini listeledikten sonraki adım, LLM'nin anlayacağı formata dönüştürmektir. Bunu yaptıktan sonra, bu yetenekleri LLM'imize araç olarak sunabiliriz.
 
 #### TypeScript
 
-1. MCP sunucusundan gelen yanıtı LLM’nin kullanabileceği araç formatına dönüştürmek için aşağıdaki kodu ekleyin:
+1. MCP Sunucusundan gelen yanıtı, LLM'nin kullanabileceği bir araç formatına dönüştürmek için aşağıdaki kodu ekleyin:
 
     ```typescript
     openAiToolAdapter(tool: {
@@ -436,7 +495,7 @@ Sunucunun yeteneklerini listeledikten sonraki adım, bunları LLM’nin anlayabi
         description?: string;
         input_schema: any;
         }) {
-        // input_schema'ya dayalı bir zod şeması oluşturun
+        // input_schema temel alınarak bir zod şeması oluşturun
         const schema = z.object(tool.input_schema);
     
         return {
@@ -455,9 +514,9 @@ Sunucunun yeteneklerini listeledikten sonraki adım, bunları LLM’nin anlayabi
 
     ```
 
-    Yukarıdaki kod, MCP sunucusundan gelen yanıtı LLM’nin anlayabileceği bir araç tanımı formatına dönüştürür.
+    Yukarıdaki kod, MCP Sunucusundan gelen yanıtı alır ve LLM'nin anlayabileceği bir araç tanım formatına dönüştürür.
 
-2. Şimdi `run` metodunu güncelleyerek sunucu yeteneklerini listeleyelim:
+2. Şimdi ise `run` metodunu sunucu yeteneklerini listeleyecek şekilde güncelleyelim:
 
     ```typescript
     async run() {
@@ -473,11 +532,11 @@ Sunucunun yeteneklerini listeledikten sonraki adım, bunları LLM’nin anlayabi
     }
     ```
 
-    Yukarıdaki kodda, `run` metodunu sonucu dönerek her giriş için `openAiToolAdapter` çağıracak şekilde güncelledik.
+    Önceki kodda, `run` metodunu sonucu dolaşacak ve her girdide `openAiToolAdapter` metodunu çağıracak şekilde güncelledik.
 
 #### Python
 
-1. Öncelikle aşağıdaki dönüştürücü fonksiyonu oluşturalım:
+1. İlk olarak, aşağıdaki dönüştürücü fonksiyonu oluşturalım:
 
     ```python
     def convert_to_llm_tool(tool):
@@ -497,9 +556,9 @@ Sunucunun yeteneklerini listeledikten sonraki adım, bunları LLM’nin anlayabi
         return tool_schema
     ```
 
-    `convert_to_llm_tools` fonksiyonunda, MCP araç yanıtını LLM’nin anlayabileceği bir biçime çeviriyoruz.
+    Yukarıdaki `convert_to_llm_tools` fonksiyonu MCP araç yanıtını alır ve LLM'nin anlayacağı formata dönüştürür.
 
-2. Sonra istemci kodumuzu bu fonksiyonu kullanacak şekilde güncelleyelim:
+2. Sonra, istemci kodumuzu bu fonksiyonu kullanacak şekilde güncelleyelim:
 
     ```python
     functions = []
@@ -509,11 +568,11 @@ Sunucunun yeteneklerini listeledikten sonraki adım, bunları LLM’nin anlayabi
         functions.append(convert_to_llm_tool(tool))
     ```
 
-    Burada, MCP araç yanıtını LLM’ye besleyebileceğimiz bir formata çevirmek için `convert_to_llm_tool` çağrısı ekleniyor.
+    Burada, MCP araç yanıtını sonradan LLM'ye besleyebileceğimiz bir şeye dönüştürmek için `convert_to_llm_tool` çağrısı ekliyoruz.
 
 #### .NET
 
-1. MCP araç yanıtını LLM’nin anlayabileceği biçime dönüştürmek için kod ekleyelim:
+1. MCP araç yanıtını LLM'nin anlayacağı bir şeye dönüştürmek için kod ekleyelim:
 
 ```csharp
 ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonElement jsonElement)
@@ -536,12 +595,12 @@ ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonE
 }
 ```
 
-Yukarıdaki kodda:
+Önceki kodda:
 
-- `ConvertFrom` adında, isim, açıklama ve giriş şemasını alan bir fonksiyon oluşturduk.
-- Fonksiyon, LLM’nin anlayabileceği bir `FunctionDefinition` oluşturup bunu `ChatCompletionsDefinition`’a geçiriyor.
+- İsim, açıklama ve giriş şemasını alan `ConvertFrom` fonksiyonu oluşturduk.
+- Bir `FunctionDefinition` yaratan ve bunun `ChatCompletionsDefinition`'a geçtiği işlevselliği tanımladık. Bu sonuncusu LLM'nin anlayacağı şeydir.
 
-2. Mevcut bazı kodları bu fonksiyonu kullanacak şekilde nasıl güncelleyebileceğimize bakalım:
+2. Yukarıdaki fonksiyonu kullanmak için mevcut kodu nasıl güncelleyebileceğimizi görelim:
 
     ```csharp
     async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
@@ -584,7 +643,6 @@ Yukarıdaki kodda:
 
         The input schema is part of the tool response but on the "properties" attribute, so we need to extract. Furthermore, we now call `ConvertFrom` with the tool details. Now we've done the heavy lifting, let's see how it call comes together as we handle a user prompt next.
 
-
 #### Java
 
 ```java
@@ -593,23 +651,23 @@ public interface Bot {
     String chat(String prompt);
 }
 
-// AI servisini LLM ve MCP araçları ile yapılandırın
+// LLM ve MCP araçlarıyla AI hizmetini yapılandırın
 Bot bot = AiServices.builder(Bot.class)
         .chatLanguageModel(model)
         .toolProvider(toolProvider)
         .build();
 ```
 
-Yukarıdaki kodda:
+Önceki kodda:
 
-- Doğal dil etkileşimleri için basit bir `Bot` arayüzü oluşturduk.
-- LangChain4j'nin `AiServices` özelliğini kullanarak LLM’yi MCP araç sağlayıcısı ile otomatik bağladık.
-- Framework, araç şeması dönüşümünü ve fonksiyon çağrısını otomatik olarak arkada yönetiyor.
-- Bu yaklaşım, manuel araç dönüşümünü ortadan kaldırıyor — LangChain4j MCP araçlarını LLM uyumlu formata dönüştürme karmaşıklığını üstleniyor.
+- Basit bir doğal dil etkileşimleri için `Bot` arayüzü tanımlandı.
+- LangChain4j'nin `AiServices`'i kullanılarak LLM, MCP araç sağlayıcısına otomatik bağlandı.
+- Çerçeve, araç şeması dönüştürme ve fonksiyon çağırmayı arka planda otomatik yönetiyor.
+- Bu yöntem, manuel araç dönüştürmesini ortadan kaldırır - LangChain4j MCP araçlarını LLM uyumlu formata dönüştürmenin tüm karmaşıklığını halleder.
 
 #### Rust
 
-MCP araç yanıtını LLM’nin anlayabileceği biçime dönüştürmek için, araç listesini biçimlendiren yardımcı bir fonksiyon ekleyeceğiz. Bu kodu `main` fonksiyonunuzun altına ekleyin. LLM’ye istek yaparken çağrılacak:
+MCP araç yanıtını LLM'nin anlayacağı bir formata dönüştürmek için araç listeleme biçimlendiren yardımcı bir fonksiyon ekleyeceğiz. Bu kodu, `main.rs` dosyanıza `main` fonksiyonunun altına ekleyin. Bu fonksiyon LLM istekleri yapılırken çağrılacaktır:
 
 ```rust
 async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Error>> {
@@ -644,15 +702,15 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 }
 ```
 
-Harika, şimdi kullanıcı isteklerini ele almaya hazırız.
+Harika, şimdi herhangi bir kullanıcı isteğini işlemek için hazırız, hadi bunu ele alalım.
 
-### -4- Kullanıcı İstemi İsteğini İşleme
+### -4- Kullanıcı istemi isteğini işleme
 
-Bu kod bölümünde kullanıcı isteklerini işliyor olacağız.
+Bu kod bölümünde kullanıcı isteklerini işleyeceğiz.
 
 #### TypeScript
 
-1. LLM’yi çağırmak için kullanılacak bir metod ekleyin:
+1. LLM'mizi çağırmak için kullanılacak bir metod ekleyin:
 
     ```typescript
     async callTools(
@@ -683,8 +741,8 @@ Bu kod bölümünde kullanıcı isteklerini işliyor olacağız.
 
     Yukarıdaki kodda:
 
-    - `callTools` adlı bir metod eklendi.
-    - Bu metod, LLM yanıtını alır ve hangi araçların çağrıldığını (varsa) kontrol eder:
+    - `callTools` adlı metodu ekledik.
+    - Metod, LLM yanıtını alır ve hangi araçların çağrıldığını kontrol eder.
 
         ```typescript
         for (const tool_call of tool_calls) {
@@ -697,7 +755,7 @@ Bu kod bölümünde kullanıcı isteklerini işliyor olacağız.
         }
         ```
 
-    - LLM bir araç çağrısı yapılması gerektiğini belirtiyorsa, o aracı çağırır:
+    - LLM çağrılması gerektiğini belirtirse aracı çağırır.
 
         ```typescript
         // 2. Sunucunun aracını çağır
@@ -709,14 +767,14 @@ Bu kod bölümünde kullanıcı isteklerini işliyor olacağız.
         console.log("Tool result: ", toolResult);
 
         // 3. Sonuçla bir şeyler yap
-        // YAPILACAKLAR
+        // YAPILACAK
         ```
 
-2. `run` metodunu LLM’ye çağrılar ve `callTools` metodunun çağrısını içerecek şekilde güncelleyin:
+2. `run` metodunu LLM çağrılarını ve `callTools` çağrısını içerecek şekilde güncelleyin:
 
     ```typescript
 
-    // 1. LLM için girdi olacak mesajları oluşturun
+    // 1. LLM için giriş mesajları oluşturun
     const prompt = "What is the sum of 2 and 3?"
 
     const messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
@@ -738,7 +796,7 @@ Bu kod bölümünde kullanıcı isteklerini işliyor olacağız.
 
     let results: any[] = [];
 
-    // 3. LLM yanıtını inceleyin, her bir seçenek için araç çağrısı olup olmadığını kontrol edin
+    // 3. LLM yanıtını inceleyin, her seçim için araç çağrısı olup olmadığını kontrol edin
     (await response).choices.map(async (choice: { message: any; }) => {
         const message = choice.message;
         if (message.tool_calls) {
@@ -748,7 +806,7 @@ Bu kod bölümünde kullanıcı isteklerini işliyor olacağız.
     });
     ```
 
-Şimdi kodu tam olarak listeleyelim:
+Harika, tam kodu listeleyelim:
 
 ```typescript
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
@@ -829,7 +887,7 @@ class MyClient {
           console.log("Tool result: ", toolResult);
     
           // 3. Sonuçla bir şey yap
-          // YAPILACAK
+          // YAPILACAKLAR
     
          }
     }
@@ -864,7 +922,7 @@ class MyClient {
 
         let results: any[] = [];
     
-        // 3. LLM yanıtını incele, her tercih için araç çağrıları olup olmadığını kontrol et
+        // 3. LLM yanıtını incele, her bir seçim için araç çağrıları olup olmadığını kontrol et
         (await response).choices.map(async (choice: { message: any; }) => {
           const message = choice.message;
           if (message.tool_calls) {
@@ -887,7 +945,7 @@ client.connectToServer(transport);
 
 #### Python
 
-1. LLM çağrısı yapmak için gerekli bazı importları ekleyelim:
+1. LLM'yi çağırmak için gereken bazı ihracatları ekleyelim:
 
     ```python
     # llm
@@ -928,7 +986,7 @@ client.connectToServer(transport);
             ],
             model=model_name,
             tools = functions,
-            # İsteğe bağlı parametreler
+            # Opsiyonel parametreler
             temperature=1.,
             max_tokens=1000,
             top_p=1.    
@@ -948,35 +1006,35 @@ client.connectToServer(transport);
         return functions_to_call
     ```
 
-    Yukarıdaki kodda:
+Önceki kodda:
 
-    - MCP sunucusunda bulup dönüştürdüğümüz fonksiyonları LLM’ye verdik.
-    - Ardından LLM’yi bu fonksiyonlarla çağırdık.
-    - Sonucu denetleyip hangi fonksiyonların çağrılması gerektiğini belirledik.
-    - Son olarak, çağrılması gereken fonksiyonların bir dizisini ilettik.
+- MCP sunucusunda bulduğumuz ve dönüştürdüğümüz fonksiyonları LLM'ye verdik.
+- Ardından LLM'yi verilen fonksiyonlarla çağırdık.
+- Sonra hangi fonksiyonların çağrılması gerektiğini kontrol ettik, varsa.
+- Son olarak çağrılacak fonksiyon dizisi geçtik.
 
-3. Son adım, ana kodu güncelleyelim:
+3. Son adım olarak, ana kodumuzu güncelleyelim:
 
     ```python
     prompt = "Add 2 to 20"
 
-    # Eğer varsa, tüm araçlar için LLM'ye sor
+    # LLM'ye hangi araçların mevcut olduğunu sor, eğer varsa
     functions_to_call = call_llm(prompt, functions)
 
-    # Önerilen fonksiyonları çağır
+    # önerilen fonksiyonları çağır
     for f in functions_to_call:
         result = await session.call_tool(f["name"], arguments=f["args"])
         print("TOOLS result: ", result.content)
     ```
 
-    Yukarıdaki kodda:
+Yukarıdaki kodda:
 
-    - `call_tool` ile MCP aracını LLM’nin çağrılması gerektiğini düşündüğü fonksiyonla çağırıyoruz.
-    - Araç çağrısının sonucunu MCP sunucusuna yazdırıyoruz.
+- LLM'nin istemimize göre çağırmamızı önerdiği fonksiyonu kullanarak MCP aracını `call_tool` ile çağırdık.
+- MCP sunucusundan gelen aracın çağrı sonucunu yazdırdık.
 
 #### .NET
 
-1. LLM istek yapmak için bir örnek kod gösterelim:
+1. LLM istemi isteği için örnek kod gösterelim:
 
     ```csharp
     var tools = await GetMcpTools();
@@ -1010,14 +1068,14 @@ client.connectToServer(transport);
 
     ```
 
-Yukarıdaki kodda:
+Önceki kodda:
 
-- MCP sunucusundan araçlar alındı, `var tools = await GetMcpTools()`.
-- Kullanıcı istemi tanımlandı, `userMessage`.
-- Model ve araçları belirten seçenekler nesnesi oluşturuldu.
-- LLM’ye istek yapıldı.
+- MCP sunucusundan araçları aldık, `var tools = await GetMcpTools()`.
+- Bir kullanıcı istemi tanımladık, `userMessage`.
+- Model ve araçları belirten bir seçenekler nesnesi oluşturduk.
+- LLM'ye istek gönderdik.
 
-2. Son bir adım, LLM’nin bir fonksiyon çağırmamız gerektiğini düşünüp düşünmediğine bakalım:
+2. Son bir adım olarak, LLM'nin bir fonksiyon çağrısı önerip önermediğine bakalım:
 
     ```csharp
     // 4. Check if the response contains a function call
@@ -1040,12 +1098,12 @@ Yukarıdaki kodda:
     }
     ```
 
-Yukarıdaki kodda:
+Önceki kodda:
 
-- Fonksiyon çağrıları listesinde döngü yapıldı.
-- Her araç çağrısı için isim ve argümanlar ayrıştırılıp MCP aracı MCP istemcisiyle çağrıldı. Sonuçlar yazdırıldı.
+- Bir fonksiyon çağrıları listesinde döngü yaptık.
+- Her fonksiyon çağrısı için isim ve argümanları ayrıştırıp MCP aracını MCP istemcisiyle çağırdık. Sonuçları yazdırdık.
 
-Tam kod şöyle:
+İşte tam kod:
 
 ```csharp
 using Azure;
@@ -1175,7 +1233,7 @@ Console.WriteLine($"Assistant response: {content}");
 
 ```java
 try {
-    // MCP araçlarını otomatik olarak kullanan doğal dil isteklerini gerçekleştirin
+    // MCP araçlarını otomatik olarak kullanan doğal dil isteklerini yürütün
     String response = bot.chat("Calculate the sum of 24.5 and 17.3 using the calculator service");
     System.out.println(response);
 
@@ -1189,27 +1247,50 @@ try {
 }
 ```
 
-Yukarıdaki kodda:
+Önceki kodda:
 
-- MCP sunucu araçlarıyla etkileşim için basit doğal dil istemleri kullandık.
-- LangChain4j framework otomatik olarak:
-  - Gerekirse kullanıcı istemlerini araç çağrılarına çeviriyor,
-  - LLM kararına göre uygun MCP araçlarını çağırıyor,
-  - LLM ile MCP sunucusu arasındaki konuşma akışını yönetiyor.
-- `bot.chat()` metodu, MCP araçlarının çalışmalarından gelen sonuçları içerebilen doğal dil yanıtları döner.
-- Bu yaklaşım, kullanıcıların altta yatan MCP uygulamasından haberdar olmasına gerek kalmayan sorunsuz bir kullanıcı deneyimi sağlar.
+- MCP sunucu araçları ile basit doğal dil istemleri kullanarak etkileşim kurduk.
+- LangChain4j çerçevesi otomatik olarak:
+  - Kullanıcı istemlerini ihtiyaç duyulduğunda araç çağrılarına dönüştürür.
+  - LLM kararına göre uygun MCP araçlarını çağırır.
+  - LLM ve MCP sunucusu arasındaki konuşma akışını yönetir.
+- `bot.chat()` metodu, MCP araçlarının yürütme sonuçlarını da içerebilen doğal dil yanıtları döner.
+- Bu yaklaşım, kullanıcıların MCP uygulamasının altında nasıl çalıştığını bilmesine gerek kalmadan kesintisiz bir deneyim sunar.
 
 Tam kod örneği:
 
 ```java
+import dev.langchain4j.mcp.McpToolProvider;
+import dev.langchain4j.mcp.client.DefaultMcpClient;
+import dev.langchain4j.mcp.client.McpClient;
+import dev.langchain4j.mcp.client.transport.McpTransport;
+import dev.langchain4j.mcp.client.transport.http.HttpMcpTransport;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.openaiofficial.OpenAiOfficialChatModel;
+import dev.langchain4j.service.AiServices;
+import dev.langchain4j.service.tool.ToolProvider;
+
+import java.time.Duration;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+
 public class LangChain4jClient {
-    
-    public static void main(String[] args) throws Exception {        ChatLanguageModel model = OpenAiOfficialChatModel.builder()
-                .isGitHubModels(true)
-                .apiKey(System.getenv("GITHUB_TOKEN"))
+
+    private static final String DEFAULT_BASE_URL = "https://api.minimax.io/v1";
+    private static final String DEFAULT_MODEL_ID = "MiniMax-M3";
+    private static final Map<String, String> REGIONAL_BASE_URLS = Map.of(
+            "global_en", "https://api.minimax.io/v1",
+            "cn_zh", "https://api.minimaxi.com/v1");
+    private static final Set<String> SUPPORTED_MODEL_IDS = Set.of("MiniMax-M3", "MiniMax-M2.7");
+
+    public static void main(String[] args) throws Exception {
+        ChatLanguageModel model = OpenAiOfficialChatModel.builder()
+                .baseUrl(resolveBaseUrl())
+                .apiKey(requireEnv("OPENAI_API_KEY"))
                 .timeout(Duration.ofSeconds(60))
-                .modelName("gpt-4.1-nano")
-                .timeout(Duration.ofSeconds(60))
+                .modelName(resolveModelName())
                 .build();
 
         McpTransport transport = new HttpMcpTransport.Builder()
@@ -1245,14 +1326,54 @@ public class LangChain4jClient {
             mcpClient.close();
         }
     }
+
+    private static String resolveBaseUrl() {
+        String baseUrl = System.getenv("OPENAI_BASE_URL");
+        if (baseUrl != null && !baseUrl.isBlank()) {
+            return baseUrl;
+        }
+
+        String region = System.getenv("MINIMAX_REGION");
+        if (region == null || region.isBlank()) {
+            return DEFAULT_BASE_URL;
+        }
+
+        String regionalBaseUrl = REGIONAL_BASE_URLS.get(region);
+        if (regionalBaseUrl == null) {
+            throw new IllegalArgumentException("Unsupported MINIMAX_REGION value: " + region
+                    + ". Supported values: " + new TreeSet<>(REGIONAL_BASE_URLS.keySet()));
+        }
+        return regionalBaseUrl;
+    }
+
+    private static String resolveModelName() {
+        String modelId = System.getenv("MINIMAX_MODEL_ID");
+        if (modelId == null || modelId.isBlank()) {
+            return DEFAULT_MODEL_ID;
+        }
+        if (!SUPPORTED_MODEL_IDS.contains(modelId)) {
+            throw new IllegalArgumentException("Unsupported MINIMAX_MODEL_ID value: " + modelId
+                    + ". Supported values: " + new TreeSet<>(SUPPORTED_MODEL_IDS));
+        }
+        return modelId;
+    }
+
+    private static String requireEnv(String name) {
+        String value = System.getenv(name);
+        if (value == null || value.isBlank()) {
+            throw new IllegalStateException(name + " environment variable is not set");
+        }
+        return value;
+    }
 }
 ```
 
 #### Rust
 
-Burada işin büyük kısmı gerçekleşiyor. İlk kullanıcı istemini LLM’ye gönderip cevabı alacağız, sonra herhangi bir araç çağrısı gerekip gerekmediğini kontrol edeceğiz. Gerekirse araçları çağırıp LLM ile sohbeti devam ettireceğiz; artık araç çağrısı gerekmediğinde nihai cevabı elde edeceğiz.
+Asıl iş burada gerçekleşir. Başlangıçta kullanıcı istemini LLM ile çağıracağız, ardından yanıtı işleyip herhangi bir aracın çağrılması gerekip gerekmediğine bakacağız. Gerekirse araçları çağıracağız ve LLM ile konuşmayı, daha fazla araç çağrısı gerekmediğinde ve nihai yanıt alınana kadar sürdüreceğiz.
 
-LLM’ye birden fazla çağrı yapacağız, bu yüzden LLM çağrısını yönetecek bir fonksiyon tanımlayalım. Aşağıdaki fonksiyonu `main.rs` dosyanıza ekleyin:
+
+LLM'ye birden fazla çağrı yapacağız, bu yüzden LLM çağrısını yönetecek bir fonksiyon tanımlayalım. Aşağıdaki fonksiyonu `main.rs` dosyanıza ekleyin:
 
 ```rust
 async fn call_llm(
@@ -1272,8 +1393,9 @@ async fn call_llm(
 }
 ```
 
-Bu fonksiyon, LLM istemcisini, mesaj listesini (kullanıcı istemini içeren), MCP’den araçları alır ve LLM’ye istek gönderip cevabı döner.
-LLM'den gelen yanıt bir `choices` dizisi içerecektir. Sonuçta herhangi bir `tool_calls` (araç çağrısı) olup olmadığını kontrol etmemiz gerekecek. Bu, LLM'nin belirli bir aracın çağrılmasını argümanlarla istediğini anlamamızı sağlar. LLM yanıtını işlemek için bir fonksiyon tanımlamak üzere aşağıdaki kodu `main.rs` dosyanızın en altına ekleyin:
+Bu fonksiyon, LLM istemcisini, bir mesaj listesini (kullanıcı istemi dahil), MCP sunucusundaki araçları alır ve LLM'ye bir istek göndererek yanıtı döner.
+
+LLM'den gelen yanıt `choices` dizisini içerecektir. Sonucu işleyip herhangi bir `tool_calls` olup olmadığını kontrol etmemiz gerekecek. Bu, LLM'nin belirli bir aracın argümanlarla çağrılmasını istediğini anlamamıza yarar. `main.rs` dosyanızın sonuna aşağıdaki kodu ekleyerek LLM yanıtını yönetecek bir fonksiyon tanımlayın:
 
 ```rust
 async fn process_llm_response(
@@ -1301,7 +1423,7 @@ async fn process_llm_response(
     if let Some(tool_calls) = message.get("tool_calls").and_then(|tc| tc.as_array()) {
         messages.push(message.clone()); // Asistan mesajı ekle
 
-        // Her araç çağrısını yürüt
+        // Her araç çağrısını çalıştır
         for tool_call in tool_calls {
             let (tool_id, name, args) = extract_tool_call_info(tool_call)?;
             println!("⚡ Calling tool: {}", name);
@@ -1321,7 +1443,7 @@ async fn process_llm_response(
             }));
         }
 
-        // Araç sonuçlarıyla konuşmaya devam et
+        // Araç sonuçları ile konuşmaya devam et
         let response = call_llm(openai_client, messages, mcp_tools).await?;
         Box::pin(process_llm_response(
             &response,
@@ -1336,9 +1458,9 @@ async fn process_llm_response(
 }
 ```
 
-Eğer `tool_calls` varsa, araç bilgilerini çıkarır, MCP sunucusunu araç isteği ile çağırır ve sonuçları sohbet mesajlarına ekler. Ardından LLM ile sohbet devam eder ve mesajlar, asistanın yanıtı ve araç çağrısı sonuçları ile güncellenir.
+Eğer `tool_calls` varsa, araç bilgilerini çıkarır, araç isteğiyle MCP sunucusunu çağırır ve sonucu konuşma mesajlarına ekler. Ardından LLM ile konuşmaya devam eder ve mesajlar asistanın yanıtı ve araç çağrısı sonuçlarıyla güncellenir.
 
-LLM'nin MCP çağrıları için döndürdüğü araç çağrısı bilgilerini çıkarmak için, çağrıyı yapmak için gereken her şeyi çıkaran başka bir yardımcı fonksiyon ekleyeceğiz. Aşağıdaki kodu `main.rs` dosyanızın en altına ekleyin:
+LLM'nin MCP çağrıları için döndürdüğü araç çağrısı bilgisini çıkarmak için, çağrıyı yapmak için gereken her şeyi çıkaracak başka bir yardımcı fonksiyon daha ekleyeceğiz. Aşağıdaki kodu `main.rs` dosyanızın sonuna ekleyin:
 
 ```rust
 fn extract_tool_call_info(tool_call: &Value) -> Result<(String, String, String), Box<dyn Error>> {
@@ -1362,7 +1484,7 @@ fn extract_tool_call_info(tool_call: &Value) -> Result<(String, String, String),
 }
 ```
 
-Tüm parçalar yerinde olduğuna göre, şimdi ilk kullanıcı istemini işleyebilir ve LLM'yi çağırabiliriz. `main` fonksiyonunuzu aşağıdaki kodu içerecek şekilde güncelleyin:
+Tüm parçalar yerinde olduğuna göre, şimdi ilk kullanıcı istemini işleyip LLM'yi çağırabiliriz. `main` fonksiyonunuzu aşağıdaki kodla güncelleyin:
 
 ```rust
 // Araç çağrıları ile LLM sohbeti
@@ -1377,37 +1499,37 @@ process_llm_response(
 .await?;
 ```
 
-Bu, LLM'ye iki sayının toplamını isteyen ilk kullanıcı istemiyle sorgu gönderir ve yanıtı işleyerek araç çağrılarını dinamik olarak yönetir.
+Bu, iki sayının toplamını isteyen ilk kullanıcı istemiyle LLM'ye sorgu gönderecek ve yanıtı işleyerek dinamik olarak araç çağrılarını yönetecek.
 
 Harika, başardınız!
 
 ## Ödev
 
-Egzersizden aldığınız kodu kullanarak sunucuyu birkaç araçla genişletin. Ardından, alıştırmadaki gibi bir LLM ile bir istemci oluşturun ve sunucunuzdaki tüm araçların dinamik olarak çağrıldığından emin olmak için farklı istemlerle test edin. Bu tarz bir istemci oluşturmak, son kullanıcıların kesin istemci komutları yerine istemler kullanabilmesini sağlar ve herhangi bir MCP sunucusunun çağrılıyor olmasından habersiz mükemmel bir kullanıcı deneyimi sunar.
+Egzersizden aldığınız kodu kullanarak sunucuyu daha fazla araçla geliştirin. Ardından egzersizdeki gibi LLM'li bir istemci oluşturun ve sunucudaki tüm araçların dinamik olarak çağrıldığından emin olmak için farklı istemlerle test edin. Bu istemci oluşturma yöntemi, son kullanıcının tam istemci komutları yerine istemler kullanarak harika bir kullanıcı deneyimi yaşamasını sağlar ve herhangi bir MCP sunucusunun çağrıldığından habersiz olur.
 
 ## Çözüm
 
-[Solution](./solution/README.md)
+[Çözüm](./solution/README.md)
 
-## Temel Noktalar
+## Öne Çıkanlar
 
-- İstemcinize bir LLM eklemek, kullanıcıların MCP Sunucularıyla etkileşim kurması için daha iyi bir yol sağlar.
-- MCP Sunucu yanıtını LLM'nin anlayabileceği bir formata dönüştürmeniz gerekir.
+- İstemcinize bir LLM eklemek, kullanıcıların MCP Sunucuları ile daha iyi etkileşim kurmasını sağlar.
+- MCP Sunucu yanıtını LLM'nin anlayabileceği bir biçime dönüştürmeniz gerekir.
 
 ## Örnekler
 
-- [Java Calculator](../samples/java/calculator/README.md)
-- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
-- [JavaScript Calculator](../samples/javascript/README.md)
-- [TypeScript Calculator](../samples/typescript/README.md)
-- [Python Calculator](../../../../03-GettingStarted/samples/python)
-- [Rust Calculator](../../../../03-GettingStarted/samples/rust)
+- [Java Hesap Makinesi](../samples/java/calculator/README.md)
+- [.Net Hesap Makinesi](../../../../03-GettingStarted/samples/csharp)
+- [JavaScript Hesap Makinesi](../samples/javascript/README.md)
+- [TypeScript Hesap Makinesi](../samples/typescript/README.md)
+- [Python Hesap Makinesi](../../../../03-GettingStarted/samples/python)
+- [Rust Hesap Makinesi](../../../../03-GettingStarted/samples/rust)
 
 ## Ek Kaynaklar
 
-## Sonraki Adımlar
+## Sonraki
 
-- Sonraki: [Visual Studio Code kullanarak bir sunucuyu tüketmek](../04-vscode/README.md)
+- Sonraki: [Visual Studio Code kullanarak bir sunucu tüketmek](../04-vscode/README.md)
 
 ---
 
