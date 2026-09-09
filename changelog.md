@@ -38,7 +38,7 @@ baseline guidance to the final MCP `2026-07-28` specification.
   guides to remove release-candidate and year suffixes, then updated all English
   hyperlinks to their stable paths.
 - **Translation scope**: Only English source files were edited; generated
-  translations and translated images remain unchanged as these are auto translated
+  translations and translated images remain unchanged as these are auto-translated.
 
 ## July 29th, 2026
 
