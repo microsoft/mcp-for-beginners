@@ -26,21 +26,21 @@ MicrosoftのAIプロンプトシールドは、直接的および間接的なプ
 
 MCPサーバーでAzure Content Safetyを実装する方法について詳しくは、以下の公式リソースをご覧ください:
 
-1. [Azure AI Content Safety Documentation](https://learn.microsoft.com/azure/ai-services/content-safety/) - Azure Content Safetyの公式ドキュメント。
-2. [Prompt Shield Documentation](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/prompt-shield) - プロンプトインジェクション攻撃を防ぐ方法について学べます。
-3. [Content Safety API Reference](https://learn.microsoft.com/rest/api/contentsafety/) - Content Safetyの実装に関する詳細なAPIリファレンス。
-4. [Quickstart: Azure Content Safety with C#](https://learn.microsoft.com/azure/ai-services/content-safety/quickstart-csharp) - C#を使った迅速な実装ガイド。
-5. [Content Safety Client Libraries](https://learn.microsoft.com/azure/ai-services/content-safety/quickstart-client-libraries-rest-api) - 各種プログラミング言語向けのクライアントライブラリ。
-6. [Detecting Jailbreak Attempts](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection) - 脱獄試行の検出と防止に関する具体的なガイダンス。
-7. [Best Practices for Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/best-practices) - Content Safetyを効果的に実装するためのベストプラクティス。
+1. [Azure AI Content Safety ドキュメント](https://learn.microsoft.com/azure/ai-services/content-safety/) - Azure Content Safetyの公式ドキュメント。
+2. [Prompt Shield ドキュメント](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/prompt-shield) - プロンプトインジェクション攻撃を防ぐ方法について学べます。
+3. [コンテンツ安全性 API リファレンス](https://learn.microsoft.com/rest/api/contentsafety/) - Content Safetyの実装に関する詳細なAPIリファレンス。
+4. [クイックスタート: C# を使用した Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/quickstart-csharp) - C#を使った迅速な実装ガイド。
+5. [コンテンツの安全性に関するクライアントライブラリ](https://learn.microsoft.com/azure/ai-services/content-safety/quickstart-client-libraries-rest-api) - 各種プログラミング言語向けのクライアントライブラリ。
+6. [ジェイルブレイクの試みの検出](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection) - 脱獄試行の検出と防止に関する具体的なガイダンス。
+7. [コンテンツの安全性を確保するためのベストプラクティス](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/best-practices) - Content Safetyを効果的に実装するためのベストプラクティス。
 
-より詳細な実装については、[Azure Content Safety Implementation guide](./azure-content-safety-implementation.md)をご覧ください。
+より詳細な実装については、[Azure Content Safety 実装ガイド](./azure-content-safety-implementation.md)をご覧ください。
 
 ## 次のステップ
 
-- 読む: [Azure Content Safety Implementation](./azure-content-safety-implementation.md)
-- 戻る: [Security Module Overview](./README.md)
-- 続ける: [Module 3: Getting Started](../03-GettingStarted/README.md)
+- 読む: [Azure Content Safety の実装](./azure-content-safety-implementation.md)
+- 戻る: [セキュリティ モジュールの概要](./README.md)
+- 次へ: [モジュール3: はじめに](../03-GettingStarted/README.md)
 
 ---
 
