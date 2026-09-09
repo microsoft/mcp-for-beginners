@@ -122,7 +122,7 @@ graph TD
     H -->|MCP Protocol| T4[MCP Server Tool 04: Инструмент файловой системы]
     H -->|Отправляет ответ| Client
 
-    subgraph «Компоненты хоста MCP»
+    subgraph "Компоненты хоста MCP"
         H
         G[Реестр инструментов]
         I[Аутентификация]
