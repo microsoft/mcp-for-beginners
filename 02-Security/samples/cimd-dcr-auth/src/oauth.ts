@@ -37,7 +37,7 @@ export async function loadAuthorizationServerMetadata(
   metadataUrl: URL,
   expectedIssuer: string
 ): Promise<ValidatedOAuthMetadata> {
-  const response = await fetch(metadataUrl);
+  const response = await fetch(metadataUrl, { redirect: "error" });
   if (!response.ok) {
     throw new Error(`Authorization server metadata request failed: ${response.status}`);
   }
