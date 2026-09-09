@@ -27,9 +27,7 @@ unique to MCP deployments.
 
 ### 2. Authentication & Authorization Excellence  
 - **External Identity Providers**: Delegate authentication to established identity providers (Microsoft Entra ID, OAuth 2.1 providers) rather than implementing custom authentication
-- **Client Registration**: Prefer Client ID Metadata Documents or
-	pre-registration; use deprecated Dynamic Client Registration only for
-	compatibility
+- **Client Registration**: Prefer Client ID Metadata Documents or pre-registration; use deprecated Dynamic Client Registration only for compatibility
 - **Fine-grained Permissions**: Implement granular, tool-specific permissions following the principle of least privilege
 - **Token Lifecycle Management**: Use short-lived access tokens with secure rotation and proper audience validation
 - **Multi-Factor Authentication**: Require MFA for all administrative access and sensitive operations
