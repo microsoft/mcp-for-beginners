@@ -573,7 +573,7 @@ ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonE
     
     In the preceding code, we've:
 
-    - Update the function to convert the MCP tool response to an LLm tool. Let's highlight the code we added:
+    - Update the function to convert the MCP tool response to an LLM tool. Let's highlight the code we added:
 
         ```csharp
         JsonElement propertiesElement;
