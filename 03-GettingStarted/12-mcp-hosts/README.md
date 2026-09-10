@@ -307,7 +307,7 @@ Windsurf configuration is managed through the settings UI:
 
 ## Connecting to a Remote Server
 
-Every example above starts a local server with `command` and `args`. A remote server is already running somewhere else, so instead of a command you give the host the server's URL (each host has its own field for it, shown below). MCP has two remote transports: the older SSE transport, which is what the VS Code example earlier in this lesson configures with `"type": "sse"` and an `/sse` URL, and the current Streamable HTTP transport, which uses a single `/mcp` URL and is what the server below speaks (`"type": "http"` in VS Code). The snippets below use the hosted MCP server from [Keenable](https://keenable.ai) at `https://api.keenable.ai/mcp`, which is free to use without an account or API key; anonymous requests are rate limited per IP.
+Every example above starts a local server with `command` and `args`. A remote server is already running somewhere else, so instead of a command you give the host the server's URL (each host has its own field for it, shown below). For HTTP-based remote connections, MCP has two transports: the older SSE transport (what the VS Code example earlier in this lesson configures with `"type": "sse"` and an `/sse` URL) and the current Streamable HTTP transport (configured with `"type": "http"` in VS Code), which typically uses a single endpoint URL (often `/mcp`). The snippets below use the hosted MCP server from [Keenable](https://keenable.ai) at `https://api.keenable.ai/mcp`, which is free to use without an account or API key; anonymous requests are rate limited per IP.
 
 **VS Code** (`.vscode/mcp.json`):
 
