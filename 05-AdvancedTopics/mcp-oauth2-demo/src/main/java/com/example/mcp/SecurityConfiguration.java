@@ -17,6 +17,7 @@ import org.springframework.security.oauth2.server.authorization.settings.Authori
 import org.springframework.security.oauth2.server.authorization.settings.ClientSettings;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.util.Assert;
 import java.util.UUID;
 
 import java.security.KeyPair;
@@ -66,6 +67,9 @@ public class SecurityConfiguration {
     public RegisteredClientRepository registeredClientRepository(
             @Value("${demo.oauth.client-id}") String clientId,
             @Value("${demo.oauth.client-secret}") String clientSecret) {
+        Assert.hasText(clientId, "demo.oauth.client-id must not be blank");
+        Assert.hasText(clientSecret, "demo.oauth.client-secret must not be blank");
+
         PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
                 .clientId(clientId)
