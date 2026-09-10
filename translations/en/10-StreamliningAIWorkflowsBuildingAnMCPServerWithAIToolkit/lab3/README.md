@@ -1,5 +1,10 @@
 # 🔧 Module 3: Advanced MCP Development with Microsoft Foundry Toolkit
 
+> [!NOTE]
+> Inspector URLs in this lab use the legacy `/sse` endpoint and target the
+> pinned MCP SDK `1.9.3` and Inspector `0.14.0` dependencies. They are not
+> current `2026-07-28` Streamable HTTP examples.
+
 ![Duration](https://img.shields.io/badge/Duration-20_minutes-blue?style=flat-square)
 ![Microsoft Foundry Toolkit](https://img.shields.io/badge/Microsoft_Foundry_Toolkit-Required-orange?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10+-green?style=flat-square)

@@ -1,6 +1,9 @@
-# MCP Security Best Practices - February 2026 Update
+# MCP Security Best Practices - September 2026 Update
 
-> **Important**: This document reflects the latest [MCP Specification 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) security requirements and official [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices). Always refer to the current specification for the most up-to-date guidance.
+> **Important:** This document reflects
+> [MCP Specification 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/)
+> and the official
+> [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2026-07-28/basic/security_best_practices).
 
 ## 🏔️ Hands-On Security Training
 
@@ -10,11 +13,11 @@ All practices in this document align with the **[OWASP MCP Azure Security Guide]
 
 ## Essential Security Practices for MCP Implementations
 
-The Model Context Protocol introduces unique security challenges that extend beyond traditional software security. These practices address both foundational security requirements and MCP-specific threats including prompt injection, tool poisoning, session hijacking, confused deputy problems, and token passthrough vulnerabilities.
-
-### **MANDATORY Security Requirements** 
-
-**Critical Requirements from MCP Specification:**
+The Model Context Protocol introduces unique security challenges that extend
+beyond traditional software security. These practices address foundational
+requirements and MCP-specific threats including prompt injection, tool
+poisoning, state-handle hijacking, confused deputy problems, and token
+passthrough vulnerabilities.
 
 ### **MANDATORY Security Requirements** 
 
@@ -26,7 +29,8 @@ The Model Context Protocol introduces unique security challenges that extend bey
 >  
 > **MUST NOT**: MCP servers **MUST NOT** use sessions for authentication
 >
-> **MUST**: MCP proxy servers using static client IDs **MUST** obtain user consent for each dynamically registered client
+> **MUST**: MCP proxy servers using a static third-party client ID **MUST**
+> obtain consent for each MCP client before forwarding authorization
 
 ---
 
@@ -43,18 +47,24 @@ The Model Context Protocol introduces unique security challenges that extend bey
    - Implement encryption for tokens both at rest and in transit
    - Regular credential rotation and monitoring for unauthorized access
 
-## 2. **Session Management & Transport Security**
+## 2. **State Handle & Transport Security**
 
-**Secure Session Practices:**
-   - **Cryptographically Secure Session IDs**: Use secure, non-deterministic session IDs generated with secure random number generators
-   - **User-Specific Binding**: Bind session IDs to user identities using formats like `<user_id>:<session_id>` to prevent cross-user session abuse
-   - **Session Lifecycle Management**: Implement proper expiration, rotation, and invalidation to limit vulnerability windows
-   - **HTTPS/TLS Enforcement**: Mandatory HTTPS for all communication to prevent session ID interception
+**Secure Application State Practices:**
+
+- **Opaque State Handles**: Use secure, non-deterministic handles for
+   application state that spans requests
+- **User-Specific Binding**: Bind handles server-side to the authenticated
+   principal and reject cross-user reuse
+- **Lifecycle Management**: Expire and revoke handles to limit vulnerability
+   windows
+- **Per-request Authorization**: Never treat a state handle as authentication;
+   authorize every request that presents one
 
 **Transport Layer Security:**
-   - Configure TLS 1.3 where possible with proper certificate management
-   - Implement certificate pinning for critical connections
-   - Regular certificate rotation and validity verification
+
+- Require HTTPS for remote HTTP transports in production
+- Use process isolation and environment credentials for local stdio servers
+- Configure modern TLS with proper certificate rotation and validation
 
 ## 3. **AI-Specific Threat Protection** 🤖
 
@@ -108,7 +118,11 @@ The Model Context Protocol introduces unique security challenges that extend bey
 
 **OAuth 2.1 Implementation:**
    - **PKCE Implementation**: Use Proof Key for Code Exchange (PKCE) for all authorization requests
-   - **Explicit Consent**: Obtain user consent for each dynamically registered client to prevent confused deputy attacks
+    - **Client Registration**: Prefer Client ID Metadata Documents or
+       pre-registration; use deprecated Dynamic Client Registration only as a
+       compatibility fallback
+    - **Explicit Consent**: MCP proxies using a static third-party client ID must
+       obtain consent for each MCP client before forwarding authorization
    - **Redirect URI Validation**: Implement strict validation of redirect URIs and client identifiers
 
 **Proxy Security:**
@@ -181,9 +195,9 @@ The Model Context Protocol introduces unique security challenges that extend bey
 ## **Critical Security Resources**
 
 ### **Official MCP Documentation**
-- [MCP Specification (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices)
-- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)
+- [MCP Specification (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2026-07-28/basic/security_best_practices)
+- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization)
 
 ### **OWASP MCP Security Resources**
 - [OWASP MCP Azure Security Guide](https://microsoft.github.io/mcp-azure-security-guide/) - Comprehensive OWASP MCP Top 10 with Azure implementation
@@ -207,17 +221,20 @@ The Model Context Protocol introduces unique security challenges that extend bey
 
 ---
 
-> **Security Notice**: MCP security practices evolve rapidly. Always verify against the current [MCP specification](https://spec.modelcontextprotocol.io/) and [official security documentation](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) before implementation.
+> **Security notice:** MCP security practices evolve rapidly. Always verify
+> against the current [MCP specification](https://modelcontextprotocol.io/specification/2026-07-28/)
+> and [official security documentation](https://modelcontextprotocol.io/specification/2026-07-28/basic/security_best_practices)
+> before implementation.
 
 ## What's Next
 
-- Read: [MCP Security Controls 2025](./mcp-security-controls-2025.md)
+- Read: [MCP Security Controls](./mcp-security-controls.md)
 - Return to: [Security Module Overview](./README.md)
 - Continue to: [Module 3: Getting Started](../03-GettingStarted/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Disclaimer**:  
-This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
+**Disclaimer**:
+This document has been translated using AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -113,11 +113,11 @@ with project_client:
     print(f"Created agent, ID: {agent.id}")
     print(f"MCP Server: {mcp_tool.server_label} at {mcp_tool.server_url}")
 
-    # Create a thread for communication
+    # Create thread for communication
     thread = agents_client.threads.create()
     print(f"Created thread, ID: {thread.id}")
 
-    # Create a message for the thread
+    # Create message to thread
     message = agents_client.messages.create(
         thread_id=thread.id,
         role="user",
@@ -125,7 +125,7 @@ with project_client:
     )
     print(f"Created message, ID: {message.id}")
 
-    # Handle tool approvals and run the agent
+    # Handle tool approvals and run agent
     mcp_tool.update_headers("SuperSecret", "123456")
     run = agents_client.runs.create(thread_id=thread.id, agent_id=agent.id, tool_resources=mcp_tool.resources)
     print(f"Created run, ID: {run.id}")
@@ -165,7 +165,7 @@ with project_client:
 
     print(f"Run completed with status: {run.status}")
 
-    # Display the conversation
+    # Display conversation
     messages = agents_client.messages.list(thread_id=thread.id)
     print("\nConversation:")
     print("-" * 50)
@@ -305,9 +305,9 @@ When configuring MCP tools for your agent, you can specify several important par
 
 ```python
 mcp_tool = McpTool(
-    server_label="unique_server_name",      # Identifier for the MCP server
-    server_url="https://api.example.com/mcp", # MCP server endpoint
-    allowed_tools=[],                       # Optional: specify allowed tools
+    server_label="unique_server_name",      # Identifiant pour le serveur MCP
+    server_url="https://api.example.com/mcp", # Point de terminaison du serveur MCP
+    allowed_tools=[],                       # Optionnel : spécifier les outils autorisés
 )
 ```
 
@@ -366,7 +366,7 @@ To further enhance your MCP integration:
 - [Microsoft Foundry Documentation](https://learn.microsoft.com/azure/ai-foundry/)
 - [Model Context Protocol Samples](https://learn.microsoft.com/azure/ai-foundry/agents/how-to/tools/model-context-protocol-samples)
 - [Microsoft Foundry Agents Overview](https://learn.microsoft.com/azure/ai-foundry/agents/)
-- [MCP Specification](https://spec.modelcontextprotocol.io/)
+- [MCP Specification](https://modelcontextprotocol.io/specification/2026-07-28/)
 
 ## Support
 

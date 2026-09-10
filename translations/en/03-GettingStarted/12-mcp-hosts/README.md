@@ -1,5 +1,10 @@
 # Setting Up Popular MCP Host Clients
 
+> [!NOTE]
+> Host configurations that point to `/sse` are legacy HTTP+SSE examples for
+> MCP `2025-11-25`. For MCP `2026-07-28`, select Streamable HTTP in hosts that
+> support it and use the endpoint configured by the server.
+
 This guide covers how to configure and use MCP servers with popular AI host applications. Each host has its own configuration approach, but once set up, they all communicate with MCP servers using the standardized protocol.
 
 ## What is an MCP Host?
@@ -21,6 +26,7 @@ flowchart LR
         H5[Windsurf]
     end
 ```
+
 ## Prerequisites
 
 - An MCP server to connect to (see [Module 3.1 - First Server](../01-first-server/README.md))
@@ -327,10 +333,10 @@ Different hosts support different transport mechanisms:
 
 1. **Test the server manually first:**
    ```bash
-   # Para Python
+   # For Python
    python -m your_server_module
    
-   # Para Node.js
+   # For Node.js
    node /path/to/server/index.js
    ```
 
@@ -383,12 +389,12 @@ Different hosts support different transport mechanisms:
 
 - [Claude Desktop MCP Documentation](https://docs.anthropic.com/en/docs/claude-desktop/mcp)
 - [VS Code MCP Extension](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-mcp)
-- [MCP Specification - Transports](https://spec.modelcontextprotocol.io/specification/2025-11-25/basic/transports/)
+- [MCP Specification - Transports](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/)
 - [Official MCP Servers Registry](https://github.com/modelcontextprotocol/servers)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Disclaimer**:
-This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
+This document has been translated using AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

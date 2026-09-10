@@ -1,5 +1,10 @@
 # Calculator LLM Client
 
+> [!NOTE]
+> This solution connects to the course's legacy HTTP+SSE calculator service and
+> targets MCP `2025-11-25` SDK APIs. It is not a `2026-07-28` Streamable HTTP
+> example.
+
 A Java application that demonstrates how to use LangChain4j to connect to an MCP (Model Context Protocol) calculator service through the MiniMax OpenAI-compatible API.
 
 ## Prerequisites
