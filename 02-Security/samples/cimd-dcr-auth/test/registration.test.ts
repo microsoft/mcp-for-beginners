@@ -15,6 +15,17 @@ test("classifies an opaque ID as DCR only with a provider hint", () => {
   assert.equal(unhinted.mechanism, "opaque-client-id");
 });
 
+test("does not classify prohibited URL shapes as CIMD", () => {
+  const invalidClientIds = [
+    "https://user@client.example.com/metadata.json",
+    "https://client.example.com/metadata.json?version=1",
+    "https://client.example.com/metadata.json#current"
+  ];
+  for (const clientId of invalidClientIds) {
+    assert.equal(classifyRegistration(clientId).mechanism, "opaque-client-id");
+  }
+});
+
 test("creates a valid public native-client metadata document", () => {
   const metadata = createClientMetadata(
     new URL("https://client.example.com/oauth/metadata.json"),

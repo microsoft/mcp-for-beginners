@@ -7,7 +7,7 @@ import {
 import { toNodeHandler } from "@modelcontextprotocol/node";
 import { createMcpHandler } from "@modelcontextprotocol/server";
 
-import { loadConfig } from "./config.js";
+import { loadConfig, mcpRoutePath } from "./config.js";
 import { buildServer } from "./mcp.js";
 import { createTokenVerifier, loadAuthorizationServerMetadata } from "./oauth.js";
 import { createClientMetadata } from "./registration.js";
@@ -48,7 +48,7 @@ async function main(): Promise<void> {
     requiredScopes: [],
     resourceMetadataUrl: getOAuthProtectedResourceMetadataUrl(config.mcpServerUrl)
   });
-  app.all("/mcp", auth, (request, response) =>
+  app.all(mcpRoutePath(config.mcpServerUrl), auth, (request, response) =>
     void nodeHandler(request, response, request.body)
   );
 

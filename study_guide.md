@@ -147,7 +147,7 @@ The repository is organized into twelve main sections, each focusing on differen
    - Authentication and authorization strategies
    - Hands-on [CIMD and DCR authorization sample](./02-Security/samples/cimd-dcr-auth/README.md)
    - **Comprehensive Security Documentation**:
-    - MCP Security Best Practices
+     - MCP Security Best Practices
      - Azure Content Safety Implementation Guide
      - MCP Security Controls and Techniques
      - MCP Best Practices Quick Reference

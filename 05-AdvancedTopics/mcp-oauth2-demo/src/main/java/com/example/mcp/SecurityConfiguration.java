@@ -2,6 +2,7 @@ package com.example.mcp;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,6 +15,9 @@ import org.springframework.security.oauth2.server.authorization.client.Registere
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
 import org.springframework.security.oauth2.server.authorization.settings.AuthorizationServerSettings;
 import org.springframework.security.oauth2.server.authorization.settings.ClientSettings;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.util.Assert;
 import java.util.UUID;
 
 import java.security.KeyPair;
@@ -60,10 +64,16 @@ public class SecurityConfiguration {
     }
     
     @Bean
-    public RegisteredClientRepository registeredClientRepository() {
+    public RegisteredClientRepository registeredClientRepository(
+            @Value("${demo.oauth.client-id}") String clientId,
+            @Value("${demo.oauth.client-secret}") String clientSecret) {
+        Assert.hasText(clientId, "demo.oauth.client-id must not be blank");
+        Assert.hasText(clientSecret, "demo.oauth.client-secret must not be blank");
+
+        PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
-                .clientId("mcp-client")
-                .clientSecret("{noop}secret")
+                .clientId(clientId)
+                .clientSecret(passwordEncoder.encode(clientSecret))
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
                 .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
                 .scope("mcp.access")
