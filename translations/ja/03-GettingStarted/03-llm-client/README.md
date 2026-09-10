@@ -569,7 +569,9 @@ ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonE
 
         return toolDefinitions;
     }
-    ```    In the preceding code, we've:
+    ```    
+    
+    In the preceding code, we've:
 
     - Update the function to convert the MCP tool response to an LLm tool. Let's highlight the code we added:
 
