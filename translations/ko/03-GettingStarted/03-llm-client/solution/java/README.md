@@ -11,15 +11,15 @@ LangChain4j를 사용하여 MiniMax OpenAI 호환 API를 통해 MCP(모델 컨�
 
 ## API 키 받기
 
-이 애플리케이션은 MiniMax OpenAI 호환 API를 사용합니다. 아래 단계를 따라 키와 엔드포인트를 받으세요:
+이 애플리케이션은 MiniMax OpenAI 호환 API를 사용합니다. 키와 엔드포인트를 얻으려면 다음 단계를 따르세요:
 
 ### 1. 엔드포인트 선택
-1. 전역 엔드포인트에는 `https://api.minimax.io/v1`를 사용하세요
-2. 중국 엔드포인트에는 `https://api.minimaxi.com/v1`를 사용하세요
+1. 글로벌 엔드포인트는 `https://api.minimax.io/v1` 사용
+2. 중국 엔드포인트는 `https://api.minimaxi.com/v1` 사용
 
 ### 2. API 키 생성
-1. MiniMax 계정에서 MiniMax API 키를 생성하세요
-2. 키를 안전한 곳에 보관하세요
+1. MiniMax 계정에서 MiniMax API 키 생성
+2. 키를 안전한 곳에 보관
 
 ### 3. 환경 변수 설정
 
@@ -46,13 +46,13 @@ export MINIMAX_MODEL_ID=MiniMax-M3
 
 ## 설정 및 설치
 
-1. **프로젝트 디렉터리 복제 또는 이동**
+1. **프로젝트 디렉터리 클론 또는 이동**
 
 2. **의존성 설치**:
    ```cmd
    mvnw clean install
    ```
-   또는 Maven이 전역 설치된 경우:
+   Maven이 전역에 설치된 경우:
    ```cmd
    mvn clean install
    ```
@@ -69,9 +69,9 @@ mvnw clean package
 java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
 
-## 애플리케이션 동작
+## 애플리케이션이 수행하는 작업
 
-애플리케이션은 계산기 서비스와 다음 세 가지 주요 상호작용을 시연합니다:
+애플리케이션은 계산기 서비스와 세 가지 주요 상호작용을 보여줍니다:
 
 1. <strong>덧셈</strong>: 24.5와 17.3의 합 계산
 2. <strong>제곱근</strong>: 144의 제곱근 계산
@@ -79,7 +79,7 @@ java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 
 ## 예상 출력
 
-성공적으로 실행되면 다음과 유사한 출력이 나타납니다:
+성공적으로 실행하면 다음과 유사한 출력이 표시됩니다:
 
 ```
 The sum of 24.5 and 17.3 is 41.8.
@@ -89,50 +89,50 @@ The calculator service provides the following functions: add, subtract, multiply
 
 ## 문제 해결
 
-### 일반 문제
+### 일반적인 문제
 
-1. **"OPENAI_API_KEY 환경 변수가 설정되지 않음"**
-   - `OPENAI_API_KEY` 환경 변수가 설정되었는지 확인하세요
-   - 변수 설정 후 터미널/명령 프롬프트를 재시작하세요
+1. **"OPENAI_API_KEY 환경 변수가 설정되지 않았습니다"**
+   - `OPENAI_API_KEY` 환경 변수를 설정했는지 확인하세요
+   - 변수를 설정한 후 터미널/명령 프롬프트를 다시 시작하세요
 
-2. **"localhost:8080 연결 거부"**
-   - MCP 계산기 서비스가 포트 8080에서 실행 중인지 확인하세요
-   - 다른 서비스가 포트 8080을 사용 중인지 점검하세요
+2. **"localhost:8080에 연결 거부됨"**
+   - MCP 계산기 서비스가 8080 포트에서 실행 중인지 확인
+   - 8080 포트를 사용하는 다른 서비스가 있는지 확인
 
 3. **"인증 실패"**
-   - API 키가 유효한지 확인하세요
-   - `OPENAI_BASE_URL`이 의도한 엔드포인트와 일치하는지 확인하세요
+   - API 키가 유효한지 확인
+   - `OPENAI_BASE_URL`이 사용하려는 엔드포인트와 일치하는지 확인
 
 4. **Maven 빌드 오류**
-   - Java 21 이상을 사용 중인지 확인하세요: `java -version`
-   - 빌드 정리를 시도하세요: `mvnw clean`
+   - Java 21 이상을 사용 중인지 확인: `java -version`
+   - 빌드 정리 시도: `mvnw clean`
 
 ### 디버깅
 
-디버그 로그를 활성화하려면 실행 시 다음 JVM 인수를 추가하세요:
+디버그 로깅을 활성화하려면 실행 시 다음 JVM 인수를 추가하세요:
 ```cmd
 java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
 
-## 구성
+## 설정
 
-애플리케이션 구성:
-- 기본적으로 MiniMax-M3 사용, `MINIMAX_MODEL_ID`가 설정되면 MiniMax-M2.7 사용
-- `OPENAI_BASE_URL`가 설정되면 해당 URL 사용; 그렇지 않으면 `MINIMAX_REGION=cn_zh`일 때 `https://api.minimaxi.com/v1`, 기본은 `https://api.minimax.io/v1`
-- MCP 서비스에 `http://localhost:8080/sse`로 연결
-- 요청 타임아웃은 60초 설정
+애플리케이션 설정은 다음과 같습니다:
+- 기본적으로 MiniMax-M3 사용; `MINIMAX_MODEL_ID` 설정으로 `MiniMax-M3` 또는 `MiniMax-M2.7` 선택 가능
+- `OPENAI_BASE_URL`이 설정되면 해당 URL에 연결; 그렇지 않으면 `MINIMAX_REGION=cn_zh` 시 `https://api.minimaxi.com/v1`, 기본은 `https://api.minimax.io/v1` 사용
+- `http://localhost:8080/sse`의 MCP 서비스에 연결
+- 요청에 60초 타임아웃 사용
 
 ## 의존성
 
-이 프로젝트에 사용된 주요 의존성:
+이 프로젝트에서 사용하는 주요 의존성:
 - **LangChain4j**: AI 통합 및 도구 관리용
 - **LangChain4j MCP**: 모델 컨텍스트 프로토콜 지원용
-- **LangChain4j OpenAI 공식**: MiniMax OpenAI 호환 API 연동용
+- **LangChain4j OpenAI 공식**: MiniMax OpenAI 호환 API 통합용
 - **Spring Boot**: 애플리케이션 프레임워크 및 의존성 주입용
 
 ## 라이선스
 
-이 프로젝트는 Apache License 2.0 하에 라이선스가 부여됩니다. 자세한 내용은 [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) 파일을 참조하세요.
+이 프로젝트는 Apache License 2.0 하에 라이선스가 부여되어 있습니다 - 자세한 내용은 [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) 파일을 참조하세요.
 
 ---
 

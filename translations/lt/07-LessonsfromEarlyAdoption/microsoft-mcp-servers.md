@@ -1,94 +1,94 @@
-# 🚀 10 Microsoft MCP serverių, kurie keičia kūrėjų produktyvumą
+# 🚀 10 „Microsoft MCP“ serverių, kurie keičia kūrėjų produktyvumą
 
-## 🎯 Ką išmoksite šiame vadove
+## 🎯 Ką sužinosite šioje pamokoje
 
-Šis praktinis vadovas pristato dešimt Microsoft MCP serverių, kurie aktyviai keičia kūrėjų darbą su AI asistentais. Vietoje to, kad tiesiog paaiškintume, ką MCP serveriai *gali* daryti, parodysime serverius, kurie jau daro realų poveikį kasdieniuose kūrimo procesuose tiek Microsoft, tiek kitur.
+Ši praktinė pamoka pristato dešimt „Microsoft MCP“ serverių, kurie aktyviai keičia kūrėjų darbą su DI asistentais. Vietoje to, kad tik paaiškintume, ką MCP serveriai *gali* daryti, parodysime serverius, kurie jau daro tikrą įtaką kasdieniams kūrimo procesams „Microsoft“ ir už jos ribų.
 
-Kiekvienas šio vadovo serveris pasirinktas remiantis realiu naudojimu ir kūrėjų atsiliepimais. Sužinosite ne tik ką kiekvienas serveris daro, bet ir kodėl tai svarbu bei kaip maksimaliai išnaudoti juos savo projektuose. Nesvarbu, ar esate visiškai naujas MCP, ar norite išplėsti esamą sistemą — šie serveriai atstovauja vienus praktiškiausių ir veiksmingiausių įrankių Microsoft ekosistemoje.
+Kiekvienas serveris šioje pamokoje atrinktas pagal realų naudojimą ir kūrėjų atsiliepimus. Sužinosite ne tik ką kiekvienas serveris daro, bet ir kodėl tai svarbu bei kaip iš jo išgauti maksimumą savo projektuose. Nesvarbu, ar esate visiškai naujas MCP naudotojas, ar norite išplėsti esamą aplinką, šie serveriai atstovauja kai kuriuos praktiškiausius ir efektyviausius įrankius „Microsoft“ ekosistemoje.
 
-> **💡 Greitas patarimas**
+> **💡 Greitas pradžios patarimas**
 > 
-> Naujas MCP? Nesijaudinkite! Šis vadovas skirtas pradedantiesiems. Paaiškinsime sąvokas kelyje, o visada galite grįžti prie mūsų [Įvado į MCP](../00-Introduction/README.md) ir [Pagrindinių sąvokų](../01-CoreConcepts/README.md) modulių gilinti žinias.
+> Naujas MCP? Nesijaudinkite! Ši pamoka sukurta taip, kad būtų draugiška pradedantiesiems. Paaiškinsime koncepcijas, o visuomet galite sugrįžti prie mūsų [MCP įvado](../00-Introduction/README.md) ir [Pagrindinių koncepcijų](../01-CoreConcepts/README.md) modulių giliau susipažinti.
 
 ## Apžvalga
 
-Šis išsamus vadovas tiria dešimt Microsoft MCP serverių, kurie revoliucionizuoja kūrėjų sąveiką su AI asistentais ir išorinėmis priemonėmis. Nuo Azure išteklių valdymo iki dokumentų apdorojimo, šie serveriai demonstruoja Model Context Protocol galią kuriant sklandžius ir našius kūrimo darbo procesus.
+Ši išsami pamoka nagrinėja dešimt „Microsoft MCP“ serverių, kurie revoliucionizuoja kūrėjų sąveiką su DI asistentais ir išorinėmis priemonėmis. Nuo „Azure“ išteklių valdymo iki dokumentų apdorojimo – šie serveriai demonstruoja Model Context Protocol galias kuriant sklandžius ir produktyvius kūrimo procesus.
 
 ## Mokymosi tikslai
 
-Vadovo pabaigoje Jūs:
+Šios pamokos pabaigoje jūs:
 - Suprasite, kaip MCP serveriai didina kūrėjų produktyvumą
-- Išmoksite apie svarbiausius Microsoft MCP serverių įgyvendinimus
-- Atraskite praktiškus naudojimo atvejus kiekvienam serveriui
-- Sužinosite, kaip nustatyti ir konfigūruoti šiuos serverius VS Code ir Visual Studio aplinkoje
-- Ištirsite platesnę MCP ekosistemą ir ateities kryptis
+- Sužinosite apie reikšmingiausius „Microsoft“ MCP serverių įgyvendinimus
+- Atraskite praktines kiekvieno serverio taikymo sritis
+- Išmoksite, kaip nustatyti ir konfigūruoti serverius VS Code ir Visual Studio
+- Išnagrinėsite platesnę MCP ekosistemą ir ateities kryptis
 
-## 🔧 Supratimas apie MCP serverius: pradedančiojo vadovas
+## 🔧 Suprasti MCP serverius: pradmenų vadovas
 
 ### Kas yra MCP serveriai?
 
-Kaip naujokui Model Context Protocol (MCP), gali kilti klausimas: „Kas iš tikrųjų yra MCP serveris ir kodėl man tai svarbu?“ Pradėkime nuo paprasto palyginimo.
+Kaip Model Context Protocol (MCP) pradedantysis, galite klausti: „Kas tiksliai yra MCP serveris ir kodėl turėčiau tai žinoti?“ Pradėkime nuo paprasto palyginimo.
 
-Įsivaizduokite MCP serverius kaip specializuotus asistentus, kurie padeda jūsų AI kodo rašymo pagalbininkui (pvz., GitHub Copilot) jungtis su išorinėmis priemonėmis ir paslaugomis. Kaip telefone naudojate skirtingas programėles skirtingoms užduotims — viena orui, kita navigacijai, dar kita bankiniams reikalams — taip MCP serveriai suteikia jūsų AI padėjėjui galimybę bendrauti su įvairiomis kūrimo priemonėmis ir paslaugomis.
+Įsivaizduokite MCP serverius kaip specializuotus asistentus, kurie padeda jūsų DI programavimo kompanionui (pvz., GitHub Copilot) jungtis prie išorinių įrankių ir paslaugų. Kaip jūs telefone naudojate skirtingas programas skirtingoms užduotims – orų prognozės, navigacijos, bankininkystės – taip MCP serveriai suteikia jūsų DI asistentui galimybę bendrauti su įvairiomis kūrimo priemonėmis ir paslaugomis.
 
-### Kokią problemą sprendžia MCP serveriai
+### Problema, kurią sprendžia MCP serveriai
 
-Prieš atsirandant MCP serveriams, jei norėjote:
+Prieš MCP serverių atsiradimą, jei norėjote:
 - Patikrinti savo Azure išteklius
-- Sukurti GitHub problemą
+- Sukurti „GitHub“ problemą
 - Užklausti savo duomenų bazę
 - Ieškoti dokumentacijoje
 
-Turėjote nutraukti kodavimo darbą, atidaryti naršyklę, eiti į tinkamą svetainę ir rankiniu būdu atlikti šiuos veiksmus. Nuolatinis konteksto keitimas trikdo jūsų darbą ir mažina produktyvumą.
+Turėjote nutraukti programavimą, atsidaryti naršyklę, nueiti į atitinkamą svetainę ir rankiniu būdu atlikti šias užduotis. Nuolatinis konteksto keitimas trikdė koncentraciją ir mažino produktyvumą.
 
 ### Kaip MCP serveriai keičia jūsų kūrimo patirtį
 
-Su MCP serveriais galite likti savo kūrimo aplinkoje (VS Code, Visual Studio ir pan.) ir tiesiog paprašyti savo AI padėjėjo atlikti šias užduotis. Pavyzdžiui:
+Su MCP serveriais galite likti savo kūrimo aplinkoje (VS Code, Visual Studio ir kt.) ir tiesiog paprašyti DI asistento atlikti šias užduotis. Pavyzdžiui:
 
-**Vietoje tradicinio proceso:**
-1. Nutraukti kodavimą
+**Vietoje tradicinio darbo eiga:**
+1. Nutraukti programavimą
 2. Atidaryti naršyklę
-3. Eiti į Azure portalą
-4. Pažiūrėti saugyklos paskyros informaciją
+3. Nueiti į Azure portalą
+4. Patikrinti saugyklos paskyros duomenis
 5. Grįžti į VS Code
-6. Tęsti kodavimą
+6. Tęsti programavimą
 
-**Dabar galite:**
-1. Paklausti AI: „Kokia mano Azure saugyklos paskyrų būklė?“
-2. Tęsti kodavimą naudodami pateiktą informaciją
+**Dabar galite daryti taip:**
+1. Paklausti DI: „Kokia mano Azure saugyklos paskyrų būsena?“
+2. Tęsti programavimą su gauta informacija
 
-### Svarbiausi privalumai pradedantiesiems
+### Pagrindinės naudos pradedantiesiems
 
-#### 1. 🔄 **Išlikite savo darbo būsenoje**
-- Nebereikia nuolat keisti programėlių
-- Sutelkite dėmesį į rašomą kodą
-- Mažinkite psichinį krūvį valdant skirtingas priemones
+#### 1. 🔄 **Likite savo kūrimo sraute**
+- Nebereikia persijunginėti tarp kelių programų
+- Koncentruokitės ties rašomu kodu
+- Sumažinkite protinį krūvį valdant skirtingus įrankius
 
-#### 2. 🤖 **Naudokite natūralią kalbą vietoje sudėtingų komandų**
-- Vietoje SQL sintaksės laikymo atsiminkite, kokius duomenis norite gauti
-- Vietoje Azure CLI komandų atsiminti, paaiškinkite, ko siekiate
-- Leiskite AI tvarkyti techninius niuansus, o jūs susitelkite į logiką
+#### 2. 🤖 **Naudokite natūralią kalbą vietoj sudėtingų komandų**
+- Vietoj SQL sintaksės mokymosi aprašykite, kokių duomenų reikia
+- Vietoj Azure CLI komandų prisiminimo aiškinkite, ką norite atlikti
+- Leiskite DI pasirūpinti techninėmis detalėmis, o jūs susikoncentruokite į logiką
 
-#### 3. 🔗 **Jungite kelias priemones tarpusavyje**
-- Kurkite galingus darbo procesus sujungdami įvairias paslaugas
-- Pavyzdys: „Gauk visas naujausias GitHub problemas ir sukurk atitinkamus Azure DevOps darbo elementus“
-- Automatikai kurkite procesus be sudėtingų skriptų rašymo
+#### 3. 🔗 **Sujunkite kelis įrankius**
+- Kurkite galingus darbo procesus jungdami skirtingas paslaugas
+- Pavyzdys: „Gauti visas naujausias GitHub problemas ir sukurti atitinkamus Azure DevOps darbų elementus“
+- Automatinimas be sudėtingų scenarijų rašymo
 
 #### 4. 🌐 **Prieiga prie augančios ekosistemos**
-- Gaukite naudą iš Microsoft, GitHub ir kitų kompanijų sukurtų serverių
-- Sklandžiai derinkite įrankius iš skirtingų tiekėjų
-- Prisijunkite prie standartizuotos ekosistemos, veikiančios su skirtingais AI asistentais
+- Pasinaudokite serveriais, kuriuos kuria Microsoft, GitHub ir kitos kompanijos
+- Patogiai derinkite įrankius iš skirtingų tiekėjų
+- Prisijunkite prie standartizuotos ekosistemos, veikiančios su įvairiais DI asistentais
 
-#### 5. 🛠️ **Mokykitės praktikuodamiesi**
-- Pradėkite nuo iš anksto paruoštų serverių, kad suprastumėte pagrindus
-- Palaipsniui kurkite savo serverius, kai tapsite drąsesni
-- Pasinaudokite esamais SDK ir dokumentacija mokymuisi
+#### 5. 🛠️ **Mokykitės praktikuodami**
+- Pradėkite nuo iš anksto paruoštų serverių suprasti koncepcijas
+- Palaipsniui kurkite savo serverius įgūdžiams tobulinti
+- Naudokite esamus SDK ir dokumentaciją mokymuisi
 
-### Realus pavyzdys pradedantiesiems
+### Realiai taikymo pavyzdys pradedantiesiems
 
-Tarkime, kad esate naujokas svetainių kūrime ir dirbate prie pirmojo projekto. Štai kaip MCP serveriai gali padėti:
+Tarkime, kad esate naujas interneto kūrime ir dirbate prie savo pirmo projekto. Štai kaip MCP serveriai gali padėti:
 
-**Tradicinis būdas:**
+**Tradiciškas požiūris:**
 ```
 1. Code a feature
 2. Open browser → Navigate to GitHub
@@ -108,321 +108,327 @@ Tarkime, kad esate naujokas svetainių kūrime ir dirbate prie pirmojo projekto.
 5. Continue coding with all the information you need
 ```
 
-### Įmonės standarto privalumas
+### Įmonių standartų pranašumas
 
-MCP tampa pramonės standartu, reiškiančiu:
-- **Nuoseklumą**: panaši patirtis įvairiose priemonėse ir įmonėse
-- **Suderinamumą**: skirtingų tiekėjų serveriai dirba kartu
-- **Ateities garantavimą**: įgūdžiai ir nustatymai yra perkeliamūs tarp skirtingų AI asistentų
-- **Bendruomenę**: didelė dalinimosi žiniomis ir ištekliais ekosistema
+MCP tampa pramonės standartas, o tai reiškia:
+- **Nuoseklumas**: panaši patirtis skirtinguose įrankiuose ir įmonėse
+- **Suderinamumas**: serveriai iš skirtingų tiekėjų veikia kartu
+- **Ateities saugumas**: įgūdžiai ir konfigūracijos persikelia tarp skirtingų DI asistentų
+- **Bendruomenė**: didelė bendrų žinių ir išteklių ekosistema
 
-### Pradžia: ką išmoksite
+### Pradžia: ką sužinosite
 
-Šiame vadove nagrinėsime 10 Microsoft MCP serverių, ypač naudingų kūrėjams visais lygiais. Kiekvienas serveris skirtas:
-- Spręsti dažnas kūrimo problemas
+Šioje pamokoje nagrinėsime 10 „Microsoft MCP“ serverių, ypač naudingų kūrėjams visais lygiais. Kiekvienas serveris skirtas:
+- Spręsti bendras kūrimo problemas
 - Mažinti pasikartojančias užduotis
 - Gerinti kodo kokybę
-- Pagerinti mokymosi galimybes
+- Didinti mokymosi galimybes
 
 > **💡 Mokymosi patarimas**
 > 
-> Jei esate visiškai naujas MCP, pradėkite nuo mūsų [Įvado į MCP](../00-Introduction/README.md) ir [Pagrindinių sąvokų](../01-CoreConcepts/README.md) modulių. Tada grįžkite čia ir pažiūrėkite, kaip šios sąvokos veikia su tikrais Microsoft įrankiais.
+> Jei esate visiškai naujas MCP, pradėkite nuo mūsų [MCP įvado](../00-Introduction/README.md) ir [Pagrindinių koncepcijų](../01-CoreConcepts/README.md) modulių. Tada sugrįžkite čia, kad pamatytumėte koncepcijas praktiškai su „Microsoft“ įrankiais.
 >
-> Didesniam MCP svarbos kontekstui pažiūrėkite Maria Naggaga įrašą: [Connect Once, Integrate Anywhere with MCP](https://devblogs.microsoft.com/blog/connect-once-integrate-anywhere-with-mcps).
+> Dėl papildomo MCP svarbos konteksto žiūrėkite Maria Naggaga įrašą: [Connect Once, Integrate Anywhere with MCP](https://devblogs.microsoft.com/blog/connect-once-integrate-anywhere-with-mcps).
 
-## Pradėkite naudotis MCP VS Code ir Visual Studio aplinkose 🚀
+## Pradžia su MCP VS Code ir Visual Studio 🚀
 
-Jei naudojate Visual Studio Code arba Visual Studio 2022 su GitHub Copilot, šių MCP serverių sąranka yra paprasta.
+Šių MCP serverių nustatymas paprastas, jei naudojate „Visual Studio Code“ arba „Visual Studio 2022“ su GitHub Copilot.
 
-### VS Code sąranka
+### VS Code nustatymas
 
-Pagrindinis procesas VS Code:
+Štai bazinis procesas VS Code:
 
-1. **Įgalinkite Agent režimą**: VS Code perjunkite į Agent režimą Copilot Chat lange
-2. **Konfigūruokite MCP serverius**: pridėkite serverių konfigūracijas prie VS Code settings.json failo
-3. **Paleiskite serverius**: spauskite „Start“ mygtuką kiekvienam norimam serveriui
-4. **Pasirinkite priemones**: pasirinkite MCP serverius, kuriuos norite naudoti dabartinėje sesijoje
+1. **Įjunkite agento režimą**: VS Code perjunkite į Agent režimą Copilot Chat lange
+2. **Konfigūruokite MCP serverius**: pridėkite serverių konfigūracijas į VS Code settings.json failą
+3. **Paleiskite serverius**: spauskite „Start“ mygtuką kiekvienam serveriui, kurį norite naudoti
+4. **Pasirinkite įrankius**: nuspręskite, kuriuos MCP serverius įjungti einamajai sesijai
 
-Išsamesnes sąrankos instrukcijas rasite [VS Code MCP dokumentacijoje](https://code.visualstudio.com/docs/copilot/copilot-mcp).
+Išsamias nustatymo instrukcijas rasite [VS Code MCP dokumentacijoje](https://code.visualstudio.com/docs/copilot/copilot-mcp).
 
-> **💡 Profesionalus patarimas: valdykite MCP serverius kaip profesionalas!**
+> **💡 Pro patarimas: valdykite MCP serverius kaip profesionalas!**
 > 
-> VS Code Extensions peržiūroje dabar yra [patogi nauja vartotojo sąsaja MCP serverių valdymui](https://code.visualstudio.com/docs/copilot/chat/mcp-servers#_use-mcp-tools-in-agent-mode)! Turite greitą prieigą paleisti, sustabdyti ir valdyti bet kuriuos įdiegtus MCP serverius aiškia ir paprasta sąsaja. Išbandykite!
+> VS Code Extensions vaizde dabar yra [patogus naujas UI MCP serverių valdymui](https://code.visualstudio.com/docs/copilot/chat/mcp-servers#_use-mcp-tools-in-agent-mode)! Greitai paleiskite, sustabdykite ir valdykite bet kuriuos įdiegtus MCP serverius aiškioje, paprastoje sąsajoje. Išbandykite!
 
-### Visual Studio 2022 sąranka
+### Visual Studio 2022 nustatymas
 
-Visual Studio 2022 (versija 17.14 arba naujesnė):
+Visual Studio 2022 (versija 17.14 ar naujesnė) atveju:
 
-1. **Įgalinkite Agent režimą**: spauskite „Ask“ išskleidžiamąjį meniu GitHub Copilot Chat lange ir pasirinkite „Agent“
-2. **Sukurkite konfigūracijos failą**: sukurkite `.mcp.json` failą savo sprendinio direktorijoje (rekomenduojama vieta: `<SOLUTIONDIR>\.mcp.json`)
-3. **Konfigūruokite serverius**: pridėkite MCP serverių konfigūracijas naudodami standartinį MCP formatą
-4. **Sutikimas naudoti priemones**: kai bus prašoma, patvirtinkite priemones su tinkamomis prieigos teisėmis
+1. **Įjunkite agento režimą**: GitHub Copilot Chat lange spustelėkite „Ask“ išskleidžiamąjį meniu ir pasirinkite „Agent“
+2. **Sukurkite konfigūracijos failą**: savo sprendimo direktorijoje sukurkite `.mcp.json` failą (rekomenduojama vieta: `<SOLUTIONDIR>\.mcp.json`)
+3. **Konfigūruokite serverius**: pridėkite MCP serverių konfigūracijas pagal standartinį MCP formatą
+4. **Įrankių patvirtinimas**: kai bus paprašyta, patvirtinkite, kuriuos įrankius norite naudoti su tinkamomis apimties leidimais
 
-Išsamias Visual Studio sąrankos instrukcijas rasite [Visual Studio MCP dokumentacijoje](https://learn.microsoft.com/visualstudio/ide/mcp-servers).
+Išsamias Visual Studio nustatymo instrukcijas rasite [Visual Studio MCP dokumentacijoje](https://learn.microsoft.com/visualstudio/ide/mcp-servers).
 
-Kiekvienam MCP serveriui reikia specifinių konfigūracijos parametrų (prisijungimo eilutės, autentifikavimas ir kt.), tačiau nustatymo principas yra panašus abiejose IDE.
+Kiekvienas MCP serveris turi savo konfigūracijos reikalavimus (jungimosi eilutės, autentifikacija ir kt.), tačiau nustatymo modelis yra vienodas abiejose IDE.
 
-## Pamokos iš Microsoft MCP serverių 🛠️
+## Pamokos išmokos iš Microsoft MCP serverių 🛠️
 
-### 1. 📚 Microsoft Learn Docs MCP serveris
+### 1. 📚 „Microsoft Learn Docs“ MCP serveris
 
 [![Įdiegti VS Code](https://img.shields.io/badge/VS_Code-Install_Microsoft_Docs_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=microsoft.docs.mcp&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Flearn.microsoft.com%2Fapi%2Fmcp%22%7D) [![Įdiegti VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_Microsoft_Docs_MCP-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=microsoft.docs.mcp&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Flearn.microsoft.com%2Fapi%2Fmcp%22%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/microsoft/mcp)
 
-**Ką daro**: Microsoft Learn Docs MCP serveris yra debesyje veikianti paslauga, kuri suteikia AI asistentams tiesioginę prieigą prie oficialios Microsoft dokumentacijos per Model Context Protocol. Jis jungiasi prie `https://learn.microsoft.com/api/mcp` ir leidžia semantinę paiešką tarp Microsoft Learn, Azure dokumentacijos, Microsoft 365 dokumentacijos ir kitų oficialių Microsoft šaltinių.
+**Ką daro**: „Microsoft Learn Docs MCP Server“ yra debesyje talpinama paslauga, suteikianti DI asistento realaus laiko prieigą prie oficialios „Microsoft“ dokumentacijos per Model Context Protocol. Jis jungiasi prie `https://learn.microsoft.com/api/mcp` ir leidžia semantinę paiešką „Microsoft Learn“, „Azure“ dokumentacijoje, „Microsoft 365“ dokumentacijoje ir kituose oficialiuose „Microsoft“ šaltiniuose.
 
-**Kodėl tai naudinga**: Nors gali pasirodyti, kad tai „tik dokumentacija“, šis serveris iš tiesų yra svarbus kiekvienam Microsoft technologijų naudotojui. Viena didžiausių .NET kūrėjų nusiskundimų apie AI kodo asistentus yra, kad jie nėra nuolat atnaujinami apie naujausias .NET ir C# versijas. Microsoft Learn Docs MCP serveris išsprendžia šią problemą, suteikdamas realaus laiko prieigą prie pačios naujausios dokumentacijos, API nuorodų ir geriausių praktikų. Nesvarbu ar dirbate su naujausiais Azure SDK, tyrinėjate naujas C# 13 funkcijas, ar įgyvendinate pažangius .NET Aspire šablonus, šis serveris užtikrina, kad jūsų AI padėjėjas turi prieigą prie autoritetingos ir atnaujintos informacijos, reikalingos tiksliai ir moderniai kodo generacijai.
+**Kodėl naudinga**: nors gali atrodyti, kad tai „tik dokumentacija“, šis serveris yra itin svarbus kiekvienam kūrėjui, naudojančiam „Microsoft“ technologijas. Vienas didžiausių .NET kūrėjų nusiskundimų apie DI kodavimo asistentus yra tas, kad jie neatnaujinami apie naujausias .NET ir C# versijas. „Microsoft Learn Docs MCP Server“ tai išsprendžia suteikdamas realaus laiko prieigą prie naujausios dokumentacijos, API nuorodų ir geriausių praktikų. Nesvarbu, ar dirbate su naujausiais „Azure“ SDK, tyrinėjate naujas C# 13 funkcijas ar diegiate pažangius Aspire modelius, šis serveris užtikrina, kad jūsų DI asistentas turi prieigą prie autoritetingos ir šviežios informacijos, reikalingos tiksliam ir moderniam kodui generuoti.
 
-**Realaus panaudojimo atvejis**: „Kokios yra az cli komandos Azure konteinerių programos sukūrimui pagal oficialią Microsoft Learn dokumentaciją?“ arba „Kaip konfigūruoti Entity Framework su priklausomybių injekcija ASP.NET Core?“ Arba „Peržiūrėk šį kodą, kad įsitikintum, jog jis atitinka Microsoft Learn dokumentacijoje pateiktas našumo rekomendacijas.“ Serveris suteikia išsamų aprėptį tarp Microsoft Learn, Azure ir Microsoft 365 dokumentacijos naudodamas pažangią semantinę paiešką, ieškodamas kontekstui aktualiausios informacijos. Grąžina iki 10 aukštos kokybės turinio dalių su straipsnių pavadinimais ir URL, visada pasiekiant naujausią dokumentaciją, kai ji išleidžiama.
+**Realaus panaudojimo pavyzdys**: „Kokios az cli komandos sukurti Azure konteinerio programą pagal oficialią „Microsoft Learn“ dokumentaciją?“ arba „Kaip konfigūruoti Entity Framework su priklausomybės injekcija ASP.NET Core?“ O kaip „Peržiūrėkite šį kodą, kad įsitikintumėte, jog jis atitinka „Microsoft Learn Docs“ našumo rekomendacijas.“ Serveris suteikia išsamų aprėptį per „Microsoft Learn“, „Azure“ dokumentaciją ir „Microsoft 365“ dokumentus naudodamas pažangią semantinę paiešką, kad rastų kontekstą atitinkančią informaciją. Grąžina iki 10 aukštos kokybės turinio dalių su straipsnių pavadinimais ir URL, visada gaudamas naujausią „Microsoft“ dokumentaciją iš karto, kai ji paskelbiama.
 
-**Pavyzdys**: Serveris atskleidžia įrankį `microsoft_docs_search`, kuris atlieka semantinę paiešką Microsoft oficialioje techninėje dokumentacijoje. Vieną kartą sukonfigūravus, galite klausti klausimų, pvz., „Kaip implementuoti JWT autentifikaciją ASP.NET Core?“ ir gauti detalius, oficialius atsakymus su šaltinių nuorodomis. Paieškos kokybė ypatinga, nes ji supranta kontekstą – klausimas apie „konteinerius“ Azure kontekste grąžins Azure Container Instances dokumentaciją, o tas pats terminas .NET kontekste grąžins atitinkamą C# kolekcijų informaciją.
+**Išskirtinis pavyzdys**: serveris suteikia `microsoft_docs_search` įrankį, kuris atlieka semantinę paiešką oficialioje „Microsoft“ techninėje dokumentacijoje. Paveikus konfigūraciją, galite užduoti klausimus, pavyzdžiui, „Kaip įgyvendinti JWT autentifikaciją ASP.NET Core?“ ir gauti išsamius, oficialius atsakymus su šaltinių nuorodomis. Paieškos kokybė išskirtinė, nes supranta kontekstą – klausimas apie „konteinerius“ Azure kontekste pateiks Azure Container Instances dokumentus, o tas pats terminas .NET kontekste grąžins susijusią informaciją apie C# kolekcijas.
 
-Tai ypač naudinga sparčiai kintančioms ar neseniai atnaujintoms bibliotekoms ir naudojimo atvejams. Pavyzdžiui, neseniai programavimo projektuose norėjau panaudoti funkcijas iš naujausių .NET Aspire ir Microsoft.Extensions.AI versijų. Įtraukęs Microsoft Learn Docs MCP serverį galėjau pasinaudoti ne tik API dokumentais, bet ir vedliais bei gairėmis, kurios ką tik buvo paskelbtos.
+Tai ypač naudinga sparčiai besikeičiančioms ar neseniai atnaujintoms bibliotekomis ir naudojimo atvejais. Pavyzdžiui, keliuose neseniai vykdytuose programavimo projektuose norėjau pasinaudoti funkcijomis naujausiose Aspire ir Microsoft.Extensions.AI versijose. Pridėjus „Microsoft Learn Docs MCP“ serverį galėjau ne tik naudotis API dokumentais, bet ir naujausiomis instrukcijomis bei gairėmis.
 
-> **💡 Profesionalus patarimas**
+> **💡 Pro patarimas**
 > 
-> Net ir modeliui, draugiškam įrankiams, reikia paskatų naudoti MCP įrankius! Apsvarstykite galimybę pridėti sisteminį promptą arba [copilot-instructions.md](https://docs.github.com/copilot/how-tos/custom-instructions/adding-repository-custom-instructions-for-github-copilot), pvz.: „Jūs turite prieigą prie `microsoft.docs.mcp` – naudokite šį įrankį ieškodami naujausios oficialios Microsoft dokumentacijos klausimams apie Microsoft technologijas, kaip C#, Azure, ASP.NET Core ar Entity Framework aptarti.“
+> Net ir modeliui, palaikančiam įrankius, reikia paskatinimo naudoti MCP įrankius! Apsvarstykite galimybę pridėti sistemos užklausą arba [copilot-instructions.md](https://docs.github.com/copilot/how-tos/custom-instructions/adding-repository-custom-instructions-for-github-copilot) su tekstu: „Jūs turite prieigą prie `microsoft.docs.mcp` – naudokite šį įrankį, kad ieškotumėte naujausios oficialios „Microsoft“ dokumentacijos, kai gaunate klausimus apie „Microsoft“ technologijas, pvz., C#, Azure, ASP.NET Core arba Entity Framework.“
 >
-> Puikų šio metodo pavyzdį rasite [C# .NET Janitor pokalbio režime](https://github.com/awesome-copilot/chatmodes/blob/main/csharp-dotnet-janitor.chatmode.md) Awesome GitHub Copilot saugykloje. Šis režimas specialiai naudoja Microsoft Learn Docs MCP serverį, kad padėtų sutvarkyti ir modernizuoti C# kodą pagal naujausius šablonus ir geriausias praktikas.
-### 2. ☁️ Azure MCP serveris
-[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Azure_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=Azure%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40azure%2Fazure-mcp%40latest%22%5D%7D) [![Install in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_Azure_MCP-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Azure%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40azure%2Fazure-mcp%40latest%22%5D%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/Azure/azure-mcp)
+> Puikų šio veikimo pavyzdį rasite [C# .NET Janitor pokalbio režimyje](https://github.com/awesome-copilot/chatmodes/blob/main/csharp-dotnet-janitor.chatmode.md) iš Awesome GitHub Copilot saugyklos. Šis režimas specialiai naudoja „Microsoft Learn Docs MCP“ serverį, kad padėtų valyti ir modernizuoti C# kodą naudojant naujausias schemas ir geriausias praktikas.
+### 2. ☁️ „Azure“ MCP serveris
 
-**Ką jis daro**: Azure MCP Server yra išsami daugiau nei 15 specializuotų Azure paslaugų jungčių kolekcija, kuri įtraukia visą Azure ekosistemą į jūsų DI darbo eigą. Tai nėra paprastas serveris – tai galinga kolekcija, apimanti išteklių valdymą, duomenų bazės prijungimą (PostgreSQL, SQL Server), Azure Monitor žurnalų analizę su KQL, Cosmos DB integraciją ir dar daugiau.
 
-**Kodėl tai naudinga**: Be to, kad valdo Azure išteklius, šis serveris žymiai pagerina kodo kokybę dirbant su Azure SDK. Kai naudojate Azure MCP Agent režimu, jis ne tik padeda jums rašyti kodą – jis padeda rašyti *geresnį* Azure kodą, atitinkantį dabartinius autentifikacijos modelius, klaidų tvarkymo gerąsias praktikas ir išnaudojantį naujausias SDK funkcijas. Vietoje bendro kodo, kuris galbūt veikia, gaunate kodą, kuris laikosi Azure rekomenduojamų gamybinių darbo krūvių modelių.
+[![Įdiekite VS Code](https://img.shields.io/badge/VS_Code-Install_Azure_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=Azure%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40azure%2Fazure-mcp%40latest%22%5D%7D) [![Įdiekite VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_Azure_MCP-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Azure%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40azure%2Fazure-mcp%40latest%22%5D%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/Azure/azure-mcp)
+
+**Ką tai daro**: Azure MCP serveris yra išsamus daugiau nei 15 specializuotų Azure paslaugų jungčių rinkinys, kuris integruoja visą Azure ekosistemą į jūsų AI darbo eigą. Tai nėra tiesiog vienas serveris – tai galinga kolekcija, įtraukianti resursų valdymą, duomenų bazių ryšius (PostgreSQL, SQL Server), Azure Monitor žurnalų analizę su KQL, Cosmos DB integraciją ir dar daug daugiau.
+
+**Kodėl tai naudinga**: Be Azure resursų valdymo, šis serveris žymiai pagerina kodo kokybę dirbant su Azure SDK. Naudojant Azure MCP Agent režimu, jis ne tik padeda rašyti kodą – jis padeda rašyti *geresnį* Azure kodą, kuris atitinka dabartinius autentifikacijos modelius, klaidų tvarkymo geriausius metodus ir išnaudoja naujausias SDK funkcijas. Vietoje to, kad gautumėte bendrinį kodą, kuris galbūt veikia, jūs gaunate kodą, kuris laikosi Azure rekomenduojamų modelių gamybiniams darbiniams krūviams.
 
 **Pagrindiniai moduliai apima**:
-- **🗄️ Duomenų bazės jungtys**: Tiesioginis natūralios kalbos prieigos prie Azure Database for PostgreSQL ir SQL Server
-- **📊 Azure Monitor**: Žurnalų analizė ir operacinės įžvalgos su KQL
-- **🌐 Išteklių valdymas**: Pilnas Azure išteklių gyvavimo ciklo valdymas
+- **🗄️ Duomenų bazės jungtys**: Tiesioginė natūralios kalbos prieiga prie Azure Database for PostgreSQL ir SQL Server
+- **📊 Azure Monitor**: KQL pagrindu veikiančių žurnalų analizė ir operacinės įžvalgos
+- **🌐 Resursų valdymas**: Pilnas Azure resursų gyvavimo ciklo valdymas
 - **🔐 Autentifikacija**: DefaultAzureCredential ir valdomos tapatybės modeliai
 - **📦 Saugyklų paslaugos**: Blob Storage, Queue Storage ir Table Storage operacijos
-- **🚀 Konteinerių paslaugos**: Azure Container Apps, Container Instances ir AKS valdymas
-- **Ir daug daugiau specializuotų jungčių**
+- **🚀 Talpyklų paslaugos**: Azure Container Apps, Container Instances ir AKS valdymas
+- **Ir daugelis kitų specializuotų jungčių**
 
-**Realiame gyvenime**: "Surašyk mano Azure saugojimo paskyras", "Ieškok mano Log Analytics darbo vietoje klaidų per paskutinę valandą" arba "Padėk man sukurti Azure programą naudojant Node.js su tinkama autentifikacija"
+**Realus panaudojimas**: „Išvardink mano Azure saugyklos paskyras“, „Užklausk mano Log Analytics darbo srities klaidų per pastarąją valandą“ arba „Padėk man sukurti Azure programą naudojant Node.js su tinkama autentifikacija“
 
-**Pilnas demonstracinis scenarijus**: Čia yra pilnas vedlys, kuris parodo, kaip gali veikti Azure MCP kartu su GitHub Copilot for Azure plėtiniu VS Code. Kai abu yra įdiegti ir įvesite:
+**Pilnas demonstracinis scenarijus**: Čia yra pilnas pavyzdys, kuris demonstruoja Azure MCP ir GitHub Copilot for Azure plėtinio VS Code derinimo galią. Kai abu įdiegti ir perduodate komandą:
 
-> "Sukurk Python skriptą, kuris įkelia failą į Azure Blob Storage naudojant DefaultAzureCredential autentifikaciją. Skriptas turi prisijungti prie mano Azure saugojimo paskyros pavadinimu 'mycompanystorage', įkelti į konteinerį pavadinimu 'documents', sukurti testinį failą su dabartiniu laiko žymekliu įkėlimui, tvarkyti klaidas sklandžiai ir pateikti informatyvią išvestį, laikytis Azure geriausių praktikų autentifikacijoje ir klaidų valdyme, įtraukti komentarus paaiškinančius DefaultAzureCredential autentifikacijos veikimą ir padaryti skriptą gerai struktūruotą su tinkamomis funkcijomis ir dokumentacija."
+> „Sukurk Python skriptą, kuris įkelia failą į Azure Blob Storage naudodamas DefaultAzureCredential autentifikaciją. Skriptas turi prisijungti prie mano Azure saugyklos paskyros pavadinimu 'mycompanystorage', įkelti į konteinerį 'documents', sukurti testinį failą su dabartiniu laiko žyma įkėlimui, tvarkyti klaidas tinkamai ir pateikti informatyvų išvestį, laikytis Azure geriausių autentifikacijos ir klaidų tvarkymo praktikų, įtraukti komentarus, paaiškinančius kaip veikia DefaultAzureCredential autentifikacija, bei būti gerai struktūruotas su tinkamomis funkcijomis ir dokumentacija.“
 
-Azure MCP Server sugeneruos pilną, gamybinės kokybės Python skriptą, kuris:
-- Naudoja naujausią Azure Blob Storage SDK su tinkamais asinchroniniais modeliais
-- Įgyvendina DefaultAzureCredential su išsamiu nukrypimų grandinės paaiškinimu
-- Apima patikimą klaidų tvarkymą su specifiniais Azure išimtimių tipais
-- Laikosi Azure SDK geriausių praktikų išteklių valdyme ir ryšio tvarkyme
-- Teikia detalią žurnalo informaciją ir informatyvią konsolės išvestį
-- Sukuria tinkamai struktūruotą skriptą su funkcijomis, dokumentacija ir tipų patarimais
+Azure MCP serveris sugeneruos visiškai paruoštą gamybai Python skriptą, kuris:
+- Naudoja naujausią Azure Blob Storage SDK su teisingais asinchroniniais modeliais
+- Įgyvendina DefaultAzureCredential su išsamiu atsarginės eilės paaiškinimu
+- Apima tvirtą klaidų tvarkymą su specifiniais Azure išimčių tipais
+- Laikosi Azure SDK geriausių praktikų resursų valdymui ir ryšių tvarkymui
+- Pateikia išsamią žurnalizaciją ir informatyvią konsolės išvestį
+- Sukuria tinkamai struktūruotą skriptą su funkcijomis, dokumentacija ir tipų užuominomis
 
-Tai išskirtina tuo, kad be Azure MCP jūs galėtumėte gauti bendrą blob saugyklos kodą, kuris veikia, bet nesilaiko dabartinių Azure modelių. Su Azure MCP gaunate kodą, kuris naudoja naujausius autentifikacijos metodus, tvarko Azure specifines klaidų situacijas ir laikosi Microsoft rekomenduojamų gamybinių programų praktikų.
+Šiame pavyzdyje svarbu tai, kad be Azure MCP galite gauti bendrinį blob storage kodą, kuris veikia, bet neatsižvelgia į dabartinius Azure modelius. Su Azure MCP gaunate kodą, kuris išnaudoja naujausias autentifikacijos metodikas, tvarko Azure specifines klaidų situacijas ir laikosi Microsoft rekomenduojamų praktikų gamybinėms programoms.
 
-**Pavyzdys**: Man sunku prisiminti konkrečias `az` ir `azd` CLI komandas ad hoc naudojimui. Visada tai yra dviejų žingsnių procesas: pirmiausia pažiūrėti sintaksę, paskui paleisti komandą. Dažnai įeinu į portalą ir rankiniu būdu spusteliu, kad atlikčiau darbą, nes nenoriu prisipažinti, kad negaliu atsiminti CLI sintaksės. Galimybė tiesiog aprašyti, ko noriu, yra nuostabi, o dar geriau tai padaryti neišeinant iš IDE!
+**Pavyzdinis pavyzdys**: Man buvo sunku prisiminti specifines `az` ir `azd` CLI komandas ad-hoc naudojimui. Visada tai būdavo dviejų žingsnių procesas: pirmiausia pažiūrėti sintaksę, tada paleisti komandą. Dažnai tiesiog atsidarydavau portalą ir spustelėdavau, kad atlikčiau darbą, nes nenorėjau pripažinti, kad nepamenu CLI sintaksės. Galimybė tiesiog aprašyti, ko noriu, yra nuostabi, o dar geriau – tai padaryti neišeinant iš IDE!
 
-[Azure MCP saugykloje](https://github.com/Azure/azure-mcp?tab=readme-ov-file#-what-can-you-do-with-the-azure-mcp-server) yra puikus naudojimo atvejų sąrašas, kuris padės pradėti. Išsamios diegimo instrukcijos ir pažangios konfigūracijos parinktys yra oficialioje [Azure MCP dokumentacijoje](https://learn.microsoft.com/azure/developer/azure-mcp-server/).
+Puikus naudojimo atvejų sąrašas yra [Azure MCP saugykloje](https://github.com/Azure/azure-mcp?tab=readme-ov-file#-what-can-you-do-with-the-azure-mcp-server), kad pradėtumėte. Išsamias įrengimo gaires ir pažangias konfigūracijos parinktis rasite [oficialioje Azure MCP dokumentacijoje](https://learn.microsoft.com/azure/developer/azure-mcp-server/).
 
-### 3. 🐙 GitHub MCP Server
+### 3. 🐙 GitHub MCP serveris
 
-[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Server-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=github&config=%7B%22type%22%3A%20%22http%22%2C%22url%22%3A%20%22https%3A%2F%2Fapi.githubcopilot.com%2Fmcp%2F%22%7D) [![Install in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_Server-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=github&config=%7B%22type%22%3A%20%22http%22%2C%22url%22%3A%20%22https%3A%2F%2Fapi.githubcopilot.com%2Fmcp%2F%22%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/github/github-mcp-server)
+[![Įdiekite VS Code](https://img.shields.io/badge/VS_Code-Install_Server-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=github&config=%7B%22type%22%3A%20%22http%22%2C%22url%22%3A%20%22https%3A%2F%2Fapi.githubcopilot.com%2Fmcp%2F%22%7D) [![Įdiekite VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_Server-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=github&config=%7B%22type%22%3A%20%22http%22%2C%22url%22%3A%20%22https%3A%2F%2Fapi.githubcopilot.com%2Fmcp%2F%22%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/github/github-mcp-server)
 
-**Ką jis daro**: Oficiali GitHub MCP Server integracija užtikrina sklandų visos GitHub ekosistemos įtraukimą, siūlydama tiek nuotolinio prieglobos, tiek vietinio Docker diegimo galimybes. Tai ne tik pagrindinės saugyklų operacijos – tai visa įrankių rinkinys, įtraukiantis GitHub Actions valdymą, pull request darbo eigas, problemų sekimą, saugumo skenavimą, pranešimus ir pažangias automatizavimo funkcijas.
+**Ką tai daro**: Oficialus GitHub MCP serveris leidžia sklandžiai integruotis su visu GitHub ekosistema, siūlydamas tiek talpinamą nuotolinę prieigą, tiek vietinio Docker diegimo galimybes. Tai nėra tiesiog pagrindinės saugyklos operacijos – tai išsamus įrankių rinkinys, apimantis GitHub Actions valdymą, pull request darbo eigos, problemų sekimą, saugumo skenavimą, pranešimus ir pažangias automatizacijos funkcijas.
 
-**Kodėl tai naudinga**: Šis serveris keičia jūsų sąveiką su GitHub, atnešdamas visą platformos patirtį tiesiai į jūsų kūrimo aplinką. Vietoje nuolatinio perjungimo tarp VS Code ir GitHub.com projektų valdymui, kodo peržiūroms ir CI/CD stebėjimui, galite viską valdyti naudodami natūralių kalbos komandų pagalbą, išlikdami susitelkę į kodą.
+**Kodėl tai naudinga**: Šis serveris keičia jūsų sąveiką su GitHub, atnešdamas visą platformos patirtį tiesiai į jūsų kūrimo aplinką. Vietoje nuolatinio perjungimo tarp VS Code ir GitHub.com projektų valdymui, kodo peržiūroms ir CI/CD stebėjimui, viską galite atlikti natūralios kalbos komandomis, likdami susikoncentravę į kodą.
 
-> **ℹ️ Pastaba: Skirtingi 'Agentų' tipai**
+> **ℹ️ Pastaba: skirtingi „Agentų“ tipai**
 > 
-> Nesupainiokite šio GitHub MCP Server su GitHub Coding Agent (AI agentu, kuriam galite priskirti problemų automatizuotiems kodavimo užduotims). GitHub MCP Server veikia VS Code Agent režime, užtikrindamas GitHub API integraciją, o GitHub Coding Agent yra atskira funkcija, kuri kuria pull request'us, kai priskiriama prie GitHub problemų.
+> Nesupainiokite šio GitHub MCP serverio su GitHub Coding Agent (AI agentu, kuris priskiriamas problemoms automatiniam kodavimui). GitHub MCP serveris veikia VS Code Agent režimu ir suteikia GitHub API integraciją, o GitHub Coding Agent yra atskira funkcija, kuri sukuria pull request, kai priskiriama GitHub problemoms.
 
-**Pagrindinės galimybės**:
-- **⚙️ GitHub Actions**: Viso CI/CD proceso valdymas, darbo eigų stebėjimas ir artefaktų tvarkymas
-- **🔀 Pull request'ai**: Kurkite, peržiūrėkite, sujunkite ir valdykite PR su išsamia būsenos informacija
-- **🐛 Problemos**: Pilnas problemų gyvavimo ciklas, komentarai, žymėjimas ir priskyrimas
-- **🔒 Saugumas**: Kodo skanavimo įspėjimai, slaptumo aptikimas ir Dependabot integracija
+**Pagrindinės galimybės apima**:
+- **⚙️ GitHub Actions**: Pilnas CI/CD vamzdyno valdymas, darbo eigos stebėsena ir artefaktų tvarkymas
+- **🔀 Pull Requests**: Kurkite, peržiūrėkite, apjungite ir valdykite PR su detaliu būsenos sekimu
+- **🐛 Problemos**: Pilnas problemų gyvavimo ciklo valdymas, komentavimas, žymėjimas ir priskyrimas
+- **🔒 Saugumas**: Kodo skenavimo įspėjimai, slaptumų aptikimas ir Dependabot integracija
 - **🔔 Pranešimai**: Išmanus pranešimų valdymas ir saugyklų prenumeratos kontrolė
-- **📁 Saugyklų valdymas**: Failų operacijos, šakų valdymas ir saugyklos administravimas
+- **📁 Saugyklos valdymas**: Failų operacijos, šakų valdymas ir saugyklos administravimas
 - **👥 Bendradarbiavimas**: Vartotojų ir organizacijų paieška, komandų valdymas ir prieigos kontrolė
 
-**Realiame gyvenime**: "Sukurk pull request iš mano funkcijų šakos", "Rodyk visas šią savaitę nesėkmingas CI paleidimo atvejus", "Surašyk atvirus saugumo įspėjimus mano saugyklose" arba "Rask visas man priskirtas problemas mano organizacijose"
+**Realus panaudojimas**: „Sukurkite pull request iš mano funkcijos šakos“, „Rodykite man visus nesėkmingus CI paleidimus šią savaitę“, „Išvardinkite atvirus saugumo įspėjimus mano saugyklose“ arba „Raskite visas man priskirtas problemas mano organizacijose“
 
-**Pilnas demonstracinis scenarijus**: Čia yra galinga darbo eiga, kuri parodo GitHub MCP Server galimybes:
+**Pilnas demonstracinis scenarijus**: Štai galinga darbo eiga, kuri demonstruoja GitHub MCP serverio galimybes:
 
-> "Turiu pasiruošti mūsų sprinto peržiūrai. Rodyk visas šią savaitę sukurtas pull request'us, patikrink mūsų CI/CD procesų būseną, sukurk santrauką apie saugumo įspėjimus, kuriuos turime spręsti, ir padėk man sukurti išleidimo pastabas remiantis sujungtais 'feature' žyma pažymėtais PR."
+> „Man reikia pasiruošti sprinto peržiūrai. Rodykite man visus pull request, kuriuos sukūriau šią savaitę, patikrinkite mūsų CI/CD vamzdynų būseną, sudarykite santrauką bet kokių saugumo įspėjimų, kuriuos turime spręsti, ir padėkite parengti išleidimo pastabas, remdamiesi apjungtais PR su žyma 'feature'.“
 
-GitHub MCP Server atliks:
-- Užklausą apie jūsų neseniai sukurtus pull request'us su detalia būsena
-- Analizuos darbo eigų paleidimus ir išskirs bet kokias klaidas ar veiklos problemas
-- Sujungs saugumo skanavimo rezultatus ir iškels svarbiausius įspėjimus
-- Parengs išsamias išleidimo pastabas ištraukiant informaciją iš sujungtų PR
-- Pateiks veiksmus tolesniam sprinto planavimui ir išleidimo pasiruošimui
+GitHub MCP serveris:
+- Užklaus savo naujausius pull requestus su detalia būsenos informacija
+- Analizuoja darbo eigų paleidimus ir pažymi visas nesėkmes ar našumo problemas
+- Apibendrina saugumo skenavimo rezultatus ir prioritizuoja kritinius įspėjimus
+- Sugeneruoja išsamias išleidimo pastabas, išgaunant informaciją iš apjungtų PR
+- Pateikia veiksmus sprinto planavimui ir išleidimo paruošimui
 
-**Pavyzdys**: Mėgstu naudoti šį įrankį kodo peržiūrų darbo eigoms. Vietoje šokinėjimo tarp VS Code, GitHub pranešimų ir pull request puslapių, galiu pasakyti "Rodyk man visus PR, laukiančius mano peržiūros", o paskui "Pridėk komentarą prie PR #123 klausdama apie klaidų tvarkymą autentifikacijos metode." Serveris tvarko GitHub API iškvietimus, palaiko diskusijos kontekstą ir net padeda man sukurti konstruktyvesnius peržiūros komentarus.
+**Pavyzdinis pavyzdys**: Mėgstu naudoti šį serverį kodo peržiūros darbo eigai. Vietoje to, kad šokinėčiau tarp VS Code, GitHub pranešimų ir pull request puslapių, galiu pasakyti „Rodyk man visus PR, laukiancius mano peržiūros“ ir tada „Pridėk komentarą prie PR #123 klausdami apie klaidų tvarkymą autentifikacijos metode.“ Serveris tvarko GitHub API kvietimus, palaiko diskusijos kontekstą ir net padeda parengti konstruktyvesnius peržiūros komentarus.
 
-**Autentifikacijos parinktys**: Serveris palaiko tiek OAuth (sklandžiai ir VS Code), tiek asmeninius prieigos raktus, su konfigūruojamais įrankių komplektais, leidžiančiais įjungti tik reikiamas GitHub funkcijas. Jį galima paleisti kaip nuotolinę paslaugą greitam diegimui arba vietoje naudojant Docker, kad turėtumėte visišką kontrolę.
+**Autentifikacijos parinktys**: Serveris palaiko tiek OAuth (sklandžiai VS Code), tiek Asmeninius prieigos raktus, su konfigūruojamomis įrankių rinkiniais įgalinti tik reikalingą GitHub funkcionalumą. Jį galite paleisti kaip talpinamą nuotolinę paslaugą greitam nustatymui arba vietoje per Docker, kad turėtumėte visišką kontrolę.
 
 > **💡 Profesionalus patarimas**
 > 
-> Įjunkite tik reikiamus įrankių komplektus, konfigūruodami `--toolsets` parametrą savo MCP serverio nustatymuose, kad sumažintumėte konteksto dydį ir pagerintumėte DI įrankių pasirinkimą. Pavyzdžiui, pridėkite `"--toolsets", "repos,issues,pull_requests,actions"` savo MCP konfigūracijos argumentuose pagrindinėms kūrimo veikloms arba naudokite `"--toolsets", "notifications, security"`, jei daugiausia norite GitHub stebėjimo galimybių.
+> Įgalinkite tik jums reikalingus įrankių rinkinius konfigūruodami `--toolsets` parametrą savo MCP serverio nustatymuose, kad sumažintumėte konteksto dydį ir pagerintumėte AI įrankių pasirinkimą. Pavyzdžiui, pridėkite `"--toolsets", "repos,issues,pull_requests,actions"` savo MCP konfigūracijos argumentuose pagrindiniams kūrimo darbo eigams arba naudokite `"--toolsets", "notifications, security"`, jei daugiausia norite GitHub stebėjimo funkcijų.
+### 4. 🔄 Azure DevOps MCP serveris
 
-### 4. 🔄 Azure DevOps MCP Server
+[![Įdiekite VS Code](https://img.shields.io/badge/VS_Code-Install_Azure_DevOps_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=Azure%20DevOps%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-azure-devops%40latest%22%5D%7D) [![Įdiekite VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_Azure_DevOps_MCP-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Azure%20DevOps%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-azure-devops%40latest%22%5D%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/microsoft/azure-devops-mcp)
 
-[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Azure_DevOps_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=Azure%20DevOps%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-azure-devops%40latest%22%5D%7D) [![Install in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_Azure_DevOps_MCP-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Azure%20DevOps%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-azure-devops%40latest%22%5D%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/microsoft/azure-devops-mcp)
+**Ką tai daro**: Jis jungiasi prie Azure DevOps paslaugų, teikdamas išsamų projektų valdymą, darbo elementų sekimą, kūrimo vamzdynų valdymą ir saugyklų operacijas.
 
-**Ką jis daro**: Jis jungiasi prie Azure DevOps paslaugų, kad užtikrintų išsamų projektų valdymą, darbo elementų sekimą, kūrimo procesų valdymą ir saugyklų operacijas.
+**Kodėl tai naudinga**: Komandoms, kurios naudoja Azure DevOps kaip pagrindinę DevOps platformą, šis MCP serveris panaikina nuolatinį skirtukų keitimą tarp jūsų kūrimo aplinkos ir Azure DevOps žiniatinklio sąsajos. Galite valdyti darbo elementus, tikrinti kūrimo būsenas, užklausti saugyklas ir atlikti projektų valdymo užduotis tiesiai iš savo AI asistento.
 
-**Kodėl tai naudinga**: Komandoms, kurios naudoja Azure DevOps kaip pagrindinę DevOps platformą, šis MCP serveris panaikina nuolatinį perjungimą tarp kūrimo aplinkos ir Azure DevOps interneto sąsajos. Galite valdyti darbo elementus, tikrinti kūrimo būsenas, užklausti saugyklas ir vykdyti projektų valdymo užduotis tiesiogiai iš savo DI asistento.
+**Realus panaudojimas**: „Rodyk man visus aktyvius darbo elementus dabartiniame sprint'e WebApp projekte“, „Sukurk klaidos ataskaitą dėl ką tik aptikto prisijungimo klausimo“ arba „Patikrink mūsų kūrimo vamzdynų būseną ir parodyk naujausias klaidas“
 
-**Realiame gyvenime**: "Rodyk man visus aktyvius darbo elementus dabartiniame sprinto cikle WebApp projektui", "Sukurk klaidos ataskaitą dėl ką tik rastos prisijungimo problemos" arba "Patikrink mūsų kūrimo ciklų būseną ir parodyk neseniai įvykusias klaidas"
+**Pavyzdinis pavyzdys**: Lengvai galite patikrinti savo komandos dabartinio sprinto būseną su paprasta užklausa „Rodyk man visus aktyvius darbo elementus dabartiniame sprint'e WebApp projekte“ arba „Sukurk klaidos ataskaitą dėl ką tik aptikto prisijungimo klausimo“ nepalikdami kūrimo aplinkos.
 
-**Pavyzdys**: Lengvai galite patikrinti savo komandos dabartinio sprinto būseną su paprasta užklausa, kaip "Rodyk man visus aktyvius darbo elementus dabartiniame sprinto cikle WebApp projektui" arba "Sukurk klaidos ataskaitą dėl ką tik rastos prisijungimo problemos" neišeidami iš kūrimo aplinkos.
+### 5. 📝 MarkItDown MCP serveris
 
-### 5. 📝 MarkItDown MCP Server
-[![Įdiegti VS Code](https://img.shields.io/badge/VS_Code-Install_MarkItDown_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=MarkItDown%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-markitdown%40latest%22%5D%7D) [![Įdiegti VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_MarkItDown_MCP-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=MarkItDown%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-markitdown%40latest%22%5D%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/microsoft/markitdown)
 
-**Ką jis daro**: MarkItDown yra išsamus dokumentų konvertavimo serveris, kuris transformuoja įvairius failų formatus į aukštos kokybės Markdown, optimizuotą LLM apdorojimui ir teksto analizės srautams.
+[![Įdiekite VS Code](https://img.shields.io/badge/VS_Code-Install_MarkItDown_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=MarkItDown%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-markitdown%40latest%22%5D%7D) [![Įdiekite VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_MarkItDown_MCP-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=MarkItDown%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-markitdown%40latest%22%5D%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/microsoft/markitdown)
 
-**Kodėl tai naudinga**: Neatsiejama šiuolaikinių dokumentacijos srautų dalis! MarkItDown palaiko įspūdingą failų formatų įvairovę, išlaikydamas svarbią dokumento struktūrą, tokią kaip antraštės, sąrašai, lentelės ir nuorodos. Skirtingai nuo paprastų teksto ištraukimo įrankių, jis orientuojasi į semantinės reikšmės ir formatavimo išsaugojimą, kuris naudingas tiek AI apdorojimui, tiek žmogaus skaitomumui.
+**Ką daro**: MarkItDown yra išsamus dokumentų konvertavimo serveris, kuris paverčia įvairius failų formatus į aukštos kokybės Markdown, optimizuotą LLM vartojimui ir teksto analizės darbo srautams.
+
+**Kodėl tai naudinga**: Svarbu šiuolaikiniams dokumentavimo darbo srautams! MarkItDown palaiko įspūdingą failų formatų įvairovę ir išsaugo svarbiausias dokumento struktūros dalis, tokias kaip antraštės, sąrašai, lentelės ir nuorodos. Skirtingai nuo paprastų teksto ištraukimo įrankių, jis orientuojasi į semantinę prasmę ir formatavimą, kurie naudingi tiek dirbtiniam intelektui apdoroti, tiek žmogaus skaitytumui.
 
 **Palaikomi failų formatai**:
 - **Office dokumentai**: PDF, PowerPoint (PPTX), Word (DOCX), Excel (XLSX/XLS)
-- **Medijos failai**: Nuotraukos (su EXIF metaduomenimis ir OCR), garsas (su EXIF metaduomenimis ir balso transkripcija)
-- **Interneto turinys**: HTML, RSS srautai, YouTube URL, Wikipedia puslapiai
+- **Multimedijos failai**: Vaizdai (su EXIF metaduomenimis ir OCR), Garsas (su EXIF metaduomenimis ir balso transkripcija)
+- **Žiniatinklio turinys**: HTML, RSS srautai, YouTube URL, Wikipedia puslapiai
 - **Duomenų formatai**: CSV, JSON, XML, ZIP failai (rekursyviai apdoroja turinį)
 - **Leidybos formatai**: EPub, Jupyter užrašų knygelės (.ipynb)
 - **El. paštas**: Outlook žinutės (.msg)
-- **Išplėstinė**: Azure Document Intelligence integracija pažangiam PDF apdorojimui
+- **Pažengę**: Azure Document Intelligence integracija pažangiam PDF apdorojimui
 
-**Išplėstinės galimybės**: MarkItDown palaiko LLM pagrįstas vaizdų aprašymus (kai suteikiamas OpenAI klientas), Azure Document Intelligence pažangiam PDF apdorojimui, garso transkripciją kalbos turiniui ir papildinių sistemą papildomiems failų formatams išplėsti.
+**Pažangios galimybės**: MarkItDown palaiko LLM pagrįstus vaizdų aprašymus (kai yra OpenAI klientas), Azure Document Intelligence patobulintam PDF apdorojimui, garso transkripciją balso turiniui ir papildinių sistemą papildomiems failų formatams išplėsti.
 
-**Realaus pasaulio panaudojimas**: „Konvertuokite šią PowerPoint prezentaciją į Markdown mūsų dokumentacijos svetainei“, „Ištraukite tekstą iš šio PDF su tinkama antraščių struktūra“ arba „Transformuokite šią Excel lentelę į skaitomą lentelės formatą“.
+**Realūs pavyzdžiai**: „Paverskite šią PowerPoint prezentaciją į Markdown mūsų dokumentacijos svetainei“, „Ištraukite tekstą iš šio PDF su tinkama antraščių struktūra“ arba „Paverskite šią Excel skaičiuoklę į skaitomą lentelės formatą“
 
-**Pavyzdys**: Cituojant [MarkItDown dokumentaciją](https://github.com/microsoft/markitdown#why-markdown):
+**Pavyzdinis atvejis**: Cituojant [MarkItDown dokumentaciją](https://github.com/microsoft/markitdown#why-markdown):
 
-> Markdown yra itin artimas paprastam tekstui, su minimaliu žymėjimu ar formatavimu, bet vis tiek suteikia būdą atvaizduoti svarbią dokumento struktūrą. Pagrindiniai LLM, tokie kaip OpenAI GPT-4o, natūraliai „kalba“ Markdown kalba ir dažnai nepageidaujamai įtraukia Markdown į savo atsakymus. Tai rodo, kad jie buvo apmokyti su didžiuliais kiekiais Markdown suformatuoto teksto ir jį gerai supranta. Papildomas privalumas – Markdown konvencijos taip pat yra labai efektyvios žetonų prasme.
+> Markdown yra labai arti paprasto teksto, su minimaliu žymėjimu ar formatavimu, bet vis tiek suteikia būdą atvaizduoti svarbią dokumento struktūrą. Pagrindiniai LLM, tokie kaip OpenAI GPT-4o, natūraliai „kalba“ Markdown formatu ir dažnai įtraukia Markdown į savo atsakymus be papildomo nurodymo. Tai rodo, kad jie buvo apmokyti didžiuliais kiekiais Markdown formatuoto teksto ir gerai jį supranta. Papildomas privalumas, kad Markdown konvencijos yra labai efektyvios tokenų atžvilgiu.
 
-MarkItDown puikiai išlaiko dokumento struktūrą, kas labai svarbu AI srautams. Pavyzdžiui, konvertuojant PowerPoint prezentaciją, jis išsaugo skaidrių organizavimą su tinkamomis antraštėmis, ištraukia lenteles kaip Markdown lenteles, įtraukia alternatyvų tekstą vaizdams ir net apdoroja pranešėjo pastabas. Diagramas paverčia skaitomomis duomenų lentelėmis, o galutinis Markdown išlaiko originalios prezentacijos loginę seką. Tai puikiai tinka pristatymo turinio tiekimui į AI sistemas ar dokumentacijos kūrimui iš esamų skaidrių.
-
+MarkItDown puikiai išsaugo dokumento struktūrą, kas svarbu AI darbo srautams. Pavyzdžiui, konvertuojant PowerPoint prezentaciją, išlaikoma skaidrių organizacija su tinkamomis antraštėmis, lentelės ištraukiamos kaip Markdown lentelės, pridedamas alternatyvus tekstas vaizdams ir net apdorojamos kalbėtojo pastabos. Diagramos paverčiamos į skaitomas duomenų lenteles, o galutinis Markdown išlaiko originalios prezentacijos logišką eigą. Tai puikiai tinka pristatymo turinio perdavimui AI sistemoms arba dokumentacijos kūrimui iš esamų skaidrių.
 ### 6. 🗃️ SQL Server MCP Server
 
-[![Įdiegti VS Code](https://img.shields.io/badge/VS_Code-Install_SQL_Database-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=Azure%20SQL%20Database&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40azure%2Fmcp%40latest%22%2C%22server%22%2C%22start%22%2C%22--namespace%22%2C%22sql%22%5D%7D) [![Įdiegti VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_SQL_Database-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Azure%20SQL%20Database&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40azure%2Fmcp%40latest%22%2C%22server%22%2C%22start%22%2C%22--namespace%22%2C%22sql%22%5D%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/Azure/azure-mcp)
+[![Įdiekite VS Code](https://img.shields.io/badge/VS_Code-Install_SQL_Database-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=Azure%20SQL%20Database&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40azure%2Fmcp%40latest%22%2C%22server%22%2C%22start%22%2C%22--namespace%22%2C%22sql%22%5D%7D) [![Įdiekite VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_SQL_Database-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Azure%20SQL%20Database&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40azure%2Fmcp%40latest%22%2C%22server%22%2C%22start%22%2C%22--namespace%22%2C%22sql%22%5D%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/Azure/azure-mcp)
 
-**Ką jis daro**: Teikia pokalbių sąsają į SQL Server duomenų bazes (vietines, Azure SQL arba Fabric)
+**Ką daro**: Suteikia pokalbių prieigą prie SQL Server duomenų bazių (vietinių, Azure SQL ar Fabric)
 
-**Kodėl tai naudinga**: Panašus į PostgreSQL serverį, bet skirtas Microsoft SQL ekosistemai. Prisijunkite naudodami paprastą ryšio eilutę ir pradėkite užklausas natūralia kalba – jokio konteksto perjungimo!
+**Kodėl tai naudinga**: Panašus į PostgreSQL serverį, bet Microsoft SQL ekosistemai. Prisijunkite per paprastą prisijungimo eilutę ir pradėkite užklausas natūralia kalba – nebereikia keisti konteksto!
 
-**Realaus pasaulio panaudojimas**: „Rasti visus užsakymus, kurie per paskutines 30 dienų nebuvo įvykdyti“ yra verčiama į tinkamas SQL užklausas ir grąžina suformatuotus rezultatus.
+**Realūs pavyzdžiai**: „Raskite visus užsakymus, kurie per pastarąsias 30 dienų nebuvo įvykdyti“ verčiamas į tinkamas SQL užklausas ir pateikia formatuotas rezultatus
 
-**Pavyzdys**: Prijungus duomenų bazę, galite iš karto pradėti pokalbius su savo duomenimis. Tinklaraščio įraše tai demonstruojama paprastu klausimu: „Prie kokios duomenų bazės esate prijungti?“ MCP serveris atsako iškviesdamas atitinkamą duomenų bazės įrankį, prisijungdamas prie jūsų SQL Server instancijos ir grąžindamas duomenis apie dabartinį jungties statusą – visa tai be jokio SQL rašymo. Serveris palaiko išsamias duomenų bazės operacijas nuo schemų valdymo iki duomenų manipuliacijos, visas per natūralios kalbos užklausas. Išsamias diegimo instrukcijas ir konfigūracijos pavyzdžius su VS Code ir Claude Desktop rasite: [Introducing MSSQL MCP Server (Preview)](https://devblogs.microsoft.com/azure-sql/introducing-mssql-mcp-server/).
+**Pavyzdinis atvejis**: Kai nustatote duomenų bazės ryšį, galite nedelsdami pradėti bendrauti su duomenimis. Tinklaraščio įrašas demonstruoja, kaip paprasta užduoti klausimą: „Prie kurios duomenų bazės esate prijungtas?“ MCP serveris atsako iškviesdamas tinkamą duomenų bazės įrankį, prisijungdamas prie jūsų SQL Server instancijos ir pateikdamas informaciją apie esamą duomenų bazės prisijungimą – visa tai be vienos SQL eilutės rašymo. Serveris palaiko platų duomenų bazės valdymą – nuo schemų tvarkymo iki duomenų manipuliavimo, viską per natūralios kalbos užklausas. Pilnus diegimo nurodymus ir konfigūracijos pavyzdžius su VS Code ir Claude Desktop žr.: [Introducing MSSQL MCP Server (Preview)](https://devblogs.microsoft.com/azure-sql/introducing-mssql-mcp-server/).
+
 
 ### 7. 🎭 Playwright MCP Server
 
-[![Įdiegti VS Code](https://img.shields.io/badge/VS_Code-Install_Playwright_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=Playwright%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-playwright%40latest%22%5D%7D) [![Įdiegti VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_Playwright_MCP-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Playwright%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-playwright%40latest%22%5D%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/microsoft/playwright-mcp)
+[![Įdiekite VS Code](https://img.shields.io/badge/VS_Code-Install_Playwright_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=Playwright%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-playwright%40latest%22%5D%7D) [![Įdiekite VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_Playwright_MCP-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Playwright%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-playwright%40latest%22%5D%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/microsoft/playwright-mcp)
 
-**Ką jis daro**: Leidžia AI agentams sąveikauti su tinklalapiais testavimo ir automatizavimo tikslams
+**Ką daro**: Leidžia DI agentams bendrauti su tinklalapiais testavimui ir automatizavimui
 
 > **ℹ️ Maitina GitHub Copilot**
 > 
-> Playwright MCP Server valdo GitHub Copilot programavimo agentą, suteikdamas jam žiniatinklio naršyklės galimybes! [Sužinokite daugiau apie šią funkciją](https://github.blog/changelog/2025-07-02-copilot-coding-agent-now-has-its-own-web-browser/).
+> Playwright MCP Server yra GitHub Copilot Coding Agent variklis, suteikiantis jam žiniatinklio naršymo galimybes! [Sužinokite daugiau apie šią funkciją](https://github.blog/changelog/2025-07-02-copilot-coding-agent-now-has-its-own-web-browser/).
 
-**Kodėl tai naudinga**: Puikiai tinka automatiniam testavimui, pagrįstam natūralios kalbos aprašymais. AI gali naršyti tinklalapius, pildyti formas ir išgauti duomenis per struktūrizuotus prieinamumo momentinius vaizdus – tai nepaprastai galinga!
+**Kodėl tai naudinga**: Puikiai tinka automatizuotam testavimui, kurį valdo natūralios kalbos aprašymai. DI gali naršyti svetaines, pildyti formas ir išgauti duomenis per struktūruotus prieinamumo momentinius vaizdus – tai nepaprastai galinga!
 
-**Realaus pasaulio panaudojimas**: „Ištestuoti prisijungimo eigą ir patikrinti, ar teisingai įkėlė informacijos suvestinė“ arba „Sugeneruoti testą, kuris ieškotų produktų ir patvirtintų rezultatų puslapį“ – visa tai be poreikio turėti programos šaltinio kodą.
+**Realūs pavyzdžiai**: „Išbandykite prisijungimo procesą ir patikrinkite, ar valdymo skydas įkeliama tinkamai“ arba „Sukurkite testą, kuris ieško produktų ir patvirtina rezultatų puslapį“ – visa tai nereikalaujant programos šaltinio kodo
 
-**Pavyzdys**: Mano komandos narė Debbie O’Brien neseniai nuostabiai dirbo su Playwright MCP Server! Pavyzdžiui, ji parodė, kaip galima sugeneruoti pilnus Playwright testus net neturint prieigos prie programos šaltinio kodo. Jos scenarijuje ji paprašė Copilot sukurti testą filmų paieškos programėlei: nueiti į svetainę, ieškoti „Garfield“ ir patikrinti, ar filmas atsiranda rezultatuose. MCP pradėjo naršyklės sesiją, naršė puslapio struktūrą naudodamas DOM momentinius vaizdus, surado tinkamus selektorius ir sugeneravo pilnai veikiančią TypeScript testą, kuris sėkmingai praėjo iškart.
+**Pavyzdinis atvejis**: Mano komandos narė Debbie O'Brien pastaruoju metu nuostabiai dirba su Playwright MCP Server! Pavyzdžiui, neseniai ji parodė, kaip galima sugeneruoti pilnus Playwright testus net neturint prieigos prie programos šaltinio kodo. Jos scenarijuje ji paprašė Copilot sukurti testą filmų paieškos programėlei: nueiti į svetainę, ieškoti „Garfield“ ir patikrinti, ar filmas pasirodo rezultatuose. MCP paleido naršyklės sesiją, naršė puslapio struktūrą naudodamas DOM momentinius vaizdus, surado tinkamus selektorius ir sugeneravo funkcionalų TypeScript testą, kuris praėjo iš pirmo karto.
 
-Tai labai galinga, nes sujungia natūralios kalbos instrukcijas su vykdomu testų kodu. Tradiciniai metodai reikalauja rankinio testų rašymo ar prieigos prie kodo bazės kontekstui. Su Playwright MCP galite testuoti išorines svetaines, kliento programas arba dirbti juodos dėžės testavimo scenarijose, kur kodo prieiga nėra prieinama.
+Tai labai galinga, nes sujungia natūralios kalbos instrukcijas ir vykdomą testų kodą. Tradiciniai metodai reikalauja tiek rankinio testų rašymo, tiek prieigos prie kodo konteksto. Bet su Playwright MCP galite testuoti išorines svetaines, kliento programas arba dirbti juodosios dėžės testavimo scenarijuose, kur kodo prieiga nėra įmanoma.
+
 
 ### 8. 💻 Dev Box MCP Server
 
-[![Įdiegti VS Code](https://img.shields.io/badge/VS_Code-Install_Dev_Box_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=Dev%20Box%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-devbox%40latest%22%5D%7D) [![Įdiegti VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_Dev_Box_MCP-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Dev%20Box%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-devbox%40latest%22%5D%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/microsoft/mcp)
+[![Įdiekite VS Code](https://img.shields.io/badge/VS_Code-Install_Dev_Box_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=Dev%20Box%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-devbox%40latest%22%5D%7D) [![Įdiekite VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_Dev_Box_MCP-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Dev%20Box%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-devbox%40latest%22%5D%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/microsoft/mcp)
 
-**Ką jis daro**: Valdo Microsoft Dev Box aplinkas natūralia kalba
+**Ką daro**: Valdo Microsoft Dev Box aplinkas per natūralią kalbą
 
-**Kodėl tai naudinga**: Labai supaprastina kūrimo aplinkų valdymą! Kurkite, konfigūruokite ir valdykite kūrimo aplinkas be būtinybės atsiminti konkrečias komandas.
+**Kodėl tai naudinga**: Labai supaprastina plėtros aplinkos valdymą! Kurkite, konfigūruokite ir tvarkykite plėtros aplinkas nereikalaujant prisiminti konkrečių komandų.
 
-**Realaus pasaulio panaudojimas**: „Sukurk naują Dev Box su naujausiu .NET SDK ir sukonfigūruok jį mūsų projektui“, „Patikrink visų mano kūrimo aplinkų būseną“ arba „Sukurk standartizuotą demo aplinką mūsų komandos pristatymams“.
+**Realūs pavyzdžiai**: „Sukurkite naują Dev Box su naujausiu .NET SDK ir sukonfigūruokite mūsų projektui“, „Patikrinkite visų mano plėtros aplinkų būseną“ arba „Sukurkite standartizuotą demonstracinę aplinką mūsų komandos pristatymams“
 
-**Pavyzdys**: Esu didelis Dev Box asmeninio kūrimo gerbėjas. Šviesos blyksnis man buvo, kai James Montemagno paaiškino, kaip puikiai Dev Box tinka konferencijų demonstracijoms, nes jis turi ypatingai greitą Ethernet jungtį, nepriklausomai nuo konferencijos, viešbučio ar lėktuvo WiFi, kurį tuo metu naudoju. Iš tiesų, neseniai dariau konferencijos demonstracijos praktiką, kol mano nešiojamas kompiuteris buvo prijungtas prie telefono interneto taško važiuojant autobusu iš Briugės į Antverpeną! Kitas mano žingsnis – gilintis į komandos valdymą daugeliui kūrimo aplinkų ir standartizuotų demo aplinkų kūrimą. Taip pat didelis naudojimo atvejis, kurio girdėjau iš klientų ir kolegų, yra Dev Box naudojimas iš anksto sukonfigūruotoms kūrimo aplinkoms. Abu atvejai leidžia per MCP konfigūruoti ir valdyti Dev Box naudojant natūralios kalbos sąveiką, išlikdami pačioje kūrimo aplinkoje.
+**Pavyzdinis atvejis**: Aš esu didelis Dev Box naudotojas asmeninei plėtrai. Svarbi mano įžvalga įvyko, kai James Montemagno paaiškino, kaip puikiai Dev Box tinka konferencijų demonstracijoms, nes jis turi itin greitą Ethernet ryšį nepriklausomai nuo to, kokį konferencijos / viešbučio / lėktuvo wifi galiu naudoti tuo metu. Iš tikrųjų neseniai praktikuodamasis konferencijos demonstracijas sėdėjau autobuse nuo Briugės iki Antverpeno ir buvau prijungtas prie telefono interneto taško! Kitas mano žingsnis – gilintis į komandų valdymą kelioms plėtros aplinkoms ir standartizuotoms demonstracinėms aplinkoms. Ir dar viena didelė mano girdėta naudotojų bei kolegų naudingoji sritis yra Dev Box naudojimas iš anksto sukonfigūruotoms plėtros aplinkoms. Abiem atvejais, naudojant MCP Dev Box konfigūravimui ir valdymui, galima naudoti natūralios kalbos sąveiką, visą laiką būnant savo plėtros aplinkoje.
 
 ### 9. 🤖 Microsoft Foundry MCP Server
+
+
 [![Įdiegti VS Code](https://img.shields.io/badge/VS_Code-Install_Microsoft_Foundry_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Azure%20Foundry%20MCP%20Server&config=%7B%22type%22%3A%22stdio%22%2C%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22--prerelease%3Dallow%22%2C%22--from%22%2C%22git%2Bhttps%3A%2F%2Fgithub.com%2Fazure-ai-foundry%2Fmcp-foundry.git%22%2C%22run-azure-ai-foundry-mcp%22%5D%7D) [![Įdiegti VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_Microsoft_Foundry_MCP-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Azure%20Foundry%20MCP%20Server&config=%7B%22type%22%3A%22stdio%22%2C%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22--prerelease%3Dallow%22%2C%22--from%22%2C%22git%2Bhttps%3A%2F%2Fgithub.com%2Fazure-ai-foundry%2Fmcp-foundry.git%22%2C%22run-azure-ai-foundry-mcp%22%5D%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/azure-ai-foundry/mcp-foundry)
 
-**Ką jis daro**: Microsoft Foundry MCP Server suteikia kūrėjams visapusišką prieigą prie Azure DI ekosistemos, įtraukiant modelių katalogus, diegimo valdymą, žinių indeksavimą su Azure AI Search ir vertinimo įrankius. Šis eksperimentinis serveris sujungia DI kūrimą su Azure galinga DI infrastruktūra, palengvindamas DI programų kūrimą, diegimą ir vertinimą.
+**Ką jis daro**: Microsoft Foundry MCP serveris suteikia kūrėjams visapusišką prieigą prie Azure AI ekosistemos, įskaitant modelių katalogus, diegimo valdymą, žinių indeksavimą naudojant Azure AI Search ir vertinimo įrankius. Šis eksperimentinis serveris sumažina spragą tarp AI kūrimo ir Azure galingos AI infrastruktūros, palengvindamas AI programų kūrimą, diegimą ir vertinimą.
 
-**Kodėl tai naudinga**: Šis serveris keičia jūsų darbą su Azure DI paslaugomis, pateikdamas įmonės lygio DI galimybes tiesiogiai į jūsų kūrimo darbo eigą. Vietoj perjunginėjimo tarp Azure portalo, dokumentacijos ir jūsų IDE, galite atrasti modelius, diegti paslaugas, valdyti žinių bazes ir vertinti DI veikimą naudodami natūralios kalbos komandas. Tai ypač naudinga kūrėjams, kurie kuria RAG (Retrieval-Augmented Generation) programas, valdo daugialypius modelių diegimus arba įgyvendina visapusiškus DI vertinimo procesus.
+**Kodėl tai naudinga**: Šis serveris keičia būdą, kaip dirbate su Azure AI paslaugomis, tiesiogiai įtraukdamas įmonės lygio AI galimybes į jūsų kūrimo darbo eigą. Vietoj to, kad perjungtumėtės tarp Azure portalo, dokumentacijos ir savo IDE, galite atrasti modelius, diegti paslaugas, valdyti žinių bazes ir vertinti AI našumą per natūralios kalbos komandas. Tai ypač galinga tiems kūrėjams, kurie kuria RAG (Retrieval-Augmented Generation) programas, valdo daugelio modelių diegimą arba įgyvendina visapusiškas AI vertinimo sistemas.
 
 **Pagrindinės kūrėjo galimybės**:
-- **🔍 Modelių atranka ir diegimas**: Naršykite Microsoft Foundry modelių katalogą, gaukite išsamią modelio informaciją su kodo pavyzdžiais ir diegkite modelius į Azure DI paslaugas
-- **📚 Žinių valdymas**: Kurkite ir valdykite Azure AI Search indeksus, pridėkite dokumentus, konfigūruokite indeksuotojus ir kurkite pažangias RAG sistemas
-- **⚡ DI agentų integracija**: Prisijunkite prie Azure DI agentų, užduokite klausimus esamiems agentams ir vertinkite agentų veikimą gamybos scenarijuose
-- **📊 Vertinimo sistema**: Vykdykite išsamų teksto ir agentų vertinimą, generuokite markdown ataskaitas ir įgyvendinkite kokybės užtikrinimą DI programoms
-- **🚀 Prototipų įrankiai**: Gaukite nustatymo instrukcijas GitHub pagrindu kuriamiems prototipams ir prieigą prie Microsoft Foundry Labs pažangiems tyrimų modeliams
+- **🔍 Modelių atranka ir diegimas**: Tyrinėkite Microsoft Foundry modelių katalogą, gaukite detalią modelio informaciją su kodo pavyzdžiais ir diegkite modelius į Azure AI paslaugas
+- **📚 Žinių valdymas**: Kurkite ir valdykite Azure AI Search indeksus, pridėkite dokumentus, konfigūruokite indeksatorius ir kurkite sudėtingas RAG sistemas
+- **⚡ AI agentų integracija**: Prisijunkite prie Azure AI agentų, užduokite klausimus esamiems agentams ir vertinkite agentų našumą gamybos scenarijuose
+- **📊 Vertinimo sistema**: Vykdykite išsamų teksto ir agentų vertinimą, generuokite markdown ataskaitas ir įgyvendinkite kokybės užtikrinimą AI programoms
+- **🚀 Prototipavimo įrankiai**: Gaukit diegimo instrukcijas GitHub pagrindu prototipavimui ir pasiekite Microsoft Foundry Labs, skirtus pažangiems tyrimų modeliams
 
-**Tikrasis kūrėjo panaudojimas**: „Diegti Phi-4 modelį į Azure DI paslaugas mano programai“, „Sukurti naują paieškos indeksą mano dokumentacijos RAG sistemai“, „Įvertinti mano agente pateiktus atsakymus pagal kokybės rodiklius“ arba „Rasti geriausią sprendimų modelį mano sudėtingoms analizės užduotims“
+**Tikslinių scenarijų pavyzdžiai**: "Diegti Phi-4 modelį į Azure AI paslaugas mano programai", "Sukurti naują paieškos indeksą mano dokumentacijos RAG sistemai", "Įvertinti mano agente atsakymus pagal kokybės rodiklius" arba "Rasti geriausią loginio sprendimo modelį mano sudėtingiems analizės darbams"
 
-**Pilnas demonstracinis scenarijus**: Štai galinga DI kūrimo darbo eiga:
+**Pilnas demonstracinis scenarijus**: Štai efektyvi AI plėtros darbo eiga:
 
-> „Aš kuriu klientų aptarnavimo agentą. Padėkite rasti gerą sprendimų modelį iš katalogo, jį įdiegti Azure DI paslaugose, sukurti žinių bazę iš mūsų dokumentacijos, sukonfigūruoti vertinimo sistemą atsakymų kokybės tikrinimui, o tada padėti sukurti integracijos prototipą su GitHub žetonu testavimui.“
+> "Kuriu klientų aptarnavimo agentą. Padėkite rasti gerą loginio sprendimo modelį kataloge, jį įdiegti Azure AI paslaugose, sukurti žinių bazę iš mūsų dokumentacijos, nustatyti vertinimo sistemą atsakymų kokybės tikrinimui ir padėti prototipuoti integraciją su GitHub žetonu testavimui."
 
-Microsoft Foundry MCP Server:
-- Nustatys modelių katalogą ir rekomenduos geriausius sprendimų modelius pagal jūsų reikalavimus
-- Pateiks diegimo komandas ir kvotų informaciją jūsų pageidaujamam Azure regionui
-- Sukurs Azure AI Search indeksus su tinkamu schemos aprašymu jūsų dokumentacijai
-- Sukonfiguruos vertinimo procesus su kokybės rodikliais ir saugumo patikrinimais
-- Generuos prototipinio kodo fragmentus su GitHub autentifikacija skubiam testavimui
-- Suteiks išsamius nustatymo gaires, pritaikytas jūsų specifiniam technologiniam rinkiniui
+Microsoft Foundry MCP serveris:
+- Užklausia modelių katalogą, kad rekomenduotų optimalius loginio sprendimo modelius pagal jūsų reikalavimus
+- Pateikia diegimo komandas ir kvotų informaciją jūsų pageidaujamai Azure regionui
+- Nustato Azure AI Search indeksus su tinkamu schema jūsų dokumentacijai
+- Konfigūruoja vertinimo eiles su kokybės rodikliais ir saugos patikrinimais
+- Generuoja prototipų kodą su GitHub autentifikacija greitam testavimui
+- Pateikia išsamias įrengimo gaires pritaikytas jūsų technologijų rinkiniui
 
-**Parodytas pavyzdys**: Kaip kūrėjas, ilgai nervinausi, kad negaliu suspėti su įvairiais LLM modeliais. Žinau kelis pagrindinius, bet jaučiau, kad praleidžiu produktyvumo ir efektyvumo galimybes. Žetonai ir kvotos man kelia stresą ir sunkiai valdomi – nežinau, ar pasirinkau tinkamą modelį konkrečiai užduočiai arba ar nešvaistau biudžeto neefektyviai. Neseniai išgirdau apie šį MCP serverį iš James Montemagno, kalbėdamasis su komandos nariais apie MCP serverių rekomendacijas šiam įrašui ir labai norėjau jį išbandyti! Modelių atrankos galimybės atrodo ypač įspūdingos man – žmogui, kuris nori tyrinėti daugiau nei įprastus variantus ir rasti specializuotus modelius konkrečioms užduotims. Vertinimo sistema turėtų padėti įsitikinti, kad iš tikrųjų gaunu geresnius rezultatus, o ne tiesiog kažką naujo bandom dėl naujumo.
+**Išskirtinis pavyzdys**: Kaip kūrėjas, man buvo sunku sekti skirtingus LLM modelius. Žinau keletą pagrindinių, bet jaučiausi, kad prarandu produktyvumo ir efektyvumo galimybes. Taip pat žetonų ir kvotų valdymas kelia stresą ir yra sudėtingas – niekada nežinau, ar renkuosi tinkamą modelį konkrečiai užduočiai, ar neefektyviai švaistau biudžetą. Sužinojau apie šį MCP serverį iš James Montemagno, kai klausiau kolegų dėl MCP serverio rekomendacijų šiam įrašui, ir labai noriu išbandyti! Modelių atrankos galimybės atrodo ypač įspūdingos žmogui, kaip aš, kuris nori ištirti daugiau nei įprastinius variantus ir rasti modelius, optimizuotus konkrečioms užduotims. Vertinimo sistema turėtų padėti man patvirtinti, kad gaunu iš tiesų geresnius rezultatus, o ne tiesiog bandau kažką naujo dėl naujumo.
 
 > **ℹ️ Eksperimentinis statusas**
 > 
-> Šis MCP serveris yra eksperimentinis ir intensyviai kuriamas. Funkcijos ir API gali keistis. Puikus tyrinėjant Azure DI galimybes ir kuriant prototipus, bet gamybinėms reikmėms reikia įvertinti stabilumo reikalavimus.
-### 10. 🏢 Microsoft 365 Agentų įrankių rinkinys MCP Serveris
+> Šis MCP serveris yra eksperimentinis ir aktyvios kuriamos būsenos. Funkcijos ir API gali keistis. Puikiai tinka tyrinėti Azure AI galimybes ir kurti prototipus, tačiau prieš naudoti gamyboje patikrinkite stabilumo reikalavimus.
+### 10. 🏢 Microsoft 365 agentų įrankių rinkinys MCP serveris
 
 [![Įdiegti VS Code](https://img.shields.io/badge/VS_Code-Install_M365_Agents_Toolkit-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=M365AgentsToolkit%20Server&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22@microsoft%2Fm365agentstoolkit-mcp%40latest%22%2C%22server%22%2C%22start%22%5D%7D) [![Įdiegti VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_M365_Agents_Toolkit-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=M365AgentsToolkit%20Server&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22@microsoft%2Fm365agentstoolkit-mcp%40latest%22%2C%22server%22%2C%22start%22%5D%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/OfficeDev/microsoft-365-agents-toolkit)
 
-**Ką jis daro**: Suteikia kūrėjams būtinus įrankius kuriant DI agentus ir programas, integruojamas su Microsoft 365 ir Microsoft 365 Copilot, įskaitant schemų patvirtinimą, pavyzdinių kodo fragmentų gavimą ir trikčių diagnostiką.
+**Ką jis daro**: Teikia kūrėjams būtinas priemones AI agentų ir programų kūrimui, kurios integruojasi su Microsoft 365 ir Microsoft 365 Copilot, įskaitant schemos patikrinimą, pavyzdinių kodų gavimą ir trikčių šalinimą.
 
-**Kodėl tai naudinga**: Kuriant Microsoft 365 ir Copilot reikia sudėtingų manifesto schemų ir specifinių kūrimo modelių. Šis MCP serveris pateikia būtinus kūrimo išteklius tiesiai į jūsų kodavimo aplinką, padėdamas patvirtinti schemas, rasti pavyzdinį kodą ir spręsti dažnas problemas be nuolatinio dokumentacijos tikrinimo.
+**Kodėl tai naudinga**: Kuriant Microsoft 365 ir Copilot reikia sudėtingų manifestų schemų ir specifinių kūrimo modelių. Šis MCP serveris suteikia būtinus kūrimo išteklius tiesiai į jūsų kodavimo aplinką, padėdamas patikrinti schemas, surasti pavyzdinius kodus ir spręsti dažniausias problemas be būtinybės nuolat ieškoti dokumentacijoje.
 
-**Tikrasis panaudojimas**: „Patvirtink mano deklaratyvaus agento manifestą ir ištaisyk schemos klaidas“, „Pateik pavyzdinį kodą Microsoft Graph API įskiepiui“, arba „Padėk išspręsti mano Teams programos autentifikacijos problemas“
+**Tikslinių scenarijų pavyzdžiai**: "Patikrinti mano deklaratyvų agento manifestą ir ištaisyti visas schemos klaidas", "Rodyti pavyzdinį kodą, kaip įgyvendinti Microsoft Graph API įskiepį", arba "Padėti spręsti mano Teams programos autentifikacijos problemas"
 
-**Parodytas pavyzdys**: Po pokalbio su draugu John Miller, kai kalbėjomės apie M365 agentus Build renginyje, jis rekomendavo šį MCP. Tai puiku naujiems M365 agentų kūrėjams, nes pateikia šablonus, pavyzdinį kodą ir karkasą pradžiai be dokumentacijos gausos. Schemų patvirtinimo funkcijos atrodo ypač naudingos, kad būtų išvengta manifesto struktūros klaidų, kurios gali sukelti valandų trukmės derinimą.
+**Išskirtinis pavyzdys**: Kreipiausi į draugą John Millerį po to, kai su juo kalbėjau per Build apie M365 agentus, ir jis rekomendavo šį MCP. Tai gali būti puiku M365 agentais naujiems kūrėjams, nes suteikia šablonus, pavyzdžius ir karkasus pradedantiesiems, neprisigėrus dokumentacijos. Schemos tikrinimo funkcijos atrodo ypač naudingos norint išvengti manifestų struktūros klaidų, kurios gali sukelti valandų trukmės derinimą.
 
 > **💡 Patarimas**
 > 
-> Naudokite šį serverį kartu su Microsoft Learn Docs MCP Serveriu, kad gautumėte visapusišką M365 kūrimo palaikymą – vienas suteikia oficialią dokumentaciją, o kitas – praktinius kūrimo įrankius ir trikčių diagnostiką.
+> Naudokite šį serverį kartu su Microsoft Learn Docs MCP serveriu, kad gautumėte visapusišką M365 kūrimo palaikymą – vienas teikia oficialią dokumentaciją, o kitas siūlo praktinius kūrimo įrankius ir trikčių šalinimą.
 
 
 ## Kas toliau? 🔮
 
 ## 📋 Išvados
 
-Model Context Protocol (MCP) keičia kūrėjų sąveiką su DI asistentais ir išoriniais įrankiais. Šie 10 Microsoft MCP serverių parodo standartizuotos DI integracijos galingumą, leidžiantį sklandžiai dirbti ir išlaikyti kūrėjų produktyvumo srautą, tuo pačiu pasiekiant galingas išorines galimybes.
+Modelių konteksto protokolas (MCP) keičia būdą, kaip kūrėjai sąveikauja su AI asistentais ir išoriniais įrankiais. Šie 10 Microsoft MCP serverių demonstruoja standartizuotos AI integracijos galias, leidžiančias sklandžiai dirbti ir tuo pačiu pasiekti galingas išorines galimybes.
 
-Nuo plataus Azure ekosistemos integracijos iki specializuotų įrankių, tokių kaip Playwright naršyklių automatizavimui ir MarkItDown dokumentų apdorojimui, šie serveriai demonstruoja, kaip MCP gali padidinti produktyvumą įvairiose kūrimo situacijose. Standartizuotas protokolas užtikrina, kad šie įrankiai veiktų kartu sklandžiai, sukuriant vientisą kūrėjo patirtį.
+Nuo plataus Azure ekosistemos integracijos iki specializuotų įrankių, tokių kaip Playwright naršyklių automatizavimui ir MarkItDown dokumentų apdorojimui, šie serveriai parodo, kaip MCP gali pagerinti produktyvumą įvairiose kūrimo situacijose. Standartizuotas protokolas užtikrina, kad šie įrankiai veiktų kartu sklandžiai, sukuriant darnų kūrimo patirtį.
 
-MCP ekosistemos toliau vystantis, svarbu palaikyti ryšį su bendruomene, tyrinėti naujus serverius ir kurti pritaikytus sprendimus, kad maksimaliai padidintumėte kūrimo produktyvumą. Atviras MCP standarto pobūdis leidžia derinti įrankius iš skirtingų tiekėjų ir kurti idealią darbo eigą pagal jūsų specifinius poreikius.
+Kadangi MCP ekosistema toliau plėtojama, svarbu būti aktyviems bendruomenėje, tyrinėti naujus serverius ir kurti individualius sprendimus, siekiant maksimaliai padidinti kūrimo efektyvumą. Atviro standarto pobūdis leidžia derinti įrankius iš skirtingų tiekėjų ir sukurti tobulą darbo eigą pagal jūsų konkrečius poreikius.
 
 ## 🔗 Papildomi ištekliai
 
-- [Oficialus Microsoft MCP repozitorijus](https://github.com/microsoft/mcp)
+- [Oficialus Microsoft MCP saugykla](https://github.com/microsoft/mcp)
 - [MCP bendruomenė ir dokumentacija](https://modelcontextprotocol.io/introduction)
 - [VS Code MCP dokumentacija](https://code.visualstudio.com/docs/copilot/copilot-mcp)
 - [Visual Studio MCP dokumentacija](https://learn.microsoft.com/visualstudio/ide/mcp-servers)
 - [Azure MCP dokumentacija](https://learn.microsoft.com/azure/developer/azure-mcp-server/)
 - [Let's Learn – MCP renginiai](https://techcommunity.microsoft.com/blog/azuredevcommunityblog/lets-learn---mcp-events-a-beginners-guide-to-the-model-context-protocol/4429023)
-- [Awesome GitHub Copilot modifikacijos](https://github.com/awesome-copilot)
+- [Awesome GitHub Copilot pritaikymai](https://github.com/awesome-copilot)
 - [C# MCP SDK](https://developer.microsoft.com/blog/microsoft-partners-with-anthropic-to-create-official-c-sdk-for-model-context-protocol)
-- [MCP Dev Days Live liepos 29-30 d. arba žiūrėti įrašą](https://aka.ms/mcpdevdays)
+- [MCP Dev Days gyvai 29/30 liepos arba žiūrėkite įrašą](https://aka.ms/mcpdevdays)
 
 ## 🎯 Pratimai
 
-1. **Įdiegimas ir konfigūravimas**: Įdiekite vieną MCP serverį savo VS Code aplinkoje ir patikrinkite pagrindines funkcijas.
-2. **Darbo eigos integracija**: Sukurkite kūrimo darbo eigą, apjungiančią bent tris skirtingus MCP serverius.
-3. **Vartotojiško serverio planavimas**: Nustatykite užduotį savo kasdienėje kūrimo praktikoje, kuriai būtų naudinga vartotojiško MCP serverio kūrimas, ir paruoškite jos specifikaciją.
-4. **Veikimo analizė**: Palyginkite MCP serverių naudojimo efektyvumą su tradiciniais metodais dažnėse kūrimo užduotyse.
+1. **Įdiegti ir Konfigūruoti**: Įdiekite vieną iš MCP serverių savo VS Code aplinkoje ir išbandykite pagrindines funkcijas.
+2. **Darbo eigos Integracija**: Sukurkite kūrimo darbo eigą, apimančią bent tris skirtingus MCP serverius.
+3. **Individualaus serverio planavimas**: Nustatykite užduotį savo kasdieniame kūrime, kuri galėtų pasinaudoti individualiu MCP serveriu, ir sukurkite jos specifikaciją.
+4. **Našumo analizė**: Palyginkite MCP serverių efektyvumą su tradiciniais metodais dažnoms kūrimo užduotims.
 5. **Saugumo vertinimas**: Įvertinkite MCP serverių naudojimo saugumo aspektus savo kūrimo aplinkoje ir pasiūlykite geriausias praktikas.
 
 
-Kitas:[Gerųjų praktikų vadovas](../08-BestPractices/README.md)
+Toliau:[Geriausios praktikos](../08-BestPractices/README.md)
 
 ---
 

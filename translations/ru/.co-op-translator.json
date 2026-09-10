@@ -144,8 +144,8 @@
     "language_code": "ru"
   },
   "03-GettingStarted/03-llm-client/README.md": {
-    "original_hash": "3b5e39c78f62deafcb60929f8036daf3",
-    "translation_date": "2026-06-16T08:24:30+00:00",
+    "original_hash": "e7951e45ea065c33cf0fe73f6d3ed687",
+    "translation_date": "2026-09-09T15:27:07+00:00",
     "source_file": "03-GettingStarted/03-llm-client/README.md",
     "language_code": "ru"
   },
@@ -162,8 +162,8 @@
     "language_code": "ru"
   },
   "03-GettingStarted/03-llm-client/solution/java/README.md": {
-    "original_hash": "ac2459c0d5cc823922e3d9240a95028c",
-    "translation_date": "2025-07-13T19:05:55+00:00",
+    "original_hash": "b21e6bd48c46004ac5a4a4d47ea40a64",
+    "translation_date": "2026-09-09T15:27:30+00:00",
     "source_file": "03-GettingStarted/03-llm-client/solution/java/README.md",
     "language_code": "ru"
   },
@@ -468,8 +468,8 @@
     "language_code": "ru"
   },
   "03-GettingStarted/samples/python/README.md": {
-    "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
-    "translation_date": "2025-10-17T20:03:42+00:00",
+    "original_hash": "3a5754207a68ad8272820d1a1a353fde",
+    "translation_date": "2026-09-09T15:27:38+00:00",
     "source_file": "03-GettingStarted/samples/python/README.md",
     "language_code": "ru"
   },
@@ -498,8 +498,8 @@
     "language_code": "ru"
   },
   "04-PracticalImplementation/samples/csharp/README.md": {
-    "original_hash": "0bc7bd48f55f1565f1d95ccb2c16f728",
-    "translation_date": "2025-07-13T23:03:35+00:00",
+    "original_hash": "6cddd296fe965d6b941fc77950679238",
+    "translation_date": "2026-09-09T15:27:56+00:00",
     "source_file": "04-PracticalImplementation/samples/csharp/README.md",
     "language_code": "ru"
   },
@@ -660,8 +660,8 @@
     "language_code": "ru"
   },
   "07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md": {
-    "original_hash": "f7d8cfb6528a2280913da17f622b7b08",
-    "translation_date": "2026-06-17T01:49:26+00:00",
+    "original_hash": "6a98b49b0cde0040ab13aec5709f3a76",
+    "translation_date": "2026-09-09T15:24:16+00:00",
     "source_file": "07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md",
     "language_code": "ru"
   },
@@ -672,8 +672,8 @@
     "language_code": "ru"
   },
   "09-CaseStudy/README.md": {
-    "original_hash": "b3537be55d599dbfdca7bda72eef7741",
-    "translation_date": "2026-02-09T08:52:52+00:00",
+    "original_hash": "701e053b411650c0afcde985a2ef939d",
+    "translation_date": "2026-09-09T15:25:04+00:00",
     "source_file": "09-CaseStudy/README.md",
     "language_code": "ru"
   },
@@ -711,6 +711,12 @@
     "original_hash": "d44c9447c434354a77dfcb421bbdc260",
     "translation_date": "2026-06-17T01:59:44+00:00",
     "source_file": "09-CaseStudy/docs-mcp/solution/scenario3/README.md",
+    "language_code": "ru"
+  },
+  "09-CaseStudy/publora-social-publishing.md": {
+    "original_hash": "9c860d3fea4a5cfd58ea714fd608aad4",
+    "translation_date": "2026-09-09T15:36:17+00:00",
+    "source_file": "09-CaseStudy/publora-social-publishing.md",
     "language_code": "ru"
   },
   "09-CaseStudy/travelagentsample.md": {

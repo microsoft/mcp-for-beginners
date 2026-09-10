@@ -2,38 +2,38 @@
 
 
 
-Na simple Model Context Protocol (MCP) server wey dem do for Python wey fit do basic calculator work.
+Simple Model Context Protocol (MCP) server wey dem implement for Python wey dey provide basic calculator functionality.
 
 
 ## Installation
 
-Make sure say you install wetin you need:
+Install di required dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Or make you install MCP Python SDK direct:
+Or install di MCP Python SDK direct:
 
 ```bash
-pip install mcp>=1.18.0
+pip install "mcp>=2.1.1,<3.0.0"
 ```
 
 ## Usage
 
-### How to Run the Server
+### Running di Server
 
-Dis server na for MCP clients (like Claude Desktop) to use. To start am:
+Di server dey made so dat MCP clients (like Claude Desktop) go fit use am. To start di server:
 
 ```bash
 python mcp_calculator_server.py
 ```
 
-**Note**: If you run am direct for terminal, you go see JSON-RPC validation errors. No worry, na normal - the server dey wait for MCP client messages wey dey well formatted.
+**Note**: If you run am direct for terminal, you go see JSON-RPC validation errors. Dis na normal behaviour - di server dey wait for properly formatted MCP client messages.
 
-### How to Test the Functions
+### Testing di Functions
 
-To check say the calculator functions dey work well:
+To test sey di calculator functions dey work correct:
 
 ```bash
 python test_calculator.py
@@ -43,19 +43,19 @@ python test_calculator.py
 
 ### Import Errors
 
-If you see `ModuleNotFoundError: No module named 'mcp'`, make sure say you don install MCP Python SDK:
+If you see `ModuleNotFoundError: No module named 'mcp'`, install di MCP Python SDK:
 
 ```bash
-pip install mcp>=1.18.0
+pip install "mcp>=2.1.1,<3.0.0"
 ```
 
-### JSON-RPC Errors When Running Directly
+### JSON-RPC Errors When You Run Am Direct
 
-Errors like "Invalid JSON: EOF while parsing a value" when you run the server direct na normal. The server dey need MCP client messages, e no dey work with direct terminal input.
+Errors like "Invalid JSON: EOF while parsing a value" wen you run di server direct na normal tin. Di server need MCP client messages, no be direct terminal input.
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Disclaimer**:  
-Dis dokyument don use AI transle-shon service [Co-op Translator](https://github.com/Azure/co-op-translator) do di transle-shon. Even as we dey try make am correct, abeg make you sabi say transle-shon wey machine do fit get mistake or no dey accurate well. Di original dokyument for di language wey dem take write am first na di one wey you go take as di correct source. For important mata, e good make you use professional human transle-shon. We no go fit take blame for any misunderstanding or wrong interpretation wey fit happen because you use dis transle-shon.
+**Disclaimer**:
+Dis document don translate wit AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). Even tho we dey try make am correct, abeg make you know say automated translation fit get errors or mistakes. Di original document for dia own language na im be di correct source. For important info, make person wey sabi human translation do am. We no go responsible for any misunderstanding or wrong understanding wey fit happen because of dis translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

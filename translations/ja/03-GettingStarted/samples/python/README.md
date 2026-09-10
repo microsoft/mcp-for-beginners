@@ -1,36 +1,39 @@
-# MCP計算機サーバー (Python)
+# MCP Calculator Server (Python)
 
-Pythonで実装されたシンプルなModel Context Protocol (MCP)サーバーで、基本的な計算機能を提供します。
+
+
+Pythonで実装されたシンプルなModel Context Protocol（MCP）サーバーで、基本的な計算機能を提供します。
+
 
 ## インストール
 
-必要な依存関係をインストールしてください:
+必要な依存関係をインストールします：
 
 ```bash
 pip install -r requirements.txt
 ```
 
-または、MCP Python SDKを直接インストールしてください:
+またはMCP Python SDKを直接インストールします：
 
 ```bash
-pip install mcp>=1.18.0
+pip install "mcp>=2.1.1,<3.0.0"
 ```
 
-## 使用方法
+## 使い方
 
 ### サーバーの起動
 
-このサーバーはMCPクライアント（例: Claude Desktop）によって使用されるよう設計されています。サーバーを起動するには以下を実行してください:
+サーバーはMCPクライアント（Claude Desktopなど）による利用を想定しています。サーバーを起動するには：
 
 ```bash
 python mcp_calculator_server.py
 ```
 
-**注意**: ターミナルで直接実行すると、JSON-RPCの検証エラーが表示されます。これは正常な動作です。サーバーは適切にフォーマットされたMCPクライアントメッセージを待機しています。
+<strong>注意</strong>：ターミナルで直接実行するとJSON-RPCの検証エラーが表示されます。これは正常な動作で、サーバーは正しい形式のMCPクライアントメッセージを待機しています。
 
-### 機能のテスト
+### 関数のテスト
 
-計算機能が正しく動作するかテストするには:
+計算機能が正しく動作するか確認するには：
 
 ```bash
 python test_calculator.py
@@ -40,17 +43,19 @@ python test_calculator.py
 
 ### インポートエラー
 
-`ModuleNotFoundError: No module named 'mcp'`というエラーが表示された場合は、MCP Python SDKをインストールしてください:
+`ModuleNotFoundError: No module named 'mcp'`が表示された場合は、MCP Python SDKをインストールしてください：
 
 ```bash
-pip install mcp>=1.18.0
+pip install "mcp>=2.1.1,<3.0.0"
 ```
 
-### サーバーを直接実行した際のJSON-RPCエラー
+### 直接実行時のJSON-RPCエラー
 
-サーバーを直接実行した際に「Invalid JSON: EOF while parsing a value」といったエラーが表示される場合があります。これは予期された動作であり、サーバーは直接のターミナル入力ではなく、MCPクライアントメッセージを必要としています。
+直接サーバー実行時に「Invalid JSON: EOF while parsing a value」のようなエラーが出るのは予期された現象です。サーバーはMCPクライアントのメッセージを必要とし、直接ターミナルからの入力には対応していません。
 
 ---
 
-**免責事項**:  
-この文書はAI翻訳サービス[Co-op Translator](https://github.com/Azure/co-op-translator)を使用して翻訳されています。正確性を追求していますが、自動翻訳には誤りや不正確な部分が含まれる可能性があります。元の言語で記載された文書を正式な情報源としてお考えください。重要な情報については、専門の人間による翻訳を推奨します。この翻訳の使用に起因する誤解や誤解について、当社は責任を負いません。
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**免責事項**：
+本書類は AI 翻訳サービス [Co-op Translator](https://github.com/Azure/co-op-translator) を使用して翻訳されています。正確性を期していますが、自動翻訳には誤りや不正確な部分が含まれる可能性があることをご承知おきください。原文の原語版が正式な情報源とみなされるべきです。重要な情報については、専門の人間による翻訳を推奨します。本翻訳の利用により生じたいかなる誤解や解釈違いについても、当方は責任を負いかねます。
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

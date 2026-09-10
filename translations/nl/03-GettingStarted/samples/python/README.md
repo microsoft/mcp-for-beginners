@@ -1,10 +1,13 @@
 # MCP Calculator Server (Python)
 
-Een eenvoudige implementatie van een Model Context Protocol (MCP) server in Python die basisfunctionaliteit voor een rekenmachine biedt.
+
+
+Een eenvoudige Model Context Protocol (MCP) serverimplementatie in Python die basis rekenmachinefunctionaliteit biedt.
+
 
 ## Installatie
 
-Installeer de benodigde afhankelijkheden:
+Installeer de vereiste afhankelijkheden:
 
 ```bash
 pip install -r requirements.txt
@@ -13,12 +16,12 @@ pip install -r requirements.txt
 Of installeer de MCP Python SDK direct:
 
 ```bash
-pip install mcp>=1.18.0
+pip install "mcp>=2.1.1,<3.0.0"
 ```
 
 ## Gebruik
 
-### De server starten
+### De server draaien
 
 De server is ontworpen om gebruikt te worden door MCP-clients (zoals Claude Desktop). Om de server te starten:
 
@@ -26,7 +29,7 @@ De server is ontworpen om gebruikt te worden door MCP-clients (zoals Claude Desk
 python mcp_calculator_server.py
 ```
 
-**Let op**: Wanneer je de server direct in een terminal uitvoert, zie je JSON-RPC validatiefouten. Dit is normaal gedrag - de server wacht op correct geformatteerde MCP-clientberichten.
+**Opmerking**: Bij direct uitvoeren in een terminal zie je JSON-RPC validatiefouten. Dit is normaal gedrag - de server wacht op correct opgemaakte MCP clientberichten.
 
 ### De functies testen
 
@@ -40,17 +43,19 @@ python test_calculator.py
 
 ### Importfouten
 
-Als je de foutmelding `ModuleNotFoundError: No module named 'mcp'` ziet, installeer dan de MCP Python SDK:
+Als je `ModuleNotFoundError: No module named 'mcp'` ziet, installeer dan de MCP Python SDK:
 
 ```bash
-pip install mcp>=1.18.0
+pip install "mcp>=2.1.1,<3.0.0"
 ```
 
 ### JSON-RPC fouten bij direct uitvoeren
 
-Fouten zoals "Invalid JSON: EOF while parsing a value" bij het direct uitvoeren van de server zijn te verwachten. De server heeft MCP-clientberichten nodig, geen directe invoer via de terminal.
+Fouten zoals "Invalid JSON: EOF while parsing a value" bij het direct uitvoeren van de server zijn te verwachten. De server heeft MCP clientberichten nodig, geen directe terminalinvoer.
 
 ---
 
-**Disclaimer**:  
-Dit document is vertaald met behulp van de AI-vertalingsservice [Co-op Translator](https://github.com/Azure/co-op-translator). Hoewel we streven naar nauwkeurigheid, dient u zich ervan bewust te zijn dat geautomatiseerde vertalingen fouten of onnauwkeurigheden kunnen bevatten. Het originele document in de oorspronkelijke taal moet worden beschouwd als de gezaghebbende bron. Voor kritieke informatie wordt professionele menselijke vertaling aanbevolen. Wij zijn niet aansprakelijk voor eventuele misverstanden of verkeerde interpretaties die voortvloeien uit het gebruik van deze vertaling.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Disclaimer**:
+Dit document is vertaald met behulp van de AI vertaaldienst [Co-op Translator](https://github.com/Azure/co-op-translator). Hoewel we streven naar nauwkeurigheid, dient u er rekening mee te houden dat geautomatiseerde vertalingen fouten of onnauwkeurigheden kunnen bevatten. Het originele document in de oorspronkelijke taal moet worden beschouwd als de gezaghebbende bron. Voor kritieke informatie wordt professionele menselijke vertaling aanbevolen. Wij zijn niet aansprakelijk voor eventuele misverstanden of verkeerde interpretaties die voortvloeien uit het gebruik van deze vertaling.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

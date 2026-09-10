@@ -1,10 +1,13 @@
-# MCP Kalkulaatori Server (Python)
+# MCP kalkulaatori server (Python)
 
-Lihtne Model Context Protocol (MCP) serveri teostus Pythonis, mis pakub põhilist kalkulaatori funktsionaalsust.
+
+
+Lihtne Model Context Protocol (MCP) serveri rakendus Pythonis, mis pakub põhilist kalkulaatori funktsionaalsust.
+
 
 ## Paigaldamine
 
-Paigalda vajalikud sõltuvused:
+Paigalda vajalikke sõltuvusi:
 
 ```bash
 pip install -r requirements.txt
@@ -13,24 +16,24 @@ pip install -r requirements.txt
 Või paigalda MCP Python SDK otse:
 
 ```bash
-pip install mcp>=1.18.0
+pip install "mcp>=2.1.1,<3.0.0"
 ```
 
-## Kasutamine
+## Kasutusjuhend
 
 ### Serveri käivitamine
 
-Server on mõeldud kasutamiseks MCP klientide poolt (näiteks Claude Desktop). Serveri käivitamiseks:
+Server on loodud MCP klientide (näiteks Claude Desktop) jaoks. Serveri käivitamiseks:
 
 ```bash
 python mcp_calculator_server.py
 ```
 
-**Märkus**: Kui käivitate otse terminalis, näete JSON-RPC valideerimisvigu. See on normaalne käitumine - server ootab korrektselt vormindatud MCP kliendisõnumeid.
+**Märkus**: Kui käivitad otse terminalis, näed JSON-RPC valideerimisvigu. See on normaalne käitumine – server ootab korralikult vormistatud MCP kliendipäringuid.
 
 ### Funktsioonide testimine
 
-Et testida, kas kalkulaatori funktsioonid töötavad korrektselt:
+Selleks, et testida kalkulaatori funktsioonide õigsust:
 
 ```bash
 python test_calculator.py
@@ -38,19 +41,21 @@ python test_calculator.py
 
 ## Tõrkeotsing
 
-### Importimise vead
+### Impordivead
 
-Kui näete `ModuleNotFoundError: No module named 'mcp'`, paigaldage MCP Python SDK:
+Kui saad vea `ModuleNotFoundError: No module named 'mcp'`, paigalda MCP Python SDK:
 
 ```bash
-pip install mcp>=1.18.0
+pip install "mcp>=2.1.1,<3.0.0"
 ```
 
-### JSON-RPC vead otse käivitamisel
+### JSON-RPC vead otsekäivitamisel
 
-Sellised vead nagu "Invalid JSON: EOF while parsing a value" serveri otse käivitamisel on oodatud. Server vajab MCP kliendisõnumeid, mitte otsest terminalisisendit.
+Vead nagu "Invalid JSON: EOF while parsing a value" otsekäivitamisel on ootuspärased. Server vajab MCP kliendi sõnumeid, mitte otse terminali sisendit.
 
 ---
 
-**Lahtiütlus**:  
-See dokument on tõlgitud AI tõlketeenuse [Co-op Translator](https://github.com/Azure/co-op-translator) abil. Kuigi püüame tagada täpsust, palume arvestada, et automaatsed tõlked võivad sisaldada vigu või ebatäpsusi. Algne dokument selle algses keeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitame kasutada professionaalset inimtõlget. Me ei vastuta selle tõlke kasutamisest tulenevate arusaamatuste või valesti tõlgenduste eest.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Lahtiütlus**:
+See dokument on tõlgitud kasutades AI tõlketeenust [Co-op Translator](https://github.com/Azure/co-op-translator). Kuigi me püüdleme täpsuse poole, palun pange tähele, et automatiseeritud tõlgetes võib esineda vigu või ebatäpsusi. Originaaldokument selle emakeeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitatakse kasutada professionaalset inimtõlget. Me ei vastuta selle tõlkega seotud eksimustest või valesti mõistmistest.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

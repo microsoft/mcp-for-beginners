@@ -1,10 +1,13 @@
-# Seva ya MCP Calculator (Python)
+# MCP Calculator Server (Python)
 
-Utekelezaji rahisi wa seva ya Model Context Protocol (MCP) kwa Python inayotoa uwezo wa msingi wa kikokotoo.
 
-## Usakinishaji
 
-Sakinisha utegemezi unaohitajika:
+Utekelezaji rahisi wa seva ya Model Context Protocol (MCP) katika Python inayotoa utendaji wa sarafu ya msingi.
+
+
+## Usanidi
+
+Sakinisha tegemezi zinazohitajika:
 
 ```bash
 pip install -r requirements.txt
@@ -13,44 +16,46 @@ pip install -r requirements.txt
 Au sakinisha MCP Python SDK moja kwa moja:
 
 ```bash
-pip install mcp>=1.18.0
+pip install "mcp>=2.1.1,<3.0.0"
 ```
 
 ## Matumizi
 
-### Kuendesha Seva
+### Kukimbia Seva
 
-Seva imeundwa kutumiwa na wateja wa MCP (kama Claude Desktop). Ili kuanzisha seva:
+Seva imeundwa kutumika na wateja wa MCP (kama Claude Desktop). Ili kuanzisha seva:
 
 ```bash
 python mcp_calculator_server.py
 ```
 
-**Kumbuka**: Unapoendesha moja kwa moja kwenye terminal, utaona makosa ya uthibitishaji wa JSON-RPC. Hii ni tabia ya kawaida - seva inasubiri ujumbe wa mteja wa MCP ulio na muundo sahihi.
+**Kumbuka**: Ukikimbia moja kwa moja kwenye terminal, utaona makosa ya uthibitishaji ya JSON-RPC. Hii ni tabia ya kawaida - seva inasubiri ujumbe wa mteja wa MCP ulioandaliwa vizuri.
 
-### Kupima Kazi za Kikokotoo
+### Kujaribu Vikovu
 
-Ili kupima kwamba kazi za kikokotoo zinafanya kazi vizuri:
+Ili kujaribu kwamba vikovu vya sarafu vinafanya kazi vizuri:
 
 ```bash
 python test_calculator.py
 ```
 
-## Utatuzi wa Shida
+## Utatuzi wa Matatizo
 
-### Makosa ya Uagizaji
+### Makosa ya Kuagiza
 
 Ukiona `ModuleNotFoundError: No module named 'mcp'`, sakinisha MCP Python SDK:
 
 ```bash
-pip install mcp>=1.18.0
+pip install "mcp>=2.1.1,<3.0.0"
 ```
 
-### Makosa ya JSON-RPC Unapoendesha Moja kwa Moja
+### Makosa ya JSON-RPC Wakati wa Kukimbia Moja kwa Moja
 
-Makosa kama "Invalid JSON: EOF while parsing a value" unapoendesha seva moja kwa moja yanatarajiwa. Seva inahitaji ujumbe wa mteja wa MCP, si pembejeo ya moja kwa moja ya terminal.
+Makosa kama "Invalid JSON: EOF while parsing a value" wakati unakimbia seva moja kwa moja yanatarajiwa. Seva inahitaji ujumbe wa mteja MCP, si ingizo la moja kwa moja la terminal.
 
 ---
 
-**Kanusho**:  
-Hati hii imetafsiriwa kwa kutumia huduma ya kutafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kwa usahihi, tafadhali fahamu kuwa tafsiri za kiotomatiki zinaweza kuwa na makosa au kutokuwa sahihi. Hati ya asili katika lugha yake ya awali inapaswa kuzingatiwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu ya binadamu inapendekezwa. Hatutawajibika kwa kutoelewana au tafsiri zisizo sahihi zinazotokana na matumizi ya tafsiri hii.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Kionyozo**:
+Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kupata usahihi, tafadhali fahamu kwamba tafsiri za kiotomatiki zinaweza kuwa na makosa au upungufu wa usahihi. Hati ya asili katika lugha yake halisi inapaswa kuchukuliwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu inayofanywa na binadamu inapendekezwa. Hatutojibu kwa kuelewa vibaya au tafsiri potofu zinazotokea kutokana na matumizi ya tafsiri hii.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

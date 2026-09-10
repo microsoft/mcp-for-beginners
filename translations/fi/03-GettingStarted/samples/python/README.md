@@ -1,6 +1,9 @@
 # MCP-laskinpalvelin (Python)
 
-Yksinkertainen Model Context Protocol (MCP) -palvelimen toteutus Pythonilla, joka tarjoaa peruslaskinominaisuuksia.
+
+
+Yksinkertainen Model Context Protocol (MCP) -palvelimen toteutus Pythonilla, joka tarjoaa peruslaskin-toiminnallisuuden.
+
 
 ## Asennus
 
@@ -13,24 +16,24 @@ pip install -r requirements.txt
 Tai asenna MCP Python SDK suoraan:
 
 ```bash
-pip install mcp>=1.18.0
+pip install "mcp>=2.1.1,<3.0.0"
 ```
 
 ## Käyttö
 
 ### Palvelimen käynnistäminen
 
-Palvelin on suunniteltu MCP-asiakkaiden (kuten Claude Desktop) käytettäväksi. Käynnistä palvelin:
+Palvelin on suunniteltu käytettäväksi MCP-asiakkaiden (kuten Claude Desktop) toimesta. Käynnistääksesi palvelimen:
 
 ```bash
 python mcp_calculator_server.py
 ```
 
-**Huom**: Kun suoritat palvelimen suoraan terminaalissa, näet JSON-RPC-validointivirheitä. Tämä on normaalia - palvelin odottaa oikein muotoiltuja MCP-asiakasviestejä.
+**Huom:** Kun suoritat suoraan komentorivillä, näet JSON-RPC-validointivirheitä. Tämä on normaalia käytöstä – palvelin odottaa MCP-asiakasviestejä, jotka on muotoiltu oikein.
 
-### Toimintojen testaaminen
+### Funktioiden testaaminen
 
-Testataksesi, että laskin toimii oikein:
+Testataksesi, että laskinfunktiot toimivat oikein:
 
 ```bash
 python test_calculator.py
@@ -43,14 +46,16 @@ python test_calculator.py
 Jos näet `ModuleNotFoundError: No module named 'mcp'`, asenna MCP Python SDK:
 
 ```bash
-pip install mcp>=1.18.0
+pip install "mcp>=2.1.1,<3.0.0"
 ```
 
-### JSON-RPC-virheet suoraan suoritettaessa
+### JSON-RPC-virheet suoritettaessa suoraan
 
-Virheet, kuten "Invalid JSON: EOF while parsing a value", kun suoritat palvelimen suoraan, ovat odotettavissa. Palvelin tarvitsee MCP-asiakasviestejä, ei suoraa terminaalisyötettä.
+Virheet kuten "Invalid JSON: EOF while parsing a value" suoritettaessa palvelin suoraan ovat odotettavissa. Palvelin tarvitsee MCP-asiakasviestejä, ei suoraa komentorivisyöttöä.
 
 ---
 
-**Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattiset käännökset voivat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäisellä kielellä tulisi pitää ensisijaisena lähteenä. Tärkeissä tiedoissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä johtuvista väärinkäsityksistä tai virhetulkinnoista.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Vastuuvapauslauseke**:
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, otathan huomioon, että automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäiskielellä on virallinen lähde. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

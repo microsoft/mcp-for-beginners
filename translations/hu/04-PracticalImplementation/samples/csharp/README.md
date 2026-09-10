@@ -1,29 +1,29 @@
 # Minta
 
-Az előző példa bemutatja, hogyan használhatunk egy helyi .NET projektet a `stdio` típussal. És hogyan futtathatjuk a szervert helyben egy konténerben. Ez sok helyzetben jó megoldás. Ugyanakkor hasznos lehet, ha a szerver távolról, például egy felhő környezetben fut. Itt jön képbe a `http` típus.
+Az előző példa bemutatja, hogyan használjunk helyi .NET projektet a `stdio` típussal. És hogyan futtassuk a szervert helyileg egy konténerben. Ez sok helyzetben jó megoldás. Azonban hasznos lehet, ha a szerver távolról fut, például egy felhői környezetben. Itt jön képbe a `http` típus.
 
-Ha megnézzük a megoldást a `04-PracticalImplementation` mappában, az sokkal bonyolultabbnak tűnhet, mint az előző. De valójában nem az. Ha alaposan megnézed a `src/Calculator` projektet, látni fogod, hogy nagyjából ugyanaz a kód, mint az előző példában. Az egyetlen különbség, hogy egy másik könyvtárat, a `ModelContextProtocol.AspNetCore`-t használjuk az HTTP kérések kezelésére. És a `IsPrime` metódust priváttá tesszük, hogy megmutassuk, hogy lehetnek privát metódusok a kódban. A többi kód ugyanaz, mint korábban.
+Ha megnézzük a megoldást a `04-PracticalImplementation` mappában, sokkal összetettebbnek tűnhet, mint az előző. De valójában nem az. Ha alaposan megnézzük a `src/Calculator` projektet, azt látjuk, hogy főként ugyanaz a kód, mint az előző példában. Az egyetlen különbség, hogy egy másik könyvtárat, a `ModelContextProtocol.AspNetCore`-t használjuk az HTTP kérések kezelésére. És megváltoztatjuk az `IsPrime` metódust, hogy privát legyen, csak azért, hogy megmutassuk, lehetnek privát metódusok is a kódban. A többi kód ugyanaz, mint korábban.
 
-A többi projekt a [.NET Aspire](https://learn.microsoft.com/dotnet/aspire/get-started/aspire-overview) része. A .NET Aspire jelenléte a megoldásban javítja a fejlesztői élményt fejlesztés és tesztelés közben, valamint segít az observabilitásban. Nem kötelező a szerver futtatásához, de jó gyakorlat, ha benne van a megoldásban.
+A többi projekt az [Aspire](https://aspire.dev/get-started/what-is-aspire/)-től származik. Az Aspire jelenléte a megoldásban javítja a fejlesztői élményt fejlesztés és tesztelés közben, és segít az észlelésben. A szerver futtatásához nem kötelező, de jó gyakorlat, ha benne van a megoldásban.
 
-## Indítsd el a szervert helyben
+## Indítsd el a szervert helyileg
 
-1. VS Code-ból (a C# DevKit kiterjesztéssel) navigálj a `04-PracticalImplementation/samples/csharp` könyvtárba.
-1. Futtasd a következő parancsot a szerver indításához:
+1. A VS Code-ból (a C# DevKit bővítménnyel) navigálj a `04-PracticalImplementation/samples/csharp` könyvtárba.
+1. Futtasd a következő parancsot a szerver elindításához:
 
    ```bash
     dotnet watch run --project ./src/AppHost
    ```
 
-1. Amikor egy webböngésző megnyitja a .NET Aspire irányítópultot, jegyezd meg az `http` URL-t. Valami ilyesminek kell lennie: `http://localhost:5058/`.
+1. Amikor egy böngésző megnyitja az Aspire műszerfalat, jegyezd meg az `http` URL címet. Valami ilyesminek kell lennie: `http://localhost:5058/`.
 
-   ![.NET Aspire Dashboard](../../../../../translated_images/hu/dotnet-aspire-dashboard.0a7095710e9301e9.webp)
+   ![Aspire Dashboard](../../../../../translated_images/hu/dotnet-aspire-dashboard.0a7095710e9301e9.webp)
 
-## Streamable HTTP tesztelése az MCP Inspectorral
+## Teszteld a Streamable HTTP-t az MCP Inspectorral
 
-Ha Node.js 22.7.5 vagy újabb verziód van, használhatod az MCP Inspectort a szerver tesztelésére.
+Ha Node.js 22.7.5 vagy újabb van telepítve, használhatod az MCP Inspectort a szerver teszteléséhez.
 
-Indítsd el a szervert, majd futtasd a következő parancsot egy terminálban:
+Indítsd el a szervert, és futtasd a következő parancsot egy terminálban:
 
 ```bash
 npx @modelcontextprotocol/inspector http://localhost:5058
@@ -31,18 +31,18 @@ npx @modelcontextprotocol/inspector http://localhost:5058
 
 ![MCP Inspector](../../../../../translated_images/hu/mcp-inspector.c223422b9b494fb4.webp)
 
-- Válaszd ki a `Streamable HTTP`-t a Transport típusnál.
-- Az Url mezőbe írd be a korábban megjegyzett szerver URL-jét, és toldd meg `/mcp`-vel. Ez legyen `http` (nem `https`), például `http://localhost:5058/mcp`.
+- Válaszd ki a `Streamable HTTP` transport típust.
+- Az URL mezőbe írd be a korábban jegyzett szerver URL-jét, és told fel az `/mcp`-t. Az URL-nek `http`-nek kell lennie (nem `https`), valami hasonló: `http://localhost:5058/mcp`.
 - Kattints a Connect gombra.
 
-Az Inspector egyik előnye, hogy jól láthatóvá teszi, mi történik.
+Az Inspector jó abban, hogy jól láthatóvá teszi, mi történik.
 
-- Próbáld meg lekérdezni az elérhető eszközöket
-- Próbálj ki néhányat, működniük kell ugyanúgy, mint korábban.
+- Próbáld ki, hogy listázod a rendelkezésre álló eszközöket
+- Próbálj ki néhányat, ugyanúgy működnek, mint korábban.
 
-## MCP szerver tesztelése GitHub Copilot Chattel VS Code-ban
+## Teszteld az MCP szervert GitHub Copilot Chattel a VS Code-ban
 
-A Streamable HTTP használatához a GitHub Copilot Chattel módosítsd a korábban létrehozott `calc-mcp` szerver konfigurációját így:
+Ahhoz, hogy a Streamable HTTP transportot használd a GitHub Copilot Chattel, módosítsd a korábban létrehozott `calc-mcp` szerver konfigurációját a következőre:
 
 ```jsonc
 // .vscode/mcp.json
@@ -56,27 +56,27 @@ A Streamable HTTP használatához a GitHub Copilot Chattel módosítsd a korább
 }
 ```
 
-Végezz néhány tesztet:
+Csinálj néhány tesztet:
 
-- Kérdezd meg: „3 prímszám 6780 után”. Figyeld meg, hogy a Copilot az új `NextFivePrimeNumbers` eszközt használja, és csak az első 3 prímszámot adja vissza.
-- Kérdezd meg: „7 prímszám 111 után”, hogy lásd, mi történik.
-- Kérdezd meg: „Johnnak 24 nyalókája van, és mindet el akarja osztani a 3 gyereke között. Hány nyalókát kap egy gyerek?”, hogy lásd, mi történik.
+- Kérj "3 prímszámot 6780 után". Látni fogod, hogy a Copilot használni fogja az új `NextFivePrimeNumbers` eszközöket, és csak az első 3 prímszámot adja vissza.
+- Kérj "7 prímszámot 111 után", hogy lásd, mi történik.
+- Kérd, hogy "Johnnak 24 cukorkája van, és mindet szét akarja osztani a 3 gyereke között. Hány cukorkája lesz mindegyik gyereknek?", hogy lásd, mi történik.
 
-## Szerver telepítése Azure-ra
+## Telepítsd a szervert az Azure-ra
 
-Telepítsük a szervert Azure-ra, hogy többen használhassák.
+Telepítsük a szervert az Azure-ba, hogy többen használhassák.
 
-Egy terminálban navigálj a `04-PracticalImplementation/samples/csharp` mappába, és futtasd a következő parancsot:
+Egy terminálból navigálj a `04-PracticalImplementation/samples/csharp` mappába, és futtasd a következő parancsot:
 
 ```bash
 azd up
 ```
 
-A telepítés befejezése után ilyesmi üzenetet kell látnod:
+Amint a telepítés befejeződik, a következőhöz hasonló üzenetet kell látnod:
 
 ![Azd deployment success](../../../../../translated_images/hu/azd-deployment-success.bd42940493f1b834.webp)
 
-Másold ki az URL-t, és használd az MCP Inspectorban és a GitHub Copilot Chatben.
+Vedd fel az URL-t, és használd az MCP Inspectorban és a GitHub Copilot Chatben.
 
 ```jsonc
 // .vscode/mcp.json
@@ -92,7 +92,11 @@ Másold ki az URL-t, és használd az MCP Inspectorban és a GitHub Copilot Chat
 
 ## Mi következik?
 
-Különböző transport típusokat és tesztelő eszközöket próbáltunk ki. Telepítettük az MCP szervert Azure-ra is. De mi van akkor, ha a szervernek privát erőforrásokhoz kell hozzáférnie? Például egy adatbázishoz vagy egy privát API-hoz? A következő fejezetben megnézzük, hogyan javíthatjuk a szerver biztonságát.
+Kipróbáltunk különböző transport típusokat és tesztelő eszközöket. Telepítettük az MCP szervert az Azure-ra is. De mi van, ha a szervernek hozzá kell férnie privát erőforrásokhoz? Például adatbázishoz vagy privát API-hoz? A következő fejezetben megnézzük, hogyan javíthatjuk a szerverünk biztonságát.
 
-**Jogi nyilatkozat**:  
-Ez a dokumentum az AI fordító szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár a pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Fontos információk esetén professzionális emberi fordítást javaslunk. Nem vállalunk felelősséget a fordítás használatából eredő félreértésekért vagy téves értelmezésekért.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Jogi nyilatkozat**:
+Ez a dokumentum az AI fordítási szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár az pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Fontos információk esetén professzionális emberi fordítást javasolunk. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely ebből a fordításból ered.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,25 +1,25 @@
 # Calculator LLM Client
 
-Na Java app wey dey show how to use LangChain4j take connect to MCP (Model Context Protocol) calculator service through MiniMax OpenAI-compatible API.
+Java application wey dey show how to use LangChain4j to connect to MCP (Model Context Protocol) calculator service through MiniMax OpenAI-compatible API.
 
-## Wetin You Need First
+## Wetin You Need Before
 
 - Java 21 or pass am
-- Maven 3.6+ (or use di Maven wrapper wey dey)
+- Maven 3.6+ (or fit use di Maven wrapper wey dey inside)
 - MiniMax API key
-- MCP calculator service dey run for `http://localhost:8080`
+- MCP calculator service wey dey run for `http://localhost:8080`
 
-## How To Get API Key
+## How To Get di API Key
 
-Dis app dey use MiniMax OpenAI-compatible API. Follow dis steps to get your key and endpoint:
+Dis application dey use MiniMax OpenAI-compatible API. Follow dis steps to get your key and endpoint:
 
-### 1. Choose endpoint
+### 1. Pick endpoint
 1. Use `https://api.minimax.io/v1` for global endpoint
 2. Use `https://api.minimaxi.com/v1` for China endpoint
 
 ### 2. Create API key
 1. Create MiniMax API key from your MiniMax account
-2. Keep the key for safe place
+2. Keep your key for somewhere wey safe
 
 ### 3. Set Environment Variables
 
@@ -44,42 +44,42 @@ export OPENAI_BASE_URL=https://api.minimax.io/v1
 export MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
-## Setup and How To Install
+## How To Setup and Install
 
-1. **Clone or waka enter project directory**
+1. **Clone or go enter the project directory**
 
 2. **Install dependencies**:
    ```cmd
    mvnw clean install
    ```
-   Or if Maven dey installed globally:
+   Or if you get Maven globally installed:
    ```cmd
    mvn clean install
    ```
 
-3. **Set environment variables** (check "How To Get API Key" part wey dey top)
+3. **Set di environment variables** (check "How To Get di API Key" section above)
 
-4. **Start MCP Calculator Service**:
-   Make sure say chapter 1 MCP calculator service dey run for `http://localhost:8080/sse`. E suppose dey run before you start client.
+4. **Start di MCP Calculator Service**:
+   Make sure say di chapter 1 MCP calculator service dey run for `http://localhost:8080/sse`. E suppose dey run before you start the client.
 
-## How To Run Di App
+## How To Run di Application
 
 ```cmd
 mvnw clean package
 java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
 
-## Wetin Di App Dey Do
+## Wetin di Application Dey Do
 
-Di app dey show three main ways to interact with calculator service:
+Di application dey show three main ways to take interact with di calculator service:
 
-1. **Addition**: Calculate sum of 24.5 and 17.3
+1. **Addition**: Calculate the sum of 24.5 and 17.3
 2. **Square Root**: Calculate square root of 144
-3. **Help**: Show di calculator functions wey dey available
+3. **Help**: Show all di calculator functions wey dey available
 
-## Wetin You Go See As Output
+## Wetin You Go Expect as Output
 
-If e run well, you go see output wey be like:
+When e run well, you go see output wey resemble dis one:
 
 ```
 The sum of 24.5 and 17.3 is 41.8.
@@ -87,52 +87,52 @@ The square root of 144 is 12.
 The calculator service provides the following functions: add, subtract, multiply, divide, sqrt, power...
 ```
 
-## If Problem Show (Troubleshooting)
+## How To Solve Wahala
 
-### Common Wahala
+### Wahala wey dey happen often
 
-1. **"OPENAI_API_KEY environment variable never set"**
+1. **"OPENAI_API_KEY environment variable no set"**
    - Make sure say you don set `OPENAI_API_KEY` environment variable
    - Restart your terminal/command prompt after you set am
 
-2. **"Connection refuse to localhost:8080"**
-   - Check say MCP calculator service dey run for port 8080
-   - Check if another service dey use port 8080
+2. **"Connection refuse localhost:8080"**
+   - Confirm say MCP calculator service dey run for port 8080
+   - Check if another service no dey use port 8080
 
-3. **"Authentication fail"**
-   - Make sure say your API key correct
-   - Check say `OPENAI_BASE_URL` match the endpoint wey you wan use
+3. **"Authentication failed"**
+   - Confirm say your API key dey correct
+   - Check say `OPENAI_BASE_URL` match di endpoint wey you suppose use
 
 4. **Maven build errors**
-   - Make sure say you dey use Java 21 or pass: `java -version`
-   - Try clean build: `mvnw clean`
+   - Confirm say you dey use Java 21 or above: `java -version`
+   - Try clean di build: `mvnw clean`
 
 ### How To Debug
 
-To enable debug logging, add dis JVM argument when you dey run:
+To enable debug logging, add dis JVM argument wen you dey run am:
 ```cmd
 java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
 
 ## Configuration
 
-Di app configure to:
-- Use MiniMax-M3 by default, or MiniMax-M2.7 if `MINIMAX_MODEL_ID` dey set
-- Connect to `OPENAI_BASE_URL` if e set; else use `https://api.minimaxi.com/v1` if `MINIMAX_REGION=cn_zh`, or `https://api.minimax.io/v1` by default
+Di application don set to:
+- Use MiniMax-M3 as default; fit set `MINIMAX_MODEL_ID` to choose either `MiniMax-M3` or `MiniMax-M2.7`
+- Connect to `OPENAI_BASE_URL` if e set; otherwise use `https://api.minimaxi.com/v1` if `MINIMAX_REGION=cn_zh`, or `https://api.minimax.io/v1` as default
 - Connect to MCP service for `http://localhost:8080/sse`
 - Use 60 seconds timeout for requests
 
 ## Dependencies
 
-Main dependencies wey dis project dey use:
+Important dependencies wey this project dey use:
 - **LangChain4j**: For AI integration and tool management
 - **LangChain4j MCP**: For Model Context Protocol support
 - **LangChain4j OpenAI official**: For MiniMax OpenAI-compatible API integration
-- **Spring Boot**: For application framework and dependency injection
+- **Spring Boot**: For app framework and dependency injection
 
 ## License
 
-Dis project get Apache License 2.0 - check [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) file for details.
+Dis project get license under Apache License 2.0 - see di [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) file for more details.
 
 ---
 

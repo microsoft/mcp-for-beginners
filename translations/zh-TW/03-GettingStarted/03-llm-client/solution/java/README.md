@@ -1,27 +1,27 @@
-# 計算器 LLM 客戶端
+# 計算器 LLM 用戶端
 
-一個 Java 應用程式，演示如何使用 LangChain4j 通過 MiniMax 相容 OpenAI API 連接至 MCP（模型上下文協議）計算器服務。
+一個展示如何使用 LangChain4j 通過 MiniMax OpenAI 相容 API 連接 MCP（模型上下文協議）計算器服務的 Java 應用程式。
 
-## 預備條件
+## 前置條件
 
 - Java 21 或以上版本
-- Maven 3.6+（或使用包含的 Maven 包裝器）
-- MiniMax API 金鑰
-- 在 `http://localhost:8080` 運行的 MCP 計算器服務
+- Maven 3.6+（或使用附帶的 Maven 包裝器）
+- 一個 MiniMax API 金鑰
+- 一個在 `http://localhost:8080` 運行的 MCP 計算器服務
 
 ## 取得 API 金鑰
 
-本應用使用 MiniMax 相容 OpenAI API。請按照以下步驟取得您的金鑰和端點：
+此應用程式使用 MiniMax OpenAI 相容 API。請依照以下步驟取得您的金鑰和端點：
 
 ### 1. 選擇端點
-1. 使用 `https://api.minimax.io/v1` 作為全球端點
-2. 使用 `https://api.minimaxi.com/v1` 作為中國端點
+1. 全球端點使用 `https://api.minimax.io/v1`
+2. 中國端點使用 `https://api.minimaxi.com/v1`
 
-### 2. 建立 API 金鑰
-1. 從您的 MiniMax 帳號建立 MiniMax API 金鑰
-2. 將金鑰妥善保管
+### 2. 創建 API 金鑰
+1. 從您的 MiniMax 帳號創建一個 MiniMax API 金鑰
+2. 將金鑰妥善保存
 
-### 3. 設定環境變數
+### 3. 設置環境變數
 
 #### 在 Windows（命令提示字元）：
 ```cmd
@@ -44,42 +44,42 @@ export OPENAI_BASE_URL=https://api.minimax.io/v1
 export MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
-## 安裝與設定
+## 設定與安裝
 
-1. <strong>克隆或進入專案目錄</strong>
+1. <strong>複製或進入專案目錄</strong>
 
-2. <strong>安裝依賴</strong>：
+2. <strong>安裝相依套件</strong>：
    ```cmd
    mvnw clean install
    ```
-   或者您已全域安裝 Maven：
+   或者如果您已全域安裝 Maven：
    ```cmd
    mvn clean install
    ```
 
-3. <strong>設定環境變數</strong>（請參閱上述「取得 API 金鑰」章節）
+3. <strong>設定環境變數</strong>（參見上方「取得 API 金鑰」章節）
 
 4. **啟動 MCP 計算器服務**：
-   確保您已經在 `http://localhost:8080/sse` 運行第一章的 MCP 計算器服務。在啟動客戶端前需先啟動此服務。
+   確保您已啟動第一章的 MCP 計算器服務，並運行在 `http://localhost:8080/sse`。必須先啟動該服務，然後再啟動用戶端。
 
-## 執行應用
+## 執行應用程式
 
 ```cmd
 mvnw clean package
 java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
 
-## 應用功能介紹
+## 應用程式功能說明
 
-本應用展示了與計算器服務的三種主要互動：
+該應用程式示範了與計算器服務的三種主要互動：
 
 1. <strong>加法</strong>：計算 24.5 與 17.3 的和
 2. <strong>平方根</strong>：計算 144 的平方根
-3. <strong>幫助</strong>：顯示可用的計算器函數
+3. <strong>說明</strong>：顯示可用的計算器功能
 
 ## 預期輸出
 
-執行成功時，您應該會看到類似以下的輸出：
+成功執行時，您應該會看到類似如下的輸出：
 
 ```
 The sum of 24.5 and 17.3 is 41.8.
@@ -87,25 +87,25 @@ The square root of 144 is 12.
 The calculator service provides the following functions: add, subtract, multiply, divide, sqrt, power...
 ```
 
-## 疑難排解
+## 問題排解
 
 ### 常見問題
 
-1. **「OPENAI_API_KEY 環境變數未設定」**
+1. **「OPENAI_API_KEY 環境變數尚未設定」**
    - 確認您已設定 `OPENAI_API_KEY` 環境變數
-   - 設定環境變數後重新啟動終端機/命令提示字元
+   - 設定完變數後重新啟動您的終端機/命令提示字元
 
-2. **「連線被拒絕 localhost:8080」**
-   - 確認 MCP 計算器服務是否正在 8080 埠上執行
-   - 檢查是否有其他服務佔用 8080 埠
+2. **「連接 localhost:8080 被拒絕」**
+   - 確保 MCP 計算器服務正在 8080 埠口運行
+   - 檢查是否有其他服務佔用了 8080 埠口
 
 3. **「認證失敗」**
    - 驗證您的 API 金鑰是否有效
-   - 檢查 `OPENAI_BASE_URL` 是否與您預期端點相符
+   - 檢查 `OPENAI_BASE_URL` 是否與您預期使用的端點相符
 
-4. **Maven 編譯錯誤**
-   - 確認您使用的是 Java 21 或更高版本：`java -version`
-   - 試著清理編譯：`mvnw clean`
+4. **Maven 建置錯誤**
+   - 確認您使用的是 Java 21 或以上版本：`java -version`
+   - 嘗試清除建置：`mvnw clean`
 
 ### 除錯
 
@@ -116,23 +116,23 @@ java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0
 
 ## 配置
 
-本應用設定為：
-- 預設使用 MiniMax-M3，當設定 `MINIMAX_MODEL_ID` 時使用 MiniMax-M2.7
-- 連接至設定的 `OPENAI_BASE_URL`；若未設定，則根據 `MINIMAX_REGION=cn_zh` 使用 `https://api.minimaxi.com/v1`，預設使用 `https://api.minimax.io/v1`
-- 連接至 MCP 服務位址 `http://localhost:8080/sse`
-- 請求使用 60 秒逾時
+此應用程式配置為：
+- 預設使用 MiniMax-M3；可透過設定 `MINIMAX_MODEL_ID` 選擇 `MiniMax-M3` 或 `MiniMax-M2.7`
+- 設定時連接 `OPENAI_BASE_URL`；若未設定，當 `MINIMAX_REGION=cn_zh` 使用 `https://api.minimaxi.com/v1`，否則預設使用 `https://api.minimax.io/v1`
+- 連接 MCP 服務於 `http://localhost:8080/sse`
+- 請求超時時間設為 60 秒
 
-## 依賴項
+## 相依套件
 
-本專案使用的主要依賴：
+專案中使用的主要相依套件：
 - **LangChain4j**：用於 AI 整合與工具管理
 - **LangChain4j MCP**：用於模型上下文協議支援
-- **LangChain4j OpenAI official**：用於 MiniMax 相容 OpenAI API 整合
-- **Spring Boot**：用於應用框架和依賴注入
+- **LangChain4j OpenAI 官方**：用於 MiniMax OpenAI 相容 API 整合
+- **Spring Boot**：用於應用框架與相依注入
 
 ## 授權條款
 
-本專案採用 Apache License 2.0 授權 - 詳情請參閱 [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) 文件。
+本專案採用 Apache License 2.0 授權 - 詳情請參閱 [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) 檔案。
 
 ---
 

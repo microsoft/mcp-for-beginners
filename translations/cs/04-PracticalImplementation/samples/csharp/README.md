@@ -1,10 +1,10 @@
-# Ukázka
+# Příklad
 
-Předchozí příklad ukazuje, jak používat lokální .NET projekt s typem `stdio`. A jak spustit server lokálně v kontejneru. To je v mnoha situacích dobré řešení. Nicméně může být užitečné mít server běžící vzdáleně, například v cloudovém prostředí. Právě zde přichází na řadu typ `http`.
+Předchozí příklad ukazuje, jak používat lokální .NET projekt s typem `stdio`. A jak spustit server lokálně v kontejneru. To je v mnoha situacích dobré řešení. Nicméně může být užitečné mít server spuštěný vzdáleně, například v cloudovém prostředí. Zde přichází na řadu typ `http`.
 
-Když se podíváte na řešení ve složce `04-PracticalImplementation`, může se zdát mnohem složitější než předchozí. Ve skutečnosti tomu tak ale není. Pokud se podíváte blíže na projekt `src/Calculator`, uvidíte, že je to většinou stejný kód jako v předchozím příkladu. Jediný rozdíl je, že používáme jinou knihovnu `ModelContextProtocol.AspNetCore` pro zpracování HTTP požadavků. A metodu `IsPrime` změníme na privátní, jen abychom ukázali, že ve svém kódu můžete mít privátní metody. Zbytek kódu zůstává stejný jako dříve.
+Pohled na řešení ve složce `04-PracticalImplementation` může vypadat mnohem složitěji než předchozí. Ale ve skutečnosti tomu tak není. Pokud se podíváte pozorně na projekt `src/Calculator`, uvidíte, že je to většinou stejný kód jako v předchozím příkladu. Jediný rozdíl je, že používáme jinou knihovnu `ModelContextProtocol.AspNetCore` pro zpracování HTTP požadavků. A změníme metodu `IsPrime`, aby byla privátní, jen abychom ukázali, že můžete mít v kódu privátní metody. Zbytek kódu zůstává stejný jako dříve.
 
-Ostatní projekty pocházejí z [.NET Aspire](https://learn.microsoft.com/dotnet/aspire/get-started/aspire-overview). Mít .NET Aspire v řešení zlepší vývojářský zážitek při vývoji a testování a pomůže s observabilitou. Není to nutné pro spuštění serveru, ale je to dobrá praxe mít to ve svém řešení.
+Ostatní projekty jsou od [Aspire](https://aspire.dev/get-started/what-is-aspire/). Mít Aspire v řešení zlepší zkušenost vývojáře při vývoji a testování a pomůže s observabilitou. Není to nutné k běhu serveru, ale je to dobrá praxe mít to ve svém řešení.
 
 ## Spuštění serveru lokálně
 
@@ -15,13 +15,13 @@ Ostatní projekty pocházejí z [.NET Aspire](https://learn.microsoft.com/dotnet
     dotnet watch run --project ./src/AppHost
    ```
 
-1. Když se v prohlížeči otevře dashboard .NET Aspire, všimněte si URL s protokolem `http`. Mělo by to být něco jako `http://localhost:5058/`.
+1. Když webový prohlížeč otevře Aspire dashboard, všimněte si URL `http`. Mělo by to být něco jako `http://localhost:5058/`.
 
-   ![.NET Aspire Dashboard](../../../../../translated_images/cs/dotnet-aspire-dashboard.0a7095710e9301e9.webp)
+   ![Aspire Dashboard](../../../../../translated_images/cs/dotnet-aspire-dashboard.0a7095710e9301e9.webp)
 
-## Testování Streamable HTTP pomocí MCP Inspectoru
+## Testování Streamable HTTP pomocí MCP Inspektoru
 
-Pokud máte Node.js verze 22.7.5 a vyšší, můžete použít MCP Inspector k otestování vašeho serveru.
+Pokud máte Node.js verze 22.7.5 a vyšší, můžete použít MCP Inspektor k testování vašeho serveru.
 
 Spusťte server a v terminálu spusťte následující příkaz:
 
@@ -31,18 +31,18 @@ npx @modelcontextprotocol/inspector http://localhost:5058
 
 ![MCP Inspector](../../../../../translated_images/cs/mcp-inspector.c223422b9b494fb4.webp)
 
-- Vyberte `Streamable HTTP` jako typ transportu.
-- Do pole Url zadejte URL serveru, které jste si poznamenali, a přidejte `/mcp`. Mělo by to být `http` (nikoli `https`), například `http://localhost:5058/mcp`.
-- Klikněte na tlačítko Connect.
+- Vyberte `Streamable HTTP` jako typ přenosu.
+- Do pole Url zadejte URL serveru, které jste zaznamenali dříve, a přidejte `/mcp`. Mělo by to být `http` (nikoli `https`), něco jako `http://localhost:5058/mcp`.
+- klikněte na tlačítko Connect.
 
-Výhodou Inspectoru je, že poskytuje přehled o tom, co se děje.
+Pěkné na Inspektoru je, že poskytuje dobrou přehlednost o tom, co se děje.
 
 - Zkuste vypsat dostupné nástroje
-- Vyzkoušejte některé z nich, měly by fungovat stejně jako dříve.
+- Vyzkoušejte některé z nich, mělo by to fungovat stejně jako dříve.
 
-## Testování MCP serveru s GitHub Copilot Chat ve VS Code
+## Test MCP serveru s GitHub Copilot Chat ve VS Code
 
-Pro použití transportu Streamable HTTP s GitHub Copilot Chat změňte konfiguraci serveru `calc-mcp`, který jste vytvořili dříve, takto:
+Pro použití přenosu Streamable HTTP s GitHub Copilot Chat změňte konfiguraci dříve vytvořeného serveru `calc-mcp` takto:
 
 ```jsonc
 // .vscode/mcp.json
@@ -56,15 +56,15 @@ Pro použití transportu Streamable HTTP s GitHub Copilot Chat změňte konfigur
 }
 ```
 
-Proveďte několik testů:
+Proveďte nějaké testy:
 
-- Zeptejte se na „3 prvočísla po 6780“. Všimněte si, že Copilot použije nové nástroje `NextFivePrimeNumbers` a vrátí pouze první 3 prvočísla.
+- Zeptejte se na „3 prvočísla po 6780“. Všimněte si, že Copilot použije nové nástroje `NextFivePrimeNumbers` a vrátí pouze prvních 3 prvočísel.
 - Zeptejte se na „7 prvočísel po 111“, abyste viděli, co se stane.
-- Zeptejte se na „John má 24 lízátek a chce je rozdělit mezi své 3 děti. Kolik lízátek dostane každé dítě?“, abyste viděli, co se stane.
+- Zeptejte se na „John má 24 lízátek a chce je rozdělit mezi své 3 děti. Kolik lízátek má každé dítě?“, abyste viděli, co se stane.
 
-## Nasazení serveru do Azure
+## Nasazení serveru na Azure
 
-Pojďme nasadit server do Azure, aby ho mohlo používat více lidí.
+Pojďme nasadit server na Azure, aby ho mohlo používat více lidí.
 
 V terminálu přejděte do složky `04-PracticalImplementation/samples/csharp` a spusťte následující příkaz:
 
@@ -72,11 +72,11 @@ V terminálu přejděte do složky `04-PracticalImplementation/samples/csharp` a
 azd up
 ```
 
-Po dokončení nasazení byste měli vidět zprávu podobnou této:
+Po dokončení nasazení byste měli vidět zprávu jako tato:
 
 ![Azd deployment success](../../../../../translated_images/cs/azd-deployment-success.bd42940493f1b834.webp)
 
-Zkopírujte URL a použijte ji v MCP Inspectoru i v GitHub Copilot Chat.
+Zkopírujte URL a použijte ji v MCP Inspektoru a v GitHub Copilot Chatu.
 
 ```jsonc
 // .vscode/mcp.json
@@ -92,7 +92,11 @@ Zkopírujte URL a použijte ji v MCP Inspectoru i v GitHub Copilot Chat.
 
 ## Co dál?
 
-Vyzkoušeli jsme různé typy transportů a testovací nástroje. Také jsme nasadili váš MCP server do Azure. Ale co když náš server potřebuje přístup k privátním zdrojům? Například k databázi nebo soukromému API? V další kapitole uvidíme, jak můžeme zlepšit zabezpečení našeho serveru.
+Vyzkoušeli jsme různé typy přenosů a testovací nástroje. Také nasadili váš MCP server na Azure. Ale co když náš server potřebuje přístup k soukromým zdrojům? Například databázi nebo soukromé API? V další kapitole uvidíme, jak můžeme zlepšit bezpečnost našeho serveru.
 
-**Prohlášení o vyloučení odpovědnosti**:  
-Tento dokument byl přeložen pomocí AI překladatelské služby [Co-op Translator](https://github.com/Azure/co-op-translator). I když usilujeme o přesnost, mějte prosím na paměti, že automatizované překlady mohou obsahovat chyby nebo nepřesnosti. Původní dokument v jeho mateřském jazyce by měl být považován za autoritativní zdroj. Pro důležité informace se doporučuje profesionální lidský překlad. Nejsme odpovědní za jakékoliv nedorozumění nebo nesprávné výklady vyplývající z použití tohoto překladu.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Prohlášení o omezení odpovědnosti**:
+Tento dokument byl přeložen pomocí AI překladatelské služby [Co-op Translator](https://github.com/Azure/co-op-translator). Přestože usilujeme o co největší přesnost, mějte prosím na paměti, že automatizované překlady mohou obsahovat chyby nebo nepřesnosti. Originální dokument v jeho mateřském jazyce by měl být považován za autoritativní zdroj. Pro kritické informace se doporučuje profesionální lidský překlad. Nejsme odpovědní za jakékoli nedorozumění nebo nesprávné interpretace vzniklé použitím tohoto překladu.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

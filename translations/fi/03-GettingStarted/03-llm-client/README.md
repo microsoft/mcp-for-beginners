@@ -1,52 +1,52 @@
-# Asiakkaan luominen LLM:llä
+# Asiakas LLM:n kanssa
 
-Tähän asti olet nähnyt, miten luodaan palvelin ja asiakas. Asiakas on voinut kutsua palvelinta eksplisiittisesti listatakseen sen työkalut, resurssit ja kehotteet. Tämä ei kuitenkaan ole kovin käytännöllinen lähestymistapa. Käyttäjäsi elävät agenttimaisessa aikakaudessa ja odottavat käyttävänsä kehotteita ja kommunikoivansa LLM:n kanssa sen sijaan. Heitä ei kiinnosta, käytätkö MCP:tä mahdollisuuksiesi tallentamiseen; he odottavat yksinkertaisesti vuorovaikuttavansa luonnollisella kielellä. Miten ratkaistaan tämä? Ratkaisu on lisätä LLM asiakkaaseen.
+Tähän asti olet nähnyt, miten palvelin ja asiakas luodaan. Asiakas on voinut kutsua palvelinta erikseen listatakseen sen työkalut, resurssit ja kehotteet. Tämä ei kuitenkaan ole kovin käytännöllinen lähestymistapa. Käyttäjäsi elävät agenttisella aikakaudella ja odottavat käyttävänsä kehotteita ja kommunikoivansa LLM:n kanssa sen sijaan. Heitä ei kiinnosta, käytätkö MCP:tä kykyjen tallentamiseen; he vain odottavat vuorovaikuttavansa luonnollisella kielellä. Miten siis ratkaistaan tämä? Ratkaisu on lisätä LLM asiakkaaseen.
 
 ## Yleiskatsaus
 
-Tässä oppitunnissa keskitymme lisäämään LLM:n asiakkaaseesi ja näytämme, miten tämä tarjoaa paljon paremman käyttökokemuksen käyttäjälle.
+Tässä oppitunnissa keskitymme lisäämään LLM:n asiakkaaseen ja näytämme, miten tämä tarjoaa paljon paremman käyttökokemuksen käyttäjälle.
 
 ## Oppimistavoitteet
 
-Tämän oppitunnin lopuksi osaat:
+Tämän oppitunnin lopussa osaat:
 
 - Luoda asiakkaan, jossa on LLM.
-- Vuorovaikuttaa saumattomasti MCP-palvelimen kanssa käyttäen LLM:ää.
-- Tarjota parempaa loppukäyttäjän käyttökokemusta asiakkaan puolella.
+- Vuorovaikuttaa saumattomasti MCP-palvelimen kanssa LLM:n avulla.
+- Tarjota parempi loppukäyttäjäkokemus asiakaspäässä.
 
 ## Lähestymistapa
 
-Yritetään ymmärtää, mitä lähestymistapaa meidän tulee käyttää. LLM:n lisääminen kuulostaa yksinkertaiselta, mutta toteutammeko sen oikeasti?
+Yritetään ymmärtää tarvittava lähestymistapa. LLM:n lisääminen kuulostaa yksinkertaiselta, mutta tehdäkö se tosiasiassa?
 
-Tässä, miten asiakas vuorovaikuttaa palvelimen kanssa:
+Näin asiakas vuorovaikuttaa palvelimen kanssa:
 
-1. Yhdistä palvelimeen.
+1. Luo yhteys palvelimeen.
 
-1. Listaa ominaisuudet, kehotteet, resurssit ja työkalut ja tallenna niiden skeema.
+1. Listaa kyvyt, kehotteet, resurssit ja työkalut, ja tallenna niiden skeemat.
 
-1. Lisää LLM ja anna tallennetut ominaisuudet ja niiden skeema muodossa, jonka LLM ymmärtää.
+1. Lisää LLM ja syötä tallennetut kyvyt ja niiden skeemat muodossa, jonka LLM ymmärtää.
 
-1. Käsittele käyttäjän kehotteita välittämällä ne LLM:lle yhdessä asiakkaan listaamien työkalujen kanssa.
+1. Käsittele käyttäjän kehotetta välittämällä se LLM:lle yhdessä asiakkaan listaamien työkalujen kanssa.
 
-Hienoa, nyt kun ymmärrämme tämän korkean tason prosessin, kokeillaan se käytännössä alla olevassa harjoituksessa.
+Hienoa, nyt ymmärrämme miten tämä toimii yleisellä tasolla, kokeillaan tätä seuraavassa harjoituksessa.
 
-## Harjoitus: Asiakkaan luominen LLM:llä
+## Harjoitus: Asiakkaan luominen LLM:n kanssa
 
 Tässä harjoituksessa opimme lisäämään LLM:n asiakkaaseemme.
 
-### Todennus GitHubin henkilökohtaisella pääsytunnuksella
+### Autentikointi GitHub Personal Access Tokenilla
 
-GitHub-tunnuksen luominen on suoraviivainen prosessi. Näin teet sen:
+GitHub-tokenin luominen on suoraviivainen prosessi. Näin se tehdään:
 
-- Mene GitHubin asetuksiin – Klikkaa profiilikuvakettasi oikeassa yläkulmassa ja valitse Settings.
-- Siirry kehittäjäasetuksiin – Selaa alas ja klikkaa Developer Settings.
+- Siirry GitHubin asetuksiin – Klikkaa profiilikuvakettasi oikeassa yläkulmassa ja valitse Asetukset.
+- Siirry kehittäjäasetuksiin – Vieritä alas ja klikkaa Developer Settings.
 - Valitse Personal Access Tokens – Klikkaa Fine-grained tokens ja sitten Generate new token.
-- Määritä tunnuksesi – Lisää muistiinpano, aseta vanhentumispäivä ja valitse tarvittavat oikeudet. Tässä tapauksessa varmista, että Models-oikeus on mukana.
-- Luo ja kopioi tunnus – Klikkaa Generate token ja kopioi se heti, koska et näe sitä uudelleen.
+- Määritä tokenisi – Lisää muistiinpano, aseta vanhentumispäivä ja valitse tarvittavat oikeudet (scopet). Tässä tapauksessa varmista, että lisäät Models-oikeuden.
+- Luo ja kopioi token – Klikkaa Generate token, ja muista kopioida se välittömästi, et voi nähdä sitä uudelleen.
 
 ### -1- Yhdistä palvelimeen
 
-Luodaan ensin asiakkaamme:
+Luodaan ensin asiakas:
 
 #### TypeScript
 
@@ -55,7 +55,7 @@ import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 import { Transport } from "@modelcontextprotocol/sdk/shared/transport.js";
 import OpenAI from "openai";
-import { z } from "zod"; // Tuo zod skeeman validointia varten
+import { z } from "zod"; // Tuo zod skeemavarmistusta varten
 
 class MCPClient {
     private openai: OpenAI;
@@ -86,8 +86,8 @@ class MCPClient {
 Edellisessä koodissa olemme:
 
 - Tuoneet tarvittavat kirjastot
-- Luoneet luokan, jolla on kaksi jäsentä, `client` ja `openai`, jotka auttavat hallitsemaan asiakasta ja vuorovaikuttamaan LLM:n kanssa.
-- Konfiguroineet LLM-instanssimme käyttämään GitHub-malleja asettamalla `baseUrl` osoittamaan inference API:iin.
+- Luoneet luokan, jolla on kaksi jäsentä, `client` ja `openai`, jotka auttavat meitä hallitsemaan asiakasta ja vuorovaikuttamaan LLM:n kanssa erikseen.
+- Konfiguroineet LLM-instanssimme käyttämään GitHub Modelsia asettamalla `baseUrl` osoittamaan inference API:iin.
 
 #### Python
 
@@ -95,10 +95,10 @@ Edellisessä koodissa olemme:
 from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
 
-# Luo palvelinparametrit stdio-yhteydelle
+# Luo palvelimen parametrit stdio-yhteydelle
 server_params = StdioServerParameters(
     command="mcp",  # Suoritettava tiedosto
-    args=["run", "server.py"],  # Valinnaiset komentoriviparametrit
+    args=["run", "server.py"],  # Valinnaiset komentorivin argumentit
     env=None,  # Valinnaiset ympäristömuuttujat
 )
 
@@ -121,7 +121,7 @@ if __name__ == "__main__":
 
 Edellisessä koodissa olemme:
 
-- Tuoneet MCP-kirjaston tarvitsemat kirjastot
+- Tuoneet MCP:n tarvitsemat kirjastot
 - Luoneet asiakkaan
 
 #### .NET
@@ -146,7 +146,7 @@ await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 
 #### Java
 
-Ensiksi sinun tulee lisätä LangChain4j-riippuvuudet `pom.xml`-tiedostoosi. Lisää nämä riippuvuudet mahdollistamaan MCP-integraation ja GitHub-mallien tuen:
+Ensin sinun tulee lisätä LangChain4j-riippuvuudet `pom.xml`-tiedostoosi. Lisää nämä riippuvuudet MCP-integraation ja OpenAI-yhteensopivan MiniMax API:n käyttöä varten:
 
 ```xml
 <properties>
@@ -168,19 +168,29 @@ Ensiksi sinun tulee lisätä LangChain4j-riippuvuudet `pom.xml`-tiedostoosi. Lis
         <version>${langchain4j.version}</version>
     </dependency>
     
-    <!-- GitHub Models Support -->
-    <dependency>
-        <groupId>dev.langchain4j</groupId>
-        <artifactId>langchain4j-github-models</artifactId>
-        <version>${langchain4j.version}</version>
-    </dependency>
-    
     <!-- Spring Boot Starter (optional, for production apps) -->
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
 </dependencies>
+```
+
+Aseta MiniMax API -avaimesi ja tarvittaessa myös päätepiste ja malli.
+`MINIMAX_MODEL_ID` tukee `MiniMax-M3` ja `MiniMax-M2.7`. Jos
+`OPENAI_BASE_URL` ei ole asetettu, `MINIMAX_REGION` tukee `global_en` ja `cn_zh`.
+
+```bash
+export OPENAI_API_KEY=your_minimax_api_key_here
+export OPENAI_BASE_URL=https://api.minimax.io/v1
+export MINIMAX_MODEL_ID=MiniMax-M3
+```
+
+Päätepisteen valitsemiseksi alueen mukaan jätä pois `OPENAI_BASE_URL`:
+
+```bash
+unset OPENAI_BASE_URL
+export MINIMAX_REGION=cn_zh
 ```
 
 Luo sitten Java-asiakasluokkasi:
@@ -198,18 +208,28 @@ import dev.langchain4j.service.tool.ToolProvider;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class LangChain4jClient {
-    
-    public static void main(String[] args) throws Exception {        // Määritä LLM käyttämään GitHub-malleja
+
+    private static final String DEFAULT_BASE_URL = "https://api.minimax.io/v1";
+    private static final String DEFAULT_MODEL_ID = "MiniMax-M3";
+    private static final Map<String, String> REGIONAL_BASE_URLS = Map.of(
+            "global_en", "https://api.minimax.io/v1",
+            "cn_zh", "https://api.minimaxi.com/v1");
+    private static final Set<String> SUPPORTED_MODEL_IDS = Set.of("MiniMax-M3", "MiniMax-M2.7");
+
+    public static void main(String[] args) throws Exception {
         ChatLanguageModel model = OpenAiOfficialChatModel.builder()
-                .isGitHubModels(true)
-                .apiKey(System.getenv("GITHUB_TOKEN"))
+                .baseUrl(resolveBaseUrl())
+                .apiKey(requireEnv("OPENAI_API_KEY"))
                 .timeout(Duration.ofSeconds(60))
-                .modelName("gpt-4.1-nano")
+                .modelName(resolveModelName())
                 .build();
 
-        // Luo MCP-yhteys palvelimeen yhdistämistä varten
+        // Luo MCP-siirto yhteyden muodostamiseksi palvelimeen
         McpTransport transport = new HttpMcpTransport.Builder()
                 .sseUrl("http://localhost:8080/sse")
                 .timeout(Duration.ofSeconds(60))
@@ -222,23 +242,62 @@ public class LangChain4jClient {
                 .transport(transport)
                 .build();
     }
+
+    private static String resolveBaseUrl() {
+        String baseUrl = System.getenv("OPENAI_BASE_URL");
+        if (baseUrl != null && !baseUrl.isBlank()) {
+            return baseUrl;
+        }
+
+        String region = System.getenv("MINIMAX_REGION");
+        if (region == null || region.isBlank()) {
+            return DEFAULT_BASE_URL;
+        }
+
+        String regionalBaseUrl = REGIONAL_BASE_URLS.get(region);
+        if (regionalBaseUrl == null) {
+            throw new IllegalArgumentException("Unsupported MINIMAX_REGION value: " + region
+                    + ". Supported values: " + new TreeSet<>(REGIONAL_BASE_URLS.keySet()));
+        }
+        return regionalBaseUrl;
+    }
+
+    private static String resolveModelName() {
+        String modelId = System.getenv("MINIMAX_MODEL_ID");
+        if (modelId == null || modelId.isBlank()) {
+            return DEFAULT_MODEL_ID;
+        }
+        if (!SUPPORTED_MODEL_IDS.contains(modelId)) {
+            throw new IllegalArgumentException("Unsupported MINIMAX_MODEL_ID value: " + modelId
+                    + ". Supported values: " + new TreeSet<>(SUPPORTED_MODEL_IDS));
+        }
+        return modelId;
+    }
+
+    private static String requireEnv(String name) {
+        String value = System.getenv(name);
+        if (value == null || value.isBlank()) {
+            throw new IllegalStateException(name + " environment variable is not set");
+        }
+        return value;
+    }
 }
 ```
 
 Edellisessä koodissa olemme:
 
-- **Lisänneet LangChain4j-riippuvuudet**: MCP-integraatiota, OpenAI:n virallista asiakasta ja GitHub-mallien tukea varten
-- **Tuoneet LangChain4j-kirjastot**: MCP-integraatiota ja OpenAI-chat-mallin toiminnallisuutta varten
-- **Luoneet `ChatLanguageModel`-olion**: Konfiguroitu käyttämään GitHub-malleja GitHub-tunnuksellasi
-- **Määrittäneet HTTP-siirron**: Käyttämällä Server-Sent Events (SSE) MCP-palvelimeen yhdistämiseen
-- **Luoneet MCP-asiakkaan**: Joka hoitaa kommunikoinnin palvelimen kanssa
-- **Käyttäneet LangChain4j:n sisäänrakennettua MCP-tukea**: Joka yksinkertaistaa LLM:n ja MCP-palvelimen integraatiota
+- **Lisänneet LangChain4j-riippuvuudet**: Tarvitaan MCP-integraatioon ja OpenAI-yhteensopivan MiniMax API:n käyttöön
+- **Tuoneet LangChain4j-kirjastot**: MCP-integraatiota ja OpenAI-chat-mallin toimintoa varten
+- **Luoneet `ChatLanguageModel`-instanssin**: Konfiguroitu käyttämään MiniMaxia MiniMax API-avaimella, päätepisteellä ja tuetuilla mallin tunnuksilla
+- **Asetettu HTTP-siirto**: Käyttäen Server-Sent Events (SSE) -tekniikkaa MCP-palvelimeen yhdistämiseen
+- **Luotu MCP-asiakas**: Joka käsittelee kommunikoinnin palvelimen kanssa
+- **Käytetty LangChain4jn sisäänrakennettua MCP-tukea**: Joka yksinkertaistaa LLM:ien ja MCP-palvelinten välistä integraatiota
 
 #### Rust
 
-Tässä esimerkissä oletetaan, että sinulla on Rust-pohjainen MCP-palvelin käynnissä. Jos sinulla ei ole sellaista, palaa takaisin [01-first-server](../01-first-server/README.md) -oppitunnille palvelimen luomiseksi.
+Tässä esimerkissä oletetaan, että sinulla on Rust-pohjainen MCP-palvelin käynnissä. Jos sinulla ei ole sellaista, katso [01-first-server](../01-first-server/README.md) -oppitunti palvelimen luomiseksi.
 
-Kun sinulla on Rust MCP -palvelin, avaa terminaali ja siirry samaan hakemistoon kuin palvelin. Suorita sitten seuraava komento luodaksesi uuden LLM-asiakasprojektin:
+Kun sinulla on Rust MCP -palvelin, avaa terminaali ja siirry samaan hakemistoon palvelimen kanssa. Suorita sitten seuraava komento luodaksesi uuden LLM-asiakasprojektin:
 
 ```bash
 mkdir calculator-llmclient
@@ -246,7 +305,7 @@ cd calculator-llmclient
 cargo init
 ```
 
-Lisää seuraavat riippuvuudet `Cargo.toml`-tiedostoosi:
+Lisää seuraavat riippuvuudet `Cargo.toml` -tiedostoosi:
 
 ```toml
 [dependencies]
@@ -257,9 +316,9 @@ tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 ```
 
 > [!NOTE]
-> Virallista OpenAI-kirjastoa Rustille ei ole, mutta `async-openai` crate on [yhteisön ylläpitämä kirjasto](https://platform.openai.com/docs/libraries/rust#rust), jota käytetään yleisesti.
+> Virallista Rust-kirjastoa OpenAI:lle ei ole, mutta `async-openai` -paketti on [yhteisön ylläpitämä kirjasto](https://platform.openai.com/docs/libraries/rust#rust), jota yleisesti käytetään.
 
-Avaa `src/main.rs`-tiedosto ja korvaa sen sisältö seuraavalla koodilla:
+Avaa `src/main.rs` -tiedosto ja korvaa sen sisältö seuraavalla koodilla:
 
 ```rust
 use async_openai::{Client, config::OpenAIConfig};
@@ -301,28 +360,28 @@ async fn main() -> Result<(), Box<dyn Error>> {
         )
         .await?;
 
-    // TEHTÄVÄ: Hanki MCP-työkaluluettelo
+    // TODO: Hanki MCP-työkaluluettelo
 
-    // TEHTÄVÄ: LLM-keskustelu työkalupyyntöjen kanssa
+    // TODO: LLM-keskustelu työkalukutsuilla
 
     Ok(())
 }
 ```
 
-Tämä koodi määrittää yksinkertaisen Rust-sovelluksen, joka yhdistää MCP-palvelimeen ja GitHub-malleihin LLM-vuorovaikutuksia varten.
+Tämä koodi perustaa perus-Rust-sovelluksen, joka yhdistyy MCP-palvelimeen ja GitHub Modelsiin LLM-vuorovaikutuksia varten.
 
 > [!IMPORTANT]
-> Muista asettaa ympäristömuuttuja `OPENAI_API_KEY` GitHub-tunnuksellasi ennen sovelluksen käynnistämistä.
+> Muista asettaa ympäristömuuttuja `OPENAI_API_KEY` GitHub-tokenillasi ennen sovelluksen käynnistämistä.
 
-Hienoa, seuraavassa vaiheessa listaamme palvelimen ominaisuudet.
+Hienoa, seuraavana askeleena listataan palvelimen kyvyt.
 
-### -2- Listaa palvelimen ominaisuudet
+### -2- Listaa palvelimen kyvyt
 
-Nyt yhdistämme palvelimeen ja pyydämme sen ominaisuuksia:
+Nyt yhdistämme palvelimeen ja kysymme sen kyvyt:
 
-#### Typescript
+#### TypeScript
 
-Lisää samassa luokassa seuraavat metodit:
+Lisää samaan luokkaan seuraavat metodit:
 
 ```typescript
 async connectToServer(transport: Transport) {
@@ -334,15 +393,15 @@ async connectToServer(transport: Transport) {
 async run() {
     console.log("Asking server for available tools");
 
-    // työkalujen listaaminen
+    // työkalujen luetteloiminen
     const toolsResult = await this.client.listTools();
 }
 ```
 
 Edellisessä koodissa olemme:
 
-- Lisänneet koodin, jolla yhdistetään palvelimeen, `connectToServer`.
-- Luoneet `run`-metodin, joka vastaa sovelluksen työnkulusta. Tähän asti se listaa vain työkalut, mutta lisäämme siihen pian lisää.
+- Lisänneet koodin palvelimeen yhdistämiseksi, `connectToServer`.
+- Luoneet `run`-metodin, joka hallitsee sovelluksen kulkua. Tällä hetkellä se listaa vain työkalut, mutta lisäämme siihen pian lisää.
 
 #### Python
 
@@ -361,9 +420,9 @@ for tool in tools.tools:
     print("Tool", tool.inputSchema["properties"])
 ```
 
-Tässä mitä lisäsimme:
+Tässä lisäykset:
 
-- Listattiin resurssit ja työkalut ja tulostimme ne. Työkaluista listattiin myös `inputSchema`, jota käytämme myöhemmin.
+- Listataan resurssit ja työkalut ja tulostetaan ne. Työkaluista listataan myös `inputSchema`, jota käytämme myöhemmin.
 
 #### .NET
 
@@ -390,8 +449,8 @@ async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
 
 Edellisessä koodissa olemme:
 
-- Listanneet MCP-palvelimen saatavilla olevat työkalut
-- Listanneet kullekin työkalulle nimen, kuvauksen ja skeeman. Viimeksi mainittua käytämme myöhemmin työkalujen kutsumisessa.
+- Listanneet MCP-palvelimen työkalut
+- Jokaisesta työkalusta listattu nimi, kuvaus ja skeema. Jälkimmäistä käytämme pian työkalukutsuihin.
 
 #### Java
 
@@ -401,34 +460,34 @@ ToolProvider toolProvider = McpToolProvider.builder()
         .mcpClients(List.of(mcpClient))
         .build();
 
-// MCP-työkaluntarjoaja käsittelee automaattisesti:
+// MCP-työkaluntarjoaja hoitaa automaattisesti:
 // - Saatavilla olevien työkalujen listaaminen MCP-palvelimelta
-// - MCP-työkalujen kaavioiden muuntaminen LangChain4j-muotoon
+// - MCP-työkalujen skeemojen muuntaminen LangChain4j-muotoon
 // - Työkalujen suorituksen ja vastausten hallinta
 ```
 
 Edellisessä koodissa olemme:
 
 - Luoneet `McpToolProvider`-luokan, joka automaattisesti löytää ja rekisteröi kaikki MCP-palvelimen työkalut
-- Työkaluntarjoaja hoitaa LTC-työkalujen ja LangChain4j:n työkalumuodon muunnoksen sisäisesti
-- Tämä lähestymistapa piilottaa manuaalisen työkalulistan ja muunnosprosessin
+- Työkalumoduuli hoitaa MCP-työkalujen skeemojen ja LangChain4jn työkalumuodon muunnokset sisäisesti
+- Tämä lähestymistapa vapauttaa manuaalisesta työkalulistauksesta ja muuntamisesta
 
 #### Rust
 
-Työkalujen hakeminen MCP-palvelimelta tehdään `list_tools`-metodilla. Lisää `main`-funktiossa MCP-asiakkaan määrittelyn jälkeen seuraava koodi:
+MCP-palvelimen työkalujen hakeminen tehdään `list_tools`-metodilla. Lisää pääfunktiossa MCP-asiakkaan muodostamisen jälkeen seuraava koodi:
 
 ```rust
-// Hae MCP-työkaluluettelo
+// Hanki MCP-työkalun listaus
 let tools = mcp_client.list_tools(Default::default()).await?;
 ```
 
-### -3- Muunna palvelimen ominaisuudet LLM-työkaluiksi
+### -3- Muunna palvelimen kyvyt LLM-työkaluiksi
 
-Seuraava vaihe palvelimen ominaisuuksien listaamisen jälkeen on muuntaa ne LLM:n ymmärtämään muotoon. Kun olemme tehneet tämän, voimme tarjota nämä ominaisuudet LLM:lle työkaluina.
+Seuraava askel palvelimen kykyjen listaamisen jälkeen on muuntaa ne muodoksi, jonka LLM ymmärtää. Kun tämä on tehty, voimme tarjota nämä kyvyt LLM:n työkaluina.
 
 #### TypeScript
 
-1. Lisää seuraava koodi, jolla muunnetaan MCP-palvelimen vastaus formattiin, jota LLM voi käyttää:
+1. Lisää seuraava koodi muuntamaan MCP-palvelimen vastaus LLM:n käyttämään työkalumuotoon:
 
     ```typescript
     openAiToolAdapter(tool: {
@@ -436,11 +495,11 @@ Seuraava vaihe palvelimen ominaisuuksien listaamisen jälkeen on muuntaa ne LLM:
         description?: string;
         input_schema: any;
         }) {
-        // Luo zod-skeema perustuen input_schemaan
+        // Luo zod-skeema input_schema:n perusteella
         const schema = z.object(tool.input_schema);
     
         return {
-            type: "function" as const, // Aseta tyyppi nimenomaisesti arvoksi "function"
+            type: "function" as const, // Aseta tyyppi eksplisiittisesti "function"iksi
             function: {
             name: tool.name,
             description: tool.description,
@@ -455,9 +514,9 @@ Seuraava vaihe palvelimen ominaisuuksien listaamisen jälkeen on muuntaa ne LLM:
 
     ```
 
-    Yllä oleva koodi ottaa MCP-palvelimen vastauksen ja muuntaa sen työkalumäärittelyksi, jonka LLM ymmärtää.
+    Yllä oleva koodi ottaa MCP-palvelimen vastauksen ja muuntaa sen työkalumääritteen muotoon, jonka LLM ymmärtää.
 
-2. Päivitetään seuraavaksi `run`-metodi listaamaan palvelimen ominaisuudet:
+2. Päivitetään seuraavaksi `run`-metodi listatakseen palvelimen kyvyt:
 
     ```typescript
     async run() {
@@ -473,11 +532,11 @@ Seuraava vaihe palvelimen ominaisuuksien listaamisen jälkeen on muuntaa ne LLM:
     }
     ```
 
-    Edellisessä koodissa päivitimme `run`-metodin käymään tuloksen läpi ja kutsumaan jokaiselle merkinnälle `openAiToolAdapter`-funktiota.
+    Edellisessä koodissa olemme päivittäneet `run`-metodin kartoittamaan tuloksen ja kutsumaan jokaisesta merkinnästä `openAiToolAdapter`-funktiota.
 
 #### Python
 
-1. Luodaan ensin seuraava muunnosfunktio:
+1. Luodaan ensin seuraava muunnosfunktio
 
     ```python
     def convert_to_llm_tool(tool):
@@ -497,9 +556,9 @@ Seuraava vaihe palvelimen ominaisuuksien listaamisen jälkeen on muuntaa ne LLM:
         return tool_schema
     ```
 
-    Yllä olevassa `convert_to_llm_tools`-funktiossa otetaan MCP-työkaluvastaus ja muunnetaan se muotoon, jonka LLM ymmärtää.
+    Edellisessä `convert_to_llm_tools`-funktiossa otetaan MCP-työkaluvastaus ja muutetaan se LLM:n ymmärtämään muotoon.
 
-2. Päivitetään seuraavaksi asiakaskoodimme käyttämään tätä funktiota näin:
+2. Päivitetään seuraavaksi asiakaskoodi käyttämään tätä funktiota:
 
     ```python
     functions = []
@@ -509,11 +568,11 @@ Seuraava vaihe palvelimen ominaisuuksien listaamisen jälkeen on muuntaa ne LLM:
         functions.append(convert_to_llm_tool(tool))
     ```
 
-    Tässä lisäämme kutsun `convert_to_llm_tool` -funktiolle muuntaaksemme MCP-työkaluvastauksen muotoon, jonka voimme syöttää LLM:lle myöhemmin.
+    Tässä lisäämme kutsun `convert_to_llm_tool`-funktiolle muuttaaksemme MCP-työkaluvastauksen LLM:lle sopivaksi.
 
 #### .NET
 
-1. Lisätään koodi, jolla muunnetaan MCP-työkaluvastaus muotoon, jonka LLM ymmärtää:
+1. Lisätään koodi muuntamaan MCP-työkaluvastaus LLM:n ymmärtämään muotoon
 
 ```csharp
 ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonElement jsonElement)
@@ -538,10 +597,10 @@ ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonE
 
 Edellisessä koodissa olemme:
 
-- Luoneet funktion `ConvertFrom`, joka ottaa nimen, kuvauksen ja syöteskeeman.
-- Määrittäneet toiminnallisuuden, joka luo `FunctionDefinition`-olion, joka välitetään `ChatCompletionsDefinition`-olioon, jonka LLM ymmärtää.
+- Luoneet funktion `ConvertFrom`, joka ottaa vastaan nimen, kuvauksen ja input-skeeman.
+- Määritelleet toiminnallisuuden, joka luo `FunctionDefinition`-olion, joka välitetään `ChatCompletionsDefinition`:ille. Tämä on LLM:n ymmärtämä.
 
-2. Katsotaan, miten voimme päivittää olemassa olevaa koodia hyödyntämään tätä funktiota:
+2. Päivitetään seuraavaksi olemassa olevaa koodia hyödyntämään tätä funktiota:
 
     ```csharp
     async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
@@ -587,7 +646,7 @@ Edellisessä koodissa olemme:
 #### Java
 
 ```java
-// Luo bottirajapinta luonnollisen kielen vuorovaikutukseen
+// Luo bottirajapinta luonnollisen kielen vuorovaikutusta varten
 public interface Bot {
     String chat(String prompt);
 }
@@ -601,14 +660,14 @@ Bot bot = AiServices.builder(Bot.class)
 
 Edellisessä koodissa olemme:
 
-- Määritelleet yksinkertaisen `Bot`-rajapinnan luonnollisen kielen vuorovaikutukseen
-- Käyttäneet LangChain4j:n `AiServices`-luokkaa sitomaan LLM:n automaattisesti MCP-työkaluntarjoajaan
-- Kehys hoitaa automaattisesti työkaluskeeman muunnokset ja funktiokutsut taustalla
-- Tämä lähestymistapa poistaa manuaalisen työkalumuunnoksen tarpeen – LangChain4j hoitaa koko MCP-työkalujen muunnosprosessin LLM-yhteensopivaan muotoon
+- Määritelleet yksinkertaisen `Bot`-rajapinnan luonnollisen kielen vuorovaikutuksiin
+- Käyttäneet LangChain4jn `AiServices`-luokkaa sitomaan LLM automaattisesti MCP-työkaluntarjoajaan
+- Kehys hoitaa automaattisesti työkaluskeeman muunnoksen ja funktiokutsut taustalla
+- Tämä lähestymistapa poistaa manuaalisen työkalumuunnoksen - LangChain4j huolehtii kaikesta MCP-työkalujen muuntamisen monimutkaisuudesta LLM-yhteensopivaan muotoon
 
 #### Rust
 
-Muuntaaksemme MCP-työkaluvastauksen LLM:n ymmärtämään muotoon, lisäämme apufunktion, joka muotoilee työkalulistan. Lisää seuraava koodi `main.rs`-tiedostoon `main`-funktion alle. Tätä kutsutaan, kun teemme pyyntöjä LLM:lle:
+Muuntaaksemme MCP-työkaluvastauksen LLM:n ymmärtämään muotoon lisäämme apufunktion, joka muotoilee työkalulistan. Lisää seuraava koodi `main.rs`-tiedostoosi `main`-funktion alapuolelle. Tätä kutsutaan LLM-pyyntöjen yhteydessä:
 
 ```rust
 async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Error>> {
@@ -643,15 +702,15 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 }
 ```
 
-Hienoa, nyt olemme valmiita käsittelemään käyttäjän pyyntöjä, joten siirrytään siihen.
+Hienoa, nyt olemme valmiita käsittelemään käyttäjän pyyntöjä, joten siirrytään siihen seuraavaksi.
 
-### -4- Käsittele käyttäjän kehotteet
+### -4- Käyttäjän kehotteen käsittely
 
-Tässä osiossa käsittelemme käyttäjän pyyntöjä.
+Tässä koodin osassa käsittelemme käyttäjän pyyntöjä.
 
 #### TypeScript
 
-1. Lisää metodi, joka kutsuu LLM:ää:
+1. Lisää metodi, jota käytetään LLM:n kutsumiseen:
 
     ```typescript
     async callTools(
@@ -674,7 +733,7 @@ Tässä osiossa käsittelemme käyttäjän pyyntöjä.
         console.log("Tool result: ", toolResult);
 
         // 3. Tee jotain tuloksella
-        // TEE
+        // TEHTÄVÄ
 
         }
     }
@@ -683,7 +742,7 @@ Tässä osiossa käsittelemme käyttäjän pyyntöjä.
     Edellisessä koodissa olemme:
 
     - Lisänneet metodin `callTools`.
-    - Metodi ottaa LLM-vastauksen ja tarkistaa, mitä työkaluja on mahdollisesti kutsuttu:
+    - Metodi ottaa LLM:n vastauksen ja tarkistaa, mitä työkaluja on kutsuttu, jos yhtään:
 
         ```typescript
         for (const tool_call of tool_calls) {
@@ -696,7 +755,7 @@ Tässä osiossa käsittelemme käyttäjän pyyntöjä.
         }
         ```
 
-    - Kutsuu työkalua, jos LLM osoittaa, että sitä pitäisi kutsua:
+    - Kutsuu työkalua, jos LLM ilmaisee, että sitä tulee kutsua:
 
         ```typescript
         // 2. Kutsu palvelimen työkalua
@@ -711,11 +770,11 @@ Tässä osiossa käsittelemme käyttäjän pyyntöjä.
         // TEHTÄVÄ
         ```
 
-2. Päivitä `run`-metodi sisällyttämään LLM:n kutsut ja `callTools`-metodin kutsu:
+2. Päivitä `run`-metodi sisällyttämään kutsut LLM:lle ja `callTools`-kutsun:
 
     ```typescript
 
-    // 1. Luo viestit, jotka ovat syötteitä LLM:lle
+    // 1. Luo viestit, jotka ovat syötteenä LLM:lle
     const prompt = "What is the sum of 2 and 3?"
 
     const messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
@@ -727,7 +786,7 @@ Tässä osiossa käsittelemme käyttäjän pyyntöjä.
 
     console.log("Querying LLM: ", messages[0].content);
 
-    // 2. Kutsu LLM:ää
+    // 2. Kutsutaan LLM:ää
     let response = this.openai.chat.completions.create({
         model: "gpt-4.1-mini",
         max_tokens: 1000,
@@ -737,7 +796,7 @@ Tässä osiossa käsittelemme käyttäjän pyyntöjä.
 
     let results: any[] = [];
 
-    // 3. Käy läpi LLM:n vastaus, tarkista jokaisesta valinnasta, sisältääkö se työkalukutsuja
+    // 3. Käy läpi LLM:n vastaus, tarkista jokaisesta vaihtoehdosta, onko siinä työkalukutsuja
     (await response).choices.map(async (choice: { message: any; }) => {
         const message = choice.message;
         if (message.tool_calls) {
@@ -747,7 +806,7 @@ Tässä osiossa käsittelemme käyttäjän pyyntöjä.
     });
     ```
 
-Hienoa, katsotaan koko koodi kokonaisuudessaan:
+Hienoa, listataan koko koodi kokonaisuudessaan:
 
 ```typescript
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
@@ -761,7 +820,7 @@ class MyClient {
     private client: Client;
     constructor(){
         this.openai = new OpenAI({
-            baseURL: "https://models.inference.ai.azure.com", // voi olla tarve vaihtaa tähän URL-osoitteeseen tulevaisuudessa: https://models.github.ai/inference
+            baseURL: "https://models.inference.ai.azure.com", // saatetaan joutua vaihtamaan tähän url-osoitteeseen tulevaisuudessa: https://models.github.ai/inference
             apiKey: process.env.GITHUB_TOKEN,
         });
 
@@ -795,7 +854,7 @@ class MyClient {
           const schema = z.object(tool.input_schema);
       
           return {
-            type: "function" as const, // Aseta tyyppi selkeästi "function"
+            type: "function" as const, // Aseta tyyppi nimenomaisesti "function"
             function: {
               name: tool.name,
               description: tool.description,
@@ -828,7 +887,7 @@ class MyClient {
           console.log("Tool result: ", toolResult);
     
           // 3. Tee jotain tuloksella
-          // TEHTÄVÄ TÄHÄN
+          // TEHTÄVÄ
     
          }
     }
@@ -863,7 +922,7 @@ class MyClient {
 
         let results: any[] = [];
     
-        // 3. Käy LLM-vastaus läpi, tarkista kunkin valinnan osalta onko siinä työkalukutsuja
+        // 3. Käy läpi LLM:n vastaus, tarkista jokaisen vaihtoehdon osalta, sisältääkö se työkalukutsuja
         (await response).choices.map(async (choice: { message: any; }) => {
           const message = choice.message;
           if (message.tool_calls) {
@@ -886,7 +945,7 @@ client.connectToServer(transport);
 
 #### Python
 
-1. Lisätään ensin tarvittavat importit LLM:n kutsua varten:
+1. Lisätään joitakin importteja LLM:n kutsua varten
 
     ```python
     # suuri kielimalli
@@ -897,7 +956,7 @@ client.connectToServer(transport);
     import json
     ```
 
-2. Seuraavaksi lisätään funktio, joka kutsuu LLM:ää:
+2. Seuraavaksi lisätään funktio, joka kutsuu LLM:n:
 
     ```python
     # llm
@@ -949,17 +1008,17 @@ client.connectToServer(transport);
 
     Edellisessä koodissa olemme:
 
-    - Välittäneet funktiomme, jotka löysimme MCP-palvelimelta ja jotka muunsimme, LLM:lle.
-    - Sitten kutsuneet LLM:ää näillä funktioilla.
-    - Tarkastelleet tulosta nähdäkseni, mitä funktioita tulisi kutsua, jos mitään.
-    - Lopuksi välittäneet listan kutsuttavista funktioista.
+    - Välittäneet funktiomme, jotka löysimme MCP-palvelimelta ja muunsimme, LLM:lle.
+    - Sitten kutsuneet LLM:ää kyseisillä funktioilla.
+    - Tarkastelleet tulosta nähdäksesi, mitä funktioita meidän tulisi kutsua, jos yhtään.
+    - Lopuksi välittäneet taulukon funktioista, jotka tulee kutsua.
 
-3. Viimeinen vaihe, päivitetään pääkoodimme:
+3. Viimeinen vaihe, päivitetään pääkoodi:
 
     ```python
     prompt = "Add 2 to 20"
 
-    # kysy LLM:ltä, mitä työkaluja on käytettävissä, jos on
+    # kysy LLM:ltä, mitä työkaluja saa käyttää, jos saa
     functions_to_call = call_llm(prompt, functions)
 
     # kutsu ehdotettuja funktioita
@@ -968,14 +1027,14 @@ client.connectToServer(transport);
         print("TOOLS result: ", result.content)
     ```
 
-    Siinä se, yllä olevassa koodissa olemme:
+    Siinä se, viimeinen vaihe. Edellisessä koodissa:
 
-    - Kutsuneet MCP-työkalua `call_tool`-metodilla käyttäen sitä funktiota, jonka LLM arvioi tarvitsevansa kehotteen perusteella.
-    - Tulostaneet työkalukutsun tuloksen MCP-palvelimelle.
+    - Kutsumme MCP-työkalua `call_tool`-funktiolla käyttäen LLM:n kehotteen perusteella valitsemaa funktiota.
+    - Tulostamme työkalukutsun tuloksen MCP-palvelimelle.
 
 #### .NET
 
-1. Näytetään koodi LLM-kehotteen käsittelyyn:
+1. Näytetään koodi LLM-kehotepyyntöön:
 
     ```csharp
     var tools = await GetMcpTools();
@@ -1011,12 +1070,12 @@ client.connectToServer(transport);
 
     Edellisessä koodissa olemme:
 
-    - Hainet työkalut MCP-palvelimelta, `var tools = await GetMcpTools()`.
+    - Hakuaneet työkalut MCP-palvelimelta, `var tools = await GetMcpTools()`.
     - Määritelleet käyttäjän kehotteen `userMessage`.
-    - Rakentaneet options-objektin, jossa määritellään malli ja työkalut.
+    - Rakentaneet opts-olion, jossa määritetään malli ja työkalut.
     - Tehneet pyynnön LLM:lle.
 
-2. Vielä yksi vaihe, tarkistetaan, pitäisikö LLM:n mukaan kutsua funktiota:
+2. Lopuksi, tarkistetaan, haluaako LLM kutsua funktiota:
 
     ```csharp
     // 4. Check if the response contains a function call
@@ -1041,8 +1100,8 @@ client.connectToServer(transport);
 
     Edellisessä koodissa olemme:
 
-    - Käyneet läpi listan funktiokutsuja.
-    - Jokaiselle työkalukutsulle otetaan nimi ja argumentit ja kutsutaan työkalua MCP-palvelimella MCP-asiakkaan kautta. Lopuksi tulostamme tulokset.
+    - Käyneet läpi listan funktiokutsuista.
+    - Jokaisen työkalukutsun kohdalla purkaneet nimen ja argumentit ja kutsuneet työkalua MCP-palvelimella MCP-asiakkaan kautta. Lopuksi tulostamme tulokset.
 
 Tässä koko koodi:
 
@@ -1190,25 +1249,48 @@ try {
 
 Edellisessä koodissa olemme:
 
-- Käyttäneet yksinkertaisia luonnollisen kielen kehotteita MCP-palvelimen työkaluihin vuorovaikuttamiseen
+- Käyttäneet yksinkertaisia luonnollisen kielen kehotteita MCP-palvelimen työkalujen kanssa vuorovaikutukseen
 - LangChain4j-kehys hoitaa automaattisesti:
-  - Käyttäjäkehotteiden muuntamisen työkalukutsuiksi tarvittaessa
+  - Käyttäjän kehotteiden muuntamisen työkalukutsuiksi tarvittaessa
   - Sopivien MCP-työkalujen kutsumisen LLM:n päätöksen perusteella
   - Keskustelun hallinnan LLM:n ja MCP-palvelimen välillä
-- `bot.chat()`-metodi palauttaa luonnollisen kielen vastauksia, jotka voivat sisältää tuloksia MCP-työkalujen suorittamisesta
-- Tämä lähestymistapa tarjoaa saumattoman käyttäjäkokemuksen, jossa käyttäjien ei tarvitse tuntea MCP:n taustalla olevaa toteutusta
+- `bot.chat()`-metodi palauttaa luonnollisen kielen vastauksia, jotka voivat sisältää MCP-työkalujen tuloksia
+- Tämä lähestymistapa tarjoaa saumattoman käyttökokemuksen, jossa käyttäjän ei tarvitse tietää taustalla olevasta MCP-toteutuksesta
 
 Täydellinen koodiesimerkki:
 
 ```java
+import dev.langchain4j.mcp.McpToolProvider;
+import dev.langchain4j.mcp.client.DefaultMcpClient;
+import dev.langchain4j.mcp.client.McpClient;
+import dev.langchain4j.mcp.client.transport.McpTransport;
+import dev.langchain4j.mcp.client.transport.http.HttpMcpTransport;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.openaiofficial.OpenAiOfficialChatModel;
+import dev.langchain4j.service.AiServices;
+import dev.langchain4j.service.tool.ToolProvider;
+
+import java.time.Duration;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+
 public class LangChain4jClient {
-    
-    public static void main(String[] args) throws Exception {        ChatLanguageModel model = OpenAiOfficialChatModel.builder()
-                .isGitHubModels(true)
-                .apiKey(System.getenv("GITHUB_TOKEN"))
+
+    private static final String DEFAULT_BASE_URL = "https://api.minimax.io/v1";
+    private static final String DEFAULT_MODEL_ID = "MiniMax-M3";
+    private static final Map<String, String> REGIONAL_BASE_URLS = Map.of(
+            "global_en", "https://api.minimax.io/v1",
+            "cn_zh", "https://api.minimaxi.com/v1");
+    private static final Set<String> SUPPORTED_MODEL_IDS = Set.of("MiniMax-M3", "MiniMax-M2.7");
+
+    public static void main(String[] args) throws Exception {
+        ChatLanguageModel model = OpenAiOfficialChatModel.builder()
+                .baseUrl(resolveBaseUrl())
+                .apiKey(requireEnv("OPENAI_API_KEY"))
                 .timeout(Duration.ofSeconds(60))
-                .modelName("gpt-4.1-nano")
-                .timeout(Duration.ofSeconds(60))
+                .modelName(resolveModelName())
                 .build();
 
         McpTransport transport = new HttpMcpTransport.Builder()
@@ -1244,14 +1326,54 @@ public class LangChain4jClient {
             mcpClient.close();
         }
     }
+
+    private static String resolveBaseUrl() {
+        String baseUrl = System.getenv("OPENAI_BASE_URL");
+        if (baseUrl != null && !baseUrl.isBlank()) {
+            return baseUrl;
+        }
+
+        String region = System.getenv("MINIMAX_REGION");
+        if (region == null || region.isBlank()) {
+            return DEFAULT_BASE_URL;
+        }
+
+        String regionalBaseUrl = REGIONAL_BASE_URLS.get(region);
+        if (regionalBaseUrl == null) {
+            throw new IllegalArgumentException("Unsupported MINIMAX_REGION value: " + region
+                    + ". Supported values: " + new TreeSet<>(REGIONAL_BASE_URLS.keySet()));
+        }
+        return regionalBaseUrl;
+    }
+
+    private static String resolveModelName() {
+        String modelId = System.getenv("MINIMAX_MODEL_ID");
+        if (modelId == null || modelId.isBlank()) {
+            return DEFAULT_MODEL_ID;
+        }
+        if (!SUPPORTED_MODEL_IDS.contains(modelId)) {
+            throw new IllegalArgumentException("Unsupported MINIMAX_MODEL_ID value: " + modelId
+                    + ". Supported values: " + new TreeSet<>(SUPPORTED_MODEL_IDS));
+        }
+        return modelId;
+    }
+
+    private static String requireEnv(String name) {
+        String value = System.getenv(name);
+        if (value == null || value.isBlank()) {
+            throw new IllegalStateException(name + " environment variable is not set");
+        }
+        return value;
+    }
 }
 ```
 
 #### Rust
 
-Tässä tapahtuu suurin osa työstä. Kutsumme LLM:ää alkuperäisellä käyttäjän kehotteella, sitten käsittelemme vastauksen tarkistaaksemme, pitääkö työkaluja kutsua. Jos pitää, kutsumme ne työkalut ja jatkamme keskustelua LLM:n kanssa, kunnes työkaluja ei enää tarvita ja saamme lopullisen vastauksen.
+Suurin osa työstä tapahtuu tässä vaiheessa. Kutsumme LLM:ää alkuperäisellä käyttäjän kehotteella, sitten käsittelemme vastauksen selvittääksemme, tarvitseeko kutsua työkaluja. Jos tarvitsee, kutsumme ne, ja jatkamme keskustelua LLM:n kanssa, kunnes työkalukutsuja ei enää tarvita ja saamme lopullisen vastauksen.
 
-Teemme useita LLM-kutsuja, joten määritellään funktio, joka hoitaa LLM:n kutsun. Lisää seuraava funktio `main.rs`-tiedostoon:
+
+Teemme useita kutsuja LLM:lle, joten määritellään funktio, joka hoitaa LLM-kutsun. Lisää seuraava funktio `main.rs`-tiedostoosi:
 
 ```rust
 async fn call_llm(
@@ -1271,8 +1393,9 @@ async fn call_llm(
 }
 ```
 
-Tämä funktio ottaa LLM-asiakkaan, viestilistan (sisältäen käyttäjän kehotteen), MCP-palvelimen työkalut ja lähettää pyynnön LLM:lle, palauttaen vastauksen.
-LLM:n vastaus sisältää taulukon `choices`. Meidän täytyy käsitellä tulos nähdäksesi, onko `tool_calls` läsnä. Tämä kertoo meille, että LLM pyytää tietyn työkalun kutsumista argumenteilla. Lisää seuraava koodi `main.rs`-tiedostosi loppuun määrittääksesi funktion, joka käsittelee LLM-vastauksen:
+Tämä funktio ottaa LLM-asiakkaan, viestilistan (johon sisältyy käyttäjän kehotus), työkalut MCP-palvelimelta, ja lähettää pyynnön LLM:lle, palauttaen vastauksen.
+
+LLM:n vastaus sisältää taulukon `choices`. Meidän täytyy käsitellä tulosta nähdäksesi, onko siellä `tool_calls`-kohtia. Tämä kertoo meille, että LLM pyytää tietyn työkalun kutsumista argumenteilla. Lisää seuraava koodi `main.rs`-tiedostosi loppuun määritelläksesi funktion joka käsittelee LLM-vastauksen:
 
 ```rust
 async fn process_llm_response(
@@ -1296,7 +1419,7 @@ async fn process_llm_response(
         println!("🤖 {}", content);
     }
 
-    // Käsittele työkalukutsut
+    // Käsittele työkalukutsuja
     if let Some(tool_calls) = message.get("tool_calls").and_then(|tc| tc.as_array()) {
         messages.push(message.clone()); // Lisää avustajan viesti
 
@@ -1320,7 +1443,7 @@ async fn process_llm_response(
             }));
         }
 
-        // Jatka keskustelua työkalutulosten kanssa
+        // Jatka keskustelua työkalun tulosten kanssa
         let response = call_llm(openai_client, messages, mcp_tools).await?;
         Box::pin(process_llm_response(
             &response,
@@ -1335,9 +1458,9 @@ async fn process_llm_response(
 }
 ```
 
-Jos `tool_calls` ovat läsnä, se poimii työkalutiedot, kutsuu MCP-palvelinta työkalupyynnöllä ja lisää tulokset keskustelun viesteihin. Sen jälkeen keskustelu jatkuu LLM:n kanssa ja viestit päivitetään avustajan vastauksella ja työkalukutsujen tuloksilla.
+Jos `tool_calls`-kohdat ovat läsnä, se poimii työkalutiedot, kutsuu MCP-palvelinta työkalupyynnöllä ja lisää tulokset keskustelun viesteihin. Sen jälkeen keskustelu jatkuu LLM:n kanssa ja viestit päivitetään avustajan vastauksen ja työkalukutsun tulosten mukaan.
 
-Poimiaksemme työkalukutsutiedot, joita LLM palauttaa MCP-kutsuille, lisäämme toisen apufunktion, joka hakee kaiken tarvittavan kutsun tekemiseen. Lisää seuraava koodi `main.rs`-tiedostosi loppuun:
+Poimiaksesi työkalukutsun tiedot, jotka LLM palauttaa MCP-kutsuja varten, lisäämme toisen apufunktion, joka poimii kaiken tarvittavan kutsua varten. Lisää seuraava koodi `main.rs`-tiedostosi loppuun:
 
 ```rust
 fn extract_tool_call_info(tool_call: &Value) -> Result<(String, String, String), Box<dyn Error>> {
@@ -1361,7 +1484,7 @@ fn extract_tool_call_info(tool_call: &Value) -> Result<(String, String, String),
 }
 ```
 
-Kun kaikki osat ovat paikallaan, voimme nyt käsitellä alkuperäisen käyttäjän kehotteen ja kutsua LLM:ää. Päivitä `main`-funktiosi sisältämään seuraava koodi:
+Kun kaikki palaset ovat paikoillaan, voimme nyt käsitellä alkuperäisen käyttäjän kehotuksen ja kutsua LLM:ää. Päivitä `main`-funktion sisältämään seuraava koodi:
 
 ```rust
 // LLM-keskustelu työkalukutsuilla
@@ -1376,37 +1499,37 @@ process_llm_response(
 .await?;
 ```
 
-Tämä lähettää LLM:lle alkuperäisen käyttäjän kehotteen, jossa pyydetään kahden luvun summaa, ja prosessoi vastauksen käsitelläkseen työkalukutsuja dynaamisesti.
+Tämä kysyy LLM:ltä alkukehotuksen, jossa pyydetään kahden luvun summaa, ja käsittelee vastauksen dynaamisesti työkalukutsujen käsittelemiseksi.
 
 Hienoa, onnistuit!
 
 ## Tehtävä
 
-Ota harjoituksesta koodi ja rakennetaan palvelin, jossa on enemmän työkaluja. Luo sitten asiakas, jossa on LLM, kuten harjoituksessa, ja testaa erilaisilla kehotteilla varmistaaksesi, että kaikki palvelimesi työkalut kutsutaan dynaamisesti. Tämän tyyppinen asiakkaan rakentaminen tarjoaa loppukäyttäjälle erinomaisen käyttökokemuksen, koska he voivat käyttää kehotteita tarkkojen asiakaskomentojen sijaan eivätkä näe MCP-palvelimen kutsuja.
+Ota harjoituksen koodi ja laajenna palvelinta lisäämällä siihen enemmän työkaluja. Luo sitten asiakas, joka käyttää LLM:ää, kuten harjoituksessa, ja testaa sitä erilaisilla kehotteilla varmistaaksesi, että kaikki palvelimen työkalut kutsutaan dynaamisesti. Tällä tavalla rakennettu asiakas tarjoaa lopulliselle käyttäjälle erinomaisen käyttökokemuksen, kun he voivat käyttää kehotteita tarkkojen asiakaskomentojen sijaan ja pysyä tietämättöminä MCP-palvelimen kutsuista.
 
 ## Ratkaisu
 
 [Ratkaisu](./solution/README.md)
 
-## Tärkeimmät opit
+## Keskeiset opit
 
-- LLM:n lisääminen asiakkaaseesi tarjoaa paremman tavan käyttäjien vuorovaikutukseen MCP-palvelinten kanssa.
-- MCP-palvelimen vastaus pitää muuntaa LLM:n ymmärtämään muotoon.
+- LLM:n lisääminen asiakkaallesi tarjoaa paremman tavan käyttäjille olla vuorovaikutuksessa MCP-palvelinten kanssa.
+- Sinun täytyy muuntaa MCP-palvelimen vastaus muotoon, jonka LLM voi ymmärtää.
 
 ## Esimerkit
 
-- [Java Calculator](../samples/java/calculator/README.md)
-- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
-- [JavaScript Calculator](../samples/javascript/README.md)
-- [TypeScript Calculator](../samples/typescript/README.md)
-- [Python Calculator](../../../../03-GettingStarted/samples/python)
-- [Rust Calculator](../../../../03-GettingStarted/samples/rust)
+- [Java-laskin](../samples/java/calculator/README.md)
+- [.Net-laskin](../../../../03-GettingStarted/samples/csharp)
+- [JavaScript-laskin](../samples/javascript/README.md)
+- [TypeScript-laskin](../samples/typescript/README.md)
+- [Python-laskin](../../../../03-GettingStarted/samples/python)
+- [Rust-laskin](../../../../03-GettingStarted/samples/rust)
 
 ## Lisäresurssit
 
-## Seuraavaksi
+## Mitä seuraavaksi
 
-- Seuraavaksi: [Palvelimen käyttäminen Visual Studio Codella](../04-vscode/README.md)
+- Seuraavaksi: [Palvelimen käyttö Visual Studio Code -ohjelmalla](../04-vscode/README.md)
 
 ---
 

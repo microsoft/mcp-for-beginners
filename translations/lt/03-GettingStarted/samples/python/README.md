@@ -1,6 +1,9 @@
 # MCP skaičiuoklės serveris (Python)
 
-Paprasta Model Context Protocol (MCP) serverio implementacija Python kalba, teikianti pagrindines skaičiuoklės funkcijas.
+
+
+Paprasta Modelio konteksto protokolo (MCP) serverio implementacija Python, kuri teikia pagrindines skaičiuoklės funkcijas.
+
 
 ## Įdiegimas
 
@@ -10,27 +13,27 @@ Paprasta Model Context Protocol (MCP) serverio implementacija Python kalba, teik
 pip install -r requirements.txt
 ```
 
-Arba tiesiogiai įdiekite MCP Python SDK:
+Arba įdiekite MCP Python SDK tiesiogiai:
 
 ```bash
-pip install mcp>=1.18.0
+pip install "mcp>=2.1.1,<3.0.0"
 ```
 
 ## Naudojimas
 
 ### Serverio paleidimas
 
-Serveris skirtas naudoti MCP klientams (pvz., Claude Desktop). Norėdami paleisti serverį:
+Serveris skirtas naudoti MCP klientų (pvz., Claude Desktop). Norėdami paleisti serverį:
 
 ```bash
 python mcp_calculator_server.py
 ```
 
-**Pastaba**: Paleidus tiesiogiai terminale, matysite JSON-RPC validacijos klaidas. Tai normalus elgesys - serveris laukia tinkamai suformatuotų MCP klientų pranešimų.
+**Pastaba**: kai paleidžiate tiesiogiai terminale, matysite JSON-RPC tikrinimo klaidas. Tai įprasta elgsena – serveris laukia teisingai suformatuotų MCP kliento žinučių.
 
 ### Funkcijų testavimas
 
-Norėdami patikrinti, ar skaičiuoklės funkcijos veikia teisingai:
+Norėdami patikrinti, ar skaičiuoklės funkcijos veikia tinkamai:
 
 ```bash
 python test_calculator.py
@@ -43,14 +46,16 @@ python test_calculator.py
 Jei matote `ModuleNotFoundError: No module named 'mcp'`, įdiekite MCP Python SDK:
 
 ```bash
-pip install mcp>=1.18.0
+pip install "mcp>=2.1.1,<3.0.0"
 ```
 
 ### JSON-RPC klaidos paleidžiant tiesiogiai
 
-Tokios klaidos kaip "Invalid JSON: EOF while parsing a value" paleidžiant serverį tiesiogiai yra tikėtinos. Serveriui reikalingi MCP klientų pranešimai, o ne tiesioginis terminalo įvestis.
+Klaidos, tokios kaip „Invalid JSON: EOF while parsing a value“ paleidžiant serverį tiesiai, yra numatytos. Serveriui reikalingos MCP kliento žinutės, o ne tiesioginė terminalo įvestis.
 
 ---
 
-**Atsakomybės apribojimas**:  
-Šis dokumentas buvo išverstas naudojant AI vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Dėl svarbios informacijos rekomenduojama profesionali žmogaus vertimo paslauga. Mes neprisiimame atsakomybės už nesusipratimus ar neteisingus aiškinimus, atsiradusius naudojant šį vertimą.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Atsakomybės apribojimas**:
+Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba laikomas autoritetingu šaltiniu. Svarbiai informacijai rekomenduojama naudoti profesionalų žmogiškąjį vertimą. Mes neatsakome už jokius nesusipratimus ar neteisingą interpretaciją, kilusią naudojantis šiuo vertimu.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

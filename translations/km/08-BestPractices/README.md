@@ -1,89 +1,115 @@
-# MCP ការអភិវឌ្ឍន៍អនុវត្តល្អបំផុត
+# យុទ្ធសាស្រ្តអភិវឌ្ឍ MCP ដ៏ល្អបំផុត
 
-[![MCP Development Best Practices](../../../translated_images/km/09.d0f6d86c9d72134c.webp)](https://youtu.be/W56H9W7x-ao)
+[![យុទ្ធសាស្រ្តអភិវឌ្ឍ MCP ដ៏ល្អបំផុត](../../../translated_images/km/09.d0f6d86c9d72134c.webp)](https://youtu.be/W56H9W7x-ao)
 
-_(ចុចលើរូបភាពខាងលើដើម្បីមើលវីដេអូថ្នាក់រៀននេះ)_
+_(ចុចលើរូបភាពខាងលើដើម្បីមើលវីដេអូមេរៀននេះ)_
 
-## ទិដ្ឋភាពទូលំទូលាយ
+## សេចក្ដីសង្ខេប
 
-មេរៀននេះផ្តោតលើអនុវត្តល្អបំផុតជាន់ខ្ពស់សម្រាប់ការអភិវឌ្ឍ, ការធ្វើតេស្ត, និងការដាក់ MCP ម៉ាស៊ីនបម្រើ និងមុខងារនៅបរិស្ថានផលិត។ នៅពេលដែលបរិស្ថាន MCP កើនឡើងភាពស្មុគស្មាញ និងសារៈសំខាន់, ការតាមដានលំនាំដែលបានបង្កើតជាស្ថាពរជាភាគចម្បងធានាបាននូវភាពទុកចិត្ត, ការថែរក្សា និងការជាមួយគ្នាដោយរួម។ មេរៀននេះបង្រួមបញ្ញាជាក់ស្តែងដែលបានទទួលពីការអនុវត្ត MCP ផ្នែកពិតប្រាកដ ដើម្បីណែនាំអ្នកក្នុងការបង្កើតម៉ាស៊ីនបម្រើរឹងមាំ, ប្រសើរជាមួយធនធានមានប្រសិទ្ធភាព, ការបញ្ជូនស្គ្រីប និងឧបករណ៍។
+មេរៀននេះផ្តោតលើយុទ្ធសាស្រ្តអភិវឌ្ឍដ៏ល្អបំផុតមុខងារលម្អិតសម្រាប់អភិវឌ្ឍ, សាកល្បង, និងដាក់បញ្ចូលម៉ាស៊ីនបម្រើ MCP និងមុខងារនានាក្នុងបរិយាកាសផលិតកម្ម។ ពីព្រោះ экូសុីសថែម MCP កំពុងត្រូវបានពង្រីកពីភាពស្មុគស្មាញ និងសារៈសំខាន់ ការតាមដានគំរូដែលបានបង្កើតរួចជួយធានាការជឿជាក់, គ្រប់គ្រងបានងាយ, និងអាចប្រើប្រាស់រួមគ្នា។ មេរៀននេះបញ្ចូលប្រាជ្ញាជាក់ស្ដែងដែលទទួលបានពីការប្រើប្រាស់ MCP នៅក្នុងពិភពពិត ដើម្បីណែនាំអ្នកក្នុងការបង្កើតម៉ាស៊ីនបម្រើដែលរឹងមាំ មានប្រសិទ្ធភាព ជាមួយធនធាន, ការសម្ងាត់, និងឧបករណ៍មានប្រសិទ្ធភាព។
 
 ## គោលបំណងការសិក្សា
 
-នៅចុងបញ្ចប់មេរៀននេះ អ្នកនឹងអាច៖
+នៅចុងបញ្ចប់មេរៀននេះ អ្នកនឹងមានសមត្ថភាពក្នុងការធ្វើតាមដូចខាងក្រោម៖
 
-- ផ្ទេរអនុវត្តល្អបំផុតឧស្សាហកម្មក្នុងការរចនាម៉ាស៊ីនបម្រើ MCP និងមុខងារ
-- បង្កើតយុទ្ធសាស្ត្រសាកល្បងពេញលេញសម្រាប់ម៉ាស៊ីនបម្រើ MCP
-- រចនាគំរូដំណើរការដែលមានប្រសិទ្ធភាព និងអាច재ប្រើសម្រាប់កម្មវិធី MCP ដែលស្មុគស្មាញ
-- អនុវត្តការដោះស្រាយកំហុសដែលត្រឹមត្រូវ, ការកត់ត្រា និងការបង្កើតភាពអាចមើលឃើញក្នុងម៉ាស៊ីនបម្រើ MCP
-- បង្កើតអនុវត្ត MCP ដើម្បីបង្កើនប្រសិទ្ធិភាព, សុវត្ថិភាព និងការថែរក្សា
+- អនុវត្តយុទ្ធសាស្រ្តវិជ្ជាជីវៈក្នុងការរចនាម៉ាស៊ីនបម្រើ និងមុខងារ MCP 
+- បង្កើតយុទ្ធសាស្រ្តសាកល្បងទូលំទូលាយសម្រាប់ម៉ាស៊ីនបម្រើ MCP
+- រចនាគំរូការងារដែលមានប្រសិទ្ធភាព និងអាចប្រើប្រាស់ម្តងទៀតសម្រាប់កម្មវិធី MCP ស្មុគស្មាញ
+- អនុវត្តការគ្រប់គ្រងកំហុស ការចុះបញ្ជី និងការអាចមើលឃើញបានត្រឹមត្រូវក្នុងម៉ាស៊ីនបម្រើ MCP
+- គ្រប់គ្រងគំរូ MCP សម្រាប់ដំណើរការ ការសុវត្ថិភាព និងការគ្រប់គ្រងបានយ៉ាងល្អ
 
-## គោលការណ៍មូលដ្ឋាន MCP
+## គោលការណ៍ស្នូល MCP
 
-មុននឹងចូលទៅក្នុងការអនុវត្តជាក់លាក់ ជារឿងសំខាន់ក្នុងការយល់ដឹងពីគោលការណ៍មូលដ្ឋានដែលណែនាំអភិវឌ្ឍ MCP ដែលមានប្រសិទ្ធភាព៖
+មុននឹងចូលទៅក្នុងការអនុវត្តតាមយុទ្ធសាស្រ្តជាក់លាក់ វាសំខាន់ក្នុងការយល់ដឹងពីគោលការណ៍ស្នូលដែលណែនាំការអភិវឌ្ឍ MCP បានប្រសើរ៖
 
-1. **ការទំនាក់ទំនងដែលបានស្តង់ដារ**: MCP ប្រើ JSON-RPC 2.0 ជាគ្រោងមូលដ្ឋានរបស់វា ផ្ដល់ការប្រភេទនៃសំណើ, ពត៌មានតបតប, និងការដោះស្រាយកំហុសនៅរវាងការអនុវត្តទាំងអស់។
+1. **ការទំនាក់ទំនងមានស្តង់ដារ**៖ MCP ប្រើ JSON-RPC 2.0 ជាគ្រឹះ ដើម្បីផ្តល់ទម្រង់ថេរសម្រាប់ការស្នើសុំ, ការឆ្លើយតប, និងការគ្រប់គ្រងកំហុសទាំងអស់។
 
-2. **ការរចនាម្តោងទៅលើអ្នកប្រើ**: តែងតែផ្តល់អាទិភាពដល់ការយល់ព្រម អំណាចគ្រប់គ្រង និងភាពច្បាស់លាស់របស់អ្នកប្រើនៅក្នុងអនុវត្ត MCP របស់អ្នក។
+2. **ការរចនាផ្អែកលើអ្នកប្រើប្រាស់**៖ សូមផ្តល់អាទិភាពក្នុងការទទួលយកការយល់ព្រមពីអ្នកប្រើ, ការគ្រប់គ្រង, និងភាពច្បាស់លាស់ នៅក្នុងការអនុវត្ត MCP របស់អ្នក។
 
-3. **សុវត្ថិភាពជាដំបូន្មាន**: អនុវត្តវិធានសុវត្ថិភាពរឹងមាំ រួមមាន ការផ្ទៀងផ្ទាត់, អនុញ្ញាត, ការត្រួតពិនិត្យ និងកំណត់អត្រា។
+3. **សុវត្ថិភាពជាផ្នែកដំបូង**៖ អនុវត្តវិធានការសុវត្ថិភាពរឹងមាំ រួមទាំងការផ្ទៀងផ្ទាត់អត្តសញ្ញាណ, អាជ្ញាបណ្ណ, ការត្រួតពិនិត្យ, និងការកំណត់ល្បឿន។
 
-4. **អាគារម៉ូឌុល**: រចនាម៉ាស៊ីនបម្រើ MCP របស់អ្នកជាមួយវិធីសាស្ត្រម៉ូឌុលដែលអនុញ្ញាតឲ្យឧបករណ៍ និងធនធាននីមួយៗមានគោលបំណងច្បាស់លាស់និងផ្តោតសំខាន់។
+4. **ស្ថាបត្យកម្មម៉ូឌុល**៖ រចនាម៉ាស៊ីនបម្រើ MCP របស់អ្នកជាមួយវិធីសាស្រ្តម៉ូឌុល ដែលឧបករណ៍និងធនធាននីមួយៗមានគោលបំណងច្បាស់លាស់។
 
-5. **ការតភ្ជាប់ដែលមានស្ថានភាព**: ប្រើប្រាស់សមត្ថភាពរបស់ MCP ក្នុងការរក្សាស្ថានភាពតាមរយៈសំណើច្រើនដើម្បីមានការតបស្នងថ្លៃថ្លា និងមានបរិបទច្បាស់លាស់។
+5. **ស្ថានភាពច្បាស់លាស់**៖ MCP `2026-07-28` គឺមិនមានស្ថានភាពនៅក្នុងកម្រិតប្រតិបត្តិការពិធីការ។
+   នៅពេលដែលក្របខ័ណ្ឌការងារត្រូវការស្ថានភាពប្រើប្រាស់ចម្រុះ ការប្រើប្រាស់អនុស្សាវរីយ៍ច្បាស់លាស់ ឬអាគុយម៉ង់ធរណីមួយៗដែលគាំទ្រដោយស្ថានភាពកម្មវិធីមានប្រសិទ្ធិភាព។
+   
 
-## អនុវត្តល្អបំផុត MCP ផ្លូវការជាធម្មតា
+## យុទ្ធសាស្រ្ត MCP ជាផ្លូវការ
 
-អនុវត្តល្អបំផុតខាងក្រោមត្រូវបានបង្កើតចេញពីឯកសារផ្លូវការរបស់ Model Context Protocol៖
+យុទ្ធសាស្រ្តខាងក្រោមទទួលបានពីឯកសារផ្លូវការ Model Context Protocol ៖
 
-### អនុវត្តល្អបំផុតសុវត្ថិភាព
+### យុទ្ធសាស្រ្តសុវត្ថិភាព
 
-1. **ការយល់ព្រម និងការគ្រប់គ្រងអ្នកប្រើ**: តែងតែទាមទារឲ្យមានការយល់ព្រមច្បាស់លាស់ពីអ្នកប្រើមុនពេលចូលប្រើទិន្នន័យ ឬអនុវត្តប្រតិបត្តិការ។ ផ្ដល់ការគ្រប់គ្រងច្បាស់លាស់លើទិន្នន័យដែលត្រូវចែករំលែក និងសកម្មភាពដែលអនុញ្ញាត។
+1. **ការយល់ព្រម និងការគ្រប់គ្រងពីអ្នកប្រើ**៖ ត្រូវការយល់ព្រមច្បាស់លាស់ពីអ្នកប្រើមុននឹងចូលដល់ទិន្នន័យឬអនុវត្តបច្ចុប្បន្នភាព។ ផ្តល់ការគ្រប់គ្រងច្បាស់លាស់លើទិន្នន័យដែលបានចែកចាយ និងសកម្មភាពដែលបានអនុញ្ញាត។
 
-2. **ភាពឯកជនទិន្នន័យ**: បើកបង្ហាញទិន្នន័យអ្នកប្រើតែប៉ុណ្ណោះជាមួយការយល់ព្រមដោយច្បាស់លាស់ ហើយការពារវាជាមួយការត្រួតពិនិត្យចូលដំណើរការ។ ការពារការបញ្ជូនទិន្នន័យដោយមិនមានអាជ្ញាបណ្ណ។
+2. **ភាពឯកជនទិន្នន័យ**៖ បង្ហាញទិន្នន័យអ្នកប្រើប៉ុណ្ណោះដោយមានការយល់ព្រម និងការពារប្រការជាមួយការត្រួតពិនិត្យចូលដំណើរការដោយសមរម្យ។ ការពារការផ្ទេរទិន្នន័យដោយគ្មានអាជ្ញាបណ្ណ។
 
-3. **សុវត្ថិភាពឧបករណ៍**: ត្រូវការយល់ព្រមច្បាស់លាស់ពីអ្នកប្រើមុនហៅឧបករណ៍ណាមួយ។ ប្រាកដថាអ្នកប្រើយល់ដឹងពីមុខងាររបស់ឧបករណ៍នីមួយៗ និងអនុវត្តសុវត្ថិភាពដែនកំណត់យ៉ាងរឹងមាំ។
+3. **សុវត្ថិភាពឧបករណ៍**៖ ត្រូវការយល់ព្រមច្បាស់ពីអ្នកប្រើមុននឹងហៅឧបករណ៍ណាមួយ។ ធានាថាអ្នកប្រើប្រាស់យល់ពីមុខងាររបស់ឧបករណ៍នីមួយៗ ហើយអនុវត្តការពារសុវត្ថិភាពបានយ៉ាងរឹងមាំ។
 
-4. **ការគ្រប់គ្រងការអនុញ្ញាតឧបករណ៍**: កំណត់ឧបករណ៍ដែលគំរូប្រើនអាចប្រើបាននៅពេលកំណត់សម័យ ដើម្បីធានាថាឧបករណ៍ដែលបានអនុញ្ញាតតែប៉ុណ្ណោះអាចចូលប្រើបាន។
+4. **ការត្រួតពិនិត្យការអនុញ្ញាតឧបករណ៍**៖ កំណត់ថាឧបករណ៍ណាអាចប្រើសម្រាប់
+   សំណើរ និងបរិបទអាជ្ញាធរណ៍នីមួយៗ ដើម្បីធានាថាឧបករណ៍ដែលមានការអនុញ្ញាតផែនដីតែម្តងត្រូវបានចូលដំណើរការ។
+   
 
-5. **ការផ្ទៀងផ្ទាត់**: ត្រូវការផ្ទៀងផ្ទាត់ត្រឹមត្រូវមុនពេលផ្ដល់ការចូលប្រើឧបករណ៍, ធនធាន ឬប្រតិបត្តិការស្ងើចស្ងាត់ ដោយប្រើកូនសោ API, សំបុត្រ OAuth ឬវិធីសាស្ត្រផ្ទៀងផ្ទាត់សុវត្ថិភាពផ្សេងទៀត។
+5. **ការផ្ទៀងផ្ទាត់អត្តសញ្ញាណ**៖ ត្រូវការផ្ទៀងផ្ទាត់អត្តសញ្ញាណត្រឹមត្រូវមុនកាត់ទទួលបានការចូលដំណើរការឧបករណ៍, ធនធាន, ឬសកម្មភាព​ណាមួយ​ដែល​មាន​ភាព​ឈិត​ញិត ដោយប្រើកូនសោ API, ពាក្យសម្ងាត់ OAuth ឬវិធីសាស្រ្តផ្ទៀងផ្ទាត់សុវត្ថិភាពផ្សេងទៀត។
 
-6. **ការត្រួតពិនិត្យប៉ារ៉ាម៉ែត្រ**: អនុវត្តការត្រួតពិនិត្យសម្រាប់ការហៅឧបករណ៍ទាំងអស់ ដើម្បីទប់ស្កាត់ការបញ្ចូលខូចឬឧបានជាចោរកម្មឲ្យមិនទៅដល់ការអនុវត្តឧបករណ៍។
+6. **ការត្រួតពិនិត្យប៉ារ៉ាម៉ែត្រ**៖ អនុវត្តការត្រួតពិនិត្យទាំងអស់សម្រាប់ការហៅឧបករណ៍ដើម្បីទប់ស្កាត់ការបញ្ចូលដែលមិនត្រឹមត្រូវឬមានគ្រោះថ្នាក់ទៅរកការអនុវត្តឧបករណ៍។
 
-7. **កំណត់អត្រា**: អនុវត្តកំណត់អត្រាដើម្បីទប់ស្កាត់ការការប្រើប្រាស់តែងតែ និងធានាការប្រើប្រាស់ធនធានម៉ាស៊ីនបម្រើយ៉ាងសមរម្យ។
-  
-### អនុវត្តល្អបំផុតការអនុវត្តន៍
+7. **កំណត់ល្បឿន**៖ អនុវត្តការកំណត់ល្បឿនដើម្បីទប់ស្កាត់ការកំហុសប្រើប្រាស់ និងធានាថាការប្រើប្រាស់ធនធានម៉ាស៊ីនបម្រើមានភាពត្រឹមត្រូវ។
 
-1. **ការពិភាក្សាសមត្ថភាព**: នៅពេលដំណើរការតភ្ជាប់ បម្លែងពត៌មានអំពីមុខងារដែលគាំទ្រ, កំណែពិពណ៌នា, ឧបករណ៍ និងធនធានដែលមាន។
+### យុទ្ធសាស្រ្តអនុវត្ត
 
-2. **ការរចនា ឧបករណ៍**: បង្កើតឧបករណ៍ដែលផ្តោតលើការធ្វើរឿងមួយឲ្យល្អ ឱ្យហួសពីការធ្វើឧបករណ៍គ្មានរចនានៅលើបញ្ហាច្រើន។
+1. **ការចរចារជម្រើសសមត្ថភាព**៖ ចរចាទំនាក់ទំនងការគាំទ្រនៃជំនាន់នៃប្រតិបត្តិការ និង
+   សមត្ថភាព។ ក្នុង MCP `2026-07-28`, សំណើរ​នីមួយៗមានការផ្ទុកដោយខ្លួនឯង ហើយអាច
+   ប្រើ `server/discover`; ការត្រួតពិនិត្យជំនាន់ចាស់ប្រើវិធីសាស្រ្តដាក់ដៃ។
 
-3. **ការដោះស្រាយកំហុស**: អនុវត្តសារ និងកូដកំហុសដែលគោរពស្តង់ដា ដើម្បីជួយពិចារណាបញ្ហា, ដោះស្រាយការបរាជ័យយ៉ាងរលូន, និងផ្ដល់មតិយោបល់ដែលអាចអនុវត្តបាន។
 
-4. **ការកត់ត្រា**: កំណត់កំណត់ត្រាតាមរចនាសម្ព័ន្ធ សម្រាប់ការត្រួតពិនិត្យវិសោធនកម្ម និងតាមដានប្រតិបត្តិការពិពណ៌នា។
+2. **ការរចនាឧបករណ៍**: បង្កើតឧបករណ៍មួយដែលផ្តោតលើការធ្វើរឿងមួយបានល្អ ជំនួសឧបករណ៍ធំដុំដែលដោះស្រាយបញ្ហាច្រើន។
 
-5. **ការតាមដានវឌ្ឍនភាព**: សម្រាប់ប្រតិបត្តការដំណើរយូរអង្វែង រាយការណ៍បច្ចុប្បន្នភាពដើម្បីអនុញ្ញាតឲ្យមានមុខងារឆាប់ប្រតិបត្តិដល់អ្នកប្រើ។
+3. **ការដោះស្រាយកំហុស**: អនុវត្តសារបញ្ហាកំហុស និងកូដដែលបានស្តង់ដារ ដើម្បីជួយពិនិត្យបញ្ហា ដោះស្រាយបរាជ័យយ៉ាងទន់ភ្លន់ និងផ្តល់មតិយោបល់អាចអនុវត្តបាន។
 
-6. **ការលប់បោះបង់សំណើ**: អនុញ្ញាតិឲ្យអតិថិជនបោះបង់សំណើដែលដំណើរការនៅពេលបច្ចុប្បន្ន ដែលពុំចាំបាច់ឬយឺតពេក។
+4. **ការត្រួតពិនិត្យ**: ប្រើប្រាស់ `stderr` សម្រាប់ការធ្វើតេស្ត stdio និង OpenTelemetry
+   សម្រាប់ការត្រួតពិនិត្យដែលមានរចនាសម្ព័ន្ធ។ លក្ខណៈ MCP logging ត្រូវបានលុបចោលក្នុង
+   បញ្ជាក់ `2026-07-28`។
 
-##ឯកសារបន្ថែម
+5. **ការតាមដានភាពមុខមាត់**: សម្រាប់ប្រតិបត្តិការរយៈពេលវែង រាយការណ៍ភាពមុខមាត់ដើម្បីអនុញ្ញាតឱ្យមានផ្ទៃមុខអ្នកប្រើប្រាស់ដែលឆ្លើយតប។
 
-សម្រាប់ព័ត៌មានទាន់សម័យបំផុតអំពីអនុវត្តល្អបំផុត MCP សូមយោងទៅកាន់៖
+6. **ការលុបបណ្តាញសំណើការផ្តល់សេវា**: អនុញ្ញាតអតិថិជនលុបបណ្តាញសំណើដែលមិនចាំបាច់ឬយឺតពេក។
+
+## ឯកសារយោងបន្ថែម
+
+សម្រាប់ព័ត៌មានថ្មីបំផុតអំពីអនុប្រតិបត្តិ MCP អ្នកគួរតាមដាន៖
 
 - [ឯកសារ MCP](https://modelcontextprotocol.io/)
-- [លក្ខណៈពិសេស MCP (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [បញ្ជាក់ MCP (2026-07-28)][mcp-2026-spec]
+- [បញ្ជាក់ MCP មុននេះ (2025-11-25)](https://modelcontextprotocol.io/specification/2025-11-25)
+- [ការពង្រីកកិច្ចការម៉ាស៊ីន MCP][mcp-tasks-extension]
 - [ឃ្លាំង GitHub](https://github.com/modelcontextprotocol)
-- [អនុវត្តល្អបំផុតសុវត្ថិភាព](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices)
-- [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - គ្រោះថ្នាក់សុវត្ថិភាព និងការពារ
-- [សិក្ខាសាលាសុវត្ថិភាព MCP Summit (Sherpa)](https://azure-samples.github.io/sherpa/) - បណ្តុះបណ្តាលសុវត្ថិភាពជាក់ស្តែង
+- [លក្ខណៈសុវត្ថិភាពល្អបំផុត](https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/security_best_practices)
+- [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/) - គ្រោះថ្នាក់សុវត្ថិភាព និងការការពារ
+- [សិក្ខាសាលាសុវត្ថិភាព MCP Summit (Sherpa)](https://azure-samples.github.io/sherpa/) - ការបណ្តុះបណ្តាលសុវត្ថិភាពជាអនុវត្ត
 
-## ឧទាហរណ៍អនុវត្តជាក់ស្តែង
+### មេរៀនជំនួយភាពទំនុកចិត្ត
 
-### អនុវត្តល្អបំផុតការរចនា ឧបករណ៍
+លំហួតត្រលប់ទូទៅគឺមិនមានសុវត្ថិភាពសម្រាប់ឧបករណ៍ដែលបង្កើតប័ណ្ណសំបុត្រការបង់ប្រាក់ សារលិខិត ការបញ្ចេញ បញ្ជូន ឬផលប៉ះពាល់ពិតប្រាកដផ្សេងទៀត។ មួយចម្លើយអាចបាត់ខាតក្រោយពេលមានការបញ្ចូលផលប៉ះពាល់។
+
+
+
+ប្រើប្រាស់មេរៀនជំនួយភាពទំនុកចិត្ត,
+[ការត្រលប់សុវត្ថិភាពសម្រាប់ឧបករណ៍ MCP: លំនឹងដែលជួយភាពទំនុកចិត្ត][reliability-sidecar],
+ដើម្បីស្វែងយល់កូនសោប្រតិបត្តិការស្ថిరភាព ការចូលចិត្តបង្កើតចម្លើយស្ទួន ការកំណត់ចំណុចពិនិត្យ ការបញ្ចូលសមាហរណៈ កំណាត់ភស្តុតាង និងការចាក់បញ្ហាបរាជ័យ។
+
+
+[mcp-2026-spec]: https://modelcontextprotocol.io/specification/2026-07-28
+[mcp-tasks-extension]: https://modelcontextprotocol.io/extensions/tasks/overview
+[reliability-sidecar]: ./reliability-sidecars/README.md
+
+## ឧទាហរណ៍អនុវត្តន៍ជាក់ស្តែង
+
+### អនុប្រតិបត្តិការរចនាឧបករណ៍ល្អបំផុត
 
 #### 1. គោលការណ៍ភារកិច្ចតែមួយ
 
-ឧបករណ៍ MCP មួយៗគួរតែមានគោលបំណងច្បាស់លាស់និងផ្តោតសំខាន់។ មិនត្រូវបានបង្កើតឧបករណ៍បែបមូនូលីតិចដែលព្យាយាមដោះស្រាយបញ្ហាច្រើនទេ ត្រូវបង្កើតឧបករណ៍ឯកទេសដែលអាចធ្វើរឿងជាក់លាក់បានល្អ។
+ឧបករណ៍ MCP រាល់គ្រឿងគួរតែមានគោលបំណងច្បាស់លាស់ និងផ្តោតខ្លួន។ ជំនួសការបង្កើតឧបករណ៍ធំដុំដែលព្យាយាមដោះស្រាយបញ្ហាច្រើន បង្កើតឧបករណ៍ជំនាញដែលល្អនៅលើភារកិច្ចជាក់លាក់។
 
 ```csharp
 // A focused tool that does one thing well
@@ -143,12 +169,12 @@ public class WeatherForecastTool : ITool
 }
 ```
 
-#### 2. ការដោះស្រាយកំហុសយ៉ាងជាប់ទីតាំង
+#### 2. ការដោះស្រាយកំហុសនៅសកម្មភាពស្របគ្នា
 
-អនុវត្តការដោះស្រាយកំហុសរឹងមាំជាមួយសារារាយការណ៍កំហុសពេញលេញ និងវិធានការស្ដារឡើងវិញត្រឹមត្រូវ។
+អនុវត្តការដោះស្រាយកំហុសរឹងមាំជាមួយសារ​កំហុស​ព័ត៌មាន និងយន្តការស្ដារឡើងវិញសមស្រប។
 
 ```python
-# ឧទាហរណ៍ Python ជាមួយនឹងការគ្រប់គ្រងកំហុសយ៉ាងទូលំទូលាយ
+# ឧទាហរណ៍ Python ជាមួយការដោះស្រាយខុសត្រូវយ៉ាងទូលំទូលាយ
 class DataQueryTool:
     def get_name(self):
         return "dataQuery"
@@ -158,19 +184,19 @@ class DataQueryTool:
     
     async def execute(self, parameters):
         try:
-            # ការផ្ទៀងផ្ទាត់ប៉ារ៉ាម៉ែត្រ
+            # ការត្រួតពិនិត្យប៉ារ៉ាម៉ែត្រ
             if "query" not in parameters:
                 raise ToolParameterError("Missing required parameter: query")
                 
             query = parameters["query"]
             
-            # ការផ្ទៀងផ្ទាត់សន្តិសុខ
+            # ការត្រួតពិនិត្យសុវត្ថិភាព
             if self._contains_unsafe_sql(query):
                 raise ToolSecurityError("Query contains potentially unsafe SQL")
             
             try:
-                # ប្រតិបត្តិការមូលដ្ឋានទិន្នន័យដែលមានពេលផុតកំណត់
-                async with timeout(10):  # ពេលផុតកំណត់ ១០ វិនាទី
+                # ប្រតិបត្តិការទិន្នន័យជាមួយពេលវេលាដាច់
+                async with timeout(10):  # ពេលវេលាដាច់ ១០ វិនាទី
                     result = await self._database.execute_query(query)
                     
                 return ToolResponse(
@@ -179,37 +205,37 @@ class DataQueryTool:
             except asyncio.TimeoutError:
                 raise ToolExecutionError("Database query timed out after 10 seconds")
             except DatabaseConnectionError as e:
-                # កំហុសការតភ្ជាប់អាចជាការបណ្ដាលមុន
+                # កំហុសការតភ្ជាប់អាចជាការបណ្តោះអាសន្ន
                 self._log_error("Database connection error", e)
                 raise ToolExecutionError(f"Database connection error: {str(e)}")
             except DatabaseQueryError as e:
-                # កំហុសសំណួរអាចជាកំហុសពីភាគីអតិថិជន
+                # កំហុសការស្នើរសុំប្រាកដជាជាកំហុសពីភាគីអតិថិជន
                 self._log_error("Database query error", e)
                 raise ToolExecutionError(f"Invalid query: {str(e)}")
                 
         except ToolError:
-            # អនុញ្ញាតឱ្យកំហុសពាក់ព័ន្ធនឹងឧបករណ៍បន្តទៅ
+            # អនុញ្ញាតឱ្យកំហុសពិសេសសម្រាប់ឧបករណ៍ឆ្លងកាត់
             raise
         except Exception as e:
-            # ចាប់កំហុសទាំងអស់សម្រាប់កំហុសមិនរំពឹងទុក
+            # ការចាប់កំហុសសម្រាប់កំហុសដែលមិនបានរំពឹងទុក
             self._log_error("Unexpected error in DataQueryTool", e)
             raise ToolExecutionError(f"An unexpected error occurred: {str(e)}")
     
     def _contains_unsafe_sql(self, query):
-        # ការអនុវត្តភាពរកឃើញការចូល SQL មិនសម្រួល
+        # ការអនុវត្តការស្គាល់ការវាយប្រហារលើ SQL
         pass
         
     def _log_error(self, message, error):
-        # ការអនុវត្តរាយការណ៍កំហុស
+        # ការអនុវត្តការចុះបញ្ជីកំហុស
         pass
 ```
 
 #### 3. ការត្រួតពិនិត្យប៉ារ៉ាម៉ែត្រ
 
-តែងតែត្រួតពិនិត្យប៉ារ៉ាម៉ែត្រយ៉ាងម៉ត់ចត់ ដើម្បីទប់ស្កាត់ការបញ្ចូលខុសឬឧបានចោរកម្ម។
+តែងតែត្រួតពិនិត្យប៉ារ៉ាម៉ែត្រយ៉ាងម៉ត់ចត់ ដើម្បីទប់ស្កាត់ការបញ្ចូលដែលខុសឬមានបំណុល។
 
 ```javascript
-// ឧទាហរណ៍ JavaScript/TypeScript ជាមួយការផ្ទៀងផ្ទាត់ប៉ារ៉ាម៉ែត្រយ៉ាងលម្អិត
+// ឧទាហរណ៍ JavaScript/TypeScript ជាមួយការត្រួតពិនិត្យប៉ារ៉ាម៉ែត្រយ៉ាងละเอียดยิบ
 class FileOperationTool {
   getName() {
     return "fileOperation";
@@ -244,7 +270,7 @@ class FileOperationTool {
   }
   
   async execute(parameters) {
-    // 1. ផ្ទៀងផ្ទាត់ការមានប៉ារ៉ាម៉ែត្រ
+    // 1. ត្រួតពិនិត្យការមានវត្តមានប៉ារ៉ាម៉ែត្រ
     if (!parameters.operation) {
       throw new ToolError("Missing required parameter: operation");
     }
@@ -253,7 +279,7 @@ class FileOperationTool {
       throw new ToolError("Missing required parameter: path");
     }
     
-    // 2. ផ្ទៀងផ្ទាត់ប្រភេទប៉ារ៉ាម៉ែត្រ
+    // 2. ត្រួតពិនិត្យប្រភេទប៉ារ៉ាម៉ែត្រ
     if (typeof parameters.operation !== "string") {
       throw new ToolError("Parameter 'operation' must be a string");
     }
@@ -262,45 +288,45 @@ class FileOperationTool {
       throw new ToolError("Parameter 'path' must be a string");
     }
     
-    // 3. ផ្ទៀងផ្ទាត់តម្លៃប៉ារ៉ាម៉ែត្រ
+    // 3. ត្រួតពិនិត្យតម្លៃប៉ារ៉ាម៉ែត្រ
     const validOperations = ["read", "write", "delete"];
     if (!validOperations.includes(parameters.operation)) {
       throw new ToolError(`Invalid operation. Must be one of: ${validOperations.join(", ")}`);
     }
     
-    // 4. ផ្ទៀងផ្ទាត់ការមានមាតិកាសម្រាប់ប្រតិបត្តិការសរសេរ
+    // 4. ត្រួតពិនិត្យការមានខ្លឹមសារសម្រាប់ប្រតិបត្តិការសរសេរ
     if (parameters.operation === "write" && !parameters.content) {
       throw new ToolError("Content parameter is required for write operation");
     }
     
-    // 5. ផ្ទៀងផ្ទាត់សុវត្ថិភាពផ្លូវ
+    // 5. ត្រួតពិនិត្យសុវត្ថិភាពផ្លូវ
     if (!this.isPathWithinAllowedDirectories(parameters.path)) {
       throw new ToolError("Access denied: path is outside of allowed directories");
     }
     
-    // ការអនុវត្តដោយផ្អែកលើប៉ារ៉ាម៉ែត្រដែលបានផ្ទៀងផ្ទាត់
+    // ការអនុវត្តផ្អែកលើប៉ារ៉ាម៉ែត្រដែលបានត្រួតពិនិត្យ
     // ...
   }
   
   isPathWithinAllowedDirectories(path) {
-    // ការអនុវត្តន៍សម្រាប់ការត្រួតពិនិត្យសុវត្ថិភាពផ្លូវ
+    // ការអនុវត្តន៍នៃការត្រួតពិនិត្យសុវត្ថិភាពផ្លូវ
     // ...
   }
 }
 ```
 
-###ឧទាហរណ៍អនុវត្តសុវត្ថិភាព
+### ឧទាហរណ៍អនុវត្តសុវត្ថិភាព
 
-#### 1. ការផ្ទៀងផ្ទាត់ និងអនុញ្ញាត
+#### 1. ការផ្ទៀងផ្ទាត់​អត្តសញ្ញាណ និងការអនុញ្ញាត
 
 ```java
-// ឧទាហរណ៍ Java ជាមួយការផ្ទៀងផ្ទាត់ និងការអនុញ្ញាតិ
+// ឧទាហរណ៍ Java ជាមួយការផ្ទៀងផ្ទាត់ និងការអនុញ្ញាត
 public class SecureDataAccessTool implements Tool {
     private final AuthenticationService authService;
     private final AuthorizationService authzService;
     private final DataService dataService;
     
-    // ការចាក់បង្ហាប់ការពឹងផ្អែក
+    // ការបញ្ចូលស្នូលអាស្រ័យ
     public SecureDataAccessTool(
             AuthenticationService authService,
             AuthorizationService authzService,
@@ -328,7 +354,7 @@ public class SecureDataAccessTool implements Tool {
             return ToolResponse.error("Authentication failed: " + e.getMessage());
         }
         
-        // 3. ពិនិត្យការអនុញ្ញាតសម្រាប់ប្រតិបត្តិការពិសេស
+        // 3. ពិនិត្យការអនុញ្ញាតសម្រាប់ប្រតិបត្តិការផ្សេងៗ
         String dataId = request.getParameters().get("dataId").getAsString();
         String operation = request.getParameters().get("operation").getAsString();
         
@@ -337,7 +363,7 @@ public class SecureDataAccessTool implements Tool {
             return ToolResponse.error("Access denied: Insufficient permissions for this operation");
         }
         
-        // 4. បន្តជាមួយប្រតិបត្តិការដែលមានអនុញ្ញាត
+        // 4. បន្តជាមួយប្រតិបត្តិការដែលបានអនុញ្ញាត
         try {
             switch (operation) {
                 case "read":
@@ -357,7 +383,7 @@ public class SecureDataAccessTool implements Tool {
 }
 ```
 
-#### 2. កំណត់អត្រា
+#### 2. ការជម្រុញអត្រា
 
 ```csharp
 // C# rate limiting implementation
@@ -433,30 +459,30 @@ public class RateLimitingMiddleware
 }
 ```
 
-## អនុវត្តល្អបំផុតសម្រាប់ការធ្វើតេស្ត
+## អនុប្រតិបត្តិប្រតិបត្តិការការប្រលង
 
-### 1. សាកល្បងឧបករណ៍ MCP ជាឯករាជ្យ
+### 1. ការប្រលងឯកតា​របស់ឧបករណ៍ MCP
 
-តែងតែធ្វើតេស្តឧបករណ៍របស់អ្នកក្នងមួយឯកតាមួយ ដោយប្រើការលេងតួរផ្ទាល់ខ្លួននៃផ្នែកខាងក្រៅ៖
+តែងតែប្រលងឧបករណ៍របស់អ្នកក្នុងសភាពឯកោ ដោយល្បាក់បំផុតផ្នែកខាងក្រៅ៖
 
 ```typescript
-// ឧទាហរណ៍ TypeScript នៃការធ្វើតេស្តឯកត្តាសម្ភារៈ
+// ឧទាហរណ៍ TypeScript នៃការប្រឡងឯកតានៃឧបករណ៍
 describe('WeatherForecastTool', () => {
   let tool: WeatherForecastTool;
   let mockWeatherService: jest.Mocked<IWeatherService>;
   
   beforeEach(() => {
-    // បង្កើតសេវាកម្មអាកាសធាតុប្រើសំខាន់
+    // បង្កើតសេវាកម្មអាកាសធាតុចម្លង
     mockWeatherService = {
       getForecasts: jest.fn()
     } as any;
     
-    // បង្កើតឧបករណ៍ជាមួយការពឹងផ្អែកប្រើសំខាន់
+    // បង្កើតឧបករណ៍ជាមួយការគោរពចម្លង
     tool = new WeatherForecastTool(mockWeatherService);
   });
   
   it('should return weather forecast for a location', async () => {
-    // តំរូវការ
+    // រៀបចំ
     const mockForecast = {
       location: 'Seattle',
       forecasts: [
@@ -468,7 +494,7 @@ describe('WeatherForecastTool', () => {
     
     mockWeatherService.getForecasts.mockResolvedValue(mockForecast);
     
-    // ប្រតិបត្តិ
+    // អនុវត្ត
     const response = await tool.execute({
       location: 'Seattle',
       days: 3
@@ -481,10 +507,10 @@ describe('WeatherForecastTool', () => {
   });
   
   it('should handle errors from the weather service', async () => {
-    // តំរូវការ
+    // រៀបចំ
     mockWeatherService.getForecasts.mockRejectedValue(new Error('Service unavailable'));
     
-    // ប្រតិបត្តិ និងបញ្ជាក់
+    // អនុវត្ត និង បញ្ជាក់
     await expect(tool.execute({
       location: 'Seattle',
       days: 3
@@ -493,48 +519,50 @@ describe('WeatherForecastTool', () => {
 });
 ```
 
-### 2. សាកល្បងការបញ្ចូល
+### 2. ការប្រលងសមាសភាព
 
-ធ្វើតេស្តលំហូរការបញ្ចូលពេញលេញពីសំណើរអតិថិជនទៅការឆ្លើយតបម៉ាស៊ីនបម្រើ៖
+ប្រលងលំហូរពេញលេញចាប់ពីសំណើអតិថិជនទៅចម្លើយម៉ាស៊ីនបម្រើ៖
 
 ```python
-# ឧទាហរណ៍បញ្ចូលការតេស្ត Python
+# ឧទាហរណ៍ការសាកល្បងបញ្ចូល Python
 @pytest.mark.asyncio
 async def test_mcp_server_integration():
-    # ចាប់ផ្តើមម៉ាស៊ីនមេតេស្ត
+    # ចាប់ផ្តើមម៉ាស៊ីនបម្រើសាកល្បង
     server = McpServer()
     server.register_tool(WeatherForecastTool(MockWeatherService()))
     await server.start(port=5000)
     
     try:
-        # បង្កើតអ្នកអតិថិជន
+        # បង្កើតអតិថិជន
         client = McpClient("http://localhost:5000")
         
-        # បញ្ចាក់ការរកឧបករណ៍
+        # ស៊ើបអង្កេតឧបករណ៍សាកល្បង
         tools = await client.discover_tools()
         assert "weatherForecast" in [t.name for t in tools]
         
-        # បញ្ចាក់ការប្រតិបត្ដិឧបករណ៍
+        # រត់ឧបករណ៍សាកល្បង
         response = await client.execute_tool("weatherForecast", {
             "location": "Seattle",
             "days": 3
         })
         
-        # ពិនិត្យការឆ្លើយតប
+        # ផ្ទៀងផ្ទាត់ការឆ្លើយតប
         assert response.status_code == 200
         assert "Seattle" in response.content[0].text
         assert len(json.loads(response.content[0].text)["forecasts"]) == 3
         
     finally:
-        # សំអាតការងារ
+        # សម្អាត
         await server.stop()
 ```
 
-## ការបង្កើនប្រសិទ្ធភាព
+## ការបង្កើតប្រសិទ្ធភាព
 
-### 1. ប្រើយុទ្ធសាស្ត្រការចងចាំ
 
-អនុវត្តការចងចាំដែលសមរម្យ ដើម្បីកាត់បន្ថយការពន្យាពេល និងការប្រើប្រាស់ធនធាន៖
+### 1. វិធីសាស្រ្តបម្រុងទុកទិន្នន័យ (Caching Strategies)
+
+អនុវត្តការបម្រុងទុកសមរម្យ ដើម្បីកាត់បន្ថយកម្រិតពេលយឺត និងការប្រើប្រាស់ធនធាន៖
+
 
 ```csharp
 // C# example with caching
@@ -603,18 +631,18 @@ public class CachedWeatherTool : ITool
 }
 ```
 
-#### 2. ការបញ្ចូលការពឹងផ្អែក និងការធ្វើតេស្តបាន
+#### 2. ការចាក់បញ្ចូលភាពអាស្រ័យ និងភាពអាចសាកល្បងបាន
 
-រចនាឧបករណ៍ឲ្យទទួលការពឹងផ្អែករបស់ខ្លួនតាមរយៈការបញ្ចូលកម្មង់ ដែលធ្វើឲ្យវាធ្វើតេស្តបាន និងអាចកំណត់បាន៖
+រចនាឧបករណ៍ដើម្បីទទួលបានភាពអាស្រ័យរបស់ពួកវាតាមរយៈការចាក់បញ្ចូលនាវនុវត្តផ្នែកចងក្រង ដើម្បីធ្វើអោយវាអាចសាកល្បង និងកំណត់តំរូវការបាន៖
 
 ```java
-// ឧទាហរណ៍ Java ជាមួយការចាក់បញ្ចូលអាស្រ័យកិច្ច
+// ឧទាហរណ៍ Java ជាមួយការចាក់បញ្ចូលអាស្រ័យភាព
 public class CurrencyConversionTool implements Tool {
     private final ExchangeRateService exchangeService;
     private final CacheService cacheService;
     private final Logger logger;
     
-    // អាស្រ័យកិច្ចត្រូវបានចាក់បញ្ចូលតាមរយៈកុងស្ត្រាក់ទ័រ
+    // អាស្រ័យភាពត្រូវបានចាក់បញ្ចូលតាមរយៈអ្នកបង្កើត
     public CurrencyConversionTool(
             ExchangeRateService exchangeService,
             CacheService cacheService,
@@ -629,17 +657,17 @@ public class CurrencyConversionTool implements Tool {
 }
 ```
 
-#### 3. ឧបករណ៍ដែលអាចផ្សំគ្នា
+#### 3. ឧបករណ៍ដែលអាចផ្សំបាន
 
-រចនាឧបករណ៍ដែលអាចផ្សំគ្នា ដើម្បីបង្កើតដំណើរការស្មុគស្មាញជាងមុន៖
+រចនាឧបករណ៍ដែលអាចផ្សំគ្នាដើម្បីបង្កើតឈ្មោះវឌ្ឍនកម្មស្មុគស្មាញជាងមុន៖
 
 ```python
-# ឧទាហរណ៍ Python បង្ហាញឧបករណ៍អាចត្រូវបានផ្សំគ្នា
+# ឧទាហរណ៍ Python បង្ហាញអំពីឧបករណ៍ដែលអាចគូសវាយបាន
 class DataFetchTool(Tool):
     def get_name(self):
         return "dataFetch"
     
-    # ការអនុវត្តន៍...
+    # ការអនុវត្ត...
 
 class DataAnalysisTool(Tool):
     def get_name(self):
@@ -647,7 +675,7 @@ class DataAnalysisTool(Tool):
     
     # ឧបករណ៍នេះអាចប្រើលទ្ធផលពីឧបករណ៍ dataFetch
     async def execute_async(self, request):
-        # ការអនុវត្តន៍...
+        # ការអនុវត្ត...
         pass
 
 class DataVisualizationTool(Tool):
@@ -656,19 +684,19 @@ class DataVisualizationTool(Tool):
     
     # ឧបករណ៍នេះអាចប្រើលទ្ធផលពីឧបករណ៍ dataAnalysis
     async def execute_async(self, request):
-        # ការអនុវត្តន៍...
+        # ការអនុវត្ត...
         pass
 
-# ឧបករណ៍ទាំងនេះអាចប្រើបានដោយឯករាជ្យ ឬជាផ្នែកមួយនៃដំណើរការងារ
+# ឧបករណ៍ទាំងនេះអាចប្រើដោយឯករាជ្យ ឬជាផ្នែកមួយនៃដំណើរការងារ
 ```
 
-### អនុវត្តល្អបំផុតការរចនាតារាង
+### ការអនុវត្តស្តីពីរចនាស្កីម៉ា
 
-តារាងគឺជា​ពាក្យសន្យារវាងគំរូបំរើនិងឧបករណ៍របស់អ្នក។ តារាងដែលបានរចនាយ៉ាងល្អនាំឲ្យមានភាពងាយស្រួលក្នុងការប្រើប្រាស់ឧបករណ៍កាន់តែប្រសើរ។
+ស្កីម៉ាគឺជាសន្យារវាងម៉ូដែលនិងឧបករណ៍របស់អ្នក។ ស្កីម៉ាសម្រាប់រចនាដោយល្អនាំឲ្យមានភាពងាយស្រួលប្រើឧបករណ៍ល្អប្រសើរឡើង។
 
-#### 1. ពិពណ៌នាប៉ារ៉ាម៉ែត្រដែលច្បាស់លាស់
+#### 1. ការពិពណ៌នាព័ត៌មានប៉ារ៉ាម៉ែត្រ​យ៉ាងច្បាស់
 
-តែងតែលាយព័ត៍មានពិពណ៌នាសម្រាប់ប៉ារ៉ាម៉ែត្រនីមួយៗ៖
+តែងតែបញ្ចូលព័ត៌មានពិពណ៌នាសម្រាប់ប៉ារ៉ាម៉ែត្រនីមួយៗ៖
 
 ```csharp
 public object GetSchema()
@@ -705,9 +733,9 @@ public object GetSchema()
 }
 ```
 
-#### 2. ការកំណត់កំណត់ត្រាត្រួតពិនិត្យ
+#### 2. ការរឹតត្បិតក្នុងការផ្ទៀងផ្ទាត់
 
-រួមបញ្ចូលការកំណត់កំណត់ត្រា ដើម្បីទប់ស្កាត់ការបញ្ចូលមិនត្រឹមត្រូវ៖
+រួមបញ្ចូលការរឹតត្បិតការផ្ទៀងផ្ទាត់ដើម្បីទប់ស្កាត់បញ្ចូលមិនត្រឹមត្រូវ៖
 
 ```java
 Map<String, Object> getSchema() {
@@ -716,20 +744,20 @@ Map<String, Object> getSchema() {
     
     Map<String, Object> properties = new HashMap<>();
     
-    // ទ្រង់ទ្រាយអ៊ីមែលជាមួយការត្រួតពិនិត្យទ្រង់ទ្រាយ
+    // ទ្រព្យសម្បត្តិអ៊ីមែលដែលមានការផ្ទៀងផ្ទាត់ទ្រង់ទ្រាយ
     Map<String, Object> email = new HashMap<>();
     email.put("type", "string");
     email.put("format", "email");
     email.put("description", "User email address");
     
-    // ទ្រង់ទ្រាយអាយុជាមួយកំណត់លេខ
+    // ទ្រព្យសម្បត្តិអាយុដែលមានការតម្រឹមតំលៃជាលេខ
     Map<String, Object> age = new HashMap<>();
     age.put("type", "integer");
     age.put("minimum", 13);
     age.put("maximum", 120);
     age.put("description", "User age in years");
     
-    // ទ្រង់ទ្រាយដែលប្រើប្រាស់បញ្ជីជ្រើសរើស
+    // ទ្រព្យសម្បត្តិត្រូវបានរាយបញ្ជី
     Map<String, Object> subscription = new HashMap<>();
     subscription.put("type", "string");
     subscription.put("enum", Arrays.asList("free", "basic", "premium"));
@@ -747,17 +775,17 @@ Map<String, Object> getSchema() {
 }
 ```
 
-#### 3. រចនាសម្ព័ន្ធតបឆ្លើយដែលស៊ាំថ្មម
+#### 3. រចនាសម្ព័ន្ធត្រឡប់មកវិញយ៉ាងឆ្ពោះឆ្ពា
 
-រក្សាទុកភាពស្របគ្នានៅក្នុងរចនាសម្ព័ន្ធចម្លើយ ដើម្បីធ្វើឱ្យមានភាពងាយស្រួលសម្រាប់គំរូបំរើក្នុងការបកស្រាយលទ្ធផល៖
+រក្សាការមានសុខសម្រួលនៅក្នុងរចនាសម្ព័ន្ធការឆ្លើយតបរបស់អ្នក ដើម្បីងាយស្រួលសម្រាប់ម៉ូដែលយល់ពីលទ្ធផល៖
 
 ```python
 async def execute_async(self, request):
     try:
-        # ដំណើរការសំណើ
+        # ដំណើរការលោកសំណើ
         results = await self._search_database(request.parameters["query"])
         
-        # តែងតែបង្រួមត្រឡប់តទៅរចនាសម្ព័ន្ធដដែល
+        # តែងតែនាំមកនូវរចនាសម្ព័ន្ធដែលមានសក្ដានុពលស្វុរស
         return ToolResponse(
             result={
                 "matches": [self._format_item(item) for item in results],
@@ -788,13 +816,13 @@ def _format_item(self, item):
     }
 ```
 
-### ការដោះស្រាយកំហុស
+### ការគ្រប់គ្រងកំហុស
 
-ការដោះស្រាយកំហុសរឹងមាំមានសារៈសំខាន់សម្រាប់ឧបករណ៍ MCP ដើម្បីរក្សាភាពទុកចិត្ត។
+ការគ្រប់គ្រងកំហុសយ៉ាងរឹងមាំគឺសំខាន់សម្រាប់ឧបករណ៍ MCP ដើម្បីរក្សាការទុកចិត្តបាន។
 
-#### 1. ការដោះស្រាយកំហុសដោយប្រសិទ្ធភាព
+#### 1. ការគ្រប់គ្រងកំហុសឲ្យយ៉ាងឆាប់រហ័ស និងរាបសារ
 
-ដោះស្រាយកំហុសនៅកម្រិតត្រឹមត្រូវ និងផ្ដល់សារពហុព័ត៌មាន៖
+គ្រប់គ្រងកំហុសនៅកម្រិតដែលសមស្រប និងផ្តល់សារ​ព័ត៌មាន​ដែលមានប្រយោជន៍៖
 
 ```csharp
 public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
@@ -836,9 +864,9 @@ public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
 }
 ```
 
-#### 2. ចម្លើយកំហុសរចនាសម្ព័ន្ធ
+#### 2. ការឆ្លើយតបកំហុសយ៉ាងមានរចនាសម្ព័ន្ធ
 
-ត្រឡប់ព័ត៌មានកំហុសតាមរចនាសម្ព័ន្ធប្រសិនបើអាចធ្វើបាន៖
+ត្រឡប់មកវិញនូវព័ត៌មានកំហុសដែលមានរចនាសម្ព័ន្ធពេលដែលអាចធ្វើបាន៖
 
 ```java
 @Override
@@ -862,15 +890,21 @@ public ToolResponse execute(ToolRequest request) {
                 .build();
         }
         
-        // បោះបង់វិញករណីកើតកំហុសផ្សេងទៀតជារូបភាព ToolExecutionException
+        // បោះបង់ករណីករណីផ្សេងៗជាថ្មីជារាង ToolExecutionException
         throw new ToolExecutionException("Tool execution failed: " + ex.getMessage(), ex);
     }
 }
 ```
 
-#### 3. លក្ខខណ្ឌចម្លងថយក្រោយ
+#### 3. ការផ្ដល់យុទ្ធសាស្ត្រសាកល្បង​ម្តងទៀត
 
-អនុវត្តលក្ខខណ្ឌចម្លងថយក្រោយសមរម្យសម្រាប់ការបរាជ័យចៃដន្យ៖
+ប្រើយុទ្ធសាស្ត្រសាកល្បងទូទៅសម្រាប់ការហៅអានប៉ុណ្ណោះ ឬប្រតិបត្តិការណ៍ដែលសន្យា downstream បានហើយថាទំនាក់ទំនងគឺ idempotent ។ សម្រាប់ប្រតិបត្តិការរួមមានផលប៉ះពាល់ វេលានៃការផ្ដល់សំណើក្រោយផ្ញើទៅ អាចធ្វើអោយមានភាពមិនច្បាស់លាស់។ សូមសម្រួលស្ថានភាពពិតតំណាង និងប្រើប្រាស់កូនលេខដូចគ្នាថ្មីម្តងទៀត មុនធ្វើកិច្ចការជាថ្មី។ សូមមើលមេរៀនមិត្តភក្តិ [reliability sidecar companion lesson](./reliability-sidecars/README.md) ។
+
+
+
+
+
+លំនាំរង្វិលសាកល្បងដែលមានកំណត់ខាងក្រោម គឺសមស្របសម្រាប់ការស្វែងរកដែលអានប៉ុណ្ណោះ៖
 
 ```python
 async def execute_async(self, request):
@@ -880,19 +914,19 @@ async def execute_async(self, request):
     
     while retry_count < max_retries:
         try:
-            # ហៅ API ខាងក្រៅ
-            return await self._call_api(request.parameters)
+            # ហៅ API ផ្នែកខាងក្រៅដែលអាចអានបានតែប៉ុណ្ណោះ
+            return await self._call_read_only_api(request.parameters)
         except TransientError as e:
             retry_count += 1
             if retry_count >= max_retries:
                 raise ToolExecutionException(f"Operation failed after {max_retries} attempts: {str(e)}")
                 
-            # ការថយក្រោយអង្គគុណ
+            # ការពន្យារពេលឡើងវិញស្ទុះគុណ
             delay = base_delay * (2 ** (retry_count - 1))
             logging.warning(f"Transient error, retrying in {delay}s: {str(e)}")
             await asyncio.sleep(delay)
         except Exception as e:
-            # បំរែបំរួលមិនមែនជាបណ្តោះអាសន្ន មិនត្រូវព្យាយាមម្តងទៀត
+            # បញ្ហាមិនបណ្តាលឲ្យបាត់បង់តំណាក់, កុំសាកល្បងម្ដងទៀត
             raise ToolExecutionException(f"Operation failed: {str(e)}")
 ```
 
@@ -900,7 +934,7 @@ async def execute_async(self, request):
 
 #### 1. ការចងចាំ
 
-អនុវត្តការចងចាំសម្រាប់ប្រតិបត្តិការឈឺថ្លើម៖
+អនុវត្តការចងចាំសម្រាប់ប្រតិបត្តិការតម្លៃខ្ពស់៖
 
 ```csharp
 public class CachedDataTool : IMcpTool
@@ -946,9 +980,9 @@ public class CachedDataTool : IMcpTool
 }
 ```
 
-#### 2. ការគ្រប់គ្រងអសិនក្រោន
+#### 2. ការប្រើប្រាស់អស៊ីនខណៈ
 
-ប្រើលំនាំកម្មវិធីអសិនក្រោនសម្រាប់ប្រតិបត្តិការដែលពាក់ព័ន្ធនឹង I/O៖
+ប្រើរចនាបទកម្មវិធីអស៊ីនខណៈសម្រាប់ប្រតិបត្តិការចេញចូល៖
 
 ```java
 public class AsyncDocumentProcessingTool implements Tool {
@@ -959,23 +993,23 @@ public class AsyncDocumentProcessingTool implements Tool {
     public ToolResponse execute(ToolRequest request) {
         String documentId = request.getParameters().get("documentId").asText();
         
-        // សម្រាប់ប្រតិបត្តិការដែលរយៈពេលយូរ សូមត្រឡប់ ID ការដំណើរការឡើងវិញភ្លាមៗ
+        // សម្រាប់ប្រតិបត្តការដែលរយះពេលយូរ សូមបង្ហាញ ID ដំណើរការឱ្យបានភ្លាមៗ
         String processId = UUID.randomUUID().toString();
         
-        // ចាប់ផ្តើមដំណើរការជាអាស៊ីនក្រោយ
+        // ចាប់ផ្តើមដំណើរការផ្នែកអាសិនខែម៍
         CompletableFuture.runAsync(() -> {
             try {
-                // អនុវត្តប្រតិបត្តិការដែលរយៈពេលយូរ
+                // អនុវត្តប្រតិបត្តការដែលរយះពេលយូរ
                 documentService.processDocument(documentId);
                 
-                // ធ្វើបច្ចុប្បន្នភាពស្ថានភាព (ភាគច្រើននឹងត្រូវរក្សាទុកក្នុងមូលដ្ឋានទិន្នន័យ)
+                // បញ្ចូលអាប់ដេតស្ថានភាព (ធម្មតានឹងត្រូវរក្សាទុកក្នុងមូលដ្ឋានទិន្នន័យ)
                 processStatusRepository.updateStatus(processId, "completed");
             } catch (Exception ex) {
                 processStatusRepository.updateStatus(processId, "failed", ex.getMessage());
             }
         }, executorService);
         
-        // ត្រឡប់នូវការឆ្លើយតបភ្លាមៗជាមួយ ID ការដំណើរការ
+        // ត្រឡប់ចម្លើយភ្លាមៗជាមួយ ID ដំណើរការ
         Map<String, Object> result = new HashMap<>();
         result.put("processId", processId);
         result.put("status", "processing");
@@ -984,7 +1018,7 @@ public class AsyncDocumentProcessingTool implements Tool {
         return new ToolResponse.Builder().setResult(result).build();
     }
     
-    // ឧបករណ៍ពិនិត្យស្ថានភាពរួមហើយ
+    // ឧបករណ៍ត្រួតពិនិត្យស្ថានភាពរួម
     public class ProcessStatusTool implements Tool {
         @Override
         public ToolResponse execute(ToolRequest request) {
@@ -997,20 +1031,20 @@ public class AsyncDocumentProcessingTool implements Tool {
 }
 ```
 
-#### 3. ការរារាំងធនធាន
+#### 3. ការគ្រប់គ្រងធនធាន
 
-អនុវត្តការរារាំងធនធាន ដើម្បីទប់ស្កាត់ការចំរូងផ្ទុកពេក៖
+អនុវត្តការគ្រប់គ្រងធនធានដើម្បីទប់ស្កាត់ការលើសផ្ទុក៖
 
 ```python
 class ThrottledApiTool(Tool):
     def __init__(self):
         self.rate_limiter = TokenBucketRateLimiter(
-            tokens_per_second=5,  # អនុញ្ញាតអោយមានសំនើរ 5 ក្នុងមួយវិនាទី
-            bucket_size=10        # អនុញ្ញាតអោយមានការប្រមូលផ្តុំរហូតដល់ 10 សំនើរ
+            tokens_per_second=5,  # អនុញ្ញាត 5 ពាក្យស្នើក្នុងមួយវិនាទី
+            bucket_size=10        # អនុញ្ញាតការប្រកួតមានកម្ពស់រហូតដល់ 10 ពាក្យស្នើ
         )
     
     async def execute_async(self, request):
-        # ពិនិត្យមើលថាតើយើងអាចបន្តរឺត្រូវរង់ចាំ
+        # ពិនិត្យមើលថាតើយើងអាចបន្តឬត្រូវរង់ចាំ
         delay = self.rate_limiter.get_delay_time()
         
         if delay > 0:
@@ -1022,7 +1056,7 @@ class ThrottledApiTool(Tool):
                 # រង់ចាំរយៈពេលដែលសមរម្យ
                 await asyncio.sleep(delay)
         
-        # ប្រើប្រាស់ស្លាកកូដមួយហើយបន្តសំនើរ
+        # ប្រើសញ្ញានិងបន្តសំណើ
         self.rate_limiter.consume()
         
         # ហៅ API
@@ -1043,7 +1077,7 @@ class TokenBucketRateLimiter:
             if self.tokens >= 1:
                 return 0
             
-            # គណនាពេលវេលាដល់ពេលម៉ាស៊ីនស្លាកកូដមួយចេញមក
+            # គណនាពេលវេលារហូតដល់សញ្ញាត្រូវបានរកឃើញម្ដងទៀត
             return (1 - self.tokens) / self.tokens_per_second
     
     async def consume(self):
@@ -1055,17 +1089,17 @@ class TokenBucketRateLimiter:
         now = time.time()
         elapsed = now - self.last_refill
         
-        # បន្ថែមស្លាកកូដថ្មីៗដោយផ្អែកលើពេលវេលាដែលបានឆ្លងកាត់
+        # បន្ថែមសញ្ញាថ្មីដោយផ្អែកលើពេលវេលាដែលបានហើយ
         new_tokens = elapsed * self.tokens_per_second
         self.tokens = min(self.bucket_size, self.tokens + new_tokens)
         self.last_refill = now
 ```
 
-### អនុវត្តល្អបំផុតសុវត្ថិភាព
+### ការអនុវត្តសុវត្ថិភាពល្អបំផុត
 
-#### 1. ការត្រួតពិនិត្យបញ្ចូល
+#### 1. ការផ្ទៀងផ្ទាត់បញ្ចូល
 
-តែងតែត្រួតពិនិត្យប៉ារ៉ាម៉ែត្របញ្ចូលយ៉ាងម៉ត់ចត់៖
+តែងតែផ្ទៀងផ្ទាត់ប៉ារ៉ាម៉ែត្របញ្ចូលយ៉ាងពេញលេញ៖
 
 ```csharp
 public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
@@ -1108,33 +1142,33 @@ public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
 
 #### 2. ការត្រួតពិនិត្យការអនុញ្ញាត
 
-អនុវត្តការត្រួតពិនិត្យការអនុញ្ញាតត្រឹមត្រូវ៖
+អនុវត្តការត្រួតពិនិត្យការអនុញ្ញាតបានត្រឹមត្រូវ៖
 
 ```java
 @Override
 public ToolResponse execute(ToolRequest request) {
-    // ទទួលបានបទContextអ្នកប្រើពីសំណើ
+    // ទទួលបានបរិបទអ្នកប្រើពីការស្នើសុំ
     UserContext user = request.getContext().getUserContext();
     
-    // ពិនិត្យមើលថាតើអ្នកប្រើមានសិទ្ធិគ្រប់គ្រាន់ហើយឬទេ
+    // ពិនិត្យមើលថាអ្នកប្រើមានសិទិ្ធដែលបានទាមទារឬអត់
     if (!authorizationService.hasPermission(user, "documents:read")) {
         throw new ToolExecutionException("User does not have permission to access documents");
     }
     
-    // សម្រាប់ធនធានជាក់លាក់ ពិនិត្យមើលការចូលដំណើរការទៅធនធាននោះ
+    // សម្រាប់ធនធានជាក់លាក់ពិនិត្យការចូលប្រើធនធាននោះ
     String documentId = request.getParameters().get("documentId").asText();
     if (!documentService.canUserAccess(user.getId(), documentId)) {
         throw new ToolExecutionException("Access denied to the requested document");
     }
     
-    // បន្តការប្រតិបត្តិការឧបករណ៍
+    // បន្តការប្រតិបត្តិឧបករណ៍
     // ...
 }
 ```
 
-#### 3. ការដោះស្រាយទិន្នន័យសំភារៈ
+#### 3. ការគ្រប់គ្រងទិន្នន័យដែលមានភាពភាគច្រើនចិត្ត
 
-ដោះស្រាយទិន្នន័យសំភារៈយ៉ាងប្រុងប្រយ័ត្ន៖
+គ្រប់គ្រងទិន្នន័យដែលមានភាពភាគច្រើនចិត្តយ៉ាងហ្មត់ចត់៖
 
 ```python
 class SecureDataTool(Tool):
@@ -1155,43 +1189,43 @@ class SecureDataTool(Tool):
         # ទទួលបានទិន្នន័យអ្នកប្រើ
         user_data = await self.user_service.get_user_data(user_id)
         
-        # ត្រង់វាលដែលមានភាពសំងាត់ក្រៅតែបានស្នើសុំព្រមទទួលអនុញ្ញាត
+        # ជ្រើសតំបន់ដែលមានសុវត្ថិភាពលែងតែបើបានស្នើសុំជាក់លាក់ និងមានអាជ្ញាប័ណ្ណ
         if not include_sensitive or not self._is_authorized_for_sensitive_data(request):
             user_data = self._redact_sensitive_fields(user_data)
         
         return ToolResponse(result=user_data)
     
     def _is_authorized_for_sensitive_data(self, request):
-        # ពិនិត្យកម្រិតអនុញ្ញាតនៅបរិបទសំណើរ
+        # ពិនិត្យកម្រិតអាជ្ញាបណ្ណនៅក្នុងបរិបទសំណើ
         auth_level = request.context.get("authorizationLevel")
         return auth_level == "admin"
     
     def _redact_sensitive_fields(self, user_data):
-        # បង្កើតចម្លងមួយដើម្បីជៀសវាងកែប្រែដើម
+        # បង្កើតច្បាប់ចម្លងដើម្បីជៀសវែងការផ្លាស់ប្តូរដើម
         redacted = user_data.copy()
         
-        # លុបទិន្នន័យមានភាពសំងាត់ជាក់លាក់
+        # លាក់បាំងតំបន់ដែលមានសុវត្ថិភាពជាក់លាក់
         sensitive_fields = ["ssn", "creditCardNumber", "password"]
         for field in sensitive_fields:
             if field in redacted:
                 redacted[field] = "REDACTED"
         
-        # លុបទិន្នន័យមានភាពសំងាត់ក្នុងរង
+        # លាក់បាំងទិន្នន័យដែលមានសុវត្ថិភាពនៅខាងក្នុង
         if "financialInfo" in redacted:
             redacted["financialInfo"] = {"available": True, "accessRestricted": True}
         
         return redacted
 ```
 
-## អនុវត្តល្អបំផុតសម្រាប់ការធ្វើតេស្តឧបករណ៍ MCP
+## ការអនុវត្តសាកល្បងល្អបំផុតសម្រាប់ឧបករណ៍ MCP
 
-ការធ្វើតេស្តពេញលេញធានាថាឧបករណ៍ MCP ធ្វើការបានត្រឹមត្រូវ ដោះស្រាយករណីចុងក្រោយ និងចូលរួមបានត្រឹមត្រូវជាមួយប្រព័ន្ធផ្សេងទៀត។
+ការសាកល្បងជ្រាលជ្រៅធ្វើឲ្យប្រាកដថាឧបករណ៍ MCP មុខងារត្រឹមត្រូវ ការគ្រប់គ្រងករណីព្រំដែនបានហើយ និងបញ្ចូលជាមួយប្រព័ន្ធសរុបយ៉ាងត្រឹមត្រូវ។
 
-### សាកល្បងឯកតា
+### ការសាកល្បងកម្រិតយូនីត
 
-#### 1. សាកល្បងឧបករណ៍មួយៗដោយឯករាជ្យ
+#### 1. សាកល្បងឧបករណ៍មួយៗដោយផ្តោត
 
-បង្កើតតេស្តផ្តោតសំខាន់សម្រាប់មុខងារនីមួយៗនៃឧបករណ៍៖
+បង្កើតការសាកល្បងផ្តោតសម្រាប់មុខងាររបស់ឧបករណ៍និមួយៗ៖
 
 ```csharp
 [Fact]
@@ -1251,27 +1285,27 @@ public async Task WeatherTool_InvalidLocation_ThrowsToolExecutionException()
 }
 ```
 
-#### 2. សាកល្បងការត្រួតពិនិត្យតារាង
+#### 2. ការសាកល្បងការផ្ទៀងផ្ទាត់ស្កីម៉ា
 
-សាកល្បងឱ្យប្រាកដថាតារាងត្រឹមត្រូវ និងបំពេញកំណត់ត្រារួចរាល់៖
+សាកល្បងឲ្យប្រាកដថាស្កីម៉ាត្រឹមត្រូវ និងអ enforcingការរឹតត្បិតបានយ៉ាងត្រឹមត្រូវ៖
 
 ```java
 @Test
 public void testSchemaValidation() {
-    // បង្កើតឧបករណ៍
+    // បង្កើតឧបករណ៍实例
     SearchTool searchTool = new SearchTool();
     
-    // ទទួលយកស្គីម
+    // ទទួលបានស្គេម៉ា
     Object schema = searchTool.getSchema();
     
-    // បំប្លែងស្គីមទៅ JSON សម្រាប់ពិនិត្យតម្លៃ
+    // ផ្ទេរស្គេម៉ាទៅជា JSON សម្រាប់ការផ្ទៀងផ្ទាត់
     String schemaJson = objectMapper.writeValueAsString(schema);
     
-    // ពិនិត្យស្គីមថា ជា JSONSchema ដែលត្រឹមត្រូវ
+    // ផ្ទៀងផ្ទាត់ស្គេម៉ាថាជា JSONSchema ត្រឹមត្រូវ
     JsonSchemaFactory factory = JsonSchemaFactory.byDefault();
     JsonSchema jsonSchema = factory.getJsonSchema(schemaJson);
     
-    // សាកល្បងប៉ារាម៉ែត្រ ដែលមានតម្លៃត្រឹមត្រូវ
+    // សាកល្បងប៉ារ៉ាម៉ែត្រ​ត្រឹមត្រូវ
     JsonNode validParams = objectMapper.createObjectNode()
         .put("query", "test query")
         .put("limit", 5);
@@ -1279,14 +1313,14 @@ public void testSchemaValidation() {
     ProcessingReport validReport = jsonSchema.validate(validParams);
     assertTrue(validReport.isSuccess());
     
-    // សាកល្បងប៉ារាម៉ែត្រ ដែលខ្វះ
+    // សាកល្បងប៉ារ៉ាម៉ែត្រដែលខ្វះចាំបាច់
     JsonNode missingRequired = objectMapper.createObjectNode()
         .put("limit", 5);
         
     ProcessingReport missingReport = jsonSchema.validate(missingRequired);
     assertFalse(missingReport.isSuccess());
     
-    // សាកល្បងប្រភេទប៉ារាម៉ែត្រ មិនត្រឹមត្រូវ
+    // សាកល្បងប្រភេទប៉ារ៉ាម៉ែត្រ​មិនត្រឹមត្រូវ
     JsonNode invalidType = objectMapper.createObjectNode()
         .put("query", "test")
         .put("limit", "not-a-number");
@@ -1296,21 +1330,21 @@ public void testSchemaValidation() {
 }
 ```
 
-#### 3. តេស្តការដោះស្រាយកំហុស
+#### 3. ការសាកល្បងការគ្រប់គ្រងកំហុស
 
-បង្កើតតេស្តជាក់លាក់សម្រាប់ស្ថានភាពកំហុស៖
+បង្កើតការសាកល្បងជាក់លាក់សម្រាប់ស្ថានភាពកំហុស៖
 
 ```python
 @pytest.mark.asyncio
 async def test_api_tool_handles_timeout():
     # រៀបចំ
-    tool = ApiTool(timeout=0.1)  # ពេលវេលា​កំណត់​ខ្លីណាស់
+    tool = ApiTool(timeout=0.1)  # ពេលវេលាចុងក្រោយខ្លីណាស់
     
-    # បង្កើតសំណើមួយដែលនឹងពុំឆាប់ចេញ
+    # ព្យាយាមទូរទាត់សំណើដែលនឹងលែងដំណើរការ
     with aioresponses() as mocked:
         mocked.get(
             "https://api.example.com/data",
-            callback=lambda *args, **kwargs: asyncio.sleep(0.5)  # យឺតជាងពេលវេលា​កំណត់
+            callback=lambda *args, **kwargs: asyncio.sleep(0.5)  # វែងជាងពេលវេលាចុងក្រោយ
         )
         
         request = ToolRequest(
@@ -1318,11 +1352,11 @@ async def test_api_tool_handles_timeout():
             parameters={"url": "https://api.example.com/data"}
         )
         
-        # សកម្មភាព និងបញ្ជាក់
+        # ដំណើរការ និង បញ្ជាក់
         with pytest.raises(ToolExecutionException) as exc_info:
             await tool.execute_async(request)
         
-        # ពិនិត្យសារការកើតករណីលើកលែង
+        # ពិនិត្យសារការពិតប្រាកដនៃករណីកំហុស
         assert "timed out" in str(exc_info.value).lower()
 
 @pytest.mark.asyncio
@@ -1330,7 +1364,7 @@ async def test_api_tool_handles_rate_limiting():
     # រៀបចំ
     tool = ApiTool()
     
-    # បង្កើតចម្លើយដែលមានការកំណត់អត្រា
+    # ព្យាយាមទទួលបានចម្លើយដែលមានការបង្ហាប់អត្រា
     with aioresponses() as mocked:
         mocked.get(
             "https://api.example.com/data",
@@ -1344,21 +1378,21 @@ async def test_api_tool_handles_rate_limiting():
             parameters={"url": "https://api.example.com/data"}
         )
         
-        # សកម្មភាព និងបញ្ជាក់
+        # ដំណើរការ និង បញ្ជាក់
         with pytest.raises(ToolExecutionException) as exc_info:
             await tool.execute_async(request)
         
-        # ពិនិត្យការលើកលែងមានព័ត៌មានអំពីការកំណត់អត្រា
+        # ពិនិត្យមើលបញ្ជាក់ករណីកំហុសមានព័ត៌មានអំពីការបង្ហាប់អត្រា
         error_msg = str(exc_info.value).lower()
         assert "rate limit" in error_msg
         assert "try again" in error_msg
 ```
 
-### សាកល្បងការបញ្ចូល
+### ការសាកល្បងការសម្របសម្រួល
 
-#### 1. សាកល្បងខ្សែឧបករណ៍
+#### 1. ការសាកល្បងខ្សែឧបករណ៍
 
-សាកល្បងឧបករណ៍ធ្វើការជាមួយគ្នាក្នុងលំនាំដែលរំពឹងទុក៖
+សាកល្បងឧបករណ៍ធ្វើការជាមួយគ្នាក្នុងការធ្វើការ​ដែលបានរំពឹងទុក៖
 
 ```csharp
 [Fact]
@@ -1397,9 +1431,9 @@ public async Task DataProcessingWorkflow_CompletesSuccessfully()
 }
 ```
 
-#### 2. សាកល្បងម៉ាស៊ីនបម្រើ MCP
+#### 2. ការសាកល្បងម៉ាស៊ីនបម្រើ MCP
 
-សាកល្បងម៉ាស៊ីនបម្រើ MCP ជាមួយការចុះឈ្មោះ និងការប្រតិបត្តិការ ឧបករណ៍ពេញលេញ៖
+សាកល្បងម៉ាស៊ីនបម្រើ MCP ជាមួយការចុះបញ្ជីនិងអនុវត្តឧបករណ៍ពេញលេញ៖
 
 ```java
 @SpringBootTest
@@ -1414,7 +1448,7 @@ public class McpServerIntegrationTest {
     
     @Test
     public void testToolDiscovery() throws Exception {
-        // សាកល្បងចុងក្រោយរកឃើញ
+        // សាកល្បងចំណុចរកឃើញ
         mockMvc.perform(get("/mcp/tools"))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.tools").isArray())
@@ -1425,7 +1459,7 @@ public class McpServerIntegrationTest {
     
     @Test
     public void testToolExecution() throws Exception {
-        // បង្កើតការស្នើសុំឧបករណ៍
+        // បង្កើតសំណើឧបករណ៍
         Map<String, Object> request = new HashMap<>();
         request.put("toolName", "calculator");
         
@@ -1435,7 +1469,7 @@ public class McpServerIntegrationTest {
         parameters.put("b", 7);
         request.put("parameters", parameters);
         
-        // ផ្ញើសំណើ និងផ្ទៀងផ្ទាត់ចម្លើយ
+        // បញ្ជូនសំណើ និងផ្ទៀងផ្ទាត់ការឆ្លើយតប
         mockMvc.perform(post("/mcp/execute")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(request)))
@@ -1452,10 +1486,10 @@ public class McpServerIntegrationTest {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("operation", "divide");
         parameters.put("a", 10);
-        // ប៉ារ៉ាម៉ែត្រ "b" ខ្វះ
+        // ខ្វះប៉ារ៉ាម៉ែត្រ "b"
         request.put("parameters", parameters);
         
-        // ផ្ញើសំណើ និងផ្ទៀងផ្ទាត់ចម្លើយកំហុស
+        // បញ្ជូនសំណើ និងផ្ទៀងផ្ទាត់ការឆ្លើយតបកំហុស
         mockMvc.perform(post("/mcp/execute")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(request)))
@@ -1465,17 +1499,18 @@ public class McpServerIntegrationTest {
 }
 ```
 
-#### 3. សាកល្បងពីចាប់ផ្តើមដល់បញ្ចប់
+#### 3. ការសាកល្បងចុងបញ្ចប់ដល់ចុងបញ្ចប់
 
-សាកល្បងដំណើរការពេញលេញពីផ្ទាំងបង្ហាញម៉ូដែលដល់ការប្រតិបត្តឧបករណ៍៖
+សាកល្បងលំហូរងារពេញលេញចាប់ពីស្នើរសុំម៉ូដែល ដល់ការអនុវត្តឧបករណ៍៖
+
 
 ```python
 @pytest.mark.asyncio
 async def test_model_interaction_with_tool():
-    # រៀបចំ - ស្ថាបនាអតិថិជន MCP និងម៉ូដែលគំនុំ
+    # រៀបចំ - កំណត់ MCP client និងម៉ូដែលគំរូ
     mcp_client = McpClient(server_url="http://localhost:5000")
     
-    # តបស្នងម៉ូដែលគំនុំ
+    # ព្យាករណ៍ចម្លើយម៉ូដែលគំរូ
     mock_model = MockLanguageModel([
         MockResponse(
             "What's the weather in Seattle?",
@@ -1490,7 +1525,7 @@ async def test_model_interaction_with_tool():
         )
     ])
     
-    # តបសងឧបករណ៍អាកាសធាតុគំនុំ
+    # ព្យាករណ៍ចម្លើយឧបករណ៍អាកាសធាតុគំរូ
     with aioresponses() as mocked:
         mocked.post(
             "http://localhost:5000/mcp/execute",
@@ -1506,14 +1541,14 @@ async def test_model_interaction_with_tool():
             }
         )
         
-        # ពិនិត្យ
+        # ធ្វើសកម្មភាព
         response = await mcp_client.send_prompt(
             "What's the weather in Seattle?",
             model=mock_model,
             allowed_tools=["weatherForecast"]
         )
         
-        # បញ្ជាក់ទុក
+        # បញ្ជាក់
         assert "Seattle" in response.generated_text
         assert "65" in response.generated_text
         assert "Sunny" in response.generated_text
@@ -1522,11 +1557,11 @@ async def test_model_interaction_with_tool():
         assert response.tool_calls[0].tool_name == "weatherForecast"
 ```
 
-### សាកល្បងប្រសិទ្ធភាព
+### ការធ្វើតេស្តកម្រិតសមត្ថភាព
 
-#### 1. សាកល្បងផ្ទុក
+#### 1. ការធ្វើតេស្តផ្ទុក
 
-សាកល្បងបរិមាណសំណើដែលម៉ាស៊ីនបម្រើ MCP អាចដំណើរការ៖
+សាកល្បងមើលថា ម៉ាស៊ីនបម្រើ MCP របស់អ្នកអាចដោះស្រាយការស្នើរសុំរួមជាច្រើនបានប៉ុណ្ណា៖
 
 ```csharp
 [Fact]
@@ -1559,9 +1594,9 @@ public async Task McpServer_HandlesHighConcurrency()
 }
 ```
 
-#### 2. សាកល្បងសំពាធ
+#### 2. ការធ្វើតេស្តអតិបរិមា
 
-សាកល្បងប្រព័ន្ធនៅក្រោមបន្ទុកខ្លាំង៖
+សាកល្បងប្រព័ន្ធនៅក្រោមផ្ទុកខ្លាំងដាច់ខាត៖
 
 ```java
 @Test
@@ -1570,13 +1605,13 @@ public void testServerUnderStress() {
     int rampUpTimeSeconds = 60;
     int testDurationSeconds = 300;
     
-    // តំឡើង JMeter សម្រាប់ការបញ្ចេញសម្ពាធ
+    // ដំឡើង JMeter សម្រាប់ការធ្វើតេស្តសំពាធ
     StandardJMeterEngine jmeter = new StandardJMeterEngine();
     
-    // កំណត់ផែនការប្រឡង JMeter
+    // កំណត់ផែនការតេស្ត JMeter
     HashTree testPlanTree = new HashTree();
     
-    // បង្កើតផែនការប្រឡង ក្រុមថ្រែត និងសេម​ភើរៗ
+    // បង្កើតផែនការតេស្ត ក្រុមខ.thread ភស្តុតាង និងផ្សេងៗ
     TestPlan testPlan = new TestPlan("MCP Server Stress Test");
     testPlanTree.add(testPlan);
     
@@ -1588,7 +1623,7 @@ public void testServerUnderStress() {
     
     testPlanTree.add(threadGroup);
     
-    // បន្ថែមសេមភើរនៃ HTTP សម្រាប់ការប្រតិបត្តិឧបករណ៍
+    // បន្ថែម sampler HTTP សម្រាប់ការប្រើឧបករណ៍
     HTTPSampler toolExecutionSampler = new HTTPSampler();
     toolExecutionSampler.setDomain("localhost");
     toolExecutionSampler.setPort(5000);
@@ -1599,29 +1634,29 @@ public void testServerUnderStress() {
     
     threadGroup.add(toolExecutionSampler);
     
-    // បន្ថែមអ្នកស្ដាប់
+    // បន្ថែមអ្នកស្តាប់ន៍
     SummaryReport summaryReport = new SummaryReport();
     threadGroup.add(summaryReport);
     
-    // ប្រតិបត្តិការប្រឡង
+    // ប្រត្តិបត្ដិការតេស្ត
     jmeter.configure(testPlanTree);
     jmeter.run();
     
     // ផ្ទៀងផ្ទាត់លទ្ធផល
     assertEquals(0, summaryReport.getErrorCount());
-    assertTrue(summaryReport.getAverage() < 200); // ពេលវេលាឆ្លើយតបមធ្យម < 200ms
-    assertTrue(summaryReport.getPercentile(90.0) < 500); // ភាគរយទី ៩០ < 500ms
+    assertTrue(summaryReport.getAverage() < 200); // ពេលវេលាចម្លើយជាមធ្យម < ២០០មក្រោមវិនាទី
+    assertTrue(summaryReport.getPercentile(90.0) < 500); // ភាគរយទី៩០ < ៥០០មក្រោមវិនាទី
 }
 ```
 
-#### 3. តាមដាន និងវិភាគ
+#### 3. ការត្រួតពិនិត្យនិងការវិភាគ
 
-រៀបចំការតាមដានសម្រាប់វិភាគប្រសិទ្ធភាពរយៈពេលវែង៖
+រៀបចំការត្រួតពិនិត្យសម្រាប់ការវិភាគការសមត្ថភាពរយៈពេលវែង៖
 
 ```python
-# កំណត់ការត្រួតពិនិត្យសម្រាប់ម៉ាស៊ែរកម្ម MCP
+# កំណត់តម្រុយការត្រួតពិនិត្យសម្រាប់ម៉ាស៊ីនបម្រើ MCP
 def configure_monitoring(server):
-    # តម្លើងម៉ែត្រអំពី Prometheus
+    # ចំរើនវាស់វែង Prometheus
     prometheus_metrics = {
         "request_count": Counter("mcp_requests_total", "Total MCP requests"),
         "request_latency": Histogram(
@@ -1647,10 +1682,10 @@ def configure_monitoring(server):
         )
     }
     
-    # បន្ថែម middleware សម្រាប់ពេលវេលា និងការចុះបញ្ជីម៉ែត្រ
+    # បន្ថែម middleware សម្រាប់វាស់ពេល និងកត់ត្រាវាស់វែង
     server.add_middleware(PrometheusMiddleware(prometheus_metrics))
     
-    # បង្ហាញចំណុចចុះបញ្ជីម៉ែត្រ
+    # បង្ហាញចំណុចសម្រាប់វាស់វែង
     @server.router.get("/metrics")
     async def metrics():
         return generate_latest()
@@ -1658,29 +1693,29 @@ def configure_monitoring(server):
     return server
 ```
 
-## គំរូរចនាដំណើរការ MCP
+## គំរូរចនាសម្ព័ន្ធចលនាការងារ MCP
 
-ដំណើរការ MCP ដែលបានរចនាយ៉ាងល្អ បង្កើនប្រសិទ្ធភាព, ភាពទុកចិត្ត និងភាពងាយក្នុងការថែទាំ។ នេះជាគំរូសំខាន់ៗដែលត្រូវអនុវត្ត៖
+ចលនាការងារ MCP ដែលបានរចនាយ៉ាងរលូន នាំឲ្យមានប្រសិទ្ធភាព ការជឿទុកចិត្ត និងងាយស្រួលថែទាំ។ ទាំងនេះជាគំរូសំខាន់ៗដែលត្រូវអនុវត្ត៖
 
-### 1. គំរូខ្សែឧបករណ៍
+### 1. គំរូខ្សែរឧបករណ៍
 
-ភ្ជាប់ឧបករណ៍ច្រើនជាលំដាប់ ទីនេះផលិតផលចេញនៃឧបករណ៍មួយក្លាយជាការបញ្ចូលសម្រាប់ឧបករណ៍បន្ទាប់៖
+ភ្ជាប់ឧបករណ៍ច្រើនក្នុងលំដាប់ ដែលលទ្ធផលនៃឧបករណ៍មួយក្លាយជាកំណត់ចំណាំសម្រាប់ឧបករណ៍បន្ទាប់៖
 
 ```python
-# អនុវត្តខ្សែឧបករណ៍ Python
+# ការអនុវត្ត Python Chain of Tools
 class ChainWorkflow:
     def __init__(self, tools_chain):
-        self.tools_chain = tools_chain  # បញ្ជីឈ្មោះឧបករណ៍សម្រាប់អនុវត្តទៅតាមលំដាប់
+        self.tools_chain = tools_chain  # បញ្ជីឈ្មោះឧបករណ៍សម្រាប់អនុវត្តតាមលំដាប់
     
     async def execute(self, mcp_client, initial_input):
         current_result = initial_input
         all_results = {"input": initial_input}
         
         for tool_name in self.tools_chain:
-            # អនុវត្តឧបករណ៍នីមួយៗក្នុងខ្សែ ដោយបញ្ជូនលទ្ធផលមុន
+            # អនុវត្តឧបករណ៍មួយៗក្នុងខ្សែ ដោយផ្ញើលទ្ធផលមុន
             response = await mcp_client.execute_tool(tool_name, current_result)
             
-            # រក្សាទុកលទ្ធផលនិងប្រើជាinputសម្រាប់ឧបករណ៍បន្ទាប់
+            # រក្សាទុកលទ្ធផល និងប្រើជាឧបត្ថម្ភសម្រាប់ឧបករណ៍បន្ទាប់
             all_results[tool_name] = response.result
             current_result = response.result
         
@@ -1703,9 +1738,9 @@ result = await data_processing_chain.execute(
 )
 ```
 
-### 2. គំរូផ្ញើបញ្ជា
+### 2. គំរូអ្នកបញ្ជូន
 
-ប្រើឧបករណ៍មួយកណ្តាលដែលផ្ញើទៅឧបករណ៍ឯកទេសជាមួយការបញ្ចូល៖
+ប្រើឧបករណ៍មួយនៅកណ្តាលដែលបញ្ជូនទៅឧបករណ៍ជំនាញដោយផ្អែកលើវាាជាកំណត់ចំណាំ៖
 
 ```csharp
 public class ContentDispatcherTool : IMcpTool
@@ -1785,9 +1820,9 @@ public class ContentDispatcherTool : IMcpTool
 }
 ```
 
-### 3. គំរូបញ្ចូលជាមួយប្រតិបត្តិការដ៏ច្រើនតែមួយពេល
+### 3. គំរូដំណើរការត្រង់មុខ
 
-ដំណើរការឧបករណ៍ជាច្រើនទៅវិញទៅមក ដើម្បីបង្កើនប្រសិទ្ធភាព៖
+ដំណើរការឧបករណ៍ច្រើនក្នុងពេលតែមួយសម្រាប់ប្រសិទ្ធភាព៖
 
 ```java
 public class ParallelDataProcessingWorkflow {
@@ -1798,11 +1833,11 @@ public class ParallelDataProcessingWorkflow {
     }
     
     public WorkflowResult execute(String datasetId) {
-        // ជំហានទី 1: ទាញយកព័ត៌មានមេតាដាតាឈុតទិន្នន័យ (សមកាលិកា)
+        // ជំហាន 1: ទាញយកព័ត៌មានម៉េតាដាតាស៊ីត (ភាពសម័យ)
         ToolResponse metadataResponse = mcpClient.executeTool("datasetMetadata", 
             Map.of("datasetId", datasetId));
         
-        // ជំហានទី 2: ចាប់ផ្តើមវិភាគច្រើនជាសងមុខគ្នា
+        // ជំហាន 2: ចាប់ផ្ដើមការវិភាគច្រើនជាមួយគ្នា
         CompletableFuture<ToolResponse> statisticalAnalysis = CompletableFuture.supplyAsync(() ->
             mcpClient.executeTool("statisticalAnalysis", Map.of(
                 "datasetId", datasetId,
@@ -1824,25 +1859,25 @@ public class ParallelDataProcessingWorkflow {
             ))
         );
         
-        // រង់ចាំអោយការងារសងមុខគ្រប់យ៉ាងបញ្ចប់
+        // រង់ចាំបេសកកម្មរាល់អន្តរកម្មឆ្លងកាត់សម្រេច
         CompletableFuture<Void> allAnalyses = CompletableFuture.allOf(
             statisticalAnalysis, correlationAnalysis, outlierDetection
         );
         
-        allAnalyses.join();  // រង់ចាំការបញ្ចប់
+        allAnalyses.join();  // រង់ចាំការសម្រេច
         
-        // ជំហានទី 3: លាយលទ្ធផល
+        // ជំហាន 3: ផ្គុំ결្រវល
         Map<String, Object> combinedResults = new HashMap<>();
         combinedResults.put("metadata", metadataResponse.getResult());
         combinedResults.put("statistics", statisticalAnalysis.join().getResult());
         combinedResults.put("correlations", correlationAnalysis.join().getResult());
         combinedResults.put("outliers", outlierDetection.join().getResult());
         
-        // ជំហានទី 4: បង្កើតរបាយការណ៍សង្ខេប
+        // ជំហាន 4: បង្កើតរបាយការណ៍សង្ខេប
         ToolResponse summaryResponse = mcpClient.executeTool("reportGenerator", 
             Map.of("analysisResults", combinedResults));
         
-        // បញ្ជូនលទ្ធផលដំណើរការសរុបចេញ
+        // ទាញយកលទ្ធផលដំណើរការជាបាល់បញ្ចប់
         WorkflowResult result = new WorkflowResult();
         result.setDatasetId(datasetId);
         result.setAnalysisResults(combinedResults);
@@ -1853,9 +1888,9 @@ public class ParallelDataProcessingWorkflow {
 }
 ```
 
-### 4. គំរូស្ដារឡើងវិញកំហុស
+### 4. គំរូស្ដារឡើងវិញកាលមានចំលោះ
 
-អនុវត្តវិធីសាស្ត្រស្ដារឡើងវិញយ៉ាងរលូនសម្រាប់ករណីឧបករណ៍បរាជ័យ៖
+អនុវត្តការស្ដារឡើងវិញយ៉ាងទន់ភ្លន់សម្រាប់ការបរាជ័យឧបករណ៍៖
 
 ```python
 class ResilientWorkflow:
@@ -1864,7 +1899,7 @@ class ResilientWorkflow:
     
     async def execute_with_fallback(self, primary_tool, fallback_tool, parameters):
         try:
-            # ព្យាយាមឧបករណ៏មូលដ្ឋាន ជាសិន
+            # សាកល្បងឧបករណ៍សំខាន់ជាមុនសិន
             response = await self.client.execute_tool(primary_tool, parameters)
             return {
                 "result": response.result,
@@ -1875,9 +1910,9 @@ class ResilientWorkflow:
             # កត់ត្រាការបរាជ័យ
             logging.warning(f"Primary tool '{primary_tool}' failed: {str(e)}")
             
-            # វាលែងជួយទៅឧបករណ៏ប្រយោគទីពីរ
+            # វិលត្រឡប់ទៅឧបករណ៍ជំនួស
             try:
-                # អាចត្រូវការបំលាស់ប្ដូរពារ៉ាម៉ែត្រសម្រាប់ឧបករណ៏ជំនួស
+                # ប្រហែលជាត្រូវការបម្លែងប៉ារ៉ាម៉ែត្រសម្រាប់ឧបករណ៍វិលត្រឡប់
                 fallback_params = self._adapt_parameters(parameters, primary_tool, fallback_tool)
                 
                 response = await self.client.execute_tool(fallback_tool, fallback_params)
@@ -1888,7 +1923,7 @@ class ResilientWorkflow:
                     "primaryError": str(e)
                 }
             except ToolExecutionException as fallback_error:
-                # ទាំងពីរឧបករណ៏បរាជ័យទាំងស្រុង
+                # ឧបករណ៍ទាំងពីរបរាជ័យ
                 logging.error(f"Both primary and fallback tools failed. Fallback error: {str(fallback_error)}")
                 raise WorkflowExecutionException(
                     f"Workflow failed: primary error: {str(e)}; fallback error: {str(fallback_error)}"
@@ -1896,22 +1931,22 @@ class ResilientWorkflow:
     
     def _adapt_parameters(self, params, from_tool, to_tool):
         """Adapt parameters between different tools if needed"""
-        # ការអនុវត្តនេះនឹងអាស្រ័យលើឧបករណ៏ជាក់លាក់
-        # សម្រាប់ឧទាហរណ៍នេះ, យើងនឹងត្រឹមតែត្រឡប់មកពីពារ៉ាម៉ែត្រដើមប៉ុណ្ណោះ
+        # ការអនុវត្តនេះនឹងអាស្រ័យលើឧបករណ៍ជាក់លាក់ទាំងអស់
+        # សម្រាប់ឧទាហរណ៍នេះ យើងនឹងត្រឡប់ប៉ារ៉ាម៉ែត្រដើមវិញ
         return params
 
-# ឧទាហរណ៍នៃការប្រើប្រាស់
+# ការប្រើប្រាស់ឧទាហរណ៍
 async def get_weather(workflow, location):
     return await workflow.execute_with_fallback(
-        "premiumWeatherService",  # API អាកាសធាតុ(mដែលផ្តល់គ្រប់គ្រង) ជាសិន
-        "basicWeatherService",    # API អាកាសធាតុជំនួស (ឥតគិតថ្លៃ)
+        "premiumWeatherService",  # API អាកាសធាតុសំខាន់ (បង់ប្រាក់)
+        "basicWeatherService",    # API អាកាសធាតុខេមកប់ (ឥតគិតថ្លៃ)
         {"location": location}
     )
 ```
 
-### 5. គំរូបង្កើតដំណើរការ
+### 5. គំរូសមាសភាពចលនាការងារ
 
-សង់ដំណើរការស្មុគស្មាញដោយផ្សំនូវដំណើរការងាយៗ៖
+សាងសង់ចលនាការងាររឹងមាំដោយបង្រួមចលនាការងារងាយៗ៖
 
 ```csharp
 public class CompositeWorkflow : IWorkflow
@@ -1958,37 +1993,37 @@ var result = await documentWorkflow.ExecuteAsync(new WorkflowContext {
 });
 ```
 
-# ការធ្វើតេស្តម៉ាស៊ីនបម្រើ MCP៖ អនុវត្តល្អបំផុត និងគន្លឹះសំខាន់ៗ
+# ការធ្វើតេស្តម៉ាស៊ីនបម្រើ MCP៖ អនុវត្តន៍ល្អបំផុតនិងក្បួនខ្ពស់ៗ
 
-## ទិដ្ឋភាពទូលំទូលាយ
+## ទិដ្ឋភាពទូទៅ
 
-ការធ្វើតេស្តគឺជាផ្នែកសំខាន់នៃការអភិវឌ្ឍម៉ាស៊ីនបម្រើ MCP ដែលទូលំទូលាយ និងមានគុណភាព។ មគ្គុទេសក៍នេះផ្តល់អនុវត្តល្អបំផុត និងគន្លឹះសម្រាប់ការធ្វើតេស្តម៉ាស៊ីនបម្រើ MCP របស់អ្នកក្នុងរយៈពេលអភិវឌ្ឍ, ចាប់តាំងពីតេស្តឯកតា ដល់តេស្តបញ្ចូល និងតេស្តពីចាប់ផ្តើមដល់បញ្ចប់។
+ការធ្វើតេស្តគឺជាផ្នែកសំខាន់នៃការអភិវឌ្ឍម៉ាស៊ីនបម្រើ MCP ដែលជឿទុកចិត្តបាននិងគុណភាពខ្ពស់។ មគ្គុទេសក៍នេះផ្តល់នូវអនុវត្តន៍ល្អបំផុតនិងក្បួនសំខាន់ៗសម្រាប់ធ្វើតេស្តម៉ាស៊ីនបម្រើរបស់អ្នក កំម៉ោងជីវិតអភិវឌ្ឍន៍ពីការធ្វើតេស្តម៉ាស៊ីនឯកតាទៅការធ្វើតេស្តរួមបញ្ចូល និងការត្រួតពិនិត្យចុងក្រោយ។
 
 ## ហេតុអ្វីបានជាការធ្វើតេស្តមានសារៈសំខាន់សម្រាប់ម៉ាស៊ីនបម្រើ MCP
 
-ម៉ាស៊ីនបម្រើ MCP បំរើជាស្រទាប់កណ្តាលនៅចន្លោះគំរូ AI និងកម្មវិធីអតិថិជន។ ការធ្វើតេស្តយ៉ាងខ្ជាប់ខ្ជួនធានា៖
+ម៉ាស៊ីនបម្រើ MCP មានតួនាទីជាម៉ាស៊ីនច្រកសំខាន់រវាងគំរូ AI នឹងកម្មវិធីភ្នាក់ងារអតិថិជន។ ការធ្វើតេស្តយ៉ាងល្អធានាថា៖
 
-- ភាពទុកចិត្តនៅក្នុងបរិស្ថានផលិត
-- ការដោះស្រាយត្រឹមត្រូវនៃសំណើ និងការឆ្លើយតប
-- ការអនុវត្តត្រឹមត្រូវនៃលក្ខខណ្ឌ MCP
-- អាចធន់ទ្រាំនឹងករណីបរាជ័យ និងករណីគួរឱ្យចាប់អារម្មណ៍
-- ប្រសិទ្ធិភាពស៊ីសង្វាក់នៅក្រោមបន្ទុកផ្សេងៗ
+- មានការជឿទុកចិត្តនៅក្នុងបរិយាកាសផលិតកម្ម
+- ដោះស្រាយសំណើ និងចម្លើយយ៉ាងត្រឹមត្រូវ
+- អនុវត្តតាមកំណត់ MCP បានត្រឹមត្រូវ
+- មានភាពរឹងមាំប្រឆាំងនឹងការបរាជ័យនិងករណីសំណាញ់
+- រាត្រីសមត្ថភាពបន្តក្រោមផ្ទុកផ្សេងៗ
 
-## តេស្តឯកតាសម្រាប់ម៉ាស៊ីនបម្រើ MCP
+## ការធ្វើតេស្តម៉ាស៊ីនឯកតាសម្រាប់ម៉ាស៊ីនបម្រើ MCP
 
-### តេស្តឯកតា (មូលដ្ឋាន)
+### ការធ្វើតេស្តម៉ាស៊ីនឯកតា (មូលនិធិ)
 
-តេស្តឯកតា ផ្ទៀងផ្ទាត់ផ្នែកឯកត្តិមួយៗនៃម៉ាស៊ីនបម្រើ MCP របស់អ្នកដោយឯករាជ្យ។
+ការធ្វើតេស្តម៉ាស៊ីនឯកតាចាប់ផ្តើមដោយពិនិត្យផ្នែកនីមួយៗនៃម៉ាស៊ីនបម្រើ MCP របស់អ្នកឡើយ។
 
-#### អ្វីដែលត្រូវសាកល្បង
+#### អ្វីដែលត្រូវធ្វើតេស្ត
 
-1. **អ្នកចាត់គ្រប់គ្រងធនធាន**: សាកល្បងវិញ្ញាសាអ្នកចាត់គ្រប់គ្រងធនធាននីមួយៗដោយឡែក
-2. **ការអនុវត្តឧបករណ៍**: ពិនិត្យអាកប្បកិរិយាឧបករណ៍ជាមួយបញ្ចូលថែមតារាងផ្សេងៗ
-3. **ទំព័រផ្ទាំងបង្ហាញ**: ធានាថាទំព័រផ្ទាំងបង្ហាញបង្ហាញបានត្រឹមត្រូវ
-4. **ត្រួតពិនិត្យតារាង**: សាកល្បងត្រួតពិនិត្យប៉ារ៉ាម៉ែត្របានត្រឹមត្រូវ
-5. **ការដោះស្រាយកំហុស**: ពិនិត្យចម្លើយកំហុសសម្រាប់បញ្ចូលមិនត្រឹមត្រូវ
+1. **អ្នកគ្រប់គ្រងធនធាន**៖ សាកល្បងយោលកន្សោមអ្នកគ្រប់គ្រងធនធាននីមួយៗដោយប្រកួតប្រជែងឡែក
+2. **ការអនុវត្តឧបករណ៍**៖ ធ្វើវិញសកម្មភាពឧបករណ៍ជាមួយវាលបញ្ចូលផ្សេងៗ
+3. **ពុម្ពរូបមន្តការស្នើរសុំ**៖ ធានាថាពុម្ពស្នើរសុំបង្ហាញត្រឹមត្រូវ
+4. **ការត្រួតពិនិត្យស្គីមា**៖ សាកល្បងរូបមន្តត្រួតពិនិត្យប៉ារ៉ាម៉ែត្រ
+5. **ការដោះស្រាយកំហុស**៖ ពិនិត្យចម្លើយកំហុសសម្រាប់វាលបញ្ចូលមិនត្រឹមត្រូវ
 
-#### អនុវត្តល្អបំផុតសម្រាប់តេស្តឯកតា
+#### អនុវត្តន៍ល្អបំផុតសម្រាប់ការធ្វើតេស្តម៉ាស៊ីនឯកតា
 
 ```csharp
 // Example unit test for a calculator tool in C#
@@ -2014,7 +2049,7 @@ public async Task CalculatorTool_Add_ReturnsCorrectSum()
 ```
 
 ```python
-# ឧទាហរណ៍តេស្តឯកតាសម្រាប់ឧបករណ៍គណនាគ្រាន់តែជាភាសា Python
+# ឧទាហរណ៍តេស្តឯកតាសម្រាប់ឧបករណ៍គណនាក្នុងភាសា Python
 def test_calculator_tool_add():
     # រៀបចំ
     calculator = CalculatorTool()
@@ -2024,27 +2059,27 @@ def test_calculator_tool_add():
         "b": 7
     }
     
-    # ធ្វើព្រម
+    # អនុវត្ត
     response = calculator.execute(parameters)
     result = json.loads(response.content[0].text)
     
-    # ធ្វើការបញ្ជាក់
+    # បញ្ជាក់
     assert result["value"] == 12
 ```
 
-### តេស្តបញ្ចូល (ស្រទាប់កណ្តាល)
+### ការធ្វើតេស្តរួមបញ្ចូល (ស្រទាប់មជ្ឈម)
 
-តេស្តបញ្ចូលផ្ទៀងផ្ទាត់ប្រតិបត្តិការចូលរវាងផ្នែកនានានៃម៉ាស៊ីនបម្រើ MCP របស់អ្នក។
+ការធ្វើតេស្តរួមបញ្ចូលពិនិត្យការបន្តផ្ទាល់រវាងផ្នែកនានារបស់ម៉ាស៊ីនបម្រើ MCP របស់អ្នក។
 
-#### អ្វីដែលត្រូវសាកល្បង
+#### អ្វីដែលត្រូវធ្វើតេស្ត
 
-1. **ការចាប់ផ្តើមម៉ាស៊ីនបម្រើ**: សាកល្បងចាប់ផ្តើមម៉ាស៊ីនបម្រើជាមួយការកំណត់ផ្សេងៗ
-2. **ការចុះបញ្ជីផ្លូវ**: ពិនិត្យអោយប្រាកដថាចំណុចចូលទាំងអស់ត្រូវបានចុះបញ្ជីត្រឹមត្រូវ
-3. **ការប្រតិបត្តិការសំណើ**: សាកល្បងរំលងសំណើ-ចម្លើយពេញលេញ
-4. **ការបន្តផ្ទេរកំហុស**: ធានាថាកំហុសត្រូវបានដោះស្រាយត្រឹមត្រូវក្នុងផ្នែកផ្សេងៗ
-5. **ការផ្ទៀងផ្ទាត់ និងការអនុញ្ញាត**: សាកល្បងមេកានិចសុវត្ថិភាព
+1. **ការចាប់ផ្តើមម៉ាស៊ីនបម្រើ**៖ សាកល្បងចាប់ផ្តើមម៉ាស៊ីនជាមួយការកំណត់ផ្សេងៗ
+2. **ការចុះបញ្ជីផ្លូវចេញ**៖ ពិនិត្យឲ្យបានថាចំណុចទាំងអស់ត្រូវបានចុះបញ្ជីត្រឹមត្រូវ
+3. **ដំណើរការសំណើ**៖ សាកល្បងរង្វង់សំណើ-ចម្លើយរាល់គ្រា
+4. **ការបញ្ជូនកំហុស**៖ ធានាថាកំហុសបានដោះស្រាយត្រឹមត្រូវនៅលើផ្នែកមានទំនាក់ទំនង
+5. **ការផ្ទៀងផ្ទាត់និងអនុញ្ញាត**៖ សាកល្បងគ្រប់មុខងារសន្តិសុខ
 
-#### អនុវត្តល្អបំផុតសម្រាប់តេស្តបញ្ចូល
+#### អនុវត្តន៍ល្អបំផុតសម្រាប់ការធ្វើតេស្តរួមបញ្ចូល
 
 ```csharp
 // Example integration test for MCP server in C#
@@ -2080,27 +2115,28 @@ public async Task Server_ProcessToolRequest_ReturnsValidResponse()
 }
 ```
 
-### តេស្តពីចាប់ផ្តើមដល់បញ្ចប់ (ស្រទាប់លើ)
+### ការធ្វើតេស្តពីដំណើរចាប់ផ្តើមដល់ចប់ (ស្រទាប់ខ្ពស់)
 
-តេស្តពីចាប់ផ្តើមដល់បញ្ចប់ ផ្ទៀងផ្ទាត់អាកប្បកិរិយាប្រព័ន្ធពេញលេញពីអតិថិជនទៅម៉ាស៊ីនបម្រើ។
+ការធ្វើតេស្តពីដំណើរចាប់ផ្តើមដល់ចប់ពិនិត្យឲ្យបាន ពេញលេញអាកប្បកិរិយាប្រព័ន្ធពីភាគីអតិថិជនទៅម៉ាស៊ីនបម្រើ។
 
-#### អ្វីដែលត្រូវសាកល្បង
+#### អ្វីដែលត្រូវធ្វើតេស្ត
 
-1. **ការទំនាក់ទំនងអតិថិជន-ម៉ាស៊ីនបម្រើ**: សាកល្បងលំហូរសំណើ-ចម្លើយពេញលេញ
-2. **SDK អតិថិជនពិតប្រាកដ**: សាកល្បងជាមួយការអនុវត្តអតិថិជនពិតប្រាកដ
-3. **ប្រសិទ្ធភាពក្រោមបន្ទុក**: ពិនិត្យអាកប្បកិរិយាជាមួយសំណើច្រើនរួមគ្នា
-4. **ការស្ដារឡើងវិញកំហុស**: សាកល្បងការស្ដារឡើងវិញប្រព័ន្ធពីការបរាជ័យ
-5. **ប្រតិបត្តិការយូរអង្វែង**: ពិនិត្យការគ្រប់គ្រងស្ទ្រីម និងប្រតិបត្តិការយូរអង្វែង
+១. **ការទំនាក់ទំនងរវាងអតិថិជននិងម៉ាស៊ីនបម្រើ**៖ សាកល្បងរង្វង់សំណើ-ចម្លើយទាំងមូល
+២. ** កម្មវិធីអភិវឌ្ឍន៍កម្មវិធីភ្នាក់ងារអតិថិជនពិតប្រាកដ**៖ សាកល្បងជាមួយការអនុវត្តកម្មវិធីភ្នាក់ងារផ្ទាល់
+៣. **សមត្ថភាពក្រោមផ្ទុក**៖ ពិនិត្យអាកប្បកិរិយាជាមួយសំណើរលំបាកជាច្រើន
+៤. **ការស្ដារឡើងវិញពីកំហុស**៖ សាកល្បងការស្ដារ​ប្រព័ន្ធពីការបរាជ័យ
 
-#### អនុវត្តល្អបំផុតសម្រាប់តេស្តពីចាប់ផ្តើមដល់បញ្ចប់
+5. **ប្រតិបត្តិការដែលរយៈពេលវែង**៖ ផ្ទៀងផ្ទាត់ការដោះសោគ្រប់គ្រងនៃការបង្ហោះហើយនិងប្រតិបត្តិការដែលរយៈពេលវែង
+
+#### ផល្មត់ល្អបំផុតសម្រាប់ការប្រលង E2E
 
 ```typescript
-// ឧទាហរណ៍ការប្រឡង E2E ជាមួយអតិថិជននៅក្នុង TypeScript
+// ឧទាហរណ៍សាកល្បង E2E ជាមួយអតិថិជននៅក្នុង TypeScript
 describe('MCP Server E2E Tests', () => {
   let client: McpClient;
   
   beforeAll(async () => {
-    // បើកម៉ាស៊ីនបម្រើក្នុងបរិបទសាកល្បង
+    // ចាប់ផ្តើមម៉ាស៊ីនបម្រើនៅក្នុងបរិបទសាកល្បង
     await startTestServer();
     client = new McpClient('http://localhost:5000');
   });
@@ -2117,25 +2153,25 @@ describe('MCP Server E2E Tests', () => {
       b: 4
     });
     
-    // ផ្ទៀងផ្ទាត់
+    // ធានា
     expect(response.statusCode).toBe(200);
     expect(response.content[0].text).toContain('5');
   });
 });
 ```
 
-## យុទ្ធសាស្ត្រលេងតួសម្រាប់ការធ្វើតេស្ត MCP
+## យុទ្ធសាស្រ្ត Mocking សម្រាប់ការប្រលង MCP
 
-ការលេងតួជាសារសំខាន់សម្រាប់ការបំបែកផ្នែកក្នុងពេលធ្វើតេស្ត។
+ការបង្កើត Mocking គឺសំខាន់សម្រាប់ការបំបែកធាតុផ្សែងនៅពេលប្រលង។
 
-### ផ្នែកដែលត្រូវតែលេងតួ
+### ធាតុដែលត្រូវ Mock
 
-1. **គំរូបំរើ AI ខាងក្រៅ**: លេងតួចម្លើយគំរូបំរើសម្រាប់ការធ្វើតេស្តដែលអាចទាយទុកបាន
-2. **សេវាកម្មខាងក្រៅ**: លេងតួការព្យាបាល API (មូលដ្ឋានទិន្នន័យ, សេវាកម្មភាគីទីបី)
-3. **សេវាកម្មផ្ទៀងផ្ទាត់**: លេងតួអ្នកផ្តល់អត្តសញ្ញាណ
-4. **អ្នកផ្គត់ផ្គង់ធនធាន**: លេងតួអ្នកចាត់ថែធនធានដែលថ្លៃថ្នូរ
+1. **ម៉ូដែល AI ខាងក្រៅ**៖ Mock សម្លេងម៉ូដែលសម្រាប់ការប្រលងដែលអាចទស្សនាការប្រតបត្តិទុកបាន
+2. **សេវាកម្មខាងក្រៅ**៖ Mock អាសយដ្ឋាន API (មូលដ្ឋានទិន្នន័យ សេវាកម្មភាគីទីបី)
+3. **សេវាកម្មផ្ទៀងផ្ទាត់អត្តសញ្ញាណ**៖ Mock អ្នកផ្តល់អត្តសញ្ញាណ
+4. **អ្នកផ្គត់ផ្គង់ធនធាន**៖ Mock អ្នកដោះសោធនធានមានតម្លៃខ្ពស់
 
-### ឧទាហរណ៍: លេងតួចម្លើយគំរូបំរើ AI
+### ឧទាហរណ៍៖ Mock សម្លេងម៉ូដែល AI មួយ
 
 ```csharp
 // C# example with Moq
@@ -2153,48 +2189,48 @@ var server = new McpServer(modelClient: mockModel.Object);
 ```
 
 ```python
-# គំរូ Python ជាមួយ unittest.mock
+# ឧទាហរណ៍ Python ជាមួយ unittest.mock
 @patch('mcp_server.models.OpenAIModel')
 def test_with_mock_model(mock_model):
-    # កំណត់ការសម្រួល mock
+    # កំណត់ค่า mock
     mock_model.return_value.generate_response.return_value = {
         "text": "Mocked model response",
         "finish_reason": "completed"
     }
     
-    # ប្រើ mock ក្នុងការប្រឡង
+    # ប្រើ mock ក្នុងការធ្វើតេស្ត
     server = McpServer(model_client=mock_model)
-    # បន្តជាមួយការប្រឡង
+    # បន្តធ្វើតេស្ត
 ```
 
-## តេស្តប្រសិទ្ធភាព
+## ការប្រលងល្បឿន
 
-ការធ្វើតេស្តប្រសិទ្ធភាពមានសារៈសំខាន់សម្រាប់ម៉ាស៊ីនបម្រើ MCP នៅក្នុងផលិតកម្ម។
+ការប្រលងល្បឿនគឺសំខាន់សម្រាប់ម៉ាស៊ីនមេ MCP នៅការផលិត។
 
-### អ្វីដែលត្រូវវាស់វែង
+### តើត្រូវវាស់អ្វីខ្លះ
 
-1. **ពេលវេលាទទួលចម្លើយ**: ពេលវេលាឆ្លើយតបសម្រាប់សំណើ
-2. **ចំនួនសំណើក្នុងមួយវិនាទី**: ចំនួនសំណើដែលដំណើរការបានក្នុងមួយវិនាទី
-3. **ការប្រើប្រាស់ធនធាន**: CPU, អង្គចងចាំ, ការប្រើប្រាស់បណ្តាញ
-4. **ការគ្រប់គ្រងសំណើរជាមួយគ្នា**: អាកប្បកិរិយាដូចម្តេចនៅក្រោមសំណើបង្ហោះជាច្រើន
-5. **លក្ខណៈបណ្តោយឈានដល់**: ការបង្ហាញប្រសិទ្ធភាពជាមួយការបន្ថែមបន្ទុក
+1. **ពេលយឺតយ៉ាវ**៖ ពេលវេលាសម្រាប់ឆ្លើយតបសំណើ
+2. **ចំនួនសំណើបានប្រគល់**៖ ចំនួនសំណើដែលដំណើរការកន្លងមកក្នុងមួយវិនាទី
+3. **ការប្រើប្រាស់ធនធាន**៖ CPU, គំនរមេម៉ូរិ, ការប្រើប្រាស់បណ្ដាញ
+4. **ការគ្រប់គ្រងសម្រង់វេន**៖ មនុស្សក្នុងសភាពក្រោមសំណើផ្សេងៗដូចគ្នា
+5. **លក្ខណៈស scaling**៖ ល្បឿនដំណើរការជាថ្មីជាមួយបន្ទុកកើនឡើង
 
-### ឧបករណ៍សម្រាប់តេស្តប្រសិទ្ធភាព
+### ឧបករណ៍សម្រាប់ការប្រលងល្បឿន
 
-- **k6**: ឧបករណ៍ធ្វើតេស្តបង្ហោះប្រភពបើក
-- **JMeter**: សាកល្បងប្រសិទ្ធភាពទូលំទូលាយ
-- **Locust**: ឧបករណ៍ធ្វើតេស្តបង្ហោះផ្អែកលើ Python
-- **Azure Load Testing**: ការធ្វើតេស្តប្រសិទ្ធភាពនៅលើមេឃ
+- **k6**៖ ឧបករណ៍សាកល្បងបន្ទុកប្រភពបើក
+- **JMeter**៖ ការប្រលងល្បឿនដែលទូលំទូលាយ
+- **Locust**៖ ការប្រលងបន្ទុកមូលដ្ឋាន Python
+- **Azure Load Testing**៖ ការប្រលងល្បឿនមេឃ
 
-### ឧទាហរណ៍: តេស្តបង្ហោះមូលដ្ឋានជាមួយ k6
+### ឧទាហរណ៍៖ ការប្រលងបន្ទុកមូលដ្ឋានជាមួយ k6
 
 ```javascript
-// ស្គ្រីប k6 សម្រាប់ការធ្វើតេស្តផ្ទុកម៉ាស៊ីនមេ MCP
+// ស្គ្រីប k6 សម្រាប់បញ្ជាក់ថាគ្រប់ចំណុះម៉ាស៊ីនបម្រើ MCP
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 
 export const options = {
-  vus: 10,  // អ្នកប្រើប្រាស់មកពីប្រព័ន្ធវេចខ្ចប់ 10 នាក់
+  vus: 10,  // អ្នកប្រើប្រាស់មាតិកា ១០នាក់
   duration: '30s',
 };
 
@@ -2226,20 +2262,18 @@ export default function () {
 }
 ```
 
-## អូតូម៉ាទិនសម្រាប់តេស្តម៉ាស៊ីនបម្រើ MCP
+## ស្វ័យប្រវត្តិកម្មសម្រាប់ម៉ាស៊ីនមេ MCP
 
-ការអូតូម៉ាទិនតេស្តរបស់អ្នកធានាគុណភាពបានឯកភាព និងរហ័សនូវដំណើរការផ្ទាល់តាមរយៈករណីប្រតិបត្តិ។
+ការស្វ័យប្រវត្តិកម្មនៃការប្រលងរបស់អ្នកធានាគុណភាពរឹងមាំ និងមរណភាពឆាប់រហ័ស។
 
-### សមាសភាព CI/CD
+### ការចងក្រង CI/CD
 
-1. **រត់តេស្តឯកតា នៅពេល Pull Requests**: ធានាថាការកែប្រែកូដមិនបំបែកមុខងារដែលមានរួចដែលមានរួចនៅហើយ សូមបន្តបញ្ជូនសំណើផ្លាស់ប្តូរឡើង។
+1. **រត់ប្រលងថ្នាក់លក្ខណៈនៅលើ Pull Requests**៖ ធានាថាការផ្លាស់ប្តូរកូដមិនបំផ្លាញមុខងារដែលមាន
+2. **ប្រលងរួមនៅក្នុង Staging**៖ រត់ប្រលងរួមនៅលើបរិយាកាសមុនផលិតកម្ម
+3. **សមាតភាពល្បឿនមូលដ្ឋាន**៖ រក្សានៅលើគ្រាប់សំខាន់នៃល្បឿនសម្រាប់ចាប់ជ្រៅស្តូម
+4. **ស្គេនសុវត្ថិភាព**៖ ស្វ័យប្រវត្តិកម្មការប្រលងសុវត្ថិភាពជាផ្នែកនៃបណ្តារលំហូរ
 
-
-2. **ការតេស្តការរួមបញ្ចូលនៅក្នុង Staging**៖ បញ្ជាថ្ងៃអ្នកធ្វើតេស្តការរួមបញ្ចូលនៅក្នុងបរិបទមុនផលិតកម្ម  
-3. **មូលដ្ឋានការប្រតិបត្តិការណ៍**៖ រក្សាទុកស្តង់ដារប្រតិបត្តិការណ៍ដើម្បីចាប់យកការធ្លាក់ចុះ  
-4. **ការស្កេនសុវត្ថិភាព**៖ ធ្វើតេស្តសុវត្ថិភាពដោយស្វ័យប្រវត្តិជាផ្នែកមួយនៃជួរផ្លូវ  
-
-### ឧទាហរណ៍គន្លង CI (GitHub Actions)
+### ឧទាហរណ៍ CI Pipeline (GitHub Actions)
 
 ```yaml
 name: MCP Server Tests
@@ -2277,20 +2311,20 @@ jobs:
     - name: Performance Tests
       run: dotnet run --project tests/PerformanceTests/PerformanceTests.csproj
 ```
-  
-## ការធ្វើតេស្តការអនុលោមតាមលក្ខណៈ MCP
 
-ផ្ទៀងផ្ទាត់ម៉ាស៊ីនមេរបស់អ្នកថាបានអនុវត្តលក្ខណៈ MCP យ៉ាងត្រឹមត្រូវ។
+## ការប្រលងសម្រាប់ការអនុលោមតាមការតំណាង MCP
 
-### តំបន់អនុលោមសំខាន់ៗ
+ផ្ទៀងផ្ទាត់ម៉ាស៊ីនមេរបស់អ្នកអនុវត្តតាមការនិយម MCP ត្រឹមត្រូវ។
 
-1. **ចំណុចបញ្ចប់ API**៖ តេស្តចំណុចបញ្ចប់ដែលត្រូវការ (/resources, /tools, ល។)  
-2. **ទ្រង់ទ្រាយសំណើ/ចម្លើយ**៖ ផ្ទៀងផ្ទាត់ការអនុលោមស្គីម៉ា  
-3. **កូដកំហុស**៖ ផ្ទៀងផ្ទាត់កូដស្ថានភាពត្រឹមត្រូវសម្រាប់ស្ថានភាពផ្សេងៗ  
-4. **ប្រភេទមាតិកា**៖ តេស្តការដំណើរការប្រភេទមាតិកានានា  
-5. **ដំណើរការផ្ទៀងផ្ទាត់អត្តសញ្ញាណ**៖ ផ្ទៀងផ្ទាត់មេកានិចផ្ទៀងផ្ទាត់តាមលក្ខណៈជាម៉ារូង  
+### តំបន់អនុលោមសំខាន់
 
-### សំណុំនៃការធ្វើតេស្តអនុលោម
+1. **ចំណុចបញ្ចូល API**៖ ប្រលងចំណុចបញ្ចូលដែលត្រូវការទាំងអស់ (/resources, /tools, ល។)
+2. **ទ្រង់ទ្រាយសំណើ/ចម្លើយ**៖ ផ្ទៀងផ្ទាត់ការអនុលោមស្កេមា
+3. **កូដកំហុស**៖ ផ្ទៀងផ្ទាត់កូដស្ថានភាពត្រឹមត្រូវសម្រាប់ស្ថានការណ៍ផ្សេងៗ
+4. **ប្រភេទខ្លឹមសារ**៖ ប្រលងការគ្រប់គ្រងប្រភេទខ្លឹមសារផ្សេងៗ
+5. **ប្រព័ន្ធផ្លាស់ប្ដូរការផ្ទៀងផ្ទាត់អត្តសញ្ញាណ**៖ ផ្ទៀងផ្ទាត់មេកានិចផ្ទៀងផ្ទាត់តាមការណិយម
+
+### សំណុំប្រលងអនុលោមតាម
 
 ```csharp
 [Fact]
@@ -2316,65 +2350,67 @@ public async Task Server_ResourceEndpoint_ReturnsCorrectSchema()
     });
 }
 ```
-  
-## លំនាំ ១០ មុខសម្រាប់ការធ្វើតេស្តម៉ាស៊ីនមេ MCP ដោយមានប្រសិទ្ធភាព
 
-1. **តេស្តការបកផ្សាយឧបករណ៍ដោយឡែក**៖ ផ្ទៀងផ្ទាត់ការបកផ្សាយស្គីម៉ាដោយឯករាជ្យពីចំណូលចិត្តឧបករណ៍  
-2. **ប្រើតេស្តដែលមានប៉ារ៉ាម៉ែត្រ**៖ តេស្តឧបករណ៍ជាមួយបញ្ចូលចម្រាស់នានា រួមមានករណីគំរូនិងកំណត់ជ្រុង  
-3. **ពិនិត្យចម្លើយកំហុស**៖ ផ្ទៀងផ្ទាត់ការដំណើរការបានត្រឹមត្រូវនៃកំហុសគ្រប់ស្ថានភាព  
-4. **តេស្តត្រូវនេះសិទ្ធិ**៖ ត្រួតពិនិត្យការត្រួតពិនិត្យការចូលប្រើគ្រប់តួនាទីអ្នកប្រើ  
-5. **ត្រួតពិនិត្យការគ្របដណ្តប់ការធ្វើតេស្ត**៖ គោលដៅការគ្របដណ្តប់ខ្ពស់លើកូដផ្លូវសំខាន់  
-6. **តេស្តចម្លើយផ្សាយបន្ត**៖ ផ្ទៀងផ្ទាត់ការដំណើរការប្រកបដោយភាពត្រឹមត្រូវនៃមាតិកាបញ្ជូនជាបន្ត  
-7. **សម្រួលបញ្ហាបណ្ដាញ**៖ តេស្តអ្វីកើតឡើងក្រោមលក្ខខណ្ឌបណ្ដាញអន់  
-8. **តេស្តកំណត់ធនធាន**៖ ផ្ទៀងផ្ទាត់អាកប្បកិរិយា​ពេលឈានដល់គោលដៅឬកំណត់អត្រា  
-9. **ធ្វើតេស្តបង្វិលម្តងទៀតដោយស្វ័យប្រវត្តិ**៖ បង្កើតសំណុំតេស្តដែលរត់នៅពេលមានការផ្លាស់ប្តូរកូដរាល់ដង  
-10. **ចងក្រងឯកសារករណីតេស្ត**៖ រក្សាឯកសារបញ្ជាក់ច្បាស់ពីស្ថានភាពតេស្ត  
+## ១០ គន្លឹះដ៏ល្អបំផុតសម្រាប់ការប្រលងម៉ាស៊ីនមេ MCP
 
-## បញ្ហាប្រឈមក្នុងការធ្វើតេស្តធម្មតា
+1. **កំណត់សិកសញ្ញាឧបករណ៍ដោយឡែក**៖ ផ្ទៀងផ្ទាត់ការបកស្រាយស្កេមាដោយឡែកពីលូហ្គិកឧបករណ៍
+2. **ប្រើការប្រលងប៉ារ៉ាម៉ែត្រ**៖ ប្រលងឧបករណ៍ជាមួយបញ្ចូលច្រើនរួមមានករណីកម្រិតខ្ពស់
+3. **ពិនិត្យចម្លើយកំហុស**៖ ផ្ទៀងផ្ទាត់ការដោះសោកំហុសត្រឹមត្រូវសម្រាប់គ្រប់លក្ខខណ្ឌកំហុស
+4. **ប្រលងលូហ្គិកការអនុញ្ញាត**៖ ធានាការគ្រប់គ្រងចូលដំណើរការយ៉ាងត្រឹមត្រូវសម្រាប់តួនាទីអ្នកប្រើឡែក
+5. **ត្រួតពិនិត្យការគ្របដណ្តប់ការប្រលង**៖ 지지 high coverage על קוד נתיב חיוני
+6. **ប្រលងចម្លើយបង្ហោះអាំងធឺរណេត**៖ ផ្ទៀងផ្ទាត់ការគ្រប់គ្រងខ្លឹមសារបង្ហោះត្រឹមត្រូវ
+7. **សម្រួលបញ្ហាបណ្ដាញ**៖ ប្រលងសម្រួលនៅក្រោមលក្ខខណ្ឌបណ្ដាញងឹកងាប់
+8. **ប្រលងកំណត់ធនធាន**៖ ផ្ទៀងផ្ទាត់ឆ្លើយតបនៅពេលឈានដល់គោតស័រឬកម្រិតប្រេត
+9. **ស្វ័យប្រវត្តិកម្មប្រលងវិលត្រឡប់**៖ បង្កើតសំណុំប្រលងដែលរត់នៅលើការផ្លាស់ប្តូរកូដគ្រប់គ្រាន់
+10. **ច្បាប់ឯកសារករណីប្រលង**៖ រក្សាឯកសារប្រលងដែលច្បាស់លាស់នៃសន្តិសុខប្រលង
 
-- **ផ្អែកលើផ្លូវសប្បាយជ្រាលជ្រៅ**៖ ធ្វើការតេស្តករណីកំហុសយ៉ាងពេញលេញ  
-- **មិនបានយកចិត្តទុកដាក់ការធ្វើតេស្តប្រសិទ្ធភាព**៖ ស្វែងរកកន្លែងឈឺចាប់មុនវាខូចខាតផលិតកម្ម  
-- **តេស្តដោយឯកាស្ថានតែម្ដង**៖ ផ្សំគ្នារវាងតេស្តឯកតា, តេស្តរួមបញ្ចូល, និងតេស្តចុងក្រោយ  
-- **ការគ្របដណ្តប់ API មិនពេញលេញ**៖ ប្រាកដថាចំណុចបញ្ចប់ និងលក្ខណៈគ្រប់ឆ្វេងត្រូវបានធ្វើតេស្ត  
-- **បរិបទតេស្តមិនស្របគ្នា**៖ ប្រើcontainers ដើម្បីធានាបរិបទតេស្តស្របគ្នា  
+## ករណីប្រលងធម្មតា
 
-## បញ្ចប់
+- **ពឹងផ្អែកលើការប្រលងផ្លូវរីករាយ**៖ ធានាថាប្រលងករណីកំហុសយ៉ាងរុំរូត
+- **មិនបានប្រលងល្បឿន**៖ កំណត់ចំនុចពិបាកមុនពេលវាបានប៉ះពាល់ដល់ផលិតកម្ម
+- **ប្រលងនៅក្នុងការរើសនៅតែមួយ**៖ បញ្ចូលប្រលងថ្នាក់លក្ខណៈ, រួមបញ្ចូល, និង E2E
+- **មិនគ្របគ្រងការគ្របដណ្តប់ API លម្អិត**៖ ធានាថាចំណុចបញ្ចូលនិងលក្ខណៈគ្រប់គ្រាន់បានប្រលង
+- **បរិយាកាសប្រលងមិនស្ថិតស្ថេរណ៍**៖ ប្រើ containers ដើម្បីធានាបរិយាកាសប្រលងដែលស្ថិតស្ថេរណ៍
 
-យុទ្ធសាស្រ្តធ្វើតេស្តគ្រប់លំដាប់គឺជាប្រភេទមួយដែលចាំបាច់សម្រាប់ការអភិវឌ្ឍម៉ាស៊ីនមេ MCP ដែលទុកចិត្តបាន និងមានគុណភាពខ្ពស់។ ដោយអនុវត្តន៍ការអនុវត្តល្អបំផុតនិងយោបល់ដែលបានលើកឡើងក្នុងមគ្គុទេសក៍នេះ អ្នកអាចធានាបានថាការអនុវត្ត MCP របស់អ្នក បំពេញតាមស្តង់ដាគុណភាព, ភាពទុកចិត្ត, និងការប្រតិបត្ដិការឿងដ៏ល្អបំផុត។  
+## សេចក្ដីសន្និដ្ឋាន
 
-## ចំណុចសំខាន់ដែលត្រូវយកចិត្តទុកដាក់
+យុទ្ធសាស្រ្តប្រលងទូលំទូលាយគឺសំខាន់សម្រាប់អភិវឌ្ឍម៉ាស៊ីនមេ MCP ដែលទុកចិត្តបាន មានគុណភាពខ្ពស់។ ដោយអនុវត្តផល្មត់ល្អបំផុត និងគន្លឹះដែលបានរៀបរាប់ក្នុងមេរៀននេះ អ្នកអាចធានាបានថាការអនុវត្ត MCP របស់អ្នកត្រូវបានគោរពតាមស្តង់ដារល្អបំផុតនៃគុណភាព ការជឿជាក់ និងល្បឿន។
 
-1. **ការរចនាឧបករណ៍**៖ អនុវត្តគោលការណ៍ភារកិច្ចតែមួយ, ប្រើ dependency injection, និងរចនាដើម្បីមានភាពផ្សំ  
-2. **ការរចនាស្គីម៉ា**៖ បង្កើតស្គីម៉ាដែលច្បាស់លាស់ និងមានឯកសារពិពណ៌នាលម្អិតជាមួយកំណត់ផ្ទៀងផ្ទាត់ត្រឹមត្រូវ  
-3. **ការដំណើរការកំហុស**៖ អនុវត្តការដំណើរការកំហុសយ៉ាងរាបសារ, ចម្លើយកំហុសដែលមានរចនាសម្ព័ន្ធ, និងយុទ្ធសាស្រ្ត retry  
-4. **ប្រសិទ្ធភាព**៖ ប្រើ caching, ដំណើរការអាស៊ីនខណៈ (asynchronous), និងកំណត់ធនធាន  
-5. **សុវត្ថិភាព**៖ អនុវត្តការផ្ទៀងផ្ទាត់បញ្ចូលយ៉ាងម៉ត់ចត់, ការត្រួតពិនិត្យអនុញ្ញាត, និងការដំណើរការទិន្នន័យដែលមានភាពប្រញាប់ពេល  
-6. **ការធ្វើតេស្ត**៖ បង្កើតតេស្តឯកតា, តេស្តការរួមបញ្ចូល និងតេស្តចុងក្រោយដោយទូលំទូលាយ  
-7. **លំនាំធ្វើការងារ**៖ អនុវត្តលំនាំដែលបានកំណត់ស្ដង់ដារដូចជា ខ្សែ, dispatchers, និងដំណើរការរួមសមមាឌ  
 
-## ប្រអប់ហ្វឹកហាត់
+## បញ្ចូលចេញដ៏សំខាន់
 
-រចនាឧបករណ៍ MCP និងលំនាំធ្វើការងារ សម្រាប់ប្រព័ន្ធដំណើរការឯកសារ ដែល៖
+1. **រចនាឧបករណ៍**៖ តាមលក្ខណៈភារកិច្ចតែមួយ, ប្រើការចាក់បញ្ចូលភាពពឹងផ្អែក, និងរចនាដើម្បីអាចបង្រួមបាន
+2. **រចនាស្កេម៉ា**៖ បង្កើតស្កេម៉ាជាក់លាក់ទាន់សម័យ មានឯកសារល្អ និងមានលក្ខខណ្ឌត្រួតពិនិត្យត្រឹមត្រូវ
+3. **ការដោះសោកំហុស**៖ អនុវត្តការដោះសោកំហុសដោយឆុងស្មើរ ចម្លើយកំហុសតាមរចនាសម្ព័ន្ធ និងយុទ្ធសាស្រ្តធ្វើឡើងវិញដោយយល់ពីលទ្ធផល
 
-1. ទទួលឯកសារជាប្រភេទច្រើន (PDF, DOCX, TXT)  
-2. ផ្ទុកអត្ថបទ និងព័ត៌មានសំខាន់ពីឯកសារ  
-3. ចាត់ថ្នាក់ឯកសារតាមប្រភេទ និងមាតិកា  
-4. បង្កើតសង្ខេបឯកសារនីមួយៗ  
+4. **ល្បឿន**៖ ប្រើកាស្សេ, ដំណើរការអាស៊ីនខ្នាត, និងការកំណត់ការប្រើប្រាស់ធនធាន
+5. **សុវត្ថិភាព**៖ អនុវត្តការត្រួតពិនិត្យបញ្ចូលយ៉ាងម៉ត់ចត់, ការត្រួតពិនិត្យការអនុញ្ញាត, និងការគ្រប់គ្រងទិន្នន័យដែលមានភាពរំខាន
+6. **ប្រលង**៖ បង្កើតប្រលងថ្នាក់លក្ខណៈ, រួមបញ្ចូល, និងពីដើមដល់ចប់
+7. **លំនាំការងារ**៖ អនុវត្តលំនាំដែលបានកំណត់ដូចជាច្រកខ្សែ, អ្នកចែកចាយ, និងដំណើរការភាពឆវិន
 
-អនុវត្តស្គីម៉ាឧបករណ៍, ការចាត់ការកំហុស, និងលំនាំធ្វើការងារដែលសមស្របបំផុតសម្រាប់ស្ថានភាពនេះ។ ពិចារណាវិធីដែលអ្នកនឹងធ្វើតេស្តអនុវត្តន៍នេះ។  
+## សុំអនុវត្ត
 
-## ប្រភពទិន្នន័យ
+រចនាឧបករណ៍ MCP និងលំនាំការងារមួយសម្រាប់ប្រព័ន្ធកែសម្រួលឯកសារ ដែល:
 
-1. ចូលរួមសហគមន៍ MCP នៅលើ [Microsoft Foundry Discord Community](https://aka.ms/foundrydevs) ដើម្បីទទួលបានព័ត៌មានថ្មីៗ  
-2. ឧបត្ថម្ភគម្រោងមូលដ្ឋានបើក [MCP projects](https://github.com/modelcontextprotocol)  
-3. អនុវត្តគោលការណ៍ MCP ក្នុងស្ថាប័ន AI របស់អង្គភាពរបស់អ្នក  
-4. ស្វែងយល់អំពីការអនុវត្ត MCP ជាពិសេសសម្រាប់ឧស្សាហកម្មរបស់អ្នក  
-5. ពិចារណាទៅចូលរួមវគ្គខ្ពស់ជាពិសេសមុខផ្សេងៗទាក់ទងនឹង MCP ដូចជា ការរួមបញ្ចូលម៉ូដ្យុលាជាច្រើន ឬ ការរួមបញ្ចូលកម្មវិធីអាជីវកម្ម  
-6. សាកល្បងបង្កើតឧបករណ៍ MCP និងលំនាំធ្វើការងារដោយផ្អែកលើគោលការណ៍ដែលរៀនក្នុង [Hands on Lab](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)  
+1. ទទួលបានឯកសារជាច្រើនទ្រង់ទ្រាយ (PDF, DOCX, TXT)
+2. យកអត្ថបទ និងព័ត៌មានសំខាន់ពីឯកសារ
+3. ចាត់ថ្នាក់ឯកសារតាមប្រភេទ និងខ្លឹមសារ
+4. បង្កើតសង្ខេបនៃឯកសារច្បាស់ៗមួយៗ
 
-## តើបន្ទាប់មានអ្វី
+អនុវត្តស្កេម៉ាឧបករណ៍, ការដោះសោកំហុស, និងលំនាំការងារដែលសមស្របបំផុតសម្រាប់ករណីនេះ។ គិតពីរបៀបដែលអ្នកនឹងប្រលងការអនុវត្តនេះ។
 
-បន្ទាប់៖ [Case Studies](../09-CaseStudy/README.md)
+## ប្រភពធនធាន
+
+1. ចូលរួមសហគមន៍ MCP នៅលើ [Microsoft Foundry Discord Community](https://aka.ms/foundrydevs) ដើម្បីទទួលព័ត៌មានថ្មីៗ
+2. ចូលរួមបរិច្ចាគគម្រោង [MCP projects](https://github.com/modelcontextprotocol)
+3. អនុវត្តគោលការណ៍ MCP នៅក្នុងគម្រោង AI របស់អង្គភាពរបស់អ្នក
+4. ស្វែងយល់ពីការអនុវត្ត MCP ជាក់លាក់សម្រាប់ឧស្សាហកម្មរបស់អ្នក។
+5. ពិចារណាចូលរៀនវគ្គជំនាញខ្ពស់លើប្រធាន MCP ជាក់លាក់ ដូចជា ការរួមបញ្ចូលម៉ូឌែលច្រើន ឬការរួមបញ្ចូលកម្មវិធីសហគ្រាស។
+6. សាកល្បងបង្កើតឧបករណ៍ MCP និងលំនាំការងារដោយប្រើគោលការណ៍ដែលបានរៀនតាមរយៈ [Hands on Lab](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)  
+
+## បន្ទាប់ទៅ
+
+បន្ទាប់ទៅ: [Case Studies](../09-CaseStudy/README.md)
 
 ---
 

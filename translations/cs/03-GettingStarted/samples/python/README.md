@@ -1,36 +1,39 @@
-# MCP Kalkulační Server (Python)
+# MCP Calculator Server (Python)
 
-Jednoduchá implementace serveru Model Context Protocol (MCP) v Pythonu, která poskytuje základní funkce kalkulačky.
+
+
+Jednoduchá implementace Model Context Protocol (MCP) serveru v Pythonu, která poskytuje základní funkcionalitu kalkulačky.
+
 
 ## Instalace
 
-Nainstalujte potřebné závislosti:
+Nainstalujte požadované závislosti:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Nebo přímo nainstalujte MCP Python SDK:
+Nebo nainstalujte MCP Python SDK přímo:
 
 ```bash
-pip install mcp>=1.18.0
+pip install "mcp>=2.1.1,<3.0.0"
 ```
 
 ## Použití
 
 ### Spuštění serveru
 
-Server je navržen tak, aby ho používali MCP klienti (například Claude Desktop). Pro spuštění serveru:
+Server je navržen tak, aby jej používali MCP klienti (jako Claude Desktop). Pro spuštění serveru:
 
 ```bash
 python mcp_calculator_server.py
 ```
 
-**Poznámka**: Při přímém spuštění v terminálu uvidíte chyby validace JSON-RPC. To je normální chování - server čeká na správně formátované zprávy od MCP klienta.
+**Poznámka**: Při přímém spuštění v terminálu uvidíte chyby validace JSON-RPC. Toto je normální chování – server čeká na správně formátované zprávy od MCP klientů.
 
 ### Testování funkcí
 
-Pro otestování, zda funkce kalkulačky fungují správně:
+Pro otestování, že funkce kalkulačky fungují správně:
 
 ```bash
 python test_calculator.py
@@ -38,19 +41,21 @@ python test_calculator.py
 
 ## Řešení problémů
 
-### Chyby při importu
+### Chyby importu
 
-Pokud se zobrazí `ModuleNotFoundError: No module named 'mcp'`, nainstalujte MCP Python SDK:
+Pokud se vám zobrazí `ModuleNotFoundError: No module named 'mcp'`, nainstalujte MCP Python SDK:
 
 ```bash
-pip install mcp>=1.18.0
+pip install "mcp>=2.1.1,<3.0.0"
 ```
 
 ### Chyby JSON-RPC při přímém spuštění
 
-Chyby jako "Invalid JSON: EOF while parsing a value" při přímém spuštění serveru jsou očekávané. Server potřebuje zprávy od MCP klienta, nikoli přímý vstup z terminálu.
+Chyby jako "Invalid JSON: EOF while parsing a value" při přímém spuštění serveru jsou očekávané. Server potřebuje zprávy od MCP klientů, nikoli přímý vstup z terminálu.
 
 ---
 
-**Prohlášení**:  
-Tento dokument byl přeložen pomocí služby AI pro překlady [Co-op Translator](https://github.com/Azure/co-op-translator). I když se snažíme o přesnost, mějte prosím na paměti, že automatické překlady mohou obsahovat chyby nebo nepřesnosti. Původní dokument v jeho původním jazyce by měl být považován za autoritativní zdroj. Pro důležité informace se doporučuje profesionální lidský překlad. Nejsme odpovědní za žádná nedorozumění nebo nesprávné interpretace vyplývající z použití tohoto překladu.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Prohlášení o omezení odpovědnosti**:
+Tento dokument byl přeložen pomocí AI překladatelské služby [Co-op Translator](https://github.com/Azure/co-op-translator). Přestože usilujeme o co největší přesnost, mějte prosím na paměti, že automatizované překlady mohou obsahovat chyby nebo nepřesnosti. Originální dokument v jeho mateřském jazyce by měl být považován za autoritativní zdroj. Pro kritické informace se doporučuje profesionální lidský překlad. Nejsme odpovědní za jakékoli nedorozumění nebo nesprávné interpretace vzniklé použitím tohoto překladu.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

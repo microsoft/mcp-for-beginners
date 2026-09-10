@@ -144,8 +144,8 @@
     "language_code": "zh-TW"
   },
   "03-GettingStarted/03-llm-client/README.md": {
-    "original_hash": "3b5e39c78f62deafcb60929f8036daf3",
-    "translation_date": "2026-06-16T08:47:33+00:00",
+    "original_hash": "e7951e45ea065c33cf0fe73f6d3ed687",
+    "translation_date": "2026-09-09T21:45:10+00:00",
     "source_file": "03-GettingStarted/03-llm-client/README.md",
     "language_code": "zh-TW"
   },
@@ -162,8 +162,8 @@
     "language_code": "zh-TW"
   },
   "03-GettingStarted/03-llm-client/solution/java/README.md": {
-    "original_hash": "3efd351ab69decd299a49aaa34ac9245",
-    "translation_date": "2026-08-26T16:50:40+00:00",
+    "original_hash": "b21e6bd48c46004ac5a4a4d47ea40a64",
+    "translation_date": "2026-09-09T21:45:28+00:00",
     "source_file": "03-GettingStarted/03-llm-client/solution/java/README.md",
     "language_code": "zh-TW"
   },
@@ -468,8 +468,8 @@
     "language_code": "zh-TW"
   },
   "03-GettingStarted/samples/python/README.md": {
-    "original_hash": "f4733f39c05c58e0cf0eee0a8ae7e9a2",
-    "translation_date": "2025-10-17T20:04:24+00:00",
+    "original_hash": "3a5754207a68ad8272820d1a1a353fde",
+    "translation_date": "2026-09-09T21:45:37+00:00",
     "source_file": "03-GettingStarted/samples/python/README.md",
     "language_code": "zh-TW"
   },
@@ -498,8 +498,8 @@
     "language_code": "zh-TW"
   },
   "04-PracticalImplementation/samples/csharp/README.md": {
-    "original_hash": "0bc7bd48f55f1565f1d95ccb2c16f728",
-    "translation_date": "2025-07-13T23:04:44+00:00",
+    "original_hash": "6cddd296fe965d6b941fc77950679238",
+    "translation_date": "2026-09-09T21:45:50+00:00",
     "source_file": "04-PracticalImplementation/samples/csharp/README.md",
     "language_code": "zh-TW"
   },
@@ -660,8 +660,8 @@
     "language_code": "zh-TW"
   },
   "07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md": {
-    "original_hash": "f7d8cfb6528a2280913da17f622b7b08",
-    "translation_date": "2026-06-17T03:24:27+00:00",
+    "original_hash": "6a98b49b0cde0040ab13aec5709f3a76",
+    "translation_date": "2026-09-09T21:38:13+00:00",
     "source_file": "07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md",
     "language_code": "zh-TW"
   },
@@ -894,25 +894,14 @@
     "language_code": "zh-TW"
   },
   "__translation_failures__": {
-    "changelog.md": {
-      "original_hash": "60677e2e90cc496806c9a28dcebdc325",
-      "source_file": "changelog.md",
-      "language_code": "zh-TW",
-      "failure_date": "2026-08-26T16:32:16+00:00",
-      "status": "failed",
-      "error_type": "TranslationIncompleteError",
-      "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'changelog.md', and the chunk could not be split further.",
-      "translator_version": "0.20.0",
-      "failure_policy_version": 1
-    },
     "08-BestPractices/README.md": {
       "original_hash": "8ba1781e6978308063cb698d13bcde43",
       "source_file": "08-BestPractices/README.md",
       "language_code": "zh-TW",
-      "failure_date": "2026-08-26T16:50:13+00:00",
+      "failure_date": "2026-09-09T21:43:22+00:00",
       "status": "failed",
       "error_type": "TranslationIncompleteError",
-      "error_message": "Markdown translation remained incomplete for chunk 1.2.1 of 'README.md', and the chunk could not be split further.",
+      "error_message": "Markdown translation remained incomplete for chunk 1.1.2 of 'README.md', and the chunk could not be split further.",
       "translator_version": "0.20.0",
       "failure_policy_version": 1
     },
@@ -929,8 +918,8 @@
     }
   },
   "changelog.md": {
-    "original_hash": "20f1f1af027c13294024fe6a9ea90e37",
-    "translation_date": "2026-07-08T20:52:24+00:00",
+    "original_hash": "60677e2e90cc496806c9a28dcebdc325",
+    "translation_date": "2026-09-09T21:35:32+00:00",
     "source_file": "changelog.md",
     "language_code": "zh-TW"
   },

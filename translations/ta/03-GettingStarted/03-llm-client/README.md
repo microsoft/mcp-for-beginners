@@ -1,52 +1,52 @@
-# LLM உடன் கிளையண்ட் உருவாக்கல்
+# LLM உடன் ஒரு கிளையண்ட் உருவாக்குதல்
 
-இன்னுமொரு கட்டமாக, நீங்கள் எப்படி சர்வர் மற்றும் கிளையண்ட் உருவாக்குவது என்பதை பார்த்தீர்கள். கிளையண்ட் திறன்கள், வளங்கள் மற்றும் ப்ராம்ப்ட்களை பட்டியலிட சர்வரை வெளிப்படையாக அழைக்க முடிந்தது. இருப்பினும், இது மிகவும் நடைமுறையில் பயனுள்ள அணுகுமுறை அல்ல. உங்கள் பயனர்கள் ஏஜென்டிக் காலத்தில் வாழ்கிறார்கள் மற்றும் அவர்கள் ப்ராம்ப்ட்களை பயன்படுத்தி மற்றும் LLM உடன் தொடர்பு கொள்ள எதிர்பார்க்கின்றனர். அவர்கள் நீங்கள் MCP மூலம் உங்கள் திறன்களை சேமிக்கிறீர்களா என்பதில் கவலைப்படுவதில்லை; அவர்கள் இயற்கை மொழி மூலம் தொடர்பு கொள்ள வேண்டும் என எதிர்பார்க்கின்றனர். எனவே இதை எப்படி தீர்க்கலாம்? தீர்வு கிளையண்டில் ஒரு LLM ஐ சேர்ப்பது.
+இதுவரை, நீங்கள் ஒரு சார்வர் மற்றும் ஒரு கிளையண்ட் உருவாக்குவது எப்படி என்பதை நோக்கியுள்ளீர்கள். கிளையண்ட் சார்வரின் கருவிகள், வளங்கள் மற்றும் உந்துதல்களை பட்டியலிட சர்வரை நேரடியாக அழைக்க முடிந்தது. எனினும், இது மிகவும் நடைமுறைமிக்க அணுகுமுறை அல்ல. உங்கள் பயனர்கள் முகவரிய যুগத்தில் வாழ்வதால், அவர்கள் உந்துதல்கள் மற்றும் ஒரு LLM உடன் தொடர்பு கொள்வதை எதிர்பார்க்கின்றனர். அவர்கள் MCP தங்களது திறன்களை சேமிக்கவில்லை என்பதை கவலையில்லை; அவர்கள் இயற்கை மொழியைப் பயன்படுத்தி தொடர்பு கொள்ள எதிர்பார்க்கின்றனர். எனவே நாம் இதை எப்படி தீர்க்கப்போகிறோம்? தீர்வு என்பது கிளையண்டில் ஒரு LLM நுழைக்க வேண்டும்.
 
-## அவலோகு
+## கண்ணோட்டம்
 
-இந்த பாடத்தில் நாம் உங்கள் கிளையண்டில் ஒரு LLM ஐச் சேர்க்க கவனம் செலுத்துவோம் மற்றும் இது உங்கள் பயனருக்கு ஒரு மிகவும் சிறந்த அனுபவத்தை எப்படி வழங்குகிறது என்பதை காண்போம்.
+இந்த பாடத்தில், உங்கள் கிளையண்டில் ஒரு LLM சேர்க்கும் முறையில் கவனம் செலுத்துகிறோம் மற்றும் இது உங்கள் பயனருக்கு அதிக தரமான அனுபவத்தை எப்படி வழங்குகிறது என்பதை காண்பிப்போம்.
 
 ## கற்றல் குறிக்கோள்கள்
 
-இந்த பாட முடிவில், நீங்கள் செய்யக் கூடியவை:
+இந்த பாடம் முடிந்தவுடன், நீங்கள் செயல்படுத்த முடியும்:
 
 - LLM உடன் ஒரு கிளையண்டை உருவாக்குதல்.
-- LLM ஐ பயன்படுத்தி MCP சர்வருடன் சரளமாக தொடர்பு கொள்ளுதல்.
-- கிளையண்ட் பக்கத்தில் சிறந்த இறுதி பயனர் அனுபவத்தை வழங்குதல்.
+- LLM பயன்படுத்தி MCP சர்வருடன் இடையிலான முறையான தொடர்பு.
+- கிளையண்ட் பக்கத்தில் ஒரு சிறந்த பயனர் அனுபவத்தை வழங்குதல்.
 
 ## அணுகுமுறை
 
-நாம் எடுக்க வேண்டிய அணுகுமுறையை புரிந்து கொள்வோம். ஒரு LLM ஐ சேர்ப்பது எளிதாக தோன்றுகிறது, ஆனால் நிஜமாக இதை செய்வோமா?
+நாம் ஏற்கனவே எவ்வாறு செய்யவேண்டும் என்பதை புரிந்துகொள்வோம். LLM சேர்ப்பது எளிதானதாக தோன்றினாலும், அதை நம்மால் எப்படி செய்வது என்பதை பார்க்கலாம்.
 
-கிளையண்ட் சர்வருடன் இதுபோல் தொடர்பு கொள்வோம்:
+கிளையண்ட் சர்வருடன் எப்படி தொடர்பு கொள்கிறது என்பதை இங்கே பார்க்கலாம்:
 
-1. சர்வருடன் இணைப்பு அமைத்தல்.
+1. சர்வருடன் இணைப்பை ஏற்படுத்துக.
 
-1. திறன்கள், ப்ராம்ப்ட்கள், வளங்கள் மற்றும் கருவிகள் பட்டியலிடுதல் மற்றும் அவற்றின் திட்டக்கோவையை சேமித்தல்.
+1. திறன்கள், உந்துதல்கள், வளங்கள் மற்றும் கருவிகளை பட்டியலிடுக மற்றும் அவற்றின் ஸ்கீமாவை சேமிக்கவும்.
 
-1. ஒரு LLM ஐ சேர்த்து சேமிக்கப்பட்ட திறன்கள் மற்றும் அவற்றின் திட்டக்கோவை LLM புரிந்துகொள்ளும் வடிவத்தில் அனுப்புதல்.
+1. ஒரு LLM ஐ சேர்த்து சேமிக்கப்பட்ட திறன்கள் மற்றும் அவற்றின் ஸ்கீமாவை LLM புரிந்துக் கொள்ளும் வடிவத்தில் வழங்கவும்.
 
-1. பயனர் ப்ராம்ப்டை LLM க்கு அனுப்பி, கிளையண்ட் பட்டியலிடும் கருவிகளுடன் சேர்த்து கையாளுதல்.
+1. பயனர் உந்துதலை LLM க்கு கிளையண்ட் பட்டியலிட்ட கருவிகளுடன் ஒன்றாக அனுப்பி கையாளவும்.
 
-அடுக்குமுறை மேலோட்டமாக புரிந்துகொண்டோம், கீழ்க்காணும் பயிற்சியில் இதை முயற்சிக்கலாம்.
+அருமை, இதனால் நாம் மேல் நிலை அணுகுமுறையைப் புரிந்துகொண்டோம், கீழே உள்ள பயிற்சியில் இதை முயற்சிப்போம்.
 
-## பயிற்சி: LLM உடன் கிளையண்ட் உருவாக்கல்
+## பயிற்சி: LLM உடன் ஒரு கிளையண்ட் உருவாக்குதல்
 
-இந்த பயிற்சியில், நாங்கள் எங்கள் கிளையண்டில் LLM ஐச் சேர்க்க கற்றுக்கொள்வோம்.
+இந்த பயிற்சியில், நாமும் எவ்வாறு ஒரு LLM ஐ நமது கிளையண்டில் சேர்ப்பது என்பதை கற்றுக்கொள்வோம்.
 
-### GitHub தனிநபர் அணுகல் குறியீடு மூலம் நிர்வாகம்
+### GitHub தனிப்பட்ட அணுகல் குறியீடு மூலம் அங்கீகரித்தல்
 
-GitHub குறியீட்டை உருவாக்குவது எளிய செயல்முறை. இதை செய்யும் முறைகள்:
+ஒரு GitHub குறியீட்டை உருவாக்குவது மிக எளிதான செயல்முறை. இதைப் பின்வருபவை போல செய்யலாம்:
 
-- GitHub அமைப்புகளுக்கு செல்லவும் – மேல் வலது மூலையில் உங்கள் சுயவிவர படம் மீது கிளிக் செய்து அமைப்புகளைத் தேர்ந்தெடுக்கவும்.
-- Developer Settings க்கு செல்லவும் – கீழே ஸ்க்ரோல் செய்து Developer Settings கிளிக் செய்யவும்.
-- Personal Access Tokens தேர்வு செய்யவும் – Fine-grained tokens கிளிக் செய்து புதிய குறியீடு உருவாக்கவும்.
-- உங்கள் குறியீட்டை அமைக்கவும் – குறிப்புக்காக ஒரு குறிப்பு சேர்க்கவும், காலாவதியை அமைக்கவும், தேவையான அனுமதிகளைத் தேர்ந்தெடுக்கவும் (இந்தப் படிக்கைக்கு Models அனுமதியைச் சேர்க்க வேண்டும்).
-- குறியீட்டினை உருவாக்கி நகலெடுக்கவும் – Generate token கிளிக் செய்து உடனே நகலெடுக்கவும், பின்னர் மீண்டும் பார்க்க முடியாது.
+- GitHub அமைப்புக்கு செல்லவும் – மேலே வலது மூலையில் உங்கள் சுயவிவரப்படத்தை கிளிக் செய்து அமைப்புகளைத் தேர்வுசெய்க.
+- டெவலப்பர் அமைப்புகள் – கீழே இறங்கி Developer Settings ஐ கிளிக் செய்யவும்.
+- தனிப்பட்ட அணுகல் குறியீடுகள் – Fine-grained tokens ஐ தேர்வு செய்து புதிய குறியீடு உருவாக்கவும்.
+- உங்கள் குறியீட்டை அமைக்கவும் – குறிப்பைச் சேர்க்கவும், காலாவதியான தேதியைக் குறிப்பிடவும், மற்றும் தேவையான அனுமதிகளைத் தேர்ந்தெடுக்கவும். இந்த வழியில் Models அனுமதியைவும் சேர்க்க வேண்டும்.
+- குறியீடு உருவாக்கி நகலெடுக்கவும் – Generate token ஐ கிளிக் செய்து உடனடியாக நகலெடுக்கவும், மீண்டும் பார்க்க முடியாது.
 
-### -1- சர்வருடன் இணைப்பு
+### -1- சர்வருடன் இணைக்கவும்
 
-முதலில் எங்கள் கிளையண்டை உருவாக்குவோம்:
+முதலில் நம் கிளையண்டை உருவாக்குவோம்:
 
 #### TypeScript
 
@@ -55,7 +55,7 @@ import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 import { Transport } from "@modelcontextprotocol/sdk/shared/transport.js";
 import OpenAI from "openai";
-import { z } from "zod"; // ஸ்கீமா சரிபார்ப்பிற்காக zod ஐ இறக்குமதி செய்க
+import { z } from "zod"; // ஸ்கீமா சரிபார்ப்புக்கு zod ஐ இறக்குமதி செய்க
 
 class MCPClient {
     private openai: OpenAI;
@@ -83,11 +83,11 @@ class MCPClient {
 }
 ```
 
-மேலே உள்ள குறியீட்டில்:
+மேலே உள்ள குறியீட்டில் நாங்கள்:
 
-- தேவையான நூலகங்களை இறக்குமதி செய்தோம்
-- `client` மற்றும் `openai` என்ற இரண்டு உறுப்பினர்களுடன் ஒரு வகுப்பை உருவாக்கினோம், இது முறையில் கிளையண்டை நிர்வகிக்கவும் LLM உடன் தொடர்பு கொள்ளவும் உதவும்.
-- GitHub Models ஐப் பயன்படுத்த LLM உதாரணத்தை `baseUrl` ஐ inference API க்கு குறிவைக்கும் வகையில் அமைத்தோம்.
+- தேவையான நூலகங்களை இறக்குமதி செய்துள்ளோம்
+- `client` மற்றும் `openai` என்ற இரண்டு உறுப்பினர்களுடன் ஒரு வகுப்பு உருவாக்கி, கிளையண்டையும் LLM உடன் தொடர்புகொள்ள தீர்வு பெற்றுள்ளோம்.
+- GitHub Models ஐ பயன்படுத்த LLMஎன்ஸ்டன்ஸ் அமைத்து, `baseUrl` ஐ inference API க்குச் சொந்தமாக மாற்றினோம்.
 
 #### Python
 
@@ -95,10 +95,10 @@ class MCPClient {
 from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
 
-# stdio இணைப்பிற்கு சேவையக அளவுருக்களை உருவாக்கவும்
+# stdio இணைப்புக்கு சேவையகம் параметрிகளை உருவாக்கவும்
 server_params = StdioServerParameters(
-    command="mcp",  # செயலிழக்கக்கூடியது
-    args=["run", "server.py"],  # விருப்பமான கட்டளை வரி ஆதாரங்கள்
+    command="mcp",  # இயங்கக்கூடிய
+    args=["run", "server.py"],  # விருப்பமான கட்டளை வரி வாதங்கள்
     env=None,  # விருப்பமான சூழல் மாறிகள்
 )
 
@@ -108,7 +108,7 @@ async def run():
         async with ClientSession(
             read, write
         ) as session:
-            # இணைப்பை ஆரம்பிக்கவும்
+            # இணைப்பை துவக்கவும்
             await session.initialize()
 
 
@@ -119,9 +119,9 @@ if __name__ == "__main__":
 
 ```
 
-மேலே உள்ள குறியீட்டில்:
+மேலே உள்ள குறியீட்டில் நாங்கள்:
 
-- MCP க்கான தேவையான நூலகங்களை இறக்குமதி செய்தோம்
+- MCP புகுபதிகைக்கான நூலகங்களை இறக்குமதி செய்துள்ளோம்
 - ஒரு கிளையண்டை உருவாக்கினோம்
 
 #### .NET
@@ -146,7 +146,7 @@ await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 
 #### Java
 
-முதலில், உங்கள் `pom.xml` கோப்பில் LangChain4j சார்புகளைச் சேர்க்க வேண்டும். MCP ஒன்றிணைப்பு மற்றும் GitHub Models ஆதரவை செயல்படுத்த இதைச் சேர்க்கவும்:
+முதலில், `pom.xml` கோப்புக்குள் LangChain4j சார்புகளைச் சேர்க்க வேண்டும். MCP ஒருங்கிணைப்பு மற்றும் OpenAI பொருந்தும் MiniMax APIஐ இயக்க இவை தேவையாக உள்ளன:
 
 ```xml
 <properties>
@@ -168,13 +168,6 @@ await using var mcpClient = await McpClient.CreateAsync(clientTransport);
         <version>${langchain4j.version}</version>
     </dependency>
     
-    <!-- GitHub Models Support -->
-    <dependency>
-        <groupId>dev.langchain4j</groupId>
-        <artifactId>langchain4j-github-models</artifactId>
-        <version>${langchain4j.version}</version>
-    </dependency>
-    
     <!-- Spring Boot Starter (optional, for production apps) -->
     <dependency>
         <groupId>org.springframework.boot</groupId>
@@ -183,7 +176,24 @@ await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 </dependencies>
 ```
 
-பின்னர் உங்கள் Java கிளையண்ட் வகுப்பை உருவாக்கவும்:
+MiniMax API விசையை மற்றும் விருப்பமாய் முனையம் மற்றும் மாதிரியை அமைக்கவும்.
+`MINIMAX_MODEL_ID` `MiniMax-M3` மற்றும் `MiniMax-M2.7` ஐ ஆதரிக்கிறது. 
+`OPENAI_BASE_URL` அமைக்கப்படாவிட்டால், `MINIMAX_REGION` `global_en` மற்றும் `cn_zh` ஐ ஆதரிக்கிறது.
+
+```bash
+export OPENAI_API_KEY=your_minimax_api_key_here
+export OPENAI_BASE_URL=https://api.minimax.io/v1
+export MINIMAX_MODEL_ID=MiniMax-M3
+```
+
+மண்டலத்தின் அடிப்படையில் முனையம் தேர்வு செய்ய `OPENAI_BASE_URL` நீக்கவும்:
+
+```bash
+unset OPENAI_BASE_URL
+export MINIMAX_REGION=cn_zh
+```
+
+பிறகு உங்கள் ஜாவா கிளையண்ட் வகுப்பை உருவாக்கவும்:
 
 ```java
 import dev.langchain4j.mcp.McpToolProvider;
@@ -198,18 +208,28 @@ import dev.langchain4j.service.tool.ToolProvider;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class LangChain4jClient {
-    
-    public static void main(String[] args) throws Exception {        // LLM ஐ GitHub மாதிரிகளைப் பயன்படுத்த அமைக்கவும்
+
+    private static final String DEFAULT_BASE_URL = "https://api.minimax.io/v1";
+    private static final String DEFAULT_MODEL_ID = "MiniMax-M3";
+    private static final Map<String, String> REGIONAL_BASE_URLS = Map.of(
+            "global_en", "https://api.minimax.io/v1",
+            "cn_zh", "https://api.minimaxi.com/v1");
+    private static final Set<String> SUPPORTED_MODEL_IDS = Set.of("MiniMax-M3", "MiniMax-M2.7");
+
+    public static void main(String[] args) throws Exception {
         ChatLanguageModel model = OpenAiOfficialChatModel.builder()
-                .isGitHubModels(true)
-                .apiKey(System.getenv("GITHUB_TOKEN"))
+                .baseUrl(resolveBaseUrl())
+                .apiKey(requireEnv("OPENAI_API_KEY"))
                 .timeout(Duration.ofSeconds(60))
-                .modelName("gpt-4.1-nano")
+                .modelName(resolveModelName())
                 .build();
 
-        // சேவையகத்துடன் இணைக்க MCP போக்குவரத்தை உருவாக்கவும்
+        // சேவையகத்தை இணைக்க MCP போக்குவரத்தை உருவாக்கவும்
         McpTransport transport = new HttpMcpTransport.Builder()
                 .sseUrl("http://localhost:8080/sse")
                 .timeout(Duration.ofSeconds(60))
@@ -222,23 +242,62 @@ public class LangChain4jClient {
                 .transport(transport)
                 .build();
     }
+
+    private static String resolveBaseUrl() {
+        String baseUrl = System.getenv("OPENAI_BASE_URL");
+        if (baseUrl != null && !baseUrl.isBlank()) {
+            return baseUrl;
+        }
+
+        String region = System.getenv("MINIMAX_REGION");
+        if (region == null || region.isBlank()) {
+            return DEFAULT_BASE_URL;
+        }
+
+        String regionalBaseUrl = REGIONAL_BASE_URLS.get(region);
+        if (regionalBaseUrl == null) {
+            throw new IllegalArgumentException("Unsupported MINIMAX_REGION value: " + region
+                    + ". Supported values: " + new TreeSet<>(REGIONAL_BASE_URLS.keySet()));
+        }
+        return regionalBaseUrl;
+    }
+
+    private static String resolveModelName() {
+        String modelId = System.getenv("MINIMAX_MODEL_ID");
+        if (modelId == null || modelId.isBlank()) {
+            return DEFAULT_MODEL_ID;
+        }
+        if (!SUPPORTED_MODEL_IDS.contains(modelId)) {
+            throw new IllegalArgumentException("Unsupported MINIMAX_MODEL_ID value: " + modelId
+                    + ". Supported values: " + new TreeSet<>(SUPPORTED_MODEL_IDS));
+        }
+        return modelId;
+    }
+
+    private static String requireEnv(String name) {
+        String value = System.getenv(name);
+        if (value == null || value.isBlank()) {
+            throw new IllegalStateException(name + " environment variable is not set");
+        }
+        return value;
+    }
 }
 ```
 
-மேலே உள்ள குறியீட்டில்:
+மேலே உள்ள குறியீட்டில் நாங்கள்:
 
-- **LangChain4j சார்புகளைச் சேர்த்தோம்**: MCP, OpenAI அதிகாரபூர்வ கிளையண்ட் மற்றும் GitHub Models ஆதரவு
-- **LangChain4j நூலகங்களை இறக்குமதி செய்தோம்**: MCP மற்றும் OpenAI உரையாடல் மாதிரி செயல்பாடு
-- **`ChatLanguageModel` உருவாக்கினோம்**: GitHub குறியீடு கொண்டு GitHub Models ஐ பயன்படுத்த சீரமைத்தது
-- **HTTP போக்குவரத்தை அமைத்தோம்**: Server-Sent Events (SSE) பயன்படுத்தி MCP சர்வருடன் இணைக்க
-- **MCP கிளையண்ட் உருவாக்கினோம்**: சர்வருடன் தொடர்புகொள்வதில் உதவ
-- **LangChain4j உடன் MCP ஆதரவு பயன்படுத்தினோம்**: LLM மற்றும் MCP சர்வர்களுக்கிடையிலான ஒருங்கிணைப்பை எளிமையாக்குகிறது
+- **LangChain4j சார்புகளைச் சேர்த்தோம்**: MCP ஒருங்கிணைப்பு மற்றும் OpenAI பொருந்தும் MiniMax APIக்காக தேவை.
+- **LangChain4j நூலகங்களை இறக்குமதி செய்தோம்**: MCP ஒருங்கிணைப்பு மற்றும் OpenAI உரையாடல் மாதிரி செயல்பாட்டுக்காக.
+- **`ChatLanguageModel` உருவாக்கப்பட்டது**: MiniMax மற்றும் உங்கள் MiniMax API விசையுடன், முனையம் மற்றும் ஆதரிக்கப்பட்ட மாதிரி IDயுடன் உள்ளமைவு செய்யப்பட்டது.
+- **HTTP போக்குவரத்து அமைப்பு**: MCP சர்வருடன் சேர சர்்வர் அனுப்பும் நிகழ்வுகள் (SSE) பயன்படுத்தப்பட்டது.
+- **MCP கிளையண்ட் உருவாக்கப்பட்டது**: சர்வருடன் தொடர்பு கையாள.
+- **LangChain4j இன் அடிப்படை MCP ஆதரவு பயன்படுத்தப்பட்டது**: இது LLM மற்றும் MCP சர்வர்களுக்கு இடையிலான ஒருங்கிணைப்பை எளிமைப்படுத்தும்.
 
 #### Rust
 
-இந்த உதாரணம் Rust அடிப்படையிலான MCP சர்வர் நடப்பதாக கற்பனை செய்கிறது. ஒன்று இல்லையெனில், [01-first-server](../01-first-server/README.md) பாடத்திற்கு திரும்பி சர்வரை உருவாக்கவும்.
+இந்த உதாரணம் ஒரு Rust அடிப்படையிலான MCP சர்வர் இயங்குவதாக கருதுகிறது. இல்லையெனில், [01-first-server](../01-first-server/README.md) பாடத்தைப் பாருங்கள் சர்வர் உருவாக்க.
 
-Rust MCP சர்வர் கிடைக்கும் பிறகு, டெர்மினலை திறந்து சர்வர் இருப்பிடமுள்ள கோப்புறைக்கு செல்க. பின்னர் புதிய LLM கிளையண்ட் திட்டத்தை உருவாக்க கீழ்க்காணும் கட்டளை இயக்கவும்:
+உங்களுக்கு Rust MCP சர்வர் இருந்தால், ஒரு டெர்மினல் திறந்து சர்வர் கோப்பகத்திற்கு செல்லவும். பிறகு கீழ்காணும் கட்டளையை ஓட்டி ஒரு புதிய LLM கிளையண்ட் திட்டத்தை உருவாக்கவும்:
 
 ```bash
 mkdir calculator-llmclient
@@ -257,9 +316,9 @@ tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 ```
 
 > [!NOTE]
-> OpenAI க்கான அதிகாரபூர்வ Rust நூலகம் இல்லை. இருப்பினும், `async-openai` கிரேட் ஒரு [சமூக பராமரிப்புள்ள நூலகமாகவுள்ளது](https://platform.openai.com/docs/libraries/rust#rust) மற்றும் அதிகமாக பயன்படுத்தப்படுகிறது.
+> OpenAIக்கான அதிகாரபூர்வ Rust நூலகம் இல்லை, இருப்பினும், `async-openai` கூடை ஒரு [சமூக பராமரிப்பு நூலகமாக](https://platform.openai.com/docs/libraries/rust#rust) பொதுவாக பயன்படுத்தப்படுகிறது.
 
-`src/main.rs` கோப்பை திறந்து உள்ளடக்கம் பின்வரும் குறியீட்டின் மூலம் மாற்றவும்:
+`src/main.rs` கோப்பை திறந்து அதை கீழ்க்காணும் குறியீட்டால் மாற்றவும்:
 
 ```rust
 use async_openai::{Client, config::OpenAIConfig};
@@ -278,7 +337,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
     // ஆரம்ப செய்தி
     let mut messages = vec![json!({"role": "user", "content": "What is the sum of 3 and 2?"})];
 
-    // OpenAI கிளையன்டை அமைக்கவும்
+    // OpenAI கிளையன்ட் அமைக்கவும்
     let api_key = std::env::var("OPENAI_API_KEY")?;
     let openai_client = Client::with_config(
         OpenAIConfig::new()
@@ -286,7 +345,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
             .with_api_key(api_key),
     );
 
-    // MCP கிளையன்டை அமைக்கவும்
+    // MCP கிளையன்ட் அமைக்கவும்
     let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .unwrap()
@@ -301,7 +360,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
         )
         .await?;
 
-    // செய்ய வேண்டியது: MCP கருவி பட்டியலை பெறவும்
+    // செய்ய வேண்டியது: MCP கருவி பட்டியலைப் பெறுக
 
     // செய்ய வேண்டியது: கருவி அழைப்புகளுடன் LLM உரையாடல்
 
@@ -309,16 +368,16 @@ async fn main() -> Result<(), Box<dyn Error>> {
 }
 ```
 
-இந்த குறியீடு ஒரு அடிப்படை Rust செயலியை அமைக்கிறது, அது MCP சர்வருடன் மற்றும் GitHub Models உடன் LLM தொடர்புக்காக இணைக்கப்படும்.
+இந்த குறியீடு ஒரு அடிப்படையான Rust செயலியை ஏற்படுத்துகிறது, இது MCP சர்வருக்கும் GitHub Models க்கும் கானெக்ஷன் செய்ய பயன்படும்.
 
 > [!IMPORTANT]
-> செயலியை இயக்குவதற்கு முன் உங்கள் GitHub குறியீட்டை `OPENAI_API_KEY` சுற்றுப்பாதை மாறியாக அமைக்கவும்.
+> செயலியை இயக்கும் முன் உங்கள் GitHub குறியீட்டை `OPENAI_API_KEY` சுற்றுச்சூழல் மாறியில் அமைக்க உறுதி செய்யவும்.
 
-சரி, அடுத்த படியாக சர்வரில் திறன்களை பட்டியலிடுவோம்.
+அருமை, அடுத்த கட்டமாக, சர்வரின் திறன்களை பட்டியலிடுவோம்.
 
 ### -2- சர்வர் திறன்களை பட்டியலிடுதல்
 
-இப்போது சர்வருடன் இணைந்து அதன் திறன்களை கேட்டுக்கொள்ளலாம்:
+இப்போது நாம் சர்வருடன் இணைந்து அதன் திறன்களை கேட்கப் போகிறோம்:
 
 #### Typescript
 
@@ -334,26 +393,26 @@ async connectToServer(transport: Transport) {
 async run() {
     console.log("Asking server for available tools");
 
-    // கருவிகளை பட்டியலிடுதல்
+    // கருவிகள் பட்டியலிடல்
     const toolsResult = await this.client.listTools();
 }
 ```
 
-மேலே உள்ள குறியீட்டில்:
+மேலே உள்ள குறியீட்டில் நாங்கள்:
 
-- சர்வருடன் இணைக்க `connectToServer` குறியீட்டைச் சேர்த்தோம்.
-- நமது செயலியின் ஓட்டத்தை கையாளும் `run` முறையை உருவாக்கினோம். இதுவரை அது கருவிகளை மட்டுமே பட்டியலிடுகிறது, விரைவில் அதில் மேலும் சேர்க்க போகிறோம்.
+- சர்வருடன் இணைக்கக் குறியீடு சேர்த்துள்ளோம், `connectToServer`.
+- நமது செயலி வேலைப்பாட்டை கையாளும் `run` முறையை உருவாக்கினோம். தற்போது அது கருவிகளை மட்டுமே பட்டியலிடுகிறது என்று, விரைவில் அதனை மேம்படுத்துவோம்.
 
 #### Python
 
 ```python
-# கிடைக்கும் வளங்களை பட்டியலிடு
+# கிடைக்கும் வளங்களை பட்டியலிடுக
 resources = await session.list_resources()
 print("LISTING RESOURCES")
 for resource in resources:
     print("Resource: ", resource)
 
-# கிடைக்கும் கருவிகளை பட்டியலிடு
+# கிடைக்கும் கருவிகளை பட்டியலிடுக
 tools = await session.list_tools()
 print("LISTING TOOLS")
 for tool in tools.tools:
@@ -361,9 +420,9 @@ for tool in tools.tools:
     print("Tool", tool.inputSchema["properties"])
 ```
 
-இதோ நாம் சேர்த்தது:
+நாங்கள் என்ன செய்தோம்:
 
-- வளங்கள் மற்றும் கருவிகளை பட்டியலிட்டு அச்சிடப்பட்டது. கருவிகளைப் பயன்படுத்த `inputSchema` கூட பட்டியலிடப்பட்டது.
+- வளங்கள் மற்றும் கருவிகளை பட்டியலிட்டு, அச்சிடும் செயல்பாட்டைப் பெற்றுள்ளோம். கருவிகளுக்கான `inputSchema` ஐவும் பட்டியலிடுகிறோம்; இதனை பின்னர் பயன்படுத்துவோம்.
 
 #### .NET
 
@@ -388,47 +447,48 @@ async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
 }
 ```
 
-மேலே உள்ள குறியீட்டில்:
+மேலே உள்ள குறியீட்டில் நாங்கள்:
 
-- MCP சர்வரில் கிடைக்கும் கருவிகள் பட்டியலிடப்பட்டன
-- ஒவ்வொரு கருவிக்கும் பெயர், விளக்கம் மற்றும் அதன் திட்டக்கோவை பட்டியலிடப்பட்டது. அவற்றை விரைவில் கருவிகள் அழைக்க பயன்படுத்துவோம்.
+- MCP சர்வரில் கிடைக்கும் கருவிகளை பட்டியலிட்டோம்
+- ஒவ்வொரு கருவிக்கும் பெயர், விளக்கம் மற்றும் அதன் ஸ்கீமாவை பட்டியலிட்டோம். இதனை விரைவில் கருவிகளை அழைக்க பயன்படுத்துவோம்.
 
 #### Java
 
 ```java
-// MCP கருவிகளை தானாக கண்டுபிடிக்கும் ஒரு கருவி வழங்குபவரைப் படையுங்கள்
+// MCP கருவிகளை தானாக கண்டுபிடிக்கும் கருவி வழங்குவதை உருவாக்கவும்
 ToolProvider toolProvider = McpToolProvider.builder()
         .mcpClients(List.of(mcpClient))
         .build();
 
-// MCP கருவி வழங்குபவர் தானாக கையாள்கிறது:
-// - MCP சர்வரிலிருந்து கிடைக்கும் கருவிகளlisting்
-// - MCP கருவி திட்டவட்டங்களை LangChain4j வடிவத்திற்கு மாற்றல்
-// - கருவி செயல்பாடுகள் மற்றும் பதில்களை நிர்வகித்தல்
+// MCP கருவி வழங்குபவர் தானாக சமாளிக்கிறது:
+// - MCP சேவையகத்திலிருந்து கிடைக்கும் கருவிகளை பட்டியலிடுதல்
+// - MCP கருவி மாதிரிகளை LangChain4j வடிவத்திற்கு மாற்றுதல்
+// - கருவி இயங்குவதையும் பதில்களையும் நிர்வகித்தல்
 ```
 
-மேலே உள்ள குறியீட்டில்:
+மேலே உள்ள குறியீட்டில் நாங்கள்:
 
-- MCP சர்வரிலிருந்து அனைத்து கருவிகளையும் தானாய் கண்டுபிடிக்கும் மற்றும் பதிவு செய்யும் `McpToolProvider` உருவாக்கப்பட்டது
-- கருவி வழங்குநர் MCP கருவி திட்டக்கோவைகளையும் LangChain4j கருவி வடிவத்துக்கும் உள்ளகமாக மாற்றுகிறது
-- இது கருவிகள் பட்டியலும் மாற்றமும் கைமுறையாக செய்ய வேண்டிய அவசியத்தை அகற்றுகிறது
 
-#### Rust
+- `McpToolProvider` ஐ உருவாக்கியுள்ளோம், இது MCP சேவையகத்தில் இருந்து அனைத்து கருவிகளையும் தானாக கண்டுபிடித்து பதிவு செய்கிறது
+- கருவி வழங்குநர் MCP கருவி படிமங்களை மற்றும் LangChain4j இன் கருவி வடிவமைப்புக்கு இடையிலான மாற்றத்தை உள்ளகமாக கையாள்கிறது
+- இந்த அணுகுமுறை மனுவல் கருவி பட்டியலாக்கலும் மாற்றும் செயல்முறையையும் மறைக்கும்
 
-MCP சர்வரிலிருந்து கருவிகளை `list_tools` முறையால் பெறலாம். உங்கள் `main` செயல்பாட்டில் MCP கிளையண்ட் அமைக்கும் பின் கீழ்காணும் குறியீட்டைச் சேர்க்கவும்:
+#### ரஸ்ட்
+
+MCP சேவையகத்திலிருந்து கருவிகளை பெற `list_tools`முறை பயன்படுத்தப்படுகிறது. உங்கள் `main` செயல்பாட்டில், MCP கிளையண்ட் அமைக்கும் பிறகு, கீழ்க்கண்ட குறியீட்டை சேர்க்கவும்:
 
 ```rust
-// MCP கருவி பட்டியலை பெறுக
+// MCP கருவி பட்டியலைப் பெறுக
 let tools = mcp_client.list_tools(Default::default()).await?;
 ```
 
-### -3- சர்வர் திறன்களை LLM கருவிகளாக மாற்றுதல்
+### -3- சேவையக திறன்களை LLM கருவிகளாக மாற்றுதல்
 
-அடுத்து சர்வர் திறன்களை பட்டியலிட்ட பிறகு அவற்றை LLM புரிந்துகொள்ளும் வடிவத்திற்கு மாற்றவேண்டும். அதன்பிறகு இவற்றை LLM க்கு கருவிகளாக வழங்க முடியும்.
+சேவையக திறன்களை பட்டியலிட்ட பிறகு அடுத்த படி அவற்றை LLM புரிந்துகொள்ளக்கூடிய வடிவத்திற்கு மாற்றுவது. அதன்பிறகு, இந்த திறன்களை நமது LLMக்கு கருவிகளாக வழங்கலாம்.
 
 #### TypeScript
 
-1. MCP சர்வர் பதிலை LLM பயன்பாட்டிற்குரிய கருவி வடிவத்திற்கு மாற்றும் பின்வரும் குறியீட்டைச் சேர்க்கவும்:
+1. MCP சேவையகத்திடமிருந்து வந்த பதிலை LLM பயன்படுத்தக்கூடிய கருவி வடிவமாக மாற்ற கீழ்க்கண்ட குறியீட்டைச் சேர்க்கவும்:
 
     ```typescript
     openAiToolAdapter(tool: {
@@ -436,7 +496,7 @@ let tools = mcp_client.list_tools(Default::default()).await?;
         description?: string;
         input_schema: any;
         }) {
-        // உள்ளீடு_வட்டாரத்தைப் பொறுத்து ஒரு zod விசாரிப்பை உருவாக்கவும்
+        // உள்ளீடு_schema based ஒரு zod ஸ்கீமாவை உருவாக்கவும்
         const schema = z.object(tool.input_schema);
     
         return {
@@ -455,9 +515,9 @@ let tools = mcp_client.list_tools(Default::default()).await?;
 
     ```
 
-    மேலே உள்ள குறியீடு MCP சர்வர் பதிலை எடுத்துக் கொண்டு அதனை LLM புரிந்துகொள்ளும் கருவி வரையறை வடிவத்திற்கு மாற்றுகிறது.
+    மேல் கூறிய குறியீடு MCP சேவையகத்திலிருந்து பதிலை எடுத்து அதை LLM புரிந்துகொள்ளக்கூடிய கருவி นิரறႈயியை மாற்றுகிறது.
 
-2. அடுத்து `run` முறையை புதுப்பித்து சர்வர் திறன்களை பட்டியலிடுவோம்:
+2. அடுத்து `run` முறைப்பாட்டை மேம்படுத்தி சேவையக திறன்களை பட்டியலிடுவோம்:
 
     ```typescript
     async run() {
@@ -473,11 +533,11 @@ let tools = mcp_client.list_tools(Default::default()).await?;
     }
     ```
 
-    முன் குறியீட்டில் `run` முறையை புதுப்பித்து, முடிவு வழியாக ஒவ்வொரு பதிவையும் `openAiToolAdapter` க்கு அழைக்கச் செய்துள்ளோம்.
+    மேலதிக குறியீட்டில் நாங்கள் `run` முறைப்பாட்டை மேம்படுத்தி பெறப்பட்ட முடிவில் ஒவ்வொரு நுழைவுக்குமான `openAiToolAdapter` கும் அழைக்கின்றோம்.
 
 #### Python
 
-1. முதலில் கீழ்க்காணும் மாற்றுநர் முறையை உருவாக்குவோம்:
+1. முதலில், கீழ்காணும் மாற்றி செயல்பாட்டை உருவாக்குவோம்
 
     ```python
     def convert_to_llm_tool(tool):
@@ -497,9 +557,9 @@ let tools = mcp_client.list_tools(Default::default()).await?;
         return tool_schema
     ```
 
-    மேலே உள்ள `convert_to_llm_tools` செயல்பாட்டில் MCP கருவி பதிலை எடுத்துக் கொண்டு LLM புரிந்துகொள்ளும் வடிவத்திற்கு மாற்றுகிறது.
+    மேலுள்ள `convert_to_llm_tools` செயல்பாட்டில் MCP கருவி பதிலை எடுத்து அதனை LLM புரிந்துகொள்ளக்கூடிய வடிவத்திற்கு மாற்றுகிறோம்.
 
-2. அடுத்து இந்த முறையை பயன் படுத்தும்படி கிளையண்ட் குறியீட்டை இப்படி புதுப்பிக்கலாம்:
+2. அடுத்து, கீழ்த் தொகுப்பில் இந்த செயல்பாட்டைப் பயன்படுத்தும் வகையில் நமது கிளையண்ட் குறியீட்டை மேம்படுத்துவோம்:
 
     ```python
     functions = []
@@ -509,11 +569,11 @@ let tools = mcp_client.list_tools(Default::default()).await?;
         functions.append(convert_to_llm_tool(tool))
     ```
 
-    இங்கு, MCP கருவி பதில்களை LLMக்கு வழங்குவதற்கு `convert_to_llm_tool` அழைப்பைப் பயன்படுத்தியுள்ளோம்.
+    இங்கு, MCP கருவி பதிலை LLM க்கு நீடித்து வழங்கும் வகையில் `convert_to_llm_tool` அழைப்பை சேர்க்கிறோம்.
 
 #### .NET
 
-1. MCP கருவி பதிலை LLM புரிந்துகொள்ளும் வடிவத்திற்கு மாற்றும் குறியீட்டை சேர்ப்போம்:
+1. MCP கருவி பதிலை LLM புரிந்துகொள்ளக்கூடிய வடிவத்திற்கு மாற்றும் குறியீடு சேர்க்கலாம்
 
 ```csharp
 ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonElement jsonElement)
@@ -536,12 +596,12 @@ ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonE
 }
 ```
 
-மேலே உள்ள குறியீட்டில்:
+மேலதிக குறியீட்டில் நாம்:
 
-- பெயர், விளக்கம் மற்றும் உள்ளீட்டுத் திட்டக்கோவை பெறும் `ConvertFrom` செயல்பாடு உருவாக்கப்பட்டது.
-- அது `FunctionDefinition` உருவாக்கி அதனை `ChatCompletionsDefinition` க்கு அனுப்புகிறது, இது LLM புரிந்துகொள்ளும் வடிவம்.
+- பெயர், விளக்கம் மற்றும் உள்ளீட்டு படிமத்தை ஏற்கும் `ConvertFrom` என்ற செயல்பாட்டை உருவாக்கியுள்ளோம்.
+- அடுத்து, ஒரு FunctionDefinition உருவாக்கி அதை ChatCompletionsDefinition இற்கு வழங்கும் செயல்பாட்டை வரையறுத்துள்ளோம். இது LLM புரிந்துகொள்ளக்கூடியது.
 
-2. இப்போது மேலே உள்ள செயல்பாட்டின் பயன்பாட்டிற்கு ஏற்ற குறியீட்டை புதுப்பிப்போம்:
+2. மேலுள்ள செயல்பாட்டைப் பயன்படுத்தி ஏற்கனவே உள்ள குறியீட்டை மேம்படுத்துவோம்:
 
     ```csharp
     async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
@@ -584,11 +644,10 @@ ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonE
 
         The input schema is part of the tool response but on the "properties" attribute, so we need to extract. Furthermore, we now call `ConvertFrom` with the tool details. Now we've done the heavy lifting, let's see how it call comes together as we handle a user prompt next.
 
-
-#### Java
+#### ஜாவா
 
 ```java
-// இயற்கை மொழி தொடர்புக்கான ஒரு பாட்டை உருவாக்கவும்
+// இயற்கை மொழி தொடர்புக்கான ஒரு பாட்டுக் இடைமுகத்தை உருவாக்கவும்
 public interface Bot {
     String chat(String prompt);
 }
@@ -600,16 +659,16 @@ Bot bot = AiServices.builder(Bot.class)
         .build();
 ```
 
-மேலே உள்ள குறியீட்டில்:
+மேலதிக குறியீட்டில் நாம்:
 
-- இயற்கை மொழி தொடர்புக்கு எளிய `Bot` இடைமுகம் வரையறுக்கப்பட்டது
-- LangChain4j இன் `AiServices` மூலம் LLM மற்றும் MCP கருவி வழங்குநரை தானாக இணைக்கப்பட்டது
-- கருவி திட்டக்கோவைகள் மாற்றம் மற்றும் செயல்பாடு அழைப்பு பின்னணியில் தானாக கையாளப்படுகிறது
-- கைமுறையற்ற கருவி மாற்றம் குறைக்கப்படுகிறது; LangChain4j MCP கருவிகளை LLM- பொருந்தும் வடிவத்திற்கு மாற்றுவதில் முழு சிக்கலை கையாளுகிறது
+- இயல்பான மொழி தொடர்புகளுக்கான எளிய `Bot` இடைமுகத்தை வரையறுத்துள்ளோம்
+- LangChain4j இன் `AiServices` மூலம் LLM ஐ MCP கருவி வழங்குநருடன் தானாக இணைத்துள்ளோம்
+- இந்த கட்டமைப்பு பின்னணியில் கருவி படிம மாற்றமும் செயல்பாட்டை அழைப்பதும் தானாக செய்கிறது
+- மனுவல் கருவி மாற்றத்தை நீக்கியுள்ளோம் - MCP கருவிகளை LLM-உரிய வடிவத்திற்கு மாற்றுவதில் LangChain4j அனைத்து சிக்கல்களையும் கையாள்கிறது
 
-#### Rust
+#### ரஸ்ட்
 
-MCP கருவி பதிலை LLM புரிந்துகொள்ளும் வடிவத்திற்கு மாற்ற, கருவிகளின் பட்டியலை வடிவமைக்கும் துணை செயல்பாட்டை `main` செயல்பாட்டுக்கு கீழே `main.rs` கோப்பில் சேர்க்கவும். இது LLM க்கு கோரிக்கைகள் செய்யும்போது அழைக்கப்படும்:
+MCP கருவி பதிலை LLM புரிந்துகொள்ளக்கூடிய வடிவத்தில் மாற்ற, கருவி பட்டியலை வடிவமைக்கும் உதவிக் செயல்பாட்டை சேர்ப்போம். உங்கள் `main.rs` கோப்பில் `main` செயல்பாட்டுக்குப் பின் கீழ்காணும் குறியீட்டை சேர்க்கவும். இது LLMக்கு கோரிக்கை அனுப்பும் போது அழைக்கப்படும்:
 
 ```rust
 async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Error>> {
@@ -644,15 +703,15 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 }
 ```
 
-சரி, பயனர் கோரிக்கைகள் கையாளப்படவில்லை, அடுத்ததாக அதை பார்க்கலாம்.
+சிறந்தது, தற்போது எவ்வித பயனர் கோரிக்கைகளையும் கையாள எதுவும் அமைக்கப்படவில்லை, அடுத்ததாக அதைக் கையாள்வோம்.
 
-### -4- பயனர் ப்ராம்ப்ட் கோரிக்கையை கையாளுதல்
+### -4- பயனர் கேள்வி கோரிக்கையை கையாளுதல்
 
-இந்த பகுதியில் பயனர் கோரிக்கைகளை கையாளுவோம்.
+குறியீட்டின் இந்த பகுதி பயனர் கேள்வி கோரிக்கைகளை கையாளும்.
 
 #### TypeScript
 
-1. எங்கள் LLM ஐ அழைக்க பயன்படும் ஒரு முறையை சேர்க்கவும்:
+1. நமது LLM அழைப்புக்கு பயன்படுத்தப்படும் ஒரு முறை சேர்க்கவும்:
 
     ```typescript
     async callTools(
@@ -666,7 +725,7 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
         console.log(`Calling tool ${toolName} with args ${JSON.stringify(args)}`);
 
 
-        // 2. சேவையகத்தின் கருவியைக் கூப்பிடு
+        // 2. சர்வரின் கருவியை அழைத்துக்கொள்
         const toolResult = await this.client.callTool({
             name: toolName,
             arguments: JSON.parse(args),
@@ -675,16 +734,16 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
         console.log("Tool result: ", toolResult);
 
         // 3. முடிவுடன் ஏதாவது செய்
-        // செய்வது
+        // செய்யவேண்டியது
 
         }
     }
     ```
 
-    மேலே உள்ள குறியீட்டில்:
+    மேல்கூறிய குறியீட்டில் நாம்:
 
-    - `callTools` என்ற முறையை சேர்த்தோம்.
-    - இந்த முறை LLM பதிலை எடுத்து எந்த கருவிகள் அழைக்கப்பட்டுள்ளன எனப் பார்க்கும்:
+    - `callTools` என்ற முறையை சேர்த்துள்ளோம்.
+    - இந்த முறை LLM பதிலிலிருந்து எந்த கருவிகள் அழைக்கப்பட்டுள்ளன என்று சோதிக்கிறது, இருந்தால் அவற்றை இயக்குகிறது:
 
         ```typescript
         for (const tool_call of tool_calls) {
@@ -697,10 +756,10 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
         }
         ```
 
-    - LLM கருவி அழைக்கப்பட வேண்டும் என்றால் அதை அழைக்கும்:
+    - LLM ஒன்று கருவி ஒருங்கிணைப்பை அழைக்க வேண்டும் எனக் கூறினால் அழைக்கிறார்:
 
         ```typescript
-        // 2. சர்வரின் கருவியை அழைக்கவும்
+        // 2. சேவையகத்தின் கருவியை அழைக்கவும்
         const toolResult = await this.client.callTool({
             name: toolName,
             arguments: JSON.parse(args),
@@ -708,15 +767,15 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 
         console.log("Tool result: ", toolResult);
 
-        // 3. முடிவுடன் ஏதாவது செய்க
-        // செய்ய வேண்டியது
+        // 3. முடிவுடன் ஏதாவது செய்
+        // செய்யப்பட வேண்டும்
         ```
 
-2. `run` முறையை புதுப்பித்து LLM அழைப்புகளையும் `callTools` அழைப்புகளையும் சேர்க்கவும்:
+2. `run` முறையை புதுப்பித்து LLM அழைப்பும் `callTools` அழைப்பும் சேர்க்கவும்:
 
     ```typescript
 
-    // 1. LLM க்கு உள்ளீடாக 사용할 செய்திகளை உருவாக்கவும்
+    // 1. LLM இற்கு உள்ளீடாக இருப்பதற்கான செய்திகளை உருவாக்கவும்
     const prompt = "What is the sum of 2 and 3?"
 
     const messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
@@ -728,7 +787,7 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 
     console.log("Querying LLM: ", messages[0].content);
 
-    // 2. LLM ஐ அழைக்கிறோம்
+    // 2. LLM ஐ அழைக்கின்றது
     let response = this.openai.chat.completions.create({
         model: "gpt-4.1-mini",
         max_tokens: 1000,
@@ -738,7 +797,7 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 
     let results: any[] = [];
 
-    // 3. LLM பதிலை ஒவ்வொரு தெரிவையும் சரிபார்க்க, அதில் கருவி அழைப்புகள் உள்ளதா என்று பாருங்கள்
+    // 3. LLM பதிலை பரிசீலனை செய்யவும், ஒவ்வொரு தேர்வுக்கும், அதில் கருவி அழைப்புகள் உள்ளதா என்பதைச் சரிபார்க்கவும்
     (await response).choices.map(async (choice: { message: any; }) => {
         const message = choice.message;
         if (message.tool_calls) {
@@ -748,21 +807,21 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
     });
     ```
 
-சரி, முழு குறியீட்டை பட்டியலிடுவோம்:
+சிறந்தது, முழு குறியீட்டை பட்டியலிடுவோம்:
 
 ```typescript
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 import { Transport } from "@modelcontextprotocol/sdk/shared/transport.js";
 import OpenAI from "openai";
-import { z } from "zod"; // வடிகட்டல் சரிபார்ப்புக்காக zod ஐ இறக்குமதி செய்யவும்
+import { z } from "zod"; // ஸ்கீமா சரிபார்ப்புக்காக zod ஐ இறக்குமதி செய்க
 
 class MyClient {
     private openai: OpenAI;
     private client: Client;
     constructor(){
         this.openai = new OpenAI({
-            baseURL: "https://models.inference.ai.azure.com", // எதிர்காலத்தில் இந்த url ஐ மாற்ற வேண்டியிருக்கலாம்: https://models.github.ai/inference
+            baseURL: "https://models.inference.ai.azure.com", // எதிர்காலத்தில் இந்த URL ஐ மாற்ற வேண்டியதாயிருக்கும்: https://models.github.ai/inference
             apiKey: process.env.GITHUB_TOKEN,
         });
 
@@ -792,11 +851,11 @@ class MyClient {
         description?: string;
         input_schema: any;
           }) {
-          // உள்ளீடு_schema அடிப்படையில் zod திட்டத்தை உருவாக்கவும்
+          // உள்ளீடு_ஸ்கீமாவை அடிப்படையாகக் கொண்டு zod ஸ்கீமா உருவாக்குக
           const schema = z.object(tool.input_schema);
       
           return {
-            type: "function" as const, // வகையைத் தெளிவாக "function" என்று அமைக்கவும்
+            type: "function" as const, // வகையை "function" என்றால் தெளிவாக அமைக்கவும்
             function: {
               name: tool.name,
               description: tool.description,
@@ -828,8 +887,8 @@ class MyClient {
     
           console.log("Tool result: ", toolResult);
     
-          // 3. முடிவுடன் ஏதாவது செய்க
-          // செய்ய வேண்டியது
+          // 3. முடிவுடன் எதாவது செய்க
+          // செய்யவேண்டியது
     
          }
     }
@@ -864,7 +923,7 @@ class MyClient {
 
         let results: any[] = [];
     
-        // 3. LLM பதிலைப் பார்க்கவும், ஒவ்வொரு தேர்விற்கும், அதன் கருவி அழைப்புகள் உள்ளதா என்று சரிபார்க்கவும்
+        // 3. LLM பதிலை வழியாக சென்று, ஒவ்வொரு தேர்வுக்கும் கருவி அழைப்புகள் உள்ளதா என்று പരിശോധிக்கவும்
         (await response).choices.map(async (choice: { message: any; }) => {
           const message = choice.message;
           if (message.tool_calls) {
@@ -887,7 +946,7 @@ client.connectToServer(transport);
 
 #### Python
 
-1. LLM அழைக்க தேவையான இறக்குமதிகளைச் சேர்க்கவும்:
+1. LLM அழைப்புக்கு தேவையான சில இறக்குமதிகளை சேர்க்கவும்
 
     ```python
     # எல்.எல்.எம்
@@ -898,10 +957,10 @@ client.connectToServer(transport);
     import json
     ```
 
-2. LLM அழைக்கும் செயல்பாட்டை சேர்க்கவும்:
+2. அடுத்து, LLM ஐ அழைக்கும் செயல்பாட்டை சேர்க்கவும்:
 
     ```python
-    # எல்.எல்.எம்
+    # எல்எல்எம்
 
     def call_llm(prompt, functions):
         token = os.environ["GITHUB_TOKEN"]
@@ -928,7 +987,7 @@ client.connectToServer(transport);
             ],
             model=model_name,
             tools = functions,
-            # விருப்பமான பராமரிப்புகள்
+            # விருப்பமான அளவுருக்கள்
             temperature=1.,
             max_tokens=1000,
             top_p=1.    
@@ -948,19 +1007,19 @@ client.connectToServer(transport);
         return functions_to_call
     ```
 
-    மேலே உள்ள குறியீட்டில்:
+    மேலதிக குறியீட்டில் நாம்:
 
-    - MCP சர்வரில் நாம் கண்டுபிடித்த, மாற்றிய செயல்பாடுகளை LLM க்கு கொடுத்திருக்கிறோம்.
-    - பிறகு அந்த செயல்பாடுகளுடன் LLM ஐ அழைத்தோம்.
-    - பதிலில் எந்த செயல்பாடுகளை அழைக்க வேண்டும் என பார்வையிடுகிறோம்.
-    - இறுதியில் அழைக்க வேண்டிய செயல்பாடுகள் வரிசையை கடந்துள்ளோம்.
+    - MCP சேவையகத்தில் கண்டுபிடித்த மற்றும் மாற்றிய செயல்பாடுகளை LLMக்கு வழங்கியுள்ளோம்.
+    - பின்னர், அந்த செயல்பாடுகளுடன் LLM ஐ அழைத்துள்ளோம்.
+    - முடிவுகளை பரிசோதித்துப் பார்த்து எந்த செயல்பாடுகளைப் அழைக்க வேண்டும் என்று கண்டுபிடிக்கிறோம்.
+    - இறுதியில், அழைக்க வேண்டிய செயல்பாடுகளின் வரிசையைக் கொடுக்கிறோம்.
 
-3. இறுதி படி, முக்கிய குறியீட்டை புதுப்பிக்கவும்:
+3. கடைசி படி, நமது முகக்குறியீட்டை புதுப்பிப்போம்:
 
     ```python
     prompt = "Add 2 to 20"
 
-    # எல்.எல்.எம்.க்கு எந்த கருவிகள் அனைத்தையும், ஏதேனும் இருக்கும் என கேளுங்கள்
+    # எல்.எல்.எம்.க்கு எதனால் அல்லது உள்ள எந்த கருவிகள் உள்ளன என்று கேள்
     functions_to_call = call_llm(prompt, functions)
 
     # பரிந்துரைக்கப்பட்ட செயல்பாடுகளை அழைக்கவும்
@@ -969,14 +1028,14 @@ client.connectToServer(transport);
         print("TOOLS result: ", result.content)
     ```
 
-    மேலே உள்ள குறியீட்டில்:
+    மேலே கூறிய கடைசி படியில் நாம்:
 
-    - LLM கோரிக்கைக்கு ஏற்ப MCP கருவி `call_tool` மூலம் அழைக்கப்படுகிறது.
-    - கருவி அழைப்பின் முடிவை MCP சர்வர் திருத்திகளுக்கு அச்சிடுகிறோம்.
+    - LLM எங்கள் கேள்வி அடிப்படையில் அழைக்க வேண்டும் என நினைத்த MCP கருவியை `call_tool` மூலம் அழைக்கிறோம்.
+    - கருவி அழைப்பின் முடிவை MCP சேவையகத்திலிருந்து அச்சிடுகிறோம்.
 
 #### .NET
 
-1. LLM ப்ராம்ப்ட் கோரிக்கைக்கான குறியீட்டை காண்பிப்போம்:
+1. LLM கேள்வி கோரிக்கைக்கு குறியீட்டை காண்பிக்கவும்:
 
     ```csharp
     var tools = await GetMcpTools();
@@ -1010,14 +1069,14 @@ client.connectToServer(transport);
 
     ```
 
-    மேலே உள்ள குறியீட்டில்:
+    மேலதிக குறியீட்டில் நாம்:
 
-    - MCP சர்வரிலிருந்து கருவிகளை பெற்றுக் கொண்டோம், `var tools = await GetMcpTools()`.
-    - பயனர் ப்ராம்ப்ட் `userMessage` உருவாக்கப்பட்டது.
-    - மாதிரி மற்றும் கருவிகளை குறிப்பிடும் விருப்பங்களை அமைத்தோம்.
-    - LLM க்கு கோரிக்கையினை செய்தோம்.
+    - MCP சேவையகத்திலிருந்து கருவிகளை எடுத்துள்ளோம், `var tools = await GetMcpTools()`.
+    - பயனர் கேள்வி `userMessage` ஐ வரையறுத்துள்ளோம்.
+    - மாதிரி மற்றும் கருவிகளை குறிப்பிடும் விருப்ப பொருளை உருவாக்கியுள்ளோம்.
+    - LLMக்கு கோரிக்கை செய்துள்ளோம்.
 
-2. கடைசி படி, LLM ஒரு செயல்பாடு அழைக்க வேண்டுமா என பார்ப்போம்:
+2. கடைசிப் படி, LLM எமது கூறிய செயல்பாடு அழைக்கப்படுகிறது என்று நினைத்தால் பார்ப்போம்:
 
     ```csharp
     // 4. Check if the response contains a function call
@@ -1040,10 +1099,10 @@ client.connectToServer(transport);
     }
     ```
 
-    மேலே உள்ள குறியீட்டில்:
+    மேலதிக குறியீட்டில் நாம்:
 
-    - செயல்பாடு அழைப்புகளை பட்டியலிடவும்
-    - ஒவ்வொரு கருவி அழைக்க, பெயர் மற்றும் வாதங்களைப் பகுக்கி MCP சர்வரில் அழைக்கவும்; முடிவுகளை அச்சிடவும்
+    - செயல்பாட்டு அழைப்புகளின் பட்டியலை சோதனை செய்துள்ளோம்.
+    - ஒவ்வொரு கருவி அழைப்புக்கு பெயர் மற்றும்_ARGUMENTS_ பிரித்து MCP கிளையண்ட் மூலம் MCP சேவையகத்தில் கருவியை அழைத்துள்ளோம். முடிவுகளை அச்சிடுகிறோம்.
 
 முழு குறியீடு இதோ:
 
@@ -1171,11 +1230,11 @@ for (int i = 0; i < response.ToolCalls.Count; i++)
 Console.WriteLine($"Assistant response: {content}");
 ```
 
-#### Java
+#### ஜாவா
 
 ```java
 try {
-    // இயல்புநிலை மொழி கோரிக்கைகளை இயக்கு, அவை தானாகவே MCP கருவிகளைக் பயன்படுத்தும்
+    // MCP கருவிகளை தானாக பயன்படுத்தி இயல்பான மொழி கோரிக்கைகளை செயல்படுத்தவும்
     String response = bot.chat("Calculate the sum of 24.5 and 17.3 using the calculator service");
     System.out.println(response);
 
@@ -1189,27 +1248,50 @@ try {
 }
 ```
 
-மேலே உள்ள குறியீட்டில்:
+மேலதிக குறியீட்டில் நாம்:
 
-- MCP சர்வர் கருவிகளுடன் எளிய இயற்கை மொழி ப்ராம்ப்ட்களைப் பயன்படுத்தினோம்
-- LangChain4j கட்டமைப்பு தானாக:
-  - பயனர் ப்ராம்ப்டுகளை தேவையான போது கருவி அழைப்புகளாக மாற்றுகிறது
-  - LLM முடிவின்படி MCP கருவிகளை அழைக்கிறது
-  - LLM மற்றும் MCP சர்வர் இடையேயான உரையாடல் ஓட்டத்தை நிர்வகிக்கிறது
-- `bot.chat()` முறை MCP கருவிகளின் முடிவுகளோடு இயற்கை மொழி பதில்களைத் தருகிறது
-- பயன்பாட்டாளர்கள் அடிப்படை MCP செயல்பாட்டைப் பற்றிய கவலை இல்லாமல் தொடர் அனுபவம் பெறுகிறார்கள்
+- MCP சேவையக கருவிகளுடன் இயல்பான மொழி கேள்வித் தொடர்புகளை பயன்படுத்தியுள்ளோம்
+- LangChain4j கட்டமைப்பு தானாக கையாள்கிறது:
+  - தேவையான போது பயனர் கேள்விகளை கருவி அழைப்புகளாக மாற்றுதல்
+  - LLM முடிவுகளின்படியான சரியான MCP கருவி அழைப்புகள்
+  - LLM மற்றும் MCP சேவையகத்துக்கிடையிலான உரையாடல் ஓட்ட நிர்வகிப்பு
+- `bot.chat()` முறை MCP கருவி செயல்பாட்டின் முடிவுகளுடன் இயல்பான மொழி பதில்களை வழங்குகிறது
+- இந்த அணுகுமுறை பயனர் ஆதாரத்தை மறைத்து ஊக்குவிக்க கூடிய விஷயங்களைக் கொண்டது
 
-முழு குறியீடின் உதாரணம்:
+முழு குறியீட்டு உதாரணம்:
 
 ```java
+import dev.langchain4j.mcp.McpToolProvider;
+import dev.langchain4j.mcp.client.DefaultMcpClient;
+import dev.langchain4j.mcp.client.McpClient;
+import dev.langchain4j.mcp.client.transport.McpTransport;
+import dev.langchain4j.mcp.client.transport.http.HttpMcpTransport;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.openaiofficial.OpenAiOfficialChatModel;
+import dev.langchain4j.service.AiServices;
+import dev.langchain4j.service.tool.ToolProvider;
+
+import java.time.Duration;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+
 public class LangChain4jClient {
-    
-    public static void main(String[] args) throws Exception {        ChatLanguageModel model = OpenAiOfficialChatModel.builder()
-                .isGitHubModels(true)
-                .apiKey(System.getenv("GITHUB_TOKEN"))
+
+    private static final String DEFAULT_BASE_URL = "https://api.minimax.io/v1";
+    private static final String DEFAULT_MODEL_ID = "MiniMax-M3";
+    private static final Map<String, String> REGIONAL_BASE_URLS = Map.of(
+            "global_en", "https://api.minimax.io/v1",
+            "cn_zh", "https://api.minimaxi.com/v1");
+    private static final Set<String> SUPPORTED_MODEL_IDS = Set.of("MiniMax-M3", "MiniMax-M2.7");
+
+    public static void main(String[] args) throws Exception {
+        ChatLanguageModel model = OpenAiOfficialChatModel.builder()
+                .baseUrl(resolveBaseUrl())
+                .apiKey(requireEnv("OPENAI_API_KEY"))
                 .timeout(Duration.ofSeconds(60))
-                .modelName("gpt-4.1-nano")
-                .timeout(Duration.ofSeconds(60))
+                .modelName(resolveModelName())
                 .build();
 
         McpTransport transport = new HttpMcpTransport.Builder()
@@ -1245,14 +1327,54 @@ public class LangChain4jClient {
             mcpClient.close();
         }
     }
+
+    private static String resolveBaseUrl() {
+        String baseUrl = System.getenv("OPENAI_BASE_URL");
+        if (baseUrl != null && !baseUrl.isBlank()) {
+            return baseUrl;
+        }
+
+        String region = System.getenv("MINIMAX_REGION");
+        if (region == null || region.isBlank()) {
+            return DEFAULT_BASE_URL;
+        }
+
+        String regionalBaseUrl = REGIONAL_BASE_URLS.get(region);
+        if (regionalBaseUrl == null) {
+            throw new IllegalArgumentException("Unsupported MINIMAX_REGION value: " + region
+                    + ". Supported values: " + new TreeSet<>(REGIONAL_BASE_URLS.keySet()));
+        }
+        return regionalBaseUrl;
+    }
+
+    private static String resolveModelName() {
+        String modelId = System.getenv("MINIMAX_MODEL_ID");
+        if (modelId == null || modelId.isBlank()) {
+            return DEFAULT_MODEL_ID;
+        }
+        if (!SUPPORTED_MODEL_IDS.contains(modelId)) {
+            throw new IllegalArgumentException("Unsupported MINIMAX_MODEL_ID value: " + modelId
+                    + ". Supported values: " + new TreeSet<>(SUPPORTED_MODEL_IDS));
+        }
+        return modelId;
+    }
+
+    private static String requireEnv(String name) {
+        String value = System.getenv(name);
+        if (value == null || value.isBlank()) {
+            throw new IllegalStateException(name + " environment variable is not set");
+        }
+        return value;
+    }
 }
 ```
 
-#### Rust
+#### ரஸ்ட்
 
-இங்கு பெரும்பாலான வேலை நடைபெறும். முதலில் ப்ராரம்ப பயனர் ப்ராம்ப்டுடன் LLM ஐ அழைப்போம், பின்னர் பதில்தொகுப்பை பகுப்பாய்வு செய்து எந்த கருவிகள் அழைக்க வேண்டும் என பார்க்கிறோம். தேவையெனில், அவை கருவிகள் அழைக்கப்படும் மற்றும் LLM உடன் உரையாடலும் தொடரும், மேலும் கருவி அழைப்புகள் தேவையில்லாமல் இறுதி பதில் வரும் வரை.
+இங்கே பெரும்பாலும் வேலை நடைபெறும். நாங்கள் ஆரம்ப பயனர் கேள்வியை LLMக்கு அழைப்போம், பின்னர் பதிலை விசாரித்து எந்த கருவிகள் அழைக்கப்பட வேண்டுமோ பார்வையிடுவோம். அவற்றின் அடுத்து அவற்றைப் பின்பற்றுவோம் மற்றும் LLM உடன் உரையாடலை தொடர்வோம், மேலும் கருவி அழைப்புகள் தேவை இல்லாத வரை தொடர்ந்தே இருப்போம்.
 
-பல முறை LLM அழைப்போம், எனவே LLM அழைப்பை கையாளும் ஒரு செயல்பாட்டை வரையறுத்து `main.rs` கோப்பில் சேர்க்கவும்:
+
+நாம் LLM-க்கு பல அழைப்புகளைச் செய்வோம், ஆகவே LLM அழைப்பை கையாளும் ஒரு செயல்பாட்டை வரையறுக்கலாம். உங்கள் `main.rs` கோப்பில் பின்வரும் செயல்பாட்டைப் சேர்க்கவும்:
 
 ```rust
 async fn call_llm(
@@ -1272,8 +1394,9 @@ async fn call_llm(
 }
 ```
 
-இந்த செயல்பாடு LLM கிளையண்டை, செய்திகளின் பட்டியலை (பயனர் ப்ராம்ப்ட் உட்பட), MCP சர்வர் கருவிகளை எடுத்து LLM க்கு கோரிக்கையை அனுப்பி பதிலை வழங்கும்.
-LLM இன் பதில் `choices` என்ற வரிசையைக் கொண்டிருக்கும். எதாவது `tool_calls` இருக்கிறதா என்று பார்க்க முடிவு செய்ய நாம் முடிவு செய்வோம. இதனால் LLM ஒரு குறிப்பிட்ட கருவி அழைக்கப்பட வேண்டுமென கோருகிறது என்று நமக்கு தெரியும். LLM பதிலை கையாளும் ஒரு செயல்பாட்டை வரையறுக்க கீழே உள்ள குறியீட்டை உங்கள் `main.rs` கோப்பின் தாழ்த்துப் பகுதியில் சேர்க்கவும்:
+இந்த செயல்பாடு LLM கிளையண்ட், செய்திகளின் பட்டியல் (பயனர் கேள்வியுடன் சேர்ந்து), MCP சர்வரிலிருந்து கருவிகள் ஆகியவற்றை எடுத்துக் கொண்டு LLMக்கு ஒரு கோரிக்கையை அனுப்பி பதிலைத் திருப்பி அளிக்கும்.
+
+LLM இன் பதிலை `choices` எனும் வரிசை கொண்டிருக்கும். எதாவது `tool_calls` உள்ளதா என முடிவை செயலாக்க வேண்டும். இது LLM குறிப்பிட்ட கருவி அழைக்கப்பட வேண்டுமென்று வேண்டுகோள் விடுக்கும் என்பதைக் காட்டும். LLM பதிலை கையாள ஒரு செயல்பாட்டை வரையறுக்க, உங்கள் `main.rs` கோப்பின் கீழே பின்வரும் குறியீட்டைச் சேர்க்கவும்:
 
 ```rust
 async fn process_llm_response(
@@ -1292,14 +1415,14 @@ async fn process_llm_response(
         return Ok(());
     };
 
-    // உள்ளடக்கம் இருந்தால் அச்சிடுக
+    // உள்ளடக்கம் கிடைத்தால் அச்சிடவும்
     if let Some(content) = message.get("content").and_then(|c| c.as_str()) {
         println!("🤖 {}", content);
     }
 
-    // கருவி அழைப்புகளை கையாள்க
+    // கருவி அழைப்புகளை கையாளவும்
     if let Some(tool_calls) = message.get("tool_calls").and_then(|tc| tc.as_array()) {
-        messages.push(message.clone()); // உதவியாளர் செய்தியைச் சேர்க்கவும்
+        messages.push(message.clone()); // உதவியாளர் സന്ദேஷம் சேர்க்கவும்
 
         // ஒவ்வொரு கருவி அழிப்பையும் செயல்படுத்தவும்
         for tool_call in tool_calls {
@@ -1313,7 +1436,7 @@ async fn process_llm_response(
                 })
                 .await?;
 
-            // கருவி முடிவை செய்திகளுக்கு சேர்க்கவும்
+            // செய்திகளுக்கு கருவி முடிவுகளைச் சேர்க்கவும்
             messages.push(json!({
                 "role": "tool",
                 "tool_call_id": tool_id,
@@ -1321,7 +1444,7 @@ async fn process_llm_response(
             }));
         }
 
-        // கருவி முடிவுகளுடன் உரையாடலை தொடரவும்
+        // கருவி முடிவுகளுடன் உரையாடலை தொடர்க
         let response = call_llm(openai_client, messages, mcp_tools).await?;
         Box::pin(process_llm_response(
             &response,
@@ -1336,10 +1459,9 @@ async fn process_llm_response(
 }
 ```
 
+`tool_calls` இருந்தால், அது கருவி தகவலை எடுத்து, MCP சர்வரை கருவி கோரிக்கையுடன் அழைக்கும், அதன் முடிவுகளை உரையாடல் செய்திகளுக்கு சேர்க்கும். பின்னர் LLM உடன் உரையாடலை தொடர்கிறது, செய்திகள் உதவியாளர் பதிலுடன் மற்றும் கருவி அழைப்பு விளைவுகளுடன் புதுப்பிக்கப்படுகின்றன.
 
-`tool_calls` இருந்தால், அது கருவி தகவலை எடுத்துக்கொள்கிறது, MCP சர்வரை கருவி கோரிக்கையுடன் அழைக்கிறது, மற்றும் முடிவுகளை உரையாடல் செய்திகள் சேர்க்கிறது. பின்னர், LLM உடன் உரையாடலை தொடர்கிறது மற்றும் செய்திகள் உதவியாளர் பதில் மற்றும் கருவி அழைப்பு முடிவுகளுடன் புதுப்பிக்கப்படுகின்றன.
-
-MCP அழைப்புகளுக்காக LLM திருப்பும் கருவி அழைப்பு தகவலை எடுக்க மற்றொரு உதவி செயல்பாட்டை சேர்ப்போம். தேவையான அனைத்தையும் எடுக்க கீழே உள்ள குறியீட்டை உங்கள் `main.rs` கோப்பின் தாழ்த்துப் பகுதியில் சேர்க்கவும்:
+MCP அழைப்புகளுக்கு LLM திருப்பி அளிக்கும் கருவி அழைப்பு தகவலை எடுக்க மற்றொரு உதவியாளர் செயல்பாட்டை சேர்ப்போம். உங்கள் `main.rs` இல் கீழே பின்வரும் குறியீட்டைச் சேர்க்கவும்:
 
 ```rust
 fn extract_tool_call_info(tool_call: &Value) -> Result<(String, String, String), Box<dyn Error>> {
@@ -1363,8 +1485,7 @@ fn extract_tool_call_info(tool_call: &Value) -> Result<(String, String, String),
 }
 ```
 
-
-முழு கூறுகளும் தயாரானதால், ஆரம்ப பயனர் குறிப்பு மற்றும் LLM அழைப்பை தற்போது கையாளலாம். உங்கள் `main` செயல்பாட்டை கீழ்க்காணும் குறியீடு சேர்க்க மாற்றவும்:
+எல்லா பகுதிகளும் பொருந்தும்போது, ஆரம்ப பயனர் கேள்வியை கையாளி LLM-ஐ அழைக்கலாம். உங்கள் `main` செயல்பாட்டை பின்வரும் குறியீட்டுடன் புதுப்பிக்கவும்:
 
 ```rust
 // கருவி அழைப்புகளுடன் LLM உரையாடல்
@@ -1379,38 +1500,37 @@ process_llm_response(
 .await?;
 ```
 
+இது ஆரம்ப பயனர் கேள்வியுடன் LLM-ஐ விசாரித்து, இரண்டு எண்களின் கூட்டை கேட்கும், மேலும் பதிலை செயலாக்கி கருவி அழைப்புகளை நிலைத்தளத்தில் கையாளும்.
 
-இது இரண்டு எண்களின் கூட்டத்தை கேட்டு LLM ஆய்வை நடைமுறைப்படுத்துகிறது, மற்றும் கருவி அழைப்புகளை தானாக கையாளும் வகையில் பதிலை செயலாக்குகிறது.
+அருமை, நீங்கள் அதை செய்தீர்கள்!
 
-அற்புதம், நீங்கள் செய்துவிட்டீர்கள்!
+## பணிநிர்ணயம்
 
-## பணிகள்
-
-பயிற்சியில் உள்ள குறியீட்டை எடுத்துக் கொண்டு பல கருவிகளுடனான சர்வரை உருவாக்கவும். பிறகு பழகு போன்று LLM உடன் ஒரு கிளையண்டைப் படைத்துப் பயன்படுத்தி பலவகை குறிப்பு கோரிக்கைகள் மூலம் பரிசோதிக்கவும், உங்கள் சர்வர் கருவிகளின் அனைத்தும் தானாக அழைக்கப்படுவதை உறுதிப்படுத்தவும். இத்தகைய கிளையண்ட் உருவாக்குவது, இறுதி பயனருக்கு சிறந்த அனுபவம் தரும், ஏனென்றால் அவர்கள் சரியான கிளையண்ட் கட்டளைகள் பதிலாக prompts ஐ பயன்படுத்தி, எந்த MCP சர்வர் அழைகள் நடைபெறுவதை கவனிக்காத வகையில் அனுமதிக்கிறது.
+பயிற்சியில் உள்ள குறியீட்டை எடுத்து சர்வரை இன்னும் சில கருவிகளுடன் விருத்தி செய்யவும். பிறகு LLM கொண்ட ஒரு கிளையண்ட் உருவாக்கி, பயிற்சிப் போலவே மாற்று கேள்விகளுடன் சோதித்து, அனைத்து சர்வர் கருவிகள் வடிவமைப்பாக அழைக்கப்படுவதை உறுதிப்படுத்தவும். இப்பாடுகொண்ட கிளையண்ட் அமைப்பால் இறுதி பயனர் சரியான கிளையண்ட் கட்டளைகளை பயன்படுத்தாமல் கேள்விகளைப் பயன்படுத்தி மிகச் சிறந்த பயனர் அனுபவத்தை பெறுவார், எந்த MCP சர்வர் அழைக்கப்படுவதை அறியாமலே.
 
 ## தீர்வு
 
-[தீர்வு](./solution/README.md)
+[Solution](./solution/README.md)
 
-## முக்கியக் குறிப்புகள்
+## முக்கியக் குறிப்பு
 
-- உங்கள் கிளையண்டுக்கு LLM சேர்ப்பது MCP சர்வர்களுடன் தொடர்பு கொள்ள சிறந்த வழியைக் கொடுக்கும்.
-- MCP சர்வர் பதிலை LLM புரிந்துகொள்ளக்கூடிய வடிவமாக மாற்ற வேண்டும்.
+- உங்கள் கிளையண்டில் LLM-ஐச் சேர்த்தல் பயனர்களுக்கு MCP சர்வர்களுடன் சிறந்த தொடர்பை வழங்கும்.
+- MCP சர்வர் பதிலை LLM புரிந்துகொள்ளக்கூடிய வடிவிற்கு மாற்ற வேண்டும்.
 
 ## உதாரணங்கள்
 
-- [ஜாவா கணக்காளி](../samples/java/calculator/README.md)
-- [.Net கணக்காளி](../../../../03-GettingStarted/samples/csharp)
-- [ஜாவாஸ்கிரியைப் கணக்காளி](../samples/javascript/README.md)
-- [TypeScript கணக்காளி](../samples/typescript/README.md)
-- [Python கணக்காளி](../../../../03-GettingStarted/samples/python)
-- [Rust கணக்காளி](../../../../03-GettingStarted/samples/rust)
+- [Java Calculator](../samples/java/calculator/README.md)
+- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
+- [JavaScript Calculator](../samples/javascript/README.md)
+- [TypeScript Calculator](../samples/typescript/README.md)
+- [Python Calculator](../../../../03-GettingStarted/samples/python)
+- [Rust Calculator](../../../../03-GettingStarted/samples/rust)
 
-## மேலதிக வளங்கள்
+## கூடுதல் வளங்கள்
 
 ## அடுத்தது என்ன
 
-- அடுத்து: [Visual Studio Code மூலம் ஒரு சர்வரைப் பயன்படுத்துவது](../04-vscode/README.md)
+- அடுத்தது: [Visual Studio Code பயன்படுத்தி சர்வரை உபயோகித்தல்](../04-vscode/README.md)
 
 ---
 

@@ -5,13 +5,13 @@ En Java-applikation som demonstrerar hur man använder LangChain4j för att ansl
 ## Förutsättningar
 
 - Java 21 eller högre
-- Maven 3.6+ (eller använd medföljande Maven wrapper)
+- Maven 3.6+ (eller använd medföljande Maven-wrapper)
 - En MiniMax API-nyckel
 - En MCP kalkylatortjänst som körs på `http://localhost:8080`
 
 ## Skaffa API-nyckeln
 
-Den här applikationen använder MiniMax OpenAI-kompatibla API. Följ dessa steg för att få din nyckel och endpoint:
+Denna applikation använder MiniMax OpenAI-kompatibla API. Följ dessa steg för att få din nyckel och endpoint:
 
 ### 1. Välj en endpoint
 1. Använd `https://api.minimax.io/v1` för global endpoint
@@ -44,7 +44,7 @@ export OPENAI_BASE_URL=https://api.minimax.io/v1
 export MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
-## Installation och konfiguration
+## Installation och setup
 
 1. **Klona eller navigera till projektmappen**
 
@@ -60,7 +60,7 @@ export MINIMAX_MODEL_ID=MiniMax-M3
 3. **Ställ in miljövariablerna** (se avsnittet "Skaffa API-nyckeln" ovan)
 
 4. **Starta MCP kalkylatortjänsten**:
-   Se till att du har kapitel 1:s MCP kalkylatortjänst igång på `http://localhost:8080/sse`. Den ska köras innan klienten startar.
+   Se till att du har kapitel 1:s MCP kalkylatortjänst igång på `http://localhost:8080/sse`. Den bör vara igång innan du startar klienten.
 
 ## Köra applikationen
 
@@ -73,13 +73,13 @@ java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 
 Applikationen demonstrerar tre huvudsakliga interaktioner med kalkylatortjänsten:
 
-1. **Addition**: Beräknar summan av 24.5 och 17.3
+1. **Addition**: Beräknar summan av 24,5 och 17,3
 2. **Kvadratrot**: Beräknar kvadratroten av 144
 3. **Hjälp**: Visar tillgängliga kalkylatorfunktioner
 
-## Förväntad utdata
+## Förväntat resultat
 
-Vid lyckad körning bör du se output liknande:
+Vid lyckad körning bör du se ett liknande utdata som:
 
 ```
 The sum of 24.5 and 17.3 is 41.8.
@@ -91,21 +91,21 @@ The calculator service provides the following functions: add, subtract, multiply
 
 ### Vanliga problem
 
-1. **"OPENAI_API_KEY miljövariabel är inte satt"**
-   - Kontrollera att du har satt miljövariabeln `OPENAI_API_KEY`
-   - Starta om terminalen/kommandotolken efter att du satt variabeln
+1. **”OPENAI_API_KEY miljövariabel är inte satt”**
+   - Kontrollera att du har satt `OPENAI_API_KEY` miljövariabeln
+   - Starta om din terminal/kommandotolk efter att variabeln satts
 
-2. **"Connection refused to localhost:8080"**
-   - Säkerställ att MCP kalkylatortjänsten körs på port 8080
+2. **”Anslutning nekad till localhost:8080”**
+   - Kontrollera att MCP kalkylatortjänsten körs på port 8080
    - Kontrollera om en annan tjänst använder port 8080
 
-3. **"Autentisering misslyckades"**
+3. **”Autentisering misslyckades”**
    - Verifiera att din API-nyckel är giltig
    - Kontrollera att `OPENAI_BASE_URL` stämmer överens med den endpoint du tänkt använda
 
-4. **Maven build-fel**
+4. **Fel vid Maven-kompilering**
    - Kontrollera att du använder Java 21 eller högre: `java -version`
-   - Försök att göra en ren build: `mvnw clean`
+   - Prova att rensa bygget: `mvnw clean`
 
 ### Debugging
 
@@ -117,18 +117,18 @@ java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0
 ## Konfiguration
 
 Applikationen är konfigurerad för att:
-- Använda MiniMax-M3 som standard, eller MiniMax-M2.7 när `MINIMAX_MODEL_ID` är satt
-- Ansluta till `OPENAI_BASE_URL` när den är satt; annars använda `https://api.minimaxi.com/v1` när `MINIMAX_REGION=cn_zh`, eller `https://api.minimax.io/v1` som standard
-- Ansluta till MCP-tjänsten på `http://localhost:8080/sse`
-- Använda en timeout på 60 sekunder för förfrågningar
+- Använda MiniMax-M3 som standard; ställ in `MINIMAX_MODEL_ID` för att välja mellan `MiniMax-M3` eller `MiniMax-M2.7`
+- Ansluta till `OPENAI_BASE_URL` när den är satt; annars använd `https://api.minimaxi.com/v1` när `MINIMAX_REGION=cn_zh`, eller `https://api.minimax.io/v1` som standard
+- Ansluta till MCP-tjänst på `http://localhost:8080/sse`
+- Använda 60 sekunders timeout för förfrågningar
 
 ## Beroenden
 
-Nyckelberoenden som används i detta projekt:
+Viktiga beroenden som används i detta projekt:
 - **LangChain4j**: För AI-integration och verktygshantering
-- **LangChain4j MCP**: För stöd av Model Context Protocol
+- **LangChain4j MCP**: För Model Context Protocol-stöd
 - **LangChain4j OpenAI official**: För MiniMax OpenAI-kompatibel API-integration
-- **Spring Boot**: För applikationsramverk och dependency injection
+- **Spring Boot**: För applikationsramverk och beroendeinjektion
 
 ## Licens
 

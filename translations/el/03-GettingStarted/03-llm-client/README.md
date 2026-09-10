@@ -1,48 +1,48 @@
 # Δημιουργία πελάτη με LLM
 
-Μέχρι τώρα, έχετε δει πώς να δημιουργήσετε έναν διακομιστή και έναν πελάτη. Ο πελάτης ήταν σε θέση να καλέσει ρητά τον διακομιστή για να απαριθμήσει τα εργαλεία, τους πόρους και τα prompts του. Ωστόσο, αυτή δεν είναι μια πολύ πρακτική προσέγγιση. Οι χρήστες σας ζουν στην εποχή των πρακτόρων και περιμένουν να χρησιμοποιούν prompts και να επικοινωνούν με ένα LLM αντίστοιχα. Δεν τους ενδιαφέρει αν χρησιμοποιείτε MCP για να αποθηκεύσετε τις ικανότητές σας· απλά περιμένουν να αλληλεπιδρούν χρησιμοποιώντας φυσική γλώσσα. Πώς το λύνουμε αυτό; Η λύση είναι να προσθέσουμε ένα LLM στον πελάτη.
+Μέχρι τώρα, έχετε δει πώς να δημιουργήσετε έναν διακομιστή και έναν πελάτη. Ο πελάτης είχε τη δυνατότητα να καλεί ρητά τον διακομιστή για να καταγράψει τα εργαλεία, τους πόρους και τα prompt του. Ωστόσο, αυτή δεν είναι μια πολύ πρακτική προσέγγιση. Οι χρήστες σας ζουν στην εποχή των πρακτόρων και περιμένουν να χρησιμοποιούν prompts και να επικοινωνούν με ένα LLM. Δεν τους ενδιαφέρει αν χρησιμοποιείτε MCP για να αποθηκεύσετε τις δυνατότητές σας· απλά περιμένουν να αλληλεπιδράσουν χρησιμοποιώντας φυσική γλώσσα. Πώς λύνουμε λοιπόν αυτό το θέμα; Η λύση είναι να προσθέσουμε ένα LLM στον πελάτη.
 
 ## Επισκόπηση
 
-Σε αυτό το μάθημα εστιάζουμε στην προσθήκη ενός LLM στον πελάτη σας και δείχνουμε πώς αυτό προσφέρει μια πολύ καλύτερη εμπειρία για τον χρήστη σας.
+Σε αυτό το μάθημα, εστιάζουμε στην προσθήκη ενός LLM για τον πελάτη σας και δείχνουμε πώς αυτό προσφέρει μια πολύ καλύτερη εμπειρία για τον χρήστη σας.
 
 ## Στόχοι Μάθησης
 
 Στο τέλος αυτού του μαθήματος, θα μπορείτε να:
 
 - Δημιουργήσετε έναν πελάτη με ένα LLM.
-- Αλληλεπιδράσετε αβίαστα με έναν MCP διακομιστή χρησιμοποιώντας ένα LLM.
+- Αλληλεπιδράσετε απρόσκοπτα με έναν διακομιστή MCP χρησιμοποιώντας ένα LLM.
 - Παρέχετε καλύτερη εμπειρία τελικού χρήστη στην πλευρά του πελάτη.
 
 ## Προσέγγιση
 
-Ας προσπαθήσουμε να κατανοήσουμε την προσέγγιση που πρέπει να ακολουθήσουμε. Η προσθήκη ενός LLM ακούγεται απλή, αλλά θα το κάνουμε πραγματικά;
+Ας προσπαθήσουμε να κατανοήσουμε την προσέγγιση που πρέπει να ακολουθήσουμε. Η προσθήκη ενός LLM φαίνεται απλή, αλλά θα το κάνουμε πραγματικά;
 
-Έτσι θα αλληλεπιδρά ο πελάτης με τον διακομιστή:
+Να πώς θα αλληλεπιδρά ο πελάτης με τον διακομιστή:
 
-1. Δημιουργεί σύνδεση με τον διακομιστή.
+1. Καθιέρωση σύνδεσης με τον διακομιστή.
 
-1. Λίστα με ικανότητες, prompts, πόρους και εργαλεία, και αποθηκεύει το σχήμα τους.
+1. Καταγραφή δυνατοτήτων, prompts, πόρων και εργαλείων, και αποθήκευση του σχήματός τους.
 
-1. Προσθέτει ένα LLM και περνά τις αποθηκευμένες ικανότητες και το σχήμα τους σε μορφή που κατανοεί το LLM.
+1. Προσθήκη ενός LLM και μεταβίβαση των αποθηκευμένων δυνατοτήτων και του σχήματός τους σε μορφή που κατανοεί το LLM.
 
-1. Διαχειρίζεται ένα prompt χρήστη περνώντας το στο LLM μαζί με τα εργαλεία που απαρίθμησε ο πελάτης.
+1. Διαχείριση ενός user prompt μεταβιβάζοντάς το στο LLM μαζί με τα εργαλεία που έχει καταγράψει ο πελάτης.
 
-Τέλεια, τώρα που καταλαβαίνουμε πώς μπορούμε να το κάνουμε σε υψηλό επίπεδο, ας το δοκιμάσουμε στην παρακάτω άσκηση.
+Τέλεια, τώρα που καταλαβαίνουμε πώς μπορούμε να το κάνουμε σε υψηλό επίπεδο, ας δοκιμάσουμε στην παρακάτω άσκηση.
 
-## Άσκηση: Δημιουργία πελάτη με ένα LLM
+## Άσκηση: Δημιουργία πελάτη με έναν LLM
 
 Σε αυτή την άσκηση, θα μάθουμε να προσθέτουμε ένα LLM στον πελάτη μας.
 
-### Αυθεντικοποίηση με Χρήση GitHub Personal Access Token
+### Πιστοποίηση με χρήση GitHub Personal Access Token
 
-Η δημιουργία ενός GitHub token είναι μια απλή διαδικασία. Να πώς μπορείτε να το κάνετε:
+Η δημιουργία ενός token στο GitHub είναι μια απλή διαδικασία. Δείτε πώς μπορείτε να το κάνετε:
 
-- Μεταβείτε στις Ρυθμίσεις GitHub – Κάντε κλικ στη φωτογραφία προφίλ σας στην πάνω δεξιά γωνία και επιλέξτε Ρυθμίσεις.
-- Μεταβείτε στις Ρυθμίσεις Προγραμματιστή – Κάντε κύλιση προς τα κάτω και κάντε κλικ στις Ρυθμίσεις Προγραμματιστή.
-- Επιλέξτε Personal Access Tokens – Κάντε κλικ σε Fine-grained tokens και μετά Generate new token.
-- Ρυθμίστε το Token σας – Προσθέστε μια σημείωση για αναφορά, ορίστε ημερομηνία λήξης και επιλέξτε τα απαραίτητα scope (δικαιώματα). Σε αυτή την περίπτωση βεβαιωθείτε ότι προσθέσατε το δικαίωμα Models.
-- Δημιουργήστε και Αντιγράψτε το Token – Κάντε κλικ στο Generate token και βεβαιωθείτε ότι το αντιγράψετε αμέσως, καθώς δεν θα μπορείτε να το δείτε ξανά.
+- Μεταβείτε στις Ρυθμίσεις του GitHub – Κάντε κλικ στην εικόνα προφίλ σας πάνω δεξιά και επιλέξτε Ρυθμίσεις.
+- Πλοηγηθείτε στις Ρυθμίσεις Προγραμματιστή – Κάτω, κάντε κλικ στις Ρυθμίσεις Προγραμματιστή.
+- Επιλέξτε Personal Access Tokens – Κάντε κλικ στα “Fine-grained tokens” και μετά “Generate new token”.
+- Διαμορφώστε το Token σας – Προσθέστε ένα σημείωμα για αναφορά, ορίστε ημερομηνία λήξης και επιλέξτε τα απαιτούμενα δικαιώματα (permissions). Σε αυτή την περίπτωση βεβαιωθείτε ότι έχετε προσθέσει το δικαίωμα Models.
+- Δημιουργήστε και Αντιγράψτε το Token – Κάντε κλικ στο Generate token, και φροντίστε να το αντιγράψετε αμέσως, καθώς δεν θα ξαναδειτε το token.
 
 ### -1- Σύνδεση με τον διακομιστή
 
@@ -55,7 +55,7 @@ import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 import { Transport } from "@modelcontextprotocol/sdk/shared/transport.js";
 import OpenAI from "openai";
-import { z } from "zod"; // Εισαγωγή zod για επικύρωση σχήματος
+import { z } from "zod"; // Εισαγωγή του zod για επικύρωση σχήματος
 
 class MCPClient {
     private openai: OpenAI;
@@ -85,9 +85,9 @@ class MCPClient {
 
 Στον προηγούμενο κώδικα έχουμε:
 
-- Εισάγει τις απαραίτητες βιβλιοθήκες
-- Δημιουργήσει μια κλάση με δύο μέλη, `client` και `openai`, που θα μας βοηθήσουν να διαχειριστούμε έναν πελάτη και να αλληλεπιδράσουμε με ένα LLM αντίστοιχα.
-- Διαμορφώσει το στιγμιότυπο LLM μας να χρησιμοποιεί GitHub Models θέτοντας το `baseUrl` ώστε να δείχνει στο inference API.
+- Εισάγει τις απαιτούμενες βιβλιοθήκες
+- Δημιουργεί μια κλάση με δύο μέλη, `client` και `openai` που θα μας βοηθήσουν να διαχειριστούμε έναν πελάτη και να αλληλεπιδράσουμε με ένα LLM αντίστοιχα.
+- Διαμορφώσαμε την παρουσία του LLM μας ώστε να χρησιμοποιεί τα GitHub Models, ορίζοντας το `baseUrl` ώστε να δείχνει στο inference API.
 
 #### Python
 
@@ -122,7 +122,7 @@ if __name__ == "__main__":
 Στον προηγούμενο κώδικα έχουμε:
 
 - Εισάγει τις απαραίτητες βιβλιοθήκες για MCP
-- Δημιουργήσει έναν πελάτη
+- Δημιούργησε έναν πελάτη
 
 #### .NET
 
@@ -146,7 +146,7 @@ await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 
 #### Java
 
-Πρώτα, πρέπει να προσθέσετε τις εξαρτήσεις LangChain4j στο αρχείο `pom.xml`. Προσθέστε αυτές τις εξαρτήσεις για να ενεργοποιήσετε την ενσωμάτωση MCP και την υποστήριξη GitHub Models:
+Πρώτα, θα χρειαστεί να προσθέσετε τις εξαρτήσεις LangChain4j στο αρχείο `pom.xml`. Προσθέστε αυτές τις εξαρτήσεις για να ενεργοποιήσετε την ενσωμάτωση MCP και το OpenAI-συμβατό MiniMax API:
 
 ```xml
 <properties>
@@ -168,13 +168,6 @@ await using var mcpClient = await McpClient.CreateAsync(clientTransport);
         <version>${langchain4j.version}</version>
     </dependency>
     
-    <!-- GitHub Models Support -->
-    <dependency>
-        <groupId>dev.langchain4j</groupId>
-        <artifactId>langchain4j-github-models</artifactId>
-        <version>${langchain4j.version}</version>
-    </dependency>
-    
     <!-- Spring Boot Starter (optional, for production apps) -->
     <dependency>
         <groupId>org.springframework.boot</groupId>
@@ -183,7 +176,24 @@ await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 </dependencies>
 ```
 
-Έπειτα δημιουργήστε την κλάση πελάτη σας σε Java:
+Ορίστε το κλειδί API του MiniMax και, προαιρετικά, το endpoint και το μοντέλο.
+Το `MINIMAX_MODEL_ID` υποστηρίζει `MiniMax-M3` και `MiniMax-M2.7`. Αν
+το `OPENAI_BASE_URL` δεν είναι ορισμένο, το `MINIMAX_REGION` υποστηρίζει `global_en` και `cn_zh`.
+
+```bash
+export OPENAI_API_KEY=your_minimax_api_key_here
+export OPENAI_BASE_URL=https://api.minimax.io/v1
+export MINIMAX_MODEL_ID=MiniMax-M3
+```
+
+Για να επιλέξετε το endpoint ανά περιοχή, παραλείψτε το `OPENAI_BASE_URL`:
+
+```bash
+unset OPENAI_BASE_URL
+export MINIMAX_REGION=cn_zh
+```
+
+Στη συνέχεια, δημιουργήστε την κλάση πελάτη Java:
 
 ```java
 import dev.langchain4j.mcp.McpToolProvider;
@@ -198,18 +208,28 @@ import dev.langchain4j.service.tool.ToolProvider;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class LangChain4jClient {
-    
-    public static void main(String[] args) throws Exception {        // Διαμορφώστε το LLM για να χρησιμοποιεί τα Μοντέλα GitHub
+
+    private static final String DEFAULT_BASE_URL = "https://api.minimax.io/v1";
+    private static final String DEFAULT_MODEL_ID = "MiniMax-M3";
+    private static final Map<String, String> REGIONAL_BASE_URLS = Map.of(
+            "global_en", "https://api.minimax.io/v1",
+            "cn_zh", "https://api.minimaxi.com/v1");
+    private static final Set<String> SUPPORTED_MODEL_IDS = Set.of("MiniMax-M3", "MiniMax-M2.7");
+
+    public static void main(String[] args) throws Exception {
         ChatLanguageModel model = OpenAiOfficialChatModel.builder()
-                .isGitHubModels(true)
-                .apiKey(System.getenv("GITHUB_TOKEN"))
+                .baseUrl(resolveBaseUrl())
+                .apiKey(requireEnv("OPENAI_API_KEY"))
                 .timeout(Duration.ofSeconds(60))
-                .modelName("gpt-4.1-nano")
+                .modelName(resolveModelName())
                 .build();
 
-        // Δημιουργήστε μεταφορά MCP για σύνδεση με τον διακομιστή
+        // Δημιουργήστε μεταφορά MCP για σύνδεση με διακομιστή
         McpTransport transport = new HttpMcpTransport.Builder()
                 .sseUrl("http://localhost:8080/sse")
                 .timeout(Duration.ofSeconds(60))
@@ -222,23 +242,62 @@ public class LangChain4jClient {
                 .transport(transport)
                 .build();
     }
+
+    private static String resolveBaseUrl() {
+        String baseUrl = System.getenv("OPENAI_BASE_URL");
+        if (baseUrl != null && !baseUrl.isBlank()) {
+            return baseUrl;
+        }
+
+        String region = System.getenv("MINIMAX_REGION");
+        if (region == null || region.isBlank()) {
+            return DEFAULT_BASE_URL;
+        }
+
+        String regionalBaseUrl = REGIONAL_BASE_URLS.get(region);
+        if (regionalBaseUrl == null) {
+            throw new IllegalArgumentException("Unsupported MINIMAX_REGION value: " + region
+                    + ". Supported values: " + new TreeSet<>(REGIONAL_BASE_URLS.keySet()));
+        }
+        return regionalBaseUrl;
+    }
+
+    private static String resolveModelName() {
+        String modelId = System.getenv("MINIMAX_MODEL_ID");
+        if (modelId == null || modelId.isBlank()) {
+            return DEFAULT_MODEL_ID;
+        }
+        if (!SUPPORTED_MODEL_IDS.contains(modelId)) {
+            throw new IllegalArgumentException("Unsupported MINIMAX_MODEL_ID value: " + modelId
+                    + ". Supported values: " + new TreeSet<>(SUPPORTED_MODEL_IDS));
+        }
+        return modelId;
+    }
+
+    private static String requireEnv(String name) {
+        String value = System.getenv(name);
+        if (value == null || value.isBlank()) {
+            throw new IllegalStateException(name + " environment variable is not set");
+        }
+        return value;
+    }
 }
 ```
 
 Στον προηγούμενο κώδικα έχουμε:
 
-- **Προσθέσει τις εξαρτήσεις LangChain4j**: Απαραίτητες για την ενσωμάτωση MCP, επίσημο πελάτη OpenAI και υποστήριξη GitHub Models
-- **Εισάγει τις βιβλιοθήκες LangChain4j**: Για ενσωμάτωση MCP και λειτουργία μοντέλου chat OpenAI
-- **Δημιουργήσει ένα `ChatLanguageModel`**: Διαμορφωμένο να χρησιμοποιεί GitHub Models με το GitHub token σας
-- **Ρυθμίσει το HTTP transport**: Χρησιμοποιώντας Server-Sent Events (SSE) για σύνδεση με τον MCP διακομιστή
-- **Δημιουργήσει έναν πελάτη MCP**: Που θα διαχειρίζεται την επικοινωνία με τον διακομιστή
-- **Χρησιμοποιήσει την ενσωματωμένη υποστήριξη MCP του LangChain4j**: Που απλοποιεί την ενσωμάτωση μεταξύ LLM και MCP διακομιστών
+- **Προσθέσαμε τις εξαρτήσεις LangChain4j**: Απαραίτητες για την ενσωμάτωση MCP και το OpenAI-συμβατό MiniMax API
+- **Εισάγαμε τις βιβλιοθήκες LangChain4j**: Για ενσωμάτωση MCP και λειτουργικότητα μοντέλου συνομιλίας OpenAI
+- **Δημιουργήσαμε ένα `ChatLanguageModel`**: Διαμορφωμένο να χρησιμοποιεί MiniMax με το κλειδί API, endpoint και υποστηριζόμενο ID μοντέλου MiniMax
+- **Ρυθμίσαμε τη μεταφορά HTTP**: Χρησιμοποιώντας Server-Sent Events (SSE) για σύνδεση με τον διακομιστή MCP
+- **Δημιουργήσαμε έναν πελάτη MCP**: Ο οποίος θα χειρίζεται την επικοινωνία με τον διακομιστή
+- **Χρησιμοποιήσαμε την ενσωματωμένη υποστήριξη MCP του LangChain4j**: Που απλοποιεί την ενσωμάτωση μεταξύ LLMs και MCP servers
 
 #### Rust
 
-Αυτό το παράδειγμα υποθέτει ότι έχετε έναν MCP διακομιστή βασισμένο σε Rust σε λειτουργία. Αν δεν έχετε, ανατρέξτε στο μάθημα [01-first-server](../01-first-server/README.md) για να δημιουργήσετε τον διακομιστή.
+Αυτό το παράδειγμα υποθέτει ότι έχετε έναν MCP διακομιστή που βασίζεται σε Rust σε λειτουργία. Αν δεν έχετε, ανατρέξτε ξανά στο μάθημα [01-first-server](../01-first-server/README.md) για να δημιουργήσετε τον διακομιστή.
 
-Μόλις έχετε τον Rust MCP διακομιστή σας, ανοίξτε ένα τερματικό και μεταβείτε στον ίδιο κατάλογο με τον διακομιστή. Έπειτα εκτελέστε την παρακάτω εντολή για να δημιουργήσετε ένα νέο έργο πελάτη LLM:
+Μόλις έχετε τον Rust MCP διακομιστή σας, ανοίξτε ένα τερματικό και μεταβείτε στον ίδιο φάκελο με τον διακομιστή. Στη συνέχεια τρέξτε την παρακάτω εντολή για να δημιουργήσετε ένα νέο project πελάτη LLM:
 
 ```bash
 mkdir calculator-llmclient
@@ -246,7 +305,7 @@ cd calculator-llmclient
 cargo init
 ```
 
-Προσθέστε τις εξής εξαρτήσεις στο αρχείο `Cargo.toml` σας:
+Προσθέστε τις ακόλουθες εξαρτήσεις στο αρχείο `Cargo.toml`:
 
 ```toml
 [dependencies]
@@ -257,7 +316,7 @@ tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 ```
 
 > [!NOTE]
-> Δεν υπάρχει επίσημη βιβλιοθήκη Rust για το OpenAI, ωστόσο, το crate `async-openai` είναι μια [βιβλιοθήκη που διατηρεί η κοινότητα](https://platform.openai.com/docs/libraries/rust#rust) που χρησιμοποιείται ευρέως.
+> Δεν υπάρχει επίσημη βιβλιοθήκη Rust για το OpenAI, ωστόσο, το crate `async-openai` είναι μια [βιβλιοθήκη που διατηρείται από την κοινότητα](https://platform.openai.com/docs/libraries/rust#rust) που χρησιμοποιείται συχνά.
 
 Ανοίξτε το αρχείο `src/main.rs` και αντικαταστήστε το περιεχόμενό του με τον ακόλουθο κώδικα:
 
@@ -278,7 +337,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
     // Αρχικό μήνυμα
     let mut messages = vec![json!({"role": "user", "content": "What is the sum of 3 and 2?"})];
 
-    // Ρύθμιση πελάτη OpenAI
+    // Διαμόρφωση πελάτη OpenAI
     let api_key = std::env::var("OPENAI_API_KEY")?;
     let openai_client = Client::with_config(
         OpenAIConfig::new()
@@ -286,7 +345,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
             .with_api_key(api_key),
     );
 
-    // Ρύθμιση πελάτη MCP
+    // Διαμόρφωση πελάτη MCP
     let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .unwrap()
@@ -301,28 +360,28 @@ async fn main() -> Result<(), Box<dyn Error>> {
         )
         .await?;
 
-    // Υπενθύμιση: Λήψη καταλόγου εργαλείων MCP
+    // ΠΡΕΠΕΙ ΝΑ ΓΙΝΕΙ: Λήψη λίστας εργαλείων MCP
 
-    // Υπενθύμιση: Συνομιλία LLM με κλήσεις εργαλείων
+    // ΠΡΕΠΕΙ ΝΑ ΓΙΝΕΙ: Συνομιλία LLM με κλήσεις εργαλείων
 
     Ok(())
 }
 ```
 
-Αυτός ο κώδικας ρυθμίζει μια βασική εφαρμογή Rust που θα συνδεθεί με έναν MCP διακομιστή και GitHub Models για αλληλεπιδράσεις LLM.
+Αυτός ο κώδικας δημιουργεί μια βασική εφαρμογή Rust που θα συνδεθεί με έναν MCP διακομιστή και τα GitHub Models για αλληλεπιδράσεις LLM.
 
 > [!IMPORTANT]
-> Φροντίστε να ορίσετε τη μεταβλητή περιβάλλοντος `OPENAI_API_KEY` με το GitHub token σας πριν τρέξετε την εφαρμογή.
+> Βεβαιωθείτε ότι έχετε ορίσει την μεταβλητή περιβάλλοντος `OPENAI_API_KEY` με το token GitHub σας πριν τρέξετε την εφαρμογή.
 
-Τέλεια, για το επόμενο βήμα, ας απαριθμήσουμε τις ικανότητες στον διακομιστή.
+Τέλεια, για το επόμενο βήμα, ας καταγράψουμε τις δυνατότητες του διακομιστή.
 
-### -2- Λίστα ικανοτήτων διακομιστή
+### -2- Καταγραφή δυνατοτήτων διακομιστή
 
-Τώρα θα συνδεθούμε στον διακομιστή και θα ζητήσουμε τις ικανότητές του:
+Τώρα θα συνδεθούμε στον διακομιστή και θα ζητήσουμε τις δυνατότητές του:
 
 #### Typescript
 
-Στην ίδια κλάση προσθέστε τις ακόλουθες μεθόδους:
+Στην ίδια κλάση, προσθέστε τις ακόλουθες μεθόδους:
 
 ```typescript
 async connectToServer(transport: Transport) {
@@ -334,7 +393,7 @@ async connectToServer(transport: Transport) {
 async run() {
     console.log("Asking server for available tools");
 
-    // λίστα εργαλείων
+    // καταχώριση εργαλείων
     const toolsResult = await this.client.listTools();
 }
 ```
@@ -342,18 +401,18 @@ async run() {
 Στον προηγούμενο κώδικα έχουμε:
 
 - Προσθέσει κώδικα για σύνδεση με τον διακομιστή, `connectToServer`.
-- Δημιουργήσει μια μέθοδο `run` υπεύθυνη για τη ροή της εφαρμογής μας. Μέχρι στιγμής εμφανίζει μόνο τα εργαλεία αλλά σύντομα θα προσθέσουμε περισσότερα.
+- Δημιουργήσει μια μέθοδο `run` υπεύθυνη για τη ροή της εφαρμογής μας. Μέχρι τώρα καταγράφει μόνο τα εργαλεία, αλλά σύντομα θα προσθέσουμε περισσότερα.
 
 #### Python
 
 ```python
-# Καταγραφή διαθέσιμων πόρων
+# Καταχώριση διαθέσιμων πόρων
 resources = await session.list_resources()
 print("LISTING RESOURCES")
 for resource in resources:
     print("Resource: ", resource)
 
-# Καταγραφή διαθέσιμων εργαλείων
+# Καταχώριση διαθέσιμων εργαλείων
 tools = await session.list_tools()
 print("LISTING TOOLS")
 for tool in tools.tools:
@@ -361,9 +420,9 @@ for tool in tools.tools:
     print("Tool", tool.inputSchema["properties"])
 ```
 
-Αυτά προσθέσαμε:
+Να τι προσθέσαμε:
 
-- Απαρίθμηση πόρων και εργαλείων και εκτύπωσή τους. Για τα εργαλεία επίσης απαριθμούμε το `inputSchema` που θα χρησιμοποιήσουμε μετά.
+- Καταγραφή πόρων και εργαλείων και εκτύπωσή τους. Για τα εργαλεία καταγράφουμε επίσης την `inputSchema` που θα χρησιμοποιήσουμε αργότερα.
 
 #### .NET
 
@@ -390,45 +449,45 @@ async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
 
 Στον προηγούμενο κώδικα έχουμε:
 
-- Απαριθμήσει τα εργαλεία που είναι διαθέσιμα στον MCP Server
-- Για κάθε εργαλείο απαριθμήσαμε όνομα, περιγραφή και το σχήμα του. Το τελευταίο είναι κάτι που θα χρησιμοποιήσουμε σύντομα για να καλέσουμε τα εργαλεία.
+- Καταγράψει τα εργαλεία που είναι διαθέσιμα στον MCP Server
+- Για κάθε εργαλείο, καταγράψει όνομα, περιγραφή και το σχήμα του. Το τελευταίο θα χρησιμοποιήσουμε για να καλέσουμε τα εργαλεία σύντομα.
 
 #### Java
 
 ```java
-// Δημιουργήστε έναν πάροχο εργαλείων που εντοπίζει αυτόματα τα εργαλεία MCP
+// Δημιουργήστε έναν πάροχο εργαλείων που ανακαλύπτει αυτόματα τα εργαλεία MCP
 ToolProvider toolProvider = McpToolProvider.builder()
         .mcpClients(List.of(mcpClient))
         .build();
 
 // Ο πάροχος εργαλείων MCP χειρίζεται αυτόματα:
 // - Τη λίστα διαθέσιμων εργαλείων από τον διακομιστή MCP
-// - Τη μετατροπή σχημάτων εργαλείων MCP σε μορφή LangChain4j
+// - Τη μετατροπή των σχημάτων εργαλείων MCP σε μορφή LangChain4j
 // - Τη διαχείριση εκτέλεσης εργαλείων και απαντήσεων
 ```
 
 Στον προηγούμενο κώδικα έχουμε:
 
-- Δημιουργήσει έναν `McpToolProvider` που ανακαλύπτει αυτόματα και εγγράφει όλα τα εργαλεία από τον MCP server
-- Ο tool provider χειρίζεται εσωτερικά τη μετατροπή μεταξύ MCP εργαλείων και της μορφής εργαλείων του LangChain4j
-- Αυτή η προσέγγιση αφαιρεί την ανάγκη για χειροκίνητη απαρίθμηση και μετατροπή εργαλείων
+- Δημιουργήσει ένα `McpToolProvider` που αυτόματα ανιχνεύει και καταχωρεί όλα τα εργαλεία από τον MCP server
+- Ο πάροχος εργαλείων χειρίζεται εσωτερικά τη μετατροπή μεταξύ των σχημάτων εργαλείων MCP και της μορφής εργαλείων του LangChain4j
+- Αυτή η προσέγγιση αφαιρεί την ανάγκη χειροκίνητης καταγραφής και μετατροπής εργαλείων
 
 #### Rust
 
-Η ανάκτηση εργαλείων από τον MCP διακομιστή γίνεται με τη μέθοδο `list_tools`. Στη συνάρτηση `main`, αφού ρυθμίσετε τον MCP client, προσθέστε τον ακόλουθο κώδικα:
+Η ανάκτηση εργαλείων από τον MCP server γίνεται με τη μέθοδο `list_tools`. Στη συνάρτηση `main` σας, μετά τη δημιουργία του MCP client, προσθέστε τον ακόλουθο κώδικα:
 
 ```rust
-// Λήψη καταλόγου εργαλείων MCP
+// Λάβετε τη λίστα εργαλείων MCP
 let tools = mcp_client.list_tools(Default::default()).await?;
 ```
 
-### -3- Μετατροπή ικανοτήτων διακομιστή σε εργαλεία για LLM
+### -3- Μετατροπή δυνατοτήτων διακομιστή σε εργαλεία LLM
 
-Το επόμενο βήμα μετά την απαρίθμηση των ικανοτήτων του διακομιστή είναι να τις μετατρέψουμε σε μορφή που κατανοεί το LLM. Μόλις το κάνουμε, μπορούμε να παρέχουμε αυτές τις ικανότητες ως εργαλεία στο LLM μας.
+Το επόμενο βήμα μετά την καταγραφή των δυνατοτήτων του διακομιστή είναι να τις μετατρέψουμε σε μορφή που κατανοεί το LLM. Μόλις το κάνουμε, μπορούμε να παρέχουμε αυτές τις δυνατότητες ως εργαλεία στο LLM μας.
 
 #### TypeScript
 
-1. Προσθέστε τον ακόλουθο κώδικα για να μετατρέψετε την απάντηση από τον MCP Server σε μορφή εργαλείου που μπορεί να χρησιμοποιήσει το LLM:
+1. Προσθέστε τον ακόλουθο κώδικα για να μετατρέψετε την απόκριση από τον MCP Server σε μορφή εργαλείου που μπορεί να χρησιμοποιήσει το LLM:
 
     ```typescript
     openAiToolAdapter(tool: {
@@ -455,9 +514,9 @@ let tools = mcp_client.list_tools(Default::default()).await?;
 
     ```
 
-    Ο παραπάνω κώδικας παίρνει μια απάντηση από τον MCP Server και την μετατρέπει σε ορισμό εργαλείου σε μορφή που καταλαβαίνει το LLM.
+    Ο παραπάνω κώδικας παίρνει μια απόκριση από τον MCP Server και τη μετατρέπει σε μορφή ορισμού εργαλείου που κατανοεί το LLM.
 
-2. Ας ενημερώσουμε την μέθοδο `run` για να απαριθμήσουμε τις ικανότητες του διακομιστή:
+2. Ας ενημερώσουμε επόμενα τη μέθοδο `run` για να καταγράψει τις δυνατότητες του διακομιστή:
 
     ```typescript
     async run() {
@@ -473,11 +532,11 @@ let tools = mcp_client.list_tools(Default::default()).await?;
     }
     ```
 
-    Στον προηγούμενο κώδικα, ενημερώσαμε τη μέθοδο `run` ώστε να περνάει μέσα από το αποτέλεσμα και για κάθε καταχώρηση να καλεί το `openAiToolAdapter`.
+    Στον προηγούμενο κώδικα, έχουμε ενημερώσει τη μέθοδο `run` ώστε να διατρέχει το αποτέλεσμα και για κάθε εγγραφή να καλεί το `openAiToolAdapter`.
 
 #### Python
 
-1. Πρώτα, ας δημιουργήσουμε την ακόλουθη συνάρτηση μετατροπής
+1. Πρώτα, ας δημιουργήσουμε την ακόλουθη συνάρτηση μετατροπής:
 
     ```python
     def convert_to_llm_tool(tool):
@@ -497,9 +556,9 @@ let tools = mcp_client.list_tools(Default::default()).await?;
         return tool_schema
     ```
 
-    Στη συνάρτηση `convert_to_llm_tools` παίρνουμε μια απάντηση εργαλείου MCP και τη μετατρέπουμε σε μορφή που κατανοεί το LLM.
+    Στη συνάρτηση `convert_to_llm_tools` παίρνουμε μια απόκριση εργαλείου MCP και τη μετατρέπουμε σε μορφή που κατανοεί το LLM.
 
-2. Έπειτα, ας ενημερώσουμε τον κώδικα του πελάτη μας ώστε να χρησιμοποιεί αυτή τη συνάρτηση ως εξής:
+2. Στη συνέχεια, ας ενημερώσουμε τον κώδικα του πελάτη μας ώστε να χρησιμοποιεί αυτή τη συνάρτηση:
 
     ```python
     functions = []
@@ -509,11 +568,11 @@ let tools = mcp_client.list_tools(Default::default()).await?;
         functions.append(convert_to_llm_tool(tool))
     ```
 
-    Εδώ, προσθέτουμε μια κλήση σε `convert_to_llm_tool` για να μετατρέψουμε την απάντηση εργαλείου MCP σε κάτι που μπορούμε να δώσουμε στο LLM αργότερα.
+    Εδώ προσθέτουμε μια κλήση στη `convert_to_llm_tool` για να μετατρέψουμε την απόκριση εργαλείου MCP σε κάτι που μπορούμε να δώσουμε αργότερα στο LLM.
 
 #### .NET
 
-1. Ας προσθέσουμε κώδικα για να μετατρέψουμε την απάντηση εργαλείων MCP σε κάτι που μπορεί να καταλάβει το LLM
+1. Ας προσθέσουμε κώδικα για να μετατρέψουμε την απόκριση εργαλείου MCP σε μορφή που κατανοεί το LLM
 
 ```csharp
 ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonElement jsonElement)
@@ -538,10 +597,10 @@ ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonE
 
 Στον προηγούμενο κώδικα έχουμε:
 
-- Δημιουργήσει μια μέθοδο `ConvertFrom` που παίρνει όνομα, περιγραφή και σχήμα εισόδου.
-- Ορίσει λειτουργικότητα που δημιουργεί ένα `FunctionDefinition` που περνά σε `ChatCompletionsDefinition`. Το τελευταίο είναι κάτι που κατανοεί το LLM.
+- Δημιουργήσει μια συνάρτηση `ConvertFrom` που παίρνει όνομα, περιγραφή και σχήμα εισόδου.
+- Ορίσει λειτουργικότητα που δημιουργεί ένα `FunctionDefinition` που περνάει σε ένα `ChatCompletionsDefinition`. Το τελευταίο είναι κάτι που κατανοεί το LLM.
 
-2. Ας δούμε πώς μπορούμε να ενημερώσουμε υπάρχοντα κομμάτια κώδικα για να εκμεταλλευτούμε αυτή τη μέθοδο:
+2. Ας δούμε πώς μπορούμε να ενημερώσουμε υπάρχοντα κώδικα για να αξιοποιήσουμε αυτή τη συνάρτηση:
 
     ```csharp
     async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
@@ -587,12 +646,12 @@ ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonE
 #### Java
 
 ```java
-// Δημιουργήστε μια διεπαφή Bot για αλληλεπίδραση με φυσική γλώσσα
+// Δημιουργήστε μια διεπαφή Bot για αλληλεπίδραση φυσικής γλώσσας
 public interface Bot {
     String chat(String prompt);
 }
 
-// Διαμορφώστε την υπηρεσία AI με εργαλεία LLM και MCP
+// Ρυθμίστε την υπηρεσία AI με εργαλεία LLM και MCP
 Bot bot = AiServices.builder(Bot.class)
         .chatLanguageModel(model)
         .toolProvider(toolProvider)
@@ -602,13 +661,13 @@ Bot bot = AiServices.builder(Bot.class)
 Στον προηγούμενο κώδικα έχουμε:
 
 - Ορίσει ένα απλό interface `Bot` για αλληλεπιδράσεις με φυσική γλώσσα
-- Χρησιμοποιήσει το `AiServices` του LangChain4j για να συνδέσει αυτόματα το LLM με τον MCP tool provider
-- Το πλαίσιο χειρίζεται αυτόματα τη μετατροπή σχήματος εργαλείων και τις κλήσεις λειτουργιών στο παρασκήνιο
-- Αυτή η προσέγγιση καταργεί την χειροκίνητη μετατροπή εργαλείων - το LangChain4j αναλαμβάνει όλη τη σύνθετη διαδικασία μετατροπής MCP εργαλείων σε μορφή συμβατή με LLM
+- Χρησιμοποιήσει το `AiServices` του LangChain4j για να δέσει αυτόματα το LLM με τον πάροχο εργαλείων MCP
+- Το πλαίσιο χειρίζεται αυτόματα τη μετατροπή του σχήματος και τις κλήσεις συναρτήσεων στο παρασκήνιο
+- Αυτή η προσέγγιση καταργεί την χειροκίνητη μετατροπή εργαλείων - το LangChain4j χειρίζεται όλη την πολυπλοκότητα της μετατροπής εργαλείων MCP σε μορφή συμβατή με τα LLM
 
 #### Rust
 
-Για να μετατρέψουμε την απάντηση εργαλείων MCP σε μορφή που κατανοεί το LLM, θα προσθέσουμε μια βοηθητική συνάρτηση που μορφοποιεί την λίστα εργαλείων. Προσθέστε τον ακόλουθο κώδικα στο αρχείο `main.rs` κάτω από τη συνάρτηση `main`. Αυτή θα καλείται κατά τις αιτήσεις προς το LLM:
+Για να μετατρέψουμε την απόκριση εργαλείου MCP σε μορφή που κατανοεί το LLM, θα προσθέσουμε μια βοηθητική συνάρτηση που μορφοποιεί την καταγραφή εργαλείων. Προσθέστε τον ακόλουθο κώδικα στο αρχείο `main.rs` κάτω από τη συνάρτηση `main`. Αυτή θα καλείται κατά τα αιτήματα προς το LLM:
 
 ```rust
 async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Error>> {
@@ -643,15 +702,15 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 }
 ```
 
-Τέλεια, είμαστε έτοιμοι να διαχειριστούμε αιτήσεις χρήστη, ας προχωρήσουμε σε αυτό.
+Τέλεια, είμαστε έτοιμοι να χειριστούμε αιτήματα από τον χρήστη, οπότε ας προχωρήσουμε σε αυτό.
 
-### -4- Διαχείριση αιτήματος prompt χρήστη
+### -4- Διαχείριση αιτήματος χρήστη (prompt)
 
-Σε αυτό το τμήμα του κώδικα, θα διαχειριστούμε αιτήματα χρηστών.
+Σε αυτό το μέρος του κώδικα, θα διαχειριστούμε τα αιτήματα των χρηστών.
 
 #### TypeScript
 
-1. Προσθέστε μια μέθοδο που θα χρησιμοποιείται για να καλέσει το LLM:
+1. Προσθέστε μια μέθοδο που θα χρησιμοποιηθεί για να καλέσουμε το LLM μας:
 
     ```typescript
     async callTools(
@@ -665,7 +724,7 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
         console.log(`Calling tool ${toolName} with args ${JSON.stringify(args)}`);
 
 
-        // 2. Καλέστε το εργαλείο του διακομιστή
+        // 2. Κλήση στο εργαλείο του διακομιστή
         const toolResult = await this.client.callTool({
             name: toolName,
             arguments: JSON.parse(args),
@@ -674,7 +733,7 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
         console.log("Tool result: ", toolResult);
 
         // 3. Κάντε κάτι με το αποτέλεσμα
-        // ΠΡΕΠΕΙ ΝΑ ΓΙΝΕΙ
+        // ΕΚΚΑΘΑΡΙΣΗ
 
         }
     }
@@ -682,8 +741,8 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 
     Στον προηγούμενο κώδικα:
 
-    - Προσθέσαμε τη μέθοδο `callTools`.
-    - Η μέθοδος παίρνει μια απάντηση LLM και ελέγχει ποια εργαλεία έχουν κληθεί, αν υπάρχουν:
+    - Προσθέσαμε μια μέθοδο `callTools`.
+    - Η μέθοδος παίρνει μια απόκριση LLM και ελέγχει ποια εργαλεία έχουν κληθεί, αν υπάρχουν:
 
         ```typescript
         for (const tool_call of tool_calls) {
@@ -692,11 +751,11 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 
         console.log(`Calling tool ${toolName} with args ${JSON.stringify(args)}`);
 
-        // καλώ εργαλείο
+        // κλήση εργαλείου
         }
         ```
 
-    - Καλεί ένα εργαλείο, αν το LLM υποδείξει ότι πρέπει να κληθεί:
+    - Καλεί ένα εργαλείο, αν το LLM υποδεικνύει ότι πρέπει να κληθεί:
 
         ```typescript
         // 2. Καλέστε το εργαλείο του διακομιστή
@@ -711,7 +770,7 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
         // ΠΡΕΠΕΙ ΝΑ ΓΙΝΕΙ
         ```
 
-2. Ενημερώστε την μέθοδο `run` για να συμπεριλάβει κλήσεις στο LLM και τη μέθοδο `callTools`:
+2. Ενημερώστε τη μέθοδο `run` ώστε να περιλαμβάνει κλήσεις προς το LLM και κλήση της `callTools`:
 
     ```typescript
 
@@ -737,7 +796,7 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 
     let results: any[] = [];
 
-    // 3. Επεξεργαστείτε την απόκριση του LLM, για κάθε επιλογή, ελέγξτε αν έχει κλήσεις εργαλείων
+    // 3. Εξετάστε την απάντηση του LLM, για κάθε επιλογή, ελέγξτε αν έχει κλήσεις εργαλείων
     (await response).choices.map(async (choice: { message: any; }) => {
         const message = choice.message;
         if (message.tool_calls) {
@@ -747,21 +806,21 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
     });
     ```
 
-Τέλεια, ας δούμε ολόκληρο τον κώδικα:
+Τέλεια, ας δούμε τον πλήρη κώδικα:
 
 ```typescript
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 import { Transport } from "@modelcontextprotocol/sdk/shared/transport.js";
 import OpenAI from "openai";
-import { z } from "zod"; // Εισαγωγή του zod για επικύρωση σχήματος
+import { z } from "zod"; // Εισαγωγή του zod για επικύρωση σχημάτων
 
 class MyClient {
     private openai: OpenAI;
     private client: Client;
     constructor(){
         this.openai = new OpenAI({
-            baseURL: "https://models.inference.ai.azure.com", // μπορεί να χρειαστεί να αλλάξει σε αυτό το url στο μέλλον: https://models.github.ai/inference
+            baseURL: "https://models.inference.ai.azure.com", // ίσως χρειαστεί να αλλάξει σε αυτό το url στο μέλλον: https://models.github.ai/inference
             apiKey: process.env.GITHUB_TOKEN,
         });
 
@@ -791,11 +850,11 @@ class MyClient {
         description?: string;
         input_schema: any;
           }) {
-          // Δημιουργία ενός σχήματος zod βασισμένου στο input_schema
+          // Δημιουργήστε ένα σχήμα zod βασισμένο στο input_schema
           const schema = z.object(tool.input_schema);
       
           return {
-            type: "function" as const, // Ορισμός τύπου ως "function"
+            type: "function" as const, // Ορίστε ρητά τον τύπο σε "function"
             function: {
               name: tool.name,
               description: tool.description,
@@ -819,7 +878,7 @@ class MyClient {
           console.log(`Calling tool ${toolName} with args ${JSON.stringify(args)}`);
     
     
-          // 2. Κλήση του εργαλείου του διακομιστή
+          // 2. Καλέστε το εργαλείο του διακομιστή
           const toolResult = await this.client.callTool({
             name: toolName,
             arguments: JSON.parse(args),
@@ -828,7 +887,7 @@ class MyClient {
           console.log("Tool result: ", toolResult);
     
           // 3. Κάντε κάτι με το αποτέλεσμα
-          // ΠΡΕΠΕΙ ΝΑ ΓΙΝΕΙ
+          // ΕΚΚΡΕΜΕΣ ΕΝΕΡΓΕΙΕΣ
     
          }
     }
@@ -863,7 +922,7 @@ class MyClient {
 
         let results: any[] = [];
     
-        // 3. Διέλευση από την απόκριση LLM, για κάθε επιλογή, έλεγχος αν έχει κλήσεις εργαλείων
+        // 3. Εξετάστε την απάντηση του LLM, για κάθε επιλογή, ελέγξτε αν έχει κλήσεις εργαλείων
         (await response).choices.map(async (choice: { message: any; }) => {
           const message = choice.message;
           if (message.tool_calls) {
@@ -886,7 +945,7 @@ client.connectToServer(transport);
 
 #### Python
 
-1. Ας προσθέσουμε κάποιες εισαγωγές που χρειαζόμαστε για να καλέσουμε ένα LLM
+1. Ας προσθέσουμε μερικές εισαγωγές που απαιτούνται για κλήση σε LLM
 
     ```python
     # llm
@@ -897,7 +956,7 @@ client.connectToServer(transport);
     import json
     ```
 
-2. Έπειτα, ας προσθέσουμε τη συνάρτηση που θα καλέσει το LLM:
+2. Στη συνέχεια, ας προσθέσουμε τη συνάρτηση που θα καλέσει το LLM:
 
     ```python
     # llm
@@ -949,33 +1008,33 @@ client.connectToServer(transport);
 
     Στον προηγούμενο κώδικα έχουμε:
 
-    - Πέρασε τις λειτουργίες που βρήκαμε στον MCP server και μετατρέψαμε, στο LLM.
-    - Κατόπιν καλέσαμε το LLM με τις συγκεκριμένες λειτουργίες.
-    - Έπειτα, ελέγχουμε το αποτέλεσμα για να δούμε ποιες λειτουργίες πρέπει να κληθούν, αν υπάρχουν.
-    - Τέλος, περνάμε έναν πίνακα λειτουργιών προς κλήση.
+    - Περάσει τις συναρτήσεις μας που βρήκαμε στον MCP server και μετατρέψαμε, στο LLM.
+    - Στη συνέχεια καλέσαμε το LLM με αυτές τις συναρτήσεις.
+    - Μετά, εξετάζουμε το αποτέλεσμα για να δούμε ποιες συναρτήσεις πρέπει να καλέσουμε, αν υπάρχουν.
+    - Τέλος, περνάμε έναν πίνακα συναρτήσεων που πρέπει να κληθούν.
 
-3. Τελικό βήμα, ας ενημερώσουμε τον κύριο κώδικα:
+3. Τελικό βήμα, ας ενημερώσουμε τον βασικό μας κώδικα:
 
     ```python
     prompt = "Add 2 to 20"
 
-    # ρώτησε το LLM ποια εργαλεία να χρησιμοποιηθούν, αν υπάρχουν
+    # ρώτα το LLM ποια εργαλεία να χρησιμοποιήσει, αν υπάρχουν
     functions_to_call = call_llm(prompt, functions)
 
-    # κλήση προτεινόμενων συναρτήσεων
+    # κάλεσε τις προτεινόμενες λειτουργίες
     for f in functions_to_call:
         result = await session.call_tool(f["name"], arguments=f["args"])
         print("TOOLS result: ", result.content)
     ```
 
-    Εκεί ήταν το τελικό βήμα, στον παραπάνω κώδικα:
+    Εκεί, αυτό ήταν το τελευταίο βήμα, στον παραπάνω κώδικα:
 
-    - Καλούμε ένα εργαλείο MCP μέσω `call_tool` χρησιμοποιώντας μια λειτουργία που το LLM θεώρησε πως πρέπει να καλέσουμε βάσει του prompt.
+    - Καλούμε ένα εργαλείο MCP μέσω της `call_tool` χρησιμοποιώντας μια συνάρτηση που το LLM θεώρησε ότι πρέπει να κληθεί βάσει του prompt μας.
     - Εκτυπώνουμε το αποτέλεσμα της κλήσης εργαλείου στον MCP Server.
 
 #### .NET
 
-1. Ας δούμε κώδικα για την υποβολή αιτήματος προς LLM:
+1. Ας δούμε λίγο κώδικα για ένα αίτημα prompt προς το LLM:
 
     ```csharp
     var tools = await GetMcpTools();
@@ -1011,12 +1070,12 @@ client.connectToServer(transport);
 
     Στον προηγούμενο κώδικα έχουμε:
 
-    - Φορτώσει τα εργαλεία από τον MCP server, `var tools = await GetMcpTools()`.
-    - Ορίσει ένα prompt χρήστη `userMessage`.
-    - Κατασκευάσει ένα αντικείμενο επιλογών που καθορίζει μοντέλο και εργαλεία.
-    - Έκανε ένα αίτημα προς το LLM.
+    - Ανάκτηση εργαλείων από τον MCP server, `var tools = await GetMcpTools()`.
+    - Ορισμό του prompt χρήστη `userMessage`.
+    - Δημιουργία ενός αντικειμένου options καθορίζοντας μοντέλο και εργαλεία.
+    - Εγγραφή ενός αιτήματος προς το LLM.
 
-2. Ένα τελευταίο βήμα, ας ελέγξουμε αν το LLM θεωρεί ότι πρέπει να καλέσουμε μια λειτουργία:
+2. Ένα τελευταίο βήμα, ας δούμε αν το LLM νομίζει ότι πρέπει να καλέσουμε μια συνάρτηση:
 
     ```csharp
     // 4. Check if the response contains a function call
@@ -1041,10 +1100,10 @@ client.connectToServer(transport);
 
     Στον προηγούμενο κώδικα έχουμε:
 
-    - Περάσει από μια λίστα κλήσεων λειτουργιών.
-    - Για κάθε κλήση εργαλείου, ανιχνεύουμε όνομα και ορίσματα και καλούμε το εργαλείο στον MCP server μέσω του MCP client. Τέλος εκτυπώνουμε τα αποτελέσματα.
+    - Περάσει επανάληψη σε μια λίστα κλήσεων συναρτήσεων.
+    - Για κάθε κλήση εργαλείου, ανάλυση ονόματος και ορισμάτων και κλήση εργαλείου στον MCP server χρησιμοποιώντας τον MCP client. Τελικά, εκτυπώνουμε τα αποτελέσματα.
 
-Δείτε τον κώδικα ολόκληρο:
+Να ο κώδικας πλήρως:
 
 ```csharp
 using Azure;
@@ -1174,7 +1233,7 @@ Console.WriteLine($"Assistant response: {content}");
 
 ```java
 try {
-    // Εκτελέστε αιτήματα φυσικής γλώσσας που χρησιμοποιούν αυτόματα τα εργαλεία MCP
+    // Εκτέλεση αιτημάτων φυσικής γλώσσας που χρησιμοποιούν αυτόματα τα εργαλεία MCP
     String response = bot.chat("Calculate the sum of 24.5 and 17.3 using the calculator service");
     System.out.println(response);
 
@@ -1190,25 +1249,48 @@ try {
 
 Στον προηγούμενο κώδικα έχουμε:
 
-- Χρησιμοποιήσει απλά prompts φυσικής γλώσσας για αλληλεπίδραση με τα εργαλεία του MCP server
-- Το πλαίσιο LangChain4j διαχειρίζεται αυτόματα:
-  - Τη μετατροπή των prompts χρήστη σε κλήσεις εργαλείων όταν χρειάζεται
-  - Τις κλήσεις των κατάλληλων εργαλείων MCP βάσει της απόφασης του LLM
-  - Τη διαχείριση της ροής της συνομιλίας μεταξύ LLM και MCP server
-- Η μέθοδος `bot.chat()` επιστρέφει απαντήσεις σε φυσική γλώσσα που μπορεί να περιλαμβάνουν αποτελέσματα από εκτελέσεις εργαλείων MCP
-- Αυτή η προσέγγιση παρέχει μια απρόσκοπτη εμπειρία χρήστη όπου δεν χρειάζεται να γνωρίζουν για την υποκείμενη υλοποίηση MCP
+- Χρήση απλών prompt φυσικής γλώσσας για αλληλεπίδραση με τα εργαλεία του MCP server
+- Το πλαίσιο LangChain4j χειρίζεται αυτόματα:
+  - Τη μετατροπή prompts χρηστών σε κλήσεις εργαλείων όταν χρειάζεται
+  - Την κλήση των κατάλληλων εργαλείων MCP βάσει απόφασης του LLM
+  - Τη διαχείριση της ροής της συνομιλίας ανάμεσα στο LLM και στον MCP server
+- Η μέθοδος `bot.chat()` επιστρέφει απαντήσεις σε φυσική γλώσσα που μπορεί να περιλαμβάνουν αποτελέσματα από την εκτέλεση εργαλείων MCP
+- Αυτή η προσέγγιση παρέχει μια απρόσκοπτη εμπειρία χρήστη όπου οι χρήστες δεν χρειάζεται να γνωρίζουν για την υποκείμενη υλοποίηση MCP
 
 Πλήρες παράδειγμα κώδικα:
 
 ```java
+import dev.langchain4j.mcp.McpToolProvider;
+import dev.langchain4j.mcp.client.DefaultMcpClient;
+import dev.langchain4j.mcp.client.McpClient;
+import dev.langchain4j.mcp.client.transport.McpTransport;
+import dev.langchain4j.mcp.client.transport.http.HttpMcpTransport;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.openaiofficial.OpenAiOfficialChatModel;
+import dev.langchain4j.service.AiServices;
+import dev.langchain4j.service.tool.ToolProvider;
+
+import java.time.Duration;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+
 public class LangChain4jClient {
-    
-    public static void main(String[] args) throws Exception {        ChatLanguageModel model = OpenAiOfficialChatModel.builder()
-                .isGitHubModels(true)
-                .apiKey(System.getenv("GITHUB_TOKEN"))
+
+    private static final String DEFAULT_BASE_URL = "https://api.minimax.io/v1";
+    private static final String DEFAULT_MODEL_ID = "MiniMax-M3";
+    private static final Map<String, String> REGIONAL_BASE_URLS = Map.of(
+            "global_en", "https://api.minimax.io/v1",
+            "cn_zh", "https://api.minimaxi.com/v1");
+    private static final Set<String> SUPPORTED_MODEL_IDS = Set.of("MiniMax-M3", "MiniMax-M2.7");
+
+    public static void main(String[] args) throws Exception {
+        ChatLanguageModel model = OpenAiOfficialChatModel.builder()
+                .baseUrl(resolveBaseUrl())
+                .apiKey(requireEnv("OPENAI_API_KEY"))
                 .timeout(Duration.ofSeconds(60))
-                .modelName("gpt-4.1-nano")
-                .timeout(Duration.ofSeconds(60))
+                .modelName(resolveModelName())
                 .build();
 
         McpTransport transport = new HttpMcpTransport.Builder()
@@ -1244,14 +1326,54 @@ public class LangChain4jClient {
             mcpClient.close();
         }
     }
+
+    private static String resolveBaseUrl() {
+        String baseUrl = System.getenv("OPENAI_BASE_URL");
+        if (baseUrl != null && !baseUrl.isBlank()) {
+            return baseUrl;
+        }
+
+        String region = System.getenv("MINIMAX_REGION");
+        if (region == null || region.isBlank()) {
+            return DEFAULT_BASE_URL;
+        }
+
+        String regionalBaseUrl = REGIONAL_BASE_URLS.get(region);
+        if (regionalBaseUrl == null) {
+            throw new IllegalArgumentException("Unsupported MINIMAX_REGION value: " + region
+                    + ". Supported values: " + new TreeSet<>(REGIONAL_BASE_URLS.keySet()));
+        }
+        return regionalBaseUrl;
+    }
+
+    private static String resolveModelName() {
+        String modelId = System.getenv("MINIMAX_MODEL_ID");
+        if (modelId == null || modelId.isBlank()) {
+            return DEFAULT_MODEL_ID;
+        }
+        if (!SUPPORTED_MODEL_IDS.contains(modelId)) {
+            throw new IllegalArgumentException("Unsupported MINIMAX_MODEL_ID value: " + modelId
+                    + ". Supported values: " + new TreeSet<>(SUPPORTED_MODEL_IDS));
+        }
+        return modelId;
+    }
+
+    private static String requireEnv(String name) {
+        String value = System.getenv(name);
+        if (value == null || value.isBlank()) {
+            throw new IllegalStateException(name + " environment variable is not set");
+        }
+        return value;
+    }
 }
 ```
 
 #### Rust
 
-Εδώ γίνεται το κύριο μέρος της δουλειάς. Θα καλέσουμε το LLM με το αρχικό prompt του χρήστη, στη συνέχεια θα επεξεργαστούμε την απάντηση για να δούμε αν πρέπει να κληθούν εργαλεία. Αν ναι, θα καλέσουμε αυτά τα εργαλεία και θα συνεχίσουμε τη συνομιλία με το LLM μέχρι να μην απαιτούνται άλλες κλήσεις εργαλείων και να έχουμε το τελικό αποτέλεσμα.
+Εδώ γίνεται το μεγαλύτερο μέρος της δουλειάς. Θα καλέσουμε το LLM με το αρχικό prompt χρήστη, θα επεξεργαστούμε την απόκριση για να δούμε αν χρειάζεται να κληθούν εργαλεία. Αν ναι, θα καλέσουμε αυτά τα εργαλεία και θα συνεχίσουμε τη συνομιλία με το LLM μέχρι να μην είναι πλέον απαραίτητες κλήσεις εργαλείων και να έχουμε μια τελική απόκριση.
 
-Θα κάνουμε πολλαπλές κλήσεις προς το LLM, οπότε ας ορίσουμε μια συνάρτηση που θα διαχειρίζεται την κλήση του LLM. Προσθέστε την ακόλουθη συνάρτηση στο αρχείο `main.rs`:
+
+Θα πραγματοποιήσουμε πολλαπλές κλήσεις προς το LLM, οπότε ας ορίσουμε μια συνάρτηση που θα χειρίζεται την κλήση στο LLM. Προσθέστε την παρακάτω συνάρτηση στο αρχείο σας `main.rs`:
 
 ```rust
 async fn call_llm(
@@ -1271,8 +1393,9 @@ async fn call_llm(
 }
 ```
 
-Αυτή η συνάρτηση παίρνει τον client LLM, μια λίστα μηνυμάτων (συμπεριλαμβανομένου του prompt χρήστη), εργαλεία από τον MCP server, και στέλνει ένα αίτημα στο LLM επιστρέφοντας την απάντηση.
-Η απάντηση από το LLM θα περιέχει έναν πίνακα `choices`. Θα χρειαστεί να επεξεργαστούμε το αποτέλεσμα για να δούμε αν υπάρχουν `tool_calls`. Αυτό μας ενημερώνει ότι το LLM ζητάει να κληθεί ένα συγκεκριμένο εργαλείο με παραμέτρους. Προσθέστε τον παρακάτω κώδικα στο κάτω μέρος του αρχείου σας `main.rs` για να ορίσετε μια συνάρτηση που θα χειρίζεται την απάντηση του LLM:
+Αυτή η συνάρτηση δέχεται τον πελάτη LLM, μια λίστα μηνυμάτων (συμπεριλαμβανομένης της ερώτησης χρήστη), εργαλεία από τον διακομιστή MCP, και στέλνει ένα αίτημα στο LLM, επιστρέφοντας την απάντηση.
+
+Η απάντηση από το LLM θα περιέχει έναν πίνακα από `choices`. Θα χρειαστεί να επεξεργαστούμε το αποτέλεσμα για να δούμε αν υπάρχουν `tool_calls`. Αυτό μας ενημερώνει ότι το LLM ζητά να κληθεί ένα συγκεκριμένο εργαλείο με ορίσματα. Προσθέστε τον παρακάτω κώδικα στο κάτω μέρος του αρχείου `main.rs` για να ορίσετε μια συνάρτηση που θα χειρίζεται την απάντηση του LLM:
 
 ```rust
 async fn process_llm_response(
@@ -1291,16 +1414,16 @@ async fn process_llm_response(
         return Ok(());
     };
 
-    // Εκτύπωσε το περιεχόμενο αν είναι διαθέσιμο
+    // Εκτύπωση περιεχομένου αν είναι διαθέσιμο
     if let Some(content) = message.get("content").and_then(|c| c.as_str()) {
         println!("🤖 {}", content);
     }
 
-    // Διαχειρίσου τις κλήσεις εργαλείων
+    // Διαχείριση κλήσεων εργαλείων
     if let Some(tool_calls) = message.get("tool_calls").and_then(|tc| tc.as_array()) {
-        messages.push(message.clone()); // Πρόσθεσε μήνυμα βοηθού
+        messages.push(message.clone()); // Προσθήκη μηνύματος βοηθού
 
-        // Εκτέλεσε κάθε κλήση εργαλείων
+        // Εκτέλεση κάθε κλήσης εργαλείου
         for tool_call in tool_calls {
             let (tool_id, name, args) = extract_tool_call_info(tool_call)?;
             println!("⚡ Calling tool: {}", name);
@@ -1312,7 +1435,7 @@ async fn process_llm_response(
                 })
                 .await?;
 
-            // Πρόσθεσε το αποτέλεσμα εργαλείου στα μηνύματα
+            // Προσθήκη αποτελέσματος εργαλείου στα μηνύματα
             messages.push(json!({
                 "role": "tool",
                 "tool_call_id": tool_id,
@@ -1320,7 +1443,7 @@ async fn process_llm_response(
             }));
         }
 
-        // Συνέχισε τη συνομιλία με τα αποτελέσματα των εργαλείων
+        // Συνέχιση συνομιλίας με τα αποτελέσματα εργαλείων
         let response = call_llm(openai_client, messages, mcp_tools).await?;
         Box::pin(process_llm_response(
             &response,
@@ -1335,9 +1458,9 @@ async fn process_llm_response(
 }
 ```
 
-Αν υπάρχουν `tool_calls`, εξάγει τις πληροφορίες του εργαλείου, καλεί τον MCP server με το αίτημα εργαλείου και προσθέτει τα αποτελέσματα στα μηνύματα της συνομιλίας. Στη συνέχεια συνεχίζει τη συνομιλία με το LLM και τα μηνύματα ενημερώνονται με την απάντηση του βοηθού και τα αποτελέσματα της κλήσης εργαλείου.
+Αν υπάρχουν `tool_calls`, εξάγει τις πληροφορίες του εργαλείου, καλεί τον διακομιστή MCP με το αίτημα του εργαλείου και προσθέτει τα αποτελέσματα στα μηνύματα της συζήτησης. Στη συνέχεια συνεχίζει τη συζήτηση με το LLM και τα μηνύματα ενημερώνονται με την απάντηση του βοηθού και τα αποτελέσματα της κλήσης εργαλείου.
 
-Για να εξάγουμε πληροφορίες κλήσης εργαλείου που επιστρέφει το LLM για τις κλήσεις MCP, θα προσθέσουμε μια ακόμα βοηθητική συνάρτηση για να εξάγει όλα όσα χρειάζονται για την κλήση. Προσθέστε τον παρακάτω κώδικα στο κάτω μέρος του αρχείου σας `main.rs`:
+Για να εξάγουμε τις πληροφορίες της κλήσης εργαλείου που επιστρέφει το LLM για κλήσεις MCP, θα προσθέσουμε μια ακόμη βοηθητική συνάρτηση για να εξαγάγουμε όλα όσα χρειάζονται για την πραγματοποίηση της κλήσης. Προσθέστε τον παρακάτω κώδικα στο κάτω μέρος του αρχείου `main.rs`:
 
 ```rust
 fn extract_tool_call_info(tool_call: &Value) -> Result<(String, String, String), Box<dyn Error>> {
@@ -1361,7 +1484,7 @@ fn extract_tool_call_info(tool_call: &Value) -> Result<(String, String, String),
 }
 ```
 
-Με όλα τα κομμάτια στη θέση τους, τώρα μπορούμε να χειριστούμε το αρχικό prompt του χρήστη και να καλέσουμε το LLM. Ενημερώστε τη συνάρτηση `main` σας ώστε να περιλαμβάνει τον ακόλουθο κώδικα:
+Με όλα τα κομμάτια στη θέση τους, μπορούμε τώρα να χειριστούμε την αρχική ερώτηση του χρήστη και να καλέσουμε το LLM. Ενημερώστε τη συνάρτηση `main` σας ώστε να περιλαμβάνει τον παρακάτω κώδικα:
 
 ```rust
 // Συνομιλία LLM με κλήσεις εργαλείων
@@ -1376,22 +1499,22 @@ process_llm_response(
 .await?;
 ```
 
-Αυτό θα ερωτήσει το LLM με το αρχικό prompt του χρήστη που ζητά το άθροισμα δύο αριθμών και θα επεξεργαστεί την απάντηση για να χειριστεί δυναμικά τις κλήσεις εργαλείων.
+Αυτό θα ερωτήσει το LLM με την αρχική ερώτηση του χρήστη που ζητά το άθροισμα δύο αριθμών, και θα επεξεργαστεί την απάντηση για να χειριστεί δυναμικά τις κλήσεις εργαλείων.
 
 Τέλεια, τα καταφέρατε!
 
 ## Ανάθεση
 
-Πάρτε τον κώδικα από την άσκηση και δημιουργήστε τον server με περισσότερα εργαλεία. Έπειτα δημιουργήστε έναν πελάτη με ένα LLM, όπως στην άσκηση, και δοκιμάστε τον με διαφορετικά prompts για να βεβαιωθείτε ότι όλα τα εργαλεία του server καλούνται δυναμικά. Αυτός ο τρόπος κατασκευής ενός πελάτη σημαίνει ότι ο τελικός χρήστης θα έχει μια εξαιρετική εμπειρία χρήσης καθώς μπορεί να χρησιμοποιεί prompts αντί για ακριβείς εντολές πελάτη και να αγνοεί οποιαδήποτε κλήση γίνεται στον MCP server.
+Πάρτε τον κώδικα από την άσκηση και επεκτείνετε τον διακομιστή με μερικά περισσότερα εργαλεία. Στη συνέχεια δημιουργήστε έναν πελάτη με ένα LLM, όπως στην άσκηση, και δοκιμάστε το με διαφορετικές ερωτήσεις για να βεβαιωθείτε ότι όλα τα εργαλεία του διακομιστή καλούνται δυναμικά. Αυτός ο τρόπος κατασκευής πελάτη σημαίνει ότι ο τελικός χρήστης θα έχει μια εξαιρετική εμπειρία, καθώς μπορεί να χρησιμοποιεί ερωτήσεις αντί για ακριβείς εντολές πελάτη και δεν αντιλαμβάνεται ότι καλείται οποιοσδήποτε διακομιστής MCP.
 
 ## Λύση
 
-[Λύση](./solution/README.md)
+[Solution](./solution/README.md)
 
-## Βασικά Σημεία
+## Βασικά Συμπεράσματα
 
-- Η προσθήκη ενός LLM στον πελάτη σας παρέχει έναν καλύτερο τρόπο για τους χρήστες να αλληλεπιδρούν με τους MCP Servers.
-- Πρέπει να μετατρέψετε την απάντηση του MCP Server σε κάτι που το LLM μπορεί να καταλάβει.
+- Η προσθήκη ενός LLM στον πελάτη σας παρέχει έναν καλύτερο τρόπο στους χρήστες να αλληλεπιδρούν με διακομιστές MCP.
+- Πρέπει να μετατρέψετε την απάντηση του διακομιστή MCP σε κάτι που το LLM μπορεί να καταλάβει.
 
 ## Παραδείγματα
 
@@ -1402,11 +1525,11 @@ process_llm_response(
 - [Python Calculator](../../../../03-GettingStarted/samples/python)
 - [Rust Calculator](../../../../03-GettingStarted/samples/rust)
 
-## Πρόσθετοι Πόροι
+## Επιπλέον Πόροι
 
 ## Τι Ακολουθεί
 
-- Επόμενο: [Κατανάλωση ενός server χρησιμοποιώντας το Visual Studio Code](../04-vscode/README.md)
+- Επόμενο: [Κατανάλωση διακομιστή χρησιμοποιώντας Visual Studio Code](../04-vscode/README.md)
 
 ---
 

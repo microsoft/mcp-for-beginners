@@ -2,91 +2,91 @@
 
 ## 🎯 O Que Você Vai Aprender Neste Guia
 
-Este guia prático apresenta dez servidores Microsoft MCP que estão transformando a forma como os desenvolvedores trabalham com assistentes de IA. Ao invés de apenas explicar o que os servidores MCP *podem* fazer, vamos mostrar servidores que já estão fazendo uma diferença real nos fluxos de trabalho diários de desenvolvimento na Microsoft e além.
+Este guia prático apresenta dez servidores Microsoft MCP que estão ativamente transformando a forma como os desenvolvedores trabalham com assistentes de IA. Em vez de apenas explicar o que os servidores MCP *podem* fazer, mostraremos servidores que já estão fazendo uma diferença real nos fluxos de trabalho diários de desenvolvimento na Microsoft e além.
 
-Cada servidor neste guia foi selecionado com base no uso real e no feedback dos desenvolvedores. Você vai descobrir não apenas o que cada servidor faz, mas por que isso importa e como tirar o máximo proveito deles em seus próprios projetos. Seja você totalmente novo ao MCP ou buscando expandir sua configuração atual, esses servidores representam algumas das ferramentas mais práticas e impactantes disponíveis no ecossistema Microsoft.
+Cada servidor neste guia foi selecionado com base no uso no mundo real e no feedback dos desenvolvedores. Você descobrirá não apenas o que cada servidor faz, mas por que ele é importante e como tirar o máximo proveito dele em seus próprios projetos. Quer você seja completamente novo no MCP ou esteja procurando expandir sua configuração existente, esses servidores representam algumas das ferramentas mais práticas e impactantes disponíveis no ecossistema Microsoft.
 
 > **💡 Dica Rápida**
 > 
-> Novo no MCP? Não se preocupe! Este guia foi feito para ser amigável a iniciantes. Explicaremos os conceitos conforme avançamos, e você sempre pode consultar nossos módulos [Introdução ao MCP](../00-Introduction/README.md) e [Conceitos Básicos](../01-CoreConcepts/README.md) para um entendimento mais profundo.
+> Novo no MCP? Não se preocupe! Este guia foi feito para ser amigável para iniciantes. Explicaremos os conceitos conforme avançamos, e você sempre pode consultar nossos módulos [Introdução ao MCP](../00-Introduction/README.md) e [Conceitos Básicos](../01-CoreConcepts/README.md) para um embasamento mais profundo.
 
 ## Visão Geral
 
-Este guia abrangente explora dez servidores Microsoft MCP que estão revolucionando a forma como os desenvolvedores interagem com assistentes de IA e ferramentas externas. Desde o gerenciamento de recursos do Azure até o processamento de documentos, esses servidores demonstram o poder do Protocolo de Contexto do Modelo na criação de fluxos de trabalho de desenvolvimento integrados e produtivos.
+Este guia abrangente explora dez servidores Microsoft MCP que estão revolucionando a forma como os desenvolvedores interagem com assistentes de IA e ferramentas externas. Desde a gestão de recursos do Azure até o processamento de documentos, esses servidores demonstram o poder do Model Context Protocol na criação de fluxos de trabalho de desenvolvimento produtivos e integrados.
 
 ## Objetivos de Aprendizagem
 
 Ao final deste guia, você irá:
 - Entender como os servidores MCP aumentam a produtividade dos desenvolvedores
-- Conhecer as implementações MCP mais impactantes da Microsoft
+- Conhecer as implementações mais impactantes de servidores MCP da Microsoft
 - Descobrir casos de uso práticos para cada servidor
-- Saber configurar e instalar esses servidores no VS Code e Visual Studio
-- Explorar o ecossistema MCP mais amplo e as direções futuras
+- Saber como configurar e ajustar esses servidores no VS Code e Visual Studio
+- Explorar o ecossistema mais amplo do MCP e suas direções futuras
 
 ## 🔧 Entendendo os Servidores MCP: Guia para Iniciantes
 
 ### O Que São Servidores MCP?
 
-Como iniciante no Protocolo de Contexto do Modelo (MCP), você pode se perguntar: "O que exatamente é um servidor MCP e por que isso importa?" Vamos começar com uma analogia simples.
+Se você é iniciante no Model Context Protocol (MCP), deve estar se perguntando: "O que exatamente é um servidor MCP, e por que eu deveria me importar?" Vamos começar com uma analogia simples.
 
-Pense nos servidores MCP como assistentes especializados que ajudam seu companheiro de IA para programação (como o GitHub Copilot) a se conectar a ferramentas e serviços externos. Assim como você usa diferentes aplicativos no seu celular para tarefas distintas — um para clima, outro para navegação, outro para banco — os servidores MCP dão ao seu assistente de IA a capacidade de interagir com diferentes ferramentas e serviços de desenvolvimento.
+Pense nos servidores MCP como assistentes especializados que ajudam seu companheiro de codificação com IA (como o GitHub Copilot) a se conectar a ferramentas e serviços externos. Assim como você pode usar diferentes aplicativos no seu telefone para diferentes tarefas — um para o clima, outro para navegação, outro para banco — os servidores MCP dão ao seu assistente IA a habilidade de interagir com diversas ferramentas e serviços de desenvolvimento.
 
-### O Problema que os Servidores MCP Resolvem
+### O Problema Que os Servidores MCP Resolvem
 
-Antes dos servidores MCP, se você queria:
-- Consultar seus recursos do Azure
+Antes dos servidores MCP, se você quisesse:
+- Verificar seus recursos do Azure
 - Criar uma issue no GitHub
 - Consultar seu banco de dados
-- Buscar na documentação
+- Pesquisar na documentação
 
-Você precisava parar de programar, abrir um navegador, acessar o site adequado e realizar essas tarefas manualmente. Essa troca constante de contexto interrompia seu fluxo e diminuía sua produtividade.
+Você teria que parar de codificar, abrir um navegador, acessar o site apropriado e realizar essas tarefas manualmente. Essa constante troca de contexto quebra seu fluxo e reduz a produtividade.
 
 ### Como os Servidores MCP Transformam Sua Experiência de Desenvolvimento
 
-Com os servidores MCP, você pode permanecer no seu ambiente de desenvolvimento (VS Code, Visual Studio, etc.) e simplesmente pedir ao seu assistente de IA para cuidar dessas tarefas. Por exemplo:
+Com os servidores MCP, você pode permanecer no seu ambiente de desenvolvimento (VS Code, Visual Studio, etc.) e simplesmente pedir para o seu assistente de IA cuidar dessas tarefas. Por exemplo:
 
-**Em vez desse fluxo tradicional:**
-1. Parar de programar
+**Em vez deste fluxo tradicional:**
+1. Parar de codificar
 2. Abrir navegador
 3. Navegar até o portal do Azure
-4. Consultar detalhes da conta de armazenamento
-5. Voltar ao VS Code
-6. Retomar a programação
+4. Procurar detalhes da conta de armazenamento
+5. Voltar para o VS Code
+6. Retomar a codificação
 
-**Agora você pode fazer isso:**
-1. Perguntar à IA: "Qual o status das minhas contas de armazenamento do Azure?"
-2. Continuar codificando com a informação fornecida
+**Você agora pode fazer isto:**
+1. Perguntar para a IA: "Qual é o status das minhas contas de armazenamento Azure?"
+2. Continuar codificando com as informações fornecidas
 
 ### Benefícios Principais para Iniciantes
 
-#### 1. 🔄 **Permaneça em Seu Estado de Fluxo**
-- Nunca mais troque entre múltiplos aplicativos
+#### 1. 🔄 **Permaneça no Seu Estado de Fluxo**
+- Não precisa mais alternar entre vários aplicativos
 - Mantenha o foco no código que você está escrevendo
-- Reduza a sobrecarga mental de gerenciar várias ferramentas
+- Reduza o esforço mental de gerenciar várias ferramentas
 
-#### 2. 🤖 **Use Linguagem Natural em Vez de Comandos Complexos**
-- Ao invés de decorar sintaxe SQL, descreva quais dados você precisa
-- Ao invés de lembrar comandos Azure CLI, explique o que deseja conseguir
+#### 2. 🤖 **Use Linguagem Natural em vez de Comandos Complexos**
+- Em vez de decorar sintaxe SQL, descreva os dados que você precisa
+- Em vez de lembrar comandos Azure CLI, explique o que deseja alcançar
 - Deixe a IA cuidar dos detalhes técnicos enquanto você foca na lógica
 
-#### 3. 🔗 **Conecte Várias Ferramentas Juntas**
+#### 3. 🔗 **Conecte Múltiplas Ferramentas Juntas**
 - Crie fluxos de trabalho poderosos combinando diferentes serviços
-- Exemplo: "Obtenha todas as issues recentes do GitHub e crie itens correspondentes no Azure DevOps"
+- Exemplo: "Obtenha todas as issues recentes do GitHub e crie os work items correspondentes no Azure DevOps"
 - Construa automações sem escrever scripts complexos
 
 #### 4. 🌐 **Acesse um Ecossistema em Crescimento**
-- Tire proveito de servidores criados por Microsoft, GitHub e outras empresas
-- Misture e combine ferramentas de diferentes fornecedores de forma integrada
-- Participe de um ecossistema padronizado que funciona com diversos assistentes de IA
+- Aproveite servidores criados pela Microsoft, GitHub e outras empresas
+- Misture e combine ferramentas de diferentes fornecedores sem esforço
+- Participe de um ecossistema padronizado que funciona com diferentes assistentes IA
 
 #### 5. 🛠️ **Aprenda Fazendo**
 - Comece com servidores pré-construídos para entender os conceitos
-- Gradualmente, crie seus próprios servidores conforme ganhar confiança
-- Use SDKs e documentação disponíveis para guiar seu aprendizado
+- Construa gradualmente seus próprios servidores à medida que se sentir confortável
+- Use os SDKs e documentação disponíveis para guiar seu aprendizado
 
 ### Exemplo Real para Iniciantes
 
-Suponha que você está começando no desenvolvimento web e trabalhando no seu primeiro projeto. Veja como os servidores MCP podem ajudar:
+Digamos que você seja novo no desenvolvimento web e esteja trabalhando no seu primeiro projeto. Veja como servidores MCP podem ajudar:
 
 **Abordagem tradicional:**
 ```
@@ -110,204 +110,208 @@ Suponha que você está começando no desenvolvimento web e trabalhando no seu p
 
 ### A Vantagem do Padrão Corporativo
 
-O MCP está se tornando um padrão na indústria, o que significa:
-- **Consistência**: Experiência similar em diferentes ferramentas e empresas
-- **Interoperabilidade**: Servidores de fornecedores diferentes funcionam juntos
-- **Preparação para o futuro**: Habilidades e configurações transferem entre distintos assistentes de IA
+O MCP está se tornando um padrão da indústria, o que significa:
+- **Consistência**: Experiência similar através de diferentes ferramentas e empresas
+- **Interoperabilidade**: Servidores de diferentes fornecedores funcionam juntos
+- **Preparação para o futuro**: Habilidades e configurações são transferíveis entre assistentes IA diferentes
 - **Comunidade**: Grande ecossistema de conhecimento e recursos compartilhados
 
 ### Começando: O Que Você Vai Aprender
 
-Neste guia, exploraremos 10 servidores Microsoft MCP especialmente úteis para desenvolvedores de todos os níveis. Cada servidor foi projetado para:
+Neste guia, exploraremos 10 servidores Microsoft MCP particularmente úteis para desenvolvedores de todos os níveis. Cada servidor foi projetado para:
 - Resolver desafios comuns de desenvolvimento
 - Reduzir tarefas repetitivas
 - Melhorar a qualidade do código
-- Ampliar oportunidades de aprendizado
+- Aumentar oportunidades de aprendizado
 
 > **💡 Dica de Aprendizado**
 > 
-> Se você é totalmente novo no MCP, comece pelos nossos módulos [Introdução ao MCP](../00-Introduction/README.md) e [Conceitos Básicos](../01-CoreConcepts/README.md). Depois, volte aqui para ver esses conceitos em ação com ferramentas reais da Microsoft.
+> Se você é completamente novo no MCP, comece com nossos módulos [Introdução ao MCP](../00-Introduction/README.md) e [Conceitos Básicos](../01-CoreConcepts/README.md). Depois volte aqui para ver esses conceitos em ação com ferramentas reais da Microsoft.
 >
-> Para mais contexto sobre a importância do MCP, confira a publicação de Maria Naggaga: [Conecte Uma Vez, Integre em Qualquer Lugar com MCP](https://devblogs.microsoft.com/blog/connect-once-integrate-anywhere-with-mcps).
+> Para um contexto adicional sobre a importância do MCP, confira o post de Maria Naggaga: [Conecte Uma Vez, Integre em Qualquer Lugar com MCP](https://devblogs.microsoft.com/blog/connect-once-integrate-anywhere-with-mcps).
 
 ## Começando com MCP no VS Code e Visual Studio 🚀
 
-Configurar esses servidores MCP é simples se você usar Visual Studio Code ou Visual Studio 2022 com GitHub Copilot.
+Configurar esses servidores MCP é simples se você estiver usando Visual Studio Code ou Visual Studio 2022 com GitHub Copilot.
 
 ### Configuração no VS Code
 
-Aqui está o processo básico para VS Code:
+Aqui está o processo básico para o VS Code:
 
-1. **Ative o Modo Agente**: No VS Code, alterne para o modo Agente na janela do Copilot Chat
-2. **Configure os Servidores MCP**: Adicione configurações de servidores no arquivo settings.json do VS Code
-3. **Inicie os Servidores**: Clique no botão "Start" para cada servidor que desejar usar
-4. **Selecione as Ferramentas**: Escolha quais servidores MCP ativar para sua sessão atual
+1. **Ativar o Modo Agente**: No VS Code, mude para o modo Agente na janela do Copilot Chat
+2. **Configurar Servidores MCP**: Adicione configurações dos servidores no arquivo settings.json do VS Code
+3. **Iniciar Servidores**: Clique no botão "Iniciar" para cada servidor que deseja usar
+4. **Selecionar Ferramentas**: Escolha quais servidores MCP ativar para sua sessão atual
 
-Para instruções detalhadas, consulte a [documentação MCP do VS Code](https://code.visualstudio.com/docs/copilot/copilot-mcp).
+Para instruções detalhadas de configuração, veja a [documentação MCP do VS Code](https://code.visualstudio.com/docs/copilot/copilot-mcp).
 
-> **💡 Dica Profissional: Gerencie Servidores MCP como um especialista!**
+> **💡 Dica de Profissional: Gerencie Servidores MCP como um especialista!**
 > 
-> A visualização de Extensões do VS Code agora inclui uma [nova interface para gerenciar Servidores MCP instalados](https://code.visualstudio.com/docs/copilot/chat/mcp-servers#_use-mcp-tools-in-agent-mode)! Você tem acesso rápido para iniciar, parar e administrar qualquer Servidor MCP instalado através de uma interface clara e simples. Experimente!
+> A visualização de Extensões do VS Code agora inclui uma [nova interface prática para gerenciar servidores MCP instalados](https://code.visualstudio.com/docs/copilot/chat/mcp-servers#_use-mcp-tools-in-agent-mode)! Você tem acesso rápido para iniciar, parar e gerenciar quaisquer servidores MCP instalados usando uma interface clara e simples. Experimente!
 
 ### Configuração no Visual Studio 2022
 
-Para Visual Studio 2022 (versão 17.14 ou superior):
+Para o Visual Studio 2022 (versão 17.14 ou superior):
 
-1. **Ative o Modo Agente**: Clique no dropdown "Ask" na janela GitHub Copilot Chat e selecione "Agent"
-2. **Crie o Arquivo de Configuração**: Crie um arquivo `.mcp.json` no diretório da sua solução (local recomendado: `<SOLUTIONDIR>\.mcp.json`)
-3. **Configure os Servidores**: Adicione as configurações dos servidores MCP usando o formato padrão MCP
-4. **Aprovação das Ferramentas**: Quando solicitado, aprove os recursos que deseja usar com as permissões adequadas
+1. **Ativar o Modo Agente**: Clique no menu suspenso "Ask" na janela do GitHub Copilot Chat e selecione "Agent"
+2. **Criar Arquivo de Configuração**: Crie um arquivo `.mcp.json` no diretório da solução (local recomendado: `<SOLUTIONDIR>\.mcp.json`)
+3. **Configurar Servidores**: Adicione suas configurações de servidor MCP usando o formato padrão MCP
+4. **Aprovação de Ferramentas**: Quando solicitado, aprove as ferramentas que deseja usar com as permissões de escopo apropriadas
 
 Para instruções detalhadas de configuração no Visual Studio, consulte a [documentação MCP do Visual Studio](https://learn.microsoft.com/visualstudio/ide/mcp-servers).
 
-Cada servidor MCP tem requisitos próprios de configuração (strings de conexão, autenticação, etc.), mas o padrão de configuração é consistente em ambos os IDEs.
+Cada servidor MCP tem seus próprios requisitos de configuração (strings de conexão, autenticação, etc.), mas o padrão de configuração é consistente entre ambos os IDEs.
 
-## Lições Aprendidas com os Servidores Microsoft MCP 🛠️
+## Lição Aprendida com os Servidores Microsoft MCP 🛠️
 
 ### 1. 📚 Servidor Microsoft Learn Docs MCP
 
 [![Instalar no VS Code](https://img.shields.io/badge/VS_Code-Install_Microsoft_Docs_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=microsoft.docs.mcp&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Flearn.microsoft.com%2Fapi%2Fmcp%22%7D) [![Instalar no VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_Microsoft_Docs_MCP-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=microsoft.docs.mcp&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Flearn.microsoft.com%2Fapi%2Fmcp%22%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/microsoft/mcp)
 
-**O que faz**: O Servidor Microsoft Learn Docs MCP é um serviço hospedado na nuvem que fornece aos assistentes de IA acesso em tempo real à documentação oficial da Microsoft por meio do Protocolo de Contexto do Modelo. Ele conecta-se a `https://learn.microsoft.com/api/mcp` e permite buscas semânticas ao longo do Microsoft Learn, documentação Azure, documentação Microsoft 365 e outras fontes oficiais Microsoft.
+**O que faz**: O servidor Microsoft Learn Docs MCP é um serviço hospedado na nuvem que fornece aos assistentes de IA acesso em tempo real à documentação oficial da Microsoft através do Model Context Protocol. Ele conecta-se a `https://learn.microsoft.com/api/mcp` e possibilita busca semântica em Microsoft Learn, na documentação do Azure, documentação do Microsoft 365 e outras fontes oficiais da Microsoft.
 
-**Por que é útil**: Embora possa parecer "apenas documentação", este servidor é na verdade crucial para todo desenvolvedor que usa tecnologias Microsoft. Uma das maiores reclamações dos desenvolvedores .NET sobre assistentes de codificação por IA é que eles não estão atualizados com os últimos lançamentos de .NET e C#. O Servidor Microsoft Learn Docs MCP resolve isso fornecendo acesso em tempo real à documentação mais recente, referências de API e as melhores práticas. Esteja você trabalhando com os SDKs mais recentes do Azure, explorando novos recursos do C# 13 ou implementando padrões de ponta do .NET Aspire, este servidor garante que seu assistente de IA tenha acesso à informação autoritativa e atualizada que precisa para gerar código preciso e moderno.
+**Por que é útil**: Embora pareça ser “apenas documentação”, este servidor é na verdade crucial para todo desenvolvedor que usa tecnologias Microsoft. Uma das maiores reclamações dos desenvolvedores .NET sobre assistentes de codificação de IA é que eles não estão atualizados nas últimas versões do .NET e C#. O servidor Microsoft Learn Docs MCP resolve isso fornecendo acesso em tempo real à documentação mais atual, referências de API e melhores práticas. Quer você esteja trabalhando com os SDKs mais recentes do Azure, explorando novas funcionalidades do C# 13 ou implementando padrões Aspire avançados, este servidor garante que seu assistente de IA tenha acesso a informações autoritativas e atualizadas para gerar código preciso e moderno.
 
-**Uso no mundo real**: "Quais são os comandos az cli para criar um Azure container app conforme a documentação oficial do Microsoft Learn?" ou "Como configurar Entity Framework com injeção de dependência no ASP.NET Core?" Ou então: "Revise este código para garantir que esteja de acordo com as recomendações de desempenho da documentação Microsoft Learn." O servidor oferece cobertura abrangente do Microsoft Learn, docs Azure e documentação Microsoft 365 usando busca semântica avançada para encontrar as informações mais contextualizadas. Retorna até 10 fragmentos de conteúdo de alta qualidade com títulos de artigos e URLs, sempre acessando a documentação Microsoft mais recente conforme é publicada.
+**Uso real**: “Quais são os comandos az cli para criar um app container no Azure, conforme a documentação oficial do Microsoft Learn?” ou “Como configurar Entity Framework com injeção de dependência em ASP.NET Core?” Ou que tal “Revise esse código para garantir que ele está alinhado com as recomendações de desempenho da documentação Microsoft Learn.” O servidor oferece cobertura abrangente na documentação do Microsoft Learn, docs do Azure e documentação do Microsoft 365 usando uma busca semântica avançada para encontrar as informações mais relevantes contextualmente. Ele retorna até 10 fragmentos de conteúdo de alta qualidade com títulos de artigos e URLs, sempre acessando a documentação Microsoft mais recente conforme publicada.
 
-**Exemplo em destaque**: O servidor expõe a ferramenta `microsoft_docs_search` que realiza buscas semânticas na documentação técnica oficial da Microsoft. Uma vez configurado, você pode fazer perguntas como "Como implementar autenticação JWT no ASP.NET Core?" e receber respostas detalhadas, oficiais e com links à fonte. A qualidade da busca é excepcional porque entende o contexto – perguntar sobre “containers” em um contexto Azure retornará documentação do Azure Container Instances, enquanto o mesmo termo num contexto .NET trará informações relevantes sobre coleções em C#.
+**Exemplo em destaque**: O servidor expõe a ferramenta `microsoft_docs_search` que executa pesquisas semânticas contra a documentação técnica oficial da Microsoft. Uma vez configurado, você pode fazer perguntas como “Como implementar autenticação JWT em ASP.NET Core?” e obter respostas detalhadas e oficiais com links para as fontes. A qualidade da busca é excepcional porque o sistema entende o contexto – perguntar sobre “containers” em um contexto Azure retorna documentos sobre Azure Container Instances, enquanto o mesmo termo no contexto .NET retorna informações relevantes sobre coleções em C#.
 
-Isso é especialmente útil para bibliotecas e casos de uso que mudam rapidamente ou foram atualizados recentemente. Por exemplo, em alguns projetos recentes que fiz, quis aproveitar recursos dos lançamentos mais recentes do .NET Aspire e Microsoft.Extensions.AI. Incluindo o servidor Microsoft Learn Docs MCP, pude acessar não só documentos de API, mas também demonstrações e orientações recém-publicadas.
+Isso é especialmente útil para bibliotecas e casos de uso que mudam rapidamente ou foram recentemente atualizados. Por exemplo, em alguns projetos recentes de codificação, quis aproveitar funcionalidades das últimas versões do Aspire e Microsoft.Extensions.AI. Incluindo o servidor Microsoft Learn Docs MCP, consegui aproveitar não só a documentação de API, mas também tutoriais e orientações recém-publicadas.
 
-> **💡 Dica Profissional**
+> **💡 Dica de Profissional**
 > 
-> Mesmo modelos amigáveis a ferramentas precisam de incentivo para usar ferramentas MCP! Considere adicionar um prompt de sistema ou [copilot-instructions.md](https://docs.github.com/copilot/how-tos/custom-instructions/adding-repository-custom-instructions-for-github-copilot) como: "Você tem acesso a `microsoft.docs.mcp` – use esta ferramenta para buscar a documentação oficial mais recente da Microsoft ao tratar de perguntas sobre tecnologias Microsoft, como C#, Azure, ASP.NET Core ou Entity Framework."
+> Até os modelos que são amigáveis a ferramentas precisam ser incentivados a usar ferramentas MCP! Considere adicionar um prompt de sistema ou [copilot-instructions.md](https://docs.github.com/copilot/how-tos/custom-instructions/adding-repository-custom-instructions-for-github-copilot) como: “Você tem acesso a `microsoft.docs.mcp` – use esta ferramenta para buscar na documentação oficial mais recente da Microsoft quando lidar com perguntas sobre tecnologias Microsoft como C#, Azure, ASP.NET Core ou Entity Framework.”
 >
-> Para um ótimo exemplo disso em ação, veja o modo chat [C# .NET Janitor](https://github.com/awesome-copilot/chatmodes/blob/main/csharp-dotnet-janitor.chatmode.md) do repositório Awesome GitHub Copilot. Este modo usa especificamente o servidor Microsoft Learn Docs MCP para ajudar a limpar e modernizar código C# usando os padrões e melhores práticas mais recentes.
+> Para um excelente exemplo disso em ação, confira o [modo de chat C# .NET Janitor](https://github.com/awesome-copilot/chatmodes/blob/main/csharp-dotnet-janitor.chatmode.md) do repositório Awesome GitHub Copilot. Este modo utiliza especificamente o servidor Microsoft Learn Docs MCP para ajudar a limpar e modernizar código C# usando os padrões e melhores práticas mais recentes.
 ### 2. ☁️ Servidor Azure MCP
+
+
 [![Instalar no VS Code](https://img.shields.io/badge/VS_Code-Install_Azure_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=Azure%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40azure%2Fazure-mcp%40latest%22%5D%7D) [![Instalar no VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_Azure_MCP-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Azure%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40azure%2Fazure-mcp%40latest%22%5D%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/Azure/azure-mcp)
 
-**O que faz**: O Azure MCP Server é um conjunto abrangente de mais de 15 conectores especializados para serviços Azure que traz todo o ecossistema Azure para o seu fluxo de trabalho de IA. Não é apenas um servidor único – é uma coleção poderosa que inclui gerenciamento de recursos, conectividade com bancos de dados (PostgreSQL, SQL Server), análise de logs do Azure Monitor com KQL, integração com Cosmos DB, e muito mais.
+**O que faz**: O Azure MCP Server é um conjunto abrangente de mais de 15 conectores especializados para serviços Azure que trazem todo o ecossistema Azure para seu fluxo de trabalho de IA. Não é apenas um servidor único – é uma coleção poderosa que inclui gerenciamento de recursos, conectividade a bancos de dados (PostgreSQL, SQL Server), análise de logs do Azure Monitor com KQL, integração com Cosmos DB, e muito mais.
 
-**Por que é útil**: Além de gerenciar recursos do Azure, este servidor melhora drasticamente a qualidade do código ao trabalhar com os SDKs do Azure. Quando você usa o Azure MCP no modo Agent, ele não só ajuda a escrever código – ajuda a escrever código *melhor* para Azure que segue os padrões atuais de autenticação, melhores práticas de tratamento de erros e aproveita os recursos mais recentes do SDK. Em vez de obter código genérico que pode funcionar, você obtém código que segue os padrões recomendados pelo Azure para cargas de trabalho em produção.
+**Por que é útil**: Além de gerenciar recursos Azure, esse servidor melhora drasticamente a qualidade do código ao trabalhar com SDKs do Azure. Quando você usa o Azure MCP no modo Agente, ele não apenas ajuda você a escrever código – ajuda você a escrever *melhor* código Azure que segue os padrões atuais de autenticação, boas práticas de tratamento de erros e aproveita os recursos mais recentes do SDK. Em vez de obter código genérico que pode funcionar, você obtém código que segue os padrões recomendados do Azure para cargas de trabalho de produção.
 
 **Módulos principais incluem**:
 - **🗄️ Conectores de Banco de Dados**: Acesso direto em linguagem natural ao Azure Database para PostgreSQL e SQL Server
-- **📊 Azure Monitor**: Análise de logs com KQL e insights operacionais
-- **🌐 Gerenciamento de Recursos**: Gerenciamento completo do ciclo de vida dos recursos do Azure
+- **📊 Azure Monitor**: Análise de logs baseada em KQL e insights operacionais
+- **🌐 Gerenciamento de Recursos**: Gerenciamento completo do ciclo de vida dos recursos Azure
 - **🔐 Autenticação**: Padrões DefaultAzureCredential e identidade gerenciada
-- **📦 Serviços de Armazenamento**: Operações com Blob Storage, Queue Storage e Table Storage
-- **🚀 Serviços de Contêineres**: Gerenciamento de Azure Container Apps, Container Instances e AKS
+- **📦 Serviços de Armazenamento**: Operações em Blob Storage, Queue Storage e Table Storage
+- **🚀 Serviços de Containers**: Gerenciamento de Azure Container Apps, Container Instances e AKS
 - **E muitos outros conectores especializados**
 
-**Uso real**: "Liste minhas contas de armazenamento do Azure", "Consulte meu workspace do Log Analytics por erros na última hora" ou "Me ajude a construir uma aplicação Azure usando Node.js com autenticação adequada"
+**Uso no mundo real**: "Liste minhas contas de armazenamento Azure", "Consulte meu workspace Log Analytics por erros na última hora" ou "Me ajude a construir uma aplicação Azure usando Node.js com autenticação adequada"
 
-**Cenário de demonstração completo**: Aqui está uma demonstração completa que mostra o poder de combinar o Azure MCP com a extensão GitHub Copilot para Azure no VS Code. Quando você tiver ambos instalados e solicitar:
+**Cenário completo de demonstração**: Aqui está um guia completo que mostra o poder de combinar o Azure MCP com a extensão GitHub Copilot for Azure no VS Code. Quando você tem ambos instalados e digita:
 
-> "Crie um script Python que faça upload de um arquivo para o Azure Blob Storage usando autenticação DefaultAzureCredential. O script deve conectar à minha conta de armazenamento Azure chamada 'mycompanystorage', fazer upload para um container chamado 'documents', criar um arquivo de teste com o carimbo de data/hora atual para enviar, tratar erros de forma elegante e fornecer saída informativa, seguir as melhores práticas do Azure para autenticação e tratamento de erros, incluir comentários explicando como funciona a autenticação DefaultAzureCredential, e estruturar o script com funções e documentação adequadas."
+> "Crie um script Python que faça upload de um arquivo para o Azure Blob Storage usando autenticação DefaultAzureCredential. O script deve conectar na minha conta de armazenamento Azure chamada 'mycompanystorage', enviar para um container chamado 'documents', criar um arquivo de teste com o timestamp atual para upload, tratar erros com delicadeza e fornecer saída informativa, seguir as melhores práticas do Azure para autenticação e tratamento de erros, incluir comentários explicando como a autenticação DefaultAzureCredential funciona e estruturar bem o script com funções e documentação apropriadas."
 
-O Azure MCP Server gerará um script Python completo e pronto para produção que:
-- Usa o SDK mais recente do Azure Blob Storage com padrões assíncronos adequados
-- Implementa DefaultAzureCredential com explicação abrangente da cadeia de fallback
-- Inclui tratamento robusto de erros com tipos específicos de exceções do Azure
+O Azure MCP Server vai gerar um script Python completo e pronto para produção que:
+- Usa o SDK mais recente do Azure Blob Storage com padrões async adequados
+- Implementa DefaultAzureCredential com explicação completa da cadeia de fallback
+- Inclui tratamento robusto de erros com tipos específicos de exceções Azure
 - Segue as melhores práticas do SDK Azure para gerenciamento de recursos e conexões
-- Fornece log detalhado e saída informativa no console
+- Fornece logs detalhados e saída informativa no console
 - Cria um script bem estruturado com funções, documentação e dicas de tipo
 
-O que torna isso notável é que, sem o Azure MCP, você poderia obter um código genérico para blob storage que funciona mas não segue os padrões atuais do Azure. Com o Azure MCP, você obtém código que aproveita os métodos mais recentes de autenticação, trata cenários de erro específicos do Azure e segue as práticas recomendadas pela Microsoft para aplicações em produção.
+O que torna isso notável é que, sem o Azure MCP, você poderia obter código genérico para blob storage que funciona, mas não segue os padrões atuais do Azure. Com o Azure MCP, você obtém código que aproveita os métodos de autenticação mais recentes, trata cenários de erro específicos do Azure e segue as práticas recomendadas da Microsoft para aplicações de produção.
 
-**Exemplo em destaque**: Eu sempre tive dificuldades para lembrar os comandos específicos das CLIs `az` e `azd` para uso ad-hoc. Sempre é um processo em duas etapas para mim: primeiro consultar a sintaxe, depois executar o comando. Frequentemente, apenas acesso o portal e clico por lá para terminar o trabalho porque não quero admitir que não lembro a sintaxe da CLI. Poder descrever o que eu quero é incrível, e ainda melhor poder fazer isso sem sair do meu IDE!
+**Exemplo em destaque**: Eu sempre tive dificuldade em lembrar os comandos específicos das CLIs `az` e `azd` para uso esporádico. Para mim, é sempre um processo em duas etapas: primeiro pesquisar a sintaxe, depois executar o comando. Muitas vezes eu acabo entrando no portal e clicando por lá para fazer o trabalho porque não quero admitir que não lembro a sintaxe da CLI. Poder descrever o que quero é incrível, e ainda melhor poder fazer isso sem sair do meu IDE!
 
-Há uma ótima lista de casos de uso no [repositório Azure MCP](https://github.com/Azure/azure-mcp?tab=readme-ov-file#-what-can-you-do-with-the-azure-mcp-server) para você começar. Para guias completos de configuração e opções avançadas, consulte a [documentação oficial do Azure MCP](https://learn.microsoft.com/azure/developer/azure-mcp-server/).
+Há uma ótima lista de casos de uso no [repositório Azure MCP](https://github.com/Azure/azure-mcp?tab=readme-ov-file#-what-can-you-do-with-the-azure-mcp-server) para você começar. Para guias de configuração completos e opções avançadas, confira a [documentação oficial do Azure MCP](https://learn.microsoft.com/azure/developer/azure-mcp-server/).
 
 ### 3. 🐙 GitHub MCP Server
 
 [![Instalar no VS Code](https://img.shields.io/badge/VS_Code-Install_Server-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=github&config=%7B%22type%22%3A%20%22http%22%2C%22url%22%3A%20%22https%3A%2F%2Fapi.githubcopilot.com%2Fmcp%2F%22%7D) [![Instalar no VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_Server-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=github&config=%7B%22type%22%3A%20%22http%22%2C%22url%22%3A%20%22https%3A%2F%2Fapi.githubcopilot.com%2Fmcp%2F%22%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/github/github-mcp-server)
 
-**O que faz**: O GitHub MCP Server oficial fornece integração perfeita com todo o ecossistema GitHub, oferecendo tanto acesso remoto hospedado quanto opções de implantação local via Docker. Não é apenas sobre operações básicas de repositório – é um kit de ferramentas abrangente que inclui gerenciamento do GitHub Actions, fluxos de trabalho de pull request, rastreamento de issues, escaneamento de segurança, notificações e capacidades avançadas de automação.
+**O que faz**: O servidor oficial GitHub MCP oferece integração perfeita com todo o ecossistema GitHub, oferecendo acesso remoto hospedado e opções de implantação local via Docker. Não se trata apenas de operações básicas em repositórios – é um kit de ferramentas completo que inclui gerenciamento do GitHub Actions, fluxos de trabalho de pull requests, rastreamento de issues, escaneamento de segurança, notificações e capacidades avançadas de automação.
 
-**Por que é útil**: Este servidor transforma a forma como você interage com o GitHub trazendo toda a experiência da plataforma diretamente para o seu ambiente de desenvolvimento. Em vez de trocar constantemente entre VS Code e GitHub.com para gerenciamento de projetos, revisões de código e monitoramento CI/CD, você pode fazer tudo por comandos em linguagem natural e continuar focado no seu código.
+**Por que é útil**: Este servidor transforma a forma como você interage com o GitHub ao trazer toda a experiência da plataforma diretamente para seu ambiente de desenvolvimento. Em vez de ficar alternando constantemente entre VS Code e GitHub.com para gestão de projetos, revisões de código e monitoramento CI/CD, você pode fazer tudo por comandos em linguagem natural enquanto mantém o foco no código.
 
 > **ℹ️ Nota: Diferentes Tipos de 'Agentes'**
 > 
-> Não confunda este GitHub MCP Server com o GitHub Coding Agent (o agente de IA que você pode atribuir a issues para tarefas automatizadas de codificação). O GitHub MCP Server funciona dentro do modo Agent do VS Code para fornecer integração com a API do GitHub, enquanto o GitHub Coding Agent é um recurso separado que cria pull requests quando atribuído a issues no GitHub.
+> Não confunda este GitHub MCP Server com o GitHub Coding Agent (o agente AI que você pode atribuir a issues para tarefas automatizadas de codificação). O GitHub MCP Server funciona no modo Agente do VS Code para fornecer integração com a API do GitHub, enquanto o GitHub Coding Agent é um recurso separado que cria pull requests quando atribuído a issues do GitHub.
 
-**Funcionalidades principais incluem**:
+**Principais capacidades incluem**:
 - **⚙️ GitHub Actions**: Gerenciamento completo de pipeline CI/CD, monitoramento de fluxos de trabalho e manipulação de artefatos
 - **🔀 Pull Requests**: Criar, revisar, mesclar e gerenciar PRs com acompanhamento detalhado de status
-- **🐛 Issues**: Gerenciamento completo do ciclo de vida de issues, comentários, etiquetagem e atribuição
-- **🔒 Segurança**: Alertas de escaneamento de código, detecção de segredos e integração Dependabot
-- **🔔 Notificações**: Gerenciamento inteligente de notificações e controle de assinaturas de repositórios
-- **📁 Gerenciamento de Repositórios**: Operações de arquivos, gerenciamento de branches e administração de repositórios
-- **👥 Colaboração**: Busca de usuários e organizações, gerenciamento de equipes e controle de acesso
+- **🐛 Issues**: Gerenciamento completo do ciclo de vida de issues, comentários, rotulagem e atribuição
+- **🔒 Segurança**: Alertas de escaneamento de código, detecção de segredos e integração com Dependabot
+- **🔔 Notificações**: Gerenciamento inteligente de notificações e controle de inscrição em repositórios
+- **📁 Gerenciamento de Repositórios**: Operações com arquivos, gerenciamento de branches e administração de repositórios
+- **👥 Colaboração**: Busca por usuários e organizações, gerenciamento de equipes e controle de acesso
 
-**Uso real**: "Crie um pull request da minha branch de feature", "Mostre todas as execuções CI falhadas esta semana", "Liste alertas de segurança abertos para meus repositórios" ou "Encontre todas as issues atribuídas a mim em minhas organizações"
+**Uso no mundo real**: "Crie um pull request a partir do meu branch de feature", "Mostre todas as execuções CI falhadas esta semana", "Liste alertas de segurança abertos para meus repositórios" ou "Encontre todas as issues atribuídas a mim nas minhas organizações"
 
-**Cenário de demonstração completo**: Aqui está um fluxo poderoso que demonstra as capacidades do GitHub MCP Server:
+**Cenário completo de demonstração**: Aqui está um fluxo de trabalho poderoso que demonstra as capacidades do GitHub MCP Server:
 
-> "Preciso me preparar para nossa revisão de sprint. Mostre todos os pull requests que criei esta semana, verifique o status dos nossos pipelines CI/CD, crie um resumo de quaisquer alertas de segurança que devemos tratar e me ajude a criar notas de lançamento baseadas em PRs mesclados com a etiqueta 'feature'."
+> "Preciso me preparar para nossa revisão de sprint. Mostre todos os pull requests que criei nesta semana, verifique o status dos nossos pipelines CI/CD, crie um resumo de quaisquer alertas de segurança que precisamos tratar e me ajude a redigir notas de lançamento baseadas nos PRs mesclados com a label 'feature'."
 
 O GitHub MCP Server irá:
 - Consultar seus pull requests recentes com informações detalhadas de status
-- Analisar execuções de workflow e destacar quaisquer falhas ou problemas de desempenho
-- Compilar resultados de escaneamentos de segurança e priorizar alertas críticos
-- Gerar notas de lançamento detalhadas extraindo informações dos PRs mesclados
-- Fornecer próximos passos acionáveis para planejamento do sprint e preparação do lançamento
+- Analisar execuções de workflows e destacar falhas ou problemas de performance
+- Compilar resultados de escaneamento de segurança e priorizar alertas críticos
+- Gerar notas de lançamento abrangentes extraindo informações dos PRs mesclados
+- Fornecer próximos passos acionáveis para planejamento de sprint e preparação de release
 
-**Exemplo em destaque**: Eu adoro usar isso para fluxos de revisão de código. Em vez de ficar pulando entre VS Code, notificações do GitHub e páginas de pull request, posso dizer "Mostre todos os PRs esperando pela minha revisão" e depois "Adicione um comentário no PR #123 perguntando sobre o tratamento de erros no método de autenticação." O servidor cuida das chamadas da API do GitHub, mantém contexto sobre a discussão e até me ajuda a criar comentários de revisão mais construtivos.
+**Exemplo em destaque**: Eu adoro usar isso para fluxos de trabalho de revisão de código. Em vez de pular entre VS Code, notificações do GitHub e páginas de pull request, posso dizer "Mostre todos os PRs esperando minha revisão" e depois "Adicione um comentário no PR #123 perguntando sobre o tratamento de erros no método de autenticação." O servidor cuida das chamadas da API do GitHub, mantém o contexto da discussão e ainda me ajuda a elaborar comentários de revisão mais construtivos.
 
-**Opções de autenticação**: O servidor suporta tanto OAuth (sem atrito no VS Code) quanto Tokens de Acesso Pessoal, com conjuntos de ferramentas configuráveis para ativar apenas as funcionalidades GitHub que você precisa. Você pode executá-lo como serviço remoto hospedado para configuração instantânea ou localmente via Docker para controle total.
+**Opções de autenticação**: O servidor suporta tanto OAuth (integração fluida no VS Code) quanto Tokens de Acesso Pessoal, com conjuntos de ferramentas configuráveis para habilitar apenas as funcionalidades GitHub que você precisa. Você pode executá-lo como um serviço remoto hospedado para configuração instantânea ou localmente via Docker para controle total.
 
 > **💡 Dica Profissional**
 > 
-> Ative apenas os conjuntos de ferramentas que você precisa configurando o parâmetro `--toolsets` nas configurações do seu servidor MCP para reduzir o tamanho do contexto e melhorar a seleção de ferramentas de IA. Por exemplo, adicione `"--toolsets", "repos,issues,pull_requests,actions"` na sua configuração MCP para fluxos de trabalho essenciais de desenvolvimento, ou use `"--toolsets", "notifications, security"` se quiser principalmente capacidades de monitoramento do GitHub.
+> Ative apenas os conjuntos de ferramentas que precisa configurando o parâmetro `--toolsets` nas configurações do seu servidor MCP para reduzir o tamanho do contexto e melhorar a seleção de ferramentas AI. Por exemplo, adicione `"--toolsets", "repos,issues,pull_requests,actions"` aos seus argumentos de configuração MCP para fluxos de trabalho de desenvolvimento principais, ou use `"--toolsets", "notifications, security"` se deseja principalmente capacidades de monitoramento GitHub.
 ### 4. 🔄 Azure DevOps MCP Server
 
 [![Instalar no VS Code](https://img.shields.io/badge/VS_Code-Install_Azure_DevOps_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=Azure%20DevOps%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-azure-devops%40latest%22%5D%7D) [![Instalar no VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_Azure_DevOps_MCP-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Azure%20DevOps%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-azure-devops%40latest%22%5D%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/microsoft/azure-devops-mcp)
 
-**O que faz**: Conecta-se aos serviços do Azure DevOps para gerenciamento completo de projetos, rastreamento de itens de trabalho, gerenciamento de pipelines de build e operações em repositórios.
+**O que faz**: Conecta-se aos serviços Azure DevOps para gerenciamento completo de projetos, rastreamento de itens de trabalho, gerenciamento de pipelines de build e operações em repositórios.
 
-**Por que é útil**: Para equipes que usam o Azure DevOps como sua principal plataforma DevOps, este servidor MCP elimina a necessidade de ficar alternando constantemente entre seu ambiente de desenvolvimento e a interface web do Azure DevOps. Você pode gerenciar itens de trabalho, verificar status de builds, consultar repositórios e lidar com tarefas de gerenciamento de projetos diretamente pelo seu assistente de IA.
+**Por que é útil**: Para equipes que usam Azure DevOps como sua principal plataforma DevOps, este servidor MCP elimina a constante troca de abas entre seu ambiente de desenvolvimento e a interface web do Azure DevOps. Você pode gerenciar itens de trabalho, verificar status de builds, consultar repositórios e realizar tarefas de gerenciamento de projetos diretamente pelo seu assistente de IA.
 
-**Uso real**: "Mostre todos os itens de trabalho ativos no sprint atual para o projeto WebApp", "Crie um relatório de bug para o problema de login que acabei de encontrar" ou "Verifique o status dos nossos pipelines de build e mostre falhas recentes"
+**Uso no mundo real**: "Mostre todos os itens de trabalho ativos na sprint atual para o projeto WebApp", "Crie um relatório de bug para o problema de login que acabei de encontrar" ou "Verifique o status dos nossos pipelines de build e mostre quaisquer falhas recentes"
 
-**Exemplo em destaque**: Você pode facilmente verificar o status do sprint atual da sua equipe com uma consulta simples como "Mostre todos os itens de trabalho ativos no sprint atual para o projeto WebApp" ou "Crie um relatório de bug para o problema de login que acabei de encontrar" sem sair do seu ambiente de desenvolvimento.
+**Exemplo em destaque**: Você pode facilmente verificar o status da sprint atual da sua equipe com uma consulta simples como "Mostre todos os itens de trabalho ativos na sprint atual para o projeto WebApp" ou "Crie um relatório de bug para o problema de login que acabei de encontrar" sem sair do seu ambiente de desenvolvimento.
 
 ### 5. 📝 MarkItDown MCP Server
+
+
 [![Instalar no VS Code](https://img.shields.io/badge/VS_Code-Install_MarkItDown_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=MarkItDown%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-markitdown%40latest%22%5D%7D) [![Instalar no VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_MarkItDown_MCP-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=MarkItDown%20MCP&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fmcp-markitdown%40latest%22%5D%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/microsoft/markitdown)
 
 **O que faz**: MarkItDown é um servidor abrangente de conversão de documentos que transforma vários formatos de arquivo em Markdown de alta qualidade, otimizado para consumo por LLMs e fluxos de trabalho de análise de texto.
 
-**Por que é útil**: Essencial para fluxos de trabalho modernos de documentação! MarkItDown suporta uma impressionante variedade de formatos de arquivo enquanto preserva a estrutura crítica do documento, como cabeçalhos, listas, tabelas e links. Ao contrário de ferramentas simples de extração de texto, ele foca em manter o significado semântico e a formatação que são valiosos tanto para o processamento por IA quanto para a legibilidade humana.
+**Por que é útil**: Essencial para fluxos modernos de documentação! O MarkItDown lida com uma impressionante variedade de formatos de arquivo enquanto preserva a estrutura crítica do documento, como cabeçalhos, listas, tabelas e links. Diferente de ferramentas simples de extração de texto, ele foca em manter o significado semântico e a formatação que são valiosos tanto para o processamento por IA quanto para a legibilidade humana.
 
 **Formatos de arquivo suportados**:
 - **Documentos Office**: PDF, PowerPoint (PPTX), Word (DOCX), Excel (XLSX/XLS)
-- **Arquivos de mídia**: Imagens (com metadados EXIF e OCR), Áudio (com metadados EXIF e transcrição de fala)
-- **Conteúdo web**: HTML, feeds RSS, URLs do YouTube, páginas da Wikipedia
-- **Formatos de dados**: CSV, JSON, XML, arquivos ZIP (processa o conteúdo recursivamente)
-- **Formatos de publicação**: EPub, notebooks Jupyter (.ipynb)
-- **Email**: Mensagens Outlook (.msg)
-- **Avançado**: Integração com Azure Document Intelligence para processamento aprimorado de PDFs
+- **Arquivos de Mídia**: Imagens (com metadados EXIF e OCR), Áudio (com metadados EXIF e transcrição de fala)
+- **Conteúdo Web**: HTML, feeds RSS, URLs do YouTube, páginas da Wikipedia
+- **Formatos de Dados**: CSV, JSON, XML, arquivos ZIP (processa conteúdos recursivamente)
+- **Formatos de Publicação**: EPub, notebooks Jupyter (.ipynb)
+- **Email**: mensagens do Outlook (.msg)
+- **Avançado**: integração com Azure Document Intelligence para processamento avançado de PDFs
 
-**Capacidades avançadas**: MarkItDown suporta descrições de imagens com LLM (quando fornecido um cliente OpenAI), Azure Document Intelligence para processamento avançado de PDFs, transcrição de áudio para conteúdo falado e um sistema de plugins para estender a outros formatos de arquivo.
+**Capacidades avançadas**: MarkItDown suporta descrições de imagens alimentadas por LLM (quando fornecido cliente OpenAI), Azure Document Intelligence para processamento avançado de PDFs, transcrição de áudio para conteúdos de fala, e um sistema de plugins para estender a formatos adicionais.
 
-**Uso no mundo real**: "Converter esta apresentação PowerPoint para Markdown para nosso site de documentação", "Extrair texto deste PDF com a estrutura correta de cabeçalhos" ou "Transformar esta planilha Excel em um formato de tabela legível"
+**Uso no mundo real**: "Converter esta apresentação PowerPoint para Markdown para nosso site de documentação", "Extrair texto deste PDF com estrutura correta de cabeçalhos", ou "Transformar esta planilha Excel em formato de tabela legível"
 
-**Exemplo em destaque**: Para citar a [documentação do MarkItDown](https://github.com/microsoft/markitdown#why-markdown):
+**Exemplo destacado**: Para citar a [documentação do MarkItDown](https://github.com/microsoft/markitdown#why-markdown):
 
-> Markdown é extremamente próximo de texto simples, com marcação ou formatação mínima, mas ainda assim fornece uma forma de representar a estrutura importante do documento. LLMs populares, como o GPT-4o da OpenAI, "falam" Markdown nativamente e frequentemente incorporam Markdown em suas respostas sem precisar ser solicitado. Isso sugere que eles foram treinados em grandes quantidades de texto formatado em Markdown e o entendem bem. Como benefício adicional, as convenções do Markdown também são altamente eficientes em tokens.
+> Markdown é extremamente próximo do texto simples, com marcação ou formatação mínima, mas ainda assim fornece uma forma de representar a estrutura importante do documento. LLMs de grande porte, como o GPT-4o da OpenAI, "falam" Markdown nativamente e muitas vezes incorporam Markdown em suas respostas sem serem solicitados. Isso sugere que eles foram treinados com grandes volumes de texto formatado em Markdown, e o entendem bem. Como benefício adicional, as convenções do Markdown também são altamente eficientes em tokens.
 
-MarkItDown é realmente bom em preservar a estrutura do documento, o que é importante para fluxos de trabalho com IA. Por exemplo, ao converter uma apresentação PowerPoint, ele mantém a organização dos slides com os cabeçalhos adequados, extrai tabelas como tabelas Markdown, inclui texto alternativo para imagens e até processa as notas do orador. Gráficos são convertidos em tabelas de dados legíveis e o Markdown resultante mantém o fluxo lógico da apresentação original. Isso o torna perfeito para alimentar conteúdo de apresentação para sistemas IA ou criar documentação a partir de slides existentes.
+MarkItDown é muito bom em preservar a estrutura do documento, o que é importante para fluxos de trabalho de IA. Por exemplo, ao converter uma apresentação PowerPoint, ele mantém a organização dos slides com os cabeçalhos corretos, extrai tabelas como tabelas Markdown, inclui texto alternativo para imagens e até processa notas do palestrante. Gráficos são convertidos em tabelas de dados legíveis, e o Markdown resultante mantém o fluxo lógico da apresentação original. Isso o torna perfeito para alimentar conteúdos de apresentações em sistemas de IA ou criar documentação a partir de slides existentes.
 ### 6. 🗃️ Servidor MCP SQL Server
 
 [![Instalar no VS Code](https://img.shields.io/badge/VS_Code-Install_SQL_Database-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=Azure%20SQL%20Database&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40azure%2Fmcp%40latest%22%2C%22server%22%2C%22start%22%2C%22--namespace%22%2C%22sql%22%5D%7D) [![Instalar no VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_SQL_Database-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Azure%20SQL%20Database&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40azure%2Fmcp%40latest%22%2C%22server%22%2C%22start%22%2C%22--namespace%22%2C%22sql%22%5D%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/Azure/azure-mcp)
 
 **O que faz**: Fornece acesso conversacional a bancos de dados SQL Server (on-premises, Azure SQL ou Fabric)
 
-**Por que é útil**: Similar ao servidor PostgreSQL, mas para o ecossistema Microsoft SQL. Conecte-se com uma string de conexão simples e comece a consultar usando linguagem natural – sem mais trocas de contexto!
+**Por que é útil**: Similar ao servidor PostgreSQL, mas para o ecossistema Microsoft SQL. Conecte-se com uma string de conexão simples e comece a consultar com linguagem natural – sem mais troca de contexto!
 
-**Uso no mundo real**: "Encontre todos os pedidos que não foram cumpridos nos últimos 30 dias" é traduzido em consultas SQL apropriadas e retorna resultados formatados
+**Uso no mundo real**: "Encontre todos os pedidos que não foram concluídos nos últimos 30 dias" é traduzido para consultas SQL apropriadas e retorna resultados formatados
 
-**Exemplo em destaque**: Assim que você configura sua conexão de banco de dados, pode começar a conversar com seus dados imediatamente. O post no blog mostra isso com uma pergunta simples: "a que banco de dados você está conectado?" O servidor MCP responde invocando a ferramenta adequada, conecta-se à sua instância SQL Server e retorna detalhes sobre sua conexão atual – tudo sem escrever uma única linha de SQL. O servidor suporta operações abrangentes de banco de dados, desde o gerenciamento de esquema até manipulação de dados, tudo por meio de comandos em linguagem natural. Para instruções completas de configuração e exemplos com VS Code e Claude Desktop, veja: [Apresentando o MSSQL MCP Server (Preview)](https://devblogs.microsoft.com/azure-sql/introducing-mssql-mcp-server/).
+**Exemplo destacado**: Depois de configurar sua conexão com o banco de dados, você pode começar a ter conversas com seus dados imediatamente. O post no blog demonstra isso com uma pergunta simples: "a qual banco de dados você está conectado?" O servidor MCP responde invocando a ferramenta apropriada, conectando-se à sua instância SQL Server e retornando detalhes sobre sua conexão atual – tudo sem escrever uma única linha de SQL. O servidor suporta operações abrangentes de banco de dados, desde gerenciamento de esquema até manipulação de dados, tudo através de comandos em linguagem natural. Para instruções completas de configuração e exemplos com VS Code e Claude Desktop, veja: [Introduzindo o MSSQL MCP Server (Visualização)](https://devblogs.microsoft.com/azure-sql/introducing-mssql-mcp-server/).
 
 
 ### 7. 🎭 Servidor MCP Playwright
@@ -318,15 +322,15 @@ MarkItDown é realmente bom em preservar a estrutura do documento, o que é impo
 
 > **ℹ️ Potenciando o GitHub Copilot**
 > 
-> O Playwright MCP Server alimenta o Agente de Codificação do GitHub Copilot, dando a ele capacidades de navegação web! [Saiba mais sobre este recurso](https://github.blog/changelog/2025-07-02-copilot-coding-agent-now-has-its-own-web-browser/).
+> O Servidor MCP Playwright alimenta o Agente de Codificação do GitHub Copilot, dando a ele capacidades de navegação na web! [Saiba mais sobre esse recurso](https://github.blog/changelog/2025-07-02-copilot-coding-agent-now-has-its-own-web-browser/).
 
-**Por que é útil**: Perfeito para testes automatizados guiados por descrições em linguagem natural. IA pode navegar em sites, preencher formulários e extrair dados por meio de snapshots estruturados de acessibilidade – isso é algo incrivelmente poderoso!
+**Por que é útil**: Perfeito para testes automatizados guiados por descrições em linguagem natural. A IA pode navegar em sites, preencher formulários e extrair dados através de snapshots estruturados de acessibilidade – isso é extremamente poderoso!
 
-**Uso no mundo real**: "Teste o fluxo de login e verifique se o painel carrega corretamente" ou "Gere um teste que pesquise produtos e valide a página de resultados" – tudo isso sem precisar do código-fonte do aplicativo
+**Uso no mundo real**: "Teste o fluxo de login e verifique se o painel carrega corretamente" ou "Gere um teste que pesquise por produtos e valide a página de resultados" – tudo sem precisar do código-fonte da aplicação
 
-**Exemplo em destaque**: Minha colega Debbie O'Brien tem feito um trabalho incrível usando o Playwright MCP Server ultimamente! Por exemplo, ela recentemente mostrou como criar testes Playwright completos sem nem ter acesso ao código-fonte do aplicativo. No cenário dela, pediu ao Copilot para criar um teste para um app de busca de filmes: navegar até o site, buscar por "Garfield" e verificar se o filme aparece nos resultados. O MCP iniciou uma sessão no navegador, explorou a estrutura da página usando snapshots do DOM, descobriu os seletores corretos e gerou um teste TypeScript totalmente funcional que passou na primeira execução.
+**Exemplo destacado**: Minha colega Debbie O'Brien tem feito um trabalho incrível com o Servidor MCP Playwright recentemente! Por exemplo, ela mostrou como gerar testes completos do Playwright sem nem mesmo ter acesso ao código-fonte da aplicação. No seu cenário, ela pediu ao Copilot para criar um teste para um app de busca de filmes: navegar até o site, buscar por "Garfield" e verificar se o filme aparece nos resultados. O MCP iniciou uma sessão do navegador, explorou a estrutura da página usando snapshots do DOM, descobriu os seletores corretos e gerou um teste em TypeScript totalmente funcional que passou na primeira execução.
 
-O que torna isso realmente potente é que ele faz a ponte entre instruções em linguagem natural e código executável de teste. Abordagens tradicionais exigem escrever testes manualmente ou acesso ao código para contexto. Mas com o Playwright MCP, você pode testar sites externos, aplicações cliente ou trabalhar em cenários de testes caixa-preta onde não se tem acesso ao código.
+O que torna isso realmente poderoso é que ele faz a ponte entre instruções em linguagem natural e código de teste executável. Abordagens tradicionais exigem escrita manual de testes ou acesso ao código para contexto. Mas com o Playwright MCP, você pode testar sites externos, aplicações cliente ou trabalhar em cenários de caixa-preta onde o acesso ao código não está disponível.
 
 
 ### 8. 💻 Servidor MCP Dev Box
@@ -337,69 +341,71 @@ O que torna isso realmente potente é que ele faz a ponte entre instruções em 
 
 **Por que é útil**: Simplifica tremendamente o gerenciamento de ambientes de desenvolvimento! Crie, configure e gerencie ambientes sem precisar lembrar comandos específicos.
 
-**Uso no mundo real**: "Configure uma nova Dev Box com o SDK .NET mais recente e configure para nosso projeto", "Verifique o status de todos meus ambientes de desenvolvimento" ou "Crie um ambiente padrão para demos de equipe"
+**Uso no mundo real**: "Configure um novo Dev Box com o SDK .NET mais recente e configure-o para nosso projeto", "Verifique o status de todos os meus ambientes de desenvolvimento", ou "Crie um ambiente de demonstração padronizado para as apresentações da equipe"
 
-**Exemplo em destaque**: Sou um grande fã de usar Dev Box para desenvolvimento pessoal. Meu momento "luz" foi quando James Montemagno explicou como o Dev Box é ótimo para demos em conferências, já que ele tem conexão ethernet super-rápida independente do wifi da conferência / hotel / avião que eu esteja usando no momento. Na verdade, recentemente pratiquei demos de conferência enquanto meu laptop estava conectado ao hotspot do meu celular em um ônibus de Bruges para Antuérpia! Mas meu próximo passo aqui é focar mais em equipes gerenciando múltiplos ambientes de desenvolvimento e ambientes de demo padronizados. E outro grande caso de uso que ouvi de clientes e colegas, claro, é usar Dev Box para ambientes pré-configurados. Em ambos os casos, usar um MCP para configurar e gerenciar Dev Boxes permite interação via linguagem natural, tudo sem sair do seu ambiente de desenvolvimento.
+**Exemplo destacado**: Sou um grande fã de usar o Dev Box para desenvolvimento pessoal. Meu momento de insight foi quando James Montemagno explicou como o Dev Box é ótimo para demos em conferências, já que tem uma conexão Ethernet super rápida independentemente do Wi-Fi da conferência / hotel / avião que eu esteja usando no momento. Na verdade, recentemente fiz prática de demo para conferência enquanto meu laptop estava conectado ao hotspot do meu celular durante uma viagem de ônibus de Bruges para Antuérpia! Mas meu próximo passo aqui é explorar mais a gestão em equipe de múltiplos ambientes de desenvolvimento e ambientes de demonstração padronizados. E outro grande caso de uso que ouvi de clientes e colegas, claro, é usar o Dev Box para ambientes de desenvolvimento pré-configurados. Em ambos os casos, usar um MCP para configurar e gerenciar Dev Boxes permite interação em linguagem natural, tudo enquanto você permanece no seu ambiente de desenvolvimento.
 
 ### 9. 🤖 Servidor MCP Microsoft Foundry
+
+
 [![Instalar no VS Code](https://img.shields.io/badge/VS_Code-Install_Microsoft_Foundry_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Azure%20Foundry%20MCP%20Server&config=%7B%22type%22%3A%22stdio%22%2C%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22--prerelease%3Dallow%22%2C%22--from%22%2C%22git%2Bhttps%3A%2F%2Fgithub.com%2Fazure-ai-foundry%2Fmcp-foundry.git%22%2C%22run-azure-ai-foundry-mcp%22%5D%7D) [![Instalar no VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_Microsoft_Foundry_MCP-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Azure%20Foundry%20MCP%20Server&config=%7B%22type%22%3A%22stdio%22%2C%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22--prerelease%3Dallow%22%2C%22--from%22%2C%22git%2Bhttps%3A%2F%2Fgithub.com%2Fazure-ai-foundry%2Fmcp-foundry.git%22%2C%22run-azure-ai-foundry-mcp%22%5D%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/azure-ai-foundry/mcp-foundry)
 
-**O que faz**: O Microsoft Foundry MCP Server fornece aos desenvolvedores acesso abrangente ao ecossistema de IA do Azure, incluindo catálogos de modelos, gerenciamento de implantação, indexação de conhecimento com Azure AI Search e ferramentas de avaliação. Este servidor experimental preenche a lacuna entre o desenvolvimento de IA e a poderosa infraestrutura de IA do Azure, facilitando a criação, implantação e avaliação de aplicações de IA.
+**O que faz**: O Microsoft Foundry MCP Server fornece aos desenvolvedores acesso abrangente ao ecossistema de IA do Azure, incluindo catálogos de modelos, gerenciamento de implantação, indexação de conhecimento com Azure AI Search e ferramentas de avaliação. Este servidor experimental preenche a lacuna entre o desenvolvimento de IA e a poderosa infraestrutura de IA do Azure, facilitando a construção, implantação e avaliação de aplicações de IA.
 
-**Por que é útil**: Este servidor transforma a forma como você trabalha com serviços de IA do Azure ao trazer capacidades de IA em nível empresarial diretamente para o seu fluxo de desenvolvimento. Em vez de alternar entre o portal Azure, documentação e seu IDE, você pode descobrir modelos, implantar serviços, gerenciar bases de conhecimento e avaliar o desempenho da IA por meio de comandos em linguagem natural. É especialmente poderoso para desenvolvedores que constroem aplicações RAG (Retrieval-Augmented Generation), gerenciam implantações multimodelo ou implementam pipelines abrangentes de avaliação de IA.
+**Por que é útil**: Este servidor transforma a maneira como você trabalha com os serviços de IA do Azure, trazendo capacidades de IA de nível empresarial diretamente para seu fluxo de trabalho de desenvolvimento. Em vez de alternar entre o portal do Azure, a documentação e seu IDE, você pode descobrir modelos, implantar serviços, gerenciar bases de conhecimento e avaliar o desempenho da IA através de comandos em linguagem natural. É especialmente poderoso para desenvolvedores que constroem aplicações RAG (Generação com Recuperação), gerenciam implantações multimodelo ou implementam pipelines abrangentes de avaliação de IA.
 
 **Principais capacidades para desenvolvedores**:
-- **🔍 Descoberta e Implantação de Modelos**: Explore o catálogo de modelos do Microsoft Foundry, obtenha informações detalhadas com exemplos de código e implante modelos nos Serviços Azure AI
+- **🔍 Descoberta e Implantação de Modelos**: Explore o catálogo de modelos do Microsoft Foundry, obtenha informações detalhadas com exemplos de código e implante modelos nos Serviços de IA do Azure
 - **📚 Gerenciamento de Conhecimento**: Crie e gerencie índices do Azure AI Search, adicione documentos, configure indexadores e construa sistemas RAG sofisticados
-- **⚡ Integração com Agentes de IA**: Conecte-se com agentes Azure AI, consulte agentes existentes e avalie o desempenho dos agentes em cenários de produção
-- **📊 Framework de Avaliação**: Execute avaliações completas de texto e agentes, gere relatórios em markdown e implemente garantia de qualidade para aplicações de IA
-- **🚀 Ferramentas de Protótipo**: Obtenha instruções de configuração para protótipos baseados no GitHub e acesso ao Microsoft Foundry Labs para modelos de pesquisa avançados
+- **⚡ Integração com Agentes de IA**: Conecte-se com Agentes de IA do Azure, consulte agentes existentes e avalie o desempenho dos agentes em cenários de produção
+- **📊 Framework de Avaliação**: Execute avaliações abrangentes de texto e agentes, gere relatórios em markdown e implemente garantia de qualidade para aplicações de IA
+- **🚀 Ferramentas de Prototipagem**: Obtenha instruções de configuração para prototipagem baseada no GitHub e acesso ao Microsoft Foundry Labs para modelos de pesquisa de ponta
 
-**Uso real pelo desenvolvedor**: "Implantar um modelo Phi-4 nos Serviços Azure AI para minha aplicação", "Criar um novo índice de pesquisa para meu sistema RAG de documentação", "Avaliar as respostas do meu agente com base em métricas de qualidade" ou "Encontrar o melhor modelo de raciocínio para minhas tarefas analíticas complexas"
+**Uso real por desenvolvedores**: "Implantar um modelo Phi-4 nos Serviços de IA do Azure para minha aplicação", "Criar um novo índice de busca para meu sistema RAG de documentação", "Avaliar as respostas do meu agente com base em métricas de qualidade" ou "Encontrar o melhor modelo de raciocínio para minhas tarefas complexas de análise"
 
-**Cenário completo de demonstração**: Aqui está um fluxo de trabalho poderoso para desenvolvimento de IA:
+**Cenário completo de demonstração**: Aqui está um fluxo poderoso de desenvolvimento de IA:
 
-> "Estou construindo um agente de suporte ao cliente. Me ajude a encontrar um bom modelo de raciocínio no catálogo, implantar nos Serviços Azure AI, criar uma base de conhecimento a partir da nossa documentação, configurar um framework de avaliação para testar a qualidade das respostas e, em seguida, me ajudar a prototipar a integração com token do GitHub para testes."
+> "Estou construindo um agente de suporte ao cliente. Me ajude a encontrar um bom modelo de raciocínio no catálogo, implantá-lo nos Serviços de IA do Azure, criar uma base de conhecimento a partir da nossa documentação, configurar um framework de avaliação para testar a qualidade das respostas e depois me ajudar a prototipar a integração com token do GitHub para testes."
 
 O Microsoft Foundry MCP Server irá:
 - Consultar o catálogo de modelos para recomendar os modelos de raciocínio ideais com base nos seus requisitos
-- Fornecer comandos de implantação e informações de cota para sua região Azure preferida
-- Configurar índices do Azure AI Search com o esquema adequado para sua documentação
+- Fornecer comandos de implantação e informações de cota para sua região preferida do Azure
+- Configurar índices do Azure AI Search com esquema adequado para sua documentação
 - Configurar pipelines de avaliação com métricas de qualidade e verificações de segurança
 - Gerar código para prototipagem com autenticação GitHub para testes imediatos
 - Fornecer guias completos de configuração adaptados ao seu stack tecnológico específico
 
-**Exemplo destacado**: Como desenvolvedor, tive dificuldade em acompanhar os diferentes modelos LLM disponíveis. Conheço alguns principais, mas sentia que estava perdendo ganhos em produtividade e eficiência. E tokens e cotas são estressantes e difíceis de gerenciar — nunca sei se estou escolhendo o modelo certo para a tarefa certa ou desperdiçando meu orçamento de forma ineficiente. Acabei de ouvir falar sobre este MCP Server pelo James Montemagno enquanto conversava com colegas para recomendações para este post, e estou animado para usar! As capacidades de descoberta de modelos parecem particularmente impressionantes para alguém como eu que quer explorar além dos mais comuns e encontrar modelos otimizados para tarefas específicas. O framework de avaliação deve me ajudar a validar que estou realmente obtendo melhores resultados, e não só tentando algo novo por curiosidade.
+**Exemplo em destaque**: Como desenvolvedor, tenho dificuldades para acompanhar os diferentes modelos LLM disponíveis. Conheço alguns principais, mas sinto que estou perdendo ganhos de produtividade e eficiência. Além disso, tokens e cotas são estressantes e difíceis de administrar – nunca sei se estou escolhendo o modelo certo para a tarefa certa ou desperdiçando meu orçamento de forma ineficiente. Acabei de ouvir sobre este MCP Server pelo James Montemagno enquanto conversava com colegas sobre recomendações para este post, e estou animado para usá-lo! As capacidades de descoberta de modelos parecem particularmente impressionantes para alguém como eu que quer explorar além dos modelos usuais e encontrar modelos otimizados para tarefas específicas. O framework de avaliação deve me ajudar a validar que realmente estou obtendo melhores resultados, e não apenas tentando algo novo por experimentar.
 
 > **ℹ️ Status Experimental**
 > 
-> Este servidor MCP é experimental e está em desenvolvimento ativo. Recursos e APIs podem mudar. Perfeito para explorar capacidades do Azure AI e criar protótipos, mas valide requisitos de estabilidade para uso em produção.
+> Este servidor MCP é experimental e está em desenvolvimento ativo. Funcionalidades e APIs podem mudar. Perfeito para explorar capacidades do Azure AI e construir protótipos, mas valide requisitos de estabilidade para uso em produção.
 ### 10. 🏢 Microsoft 365 Agents Toolkit MCP Server
 
 [![Instalar no VS Code](https://img.shields.io/badge/VS_Code-Install_M365_Agents_Toolkit-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=M365AgentsToolkit%20Server&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22@microsoft%2Fm365agentstoolkit-mcp%40latest%22%2C%22server%22%2C%22start%22%5D%7D) [![Instalar no VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_M365_Agents_Toolkit-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=M365AgentsToolkit%20Server&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22@microsoft%2Fm365agentstoolkit-mcp%40latest%22%2C%22server%22%2C%22start%22%5D%7D&quality=insiders) [![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/OfficeDev/microsoft-365-agents-toolkit)
 
-**O que faz**: Fornece aos desenvolvedores ferramentas essenciais para construir agentes de IA e aplicações que integram com Microsoft 365 e Microsoft 365 Copilot, incluindo validação de esquema, recuperação de código de exemplo e assistência para resolução de problemas.
+**O que faz**: Fornece aos desenvolvedores ferramentas essenciais para construir agentes de IA e aplicações que integrem com Microsoft 365 e Microsoft 365 Copilot, incluindo validação de esquema, recuperação de código de exemplo e assistência para resolução de problemas.
 
-**Por que é útil**: Desenvolver para Microsoft 365 e Copilot envolve esquemas complexos de manifestos e padrões de desenvolvimento específicos. Este servidor MCP traz recursos essenciais diretamente para seu ambiente de codificação, ajudando a validar esquemas, encontrar exemplos de código e solucionar problemas comuns sem precisar consultar documentação constantemente.
+**Por que é útil**: Desenvolver para Microsoft 365 e Copilot envolve esquemas complexos de manifesto e padrões específicos de desenvolvimento. Este servidor MCP traz recursos essenciais diretamente para seu ambiente de codificação, auxiliando na validação de esquemas, localização de código de exemplo e na resolução de problemas comuns sem a necessidade de consultar a documentação constantemente.
 
-**Uso real**: "Validar meu manifesto declarativo de agente e corrigir quaisquer erros de esquema", "Mostrar código de exemplo para implementar um plugin da Microsoft Graph API" ou "Me ajudar a diagnosticar problemas de autenticação no meu app do Teams"
+**Uso real**: "Validar meu manifesto declarativo de agente e corrigir quaisquer erros de esquema", "Mostrar código de exemplo para implementar um plugin Microsoft Graph API" ou "Me ajudar a resolver problemas de autenticação do meu aplicativo Teams"
 
-**Exemplo destacado**: Entrei em contato com meu amigo John Miller após conversar com ele na Build sobre Agentes M365, e ele recomendou este MCP. Isso pode ser ótimo para desenvolvedores novos nos Agentes M365, pois fornece templates, exemplos de código e scaffolding para começar sem se afogar em documentação. Os recursos de validação de esquema parecem particularmente úteis para evitar erros na estrutura do manifesto que podem causar horas de depuração.
+**Exemplo em destaque**: Entrei em contato com meu amigo John Miller depois de conversar com ele no Build sobre os Agentes M365, e ele recomendou este MCP. Pode ser ótimo para desenvolvedores novos em Agentes M365, já que oferece modelos, código de exemplo e scaffolding para começar sem se afogar na documentação. As funcionalidades de validação de esquema parecem particularmente úteis para evitar erros na estrutura do manifesto que podem causar horas de depuração.
 
 > **💡 Dica Profissional**
 > 
-> Use este servidor junto com o Microsoft Learn Docs MCP Server para suporte completo ao desenvolvimento M365 – um fornece a documentação oficial e este oferece ferramentas práticas de desenvolvimento e assistência para resolução de problemas.
+> Use este servidor junto com o Microsoft Learn Docs MCP Server para suporte completo ao desenvolvimento M365 – um fornece a documentação oficial enquanto este oferece ferramentas práticas de desenvolvimento e assistência para resolução de problemas.
 
 
-## E agora? 🔮
+## O que vem a seguir? 🔮
 
 ## 📋 Conclusão
 
-O Model Context Protocol (MCP) está transformando a maneira como desenvolvedores interagem com assistentes de IA e ferramentas externas. Esses 10 servidores MCP da Microsoft mostram o poder da integração padronizada de IA, possibilitando fluxos de trabalho contínuos que mantêm os desenvolvedores no estado de fluxo enquanto acessam capacidades externas poderosas.
+O Model Context Protocol (MCP) está transformando a forma como desenvolvedores interagem com assistentes de IA e ferramentas externas. Estes 10 servidores Microsoft MCP demonstram o poder da integração padronizada de IA, permitindo fluxos de trabalho contínuos que mantêm os desenvolvedores em estado produtivo enquanto acessam capacidades externas poderosas.
 
-Desde a integração abrangente do ecossistema Azure até ferramentas especializadas como Playwright para automação de navegador e MarkItDown para processamento de documentos, esses servidores demonstram como o MCP pode melhorar a produtividade em diversos cenários de desenvolvimento. O protocolo padronizado garante que essas ferramentas funcionem juntas de forma fluida, criando uma experiência de desenvolvimento coesa.
+Desde a integração abrangente com o ecossistema Azure até ferramentas especializadas como Playwright para automação de navegador e MarkItDown para processamento de documentos, estes servidores apresentam como o MCP pode aumentar a produtividade em diversos cenários de desenvolvimento. O protocolo padronizado garante que essas ferramentas funcionem juntas de forma harmônica, criando uma experiência de desenvolvimento coesa.
 
-À medida que o ecossistema MCP continua a evoluir, manter-se engajado com a comunidade, explorar novos servidores e construir soluções personalizadas será fundamental para maximizar sua produtividade no desenvolvimento. A natureza aberta do padrão MCP significa que você pode combinar ferramentas de diferentes fornecedores para criar o fluxo de trabalho perfeito para suas necessidades específicas.
+À medida que o ecossistema MCP continua a evoluir, manter-se engajado com a comunidade, explorar novos servidores e construir soluções personalizadas será fundamental para maximizar sua produtividade no desenvolvimento. A natureza de padrão aberto do MCP significa que você pode combinar ferramentas de diferentes fornecedores para criar o fluxo de trabalho perfeito para suas necessidades específicas.
 
 ## 🔗 Recursos Adicionais
 
@@ -408,16 +414,16 @@ Desde a integração abrangente do ecossistema Azure até ferramentas especializ
 - [Documentação MCP para VS Code](https://code.visualstudio.com/docs/copilot/copilot-mcp)
 - [Documentação MCP para Visual Studio](https://learn.microsoft.com/visualstudio/ide/mcp-servers)
 - [Documentação MCP para Azure](https://learn.microsoft.com/azure/developer/azure-mcp-server/)
-- [Let's Learn – Eventos MCP](https://techcommunity.microsoft.com/blog/azuredevcommunityblog/lets-learn---mcp-events-a-beginners-guide-to-the-model-context-protocol/4429023)
-- [Customizações Incríveis para GitHub Copilot](https://github.com/awesome-copilot)
+- [Vamos Aprender – Eventos MCP](https://techcommunity.microsoft.com/blog/azuredevcommunityblog/lets-learn---mcp-events-a-beginners-guide-to-the-model-context-protocol/4429023)
+- [Personalizações incríveis para GitHub Copilot](https://github.com/awesome-copilot)
 - [SDK MCP para C#](https://developer.microsoft.com/blog/microsoft-partners-with-anthropic-to-create-official-c-sdk-for-model-context-protocol)
-- [MCP Dev Days Ao Vivo 29 e 30 de Julho ou assista sob demanda](https://aka.ms/mcpdevdays)
+- [MCP Dev Days Ao Vivo 29/30 de Julho ou assista sob demanda](https://aka.ms/mcpdevdays)
 
 ## 🎯 Exercícios
 
 1. **Instalar e Configurar**: Configure um dos servidores MCP no seu ambiente VS Code e teste funcionalidades básicas.
 2. **Integração de Fluxo de Trabalho**: Projete um fluxo de desenvolvimento que combine pelo menos três servidores MCP diferentes.
-3. **Planejamento de Servidor Personalizado**: Identifique uma tarefa na sua rotina diária de desenvolvimento que se beneficiaria de um servidor MCP personalizado e crie uma especificação para ele.
+3. **Planejamento de Servidor Personalizado**: Identifique uma tarefa na sua rotina diária de desenvolvimento que possa se beneficiar de um servidor MCP personalizado e crie uma especificação para ele.
 4. **Análise de Desempenho**: Compare a eficiência do uso de servidores MCP com abordagens tradicionais para tarefas comuns de desenvolvimento.
 5. **Avaliação de Segurança**: Avalie as implicações de segurança do uso de servidores MCP no seu ambiente de desenvolvimento e proponha as melhores práticas.
 

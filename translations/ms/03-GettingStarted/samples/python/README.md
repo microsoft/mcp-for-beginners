@@ -1,32 +1,35 @@
-# Pelayan MCP Calculator (Python)
+# MCP Calculator Server (Python)
 
-Pelaksanaan pelayan Model Context Protocol (MCP) yang ringkas dalam Python yang menyediakan fungsi kalkulator asas.
+
+
+Pelaksanaan pelayan Model Context Protocol (MCP) mudah dalam Python yang menyediakan fungsi kalkulator asas.
+
 
 ## Pemasangan
 
-Pasang keperluan yang diperlukan:
+Pasang kebergantungan yang diperlukan:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Atau pasang MCP Python SDK secara langsung:
+Atau pasang SDK Python MCP secara langsung:
 
 ```bash
-pip install mcp>=1.18.0
+pip install "mcp>=2.1.1,<3.0.0"
 ```
 
 ## Penggunaan
 
 ### Menjalankan Pelayan
 
-Pelayan ini direka untuk digunakan oleh klien MCP (seperti Claude Desktop). Untuk memulakan pelayan:
+Pelayan direka untuk digunakan oleh klien MCP (seperti Claude Desktop). Untuk memulakan pelayan:
 
 ```bash
 python mcp_calculator_server.py
 ```
 
-**Nota**: Apabila dijalankan terus di terminal, anda akan melihat ralat pengesahan JSON-RPC. Ini adalah tingkah laku biasa - pelayan sedang menunggu mesej klien MCP yang diformat dengan betul.
+**Nota**: Apabila dijalankan secara langsung di terminal, anda akan melihat ralat pengesahan JSON-RPC. Ini adalah tingkah laku normal - pelayan menunggu mesej klien MCP yang diformatkan dengan betul.
 
 ### Menguji Fungsi
 
@@ -36,21 +39,23 @@ Untuk menguji bahawa fungsi kalkulator berfungsi dengan betul:
 python test_calculator.py
 ```
 
-## Penyelesaian Masalah
+## Menyelesaikan Masalah
 
 ### Ralat Import
 
-Jika anda melihat `ModuleNotFoundError: No module named 'mcp'`, pasang MCP Python SDK:
+Jika anda melihat `ModuleNotFoundError: Tiada modul bernama 'mcp'`, pasang SDK Python MCP:
 
 ```bash
-pip install mcp>=1.18.0
+pip install "mcp>=2.1.1,<3.0.0"
 ```
 
-### Ralat JSON-RPC Apabila Dijalankan Secara Langsung
+### Ralat JSON-RPC Apabila Menjalankan Secara Langsung
 
-Ralat seperti "Invalid JSON: EOF while parsing a value" apabila menjalankan pelayan secara langsung adalah dijangka. Pelayan memerlukan mesej klien MCP, bukan input terminal secara langsung.
+Ralat seperti "JSON Tidak Sah: EOF semasa mengurai nilai" apabila menjalankan pelayan secara langsung adalah dijangka. Pelayan memerlukan mesej klien MCP, bukan input terminal langsung.
 
 ---
 
-**Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat penting, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Penafian**:
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk ketepatan, sila ambil maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang sahih. Untuk maklumat penting, terjemahan oleh manusia profesional adalah disyorkan. Kami tidak bertanggungjawab terhadap sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
