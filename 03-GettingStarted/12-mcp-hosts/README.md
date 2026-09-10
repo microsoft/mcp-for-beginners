@@ -307,7 +307,7 @@ Windsurf configuration is managed through the settings UI:
 
 ## Connecting to a Remote Server
 
-Every example above starts a local server with `command` and `args`. A remote server is already running somewhere else, so instead of a command you give the host the server's URL (each host has its own field for it, shown below) and it talks to the server over Streamable HTTP. The snippets below use the hosted MCP server from [Keenable](https://keenable.ai) at `https://api.keenable.ai/mcp`, which is free to use without an account or API key; anonymous requests are rate limited per IP.
+Every example above starts a local server with `command` and `args`. A remote server is already running somewhere else, so instead of a command you give the host the server's URL (each host has its own field for it, shown below). MCP has two remote transports: the older SSE transport, which is what the VS Code example earlier in this lesson configures with `"type": "sse"` and an `/sse` URL, and the current Streamable HTTP transport, which uses a single `/mcp` URL and is what the server below speaks (`"type": "http"` in VS Code). The snippets below use the hosted MCP server from [Keenable](https://keenable.ai) at `https://api.keenable.ai/mcp`, which is free to use without an account or API key; anonymous requests are rate limited per IP.
 
 **VS Code** (`.vscode/mcp.json`):
 
@@ -334,7 +334,7 @@ Every example above starts a local server with `command` and `args`. A remote se
 }
 ```
 
-**Cline** (MCP Servers icon → Configure → Configure MCP Servers):
+**Cline** (the VS Code extension; the MCP Servers panel → Configure MCP Servers button opens its `cline_mcp_settings.json`). The CLI flags shown earlier in this lesson start local servers; a remote server is added through this file:
 
 ```json
 {
@@ -347,7 +347,7 @@ Every example above starts a local server with `command` and `args`. A remote se
 }
 ```
 
-**Windsurf** (`~/.codeium/windsurf/mcp_config.json`):
+**Windsurf** (`~/.codeium/windsurf/mcp_config.json`; this is the file that Settings → Cascade → MCP Servers → "View raw config" opens, separate from the editor's `settings.json` shown earlier):
 
 ```json
 {
@@ -361,7 +361,7 @@ Every example above starts a local server with `command` and `args`. A remote se
 
 Claude Desktop does not read an HTTP entry from its configuration file (see the table below), so this example skips it.
 
-After you save the file and reload the host, check its tool list: once the connection succeeds it shows two tools, `search_web_pages` (search the web) and `fetch_page_content` (read a page). If they do not show up, look at the host's MCP output for a connection or rate-limit error before changing the configuration. Then ask something like "Search the web for the latest MCP specification release" and the assistant should call `search_web_pages`.
+After you save the file and reload the host, check its tool list: once the connection succeeds, the server's tools appear there (at the time of writing, a web search tool and a page fetch tool). If nothing shows up, look at the host's MCP output for a connection or rate-limit error before changing the configuration. Then ask something like "Search the web for the latest MCP specification release" and the assistant should call the search tool.
 
 ---
 
@@ -369,7 +369,7 @@ After you save the file and reload the host, check its tool list: once the conne
 
 Different hosts support different transport mechanisms:
 
-| Host | stdio | SSE/HTTP | WebSocket |
+| Host | stdio | SSE / Streamable HTTP | WebSocket |
 |------|-------|----------|-----------|
 | Claude Desktop | ✅ | ❌ | ❌ |
 | VS Code | ✅ | ✅ | ❌ |
@@ -378,9 +378,9 @@ Different hosts support different transport mechanisms:
 | Windsurf | ✅ | ✅ | ❌ |
 
 **stdio** (standard input/output): Best for local servers started by the host
-**SSE/HTTP**: Best for remote servers or servers shared between multiple clients
+**SSE / Streamable HTTP**: Best for remote servers or servers shared between multiple clients (Streamable HTTP is the current remote transport; SSE is its predecessor and is still accepted by most hosts)
 
-See [Connecting to a Remote Server](#connecting-to-a-remote-server) above for an HTTP configuration example for the hosts that support it.
+See [Connecting to a Remote Server](#connecting-to-a-remote-server) above for a Streamable HTTP configuration example for the hosts that support it.
 
 ---
 
