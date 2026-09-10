@@ -1,54 +1,55 @@
-# ការបំបែកទំព័រ និងក្រុមលទ្ធផលធំក្នុង MCP
+# ការបំបែកទំព័រ និង សំណុំនៃលទ្ធផលធំនៅក្នុង MCP
 
-ពេលម៉ាស៊ីនមេ MCP របស់អ្នកដំណើរការទិន្នន័យធំ - មិនថា​បញ្ជីឯកសារពេញនិយមរាប់ពាន់ៗ, កំណត់ត្រាឃ្លាំងទិន្នន័យ, ឬលទ្ឋផលស្វែងរក - អ្នកត្រូវការបំបែកទំព័រដើម្បីគ្រប់គ្រងអង្គចងចាំយ៉ាងមានប្រសិទ្ធភាព និងផ្តល់បទពិសោធន៍ប្រើប្រាស់ឆាប់រហ័ស។ មគ្គុទេសក៍នេះលើកឡើងពីរបៀបអនុវត្តន៍ និងប្រើប្រាស់ការបំបែកទំព័រនៅក្នុង MCP។
+នៅពេលម៉ាស៊ីនមេ MCP របស់អ្នកដំណើរការ សំណុំទិន្នន័យធំៗ - មិនថា បញ្ជីឯកសារពាន់រយ, បង្កត់ត្រា ទិន្នន័យ ឬ លទ្ធផលស្វែងរក - អ្នកត្រូវការការបំបែកទំព័រ ដើម្បីគ្រប់គ្រងអង្គចងចាំយ៉ាងមានប្រសិទ្ធភាព និងផ្តល់បទពិសោធន៍អ្នកប្រើប្រាស់ឆាប់ដែលមានប្រសិទ្ធភាព។ មាគ្គុទេសក៍នេះគ្របដណ្តប់ពីវិធីអនុវត្តន៍ និង ប្រើប្រាស់ការបំបែកទំព័រនៅក្នុង MCP។
 
-## ហេតុអ្វីបានជាការបំបែកទំព័រមានសារៈសំខាន់
+## ហេតុអ្វីបានជា Pagination មានសារៈសំខាន់
 
-គ្មានការបំបែកទំព័រ លទ្ធផលធំៗអាចបណ្តាលឲ្យមាន៖
+ប្រសិនបើគ្មានការបំបែកទំព័រ, លទ្ធផលធំៗអាចបណ្តាលឲ្យមានៈ
 
-- **ការចំណាយអង្គចងចាំពេក** - โหลดកំណត់ត្រាលានលានលានពេញលេញនៅពេលតែមួយ
-- **ពេលចម្លើយយឺត** - អ្នកប្រើរង់ចាំ ខណៈដែលទិន្នន័យទាំងអស់កំពុងត្រូវបានផ្ទុក
-- **កំហុសផុតកំណត់ពេលវេលា** - ការស្នើសុំលើសកំណត់ពេលវេលា
-- **កម្មវិធី AI យឺតចចាស់** - LLMs យល់ពិបាកជាមួយបរិបទធំពេក
+- **ការបញ្ចប់អង្គចងចាំ** - ដំណើរការពាក់កណ្តាលលក្ខណៈវិញ្ញាណលើកាលលើកមួយនៃបង្កត់ត្រាច្រេីនលាន
+- **ពេលចម្លើយយឺតយ៉ាវ** - អ្នកប្រើប្រាស់រង់ចាំពេលទិន្នន័យទាំងអស់ត្រូវបានដំណើរការ
+- **កំហុសពេលអស់កំណត់** - សំណើលើសកំណត់ពេលអស់កំណត់
+- **ការសមត្ថភាព AI យឺត** - LLMs មានការលំបាកជាមួយបរិបទធំៗ
 
-MCP ប្រើ **ការបំបែកទំព័រតាមមុខតំណាង Cursor** សម្រាប់ការបង្ហាញទំព័រដោយទុកចិត្តបាន និងមានភាពថេរនៅក្នុងក្រុមលទ្ធផល។
+MCP ប្រើប្រាស់ **ការបំបែកទំព័រដោយ Cursor** សម្រាប់ការកំណត់ទំព័រដោយទាន់ចិត្ត និងអាចទុកចិត្តបានតាមលំដាប់លទ្ធផល។
 
 ---
 
-## របៀបបំបែកទំព័រនៅក្នុង MCP
+## របៀបដែលការបំបែកទំព័រនៅ MCP ដំណើរការ
 
 ### គំនិត Cursor
 
-**Cursor** ជាខ្សែអក្សរបិទមិនច្បាស់ដែលសម្គាល់ទីតាំងរបស់អ្នកនៅក្នុងក្រុមលទ្ធផល។ គិតថាវា ដូចជា​មិនស្លាបរបស់សៀវភៅវែងមួយ។
+**Cursor** គឺជាច្រកពាក្យដែលមិនបញ្ចេញតម្លៃ សម្គាល់ទីតាំងរបស់អ្នកនៅក្នុងសំណុំលទ្ធផល។ គិតថាវាដូចជាគន្លងសៀវភៅនៅក្នុងសៀវភៅវែងមួយ។
 
 ```mermaid
 sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: កម្មវិធី/បញ្ជី (គ្មានម៉ាស្សាការិយាល័យ)
-    Server-->>Client: កម្មវិធី [1-10], ម៉ាស្សាការិយាល័យបន្ទាប់: "abc123"
+    Client->>Server: tools/list (គ្មានកូសរ)
+    Server-->>Client: tools [1-10], nextCursor: "abc123"
     
-    Client->>Server: កម្មវិធី/បញ្ជី (ម៉ាស្សាការិយាល័យ: "abc123")
-    Server-->>Client: កម្មវិធី [11-20], ម៉ាស្សាការិយាល័យបន្ទាប់: "def456"
+    Client->>Server: tools/list (cursor: "abc123")
+    Server-->>Client: tools [11-20], nextCursor: "def456"
     
-    Client->>Server: កម្មវិធី/បញ្ជី (ម៉ាស្សាការិយាល័យ: "def456")
-    Server-->>Client: កម្មវិធី [21-25], ម៉ាស្សាការិយាល័យបន្ទាប់: null (ចុងក្រោយ)
+    Client->>Server: tools/list (cursor: "def456")
+    Server-->>Client: tools [21-25], nextCursor: null (បញ្ចប់)
 ```
+
 ### ការបំបែកទំព័រនៅក្នុងវិធីសាស្រ្ត MCP
 
-វិធីសាស្រ្ត MCP ទាំងអស់ខាងក្រោមគាំទ្រការបំបែកទំព័រ៖
+វិធីសាស្រ្ត MCP ទាំងនេះគាំទ្រការបំបែកទំព័រ៖
 
 | វិធីសាស្រ្ត | ត្រឡប់ | គាំទ្រ Cursor |
 |--------|---------|----------------|
 | `tools/list` | ការបញ្ជាក់ឧបករណ៍ | ✅ |
 | `resources/list` | ការបញ្ជាក់ធនធាន | ✅ |
-| `prompts/list` | ការបញ្ជាក់បំភ្លឺ | ✅ |
-| `resources/templates/list` | ម៉ូដែលធនធាន | ✅ |
+| `prompts/list` | ការបញ្ជាក់សំណើ | ✅ |
+| `resources/templates/list` | គំរូធនធាន | ✅ |
 
 ---
 
-## ការអនុវត្តម៉ាស៊ីនមេ
+## ការអនុវត្តន៍ម៉ាស៊ីនមេ
 
 ### Python (FastMCP)
 
@@ -59,7 +60,7 @@ import math
 
 app = Server("paginated-server")
 
-# ប្រមូលទិន្នន័យធំនិយម
+# ទិន្នន័យធំដែលបានច្រកស៊ុម
 ALL_TOOLS = [
     Tool(name=f"tool_{i}", description=f"Tool number {i}", inputSchema={})
     for i in range(100)
@@ -71,7 +72,7 @@ PAGE_SIZE = 10
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     """List tools with pagination support."""
     
-    # បកស្រាយ cursor ដើម្បីទទួលបានទីតាំងចាប់ផ្តើម
+    # បកស្រាយក័រហ្ស័រដើម្បីទទួលបានលេខសម្គាល់ចាប់ផ្ដើម
     start_index = 0
     if cursor:
         try:
@@ -79,11 +80,11 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
         except ValueError:
             start_index = 0
     
-    # ទទួលបានទំព័រផលប៉ុន
+    # ទទួលយកទំព័រវិលតប
     end_index = min(start_index + PAGE_SIZE, len(ALL_TOOLS))
     page_tools = ALL_TOOLS[start_index:end_index]
     
-    # គណនាតំណកបន្ទាប់
+    # គណនាក័រហ្ស័របន្ទាប់
     next_cursor = None
     if end_index < len(ALL_TOOLS):
         next_cursor = str(end_index)
@@ -105,7 +106,7 @@ const server = new Server({
   version: "1.0.0"
 });
 
-// ឯកសារទិន្នន័យធំនៅក្នុងការសម្រួល
+// ចំណងជើងទិន្នន័យធំបានចាក់សោ
 const ALL_TOOLS = Array.from({ length: 100 }, (_, i) => ({
   name: `tool_${i}`,
   description: `Tool number ${i}`,
@@ -115,17 +116,17 @@ const ALL_TOOLS = Array.from({ length: 100 }, (_, i) => ({
 const PAGE_SIZE = 10;
 
 server.setRequestHandler(ListToolsResultSchema, async (request) => {
-  // បកកូដភ្ជាប់អក្សរ
+  // បកស្រាយ cursor
   let startIndex = 0;
   if (request.params?.cursor) {
     startIndex = parseInt(request.params.cursor, 10) || 0;
   }
   
-  // ទទួលបានទំព័រនៃលទ្ធផល
+  // ទាញយកទំព័រនៃលទ្ធផល
   const endIndex = Math.min(startIndex + PAGE_SIZE, ALL_TOOLS.length);
   const pageTools = ALL_TOOLS.slice(startIndex, endIndex);
   
-  // គណនាភ្ជាប់អក្សរបន្ទាប់
+  // គណនាត្រង់ពេល cursor បន្ទាប់
   const nextCursor = endIndex < ALL_TOOLS.length ? String(endIndex) : undefined;
   
   return {
@@ -145,7 +146,7 @@ public class PaginatedToolService {
     private final List<Tool> allTools;
     
     public PaginatedToolService() {
-        // ចាប់ផ្ដើមតំណើរការទិន្នន័យធំ
+        // ចាប់ផ្តើមបង្កើតសំណុំទិន្នន័យធំ
         this.allTools = IntStream.range(0, 100)
             .mapToObj(i -> new Tool("tool_" + i, "Tool number " + i, Map.of()))
             .collect(Collectors.toList());
@@ -153,7 +154,7 @@ public class PaginatedToolService {
     
     @McpMethod("tools/list")
     public ListToolsResult listTools(@Param("cursor") String cursor) {
-        // បកប្រែក្រឡាច្រៀង
+        // បកប្រែ cursor
         int startIndex = 0;
         if (cursor != null && !cursor.isEmpty()) {
             try {
@@ -163,11 +164,11 @@ public class PaginatedToolService {
             }
         }
         
-        // ទទួលបានទំព័រវិលតប
+        // ទទួលបានទំព័រវិញនៃលទ្ធផល
         int endIndex = Math.min(startIndex + PAGE_SIZE, allTools.size());
         List<Tool> pageTools = allTools.subList(startIndex, endIndex);
         
-        // គណនា​ក្រឡាច្រៀងបន្ទាប់
+        // គណនារាបរបួស cursor បន្ទាប់
         String nextCursor = endIndex < allTools.size() ? String.valueOf(endIndex) : null;
         
         return new ListToolsResult(pageTools, nextCursor);
@@ -177,9 +178,9 @@ public class PaginatedToolService {
 
 ---
 
-## ការអនុវត្តភាគីអតិថិជន
+## ការអនុវត្តន៍ភាគីអតិថិជន
 
-### Python Client
+### អតិថិជន Python
 
 ```python
 from mcp import ClientSession
@@ -205,7 +206,7 @@ async with client_session as session:
     print(f"Found {len(tools)} tools")
 ```
 
-### TypeScript Client
+### អតិថិជន TypeScript
 
 ```typescript
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
@@ -228,9 +229,9 @@ const tools = await getAllTools(client);
 console.log(`Found ${tools.length} tools`);
 ```
 
-### លំនាំ Lazy Loading
+### លំនាំបញ្ចូលដាក់យឺត
 
-សម្រាប់ទិន្នន័យធំៗណាស់, ផ្ទុកទំព័រដោយតម្រូវការ៖
+សម្រាប់សំណុំទិន្នន័យធំធេង, ដាក់បង្ហាញទំព័រតាមតម្រូវការ៖
 
 ```python
 class PaginatedToolIterator:
@@ -243,15 +244,15 @@ class PaginatedToolIterator:
         self.exhausted = False
     
     async def __anext__(self):
-        # ត្រឡប់ពីប៊ូហ្វើរបើមាន
+        # ត្រឡប់ពីហត្ថភារក្នុងបារម្ភបើមាន
         if self.buffer:
             return self.buffer.pop(0)
         
-        # ពិចារណាតើយើងបានប្រើបញ្ចប់ទំព័រទាំងអស់រួចហើយឫនៅ
+        # ពិនិត្យមើលថាតើយើងបានប្រើប្រាស់ទំព័រទាំងអស់រួចរួមទេ
         if self.exhausted:
             raise StopAsyncIteration
         
-        # ទាញទំព័របន្ទាប់
+        # ទាញយកទំព័របន្ទាប់
         result = await self.session.list_tools(cursor=self.cursor)
         self.buffer = list(result.tools)
         self.cursor = result.nextCursor
@@ -267,7 +268,7 @@ class PaginatedToolIterator:
     def __aiter__(self):
         return self
 
-# ការប្រើប្រាស់ - ជាប្រសិទ្ធិភាពអង្គចងចាំសម្រាប់ទិន្នន័យធំៗ
+# ការប្រើប្រាស់ - មានប្រសិទ្ធភាពកន្លះចងចាំសម្រាប់ប្រភេទទិន្នន័យធំនា
 async for tool in PaginatedToolIterator(session):
     process_tool(tool)
 ```
@@ -276,7 +277,7 @@ async for tool in PaginatedToolIterator(session):
 
 ## ការបំបែកទំព័រសម្រាប់ធនធាន
 
-ធនធានជាញឹកញាប់ត្រូវការបំបែកទំព័រសម្រាប់ថតឯកសារ ឬទិន្នន័យធំៗ៖
+ធនធានជាញឹកញាប់ត្រូវការការបំបែកទំព័រសម្រាប់ថតឯកសារ ឬសំណុំទិន្នន័យធំៗ៖
 
 ```python
 from mcp.server import Server
@@ -292,12 +293,12 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
     directory = "/data/files"
     all_files = sorted(os.listdir(directory))
     
-    # ដែកូដកន្លែងកំណត់ទីតាំង (លំដាប់ឯកសារ)
+    # បកប្រែ​សរសេរ​យោង (ផ្សាយ​ឯកសារ)
     start_index = int(cursor) if cursor else 0
     page_size = 20
     end_index = min(start_index + page_size, len(all_files))
     
-    # បង្កើតបញ្ជីធនធានសម្រាប់ទំព័រនេះ
+    # បង្កើត បញ្ជីធនធាន សម្រាប់ទំព័រនេះ
     resources = []
     for filename in all_files[start_index:end_index]:
         filepath = os.path.join(directory, filename)
@@ -307,7 +308,7 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
             mimeType="application/octet-stream"
         ))
     
-    # គណនាកន្លែងកំណត់បន្ទាប់
+    # គណនា​សរសេរ​យោង​បន្ទាប់
     next_cursor = str(end_index) if end_index < len(all_files) else None
     
     return ListResourcesResult(
@@ -318,29 +319,29 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ---
 
-## យុទ្ធសាស្ត្ររចនាគន្លង Cursor
+## យុទ្ធសាស្រ្តការរចនា Cursor
 
-### យុទ្ធសាស្ត្រទី 1៖ អាស្រ័យលើ Index (សាមញ្ញ)
+### យុទ្ធសាស្រ្ត ១៖ អាស្រ័យលើវិញ្ញាណ (សាមញ្ញ)
 
 ```python
-# ការសរសេរជាការធ្វើអ្នកសួរដោយគ្រាន់តែជាសន្ទស្សន៍
+# អក្សរម៉ោងគឺជាផ្ទាំងលេខតែប៉ុណ្ណោះ
 cursor = "50"  # ចាប់ផ្តើមពីធាតុ ៥០
 ```
 
-**អត្ថប្រយោជន៍៖** សាមញ្ញ មិនមានស្ថានភាព
-**គុណវិបត្តិ៖** លទ្ធផលអាចផ្លាស់ប្ដូរប្រសិនបើមានការបន្ថែម/យកចេញ
+**អត្ថប្រយោជន៍៖** សាមញ្ញ, មិនអាចរកឃើញស្ថានភាព
+**គុណវិបត្តិ៖** លទ្ធផលអាចផ្លាស់ប្តូរបើធាតុត្រូវបានបន្ថែម/យកចេញ
 
-### យុទ្ធសាស្ត្រទី 2៖ អាស្រ័យលើ ID (ថេរ)
+### យុទ្ធសាស្រ្ត ២៖ អាស្រ័យលើ ID (មានស្ថិតិភាព)
 
 ```python
-# ការលីសគឺជាអត្តសញ្ញាណចុងក្រោយដែលបានឃើញ
+# កូនសោគឺជាផ្ទាំង ID ចុងក្រោយដែលបានឃើញ
 cursor = "item_abc123"  # ចាប់ផ្តើមបន្ទាប់ពីធាតុនេះ
 ```
 
-**អត្ថប្រយោជន៍៖** ថេរដោយគ្មានការផ្លាស់ប្ដូរបើទោះបីវត្ថុផ្លាស់ប្ដូរផងដែរ
-**គុណវិបត្តិ៖** ត្រូវការចំនួន ID ដែលមានលំដាប់
+**អត្ថប្រយោជន៍៖** មានស្ថិតិភាពទោះបីធាតុផ្លាស់ប្តូរនោះក៏ដោយ
+**គុណវិបត្តិ៖** ត្រូវការលំដាប់ ID
 
-### យុទ្ធសាស្ត្រទី 3៖ អក្សរកូដស្ថានភាព (ស្មុគស្មាញ)
+### យុទ្ធសាស្រ្ត ៣៖ ស្ថានភាពអាស្រ័យលើកូដ (ស្មុគស្មាញ)
 
 ```python
 import base64
@@ -352,7 +353,7 @@ def encode_cursor(state: dict) -> str:
 def decode_cursor(cursor: str) -> dict:
     return json.loads(base64.b64decode(cursor).decode())
 
-# ក្រឡាចក្រជាន់មានបរិច្ឆេទស្ថានភាពជាច្រើន
+# មួយចំនួននៃកន្លែងស្ថិតិក្នុងអ័ក្សឈរ​មានច្រើន​ស្ថានភាព
 cursor = encode_cursor({
     "offset": 50,
     "filter": "active",
@@ -360,23 +361,23 @@ cursor = encode_cursor({
 })
 ```
 
-**អត្ថប្រយោជន៍៖** អាចអក្សរកូដស្ថានភាពស្មុគស្មាញ
-**គុណវិបត្តិ៖** ស្មុគស្មាញជាងនេះ ទ្រង់ទ្រាយ Cursor ធំជាង
+**អត្ថប្រយោជន៍៖** អាចកូដស្ថានភាពស្មុគស្មាញ
+**គុណវិបត្តិ៖** ស្មុគស្មាញជាងនេះ, ខ្សែឈរនៃ Cursor ធំជាង
 
 ---
 
-## វិធីសាស្ត្រល្អបំផុត
+## គោលបទល្អបំផុត
 
-### 1. ជ្រើសទំហំព្រិលគោលល្អ
+### ១. ជ្រើសរើសទំហំទំព័រឱ្យសមរម្យ
 
 ```python
-# គិតចំពោះទំហំទិន្នន័យ
-PAGE_SIZE_SMALL_ITEMS = 100   # ម៉េតាដាតាសាមញ្ញ
-PAGE_SIZE_MEDIUM_ITEMS = 20   # វត្ថុមានពហុភាព
+# ពិចារណាអំពីទំហំទិន្នន័យ
+PAGE_SIZE_SMALL_ITEMS = 100   # ព័ត៌មានមេតាទិន្នន័យងាយស្រួល
+PAGE_SIZE_MEDIUM_ITEMS = 20   # វត្ថុមានភាពសំបូរជាង
 PAGE_SIZE_LARGE_ITEMS = 5     # មាតិកាស្មុគស្មាញ
 ```
 
-### 2. ដោះស្រាយ Cursor មិនត្រឹមត្រូវដោយញាត់ញយ
+### ២. ជួយកាន់តែផ្តោតលើ Cursor មិនត្រឹមត្រូវ
 
 ```python
 @app.list_tools()
@@ -386,57 +387,57 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
         if start_index < 0 or start_index >= len(ALL_TOOLS):
             start_index = 0  # កំណត់ឡើងវិញទៅដើម
     except (ValueError, TypeError):
-        start_index = 0  # កំណត់ទីតាំងមិនត្រឹមត្រូវ, ចាប់ផ្តើមថ្មី
+        start_index = 0  # តំណក្រិចមិនត្រឹមត្រូវ ចាប់ផ្តើមថ្មី
     # ...
 ```
 
-### 3. រួមបញ្ចូលការរាប់សរុប (ជាជម្រើស)
+### ៣. បញ្ចូល បរិមាណសរុប (អាចជាជម្រើស)
 
 ```python
 return ListToolsResult(
     tools=page_tools,
     nextCursor=next_cursor,
-    # ការអនុវត្តខ្លះមានការរួមបញ្ចូលសរុបសម្រាប់ការរីកចម្រើន UI
+    # ការអនុវត្តខ្លះមានរួមបញ្ចូលទាំងសរុបសម្រាប់វឌ្ឍនភាព UI
     _meta={"total": len(ALL_TOOLS)}
 )
 ```
 
-### 4. សាកល្បងករណីចុងបញ្ចប់
+### ៤. សាកល្បងករណីគ្រោងកាច់
 
 ```python
 async def test_pagination():
-    # សំណុំលទ្ធផលទទេ
+    # តម្លៃលទ្ធផលទទេ
     result = await session.list_tools()
     assert result.tools == []
     assert result.nextCursor is None
     
-    # ទំព័រតែមួយ
+    # មួយទំព័រ
     result = await session.list_tools()
     assert len(result.tools) <= PAGE_SIZE
     
-    # កំណត់មិនត្រឹមត្រូវ
+    # អក្សរបង្ហាញមិនត្រឹមត្រូវ
     result = await session.list_tools(cursor="invalid")
-    assert result.tools  # គួរតែបង្ហាញទំព័រដំបូង
+    assert result.tools  # ត្រូវតែបញ្ជូនទំព័រដំបូងវិញ
 ```
 
 ---
 
-## ចំណុចចរាចរណ៍ទូទៅ
+## កំហុសទូទៅ
 
-### ❌ បញ្ជូនលទ្ធផលទាំងអស់រួចបំបែកទំព័រពីភាគីអតិថិជន
+### ❌ ត្រឡប់លទ្ធផលទាំងអស់ហើយធ្វើការបំបែកទំព័រក្នុងភាគីអតិថិជន
 
 ```python
-# អាក្រក់៖ ដំណើរការទាំងអស់ចូលទៅក្នុងចងចាំ
+# អាក្រក់៖ ផ្ទុករឿងគ្រប់យ៉ាងចូលទៅក្នុងអង្គចងចាំ
 @app.list_tools()
 async def list_tools() -> ListToolsResult:
-    all_tools = load_all_tools()  # ឧបករណ៍ 1លាន!
+    all_tools = load_all_tools()  # ឧបករណ៍ 1 លាន!
     return ListToolsResult(tools=all_tools)
 ```
 
 ### ✅ បំបែកទំព័រនៅប្រភពទិន្នន័យ
 
 ```python
-# ល្អ: ផ្ទុកតែអ្វីដែលត្រូវការតែប៉ុណ្ណោះ
+# ល្អ: ផ្ទុកតែអ្វីដែលចាំបាច់តែប៉ុណ្ណោះ
 @app.list_tools()
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     offset = int(cursor) if cursor else 0
@@ -446,23 +447,23 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ---
 
-## តើអ្វីទៅជាដំណើរបន្ទាប់
+## តើអ្វីទៅជាផ្នែកបន្ទាប់
 
-- [ម៉ូឌុល 5.14 - វិស្វកម្មបរិបទ](../../05-AdvancedTopics/mcp-contextengineering/README.md)
-- [ម៉ូឌុល 8 - វិធីសាស្ត្រល្អបំផុត](../../08-BestPractices/README.md)
-- [3.8 - ការធ្វើតេស្តម៉ាស៊ីនមេ MCP របស់អ្នក](../../03-GettingStarted/08-testing/README.md)
+- [Module 5.14 - Context Engineering](../../05-AdvancedTopics/mcp-contextengineering/README.md)
+- [Module 8 - Best Practices](../../08-BestPractices/README.md)
+- [3.8 - Testing Your MCP Server](../../03-GettingStarted/08-testing/README.md)
 
 ---
 
 ## ធនធានបន្ថែម
 
-- [លក្ខណៈពិសេស MCP - ការបំបែកទំព័រ](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [ការពិពណ៌នាអំពីការបំបែកទំព័រតាម Cursor](https://slack.engineering/evolving-api-pagination-at-slack/)
-- [តេស្ត pagination SDK Python](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+- [MCP Specification - Pagination](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [Cursor-Based Pagination Explained](https://slack.engineering/evolving-api-pagination-at-slack/)
+- [Python SDK pagination tests](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**ការបដិសេធ**៖  
-ឯកសារនេះត្រូវបានបញ្ច្រាសជាភាសាដោយប្រើសេវាកម្មបកប្រែ AI [Co-op Translator](https://github.com/Azure/co-op-translator)។ ខណៈពេលយើងខិតខំរកភាពត្រឹមត្រូវ សូមប្រាកដថាការបកប្រែដោយស្វ័យប្រវត្តិនោះអាចមានកំហុស ឬភាពមិនត្រឹមត្រូវ។ ឯកសារដើមនៅក្នុងភាសារដើមគួរត្រូវបានគេចាត់ទុកជាផ្លូវការបំផុត។ សម្រាប់ព័ត៌មានសំខាន់ សូមផ្តល់អោយមានការបកប្រែដោយមនុស្សវិជ្ជាជីវៈ។ យើងមិនទទួលខុសត្រូវចំពោះការយល់ច្រឡំ ឬការបកប្រែលើកដានដែលកើតឡើងពីការប្រើប្រាស់ការបកប្រែនេះនោះទេ។
+**ការបដិសេធ**:
+ឯកសារនេះត្រូវបានបម្លែងភាសា ដោយប្រើសេវាបម្លែងភាសា AI [Co-op Translator](https://github.com/Azure/co-op-translator)។ ទោះយើងខ្ញុំមានក្តីប្រាថ្នាឱ្យបានច្បាស់លាស់ តែសូមយល់ដឹងថាការបម្លែងដោយស្វ័យប្រវត្តិក៏អាចមានកំហុសឬភាពមិនត្រឹមត្រូវ។ ឯកសារដើមជាភាសាទីតាំងគួរត្រូវបានគេប្រើជាប្រភពច្បាស់លាស់។ សម្រាប់ព័ត៌មានសំខាន់ៗ សូមណែនាំឱ្យប្រើប្រាស់ការប្រែដោយមនុស្សជំនាញ។ យើងខ្ញុំមិនទទួលខុសត្រូវចំពោះការយល់ច្រឡំ ឬការបកស្រាយខុសបន្ទាប់ពីការប្រើប្រាស់ការបម្លែងនេះនោះទេ។
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
