@@ -1,89 +1,114 @@
-# MCP అభివృద్ధి ఉత్తమ ఆచారాలు
+# MCP అభివృద్ధి ఉత్తమ అలవాట్లు
 
-[![MCP Development Best Practices](../../../translated_images/te/09.d0f6d86c9d72134c.webp)](https://youtu.be/W56H9W7x-ao)
+[![MCP అభివృద్ధి ఉత్తమ అలవాట్లు](../../../translated_images/te/09.d0f6d86c9d72134c.webp)](https://youtu.be/W56H9W7x-ao)
 
-_(ఈ పాఠం వీడియోని చూడడానికి పై చిత్రాన్ని క్లిక్ చేయండి)_
+_(ఈ పాఠంలోని వీడియోను వీక్షించడానికి పై చిత్రం క్లిక్ చేయండి)_
 
 ## అవలోకనం
 
-ఈ పాఠం ఉత్పత్తిపరమైన వాతావరణంలో MCP సర్వర్లను మరియు ఫీచర్లను అభివృద్ది చేయడం, పరీక్షించడం మరియు పంపిణీ చేయడంపై అధునాతన ఉత్తమ ఆచారాలను దృష్టిపెడుతుంది. MCP పర్యావరణాలు సంక్లిష్టత మరియు ప్రాముఖ్యతలో పెరుగుతున్నప్పుడు, స్థాపించబడిన నమూనాలను అనుసరించడం నమ్మదగినత, నిర్వహణ సౌలభ్యం మరియు పరస్పర చర్యను నిర్ధారిస్తుంది. ఈ పాఠం వాస్తవ ప్రపంచ MCP అమలుల నుండి సాంప్రదాయ జ్ఞానాన్ని సమీకరించి, సక్రమ వనరులు, ప్రాంప్ట్‌లు మరియు సాధనాలతో బలమైన, సమర్థవంతమైన సర్వర్లను సృష్టించడానికి మీరు గైడ్ చేస్తుంది.
+ఈ పాఠం ఉత్పత్తి వాతావరణాల్లో MCP సర్వర్లను మరియు ఫీచర్లను అభివృద్ధి చేయడం, పరీక్షించడం మరియు రూపాయి చేసే ఉన్నత ఉత్తమ ఆచారాలపై దృష్టి సారిస్తుంది. MCP పరిసరాలు క్లిష్టత మరియు ప్రాధాన్యత పెరిగిన కొద్దీ, ప్రస్థాపిత నమూనాలను అనుసరించడం నమ్మకదాయకత, నిర్వహణ సౌలభ్యం మరియు అంతరసంబంధితతను నిర్ధారిస్తుంది. ఈ పాఠం ఆచరణాత్మక జ్ఞానాన్ని సమీకరించి, మీరు బలమైన, సమర్థవంతమైన సర్వర్‌లు, సమర్థవంతమైన వనరులు, ప్రాంప్ట్‌లు మరియు టూల్‌లతో సృష్టించే మార్గదర్శకత్వం అందిస్తుంది.
 
-## నేర్చుకునే లక్ష్యాలు
+## అభ్యాస లక్ష్యాలు
 
-ఈ పాఠం చివర మీరు చేయగలుగుతారు:
+ఈ పాఠం ముగియునప్పుడు మీరు చేయగలుగుతారు:
 
-- MCP సర్వర్ మరియు ఫీచర్ డిజైన్లో పరిశ్రమ ఉత్తమ ఆచారాలను వర్తించండి
-- MCP సర్వర్ల కోసం సమగ్ర పరీక్షా వ్యూహాలను సృష్టించండి
-- సంక్లిష్ట MCP అప్లికేషన్ల కోసం సమర్థవంతమైన, పున: ఉపయోగించదగిన వర్క్‌ఫ్లో నమూనాలను రూపొందించండి
-- MCP సర్వర్లలో సరైన దోష నిర్వహణ, లాగింగ్ మరియు పరిశీలనను అమలు చేయండి
-- పనితీరు, భద్రత మరియు నిర్వహణకు MCP అమలును ఆప్టిమైజ్ చేయండి
+- MCP సర్వర్ మరియు ఫీచర్ డిజైన్‌లో పరిశ్రమ ఉత్తమ అలవాట్లను వర్తింపజేయండి
+- MCP సర్వర్ల కొరకు సమగ్ర పరీక్షా వ్యూహాలను రూపొందించండి
+- క్లిష్ట MCP అనువర్తనాల కొరకు సమర్థవంతమైన, పునర్వినియోగపరచగల వర్క్‌ఫ్లో నమూనాలను రూపకల్పన చేయండి
+- MCP సర్వర్లలో సరైన లోపం నిర్వహణ, లాగింగ్ మరియు గమనించదగినతను అమలు చేయండి
+- పనితీరు, భద్రత మరియు నిర్వహణ సౌలభ్యం కోసం MCP అమలులను ఆప్టిమైజ్ చేయండి
 
 ## MCP ప్రాథమిక సూత్రాలు
 
-కనీసం అమలుకి ముందు, సమర్థవంతమైన MCP అభివృద్ధిని మార్గనిర్దేశం చేసే ప్రాథమిక సూత్రాలను అర్థం చేసుకోవడం ముఖ్యం:
+నిర్దిష్ట అమలు అలవాట్లలోకి వెళ్లేముందు, సమర్థవంతమైన MCP అభివృద్ధిని నడిపే ప్రాథమిక సూత్రాలను అర్థం చేసుకోవడం ముఖ్యం:
 
-1. **స్థిరీకృత కమ్యూనికేషన్**: MCP JSON-RPC 2.0 ని తన ఆధారంగా ఉపయోగిస్తుంది, అన్ని అమలులలో అభ్యర్థనలు, ప్రతిస్పందనలు మరియు దోష నిర్వహణకు ఎటువంటి నిరంతరమైన ఫార్మాట్ అందిస్తుంది.
+1. **ప్రామాణీకృత కమ్యూనికేషన్**: MCP దాని అంతస్తుగా JSON-RPC 2.0 ను ఉపయోగిస్తుంది, అన్ని అమలులలో అభ్యర్థన‌లు, స్పందన‌లు మరియు లోపాల నిర్వహణకు సుసాందర్భ రూపాన్ని అందిస్తుంది.
 
-2. **వినియోగదారుల కేంద్రిత రూపకల్పన**: మీ MCP అమలులలో ఎప్పుడూ వినియోగదారుల అంగీకారం, నియంత్రణ మరియు పారదర్శకతను ప్రాధాన్యం ఇవ్వండి.
+2. **ఉపయోగకర్త కేంద్రీకృత డిజైన్**: మీ MCP అమలుల్లో ఎప్పుడూ వినియోగదారు అనుమతి, నియంత్రణ మరియు పారదర్శకతను ప్రాధాన్యత ఇవ్వండి.
 
-3. **భద్రత మొదట**: ప్రామాణీకరణ, నిర్దేశనం, ధృవీకరణ మరియు రేటు పరిమితి సహా బలమైన భద్రతా చర్యలను అమలు చేయండి.
+3. **భద్రత మొదటి ప్రాధాన్యం**: సరైన భద్రతా చర్యలు అమలు చేయండి, అందులో ప్రామాణీకరణ, అధికారప్రదానం, ధృవీకరణ మరియు రేటు పరిమితి ఉన్నాయి.
 
-4. **మాడ్యూలర్ వాస్తుశిల్పం**: ప్రతి సాధనం మరియు వనరు స్పష్టమైన, లక్ష్యభరితమైన ఉద్దేశ్యంతో ఉండేలా మీ MCP సర్వర్లను మాడ్యూలర్ దృక్కోణంతో రూపొందించండి.
+4. **మాడ్యులర్ నిర్మాణం**: ప్రతి టూల్ మరియు వనరు స్పష్టమైన, లక్ష్యస్పష్టమైన ఉద్దేశ్యంతో MCP సర్వర్‌లను మాడ్యులర్ విధానంలో రూపొందించండి.
 
-5. ** స్థితిగత సంబంధాలు **: అనేక అభ్యర్థనలు అంతటా స్థితిని నిర్వహించే MCP సామర్థ్యాన్ని ఉపయోగించుకోండి, ఇది మరింత సారూప్యత మరియు సందర్భానుసారుడైన పరస్పర చర్యలకు దారితీయుతుంది.
+5. **స్పష్ట స్థితి**: MCP `2026-07-28` ప్రోటకాల్ అంతస్తులో స్థితి రహితం.
+   ఒక వర్క్‌ఫ్లో క్రాస్-కాల్ స్థితిని అవసరం చేసుకుంటే, స్పష్టమైన హ్యాండిల్స్ లేదా
+   సాధారణ టూల్ ఆర్గుమెంట్లను ఉపయోగించండి, ఇవి దీర్ఘకాలిక అనువర్తన స్థితితో మద్దతు పొందుతాయి.
 
-## అధికారిక MCP ఉత్తమ ఆచారాలు
+## అధికార MCP ఉత్తమ అలవాట్లు
 
-క్రింద పేర్కొన్న ఉత్తమ ఆచారాలు అధికారిక మోడల్ కాంటెక్స్ట్ ప్రోటోకాల్ డాక్యుమెంటేషన్ నుండి పొందుపర్చబడినవి:
+క్రింద పేర్కొన్న ఉత్తమ అలవాట్లు అధికార మోడల్ కాంటెక్స్ట్ ప్రోటోకాల్ డాక్యుమెంటేషన్ నుండి తీసుకున్నవి:
 
-### భద్రత ఉత్తమ ఆచారాలు
+### భద్రత ఉత్తమ అలవాట్లు
 
-1. **వినియోగదారుల అంగీకారం మరియు నియంత్రణ**: డేటా యాక్సెస్ చేయడానికి లేదా ఆపరేషన్లు నిర్వహించడానికి ఎప్పుడూ స్పష్టమైన వినియోగదారుల అంగీకారాన్ని తప్పనిసరిగా పొందండి. ఏ డేటా పంచబడుతుంది మరియు ఏ చర్యలు అనుమతించబడ్డాయి అన్న దానిపై స్పష్టమైన నియంత్రణని అందించండి.
+1. **వినియోగదారు అనుమతి మరియు నియంత్రణ**: డేటా యాక్సెస్ లేదా ఆపరేషన్‌లు నిర్వహించే ముందు ఎప్పుడూ స్పష్టమైన వినియోగదారు అనుమతిని కోరండి. ఏ డేటా పంచుకోవాలో మరియు ఏ చర్యలు అధికృతమవుతున్నాయో స్పష్టమైన నియంత్రణను అందించండి.
 
-2. **డేటా గోప్యత**: స్పష్టమైన అంగీకారం లేకుండా వినియోగదారుల డేటాను హ 공개 చేయవద్దు మరియు అధికారం లేని యాక్సెస్ నుండి దాన్ని రక్షించండి. అవాంఛనీయ డేటా ప్రసారాన్ని నివారించండి.
+2. **డేటా గోప్యత**: వినియోగదారుని స్పష్టమైన అనుమతితో మాత్రమే డేటా ప్రదర్శన చేయండి మరియు అనుకూల యాక్సెస్ నియంత్రణలతో దానికి రక్షణ ఇవ్వండి. అనధికార డేటా ప్రసారం నుండి రక్షించండి.
 
-3. **సాధన భద్రత**: ఏ సాధనను పిలవడానికి వినియోగదారుల స్పష్టమైన అంగీకారం అవసరం. ప్రతి సాధన యొక్క కార్యాచరణను వినియోగదారులు అర్థం చేసుకోవాలని మరియు బలమైన భద్రతా సరిహద్దులను అమలు చేయండి.
+3. **టూల్ సురక్షత**: ఏ టూల్‌ను పిలవడానికి ముందే వినియోగదారు స్పష్టమైన అనుమతిని కోరండి. ప్రతి టూల్ యొక్క పనితీరు వినియోగదారులు అర్థం చేసుకోవాలి మరియు ఘనమైన భద్రతా సరిహద్దులను అమలు చేయండి.
 
-4. **సాధన అనుమతి నియంత్రణ**: ఒక సెషన్ నడుస్తున్నప్పుడు మోడల్ ఉపయోగించదగిన సాధనలను కాన్ఫిగర్ చేయండి, కేవలం స్పష్టంగా అనుమతించబడిన సాధనలకే ప్రాప్యత ఉండేలా చేయండి.
+4. **టూల్ అనుమతి నియంత్రణ**: ప్రతి అభ్యర్థన మరియు అధికార సందర్భం కోసం మోడలుకి ఉపయోగించదగిన టూల్స్‌ను ఆకృతీకరించండి, కేవలం స్పష్టంగా అధిరోహిత టూల్స్ మాత్రమే యాక్సెస్ ఉండే విధంగా చేస్తూ.
+   
+   
 
-5. **ప్రామాణీకరణ**: సాధనాలు, వనరులు లేదా సున్నితమైన ఆపరేషన్లకు యాక్సెస్ ఇవ్వడానికి సరైన ప్రామాణీకరణ చేయాలి, API కీలు, OAuth టోకెన్లు లేదా ఇతర భద్రమైన విధానాలు ఉపయోగించండి.
+5. **ప్రామాణీకరణ**: టూల్స్, వనరులు లేదా సున్నితమైన ఆపరేషన్లకు యాక్సెస్ ఇవ్వడానికి సరైన ప్రామాణీకరణను కోరండి, API కీస్, OAuth టోకెన్‌లు లేదా ఇతర సురక్షిత ప్రామాణీకరణ విధానాలు ఉపయోగించండి.
 
-6. **పారామెటర్ ధృవీకరణ**: ఏదైనా సాధన పిలుపులకు తప్పు గల లేదా హానికారక ఇన్‌పుట్ రాకుండా ధృవీకరణను తప్పనిసరిగా అమలు చేయండి.
+6. **పారామీటర్ ధృవీకరణ**: సమస్త టూల్ పిలుపులకూ ధృవీకరణను అమలు చేసి, అశుద్ధము లేదా మాలిషియస్ ఇన్‌పుట్ టూల్ అమలులవద్దికి చేరకుండా నిరోధించండి.
 
-7. **రేటు పరిమితి**: దుర్వినియోగం నివారించడానికి మరియు సర్వర్ వనరుల సమాన వినియోగాన్ని నిర్ధారించడానికి రేటు పరిమితిని అమలు చేయండి.
+7. **రేటు పరిమితి**: వనరు పాడుచేసే దుర్వినియోగాన్ని నివారించడానికి, సర్వర్ వనరుల న్యాయమైన వాడకాన్ని నిర్ధారించడానికి రేటు పరిమితిని అమలు చేయండి.
 
-### అమలు ఉత్తమ ఆచారాలు
+### అమలు ఉత్తమ అలవాట్లు
 
-1. **సామర్థ్యం చర్చింపు**: కనెక్షన్ సెటప్ సమయంలో, మద్దతు పొందిన ఫీచర్లు, ప్రోటోకాల్ సంస్కరణలు, అందుబాటులో ఉన్న సాధనాలు మరియు వనరుల గురించి సమాచారాన్ని మార్చుకోండి.
+1. **సామర్థ్య చర్చ**: మద్దతు లభించే ప్రోటకాల్ సంస్కరణలు మరియు సామర్థ్యాలను చర్చించండి. MCP `2026-07-28` లో ప్రతి అభ్యర్థన స్వీయ కంటైనర్ మరియు `server/discover` ఉపయోగించవచ్చు; పాత సంస్కరణలు ప్రారంభ హెండ్‌షేక్ ఉపయోగిస్తాయి.
+   
+   
 
-2. **సాధన రూపకల్పన**: ఒక్కో సాధనం ఒక ప్రత్యేక పనిని బాగా చేయాలని, అనేక అంశాలను హ్యాండిల్ చేసే పెద్ద సాధనలను మించిన విధంగా రూపకల్పన చేయండి.
+2. **టూల్ డిజైన్**: బహు అంశాలను నిర్వహించే మోనోలిథిక్ టూల్స్ కన్నా ఒక పని బాగా చేసే స్పష్టమైన టూల్స్ రూపొందించండి.
 
-3. **దోష నిర్వహణ**: సమస్యలను గుర్తించడానికి, విఫలాలను సౌమ్యంగా నిర్వహించడానికి మరియు చర్య తీసుకోవడానికి సరైన అభిప్రాయాన్ని అందించే దోష సందేశాలు మరియు కోడ్‌లను అమలు చేయండి.
+3. **లోపం నిర్వహణ**: సమస్యలను గుర్తించేందుకు, విఫలాలను మృదువుగా నిర్వహించేందుకు, ఆచరణీయమైన ప్రతిస్పందనల కోసం ప్రామాణీకృత లోప సందేశాలు మరియు కోడ్స్ అమలు చేయండి.
 
-4. **లాగింగ్**: ఆడిటింగ్, డీబగ్గింగ్ మరియు ప్రోటోకాల్ పరస్పరక్రియల మానిటరింగ్ కోసం నిర్మిత లాగ్లు సెట్ చేయండి.
+4. **గమనించదగినత**: stdio రోగనిర్ధారణల కోసం `stderr` మరియు నిర్మిత గమనించదగినత కోసం OpenTelemetry ఉపయోగించండి. MCP లాగింగ్ ఫీచర్ `2026-07-28` స్పెసిఫికేషన్‌లో పాతదయ్యింది.
+   
+   
 
-5. **ప్రముఖత ట్రాకింగ్**: దీర్ఘకాలిక ఆపరేషన్ల కోసం పురోగతి అప్డేట్లను నివేదించండి, దీనివల్ల స్పందనాత్మక వినియోగదారుల ఇంటర్ఫేస్‌లను సక్రియం చేయవచ్చు.
+5. **ప్రమోత్త చర్యలపై గమనింపు**: దీర్ఘకాలిక ఆపరేషన్ల కోసం, ప్రగతి నవీకరణలను నివేదించి స్పందనాత్మక వినియోగదారు ఇంటర్ఫేసులను సక్రియం చేయండి.
 
-6. **అభ్యర్థన రద్దు**: క్లైెంట్లు అవసరం లేకుండా పోయిన లేదా చాలా సేపు పట్టే ఇన్-ఫ్లైట్ అభ్యర్థనలను రద్దు చేసే వీలును కల్పించండి.
+6. **అభ్యర్థన రద్దు**: అవసరం లేకపోతే లేదా తక్కువ సమయం తీసుకుంటున్న ఇన్-ఫ్లైట్ అభ్యర్థనలను క్లయింట్లు రద్దు చేసుకోగలగాలి.
 
-## అదనపు రిఫరెన్సులు
+## అదనపు సూచనలు
 
-MCP ఉత్తమ ఆచారాలపై తాజా సమాచారానికి దయచేసి చూడండి:
+MCP ఉత్తమ అలవాట్లపై తాజా సమాచారం కోసం, చూడండి:
 
 - [MCP డాక్యుమెంటేషన్](https://modelcontextprotocol.io/)
-- [MCP స్పెసిఫికేషన్ (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [GitHub రెపోసిటరీ](https://github.com/modelcontextprotocol)
-- [భద్రత ఉత్తమ ఆచారాలు](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices)
-- [OWASP MCP టాప్ 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - భద్రతా ప్రమాదాలు మరియు నివారణలు
-- [MCP భద్రతా శిఖర సమావేశం వర్క్‌షాప్ (Sherpa)](https://azure-samples.github.io/sherpa/) - హ్యాండ్స్-ఆన్ భద్రతా శిక్షణ
+- [MCP స్పెసిఫికేషన్ (2026-07-28)][mcp-2026-spec]
+- [మునుపటి MCP స్పెసిఫికేషన్ (2025-11-25)](https://modelcontextprotocol.io/specification/2025-11-25)
+- [MCP టాస్క్స్ విస్తరణ][mcp-tasks-extension]
+- [గిట్‌హబ్ రిపాజిటరీ](https://github.com/modelcontextprotocol)
+- [భద్రత ఉత్తమ అలవాట్లు](https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/security_best_practices)
+- [OWASP MCP టాప్ 10](https://microsoft.github.io/mcp-azure-security-guide/) - భద్రతా ప్రమాదాలు మరియు ఉపశమనం
+- [MCP భద్రతా సమ్మిట్ వర్క్షాప్ (షెర్పా)](https://azure-samples.github.io/sherpa/) - చేతిలో భద్రతా శిక్షణ
 
-## ప్రాయోగిక అమల ఉదాహరణలు
+### విశ్వసనీయత సహచర పాఠం
 
-### సాధన రూపకల్పన ఉత్తమ ఆచారాలు
+సాధారణ రీట్రై లూప్‌లు టికెట్లు, చెల్లింపులు, సందేశాలు, డిప్లాయ్‌మెంట్లు లేదా ఇతర వాస్తవ ప్రభావాల సృష్టించే టూల్స్ కోసం సురక్షితం కావు. ఒక స్పందన ప్రభావం ఎక్కించిన తర్వాత కోల్పోయే అవకాశం ఉంటుంది.
+   
+   
 
-#### 1. సింగిల్ రిస్పాన్స్‌బిలిటీ ప్రిన్సిపల్
+విశ్వసనీయత సహచర పాఠం ఉపయోగించండి,
+[MCP టూల్స్ కొరకు సురక్షిత రీట్రైలు: ఒక విశ్వసనీయత సైడ్‌కార్ నమూనా][reliability-sidecar],
+స్థిరమైన ఆపరేషన్ కీలు, డూప్లికేట్ ఆడ్మిషన్, చెక్కుపాయింటింగ్, పునర్సమీపనం, సాక్ష్య స్తాయిలు మరియు విఫలం ఇంజెక్షన్ నేర్చుకోండి.
 
-ప్రతి MCP సాధనకు స్పష్టమైన, లక్ష్యభరితమైన అతిపెద్ద ఉద్దేశ్యం ఉండాలి. అనేక అంశాలను ఒకేసారి నిర్వహించేందుకు గల పెద్ద సాధనలు కాకుండా ప్రత్యేక పనులకు నైపుణ్యం కలిగిన సాధనాలను అభివృద్ధి చేయండి.
+
+[mcp-2026-spec]: https://modelcontextprotocol.io/specification/2026-07-28
+[mcp-tasks-extension]: https://modelcontextprotocol.io/extensions/tasks/overview
+[reliability-sidecar]: ./reliability-sidecars/README.md
+
+## ఆచరణాత్మక అమలు ఉదాహరణలు
+
+### టూల్ డిజైన్ ఉత్తమ అలవాట్లు
+
+#### 1. ఒక విధేయత సిద్ధాంతం
+
+ప్రతి MCP టూల్ స్పష్టమైన, లక్ష్యస్పష్టమైన ఉద్దేశ్యం కలిగి ఉండాలి. బహు అంశాలను నిర్వహించటాన్ని ప్రయత్నించే మోనోలిథిక్ టూల్స్ సృష్టించే బదులు, నిర్ధిష్ట పనులలో మిహురించిన ప్రత్యేక టూల్స్ అభివృద్ధి చేయండి.
 
 ```csharp
 // A focused tool that does one thing well
@@ -143,12 +168,12 @@ public class WeatherForecastTool : ITool
 }
 ```
 
-#### 2. సారూప్య దోష నిర్వహణ
+#### 2. సుస్థిర లోప నిర్వహణ
 
-సమగ్ర దోಷ నిర్వహణను సజావుగా అమలు చేయండి, ఇది సమాచారం ఇచ్చే దోష సందేశాలు మరియు సరైన పరిష్కార పద్ధతులను కలిగి ఉంటుంది.
+సమాచార లోప సందేశాలు మరియు సరైన పునరుద్ధరణ పద్ధతులతో ఘనమైన లోప నిర్వహణను అమలు చేయండి.
 
 ```python
-# విస్తృత లోపాల నిర్వహణతోపైథాన్ ఉదాహరణ
+# విస్తృతమైన లోప నిర్ధారణతో పైథాన్ ఉదాహరణ
 class DataQueryTool:
     def get_name(self):
         return "dataQuery"
@@ -158,13 +183,13 @@ class DataQueryTool:
     
     async def execute(self, parameters):
         try:
-            # పారామీటర్ ధృవీకరణ
+            # పారామీటర్ ధ్రువీకరణ
             if "query" not in parameters:
                 raise ToolParameterError("Missing required parameter: query")
                 
             query = parameters["query"]
             
-            # భద్రత ధృవీకరణ
+            # భద్రతా ధ్రువీకరణ
             if self._contains_unsafe_sql(query):
                 raise ToolSecurityError("Query contains potentially unsafe SQL")
             
@@ -179,37 +204,37 @@ class DataQueryTool:
             except asyncio.TimeoutError:
                 raise ToolExecutionError("Database query timed out after 10 seconds")
             except DatabaseConnectionError as e:
-                # కనెక్షన్ లోపాలు తాత్కాలికమై ఉండవచ్చు
+                # కనెక్షన్ లోపాలు తాత్కాలికంగా ఉండవచ్చు
                 self._log_error("Database connection error", e)
                 raise ToolExecutionError(f"Database connection error: {str(e)}")
             except DatabaseQueryError as e:
-                # క్వెరీ లోపాలు సాధారణంగా క్లయింట్ లోపాలు
+                # క్వరీ లోపాలు సాధారణంగా క్లయింట్ లోపాలు అవుతాయి
                 self._log_error("Database query error", e)
                 raise ToolExecutionError(f"Invalid query: {str(e)}")
                 
         except ToolError:
-            # టూల్-ప్రత్యేక లోపాలు గడిపేవిధంగా సూచించండి
+            # టూల్-స్పెసిఫిక్ లోపాలను గమ్యస్థానంలో దాటించుము
             raise
         except Exception as e:
-            # అప్రతిష్టిత లోపాల కోసం సాధారణ పట్టుకోవడం
+            # అనుకోని లోపాల కోసం సాధారణ క్యాచ్
             self._log_error("Unexpected error in DataQueryTool", e)
             raise ToolExecutionError(f"An unexpected error occurred: {str(e)}")
     
     def _contains_unsafe_sql(self, query):
-        # SQL ఇంజెక్షన్ గుర్తింపు అమలు
+        # SQL ఇంజెక్షన్ గుర్తింపులో అమలు
         pass
         
     def _log_error(self, message, error):
-        # లోపలాగింగ్ అమలు
+        # లోపాలు నమోదు మీద అమలు
         pass
 ```
 
-#### 3. పారామెటర్ ధృవీకరణ
+#### 3. పారామీటర్ ధృవీకరణ
 
-ఎప్పుడూ పారామితులను పూర్తిగా ధృవీకరించండి, దొర్లిపోయిన లేదా హానీకర ఇన్‌పుట్ ను నిరోధించడానికి.
+ఎల్లప్పుడూ పార్థకత రహిత లేదా దురాశయపూరిత ఇన్‌పుట్‌ను నివారించేందుకు పారామీటర్లను పూర్తిగా ధృవీకరించండి.
 
 ```javascript
-// వివిధ పరామితి సరైనతను నిర్ధారించుకునే JavaScript/TypeScript ఉదాహరణ
+// విస్తృతమైన పారామితి ధృవీకరణతో JavaScript/TypeScript ఉదాహరణ
 class FileOperationTool {
   getName() {
     return "fileOperation";
@@ -244,7 +269,7 @@ class FileOperationTool {
   }
   
   async execute(parameters) {
-    // 1. పరామితి ఉన్నదో కాదో తనిఖీ చేయండి
+    // 1. పారామితి ఉనికిని ధృవీకరించండి
     if (!parameters.operation) {
       throw new ToolError("Missing required parameter: operation");
     }
@@ -253,7 +278,7 @@ class FileOperationTool {
       throw new ToolError("Missing required parameter: path");
     }
     
-    // 2. పరామితి రకాల సమాచారాన్ని తనిఖీ చేయండి
+    // 2. పారామితి రకాలను ధృవీకరించండి
     if (typeof parameters.operation !== "string") {
       throw new ToolError("Parameter 'operation' must be a string");
     }
@@ -262,23 +287,23 @@ class FileOperationTool {
       throw new ToolError("Parameter 'path' must be a string");
     }
     
-    // 3. పరామితి విలువలను తనిఖీ చేయండి
+    // 3. పారామితి విలువలను ధృవీకరించండి
     const validOperations = ["read", "write", "delete"];
     if (!validOperations.includes(parameters.operation)) {
       throw new ToolError(`Invalid operation. Must be one of: ${validOperations.join(", ")}`);
     }
     
-    // 4. రచనా కార్యకలాపం కోసం కంటెంట్ ఉన్నదో తనిఖీ చేయండి
+    // 4. రాయడం ఆపరేషన్ కోసం కంటెంట్ ఉనికిని ధృవీకరించండి
     if (parameters.operation === "write" && !parameters.content) {
       throw new ToolError("Content parameter is required for write operation");
     }
     
-    // 5. మార్గం భద్రత తనిఖీ
+    // 5. మార్గం భద్రత ధృవీకరణ
     if (!this.isPathWithinAllowedDirectories(parameters.path)) {
       throw new ToolError("Access denied: path is outside of allowed directories");
     }
     
-    // నిర్ధారించబడిన పరామితులపై అమలు
+    // ధృవీకరించిన పారామితీల ఆధారంగా అమలు
     // ...
   }
   
@@ -289,12 +314,12 @@ class FileOperationTool {
 }
 ```
 
-### భద్రత అమల ఉదాహరణలు
+### భద్రత అమలు ఉదాహరణలు
 
-#### 1. ప్రామాణీకరణ మరియు నిర్దేశనం
+#### 1. ప్రామాణీకరణ మరియు అధికారప్రదానం
 
 ```java
-// ధృవీకరణ మరియు అనుమతితో Java ఉదాహరణ
+// అథెంటికేషన్ మరియు అథరైజేషన్ తో జావా ఉదాహరణ
 public class SecureDataAccessTool implements Tool {
     private final AuthenticationService authService;
     private final AuthorizationService authzService;
@@ -317,10 +342,10 @@ public class SecureDataAccessTool implements Tool {
     
     @Override
     public ToolResponse execute(ToolRequest request) {
-        // 1. ధృవీకరణ సందర్భం తీసుకోండి
+        // 1. అథెంటికేషన్ సందర్భం బయట తీయండి
         String authToken = request.getContext().getAuthToken();
         
-        // 2. వాడుకరిని ధృవీకరించండి
+        // 2. వినియోగదారుని అథెంటికేట్ చేయండి
         UserIdentity user;
         try {
             user = authService.validateToken(authToken);
@@ -328,7 +353,7 @@ public class SecureDataAccessTool implements Tool {
             return ToolResponse.error("Authentication failed: " + e.getMessage());
         }
         
-        // 3. నిర్దిష్ట కార్యకలాపానికి అనుమతిని తనిఖీ చేయండి
+        // 3. నిర్దిష్ట ఆపరేషన్ కోసం అథరైజేషన్ తనిఖీ చేయండి
         String dataId = request.getParameters().get("dataId").getAsString();
         String operation = request.getParameters().get("operation").getAsString();
         
@@ -337,7 +362,7 @@ public class SecureDataAccessTool implements Tool {
             return ToolResponse.error("Access denied: Insufficient permissions for this operation");
         }
         
-        // 4. అనుమతితో కూడిన కార్యకలాపంతో కొనసాగండి
+        // 4. అథరైజ్డ్ ఆపరేషన్ తో కొనసాగించండి
         try {
             switch (operation) {
                 case "read":
@@ -433,30 +458,30 @@ public class RateLimitingMiddleware
 }
 ```
 
-## పరీక్షా ఉత్తమ ఆచారాలు
+## పరీక్షల ఉత్తమ అలవాట్లు
 
-### 1. MCP సాధనాల యూనిట్ పరీక్ష
+### 1. MCP టూల్స్ యూనిట్ టెస్టింగ్
 
-ఎప్పుడూ మీ సాధనాలను వేరే విధిగా, బాహ్య ఆధారాలు మాక్ చేస్తూ పరీక్షించండి:
+ఎల్లప్పుడూ మీ టూల్స్‌ను ఒకటికొకటి పరీక్షించండి, బాహ్య ఆధారాలను మాక్ చేయండి:
 
 ```typescript
-// టైప్‌స్క్రిప్ట్ ఉదాహరణగా టూల్ యూనిట్ టెస్ట్
+// టైప్‌స్క్రిప్ట్ సాధనం యూనిట్ టెస్ట్ యొక్క ఉదాహరణ
 describe('WeatherForecastTool', () => {
   let tool: WeatherForecastTool;
   let mockWeatherService: jest.Mocked<IWeatherService>;
   
   beforeEach(() => {
-    // ఒక మాక్ వాతావరణ సేవ సృష్టించండి
+    // ఒక మాక్ వాతావరణ సేవను సృష్టించండి
     mockWeatherService = {
       getForecasts: jest.fn()
     } as any;
     
-    // మాక్ ఆధారితతో టూల్ సృష్టించండి
+    // మాక్ డిపెండెన్సీతో సాధనాన్ని సృష్టించండి
     tool = new WeatherForecastTool(mockWeatherService);
   });
   
   it('should return weather forecast for a location', async () => {
-    // ఏర్పాటు చేయండి
+    // ఏర్పాట్లు
     const mockForecast = {
       location: 'Seattle',
       forecasts: [
@@ -468,7 +493,7 @@ describe('WeatherForecastTool', () => {
     
     mockWeatherService.getForecasts.mockResolvedValue(mockForecast);
     
-    // చర్య తీసుకోండి
+    // చర్య
     const response = await tool.execute({
       location: 'Seattle',
       days: 3
@@ -481,7 +506,7 @@ describe('WeatherForecastTool', () => {
   });
   
   it('should handle errors from the weather service', async () => {
-    // ఏర్పాటు చేయండి
+    // ఏర్పాట్లు
     mockWeatherService.getForecasts.mockRejectedValue(new Error('Service unavailable'));
     
     // చర్య & నిర్ధారణ
@@ -493,12 +518,12 @@ describe('WeatherForecastTool', () => {
 });
 ```
 
-### 2. ఇంటిగ్రేషన్ పరీక్ష
+### 2. సమగ్ర పరీక్ష
 
-క్లైంట్ అభ్యర్థనల నుండి సర్వర్ ప్రతిస్పందనల వరకు పూర్తిగా ప్రవাহాన్ని పరీక్షించండి:
+క్లయింట్ అభ్యర్థన‌ల నుండి సర్వర్ స్పంద‌న‌ల వరకూ మొత్తం ప్రవాహాన్ని పరీక్షించండి:
 
 ```python
-# పైథాన్ సమ్మేళనం పరీక్ష ఉదాహరణ
+# పython సమ్మిళిత పరీక్ష ఉదాహరణ
 @pytest.mark.asyncio
 async def test_mcp_server_integration():
     # పరీక్ష సర్వర్ ప్రారంభించండి
@@ -507,34 +532,35 @@ async def test_mcp_server_integration():
     await server.start(port=5000)
     
     try:
-        # ఒక క్లయింట్ రూపొందించండి
+        # క్లయింట్ సృష్టించండి
         client = McpClient("http://localhost:5000")
         
-        # టూల్ గుర్తింపు పరీక్షించండి
+        # టూల్ కనుగొనడం పరీక్షించండి
         tools = await client.discover_tools()
         assert "weatherForecast" in [t.name for t in tools]
         
-        # టూల్ నిర్వహణ పరీక్షించండి
+        # టూల్ అమలు పరీక్షించండి
         response = await client.execute_tool("weatherForecast", {
             "location": "Seattle",
             "days": 3
         })
         
-        # ప్రతిస్పందనను ధృవీకరించండి
+        # స్పందనను నిర్ధారించండి
         assert response.status_code == 200
         assert "Seattle" in response.content[0].text
         assert len(json.loads(response.content[0].text)["forecasts"]) == 3
         
     finally:
-        # శుభ్రం చేయండి
+        # శుభ్రపరచండి
         await server.stop()
 ```
 
-## పనితీరు ఆప్టిమైజేషన్
+## ప్రదర్శన ఆప్టిమైజేషన్
 
 ### 1. క్యాషింగ్ వ్యూహాలు
 
-విలంబం మరియు వనరు వినియోగం తగ్గించడానికి సరైన క్యాషింగ్ అమలు చేయండి:
+ఆలస్యాన్ని తగ్గించడానికి మరియు వనరు వినియోగాన్ని తగ్గించడానికి తగిన విధంగా క్యాషింగ్ అమలు చేయండి:
+
 
 ```csharp
 // C# example with caching
@@ -603,18 +629,18 @@ public class CachedWeatherTool : ITool
 }
 ```
 
-#### 2. డిపెండెన్సీ ఇంజెక్షన్ మరియు పరీక్షించదగినత
+#### 2. డిపెండెన్సీ ఇంజెక్షన్ మరియు టెస్ట్‌బిలిటీ
 
-సాధనాలు తమ ఆధారాలను కన్‌స్ట్రక్టర్ ఇంజెక్షన్ ద్వారా స్వీకరించేందుకు రూపకల్పన చేయండి, తద్వారా వాటిని పరీక్షించగల మరియు కాన్ఫిగర్డ్ చేయగలుగుతుంది:
+టూల్స్‌ను వారి డిపెండెన్సీలను కన్‌స్ట్రక్టర్ ఇంజెక్షన్ ద్వారా తీసుకునే విధంగా డిజైన్ చేయండి, తద్వారా అవి టెస్ట్ చేయదగినవి మరియు కాన్ఫిగర్ చేయదగినవి అవుతాయి:
 
 ```java
-// డిపెండెన్సీ ఇంజెక్షన్‌తో జావా ఉదాహరణ
+// డిపెండెన్సీ ఇంజెక్షన్ తో జావా ఉదాహరణ
 public class CurrencyConversionTool implements Tool {
     private final ExchangeRateService exchangeService;
     private final CacheService cacheService;
     private final Logger logger;
     
-    // కన్‌స్ట్రక్టర్ ద్వారా డిపెండెన్సీలు ఇంజెక్ట్ చేయబడ్డాయి
+    // డిపెండెన్సీలు కన్‌స్ట్రక్టర్ ద్వారా ఇంజెక్ట్ చేయబడతాయి
     public CurrencyConversionTool(
             ExchangeRateService exchangeService,
             CacheService cacheService,
@@ -624,51 +650,51 @@ public class CurrencyConversionTool implements Tool {
         this.logger = logger;
     }
     
-    // ఉపకరణ అమలు
+    // టూల్ అమలు
     // ...
 }
 ```
 
-#### 3. కంపోజబుల్ సాధనాలు
+#### 3. కంపోజబుల్ టూల్స్
 
-సంక్లిష్ట వర్క్‌ఫ్లోలను సృష్టించేందుకు కలిసి పనిచేసే సాధనాలను డిజైన్ చేయండి:
+మరింత క్లిష్టమైన వర్క్‌ఫ్లోలను సృష్టించడానికి కలిసి కంపోజ్ చేయగలిగే టూల్స్‌ను డిజైన్ చేయండి:
 
 ```python
-# కాంపోజబుల్ టూల్స్ చూపించే పైథాన్ ఉదాహరణ
+# కంపోజబుల్ టూల్స్ చూపించే పైథాన్ ఉదాహరణ
 class DataFetchTool(Tool):
     def get_name(self):
         return "dataFetch"
     
-    # అమలుచేసింది...
+    # అమలు...
 
 class DataAnalysisTool(Tool):
     def get_name(self):
         return "dataAnalysis"
     
-    # ఈ టూల్ dataFetch టూల్ నుంచి ఫలితాలను ఉపయోగించగలదు
+    # ఈ టూల్ dataFetch టూల్ నుండి ఫలితాలను ఉపయోగించవచ్చు
     async def execute_async(self, request):
-        # అమలుచేసింది...
+        # అమలు...
         pass
 
 class DataVisualizationTool(Tool):
     def get_name(self):
         return "dataVisualize"
     
-    # ఈ టూల్ dataAnalysis టూల్ నుంచి ఫలితాలను ఉపయోగించగలదు
+    # ఈ టూల్ dataAnalysis టూల్ నుండి ఫలితాలను ఉపయోగించవచ్చు
     async def execute_async(self, request):
-        # అమలుచేసింది...
+        # అమలు...
         pass
 
 # ఈ టూల్స్ స్వతంత్రంగా లేదా వర్క్‌ఫ్లో భాగంగా ఉపయోగించవచ్చు
 ```
 
-### స్కీమా రూపకల్పన ఉత్తమ ఆచారాలు
+### స్కీమా డిజైన్ ఉత్తమ ఆచారాలు
 
-స్కీమా మోడల్ మరియు మీ సాధన మధ్య ఒప్పందం. బాగా రూపకల్పన చేసిన స్కీమాలు మెరుగైన సాధన ఉపయోగకరతకు దారితీస్తాయి.
+స్కీమా అనేది మోడల్ మరియు మీ టూల్ మధ్య ఒప్పందం. బాగా డిజైన్ చేసిన స్కీమాలు మెరుగైన టూల్ వాడుకను కలిగిస్తాయి.
 
-#### 1. క్లియర్ పారామెటర్ వివరణలు
+#### 1. స్పష్టమైన పారామీటర్ వివరణలు
 
-ప్రతి పారామెటర్ కు వివరణాత్మక సమాచారాన్ని తప్పనిసరిగా చేర్చండి:
+ప్రతి పారామీటర్‌కు వివరణాత్మక సమాచారాన్ని ఎప్పుడూ చేర్చండి:
 
 ```csharp
 public object GetSchema()
@@ -705,9 +731,9 @@ public object GetSchema()
 }
 ```
 
-#### 2. ధృవీకరణ పరిమితులు
+#### 2. సబబు నిరోధనలు
 
-చెల్లని ఇన్‌పుట్లను నివారించేందుకు ధృవీకరణ పరిమితులను చేర్చండి:
+తప్పైన ఇన్పుట్‌లను నివారించడానికి సరైన నిరోధనలు చేర్చండి:
 
 ```java
 Map<String, Object> getSchema() {
@@ -729,7 +755,7 @@ Map<String, Object> getSchema() {
     age.put("maximum", 120);
     age.put("description", "User age in years");
     
-    // ఎ న్యుమరేటెడ్ ప్రాపర్టీ
+    // ఎరుగుచేసిన ప్రాపర్టీ
     Map<String, Object> subscription = new HashMap<>();
     subscription.put("type", "string");
     subscription.put("enum", Arrays.asList("free", "basic", "premium"));
@@ -747,17 +773,17 @@ Map<String, Object> getSchema() {
 }
 ```
 
-#### 3. సారూప్య తిరుగింపు నిర్మాణాలు
+#### 3. సమానమైన రిటర్న్ నిర్మాణాలు
 
-ఫలితాలను మోడల్లు సులభంగా అర్థం చేసుకునేలా మీరు మీ ప్రతిస్పందన నిర్మాణాలలో సారూప్యతను ఉంచండి:
+ఫలితాలను మోడల్స్ సులభంగా అర్థం చేసుకునేలా మీ ప్రతిస్పందన నిర్మాణాలలో సాకార్యతను పాటించండి:
 
 ```python
 async def execute_async(self, request):
     try:
-        # అభ్యర్థనను ప్రాసెస్ చేయండి
+        # అభ్యర్థన ప్రాసెస్ చేయండి
         results = await self._search_database(request.parameters["query"])
         
-        # ఎప్పుడూ ఒక సTeslaభవమైన నిర్మాణాన్ని తిరిగి ఇవ్వండి
+        # ఎప్పుడూ ఒక సంతులితమైన నిర్మాణాన్ని ఇించిన్చండి
         return ToolResponse(
             result={
                 "matches": [self._format_item(item) for item in results],
@@ -788,13 +814,13 @@ def _format_item(self, item):
     }
 ```
 
-### దోష నిర్వహణ
+### పొరపాటు నిర్వహణ
 
-నమ్మదగినతకు MCP సాధనాలలో బలమైన దోష నిర్వహణ అత్యావశ్యకం.
+MCP టూల్స్ నమ్మకాస్పదంగా ఉండటానికి బలమైన పొరపాటు నిర్వహణ అవసరం.
 
-#### 1. సౌమ్య దోష నిర్వహణ
+#### 1. సౌమ్యమైన పొరపాటు నిర్వహణ
 
-సరైన స్థాయిల వద్ద దోషాలను నిర్వహించి సమాచారం ఇచ్చే సందేశాలను అందించండి:
+సరైన స్థాయిల్లో పొరపాట్లు నిర్వహించి సమాచారపూర్వక సందేశాలు ఇవ్వండి:
 
 ```csharp
 public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
@@ -836,9 +862,9 @@ public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
 }
 ```
 
-#### 2. నిర్మిత దోష ప్రతిస్పందనలు
+#### 2. నిర్మించబడిన పొరపాటు ప్రతిస్పందనలు
 
-సంభవిస్తే నిర్మిత దోష సమాచారాన్ని తిరిగి ఇవ్వండి:
+సాధ్యమైనప్పుడు నిర్మిత పొరపాటు సమాచారాన్ని తిరిగి ఇవ్వండి:
 
 ```java
 @Override
@@ -862,15 +888,21 @@ public ToolResponse execute(ToolRequest request) {
                 .build();
         }
         
-        // ఇతర తప్పిదాలను ToolExecutionException గా మళ్ళీ విసరించండి
+        // ఇతర తప్పిదాలను ToolExecutionExceptionగా తిరిగి త్రో చేయండి
         throw new ToolExecutionException("Tool execution failed: " + ex.getMessage(), ex);
     }
 }
 ```
 
-#### 3. రీట్రై లాజిక్
+#### 3. రీట్రై తర్కం
 
-క్షణిక విఫలాల కోసం సరైన రీట్రై లాజిక్ అమలు చేయండి:
+పఠన- మాత్రమే కాల్స్ లేదా డౌన్‌స్ట్రీమ్ ఒప్పందం ఇప్పటికే ఐడెమ్పొటెంట్ అయిన ఆపరేషన్ల కోసం మాత్రమే సాధారణ రీట్రై తర్కాన్ని ఉపయోగించండి. ప్రభావవంతమైన ఆపరేషన్ల కోసం, అభ్యర్థన పంపిన తర్వాత టైమ్‌ఔట్ గమనార్హం కాదు. అధికారిక స్థితిని క్యాలిబ్రేట్ చేసి, మళ్ళీ అమలు చేసేముందు అదే స్థిరమైన ఆపరేషన్ కీలను పునఃపయోగించండి. 
+
+
+
+[నమ్మకవంతమైన సైడ్కార్ తోడు పాఠం](./reliability-sidecars/README.md) చూడండి.
+
+క్రింది పరిమిత రీట్రై లూప్ పఠన- కొరకు అనుకూలం:
 
 ```python
 async def execute_async(self, request):
@@ -880,27 +912,27 @@ async def execute_async(self, request):
     
     while retry_count < max_retries:
         try:
-            # బాహ్య API ను పిలవండి
-            return await self._call_api(request.parameters)
+            # చదవగలిగే బాహ్య API ను పిలవండి
+            return await self._call_read_only_api(request.parameters)
         except TransientError as e:
             retry_count += 1
             if retry_count >= max_retries:
                 raise ToolExecutionException(f"Operation failed after {max_retries} attempts: {str(e)}")
                 
-            # ఘాతాంక విధానం వెనుకడుగు
+            # ఘాతాంక చెల్లింపు తగ్గింపు
             delay = base_delay * (2 ** (retry_count - 1))
             logging.warning(f"Transient error, retrying in {delay}s: {str(e)}")
             await asyncio.sleep(delay)
         except Exception as e:
-            # తాత్కాలను కాని లోపం, పునఃప్రయత్నించకండి
+            # తాత్కాలికమైనది కాని లోపం, మళ్లీ ప్రయత్నించకండి
             raise ToolExecutionException(f"Operation failed: {str(e)}")
 ```
 
-### పనితీరు ఆప్టిమైజేషన్
+### పనితీరు మెరుగుదల
 
-#### 1. క్యాషింగ్
+#### 1. కాచింగ్
 
-ఖర్చు ఎక్కువ చేసే ఆపరేషన్ల కోసం క్యాషింగ్ అమలు చేయండి:
+ఖర్చుతో కూడుకున్న ఆపరేషన్ల కోసం కాచింగ్ అమలు చేయండి:
 
 ```csharp
 public class CachedDataTool : IMcpTool
@@ -948,7 +980,7 @@ public class CachedDataTool : IMcpTool
 
 #### 2. అసింక్రనస్ ప్రాసెసింగ్
 
-I/O ఆధారిత ఆపరేషన్ల కోసం అసింక్రనస్ ప్రోగ్రామింగ్ నమూనాలను ఉపయోగించండి:
+I/O- బౌండ్ ఆపరేషన్ల కోసం అసింక్రనస్ ప్రోగ్రామింగ్ నమూనాలు ఉపయోగించండి:
 
 ```java
 public class AsyncDocumentProcessingTool implements Tool {
@@ -959,23 +991,23 @@ public class AsyncDocumentProcessingTool implements Tool {
     public ToolResponse execute(ToolRequest request) {
         String documentId = request.getParameters().get("documentId").asText();
         
-        // దీర్ఘకాలిక ప్రదర్శనల కోసం, వెంటనే ప్రాసెసింగ్ ID ను 반환 చేయండి
+        // పరుగులో ఉండే ఆపరేషన్ల కోసం, ప్రాసెసింగ్ ID ని తక్షణమే తిరిగి ఇవ్వండి
         String processId = UUID.randomUUID().toString();
         
-        // అసింక్ ప్రాసెసింగ్ ప్రారంభించండి
+        // అసింక్రోనస్ ప్రాసెసింగ్ ప్రారంభించండి
         CompletableFuture.runAsync(() -> {
             try {
-                // దీర్ఘకాలిక ఆపరేషన్ నిర్వహించండి
+                // వరకు కొనసాగించే ఆపరేషన్‌ను జరపండి
                 documentService.processDocument(documentId);
                 
-                // స్థితిని నవీకరించండి (సాధారణంగా డేటాబేస్లో నిల్వ చేయబడుతుంది)
+                // స్థితి నవీకరించండి (సాధారణంగా డేటాబేస్‌లో నిల్వ చేయబడుతుంది)
                 processStatusRepository.updateStatus(processId, "completed");
             } catch (Exception ex) {
                 processStatusRepository.updateStatus(processId, "failed", ex.getMessage());
             }
         }, executorService);
         
-        // ప్రాసెస్ IDతో వెంటనే ప్రతిస్పందన ఇవ్వండి
+        // ప్రాసెస్ IDతో తక్షణ స్పందనను తిరిగి ఇవ్వండి
         Map<String, Object> result = new HashMap<>();
         result.put("processId", processId);
         result.put("status", "processing");
@@ -984,7 +1016,7 @@ public class AsyncDocumentProcessingTool implements Tool {
         return new ToolResponse.Builder().setResult(result).build();
     }
     
-    // అనుబంధ స్థితి తనిఖీ సాధనం
+    // సహచర స్థితి తనిఖీ సాధనం
     public class ProcessStatusTool implements Tool {
         @Override
         public ToolResponse execute(ToolRequest request) {
@@ -999,33 +1031,33 @@ public class AsyncDocumentProcessingTool implements Tool {
 
 #### 3. వనరు నియంత్రణ
 
-అధిక బోజు నివారించేందుకు వనరు నియంత్రణ అమలు చేయండి:
+ఓవర్‌లోడ్ నివారించడానికి వనరు నియంత్రణను అమలు చేయండి:
 
 ```python
 class ThrottledApiTool(Tool):
     def __init__(self):
         self.rate_limiter = TokenBucketRateLimiter(
-            tokens_per_second=5,  # секунుకు 5 అభ్యర్థనలు అనుమతించండి
-            bucket_size=10        # 10 అభ్యర్థనలు వరకు బర్స్ట్‌లు అనుమతించండి
+            tokens_per_second=5,  # సెకనుకి 5 అభ్యర్థనలను అనుమతించండి
+            bucket_size=10        # 10 అభ్యర్థనల వరకు గట్టి విరామాలను అనుమతించండి
         )
     
     async def execute_async(self, request):
-        # మేము ముందుకు పోవచ్చో లేదో చెక్ చేయండి లేదా వేచివుండాలి
+        # సాగదీయగలమా లేదా వేచి ఉండవలసిందేనా తనిఖీ చేయండి
         delay = self.rate_limiter.get_delay_time()
         
         if delay > 0:
-            if delay > 2.0:  # వేచివుండటం చాలా ఎక్కువగా ఉన్నట్లయితే
+            if delay > 2.0:  # వేచి ఉండడం చాలా ఎక్కువైతే
                 raise ToolExecutionException(
                     f"Rate limit exceeded. Please try again in {delay:.1f} seconds."
                 )
             else:
-                # సరైన ఆలస్యం సమయం కోసం వేచి ఉండండి
+                # సరైన ఆలస్య సమయానికి వేచి ఉండండి
                 await asyncio.sleep(delay)
         
-        # ఒక టోకెన్‌ను వినియోగించి అభ్యర్థనతో ముందుకు పోవండి
+        # ఒక టోకెన్‌ను వినియోగించి అభ్యర్థనతో కొనసాగండి
         self.rate_limiter.consume()
         
-        # APIని కాల్ చేయండి
+        # API‌ను కాల్ చేయండి
         result = await self._call_api(request.parameters)
         return ToolResponse(result=result)
 
@@ -1043,7 +1075,7 @@ class TokenBucketRateLimiter:
             if self.tokens >= 1:
                 return 0
             
-            # తదుపరి టోకెన్ అందుబాటులో ఉండే వరకు సమయాన్ని లెక్కించండి
+            # తదుపరి టోకెన్ లభించేదాకా సమయాన్ని గణించండి
             return (1 - self.tokens) / self.tokens_per_second
     
     async def consume(self):
@@ -1055,7 +1087,7 @@ class TokenBucketRateLimiter:
         now = time.time()
         elapsed = now - self.last_refill
         
-        # గడిచిన సమయం ఆధారంగా కొత్త టోకెన్లను జోడించండి
+        # గడిచిన సమయాన్ని ఆధారంగా కొత్త టోకెన్లను జోడించండి
         new_tokens = elapsed * self.tokens_per_second
         self.tokens = min(self.bucket_size, self.tokens + new_tokens)
         self.last_refill = now
@@ -1063,9 +1095,9 @@ class TokenBucketRateLimiter:
 
 ### భద్రత ఉత్తమ ఆచారాలు
 
-#### 1. ఇన్‌పుట్ ధృవీకరణ
+#### 1. ఇన్పుట్ తనిఖీలు
 
-ఎప్పుడూ ఇన్‌పుట్ పారామితులను పూర్తిగా ధృవీకరించండి:
+ఎప్పుడూ ఇన్పుట్ పారామీటర్లను పూర్తిగా పరిశీలించండి:
 
 ```csharp
 public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
@@ -1106,28 +1138,28 @@ public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
 }
 ```
 
-#### 2. నిర్దేశన తనిఖీలు
+#### 2. అధికారం తనిఖీలు
 
-సరైన నిర్దేశన తనిఖీలను అమలు చేయండి:
+సరైన అధికారం తనిఖీలను అమలు చేయండి:
 
 ```java
 @Override
 public ToolResponse execute(ToolRequest request) {
-    // అభ్యర్థన నుండి వాడుకరి సందర్భాన్ని పొందండి
+    // అభ్యర్థన నుండి వినియోగదారు సందర్భాన్ని పొందండి
     UserContext user = request.getContext().getUserContext();
     
-    // వాడుకరి అవసరమైన అనుమతులు కలిగి ఉన్నారా తెలుసుకోండి
+    // వినియోగదారుడికి కావలసిన అనుమతులు ఉన్నాయో లేదో తనిఖీ చేయండి
     if (!authorizationService.hasPermission(user, "documents:read")) {
         throw new ToolExecutionException("User does not have permission to access documents");
     }
     
-    // నిర్దిష్ట వనరులకు సంప్రదించండి, ఆ వనరిపై ప్రాప్తిని తనిఖీ చేయండి
+    // నిర్దిష్ట వనరుల కోసం, ఆ వనరుకు ప్రాప్తి ఉందో చూసుకోండి
     String documentId = request.getParameters().get("documentId").asText();
     if (!documentService.canUserAccess(user.getId(), documentId)) {
         throw new ToolExecutionException("Access denied to the requested document");
     }
     
-    // టూల్ అమలు కొనసాగించండి
+    // సాధన అమలు కొనసాగించండి
     // ...
 }
 ```
@@ -1152,46 +1184,46 @@ class SecureDataTool(Tool):
         user_id = request.parameters["userId"]
         include_sensitive = request.parameters.get("includeSensitiveData", False)
         
-        # వినియోగదారు డేటాను పొందండి
+        # వినియోగదారుని డేటాను పొందండి
         user_data = await self.user_service.get_user_data(user_id)
         
-        # స్పష్టంగా అభ్యర్థించబడి అనుమతించబడినప్పుడు మాత్రమే సున్నితమైన ఫీల్డ్స్‌ను వడపోత చేయండి
+        # స్పష్టంగా అభ్యర్థించబడినప్పుడల్లా మరియు అనుమతి లభించినప్పుడు మాత్రమే సున్నితమైన ఫీల్డ్స్‌ను వడపోత చేయండి
         if not include_sensitive or not self._is_authorized_for_sensitive_data(request):
             user_data = self._redact_sensitive_fields(user_data)
         
         return ToolResponse(result=user_data)
     
     def _is_authorized_for_sensitive_data(self, request):
-        # అభ్యర్థన প্রSandarbha లో అనుమతుల స్థాయి తనిఖీ చేయండి
+        # అభ్యర్థన సందర్భంలో అనుమతికి స్థాయిని తనిఖీ చేయండి
         auth_level = request.context.get("authorizationLevel")
         return auth_level == "admin"
     
     def _redact_sensitive_fields(self, user_data):
-        # అసలు దానిని మార్చకుండా ఉండేందుకు ఒక కాపీ సృష్టించండి
+        # అసలు డేటాను మార్చకుండానే ఒక ప్రతిని సృష్టించండి
         redacted = user_data.copy()
         
-        # నిర్దిష్ట సున్నితమైన ఫీల్డ్‌లను రెడాక్ట్ చేయండి
+        # ప్రత్యేకమైన సున్నితమైన ఫీల్డ్స్‌ను తొలగించండి
         sensitive_fields = ["ssn", "creditCardNumber", "password"]
         for field in sensitive_fields:
             if field in redacted:
                 redacted[field] = "REDACTED"
         
-        # గుళికైన సున్నితమైన డేటాను రెడాక్ట్ చేయండి
+        # జటిలమైన సున్నితమైన డేటాను తొలగించండి
         if "financialInfo" in redacted:
             redacted["financialInfo"] = {"available": True, "accessRestricted": True}
         
         return redacted
 ```
 
-## MCP సాధనాల పరీక్షా ఉత్తమ ఆచారాలు
+## MCP టూల్స్ కోసం పరీక్షల ఉత్తమ ఆచారాలు
 
-సంపూర్తి పరీక్ష MCP సాధనాలు సక్రమంగా పనిచేస్తున్నదని, ఎడ్జ్ కేసులను హ్యాండిల్ చేస్తున్నదని, మరియు పర్యావరణంతో సక్రమంగా ఇంటిగ్రేట్ అవుతున్నదని నిర్ధారిస్తుంది.
+సమగ్ర పరీక్షలు MCP టూల్స్ సరిగ్గా పనిచేస్తున్నాయో, అడ్డంకుల కేసులతో నిపుణులుగా వ్యవహరిస్తున్నాయో, మరియు వ్యవస్థలో మిగతావారితో సరిైన సమ్మిళనం కలిగి ఉందో నిర్ధారిస్తాయి.
 
-### యూనిట్ పరీక్ష
+### యూనిట్ టెస్టింగ్
 
-#### 1. ప్రతీ సాధనను వేరుగా పరీక్షించండి
+#### 1. ప్రతి టూల్‌ను వేరుగా పరీక్షించండి
 
-ప్రతి సాధన లక్షణానికి లక్ష్యంగా পরীক্ষలుపోచండి:
+ప్రతి టూల్ యొక్క ఫంక్షనాలిటీకి దృష్టి పెట్టిన పరిక్షలును రూపొందించండి:
 
 ```csharp
 [Fact]
@@ -1251,27 +1283,27 @@ public async Task WeatherTool_InvalidLocation_ThrowsToolExecutionException()
 }
 ```
 
-#### 2. స్కీమా ధృవీకరణ పరీక్ష
+#### 2. స్కీమా నిర్ధారణ పరీక్ష
 
-స్కీమాలు చెల్లుబాటుగా ఉన్నాయా మరియు పరిమితులను సరిగ్గా అమలు చేస్తున్నాయా అని పరీక్షించండి:
+స్కీమాలు సరైనవి మరియు నిరోధనలను సరిగ్గా అమలు చేస్తున్నాయో పరీక్షించండి:
 
 ```java
 @Test
 public void testSchemaValidation() {
-    // టూల్ ఉదాహరణ సృష్టించండి
+    // టూల్ ఉదాహరణని సృష్టించండి
     SearchTool searchTool = new SearchTool();
     
-    // స్ధాపితాన్ని పొందండి
+    // స్కీమాను పొందండి
     Object schema = searchTool.getSchema();
     
-    // ప్రమాణీకరణ కోసం స్ధాపితాన్ని JSON గా మార్చండి
+    // ధృవీకరణ కోసం స్కీమాను JSONకి మార్చండి
     String schemaJson = objectMapper.writeValueAsString(schema);
     
-    // స్ధాపితం సరైన JSONSchema కాబట్టి నిర్ధారించండి
+    // స్కీమా సరైన JSONSchema인지 ధృవీకరించండి
     JsonSchemaFactory factory = JsonSchemaFactory.byDefault();
     JsonSchema jsonSchema = factory.getJsonSchema(schemaJson);
     
-    // సరైన పరామితులను పరీక్షించండి
+    // చెల్లుబాటు అయ్యే పారామితులను పరీక్షించండి
     JsonNode validParams = objectMapper.createObjectNode()
         .put("query", "test query")
         .put("limit", 5);
@@ -1279,14 +1311,14 @@ public void testSchemaValidation() {
     ProcessingReport validReport = jsonSchema.validate(validParams);
     assertTrue(validReport.isSuccess());
     
-    // తప్పిపోయిన అవసరమైన పరామితిని పరీక్షించండి
+    // తప్పిపోయిన అవసరమైన పారామితిని పరీక్షించండి
     JsonNode missingRequired = objectMapper.createObjectNode()
         .put("limit", 5);
         
     ProcessingReport missingReport = jsonSchema.validate(missingRequired);
     assertFalse(missingReport.isSuccess());
     
-    // చెల్లని పరామితి రకం పరీక్షించండి
+    // తప్పు పారామితి రకం ని పరీక్షించండి
     JsonNode invalidType = objectMapper.createObjectNode()
         .put("query", "test")
         .put("limit", "not-a-number");
@@ -1296,21 +1328,21 @@ public void testSchemaValidation() {
 }
 ```
 
-#### 3. దోష నిర్వహణ పరీక్షలు
+#### 3. పొరపాటు నిర్వహణ పరీక్షలు
 
-దోష పరిస్థితుల కోసం ప్రత్యేక పరీక్షలు సృష్టించండి:
+పొరపాటు పరిస్థితుల కోసం ప్రత్యేక పరీక్షలు చేయండి:
 
 ```python
 @pytest.mark.asyncio
 async def test_api_tool_handles_timeout():
     # ఏర్పాటుచేయండి
-    tool = ApiTool(timeout=0.1)  # చాలా చిన్న టైమ్ అవుట్
+    tool = ApiTool(timeout=0.1)  # చాలా қыска టైమౌట్
     
-    # టైమ్ అవుట్ వచ్చే అభ్యర్థనను మాక్ చేయండి
+    # టైమౌట్ అయ్యే అభ్యర్థనను మాక్ చేయండి
     with aioresponses() as mocked:
         mocked.get(
             "https://api.example.com/data",
-            callback=lambda *args, **kwargs: asyncio.sleep(0.5)  # టైమ్ అవుట్ కంటే ఎక్కువ
+            callback=lambda *args, **kwargs: asyncio.sleep(0.5)  # టైమౌట్ కంటే ఎక్కువ
         )
         
         request = ToolRequest(
@@ -1318,11 +1350,11 @@ async def test_api_tool_handles_timeout():
             parameters={"url": "https://api.example.com/data"}
         )
         
-        # క్రియ & నిర్ధారణ
+        # చర్య & నిర్థారణ
         with pytest.raises(ToolExecutionException) as exc_info:
             await tool.execute_async(request)
         
-        # ప్రత్యేకమైన సందేశాన్ని ధృవీకరించండి
+        # తప్పిద సందేశాన్ని గమనించండి
         assert "timed out" in str(exc_info.value).lower()
 
 @pytest.mark.asyncio
@@ -1330,7 +1362,7 @@ async def test_api_tool_handles_rate_limiting():
     # ఏర్పాటుచేయండి
     tool = ApiTool()
     
-    # రేటు పరిమితమైన ప్రతిస్పందనను మాక్ చేయండి
+    # రేటు పరిమితి ఉన్న స్పందనను మాక్ చేయండి
     with aioresponses() as mocked:
         mocked.get(
             "https://api.example.com/data",
@@ -1344,21 +1376,21 @@ async def test_api_tool_handles_rate_limiting():
             parameters={"url": "https://api.example.com/data"}
         )
         
-        # క్రియ & నిర్ధారణ
+        # చర్య & నిర్థారణ
         with pytest.raises(ToolExecutionException) as exc_info:
             await tool.execute_async(request)
         
-        # ప్రత్యేకతలో రేటు పరిమితి సమాచారాన్ని ధృవీకరించండి
+        # తప్పుడు సందేశంలో రేటు పరిమితి సమాచారం ఉందని ధృవీకరించండి
         error_msg = str(exc_info.value).lower()
         assert "rate limit" in error_msg
         assert "try again" in error_msg
 ```
 
-### ఇంటిగ్రేషన్ పరీక్ష
+### సమ్మిళిత పరీక్ష
 
-#### 1. సాధన గొలుసు పరీక్ష
+#### 1. టూల్ చైన్ పరీక్ష
 
-ఇష్టమైన సంయోగాల్లో సాధనాలు కలిసి పనిచేస్తున్నాయా అని పరీక్షించండి:
+ఆశించిన కాంబినేషన్లలో కలిసి పనిచేస్తున్న టూల్స్‌ను పరీక్షించండి:
 
 ```csharp
 [Fact]
@@ -1399,7 +1431,7 @@ public async Task DataProcessingWorkflow_CompletesSuccessfully()
 
 #### 2. MCP సర్వర్ పరీక్ష
 
-పూర్తి సాధన రిజిస్ట్రేషన్ మరియు అమలు తో MCP సర్వర్‌ను పరీక్షించండి:
+పూర్తి టూల్ నమోదు మరియు అమలుతో MCP సర్వర్‌ను పరీక్షించండి:
 
 ```java
 @SpringBootTest
@@ -1414,7 +1446,7 @@ public class McpServerIntegrationTest {
     
     @Test
     public void testToolDiscovery() throws Exception {
-        // కనుగొనే ఎండ్ పాయింట్ ని పరీక్షించండి
+        // చూసే ఎండ్‌పాయింట్‌ని పరీక్షించండి
         mockMvc.perform(get("/mcp/tools"))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.tools").isArray())
@@ -1435,7 +1467,7 @@ public class McpServerIntegrationTest {
         parameters.put("b", 7);
         request.put("parameters", parameters);
         
-        // అభ్యర్థన పంపించి స్పందనను ధృవీకరించండి
+        // అభ్యర్థన పంపించి ప్రతిస్పందనని నిర్ధారించండి
         mockMvc.perform(post("/mcp/execute")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(request)))
@@ -1445,17 +1477,17 @@ public class McpServerIntegrationTest {
     
     @Test
     public void testToolValidation() throws Exception {
-        // చెల్లని టూల్ అభ్యర్థన సృష్టించండి
+        // సరైన కాని టూల్ అభ్యర్థన సృష్టించండి
         Map<String, Object> request = new HashMap<>();
         request.put("toolName", "calculator");
         
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("operation", "divide");
         parameters.put("a", 10);
-        // "b" అనే పరామితి లేదు
+        // "b" పరామితి లేదు
         request.put("parameters", parameters);
         
-        // అభ్యర్థన పంపించి దోష స్పందనను ధృవీకరించండి
+        // అభ్యర్థన పంపించి లోపపు ప్రతిస్పందన‌ని నిర్ధారించండి
         mockMvc.perform(post("/mcp/execute")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(request)))
@@ -1465,17 +1497,18 @@ public class McpServerIntegrationTest {
 }
 ```
 
-#### 3. చివరి నుండి చివరి వరకు పరీక్ష
+#### 3. ఎండ్- టూ-ఎండ్ పరీక్ష
 
-మోడల్ ప్రాంప్ట్ నుండి సాధన అమలునవరకు పూర్తి వర్క్‌ఫ్లోలను పరీక్షించండి:
+మోడల్ ప్రాంప్ట్ నుండి టూల్ అమల వరకు పూర్తి వర్క్‌ఫ్లోలను పరీక్షించండి:
+
 
 ```python
 @pytest.mark.asyncio
 async def test_model_interaction_with_tool():
-    # ఏర్పాటు చేయండి - MCP క్లయింట్ మరియు మాక్ మోడల్ అమర్చండి
+    # ఏర్పాటు చేయండి - MCP క్లయింట్ మరియు మాక్ మోడల్ సెట్ చేయండి
     mcp_client = McpClient(server_url="http://localhost:5000")
     
-    # మాక్ మోడల్ ప్రతిస్పందనలు
+    # మాక్ మోడల్ స్పందనలు
     mock_model = MockLanguageModel([
         MockResponse(
             "What's the weather in Seattle?",
@@ -1490,7 +1523,7 @@ async def test_model_interaction_with_tool():
         )
     ])
     
-    # మాక్ వాతావరణ సాధనం ప్రతిస్పందన
+    # మాక్ వాతావరణ సాధనం స్పందన
     with aioresponses() as mocked:
         mocked.post(
             "http://localhost:5000/mcp/execute",
@@ -1526,7 +1559,7 @@ async def test_model_interaction_with_tool():
 
 #### 1. లోడ్ పరీక్ష
 
-మీ MCP సర్వర్ ఎంతమంది సమకాలీన అభ్యర్థనలను నిర్వహించగలదో పరీక్షించండి:
+మీ MCP సర్వర్ ఎంత concurrency అభ్యర్థనలను నిర్వహించగలదో పరీక్షించండి:
 
 ```csharp
 [Fact]
@@ -1561,7 +1594,7 @@ public async Task McpServer_HandlesHighConcurrency()
 
 #### 2. స్ట్రెస్ పరీక్ష
 
-అత్యంత భారమైన లోడ్ క్రింద వ్యవస్థను పరీక్షించండి:
+తీవ్రమైన లోడ్ క్రింద సిస్టమ్‌ని పరీక్షించండి:
 
 ```java
 @Test
@@ -1570,13 +1603,13 @@ public void testServerUnderStress() {
     int rampUpTimeSeconds = 60;
     int testDurationSeconds = 300;
     
-    // స్ట్రెస్ టెస్టింగ్ కోసం జెఎంర్టర్ సెట్ చేయండి
+    // స్ట్రెస్ టెస్ట్ కోసం JMeter సెటప్ చేయండి
     StandardJMeterEngine jmeter = new StandardJMeterEngine();
     
-    // జెఎంర్టర్ టెస్ట్ ప్లాన్ కాన్ఫిగర్ చేయండి
+    // JMeter టెస్ట్ ప్లాన్ కాన్ఫిగర్ చేయండి
     HashTree testPlanTree = new HashTree();
     
-    // టెస్ట్ ప్లాన్, థ్రెడ్ గ్రూప్, సాంప్లర్లు మొదలైన వాటిని సృష్టించండి
+    // టెస్ట్ ప్లాన్, థ్రెడ్ గ్రూప్, శాంప్లర్లు మొదలైన వాటి సృష్టించండి
     TestPlan testPlan = new TestPlan("MCP Server Stress Test");
     testPlanTree.add(testPlan);
     
@@ -1588,7 +1621,7 @@ public void testServerUnderStress() {
     
     testPlanTree.add(threadGroup);
     
-    // టూల్ ఎగ్జిక్యూషన్ కోసం HTTP సాంప్లర్ జోడించండి
+    // టూల్ ఎగ్జిక్యూషన్ కోసం HTTP శాంప్లర్ జోడించండి
     HTTPSampler toolExecutionSampler = new HTTPSampler();
     toolExecutionSampler.setDomain("localhost");
     toolExecutionSampler.setPort(5000);
@@ -1599,18 +1632,18 @@ public void testServerUnderStress() {
     
     threadGroup.add(toolExecutionSampler);
     
-    // లిసనర్లు జోడించండి
+    // లిసనర్లను జోడించండి
     SummaryReport summaryReport = new SummaryReport();
     threadGroup.add(summaryReport);
     
-    // పరీక్షను నడపండి
+    // టెస్ట్ నడపండి
     jmeter.configure(testPlanTree);
     jmeter.run();
     
-    // ఫలితాలను నిర్ధారించండి
+    // ఫలితాలను ధృవీకరించండి
     assertEquals(0, summaryReport.getErrorCount());
-    assertTrue(summaryReport.getAverage() < 200); // సగటు ప్రతిస్పందన సమయం < 200ms
-    assertTrue(summaryReport.getPercentile(90.0) < 500); // 90వ శాతకం < 500ms
+    assertTrue(summaryReport.getAverage() < 200); // సగటు స్పందన సమయం < 200ms
+    assertTrue(summaryReport.getPercentile(90.0) < 500); // 90వ శాతం < 500ms
 }
 ```
 
@@ -1619,7 +1652,7 @@ public void testServerUnderStress() {
 దీర్ఘకాలిక పనితీరు విశ్లేషణ కోసం మానిటరింగ్ సెట్ చేయండి:
 
 ```python
-# MCP సర్వర్ కోసం మానిటరింగ్ కానుగ్గు చేయండి
+# MCP సర్వర్ కోసం మానిటరింగ్ కాన్ఫిగర్ చేయండి
 def configure_monitoring(server):
     # Prometheus మెట్రిక్స్ సెటప్ చేయండి
     prometheus_metrics = {
@@ -1647,10 +1680,10 @@ def configure_monitoring(server):
         )
     }
     
-    # టైమింగ్ మరియు రికార్డింగ్ మెట్రిక్స్ కోసం మిడిల్వేర్ చేర్చండి
+    # టైమింగ్ మరియు మెట్రిక్స్ రికార్డింగ్ కోసం మిడిల్‌వేర్ జోడించండి
     server.add_middleware(PrometheusMiddleware(prometheus_metrics))
     
-    # మెట్రిక్స్ ఎండ్పాయింట్‌ను ప్రదర్శించండి
+    # మెట్రిక్స్ ఎండ్పాయింట్‌ను ఎక్స్‌పోజ్ చేయండి
     @server.router.get("/metrics")
     async def metrics():
         return generate_latest()
@@ -1658,29 +1691,29 @@ def configure_monitoring(server):
     return server
 ```
 
-## MCP వర్క్‌ఫ్లో రూపకల్పన నమూనాలు
+## MCP వర్క్‌ఫ్లో డిజైన్ ప్యాటర్న్లు
 
-బాగా రూపకల్పన చేయబడిన MCP వర్క్‌ఫ్లోలు సమర్థవంతత, నమ్మదగినత మరియు నిర్వహణ సౌలభ్యం పెంచుతాయి. అనుసరించవలసిన ముఖ్య నమూనాలు:
+బాగా రూపకల్పన చేసిన MCP వర్క్‌ఫ్లోలు సమర్ధత, నమ్మకదారితనం మరియు నిర్వహణ సౌలభ్యాన్ని మెరుగుపరుస్తాయి. అనుసరించాల్సిన ప్రధాన ప్యాటర్న్లు ఇక్కడ ఉన్నాయి:
 
-### 1. సాధనల గొలుసు నమూనా
+### 1. టూల్స్ చైన్ ప్యాటర్న్
 
-ఒక శ్రేణిలో అనేక సాధనాలను కనెక్ట్ చేయండి, ప్రతీ సాధనం అవుట్పుట్ తరువాతి సాధన ఇన్‌పుట్ అవుతుంది:
+ఒకదాని తర్వాత ఒకటి అనుసంధానించే పద్దతిలో అనేక టూల్స్ కలపండి, ఇక్కడ ప్రతి టూల్ యొక్క అవుట్పుట్ తదుపరి టూల్ యొక్క ఇన్పుట్‌గా ఉంటుంది:
 
 ```python
-# పైథాన్ చైన్ ఆఫ్ టూల్స్ అమలు
+# పైన్లను టూల్స్ ప్రయోగం అమలు
 class ChainWorkflow:
     def __init__(self, tools_chain):
-        self.tools_chain = tools_chain  # వరుసగా అమలు చేయడానికి టూల్ పేర్ల జాబితా
+        self.tools_chain = tools_chain  # వరుసగా అమలు చేయవలసిన టూల్ పేర్ల జాబితా
     
     async def execute(self, mcp_client, initial_input):
         current_result = initial_input
         all_results = {"input": initial_input}
         
         for tool_name in self.tools_chain:
-            # చైన్‌లో ప్రతి టూల్‌ను ముందరి ఫలితాన్ని అందిస్తూ అమలు చేయండి
+            # ప్రతి టూల్ ను చైన్ లో అమలు చేయండి, ముందు ఫలితాన్ని పంపండి
             response = await mcp_client.execute_tool(tool_name, current_result)
             
-            # ఫలితాన్ని నిల్వ చేసుకుని తదుపరి టూల్‌కు ఇన్‌పుట్‌గా ఉపయోగించండి
+            # ఫలితాన్ని నిల్వ చేసి తదుపరి టూల్ కు ఇన్‌పుట్ గా ఉపయోగించండి
             all_results[tool_name] = response.result
             current_result = response.result
         
@@ -1703,9 +1736,9 @@ result = await data_processing_chain.execute(
 )
 ```
 
-### 2. డిస్పాచ్ నమూనా
+### 2. డిస్పాచర్ ప్యాటర్న్
 
-ఇన్‌పుట్ ఆధారంగా ప్రత్యేక సాధనాలకు పంపిణీ చేసే కేంద్ర సాధనాన్ని ఉపయోగించండి:
+ఇన్పుట్ ఆధారంగా ప్రత్యేక టూల్స్ కు పంపిణీ చేసే కేంద్ర టూల్ ను ఉపయోగించండి:
 
 ```csharp
 public class ContentDispatcherTool : IMcpTool
@@ -1785,9 +1818,9 @@ public class ContentDispatcherTool : IMcpTool
 }
 ```
 
-### 3. సమాంతర ప్రాసెసింగ్ నమూనా
+### 3. సమాంతర ప్రాసెసింగ్ ప్యాటర్న్
 
-సమర్థత కోసం అనేక సాధనాలను సమాంతరంగా అమలు చేయండి:
+సమర్ధత కోసం ఒకేసారి అనేక టూల్స్‌ను నడిపించండి:
 
 ```java
 public class ParallelDataProcessingWorkflow {
@@ -1798,11 +1831,11 @@ public class ParallelDataProcessingWorkflow {
     }
     
     public WorkflowResult execute(String datasetId) {
-        // దశ 1: డేటాసెట్ మెటాడేటా తీసుకోండి (సింక్రోనస్)
+        // దశ 1: డేటాసెట్ మెటాడేటాను పొందండి (సింక్రనస్)
         ToolResponse metadataResponse = mcpClient.executeTool("datasetMetadata", 
             Map.of("datasetId", datasetId));
         
-        // దశ 2: పలు విశ్లేషణలను సమాంతరంగా ప్రారంభించండి
+        // దశ 2: బహుళ విశ్లేషణలను సమాంతరంగా ప్రారంభించండి
         CompletableFuture<ToolResponse> statisticalAnalysis = CompletableFuture.supplyAsync(() ->
             mcpClient.executeTool("statisticalAnalysis", Map.of(
                 "datasetId", datasetId,
@@ -1824,14 +1857,14 @@ public class ParallelDataProcessingWorkflow {
             ))
         );
         
-        // అన్ని సమాంతర పనులు పూర్తవడానికి కాపాడండి
+        // అన్ని సమాంతర పనులు పూర్తవ్వాలని కాపాడండి
         CompletableFuture<Void> allAnalyses = CompletableFuture.allOf(
             statisticalAnalysis, correlationAnalysis, outlierDetection
         );
         
-        allAnalyses.join();  // పూర్తయ్యేవరకు వేచి ఉండండి
+        allAnalyses.join();  // పూర్తయేవరకు వేటపడండి
         
-        // దశ 3: ఫలితాలను కలపండి
+        // దశ 3: ఫలితాలను సంయోజించండి
         Map<String, Object> combinedResults = new HashMap<>();
         combinedResults.put("metadata", metadataResponse.getResult());
         combinedResults.put("statistics", statisticalAnalysis.join().getResult());
@@ -1842,7 +1875,7 @@ public class ParallelDataProcessingWorkflow {
         ToolResponse summaryResponse = mcpClient.executeTool("reportGenerator", 
             Map.of("analysisResults", combinedResults));
         
-        // సంపూర్ణ వర్క్‌ఫ్లో ఫలితాన్ని తిరిగి ఇవ్వండి
+        // పూర్తి వర్క్‌ఫ్లో ఫలితాన్ని తిరిగి ఇవ్వండి
         WorkflowResult result = new WorkflowResult();
         result.setDatasetId(datasetId);
         result.setAnalysisResults(combinedResults);
@@ -1853,9 +1886,9 @@ public class ParallelDataProcessingWorkflow {
 }
 ```
 
-### 4. దోష పునరుద్ధరణ నమూనా
+### 4. లోపాలు పునరుద్ధరణ ప్యాటర్న్
 
-సాధన విఫలాలకు సౌమ్య ప్రత్యామ్నాయాలను అమలు చేయండి:
+టూల్ వైఫల్యాల కోసం సౌమ్యమైనFallbacks ని అమలు చేయండి:
 
 ```python
 class ResilientWorkflow:
@@ -1864,7 +1897,7 @@ class ResilientWorkflow:
     
     async def execute_with_fallback(self, primary_tool, fallback_tool, parameters):
         try:
-            # మొదటి సాధనం ప్రయత్నించండి
+            # ముందుగా ప్రాథమిక పరిచయ పరికరాన్ని ప్రయత్నించండి
             response = await self.client.execute_tool(primary_tool, parameters)
             return {
                 "result": response.result,
@@ -1875,9 +1908,9 @@ class ResilientWorkflow:
             # వైఫల్యాన్ని లాగ్ చేయండి
             logging.warning(f"Primary tool '{primary_tool}' failed: {str(e)}")
             
-            # రెండవ సాధనం వైపు తిరగండి
+            # రెండవ పరికరాన్ని ఉపయోగించండి
             try:
-                # తిరుగు సాధనం కోసం పరామితులను మార్పిడి చేయవలసి ఉంటుంది
+                # fallback పరికరం కోసం పారామితులు మార్పిడి అవసరం కావచ్చు
                 fallback_params = self._adapt_parameters(parameters, primary_tool, fallback_tool)
                 
                 response = await self.client.execute_tool(fallback_tool, fallback_params)
@@ -1888,7 +1921,7 @@ class ResilientWorkflow:
                     "primaryError": str(e)
                 }
             except ToolExecutionException as fallback_error:
-                # రెండు సాధనాలు విఫలమయ్యాయి
+                # రెండు పరికరాలు కూడా విఫలమయ్యాయి
                 logging.error(f"Both primary and fallback tools failed. Fallback error: {str(fallback_error)}")
                 raise WorkflowExecutionException(
                     f"Workflow failed: primary error: {str(e)}; fallback error: {str(fallback_error)}"
@@ -1896,22 +1929,22 @@ class ResilientWorkflow:
     
     def _adapt_parameters(self, params, from_tool, to_tool):
         """Adapt parameters between different tools if needed"""
-        # ఈ అమలుపై ప్రత్యేక సాధనాలపై ఆధారపడి ఉంటుంది
-        # ఈ ఉదాహరణలో, మనం మొదటి పరామితులను తిరిగి ఇస్తాము
+        # ఈ అమలు నిర్దిష్ట పరికరాలపై ఆధారపడి ఉంటుంది
+        # ఈ ఉదాహరణ కోసం, మేము అసలు పారామితులను ఇవ్వబోతున్నాం
         return params
 
-# ఉదాహరణ ఉపయోగం
+# ఉదాహరణ వాడకం
 async def get_weather(workflow, location):
     return await workflow.execute_with_fallback(
-        "premiumWeatherService",  # మొదటి (కట్టెల) వాతావరణ API
-        "basicWeatherService",    # తిరుగు (ఉచిత) వాతావరణ API
+        "premiumWeatherService",  # ప్రాథమిక (చెల్లింపు) వాతావరణ API
+        "basicWeatherService",    # fallback (ఉచితం) వాతావరణ API
         {"location": location}
     )
 ```
 
-### 5. వర్క్‌ఫ్లో సంకలనం నమూనా
+### 5. వర్క్‌ఫ్లో కంపోజిషన్ ప్యాటర్న్
 
-సంక్లిష్ట వర్క్‌ఫ్లోలను సరళమైన వాటిని కలిసి రూపొందించండి:
+సాధారణ వర్క్‌ఫ్లోలను కలిపి సంక్లిష్ట వర్క్‌ఫ్లోలను నిర్మించండి:
 
 ```csharp
 public class CompositeWorkflow : IWorkflow
@@ -1958,37 +1991,37 @@ var result = await documentWorkflow.ExecuteAsync(new WorkflowContext {
 });
 ```
 
-# MCP సర్వర్ల పరీక్ష: ఉత్తమ ఆచారాలు మరియు ముఖ్య సూచనలు
+# MCP సర్వర్ల పరీక్ష: ఉత్తమ ప్రవర్తనలు మరియు టాప్ చిట్కాలు
 
 ## అవలోకనం
 
-పరీక్ష MCP సర్వర్లను నమ్మదగిన, ఉన్నత-నాణ్యత గలవి గా అభివృద్ధి చేయడంలో కీలక భాగం. ఈ గైడ్ మీ MCP సర్వర్లను అభివృద్ధి జీవనచక్రంలో యూనిట్ టెస్టులు, ఇంటిగ్రేషన్ టెస్టులు మరియు చివరి వరకు ధృవీకరణతో పరీక్షించడానికి సమగ్ర ఉత్తమ ఆచారాలను మరియు సూచనలను అందిస్తుంది.
+నమ్మదగిన, అధిక గుణాత్మక MCP సర్వర్లను అభివృద్ధి చేయడంలో పరీక్ష ఒక కీలకాంశం. ఈ గైడ్ యూనిట్ టెస్టులు నుండి ఇంటిగ్రేషన్ టెస్టులు మరియు ఎండ్-టు-ఎండ్ పరీక్షల వరకు MCP సర్వర్ల యొక్క అభివృద్ధి చక్రంలో అన్ని దశల్లో comprehensive ఉత్తమ పద్ధతులు మరియు చిట్కాలను అందిస్తుంది.
 
-## MCP సర్వర్ల కోసం పరీక్ష ఎందుకు ముఖ్యం
+## MCP సర్వర్లకు పరీక్ష ముఖ్యమైనదే ఎందుకు
 
-MCP సర్వర్లు AI మోడల్స్ మరియు క్లయింట్ అప్లికేషన్ల మధ్య ముఖ్య మిడ్‌లేయర్‌లుగా ఉంటాయి. పూర్తిగా పరీక్షించడం నిర్ధారిస్తుంది:
+MCP సర్వర్లు AI మోడల్స్ మరియు క్లయింట్ అనువర్తనాల మధ్య ముఖ్యమైన మిడ్‌లేయర్ గా పనిచేస్తాయి. సంపూర్ణమైన పరీక్ష:
 
-- ఉత్పత్తి వాతావరణాల్లో నమ్మకదగినత
+- ఉత్పత్తి వాతావరణాలలో నమ్మకదారితనం
 - అభ్యర్థనలు మరియు ప్రతిస్పందనలను ఖచ్చితంగా నిర్వహణ
-- MCP స్పెసిఫికేషన్ల సరైన అమలు
-- విఫలాలు మరియు ఎడ్జ్ కేసులపై ప్రతిఘటన
-- వివిధ లోడ్స్‌ద్వారా సారాణి పనితీరు
+- MCP స్పెసిఫికేషన్ల సరైన అమలును
+- వైఫల్యాల మరియు హద్దుల కేసులకు వ్యతిరేక నిరోధకత
+- వివిధ లోడ్ల క్రింద స్థిరమైన పనితీరు
 
 ## MCP సర్వర్ల కోసం యూనిట్ పరీక్ష
 
-### యూనిట్ పరీక్ష (మూలం)
+### యూనిట్ పరీక్ష (బేస్)
 
-యూనిట్ టెస్టులు మీ MCP సర్వర్ వ్యక్తిగత భాగాలను వేరుగా నిర్ధారిస్తాయి.
+యూనిట్ పరీక్షలు మీ MCP సర్వర్ యొక్క వ్యక్తిగత భాగాలను వేరుగా నిర్ధారిస్తాయి.
 
-#### ఏమిటి పరీక్షించాలి
+#### ఏమి పరీక్షించాలి
 
-1. **వనరు హ్యాండ్లర్లు**: ప్రతి వనరు హ్యాండ్లర్ యొక్క లాజిక్‌ని స్వతంత్రంగా పరీక్షించండి
-2. **సాధన అమలులు**: వివిధ ఇన్‌పుట్‌లతో సాధనల ప్రవర్తనను తెరవండి
-3. **ప్రాంప్ట్ టెంప్లేట్లు**: ప్రాంప్ట్ టెంప్లేట్లు సరిగా రెండర్ అవుతాయా చూసుకోండి
-4. **స్కీమా ధృవీకరణ**: పారామెటర్ ధృవీకరణ లాజిక్‌ను పరీక్షించండి
-5. **దోష నిర్వహణ**: చెల్లని ఇన్‌పుట్‌లకు సంబంధించిన దోష ప్రతిస్పందనలను ధృవీకరించండి
+1. **రిసోర్స్ హ్యాండ్లర్స్**: ప్రతి రిసోర్స్ హ్యాండ్లర్ లాజిక్ ని స్వతంత్రంగా పరీక్షించండి
+2. **టూల్ అమలులు**: వివిధ ఇన్పుట్‌లతో టూల్ ప్రవర్తనను నిర్ధారించండి
+3. **ప్రాంప్ట్ టెంప్లేట్లు**: ప్రాంప్ట్ టెంప్లేట్లు సరిగ్గా ప్రదర్శిస్తున్నాయా తెలియజేయండి
+4. **స్కీమా ధ్రువీకరణ**: పారామీటర్ ధ్రువీకరణ లాజిక్ ని పరీక్షించండి
+5. **లోపాలను నిర్వహణ**: చెల్లని ఇన్పుట్స్ కి లోపపు ప్రతిస్పందనలను నిర్ధారించండి
 
-#### యూనిట్ పరీక్షా ఉత్తమ ఆచారాలు
+#### యూనిట్ పరీక్షకు ఉత్తమ పద్ధతులు
 
 ```csharp
 // Example unit test for a calculator tool in C#
@@ -2014,7 +2047,7 @@ public async Task CalculatorTool_Add_ReturnsCorrectSum()
 ```
 
 ```python
-# పైథాన్‌లో క్యాల్క్యులేటర్ టూల్ కోసం ఉదాహరణ యూనిట్ పరీక్ష
+# పైథాన్‌లో కేలిక్యులేటర్ టూల్ కోసం ఉదాహరణ యూనిట్ టెస్ట్
 def test_calculator_tool_add():
     # ఏర్పాటు చేయండి
     calculator = CalculatorTool()
@@ -2024,7 +2057,7 @@ def test_calculator_tool_add():
         "b": 7
     }
     
-    # అమలు చేయండి
+    # చర్య తీసుకోండి
     response = calculator.execute(parameters)
     result = json.loads(response.content[0].text)
     
@@ -2032,19 +2065,19 @@ def test_calculator_tool_add():
     assert result["value"] == 12
 ```
 
-### ఇంటిగ్రేషన్ పరీక్ష (మధ్యస్థరం)
+### ఇంటిగ్రేషన్ పరీక్ష (మధ్యస్థర)
 
-ఇంటిగ్రేషన్ టెస్టులు MCP సర్వర్ భాగాల మధ్య అంతర్జాలాలను ధృవీకరిస్తాయి.
+ఇంటిగ్రేషన్ పరీక్షలు MCP సర్వర్ భాగాల మధ్య పరస్పర చర్యలను నిర్ధారిస్తాయి.
 
-#### ఏమిటి పరీక్షించాలి
+#### ఏమి పరీక్షించాలి
 
-1. **సర్వర్ ప్రారంభం**: వివిధ కాన్ఫిగరేషన్‌లతో సర్వర్ ప్రారంభ పోయినదా పరీక్షించండి
-2. **రూట్ రిజిస్ట్రేషన్**: అన్ని ఎండ్‌పాయింట్లు సరైన రీతిలో రిజిస్టర్ అయ్యాయా చూసుకోండి
-3. **అభ్యర్థన ప్రాసెసింగ్**: పూర్తి అభ్యర్థన-ప్రతిస్పందన సైకిల్‌ని పరీక్షించండి
-4. **దోష ప్రబంధం**: భాగాల మధ్య దోషాలు సరిగా హ్యాండిల్ అయ్యాయా పరిశీలించండి
-5. **ప్రామాణీకరణ & నిర్దేశనం**: భద్రతా వ్యవస్థలను పరీక్షించండి
+1. **సర్వర్ ఆరంభత**: వివిధ కాన్ఫిగరేషన్లతో సర్వర్ స్టార్టప్‌ను పరీక్షించండి
+2. **రూట్ రిజిస్ట్రేషన్**: అన్ని ఎండ్పాయింట్లు సరిగా నమోదు అయివున్నాయా చూడండి
+3. **అభ్యర్థన ప్రాసెస్**: పూర్తి అభ్యర్థన-ప్రతిస్పందన చక్రాన్ని పరీక్షించండి
+4. **లోప వ్యాప్తి**: భాగాల మధ్య లోపాలు సరైన విధంగా నిర్వహించబడుతున్నాయా ధృవీకరించండి
+5. **అథెంటికేషన్ & ఆమోదం**: భద్రతా యంత్రాంగాలను పరీక్షించండి
 
-#### ఇంటిగ్రేషన్ పరీక్షా ఉత్తమ ఆచారాలు
+#### ఇంటిగ్రేషన్ పరీక్షకు ఉత్తమ పద్ధతులు
 
 ```csharp
 // Example integration test for MCP server in C#
@@ -2080,27 +2113,28 @@ public async Task Server_ProcessToolRequest_ReturnsValidResponse()
 }
 ```
 
-### చివరి నుండి చివరి వరకు పరీక్ష (టాప్ లేయర్)
+### ఎండ్-టు-ఎండ్ పరీక్ష (శ్రేష్ఠ స్థరం)
 
-ఈ పరీక్షలు క్లయింట్ నుండి సర్వర్ దాకా పూర్తి వ్యవస్థ ప్రవర్తనని ధృవీకరిస్తాయి.
+ఎండ్-టు-ఎండ్ పరీక్షలు క్లయింట్ నుండి సర్వర్ వరకు పూర్తి సిస్టమ్ ప్రవర్తనను నిర్ధారిస్తాయి.
 
-#### ఏమిటి పరీక్షించాలి
+#### ఏమి పరీక్షించాలి
 
-1. **క్లయింట్-సర్వర్ కమ్యూనికేషన్**: పూర్తి అభ్యర్థన-ప్రతిస్పందన సైకిళ్ళను పరీక్షించండి
-2. **నిజమైన క్లయింట్ SDKలు**: అసలు క్లయింట్ అమలులతో పరీక్షించండి
-3. **లోడులో పనితీరు**: పలు సమకాలీన అభ్యర్థనలతో ప్రవర్తనను ధృవీకరించండి
-4. **దోష పునరుద్ధరణ**: వ్యాధుల నుంచి వ్యవస్థ పునరుద్ధరణను పరీక్షించండి
-5. **దీర్ఘకాల ఆపరేషన్లు**: స్ట్రీమింగ్ మరియు దీర్ఘకాల ఆపరేషన్ల నిర్వహణను ధృవీకరించండి
+1. **క్లయింట్-సర్వర్ కమ్యూనికేషన్**: పూర్తి అభ్యర్థన-ప్రతిస్పందన చక్రాలను పరీక్షించండి
+2. **వాస్తవ క్లయింట్ SDKలు**: నిజమైన క్లయింట్ అమలులతో పరీక్షించండి
+3. **లోడ్ క్రింద పనితీరు**: ఒకేసారి అనేక concurrency అభ్యర్థనలతో ప్రవర్తనను నిర్ధారించండి
+4. **లోప పునరుద్ధరణ**: వైఫల్యాల నుండి సిస్టమ్ పునరుద్ధరణను పరీక్షించండి
 
-#### E2E పరీక్షా ఉత్తమ ఆచారాలు
+5. **దీర్ఘకాలం నడిచే ఆపరేషన్లు**: స్ట్రీమింగ్ మరియు దీర్ఘకాల ఆపరేషన్ల నిర్వహణను ధృవీకరించండి
+
+#### E2E టెస్టింగ్ కోసం ఉత్తమ ఆచారాలు
 
 ```typescript
-// టైప్ర్స్క్రిప్ట్‌లో కస్టమర్‌తో ఉదాహరణ E2E పరీక్ష
+// TypeScriptలో క్లయింట్‌తో ఉదాహరణ E2E పరీక్ష
 describe('MCP Server E2E Tests', () => {
   let client: McpClient;
   
   beforeAll(async () => {
-    // పరీక్షా వాతావరణంలో సర్వర్ ప్రారంభించండి
+    // టెస్ట్ వాతావరణంలో సర్వర్ ప్రారంభించండి
     await startTestServer();
     client = new McpClient('http://localhost:5000');
   });
@@ -2110,32 +2144,32 @@ describe('MCP Server E2E Tests', () => {
   });
   
   test('Client can invoke calculator tool and get correct result', async () => {
-    // చర్య తీసుకోండి
+    // చర్య
     const response = await client.invokeToolAsync('calculator', {
       operation: 'divide',
       a: 20,
       b: 4
     });
     
-    // నిర్ధారించండి
+    // నిర్ధారణ చేయండి
     expect(response.statusCode).toBe(200);
     expect(response.content[0].text).toContain('5');
   });
 });
 ```
 
-## MCP పరీక్ష కోసం మాకింగ్ వ్యూహాలు
+## MCP టెస్టింగ్ కోసం మాక్ చేయడం వ్యూహాలు
 
-పరీక్ష సమయంలో భాగాలను వేరుగా చూసుకోవడానికి మాకింగ్ అవసరం.
+పరీక్షల సమయంలో భాగాలను విభజించడానికి మాక్ చేయడం అనివార్యం.
 
 ### మాక్ చేయాల్సిన భాగాలు
 
-1. **బాహ్య AI మోడల్స్**: నిర్ధారించదగిన పరీక్షలకు మోడల్ ప్రతిస్పందనలను మాక్ చేయండి
-2. **బాహ్య సేవలు**: API ఆధారాలను (డేటాబేసులు, మూడవ పక్ష సేవలు) మాక్ చేయండి
-3. **ప్రామాణీకరణ సేవలు**: గుర్తింపు ప్రొవైడర్లను మాక్ చేయండి
-4. **వనరు ప్రొవైడర్లు**: ఖరీది పెద్ద వనరు హ్యాండ్లర్లను మాక్ చేయండి
+1. **బాహ్య AI మోడల్స్**: పూర్వనిర్ధారిత పరీక్షల కోసం మోడల్ ప్రతిస్పందనలను మాక్ చేయండి
+2. **బాహ్య సర్వీసులు**: API ఆధారిత (డేటాబేసులు, మూడవ పార్టీ సర్వీసులు) మాక్ చేయండి
+3. **ప్రామాణీకరణ సర్వీసులు**: గుర్తింపు ప్రదాతలను మాక్ చేయండి
+4. **వనరులు ప్రదాతలు**: ఖరీదైన వనరుల నిర్వహణలను మాక్ చేయండి
 
-### ఉదాహరణ: AI మోడల్ ప్రతిస్పందన మాకింగ్
+### ఉదాహరణ: AI మోడల్ ప్రతిస్పందన మాక్ చేయడం
 
 ```csharp
 // C# example with Moq
@@ -2153,7 +2187,7 @@ var server = new McpServer(modelClient: mockModel.Object);
 ```
 
 ```python
-# Python ఉదాహరణ unittest.mock తో
+# unittest.mock తో పైథాన్ ఉదాహరణ
 @patch('mcp_server.models.OpenAIModel')
 def test_with_mock_model(mock_model):
     # మాక్‌ను కాన్ఫిగర్ చేయండి
@@ -2162,39 +2196,39 @@ def test_with_mock_model(mock_model):
         "finish_reason": "completed"
     }
     
-    # పరీక్షలో మాక్‌ను ఉపయోగించండి
+    # టెస్ట్‌లో మాక్‌ని ఉపయోగించండి
     server = McpServer(model_client=mock_model)
-    # పరీక్షతో కొనసాగించండి
+    # టెస్ట్‌తో కొనసాగండి
 ```
 
 ## పనితీరు పరీక్ష
 
-ఉత్పత్తి MCP సర్వర్లకు పనితీరు పరీక్ష అవసరం.
+ఉత్పత్తి MCP సర్వర్ల కోసం పనితీరు పరీక్ష చాలా ముఖ్యമാണ്.
 
-### ఏమి కొలవాలి
+### ఏది కొలవాలి
 
-1. **విలంబం**: అభ్యర్థనలకు ప్రతిస్పందించడానికి తీసుకునే సమయం
-2. **త్రౌత్వు**: సెకనుకు ప్రాసెస్ అయ్యే అభ్యర్థనల సంఖ్య
-3. **వనరు ఉపయోగం**: CPU, మెమరీ, నెట్‌వర్క్ వాడకం
-4. **సమకాలీన నిర్వహణ**: సమాంతర అభ్యర్థనలలో ప్రవర్తన
-5. **విస్తరణ లక్షణాలు**: లోడ్ పెరిగేప్పుడు పనితీరు
+1. **విలంబం**: అభ్యర్థనలకు స్పందించే సమయం
+2. **థ్రూపుట్**: సెకనుకి నిర్వహించిన అభ్యర్థనలు
+3. **వనరు వినియోగం**: CPU, మెమరీ, నెట్‌వర్క్ వినియోగం
+4. **సమాంతర నిర్వహణ**: సమాంతర అభ్యర్థనల క్రింద ప్రవర్తనలు
+5. **స్కేలింగ్ లక్షణాలు**: లోడ్ పెరిగేకొద్దీ పనితీరు
 
-### పనితీరు పరీక్షా సాధనాలు
+### పనితీరు పరీక్షకు ఉపయోగించే టూల్స్
 
-- **k6**: ఓపెన్-సోర్స్ లోడ్ పరీక్షా సాధనం
-- **JMeter**: సమగ్ర పనితీరు పరీక్ష
+- **k6**: ఓపెన్-సోర్స్ లోడ్ పరీక్ష టూల్
+- **JMeter**: సమగ్ర పనితీరు పరీక్షా పరికరం
 - **Locust**: పైథాన్ ఆధారిత లోడ్ పరీక్ష
 - **Azure Load Testing**: క్లౌడ్ ఆధారిత పనితీరు పరీక్ష
 
-### ఉదాహరణ: k6 తో బేసిక్ లోడ్ టెస్ట్
+### ఉదాహరణ: k6 తో ప్రాథమిక లోడ్ పరీక్ష
 
 ```javascript
-// MCP సర్వర్ లోడ్ టెస్టింగ్ కోసం k6 స్క్రిప్ట్
+// MCP సర్వర్ లోడ్ పరీక్ష కోసం k6 స్క్రిప్ట్
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 
 export const options = {
-  vus: 10,  // 10 వర్చువల్ యూజర్స్
+  vus: 10,  // 10 వర్చువల్ యూజర్లు
   duration: '30s',
 };
 
@@ -2226,18 +2260,18 @@ export default function () {
 }
 ```
 
-## MCP సర్వర్ల కోసం టెస్ట్ ఆటోమేషన్
+## MCP సర్వర్ల కోసం పరీక్ష ఆటోమేషన్
 
-మీ పరీక్షలను ఆటోమేట్ చేయడం నిరంతర నాణ్యత మరియు వేగవంతమైన ఫీడ్‌బ్యాక్ లూపులను నిర్ధారిస్తుంది.
+మీ పరీక్షలను ఆటోమేట్ చేయడం స్థిరమైన నాణ్యత మరియు వేగవంతమైన ఫీడ్బ్యాక్ లూక్స్‌ను నిర్ధారిస్తుంది.
 
-### CI/CD ఇంటిగ్రేషన్
+### CI/CD సమన్వయం
 
-1. **పుల్ రిక్వెస్టులపై యూనిట్ టెస్ట్లు నడపండి**: కోడ్ మార్పులు ఇప్పటికే ఉన్న విధానాన్ని బ్రేక్ చేస్తున్నట్లు కాకుండా చూసుకోండి
-2. **స్టేజింగ్‌లో ఇంటిగ్రేషన్ పరీక్షలు**: ప్రీ-ప్రొడక్షన్ పరిసరాలలో ఇంటిగ్రేషన్ పరీక్షలు నిర్వహించండి
-3. **ప్రదర్శన బేస్‌లైన్లు**: మళ్లింపు సమస్యలను గుర్తించడానికి పనితీరు ప్రమాణాలను నిర్వహించండి
-4. **భద్రత స్కాన్లు**: పైప్లైన్ భాగంగా భద్రతా పరీక్షలను ఆటోమేట్చేయండి
+1. **పుల్ రిక్వెస్ట్స్‌పై యూనిట్ టెస్ట్‌లు నడపండి**: కోడ్ మార్పులు ప్రస్తుతం ఉన్న ఫంక్షనాలిటీని బ్రేక్ చేయకూడదు అని నిర్ధారించండి
+2. **స్టేజింగ్‌లో ఇంటిగ్రేషన్ టెస్ట్‌లు**: ప్రీ-ప్రొడక్షన్ పరిసరాలలో ఇంటిగ్రేషన్ పరీక్షలు నిర్వహించండి
+3. **పనితీరు బ్యాస్లైన్స్**: రిగ్రెషన్లను గుర్తించడానికి పనితీరు ప్రమాణాలను నిర్వహించండి
+4. **సెక్యూరిటీ స్కాన్లు**: పైప్లైన్‌లో భాగంగా సెక్యూరిటీ పరీక్షలను ఆటోమేట్ చేయండి
 
-### ఉదాహరణ CI పైప్లైన్ (GitHub Actions)
+### ఉదాహరణ CI పైప్లైన్ (GitHub యాక్షన్స్)
 
 ```yaml
 name: MCP Server Tests
@@ -2276,19 +2310,19 @@ jobs:
       run: dotnet run --project tests/PerformanceTests/PerformanceTests.csproj
 ```
 
-## MCP స్పెసిఫికేషన్ నిర్దేశాలతో అనుకూలత కోసం పరీక్షలు
+## MCP స్పెసిఫికేషన్‌తో అనుగుణమైన పరీక్ష
 
-మీ సర్వర్ సరిగా MCP స్పెసిఫికేషన్‌ను అమలు చేస్తున్నదా అని నిర్ధారించుకోండి.
+మీ సర్వర్ MCP స్పెసిఫికేషన్‌ను సరిగ్గా అమలు చేస్తున్నదా అని నిర్ధారించండి.
 
-### కీలక అనుకూలత ప్రాంతాలు
+### ముఖ్య అనుగుణత ప్రాంతాలు
 
-1. **API ఎండ్‌పాయింట్లు**: అవసరమైన ఎండ్‌పాయింట్లను పరీక్షించండి (/resources, /tools, ఇతరాలు)
-2. **రూపుమార్పు/ప్రత్యుత్తర ఫార్మాట్**: స్కీమా అనుకూలతను ధ్రువీకరించండి
-3. **లోపం కోడ్లు**: వివిధ పరిస్థితులకు సరైన స్థితి కోడ్లు ఉన్నాయో లేదా అని పరీక్షించండి
-4. **కంటెంట్ రకాలు**: వేరువేరు కంటెంట్ రకాల నిర్వహణను పరీక్షించండి
-5. **పరిచయం ప్రవాహం**: స్పెసిఫికేషన్‌కు అనుగుణమైన ప్రమాణాల అథెంటికేషన్ విధానాలను ధ్రువీకరించండి
+1. **API ఎండ్‌పాయింట్లు**: అవసరమైన ఎండ్‌పాయింట్లను పరీక్షించండి (/resources, /tools, మొదలైనవి)
+2. **అభ్యర్థన/స్పందన ఫార్మాట్**: స్కీమా అనుగుణతను ధృవీకరించండి
+3. **పొరపాటు కోడ్స్**: వివిధ సందర్భాలకు సరైన స్థితి కోడ్లను నిర్ధారించండి
+4. **కంటెంట్ రకం**: వేరే వేరే కంటెంట్ రకాల నిర్వహణను పరీక్షించండి
+5. **ప్రామాణీకరణ ఫ్లో**: స్పెక్స్‌కు అనుగుణమైన ఆథ్ మెకానిజమ్లను ధృవీకరించండి
 
-### అనుకూలత పరీక్ష సూట్
+### అనుగుణత పరీక్షా సూట్
 
 ```csharp
 [Fact]
@@ -2315,64 +2349,66 @@ public async Task Server_ResourceEndpoint_ReturnsCorrectSchema()
 }
 ```
 
-## MCP సర్వర్ సదుపాయంగా పరీక్షించడానికి టాప్ 10 సూచనలు
+## సమర్థవంతమైన MCP సర్వర్ టెస్టింగ్ కోసం టాప్ 10 సూచనలు
 
-1. **పరికరం నిర్వచనాలను వేర్వేరు పరీక్షించండి**: పరికర లాజిక్ నుంచి స్కీమా నిర్వచనాలను స్వతంత్రంగా ధృవీకరించండి
-2. **పరామితి పరీక్షలను ఉపయోగించండి**: వివిధ ఇన్‌పుట్లతో పరికరాలను, ఎడ్జ్ కేసులు సహా పరీక్షించండి
-3. **లోపపు ప్రత్యుత్తరాలను తనిఖీ చేయండి**: అన్ని లోప పరిస్థితులకు సరైన లోప నిర్వహణ ఉందా అని ధృవీకరించండి
-4. **అధికార పరీక్షల లాజిక్**: విభిన్న వినియోగదారు పాత్రలకి సరైన యాక్సెస్ నియంత్రణ ఉందో లేదో నిర్ధారించండి
-5. **పరీక్ష కవరేజ్‌ను గమనించండి**: కీలక మార్గ కోడ్ పై ఎక్కువ కవరేజ్ లక్ష్యం పెట్టండి
-6. **స్ట్రీమింగ్ ప్రత్యుత్తరాలను పరీక్షించండి**: స్ట్రీమింగ్ కంటెంట్‌ను సరైన రీతిలో నిర్వహిస్తున్నదా అని ధృవీకరించండి
-7. **నెట్‌వర్క్ సమస్యలను అనుకరించండి**: తక్కువ నెట్‌వర్క్ పరిస్థితులలో వ్యవహారాన్ని పరీక్షించండి
-8. **సాధన పరిమితులను పరీక్షించండి**: కోటాలు లేదా రేట్ పరిమితుల చేరుకున్నప్పుడు ప్రవర్తనను ధృవీకరించండి
-9. **మళ్లింపు పరీక్షలను ఆటోమేట్చేయండి**: ప్రతి కోడ్ మార్పులో నడిచే సూట్‌ను నిర్మించండి
-10. **పరీక్ష కేసులను డాక్యుమెంట్ చేయండి**: పరీక్ష పరిస్థితుల స్పష్టమైన డాక్యుమెంటేషన్‌ను నిర్వహించండి
+1. **పరికరం నిర్వచనాలను విడిగా పరీక్షించండి**: పరికరం లాజిక్ నుండి స్వతంత్రంగా స్కీమా నిర్వచనాలను ధృవీకరించండి
+2. **పారామెటరైజ్డ్ టెస్ట్‌లు ఉపయోగించండి**: విభిన్న ఇన్‌పుట్లతో పరికరాలను పరీక్షించండి, సరిహద్దుల కేసులు సహా
+3. **పొరపాటు స్పందనలను తనిఖీ చేయండి**: అన్ని సాధ్యమైన పొరపాటు పరిస్థితుల కోసం సరైన దోష నిర్వహణను ధృవీకరించండి
+4. **అధికారం లాజిక్‌ను పరీక్షించండి**: వేరే వేరే యూజర్ పాత్రల కోసం సరైన యాక్సెస్ నియంత్రణను నిర్ధారించండి
+5. **పరీక్ష కవచాన్ని మానిటర్ చేయండి**: ముఖ్య మార్గ కోడ్‌ను ఎక్కువ కవర్ చేయాలని లక్ష్యం పెట్టుకోండి
+6. **స్ట్రీమింగ్ స్పందనలను పరీక్షించండి**: స్ట్రీమింగ్ కంటెంట్ సరైన నిర్వహణను ధృవీకరించండి
+7. **నెట్‌వర్క్ సమస్యలను సిమ్యులేట్ చేయండి**: తక్కువ నెట్‌వర్క్ పరిస్థితుల క్రింద ప్రవర్తనను పరీక్షించండి
+8. **వనరు పరిమితులను పరీక్షించండి**:ాట క్వాటాలు లేదా రేటు పరిమితులు చేరుకున్నప్పుడు ప్రవర్తనను ధృవీకరించండి
+9. **రిస్గ్రెషన్ టెస్ట్‌లను ఆటోమేట్ చేయండి**: ప్రతి కోడ్ మార్పుపై నడిచే సూట్‌ను నిర్మించండి
+10. **పరీక్ష కేసులను డాక్యుమెంట్ చేయండి**: పరీక్ష సందర్భాల యొక్క స్పష్టమైన డాక్యుమెంటేషన్‌ని నిర్వహించండి
 
-## సాధారణ పరీక్ష లోపాలు
+## సాధారణ పరీక్షలో తప్పులు
 
-- **సంతోషమైన మార్గం పరీక్షలపై అధిక ఆధారపడటం**: లోపాల కేసులను పూర్తిగా పరీక్షించండి
-- **పనితీరు పరీక్షలను పట్టించుకోకపోవడం**: ఉత్పత్తిపై ప్రభావితం కాకముందే బాటిల్‌నెక్స్ గుర్తించండి
-- **మాత్రమే వేరుగా పరీక్షించడం**: యూనిట్, ఇంటిగ్రేషన్ మరియు ఎండ్-టు-ఎండ్ పరీక్షలను కలపండి
-- **పూర్తి API కవరేజ్ లేకపోవడం**: అన్ని ఎండ్‌పాయింట్లు మరియు లక్షణాలు పరీక్షించబడ్డాయి అని నిర్ధారించుకోండి
-- **పరీక్ష పరిసరాలలో అసమతుల్యత**: కంటైనర్లు ఉపయోగించి స్థిరమైన పరీక్ష పరిసరాలు కలిగి ఉండండి
+- **సంతోష మార్గ పరీక్షలపై అధిక ఆధారపడి ఉండటం**: పొరపాటు కేసులను పూర్తిగా పరీక్షించండి
+- **పనితీరు పరీక్షలను నిర్లక్ష్యం చేయటం**: ఉత్పత్తిపై ప్రభావం చూపించే ముందే బాట్లెనెక్స్ గుర్తించండి
+- **విభజనలో మాత్రమే పరీక్షించడం**: యూనిట్, ఇంటిగ్రేషన్, మరియు E2E పరీక్షలను కలపండి
+- **పూర్తిగా API కవచం లేకపోవడం**: అన్ని ఎండ్‌పాయింట్లు మరియు లక్షణాలు పరీక్షించబడినట్లు నిర్ధారించండి
+- **అసంగత పరీక్షా పరిసరాలు**: స్థిరమైన పరీక్షా పరిసరాలను నిర్ధారించడానికి కంటైనర్లను ఉపయోగించండి
 
-## సమాప్తి
+## నిరూపణ
 
-నమ్మకమైన, అధిక-నాణ్యత MCP సర్వర్లను అభివృద్ధి చేయడానికి సమగ్ర పరీక్షా వ్యూహం అవసరం. ఈ గైడ్‌లో పేర్కొన్న ఉత్తమ వ్యావహారాలు మరియు సూచనలను అమలు చేయడం ద్వారా మీ MCP అమలులు ఉన్నత నాణ్యత, నమ్మకదారత్వం మరియు పనితీరు ప్రమాణాలను తీరుతాయి.
+విశ్లేషణాత్మక పరీక్షా వ్యూహం నమ్మకమైన, ఉన్నత నాణ్యత MCP సర్వర్ల అభివృద్ధికి అవసరం. ఈ మార్గదర్శకంలో వివరించిన ఉత్తమ ఆచారాలు మరియు సూచనలను అమలు చేస్తే, మీ MCP అమలు అత్యున్నత నాణ్యత, నమ్మక్యత మరియు పనితీరు ప్రమాణాలను చేరుకుంటాయని నిర్ధారించవచ్చు.
 
-## ముఖ్యమైన అంశాలు
 
-1. **పరికర రూపకల్పన**: ఏకైక బాధ్యత సూత్రాన్ని అనుసరించండి, డిపెండెన్సీ ఇంజెక్షన్ ఉపయోగించి, కంపోజబిలిటీ కోసం రూపకల్పన చేయండి
-2. **స్కీమా రూపకల్పన**: స్పష్టమైన, బాగా డాక్యుమెంటెడ్ స్కీమాలను సరైన ధృవీకరణ పరిమితులతో సృష్టించండి
-3. **లోప నిర్వహణ**: మృదువైన లోప నిర్వహణ, నిర్మాణాత్మక లోప ప్రతిస్పందనలు మరియు రీట్రమ్ లాజిక్ అమలు చేయండి
-4. **పనితీరు**: క్యాషింగ్, అసింక్రోనస్ ప్రాసెసింగ్ మరియు వనరుల త్రోట్ట్లింగ్ ఉపయోగించండి
-5. **భద్రత**: కఠినమైన ఇన్‌పుట్ ధృవీకరణ, అధికార తనిఖీలు మరియు సున్నిత డేటా నిర్వహణను అమలు చేయండి
-6. **పరీక్షలు**: విస్తృత యూనిట్, ఇంటిగ్రేషన్ మరియు ఎండ్-టు-ఎండ్ పరీక్షలను సృష్టించండి
-7. **వర్క్‌ఫ్లో నమూనాలు**: చైన్లు, డిస్‌ప్యాచ్‌లు మరియు సమాంతర ప్రాసెసింగ్ వంటి స్థాపిత నమూనాలను అన్వయించండి
+## ముఖ్యమైన తీసుకోవాల్సిన పాఠాలు
+
+1. **పరికరం రూపకల్పన**: ఒక్క బాధ్యత సూత్రాన్ని అనుసరించండి, డిపెండెన్సీ ఇంజెక్షన్ ఉపయోగించండి, మరియు కంపోజబిలిటీ కోసం డిజైన్ చేయండి
+2. **స్కీమా రూపకల్పన**: స్పష్టమైన, బాగా డాక్యుమెంట్ చేసిన స్కీమాలను సరైన ప్రమాణాల్తో సృష్టించండి
+3. **పొరపాటు నిర్వహణ**: సున్నితమైన పొరపాటు నిర్వహణ, నిర్మిత పొరపాటు ప్రతిస్పందనలు, మరియు ఫలితాన్ని గుర్తించే మళ్లీ ప్రయత్నించే లాజిక్ అమలు చేయండి
+   
+4. **పనితీరు**: కాషింగ్, అసింక్రోనస్ ప్రాసెసింగ్ మరియు వనరు నియంత్రణను ఉపయోగించండి
+5. **సెక్యూరిటీ**: గాఢ ఇన్‌పుట్ పరిశీలన, అధీకారం తనఖీలు, మరియు సున్నితమైన డేటా నిర్వహణను వర్తించండి
+6. **పరీక్ష**: సమగ్ర యూనిట్, ఇంటిగ్రేషన్, మరియు ఎండ్-టు-ఎండ్ పరీక్షలను సృష్టించండి
+7. **వర్క్‌ఫ్లో నమూనాలు**: చైన్స్, డిస్పాచర్లు, మరియు సమాంతర ప్రాసెసింగ్ వంటి స్థాపిత నమూనాలను వర్తించండి
 
 ## వ్యాయామం
 
-తదుపరి లక్షణాలు కలిగిన డాక్యుమెంట్ ప్రాసెసింగ్ వ్యవస్థ కోసం MCP పరికరం మరియు వర్క్‌ఫ్లో రూపకల్పన చేయండి:
+డాక్యుమెంట్ ప్రాసెసింగ్ సిస్టమ్ కోసం MCP పరికరం మరియు వర్క్‌ఫ్లో రూపకల్పన చేయండి:
 
-1. బహుళ ఫార్మాట్లలో డాక్యుమెంట్లను (PDF, DOCX, TXT) స్వీకరించండి
-2. డాక్యుమెంట్ల నుండి టెక్స్ మరియు కీలక సమాచారం తీయండి
-3. డాక్యుమెంట్లను రకాలు మరియు కంటెంట్ ప్రకారం వర్గీకరించండి
-4. ప్రతి డాక్యుమెంట్ యొక్క సారాంశం రూపొందించండి
+1. బహుళ ఫార్మాట్లలో డాక్యుమెంట్లను స్వీకరిస్తుంది (PDF, DOCX, TXT)
+2. డాక్యుమెంట్ల నుండి టెక్స్ట్ మరియు ముఖ్య సమాచారాన్ని ఎగ Zhu
+3. డాక్యుమెంట్లను రకం మరియు అంశం ఆధారంగా వర్గీకరిస్తుంది
+4. ప్రతి డాక్యుమెంట్ యొక్క సమరీను సృష్టిస్తుంది
 
-ఈ సందర్భానికి సరిపోయే పరికరం స్కీమాలు, లోప నిర్వహణ మరియు వర్క్‌ఫ్లో నమూనాను అమలు చేయండి. మీరు ఈ అమలును ఎలా పరీక్షించేవాడో పరిశీలించండి.
+పరికర స్కీమాలు, పొరపాటు నిర్వహణ, మరియు ఈ పరిస్థితికి ఉత్తమమైన వర్క్‌ఫ్లో నమూనాను అమలు చేయండి. మీరు ఈ అమలు ఎలా పరీక్షిస్తారో పరిగణించండి.
 
 ## వనరులు 
 
-1. కొత్త డెవలప్మెంట్‌లపై అప్డేట్ కావడానికి [Microsoft Foundry Discord Community](https://aka.ms/foundrydevs) లో MCP సముదాయంపై చేరండి
-2. ఓపెన్ సోర్స్ [MCP ప్రాజెక్టులకు](https://github.com/modelcontextprotocol) సహాయం చేయండి
-3. మీ సొంత సంస్థ AI ప్రారంభాలలో MCP సూత్రాలను వర్తింపచెయ్యండి
-4. మీ పరిశ్రమ కోసం ప్రత్యేక MCP అమలులను అన్వేషించండి
-5. బహు-మోడ్‌ల ఇంటిగ్రేషన్ లేదా సంస్థ అనువర్తన ఇంటిగ్రేషన్ వంటి ప్రత్యేక MCP విషయాలపై అధునాతన కోర్సులు తీసుకోవడం గురించి పరిశీలించండి
-6. [Hands on Lab](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md) ద్వారా నేర్చుకున్న సూత్రాలతో మీ సొంత MCP పరికరాలు మరియు వర్క్‌ఫ్లోలను బిల్డ్ చేయడానికి ప్రయోగాలు చేయండి
+1. నేటి అభివృద్ధులను అప్‌డేట్‌గా ఉండటానికి [Microsoft Foundry Discord Community](https://aka.ms/foundrydevs) లో MCP కమ్యూనిటీకి చేరండి 
+2. ఓపెన్-సోర్స్ [MCP ప్రాజెక్టులలో](https://github.com/modelcontextprotocol) సహకారం చేయండి
+3. మీ స్వంత సంస్థలో AI ప్రోగ్రామ్లలో MCP సిద్దాంతాలను వర్తించండి
+4. మీ పరిశ్రమకు ప్రత్యేకత కలిగిన MCP అమలులను అన్వేషించండి. 
+5. మల్టీ-మోడల్ సమన్వయం లేదా ఎంటర్ప్రైజ్ అప్లికేషన్ సమన్వయం వంటి MCP అంశాలపై అధునాతన కోర్సులు తీసుకోవడాన్ని పరిగణించండి.
+6. [Hands on Lab](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md) ద్వారా నేర్చుకున్న సిద్దాంతాలతో మీ స్వంత MCP పరికరాలు మరియు వర్క్‌ఫ్లోలు నిర్మించడంలో ప్రయోగం చేయండి  
 
-## తదుపరి ఏమిటి
+## తరువాత ఏమిటి
 
-తదుపరి: [కేస్ స్టడీలు](../09-CaseStudy/README.md)
+తరువాత: [కేస్ స్టడీస్](../09-CaseStudy/README.md)
 
 ---
 
