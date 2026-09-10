@@ -628,9 +628,11 @@ ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonE
 
         return toolDefinitions;
     }
-    ```    In the preceding code, we've:
+    ```    
+    
+    In the preceding code, we've:
 
-    - Update the function to convert the MCP tool response to an LLm tool. Let's highlight the code we added:
+    - Update the function to convert the MCP tool response to an LLM tool. Let's highlight the code we added:
 
         ```csharp
         JsonElement propertiesElement;
@@ -1519,7 +1521,7 @@ process_llm_response(
 ## サンプル
 
 - [Java Calculator](../samples/java/calculator/README.md)
-- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
+- [.NET Calculator](../../../../03-GettingStarted/samples/csharp)
 - [JavaScript Calculator](../samples/javascript/README.md)
 - [TypeScript Calculator](../samples/typescript/README.md)
 - [Python Calculator](../../../../03-GettingStarted/samples/python)
