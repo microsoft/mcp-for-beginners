@@ -633,20 +633,22 @@ In the preceding code we've:
 
         return toolDefinitions;
     }
-    ```    In the preceding code, we've:
+    ```
+    
+In the preceding code, we've:
 
-    - Update the function to convert the MCP tool response to an LLm tool. Let's highlight the code we added:
+- Update the function to convert the MCP tool response to an LLM tool. Let's highlight the code we added:
 
-        ```csharp
-        JsonElement propertiesElement;
-        tool.JsonSchema.TryGetProperty("properties", out propertiesElement);
+   ```csharp
+   JsonElement propertiesElement;
+   tool.JsonSchema.TryGetProperty("properties", out propertiesElement);
 
-        var def = ConvertFrom(tool.Name, tool.Description, propertiesElement);
-        Console.WriteLine($"Tool definition: {def}");
-        toolDefinitions.Add(def);
-        ```
+   var def = ConvertFrom(tool.Name, tool.Description, propertiesElement);
+   Console.WriteLine($"Tool definition: {def}");
+   toolDefinitions.Add(def);
+   ```
 
-        The input schema is part of the tool response but on the "properties" attribute, so we need to extract. Furthermore, we now call `ConvertFrom` with the tool details. Now we've done the heavy lifting, let's see how it call comes together as we handle a user prompt next.
+The input schema is part of the tool response but on the "properties" attribute, so we need to extract. Furthermore, we now call `ConvertFrom` with the tool details. Now we've done the heavy lifting, let's see how it call comes together as we handle a user prompt next.
 
 #### Java
 
@@ -1523,7 +1525,7 @@ Take the code from the exercise and build out the server with some more tools. T
 ## Samples
 
 - [Java Calculator](../samples/java/calculator/README.md)
-- [.Net Calculator](../samples/csharp/)
+- [.NET Calculator](../samples/csharp/)
 - [JavaScript Calculator](../samples/javascript/README.md)
 - [TypeScript Calculator](../samples/typescript/README.md)
 - [Python Calculator](../samples/python/)
