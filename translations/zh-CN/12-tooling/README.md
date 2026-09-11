@@ -1,31 +1,33 @@
 # 🚀 MCP 工具
 
-## 🧠 MCP 数据库集成学习路径概述
+## 🧠 MCP 数据库集成学习路径概览
 
-在这里，您将学习如何使用基于 MCP 的工具。随着您将 MCP 服务器连接到这些工具，您的使用体验将得到提升。
+在这里你将学习如何使用基于 MCP 的工具。随着你将 MCP 服务器连接到这些工具，你的使用体验将得到提升。
 
 ## 🔗 官方 MCP 资源
 
 - 📘 [MCP 文档](https://modelcontextprotocol.io/) – 详细的教程和用户指南
-- 📜 [MCP 规范（2025-11-25）](https://spec.modelcontextprotocol.io/specification/2025-11-25/) – 协议架构和技术参考
+- 📜 [MCP 规格说明 (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/) – 协议架构和技术参考
 - 🧑‍💻 [MCP GitHub 仓库](https://github.com/modelcontextprotocol) – 开源 SDK、工具和代码示例
-- 🌐 [MCP 社区](https://github.com/orgs/modelcontextprotocol/discussions) – 加入讨论并为社区做贡献
-- 🔒 [OWASP MCP 十大](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – 安全最佳实践和风险缓解
+- 🌐 [MCP 社区](https://github.com/orgs/modelcontextprotocol/discussions) – 加入讨论并贡献社区
+- 🔒 [OWASP MCP 十大安全风险](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – 安全最佳实践和风险缓解
+
+
 
 ## 🌟 社区与支持
 
-### 获得帮助
+### 获取帮助
 
-- **Azure AI Discord**：[加入专家支持](https://discord.com/invite/ByRwuEEgH4)
-- **MCP 社区**：[加入更广泛的 MCP 讨论](https://github.com/orgs/modelcontextprotocol/discussions)
+- **Azure AI Discord**: [加入专家支持](https://discord.com/invite/ByRwuEEgH4)
+- **MCP 社区**: [参与更多 MCP 讨论](https://github.com/orgs/modelcontextprotocol/discussions)
 
-## 🚀 准备好开始了吗？
+## 🚀 准备开始了吗？
 
-开始您的旅程，使用 **[GitHub Copilot 应用](./01-copilot-app/README.md)**
+从 **[GitHub Copilot 应用](./01-copilot-app/README.md)** 开始你的旅程
 
 ---
 
-*掌握这些使用 MCP 的工具，实现更高效的生产力和无缝集成。*
+*通过这些工具掌握 MCP ，实现更高效的生产力和无缝集成。*
 
 ---
 

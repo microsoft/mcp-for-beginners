@@ -1,50 +1,55 @@
-# 使用 LLM 创建客户端
+# 使用LLM创建客户端
 
-到目前为止，您已经了解了如何创建服务器和客户端。客户端能够显式调用服务器以列出其工具、资源和提示。然而，这种方法并不十分实用。您的用户生活在智能代理时代，他们期望使用提示并与 LLM 交流。他们并不关心您是否使用 MCP 来存储功能；他们只期望使用自然语言进行交互。那么我们该如何解决这个问题呢？解决方案是向客户端添加 LLM。
+> [!NOTE]
+> Java客户端示例通过传统的HTTP+SSE传输连接，并
+> 针对MCP `2025-11-25` SDK API。新远程客户端请使用兼容`2026-07-28`的SDK和
+> 可流式HTTP。
 
-## 概览
+到目前为止，你已了解如何创建服务器和客户端。客户端能够显式调用服务器以列出其工具、资源和提示。然而，这不是很实用的方法。你的用户处于代理时代，更期待使用提示并与LLM交流。他们不关心你是否使用MCP存储功能；他们只期望用自然语言进行交互。那么，如何解决这个问题？解决方案是在客户端添加一个LLM。
 
-本课程重点介绍如何向客户端添加 LLM，并展示这如何为用户提供更好的体验。
+## 概述
+
+本节课我们重点关注如何为客户端添加LLM，并展示这为用户带来更佳体验的方式。
 
 ## 学习目标
 
-本课结束时，您将能够：
+本节课结束时，你将能够：
 
-- 创建一个带有 LLM 的客户端。
-- 使用 LLM 无缝与 MCP 服务器交互。
-- 在客户端提供更好的终端用户体验。
+- 创建带有LLM的客户端。
+- 使用LLM无缝与MCP服务器交互。
+- 在客户端提供更好的最终用户体验。
 
 ## 方法
 
-让我们尝试理解需要采取的方法。添加 LLM 听起来简单，但我们究竟会如何做？
+让我们尝试理解需要采取的方法。添加LLM听起来简单，但我们会真正这样做吗？
 
-客户端将如何与服务器交互：
+客户端与服务器的交互方式如下：
 
 1. 建立与服务器的连接。
 
-1. 列出功能、提示、资源和工具，并保存它们的架构。
+2. 列出能力、提示、资源和工具，并保存它们的架构。
 
-1. 添加 LLM，并以 LLM 理解的格式传递保存的功能及其架构。
+3. 添加LLM，并以LLM能够理解的格式传递已保存的能力及其架构。
 
-1. 通过将用户提示和客户端列出的工具一并传递给 LLM 来处理用户提示。
+4. 通过将用户提示传递给LLM和客户端列出的工具来处理用户请求。
 
-很好，现在我们对大体做法有了了解，让我们在下面的练习中尝试一下。
+很好，现在我们理解了高层次的实现思路，让我们在下面的练习中尝试一下。
 
-## 练习：创建带有 LLM 的客户端
+## 练习：使用LLM创建客户端
 
-在此练习中，我们将学习如何向客户端添加 LLM。
+本练习中，我们将学习如何为客户端添加LLM。
 
-### 使用 GitHub 个人访问令牌进行身份验证
+### 使用GitHub个人访问令牌进行身份验证
 
-创建 GitHub 令牌是一个简单的过程。操作方法如下：
+创建GitHub令牌是一个简单的过程。步骤如下：
 
-- 进入 GitHub 设置 – 点击右上角的个人头像，选择“设置”。
-- 导航到开发者设置 – 向下滚动并点击“开发者设置”。
-- 选择个人访问令牌 – 点击“细粒度令牌”，然后生成新令牌。
-- 配置您的令牌 – 添加备注以作参考，设置过期日期，并选择必要的作用域（权限）。此处务必添加 Models 权限。
-- 生成并复制令牌 – 点击生成令牌，务必立即复制，因为之后无法再次查看。
+- 进入GitHub设置 – 点击右上角的个人头像并选择设置。
+- 导航到开发者设置 – 向下滚动点击开发者设置。
+- 选择个人访问令牌 – 点击细粒度令牌，然后生成新令牌。
+- 配置令牌 – 添加备注，设置过期时间，选择所需作用域（权限）。本例中确保添加模型权限。
+- 生成并复制令牌 – 点击生成令牌，并确保立即复制，因为之后无法再看到。
 
-### -1- 连接到服务器
+### -1- 连接服务器
 
 让我们先创建客户端：
 
@@ -83,11 +88,11 @@ class MCPClient {
 }
 ```
 
-在前述代码中我们已经：
+上述代码我们完成了：
 
-- 导入所需库
-- 创建了一个类，包含两个成员，`client` 和 `openai`，分别帮助我们管理客户端和与 LLM 交互。
-- 配置了我们的 LLM 实例，使其通过设置 `baseUrl` 指向推理 API 使用 GitHub Models。
+- 导入了所需的库
+- 创建一个包含两个成员的类，`client` 和 `openai`，分别用于管理客户端和与LLM交互。
+- 配置了LLM实例，使用GitHub模型，通过设置`baseUrl`指向推理API。
 
 #### Python
 
@@ -95,7 +100,7 @@ class MCPClient {
 from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
 
-# 创建用于 stdio 连接的服务器参数
+# 创建用于标准输入输出连接的服务器参数
 server_params = StdioServerParameters(
     command="mcp",  # 可执行文件
     args=["run", "server.py"],  # 可选的命令行参数
@@ -119,10 +124,10 @@ if __name__ == "__main__":
 
 ```
 
-在前述代码中我们已经：
+上述代码我们完成了：
 
-- 导入了 MCP 所需的库
-- 创建了客户端
+- 导入MCP所需库
+- 创建客户端实例
 
 #### .NET
 
@@ -146,7 +151,7 @@ await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 
 #### Java
 
-首先，您需要将 LangChain4j 依赖项添加到您的 `pom.xml` 文件中。添加这些依赖以启用 MCP 集成和与 OpenAI 兼容的 MiniMax API：
+首先，你需要在`pom.xml`文件中添加LangChain4j依赖。加入这些依赖以启用MCP集成和OpenAI兼容的MiniMax API：
 
 ```xml
 <properties>
@@ -176,9 +181,9 @@ await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 </dependencies>
 ```
 
-设置你的 MiniMax API 密钥，以及可选的端点和模型。
-`MINIMAX_MODEL_ID` 支持 `MiniMax-M3` 和 `MiniMax-M2.7`。
-如果未设置 `OPENAI_BASE_URL`，则 `MINIMAX_REGION` 支持 `global_en` 和 `cn_zh`。
+设置你的MiniMax API密钥，并可选配置终端地址和模型。
+`MINIMAX_MODEL_ID`支持`MiniMax-M3`和`MiniMax-M2.7`。
+如果没有设置`OPENAI_BASE_URL`，`MINIMAX_REGION`支持`global_en`和`cn_zh`。
 
 ```bash
 export OPENAI_API_KEY=your_minimax_api_key_here
@@ -186,14 +191,14 @@ export OPENAI_BASE_URL=https://api.minimax.io/v1
 export MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
-若要按区域选择端点，则省略 `OPENAI_BASE_URL`：
+若想通过区域选择终端，请省略`OPENAI_BASE_URL`：
 
 ```bash
 unset OPENAI_BASE_URL
 export MINIMAX_REGION=cn_zh
 ```
 
-然后创建你的 Java 客户端类：
+然后创建Java客户端类：
 
 ```java
 import dev.langchain4j.mcp.McpToolProvider;
@@ -229,7 +234,7 @@ public class LangChain4jClient {
                 .modelName(resolveModelName())
                 .build();
 
-        // 创建用于连接服务器的 MCP 传输
+        // 创建用于连接到服务器的MCP传输
         McpTransport transport = new HttpMcpTransport.Builder()
                 .sseUrl("http://localhost:8080/sse")
                 .timeout(Duration.ofSeconds(60))
@@ -237,7 +242,7 @@ public class LangChain4jClient {
                 .logResponses(true)
                 .build();
 
-        // 创建 MCP 客户端
+        // 创建MCP客户端
         McpClient mcpClient = new DefaultMcpClient.Builder()
                 .transport(transport)
                 .build();
@@ -284,20 +289,20 @@ public class LangChain4jClient {
 }
 ```
 
-在前述代码中我们已经：
+上述代码我们完成了：
 
-- **添加了 LangChain4j 依赖**：用于 MCP 集成和与 OpenAI 兼容的 MiniMax API
-- **导入了 LangChain4j 库**：用于 MCP 集成和 OpenAI 聊天模型功能
-- **创建一个 `ChatLanguageModel`**：配置为使用 MiniMax，带有你的 MiniMax API 密钥、端点和支持的模型 ID
-- **设置 HTTP 传输**：使用服务器推送事件 (SSE) 连接 MCP 服务器
-- **创建 MCP 客户端**：用于处理与服务器的通信
-- **使用 LangChain4j 内置 MCP 支持**：简化了 LLM 与 MCP 服务器间的集成
+- **加入LangChain4j依赖**：用于MCP集成和OpenAI兼容MiniMax API
+- **导入LangChain4j库**：支持MCP集成和OpenAI聊天模型功能
+- **创建`ChatLanguageModel`实例**：配置使用MiniMax，设置MiniMax API密钥、终端和支持的模型ID
+- **设置HTTP传输方式**：使用服务器发送事件（SSE）连接MCP服务器
+- **创建MCP客户端**：处理与服务器通信
+- **使用LangChain4j的内置MCP支持**：简化LLM与MCP服务器间的集成
 
 #### Rust
 
-此示例假设您已有一个基于 Rust 的 MCP 服务器在运行。如果没有，请参考 [01-first-server](../01-first-server/README.md) 课程创建服务器。
+本示例假设你已有基于Rust的MCP服务器运行。如无服务器，请参考[01-first-server](../01-first-server/README.md)教程创建。
 
-拥有 Rust MCP 服务器后，打开终端并导航到服务器所在的目录。然后运行以下命令创建一个新的 LLM 客户端项目：
+拥有Rust MCP服务器后，打开终端并切换到服务器同级目录。运行以下命令创建新LLM客户端项目：
 
 ```bash
 mkdir calculator-llmclient
@@ -305,7 +310,7 @@ cd calculator-llmclient
 cargo init
 ```
 
-在 `Cargo.toml` 文件中添加以下依赖：
+将以下依赖添加到你的`Cargo.toml`文件：
 
 ```toml
 [dependencies]
@@ -316,9 +321,9 @@ tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 ```
 
 > [!NOTE]
-> 目前没有官方的 Rust OpenAI 库，但 `async-openai` crate 是一个[社区维护的库](https://platform.openai.com/docs/libraries/rust#rust)，被广泛使用。
+> 目前没有官方的Rust版OpenAI库，但`async-openai`是一个[社区维护的库](https://platform.openai.com/docs/libraries/rust#rust)，得到广泛使用。
 
-打开 `src/main.rs` 文件，并用以下代码替换其内容：
+打开`src/main.rs`文件，将内容替换为以下代码：
 
 ```rust
 use async_openai::{Client, config::OpenAIConfig};
@@ -337,7 +342,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
     // 初始消息
     let mut messages = vec![json!({"role": "user", "content": "What is the sum of 3 and 2?"})];
 
-    // 设置 OpenAI 客户端
+    // 设置OpenAI客户端
     let api_key = std::env::var("OPENAI_API_KEY")?;
     let openai_client = Client::with_config(
         OpenAIConfig::new()
@@ -345,7 +350,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
             .with_api_key(api_key),
     );
 
-    // 设置 MCP 客户端
+    // 设置MCP客户端
     let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .unwrap()
@@ -360,28 +365,28 @@ async fn main() -> Result<(), Box<dyn Error>> {
         )
         .await?;
 
-    // 待办事项：获取 MCP 工具列表
+    // 待办：获取MCP工具列表
 
-    // 待办事项：使用工具调用的大型语言模型对话
+    // 待办：与工具调用的LLM对话
 
     Ok(())
 }
 ```
 
-这段代码设置了一个基本的 Rust 应用程序，能够连接到 MCP 服务器和 GitHub Models 以进行 LLM 交互。
+该代码创建了一个基础Rust应用，连接MCP服务器和GitHub模型进行LLM交互。
 
 > [!IMPORTANT]
-> 请确保在运行应用程序前，将 `OPENAI_API_KEY` 环境变量设置为您的 GitHub 令牌。
+> 请确保在运行应用前设置`OPENAI_API_KEY`环境变量为你的GitHub令牌。
 
-很好，下一步让我们列出服务器的功能。
+很好，接下来让我们列出服务器的能力。
 
-### -2- 列出服务器功能
+### -2- 列出服务器能力
 
-现在我们将连接到服务器并请求其功能：
+现在，我们将连接服务器并请求其能力：
 
-#### TypeScript
+#### Typescript
 
-在同一类中，添加以下方法：
+在同一个类中，添加以下方法：
 
 ```typescript
 async connectToServer(transport: Transport) {
@@ -398,10 +403,10 @@ async run() {
 }
 ```
 
-在前述代码中我们已经：
+上述代码我们完成了：
 
-- 添加了连接到服务器的代码，`connectToServer`。
-- 创建了一个负责处理应用程序流程的 `run` 方法。目前它仅列出工具，但我们很快会扩展功能。
+- 添加连接服务器的代码，`connectToServer`。
+- 创建了负责应用流程的`run`方法，目前仅列出工具，稍后会添加更多。
 
 #### Python
 
@@ -420,9 +425,9 @@ for tool in tools.tools:
     print("Tool", tool.inputSchema["properties"])
 ```
 
-我们做了如下添加：
+我们添加了如下内容：
 
-- 列出了资源和工具并打印它们。工具还列出了稍后会用到的 `inputSchema`。
+- 列出资源和工具并打印。对于工具，我们还列出了稍后使用的`inputSchema`。
 
 #### .NET
 
@@ -447,10 +452,10 @@ async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
 }
 ```
 
-在前述代码中我们已经：
+上述代码我们完成了：
 
-- 列出了 MCP 服务器上的可用工具
-- 对每个工具列出名称、描述及其架构。后者稍后会被用于调用工具。
+- 列出了MCP服务器上可用的工具
+- 对每个工具，列出名称、描述和其架构。后者我们稍后用来调用工具。
 
 #### Java
 
@@ -461,33 +466,33 @@ ToolProvider toolProvider = McpToolProvider.builder()
         .build();
 
 // MCP工具提供者自动处理：
-// - 从MCP服务器列出可用工具
+// - 列出MCP服务器上的可用工具
 // - 将MCP工具模式转换为LangChain4j格式
 // - 管理工具执行和响应
 ```
 
-在前述代码中我们已经：
+上述代码我们完成了：
 
-- 创建 `McpToolProvider`，自动发现并注册 MCP 服务器上的所有工具
-- 工具提供者内部处理 MCP 工具架构与 LangChain4j 工具格式的转换
-- 这种方法抽象了手动列举和转换工具的过程
+- 创建了一个`McpToolProvider`，自动发现并注册所有来自MCP服务器的工具
+- 工具提供者在内部处理MCP工具架构和LangChain4j工具格式的转换
+- 这种方法抽象了手动列出和转换工具的过程
 
 #### Rust
 
-从 MCP 服务器检索工具是通过调用 `list_tools` 方法实现的。在你的 `main` 函数中，设置好 MCP 客户端后，添加以下代码：
+使用`list_tools`方法从MCP服务器获取工具。在你的`main`函数中，设置MCP客户端后，添加以下代码：
 
 ```rust
 // 获取MCP工具列表
 let tools = mcp_client.list_tools(Default::default()).await?;
 ```
 
-### -3- 将服务器功能转换为 LLM 工具
+### -3- 将服务器能力转换为LLM工具
 
-接下来在列出服务器功能之后，将其转换为 LLM 理解的格式。完成后，我们可以将这些功能作为工具提供给 LLM。
+列出服务器能力后的下一步是将其转换为LLM能够理解的格式。完成后，我们可以将这些能力作为工具提供给LLM。
 
 #### TypeScript
 
-1. 添加以下代码，将 MCP 服务器的响应转换为 LLM 可使用的工具格式：
+1. 添加以下代码将MCP服务器的响应转换为LLM可用的工具格式：
 
     ```typescript
     openAiToolAdapter(tool: {
@@ -495,7 +500,7 @@ let tools = mcp_client.list_tools(Default::default()).await?;
         description?: string;
         input_schema: any;
         }) {
-        // 根据 input_schema 创建一个 zod 模式
+        // 基于 input_schema 创建一个 zod 模式
         const schema = z.object(tool.input_schema);
     
         return {
@@ -514,9 +519,9 @@ let tools = mcp_client.list_tools(Default::default()).await?;
 
     ```
 
-    上述代码接收 MCP 服务器的响应，并将其转换为 LLM 理解的工具定义格式。
+    上述代码将MCP服务器响应转换成LLM能理解的工具定义格式。
 
-2. 接下来我们更新 `run` 方法以列出服务器功能：
+2. 接下来更新`run`方法，列出服务器能力：
 
     ```typescript
     async run() {
@@ -532,11 +537,11 @@ let tools = mcp_client.list_tools(Default::default()).await?;
     }
     ```
 
-    在前述代码中，我们更新了 `run` 方法，遍历结果并对每个条目调用 `openAiToolAdapter`。
+    上述代码中，我们更新了`run`方法，遍历结果并为每条调用`openAiToolAdapter`。
 
 #### Python
 
-1. 首先，创建如下转换函数
+1. 首先，创建以下转换函数：
 
     ```python
     def convert_to_llm_tool(tool):
@@ -556,9 +561,9 @@ let tools = mcp_client.list_tools(Default::default()).await?;
         return tool_schema
     ```
 
-    在函数 `convert_to_llm_tools` 中，我们将 MCP 工具响应转换成 LLM 能理解的格式。
+    在函数`convert_to_llm_tools`中，我们将MCP工具响应转换为LLM能理解的格式。
 
-2. 接下来更新客户端代码以利用该函数：
+2. 接下来，更新客户端代码，使用此函数如下：
 
     ```python
     functions = []
@@ -568,11 +573,11 @@ let tools = mcp_client.list_tools(Default::default()).await?;
         functions.append(convert_to_llm_tool(tool))
     ```
 
-    这里我们调用 `convert_to_llm_tool` 将 MCP 工具响应转成稍后可供 LLM 使用的格式。
+    这里，我们调用`convert_to_llm_tool`以将MCP工具响应转为可供LLM使用的格式。
 
 #### .NET
 
-1. 添加代码将 MCP 工具响应转换成 LLM 可理解内容
+1. 添加代码，将MCP工具响应转换为LLM理解的格式：
 
 ```csharp
 ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonElement jsonElement)
@@ -595,12 +600,12 @@ ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonE
 }
 ```
 
-在前述代码中我们已经：
+上述代码我们完成了：
 
-- 创建了 `ConvertFrom` 函数，接收名称、描述和输入架构。
-- 定义功能以创建 `FunctionDefinition` 并传递给 `ChatCompletionsDefinition`，后者可被 LLM 理解。
+- 创建函数`ConvertFrom`，接收名称、描述和输入架构。
+- 定义功能创建`FunctionDefinition`，传递给`ChatCompletionsDefinition`，后者是LLM可以理解的格式。
 
-2. 接着我们看看如何更新现有代码以利用上述函数：
+2. 接着看看如何更新代码使用该函数：
 
     ```csharp
     async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
@@ -646,7 +651,7 @@ ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonE
 #### Java
 
 ```java
-// 创建一个用于自然语言交互的Bot接口
+// 创建用于自然语言交互的机器人接口
 public interface Bot {
     String chat(String prompt);
 }
@@ -658,16 +663,16 @@ Bot bot = AiServices.builder(Bot.class)
         .build();
 ```
 
-在前述代码中我们已经：
+上述代码我们完成了：
 
-- 定义了简单的 `Bot` 接口用于自然语言交互
-- 使用 LangChain4j 的 `AiServices` 自动将 LLM 绑定到 MCP 工具提供者
-- 框架自动处理工具架构转换和函数调用的后台操作
-- 这种方法消除了手动转换工具的需求，LangChain4j 负责编码 MCP 工具到 LLM 兼容格式的复杂性
+- 定义了简单的`Bot`接口用于自然语言交互
+- 使用LangChain4j的`AiServices`自动绑定LLM和MCP工具提供者
+- 框架在后台自动处理工具架构转换和函数调用
+- 该方式消除了手动工具转换的需求，LangChain4j处理了MCP工具与LLM兼容格式之间的复杂转换
 
 #### Rust
 
-为将 MCP 工具响应转换为 LLM 可理解的格式，我们添加一个格式化工具列表的辅助函数。在 `main.rs` 文件中，在 `main` 函数下方添加以下代码。这会在向 LLM 发送请求时被调用：
+为将MCP工具响应转换为LLM理解的格式，我们将添加辅助函数格式化工具列表。将以下代码添加至`main.rs`文件`main`函数下方，用于LLM请求：
 
 ```rust
 async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Error>> {
@@ -702,15 +707,15 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 }
 ```
 
-很好，我们已准备好处理用户请求，接下来处理这部分。
+很好，我们已准备处理用户请求，接下来解决这部分。
 
 ### -4- 处理用户提示请求
 
-这部分代码中，我们将处理用户请求。
+这部分代码将处理用户请求。
 
 #### TypeScript
 
-1. 添加一个方法，用于调用我们的 LLM：
+1. 添加一个方法用于调用LLM：
 
     ```typescript
     async callTools(
@@ -732,17 +737,17 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 
         console.log("Tool result: ", toolResult);
 
-        // 3. 使用结果做一些事情
+        // 3. 处理结果
         // 待办事项
 
         }
     }
     ```
 
-    在上述代码中我们：
+    上述代码中我们：
 
-    - 添加了 `callTools` 方法。
-    - 该方法接受 LLM 返回，并检查是否有工具被调用。
+    - 添加了`callTools`方法。
+    - 该方法检查LLM响应，看看是否调用了工具：
 
         ```typescript
         for (const tool_call of tool_calls) {
@@ -755,7 +760,7 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
         }
         ```
 
-    - 如果 LLM 指示调用工具，则调用该工具：
+    - 如果LLM指示，应调用对应工具：
 
         ```typescript
         // 2. 调用服务器的工具
@@ -766,11 +771,11 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 
         console.log("Tool result: ", toolResult);
 
-        // 3. 使用结果做一些事情
+        // 3. 处理结果
         // 待办事项
         ```
 
-2. 更新 `run` 方法，添加调用 LLM 和 `callTools`：
+2. 更新`run`方法，包含对LLM的调用及`callTools`的调用：
 
     ```typescript
 
@@ -806,21 +811,21 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
     });
     ```
 
-很好，完整代码如下：
+很好，让我们看完整代码：
 
 ```typescript
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 import { Transport } from "@modelcontextprotocol/sdk/shared/transport.js";
 import OpenAI from "openai";
-import { z } from "zod"; // 导入 zod 用于模式验证
+import { z } from "zod"; // 导入 zod 进行模式验证
 
 class MyClient {
     private openai: OpenAI;
     private client: Client;
     constructor(){
         this.openai = new OpenAI({
-            baseURL: "https://models.inference.ai.azure.com", // 未来可能需要更改为此 URL：https://models.github.ai/inference
+            baseURL: "https://models.inference.ai.azure.com", // 以后可能需要更改为此 URL：https://models.github.ai/inference
             apiKey: process.env.GITHUB_TOKEN,
         });
 
@@ -850,11 +855,11 @@ class MyClient {
         description?: string;
         input_schema: any;
           }) {
-          // 基于 input_schema 创建一个 zod 模式
+          // 根据 input_schema 创建一个 zod 模式
           const schema = z.object(tool.input_schema);
       
           return {
-            type: "function" as const, // 明确设置类型为 "function"
+            type: "function" as const, // 明确设置类型为“function”
             function: {
               name: tool.name,
               description: tool.description,
@@ -886,8 +891,8 @@ class MyClient {
     
           console.log("Tool result: ", toolResult);
     
-          // 3. 对结果进行处理
-          // 待办事项
+          // 3. 处理结果
+          // 待办
     
          }
     }
@@ -922,7 +927,7 @@ class MyClient {
 
         let results: any[] = [];
     
-        // 3. 遍历 LLM 响应，对于每个选项，检查是否有工具调用
+        // 3. 遍历 LLM 响应，对于每个选择，检查是否有工具调用
         (await response).choices.map(async (choice: { message: any; }) => {
           const message = choice.message;
           if (message.tool_calls) {
@@ -945,7 +950,7 @@ client.connectToServer(transport);
 
 #### Python
 
-1. 添加调用 LLM 所需的导入
+1. 添加调用LLM所需的导入：
 
     ```python
     # 大语言模型
@@ -956,10 +961,10 @@ client.connectToServer(transport);
     import json
     ```
 
-2. 添加调用 LLM 的函数：
+2. 接着，添加调用LLM的函数：
 
     ```python
-    # 大语言模型
+    # 大型语言模型
 
     def call_llm(prompt, functions):
         token = os.environ["GITHUB_TOKEN"]
@@ -1006,19 +1011,19 @@ client.connectToServer(transport);
         return functions_to_call
     ```
 
-    在前述代码中我们：
+    上述代码我们完成了：
 
-    - 将从 MCP 服务器获取并转换的函数传递给 LLM。
-    - 调用 LLM，传入这些函数。
-    - 检查结果，查看是否需要调用函数。
-    - 最后传入调用的函数数组。
+    - 将从MCP服务器获取并转换后的函数传递给LLM。
+    - 调用带有这些函数的LLM。
+    - 检查结果以决定是否调用函数。
+    - 最终传递一组函数供调用。
 
-3. 最后一步，更新主代码：
+3. 最后，更新主代码：
 
     ```python
     prompt = "Add 2 to 20"
 
-    # 询问大型语言模型是否需要任何工具
+    # 询问大型语言模型需要使用哪些工具（如果有的话）
     functions_to_call = call_llm(prompt, functions)
 
     # 调用建议的函数
@@ -1027,14 +1032,14 @@ client.connectToServer(transport);
         print("TOOLS result: ", result.content)
     ```
 
-    这就是最后一步，我们在上述代码中：
+    上述代码中，我们完成了最后一步：
 
-    - 调用 MCP 工具，通过 `call_tool` 使用 LLM 基于提示认为应调用的函数。
-    - 打印对 MCP 服务器的工具调用结果。
+    - 根据LLM基于提示判断，调用了一个MCP工具`call_tool`。
+    - 打印调用MCP服务器工具的结果。
 
 #### .NET
 
-1. 展示用于 LLM 提示请求的代码：
+1. 展示用于发起LLM提示请求的代码：
 
     ```csharp
     var tools = await GetMcpTools();
@@ -1068,14 +1073,14 @@ client.connectToServer(transport);
 
     ```
 
-    在前述代码中我们：
+    上述代码中我们：
 
-    - 从 MCP 服务器获取工具，`var tools = await GetMcpTools()`。
-    - 定义用户提示 `userMessage`。
-    - 构造一个指定模型和工具的选项对象。
-    - 发送请求到 LLM。
+    - 从MCP服务器获取工具，`var tools = await GetMcpTools()`。
+    - 定义用户提示`userMessage`。
+    - 构建包含模型和工具的选项对象。
+    - 发送LLM请求。
 
-2. 最后一步，检查 LLM 是否认为需要调用函数：
+2. 最后一步，查看LLM是否建议调用某函数：
 
     ```csharp
     // 4. Check if the response contains a function call
@@ -1098,12 +1103,12 @@ client.connectToServer(transport);
     }
     ```
 
-    在前述代码中我们：
+    上述代码中我们：
 
     - 遍历函数调用列表。
-    - 对每个工具调用，解析名称和参数，使用 MCP 客户端调用 MCP 服务器上的工具。最后打印结果。
+    - 对每个工具调用，解析名称和参数，通过MCP客户端调用服务器上的工具，并打印结果。
 
-完整代码如下：
+以下是完整代码：
 
 ```csharp
 using Azure;
@@ -1247,17 +1252,17 @@ try {
 }
 ```
 
-在前述代码中我们：
+上述代码我们完成了：
 
-- 使用简单的自然语言提示与 MCP 服务器工具交互
-- LangChain4j 框架自动处理：
-  - 在需要时将用户提示转换为工具调用
-  - 根据信息调用适当的 MCP 工具
-  - 管理 LLM 与 MCP 服务器之间的对话流程
-- `bot.chat()` 方法返回自然语言响应，可能包含 MCP 工具执行结果
-- 该方法为用户提供无缝体验，用户无需了解底层 MCP 实现
+- 使用简单的自然语言提示与MCP服务器工具交互
+- LangChain4j框架自动处理：
+  - 用户提示转工具调用（如需）
+  - 基于LLM判断调用合适的MCP工具
+  - 管理LLM和MCP服务器之间的对话流程
+- `bot.chat()`方法返回自然语言响应，可能包括MCP工具执行结果
+- 此方案提供无缝用户体验，用户无需了解底层MCP实现
 
-完整示例代码：
+完整代码示例：
 
 ```java
 import dev.langchain4j.mcp.McpToolProvider;
@@ -1370,10 +1375,10 @@ public class LangChain4jClient {
 
 #### Rust
 
-这里是主要工作所在。我们首先用初始用户提示调用 LLM，然后处理响应查看是否需要调用任何工具。如果是，我们将调用那些工具，并继续与 LLM 交互，直到不再需要调用工具并获得最终响应。
 
+这里是大部分工作的发生地。我们将使用初始用户提示调用 LLM，然后处理响应以查看是否需要调用任何工具。如果需要，我们将调用这些工具并继续与 LLM 的对话，直到不再需要调用工具并获得最终响应。
 
-我们将多次调用 LLM，所以让我们定义一个函数来处理 LLM 调用。将以下函数添加到你的 `main.rs` 文件中：
+我们将多次调用 LLM，因此让我们定义一个函数来处理 LLM 调用。将以下函数添加到你的 `main.rs` 文件中：
 
 ```rust
 async fn call_llm(
@@ -1393,9 +1398,9 @@ async fn call_llm(
 }
 ```
 
-该函数接收 LLM 客户端、消息列表（包括用户提示）、来自 MCP 服务器的工具，并向 LLM 发送请求，返回响应。
+该函数接收 LLM 客户端、一组消息（包括用户提示）、来自 MCP 服务器的工具，并向 LLM 发送请求，返回响应。
 
-LLM 的响应将包含一个 `choices` 数组。我们需要处理结果以查看是否存在任何 `tool_calls`。这让我们知道 LLM 请求调用特定工具并传递参数。将以下代码添加到你的 `main.rs` 文件底部，以定义一个处理 LLM 响应的函数：
+LLM 的响应将包含一个 `choices` 数组。我们需要处理结果以查看是否存在任何 `tool_calls`。这让我们知道 LLM 请求调用某个工具并传入参数。将以下代码添加到你的 `main.rs` 文件底部，以定义一个处理 LLM 响应的函数：
 
 ```rust
 async fn process_llm_response(
@@ -1458,9 +1463,9 @@ async fn process_llm_response(
 }
 ```
 
-如果存在 `tool_calls`，则提取工具信息，使用工具请求调用 MCP 服务器，并将结果添加到对话消息中。然后继续使用 LLM 进行对话，消息内容将更新为助理的响应和工具调用结果。
+如果存在 `tool_calls`，它会提取工具信息，调用 MCP 服务器执行工具请求，并将结果添加到对话消息中。然后继续与 LLM 的对话，消息会更新为助理的响应和工具调用结果。
 
-为了提取 LLM 返回的用于 MCP 调用的工具调用信息，我们将添加另一个辅助函数来提取调用所需的所有内容。将以下代码添加到你的 `main.rs` 文件底部：
+为了提取 LLM 返回的 MCP 调用所需的工具调用信息，我们将添加另一个辅助函数，提取调用所需的所有内容。将以下代码添加到你的 `main.rs` 文件底部：
 
 ```rust
 fn extract_tool_call_info(tool_call: &Value) -> Result<(String, String, String), Box<dyn Error>> {
@@ -1484,10 +1489,10 @@ fn extract_tool_call_info(tool_call: &Value) -> Result<(String, String, String),
 }
 ```
 
-有了所有这些组件，我们现在可以处理初始用户提示并调用 LLM。更新你的 `main` 函数，包含以下代码：
+所有部分就绪后，我们现在可以处理初始用户提示并调用 LLM。更新你的 `main` 函数以包含以下代码：
 
 ```rust
-// 具有工具调用的语言模型对话
+// 带工具调用的LLM对话
 let response = call_llm(&openai_client, &messages, &tools).await?;
 process_llm_response(
     &response,
@@ -1501,11 +1506,11 @@ process_llm_response(
 
 这将使用初始用户提示查询 LLM，询问两个数字的和，并处理响应以动态处理工具调用。
 
-太好了，你成功了！
+太好了，你做到了！
 
 ## 任务
 
-利用练习中的代码扩展服务器，添加更多工具。然后参考练习创建一个带 LLM 的客户端，用不同的提示测试它，确保所有服务器工具都能被动态调用。这样构建客户端意味着最终用户将获得极佳的用户体验，因为他们可以使用提示，而不是精确的客户端命令，并且对任何 MCP 服务器的调用毫不知情。
+利用练习中的代码构建更多工具的服务器。然后创建一个带有 LLM 的客户端（如练习中所示），用不同的提示进行测试，确保所有服务器工具都能被动态调用。这样构建客户端意味着终端用户能够通过提示而非精确的客户端命令实现良好的用户体验，同时对 MCP 服务器调用一无所知。
 
 ## 解决方案
 
@@ -1513,8 +1518,8 @@ process_llm_response(
 
 ## 关键要点
 
-- 为你的客户端添加 LLM，提供用户与 MCP 服务器交互的更好方式。
-- 需要将 MCP 服务器响应转换为 LLM 可以理解的内容。
+- 向你的客户端添加 LLM，提供了用户与 MCP 服务器交互的更好方式。
+- 你需要将 MCP 服务器响应转换为 LLM 能理解的格式。
 
 ## 示例
 
@@ -1529,7 +1534,7 @@ process_llm_response(
 
 ## 接下来
 
-- 下一步：[使用 Visual Studio Code 调用服务器](../04-vscode/README.md)
+- 下一步：[使用 Visual Studio Code 连接服务器](../04-vscode/README.md)
 
 ---
 

@@ -1,49 +1,50 @@
-# صفحه‌بندی و مجموعه نتایج بزرگ در MCP
+# صفحه‌بندی و مجموعه‌های بزرگ نتایج در MCP
 
-وقتی سرور MCP شما داده‌های بزرگی را مدیریت می‌کند - چه فهرست هزاران فایل، رکوردهای پایگاه داده یا نتایج جستجو - باید از صفحه‌بندی برای مدیریت بهینه حافظه و ارائه تجربه کاربری پاسخگو استفاده کنید. این راهنما نحوه پیاده‌سازی و استفاده از صفحه‌بندی در MCP را پوشش می‌دهد.
+زمانی که سرور MCP شما با مجموعه‌داده‌های بزرگ کار می‌کند - چه فهرست‌بندی هزاران فایل، رکوردهای پایگاه داده، یا نتایج جستجو باشد - شما به صفحه‌بندی نیاز دارید تا حافظه را به‌طور کارآمد مدیریت کرده و تجربه کاربری پاسخگو ارائه دهید. این راهنما پوشش می‌دهد که چگونه صفحه‌بندی را در MCP پیاده‌سازی و استفاده کنید.
 
-## اهمیت صفحه‌بندی
+## چرا صفحه‌بندی مهم است
 
-بدون صفحه‌بندی، پاسخ‌های بزرگ می‌توانند موجب موارد زیر شوند:
+بدون صفحه‌بندی، پاسخ‌های بزرگ می‌توانند باعث شوند:
 
-- **تمام شدن حافظه** - بارگذاری میلیون‌ها رکورد به صورت همزمان
-- **زمان پاسخ کند** - کاربران منتظر می‌مانند تا تمامی داده‌ها بارگذاری شود
-- **خطاهای زمان‌تمام** - درخواست‌ها از محدودیت زمان‌تمام عبور می‌کنند
-- **عملکرد ضعیف هوش مصنوعی** - مدل‌های زبان بزرگ (LLMها) با متن‌های عظیم دچار مشکل می‌شوند
+- **تمام شدن حافظه** - بارگذاری میلیون‌ها رکورد همزمان
+- **زمان پاسخ‌دهی کند** - کاربران منتظر بارگذاری کامل داده‌ها می‌مانند
+- **خطاهای زمان انتظار** - درخواست‌ها از حد زمان انتظار می‌گذرند
+- **عملکرد ضعیف هوش مصنوعی** - مدل‌های زبانی بزرگ با متن حجیم مشکل دارند
 
-MCP از **صفحه‌بندی مبتنی بر نشانگر (cursor-based pagination)** برای پیمایش قابل اعتماد و یکپارچه در مجموعه نتایج استفاده می‌کند.
+MCP از **صفحه‌بندی مبتنی بر نشانگر (cursor)** برای صفحه‌بندی قابل اعتماد و یکنواخت در مجموعه‌نتایج استفاده می‌کند.
 
 ---
 
-## نحوه کار صفحه‌بندی در MCP
+## چگونه صفحه‌بندی MCP کار می‌کند
 
 ### مفهوم نشانگر (Cursor)
 
-یک **نشانگر** رشته‌ای مبهم است که موقعیت شما را در مجموعه نتایج مشخص می‌کند. آن را مانند نشانک در یک کتاب بلند تصور کنید.
+یک **نشانگر** رشته‌ای مبهم است که موقعیت شما در مجموعه‌نتایج را مشخص می‌کند. آن را مانند یک نشانک در یک کتاب بلند تصور کنید.
 
 ```mermaid
 sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: tools/list (بدون نشانگر)
+    Client->>Server: ابزارها/لیست (بدون نشانگر)
     Server-->>Client: ابزارها [1-10]، نشانگربعدی: "abc123"
     
-    Client->>Server: tools/list (نشانگر: "abc123")
+    Client->>Server: ابزارها/لیست (نشانگر: "abc123")
     Server-->>Client: ابزارها [11-20]، نشانگربعدی: "def456"
     
-    Client->>Server: tools/list (نشانگر: "def456")
+    Client->>Server: ابزارها/لیست (نشانگر: "def456")
     Server-->>Client: ابزارها [21-25]، نشانگربعدی: null (پایان)
 ```
+
 ### صفحه‌بندی در متدهای MCP
 
 این متدهای MCP از صفحه‌بندی پشتیبانی می‌کنند:
 
-| متد | بازگرداندن | پشتیبانی نشانگر |
+| متد | بازمی‌گرداند | پشتیبانی از نشانگر |
 |--------|---------|----------------|
-| `tools/list` | تعاریف ابزارها | ✅ |
+| `tools/list` | تعاریف ابزار | ✅ |
 | `resources/list` | تعاریف منابع | ✅ |
-| `prompts/list` | تعاریف پرسش‌ها | ✅ |
+| `prompts/list` | تعاریف درخواست‌ها | ✅ |
 | `resources/templates/list` | قالب‌های منابع | ✅ |
 
 ---
@@ -71,7 +72,7 @@ PAGE_SIZE = 10
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     """List tools with pagination support."""
     
-    # رمزگشایی مکان‌نما برای بدست آوردن شماره شروع
+    # رمزگشایی مکان‌نما برای به‌دست‌آوردن شاخص شروع
     start_index = 0
     if cursor:
         try:
@@ -79,7 +80,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
         except ValueError:
             start_index = 0
     
-    # دریافت صفحه‌ای از نتایج
+    # دریافت صفحه نتایج
     end_index = min(start_index + PAGE_SIZE, len(ALL_TOOLS))
     page_tools = ALL_TOOLS[start_index:end_index]
     
@@ -105,7 +106,7 @@ const server = new Server({
   version: "1.0.0"
 });
 
-// مجموعه داده شبیه‌سازی شده بزرگ
+// مجموعه داده بزرگ شبیه‌سازی شده
 const ALL_TOOLS = Array.from({ length: 100 }, (_, i) => ({
   name: `tool_${i}`,
   description: `Tool number ${i}`,
@@ -153,7 +154,7 @@ public class PaginatedToolService {
     
     @McpMethod("tools/list")
     public ListToolsResult listTools(@Param("cursor") String cursor) {
-        // رمزگشایی مکان‌نمای اشاره‌گر
+        // رمزگشایی مکان‌نمای کرسر
         int startIndex = 0;
         if (cursor != null && !cursor.isEmpty()) {
             try {
@@ -167,7 +168,7 @@ public class PaginatedToolService {
         int endIndex = Math.min(startIndex + PAGE_SIZE, allTools.size());
         List<Tool> pageTools = allTools.subList(startIndex, endIndex);
         
-        // محاسبه مکان‌نمای اشاره‌گر بعدی
+        // محاسبه کرسر بعدی
         String nextCursor = endIndex < allTools.size() ? String.valueOf(endIndex) : null;
         
         return new ListToolsResult(pageTools, nextCursor);
@@ -230,7 +231,7 @@ console.log(`Found ${tools.length} tools`);
 
 ### الگوی بارگذاری تنبل
 
-برای داده‌های بسیار بزرگ، صفحات را به درخواست بارگذاری کنید:
+برای مجموعه‌داده‌های بسیار بزرگ، صفحات را به‌صورت درخواستی بارگذاری کنید:
 
 ```python
 class PaginatedToolIterator:
@@ -243,15 +244,15 @@ class PaginatedToolIterator:
         self.exhausted = False
     
     async def __anext__(self):
-        # اگر موجود است از بافر بازگردان
+        # اگر موجود است از بافر بازگرداند
         if self.buffer:
             return self.buffer.pop(0)
         
-        # بررسی کنیم آیا تمام صفحات را استفاده کرده‌ایم
+        # بررسی کنید که آیا همه صفحات را تمام کرده‌ایم
         if self.exhausted:
             raise StopAsyncIteration
         
-        # صفحه بعدی را واکشی کن
+        # صفحه بعدی را دریافت کنید
         result = await self.session.list_tools(cursor=self.cursor)
         self.buffer = list(result.tools)
         self.cursor = result.nextCursor
@@ -267,7 +268,7 @@ class PaginatedToolIterator:
     def __aiter__(self):
         return self
 
-# استفاده - بهینه در حافظه برای مجموعه داده‌های بزرگ
+# استفاده - حافظه بهینه برای مجموعه داده‌های بزرگ
 async for tool in PaginatedToolIterator(session):
     process_tool(tool)
 ```
@@ -276,7 +277,7 @@ async for tool in PaginatedToolIterator(session):
 
 ## صفحه‌بندی برای منابع
 
-منابع اغلب به صفحه‌بندی برای پوشه‌ها یا داده‌های بزرگ نیاز دارند:
+منابع اغلب برای فهرست‌ها یا مجموعه‌داده‌های بزرگ به صفحه‌بندی نیاز دارند:
 
 ```python
 from mcp.server import Server
@@ -292,7 +293,7 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
     directory = "/data/files"
     all_files = sorted(os.listdir(directory))
     
-    # مکان‌نمای رمزگشایی (شاخص فایل)
+    # رمزگشایی مکان نما (شاخص فایل)
     start_index = int(cursor) if cursor else 0
     page_size = 20
     end_index = min(start_index + page_size, len(all_files))
@@ -307,7 +308,7 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
             mimeType="application/octet-stream"
         ))
     
-    # محاسبه مکان‌نمای بعدی
+    # محاسبه مکان نمای بعدی
     next_cursor = str(end_index) if end_index < len(all_files) else None
     
     return ListResourcesResult(
@@ -320,27 +321,27 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ## استراتژی‌های طراحی نشانگر
 
-### استراتژی ۱: مبتنی بر اندیس (ساده)
+### استراتژی 1: مبتنی بر اندیس (ساده)
 
 ```python
-# مکان‌نما فقط اندیس است
+# مکان‌نما فقط نمایه است
 cursor = "50"  # شروع از آیتم ۵۰
 ```
 
-**مزایا:** ساده، بدون حالت (stateless)  
-**معایب:** نتایج ممکن است در صورت اضافه/حذف شدن موارد تغییر کنند
+**مزایا:** ساده، بدون حالت
+**معایب:** نتایج در صورت اضافه یا حذف موارد ممکن است جابجا شوند
 
-### استراتژی ۲: مبتنی بر شناسه (پایدار)
+### استراتژی 2: مبتنی بر شناسه (پایدار)
 
 ```python
-# مکان‌نما آخرین شناسه مشاهده شده است
-cursor = "item_abc123"  # شروع پس از این مورد
+# مکان‌نما شناسه آخرین مورد مشاهده شده است
+cursor = "item_abc123"  # شروع بعد از این مورد
 ```
 
-**مزایا:** پایدار حتی در صورت تغییر موارد  
+**مزایا:** پایدار حتی اگر موارد تغییر کنند
 **معایب:** نیاز به شناسه‌های مرتب شده دارد
 
-### استراتژی ۳: حالت کدگذاری شده (پیچیده)
+### استراتژی 3: وضعیت کدگذاری شده (پیچیده)
 
 ```python
 import base64
@@ -352,7 +353,7 @@ def encode_cursor(state: dict) -> str:
 def decode_cursor(cursor: str) -> dict:
     return json.loads(base64.b64decode(cursor).decode())
 
-# کرسر شامل چندین فیلد وضعیت است
+# نشانگر شامل چندین فیلد وضعیت است
 cursor = encode_cursor({
     "offset": 50,
     "filter": "active",
@@ -360,23 +361,23 @@ cursor = encode_cursor({
 })
 ```
 
-**مزایا:** امکان کدگذاری حالت پیچیده وجود دارد  
+**مزایا:** می‌تواند وضعیت پیچیده را کدگذاری کند
 **معایب:** پیچیده‌تر، رشته‌های نشانگر بزرگ‌تر
 
 ---
 
-## بهترین شیوه‌ها
+## بهترین روش‌ها
 
-### ۱. انتخاب اندازه صفحه مناسب
+### 1. انتخاب سایز مناسب صفحه
 
 ```python
 # اندازه داده را در نظر بگیرید
-PAGE_SIZE_SMALL_ITEMS = 100   # متادیتای ساده
+PAGE_SIZE_SMALL_ITEMS = 100   # فراداده ساده
 PAGE_SIZE_MEDIUM_ITEMS = 20   # اشیاء غنی‌تر
 PAGE_SIZE_LARGE_ITEMS = 5     # محتوای پیچیده
 ```
 
-### ۲. مدیریت نشانگرهای نامعتبر به طور مناسب
+### 2. مدیریت نشانگرهای نامعتبر با نرمی
 
 ```python
 @app.list_tools()
@@ -386,57 +387,57 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
         if start_index < 0 or start_index >= len(ALL_TOOLS):
             start_index = 0  # بازنشانی به ابتدا
     except (ValueError, TypeError):
-        start_index = 0  # مکان‌نمای نامعتبر، شروع دوباره
+        start_index = 0  # مکان‌نمای نامعتبر، از نو شروع کنید
     # ...
 ```
 
-### ۳. گنجاندن شمارش کل (اختیاری)
+### 3. شامل کردن شمارش کل (اختیاری)
 
 ```python
 return ListToolsResult(
     tools=page_tools,
     nextCursor=next_cursor,
-    # برخی پیاده‌سازی‌ها شامل مجموع برای پیشرفت UI هستند
+    # برخی پیاده‌سازی‌ها شامل کل برای پیشرفت رابط کاربری هستند
     _meta={"total": len(ALL_TOOLS)}
 )
 ```
 
-### ۴. آزمایش موارد مرزی
+### 4. تست موارد لبه
 
 ```python
 async def test_pagination():
-    # مجموعه نتایج خالی
+    # مجموعه نتیجه خالی
     result = await session.list_tools()
     assert result.tools == []
     assert result.nextCursor is None
     
-    # صفحه واحد
+    # صفحه‌ی واحد
     result = await session.list_tools()
     assert len(result.tools) <= PAGE_SIZE
     
-    # نشانگر نامعتبر
+    # کرسر نامعتبر
     result = await session.list_tools(cursor="invalid")
     assert result.tools  # باید صفحه اول را برگرداند
 ```
 
 ---
 
-## مشکلات رایج
+## اشتباهات رایج
 
-### ❌ بازگردانی همه نتایج و سپس صفحه‌بندی در سمت کلاینت
+### ❌ بازگرداندن همه نتایج و سپس صفحه‌بندی در سمت کلاینت
 
 ```python
-# بد: همه چیز را در حافظه بارگذاری می‌کند
+# بد: همه چیز را در حافظه بارگیری می‌کند
 @app.list_tools()
 async def list_tools() -> ListToolsResult:
-    all_tools = load_all_tools()  # یک میلیون ابزار!
+    all_tools = load_all_tools()  # ۱ میلیون ابزار!
     return ListToolsResult(tools=all_tools)
 ```
 
 ### ✅ صفحه‌بندی در منبع داده
 
 ```python
-# خوب: فقط آنچه لازم است را بارگذاری می‌کند
+# خوب: فقط موارد لازم را بارگذاری می‌کند
 @app.list_tools()
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     offset = int(cursor) if cursor else 0
@@ -446,23 +447,23 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ---
 
-## گام بعدی
+## مرحله بعد
 
-- [ماژول ۵.۱۴ - مهندسی زمینه](../../05-AdvancedTopics/mcp-contextengineering/README.md)
-- [ماژول ۸ - بهترین شیوه‌ها](../../08-BestPractices/README.md)
-- [۳.۸ - تست سرور MCP شما](../../03-GettingStarted/08-testing/README.md)
+- [ماژول 5.14 - مهندسی زمینه](../../05-AdvancedTopics/mcp-contextengineering/README.md)
+- [ماژول 8 - بهترین روش‌ها](../../08-BestPractices/README.md)
+- [3.8 - تست سرور MCP خود](../../03-GettingStarted/08-testing/README.md)
 
 ---
 
 ## منابع اضافی
 
-- [مشخصات MCP - صفحه‌بندی](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [توضیح صفحه‌بندی مبتنی بر نشانگر](https://slack.engineering/evolving-api-pagination-at-slack/)
-- [تست‌های صفحه‌بندی SDK پایتون](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+- [مشخصات MCP - صفحه‌بندی](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [شرح صفحه‌بندی مبتنی بر نشانگر](https://slack.engineering/evolving-api-pagination-at-slack/)
+- [تست‌های صفحه‌بندی Python SDK](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**سلب مسئولیت**:  
-این سند با استفاده از سرویس ترجمه ماشینی [Co-op Translator](https://github.com/Azure/co-op-translator) ترجمه شده است. در حالی که ما برای دقت تلاش می‌کنیم، لطفاً به این نکته توجه داشته باشید که ترجمه‌های خودکار ممکن است شامل خطاها یا نادرستی‌هایی باشند. سند اصلی به زبان مادری آن باید به عنوان منبع معتبر در نظر گرفته شود. برای اطلاعات حیاتی، استفاده از ترجمه حرفه‌ای انسانی توصیه می‌شود. ما مسئولیتی در قبال هرگونه سوء تفاهم یا تفسیر نادرست ناشی از استفاده این ترجمه نداریم.
+**سلب مسئولیت**:
+این سند با استفاده از سرویس ترجمه هوش مصنوعی [Co-op Translator](https://github.com/Azure/co-op-translator) ترجمه شده است. در حالی که ما در تلاش برای دقت هستیم، لطفاً توجه داشته باشید که ترجمه‌های خودکار ممکن است شامل خطاها یا نادرستی‌هایی باشند. سند اصلی به زبان مادری خود باید به عنوان منبع معتبر در نظر گرفته شود. برای اطلاعات حیاتی، ترجمه حرفه‌ای انسانی توصیه می‌شود. ما در قبال هرگونه سوء تفاهم یا برداشت نادرست ناشی از استفاده از این ترجمه مسئولیتی نداریم.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,31 +1,33 @@
-# 🚀 ابزار MCP
+# 🚀 ابزارهای MCP
 
-## 🧠 نمای کلی مسیر یادگیری یکپارچه‌سازی پایگاه‌داده MCP
+## 🧠 مرور مسیر یادگیری ادغام پایگاه داده MCP
 
-اینجا خواهید آموخت چگونه از ابزارهایی استفاده کنید که از MCP بهره می‌برند. تجربه شما در استفاده از این ابزارها با اتصال سرورهای MCP به آن‌ها بهبود خواهد یافت.
+اینجا خواهید آموخت چگونه از ابزارهایی که از MCP استفاده می‌کنند بهره ببرید. تجربه شما در استفاده از این ابزارها با اتصال سرورهای MCP به آن‌ها بهبود خواهد یافت.
 
 ## 🔗 منابع رسمی MCP
 
-- 📘 [مستندات MCP](https://modelcontextprotocol.io/) – آموزش‌ها و راهنمای جامع کاربران
-- 📜 [مشخصات MCP (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/) – معماری پروتکل و مراجع فنی
-- 🧑‍💻 [مخزن گیت‌هاب MCP](https://github.com/modelcontextprotocol) – SDKها، ابزارها و نمونه کد متن‌باز
-- 🌐 [جامعه MCP](https://github.com/orgs/modelcontextprotocol/discussions) – پیوستن به بحث‌ها و مشارکت در جامعه
-- 🔒 [ده مورد برتر OWASP MCP](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – بهترین شیوه‌های امنیتی و کاهش ریسک‌ها
+- 📘 [مستندات MCP](https://modelcontextprotocol.io/) – آموزش‌های مفصل و راهنمای کاربر
+- 📜 [مشخصات MCP (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/) – ساختار پروتکل و مراجع فنی
+- 🧑‍💻 [مخزن گیت‌هاب MCP](https://github.com/modelcontextprotocol) – کیت‌های توسعه نرم‌افزار متن باز، ابزارها و نمونه کدها
+- 🌐 [جامعه MCP](https://github.com/orgs/modelcontextprotocol/discussions) – شرکت در بحث‌ها و همکاری با جامعه
+- 🔒 [ده مورد برتر امنیتی OWASP MCP](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – بهترین روش‌های امنیتی و کاهش ریسک‌ها
+
+
 
 ## 🌟 جامعه و پشتیبانی
 
 ### دریافت کمک
 
-- **دیسکورد Azure AI**: [برای دریافت پشتیبانی تخصصی بپیوندید](https://discord.com/invite/ByRwuEEgH4)
-- **جامعه MCP**: [پیوستن به بحث‌های گسترده‌تر MCP](https://github.com/orgs/modelcontextprotocol/discussions)
+- **دیسکورد Azure AI**: [برای پشتیبانی تخصصی بپیوندید](https://discord.com/invite/ByRwuEEgH4)
+- **جامعه MCP**: [برای بحث‌های گسترده‌تر MCP بپیوندید](https://github.com/orgs/modelcontextprotocol/discussions)
 
-## 🚀 آماده شروع؟
+## 🚀 آماده شروع هستید؟
 
 سفر خود را با **[اپلیکیشن GitHub Copilot](./01-copilot-app/README.md)** آغاز کنید
 
 ---
 
-*با تسلط بر این ابزارها با MCP، بهره‌وری خود را افزایش دهید و یکپارچگی روان را تجربه کنید.*
+*این ابزارها را با MCP به کار ببرید تا بهره‌وری خود را افزایش داده و ادغامی بی‌وقفه داشته باشید.*
 
 ---
 

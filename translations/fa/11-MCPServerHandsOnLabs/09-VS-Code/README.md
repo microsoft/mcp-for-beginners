@@ -1,29 +1,35 @@
-# ادغام VS Code
+# یکپارچه‌سازی VS Code
+
+> [!NOTE]
+> تنظیمات `initializationOptions` در این آزمایشگاه هدف پروتکل MCP نمونه
+> شناسایی `2025-11-25` است. MCP `2026-07-28` شناسایی اولیه را حذف می‌کند؛
+> هنگام مهاجرت این نمونه از یک میزبان و SDK استفاده کنید که از متادیتای هر درخواست و `server/discover` پشتیبانی می‌کنند.
+
 
 ## 🎯 موضوعات این آزمایشگاه
 
-این آزمایشگاه راهنمای جامعی برای ادغام سرور MCP شما با VS Code ارائه می‌دهد تا امکان پرسش‌های زبان طبیعی از طریق AI Chat فراهم شود. شما یاد خواهید گرفت که چگونه VS Code را برای استفاده بهینه از MCP تنظیم کنید، اتصالات سرور را دیباگ کنید و از قدرت کامل تعاملات پایگاه داده با کمک هوش مصنوعی بهره‌مند شوید.
+این آزمایشگاه راهنمای جامع برای یکپارچه‌سازی سرور MCP شما با VS Code جهت فعال‌سازی جستجوی زبان طبیعی از طریق چت هوش مصنوعی ارائه می‌دهد. شما خواهید آموخت چگونه VS Code را برای استفاده بهینه از MCP پیکربندی کنید، اتصالات سرور را اشکال‌زدایی نمایید و از قدرت کامل تعاملات بانک اطلاعاتی با کمک هوش مصنوعی بهره‌مند شوید.
 
 ## مرور کلی
 
-ادغام MCP با VS Code نحوه تعامل توسعه‌دهندگان با پایگاه داده‌ها و API‌ها را از طریق زبان طبیعی متحول می‌کند. با اتصال سرور MCP خرده‌فروشی خود به VS Code Chat، می‌توانید داده‌های فروش، کاتالوگ محصولات و تحلیل‌های کسب‌وکار را با استفاده از هوش مصنوعی به صورت هوشمندانه پرس‌وجو کنید.
+یکپارچه‌سازی MCP در VS Code نحوه تعامل توسعه‌دهندگان با بانک‌های اطلاعاتی و APIها را از طریق زبان طبیعی تغییر می‌دهد. با اتصال سرور MCP خرده‌فروشی خود به چت VS Code، امکان پرس‌وجوی هوشمند در داده‌های فروش، کاتالوگ محصولات و تحلیل‌های کسب‌وکار با استفاده از هوش مصنوعی گفتگو محور را فراهم می‌کنید.
 
-این ادغام به توسعه‌دهندگان امکان می‌دهد سوالاتی مانند "محصولات پرفروش این ماه را نشان بده" یا "مشتریانی که در ۹۰ روز گذشته خرید نکرده‌اند را پیدا کن" بپرسند و پاسخ‌های داده‌ای ساختاریافته دریافت کنند، بدون نیاز به نوشتن کوئری‌های SQL.
+این یکپارچه‌سازی به توسعه‌دهندگان اجازه می‌دهد سوالاتی مانند «محصولات پرفروش این ماه را نشان بده» یا «مشتریانی که در ۹۰ روز گذشته خرید نکرده‌اند را پیدا کن» را بپرسند و پاسخ‌های داده‌ای ساختاریافته بدون نیاز به نوشتن کوئری‌های SQL دریافت کنند.
 
-## اهداف آموزشی
+## اهداف یادگیری
 
 تا پایان این آزمایشگاه، شما قادر خواهید بود:
 
-- **تنظیم** تنظیمات MCP در VS Code برای سرور خرده‌فروشی خود  
-- **ادغام** سرورهای MCP با قابلیت‌های AI Chat در VS Code  
-- **دیباگ** اتصالات سرور MCP و رفع مشکلات  
-- **بهینه‌سازی** الگوهای پرسش زبان طبیعی برای نتایج بهتر  
-- **شخصی‌سازی** فضای کاری VS Code برای توسعه MCP  
-- **پیاده‌سازی** تنظیمات چند سروره برای سناریوهای پیچیده  
+- **پیکربندی** تنظیمات MCP در VS Code برای سرور خرده‌فروشی خود
+- **یکپارچه‌سازی** سرورهای MCP با قابلیت چت هوش مصنوعی در VS Code  
+- **اشکال‌زدایی** اتصالات سرور MCP و عیب‌یابی مشکلات  
+- **بهینه‌سازی** الگوهای پرس‌وجوی زبان طبیعی برای نتایج بهتر  
+- **سفارشی‌سازی** فضای کاری VS Code برای توسعه MCP  
+- **استقرار** پیکربندی‌های چند سروری برای سناریوهای پیچیده  
 
-## 🔧 تنظیمات MCP در VS Code
+## 🔧 پیکربندی MCP در VS Code
 
-### تنظیم اولیه و نصب
+### راه‌اندازی و نصب اولیه
 
 ```json
 // .vscode/settings.json
@@ -62,32 +68,32 @@
 }
 ```
 
-### تنظیم محیط
+### پیکربندی محیط
 
 ```bash
-# .env file for development
+# فایل .env برای توسعه
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_DB=retail_db
 POSTGRES_USER=mcp_user
 POSTGRES_PASSWORD=your_secure_password
 
-# Azure Configuration
+# پیکربندی Azure
 PROJECT_ENDPOINT=https://your-project.openai.azure.com
 AZURE_CLIENT_ID=your-client-id
 AZURE_CLIENT_SECRET=your-client-secret
 AZURE_TENANT_ID=your-tenant-id
 
-# Optional: Azure Key Vault
+# اختیاری: کلید مخزن Azure
 AZURE_KEY_VAULT_URL=https://your-keyvault.vault.azure.net/
 
-# Server Configuration
+# پیکربندی سرور
 MCP_SERVER_PORT=8000
 MCP_SERVER_HOST=127.0.0.1
 LOG_LEVEL=INFO
 ```
 
-### تنظیم فضای کاری
+### پیکربندی فضای کاری
 
 ```json
 // .vscode/launch.json
@@ -126,7 +132,7 @@ LOG_LEVEL=INFO
 }
 ```
 
-### تنظیم وظایف
+### پیکربندی وظایف
 
 ```json
 // .vscode/tasks.json
@@ -218,12 +224,12 @@ LOG_LEVEL=INFO
 }
 ```
 
-## 💬 ادغام AI Chat
+## 💬 یکپارچه‌سازی چت هوش مصنوعی
 
-### الگوهای پرسش زبان طبیعی
+### الگوهای پرس‌وجوی زبان طبیعی
 
 ```typescript
-// Example query patterns for VS Code Chat
+// الگوهای نمونه پرس‌وجو برای چت VS Code
 interface QueryPattern {
     intent: string;
     examples: string[];
@@ -294,7 +300,7 @@ const retailQueryPatterns: QueryPattern[] = [
 ];
 ```
 
-### مثال‌های ادغام چت
+### نمونه‌های یکپارچه‌سازی چت
 
 ```markdown
 <!-- Examples of VS Code Chat interactions -->
@@ -341,7 +347,7 @@ const retailQueryPatterns: QueryPattern[] = [
 - Result: KPI dashboard with revenue, customer metrics, top categories, and growth trends
 ```
 
-### قالب‌بندی پاسخ‌های چت
+### قالب‌بندی پاسخ چت
 
 ```python
 # mcp_server/chat/response_formatter.py
@@ -459,7 +465,7 @@ class ChatResponseFormatter:
         
         response = "## Business Intelligence Summary\n\n"
         
-        # Key metrics
+        # معیارهای کلیدی
         response += "### Key Performance Indicators\n\n"
         response += f"- **Total Revenue**: ${float(data.get('total_revenue', 0)):,.2f}\n"
         response += f"- **Total Transactions**: {int(data.get('total_transactions', 0)):,}\n"
@@ -467,7 +473,7 @@ class ChatResponseFormatter:
         response += f"- **Average Order Value**: ${float(data.get('avg_transaction_value', 0)):.2f}\n"
         response += f"- **Products Sold**: {int(data.get('products_sold', 0)):,} items\n\n"
         
-        # Performance indicators
+        # شاخص‌های عملکرد
         if 'insights' in data and 'performance_indicators' in data['insights']:
             pi = data['insights']['performance_indicators']
             response += "### Performance Indicators\n\n"
@@ -475,7 +481,7 @@ class ChatResponseFormatter:
             response += f"- **Revenue per Customer**: ${float(pi.get('revenue_per_customer', 0)):,.2f}\n"
             response += f"- **Items per Transaction**: {float(pi.get('items_per_transaction', 0)):.1f}\n\n"
         
-        # Top category
+        # دسته‌بندی برتر
         if data.get('top_category'):
             response += f"### Top Performing Category\n\n"
             response += f"**{data['top_category']}** - ${float(data.get('top_category_revenue', 0)):,.2f} revenue\n\n"
@@ -498,9 +504,9 @@ class ChatResponseFormatter:
         return response
 ```
 
-## 🔍 دیباگ و رفع مشکلات
+## 🔍 اشکال‌زدایی و عیب‌یابی
 
-### تنظیمات دیباگ در VS Code
+### پیکربندی اشکال‌زدایی VS Code
 
 ```python
 # mcp_server/debug/vscode_debug.py
@@ -522,12 +528,12 @@ class VSCodeDebugLogger:
     def setup_vscode_logging(self):
         """Configure logging for VS Code debugging."""
         
-        # Create VS Code specific formatter
+        # ایجاد فرمت‌کننده مخصوص VS Code
         formatter = logging.Formatter(
             '[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s'
         )
         
-        # Console handler for VS Code terminal
+        # مدیریت‌کننده کنسول برای ترمینال VS Code
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(formatter)
         console_handler.setLevel(logging.DEBUG)
@@ -566,11 +572,11 @@ class VSCodeDebugLogger:
         else:
             return f"Data type: {type(data).__name__}"
 
-# Global debug logger
+# لاگر اشکال‌زدایی جهانی
 vscode_debug_logger = VSCodeDebugLogger()
 ```
 
-### رفع مشکلات اتصال
+### عیب‌یابی اتصال
 
 ```python
 # scripts/debug_mcp_connection.py
@@ -587,7 +593,7 @@ async def test_database_connection() -> Dict[str, Any]:
     """Test database connectivity."""
     
     try:
-        # Get connection parameters from environment
+        # دریافت پارامترهای اتصال از محیط
         connection_params = {
             'host': os.getenv('POSTGRES_HOST', 'localhost'),
             'port': int(os.getenv('POSTGRES_PORT', '5432')),
@@ -598,13 +604,13 @@ async def test_database_connection() -> Dict[str, Any]:
         
         print(f"Testing connection to {connection_params['host']}:{connection_params['port']}")
         
-        # Test connection
+        # آزمایش اتصال
         conn = await asyncpg.connect(**connection_params)
         
-        # Test basic query
+        # آزمایش پرس‌وجوی پایه
         result = await conn.fetchval("SELECT version()")
         
-        # Test schema access
+        # آزمایش دسترسی به شِما
         tables = await conn.fetch("""
             SELECT table_name FROM information_schema.tables 
             WHERE table_schema = 'retail'
@@ -648,7 +654,7 @@ async def test_azure_openai_connection() -> Dict[str, Any]:
             credential=credential
         )
         
-        # Test embedding generation
+        # آزمایش تولید جاسازی
         response = await client.embeddings.create(
             model="text-embedding-3-small",
             input="test connection"
@@ -674,25 +680,25 @@ async def test_mcp_tools() -> Dict[str, Any]:
     """Test MCP tool availability."""
     
     try:
-        # Import MCP server components
+        # وارد کردن اجزای سرور MCP
         sys.path.append(os.path.dirname(os.path.dirname(__file__)))
         
         from mcp_server.server import MCPServer
         from mcp_server.database import DatabaseProvider
         from mcp_server.config import Config
         
-        # Create test configuration
+        # ایجاد تنظیمات آزمایشی
         config = Config()
         db_provider = DatabaseProvider(config.database.connection_string)
         
-        # Initialize server
+        # راه‌اندازی سرور
         server = MCPServer(config, db_provider)
         await server.initialize()
         
-        # Get available tools
+        # دریافت ابزارهای موجود
         tools = server.get_available_tools()
         
-        # Test a simple tool
+        # آزمایش یک ابزار ساده
         test_result = await server.execute_tool(
             'get_current_utc_date',
             {'format': 'iso'}
@@ -719,7 +725,7 @@ async def main():
     print("🔍 MCP Server Connection Diagnostics")
     print("=" * 50)
     
-    # Test database connection
+    # آزمایش اتصال به پایگاه داده
     print("\n📊 Testing Database Connection...")
     db_result = await test_database_connection()
     
@@ -732,7 +738,7 @@ async def main():
         print("❌ Database connection failed")
         print(f"   Error: {db_result['error']}")
     
-    # Test Azure OpenAI connection
+    # آزمایش اتصال Azure OpenAI
     print("\n🤖 Testing Azure OpenAI Connection...")
     azure_result = await test_azure_openai_connection()
     
@@ -744,7 +750,7 @@ async def main():
         print("❌ Azure OpenAI connection failed")
         print(f"   Error: {azure_result['error']}")
     
-    # Test MCP tools
+    # آزمایش ابزارهای MCP
     print("\n🛠️  Testing MCP Tools...")
     tools_result = await test_mcp_tools()
     
@@ -757,7 +763,7 @@ async def main():
         print("❌ MCP tools loading failed")
         print(f"   Error: {tools_result['error']}")
     
-    # Overall status
+    # وضعیت کلی
     print("\n📋 Overall Status")
     print("=" * 50)
     
@@ -781,9 +787,9 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-## 🚀 تنظیمات پیشرفته
+## 🚀 پیکربندی پیشرفته
 
-### تنظیمات چند سروره
+### راه‌اندازی چند سرور
 
 ```json
 // .vscode/settings.json - Multiple MCP servers
@@ -840,15 +846,15 @@ if __name__ == "__main__":
 }
 ```
 
-### افزونه شخصی‌سازی شده VS Code
+### توسعه افزونه سفارشی VS Code
 
 ```typescript
-// src/extension.ts - Custom MCP retail extension
+// src/extension.ts - افزونه خرده‌فروشی سفارشی MCP
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
     
-    // Register MCP retail commands
+    // ثبت دستورات خرده‌فروشی MCP
     const disposable = vscode.commands.registerCommand(
         'mcp-retail.quickQuery', 
         async () => {
@@ -889,7 +895,7 @@ export function activate(context: vscode.ExtensionContext) {
     
     context.subscriptions.push(disposable);
     
-    // Register store switcher
+    // ثبت تغییر دهنده فروشگاه
     const storeSwitcher = vscode.commands.registerCommand(
         'mcp-retail.switchStore',
         async () => {
@@ -899,7 +905,7 @@ export function activate(context: vscode.ExtensionContext) {
             });
             
             if (selected) {
-                // Update configuration
+                // به‌روزرسانی پیکربندی
                 const config = vscode.workspace.getConfiguration('mcp');
                 await config.update('defaultStore', selected, true);
                 
@@ -914,7 +920,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 async function executeQuickQuery(queryType: string) {
-    // Execute predefined queries in VS Code Chat
+    // اجرای پرس‌وجوهای از پیش تعریف شده در VS Code Chat
     const chatCommands = {
         '📊 Daily Sales': '@retail Show me daily sales for the last 30 days',
         '🏆 Top Products': '@retail What are the top 10 selling products this month?',
@@ -933,7 +939,7 @@ async function executeQuickQuery(queryType: string) {
 export function deactivate() {}
 ```
 
-### تنظیمات بسته افزونه
+### پیکربندی بسته افزونه
 
 ```json
 // package.json for VS Code extension
@@ -1007,47 +1013,49 @@ export function deactivate() {}
 
 ## 🎯 نکات کلیدی
 
-پس از تکمیل این آزمایشگاه، شما باید:
+پس از اتمام این آزمایشگاه، باید موارد زیر را داشته باشید:
 
-✅ **تنظیمات MCP در VS Code**: تنظیم کامل برای ادغام بهینه MCP  
-✅ **ادغام AI Chat**: قابلیت پرسش زبان طبیعی در VS Code  
-✅ **ابزارهای دیباگ**: رفع مشکلات و تشخیص اتصالات به صورت جامع  
-✅ **تنظیمات چند سروره**: پیکربندی برای چندین نمونه سرور MCP  
-✅ **افزونه‌های شخصی‌سازی شده**: تجربه بهبود یافته VS Code با ویژگی‌های خاص خرده‌فروشی  
-✅ **آمادگی برای تولید**: محیط توسعه VS Code آماده برای استفاده در سطح سازمانی  
+✅ **پیکربندی MCP در VS Code**: راه‌اندازی کامل برای یکپارچه‌سازی بهینه MCP  
+✅ **یکپارچه‌سازی چت هوش مصنوعی**: قابلیت‌های پرس‌وجوی زبان طبیعی در VS Code  
+✅ **ابزارهای اشکال‌زدایی**: عیب‌یابی جامع و تشخیص اشکال اتصال  
+✅ **راه‌اندازی چند سرور**: پیکربندی چند نمونه سرور MCP  
+✅ **افزونه‌های سفارشی**: تجربه بهبود یافته VS Code با ویژگی‌های خاص حوزه خرده‌فروشی  
+✅ **آمادگی برای تولید**: محیط توسعه VS Code مناسب برای سازمان‌ها  
 
-## 🚀 گام بعدی
+## 🚀 مراحل بعدی
 
-ادامه دهید با **[آزمایشگاه ۱۰: استراتژی‌های استقرار](../10-Deployment/README.md)** برای:
+با ادامه دادن به **[آزمایشگاه ۱۰: استراتژی‌های استقرار](../10-Deployment/README.md)** برای:
 
 - استقرار سرورهای MCP در محیط‌های تولید  
-- تنظیم زیرساخت ابری برای مقیاس‌پذیری  
+- پیکربندی زیرساخت ابری برای مقیاس‌پذیری  
 - پیاده‌سازی خطوط CI/CD برای استقرار خودکار  
-- نظارت بر عملکرد سرور MCP در محیط تولید  
+- نظارت بر عملکرد سرور MCP در تولید  
 
 ## 📚 منابع اضافی
 
 ### توسعه VS Code
-- [VS Code Extension API](https://code.visualstudio.com/api) - راهنمای رسمی توسعه افزونه  
-- [مستندات MCP در VS Code](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - مستندات ادغام MCP  
+- [API توسعه افزونه VS Code](https://code.visualstudio.com/api) - راهنمای رسمی توسعه افزونه  
+- [مستندات MCP برای VS Code](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - مستندات یکپارچه‌سازی MCP  
 - [TypeScript برای VS Code](https://code.visualstudio.com/docs/languages/typescript) - توسعه TypeScript در VS Code  
 
 ### پروتکل MCP
-- [مشخصات پروتکل Model Context](https://modelcontextprotocol.io/specification) - مشخصات رسمی MCP  
+- [مشخصات پروتکل مدل Context](https://modelcontextprotocol.io/specification) - مشخصات رسمی MCP  
 - [بهترین شیوه‌های MCP](https://modelcontextprotocol.io/docs/best-practices) - بهترین شیوه‌های پیاده‌سازی  
-- [چارچوب FastMCP](https://github.com/jlowin/fastmcp) - پیاده‌سازی MCP با Python  
+- [چارچوب FastMCP](https://github.com/jlowin/fastmcp) - پیاده‌سازی Python MCP  
 
 ### ابزارهای توسعه
-- [Python در VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - تنظیمات توسعه Python  
-- [دیباگ در VS Code](https://code.visualstudio.com/docs/editor/debugging) - تکنیک‌های پیشرفته دیباگ  
-- [وظایف در VS Code](https://code.visualstudio.com/docs/editor/tasks) - خودکارسازی و تنظیم وظایف  
+- [Python در VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - راه‌اندازی توسعه Python  
+- [اشکال‌زدایی در VS Code](https://code.visualstudio.com/docs/editor/debugging) - تکنیک‌های پیشرفته اشکال‌زدایی  
+- [وظایف VS Code](https://code.visualstudio.com/docs/editor/tasks) - اتوماسیون وظایف و پیکربندی  
 
 ---
 
-**قبلی**: [آزمایشگاه ۰۸: تست و دیباگ](../08-Testing/README.md)  
-**بعدی**: [آزمایشگاه ۱۰: استراتژی‌های استقرار](../10-Deployment/README.md)  
+**قبلی**: [آزمایشگاه ۰۸: تست و اشکال‌زدایی](../08-Testing/README.md)  
+**بعدی**: [آزمایشگاه ۱۰: استراتژی‌های استقرار](../10-Deployment/README.md)
 
 ---
 
-**سلب مسئولیت**:  
-این سند با استفاده از سرویس ترجمه هوش مصنوعی [Co-op Translator](https://github.com/Azure/co-op-translator) ترجمه شده است. در حالی که ما تلاش می‌کنیم دقت را حفظ کنیم، لطفاً توجه داشته باشید که ترجمه‌های خودکار ممکن است شامل خطاها یا نادرستی‌ها باشند. سند اصلی به زبان اصلی آن باید به عنوان منبع معتبر در نظر گرفته شود. برای اطلاعات حساس، ترجمه حرفه‌ای انسانی توصیه می‌شود. ما مسئولیتی در قبال سوء تفاهم‌ها یا تفسیرهای نادرست ناشی از استفاده از این ترجمه نداریم.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**سلب مسئولیت**:
+این سند با استفاده از سرویس ترجمه هوش مصنوعی [Co-op Translator](https://github.com/Azure/co-op-translator) ترجمه شده است. در حالی که ما در تلاش برای دقت هستیم، لطفاً توجه داشته باشید که ترجمه‌های خودکار ممکن است شامل خطاها یا نادرستی‌هایی باشند. سند اصلی به زبان مادری خود باید به عنوان منبع معتبر در نظر گرفته شود. برای اطلاعات حیاتی، ترجمه حرفه‌ای انسانی توصیه می‌شود. ما در قبال هرگونه سوء تفاهم یا برداشت نادرست ناشی از استفاده از این ترجمه مسئولیتی نداریم.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,25 +1,31 @@
 # VS Code 集成
 
-## 🎯 本实验内容
+> [!NOTE]
+> 本实验中的 `initializationOptions` 设置针对示例的 MCP
+> `2025-11-25` 握手协议。MCP `2026-07-28` 版本取消了初始化握手；
+> 迁移此示例时请使用支持按请求元数据和 `server/discover`
+> 的主机和 SDK。
 
-本实验为您提供全面的指导，帮助您将 MCP 服务器与 VS Code 集成，以通过 AI 聊天实现自然语言查询。您将学习如何配置 VS Code 以优化 MCP 的使用、调试服务器连接，并充分利用 AI 辅助的数据库交互功能。
+## 🎯 本实验涵盖内容
+
+本实验提供关于将 MCP 服务器与 VS Code 集成的全面指南，以通过 AI 聊天实现自然语言查询。您将学习配置 VS Code 以实现最佳 MCP 使用、调试服务器连接，以及利用 AI 辅助数据库交互的全部功能。
 
 ## 概述
 
-VS Code 的 MCP 集成彻底改变了开发者通过自然语言与数据库和 API 交互的方式。通过将您的零售 MCP 服务器连接到 VS Code Chat，您可以使用对话式 AI 智能查询销售数据、产品目录和业务分析。
+VS Code 的 MCP 集成革新了开发者通过自然语言与数据库和 API 交互的方式。通过将您的零售 MCP 服务器连接到 VS Code 聊天，您可以使用对话式 AI 智能查询销售数据、产品目录和业务分析。
 
-这种集成允许开发者提出诸如“显示本月的畅销产品”或“查找 90 天内未购买的客户”之类的问题，并获得结构化数据响应，而无需编写 SQL 查询。
+这种集成使开发者能够提出诸如“显示本月畅销产品”或“查找90天未购买的客户”等问题，且无需编写 SQL 查询即可获得结构化数据响应。
 
 ## 学习目标
 
 完成本实验后，您将能够：
 
-- **配置** VS Code MCP 设置以连接您的零售服务器  
-- **集成** MCP 服务器与 VS Code AI Chat 功能  
-- **调试** MCP 服务器连接并解决问题  
-- **优化** 自然语言查询模式以获得更好的结果  
-- **自定义** VS Code 工作区以支持 MCP 开发  
-- **部署** 多服务器配置以应对复杂场景  
+- <strong>配置</strong> VS Code MCP 设置以适配您的零售服务器
+- <strong>集成</strong> MCP 服务器与 VS Code AI 聊天功能
+- <strong>调试</strong> MCP 服务器连接并排查问题
+- <strong>优化</strong> 自然语言查询模式以获得更佳结果
+- <strong>自定义</strong> VS Code 工作区以支持 MCP 开发
+- <strong>部署</strong> 多服务器配置以应对复杂场景
 
 ## 🔧 VS Code MCP 配置
 
@@ -65,23 +71,23 @@ VS Code 的 MCP 集成彻底改变了开发者通过自然语言与数据库和 
 ### 环境配置
 
 ```bash
-# .env file for development
+# 开发环境的 .env 文件
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_DB=retail_db
 POSTGRES_USER=mcp_user
 POSTGRES_PASSWORD=your_secure_password
 
-# Azure Configuration
+# Azure 配置
 PROJECT_ENDPOINT=https://your-project.openai.azure.com
 AZURE_CLIENT_ID=your-client-id
 AZURE_CLIENT_SECRET=your-client-secret
 AZURE_TENANT_ID=your-tenant-id
 
-# Optional: Azure Key Vault
+# 可选：Azure 密钥保管库
 AZURE_KEY_VAULT_URL=https://your-keyvault.vault.azure.net/
 
-# Server Configuration
+# 服务器配置
 MCP_SERVER_PORT=8000
 MCP_SERVER_HOST=127.0.0.1
 LOG_LEVEL=INFO
@@ -223,7 +229,7 @@ LOG_LEVEL=INFO
 ### 自然语言查询模式
 
 ```typescript
-// Example query patterns for VS Code Chat
+// VS Code 聊天的示例查询模式
 interface QueryPattern {
     intent: string;
     examples: string[];
@@ -459,7 +465,7 @@ class ChatResponseFormatter:
         
         response = "## Business Intelligence Summary\n\n"
         
-        # Key metrics
+        # 关键指标
         response += "### Key Performance Indicators\n\n"
         response += f"- **Total Revenue**: ${float(data.get('total_revenue', 0)):,.2f}\n"
         response += f"- **Total Transactions**: {int(data.get('total_transactions', 0)):,}\n"
@@ -467,7 +473,7 @@ class ChatResponseFormatter:
         response += f"- **Average Order Value**: ${float(data.get('avg_transaction_value', 0)):.2f}\n"
         response += f"- **Products Sold**: {int(data.get('products_sold', 0)):,} items\n\n"
         
-        # Performance indicators
+        # 性能指标
         if 'insights' in data and 'performance_indicators' in data['insights']:
             pi = data['insights']['performance_indicators']
             response += "### Performance Indicators\n\n"
@@ -475,7 +481,7 @@ class ChatResponseFormatter:
             response += f"- **Revenue per Customer**: ${float(pi.get('revenue_per_customer', 0)):,.2f}\n"
             response += f"- **Items per Transaction**: {float(pi.get('items_per_transaction', 0)):.1f}\n\n"
         
-        # Top category
+        # 顶级类别
         if data.get('top_category'):
             response += f"### Top Performing Category\n\n"
             response += f"**{data['top_category']}** - ${float(data.get('top_category_revenue', 0)):,.2f} revenue\n\n"
@@ -522,12 +528,12 @@ class VSCodeDebugLogger:
     def setup_vscode_logging(self):
         """Configure logging for VS Code debugging."""
         
-        # Create VS Code specific formatter
+        # 创建 VS Code 专用的格式化程序
         formatter = logging.Formatter(
             '[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s'
         )
         
-        # Console handler for VS Code terminal
+        # 用于 VS Code 终端的控制台处理器
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(formatter)
         console_handler.setLevel(logging.DEBUG)
@@ -566,7 +572,7 @@ class VSCodeDebugLogger:
         else:
             return f"Data type: {type(data).__name__}"
 
-# Global debug logger
+# 全局调试记录器
 vscode_debug_logger = VSCodeDebugLogger()
 ```
 
@@ -587,7 +593,7 @@ async def test_database_connection() -> Dict[str, Any]:
     """Test database connectivity."""
     
     try:
-        # Get connection parameters from environment
+        # 从环境获取连接参数
         connection_params = {
             'host': os.getenv('POSTGRES_HOST', 'localhost'),
             'port': int(os.getenv('POSTGRES_PORT', '5432')),
@@ -598,13 +604,13 @@ async def test_database_connection() -> Dict[str, Any]:
         
         print(f"Testing connection to {connection_params['host']}:{connection_params['port']}")
         
-        # Test connection
+        # 测试连接
         conn = await asyncpg.connect(**connection_params)
         
-        # Test basic query
+        # 测试基本查询
         result = await conn.fetchval("SELECT version()")
         
-        # Test schema access
+        # 测试模式访问
         tables = await conn.fetch("""
             SELECT table_name FROM information_schema.tables 
             WHERE table_schema = 'retail'
@@ -648,7 +654,7 @@ async def test_azure_openai_connection() -> Dict[str, Any]:
             credential=credential
         )
         
-        # Test embedding generation
+        # 测试嵌入生成
         response = await client.embeddings.create(
             model="text-embedding-3-small",
             input="test connection"
@@ -674,25 +680,25 @@ async def test_mcp_tools() -> Dict[str, Any]:
     """Test MCP tool availability."""
     
     try:
-        # Import MCP server components
+        # 导入MCP服务器组件
         sys.path.append(os.path.dirname(os.path.dirname(__file__)))
         
         from mcp_server.server import MCPServer
         from mcp_server.database import DatabaseProvider
         from mcp_server.config import Config
         
-        # Create test configuration
+        # 创建测试配置
         config = Config()
         db_provider = DatabaseProvider(config.database.connection_string)
         
-        # Initialize server
+        # 初始化服务器
         server = MCPServer(config, db_provider)
         await server.initialize()
         
-        # Get available tools
+        # 获取可用工具
         tools = server.get_available_tools()
         
-        # Test a simple tool
+        # 测试一个简单工具
         test_result = await server.execute_tool(
             'get_current_utc_date',
             {'format': 'iso'}
@@ -719,7 +725,7 @@ async def main():
     print("🔍 MCP Server Connection Diagnostics")
     print("=" * 50)
     
-    # Test database connection
+    # 测试数据库连接
     print("\n📊 Testing Database Connection...")
     db_result = await test_database_connection()
     
@@ -732,7 +738,7 @@ async def main():
         print("❌ Database connection failed")
         print(f"   Error: {db_result['error']}")
     
-    # Test Azure OpenAI connection
+    # 测试Azure OpenAI连接
     print("\n🤖 Testing Azure OpenAI Connection...")
     azure_result = await test_azure_openai_connection()
     
@@ -744,7 +750,7 @@ async def main():
         print("❌ Azure OpenAI connection failed")
         print(f"   Error: {azure_result['error']}")
     
-    # Test MCP tools
+    # 测试MCP工具
     print("\n🛠️  Testing MCP Tools...")
     tools_result = await test_mcp_tools()
     
@@ -757,7 +763,7 @@ async def main():
         print("❌ MCP tools loading failed")
         print(f"   Error: {tools_result['error']}")
     
-    # Overall status
+    # 总体状态
     print("\n📋 Overall Status")
     print("=" * 50)
     
@@ -843,12 +849,12 @@ if __name__ == "__main__":
 ### 自定义 VS Code 扩展
 
 ```typescript
-// src/extension.ts - Custom MCP retail extension
+// src/extension.ts - 自定义MCP零售扩展
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
     
-    // Register MCP retail commands
+    // 注册MCP零售命令
     const disposable = vscode.commands.registerCommand(
         'mcp-retail.quickQuery', 
         async () => {
@@ -889,7 +895,7 @@ export function activate(context: vscode.ExtensionContext) {
     
     context.subscriptions.push(disposable);
     
-    // Register store switcher
+    // 注册商店切换器
     const storeSwitcher = vscode.commands.registerCommand(
         'mcp-retail.switchStore',
         async () => {
@@ -899,7 +905,7 @@ export function activate(context: vscode.ExtensionContext) {
             });
             
             if (selected) {
-                // Update configuration
+                // 更新配置
                 const config = vscode.workspace.getConfiguration('mcp');
                 await config.update('defaultStore', selected, true);
                 
@@ -914,7 +920,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 async function executeQuickQuery(queryType: string) {
-    // Execute predefined queries in VS Code Chat
+    // 在VS Code聊天中执行预定义查询
     const chatCommands = {
         '📊 Daily Sales': '@retail Show me daily sales for the last 30 days',
         '🏆 Top Products': '@retail What are the top 10 selling products this month?',
@@ -1007,47 +1013,49 @@ export function deactivate() {}
 
 ## 🎯 关键收获
 
-完成本实验后，您将掌握：
+完成本实验后，您应具备：
 
-✅ **VS Code MCP 配置**：完成 MCP 集成的最佳设置  
-✅ **AI 聊天集成**：在 VS Code 中实现自然语言查询功能  
-✅ **调试工具**：全面的故障排除和连接诊断能力  
-✅ **多服务器设置**：配置多个 MCP 服务器实例  
-✅ **自定义扩展**：通过零售特定功能增强 VS Code 体验  
-✅ **生产环境准备**：企业级 VS Code 开发环境  
+✅ **VS Code MCP 配置**：实现最佳 MCP 集成的完整设置  
+✅ **AI 聊天集成**：VS Code 中的自然语言查询功能  
+✅ <strong>调试工具</strong>：全面的故障排除和连接诊断  
+✅ <strong>多服务器设置</strong>：多 MCP 服务器实例的配置  
+✅ <strong>自定义扩展</strong>：通过零售专用功能增强 VS Code 体验  
+✅ <strong>生产准备</strong>：企业级的 VS Code 开发环境  
 
 ## 🚀 下一步
 
-继续学习 **[实验 10：部署策略](../10-Deployment/README.md)**，以了解：
+继续进行 **[实验 10：部署策略](../10-Deployment/README.md)** 以：
 
-- 将 MCP 服务器部署到生产环境  
-- 配置云基础设施以实现可扩展性  
-- 实现 CI/CD 流水线以自动化部署  
-- 监控生产环境 MCP 服务器性能  
+- 将 MCP 服务器部署到生产环境
+- 配置云基础设施以实现可扩展性
+- 实现 CI/CD 流水线进行自动化部署
+- 监控生产 MCP 服务器性能
 
-## 📚 其他资源
+## 📚 额外资源
 
 ### VS Code 开发
-- [VS Code Extension API](https://code.visualstudio.com/api) - 官方扩展开发指南  
-- [VS Code MCP 文档](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - MCP 集成文档  
-- [VS Code 的 TypeScript](https://code.visualstudio.com/docs/languages/typescript) - 在 VS Code 中进行 TypeScript 开发  
+- [VS Code 扩展 API](https://code.visualstudio.com/api) - 官方扩展开发指南
+- [VS Code MCP 文档](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - MCP 集成文档
+- [VS Code 中的 TypeScript](https://code.visualstudio.com/docs/languages/typescript) - VS Code 的 TypeScript 开发
 
 ### MCP 协议
-- [模型上下文协议规范](https://modelcontextprotocol.io/specification) - 官方 MCP 规范  
-- [MCP 最佳实践](https://modelcontextprotocol.io/docs/best-practices) - 实现最佳实践  
-- [FastMCP 框架](https://github.com/jlowin/fastmcp) - Python MCP 实现  
+- [模型上下文协议规范](https://modelcontextprotocol.io/specification) - 官方 MCP 规范
+- [MCP 最佳实践](https://modelcontextprotocol.io/docs/best-practices) - 实施最佳实践
+- [FastMCP 框架](https://github.com/jlowin/fastmcp) - Python MCP 实现
 
 ### 开发工具
-- [VS Code 中的 Python](https://code.visualstudio.com/docs/python/python-tutorial) - Python 开发设置  
-- [VS Code 调试](https://code.visualstudio.com/docs/editor/debugging) - 高级调试技术  
-- [VS Code 任务](https://code.visualstudio.com/docs/editor/tasks) - 任务自动化与配置  
+- [VS Code 中的 Python](https://code.visualstudio.com/docs/python/python-tutorial) - Python 开发环境配置
+- [VS Code 调试](https://code.visualstudio.com/docs/editor/debugging) - 高级调试技巧
+- [VS Code 任务](https://code.visualstudio.com/docs/editor/tasks) - 任务自动化与配置
 
 ---
 
-**上一节**: [实验 08：测试与调试](../08-Testing/README.md)  
-**下一节**: [实验 10：部署策略](../10-Deployment/README.md)  
+<strong>上一个</strong>: [实验 08：测试与调试](../08-Testing/README.md)  
+<strong>下一个</strong>: [实验 10：部署策略](../10-Deployment/README.md)
 
 ---
 
-**免责声明**：  
-本文档使用AI翻译服务 [Co-op Translator](https://github.com/Azure/co-op-translator) 进行翻译。尽管我们努力确保翻译的准确性，但请注意，自动翻译可能包含错误或不准确之处。原始语言的文档应被视为权威来源。对于关键信息，建议使用专业人工翻译。我们不对因使用此翻译而产生的任何误解或误读承担责任。
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**免责声明**：
+本文件由 AI 翻译服务 [Co-op Translator](https://github.com/Azure/co-op-translator) 翻译完成。尽管我们力求准确，但请注意，自动翻译可能包含错误或不准确之处。原始语言版文件应视为权威来源。对于重要信息，建议使用专业人工翻译。我们对因使用本翻译而产生的任何误解或误释不承担责任。
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

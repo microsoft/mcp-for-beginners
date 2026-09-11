@@ -1,78 +1,94 @@
-# راهنمای پیشرفته پیاده‌سازی حمل‌ونقل‌های سفارشی MCP
+# نرم‌افزارهای انتقال سفارشی MCP - راهنمای پیاده‌سازی پیشرفته
 
-پروتکل مدل کانتکست (MCP) انعطاف‌پذیری در مکانیزم‌های حمل‌ونقل را فراهم می‌کند و امکان پیاده‌سازی‌های سفارشی برای محیط‌های سازمانی تخصصی را می‌دهد. این راهنمای پیشرفته پیاده‌سازی‌های حمل‌ونقل سفارشی را با استفاده از Azure Event Grid و Azure Event Hubs به عنوان مثال‌های عملی برای ساخت راه‌حل‌های MCP بومی ابری و مقیاس‌پذیر بررسی می‌کند.
+پروتکل مدل کانتکست (MCP) اجازه می‌دهد پیاده‌سازی‌های انتقال سفارشی برای
+محیط‌های تخصصی داشته باشیم. این راهنمای پیشرفته الگوهای معماری Azure Event Grid و
+Azure Event Hubs را بررسی می‌کند. این‌ها انتقال‌های استاندارد MCP نیستند
+و نیاز دارند که هر دو نقطه انتهایی توافق بر نگاشت سفارشی داشته باشند.
 
-> **نگاهی به آینده:** این راهنما بر اساس **مشخصات MCP 2025-11-25** نوشته شده است، جایی که ترتیب جلسات باید برای هر جلسه حفظ شود (به پروتکل پیام در ادامه مراجعه کنید). نسخه کاندید `2026-07-28` کل سطح جلسه در پروتکل را حذف می‌کند و نیازمند هدرهای `Mcp-Method`/`Mcp-Name` است تا گیت‌وی‌ها و حمل‌ونقل‌های سفارشی بتوانند به ازای هر درخواست مسیر‌یابی کنند نه به ازای هر جلسه. به [چه تغییراتی در MCP اتفاق افتاده: نسخه کاندید 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md) مراجعه کنید.
+> **دامنه MCP `2026-07-28`:** پروتکل فعلی شامل سشن‌های سطح پروتکل نیست،
+> بنابراین انتقال‌های سفارشی نباید به وفاداری سشن یا
+> ترتیب‌بندی در هر سشن وابسته باشند. هدرهای `Mcp-Method` و هدر شرطی `Mcp-Name`
+> از الزامات انتقال استاندارد HTTP قابل پخش هستند؛ انتقال غیر HTTP
+> نیاز به نگاشت معادل و توافق شده صریح دارد اگر واسطه‌ها مجبور باشند بدون رمزگشایی بدنه JSON-RPC
+> مسیر دهی کنند. ببینید
+> [چه تغییراتی در MCP رخ داده است: مشخصات 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28.md).
 
-## مقدمه
+## معرفی
 
-در حالی که حمل‌ونقل‌های استاندارد MCP (stdio و HTTP streaming) اکثر موارد استفاده را پوشش می‌دهند، محیط‌های سازمانی اغلب به مکانیزم‌های حمل‌ونقل تخصصی برای بهبود مقیاس‌پذیری، قابلیت اطمینان و یکپارچگی با زیرساخت‌های موجود ابری نیاز دارند. حمل‌ونقل‌های سفارشی به MCP اجازه می‌دهند از سرویس‌های پیام‌رسانی بومی ابری برای ارتباط ناهمزمان، معماری‌های رویدادمحور و پردازش توزیع‌شده استفاده کند.
+انتقال‌های استاندارد MCP شامل stdio و HTTP قابل پخش است. برخی از محیط‌های سازمانی
+از نگاشت سفارشی برای ادغام با زیرساخت پیام‌رسانی موجود استفاده می‌کنند،
+اما این کار می‌تواند سازگاری با میزبان‌های MCP و
+کتابخانه‌های SDK که فقط انتقال‌های استاندارد را پیاده‌سازی می‌کنند کاهش دهد.
 
-این درس پیاده‌سازی‌های پیشرفته حمل‌ونقل بر اساس جدیدترین مشخصات MCP (2025-11-25)، سرویس‌های پیام‌رسانی Azure و الگوهای یکپارچه‌سازی سازمانی تثبیت‌شده را بررسی می‌کند.
+این درس نیازمندی‌های بدون حالت مشخصات MCP
+`2026-07-28` را به سرویس‌های پیام‌رسان Azure و الگوهای ادغام سازمانی
+تثبیت شده اعمال می‌کند.
 
-### **معماری حمل‌ونقل MCP**
+### **معماری انتقال MCP**
 
-**از مشخصات MCP (2025-11-25):**
+**از مشخصات MCP `2026-07-28`:**
 
-- **حمل‌ونقل‌های استاندارد**: stdio (توصیه‌شده)، HTTP streaming (برای سناریوهای دوردست)
-- **حمل‌ونقل‌های سفارشی**: هر حمل‌ونقلی که پروتکل تبادل پیام MCP را پیاده‌سازی کند
-- **قالب پیام**: JSON-RPC 2.0 با افزونه‌های خاص MCP
-- **ارتباط دوطرفه**: ارتباط دوطرفه کامل برای اطلاع‌رسانی و پاسخ‌ها الزامی است
+- **انتقال‌های استاندارد**: stdio و HTTP قابل پخش
+- **انتقال‌های سفارشی**: نگاشت‌های انتخابی خاص پیاده‌سازی که توسط
+    هر دو نقطه انتهایی توافق شده
+- **فرمت پیام**: JSON-RPC 2.0 با افزونه‌های خاص MCP
+- **درخواست‌های مستقل**: هیچ سشن پروتکلی یا دست دادن برای
+    حمل وضعیت بین درخواست‌ها وجود ندارد
 
 ## اهداف یادگیری
 
-در پایان این درس پیشرفته، شما قادر خواهید بود:
+تا پایان این درس پیشرفته، شما قادر خواهید بود:
 
-- **درک الزامات حمل‌ونقل سفارشی**: پیاده‌سازی پروتکل MCP روی هر لایه حمل‌ونقل در حالی که انطباق حفظ شود
-- **ساخت حمل‌ونقل Azure Event Grid**: ایجاد سرورهای MCP رویدادمحور با استفاده از Azure Event Grid برای مقیاس‌پذیری بدون سرور
-- **پیاده‌سازی حمل‌ونقل Azure Event Hubs**: طراحی راه‌حل‌های MCP با نرخ داده بالا با استفاده از Azure Event Hubs برای استریمینگ در زمان واقعی
-- **کاربرد الگوهای سازمانی**: یکپارچه‌سازی حمل‌ونقل‌های سفارشی با زیرساخت‌ها و مدل‌های امنیتی موجود Azure
-- **مدیریت قابلیت اطمینان حمل‌ونقل**: پیاده‌سازی دوام پیام، ترتیب و مدیریت خطا برای سناریوهای سازمانی
-- **بهینه‌سازی عملکرد**: طراحی راه‌حل‌های حمل‌ونقل برای نیازهای مقیاس، تأخیر و توان عملیاتی
+- **درک نیازمندی‌های انتقال سفارشی**: پیاده‌سازی پروتکل MCP روی هر لایه انتقال با حفظ تطابق
+- **ساخت انتقال Azure Event Grid**: ساخت سرورهای MCP مبتنی بر رویداد با استفاده از Azure Event Grid برای مقیاس‌پذیری بدون سرور
+- **پیاده‌سازی انتقال Azure Event Hubs**: طراحی راه‌حل‌های MCP با توان بالا با استفاده از Azure Event Hubs برای جریان‌سازی بلادرنگ
+- **به‌کارگیری الگوهای سازمانی**: ادغام انتقال‌های سفارشی با زیرساخت و مدل‌های امنیتی Azure موجود
+- **پرداختن به قابلیت اطمینان انتقال**: پیاده‌سازی دوام پیام، ترتیب‌بندی و مدیریت خطا برای موارد سازمانی
+- **بهینه‌سازی عملکرد**: طراحی راه‌حل‌های انتقال برای نیازهای مقیاس، تأخیر و توان عملیاتی
 
-## **الزامات حمل‌ونقل**
+## **نیازمندی‌های انتقال**
 
-### **الزامات اصلی از مشخصات MCP (2025-11-25):**
+### **نیازمندی‌های اصلی برای MCP `2026-07-28`**
 
 ```yaml
 Message Protocol:
   format: "JSON-RPC 2.0 with MCP extensions"
-  bidirectional: "Full duplex communication required"
-  ordering: "Message ordering must be preserved per session"
+    correlation: "Match responses to requests by JSON-RPC id"
+    state: "Each request must be self-contained"
   
 Transport Layer:
   reliability: "Transport MUST handle connection failures gracefully"
   security: "Transport MUST support secure communication"
-  identification: "Each session MUST have unique identifier"
+    identification: "Carry protocol version, capabilities, and identity per request"
   
 Custom Transport:
-  compliance: "MUST implement complete MCP message exchange"
+    compliance: "Map the selected MCP revision without adding session assumptions"
   extensibility: "MAY add transport-specific features"
-  interoperability: "MUST maintain protocol compatibility"
+    interoperability: "Both endpoints MUST agree on the custom mapping"
 ```
 
-## **پیاده‌سازی حمل‌ونقل Azure Event Grid**
+## **پیاده‌سازی انتقال Azure Event Grid**
 
-Azure Event Grid خدمت‌رسانی مسیریابی رویداد بدون سرور را فراهم می‌کند که برای معماری‌های MCP رویدادمحور ایده‌آل است. این پیاده‌سازی نحوه ساخت سیستم‌های MCP مقیاس‌پذیر و با اتصال کم را نشان می‌دهد.
+Azure Event Grid سرویس مسیریابی رویداد بدون سرور ارائه می‌دهد که برای معماری‌های MCP مبتنی بر رویداد ایده‌آل است. این پیاده‌سازی نشان می‌دهد چگونه سیستم‌های MCP مقیاس‌پذیر و باcoupling ضعیف بسازیم.
 
-### **نمای کلی معماری**
+### **بررسی معماری**
 
 ```mermaid
 graph TB
-    Client[کلاینت MCP] --> EG[شبکه رویدادهای Azure]
-    EG --> Server[عملکرد سرور MCP]
+    Client[مشتری MCP] --> EG[شبکه رویداد آزور]
+    EG --> Server[تابع سرور MCP]
     Server --> EG
     EG --> Client
     
-    subgraph "خدمات Azure"
+    subgraph «خدمات آزور»
         EG
         Server
-        KV[مخزن کلید]
-        Monitor[کاربرد بینش‌ها]
+        KV[گنجینه کلید]
+        Monitor[بینش برنامه]
     end
 ```
 
-### **پیاده‌سازی C# - حمل‌ونقل Event Grid**
+### **پیاده‌سازی C# - انتقال Event Grid**
 
 ```csharp
 using Azure.Messaging.EventGrid;
@@ -144,7 +160,7 @@ public async Task<IActionResult> HandleEventGridMessage(
 }
 ```
 
-### **پیاده‌سازی TypeScript - حمل‌ونقل Event Grid**
+### **پیاده‌سازی TypeScript - انتقال Event Grid**
 
 ```typescript
 import { EventGridPublisherClient, AzureKeyCredential } from "@azure/eventgrid";
@@ -178,10 +194,10 @@ export class EventGridMcpTransport implements McpTransport {
         await this.publisher.sendEvents([event]);
     }
     
-    // دریافت رویداد محور از طریق Azure Functions
+    // دریافت مبتنی بر رویداد از طریق Azure Functions
     onMessage(handler: (message: McpMessage) => Promise<void>): void {
-        // پیاده‌سازی از محرک Event Grid در Azure Functions استفاده خواهد کرد
-        // این یک رابط مفهومی برای دریافت‌کننده webhook است
+        // پیاده‌سازی از Event Grid trigger در Azure Functions استفاده می‌کند
+        // این یک رابط مفهومی برای گیرنده وب هوک است
     }
 }
 
@@ -207,7 +223,7 @@ app.eventGrid("mcpEventGridHandler", {
 });
 ```
 
-### **پیاده‌سازی Python - حمل‌ونقل Event Grid**
+### **پیاده‌سازی Python - انتقال Event Grid**
 
 ```python
 from azure.eventgrid import EventGridPublisherClient, EventGridEvent
@@ -242,7 +258,7 @@ class EventGridMcpTransport:
         """Register message handler for incoming events"""
         self.message_handler = handler
 
-# پیاده‌سازی توابع آزور
+# پیاده‌سازی Azure Functions
 import azure.functions as func
 import logging
 
@@ -256,30 +272,30 @@ def main(event: func.EventGridEvent) -> None:
         response = process_mcp_message(mcp_message)
         
         # ارسال پاسخ از طریق Event Grid
-        # (پیاده‌سازی یک کلاینت جدید Event Grid ایجاد می‌کند)
+        # (پیاده‌سازی کلاینت جدید Event Grid ایجاد می‌کند)
         
     except Exception as e:
         logging.error(f"Error processing MCP Event Grid message: {e}")
         raise
 ```
 
-## **پیاده‌سازی حمل‌ونقل Azure Event Hubs**
+## **پیاده‌سازی انتقال Azure Event Hubs**
 
-Azure Event Hubs قابلیت‌های استریمینگ با نرخ بالا و زمان واقعی را برای سناریوهای MCP که به تأخیر کم و حجم بالای پیام نیاز دارند، فراهم می‌کند.
+Azure Event Hubs قابلیت‌های جریان‌سازی بلادرنگ و با توان بالا را برای سناریوهای MCP که نیاز به تأخیر کم و حجم پیام بالا دارند فراهم می‌کند.
 
-### **نمای کلی معماری**
+### **بررسی معماری**
 
 ```mermaid
 graph TB
-    Client[مشتری MCP] --> EH[رویدادهاب آژور]
+    Client[مشتری MCP] --> EH[هاب‌های رویداد Azure]
     EH --> Server[سرور MCP]
     Server --> EH
     EH --> Client
     
-    subgraph "ویژگی‌های رویدادهاب"
+    subgraph «ویژگی‌های هاب‌های رویداد»
         Partition[تقسیم‌بندی]
         Retention[نگهداری پیام]
-        Scaling[مقیاس‌پذیری خودکار]
+        Scaling[مقیاس‌بندی خودکار]
     end
     
     EH --> Partition
@@ -287,7 +303,8 @@ graph TB
     EH --> Scaling
 ```
 
-### **پیاده‌سازی C# - حمل‌ونقل Event Hubs**
+
+### **پیاده‌سازی C# - انتقال Event Hubs**
 
 ```csharp
 using Azure.Messaging.EventHubs;
@@ -361,7 +378,7 @@ public class EventHubsMcpTransport : IMcpTransport, IDisposable
 }
 ```
 
-### **پیاده‌سازی TypeScript - حمل‌ونقل Event Hubs**
+### **پیاده‌سازی TypeScript - انتقال Event Hubs**
 
 ```typescript
 import { 
@@ -420,7 +437,7 @@ export class EventHubsMcpTransport implements McpTransport {
                         
                         await messageHandler(mcpMessage);
                         
-                        // به‌روزرسانی نقطه بازبینی برای تحویل حداقل یک بار
+                        // به‌روزرسانی نقطه‌ی تأیید برای تحویل حداقل یک‌بار
                         await context.updateCheckpoint(event);
                     } catch (error) {
                         console.error("Error processing Event Hubs message:", error);
@@ -441,7 +458,7 @@ export class EventHubsMcpTransport implements McpTransport {
 }
 ```
 
-### **پیاده‌سازی Python - حمل‌ونقل Event Hubs**
+### **پیاده‌سازی Python - انتقال Event Hubs**
 
 ```python
 from azure.eventhub import EventHubProducerClient, EventHubConsumerClient
@@ -473,11 +490,11 @@ class EventHubsMcpTransport:
         """Send MCP message via Event Hubs"""
         event_data = EventData(json.dumps(message))
         
-        # ویژگی‌های خاص MCP را اضافه کنید
+        # افزودن ویژگی‌های خاص MCP
         event_data.properties = {
             "messageType": message.get("method", "response"),
             "messageId": message.get("id"),
-            "timestamp": "2025-01-14T10:30:00Z"  # از زمان واقعی استفاده کنید
+            "timestamp": "2025-01-14T10:30:00Z"  # استفاده از زمان واقعی
         }
         
         async with self.producer:
@@ -498,21 +515,21 @@ class EventHubsMcpTransport:
         async with self.consumer:
             await self.consumer.receive(
                 on_event=self._on_event_received(message_handler),
-                starting_position="-1"  # از ابتدا شروع کنید
+                starting_position="-1"  # شروع از ابتدا
             )
     
     def _on_event_received(self, handler: Callable):
         """Internal event handler wrapper"""
         async def handle_event(partition_context, event):
             try:
-                # پیام MCP را از رویداد Event Hubs تجزیه کنید
+                # تجزیه پیام MCP از رویداد Event Hubs
                 message_body = event.body_as_str(encoding='UTF-8')
                 mcp_message = json.loads(message_body)
                 
-                # پیام MCP را پردازش کنید
+                # پردازش پیام MCP
                 await handler(mcp_message)
                 
-                # نقطه کنترل را برای تحویل حداقل یک بار به‌روزرسانی کنید
+                # به‌روزرسانی نقطه بررسی برای تضمین تحویل حداقل یک بار
                 await partition_context.update_checkpoint(event)
                 
             except Exception as e:
@@ -527,9 +544,9 @@ class EventHubsMcpTransport:
         await self.consumer.close()
 ```
 
-## **الگوهای پیشرفته حمل‌ونقل**
+## **الگوهای پیشرفته انتقال**
 
-### **دوام و قابلیت اطمینان پیام**
+### **ماندگاری و قابلیت اطمینان پیام**
 
 ```csharp
 // Implementing message durability with retry logic
@@ -556,7 +573,7 @@ public class ReliableTransportWrapper : IMcpTransport
 }
 ```
 
-### **یکپارچه‌سازی امنیت حمل‌ونقل**
+### **ادغام امنیت انتقال**
 
 ```csharp
 // Integrating Azure Key Vault for transport security
@@ -578,7 +595,7 @@ public class SecureTransportFactory
 }
 ```
 
-### **نظارت و مشاهده‌پذیری حمل‌ونقل**
+### **نظارت و قابلیت مشاهده انتقال**
 
 ```csharp
 // Adding telemetry to custom transports
@@ -617,9 +634,9 @@ public class ObservableTransport : IMcpTransport
 }
 ```
 
-## **سناریوهای یکپارچه‌سازی سازمانی**
+## **سناریوهای ادغام سازمانی**
 
-### **سناریو 1: پردازش توزیع‌شده MCP**
+### **سناریو ۱: پردازش توزیع‌شده MCP**
 
 استفاده از Azure Event Grid برای توزیع درخواست‌های MCP در چندین گره پردازشی:
 
@@ -635,9 +652,9 @@ Benefits:
   - Cost optimization with serverless compute
 ```
 
-### **سناریو 2: استریمینگ MCP در زمان واقعی**
+### **سناریو ۲: پخش MCP به صورت بلادرنگ**
 
-استفاده از Azure Event Hubs برای تعاملات با فرکانس بالای MCP:
+استفاده از Azure Event Hubs برای تعاملات فرکانس‌بالای MCP:
 
 ```yaml
 Architecture:
@@ -651,9 +668,9 @@ Benefits:
   - Built-in partitioning for parallel processing
 ```
 
-### **سناریو 3: معماری ترکیبی حمل‌ونقل**
+### **سناریو ۳: معماری انتقال هیبریدی**
 
-ترکیب چندین حمل‌ونقل برای موارد استفاده مختلف:
+ترکیب چندین روش انتقال برای موارد استفاده مختلف:
 
 ```csharp
 public class HybridMcpTransport : IMcpTransport
@@ -739,9 +756,9 @@ public class PartitionedEventHubsTransport : IMcpTransport
 }
 ```
 
-## **آزمایش حمل‌ونقل‌های سفارشی**
+## **آزمایش روش‌های انتقال سفارشی**
 
-### **آزمایش واحد با استفاده از تست دوبل**
+### **تست واحد با تست دوبرابرها**
 
 ```csharp
 [Test]
@@ -768,7 +785,7 @@ public async Task EventGridTransport_SendMessage_PublishesCorrectEvent()
 }
 ```
 
-### **آزمایش یکپارچه‌سازی با Azure Test Containers**
+### **تست یکپارچه‌سازی با Azure Test Containers**
 
 ```csharp
 [Test]
@@ -801,33 +818,33 @@ public async Task EventHubsTransport_IntegrationTest()
 }
 ```
 
-## **بهترین شیوه‌ها و راهنماها**
+## **بهترین شیوه‌ها و دستورالعمل‌ها**
 
-### **اصول طراحی حمل‌ونقل**
+### **اصول طراحی انتقال**
 
-1. **ایدئمپو‌تنت بودن**: اطمینان از اینکه پردازش پیام تکراری است تا با نسخه‌های تکراری مقابله شود
-2. **مدیریت خطا**: پیاده‌سازی مدیریت جامع خطا و صف‌های نامه مرده
-3. **نظارت**: افزودن تله‌متری دقیق و بررسی‌های سلامت
-4. **امنیت**: استفاده از شناسه‌های مدیریت‌شده و دسترسی حداقل امتیاز
-5. **عملکرد**: طراحی برای نیازهای خاص تأخیر و توان عملیاتی شما
+1. **ایدئمپوستنس**: اطمینان از ایدئمپوست بودن پردازش پیام برای مدیریت تکراری‌ها
+2. **مدیریت خطا**: اجرای مدیریت خطا جامع و صف‌های نامه مرده
+3. **نظارت**: افزودن تلومتری دقیق و بررسی سلامت
+4. **امنیت**: استفاده از شناسه‌های مدیریت‌شده و حداقل دسترسی ممکن
+5. **عملکرد**: طراحی بر اساس نیازهای خاص تاخیر و میزان انتقال داده‌ها
 
-### **توصیه‌های خاص Azure**
+### **توصیه‌های مخصوص Azure**
 
-1. **استفاده از شناسه مدیریت‌شده**: از رشته‌های اتصال در محیط تولید اجتناب کنید
-2. **پیاده‌سازی قطع‌کننده‌های مدار**: حفاظت در برابر قطعی خدمات Azure
-3. **نظارت بر هزینه‌ها**: پیگیری حجم پیام و هزینه‌های پردازش
+1. **استفاده از شناسه مدیریت شده**: اجتناب از رشته‌های اتصال در محیط تولید
+2. **پیاده‌سازی قطع‌کننده‌های مدار**: محافظت در برابر قطعی‌های سرویس Azure
+3. **نظارت بر هزینه‌ها**: پیگیری حجم پیام‌ها و هزینه‌های پردازش
 4. **برنامه‌ریزی برای مقیاس**: طراحی استراتژی‌های تقسیم‌بندی و مقیاس‌پذیری از ابتدا
-5. **آزمایش دقیق**: استفاده از Azure DevTest Labs برای آزمایش جامع
+5. **تست کامل**: استفاده از Azure DevTest Labs برای تست جامع
 
 ## **نتیجه‌گیری**
 
-حمل‌ونقل‌های سفارشی MCP امکان سناریوهای قدرتمند سازمانی را با استفاده از سرویس‌های پیام‌رسانی Azure فراهم می‌کنند. با پیاده‌سازی حمل‌ونقل‌های Event Grid یا Event Hubs، می‌توانید راه‌حل‌های MCP مقیاس‌پذیر و قابل‌اطمینان بسازید که به طور یکپارچه با زیرساخت موجود Azure ادغام می‌شوند.
+انتقال‌های سفارشی MCP امکان سناریوهای قدرتمند سازمانی را با استفاده از خدمات پیام‌رسانی Azure فراهم می‌کنند. با پیاده‌سازی انتقال‌های Event Grid یا Event Hubs، می‌توانید راه‌حل‌های مقیاس‌پذیر و مطمئن MCP بسازید که به‌طور یکپارچه با زیرساخت موجود Azure ادغام می‌شوند.
 
-مثال‌های ارائه شده الگوهای آماده تولید برای پیاده‌سازی حمل‌ونقل‌های سفارشی را در حالی که انطباق با پروتکل MCP و بهترین شیوه‌های Azure حفظ می‌شود، نشان می‌دهند.
+مثال‌های ارائه شده الگوهای آماده تولید برای پیاده‌سازی انتقال‌های سفارشی را نشان می‌دهند در حالی که انطباق با پروتکل MCP و بهترین شیوه‌های Azure را نیز حفظ می‌کنند.
 
 ## **منابع اضافی**
 
-- [مشخصات MCP 2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25/)
+- [مشخصات MCP 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [مستندات Azure Event Grid](https://docs.microsoft.com/azure/event-grid/)
 - [مستندات Azure Event Hubs](https://docs.microsoft.com/azure/event-hubs/)
 - [تریگر Event Grid در Azure Functions](https://docs.microsoft.com/azure/azure-functions/functions-bindings-event-grid)
@@ -837,12 +854,14 @@ public async Task EventHubsTransport_IntegrationTest()
 
 ---
 
-> *این راهنما بر الگوهای عملی پیاده‌سازی برای سیستم‌های تولیدی MCP متمرکز است. همیشه پیاده‌سازی‌های حمل‌ونقل را با الزامات خاص خود و محدودیت‌های خدمات Azure اعتبارسنجی کنید.*
-> **استاندارد فعلی**: این راهنما الزامات حمل‌ونقل و الگوهای پیشرفته حمل‌ونقل برای محیط‌های سازمانی را طبق [مشخصات MCP 2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25/) منعکس می‌کند.
+> *این راهنما بر الگوهای معماری سفارشی تمرکز دارد. اعتبارسنجی پروتکل
+
+> رفتار در برابر [مشخصات MCP ۲۰۲۶-۰۷-۲۸](https://modelcontextprotocol.io/specification/2026-07-28/)،
+> و اعتبارسنجی استفاده از Azure در برابر نیازها و محدودیت‌های سرویس شما.*
 
 
-## مرحله بعد
-- [6. مشارکت‌های جامعه](../../06-CommunityContributions/README.md)
+## بعدی چیست
+- [۶. مشارکت‌های جامعه](../../06-CommunityContributions/README.md)
 
 ---
 
