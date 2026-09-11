@@ -1,84 +1,89 @@
 # Johdanto MCP-tietokantaintegraatioon
 
-## 🎯 Mitä tämä harjoitus kattaa
+> [!NOTE]
+> Tämän oppimispolun kaaviot tai koodi, jotka käyttävät HTTP/SSE:tä tai alustamisvaihtoehtoja,
+> heijastavat esimerkin MCP `2025-11-25` riippuvuuksia. Uusissa toteutuksissa käytä
+> `2026-07-28` tilattomia pyyntöjä ja Streamable HTTP:tä.
 
-Tämä johdantoharjoitus tarjoaa kattavan yleiskatsauksen Model Context Protocol (MCP) -palvelinten rakentamisesta tietokantaintegraation kanssa. Ymmärrät liiketoiminnan taustan, teknisen arkkitehtuurin ja käytännön sovellukset Zava Retail -analyyttisen käyttötapauksen kautta osoitteessa https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail.
+## 🎯 Mitä tämä labra kattaa
+
+Tämä johdantolabra tarjoaa kattavan yleiskatsauksen Model Context Protocol (MCP) -palvelinten rakentamisesta tietokantaintegraation kanssa. Ymmärrät liiketoiminnan taustan, teknisen arkkitehtuurin ja käytännön sovellukset Zava Retailin analytiikkatapausesimerkin kautta osoitteessa https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail.
 
 ## Yleiskatsaus
 
-**Model Context Protocol (MCP)** mahdollistaa tekoälyavustajien turvallisen pääsyn ja vuorovaikutuksen ulkoisten tietolähteiden kanssa reaaliaikaisesti. Kun tämä yhdistetään tietokantaintegraatioon, MCP avaa tehokkaita mahdollisuuksia datalähtöisille tekoälysovelluksille.
+**Model Context Protocol (MCP)** mahdollistaa tekoälyavustajien turvallisen pääsyn ja vuorovaikutuksen ulkoisten tietolähteiden kanssa reaaliajassa. Yhdistettynä tietokantaintegraatioon MCP avaa tehokkaita mahdollisuuksia datavetoisille tekoälysovelluksille.
 
-Tämä oppimispolku opettaa rakentamaan tuotantovalmiita MCP-palvelimia, jotka yhdistävät tekoälyavustajat vähittäiskaupan myyntidataan PostgreSQL:n kautta, toteuttaen yritystason malleja kuten rivitason tietoturvan, semanttisen haun ja monivuokraajapohjaisen datan käytön.
+Tämä oppimispolku opettaa sinut rakentamaan tuotantovalmiita MCP-palvelimia, jotka yhdistävät tekoälyavustajat vähittäiskaupan myyntitietoihin PostgreSQL:n kautta toteuttaen yritysratkaisuja, kuten rivitason suojaus, semanttinen haku ja monivuokraajainen datan käyttö.
 
 ## Oppimistavoitteet
 
-Tämän harjoituksen jälkeen osaat:
+Tämän labran lopuksi osaat:
 
-- **Määritellä** Model Context Protocolin ja sen keskeiset hyödyt tietokantaintegraatiossa  
-- **Tunnistaa** MCP-palvelinarkkitehtuurin tärkeimmät osat tietokantojen kanssa  
-- **Ymmärtää** Zava Retail -käyttötapauksen ja sen liiketoimintavaatimukset  
-- **Tunnistaa** yritystason mallit turvalliseen ja skaalautuvaan tietokantakäyttöön  
-- **Luetella** tämän oppimispolun aikana käytetyt työkalut ja teknologiat  
+- **Määritellä** Model Context Protocolin ja sen keskeiset hyödyt tietokantaintegraatiossa
+- **Tunnistaa** MCP-palvelinarkkitehtuurin keskeiset komponentit tietokantojen kanssa
+- **Ymmärtää** Zava Retailin käyttötapauksen ja sen liiketoiminnalliset vaatimukset
+- **Tunnistaa** yrityksen mallit turvalliseen ja skaalautuvaan tietokantakäyttöön
+- **Luetella** tämän oppimispolun käyttämät työkalut ja teknologiat
 
-## 🧭 Haaste: Tekoäly kohtaa todelliset tiedot
+## 🧭 Haaste: Tekoäly kohtaa todellisuuden tiedot
 
-### Perinteiset tekoälyrajoitukset
+### Perinteiset tekoälyn rajoitukset
 
-Nykyaikaiset tekoälyavustajat ovat uskomattoman tehokkaita, mutta kohtaavat merkittäviä rajoituksia työskennellessään todellisen liiketoimintadatan kanssa:
+Nykyaikaiset tekoälyavustajat ovat erittäin tehokkaita, mutta kohtaavat merkittäviä rajoituksia työskennellessään todellisen maailman liiketoimintadatan kanssa:
 
-| **Haaste** | **Kuvaus** | **Liiketoimintavaikutus** |
-|------------|------------|---------------------------|
-| **Staattinen tieto** | Tekoälymallit on koulutettu kiinteillä aineistoilla, eivät pääse käsiksi ajantasaiseen liiketoimintadataan | Vanhentuneet havainnot, menetetyt mahdollisuudet |
-| **Datasaarekkeet** | Tieto on lukittuna tietokantoihin, API-rajapintoihin ja järjestelmiin, joihin tekoäly ei pääse | Epätäydellinen analyysi, sirpaleiset työnkulut |
-| **Turvallisuusrajoitteet** | Suora pääsy tietokantaan aiheuttaa turvallisuus- ja vaatimustenmukaisuushuolia | Rajoitettu käyttää, manuaalinen datan valmistelu |
-| **Monimutkaiset kyselyt** | Liiketoimintakäyttäjillä vaaditaan teknistä osaamista datan hakemiseen | Heikko käyttöönotto, tehottomat prosessit |
+| **Haaste** | **Kuvaus** | **Liiketoiminnan vaikutus** |
+|---------------|-----------------|-------------------|
+| **Staattinen tieto** | Tekoälymallit, jotka on koulutettu kiinteillä aineistoilla, eivät pääse käsiksi ajantasaisiin tietoihin | Vanhentuneet havainnot, menetetyt mahdollisuudet |
+| **Datasaarekkeet** | Tieto lukittuna tietokantoihin, rajapintoihin ja järjestelmiin, joihin tekoäly ei pääse | Epätäydelliset analyysit, pirstaloituneet työnkulut |
+| **Turvavaatimukset** | Suora tietokantayhteys aiheuttaa turvallisuus- ja vaatimustenmukaisuushuolia | Rajoitettu käyttöönotto, manuaalinen datan valmistelu |
+| **Monimutkaiset kyselyt** | Liiketoimintakäyttäjien tulee hallita teknistä osaamista tiedon louhintaan | Heikentynyt käyttöönotto, tehottomat prosessit |
 
 ### MCP-ratkaisu
 
 Model Context Protocol vastaa näihin haasteisiin tarjoamalla:
 
-- **Reaaliaikainen datan käyttö**: Tekoälyavustajat voivat kysellä suoria tietokantoja ja API-rajapintoja  
-- **Turvallinen integraatio**: Hallittu pääsy autentikoinnin ja käyttöoikeuksien avulla  
-- **Luonnollisen kielen rajapinta**: Liiketoimintakäyttäjät voivat esittää kysymyksiä tavallisella englannilla  
-- **Standardoitu protokolla**: Toimii eri tekoälyalustojen ja työkalujen kanssa  
+- **Reaaliaikainen datan käyttö**: Tekoälyavustajat voivat kysellä suoria tietokantoja ja rajapintoja
+- **Turvallinen integraatio**: Hallittu pääsy autentikoinnilla ja käyttöoikeuksilla
+- **Luonnollisen kielen käyttöliittymä**: Liiketoimintakäyttäjät voivat esittää kysymyksiä tavallisella englannilla
+- **Standardoitu protokolla**: Toimii eri tekoälyalustojen ja työkalujen välillä
 
-## 🏪 Tapaa Zava Retail: Oppimistapauksemme https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail
+## 🏪 Tapaa Zava Retail: Oppimistapaus https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail
 
-Tämän oppimispolun aikana rakennamme MCP-palvelimen **Zava Retailille**, kuvitteelliselle tee-se-itse -vähittäiskauppaketjulle, jolla on useita myymälöitä. Tämä realistinen skenaario havainnollistaa yritystason MCP-toteutusta.
+Tämän oppimispolun aikana rakennamme MCP-palvelimen **Zava Retail** -nimiselle kuvitteelliselle tee-se-itse-vähittäisketjulle, jolla on useita myymälöitä. Tämä realistinen skenaario havainnollistaa yritystason MCP-toteutusta.
 
 ### Liiketoimintaympäristö
 
-**Zava Retaililla** on:
-- **8 fyysistä myymälää** Washingtonin osavaltiossa (Seattle, Bellevue, Tacoma, Spokane, Everett, Redmond, Kirkland)  
-- **1 verkkokauppa** verkkokauppamyyntiä varten  
-- **Monipuolinen tuotekatalogi**, joka sisältää työkaluja, rautakauppatavaroita, puutarhatarvikkeita ja rakennusmateriaaleja  
-- **Monitasoinen johtamisrakenne** mukana myymäläpäälliköt, aluepäälliköt ja johto  
+**Zava Retail** toimii:
+- **8 fyysisessä myymälässä** Washingtonin osavaltiossa (Seattle, Bellevue, Tacoma, Spokane, Everett, Redmond, Kirkland)
+- **1 verkkokaupassa** sähköisen kaupankäynnin myyntiin
+- **Monipuolisessa tuotekatalogissa**, joka sisältää työkaluja, rautatarvikkeita, puutarhatarvikkeita ja rakennusmateriaaleja
+- **Monitasoisessa johdossa** myymäläpäälliköistä aluepäälliköihin ja johtajiin
 
 ### Liiketoimintavaatimukset
 
-Myymäläpäälliköt ja johto tarvitsevat tekoälypohjaisia analyysejä seuraaviin tarpeisiin:
+Myymäläpäälliköt ja johtajat tarvitsevat tekoälypohjaista analytiikkaa seuraaviin tehtäviin:
 
-1. **Myynnin suorituskyvyn analyysi** eri myymälöissä ja ajanjaksoilla  
-2. **Varastotasojen seuranta** ja uudelleen täyttötarpeiden tunnistaminen  
-3. **Asiakaskäyttäytymisen ja ostotottumusten ymmärtäminen**  
-4. **Tuoteinformaation löytäminen** semanttisen haun avulla  
-5. **Raporttien luonti** luonnollisen kielen kyselyillä  
-6. **Datan turvallisuuden ylläpito** roolipohjaisella pääsynhallinnalla  
+1. **Analysoida myyntisuorituskykyä** myymälöittäin ja ajanjaksoittain
+2. **Seurata varastotasoja** ja tunnistaa täydennystarpeet
+3. **Ymmärtää asiakaskäyttäytymistä** ja ostomalleja
+4. **Löytää tuotehavaintoja** semanttisen haun avulla
+5. **Tuottaa raportteja** luonnollisen kielen kyselyillä
+6. **Ylläpitää tietoturvaa** roolipohjaisella pääsynhallinnalla
 
 ### Teknisiä vaatimuksia
 
 MCP-palvelimen on tarjottava:
 
-- **Monivuokraajapohjainen pääsy dataan**, jossa myymäläpäälliköt näkevät vain oman myymälänsä tiedot  
-- **Joustava kysely** monimutkaisten SQL-operaatioiden tukemiseksi  
-- **Semanttinen haku** tuotteen löytämiseen ja suosituksien tekoon  
-- **Reaaliaikainen data** joka heijastaa liiketoiminnan nykytilaa  
-- **Turvallinen autentikointi** rivitason tietoturvalla (RLS)  
-- **Skaalautuva arkkitehtuuri** useiden yhtäaikaisten käyttäjien tukemiseksi  
+- **Monivuokraajainen datan käyttö**, jossa myymäläpäälliköt näkevät vain oman myymälänsä tiedot
+- **Joustavat kyselymahdollisuudet**, jotka tukevat monimutkaisia SQL-operaatioita
+- **Semanttinen haku** tuotehavaintoon ja suosituksiin
+- **Reaaliaikainen data**, joka heijastaa nykyistä liiketoimintatilannetta
+- **Turvallinen autentikointi** rivitason suojauksella
+- **Skaalautuva arkkitehtuuri**, joka tukee useita samanaikaisia käyttäjiä
 
-## 🏗️ MCP-palvelinarkkitehtuurin yleiskatsaus
+## 🏗️ MCP-palvelimen arkkitehtuurin yleiskuva
 
-MCP-palvelimemme toteuttaa kerrostetun arkkitehtuurin, joka on optimoitu tietokantaintegraatiolle:
+MCP-palvelimemme toteuttaa kerrosrakenteen, joka on optimoitu tietokantaintegraatiota varten:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -121,120 +126,120 @@ MCP-palvelimemme toteuttaa kerrostetun arkkitehtuurin, joka on optimoitu tietoka
 ### Keskeiset komponentit
 
 #### **1. MCP-palvelinkerros**
-- **FastMCP Framework**: Nykyaikainen Python-pohjainen MCP-palvelin
-- **Työkalujen rekisteröinti**: Deklaratiiviset työkalumäärittelyt ja tyypintarkastus
-- **Pyyntöjen konteksti**: Käyttäjätunnistuksen ja istunnon hallinta
+- **FastMCP Framework**: Moderni Python-pohjainen MCP-palvelinimplementaatio
+- **Työkalujen rekisteröinti**: Deklaratiiviset työkalumääritelmät tyyppiturvallisuudella
+- **Pyyntöyhteys**: Käyttäjäidentiteetin ja istunnon hallinta
 - **Virheenkäsittely**: Vankka virheiden hallinta ja lokitus
 
 #### **2. Tietokantaintegraatiokerros**
-- **Yhteyspooling**: Tehokas asyncpg-yhteyshallinta
-- **Skeemantarjoaja**: Dynaaminen taulujen skeemojen löytäminen
-- **Kyselyjen suorittaja**: Turvallinen SQL:n ajaminen RLS-kontekstilla
-- **Transaktioiden hallinta**: ACID-vaatimusten noudattaminen ja peruutus
+- **Yhteysaltaan hallinta**: Tehokas asyncpg-yhteyksien hallinta
+- **Skeeman tarjoaja**: Dynaaminen taulun skeeman tunnistus
+- **Kyselyjen suorittaja**: Turvallinen SQL:n suoritus RLS-kontekstissa
+- **Transaktioiden hallinta**: ACID-vaatimustenmukaisuus ja peruutusten käsittely
 
-#### **3. Turvallisuuskerros**
-- **Rivitason tietoturva**: PostgreSQL:n RLS monivuokraajadatainformaation eristämiseen
-- **Käyttäjätunnistus**: Myymäläpäälliköiden autentikointi ja valtuutukset
-- **Pääsynhallinta**: Tarkat käyttöoikeudet ja audit-lokit
-- **Syötteiden validointi**: SQL-injektioiden ennaltaehkäisy ja kyselyjen tarkastus
+#### **3. Turvakerros**
+- **Rivitason suojaus (RLS)**: PostgreSQL:n RLS monivuokraajaisen datan eristämiseen
+- **Käyttäjäidentiteetti**: Myymäläpäällikön autentikointi ja valtuutus
+- **Käyttöoikeuksien hallinta**: Tarkoin määritellyt oikeudet ja auditointilokit
+- **Syötteen validointi**: SQL-injektioiden esto ja kyselyjen validointi
 
-#### **4. Tekoälykerros**
-- **Semanttinen haku**: Vektoriesitykset tuotteen löytämiseen
-- **Azure OpenAI -integraatio**: Tekstiesitysten generointi
-- **Samanlaisuusaloritmit**: pgvector-kosinietäisyyshaku
-- **Haun optimointi**: Indeksointi ja suorituskyvyn viritys  
+#### **4. Tekoälyä parantava kerros**
+- **Semanttinen haku**: Vektoriesitykset tuotehavaintoon
+- **Azure OpenAI -integraatio**: Tekstiembeddingien generointi
+- **Samanlaisuusalgoritmit**: pgvector kosinisen samankaltaisuuden haku
+- **Haun optimointi**: Indeksointi ja suorituskyvyn viritys
 
 ## 🔧 Teknologiapino
 
-### Keskeiset teknologiat
+### Ydinteknologiat
 
 | **Komponentti** | **Teknologia** | **Tarkoitus** |
-|-----------------|----------------|---------------|
-| **MCP Framework** | FastMCP (Python) | Nykyaikainen MCP-palvelin |
-| **Tietokanta** | PostgreSQL 17 + pgvector | Relaatiodata ja vektorihaku |
-| **Tekoälypalvelut** | Azure OpenAI | Tekstiesitykset ja kielimallit |
+|---------------|----------------|-------------|
+| **MCP-kehys** | FastMCP (Python) | Moderni MCP-palvelinimplementaatio |
+| **Tietokanta** | PostgreSQL 17 + pgvector | Relaatiotietokanta vektoriahulla |
+| **Tekoälypalvelut** | Azure OpenAI | Tekstiembeddingit ja kielimallit |
 | **Konttiteknologia** | Docker + Docker Compose | Kehitysympäristö |
-| **Pilvialusta** | Microsoft Azure | Tuotantokäyttöön käyttöönotto |
-| **IDE-integraatio** | VS Code | Tekoälychat ja kehitystyöskentely |
+| **Pilvialustat** | Microsoft Azure | Tuotantoympäristö |
+| **IDE-integraatio** | VS Code | Tekoälychat ja kehitysprosessi |
 
 ### Kehitystyökalut
 
 | **Työkalu** | **Tarkoitus** |
-|------------|---------------|
-| **asyncpg** | Tehokas PostgreSQL-ajuri |
+|----------|-------------|
+| **asyncpg** | Suorituskykyinen PostgreSQL-kirjasto |
 | **Pydantic** | Datan validointi ja serialisointi |
-| **Azure SDK** | Pilvipalvelun integrointi |
+| **Azure SDK** | Pilvipalveluintegrointi |
 | **pytest** | Testauskehys |
-| **Docker** | Konttiteknologia ja käyttöönotto |
+| **Docker** | Kontittaminen ja käyttöönotto |
 
 ### Tuotantopino
 
 | **Palvelu** | **Azure-resurssi** | **Tarkoitus** |
-|-------------|--------------------|---------------|
+|-------------|-------------------|-------------|
 | **Tietokanta** | Azure Database for PostgreSQL | Hallittu tietokantapalvelu |
-| **Kontti** | Azure Container Apps | Serverless-konttien hostaus |
-| **Tekoälypalvelut** | Microsoft Foundry | OpenAI-mallit ja päätepisteet |
-| **Valvonta** | Application Insights | Havainnointi ja diagnostiikka |
-| **Turvallisuus** | Azure Key Vault | Salaisuudet ja konfiguraation hallinta |
+| **Kontti** | Azure Container Apps | Serverless-konttien hosting |
+| **Tekoälypalvelut** | Microsoft Foundry | OpenAI-mallit ja -rajapinnat |
+| **Seuranta** | Application Insights | Havainnointi ja diagnostiikka |
+| **Turvallisuus** | Azure Key Vault | Salaisuuksien ja konfiguraation hallinta |
 
-## 🎬 Todelliset käyttötapaukset
+## 🎬 Käytännön käyttötapaukset
 
 Tutkitaan, miten eri käyttäjät käyttävät MCP-palvelintamme:
 
 ### Skenaario 1: Myymäläpäällikön suorituskyvyn tarkastelu
 
 **Käyttäjä**: Sarah, Seattlen myymäläpäällikkö  
-**Tavoite**: Analysoida viimeisen neljänneksen myyntitilanne
+**Tavoite**: Analysoida viimeisen vuosineljänneksen myynti
 
-**Luonnollisen kielen kysely**:  
-> "Näytä top 10 tuotetta tulojen mukaan minun myymälässäni Q4 2024"
+**Luonnollisen kielen kysely**:
+> "Näytä myymäläni top 10 tuotetta liikevaihdon mukaan Q4 2024"
 
-**Mitä tapahtuu**:  
-1. VS Code AI Chat lähettää kyselyn MCP-palvelimelle  
-2. MCP-palvelin tunnistaa Sarah’n myymäläkontekstin (Seattle)  
-3. RLS-politiikat suodattavat datan vain Seattlen myymälää varten  
-4. SQL-kysely generoidaan ja suoritetaan  
-5. Tulokset muotoillaan ja palautetaan AI Chatille  
-6. Tekoäly tarjoaa analyysin ja oivallukset  
+**Mitä tapahtuu**:
+1. VS Code AI Chat lähettää kyselyn MCP-palvelimelle
+2. MCP-palvelin tunnistaa Sarah'n myymäläyhteyden (Seattle)
+3. RLS-politiikat suodattavat datan vain Seattle-myymälään
+4. SQL-kysely generoidaan ja suoritetaan
+5. Tulokset muotoillaan ja lähetetään AI Chatille
+6. Tekoäly tarjoaa analyysit ja oivallukset
 
-### Skenaario 2: Tuotteen löytäminen semanttisen haun avulla
+### Skenaario 2: Tuotehaku semanttisen haun avulla
 
-**Käyttäjä**: Mike, varastopäällikkö  
-**Tavoite**: Löytää tuotteita, jotka ovat samankaltaisia asiakkaan pyynnön kanssa
+**Käyttäjä**: Mike, Varastopäällikkö  
+**Tavoite**: Löytää asiakkaan pyynnöstä samankaltaisia tuotteita
 
-**Luonnollisen kielen kysely**:  
-> "Mitä tuotteita myymme, jotka ovat samankaltaisia kuin 'vesitiiviit ulkokäyttöön tarkoitetut sähköliittimet'?"
+**Luonnollisen kielen kysely**:
+> "Mitä tuotteita myymme, jotka ovat samanlaisia kuin 'vedenkestävät ulkokäyttöön tarkoitetut sähkörasiat'?"
 
-**Mitä tapahtuu**:  
-1. Kysely käsitellään semanttisen haun työkalulla  
-2. Azure OpenAI generoi tekstin upotuksen vektorin  
-3. pgvector suorittaa samanlaisuushaku  
-4. Samanlaiset tuotteet lajitellaan merkittävyyden mukaan  
-5. Tulokset sisältävät tuotetiedot ja saatavuuden  
-6. Tekoäly ehdottaa vaihtoehtoja ja pakettitarjouksia  
+**Mitä tapahtuu**:
+1. Kysely käsitellään semanttisen haun työkalulla
+2. Azure OpenAI generoi vektoriesityksen
+3. pgvector suorittaa samankaltaisuushaku
+4. Samankaltaiset tuotteet järjestetään relevanssin mukaan
+5. Tulokset sisältävät tuotetiedot ja saatavuuden
+6. Tekoäly ehdottaa vaihtoehtoja ja paketoimismahdollisuuksia
 
-### Skenaario 3: Myymälöiden välinen analytiikka
+### Skenaario 3: Usean myymälän analytiikka
 
-**Käyttäjä**: Jennifer, aluepäällikkö  
+**Käyttäjä**: Jennifer, Aluepäällikkö  
 **Tavoite**: Verrata suorituskykyä kaikissa myymälöissä
 
-**Luonnollisen kielen kysely**:  
-> "Vertaile myyntiä kategorioittain kaikissa myymälöissä viimeisen 6 kuukauden ajalta"
+**Luonnollisen kielen kysely**:
+> "Vertaile myyntiä kategorioittain kaikissa myymälöissä viimeisen 6 kuukauden aikana"
 
-**Mitä tapahtuu**:  
-1. RLS-konteksti asetetaan aluepäällikön käyttöön  
-2. Monimutkainen usean myymälän kysely generoidaan  
-3. Data koottuna eri myymälöiden sijainnin mukaan  
-4. Tulokset sisältävät trendejä ja vertailuja  
-5. Tekoäly tunnistaa oivallukset ja antaa suosituksia  
+**Mitä tapahtuu**:
+1. RLS-konteksti asetetaan aluepäällikön käyttöoikeuksilla
+2. Monimutkainen usean myymälän kysely luodaan
+3. Data yhdistellään eri myymäläsijainneista
+4. Tulokset sisältävät trendit ja vertailut
+5. Tekoäly tunnistaa oivallukset ja suositukset
 
-## 🔒 Turvallisuus ja monivuokraajamoduulin syväluotaus
+## 🔒 Turvallisuus ja monivuokraajaisuus syvemmässä tarkastelussa
 
 Toteutuksemme painottaa yritystason turvallisuutta:
 
-### Rivitason tietoturva (RLS)
+### Rivikohtainen suojaus (RLS)
 
-PostgreSQL:n RLS varmistaa datan eristämisen:
+PostgreSQL:n RLS varmistaa datan eristyksen:
 
 ```sql
 -- Store managers see only their store's data
@@ -247,62 +252,62 @@ CREATE POLICY regional_manager_policy ON retail.orders
   FOR ALL TO regional_managers
   USING (store_id = ANY(get_user_store_list()));
 ```
-  
-### Käyttäjätunnistuksen hallinta
 
-Jokainen MCP-yhteys sisältää:  
-- **Myymäläpäällikön tunniste**: Uniikki RLS-kontekstin tunnus  
-- **Roolin määrittely**: Käyttöoikeudet ja pääsytasot  
-- **Istunnon hallinta**: Turvalliset autentikointitokenit  
-- **Auditointilokit**: Täydellinen pääsyloki
+### Käyttäjäidentiteetin hallinta
+
+Jokainen MCP-yhteys sisältää:
+- **Myymäläpäällikön tunniste**: Yksilöllinen tunniste RLS-kontekstille
+- **Roolin määrittely**: Käyttöoikeudet ja pääsytasot
+- **Istunnon hallinta**: Turvalliset autentikointitunnukset
+- **Auditointilokitus**: Täydellinen pääsyloki
 
 ### Datan suojaus
 
-Monikerroksinen suojaus:  
-- **Yhteyksien salaus**: TLS kaikille tietokantayhteyksille  
-- **SQL-injektionsuojaus**: Vain parametrisoituja kyselyitä  
-- **Syötteiden validointi**: Kattava pyyntöjen tarkastus  
-- **Virheenkäsittely**: Ei arkaluontoista tietoa virheilmoituksissa  
+Useita suojakerroksia:
+- **Yhteyden salaus**: TLS kaikissa tietokantayhteyksissä
+- **SQL-injektion esto**: Vain parametrisoidut kyselyt
+- **Syötteen validointi**: Laaja pyyntöjen validointi
+- **Virheenkäsittely**: Ei arkaluonteista dataa virheilmoituksissa
 
 ## 🎯 Keskeiset opit
 
-Johdannon jälkeen sinun pitäisi ymmärtää:
+Johdannon suorittamisen jälkeen sinun tulisi ymmärtää:
 
-✅ **MCP:n arvotarjous**: Miten MCP yhdistää tekoälyavustajat ja todellisen maailman data  
+✅ **MCP:n arvolupaus**: Miten MCP yhdistää tekoälyavustajat ja todellisuuden data  
 ✅ **Liiketoimintaympäristö**: Zava Retailin vaatimukset ja haasteet  
-✅ **Arkkitehtuurin yleiskuva**: Keskeiset osat ja niiden vuorovaikutus  
-✅ **Teknologiapino**: Oppimispolun työkalut ja kehykset  
-✅ **Turvamalli**: Monivuokraajapohjainen datan käyttö ja suojaus  
-✅ **Käyttökuviot**: Todelliset kyselytilanteet ja työnkulut  
+✅ **Arkkitehtuurin yleiskuva**: Keskeiset komponentit ja niiden vuorovaikutus  
+✅ **Teknologiapino**: Tämän oppimispolun työkalut ja kehykset  
+✅ **Turvamalli**: Monivuokraajainen datan käyttö ja suojaus  
+✅ **Käyttömallit**: Käytännön kyselytilanteet ja työnkulut  
 
 ## 🚀 Mitä seuraavaksi
 
-Valmiina syventymään? Jatka kohteeseen:
+Valmiina sukeltamaan syvemmälle? Jatka:
 
-**[Harjoitus 01: Arkkitehtuurin ydinkäsitteet](../01-Architecture/README.md)**
+**[Lab 01: Ydinarkkitehtuurin käsitteet](../01-Architecture/README.md)**
 
-Opettele MCP-palvelinarkkitehtuurin mallit, tietokantasunnittelun periaatteet ja yksityiskohtainen tekninen toteutus, joka mahdollistaa vähittäiskaupan analytiikkaratkaisumme.
+Opi MCP-palvelinarkkitehtuurin malleista, tietokantojen suunnitteluperiaatteista ja yksityiskohtaisesta teknisestä toteutuksesta, joka pyörittää vähittäiskaupan analytiikkaratkaisuamme.
 
 ## 📚 Lisäresurssit
 
 ### MCP-dokumentaatio
-- [MCP-spesifikaatio](https://modelcontextprotocol.io/docs/) - Virallinen protokolladokumentaatio  
-- [MCP aloittelijoille](https://aka.ms/mcp-for-beginners) - Kattava MCP-oppaan  
-- [FastMCP-dokumentaatio](https://github.com/modelcontextprotocol/python-sdk) - Python SDK -dokumentaatio  
+- [MCP-määritys](https://modelcontextprotocol.io/docs/) - Virallinen protokolladokumentaatio
+- [MCP aloittelijoille](https://aka.ms/mcp-for-beginners) - Kattava MCP-opas
+- [FastMCP-dokumentaatio](https://github.com/modelcontextprotocol/python-sdk) - Python SDK -dokumentaatio
 
 ### Tietokantaintegraatio
-- [PostgreSQL-dokumentaatio](https://www.postgresql.org/docs/) - Täydellinen PostgreSQL-viite  
-- [pgvector-opas](https://github.com/pgvector/pgvector) - Vektorilaajennuksen dokumentaatio  
-- [Rivitason tietoturva](https://www.postgresql.org/docs/current/ddl-rowsecurity.html) - PostgreSQL:n RLS-opas  
+- [PostgreSQL-dokumentaatio](https://www.postgresql.org/docs/) - Täydellinen PostgreSQL-viite
+- [pgvector-opas](https://github.com/pgvector/pgvector) - Vektori-laajennuksen dokumentaatio
+- [Rivitason suojaus](https://www.postgresql.org/docs/current/ddl-rowsecurity.html) - PostgreSQL:n RLS-opas
 
 ### Azure-palvelut
-- [Azure OpenAI -dokumentaatio](https://docs.microsoft.com/azure/cognitive-services/openai/) - Tekoälypalveluiden integraatio  
-- [Azure Database for PostgreSQL](https://docs.microsoft.com/azure/postgresql/) - Hallittu tietokantapalvelu  
+- [Azure OpenAI-dokumentaatio](https://docs.microsoft.com/azure/cognitive-services/openai/) - Tekoälypalvelujen integrointi
+- [Azure Database for PostgreSQL](https://docs.microsoft.com/azure/postgresql/) - Hallittu tietokantapalvelu
 - [Azure Container Apps](https://docs.microsoft.com/azure/container-apps/) - Serverless-kontit
 
 ---
 
-**Vastuuvapauslauseke**: Tämä on oppimisharjoitus, jossa käytetään kuvitteellista vähittäiskauppadataa. Noudata aina organisaatiosi datan hallinnan ja turvallisuuspolitiikkoja, kun toteutat vastaavia ratkaisuja tuotantoympäristöissä.
+**Vastuuvapauslauseke**: Tämä on oppimisharjoitus, jossa käytetään kuvitteellista vähittäistietoa. Noudata aina organisaatiosi tietohallinta- ja turvallisuusohjeita toteuttaessasi vastaavia ratkaisuja tuotantoympäristössä.
 
 ---
 

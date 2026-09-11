@@ -1,22 +1,24 @@
-# 🚀 MCP-työkalut
+# 🚀 MCP Työkalut
 
-## 🧠 Yleiskatsaus MCP-tietokantaintegraation oppimispolkuun
+## 🧠 Yleiskatsaus MCP-tietokannan integrointikoulutuspolkuun
 
-Täällä opit käyttämään työkaluja, jotka käyttävät MCP:tä. Kokemuksesi näiden työkalujen käytöstä paranee, kun yhdistät MCP-palvelimia niihin.
+Tässä opit käyttämään MCP:tä hyödyntäviä työkaluja. Kokemuksesi näiden työkalujen käytöstä paranee, kun yhdistät MCP-palvelimet niihin.
 
 ## 🔗 Viralliset MCP-resurssit
 
-- 📘 [MCP-dokumentaatio](https://modelcontextprotocol.io/) – Yksityiskohtaiset oppaat ja käyttäjäohjeet
-- 📜 [MCP-määrittely (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/) – Protokollan arkkitehtuuri ja tekniset viitteet
-- 🧑‍💻 [MCP GitHub-repository](https://github.com/modelcontextprotocol) – Avoimen lähdekoodin SDK:t, työkalut ja koodiesimerkit
-- 🌐 [MCP-yhteisö](https://github.com/orgs/modelcontextprotocol/discussions) – Osallistu keskusteluihin ja vaikuta yhteisössä
-- 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Turvallisuuskäytännöt ja riskienhallinta
+- 📘 [MCP Dokumentaatio](https://modelcontextprotocol.io/) – Yksityiskohtaiset opetusohjelmat ja käyttäjäoppaat
+- 📜 [MCP Määrittely (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/) – Protokollan arkkitehtuuri ja tekniset viitteet
+- 🧑‍💻 [MCP GitHub-repositorio](https://github.com/modelcontextprotocol) – Avoimen lähdekoodin SDK:t, työkalut ja koodiesimerkit
+- 🌐 [MCP-yhteisö](https://github.com/orgs/modelcontextprotocol/discussions) – Osallistu keskusteluihin ja vaikuta yhteisöön
+- 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Turvallisuuden parhaat käytännöt ja riskienhallinta
 
-## 🌟 Yhteisö ja tuki
+
+
+## 🌟 Yhteisö ja Tuki
 
 ### Hanki apua
 
-- **Azure AI Discord**: [Liity asiantuntevaan tukeen](https://discord.com/invite/ByRwuEEgH4)
+- **Azure AI Discord**: [Liity asiantuntijatukeen](https://discord.com/invite/ByRwuEEgH4)
 - **MCP-yhteisö**: [Liity laajempiin MCP-keskusteluihin](https://github.com/orgs/modelcontextprotocol/discussions)
 
 ## 🚀 Valmis aloittamaan?
@@ -25,7 +27,7 @@ Aloita matkasi **[GitHub Copilot -sovelluksella](./01-copilot-app/README.md)**
 
 ---
 
-*Hallitse nämä MCP:n avulla näillä työkaluilla paremman tuottavuuden ja saumatonta integraation saavuttamiseksi.*
+*Hallinnoi näitä MCP:n avulla näillä työkaluilla parhaan tuottavuuden ja saumattoman integraation saavuttamiseksi.*
 
 ---
 

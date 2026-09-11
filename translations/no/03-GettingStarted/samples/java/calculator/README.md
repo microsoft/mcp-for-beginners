@@ -1,33 +1,38 @@
-# Basic Calculator MCP Service
+# Grunnleggende Kalkulator MCP-tjeneste
 
-Denne tjenesten tilbyr grunnleggende kalkulatoroperasjoner gjennom Model Context Protocol (MCP) ved bruk av Spring Boot med WebFlux transport. Den er laget som et enkelt eksempel for nybegynnere som lærer om MCP-implementasjoner.
+> [!NOTE]
+> Dette eksempelet bruker den gamle HTTP+SSE-transporten og retter seg mot en SDK som er kompatibel
+> med MCP `2025-11-25`. Nye fjernservere bør bruke `2026-07-28` Streamable
+> HTTP-støtte.
 
-For mer informasjon, se referansedokumentasjonen for [MCP Server Boot Starter](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html).
+Denne tjenesten tilbyr grunnleggende kalkulatoroperasjoner gjennom Model Context Protocol (MCP) ved bruk av Spring Boot med WebFlux-transport. Den er designet som et enkelt eksempel for nybegynnere som lærer om MCP-implementasjoner.
+
+For mer informasjon, se [MCP Server Boot Starter](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html) referansedokumentasjonen.
 
 ## Oversikt
 
 Tjenesten viser:
 - Støtte for SSE (Server-Sent Events)
-- Automatisk verktøyregistrering ved bruk av Spring AI sin `@Tool`-annotasjon
+- Automatisk verktøyregistrering ved bruk av Spring AI sin `@Tool` annotasjon
 - Grunnleggende kalkulatorfunksjoner:
   - Addisjon, subtraksjon, multiplikasjon, divisjon
   - Potensberegning og kvadratrot
   - Modulus (rest) og absoluttverdi
-  - Hjelpefunksjon for beskrivelse av operasjoner
+  - Hjelpefunksjon for operasjonsbeskrivelser
 
 ## Funksjoner
 
-Denne kalkulatortjenesten tilbyr følgende muligheter:
+Denne kalkulatortjenesten tilbyr følgende funksjonaliteter:
 
 1. **Grunnleggende aritmetiske operasjoner**:
    - Addisjon av to tall
    - Subtraksjon av ett tall fra et annet
    - Multiplikasjon av to tall
-   - Divisjon av ett tall med et annet (med sjekk for null-divisjon)
+   - Divisjon av ett tall med et annet (med null-divisjonskontroll)
 
 2. **Avanserte operasjoner**:
    - Potensberegning (heve en base til en eksponent)
-   - Kvadratrotberegning (med sjekk for negative tall)
+   - Kvadratrotberegning (med kontroll for negative tall)
    - Modulus (rest) beregning
    - Absoluttverdi beregning
 
@@ -41,42 +46,42 @@ Tjenesten eksponerer følgende API-endepunkter gjennom MCP-protokollen:
 - `add(a, b)`: Legg sammen to tall
 - `subtract(a, b)`: Trekk det andre tallet fra det første
 - `multiply(a, b)`: Multipliser to tall
-- `divide(a, b)`: Del det første tallet med det andre (med null-sjekk)
-- `power(base, exponent)`: Beregn potens av et tall
-- `squareRoot(number)`: Beregn kvadratroten (med sjekk for negative tall)
+- `divide(a, b)`: Del det første tallet med det andre (med null-kontroll)
+- `power(base, exponent)`: Beregn potensen av et tall
+- `squareRoot(number)`: Beregn kvadratroten (med kontroll for negative tall)
 - `modulus(a, b)`: Beregn resten ved divisjon
 - `absolute(number)`: Beregn absoluttverdien
 - `help()`: Få informasjon om tilgjengelige operasjoner
 
 ## Testklient
 
-En enkel testklient er inkludert i pakken `com.microsoft.mcp.sample.client`. Klassen `SampleCalculatorClient` demonstrerer de tilgjengelige operasjonene i kalkulatortjenesten.
+En enkel testklient er inkludert i `com.microsoft.mcp.sample.client`-pakken. Klassen `SampleCalculatorClient` demonstrerer de tilgjengelige operasjonene i kalkulatortjenesten.
 
 ## Bruke LangChain4j-klienten
 
-Prosjektet inkluderer et eksempel på LangChain4j-klient i `com.microsoft.mcp.sample.client.LangChain4jClient` som viser hvordan man integrerer kalkulatortjenesten med LangChain4j og GitHub-modeller:
+Prosjektet inkluderer et LangChain4j-eksempelklient i `com.microsoft.mcp.sample.client.LangChain4jClient` som viser hvordan man integrerer kalkulatortjenesten med LangChain4j og GitHub-modeller:
 
 ### Forutsetninger
 
 1. **Oppsett av GitHub-token**:
    
-   For å bruke GitHubs AI-modeller (som phi-4), trenger du et personlig tilgangstoken fra GitHub:
+   For å bruke GitHubs AI-modeller (som phi-4), trenger du en personlig tilgangstoken:
 
    a. Gå til innstillingene for GitHub-kontoen din: https://github.com/settings/tokens
    
    b. Klikk "Generate new token" → "Generate new token (classic)"
    
-   c. Gi tokenet et beskrivende navn
+   c. Gi token et beskrivende navn
    
-   d. Velg følgende tillatelser:
+   d. Velg følgende tilganger:
       - `repo` (Full kontroll over private repositorier)
-      - `read:org` (Les organisasjon og teammedlemskap, les organisasjonsprosjekter)
+      - `read:org` (Les organisasjon- og teammedlemskap, les organisasjonsprosjekter)
       - `gist` (Opprett gists)
-      - `user:email` (Tilgang til brukerens e-postadresser (kun lesing))
+      - `user:email` (Tilgang til epostadresser (kun lesetilgang))
    
-   e. Klikk "Generate token" og kopier det nye tokenet
+   e. Klikk "Generate token" og kopier den nye tokenen din
    
-   f. Sett det som en miljøvariabel:
+   f. Sett den som en miljøvariabel:
       
       På Windows:
       ```
@@ -88,9 +93,9 @@ Prosjektet inkluderer et eksempel på LangChain4j-klient i `com.microsoft.mcp.sa
       export GITHUB_TOKEN=your-github-token
       ```
 
-   g. For permanent oppsett, legg det til miljøvariablene via systeminnstillinger
+   g. For permanent oppsett, legg den til miljøvariablene via systeminnstillinger
 
-2. Legg til LangChain4j GitHub-avhengigheten i prosjektet (allerede inkludert i pom.xml):
+2. Legg til LangChain4j GitHub-avhengigheten i prosjektet ditt (allerede inkludert i pom.xml):
    ```xml
    <dependency>
        <groupId>dev.langchain4j</groupId>
@@ -103,19 +108,19 @@ Prosjektet inkluderer et eksempel på LangChain4j-klient i `com.microsoft.mcp.sa
 
 ### Kjøre LangChain4j-klienten
 
-Dette eksempelet viser:
-- Tilkobling til kalkulator MCP-server via SSE-transport
-- Bruk av LangChain4j for å lage en chatbot som benytter kalkulatoroperasjoner
-- Integrasjon med GitHub AI-modeller (nå med phi-4 modellen)
+Dette eksempelet demonstrerer:
+- Tilkobling til kalkulator MCP-serveren via SSE-transport
+- Bruk av LangChain4j for å lage en chat-bot som benytter kalkulatoroperasjoner
+- Integrasjon med GitHub AI-modeller (nå med phi-4-modellen)
 
-Klienten sender følgende eksempelforespørsler for å demonstrere funksjonaliteten:
+Klienten sender følgende prøvespørringer for å vise funksjonalitet:
 1. Beregning av summen av to tall
 2. Finne kvadratroten av et tall
-3. Få hjelp med informasjon om tilgjengelige kalkulatoroperasjoner
+3. Hente hjelpeinformasjon om tilgjengelige kalkulatoroperasjoner
 
-Kjør eksempelet og sjekk konsollutskriften for å se hvordan AI-modellen bruker kalkulatorverktøyene til å svare på spørsmål.
+Kjør eksempelet og sjekk konsollutskriften for å se hvordan AI-modellen bruker kalkulatorverktøyene for å svare på spørringer.
 
-### Konfigurasjon av GitHub-modell
+### GitHub modellkonfigurasjon
 
 LangChain4j-klienten er konfigurert til å bruke GitHubs phi-4-modell med følgende innstillinger:
 
@@ -181,11 +186,11 @@ MCP Inspector er et nyttig verktøy for å samhandle med MCP-tjenester. For å b
    npx @modelcontextprotocol/inspector
    ```
 
-2. **Åpne webgrensesnittet** ved å klikke på URL-en som vises i appen (vanligvis http://localhost:6274)
+2. **Åpne webgrensesnittet** ved å klikke på URL’en vist av appen (vanligvis http://localhost:6274)
 
 3. **Konfigurer tilkoblingen**:
    - Sett transporttypen til "SSE"
-   - Sett URL til SSE-endepunktet på din kjørende server: `http://localhost:8080/sse`
+   - Sett URL til SSE-endepunktet for din kjørende server: `http://localhost:8080/sse`
    - Klikk "Connect"
 
 4. **Bruk verktøyene**:
@@ -198,7 +203,7 @@ MCP Inspector er et nyttig verktøy for å samhandle med MCP-tjenester. For å b
 
 Prosjektet inkluderer en Dockerfile for containerisert distribusjon:
 
-1. **Bygg Docker-imaget**:
+1. **Bygg Docker-bildet**:
    ```bash
    docker build -t calculator-mcp-service .
    ```
@@ -209,8 +214,8 @@ Prosjektet inkluderer en Dockerfile for containerisert distribusjon:
    ```
 
 Dette vil:
-- Bygge et multi-stage Docker-image med Maven 3.9.9 og Eclipse Temurin 24 JDK
-- Lage et optimalisert container-image
+- Bygge et multistadie Docker-bilde med Maven 3.9.9 og Eclipse Temurin 24 JDK
+- Lage et optimalisert containerbilde
 - Eksponere tjenesten på port 8080
 - Starte MCP kalkulatortjenesten inne i containeren
 
@@ -220,15 +225,19 @@ Du kan få tilgang til tjenesten på `http://localhost:8080` når containeren kj
 
 ### Vanlige problemer med GitHub-token
 
-1. **Token-tillatelsesproblemer**: Hvis du får en 403 Forbidden-feil, sjekk at tokenet ditt har riktige tillatelser som beskrevet i forutsetningene.
+1. **Tillatelsesproblemer med token**: Hvis du får en 403 Forbidden-feil, sjekk at token har riktige tillatelser som beskrevet i forutsetningene.
 
-2. **Token ikke funnet**: Hvis du får feilmeldingen "No API key found", sørg for at miljøvariabelen GITHUB_TOKEN er riktig satt.
+2. **Token ikke funnet**: Hvis du får feilmeldingen "No API key found", sørg for at miljøvariabelen GITHUB_TOKEN er korrekt satt.
 
-3. **Begrensning av forespørsler**: GitHub API har begrensninger på antall forespørsler. Hvis du får en rate limit-feil (statuskode 429), vent noen minutter før du prøver igjen.
+3. **Begrensning på API-bruk**: GitHub API har begrensninger for hvor mye som kan kalles. Hvis du møter på rate limit-feil (statuskode 429), vent noen minutter før du prøver igjen.
 
-4. **Token-utløp**: GitHub-tokener kan utløpe. Hvis du får autentiseringsfeil etter en stund, generer et nytt token og oppdater miljøvariabelen.
+4. **Token-utløp**: GitHub-tokens kan utløpe. Hvis du får autentiseringsfeil etter en stund, generer en ny token og oppdater miljøvariabelen din.
 
-Hvis du trenger mer hjelp, sjekk [LangChain4j-dokumentasjonen](https://github.com/langchain4j/langchain4j) eller [GitHub API-dokumentasjonen](https://docs.github.com/en/rest).
+Trenger du mer hjelp, se [LangChain4j-dokumentasjonen](https://github.com/langchain4j/langchain4j) eller [GitHub API-dokumentasjonen](https://docs.github.com/en/rest).
 
-**Ansvarsfraskrivelse**:  
-Dette dokumentet er oversatt ved hjelp av AI-oversettelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selv om vi streber etter nøyaktighet, vennligst vær oppmerksom på at automatiske oversettelser kan inneholde feil eller unøyaktigheter. Det opprinnelige dokumentet på originalspråket skal anses som den autoritative kilden. For kritisk informasjon anbefales profesjonell menneskelig oversettelse. Vi er ikke ansvarlige for eventuelle misforståelser eller feiltolkninger som oppstår ved bruk av denne oversettelsen.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Ansvarsfraskrivelse**:
+Dette dokumentet er oversatt ved hjelp av AI-oversettelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selv om vi streber etter nøyaktighet, vær oppmerksom på at automatiske oversettelser kan inneholde feil eller unøyaktigheter. Det opprinnelige dokumentet på originalspråket skal betraktes som den autoritative kilden. For kritisk informasjon anbefales profesjonell menneskelig oversettelse. Vi er ikke ansvarlige for eventuelle misforståelser eller feiltolkninger som oppstår ved bruk av denne oversettelsen.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

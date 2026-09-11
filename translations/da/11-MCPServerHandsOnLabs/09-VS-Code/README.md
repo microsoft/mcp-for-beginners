@@ -1,29 +1,35 @@
 # VS Code Integration
 
-## 🎯 Hvad Dækker Dette Lab
+> [!NOTE]
+> Indstillingerne `initializationOptions` i dette laboratorium retter sig mod samplets MCP
+> `2025-11-25` handshake. MCP `2026-07-28` fjerner initialiserings-handshaken;
+> brug en host og SDK, der understøtter metadata per anmodning og `server/discover`
+> når du migrerer dette eksempel.
 
-Dette lab giver omfattende vejledning i at integrere din MCP-server med VS Code for at muliggøre naturlige sprogforespørgsler via AI Chat. Du lærer at konfigurere VS Code til optimal MCP-brug, fejlfinde serverforbindelser og udnytte AI-assisterede databaseinteraktioner fuldt ud.
+## 🎯 Hvad dette laboratorium dækker
+
+Dette laboratorium giver omfattende vejledning i integration af din MCP-server med VS Code for at muliggøre forespørgsler i naturligt sprog via AI Chat. Du lærer at konfigurere VS Code for optimal MCP-brug, fejlfinde serverforbindelser og udnytte den fulde kraft af AI-assisterede databaseinteraktioner.
 
 ## Oversigt
 
-VS Codes MCP-integration revolutionerer, hvordan udviklere interagerer med databaser og API'er gennem naturligt sprog. Ved at forbinde din detail-MCP-server til VS Code Chat kan du aktivere intelligente forespørgsler om salgsdata, produktkataloger og forretningsanalyse ved hjælp af samtale-AI.
+VS Codes MCP-integration forvandler, hvordan udviklere interagerer med databaser og API'er gennem naturligt sprog. Ved at forbinde din retail MCP-server til VS Code Chat, muliggør du intelligent forespørgsel af salgsdata, produktkataloger og forretningsanalyse ved hjælp af samtale-AI.
 
-Denne integration gør det muligt for udviklere at stille spørgsmål som "Vis mig de bedst sælgende produkter denne måned" eller "Find kunder, der ikke har købt noget i 90 dage" og få strukturerede datarespons uden at skrive SQL-forespørgsler.
+Denne integration giver udviklere mulighed for at stille spørgsmål som "Vis mig topsælgende produkter denne måned" eller "Find kunder, der ikke har købt i 90 dage" og få strukturerede datasvar uden at skrive SQL-forespørgsler.
 
 ## Læringsmål
 
-Ved afslutningen af dette lab vil du kunne:
+Ved slutningen af dette laboratorium vil du kunne:
 
-- **Konfigurere** VS Code MCP-indstillinger for din detailserver
-- **Integrere** MCP-servere med VS Code AI Chat-funktionalitet
+- **Konfigurere** VS Code MCP-indstillinger for din retail-server
+- **Integrere** MCP-servere med VS Code AI Chat funktionalitet
 - **Fejlfinde** MCP-serverforbindelser og løse problemer
-- **Optimere** mønstre for naturlige sprogforespørgsler for bedre resultater
-- **Tilpasse** VS Code-arbejdsområdet til MCP-udvikling
-- **Implementere** multi-server konfigurationer til komplekse scenarier
+- **Optimere** mønstre for forespørgsler i naturligt sprog for bedre resultater
+- **Tilpasse** VS Code arbejdsmiljø for MCP-udvikling
+- **Deployere** multi-server konfigurationer til komplekse scenarier
 
 ## 🔧 VS Code MCP Konfiguration
 
-### Indledende Opsætning og Installation
+### Første opsætning og installation
 
 ```json
 // .vscode/settings.json
@@ -65,29 +71,29 @@ Ved afslutningen af dette lab vil du kunne:
 ### Miljøkonfiguration
 
 ```bash
-# .env file for development
+# .env fil til udvikling
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_DB=retail_db
 POSTGRES_USER=mcp_user
 POSTGRES_PASSWORD=your_secure_password
 
-# Azure Configuration
+# Azure Konfiguration
 PROJECT_ENDPOINT=https://your-project.openai.azure.com
 AZURE_CLIENT_ID=your-client-id
 AZURE_CLIENT_SECRET=your-client-secret
 AZURE_TENANT_ID=your-tenant-id
 
-# Optional: Azure Key Vault
+# Valgfrit: Azure Key Vault
 AZURE_KEY_VAULT_URL=https://your-keyvault.vault.azure.net/
 
-# Server Configuration
+# Serverkonfiguration
 MCP_SERVER_PORT=8000
 MCP_SERVER_HOST=127.0.0.1
 LOG_LEVEL=INFO
 ```
 
-### Arbejdsområdekonfiguration
+### Arbejdsmiljøkonfiguration
 
 ```json
 // .vscode/launch.json
@@ -220,10 +226,10 @@ LOG_LEVEL=INFO
 
 ## 💬 AI Chat Integration
 
-### Mønstre for Naturlige Sprogforespørgsler
+### Mønstre for Forespørgsler i Naturligt Sprog
 
 ```typescript
-// Example query patterns for VS Code Chat
+// Eksempel på forespørgselsmønstre for VS Code Chat
 interface QueryPattern {
     intent: string;
     examples: string[];
@@ -341,7 +347,7 @@ const retailQueryPatterns: QueryPattern[] = [
 - Result: KPI dashboard with revenue, customer metrics, top categories, and growth trends
 ```
 
-### Formatering af Chat-respons
+### Formatering af Chat Svar
 
 ```python
 # mcp_server/chat/response_formatter.py
@@ -459,7 +465,7 @@ class ChatResponseFormatter:
         
         response = "## Business Intelligence Summary\n\n"
         
-        # Key metrics
+        # Nøglemålinger
         response += "### Key Performance Indicators\n\n"
         response += f"- **Total Revenue**: ${float(data.get('total_revenue', 0)):,.2f}\n"
         response += f"- **Total Transactions**: {int(data.get('total_transactions', 0)):,}\n"
@@ -467,7 +473,7 @@ class ChatResponseFormatter:
         response += f"- **Average Order Value**: ${float(data.get('avg_transaction_value', 0)):.2f}\n"
         response += f"- **Products Sold**: {int(data.get('products_sold', 0)):,} items\n\n"
         
-        # Performance indicators
+        # Præstationsindikatorer
         if 'insights' in data and 'performance_indicators' in data['insights']:
             pi = data['insights']['performance_indicators']
             response += "### Performance Indicators\n\n"
@@ -475,7 +481,7 @@ class ChatResponseFormatter:
             response += f"- **Revenue per Customer**: ${float(pi.get('revenue_per_customer', 0)):,.2f}\n"
             response += f"- **Items per Transaction**: {float(pi.get('items_per_transaction', 0)):.1f}\n\n"
         
-        # Top category
+        # Topkategori
         if data.get('top_category'):
             response += f"### Top Performing Category\n\n"
             response += f"**{data['top_category']}** - ${float(data.get('top_category_revenue', 0)):,.2f} revenue\n\n"
@@ -498,7 +504,7 @@ class ChatResponseFormatter:
         return response
 ```
 
-## 🔍 Fejlfinding og Problemløsning
+## 🔍 Fejlretning og Problemløsning
 
 ### VS Code Fejlfindingskonfiguration
 
@@ -522,12 +528,12 @@ class VSCodeDebugLogger:
     def setup_vscode_logging(self):
         """Configure logging for VS Code debugging."""
         
-        # Create VS Code specific formatter
+        # Opret formatter specifik for VS Code
         formatter = logging.Formatter(
             '[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s'
         )
         
-        # Console handler for VS Code terminal
+        # Konsolbehandler til VS Code-terminal
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(formatter)
         console_handler.setLevel(logging.DEBUG)
@@ -566,11 +572,11 @@ class VSCodeDebugLogger:
         else:
             return f"Data type: {type(data).__name__}"
 
-# Global debug logger
+# Global debug-logger
 vscode_debug_logger = VSCodeDebugLogger()
 ```
 
-### Problemløsning for Forbindelser
+### Forbindelsesproblemløsning
 
 ```python
 # scripts/debug_mcp_connection.py
@@ -587,7 +593,7 @@ async def test_database_connection() -> Dict[str, Any]:
     """Test database connectivity."""
     
     try:
-        # Get connection parameters from environment
+        # Hent forbindelsesparametre fra miljøet
         connection_params = {
             'host': os.getenv('POSTGRES_HOST', 'localhost'),
             'port': int(os.getenv('POSTGRES_PORT', '5432')),
@@ -598,13 +604,13 @@ async def test_database_connection() -> Dict[str, Any]:
         
         print(f"Testing connection to {connection_params['host']}:{connection_params['port']}")
         
-        # Test connection
+        # Test forbindelse
         conn = await asyncpg.connect(**connection_params)
         
-        # Test basic query
+        # Test grundlæggende forespørgsel
         result = await conn.fetchval("SELECT version()")
         
-        # Test schema access
+        # Test skemaadgang
         tables = await conn.fetch("""
             SELECT table_name FROM information_schema.tables 
             WHERE table_schema = 'retail'
@@ -648,7 +654,7 @@ async def test_azure_openai_connection() -> Dict[str, Any]:
             credential=credential
         )
         
-        # Test embedding generation
+        # Test generering af indlejring
         response = await client.embeddings.create(
             model="text-embedding-3-small",
             input="test connection"
@@ -674,25 +680,25 @@ async def test_mcp_tools() -> Dict[str, Any]:
     """Test MCP tool availability."""
     
     try:
-        # Import MCP server components
+        # Importer MCP serverkomponenter
         sys.path.append(os.path.dirname(os.path.dirname(__file__)))
         
         from mcp_server.server import MCPServer
         from mcp_server.database import DatabaseProvider
         from mcp_server.config import Config
         
-        # Create test configuration
+        # Opret testkonfiguration
         config = Config()
         db_provider = DatabaseProvider(config.database.connection_string)
         
-        # Initialize server
+        # Initialiser server
         server = MCPServer(config, db_provider)
         await server.initialize()
         
-        # Get available tools
+        # Hent tilgængelige værktøjer
         tools = server.get_available_tools()
         
-        # Test a simple tool
+        # Test et enkelt værktøj
         test_result = await server.execute_tool(
             'get_current_utc_date',
             {'format': 'iso'}
@@ -719,7 +725,7 @@ async def main():
     print("🔍 MCP Server Connection Diagnostics")
     print("=" * 50)
     
-    # Test database connection
+    # Test databaseforbindelse
     print("\n📊 Testing Database Connection...")
     db_result = await test_database_connection()
     
@@ -732,7 +738,7 @@ async def main():
         print("❌ Database connection failed")
         print(f"   Error: {db_result['error']}")
     
-    # Test Azure OpenAI connection
+    # Test Azure OpenAI-forbindelse
     print("\n🤖 Testing Azure OpenAI Connection...")
     azure_result = await test_azure_openai_connection()
     
@@ -744,7 +750,7 @@ async def main():
         print("❌ Azure OpenAI connection failed")
         print(f"   Error: {azure_result['error']}")
     
-    # Test MCP tools
+    # Test MCP-værktøjer
     print("\n🛠️  Testing MCP Tools...")
     tools_result = await test_mcp_tools()
     
@@ -757,7 +763,7 @@ async def main():
         print("❌ MCP tools loading failed")
         print(f"   Error: {tools_result['error']}")
     
-    # Overall status
+    # Overordnet status
     print("\n📋 Overall Status")
     print("=" * 50)
     
@@ -783,7 +789,7 @@ if __name__ == "__main__":
 
 ## 🚀 Avanceret Konfiguration
 
-### Opsætning af Multi-server
+### Multi-Server Opsætning
 
 ```json
 // .vscode/settings.json - Multiple MCP servers
@@ -843,12 +849,12 @@ if __name__ == "__main__":
 ### Tilpasset VS Code Udvidelse
 
 ```typescript
-// src/extension.ts - Custom MCP retail extension
+// src/extension.ts - Brugerdefineret MCP detailudvidelse
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
     
-    // Register MCP retail commands
+    // Registrer MCP detailkommandoer
     const disposable = vscode.commands.registerCommand(
         'mcp-retail.quickQuery', 
         async () => {
@@ -889,7 +895,7 @@ export function activate(context: vscode.ExtensionContext) {
     
     context.subscriptions.push(disposable);
     
-    // Register store switcher
+    // Registrer butiksskifter
     const storeSwitcher = vscode.commands.registerCommand(
         'mcp-retail.switchStore',
         async () => {
@@ -899,7 +905,7 @@ export function activate(context: vscode.ExtensionContext) {
             });
             
             if (selected) {
-                // Update configuration
+                // Opdater konfiguration
                 const config = vscode.workspace.getConfiguration('mcp');
                 await config.update('defaultStore', selected, true);
                 
@@ -914,7 +920,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 async function executeQuickQuery(queryType: string) {
-    // Execute predefined queries in VS Code Chat
+    // Kør foruddefinerede forespørgsler i VS Code Chat
     const chatCommands = {
         '📊 Daily Sales': '@retail Show me daily sales for the last 30 days',
         '🏆 Top Products': '@retail What are the top 10 selling products this month?',
@@ -933,7 +939,7 @@ async function executeQuickQuery(queryType: string) {
 export function deactivate() {}
 ```
 
-### Konfiguration af Udvidelsespakke
+### Pakke-konfiguration for Udvidelsen
 
 ```json
 // package.json for VS Code extension
@@ -1007,47 +1013,49 @@ export function deactivate() {}
 
 ## 🎯 Vigtige Pointer
 
-Efter at have gennemført dette lab, bør du have:
+Efter at have gennemført dette laboratorium bør du have:
 
 ✅ **VS Code MCP Konfiguration**: Fuld opsætning til optimal MCP-integration  
-✅ **AI Chat Integration**: Evne til naturlige sprogforespørgsler i VS Code  
-✅ **Fejlfindingsværktøjer**: Omfattende problemløsning og forbindelsesdiagnostik  
-✅ **Multi-server Opsætning**: Konfiguration til flere MCP-serverinstanser  
-✅ **Tilpassede Udvidelser**: Forbedret VS Code-oplevelse med detail-specifikke funktioner  
-✅ **Produktionsklarhed**: Enterprise-klar VS Code udviklingsmiljø  
+✅ **AI Chat Integration**: Evner til forespørgsler i naturligt sprog i VS Code  
+✅ **Fejlretningsværktøjer**: Omfattende diagnostik og problemløsning for forbindelser  
+✅ **Multi-Server Opsætning**: Konfiguration til flere MCP-serverinstanser  
+✅ **Tilpassede Udvidelser**: Forbedret VS Code oplevelse med retail-specifikke funktioner  
+✅ **Produktionsparathed**: Enterprise-klar VS Code udviklingsmiljø  
 
-## 🚀 Hvad Er Næste Skridt
+## 🚀 Hvad Nu
 
-Fortsæt med **[Lab 10: Implementeringsstrategier](../10-Deployment/README.md)** for at:
+Fortsæt med **[Lab 10: Deployment Strategies](../10-Deployment/README.md)** for at:
 
-- Implementere MCP-servere i produktionsmiljøer
+- Deploaye MCP-servere til produktionsmiljøer
 - Konfigurere cloud-infrastruktur for skalerbarhed
-- Implementere CI/CD-pipelines til automatiseret udrulning
-- Overvåge MCP-serverens ydeevne i produktion
+- Implementere CI/CD-pipelines til automatiseret deployment
+- Overvåge produktions-MCP-serveres ydeevne
 
 ## 📚 Yderligere Ressourcer
 
 ### VS Code Udvikling
-- [VS Code Extension API](https://code.visualstudio.com/api) - Officiel vejledning til udvidelsesudvikling
-- [VS Code MCP Dokumentation](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - MCP-integrationsdokumentation
+- [VS Code Extension API](https://code.visualstudio.com/api) - Officiel guide til udvidelsesudvikling
+- [VS Code MCP Dokumentation](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - MCP integrationsdokumentation
 - [TypeScript for VS Code](https://code.visualstudio.com/docs/languages/typescript) - TypeScript-udvikling i VS Code
 
 ### MCP Protokol
-- [Model Context Protocol Specification](https://modelcontextprotocol.io/specification) - Officiel MCP-specifikation
-- [MCP Best Practices](https://modelcontextprotocol.io/docs/best-practices) - Implementeringsbedste praksis
+- [Model Context Protocol Specification](https://modelcontextprotocol.io/specification) - Officiel MCP specifikation
+- [MCP Best Practices](https://modelcontextprotocol.io/docs/best-practices) - Implementerings bedste praksis
 - [FastMCP Framework](https://github.com/jlowin/fastmcp) - Python MCP-implementering
 
 ### Udviklingsværktøjer
-- [Python i VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Opsætning af Python-udvikling
-- [Fejlfinding i VS Code](https://code.visualstudio.com/docs/editor/debugging) - Avancerede fejlfindingsteknikker
-- [VS Code Opgaver](https://code.visualstudio.com/docs/editor/tasks) - Automatisering og konfiguration af opgaver
+- [Python i VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Python udviklingssetup
+- [Fejlretning i VS Code](https://code.visualstudio.com/docs/editor/debugging) - Avancerede fejlretningsteknikker
+- [VS Code Tasks](https://code.visualstudio.com/docs/editor/tasks) - Opgaveautomatisering og konfiguration
 
 ---
 
-**Forrige**: [Lab 08: Test og Fejlfinding](../08-Testing/README.md)  
-**Næste**: [Lab 10: Implementeringsstrategier](../10-Deployment/README.md)
+**Forrige**: [Lab 08: Testing and Debugging](../08-Testing/README.md)  
+**Næste**: [Lab 10: Deployment Strategies](../10-Deployment/README.md)
 
 ---
 
-**Ansvarsfraskrivelse**:  
-Dette dokument er blevet oversat ved hjælp af AI-oversættelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selvom vi bestræber os på at sikre nøjagtighed, skal det bemærkes, at automatiserede oversættelser kan indeholde fejl eller unøjagtigheder. Det originale dokument på dets oprindelige sprog bør betragtes som den autoritative kilde. For kritisk information anbefales professionel menneskelig oversættelse. Vi påtager os ikke ansvar for eventuelle misforståelser eller fejltolkninger, der måtte opstå som følge af brugen af denne oversættelse.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Ansvarsfraskrivelse**:
+Dette dokument er blevet oversat ved hjælp af AI-oversættelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selvom vi bestræber os på nøjagtighed, skal du være opmærksom på, at automatiserede oversættelser kan indeholde fejl eller unøjagtigheder. Det originale dokument på dets oprindelige sprog bør betragtes som den autoritative kilde. For kritisk information anbefales professionel menneskelig oversættelse. Vi påtager os intet ansvar for misforståelser eller fejltolkninger, der opstår som følge af brugen af denne oversættelse.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

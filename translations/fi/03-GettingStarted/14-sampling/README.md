@@ -1,28 +1,36 @@
-> [VANHENTUNUT: 2026-07-28 JULKAISUEHDOKAS](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/)
+> [!WARNING]
+> Otanta on poistumassa käytöstä MCP:ssä `2026-07-28`. Tätä oppituntia säilytetään
+> vanhempia toteutuksia varten. Uusien palvelinten tulisi integroitua suoraan LLM:n
+> tarjoajan API:in.
 
-# Näytteistys - delegoi ominaisuudet Clientille
+# Otanta - delegoi ominaisuudet asiakkaalle
 
-> **Vanhentumisilmoitus:** `2026-07-28` MCP-spesifikaation julkaisuehdokas merkitsee Näytteistyksen vanhentuneeksi LLM-tarjoajien API:iden suoralle integraatiolle. Näytteistys toimii edelleen versiossa `2025-11-25` ja vähintään vuoden virallisen vanhentamisen jälkeen, joten kaiken tämän oppitunnin sisältö on edelleen pätevää — mutta uudet palvelinsuunnittelut tulisi arvioida korvaavaa mallia. Katso [Mitä MCP:ssä muuttuu: Vuoden 2026-07-28 julkaisuehdokas](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> Otanta säilyy `2026-07-28`-määrittelyssä yhteensopivuuden vuoksi ja se voidaan
+> poistaa ensimmäisessä uudistuksessa, joka julkaistaan tai sen jälkeen 28. heinäkuuta
+> 2027. Tässä oppitunnissa esimerkit saattavat käyttää SDK API:ita, jotka toteuttavat
+> `2025-11-25`. Katso [Mitä MCP:ssä on muuttunut: 2026-07-28:n määrittely](../../01-CoreConcepts/mcp-2026-07-28.md).
 
-Joskus MCP Clientin ja MCP Serverin täytyy tehdä yhteistyötä yhteisen tavoitteen saavuttamiseksi. Sinulla voi olla tilanne, jossa Serveri tarvitsee apua asiakkaalla sijaitsevalta LLM:ltä. Tähän tilanteeseen sinun tulisi käyttää näytteistystä.
+Perinteisissä toteutuksissa otanta antaa MCP-palvelimelle mahdollisuuden pyytää apua
+asiakkaan hallitsemalta LLM:ltä. Uusissa toteutuksissa kutsu suoraan valitun LLM-tarjoajan
+API:ta sen sijaan.
 
-Tutkitaanpa joitakin käyttötapauksia ja miten rakentaa ratkaisua, joka sisältää näytteistyksen.
+Tarkastellaanpa joitakin käyttötapauksia ja miten rakentaa ratkaisu, joka käyttää otantaa.
 
 ## Yleiskatsaus
 
-Tässä oppitunnissa keskitymme selittämään, milloin ja missä Näytteistystä kannattaa käyttää ja miten se konfiguroidaan.
+Tässä oppitunnissa keskitymme selittämään, milloin ja missä otantaa käytetään sekä miten se konfiguroidaan.
 
 ## Oppimistavoitteet
 
-Tässä luvussa me:
+Tässä luvussa:
 
-- Selitämme mitä Näytteistys on ja milloin sitä käyttää.
-- Näytämme miten Näytteistys konfiguroidaan MCP:ssä.
-- Tarjoamme esimerkkejä Näytteistyksestä käytännössä.
+- Selitämme, mitä otanta on ja milloin sitä käytetään.
+- Näytämme, miten otanta konfiguroidaan MCP:ssä.
+- Annamme esimerkkejä otannasta käytännössä.
 
-## Mitä on Näytteistys ja miksi sitä käyttää?
+## Mitä otanta on ja miksi sitä käytetään?
 
-Näytteistys on edistynyt ominaisuus, joka toimii seuraavasti:
+Otanta on kehittynyt ominaisuus, joka toimii seuraavasti:
 
 ```mermaid
 sequenceDiagram
@@ -33,17 +41,17 @@ sequenceDiagram
 
     User->>MCP Client: Kirjoittajan blogikirjoitus
     MCP Client->>MCP Server: Työkalukutsu (blogikirjoituksen luonnos)
-    MCP Server->>MCP Client: Otoskysely (luo yhteenveto)
+    MCP Server->>MCP Client: Näytteenottopyyntö (laadi yhteenveto)
     MCP Client->>LLM: Luo blogikirjoituksen yhteenveto
     LLM->>MCP Client: Yhteenvedon tulos
-    MCP Client->>MCP Server: Otosvastaus (yhteenveto)
-    MCP Server->>MCP Client: Täydellinen blogikirjoitus (luonnos + yhteenveto)
+    MCP Client->>MCP Server: Näytteenottovastaus (yhteenveto)
+    MCP Server->>MCP Client: Valmis blogikirjoitus (luonnos + yhteenveto)
     MCP Client->>User: Blogikirjoitus valmis
 ```
 
-### Näytteistyspyyntö
+### Otantapyyntö
 
-Ok, nyt kun meillä on kokonaiskuva uskottavasta tilanteesta, puhutaan palvelimen asiakkaalle lähettämästä näytteistyspyynnöstä. Tässä on miltä tällainen pyyntö voi näyttää JSON-RPC-muodossa:
+Okei, nyt meillä on yleiskuva uskottavasta skenaariosta, puhutaanpa palvelimen lähettämästä otantapyynnöstä asiakkaalle. Tässä on esimerkki siitä JSON-RPC-muodossa:
 
 ```json
 {
@@ -75,17 +83,17 @@ Ok, nyt kun meillä on kokonaiskuva uskottavasta tilanteesta, puhutaan palvelime
 }
 ```
 
-Tässä on muutama seikka mainitsemisen arvoinen:
+Tässä on muutama kohta, jotka kannattaa nostaa esiin:
 
-- Kehote, sisällössä -> teksti, on kehotteemme, joka on ohje LLM:lle tiivistää blogikirjoituksen sisältö.
+- Kehote, kohdassa content -> text, on kehotteemme, joka on ohje LLM:lle tiivistää blogikirjoituksen sisältö.
 
-- **modelPreferences**. Tämä osio on juuri sellainen — suositus siitä, mitä asetuksia LLM:n kanssa kannattaa käyttää. Käyttäjä voi päättää, noudattaako näitä suosituksia vai muuttaako niitä. Tässä tapauksessa suosituksissa on mallin valinta sekä nopeuden ja älykkyyden priorisointi.
-- **systemPrompt**, tämä on normaali järjestelmäkehote, joka antaa LLM:lle persoonallisuuden ja sisältää ohjeistuksia.
-- **maxTokens**, tämä on toinen ominaisuus, jolla kerrotaan, kuinka monta tokenia tälle tehtävälle suositellaan käytettäväksi.
+- **modelPreferences**. Tämä osio on nimenomaan mieltymys, suositus siitä, millainen konfiguraatio LLM:ssä kannattaa käyttää. Käyttäjä saa päättää, noudattaako näitä suosituksia vai muuttaako niitä. Tässä tapauksessa suositellaan mallia, nopeus- ja älykkyysprioriteettia.
+- **systemPrompt**, tämä on normaali järjestelmäkehotteesi, joka antaa LLM:llesi persoonallisuuden ja sisältää ohjeistuksia.
+- **maxTokens**, tämä on toinen ominaisuus, joka kertoo, kuinka monta tokenia tälle tehtävälle suositaan.
 
-### Näytteistysvastaus
+### Otantavaste
 
-Tämä vastaus on mitä MCP Client lopulta lähettää takaisin MCP Serverille ja se on asiakkaan kutsuman LLM:n tulos, odotussanan vastauksen valmistumisesta ja sitten tämän viestin rakentamisesta. Tässä esimerkki JSON-RPC-muodossa:
+Tämä vastaus on se, jonka MCP-asiakas lopulta lähettää MCP-palvelimelle, ja se on seurausta asiakkaan kutsusta LLM:ään, joka odottaa vastauksen ja sitten rakentaa tämän viestin. Tässä esimerkki JSON-RPC-muodossa:
 
 ```json
 {
@@ -103,13 +111,13 @@ Tämä vastaus on mitä MCP Client lopulta lähettää takaisin MCP Serverille j
 }
 ```
 
-Huomaa, että vastaus on blogikirjoituksen tiivistelmä kuten pyysimme. Huomaa myös, että käytetty `model` ei ole se, mitä pyysimme vaan "gpt-5" "claude-3-sonnetin" sijaan. Tämä havainnollistaa, että käyttäjä voi muuttaa mielensä käytettävästä mallista ja että näytteistyspyyntö on suositus.
+Huomioi, että vastaus on blogikirjoituksen tiivistelmä juuri sellaisena kuin pyysimme. Lisäksi huomaa, että käytetty `model` ei ole se, jota pyysimme, vaan "gpt-5" "claude-3-sonnetin" sijaan. Tämä havainnollistaa, että käyttäjä voi muuttaa mieltään mitä käyttää, ja että otantapyyntösi on suositus.
 
-Ok, nyt kun ymmärrämme päävirran, ja hyödyllisen tehtävän sitä varten "blogikirjoituksen luominen + tiivistelmä", katsotaan mitä meidän täytyy tehdä sen toimimiseksi.
+Okei, nyt kun ymmärrämme päävirtauksen ja hyödyllisen käyttötapauksen "blogikirjoituksen luominen + tiivistelmä", katsotaan mitä pitää tehdä, jotta se toimii.
 
 ### Viestityypit
 
-Näytteistysviestit eivät rajoitu pelkkään tekstiin, vaan voit lähettää myös kuvia ja ääntä. Tässä, miten JSON-RPC eroaa:
+Otantaviestit eivät rajoitu pelkkään tekstiin, vaan voit myös lähettää kuvia ja ääntä. Tässä ero JSON-RPC:ssa:
 
 **Teksti**
 
@@ -140,13 +148,14 @@ Näytteistysviestit eivät rajoitu pelkkään tekstiin, vaan voit lähettää my
 }
 ```
 
-> HUOM: lisätietoja Näytteistyksestä löydät [virallisista ohjeista](https://modelcontextprotocol.io/specification/2025-11-25/client/sampling)
+> HUOM: Nykyisestä tilasta ja siirtymäohjeista katso
+> [poistunut otanta-dokumentaatio](https://modelcontextprotocol.io/specification/2026-07-28/client/sampling).
 
-## Kuinka konfiguroida Näytteistys Clientillä
+## Näin konfiguroit otannan asiakkaassa
 
-> Huomautus: jos rakennat pelkästään palvelinta, sinun ei tarvitse tehdä paljon tässä.
+> Huom: jos rakennat vain palvelinta, sinun ei tarvitse tehdä juuri mitään tässä.
 
-Clientillä sinun tulee määritellä seuraava ominaisuus tällaisella tavalla:
+Asiakkaassa sinun tulee määrittää seuraava ominaisuus seuraavasti:
 
 ```json
 {
@@ -156,18 +165,18 @@ Clientillä sinun tulee määritellä seuraava ominaisuus tällaisella tavalla:
 }
 ```
 
-Tämä otetaan käyttöön, kun valitsemasi client alustaa yhteyden palvelimeen.
+Tämä otetaan käyttöön, kun valittu asiakas alustaa yhteyden palvelimeen.
 
-## Esimerkki Näytteistyksestä - Luo blogikirjoitus
+## Esimerkki otannasta käytännössä - Luo blogikirjoitus
 
-Koodataan yhdessä näytteistys-palvelin; meidän pitää tehdä seuraavat:
+Koodataan otantapalvelin yhdessä, meidän tulee tehdä seuraavat:
 
-1. Luo työkalu Serverille.
-1. Työkalun pitää luoda näytteistyspyyntö.
-1. Työkalun pitää odottaa asiakkaan vastauksena tulevaa näytteistyspyyntöä.
-1. Sitten työkalun tulos pitää tuottaa.
+1. Luo työkalu palvelimelle.
+1. Kyseisen työkalun tulee luoda otantapyyntö.
+1. Työkalun tulee odottaa, että asiakkaan otantapyyntöön vastataan.
+1. Sitten työkalun tulos tuotetaan.
 
-Käydään koodi vaihe vaiheelta:
+Käydään koodi läpi vaihe vaiheelta:
 
 ### -1- Luo työkalu
 
@@ -180,7 +189,7 @@ async def create_blog(title: str, content: str, ctx: Context[ServerSession, None
 
 ```
 
-### -2- Luo näytteistyspyyntö
+### -2- Luo otantapyyntö
 
 Laajenna työkalua seuraavalla koodilla:
 
@@ -208,7 +217,7 @@ result = await ctx.session.create_message(
 
 ```
 
-### -3- Odota vastausta ja palauta vastaus
+### -3- Odota vastausta ja palauta se
 
 **python**
 
@@ -217,14 +226,14 @@ post.abstract = result.content.text
 
 posts.append(post)
 
-# palauta täydellinen tuote
+# palauta koko tuote
 return json.dumps({
     "id": post.title,
     "abstract": post.abstract
 })
 ```
 
-### -4- Koko koodi
+### -4- Täysi koodi
 
 **python**
 
@@ -286,7 +295,7 @@ async def create_blog(title: str, content: str, ctx: Context[ServerSession, None
 
     posts.append(post)
 
-    # palauta koko blogikirjoitus
+    # palauttaa koko blogikirjoituksen
     return json.dumps({
         "id": post.title,
         "abstract": post.abstract
@@ -297,15 +306,15 @@ if __name__ == "__main__":
     # mcp.run()
     mcp.run(transport="streamable-http")
 
-# käynnistä sovellus komennolla: python server.py
+# suorita sovellus komennolla: python server.py
 ```
 
-### -5- Testaa se Visual Studio Codessa
+### -5- Testaa Visual Studio Codessa
 
-Testataksesi tätä Visual Studio Codessa, tee seuraavasti:
+Testataksesi tämän Visual Studio Codessa, tee seuraavasti:
 
 1. Käynnistä palvelin terminaalissa
-1. Lisää se *mcp.json*-tiedostoon (ja varmista, että se on käynnissä), esimerkiksi näin:
+1. Lisää se *mcp.json*-tiedostoon (ja varmista että se on käynnissä), esimerkiksi näin:
 
    ```json
    "servers": {
@@ -322,31 +331,32 @@ Testataksesi tätä Visual Studio Codessa, tee seuraavasti:
    create a blog post named "Where Python comes from", the content is "Python is actually named after Monty Python Flying Circus"
    ```
 
-1. Salli näytteistyksen tapahtua. Ensimmäisellä testauskerralla sinulle esitetään ylimääräinen dialogi, jonka hyväksyt, sitten näet normaalin työkalun käynnistysdialogin.
+1. Salli otanta tapahtua. Ensimmäisellä kerralla sinulta kysytään hyväksyntää lisävalintaikkunassa, sen jälkeen näet normaalin ikkunan, jossa sinua pyydetään suorittamaan työkalu.
 
 1. Tarkastele tuloksia. Näet tulokset siististi renderöitynä GitHub Copilot Chatissa, mutta voit myös tarkastella raakaa JSON-vastausta.
 
-**Bonus**. Visual Studio Coden työkalut tukevat hyvin näytteistystä. Voit konfiguroida Näytteistys-liittymän asennetulla palvelimellasi seuraavasti:
+**Bonus**. Visual Studio Coden työkalut tukevat erinomaisesti otantaa. Voit konfiguroida otannan käytön asennetussa palvelimessasi seuraavasti:
 
-1. Mene laajennososioon.
-1. Valitse ratassarake asennetun palvelimesi kohdalta "MCP SERVERS - INSTALLED" osiossa.
-1 Valitse "Configure Model Access", täältä voit valita, mitä malleja GitHub Copilot saa käyttää näytteistyksessä. Voit myös nähdä kaikki viimeaikaiset näytteistyspyynnöt valitsemalla "Show Sampling requests".
+1. Siirry laajennososioon.
+1. Valitse rataskuvake asennetun palvelimen kohdalta "MCP SERVERS - INSTALLED" -osiossa.
+1 Valitse "Configure Model Access", täällä voit valita mitkä mallit GitHub Copilot saa käyttää otanta-toiminnossa. Voit myös nähdä kaikki viimeaikaiset otantapyynnöt valitsemalla "Show Sampling requests".
 
-## Tehtävä
+## Harjoitus
 
-Tässä tehtävässä rakennat hieman erilaista Näytteistystä, nimittäin näytteistysintegraation, joka tukee tuotteen kuvauksen generointia. Tässä skenaario:
+Tässä harjoituksessa rakennat hieman erilaisen otannan, nimittäin otantaintegraation, joka tukee tuotteen kuvauksen luomista. Tässä skenaariosi:
 
-**Skenaario**: Verkkokaupan back office -työntekijä tarvitsee apua, koska tuotetekstien kirjoittaminen vie liikaa aikaa. Rakennat siksi ratkaisun, jossa voit kutsua työkalua "create_product" argumenteilla "title" ja "keywords", ja sen tulisi tuottaa valmis tuote, jossa on "description"-kenttä, jonka täyttää asiakkaan LLM.
+**Skenaario**: Verkkokaupan back office -työntekijä tarvitsee apua, tuotetekstien laatiminen vie liikaa aikaa. Siksi rakennat ratkaisun, jossa voit kutsua työkalua "create_product" parametrien "title" ja "keywords" kanssa, ja sen tulee tuottaa valmis tuote sisältäen "description"-kentän, jonka asiakas-LLM täyttää.
 
-VINKKI: käytä aiemmin oppimaasi rakentaaksesi tämä palvelin ja sen työkalu käyttämällä näytteistyspyyntöä.
+VINKKI: käytä aiemmin opittua rakentaaksesi tämän palvelimen ja sen työkalun otantapyynnön avulla.
 
 ## Ratkaisu
 
 [Ratkaisu](./solution/README.md)
 
-## Keskeiset opit
+## Tärkeimmät opit
 
-Näytteistys on tehokas ominaisuus, joka antaa palvelimen delegoida tehtäviä asiakkaalle silloin, kun se tarvitsee apua LLM:ltä.
+
+Otanta on tehokas ominaisuus, jonka avulla palvelin voi delegoida tehtäviä asiakkaalle, kun se tarvitsee LLM:n apua.
 
 ## Mitä seuraavaksi
 

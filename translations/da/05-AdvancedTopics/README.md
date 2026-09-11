@@ -1,90 +1,99 @@
-# Avancerede Emner i MCP
+# Avancerede emner i MCP
 
-[![Avanceret MCP: Sikker, Skalerbar og Multi-modal AI-agenter](../../../translated_images/da/06.42259eaf91fccfc6.webp)](https://youtu.be/4yjmGvJzYdY)
+[![Avanceret MCP: Sikker, skalerbar og multimodal AI-agenter](../../../translated_images/da/06.42259eaf91fccfc6.webp)](https://youtu.be/4yjmGvJzYdY)
 
-_(Klik på billedet ovenfor for at se videoen til denne lektion)_
+_(Klik på billedet ovenfor for at se videoen af denne lektion)_
 
-Dette kapitel dækker en række avancerede emner i Model Context Protocol (MCP) implementering, herunder multi-modal integration, skalerbarhed, bedste praksis for sikkerhed og virksomheds-integration. Disse emner er afgørende for at bygge robuste og produktionsklare MCP-applikationer, der kan imødekomme kravene fra moderne AI-systemer.
+Dette kapitel dækker en række avancerede emner inden for Model Context Protocol (MCP) implementering, herunder multimodal integration, skalerbarhed, bedste sikkerhedspraksis og virksomhedsintegration. Disse emner er afgørende for at bygge robuste og produktionsklare MCP-applikationer, der kan imødekomme kravene fra moderne AI-systemer.
 
 ## Oversigt
 
-Denne lektion udforsker avancerede koncepter i Model Context Protocol implementering med fokus på multi-modal integration, skalerbarhed, bedste praksis for sikkerhed og virksomheds-integration. Disse emner er vigtige for at bygge produktionsmodne MCP-applikationer, der kan håndtere komplekse krav i virksomhedsmiljøer.
+Denne lektion udforsker avancerede koncepter i Model Context Protocol-implementering med fokus på multimodal integration, skalerbarhed, bedste sikkerhedspraksis og virksomhedsintegration. Disse emner er nødvendige for at bygge produktionsmodne MCP-applikationer, der kan håndtere komplekse krav i virksomhedsmiljøer.
 
-> **Forudsigelse:** flere emner nedenfor er påvirket af `2026-07-28` MCP specifikations-release kandidat — Root Contexts (5.4) og Sampling (5.6) bygger på primitiv, som release kandidaten markerer som forældede, og den eksperimentelle Tasks-funktion, der refereres til i Protocol Features (5.16), flyttes til en dedikeret Tasks-udvidelse. Se [Hvad ændrer sig i MCP: 2026-07-28 Release Kandidat](../01-CoreConcepts/mcp-2026-07-28-release-candidate.md) for detaljer.
+> **Nuværende specifikationsnote:** MCP `2026-07-28` udfaser Roots- og
+> Sampling-primitiverne, som blev gennemgået i lektion 5.4 og 5.6. Den flytter også
+> den eksperimentelle Tasks-funktion nævnt i Protocol Features (5.16) til en
+> dedikeret Tasks-udvidelse. Disse lektioner beholdes til legacy
+> `2025-11-25` implementeringer og inkluderer migrationsvejledning. Se
+> [Hvad er ændret i MCP: Specifikationen 2026-07-28](../01-CoreConcepts/mcp-2026-07-28.md).
 
 ## Læringsmål
 
-Når denne lektion er færdig, vil du være i stand til at:
+Når du har afsluttet denne lektion, vil du kunne:
 
-- Implementere multi-modale kapaciteter inden for MCP-rammer
-- Designe skalerbare MCP-arkitekturer til scenarier med høj efterspørgsel
-- Anvende bedste sikkerhedspraksis, der er i overensstemmelse med MCP's sikkerhedsprincipper
-- Integrere MCP med virksomheds-AI-systemer og -rammer
+- Implementere multimodale funktioner inden for MCP-rammer
+- Designe skalerbare MCP-arkitekturer til scenarier med høje krav
+- Anvende bedste sikkerhedspraksis i overensstemmelse med MCP's sikkerhedsprincipper
+- Integrere MCP med virksomheders AI-systemer og -rammer
 - Optimere ydeevne og pålidelighed i produktionsmiljøer
 
-## Lektioner og eksempelprojekter
+## Lektioner og eksempler på projekter
 
 | Link | Titel | Beskrivelse |
 |------|-------|-------------|
-| [5.1 Integration med Azure](./mcp-integration/README.md) | Integration med Azure | Lær hvordan du integrerer din MCP Server på Azure |
-| [5.2 Multi-modal eksempel](./mcp-multi-modality/README.md) | MCP Multi-modal eksempler | Eksempler til lyd, billede og multi-modal respons |
-| [5.3 MCP OAuth2 eksempel](../../../05-AdvancedTopics/mcp-oauth2-demo) | MCP OAuth2 Demo | Minimal Spring Boot-app der viser OAuth2 med MCP, både som Authorization og Resource Server. Demonstrerer sikker token-udstedelse, beskyttede endpoints, Azure Container Apps deployment og API Management integration. |
-| [5.4 Root Contexts](./mcp-root-contexts/README.md) | Root contexts | Lær mere om root context og hvordan man implementerer dem (forældet i `2026-07-28` release kandidat; stadig gyldig for `2025-11-25`) |
+| [5.1 Integration med Azure](./mcp-integration/README.md) | Integration med Azure | Lær hvordan du integrerer din MCP-server på Azure |
+| [5.2 Multimodalt eksempel](./mcp-multi-modality/README.md) | MCP multimodale eksempler | Eksempler på lyd, billede og multimodalt svar |
+| [5.3 MCP OAuth2 eksempel](../../../05-AdvancedTopics/mcp-oauth2-demo) | MCP OAuth2 demo | Minimal Spring Boot-app der viser OAuth2 med MCP, både som autorisations- og ressourceserver. Demonstrerer sikker token-udstedelse, beskyttede endepunkter, Azure Container Apps-udrulning og API Management-integration. |
+| [5.4 Root Contexts](./mcp-root-contexts/README.md) | Root contexts | Lær legacy `2025-11-25` Roots-primitivet og aktuelle migrationsmuligheder (udfaset i `2026-07-28`) |
 | [5.5 Routing](./mcp-routing/README.md) | Routing | Lær forskellige typer routing |
-| [5.6 Sampling](./mcp-sampling/README.md) | Sampling | Lær hvordan man arbejder med sampling (forældet i `2026-07-28` release kandidat; stadig gyldig for `2025-11-25`) |
+| [5.6 Sampling](./mcp-sampling/README.md) | Sampling | Lær legacy `2025-11-25` Sampling-primitivet og aktuelle migrationsmuligheder (udfaset i `2026-07-28`) |
 | [5.7 Skalering](./mcp-scaling/README.md) | Skalering | Lær om skalering |
-| [5.8 Sikkerhed](./mcp-security/README.md) | Sikkerhed | Sikr din MCP Server |
-| [5.9 Web Søgning eksempel](./web-search-mcp/README.md) | Web Search MCP | Python MCP-server og klient der integrerer med SerpAPI for realtids web-, nyheds-, produkt-søgning og Q&A. Demonstrerer multi-værktøjs orkestrering, ekstern API-integration og robust fejlhåndtering. |
-| [5.10 Realtids Streaming](./mcp-realtimestreaming/README.md) | Streaming | Realtids datastreaming er blevet essentielt i dagens datadrevne verden, hvor virksomheder og applikationer kræver øjeblikkelig adgang til information for at træffe rettidige beslutninger.|
-| [5.11 Realtids Web Søgning](./mcp-realtimesearch/README.md) | Web Search | Realtids web søgning - hvordan MCP forvandler realtids web søgning ved at give en standardiseret tilgang til kontekststyring på tværs af AI-modeller, søgemaskiner og applikationer.| 
-| [5.12 Entra ID-autentificering for Model Context Protocol-servere](./mcp-security-entra/README.md) | Entra ID-autentificering | Microsoft Entra ID giver en robust cloud-baseret identitets- og adgangsstyringsløsning, der hjælper med at sikre, at kun autoriserede brugere og applikationer kan interagere med din MCP-server.|
-| [5.13 Microsoft Foundry Agent Integration](./mcp-foundry-agent-integration/README.md) | Microsoft Foundry Integration | Lær hvordan man integrerer Model Context Protocol-servere med Microsoft Foundry-agenter, hvilket muliggør kraftfuld værktøjsorkestrering og virksomheds AI-muligheder med standardiserede forbindelser til eksterne datakilder.|
-| [5.14 Context Engineering](./mcp-contextengineering/README.md) | Context Engineering | Fremtidige muligheder for kontekstteknikker til MCP-servere, inklusive kontekstoptimering, dynamisk kontekststyring og strategier for effektiv prompt-udvikling inden for MCP-rammer.|
-| [5.15 MCP Tilpasset Transport](./mcp-transport/README.md) | Tilpasset Transport | Lær hvordan man implementerer tilpassede transportmekanismer til specialiserede MCP-kommunikationsscenarier.|
-| [5.16 Protokolfunktioner Dybtgående](./mcp-protocol-features/README.md) | Protokolfunktioner | Mestring af avancerede protokolfunktioner inklusive progressionsnotifikationer, anmodningsannullering, ressource-skabeloner og fejlbehandlingsmønstre.|
-| [5.17 Adversarial Multi-Agent Reasoning](./mcp-adversarial-agents/README.md) | Adversarial Agenter | Brug to agenter med modsatrettede positioner, der deler et enkelt MCP-værktøjssæt, for at fange hallucinationer, fremhæve kanttilfælde og producere bedre kalibrerede output gennem struktureret debat.|
+| [5.8 Sikkerhed](./mcp-security/README.md) | Sikkerhed | Sikr din MCP-server |
+| [5.9 Websøgnings-eksempel](./web-search-mcp/README.md) | Web Search MCP | Python MCP-server og klient, der integrerer med SerpAPI til realtidsweb-, nyheds-, produkt-søgning og Q&A. Demonstrerer multi-tool orkestrering, ekstern API-integration og robust fejlhåndtering. |
+| [5.10 Realtidsstreaming](./mcp-realtimestreaming/README.md) | Streaming | Realtids data streaming er blevet essentielt i dagens datadrevne verden, hvor virksomheder og applikationer har brug for øjeblikkelig adgang til information for at træffe rettidige beslutninger. |
+| [5.11 Realtids websøgnings](./mcp-realtimesearch/README.md) | Web Search | Realtids websøgnings – hvordan MCP transformerer realtids websøgning ved at tilbyde en standardiseret tilgang til kontekststyring på tværs af AI-modeller, søgemaskiner og applikationer. |
+| [5.12 Entra ID Authentication for Model Context Protocol Servers](./mcp-security-entra/README.md) | Entra ID Authentication | Microsoft Entra ID tilbyder en robust cloudbaseret identitets- og adgangsstyringsløsning, som sikrer, at kun autoriserede brugere og applikationer kan interagere med din MCP-server. |
+| [5.13 Microsoft Foundry Agent Integration](./mcp-foundry-agent-integration/README.md) | Microsoft Foundry Integration | Lær hvordan du integrerer Model Context Protocol-servere med Microsoft Foundry-agenter, hvilket muliggør kraftfuld værktøjsorkestrering og virksomhedens AI-muligheder med standardiserede eksterne datakildeforbindelser. |
+| [5.14 Context Engineering](./mcp-contextengineering/README.md) | Context Engineering | Fremtidige muligheder for kontekstteknikker til MCP-servere, herunder kontekstoptimering, dynamisk kontekststyring og strategier til effektiv prompt engineering inden for MCP-rammer. |
+| [5.15 MCP Custom Transport](./mcp-transport/README.md) | Custom Transport | Lær hvordan man implementerer tilpassede transportmekanismer til specialiserede MCP-kommunikationsscenarier. |
+| [5.16 Protocol Features Deep Dive](./mcp-protocol-features/README.md) | Protocol Features | Mestre avancerede protokolfunktioner inklusive fremskridtsnotifikationer, annullering af forespørgsler, ressourcetemplater og mønstre for fejlhåndtering. |
+| [5.17 Adversarial Multi-Agent Reasoning](./mcp-adversarial-agents/README.md) | Adversarial Agents | Brug to agenter med modstridende positioner, der deler et enkelt MCP værktøjssæt, for at fange hallucinationer, afdække kanttilfælde og producere bedre kalibrerede output gennem struktureret debat. |
 
-> **Nyt i MCP Specificering 2025-11-25**: Specifikationen inkluderer nu eksperimentel support for **Tasks** (langvarige operationer med progressopfølgning), **Tool Annotations** (metadata om værktøjets adfærd for sikkerhed), **URL Mode Elicitation** (anmodning om specifikt URL-indhold fra klienter) og forbedrede **Roots** (til workspace kontekststyring). Se [MCP Specifikations Changelog](https://spec.modelcontextprotocol.io/) for fulde detaljer.
+> **Historisk `2025-11-25` note:** denne revision introducerede eksperimentelle
+> Tasks og udvidede flere protokolfunktioner. I `2026-07-28` blev Tasks
+> flyttet til en officiel udvidelse og Roots blev udfaset. Brug ikke
+> `2025-11-25` funktionsstatus som aktuel vejledning; se
+> [2026-07-28 changelog](https://modelcontextprotocol.io/specification/2026-07-28/changelog).
 
-## Yderligere Referencer
+## Yderligere referencer
 
 For den mest opdaterede information om avancerede MCP-emner, se:
 - [MCP Dokumentation](https://modelcontextprotocol.io/)
-- [MCP Specifikation (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Specifikation (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [GitHub Repository](https://github.com/modelcontextprotocol)
-- [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - Sikkerhedsrisici og afbødninger
+- [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - Sikkerhedsrisici og afbødning
 - [MCP Security Summit Workshop (Sherpa)](https://azure-samples.github.io/sherpa/) - Praktisk sikkerhedstræning
 
-## Vigtige Pointer
+## Vigtige pointer
 
-- Multi-modal MCP implementering udvider AI kapaciteter ud over tekstbehandling
-- Skalerbarhed er essentielt for virksomhedsudrulninger og kan adresseres via horisontal og vertikal skalering
+- Multimodale MCP-implementeringer udvider AI-kapaciteter ud over tekstbehandling
+- Skalerbarhed er essentielt for virksomheders udrulning og kan adresseres gennem horisontal og vertikal skalerbarhed
 - Omfattende sikkerhedsforanstaltninger beskytter data og sikrer korrekt adgangskontrol
-- Virksomhedsintegration med platforme som Azure OpenAI og Microsoft AI Foundry forbedrer MCP kapaciteter
-- Avanceret MCP implementering drager fordel af optimerede arkitekturer og omhyggelig ressourcehåndtering
+- Virksomhedsintegration med platforme som Azure OpenAI og Microsoft AI Foundry forbedrer MCP-kapaciteter
+- Avancerede MCP-implementeringer drager fordel af optimerede arkitekturer og omhyggelig ressourcestyring
 
 ## Øvelse
 
-Design en virksomheds-grad MCP implementering til en specifik anvendelsessag:
+Design en MCP-implementering i virksomhedsklasse til et specifikt brugstilfælde:
 
-1. Identificer multi-modale krav til din anvendelsessag
-2. Skitser de nødvendige sikkerhedskontroller til beskyttelse af følsomme data
+1. Identificer multimodale krav til dit brugstilfælde
+2. Skitser de nødvendige sikkerhedskontroller for at beskytte følsomme data
 3. Design en skalerbar arkitektur, der kan håndtere varierende belastning
-4. Planlæg integrationspunkter med virksomheds-AI-systemer
-5. Dokumenter potentielle performanceflaskehalse og strategier til afhjælpning
+4. Planlæg integrationspunkter med virksomhedens AI-systemer
+5. Dokumenter potentielle ydeevneflaskehalse og afbødningsstrategier
 
-## Yderligere Ressourcer
+## Yderligere ressourcer
 
 - [Azure OpenAI Dokumentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/)
 - [Microsoft AI Foundry Dokumentation](https://learn.microsoft.com/en-us/ai-services/)
 
 ---
 
-## Hvad er det næste
+## Hvad nu?
 
-Udforsk lektionerne i denne modul startende med: [5.1 MCP Integration](./mcp-integration/README.md)
+Udforsk lektionerne i denne modul begyndende med: [5.1 MCP Integration](./mcp-integration/README.md)
 
-Når du har afsluttet dette modul, fortsæt til: [Modul 6: Community Contributions](../06-CommunityContributions/README.md)
+Når du har gennemført denne modul, fortsæt til: [Modul 6: Community Bidrag](../06-CommunityContributions/README.md)
 
 ---
 

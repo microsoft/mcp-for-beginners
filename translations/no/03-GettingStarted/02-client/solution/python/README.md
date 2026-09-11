@@ -1,6 +1,6 @@
-# Kjøre dette eksempelet
+# Kjøre dette eksemplet
 
-Det anbefales å installere `uv`, men det er ikke nødvendig, se [instruksjoner](https://docs.astral.sh/uv/#highlights)
+Det anbefales å installere `uv`, men det er ikke et krav, se [instruksjoner](https://docs.astral.sh/uv/#highlights)
 
 ## -0- Opprett et virtuelt miljø
 
@@ -11,7 +11,7 @@ python -m venv venv
 ## -1- Aktiver det virtuelle miljøet
 
 ```bash
-venv\Scrips\activate
+venv\Scripts\activate
 ```
 
 ## -2- Installer avhengighetene
@@ -20,29 +20,32 @@ venv\Scrips\activate
 pip install "mcp[cli]"
 ```
 
-## -3- Kjør eksempelet
-
+## -3- Kjør eksemplet
 
 ```bash
 python client.py
 ```
 
-Du bør se en output som ligner på:
+Du skal se en utdata som ligner på:
 
 ```text
 LISTING RESOURCES
 Resource:  ('meta', None)
 Resource:  ('nextCursor', None)
 Resource:  ('resources', [])
-                    INFO     Processing request of type ListToolsRequest                                                                               server.py:534
+INFO Processing request of type ListToolsRequest server.py:534
 LISTING TOOLS
 Tool:  add
 READING RESOURCE
-                    INFO     Processing request of type ReadResourceRequest                                                                            server.py:534
+INFO Processing request of type ReadResourceRequest server.py:534
 CALL TOOL
-                    INFO     Processing request of type CallToolRequest                                                                                server.py:534
+INFO Processing request of type CallToolRequest server.py:534
 [TextContent(type='text', text='8', annotations=None)]
 ```
 
-**Ansvarsfraskrivelse**:  
-Dette dokumentet er oversatt ved hjelp av AI-oversettelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selv om vi streber etter nøyaktighet, vennligst vær oppmerksom på at automatiske oversettelser kan inneholde feil eller unøyaktigheter. Det opprinnelige dokumentet på originalspråket skal anses som den autoritative kilden. For kritisk informasjon anbefales profesjonell menneskelig oversettelse. Vi er ikke ansvarlige for eventuelle misforståelser eller feiltolkninger som oppstår ved bruk av denne oversettelsen.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Ansvarsfraskrivelse**:
+Dette dokumentet er oversatt ved hjelp av AI-oversettelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selv om vi streber etter nøyaktighet, vær oppmerksom på at automatiske oversettelser kan inneholde feil eller unøyaktigheter. Det opprinnelige dokumentet på originalspråket skal betraktes som den autoritative kilden. For kritisk informasjon anbefales profesjonell menneskelig oversettelse. Vi er ikke ansvarlige for eventuelle misforståelser eller feiltolkninger som oppstår ved bruk av denne oversettelsen.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

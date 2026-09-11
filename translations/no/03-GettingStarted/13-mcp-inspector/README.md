@@ -1,21 +1,26 @@
 # Feilsøking med MCP Inspector
 
-**MCP Inspector** er et viktig feilsøkingsverktøy som lar deg teste og feilsøke MCP-serverne dine interaktivt uten å trenge en full AI-host-applikasjon. Tenk på det som "Postman for MCP" - det gir et visuelt grensesnitt for å sende forespørsler, se svar og forstå hvordan serveren din oppfører seg.
+> [!NOTE]
+> Kommandoer som bruker `--sse` og URL-er som slutter med `/sse` tester den gamle HTTP+SSE
+> transporten. For en ny MCP `2026-07-28`-server, bruk en Inspector-versjon som
+> støtter Streamable HTTP og velg den transporten i stedet.
+
+**MCP Inspector** er et essensielt feilsøkingsverktøy som lar deg interaktivt teste og feilsøke dine MCP-servere uten å måtte bruke en full AI-vertsapplikasjon. Tenk på det som "Postman for MCP" - det gir en visuell grensesnitt for å sende forespørsler, se svar og forstå hvordan serveren din oppfører seg.
 
 ## Hvorfor bruke MCP Inspector?
 
 Når du bygger MCP-servere, vil du ofte støte på disse utfordringene:
 
 - **"Kjører serveren min i det hele tatt?"** - Inspector viser tilkoblingsstatus
-- **"Er verktøyene mine registrert riktig?"** - Inspector lister opp alle tilgjengelige verktøy
-- **"Hva er responsformatet?"** - Inspector viser fullstendige JSON-responser
+- **"Er verktøyene mine registrert korrekt?"** - Inspector viser alle tilgjengelige verktøy
+- **"Hva er svarformatet?"** - Inspector viser fullstendige JSON-svar
 - **"Hvorfor fungerer ikke dette verktøyet?"** - Inspector viser detaljerte feilmeldinger
 
 ## Forutsetninger
 
 - Node.js 18+ installert
-- npm (følger med Node.js)
-- En MCP-server å teste (se [Modul 3.1 - Første server](../01-first-server/README.md))
+- npm (leveres med Node.js)
+- En MCP-server å teste (se [Modul 3.1 - Første Server](../01-first-server/README.md))
 
 ## Installasjon
 
@@ -32,7 +37,7 @@ npm install -g @modelcontextprotocol/inspector
 mcp-inspector
 ```
 
-### Alternativ 3: Legg til i prosjektet ditt
+### Alternativ 3: Legg til i ditt prosjekt
 
 ```bash
 cd your-mcp-server-project
@@ -50,11 +55,11 @@ Legg til i `package.json`:
 
 ---
 
-## Koble til serveren din
+## Koble til din server
 
 ### stdio-servere (lokal prosess)
 
-For servere som kommuniserer via standard input/output:
+For servere som kommuniserer via standard inn/ut:
 
 ```bash
 # Python-server
@@ -85,7 +90,7 @@ For servere som kjører som HTTP-tjenester:
 
 ## Oversikt over Inspector-grensesnittet
 
-Når Inspector starter, vil du se et webgrensesnitt (ofte på `http://localhost:5173`):
+Når Inspector startes, vil du se et nettgrensesnitt (vanligvis på `http://localhost:5173`):
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -113,23 +118,23 @@ Når Inspector starter, vil du se et webgrensesnitt (ofte på `http://localhost:
 
 ## Testing av verktøy
 
-### Liste over tilgjengelige verktøy
+### Liste tilgjengelige verktøy
 
-1. Klikk på fanen **Tools**
+1. Klikk på **Tools**-fanen
 2. Inspector kaller automatisk `tools/list`
 3. Du vil se alle registrerte verktøy med:
    - Verktøynavn
    - Beskrivelse
-   - Inndataskjema (parametere)
+   - Input-skjema (parametere)
 
 ### Kalle et verktøy
 
 1. Velg et verktøy fra listen
-2. Fyll ut de nødvendige parameterne i skjemaet
-3. Klikk på **Run Tool**
-4. Se responsen i resultatpanelet
+2. Fyll inn påkrevde parametere i skjemaet
+3. Klikk **Run Tool**
+4. Se svaret i resultatpanelet
 
-**Eksempel: Testing av et kalkulatorverktøy**
+**Eksempel: Testing av en kalkulatortjeneste**
 
 ```
 Tool: add
@@ -165,19 +170,19 @@ Error Response:
 Vanlige feilkoder:
 | Kode | Betydning |
 |------|-----------|
-| -32700 | Parsefeil (ugyldig JSON) |
+| -32700 | Parsingsfeil (ugyldig JSON) |
 | -32600 | Ugyldig forespørsel |
 | -32601 | Metode ikke funnet |
-| -32602 | Ugyldige parametre |
+| -32602 | Ugyldige parametere |
 | -32603 | Intern feil |
 
 ---
 
 ## Testing av ressurser
 
-### Liste over ressurser
+### Liste ressurser
 
-1. Klikk på fanen **Resources**
+1. Klikk på **Resources**-fanen
 2. Inspector kaller `resources/list`
 3. Du vil se:
    - Ressurs-URIer
@@ -187,7 +192,7 @@ Vanlige feilkoder:
 ### Lese en ressurs
 
 1. Velg en ressurs
-2. Klikk på **Read Resource**
+2. Klikk **Read Resource**
 3. Se innholdet som returneres
 
 **Eksempel på utdata:**
@@ -206,26 +211,29 @@ Content-Type: application/json
 
 ---
 
-## Testing av prompts
+## Testing av prompt
 
-### Liste over prompts
+### Liste prompts
 
-1. Klikk på fanen **Prompts**
+1. Klikk på **Prompts**-fanen
 2. Inspector kaller `prompts/list`
-3. Se tilgjengelige prompt-maler
+3. Se tilgjengelige promptmaler
 
 ### Hente en prompt
 
 1. Velg en prompt
-2. Fyll ut eventuelle nødvendige argumenter
-3. Klikk på **Get Prompt**
-4. Se de rendrerte prompt-meldingene
+2. Fyll inn eventuelle påkrevde argumenter
+3. Klikk **Get Prompt**
+4. Se de gjengitte promptmeldinger
 
 ---
 
 ## Analyse av meldingslogg
 
-Meldingsloggen viser alle MCP-protokollmeldinger:
+Meldingsloggen viser alle MCP protokollmeldinger. Transkripsjonen nedenfor er fra en
+legacy `2025-11-25`-server og inkluderer den fjernede `initialize`-håndtrykksekvensen. En
+`2026-07-28`-server bruker selvstendige forespørselsmetadata og `server/discover`
+i stedet.
 
 ```
 14:32:01 → {"jsonrpc":"2.0","id":1,"method":"initialize",...}
@@ -236,16 +244,16 @@ Meldingsloggen viser alle MCP-protokollmeldinger:
 14:32:05 ← {"jsonrpc":"2.0","id":3,"result":{"content":[...]}}
 ```
 
-### Hva du skal se etter
+### Hva du bør se etter
 
-- **Forespørsels-/responspar**: Hver `→` burde ha en matchende `←`
+- **Forespørsel/svar-par**: Hver `→` bør ha en tilsvarende `←`
 - **Feilmeldinger**: Se etter `"error"` i svarene
-- **Tidsbruk**: Store pauser kan tyde på ytelsesproblemer
-- **Protokollversjon**: Sørg for at server og klient er enige om versjonen
+- **Tidsbruk**: Store hull kan indikere ytelsesproblemer
+- **Protokollversjon**: Sørg for at server og klient er enige om versjon
 
 ---
 
-## VS Code-integrasjon
+## Integrasjon med VS Code
 
 Du kan kjøre Inspector direkte fra VS Code:
 
@@ -310,21 +318,21 @@ Legg til i `.vscode/tasks.json`:
 
 ---
 
-## Vanlige feilsøkingsscenarioer
+## Vanlige feilsøkingsscenarier
 
-### Scenario 1: Server kobler ikke til
+### Scenario 1: Server vil ikke koble til
 
 **Symptomer:** Inspector viser "Disconnected" eller henger på "Connecting..."
 
 **Sjekkliste:**
-1. ✅ Er serverkommandoen riktig?
+1. ✅ Er serverkommandoen korrekt?
 2. ✅ Er alle avhengigheter installert?
-3. ✅ Er serverbanen absolutt eller relativ til gjeldende katalog?
+3. ✅ Er serverstien absolutt eller relativ til gjeldende katalog?
 4. ✅ Er nødvendige miljøvariabler satt?
 
 **Feilsøkingstrinn:**
 ```bash
-# Test server manuelt først
+# Test serveren manuelt først
 python -c "import your_server_module; print('OK')"
 
 # Sjekk for importfeil
@@ -339,26 +347,26 @@ pip show mcp
 **Symptomer:** Verktøyfanen viser tom liste
 
 **Mulige årsaker:**
-1. Verktøy ikke registrert under serveroppstart
+1. Verktøy ikke registrert under serverinitialisering
 2. Server krasjet etter oppstart
-3. `tools/list`-handler returnerer tom tabell
+3. `tools/list` behandler returnerer tom matrise
 
 **Feilsøkingstrinn:**
-1. Sjekk meldingsloggen for `tools/list`-respons
-2. Legg til logging i din verktøyregistrering
-3. Bekreft at `@mcp.tool()`-dekoratører er til stede (Python)
+1. Sjekk meldingsloggen for `tools/list`-svar
+2. Legg til logging i kode for verktøyregistrering
+3. Verifiser at `@mcp.tool()` dekoratører er tilstede (Python)
 
 ### Scenario 3: Verktøy returnerer feil
 
-**Symptomer:** Verktøysamtale gir feilsvar
+**Symptomer:** Verktøykall returnerer feilsvar
 
 **Feilsøkingsmetode:**
 1. Les feilmeldingen nøye
-2. Sjekk at parametertype samsvarer med skjemaet
+2. Sjekk at parametertyper stemmer med skjemaet
 3. Legg til try/catch med detaljerte feilmeldinger
 4. Sjekk serverlogger for stacktraces
 
-**Eksempel på forbedret feilbehandling:**
+**Eksempel på forbedret feilhåndtering:**
 
 ```python
 @mcp.tool()
@@ -373,20 +381,20 @@ async def my_tool(param1: str, param2: int) -> str:
         raise McpError(f"Tool failed: {type(e).__name__}: {e}")
 ```
 
-### Scenario 4: Ressursinnhold er tomt
+### Scenario 4: Ressursinnhold tomt
 
 **Symptomer:** Ressurs returnerer, men innholdet er tomt eller null
 
 **Sjekkliste:**
-1. ✅ Filbane eller URI er korrekt
+1. ✅ Filsti eller URI er korrekt
 2. ✅ Server har tillatelse til å lese ressursen
-3. ✅ Ressursinnhold returneres riktig
+3. ✅ Ressursinnhold returneres korrekt
 
 ---
 
 ## Avanserte Inspector-funksjoner
 
-### Egendefinerte overskrifter (SSE)
+### Egendefinerte headere (SSE)
 
 ```bash
 npx @modelcontextprotocol/inspector \
@@ -403,7 +411,7 @@ DEBUG=mcp* npx @modelcontextprotocol/inspector python server.py
 ### Opptak av økter
 
 Inspector kan eksportere meldingslogger for senere analyse:
-1. Klikk på **Export Log** i meldingspanelet
+1. Klikk **Export Log** i meldingspanelet
 2. Lagre JSON-filen
 3. Del med teammedlemmer for feilsøking
 
@@ -411,31 +419,31 @@ Inspector kan eksportere meldingslogger for senere analyse:
 
 ## Beste praksis
 
-1. **Test tidlig og ofte** - Bruk Inspector under utvikling, ikke bare når noe krasjer
-2. **Start enkelt** - Test grunnleggende tilkobling før komplekse verktøysamtaler
-3. **Sjekk skjemaet** - Mange feil skyldes feil parametertyper
+1. **Test tidlig og ofte** - Bruk Inspector under utvikling, ikke bare når ting bryter
+2. **Start enkelt** - Test grunnleggende tilkobling før komplekse verktøyskall
+3. **Sjekk skjemaet** - Mange feil skyldes parameter-typefeil
 4. **Les feilmeldinger** - MCP-feil er vanligvis beskrivende
-5. **Hold Inspector åpen** - Det hjelper deg å oppdage problemer løpende
+5. **Hold Inspector åpen** - Det hjelper deg å fange opp problemer mens du utvikler
 
 ---
 
 ## Hva nå?
 
-Du er ferdig med Modul 3: Komme i gang! Fortsett læringen din:
+Du har fullført Modul 3: Komme i gang! Fortsett læringen din:
 
 - [Modul 4: Praktisk implementering](../../04-PracticalImplementation/README.md)
 
 ---
 
-## Ekstra ressurser
+## Ytterligere ressurser
 
-- [MCP Inspector GitHub Repository](https://github.com/modelcontextprotocol/inspector)
-- [MCP-spesifikasjon - Protokollmeldinger](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [JSON-RPC 2.0-spesifikasjon](https://www.jsonrpc.org/specification)
+- [MCP Inspector GitHub-repositorium](https://github.com/modelcontextprotocol/inspector)
+- [MCP Spesifikasjon - Protokollmeldinger](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [JSON-RPC 2.0 Spesifikasjon](https://www.jsonrpc.org/specification)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Ansvarsfraskrivelse**:
-Dette dokumentet er oversatt ved hjelp av AI-oversettelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selv om vi streber etter nøyaktighet, vennligst vær oppmerksom på at automatiserte oversettelser kan inneholde feil eller unøyaktigheter. Det opprinnelige dokumentet på dets opprinnelige språk skal betraktes som den autoritative kilden. For kritisk informasjon anbefales profesjonell menneskelig oversettelse. Vi er ikke ansvarlige for misforståelser eller feiltolkninger som oppstår ved bruk av denne oversettelsen.
+Dette dokumentet er oversatt ved hjelp av AI-oversettelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selv om vi streber etter nøyaktighet, vær oppmerksom på at automatiske oversettelser kan inneholde feil eller unøyaktigheter. Det opprinnelige dokumentet på originalspråket skal betraktes som den autoritative kilden. For kritisk informasjon anbefales profesjonell menneskelig oversettelse. Vi er ikke ansvarlige for eventuelle misforståelser eller feiltolkninger som oppstår ved bruk av denne oversettelsen.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

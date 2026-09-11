@@ -1,50 +1,51 @@
 # Sivutus ja suuret tulosjoukot MCP:ssä
 
-Kun MCP-palvelimesi käsittelee suuria tietomääriä – olipa kyse sitten tuhansien tiedostojen, tietokantatietueiden tai hakutulosten listauksesta – tarvitset sivutuksen muistinhallinnan tehostamiseksi ja sujuvan käyttäjäkokemuksen tarjoamiseksi. Tässä oppaassa käsitellään, miten sivutus toteutetaan ja käytetään MCP:ssä.
+Kun MCP-palvelimesi käsittelee suuria tietojoukkoja - olipa kyse tuhansien tiedostojen, tietokantatietueiden tai hakutulosten listauksesta - tarvitset sivutusta muistin tehokkaaseen hallintaan ja responsiivisen käyttökokemuksen tarjoamiseen. Tämä opas kattaa miten sivutusta toteutetaan ja käytetään MCP:ssä.
 
 ## Miksi sivutus on tärkeää
 
 Ilman sivutusta suuret vastaukset voivat aiheuttaa:
 
-- **Muistin loppuminen** – Miljoonien tietueiden lataaminen kerralla
-- **Hitaat vasteajat** – Käyttäjät odottavat kun kaikki data latautuu
-- **Aikatulutvirheet** – Pyynnöt ylittävät aikakatkaisurajat
-- **Heikko tekoälyn suorituskyky** – LLM:t kamppailevat valtavan kontekstin kanssa
+- **Muistin loppuminen** - Miljoonien tietueiden lataaminen kerralla
+- **Hitaita vasteaikoja** - Käyttäjät odottavat, kun kaikki data latautuu
+- **Aikakatkais virheitä** - Pyynnöt ylittävät aikakatkaisurajat
+- **Huonoa tekoälyn suorituskykyä** - LLM:t kamppailevat massiivisen kontekstin kanssa
 
-MCP käyttää **kursori-pohjaista sivutusta** luotettavan ja johdonmukaisen tulosten selaamisen takaamiseksi.
+MCP käyttää **kursori-pohjaista sivutusta** luotettavaan ja johdonmukaiseen tulosjoukkojen läpikäyntiin.
 
 ---
 
-## Näin MCP-sivutus toimii
+## Miten MCP:n sivutus toimii
 
-### Kursori-käsite
+### Kurssori-käsite
 
-**Kursori** on läpinäkymätön merkkijono, joka merkitsee sijaintiasi tulosjoukossa. Ajattele sitä kirjanmerkkinä pitkässä kirjassa.
+**Kurssori** on läpinäkymätön merkkijono, joka merkitsee sijaintiasi tulosjoukossa. Voit ajatella sitä kirjanmerkkinä pitkän kirjan sivuilla.
 
 ```mermaid
 sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: työkalut/lista (ei kursoria)
+    Client->>Server: työkalut/lista (ei kohdistinta)
     Server-->>Client: työkalut [1-10], nextCursor: "abc123"
     
-    Client->>Server: työkalut/lista (kursori: "abc123")
+    Client->>Server: työkalut/lista (kohdistin: "abc123")
     Server-->>Client: työkalut [11-20], nextCursor: "def456"
     
-    Client->>Server: työkalut/lista (kursori: "def456")
+    Client->>Server: työkalut/lista (kohdistin: "def456")
     Server-->>Client: työkalut [21-25], nextCursor: null (loppu)
 ```
-### Sivutus MCP-metodeissa
 
-Nämä MCP-metodit tukevat sivutusta:
+### Sivutus MCP-menetelmissä
 
-| Metodi | Palauttaa | Cursor-tuki |
-|--------|-----------|-------------|
-| `tools/list` | Työkalumääritykset | ✅ |
-| `resources/list` | Resurssimääritykset | ✅ |
-| `prompts/list` | Kehotemääritykset | ✅ |
-| `resources/templates/list` | Resurssimallit | ✅ |
+Nämä MCP-menetelmät tukevat sivutusta:
+
+| Menetelmä | Palauttaa | Kurssorin tuki |
+|--------|---------|----------------|
+| `tools/list` | Työkalumääritelmät | ✅ |
+| `resources/list` | Resurssimääritelmät | ✅ |
+| `prompts/list` | Kehote-määritelmät | ✅ |
+| `resources/templates/list` | Resurssipohjat | ✅ |
 
 ---
 
@@ -59,7 +60,7 @@ import math
 
 app = Server("paginated-server")
 
-# Simuloitu suuri tietojoukko
+# Simuloitu suuri tietoaineisto
 ALL_TOOLS = [
     Tool(name=f"tool_{i}", description=f"Tool number {i}", inputSchema={})
     for i in range(100)
@@ -71,7 +72,7 @@ PAGE_SIZE = 10
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     """List tools with pagination support."""
     
-    # Dekoodaa kursori saadaksesi aloitusindeksi
+    # Purkaa kursorin saadakseen aloitusindeksin
     start_index = 0
     if cursor:
         try:
@@ -115,17 +116,17 @@ const ALL_TOOLS = Array.from({ length: 100 }, (_, i) => ({
 const PAGE_SIZE = 10;
 
 server.setRequestHandler(ListToolsResultSchema, async (request) => {
-  // Purkaa osoitin
+  // Dekoodaa kursori
   let startIndex = 0;
   if (request.params?.cursor) {
     startIndex = parseInt(request.params.cursor, 10) || 0;
   }
   
-  // Hae sivu tuloksia
+  // Hae sivu tuloksista
   const endIndex = Math.min(startIndex + PAGE_SIZE, ALL_TOOLS.length);
   const pageTools = ALL_TOOLS.slice(startIndex, endIndex);
   
-  // Laske seuraava osoitin
+  // Laske seuraava kursori
   const nextCursor = endIndex < ALL_TOOLS.length ? String(endIndex) : undefined;
   
   return {
@@ -153,7 +154,7 @@ public class PaginatedToolService {
     
     @McpMethod("tools/list")
     public ListToolsResult listTools(@Param("cursor") String cursor) {
-        // Pura kohdistin
+        // Purkaa osoitin
         int startIndex = 0;
         if (cursor != null && !cursor.isEmpty()) {
             try {
@@ -163,11 +164,11 @@ public class PaginatedToolService {
             }
         }
         
-        // Hae tulossivu
+        // Hae sivu tuloksia
         int endIndex = Math.min(startIndex + PAGE_SIZE, allTools.size());
         List<Tool> pageTools = allTools.subList(startIndex, endIndex);
         
-        // Laske seuraava kohdistin
+        // Laske seuraava osoitin
         String nextCursor = endIndex < allTools.size() ? String.valueOf(endIndex) : null;
         
         return new ListToolsResult(pageTools, nextCursor);
@@ -177,7 +178,7 @@ public class PaginatedToolService {
 
 ---
 
-## Asiakasohjelman toteutus
+## Asiakaspuolen toteutus
 
 ### Python-asiakas
 
@@ -228,9 +229,9 @@ const tools = await getAllTools(client);
 console.log(`Found ${tools.length} tools`);
 ```
 
-### Laiskan lataamisen malli
+### Laiskan latauksen malli
 
-Hyvin suurille tietomäärille lataa sivut tarpeen mukaan:
+Erittäin suurille tietojoukoille, lataa sivut tarpeen mukaan:
 
 ```python
 class PaginatedToolIterator:
@@ -247,7 +248,7 @@ class PaginatedToolIterator:
         if self.buffer:
             return self.buffer.pop(0)
         
-        # Tarkista, onko kaikki sivut käyty läpi
+        # Tarkista, olemmeko käyneet läpi kaikki sivut
         if self.exhausted:
             raise StopAsyncIteration
         
@@ -267,16 +268,16 @@ class PaginatedToolIterator:
     def __aiter__(self):
         return self
 
-# Käyttö - muistitehokas suurille tietojoukoille
+# Käyttö - muistitehokas suurille aineistoille
 async for tool in PaginatedToolIterator(session):
     process_tool(tool)
 ```
 
 ---
 
-## Sivutus resursseille
+## Sivutus Resursseille
 
-Resurssit tarvitsevat usein sivutusta hakemistoille tai suurille tietomäärille:
+Resurssit tarvitsevat usein sivutusta hakemistoihin tai suuriin tietojoukkoihin:
 
 ```python
 from mcp.server import Server
@@ -292,12 +293,12 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
     directory = "/data/files"
     all_files = sorted(os.listdir(directory))
     
-    # Dekoodaa kohdistin (tiedoston indeksi)
+    # Puretaan kursori (tiedoston indeksi)
     start_index = int(cursor) if cursor else 0
     page_size = 20
     end_index = min(start_index + page_size, len(all_files))
     
-    # Luo resurssien lista tälle sivulle
+    # Luodaan resurssilista tälle sivulle
     resources = []
     for filename in all_files[start_index:end_index]:
         filepath = os.path.join(directory, filename)
@@ -307,7 +308,7 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
             mimeType="application/octet-stream"
         ))
     
-    # Laske seuraava kohdistin
+    # Lasketaan seuraava kursori
     next_cursor = str(end_index) if end_index < len(all_files) else None
     
     return ListResourcesResult(
@@ -318,29 +319,29 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ---
 
-## Kursori-suunnittelustrategiat
+## Kurssorin suunnittelustrategiat
 
-### Strategia 1: Indeksipohjainen (yksinkertainen)
+### Strategia 1: Indeksipohjainen (Yksinkertainen)
 
 ```python
 # Kohdistin on vain indeksi
 cursor = "50"  # Aloita kohteesta 50
 ```
 
-**Plussat:** Yksinkertainen, tilatonta  
-**Miinukset:** Tulokset voivat muuttua, jos kohteita lisätään tai poistetaan
+**Edut:** Yksinkertainen, tilattomuus
+**Haitat:** Tulokset voivat muuttua, jos kohteita lisätään/poistetaan
 
-### Strategia 2: ID-pohjainen (vakaa)
+### Strategia 2: ID-pohjainen (Vakaa)
 
 ```python
-# Kursori on viimeksi nähty ID
+# Kohdistin on viimeksi nähty tunnus
 cursor = "item_abc123"  # Aloita tämän kohteen jälkeen
 ```
 
-**Plussat:** Vakaa, vaikka kohteet muuttuvat  
-**Miinukset:** Vaatii järjestetyt tunnisteet
+**Edut:** Vakaa, vaikka kohteet muuttuisivat
+**Haitat:** Vaatii järjestetyt ID:t
 
-### Strategia 3: Koodattu tila (monimutkainen)
+### Strategia 3: Koodattu tila (Monimutkainen)
 
 ```python
 import base64
@@ -352,7 +353,7 @@ def encode_cursor(state: dict) -> str:
 def decode_cursor(cursor: str) -> dict:
     return json.loads(base64.b64decode(cursor).decode())
 
-# Kohdistin sisältää useita tilakenttiä
+# Kohdistin sisältää useita tila-kenttiä
 cursor = encode_cursor({
     "offset": 50,
     "filter": "active",
@@ -360,23 +361,23 @@ cursor = encode_cursor({
 })
 ```
 
-**Plussat:** Voi koodata monimutkaisen tilan  
-**Miinukset:** Monimutkaisempi, pidemmät kursori-merkkijonot
+**Edut:** Voi koodata monimutkaisen tilan
+**Haitat:** Monimutkaisempi, pidemmät kurssorimerkkijonot
 
 ---
 
-## Parhaita käytäntöjä
+## Parhaat käytännöt
 
 ### 1. Valitse sopivat sivukoot
 
 ```python
-# Harkitse datan kokoa
-PAGE_SIZE_SMALL_ITEMS = 100   # Yksinkertainen metatieto
-PAGE_SIZE_MEDIUM_ITEMS = 20   # Monipuolisemmat objektit
+# Harkitse tietojen kokoa
+PAGE_SIZE_SMALL_ITEMS = 100   # Yksinkertainen metadata
+PAGE_SIZE_MEDIUM_ITEMS = 20   # Rikkaammat objektit
 PAGE_SIZE_LARGE_ITEMS = 5     # Monimutkainen sisältö
 ```
 
-### 2. Käsittele virheelliset kursoriarvot hienovaraisesti
+### 2. Käsittele virheelliset kurssorit sujuvasti
 
 ```python
 @app.list_tools()
@@ -390,18 +391,18 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
     # ...
 ```
 
-### 3. Sisällytä kokonaistulosmäärä (valinnainen)
+### 3. Sisällytä kokonaismäärä (valinnainen)
 
 ```python
 return ListToolsResult(
     tools=page_tools,
     nextCursor=next_cursor,
-    # Jotkut toteutukset sisältävät kokonaismäärän käyttöliittymän etenemiselle
+    # Jotkin toteutukset sisältävät kokonaissumman käyttöliittymän etenemistä varten
     _meta={"total": len(ALL_TOOLS)}
 )
 ```
 
-### 4. Testaa ääriarvotapaukset
+### 4. Testaa reunatapaukset
 
 ```python
 async def test_pagination():
@@ -414,7 +415,7 @@ async def test_pagination():
     result = await session.list_tools()
     assert len(result.tools) <= PAGE_SIZE
     
-    # Virheellinen kohdistin
+    # Virheellinen kursori
     result = await session.list_tools(cursor="invalid")
     assert result.tools  # Pitäisi palauttaa ensimmäinen sivu
 ```
@@ -423,7 +424,7 @@ async def test_pagination():
 
 ## Yleisiä sudenkuoppia
 
-### ❌ Palauta kaikki tulokset ja sivuta asiakaspuolella
+### ❌ Palauta kaikki tulokset kerralla ja suorita sivutus asiakaspuolella
 
 ```python
 # HUONO: Lataa kaiken muistiin
@@ -433,7 +434,7 @@ async def list_tools() -> ListToolsResult:
     return ListToolsResult(tools=all_tools)
 ```
 
-### ✅ Sivuta datalähteellä
+### ✅ Suorita sivutus datalähteellä
 
 ```python
 # HYVÄ: Lataa vain tarvittavan
@@ -448,21 +449,21 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ## Mitä seuraavaksi
 
-- [Moduuli 5.14 - Kontekstisuunnittelu](../../05-AdvancedTopics/mcp-contextengineering/README.md)  
-- [Moduuli 8 - Parhaat käytännöt](../../08-BestPractices/README.md)  
-- [3.8 - MCP-palvelimesi testaaminen](../../03-GettingStarted/08-testing/README.md)  
+- [Moduuli 5.14 - Kontextitekniikka](../../05-AdvancedTopics/mcp-contextengineering/README.md)
+- [Moduuli 8 - Parhaat käytännöt](../../08-BestPractices/README.md)
+- [3.8 - MCP-palvelimesi testaus](../../03-GettingStarted/08-testing/README.md)
 
 ---
 
 ## Lisäresurssit
 
-- [MCP-spesifikaatio - Sivutus](https://spec.modelcontextprotocol.io/specification/2025-11-25/)  
-- [Cursor-pohjainen sivutus selitetty](https://slack.engineering/evolving-api-pagination-at-slack/)  
-- [Python SDK sivutustestit](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+- [MCP-spesifikaatio - Sivutus](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [Kurssori-pohjainen sivutus selitetty](https://slack.engineering/evolving-api-pagination-at-slack/)
+- [Python SDK:n sivutustestit](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, otathan huomioon, että automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäiskielellä on virallinen lähde. Tärkeissä asioissa suosittelemme ammattimaista, ihmiskääntäjien tekemää käännöstä. Emme ole vastuussa tämän käännöksen käytöstä johtuvista väärinymmärryksistä tai tulkinnoista.
+**Vastuuvapauslauseke**:
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, otathan huomioon, että automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäiskielellä on virallinen lähde. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
