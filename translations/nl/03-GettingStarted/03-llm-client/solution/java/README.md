@@ -1,25 +1,30 @@
 # Calculator LLM Client
 
+> [!NOTE]
+> Deze oplossing maakt verbinding met de legacy HTTP+SSE calculatorservice van de cursus en
+> richt zich op MCP `2025-11-25` SDK-API's. Het is geen `2026-07-28` Streamable HTTP
+> voorbeeld.
+
 Een Java-toepassing die demonstreert hoe LangChain4j te gebruiken om verbinding te maken met een MCP (Model Context Protocol) calculatorservice via de MiniMax OpenAI-compatibele API.
 
 ## Vereisten
 
 - Java 21 of hoger
-- Maven 3.6+ (of gebruik de meegeleverde Maven wrapper)
+- Maven 3.6+ (of gebruik de meegeleverde Maven-wrapper)
 - Een MiniMax API-sleutel
 - Een MCP calculatorservice die draait op `http://localhost:8080`
 
-## De API-sleutel verkrijgen
+## Het verkrijgen van de API-sleutel
 
-Deze toepassing gebruikt de MiniMax OpenAI-compatibele API. Volg deze stappen om uw sleutel en endpoint te verkrijgen:
+Deze applicatie gebruikt de MiniMax OpenAI-compatibele API. Volg deze stappen om je sleutel en endpoint te verkrijgen:
 
 ### 1. Kies een endpoint
-1. Gebruik `https://api.minimax.io/v1` voor het wereldwijde endpoint
+1. Gebruik `https://api.minimax.io/v1` voor het globale endpoint
 2. Gebruik `https://api.minimaxi.com/v1` voor het China-endpoint
 
 ### 2. Maak een API-sleutel aan
-1. Maak een MiniMax API-sleutel aan via uw MiniMax-account
-2. Bewaar de sleutel op een veilige plek
+1. Maak een MiniMax API-sleutel aan vanuit je MiniMax-account
+2. Bewaar de sleutel op een veilige plaats
 
 ### 3. Stel de Omgevingsvariabelen in
 
@@ -48,21 +53,21 @@ export MINIMAX_MODEL_ID=MiniMax-M3
 
 1. **Clone of navigeer naar de projectmap**
 
-2. **Installeer afhankelijkheden**:
+2. **Installeer dependencies**:
    ```cmd
    mvnw clean install
    ```
-   Of als je Maven globaal hebt geïnstalleerd:
+   Of als Maven globaal geïnstalleerd is:
    ```cmd
    mvn clean install
    ```
 
-3. **Stel de omgevingsvariabelen in** (zie sectie "De API-sleutel verkrijgen" hierboven)
+3. **Stel de omgevingsvariabelen in** (zie de sectie "Het verkrijgen van de API-sleutel" hierboven)
 
 4. **Start de MCP Calculator Service**:
-   Zorg dat je de MCP calculator-service van hoofdstuk 1 draait op `http://localhost:8080/sse`. Deze moet draaien voordat je de client start.
+   Zorg dat je hoofdstuk 1's MCP calculatorservice hebt draaien op `http://localhost:8080/sse`. Deze moet actief zijn voordat je de client start.
 
-## De Applicatie Uitvoeren
+## De applicatie uitvoeren
 
 ```cmd
 mvnw clean package
@@ -71,15 +76,15 @@ java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 
 ## Wat de Applicatie Doet
 
-De applicatie toont drie belangrijke interacties met de calculatorservice:
+De applicatie demonstreert drie hoofdinteracties met de calculatorservice:
 
-1. **Optelling**: Berekent de som van 24,5 en 17,3
-2. **Worteltrekking**: Berekent de vierkantswortel van 144
+1. **Optellen**: Bereken de som van 24,5 en 17,3
+2. **Vierkantswortel**: Bereken de vierkantswortel van 144
 3. **Help**: Toont beschikbare calculatorfuncties
 
-## Verwachte Output
+## Verwachte Uitvoer
 
-Bij een succesvolle uitvoering zie je een output die vergelijkbaar is met:
+Bij succesvol uitvoeren zou je een uitvoer moeten zien die lijkt op:
 
 ```
 The sum of 24.5 and 17.3 is 41.8.
@@ -87,47 +92,47 @@ The square root of 144 is 12.
 The calculator service provides the following functions: add, subtract, multiply, divide, sqrt, power...
 ```
 
-## Probleemoplossing
+## Problemen oplossen
 
-### Veelvoorkomende Problemen
+### Veelvoorkomende problemen
 
 1. **"OPENAI_API_KEY omgevingsvariabele is niet ingesteld"**
-   - Zorg ervoor dat je de `OPENAI_API_KEY` omgevingsvariabele hebt ingesteld
+   - Zorg dat je de `OPENAI_API_KEY` omgevingsvariabele hebt ingesteld
    - Herstart je terminal/command prompt nadat je de variabele hebt ingesteld
 
-2. **"Connectie geweigerd naar localhost:8080"**
-   - Zorg dat de MCP calculator-service draait op poort 8080
-   - Controleer of een andere service poort 8080 gebruikt
+2. **"Verbinding geweigerd naar localhost:8080"**
+   - Controleer of de MCP calculatorservice draait op poort 8080
+   - Controleer of een andere service poort 8080 niet al in gebruik heeft
 
 3. **"Authenticatie mislukt"**
    - Controleer of je API-sleutel geldig is
    - Controleer dat `OPENAI_BASE_URL` overeenkomt met het endpoint dat je wilde gebruiken
 
 4. **Maven build fouten**
-   - Zorg dat je Java 21 of hoger gebruikt: `java -version`
+   - Controleer dat je Java 21 of hoger gebruikt: `java -version`
    - Probeer de build schoon te maken: `mvnw clean`
 
 ### Debuggen
 
-Om debug logging te activeren, voeg het volgende JVM-argument toe bij het uitvoeren:
+Om debug logging in te schakelen, voeg de volgende JVM-parameter toe bij het uitvoeren:
 ```cmd
 java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
 
 ## Configuratie
 
-De applicatie is ingesteld op:
-- Gebruik standaard MiniMax-M3, of MiniMax-M2.7 wanneer `MINIMAX_MODEL_ID` is ingesteld
-- Verbind met `OPENAI_BASE_URL` wanneer dit is ingesteld; gebruik anders `https://api.minimaxi.com/v1` wanneer `MINIMAX_REGION=cn_zh`, of `https://api.minimax.io/v1` als standaard
-- Verbind met MCP-service op `http://localhost:8080/sse`
-- Gebruik een time-out van 60 seconden voor verzoeken
+De applicatie is geconfigureerd om:
+- Standaard MiniMax-M3 te gebruiken; stel `MINIMAX_MODEL_ID` in om te kiezen tussen `MiniMax-M3` of `MiniMax-M2.7`
+- Verbinden met `OPENAI_BASE_URL` indien ingesteld; anders `https://api.minimaxi.com/v1` gebruiken wanneer `MINIMAX_REGION=cn_zh`, of standaard `https://api.minimax.io/v1`
+- Verbinden met MCP-service op `http://localhost:8080/sse`
+- Een timeout van 60 seconden gebruiken voor verzoeken
 
 ## Afhankelijkheden
 
-Belangrijke afhankelijkheden die in dit project worden gebruikt:
+Belangrijke afhankelijkheden gebruikt in dit project:
 - **LangChain4j**: Voor AI-integratie en toolbeheer
-- **LangChain4j MCP**: Voor Model Context Protocol ondersteuning
-- **LangChain4j OpenAI official**: Voor MiniMax OpenAI-compatibele API integratie
+- **LangChain4j MCP**: Voor Model Context Protocol-ondersteuning
+- **LangChain4j OpenAI officieel**: Voor MiniMax OpenAI-compatibele API-integratie
 - **Spring Boot**: Voor applicatiekader en dependency injection
 
 ## Licentie

@@ -1,56 +1,57 @@
-# חלוקה לעמודים וקבוצות תוצאות גדולות ב-MCP
+# עימוד ומערכי תוצאות גדולים ב-MCP
 
-כאשר שרת MCP שלך מטפל במאגרי נתונים גדולים - בין אם זו רשימת אלפי קבצים, רשומות בבסיס נתונים או תוצאות חיפוש - אתה זקוק לחלוקה לעמודים כדי לנהל זיכרון ביעילות ולספק חוויית משתמש רספונסיבית. מדריך זה מסביר כיצד ליישם ולהשתמש בחלוקה לעמודים ב-MCP.
+כאשר שרת MCP שלך מטפל במערכי נתונים גדולים — בין אם ברשימת אלפי קבצים, רשומות מסד נתונים או תוצאות חיפוש — יש צורך בעימוד לניהול זיכרון יעיל ולהבטחת חוויות משתמש תגובתיות. מדריך זה מסביר כיצד ליישם ולהשתמש בעימוד ב-MCP.
 
-## מדוע חלוקה לעמודים חשובה
+## מדוע עימוד חשוב
 
-ללא חלוקה לעמודים, תגובות גדולות עלולות לגרום ל:
+ללא עימוד, תגובות גדולות עלולות לגרום ל:
 
-- **התמוטטות זיכרון** - טעינת מיליוני רשומות בבת אחת
+- **מיצוי זיכרון** - טעינת מיליוני רשומות בבת אחת
 - **זמני תגובה איטיים** - המשתמשים מחכים בזמן שכל הנתונים נטענים
-- **שגיאות חציית זמן (timeout)** - הבקשות עוברות את מגבלת הזמן
-- **ביצועי AI ירודים** - מודלים לומדים גדולים (LLMs) מתקשים בהקשר מסיבי
+- **שגיאות חציית זמן ממתין** - בקשות חורגות מגבולות הזמן המוקצב
+- **ביצוע לקוי של בינה מלאכותית** - מודלים גדולים מתקשים עם הקשר עצום
 
-MCP משתמש ב**חלוקה לעמודים מבוססת מצביע (cursor)** לדפדוף אמין ועקבי דרך קבוצות התוצאות.
+MCP משתמש בעימוד מבוסס סמן (**cursor**) לדפדוף אמין ועקבי דרך מערכי תוצאות.
 
 ---
 
-## כיצד עובדת החלוקה לעמודים ב-MCP
+## כיצד עובד העימוד ב-MCP
 
-### מושג המצביע (Cursor)
+### מושג הסמן
 
-**מצביע** הוא מחרוזת לא שקופה המסמנת את המיקום שלך בקבוצת תוצאות. דמיין אותו כסימניה בספר ארוך.
+**סמן** הוא מחרוזת אטומה שסימנה את מיקומך במערך תוצאות. דמיין אותו כסימנייה בספר ארוך.
 
 ```mermaid
 sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: כלים/רשימה (בלי סמן)
-    Server-->>Client: כלים [1-10], סמןהבא: "abc123"
+    Client->>Server: כלים/רשימה (ללא סמן)
+    Server-->>Client: כלים [1-10], סמן הבא: "abc123"
     
     Client->>Server: כלים/רשימה (סמן: "abc123")
-    Server-->>Client: כלים [11-20], סמןהבא: "def456"
+    Server-->>Client: כלים [11-20], סמן הבא: "def456"
     
     Client->>Server: כלים/רשימה (סמן: "def456")
-    Server-->>Client: כלים [21-25], סמןהבא: ריק (סיום)
+    Server-->>Client: כלים [21-25], סמן הבא: null (סיום)
 ```
-### חלוקה לעמודים בשיטות MCP
 
-השיטות הבאות של MCP תומכות בחלוקה לעמודים:
+### עימוד בשיטות MCP
 
-| שיטה | מחזירה | תומכת במצביע |
+שיטות MCP אלו תומכות בעימוד:
+
+| שיטה | מחזירה | תמיכה בסמן |
 |--------|---------|----------------|
 | `tools/list` | הגדרות כלים | ✅ |
 | `resources/list` | הגדרות משאבים | ✅ |
-| `prompts/list` | הגדרות פקודות | ✅ |
+| `prompts/list` | הגדרות בקשות | ✅ |
 | `resources/templates/list` | תבניות משאבים | ✅ |
 
 ---
 
 ## יישום בשרת
 
-### פייתון (FastMCP)
+### Python (FastMCP)
 
 ```python
 from mcp.server import Server
@@ -59,7 +60,7 @@ import math
 
 app = Server("paginated-server")
 
-# מאגר נתונים גדול מדומה
+# אוסף נתונים גדול מדומה
 ALL_TOOLS = [
     Tool(name=f"tool_{i}", description=f"Tool number {i}", inputSchema={})
     for i in range(100)
@@ -71,7 +72,7 @@ PAGE_SIZE = 10
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     """List tools with pagination support."""
     
-    # פענח את הסמן כדי לקבל את אינדקס ההתחלה
+    # פענח את הסמן כדי לקבל את האינדקס ההתחלתי
     start_index = 0
     if cursor:
         try:
@@ -79,11 +80,11 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
         except ValueError:
             start_index = 0
     
-    # קבל דף של תוצאות
+    # קבל עמוד של תוצאות
     end_index = min(start_index + PAGE_SIZE, len(ALL_TOOLS))
     page_tools = ALL_TOOLS[start_index:end_index]
     
-    # חישוב הסמן הבא
+    # חשב את הסמן הבא
     next_cursor = None
     if end_index < len(ALL_TOOLS):
         next_cursor = str(end_index)
@@ -115,17 +116,17 @@ const ALL_TOOLS = Array.from({ length: 100 }, (_, i) => ({
 const PAGE_SIZE = 10;
 
 server.setRequestHandler(ListToolsResultSchema, async (request) => {
-  // פענח סמן עכבר
+  // פענח את הסמן
   let startIndex = 0;
   if (request.params?.cursor) {
     startIndex = parseInt(request.params.cursor, 10) || 0;
   }
   
-  // קבל עמוד תוצאות
+  // קבל דף תוצאות
   const endIndex = Math.min(startIndex + PAGE_SIZE, ALL_TOOLS.length);
   const pageTools = ALL_TOOLS.slice(startIndex, endIndex);
   
-  // חשב סמן עכבר הבא
+  // חשב את הסמן הבא
   const nextCursor = endIndex < ALL_TOOLS.length ? String(endIndex) : undefined;
   
   return {
@@ -145,7 +146,7 @@ public class PaginatedToolService {
     private final List<Tool> allTools;
     
     public PaginatedToolService() {
-        // לאתחל קבוצת נתונים גדולה
+        // לאתחל מערכת נתונים גדולה
         this.allTools = IntStream.range(0, 100)
             .mapToObj(i -> new Tool("tool_" + i, "Tool number " + i, Map.of()))
             .collect(Collectors.toList());
@@ -153,7 +154,7 @@ public class PaginatedToolService {
     
     @McpMethod("tools/list")
     public ListToolsResult listTools(@Param("cursor") String cursor) {
-        // לפענח את הסמן
+        // לפענח מצביע
         int startIndex = 0;
         if (cursor != null && !cursor.isEmpty()) {
             try {
@@ -167,7 +168,7 @@ public class PaginatedToolService {
         int endIndex = Math.min(startIndex + PAGE_SIZE, allTools.size());
         List<Tool> pageTools = allTools.subList(startIndex, endIndex);
         
-        // לחשב את הסמן הבא
+        // לחשב מצביע הבא
         String nextCursor = endIndex < allTools.size() ? String.valueOf(endIndex) : null;
         
         return new ListToolsResult(pageTools, nextCursor);
@@ -177,9 +178,9 @@ public class PaginatedToolService {
 
 ---
 
-## יישום בלקוח
+## יישום לקוח
 
-### לקוח פייתון
+### לקוח Python
 
 ```python
 from mcp import ClientSession
@@ -230,7 +231,7 @@ console.log(`Found ${tools.length} tools`);
 
 ### תבנית טעינה עצלנית
 
-עבור קבוצות נתונים גדולות מאוד, טען עמודים לפי דרישה:
+עבור מערכי נתונים גדולים מאוד, טען עמודים לפי דרישה:
 
 ```python
 class PaginatedToolIterator:
@@ -243,15 +244,15 @@ class PaginatedToolIterator:
         self.exhausted = False
     
     async def __anext__(self):
-        # להחזיר מהזיכרון אם זמין
+        # החזר מהבופר אם זמין
         if self.buffer:
             return self.buffer.pop(0)
         
-        # לבדוק אם סיימנו לעבור על כל העמודים
+        # בדוק אם סיימנו את כל העמודים
         if self.exhausted:
             raise StopAsyncIteration
         
-        # לשלוף את העמוד הבא
+        # שלוף את העמוד הבא
         result = await self.session.list_tools(cursor=self.cursor)
         self.buffer = list(result.tools)
         self.cursor = result.nextCursor
@@ -267,16 +268,16 @@ class PaginatedToolIterator:
     def __aiter__(self):
         return self
 
-# שימוש - חסכוני בזיכרון עבור מערכי נתונים גדולים
+# שימוש - יעיל בזיכרון עבור מערכי נתונים גדולים
 async for tool in PaginatedToolIterator(session):
     process_tool(tool)
 ```
 
 ---
 
-## חלוקה לעמודים עבור משאבים
+## עימוד למשאבים
 
-לעיתים קרובות, משאבים זקוקים לחלוקה לעמודים עבור תיקיות או מאגרי נתונים גדולים:
+משאבים לעיתים קרובות זקוקים לעימוד עבור תיקיות או מערכי נתונים גדולים:
 
 ```python
 from mcp.server import Server
@@ -292,7 +293,7 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
     directory = "/data/files"
     all_files = sorted(os.listdir(directory))
     
-    # פענח סמן (מיקום קובץ)
+    # פענח מצביע (אינדקס קובץ)
     start_index = int(cursor) if cursor else 0
     page_size = 20
     end_index = min(start_index + page_size, len(all_files))
@@ -307,7 +308,7 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
             mimeType="application/octet-stream"
         ))
     
-    # חשב סמן הבא
+    # חשב את המצביע הבא
     next_cursor = str(end_index) if end_index < len(all_files) else None
     
     return ListResourcesResult(
@@ -318,29 +319,29 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ---
 
-## אסטרטגיות עיצוב מצביעים
+## אסטרטגיות עיצוב סמן
 
-### אסטרטגיה 1: מבוססת אינדקס (פשוטה)
+### אסטרטגיה 1: מבוסס אינדקס (פשוט)
 
 ```python
 # הסמן הוא רק האינדקס
-cursor = "50"  # התחל מהפריט 50
+cursor = "50"  # התחל בפריט 50
 ```
 
 **יתרונות:** פשוט, ללא מצב
-**חסרונות:** התוצאות יכולות להשתנות אם מוסיפים/מסירים פריטים
+**חסרונות:** התוצאות עלולות להשתנות אם פריטים נוספים/מסולקים
 
-### אסטרטגיה 2: מבוססת מזהה (יציבה)
+### אסטרטגיה 2: מבוסס מזהה (יציב)
 
 ```python
-# סמן הוא המזהה האחרון שנצפה
-cursor = "item_abc123"  # להתחיל אחרי פריט זה
+# הסמן הוא המזהה האחרון שנצפה
+cursor = "item_abc123"  # התחל אחרי פריט זה
 ```
 
-**יתרונות:** יציבה גם אם הפריטים משתנים
-**חסרונות:** דורשת מזהים מסודרים
+**יתרונות:** יציב גם אם פריטים משתנים
+**חסרונות:** דורש מזהים מסודרים
 
-### אסטרטגיה 3: מצב מקודד (מסובכת)
+### אסטרטגיה 3: מצב מקודד (מורכב)
 
 ```python
 import base64
@@ -352,7 +353,7 @@ def encode_cursor(state: dict) -> str:
 def decode_cursor(cursor: str) -> dict:
     return json.loads(base64.b64decode(cursor).decode())
 
-# הסמן מכיל שדות מצב מרובים
+# המצביע מכיל מספר שדות מצב
 cursor = encode_cursor({
     "offset": 50,
     "filter": "active",
@@ -360,23 +361,23 @@ cursor = encode_cursor({
 })
 ```
 
-**יתרונות:** יכולה לקודד מצב מורכב
-**חסרונות:** מורכבת יותר, מחרוזות מצביע גדולות יותר
+**יתרונות:** יכול לקודד מצב מורכב
+**חסרונות:** מורכב יותר, מחרוזות סמן ארוכות יותר
 
 ---
 
-## שיטות עבודה מומלצות
+## הנחיות עבודה מיטביות
 
-### 1. בחר גדלי עמודים מתאימים
+### 1. בחר גודל עמוד מתאים
 
 ```python
-# קחו בחשבון את גודל הנתונים
-PAGE_SIZE_SMALL_ITEMS = 100   # מטא דאטה פשוטה
+# שקול את גודל הנתונים
+PAGE_SIZE_SMALL_ITEMS = 100   # מֵטָה-דָּאטָה פשוטה
 PAGE_SIZE_MEDIUM_ITEMS = 20   # עצמים עשירים יותר
 PAGE_SIZE_LARGE_ITEMS = 5     # תוכן מורכב
 ```
 
-### 2. טיפל במצביעים לא תקינים בצורה אלגנטית
+### 2. התמודד בעדינות עם סמנים לא חוקיים
 
 ```python
 @app.list_tools()
@@ -384,28 +385,28 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
     try:
         start_index = int(cursor) if cursor else 0
         if start_index < 0 or start_index >= len(ALL_TOOLS):
-            start_index = 0  # אתחול להתחלה
+            start_index = 0  # איפוס לתחילה
     except (ValueError, TypeError):
         start_index = 0  # סמן לא חוקי, התחל מחדש
     # ...
 ```
 
-### 3. כלול ספירה כוללת (אופציונלי)
+### 3. כלול ספירת סך הכל (אופציונלי)
 
 ```python
 return ListToolsResult(
     tools=page_tools,
     nextCursor=next_cursor,
-    # חלק מהמימושים כוללים סך כולל עבור התקדמות הממשק
+    # כמה מימושים כוללים סה"כ להתקדמות בממשק המשתמש
     _meta={"total": len(ALL_TOOLS)}
 )
 ```
 
-### 4. בדוק מקרים שולייים
+### 4. בדוק מקרים קצה
 
 ```python
 async def test_pagination():
-    # סט תוצאות ריק
+    # קבוצת תוצאות ריקה
     result = await session.list_tools()
     assert result.tools == []
     assert result.nextCursor is None
@@ -416,14 +417,14 @@ async def test_pagination():
     
     # מצביע לא חוקי
     result = await session.list_tools(cursor="invalid")
-    assert result.tools  # צריך להחזיר את העמוד הראשון
+    assert result.tools  # חייב להחזיר את העמוד הראשון
 ```
 
 ---
 
-## טעויות נפוצות
+## מלכודות נפוצות
 
-### ❌ החזרת כל התוצאות ואז חלוקה לעמודים בצד הלקוח
+### ❌ להחזיר את כל התוצאות ואז לעמנן בצד הלקוח
 
 ```python
 # רע: טוען הכל לזיכרון
@@ -433,7 +434,7 @@ async def list_tools() -> ListToolsResult:
     return ListToolsResult(tools=all_tools)
 ```
 
-### ✅ חלוקה לעמודים במקור הנתונים
+### ✅ לעמנן במקור הנתונים
 
 ```python
 # טוב: טוען רק את מה שצריך
@@ -449,20 +450,20 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 ## מה הלאה
 
 - [מודול 5.14 - הנדסת הקשר](../../05-AdvancedTopics/mcp-contextengineering/README.md)
-- [מודול 8 - שיטות עבודה מומלצות](../../08-BestPractices/README.md)
+- [מודול 8 - הנחיות עבודה מיטביות](../../08-BestPractices/README.md)
 - [3.8 - בדיקת שרת MCP שלך](../../03-GettingStarted/08-testing/README.md)
 
 ---
 
 ## משאבים נוספים
 
-- [מפרט MCP - חלוקה לעמודים](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [הסבר על חלוקה לעמודים מבוססת מצביע](https://slack.engineering/evolving-api-pagination-at-slack/)
-- [בדיקות חלוקה לעמודים ב-SDK לפייתון](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+- [מפרט MCP - עימוד](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [עימוד מבוסס סמן מוסבר](https://slack.engineering/evolving-api-pagination-at-slack/)
+- [בדיקות עימוד Python SDK](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**אזהרה**:  
-מסמך זה תורגם באמצעות שירות תרגום מבוסס בינה מלאכותית [Co-op Translator](https://github.com/Azure/co-op-translator). למרות שאנו שואפים לדייק, אנא היו מודעים כי תרגומים אוטומטיים עלולים להכיל שגיאות או אי-דיוקים. יש להתייחס למסמך המקורי בשפתו המקורית כמקור הסמכותי. למידע קריטי מומלץ לפנות לתרגום מקצועי אנושי. איננו אחראים לכל אי-הבנות או פרשנויות שגויות הנובעות משימוש בתרגום זה.
+**כתב ויתור**:
+מסמך זה תורגם באמצעות שירות תרגום אוטומטי [Co-op Translator](https://github.com/Azure/co-op-translator). למרות שאנו שואפים לדיוק, יש לקחת בחשבון שתרגומים אוטומטיים עלולים להכיל שגיאות או אי-דיוקים. יש להחשיב את המסמך המקורי בשפתו הטבעית כמקור הסמכות. למידע קריטי מומלץ להשתמש בתרגום מקצועי על ידי מתרגם אדם. אנו לא אחראים לכל אי-הבנה או פירוש שגוי הנובע מהשימוש בתרגום זה.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

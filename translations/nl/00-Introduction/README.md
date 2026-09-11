@@ -1,16 +1,16 @@
-# Inleiding tot het Model Context Protocol (MCP): Waarom het Belangrijk is voor Schaalbare AI-toepassingen
+# Introductie tot het Model Context Protocol (MCP): Waarom het belangrijk is voor schaalbare AI-toepassingen
 
-[![Inleiding tot het Model Context Protocol](../../../translated_images/nl/01.a467036d886b5fb5.webp)](https://youtu.be/agBbdiOPLQA)
+[![Introductie tot het Model Context Protocol](../../../translated_images/nl/01.a467036d886b5fb5.webp)](https://youtu.be/agBbdiOPLQA)
 
 _(Klik op de afbeelding hierboven om de video van deze les te bekijken)_
 
-Generatieve AI-toepassingen zijn een geweldige stap vooruit omdat ze gebruikers vaak laten communiceren met de app via natuurlijke taal prompts. Echter, naarmate er meer tijd en middelen in dergelijke apps worden geïnvesteerd, wil je ervoor zorgen dat je functies en middelen eenvoudig kunt integreren op zo'n manier dat het makkelijk uitbreidbaar is, dat je app meer dan één model kan gebruiken, en kan omgaan met verschillende modelcomplexiteiten. Kortom, het bouwen van Gen AI-apps is makkelijk om mee te beginnen, maar naarmate ze groeien en complexer worden, moet je een architectuur definiëren en zal je waarschijnlijk moeten vertrouwen op een standaard om ervoor te zorgen dat je apps op een consistente manier worden gebouwd. Dit is waar MCP in beeld komt om de zaken te organiseren en een standaard te bieden.
+Generatieve AI-toepassingen zijn een grote stap vooruit, omdat ze gebruikers vaak laten communiceren met de app via natuurlijke taal prompts. Maar naarmate er meer tijd en middelen in zulke apps worden geïnvesteerd, wil je ervoor zorgen dat je functionaliteiten en bronnen gemakkelijk kunt integreren op een manier die eenvoudig uit te breiden is, dat je app meerdere modellen tegelijk kan bedienen, en verschillende modelnuances aankan. Kortom, het bouwen van Gen AI-apps is makkelijk om mee te beginnen, maar naarmate ze groeien en complexer worden, moet je een architectuur gaan definiëren en zal je waarschijnlijk moeten vertrouwen op een standaard om te verzekeren dat je apps op een consistente manier gebouwd worden. Hier komt MCP in beeld om zaken te organiseren en een standaard te bieden.
 
 ---
 
 ## **🔍 Wat is het Model Context Protocol (MCP)?**
 
-Het **Model Context Protocol (MCP)** is een **open, gestandaardiseerde interface** die Large Language Models (LLM's) in staat stelt naadloos te communiceren met externe tools, API's en gegevensbronnen. Het biedt een consistente architectuur om de functionaliteit van AI-modellen te verbeteren voorbij hun trainingsdata, waardoor slimmere, schaalbare en responsievere AI-systemen mogelijk worden.
+Het **Model Context Protocol (MCP)** is een **open, gestandaardiseerde interface** die het mogelijk maakt dat Grote Taalmodellen (LLM's) naadloos kunnen samenwerken met externe tools, API's en databronnen. Het biedt een consistente architectuur om de functionaliteit van AI-modellen uit te breiden voorbij hun trainingsdata, waardoor slimmere, schaalbaardere en meer responsieve AI-systemen mogelijk worden.
 
 ---
 
@@ -18,11 +18,11 @@ Het **Model Context Protocol (MCP)** is een **open, gestandaardiseerde interface
 
 Naarmate generatieve AI-toepassingen complexer worden, is het essentieel om standaarden te adopteren die zorgen voor **schaalbaarheid, uitbreidbaarheid, onderhoudbaarheid** en **het vermijden van vendor lock-in**. MCP voorziet in deze behoeften door:
 
-- Integratie van model-tools te verenigen
-- Het verminderen van broze, eendimensionale maatwerkoplossingen
-- Meerdere modellen van verschillende leveranciers te laten samenwerken binnen één ecosysteem
+- Integratie van model en tools te verenigen
+- Het verminderen van breekbare, eenmalige maatwerkoplossingen
+- Het mogelijk maken dat meerdere modellen van verschillende leveranciers binnen één ecosysteem naast elkaar bestaan
 
-**Opmerking:** Hoewel MCP zichzelf presenteert als een open standaard, zijn er geen plannen om MCP te standaardiseren via bestaande standaardenorganisaties zoals IEEE, IETF, W3C, ISO, of andere standaardenorganen.
+**Opmerking:** Hoewel MCP zich profileert als een open standaard, zijn er geen plannen om MCP te standaardiseren via bestaande standaardisatie-instellingen zoals IEEE, IETF, W3C, ISO of enige andere standaardisatie-organisatie.
 
 ---
 
@@ -30,81 +30,88 @@ Naarmate generatieve AI-toepassingen complexer worden, is het essentieel om stan
 
 Aan het einde van dit artikel kun je:
 
-- Het **Model Context Protocol (MCP)** definiëren en de gebruikssituaties ervan beschrijven
-- Begrijpen hoe MCP de communicatie tussen model en tool standaardiseert
+- Het **Model Context Protocol (MCP)** definiëren en de toepassingsgebieden ervan benoemen
+- Begrijpen hoe MCP standaardiseert hoe modellen met tools communiceren
 - De kerncomponenten van de MCP-architectuur identificeren
-- Praktijkvoorbeelden van MCP onderzoeken in enterprise- en ontwikkelcontexten
+- De toepassingen van MCP in de praktijk verkennen binnen ondernemingen en ontwikkelcontexten
 
 ---
 
-## **💡 Waarom het Model Context Protocol (MCP) een Doorbraak is**
+## **💡 Waarom het Model Context Protocol (MCP) een doorbraak is**
 
 ### **🔗 MCP lost fragmentatie in AI-interacties op**
 
 Voor MCP vereiste het integreren van modellen met tools:
 
-- Maatwerkcode per tool-modelcombinatie
-- Niet-gestandaardiseerde API's voor elke leverancier
+- Maatwerkcode per tool-model combinatie
+- Niet-standaard API's per leverancier
 - Regelmatige onderbrekingen door updates
 - Slechte schaalbaarheid bij meer tools
 
-### **✅ Voordelen van MCP Standaardisatie**
+### **✅ Voordelen van MCP-standaardisatie**
 
-| **Voordeel**              | **Beschrijving**                                                                |
-|--------------------------|--------------------------------------------------------------------------------|
-| Interoperabiliteit       | LLM's werken naadloos met tools van verschillende leveranciers                   |
-| Consistentie            | Uniform gedrag over platforms en tools                                          |
-| Hergebruik              | Tools die eenmaal zijn gebouwd kunnen worden gebruikt in verschillende projecten en systemen |
-| Versnelde Ontwikkeling  | Vermindert ontwikkeltijd door gebruik van gestandaardiseerde, plug-and-play interfaces |
+| **Voordeel**               | **Beschrijving**                                                              |
+|---------------------------|--------------------------------------------------------------------------------|
+| Interoperabiliteit         | LLM's werken naadloos samen met tools van verschillende leveranciers          |
+| Consistentie              | Uniform gedrag over platforms en tools                                        |
+| Herbruikbaarheid           | Tools die eenmaal gebouwd zijn, kunnen hergebruikt worden in projecten en systemen |
+| Versnelde ontwikkeling    | Verminder ontwikkeltijd door gebruik van gestandaardiseerde, plug-and-play interfaces |
 
 ---
 
-## **🧱 Hoog-niveau Overzicht van MCP Architectuur**
+## **🧱 Overzicht van de MCP-architectuur op hoog niveau**
 
-MCP volgt een **client-servermodel**, waarbij:
+MCP volgt een **client-server model**, waarbij:
 
-- **MCP Hosts** draaien de AI-modellen
-- **MCP Clients** initiëren verzoeken
-- **MCP Servers** leveren context, tools en mogelijkheden
+- **MCP Hosts** de AI-modellen draaien
+- **MCP Clients** verzoeken initiëren
+- **MCP Servers** context, tools en mogelijkheden aanbieden
 
-### **Belangrijke componenten:**
+### **Kerncomponenten:**
 
 - **Resources** – Statische of dynamische data voor modellen  
-- **Prompts** – Vooraf gedefinieerde workflows voor begeleide generaties  
+- **Prompts** – Vooraf gedefinieerde workflows voor begeleide generatie  
 - **Tools** – Uitvoerbare functies zoals zoeken, berekeningen  
-- **Sampling** – Agentgedrag via recursieve interacties (afgeschaft in release kandidaat `2026-07-28`)
+- **Sampling** – Agentisch gedrag via recursieve interacties (vervallen in
+    MCP `2026-07-28`; nieuwe implementaties dienen direct te integreren met een LLM
+    provider)
 - **Elicitation** – Server-geïnitieerde verzoeken om gebruikersinvoer
-- **Roots** – Bestandsysteem-grenzen voor servertoegangscontrole (afgeschaft in release kandidaat `2026-07-28`)
+- **Roots** – Informatieve bestandslocaties die relevant zijn voor een server
+    (vervallen in MCP `2026-07-28`; geef de voorkeur aan toolparameters, resource-URI's, of
+    serverconfiguratie)
 
-### **Protocol Architectuur:**
+### **Protocolarchitectuur:**
 
 MCP gebruikt een architectuur met twee lagen:
-- **Datalayer**: Communicatie gebaseerd op JSON-RPC 2.0 met levenscyclusbeheer en primitieve functies
-- **Transportlaag**: STDIO (lokaal) en Streamable HTTP met SSE (remote) communicatiekanalen
+- **Datalayer**: JSON-RPC 2.0 berichten, per-verzoek metadata, ontdekking en
+    protocolprimitieven
+- **Transportlaag**: stdio voor lokale subprocessen en Streamable HTTP voor
+    externe servers. Streamable HTTP kan SSE framing gebruiken voor gestreamde antwoorden,
+    maar de oudere HTTP+SSE transportmethode is verouderd.
 
 ---
 
 ## Hoe MCP Servers Werken
 
-MCP-servers werken als volgt:
+MCP-servers werken op de volgende manier:
 
 - **Verzoekstroom**:
-    1. Een verzoek wordt geïnitieerd door een eindgebruiker of software die namens hen handelt.
-    2. De **MCP Client** stuurt het verzoek naar een **MCP Host**, die de AI Model runtime beheert.
-    3. Het **AI Model** ontvangt de gebruikersprompt en kan toegang aanvragen tot externe tools of data via één of meer toolaanroepen.
+    1. Een verzoek wordt gestart door een eindgebruiker of software die namens hen handelt.
+    2. De **MCP Client** stuurt het verzoek naar een **MCP Host**, die de AI model runtime beheert.
+    3. Het **AI Model** ontvangt de gebruikersprompt en kan via één of meerdere tool-oproepen toegang vragen tot externe tools of data.
     4. De **MCP Host**, niet het model direct, communiceert met de juiste **MCP Server(s)** via het gestandaardiseerde protocol.
-- **Functionaliteit van MCP Host**:
-    - **Tool Registry**: Beheert een catalogus van beschikbare tools en hun mogelijkheden.
-    - **Authenticatie**: Verifieert permissies voor tooltoegang.
-    - **Request Handler**: Verwerkt binnenkomende toolverzoeken van het model.
-    - **Response Formatter**: Structureert tooluitvoer in een voor het model begrijpelijk formaat.
-- **Uitvoering MCP Server**:
-    - De **MCP Host** leidt toolaanroepen door naar één of meer **MCP Servers**, elk met gespecialiseerde functies (bijv. zoeken, berekeningen, databasequery's).
-    - De **MCP Servers** voeren hun respectievelijke operaties uit en sturen resultaten terug naar de **MCP Host** in een consistent formaat.
-    - De **MCP Host** formatteert en zendt deze resultaten door aan het **AI Model**.
-- **Afhandeling Antwoord**:
-    - Het **AI Model** verwerkt de tooluitvoer in een eindantwoord.
-    - De **MCP Host** stuurt dit antwoord terug naar de **MCP Client**, die het levert aan de eindgebruiker of de opvragende software.
+- **MCP Host Functionaliteit**:
+    - **Toolregister**: Beheert een catalogus van beschikbare tools en hun mogelijkheden.
+    - **Authenticatie**: Verifieert toestemming voor tooltoegang.
+    - **Request Handler**: Verwerkt inkomende toolverzoeken van het model.
+    - **Response Formatter**: Structureert tooluitvoer in een formaat dat het model kan begrijpen.
+- **MCP Server Uitvoering**:
+    - De **MCP Host** leidt tool-oproepen door naar één of meerdere **MCP Servers**, die elk gespecialiseerde functies aanbieden (bijv. zoeken, berekeningen, databasequeries).
+    - De **MCP Servers** voeren hun respectieve taken uit en sturen resultaten terug aan de **MCP Host** in een consistent formaat.
+    - De **MCP Host** formatteert en zendt deze resultaten door naar het **AI Model**.
+- **Afhandeling van reactie**:
+    - Het **AI Model** verwerkt de toolresultaten in een definitief antwoord.
+    - De **MCP Host** stuurt dit antwoord terug naar de **MCP Client**, die het levert aan de eindgebruiker of aanroepende software.
     
 
 ```mermaid
@@ -114,20 +121,20 @@ description: A diagram showing the flows of the components in MCP.
 ---
 graph TD
     Client[MCP Client/Applicatie] -->|Verzendt Verzoek| H[MCP Host]
-    H -->|Roept aan| A[AI Model]
-    A -->|Tool Aanroep Verzoek| H
+    H -->|Roept aan| A[AI-model]
+    A -->|Hulpmiddel Aanvraag| H
     H -->|MCP Protocol| T1[MCP Server Tool 01: Webzoekopdracht]
-    H -->|MCP Protocol| T2[MCP Server Tool 02: Rekenmachine-tool]
-    H -->|MCP Protocol| T3[MCP Server Tool 03: Database Toegang-tool]
-    H -->|MCP Protocol| T4[MCP Server Tool 04: Bestandssysteem-tool]
+    H -->|MCP Protocol| T2[MCP Server Tool 02: Rekenmachinehulpmiddel]
+    H -->|MCP Protocol| T3[MCP Server Tool 03: Database Toegang hulpmiddel]
+    H -->|MCP Protocol| T4[MCP Server Tool 04: Bestandssysteemhulpmiddel]
     H -->|Verzendt Antwoord| Client
 
-    subgraph "MCP Host Componenten"
+    subgraph "MCP Host-componenten"
         H
-        G[Tool Register]
+        G[Hulpmiddelregister]
         I[Authenticatie]
-        J[Verzoekverwerker]
-        K[Antwoord Formatter]
+        J[Aanvraagverwerker]
+        K[Antwoordformatter]
     end
 
     H <--> G
@@ -148,11 +155,11 @@ graph TD
     style T4 fill:#c2f0c2,stroke:#333,stroke-width:1px
 ```
 
-## 👨‍💻 Hoe Maak je een MCP Server (Met Voorbeelden)
+## 👨‍💻 Hoe bouw je een MCP Server (Met Voorbeelden)
 
-MCP-servers stellen je in staat de mogelijkheden van LLM's uit te breiden door data en functionaliteit te bieden.
+MCP-servers stellen je in staat om LLM-mogelijkheden uit te breiden door data en functionaliteit te leveren.
 
-Klaar om het te proberen? Hier zijn taal- en/of stack-specifieke SDK's met voorbeelden van het maken van eenvoudige MCP-servers in verschillende talen/stacks:
+Klaar om het uit te proberen? Hier zijn taal- en/of stack-specifieke SDK's met voorbeelden van eenvoudige MCP-servers in verschillende talen/stacks:
 
 - **Python SDK**: https://github.com/modelcontextprotocol/python-sdk
 
@@ -163,33 +170,33 @@ Klaar om het te proberen? Hier zijn taal- en/of stack-specifieke SDK's met voorb
 - **C#/.NET SDK**: https://github.com/modelcontextprotocol/csharp-sdk
 
 
-## 🌍 Praktijkvoorbeelden voor MCP
+## 🌍 Praktische toepassingsgevallen voor MCP
 
 MCP maakt een breed scala aan toepassingen mogelijk door AI-mogelijkheden uit te breiden:
 
-| **Toepassing**              | **Beschrijving**                                                                |
-|------------------------------|--------------------------------------------------------------------------------|
-| Enterprise Data Integratie  | Verbind LLM's met databases, CRM's, of interne tools                           |
-| Agentische AI Systemen      | Maak autonome agenten mogelijk met tooltoegang en besluitvormingsworkflows      |
-| Multi-modale Toepassingen   | Combineer tekst-, beeld- en audiotools in één enkele AI-app                    |
-| Real-time Data Integratie   | Breng live data in AI-interacties voor nauwkeuriger, actuele output            |
+| **Toepassing**              | **Beschrijving**                                                              |
+|----------------------------|--------------------------------------------------------------------------------|
+| Enterprise Data-integratie | Verbind LLM's met databases, CRM's of interne tools                           |
+| Agentische AI-systemen      | Stel autonome agents in staat met tooltoegang en besluitvormingsworkflows      |
+| Multi-modale toepassingen  | Combineer tekst-, beeld- en audio-tools binnen één uniforme AI-app            |
+| Integratie van realtime data| Breng live data in AI-interacties voor nauwkeurigere, actuele output          |
 
 
-### 🧠 MCP = Universele Standaard voor AI-interacties
+### 🧠 MCP = Universele standaard voor AI-interacties
 
-Het Model Context Protocol (MCP) fungeert als een universele standaard voor AI-interacties, vergelijkbaar met hoe USB-C fysische verbindingen voor apparaten heeft gestandaardiseerd. In de wereld van AI biedt MCP een consistente interface waardoor modellen (clients) naadloos kunnen integreren met externe tools en databronnen (servers). Dit elimineert de noodzaak voor diverse, aangepaste protocollen voor elke API of databron.
+Het Model Context Protocol (MCP) fungeert als een universele standaard voor AI-interacties, vergelijkbaar met hoe USB-C fysieke connecties voor apparaten standaardiseerde. In de AI-wereld biedt MCP een consistente interface, waarmee modellen (clients) naadloos kunnen integreren met externe tools en dataproviders (servers). Dit elimineert de noodzaak voor diverse, aangepaste protocollen voor elke API of databron.
 
-Onder MCP volgt een MCP-compatibele tool (vermeld als MCP-server) een uniforme standaard. Deze servers kunnen de tools of acties die zij aanbieden weergeven en die acties uitvoeren op verzoek van een AI-agent. AI-agentplatformen die MCP ondersteunen, kunnen beschikbare tools van de servers ontdekken en aanroepen via dit standaardprotocol.
+Onder MCP volgt een MCP-compatibele tool (een MCP-server genoemd) een uniforme standaard. Deze servers kunnen de tools of acties die ze aanbieden vermelden en deze acties uitvoeren wanneer een AI-agent erom vraagt. AI-agentplatforms die MCP ondersteunen kunnen beschikbare tools van de servers ontdekken en ze aanroepen via dit standaardprotocol.
 
-### 💡 Maakt toegang tot kennis mogelijk
+### 💡 Faciliteert toegang tot kennis
 
-Naast het aanbieden van tools faciliteert MCP ook de toegang tot kennis. Het stelt applicaties in staat om context te bieden aan large language models (LLM's) door ze te koppelen aan verschillende gegevensbronnen. Bijvoorbeeld, een MCP-server kan een documentenrepository van een bedrijf vertegenwoordigen, waardoor agenten relevante informatie op aanvraag kunnen ophalen. Een andere server kan specifieke acties verzorgen zoals het verzenden van e-mails of het bijwerken van records. Vanuit het perspectief van de agent zijn dit simpelweg tools die hij kan gebruiken—sommige tools leveren data (kenniscontext), terwijl andere acties uitvoeren. MCP beheert beide efficiënt.
+Naast het aanbieden van tools faciliteert MCP ook de toegang tot kennis. Het stelt applicaties in staat om context te bieden aan grote taalmodellen (LLM's) door ze te koppelen aan diverse databronnen. Bijvoorbeeld, een MCP-server kan een bedrijfsdocumentenrepository vertegenwoordigen, waarmee agents relevante informatie op aanvraag kunnen ophalen. Een andere server zou specifieke acties kunnen afhandelen zoals het verzenden van e-mails of het bijwerken van records. Vanuit het perspectief van de agent zijn dit eenvoudigweg tools die hij kan gebruiken — sommige tools geven data terug (kenniscontext), andere voeren acties uit. MCP beheert beide efficiënt.
 
-Een agent die verbinding maakt met een MCP-server leert automatisch over de beschikbare mogelijkheden en toegankelijke data van de server via een standaardformaat. Deze standaardisatie maakt dynamische toolbeschikbaarheid mogelijk. Bijvoorbeeld, het toevoegen van een nieuwe MCP-server aan het systeem van een agent maakt de functies direct bruikbaar zonder verdere aanpassing van de instructies van de agent.
+Een agent die verbinding maakt met een MCP-server leert automatisch over de beschikbare mogelijkheden en toegankelijke data van de server via een standaardformaat. Deze standaardisatie maakt dynamische toolbeschikbaarheid mogelijk. Bijvoorbeeld, door een nieuwe MCP-server toe te voegen aan het systeem van een agent, worden de functies daarvan direct bruikbaar zonder verdere aanpassing van de agentinstructies.
 
-Deze gestroomlijnde integratie sluit aan bij de stroom die wordt afgebeeld in het volgende diagram, waarin servers zowel tools als kennis leveren, wat zorgt voor naadloze samenwerking tussen systemen.
+Deze gestroomlijnde integratie sluit aan bij de flow die in het volgende diagram wordt weergegeven, waarbij servers zowel tools als kennis leveren, wat zorgt voor naadloze samenwerking tussen systemen.
 
-### 👉 Voorbeeld: Schaalbare Agentoplossing
+### 👉 Voorbeeld: schaalbare agent-oplossing
 
 ```mermaid
 ---
@@ -198,7 +205,7 @@ description: A diagram illustrating how a user interacts with an LLM that connec
 ---
 graph TD
     User -->|Prompt| LLM
-    LLM -->|Antwoord| User
+    LLM -->|Reactie| User
     LLM -->|MCP| ServerA
     LLM -->|MCP| ServerB
     ServerA -->|Universele connector| ServerB
@@ -217,14 +224,14 @@ graph TD
         ToolsB[Hulpmiddelen]
     end
 ```
-De Universal Connector stelt MCP-servers in staat om te communiceren en mogelijkheden met elkaar te delen, waardoor ServerA taken kan delegeren aan ServerB of toegang kan krijgen tot diens tools en kennis. Dit federereert tools en data over servers, wat schaalbare en modulaire agentarchitecturen ondersteunt. Omdat MCP de blootstelling van tools standaardiseert, kunnen agenten dynamisch tools ontdekken en verzoeken tussen servers routeren zonder vast gecodeerde integraties.
+De Universal Connector stelt MCP-servers in staat om met elkaar te communiceren en mogelijkheden te delen, waardoor ServerA taken kan delegeren aan ServerB of toegang kan krijgen tot diens tools en kennis. Dit federationeert tools en data over servers heen, wat schaalbare en modulaire agent-architecturen ondersteunt. Omdat MCP de toolexposure standaardiseert, kunnen agents dynamisch tools ontdekken en verzoeken tussen servers routeren zonder vaste integraties.
 
 
-Federatie van tools en kennis: Tools en data kunnen over servers worden benaderd, wat meer schaalbare en modulaire agentische architecturen mogelijk maakt.
+Federatie van tools en kennis: tools en data kunnen over servers heen worden geraadpleegd, wat meer schaalbare en modulaire agentische architecturen mogelijk maakt.
 
 ### 🔄 Geavanceerde MCP-scenario's met client-side LLM-integratie
 
-Naast de basale MCP-architectuur zijn er geavanceerde scenario's waarbij zowel client als server LLM's bevatten, wat meer geavanceerde interacties mogelijk maakt. In het volgende diagram kan **Client App** een IDE zijn met een aantal MCP-tools beschikbaar voor gebruik door de LLM:
+Naast de basisarchitectuur van MCP zijn er geavanceerde scenario's waarin zowel client als server LLM's bevatten, wat meer verfijnde interacties mogelijk maakt. In het volgende diagram zou **Client App** een IDE kunnen zijn met een aantal MCP-tools beschikbaar voor gebruik door de LLM:
 
 ```mermaid
 ---
@@ -234,93 +241,93 @@ description: A sequence diagram showing the detailed interaction flow between us
 sequenceDiagram
     autonumber
     actor User as 👤 Gebruiker
-    participant ClientApp as 🖥️ Client-app
+    participant ClientApp as 🖥️ Client App
     participant ClientLLM as 🧠 Client LLM
-    participant Server1 as 🔧 MCP-server 1
-    participant Server2 as 📚 MCP-server 2
+    participant Server1 as 🔧 MCP Server 1
+    participant Server2 as 📚 MCP Server 2
     participant ServerLLM as 🤖 Server LLM
     
     %% Ontdekkingsfase
     rect rgb(220, 240, 255)
         Note over ClientApp, Server2: TOOL ONTDEKKINGSFASE
-        ClientApp->>+Server1: Vraag beschikbare tools/middelen op
-        Server1-->>-ClientApp: Lever toollijst terug (JSON)
-        ClientApp->>+Server2: Vraag beschikbare tools/middelen op
-        Server2-->>-ClientApp: Lever toollijst terug (JSON)
+        ClientApp->>+Server1: Vraag beschikbare tools/bronnen op
+        Server1-->>-ClientApp: Retourneer lijst met tools (JSON)
+        ClientApp->>+Server2: Vraag beschikbare tools/bronnen op
+        Server2-->>-ClientApp: Retourneer lijst met tools (JSON)
         Note right of ClientApp: Sla gecombineerde tool<br/>catalogus lokaal op
     end
     
     %% Gebruikersinteractie
     rect rgb(255, 240, 220)
         Note over User, ClientLLM: GEBRUIKERSINTERACTIEFASE
-        User->>+ClientApp: Voer natuurlijke taal prompt in
+        User->>+ClientApp: Voer prompt in natuurlijke taal in
         ClientApp->>+ClientLLM: Stuur prompt + toolcatalogus door
         ClientLLM->>-ClientLLM: Analyseer prompt & selecteer tools
     end
     
-    %% Scenario A: Direct Tool Aanroepen
-    alt Direct Tool Aanroepen
+    %% Scenario A: Directe toolaanroep
+    alt Directe toolaanroep
         rect rgb(220, 255, 220)
-            Note over ClientApp, Server1: SCENARIO A: DIRECT TOOL AANROEPEN
+            Note over ClientApp, Server1: SCENARIO A: DIRECTE TOOLAANROEP
             ClientLLM->>+ClientApp: Vraag tooluitvoering aan
             ClientApp->>+Server1: Voer specifieke tool uit
-            Server1-->>-ClientApp: Lever resultaten terug
+            Server1-->>-ClientApp: Retourneer resultaten
             ClientApp->>+ClientLLM: Verwerk resultaten
-            ClientLLM-->>-ClientApp: Genereer reactie
+            ClientLLM-->>-ClientApp: Genereer antwoord
             ClientApp-->>-User: Toon eindantwoord
         end
     
-    %% Scenario B: Functieonderhandeling (VS Code stijl)
-    else Functieonderhandeling (VS Code stijl)
+    %% Scenario B: Functionaliteitsonderhandeling (VS Code-stijl)
+    else Functionaliteitsonderhandeling (VS Code-stijl)
         rect rgb(255, 220, 220)
-            Note over ClientApp, ServerLLM: SCENARIO B: FUNCTIEONDERHANDELING
-            ClientLLM->>+ClientApp: Bepaal benodigde mogelijkheden
-            ClientApp->>+Server2: Onderhandel functies/mogelijkheden
-            Server2->>+ServerLLM: Vraag aanvullende context op
-            ServerLLM-->>-Server2: Lever context aan
-            Server2-->>-ClientApp: Lever beschikbare functies terug
+            Note over ClientApp, ServerLLM: SCENARIO B: FUNCTIONALITEITSONDERHANDELING
+            ClientLLM->>+ClientApp: Identificeer benodigde mogelijkheden
+            ClientApp->>+Server2: Onderhandel over functies/mogelijkheden
+            Server2->>+ServerLLM: Vraag extra context op
+            ServerLLM-->>-Server2: Verstrek context
+            Server2-->>-ClientApp: Retourneer beschikbare functies
             ClientApp->>+Server2: Roep onderhandelde tools aan
-            Server2-->>-ClientApp: Lever resultaten terug
+            Server2-->>-ClientApp: Retourneer resultaten
             ClientApp->>+ClientLLM: Verwerk resultaten
-            ClientLLM-->>-ClientApp: Genereer reactie
+            ClientLLM-->>-ClientApp: Genereer antwoord
             ClientApp-->>-User: Toon eindantwoord
         end
     end
 ```
 
-## 🔐 Praktische Voordelen van MCP
+## 🔐 Praktische voordelen van MCP
 
 Hier zijn de praktische voordelen van het gebruik van MCP:
 
 - **Actualiteit**: Modellen kunnen toegang krijgen tot up-to-date informatie buiten hun trainingsdata
-- **Mogelijkheid Uitbreiding**: Modellen kunnen gespecialiseerde tools gebruiken voor taken waarvoor ze niet getraind zijn
-- **Verminderde Hallucinaties**: Externe gegevensbronnen bieden feitelijke onderbouwing
-- **Privacy**: Gevoelige data kan binnen veilige omgevingen blijven in plaats van in prompts ingebed te zijn
+- **Uitbreiding van mogelijkheden**: Modellen kunnen gespecialiseerde tools gebruiken voor taken waarvoor ze niet getraind zijn
+- **Minder hallucinaties**: Externe databronnen zorgen voor feitelijke onderbouwing
+- **Privacy**: Gevoelige data kan binnen veilige omgevingen blijven in plaats van in prompts ingebed te worden
 
-## 📌 Belangrijkste Leerpunten
+## 📌 Belangrijkste conclusies
 
-Dit zijn de belangrijkste leerpunten voor het gebruik van MCP:
+Hieronder volgen de belangrijkste conclusies bij het gebruik van MCP:
 
 - **MCP** standaardiseert hoe AI-modellen met tools en data interacteren
 - Bevordert **uitbreidbaarheid, consistentie en interoperabiliteit**
 - MCP helpt **ontwikkeltijd te verminderen, betrouwbaarheid te verbeteren en modelmogelijkheden uit te breiden**
-- De client-serverarchitectuur **maakt flexibele, uitbreidbare AI-toepassingen mogelijk**
+- De client-server architectuur **maakt flexibele, uitbreidbare AI-toepassingen mogelijk**
 
 ## 🧠 Oefening
 
-Denk na over een AI-toepassing die je graag wilt bouwen.
+Denk na over een AI-toepassing die je graag zou willen bouwen.
 
 - Welke **externe tools of data** zouden de mogelijkheden kunnen verbeteren?
 - Hoe zou MCP integratie **eenvoudiger en betrouwbaarder** kunnen maken?
 
-## Aanvullende Bronnen
+## Extra bronnen
 
 - [MCP GitHub Repository](https://github.com/modelcontextprotocol)
 
 
-## Wat volgt
+## Wat volgt hierna
 
-Volgend: [Hoofdstuk 1: Kernconcepten](../01-CoreConcepts/README.md)
+Volgende: [Hoofdstuk 1: Kernconcepten](../01-CoreConcepts/README.md)
 
 ---
 

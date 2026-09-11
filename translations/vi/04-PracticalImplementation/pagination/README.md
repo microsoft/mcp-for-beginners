@@ -1,32 +1,32 @@
-# Phân trang và Bộ Kết Quả Lớn trong MCP
+# Phân Trang và Bộ Kết Quả Lớn trong MCP
 
-Khi máy chủ MCP của bạn xử lý các bộ dữ liệu lớn - dù là liệt kê hàng nghìn tệp, bản ghi cơ sở dữ liệu, hay kết quả tìm kiếm - bạn cần phân trang để quản lý bộ nhớ hiệu quả và cung cấp trải nghiệm người dùng phản hồi nhanh. Hướng dẫn này bao gồm cách triển khai và sử dụng phân trang trong MCP.
+Khi máy chủ MCP của bạn xử lý các bộ dữ liệu lớn - cho dù là liệt kê hàng nghìn tập tin, bản ghi cơ sở dữ liệu hay kết quả tìm kiếm - bạn cần phân trang để quản lý bộ nhớ hiệu quả và cung cấp trải nghiệm người dùng phản hồi nhanh. Hướng dẫn này trình bày cách triển khai và sử dụng phân trang trong MCP.
 
-## Tại sao Phân trang Quan trọng
+## Tại Sao Phân Trang Lại Quan Trọng
 
 Nếu không có phân trang, các phản hồi lớn có thể gây ra:
 
 - **Hết bộ nhớ** - Tải hàng triệu bản ghi cùng lúc
-- **Thời gian phản hồi chậm** - Người dùng phải chờ trong khi toàn bộ dữ liệu được tải
-- **Lỗi hết thời gian chờ** - Yêu cầu vượt quá giới hạn thời gian chờ
-- **Hiệu suất AI kém** - LLM gặp khó khăn với bối cảnh quá lớn
+- **Thời gian phản hồi chậm** - Người dùng phải chờ khi tất cả dữ liệu được tải
+- **Lỗi quá thời gian chờ** - Yêu cầu vượt quá giới hạn thời gian chờ
+- **Hiệu suất AI kém** - Các LLM gặp khó khăn với ngữ cảnh quá lớn
 
-MCP sử dụng **phân trang dựa trên con trỏ** để phân trang qua các bộ kết quả một cách đáng tin cậy và nhất quán.
+MCP sử dụng **phân trang dựa trên con trỏ** để điều hướng bộ kết quả một cách đáng tin cậy và nhất quán.
 
 ---
 
-## Cách MCP Phân Trang Hoạt Động
+## Cách Phân Trang trong MCP Hoạt Động
 
-### Khái niệm Con trỏ
+### Khái Niệm Con Trỏ
 
-Một **con trỏ** là một chuỗi mờ (opaque) đánh dấu vị trí của bạn trong một bộ kết quả. Hãy tưởng tượng nó như một dấu trang trong một cuốn sách dài.
+Một **con trỏ** là một chuỗi mờ (opaque) đánh dấu vị trí của bạn trong một bộ kết quả. Hãy coi nó như một dấu trang trong một cuốn sách dài.
 
 ```mermaid
 sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: tools/list (không có con trỏ)
+    Client->>Server: tools/list (không con trỏ)
     Server-->>Client: tools [1-10], nextCursor: "abc123"
     
     Client->>Server: tools/list (con trỏ: "abc123")
@@ -35,20 +35,21 @@ sequenceDiagram
     Client->>Server: tools/list (con trỏ: "def456")
     Server-->>Client: tools [21-25], nextCursor: null (kết thúc)
 ```
-### Phân trang trong Các Phương thức MCP
+
+### Phân Trang trong Các Phương Thức MCP
 
 Các phương thức MCP sau hỗ trợ phân trang:
 
 | Phương thức | Trả về | Hỗ trợ Con trỏ |
-|-------------|---------|----------------|
+|------------|---------|-----------------|
 | `tools/list` | Định nghĩa công cụ | ✅ |
 | `resources/list` | Định nghĩa tài nguyên | ✅ |
-| `prompts/list` | Định nghĩa lời nhắc | ✅ |
+| `prompts/list` | Định nghĩa prompt | ✅ |
 | `resources/templates/list` | Mẫu tài nguyên | ✅ |
 
 ---
 
-## Triển khai Máy chủ
+## Triển Khai Máy Chủ
 
 ### Python (FastMCP)
 
@@ -105,7 +106,7 @@ const server = new Server({
   version: "1.0.0"
 });
 
-// Bộ dữ liệu lớn mô phỏng
+// Bộ dữ liệu lớn được mô phỏng
 const ALL_TOOLS = Array.from({ length: 100 }, (_, i) => ({
   name: `tool_${i}`,
   description: `Tool number ${i}`,
@@ -125,7 +126,7 @@ server.setRequestHandler(ListToolsResultSchema, async (request) => {
   const endIndex = Math.min(startIndex + PAGE_SIZE, ALL_TOOLS.length);
   const pageTools = ALL_TOOLS.slice(startIndex, endIndex);
   
-  // Tính con trỏ tiếp theo
+  // Tính toán con trỏ tiếp theo
   const nextCursor = endIndex < ALL_TOOLS.length ? String(endIndex) : undefined;
   
   return {
@@ -177,9 +178,9 @@ public class PaginatedToolService {
 
 ---
 
-## Triển khai Máy khách
+## Triển Khai Client
 
-### Máy khách Python
+### Client Python
 
 ```python
 from mcp import ClientSession
@@ -205,7 +206,7 @@ async with client_session as session:
     print(f"Found {len(tools)} tools")
 ```
 
-### Máy khách TypeScript
+### Client TypeScript
 
 ```typescript
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
@@ -228,9 +229,9 @@ const tools = await getAllTools(client);
 console.log(`Found ${tools.length} tools`);
 ```
 
-### Mô hình Tải lười
+### Mẫu Tải Lười (Lazy Loading)
 
-Đối với các bộ dữ liệu rất lớn, tải các trang theo yêu cầu:
+Với các bộ dữ liệu rất lớn, hãy tải các trang khi cần:
 
 ```python
 class PaginatedToolIterator:
@@ -247,7 +248,7 @@ class PaginatedToolIterator:
         if self.buffer:
             return self.buffer.pop(0)
         
-        # Kiểm tra xem chúng ta đã quét hết tất cả các trang chưa
+        # Kiểm tra xem chúng ta đã đọc hết tất cả các trang chưa
         if self.exhausted:
             raise StopAsyncIteration
         
@@ -267,14 +268,14 @@ class PaginatedToolIterator:
     def __aiter__(self):
         return self
 
-# Cách sử dụng - tiết kiệm bộ nhớ cho bộ dữ liệu lớn
+# Sử dụng - tiết kiệm bộ nhớ cho các bộ dữ liệu lớn
 async for tool in PaginatedToolIterator(session):
     process_tool(tool)
 ```
 
 ---
 
-## Phân trang cho Tài nguyên
+## Phân Trang Cho Tài Nguyên
 
 Tài nguyên thường cần phân trang cho thư mục hoặc bộ dữ liệu lớn:
 
@@ -292,7 +293,7 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
     directory = "/data/files"
     all_files = sorted(os.listdir(directory))
     
-    # Giải mã con trỏ (chỉ số tệp)
+    # Giải mã con trỏ (chỉ mục tệp)
     start_index = int(cursor) if cursor else 0
     page_size = 20
     end_index = min(start_index + page_size, len(all_files))
@@ -318,29 +319,29 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ---
 
-## Chiến lược Thiết kế Con trỏ
+## Chiến Lược Thiết Kế Con Trỏ
 
-### Chiến lược 1: Dựa trên Chỉ số (Đơn giản)
+### Chiến Lược 1: Dựa trên Chỉ số (Đơn giản)
 
 ```python
 # Con trỏ chỉ là chỉ số
 cursor = "50"  # Bắt đầu từ mục 50
 ```
 
-**Ưu điểm:** Đơn giản, không trạng thái  
-**Nhược điểm:** Kết quả có thể thay đổi nếu có mục được thêm/bỏ
+**Ưu điểm:** Đơn giản, không trạng thái
+**Nhược điểm:** Kết quả có thể thay đổi nếu thêm/bớt mục
 
-### Chiến lược 2: Dựa trên ID (Ổn định)
+### Chiến Lược 2: Dựa trên ID (Ổn định)
 
 ```python
-# Con trỏ là ID được thấy lần cuối
+# Con trỏ là ID được nhìn thấy cuối cùng
 cursor = "item_abc123"  # Bắt đầu sau mục này
 ```
 
-**Ưu điểm:** Ổn định ngay cả khi mục thay đổi  
+**Ưu điểm:** Ổn định ngay cả khi mục thay đổi
 **Nhược điểm:** Yêu cầu ID có thứ tự
 
-### Chiến lược 3: Mã hóa Trạng thái (Phức tạp)
+### Chiến Lược 3: Trạng Thái Mã Hóa (Phức tạp)
 
 ```python
 import base64
@@ -360,12 +361,12 @@ cursor = encode_cursor({
 })
 ```
 
-**Ưu điểm:** Có thể mã hóa trạng thái phức tạp  
+**Ưu điểm:** Có thể mã hóa trạng thái phức tạp
 **Nhược điểm:** Phức tạp hơn, chuỗi con trỏ lớn hơn
 
 ---
 
-## Thực hành Tốt nhất
+## Thực Hành Tốt Nhất
 
 ### 1. Chọn Kích thước Trang Phù hợp
 
@@ -376,7 +377,7 @@ PAGE_SIZE_MEDIUM_ITEMS = 20   # Đối tượng phong phú hơn
 PAGE_SIZE_LARGE_ITEMS = 5     # Nội dung phức tạp
 ```
 
-### 2. Xử lý Con trỏ Không hợp lệ một cách Nhẹ nhàng
+### 2. Xử lý Con trỏ Không hợp lệ một cách Khéo léo
 
 ```python
 @app.list_tools()
@@ -390,27 +391,27 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
     # ...
 ```
 
-### 3. Bao gồm Tổng số lượng (Tùy chọn)
+### 3. Bao gồm Tổng số (Tùy chọn)
 
 ```python
 return ListToolsResult(
     tools=page_tools,
     nextCursor=next_cursor,
-    # Một số triển khai bao gồm tổng cho tiến trình giao diện người dùng
+    # Một số triển khai bao gồm tổng cộng cho tiến trình giao diện người dùng
     _meta={"total": len(ALL_TOOLS)}
 )
 ```
 
-### 4. Kiểm thử Các trường hợp Biên
+### 4. Kiểm tra Các Trường hợp Cạnh
 
 ```python
 async def test_pagination():
-    # Bộ kết quả rỗng
+    # Bộ kết quả trống
     result = await session.list_tools()
     assert result.tools == []
     assert result.nextCursor is None
     
-    # Một trang duy nhất
+    # Một trang đơn
     result = await session.list_tools()
     assert len(result.tools) <= PAGE_SIZE
     
@@ -421,9 +422,9 @@ async def test_pagination():
 
 ---
 
-## Những Sai lầm Thường gặp
+## Những Sai Lầm Thường Gặp
 
-### ❌ Trả về Tất cả Kết quả rồi Phân trang phía Máy khách
+### ❌ Trả Về Tất Cả Kết Quả Rồi Mới Phân Trang Ở Phía Client
 
 ```python
 # XẤU: Tải mọi thứ vào bộ nhớ
@@ -433,7 +434,7 @@ async def list_tools() -> ListToolsResult:
     return ListToolsResult(tools=all_tools)
 ```
 
-### ✅ Phân trang tại Nguồn Dữ liệu
+### ✅ Phân Trang Tại Nguồn Dữ Liệu
 
 ```python
 # TỐT: Chỉ tải những gì cần thiết
@@ -446,23 +447,23 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ---
 
-## Tiếp theo Là Gì
+## Tiếp Theo Là Gì
 
-- [Module 5.14 - Kỹ thuật Bối cảnh](../../05-AdvancedTopics/mcp-contextengineering/README.md)
-- [Module 8 - Thực hành Tốt nhất](../../08-BestPractices/README.md)
-- [3.8 - Kiểm thử Máy chủ MCP của bạn](../../03-GettingStarted/08-testing/README.md)
+- [Module 5.14 - Kỹ Thuật Ngữ Cảnh](../../05-AdvancedTopics/mcp-contextengineering/README.md)
+- [Module 8 - Thực Hành Tốt Nhất](../../08-BestPractices/README.md)
+- [3.8 - Kiểm Tra Máy Chủ MCP Của Bạn](../../03-GettingStarted/08-testing/README.md)
 
 ---
 
-## Tài nguyên Bổ Sung
+## Tài Nguyên Tham Khảo Thêm
 
-- [Đặc tả MCP - Phân trang](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [Giải thích Phân trang Dựa trên Con trỏ](https://slack.engineering/evolving-api-pagination-at-slack/)
-- [Kiểm thử phân trang Python SDK](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+- [Đặc tả MCP - Phân Trang](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [Giải thích Phân Trang Dựa Trên Con Trỏ](https://slack.engineering/evolving-api-pagination-at-slack/)
+- [Kiểm tra phân trang SDK Python](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Tuyên bố miễn trừ trách nhiệm**:  
-Tài liệu này đã được dịch bằng dịch vụ dịch thuật AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mặc dù chúng tôi nỗ lực đảm bảo độ chính xác, xin lưu ý rằng các bản dịch tự động có thể chứa lỗi hoặc không chính xác. Tài liệu gốc bằng ngôn ngữ gốc của nó nên được xem là nguồn tham khảo chính thức. Đối với thông tin quan trọng, khuyến nghị sử dụng dịch vụ dịch thuật chuyên nghiệp do con người thực hiện. Chúng tôi không chịu trách nhiệm về bất kỳ sự hiểu nhầm hay giải thích sai nào phát sinh từ việc sử dụng bản dịch này.
+**Tuyên bố miễn trừ trách nhiệm**:
+Tài liệu này đã được dịch bằng dịch vụ dịch thuật AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mặc dù chúng tôi cố gắng đảm bảo độ chính xác, xin lưu ý rằng bản dịch tự động có thể chứa lỗi hoặc sai sót. Tài liệu gốc bằng ngôn ngữ gốc nên được coi là nguồn tin chính thức. Đối với thông tin quan trọng, nên sử dụng dịch vụ dịch thuật chuyên nghiệp bởi con người. Chúng tôi không chịu trách nhiệm về bất kỳ hiểu lầm hoặc giải thích sai nào phát sinh từ việc sử dụng bản dịch này.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
