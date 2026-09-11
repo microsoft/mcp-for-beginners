@@ -1,110 +1,117 @@
-# Introduction to Model Context Protocol (MCP): Why E Important for Scalable AI Applications
+# Introduction to Model Context Protocol (MCP): Why E Dey Important for Scalable AI Applications
 
 [![Introduction to Model Context Protocol](../../../translated_images/pcm/01.a467036d886b5fb5.webp)](https://youtu.be/agBbdiOPLQA)
 
-_(Click the image above to watch dis lesson video)_
+_(Click the image above to view video of this lesson)_
 
-Generative AI applications na big step forward because dem dey usually allow user to interact wit di app using natural language prompts. But as you put more time and resources for these apps, you go wan make sure say e easy to join functionalities and resources so dat e go easy to expand, dat your app fit handle more than one model and fit manage different model wahala. To put am simply, to build Gen AI apps easy to start but as dem grow and become complex, you go need start to define architecture and e fit be say you go need rely on standard to make sure say your apps dey built in consistent way. Na here MCP dey come organize tins and give standard.
-
----
-
-## **🔍 Wetin be Model Context Protocol (MCP)?**
-
-**Model Context Protocol (MCP)** na **open, standardized interface** wey allow Large Language Models (LLMs) to connect wella with tools, APIs, and data sources outside. E provide one consistent architecture wey go make AI model functionality beta pass their training data, make AI systems smarter, scalable, and better to respond.
+Generative AI applications na beta step forward as dem dey often make the user fit interact wit di app using natural language prompts. But as di time and resources plenty for dis kain apps, you go want make sure say you fit easily put functionalities and resources togeder in betta way wey go easy to extend, say your app fit handle more than one model and fit manage different model wahala dem. For short, building Gen AI apps simple to start wit, but as dem dey grow and e get as e be, you go need to start to define architecture and you fit need rely on one standard to make sure say your apps dey build for one kain way. Na here MCP come fit organize tins and give standard.
 
 ---
 
-## **🎯 Why Standardization for AI E Important**
+## **🔍 Wetin Be Model Context Protocol (MCP)?**
 
-As generative AI apps dey get more complex, e dey important to adopt standards wey go ensure **scalability, extensibility, maintainability,** and **avoid vendor lock-in**. MCP dey solve dis wahala by:
+The **Model Context Protocol (MCP)** na **open, standardized interface** wey dey let Large Language Models (LLMs) connect wella wit outside tools, APIs, and data sources. E provide one kain architecture wey dey consistent to make AI model fit work well pass their training data, so AI system go dey smarter, scalable, and fit respond well.
 
-- Join model-tool integration
-- Reduce fragile, one-off custom solutions
-- Allow many models from different vendors to work together for one ecosystem
+---
 
-**Note:** Even though MCP talk say na open standard, no plan dey to make MCP become standard through any standards bodies like IEEE, IETF, W3C, ISO, or any other bodies.
+## **🎯 Why E Important to Get Standards for AI**
+
+As generative AI apps dey get complex, e no go bad to get standards wey go fix things like **scalability, extensibility, maintainability,** and **avoid vendor lock-in**. MCP dey solve these tins by:
+
+- Join model and tool integration dem together
+- Cut down brittle, one-off custom solutions
+- Make different models from different vendors fit live together for the same place
+
+**Note:** Even though MCP dey call itself open standard, dem no get plan to make MCP standard through any existing standards group like IEEE, IETF, W3C, ISO, or any oda standards group.
 
 ---
 
 ## **📚 Wetin You Go Learn**
 
-By the time you finish dis article, you go fit:
+By the time you finish to read this article, you go fit:
 
-- Define **Model Context Protocol (MCP)** and wetin e dey used for
-- Understand how MCP dey standardize model-to-tool talk
-- Identify main parts of MCP architecture
-- Check real-life applications of MCP for enterprise and development
-
----
-
-## **💡 Why Model Context Protocol (MCP) Na Big Thing**
-
-### **🔗 MCP Dey Solve AI Fragmentation**
-
-Before MCP, to join models wit tools you go:
-
-- Write custom code per tool-model pair
-- Use non-standard APIs for each vendor
-- Break often because of updates
-- No fit scale well if more tools join
-
-### **✅ Wetin You Go Gain if You Use MCP Standardization**
-
-| **Wetin You Go Gain**           | **Explanation**                                                             |
-|-------------------------------|-----------------------------------------------------------------------------|
-| Interoperability               | LLMs go work wella wit tools from different vendors                         |
-| Consistency                   | Same way of work for all platforms and tools                                |
-| Reusability                   | Tools wey dem build once fit use for many projects and systems              |
-| Accelerated Development       | Reduce dev time, use standard plug-and-play interfaces                      |
+- Define **Model Context Protocol (MCP)** and how e take work
+- Understand how MCP dey standardize model-to-tool talk talk
+- Know the main parts for MCP architecture
+- Check real-world work wey MCP dey do for enterprise and development levels
 
 ---
 
-## **🧱 Overview of MCP Architecture at High Level**
+## **💡 Why Model Context Protocol (MCP) Na Big Deal**
 
-MCP dey follow **client-server model**, wey mean:
+### **🔗 MCP Dey Solve Fragmentation for AI Interactions**
 
-- **MCP Hosts** dey run AI models
-- **MCP Clients** dey do request
-- **MCP Servers** dey serve context, tools and capabilities
+Before MCP, to join models with tools you need:
 
-### **Main Components:**
+- Custom code for each tool-model pair
+- Non-standard APIs for each vendor
+- Plenty breaks because of updates
+- No good scalability as tools dem increase
 
-- **Resources** – Static or dynamic data for models  
-- **Prompts** – Predefined workflows for guided generation  
-- **Tools** – Functions wey fit run like search, calculations  
-- **Sampling** – Agentic behavior through recursive interactions (deprecated in `2026-07-28` release candidate)
-- **Elicitation** – Server-initiated requests for user input
-- **Roots** – Filesystem limits to control server access (deprecated in `2026-07-28` release candidate)
+### **✅ Wetin MCP Standardization Don Gain**
+
+| **Gain**                  | **Wetin E Mean**                                                                |
+|--------------------------|--------------------------------------------------------------------------------|
+| Interoperability         | LLMs fit work fine with tools from different vendors                           |
+| Consistency              | Same behavior dey all platform and tools                                      |
+| Reusability              | Tools wey dem build once, fit use am for many projects and systems            |
+| Accelerated Development  | Dev time small as dem dey use standardized, plug-and-play interfaces          |
+
+---
+
+## **🧱 High-Level MCP Architecture Overview**
+
+MCP follow **client-server model**, wey mean:
+
+- **MCP Hosts** dey run the AI models
+- **MCP Clients** dey start requests
+- **MCP Servers** dey serve context, tools, and capabilities
+
+### **Main Parts:**
+
+- **Resources** – Static or dynamic data wey models fit use  
+- **Prompts** – Predefined workflow wey dey guide generation  
+- **Tools** – Functions like search, calculations wey fit run  
+- **Sampling** – Agent-like behavior dey happen through recursive interactions (e don stop for
+    MCP `2026-07-28`; now new ones suppose join direct to LLM
+    provider)
+- **Elicitation** – Requests wey server dey start to get user input
+- **Roots** – Locations for information wey relate to the server file system
+    (e don stop for MCP `2026-07-28`; better to use tool parameters, resource URIs, or
+    server configuration)
 
 ### **Protocol Architecture:**
 
 MCP get two-layer architecture:
-- **Data Layer**: JSON-RPC 2.0 communication with lifecycle management plus primitives
-- **Transport Layer**: STDIO (local) and Streamable HTTP with SSE (remote) channels
+- **Data Layer**: JSON-RPC 2.0 messages, metadata per request, discovery, and protocol basics
+
+- **Transport Layer**: stdio for local subprocesses and Streamable HTTP for remote servers. Streamable HTTP fit use SSE framing for streamed answers, but old HTTP+SSE transport don stop.
+
+
 
 ---
 
-## How MCP Servers Dem Dey Work
+## How MCP Servers Dey Work
 
-MCP servers dem dey work so:
+MCP servers dey work like dis:
 
 - **Request Flow**:
-    1. User or software wey dey act for them go start request.
-    2. **MCP Client** go send request to **MCP Host** wey dey run AI Model runtime.
-    3. **AI Model** go receive user prompt and fit ask access to external tools or data through one or more tool calls.
-    4. **MCP Host**, no be model directly, dey talk to **MCP Server(s)** using di standard protocol.
+    1. Request dey start from end user or software wey dey represent am.
+    2. The **MCP Client** go send the request go **MCP Host**, wey dey manage the AI Model runtime.
+    3. The **AI Model** go get the user prompt and fit request external tools or data through one or more tool call.
+    4. The **MCP Host**, no be the model itself, na e go communicate with correct **MCP Server(s)** using the standardized protocol.
 - **MCP Host Functionality**:
-    - **Tool Registry**: Get catalog of tools and wetin dem fit do.
-    - **Authentication**: Check if permission dey for tool access.
-    - **Request Handler**: Handle incoming requests from model.
-    - **Response Formatter**: Arrange tool results in way model fit understand.
+    - **Tool Registry**: E go keep catalog of available tools and their capabilities.
+    - **Authentication**: E go verify permission to use tool.
+    - **Request Handler**: E go handle incoming tool requests from model.
+    - **Response Formatter**: E go arrange tool outputs inside format wey model fit understand.
 - **MCP Server Execution**:
-    - **MCP Host** go send tool calls to one or more **MCP Servers**, each one get special functions (search, calculations, database query).
-    - **MCP Servers** go do their work and return results to **MCP Host** in consistent format.
-    - **MCP Host** go arrange results make e ready for **AI Model**.
+    - The **MCP Host** go send tool calls to one or more **MCP Servers**, each one dey do specialized work (like search, calculation, database queries).
+    - The **MCP Servers** go do their work and return results to **MCP Host** inside one consistent format.
+    - The **MCP Host** go arrange and pass these results to **AI Model**.
 - **Response Completion**:
-    - **AI Model** go include tool outputs inside final answer.
-    - **MCP Host** go send final response to **MCP Client**, wey go give am to user or software wey call am.
+    - The **AI Model** go join tool outputs inside final response.
+    - The **MCP Host** go send this response back to **MCP Client**, wey go drop am to end user or calling software.
     
 
 ```mermaid
@@ -113,14 +120,14 @@ title: MCP Architecture and Component Interactions
 description: A diagram showing the flows of the components in MCP.
 ---
 graph TD
-    Client[MCP Client/Application] -->|Dey Send Request| H[MCP Host]
-    H -->|Dey Call| A[AI Model]
+    Client[MCP Client/Application] -->|Sends Request| H[MCP Host]
+    H -->|Invokes| A[AI Model]
     A -->|Tool Call Request| H
-    H -->|MCP Protocol| T1[MCP Server Tool 01: Web Search
-    H -->|MCP Protocol| T2[MCP Server Tool 02: Calculator tool
-    H -->|MCP Protocol| T3[MCP Server Tool 03: Database Access tool
-    H -->|MCP Protocol| T4[MCP Server Tool 04: File System tool
-    H -->|Dey Send Response| Client
+    H -->|MCP Protocol| T1[MCP Server Tool 01: Web Search]
+    H -->|MCP Protocol| T2[MCP Server Tool 02: Calculator tool]
+    H -->|MCP Protocol| T3[MCP Server Tool 03: Database Access tool]
+    H -->|MCP Protocol| T4[MCP Server Tool 04: File System tool]
+    H -->|Sends Response| Client
 
     subgraph "MCP Host Components"
         H
@@ -150,9 +157,9 @@ graph TD
 
 ## 👨‍💻 How to Build MCP Server (With Examples)
 
-MCP servers dey allow you extend LLM power by providing data and functionalities.
+MCP servers dey allow you extend LLM capabilities by providing data and functionality.
 
-Ready to try am? Here na language or stack specific SDKs plus examples to create simple MCP servers for different languages/stacks:
+Ready make you try am? Here dem get language and/or stack SDKs wit examples of how to create simple MCP servers for different languages/stacks:
 
 - **Python SDK**: https://github.com/modelcontextprotocol/python-sdk
 
@@ -163,31 +170,31 @@ Ready to try am? Here na language or stack specific SDKs plus examples to create
 - **C#/.NET SDK**: https://github.com/modelcontextprotocol/csharp-sdk
 
 
-## 🌍 Real-World MCP Use Cases
+## 🌍 Real-World Use Cases for MCP
 
-MCP fit enable many applications by extending AI power:
+MCP make e possible to do many kain applications by extending AI power:
 
-| **Application**                  | **Explanation**                                                            |
-|--------------------------------|----------------------------------------------------------------------------|
-| Enterprise Data Integration      | Connect LLMs to databases, CRMs, or tools wey dem get inside company         |
-| Agentic AI Systems               | Make autonomous agents wey fit use tools and make decisions                 |
-| Multi-modal Applications         | Join text, image, audio tools inside one AI app                            |
-| Real-time Data Integration       | Carry live data come AI interactions for accurate and current responses      |
+| **Application**               | **Wetin E Mean**                                                                |
+|------------------------------|--------------------------------------------------------------------------------|
+| Enterprise Data Integration  | Join LLMs to databases, CRMs, or internal tools                                |
+| Agentic AI Systems           | Make autonomous agents wey fit use tool access and decision-making workflows  |
+| Multi-modal Applications     | Mix text, image, and audio tools inside one AI app                             |
+| Real-time Data Integration   | Bring live data enter AI interaction for more correct and current results       |
 
 
 ### 🧠 MCP = Universal Standard for AI Interactions
 
-Model Context Protocol (MCP) na universal standard for AI interactions, like USB-C wey standardize physical device connections. For AI world, MCP dey provide one consistent interface, make models (clients) fit join external tools and data providers (servers). This one remove di need for different custom protocols for each API or data source.
+The Model Context Protocol (MCP) act like universal standard for AI interactions, like how USB-C make all device connection uniform. For AI world, MCP na consistent interface wey make models (clients) fit join wella wit external tools and data providers (servers). E make no need for many custom protocol for each API or data source.
 
-Under MCP, MCP-compatible tool (which be MCP server) follow one normal standard. These servers fit show the tools or actions dem get and perform those actions when AI agent ask am. AI agent platforms wey support MCP fit find tools wey servers get and fit use them through this protocol.
+Under MCP, MCP-compatible tool (we dey call am MCP server) obey one joint standard. Dis servers fit list the tools or actions dem get and perform those actions wen AI agent request am. AI agent platforms wey support MCP go fit discover available tools from servers and use am through this standard protocol.
 
-### 💡 E Make Access to Knowledge Easy
+### 💡 E Make Knowledge Access Easy
 
-MCP no just give tools, e also enable access to knowledge. E allow applications to give context to LLMs by linking dem to different data sources. Like, one MCP server fit be company document store, so agents fit find correct info when dem need am. Another server fit handle tasks like sending email or updating records. For agent mind, these na tools wey dem fit use—some tools return data (knowledge context), others do actions. MCP manage both well well.
+Pass just to give tools, MCP dey help make knowledge easy to access. E dey make apps fit give context to big language models (LLMs) by linking dem to different data sources. Example, MCP server fit mean company document store, make agents fit find information wen dem ask. Another server fit do specific things like send emails or update records. For agent eye, na tools to use — some dey give knowledge data, others dey perform actions. MCP handle all well.
 
-Agent wey connect to MCP server by itself go learn the server capabilities and data wey e fit access through one normal format. This standardization dey allow tools to dey available anytime. For example, if you add new MCP server to agent system, e functions go ready to use immediately without change agent instructions.
+Agent wey connect to MCP server go automatically sabi the server available capabilities and data through standard format. This standard fit make tools dey available anytime. For example, if you add new MCP server to agent system, e go dey usable quick quick without changing agent instruction.
 
-This smooth integration dey follow dis diagram wey show how servers dey provide both tools and knowledge, to make sure systems dey work together well.
+This simple connection follow the flow wey diagram show, where servers provide both tools and knowledge, to make collaboration smooth across systems.
 
 ### 👉 Example: Scalable Agent Solution
 
@@ -197,8 +204,8 @@ title: Scalable Agent Solution with MCP
 description: A diagram illustrating how a user interacts with an LLM that connects to multiple MCP servers, with each server providing both knowledge and tools, creating a scalable AI system architecture
 ---
 graph TD
-    User -->|Prompt| LLM
-    LLM -->|Response| User
+    User -->|Tok Wey You Put| LLM
+    LLM -->|Wetin E Yan| User
     LLM -->|MCP| ServerA
     LLM -->|MCP| ServerB
     ServerA -->|Universal connector| ServerB
@@ -217,14 +224,14 @@ graph TD
         ToolsB[Tools]
     end
 ```
-The Universal Connector make MCP servers fit talk and share capabilities, make ServerA fit give ServerB tasks or access im tools and knowledge. This one make tools and data fit spread across servers, support scalable and modular agent architectures. Because MCP standardize tools exposure, agents fit find and direct requests between servers without hardwire integration.
+The Universal Connector dey enable MCP servers to dey communicate and share capabilities among dem, make ServerA fit give work to ServerB or use im tools and knowledge. This way, tools and data spread across servers, support scalable and modular agent design. Because MCP standardize tool exposure, agents fit discover and route requests between servers without hardcode integration.
 
 
-Tool and knowledge federation: Tools and data fit access across servers, make agentic architectures scalable and modular.
+Tool and knowledge federation: Tools and data fit dey accessed from many servers, enable more scalable and modular agent systems.
 
 ### 🔄 Advanced MCP Scenarios wit Client-Side LLM Integration
 
-Beyond basic MCP, some advanced cases get both client and server with LLMs, make interactions more sophisticated. For the diagram below, **Client App** fit be IDE with many MCP tools wey LLM fit use:
+Pass the basic MCP architecture, dey get advanced cases wey both client and server get LLMs, so dem fit do beta communication. For this diagram, **Client App** fit be IDE wey get plenty MCP tools to use by LLM:
 
 ```mermaid
 ---
@@ -243,17 +250,17 @@ sequenceDiagram
     %% Discovery Phase
     rect rgb(220, 240, 255)
         Note over ClientApp, Server2: TOOL DISCOVERY PHASE
-        ClientApp->>+Server1: Ask for tools wey dey available/resources
+        ClientApp->>+Server1: Ask for di tools wey dey available/resources
         Server1-->>-ClientApp: Return tool list (JSON)
-        ClientApp->>+Server2: Ask for tools wey dey available/resources
+        ClientApp->>+Server2: Ask for di tools wey dey available/resources
         Server2-->>-ClientApp: Return tool list (JSON)
-        Note right of ClientApp: Store combined tool<br/>catalog for local place
+        Note right of ClientApp: Store combined tool<br/>catalog for local side
     end
     
     %% User Interaction
     rect rgb(255, 240, 220)
         Note over User, ClientLLM: USER INTERACTION PHASE
-        User->>+ClientApp: Enter natural language prompt
+        User->>+ClientApp: Put natural language prompt inside
         ClientApp->>+ClientLLM: Send prompt + tool catalog
         ClientLLM->>-ClientLLM: Check prompt & choose tools
     end
@@ -265,8 +272,8 @@ sequenceDiagram
             ClientLLM->>+ClientApp: Request make tool run
             ClientApp->>+Server1: Run specific tool
             Server1-->>-ClientApp: Return results
-            ClientApp->>+ClientLLM: Process results
-            ClientLLM-->>-ClientApp: Generate response
+            ClientApp->>+ClientLLM: Handle results
+            ClientLLM-->>-ClientApp: Create response
             ClientApp-->>-User: Show final answer
         end
     
@@ -274,15 +281,15 @@ sequenceDiagram
     else Feature Negotiation (VS Code style)
         rect rgb(255, 220, 220)
             Note over ClientApp, ServerLLM: SCENARIO B: FEATURE NEGOTIATION
-            ClientLLM->>+ClientApp: Find out weh capabilities we need
-            ClientApp->>+Server2: Wahala talk for features/capabilities
+            ClientLLM->>+ClientApp: Identify wetin capabilities we need
+            ClientApp->>+Server2: Negotiate features/capabilities
             Server2->>+ServerLLM: Ask for more context
-            ServerLLM-->>-Server2: Give context
-            Server2-->>-ClientApp: Return available features
+            ServerLLM-->>-Server2: Provide context
+            Server2-->>-ClientApp: Return features wey dey available
             ClientApp->>+Server2: Call negotiated tools
             Server2-->>-ClientApp: Return results
-            ClientApp->>+ClientLLM: Process results
-            ClientLLM-->>-ClientApp: Generate response
+            ClientApp->>+ClientLLM: Handle results
+            ClientLLM-->>-ClientApp: Create response
             ClientApp-->>-User: Show final answer
         end
     end
@@ -290,35 +297,35 @@ sequenceDiagram
 
 ## 🔐 Practical Benefits of MCP
 
-Here na wetin you go gain from using MCP:
+Here be wetin MCP fit do for practical level:
 
-- **Freshness**: Models fit get up-to-date info beyond their training data
-- **Capability Extension**: Models fit use special tools for tasks wey dem no train for
-- **Reduced Hallucinations**: External data sources dey ground facts
-- **Privacy**: Sensitive data fit remain for secure environments, no need embed am for prompts
+- **Freshness**: Models fit get new information beyond wetin dem learn training
+- **Capability Extension**: Models fit use special tools for task dem no train for
+- **Reduced Hallucinations**: External data sources make model talk facts
+- **Privacy**: Sensitive data fit remain for secure place no go inside prompts
 
-## 📌 Main Takeaways
+## 📌 Key Takeaways
 
-Make you remember these about MCP:
+Here be key points to remember about MCP:
 
-- **MCP** dey standardize how AI models dey interact with tools and data
-- Promote **extensibility, consistency, and interoperability**
-- MCP dey help **reduce dev time, improve reliability, and extend model power**
-- Client-server architecture **go allow flexible, extensible AI apps**
+- **MCP** na standard wey define how AI model go take interact wit tools and data
+- E support **extensibility, consistency, and interoperability**
+- MCP help **reduce dev time, improve reliability, and extend model ability**
+- Client-server design **go allow flexible, extensible AI apps**
 
 ## 🧠 Exercise
 
-Think about one AI app wey you want build.
+Think about AI app wey you want build.
 
-- Which **external tools or data** fit make am better?
-- How MCP fit make joining am **simpler and more reliable?**
+- Which **outside tools or data** fit make am beta?
+- How MCP fit make integration **easier and more steady?**
 
-## More Resources
+## Additional Resources
 
 - [MCP GitHub Repository](https://github.com/modelcontextprotocol)
 
 
-## Wetin Next
+## Wetin dey next
 
 Next: [Chapter 1: Core Concepts](../01-CoreConcepts/README.md)
 

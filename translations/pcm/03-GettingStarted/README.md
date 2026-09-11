@@ -2,95 +2,104 @@
 
 [![Build Your First MCP Server](../../../translated_images/pcm/04.0ea920069efd979a.webp)](https://youtu.be/sNDZO9N4m9Y)
 
-_(Click di picture wey dey top to watch di video for dis lesson)_
+_(Click di image wey dey above make you fit watch video of dis lesson)_
 
-Dis part get plenti lessons:
+Dis section get plenti lessons: 
 
-- **1 Your first server**, for dis first lesson, you go learn how to build your first server and check am with inspector tool, beta way to test and debug your server, [go di lesson](01-first-server/README.md)
+- **1 Your first server**, for dis first lesson, you go learn how to create your first server and check am wit inspector tool, beta way to test and debug your server, [go di lesson](01-first-server/README.md)
 
 - **2 Client**, for dis lesson, you go learn how to write client wey fit connect to your server, [go di lesson](02-client/README.md)
 
-- **3 Client with LLM**, beta way to write client na to add LLM to am so e fit "talk" with your server about wetin to do, [go di lesson](03-llm-client/README.md)
+- **3 Client wit LLM**, beta way to write client na to add LLM so e fit "talk" wit your server wetin e go do, [go di lesson](03-llm-client/README.md)
 
-- **4 Consuming a server GitHub Copilot Agent mode in Visual Studio Code**. Here, we dey see how to run our MCP Server inside Visual Studio Code, [go di lesson](04-vscode/README.md)
+- **4 Consuming a server GitHub Copilot Agent mode for Visual Studio Code**. Here, we dey look how to run our MCP Server inside Visual Studio Code, [go di lesson](04-vscode/README.md)
 
-- **5 stdio Transport Server** stdio transport na di recommended standard for local MCP server-to-client talk, e provide secure subprocess-based communication with built-in process isolation [go di lesson](05-stdio-server/README.md)
+- **5 stdio Transport Server** stdio transport na di recommended standard for local MCP server-to-client communication, wey dey give secure subprocess-based communication wit process isolation inside [go di lesson](05-stdio-server/README.md)
 
-- **6 HTTP Streaming with MCP (Streamable HTTP)**. Learn about modern HTTP streaming transport (di recommended way for remote MCP servers as per [MCP Specification 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/basic/transports/#streamable-http)), progress notifications, and how to make scalable, real-time MCP servers and clients using Streamable HTTP. [go di lesson](06-http-streaming/README.md)
+- **6 HTTP Streaming wit MCP (Streamable HTTP)**. Learn about di standard
+	remote transport for [MCP Specification 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http),
+	plus di old session-based way wey dem still dey use for di lesson.
+	[go di lesson](06-http-streaming/README.md)
 
-- **7 Utilising AI Toolkit for VSCode** to use and test your MCP Clients and Servers [go di lesson](07-aitk/README.md)
+- **7 Using AI Toolkit for VSCode** to consume and test your MCP Clients and Servers [go di lesson](07-aitk/README.md)
 
-- **8 Testing**. For here we go focus mainly how we fit test our server and client in different ways, [go di lesson](08-testing/README.md)
+- **8 Testing**. Here we go focus well well on how we fit test our server and client different way, [go di lesson](08-testing/README.md)
 
-- **9 Deployment**. Dis chapter go look different ways wey you fit deploy your MCP solutions, [go di lesson](09-deployment/README.md)
+- **9 Deployment**. Dis chapter go show different ways to deploy your MCP solutions, [go di lesson](09-deployment/README.md)
 
-- **10 Advanced server usage**. Dis chapter dey cover advanced server usage, [go di lesson](./10-advanced/README.md)
+- **10 Advanced server usage**. Dis chapter go cover advanced server usage, [go di lesson](./10-advanced/README.md)
 
-- **11 Auth**. Dis chapter go show how to add simple auth, from Basic Auth to using JWT and RBAC. We dey encourage you start here and then check Advanced Topics for Chapter 5 and add extra security because of recommendations for Chapter 2, [go di lesson](./11-simple-auth/README.md)
+- **11 Auth**. Dis chapter go show how to add simple auth, from Basic Auth to JWT and RBAC. E beta to start here then check Advanced Topics for Chapter 5 and do more strong security like dem talk for Chapter 2, [go di lesson](./11-simple-auth/README.md)
 
-- **12 MCP Hosts**. Setup and use common MCP host clients like Claude Desktop, Cursor, Cline, and Windsurf. Learn transport types and how to fix palava, [go di lesson](./12-mcp-hosts/README.md)
+- **12 MCP Hosts**. Configure and use popular MCP host clients like Claude Desktop, Cursor, Cline, and Windsurf. Learn transport types and troubleshooting, [go di lesson](./12-mcp-hosts/README.md)
 
-- **13 MCP Inspector**. Debug and test your MCP servers for interactive way using MCP Inspector tool. Learn how to fix tools, resources, and protocol messages, [go di lesson](./13-mcp-inspector/README.md)
+- **13 MCP Inspector**. Debug and test your MCP servers sharp sharp wit MCP Inspector tool. Learn how to troubleshoot tools, resources, and protocol messages, [go di lesson](./13-mcp-inspector/README.md)
 
-- **14 Sampling**. Create MCP Servers wey dey work together with MCP clients on LLM related tasks (old one wey dem no go use too soon `2026-07-28` release candidate; still good for `2025-11-25`). [go di lesson](./14-sampling/README.md)
+- **14 Sampling**. Learn the old Sampling style for `2025-11-25` and
+	how to switch to new design wey direct connect LLM provider. Sampling don
+	stop for MCP `2026-07-28`. [go di lesson](./14-sampling/README.md)
 
-- **15 MCP Apps**. Build MCP Servers wey go also reply with UI instructions, [go di lesson](./15-mcp-apps/README.md)
+- **15 MCP Apps**. Build MCP Servers wey fit reply with UI instructions, [go di lesson](./15-mcp-apps/README.md)
 
-Model Context Protocol (MCP) na open protocol wey make how apps go provide context to LLMs standard. Think am like USB-C port for AI apps - e provide one standard way to join AI models to different data sources and tools.
+Di Model Context Protocol (MCP) na open protocol wey dey make am standard how apps dey provide context to LLMs. Think am like USB-C port for AI apps - e dey give common way to connect AI models to different data sources and tools.
 
 ## Wetin You Go Learn
 
-By di time you finish dis lesson, you go fit:
+By di end of dis lesson, you go fit:
 
-- Setup development environments for MCP inside C#, Java, Python, TypeScript, and JavaScript
-- Build and deploy basic MCP servers with your own features (resources, prompts, and tools)
-- Make host applications wey connect to MCP servers
-- Test and debug MCP programmes
-- Understand common setup wahala and how to solve am
-- Connect your MCP works to popular LLM services
+- Set up development environments for MCP for C#, Java, Python, TypeScript, and JavaScript
+- Build and deploy basic MCP servers wit custom features (resources, prompts, and tools)
+- Create host apps wey connect to MCP servers
+- Test and debug MCP implementations
+- Understand common setup wahalas and how to solve dem
+- Connect your MCP implementations to popular LLM services
 
-## How to Setup Your MCP Environment
+## How to Set Up Your MCP Environment
 
-Before you start to work with MCP, e important to prepare your development environment and sabi di basic workflow. Dis section go guide you wetin to do first to make sure say you start well well with MCP.
+Before you start to work wit MCP, e important to ready your development environment and sabi di basic workflow. Dis section go guide you for di first steps to make your MCP start smooth.
 
-### Wetin You Need First
+### Wetin You Need Before You Start
 
-Before you waka enter MCP development, make sure say you get:
+Before you put hand for MCP development, make sure say you get:
 
-- **Development Environment**: For which language you go use (C#, Java, Python, TypeScript, or JavaScript)
+- **Development Environment**: For di language wey you choose (C#, Java, Python, TypeScript, or JavaScript)
 - **IDE/Editor**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm, or any modern code editor
 - **Package Managers**: NuGet, Maven/Gradle, pip, or npm/yarn
-- **API Keys**: For any AI services wey you want use for your host applications
+- **API Keys**: For any AI service wey you wan use for your host apps
 
 
 ### Official SDKs
 
-For chapters wey dey come, you go see solutions wey dem build with Python, TypeScript, Java and .NET. Here na all di officially supported SDKs.
+For di chapters wey dey come, you go see solutions wey dem build wit Python, TypeScript,
+Java and .NET. These na di official SDKs.
 
-MCP get official SDKs for plenty languages (wey match [MCP Specification 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)):
-- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - Dem dey maintain am with Microsoft
-- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Dem dey maintain am with Spring AI
-- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - The official TypeScript implementation
-- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - The official Python implementation (FastMCP)
-- [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - The official Kotlin implementation
-- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - Dem dey maintain am with Loopwork AI
-- [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - The official Rust implementation
-- [Go SDK](https://github.com/modelcontextprotocol/go-sdk) - The official Go implementation
+SDK support for MCP `2026-07-28` dey come one by one for every language.
+Before you run example, check package version and SDK release notes
+for di protocol versions wey e support. See di
+[official SDK list](https://modelcontextprotocol.io/docs/sdk):
+- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - Maintained wit Microsoft
+- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Maintained wit Spring AI
+- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Official TypeScript implementation
+- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Official Python implementation (FastMCP)
+- [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - Official Kotlin implementation
+- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - Maintained wit Loopwork AI
+- [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - Official Rust implementation
+- [Go SDK](https://github.com/modelcontextprotocol/go-sdk) - Official Go implementation
 
-## Main Tin Dem Wey You Go Take Remember
+## Main Points
 
-- To setup MCP development environment dey easy with language-specific SDKs
-- To build MCP servers mean to create and register tools wey get clear schemas
-- MCP clients dey connect to servers and models to use better features
-- Testing and debugging important to make MCP implementation solid
-- Deployment options include local development to cloud solutions
+- Setting up MCP development environment na easy tin wit language SDKs
+- Building MCP servers na to create tools and register dem wit clear schemas
+- MCP clients connect to servers and models to use beta features dem
+- Testing and debugging na key for reliable MCP development
+- Deployment fit be local development or cloud solutions
 
-## Practice Time
+## Practice
 
-We get set of samples wey go support di exercises wey you go see for all chapters for dis section. Plus each chapter still get their own exercises and assignments
+We get some samples wey dey complement di exercises for all chapters for dis section. Each chapter get their own exercises and assignments too.
 
 - [Java Calculator](./samples/java/calculator/README.md)
-- [.Net Calculator](../../../03-GettingStarted/samples/csharp)
+- [.NET Calculator](../../../03-GettingStarted/samples/csharp)
 - [JavaScript Calculator](./samples/javascript/README.md)
 - [TypeScript Calculator](./samples/typescript/README.md)
 - [Python Calculator](../../../03-GettingStarted/samples/python)
@@ -103,7 +112,7 @@ We get set of samples wey go support di exercises wey you go see for all chapter
 
 ## Wetin Next
 
-Start with di first lesson: [How to create your first MCP Server](01-first-server/README.md)
+Start wit di first lesson: [Creating your first MCP Server](01-first-server/README.md)
 
 After you don finish dis module, continue to: [Module 4: Practical Implementation](../04-PracticalImplementation/README.md)
 

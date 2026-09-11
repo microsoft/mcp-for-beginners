@@ -1,10 +1,15 @@
-# Populaarsete MCP host-klientide seadistamine
+# Populaarsete MCP hosti klientide seadistamine
 
-See juhend käsitleb MCP serverite seadistamist ja kasutamist populaarsete tehisintellekti hostrakendustega. Igal hostil on oma konfiguratsioonimeetod, kuid pärast seadistamist suhtlevad kõik MCP serveritega standardiseeritud protokolli kaudu.
+> [!NOTE]
+> Hostide konfiguratsioonid, mis suunavad `/sse`-le, on MCP `2025-11-25` jaoks vananenud HTTP+SSE näited. MCP `2026-07-28` puhul vali hostides, mis seda toetavad, Streamable HTTP ja kasuta serveri poolt konfigureeritud lõpp-punkti.
+> 
+> 
 
-## Mis on MCP host?
+See juhend käsitleb, kuidas seadistada ja kasutada MCP servereid populaarsete AI hostirakendustega. Iga hostil on oma konfiguratsiooniviis, kuid pärast seadistamist suhtlevad nad kõik MCP serveritega standardiseeritud protokolli abil.
 
-**MCP host** on tehisintellekti rakendus, mis saab MCP serveritega ühenduda, et laiendada oma funktsionaalsust. Mõelge sellele kui "esiküljena", millega kasutajad suhtlevad, samal ajal kui MCP serverid pakuvad "tagaküljena" tööriistu ja andmeid.
+## Mis on MCP Host?
+
+**MCP Host** on AI-rakendus, mis suudab ühendada MCP serveritega, et laiendada oma võimekust. Mõtle sellele kui "esiküljele", millega kasutajad suhtlevad, samal ajal kui MCP serverid pakuvad "tagapõhja" tööriistu ja andmeid.
 
 ```mermaid
 flowchart LR
@@ -13,7 +18,7 @@ flowchart LR
     Host --> S2[MCP Server B]
     Host --> S3[MCP Server C]
     
-    subgraph "Populaarsed Hostid"
+    subgraph "Populaarsed hostid"
         H1[Claude Desktop]
         H2[VS Code]
         H3[Cursor]
@@ -21,33 +26,34 @@ flowchart LR
         H5[Windsurf]
     end
 ```
-## Eeldused
 
-- MCP server, millega ühenduda (vt [Moodul 3.1 - Esimene server](../01-first-server/README.md))
-- Host-rakendus installitud teie süsteemi
-- Põhilised teadmised JSON konfiguratsioonifailidest
+## Eeltingimused
+
+- MCP server, millega ühendada (vt [Moodul 3.1 - Esimene server](../01-first-server/README.md))
+- Hostirakendus installitud sinu süsteemis
+- Baasteadmised JSON konfiguratsioonifailidest
 
 ---
 
 ## 1. Claude Desktop
 
-**Claude Desktop** on Anthropici ametlik töölauarakendus, mis toetab MCP-d natiivses vormis.
+**Claude Desktop** on Anthropicu ametlik lauaarvuti rakendus, mis toetab MCP-d loomupäraselt.
 
-### Paigaldamine
+### Paigaldus
 
-1. Laadige Claude Desktop alla aadressilt [claude.ai/download](https://claude.ai/download)
-2. Installige ja logige sisse oma Anthropic konto abil
+1. Laadi alla Claude Desktop aadressilt [claude.ai/download](https://claude.ai/download)
+2. Paigalda ja logi sisse oma Anthropicu kontoga
 
 ### Konfiguratsioon
 
-Claude Desktop kasutab MCP serverite määramiseks JSON konfiguratsioonifaili.
+Claude Desktop kasutab MCP serverite määratlemiseks JSON konfiguratsioonifaili.
 
 **Konfiguratsioonifaili asukoht:**
 - **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 - **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
 - **Linux**: `~/.config/Claude/claude_desktop_config.json`
 
-**Näide konfiguratsioonist:**
+**Näidis konfiguratsioon:**
 
 ```json
 {
@@ -74,52 +80,52 @@ Claude Desktop kasutab MCP serverite määramiseks JSON konfiguratsioonifaili.
 }
 ```
 
-### Konfiguratsioonivalikud
+### Konfiguratsiooni valikud
 
-| Välja nimi | Kirjeldus | Näide |
-|------------|-----------|--------|
-| `command`  | Käivitatav programm | `"python"`, `"node"`, `"npx"` |
-| `args`     | Käskluse argumendid | `["-m", "my_server"]` |
-| `env`      | Keskkonnamuutujad | `{"API_KEY": "xxx"}` |
-| `cwd`      | Töökataloog | `"/path/to/server"` |
+| Väli | Kirjeldus | Näide |
+|-------|-------------|---------|
+| `command` | Käivitatav programm | `"python"`, `"node"`, `"npx"` |
+| `args` | Käsklusrida argumendid | `["-m", "my_server"]` |
+| `env` | Keskkonnamuutujad | `{"API_KEY": "xxx"}` |
+| `cwd` | Töötamiskataloog | `"/path/to/server"` |
 
-### Oma seadistuse testimine
+### Seadistuse testimine
 
-1. Salvestage konfiguratsioonifail
-2. Taaskäivitage Claude Desktop täielikult (sulgege ja avage uuesti)
-3. Avage uus vestlus
-4. Otsige 🔌 ikooni, mis näitab ühendatud servereid
-5. Proovige paluda Claudel kasutada mõnda teie tööriista
+1. Salvesta konfiguratsioonifail
+2. Taaskäivita Claude Desktop täielikult (välju ja ava uuesti)
+3. Ava uus vestlus
+4. Otsi ikooni 🔌, mis näitab ühendatud servereid
+5. Proovi paluda Claude'il kasutada mõnda su tööriista
 
 ### Claude Desktopi tõrkeotsing
 
 **Server ei ilmu:**
-- Kontrollige konfiguratsioonifaili süntaksit JSON valideerijaga
-- Veenduge, et käskluse tee on õige
-- Kontrollige Claude Desktopi logisid: Abi → Näita logisid
+- Kontrolli konfiguratsioonifaili sünaksit JSON valideerijaga
+- Veendu, et käskluse tee on õige
+- Kontrolli Claude Desktopi logisid: Abi → Näita logisid
 
 **Server jookseb käivitamisel kokku:**
-- Testige serverit esmalt käsitsi terminalis
-- Kontrollige, et keskkonnamuutujad on õigesti seadistatud
-- Veenduge, et kõik sõltuvused on installitud
+- Proovi serverit esmalt terminalis käsitsi käivitada
+- Kontrolli, et keskkonnamuutujad on õigesti määratud
+- Veendu, et kõik sõltuvused on paigaldatud
 
 ---
 
-## 2. VS Code koos GitHub Copilotiga
+## 2. VS Code GitHub Copilotiga
 
 VS Code toetab MCP-d GitHub Copilot Chat laienduste kaudu.
 
-### Eeldused
+### Eeltingimused
 
-1. VS Code versioon 1.99+ installitud
-2. GitHub Copilot laiendus installitud
-3. GitHub Copilot Chat laiendus installitud
+1. Paigaldatud VS Code versioon 1.99+
+2. Paigaldatud GitHub Copilot laiendus
+3. Paigaldatud GitHub Copilot Chat laiendus
 
 ### Konfiguratsioon
 
-VS Code kasutab `.vscode/mcp.json` faili teie töökeskkonnas või kasutaja seadetes.
+VS Code kasutab tööruumi või kasutaja seadetes faili `.vscode/mcp.json`.
 
-**Töökeskkonna konfiguratsioon** (`.vscode/mcp.json`):
+**Tööruumi konfiguratsioon** (`.vscode/mcp.json`):
 
 ```json
 {
@@ -137,7 +143,7 @@ VS Code kasutab `.vscode/mcp.json` faili teie töökeskkonnas või kasutaja sead
 }
 ```
 
-**Kasutaja seaded** (`settings.json`):
+**Kasutaja sätted** (`settings.json`):
 
 ```json
 {
@@ -154,27 +160,27 @@ VS Code kasutab `.vscode/mcp.json` faili teie töökeskkonnas või kasutaja sead
 
 ### MCP kasutamine VS Code'is
 
-1. Avage Copilot Chat paneel (Ctrl+Shift+I / Cmd+Shift+I)
-2. Tippige `@`, et näha saadaolevaid MCP tööriistu
-3. Kasutage loomuliku keele käske tööriistade kutsumiseks: "Calculate 25 * 48 using the calculator"
+1. Ava Copilot Chati paneel (Ctrl+Shift+I / Cmd+Shift+I)
+2. Kirjuta `@`, et näha saadaolevaid MCP tööriistu
+3. Kasuta loomulikku keelt tööriistade kutsumiseks: "Arvuta kalkulaatoriga 25 * 48"
 
 ### VS Code tõrkeotsing
 
 **MCP serverid ei laadi:**
-- Kontrollige Väljundi paneeli → "MCP" vigade logisid
-- Taaslaadige aken: Ctrl+Shift+P → "Developer: Reload Window"
-- Veenduge, et server töötab esmalt iseseisvalt
+- Kontrolli väljundi paneelis → "MCP" vealogisid
+- Laadi aken uuesti: Ctrl+Shift+P → "Arendaja: Laadi aken uuesti"
+- Veendu, et server töötab esmalt iseseisvalt
 
 ---
 
 ## 3. Cursor
 
-**Cursor** on tehisintellekti-keskne koodiredaktor, millel on sisseehitatud MCP tugi.
+**Cursor** on AI-keskne koodiredaktor, millel on sisseehitatud MCP tugi.
 
-### Paigaldamine
+### Paigaldus
 
-1. Laadige Cursor alla aadressilt [cursor.sh](https://cursor.sh)
-2. Installige ja logige sisse
+1. Laadi alla Cursor aadressilt [cursor.sh](https://cursor.sh)
+2. Paigalda ja logi sisse
 
 ### Konfiguratsioon
 
@@ -185,7 +191,7 @@ Cursor kasutab sarnast konfiguratsiooniformaati nagu Claude Desktop.
 - **Windows**: `%USERPROFILE%\.cursor\mcp.json`
 - **Linux**: `~/.cursor/mcp.json`
 
-**Näide konfiguratsioonist:**
+**Näidis konfiguratsioon:**
 
 ```json
 {
@@ -207,17 +213,17 @@ Cursor kasutab sarnast konfiguratsiooniformaati nagu Claude Desktop.
 
 ### MCP kasutamine Cursoris
 
-1. Avage Cursori AI vestlus (Ctrl+L / Cmd+L)
-2. MCP tööriistad ilmuvad soovitustes automaatselt
-3. Paluge tehisintellektil täita ülesandeid ühendatud serverite abil
+1. Ava Cursor AI vestlus (Ctrl+L / Cmd+L)
+2. MCP tööriistad ilmuvad automaatselt soovitustes
+3. Palu AI-l toiminguid sooritada ühendatud serverite abil
 
 ---
 
 ## 4. Cline (terminalipõhine)
 
-**Cline** on terminalipõhine MCP klient, ideaalne käsureatöövoogude jaoks.
+**Cline** on terminalipõhine MCP klient, sobilik käsurea töövoogude jaoks.
 
-### Paigaldamine
+### Paigaldus
 
 ```bash
 npm install -g @anthropic/cline
@@ -255,16 +261,16 @@ cline --mcp-server "calculator:python -m mcp_calculator_server" \
 }
 ```
 
-### Cline'i kasutamine
+### Cline kasutamine
 
 ```bash
-# Alusta interaktiivset seanssi
+# Alusta interaktiivset sessiooni
 cline
 
-# Ühepäringuline MCP-ga
+# Üksik päring MCP-ga
 cline "Calculate the square root of 144 using the calculator"
 
-# Kuva saadaolevad tööriistad
+# Loetle kasutatavad tööriistad
 cline --list-tools
 ```
 
@@ -272,22 +278,22 @@ cline --list-tools
 
 ## 5. Windsurf
 
-**Windsurf** on veel üks AI-toega koodiredaktor, millel on MCP tugi.
+**Windsurf** on veel üks MCP toetusega AI-kodeerimisredaktor.
 
-### Paigaldamine
+### Paigaldus
 
-1. Laadige Windsurf alla aadressilt [codeium.com/windsurf](https://codeium.com/windsurf)
-2. Installige ja looge konto
+1. Laadi alla Windsurf aadressilt [codeium.com/windsurf](https://codeium.com/windsurf)
+2. Paigalda ja loo konto
 
 ### Konfiguratsioon
 
-Windsurf konfiguratsioon toimub seadete kasutajaliidese kaudu:
+Windsurf’i konfiguratsiooni haldatakse sätete liidese kaudu:
 
-1. Avage Seaded (Ctrl+, / Cmd+,)
-2. Otsige "MCP"
-3. Klõpsake "Muuda settings.json'is"
+1. Ava Seaded (Ctrl+, / Cmd+,)
+2. Otsi "MCP"
+3. Klõpsa "Muuda settings.json'is"
 
-**Näide konfiguratsioonist:**
+**Näidis konfiguratsioon:**
 
 ```json
 {
@@ -304,41 +310,41 @@ Windsurf konfiguratsioon toimub seadete kasutajaliidese kaudu:
 
 ---
 
-## Ülekande tüüpide võrdlus
+## Transporttüüpide võrdlus
 
-Erinevad hostid toetavad erinevaid ülekandemehhanisme:
+Erinevad hostid toetavad erinevaid transpordimehhanisme:
 
-| Host           | stdio | SSE/HTTP | WebSocket |
-|----------------|-------|----------|-----------|
-| Claude Desktop | ✅     | ❌        | ❌         |
-| VS Code        | ✅     | ✅        | ❌         |
-| Cursor         | ✅     | ✅        | ❌         |
-| Cline          | ✅     | ✅        | ❌         |
-| Windsurf       | ✅     | ✅        | ❌         |
+| Host | stdio | SSE/HTTP | WebSocket |
+|------|-------|----------|-----------|
+| Claude Desktop | ✅ | ❌ | ❌ |
+| VS Code | ✅ | ✅ | ❌ |
+| Cursor | ✅ | ✅ | ❌ |
+| Cline | ✅ | ✅ | ❌ |
+| Windsurf | ✅ | ✅ | ❌ |
 
-**stdio** (standard sisend/väljund): parim kohalikeks serveriteks, mida host käivitab
-**SSE/HTTP**: parim kaugserveriteks või serveriteks, mida jagatakse mitme kliendi vahel
+**stdio** (standard sisend/väljund): Parim kohalikeks serveriteks, mis käivituvad hosti poolt
+**SSE/HTTP**: Parim kaugarvutis asuvate serverite või mitme kliendi vahel jagatud serverite jaoks
 
 ---
 
-## Levinud tõrkeotsing
+## Levinud tõrkeotsingu juhised
 
 ### Server ei käivitu
 
-1. **Testige serverit esmalt käsitsi:**
+1. **Testi serverit esmalt käsitsi:**
    ```bash
    # Pythoniks
    python -m your_server_module
    
-   # Node.js-iks
+   # Node.js jaoks
    node /path/to/server/index.js
    ```
 
-2. **Kontrollige käskluse teed:**
-   - Kasutage võimalusel absoluutseid teid
-   - Veenduge, et käitatav fail on teie PATH-s
+2. **Kontrolli käsku:**
+   - Kasuta võimalusel absoluutseid teid
+   - Veendu, et käivitatav fail on PATH-s
 
-3. **Kontrollige sõltuvusi:**
+3. **Kontrolli sõltuvusi:**
    ```bash
    # Python
    pip list | grep mcp
@@ -347,48 +353,48 @@ Erinevad hostid toetavad erinevaid ülekandemehhanisme:
    npm list @modelcontextprotocol/sdk
    ```
 
-### Server ühendub, kuid tööriistad ei tööta
+### Server on ühendatud, kuid tööriistad ei toimi
 
-1. **Kontrollige serveri logisid** – enamik hoste toetab logimist
-2. **Veenduge tööriistade registreerimises** – kasutage MCP Inspectorit testimiseks
-3. **Kontrollige õigusi** – mõned tööriistad vajavad faili-/võrguõigusi
+1. **Kontrolli serveri logisid** - Enamikel hostidel on logimisvõimalused
+2. **Kontrolli tööriistade registreerimist** - Kasuta MCP Inspectorit testimiseks
+3. **Kontrolli õigusi** - Mõned tööriistad vajavad faili-/võrgu ligipääsu
 
-### Keskkonnamuutujad ei edastu
+### Keskkonnamuutujad ei lähe läbi
 
 - Mõned hostid puhastavad keskkonnamuutujaid
-- Kasutage selgelt `env` konfiguratsioonivälja
-- Vältige tundlike andmete hoidmistä konfiguratsioonifailides (kasutage saladuste haldust)
+- Kasuta `env` konfiguratsioonivälja selgelt
+- Väldi tundliku info panemist konfiguratsioonifailidesse (kasuta salajate haldust)
 
 ---
 
-## Turvalisuse parimad praktikad
+## Turvalisuse parimad tavad
 
-1. **Ärge kunagi pange API võtmeid konfiguratsioonifailidesse**
-2. **Kasutage tundlike andmete puhul keskkonnamuutujaid**
-3. **Piirake serveri õigusi vaid vajalikuga**
-4. **Kontrollige serveri koodi enne süsteemile ligipääsu andmist**
-5. **Kasutage lubatud nimekirju failisüsteemi ja võrgule ligipääsuks**
+1. **Ära kunagi kirjuta API võtmeid konfiguratsioonifailidesse**
+2. **Kasuta tundlike andmete jaoks keskkonnamuutujaid**
+3. **Piira serveri õigusi ainult vajalikuni**
+4. **Loe serveri koodi enne süsteemi ligipääsu andmist läbi**
+5. **Kasuta lubade nimekirju failisüsteemi ja võrgu ligipääsuks**
 
 ---
 
 ## Mis järgmiseks
 
-- [3.13 - Silumine MCP Inspectoriga](../13-mcp-inspector/README.md)
-- [3.1 - Looge oma esimene MCP server](../01-first-server/README.md)
+- [3.13 - Pahade asjade otsimine MCP Inspectoriga](../13-mcp-inspector/README.md)
+- [3.1 - Loo oma esimene MCP server](../01-first-server/README.md)
 - [Moodul 5 - Täiustatud teemad](../../05-AdvancedTopics/README.md)
 
 ---
 
-## Täiendavad ressursid
+## Lisamaterjalid
 
 - [Claude Desktop MCP dokumentatsioon](https://docs.anthropic.com/en/docs/claude-desktop/mcp)
 - [VS Code MCP laiendus](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-mcp)
-- [MCP spetsifikatsioon - ülekanded](https://spec.modelcontextprotocol.io/specification/2025-11-25/basic/transports/)
-- [Ametlik MCP serverite register](https://github.com/modelcontextprotocol/servers)
+- [MCP spetsifikatsioon - Transpordid](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/)
+- [Ametlik MCP serverite registratuur](https://github.com/modelcontextprotocol/servers)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Vastutusest loobumine**:
-See dokument on tõlgitud kasutades AI tõlketeenust [Co-op Translator](https://github.com/Azure/co-op-translator). Kuigi püüame tagada täpsust, võib automaatses tõlkes esineda vigu või ebatäpsusi. Originaaldokument selle emakeeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitatakse professionaalset inimtõlget. Me ei vastuta selle tõlke kasutamisest tingitud arusaamatuste või valesti mõistmiste eest.
+**Lahtiütlus**:
+See dokument on tõlgitud kasutades AI tõlketeenust [Co-op Translator](https://github.com/Azure/co-op-translator). Kuigi me püüdleme täpsuse poole, palun pange tähele, et automatiseeritud tõlgetes võib esineda vigu või ebatäpsusi. Originaaldokument selle emakeeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitatakse kasutada professionaalset inimtõlget. Me ei vastuta selle tõlkega seotud eksimustest või valesti mõistmistest.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

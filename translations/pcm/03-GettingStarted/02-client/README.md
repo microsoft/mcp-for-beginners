@@ -1,33 +1,33 @@
-# Creating a client
+# Di how to create client
 
-Clients na custom applications or scripts wey dey communicate directly wit MCP Server to request resources, tools, an prompts. E no be like when you dey use inspector tool, wey dey give graphical interface to interact wit di server, when you write your own client e allow programmatic an automated interactions. Dis one fit make developers fit integrate MCP capabilities into their own workflow dem, automate tasks, an build custom solutions wey dem tailor to specific needs.
+Clients na custom apps or scripts wey dey yarn directly with MCP Server to request resources, tools, and prompts. E no be like how inspector tool dey work wey get graphical interface to dey interact with di server, but wen you write your own client e go allow programmatic and automated ways to yarn with server. This fit help developers to connect MCP features with dia own workflows, make work automatic, and build custom solutions wey fit better for wetin dem need.
 
 ## Overview
 
-Dis lesson go introduce di concept of clients inside di Model Context Protocol (MCP) ecosystem. You go learn how to write your own client and connect am to MCP Server.
+Dis lesson go show you wetin client mean for Model Context Protocol (MCP) world. You go learn how to write your own client and connect am to MCP Server.
 
-## Learning Objectives
+## Wetin you go learn
 
-By di time dis lesson finish, you go fit:
+By di time you finish dis lesson, you go fit:
 
 - Understand wetin client fit do.
 - Write your own client.
-- Connect and test di client wit MCP server to make sure di latter dey work as e suppose.
+- Connect am and test di client with MCP server to make sure e dey work well.
 
-## What goes into writing a client?
+## Wetin e mean to write client?
 
-To write client, you go need do dis tins:
+To write client, you go need do dis kain things:
 
-- **Import di correct libraries**. You go dey use di same library as before, na just different constructs.
-- **Instantiate a client**. Dis one go mean say you go create client instance and connect am to di transport method wey you choose.
-- **Decide wetin to list among resources**. Your MCP server get resources, tools an prompts, you need decide which one to list.
-- **Integrate di client into host application**. When you sure wetin di server fit do, you need connect am to your host application so if user type prompt or command, di correct server feature go activate.
+- **Import di correct libraries**. You go dey use di same library as before, but with different way.
+- **Make client instance**. You go create client and connect to di transport method wey you choose.
+- **Choose wetin resources to list**. Your MCP server get resources, tools and prompts, you get to choose which one to list.
+- **Join the client to host app**. Once you sabi wetin server fit do, you go join am to your host app so that wen user type prompt or command the correct server feature go start.
 
-Now as we don understand wetin we wan do from top, make we see example next.
+Now we don understand di high level tori, mek we check example next.
 
-### An example client
+### Sample client
 
-Make we look dis example client:
+Make we look dis sample client:
 
 ### TypeScript
 
@@ -52,7 +52,7 @@ await client.connect(transport);
 // Make list of prompts
 const prompts = await client.listPrompts();
 
-// Make you get one prompt
+// Collect one prompt
 const prompt = await client.getPrompt({
   name: "example-prompt",
   arguments: {
@@ -68,7 +68,7 @@ const resource = await client.readResource({
   uri: "file:///example.txt"
 });
 
-// Use one tool to call
+// Use one tool
 const result = await client.callTool({
   name: "example-tool",
   arguments: {
@@ -77,23 +77,23 @@ const result = await client.callTool({
 });
 ```
 
-Inside di code wey just pass, we:
+For di code wey come before, we:
 
-- Import di libraries
-- Create client instance an connect am wit stdio for transport.
-- List prompts, resources and tools an invoke all of dem.
+- Import libraries
+- Create client instance and connect am with stdio transport.
+- List prompts, resources and tools and call dem all.
 
-Na so we get am, client wey fit talk to MCP Server.
+Na so e be, one client wey fit talk with MCP Server.
 
-Make we take time for next exercise to break down each code part an explain wetin dey happen.
+Make we take time for di next exercise to break code small small and explain wetin dey happen.
 
-## Exercise: Writing a client
+## Exercise: How to write client
 
-Like we talk before, make we take time explain di code, an of course code along if you want.
+Like we talk before, make we explain code well, also if you want you fit code along.
 
-### -1- Import the libraries
+### -1- Import di libraries
 
-Make we import di libraries wey we need, we go need references to client and stdio transport protocol wey we choose. stdio na protocol for things wey dem suppose run for your local machine. SSE na another transport protocol we go show for future chapters but dat na your other option. For now, make we continue wit stdio.
+Make we import di libraries we need, we go need reference to client and transport protocol wey be stdio. Stdio na protocol for things wey go run for your local machine. SSE na another transport we go show later for next chapters but na your second option. For now, mek we continue with stdio.
 
 #### TypeScript
 
@@ -120,7 +120,7 @@ using ModelContextProtocol.Client;
 
 #### Java
 
-For Java, you go create client wey connect to MCP server from previous exercise. Use di same Java Spring Boot project structure from [Getting Started with MCP Server](../../../../03-GettingStarted/01-first-server/solution/java), create new Java class named `SDKClient` inside `src/main/java/com/microsoft/mcp/sample/client/` folder an add dis imports:
+For Java, you go create client wey go connect to MCP server from previous exercise. Use di same Java Spring Boot project structure wey dey [Getting Started with MCP Server](../../../../03-GettingStarted/01-first-server/solution/java), create new Java class wey dem go call `SDKClient` for `src/main/java/com/microsoft/mcp/sample/client/` folder and put dis imports:
 
 ```java
 import java.util.Map;
@@ -135,7 +135,7 @@ import io.modelcontextprotocol.spec.McpSchema.ListToolsResult;
 
 #### Rust
 
-You need add dis dependencies to your `Cargo.toml` file.
+You go need add dis dependencies to your `Cargo.toml` file.
 
 ```toml
 [package]
@@ -149,7 +149,7 @@ serde_json = "1.0.141"
 tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 ```
 
-After dat, you fit import di necessary libraries inside your client code.
+From there, you fit import libraries wey client code go need.
 
 ```rust
 use rmcp::{
@@ -161,11 +161,11 @@ use rmcp::{
 use tokio::process::Command;
 ```
 
-Make we move go instantiation.
+Make we continue to instantiation.
 
-### -2- Instantiating client and transport
+### -2- How to instantiate client and transport
 
-We go need create instance of di transport an that one of our client:
+We go create instance of transport plus client:
 
 #### TypeScript
 
@@ -185,9 +185,9 @@ const client = new Client(
 await client.connect(transport);
 ```
 
-For di code wey just pass:
+For dis code we:
 
-- We create stdio transport instance. Notice how e specify command and args for how to find an start di server since na wetin we go need do as we create client.
+- Create stdio transport instance. See how e talk command and args so that e fit find and start server as we dey create client.
 
     ```typescript
     const transport = new StdioClientTransport({
@@ -196,7 +196,7 @@ For di code wey just pass:
     });
     ```
 
-- Instantiate client by giving am name an version.
+- Create client give am name and version.
 
     ```typescript
     const client = new Client(
@@ -206,7 +206,7 @@ For di code wey just pass:
     });
     ```
 
-- Connect client to di transport wey we choose.
+- Connect client to transport we choose.
 
     ```typescript
     await client.connect(transport);
@@ -218,11 +218,11 @@ For di code wey just pass:
 from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
 
-# Make server parameters for stdio konnekshon
+# Make server parameters for stdio connection
 server_params = StdioServerParameters(
-    command="mcp",  # Di tin wey pipo fit run
-    args=["run", "server.py"],  # Command line args wey no sure
-    env=None,  # Environment variables wey no sure
+    command="mcp",  # Di executable
+    args=["run", "server.py"],  # Optional command line arguments
+    env=None,  # Optional environment variables
 )
 
 async def run():
@@ -230,7 +230,7 @@ async def run():
         async with ClientSession(
             read, write
         ) as session:
-            # Start di konnekshon
+            # Begin di connection
             await session.initialize()
 
           
@@ -241,12 +241,12 @@ if __name__ == "__main__":
     asyncio.run(run())
 ```
 
-For di code wey just pass:
+For di code before:
 
-- Import di libraries we need
-- Instantiate server parameters object because we go use am run server so our client fit connect to am.
-- Define method `run` wey go call `stdio_client` wey go start client session.
-- Create entry point where we pass `run` method to `asyncio.run`.
+- Import needed libraries
+- Create server parameters object to run server so client fit connect.
+- Define `run` method wey call `stdio_client` to start client session.
+- Create entry point to pass `run` method to `asyncio.run`.
 
 #### .NET
 
@@ -274,12 +274,12 @@ var clientTransport = new StdioClientTransport(new()
 await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 ```
 
-For di code wey just pass:
+For di code before, we:
 
-- Import di libraries wey we need.
-- Create stdio transport and create client `mcpClient`. We go use am list and invoke features on MCP Server.
+- Import libraries
+- Create stdio transport, create client `mcpClient` wey we go use list and call server features.
 
-Note: inside "Arguments", you fit point am to *.csproj* or executable.
+Note, for "Arguments", you fit point to *.csproj* or executable.
 
 #### Java
 
@@ -301,25 +301,25 @@ public class SDKClient {
         var client = McpClient.sync(this.transport).build();
         client.initialize();
         
-        // Your client logic dey here
+        // Your client logic deya for here
     }
 }
 ```
 
-For di code wey just pass:
+For di code before, we:
 
-- Create main method wey setup SSE transport wey dey point to `http://localhost:8080` wey our MCP server go dey run.
-- Create client class wey carry transport inside constructor parameter.
-- Inside `run` method, we create synchronous MCP client use di transport an initialize di connection.
-- Use SSE (Server-Sent Events) transport wey good for HTTP-based communication wit Java Spring Boot MCP servers.
+- Create main method to setup SSE transport point to `http://localhost:8080` wey MCP server go dey run.
+- Create client class wey take transport as constructor param.
+- For `run` method, create synchronous MCP client with transport and start connection.
+- Use SSE transport wey fit HTTP comot Java Spring Boot MCP servers.
 
 #### Rust
 
-Note say di Rust client assume di server na sibling project wey dem call "calculator-server" for di same directory. Di code down here go start di server and connect to am.
+Note say dis Rust client dey assume server be sibling project called "calculator-server" for same directory. Di code below go start server and connect to am.
 
 ```rust
 async fn main() -> Result<(), RmcpError> {
-    // Assume say di server na one padi projek wey dem call "calculator-server" for di same folder
+    // Assume say di server na one padi project we dem name "calculator-server" for di same folder
     let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .expect("failed to locate workspace root")
@@ -334,9 +334,9 @@ async fn main() -> Result<(), RmcpError> {
         )
         .await?;
 
-    // TODO: Begin
+    // TODO: Make e start
 
-    // TODO: Show tools dem
+    // TODO: Show list of tools
 
     // TODO: Call add tool wit arguments = {"a": 3, "b": 2}
 
@@ -345,40 +345,40 @@ async fn main() -> Result<(), RmcpError> {
 }
 ```
 
-### -3- Listing the server features
+### -3- How to list server features
 
-Now, we get client wey fit connect to server if program run. But e no dey list im features yet, so make we do dat next:
+Now we get client wey fit connect if program run. But e no dey list features yet so make we do dat:
 
 #### TypeScript
 
 ```typescript
-// List di prompts dem
+// Mak list of prompts
 const prompts = await client.listPrompts();
 
-// List di resources dem
+// Mak list of resources
 const resources = await client.listResources();
 
-// List di tools dem
+// mak list of tools
 const tools = await client.listTools();
 ```
 
 #### Python
 
 ```python
-# Make list of all di resources wey dey
+# List di resources wey dey available
 resources = await session.list_resources()
 print("LISTING RESOURCES")
 for resource in resources:
     print("Resource: ", resource)
 
-# Make list of all di tools wey dey available
+# List di tools wey dey available
 tools = await session.list_tools()
 print("LISTING TOOLS")
 for tool in tools.tools:
     print("Tool: ", tool.name)
 ```
 
-Here we list resources, `list_resources()` an tools, `list_tools` an print dem out.
+For here, we list things wey dey resources, `list_resources()` and tools, `list_tools` and print dem.
 
 #### .NET
 
@@ -389,55 +389,55 @@ foreach (var tool in await client.ListToolsAsync())
 }
 ```
 
-Dis na example how we fit list tools on server. For each tool, we print im name.
+Dis one na example how we fit list tools for server. For each tool, we go print im name.
 
 #### Java
 
 ```java
-// List and show how tools dey work
+// List and show how tool dem dey work
 ListToolsResult toolsList = client.listTools();
 System.out.println("Available Tools = " + toolsList);
 
-// You fit still ping the server make you confirm say connection dey okay
+// You fit still ping di server to check say connection dey okay
 client.ping();
 ```
 
-For di code wey just pass:
+For di code before, we:
 
 - Call `listTools()` to get all tools wey server get.
-- Use `ping()` to check say connection to server dey work.
-- `ListToolsResult` get info about all tools like name, description, and input schemas.
+- Use `ping()` to confirm connection to server dey alright.
+- `ListToolsResult` get info on all tools like names, descriptions, and input schemas.
 
-Good, now we don capture all features. Now wetin we go do wit dem? Well, dis client simple, e mean say we go need explicitly call features if we want use dem. For the next chapter, we go create more advanced client wey get access to im own large language model, LLM. For now, make we see how to invoke features on server:
+Good, now we don catch all features. But question be when we go use dem? Well, dis client simple, meaning we go need call features direct when we want dem. For next chapter, we go create better client wey get own large language model, LLM. For now, mek we see how to call features for server:
 
 #### Rust
 
-For main function, after we initialize client, we fit initialize server an list some features.
+For main function, after client initialization, we fit also start server and list some features.
 
 ```rust
-// Make e ready
+// Start am
 let server_info = client.peer_info();
 println!("Server info: {:?}", server_info);
 
-// Show tools list
+// Make list of tools dem
 let tools = client.list_tools(Default::default()).await?;
 println!("Available tools: {:?}", tools);
 ```
 
-### -4- Invoke features
+### -4- How to invoke features
 
-To invoke features, we need make sure we specify correct arguments an sometimes di name of wetin we dey try invoke.
+To invoke features, we need to give correct arguments and sometimes name of wetin we wan invoke.
 
 #### TypeScript
 
 ```typescript
 
-// Read one resource
+// Read wan resource
 const resource = await client.readResource({
   uri: "file:///example.txt"
 });
 
-// Use tool
+// Call one tool
 const result = await client.callTool({
   name: "example-tool",
   arguments: {
@@ -445,7 +445,7 @@ const result = await client.callTool({
   }
 });
 
-// use prompt
+// Call prompt
 const promptResult = await client.getPrompt({
     name: "review-code",
     arguments: {
@@ -454,9 +454,9 @@ const promptResult = await client.getPrompt({
 })
 ```
 
-For di code wey just pass:
+For di code before, we:
 
-- We read resource by calling `readResource()` specify `uri`. Dis na how e likely go be for server:
+- Read resource, we call am by `readResource()` give `uri`. Na so e go look for server side:
 
     ```typescript
     server.resource(
@@ -471,9 +471,9 @@ For di code wey just pass:
     );
     ```
 
-    Our `uri` value `file://example.txt` match `file://{name}` for server side. `example.txt` go map to `name`.
+    Our `uri` value `file://example.txt` match `file://{name}` for server. `example.txt` go be `name`.
 
-- Call tool by specifying `name` and `arguments` like dis:
+- Call tool, we call am by `name` and `arguments` like this:
 
     ```typescript
     const result = await client.callTool({
@@ -484,7 +484,7 @@ For di code wey just pass:
     });
     ```
 
-- Get prompt, to get prompt, you call `getPrompt()` wit `name` an `arguments`. Server code look like dis:
+- Get prompt, to get prompt, you call `getPrompt()` with `name` and `arguments`. Server code be dis:
 
     ```typescript
     server.prompt(
@@ -502,7 +502,7 @@ For di code wey just pass:
     );
     ```
 
-    So your client code go look like dis to match wetin server declare:
+    Your client code go fine well to match wetin server talk:
 
     ```typescript
     const promptResult = await client.getPrompt({
@@ -516,24 +516,24 @@ For di code wey just pass:
 #### Python
 
 ```python
-# Read di resource
+# Read wan resource
 print("READING RESOURCE")
 content, mime_type = await session.read_resource("greeting://hello")
 
-# Call one tool
+# Call wan tool
 print("CALL TOOL")
 result = await session.call_tool("add", arguments={"a": 1, "b": 7})
 print(result.content)
 ```
 
-For di code wey just pass:
+For code before, we:
 
-- Call resource called `greeting` using `read_resource`.
-- Invoke tool called `add` using `call_tool`.
+- Call resource wey dem call `greeting` with `read_resource`.
+- Call tool named `add` with `call_tool`.
 
 #### .NET
 
-1. Make we add code to call tool:
+1. Add code to call tool:
 
   ```csharp
   var result = await mcpClient.CallToolAsync(
@@ -542,7 +542,7 @@ For di code wey just pass:
       cancellationToken:CancellationToken.None);
   ```
 
-1. To print result, here code to handle am:
+1. To print result, dis code fit handle am:
 
   ```csharp
   Console.WriteLine(result.Content.First(c => c.Type == "text").Text);
@@ -552,7 +552,7 @@ For di code wey just pass:
 #### Java
 
 ```java
-// Call different calculator tings
+// Call different calculator tool dem
 CallToolResult resultAdd = client.callTool(new CallToolRequest("add", Map.of("a", 5.0, "b", 3.0)));
 System.out.println("Add Result = " + resultAdd);
 
@@ -569,12 +569,12 @@ CallToolResult resultHelp = client.callTool(new CallToolRequest("help", Map.of()
 System.out.println("Help = " + resultHelp);
 ```
 
-For di code wey just pass:
+For code before, we:
 
-- Call many calculator tools using `callTool()` method wit `CallToolRequest` objects.
-- Each tool call specify tool name an `Map` of arguments wey tool need.
-- Server tools expect specific parameter names (like "a", "b" for math operations).
-- Results come back as `CallToolResult` objects wey get server response.
+- Call many calculator tools with `callTool()` method and `CallToolRequest` objects.
+- Each tool call get tool name and `Map` of arguments wey tool need.
+- Server tools expect specific param names (like "a", "b" for math).
+- Results return as `CallToolResult` objects with server response.
 
 #### Rust
 
@@ -591,13 +591,13 @@ let tool_result = client
 println!("Result of {:?} + {:?}: {:?}", a, b, tool_result);
 ```
 
-### -5- Run the client
+### -5- How to run the client
 
-To run di client, type command wey follow for terminal:
+To run client, type dis command for terminal:
 
 #### TypeScript
 
-Add dis entry to your "scripts" section inside *package.json*:
+Add dis entry to your "scripts" for *package.json*:
 
 ```json
 "client": "tsc && node build/client.js"
@@ -609,7 +609,7 @@ npm run client
 
 #### Python
 
-Call client wit dis command:
+Call client with dis command:
 
 ```sh
 python client.py
@@ -623,7 +623,7 @@ dotnet run
 
 #### Java
 
-First, make sure your MCP server dey run on `http://localhost:8080`. Then run client:
+First make sure your MCP server dey run for `http://localhost:8080`. Then run client:
 
 ```bash
 # Build your project
@@ -633,13 +633,13 @@ First, make sure your MCP server dey run on `http://localhost:8080`. Then run cl
 ./mvnw exec:java -Dexec.mainClass="com.microsoft.mcp.sample.client.SDKClient"
 ```
 
-Or sinon, you fit run di complete client project wey dey solution folder `03-GettingStarted\02-client\solution\java`:
+Or you fit run complete client project for solution folder `03-GettingStarted\02-client\solution\java`:
 
 ```bash
-# waka go di solution folder
+# Comot go the solution folder
 cd 03-GettingStarted/02-client/solution/java
 
-# build and run di JAR
+# Build and run the JAR
 ./mvnw clean package
 java -jar target/calculator-client-0.0.1-SNAPSHOT.jar
 ```
@@ -653,9 +653,9 @@ cargo run
 
 ## Assignment
 
-For dis assignment, you go use wetin you learn to create client but make e be your own client.
+For dis assignment, you go use wetin you learn to create client but do am your own way.
 
-Here na server wey you fit use, you go call am through your client code, try add more features to server to make am more interesting.
+Here na server wey you fit use wey you need call with your client code, try add more features to di server to make am more beta.
 
 ### TypeScript
 
@@ -664,7 +664,7 @@ import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mc
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 
-// Make one MCP server
+// Mak MCP server
 const server = new McpServer({
   name: "Demo",
   version: "1.0.0"
@@ -678,7 +678,7 @@ server.tool("add",
   })
 );
 
-// Add one dey change greeting resource
+// Add one dynamic greeting resource
 server.resource(
   "greeting",
   new ResourceTemplate("greeting://{name}", { list: undefined }),
@@ -690,7 +690,7 @@ server.resource(
   })
 );
 
-// Begin to receive messages for stdin and send messages for stdout
+// Begin to dey receive messages for stdin and dey send messages for stdout
 
 async function main() {
   const transport = new StdioServerTransport();
@@ -714,14 +714,14 @@ from mcp.server.fastmcp import FastMCP
 mcp = FastMCP("Demo")
 
 
-# Add one tool wey dey add
+# Add one tool wey dey do addition
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
     return a + b
 
 
-# Add one dynamic greeting resource
+# Add one resource wey fit change how e dey greet people
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
@@ -759,21 +759,21 @@ public static class CalculatorTool
 }
 ```
 
-See dis project to see how you fit [add prompts an resources](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs).
+Check dis project to see how to [add prompts and resources](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs).
 
-Also, check dis link for how to invoke [prompts and resources](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/).
+Also check dis link on how to call [prompts and resources](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/).
 
 ### Rust
 
-For [previous section](../../../../03-GettingStarted/01-first-server), you learn how to create simple MCP server wit Rust. You fit continue build on top dat or check dis link for more Rust-based MCP server examples: [MCP Server Examples](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
+For [previous section](../../../../03-GettingStarted/01-first-server), you learn how to create simple MCP server with Rust. You fit build on top or check dis link for more Rust MCP server examples: [MCP Server Examples](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
 
 ## Solution
 
-Di **solution folder** get complete, ready-to-run client implementations wey dey show all di concepts we cover for dis tutorial. Each solution get both client and server code for organized separate, self-contained projects.
+Di **solution folder** get full ready-to-run client implementations wey show all tins we cover for dis tutorial. Each solution get both client and server code inside separate projects wey stand alone.
 
 ### 📁 Solution Structure
 
-Di solution directory organized by programming language:
+Di solution folder organize by programming language:
 
 ```text
 solution/
@@ -803,33 +803,33 @@ solution/
     └── server.csproj    # Server project file
 ```
 
-### 🚀 What Each Solution Includes
+### 🚀 Wetin each solution get
 
-Each language-specific solution get:
+Each language solution get:
 
-- **Complete client implementation** wit all features from tutorial
-- **Working project structure** wit correct dependencies an config
-- **Build and run scripts** for easy setup an run
-- **Detailed README** wit language-specific instructions
-- **Error handling** an result processing examples
+- **Complete client implementation** with all di tutorial features
+- **Working project structure** with dependencies and config correct
+- **Build and run scripts** for easy setup and run
+- **Detailed README** with language instructions
+- **Error handling** and result example
 
-### 📖 Using the Solutions
+### 📖 How to use solutions
 
-1. **Enter your preferred language folder**:
+1. **Go your language folder**:
 
    ```bash
-   cd solution/typescript/    # Na for TypeScript
-   cd solution/java/          # Na for Java
-   cd solution/python/        # Na for Python
-   cd solution/dotnet/        # Na for .NET
+   cd solution/typescript/    # For TypeScript
+   cd solution/java/          # For Java
+   cd solution/python/        # For Python
+   cd solution/dotnet/        # For .NET
    ```
 
-2. **Follow di README instructions** inside each folder for:
-   - Installing dependencies
-   - Building di project
-   - Running di client
+2. **Follow README instruction** for:
+   - Install dependencies
+   - Build project
+   - Run client
 
-3. **Example output** wey you supposed see:
+3. **Wetin you go see output**:
 
    ```text
    Prompt: Please review this code: console.log("hello");
@@ -837,57 +837,59 @@ Each language-specific solution get:
    Tool result: { content: [ { type: 'text', text: '9' } ] }
    ```
 
-For full documentation and step-by-step instructions, see: **[📖 Solution Documentation](./solution/README.md)**
+For full docs and step by step, see: **[📖 Solution Documentation](./solution/README.md)**
 
 ## 🎯 Complete Examples
 
-We provide complete, working client implementations for all programming languages wey dis tutorial cover. Dis examples show di full functionality wey we talk about and you fit use as reference or starting points for your own projects.
+We provide full working client implementations for all language we cover here. Dem examples show full features wey we talk about and fit use as reference or starting project.
 
 ### Available Complete Examples
 
 | Language | File | Description |
 |----------|------|-------------|
-| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | Complete Java client using SSE transport wit strong error handling |
-| **C#** | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | Complete C# client using stdio transport wit automatic server startup |
-| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | Complete TypeScript client wit full MCP protocol support |
-| **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | Complete Python client using async/await patterns |
-| **Rust** | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs) | Complete Rust client using Tokio for async operations |
+| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | Complete Java client wey use SSE transport with full error handling |
+| **C#** | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | Complete C# client with stdio transport wey fit start server automatically |
+| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | Complete TypeScript client with full MCP protocol support |
+| **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | Complete Python client wey use async/await pattern |
+| **Rust** | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs) | Complete Rust client using Tokio for async work |
 
-Each complete example get:
-- ✅ **Connection establishment** an error handling
-- ✅ **Server discovery** (tools, resources, prompts wey apply)
-- ✅ **Calculator operations** (add, subtract, multiply, divide, help)
-- ✅ **Result processing** an formatted output
-- ✅ **Comprehensive error handling**
+Each example get:
+
+- ✅ **Connection setting and error handling**
+- ✅ **Server discoveries** (tools, resources, prompts where dem dey)
+- ✅ **Calculator operations** (add, substract, multiply, divide, help)
+- ✅ **Result processing** and nice output
+- ✅ **Full error handling**
+
 - ✅ **Clean, documented code** wit step-by-step comments
 
-### Getting Started wit Complete Examples
+### How to Start wit Complete Examples
 
-1. **Choose your preferred language** from di table above
-2. **Review di complete example file** to understand di full implementation
-3. **Run di example** follow di instructions inside [`complete_examples.md`](./complete_examples.md)
-4. **Modify an extend** di example for your specific use case
+1. **Choose di language wey you like** from di table we dey above
+2. **Look di complete example file** to sabi di full implementation
+3. **Run di example** by di instructions wey dey for [`complete_examples.md`](./complete_examples.md)
+4. **Change and add** more tins to di example for your own case
 
-For detailed documentation about how to run an customize these examples, check: **[📖 Complete Examples Documentation](./complete_examples.md)**
+For detailed documentation about how to run and change these examples, see: **[📖 Complete Examples Documentation](./complete_examples.md)**
 
 ### 💡 Solution vs. Complete Examples
 
 | **Solution Folder** | **Complete Examples** |
 |--------------------|--------------------- |
-| Full project structure wit build files | Single-file implementations |
-| Ready-to-run wit dependencies | Focused code examples |
+| Whole project structure wit build files | Single-file implementations |
+| Ready to run with dependensies | Focused code examples |
 | Production-like setup | Educational reference |
 | Language-specific tooling | Cross-language comparison |
 
-Both ways dey important - use di **solution folder** for complete projects an di **complete examples** for learning an reference.
+Both ways dey important - use di **solution folder** for full projects and di **complete examples** for learning and reference.
 
 ## Key Takeaways
 
-Di key takeaways for dis chapter na the following about clients:
+Di key takeaways for dis chapter na dis about clients:
 
-- Dem fit use am both to discover an invoke features on di server.
-- Dem fit start server while dem start itself (like for dis chapter) but clients fit also connect to server wey dey already dey run.
-- E good way to test server capabilities beside alternatives like di Inspector as e describe for di previous chapter.
+- Fit use am both to find and call features for di server.
+- Fit start a server while e dey start itself (like for dis chapter) but clients fit also connect to servers wey don already start.
+- Na beta way to test server ability side by side wit other options like di Inspector as dem talk about for di previous chapter.
 
 ## Additional Resources
 
@@ -896,19 +898,19 @@ Di key takeaways for dis chapter na the following about clients:
 ## Samples
 
 - [Java Calculator](../samples/java/calculator/README.md)
-- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
+- [.NET Calculator](../../../../03-GettingStarted/samples/csharp)
 - [JavaScript Calculator](../samples/javascript/README.md)
 - [TypeScript Calculator](../samples/typescript/README.md)
 - [Python Calculator](../../../../03-GettingStarted/samples/python)
 - [Rust Calculator](../../../../03-GettingStarted/samples/rust)
 
-## What's Next
+## Wetin Next
 
 - Next: [Creating a client with an LLM](../03-llm-client/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Warning**:
-Dis document na AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator) translate am. Even though we try make e correct, abeg sabi say automated translation fit get mistake or no too correct. Di original document for im own language na di correct one wey person suppose trust. If e sure or gbege, make human professional translate am. We no go responsible for any wahala or wrong meaning wey fit happen because of dis translation.
+**Disclaimer**:
+Dis document don translate wit AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). Even tho we dey try make am correct, abeg make you know say automated translation fit get errors or mistakes. Di original document for dia own language na im be di correct source. For important info, make person wey sabi human translation do am. We no go responsible for any misunderstanding or wrong understanding wey fit happen because of dis translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

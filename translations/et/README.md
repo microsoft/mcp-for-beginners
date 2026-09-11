@@ -1,34 +1,34 @@
-![MCP-algajatele](../../translated_images/et/mcp-beginners.2ce2b317996369ff.webp) 
+![MCP-for-beginners](../../translated_images/et/mcp-beginners.2ce2b317996369ff.webp) 
 
-[![GitHubi kaastöötajad](https://img.shields.io/github/contributors/microsoft/mcp-for-beginners.svg)](https://GitHub.com/microsoft/mcp-for-beginners/graphs/contributors)
-[![GitHubi probleemid](https://img.shields.io/github/issues/microsoft/mcp-for-beginners.svg)](https://GitHub.com/microsoft/mcp-for-beginners/issues)
-[![GitHubi tõmbepäringud](https://img.shields.io/github/issues-pr/microsoft/mcp-for-beginners.svg)](https://GitHub.com/microsoft/mcp-for-beginners/pulls)
-[![Tõmbepäringud on teretulnud](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-[![MCP Tipplist](https://mcptoplist.com/badge/mcp.so%2Fmcp-for-beginners%2Fmicrosoft.svg)](https://mcptoplist.com/server/mcp.so%2Fmcp-for-beginners%2Fmicrosoft)
+[![GitHub contributors](https://img.shields.io/github/contributors/microsoft/mcp-for-beginners.svg)](https://GitHub.com/microsoft/mcp-for-beginners/graphs/contributors)
+[![GitHub issues](https://img.shields.io/github/issues/microsoft/mcp-for-beginners.svg)](https://GitHub.com/microsoft/mcp-for-beginners/issues)
+[![GitHub pull-requests](https://img.shields.io/github/issues-pr/microsoft/mcp-for-beginners.svg)](https://GitHub.com/microsoft/mcp-for-beginners/pulls)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![MCP Toplist](https://mcptoplist.com/badge/mcp.so%2Fmcp-for-beginners%2Fmicrosoft.svg)](https://mcptoplist.com/server/mcp.so%2Fmcp-for-beginners%2Fmicrosoft)
 
-[![GitHubi jälgijad](https://img.shields.io/github/watchers/microsoft/mcp-for-beginners.svg?style=social&label=Watch)](https://GitHub.com/microsoft/mcp-for-beginners/watchers)
-[![GitHubi forked](https://img.shields.io/github/forks/microsoft/mcp-for-beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/mcp-for-beginners/fork)
-[![GitHubi tärnid](https://img.shields.io/github/stars/microsoft/mcp-for-beginners?style=social&label=Star)](https://GitHub.com/microsoft/mcp-for-beginners/stargazers)
+[![GitHub watchers](https://img.shields.io/github/watchers/microsoft/mcp-for-beginners.svg?style=social&label=Watch)](https://GitHub.com/microsoft/mcp-for-beginners/watchers)
+[![GitHub forks](https://img.shields.io/github/forks/microsoft/mcp-for-beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/mcp-for-beginners/fork)
+[![GitHub stars](https://img.shields.io/github/stars/microsoft/mcp-for-beginners?style=social&label=Star)](https://GitHub.com/microsoft/mcp-for-beginners/stargazers)
 
 
 [![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
 
-Järgige järgmisi samme, et alustada nende ressursside kasutamist:
-1. **Forkige hoidla**: Klõpsake [![GitHubi forked](https://img.shields.io/github/forks/microsoft/mcp-for-beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/mcp-for-beginners/fork)
-2. **Kopeerige hoidla kohalikku masinasse**:   `git clone https://github.com/microsoft/mcp-for-beginners.git`
+Järgige neid samme, et alustada nende ressursside kasutamist:
+1. **Forkige hoidla**: Klõpsake [![GitHub forks](https://img.shields.io/github/forks/microsoft/mcp-for-beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/mcp-for-beginners/fork)
+2. **Kloonige hoidla**:   `git clone https://github.com/microsoft/mcp-for-beginners.git`
 3. **Liituge** [![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
 
 
 ### 🌐 Mitmekeelne tugi
 
-#### Toetatud GitHub Actioni kaudu (Automaatne ja alati ajakohane)
+#### Toetatud GitHub Actioni kaudu (automatiseeritud ja alati ajakohane)
 
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE START -->
-[Araabia](../ar/README.md) | [Bengali](../bn/README.md) | [Bulgaaria](../bg/README.md) | [Birma (Myanmar)](../my/README.md) | [Hiina (lihtsustatud)](../zh-CN/README.md) | [Hiina (traditsiooniline, Hongkong)](../zh-HK/README.md) | [Hiina (traditsiooniline, Macau)](../zh-MO/README.md) | [Hiina (traditsiooniline, Taiwan)](../zh-TW/README.md) | [Horvaadi](../hr/README.md) | [Tšehhi](../cs/README.md) | [Taani](../da/README.md) | [Hollandi](../nl/README.md) | [Eesti](./README.md) | [Soome](../fi/README.md) | [Prantsuse](../fr/README.md) | [Saksa](../de/README.md) | [Kreeka](../el/README.md) | [Heebrea](../he/README.md) | [Hindi](../hi/README.md) | [Ungari](../hu/README.md) | [Indoneesia](../id/README.md) | [Itaalia](../it/README.md) | [Jaapani](../ja/README.md) | [Kannada](../kn/README.md) | [Khmeri](../km/README.md) | [Korea](../ko/README.md) | [Leedu](../lt/README.md) | [Malai](../ms/README.md) | [Malajalami](../ml/README.md) | [Marathi](../mr/README.md) | [Nepali](../ne/README.md) | [Nigeeria Pidgin](../pcm/README.md) | [Norra](../no/README.md) | [Pärsia (Farsi)](../fa/README.md) | [Poola](../pl/README.md) | [Portugali (Brasiilia)](../pt-BR/README.md) | [Portugali (Portugal)](../pt-PT/README.md) | [Pandžabi (Gurmukhi)](../pa/README.md) | [Rumeenia](../ro/README.md) | [Vene](../ru/README.md) | [Serbia (kirilitsas)](../sr/README.md) | [Slovaki](../sk/README.md) | [Sloveeni](../sl/README.md) | [Hispaania](../es/README.md) | [Suaheli](../sw/README.md) | [Rootsi](../sv/README.md) | [Tagalogi (Filipino)](../tl/README.md) | [Tamili](../ta/README.md) | [Telugu](../te/README.md) | [Tai](../th/README.md) | [Türgi](../tr/README.md) | [Ukraina](../uk/README.md) | [Urdu](../ur/README.md) | [Vietnami](../vi/README.md)
+[Arabic](../ar/README.md) | [Bengali](../bn/README.md) | [Bulgarian](../bg/README.md) | [Burmese (Myanmar)](../my/README.md) | [Chinese (Simplified)](../zh-CN/README.md) | [Chinese (Traditional, Hong Kong)](../zh-HK/README.md) | [Chinese (Traditional, Macau)](../zh-MO/README.md) | [Chinese (Traditional, Taiwan)](../zh-TW/README.md) | [Croatian](../hr/README.md) | [Czech](../cs/README.md) | [Danish](../da/README.md) | [Dutch](../nl/README.md) | [Estonian](./README.md) | [Finnish](../fi/README.md) | [French](../fr/README.md) | [German](../de/README.md) | [Greek](../el/README.md) | [Hebrew](../he/README.md) | [Hindi](../hi/README.md) | [Hungarian](../hu/README.md) | [Indonesian](../id/README.md) | [Italian](../it/README.md) | [Japanese](../ja/README.md) | [Kannada](../kn/README.md) | [Khmer](../km/README.md) | [Korean](../ko/README.md) | [Lithuanian](../lt/README.md) | [Malay](../ms/README.md) | [Malayalam](../ml/README.md) | [Marathi](../mr/README.md) | [Nepali](../ne/README.md) | [Nigerian Pidgin](../pcm/README.md) | [Norwegian](../no/README.md) | [Persian (Farsi)](../fa/README.md) | [Polish](../pl/README.md) | [Portuguese (Brazil)](../pt-BR/README.md) | [Portuguese (Portugal)](../pt-PT/README.md) | [Punjabi (Gurmukhi)](../pa/README.md) | [Romanian](../ro/README.md) | [Russian](../ru/README.md) | [Serbian (Cyrillic)](../sr/README.md) | [Slovak](../sk/README.md) | [Slovenian](../sl/README.md) | [Spanish](../es/README.md) | [Swahili](../sw/README.md) | [Swedish](../sv/README.md) | [Tagalog (Filipino)](../tl/README.md) | [Tamil](../ta/README.md) | [Telugu](../te/README.md) | [Thai](../th/README.md) | [Turkish](../tr/README.md) | [Ukrainian](../uk/README.md) | [Urdu](../ur/README.md) | [Vietnamese](../vi/README.md)
 
-> **Eelistate kopeerida kohalikku?**
+> **Eelistate kohalikku kloonimist?**
 >
-> Selles hoidlas on üle 50 keele tõlke, mis suurendab allalaaditava faili suurust märkimisväärselt. Ilma tõlgeteta kloonimiseks kasutage harvendatud kontrollimist:
+> See hoidla sisaldab üle 50 keele tõlkeid, mis suurendavad oluliselt allalaaditava andmemahtu. Tõlgeteta kloonimiseks kasutage harvendatud väljavõtet:
 >
 > **Bash / macOS / Linux:**
 > ```bash
@@ -44,188 +44,196 @@ Järgige järgmisi samme, et alustada nende ressursside kasutamist:
 > git sparse-checkout set --no-cone "/*" "!translations" "!translated_images"
 > ```
 >
-> See annab teile kõik vajaliku kursuse läbimiseks palju kiirema allalaadimisega.
+> See annab teile kõik, mida vajate kursuse läbimiseks palju kiirema allalaadimisega.
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE END -->
 
 # 🚀 Mudelikonteksti protokolli (MCP) õppekava algajatele
 
-## **Õppige MCP-d praktiliste koodinäidete abil keeles C#, Java, JavaScript, Rust, Python ja TypeScript**
+## **Õppige MCP-d praktiliste näidete abil keeles C#, Java, JavaScript, Rust, Python ja TypeScript**
 
 ## 🧠 Mudelikonteksti protokolli õppekava ülevaade
-Tere tulemast teekonnale mudelikonteksti protokolli juurde! Kui olete kunagi mõelnud, kuidas tehisintellekti rakendused suhtlevad erinevate tööriistade ja teenustega, siis hakkate avastama elegantset lahendust, mis muudab arendajate töö intelligentsüsteemide loomisel.
+Tere tulemast oma teekonnale Mudelikonteksti protokolli maailma! Kui olete kunagi mõelnud, kuidas tehisintellekti rakendused suhtlevad erinevate tööriistade ja teenustega, siis te olete peagi avastamas elegantset lahendust, mis muudab arendajate viisi, kuidas intelligentsed süsteemid ehitatakse.
 
-Mõelge MCP-le kui universaalsele tõlkijale tehisintellekti rakendustele - nagu USB-pordid võimaldavad teil ühendada mis tahes seadet arvutiga, laseb MCP tehisintellekti mudelitel standardiseeritud viisil ühenduda mis tahes tööriista või teenusega. Olgu teie eesmärgiks esimene vestlusrobot või keeruliste tehisintellekti töövoogude loomine, MCP mõistmine annab teile võime luua võimekamaid ja paindlikumaid rakendusi.
+Mõelge MCP-le kui universaalsele tõlkijale tehisintellekti rakendustele – just nagu USB-pordid võimaldavad teil ühendada igasuguse seadme arvutiga, võimaldab MCP tehisintellekti mudelitel ühenduda mis tahes tööriista või teenusega standardiseeritud viisil. Kas ehitate oma esimest vestlusrobotit või töötate keerukate tehisintellekti töövoogudega, MCP mõistmine annab teile võime luua võimekaid ja paindlikke rakendusi.
 
-See õppekava on loodud kannatlikkusega ja hoolitsusega teie õppeteekonna jaoks. Alustame lihtsatest kontseptsioonidest, mida juba mõistate, ja järk-järgult kasvatame teie oskusi praktilise harjutamise kaudu teie lemmik programmeerimiskeeles. Iga samm sisaldab selgitusi, praktilisi näiteid ja rohkesti innustust.
+See õppekava on kujundatud kannatlikkuse ja hoolikusega teie õppeteekonna jaoks. Alustame lihtsatest kontseptsioonidest, mida te juba mõistate, ja kasvatame järk-järgult teie ekspertiisi praktilise tegevusega teie lemmikprogrammeerimiskeeles. Iga samm sisaldab selgeid selgitusi, praktilisi näiteid ja palju julgustust kogu tee jooksul.
 
-Selle teekonna läbimiseks on teil enesekindlus ehitada oma MCP serverid, integreerida neid populaarsete AI platvormidega ja mõista, kuidas see tehnoloogia kujundab tehisintellekti arendamise tulevikku. Alustame seda põnevat seiklust koos!
+Kui olete selle teekonna lõpetanud, tunnete end kindlalt oma MCP serverite loomisel, nende integreerimisel populaarsete tehisintellekti platvormidega ning mõistate, kuidas see tehnoloogia kujundab tehisintellekti arenduse tulevikku. Alustame seda põnevat seiklust koos!
 
 ### Ametlik dokumentatsioon ja spetsifikatsioonid
 
-See õppekava vastab **MCP spetsifikatsioonile 2025-11-25** (viimane stabiilne versioon). MCP spetsifikatsioon kasutab versioonide jälgimiseks kuupõhist märgistust (YYYY-MM-DD formaat), et tagada protokolli versioonide selge jälgitavus.
+Praegune protokolli versioon on **MCP spetsifikatsioon 2026-07-28**. MCP
+spetsifikatsioon kasutab kuupõhist versioonihaldust (formaat YYYY-MM-DD), et muuta protokolli
+ühilduvus selgeks.
 
-> **Vaadates tulevikku:** järgmise spetsifikatsiooni versiooni release kandidaat, **2026-07-28**, on plaanis välja anda 28. juulil 2026. See muudab protokolli transpordikihis olekuta, formaliseerib laienduste raamistikku (MCP rakendused, ülesanded), tugevdab autoriseerimist ja lõpeb Roots, Sampling ja Loggingi kasutamisega. Vaadake täielikku ülevaadet [Mis muutub MCP-s: 2026-07-28 väljalaske kandidaadis](./01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> **Versioonimärkus:** see õppekava õpetab praeguseid `2026-07-28`
+> kontseptsioone, sealhulgas olekuta päringuid, Laienduste raamistikku ja
+> Roots, Võtmise ja Logimise kasutusest loobumist. Mõned praktilised näited on 
+> endiselt ekspressiivselt versioonitud `2025-11-25`, kuni SDK tugi jõuab järgmisele tasemele. Vaata
+> [Mida on MCP-s muudetud: 2026-07-28 spetsifikatsioon](./01-CoreConcepts/mcp-2026-07-28.md)
+> muudatuste ja migreerimisjuhiste kohta.
 
-Need ressursid muutuvad väärtuslikumaks, kui teie arusaam suureneb, kuid ärge tundke survet kõike kohe lugeda. Alustage valdkondadest, mis teid kõige rohkem huvitavad!
-- 📘 [MCP dokumentatsioon](https://modelcontextprotocol.io/) – See on teie põhiallikas samm-sammult juhendite ja kasutusjuhenditega. Dokumentatsioon on kirjutatud algajatele mõeldes, pakkudes selgeid näiteid, mida saate oma tempos jälgida.
-- 📜 [MCP spetsifikatsioon](https://modelcontextprotocol.io/specification/2025-11-25) – Mõelge sellele kui teie põhjalikule viiteraamatule. Õppekava läbides leiate, et naasete siia, et otsida spetsiifilisi detaile ja avastada täiustatud funktsioone.
-- 📜 [MCP spetsifikatsiooni versioonihaldus](https://modelcontextprotocol.io/specification/versioning) – Siin leidub infot protokolli versioonide ajaloo kohta ja selle kohta, kuidas MCP kasutab kuupõhist versioonimist.
-- 🧑‍💻 [MCP GitHubi hoidla](https://github.com/modelcontextprotocol) – Siit leiate SDK-sid, tööriistu ja koodinäiteid mitmes programmeerimiskeeles. See on nagu praktiliste näidete ja kasutusvalmis komponentide aarete veeke.
-- 🌐 [MCP kogukond](https://github.com/orgs/modelcontextprotocol/discussions) – Liituge teiste õppijate ja kogenud arendajatega aruteludes MCP teemadel. See on toetav kogukond, kus küsimused on oodatud ja teadmisi jagatakse vabalt.
+Need ressursid muutuvad väärtuslikumaks, kui teie arusaam kasvab, kuid ärge tundke survet kõike kohe lugeda. Alustage teemaaladega, mis teid enim huvitavad!
+- 📘 [MCP Dokumentatsioon](https://modelcontextprotocol.io/) – See on teie peamine allikas samm-sammult juhendite ja kasutajajuhendite jaoks. Dokumentatsioon on kirjutatud algajatele mõeldes, pakkudes selgeid näiteid, mida saate oma tempos järgida.
+- 📜 [MCP Spetsifikatsioon](https://modelcontextprotocol.io/specification/2026-07-28) – Mõelge sellele kui oma põhjalikule viiteraamatule. Õppekava läbides leiate end siia naasmas konkreetsete detailide otsimiseks ja arenenud funktsioonide uurimiseks.
+- 📜 [MCP Spetsifikatsiooni versioonihaldus](https://modelcontextprotocol.io/specification/versioning) – Selles on teavet protokolli versiooniajaloo kohta ja kuidas MCP kasutab kuupõhist versioonimist (formaat YYYY-MM-DD).
+- 🧑‍💻 [MCP GitHubi hoidla](https://github.com/modelcontextprotocol) – Siit leiate SDK-d, tööriistad ja koodinäited mitmes programmeerimiskeeles. See on nagu aardejaht praktiliste näidete ja kasutuskõlblike komponentide jaoks.
+- 🌐 [MCP Ühendus](https://github.com/orgs/modelcontextprotocol/discussions) – Liituge teiste õppijate ja kogenud arendajatega aruteludes MCP teemadel. See on toetav kogukond, kus küsimused on teretulnud ja teadmisi jagatakse vabalt.
   
-## Õpieesmärgid
+## Õppe eesmärgid
 
 Selle õppekava lõpuks tunnete end kindlalt ja põnevil oma uute oskuste üle. Siin on, mida saavutate:
 
-• **Mõistke MCP põhialuseid**: Saate selge pildi, mis on Mudelikonteksti protokoll ja miks see muudab AI rakenduste koostööd, kasutades arusaadavaid võrdlusi ja näiteid.
+• **Mõistke MCP põhialuseid**: saate aru, mis on Mudelikonteksti protokoll ja miks see muudab tehisintellekti rakenduste koostööd, kasutades arusaadavaid võrdlusi ja näiteid.
 
-• **Looge oma esimene MCP server**: Teete töökorras MCP serveri oma eelistatud programmeerimiskeeles, alustades lihtsatest näidetest ja arendades oskusi samm-sammult.
+• **Looge oma esimene MCP server**: loote töötava MCP serveri oma eelistatud programmeerimiskeeles, alustades lihtsatest näidetest ja arendades oskusi samm-sammult.
 
-• **Ühendage AI mudelid tegelike tööriistadega**: Õpite, kuidas sillata AI mudelite ja tegelike teenuste vaheline lõhe, andes oma rakendustele võimsaid uusi võimalusi.
+• **Ühendage tehisintellekti mudelid päristeenustega**: õpite, kuidas sillutada tee tehisintellekti mudelite ja tegelike teenuste vahel, andes oma rakendustele võimsad uued võimed.
 
-• **Rakendage turvalisuse parimaid tavasid**: Saate aru, kuidas hoida MCP rakendused turvalised, kaitstes nii oma rakendusi kui kasutajaid.
+• **Rakendage turvalisuse parimaid tavasid**: saate aru, kuidas hoida oma MCP rakendused turvalisena, kaitstes nii oma rakendusi kui ka kasutajaid.
 
-• **Juurutage enesekindlalt**: Teate, kuidas viia MCP projektid arendusest tootmisse, kasutades praktilisi juurutusstrateegiaid, mis töötavad pärismaailmas.
+• **Paigaldage kindlusega**: teate, kuidas viia oma MCP projektid arendusest tootmisse, kasutades praktilisi paigaldusstrateegiaid, mis toimivad pärismaailmas.
 
-• **Liituge MCP kogukonnaga**: Saate osaks kasvavast arendajate kogukonnast, kes kujundab tehisintellekti rakenduste arendamise tulevikku.
+• **Liituge MCP kogukonnaga**: saate osaks kasvavast arendajate kogukonnast, kes kujundab tehisintellekti rakenduste arendamise tulevikku.
 
-## Olulised taustteadmised
+## Oluline taust
 
-Enne kui sukeldume MCP spetsiifikasse, veendume, et tunneksite end mugavalt mõnede aluspõhimõtete osas. Ärge muretsege, kui te pole nendes valdkondades ekspert - me selgitame kogu vajaliku info teekonna jooksul!
+Enne kui süveneme MCP spetsiifikasse, veendume, et tunnete end kindlalt mõnede põhimõistete osas. Ärge muretsege, kui te pole nende valdkondade ekspert – me selgitame kõik vajaliku protsessi käigus!
 
-### Protokollide mõistmine (alused)
+### Protokollide mõistmine (alus)
 
-Mõelge protokollile kui vestlusreeglitele. Kui helistate sõbrale, teate mõlemad, et vastates öelda "tere", rääkida kordamööda ja lõpetades öelda "nägemist". Arvutiprogrammid vajavad suhtlemiseks sarnaseid reegleid.
+Mõelge protokollile kui vestluse reeglitele. Kui helistate sõbrale, te mõlemad teate, et vastates öeldakse "tere", vahetate kõne korda ja lõpetamisel öeldakse "nägemist". Arvutiprogrammid vajavad sama efektiivseks suhtlemiseks sarnaseid reegleid.
 
-MCP on protokoll - kokkulepitud reeglistik, mis aitab AI mudelitel ja rakendustel produktiivselt "vestelda" tööriistade ja teenustega. Nii nagu vestlusreeglid sujuvamaks muudavad inimeste kommunikatsiooni, teeb MCP AI rakenduste suhtluse palju usaldusväärsemaks ja võimsamaks.
+MCP on protokoll – kokkulepitud reeglite kogum, mis aitab tehisintellekti mudelitel ja rakendustel olla tootlikud “vestluspartnerid” tööriistade ja teenustega. Nii nagu vestlusreeglid muudavad inimestevahelise suhtluse sujuvamaks, teeb MCP tehisintellekti rakenduste suhtlemise palju usaldusväärsemaks ja võimsamaks.
 
-### Klient-Serveri suhted (kuidas programmid koos töötavad)
+### Kliendi ja serveri suhted (kuidas programmid koos töötavad)
 
-Te kasutate igapäevaselt klient-server suhteid! Kui kasutate veebibrauserit (klient) veebisaidi külastamiseks, ühendute veebiserveriga, mis saadab teile lehe sisu. Brauser teab, kuidas infot küsida, ja server teab, kuidas vastata.
+Te kasutate igapäevaselt kliendi-serveri suhteid! Kui kasutate veebibrauserit (klient) veebilehe külastamiseks, ühendute veebiserveriga, mis saadab teile lehe sisu. Brauser teab, kuidas infot küsida, ja server teab, kuidas vastata.
 
-MCP-s on meil sarnane suhe: AI mudelid toimivad klientidena, kes küsivad infot või tegutsevad, MCP serverid pakuvad neid võimeid. See on nagu kasulik assistent (server), kelle poole AI saab pöörduda konkreetsete ülesannete täitmiseks.
+MCP-s on meil sarnane suhe: tehisintellekti mudelid toimivad klientidena, kes küsivad infot või tegevusi, samal ajal kui MCP serverid pakuvad neid võimalusi. See on nagu abivalmis assistent (server), kelle poole AI saab konkreetsete ülesannetega pöörduda.
 
-### Miks standardiseerimine on oluline (asjade sujuv koostöö)
+### Miks standardiseerimine on oluline (teha asjad üheskoos töötama)
 
-Kujutage ette, kui iga autojuhtija kasutaks erinevate kujudega bensiinipumpasid - teil oleks iga auto jaoks erinev adapter vaja! Standardiseerimine tähendab ühiste lähenemiste kokkuleppimist, nii et asjad töötaksid sujuvalt koos.
+Kujutage ette, kui iga autotööstur kasutaks teistsuguse kujuga bensiinipumpasid – teil oleks iga auto jaoks vaja eri adapterit! Standardiseerimine tähendab kokkulepet ühistes lähenemistes, nii et asjad töötaksid sujuvalt koos.
 
-MCP tagab selle standardiseerimise AI rakendustele. Selle asemel, et iga AI mudel vajaks iga tööriista jaoks eraldi koodi, loob MCP universaalse viisi, kuidas nad saavad suhelda. See tähendab, et arendajad saavad tööriistu ühekordselt luua ja neid kasutada paljude erinevate AI süsteemidega.
+MCP pakub seda standardiseerimist tehisintellekti rakendustele. Selle asemel, et iga AI mudel vajaks eraldi koodi iga tööriistaga töötamiseks, loob MCP universaalse viisi nende suhtlemiseks. See tähendab, et arendajad saavad tööriistu üles ehitada üks kord ja kasutada neid paljude erinevate tehisintellekti süsteemidega.
 
-## 🧭 Teie õpitee ülevaade
+## 🧭 Teie õppeteekonna ülevaade
 
-Teekond MCP õppimisel on hoolikalt struktureeritud, et kasvatada teie enesekindlust ja oskusi järk-järgult. Iga faas tutvustab uusi mõisteid ning tugevdab juba omandatut.
+Teie MCP teekond on hoolikalt üles ehitatud, et järk-järgult suurendada teie enesekindlust ja oskusi. Iga faas tutvustab uusi kontseptsioone, tugevdades samal ajal juba õpitud teadmisi.
 
-### 🌱 Alusfaas: Põhitõdede mõistmine (moodulid 0-2)
+### 🌱 Alusfaas: Põhitõdede mõistmine (moodulid 0–2)
 
-Siit algab teie seiklus! Tutvustame teile MCP kontseptsioone kasutades tuttavaid võrdlusi ja lihtsaid näiteid. Saate aru, mis on MCP, miks see eksisteerib ja kuidas see sobitub AI arenduse laiemasse konteksti.
+Siin algab teie seiklus! Tutvustame teile MCP kontseptsioone kasutades tuttavaid võrdlusi ja lihtsaid näiteid. Mõistate, mis on MCP, miks see eksisteerib ja kuidas see sobitub laiemasse tehisintellekti arenduse maailma.
 
 
-• **Moodul 0 - Sissejuhatus MCP-sse**: Alustame uurides, mis on MCP ja miks see on nii oluline tänapäevaste AI rakenduste jaoks. Näete MCP-d reaalsetes näidetes tegevuses ja saate aru, kuidas see lahendab arendajate ees seisvaid tavapäraseid probleeme.
+• **Moodul 0 - Sissejuhatus MCP-sse**: Alustame sellest, mis MCP on ja miks see on nii oluline kaasaegsete tehisintellekti rakenduste jaoks. Näete MCP-d toimimas päriselu näidete kaudu ja saate aru, kuidas see lahendab arendajate ees seisvaid tavalisi probleeme.
 
-• **Moodul 1 - Põhikontseptsioonide selgitus**: Siin õpite MCP olulisi põhielemente. Kasutame rohkelt analoogiaid ja visuaalseid näiteid, et need mõisted tunduksid loomulikud ja arusaadavad.
+• **Moodul 1 - Põhikontseptsioonide seletus**: Siin õpite MCP olulisi koostisosi. Kasutame palju analoogiaid ja visuaalseid näiteid, et need kontseptsioonid tunduksid loomulikud ja arusaadavad.
 
-• **Moodul 2 - Turvalisus MCP-s**: Turvalisus võib tunduda hirmutav, kuid me näitame teile, kuidas MCP sisaldab sisseehitatud turvafunktsioone ja õpetame parimaid praktikaid, mis kaitsevad teie rakendusi algusest peale.
+• **Moodul 2 - Turvalisus MCP-s**: Turvalisus võib tunduda hirmutav, kuid näitame teile, kuidas MCP sisaldab sisseehitatud turvaelemente ja õpetame parimaid tavasid, mis kaitsevad teie rakendusi algusest peale.
 
-### 🔨 Ehitusetapp: Esimeste rakenduste loomine (Moodul 3)
+### 🔨 Arendamisfaas: Esimeste rakenduste loomine (Moodul 3)
 
-Nüüd algab tõeline lõbu! Saate praktilist kogemust tegelike MCP serverite ja klientide loomisel. Ärge muretsege – alustame lihtsalt ja juhendame teid igal sammul.
+Nüüd algab tõeline lõbu! Saate praktilise kogemuse, ehitades tegelikke MCP servereid ja kliente. Ärge muretsege - alustame lihtsast ja juhime teid iga sammu juures.
 
-See moodul sisaldab mitmeid praktilisi juhendeid, mis võimaldavad teil harjutada teie eelistatud programmeerimiskeeles. Loote oma esimese serveri, ehitate kliendi selle ühendamiseks ning integreerite isegi populaarsete arendustööriistadega nagu VS Code.
+See moodul sisaldab mitmeid praktilisi juhendeid, mis võimaldavad teil harjutada teie eelistatud programmeerimiskeeles. Loote oma esimese serveri, ehitate kliendi selle ühendamiseks ja integreerite selle isegi populaarsete arendustööriistadega nagu VS Code.
 
-Iga juhend sisaldab täielikke koodinäiteid, tõrkeotsingu näpunäiteid ja selgitusi, miks teeme kindlaid disainivalikuid. Selle etapi lõpus on teil töökorras MCP rakendused, mille üle võite uhked olla!
+Igas juhendis on komplekteeritud koodinäited, tõrkeotsingu nipid ja seletused, miks teeme konkreetseid disainivalikuid. Selle faasi lõpuks on teil töökorras MCP rakendused, mille üle võite uhke olla!
 
-### 🚀 Kasvufaas: Täiustatud kontseptsioonid ja reaalmaailma rakendus (Moodulid 4–5)
+### 🚀 Kasvufaafas: Täiustatud kontseptsioonid ja päriselu rakendused (Moodulid 4-5)
 
-Kui põhitõed on selged, olete valmis uurima keerukamaid MCP funktsioone. Käsitleme praktilisi rakendusstrateegiaid, silumisvõtteid ja edasijõudnutele mõeldud teemasid, nagu mitmemodaalne tehisintellekti integratsioon.
+Kui põhitõed on selged, olete valmis uurima keerukamaid MCP funktsioone. Käsitleme praktilisi rakendusstrateegiaid, silumistöövõtteid ja keerukamaid teemasid nagu mitmemodaalne AI integratsioon.
 
-Õpite ka, kuidas MCP rakendusi tootmiseks skaleerida ja integreerida pilveplatvormidega nagu Azure. Need moodulid valmistavad teid ette MCP lahenduste ehitamiseks, mis suudavad toime tulla reaalse maailma nõudmistega.
+Õppite ka, kuidas oma MCP rakendusi tootmises skaleerida ja integreerida pilveplatvormidega nagu Azure. Need moodulid valmistavad teid ette looma MCP lahendusi, mis suudavad päriselu nõudmisi täita.
 
-### 🌟 Meistriklassi etapp: Kogukond ja spetsialiseerumine (Moodulid 6–11)
+### 🌟 Meisterlikkuse faas: Kogukond ja spetsialiseerumine (Moodulid 6-11)
 
-Viimane etapp keskendub MCP kogukonnaga liitumisele ja teile huvipakkuvates valdkondades spetsialiseerumisele. Õpite, kuidas panustada avatud lähtekoodiga MCP projektidesse, rakendada täiustatud autentimismustreid ja ehitada ulatuslikke andmebaasiga integreeritud lahendusi.
+Viimane faas keskendub MCP kogukonnaga liitumisele ja huvipakkuvates valdkondades spetsialiseerumisele. Õpite, kuidas panustada avatud lähtekoodiga MCP projektidesse, rakendada täiustatud autentimistavasid ja ehitada laiaulatuslikke andmebaasiga integreeritud lahendusi.
 
-Moodul 11 väärib erilist mainimist – see on täielik 13-laboriline praktiline õpperada, mis õpetab teid looma tootmiskõlblikke MCP servereid PostgreSQL integratsiooniga. See on nagu lõputöö, mis koondab kõik õppitu!
+Moodul 11 väärib erilist mainimist - see on täielik 13 labori käsitsi õppeprogramm, mis õpetab teid ehitama tootmiskõlblikke MCP servereid koos PostgreSQL integratsiooniga. See on nagu lõputöö, mis ühendab kõik, mida olete õppinud!
 
 ### 📚 Täielik õppekava struktuur
 
 | Moodul | Teema | Kirjeldus | Link |
 |--------|-------|-------------|------|
-| **Moodulid 0-3: Põhitõed** | | | |
-| 00 | Sissejuhatus MCP-sse | Ülevaade Model Context Protocol-ist ja selle tähtsusest AI töövoogudes | [Read more](./00-Introduction/README.md) |
-| 01 | Põhikontseptsioonide selgitus | Süvitsi vaade MCP põhikontseptsioonidele | [Read more](./01-CoreConcepts/README.md) |
-| 1.1 | Mis MCP-s muutub (2026-07-28 RC) | Staatiline protokoll, laiendusraamistik ja järgmise spetsifikatsiooni versiooniga tulevad funktsioonide eemaldamised | [Guide](./01-CoreConcepts/mcp-2026-07-28-release-candidate.md) |
-| 02 | Turvalisus MCP-s | Turvaohtude ja parimate tavade käsitlus | [Read more](./02-Security/README.md) |
-| 03 | MCP-ga alustamine | Keskkonna seadistamine, põhilised serverid/klient, integratsioon | [Read more](./03-GettingStarted/README.md) |
+| **Moodul 0-3: Põhitõed** | | | |
+| 00 | Sissejuhatus MCP-sse | Ülevaade Model Context Protocol-ist ja selle tähtsusest AI torustikes | [Loe edasi](./00-Introduction/README.md) |
+| 01 | Põhikontseptsioonide seletus | Süvitsi MCP põhiliste kontseptsioonide uurimine | [Loe edasi](./01-CoreConcepts/README.md) |
+| 1.1 | Mis on MCP-s muutunud (2026-07-28) | Staatiline protokoll, laienduste raamistik ja funktsioonide mahavõtmine käesolevas spetsifikatsioonis | [Juhend](./01-CoreConcepts/mcp-2026-07-28.md) |
+| 02 | Turvalisus MCP-s | Turvaohtud ja parimad tavad | [Loe edasi](./02-Security/README.md) |
+| 2.1 | CIMD ja DCR autoriseerimine | Eelistatud CIMD registreerimise võrdlus mahajäetud DCR tagavaraga kaitstud MCP serveri kasutamisel | [Näidis](./02-Security/samples/cimd-dcr-auth/README.md) |
+| 03 | MCP-ga alustamine | Keskkonna seadistamine, põhilised serverid/kliendid, integratsioon | [Loe edasi](./03-GettingStarted/README.md) |
 | **Moodul 3: Esimese serveri ja kliendi loomine** | | | |
-| 3.1 | Esimene server | Looge oma esimene MCP server | [Guide](./03-GettingStarted/01-first-server/README.md) |
-| 3.2 | Esimene klient | Arendage baas MCP klient | [Guide](./03-GettingStarted/02-client/README.md) |
-| 3.3 | Klient LLM-ga | Integreerige suured keelemudelid | [Guide](./03-GettingStarted/03-llm-client/README.md) |
-| 3.4 | VS Code integratsioon | Kasutage MCP servereid VS Codes | [Guide](./03-GettingStarted/04-vscode/README.md) |
-| 3.5 | stdio server | Looge servereid stdio transpordiga | [Guide](./03-GettingStarted/05-stdio-server/README.md) |
-| 3.6 | HTTP voogedastus | Rakendage HTTP voogedastus MCP-s | [Guide](./03-GettingStarted/06-http-streaming/README.md) |
-| 3.7 | Microsoft Foundry tööriistakomplekt | Kasutage Microsoft Foundry tööriistakomplekti MCP-ga | [Guide](./03-GettingStarted/07-aitk/README.md) |
-| 3.8 | Testimine | Testige oma MCP serveri rakendust | [Guide](./03-GettingStarted/08-testing/README.md) |
-| 3.9 | Juurutamine | Juurutage MCP serverid tootmisesse | [Guide](./03-GettingStarted/09-deployment/README.md) |
-| 3.10 | Täiustatud serverikasutus | Kasutage täiustatud servereid täiustatud funktsioonide ja parendatud arhitektuuri jaoks | [Guide](./03-GettingStarted/10-advanced/README.md) |
-| 3.11 | Lihtne autentimine | Peatükk, mis näitab autentimist algusest ja RBAC-i | [Guide](./03-GettingStarted/11-simple-auth/README.md) |
-| 3.12 | MCP hostid | Konfigureerige Claude Desktop, Cursor, Cline ja teised MCP hostid | [Guide](./03-GettingStarted/12-mcp-hosts/README.md) |
-| 3.13 | MCP Inspector | Siluge ja testige MCP servereid Inspector tööriistaga | [Guide](./03-GettingStarted/13-mcp-inspector/README.md) |
-| 3.14 | Valimi kasutamine | Kasutage valimi koos kliendiga koostööks | [Guide](./03-GettingStarted/14-sampling/README.md) |
-| 3.15 | MCP rakendused | Looge MCP rakendusi | [Guide](./03-GettingStarted/15-mcp-apps/README.md) |
-| **Moodulid 4-5: Praktiline ja edasijõudnutele** | | | |
-| 04 | Praktiline rakendamine | SDK-d, silumine, testimine, taaskasutatavad prompt mallid | [Read more](./04-PracticalImplementation/README.md) |
-| 4.1 | Leheküljestamine | Suurtes andmetes kursori baasil leheküljestamine | [Guide](./04-PracticalImplementation/pagination/README.md) |
-| 05 | Täiustatud teemad MCP-s | Mitmemodaalne AI, skaleerimine, ettevõtluseks kasutamine | [Read more](./05-AdvancedTopics/README.md) |
-| 5.1 | Azure integratsioon | MCP integratsioon Azure-ga | [Guide](./05-AdvancedTopics/mcp-integration/README.md) |
-| 5.2 | Mitmemodaalsus | Töötamine mitme modaliteediga | [Guide](./05-AdvancedTopics/mcp-multi-modality/README.md) |
-| 5.3 | OAuth2 demo | OAuth2 autentimise rakendamine | [Guide](./05-AdvancedTopics/mcp-oauth2-demo/README.md) |
-| 5.4 | Juurekontekstid | Juurekontekstide mõistmine ja rakendamine | [Guide](./05-AdvancedTopics/mcp-root-contexts/README.md) |
-| 5.5 | Marsruutimine | MCP marsruutimisstrateegiad | [Guide](./05-AdvancedTopics/mcp-routing/README.md) |
-| 5.6 | Valimi võtted | Valimi võtted MCP-s | [Guide](./05-AdvancedTopics/mcp-sampling/README.md) |
-| 5.7 | Skaleerimine | MCP rakenduste skaleerimine | [Guide](./05-AdvancedTopics/mcp-scaling/README.md) |
-| 5.8 | Turvalisus | Täiustatud turvalisuse kaalutlused | [Guide](./05-AdvancedTopics/mcp-security/README.md) |
-| 5.9 | Veebipäringud | Veebipäringute võimete rakendamine | [Guide](./05-AdvancedTopics/web-search-mcp/README.md) |
-| 5.10 | Reaalajas voogedastus | Ehitage reaalajas voogedastuse funktsionaalsus | [Guide](./05-AdvancedTopics/mcp-realtimestreaming/README.md) |
-| 5.11 | Reaalajas otsing | Rakendage reaalajas otsingut | [Guide](./05-AdvancedTopics/mcp-realtimesearch/README.md) |
-| 5.12 | Entra ID autentimine | Autentimine Microsoft Entra ID abil | [Guide](./05-AdvancedTopics/mcp-security-entra/README.md) |
-| 5.13 | Foundry integratsioon | Integreerige Microsoft Foundry-ga | [Guide](./05-AdvancedTopics/mcp-foundry-agent-integration/README.md) |
-| 5.14 | Konteksti inseneriteadus | Tõhus konteksti inseneriteaduse tehnikad | [Guide](./05-AdvancedTopics/mcp-contextengineering/README.md) |
-| 5.15 | MCP kohandatud transport | Kohandatud transpordi rakendused | [Guide](./05-AdvancedTopics/mcp-transport/README.md) |
-| 5.16 | Protokolli funktsioonid | Edenemiseteated, tühistamine, ressursimallid | [Guide](./05-AdvancedTopics/mcp-protocol-features/README.md) |
-| 5.17 | Vastandlik mitmeagendiline põhjendus | Kaks agenti vaidlustavad vastandlikke seisukohti, kasutades ühiseid MCP tööriistu, mida hindab kohtunikagent | [Guide](./05-AdvancedTopics/mcp-adversarial-agents/README.md) |
-| **Moodulid 6-10: Kogukond ja parimad tavad** | | | |
-| 06 | Kogukonna panused | Kuidas panustada MCP ökosüsteemi | [Guide](./06-CommunityContributions/README.md) |
-| 07 | Õppetunnid varajasest kasutuselevõtust | Reaalse maailma rakenduse lood | [Guide](./07-LessonsfromEarlyAdoption/README.md) |
-| 08 | Parimad MCP praktikad | Jõudlus, tõrketaluvus, vastupidavus | [Guide](./08-BestPractices/README.md) |
-| 09 | MCP juhtumiuuringud | Praktilised rakendusnäited | [Guide](./09-CaseStudy/README.md) |
-| 10 | Praktiline töötuba | MCP serveri ehitamine Microsoft Foundry tööriistakomplektiga | [Lab](./10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md) |
+| 3.1 | Esimene server | Loo oma esimene MCP server | [Juhend](./03-GettingStarted/01-first-server/README.md) |
+| 3.2 | Esimene klient | Arenda põhiline MCP klient | [Juhend](./03-GettingStarted/02-client/README.md) |
+| 3.3 | Klient koos LLM-iga | Integreeri suured keelemudelid | [Juhend](./03-GettingStarted/03-llm-client/README.md) |
+| 3.4 | VS Code integratsioon | Kasuta MCP servereid VS Code'is | [Juhend](./03-GettingStarted/04-vscode/README.md) |
+| 3.5 | stdio server | Loo serverid stdio transpordiga | [Juhend](./03-GettingStarted/05-stdio-server/README.md) |
+| 3.6 | HTTP voogedastus | Rakenda MCP-s HTTP voogedastus | [Juhend](./03-GettingStarted/06-http-streaming/README.md) |
+| 3.7 | Microsoft Foundry tööriistakast | Kasuta Microsoft Foundry tööriistakasti MCP-ga | [Juhend](./03-GettingStarted/07-aitk/README.md) |
+| 3.8 | Testimine | Testi oma MCP serveri rakendust | [Juhend](./03-GettingStarted/08-testing/README.md) |
+| 3.9 | Juhtimine | Hõlma MCP serverite juurutamine tootmisse | [Juhend](./03-GettingStarted/09-deployment/README.md) |
+| 3.10 | Täiustatud serveri kasutus | Kasuta täiustatud servereid keerukamate funktsioonide jaoks ja parema arhitektuuri saavutamiseks | [Juhend](./03-GettingStarted/10-advanced/README.md) |
+| 3.11 | Lihtne autentimine | Peatükk, mis tutvustab autentimist algusest peale ja RBAC-i | [Juhend](./03-GettingStarted/11-simple-auth/README.md) |
+| 3.12 | MCP hostid | Seadista Claude Desktop, Cursor, Cline ja teised MCP hostid | [Juhend](./03-GettingStarted/12-mcp-hosts/README.md) |
+| 3.13 | MCP Inspector | Silu ja testi MCP servereid Inspector tööriista abil | [Juhend](./03-GettingStarted/13-mcp-inspector/README.md) |
+| 3.14 | Proovivõtt | Kasuta proovivõttu koostööks kliendiga | [Juhend](./03-GettingStarted/14-sampling/README.md) |
+| 3.15 | MCP rakendused | Ehita MCP rakendusi | [Juhend](./03-GettingStarted/15-mcp-apps/README.md) |
+| **Moodul 4-5: Praktiline ja edasijõudnud** | | | |
+| 04 | Praktiline rakendamine | SDK-d, silumine, testimine, taaskasutatavad käivitusmallid | [Loe edasi](./04-PracticalImplementation/README.md) |
+| 4.1 | Lehekülgedevahetamine | Suurte tulemuste töötlemine kursoripõhise lehekülgedevahetusega | [Juhend](./04-PracticalImplementation/pagination/README.md) |
+| 05 | Edasijõudnud teemad MCP-s | Mitmemodaalne AI, skaleerimine, ettevõtluskasutus | [Loe edasi](./05-AdvancedTopics/README.md) |
+| 5.1 | Azure integratsioon | MCP integratsioon Azure'iga | [Juhend](./05-AdvancedTopics/mcp-integration/README.md) |
+| 5.2 | Mitmemodaalsus | Töötamine mitme modaliteediga | [Juhend](./05-AdvancedTopics/mcp-multi-modality/README.md) |
+| 5.3 | OAuth2 demo | OAuth2 autentimise rakendamine | [Juhend](./05-AdvancedTopics/mcp-oauth2-demo/README.md) |
+| 5.4 | Juurekontekstid | Juurekontekstide mõistmine ja rakendamine | [Juhend](./05-AdvancedTopics/mcp-root-contexts/README.md) |
+| 5.5 | Marsruutimine | MCP marsruutimisstrateegiad | [Juhend](./05-AdvancedTopics/mcp-routing/README.md) |
+| 5.6 | Proovivõtt | Proovivõtt tehnikad MCP-s | [Juhend](./05-AdvancedTopics/mcp-sampling/README.md) |
+| 5.7 | Skaleerimine | MCP rakenduste skaleerimine | [Juhend](./05-AdvancedTopics/mcp-scaling/README.md) |
+| 5.8 | Turvalisus | Täiustatud turvakaalutlused | [Juhend](./05-AdvancedTopics/mcp-security/README.md) |
+| 5.9 | Veebihaldus | Veebihalduse võimaluste rakendamine | [Juhend](./05-AdvancedTopics/web-search-mcp/README.md) |
+| 5.10 | Reaalajas voogedastus | Reaalajas voogedastuse funktsionaalsuse loomine | [Juhend](./05-AdvancedTopics/mcp-realtimestreaming/README.md) |
+| 5.11 | Reaalajas otsing | Reaalajas otsingu rakendamine | [Juhend](./05-AdvancedTopics/mcp-realtimesearch/README.md) |
+| 5.12 | Entra ID autentimine | Autentimine Microsoft Entra ID-ga | [Juhend](./05-AdvancedTopics/mcp-security-entra/README.md) |
+| 5.13 | Foundry integratsioon | Integratsioon Microsoft Foundry-ga | [Juhend](./05-AdvancedTopics/mcp-foundry-agent-integration/README.md) |
+| 5.14 | Konteksti inseneritöö | Tõhusate kontekstiinseneritöö tehnikad | [Juhend](./05-AdvancedTopics/mcp-contextengineering/README.md) |
+| 5.15 | MCP kohandatud transport | Kohandatud transpordi rakendused | [Juhend](./05-AdvancedTopics/mcp-transport/README.md) |
+| 5.16 | Protokolli funktsioonid | Edenemiseteated, tühistamine, ressursi mallid | [Juhend](./05-AdvancedTopics/mcp-protocol-features/README.md) |
+| 5.17 | Vaatleva mitmeagendi mõtlemine | Kaks agenti väidlevad vastandlike teemade üle, kasutades ühiseid MCP tööriistu, hinnatuna kohtuniks olevate agendi poolt | [Juhend](./05-AdvancedTopics/mcp-adversarial-agents/README.md) |
+| **Moodul 6-10: Kogukond ja parimad tavad** | | | |
+| 06 | Kogukonna panused | Kuidas panustada MCP ökosüsteemi | [Juhend](./06-CommunityContributions/README.md) |
+| 07 | Varajase kasutuse ülevaated | Päriselu rakendamise lood | [Juhend](./07-LessonsfromEarlyAdoption/README.md) |
+| 08 | MCP parimad tavad | Jõudlus, tõrketaluvus, vastupidavus | [Juhend](./08-BestPractices/README.md) |
+| 09 | MCP juhtumiuuringud | Praktiliste rakenduste näited | [Juhend](./09-CaseStudy/README.md) |
+| 10 | Praktiline töötuba | MCP serveri ehitamine Microsoft Foundry tööriistakastiga | [Labor](./10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md) |
 | **Moodul 11: MCP serveri praktilised laborid** | | | |
-| 11 | MCP serveri andmebaasi integratsioon | Ulatuslik 13-laboriline praktiline õpperada PostgreSQL integratsiooniks | [Labs](./11-MCPServerHandsOnLabs/README.md) |
-| 11.1 | Sissejuhatus | MCP ülevaade andmebaasi integratsiooni ja jaemüügianalüüsi juhtumiga | [Lab 00](./11-MCPServerHandsOnLabs/00-Introduction/README.md) |
-| 11.2 | Põhiarhitektuur | MCP serveri arhitektuuri, andmebaasikihi ja turvamustrite mõistmine | [Lab 01](./11-MCPServerHandsOnLabs/01-Architecture/README.md) |
-| 11.3 | Turvalisus ja mitmetenantlus | Rida-tasandi turvalisus, autentimine ja mitme kasutajaga andmejuurdepääs | [Lab 02](./11-MCPServerHandsOnLabs/02-Security/README.md) |
-| 11.4 | Keskkonna seadistamine | Arenduskeskkonna, Dockeri ja Azure ressursside seadistamine | [Lab 03](./11-MCPServerHandsOnLabs/03-Setup/README.md) |
-| 11.5 | Andmebaasi disain | PostgreSQL seadistamine, jaemüügi skeemi disain ja näidisandmed | [Lab 04](./11-MCPServerHandsOnLabs/04-Database/README.md) |
-| 11.6 | MCP serveri rakendamine | FastMCP serveri loomine andmebaasi integratsiooniga | [Lab 05](./11-MCPServerHandsOnLabs/05-MCP-Server/README.md) |
-| 11.7 | Tööriistade arendamine | Andmebaasi päringutööriistade ja skeemi introspektsiooni loomine | [Lab 06](./11-MCPServerHandsOnLabs/06-Tools/README.md) |
-| 11.8 | Semantiline otsing | Vektori manuste rakendamine Azure OpenAI ja pgvector abil | [Lab 07](./11-MCPServerHandsOnLabs/07-Semantic-Search/README.md) |
-| 11.9 | Testimine ja silumine | Testimisstrateegiad, silumisvahendid ja valideerimise meetodid | [Lab 08](./11-MCPServerHandsOnLabs/08-Testing/README.md) |
-| 11.10 | VS Code integratsioon | VS Code MCP integratsiooni ja AI vestluse seadistamine | [Lab 09](./11-MCPServerHandsOnLabs/09-VS-Code/README.md) |
-| 11.11 | Juhtimisstrateegiad | Dockeri juurutamine, Azure Container Apps ja skaleerimise kaalutlused | [Lab 10](./11-MCPServerHandsOnLabs/10-Deployment/README.md) |
-| 11.12 | Jälgimine | Application Insights, logimine, jõudluse monitooring | [Lab 11](./11-MCPServerHandsOnLabs/11-Monitoring/README.md) |
-| 11.13 | Parimad praktikad | Jõudluse optimeerimine, turvalisuse tugevdamine ja tootmisnõuanded | [Lab 12](./11-MCPServerHandsOnLabs/12-Best-Practices/README.md) |
+| 11 | MCP serveri andmebaasi integratsioon | Kõikehõlmav 13 labori käsitsi õppeprogramm PostgreSQL integratsiooniks | [Laborid](./11-MCPServerHandsOnLabs/README.md) |
+| 11.1 | Sissejuhatus | Ülevaade MCP-st andmebaasi integratsiooniga ja jaekaubanduse analüütika kasutusjuhtumiks | [Labor 00](./11-MCPServerHandsOnLabs/00-Introduction/README.md) |
+| 11.2 | Põhiarhitektuur | MCP serveri arhitektuuri, andmebaasikihte ja turvamustreid mõistmine | [Labor 01](./11-MCPServerHandsOnLabs/01-Architecture/README.md) |
+| 11.3 | Turvalisus ja mitmekasutus | Rea tasandi turvalisus, autentimine ja mitme kasutajaga andmete juurdepääs | [Labor 02](./11-MCPServerHandsOnLabs/02-Security/README.md) |
+| 11.4 | Keskkonna seadistamine | Arenduskeskkonna seadistamine, Docker, Azure ressursid | [Labor 03](./11-MCPServerHandsOnLabs/03-Setup/README.md) |
+| 11.5 | Andmebaasi disain | PostgreSQL seadistamine, jaemüügi skeemi kujundus ja proovandmed | [Labor 04](./11-MCPServerHandsOnLabs/04-Database/README.md) |
+| 11.6 | MCP serveri rakendamine | FastMCP serveri ehitamine andmebaasi integratsiooniga | [Labor 05](./11-MCPServerHandsOnLabs/05-MCP-Server/README.md) |
+| 11.7 | Tööriistade arendus | Andmebaasi päringutööriistade ja skeemide introspektsiooni loomine | [Labor 06](./11-MCPServerHandsOnLabs/06-Tools/README.md) |
+| 11.8 | Semantiline otsing | Vektorbasseinide rakendamine Azure OpenAI ja pgvector abil | [Labor 07](./11-MCPServerHandsOnLabs/07-Semantic-Search/README.md) |
+| 11.9 | Testimine ja silumine | Testimise strateegiad, silumisvahendid ja valideerimisvõtted | [Labor 08](./11-MCPServerHandsOnLabs/08-Testing/README.md) |
+| 11.10 | VS Code integratsioon | VS Code MCP integratsiooni ja AI jututoa kasutuse seadistamine | [Labor 09](./11-MCPServerHandsOnLabs/09-VS-Code/README.md) |
+| 11.11 | Juhtimisstrateegiad | Docker juurutamine, Azure konteinerirakendused ja skaleerimisalased kaalutlused | [Labor 10](./11-MCPServerHandsOnLabs/10-Deployment/README.md) |
+| 11.12 | Jälgimine | Rakenduste ülevaated, logimine, jõudluse jälgimine | [Labor 11](./11-MCPServerHandsOnLabs/11-Monitoring/README.md) |
+| 11.13 | Parimad tavad | Jõudluse optimeerimine, turvalisuse tugevdamine ja tootmise nipid | [Labor 12](./11-MCPServerHandsOnLabs/12-Best-Practices/README.md) |
 | **Moodul 12: MCP tööriistad** | | | |
-| 12.1 | Tööriistad | MCP kasutamine Copilot rakenduses | [ Guide ](./12-tooling/README.md) |
+| 12.1 | Tööriistad | MCP kasutamine Copilot rakenduses | [ Juhend ](./12-tooling/README.md) |
 
-### 💻 Näidiskoodiprojektid
+### 💻 Näidisprojektide koodid
 
-Üks põnevamaid MCP õppimise osasid on näha, kuidas teie koodioskused järk-järgult arenevad. Oleme oma koodinäited kujundanud nii, et algul on need lihtsad ja kasvavad arusaamise süvenedes keerukamaks. Siin tutvustame kontseptsioone – kood, mis on lihtne mõista, kuid demonstreerib tõelisi MCP põhimõtteid, aitab teil mõista mitte ainult seda, mida kood teeb, vaid miks see on selliselt üles ehitatud ja kuidas see sobitub suuremate MCP rakenduste hulka.
+
+Üks põnevamaid osi MCP õppimisel on oma koodioskuste järkjärguline areng. Oleme disaininud oma koodinäited nii, et need algavad lihtsatena ja muutuvad mõistmise süvenedes järjest keerukamaks. Siin on, kuidas me tutvustame kontseptsioone – koodiga, mis on lihtne mõista, kuid demonstreerib tõelisi MCP põhimõtteid, mõistad sa mitte ainult seda, mida see kood teeb, vaid miks see on nii üles ehitatud ja kuidas see sobitub suurematesse MCP rakendustesse.
 
 #### Põhilised MCP kalkulaatori näited
 
 | Keel | Kirjeldus | Link |
 |----------|-------------|------|
-
 | C# | MCP serveri näide | [Vaata koodi](./03-GettingStarted/samples/csharp/README.md) |
 | Java | MCP kalkulaator | [Vaata koodi](./03-GettingStarted/samples/java/calculator/README.md) |
 | JavaScript | MCP demo | [Vaata koodi](./03-GettingStarted/samples/javascript/README.md) |
@@ -244,51 +252,51 @@ Moodul 11 väärib erilist mainimist – see on täielik 13-laboriline praktilin
 | TypeScript | Konteineri näide | [Vaata koodi](./04-PracticalImplementation/samples/typescript/README.md) |
 
 
-## 🎯 MCP õppimise eeltingimused
+## 🎯 Nõuded MCP õppimiseks
 
-Selle õppekava maksimaalseks kasutamiseks peaks teil olema:
+Selle õppekava maksimaalseks kasutamiseks peaks sul olema:
 
-- Põhiteadmised vähemalt ühest järgmisest keelest: C#, Java, JavaScript, Python või TypeScript
-- Arusaam kliendi- ja serverimudelist ning API-dest
-- Tutvus RESTi ja HTTP mõistetega
-- (Valikuline) Teadmised tehisintellekti ja masinõppe kontseptsioonidest
+- Põhilised programmeerimisteadmised vähemalt ühes järgmistest keeltest: C#, Java, JavaScript, Python või TypeScript
+- Kliendi-serveri mudeli ja API-de mõistmine
+- Tutvumine REST ja HTTP kontseptsioonidega
+- (Valikuline) Teadmised tehisintellekti/machine learningu kontseptsioonidest
 
-- Osalemine meie kogukonna aruteludes abi saamiseks
+- Osalemine meie kogukonna aruteludes toe saamiseks
 
-## 📚 Õpijuhend ja ressursid
+## 📚 Õppejuhend ja ressursid
 
-See hoidla sisaldab mitmeid ressursse, mis aitavad teil tõhusalt navigeerida ja õppida:
+See hoidla sisaldab mitmeid ressursse, mis aitavad sul navigeerida ja tõhusalt õppida:
 
-### Õpijuhend
+### Õppejuhend
 
-Üksikasjalik [Õpijuhend](./study_guide.md) on saadaval, et aidata teil seda hoidlat tõhusalt kasutada. See visuaalne õppekava kaart näitab, kuidas kõik teemad on omavahel seotud ja annab juhiseid näidiste projektide efektiivseks kasutamiseks. See on eriti kasulik visuaalsetele õppijatele, kes soovivad näha kogu pilti.
+Saadaval on põhjalik [Õppejuhend](./study_guide.md), mis aitab sul selles hoidlis tõhusalt orienteeruda. See visuaalne õppekava kaart näitab, kuidas kõik teemad on omavahel seotud ning annab juhiseid, kuidas näidistöid tõhusalt kasutada. See on eriti kasulik visuaalsetele õppijatele, kes soovivad näha suurt pilti.
 
 Juhend sisaldab:
-- Visuaalne õppekava kaart kõigi kaetavate teemadega
-- Iga osa üksikasjalik ülevaade
-- Juhised näidiste projektide kasutamiseks
-- Soovitused õpiteede kohta erinevatele oskustasemetele
-- Lisamaterjalid õppeteekonna toetamiseks
+- Visuaalne õppekava kaart, mis näitab kõiki kaetud teemasid
+- Iga hoidla osa üksikasjalik kirjeldus
+- Juhised, kuidas näidist projekte kasutada
+- Soovitatud õppeteed erinevatele oskustasemetele
+- Lisamaterjalid, mis täiendavad sinu õppeprotsessi
 
 ### Muudatuste logi
 
-Hoiame detailset [Muudatuste logi](./changelog.md), mis jälgib kõiki olulisi uuendusi õppevahendites, et hoida teid kursis viimaste täiustuste ja lisandustega.
-- Uued sisulised lisandid
+Hoiame üksikasjalikku [muudatuste logi](./changelog.md), mis jälgib kõiki olulisi uuendusi õppekavade materjalides, et saaksid alati olla kursis viimaste täiustuste ja täiendustega.
+- Uued sisulised lisandused
 - Struktuurimuudatused
-- Funktsioonide täiustused
+- Funktsioonide parandused
 - Dokumentatsiooni uuendused
 
-## 🛠️ Kuidas seda õppekava efektiivselt kasutada
+## 🛠️ Kuidas seda õppekava tõhusalt kasutada
 
-Igas selles juhendis sisaldatud õppetükis on:
+Igas selles juhendis õpitud peatükis on:
 
-1. Selged MCP kontseptsioonide seletused  
-2. Reaalajas koodinäited mitmes keeles  
+1. Selged selgitused MCP kontseptsioonidest  
+2. Otsekohesed koodinäited mitmes keeles  
 3. Harjutused tõeliste MCP rakenduste loomiseks  
-4. Täiendavad ressursid edasijõudnutele
+4. Lisamaterjalid edasijõudnutele
 
-### Õpime MCP-d C#-ga - juhendite sari
-Õpime Model Context Protocoli (MCP), tipptasemel raamistikku, mis on mõeldud tehisintellekti mudelite ja kliendirakenduste vahelist suhtlust standardiseerima. Selle algajasõbraliku sessiooni jooksul tutvustame MCP-d ja juhendame teid oma esimese MCP serveri loomisel.
+### Õpime MCP-d koos C#-ga - juhendite sari
+Õpime tundma Model Context Protocoli (MCP), tipptasemel raamistiku, mis on loodud standardiseerima tehisintellekti mudelite ja kliendirakenduste omavahelisi suhtlusi. Selle algajatele mõeldud sessiooni jooksul tutvustame sulle MCP-d ja juhendame esimesel MCP serveri loomisel.
 #### C#: [https://aka.ms/letslearnmcp-csharp](https://aka.ms/letslearnmcp-csharp)
 #### Java: [https://aka.ms/letslearnmcp-java](https://aka.ms/letslearnmcp-java)
 #### JavaScript: [https://aka.ms/letslearnmcp-javascript](https://aka.ms/letslearnmcp-javascript)
@@ -296,66 +304,66 @@ Igas selles juhendis sisaldatud õppetükis on:
 
 ## 🎓 Sinu MCP teekond algab
 
-Palju õnne! Sa oled just teinud esimese sammu põneval teekonnal, mis laiendab sinu programmeerimisvõimekust ja ühendab sind tehisintellekti arenduse tipuga.
+Õnnitleme! Sa oled just astunud esimese sammu põneval teekonnal, mis laiendab sinu programmeerimisoskusi ja ühendab sind tehisintellekti arengutippudega.
 
-### Mida oled juba saavutanud
+### Mida sa oled juba saavutanud
 
-Läbi selle sissejuhatuse lugemise oled sa juba alustanud oma MCP teadmiste aluse loomist. Sa mõistad, mis on MCP, miks see on oluline ja kuidas see õppekava toetab sinu õppeteekonda. See on märkimisväärne saavutus ja sinu asjatundlikkuse algus selles olulises tehnoloogias.
+Selle sissejuhatuse läbi lugemisega oled sa juba alustanud oma MCP teadmiste aluse ehitamist. Sa mõistad, mis on MCP, miks see on oluline ja kuidas see õppekava toetab sinu õppeprotsessi. See on märkimisväärne saavutus ja sinu pädevuse algus selles tähtsas tehnoloogias.
 
-### Eesootav seiklus
+### Seiklus ees ootamas
 
-Moodulite läbimisel pea meeles, et iga ekspert oli kord algaja. Kontseptsioonid, mis võivad nüüd tunduda keerulisena, saavad harjutamisel ja rakendamisel teiseks loomuseks. Iga väikene samm ehitab võimsate võimeteni, mis teenivad sind kogu arenduskariääri jooksul.
+Edenedes moodulite kaupa, pea meeles, et iga ekspert oli alguses algaja. Need kontseptsioonid, mis praegu võivad tunduda keerulised, muutuvad harjutades ja rakendades teiseks loomuseks. Iga väike samm ehitab võimsamaid võimeid, mis teenivad sind kogu arenduskutse jooksul.
 
 ### Sinu tugivõrgustik
 
-Sa liitud õppijate ja ekspertide kogukonnaga, kes on MCP vastu kirglikud ja soovivad teisi edukusele aidata. Olgu su koodis väljakutse või soov jagada läbimurret - kogukond on siin, et sind toetada.
+Sa liitud õppijate ja ekspertide kogukonnaga, kes on kirglikud MCP vastu ja innukad aitama teisi edukaks saada. Olgu sa koodimure ees või rõõmus läbimurde üle, kogukond on siin sinu teekonna toetuseks.
 
-Kui sa jääd hätta või sul on küsimusi AI rakenduste loomisest, liitu teiste õppijate ja kogenud arendajatega MCP teemalistes aruteludes. See on toetav kogukond, kus küsimused on teretulnud ja teadmisi jagatakse vabalt.
+Kui sa jään kinni või sul on küsimusi AI rakenduste loomise kohta, liitu teiste õppijate ja kogenud arendajatega MCP teemalistes aruteludes. See on toetav kogukond, kus küsimused on teretulnud ja teadmisi jagatakse vabalt.
 
 [![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
 
-Kui sul on tootepalautust või ehitamisel vigu, külasta:
+Kui sul on toote tagasisidet või kodu vigu ehitamisel, külasta:
 
 [![Microsoft Foundry Developer Forum](https://img.shields.io/badge/GitHub-Microsoft_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=000000&logoColor=fff)](https://aka.ms/foundry/forum)
 
-### Valmis alustama?
+### Kas oled valmis alustama?
 
-Sinu MCP seiklus algab nüüd! Alusta moodulist 0, et sukelduda oma esimestesse praktilistesse MCP kogemustesse, või sirvi näidisprojekte, et näha, mida hakkad looma. Pea meeles - iga ekspert alustas täpselt sealt, kus sina praegu oled, ja kannatlikkuse ning praktika abil saad sa hämmastada, mida suudad saavutada.
+Sinu MCP seiklus algab nüüd! Alusta Moodulist 0, et sukelduda oma esimese MCP praktilisse kogemusse, või avasta näidisprojekte, et näha, mida sa hakkad looma. Pea meeles – iga ekspert alustas täpselt sealt, kus sa praegu oled, ja kannatlikkuse ning harjutusega saad sa üllatuda, mida kõik saab saavutada.
 
-Tere tulemast Model Context Protocoli arenduse maailma. Loome koos midagi imelist!
+Tere tulemast Model Context Protocoli arendamise maailma. Loome koos midagi imelist!
 
-## 🤝 Panustamine õppijate kogukonda
+## 🤝 Panusta õppijate kogukonda
 
-See õppekava muutub tugevamaks tänu sinu ja teiste õppijate panustele! Olgu see õigekirja parandamine, selgema seletuse soovitus või uue näite lisamine, sinu panus aitab teistel algajatel edu saavutada.
+See õppekava muutub tugevamaks tänu panustajatele nagu sina! Olgu see trükiviga parandamine, selgema selgituse pakkumine või uue näite lisamine, sinu panus aitab teistel algajatel edukaks saada.
 
-Tänu Microsofti hinnatud spetsialistile [Shivam Goyal](https://www.linkedin.com/in/shivam2003/) koodinäidiste panustamise eest.
+Täname Microsofti väärtuslikku professionaali [Shivam Goyal](https://www.linkedin.com/in/shivam2003/), kes on pannud oma koodinäited.
 
-Panustamisprotsess on loodud olema sõbralik ja toetav. Enamik panuseid nõuab panustaja litsentsilepingu (CLA) allkirjastamist, kuid automaatsed tööriistad juhendavad sind protsessi ladusalt.
+Panustamisprotsess on kavandatud vastuvõtlikuks ja toetavaks. Enamik panuseid nõuavad panustajalt litsentsilepingut (CLA), aga automaatse tööriistad juhendavad sind sujuvalt protsessi läbi.
 
 ## 📜 Avatud lähtekoodiga õppimine
 
-Kogu see õppekava on saadaval MIT [LITSENTS](../../LICENSE) alusel, mis tähendab, et saad seda vabalt kasutada, muuta ja jagada. See toetab meie missiooni teha MCP teadmised arendajatele kõigile kättesaadavaks.
+Kogu see õppekava on saadaval MIT [LITSENTS](../../LICENSE) all, mis tähendab, et saad seda vabalt kasutada, muuta ja jagada. See toetab meie missiooni teha MCP teadmine arendajatele kõigile kättesaadavaks.
 ## 🤝 Panustamise juhised
 
-See projekt võtab vastu panuseid ja ettepanekuid. Enamik panuseid nõuab, et sa nõustuksid
-Panustaja litsentsilepinguga (CLA), mis kinnitab, et sul on õigus ja sa annad meile
-õigused kasutada sinu panust. Lisateabe saamiseks külasta <https://cla.opensource.microsoft.com>.
+See projekt võtab vastu panuseid ja ettepanekuid. Enamik panuseid nõuavad, et sa nõustuksid panustajate litsentsilepinguga (CLA), mis kinnitab, et sul on õigus ja sa tegelikult annad meile
+õiguse sinu panust kasutada. Detailide kohta külasta <https://cla.opensource.microsoft.com>.
 
-Kui esitad tõmbepäringu, määrab CLA bot automaatselt, kas sul tuleb CLA esitada,
-ning märgistab PR sobivalt (nt oleku kontroll, kommentaar). Lihtsalt järgi boti antud juhiseid.
-Sa pead seda tegema ainult ühe korra kõigis meie CLA-ga repos.
 
-See projekt on võtnud kasutusele [Microsofti avatud lähtekoodi käitumisreeglid](https://opensource.microsoft.com/codeofconduct/).
-Lisainfo saamiseks vaata [Käitumisreeglite korduma kippuvad küsimused](https://opensource.microsoft.com/codeofconduct/faq/) või
-võta ühendust aadressil [opencode@microsoft.com](mailto:opencode@microsoft.com) täiendavate küsimuste või märkustega.
+ning märgistab PR-i vastavalt (nt olekukontroll, kommentaar). Lihtsalt järgi
+roboti juhiseid. Seda on vaja teha vaid üks kord kõikides meie CLA kasutavates hoidlas.
+
+
+Lisainfo saamiseks vaata [käitumiskoodeksi KKK](https://opensource.microsoft.com/codeofconduct/faq/) või
+võta ühendust aadressil [opencode@microsoft.com](mailto:opencode@microsoft.com) küsimuste või kommentaaride korral.
+
 
 ---
 
-*Valmis alustama oma MCP teekonda? Alusta [Moodul 00 - Sissejuhatus MCP-sse](./00-Introduction/README.md) ja astu oma esimesed sammud Model Context Protocoli arenduse maailmas!*
+*Oled valmis alustama oma MCP teekonda? Alusta [Moodul 00 - Sissejuhatus MCP-sse](./00-Introduction/README.md) ja astu oma esimesed sammud Model Context Protocoli arenduse maailmas!*
 
 
 
-## 🎒 Muud kursused
+## 🎒 Teised kursused
 Meie meeskond toodab ka teisi kursuseid! Vaata:
 
 <!-- CO-OP TRANSLATOR OTHER COURSES START -->
@@ -365,15 +373,15 @@ Meie meeskond toodab ka teisi kursuseid! Vaata:
 [![LangChain algajatele](https://img.shields.io/badge/LangChain%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=0553D6)](https://github.com/microsoft/langchain-for-beginners?WT.mc_id=m365-94501-dwahlin)
 ---
 
-### Azure / Edge / MCP / Agentid
+### Azure / Edge / MCP / Agendid
 [![AZD algajatele](https://img.shields.io/badge/AZD%20for%20Beginners-0078D4?style=for-the-badge&labelColor=E5E7EB&color=0078D4)](https://github.com/microsoft/AZD-for-beginners?WT.mc_id=academic-105485-koreyst)
 [![Edge AI algajatele](https://img.shields.io/badge/Edge%20AI%20for%20Beginners-00B8E4?style=for-the-badge&labelColor=E5E7EB&color=00B8E4)](https://github.com/microsoft/edgeai-for-beginners?WT.mc_id=academic-105485-koreyst)
 [![MCP algajatele](https://img.shields.io/badge/MCP%20for%20Beginners-009688?style=for-the-badge&labelColor=E5E7EB&color=009688)](https://github.com/microsoft/mcp-for-beginners?WT.mc_id=academic-105485-koreyst)
-[![AI agentid algajatele](https://img.shields.io/badge/AI%20Agents%20for%20Beginners-00C49A?style=for-the-badge&labelColor=E5E7EB&color=00C49A)](https://github.com/microsoft/ai-agents-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![AI agendid algajatele](https://img.shields.io/badge/AI%20Agents%20for%20Beginners-00C49A?style=for-the-badge&labelColor=E5E7EB&color=00C49A)](https://github.com/microsoft/ai-agents-for-beginners?WT.mc_id=academic-105485-koreyst)
 
 ---
  
-### Generatiivse AI sari
+### Generatiivse tehisintellekti sari
 [![Generatiivne AI algajatele](https://img.shields.io/badge/Generative%20AI%20for%20Beginners-8B5CF6?style=for-the-badge&labelColor=E5E7EB&color=8B5CF6)](https://github.com/microsoft/generative-ai-for-beginners?WT.mc_id=academic-105485-koreyst)
 [![Generatiivne AI (.NET)](https://img.shields.io/badge/Generative%20AI%20(.NET)-9333EA?style=for-the-badge&labelColor=E5E7EB&color=9333EA)](https://github.com/microsoft/Generative-AI-for-beginners-dotnet?WT.mc_id=academic-105485-koreyst)
 [![Generatiivne AI (Java)](https://img.shields.io/badge/Generative%20AI%20(Java)-C084FC?style=for-the-badge&labelColor=E5E7EB&color=C084FC)](https://github.com/microsoft/generative-ai-for-beginners-java?WT.mc_id=academic-105485-koreyst)
@@ -384,19 +392,19 @@ Meie meeskond toodab ka teisi kursuseid! Vaata:
 ### Põhiõpe
 [![ML algajatele](https://img.shields.io/badge/ML%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=22C55E)](https://aka.ms/ml-beginners?WT.mc_id=academic-105485-koreyst)
 [![Andmeteadus algajatele](https://img.shields.io/badge/Data%20Science%20for%20Beginners-84CC16?style=for-the-badge&labelColor=E5E7EB&color=84CC16)](https://aka.ms/datascience-beginners?WT.mc_id=academic-105485-koreyst)
-[![AI algajatele](https://img.shields.io/badge/AI%20for%20Beginners-A3E635?style=for-the-badge&labelColor=E5E7EB&color=A3E635)](https://aka.ms/ai-beginners?WT.mc_id=academic-105485-koreyst)
 
+[![Tehisintellekt algajatele](https://img.shields.io/badge/AI%20for%20Beginners-A3E635?style=for-the-badge&labelColor=E5E7EB&color=A3E635)](https://aka.ms/ai-beginners?WT.mc_id=academic-105485-koreyst)
 [![Küberjulgeolek algajatele](https://img.shields.io/badge/Cybersecurity%20for%20Beginners-F97316?style=for-the-badge&labelColor=E5E7EB&color=F97316)](https://github.com/microsoft/Security-101?WT.mc_id=academic-96948-sayoung)
 [![Veebiarendus algajatele](https://img.shields.io/badge/Web%20Dev%20for%20Beginners-EC4899?style=for-the-badge&labelColor=E5E7EB&color=EC4899)](https://aka.ms/webdev-beginners?WT.mc_id=academic-105485-koreyst)
-[![IoT algajatele](https://img.shields.io/badge/IoT%20for%20Beginners-14B8A6?style=for-the-badge&labelColor=E5E7EB&color=14B8A6)](https://aka.ms/iot-beginners?WT.mc_id=academic-105485-koreyst)
+[![Asjade internet algajatele](https://img.shields.io/badge/IoT%20for%20Beginners-14B8A6?style=for-the-badge&labelColor=E5E7EB&color=14B8A6)](https://aka.ms/iot-beginners?WT.mc_id=academic-105485-koreyst)
 [![XR arendus algajatele](https://img.shields.io/badge/XR%20Development%20for%20Beginners-38BDF8?style=for-the-badge&labelColor=E5E7EB&color=38BDF8)](https://github.com/microsoft/xr-development-for-beginners?WT.mc_id=academic-105485-koreyst)
 
 ---
  
 ### Copiloti sari
 [![Copilot tehisintellekti paarisprogrammeerimiseks](https://img.shields.io/badge/Copilot%20for%20AI%20Paired%20Programming-FACC15?style=for-the-badge&labelColor=E5E7EB&color=FACC15)](https://aka.ms/GitHubCopilotAI?WT.mc_id=academic-105485-koreyst)
-[![Copilot C#/.NET jaoks](https://img.shields.io/badge/Copilot%20for%20C%23/.NET-FBBF24?style=for-the-badge&labelColor=E5E7EB&color=FBBF24)](https://github.com/microsoft/mastering-github-copilot-for-dotnet-csharp-developers?WT.mc_id=academic-105485-koreyst)
-[![Copiloti seiklus](https://img.shields.io/badge/Copilot%20Adventure-FDE68A?style=for-the-badge&labelColor=E5E7EB&color=FDE68A)](https://github.com/microsoft/CopilotAdventures?WT.mc_id=academic-105485-koreyst)
+[![Copilot C#/.NET arendajatele](https://img.shields.io/badge/Copilot%20for%20C%23/.NET-FBBF24?style=for-the-badge&labelColor=E5E7EB&color=FBBF24)](https://github.com/microsoft/mastering-github-copilot-for-dotnet-csharp-developers?WT.mc_id=academic-105485-koreyst)
+[![Copilot seiklus](https://img.shields.io/badge/Copilot%20Adventure-FDE68A?style=for-the-badge&labelColor=E5E7EB&color=FDE68A)](https://github.com/microsoft/CopilotAdventures?WT.mc_id=academic-105485-koreyst)
 <!-- CO-OP TRANSLATOR OTHER COURSES END -->
 
 ---
