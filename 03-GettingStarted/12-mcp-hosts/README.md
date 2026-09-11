@@ -361,7 +361,7 @@ Every example above starts a local server with `command` and `args`. A remote se
 
 Claude Desktop does not read an HTTP entry from its configuration file (see the table below), so this example skips it.
 
-After you save the file and reload the host, check its tool list: once the connection succeeds, the server's tools appear there (at the time of writing, a web search tool and a page fetch tool). If nothing shows up, look at the host's MCP output for a connection or rate-limit error before changing the configuration. Then ask something like "Search the web for the latest MCP specification release" and the assistant should call the search tool.
+After you save the file and reload the host, check its tool list: once the connection succeeds, the server's tools appear there. If nothing shows up, look at the host's MCP output for a connection or rate-limit error before changing the configuration. Then ask a question that needs one of the listed tools and the assistant should call it.
 
 ---
 
