@@ -1,15 +1,20 @@
 # Depuração com MCP Inspector
 
-O **MCP Inspector** é uma ferramenta essencial de depuração que permite testar e solucionar problemas interativamente em seus servidores MCP sem a necessidade de um aplicativo host de IA completo. Pense nele como o "Postman para MCP" - ele fornece uma interface visual para enviar solicitações, visualizar respostas e entender como seu servidor se comporta.
+> [!NOTE]
+> Comandos usando `--sse` e URLs terminando em `/sse` testam o transporte HTTP+SSE legado.
+> Para um servidor MCP `2026-07-28` novo, use uma versão do Inspector que
+> suporte HTTP Streamable e selecione esse transporte em vez disso.
 
-## Por que Usar o MCP Inspector?
+O **MCP Inspector** é uma ferramenta essencial de depuração que permite testar e solucionar problemas nos seus servidores MCP interativamente sem precisar de um aplicativo completo de host AI. Pense nele como o "Postman para MCP" - ele fornece uma interface visual para enviar requisições, ver respostas e entender como seu servidor se comporta.
 
-Ao desenvolver servidores MCP, você frequentemente enfrentará esses desafios:
+## Por que usar o MCP Inspector?
 
-- **"Meu servidor está realmente rodando?"** - O Inspector mostra o status da conexão
+Ao construir servidores MCP, você frequentemente encontrará os seguintes desafios:
+
+- **"Meu servidor está nem funcionando?"** - O Inspector mostra o status da conexão
 - **"Minhas ferramentas estão registradas corretamente?"** - O Inspector lista todas as ferramentas disponíveis
-- **"Qual é o formato da resposta?"** - O Inspector exibe as respostas JSON completas
-- **"Por que esta ferramenta não está funcionando?"** - O Inspector mostra mensagens de erro detalhadas
+- **"Qual é o formato da resposta?"** - O Inspector exibe respostas JSON completas
+- **"Por que essa ferramenta não está funcionando?"** - O Inspector mostra mensagens detalhadas de erro
 
 ## Pré-requisitos
 
@@ -19,7 +24,7 @@ Ao desenvolver servidores MCP, você frequentemente enfrentará esses desafios:
 
 ## Instalação
 
-### Opção 1: Rodar com npx (Recomendado para Testes Rápidos)
+### Opção 1: Executar com npx (Recomendado para Testes Rápidos)
 
 ```bash
 npx @modelcontextprotocol/inspector
@@ -50,7 +55,7 @@ Adicione ao `package.json`:
 
 ---
 
-## Conectando-se ao Seu Servidor
+## Conectando ao Seu Servidor
 
 ### Servidores stdio (Processo Local)
 
@@ -69,14 +74,14 @@ OPENAI_API_KEY=xxx npx @modelcontextprotocol/inspector python server.py
 
 ### Servidores SSE/HTTP (Rede)
 
-Para servidores rodando como serviços HTTP:
+Para servidores executando como serviços HTTP:
 
 1. Inicie seu servidor primeiro:
    ```bash
    python server.py  # Servidor rodando em http://localhost:8080
    ```
 
-2. Lance o Inspector e conecte-se:
+2. Inicie o Inspector e conecte:
    ```bash
    npx @modelcontextprotocol/inspector --sse http://localhost:8080/sse
    ```
@@ -85,7 +90,7 @@ Para servidores rodando como serviços HTTP:
 
 ## Visão Geral da Interface do Inspector
 
-Quando o Inspector é iniciado, você verá uma interface web (normalmente em `http://localhost:5173`):
+Quando o Inspector inicia, você verá uma interface web (tipicamente em `http://localhost:5173`):
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -115,7 +120,7 @@ Quando o Inspector é iniciado, você verá uma interface web (normalmente em `h
 
 ### Listando Ferramentas Disponíveis
 
-1. Clique na aba **Ferramentas**
+1. Clique na aba **Tools**
 2. O Inspector chama automaticamente `tools/list`
 3. Você verá todas as ferramentas registradas com:
    - Nome da ferramenta
@@ -125,11 +130,11 @@ Quando o Inspector é iniciado, você verá uma interface web (normalmente em `h
 ### Invocando uma Ferramenta
 
 1. Selecione uma ferramenta da lista
-2. Preencha os parâmetros necessários no formulário
-3. Clique em **Executar Ferramenta**
+2. Preencha os parâmetros requeridos no formulário
+3. Clique em **Run Tool**
 4. Veja a resposta no painel de resultados
 
-**Exemplo: Testando uma ferramenta de calculadora**
+**Exemplo: Testando uma ferramenta calculadora**
 
 ```
 Tool: add
@@ -148,7 +153,7 @@ Response:
 }
 ```
 
-### Depurando Erros de Ferramentas
+### Depurando Erros de Ferramenta
 
 Quando uma ferramenta falha, o Inspector mostra:
 
@@ -177,7 +182,7 @@ Códigos de erro comuns:
 
 ### Listando Recursos
 
-1. Clique na aba **Recursos**
+1. Clique na aba **Resources**
 2. O Inspector chama `resources/list`
 3. Você verá:
    - URIs dos recursos
@@ -187,7 +192,7 @@ Códigos de erro comuns:
 ### Lendo um Recurso
 
 1. Selecione um recurso
-2. Clique em **Ler Recurso**
+2. Clique em **Read Resource**
 3. Veja o conteúdo retornado
 
 **Exemplo de saída:**
@@ -212,20 +217,23 @@ Content-Type: application/json
 
 1. Clique na aba **Prompts**
 2. O Inspector chama `prompts/list`
-3. Visualize os templates de prompt disponíveis
+3. Veja os templates de prompt disponíveis
 
 ### Obtendo um Prompt
 
 1. Selecione um prompt
-2. Preencha quaisquer argumentos necessários
-3. Clique em **Obter Prompt**
-4. Veja as mensagens de prompt renderizadas
+2. Preencha os argumentos necessários
+3. Clique em **Get Prompt**
+4. Veja as mensagens do prompt renderizadas
 
 ---
 
 ## Análise do Registro de Mensagens
 
-O registro de mensagens mostra todas as mensagens do protocolo MCP:
+O registro de mensagens mostra todas as mensagens do protocolo MCP. A transcrição abaixo é de um
+servidor legado `2025-11-25` e inclui o handshake `initialize` removido. Um
+servidor `2026-07-28` usa metadados de requisição autossuficientes e `server/discover`
+em seu lugar.
 
 ```
 14:32:01 → {"jsonrpc":"2.0","id":1,"method":"initialize",...}
@@ -236,18 +244,18 @@ O registro de mensagens mostra todas as mensagens do protocolo MCP:
 14:32:05 ← {"jsonrpc":"2.0","id":3,"result":{"content":[...]}}
 ```
 
-### O Que Observar
+### O que procurar
 
-- **Pares Requisição/Resposta**: Cada `→` deve ter um `←` correspondente
+- **Pares Requisição/Resposta**: Cada `→` deve ter um correspondente `←`
 - **Mensagens de erro**: Procure por `"error"` nas respostas
-- **Temporização**: Grandes intervalos podem indicar problemas de desempenho
-- **Versão do protocolo**: Confirme que servidor e cliente concordam na versão
+- **Tempos**: Grandes intervalos podem indicar problemas de desempenho
+- **Versão do protocolo**: Certifique-se que servidor e cliente concordem na versão
 
 ---
 
 ## Integração com VS Code
 
-Você pode rodar o Inspector diretamente do VS Code:
+Você pode executar o Inspector diretamente do VS Code:
 
 ### Usando launch.json
 
@@ -314,20 +322,20 @@ Adicione em `.vscode/tasks.json`:
 
 ### Cenário 1: Servidor Não Conecta
 
-**Sintomas:** Inspector mostra "Desconectado" ou trava em "Conectando..."
+**Sintomas:** Inspector mostra "Desconectado" ou fica preso em "Conectando..."
 
-**Checklist:**
+**Lista de verificação:**
 1. ✅ O comando do servidor está correto?
 2. ✅ Todas as dependências estão instaladas?
 3. ✅ O caminho do servidor é absoluto ou relativo ao diretório atual?
 4. ✅ Variáveis de ambiente necessárias estão definidas?
 
-**Passos para depurar:**
+**Passos para depuração:**
 ```bash
 # Teste o servidor manualmente primeiro
 python -c "import your_server_module; print('OK')"
 
-# Verifique se há erros de importação
+# Verifique por erros de importação
 python -m your_server_module 2>&1 | head -20
 
 # Verifique se o MCP SDK está instalado
@@ -336,15 +344,15 @@ pip show mcp
 
 ### Cenário 2: Ferramentas Não Aparecem
 
-**Sintomas:** Aba de ferramentas exibe lista vazia
+**Sintomas:** Aba de ferramentas mostra lista vazia
 
 **Causas possíveis:**
 1. Ferramentas não registradas durante a inicialização do servidor
-2. Servidor travou após iniciar
-3. Manipulador `tools/list` retorna array vazio
+2. Servidor caiu após o início
+3. Handler `tools/list` retornando array vazio
 
-**Passos para depurar:**
-1. Verifique o registro de mensagens para a resposta `tools/list`
+**Passos para depuração:**
+1. Verifique no registro de mensagens a resposta de `tools/list`
 2. Adicione logs no código de registro das ferramentas
 3. Verifique se decoradores `@mcp.tool()` estão presentes (Python)
 
@@ -353,12 +361,12 @@ pip show mcp
 **Sintomas:** Chamada da ferramenta retorna resposta de erro
 
 **Abordagem de depuração:**
-1. Leia cuidadosamente a mensagem de erro
-2. Verifique se os tipos de parâmetros correspondem ao esquema
-3. Adicione try/catch com mensagens detalhadas de erro
-4. Verifique logs do servidor para rastreamentos de pilha
+1. Leia a mensagem de erro com atenção
+2. Verifique se os tipos dos parâmetros correspondem ao esquema
+3. Adicione try/catch com mensagens de erro detalhadas
+4. Verifique os logs do servidor para rastreamentos de pilha
 
-**Exemplo de tratamento de erro melhorado:**
+**Exemplo de tratamento aprimorado de erro:**
 
 ```python
 @mcp.tool()
@@ -375,18 +383,18 @@ async def my_tool(param1: str, param2: int) -> str:
 
 ### Cenário 4: Conteúdo do Recurso Vazio
 
-**Sintomas:** Recurso retorna, mas o conteúdo está vazio ou nulo
+**Sintomas:** Recurso retorna mas o conteúdo está vazio ou nulo
 
-**Checklist:**
-1. ✅ Caminho do arquivo ou URI está correto
+**Lista de verificação:**
+1. ✅ O caminho do arquivo ou URI está correto
 2. ✅ O servidor tem permissão para ler o recurso
 3. ✅ O conteúdo do recurso está sendo retornado corretamente
 
 ---
 
-## Recursos Avançados do Inspector
+## Funcionalidades Avançadas do Inspector
 
-### Cabeçalhos Personalizados (SSE)
+### Headers personalizados (SSE)
 
 ```bash
 npx @modelcontextprotocol/inspector \
@@ -394,16 +402,16 @@ npx @modelcontextprotocol/inspector \
   --header "Authorization: Bearer your-token"
 ```
 
-### Registro Verbose
+### Logs Verbosos
 
 ```bash
 DEBUG=mcp* npx @modelcontextprotocol/inspector python server.py
 ```
 
-### Gravação de Sessões
+### Gravando Sessões
 
-O Inspector pode exportar registros de mensagens para análises futuras:
-1. Clique em **Exportar Registro** no painel de mensagens
+O Inspector pode exportar logs de mensagens para análise posterior:
+1. Clique em **Export Log** no painel de mensagens
 2. Salve o arquivo JSON
 3. Compartilhe com membros da equipe para depuração
 
@@ -411,17 +419,17 @@ O Inspector pode exportar registros de mensagens para análises futuras:
 
 ## Melhores Práticas
 
-1. **Teste cedo e frequentemente** - Use o Inspector durante o desenvolvimento, não só quando algo quebrar
-2. **Comece simples** - Teste a conectividade básica antes de chamadas complexas de ferramentas
-3. **Cheque o esquema** - Muitos erros vêm de incompatibilidade de tipos de parâmetro
-4. **Leia as mensagens de erro** - Erros MCP geralmente são descritivos
-5. **Mantenha o Inspector aberto** - Ele ajuda a identificar problemas enquanto você desenvolve
+1. **Teste cedo e com frequência** - Use o Inspector durante o desenvolvimento, não apenas quando algo quebrar
+2. **Comece simples** - Teste conectividade básica antes de chamadas complexas de ferramentas
+3. **Verifique o esquema** - Muitos erros vêm de incompatibilidades nos tipos de parâmetros
+4. **Leia mensagens de erro** - Erros MCP costumam ser descritivos
+5. **Mantenha o Inspector aberto** - Ele ajuda a detectar problemas enquanto você desenvolve
 
 ---
 
-## O Que Vem a Seguir
+## E o Próximo Passo
 
-Você completou o Módulo 3: Começando! Continue seu aprendizado:
+Você completou o Módulo 3: Introdução! Continue seu aprendizado:
 
 - [Módulo 4: Implementação Prática](../../04-PracticalImplementation/README.md)
 
@@ -430,12 +438,12 @@ Você completou o Módulo 3: Começando! Continue seu aprendizado:
 ## Recursos Adicionais
 
 - [Repositório MCP Inspector no GitHub](https://github.com/modelcontextprotocol/inspector)
-- [Especificação MCP - Mensagens do Protocolo](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [Especificação MCP - Mensagens do Protocolo](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [Especificação JSON-RPC 2.0](https://www.jsonrpc.org/specification)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Aviso Legal**:
-Este documento foi traduzido usando o serviço de tradução automática [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original em seu idioma nativo deve ser considerado a fonte autorizada. Para informações críticas, recomenda-se tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações errôneas decorrentes do uso desta tradução.
+Este documento foi traduzido usando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos pela precisão, por favor, esteja ciente de que traduções automatizadas podem conter erros ou imprecisões. O documento original em seu idioma nativo deve ser considerado a fonte autorizada. Para informações críticas, recomenda-se tradução profissional humana. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes do uso desta tradução.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
