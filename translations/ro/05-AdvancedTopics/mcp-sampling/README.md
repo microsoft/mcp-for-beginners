@@ -1,62 +1,70 @@
-> [DEPRECATED: 2026-07-28 RELEASE CANDIDATE](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#roots-sampling-and-logging-are-deprecated)
+> [!WARNING]
+> Eșantionarea este depreciată în MCP `2026-07-28`. Această lecție este păstrată pentru
+> implementările vechi. Serverele noi ar trebui să se integreze direct cu un API
+> al unui furnizor LLM.
 
-# Eșantionarea în Model Context Protocol
+# Eșantionarea în Protocolul Contextului Modelului
 
-> **Notificare de depreciere:** candidatul pentru lansarea specificației MCP `2026-07-28` marchează Eșantionarea ca fiind depreciată în favoarea integrării directe cu API-urile furnizorilor LLM. Eșantionarea continuă să funcționeze în `2025-11-25` și cel puțin un an după orice depreciere formală, deci tot ce este în această lecție rămâne valabil - dar noile designuri de servere ar trebui să evalueze modelul de înlocuire. Vezi [Ce se schimbă în MCP: Candidatul pentru lansarea din 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> Eșantionarea rămâne în specificația `2026-07-28` pentru compatibilitate și este
+> eligibilă pentru eliminare în prima revizie lansată în sau după 28 iulie,
+> 2027. Exemplele din această lecție pot folosi API-uri SDK care implementează `2025-11-25`.
+> Vezi [Ce s-a schimbat în MCP: Specificația 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28.md).
 
-Eșantionarea este o caracteristică puternică MCP care permite serverelor să solicite completări LLM prin client, permițând comportamente sofisticate agentice în timp ce menține securitatea și confidențialitatea. Configurația corectă de eșantionare poate îmbunătăți dramatic calitatea și performanța răspunsurilor. MCP oferă o modalitate standardizată de a controla cum generează modelele text cu parametri specifici care influențează aleatorietatea, creativitatea și coerența.
+În implementările vechi MCP, Eșantionarea permite serverelor să solicite completări LLM
+prin client. Această lecție explică fluxul protocolului depreciat
+pentru compatibilitate și lucrări de migrare.
 
 ## Introducere
 
-În această lecție vom explora cum să configurăm parametrii de eșantionare în cererile MCP și să înțelegem mecanica de bază a protocolului de eșantionare.
+În această lecție, vom explora cum să configurăm parametrii de eșantionare în cererile MCP și să înțelegem mecanica protocolului de eșantionare subiacente.
 
-## Obiective de învățare
+## Obiective de Învățare
 
-La finalul acestei lecții vei putea:
+La sfârșitul acestei lecții, vei putea să:
 
-- Să înțelegi parametrii cheie de eșantionare disponibili în MCP.
-- Să configurezi parametrii de eșantionare pentru diferite cazuri de utilizare.
-- Să implementezi eșantionarea deterministă pentru rezultate reproducibile.
-- Să ajustezi dinamic parametrii de eșantionare pe baza contextului și preferințelor utilizatorului.
-- Să aplici strategii de eșantionare pentru a îmbunătăți performanța modelului în diverse scenarii.
-- Să înțelegi cum funcționează eșantionarea în fluxul client-server al MCP.
+- Înțelegi principalii parametri de eșantionare disponibili în MCP.
+- Configurezi parametrii de eșantionare pentru diferite cazuri de utilizare.
+- Implementezi eșantionarea deterministă pentru rezultate reproductibile.
+- Ajustezi dinamic parametrii de eșantionare în funcție de context și preferințele utilizatorului.
+- Aplici strategii de eșantionare pentru a îmbunătăți performanța modelului în diverse scenarii.
+- Înțelegi cum funcționează eșantionarea în fluxul client-server din MCP.
 
-## Cum funcționează eșantionarea în MCP
+## Cum Funcționează Eșantionarea în MCP
 
 Fluxul de eșantionare în MCP urmează acești pași:
 
 1. Serverul trimite o cerere `sampling/createMessage` către client
-2. Clientul examinează cererea și poate să o modifice
-3. Clientul face eșantionarea de la un LLM
+2. Clientul revizuiește cererea și o poate modifica
+3. Clientul realizează un eșantion dintr-un LLM
 4. Clientul revizuiește completarea
-5. Clientul trimite rezultatul înapoi serverului
+5. Clientul returnează rezultatul serverului
 
-Acest design cu om în buclă asigură că utilizatorii controlează ce vede și ce generează LLM.
+Acest design cu participarea umană asigură că utilizatorii păstrează controlul asupra a ceea ce vede și generează LLM-ul.
 
-## Prezentare generală a parametrilor de eșantionare
+## Prezentare Generală a Parametrilor de Eșantionare
 
 MCP definește următorii parametri de eșantionare care pot fi configurați în cererile clientului:
 
-| Parametru | Descriere | Interval tipic |
+| Parametru | Descriere | Interval Tipic |
 |-----------|-------------|---------------|
 | `temperature` | Controlează aleatorietatea în selecția token-urilor | 0.0 - 1.0 |
 | `maxTokens` | Numărul maxim de token-uri de generat | Valoare întreagă |
-| `stopSequences` | Secvențe personalizate care opresc generarea când sunt întâlnite | Array de șiruri |
+| `stopSequences` | Secvențe personalizate ce opresc generarea când sunt întâlnite | Array de șiruri |
 | `metadata` | Parametri suplimentari specifici furnizorului | Obiect JSON |
 
-Mulți furnizori LLM acceptă parametri suplimentari prin câmpul `metadata`, care pot include:
+Mulți furnizori LLM susțin parametri suplimentari prin câmpul `metadata`, care pot include:
 
-| Parametru Extins Comun | Descriere | Interval tipic |
+| Parametru Comun Extensie | Descriere | Interval Tipic |
 |-----------|-------------|---------------|
-| `top_p` | Eșantionare nucleu - limitează token-urile la probabilitatea cumulativă superioară | 0.0 - 1.0 |
+| `top_p` | Eșantionare Nucleus - limitează token-urile la probabilitatea cumulativă de top | 0.0 - 1.0 |
 | `top_k` | Limitează selecția token-urilor la primele K opțiuni | 1 - 100 |
-| `presence_penalty` | Penalizează token-urile bazat pe prezența lor în textul generat până acum | -2.0 - 2.0 |
-| `frequency_penalty` | Penalizează token-urile bazat pe frecvența lor în textul generat până acum | -2.0 - 2.0 |
-| `seed` | Sămânță aleatoare specifică pentru rezultate reproducibile | Valoare întreagă |
+| `presence_penalty` | Penalizează token-urile în funcție de prezența lor în textul până acum | -2.0 - 2.0 |
+| `frequency_penalty` | Penalizează token-urile în funcție de frecvența lor în textul până acum | -2.0 - 2.0 |
+| `seed` | Sămânță aleatorie specifică pentru rezultate reproductibile | Valoare întreagă |
 
-## Format exemplu de cerere
+## Exemplu Format Cerere
 
-Iată un exemplu de solicitare a eșantionării de la un client în MCP:
+Iată un exemplu de cerere pentru eșantionare de la un client în MCP:
 
 ```json
 {
@@ -79,7 +87,7 @@ Iată un exemplu de solicitare a eșantionării de la un client în MCP:
 }
 ```
 
-## Format răspuns
+## Format Răspuns
 
 Clientul returnează un rezultat de completare:
 
@@ -95,40 +103,40 @@ Clientul returnează un rezultat de completare:
 }
 ```
 
-## Controlul cu om în buclă
+## Controlul cu Implicare Umană
 
-Eșantionarea MCP este proiectată având în vedere supravegherea umană:
+Eșantionarea MCP este proiectată cu supraveghere umană în minte:
 
-- **Pentru prompturi**:
-  - Clienții ar trebui să arate utilizatorilor promptul propus
-  - Utilizatorii ar trebui să poată modifica sau respinge prompturile
-  - Prompturile sistemului pot fi filtrate sau modificate
-  - Includerea contextului este controlată de client
+- **Pentru sugestii**:
+  - Clienții ar trebui să afișeze utilizatorilor sugestia propusă
+  - Utilizatorii ar trebui să poată modifica sau respinge sugestiile
+  - Sugestiile sistemului pot fi filtrate sau modificate
+  - Incluziunea contextului este controlată de client
 
 - **Pentru completări**:
-  - Clienții ar trebui să arate utilizatorilor completarea
+  - Clienții ar trebui să afișeze utilizatorilor completarea
   - Utilizatorii ar trebui să poată modifica sau respinge completările
   - Clienții pot filtra sau modifica completările
-  - Utilizatorii controlează ce model este folosit
+  - Utilizatorii controlează care model este folosit
 
-Având aceste principii în minte, să vedem cum să implementăm eșantionarea în diferite limbaje de programare, concentrându-ne pe parametrii susținuți în mod obișnuit de către furnizorii LLM.
+Având aceste principii în minte, să vedem cum să implementăm eșantionarea în diferite limbaje de programare, concentrându-ne pe parametrii comun susținuți de furnizorii LLM.
 
-## Considerații de securitate
+## Considerații de Securitate
 
 Când implementezi eșantionarea în MCP, ia în considerare aceste bune practici de securitate:
 
-- **Validează tot conținutul mesajului** înainte de a-l trimite clientului
-- **Securizează informațiile sensibile** din prompturi și completări
-- **Implementează limite de rată** pentru a preveni abuzurile
-- **Monitorizează utilizarea eșantionării** pentru modele neobișnuite
+- **Validează tot conținutul mesajelor** înainte de a-l trimite clientului
+- **Sanitizează informațiile sensibile** din sugestii și completări
+- **Implementează limite de rată** pentru a preveni abuzul
+- **Monitorizează utilizarea eșantionării** pentru tipare neobișnuite
 - **Criptează datele în tranzit** folosind protocoale sigure
-- **Gestionează confidențialitatea datelor utilizatorului** conform reglementărilor relevante
-- **Audită cererile de eșantionare** pentru conformitate și securitate
+- **Gestionează confidențialitatea datelor utilizatorilor** conform reglementărilor relevante
+- **Auditarea cererilor de eșantionare** pentru conformitate și securitate
 - **Controlează expunerea costurilor** cu limite adecvate
 - **Implementează timeout-uri** pentru cererile de eșantionare
-- **Gestionează erorile modelului cu grație** prin mecanisme de rezervă adecvate
+- **Gestionează elegant erorile modelului** cu alternative adecvate
 
-Parametrii de eșantionare permit reglarea fină a comportamentului modelelor de limbaj pentru a atinge echilibrul dorit între rezultate deterministe și creative.
+Parametrii de eșantionare permit reglarea fină a comportamentului modelelor lingvistice pentru a atinge echilibrul dorit între rezultate deterministe și creative.
 
 Să vedem cum să configurăm acești parametri în diferite limbaje de programare.
 
@@ -168,16 +176,16 @@ public class SamplingExample
 }
 ```
 
-În codul de mai sus am:
+În codul precedent am:
 
-- Creat un client MCP cu un URL de server specific.
-- Configurat o cerere cu parametri de eșantionare precum `temperature`, `top_p` și `top_k`.
-- Trimisi cererea și afișat textul generat.
+- Creat un client MCP cu un URL specific al serverului.
+- Configurat o cerere cu parametrii de eșantionare precum `temperature`, `top_p` și `top_k`.
+- Trimis cererea și afișat textul generat.
 - Folosit:
-    - `allowedTools` pentru a specifica ce instrumente poate folosi modelul în timpul generării. În acest caz, am permis instrumentele `ideaGenerator` și `marketAnalyzer` pentru a ajuta la generarea ideilor creative pentru aplicații.
+    - `allowedTools` pentru a specifica ce unelte poate folosi modelul în timpul generării. În acest caz, am permis instrumentele `ideaGenerator` și `marketAnalyzer` pentru a ajuta la generarea ideilor creative de aplicații.
     - `frequencyPenalty` și `presencePenalty` pentru a controla repetarea și diversitatea în output.
-    - `temperature` pentru a controla aleatorietatea răspunsului, valorile mai mari ducând la răspunsuri mai creative.
-    - `top_p` pentru a limita selecția de token-uri la cele care contribuie la masa de probabilitate cumulativă de top, îmbunătățind calitatea textului generat.
+    - `temperature` pentru a controla aleatorietatea rezultatelor, unde valori mai mari conduc la răspunsuri mai creative.
+    - `top_p` pentru a limita selecția token-urilor la cele care contribuie la masa cumulativă de probabilitate de vârf, îmbunătățind calitatea textului generat.
     - `top_k` pentru a restricționa modelul la primele K token-uri cele mai probabile, ceea ce poate ajuta la generarea unor răspunsuri mai coerente.
     - `frequencyPenalty` și `presencePenalty` pentru a reduce repetarea și a încuraja diversitatea în textul generat.
 
@@ -194,23 +202,23 @@ async function demonstrateSampling() {
     apiKey: process.env.MCP_API_KEY
   });
   
-  // Configurează cererea cu diferiți parametri de eșantionare
+  // Configurează cererea cu parametri diferiți de eșantionare
   const creativeSampling = {
-    temperature: 0.9,    // Temperatură mai mare = mai multă aleatorietate/creativitate
-    topP: 0.92,          // Ia în considerare token-urile cu o masă de probabilitate de 92%
-    frequencyPenalty: 0.6, // Reduce repetarea secvențelor de token-uri
-    presencePenalty: 0.4   // Penalizează token-urile care au apărut deja în text
+    temperature: 0.9,    // Temperatura mai mare = mai multă aleatorietate/creativitate
+    topP: 0.92,          // Ia în considerare tokenii cu masa probabilității top 92%
+    frequencyPenalty: 0.6, // Reduce repetarea secvențelor de tokeni
+    presencePenalty: 0.4   // Penalizează tokenii care au apărut deja în textul de până acum
   };
   
   const factualSampling = {
-    temperature: 0.2,    // Temperatură mai scăzută = mai determinist/factual
-    topP: 0.85,          // Selecție de token-uri ușor mai concentrată
+    temperature: 0.2,    // Temperatura mai mică = mai determinist/factual
+    topP: 0.85,          // Selecție de tokeni ușor mai concentrată
     frequencyPenalty: 0.2, // Penalizare minimă pentru repetare
     presencePenalty: 0.1   // Penalizare minimă pentru prezență
   };
   
   try {
-    // Trimite două cereri cu configurări diferite de eșantionare
+    // Trimite două cereri cu configurații de eșantionare diferite
     const creativeResponse = await client.sendPrompt(
       "Generate innovative ideas for sustainable urban transportation",
       {
@@ -241,25 +249,25 @@ async function demonstrateSampling() {
 demonstrateSampling();
 ```
 
-În codul de mai sus am:
+În codul precedent am:
 
-- Inițializat un client MCP cu un URL de server și o cheie API.
+- Inițializat un client MCP cu URL server și cheie API.
 - Configurat două seturi de parametri de eșantionare: unul pentru sarcini creative și altul pentru sarcini factuale.
-- Trimisi cereri cu aceste configurații, permițând modelului să folosească instrumente specifice pentru fiecare sarcină.
+- Trimis cereri cu aceste configurații, permițând modelului să folosească unelte specifice pentru fiecare sarcină.
 - Afișat răspunsurile generate pentru a demonstra efectele diferiților parametri de eșantionare.
-- Folosit `allowedTools` pentru a specifica ce instrumente poate folosi modelul în timpul generării. În acest caz, am permis `ideaGenerator` și `environmentalImpactTool` pentru sarcini creative, și `factChecker` și `dataAnalysisTool` pentru sarcini factuale.
-- Folosit `temperature` pentru a controla aleatorietatea răspunsului, valorile mai mari ducând la răspunsuri mai creative.
-- Folosit `top_p` pentru a limita selecția de token-uri la cele care contribuie la masa de probabilitate cumulativă de top, îmbunătățind calitatea textului generat.
+- Folosit `allowedTools` pentru a specifica ce unelte poate folosi modelul în timpul generării. În acest caz, am permis `ideaGenerator` și `environmentalImpactTool` pentru sarcini creative și `factChecker` și `dataAnalysisTool` pentru sarcini factuale.
+- Folosit `temperature` pentru a controla aleatorietatea rezultatelor, unde valori mai mari conduc la răspunsuri mai creative.
+- Folosit `top_p` pentru a limita selecția token-urilor la cele care contribuie la masa cumulativă de probabilitate de vârf, îmbunătățind calitatea textului generat.
 - Folosit `frequencyPenalty` și `presencePenalty` pentru a reduce repetarea și a încuraja diversitatea în output.
 - Folosit `top_k` pentru a restricționa modelul la primele K token-uri cele mai probabile, ceea ce poate ajuta la generarea unor răspunsuri mai coerente.
 
 ---
 
-## Eșantionare deterministă
+## Eșantionare Deterministă
 
-Pentru aplicațiile care necesită rezultate consistente, eșantionarea deterministă asigură rezultate reproducibile. Cum face asta: folosind o sămânță aleatoare fixă și setând temperatura la zero.
+Pentru aplicațiile care necesită rezultate consistente, eșantionarea deterministă asigură rezultate reproductibile. Cum face asta este prin utilizarea unei sămânțe aleatorii fixe și setarea temperaturii la zero.
 
-Să vedem mai jos o implementare exemplu pentru a demonstra eșantionarea deterministă în diferite limbaje de programare.
+Să vedem mai jos un exemplu de implementare pentru a demonstra eșantionarea deterministă în diferite limbaje de programare.
 
 # [Java](#tab/java)
 
@@ -271,13 +279,13 @@ public class DeterministicSamplingExample {
             .setServerUrl("https://mcp-server-example.com")
             .build();
             
-        long fixedSeed = 12345; // Utilizarea unei sămânțe fixe pentru rezultate deterministe
+        long fixedSeed = 12345; // Folosind o sămânță fixă pentru rezultate deterministe
         
         // Prima cerere cu sămânță fixă
         McpRequest request1 = new McpRequest.Builder()
             .setPrompt("Generate a random number between 1 and 100")
             .setSeed(fixedSeed)
-            .setTemperature(0.0) // Temperatură zero pentru determinism maxim
+            .setTemperature(0.0) // Temperatura zero pentru determinism maxim
             .build();
             
         // A doua cerere cu aceeași sămânță
@@ -300,19 +308,19 @@ public class DeterministicSamplingExample {
 }
 ```
 
-În codul de mai sus am:
+În codul precedent am:
 
-- Creat un client MCP cu un URL de server specificat.
-- Configurat două cereri cu același prompt, sămânță fixă și temperatura zero.
-- Trimisi ambele cereri și afișat textul generat.
+- Creat un client MCP cu un URL specific al serverului.
+- Configurat două cereri cu aceeași sugestie, sămânță fixă și temperatură zero.
+- Trimis ambele cereri și afișat textul generat.
 - Demonstrat că răspunsurile sunt identice datorită naturii deterministe a configurației de eșantionare (aceeași sămânță și temperatură).
-- Folosit `setSeed` pentru a specifica o sămânță aleatoare fixă, asigurând că modelul generează același output pentru aceeași intrare de fiecare dată.
-- Setat `temperature` la zero pentru a asigura determinism maxim, însemnând că modelul va selecta întotdeauna următorul token cel mai probabil fără aleatorietate.
+- Folosit `setSeed` pentru a specifica o sămânță aleatorie fixă, asigurând că modelul generează același output pentru același input de fiecare dată.
+- Setat `temperature` la zero pentru a asigura determinismul maxim, ceea ce înseamnă că modelul va selecta întotdeauna token-ul următor cel mai probabil fără aleatorietate.
 
 # [JavaScript](#tab/javascript-deterministic)
 
 ```javascript
-// Exemplu JavaScript: Răspunsuri deterministe cu controlul sămânței
+// Exemplu JavaScript: Răspunsuri deterministe cu control al seminței
 const { McpClient } = require('@mcp/client');
 
 async function deterministicSampling() {
@@ -324,19 +332,19 @@ async function deterministicSampling() {
   const prompt = "Generate a random password with 8 characters";
   
   try {
-    // Prima cerere cu sămânță fixă
+    // Prima solicitare cu sămânță fixă
     const response1 = await client.sendPrompt(prompt, {
       seed: fixedSeed,
       temperature: 0.0  // Temperatura zero pentru determinism maxim
     });
     
-    // A doua cerere cu aceeași sămânță și temperatură
+    // A doua solicitare cu aceeași sămânță și temperatură
     const response2 = await client.sendPrompt(prompt, {
       seed: fixedSeed,
       temperature: 0.0
     });
     
-    // A treia cerere cu sămânță diferită, dar aceeași temperatură
+    // A treia solicitare cu sămânță diferită dar aceeași temperatură
     const response3 = await client.sendPrompt(prompt, {
       seed: 67890,
       temperature: 0.0
@@ -356,21 +364,21 @@ async function deterministicSampling() {
 deterministicSampling();
 ```
 
-În codul de mai sus am:
+În codul precedent am:
 
-- Inițializat un client MCP cu un URL de server.
-- Configurat două cereri cu același prompt, sămânță fixă și temperatura zero.
-- Trimisi ambele cereri și afișat textul generat.
+- Inițializat un client MCP cu un URL al serverului.
+- Configurat două cereri cu aceeași sugestie, sămânță fixă și temperatură zero.
+- Trimis ambele cereri și afișat textul generat.
 - Demonstrat că răspunsurile sunt identice datorită naturii deterministe a configurației de eșantionare (aceeași sămânță și temperatură).
-- Folosit `seed` pentru a specifica o sămânță aleatoare fixă, asigurând că modelul generează același rezultat pentru aceeași intrare de fiecare dată.
-- Setat `temperature` la zero pentru a asigura determinism maxim, însemnând că modelul va selecta întotdeauna următorul token cel mai probabil fără aleatorietate.
-- Folosit o sămânță diferită pentru a treia cerere pentru a arăta că schimbarea sămânței duce la rezultate diferite, chiar și cu același prompt și temperatură.
+- Folosit `seed` pentru a specifica o sămânță aleatorie fixă, asigurând că modelul generează același output pentru același input de fiecare dată.
+- Setat `temperature` la zero pentru a asigura determinismul maxim, ceea ce înseamnă că modelul va selecta întotdeauna token-ul următor cel mai probabil fără aleatorietate.
+- Folosit o sămânță diferită pentru a treia cerere pentru a arăta că schimbarea sămânței generează outputuri diferite, chiar și cu aceeași sugestie și temperatură.
 
 ---
 
-## Configurarea dinamică a eșantionării
+## Configurare Dinamică a Eșantionării
 
-Eșantionarea inteligentă adaptează parametrii în funcție de context și cerințele fiecărei cereri. Aceasta înseamnă ajustarea dinamică a parametrilor precum temperature, top_p și penalizările în funcție de tipul sarcinii, preferințele utilizatorului sau performanța istorică.
+Eșantionarea inteligentă adaptează parametrii pe baza contextului și cerințelor fiecărei cereri. Aceasta înseamnă ajustarea dinamică a parametrilor precum temperature, top_p și penalizări în funcție de tipul sarcinii, preferințele utilizatorului sau performanța istorică.
 
 Să vedem cum să implementăm eșantionarea dinamică în diferite limbaje de programare.
 
@@ -385,7 +393,7 @@ class DynamicSamplingService:
     async def generate_with_adaptive_sampling(self, prompt, task_type, user_preferences=None):
         """Uses different sampling strategies based on task type and user preferences"""
         
-        # Definirea presetărilor de eșantionare pentru diferite tipuri de sarcini
+        # Definește presetări de eșantionare pentru diferite tipuri de sarcini
         sampling_presets = {
             "creative": {"temperature": 0.9, "top_p": 0.95, "frequency_penalty": 0.7},
             "factual": {"temperature": 0.2, "top_p": 0.85, "frequency_penalty": 0.2},
@@ -396,15 +404,15 @@ class DynamicSamplingService:
         # Selectează presetarea de bază
         sampling_params = sampling_presets.get(task_type, sampling_presets["factual"])
         
-        # Ajustează în funcție de preferințele utilizatorului dacă sunt furnizate
+        # Ajustează în funcție de preferințele utilizatorului, dacă sunt furnizate
         if user_preferences:
             if "creativity_level" in user_preferences:
-                # Scalează temperatura în funcție de preferința pentru creativitate (1-10)
+                # Scalează temperatura în funcție de preferința de creativitate (1-10)
                 creativity = min(max(user_preferences["creativity_level"], 1), 10) / 10
                 sampling_params["temperature"] = 0.1 + (0.9 * creativity)
             
             if "diversity" in user_preferences:
-                # Ajustează top_p în funcție de diversitatea dorită a răspunsului
+                # Ajustează top_p în funcție de diversitatea răspunsului dorită
                 diversity = min(max(user_preferences["diversity"], 1), 10) / 10
                 sampling_params["top_p"] = 0.6 + (0.39 * diversity)
         
@@ -424,27 +432,27 @@ class DynamicSamplingService:
         }
 ```
 
-În codul de mai sus am:
+În codul precedent am:
 
 - Creat o clasă `DynamicSamplingService` care gestionează eșantionarea adaptivă.
 - Definit presetări de eșantionare pentru diferite tipuri de sarcini (creative, factuale, cod, analitice).
-- Selectat un preset de bază în funcție de tipul sarcinii.
+- Selectat o presetare de bază pe baza tipului de sarcină.
 - Ajustat parametrii de eșantionare în funcție de preferințele utilizatorului, cum ar fi nivelul de creativitate și diversitate.
-- Trimisi cererea cu parametrii de eșantionare configurați dinamic.
-- Returnat textul generat împreună cu parametrii de eșantionare aplicați și tipul sarcinii pentru transparență.
-- Folosit `temperature` pentru a controla aleatorietatea răspunsului, valorile mai mari ducând la răspunsuri mai creative.
-- Folosit `top_p` pentru a limita selecția de token-uri la cele care contribuie la masa de probabilitate cumulativă de top, îmbunătățind calitatea textului generat.
+- Trimis cererea cu parametrii de eșantionare configurați dinamic.
+- Returnat textul generat împreună cu parametrii aplicați și tipul sarcinii pentru transparență.
+- Folosit `temperature` pentru a controla aleatorietatea rezultatului, unde valori mai mari conduc la răspunsuri mai creative.
+- Folosit `top_p` pentru a limita selecția token-urilor la cele care contribuie la masa cumulativă de probabilitate de vârf, îmbunătățind calitatea textului generat.
 - Folosit `frequency_penalty` pentru a reduce repetarea și a încuraja diversitatea în output.
-- Folosit `user_preferences` pentru a permite personalizarea parametrilor de eșantionare în funcție de nivelurile definite de creativitate și diversitate ale utilizatorului.
-- Folosit `task_type` pentru a determina strategia de eșantionare adecvată pentru cerere, permițând răspunsuri mai adaptate în funcție de natura sarcinii.
-- Folosit metoda `send_request` pentru a trimite promptul cu parametrii de eșantionare configurați, asigurând generarea textului conform cerințelor specificate.
-- Folosit `generated_text` pentru a prelua răspunsul modelului, care este apoi returnat împreună cu parametrii de eșantionare și tipul sarcinii pentru analiză sau afișare ulterioară.
-- Folosit funcțiile `min` și `max` pentru a asigura că preferințele utilizatorului sunt limitate la intervale valide, prevenind configurații invalide de eșantionare.
+- Folosit `user_preferences` pentru a permite personalizarea parametrilor de eșantionare pe baza nivelurilor definite de utilizator de creativitate și diversitate.
+- Folosit `task_type` pentru a determina strategia de eșantionare potrivită pentru cerere, permițând răspunsuri mai adaptate nevoilor sarcinii.
+- Folosit metoda `send_request` pentru a trimite sugestia cu parametrii de eșantionare configurați, asigurând că modelul generează text conform cerințelor specificate.
+- Folosit `generated_text` pentru a prelua răspunsul modelului, care este apoi returnat împreună cu parametrii de eșantionare și tipul sarcinii pentru analiză sau afișare suplimentară.
+- Folosit funcțiile `min` și `max` pentru a se asigura că preferințele utilizatorului sunt limitate în intervale valide, prevenind configurații invalide de eșantionare.
 
 # [JavaScript Dynamic](#tab/javascript-dynamic)
 
 ```javascript
-// Exemplu JavaScript: Configurare dinamică a eșantionării bazată pe contextul utilizatorului
+// Exemplu JavaScript: Configurare de eșantionare dinamică bazată pe contextul utilizatorului
 class AdaptiveSamplingManager {
   constructor(mcpClient) {
     this.client = mcpClient;
@@ -465,7 +473,7 @@ class AdaptiveSamplingManager {
   detectTaskType(prompt, context = {}) {
     const promptLower = prompt.toLowerCase();
     
-    // Detecție euristică simplă - ar putea fi îmbunătățită cu clasificare ML
+    // Detectare heuristica simplă - poate fi îmbunătățită cu clasificare ML
     if (context.taskType) return context.taskType;
     
     if (promptLower.includes('code') || 
@@ -486,11 +494,11 @@ class AdaptiveSamplingManager {
       return 'creative';
     }
     
-    // Setare implicită la conversațional dacă nu se detectează un tip clar
+    // Implicit la conversațional dacă nu se detectează un tip clar
     return 'conversational';
   }
   
-  // Calcularea parametrilor de eșantionare pe baza contextului și preferințelor utilizatorului
+  // Calcularea parametrilor de eșantionare bazată pe context și preferințele utilizatorului
   getSamplingParameters(prompt, context = {}) {
     // Detectarea tipului de sarcină
     const taskType = this.detectTaskType(prompt, context);
@@ -498,12 +506,12 @@ class AdaptiveSamplingManager {
     // Obținerea profilului de bază
     let params = {...this.samplingProfiles[taskType]};
     
-    // Ajustare bazată pe preferințele utilizatorului
+    // Ajustarea bazată pe preferințele utilizatorului
     if (context.userPreferences) {
       const { creativity, precision, consistency } = context.userPreferences;
       
       if (creativity !== undefined) {
-        // Scala de la 1-10 la intervalul corespunzător de temperatură
+        // Scara de la 1-10 la intervalul de temperatură potrivit
         params.temperature = 0.1 + (creativity * 0.09); // 0.1-1.0
       }
       
@@ -525,10 +533,10 @@ class AdaptiveSamplingManager {
   }
   
   applyLearnedAdjustments(params, taskType) {
-    // Logică adaptivă simplă - ar putea fi îmbunătățită cu algoritmi mai sofisticați
+    // Logică adaptivă simplă - poate fi îmbunătățită cu algoritmi mai sofisticați
     const relevantHistory = this.performanceHistory
       .filter(entry => entry.taskType === taskType)
-      .slice(-5); // Se consideră doar istoricul recent
+      .slice(-5); // Se ia în considerare doar istoricul recent
     
     if (relevantHistory.length > 0) {
       // Calcularea scorurilor medii de performanță
@@ -536,7 +544,7 @@ class AdaptiveSamplingManager {
       
       // Dacă performanța este sub prag, se ajustează parametrii
       if (avgScore < 0.7) {
-        // Ajustare ușoară spre valori mai sigure
+        // Ajustare ușoară către valori mai sigure
         params.temperature = Math.max(params.temperature * 0.9, 0.1);
         params.topP = Math.max(params.topP * 0.95, 0.5);
       }
@@ -553,23 +561,23 @@ class AdaptiveSamplingManager {
       score // Evaluare 0-1 a calității răspunsului
     });
     
-    // Limitarea mărimii istoricului
+    // Limitarea dimensiunii istoricului
     if (this.performanceHistory.length > 100) {
       this.performanceHistory.shift();
     }
   }
   
   async generateResponse(prompt, context = {}) {
-    // Obținerea parametrilor de eșantionare optimi
+    // Obținerea parametrilor de eșantionare optimizați
     const samplingParams = this.getSamplingParameters(prompt, context);
     
-    // Trimiterea cererii cu parametrii optimi
+    // Trimiterea cererii cu parametrii optimizați
     const response = await this.client.sendPrompt(prompt, {
       ...samplingParams,
       allowedTools: context.allowedTools || []
     });
     
-    // Dacă utilizatorul oferă feedback, se înregistrează pentru optimizare viitoare
+    // Dacă utilizatorul oferă feedback, acesta se înregistrează pentru optimizare viitoare
     if (context.recordPerformance) {
       this.recordPerformance(prompt, samplingParams, response, context.feedbackScore || 0.5);
     }
@@ -607,7 +615,7 @@ async function demonstrateAdaptiveSampling() {
     console.log('Applied sampling:', creativeResult.appliedSamplingParams);
     console.log(creativeResult.response.generatedText);
     
-    // Sarcină de generare de cod
+    // Sarcină de generare cod
     const codeResult = await samplingManager.generateResponse(
       "Write a JavaScript function to calculate the Fibonacci sequence",
       {
@@ -632,33 +640,33 @@ async function demonstrateAdaptiveSampling() {
 demonstrateAdaptiveSampling();
 ```
 
-În codul de mai sus am:
+În codul precedent am:
 
-- Creat o clasă `AdaptiveSamplingManager` care gestionează eșantionarea dinamică în funcție de tipul sarcinii și preferințele utilizatorului.
+- Creat o clasă `AdaptiveSamplingManager` care gestionează eșantionarea dinamică pe baza tipului de sarcină și a preferințelor utilizatorului.
 - Definit profiluri de eșantionare pentru diferite tipuri de sarcini (creative, factuale, cod, conversaționale).
-- Implementat o metodă pentru a detecta tipul sarcinii din prompt folosind heuristici simple.
-- Calculat parametrii de eșantionare pe baza tipului sarcinii detectat și a preferințelor utilizatorului.
-- Aplicat ajustări învățate în baza performanței istorice pentru optimizarea parametrilor de eșantionare.
-- Înregistrat performanța pentru ajustări viitoare, permițând sistemului să învețe din interacțiuni anterioare.
-- Trimisi cereri cu parametrii de eșantionare configurați dinamic și returnat textul generat împreună cu parametrii aplicați și tipul sarcinii detectat.
+- Implementat o metodă de a detecta tipul de sarcină din sugestie folosind euristici simple.
+- Calculat parametrii de eșantionare bazat pe tipul de sarcină detectat și preferințele utilizatorului.
+- Aplicat ajustări învățate pe baza performanței istorice pentru a optimiza parametrii de eșantionare.
+- Înregistrat performanțele pentru ajustări viitoare, permițând sistemului să învețe din interacțiunile trecute.
+- Trimis cereri cu parametri de eșantionare configurați dinamic și returnat textul generat împreună cu parametrii aplicați și tipul sarcinii detectat.
 - Folosit:
-    - `userPreferences` pentru a permite personalizarea parametrilor de eșantionare în funcție de nivelurile definite de creativitate, precizie și consistență ale utilizatorului.
-    - `detectTaskType` pentru a determina natura sarcinii pe baza promptului, permițând răspunsuri mai adaptate.
-    - `recordPerformance` pentru a înregistra performanța răspunsurilor generate, capabil să adapteze și să îmbunătățească sistemul în timp.
-    - `applyLearnedAdjustments` pentru a modifica parametrii de eșantionare pe baza performanței istorice, îmbunătățind capacitatea modelului de a genera răspunsuri de înaltă calitate.
-    - `generateResponse` pentru a encapsula întregul proces de generare a unui răspuns cu eșantionare adaptivă, făcând apelul facil cu diferite prompturi și contexte.
-    - `allowedTools` pentru a specifica ce instrumente poate folosi modelul în timpul generării, permițând răspunsuri mai conștiente de context.
+    - `userPreferences` pentru a permite personalizarea parametrilor de eșantionare pe baza nivelurilor definite de utilizator de creativitate, precizie și consistență.
+    - `detectTaskType` pentru a determina natura sarcinii pe baza sugestiei, permițând răspunsuri mai adaptate.
+    - `recordPerformance` pentru a înregistra performanța răspunsurilor generate, facilitând adaptarea și îmbunătățirea în timp a sistemului.
+    - `applyLearnedAdjustments` pentru a modifica parametrii de eșantionare pe baza performanței istorice, sporind capacitatea modelului de a genera răspunsuri de înaltă calitate.
+    - `generateResponse` pentru a încapsula întregul proces de generare a unui răspuns cu eșantionare adaptivă, făcând ușor apelul cu sugestii și contexte diferite.
+    - `allowedTools` pentru a specifica ce unelte poate folosi modelul în timpul generării, permițând răspunsuri mai conștiente de context.
     - `feedbackScore` pentru a permite utilizatorilor să ofere feedback asupra calității răspunsului generat, care poate fi folosit pentru a rafina performanța modelului în timp.
-    - `performanceHistory` pentru a menține o înregistrare a interacțiunilor anterioare, permițând sistemului să învețe din succese și eșecuri precedente.
-    - `getSamplingParameters` pentru a ajusta dinamic parametrii de eșantionare pe baza contextului cererii, permițând un comportament al modelului mai flexibil și receptiv.
-    - `detectTaskType` pentru a clasifica sarcina pe baza promptului, permițând sistemului să aplice strategii adecvate de eșantionare pentru diferite tipuri de cereri.
-    - `samplingProfiles` pentru a defini configurații de eșantionare de bază pentru diferite tipuri de sarcini, permițând ajustări rapide în funcție de natura cererii.
+    - `performanceHistory` pentru a menține un istoric al interacțiunilor trecute, cu scopul de a învăța din succesele și eșecurile anterioare.
+    - `getSamplingParameters` pentru a ajusta dinamic parametrii de eșantionare în funcție de contextul cererii, permițând un comportament mai flexibil și receptiv al modelului.
+    - `detectTaskType` pentru a clasifica sarcina bazat pe sugestie, permițând sistemului să aplice strategii de eșantionare adecvate pentru diferite tipuri de cereri.
+    - `samplingProfiles` pentru a defini configurații de bază de eșantionare pentru diferite tipuri de sarcini, permițând ajustări rapide în funcție de natura cererii.
 
 ---
 
 ## Ce urmează
 
-- [5.7 Scalare](../mcp-scaling/README.md)
+- [5.7 Scălare](../mcp-scaling/README.md)
 
 ---
 

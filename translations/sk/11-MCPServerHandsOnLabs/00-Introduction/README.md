@@ -1,80 +1,85 @@
 # Úvod do integrácie databázy MCP
 
+> [!NOTE]
+> Diagramy alebo kód v tejto vzdelávacej ceste používajúci HTTP/SSE alebo inicializačné
+> možnosti odrážajú závislosti príkladu MCP `2025-11-25`. Pre nové
+> implementácie používajte `2026-07-28` stavové požiadavky a Streamable HTTP.
+
 ## 🎯 Čo tento laboratórny cvičenie pokrýva
 
-Tento úvodný cvičebný kurz poskytuje komplexný prehľad o budovaní serverov Model Context Protocol (MCP) s integráciou databázy. Budete rozumieť obchodnému prípadu, technickej architektúre a reálnym aplikáciám prostredníctvom použitia Zava Retail pre analytiku na https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail.
+Tento úvodný lab poskytuje komplexný prehľad o budovaní serverov Model Context Protocol (MCP) s integráciou databázy. Pochopíte obchodný prípad, technickú architektúru a reálne aplikácie prostredníctvom použitia Zava Retail analytiky na https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail.
 
 ## Prehľad
 
-**Model Context Protocol (MCP)** umožňuje AI asistentom bezpečne pristupovať k externým dátovým zdrojom a interagovať s nimi v reálnom čase. V spojení s integráciou databázy MCP odomyká silné schopnosti pre dátami riadené AI aplikácie.
+**Model Context Protocol (MCP)** umožňuje AI asistentom bezpečne pristupovať a interagovať s externými zdrojmi dát v reálnom čase. V kombinácii s integráciou databázy MCP odomyká silné možnosti pre aplikácie založené na dátach AI.
 
-Táto učebná cesta vás naučí vytvárať MCP servery pripravené na produkciu, ktoré pripájajú AI asistentov k dátam o maloobchodnom predaji cez PostgreSQL a implementujú podnikové vzory ako Row Level Security, sémantické vyhľadávanie a prístup k dátam viacerých nájomcov.
+Táto vzdelávacia cesta vás naučí budovať produkčne pripravené MCP servery, ktoré pripájajú AI asistentov k maloobchodným predajom dát cez PostgreSQL, implementujúc podnikové vzory ako Row Level Security, sémantické vyhľadávanie a prístup k dátam pre viac nájomcov.
 
-## Učebné ciele
+## Ciele učenia
 
-Po ukončení tohto cvičenia budete schopní:
+Na konci tohto laboratory sa budete vedieť:
 
-- **Definovať** Model Context Protocol a jeho hlavné výhody pre integráciu databázy
+- **Definovať** Model Context Protocol a jeho základné výhody pre integráciu databázy
 - **Identifikovať** kľúčové komponenty architektúry MCP servera s databázami
-- **Pochopiť** prípad použitia Zava Retail a jeho obchodné požiadavky
+- **Pochopiť** použitie Zava Retail a jeho obchodné požiadavky
 - **Rozpoznať** podnikové vzory pre bezpečný a škálovateľný prístup k databáze
-- **Vymenovať** nástroje a technológie použité počas tejto učebnej cesty
+- **Vymenovať** nástroje a technológie používané počas celej vzdelávacej cesty
 
-## 🧭 Výzva: AI stretáva reálne dáta
+## 🧭 Výzva: AI stretáva sa so skutočnými dátami
 
 ### Tradičné obmedzenia AI
 
-Moderní AI asistenti sú neuveriteľne výkonní, ale čelia významným obmedzeniam pri práci s reálnymi obchodnými dátami:
+Moderné AI asistenti sú mimoriadne výkonné, ale čelia významným obmedzeniam pri práci so skutočnými obchodnými dátami:
 
 | **Výzva** | **Popis** | **Obchodný dopad** |
 |---------------|-----------------|-------------------|
-| **Statické poznatky** | Modely AI trénované na fixných dátach nemajú prístup k aktuálnym obchodným údajom | Zastaralé poznatky, premárnené príležitosti |
-| **Dátové silá** | Informácie uzamknuté v databázach, API a systémoch, ku ktorým AI nemá prístup | Neúplná analýza, roztrieštené pracovné postupy |
-| **Bezpečnostné obmedzenia** | Priamy prístup do databázy vyvoláva obavy o bezpečnosť a súlad | Obmedzené nasadenie, manuálna príprava dát |
-| **Zložité dotazy** | Obchodní používatelia potrebujú technické znalosti, aby získali dátové poznatky | Znížené prijatie, neefektívne procesy |
+| **Statické vedomosti** | AI modely trénované na fixných dátových sadách nemajú prístup k aktuálnym obchodným dátam | Zastaralé poznatky, nevyužité príležitosti |
+| **Dátové silo** | Informácie uzavreté v databázach, API a systémoch, ku ktorým AI nemá prístup | Neúplné analýzy, fragmentované pracovné toky |
+| **Bezpečnostné obmedzenia** | Priamy prístup do databázy vyvoláva bezpečnostné a regulačné problémy | Obmedzené nasadenie, manuálna príprava dát |
+| **Zložité dotazy** | Obchodní používatelia potrebujú technické znalosti na získavanie dátových poznatkov | Znížené používanie, neefektívne procesy |
 
 ### Riešenie MCP
 
-Model Context Protocol rieši tieto výzvy tým, že poskytuje:
+Model Context Protocol rieši tieto výzvy poskytovaním:
 
-- **Prístup k dátam v reálnom čase**: AI asistenti dotazujú na živé databázy a API
-- **Bezpečnú integráciu**: Kontrolovaný prístup s autentifikáciou a oprávneniami
-- **Rozhranie v prirodzenom jazyku**: Obchodní používatelia pokladajú otázky v bežnej angličtine
+- **Prístup k dátam v reálnom čase**: AI asistenti dotazujú živé databázy a API
+- **Bezpečná integrácia**: Riadený prístup s autentifikáciou a povoleniami
+- **Rozhranie v prirodzenom jazyku**: Obchodní používatelia kladú otázky jednoducho po anglicky
 - **Štandardizovaný protokol**: Funguje naprieč rôznymi AI platformami a nástrojmi
 
 ## 🏪 Spoznajte Zava Retail: Naša prípadová štúdia https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail
 
-Počas tejto učebnej cesty vybudujeme MCP server pre **Zava Retail**, fiktívny reťazec DIY maloobchodu s viacerými pobočkami. Tento realistický scenár demonštruje implementáciu MCP na podnikovej úrovni.
+Počas celej tejto vzdelávacej cesty postavíme MCP server pre **Zava Retail**, fiktívnu DIY maloobchodnú sieť s viacerými pobočkami. Tento realistický scenár demonštruje podnikové implementácie MCP.
 
 ### Obchodný kontext
 
 **Zava Retail** prevádzkuje:
-- **8 fyzických obchodov** po celom štáte Washington (Seattle, Bellevue, Tacoma, Spokane, Everett, Redmond, Kirkland)
-- **1 online obchod** pre e-commerce predaj
-- **Rôznorodý produktový katalóg** vrátane nástrojov, hardvéru, záhradnej výbavy a stavebných materiálov
-- **Viacúrovňový manažment** so zodpovednými manažérmi obchodov, regionálnymi manažérmi a vedúcimi pracovníkmi
+- **8 kamenných predajní** po celom štáte Washington (Seattle, Bellevue, Tacoma, Spokane, Everett, Redmond, Kirkland)
+- **1 online obchod** pre elektronický predaj
+- **Rôznorodý katalóg produktov** vrátane nástrojov, hardvéru, záhradného materiálu a stavebných materiálov
+- **Viacúrovňové riadenie** s manažérmi predajní, regionálnymi manažérmi a vedením
 
 ### Obchodné požiadavky
 
-Manažéri obchodov a vedúci potrebujú analytiku poháňanú AI, aby mohli:
+Manažéri predajní a vedenie potrebujú AI-poháňanú analytiku na:
 
-1. **Analyzovať výkonnosť predaja** naprieč obchodmi a časovými obdobiami
-2. **Sledovať úrovne zásob** a identifikovať potreby doplnenia
-3. **Pochopiť správanie zákazníkov** a nákupné vzorce
-4. **Objavovať produktové poznatky** prostredníctvom sémantického vyhľadávania
-5. **Generovať reporty** pomocou dotazov v prirodzenom jazyku
-6. **Udržiavať bezpečnosť dát** s riadením prístupov na základe rolí
+1. **Analyzovať predajné výsledky** naprieč predajňami a časovými obdobiami
+2. **Sledovať stavy zásob** a identifikovať potreby doplnenia
+3. **Pochopiť správanie zákazníkov** a nákupné vzory
+4. **Objaviť poznatky o produktoch** pomocou sémantického vyhľadávania
+5. **Generovať reporty** pomocou otázok v prirodzenom jazyku
+6. **Zachovať bezpečnosť dát** pomocou riadenia prístupu na základe rolí
 
 ### Technické požiadavky
 
 MCP server musí poskytovať:
 
-- **Prístup k dátam viacerých nájomcov**, kde manažéri vidia iba údaje svojho obchodu
+- **Prístup k dátam pre viac nájomcov**, kde manažéri vidia len dáta svojej predajne
 - **Flexibilné dotazovanie** podporujúce zložité SQL operácie
-- **Sémantické vyhľadávanie** na objavovanie produktov a odporúčania
-- **Dáta v reálnom čase** odrážajúce aktuálny stav firmy
-- **Bezpečnú autentifikáciu** s riadením na úrovni riadkov (Row Level Security)
-- **Škálovateľnú architektúru** podporujúcu viacerých súbežných používateľov
+- **Sémantické vyhľadávanie** pre objavovanie produktov a odporúčania
+- **Dáta v reálnom čase** odrážajúce aktuálny stav obchodu
+- **Bezpečná autentifikácia** s Row Level Security
+- **Škálovateľná architektúra** podporujúca viacerých súčasných používateľov
 
 ## 🏗️ Prehľad architektúry MCP servera
 
@@ -124,117 +129,117 @@ Náš MCP server implementuje vrstvenú architektúru optimalizovanú pre integr
 - **FastMCP Framework**: Moderná implementácia MCP servera v Pythone
 - **Registrácia nástrojov**: Deklaratívne definície nástrojov s typovou bezpečnosťou
 - **Kontext požiadavky**: Identita používateľa a správa relácie
-- **Spracovanie chýb**: Robustné riadenie chýb a logovanie
+- **Riadenie chýb**: Robustné spracovanie a zaznamenávanie chýb
 
 #### **2. Vrstva integrácie databázy**
-- **Pooling pripojení**: Efektívna správa pripojení cez asyncpg
-- **Poskytovateľ schémy**: Dynamické zisťovanie schémy tabuliek
-- **Vykonávač dotazov**: Bezpečné spúšťanie SQL s kontextom RLS
+- **Pooling pripojení**: Efektívna správa pripojení pomocou asyncpg
+- **Poskytovateľ schémy**: Dynamické zisťovanie schém tabuliek
+- **Vykonávač dotazov**: Bezpečné vykonávanie SQL s kontextom RLS
 - **Správa transakcií**: Dodržiavanie ACID a spracovanie rollbacku
 
 #### **3. Bezpečnostná vrstva**
-- **Row Level Security**: PostgreSQL RLS na izoláciu dát viacerých nájomcov
-- **Identita používateľa**: Autentifikácia a autorizácia manažéra obchodu
-- **Riadenie prístupu**: Jemnozrnné oprávnenia a auditné stopy
-- **Validácia vstupov**: Prevencia SQL injectu a validácia dotazov
+- **Row Level Security**: PostgreSQL RLS pre izoláciu dát viacerých nájomcov
+- **Identita používateľa**: Autentifikácia a autorizácia manažéra predajne
+- **Riadenie prístupu**: Granulárne povolenia a auditné záznamy
+- **Validácia vstupov**: Prevencia SQL injection a validácia dotazov
 
-#### **4. Vrstva AI vylepšení**
-- **Sémantické vyhľadávanie**: Vektorové embeddingy na objavovanie produktov
-- **Integrácia Azure OpenAI**: Generovanie textových embeddingov
+#### **4. Vrstva AI rozšírení**
+- **Sémantické vyhľadávanie**: Vektorové embeddingy pre vyhľadávanie produktov
+- **Integrácia Azure OpenAI**: Generovanie tekstových embeddingov
 - **Algoritmy podobnosti**: pgvector vyhľadávanie podľa kosínovej podobnosti
 - **Optimalizácia vyhľadávania**: Indexovanie a ladenie výkonu
 
 ## 🔧 Technologický stack
 
-### Základné technológie
+### Jadrové technológie
 
 | **Komponent** | **Technológia** | **Účel** |
 |---------------|----------------|-------------|
 | **MCP Framework** | FastMCP (Python) | Moderná implementácia MCP servera |
 | **Databáza** | PostgreSQL 17 + pgvector | Relačné dáta s vektorovým vyhľadávaním |
 | **AI služby** | Azure OpenAI | Textové embeddingy a jazykové modely |
-| **Kontejnerizácia** | Docker + Docker Compose | Vývojové prostredie |
+| **Kontajnerizácia** | Docker + Docker Compose | Vývojové prostredie |
 | **Cloud platforma** | Microsoft Azure | Produkčné nasadenie |
-| **Integrácia IDE** | VS Code | AI Chat a vývojový workflow |
+| **Integrácia IDE** | VS Code | AI chat a vývojový pracovný tok |
 
 ### Vývojové nástroje
 
 | **Nástroj** | **Účel** |
 |----------|-------------|
-| **asyncpg** | Vysokovýkonný PostgreSQL driver |
-| **Pydantic** | Validácia a serializácia dát |
+| **asyncpg** | Vysokovýkonný PostgreSQL ovládač |
+| **Pydantic** | Overovanie a serializácia dát |
 | **Azure SDK** | Integrácia cloudových služieb |
-| **pytest** | Testovací framework |
-| **Docker** | Kontejnerizácia a nasadenie |
+| **pytest** | Testovací rámec |
+| **Docker** | Kontajnerizácia a nasadenie |
 
 ### Produkčný stack
 
 | **Služba** | **Azure zdroj** | **Účel** |
 |-------------|-------------------|-------------|
-| **Databáza** | Azure Database for PostgreSQL | Spravovaná databázová služba |
-| **Kontajner** | Azure Container Apps | Bezserverové hostovanie kontajnerov |
+| **Databáza** | Azure Database for PostgreSQL | Manažovaná databázová služba |
+| **Kontajner** | Azure Container Apps | Serverless hostovanie kontajnerov |
 | **AI služby** | Microsoft Foundry | OpenAI modely a endpointy |
-| **Monitorovanie** | Application Insights | Pozorovateľnosť a diagnostika |
+| **Monitoring** | Application Insights | Sledovanie a diagnostika |
 | **Bezpečnosť** | Azure Key Vault | Správa tajomstiev a konfigurácií |
 
-## 🎬 Scenáre použitia v reálnom svete
+## 🎬 Scenáre používania v reálnom svete
 
-Pozrime sa, ako rôzni používatelia interagujú s naším MCP serverom:
+Preskúmajme, ako rôzni používatelia interagujú s naším MCP serverom:
 
-### Scenár 1: Prehliadka výkonnosti manažéra obchodu
+### Scenár 1: Hodnotenie výkonu manažéra predajne
 
-**Používateľ**: Sarah, manažérka obchodu v Seattli  
-**Cieľ**: Analyzovať výkonnosť predaja za posledný štvrťrok
+**Používateľ**: Sarah, manažérka predajne v Seattle  
+**Cieľ**: Analyzovať predajné výsledky za posledný kvartál
 
 **Dotaz v prirodzenom jazyku**:
-> "Ukáž mi top 10 produktov podľa príjmu pre môj obchod v Q4 2024"
+> "Ukáž mi top 10 produktov podľa tržieb za moju predajňu v Q4 2024"
 
 **Čo sa deje**:
-1. VS Code AI Chat odosiela dotaz na MCP server
-2. MCP server identifikuje kontext obchodu Sarah (Seattle)
-3. RLS politika filtruje dáta len pre obchod v Seattli
+1. VS Code AI Chat odošle dotaz na MCP server
+2. MCP server identifikuje kontext Sarahinej predajne (Seattle)
+3. RLS politiky filtrovali dáta len pre predajňu v Seattle
 4. SQL dotaz je vygenerovaný a vykonaný
-5. Výsledky sú naformátované a vrátené AI Chat
-6. AI poskytuje analýzu a poznatky
+5. Výsledky sú naformátované a vrátené do AI Chatu
+6. AI poskytne analýzu a poznatky
 
-### Scenár 2: Objavovanie produktu so sémantickým vyhľadávaním
+### Scenár 2: Objavovanie produktov pomocou sémantického vyhľadávania
 
-**Používateľ**: Mike, manažér inventára  
-**Cieľ**: Nájsť produkty podobné zákazníckemu požiadavku
+**Používateľ**: Mike, manažér zásob  
+**Cieľ**: Nájsť produkty podobné požiadavke zákazníka
 
 **Dotaz v prirodzenom jazyku**:
-> "Aké produkty predávame, ktoré sú podobné 'vodotesným elektrickým konektorom na vonkajšie použitie'?"
+> "Aké produkty predávame, ktoré sú podobné 'vodotesné elektrické konektory na vonkajšie použitie'?"
 
 **Čo sa deje**:
-1. Dotaz spracovaný nástrojom sémantického vyhľadávania
-2. Azure OpenAI generuje vektor embeddingu
-3. pgvector vykonáva vyhľadávanie podľa podobnosti
+1. Dotaz spracovaný sémantickým vyhľadávacím nástrojom
+2. Azure OpenAI generuje embedding vektor
+3. pgvector vykoná vyhľadávanie podľa podobnosti
 4. Súvisiace produkty sú zoradené podľa relevantnosti
-5. Výsledky zahŕňajú detaily o produktoch a dostupnosti
-6. AI navrhuje alternatívy a možnosti bundlovania
+5. Výsledky obsahujú detaily produktu a dostupnosť
+6. AI navrhuje alternatívy a možnosti balíčkovania
 
-### Scenár 3: Analytika medzi obchodmi
+### Scenár 3: Analytika naprieč predajňami
 
 **Používateľ**: Jennifer, regionálna manažérka  
-**Cieľ**: Porovnať výkonnosť naprieč všetkými obchodmi
+**Cieľ**: Porovnať výkon všetkých predajní
 
 **Dotaz v prirodzenom jazyku**:
-> "Porovnaj predaj podľa kategórie pre všetky obchody za posledných 6 mesiacov"
+> "Porovnaj predaje podľa kategórií vo všetkých predajniach za posledných 6 mesiacov"
 
 **Čo sa deje**:
-1. Nastaví sa RLS kontext pre prístup regionálnej manažérky
-2. Vygeneruje sa komplexný dotaz pokrývajúci viaceré obchody
-3. Dáta sa agregujú z rôznych pobočiek
+1. RLS kontext nastavený pre prístup regionálnej manažérky
+2. Vygenerovaný komplexný dotaz pre viaceré predajne
+3. Dáta agregované naprieč lokáciami predajní
 4. Výsledky zahŕňajú trendy a porovnania
 5. AI identifikuje poznatky a odporúčania
 
-## 🔒 Hĺbkový pohľad na bezpečnosť a multi-tenanciu
+## 🔒 Hĺbkový pohľad na bezpečnosť a multi-tenancy
 
-Naša implementácia kladie dôraz na bezpečnosť na podnikovej úrovni:
+Naša implementácia stavia na podnikovom bezpečnostnom štandarde:
 
 ### Row Level Security (RLS)
 
-PostgreSQL RLS zabezpečuje izoláciu dát:
+PostgreSQL RLS zaisťuje izoláciu dát:
 
 ```sql
 -- Store managers see only their store's data
@@ -248,61 +253,61 @@ CREATE POLICY regional_manager_policy ON retail.orders
   USING (store_id = ANY(get_user_store_list()));
 ```
 
-### Správa identity používateľov
+### Správa identity používateľa
 
 Každé MCP pripojenie obsahuje:
-- **ID manažéra obchodu**: Unikátny identifikátor pre RLS kontext
-- **Priradenie rolí**: Oprávnenia a úrovne prístupu
-- **Správa relácií**: Bezpečné autentifikačné tokeny
-- **Auditné logovanie**: Kompletná história prístupov
+- **ID manažéra predajne**: Jedinečný identifikátor pre RLS kontext
+- **Priradenie rolí**: Povolenia a úrovne prístupu
+- **Správa relácie**: Bezpečné autentifikačné tokeny
+- **Auditné záznamy**: Kompletná história prístupu
 
 ### Ochrana dát
 
-Viaceré bezpečnostné vrstvy:
-- **Šifrovanie pripojenia**: TLS pre všetky spojenia do databázy
-- **Prevencia SQL injection**: Iba parametrizované dotazy
-- **Validácia vstupu**: Komplexná validácia požiadaviek
-- **Spracovanie chýb**: Žiadne citlivé údaje v chybových hláseniach
+Viacvrstvová bezpečnosť:
+- **Šifrovanie pripojení**: TLS pre všetky databázové pripojenia
+- **Prevencia SQL injection**: Iba parameterizované dotazy
+- **Validácia vstupov**: Komplexné overovanie požiadaviek
+- **Spracovanie chýb**: Žiadne citlivé dáta v chybových hláseniach
 
-## 🎯 Kľúčové zistenia
+## 🎯 Kľúčové závery
 
-Po prečítaní tohto úvodu by ste mali rozumieť:
+Po dokončení tohto úvodu by ste mali rozumieť:
 
-✅ **Hodnote MCP**: Ako MCP prepája AI asistentov s reálnymi dátami  
-✅ **Obchodnému kontextu**: Požiadavky a výzvy Zava Retail  
-✅ **Prehľadu architektúry**: Kľúčové komponenty a ich interakcie  
-✅ **Technologickému stacku**: Nástroje a frameworky použité počas cesty  
-✅ **Bezpečnostnému modelu**: Prístup k dátam viacerých nájomcov a ochrana  
-✅ **Vzory použitia**: Reálne scenáre dotazov a pracovné postupy  
+✅ **Hodnota MCP**: Ako MCP prepája AI asistentov a reálne dáta  
+✅ **Obchodný kontext**: Požiadavky a výzvy Zava Retail  
+✅ **Prehľad architektúry**: Kľúčové komponenty a ich interakcie  
+✅ **Technologický stack**: Použité nástroje a rámce  
+✅ **Bezpečnostný model**: Prístup a ochrana dát pre viac nájomcov  
+✅ **Vzory používania**: Scenáre dotazov z praxe a pracovné toky  
 
 ## 🚀 Čo ďalej
 
-Ste pripravení hlbšie preniknúť? Pokračujte s:
+Ste pripravení ísť hlbšie? Pokračujte s:
 
-**[Lab 01: Core Architecture Concepts](../01-Architecture/README.md)**
+**[Lab 01: Základné architektonické koncepty](../01-Architecture/README.md)**
 
-Naučíte sa o vzorcoch architektúry MCP servera, princípoch návrhu databázy a detailnej technickej implementácii, ktorá poháňa naše riešenie maloobchodnej analytiky.
+Naučte sa o vzoroch architektúry MCP servera, princípoch návrhu databázy a podrobnej technickej implementácii, ktorá poháňa naše riešenie maloobchodnej analytiky.
 
-## 📚 Dodatočné zdroje
+## 📚 Ďalšie zdroje
 
 ### Dokumentácia MCP
-- [MCP špecifikácia](https://modelcontextprotocol.io/docs/) - Oficiálna dokumentácia protokolu
-- [MCP pre začiatočníkov](https://aka.ms/mcp-for-beginners) - Komplexný učebný sprievodca MCP
-- [FastMCP dokumentácia](https://github.com/modelcontextprotocol/python-sdk) - Python SDK dokumentácia
+- [Špecifikácia MCP](https://modelcontextprotocol.io/docs/) - Oficiálna dokumentácia protokolu
+- [MCP pre začiatočníkov](https://aka.ms/mcp-for-beginners) - Komplexný sprievodca učením MCP
+- [Dokumentácia FastMCP](https://github.com/modelcontextprotocol/python-sdk) - Dokumentácia Python SDK
 
 ### Integrácia databázy
-- [PostgreSQL dokumentácia](https://www.postgresql.org/docs/) - Kompletná referenčná príručka PostgreSQL
-- [pgvector príručka](https://github.com/pgvector/pgvector) - Dokumentácia rozšírenia vektorov
-- [Row Level Security](https://www.postgresql.org/docs/current/ddl-rowsecurity.html) - Sprievodca RLS v PostgreSQL
+- [Dokumentácia PostgreSQL](https://www.postgresql.org/docs/) - Kompletný referenčný manuál PostgreSQL
+- [Príručka pgvector](https://github.com/pgvector/pgvector) - Dokumentácia rozšírenia pre vektory
+- [Row Level Security](https://www.postgresql.org/docs/current/ddl-rowsecurity.html) - Príručka PostgreSQL RLS
 
 ### Azure služby
-- [Azure OpenAI dokumentácia](https://docs.microsoft.com/azure/cognitive-services/openai/) - Integrácia AI služieb
-- [Azure Database for PostgreSQL](https://docs.microsoft.com/azure/postgresql/) - Spravovaná databázová služba
-- [Azure Container Apps](https://docs.microsoft.com/azure/container-apps/) - Bezserverové kontajnery
+- [Dokumentácia Azure OpenAI](https://docs.microsoft.com/azure/cognitive-services/openai/) - Integrácia AI služieb
+- [Azure Database for PostgreSQL](https://docs.microsoft.com/azure/postgresql/) - Manažovaná databázová služba
+- [Azure Container Apps](https://docs.microsoft.com/azure/container-apps/) - Serverless kontajnery
 
 ---
 
-**Vysvetlenie**: Toto je učebné cvičenie využívajúce fiktívne maloobchodné dáta. Vždy dodržiavajte zásady dátovej správy a bezpečnostné politiky vašej organizácie pri implementácii podobných riešení v produkčnom prostredí.
+**Upozornenie**: Toto je vzdelávacie cvičenie využívajúce fiktívne maloobchodné dáta. Pri implementácii podobných riešení v produkčnom prostredí vždy dodržiavajte pravidlá správy a bezpečnosti dát vašej organizácie.
 
 ---
 

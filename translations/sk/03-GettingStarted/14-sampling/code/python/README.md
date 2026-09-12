@@ -1,4 +1,9 @@
-# Spustiť ukážku
+# Spustite ukážku
+
+> [!WARNING]
+> Táto ukážka používa zastarané Sampling a starší HTTP+SSE endpoint. Je
+> uchovaná pre kompatibilitu MCP `2025-11-25`. Nové implementácie by mali volať
+> poskytovateľa LLM priamo a používať Streamable HTTP pre vzdialenú MCP prevádzku.
 
 ## Vytvorte virtuálne prostredie
 
@@ -19,7 +24,7 @@ pip install "mcp[cli]"
 uvicorn server:app --port 8000
 ```
 
-## Otestujte server pomocou GitHub Copilot a VS Code
+## Otestujte server s GitHub Copilot a VS Code
 
 Pridajte záznam do mcp.json takto:
 
@@ -34,13 +39,13 @@ Pridajte záznam do mcp.json takto:
 
 Uistite sa, že ste na serveri klikli na „start“.
 
-Do GitHub Copilot vložte nasledujúci prompt:
+V GitHub Copilot vložte nasledujúci prompt:
 
 ```text
 create a blog post named "Where Python comes from", the content is "Python is actually named after Monty Python Flying Circus"
 ```
 
-Prvýkrát budete požiadaní, či chcete akceptovať Sampling akciu, potom budete požiadaní o súhlas s nástrojom na spustenie "create_blog". Mali by ste vidieť odpoveď podobnú:
+Prvýkrát budete požiadaní o súhlas s akciou Sampling, potom o povolenie spustenia nástroja „create_blog“. Mali by ste vidieť odpoveď podobnú:
 
 ```json
 {
@@ -52,5 +57,5 @@ Prvýkrát budete požiadaní, či chcete akceptovať Sampling akciu, potom bude
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Vyhlásenie o zodpovednosti**:
-Tento dokument bol preložený pomocou AI prekladateľskej služby [Co-op Translator](https://github.com/Azure/co-op-translator). Hoci sa snažíme o presnosť, vezmite, prosím, na vedomie, že automatické preklady môžu obsahovať chyby alebo nepresnosti. Originálny dokument v jeho pôvodnom jazyku by sa mal považovať za autoritatívny zdroj. Pre kritické informácie sa odporúča profesionálny ľudský preklad. Nie sme zodpovední za akékoľvek nedorozumenia alebo nesprávne interpretácie vyplývajúce z použitia tohto prekladu.
+Tento dokument bol preložený pomocou AI prekladateľskej služby [Co-op Translator](https://github.com/Azure/co-op-translator). Hoci sa snažíme o presnosť, vezmite prosím na vedomie, že automatické preklady môžu obsahovať chyby alebo nepresnosti. Pôvodný dokument v jeho natívnom jazyku by mal byť považovaný za autoritatívny zdroj. Pre kritické informácie sa odporúča profesionálny ľudský preklad. Nie sme zodpovední za žiadne nedorozumenia alebo nesprávne interpretácie vyplývajúce z použitia tohto prekladu.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
