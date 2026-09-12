@@ -1,114 +1,114 @@
-# Protocol ng Konteksto ng Modelo para sa Real-Time na Paghahanap sa Web
+# Model Context Protocol para sa Real-Time na Pagsusuri sa Web
 
 ## Pangkalahatang-ideya
 
-Ang real-time na paghahanap sa web ay naging mahalaga sa kasalukuyang kapaligirang pinapatakbo ng impormasyon, kung saan ang mga aplikasyon ay nangangailangan ng agarang access sa pinakabagong impormasyon sa buong internet upang makapagbigay ng may kaugnayan at napapanahong mga tugon. Ang Model Context Protocol (MCP) ay kumakatawan sa isang makabuluhang pagsulong sa pag-optimize ng mga prosesong ito ng real-time na paghahanap, pinapahusay ang kahusayan ng paghahanap, pinananatili ang integridad ng konteksto, at pinapabuti ang pangkalahatang pagganap ng sistema.
+Ang real-time na pagsusuri sa web ay naging mahalaga sa makabagong kapaligiran na puno ng impormasyon, kung saan ang mga aplikasyon ay nangangailangan ng agarang akses sa napapanahong impormasyon mula sa internet upang magbigay ng kaugnay at napapanahong mga tugon. Ang Model Context Protocol (MCP) ay kumakatawan sa isang mahalagang pag-usbong sa pag-optimize ng mga prosesong ito ng real-time na pagsusuri, pinapahusay ang kahusayan ng paghahanap, pinananatili ang integridad ng konteksto, at pinapabuti ang pangkalahatang pagganap ng sistema.
 
-Tinutuklas ng module na ito kung paano binabago ng MCP ang real-time na paghahanap sa web sa pamamagitan ng pagbibigay ng isang standardisadong pamamaraan para sa pamamahala ng konteksto sa mga AI na modelo, mga search engine, at mga aplikasyon.
+Tinutuklas ng modyul na ito kung paano binabago ng MCP ang real-time na pagsusuri sa web sa pamamagitan ng pagbibigay ng isang standardisadong pamamaraan para sa pamamahala ng konteksto sa mga AI modelo, mga search engine, at mga aplikasyon.
 
-### Ano ang Iyong Matututunan
+### Ano ang Matututunan Mo
 
 Sa komprehensibong gabay na ito, matutuklasan mo:
 
-- Paano lumilikha ang MCP ng walang patid na tulay sa pagitan ng mga AI na modelo at kakayahan sa real-time na paghahanap sa web
-- Mga disenyo ng arkitektura para sa pagpapatupad ng epektibo at scalable na mga solusyon sa paghahanap gamit ang MCP
-- Mga teknik para mapanatili ang konteksto ng paghahanap sa maraming mga query at interaksyon
-- Praktikal na mga implementasyon ng code sa Python at JavaScript para sa iba't ibang mga senaryo ng paghahanap
-- Mga pamamaraan upang balansehin ang kaugnayan, pagiging bago, at pagganap sa mga sistemang naghahanap na pinapatakbo ng MCP
+- Paano nililikha ng MCP ang tulay na walang putol sa pagitan ng AI na mga modelo at mga kakayahan sa real-time na paghahanap sa web
+- Mga arkitektural na pattern para sa pagpapatupad ng epektibo at scalable na mga solusyon sa paghahanap gamit ang MCP
+- Mga pamamaraan sa pagpapanatili ng konteksto ng paghahanap sa maraming tanong at interaksyon
+- Mga praktikal na implementasyon ng code sa Python at JavaScript para sa iba't ibang mga senaryo ng paghahanap
+- Mga paraan upang balansehin ang kaugnayan, kasariwaan, at pagganap sa mga sistemang paghahanap na pinapagana ng MCP
 
-## Panimula sa Real-Time na Paghahanap sa Web
+## Panimula sa Real-Time na Pagsusuri sa Web
 
-Ang real-time na paghahanap sa web ay isang teknolohikal na pamamaraan na nagpapahintulot sa tuloy-tuloy na pag-query, pagproseso, at pagsusuri ng impormasyon sa web habang ito ay inilalathala o ina-update, nagpapahintulot sa mga sistema na magbigay ng sariwa at may kaugnayang impormasyon na may minimal na latency. Hindi tulad ng mga tradisyunal na sistema ng paghahanap na gumagana sa indexed na data na maaaring ilang oras o araw na ang tanda, ang real-time na paghahanap ay proseso ng live na datos mula sa web, na naghahatid ng pananaw at impormasyon na sumasalamin sa kasalukuyang estado ng nilalaman online.
+Ang real-time na pagsusuri sa web ay isang teknolohikal na pamamaraan na nagpapahintulot ng tuloy-tuloy na pagtatanong, pagproseso, at pagsusuri ng impormasyon mula sa web habang ito ay inilalathala o ina-update, na nagbibigay-daan sa mga sistema na magbigay ng sariwa at kaugnay na impormasyon nang may napakaliit na pagkaantala. Hindi tulad ng tradisyunal na mga sistema ng paghahanap na nagtatrabaho sa indexed na datos na maaaring ilang oras o araw ang tanda, ang real-time na paghahanap ay sumusuri ng direktang datos mula sa web, naghahatid ng mga pananaw at impormasyon na sumasalamin sa kasalukuyang estado ng nilalaman online.
 
-### Pangunahing Konsepto ng Real-Time na Paghahanap sa Web:
+### Pangunahing Konsepto ng Real-Time na Pagsusuri sa Web:
 
-- **Tuloy-tuloy na Pagproseso ng Query**: Pinoproseso ang mga query sa paghahanap laban sa mga patuloy na ina-update na pinagkukunan ng data
-- **Prayoridad sa Bagong Impormasyon**: Dinisenyo ang mga sistema upang bigyan ng prayoridad ang sariwang impormasyon
-- **Balanse ng Kaugnayan**: Pinananatili ang balanse sa pagitan ng kaugnayan at pagiging bago
-- **Scalable na Arkitektura**: Kailangang kayanin ng mga sistema ang pabago-bagong dami ng query at data
-- **Pag-unawa sa Konteksto**: Mahalagang mapanatili ang konteksto ng user sa iba't ibang mga pagkakataon ng paghahanap para sa makahulugang resulta
-- **Dynamic na Pagbabago ng Query**: Adaptive na binabago ang mga query base sa konteksto at mga nakaraang resulta
-- **Pagsasama ng Maramihang Pinagmulan**: Pinagsasama ang mga resulta mula sa iba't ibang search provider at mga pinanggalingang web
-- **Semantikong Pag-unawa**: Pinoproseso ang mga query at nilalaman batay sa kahulugan kaysa sa mga salitang susi lamang
-- **Real-Time na Pagraranggo**: Patuloy na inaayos ang pagraranggo ng mga resulta habang may bagong impormasyon
+- **Tuloy-tuloy na Pagproseso ng Query**: Ang mga query sa paghahanap ay pinoproseso laban sa datos na palaging ina-update
+- **Pagbibigay-priyoridad sa Kasariwaan**: Idinisenyo ang mga sistema upang unahin ang mga sariwang impormasyon
+- **Pagbabalanse ng Kaugnayan**: Pinananatili ang balanse sa pagitan ng kaugnayan at kasariwaan
+- **Scalable na Arkitektura**: Dapat kayanin ng mga sistema ang pabago-bagong dami ng query at datos
+- **Pag-unawa sa Konteksto**: Mahalaga ang pagpapanatili ng konteksto ng gumagamit sa maraming pag-ulit ng paghahanap para sa makahulugang mga resulta
+- **Dynamic na Pagrebisa ng Query**: Adaptive na pagbabago ng mga query batay sa konteksto at mga nakaraang resulta
+- **Integrasyon ng Maramihang Pinagmumulan**: Pinagsasama ang mga resulta mula sa iba’t ibang mga proveedor ng paghahanap at mga pinagkukunan ng web
+- **Semantic na Pag-unawa**: Proseso ng mga query at nilalaman batay sa kahulugan, hindi lamang mga keyword
+- **Real-Time na Pag-ranggo**: Patuloy na inaayos ang ranggo ng mga resulta habang may mga bagong impormasyong lumalabas
 
-### Ang Model Context Protocol at Real-Time na Paghahanap sa Web
+### Ang Model Context Protocol at Real-Time na Pagsusuri sa Web
 
-Pinagtutugunan ng Model Context Protocol (MCP) ang ilang mahahalagang hamon sa mga kapaligiran ng real-time na paghahanap sa web:
+Tinatalakay ng Model Context Protocol (MCP) ang ilang mga kritikal na hamon sa mga kapaligiran ng real-time na pagsusuri sa web:
 
-1. **Pagpapanatili ng Konteksto ng Paghahanap**: Ipinastandard ng MCP kung paano pinananatili ang konteksto sa mga distributed na bahagi ng paghahanap, na tinitiyak na ang mga AI na modelo at mga processing node ay may access sa may kaugnayang kasaysayan ng query at mga kagustuhan ng user.
+1. **Pagpapanatili ng Konteksto ng Paghahanap**: Sinusukat ng MCP kung paano pinananatili ang konteksto sa buong mga ipinamahaging bahagi ng paghahanap, tiniyak na may akses ang mga AI modelo at mga processing node sa kaugnay na kasaysayan ng query at mga kagustuhan ng gumagamit.
 
-2. **Epektibong Pamamahala ng Query**: Sa pamamagitan ng pagbibigay ng nakaayos na mga mekanismo para sa transmisyon ng konteksto, binabawasan ng MCP ang overhead ng paulit-ulit na pagsasama ng konteksto sa bawat pagkakataon ng paghahanap.
+2. **Epektibong Pamamahala ng Query**: Sa pamamagitan ng pagbibigay ng nakaayos na mga mekanismo para sa transmisyon ng konteksto, binabawasan ng MCP ang overhead ng paulit-ulit na pag-uulit ng konteksto sa bawat pag-ulit ng paghahanap.
 
-3. **Interoperability**: Lumilikha ang MCP ng isang karaniwang wika para sa pagbabahagi ng konteksto sa pagitan ng iba't ibang teknolohiya sa paghahanap at AI na mga modelo, na nagpapahintulot ng mas flexible at extensible na mga arkitektura.
+3. **Interoperability**: Lumilikha ang MCP ng isang karaniwang wika para sa pagbabahagi ng konteksto sa pagitan ng iba’t ibang teknolohiya ng paghahanap at AI na mga modelo, na naglalaman ng mas flexible at extensible na mga arkitektura.
 
-4. **Search-Optimized Context**: Maaaring bigyang prayoridad ng mga implementasyon ng MCP kung aling mga elemento ng konteksto ang pinaka-kaugnay para sa epektibong paghahanap, na nag-ooptimize para sa parehong pagganap at katumpakan.
+4. **Kontekstong Pinahusay para sa Paghahanap**: Maaaring unahin ng mga implementasyon ng MCP kung aling mga elemento ng konteksto ang pinakakaugnay para sa epektibong paghahanap, na nag-o-optimize para sa parehong pagganap at katumpakan.
 
-5. **Adaptive na Pagproseso ng Paghahanap**: Sa tamang pamamahala ng konteksto gamit ang MCP, maaaring dynamically na ayusin ng mga sistema ng paghahanap ang pagproseso ayon sa nagbabagong mga pangangailangan ng user at mga tanawin ng impormasyon.
+5. **Adaptibong Pagproseso ng Paghahanap**: Sa wastong pamamahala ng konteksto gamit ang MCP, maaaring dinamikal na baguhin ng mga sistema ng paghahanap ang pagproseso batay sa nagbabagong pangangailangan ng gumagamit at kalakaran ng impormasyon.
 
-Sa mga modernong aplikasyon mula sa news aggregation hanggang sa research assistants, ang pagsasama ng MCP sa mga teknolohiya ng paghahanap sa web ay nagpapahintulot sa mas intelihente, konteksto-may kamalayang paghahanap na maaaring magbigay ng patuloy na mas may kaugnayang mga resulta habang nagpapatuloy ang mga interaksyon ng user.
+Sa mga makabagong aplikasyon na mula sa pagtipon ng balita hanggang sa mga research assistant, ang integrasyon ng MCP sa mga teknolohiya ng web search ay nagpapahintulot ng mas intelligenteng, may kamalayang konteksto na paghahanap na makakapagbigay ng patuloy na mas kaugnay na mga resulta habang nagpapatuloy ang mga interaksyon ng gumagamit.
 
 ## Mga Layunin sa Pagkatuto
 
 Sa pagtatapos ng araling ito, magagawa mong:
 
-- Maunawaan ang mga pundamental ng real-time na paghahanap sa web at ang mga hamon nito sa mga modernong aplikasyon
-- Ipaliwanag kung paano pinapahusay ng Model Context Protocol (MCP) ang mga kakayahan sa real-time na paghahanap sa web
-- Magpatupad ng mga solusyon sa paghahanap na batay sa MCP gamit ang mga popular na framework at API
-- Magdisenyo at mag-deploy ng scalable, mataas ang pagganap na arkitektura sa paghahanap gamit ang MCP
-- Ilapat ang mga konsepto ng MCP sa iba't ibang kaso ng paggamit kabilang ang semantic search, research assistance, at AI-augmented browsing
-- Suriin ang mga umuusbong na trend at mga hinaharap na inobasyon sa mga teknolohiyang naghahanap na batay sa MCP
-- Bumuo ng mga konteksto-mayamayan na mga sistema sa paghahanap na natututo mula sa mga interaksyon ng user
-- Isama ang mga kakayahan sa paghahanap sa web sa mga AI assistant gamit ang standardisadong mga protocol ng MCP
-- Lumikha ng mga multi-stage na search pipeline na unti-unting pinapalinis ang mga resulta batay sa konteksto
-- I-optimize ang pagganap ng paghahanap habang pinapanatili ang komprehensibong kamalayan sa konteksto
+- Maunawaan ang mga pundasyon ng real-time na pagsusuri sa web at ang mga hamon nito sa mga makabagong aplikasyon
+- Ipaliwanag kung paano pinapalakas ng Model Context Protocol (MCP) ang mga kakayahan ng real-time na pagsusuri sa web
+- Magpatupad ng mga solusyon sa paghahanap batay sa MCP gamit ang mga popular na framework at API
+- Magdisenyo at mag-deploy ng scalable, mataas ang pagganap na mga arkitektura ng paghahanap gamit ang MCP
+- Ilapat ang mga konsepto ng MCP sa iba't ibang paggamit kabilang ang semantic na paghahanap, pagtulong sa pananaliksik, at AI-augmented browsing
+- Suriin ang mga umuusbong na trend at mga hinaharap na inobasyon sa teknolohiya ng paghahanap na batay sa MCP
+- Bumuo ng mga konteksto-na may kamalayang mga sistema ng paghahanap na natututo mula sa mga interaksyon ng gumagamit
+- Isama ang mga kakayahan ng web search sa mga AI assistant gamit ang standardisadong mga protocol ng MCP
+- Lumikha ng mga multi-stage na pipeline ng paghahanap na unti-unting pinapabuti ang mga resulta batay sa konteksto
+- I-optimize ang pagganap ng paghahanap habang pinananatili ang komprehensibong kamalayan sa konteksto
 
-### Kahulugan at Kahalagahan
+### Depinisyon at Kahalagahan
 
-Ang real-time na paghahanap sa web ay kinapapalooban ng tuloy-tuloy na pag-query, retrieval, at paghahatid ng impormasyon mula sa web na may minimal na pagkaantala. Hindi tulad ng tradisyunal na mga search engine na pana-panahong nag-crawl at nag-iindex ng web, nilalayon ng real-time na paghahanap na lumabas agad ang impormasyon sa oras na maging available ito, na nagpapahintulot ng agarang access sa pinaka-kasalukuyang nilalaman.
+Ang real-time na pagsusuri sa web ay kinabibilangan ng tuloy-tuloy na pagtatanong, pagkuha, at paghahatid ng impormasyon sa web na may napakaliit na pagkaantala. Hindi tulad ng mga tradisyunal na search engine na pana-panahong nagc-crawl at nag-iindex ng web, layunin ng real-time na paghahanap na ipakita ang impormasyon habang ito ay nagiging available, na nagbibigay-daan sa agarang akses sa pinakabagong nilalaman.
 
-Mga pangunahing katangian ng real-time na paghahanap sa web ay kinabibilangan ng:
+Pangunahing mga katangian ng real-time na pagsusuri sa web ay kinabibilangan ng:
 
-- **Kabaguhan**: Binibigyang-priyoridad ang pinakabagong nilalaman at mga update
-- **Tuloy-tuloy na Pagproseso**: Patuloy na nagmo-monitor ng bagong impormasyon
-- **Pagbabago ng Query**: Pinapahusay ang mga query sa paghahanap base sa konteksto at feedback
-- **Agarang Paghahatid**: Nagbibigay ng mga resulta ng paghahanap nang may minimal na delay
-- **Pagpapanatili ng Konteksto**: Nagtatayo sa mga naunang query para sa pinahusay na kaugnayan
+- **Kabaguhan**: Pagbibigay-priyoridad sa mga bagong nilalaman at update
+- **Tuloy-tuloy na Pagproseso**: Palaging pagmamanman para sa mga bagong impormasyon
+- **Pag-aangkop ng Query**: Pagpapino ng mga query sa paghahanap batay sa konteksto at feedback
+- **Agarang Paghahatid**: Pagbibigay ng mga resulta ng paghahanap na may napakaliit na delay
+- **Pagpapanatili ng Konteksto**: Pagtatayo sa mga naunang query para sa mas pinahusay na kaugnayan
 
-### Mga Hamon sa Tradisyunal na Paghahanap sa Web
+### Mga Hamon sa Tradisyunal na Web Search
 
-Ang mga tradisyunal na pamamaraan sa paghahanap sa web ay may ilang mga limitasyon kapag inilapat sa mga real-time na senaryo:
+Nakakaranas ang mga tradisyunal na pamamaraan ng web search ng ilang mga limitasyon kapag inilapat sa mga senaryo ng real-time:
 
-1. **Fragsmentasyon ng Konteksto**: Hirap mapanatili ang konteksto ng paghahanap sa maraming mga query
-2. **Kabaguhan ng Impormasyon**: Mga hamon sa pag-access at pagbibigay priyoridad sa pinaka-bagong impormasyon
-3. **Kompleksidad sa Integrasyon**: Mga problema sa interoperability sa pagitan ng mga sistema ng paghahanap at mga aplikasyon
-4. **Mga Isyu sa Latency**: Pagtimbang sa komprehensibong paghahanap at mga kinakailangan sa oras ng tugon
-5. **Pagtatakda ng Kaugnayan**: Pagtiyak ng katumpakan at kaugnayan habang binibigyang-priyoridad ang pagiging bago
+1. **Pagkakahiwalay ng Konteksto**: Hirap sa pagpapanatili ng konteksto ng paghahanap sa maraming query
+2. **Kabaguhan ng Impormasyon**: Mga hamon sa pag-access at pagbibigay-priyoridad sa pinakabagong impormasyon
+3. **Kompleksidad ng Integrasyon**: Mga problema sa interoperability sa pagitan ng mga sistema ng paghahanap at aplikasyon
+4. **Mga Isyu sa Latency**: Pagbabalanse sa komprehensibong paghahanap at mga kinakailangan sa oras ng pagtugon
+5. **Pag-tune ng Kaugnayan**: Pagtitiyak ng katumpakan at kaugnayan habang inuuna ang kasariwaan
 
 ## Pag-unawa sa Model Context Protocol (MCP) para sa Paghahanap
 
-### Ano ang MCP sa Mga Konteksto ng Paghahanap?
+### Ano ang MCP sa mga Konteksto ng Paghahanap?
 
-Ang Model Context Protocol (MCP) ay isang standardisadong komunikasyon na protocol na idinisenyo upang mapadali ang epektibong pakikipag-ugnayan sa pagitan ng mga AI na modelo at mga aplikasyon. Sa konteksto ng real-time na paghahanap sa web, nagbibigay ang MCP ng balangkas para sa:
+Ang Model Context Protocol (MCP) ay isang standardisadong protocol sa komunikasyon na idinisenyo upang mapadali ang epektibong interaksyon sa pagitan ng mga AI na modelo at aplikasyon. Sa konteksto ng real-time na web search, nagbibigay ang MCP ng balangkas para sa:
 
-- Pagpapanatili ng konteksto ng paghahanap sa kabuuan ng mga sunud-sunod na query
-- Standardisasyon ng mga format ng query at resulta ng paghahanap
-- Optimisasyon sa transmisyon ng mga parameter ng paghahanap at mga resulta
-- Pagpapahusay ng komunikasyon mula modelo-patungong search engine
+- Pagpapanatili ng konteksto ng paghahanap sa buong sunod-sunod ng mga query
+- Pagstandardisa ng mga format ng query ng paghahanap at mga resulta
+- Pag-optimize ng transmisyon ng mga parameter ng paghahanap at mga resulta
+- Pagpapahusay ng komunikasyon mula modelo-sa-search engine
 
-### Pangunahing Mga Sangkap at Arkitektura
+### Pangunahing mga Komponent at Arkitektura
 
-Binubuo ang arkitektura ng MCP para sa real-time na paghahanap sa web ng ilang mga pangunahing sangkap:
+Binubuo ang arkitektura ng MCP para sa real-time na pagsusuri sa web ng ilang mahahalagang bahagi:
 
-1. **Mga Handler ng Konteksto ng Query**: Namamahala at nagpapanatili ng konteksto ng paghahanap sa maraming query
-2. **Mga Processor ng Paghahanap**: Pinoproseso ang mga papasok na request sa paghahanap gamit ang mga teknik na may kamalayan sa konteksto
-3. **Mga Protocol Adapter**: Nagko-convert sa pagitan ng iba't ibang mga API ng paghahanap habang pinananatili ang konteksto
-4. **Imbakan ng Konteksto**: Epektibong nag-iimbak at kumukuha ng kasaysayan ng paghahanap at mga kagustuhan
-5. **Mga Connector sa Paghahanap**: Kumokonekta sa iba't ibang search engine at web API
+1. **Mga Tagapamahala ng Konteksto ng Query**: Namamahala at nagpapanatili ng konteksto ng paghahanap sa maraming query
+2. **Mga Search Processor**: Pinoproseso ang mga papasok na kahilingan sa paghahanap gamit ang mga teknik na may kamalayan sa konteksto
+3. **Mga Protocol Adapter**: Nagko-convert sa pagitan ng iba't ibang API ng paghahanap habang pinapanatili ang konteksto
+4. **Imbakan ng Konteksto**: Mahusay na nag-iimbak at kumukuha ng kasaysayan ng paghahanap at mga kagustuhan
+5. **Mga Connector ng Paghahanap**: Kumokonekta sa iba't ibang mga search engine at web API
 
 ```mermaid
 graph TD
-    subgraph "Pinagmulan ng Data"
+    subgraph "Mga Pinagmulan ng Datos"
         Web[Nilalaman ng Web]
         APIs[Panlabas na API]
         DB[Mga Base ng Kaalaman]
@@ -116,18 +116,18 @@ graph TD
     end
 
     subgraph "MCP Search Layer"
-        SC[Mga Connector ng Paghahanap]
+        SC[Mga Connectors ng Paghahanap]
         PA[Mga Protocol Adapter]
-        CH[Mga Tagapangasiwa ng Konteksto]
+        CH[Mga Tagapamahala ng Konteksto]
         SP[Mga Processor ng Paghahanap]
         CS[Tindahan ng Konteksto]
     end
 
-    subgraph "Pagpoproseso at Pagsusuri"
+    subgraph "Pagproseso at Pagsusuri"
         RE[Relevance Engine]
-        ML[Mga Modelong ML]
+        ML[Mga Modelo ng ML]
         NLP[NLP Processing]
-        Rank[Sistema ng Pag-ranggo]
+        Rank[Sistema ng Pagraranggo]
     end
 
     subgraph "Mga Aplikasyon at Serbisyo"
@@ -138,28 +138,28 @@ graph TD
     end
 
     Web -->|Nilalaman| SC
-    APIs -->|Data| SC
+    APIs -->|Datos| SC
     DB -->|Kaalaman| SC
     News -->|Mga Update| SC
     
     SC -->|Hilaw na Resulta| PA
     PA -->|Normalisadong Resulta| CH
-    CH <-->|Mga Operasyon ng Konteksto| CS
-    CH -->|Mga Resultang Pinagyaman ng Konteksto| SP
-    SP -->|Naprosesong Resulta| RE
+    CH <-->|Mga Operasyon sa Konteksto| CS
+    CH -->|Mga Resultang Pinayaman ng Konteksto| SP
+    SP -->|Pinrosesong Resulta| RE
     SP -->|Mga Tampok| ML
     SP -->|Teksto| NLP
     
-    RE -->|Na-ranggo na Resulta| Rank
+    RE -->|Niraranggong Resulta| Rank
     ML -->|Mga Hula| Rank
     NLP -->|Mga Entidad at Relasyon| Rank
     
-    Rank -->|Pangwakas na Resulta| RA
+    Rank -->|Panghuling Resulta| RA
     ML -->|Mga Pananaw| Alerts
-    NLP -->|Istrakturadong Data| KB
+    NLP -->|Istrakturadong Datos| KB
     
     RA -->|Pananaliksik| Users((Users))
-    Alerts -->|Mga Notification| Users
+    Alerts -->|Mga Abiso| Users
     KB <-->|Access sa Kaalaman| API
 
     classDef sources fill:#f9f,stroke:#333,stroke-width:2px,color:#4a004a
@@ -173,44 +173,43 @@ graph TD
     class RA,Alerts,KB,API apps
 ```
 
-### Paano Pinapabuti ng MCP ang Real-Time na Paghahanap sa Web
+### Paano Pinapahusay ng MCP ang Real-Time na Pagsusuri sa Web
 
-Tinatalakay ng MCP ang mga hamon sa tradisyunal na paghahanap sa web sa pamamagitan ng:
+Tinutugunan ng MCP ang mga hamon ng tradisyunal na web search sa pamamagitan ng:
 
 - **Pagpapatuloy ng Konteksto**: Pinananatili ang mga ugnayan sa pagitan ng mga query sa buong session ng paghahanap
-- **Optimisadong Transmisyon**: Binabawasan ang sobra-sobrang parameter ng paghahanap sa pamamagitan ng matalinong pamamahala ng konteksto
-- **Standardisadong Interface**: Nagbibigay ng magkakaparehong mga API para sa mga bahagi ng paghahanap
-- **Pinababang Latency**: Pinapaliit ang overhead sa pagproseso gamit ang epektibong pamamahala ng konteksto
-- **Pinalakas na Kaugnayan**: Pinapahusay ang kaugnayan ng paghahanap sa pamamagitan ng pagpapanatili ng intensyon ng user sa maraming mga query
-
+- **Na-optimize na Transmisyon**: Binabawasan ang dobleng parameter ng paghahanap gamit ang matalinong pamamahala ng konteksto
+- **Standardisadong Interface**: Nagbibigay ng consistent na API para sa mga bahagi ng paghahanap
+- **Pagbawas ng Latency**: Pinapaliit ang overhead ng pagproseso sa pamamagitan ng epektibong pamamahala ng konteksto
+- **Pinahusay na Kaugnayan**: Pinapabuti ang kaugnayan ng paghahanap sa pamamagitan ng pagpapanatili ng intensyon ng gumagamit sa maraming query
 
 ## Integrasyon at Implementasyon
 
-Ang mga real-time na sistema ng paghahanap sa web ay nangangailangan ng maingat na disenyo ng arkitektura at implementasyon upang mapanatili ang parehong pagganap at kontekstwal na integridad. Ang Model Context Protocol ay nag-aalok ng isang standardisadong pamamaraan para sa integrasyon ng mga AI model at teknolohiya sa paghahanap, na nagpapahintulot para sa mas sopistikadong, may kamalayang konteksto na mga pipeline ng paghahanap.
+Nangangailangan ang mga sistema ng real-time na pagsusuri sa web ng maingat na disenyo ng arkitektura at implementasyon upang mapanatili ang parehong pagganap at integridad ng konteksto. Nag-aalok ang Model Context Protocol ng standardisadong paraan para sa integrasyon ng mga AI modelo at teknolohiya ng paghahanap, na nagpapahintulot ng mas sopistikadong, konteksto-na may kamalayang mga pipeline ng paghahanap.
 
 ### Pangkalahatang-ideya ng Integrasyon ng MCP sa mga Arkitektura ng Paghahanap
 
-Ang pagpapatupad ng MCP sa mga real-time na kapaligiran ng paghahanap sa web ay may kasamang ilang mahahalagang konsiderasyon:
+Ang pagpapatupad ng MCP sa mga kapaligiran ng real-time na paghahanap sa web ay may ilang mahahalagang konsiderasyon:
 
-1. **Search Context Serialization**: Nagbibigay ang MCP ng mga epektibong mekanismo para sa pag-encode ng kontekstwal na impormasyon sa loob ng mga kahilingan sa paghahanap, na tinitiyak na ang mahalagang konteksto ay sinusundan ang query sa buong processing pipeline. Kasama rito ang mga standardized na format ng serialization na na-optimize para sa metadata na may kaugnayan sa paghahanap.
+1. **Serialization ng Konteksto ng Paghahanap**: Nagbibigay ang MCP ng epektibong mga mekanismo para sa pag-encode ng impormasyon ng konteksto sa loob ng mga kahilingan ng paghahanap, tiniyak na ang mahalagang konteksto ay sumusunod sa query sa buong pipeline ng pagproseso. Kabilang dito ang mga standard na format ng serialization na na-optimize para sa metadata na kaugnay ng paghahanap.
 
-2. **Stateful Search Processing**: Pinapagana ng MCP ang mas intelihenteng stateful na pagproseso sa pamamagitan ng pagpapanatili ng konsistent na representasyon ng konteksto sa iba't ibang mga pag-uulit ng paghahanap. Ito ay partikular na mahalaga sa multi-stage na mga pipeline ng paghahanap kung saan pinapahusay ng pagrefine ng konteksto ang mga resulta.
+2. **Stateful na Pagproseso ng Paghahanap**: Pinapagana ng MCP ang mas matalinong stateful na pagproseso sa pamamagitan ng pagpapanatili ng pare-parehong representasyon ng konteksto sa buong mga pag-ulit ng paghahanap. Ito ay partikular na mahalaga sa mga multi-stage na pipeline ng paghahanap kung saan pinapabuti ng pag-refine ng konteksto ang mga resulta.
 
-3. **Query Expansion and Refinement**: Ang mga implementasyon ng MCP sa mga sistema ng paghahanap ay maaaring magpadali ng sopistikadong pagpapalawak at pagrefine ng query base sa naipon na konteksto, na nagpapahintulot para sa mas kaugnay na mga resulta habang umuusad ang session ng paghahanap.
+3. **Pagpapalawak at Pagpapino ng Query**: Maaaring pahintulutan ng mga implementasyon ng MCP sa mga sistema ng paghahanap ang mas sopistikadong pagpapalawak at pagpapino ng query batay sa naipon na konteksto, na nagpapahintulot ng unti-unting mas kaugnay na mga resulta habang nagpapatuloy ang session ng paghahanap.
 
-4. **Result Caching and Prioritization**: Sa pamamagitan ng standardisasyon sa paghawak ng konteksto, tinutulungan ng MCP ang pamamahala ng caching at pag-priyoridad ng mga resulta, na nagpapahintulot sa mga bahagi na umangkop base sa nagbabagong konteksto ng paghahanap.
+4. **Caching at Pagbibigay-Prioridad sa Resulta**: Sa pamamagitan ng pag-standardisa ng pamamahala ng konteksto, tumutulong ang MCP sa pamamahala ng caching ng mga resulta at pagbibigay-priyoridad, na nagpapahintulot sa mga bahagi na umangkop batay sa nagbabagong konteksto ng paghahanap.
 
-5. **Search Federation and Aggregation**: Pinapadali ng MCP ang mas sopistikadong federasyon ng paghahanap sa maraming backend sa pamamagitan ng pagbibigay ng nakabalangkas na representasyon ng konteksto ng paghahanap, na nagpapahintulot sa mas makahulugang pagsasama-sama ng mga resulta mula sa iba't ibang mga pinagmulan.
+5. **Federasyon at Aggregasyon ng Paghahanap**: Pinadadali ng MCP ang mas sopistikadong federasyon ng paghahanap sa maraming backend sa pamamagitan ng pagbibigay ng nakaayos na mga representasyon ng konteksto ng paghahanap, na nagpapahintulot ng mas makahulugang pagsasama-sama ng mga resulta mula sa iba't ibang pinagmulan.
 
-Ang pagpapatupad ng MCP sa iba't ibang teknolohiya ng paghahanap ay lumilikha ng isang pinag-isang pamamaraan sa pamamahala ng konteksto, na nagpapababa ng pangangailangan para sa pasadyang code ng integrasyon habang pinapahusay ang kakayahan ng sistema na mapanatili ang makahulugang konteksto habang umuunlad ang mga query sa paghahanap.
+Ang implementasyon ng MCP sa iba't ibang teknolohiya ng paghahanap ay lumilikha ng isang pinag-isang pamamaraan para sa pamamahala ng konteksto, na binabawasan ang pangangailangan para sa custom na code sa integrasyon habang pinapalakas ang kakayahan ng sistema na mapanatili ang makahulugang konteksto habang umuunlad ang mga query sa paghahanap.
 
 ### MCP sa Iba't Ibang Implementasyon ng Paghahanap sa Web
 
-Sinusunod ng mga halimbawang ito ang kasalukuyang espesipikasyon ng MCP na nakatuon sa isang JSON-RPC na nakabatay na protocol na may kani-kaniyang mga mekanismo ng transportasyon. Ipinapakita ng code kung paano ka makaka-implementa ng customized na mga integrasyon ng paghahanap habang pinapanatili ang buong pagiging compatible sa protocol ng MCP.
+Ang mga halimbawang ito ay sumusunod sa kasalukuyang espesipikasyon ng MCP na nakatuon sa isang JSON-RPC na protocol na may mga natatanging mekanismo sa transportasyon. Ipinapakita ng code kung paano mo maaaring ipatupad ang mga custom na integrasyon sa paghahanap habang pinananatili ang buong pagkakatugma sa protocol ng MCP.
 
 
 <details>
-<summary>Python Implementation gamit ang Generic Search API</summary>
+<summary>Implementasyon sa Python gamit ang Generic Search API</summary>
 
 ```python
 import asyncio
@@ -220,7 +219,7 @@ from typing import Dict, Any, Optional, List
 from contextlib import asynccontextmanager
 from collections.abc import AsyncIterator
 
-# Mag-import ng mga karaniwang MCP na librarya
+# Mag-import ng mga standard na MCP na librarya
 from mcp.client.session import ClientSession
 from mcp.client.streamable_http import streamablehttp_client
 from mcp.types import TextContent, CreateMessageRequestParams, CreateMessageResult
@@ -229,7 +228,7 @@ from mcp.server.fastmcp import FastMCP
 # Gumawa ng FastMCP server para sa paghahanap sa web
 search_server = FastMCP("WebSearch")
 
-# Klase para humawak ng mga operasyon sa paghahanap sa web
+# Klase para hawakan ang mga operasyon ng paghahanap sa web
 class WebSearchHandler:
     def __init__(self, api_endpoint: str, api_key: str):
         self.api_endpoint = api_endpoint
@@ -252,7 +251,7 @@ class WebSearchHandler:
                            exclude_domains: List[str] = None,
                            time_period: str = "any") -> Dict[str, Any]:
         """Perform web search using the search API"""
-        # Bumuo ng mga parameter ng paghahanap
+        # Bumuo ng mga parameter para sa paghahanap
         search_params = {
             "q": query,
             "limit": max_results,
@@ -277,7 +276,7 @@ class WebSearchHandler:
                 
                 search_data = await response.json()
                 
-                # I-transform ang API-specific na tugon sa isang karaniwang format
+                # I-transform ang tugon na specific sa API sa isang standard na format
                 results = []
                 for item in search_data.get("results", []):
                     results.append({
@@ -297,13 +296,13 @@ class WebSearchHandler:
             print(f"Search API request error: {e}")
             raise
 
-# I-initialize ang tagapamahala ng paghahanap
+# I-initialize ang tagapangasiwa ng paghahanap
 search_handler = WebSearchHandler(
     api_endpoint="https://api.search-service.example/search",
     api_key="your-api-key-here"
 )
 
-# I-setup ang lifespan para pamahalaan ang tagapamahala ng paghahanap
+# I-setup ang lifespan upang pamahalaan ang tagapangasiwa ng paghahanap
 @asyncio.asynccontextmanager
 async def app_lifespan(server: FastMCP):
     """Manage application lifecycle"""
@@ -316,7 +315,7 @@ async def app_lifespan(server: FastMCP):
 # Itakda ang lifespan para sa server
 search_server = FastMCP("WebSearch", lifespan=app_lifespan)
 
-# Irehistro ang isang kasangkapan sa paghahanap sa web
+# Magrehistro ng isang kasangkapan para sa paghahanap sa web
 @search_server.tool()
 async def web_search(query: str, max_results: int = 5, 
                    include_domains: List[str] = None,
@@ -348,7 +347,7 @@ async def web_search(query: str, max_results: int = 5,
     
     return results
 
-# Halimbawa ng paggamit ng kliyente
+# Halimbawang paggamit ng kliyente
 async def client_example():
     # Kumonekta sa search server gamit ang Streamable HTTP transport
     async with streamablehttp_client("http://localhost:8000/mcp") as (read, write, _):
@@ -377,22 +376,22 @@ if __name__ == "__main__":
 </details> 
 
 <details>
-<summary>JavaScript Implementation gamit ang Browser-Based Search</summary>
+<summary>Implementasyon sa JavaScript gamit ang Browser-Based Search</summary>
 
 
 ```javascript
-// Implementasyon ng MCP server para sa paghahanap sa web
+// Implementasyon ng MCP server para sa web search
 import { McpServer, ResourceTemplate } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import { z } from 'zod';
 
-// Lumikha ng MCP server para sa paghahanap sa web
+// Gumawa ng MCP server para sa web search
 const searchServer = new McpServer({
     name: "BrowserSearch",
     description: "A server that provides web search capabilities"
 });
 
-// Klase ng serbisyo ng paghahanap
+// Klase ng search service
 class SearchService {
     constructor(searchApiUrl, apiKey) {
         this.searchApiUrl = searchApiUrl;
@@ -408,7 +407,7 @@ class SearchService {
             timePeriod = 'any'
         } = parameters;
         
-        // Bumuo ng URL ng paghahanap gamit ang mga parametro
+        // Buuin ang URL ng paghahanap na may mga parametro
         const url = new URL(this.searchApiUrl);
         url.searchParams.append('q', query);
         url.searchParams.append('limit', maxResults);
@@ -438,7 +437,7 @@ class SearchService {
             
             const searchData = await response.json();
             
-            // I-transform ang sagot na partikular sa API sa isang standard na format
+            // I-transform ang API-specific na tugon sa isang standard na format
             const results = searchData.results?.map(item => ({
                 title: item.title || '',
                 url: item.url || '',
@@ -459,20 +458,20 @@ class SearchService {
     }
 }
 
-// I-initialize ang serbisyo ng paghahanap
+// I-initialize ang search service
 const searchService = new SearchService(
     'https://api.search-service.example/search',
     'your-api-key-here'
 );
 
-// I-setup ang tagapagbigay ng konteksto para sa server
+// I-setup ang context provider para sa server
 searchServer.setContextProvider(() => {
     return {
         searchService
     };
 });
 
-// Irehistro ang tool sa paghahanap sa web
+// Irehistro ang web search tool
 searchServer.tool({
     name: 'web_search',
     description: 'Search the web for information',
@@ -513,7 +512,7 @@ searchServer.tool({
     }
 });
 
-// Halimbawa ng kliyenteng code para kumonekta sa search server
+// Halimbawa ng client code para kumonekta sa search server
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 
@@ -530,7 +529,7 @@ async function connectToSearchServer() {
     
     await client.connect(transport);
     
-    // Isagawa ang tool sa paghahanap
+    // Ipatupad ang search tool
     const searchResults = await client.callTool({
         name: 'web_search',
         arguments: {
@@ -552,7 +551,7 @@ const transport = new StreamableHTTPServerTransport();
 await searchServer.connect(transport);
 console.log('Search server running at http://localhost:8000/mcp');
 
-// Sa hiwalay na proseso o pagkatapos masimulan ang server
+// Sa hiwalay na proseso o pagkatapos simulan ang server
 // connectToSearchServer().catch(console.error);
 ```
 </details> 
@@ -562,39 +561,41 @@ console.log('Search server running at http://localhost:8000/mcp');
 
 ## Paunawa sa Mga Halimbawa ng Code
 
-> **Mahalagang Tala**: Ipinapakita ng mga halimbawang code sa ibaba ang integrasyon ng Model Context Protocol (MCP) sa functionality ng paghahanap sa web. Bagama't sinusunod nila ang mga pattern at estruktura ng opisyal na MCP SDKs, pinasimple ang mga ito para sa layuning pang-edukasyon.
+> **Mahalagang Paunawa**: Ang mga halimbawa ng code sa ibaba ay nagpapakita ng integrasyon ng Model Context Protocol (MCP) sa functionality ng web search. Bagaman sinusunod nila ang mga pattern at istruktura ng opisyal na MCP SDK, pinaliit ang mga ito para sa layunin ng edukasyon.
 > 
-> Ipinapakita ng mga halimbawang ito:
+> Ipinapakita ng mga halimbawa ang:
 > 
-> 1. **Python Implementation**: Isang FastMCP na implementasyon ng server na nagbibigay ng web search tool at nakakonekta sa isang external na search API. Ipinapakita ng halimbawang ito ang wastong pamamahala ng lifespan, paghawak ng konteksto, at implementasyon ng tool na sumusunod sa mga pattern ng [opisyal na MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk). Ginagamit ng server ang inirerekomendang Streamable HTTP transport na pumalit sa mas luma na SSE transport para sa production deployments.
+> 1. **Implementasyon sa Python**: Isang pagpapapatupad ng FastMCP server na nagbibigay ng tool sa web search at kumokonekta sa isang panlabas na API ng paghahanap. Ipinapakita ng halimbawa ang wastong pamamahala ng lifespan, pamamahala ng konteksto, at pagpapatupad ng mga tool ayon sa mga pattern ng [opisyal na MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk). Ginagamit ng server ang inirerekomendang Streamable HTTP transport na pinalitan na ang mas lumang SSE transport para sa mga production deployment.
 > 
-> 2. **JavaScript Implementation**: Isang TypeScript/JavaScript na implementasyon gamit ang FastMCP pattern mula sa [opisyal na MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) upang lumikha ng search server na may tamang mga depinisyon ng tool at mga koneksyon ng kliyente. Sinusunod nito ang pinakabagong inirerekomendang mga pattern para sa pamamahala ng session at pagpapanatili ng konteksto.
+> 2. **Implementasyon sa JavaScript**: Isang TypeScript/JavaScript na implementasyon gamit ang FastMCP pattern mula sa [opisyal na MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) upang lumikha ng search server na may wastong mga depinisyon ng tool at mga koneksyon sa kliyente. Sinusunod nito ang pinakabagong inirerekomendang mga pattern para sa pamamahala ng session at pagpapanatili ng konteksto.
 > 
-> Ang mga halimbawang ito ay mangangailangan pa ng karagdagang paghawak sa error, authentication, at espesipikong code ng integrasyon ng API para sa paggamit sa production. Ang mga search API endpoint na ipinakita (`https://api.search-service.example/search`) ay mga placeholder at kailangang palitan ng aktwal na mga endpoint ng search service.
+> Nangangailangan ang mga halimbawang ito ng karagdagang paghawak sa error, authentication, at tiyak na code ng integrasyon ng API para sa paggamit sa produksyon. Ang mga endpoint ng search API na ipinakita (`https://api.search-service.example/search`) ay mga placeholder at kailangang palitan ng mga aktwal na endpoint ng search service.
 > 
-> Para sa kumpletong detalye ng implementasyon at ang pinakabagong mga pamamaraan, pakitingnan ang [opisyal na espesipikasyon ng MCP](https://spec.modelcontextprotocol.io/) at dokumentasyon ng SDK.
+> Para sa kumpletong detalye ng implementasyon at ang pinakabagong mga pamamaraan,
+> sumangguni sa [opisyal na espesipikasyon ng MCP](https://modelcontextprotocol.io/specification/2026-07-28/)
+> at sa dokumentasyon ng SDK.
 
 ## Pangunahing Mga Konsepto
 
-### Balangkas ng Model Context Protocol (MCP)
+### Ang Balangkas ng Model Context Protocol (MCP)
 
-Sa kanyang pundasyon, ang Model Context Protocol ay nagbibigay ng isang standardisadong paraan para sa mga AI model, aplikasyon, at serbisyo upang magpalitan ng konteksto. Sa real-time na paghahanap sa web, mahalaga ang balangkas na ito para sa paglikha ng magkakaugnay, multi-turn na karanasan sa paghahanap. Kasama sa mga pangunahing bahagi:
+Sa pinakapundasyon nito, nagbibigay ang Model Context Protocol ng isang standardisadong paraan para sa mga AI modelo, aplikasyon, at serbisyo na magpalitan ng konteksto. Sa real-time na pagsusuri sa web, mahalaga ang balangkas na ito para lumikha ng magkakaugnay, maraming-bilog na mga karanasan sa paghahanap. Kabilang sa mga pangunahing bahagi nito:
 
-1. **Client-Server Architecture**: Nagpapatatag ng malinaw na paghihiwalay sa pagitan ng mga kliyente ng paghahanap (mga humihiling) at mga server ng paghahanap (mga nagbibigay), na nagpapahintulot ng flexible na mga modelo ng deployment.
+1. **Arkitekturang Client-Server**: Nagtatatag ang MCP ng malinaw na paghihiwalay sa pagitan ng mga kliyente sa paghahanap (mga humihiling) at mga server ng paghahanap (mga nagbibigay), na nagpapahintulot ng flexible na mga modelo ng deployment.
 
-2. **JSON-RPC Communication**: Ginagamit ng protocol ang JSON-RPC para sa pagpapalitan ng mensahe, na ginagawa itong compatible sa mga teknolohiya sa web at madaling ipatupad sa iba't ibang platform.
+2. **Komunikasyon sa JSON-RPC**: Ginagamit ng protocol ang JSON-RPC para sa palitan ng mga mensahe, na ginagawang compatible ito sa mga teknolohiya sa web at madaling ipatupad sa iba't ibang mga plataporma.
 
-3. **Context Management**: Itinakda ng MCP ang mga nakabalangkas na pamamaraan para sa pagpapanatili, pag-update, at paggamit ng konteksto ng paghahanap sa iba't ibang pakikipag-ugnayan.
+3. **Pamamahala ng Konteksto**: Tinutukoy ng MCP ang mga nakaayos na pamamaraan para sa pagpapanatili, pag-update, at paggamit ng konteksto ng paghahanap sa maraming interaksyon.
 
-4. **Tool Definitions**: Ang mga kakayahan sa paghahanap ay inilalantad bilang mga standardisadong tool na may malinaw na mga parameter at mga halaga ng balik.
+4. **Mga Depinisyon ng Tool**: Ang mga kakayahan sa paghahanap ay inilalantad bilang standardisadong mga tool na may malinaw na mga parameter at mga halaga ng return.
 
-5. **Streaming Support**: Sinusuportahan ng protocol ang streaming ng mga resulta, na mahalaga sa real-time na paghahanap kung saan maaaring dumarating nang paunti-unti ang mga resulta.
+5. **Suporta sa Streaming**: Sinusuportahan ng protocol ang streaming ng mga resulta, na mahalaga para sa real-time na paghahanap kung saan maaaring dumarating nang paunti-unti ang mga resulta.
 
-### Mga Pattern ng Integrasyon sa Paghahanap sa Web
+### Mga Pattern ng Integrasyon sa Web Search
 
-Kapag ini-integrate ang MCP sa paghahanap sa web, lumilitaw ang ilang mga pattern:
+Kapag iniintegrate ang MCP sa web search, lumilitaw ang ilang mga pattern:
 
-#### 1. Direct Search Provider Integration
+#### 1. Direktang Integrasyon sa Provider ng Paghahanap
 
 ```mermaid
 graph LR
@@ -604,9 +605,9 @@ graph LR
     Server --> |Tugon ng MCP| Client
 ```
 
-Sa pattern na ito, direktang nakikipag-interface ang MCP server sa isa o higit pang mga search API, isinasalin ang mga kahilingan ng MCP sa mga tawag na specific sa API at ini-format ang mga resulta bilang mga tugon ng MCP.
+Sa pattern na ito, direktang nakikipag-interface ang MCP server sa isa o higit pang mga API ng paghahanap, isinasalin ang mga kahilingan ng MCP sa mga tawag na partikular sa API at inaayos ang mga resulta bilang mga tugon ng MCP.
 
-#### 2. Federated Search with Context Preservation
+#### 2. Federated Search na may Pagpapanatili ng Konteksto
 
 ```mermaid
 graph LR
@@ -620,152 +621,153 @@ graph LR
     Federation --> |Pinagsama-samang Tugon ng MCP| Client
 ```
 
-Ang pattern na ito ay naghahati ng mga query sa paghahanap sa maraming MCP-compatible na mga search provider, bawat isa ay maaaring may espesyalidad sa iba't ibang uri ng nilalaman o kakayahan sa paghahanap, habang pinapanatili ang isang pinag-isang konteksto.
+Inilalathala ng pattern na ito ang mga query sa paghahanap sa maraming MCP-compatible na mga provider ng paghahanap, na bawat isa ay maaaring dalubhasa sa iba’t ibang uri ng nilalaman o kakayahan sa paghahanap, habang pinananatili ang pinag-isang konteksto.
 
-#### 3. Context-Enhanced Search Chain
+#### 3. Chain ng Paghahanap na Pinahusay ng Konteksto
 
 ```mermaid
 graph LR
-    Client[Kliyente ng MCP] --> |Tanong + Konteksto| Server[Server ng MCP]
+    Client[Kliyenteng MCP] --> |Tanong + Konteksto| Server[Serbidor ng MCP]
     Server --> |1. Pagsusuri ng Tanong| NLP[Serbisyo ng NLP]
     NLP --> |Pinahusay na Tanong| Server
     Server --> |2. Pagsasagawa ng Paghahanap| Search[Search Engine]
-    Search --> |Mga Raw na Resulta| Server
+    Search --> |Raw na Resulta| Server
     Server --> |3. Pagpoproseso ng Resulta| Enhancement[Pagpapahusay ng Resulta]
-    Enhancement --> |Pinahusay na mga Resulta| Server
+    Enhancement --> |Pinahusay na Resulta| Server
     Server --> |Panghuling Resulta + Na-update na Konteksto| Client
 ```
 
-Sa pattern na ito, ang proseso ng paghahanap ay nahahati sa maraming yugto, kung saan ang konteksto ay pinayayaman sa bawat hakbang, na nagreresulta sa unti-unting mas kaugnay na mga resulta.
+Sa pattern na ito, hinahati ang proseso ng paghahanap sa maraming yugto, na pinayayaman ang konteksto sa bawat hakbang, na nagreresulta sa unti-unting mas kaugnay na mga resulta.
 
-### Mga Sangkap ng Konteksto sa Paghahanap
+### Mga Komponent ng Konteksto ng Paghahanap
 
-Sa MCP-based na paghahanap sa web, karaniwan nang kasama sa konteksto ang:
+Sa web search na batay sa MCP, karaniwang kasama ang konteksto:
 
-- **Kasaysayan ng Query**: Mga naunang query sa paghahanap sa session
-- **Mga Preferensya ng User**: Wika, rehiyon, mga setting ng safe search
-- **Kasaysayan ng Pakikipag-ugnayan**: Aling mga resulta ang na-click, oras na ginugol sa mga resulta
-- **Mga Parameter ng Paghahanap**: Mga filter, mga ayos ng sort, at iba pang mga modifier ng paghahanap
-- **Kaalaman sa Domain**: Kontekstong may kaugnayan sa paksa na mahalaga sa paghahanap
-- **Temporal na Konteksto**: Mga salik ng kahalagahan batay sa oras
-- **Mga Preferensya sa Pinagmulan**: Mga pinagkakatiwalaang o mas gustong pinanggagalingan ng impormasyon
+- **Kasaysayan ng Query**: Mga naunang query ng paghahanap sa session
+- **Mga Kagustuhan ng Gumagamit**: Wika, rehiyon, mga setting ng ligtas na paghahanap
+- **Kasaysayan ng Interaksyon**: Anong mga resulta ang na-click, oras na ginugol sa mga resulta
+- **Mga Parameter ng Paghahanap**: Mga filter, pagkakasunud-sunod ng pag-sort, at iba pang mga modifier ng paghahanap
+- **Kaalamang Pang-domain**: Konteksto na may kaugnayan sa partikular na paksa ng paghahanap
+- **Temporal na Konteksto**: Mga salik ng kaugnayan base sa oras
+- **Mga Kagustuhan sa Pinagmulan**: Pinagkakatiwalaan o paboritong mga pinagkukunan ng impormasyon
 
-## Mga Gamit at Aplikasyon
+## Mga Kaso ng Paggamit at Mga Aplikasyon
 
 ### Pananaliksik at Pangangalap ng Impormasyon
 
-Pinapalakas ng MCP ang mga daloy ng pananaliksik sa pamamagitan ng:
+Pinapahusay ng MCP ang mga proseso ng pananaliksik sa pamamagitan ng:
 
 - Pagpapanatili ng konteksto ng pananaliksik sa buong mga session ng paghahanap
-- Pagpapahintulot ng mas sopistikado at kontekstwal na may kaugnayang mga query
+- Pagbibigay-daan sa mas sopistikado at kontekstwal na mga kaugnay na query
 - Pagsuporta sa multi-source na federasyon ng paghahanap
 - Pagpapadali ng pagkuha ng kaalaman mula sa mga resulta ng paghahanap
 
-### Real-Time na Pagmamanman ng Balita at Mga Uso
+### Real-Time na Pagsubaybay ng Balita at Mga Trend
 
-Nagbibigay ang paghahanap na pinapagana ng MCP ng mga bentahe para sa pagmamanman ng balita:
+Nag-aalok ang MCP-powered na paghahanap ng mga kalamangan para sa pagsubaybay ng balita:
 
-- Halos real-time na pagtuklas ng mga lumalabas na mga kuwento ng balita
-- Kontekstwal na pagsala ng kaugnay na impormasyon
-- Pagsubaybay ng paksa at entity sa maraming mga pinagmulan
-- Mga personalisadong alerto sa balita base sa konteksto ng user
+- Halos real-time na pagtuklas ng mga umuusbong na kwento ng balita
+- Kontekstwal na pagsasala ng kaugnay na impormasyon
+- Pagsubaybay ng paksa at entidad sa maraming mga pinagkukunan
+- Personal na mga alerto ng balita batay sa konteksto ng gumagamit
 
-### AI-Augmented Browsing at Pananaliksik
+### AI-Augmented na Pagba-browse at Pananaliksik
 
 Lumilikha ang MCP ng mga bagong posibilidad para sa AI-augmented na pagba-browse:
 
-- Mga kontekstwal na rekomendasyon sa paghahanap base sa kasalukuyang aktibidad sa browser
-- Seamless na integrasyon ng paghahanap sa web sa LLM-powered na mga assistant
-- Multi-turn na pagrefine ng paghahanap na may pinananatiling konteksto
-- Pinahusay na fact-checking at beripikasyon ng impormasyon
+- Kontekstwal na mga suhestiyon sa paghahanap batay sa kasalukuyang aktibidad sa browser
+- Walang patid na integrasyon ng web search sa mga LLM-powered assistant
+- Multi-turn na pagpapino ng paghahanap na may pinananatiling konteksto
+- Pinahusay na fact-checking at pag-verify ng impormasyon
 
-## Mga Hinaharap na Uso at Inobasyon
+## Mga Hinaharap na Trend at Inobasyon
 
-### Ebolusyon ng MCP sa Paghahanap sa Web
+### Ebolusyon ng MCP sa Web Search
 
-Sa pagtitig sa hinaharap, inaasahan naming uunlad ang MCP upang tugunan ang:
+Sa hinaharap, inaasahan naming mag-evolve ang MCP upang tugunan ang:
 
 
-- **Multimodal na Paghahanap**: Pagsasama ng paghahanap ng teksto, larawan, audio, at video na may napanatiliang konteksto
-- **Desentralisadong Paghahanap**: Pagsuporta sa mga distributed at federated na ecosystem ng paghahanap
-- **Privacy sa Paghahanap**: Mga mekanismo ng privacy-preserving na may kamalayan sa konteksto
-- **Pag-unawa sa Query**: Malalim na semantic parsing ng natural na wika ng mga query sa paghahanap
+- **Multimodal Search**: Pagsasama-sama ng text, larawan, audio, at video search na may napanatiling konteksto
+- **Decentralized Search**: Pagsuporta sa mga distributed at federated search ecosystem
+- **Search Privacy**: Mga mekanismong nagpoprotekta sa privacy sa pag-search na may kamalayan sa konteksto
+- **Query Understanding**: Malalim na semantic parsing ng mga natural language search query
 
-### Mga Potensyal na Pag-unlad sa Teknolohiya
+### Mga Potensyal na Pagsulong sa Teknolohiya
 
 Mga umuusbong na teknolohiya na huhubog sa hinaharap ng MCP search:
 
-1. **Neural Search Architectures**: Mga naka-embed na sistema ng paghahanap na na-optimize para sa MCP
-2. **Personalized Search Context**: Pag-aaral ng mga indibidwal na pattern ng paghahanap ng gumagamit sa paglipas ng panahon
-3. **Knowledge Graph Integration**: Paghahanap na may konteksto na pinahusay ng domain-specific knowledge graphs
-4. **Cross-Modal Context**: Pagpapanatili ng konteksto sa iba't ibang mga modality ng paghahanap
+1. **Neural Search Architectures**: Mga search system na batay sa embedding na inoptimize para sa MCP
+2. **Personalized Search Context**: Pag-aaral ng mga indibidwal na pattern ng user sa pag-search sa paglipas ng panahon
+3. **Knowledge Graph Integration**: Pinahusay na kontekstwal na paghahanap gamit ang mga knowledge graph na partikular sa domain
+4. **Cross-Modal Context**: Pagpapanatili ng konteksto sa iba't ibang modality ng paghahanap
 
 ## Mga Hands-On na Pagsasanay
 
-### Pagsasanay 1: Pagse-setup ng Basic MCP Search Pipeline
+### Pagsasanay 1: Pagsasaayos ng Basic MCP Search Pipeline
 
 Sa pagsasanay na ito, matututunan mo kung paano:
-- I-configure ang isang basic na paligid sa MCP search
-- Mag-implement ng mga context handler para sa web search
+- I-configure ang isang basic na MCP search environment
+- Magpatupad ng context handlers para sa web search
 - Subukan at i-validate ang pagpapanatili ng konteksto sa iba't ibang pag-uulit ng paghahanap
 
 ### Pagsasanay 2: Paggawa ng Research Assistant gamit ang MCP Search
 
-Gumawa ng kompletong aplikasyon na:
-- Nagpoproseso ng mga tanong sa pananaliksik sa natural na wika
-- Nagsasagawa ng context-aware na web searches
-- Nagsisintesis ng impormasyon mula sa iba't ibang mga pinagmulan
+Gumawa ng isang kompletong aplikasyon na:
+- Nagpoproseso ng mga natural language research question
+- Gumagawa ng kontekstuwal na web search
+- Nagsasama-sama ng impormasyon mula sa iba't ibang mga pinagmulan
 - Nagpapakita ng organisadong mga natuklasan sa pananaliksik
 
 ### Pagsasanay 3: Pagpapatupad ng Multi-Source Search Federation gamit ang MCP
 
 Advanced na pagsasanay na sumasaklaw sa:
-- Context-aware na query dispatching sa maraming search engine
-- Pag-ranggo at pag-aggregate ng mga resulta
-- Contextual na deduplication ng mga resulta ng paghahanap
-- Paghawak ng metadata na tukoy sa pinagmulan
+- Kontekstuwal na paghahatid ng query sa maraming search engine
+- Pagra-ranggo at pag-aaggragate ng mga resulta
+- Kontekstuwal na deduplikasyon ng mga resulta ng paghahanap
+- Paghawak ng source-specific metadata
 
-## Karagdagang Mga Mapagkukunan
+## Karagdagang mga Mapagkukunan
 
-- [Model Context Protocol Specification](https://spec.modelcontextprotocol.io/) - Opisyal na MCP specification at detalyadong dokumentasyon ng protocol
+- [Model Context Protocol Specification](https://modelcontextprotocol.io/specification/2026-07-28/) - Opisyal na MCP specification at detalyadong dokumentasyon ng protocol
 - [Model Context Protocol Documentation](https://modelcontextprotocol.io/) - Detalyadong mga tutorial at gabay sa pagpapatupad
 - [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Opisyal na Python na implementasyon ng MCP protocol
 - [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Opisyal na TypeScript na implementasyon ng MCP protocol
-- [MCP Reference Servers](https://github.com/modelcontextprotocol/servers) - Mga reference implementation ng MCP servers
-- [Bing Web Search API Documentation](https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/overview) - Microsoft's web search API
+- [MCP Reference Servers](https://github.com/modelcontextprotocol/servers) - Mga reference na implementasyon ng MCP servers
+- [Bing Web Search API Documentation](https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/overview) - Web search API ng Microsoft
 - [Google Custom Search JSON API](https://developers.google.com/custom-search/v1/overview) - Programmable search engine ng Google
-- [SerpAPI Documentation](https://serpapi.com/search-api) - Search engine results page API
+- [SerpAPI Documentation](https://serpapi.com/search-api) - API ng search engine results page
 - [Meilisearch Documentation](https://www.meilisearch.com/docs) - Open-source na search engine
-- [Elasticsearch Documentation](https://www.elastic.co/guide/index.html) - Distributed na search at analytics engine
+- [Elasticsearch Documentation](https://www.elastic.co/guide/index.html) - Distributed search at analytics engine
 - [LangChain Documentation](https://python.langchain.com/docs/get_started/introduction) - Paggawa ng mga aplikasyon gamit ang LLMs
 
-## Mga Resulta ng Pagkatuto
+## Mga Aspekto ng Pagkatuto
 
-Sa pagtatapos ng modyul na ito, magagawa mo na:
+Sa pagtapos ng module na ito, magagawa mong:
 
-- Maunawaan ang mga pundasyon ng real-time na paghahanap sa web at ang mga hamon nito
-- Ipakita kung paano pinapalakas ng Model Context Protocol (MCP) ang mga kakayahan ng real-time na web search
-- Magpatupad ng mga solusyon sa paghahanap na nakabase sa MCP gamit ang mga popular na framework at API
-- Magdisenyo at mag-deploy ng scalable, mataas na performance na search architectures gamit ang MCP
-- Ilapat ang mga konsepto ng MCP sa iba't ibang gamit kabilang ang semantic search, research assistance, at AI-augmented browsing
-- Suriin ang mga umuusbong na trend at mga inobasyon sa hinaharap sa teknolohiya ng paghahanap na nakabase sa MCP
+- Maunawaan ang mga batayan ng real-time web search at ang mga hamon nito
+- Ipaliwanag kung paano pinapasigla ng Model Context Protocol (MCP) ang mga kakayahan sa real-time web search
+- Magpatupad ng mga MCP-based search solution gamit ang mga popular na framework at API
+- Magdisenyo at mag-deploy ng scalable, high-performance na search architectures gamit ang MCP
+- Ipatupad ang mga konsepto ng MCP sa iba't ibang kaso ng paggamit kabilang ang semantic search, research assistance, at AI-augmented browsing
+- Suriin ang mga umuusbong na uso at mga hinaharap na inobasyon sa mga teknolohiyang MCP-based search
 
 
-### Mga Pagsasaalang-alang sa Tiwala at Kaligtasan
+### Mga Pagsasaalang-alang sa Tiwala at Seguridad
 
-Kapag nagpapatupad ng mga solusyon sa web search na nakabase sa MCP, tandaan ang mga mahahalagang prinsipyo mula sa MCP specification:
+Sa pagpapatupad ng MCP-based web search solutions, tandaan ang mga mahahalagang prinsipyo mula sa MCP specification:
 
-1. **Pahintulot at Kontrol ng Gumagamit**: Dapat malinaw na pumayag at maunawaan ng mga gumagamit ang lahat ng access sa data at mga operasyon. Ito ay lalong mahalaga para sa mga implementasyon ng web search na maaaring gumamit ng mga panlabas na pinagmulan ng data.
+1. **Pahintulot at Kontrol ng User**: Dapat malinaw na pumayag ang mga user at maintindihan ang lahat ng pag-access at operasyon ng data. Mahalaga ito lalo na sa mga web search implementation na maaaring maka-access ng mga external na pinagmulan ng data.
 
-2. **Privacy ng Data**: Siguraduhin ang tamang paghawak sa mga query at resulta ng paghahanap, lalo na kapag maaaring may sensitibong impormasyon. Magpatupad ng angkop na kontrol sa access para protektahan ang data ng gumagamit.
+2. **Privacy ng Data**: Siguraduhing tama ang paghawak sa mga query at resulta ng paghahanap, lalo na kung ito ay maaaring maglaman ng sensitibong impormasyon. Magpatupad ng angkop na access controls upang protektahan ang data ng user.
 
-3. **Kaligtasan ng Tool**: Magpatupad ng wastong authorization at validation para sa mga search tool, dahil posibleng magdulot ito ng panganib sa seguridad sa pamamagitan ng arbitrary code execution. Ang mga paglalarawan ng asal ng tool ay hindi dapat pagkatiwalaan maliban kung nakuha mula sa isang pinagkakatiwalaang server.
+3. **Kaligtasan ng Tool**: Magpatupad ng wastong awtorisasyon at validation para sa mga search tool, dahil ito ay posibleng magsilbing panganib sa seguridad sa pamamagitan ng arbitrary code execution. Ang mga paglalarawan ng gawi ng tool ay dapat ituring na hindi pinagkakatiwalaan maliban na lang kung ito ay mula sa pinagkakatiwalaang server.
 
-4. **Malinaw na Dokumentasyon**: Magbigay ng malinaw na dokumentasyon tungkol sa mga kakayahan, limitasyon, at mga pagsasaalang-alang sa seguridad ng iyong implementasyon ng paghahanap na nakabase sa MCP, alinsunod sa mga gabay sa pagpapatupad mula sa MCP specification.
+4. **Malinaw na Dokumentasyon**: Magbigay ng malinaw na dokumentasyon tungkol sa mga kakayahan, limitasyon, at mga pagsasaalang-alang sa seguridad ng iyong MCP-based na search implementation, alinsunod sa mga gabay sa pagpapatupad mula sa MCP specification.
 
-5. **Matibay na Daloy ng Pahintulot**: Gumawa ng matibay na daloy ng pahintulot at awtorisasyon na malinaw na ipinaliwanag kung ano ang ginagawa ng bawat tool bago payagan ang paggamit nito, lalo na para sa mga tool na nakikipag-ugnayan sa mga panlabas na web resources.
+5. **Matatag na Daloy ng Pahintulot**: Gumawa ng matatag na mga daloy ng pahintulot at awtorisasyon na malinaw na nagpapaliwanag kung ano ang ginagawa ng bawat tool bago payagan ang paggamit nito, lalo na para sa mga tool na nakikipag-ugnayan sa mga panlabas na web resource.
 
-Para sa kumpletong detalye tungkol sa MCP seguridad at mga pagsasaalang-alang sa tiwala, sumangguni sa [opisyal na dokumentasyon](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).
+Para sa kumpletong detalye tungkol sa MCP na seguridad at mga pagsasaalang-alang sa tiwala, sumangguni sa
+[opisyal na dokumentasyon](https://modelcontextprotocol.io/specification/2026-07-28/basic/security_best_practices).
 
 ## Ano ang susunod
 

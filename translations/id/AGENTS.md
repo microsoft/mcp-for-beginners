@@ -2,7 +2,7 @@
 
 ## Ikhtisar Proyek
 
-**MCP untuk Pemula** adalah kurikulum pendidikan open-source untuk mempelajari Model Context Protocol (MCP) - sebuah kerangka standar untuk interaksi antara model AI dan aplikasi klien. Repositori ini menyediakan materi pembelajaran komprehensif dengan contoh kode langsung dalam berbagai bahasa pemrograman.
+**MCP untuk Pemula** adalah kurikulum edukasi sumber terbuka untuk mempelajari Model Context Protocol (MCP) - kerangka standar untuk interaksi antara model AI dan aplikasi klien. Repositori ini menyediakan materi pembelajaran lengkap dengan contoh kode praktis dalam berbagai bahasa pemrograman.
 
 ### Teknologi Kunci
 
@@ -12,7 +12,7 @@
   - Spring Boot (Java)
   - FastMCP (Python)
   - LangChain4j (Java)
-- **Database**: PostgreSQL dengan ekstensi pgvector
+- **Basis Data**: PostgreSQL dengan ekstensi pgvector
 - **Platform Cloud**: Azure (Container Apps, OpenAI, Content Safety, Application Insights)
 - **Alat Build**: npm, Maven, pip, Cargo
 - **Dokumentasi**: Markdown dengan terjemahan otomatis multi-bahasa (lebih dari 48 bahasa)
@@ -23,13 +23,13 @@
 - **Lab Praktik**: Latihan praktis dengan kode solusi lengkap dalam berbagai bahasa
 - **Proyek Contoh**: Implementasi server dan klien MCP yang berfungsi
 - **Sistem Terjemahan**: Alur kerja GitHub Actions otomatis untuk dukungan multi-bahasa
-- **Aset Gambar**: Direktori gambar sentral dengan versi terjemahan
+- **Aset Gambar**: Direktori gambar terpusat dengan versi terjemahan
 
 ## Perintah Setup
 
-Ini adalah repositori yang fokus pada dokumentasi. Sebagian besar pengaturan dilakukan dalam proyek contoh dan lab individu.
+Ini adalah repositori yang berfokus pada dokumentasi. Sebagian besar setup terjadi di dalam proyek contoh dan lab individual.
 
-### Pengaturan Repositori
+### Setup Repositori
 
 ```bash
 # Kloning repositori
@@ -39,13 +39,13 @@ cd mcp-for-beginners
 
 ### Bekerja dengan Proyek Contoh
 
-Proyek contoh berada di:
-- `03-GettingStarted/samples/` - Contoh khusus bahasa
+Proyek contoh terletak di:
+- `03-GettingStarted/samples/` - Contoh spesifik bahasa
 - `03-GettingStarted/01-first-server/solution/` - Implementasi server pertama
 - `03-GettingStarted/02-client/solution/` - Implementasi klien
-- `11-MCPServerHandsOnLabs/` - Lab integrasi database lengkap
+- `11-MCPServerHandsOnLabs/` - Lab integrasi basis data komprehensif
 
-Setiap proyek contoh berisi instruksi setup sendiri:
+Setiap proyek contoh memiliki instruksi setup sendiri:
 
 #### Proyek TypeScript/JavaScript
 ```bash
@@ -78,7 +78,7 @@ mvn spring-boot:run
 
 - [x] **Kejelasan kontributor baru**: File ini mendefinisikan tujuan repositori,
   struktur, aturan kontribusi, dan jalur setup contoh.
-- [x] **Perintah build/test/lint dengan flag yang tepat**:
+- [x] **Perintah build/test/lint dengan flag tepat**:
   - Lint dokumentasi repositori:
     `npx --yes markdownlint-cli2 "**/*.md" "#node_modules" "#translations" "#translated_images"`
   - Audit pola tautan dokumentasi repositori:
@@ -91,21 +91,21 @@ mvn spring-boot:run
     `cd 03-GettingStarted/samples/java/calculator && mvn -B -ntp test verify`
 - [x] **Satu alur kerja realistis yang dapat menjadi alat MCP**:
   `validate_curriculum_change`
-- [x] **Input/output eksplisit** (lihat spesifikasi di bawah).
+- [x] **Input/output yang eksplisit** (lihat spesifikasi di bawah).
 - [x] **Izin dan mode kegagalan didokumentasikan** (lihat spesifikasi di bawah).
-- [x] **Kemampuan tes CI eksplisit** (perintah deterministik, kode keluaran eksplisit,
+- [x] **Keberhasilan pengujian CI eksplisit** (perintah deterministik, kode keluar eksplisit,
   dan output yang dapat dibaca mesin).
 
-#### Alur kerja alat MCP kandidat: `validate_curriculum_change`
+#### Alur kerja kandidat alat MCP: `validate_curriculum_change`
 
 ##### Tujuan
 
 Memvalidasi perubahan dokumentasi kurikulum dan kesehatan kode contoh representatif
-sebelum penggabungan.
+sebelum digabungkan.
 
 ##### Input
 
-- `changed_paths: string[]` (wajib) - jalur relatif yang diubah dalam PR.
+- `changed_paths: string[]` (required) - jalur relatif yang diubah dalam PR.
 - `run_docs_lint: boolean` (default `true`)
 - `run_links_audit: boolean` (default `true`)
 - `run_samples: { typescript?: boolean, python?: boolean, java?: boolean }`
@@ -121,13 +121,13 @@ sebelum penggabungan.
 
 ##### Izin
 
-- Membaca file workspace dan menulis artefak yang dihasilkan alat (misalnya, laporan lint,
-  log tes) saja; tidak menulis ke `translations/` atau
+- Membaca file ruang kerja dan menulis artefak yang dihasilkan alat (misalnya, laporan lint,
+  log pengujian) saja; tidak menulis ke `translations/` atau
   `translated_images/`.
 - Menjalankan perintah shell lokal.
-- Akses jaringan opsional hanya untuk pemulihan paket (`npm ci`,
+- Akses jaringan opsional hanya untuk restore paket (`npm ci`,
   `python -m pip install`, resolusi dependensi `mvn`).
-- Tidak memiliki izin untuk mendorong, menggabungkan, atau memodifikasi `translations/` atau
+- Tidak diperbolehkan melakukan push, merge, atau memodifikasi `translations/` atau
   `translated_images/`.
 
 ##### Mode kegagalan
@@ -136,77 +136,77 @@ sebelum penggabungan.
 - `E_INVALID_PATH`: jalur input keluar dari root repositori.
 - `E_LINT_FAILED`: lint markdown keluar dengan kode bukan nol.
 - `E_LINK_AUDIT_FAILED`: perintah audit tautan keluar dengan kode bukan nol.
-- `E_SAMPLE_TEST_FAILED`: tes/build contoh keluar dengan kode bukan nol.
-- `E_TIMEOUT`: perintah melebihi batas waktu yang dikonfigurasi.
+- `E_SAMPLE_TEST_FAILED`: pengujian/ build contoh keluar dengan kode bukan nol.
+- `E_TIMEOUT`: perintah melebihi batas waktu yang ditentukan.
 
-##### Kontrak CI yang dianjurkan
+##### Kontrak CI yang direkomendasikan
 
-Untuk mengotomatisasi validasi, konfigurasikan pekerjaan CI yang:
+Untuk mengotomatiskan validasi, konfigurasikan pekerjaan CI yang:
 
-- Memicu pada permintaan tarik yang menyentuh `*.md`, kode contoh, atau file ini.
+- Memicu pada pull request yang menyentuh `*.md`, kode contoh, atau file ini.
 - Menjalankan perintah tepat yang tercantum di atas.
 - Menyimpan log sebagai artefak.
-- Gagal pada pekerjaan jika ada kode keluar bukan nol.
+- Gagal pekerjaan jika ada kode keluar bukan nol.
 
 #### Jika Anda mengirimkan server MCP dari repo ini
 
-- [ ] Baca changelog draf untuk MCP 7-28:
-  <https://modelcontextprotocol.io/specification/draft/changelog>
-- [ ] Jalankan server Anda dengan SDK beta:
-  <https://blog.modelcontextprotocol.io/posts/sdk-betas-2026-07-28/>
+- [ ] Baca changelog MCP terakhir `2026-07-28`:
+  <https://modelcontextprotocol.io/specification/2026-07-28/changelog>
+- [ ] Verifikasi bahwa rilis SDK yang dipilih mendukung MCP `2026-07-28`:
+  <https://modelcontextprotocol.io/docs/sdk>
 - [ ] Hapus asumsi sesi dan handshake; perlakukan setiap permintaan sebagai
   mandiri:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#a-stateless-protocol>
+  <https://modelcontextprotocol.io/specification/2026-07-28/basic/lifecycle>
 - [ ] Kirim header `Mcp-Method` dan `Mcp-Name` untuk permintaan HTTP mentah:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#routable-cacheable-traceable>
-- [ ] Audit kode kesalahan yang dikodekan keras (`missing resource` dipindahkan dari `-32002` ke `-32602`).
+  <https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http>
+- [ ] Audit kode kesalahan hardcoded (`missing resource` dipindah dari `-32002` ke `-32602`).
 
-- [ ] Tandai dan rencanakan migrasi untuk roots, sampling, dan
-  logging yang sudah deprecated:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#roots-sampling-and-logging-are-deprecated>
-- [ ] Migrasi dari API Tasks eksperimental `2025-11-25`:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#tasks-graduates-to-an-extension>
+- [ ] Migrasi Roots, Sampling, Logging, dan Pendaftaran Klien Dinamis yang sudah usang
+  Registrasi:
+  <https://modelcontextprotocol.io/specification/2026-07-28/deprecated>
+- [ ] Migrasi dari API Tugas eksperimental `2025-11-25`:
+  <https://modelcontextprotocol.io/extensions/tasks>
 - [ ] Tinjau otorisasi untuk penguatan OAuth dan OpenID Connect:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#authorization-hardening>
+  <https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization>
 
 ### Struktur Dokumentasi
 
 - **Modul 00-11**: Konten kurikulum inti dalam urutan berurutan
-- **translations/**: Versi spesifik bahasa (dibuat otomatis, jangan edit langsung)
-- **translated_images/**: Versi gambar yang sudah dilokalisasi (dibuat otomatis)
-- **images/**: Gambar sumber dan diagram
+- **translations/**: Versi bahasa spesifik (dihasilkan otomatis, jangan diedit langsung)
+- **translated_images/**: Versi gambar yang dilokalkan (dihasilkan otomatis)
+- **images/**: Gambar dan diagram sumber
 
-### Membuat Perubahan pada Dokumentasi
+### Membuat Perubahan Dokumentasi
 
-1. Edit hanya berkas markdown bahasa Inggris di direktori modul root (00-11)
-2. Perbarui gambar di direktori `images/` jika perlu
+1. Edit hanya file markdown bahasa Inggris di direktori modul root (00-11)
+2. Perbarui gambar di direktori `images/` jika diperlukan
 3. GitHub Action co-op-translator akan secara otomatis menghasilkan terjemahan
-4. Terjemahan dihasilkan ulang saat push ke cabang utama (main)
+4. Terjemahan dibuat ulang saat melakukan push ke cabang utama
 
 ### Bekerja dengan Terjemahan
 
 - **Terjemahan Otomatis**: Alur kerja GitHub Actions menangani semua terjemahan
-- **Jangan edit secara manual** berkas di direktori `translations/`
-- Metadata terjemahan disematkan di setiap berkas terjemahan
+- **JANGAN mengedit secara manual** file dalam direktori `translations/`
+- Metadata terjemahan disematkan dalam setiap file terjemahan
 - Bahasa yang didukung: lebih dari 48 bahasa termasuk Arab, Cina, Prancis, Jerman, Hindi, Jepang, Korea, Portugis, Rusia, Spanyol, dan banyak lagi
 
 ## Instruksi Pengujian
 
 ### Validasi Dokumentasi
 
-Karena ini terutama adalah repositori dokumentasi, pengujian difokuskan pada:
+Karena ini terutama repositori dokumentasi, pengujian difokuskan pada:
 
-1. **Audit Pola Link**: Daftar link Markdown untuk ditinjau
+1. **Audit Pola Tautan**: Daftar tautan Markdown untuk ditinjau
 
    ```bash
    # Daftar tautan Markdown (audit pola)
    find . -name "*.md" -not -path "*/node_modules/*" -not -path "./translations/*" -not -path "./translated_images/*" -print0 | xargs -0 grep -En "\[.*\]\(.*\)"
    ```
 
-2. **Validasi Contoh Kode**: Uji agar contoh kode dapat dikompilasi/dijalankan
+2. **Validasi Contoh Kode**: Uji bahwa contoh kode dapat dikompilasi/dijalankan
 
    ```bash
-   # Navigasi ke sampel tertentu dan jalankan ujiannya
+   # Navigasi ke contoh tertentu dan jalankan tesnya
    cd 03-GettingStarted/samples/typescript
    npm install && npm test
    ```
@@ -218,9 +218,9 @@ Karena ini terutama adalah repositori dokumentasi, pengujian difokuskan pada:
    npx --yes markdownlint-cli2 "**/*.md" "#node_modules" "#translations" "#translated_images"
    ```
 
-### Pengujian Proyek Contoh
+### Pengujian Proyek Sampel
 
-Setiap contoh bahasa memiliki pendekatan pengujian sendiri:
+Setiap sampel bahasa spesifik termasuk pendekatan pengujian tersendiri:
 
 #### TypeScript/JavaScript
 ```bash
@@ -245,12 +245,12 @@ mvn verify
 ### Gaya Dokumentasi
 
 - Gunakan bahasa yang jelas dan ramah pemula
-- Sertakan contoh kode dalam berbagai bahasa bila relevan
+- Sertakan contoh kode dalam beberapa bahasa bila memungkinkan
 - Ikuti praktik terbaik markdown:
   - Gunakan header gaya ATX (sintaks `#`)
-  - Gunakan blok kode berpagar dengan identifikasi bahasa
+  - Gunakan blok kode berpagar dengan penanda bahasa
   - Sertakan teks alt yang deskriptif untuk gambar
-  - Jaga panjang baris agar wajar (tidak ada batas keras, tapi gunakan penilaian)
+  - Jaga panjang baris agar wajar (tidak ada batas keras, tapi masuk akal)
 
 ### Gaya Contoh Kode
 
@@ -258,13 +258,13 @@ mvn verify
 - Gunakan modul ES (`import`/`export`)
 - Ikuti konvensi mode ketat TypeScript
 - Sertakan anotasi tipe
-- Targetkan ES2022
+- Target ES2022
 
 #### Python
 - Ikuti pedoman gaya PEP 8
 - Gunakan petunjuk tipe bila sesuai
 - Sertakan docstring untuk fungsi dan kelas
-- Gunakan fitur modern Python (3.8+)
+- Gunakan fitur Python modern (3.8+)
 
 #### Java
 - Ikuti konvensi Spring Boot
@@ -286,23 +286,23 @@ mvn verify
     └── <language>/
 ```
 
-## Proses Build dan Deployment
+## Build dan Deployment
 
 ### Deployment Dokumentasi
 
-Repositori menggunakan GitHub Pages atau sejenisnya untuk hosting dokumentasi (jika berlaku). Perubahan pada cabang utama memicu:
+Repositori menggunakan GitHub Pages atau serupa untuk hosting dokumentasi (jika berlaku). Perubahan pada cabang utama memicu:
 
 1. Alur kerja terjemahan (`.github/workflows/co-op-translator.yml`)
-2. Terjemahan otomatis semua berkas markdown bahasa Inggris
-3. Lokalisasi gambar jika diperlukan
+2. Terjemahan otomatis semua file markdown berbahasa Inggris
+3. Lokalisasi gambar sesuai kebutuhan
 
 ### Tidak Memerlukan Proses Build
 
 Repositori ini terutama berisi dokumentasi markdown. Tidak diperlukan langkah kompilasi atau build untuk konten kurikulum inti.
 
-### Deployment Proyek Contoh
+### Deployment Proyek Sampel
 
-Proyek contoh individual mungkin memiliki instruksi deployment:
+Proyek sampel individu mungkin memiliki instruksi deployment:
 - Lihat `03-GettingStarted/09-deployment/` untuk panduan deployment server MCP
 - Contoh deployment Azure Container Apps di `11-MCPServerHandsOnLabs/`
 
@@ -311,48 +311,48 @@ Proyek contoh individual mungkin memiliki instruksi deployment:
 ### Proses Pull Request
 
 1. **Fork dan Clone**: Fork repositori dan clone fork Anda secara lokal
-2. **Buat Cabang**: Gunakan nama cabang yang deskriptif (misal, `fix/typo-module-3`, `add/python-example`)
-3. **Buat Perubahan**: Edit hanya berkas markdown bahasa Inggris (bukan terjemahan)
-4. **Uji Secara Lokal**: Pastikan markdown dirender dengan benar
+2. **Buat Cabang**: Gunakan nama cabang deskriptif (misal, `fix/typo-module-3`, `add/python-example`)
+3. **Lakukan Perubahan**: Edit hanya file markdown berbahasa Inggris (bukan terjemahan)
+4. **Uji Lokal**: Pastikan markdown dirender dengan benar
 5. **Kirim PR**: Gunakan judul dan deskripsi PR yang jelas
-6. **CLA**: Tanda tangani Microsoft Contributor License Agreement saat diminta
+6. **CLA**: Tandatangani Microsoft Contributor License Agreement saat diminta
 
 ### Format Judul PR
 
 Gunakan judul yang jelas dan deskriptif:
 - `[Module XX] Deskripsi singkat` untuk perubahan spesifik modul
-- `[Samples] Deskripsi` untuk perubahan contoh kode
+- `[Samples] Deskripsi` untuk perubahan kode sampel
 - `[Docs] Deskripsi` untuk pembaruan dokumentasi umum
 
 ### Apa yang Harus Dikontribusikan
 
-- Perbaikan bug di dokumentasi atau contoh kode
+- Perbaikan bug pada dokumentasi atau contoh kode
 - Contoh kode baru dalam bahasa tambahan
-- Klarifikasi dan peningkatan untuk konten yang ada
+- Klarifikasi dan perbaikan pada konten yang ada
 - Studi kasus baru atau contoh praktis
-- Laporan isu untuk konten yang tidak jelas atau salah
+- Laporan masalah untuk konten yang tidak jelas atau salah
 
-### Apa yang Tidak Boleh Dilakukan
+### Apa yang TIDAK Boleh Dilakukan
 
-- Jangan edit langsung berkas di direktori `translations/`
-- Jangan edit direktori `translated_images/`
-- Jangan tambahkan berkas biner besar tanpa diskusi
-- Jangan ubah berkas alur terjemahan tanpa koordinasi
+- Jangan mengedit langsung file dalam direktori `translations/`
+- Jangan mengedit direktori `translated_images/`
+- Jangan menambahkan file biner besar tanpa diskusi
+- Jangan mengubah file alur kerja terjemahan tanpa koordinasi
 
 ## Catatan Tambahan
 
 ### Pemeliharaan Repositori
 
-- **Catatan Perubahan**: Semua perubahan signifikan didokumentasikan di `changelog.md`
+- **Changelog**: Semua perubahan signifikan didokumentasikan di `changelog.md`
 - **Panduan Studi**: Gunakan `study_guide.md` untuk gambaran navigasi kurikulum
 - **Template Isu**: Gunakan template isu GitHub untuk laporan bug dan permintaan fitur
-- **Kode Etik**: Semua kontributor harus mengikuti Kode Etik Open Source Microsoft
+- **Kode Etik**: Semua kontributor harus mengikuti Microsoft Open Source Code of Conduct
 
 ### Jalur Pembelajaran
 
 Ikuti modul secara berurutan (00-11) untuk pembelajaran optimal:
 1. **00-02**: Dasar-dasar (Pengantar, Konsep Inti, Keamanan)
-2. **03**: Memulai dengan implementasi langsung
+2. **03**: Memulai dengan implementasi praktis
 3. **04-05**: Implementasi praktis dan topik lanjutan
 4. **06-10**: Komunitas, praktik terbaik, dan aplikasi dunia nyata
 5. **11**: Lab integrasi database komprehensif (13 lab berurutan)
@@ -360,31 +360,32 @@ Ikuti modul secara berurutan (00-11) untuk pembelajaran optimal:
 ### Sumber Dukungan
 
 - **Dokumentasi**: https://modelcontextprotocol.io/
-- **Spesifikasi**: https://spec.modelcontextprotocol.io/
+- **Spesifikasi**: https://modelcontextprotocol.io/specification/2026-07-28/
 - **Komunitas**: https://github.com/orgs/modelcontextprotocol/discussions
-- **Discord**: Server Discord Microsoft Foundry
+- **Discord**: Server Microsoft Foundry Discord
 - **Kursus Terkait**: Lihat README.md untuk jalur pembelajaran Microsoft lainnya
 
 ### Pemecahan Masalah Umum
 
 **Q: PR saya gagal pemeriksaan terjemahan**
-A: Pastikan Anda hanya mengedit berkas markdown bahasa Inggris di direktori modul root, bukan versi terjemahan.
+A: Pastikan Anda hanya mengedit file markdown bahasa Inggris di direktori modul root, bukan versi terjemahan.
 
 **Q: Bagaimana cara menambahkan bahasa baru?**
-A: Dukungan bahasa dikelola melalui alur kerja co-op-translator. Buka isu untuk mendiskusikan penambahan bahasa baru.
+A: Dukungan bahasa dikelola melalui alur kerja co-op-translator. Buka isu untuk berdiskusi menambahkan bahasa baru.
 
 **Q: Contoh kode tidak berfungsi**
+A: Pastikan Anda mengikuti instruksi setup di README sampel spesifik. Periksa bahwa Anda memiliki versi dependensi yang benar terpasang.
 
-A: Pastikan Anda telah mengikuti petunjuk pengaturan dalam README sampel spesifik tersebut. Periksa bahwa Anda memiliki versi dependensi yang tepat terinstal.
 
-**Q: Gambar tidak tampil**
-A: Verifikasi jalur gambar bersifat relatif dan menggunakan garis miring maju. Gambar harus berada di direktori `images/` atau `translated_images/` untuk versi yang dilokalkan.
+**T: Gambar tidak ditampilkan**
 
-### Pertimbangan Kinerja
+A: Verifikasi jalur gambar menggunakan jalur relatif dan tanda garis miring ke depan. Gambar harus berada di direktori `images/` atau `translated_images/` untuk versi yang dilokalkan.
 
-- Alur kerja terjemahan mungkin memerlukan beberapa menit untuk selesai
+### Pertimbangan Performa
+
+- Alur kerja terjemahan mungkin memakan waktu beberapa menit untuk selesai
 - Gambar besar harus dioptimalkan sebelum dikomit
-- Jaga file markdown individual tetap fokus dan ukurannya wajar
+- Pertahankan file markdown individu agar tetap fokus dan berukuran wajar
 - Gunakan tautan relatif untuk portabilitas yang lebih baik
 
 ### Tata Kelola Proyek

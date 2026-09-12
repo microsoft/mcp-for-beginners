@@ -1,6 +1,6 @@
 # Paginasi dan Set Hasil Besar di MCP
 
-Ketika server MCP Anda menangani dataset besar - apakah itu daftar ribuan file, catatan database, atau hasil pencarian - Anda memerlukan paginasi untuk mengelola memori secara efisien dan memberikan pengalaman pengguna yang responsif. Panduan ini membahas cara mengimplementasikan dan menggunakan paginasi di MCP.
+Ketika server MCP Anda menangani dataset besar - baik itu listing ribuan file, catatan database, atau hasil pencarian - Anda memerlukan paginasi untuk mengelola memori dengan efisien dan memberikan pengalaman pengguna yang responsif. Panduan ini membahas cara mengimplementasikan dan menggunakan paginasi di MCP.
 
 ## Mengapa Paginasi Penting
 
@@ -8,10 +8,10 @@ Tanpa paginasi, respons besar dapat menyebabkan:
 
 - **Kehabisan memori** - Memuat jutaan catatan sekaligus
 - **Waktu respons lambat** - Pengguna menunggu saat semua data dimuat
-- **Kesalahan timeout** - Permintaan melewati batas waktu
-- **Performa AI yang buruk** - LLM kesulitan dengan konteks yang sangat besar
+- **Kesalahan timeout** - Permintaan melebihi batas waktu
+- **Kinerja AI buruk** - LLM kesulitan dengan konteks masif
 
-MCP menggunakan **paginasi berbasis kursor** untuk pemetaan halaman yang andal dan konsisten melalui set hasil.
+MCP menggunakan **paginasi berbasis kursor** untuk penelusuran hasil yang andal dan konsisten.
 
 ---
 
@@ -19,28 +19,29 @@ MCP menggunakan **paginasi berbasis kursor** untuk pemetaan halaman yang andal d
 
 ### Konsep Kursor
 
-**Kursor** adalah string opak yang menandai posisi Anda dalam set hasil. Anggap seperti penanda buku dalam buku yang panjang.
+**Kursor** adalah string opak yang menandai posisi Anda dalam set hasil. Anggaplah seperti penanda halaman dalam buku panjang.
 
 ```mermaid
 sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: tools/list (tanpa cursor)
+    Client->>Server: tools/list (tanpa kursor)
     Server-->>Client: tools [1-10], nextCursor: "abc123"
     
-    Client->>Server: tools/list (cursor: "abc123")
+    Client->>Server: tools/list (kursor: "abc123")
     Server-->>Client: tools [11-20], nextCursor: "def456"
     
-    Client->>Server: tools/list (cursor: "def456")
+    Client->>Server: tools/list (kursor: "def456")
     Server-->>Client: tools [21-25], nextCursor: null (akhir)
 ```
-### Paginasi dalam Metode MCP
+
+### Paginasi di Metode MCP
 
 Metode MCP berikut mendukung paginasi:
 
 | Metode | Mengembalikan | Dukungan Kursor |
-|--------|---------------|-----------------|
+|--------|---------|----------------|
 | `tools/list` | Definisi alat | ✅ |
 | `resources/list` | Definisi sumber daya | ✅ |
 | `prompts/list` | Definisi prompt | ✅ |
@@ -59,7 +60,7 @@ import math
 
 app = Server("paginated-server")
 
-# Dataset besar yang disimulasikan
+# Dataset besar simulasi
 ALL_TOOLS = [
     Tool(name=f"tool_{i}", description=f"Tool number {i}", inputSchema={})
     for i in range(100)
@@ -153,7 +154,7 @@ public class PaginatedToolService {
     
     @McpMethod("tools/list")
     public ListToolsResult listTools(@Param("cursor") String cursor) {
-        // Dekode kursor
+        // Mendekode cursor
         int startIndex = 0;
         if (cursor != null && !cursor.isEmpty()) {
             try {
@@ -167,7 +168,7 @@ public class PaginatedToolService {
         int endIndex = Math.min(startIndex + PAGE_SIZE, allTools.size());
         List<Tool> pageTools = allTools.subList(startIndex, endIndex);
         
-        // Hitung kursor berikutnya
+        // Hitung cursor berikutnya
         String nextCursor = endIndex < allTools.size() ? String.valueOf(endIndex) : null;
         
         return new ListToolsResult(pageTools, nextCursor);
@@ -276,7 +277,7 @@ async for tool in PaginatedToolIterator(session):
 
 ## Paginasi untuk Sumber Daya
 
-Sumber daya sering membutuhkan paginasi untuk direktori atau dataset besar:
+Sumber daya sering memerlukan paginasi untuk direktori atau dataset besar:
 
 ```python
 from mcp.server import Server
@@ -327,8 +328,8 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 cursor = "50"  # Mulai dari item 50
 ```
 
-**Kelebihan:** Sederhana, tanpa status  
-**Kekurangan:** Hasil dapat bergeser jika item ditambah/dihapus
+**Kelebihan:** Sederhana, tanpa status
+**Kekurangan:** Hasil bisa bergeser jika item ditambah/dihapus
 
 ### Strategi 2: Berdasarkan ID (Stabil)
 
@@ -337,7 +338,7 @@ cursor = "50"  # Mulai dari item 50
 cursor = "item_abc123"  # Mulai setelah item ini
 ```
 
-**Kelebihan:** Stabil meskipun item berubah  
+**Kelebihan:** Stabil meskipun item berubah
 **Kekurangan:** Memerlukan ID yang terurut
 
 ### Strategi 3: Status Terenkripsi (Kompleks)
@@ -360,7 +361,7 @@ cursor = encode_cursor({
 })
 ```
 
-**Kelebihan:** Dapat mengenkripsi status kompleks  
+**Kelebihan:** Bisa mengenkripsi status kompleks
 **Kekurangan:** Lebih kompleks, string kursor lebih besar
 
 ---
@@ -390,7 +391,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
     # ...
 ```
 
-### 3. Sertakan Jumlah Total (Opsional)
+### 3. Sertakan Total Hitungan (Opsional)
 
 ```python
 return ListToolsResult(
@@ -401,16 +402,16 @@ return ListToolsResult(
 )
 ```
 
-### 4. Uji Kasus Tepian
+### 4. Uji Kasus Tepi
 
 ```python
 async def test_pagination():
-    # Hasil kosong
+    # Set hasil kosong
     result = await session.list_tools()
     assert result.tools == []
     assert result.nextCursor is None
     
-    # Halaman tunggal
+    # Satu halaman
     result = await session.list_tools()
     assert len(result.tools) <= PAGE_SIZE
     
@@ -433,7 +434,7 @@ async def list_tools() -> ListToolsResult:
     return ListToolsResult(tools=all_tools)
 ```
 
-### ✅ Paginasi di Sumber Data
+### ✅ Lakukan Paginasi di Sumber Data
 
 ```python
 # BAGUS: Hanya memuat apa yang dibutuhkan
@@ -448,21 +449,21 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ## Apa Selanjutnya
 
-- [Modul 5.14 - Teknik Konteks](../../05-AdvancedTopics/mcp-contextengineering/README.md)  
-- [Modul 8 - Praktik Terbaik](../../08-BestPractices/README.md)  
-- [3.8 - Menguji Server MCP Anda](../../03-GettingStarted/08-testing/README.md)  
+- [Modul 5.14 - Rekayasa Konteks](../../05-AdvancedTopics/mcp-contextengineering/README.md)
+- [Modul 8 - Praktik Terbaik](../../08-BestPractices/README.md)
+- [3.8 - Menguji Server MCP Anda](../../03-GettingStarted/08-testing/README.md)
 
 ---
 
 ## Sumber Daya Tambahan
 
-- [Spesifikasi MCP - Paginasi](https://spec.modelcontextprotocol.io/specification/2025-11-25/)  
-- [Penjelasan Paginasi Berbasis Kursor](https://slack.engineering/evolving-api-pagination-at-slack/)  
-- [Tes paginasi Python SDK](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+- [Spesifikasi MCP - Paginasi](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [Penjelasan Paginasi Berbasis Kursor](https://slack.engineering/evolving-api-pagination-at-slack/)
+- [Tes paginasi SDK Python](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan layanan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Meskipun kami berupaya untuk mencapai keakuratan, harap diingat bahwa terjemahan otomatis mungkin mengandung kesalahan atau ketidakakuratan. Dokumen asli dalam bahasa aslinya harus dianggap sebagai sumber yang berwenang. Untuk informasi penting, disarankan menggunakan jasa penerjemahan profesional oleh manusia. Kami tidak bertanggung jawab atas kesalahpahaman atau salah tafsir yang timbul dari penggunaan terjemahan ini.
+**Penafian**:
+Dokumen ini telah diterjemahkan menggunakan layanan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Meskipun kami berupaya untuk mencapai akurasi, harap diketahui bahwa terjemahan otomatis mungkin mengandung kesalahan atau ketidakakuratan. Dokumen asli dalam bahasa aslinya harus dianggap sebagai sumber yang sah. Untuk informasi penting, disarankan menggunakan terjemahan profesional oleh manusia. Kami tidak bertanggung jawab atas kesalahpahaman atau penafsiran yang keliru yang timbul dari penggunaan terjemahan ini.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,4 +1,9 @@
-# 🔧 Module 3: Advanced MCP Development with Microsoft Foundry Toolkit
+# 🔧 Module 3: Advanced MCP Development gamit ang Microsoft Foundry Toolkit
+
+> [!NOTE]
+> Ang mga URL ng Inspector sa lab na ito ay gumagamit ng lumang `/sse` endpoint at naka-target sa
+> naka-pin na MCP SDK `1.9.3` at Inspector `0.14.0` na dependencies. Hindi ito
+> kasalukuyang `2026-07-28` na mga halimbawa ng Streamable HTTP.
 
 ![Duration](https://img.shields.io/badge/Duration-20_minutes-blue?style=flat-square)
 ![Microsoft Foundry Toolkit](https://img.shields.io/badge/Microsoft_Foundry_Toolkit-Required-orange?style=flat-square)
@@ -6,71 +11,71 @@
 ![MCP SDK](https://img.shields.io/badge/MCP_SDK-1.9.3-purple?style=flat-square)
 ![Inspector](https://img.shields.io/badge/MCP_Inspector-0.14.0-blue?style=flat-square)
 
-## 🎯 Mga Layunin ng Pagkatuto
+## 🎯 Mga Layunin sa Pag-aaral
 
-Sa pagtatapos ng lab na ito, magagawa mo na:
+Sa pagtatapos ng lab na ito, magagawa mong:
 
-- ✅ Lumikha ng mga custom MCP server gamit ang Microsoft Foundry Toolkit
+- ✅ Gumawa ng mga custom na MCP server gamit ang Microsoft Foundry Toolkit
 - ✅ I-configure at gamitin ang pinakabagong MCP Python SDK (v1.9.3)
-- ✅ I-set up at gamitin ang MCP Inspector para sa debugging
-- ✅ Mag-debug ng MCP server sa parehong Agent Builder at Inspector na mga kapaligiran
-- ✅ Maunawaan ang mga advanced na workflow ng pag-develop ng MCP server
+- ✅ I-setup at gamitin ang MCP Inspector para sa debugging
+- ✅ I-debug ang MCP servers sa parehong Agent Builder at Inspector na mga kapaligiran
+- ✅ Unawain ang mga advanced na workflow sa pag-develop ng MCP server
 
 ## 📋 Mga Kinakailangan
 
-- Nakumpleto ang Lab 2 (MCP Fundamentals)
+- Natapos ang Lab 2 (MCP Fundamentals)
 - VS Code na may Microsoft Foundry Toolkit extension na naka-install
-- Python 3.10+ na kapaligiran
-- Node.js at npm para sa pagsasaayos ng Inspector
+- Python 3.10+ environment
+- Node.js at npm para sa setup ng Inspector
 
-## 🏗️ Ano ang Iyong Bubuoin
+## 🏗️ Ano ang Bubuoin Mo
 
-Sa lab na ito, lilikha ka ng isang **Weather MCP Server** na nagpapakita ng:
+Sa lab na ito, gagawa ka ng **Weather MCP Server** na nagpapakita ng:
 - Custom na implementasyon ng MCP server
 - Integrasyon sa Microsoft Foundry Toolkit Agent Builder
-- Propesyonal na workflow para sa debugging
-- Mga modernong pattern ng paggamit ng MCP SDK
+- Mga propesyonal na workflow sa pag-debug
+- Mga modernong pattern sa paggamit ng MCP SDK
 
 ---
 
-## 🔧 Pangunahing Mga Komponenteng Pangkalahatan
+## 🔧 Pangkalahatang-ideya ng Mga Pangunahing Komponent
 
-### 🐍 MCP Python SDK  
-Ang Model Context Protocol Python SDK ay nagbibigay ng pundasyon para sa pagbuo ng mga custom MCP server. Gagamitin mo ang bersyon 1.9.3 na may pinahusay na mga kakayahan sa debugging.
+### 🐍 MCP Python SDK
+Ang Model Context Protocol Python SDK ang pundasyon para sa paggawa ng mga custom na MCP server. Gagamitin mo ang bersyon 1.9.3 na may pinahusay na mga kakayahan sa pag-debug.
 
-### 🔍 MCP Inspector  
-Isang makapangyarihang kasangkapan sa pag-debug na nagbibigay ng:  
-- Real-time na pagmamanman ng server  
-- Pagpapakita ng pagpapatakbo ng mga tool  
-- Pagsusuri ng mga network request/response  
-- Interaktibong testing environment
+### 🔍 MCP Inspector
+Isang makapangyarihang tool sa pag-debug na nagbibigay ng:
+- Real-time na pagmamanman ng server
+- Visualisasyon ng pagpapatupad ng tool
+- Pagsisiyasat sa mga network request/response
+- Interactive na testing na kapaligiran
 
 ---
 
-## 📖 Hakbang-hakbang na Implementasyon
+## 📖 Sunud-sunod na Implementasyon
 
 ### Hakbang 1: Gumawa ng WeatherAgent sa Agent Builder
 
-1. **Ilunsad ang Agent Builder** sa VS Code sa pamamagitan ng Microsoft Foundry Toolkit extension  
-2. **Gumawa ng bagong agent** gamit ang sumusunod na configuration:  
+1. **Buksan ang Agent Builder** sa VS Code sa pamamagitan ng Microsoft Foundry Toolkit extension
+2. **Lumikha ng bagong agent** gamit ang sumusunod na configuration:
    - Pangalan ng Agent: `WeatherAgent`
 
 ![Agent Creation](../../../../translated_images/tl/Agent.c9c33f6a412b4cde.webp)
 
-### Hakbang 2: I-initialize ang MCP Server Project
+### Hakbang 2: Simulan ang MCP Server Project
 
-1. **Pumunta sa Tools** → **Add Tool** sa Agent Builder  
-2. **Piliin ang "MCP Server"** mula sa mga opsyon  
-3. **Piliin ang "Create A new MCP Server"**  
-4. **Piliin ang `python-weather` template**  
+1. **Pumunta sa Tools** → **Add Tool** sa Agent Builder
+2. **Piliin ang "MCP Server"** mula sa mga available na opsyon
+3. **Pumili ng "Create A new MCP Server"**
+4. **Piliin ang `python-weather` template**
 5. **Pangalanan ang iyong server:** `weather_mcp`
 
 ![Python Template Selection](../../../../translated_images/tl/Pythontemplate.9d0a2913c6491500.webp)
 
 ### Hakbang 3: Buksan at Suriin ang Proyekto
 
-1. **Buksan ang nalikhang proyekto** sa VS Code  
-2. **Suriin ang istraktura ng proyekto:**  
+1. **Buksan ang nalikhang proyekto** sa VS Code
+2. **Suriin ang istruktura ng proyekto:**
    ```
    weather_mcp/
    ├── src/
@@ -85,30 +90,32 @@ Isang makapangyarihang kasangkapan sa pag-debug na nagbibigay ng:
    ├── pyproject.toml
    └── README.md
    ```
-  
+
 ### Hakbang 4: I-upgrade sa Pinakabagong MCP SDK
 
-> **🔍 Bakit Mag-upgrade?** Gusto nating gamitin ang pinakabagong MCP SDK (v1.9.3) at Inspector service (0.14.0) para sa pinaigting na mga tampok at mas mahusay na kakayahan sa debugging.
+> **🔍 Bakit Mag-upgrade?** Gusto nating gamitin ang pinakabagong MCP SDK (v1.9.3) at Inspector service (0.14.0)  para sa pinahusay na mga tampok at mas mahusay na kakayahan sa pag-debug.
 
-#### 4a. I-update ang Python Dependencies
+#### 4a. I-update ang Mga Depedensiyang Python
 
 **I-edit ang `pyproject.toml`:** i-update ang [./code/weather_mcp/pyproject.toml](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/pyproject.toml)
 
-#### 4b. I-update ang Inspector Configuration
+
+#### 4b. I-update ang Konfigurasyon ng Inspector
 
 **I-edit ang `inspector/package.json`:** i-update ang [./code/weather_mcp/inspector/package.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package.json)
 
-#### 4c. I-update ang Inspector Dependencies
+#### 4c. I-update ang Mga Depedensiya ng Inspector
 
 **I-edit ang `inspector/package-lock.json`:** i-update ang [./code/weather_mcp/inspector/package-lock.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package-lock.json)
 
-> **📝 Tala:** Ang file na ito ay naglalaman ng malawak na depinisyon ng mga dependencies. Nasa ibaba ang mahalagang istraktura - tinitiyak ng buong nilalaman ang tamang resolusyon ng mga dependencies.
+> **📝 Tala:** Ang file na ito ay naglalaman ng malawak na depedensyang mga depinisyon. Nasa ibaba ang pangunahing istruktura - ang buong nilalaman ay nagsisiguro ng tamang resolusyon ng depedensya.
 
-> **⚡ Buong Package Lock:** Ang kumpletong package-lock.json ay naglalaman ng ~3000 linya na mga depinisyon ng dependencies. Ipinapakita sa itaas ang pangunahing istraktura - gamitin ang ibinigay na file para sa kumpletong pagresolba ng dependencies.
+
+> **⚡ Buong Package Lock:** Ang kumpletong package-lock.json ay may humigit-kumulang 3000 linya ng mga depedensyang depinisyon. Ang nasa itaas ay nagpapakita ng pangunahing istruktura - gamitin ang ibinigay na file para sa kumpletong resolusyon ng depedensya.
 
 ### Hakbang 5: I-configure ang VS Code Debugging
 
-*Paalala: Pakikopya ang file sa tinukoy na landas upang palitan ang katugmang lokal na file*
+*Tandaan: Pakikopya ang file sa tinukoy na path upang palitan ang katumbas na lokal na file*
 
 #### 5a. I-update ang Launch Configuration
 
@@ -188,7 +195,7 @@ Isang makapangyarihang kasangkapan sa pag-debug na nagbibigay ng:
   ]
 }
 ```
-  
+
 **I-edit ang `.vscode/tasks.json`:**
 
 ```
@@ -294,100 +301,98 @@ Isang makapangyarihang kasangkapan sa pag-debug na nagbibigay ng:
 
 ---
 
-## 🚀 Pagpapatakbo at Pagsubok ng Iyong MCP Server
+## 🚀 Pagpapatakbo at Pagsusuri ng Iyong MCP Server
 
-### Hakbang 6: I-install ang Mga Dependencies
+### Hakbang 6: I-install ang Mga Depedensiya
 
-Matapos gawin ang mga pagbabago sa configuration, patakbuhin ang mga sumusunod na utos:
+Pagkatapos gawin ang mga pagbabago sa konfigurasyon, patakbuhin ang mga sumusunod na utos:
 
-**I-install ang Python dependencies:**  
+**I-install ang mga Python dependencies:**
 ```bash
 uv sync
 ```
-  
-**I-install ang Inspector dependencies:**  
+
+**I-install ang mga Inspector dependencies:**
 ```bash
 cd inspector
 npm install
 ```
 
+### Hakbang 7: I-debug gamit ang Agent Builder
 
-### Hakbang 7: Mag-debug gamit ang Agent Builder
+1. **Pindutin ang F5** o gamitin ang **"Debug in Agent Builder"** na konfigurasyon
+2. **Piliin ang compound na konfigurasyon** mula sa debug panel
+3. **Maghintay na magsimula ang server** at magbukas ang Agent Builder
+4. **Subukan ang iyong weather MCP server** gamit ang mga natural na wika na query
 
-1. **Pindutin ang F5** o gamitin ang **"Debug in Agent Builder"** configuration  
-2. **Piliin ang compound configuration** mula sa debug panel  
-3. **Maghintay na magsimula ang server** at magbukas ang Agent Builder  
-4. **Subukan ang iyong weather MCP server** gamit ang mga natural language queries
-
-Maglagay ng prompt na tulad nito
+Input prompt tulad nito
 
 SYSTEM_PROMPT
 
 ```
 You are my weather assistant
 ```
-  
+
 USER_PROMPT
 
 ```
 How's the weather like in Seattle
 ```
-  
+
 ![Agent Builder Debug Result](../../../../translated_images/tl/Result.6ac570f7d2b1d538.webp)
 
-### Hakbang 8: Mag-debug gamit ang MCP Inspector
+### Hakbang 8: I-debug gamit ang MCP Inspector
 
-1. **Gamitin ang "Debug in Inspector"** configuration (Edge o Chrome)  
-2. **Buksan ang interface ng Inspector** sa `http://localhost:6274`  
-3. **Galugarin ang interaktibong testing environment:**  
-   - Tingnan ang mga magagamit na tool  
-   - Subukan ang pagpapatakbo ng mga tool  
-   - I-monitor ang mga network request  
-   - Mag-debug ng mga tugon ng server
+1. **Gamitin ang "Debug in Inspector"** konfigurasyon (Edge o Chrome)
+2. **Buksan ang Inspector interface** sa `http://localhost:6274`
+3. **Siyasatin ang interactive testing na kapaligiran:**
+   - Tingnan ang mga available na tool
+   - Subukan ang pagpapatupad ng tool
+   - I-monitor ang mga network request
+   - I-debug ang mga tugon ng server
 
 ![MCP Inspector Interface](../../../../translated_images/tl/Inspector.5672415cd02fe873.webp)
 
 ---
 
-## 🎯 Pangunahing Mga Natutunan
+## 🎯 Mga Pangunahing Resulta ng Pagkatuto
 
-Sa pagkompleto ng lab na ito, nagawa mo na ang mga sumusunod:
+Sa pagkumpleto ng lab na ito, nagawa mo na:
 
-- [x] **Lumikha ng custom MCP server** gamit ang mga template ng Microsoft Foundry Toolkit  
-- [x] **Nag-upgrade sa pinakabagong MCP SDK** (v1.9.3) para sa pinahusay na functionality  
-- [x] **Na-configure ang propesyonal na mga workflow sa debugging** para sa Agent Builder at Inspector  
-- [x] **Na-set up ang MCP Inspector** para sa interaktibong pagsusuri ng server  
-- [x] **Naitatag ang VS Code debugging configurations** para sa MCP development
+- [x] **Nakalikha ng custom na MCP server** gamit ang mga template ng Microsoft Foundry Toolkit
+- [x] **Na-upgrade sa pinakabagong MCP SDK** (v1.9.3) para sa pinahusay na functionality
+- [x] **Na-configure ang mga propesyonal na workflow sa pag-debug** para sa parehong Agent Builder at Inspector
+- [x] **Nai-set up ang MCP Inspector** para sa interactive na testing ng server
+- [x] **Nai-master ang VS Code debugging configurations** para sa MCP development
 
 ## 🔧 Mga Advanced na Tampok na Natuklasan
 
-| Tampok | Paglalarawan | Gamit |
+| Tampok | Paglalarawan | Paggamit |
 |---------|-------------|----------|
-| **MCP Python SDK v1.9.3** | Pinakabagong implementasyon ng protocol | Modernong pagbuo ng server |
-| **MCP Inspector 0.14.0** | Interaktibong kasangkapan sa debugging | Real-time na pagsubok ng server |
-| **VS Code Debugging** | Integrated development environment | Propesyonal na workflow sa debugging |
-| **Integrasyon ng Agent Builder** | Direktang koneksyon sa Microsoft Foundry Toolkit | End-to-end na pagsusuri ng agent |
+| **MCP Python SDK v1.9.3** | Pinakabagong protocol implementation | Modernong pag-develop ng server |
+| **MCP Inspector 0.14.0** | Interactive na debugging tool | Real-time na pagsusuri ng server |
+| **VS Code Debugging** | Integrated na development environment | Propesyonal na workflow sa pag-debug |
+| **Agent Builder Integration** | Direct na koneksyon sa Microsoft Foundry Toolkit | End-to-end na pagsubok ng agent |
 
-## 📚 Karagdagang Mga Mapagkukunan
+## 📚 Karagdagang Mga Sanggunian
 
-- [MCP Python SDK Documentation](https://modelcontextprotocol.io/docs/sdk/python)  
-- [Microsoft Foundry Toolkit Extension Guide](https://code.visualstudio.com/docs/ai/ai-toolkit)  
-- [VS Code Debugging Documentation](https://code.visualstudio.com/docs/editor/debugging)  
-- [Model Context Protocol Specification](https://modelcontextprotocol.io/docs/concepts/architecture)
+- [MCP Python SDK Dokumentasyon](https://modelcontextprotocol.io/docs/sdk/python)
+- [Microsoft Foundry Toolkit Extension Gabay](https://code.visualstudio.com/docs/ai/ai-toolkit)
+- [VS Code Debugging Dokumentasyon](https://code.visualstudio.com/docs/editor/debugging)
+- [Model Context Protocol Specipikasyon](https://modelcontextprotocol.io/docs/concepts/architecture)
 
 ---
 
-**🎉 Congratulations!** Matagumpay mong natapos ang Lab 3 at maaari ka nang gumawa, mag-debug, at mag-deploy ng mga custom MCP server gamit ang mga propesyonal na workflow sa pag-develop.
+**🎉 Binabati kita!** Matagumpay mong natapos ang Lab 3 at ngayon ay maaari ka nang gumawa, mag-debug, at mag-deploy ng mga custom na MCP server gamit ang mga propesyonal na workflow sa pag-develop.
 
 ### 🔜 Magpatuloy sa Susunod na Module
 
-Handa ka na bang ilapat ang iyong MCP skills sa isang totoong workflow sa pag-develop? Magpatuloy sa **[Module 4: Practical MCP Development - Custom GitHub Clone Server](../lab4/README.md)** kung saan:
-
-- Magtatayo ka ng production-ready na MCP server na nag-a-automate ng mga operasyon sa GitHub repository  
-- Magpapatupad ng functionality ng cloning ng GitHub repository sa pamamagitan ng MCP  
-- Mag-iintegrate ng custom MCP servers sa VS Code at GitHub Copilot Agent Mode  
-- Magsasagawa ng testing at pag-deploy ng custom MCP servers sa production environment  
-- Matututo ng praktikal na automation ng workflow para sa mga developer
+Handa ka na bang i-apply ang iyong mga MCP skills sa isang tunay na development workflow? Magpatuloy sa **[Module 4: Practical MCP Development - Custom GitHub Clone Server](../lab4/README.md)** kung saan:
+- Buuin ang production-ready na MCP server na nag-a-automate ng mga operasyon ng GitHub repository
+- Magpatupad ng functionality sa pag-clone ng GitHub repository sa pamamagitan ng MCP
+- I-integrate ang mga custom na MCP server sa VS Code at GitHub Copilot Agent Mode
+- Subukan at i-deploy ang mga custom MCP server sa mga production na kapaligiran
+- Matutunan ang praktikal na workflow automation para sa mga developer
 
 ---
 

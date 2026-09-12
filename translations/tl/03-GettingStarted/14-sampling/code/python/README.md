@@ -1,5 +1,10 @@
 # Patakbuhin ang halimbawa
 
+> [!WARNING]
+> Ang halimbawang ito ay gumagamit ng deprecate na Sampling at lumang HTTP+SSE endpoint. Ito ay
+> pinananatili para sa katugmang MCP `2025-11-25`. Ang mga bagong implementasyon ay dapat tumawag
+> direkta sa tagapagbigay ng LLM at gumamit ng Streamable HTTP para sa remote MCP traffic.
+
 ## Gumawa ng virtual environment
 
 ```sh
@@ -7,7 +12,7 @@ python -m venv venv
 source ./venv/bin/activate
 ```
 
-## I-install ang mga dependencies
+## Mag-install ng mga dependencies
 
 ```sh
 pip install "mcp[cli]"
@@ -21,7 +26,7 @@ uvicorn server:app --port 8000
 
 ## Subukan ang server gamit ang GitHub Copilot at VS Code
 
-Idagdag ang entry sa mcp.json nang ganito:
+Idagdag ang entry sa mcp.json tulad nito:
 
 ```json
 "servers": {
@@ -40,7 +45,7 @@ Sa GitHub Copilot, i-paste ang sumusunod na prompt:
 create a blog post named "Where Python comes from", the content is "Python is actually named after Monty Python Flying Circus"
 ```
 
-Sa unang pagkakataon, tatanungin ka kung tatanggapin ang isang Sampling na aksyon, pagkatapos ay hihingin kang tanggapin ang tool na magpatakbo ng "create_blog". Dapat kang makakita ng tugon na kahalintulad ng:
+Sa unang pagkakataon, tatanungin ka kung tatanggapin mo ang isang Sampling action, pagkatapos ay tatanungin kang tanggapin ang tool para patakbuhin ang "create_blog". Makikita mo ang tugon na katulad nito:
 
 ```json
 {
@@ -51,6 +56,6 @@ Sa unang pagkakataon, tatanungin ka kung tatanggapin ang isang Sampling na aksyo
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Paunawa**:  
-Ang dokumentong ito ay isinalin gamit ang serbisyong AI na pagsasalin [Co-op Translator](https://github.com/Azure/co-op-translator). Bagamat nagsusumikap kaming maging tumpak, pakitandaan na ang mga awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o hindi pagkakatugma. Ang orihinal na dokumento sa kanyang orihinal na wika ang dapat ituring na pangunahing sanggunian. Para sa mahahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang hindi pagkakaintindihan o maling interpretasyon na maaaring magmula sa paggamit ng salin na ito.
+**Pagtatanggi**:
+Ang dokumentong ito ay isinalin gamit ang serbisyo ng AI translation na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagama't nagsusumikap kami para sa katumpakan, pakatandaan na ang awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o hindi pagkakatugma. Ang orihinal na dokumento sa orihinal nitong wika ang dapat ituring na pangunahing sanggunian. Para sa mahahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang maling pagkakaintindi o maling interpretasyon na nagmula sa paggamit ng pagsasaling ito.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

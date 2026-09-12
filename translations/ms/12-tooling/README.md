@@ -7,10 +7,12 @@ Di sini anda akan belajar cara menggunakan alat yang menggunakan MCP. Pengalaman
 ## 🔗 Sumber Rasmi MCP
 
 - 📘 [Dokumentasi MCP](https://modelcontextprotocol.io/) – Tutorial terperinci dan panduan pengguna
-- 📜 [Spesifikasi MCP (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/) – Seni bina protokol dan rujukan teknikal
+- 📜 [Spesifikasi MCP (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/) – Seni bina protokol dan rujukan teknikal
 - 🧑‍💻 [Repositori GitHub MCP](https://github.com/modelcontextprotocol) – SDK sumber terbuka, alat, dan contoh kod
 - 🌐 [Komuniti MCP](https://github.com/orgs/modelcontextprotocol/discussions) – Sertai perbincangan dan sumbang kepada komuniti
-- 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Amalan terbaik keselamatan dan mitigasi risiko
+- 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Amalan keselamatan terbaik dan mitigasi risiko
+
+
 
 ## 🌟 Komuniti dan Sokongan
 
@@ -19,13 +21,13 @@ Di sini anda akan belajar cara menggunakan alat yang menggunakan MCP. Pengalaman
 - **Azure AI Discord**: [Sertai untuk sokongan pakar](https://discord.com/invite/ByRwuEEgH4)
 - **Komuniti MCP**: [Sertai perbincangan MCP yang lebih luas](https://github.com/orgs/modelcontextprotocol/discussions)
 
-## 🚀 Sedia untuk Bermula?
+## 🚀 Bersedia untuk Bermula?
 
 Mulakan perjalanan anda dengan **[aplikasi GitHub Copilot](./01-copilot-app/README.md)**
 
 ---
 
-*Kuasi semua ini menggunakan MCP dengan alat-alat ini untuk peningkatan produktiviti dan integrasi tanpa gangguan.*
+*Kuasi ini menggunakan MCP dengan alat-alat ini untuk produktiviti yang dipertingkatkan dan integrasi yang lancar.*
 
 ---
 

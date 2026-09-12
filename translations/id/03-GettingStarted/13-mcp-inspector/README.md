@@ -1,21 +1,26 @@
 # Debugging dengan MCP Inspector
 
-**MCP Inspector** adalah alat debugging penting yang memungkinkan Anda menguji dan memecahkan masalah server MCP Anda secara interaktif tanpa perlu aplikasi host AI penuh. Anggap saja seperti "Postman untuk MCP" - ini menyediakan antarmuka visual untuk mengirim permintaan, melihat respons, dan memahami bagaimana server Anda berperilaku.
+> [!NOTE]
+> Perintah yang menggunakan `--sse` dan URL yang diakhiri dengan `/sse` menguji transportasi HTTP+SSE legacy.
+> Untuk server MCP `2026-07-28` yang baru, gunakan versi Inspector yang
+> mendukung Streamable HTTP dan pilih transportasi tersebut sebagai gantinya.
+
+**MCP Inspector** adalah alat debugging penting yang memungkinkan Anda menguji dan memecahkan masalah server MCP secara interaktif tanpa perlu aplikasi host AI penuh. Anggaplah ini sebagai "Postman untuk MCP" – menyediakan antarmuka visual untuk mengirim permintaan, melihat respons, dan memahami bagaimana server Anda berperilaku.
 
 ## Mengapa Menggunakan MCP Inspector?
 
-Saat membangun server MCP, Anda sering menghadapi tantangan ini:
+Saat membangun server MCP, Anda sering menghadapi tantangan berikut:
 
-- **"Apakah server saya berjalan?"** - Inspector menunjukkan status koneksi
+- **"Apakah server saya bahkan berjalan?"** - Inspector menunjukkan status koneksi
 - **"Apakah alat saya terdaftar dengan benar?"** - Inspector menampilkan semua alat yang tersedia
-- **"Bagaimana format responsnya?"** - Inspector menampilkan respons JSON lengkap
-- **"Mengapa alat ini tidak berfungsi?"** - Inspector menunjukkan pesan kesalahan detail
+- **"Apa format responsnya?"** - Inspector menampilkan respons JSON lengkap
+- **"Mengapa alat ini tidak berfungsi?"** - Inspector menunjukkan pesan kesalahan rinci
 
 ## Prasyarat
 
 - Node.js 18+ terpasang
-- npm (termasuk dengan Node.js)
-- Server MCP untuk diuji (lihat [Modul 3.1 - Server Pertama](../01-first-server/README.md))
+- npm (disertakan dengan Node.js)
+- Server MCP untuk diuji (lihat [Module 3.1 - First Server](../01-first-server/README.md))
 
 ## Instalasi
 
@@ -25,7 +30,7 @@ Saat membangun server MCP, Anda sering menghadapi tantangan ini:
 npx @modelcontextprotocol/inspector
 ```
 
-### Opsi 2: Pasang Secara Global
+### Opsi 2: Pasang secara Global
 
 ```bash
 npm install -g @modelcontextprotocol/inspector
@@ -69,21 +74,21 @@ OPENAI_API_KEY=xxx npx @modelcontextprotocol/inspector python server.py
 
 ### Server SSE/HTTP (Jaringan)
 
-Untuk server yang dijalankan sebagai layanan HTTP:
+Untuk server yang berjalan sebagai layanan HTTP:
 
 1. Mulai server Anda terlebih dahulu:
    ```bash
    python server.py  # Server berjalan di http://localhost:8080
    ```
 
-2. Jalankan Inspector dan hubungkan:
+2. Buka Inspector dan sambungkan:
    ```bash
    npx @modelcontextprotocol/inspector --sse http://localhost:8080/sse
    ```
 
 ---
 
-## Tampilan Antarmuka Inspector
+## Ikhtisar Antarmuka Inspector
 
 Saat Inspector diluncurkan, Anda akan melihat antarmuka web (biasanya di `http://localhost:5173`):
 
@@ -122,10 +127,10 @@ Saat Inspector diluncurkan, Anda akan melihat antarmuka web (biasanya di `http:/
    - Deskripsi
    - Skema input (parameter)
 
-### Memanggil Sebuah Alat
+### Memanggil Alat
 
 1. Pilih alat dari daftar
-2. Isi parameter yang diperlukan dalam formulir
+2. Isi parameter yang diperlukan di formulir
 3. Klik **Run Tool**
 4. Lihat respons di panel hasil
 
@@ -150,7 +155,7 @@ Response:
 
 ### Debugging Kesalahan Alat
 
-Ketika sebuah alat gagal, Inspector menampilkan:
+Saat alat gagal, Inspector menampilkan:
 
 ```
 Error Response:
@@ -165,7 +170,7 @@ Error Response:
 Kode kesalahan umum:
 | Kode | Arti |
 |------|---------|
-| -32700 | Kesalahan parse (JSON tidak valid) |
+| -32700 | Kesalahan parsing (JSON tidak valid) |
 | -32600 | Permintaan tidak valid |
 | -32601 | Metode tidak ditemukan |
 | -32602 | Parameter tidak valid |
@@ -188,7 +193,7 @@ Kode kesalahan umum:
 
 1. Pilih sumber daya
 2. Klik **Read Resource**
-3. Lihat isi yang dikembalikan
+3. Lihat konten yang dikembalikan
 
 **Contoh output:**
 
@@ -216,16 +221,19 @@ Content-Type: application/json
 
 ### Mendapatkan Prompt
 
-1. Pilih sebuah prompt
-2. Isi argumen yang diperlukan jika ada
+1. Pilih prompt
+2. Isi argumen yang diperlukan
 3. Klik **Get Prompt**
-4. Lihat pesan prompt yang dihasilkan
+4. Lihat pesan prompt yang dirender
 
 ---
 
 ## Analisis Log Pesan
 
-Log pesan menampilkan semua pesan protokol MCP:
+Log pesan menunjukkan semua pesan protokol MCP. Transkrip di bawah ini berasal dari
+server `2025-11-25` legacy dan mencakup handshake `initialize` yang dihapus. Server
+`2026-07-28` menggunakan metadata permintaan mandiri dan `server/discover`
+sebagai gantinya.
 
 ```
 14:32:01 → {"jsonrpc":"2.0","id":1,"method":"initialize",...}
@@ -236,11 +244,11 @@ Log pesan menampilkan semua pesan protokol MCP:
 14:32:05 ← {"jsonrpc":"2.0","id":3,"result":{"content":[...]}}
 ```
 
-### Yang Perlu Diperhatikan
+### Hal yang Perlu Diperhatikan
 
-- **Pasangan Request/Response**: Setiap `→` harus memiliki `←` yang cocok
+- **Pasangan Permintaan/Respons**: Setiap `→` harus memiliki pasangan `←`
 - **Pesan kesalahan**: Cari `"error"` dalam respons
-- **Waktu**: Jeda panjang mungkin menandakan masalah performa
+- **Waktu**: Celah besar mungkin menandakan masalah performa
 - **Versi protokol**: Pastikan server dan klien setuju pada versi
 
 ---
@@ -314,12 +322,12 @@ Tambahkan ke `.vscode/tasks.json`:
 
 ### Skenario 1: Server Tidak Bisa Terhubung
 
-**Gejala:** Inspector menunjukkan "Disconnected" atau macet pada "Connecting..."
+**Gejala:** Inspector menunjukkan "Disconnected" atau macet di "Connecting..."
 
 **Daftar periksa:**
 1. ✅ Apakah perintah server benar?
 2. ✅ Apakah semua dependensi terpasang?
-3. ✅ Apakah path server absolut atau relatif terhadap direktori saat ini?
+3. ✅ Apakah jalur server absolut atau relatif terhadap direktori saat ini?
 4. ✅ Apakah variabel lingkungan yang diperlukan sudah disetel?
 
 **Langkah debug:**
@@ -330,16 +338,16 @@ python -c "import your_server_module; print('OK')"
 # Periksa kesalahan impor
 python -m your_server_module 2>&1 | head -20
 
-# Verifikasi MCP SDK telah terpasang
+# Verifikasi MCP SDK sudah terpasang
 pip show mcp
 ```
 
 ### Skenario 2: Alat Tidak Muncul
 
-**Gejala:** Tab Tools menampilkan daftar kosong
+**Gejala:** Tab alat menunjukkan daftar kosong
 
-**Kemungkinan penyebab:**
-1. Alat tidak terdaftar selama inisialisasi server
+**Penyebab mungkin:**
+1. Alat tidak terdaftar saat inisialisasi server
 2. Server crash setelah startup
 3. Handler `tools/list` mengembalikan array kosong
 
@@ -350,15 +358,15 @@ pip show mcp
 
 ### Skenario 3: Alat Mengembalikan Kesalahan
 
-**Gejala:** Pemanggilan alat mengembalikan respons kesalahan
+**Gejala:** Panggilan alat mengembalikan respons kesalahan
 
 **Pendekatan debug:**
-1. Baca pesan kesalahan dengan cermat
-2. Periksa tipe parameter sesuai skema
-3. Tambahkan try/catch dengan pesan kesalahan detail
-4. Periksa log server untuk jejak stack
+1. Baca pesan kesalahan dengan teliti
+2. Periksa tipe parameter cocok dengan skema
+3. Tambahkan try/catch dengan pesan kesalahan rinci
+4. Periksa log server untuk jejak tumpukan (stack trace)
 
-**Contoh penanganan kesalahan yang diperbaiki:**
+**Contoh peningkatan penanganan kesalahan:**
 
 ```python
 @mcp.tool()
@@ -373,14 +381,14 @@ async def my_tool(param1: str, param2: int) -> str:
         raise McpError(f"Tool failed: {type(e).__name__}: {e}")
 ```
 
-### Skenario 4: Isi Sumber Daya Kosong
+### Skenario 4: Konten Sumber Daya Kosong
 
-**Gejala:** Sumber daya mengembalikan tetapi isi kosong atau null
+**Gejala:** Sumber daya mengembalikan namun konten kosong atau null
 
 **Daftar periksa:**
-1. ✅ Path file atau URI benar
-2. ✅ Server memiliki izin membaca sumber daya
-3. ✅ Isi sumber daya dikembalikan dengan benar
+1. ✅ Jalur file atau URI benar
+2. ✅ Server memiliki izin untuk membaca sumber daya
+3. ✅ Konten sumber daya dikembalikan dengan benar
 
 ---
 
@@ -402,7 +410,7 @@ DEBUG=mcp* npx @modelcontextprotocol/inspector python server.py
 
 ### Merekam Sesi
 
-Inspector dapat mengekspor log pesan untuk analisis nanti:
+Inspector dapat mengekspor log pesan untuk analisis selanjutnya:
 1. Klik **Export Log** di panel pesan
 2. Simpan file JSON
 3. Bagikan dengan anggota tim untuk debugging
@@ -411,11 +419,11 @@ Inspector dapat mengekspor log pesan untuk analisis nanti:
 
 ## Praktik Terbaik
 
-1. **Uji segera dan sering** - Gunakan Inspector selama pengembangan, bukan hanya saat terjadi masalah
-2. **Mulai dengan sederhana** - Uji konektivitas dasar sebelum panggilan alat yang kompleks
+1. **Uji lebih awal dan sering** - Gunakan Inspector selama pengembangan, bukan hanya saat terjadi masalah
+2. **Mulailah dengan yang sederhana** - Uji konektivitas dasar sebelum panggilan alat yang kompleks
 3. **Periksa skema** - Banyak kesalahan berasal dari ketidaksesuaian tipe parameter
 4. **Baca pesan kesalahan** - Kesalahan MCP biasanya deskriptif
-5. **Jaga Inspector tetap terbuka** - Membantu menangkap masalah saat Anda mengembangkan
+5. **Tetap buka Inspector** - Membantu menangkap masalah saat Anda mengembangkan
 
 ---
 
@@ -430,12 +438,12 @@ Anda telah menyelesaikan Modul 3: Memulai! Lanjutkan pembelajaran Anda:
 ## Sumber Daya Tambahan
 
 - [Repositori GitHub MCP Inspector](https://github.com/modelcontextprotocol/inspector)
-- [Spesifikasi MCP - Pesan Protokol](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [Spesifikasi MCP - Pesan Protokol](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [Spesifikasi JSON-RPC 2.0](https://www.jsonrpc.org/specification)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan layanan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Meskipun kami berupaya untuk mencapai akurasi, harap diingat bahwa terjemahan otomatis mungkin mengandung kesalahan atau ketidakakuratan. Dokumen asli dalam bahasa aslinya harus dianggap sebagai sumber yang sahih. Untuk informasi penting, disarankan menggunakan terjemahan profesional oleh manusia. Kami tidak bertanggung jawab atas kesalahpahaman atau penafsiran yang keliru yang timbul dari penggunaan terjemahan ini.
+**Penafian**:
+Dokumen ini telah diterjemahkan menggunakan layanan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Meskipun kami berupaya untuk mencapai akurasi, harap diketahui bahwa terjemahan otomatis mungkin mengandung kesalahan atau ketidakakuratan. Dokumen asli dalam bahasa aslinya harus dianggap sebagai sumber yang sah. Untuk informasi penting, disarankan menggunakan terjemahan profesional oleh manusia. Kami tidak bertanggung jawab atas kesalahpahaman atau penafsiran yang keliru yang timbul dari penggunaan terjemahan ini.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

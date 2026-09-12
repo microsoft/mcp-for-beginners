@@ -2,26 +2,28 @@
 
 ## 🧠 Ikhtisar Jalur Pembelajaran Integrasi Database MCP
 
-Di sini Anda akan belajar cara menggunakan alat yang menggunakan MCP. Pengalaman Anda menggunakan alat ini akan meningkat saat Anda menghubungkan server MCP ke alat tersebut.
+Di sini Anda akan belajar cara menggunakan alat yang menggunakan MCP. Pengalaman Anda menggunakan alat ini akan meningkat saat Anda menghubungkan server MCP ke dalamnya.
 
 ## 🔗 Sumber Resmi MCP
 
-- 📘 [Dokumentasi MCP](https://modelcontextprotocol.io/) – Tutorial dan panduan pengguna yang terperinci
-- 📜 [Spesifikasi MCP (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/) – Arsitektur protokol dan referensi teknis
-- 🧑‍💻 [Repositori GitHub MCP](https://github.com/modelcontextprotocol) – SDK, alat, dan contoh kode open-source
-- 🌐 [Komunitas MCP](https://github.com/orgs/modelcontextprotocol/discussions) – Bergabung dalam diskusi dan berkontribusi pada komunitas
+- 📘 [Dokumentasi MCP](https://modelcontextprotocol.io/) – Tutorial dan panduan pengguna terperinci
+- 📜 [Spesifikasi MCP (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/) – Arsitektur protokol dan referensi teknis
+- 🧑‍💻 [Repositori GitHub MCP](https://github.com/modelcontextprotocol) – SDK open-source, alat, dan contoh kode
+- 🌐 [Komunitas MCP](https://github.com/orgs/modelcontextprotocol/discussions) – Bergabung dengan diskusi dan berkontribusi ke komunitas
 - 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Praktik terbaik keamanan dan mitigasi risiko
+
+
 
 ## 🌟 Komunitas dan Dukungan
 
 ### Dapatkan Bantuan
 
-- **Azure AI Discord**: [Bergabung untuk dukungan ahli](https://discord.com/invite/ByRwuEEgH4)
-- **Komunitas MCP**: [Bergabung dalam diskusi MCP yang lebih luas](https://github.com/orgs/modelcontextprotocol/discussions)
+- **Discord Azure AI**: [Bergabung untuk dukungan ahli](https://discord.com/invite/ByRwuEEgH4)
+- **Komunitas MCP**: [Bergabung dengan diskusi MCP yang lebih luas](https://github.com/orgs/modelcontextprotocol/discussions)
 
 ## 🚀 Siap Memulai?
 
-Mulai perjalanan Anda dengan **[aplikasi GitHub Copilot](./01-copilot-app/README.md)**
+Mulailah perjalanan Anda dengan **[aplikasi GitHub Copilot](./01-copilot-app/README.md)**
 
 ---
 
