@@ -1,10 +1,15 @@
-# 設定熱門的 MCP Host 用戶端
+# 設置流行的 MCP 主機客戶端
 
-本指南介紹如何在熱門 AI Host 應用程式中設定並使用 MCP 伺服器。每個 Host 都有自己的設定方式，但設定完成後，他們都使用標準化的協定與 MCP 伺服器通訊。
+> [!NOTE]
+> 指向 `/sse` 的主機配置是 MCP `2025-11-25` 的舊版 HTTP+SSE 範例。對於 MCP `2026-07-28`，請在支持的主機中選擇可串流的 HTTP，並使用服務器配置的端點。
+> 
+>
 
-## 什麼是 MCP Host？
+本指南涵蓋如何使用流行的 AI 主機應用程序配置及使用 MCP 服務器。每個主機都有自己的配置方法，但配置完成後，它們均通過標準化協議與 MCP 服務器通信。
 
-**MCP Host** 是一種可以連接 MCP 伺服器以擴展其功能的 AI 應用程式。可以把它視為使用者互動的「前端」，而 MCP 伺服器則提供「後端」工具和資料。
+## 什麼是 MCP 主機？
+
+**MCP 主機** 是能連接到 MCP 服務器以擴展功能的 AI 應用程序。可以把它想像成用戶互動的「前端」，而 MCP 服務器提供「後端」工具和數據。
 
 ```mermaid
 flowchart LR
@@ -14,18 +19,19 @@ flowchart LR
     Host --> S3[MCP 伺服器 C]
     
     subgraph "熱門主機"
-        H1[Claude 桌面]
+        H1[Claude 桌面版]
         H2[VS Code]
         H3[Cursor]
         H4[Cline]
         H5[Windsurf]
     end
 ```
+
 ## 前置條件
 
-- 一個可連接的 MCP 伺服器（請參考 [Module 3.1 - 第一台伺服器](../01-first-server/README.md)）
-- Host 應用程式已安裝於您的系統
-- 對 JSON 配置文件有基本認識
+- 需要連接的 MCP 服務器（參見 [Module 3.1 - 第一個服務器](../01-first-server/README.md)）
+- 安裝在系統上的主機應用程式
+- 對 JSON 配置文件的基本認識
 
 ---
 
@@ -36,16 +42,16 @@ flowchart LR
 ### 安裝
 
 1. 從 [claude.ai/download](https://claude.ai/download) 下載 Claude Desktop
-2. 安裝並使用 Anthropic 帳號登入
+2. 安裝並使用你的 Anthropic 帳號登入
 
-### 設定
+### 配置
 
-Claude Desktop 使用 JSON 配置文件定義 MCP 伺服器。
+Claude Desktop 使用 JSON 配置文件定義 MCP 服務器。
 
 **配置文件位置：**
-- **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
-- **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
-- **Linux**: `~/.config/Claude/claude_desktop_config.json`
+- **macOS**：`~/Library/Application Support/Claude/claude_desktop_config.json`
+- **Windows**：`%APPDATA%\Claude\claude_desktop_config.json`
+- **Linux**：`~/.config/Claude/claude_desktop_config.json`
 
 **範例配置：**
 
@@ -78,48 +84,48 @@ Claude Desktop 使用 JSON 配置文件定義 MCP 伺服器。
 
 | 欄位 | 說明 | 範例 |
 |-------|-------------|---------|
-| `command` | 執行檔 | `"python"`, `"node"`, `"npx"` |
-| `args` | 命令列參數 | `["-m", "my_server"]` |
-| `env` | 環境變數 | `{"API_KEY": "xxx"}` |
+| `command` | 執行指令 | `"python"`, `"node"`, `"npx"` |
+| `args` | 命令行參數 | `["-m", "my_server"]` |
+| `env` | 環境變量 | `{"API_KEY": "xxx"}` |
 | `cwd` | 工作目錄 | `"/path/to/server"` |
 
-### 測試您的設定
+### 測試你的設置
 
-1. 儲存配置文件
-2. 完全重新啟動 Claude Desktop（退出並重新開啟）
-3. 開啟新的對話
-4. 找尋顯示已連接伺服器的 🔌 圖示
-5. 嘗試讓 Claude 使用其中一個工具
+1. 保存配置文件
+2. 完全重啟 Claude Desktop（退出並重新開啟）
+3. 打開新對話
+4. 查看 🔌 圖示，確認已連接服務器
+5. 嘗試請 Claude 使用其中一個工具
 
-### Claude Desktop 除錯
+### Claude Desktop 疑難排解
 
-**伺服器未出現：**
+**服務器未顯示：**
 - 使用 JSON 驗證工具檢查配置文件語法
-- 確認 command 路徑正確
+- 確保命令路徑正確
 - 查看 Claude Desktop 日誌：幫助 → 顯示日誌
 
-**伺服器啟動時崩潰：**
-- 先在終端手動測試您的伺服器
-- 確認環境變數設定正確
-- 確定所有相依套件已安裝
+**服務器啟動時崩潰：**
+- 先於終端手動測試服務器運行
+- 檢查環境變量是否設定正確
+- 確保所有依賴已安裝
 
 ---
 
 ## 2. VS Code 搭配 GitHub Copilot
 
-VS Code 透過 GitHub Copilot Chat 擴充功能支援 MCP。
+VS Code 透過 GitHub Copilot Chat 擴充套件支持 MCP。
 
 ### 前置條件
 
-1. 安裝 VS Code 1.99 以上版本
-2. 安裝 GitHub Copilot 擴充功能
-3. 安裝 GitHub Copilot Chat 擴充功能
+1. 安裝 VS Code 1.99 或以上版本
+2. 安裝 GitHub Copilot 擴充套件
+3. 安裝 GitHub Copilot Chat 擴充套件
 
-### 設定
+### 配置
 
-VS Code 使用工作區或使用者設定中的 `.vscode/mcp.json`。
+VS Code 使用工作區或用戶設定中的 `.vscode/mcp.json`。
 
-**工作區配置** (`.vscode/mcp.json`)：
+<strong>工作區配置</strong> (`.vscode/mcp.json`)：
 
 ```json
 {
@@ -137,7 +143,7 @@ VS Code 使用工作區或使用者設定中的 `.vscode/mcp.json`。
 }
 ```
 
-**使用者設定** (`settings.json`)：
+<strong>用戶設定</strong> (`settings.json`)：
 
 ```json
 {
@@ -152,18 +158,18 @@ VS Code 使用工作區或使用者設定中的 `.vscode/mcp.json`。
 }
 ```
 
-### 在 VS Code 使用 MCP
+### 在 VS Code 中使用 MCP
 
-1. 開啟 Copilot Chat 面板（Ctrl+Shift+I / Cmd+Shift+I）
-2. 輸入 `@` 以看到可用的 MCP 工具
-3. 使用自然語言調用工具：「用計算器計算 25 * 48」
+1. 打開 Copilot Chat 面板 (Ctrl+Shift+I / Cmd+Shift+I)
+2. 輸入 `@` 查看可用的 MCP 工具
+3. 使用自然語言調用工具：「使用計算機計算 25 * 48」
 
-### VS Code 除錯
+### VS Code 疑難排解
 
-**MCP 伺服器未載入：**
-- 查看輸出面板 → 「MCP」錯誤日誌
-- 重新載入視窗：Ctrl+Shift+P →「開發者：重新載入視窗」
-- 先驗證伺服器能獨立執行
+**MCP 服務器無法加載：**
+- 查看輸出面板 → "MCP" 錯誤日誌
+- 重新載入視窗：Ctrl+Shift+P → "Developer: Reload Window"
+- 先驗證服務器本身能正常運行
 
 ---
 
@@ -176,14 +182,14 @@ VS Code 使用工作區或使用者設定中的 `.vscode/mcp.json`。
 1. 從 [cursor.sh](https://cursor.sh) 下載 Cursor
 2. 安裝並登入
 
-### 設定
+### 配置
 
-Cursor 使用與 Claude Desktop 類似的配置格式。
+Cursor 使用類似 Claude Desktop 的配置格式。
 
 **配置文件位置：**
-- **macOS**: `~/.cursor/mcp.json`
-- **Windows**: `%USERPROFILE%\.cursor\mcp.json`
-- **Linux**: `~/.cursor/mcp.json`
+- **macOS**：`~/.cursor/mcp.json`
+- **Windows**：`%USERPROFILE%\.cursor\mcp.json`
+- **Linux**：`~/.cursor/mcp.json`
 
 **範例配置：**
 
@@ -205,17 +211,17 @@ Cursor 使用與 Claude Desktop 類似的配置格式。
 }
 ```
 
-### 在 Cursor 使用 MCP
+### 在 Cursor 中使用 MCP
 
-1. 開啟 Cursor 的 AI 聊天（Ctrl+L / Cmd+L）
-2. MCP 工具會自動出現在建議清單
-3. 向 AI 請求使用連接的伺服器執行任務
+1. 打開 Cursor 的 AI 聊天 (Ctrl+L / Cmd+L)
+2. MCP 工具將自動出現在建議中
+3. 請 AI 使用已連接的服務器執行任務
 
 ---
 
-## 4. Cline（終端機介面）
+## 4. Cline (終端機版)
 
-**Cline** 是一款終端機介面的 MCP 用戶端，適合命令列工作流程。
+**Cline** 是基於終端機的 MCP 客戶端，非常適合命令列工作流程。
 
 ### 安裝
 
@@ -223,25 +229,25 @@ Cursor 使用與 Claude Desktop 類似的配置格式。
 npm install -g @anthropic/cline
 ```
 
-### 設定
+### 配置
 
-Cline 使用環境變數與命令列參數設定。
+Cline 使用環境變量與命令列參數。
 
-**使用環境變數：**
+**使用環境變量：**
 
 ```bash
 export ANTHROPIC_API_KEY="your-api-key"
 export MCP_SERVER_CALCULATOR="python -m mcp_calculator_server"
 ```
 
-**使用命令列參數：**
+**使用命令行參數：**
 
 ```bash
 cline --mcp-server "calculator:python -m mcp_calculator_server" \
       --mcp-server "weather:node /path/to/weather/index.js"
 ```
 
-**配置文件** (`~/.clinerc`)：
+<strong>配置文件</strong> (`~/.clinerc`)：
 
 ```json
 {
@@ -258,7 +264,7 @@ cline --mcp-server "calculator:python -m mcp_calculator_server" \
 ### 使用 Cline
 
 ```bash
-# 啟動互動式會話
+# 開始互動式會話
 cline
 
 # 使用MCP的單一查詢
@@ -272,20 +278,20 @@ cline --list-tools
 
 ## 5. Windsurf
 
-**Windsurf** 是另一款具 MCP 支援的 AI 動力程式碼編輯器。
+**Windsurf** 是另一款支援 MCP 的 AI 驅動程式碼編輯器。
 
 ### 安裝
 
 1. 從 [codeium.com/windsurf](https://codeium.com/windsurf) 下載 Windsurf
-2. 安裝並創建帳號
+2. 安裝並建立帳號
 
-### 設定
+### 配置
 
-Windsurf 的設定透過 UI 管理：
+Windsurf 配置透過設定介面管理：
 
-1. 開啟設定（Ctrl+, / Cmd+,）
-2. 搜尋「MCP」
-3. 點擊「在 settings.json 中編輯」
+1. 打開設定 (Ctrl+, / Cmd+,)
+2. 搜尋 "MCP"
+3. 點擊「在 settings.json 編輯」
 
 **範例配置：**
 
@@ -306,9 +312,9 @@ Windsurf 的設定透過 UI 管理：
 
 ## 傳輸類型比較
 
-不同 Host 支援不同的傳輸機制：
+不同主機支持不同的傳輸機制：
 
-| Host | stdio | SSE/HTTP | WebSocket |
+| 主機 | stdio | SSE/HTTP | WebSocket |
 |------|-------|----------|-----------|
 | Claude Desktop | ✅ | ❌ | ❌ |
 | VS Code | ✅ | ✅ | ❌ |
@@ -316,16 +322,16 @@ Windsurf 的設定透過 UI 管理：
 | Cline | ✅ | ✅ | ❌ |
 | Windsurf | ✅ | ✅ | ❌ |
 
-**stdio**（標準輸入/輸出）：適用於由 Host 啟動的本地伺服器  
-**SSE/HTTP**：適合遠端伺服器或多個客戶端共用的伺服器
+**stdio**（標準輸入/輸出）：最適合由主機啟動的本地服務器
+**SSE/HTTP**：最適合遠端服務器或多個客戶端共用的服務器
 
 ---
 
-## 常見除錯問題
+## 常見疑難排解
 
-### 伺服器無法啟動
+### 服務器無法啟動
 
-1. **先手動測試伺服器：**
+1. **先手動測試服務器：**
    ```bash
    # 適用於 Python
    python -m your_server_module
@@ -335,60 +341,60 @@ Windsurf 的設定透過 UI 管理：
    ```
 
 2. **檢查命令路徑：**
-   - 儘可能使用絕對路徑
-   - 確保執行檔在您的 PATH 中
+   - 盡可能使用絕對路徑
+   - 確保可執行檔在你的 PATH 中
 
-3. **驗證相依套件：**
+3. **確認依賴項：**
    ```bash
-   # Python
+   # Python（蟒蛇程式語言）
    pip list | grep mcp
    
-   # Node.js
+   # Node.js（節點.js）
    npm list @modelcontextprotocol/sdk
    ```
 
-### 伺服器連線成功但工具無法使用
+### 服務器已連接但工具無法使用
 
-1. **檢查伺服器日誌** — 多數 Host 支援日誌功能  
-2. **確認工具已註冊** — 使用 MCP Inspector 測試  
-3. **檢查權限** — 有些工具需要檔案或網路存取權限  
+1. <strong>查看服務器日誌</strong> - 大多數主機有日誌選項
+2. <strong>驗證工具註冊</strong> - 使用 MCP Inspector 測試
+3. <strong>檢查權限</strong> - 某些工具需要檔案或網路存取權限
 
-### 環境變數未傳遞
+### 環境變量未傳遞
 
-- 部分 Host 會過濾環境變數  
-- 請在 `env` 配置欄位明確指定  
-- 避免在配置檔存放敏感資料（使用秘密管理）
+- 有些主機會清理環境變量
+- 明確使用 `env` 配置欄位
+- 避免在配置文件中放置敏感資料（使用秘密管理）
 
 ---
 
 ## 安全最佳實踐
 
-1. **切勿將 API 金鑰提交至配置檔案**  
-2. **使用環境變數存放敏感資料**  
-3. **限制伺服器權限至必要範圍**  
-4. **授權存取系統前仔細審核伺服器程式碼**  
-5. **使用允許清單管控檔案系統及網路存取**
+1. **切勿將 API 金鑰提交至配置文件**
+2. <strong>對敏感資料使用環境變量</strong>
+3. <strong>限制服務器權限至必要範圍</strong>
+4. <strong>授權前請審閱服務器代碼</strong>
+5. <strong>對文件系統與網絡存取採用允許清單</strong>
 
 ---
 
-## 接下來的內容
+## 下一步是什麼
 
 - [3.13 - 使用 MCP Inspector 進行除錯](../13-mcp-inspector/README.md)
-- [3.1 - 建立您的第一台 MCP 伺服器](../01-first-server/README.md)
+- [3.1 - 創建你的第一個 MCP 服務器](../01-first-server/README.md)
 - [模組 5 - 進階主題](../../05-AdvancedTopics/README.md)
 
 ---
 
-## 其他資源
+## 附加資源
 
 - [Claude Desktop MCP 文件](https://docs.anthropic.com/en/docs/claude-desktop/mcp)
-- [VS Code MCP 擴充功能](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-mcp)
-- [MCP 規範 - 傳輸層](https://spec.modelcontextprotocol.io/specification/2025-11-25/basic/transports/)
-- [官方 MCP 伺服器註冊表](https://github.com/modelcontextprotocol/servers)
+- [VS Code MCP 擴充套件](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-mcp)
+- [MCP 規範 - 傳輸](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/)
+- [官方 MCP 服務器註冊庫](https://github.com/modelcontextprotocol/servers)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**免責聲明**：  
-本文件係由 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 所翻譯而成。雖然我們力求準確，但請注意自動翻譯可能包含錯誤或不準確之處。文件原文的母語版本應被視為權威來源。對於重要資訊，建議採用專業人工翻譯。對於因使用本翻譯而引起的任何誤解或誤釋，我們不承擔任何責任。
+**免責聲明**：
+此文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。雖然我們努力追求準確性，但請注意自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應視為權威來源。對於關鍵資訊，建議採用專業人工翻譯。我們不對因使用此翻譯所產生的任何誤解或誤譯承擔責任。
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

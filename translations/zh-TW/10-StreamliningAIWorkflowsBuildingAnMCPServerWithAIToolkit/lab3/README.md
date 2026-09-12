@@ -1,4 +1,9 @@
-# 🔧 模組 3：使用 Microsoft Foundry Toolkit 進階 MCP 開發
+# 🔧 模組 3：使用 Microsoft Foundry Toolkit 進行進階 MCP 開發
+
+> [!NOTE]
+> 本實驗中的 Inspector URL 使用舊版 `/sse` 端點，並鎖定 MCP SDK `1.9.3` 及 Inspector `0.14.0` 依賴。它們並非目前 `2026-07-28` 的 Streamable HTTP 範例。
+> 
+> 
 
 ![Duration](https://img.shields.io/badge/Duration-20_minutes-blue?style=flat-square)
 ![Microsoft Foundry Toolkit](https://img.shields.io/badge/Microsoft_Foundry_Toolkit-Required-orange?style=flat-square)
@@ -8,71 +13,69 @@
 
 ## 🎯 學習目標
 
-完成此實驗後，您將能夠：
+完成本實驗後，您將能夠：
 
 - ✅ 使用 Microsoft Foundry Toolkit 創建自訂 MCP 伺服器
-- ✅ 配置並使用最新的 MCP Python SDK（v1.9.3）
-- ✅ 設定並使用 MCP Inspector 進行除錯
+- ✅ 設定並使用最新 MCP Python SDK (v1.9.3)
+- ✅ 建立與使用 MCP Inspector 進行除錯
 - ✅ 在 Agent Builder 與 Inspector 環境中除錯 MCP 伺服器
-- ✅ 了解進階 MCP 伺服器開發工作流程
+- ✅ 理解進階 MCP 伺服器開發工作流程
 
-## 📋 先決條件
+## 📋 預備知識
 
 - 完成實驗 2（MCP 基礎）
-- VS Code 並安裝 Microsoft Foundry Toolkit 擴充套件
+- VS Code 並安裝 Microsoft Foundry Toolkit 擴充功能
 - Python 3.10+ 環境
-- 用於 Inspector 設定的 Node.js 與 npm
+- Node.js 與 npm，用於 Inspector 設定
 
-## 🏗️ 您將建置的內容
+## 🏗️ 您將建立的內容
 
-在本實驗中，您將建立一個 **Weather MCP Server** 示範：
-
-- 自訂 MCP 伺服器實作
-- 整合 Microsoft Foundry Toolkit Agent Builder
-- 專業除錯工作流程
-- 現代 MCP SDK 使用範例
+在本實驗中，您將建立一個 **Weather MCP Server**，展現：
+- 客製 MCP 伺服器實作
+- 與 Microsoft Foundry Toolkit Agent Builder 整合
+- 專業的除錯工作流程
+- 現代 MCP SDK 使用模式
 
 ---
 
-## 🔧 核心元件概述
+## 🔧 核心元件概覽
 
 ### 🐍 MCP Python SDK
-Model Context Protocol Python SDK 提供建立自訂 MCP 伺服器的基礎。您將使用具強化除錯功能的 1.9.3 版本。
+Model Context Protocol Python SDK 是構建自訂 MCP 伺服器的基礎。您將使用版本 1.9.3，具增強除錯功能。
 
 ### 🔍 MCP Inspector
-一款功能強大的除錯工具，提供：
-
+一款強大的除錯工具，提供：
 - 即時伺服器監控
-- 工具執行視覺化
+- 工具執行可視化
 - 網路請求/回應檢視
-- 互動測試環境
+- 互動式測試環境
 
 ---
 
-## 📖 逐步實作
+## 📖 分步驟實作
 
 ### 步驟 1：在 Agent Builder 中建立 WeatherAgent
 
-1. **透過 Microsoft Foundry Toolkit 擴充套件在 VS Code 中啟動 Agent Builder**
-2. **建立一個新代理，設定如下：**
-   - 代理名稱：`WeatherAgent`
+1. **透過 Microsoft Foundry Toolkit 擴充功能，在 VS Code 中啟動 Agent Builder**
+2. **建立一個新代理人，設定如下：**
+   - 代理人名稱：`WeatherAgent`
 
 ![Agent Creation](../../../../translated_images/zh-TW/Agent.c9c33f6a412b4cde.webp)
 
-### 步驟 2：初始化 MCP 伺服器專案
+### 步驟 2：初始化 MCP Server 專案
 
-1. **在 Agent Builder 中導覽至工具 → 新增工具**
-2. **從可用選項中選擇「MCP Server」**
-3. **選擇「建立新 MCP Server」**
+1. **在 Agent Builder 中導航至 Tools → Add Tool**
+2. **從可選項目中選擇「MCP Server」**
+3. **選擇「Create A new MCP Server」**
 4. **選擇 `python-weather` 範本**
 5. **命名您的伺服器：** `weather_mcp`
 
 ![Python Template Selection](../../../../translated_images/zh-TW/Pythontemplate.9d0a2913c6491500.webp)
 
-### 步驟 3：開啟並檢視專案
+### 步驟 3：打開並檢視專案
 
-1. **在 VS Code 中開啟產生的專案**
-2. **檢查專案結構：**
+1. **在 VS Code 中打開產生的專案**
+2. **檢閱專案結構：**
    ```
    weather_mcp/
    ├── src/
@@ -90,28 +93,29 @@ Model Context Protocol Python SDK 提供建立自訂 MCP 伺服器的基礎。�
 
 ### 步驟 4：升級到最新 MCP SDK
 
-> **🔍 為何升級？** 我們想使用最新 MCP SDK（v1.9.3）及 Inspector 服務（0.14.0）， 以獲得強化功能與更佳的除錯能力。
+> **🔍 為何升級？** 我們希望使用最新 MCP SDK (v1.9.3) 與 Inspector 服務 (0.14.0) 以獲得增強功能與更佳除錯能力。
 
-#### 4a. 更新 Python 相依套件
+#### 4a. 更新 Python 依賴
 
-**編輯 `pyproject.toml`：** 更新 [./code/weather_mcp/pyproject.toml](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/pyproject.toml)
+**編輯 `pyproject.toml`：**更新 [./code/weather_mcp/pyproject.toml](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/pyproject.toml)
 
 
 #### 4b. 更新 Inspector 設定
 
-**編輯 `inspector/package.json`：** 更新 [./code/weather_mcp/inspector/package.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package.json)
+**編輯 `inspector/package.json`：**更新 [./code/weather_mcp/inspector/package.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package.json)
 
-#### 4c. 更新 Inspector 相依套件
+#### 4c. 更新 Inspector 依賴
 
-**編輯 `inspector/package-lock.json`：** 更新 [./code/weather_mcp/inspector/package-lock.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package-lock.json)
+**編輯 `inspector/package-lock.json`：**更新 [./code/weather_mcp/inspector/package-lock.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package-lock.json)
 
-> **📝 注意：** 此檔包含大量相依定義，以下為主要架構 - 完整內容確保相依正確解析。
+> **📝 注意：** 此檔案包含大量依賴定義。下方為必要結構摘要 - 完整內容確保依賴正確解析。
 
-> **⚡ 完整的相依鎖定檔：** 完整 package-lock.json 有約 3000 行相依定義。上述展示了關鍵結構 - 請使用提供的檔案以確保完整正確。
 
-### 步驟 5：配置 VS Code 除錯
+> **⚡ 完整鎖定檔：** 完整的 package-lock.json 約有 3000 行依賴定義。上述僅為關鍵結構—請使用提供的檔案以確保完整依賴解析。
 
-*注意：請複製指定路徑的檔案以覆蓋本機對應檔。*
+### 步驟 5：設定 VS Code 除錯
+
+*注意：請複製指定路徑的檔案以替換對應本地檔案*
 
 #### 5a. 更新啟動設定
 
@@ -297,31 +301,31 @@ Model Context Protocol Python SDK 提供建立自訂 MCP 伺服器的基礎。�
 
 ---
 
-## 🚀 執行並測試您的 MCP 伺服器
+## 🚀 執行與測試您的 MCP 伺服器
 
-### 步驟 6：安裝相依套件
+### 步驟 6：安裝依賴
 
-完成設定變更後，執行下列指令：
+完成設定變更後，執行以下指令：
 
-**安裝 Python 相依套件：**
+**安裝 Python 依賴：**
 ```bash
 uv sync
 ```
 
-**安裝 Inspector 相依套件：**
+**安裝 Inspector 依賴：**
 ```bash
 cd inspector
 npm install
 ```
 
-### 步驟 7：使用 Agent Builder 除錯
+### 步驟 7：在 Agent Builder 中除錯
 
-1. **按下 F5** 或使用 **「在 Agent Builder 中除錯」** 設定
-2. <strong>從除錯面板選擇複合配置</strong>
-3. **等待伺服器啟動及 Agent Builder 開啟**
-4. **使用自然語言查詢測試您的 weather MCP 伺服器**
+1. **按 F5** 或使用 **「Debug in Agent Builder」** 設定
+2. <strong>從除錯面板中選擇複合設定</strong>
+3. <strong>等待伺服器啟動</strong> 並開啟 Agent Builder
+4. **透過自然語言詢問，測試您的 weather MCP 伺服器**
 
-輸入提示如下
+輸入提示例如：
 
 SYSTEM_PROMPT
 
@@ -337,11 +341,11 @@ How's the weather like in Seattle
 
 ![Agent Builder Debug Result](../../../../translated_images/zh-TW/Result.6ac570f7d2b1d538.webp)
 
-### 步驟 8：使用 MCP Inspector 除錯
+### 步驟 8：在 MCP Inspector 中除錯
 
-1. **使用「在 Inspector 中除錯」配置（Edge 或 Chrome）**
-2. **開啟 Inspector 介面：`http://localhost:6274`**
-3. **探索互動式測試環境：**
+1. **使用「Debug in Inspector」** 設定（Edge 或 Chrome）
+2. **開啟 Inspector 介面**，位於 `http://localhost:6274`
+3. **探索互動測試環境：**
    - 查看可用工具
    - 測試工具執行
    - 監控網路請求
@@ -353,43 +357,42 @@ How's the weather like in Seattle
 
 ## 🎯 主要學習成果
 
-完成此實驗，您已：
+完成本實驗後，您已：
 
 - [x] **使用 Microsoft Foundry Toolkit 範本建立自訂 MCP 伺服器**
-- [x] **升級至最新 MCP SDK**（v1.9.3）以增強功能
-- [x] **為 Agent Builder 和 Inspector 配置專業除錯工作流程**
-- [x] **設定 MCP Inspector** 進行互動式伺服器測試
-- [x] **掌握 VS Code MCP 開發除錯配置**
+- [x] **升級至最新 MCP SDK** (v1.9.3) 以增強功能性
+- [x] <strong>設定專業除錯工作流程</strong>，適用於 Agent Builder 與 Inspector
+- [x] **建置 MCP Inspector**，進行互動式伺服器測試
+- [x] **掌握 MCP 開發的 VS Code 除錯配置**
 
 ## 🔧 探索的進階功能
 
-| 功能 | 描述 | 使用案例 |
+| 功能 | 說明 | 使用案例 |
 |---------|-------------|----------|
 | **MCP Python SDK v1.9.3** | 最新協定實作 | 現代伺服器開發 |
 | **MCP Inspector 0.14.0** | 互動式除錯工具 | 即時伺服器測試 |
-| **VS Code 除錯** | 一體化開發環境 | 專業除錯工作流程 |
-| **Agent Builder 整合** | 直接 Microsoft Foundry Toolkit 連結 | 端對端代理測試 |
+| **VS Code 除錯** | 整合式開發環境 | 專業除錯工作流程 |
+| **Agent Builder 整合** | 直接連結 Microsoft Foundry Toolkit | 端對端代理測試 |
 
-## 📚 其他資源
+## 📚 額外資源
 
 - [MCP Python SDK 文件](https://modelcontextprotocol.io/docs/sdk/python)
-- [Microsoft Foundry Toolkit 擴充套件指南](https://code.visualstudio.com/docs/ai/ai-toolkit)
+- [Microsoft Foundry Toolkit 擴充功能指南](https://code.visualstudio.com/docs/ai/ai-toolkit)
 - [VS Code 除錯文件](https://code.visualstudio.com/docs/editor/debugging)
-- [Model Context Protocol 規格](https://modelcontextprotocol.io/docs/concepts/architecture)
+- [Model Context Protocol 規範](https://modelcontextprotocol.io/docs/concepts/architecture)
 
 ---
 
-**🎉 恭喜！** 您已成功完成實驗 3，現在能透過專業開發工作流程，建立、除錯並部署自訂 MCP 伺服器。
+**🎉 恭喜！** 您已成功完成實驗 3，現在可以使用專業開發工作流程來建立、除錯及部署自訂 MCP 伺服器。
 
-### 🔜 繼續下一模組
+### 🔜 繼續進入下一模組
 
-準備將您的 MCP 技能套用到真實開發工作流程了嗎？繼續至 **[模組 4：實務 MCP 開發 - 自訂 GitHub 克隆伺服器](../lab4/README.md)**，您將：
-
-- 建置生產等級 MCP 伺服器，自動化 GitHub 儲存庫操作
-- 實作 MCP 的 GitHub 儲存庫克隆功能
-- 將自訂 MCP 伺服器與 VS Code 及 GitHub Copilot 代理模式整合
-- 在生產環境中測試與部署自訂 MCP 伺服器
-- 學習實務工作流程自動化技巧
+準備將您的 MCP 技能應用於實務開發工作流程了嗎？請繼續閱讀 **[模組 4：實務 MCP 開發 - 自訂 GitHub 複製伺服器](../lab4/README.md)**，您將：
+- 建構生產級 MCP 伺服器，自動化 GitHub 儲存庫操作
+- 透過 MCP 實作 GitHub 儲存庫克隆功能
+- 將自訂 MCP 伺服器整合至 VS Code 與 GitHub Copilot 代理模式
+- 在生產環境測試與部署自訂 MCP 伺服器
+- 學習實用的工作流程自動化技巧
 
 ---
 

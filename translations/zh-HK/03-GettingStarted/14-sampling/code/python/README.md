@@ -1,5 +1,10 @@
 # 運行範例
 
+> [!WARNING]
+> 此範例使用已棄用的 Sampling 與舊版 HTTP+SSE 端點。
+> 它是為了 MCP `2025-11-25` 的相容性而保留。新的實作應直接呼叫
+> LLM 供應商並使用可串流的 HTTP 來處理遠端 MCP 流量。
+
 ## 建立虛擬環境
 
 ```sh
@@ -13,15 +18,15 @@ source ./venv/bin/activate
 pip install "mcp[cli]"
 ```
 
-## 運行伺服器
+## 啟動伺服器
 
 ```sh
 uvicorn server:app --port 8000
 ```
 
-## 使用 GitHub Copilot 與 VS Code 測試伺服器
+## 使用 GitHub Copilot 和 VS Code 測試伺服器
 
-將條目添加到 mcp.json，如下所示：
+在 mcp.json 中加入以下條目：
 
 ```json
 "servers": {
@@ -32,7 +37,7 @@ uvicorn server:app --port 8000
 }
 ```
 
-確保你已點擊伺服器上的「start」。
+確保你點擊了伺服器的「start」。
 
 在 GitHub Copilot 中貼上以下提示：
 
@@ -40,7 +45,7 @@ uvicorn server:app --port 8000
 create a blog post named "Where Python comes from", the content is "Python is actually named after Monty Python Flying Circus"
 ```
 
-第一次會被詢問是否接受 Sampling 行動，接著會被要求接受工具運行「create_blog」。你應該會看到類似的回應：
+第一次時系統會詢問你是否接受 Sampling 動作，接著會詢問是否接受執行工具 "create_blog"。你應該會看到類似以下的回應：
 
 ```json
 {
@@ -51,6 +56,6 @@ create a blog post named "Where Python comes from", the content is "Python is ac
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**免責聲明**：  
-本文件由AI翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 翻譯而成。雖然我們力求準確，但請注意自動翻譯可能包含錯誤或不準確之處。原文文件以其原始語言版本為權威來源。如涉及重要資訊，建議諮詢專業人工翻譯。我們不承擔因使用此翻譯而引致的任何誤解或誤釋之責任。
+**免責聲明**：
+本文件由 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 翻譯而成。雖然我們致力於確保準確性，但請注意，機器自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於重要資訊，建議進行專業人工翻譯。我們不對因使用本翻譯而產生的任何誤解或誤釋承擔責任。
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
