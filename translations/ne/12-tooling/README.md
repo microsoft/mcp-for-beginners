@@ -1,33 +1,33 @@
-# 🚀 MCP उपकरण
+# 🚀 MCP टुलिङ
 
 ## 🧠 MCP डेटाबेस एकीकरण सिकाइ मार्गको अवलोकन
 
-यहाँ तपाईंले MCP प्रयोग गर्ने उपकरणहरू कसरी प्रयोग गर्ने सिक्नुहुनेछ। यी उपकरणहरूमा MCP सर्भरहरू जडान गर्दा तपाईंको अनुभव सुधार हुनेछ।
+यहाँ तपाईंले MCP प्रयोग गर्ने उपकरणहरू कसरी प्रयोग गर्ने भन्ने सिक्नुहुनेछ। यी उपकरणहरू प्रयोग गर्ने तपाईंको अनुभव सुधार हुनेछ जब तपाईं तिनीहरूलाई MCP सर्भरहरूसँग जडान गर्नुहुनेछ।
 
 ## 🔗 आधिकारिक MCP स्रोतहरू
 
-- 📘 [MCP दस्तावेज](https://modelcontextprotocol.io/) – विस्तृत ट्युटोरियलहरू र प्रयोगकर्ता मार्गदर्शकहरू
-- 📜 [MCP विशिष्टता (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/) – प्रोटोकल संरचना र प्राविधिक सन्दर्भहरू
-- 🧑‍💻 [MCP GitHub भण्डार](https://github.com/modelcontextprotocol) – खुला स्रोत SDKहरू, उपकरणहरू, र कोड नमूनाहरू
-- 🌐 [MCP समुदाय](https://github.com/orgs/modelcontextprotocol/discussions) – छलफलमा सहभागी हुनुहोस् र समुदायमा योगदान गर्नुहोस्
-- 🔒 [OWASP MCP शीर्ष १०](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – सुरक्षा उत्तम अभ्यासहरू र जोखिम कम गर्ने उपायहरू
+- 📘 [MCP कागजात](https://modelcontextprotocol.io/) – विस्तृत ट्युटोरियलहरू र प्रयोगकर्ता मार्गनिर्देशहरू
+- 📜 [MCP स्पेसिफिकेशन (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/) – प्रोटोकल संरचना र प्राविधिक सन्दर्भहरू
+- 🧑‍💻 [MCP GitHub रिपोजिटरी](https://github.com/modelcontextprotocol) – ओपन-सोर्स SDKs, उपकरणहरू, र कोड नमूनाहरू
+- 🌐 [MCP समुदाय](https://github.com/orgs/modelcontextprotocol/discussions) – छलफलमा सामेल हुनुहोस् र समुदायलाई योगदान गर्नुहोस्
+- 🔒 [OWASP MCP शीर्ष १०](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – सुरक्षा उत्कृष्ट अभ्यासहरू र जोखिम न्यूनीकरणहरू
 
 
 
 ## 🌟 समुदाय र समर्थन
 
-### सहायता प्राप्त गर्नुहोस्
+### मद्दत लिनुहोस्
 
-- **Azure AI Discord**: [विशेषज्ञ समर्थनका लागि सहभागी हुनुहोस्](https://discord.com/invite/ByRwuEEgH4)
-- **MCP समुदाय**: [व्यापक MCP छलफलहरूमा सहभागी हुनुहोस्](https://github.com/orgs/modelcontextprotocol/discussions)
+- **Azure AI Discord**: [विशेषज्ञ समर्थनका लागि सामेल हुनुहोस्](https://discord.com/invite/ByRwuEEgH4)
+- **MCP समुदाय**: [ठूला MCP छलफलहरूमा सामेल हुनुहोस्](https://github.com/orgs/modelcontextprotocol/discussions)
 
 ## 🚀 सुरु गर्न तयार?
 
-तपाईंको यात्रा सुरु गर्नुहोस् **[GitHub Copilot अनुप्रयोग](./01-copilot-app/README.md)** सँग
+आफ्नो यात्रा सुरु गर्नुहोस् **[GitHub Copilot एप](./01-copilot-app/README.md)**
 
 ---
 
-*उत्पादकता सुधार र सहज एकीकरणका लागि MCP को साथ यी उपकरणहरू मास्टर गर्नुहोस्।*
+*उत्पादकता र निर्बाध एकीकरणका लागि यी उपकरणहरूसँग MCP को प्रयोगमा दक्ष हुनुहोस्।*
 
 ---
 
