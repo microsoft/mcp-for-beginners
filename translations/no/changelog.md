@@ -1,738 +1,782 @@
 # Endringslogg: MCP for Nybegynnere Pensum
 
-Dette dokumentet fungerer som en oversikt over alle vesentlige endringer gjort i Model Context Protocol (MCP) for Nybegynnere pensum. Endringene dokumenteres i omvendt kronologisk rekkefølge (nyeste endringer først).
+Dette dokumentet fungerer som en oversikt over alle betydelige endringer gjort i Model Context Protocol (MCP) for Nybegynnere-pensumet. Endringene dokumenteres i omvendt kronologisk rekkefølge (nyeste endringer først).
+
+## 9. september 2026
+
+### MCP 2026-07-28 Endelig Spesifikasjonsjustering
+
+Oppdaterte det engelske pensumet fra release-kandidat og `2025-11-25`
+baselinje-veiledning til den endelige MCP `2026-07-28` spesifikasjonen.
+
+- **Oppdatert**: Referanser til nåværende versjon, spesifikasjonslenker, stateless
+  forespørselsveiledning, `server/discover`, Streamable HTTP-headere, og Tasks
+  utvidelsens livsløp i 38 engelske dokumentasjonsfiler.
+- **Korrigert**: Elicitation bruker nå `elicitation/create`, Sampling bruker
+  `sampling/createMessage`, og `InputRequiredResult.resultType` bruker
+  `"input_required"`.
+- **Erstattet**: Den unøyaktige Root Context samtaletilstanden med en
+  protokollnøyaktig Roots-leksjon som dekker informasjonsfilsystemhint, den
+  nåværende fler-omgangs flyten, sikkerhetsgrenser og migrasjonsmuligheter.
+- **Presisert**: Roots, Sampling, Logging og Dynamic Client Registration er
+  avskrevet i `2026-07-28`, med anbefalte erstatninger og tidligste
+  fjerningsdato dokumentert.
+- **Merket**: Eksempler som fortsatt avhenger av MCP `2025-11-25`, HTTP+SSE,
+  initialiseringshåndtrykk eller protokollsesjoner beholdes som eksempler på 
+  eldre kompatibilitet istedenfor å presenteres som nåværende implementasjoner.
+- **Sikkerhetsveiledning**: Oppdaterte de frittstående sikkerhetsveiledningene til å bruke
+  per-forespørsel autorisasjon og eksplisitte applikasjonstilstandshåndtak i stedet for
+  fjernede protokollsesjons-IDer. Client ID Metadata-dokumenter er nå
+  den foretrukne registreringsveien, med DCR dokumentert som kun kompatibilitet.
+- **Støttemateriale**: Oppdaterte studieguide, bidragsjekkliste,
+  Publora case-studie, og APIM case-studie. APIM-gjennomgangen anbefaler nå
+  sin nåværende Streamable HTTP `/mcp` endepunkt i stedet for avskrevne `/sse`.
+- **Kanoniske lenker**: Erstattet pensjonerte og utkastspesifikasjons-URLer i engelske
+  kilde-Markdown med versjonerte `2026-07-28` lenker, samtidig som eksplisitte
+  lenker til eldre versjoner bevares der et eksempel fortsatt er låst til eldre verktøy.
+- **Stabile filnavn**: Omdøpte den endelige spesifikasjonsguiden og to sikkerhets-
+  guider for å fjerne release-kandidat og årstallsuffix, og oppdaterte deretter alle engelske
+  hyperlenker til deres stabile stier.
+- **Nytt autorisasjonseksempel**: Lagt til en testet
+  [TypeScript MCP `2026-07-28` ressursserver](./02-Security/samples/cimd-dcr-auth/README.md)
+  som sammenligner foretrukne Client ID Metadata-dokumenter med avskrevet Dynamic
+  Client Registration fallback. Eksemplet inkluderer RFC 9728 discovery, JWKS
+  validering, per-verktøy scopes, tolv tester, og en Auth0 oppsett gjenn...
+- **Oversettelsesomfang**: Kun engelske kildefiler ble redigert; genererte
+  oversettelser og oversatte bilder forblir uendret da disse er automatisk oversatt.
 
 ## 29. juli 2026
 
-### Ny modulkamerat 08: Pålitelige sidecars og sikre forsøk på nytt
+### Ny Modul 08 Følgesvenn: Reliabilitet Sidecars og Sikker Gjentakelse
 
-Lagt til en leverandørnøytral kamerat-leksjon for MCP-verktøy som skaper virkelige
+Lagt til en leverandør-nøytral følgesvennleksjon for MCP-verktøy som skaper virkelige
 effekter, tilpasset den endelige `2026-07-28` spesifikasjonen.
 
-- **Ny**: [kamerat-leksjonen for pålitelighetssidecar][reliability-sidecar]
-  bruker én støtte-sak-historie, to Mermaid-diagrammer, og et beslutnings-
-  flyt for gjenforsøk for å forklare stabile operasjonsnøkler, atomisk duplikat-
-  opptak, forsoning, bevis, og grensen for Tasks-utvidelsen.
-- **Ny**: En standardbibliotek Python og SQLite feilinjiseringsøvelse
-  bruker separate operasjons- og saksbutikker for å demonstrere et svar som går tapt
-  etter at en ekstern effekt har bekreftet. Seks deterministiske tester dekker naive
-  duplikater, beskyttet gjenoppretting ved omstart, konflikt i nyttelast,
-  bufrede resultater, aktive krav, og samtidig duplikatopptak.
-- **Oppdatert**: Modul 08 kobler nå til kamerat-leksjonen, identifiserer
-  den endelige `2026-07-28` stateless forespørselsmodellen, skiller OpenTelemetry
-  observabilitet fra den utfasede MCP logging-funksjonen, og begrenser
-  det generiske gjenforsøk-eksempelet til leseoperasjoner.
-- **Valgfritt**: Leksjonen kartlegger sine portable konsepter til én merket fellesskaps-
-  implementering uten å gjøre den hostede tjenesten eller et nettverkskall til
-  del av øvelsen.
+- **Ny**: [reliability sidecar følgesvennleksjon][reliability-sidecar]
+  bruker én support-forespørsels historie, to Mermaid diagrammer, og en beslutnings-
+  flyt for gjentakelse for å forklare stabile operasjonsnøkler, atomisk duplikat-
+  opptak, forsoning, bevis og Tasks-utvidelsesgrense.
+- **Ny**: En standardbibliotek Python og SQLite feil-injeksjonsøvelse
+  bruker separate operasjons- og billettdatabaser for å demonstrere tapt respons
+  etter at en ekstern effekt har blitt begått. Seks deterministiske tester dekker naiv
+  duplisering, forsvarte restart-gjenopprettinger, lastkonflikter, bufrede resultater,
+  aktive krav og samtidige duplikatopptak.
+- **Oppdatert**: Modul 08 lenker nå følgesvennleksjonen, identifiserer den
+  endelige `2026-07-28` stateless forespørselsmodellen, skiller OpenTelemetry
+  observabilitet fra den avskrevne MCP logging-funksjonen, og begrenser sitt
+  generiske gjentakelse-eksempel til bare leseoperasjoner.
+- **Valgfri**: Leksjonen kartlegger sine bærbare konsepter til en tagget community-
+  implementasjon uten å gjøre vertstjenesten eller et nettverkskall til del av
+  øvelsen.
 
 [reliability-sidecar]: ./08-BestPractices/reliability-sidecars/README.md
 
 ## 2. juli 2026
 
-### Ny leksjon: 2026-07-28 MCP Spesifikasjons Release Candidate
+### Ny Leksjon: MCP Spesifikasjonsutgivelse Kandidat 2026-07-28
 
-Lagt til dekning av den kommende `2026-07-28` MCP spesifikasjons release candidate (annonsert 21. mai 2026; endelig utgivelse planlagt 28. juli 2026), oppsummert fra [den offisielle kunngjøringsbloggen](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/). Pensumets basis forblir **MCP Spesifikasjon 2025-11-25** til den nye versjonen lanseres, så dette presenteres som fremtidsrettet veiledning fremfor omskriving av eksisterende leksjoner.
+Lagt til dekning av den kommende `2026-07-28` MCP spesifikasjonsutgivelse kandidat (kunngjort 21. mai 2026; endelig utgivelse planlagt 28. juli 2026), oppsummert fra den [offisielle kunngjøringsblogginnlegget](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/). Pensumets baselinje forblir **MCP Spesifikasjon 2025-11-25** til den nye versjonen leveres, så dette presenteres som fremtidsrettet veiledning snarere enn en omskriving av eksisterende leksjoner.
 
-- **Ny**: [01-CoreConcepts/mcp-2026-07-28-release-candidate.md](./01-CoreConcepts/mcp-2026-07-28-release-candidate.md) — en fullstendig leksjon som dekker den stateless protokollkjernen (fjerning av `initialize` håndtrykk og `Mcp-Session-Id`), de nye `Mcp-Method`/`Mcp-Name` rutingshodene, `ttlMs`/`cacheScope` cache-metadatainformasjon, W3C Trace Context i `_meta`, det formelle utvidelsesrammeverket (MCP Apps og den nye Tasks-utvidelsen), seks autorisasjonsharding SEPer, utfasing av Roots/Sampling/Logging, og overgangen til full JSON Schema 2020-12 for verktøy-skjemadefinisjoner.
-- **Oppdatert** med fremtidsrettede henvisninger til ny leksjon:
-  - [01-CoreConcepts/README.md](./01-CoreConcepts/README.md): protokollversjonsnotat, Sampling/Roots/Logging/Tasks seksjoner, og "Hva er neste"
-  - [02-Security/README.md](./02-Security/README.md): autorisasjonsharding henvisning
-  - [03-GettingStarted/06-http-streaming/README.md](./03-GettingStarted/06-http-streaming/README.md): stateless transport henvisning
-  - [03-GettingStarted/14-sampling/README.md](./03-GettingStarted/14-sampling/README.md): Sampling utfasing henvisning
-  - [05-AdvancedTopics/mcp-protocol-features/README.md](./05-AdvancedTopics/mcp-protocol-features/README.md): Logging utfasing og Tasks-utvidelse henvisning
-  - [05-AdvancedTopics/mcp-transport/README.md](./05-AdvancedTopics/mcp-transport/README.md): stateless/session-ruting henvisning
-  - [README.md](./README.md): "Ser fremover" notat i spesifikasjonsseksjonen og en ny `1.1` oppføring i modultabellen
-  - [study_guide.md](./study_guide.md): fremtidsrettet kulepunkt under Core Concepts oversikt og et datert tillegg
-  - [03-GettingStarted/11-simple-auth/README.md](./03-GettingStarted/11-simple-auth/README.md): henvisning om `mcp-session-id` transportkart foran den stateless forespørselsmodellen
-  - [05-AdvancedTopics/README.md](./05-AdvancedTopics/README.md): moduloversikt henvisning om utfasing av Root Contexts/Sampling og Tasks-utvidelsen
-  - [05-AdvancedTopics/mcp-security/README.md](./05-AdvancedTopics/mcp-security/README.md): autorisasjonsharding henvisning
+- **Ny**: [01-CoreConcepts/mcp-2026-07-28.md](./01-CoreConcepts/mcp-2026-07-28.md) — en fullstendig leksjon som dekker den stateless protokollkjernen (fjerning av `initialize` håndtrykket og `Mcp-Session-Id`), de nye `Mcp-Method`/`Mcp-Name` rutingsheaderne, `ttlMs`/`cacheScope` caching metadata, W3C Trace Context i `_meta`, den formelle Utvidelsesrammeverket (MCP Apps og den nye Tasks-utvidelsen), seks autorisasjonsherdings-SEPer, avskrivning av Roots/Sampling/Logging, og overgangen til full JSON Schema 2020-12 for verktøy-skemaer.
+- **Oppdatert** med fremtidsrettede påpekninger som lenker til den nye leksjonen:
+  - [01-CoreConcepts/README.md](./01-CoreConcepts/README.md): protokollversjonsnotat, Sampling/Roots/Logging/Tasks seksjoner, og "Hva kommer videre"
+  - [02-Security/README.md](./02-Security/README.md): autorisasjonsherdingspåpekning
+  - [03-GettingStarted/06-http-streaming/README.md](./03-GettingStarted/06-http-streaming/README.md): stateless transport-påpekning
+  - [03-GettingStarted/14-sampling/README.md](./03-GettingStarted/14-sampling/README.md): Sampling avskrivningspåpekning
+  - [05-AdvancedTopics/mcp-protocol-features/README.md](./05-AdvancedTopics/mcp-protocol-features/README.md): Logging avskrivning og Tasks-utvidelse påpekning
+  - [05-AdvancedTopics/mcp-transport/README.md](./05-AdvancedTopics/mcp-transport/README.md): stateless/session-routing påpekning
+  - [README.md](./README.md): "Ser fremover" notat i spesifikasjonsseksjonen og en ny `1.1` oppføring i pensummodultabellen
+  - [study_guide.md](./study_guide.md): fremtidsrettet punkt under Core Concepts oversikten og et datert tillegg
+  - [03-GettingStarted/11-simple-auth/README.md](./03-GettingStarted/11-simple-auth/README.md): påpekning om `mcp-session-id` transportkart foran stateless forespørselsmodell
+  - [05-AdvancedTopics/README.md](./05-AdvancedTopics/README.md): moduloversiktspåpekning om Root Contexts/Sampling avskrivninger og Tasks-utvidelsen
+  - [05-AdvancedTopics/mcp-security/README.md](./05-AdvancedTopics/mcp-security/README.md): autorisasjonsherdingspåpekning
 
 ## 24. juni 2026
 
-### Ny leksjon: Bruke MCP i Copilot-app
+### Ny Leksjon: Bruke MCP i Copilot app
 
 - [Verktøyseksjon](./12-tooling/README.md) Lagt til verktøyseksjon.
-- [MCP i Copilot-app](./12-tooling/01-copilot-app/README.md)
+- [MCP i Copilot app](./12-tooling/01-copilot-app/README.md)
 
 ## 16. juni 2026
 
 ### MCP Spesifikasjonsjustering & Eksempelsvalidering
 
-Validerte pensum mot gjeldende **MCP Spesifikasjon 2025-11-25** og de nyeste offisielle SDKene, korrigerte deretter gjenværende utdaterte spesifikasjonsreferanser, og bekreftet at kjerneeksemplene fortsatt bygger og kjører.
+Validerte pensumet mot gjeldende **MCP Spesifikasjon 2025-11-25** og de nyeste offisielle SDKene, deretter korrigerte de gjenværende utdaterte spesifikasjonsreferansene og bekreftet at kjerneeksemplene fortsatt bygger og kjører.
 
-#### Spesifikasjonsversjonskorrigeringer (2025-06-18 / 2025-03-26 → 2025-11-25)
+#### Spesifikasjonsversjonskorreksjoner (2025-06-18 / 2025-03-26 → 2025-11-25)
 
-Oppdatert engelsk innhold der det fortsatt hevdet at en eldre spesifikasjonsrevisjon var *nåværende/siste* standard, og omdirigerte lenker til de kanoniske `modelcontextprotocol.io` spesifikasjonsbanene:
-- **05-AdvancedTopics/mcp-security/README.md**: Oppdaterte "Nåværende Standard" banner, introduksjon, kjerneprinsipper for sikkerhet overskrift, obligatorisk krav-overskrift, Microsoft Entra ID seksjon, Referanser & Ressurser lenker, og avsluttende sikkerhetsmelding (8 referanser) til 2025-11-25
-- **05-AdvancedTopics/mcp-transport/README.md**: Oppdaterte Ytterligere Ressurser spesifikasjonslenke og "Nåværende Standard" banner til 2025-11-25
-- **05-AdvancedTopics/mcp-realtimesearch/README.md**: Erstatter den utdaterte `2025-03-26` sikkerhets-og-pålitelighets lenken med gjeldende 2025-11-25 beste praksis side for sikkerhet
-- **03-GettingStarted/14-sampling/README.md**: Oppdaterte den offisielle sampling-dokumentasjonslenken til 2025-11-25
-- **03-GettingStarted/05-stdio-server/README.md**: Oppdaterte nåværende tid referanse til "nåværende MCP spesifikasjon" og Ytterligere Ressurser spesifikasjonslenke til 2025-11-25 (historiske SSE-utfasingsnotater beholdt for nøyaktighet)
+Oppdaterte engelsk innhold der det fortsatt ble påstått at en eldre spesifikasjonsrevisjon var *nåværende/siste* standard, og pekte lenker til kanoniske `modelcontextprotocol.io` spesifikasjonsstier:
+- **05-AdvancedTopics/mcp-security/README.md**: Oppdaterte banner "Current Standard", introduksjon, kjerne sikkerhetsprinsipper overskrift, obligatoriske krav overskrift, Microsoft Entra ID seksjon, Referanser & Ressurser lenker, samt avsluttende sikkerhetsvarsel (8 referanser) til 2025-11-25
+- **05-AdvancedTopics/mcp-transport/README.md**: Oppdaterte spesifikasjonslenken for Tilleggsressurser og "Current Standard" banner til 2025-11-25
+- **05-AdvancedTopics/mcp-realtimesearch/README.md**: Erstattet utdatert `2025-03-26` sikkerhets-og-tillit lenke med gjeldende 2025-11-25 sikkerhets beste praksis side
+- **03-GettingStarted/14-sampling/README.md**: Oppdaterte offisielle sampling dokumentasjonslenke til 2025-11-25
+- **03-GettingStarted/05-stdio-server/README.md**: Oppdaterte nåværende tidsform "nåværende MCP spesifikasjon" referanse og Tilleggsressurser spesifikasjonslenke til 2025-11-25 (historiske SSE-avskrivningsnotater beholdt for nøyaktighet)
 
-#### Eksempelsvalidering mot gjeldende SDKer
+#### Eksempelsvalidering mot nåværende SDKer
 
-- **TypeScript (03-GettingStarted/01-first-server/solution/typescript)**: `npm install` løste `@modelcontextprotocol/sdk@1.29.0`; `tsc --noEmit` bestod uten typefeil — eksisterende `McpServer`/`StdioServerTransport` APIer forblir gyldige
-- **Python (03-GettingStarted/01-first-server/solution/python)**: Validert i et isolert `.venv` med `mcp[cli]` (1.27.2); `py_compile` bestod og `FastMCP.list_tools()` returnerte korrekt verktøyene `add` og `subtract`
-- Bekreftet at alle eksempels `@modelcontextprotocol/sdk` versjonsområder (`>=1.26.0` / `^1.26.0` / `^1.27.0`) løser seg rent til nåværende `1.29.0` uten API-brytende endringer
+- **TypeScript (03-GettingStarted/01-first-server/solution/typescript)**: `npm install` løste `@modelcontextprotocol/sdk@1.29.0`; `tsc --noEmit` passerte uten typefeil — eksisterende `McpServer`/`StdioServerTransport` APIer forblir gyldige
+- **Python (03-GettingStarted/01-first-server/solution/python)**: Validert i isolert `.venv` med `mcp[cli]` (1.27.2); `py_compile` passerte og `FastMCP.list_tools()` returnerte korrekt `add` og `subtract` verktøy
+- Bekreftet at alle eksempel `@modelcontextprotocol/sdk` versjonsintervaller (`>=1.26.0` / `^1.26.0` / `^1.27.0`) løses rent til nåværende `1.29.0` uten API-brudd
 
-#### Avhengighets-pin Justering (lukker versjonsgap)
+#### Avhengighets-pin Justering (lukking av versjonsgap)
 
-Oppdatert utdaterte SDK pinner slik at hvert eksempel følger nåværende MCP-utgivelse, i samsvar med repoets konvensjon:
-- **03-GettingStarted/05-stdio-server/solution/typescript/package.json**: Oppgradert `@modelcontextprotocol/sdk` fra `^1.8.0` → `>=1.26.0` og oppdaterte den utdaterte `"oppdatert for MCP 2025-06-18"` pakkebeskrivelse til `"justert til MCP Spesifikasjon 2025-11-25"`
-- **10-StreamliningAIWorkflows.../lab3/code/weather_mcp/pyproject.toml** og **lab4/code/github_mcp_server/pyproject.toml**: Oppgradert nøyaktig pin `mcp==1.23.0` → `mcp>=1.26.0`; regenererte begge `uv.lock` filene (`uv lock`) slik at lockfilene løser til nåværende `mcp 1.27.2` og holder seg synkronisert med manifestene
+Oppdatert utdaterte SDK pins slik at hvert eksempel følger nåværende MCP-utgivelse, i tråd med repo-omfattende konvensjon:
+- **03-GettingStarted/05-stdio-server/solution/typescript/package.json**: Oppdatert `@modelcontextprotocol/sdk` fra `^1.8.0` → `>=1.26.0` og oppdaterte utdaterte `"updated for MCP 2025-06-18"` pakkebeskrivelse til `"aligned with MCP Specification 2025-11-25"`
+- **10-StreamliningAIWorkflows.../lab3/code/weather_mcp/pyproject.toml** og **lab4/code/github_mcp_server/pyproject.toml**: Oppdatert eksakt pin `mcp==1.23.0` → `mcp>=1.26.0`; genererte begge `uv.lock` filene på nytt (`uv lock`) slik at låsefilene løses til nåværende `mcp 1.27.2` og forblir synkroniserte med manifestene
 
-#### Pensum Gap-analyse — Siste Spesifikasjonsfunksjonsdekning
+#### Pensum Gap Analyse — Nyeste Spesifikasjonsfunksjon Dekning
 
-Verifisert at pensum allerede dekker alle primitive som er introdusert/utvidet i MCP 2025-11-25, så ingen innholdsgap gjenstår:
+Bekreftet at pensum allerede dekker alle primitive som er introdusert/utvidet i MCP 2025-11-25, så ingen innholdsgap gjenstår:
 - **Sampling**: Leksjon 03-GettingStarted/14-sampling pluss 05-AdvancedTopics/mcp-sampling
 - **Elicitation (inkl. URL-modus)**: Dokumentert i 01-CoreConcepts og 05-AdvancedTopics/mcp-protocol-features
 - **Roots**: Dokumentert i 00-Introduction, 01-CoreConcepts, og 05-AdvancedTopics/mcp-root-contexts
-- **Tasks (eksperimentell, langvarige operasjoner)**: Dokumentert i 01-CoreConcepts og 05-AdvancedTopics/mcp-protocol-features
-- **Verktøyannotasjoner** (`readOnlyHint` / `destructiveHint`): Dokumentert i 01-CoreConcepts og 05-AdvancedTopics/mcp-protocol-features
+- **Tasks (eksperimentelt, langvarige operasjoner)**: Dokumentert i 01-CoreConcepts og 05-AdvancedTopics/mcp-protocol-features
+- **Verktøynotasjoner** (`readOnlyHint` / `destructiveHint`): Dokumentert i 01-CoreConcepts og 05-AdvancedTopics/mcp-protocol-features
 
-### Sikkerhetsharding & Avhengighets-sårbarhetsutbedring
+### Sikkerhetsherding & Avhengighets-sårbarhetsutbedring
 
-Kjørte en full sikkerhetsrunde over alle avhengighetsmanifest og eksempel-kildekode, deretter utbedret alle rapporterte npm rådgivninger og én kode-nivå funn. Etter utbedring rapporterer `npm audit` **0 sårbarheter** i alle auditert kataloger.
+Kjørt en full sikkerhetssjekk over alle avhengighetsmanifester og eksempel kildekode, deretter utbedret alle rapporterte npm-advarsler og ett kode-nivå funn. Etter utbedring rapporterer `npm audit` **0 sårbarheter** i alle reviderte kataloger.
 
-#### npm Avhengighetssårbarheter (transitive) — Fikset
+#### npm Dependency Vulnerabilities (transitive) — Fikset
 
-Reviderte alle 15 innsendte `package-lock.json` filer. Sårbarheter var begrenset til transitive avhengigheter hentet av MCP Inspector dev-verktøy, OpenAI klienten, og MCP SDK; alle er nå løst uten å bryte eksemplene:
-- **10-StreamliningAIWorkflows.../lab4/code/github_mcp_server/inspector** og **lab3/code/weather_mcp/inspector**: Oppgradert `@modelcontextprotocol/inspector` (`0.16.6` / `0.14.1` → `0.22.0`), som fjernet de inkluderte `ajv`, `brace-expansion`, `diff`, `path-to-regexp` og `ws` rådgivningene. Lagt til en npm `overrides` oppføring som tvinger patched `shell-quote@1.8.4` for å eliminere den gjenværende kritiske rådgivningen båret av `concurrently`; regenerert begge lockfilene (nå 0 sårbarheter)
-- **03-GettingStarted/samples/typescript**: `npm audit fix` oppdaterte den transitive `qs` (moderat) til en patched utgivelse
-- **03-GettingStarted/samples/javascript**: `npm audit fix` oppdaterte den transitive `hono` (moderat) til en patched utgivelse
-- **03-GettingStarted/03-llm-client/solution/typescript**: `npm audit fix` oppdaterte den transitive `form-data` (høy) til en patched utgivelse
-- **03-GettingStarted/11-simple-auth/solution/typescript**: Generert manglende `package-lock.json` for å gjøre prosjektet reproduserbart og auditert (0 sårbarheter)
+Revidert alle 15 innleverte `package-lock.json` filer. Sårbarhetene var begrenset til transitive avhengigheter trukket inn av MCP Inspector utviklerverktøy, OpenAI klienten, og MCP SDK; alle er nå løst uten å bryte eksemplene:
 
-#### Kode-nivå sikkerhetsfiksering (OWASP A03: Injeksjon)
+- **10-StreamliningAIWorkflows.../lab4/code/github_mcp_server/inspector** og **lab3/code/weather_mcp/inspector**: Oppdatert `@modelcontextprotocol/inspector` (`0.16.6` / `0.14.1` → `0.22.0`), som fjernet de inkluderte `ajv`, `brace-expansion`, `diff`, `path-to-regexp` og `ws` advisories. La til en npm `overrides`-oppføring som tvinger den oppdaterte `shell-quote@1.8.4` for å eliminere gjenværende kritisk advisory som bæres av `concurrently`; genererte begge lockfiles på nytt (nå 0 sårbarheter)
+- **03-GettingStarted/samples/typescript**: `npm audit fix` oppdaterte den transitive `qs` (moderat) til en oppdatert versjon
+- **03-GettingStarted/samples/javascript**: `npm audit fix` oppdaterte den transitive `hono` (moderat) til en oppdatert versjon
+- **03-GettingStarted/03-llm-client/solution/typescript**: `npm audit fix` oppdaterte den transitive `form-data` (høy) til en oppdatert versjon
+- **03-GettingStarted/11-simple-auth/solution/typescript**: Genererte den manglende `package-lock.json` slik at prosjektet er reproduserbart og reviderbart (0 sårbarheter)
 
-- **10-StreamliningAIWorkflows.../lab4/code/github_mcp_server/src/server.py**: Fjernet `shell=True` fra `open_in_vscode` verktøyet. Det tidligere `subprocess.run(["start", "", vscode_path, folder_path], shell=True)` tillot shell-metategn i en mappesti å tolkes av `cmd.exe` (kommando-injeksjonsvektor). Det starter nå den løste `Code.exe` direkte med mappen som argument — ingen shell — som er funksjonelt ekvivalent og trygt
+#### Sikkerhetsfikser på kode-nivå (OWASP A03: Injeksjon)
 
-#### Python Avhengighetsrevisjon
+- **10-StreamliningAIWorkflows.../lab4/code/github_mcp_server/src/server.py**: Fjernet `shell=True` fra `open_in_vscode` verktøyet. Tidligere `subprocess.run(["start", "", vscode_path, folder_path], shell=True)` tillot shell-metategn i en mappesti å bli tolket av `cmd.exe` (kommando-injeksjonsvektor). Nå starter den den løste `Code.exe` direkte med mappen som argument — ingen shell — noe som er funksjonelt ekvivalent og trygt
 
-- Revidert alle Python kravsett med `pip-audit`. `05-AdvancedTopics` og `03-GettingStarted/samples/python` rapporterte **ingen kjente sårbarheter** (deres `mcp` / `httpx` / `pydantic` / `python-dotenv` områder løser til nåværende patched utgivelser)
-- **09-CaseStudy/docs-mcp/solution/python/requirements.txt**: `pip-audit` markerte den transitive avhengigheten **`werkzeug` 3.1.1** med tre `safe_join` Windows device-navn DoS rådgivninger — `CVE-2025-66221`, `CVE-2026-21860`, og `CVE-2026-27199` (alle fikset i 3.1.6). Lagt til eksplisitt sikkerhetspinning `werkzeug>=3.1.6` slik at patched utgivelsen løses; verifisert at begrensningen løser rent med `chainlit` / `mcp` / `semantic-kernel` stacken
+#### Python-avhengighetsrevisjon
+
+- Reviderte alle Python kravsett med `pip-audit`. `05-AdvancedTopics` og `03-GettingStarted/samples/python` rapporterte **ingen kjente sårbarheter** (deres `mcp` / `httpx` / `pydantic` / `python-dotenv` intervaller løser til nåværende oppdaterte versjoner)
+- **09-CaseStudy/docs-mcp/solution/python/requirements.txt**: `pip-audit` markerte den transitive avhengigheten **`werkzeug` 3.1.1** med tre `safe_join` Windows-enhetsnavn DoS advisories — `CVE-2025-66221`, `CVE-2026-21860`, og `CVE-2026-27199` (alle fikset i 3.1.6). La til en eksplisitt sikkerhets-pin `werkzeug>=3.1.6` slik at oppdatert versjon blir løst; bekreftet at begrensningen løser rent med `chainlit` / `mcp` / `semantic-kernel` stakken
 
 ### Produktnavn Rebranding
 
-Oppdatert alt pensuminhold for å reflektere Microsofts produktrebranding:
+Oppdaterte alt pensuminnhold for å gjenspeile Microsofts produktrebranding:
 
 #### Azure AI Foundry → Microsoft Foundry
-- **SUPPORT.md**: Oppdatert Discord-fellesskapslenke
-
-- **AGENTS.md**: Oppdatert referanse til Discord-server
-- **README.md**: Oppdaterte referanser til teknologiekosystemet
-- **study_guide.md**: Oppdaterte case study-referanser
-- **05-AdvancedTopics/README.md**: Oppdatert Modul 5.13 tittel og beskrivelse
-- **05-AdvancedTopics/mcp-integration/README.md**: Oppdatert seksjonsoverskrift og beskrivelse
-- **05-AdvancedTopics/mcp-foundry-agent-integration/README.md**: Full modul tittel og innholdsoppdatering
-- **05-AdvancedTopics/mcp-security-entra/README.md**: Oppdatert kryssreferanselenke
-- **07-LessonsfromEarlyAdoption/README.md**: Oppdaterte case study-referanser
-- **07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md**: Oppdatert Seksjon 9 overskrift, merker og kapasiteter
-- **08-BestPractices/README.md**: Oppdatert Discord-fellesskapslenke
-- **09-CaseStudy/docs-mcp/solution/scenario3/README.md**: Oppdatert Discord-kanalreferanse
-- **09-CaseStudy/docs-mcp/solution/python/README.md**: Oppdatert modellutrullingsreferanse
-- **11-MCPServerHandsOnLabs/00-Introduction/README.md**: Oppdatert AI Services-tabell
+- **SUPPORT.md**: Oppdaterte Discord-fellesskapslenke
+- **AGENTS.md**: Oppdaterte Discord-serverreferanse
+- **README.md**: Oppdaterte teknologi-økosystemreferanser
+- **study_guide.md**: Oppdaterte case-studierreferanser
+- **05-AdvancedTopics/README.md**: Oppdaterte Modul 5.13 tittel og beskrivelse
+- **05-AdvancedTopics/mcp-integration/README.md**: Oppdaterte seksjonsoverskrift og beskrivelse
+- **05-AdvancedTopics/mcp-foundry-agent-integration/README.md**: Full modul tittel- og innholdsoppdatering
+- **05-AdvancedTopics/mcp-security-entra/README.md**: Oppdaterte kryssreferanselenke
+- **07-LessonsfromEarlyAdoption/README.md**: Oppdaterte case-studierreferanser
+- **07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md**: Oppdaterte Seksjon 9 overskrift, merker og kapabiliteter
+- **08-BestPractices/README.md**: Oppdaterte Discord-fellesskapslenke
+- **09-CaseStudy/docs-mcp/solution/scenario3/README.md**: Oppdaterte Discord-kanalreferanse
+- **09-CaseStudy/docs-mcp/solution/python/README.md**: Oppdaterte modell-distribusjonsreferanse
+- **11-MCPServerHandsOnLabs/00-Introduction/README.md**: Oppdaterte AI-tjenestetabell
 - **11-MCPServerHandsOnLabs/03-Setup/README.md**: Oppdaterte ressursreferanser
 
-#### AI Toolkit / AITK → Microsoft Foundry Toolkit-utvidelse for VS Code
+#### AI Toolkit / AITK → Microsoft Foundry Toolkit Extension for VS Code
 - **README.md**: Oppdaterte hovedpensumreferanser
-- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md**: Oppdatert modultittel, oversikt og alle moduloverskrifter
-- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab1/README.md**: Oppdatert tittel, læringsmål, oppsettinstruksjoner og ressurser
-- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab2/README.md**: Oppdatert tittel, læringsmål, MCP-verts tabell og kryssreferanser
-- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/README.md**: Oppdatert tittel, merker, forutsetninger og ressurser
-- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/README.md**: Oppdaterte Agent Builder-referanser og tilbakemeldingslenke
+- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md**: Oppdaterte modultittel, oversikt og alle moduloverskrifter
+- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab1/README.md**: Oppdaterte tittel, læringsmål, oppsettinstruksjoner og ressurser
+- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab2/README.md**: Oppdaterte tittel, læringsmål, MCP verter tabell og kryssreferanser
+- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/README.md**: Oppdaterte tittel, merker, forutsetninger og ressurser
+- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/README.md**: Oppdaterte Agent Builder referanser og tilbakemeldingslenke
 - **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/README.md**: Oppdaterte forutsetninger og utvidelsesreferanser
 
 ---
 
 ## 11. april 2026
 
-### Nytt undervisningstilbud, dokumentasjonsfikser og avhengighetsoppdateringer
+### Nytt kurs, dokumentasjonsfikser og avhengighetsoppdateringer
 
 #### Nytt pensuminnhold lagt til
 
 **Modul 05 - Avanserte emner**
-- **Leksjon 5.17: Adversarial Multi-Agent Reasoning med MCP** (`05-AdvancedTopics/mcp-adversarial-agents/README.md`): Ny omfattende veiledning som dekker det adversariale debattmønsteret for multi-agent systemer
-  - Mermaid arkitekturdiagram: to agenter → delt MCP-server → debatttranskripsjon → dommer → dom
+- **Leksjon 5.17: Adversarial Multi-Agent Reasoning med MCP** (`05-AdvancedTopics/mcp-adversarial-agents/README.md`): Ny omfattende guide som dekker det adversarielle debattmønsteret for multi-agent systemer
+  - Mermaid arkitekturdiagram: to agenter → delt MCP server → debattutskrift → dommer → avgjørelse
   - Delt MCP verktøyserver (`web_search` + `run_python`) implementert i Python og TypeScript
-  - Motstridende systemoppfordringer (FOR / IMOT / Dommer) med eksplisitte krav til verktøybruk
-  - Debattorchestrator i Python, TypeScript, og C# som styrer runder og ruter argumenter
-  - MCP `ClientSession`-wiring for orchestratoren til ekte verktøykall
-  - Brukstilfelletabell (hallusinasjonsdeteksjon, trusselmodellering, API-designgjennomgang, faktasjekk, teknologivalg)
-  - Sikkerhetshensyn: sandbokseksekvering, verktøykallvalidering, begrensning av hastighet, revisjonslogging
-  - Strukturert øvelse med tre praktiske scenarier (kodegjennomgang, arkitekturbeslutning, innholdmoderering)
+  - Motstridende systemprompt (FOR / MOT / Dommer) med eksplisitte verktøy-bruks krav
+  - Debatt-orkestrator i Python, TypeScript og C# som styrer runder og ruter argumenter
+  - MCP `ClientSession` kobling for orkestratoren til faktiske verktøysamtaler
+  - Brukstilfelle tabell (hallusinasjonsdeteksjon, trusselmodellering, API-design-gjennomgang, faktasjekk, teknologivalg)
+  - Sikkerhetshensyn: sandkasse-kjøring, verktøybruk-validering, ratebegrensning, revisjonslogging
+  - Strukturert øvelse med tre praktiske scenarier (kodegjennomgang, arkitekturavgjørelse, innholdsmotering)
 
 #### Dokumentasjonsfikser
 
 **Modul 03 - Komme i gang**
-- **05-stdio-server/README.md**: Rettet ufullstendig eksempel på TypeScript stdio-server — la til manglende transportinstansiering (`new StdioServerTransport()`) og `server.connect(transport)` kall for å matche Python- og .NET-eksemplene i samme seksjon
-- **14-sampling/README.md**: Rettet skrivefeil — korrigert `"Sampling is an davanced features"` → `"Sampling is an advanced feature"`
+- **05-stdio-server/README.md**: Fikset ufullstendig TypeScript stdio-server eksempel — la til manglende transport-instansiering (`new StdioServerTransport()`) og `server.connect(transport)` kall for å matche Python og .NET eksemplene i samme seksjon
+- **14-sampling/README.md**: Fikset skrivefeil — korrigert `"Sampling is an davanced features"` → `"Sampling is an advanced feature"`
 
 #### Pensumoppdateringer
 
 **Hoved README.md**
-- La til oppføring 5.17 (Adversarial Multi-Agent Reasoning med MCP) i pensumtabell med direkte lenke til ny leksjon
+- La til oppføring 5.17 (Adversarial Multi-Agent Reasoning med MCP) i pensumtabellen med direkte lenke til ny leksjon
 
 **05-AdvancedTopics/README.md**
-- La til rad for Leksjon 5.17 i leksjonstabellen
+- La til rad for leksjon 5.17 i leksjonstabellen
 
 **study_guide.md**
-- La til Adversarial Multi-Agent Reasoning-emnet i tankekart og tekstbeskrivelse av Avanserte emner
+- La til Adversarial Multi-Agent Reasoning-tema i tankekart og beskrivelsen av Avanserte emner
 
 #### Kode- og sikkerhetsfikser
 
 **Modul 05 - Adversarial Agents (`mcp-adversarial-agents`)**
-- **Sikkerhetsfiks — kommandoinjeksjon**: Erstattet `execSync` shell-interpolasjon med `execFile` + `promisify` i TypeScript `run_python`-verktøyet, fjernet kommandoinjeksjonssårbarhet (LLM-kontrollert kode sendes nå som et litteralt argv-element uten shell-involvering)
-- **MCP verktøysløyfe-wiring**: Oppdatert Python debate orchestrator til å bruke `AsyncAnthropic` klient (erstatter blokkerende sync `Anthropic`), sende en live `ClientSession` direkte til hver agents tur, hente verktøydefinisjoner via `session.list_tools()` hver tur, og sende `tool_use`-blokker via `session.call_tool()` i en løkke til modellen gir et endelig tekstsvar
+- **Sikkerhetsfikser — kommandoinjeksjon**: Erstattet `execSync` shell-interpolasjon med `execFile` + `promisify` i TypeScript `run_python`-verktøyet, noe som eliminerer kommandoinjeksjonsflaten (LLM-kontrollert kode sendes nå som et bokstavelig argv-element uten shell involvering)
+- **MCP verktøy-løkke kobling**: Oppdatert Python debatt-orkestrator til å bruke `AsyncAnthropic` klient (erstatter blokkert sync `Anthropic`), sender en live `ClientSession` direkte til hver agentrunde, henter verktøydefinisjoner via `session.list_tools()` hver runde, og sender `tool_use` blokker via `session.call_tool()` i en løkke til modellen produserer et endelig tekstsvar
 
 #### Avhengighetsoppdateringer
 
-- Oppgradert `hono` til 4.12.12 på tvers av flere pakker (03-GettingStarted, 04-PracticalImplementation, 10-StreamliningAIWorkflows)
-- Oppgradert `@hono/node-server` fra 1.19.11 til 1.19.13 i TypeScript-pakker
-- Oppgradert `cryptography` fra 46.0.5 til 46.0.7 i Python-pakker (10-StreamliningAIWorkflows lab 3 og 4)
-- Oppgradert `lodash` fra 4.17.23 til 4.18.1 i 10-StreamliningAIWorkflows inspektør
+- Oppdatert `hono` til 4.12.12 på tvers av flere pakker (03-GettingStarted, 04-PracticalImplementation, 10-StreamliningAIWorkflows)
+- Oppdatert `@hono/node-server` fra 1.19.11 til 1.19.13 i TypeScript pakker
+- Oppdatert `cryptography` fra 46.0.5 til 46.0.7 i Python pakker (10-StreamliningAIWorkflows lab 3 og 4)
+- Oppdatert `lodash` fra 4.17.23 til 4.18.1 i 10-StreamliningAIWorkflows inspector
 
 #### Oversettelser
 
-- Synkroniserte oversettelser for 48+ språk med siste kildeendringer (i18n-oppdatering)
+- Synkronisert oversettelser for 48+ språk med siste kildeendringer (i18n oppdatering)
 
 ---
 
 ## 5. februar 2026
 
-### Repositorie-omfattende validerings- og navigasjonsforbedringer
+### Hele depotet validering og navigasjonsforbedringer
 
 #### Nytt pensuminnhold lagt til
 
 **Modul 03 - Komme i gang**
-- **12-mcp-hosts/README.md**: Ny omfattende guide for oppsett av MCP-verter
-  - Konfigurasjonseksempler for Claude Desktop, VS Code, Cursor, Cline, Windsurf
-  - JSON-konfigurasjonsmaler for alle større verter
+- **12-mcp-hosts/README.md**: Ny omfattende guide for oppsett av MCP verter
+  - Eksempler på konfigurasjon for Claude Desktop, VS Code, Cursor, Cline, Windsurf
+  - JSON konfigurasjonsmaler for alle hovedverter
   - Sammenligningstabell for transporttyper (stdio, SSE/HTTP, WebSocket)
   - Feilsøking av vanlige tilkoblingsproblemer
-  - Sikkerhetsbeste praksis for vertskonfigurasjon
+  - Sikkerhetsbest practices for vertkonfigurasjon
 
 - **13-mcp-inspector/README.md**: Ny feilsøkingsguide for MCP Inspector
-  - Installasjonsmetoder (npx, npm global, fra kilde)
+  - Installasjonsmetoder (npx, global npm, fra kilde)
   - Tilkobling til servere via stdio og HTTP/SSE
   - Testing av verktøy, ressurser og prompt-arbeidsflyter
-  - VS Code-integrasjon med MCP Inspector
-  - Vanlige feilsøkingsscenarioer med løsninger
+  - VS Code integrasjon med MCP Inspector
+  - Vanlige feilsøkingsscenarier med løsninger
 
 **Modul 04 - Praktisk implementering**
 - **pagination/README.md**: Ny guide for implementering av paginering
-  - Cursor-baserte pagineringsmønstre i Python, TypeScript, Java
-  - Paginering behandlet på klientsiden
-  - Cursor designstrategier (opakt vs strukturert)
+  - Cursor-basert pagineri mønstre i Python, TypeScript, Java
+  - Klient-side håndtering av paginering
+  - Cursor designstrategier (ugjennomsiktig vs strukturert)
   - Anbefalinger for ytelsesoptimalisering
 
 **Modul 05 - Avanserte emner**
-- **mcp-protocol-features/README.md**: Ny dybdedokumentasjon om protokollfunksjoner
+- **mcp-protocol-features/README.md**: Ny dypdykk i protokollfunksjoner
   - Implementering av fremdriftsvarsler
-  - Mønstre for avbestilling av forespørsler
+  - Avbestillingsmønstre for forespørsler
   - Ressursmaler med URI-mønstre
-  - Administrasjon av serverens livssyklus
+  - Serverlivssyklusadministrasjon
   - Kontroll av loggnivåer
-  - Feilhåndteringsmønstre med JSON-RPC-koder
+  - Feilhåndteringsmønstre med JSON-RPC koder
 
 #### Navigasjonsfikser (24+ filer oppdatert)
 
-**Hovedmodul-README-er**
- Nå lenker til både første leksjon OG neste modul
+**Hovedmodul README-filer**
+ Nå lenker både til første leksjon OG neste modul
 
-**02-Security underfiler**
-- Alle 5 ekstra sikkerhetsdokumenter har nå "Hva er neste" navigasjon:
+**02-Sikkerhets undersider**
+- Alle 5 supplerende sikkerhetsdokumenter har nå "Hva er neste" navigasjon:
 
 **09-CaseStudy filer**
 - Alle case-studiefiler har nå sekvensiell navigasjon:
 
 **10-StreamliningAI Labs**
-La til Hva er neste-seksjon i Modul 10 oversikt og Modul 11
+La til Seksjonen Hva er neste i Modul 10 oversikten og Modul 11
 
-#### Kode- og innholdsoppdateringer
+#### Kode- og innholdsfikser
 
-**SDK- og avhengighetsoppdateringer**
-Rettet tom openai-versjon til `^4.95.0`
-Oppdatert SDK fra `^1.8.0` til `>=1.26.0`
-Oppdatert MCP versjonspinner til `>=1.26.0`
+**SDK og avhengighetsoppdateringer**
+Fikset tom versjon for openai til `^4.95.0`
+Oppdaterte SDK fra `^1.8.0` til `>=1.26.0`
+Oppdaterte mcp versjon pinner til `>=1.26.0`
 
 **Kodefikser**
-Rettet ugyldig modell `gpt-4o-mini` til `gpt-4.1-mini`
+Fikset ugyldig modell `gpt-4o-mini` til `gpt-4.1-mini`
 
-**Innholdsrettelser**
-Rettet ødelagt lenke `READMEmd` → `README.md`, rettet pensumoverskrift `Module 1-3` → `Module 0-3`, rettet stifølsom bane
-Fjernet korrupte duplikater av Case Study 5-innhold
+**Innholdsoppdateringer**
+Fikset ødelagt lenke `READMEmd` → `README.md`, fikset pensumoverskrift `Module 1-3` → `Module 0-3`, fikset kasus-sensitiv sti
+Fjernet korrumpert duplikat Innhold for Case Study 5
 
-**Begynnerveiledningsforbedringer**
-La til korrekt introduksjon, læringsmål og forutsetninger for nybegynnere
+**Forbedringer for nybegynnere**
+La til ordentlig introduksjon, læringsmål og forutsetninger for nybegynnere
 
 #### Pensumoppdateringer
 
 **Hoved README.md**
-- La til oppføringer 3.12 (MCP Hosts), 3.13 (MCP Inspector), 4.1 (Paginering), 5.16 (Protokollfunksjoner) i pensumtabell
+- La til oppføringer 3.12 (MCP Hosts), 3.13 (MCP Inspector), 4.1 (Paginering), 5.16 (Protokollfunksjoner) til pensumtabellen
 
-**Modul-README-er**
-La til leksjonene 12 og 13 i leksjonsliste
-La til Praktiske guider-seksjon med pagineringslenke
-La til leksjonene 5.15 (Egendefinert transport) og 5.16 (Protokollfunksjoner)
+**Modul README-filer**
+La til leksjoner 12 og 13 til leksjonsliste
+La til Praktiske guider-seksjon med paginering lenke
+La til leksjoner 5.15 (Egendefinert transport) og 5.16 (Protokollfunksjoner)
 
 **study_guide.md**
-- Oppdatert tankekart med alle nye emner: MCP Hosts-oppsett, MCP Inspector, Pagineringstrategier, Protokollfunksjoner dybdeanalyse
+- Oppdaterte tankekartet med alle nye emner: MCP Hosts Oppsett, MCP Inspector, Paginering strategier, Dypdykk i protokollfunksjoner
 
-## 28. jan 2026
+## 28. januar 2026
 
-### MCP Spesifikasjon 2025-11-25 Samsvarsrevisjon
+### MCP-spesifikasjon 2025-11-25 samsvarsrevisjon
 
-#### Kjernetema-forbedring (01-CoreConcepts/)
-- **Ny klientprimitiv - Roots**: La til omfattende dokumentasjon om Roots-klientprimitiven, som gjør at servere kan forstå filsystemsgrenser og tilgangstillatelser
-- **Verktøyannotasjoner**: La til dokumentasjon om verktøys adferdsannotasjoner (`readOnlyHint`, `destructiveHint`) for bedre beslutninger om verktøykjøring
-- **Verktøykall i Sampling**: Oppdatert Sampling-dokumentasjonen med `tools` og `toolChoice` parametere for modellstyrte verktøykall under sampling-forespørsler
-- **URL-modus fremkalling**: La til dokumentasjon om URL-basert fremkalling for serverinitierte eksterne webinteraksjoner
-- **Oppgaver (Eksperimentelle)**: La til ny seksjon som dokumenterer eksperimentelle Oppgaver-funksjonalitet for holdbare utførelsesinnpakninger og utsatt resultatinnhenting
-- **Ikonstøtte**: Notert at verktøy, ressurser, ressursmaler og prompts nå kan inkludere ikoner som tilleggmetadata
+#### Forbedring av kjernebegreper (01-CoreConcepts/)
+- **Ny klientprimitive - Roots**: Lagt til omfattende dokumentasjon om Roots klientprimitive som gjør det mulig for servere å forstå filsystemgrenser og tilgangstillatelser
+- **Verktøyanmerkninger**: Lagt til dokumentasjon om adferdsanmerkninger til verktøy (`readOnlyHint`, `destructiveHint`) for bedre beslutninger ved kjøring av verktøy
+- **Verktøykall under sampling**: Oppdatert sampling-dokumentasjon for å inkludere `tools` og `toolChoice` parametere for modellstyrt verktøykall under sampling-forespørsler
+- **URL-modus uttrekk**: Lagt til dokumentasjon om URL-basert uttrekk for serverinitiert ekstern webinteraksjon
+- **Oppgaver (Eksperimentelt)**: Lagt til ny seksjon som dokumenterer eksperimentelt oppgave-funksjon for holdbare utførelsesinnpakninger og utsatt resultatinnhenting
 
-#### Dokumentasjonsoppdateringer
-- **README.md**: La til MCP Spesifikasjon 2025-11-25 versjonsreferanse og dato-basert versjonsstyring forklaring
-- **study_guide.md**: Oppdatert pensumkart for å inkludere Oppgaver og Verktøyannotasjoner i Kjernetema-seksjonen; oppdatert dokumenttidspunkt
+- **Ikoner Støtte**: Merket at verktøy, ressurser, maler for ressurser og prompt nå kan inkludere ikoner som tilleggmetadata
 
-#### Samsvarsvurdering med spesifikasjon
-- **Protokollversjon**: Verifisert at all dokumentasjon refererer til gjeldende MCP Spesifikasjon 2025-11-25
-- **Arkitekturtilpasning**: Bekreftet nøyaktighet i dokumentasjon av to-lags arkitektur (Data Layer + Transport Layer)
-- **Primitiver Dokumentasjon**: Validert serverprimitiver (Ressurser, Prompts, Verktøy) og klientprimitiver (Sampling, Fremkalling, Logging, Roots)
-- **Transportmekanismer**: Verifisert nøyaktighet i stdio og Streamable HTTP-transport dokumentasjon
-- **Sikkerhetsretningslinjer**: Bekreftet samsvar med gjeldende MCP Sikkerhetsbeste praksiser dokumentasjon
+#### Oppdateringer i Dokumentasjon
+- **README.md**: Lagt til MCP Spesifikasjon 2025-11-25 versjonsreferanse og forklaring på datobasert versjonering
+- **study_guide.md**: Oppdatert læreplanoversikt til å inkludere Oppgaver og Verktøyannotasjoner i Seksjon for Kjernebegreper; oppdatert dokumenttidsstempel
 
-#### Viktige MCP 2025-11-25 funksjoner dokumentert
-- **OpenID Connect Discovery**: Autentiseringsserver discovery via OIDC
+#### Verifikasjon av Spesifikasjonskompatibilitet
+- **Protokollversjon**: Verifisert at all dokumentasjon refererer til nåværende MCP Spesifikasjon 2025-11-25
+- **Arkitekturjustering**: Bekreftet nøyaktighet i dokumentasjon av to-lags arkitektur (Datakjede + Transportlag)
+- **Primitive Dokumentasjon**: Validert serverprimitive (Ressurser, Prompts, Verktøy) og klientprimitive (Sampling, Elicitering, Logging, Røtter)
+- **Transportmekanismer**: Verifisert nøyaktighet i dokumentasjon for STDIO og Streambar HTTP transport
+- **Sikkerhetsveiledning**: Bekreftet samsvar med nåværende MCP Security Best Practices dokumentasjon
+
+#### Nøkkelfunksjoner i MCP 2025-11-25 Dokumentert
+- **OpenID Connect Discovery**: Autentiseringsserveroppdagelse gjennom OIDC
 - **OAuth Client ID Metadata Dokumenter**: Anbefalt klientregistreringsmekanisme
-- **JSON Schema 2020-12**: Standard dialekt for MCP skjemadefinisjoner
-- **SDK Lagdelingssystem**: Formaliserte krav til SDK funksjonsstøtte og vedlikehold
-- **Styringsstruktur**: Formaliserte arbeidsgrupper og interessegrupper i MCP-styring
+- **JSON Schema 2020-12**: Standard dialekt for MCP skjema-definisjoner
+- **SDK Tiersystem**: Formaliserte krav for SDK funksjonsstøtte og vedlikehold
+- **Styringsstruktur**: Formaliserte Arbeidsgrupper og Interessegrupper i MCP styring
 
-### Stor oppdatering av sikkerhetsdokumentasjon (02-Security/)
+### Stor Oppdatering i Sikkerhetsdokumentasjon (02-Security/)
 
-#### MCP Security Summit Workshop (Sherpa) integrasjon
-- **Nytt praktisk treningsressurs**: La til omfattende integrasjon med [MCP Security Summit Workshop (Sherpa)](https://azure-samples.github.io/sherpa/) i all sikkerhetsdokumentasjon
-- **Dekning av ekspedisjonsrute**: Dokumentert full progresjon leir-til-leir fra Base Camp til Summit
-- **OWASP-tilpasning**: All sikkerhetsveiledning koblet til OWASP MCP Azure Security Guide-risikoer
+#### Integrasjon av MCP Security Summit Workshop (Sherpa)
+- **Nytt Praktisk Treningsressurs**: Lagt til omfattende integrasjon med [MCP Security Summit Workshop (Sherpa)](https://azure-samples.github.io/sherpa/) i all sikkerhetsdokumentasjon
+- **Dekning av Ekspedisjonsrute**: Dokumentert komplett fremdrift fra Base Camp til Summit
+- **OWASP Justering**: All sikkerhetsveiledning kartlegges nå til OWASP MCP Azure Security Guide risikoer
 
-#### OWASP MCP Topp 10 integrasjon
-- **Ny seksjon**: La til OWASP MCP Topp 10 sikkerhetsrisikotabell med Azure avbøtninger i hoved Sikkerhets README
-- **Risiko-basert dokumentasjon**: Oppdatert mcp-security-controls-2025.md med OWASP MCP risikoreferanser for hver sikkerhetsdomene
+#### Integrasjon av OWASP MCP Topp 10
+- **Ny Seksjon**: Lagt til tabell over OWASP MCP Topp 10 sikkerhetsrisikoer med Azure-mitigering i hoved Security README
+- **Risikobasert Dokumentasjon**: Oppdatert mcp-security-controls-2025.md med OWASP MCP risikoreferanser for hvert sikkerhetsdomene
 - **Referansearkitektur**: Lenket til OWASP MCP Azure Security Guide referansearkitektur og implementeringsmønstre
 
-#### Oppdaterte sikkerhetsfiler
-- **README.md**: La til Sherpa Workshop oversikt, ekspedisjonsrutetabell, OWASP MCP Topp 10 risikooppsummering og praktisk treningsseksjon
-- **mcp-security-controls-2025.md**: Oppdatert overskrift til februar 2026, lagt til OWASP risikoreferanser (MCP01-MCP08), rettet inkonsekvent spesifikasjonsversjon
-- **mcp-security-best-practices-2025.md**: La til Sherpa og OWASP ressurser seksjon, oppdatert tidsstempel
-- **mcp-best-practices.md**: La til praktisk treningsseksjon med Sherpa og OWASP lenker
-- **azure-content-safety-implementation.md**: La til OWASP MCP06-referanse, Sherpa Camp 3-tilpasning og tillegg av ressursseksjon
+#### Oppdaterte Sikkerhetsfiler
+- **README.md**: Lagt til Sherpa Workshop oversikt, ekspedisjonsrutetabell, OWASP MCP Topp 10 risksammendrag og praktisk treningsseksjon
+- **mcp-security-controls-2025.md**: Oppdatert overskrift til februar 2026, lagt til OWASP risiko referanser (MCP01-MCP08), rettet uoverensstemmelse i spesifikasjonsversjon
+- **mcp-security-best-practices-2025.md**: Lagt til Sherpa og OWASP ressursseksjon, oppdatert tidsstempel
+- **mcp-best-practices.md**: Lagt til seksjon med praktisk trening med Sherpa og OWASP lenker
+- **azure-content-safety-implementation.md**: Lagt til OWASP MCP06 referanse, Sherpa Camp 3 justering, og ekstra ressursseksjon
 
-#### Nye ressurslenker lagt til
+#### Nye Ressurslenker Lagt Til
 - [MCP Security Summit Workshop (Sherpa)](https://azure-samples.github.io/sherpa/)
-
 - [OWASP MCP Azure Security Guide](https://microsoft.github.io/mcp-azure-security-guide/)
 - [OWASP MCP Top 10](https://owasp.org/www-project-mcp-top-10/)
 - Individuelle OWASP MCP risikosider (MCP01-MCP10)
 
-### Pensum-omfattende MCP-spesifikasjon 2025-11-25 justering
+### Læreplanomfattende MCP Spesifikasjon 2025-11-25 Justering
 
-#### Modul 03 - Komme i gang
-- **SDK-dokumentasjon**: Lagt til Go SDK til offisiell SDK-liste; oppdatert alle SDK-referanser for å samsvare med MCP-spesifikasjon 2025-11-25
-- **Transportavklaring**: Oppdatert STDIO- og HTTP Streaming transportbeskrivelser med eksplisitte spesifikasjonsreferanser
+#### Modul 03 - Komme i Gang
+- **SDK Dokumentasjon**: Lagt til Go SDK i offisiell SDK-liste; oppdatert alle SDK-referanser for å samsvare med MCP Spesifikasjon 2025-11-25
+- **Transportforklaring**: Oppdaterte STDIO og HTTP Streaming transportbeskrivelser med eksplisitte spesifikasjonsreferanser
 
-#### Modul 04 - Praktisk implementering
-- **SDK-oppdateringer**: Lagt til Go SDK; oppdatert SDK-liste med spesifikasjonsversjonsreferanse
-- **Autorisasjonsspesifikasjon**: Oppdatert MCP autorisasjonsspesifikasjonslenke til gjeldende versjon 2025-11-25
+#### Modul 04 - Praktisk Implementering
+- **SDK Oppdateringer**: Lagt til Go SDK; oppdatert SDK-listen med spesifikasjonsversjonsreferanse
+- **Autorisering Spesifikasjon**: Oppdatert MCP Autorisasjon spesifikasjonslenke til gjeldende 2025-11-25 versjon
 
-#### Modul 05 - Avanserte emner
-- **Nye funksjoner**: Lagt til notat om nye MCP-spesifikasjonsfunksjoner 2025-11-25 (Oppgaver, Verktøyannotasjoner, URL-modusinnhenting, Røtter)
-- **Sikkerhetsressurser**: Lagt til OWASP MCP Top 10 og Sherpa verkstedslenker til tilleggskilder
+#### Modul 05 - Avanserte Emner
+- **Nye Funksjoner**: Lagt til merknad om nye MCP Spesifikasjon 2025-11-25 funksjoner (Oppgaver, Verktøyannotasjoner, URL Mode Elicitering, Røtter)
+- **Sikkerhetsressurser**: Lagt til OWASP MCP Topp 10 og Sherpa workshop lenker til tillegg referanser
 
 #### Modul 06 - Fellesskapsbidrag
-- **SDK-liste**: Lagt til Swift og Rust SDKer; oppdatert spesifikasjonslenke til 2025-11-25
+- **SDK Liste**: Lagt til Swift og Rust SDKer; oppdatert spesifikasjonslenke til 2025-11-25
 - **Spesifikasjonsreferanse**: Oppdatert MCP Spesifikasjonslenke til direkte spesifikasjons-URL
 
-#### Modul 07 - Erfaringer fra tidlig adopsjon
-- **Ressursoppdateringer**: Lagt til MCP Spesifikasjon 2025-11-25-lenke og OWASP MCP Top 10 til tilleggskilder
+#### Modul 07 - Erfaringer fra Tidlig Adopsjon
+- **Ressursoppdateringer**: Lagt til MCP Spesifikasjon 2025-11-25 lenke og OWASP MCP Topp 10 til tilleggressurser
 
-#### Modul 08 - Beste praksis
+#### Modul 08 - Beste Praksis
 - **Spesifikasjonsversjon**: Oppdatert MCP Spesifikasjonsreferanse til 2025-11-25
-- **Sikkerhetsressurser**: Lagt til OWASP MCP Top 10 og Sherpa verksted til tilleggskilder
+- **Sikkerhetsressurser**: Lagt til OWASP MCP Topp 10 og Sherpa workshop til tilleggreferanser
 
-#### Modul 10 - Effektivisering av AI-arbeidsflyter
-- **Merkesoppdatering**: Endret MCP-versjonsmerke fra SDK-versjon (1.9.3) til spesifikasjonsversjon (2025-11-25)
-- **Ressurslenker**: Oppdatert MCP Spesifikasjonslenke; lagt til OWASP MCP Top 10
+#### Modul 10 - Effektivisering av AI Arbeidsflyter
+- **Badge Oppdatering**: Endret MCP versjonsmerke fra SDK versjon (1.9.3) til spesifikasjonsversjon (2025-11-25)
+- **Ressurslenker**: Oppdatert MCP Spesifikasjonslenke; lagt til OWASP MCP Topp 10
 
-#### Modul 11 - Praktiske MCP-server-laboratorier
-- **Spesifikasjonsreferanse**: Oppdatert MCP Spesifikasjonslenke til versjon 2025-11-25
-- **Sikkerhetsressurser**: Lagt til OWASP MCP Top 10 i offisielle ressurser
+#### Modul 11 - MCP Server Praktiske Labber
+- **Spesifikasjonsreferanse**: Oppdatert MCP Spesifikasjonslenke til 2025-11-25 versjon
+- **Sikkerhetsressurser**: Lagt til OWASP MCP Topp 10 i offisielle ressurser
 
 ## 18. desember 2025
 
-### Oppdatering av sikkerhetsdokumentasjon - MCP spesifikasjon 2025-11-25
+### Oppdatering av Sikkerhetsdokumentasjon - MCP Spesifikasjon 2025-11-25
 
-#### MCP Sikkerhets Beste Praksis (02-Security/mcp-best-practices.md) - Versjonsoppdatering spesifikasjon
-- **Protokollversjonsoppdatering**: Oppdatert til å referere til siste MCP spesifikasjon 2025-11-25 (utgitt 25. november 2025)
+#### MCP Security Best Practices (02-Security/mcp-best-practices.md) - Oppdatering av Spesifikasjonsversjon
+- **Oppdatering av Protokollversjon**: Oppdatert til å referere nyeste MCP Spesifikasjon 2025-11-25 (utgitt 25. november 2025)
   - Oppdatert alle spesifikasjonsversjonsreferanser fra 2025-06-18 til 2025-11-25
-  - Oppdatert dokumentets datoreferanser fra 18. august 2025 til 18. desember 2025
-  - Verifisert at alle spesifikasjons-URL-er peker til gjeldende dokumentasjon
-- **Innholdsvalidering**: Omfattende validering av sikkerhetsbeste praksis mot de nyeste standardene
-  - **Microsoft Sikkerhetsløsninger**: Verifisert nåværende terminologi og lenker for Prompt Shields (tidligere "Jailbreak risikooppdagelse"), Azure Content Safety, Microsoft Entra ID og Azure Key Vault
-  - **OAuth 2.1 Sikkerhet**: Bekreftet samsvar med nyeste OAuth sikkerhetsbeste praksis
-  - **OWASP-standarder**: Validert OWASP Top 10 for LLMs-referanser opprettholdes aktuelle
-  - **Azure-tjenester**: Verifisert alle Microsoft Azure dokumentasjonslenker og beste praksis
-- **Standardjustering**: Alle refererte sikkerhetsstandarder bekreftet oppdaterte
-  - NIST AI Risikostyringsrammeverk
+  - Oppdatert dokumentdatoreferanser fra 18. august 2025 til 18. desember 2025
+  - Verifisert at alle spesifikasjons-URLer peker til nåværende dokumentasjon
+- **Innholdsvalidering**: Omfattende validering av sikkerhetsbeste praksis mot siste standarder
+  - **Microsoft Security Solutions**: Verifisert nåværende terminologi og lenker for Prompt Shields (tidligere "Jailbreak risk detection"), Azure Content Safety, Microsoft Entra ID og Azure Key Vault
+  - **OAuth 2.1 Sikkerhet**: Bekreftet samsvar med de siste OAuth sikkerhetsanbefalingene
+  - **OWASP Standarder**: Validert at OWASP Top 10 for LLMs referanser er oppdaterte
+  - **Azure-tjenester**: Verifisert alle Microsoft Azure dokumentasjonslenker og beste praksiser
+- **Standarder Justering**: Alle refererte sikkerhetsstandarder er bekreftet oppdaterte
+  - NIST AI Risk Management Framework
   - ISO 27001:2022
-  - OAuth 2.1 Sikkerhets beste praksis
+  - OAuth 2.1 Security Best Practices
   - Azure sikkerhets- og samsvarsrammeverk
-- **Implementeringsressurser**: Verifisert alle implementeringsveiledningslenker og ressurser
+- **Implementeringsressurser**: Validert alle lenker og ressurser for implementasjonsguider
   - Azure API Management autentiseringsmønstre
   - Microsoft Entra ID integrasjonsguider
   - Azure Key Vault hemmelighetshåndtering
-  - DevSecOps pipelines og overvåkingsløsninger
+  - DevSecOps pipelines og overvåkningsløsninger
 
-### Dokumentasjons kvalitetskontroll
-- **Spesifikasjonsoverholdelse**: Sikret at alle obligatoriske MCP sikkerhetskrav (MÅ/MÅ IKKE) samsvarer med siste spesifikasjon
-- **Ressursaktualitet**: Verifisert alle eksterne lenker til Microsoft dokumentasjon, sikkerhetsstandarder og implementeringsguider
-- **Dekning av beste praksis**: Bekreftet omfattende dekning av autentisering, autorisasjon, AI-spesifikke trusler, forsyningskjedesikkerhet og bedriftsmønstre
+### Kvalitetssikring av Dokumentasjon
+- **Spesifikasjonskompatibilitet**: Sikret at alle obligatoriske MCP sikkerhetskrav (MÅ/MÅ IKKE) samsvarer med siste spesifikasjon
+- **Aktualitet for Ressurser**: Verifisert alle eksterne lenker til Microsoft dokumentasjon, sikkerhetsstandarder og implementeringsguider
+- **Dekning av Beste Praksis**: Bekreftet omfattende dekning av autentisering, autorisasjon, AI-spesifikke trusler, forsyningskjede-sikkerhet og bedriftsmønstre
 
 ## 6. oktober 2025
 
-### Utvidelse av Komme i gang-seksjon – Avansert serverbruk & Enkel autentisering
+### Utvidelse av Komme i Gang Seksjon – Avansert Serverbruk & Enkel Autentisering
 
-#### Avansert serverbruk (03-GettingStarted/10-advanced)
-- **Nytt kapittel lagt til**: Introdusert en omfattende veiledning om avansert MCP serverbruk, som dekker både regulære og lavnivå serverarkitekturer.
-  - **Regulær vs. lavnivå server**: Detaljert sammenligning og kodeeksempler i Python og TypeScript for begge tilnærmingene.
-  - **Handler-basert design**: Forklaring om handler-basert verktøy/ressurs/prompt-administrasjon for skalerbare, fleksible serverimplementeringer.
-  - **Praktiske mønstre**: Virkelige scenarier der lavnivå servermønstre er fordelaktige for avanserte funksjoner og arkitektur.
+#### Avansert Serverbruk (03-GettingStarted/10-advanced)
+- **Ny Kapittel Lagt Til**: Introdusert en omfattende guide til avansert MCP serverbruk, som dekker både vanlig og lavnivå serverarkitektur.
+  - **Vanlig vs. Lavnivå Server**: Detaljert sammenligning og kodeeksempler i Python og TypeScript for begge tilnærminger.
+  - **Handler-basert Design**: Forklaring av handler-basert verktøy/ressurs/prompt administrasjon for skalerbare, fleksible serverimplementasjoner.
+  - **Praktiske Mønstre**: Virkelige scenarier hvor lavnivå servermønstre er gunstige for avanserte funksjoner og arkitektur.
 
-#### Enkel autentisering (03-GettingStarted/11-simple-auth)
-- **Nytt kapittel lagt til**: Trinnvis veiledning for implementering av enkel autentisering i MCP-servere.
-  - **Autentiseringskonsepter**: Klar forklaring av autentisering vs. autorisasjon, og credential-håndtering.
-  - **Grunnleggende autentisering**: Middleware-baserte autentiseringsmønstre i Python (Starlette) og TypeScript (Express), med kodeeksempler.
-  - **Overgang til avansert sikkerhet**: Veiledning om å starte med enkel auth og videre til OAuth 2.1 og RBAC, med referanser til avanserte sikkerhetsmoduler.
+#### Enkel Autentisering (03-GettingStarted/11-simple-auth)
+- **Ny Kapittel Lagt Til**: Steg-for-steg guide for implementering av enkel autentisering i MCP servere.
+  - **Autentiseringskonsepter**: Klar forklaring av autentisering vs. autorisasjon, og håndtering av påloggingsinformasjon.
+  - **Grunnleggende Autentiseringsimplementering**: Middleware-baserte autentiseringsmønstre i Python (Starlette) og TypeScript (Express), med kodeeksempler.
+  - **Fremgang til Avansert Sikkerhet**: Veiledning i å starte med enkel autentisering og utvikle til OAuth 2.1 og RBAC, med henvisninger til avanserte sikkerhetsmoduler.
 
-Disse tilleggene gir praktisk, hands-on veiledning for å bygge mer robuste, sikre og fleksible MCP-serverimplementeringer, som brobygger grunnleggende konsepter med avanserte produksjonsmønstre.
+Disse tilleggene gir praktisk, hands-on veiledning for å bygge mer robuste, sikre og fleksible MCP serverimplementasjoner, som bygger bro mellom grunnleggende konsepter og avanserte produksjonsmønstre.
 
 ## 29. september 2025
 
-### MCP Server Databaseintegreringslaboratorier - Omfattende praktisk læringsløp
+### MCP Server Database Integrasjonslabber - Omfattende Praktisk Læringssti
 
-#### 11-MCPServerHandsOnLabs - Ny komplett databaseintegreringspensum
-- **Fullstendig 13-lab læringsløp**: Lagt til omfattende praktisk pensum for bygging av produksjonsklare MCP-servere med PostgreSQL databaseintegrasjon
-  - **Virkelig implementering**: Zava Retail analysebrukstilfelle som demonstrerer bedriftsnivå mønstre
-  - **Strukturert læringsprogresjon**:
-    - **Laboratorier 00-03: Grunnlag** - Introduksjon, kjernearkitektur, sikkerhet & multi-leietakertilpasning, miljøoppsett
-    - **Laboratorier 04-06: Bygging av MCP-serveren** - Databasedesign & skjema, MCP serverimplementasjon, verktøyutvikling  
-    - **Laboratorier 07-09: Avanserte funksjoner** - Semantisk søkintegrasjon, testing & feilsøking, VS Code-integrasjon
-    - **Laboratorier 10-12: Produksjon & beste praksis** - Distribusjonsstrategier, overvåking & observabilitet, beste praksis & optimalisering
-  - **Bedriftsteknologier**: FastMCP-rammeverk, PostgreSQL med pgvector, Azure OpenAI embeddings, Azure Container Apps, Application Insights
-  - **Avanserte funksjoner**: Row Level Security (RLS), semantisk søk, flerleietaker datatilgang, vektor-embeddings, sanntidsovervåkning
+#### 11-MCPServerHandsOnLabs - Ny Komplett Database Integrasjonslæreplan
+- **Fullstendig 13-Lab Læringssti**: Lagt til omfattende praktisk læreplan for utvikling av produksjonsklare MCP servere med PostgreSQL databaseintegrasjon
+  - **Virkelighetsnær Implementering**: Zava Retail analyse-case som demonstrerer bedriftsnivåmønstre
+  - **Strukturert Læringsprogresjon**:
+    - **Labber 00-03: Grunnlag** - Introduksjon, Kjernearkitektur, Sikkerhet & Multi-leiing, Miljøoppsett
+    - **Labber 04-06: Bygging av MCP Server** - Databasedesign & Skjema, MCP Server Implementering, Verktøyutvikling  
+    - **Labber 07-09: Avanserte Funksjoner** - Semantisk Søkeinvolvering, Testing & Feilsøking, VS Code Integrering
+    - **Labber 10-12: Produksjon & Beste Praksis** - Distribusjonsstrategier, Overvåking & Observabilitet, Beste Praksis & Optimalisering
+  - **Bedriftsteknologier**: FastMCP rammeverk, PostgreSQL med pgvector, Azure OpenAI embeddinger, Azure Container Apps, Application Insights
+  - **Avanserte Funksjoner**: Row Level Security (RLS), semantisk søk, flerleietakers datapåtkomst, vektor-embeddinger, sanntidsovervåking
 
-#### Terminologistandardisering - Modul til lab-konvertering
-- **Omfattende dokumentasjonsoppdatering**: Systematisk oppdatert alle README-filer i 11-MCPServerHandsOnLabs til å bruke "Lab"-terminologi i stedet for "Modul"
-  - **Seksjonsoverskrifter**: Oppdatert "Hva denne modulen dekker" til "Hva dette laboratoriet dekker" i alle 13 laboratorier
-  - **Innholdsbeskrivelse**: Endret "Denne modulen gir..." til "Dette laboratoriet gir..." gjennom all dokumentasjon
-  - **Læringsmål**: Oppdatert "Ved slutten av denne modulen..." til "Ved slutten av dette laboratoriet..."
-  - **Navigasjonslenker**: Konvertert alle "Modul XX:" referanser til "Lab XX:" i kryssreferanser og navigasjon
-  - **Fremdriftssporing**: Oppdatert "Etter å ha fullført denne modulen..." til "Etter å ha fullført dette laboratoriet..."
-  - **Bevarte tekniske referanser**: Opprettholdt Python modulreferanser i konfigurasjonsfiler (f.eks., `"module": "mcp_server.main"`)
+#### Terminologistandardisering - Modul til Lab Konvertering
+- **Omfattende Dokumentasjonsoppdatering**: Systematisk oppdatert alle README-filer i 11-MCPServerHandsOnLabs for å bruke "Lab" terminologi i stedet for "Modul"
+  - **Seksjonsoverskrifter**: Oppdatert "What This Module Covers" til "What This Lab Covers" i alle 13 labber
+  - **Innholdsbeskrivelse**: Endret "This module provides..." til "This lab provides..." gjennom dokumentasjonen
+  - **Læringsmål**: Oppdatert "By the end of this module..." til "By the end of this lab..."
+  - **Navigasjonslenker**: Konvertert alle "Module XX:" referanser til "Lab XX:" i kryssreferanser og navigasjon
+  - **Fullføringssporing**: Oppdatert "After completing this module..." til "After completing this lab..."
+  - **Bevarte Tekniske Referanser**: Opprettholdt Python modulreferanser i konfigurasjonsfiler (f.eks. `"module": "mcp_server.main"`)
 
-#### Studieguideforbedring (study_guide.md)
-- **Visuelt pensumkart**: Lagt til ny "11. Databaseintegreringslaboratorier" seksjon med omfattende visualisering av labstruktur
-- **Depotstruktur**: Oppdatert fra ti til elleve hovedseksjoner med detaljert beskrivelse av 11-MCPServerHandsOnLabs
-- **Læringsløpsveiledning**: Forbedret navigasjonsinstruksjoner for seksjoner 00-11
-- **Teknologidekning**: Lagt til FastMCP, PostgreSQL, Azure tjenester integrasjonsdetaljer
-- **Læringsutbytte**: Fremhevet produksjonsklar serverutvikling, databaseintegrasjonsmønstre og bedriftsikkerhet
+#### Forbedring av Studieguide (study_guide.md)
+- **Visuell Læreplansoversikt**: Lagt til ny seksjon "11. Database Integration Labs" med omfattende labsstrukturvisualisering
+- **Repositorie-struktur**: Oppdatert fra ti til elleve hovedseksjoner med detaljert 11-MCPServerHandsOnLabs beskrivelse
+- **Læringsstiveiledning**: Forbedret navigasjonsinstruksjoner som dekker seksjoner 00-11
+- **Teknologidekning**: Lagt til detaljer om FastMCP, PostgreSQL, Azure tjenester integrering
+- **Læringsutbytte**: Vektlagt produksjonsklar serverutvikling, databasedesignmønstre og bedriftsikkerhet
 
-#### Hoved README-strukturforbedring
-- **Lab-basert terminologi**: Oppdatert hoved README.md i 11-MCPServerHandsOnLabs til konsekvent bruk av "Lab"-struktur
-- **Organisering av læringsløp**: Klar progresjon fra grunnleggende konsepter gjennom avansert implementering til produksjonsdistribusjon
-- **Virkelighetsfokus**: Vekt på praktisk, hands-on læring med bedriftsnivå mønstre og teknologier
+#### Hoved README Strukturoppgradering
+- **Lab-basert Terminologi**: Oppdatert hoved README.md i 11-MCPServerHandsOnLabs til å konsekvent bruke "Lab" struktur
+- **Organisering av Læringssti**: Klar progresjon fra grunnleggende konsepter gjennom avansert implementering til produksjonsdistribusjon
+- **Virkelighetsfokus**: Vekt på praktisk, hands-on læring med bedriftsnivåmønstre og teknologier
 
-### Dokumentasjonskvalitets- og konsistensforbedringer
-- **Vekt på praktisk læring**: Forsterket praktisk, laboratoriebasert tilnærming gjennom dokumentasjonen
-- **Fokus på bedriftmønstre**: Fremhevet produksjonsklare implementeringer og bedriftsikkerhetshensyn
-- **Teknologiintegrasjon**: Omfattende dekning av moderne Azure-tjenester og AI-integrasjonsmønstre
-- **Læringsprogresjon**: Klar, strukturert vei fra grunnleggende konsepter til produksjonsdistribusjon
+### Forbedringer i Dokumentasjonskvalitet og Konsistens
+- **Vekt på Praktisk Læring**: Forsterket praktisk, lab-basert tilnærming gjennom dokumentasjon
+- **Fokus på Bedriftsmønstre**: Fremhevet produksjonsklare implementasjoner og sikkerhet for bedrifter
+- **Teknologiintegrasjon**: Omfattende dekning av moderne Azure-tjenester og AI integrasjonsmønstre
+- **Læringsprogresjon**: Klar, strukturert sti fra grunnleggende konsepter til produksjonsdistribusjon
 
 ## 26. september 2025
 
-### Casestudier-forbedring - GitHub MCP Registry-integrasjon
+### Forbedring av Case Studier - GitHub MCP Registry Integrasjon
 
-#### Casestudier (09-CaseStudy/) - Fokus på økosystemutvikling
-- **README.md**: Stor utvidelse med omfattende GitHub MCP Registry casestudie
-  - **GitHub MCP Registry casestudie**: Ny omfattende casestudie som undersøker GitHubs MCP Registry lansering i september 2025
-    - **Problemanalyse**: Detaljert undersøkelse av fragmenterte MCP server oppdagelses- og distribusjonsutfordringer
+#### Case Studier (09-CaseStudy/) - Fokus på Økosystemutvikling
+- **README.md**: Stor utvidelse med omfattende GitHub MCP Registry case studie
+  - **GitHub MCP Registry Case Studie**: Ny omfattende case studie som undersøker GitHubs MCP Registry lansering i september 2025
+    - **Problemanalyse**: Detaljert undersøkelse av fragmentert MCP serveroppdagelse og distribusjonsutfordringer
     - **Løsningsarkitektur**: GitHubs sentraliserte registertilnærming med ett-klikk VS Code installasjon
-    - **Forretningspåvirkning**: Målbare forbedringer i utviklerombordingsprosess og produktivitet
-    - **Strategisk verdi**: Fokus på modulær agentdistribusjon og tverrverktøy interoperabilitet
-    - **Økosystemutvikling**: Posisjonering som grunnleggende plattform for agentisk integrasjon
-  - **Forbedret casestudie-struktur**: Oppdatert alle syv casestudier med konsistent formatering og omfattende beskrivelser
-    - Azure AI Reiseagenter: Vekt på fleragentorchestrering
-    - Azure DevOps-integrasjon: Fokus på arbeidsflytautomatisering
-    - Dokumentasjonsinnhenting i sanntid: Python konsollklientimplementasjon
-    - Interaktiv studieplansgenerator: Chainlit samtale-webapp
-    - Dokumentasjon i editor: VS Code og GitHub Copilot integrasjon
-    - Azure API Management: Bedrifts-API integrasjonsmønstre
-    - GitHub MCP Registry: Økosystemutvikling og samfunnsplattform
-  - **Omfattende konklusjon**: Omskrevet konklusjonsseksjon som fremhever syv casestudier som spenner over flere MCP implementasjonsdimensjoner
-    - Bedriftsintegrasjon, fleragentorchestrering, utviklerproduktivitet
-    - Økosystemutvikling, utdanningsapplikasjonskategorisering
-    - Forbedrede innsikter i arkitekturmønstre, implementeringsstrategier og beste praksis
-    - Vekt på MCP som moden, produksjonsklar protokoll
+    - **Forretningspåvirkning**: Målbare forbedringer i utvikler onboarding og produktivitet
+    - **Strategisk Verdi**: Fokus på modulær agentdistribusjon og tverrverktøy interoperabilitet
+    - **Økosystemutvikling**: Posisjonert som grunnleggende plattform for agentisk integrasjon
+  - **Forbedret Case Studie Struktur**: Oppdatert alle syv case studier med konsekvent formatering og omfattende beskrivelser
+    - Azure AI Reiseagenter: Vekt på flere agenter orkestrering
+    - Azure DevOps Integrasjon: Fokus på arbeidsflytautomatisering
+    - Sanntids Dokumenthenting: Python konsollklient implementering
+    - Interaktiv Studieplan Generator: Chainlit samtalewebapp
 
-#### Studieguideoppdateringer (study_guide.md)
-- **Visuelt pensumkart**: Oppdatert tankekart for å inkludere GitHub MCP Registry i Casestudier-seksjonen
-- **Casestudiebeskrivelser**: Forbedret fra generiske beskrivelser til detaljert oppdeling av syv omfattende casestudier
-- **Depotstruktur**: Oppdatert seksjon 10 for å reflektere omfattende casestudiedekning med spesifikke implementeringsdetaljer
-- **Endringslogg-integrasjon**: Lagt til oppføring for 26. september 2025 som dokumenterer GitHub MCP Registry tillegg og casestudieforbedringer
-- **Datooppdateringer**: Oppdatert bunntekst tidsstempel for å reflektere nyeste revisjon (26. september 2025)
+    - Dokumentasjon i editoren: VS Code og GitHub Copilot-integrasjon
+    - Azure API Management: Enterprise API-integrasjonsmønstre
+    - GitHub MCP Registry: Økosystemutvikling og fellesskapsplattform
+  - **Omfattende konklusjon**: Omskrevet konklusjonsseksjon som fremhever syv casestudier som dekker flere MCP-implementeringsdimensjoner
+    - Enterprise-integrasjon, multi-agent orkestrering, utviklerproduktivitet
+    - Økosystemutvikling, kategorisering av utdanningsapplikasjoner
+    - Forbedrede innsikter i arkitekturmodeller, implementeringsstrategier og beste praksis
+    - Vekt på MCP som en moden, produksjonsklar protokoll
+
+#### Oppdateringer i studieveiledning (study_guide.md)
+- **Visuell læreplanoversikt**: Oppdatert tankekart for å inkludere GitHub MCP Registry i seksjonen Casestudier
+- **Casestudier beskrivelse**: Forbedret fra generelle beskrivelser til detaljert oppdeling av syv omfattende casestudier
+- **Repositorisstruktur**: Oppdatert seksjon 10 for å gjenspeile omfattende casestudiedekning med spesifikke implementeringsdetaljer
+- **Endringslogg-integrasjon**: Lagt til oppføring for 26. september 2025 som dokumenterer tillegg av GitHub MCP Registry og forbedringer i casestudier
+- **Datooppdateringer**: Oppdatert tidsstempel i bunntekst for å reflektere siste revisjon (26. september 2025)
 
 ### Forbedringer i dokumentasjonskvalitet
-- **Konsistensforbedring**: Standardisert casestudieformatering og struktur på tvers av alle sju eksempler
-- **Omfattende dekning**: Casestudier dekker nå bedrifts-, utviklerproduktivitet- og økosystemutviklingsscenarier
-- **Strategisk posisjonering**: Forsterket fokus på MCP som grunnleggende plattform for agentisk systemdistribusjon
-- **Ressursintegrasjon**: Oppdatert tilleggskilder for å inkludere GitHub MCP Registry-lenke
+- **Konsistensforbedring**: Standardisert formatering og struktur i casestudier på tvers av alle syv eksempler
+- **Omfattende dekning**: Casestudier dekker nå scenarioer innen enterprise, utviklerproduktivitet og økosystemutvikling
+- **Strategisk posisjonering**: Økt fokus på MCP som grunnleggende plattform for agentbasert systemdistribusjon
+- **Ressursintegrasjon**: Oppdaterte tilleggsmaterialer med lenke til GitHub MCP Registry
 
 ## 15. september 2025
 
-### Utvidelse av avanserte emner - Egendefinerte transporter & Konteksteknikk
+### Utvidelse av avanserte emner - egendefinerte transportmetoder og kontekstteknikk
 
-#### MCP Egendefinerte transporter (05-AdvancedTopics/mcp-transport/) - Ny avansert implementeringsveiledning
-- **README.md**: Komplett implementeringsveiledning for egendefinerte MCP transportmekanismer
-  - **Azure Event Grid-transport**: Omfattende serverløs hendelsesdrevet transportimplementasjon
-    - C#, TypeScript og Python eksempler med Azure Functions integrasjon
+#### MCP egendefinerte transportmetoder (05-AdvancedTopics/mcp-transport/) - Ny avansert implementasjonsveiledning
+- **README.md**: Fullstendig implementasjonsveiledning for egendefinerte MCP-transportmekanismer
+  - **Azure Event Grid Transport**: Omfattende serverløs hendelsesdrevet transportimplementering
+    - Eksempler i C#, TypeScript, og Python med integrasjon mot Azure Functions
     - Hendelsesdrevne arkitekturmønstre for skalerbare MCP-løsninger
-    - Webhook-mottakere og push-basert meldinghåndtering
-  - **Azure Event Hubs-transport**: Høy gjennomstrømming streamingtransportimplementasjon
-    - Sanntids streamingmuligheter for lav latens-scenarier
-    - Partisjoneringsstrategier og sjekkpunktadministrasjon
-    - Meldingbatching og ytelsesoptimalisering
-  - **Bedriftsintegrasjonsmønstre**: Produksjonsklare arkitektoniske eksempler
-    - Distribuert MCP behandling over flere Azure Functions
-    - Hybrid transportarkitekturer som kombinerer flere transporttyper
-    - Meldingens holdbarhet, pålitelighet og feilhåndteringsstrategier
-  - **Sikkerhet & overvåking**: Azure Key Vault-integrasjon og observabilitétsmønstre
-    - Administrert identitetsautentisering og minst privilegium-tilgang
-    - Application Insights telemetri og ytelsesovervåking
-    - Bruddautomater og feiltoleransemønstre
-  - **Testingsrammeverk**: Omfattende teststrategier for egendefinerte transporter
+    - Webhook-mottakere og push-basert meldingshåndtering
+  - **Azure Event Hubs Transport**: Høytytende strømmingstransportimplementasjon
+    - Sanntids strømmingsfunksjonalitet for lav-latens scenarier
+    - Partisjoneringsstrategier og checkpoint-administrasjon
+    - Meldingsbunting og ytelsesoptimalisering
+  - **Enterprise Integrasjonsmønstre**: Produksjonsklare arkitektur-eksempler
+    - Distribuert MCP-prosessering over flere Azure Functions
+    - Hybrid transportarkitektur som kombinerer flere transporttyper
+    - Meldingsbestandighet, pålitelighet og feilhåndteringsstrategier
+  - **Sikkerhet og overvåkning**: Azure Key Vault-integrasjon og observasjonsmønstre
+    - Autentisering med administrert identitet og minste privilegium tilgang
+    - Application Insights-telemetri og ytelsesovervåkning
+    - Vern mot feil og strømbrytermønstre
+  - **Test-rammeverk**: Omfattende teststrategier for egendefinerte transportmetoder
     - Enhetstesting med testdoubler og mocking-rammeverk
     - Integrasjonstesting med Azure Test Containers
-    - Ytelsestesting og belastningstestbetraktninger
+    - Ytelses- og belastningstesting vurderinger
 
-#### Konteksteknikk (05-AdvancedTopics/mcp-contextengineering/) - Fremvoksende AI-disiplin
-- **README.md**: Omfattende utforskning av konteksteknikk som et fremvoksende felt
-  - **Kjerneprinsipper**: Komplett deling av kontekst, bevissthet om handlingsbeslutninger og kontekstvindu-administrasjon
+#### Kontekstteknikk (05-AdvancedTopics/mcp-contextengineering/) - Fremvoksende AI-disiplin
+- **README.md**: Omfattende utforskning av kontekstteknikk som et fremvoksende felt
+  - **Kjerneprinsipper**: Fullstendig deling av kontekst, beslutningsbevissthet, og håndtering av kontekstvinduer
+  - **MCP protokolltilpasning**: Hvordan MCP-design adresserer utfordringer innen kontekstteknikk
+    - Begrensninger for kontekstvinduer og progressive lastestrategier
+    - Relevansbestemmelse og dynamisk kontekstinnhenting
+    - Multimodal konsteksthåndtering og sikkerhetshensyn
+  - **Implementeringstilnærminger**: En-trådet vs. multi-agent arkitekturer
+    - Kontekstdeling og prioriteringsteknikker
+    - Progressiv kontekstlastning og komprimeringsstrategier
+    - Lagvis konteksttilnærming og innhentingsoptimalisering
+  - **Målerammeverk**: Fremvoksende målemetoder for evaluering av konsteksteffektivitet
+    - Inndatteeffektivitet, ytelse, kvalitet og brukeropplevelse
+    - Eksperimentelle tilnærminger til kontekstoptimalisering
+    - Feilanalyse og forbedringsmetodologier
 
-  - **MCP-protokolltilpasning**: Hvordan MCP-design adresserer utfordringer innen kontekstengineering  
-    - Begrensninger i kontekstvindu og progressive lastestrategier  
-    - Relevansbestemmelse og dynamisk kontekstinnhenting  
-    - Håndtering av multimodal kontekst og sikkerhetshensyn  
-  - **Implementeringstilnærminger**: Enkelttrådet vs. multi-agent arkitekturer  
-    - Kontekstbitering og prioriteringsteknikker  
-    - Progressiv kontekstlasting og komprimeringsstrategier  
-    - Lagdelte kontekstilnærminger og optimalisering av innhenting  
-  - **Målerammeverk**: Fremvoksende metrikker for evaluering av konteksteffektivitet  
-    - Inndataeffektivitet, ytelse, kvalitet, og brukeropplevelse  
-    - Eksperimentelle tilnærminger til kontekstoptimalisering  
-    - Feilanalyse og forbedringsmetodikker  
+#### Oppdateringer i læreplan-navigasjon (README.md)
+- **Forbedret modulstruktur**: Oppdatert tabell i læreplanen for å inkludere nye avanserte emner
+  - Lagt til kontekstteknikk (5.14) og egendefinert transport (5.15)
+  - Konsistent formatering og navigasjonslenker på tvers av alle moduler
+  - Oppdaterte beskrivelser for å reflektere gjeldende innholdsomfang
 
-#### Oppdateringer i læreplannavigasjon (README.md)  
-- **Forbedret modulstruktur**: Oppdatert læreplantabell for å inkludere nye avanserte emner  
-  - Lagt til Context Engineering (5.14) og Custom Transport (5.15)  
-  - Konsistent formatering og navigasjonslenker gjennom alle moduler  
-  - Oppdaterte beskrivelser for å reflektere nåværende innholdsomfang  
+### Forbedringer i katalogstruktur
+- **Navnestandardisering**: Endret "mcp transport" til "mcp-transport" for konsistens med andre avanserte emnemapper
+- **Innholdsorganisering**: Alle 05-AdvancedTopics-mapper følger nå konsistent navngivningsmønster (mcp-[tema])
 
-### Forbedringer i katalogstruktur  
-- **Navnestandardisering**: Omdøpt "mcp transport" til "mcp-transport" for konsistens med andre avanserte emnemapper  
-- **Innholdsorganisering**: Alle 05-AdvancedTopics-mapper følger nå konsistent navngivingsmønster (mcp-[emne])  
+### Forbedringer i dokumentasjonskvalitet
+- **MCP-spesifikasjonstilpasning**: Alt nytt innhold refererer til gjeldende MCP-spesifikasjon 2025-06-18
+- **Flerspråklige eksempler**: Omfattende kodeeksempler i C#, TypeScript, og Python
+- **Enterprise-fokus**: Produksjonsklare mønstre og integrasjon med Azure Cloud gjennomgående
+- **Visuell dokumentasjon**: Mermaid-diagrammer for arkitektur- og flytvisualisering
 
-### Kvalitetsforbedringer i dokumentasjon  
-- **MCP-spesifikasjonstilpasning**: Alt nytt innhold refererer til nåværende MCP-spesifikasjon 2025-06-18  
-- **Multi-språklige eksempler**: Omfattende kodeeksempler i C#, TypeScript og Python  
-- **Enterprise-fokus**: Produksjonsklare mønstre og Azure-integrasjon gjennom hele dokumentasjonen  
-- **Visuell dokumentasjon**: Mermaid-diagrammer for arkitektur- og flytvisualisering  
+## 18. august 2025
 
-## 18. august 2025  
+### Omfattende dokumentasjonsoppdatering - MCP 2025-06-18 standarder
 
-### Omfattende dokumentasjonsoppdatering - MCP 2025-06-18 standarder  
+#### MCP sikkerhetsbeste praksis (02-Security/) - Full modernisering
+- **MCP-SECURITY-BEST-PRACTICES-2025.md**: Fullstendig omskriving i samsvar med MCP-spesifikasjon 2025-06-18
+  - **Obligatoriske krav**: Lagt til eksplisitte MUST/MUST NOT-krav fra offisiell spesifikasjon med tydelige visuelle indikatorer
+  - **12 kjernepraksiser innen sikkerhet**: Restrukturert fra 15-punkts liste til omfattende sikkerhetsdomener
+    - Token-sikkerhet og autentisering med ekstern identitetsleverandørintegrasjon
+    - Sesjonshåndtering og transportsikkerhet med kryptografiske krav
+    - AI-spesifikk trusselbeskyttelse med Microsoft Prompt Shields-integrasjon
+    - Tilgangskontroll og tillatelser med prinsippet om minste privilegium
+    - Innholdssikkerhet og overvåkning med Azure Content Safety-integrasjon
+    - Sikkerhet i forsyningskjeden med omfattende komponentverifisering
+    - OAuth-sikkerhet og forebygging av forvirret stedfortreder med PKCE-implementering
+    - Hendelsesrespons og gjenoppretting med automatiserte kapasiteter
+    - Overholdelse og styring med regulatorisk tilpasning
+    - Avanserte sikkerhetskontroller med zero trust-arkitektur
+    - Integrasjon i Microsoft sikkerhetsekosystem med omfattende løsninger
+    - Kontinuerlig sikkerhetsevolusjon med adaptive praksiser
+  - **Microsoft sikkerhetsløsninger**: Forbedret veiledning for integrasjon av Prompt Shields, Azure Content Safety, Entra ID, og GitHub Advanced Security
+  - **Implementeringsressurser**: Kategoriserte omfattende ressurslenker etter Offisiell MCP-dokumentasjon, Microsoft sikkerhetsløsninger, sikkerhetsstandarder, og implementeringsveiledninger
 
-#### MCP sikkerhetsbeste praksiser (02-Security/) - Full modernisering  
-- **MCP-SECURITY-BEST-PRACTICES-2025.md**: Full omskriving tilpasset MCP-spesifikasjon 2025-06-18  
-  - **Obligatoriske krav**: Lagt til eksplisitte MÅ/IKKE MÅ-krav fra offisiell spesifikasjon med klare visuelle indikatorer  
-  - **12 kjerne sikkerhetspraksiser**: Omstrukturert fra 15-punktsliste til omfattende sikkerhetsdomener  
-    - Tokensikkerhet & autentisering med integrasjon av ekstern identitetsleverandør  
-    - Sesjonshåndtering & transportsikkerhet med kryptografiske krav  
-    - AI-spesifikk trusselbeskyttelse med Microsoft Prompt Shields integrasjon  
-    - Tilgangskontroll & tillatelser med minst privilegium-prinsipp  
-    - Innholdssikkerhet & overvåking med Azure Content Safety integrasjon  
-    - Leverandørkjede-sikkerhet med grundig komponentverifisering  
-    - OAuth-sikkerhet & Confused Deputy-beskyttelse med PKCE-implementering  
-    - Hendelseshåndtering & gjenoppretting med automatiserte kapasiteter  
-    - Samsvar & styring med regulatorisk tilpasning  
-    - Avanserte sikkerhetskontroller med zero trust-arkitektur  
-    - Microsoft sikkerhetsøkosystemintegrasjon med omfattende løsninger  
-    - Kontinuerlig sikkerhetsevolusjon med adaptive praksiser  
-  - **Microsoft sikkerhetsløsninger**: Forbedret integrasjonsveiledning for Prompt Shields, Azure Content Safety, Entra ID, og GitHub Advanced Security  
-  - **Implementeringsressurser**: Kategoriserte omfattende ressurslenker etter Offisiell MCP-dokumentasjon, Microsoft-sikkerhetsløsninger, sikkerhetsstandarder og implementeringsveiledninger  
+#### Avanserte sikkerhetskontroller (02-Security/) - Enterprise-implementering
+- **MCP-SECURITY-CONTROLS-2025.md**: Fullstendig gjennomgang med sikkerhetsrammeverk i bedriftsklasse
+  - **9 omfattende sikkerhetsdomener**: Utvidet fra grunnleggende kontroller til detaljert bedriftsrammeverk
+    - Avansert autentisering og autorisasjon med Microsoft Entra ID-integrasjon
+    - Token-sikkerhet og anti-passthrough-kontroller med omfattende validering
+    - Sesjonssikkerhetskontroller med hijacking-forebygging
+    - AI-spesifikke sikkerhetskontroller med forebygging av prompt-injeksjon og verktøygifting
+    - Forebygging av forvirret stedfortreder-angrep med OAuth-proxysikkerhet
+    - Verktøykjøringssikkerhet med sandboxing og isolasjon
+    - Sikkerhetskontroller for forsyningskjeden med avhengighetsbekreftelse
+    - Overvåkings- og deteksjonskontroller med SIEM-integrasjon
+    - Hendelsesrespons og gjenoppretting med automatiserte kapasiteter
+  - **Implementeringseksempler**: Lagt til detaljerte YAML-konfigurasjonsblokker og kodeeksempler
+  - **Microsoft-løsningsintegrasjon**: Omfattende dekning av Azure sikkerhetstjenester, GitHub Advanced Security og bedriftsidentitetsadministrasjon
 
-#### Avanserte sikkerhetskontroller (02-Security/) - Enterprise-implementering  
-- **MCP-SECURITY-CONTROLS-2025.md**: Fullstendig overhaling med sikkerhetsrammeverk i enterprise-klasse  
-  - **9 omfattende sikkerhetsdomener**: Utvidet fra grunnleggende kontroller til detaljert enterprise-rammeverk  
-    - Avansert autentisering & autorisasjon med Microsoft Entra ID integrasjon  
-    - Tokensikkerhet & anti-passthrough-kontroller med omfattende validering  
-    - Sesjonsikkerhetskontroller med hijacking-beskyttelse  
-    - AI-spesifikke sikkerhetskontroller med prompt-injeksjon og verktøyforgiftning-beskyttelse  
-    - Confused Deputy-angrepsbeskyttelse med OAuth-proktorsikkerhet  
-    - Verktøykjøringssikkerhet med sandkasse og isolasjon  
-    - Leverandørkjede-sikkerhetskontroller med avhengighetsverifisering  
-    - Overvåkings- og deteksjonskontroller med SIEM-integrasjon  
-    - Hendelseshåndtering & gjenoppretting med automatiserte kapasiteter  
-  - **Implementeringseksempler**: Lagt til detaljerte YAML-konfigurasjonsblokker og kodeeksempler  
-  - **Microsoft-løsningsintegrasjon**: Omfattende dekning av Azure sikkerhetstjenester, GitHub Advanced Security og enterprise identitetsstyring  
+#### Sikkerhet i avanserte emner (05-AdvancedTopics/mcp-security/) - Produksjonsklar implementering
+- **README.md**: Fullstendig omskriving for bedriftsimplementering av sikkerhet
+  - **Gjeldende spesifikasjonstilpasning**: Oppdatert til MCP-spesifikasjon 2025-06-18 med obligatoriske sikkerhetskrav
+  - **Forbedret autentisering**: Microsoft Entra ID-integrasjon med omfattende .NET og Java Spring Security-eksempler
+  - **AI-sikkerhetsintegrasjon**: Microsoft Prompt Shields og Azure Content Safety-implementering med detaljerte Python-eksempler
+  - **Avansert trusselmitigering**: Omfattende implementeringseksempler for
+    - Forebygging av forvirret stedfortreder-angrep med PKCE og validering av bruker samtykke
+    - Forebygging av token-passthrough med målgruppevalidering og sikker tokenhåndtering
+    - Forhindring av sesjonshijacking med kryptografisk binding og atferdsanalyse
+  - **Enterprise-sikkerhetsintegrasjon**: Azure Application Insights-overvåkning, trusseldeteksjonsrørledninger, og forsyningskjedesikkerhet
+  - **Implementeringssjekkliste**: Tydelig skille mellom obligatoriske og anbefalte sikkerhetskontroller med fordeler fra Microsofts sikkerhetsekosystem
 
-#### Sikkerhet i avanserte emner (05-AdvancedTopics/mcp-security/) - Produksjonsklar implementering  
-- **README.md**: Full omskriving for enterprise sikkerhetsimplementering  
-  - **Nåværende spesifikasjonstilpasning**: Oppdatert til MCP-spesifikasjon 2025-06-18 med obligatoriske sikkerhetskrav  
-  - **Forbedret autentisering**: Microsoft Entra ID integrasjon med omfattende .NET- og Java Spring Security-eksempler  
-  - **AI-sikkerhetsintegrasjon**: Microsoft Prompt Shields og Azure Content Safety med detaljerte Python-eksempler  
-  - **Avansert trusselmitigering**: Omfattende implementeringseksempler for  
-    - Confused Deputy-angrepsbeskyttelse med PKCE og validering av brukersamtykke  
-    - Token Passthrough-beskyttelse med publikumsvalidering og sikker tokenhåndtering  
-    - Sesjonshijacking-beskyttelse med kryptografisk binding og atferdsanalyse  
-  - **Enterprise sikkerhetsintegrasjon**: Azure Application Insights overvåking, trusseldeteksjonspipelines og leverandørkjede-sikkerhet  
-  - **Implementeringssjekkliste**: Klare obligatoriske vs. anbefalte sikkerhetskontroller med fordeler fra Microsoft sikkerhetsøkosystem  
-
-### Dokumentasjonskvalitet & standardtilpasning  
-- **Spesifikasjonsreferanser**: Oppdaterte alle referanser til nåværende MCP-spesifikasjon 2025-06-18  
-- **Microsoft sikkerhetsøkosystem**: Forbedret integrasjonsveiledning gjennom all sikkerhetsdokumentasjon  
-- **Praktisk implementering**: Lagt til detaljerte kodeeksempler i .NET, Java og Python med enterprise-mønstre  
-- **Ressursorganisering**: Omfattende kategorisering av offisiell dokumentasjon, sikkerhetsstandarder og implementeringsveiledninger  
-- **Visuelle indikatorer**: Klar markering av obligatoriske krav vs. anbefalte praksiser  
+### Dokumentasjonskvalitet og standardtilpasning
+- **Spesifikasjonsreferanser**: Oppdatert alle referanser til gjeldende MCP-spesifikasjon 2025-06-18
+- **Microsoft sikkerhetsekosystem**: Forbedret integrasjonsveiledning i all sikkerhetsdokumentasjon
+- **Praktisk implementering**: Lagt til detaljerte kodeeksempler i .NET, Java, og Python med bedriftsmønstre
+- **Ressursorganisering**: Omfattende kategorisering av offisiell dokumentasjon, sikkerhetsstandarder og implementeringsveiledninger
+- **Visuelle indikatorer**: Tydelig merking av obligatoriske krav vs. anbefalte praksiser
 
 
-#### Kjernebegreper (01-CoreConcepts/) - Full modernisering  
-- **Protokollversjonsoppdatering**: Oppdatert for å referere til nåværende MCP-spesifikasjon 2025-06-18 med datobasert versjonering (ÅÅÅÅ-MM-DD format)  
-- **Arkitekturforbedring**: Forbedrede beskrivelser av Hosts, Clients og Servers for å reflektere nåværende MCP-arkitekturmønstre  
-  - Hosts er nå tydelig definert som AI-applikasjoner som koordinerer flere MCP-klientforbindelser  
-  - Klienter beskrevet som protokollforbindelser som opprettholder en-til-en serverrelasjoner  
-  - Servere forbedret med lokale vs. eksterne distribusjonsscenarier  
-- **Primitive omstrukturering**: Fullstendig overhaling av server- og klientprimitiver  
-  - Serverprimitiver: Ressurser (datakilder), Prompter (maler), Verktøy (eksekverbare funksjoner) med detaljerte forklaringer og eksempler  
-  - Klientprimitiver: Sampling (LLM-svar), Elicitation (brukerinndata), Logging (feilsøking/overvåking)  
-  - Oppdatert med nåværende oppdagelses- (`*/list`), innhentings- (`*/get`), og eksekverings- (`*/call`) metode-mønstre  
-- **Protokollarkitektur**: Innført to-lags arkitekturmodell  
-  - Datalag: JSON-RPC 2.0 fundament med livssyklushåndtering og primitivene  
-  - Transportlag: STDIO (lokal) og Streamable HTTP med SSE (ekstern) transportmekanismer  
-- **Sikkerhetsrammeverk**: Omfattende sikkerhetsprinsipper inkludert eksplisitt brukersamtykke, datavern, verktøysikkerhet og transportsikkerhet  
-- **Kommunikasjonsmønstre**: Oppdaterte protokollmeldinger for å vise initialisering, oppdagelse, eksekvering og varslingsflyter  
-- **Kodeeksempler**: Oppfrisket flerspråklige eksempler (.NET, Java, Python, JavaScript) for å gjenspeile nåværende MCP SDK-mønstre  
+#### Kjernebegreper (01-CoreConcepts/) - Full modernisering
+- **Protokollversjonsoppdatering**: Oppdatert til å referere til gjeldende MCP-spesifikasjon 2025-06-18 med datobasert versjonering (ÅÅÅÅ-MM-DD format)
+- **Arkitekturrevisjon**: Forbedrede beskrivelser av Hosts, Clients og Servers for å reflektere gjeldende MCP-arkitekturmodeller
+  - Hosts nå klart definert som AI-applikasjoner som koordinerer flere MCP-klienttilkoblinger
+  - Clients beskrevet som protokollkoblere som opprettholder én-til-én serverrelasjoner
+  - Servers forbedret med lokale vs. fjern distribusjonsscenarier
+- **Primitive omstrukturering**: Full gjennomgang av server- og klientprimitive
+  - Serverprimitiver: Ressurser (datakilder), Prompter (maler), Verktøy (utførbare funksjoner) med detaljerte forklaringer og eksempler
+  - Klientprimitiver: Sampling (LLM fullføringer), Elicitation (brukerinndata), Logging (feilsøking/overvåkning)
+  - Oppdatert med nåværende oppdagelses- (`*/list`), innhentings- (`*/get`), og utførelses- (`*/call`) metodemønstre
+- **Protokollarkitektur**: Innført to-lags arkitekturmodell
+  - Datalag: JSON-RPC 2.0 grunnlag med livssyklusstyring og primitiv
+  - Transportlag: STDIO (lokal) og Streamable HTTP med SSE (fjern) transportmekanismer
+- **Sikkerhetsrammeverk**: Omfattende sikkerhetsprinsipper inkludert eksplisitt brukersamtykke, datavern, sikker eksekvering av verktøy, og transportlagsikkerhet
+- **Kommunikasjonsmønstre**: Oppdaterte protokollmeldinger for å vise initialisering, oppdagelse, utførelse og varslingsflyter
+- **Kodeeksempler**: Oppfrisket flerspråklige eksempler (.NET, Java, Python, JavaScript) for å reflektere nåværende MCP SDK-mønstre
 
-#### Sikkerhet (02-Security/) - Omfattende sikkerhetsoverhaling  
-- **Standardtilpasning**: Full tilpasning til MCP-spesifikasjon 2025-06-18 sikkerhetskrav  
-- **Autentiseringsevolusjon**: Dokumentert utvikling fra egendefinerte OAuth-servere til ekstern identitetsleverandør-delegasjon (Microsoft Entra ID)  
-- **AI-spesifikk trusselanalyse**: Forbedret dekning av moderne AI-angrepsvektorer  
-  - Detaljerte prompt-injeksjonsangripscenarioer med reelle eksempler  
-  - Verktøyforgiftingsmekanismer og "rug pull"-angrepsmønstre  
-  - Kontekstvindu-forgiftning og modelleringsforvirringsangrep  
-- **Microsoft AI-sikkerhetsløsninger**: Omfattende dekning av Microsofts sikkerhetsøkosystem  
-  - AI Prompt Shields med avansert deteksjon, spotlighting og avgrensningsteknikker  
-  - Azure Content Safety integrasjonsmønstre  
-  - GitHub Advanced Security for leverandørkjede-beskyttelse  
-- **Avansert trusselmitigering**: Detaljerte sikkerhetskontroller for  
-  - Sesjonshijacking med MCP-spesifikke angrepsscenarier og kryptografiske sesjons-ID-krav  
-  - Confused Deputy-problemer i MCP-proxy-scenarier med eksplisitte samtykkekrav  
-  - Token passthrough-sårbarheter med obligatoriske valideringskontroller  
-- **Leverandørkjede-sikkerhet**: Utvidet AI leverandørkjedeomfang inkludert fundamentmodeller, embeddingtjenester, kontekstleverandører og tredjeparts-APIer  
-- **Foundationsikkerhet**: Forbedret integrasjon med enterprise-sikkerhetsmønstre inkludert zero trust-arkitektur og Microsoft sikkerhetsøkosystem  
-- **Ressursorganisering**: Kategoriserte omfattende ressurslenker etter type (offisielle dokumenter, standarder, forskning, Microsoft-løsninger, implementeringsveiledninger)  
+#### Sikkerhet (02-Security/) - Omfattende sikkerhetsgjennomgang  
+- **Standardtilpasning**: Full samsvar med MCP-spesifikasjon 2025-06-18 sikkerhetskrav
+- **Autentiseringsevolusjon**: Dokumentert utvikling fra egendefinerte OAuth-servere til ekstern identitetsleverandørdelegasjon (Microsoft Entra ID)
+- **AI-spesifikk trusselanalyse**: Forbedret dekning av moderne AI-angrepstyper
+  - Detaljerte scenarier for prompt-injeksjonsangrep med virkelighetseksempler
+  - Mekanismer for verktøygifting og "rug pull"-angrepsmønstre
+  - Kontekstvindusforgiftning og modellforvirringsangrep
+- **Microsoft AI sikkerhetsløsninger**: Omfattende dekning av Microsoft sikkerhetsekosystem
+  - AI Prompt Shields med avansert deteksjon, spotlighting og skilleteknikker
+  - Azure Content Safety integrasjonsmønstre
+  - GitHub Advanced Security for beskyttelse av forsyningskjede
+- **Avansert trusselmitigering**: Detaljert sikkerhetskontroller for
+  - Sesjonshijacking med MCP-spesifikke angrepsscenarioer og kryptografiske sesjons-ID-krav
+  - Forvirret stedfortreder-problemer i MCP proxy-scenarier med eksplisitte samtykkekrav
+  - Token passthrough-sårbarheter med obligatoriske valideringskontroller
+- **Forsyningskjedesikkerhet**: Utvidet AI-forsyningskjededekning inkludert grunnmodell, embeddingtjenester, kontekstleverandører og tredjeparts-APIer
+- **Grunnleggende sikkerhet**: Forbedret integrasjon med bedriftsikkerhetsmønstre inkludert zero trust-arkitektur og Microsoft sikkerhetsekosystem
+- **Ressursorganisering**: Kategoriserte omfattende ressurslenker etter type (offisielle dokumenter, standarder, forskning, Microsoft-løsninger, implementeringsveiledninger)
 
-### Dokumentasjonskvalitetsforbedringer  
-- **Strukturerte læringsmål**: Forbedret læringsmål med spesifikke, handlingsorienterte resultater  
-- **Kryssreferanser**: Lagt til lenker mellom relaterte sikkerhets- og kjernebegreps-emner  
-- **Aktuell informasjon**: Oppdaterte alle datoreferanser og spesifikasjonslenker til gjeldende standarder  
-- **Implementeringsveiledning**: Lagt til spesifikke, handlingsorienterte implementeringsretningslinjer gjennom begge seksjoner  
+### Forbedringer i dokumentasjonskvalitet
+- **Strukturerte læringsmål**: Forbedret læringsmål med spesifikke, handlingsorienterte resultater
+- **Kryssreferanser**: Lagt til lenker mellom relaterte sikkerhets- og kjernebegrepsemner
+- **Aktuell informasjon**: Oppdatert alle datoreferanser og spesifikasjonslenker til gjeldende standarder
+- **Implementeringsveiledning**: Lagt til spesifikke, handlingsrettede implementeringsretningslinjer gjennom begge seksjoner
 
-## 16. juli 2025  
+## 16. juli 2025
 
-### README og navigasjonsforbedringer  
-- Fullstendig redesignet læreplannavigasjon i README.md  
-- Erstattet `<details>`-tagger med mer tilgjengelig tabellbasert format  
-- Laget alternative layoutvalg i ny "alternative_layouts"-mappe  
-- Lagt til kortbaserte, tab-baserte og akkordionstil navigasjonseksempler  
-- Oppdatert seksjon for repositorie-struktur for å inkludere alle siste filer  
-- Forbedret "Slik bruker du denne læreplanen"-seksjon med klare anbefalinger  
-- Oppdatert MCP-spesifikasjonslenker til å peke til korrekte URLer  
-- Lagt til Context Engineering seksjon (5.14) i læreplanstruktur  
+### README og navigasjonsforbedringer
+- Fullstendig redesignet læreplannavigasjon i README.md
+- Erstattet `<details>`-tagger med mer tilgjengelig tabellbasert format
+- Opprettet alternative layoutvalg i ny mappe "alternative_layouts"
+- Lagt til kort-baserte, fane-stil, og harmonika-stil navigasjonseksempler
+- Oppdatert seksjon for repositorisstruktur til å inkludere alle siste filer
+- Forbedret "Hvordan bruke denne læreplanen" med tydelige anbefalinger
+- Oppdatert MCP-spesifikasjonslenker til å peke til korrekte URLer
+- Lagt til seksjon om kontekstteknikk (5.14) i kursstrukturen
 
-### Studieveiledningsoppdateringer  
-- Fullstendig revidert studieveiledning for å tilpasse nåværende repositorie-struktur  
-- Lagt til nye seksjoner for MCP-klienter og verktøy, samt populære MCP-servere  
-- Oppdatert Visual Curriculum Map for å nøyaktig reflektere alle emner  
-- Forbedret beskrivelser av avanserte emner for å dekke alle spesialiserte områder  
-- Oppdatert kasusstudieseksjon for å reflektere faktiske eksempler  
-- Lagt til denne omfattende endringsloggen  
+### Oppdateringer i studieveiledning
+- Fullstendig revidert studieveiledningen for å samsvare med nåværende repositorisstruktur
+- Lagt til nye seksjoner for MCP-klienter og -verktøy, og populære MCP-servere
+- Oppdatert Visuell Læreplanoversikt for å korrekt vise alle emner
+- Forbedret beskrivelser av avanserte emner for å dekke alle spesialiserte områder
+- Oppdatert seksjon Casestudier for å gjenspeile faktiske eksempler
+- Lagt til denne omfattende endringsloggen
 
-### Fellesskapsbidrag (06-CommunityContributions/)  
-- Lagt til detaljert informasjon om MCP-servere for bildegenerering  
-- Lagt til omfattende seksjon om bruk av Claude i VSCode  
-- Lagt til Cline terminalklient-oppsett og brukerveiledning  
-- Oppdatert MCP-klientseksjon for å inkludere alle populære klientvalg  
-- Forbedret bidragseksempler med mer nøyaktige kodeeksempler  
+### Fellesskapsbidrag (06-CommunityContributions/)
+- Lagt til detaljert informasjon om MCP-servere for bilde-generering
+- Lagt til omfattende seksjon om bruk av Claude i VSCode
+- Lagt til instruksjoner for oppsett og bruk av Cline terminalklient
+- Oppdatert MCP-klientseksjon for å inkludere alle populære klientalternativer
+- Forbedret bidragseksempler med mer nøyaktige kodeeksempler
 
-### Avanserte emner (05-AdvancedTopics/)  
-- Organisert alle spesialiserte emnemapper med konsistent navngivning  
-- Lagt til materiale og eksempler for kontekstengineering  
-- Lagt til Foundry-agentintegrasjonsdokumentasjon  
-- Forbedret dokumentasjon for Entra ID-sikkerhetsintegrasjon  
+### Avanserte emner (05-AdvancedTopics/)
+- Organisert alle spesialiserte emnemapper med konsistent navngivning
+- Lagt til materiell og eksempler for kontekstteknikk
+- Lagt til dokumentasjon for Foundry agent-integrasjon
+- Forbedret dokumentasjon for sikkerhetsintegrasjon med Entra ID
 
-## 11. juni 2025  
+## 11. juni 2025
 
-### Første opprettelse  
-- Utgitt første versjon av MCP for Beginners læreplan  
-- Opprettet grunnleggende struktur for alle 10 hovedseksjoner  
-- Implementert Visual Curriculum Map for navigasjon  
-- Lagt til innledende prøveprosjekter i flere programmeringsspråk  
+### Første utgivelse
+- Utgitt første versjon av MCP for Beginners læreplan
 
-### Komme i gang (03-GettingStarted/)  
-- Opprettet første serverimplementeringseksempler  
-- Lagt til veiledning for klientutvikling  
-- Inkludert instruksjoner for LLM-klientintegrasjon  
-- Lagt til VS Code integrasjonsdokumentasjon  
-- Implementert Server-Sent Events (SSE) servereksempler  
+- Opprettet grunnleggende struktur for alle 10 hovedseksjoner
+- Implementerte Visuell Læreplankart for navigasjon
+- La til innledende prøveprosjekter i flere programmeringsspråk
 
-### Kjernebegreper (01-CoreConcepts/)  
-- Lagt til detaljert forklaring av klient-server-arkitektur  
-- Opprettet dokumentasjon for sentrale protokollkomponenter  
-- Dokumentert meldingsmønstre i MCP  
+### Komme i gang (03-GettingStarted/)
+- Opprettet første serverimplementeringseksempler
+- La til veiledning for klientutvikling
+- Inkluderte instruksjoner for LLM-klientintegrasjon
+- La til dokumentasjon for VS Code-integrasjon
+- Implementerte Server-Sent Events (SSE) servereksempler
 
-## 23. mai 2025  
+### Kjernebegreper (01-CoreConcepts/)
+- La til detaljert forklaring av klient-server-arkitektur
+- Opprettet dokumentasjon om nøkkelkomponenter i protokollen
+- Dokumenterte meldingsmønstre i MCP
 
-### Repositorie-struktur  
-- Initialisert repositoriet med grunnleggende mappestruktur  
-- Opprettet README-filer for hver hovedseksjon  
-- Satte opp oversettelsesinfrastruktur  
-- Lagt til bildeassets og diagrammer  
+## 23. mai 2025
 
-### Dokumentasjon  
-- Opprettet innledende README.md med oversikt over læreplan  
-- Lagt til CODE_OF_CONDUCT.md og SECURITY.md  
-- Satte opp SUPPORT.md med veiledning for å få hjelp  
-- Opprettet foreløpig studieveiledningsstruktur  
+### Repositoriumstruktur
+- Initialiserte repositoriet med grunnleggende mappestruktur
+- Opprettet README-filer for hver hovedseksjon
+- Satte opp oversettelsesinfrastruktur
+- La til bilde-ressurser og diagrammer
 
-## 15. april 2025  
+### Dokumentasjon
+- Opprettet første README.md med oversikt over læreplanen
+- La til CODE_OF_CONDUCT.md og SECURITY.md
+- Satte opp SUPPORT.md med veiledning for å få hjelp
+- Opprettet foreløpig studieveiledningsstruktur
 
-### Planlegging og rammeverk  
-- Innledende planlegging for MCP for Beginners læreplan  
-- Definerte læringsmål og målgruppe  
-- Skisset ut 10-seksjons struktur av læreplan  
-- Utviklet konseptuelt rammeverk for eksempler og kasusstudier  
-- Opprettet første prototype-eksempler for nøkkelbegreper  
+## 15. april 2025
+
+### Planlegging og rammeverk
+- Innledende planlegging for MCP for Beginners læreplan
+- Definerte læringsmål og målgruppe
+- Skisset opp 10-delt struktur for læreplanen
+- Utviklet konseptuelt rammeverk for eksempler og casestudier
+- Opprettet første prototypeeksempler for nøkkelbegreper
 
 ---
 

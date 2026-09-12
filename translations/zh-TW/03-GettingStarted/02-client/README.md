@@ -1,33 +1,33 @@
-# 創建客戶端
+# 建立客戶端
 
-客戶端是自訂應用程序或腳本，直接與 MCP 伺服器通訊以請求資源、工具和提示。與使用提供圖形介面與伺服器互動的檢查工具不同，撰寫自己的客戶端可進行程式化和自動化互動。這使開發人員能將 MCP 功能整合到自己的工作流程中，自動化任務，並構建針對特定需求定制的解決方案。
+客戶端是用來與 MCP 伺服器直接通訊，請求資源、工具及提示的自訂應用程式或腳本。與使用提供圖形介面用於操作伺服器的檢查工具不同，撰寫自己的客戶端可以進行程式化和自動化的互動。這使開發者能將 MCP 功能整合到自有工作流程中，自動化任務，並打造符合特定需求的自訂解決方案。
 
-## 概述
+## 概覽
 
-本課程介紹 Model Context Protocol (MCP) 生態系中的客戶端概念。您將學習如何撰寫自己的客戶端並讓它連接到 MCP 伺服器。
+本課程介紹 Model Context Protocol (MCP) 生態系統中「客戶端」的概念。您將學習如何撰寫自己的客戶端並與 MCP 伺服器建立連線。
 
 ## 學習目標
 
-完成本課程後，您將能夠：
+透過本課程結束時，您將能夠：
 
 - 了解客戶端的功能。
-- 撰寫自己的客戶端。
-- 與 MCP 伺服器連接並測試，確保伺服器如預期運作。
+- 撰寫您自己的客戶端。
+- 連線並測試客戶端與 MCP 伺服器確保其正常運作。
 
-## 撰寫客戶端需要哪些元素？
+## 撰寫客戶端需要做什麼？
 
-撰寫客戶端時，您需要：
+撰寫客戶端，您需要完成以下事項：
 
-- **匯入正確的函式庫**。您將使用與之前相同的函式庫，只是使用不同的結構。
-- **實例化客戶端**。這包括建立客戶端實例並將其連接到選擇的通訊方式。
-- **決定要列出的資源**。您的 MCP 伺服器有資源、工具和提示，您需要決定列出哪一個。
-- **將客戶端整合到主機應用程式**。了解伺服器的能力後，您需要將它整合到主機應用程式中，當使用者輸入提示或其他命令時即會調用對應的伺服器功能。
+- <strong>匯入正確的函式庫</strong>。您將使用之前相同的函式庫，但組件將不同。
+- <strong>實例化客戶端</strong>。這會包含建立客戶端的實例並連接到所選的傳輸方法。
+- <strong>決定要列出哪些資源</strong>。您的 MCP 伺服器附帶資源、工具和提示，您需要決定要列出哪些。
+- <strong>將客戶端整合至主機應用程式</strong>。了解伺服器功能後，您需要將客戶端整合進主機應用程式，讓使用者輸入提示或指令時，能呼叫相應的伺服器功能。
 
-既然我們已大致了解即將執行的內容，接下來看一個範例。
+了解整體流程後，我們接下來看個範例。
 
 ### 範例客戶端
 
-來看這個範例客戶端：
+讓我們看看此範例客戶端：
 
 ### TypeScript
 
@@ -49,10 +49,10 @@ const client = new Client(
 
 await client.connect(transport);
 
-// 列出提示詞
+// 列出提示
 const prompts = await client.listPrompts();
 
-// 取得一個提示詞
+// 獲取提示
 const prompt = await client.getPrompt({
   name: "example-prompt",
   arguments: {
@@ -63,12 +63,12 @@ const prompt = await client.getPrompt({
 // 列出資源
 const resources = await client.listResources();
 
-// 讀取一個資源
+// 閱讀資源
 const resource = await client.readResource({
   uri: "file:///example.txt"
 });
 
-// 呼叫一個工具
+// 呼叫工具
 const result = await client.callTool({
   name: "example-tool",
   arguments: {
@@ -77,23 +77,23 @@ const result = await client.callTool({
 });
 ```
 
-在上面程式碼中，我們：
+在以上程式碼中我們：
 
 - 匯入函式庫
-- 建立客戶端實例並使用 stdio 作為傳輸方式連接
-- 列出提示、資源和工具並呼叫它們
+- 建立客戶端實例並使用 stdio 傳輸連線
+- 列出所有提示、資源和工具並呼叫它們
 
-這就是可以與 MCP 伺服器通訊的客戶端。
+就這樣，建立了一個能與 MCP 伺服器溝通的客戶端。
 
-接下來的練習部分，我們將逐段程式碼詳細說明。
+在下一個練習環節，我們將細分每個程式碼片段進行深入說明。
 
-## 練習：撰寫客戶端
+## 練習：撰寫一個客戶端
 
-如上所述，讓我們花時間解說程式碼，若想依照操作也盡量跟著寫。
+如前所述，讓我們慢慢說明程式碼，也歡迎跟著練習撰寫。
 
 ### -1- 匯入函式庫
 
-匯入我們需要的函式庫，需引用客戶端與選擇的傳輸協議 stdio。stdio 是設計來在您的本機運行的協議。SSE 是未來章節會展示的另一種傳輸協議，您也可以選擇它。現在先繼續用 stdio。
+匯入所需函式庫，我們會引用客戶端和所選傳輸協定 stdio。stdio 是本地機器運行時使用的協定，未來章節將展示 SSE 作為另一傳輸選項，目前先繼續使用 stdio。
 
 #### TypeScript
 
@@ -120,7 +120,7 @@ using ModelContextProtocol.Client;
 
 #### Java
 
-對於 Java，您將創建一個能連接先前練習 MCP 伺服器的客戶端。使用 [Getting Started with MCP Server](../../../../03-GettingStarted/01-first-server/solution/java) 的相同 Java Spring Boot 專案結構，在 `src/main/java/com/microsoft/mcp/sample/client/` 資料夾新增名為 `SDKClient` 的 Java 類別，並加入以下匯入：
+Java 範例將建立一個能連接到先前練習 MCP 伺服器的客戶端。以 [Getting Started with MCP Server](../../../../03-GettingStarted/01-first-server/solution/java) 的 Java Spring Boot 專案結構為基礎，在 `src/main/java/com/microsoft/mcp/sample/client/` 資料夾創建新 Java 類別 `SDKClient`，並加入以下匯入：
 
 ```java
 import java.util.Map;
@@ -135,7 +135,7 @@ import io.modelcontextprotocol.spec.McpSchema.ListToolsResult;
 
 #### Rust
 
-您需要將以下依賴項新增到您的 `Cargo.toml` 文件中。
+需將以下相依加入 `Cargo.toml` 檔案中。
 
 ```toml
 [package]
@@ -149,7 +149,7 @@ serde_json = "1.0.141"
 tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 ```
 
-然後，在客戶端程式碼中匯入必要函式庫。
+接著您就可以在客戶端程式碼中匯入必要函式庫。
 
 ```rust
 use rmcp::{
@@ -161,11 +161,11 @@ use rmcp::{
 use tokio::process::Command;
 ```
 
-接著進行實例化。
+接下來繼續實例化部份。
 
 ### -2- 實例化客戶端與傳輸
 
-我們需要建立傳輸實例及客戶端實例：
+我們需要建立傳輸和客戶端的實例：
 
 #### TypeScript
 
@@ -185,9 +185,9 @@ const client = new Client(
 await client.connect(transport);
 ```
 
-在上述程式碼中，我們：
+前述程式碼中我們：
 
-- 建立 stdio 傳輸實例。注意如何指定啟動伺服器的指令和參數，這是我們創建客戶端時需要做的。
+- 建立 stdio 傳輸實例。注意指定了啟動伺服器的指令與引數，這是建立客戶端時必須考慮的。
 
     ```typescript
     const transport = new StdioClientTransport({
@@ -196,7 +196,7 @@ await client.connect(transport);
     });
     ```
 
-- 透過給予名稱與版本實例化客戶端。
+- 實例化一個命名並帶版本號的客戶端。
 
     ```typescript
     const client = new Client(
@@ -206,7 +206,7 @@ await client.connect(transport);
     });
     ```
 
-- 將客戶端連接至選擇的傳輸。
+- 把客戶端連接至所選的傳輸。
 
     ```typescript
     await client.connect(transport);
@@ -218,11 +218,11 @@ await client.connect(transport);
 from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
 
-# 為 stdio 連接建立伺服器參數
+# 建立用於 stdio 連線的伺服器參數
 server_params = StdioServerParameters(
     command="mcp",  # 可執行檔
-    args=["run", "server.py"],  # 選擇性的命令列參數
-    env=None,  # 選擇性的環境變數
+    args=["run", "server.py"],  # 選用的命令列參數
+    env=None,  # 選用的環境變數
 )
 
 async def run():
@@ -230,7 +230,7 @@ async def run():
         async with ClientSession(
             read, write
         ) as session:
-            # 初始化連接
+            # 初始化連線
             await session.initialize()
 
           
@@ -241,12 +241,12 @@ if __name__ == "__main__":
     asyncio.run(run())
 ```
 
-在上述程式碼中，我們：
+前述程式碼中我們：
 
 - 匯入所需函式庫
-- 實例化伺服器參數物件，用於執行伺服器，方便客戶端連接
-- 定義 `run` 方法，該方法調用 `stdio_client` 啟動客戶端會話
-- 建立入口點，透過 `asyncio.run` 執行 `run` 方法
+- 實例化伺服器參數物件，後續啟動伺服器並以客戶端連接它時會用到
+- 定義 `run` 方法，該方法會呼叫 `stdio_client` 啟動客戶端會話
+- 創建進入點並以 `asyncio.run` 呼叫 `run`
 
 #### .NET
 
@@ -274,12 +274,12 @@ var clientTransport = new StdioClientTransport(new()
 await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 ```
 
-在上述程式碼中，我們：
+前述程式碼中我們：
 
 - 匯入所需函式庫。
-- 建立 stdio 傳輸並創建名為 `mcpClient` 的客戶端。後者用於列出並調用 MCP 伺服器上的功能。
+- 建立 stdio 傳輸，並創建客戶端物件 `mcpClient`，此客戶端用於列出及呼叫 MCP 伺服器功能。
 
-註：在 "Arguments" 部分，您可以指向 *.csproj* 或可執行檔。
+注意在 "Arguments" 中，您可以指向 *.csproj* 或可執行檔。
 
 #### Java
 
@@ -301,25 +301,25 @@ public class SDKClient {
         var client = McpClient.sync(this.transport).build();
         client.initialize();
         
-        // 你的客戶端邏輯寫在這裡
+        // 您的客戶端邏輯寫在這裡
     }
 }
 ```
 
-在上述程式碼中，我們：
+前述程式碼中我們：
 
-- 建立一個 main 方法，設置 SSE 傳輸指向 MCP 伺服器正在運行的 `http://localhost:8080`
-- 創建一個客戶端類別，以傳輸作為建構子參數
-- 在 `run` 方法中，使用該傳輸建立同步 MCP 客戶端並初始化連線
-- 使用 SSE（Server-Sent Events）傳輸，適合使用 Java Spring Boot MCP 伺服器的 HTTP 通訊
+- 建立 main 方法，設定 SSE 傳輸指向執行於 `http://localhost:8080` 的 MCP 伺服器。
+- 創建一個客戶端類別，建構子參數為傳輸物件。
+- 在 `run` 方法中，使用傳輸建立同步 MCP 客戶端並初始化連線。
+- 使用適合 Java Spring Boot MCP 伺服器的 SSE（伺服器發送事件）傳輸。
 
 #### Rust
 
-注意此 Rust 客戶端假設伺服器是命名為 "calculator-server" 的兄弟專案，位於同一資料夾中。以下程式碼將啟動該伺服器並連接。
+注意此 Rust 客戶端假設伺服器是同一個目錄下名為 "calculator-server" 的兄弟專案。下方程式碼會啟動伺服器並連線。
 
 ```rust
 async fn main() -> Result<(), RmcpError> {
-    // 假設伺服器是一個名為 "calculator-server" 的同級專案，位於相同目錄中
+    // 假設伺服器是同一目錄下名為 "calculator-server" 的兄弟專案
     let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .expect("failed to locate workspace root")
@@ -338,7 +338,7 @@ async fn main() -> Result<(), RmcpError> {
 
     // 待辦事項：列出工具
 
-    // 待辦事項：使用參數 {"a": 3, "b": 2} 呼叫加法工具
+    // 待辦事項：以參數 = {"a": 3, "b": 2} 呼叫新增工具
 
     client.cancel().await?;
     Ok(())
@@ -347,7 +347,7 @@ async fn main() -> Result<(), RmcpError> {
 
 ### -3- 列出伺服器功能
 
-現在，我們的客戶端在程式執行時可以連接伺服器，但尚未列出功能，接下來來完成它：
+現在，我們已有能連接的客戶端程式。但它尚未列出伺服器的功能，接下來就做這件事：
 
 #### TypeScript
 
@@ -365,20 +365,20 @@ const tools = await client.listTools();
 #### Python
 
 ```python
-# 列出可用的資源
+# 列出可用資源
 resources = await session.list_resources()
 print("LISTING RESOURCES")
 for resource in resources:
     print("Resource: ", resource)
 
-# 列出可用的工具
+# 列出可用工具
 tools = await session.list_tools()
 print("LISTING TOOLS")
 for tool in tools.tools:
     print("Tool: ", tool.name)
 ```
 
-此處列出可用的資源 `list_resources()` 和工具 `list_tools`，並將其輸出。
+這裡呼叫 `list_resources()` 列出資源和 `list_tools` 列出工具，並將它們列印出來。
 
 #### .NET
 
@@ -389,7 +389,7 @@ foreach (var tool in await client.ListToolsAsync())
 }
 ```
 
-以上是如何列出伺服器工具的範例。針對每個工具，顯示其名稱。
+以上示例展現如何列出伺服器上的工具。對每個工具，我們列印它的名稱。
 
 #### Java
 
@@ -398,21 +398,21 @@ foreach (var tool in await client.ListToolsAsync())
 ListToolsResult toolsList = client.listTools();
 System.out.println("Available Tools = " + toolsList);
 
-// 你也可以使用 ping 伺服器來驗證連線
+// 你也可以對伺服器進行 ping 以驗證連線
 client.ping();
 ```
 
-在上述程式碼中，我們：
+前述程式碼中我們：
 
-- 呼叫 `listTools()` 取得 MCP 伺服器提供的所有工具
-- 使用 `ping()` 確認連線正常
-- `ListToolsResult` 包含所有工具的資訊，如名稱、描述和輸入架構
+- 呼叫 `listTools()` 從 MCP 伺服器獲取全部可用工具。
+- 使用 `ping()` 驗證與伺服器的連線正常。
+- `ListToolsResult` 包含所有工具的名稱、描述及輸入模式資訊。
 
-很好，現已擷取所有功能。接著要問，何時使用呢？此客戶端很簡單，必須我們明確呼叫功能。下一章我們將建立能存取自身大型語言模型（LLM）的進階客戶端。但現階段，先看如何調用伺服器上的功能：
+太好了，現在我們獲取了所有功能。那麼何時使用它們呢？此客戶端設計簡單，意味著需要明確呼叫想要的功能。下一章將建立較進階的客戶端，配備自己的大型語言模型 LLM。目前，我們來看看如何呼叫伺服器功能：
 
 #### Rust
 
-在 main 函式中，初始化客戶端後，可初始化伺服器並列出部分功能。
+在 main 函數中，初始化客戶端後，我們可以初始化伺服器並列出部分功能。
 
 ```rust
 // 初始化
@@ -424,9 +424,9 @@ let tools = client.list_tools(Default::default()).await?;
 println!("Available tools: {:?}", tools);
 ```
 
-### -4- 調用功能
+### -4- 呼叫功能
 
-呼叫功能時，要確保指定正確的參數，有時還包括欲呼叫的名稱。
+呼叫功能時需確保傳入正確引數，有時還要指定功能名稱。
 
 #### TypeScript
 
@@ -454,9 +454,9 @@ const promptResult = await client.getPrompt({
 })
 ```
 
-在上述程式碼中，我們：
+在前述程式碼中我們：
 
-- 讀取資源，呼叫 `readResource()` 並指定 `uri`。伺服器端大致如下：
+- 讀取資源，透過 `readResource()` 並指定 `uri`。伺服器端程式碼看起來可能是這樣：
 
     ```typescript
     server.resource(
@@ -471,9 +471,9 @@ const promptResult = await client.getPrompt({
     );
     ```
 
-    我們的 `uri` 值是 `file://example.txt`，對應伺服器的 `file://{name}`，`example.txt` 將映射給 `name`。
+    我們的 `uri` 值 `file://example.txt` 對應伺服器上的 `file://{name}`，即 `example.txt` 映射給 `name`。
 
-- 呼叫工具，指定 `name` 和 `arguments` 如下：
+- 呼叫工具，透過指定工具 `name` 和 `arguments` 實現：
 
     ```typescript
     const result = await client.callTool({
@@ -484,7 +484,7 @@ const promptResult = await client.getPrompt({
     });
     ```
 
-- 取得提示，呼叫 `getPrompt()` 並使用 `name` 和 `arguments`。伺服器程式碼如下：
+- 取得提示，通過呼叫 `getPrompt()` 並傳入 `name` 和 `arguments`。伺服器程式碼如下：
 
     ```typescript
     server.prompt(
@@ -502,7 +502,7 @@ const promptResult = await client.getPrompt({
     );
     ```
 
-    因此，您的客戶端程式碼如下，以符合伺服器端的宣告：
+    因此客戶端程式碼呼叫方式會與伺服器宣告對應：
 
     ```typescript
     const promptResult = await client.getPrompt({
@@ -526,14 +526,14 @@ result = await session.call_tool("add", arguments={"a": 1, "b": 7})
 print(result.content)
 ```
 
-在上述程式碼中，我們：
+在前述程式碼中，我們：
 
-- 使用 `read_resource` 呼叫名為 `greeting` 的資源
-- 使用 `call_tool` 呼叫名為 `add` 的工具
+- 以 `read_resource` 呼叫名為 `greeting` 的資源。
+- 以 `call_tool` 呼叫名為 `add` 的工具。
 
 #### .NET
 
-1. 新增呼叫工具的程式碼：
+1. 先加入呼叫工具的程式碼：
 
   ```csharp
   var result = await mcpClient.CallToolAsync(
@@ -542,7 +542,7 @@ print(result.content)
       cancellationToken:CancellationToken.None);
   ```
 
-1. 打印結果的程式碼示例如下：
+2. 以下程式碼用於顯示呼叫結果：
 
   ```csharp
   Console.WriteLine(result.Content.First(c => c.Type == "text").Text);
@@ -552,7 +552,7 @@ print(result.content)
 #### Java
 
 ```java
-// 調用各種計算工具
+// 呼叫各種計算器工具
 CallToolResult resultAdd = client.callTool(new CallToolRequest("add", Map.of("a", 5.0, "b", 3.0)));
 System.out.println("Add Result = " + resultAdd);
 
@@ -569,12 +569,12 @@ CallToolResult resultHelp = client.callTool(new CallToolRequest("help", Map.of()
 System.out.println("Help = " + resultHelp);
 ```
 
-在上述程式碼中，我們：
+前述程式碼中，我們：
 
-- 使用 `callTool()` 並傳入 `CallToolRequest` 物件呼叫多個計算器工具
-- 每個工具呼叫指定工具名稱和所需的參數 `Map`
-- 伺服器工具期待特定參數名稱（例如「a」、「b」用於數學運算）
-- 結果以 `CallToolResult` 物件形式返回，包含伺服器的回應
+- 使用 `callTool()` 方法搭配 `CallToolRequest` 物件呼叫多個計算器工具。
+- 每次呼叫指定工具名稱及該工具所需的引數 `Map`。
+- 伺服器工具期待特定參數名稱（如數學運算的 "a"、"b"）。
+- 回傳結果為包含伺服器回應的 `CallToolResult` 物件。
 
 #### Rust
 
@@ -593,11 +593,11 @@ println!("Result of {:?} + {:?}: {:?}", a, b, tool_result);
 
 ### -5- 執行客戶端
 
-在終端機輸入以下指令以執行客戶端：
+在終端機輸入以下指令啟動客戶端：
 
 #### TypeScript
 
-在 *package.json* 的 "scripts" 區段加入以下內容：
+在 *package.json* 的 "scripts" 區塊新增以下條目：
 
 ```json
 "client": "tsc && node build/client.js"
@@ -609,7 +609,7 @@ npm run client
 
 #### Python
 
-使用以下指令執行客戶端：
+輸入以下指令呼叫客戶端：
 
 ```sh
 python client.py
@@ -623,23 +623,23 @@ dotnet run
 
 #### Java
 
-首先確保 MCP 伺服器在 `http://localhost:8080` 執行，再執行客戶端：
+確保 MCP 伺服器已在 `http://localhost:8080` 運行，然後執行客戶端：
 
 ```bash
-# 建置你的專案
+# 建置您的專案
 ./mvnw clean compile
 
 # 執行客戶端
 ./mvnw exec:java -Dexec.mainClass="com.microsoft.mcp.sample.client.SDKClient"
 ```
 
-或您也可以執行解決方案資料夾中的完整客戶端專案 `03-GettingStarted\02-client\solution\java`：
+或者，您也可執行位於解決方案資料夾 `03-GettingStarted\02-client\solution\java` 中的完整客戶端專案：
 
 ```bash
 # 導航到解決方案目錄
 cd 03-GettingStarted/02-client/solution/java
 
-# 編譯並執行JAR檔案
+# 建置並執行 JAR
 ./mvnw clean package
 java -jar target/calculator-client-0.0.1-SNAPSHOT.jar
 ```
@@ -653,9 +653,9 @@ cargo run
 
 ## 作業
 
-這次作業將使用所學來建立自己的客戶端。
+此作業中，您將運用課程所學撰寫自己的客戶端。
 
-這裡有個您可以使用的伺服器，需用客戶端程式碼呼叫，看看是否能為伺服器新增更多功能使其更有趣。
+下面提供一個伺服器範例，您必須透過客戶端呼叫，試著增加更多功能使伺服器更有趣。
 
 ### TypeScript
 
@@ -664,7 +664,7 @@ import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mc
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 
-// 建立一個 MCP 伺服器
+// 建立一個MCP伺服器
 const server = new McpServer({
   name: "Demo",
   version: "1.0.0"
@@ -678,7 +678,7 @@ server.tool("add",
   })
 );
 
-// 新增動態問候資源
+// 新增一個動態問候語資源
 server.resource(
   "greeting",
   new ResourceTemplate("greeting://{name}", { list: undefined }),
@@ -690,7 +690,7 @@ server.resource(
   })
 );
 
-// 開始從標準輸入接收訊息並在標準輸出發送訊息
+// 開始在標準輸入接收訊息並在標準輸出傳送訊息
 
 async function main() {
   const transport = new StdioServerTransport();
@@ -759,21 +759,21 @@ public static class CalculatorTool
 }
 ```
 
-請參考此專案了解如何[新增提示和資源](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs)。
+請參考此專案查看如何[新增提示與資源](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs)。
 
-另請查看此連結了解如何調用[提示和資源](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/)。
+另外，查看此連結了解如何呼叫[提示與資源](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/)。
 
 ### Rust
 
-在[前一個章節](../../../../03-GettingStarted/01-first-server)，您學到如何使用 Rust 建立簡易 MCP 伺服器。您可以繼續基於該專案開發，或參考以下連結取得更多 Rust MCP 伺服器範例：[MCP Server Examples](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
+在[上一節](../../../../03-GettingStarted/01-first-server)您已學會如何用 Rust 建立簡單 MCP 伺服器。您可以繼續擴展它，或參考此連結查看更多基於 Rust 的 MCP 伺服器範例：[MCP Server Examples](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
 
 ## 解答
 
-**解答資料夾**包含完整且可直接執行的客戶端實作，示範本教學涵蓋的所有概念。每組解答包含獨立分隔的客戶端與伺服器專案。
+<strong>解答資料夾</strong>包含完善且可直接執行的客戶端範例，展示本教程涵蓋的所有概念。每套解答專案皆包含獨立的客戶端與伺服器程式碼，組織完善自包含。
 
 ### 📁 解答結構
 
-此解答目錄依程式語言分類：
+解答目錄依程式語言區分：
 
 ```text
 solution/
@@ -803,19 +803,19 @@ solution/
     └── server.csproj    # Server project file
 ```
 
-### 🚀 每個解答包含的內容
+### 🚀 每套解答包含
 
-各語言解答包含：
+每個語言專屬解答提供：
 
-- **完整的客戶端實作**，涵蓋教學全部功能
-- **完善的專案結構**，包含正確依賴與設定
-- **建置與執行腳本**，方便設定和執行
-- **詳細 README**，內含語言特定指導
-- **錯誤處理**與結果處理範例
+- <strong>完整客戶端實作</strong>，涵蓋教程中所有功能
+- <strong>可運行專案結構</strong>，附正確相依與設定
+- <strong>建置與執行腳本</strong>，簡化設置及執行程序
+- **詳細 README**，說明各語言專屬操作指引
+- <strong>錯誤處理與結果示範</strong>
 
 ### 📖 使用解答
 
-1. **進入您偏好的語言資料夾**：
+1. <strong>切換到想用的語言資料夾</strong>：
 
    ```bash
    cd solution/typescript/    # 適用於 TypeScript
@@ -824,12 +824,12 @@ solution/
    cd solution/dotnet/        # 適用於 .NET
    ```
 
-2. **依每個資料夾的 README 指示操作**，包含：
-   - 安裝依賴
+2. **依照各資料夾 README 指示**：
+   - 安裝相依套件
    - 建置專案
    - 執行客戶端
 
-3. **您將看到的範例輸出**：
+3. <strong>您應該能在輸出看到如下結果</strong>：
 
    ```text
    Prompt: Please review this code: console.log("hello");
@@ -837,78 +837,80 @@ solution/
    Tool result: { content: [ { type: 'text', text: '9' } ] }
    ```
 
-完整文件與逐步指導，請參閱：**[📖 解答文件](./solution/README.md)**
+更完整文件與逐步說明，請見：**[📖 解答文件](./solution/README.md)**
 
 ## 🎯 完整範例
 
-我們提供了本教學所涵蓋所有程式語言的完整且可運行客戶端實作。這些範例展示上面描述的全部功能，您可將其作為參考實作或自己專案的起點。
+我們提供了涵蓋本教程所有程式語言的完整且可運作的客戶端實作。這些範例展示了上面說明的功能，可做為參考範本或自行開發的起點。
 
 ### 可用的完整範例
 
-| 語言   | 檔案                         | 說明                                        |
-|--------|------------------------------|---------------------------------------------|
-| **Java**   | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java)     | 使用 SSE 傳輸的完整 Java 客戶端，內含完善錯誤處理           |
-| **C#**    | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs)      | 使用 stdio 傳輸的完整 C# 客戶端，支援自動啟動伺服器           |
-| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | 完整的 TypeScript 客戶端，支援全 MCP 協議功能                |
-| **Python**  | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py)      | 使用 async/await 模式的完整 Python 客戶端                      |
-| **Rust**    | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs)          | 使用 Tokio 進行非同步作業的完整 Rust 客戶端                    |
+| 語言 | 檔案 | 說明 |
+|----------|------|-------------|
+| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | 使用 SSE 傳輸的完整 Java 客戶端，含完整錯誤處理 |
+| **C#** | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | 使用 stdio 傳輸並自動啟動伺服器的完整 C# 客戶端 |
+| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | 支援完整 MCP 協議的 TypeScript 客戶端 |
+| **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | 採用 async/await 模式的完整 Python 客戶端 |
+| **Rust** | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs) | 使用 Tokio 執行非同步操作的完整 Rust 客戶端 |
 
-每個完整範例皆包含：
-- ✅ **連線建立** 與錯誤處理  
-- ✅ **伺服器偵測**（工具、資源、必要時的提示）  
-- ✅ **計算機運算**（加、減、乘、除、說明）  
-- ✅ **結果處理** 與格式化輸出  
-- ✅ **完整錯誤處理**  
-- ✅ **乾淨、有註解的程式碼**，逐步說明  
+每個完整範例包含：
 
-### 使用完整範例快速入門
+- ✅ <strong>連線建立</strong>與錯誤處理
+- ✅ <strong>伺服器發現</strong>（工具、資源、提示）
+- ✅ <strong>計算器操作</strong>（加、減、乘、除、幫助）
+- ✅ <strong>結果處理</strong>與格式化輸出
+- ✅ <strong>全面的錯誤處理</strong>
 
-1. **從上表選擇你偏好的語言**  
-2. **查看完整範例檔案**，了解完整實作  
-3. **依照 [`complete_examples.md`](./complete_examples.md) 指示執行範例**  
-4. **修改並擴充範例**，符合你的特定需求  
+- ✅ <strong>乾淨且有註解的程式碼</strong>，附有逐步說明
 
-關於執行與自訂這些範例的詳細文件，請參閱：**[📖 完整範例文件](./complete_examples.md)**  
+### 入門完整範例
 
-### 💡 解決方案與完整範例比較
+1. <strong>從上方表格中選擇您偏好的語言</strong>
+2. <strong>查看完整範例檔案</strong>，以理解完整實作
+3. **依照 [`complete_examples.md`](./complete_examples.md) 中的指示執行範例**
+4. <strong>修改並擴充</strong> 範例以符合您的特定需求
 
-| **解決方案資料夾** | **完整範例**              |
-|--------------------|--------------------------|
-| 含建置檔案的完整專案結構 | 單一檔案實作範例           |
-| 支援相依性即可執行       | 針對功能的程式碼範例        |
-| 近似正式生產環境        | 教育性參考                |
-| 語言特定工具鏈          | 跨語言比較                |
+有關執行與自訂這些範例的詳細文件，請見：**[📖 完整範例文件](./complete_examples.md)**
 
-兩者皆有價值 —— 使用 **解決方案資料夾** 建立完整專案，使用 **完整範例** 做學習與參考。  
+### 💡 Solution 與 Complete Examples 的比較
 
-## 重要重點
+| **Solution 資料夾** | **Complete Examples** |
+|--------------------|--------------------- |
+| 完整專案結構與建置檔案 | 單檔實作範例 |
+| 可執行且有相依性 | 專注於程式碼範例 |
+| 類生產環境設定 | 教學參考 |
+| 語言特定工具支援 | 跨語言比較 |
 
-本章重點關於客戶端如下：
+兩者均有其價值 —— 使用 **solution 資料夾** 進行完整專案開發，使用 **complete examples** 作為學習與參考。
 
-- 可用來偵測與呼叫伺服器功能。  
-- 可在啟動自己時同時啟動伺服器（如本章示範），也可以連接已執行的伺服器。  
-- 是測試伺服器功能的良好工具，與上一章提及的 Inspector 兩者可互補。  
+## 重點摘要
 
-## 附加資源
+本章關於客戶端的重點如下：
 
-- [在 MCP 中建立客戶端](https://modelcontextprotocol.io/quickstart/client)  
+- 既可用於發現，也可用於調用伺服器上的功能。
+- 可以在自己啟動時同時啟動伺服器（像本章所示），但也能連線到已運行的伺服器。
+- 是測試伺服器能力的絕佳工具，與上章說明的 Inspector 等替代方案並列。
+
+## 額外資源
+
+- [在 MCP 中建立客戶端](https://modelcontextprotocol.io/quickstart/client)
 
 ## 範例
 
-- [Java 計算機](../samples/java/calculator/README.md)  
-- [.Net 計算機](../../../../03-GettingStarted/samples/csharp)  
-- [JavaScript 計算機](../samples/javascript/README.md)  
-- [TypeScript 計算機](../samples/typescript/README.md)  
-- [Python 計算機](../../../../03-GettingStarted/samples/python)  
-- [Rust 計算機](../../../../03-GettingStarted/samples/rust)  
+- [Java 計算機](../samples/java/calculator/README.md)
+- [.NET 計算機](../../../../03-GettingStarted/samples/csharp)
+- [JavaScript 計算機](../samples/javascript/README.md)
+- [TypeScript 計算機](../samples/typescript/README.md)
+- [Python 計算機](../../../../03-GettingStarted/samples/python)
+- [Rust 計算機](../../../../03-GettingStarted/samples/rust)
 
-## 下一步
+## 接下來是
 
 - 下一步：[使用 LLM 建立客戶端](../03-llm-client/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**免責聲明**：  
-本文件使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。雖然我們致力於確保準確性，但請注意，自動翻譯可能包含錯誤或不準確之處。原始語言的文件應視為權威來源。對於重要資訊，建議使用專業人工翻譯。我們不對因使用本翻譯而產生的任何誤解或誤釋負責。
+**免責聲明**：
+此文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。雖然我們努力追求準確性，但請注意自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應視為權威來源。對於關鍵資訊，建議採用專業人工翻譯。我們不對因使用此翻譯所產生的任何誤解或誤譯承擔責任。
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

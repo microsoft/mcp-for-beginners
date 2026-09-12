@@ -1,61 +1,77 @@
 # Transporturi Personalizate MCP - Ghid Avansat de Implementare
 
-Protocolul Contextului Modelului (MCP) oferă flexibilitate în mecanismele de transport, permițând implementări personalizate pentru medii enterprise specializate. Acest ghid avansat explorează implementări de transport personalizate folosind Azure Event Grid și Azure Event Hubs ca exemple practice pentru construirea de soluții MCP scalabile și native cloud.
+Protocolul Contextului Modelului (MCP) permite implementări de transport personalizate pentru
+medii specializate. Acest ghid avansat explorează Azure Event Grid și
+Azure Event Hubs ca modele de arhitectură. Ele nu sunt transporturi standard MCP
+și necesită ca ambele capete să convină asupra mapării personalizate.
 
-> **Privind spre viitor:** acest ghid este scris conform **Specificației MCP 2025-11-25**, unde ordonarea sesiunilor trebuie păstrată pentru fiecare sesiune (vedeți Protocolul Mesajelor mai jos). Kandidatul de lansare `2026-07-28` elimină complet sesiunea la nivel de protocol și necesită antete `Mcp-Method`/`Mcp-Name` astfel încât gateway-urile și transporturile personalizate să poată face rutarea per cerere în loc de per sesiune. Vedeți [Ce Se Schimbă în MCP: Kandidatul de Lansare 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> **Domeniul de aplicare MCP `2026-07-28`:** protocolul actual nu are sesiuni la nivel de protocol,
+> așadar transporturile personalizate nu trebuie să depindă de afinitatea sesiunii sau
+> ordinea per sesiune. Anteturile `Mcp-Method` și condiționale `Mcp-Name` sunt
+> cerințe ale transportului HTTP Streamable standard; un transport non-HTTP
+> necesită o mapare echivalentă, convenită explicit, dacă intermediarii trebuie să direcționeze
+> fără a decoda corpul JSON-RPC. Vezi
+> [Ce s-a schimbat în MCP: Specificația din 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28.md).
 
 ## Introducere
 
-În timp ce transporturile standard MCP (stdio și streaming HTTP) acoperă majoritatea cazurilor de utilizare, mediile enterprise necesită adesea mecanisme de transport specializate pentru scalabilitate, fiabilitate și integrare îmbunătățite cu infrastructura cloud existentă. Transporturile personalizate permit MCP să valorifice servicii de mesagerie native cloud pentru comunicare asincronă, arhitecturi eveniment-driven și procesare distribuită.
+Transporturile standard MCP sunt stdio și HTTP Streamable. Unele
+medii enterprise utilizează o mapare personalizată pentru a se integra cu infrastructuri de
+mesagerie existente, însă acest lucru poate reduce interoperabilitatea cu gazdele MCP și
+SDK-urile care implementează doar transporturile standard.
 
-Această lecție explorează implementări avansate de transport bazate pe specificația MCP cea mai recentă (2025-11-25), serviciile de mesagerie Azure și modele consacrate de integrare enterprise.
+Această lecție aplică cerințele fără stare din Specificația MCP
+`2026-07-28` pentru serviciile de mesagerie Azure și tiparele
+stabilite de integrare enterprise.
 
 ### **Arhitectura Transportului MCP**
 
-**Din Specificația MCP (2025-11-25):**
+**Din Specificația MCP `2026-07-28`:**
 
-- **Transporturi Standard**: stdio (recomandat), streaming HTTP (pentru scenarii la distanță)
-- **Transporturi Personalizate**: Orice transport care implementează protocolul de schimb de mesaje MCP
-- **Format Mesaje**: JSON-RPC 2.0 cu extensii specifice MCP
-- **Comunicare Bidirecțională**: Comunicare full duplex necesară pentru notificări și răspunsuri
+- **Transporturi Standard**: stdio și HTTP Streamable
+- **Transporturi Personalizate**: Mapări opționale, specifice implementării, convenite de
+    ambele capete de comunicație
+- **Format Mesaj**: JSON-RPC 2.0 cu extensii specifice MCP
+- **Solicitări Auto-conținute**: Nu există sesiune de protocol sau handshake pentru a
+    purta stare între solicitări
 
-## Obiectivele De Învățare
+## Obiective de Învațare
 
-La finalul acestei lecții avansate, vei putea să:
+Până la sfârșitul acestei lecții avansate, vei putea să:
 
-- **Înțelegi Cerințele Transporturilor Personalizate**: Implementează protocolul MCP peste orice strat de transport păstrând conformitatea
-- **Construiești Transport Azure Event Grid**: Creează servere MCP event-driven utilizând Azure Event Grid pentru scalabilitate serverless
-- **Implementezi Transport Azure Event Hubs**: Proiectează soluții MCP cu throughput ridicat folosind Azure Event Hubs pentru streaming în timp real
-- **Aplici Modele Enterprise**: Integrează transporturile personalizate cu infrastructura Azure existentă și modele de securitate
-- **Gestionezi Fiabilitatea Transportului**: Implementează durabilitatea mesajelor, ordonarea și tratarea erorilor în scenarii enterprise
-- **Optimizezi Performanța**: Proiectează soluții de transport pentru cerințele de scală, latență și throughput
+- **Înțelegi Cerințele pentru Transport Personalizat**: Implementează protocolul MCP peste orice strat de transport păstrând conformitatea
+- **Construiești Transportul Azure Event Grid**: Creează servere MCP orientate pe evenimente folosind Azure Event Grid pentru scalabilitate fără server
+- **Implementezi Transportul Azure Event Hubs**: Proiectează soluții MCP cu debit mare folosind Azure Event Hubs pentru streaming în timp real
+- **Aplici Tipare Enterprise**: Integrează transporturi personalizate cu infrastructura și modelele de securitate Azure existente
+- **Gestionezi Fiabilitatea Transportului**: Implementează durabilitate a mesajelor, ordonare și gestionare a erorilor pentru scenarii enterprise
+- **Optimizezi Performanța**: Proiectează soluții de transport pentru scalabilitate, latență și cerințe de debit
 
-## **Cerințe Transport**
+## **Cerințe de Transport**
 
-### **Cerințe de Bază din Specificația MCP (2025-11-25):**
+### **Cerințe de Bază pentru MCP `2026-07-28`**
 
 ```yaml
 Message Protocol:
   format: "JSON-RPC 2.0 with MCP extensions"
-  bidirectional: "Full duplex communication required"
-  ordering: "Message ordering must be preserved per session"
+    correlation: "Match responses to requests by JSON-RPC id"
+    state: "Each request must be self-contained"
   
 Transport Layer:
   reliability: "Transport MUST handle connection failures gracefully"
   security: "Transport MUST support secure communication"
-  identification: "Each session MUST have unique identifier"
+    identification: "Carry protocol version, capabilities, and identity per request"
   
 Custom Transport:
-  compliance: "MUST implement complete MCP message exchange"
+    compliance: "Map the selected MCP revision without adding session assumptions"
   extensibility: "MAY add transport-specific features"
-  interoperability: "MUST maintain protocol compatibility"
+    interoperability: "Both endpoints MUST agree on the custom mapping"
 ```
 
-## **Implementare Transport Azure Event Grid**
+## **Implementarea Transportului Azure Event Grid**
 
-Azure Event Grid oferă un serviciu serverless de rutare a evenimentelor, ideal pentru arhitecturi MCP bazate pe evenimente. Această implementare demonstrează cum să construiești sisteme MCP scalabile și slab cuplate.
+Azure Event Grid oferă un serviciu serverless de rutare a evenimentelor, ideal pentru arhitecturi MCP orientate pe evenimente. Această implementare demonstrează cum să construiești sisteme MCP scalabile și slab cuplate.
 
-### **Prezentare Arhitectură**
+### **Prezentare Arhitecturală**
 
 ```mermaid
 graph TB
@@ -67,7 +83,7 @@ graph TB
     subgraph "Servicii Azure"
         EG
         Server
-        KV[Seif de Chei]
+        KV[Seif Chei]
         Monitor[Application Insights]
     end
 ```
@@ -180,7 +196,7 @@ export class EventGridMcpTransport implements McpTransport {
     
     // Recepție bazată pe evenimente prin Azure Functions
     onMessage(handler: (message: McpMessage) => Promise<void>): void {
-        // Implementarea ar folosi un declanșator Event Grid în Azure Functions
+        // Implementarea ar folosi trigger-ul Event Grid din Azure Functions
         // Aceasta este o interfață conceptuală pentru receptorul webhook
     }
 }
@@ -263,29 +279,30 @@ def main(event: func.EventGridEvent) -> None:
         raise
 ```
 
-## **Implementare Transport Azure Event Hubs**
+## **Implementarea Transportului Azure Event Hubs**
 
-Azure Event Hubs oferă capabilități de streaming în timp real cu throughput ridicat pentru scenariile MCP ce necesită latență scăzută și volum mare de mesaje.
+Azure Event Hubs oferă capabilități de streaming în timp real cu debit mare pentru scenariile MCP ce necesită latență redusă și volum mare de mesaje.
 
-### **Prezentare Arhitectură**
+### **Prezentare Arhitecturală**
 
 ```mermaid
 graph TB
-    Client[Client MCP] --> EH[Azure Event Hubs]
+    Client[Client MCP] --> EH[Hub-uri de Evenimente Azure]
     EH --> Server[Server MCP]
     Server --> EH
     EH --> Client
     
-    subgraph "Caracteristici Event Hubs"
-        Partition[Partajare]
-        Retention[Reținerea mesajelor]
-        Scaling[Scalare automată]
+    subgraph "Caracteristici Hub-uri de Evenimente"
+        Partition[Partiționare]
+        Retention[Reținerea Mesajelor]
+        Scaling[Scalare Automată]
     end
     
     EH --> Partition
     EH --> Retention
     EH --> Scaling
 ```
+
 
 ### **Implementare C# - Transport Event Hubs**
 
@@ -420,7 +437,7 @@ export class EventHubsMcpTransport implements McpTransport {
                         
                         await messageHandler(mcpMessage);
                         
-                        // Actualizează punctul de control pentru livrare cel puțin o dată
+                        // Actualizează punctul de control pentru livrarea cel puțin o dată
                         await context.updateCheckpoint(event);
                     } catch (error) {
                         console.error("Error processing Event Hubs message:", error);
@@ -505,14 +522,14 @@ class EventHubsMcpTransport:
         """Internal event handler wrapper"""
         async def handle_event(partition_context, event):
             try:
-                # Parsează mesajul MCP din evenimentul Event Hubs
+                # Parcurge mesajul MCP din evenimentul Event Hubs
                 message_body = event.body_as_str(encoding='UTF-8')
                 mcp_message = json.loads(message_body)
                 
                 # Procesează mesajul MCP
                 await handler(mcp_message)
                 
-                # Actualizează checkpoint-ul pentru livrare cel puțin o dată
+                # Actualizează punctul de control pentru livrare cel puțin o dată
                 await partition_context.update_checkpoint(event)
                 
             except Exception as e:
@@ -527,9 +544,9 @@ class EventHubsMcpTransport:
         await self.consumer.close()
 ```
 
-## **Modele Avansate de Transport**
+## **Tipare Avansate de Transport**
 
-### **Durabilitatea și Fiabilitatea Mesajelor**
+### **Durabilitate și Fiabilitate a Mesajelor**
 
 ```csharp
 // Implementing message durability with retry logic
@@ -556,7 +573,7 @@ public class ReliableTransportWrapper : IMcpTransport
 }
 ```
 
-### **Integrarea Securității Transportului**
+### **Integrare Securitate Transport**
 
 ```csharp
 // Integrating Azure Key Vault for transport security
@@ -635,9 +652,9 @@ Benefits:
   - Cost optimization with serverless compute
 ```
 
-### **Scenariul 2: Streaming MCP în timp real**
+### **Scenariul 2: Streaming MCP în Timp Real**
 
-Utilizarea Azure Event Hubs pentru interacțiuni MCP de frecvență ridicată:
+Utilizarea Azure Event Hubs pentru interacțiuni MCP de înaltă frecvență:
 
 ```yaml
 Architecture:
@@ -653,7 +670,7 @@ Benefits:
 
 ### **Scenariul 3: Arhitectură Hibridă de Transport**
 
-Combinarea mai multor transporturi pentru cazuri de utilizare diferite:
+Combinarea mai multor tipuri de transport pentru cazuri diferite de utilizare:
 
 ```csharp
 public class HybridMcpTransport : IMcpTransport
@@ -679,7 +696,7 @@ public class HybridMcpTransport : IMcpTransport
 
 ## **Optimizarea Performanței**
 
-### **Gruparea Mesajelor pentru Event Grid**
+### **Batching de Mesaje pentru Event Grid**
 
 ```csharp
 public class BatchingEventGridTransport : IMcpTransport
@@ -741,7 +758,7 @@ public class PartitionedEventHubsTransport : IMcpTransport
 
 ## **Testarea Transporturilor Personalizate**
 
-### **Testare Unită cu Obiecte Duble de Testare**
+### **Testare Unită cu Test Doubles**
 
 ```csharp
 [Test]
@@ -768,7 +785,7 @@ public async Task EventGridTransport_SendMessage_PublishesCorrectEvent()
 }
 ```
 
-### **Testare de Integrare cu Containere Azure Test**
+### **Testare de Integrare cu Azure Test Containers**
 
 ```csharp
 [Test]
@@ -801,48 +818,50 @@ public async Task EventHubsTransport_IntegrationTest()
 }
 ```
 
-## **Cele Mai Bune Practici și Ghiduri**
+## **Bune Practici și Ghiduri**
 
-### **Principiile Designului Transportului**
+### **Principii de Design pentru Transport**
 
-1. **Idempotentă**: Asigură procesarea idempotentă a mesajelor pentru a gestiona duplicatele
-2. **Gestionare Erori**: Implementează gestionarea completă a erorilor și cozi dead letter
-3. **Monitorizare**: Adaugă telemetrie detaliată și verificări de sănătate
-4. **Securitate**: Utilizează identități gestionate și acces cu privilegiul minim necesar
-5. **Performanță**: Proiectează pentru cerințele tale specifice de latență și throughput
+1. **Idempotentă**: Asigurați-vă că procesarea mesajelor este idempotentă pentru a gestiona duplicatele
+2. **Gestionarea Erorilor**: Implementați o gestionare cuprinzătoare a erorilor și cozi pentru mesaje nereușite
+3. **Monitorizare**: Adăugați telemetrie detaliată și verificări de sănătate
+4. **Securitate**: Utilizați identități gestionate și acces cu privilegii minimale
+5. **Performanță**: Proiectați pentru cerințele specifice de latență și debit
 
 ### **Recomandări Specifice Azure**
 
-1. **Folosește Identitate Gestionată**: Evită utilizarea stringurilor de conexiune în producție
-2. **Implementează Circuit Breakers**: Protejează împotriva întreruperilor serviciilor Azure
-3. **Monitorizează Costurile**: Urmărește volumul mesajelor și costurile de procesare
-4. **Planifică pentru Scală**: Proiectează devreme strategiile de partiționare și scalare
-5. **Testează Temeinic**: Folosește Azure DevTest Labs pentru testare cuprinzătoare
+1. **Folosiți Identitate Gestionată**: Evitați șirurile de conexiune în producție
+2. **Implementați Circuit Breakers**: Protejați-vă împotriva căderilor serviciilor Azure
+3. **Monitorizați Costurile**: Urmăriți volumul mesajelor și costurile procesării
+4. **Planificați pentru Scalare**: Proiectați devreme strategii de partiționare și scalare
+5. **Testați Complet**: Folosiți Azure DevTest Labs pentru testare cuprinzătoare
 
 ## **Concluzie**
 
-Transporturile personalizate MCP permit scenarii puternice enterprise folosind serviciile de mesagerie Azure. Prin implementarea transporturilor Event Grid sau Event Hubs, poți construi soluții MCP scalabile și fiabile care se integrează perfect cu infrastructura Azure existentă.
+Transporturile MCP personalizate permit scenarii enterprise puternice folosind serviciile de mesagerie ale Azure. Prin implementarea transporturilor Event Grid sau Event Hubs, puteți construi soluții MCP scalabile și fiabile care se integrează perfect cu infrastructura existentă Azure.
 
-Exemplele oferite demonstrează modele gata de producție pentru implementarea transporturilor personalizate, menținând conformitatea cu protocolul MCP și bunele practici Azure.
+Exemplele oferite demonstrează tipare gata de producție pentru implementarea transporturilor personalizate, menținând în același timp conformitatea cu protocolul MCP și bunele practici Azure.
 
 ## **Resurse Suplimentare**
 
-- [Specificația MCP 2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25/)
-- [Documentație Azure Event Grid](https://docs.microsoft.com/azure/event-grid/)
-- [Documentație Azure Event Hubs](https://docs.microsoft.com/azure/event-hubs/)
-- [Trigger Azure Functions Event Grid](https://docs.microsoft.com/azure/azure-functions/functions-bindings-event-grid)
-- [SDK Azure pentru .NET](https://github.com/Azure/azure-sdk-for-net)
-- [SDK Azure pentru TypeScript](https://github.com/Azure/azure-sdk-for-js)
-- [SDK Azure pentru Python](https://github.com/Azure/azure-sdk-for-python)
+- [Specificația MCP 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [Documentația Azure Event Grid](https://docs.microsoft.com/azure/event-grid/)
+- [Documentația Azure Event Hubs](https://docs.microsoft.com/azure/event-hubs/)
+- [Azure Functions Event Grid Trigger](https://docs.microsoft.com/azure/azure-functions/functions-bindings-event-grid)
+- [Azure SDK pentru .NET](https://github.com/Azure/azure-sdk-for-net)
+- [Azure SDK pentru TypeScript](https://github.com/Azure/azure-sdk-for-js)
+- [Azure SDK pentru Python](https://github.com/Azure/azure-sdk-for-python)
 
 ---
 
-> *Acest ghid se concentrează pe modele practice de implementare pentru sisteme MCP de producție. Validați întotdeauna implementările transporturilor conform cerințelor voastre specifice și limitărilor serviciilor Azure.*
-> **Standard Actual**: Acest ghid reflectă [Specificația MCP 2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25/) privind cerințele transporturilor și modelele avansate de transport pentru mediile enterprise.
+> *Acest ghid se concentrează pe tipare arhitecturale personalizate. Validarea protocolului
+
+> comportamentul conform cu [Specificația MCP 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/),
+> și validarea utilizării Azure în raport cu cerințele și limitele serviciului dvs.*
 
 
-## Ce Urmează
-- [6. Contribuții Comunitare](../../06-CommunityContributions/README.md)
+## Ce urmează
+- [6. Contribuții din comunitate](../../06-CommunityContributions/README.md)
 
 ---
 

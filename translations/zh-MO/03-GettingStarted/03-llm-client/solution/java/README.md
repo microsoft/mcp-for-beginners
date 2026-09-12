@@ -1,27 +1,32 @@
 # 計算機 LLM 用戶端
 
-一個 Java 應用程式，展示如何使用 LangChain4j 透過 MiniMax OpenAI 相容 API 連接到 MCP (模型上下文協議) 計算機服務。
+> [!NOTE]
+> 此解決方案連接到課程的傳統 HTTP+SSE 計算機服務，
+> 並針對 MCP `2025-11-25` SDK API。它不是 `2026-07-28` Streamable HTTP
+> 範例。
 
-## 前置條件
+一個 Java 應用程式，演示如何使用 LangChain4j 通過 MiniMax 相容 OpenAI 的 API 連接到 MCP（模型上下文協議）計算機服務。
 
-- Java 21 或以上版本
-- Maven 3.6+（或使用內置的 Maven wrapper）
+## 前置需求
+
+- Java 21 或更高版本
+- Maven 3.6+（或使用附帶的 Maven 包裝器）
 - MiniMax API 金鑰
-- 一個運行於 `http://localhost:8080` 的 MCP 計算機服務
+- MCP 計算機服務在 `http://localhost:8080` 運行中
 
-## 獲取 API 金鑰
+## 取得 API 金鑰
 
-此應用程式使用 MiniMax OpenAI 相容 API。請按以下步驟獲取您的金鑰及端點：
+此應用程式使用 MiniMax 相容 OpenAI 的 API。請遵照以下步驟取得你的金鑰與端點：
 
 ### 1. 選擇端點
 1. 使用 `https://api.minimax.io/v1` 作為全球端點
 2. 使用 `https://api.minimaxi.com/v1` 作為中國端點
 
 ### 2. 建立 API 金鑰
-1. 從您的 MiniMax 帳號建立一個 MiniMax API 金鑰
-2. 將金鑰妥善保存
+1. 從你的 MiniMax 帳戶建立 MiniMax API 金鑰
+2. 將金鑰妥善保管
 
-### 3. 設置環境變量
+### 3. 設定環境變數
 
 #### 在 Windows (命令提示字元)：
 ```cmd
@@ -44,23 +49,23 @@ export OPENAI_BASE_URL=https://api.minimax.io/v1
 export MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
-## 設置與安裝
+## 設定與安裝
 
-1. <strong>克隆或進入專案目錄</strong>
+1. <strong>複製或切換到專案目錄</strong>
 
 2. <strong>安裝依賴</strong>：
    ```cmd
    mvnw clean install
    ```
-   或如果您已全域安裝 Maven：
+   或者如果你已安裝全局 Maven：
    ```cmd
    mvn clean install
    ```
 
-3. <strong>設定環境變量</strong>（請參閱以上「獲取 API 金鑰」章節）
+3. <strong>設定環境變數</strong>（參見上述「取得 API 金鑰」章節）
 
 4. **啟動 MCP 計算機服務**：
-   請確保您已啟動第一章的 MCP 計算機服務，並運行於 `http://localhost:8080/sse`。這應該在啟動客戶端前運行。
+   確保你已啟動第一章的 MCP 計算機服務且正在 `http://localhost:8080/sse` 運行。啟動用戶端前須先啟動服務。
 
 ## 執行應用程式
 
@@ -69,17 +74,17 @@ mvnw clean package
 java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
 
-## 應用程式功能說明
+## 應用程式功能
 
-此應用程式展示了三種主要的與計算機服務的互動：
+此應用程式示範與計算機服務的三種主要互動：
 
-1. <strong>加法</strong>：計算 24.5 與 17.3 的和
+1. <strong>加法</strong>：計算 24.5 與 17.3 的總和
 2. <strong>平方根</strong>：計算 144 的平方根
-3. <strong>幫助</strong>：顯示可用的計算機函數
+3. <strong>幫助</strong>：顯示可用的計算機功能
 
 ## 預期輸出
 
-成功執行時，您應該見到類似以下輸出：
+成功執行時，你應該會看到類似以下的輸出：
 
 ```
 The sum of 24.5 and 17.3 is 41.8.
@@ -91,48 +96,48 @@ The calculator service provides the following functions: add, subtract, multiply
 
 ### 常見問題
 
-1. **「OPENAI_API_KEY 環境變量未設置」**
-   - 請確定您已設置 `OPENAI_API_KEY` 環境變量
-   - 設置變量後請重新啟動終端機/命令提示字元
+1. **"OPENAI_API_KEY 環境變數未設定"**
+   - 請確認你已設定 `OPENAI_API_KEY` 環境變數
+   - 設定完畢後重新啟動你的終端機/命令提示字元
 
-2. **「拒絕連接 localhost:8080」**
-   - 確保 MCP 計算機服務正運行於 8080 埠口
+2. **"連線被拒絕到 localhost:8080"**
+   - 確認 MCP 計算機服務已在 8080 埠口運行
    - 檢查是否有其他服務佔用 8080 埠口
 
-3. **「認證失敗」**
-   - 驗證您的 API 金鑰是否有效
-   - 確認 `OPENAI_BASE_URL` 是否與您欲使用的端點相符
+3. **"驗證失敗"**
+   - 驗證你的 API 金鑰是否有效
+   - 確認 `OPENAI_BASE_URL` 是否與你意圖使用的端點相符
 
 4. **Maven 建置錯誤**
-   - 確保您使用的是 Java 21 或以上版本：`java -version`
+   - 確認你使用的 Java 版本為 21 或更高版本：`java -version`
    - 嘗試清理建置：`mvnw clean`
 
-### 偵錯
+### 除錯
 
-執行時，加入以下 JVM 參數以開啟偵錯日誌：
+若要啟用除錯日誌，執行時加入以下 JVM 參數：
 ```cmd
 java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
 
-## 配置
+## 設定
 
-應用程式配置如下：
-- 預設使用 MiniMax-M3；可設置 `MINIMAX_MODEL_ID` 選擇 `MiniMax-M3` 或 `MiniMax-M2.7`
-- 設定時，連接 `OPENAI_BASE_URL`；否則在 `MINIMAX_REGION=cn_zh` 時使用 `https://api.minimaxi.com/v1`，預設使用 `https://api.minimax.io/v1`
+此應用程式設定為：
+- 預設使用 MiniMax-M3；透過設定 `MINIMAX_MODEL_ID` 來選擇 `MiniMax-M3` 或 `MiniMax-M2.7`
+- 當設定了 `OPENAI_BASE_URL` 則連接該網址；否則，當 `MINIMAX_REGION=cn_zh` 使用 `https://api.minimaxi.com/v1`，預設使用 `https://api.minimax.io/v1`
 - 連接 MCP 服務於 `http://localhost:8080/sse`
-- 請求超時設定為 60 秒
+- 請求使用 60 秒超時
 
-## 相依套件
+## 依賴
 
-此專案使用的主要相依套件：
-- **LangChain4j**：用於 AI 整合與工具管理
+專案中主要使用的依賴：
+- **LangChain4j**：用於 AI 集成與工具管理
 - **LangChain4j MCP**：用於模型上下文協議支援
-- **LangChain4j OpenAI official**：用於 MiniMax OpenAI 相容 API 整合
-- **Spring Boot**：用於應用框架與依賴注入
+- **LangChain4j OpenAI official**：用於 MiniMax 相容 OpenAI API 集成
+- **Spring Boot**：應用框架與依賴注入
 
-## 授權條款
+## 授權
 
-本專案採用 Apache License 2.0 授權，詳細內容請見 [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) 檔案。
+本專案以 Apache 授權條款 2.0 為授權方式 - 詳細內容請參見 [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) 文件。
 
 ---
 

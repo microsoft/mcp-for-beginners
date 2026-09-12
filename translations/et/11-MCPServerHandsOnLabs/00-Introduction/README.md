@@ -1,84 +1,89 @@
 # Sissejuhatus MCP andmebaasi integratsiooni
 
+> [!NOTE]
+> Selle õppeprogrammi diagrammid või kood, mis kasutab HTTP/SSE või initsialiseerimisvalikuid,
+> kajastavad MCP `2025-11-25` sõltuvusi näidises. Uute
+> rakenduste puhul kasutage `2026-07-28`-i seisundivabu päringuid ja voogedastatavat HTTP-d.
+
 ## 🎯 Mida see labor katab
 
-See sissejuhatav labor annab põhjaliku ülevaate Model Context Protocol (MCP) serverite loomise kohta andmebaasi integratsiooniga. Sa mõistad ärijuhtumit, tehnilist arhitektuuri ja reaalse maailma rakendusi Zava Retail analüütika näite kaudu aadressil https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail.
+See sissejuhatav labor annab põhjaliku ülevaate Model Context Protocol (MCP) serverite ehitamisest andmebaasi integratsiooniga. Saate aru äriülesandest, tehnilisest arhitektuurist ja reaalsest kasutusjuhtumist Zava Retail analüütilise näite kaudu aadressil https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail.
 
 ## Ülevaade
 
-**Model Context Protocol (MCP)** võimaldab tehisintellekti assistentidel turvaliselt juurdepääsu välistele andmeallikatele ja suhelda nendega reaalajas. Andmebaasi integratsiooniga kombineerides avab MCP võimsad võimalused andmepõhiste tehisintellekti rakenduste jaoks.
+**Model Context Protocol (MCP)** võimaldab tehisintellekti assistentidel turvaliselt reaalajas juurde pääseda ja suhelda väliste andmeallikatega. Koos andmebaasi integratsiooniga avab MCP võimsad võimalused andmepõhistele tehisintellekti rakendustele.
 
-See õppeprogramm õpetab sind ehitama tootmiseks valmis MCP servereid, mis ühendavad tehisintellekti assistendid jaemüügi müügiandmetega läbi PostgreSQL, rakendades ettevõtte mustreid nagu rea tasemel turvalisus, semantiline otsing ja mitme rentnikuga andmesisestus.
+See õppeprogramm õpetab ehitama tootmiseks valmis MCP servereid, mis ühendavad tehisintellekti assistendid jaemüügi müügiandmetega PostgreSQL-i kaudu, rakendades ettevõtte mustreid nagu ridade taseme turvalisus, semantiline otsing ja mitme kasutajaga andmetele ligipääs.
 
-## Õppe eesmärgid
+## Õpipõhjused
 
-Selle labori lõpuks suudad sa:
+Selle labori lõpuks oskad:
 
-- **Määratleda** Model Context Protocol ja selle põhieelised andmebaasi integratsioonis
-- **Tuvastada** MCP serveri arhitektuuri põhilised komponendid andmebaasidega
-- **Mõista** Zava Retail ärijuhtumit ja selle ärivajadusi
-- **Tunda ära** ettevõtte mustrid turvaliseks ja skaleeritavaks andmebaasi juurdepääsuks
-- **Loetleda** tööriistad ja tehnoloogiad, mida selles õpperajas kasutatakse
+- **Defineeri** Model Context Protocol ja selle põhieelised andmebaasi integratsioonis
+- **Tuvasta** MCP serveri arhitektuuri põhikomponendid andmebaasidega
+- **Saa aru** Zava Retail kasutusjuhtumist ja selle ärivajadustest
+- **Tunne ära** ettevõtte mustrid turvaliseks, skaleeritavaks andmebaasi ligipääsuks
+- **Loetle** tööriistad ja tehnoloogiad, mida kogu õppeprogrammis kasutatakse
 
-## 🧭 Väljakutse: tehisintellekt kohtub reaalse maailma andmetega
+## 🧭 Väljakutse: AI kohtub reaalse maailma andmetega
 
-### Traditsioonilise tehisintellekti piirangud
+### Traditsioonilised AI piirangud
 
-Moodsa tehisintellekti assistendid on väga võimsad, kuid nad puutuvad reaalse ärandmetega töötades silmitsi oluliste piirangutega:
+Tänapäeva AI assistendid on väga võimsad, kuid neil on olulisi piiranguid, kui nad töötavad reaalse ärimaailma andmetega:
 
-| **Väljakutse** | **Kirjeldus** | **Äriline mõju** |
-|---------------|---------------|------------------|
-| **Staatiline teadmus** | Tehisintellekti mudelid, mis on treenitud fikseeritud andmestikel, ei pääse ligi jooksvale ärandmele | Aegunud teadmised, kasutamata võimalused |
-| **Andmesaarte eraldatus** | Informatsioon on lukustatud andmebaasidesse, API-desse ja süsteemidesse, mida tehisintellekt ei küüni | Ebapiisav analüüs, killustatud töövood |
-| **Turvalisuse piirangud** | Otsene andmebaasi juurdepääs tekitab turva- ja vastavusprobleeme | Piiratud kasutuselevõtt, käsitsi andmete ettevalmistus |
-| **Keerulised päringud** | Ärikasutajad vajavad tehnilisi oskusi, et andmeanalüüsi päringuid teha | Vähenenud kasutuselevõtt, ebaefektiivsed protsessid |
+| **Väljakutse** | **Kirjeldus** | **Äriprost mõjud** |
+|---------------|-----------------|-------------------|
+| **Staatiline teadmine** | AI mudelid, mis on treenitud fikseeritud andmestikel, ei pääse juurde praegustele ärandmetele | Aegunud teadmised, kasutamata võimalused |
+| **Andmesilod** | Informatsioon on lukustatud andmebaasides, API-des ja süsteemides, kuhu AI ei pääse | Ebapiisav analüüs, killustunud tööprotsessid |
+| **Turvapiirangud** | Otsene andmebaasi ligipääs tekitab turva- ja vastavusküsimusi | Piiratud juurutus, käsitsi andmete ettevalmistus |
+| **Keerukad päringud** | Ärikasutajad vajavad tehnilisi teadmisi andmete tõmbamiseks | Vähenenud kasutuselevõtt, ebatõhusad protsessid |
 
 ### MCP lahendus
 
 Model Context Protocol lahendab need väljakutsed, pakkudes:
 
-- **Reaalajas andmete ligipääs**: tehisintellekti assistendid pärivad otsepöördumisi elavatesse andmebaasidesse ja API-desse
-- **Turvaline integratsioon**: juurdepääsu kontrollimisega autentimise ja õigustega
-- **Loomuliku keele liides**: ärikasutajad saavad küsimusi esitada tavakeeles
-- **Standardiseeritud protokoll**: töötab erinevates tehisintellekti platvormides ja tööriistades
+- **Reaalajas andmetele ligipääs**: AI assistendid esitavad päringuid otse andmebaasidesse ja API-desse
+- **Turvaline integratsioon**: Kontrollitud ligipääs autentimise ja õigustega
+- **Loomuliku keele liides**: Ärikasutajad esitavad küsimusi lihtsas inglise keeles
+- **Standardiseeritud protokoll**: Töötleb erinevaid AI platvorme ja tööriistu
 
-## 🏪 Tutvuge Zava Retailiga: meie õppenäide https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail
+## 🏪 Tutvuge Zava Retailiga: meie õppe juhtumiuuring https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail
 
-Selle õpperaja jooksul ehitame MCP serveri **Zava Retailile**, väljamõeldud isetegemise jaemüügikettile, millel on mitu kauplust. See realistlik stsenaarium demonstreerib ettevõtte tasemel MCP juurutamist.
+Selle õppeprogrammi jooksul ehitame MCP serveri **Zava Retailile**, väljamõeldud ehitusmaterjalide jaemüügikettile mitme poe asukohaga. See realistlik stsenaarium demonstreerib ettevõtte tasemel MCP rakendust.
 
-### Ärikontekst
+### Ärikontext
 
 **Zava Retail** haldab:
-- **8 füüsilist kauplust** Washingtoni osariigis (Seattle, Bellevue, Tacoma, Spokane, Everett, Redmond, Kirkland)
-- **1 veebipoodi** e-kaubanduse müügiks
-- **Mitmekesine tootekataloog**, mis hõlmab tööriistu, ehitustarvikuid, aiavarustust ja ehitusmaterjale
-- **Mitmetasandiline juhtimine**: kaupluse juhid, piirkondlikud juhid ja juhatus
+- **8 füüsilist poodi** Washingtoni osariigis (Seattle, Bellevue, Tacoma, Spokane, Everett, Redmond, Kirkland)
+- **1 veebipood** e-kaubanduse jaoks
+- **Mitmekesine tootekataloog**, mis sisaldab tööriistu, riistvara, aedade tarvikuid ja ehitusmaterjale
+- **Mitmetasandiline juhtimine** poodide juhid, piirkondlikud juhid ja juhatus
 
 ### Ärinõuded
 
-Kaupluse juhid ja juhatus vajavad AI-põhist analüütikat, et:
+Poejuhid ja juhid vajavad AI-põhist analüütikat, et:
 
-1. **Analüüsida müügitulemusi** kaupluste ja ajaperioodide lõikes
-2. **Jälgida laoseisu** ja määrata täiendamise vajadust
-3. **Mõista kliendi käitumist** ja ostumustreid
-4. **Leida tooteinfot** läbi semantilise otsingu
-5. **Genereerida aruandeid** loomulikus keeles esitatud päringutel
-6. **Tagada andmete turvalisus** rollipõhise juurdepääsukontrolliga
+1. **Analüüsida müügitulemusi** poodide ja ajaperioodide lõikes
+2. **Jälgida laoseisusid** ja tuvastada täiendamisvajadusi
+3. **Mõista kliendikäitumist** ja ostumustreid
+4. **Avastada tooteinfo** semantilise otsingu kaudu
+5. **Koostada aruandeid** loomulikus keeles esitatud päringutega
+6. **Hooldada andmeturvet** rollipõhise ligipääsukontrolliga
 
 ### Tehnilised nõuded
 
 MCP server peab pakkuma:
 
-- **Mitme rentnikuga andmete ligipääsu**, kus kaupluse juhid näevad ainult oma kaupluse andmeid
-- **Paindlikke päringuvõimalusi**, mis toetavad keerukaid SQL operatsioone
-- **Semantilist otsingut** toodete leidmiseks ja soovitamiseks
-- **Reaalajas andmeid**, mis kajastavad praegust äriseisu
-- **Turvalist autentimist** rea tasemel turvalisusega
-- **Skaleeritavat arhitektuuri**, mis toetab mitut samaaegset kasutajat
+- **Mitme kasutaja andmepõhine ligipääs** – poe juhid näevad ainult oma poe andmeid
+- **Paindlikud päringud**, mis toetavad keerukaid SQL operatsioone
+- **Semantiline otsing** toodete leidmiseks ja soovitusteks
+- **Reaalajas andmed**, mis peegeldavad praegust äriolukorda
+- **Turvaline autentimine** ridade taseme turvalisuse (RLS) abil
+- **Skaleeritav arhitektuur** mitme samaaegse kasutaja toetuseks
 
 ## 🏗️ MCP serveri arhitektuuri ülevaade
 
-Meie MCP server rakendab kihilist arhitektuuri, mis on optimeeritud andmebaasi integratsiooniks:
+Meie MCP server realiseerib kihilise arhitektuuri, mis on optimeeritud andmebaasi integratsiooniks:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -121,118 +126,118 @@ Meie MCP server rakendab kihilist arhitektuuri, mis on optimeeritud andmebaasi i
 ### Peamised komponendid
 
 #### **1. MCP serveri kiht**
-- **FastMCP raamistik**: kaasaegne Python MCP serveri teostus
+- **FastMCP raamistik**: kaasaegne Python MCP serveri rakendus
 - **Tööriistade registreerimine**: deklaratiivsed tööriistade definitsioonid tüübikindlusega
-- **Päringu kontekst**: kasutajatuvastus ja sessioonihaldus
-- **Vigade käitlemine**: robustne veahaldus ja logimine
+- **Päringu kontekst**: kasutaja identiteet ja sessiooni haldus
+- **Vea haldus**: vastupidav veahaldus ja logimine
 
-#### **2. Andmebaasi integratsiooni kiht**
-- **Ühenduste haldus**: tõhus asyncpg ühenduste haldamine
-- **Šemade pakkuja**: dünaamiline tabeli skeemi avastamine
-- **Päringu täitja**: turvaline SQL täitmine RLS kontekstis
-- **Tehingute haldus**: ACID nõuete täitmine ja tagasipööramine
+#### **2. Andmebaasi integratsioonikiht**
+- **Ühenduse puhvrite haldus**: efektiivne asyncpg ühenduste haldus
+- **Skeemi pakkuja**: dünaamiline tabeliskeemi avastamine
+- **Päringute täitja**: turvaline SQL täideviimine RLS kontekstiga
+- **Tehingute haldus**: ACID-i kooskõla ja tühistamise haldus
 
 #### **3. Turvakiht**
-- **Rea tasemel turvalisus**: PostgreSQL RLS mitme rentnikuga andmete isoleerimiseks
-- **Kasutajatuvastus**: kaupluse juhi autentimine ja autoriseerimine
-- **Juurdepääsukontroll**: peenhäälestatud õigused ja auditeerimislogid
-- **Sisendi valideerimine**: SQL süstimise vältimine ja päringu valideerimine
+- **Ridade taseme turvalisus**: PostgreSQL RLS mitme kasutajaga andmete isoleerimiseks
+- **Kasutaja identiteet**: poejuhi autentimine ja autoriseerimine
+- **Ligipääsukontroll**: detailsete õiguste ja auditeerimise logid
+- **Sisendi valideerimine**: SQL süstimise ennetamine ja päringute valideerimine
 
-#### **4. AI täiustamise kiht**
-- **Semantiline otsing**: vektori embed´id tooteteabe leidmiseks
-- **Azure OpenAI integratsioon**: teksti embed´ide genereerimine
-- **Sarnasuse algoritmid**: pgvector kosinuse sarnasuse otsing
+#### **4. AI täienduskiht**
+- **Semantiline otsing**: vektorpõhised manused toodete leidmiseks
+- **Azure OpenAI integratsioon**: tekstimanuste genereerimine
+- **Sarnasuse algoritmid**: pgvector kosinussarnasuse otsing
 - **Otsingu optimeerimine**: indekseerimine ja jõudluse häälestus
 
-## 🔧 Tehnoloogiapinu
+## 🔧 Tehnoloogia virn
 
 ### Põhitehnoloogiad
 
 | **Komponent** | **Tehnoloogia** | **Eesmärk** |
 |---------------|----------------|-------------|
-| **MCP raamistik** | FastMCP (Python) | Kaasaegne MCP serveri realiseerimine |
-| **Andmebaas** | PostgreSQL 17 + pgvector | Suhteline andmebaas koos vektori otsinguga |
-| **AI teenused** | Azure OpenAI | Teksti embed´id ja keele mudelid |
-| **Konteinerid** | Docker + Docker Compose | Arenduskeskkond |
-| **Pilveplatvorm** | Microsoft Azure | Tootmiskeskkonna juurutus |
+| **MCP raamistik** | FastMCP (Python) | Kaasaegne MCP serveri rakendus |
+| **Andmebaas** | PostgreSQL 17 + pgvector | Relatsiooniline andmebaas koos vektorotsinguga |
+| **AI teenused** | Azure OpenAI | Tekstimanused ja keelemudelid |
+| **Konteinerimine** | Docker + Docker Compose | Arenduskeskkond |
+| **Pilveplatvorm** | Microsoft Azure | Tootmisjuurutus |
 | **IDE integratsioon** | VS Code | AI vestlus ja arendusvoog |
 
 ### Arendustööriistad
 
 | **Tööriist** | **Eesmärk** |
-|-------------|--------------|
-| **asyncpg** | Kõrge jõudlus PostgreSQL draiver |
+|----------|-------------|
+| **asyncpg** | Kõrge jõudlusega PostgreSQL draiver |
 | **Pydantic** | Andmete valideerimine ja serialiseerimine |
-| **Azure SDK** | Pilveteenuse integratsioon |
-| **pytest** | Testimise raamistik |
-| **Docker** | Konteinerid ja juurutamine |
+| **Azure SDK** | Pilveteenuste integratsioon |
+| **pytest** | Testimiskeskkond |
+| **Docker** | Konteinerimine ja juurutus |
 
-### Tootmispinu
+### Tootmisvirn
 
-| **Teenusekomponent** | **Azure ressurss** | **Eesmärk** |
-|---------------------|-------------------|-------------|
-| **Andmebaas** | Azure Database for PostgreSQL | Halustatud andmebaasiteenus |
-| **Konteiner** | Azure Container Apps | Serverivabad konteineri hostid |
+| **Teenuse** | **Azure ressurss** | **Eesmärk** |
+|-------------|-------------------|-------------|
+| **Andmebaas** | Azure Database for PostgreSQL | Hallatav andmebaasiteenus |
+| **Konteiner** | Azure Container Apps | Serverivaba konteineri majutamine |
 | **AI teenused** | Microsoft Foundry | OpenAI mudelid ja lõpp-punktid |
-| **Jälgimine** | Application Insights | Jälgitavus ja diagnostika |
-| **Turvalisus** | Azure Key Vault | Saladused ja konfiguratsiooni haldus |
+| **Jälgimine** | Application Insights | Seiresüsteem ja diagnostika |
+| **Turvalisus** | Azure Key Vault | Saladuste ja konfiguratsiooni haldus |
 
-## 🎬 Reaalmaailma kasutussituatsioonid
+## 🎬 Reaalse maailma kasutusstsenaariumid
 
 Vaatame, kuidas erinevad kasutajad meie MCP serveriga suhtlevad:
 
-### Stsenaarium 1: kaupluse juhi tulemuste ülevaade
+### Stsenaarium 1: Poejuhi tulemuslikkuse ülevaade
 
-**Kasutaja**: Sarah, Seattle kaupluse juht  
-**Eesmärk**: analüüsida eelmise kvartali müügitulemusi
+**Kasutaja**: Sarah, Seattle poejuht  
+**Eesmärk**: Analüüsida eelmise kvartali müügitulemusi
 
-**Loomulikus keeles päring**:
-> "Näita mulle minu kaupluse top 10 toodet tulude järgi 2024. aasta 4. kvartalis"
+**Loomuliku keele päring**:
+> "Näita mulle minu poe 10 enim tulu toonud toodet 2024. aasta 4. kvartalis"
 
 **Mis juhtub**:
 1. VS Code AI Chat saadab päringu MCP serverile
-2. MCP server tuvastab Sarah kaupluse konteksti (Seattle)
-3. RLS poliitikad filtreerivad andmed ainult Seattle kaupluse jaoks
+2. MCP server tuvastab Sarah poe konteksti (Seattle)
+3. RLS-poliitikad filtreerivad andmed ainult Seattle poe jaoks
 4. SQL päring genereeritakse ja täidetakse
-5. Tulemused vormindatakse ja tagastatakse AI chit’ile
-6. AI annab analüüsi ja ülevaateid
+5. Tulemused vormindatakse ja tagastatakse AI vestlusele
+6. AI pakub analüüsi ja arusaamu
 
-### Stsenaarium 2: toodete leidmine semantilise otsinguga
+### Stsenaarium 2: Toote avastamine semantilise otsinguga
 
 **Kasutaja**: Mike, laohaldur  
-**Eesmärk**: leida tooteid, mis sarnanevad kliendi päringule
+**Eesmärk**: Leida tooted, mis sarnanevad kliendi päringuga
 
-**Loomulikus keeles päring**:
-> "Milliseid tooteid me müüme, mis on sarnased 'veekindlatele elektriühendustele välitingimustes'?"
+**Loomuliku keele päring**:
+> "Milliseid tooteid me müüme, mis on sarnased „veekindlatele välitingimustes kasutatavateelektriühendustele“?"
 
 **Mis juhtub**:
 1. Päring töödeldakse semantilise otsingu tööriistaga
-2. Azure OpenAI genereerib embed vektori
-3. pgvector teeb sarnasusotsingu
-4. Seotud tooted otsitakse tähtsuse järgi järjestatud
-5. Tulemutes on toote üksikasjad ja saadavus
-6. AI pakub alternatiive ja komplektiseerimise võimalusi
+2. Azure OpenAI genereerib manuste vektori
+3. pgvector teostab sarnasuse otsingu
+4. Seotud tooted järjestatakse asjakohasuse alusel
+5. Tulemused sisaldavad toodete detaile ja saadavust
+6. AI soovitab alternatiive ja komplekteerimisvõimalusi
 
-### Stsenaarium 3: analüüs kaupluste lõikes
+### Stsenaarium 3: Poeketiülene analüüs
 
-**Kasutaja**: Jennifer, piirkonna juht  
-**Eesmärk**: võrrelda müügitulemusi kõigi kaupluste lõikes
+**Kasutaja**: Jennifer, piirkondlik juht  
+**Eesmärk**: Võrrelda kõigi poodide tulemuslikkust
 
-**Loomulikus keeles päring**:
-> "Võrreldes müüki kategooriate lõikes viimase kuue kuu jooksul kõigis kauplustes"
+**Loomuliku keele päring**:
+> "Võrdle müüki kategooriate kaupa kõikides poodides viimase 6 kuu jooksul"
 
 **Mis juhtub**:
-1. RLS kontekst seatakse piirkondliku juhi õigustega
-2. Genereeritakse keerukas mitme kaupluse päring
-3. Andmed koondatakse kõigi kaupluste kaupa
+1. RLS kontekst seatakse piirkondliku juhi ligipääsuks
+2. Genereeritakse keerukas mitme poe päring
+3. Andmeid koondatakse poodide asukohtade lõikes
 4. Tulemused sisaldavad trende ja võrdlusi
-5. AI tuvastab ülevaated ja soovitused
+5. AI tuvastab arusaamu ja soovitusi
 
-## 🔒 Turvalisus ja mitmerentnikkuse süvitsi
+## 🔒 Turvalisus ja mitme kasutajaga süvitsi minek
 
-Meie lahendus paneb rõhku ettevõtte tasemel turvalisusele:
+Meie rakendus seab esikohale ettevõtte tasemel turvalisuse:
 
-### Rea tasemel turvalisus (RLS)
+### Ridade taseme turvalisus (RLS)
 
 PostgreSQL RLS tagab andmete isoleerimise:
 
@@ -248,61 +253,61 @@ CREATE POLICY regional_manager_policy ON retail.orders
   USING (store_id = ANY(get_user_store_list()));
 ```
 
-### Kasutajatuvastuse haldus
+### Kasutaja identiteedi haldus
 
 Iga MCP ühendus sisaldab:
-- **Kaupluse juhi ID**: unikaalne identifikaator RLS kontekstiks
-- **Rollijaotus**: õigused ja juurdepääsu tasemed
+- **Poejuhi ID**: ainulaadne identifikaator RLS konteksti jaoks
+- **Rolli määramine**: õigused ja ligipääsutasemed
 - **Sessioonihaldus**: turvalised autentimismärgid
-- **Auditilogimine**: täielik juurdepääsu ajalugu
+- **Auditi logimine**: täielik ligipääsu ajalugu
 
 ### Andmekaitse
 
 Mitmekihiline turvalisus:
-- **Ühenduste krüpteerimine**: TLS kõikidele andmebaasiühendustele
-- **SQL süstimise vältimine**: ainult parameetriseeritud päringud
-- **Sisendi valideerimine**: põhjalik päringu valideerimine
-- **Vigade käitlemine**: veateadetes ei avaldata tundlikku infot
+- **Ühenduse krüptimine**: TLS kõigi andmebaasi ühenduste jaoks
+- **SQL süstimise ennetamine**: ainult parameetriseeritud päringud
+- **Sisendi valideerimine**: põhjalik päringute valideerimine
+- **Veahaldus**: veateadetes ei kuvata tundlikku infot
 
-## 🎯 Peamised õppetunnid
+## 🎯 Peamised järeldused
 
-Pärast selle sissejuhatuse lõpetamist peaksid sa mõistma:
+Pärast selle sissejuhatuse läbimist peaksid saama aru:
 
-✅ **MCP väärtuspakkumine**: kuidas MCP ühendab tehisintellekti assistendid ja reaalsed andmed  
-✅ **Ärikontekst**: Zava Retail’i nõuded ja väljakutsed  
-✅ **Arhitektuuri ülevaade**: peamised komponendid ja nende koostöö  
-✅ **Tehnoloogiapinu**: kogu õppeprogrammis kasutatud tööriistad ja raamistike  
-✅ **Turvamudel**: mitmerentnikuline andmete ligipääs ja kaitse  
-✅ **Kasutusmustrid**: reaalse maailma päringud ja töövood  
+✅ **MCP väärtuspakkumine**: kuidas MCP ühendab AI assistendid ja reaalse maailma andmed  
+✅ **Ärikontext**: Zava Retaili nõuded ja väljakutsed  
+✅ **Arhitektuuri ülevaade**: põhikomponendid ja nende omavaheline koostöö  
+✅ **Tehnoloogia virn**: selles õppeprogrammis kasutatud tööriistad ja raamistikud  
+✅ **Turvemudel**: mitmekasutajaliides ja andmekaitse  
+✅ **Kasutusmustrid**: reaalse maailma päringu stsenaariumid ja töövood  
 
 ## 🚀 Mis edasi
 
-Oled valmis süvitsi minema? Jätka:
+Valmis süvitsi minema? Jätka:
 
 **[Labor 01: Põhiarhitektuuri kontseptsioonid](../01-Architecture/README.md)**
 
-Õpi MCP serveri arhitektuurimustreid, andmebaasi disaini põhimõtteid ja detailset tehnilist teostust, mis tagab meie jaemüügianalüütika lahenduse toimimise.
+Õpi MCP serveri arhitektuuri mustreid, andmebaasi disaini põhimõtteid ja üksikasjalikku tehnilist rakendust, mis toidab meie jaemüügianalüüsi lahendust.
 
 ## 📚 Täiendavad ressursid
 
-### MCP dokumentatsioon  
-- [MCP spetsifikatsioon](https://modelcontextprotocol.io/docs/) - ametlik protokolli dokumentatsioon  
-- [MCP algajatele](https://aka.ms/mcp-for-beginners) - põhjalik MCP õppematerjal  
-- [FastMCP dokumentatsioon](https://github.com/modelcontextprotocol/python-sdk) - Python SDK dokumentatsioon  
+### MCP dokumentatsioon
+- [MCP spetsifikatsioon](https://modelcontextprotocol.io/docs/) - ametlik protokolli dokumentatsioon
+- [MCP alustajatele](https://aka.ms/mcp-for-beginners) - põhjalik MCP õppematerjal
+- [FastMCP dokumentatsioon](https://github.com/modelcontextprotocol/python-sdk) - Python SDK dokumentatsioon
 
-### Andmebaasi integratsioon  
-- [PostgreSQL dokumentatsioon](https://www.postgresql.org/docs/) - kogu PostgreSQL viide  
-- [pgvector juhend](https://github.com/pgvector/pgvector) - vektori laienduse dokumentatsioon  
-- [Rea tasemel turvalisus](https://www.postgresql.org/docs/current/ddl-rowsecurity.html) - PostgreSQL RLS juhend  
+### Andmebaasi integratsioon
+- [PostgreSQL dokumentatsioon](https://www.postgresql.org/docs/) - täielik PostgreSQL viitejuhend
+- [pgvector juhend](https://github.com/pgvector/pgvector) - Vektorextensiooni dokumentatsioon
+- [Ridade taseme turvalisus](https://www.postgresql.org/docs/current/ddl-rowsecurity.html) - PostgreSQL RLS juhend
 
-### Azure teenused  
-- [Azure OpenAI dokumentatsioon](https://docs.microsoft.com/azure/cognitive-services/openai/) - tehisintellekti teenuste integratsioon  
-- [Azure Database for PostgreSQL](https://docs.microsoft.com/azure/postgresql/) - hallatud andmebaasiteenus  
-- [Azure Container Apps](https://docs.microsoft.com/azure/container-apps/) - serverivabad konteinerid  
+### Azure teenused
+- [Azure OpenAI dokumentatsioon](https://docs.microsoft.com/azure/cognitive-services/openai/) - AI teenuse integratsioon
+- [Azure Database for PostgreSQL](https://docs.microsoft.com/azure/postgresql/) - hallatav andmebaasiteenus
+- [Azure Container Apps](https://docs.microsoft.com/azure/container-apps/) - serverivabad konteinerid
 
 ---
 
-**Vastutusest loobumine**: See on õppetöö, mis kasutab väljamõeldud jaemüügi andmeid. Järgige alati oma organisatsiooni andmete valitsemise ja turvapoliitikaid, kui juurutate sarnaseid lahendusi tootmiskeskkonnas.
+**Selgitus**: See on õppetöö väljamõeldud jaemüügiandmete kasutamisega. Järgige alati oma organisatsiooni andmekorralduse ja turvapoliitikaid sarnaste lahenduste tootmiskeskkondades rakendamisel.
 
 ---
 

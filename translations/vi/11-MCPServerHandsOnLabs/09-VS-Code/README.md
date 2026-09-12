@@ -1,29 +1,35 @@
 # Tích hợp VS Code
 
-## 🎯 Nội dung của bài thực hành này
+> [!NOTE]
+> Các cài đặt `initializationOptions` trong bài lab này hướng tới MCP mẫu
+> `2025-11-25` handshake. MCP `2026-07-28` loại bỏ handshake khởi tạo;
+> sử dụng máy chủ và SDK hỗ trợ metadata cho từng yêu cầu cũng như `server/discover`
+> khi di chuyển mẫu này.
 
-Bài thực hành này cung cấp hướng dẫn chi tiết về cách tích hợp máy chủ MCP của bạn với VS Code để thực hiện các truy vấn ngôn ngữ tự nhiên thông qua AI Chat. Bạn sẽ học cách cấu hình VS Code để sử dụng MCP hiệu quả, gỡ lỗi kết nối máy chủ, và tận dụng tối đa sức mạnh của tương tác cơ sở dữ liệu hỗ trợ AI.
+## 🎯 Những gì Bài Lab Bao Gồm
+
+Bài lab này cung cấp hướng dẫn toàn diện về cách tích hợp máy chủ MCP của bạn với VS Code để cho phép truy vấn ngôn ngữ tự nhiên qua AI Chat. Bạn sẽ học cách cấu hình VS Code để sử dụng MCP tối ưu, gỡ lỗi kết nối máy chủ, và tận dụng sức mạnh đầy đủ của tương tác cơ sở dữ liệu hỗ trợ AI.
 
 ## Tổng quan
 
-Tích hợp MCP với VS Code thay đổi cách các nhà phát triển tương tác với cơ sở dữ liệu và API thông qua ngôn ngữ tự nhiên. Bằng cách kết nối máy chủ MCP bán lẻ của bạn với VS Code Chat, bạn có thể thực hiện các truy vấn thông minh về dữ liệu bán hàng, danh mục sản phẩm, và phân tích kinh doanh bằng AI hội thoại.
+Tích hợp MCP của VS Code thay đổi cách các nhà phát triển tương tác với cơ sở dữ liệu và API thông qua ngôn ngữ tự nhiên. Bằng cách kết nối máy chủ bán lẻ MCP của bạn với VS Code Chat, bạn cho phép truy vấn thông minh dữ liệu bán hàng, danh mục sản phẩm và phân tích kinh doanh bằng AI hội thoại.
 
-Tích hợp này cho phép các nhà phát triển đặt câu hỏi như "Hiển thị các sản phẩm bán chạy nhất trong tháng này" hoặc "Tìm khách hàng chưa mua hàng trong 90 ngày" và nhận được phản hồi dữ liệu có cấu trúc mà không cần viết các truy vấn SQL.
+Tích hợp này cho phép các nhà phát triển đặt các câu hỏi như "Hiển thị sản phẩm bán chạy nhất tháng này" hoặc "Tìm khách hàng chưa mua trong 90 ngày" và nhận phản hồi dữ liệu có cấu trúc mà không cần viết truy vấn SQL.
 
 ## Mục tiêu học tập
 
-Sau khi hoàn thành bài thực hành này, bạn sẽ có thể:
+Đến cuối bài lab, bạn sẽ có thể:
 
-- **Cấu hình** cài đặt MCP trong VS Code cho máy chủ bán lẻ của bạn  
-- **Tích hợp** máy chủ MCP với chức năng AI Chat của VS Code  
-- **Gỡ lỗi** kết nối máy chủ MCP và khắc phục sự cố  
-- **Tối ưu hóa** các mẫu truy vấn ngôn ngữ tự nhiên để có kết quả tốt hơn  
-- **Tùy chỉnh** không gian làm việc VS Code cho phát triển MCP  
-- **Triển khai** cấu hình đa máy chủ cho các tình huống phức tạp  
+- **Cấu hình** cài đặt MCP VS Code cho máy chủ bán lẻ của bạn
+- **Tích hợp** các máy chủ MCP với chức năng AI Chat của VS Code
+- **Gỡ lỗi** kết nối máy chủ MCP và khắc phục sự cố
+- **Tối ưu hóa** các mẫu truy vấn ngôn ngữ tự nhiên để có kết quả tốt hơn
+- **Tùy chỉnh** workspace VS Code cho phát triển MCP
+- **Triển khai** cấu hình đa máy chủ cho các kịch bản phức tạp
 
-## 🔧 Cấu hình MCP trong VS Code
+## 🔧 Cấu hình MCP VS Code
 
-### Thiết lập ban đầu và cài đặt
+### Thiết lập và Cài đặt ban đầu
 
 ```json
 // .vscode/settings.json
@@ -65,29 +71,29 @@ Sau khi hoàn thành bài thực hành này, bạn sẽ có thể:
 ### Cấu hình môi trường
 
 ```bash
-# .env file for development
+# tệp .env cho phát triển
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_DB=retail_db
 POSTGRES_USER=mcp_user
 POSTGRES_PASSWORD=your_secure_password
 
-# Azure Configuration
+# Cấu hình Azure
 PROJECT_ENDPOINT=https://your-project.openai.azure.com
 AZURE_CLIENT_ID=your-client-id
 AZURE_CLIENT_SECRET=your-client-secret
 AZURE_TENANT_ID=your-tenant-id
 
-# Optional: Azure Key Vault
+# Tùy chọn: Azure Key Vault
 AZURE_KEY_VAULT_URL=https://your-keyvault.vault.azure.net/
 
-# Server Configuration
+# Cấu hình máy chủ
 MCP_SERVER_PORT=8000
 MCP_SERVER_HOST=127.0.0.1
 LOG_LEVEL=INFO
 ```
 
-### Cấu hình không gian làm việc
+### Cấu hình workspace
 
 ```json
 // .vscode/launch.json
@@ -223,7 +229,7 @@ LOG_LEVEL=INFO
 ### Mẫu truy vấn ngôn ngữ tự nhiên
 
 ```typescript
-// Example query patterns for VS Code Chat
+// Các mẫu truy vấn ví dụ cho VS Code Chat
 interface QueryPattern {
     intent: string;
     examples: string[];
@@ -459,7 +465,7 @@ class ChatResponseFormatter:
         
         response = "## Business Intelligence Summary\n\n"
         
-        # Key metrics
+        # Các chỉ số chính
         response += "### Key Performance Indicators\n\n"
         response += f"- **Total Revenue**: ${float(data.get('total_revenue', 0)):,.2f}\n"
         response += f"- **Total Transactions**: {int(data.get('total_transactions', 0)):,}\n"
@@ -467,7 +473,7 @@ class ChatResponseFormatter:
         response += f"- **Average Order Value**: ${float(data.get('avg_transaction_value', 0)):.2f}\n"
         response += f"- **Products Sold**: {int(data.get('products_sold', 0)):,} items\n\n"
         
-        # Performance indicators
+        # Các chỉ số hiệu suất
         if 'insights' in data and 'performance_indicators' in data['insights']:
             pi = data['insights']['performance_indicators']
             response += "### Performance Indicators\n\n"
@@ -475,7 +481,7 @@ class ChatResponseFormatter:
             response += f"- **Revenue per Customer**: ${float(pi.get('revenue_per_customer', 0)):,.2f}\n"
             response += f"- **Items per Transaction**: {float(pi.get('items_per_transaction', 0)):.1f}\n\n"
         
-        # Top category
+        # Danh mục hàng đầu
         if data.get('top_category'):
             response += f"### Top Performing Category\n\n"
             response += f"**{data['top_category']}** - ${float(data.get('top_category_revenue', 0)):,.2f} revenue\n\n"
@@ -498,9 +504,9 @@ class ChatResponseFormatter:
         return response
 ```
 
-## 🔍 Gỡ lỗi và khắc phục sự cố
+## 🔍 Gỡ lỗi và Khắc phục sự cố
 
-### Cấu hình gỡ lỗi trong VS Code
+### Cấu hình gỡ lỗi VS Code
 
 ```python
 # mcp_server/debug/vscode_debug.py
@@ -522,12 +528,12 @@ class VSCodeDebugLogger:
     def setup_vscode_logging(self):
         """Configure logging for VS Code debugging."""
         
-        # Create VS Code specific formatter
+        # Tạo định dạng riêng cho VS Code
         formatter = logging.Formatter(
             '[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s'
         )
         
-        # Console handler for VS Code terminal
+        # Bộ xử lý console cho terminal của VS Code
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(formatter)
         console_handler.setLevel(logging.DEBUG)
@@ -566,7 +572,7 @@ class VSCodeDebugLogger:
         else:
             return f"Data type: {type(data).__name__}"
 
-# Global debug logger
+# Logger debug toàn cục
 vscode_debug_logger = VSCodeDebugLogger()
 ```
 
@@ -587,7 +593,7 @@ async def test_database_connection() -> Dict[str, Any]:
     """Test database connectivity."""
     
     try:
-        # Get connection parameters from environment
+        # Lấy tham số kết nối từ môi trường
         connection_params = {
             'host': os.getenv('POSTGRES_HOST', 'localhost'),
             'port': int(os.getenv('POSTGRES_PORT', '5432')),
@@ -598,13 +604,13 @@ async def test_database_connection() -> Dict[str, Any]:
         
         print(f"Testing connection to {connection_params['host']}:{connection_params['port']}")
         
-        # Test connection
+        # Kiểm tra kết nối
         conn = await asyncpg.connect(**connection_params)
         
-        # Test basic query
+        # Kiểm tra truy vấn cơ bản
         result = await conn.fetchval("SELECT version()")
         
-        # Test schema access
+        # Kiểm tra truy cập lược đồ
         tables = await conn.fetch("""
             SELECT table_name FROM information_schema.tables 
             WHERE table_schema = 'retail'
@@ -648,7 +654,7 @@ async def test_azure_openai_connection() -> Dict[str, Any]:
             credential=credential
         )
         
-        # Test embedding generation
+        # Kiểm tra tạo embedding
         response = await client.embeddings.create(
             model="text-embedding-3-small",
             input="test connection"
@@ -674,25 +680,25 @@ async def test_mcp_tools() -> Dict[str, Any]:
     """Test MCP tool availability."""
     
     try:
-        # Import MCP server components
+        # Nhập các thành phần máy chủ MCP
         sys.path.append(os.path.dirname(os.path.dirname(__file__)))
         
         from mcp_server.server import MCPServer
         from mcp_server.database import DatabaseProvider
         from mcp_server.config import Config
         
-        # Create test configuration
+        # Tạo cấu hình kiểm tra
         config = Config()
         db_provider = DatabaseProvider(config.database.connection_string)
         
-        # Initialize server
+        # Khởi tạo máy chủ
         server = MCPServer(config, db_provider)
         await server.initialize()
         
-        # Get available tools
+        # Lấy các công cụ có sẵn
         tools = server.get_available_tools()
         
-        # Test a simple tool
+        # Kiểm tra một công cụ đơn giản
         test_result = await server.execute_tool(
             'get_current_utc_date',
             {'format': 'iso'}
@@ -719,7 +725,7 @@ async def main():
     print("🔍 MCP Server Connection Diagnostics")
     print("=" * 50)
     
-    # Test database connection
+    # Kiểm tra kết nối cơ sở dữ liệu
     print("\n📊 Testing Database Connection...")
     db_result = await test_database_connection()
     
@@ -732,7 +738,7 @@ async def main():
         print("❌ Database connection failed")
         print(f"   Error: {db_result['error']}")
     
-    # Test Azure OpenAI connection
+    # Kiểm tra kết nối Azure OpenAI
     print("\n🤖 Testing Azure OpenAI Connection...")
     azure_result = await test_azure_openai_connection()
     
@@ -744,7 +750,7 @@ async def main():
         print("❌ Azure OpenAI connection failed")
         print(f"   Error: {azure_result['error']}")
     
-    # Test MCP tools
+    # Kiểm tra các công cụ MCP
     print("\n🛠️  Testing MCP Tools...")
     tools_result = await test_mcp_tools()
     
@@ -757,7 +763,7 @@ async def main():
         print("❌ MCP tools loading failed")
         print(f"   Error: {tools_result['error']}")
     
-    # Overall status
+    # Tình trạng tổng thể
     print("\n📋 Overall Status")
     print("=" * 50)
     
@@ -840,15 +846,15 @@ if __name__ == "__main__":
 }
 ```
 
-### Tiện ích mở rộng tùy chỉnh cho VS Code
+### Tiện ích mở rộng VS Code tùy chỉnh
 
 ```typescript
-// src/extension.ts - Custom MCP retail extension
+// src/extension.ts - Mở rộng bán lẻ MCP tùy chỉnh
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
     
-    // Register MCP retail commands
+    // Đăng ký các lệnh bán lẻ MCP
     const disposable = vscode.commands.registerCommand(
         'mcp-retail.quickQuery', 
         async () => {
@@ -889,7 +895,7 @@ export function activate(context: vscode.ExtensionContext) {
     
     context.subscriptions.push(disposable);
     
-    // Register store switcher
+    // Đăng ký công tắc cửa hàng
     const storeSwitcher = vscode.commands.registerCommand(
         'mcp-retail.switchStore',
         async () => {
@@ -899,7 +905,7 @@ export function activate(context: vscode.ExtensionContext) {
             });
             
             if (selected) {
-                // Update configuration
+                // Cập nhật cấu hình
                 const config = vscode.workspace.getConfiguration('mcp');
                 await config.update('defaultStore', selected, true);
                 
@@ -914,7 +920,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 async function executeQuickQuery(queryType: string) {
-    // Execute predefined queries in VS Code Chat
+    // Thực thi các truy vấn đã định nghĩa trước trong VS Code Chat
     const chatCommands = {
         '📊 Daily Sales': '@retail Show me daily sales for the last 30 days',
         '🏆 Top Products': '@retail What are the top 10 selling products this month?',
@@ -933,7 +939,7 @@ async function executeQuickQuery(queryType: string) {
 export function deactivate() {}
 ```
 
-### Cấu hình gói tiện ích mở rộng
+### Cấu hình gói Tiện ích mở rộng
 
 ```json
 // package.json for VS Code extension
@@ -1007,47 +1013,49 @@ export function deactivate() {}
 
 ## 🎯 Những điểm chính cần nhớ
 
-Sau khi hoàn thành bài thực hành này, bạn sẽ đạt được:
+Sau khi hoàn thành bài lab này, bạn sẽ có:
 
-✅ **Cấu hình MCP trong VS Code**: Thiết lập hoàn chỉnh để tích hợp MCP hiệu quả  
+✅ **Cấu hình MCP VS Code**: Thiết lập đầy đủ cho tích hợp MCP tối ưu  
 ✅ **Tích hợp AI Chat**: Khả năng truy vấn ngôn ngữ tự nhiên trong VS Code  
-✅ **Công cụ gỡ lỗi**: Khắc phục sự cố và chẩn đoán kết nối toàn diện  
+✅ **Công cụ gỡ lỗi**: Toàn diện cho việc khắc phục sự cố và chuẩn đoán kết nối  
 ✅ **Thiết lập đa máy chủ**: Cấu hình cho nhiều máy chủ MCP  
-✅ **Tiện ích mở rộng tùy chỉnh**: Nâng cao trải nghiệm VS Code với các tính năng dành riêng cho bán lẻ  
-✅ **Sẵn sàng sản xuất**: Môi trường phát triển VS Code sẵn sàng cho doanh nghiệp  
+✅ **Tiện ích mở rộng tùy chỉnh**: Trải nghiệm VS Code nâng cao với các tính năng đặc thù bán lẻ  
+✅ **Sẵn sàng sản xuất**: Môi trường phát triển VS Code cho doanh nghiệp  
 
-## 🚀 Tiếp theo
+## 🚀 Tiếp theo là gì
 
-Tiếp tục với **[Bài thực hành 10: Chiến lược triển khai](../10-Deployment/README.md)** để:
+Tiếp tục với **[Lab 10: Chiến lược Triển khai](../10-Deployment/README.md)** để:
 
-- Triển khai máy chủ MCP vào môi trường sản xuất  
-- Cấu hình hạ tầng đám mây để mở rộng quy mô  
-- Thực hiện các pipeline CI/CD để triển khai tự động  
-- Giám sát hiệu suất máy chủ MCP trong sản xuất  
+- Triển khai các máy chủ MCP vào môi trường sản xuất
+- Cấu hình hạ tầng đám mây cho khả năng mở rộng
+- Triển khai các pipeline CI/CD cho tự động hóa
+- Giám sát hiệu năng máy chủ MCP sản xuất
 
-## 📚 Tài liệu bổ sung
+## 📚 Tài nguyên bổ sung
 
-### Phát triển với VS Code
-- [VS Code Extension API](https://code.visualstudio.com/api) - Hướng dẫn phát triển tiện ích mở rộng chính thức  
-- [Tài liệu MCP trong VS Code](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - Tài liệu tích hợp MCP  
-- [TypeScript cho VS Code](https://code.visualstudio.com/docs/languages/typescript) - Phát triển TypeScript trong VS Code  
+### Phát triển VS Code
+- [VS Code Extension API](https://code.visualstudio.com/api) - Hướng dẫn phát triển tiện ích mở rộng chính thức
+- [Tài liệu MCP VS Code](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - Tài liệu tích hợp MCP
+- [TypeScript cho VS Code](https://code.visualstudio.com/docs/languages/typescript) - Phát triển TypeScript trong VS Code
 
 ### Giao thức MCP
-- [Đặc tả Giao thức Model Context Protocol](https://modelcontextprotocol.io/specification) - Đặc tả MCP chính thức  
-- [Thực hành tốt nhất MCP](https://modelcontextprotocol.io/docs/best-practices) - Các thực hành tốt nhất khi triển khai  
-- [Framework FastMCP](https://github.com/jlowin/fastmcp) - Triển khai MCP bằng Python  
+- [Đặc tả Model Context Protocol](https://modelcontextprotocol.io/specification) - Đặc tả MCP chính thức
+- [Thực hành tốt nhất MCP](https://modelcontextprotocol.io/docs/best-practices) - Các thực hành triển khai tốt nhất
+- [FastMCP Framework](https://github.com/jlowin/fastmcp) - Triển khai MCP Python
 
 ### Công cụ phát triển
-- [Python trong VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Thiết lập phát triển Python  
-- [Gỡ lỗi trong VS Code](https://code.visualstudio.com/docs/editor/debugging) - Kỹ thuật gỡ lỗi nâng cao  
-- [Tác vụ trong VS Code](https://code.visualstudio.com/docs/editor/tasks) - Tự động hóa và cấu hình tác vụ  
+- [Python trong VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Thiết lập phát triển Python
+- [Gỡ lỗi trong VS Code](https://code.visualstudio.com/docs/editor/debugging) - Kỹ thuật gỡ lỗi nâng cao
+- [Tác vụ VS Code](https://code.visualstudio.com/docs/editor/tasks) - Tự động hóa và cấu hình tác vụ
 
 ---
 
-**Trước**: [Bài thực hành 08: Kiểm thử và gỡ lỗi](../08-Testing/README.md)  
-**Tiếp theo**: [Bài thực hành 10: Chiến lược triển khai](../10-Deployment/README.md)  
+**Trước**: [Lab 08: Kiểm thử và Gỡ lỗi](../08-Testing/README.md)  
+**Tiếp**: [Lab 10: Chiến lược Triển khai](../10-Deployment/README.md)
 
 ---
 
-**Tuyên bố miễn trừ trách nhiệm**:  
-Tài liệu này đã được dịch bằng dịch vụ dịch thuật AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mặc dù chúng tôi cố gắng đảm bảo độ chính xác, xin lưu ý rằng các bản dịch tự động có thể chứa lỗi hoặc không chính xác. Tài liệu gốc bằng ngôn ngữ bản địa nên được coi là nguồn thông tin chính thức. Đối với các thông tin quan trọng, nên sử dụng dịch vụ dịch thuật chuyên nghiệp từ con người. Chúng tôi không chịu trách nhiệm về bất kỳ sự hiểu lầm hoặc diễn giải sai nào phát sinh từ việc sử dụng bản dịch này.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Tuyên bố miễn trừ trách nhiệm**:
+Tài liệu này đã được dịch bằng dịch vụ dịch thuật AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mặc dù chúng tôi cố gắng đảm bảo độ chính xác, xin lưu ý rằng bản dịch tự động có thể chứa lỗi hoặc sai sót. Tài liệu gốc bằng ngôn ngữ gốc nên được coi là nguồn tin chính thức. Đối với thông tin quan trọng, nên sử dụng dịch vụ dịch thuật chuyên nghiệp bởi con người. Chúng tôi không chịu trách nhiệm về bất kỳ hiểu lầm hoặc giải thích sai nào phát sinh từ việc sử dụng bản dịch này.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

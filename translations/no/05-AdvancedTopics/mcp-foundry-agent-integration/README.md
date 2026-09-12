@@ -1,12 +1,12 @@
-# Model Context Protocol (MCP) Integrasjon med Microsoft Foundry
+# Modellkontekstprotokoll (MCP) integrasjon med Microsoft Foundry
 
-Denne veiledningen demonstrerer hvordan du integrerer Model Context Protocol (MCP) servere med Microsoft Foundry-agenter, og muliggjør kraftig verktøyorchestrering og AI-funksjonaliteter for bedrifter.
+Denne veiledningen viser hvordan du integrerer Model Context Protocol (MCP) servere med Microsoft Foundry-agenter, slik at man får kraftig verktøyorchestration og bedrifts-AI-funksjoner.
 
 ## Introduksjon
 
-Model Context Protocol (MCP) er en åpen standard som gjør det mulig for AI-applikasjoner å koble seg sikkert til eksterne datakilder og verktøy. Når den integreres med Microsoft Foundry, lar MCP agenter få tilgang til og interagere med ulike eksterne tjenester, API-er og datakilder på en standardisert måte.
+Model Context Protocol (MCP) er en åpen standard som gjør det mulig for AI-applikasjoner å koble seg sikkert til eksterne datakilder og verktøy. Når integrert med Microsoft Foundry, lar MCP agenter få tilgang til og samhandle med ulike eksterne tjenester, API-er og datakilder på en standardisert måte.
 
-Denne integrasjonen kombinerer fleksibiliteten til MCPs verktøysøkosystem med Microsoft Foundrys robuste agentrammeverk, og gir AI-løsninger på bedriftsnivå med omfattende tilpasningsmuligheter.
+Denne integrasjonen kombinerer fleksibiliteten i MCPs verktøyøkosystem med Microsoft Foundrys robuste agent-rammeverk, og gir bedriftsnivå AI-løsninger med omfattende tilpasningsmuligheter.
 
 **Merk:** Hvis du ønsker å bruke MCP i Microsoft Foundry Agent Service, støttes for øyeblikket bare følgende regioner: westus, westus2, uaenorth, southindia og switzerlandnorth
 
@@ -14,42 +14,42 @@ Denne integrasjonen kombinerer fleksibiliteten til MCPs verktøysøkosystem med 
 
 Ved slutten av denne veiledningen vil du kunne:
 
-- Forstå Model Context Protocol og dets fordeler
+- Forstå Model Context Protocol og dens fordeler
 - Sette opp MCP-servere for bruk med Microsoft Foundry-agenter
-- Opprette og konfigurere agenter med MCP-verktøyintegrasjon
-- Implementere praktiske eksempler ved bruk av ekte MCP-servere
-- Håndtere verktøysvar og henvisninger i agent-samtaler
+- Lage og konfigurere agenter med MCP verktøyintegrasjon
+- Implementere praktiske eksempler med ekte MCP-servere
+- Håndtere verktøysvar og referanser i agent-samtaler
 
 ## Forutsetninger
 
-Før du starter, må du ha:
+Før du starter, sørg for at du har:
 
 - Et Azure-abonnement med tilgang til Microsoft Foundry
 - Python 3.10+ eller .NET 8.0+
 - Azure CLI installert og konfigurert
-- Passende tillatelser til å opprette AI-ressurser
+- Passende tillatelser for å opprette AI-ressurser
 
 ## Hva er Model Context Protocol (MCP)?
 
-Model Context Protocol er en standardisert måte for AI-applikasjoner å koble til eksterne datakilder og verktøy. Viktige fordeler inkluderer:
+Model Context Protocol er en standardisert metode for AI-applikasjoner å koble seg til eksterne datakilder og verktøy. Viktige fordeler inkluderer:
 
 - **Standardisert integrasjon**: Konsistent grensesnitt på tvers av forskjellige verktøy og tjenester
 - **Sikkerhet**: Sikker autentisering og autorisasjonsmekanismer
-- **Fleksibilitet**: Støtte for ulike datakilder, API-er og egendefinerte verktøy
-- **Utvidbarhet**: Enkelt å legge til nye funksjoner og integrasjoner
+- **Fleksibilitet**: Støtte for ulike datakilder, API-er og tilpassede verktøy
+- **Utvidbarhet**: Lett å legge til nye funksjoner og integrasjoner
 
-## Konfigurering av MCP med Microsoft Foundry
+## Sette opp MCP med Microsoft Foundry
 
 ### Miljøkonfigurasjon
 
 Velg ditt foretrukne utviklingsmiljø:
 
-- [Python-implementasjon](#python-implementasjon)
-- [.NET-implementasjon](#codeblock5)
+- [Python-implementering](#python-implementering)
+- [.NET-implementering](#codeblock5)
 
 ---
 
-## Python-implementasjon
+## Python-implementering
 
 ***Merk*** Du kan kjøre denne [notebooken](./mcp_support_python.ipynb)
 
@@ -87,7 +87,7 @@ project_client = AIProjectClient(
 )
 ```
 
-### 5. Opprett MCP-verktøy
+### 5. Lag MCP-verktøy
 
 ```python
 mcp_tool = McpTool(
@@ -178,7 +178,7 @@ with project_client:
 
 ---
 
-## .NET-implementasjon
+## .NET-implementering
 
 ***Merk*** Du kan kjøre denne [notebooken](./mcp_support_dotnet.ipynb)
 
@@ -206,13 +206,13 @@ var mcpServerLabel = "mslearn";
 PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCredential());
 ```
 
-### 4. Opprett MCP-verktøydefinisjon
+### 4. Lag MCP-verktøydefinisjon
 
 ```csharp
 MCPToolDefinition mcpTool = new(mcpServerLabel, mcpServerUrl);
 ```
 
-### 5. Opprett agent med MCP-verktøy
+### 5. Lag agent med MCP-verktøy
 
 ```csharp
 PersistentAgent agent = await agentClient.Administration.CreateAgentAsync(
@@ -297,7 +297,7 @@ await foreach (PersistentThreadMessage threadMessage in messages)
 
 ---
 
-## MCP-verktøykonfigurasjonsalternativer
+## MCP verktøykonfigurasjonsvalg
 
 Når du konfigurerer MCP-verktøy for agenten din, kan du spesifisere flere viktige parametere:
 
@@ -306,7 +306,7 @@ Når du konfigurerer MCP-verktøy for agenten din, kan du spesifisere flere vikt
 ```python
 mcp_tool = McpTool(
     server_label="unique_server_name",      # Identifikator for MCP-serveren
-    server_url="https://api.example.com/mcp", # MCP-server endepunkt
+    server_url="https://api.example.com/mcp", # MCP-serverendepunkt
     allowed_tools=[],                       # Valgfritt: spesifiser tillatte verktøy
 )
 ```
@@ -320,9 +320,9 @@ MCPToolDefinition mcpTool = new(
 );
 ```
 
-## Autentisering og overskrifter
+## Autentisering og headere
 
-Begge implementasjonene støtter egendefinerte overskrifter for autentisering:
+Begge implementeringer støtter tilpassede headere for autentisering:
 
 ### Python
 ```python
@@ -338,43 +338,43 @@ mcpToolResource.UpdateHeader("SuperSecret", "123456");
 ## Feilsøking av vanlige problemer
 
 ### 1. Tilkoblingsproblemer
-- Verifiser at MCP-server URL er tilgjengelig
-- Sjekk autentiseringsinformasjonen
+- Sjekk at MCP-server-URL er tilgjengelig
+- Kontroller autentiseringsopplysninger
 - Sørg for nettverkstilkobling
 
-### 2. Feil ved verktøykall
-- Gå gjennom verktøysargumenter og formatering
+### 2. Feil ved verktøysamtaler
+- Gå gjennom verktøyargumenter og format
 - Sjekk server-spesifikke krav
 - Implementer korrekt feilbehandling
 
 ### 3. Ytelsesproblemer
-- Optimaliser hyppigheten av verktøykall
+- Optimaliser verktøysamtale-frekvensen
 - Implementer caching der det er hensiktsmessig
-- Overvåk responstider fra server
+- Overvåk responstider fra serveren
 
 ## Neste steg
 
-For å videre forbedre din MCP-integrasjon:
+For å forbedre MCP-integrasjonen din ytterligere:
 
-1. **Utforsk egendefinerte MCP-servere**: Bygg dine egne MCP-servere for proprietære datakilder
-2. **Implementer avansert sikkerhet**: Legg til OAuth2 eller egendefinerte autentiseringsmekanismer
-3. **Overvåk og analyser**: Implementer logging og overvåkning for verktøysbruk
-4. **Skaler løsningen din**: Vurder lastbalansering og distribuerte MCP-serverarkitekturer
+1. **Utforsk egendefinerte MCP-servere**: Bygg egne MCP-servere for proprietære datakilder
+2. **Implementer avansert sikkerhet**: Legg til OAuth2 eller tilpassede autentiseringsmekanismer
+3. **Overvåk og analyser**: Implementer logging og overvåking for verktøybruk
+4. **Skaler løsningen**: Vurder lastbalansering og distribuerte MCP-server-arkitekturer
 
 ## Ekstra ressurser
 
 - [Microsoft Foundry Dokumentasjon](https://learn.microsoft.com/azure/ai-foundry/)
-- [Model Context Protocol Eksempler](https://learn.microsoft.com/azure/ai-foundry/agents/how-to/tools/model-context-protocol-samples)
-- [Microsoft Foundry Agenter Oversikt](https://learn.microsoft.com/azure/ai-foundry/agents/)
-- [MCP Spesifikasjon](https://spec.modelcontextprotocol.io/)
+- [Model Context Protocol-eksempler](https://learn.microsoft.com/azure/ai-foundry/agents/how-to/tools/model-context-protocol-samples)
+- [Oversikt over Microsoft Foundry-agenter](https://learn.microsoft.com/azure/ai-foundry/agents/)
+- [MCP Spesifikasjon](https://modelcontextprotocol.io/specification/2026-07-28/)
 
 ## Support
 
 For ytterligere støtte og spørsmål:
-- Se [Microsoft Foundry dokumentasjon](https://learn.microsoft.com/azure/ai-foundry/)
+- Se gjennom [Microsoft Foundry dokumentasjonen](https://learn.microsoft.com/azure/ai-foundry/)
 - Sjekk [MCP fellesskapsressurser](https://modelcontextprotocol.io/)
 
-## Hva er neste
+## Hva nå
 
 - [5.14 MCP Context Engineering](../mcp-contextengineering/README.md)
 

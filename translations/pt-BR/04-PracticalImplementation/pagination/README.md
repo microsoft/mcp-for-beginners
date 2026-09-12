@@ -1,46 +1,47 @@
-# Paginação e Conjuntos de Resultados Grandes no MCP
+# Paginação e Grandes Conjuntos de Resultados no MCP
 
-Quando seu servidor MCP lida com grandes conjuntos de dados - seja listando milhares de arquivos, registros de banco de dados ou resultados de pesquisa - você precisa de paginação para gerenciar a memória de forma eficiente e fornecer experiências responsivas para os usuários. Este guia cobre como implementar e usar paginação no MCP.
+Quando seu servidor MCP lida com grandes conjuntos de dados - seja listando milhares de arquivos, registros de banco de dados ou resultados de busca - você precisa de paginação para gerenciar a memória de forma eficiente e proporcionar experiências responsivas para os usuários. Este guia aborda como implementar e usar paginação no MCP.
 
 ## Por Que a Paginação é Importante
 
-Sem paginação, respostas grandes podem causar:
+Sem paginação, grandes respostas podem causar:
 
 - **Exaustão de memória** - Carregar milhões de registros de uma vez
-- **Tempos de resposta lentos** - Usuários esperam enquanto todos os dados carregam
-- **Erros de timeout** - Requisições excedem os limites de tempo
-- **Desempenho ruim de IA** - Modelos de linguagem têm dificuldade com contextos massivos
+- **Tempos de resposta lentos** - Usuários aguardam enquanto todos os dados carregam
+- **Erros de timeout** - Solicitações excedem os limites de tempo
+- **Desempenho ruim de IA** - LLMs têm dificuldades com contexto enorme
 
-O MCP usa **paginação baseada em cursor** para uma paginação confiável e consistente através dos conjuntos de resultados.
+O MCP usa **paginação baseada em cursor** para navegação confiável e consistente através dos conjuntos de resultados.
 
 ---
 
-## Como a Paginação do MCP Funciona
+## Como Funciona a Paginação no MCP
 
 ### O Conceito de Cursor
 
-Um **cursor** é uma string opaca que marca sua posição em um conjunto de resultados. Pense nisso como um marcador de página em um livro longo.
+Um **cursor** é uma string opaca que marca sua posição em um conjunto de resultados. Pense nele como um marcador de página em um livro longo.
 
 ```mermaid
 sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: tools/list (sem cursor)
-    Server-->>Client: ferramentas [1-10], nextCursor: "abc123"
+    Client->>Server: ferramentas/lista (sem cursor)
+    Server-->>Client: ferramentas [1-10], próximoCursor: "abc123"
     
-    Client->>Server: tools/list (cursor: "abc123")
-    Server-->>Client: ferramentas [11-20], nextCursor: "def456"
+    Client->>Server: ferramentas/lista (cursor: "abc123")
+    Server-->>Client: ferramentas [11-20], próximoCursor: "def456"
     
-    Client->>Server: tools/list (cursor: "def456")
-    Server-->>Client: ferramentas [21-25], nextCursor: null (fim)
+    Client->>Server: ferramentas/lista (cursor: "def456")
+    Server-->>Client: ferramentas [21-25], próximoCursor: nulo (fim)
 ```
+
 ### Paginação nos Métodos MCP
 
 Estes métodos MCP suportam paginação:
 
 | Método | Retorna | Suporte a Cursor |
-|--------|---------|------------------|
+|--------|---------|----------------|
 | `tools/list` | Definições de ferramentas | ✅ |
 | `resources/list` | Definições de recursos | ✅ |
 | `prompts/list` | Definições de prompts | ✅ |
@@ -247,7 +248,7 @@ class PaginatedToolIterator:
         if self.buffer:
             return self.buffer.pop(0)
         
-        # Verifique se esgotamos todas as páginas
+        # Verificar se esgotamos todas as páginas
         if self.exhausted:
             raise StopAsyncIteration
         
@@ -327,7 +328,7 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 cursor = "50"  # Comece no item 50
 ```
 
-**Prós:** Simples, sem estado  
+**Prós:** Simples, sem estado
 **Contras:** Resultados podem mudar se itens forem adicionados/removidos
 
 ### Estratégia 2: Baseada em ID (Estável)
@@ -337,7 +338,7 @@ cursor = "50"  # Comece no item 50
 cursor = "item_abc123"  # Comece após este item
 ```
 
-**Prós:** Estável mesmo que itens mudem  
+**Prós:** Estável mesmo se os itens mudarem
 **Contras:** Requer IDs ordenados
 
 ### Estratégia 3: Estado Codificado (Complexo)
@@ -360,7 +361,7 @@ cursor = encode_cursor({
 })
 ```
 
-**Prós:** Pode codificar estado complexo  
+**Prós:** Pode codificar estado complexo
 **Contras:** Mais complexo, strings de cursor maiores
 
 ---
@@ -376,7 +377,7 @@ PAGE_SIZE_MEDIUM_ITEMS = 20   # Objetos mais ricos
 PAGE_SIZE_LARGE_ITEMS = 5     # Conteúdo complexo
 ```
 
-### 2. Trate Cursors Inválidos com Elegância
+### 2. Trate Cursores Inválidos com Elegância
 
 ```python
 @app.list_tools()
@@ -384,7 +385,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
     try:
         start_index = int(cursor) if cursor else 0
         if start_index < 0 or start_index >= len(ALL_TOOLS):
-            start_index = 0  # Reiniciar para o começo
+            start_index = 0  # Reiniciar para o início
     except (ValueError, TypeError):
         start_index = 0  # Cursor inválido, começar do zero
     # ...
@@ -396,12 +397,12 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 return ListToolsResult(
     tools=page_tools,
     nextCursor=next_cursor,
-    # Algumas implementações incluem o total para o progresso da interface do usuário
+    # Algumas implementações incluem total para progresso da interface do usuário
     _meta={"total": len(ALL_TOOLS)}
 )
 ```
 
-### 4. Teste Casos de Borda
+### 4. Teste Casos Limítrofes
 
 ```python
 async def test_pagination():
@@ -433,7 +434,7 @@ async def list_tools() -> ListToolsResult:
     return ListToolsResult(tools=all_tools)
 ```
 
-### ✅ Fazer Paginação na Fonte de Dados
+### ✅ Paginar na Fonte de Dados
 
 ```python
 # BOM: Carrega apenas o que é necessário
@@ -446,7 +447,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ---
 
-## O Que Vem a Seguir
+## E Agora
 
 - [Módulo 5.14 - Engenharia de Contexto](../../05-AdvancedTopics/mcp-contextengineering/README.md)
 - [Módulo 8 - Melhores Práticas](../../08-BestPractices/README.md)
@@ -456,13 +457,13 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ## Recursos Adicionais
 
-- [Especificação MCP - Paginação](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [Especificação MCP - Paginação](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [Paginação Baseada em Cursor Explicada](https://slack.engineering/evolving-api-pagination-at-slack/)
 - [Testes de paginação do SDK Python](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Aviso Legal**:  
-Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, esteja ciente de que traduções automatizadas podem conter erros ou imprecisões. O documento original em seu idioma nativo deve ser considerado a fonte autoritativa. Para informações críticas, recomenda-se a tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações equivocadas decorrentes do uso desta tradução.
+**Aviso Legal**:
+Este documento foi traduzido usando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos pela precisão, por favor, esteja ciente de que traduções automatizadas podem conter erros ou imprecisões. O documento original em seu idioma nativo deve ser considerado a fonte autorizada. Para informações críticas, recomenda-se tradução profissional humana. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes do uso desta tradução.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

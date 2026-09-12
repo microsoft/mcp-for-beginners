@@ -1,6 +1,11 @@
-# 🔧 Moduuli 3: Edistynyt MCP-kehitys Microsoft Foundry Toolkitilla
+# 🔧 Moduuli 3: Edistynyt MCP-kehitys Microsoft Foundry Toolkitin avulla
 
-![Kesto](https://img.shields.io/badge/Duration-20_minutes-blue?style=flat-square)
+> [!NOTE]
+> Tässä harjoituksessa Inspectorin URL-osoitteet käyttävät perinteistä `/sse`-päätepistettä ja kohdistuvat lukittuihin MCP SDK:n `1.9.3` ja Inspectorin `0.14.0` riippuvuuksiin. Ne eivät ole nykyisiä `2026-07-28` Streamable HTTP -esimerkkejä.
+> 
+> 
+
+![Duration](https://img.shields.io/badge/Duration-20_minutes-blue?style=flat-square)
 ![Microsoft Foundry Toolkit](https://img.shields.io/badge/Microsoft_Foundry_Toolkit-Required-orange?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10+-green?style=flat-square)
 ![MCP SDK](https://img.shields.io/badge/MCP_SDK-1.9.3-purple?style=flat-square)
@@ -8,66 +13,66 @@
 
 ## 🎯 Oppimistavoitteet
 
-Tämän laboratorion lopussa osaat:
+Tämän harjoituksen lopuksi osaat:
 
-- ✅ Luoda mukautettuja MCP-palvelimia Microsoft Foundry Toolkitin avulla
+- ✅ Luoda räätälöityjä MCP-palvelimia Microsoft Foundry Toolkitin avulla
 - ✅ Määrittää ja käyttää uusinta MCP Python SDK:ta (v1.9.3)
-- ✅ Asentaa ja käyttää MCP Inspector -työkalua virheenkorjaukseen
-- ✅ Virheenkorjata MCP-palvelimia sekä Agent Builderissa että Inspectorissa
-- ✅ Ymmärtää edistyneitä MCP-palvelinkehityksen työnkulkuja
+- ✅ Ottaa käyttöön ja hyödyntää MCP Inspectoria virheenkorjaukseen
+- ✅ Virheenkorjata MCP-palvelimia sekä Agent Builder- että Inspector-ympäristöissä
+- ✅ Ymmärtää edistyneitä MCP-palvelimen kehitystyönkulkuja
 
 ## 📋 Esivaatimukset
 
-- Lab 2 (MCP Fundamentals) suoritettuna
-- VS Code, johon on asennettu Microsoft Foundry Toolkit -laajennus
+- Lab 2 (MCP Perusteet) suorittaminen
+- VS Code Microsoft Foundry Toolkit -laajennuksella asennettuna
 - Python 3.10+ -ympäristö
-- Node.js ja npm Inspectorin asentamista varten
+- Node.js ja npm Inspectorin käyttöönottoa varten
 
 ## 🏗️ Mitä rakennat
 
-Tässä laboratoriossa rakennat **Weather MCP Serverin**, joka demonstroi:
-- Mukautetun MCP-palvelimen toteutusta
-- Integraatiota Microsoft Foundry Toolkit Agent Builderin kanssa
-- Ammattimaisia virheenkorjausprosessseja
+Tässä harjoituksessa luot **Sää-MCP-palvelimen**, joka demonstroi:
+- Räätälöity MCP-palvelimen toteutus
+- Integroinnin Microsoft Foundry Toolkit Agent Builderiin
+- Ammattimaisia virheenkorjaustyönkulkuja
 - Modernin MCP SDK:n käyttötapoja
 
 ---
 
-## 🔧 Keskeiset komponentit yleiskuva
+## 🔧 Ydinkomponentit yleiskatsaus
 
 ### 🐍 MCP Python SDK
-Model Context Protocolin Python SDK tarjoaa perustan mukautettujen MCP-palvelimien rakentamiselle. Käytät versiota 1.9.3, jossa on parannetut virheenkorjausmahdollisuudet.
+Model Context Protocol Python SDK muodostaa perustan räätälöityjen MCP-palvelimien rakentamiselle. Käytät versiota 1.9.3 parannetuilla virheenkorjausominaisuuksilla.
 
 ### 🔍 MCP Inspector
 Tehokas virheenkorjaustyökalu, joka tarjoaa:
-- Palvelimen reaaliaikaisen valvonnan
+- Reaaliaikaisen palvelimen valvonnan
 - Työkalujen suorituksen visualisoinnin
-- Verkko-pyyntöjen ja -vastauksien tarkastelun
+- Verkkopyyntöjen ja -vastauksien tarkastelun
 - Interaktiivisen testausympäristön
 
 ---
 
-## 📖 Vaihe vaiheelta toteutus
+## 📖 Vaiheittainen toteutus
 
-### Vaihe 1: Luo WeatherAgent Agent Builderissa
+### Vaihe 1: Luo WeatherAgent Agent Builderissä
 
 1. **Käynnistä Agent Builder** VS Codessa Microsoft Foundry Toolkit -laajennuksen kautta
 2. **Luo uusi agentti** seuraavilla asetuksilla:
    - Agentin nimi: `WeatherAgent`
 
-![Agentin luonti](../../../../translated_images/fi/Agent.c9c33f6a412b4cde.webp)
+![Agent Creation](../../../../translated_images/fi/Agent.c9c33f6a412b4cde.webp)
 
-### Vaihe 2: Aloita MCP-palvelinprojekti
+### Vaihe 2: Alusta MCP-palvelinprojekti
 
-1. **Siirry Tools** → **Add Tool** Agent Builderissa
-2. **Valitse "MCP Server"** saatavilla olevista vaihtoehdoista
+1. **Navigoi Tools-valikossa** → **Add Tool** Agent Builderissä
+2. **Valitse "MCP Server"** tarjotuista vaihtoehdoista
 3. **Valitse "Create A new MCP Server"**
 4. **Valitse `python-weather`-pohja**
 5. **Nimeä palvelimesi:** `weather_mcp`
 
-![Python-pohjan valinta](../../../../translated_images/fi/Pythontemplate.9d0a2913c6491500.webp)
+![Python Template Selection](../../../../translated_images/fi/Pythontemplate.9d0a2913c6491500.webp)
 
-### Vaihe 3: Avaa ja tarkastele projektia
+### Vaihe 3: Avaa ja tutki projektia
 
 1. **Avaa luotu projekti** VS Codessa
 2. **Tarkastele projektin rakennetta:**
@@ -86,9 +91,9 @@ Tehokas virheenkorjaustyökalu, joka tarjoaa:
    └── README.md
    ```
 
-### Vaihe 4: Päivitä uusimpaan MCP SDK:han
+### Vaihe 4: Päivitä uusimpaan MCP SDK:hon
 
-> **🔍 Miksi päivittää?** Haluamme käyttää uusinta MCP SDK:ta (v1.9.3) ja Inspector-palvelua (0.14.0) parannettujen ominaisuuksien ja paremman virheenkorjauksen saavuttamiseksi.
+> **🔍 Miksi päivittää?** Haluamme hyödyntää uusinta MCP SDK:ta (v1.9.3) ja Inspector-palvelua (0.14.0) parempien ominaisuuksien ja virheenkorjausmahdollisuuksien vuoksi.
 
 #### 4a. Päivitä Python-riippuvuudet
 
@@ -103,14 +108,14 @@ Tehokas virheenkorjaustyökalu, joka tarjoaa:
 
 **Muokkaa `inspector/package-lock.json`:** päivitä [./code/weather_mcp/inspector/package-lock.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package-lock.json)
 
-> **📝 Huom:** Tämä tiedosto sisältää laajat riippuvuusmäärittelyt. Alla on oleellinen rakenne - koko sisältö varmistaa riippuvuuksien oikean ratkaisun.
+> **📝 Huom:** Tämä tiedosto sisältää laajat riippuvuuksien määrittelyt. Alla on olennaisin rakenne - koko sisältö varmistaa riippuvuuksien oikean ratkaisun.
 
 
-> **⚡ Täysi Package Lock:** Täysi package-lock.json sisältää noin 3000 riviä riippuvuuksien määrittelyjä. Yllä on avainrakenne - käytä toimitettua tiedostoa täydelliseen riippuvuuksien ratkaisuun.
+> **⚡ Koko package-lock:** Täysi package-lock.json sisältää ~3000 riviä riippuvuuksien määrittelyjä. Yllä näkyy päärakenne - käytä annettua tiedostoa täydelliseen riippuvuuksien ratkaisuun.
 
-### Vaihe 5: Määritä VS Coden virheenkorjaus
+### Vaihe 5: Määritä VS Code -virheenkorjaus
 
-*Huom. Kopioi tiedosto ilmoitettuun polkuun korvaamaan vastaava paikallinen tiedosto*
+*Huom: Kopioi määritetty tiedosto annettuun polkuun korvaamaan paikallinen tiedosto*
 
 #### 5a. Päivitä käynnistyskonfiguraatio
 
@@ -296,18 +301,18 @@ Tehokas virheenkorjaustyökalu, joka tarjoaa:
 
 ---
 
-## 🚀 MCP-palvelimen ajaminen ja testaaminen
+## 🚀 MCP-palvelimen käynnistys ja testaus
 
 ### Vaihe 6: Asenna riippuvuudet
 
-Muutosten tekemisen jälkeen suorita seuraavat komennot:
+Konfiguraatiomuutosten jälkeen suorita seuraavat komennot:
 
 **Asenna Python-riippuvuudet:**
 ```bash
 uv sync
 ```
 
-**Asenna Inspectorin riippuvuudet:**
+**Asenna Inspector-riippuvuudet:**
 ```bash
 cd inspector
 npm install
@@ -316,11 +321,11 @@ npm install
 ### Vaihe 7: Virheenkorjaus Agent Builderissa
 
 1. **Paina F5** tai käytä **"Debug in Agent Builder"** -konfiguraatiota
-2. **Valitse yhdistelmäkonfiguraatio** debug-paneelista
+2. **Valitse yhdistetty konfiguraatio** virheenkorjauspaneelista
 3. **Odota palvelimen käynnistymistä** ja Agent Builderin avaamista
-4. **Testaa Weather MCP serveriäsi** luonnollisilla kielipyyntöillä
+4. **Testaa sää-MCP-palvelintasi** luonnollisella kielellä tehdyillä kyselyillä
 
-Anna syöte kuten tämä
+Syöttökehotteena esimerkiksi
 
 SYSTEM_PROMPT
 
@@ -334,60 +339,60 @@ USER_PROMPT
 How's the weather like in Seattle
 ```
 
-![Agent Builder Debug-tulos](../../../../translated_images/fi/Result.6ac570f7d2b1d538.webp)
+![Agent Builder Debug Result](../../../../translated_images/fi/Result.6ac570f7d2b1d538.webp)
 
 ### Vaihe 8: Virheenkorjaus MCP Inspectorilla
 
 1. **Käytä "Debug in Inspector"** -konfiguraatiota (Edge tai Chrome)
 2. **Avaa Inspector-käyttöliittymä** osoitteessa `http://localhost:6274`
 3. **Tutki interaktiivista testausympäristöä:**
-   - Katso saatavilla olevat työkalut
-   - Testaa työkalujen suoritus
-   - Tarkkaile verkkopyyntöjä
-   - Virheenkorjaa palvelimen vastauksia
+   - Katso käytettävissä olevat työkalut
+   - Testaa työkalujen suoritusta
+   - Seuraa verkkopyyntöjä
+   - Virheenkorjaa palvelinvastauksia
 
-![MCP Inspector -käyttöliittymä](../../../../translated_images/fi/Inspector.5672415cd02fe873.webp)
+![MCP Inspector Interface](../../../../translated_images/fi/Inspector.5672415cd02fe873.webp)
 
 ---
 
 ## 🎯 Keskeiset oppimistulokset
 
-Tämän laboratorion suorittamalla olet:
+Tämän harjoituksen suorittamalla olet:
 
-- [x] **Luonut mukautetun MCP-palvelimen** Microsoft Foundry Toolkit -pohjien avulla
-- [x] **Päivittänyt uusimpaan MCP SDK:han** (v1.9.3) parennetun toiminnallisuuden saavuttamiseksi
-- [x] **Määrittänyt ammattimaiset virheenkorjausprosessit** sekä Agent Builderille että Inspectorille
-- [x] **Asentanut MCP Inspectorin** interaktiiviseen palvelintestaukseen
-- [x] **Hallinnut VS Code -virheenkorjauskonfiguraatiot** MCP-kehitystä varten
+- [x] **Luonut räätälöidyn MCP-palvelimen** Microsoft Foundry Toolkit -pohjien avulla
+- [x] **Päivittänyt uusimpaan MCP SDK:hon** (v1.9.3) parannetun toiminnallisuuden vuoksi
+- [x] **Määrittänyt ammattimaiset virheenkorjaustyönkulut** sekä Agent Builderille että Inspectorille
+- [x] **Ottanut MCP Inspectorin käyttöön** interaktiiviseen palvelimen testaukseen
+- [x] **Hallinnut VS Code -virheenkorjausasetukset** MCP-kehitystä varten
 
 ## 🔧 Tutkitut edistyneet ominaisuudet
 
-| Ominaisuus            | Kuvaus                          | Käyttötapaus              |
-|-----------------------|--------------------------------|---------------------------|
-| **MCP Python SDK v1.9.3**  | Uusin protokollatoteutus        | Moderni palvelinkehitys   |
-| **MCP Inspector 0.14.0**   | Interaktiivinen virheenkorjaustyökalu | Reaaliaikainen palvelintestaus |
-| **VS Code Debugging**      | Integroitu kehitysympäristö     | Ammattimainen virheenkorjaus |
-| **Agent Builder Integration** | Suora yhteys Microsoft Foundry Toolkit -työkaluun | Päätä-päähän agenttitestaus |
+| Ominaisuus | Kuvaus | Käyttötapaus |
+|---------|-------------|----------|
+| **MCP Python SDK v1.9.3** | Uusin protokollatoteutus | Moderni palvelinkehitys |
+| **MCP Inspector 0.14.0** | Interaktiivinen virheenkorjaustyökalu | Reaaliaikainen palvelimen testaus |
+| **VS Code Debugging** | Integroitu kehitysympäristö | Ammattimainen virheenkorjaustyönkulku |
+| **Agent Builder -integraatio** | Suora yhteys Microsoft Foundry Toolkitiin | Agentin kokonaisvaltainen testaus |
 
 ## 📚 Lisäresurssit
 
-- [MCP Python SDK Documentation](https://modelcontextprotocol.io/docs/sdk/python)
-- [Microsoft Foundry Toolkit Extension Guide](https://code.visualstudio.com/docs/ai/ai-toolkit)
-- [VS Code Debugging Documentation](https://code.visualstudio.com/docs/editor/debugging)
-- [Model Context Protocol Specification](https://modelcontextprotocol.io/docs/concepts/architecture)
+- [MCP Python SDK Dokumentaatio](https://modelcontextprotocol.io/docs/sdk/python)
+- [Microsoft Foundry Toolkit Laajennusopas](https://code.visualstudio.com/docs/ai/ai-toolkit)
+- [VS Code Virheenkorjauksen dokumentaatio](https://code.visualstudio.com/docs/editor/debugging)
+- [Model Context Protocol Määrittely](https://modelcontextprotocol.io/docs/concepts/architecture)
 
 ---
 
-**🎉 Onneksi olkoon!** Olet suorittanut Lab 3:n onnistuneesti ja osaat nyt luoda, virheenkorjata ja ottaa käyttöön mukautettuja MCP-palvelimia ammattimaisten kehitysprosessien avulla.
+**🎉 Onnittelut!** Olet suorittanut moduulin 3 ja osaat nyt luoda, virheenkorjata ja ottaa käyttöön räätälöityjä MCP-palvelimia ammattimaisten kehitystyönkulkujen mukaisesti.
 
 ### 🔜 Jatka seuraavaan moduuliin
 
-Valmis soveltamaan MCP-taitojasi käytännön kehitystyön työnkulkuun? Jatka **[Moduuliin 4: Käytännön MCP-kehitys – Mukautettu GitHub Clone Server](../lab4/README.md)**, jossa:
-- Rakennat tuotantovalmiin MCP-palvelimen, joka automatisoi GitHub-repositorion hallintaa
-- Toteutat GitHub-repositorion kloonaustoiminnallisuuden MCP:n avulla
-- Integroi mukautetut MCP-palvelimet VS Coden ja GitHub Copilot Agent Moden kanssa
-- Testaat ja otat käyttöön mukautetut MCP-palvelimet tuotantoympäristöissä
-- Opit käytännön työnkulkuautomaatioita kehittäjille
+Valmis soveltamaan MCP-taitojasi todellisen kehitystyönkulun parissa? Jatka **[Moduuliin 4: Käytännön MCP-kehitys - Räätälöity GitHub-klonauspalvelin](../lab4/README.md)**, jossa:
+- Rakennat tuotantovalmiin MCP-palvelimen, joka automatisoi GitHub-repositorion toiminnot
+- Toteutat GitHub-repositorion kloonaustoiminnallisuuden MCP:n kautta
+- Integroi räätälöidyt MCP-palvelimet VS Codeen ja GitHub Copilot Agent Modeen
+- Testaa ja ota käyttöön räätälöityjä MCP-palvelimia tuotantoympäristöissä
+- Opit käytännön työnkulkujen automatisointia kehittäjille
 
 ---
 

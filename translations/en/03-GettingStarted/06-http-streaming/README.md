@@ -2,7 +2,15 @@
 
 This chapter provides a comprehensive guide to implementing secure, scalable, and real-time streaming with the Model Context Protocol (MCP) using HTTPS. It covers the motivation for streaming, the available transport mechanisms, how to implement streamable HTTP in MCP, security best practices, migration from SSE, and practical guidance for building your own streaming MCP applications. 
 
-> **Looking ahead:** this lesson describes Streamable HTTP under **MCP Specification 2025-11-25**, where a session is established during `initialize` and pinned with an `Mcp-Session-Id` header. The `2026-07-28` release candidate removes the handshake and session ID entirely, making every request self-contained and routable to any server instance without sticky sessions. See [What's Changing in MCP: The 2026-07-28 Release Candidate](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md) for details.
+> [!WARNING]
+> The implementation examples in this lesson target **MCP Specification
+> `2025-11-25`** and demonstrate the legacy `initialize` handshake,
+> `Mcp-Session-Id`, GET event stream, and resumability model. MCP `2026-07-28`
+> removes those features. Current Streamable HTTP requests are self-contained
+> POST requests with `MCP-Protocol-Version` and `Mcp-Method` headers, plus
+> `Mcp-Name` where required. See
+> [What's Changed in MCP: The 2026-07-28 Specification](../../01-CoreConcepts/mcp-2026-07-28.md)
+> before using these examples in a new implementation.
 
 ## Transport Mechanisms and Streaming in MCP
 
@@ -13,22 +21,24 @@ This section explores the different transport mechanisms available in MCP and th
 A transport mechanism defines how data is exchanged between the client and server. MCP supports multiple transport types to suit different environments and requirements:
 
 - **stdio**: Standard input/output, suitable for local and CLI-based tools. Simple but not suitable for web or cloud.
-- **SSE (Server-Sent Events)**: Allows servers to push real-time updates to clients over HTTP. Good for web UIs, but limited in scalability and flexibility. As of MCP Specification 2025-06-18, the standalone SSE (Server-Sent Events) transport has been deprecated and replaced by "Streamable HTTP" transport.
+- **HTTP+SSE**: The legacy remote transport, deprecated in MCP `2025-03-26`
+    and replaced by Streamable HTTP. Do not use it for new implementations.
 - **Streamable HTTP**: Modern HTTP-based streaming transport, supporting notifications and better scalability. Recommended for most production and cloud scenarios.
 
 ### Comparison Table
 
 Have a look at the comparison table below to understand the differences between these transport mechanisms:
 
-| Transport         | Real-time Updates | Streaming | Scalability | Use Case                |
-|-------------------|------------------|-----------|-------------|-------------------------|
-| stdio             | No               | No        | Low         | Local CLI tools         |
-| SSE               | Yes              | Yes       | Medium      | Web, real-time updates  |
-| Streamable HTTP   | Yes              | Yes       | High        | Cloud, multi-client     |
+| Transport | Status | Notifications | Typical use |
+|---|---|---|---|
+| stdio | Current | Yes | Local subprocesses |
+| HTTP+SSE | Deprecated | Yes | Legacy remote implementations |
+| Streamable HTTP | Current | Yes | Remote and cloud servers |
 
 > **Tip:** Choosing the right transport impacts performance, scalability, and user experience. **Streamable HTTP** is recommended for modern, scalable, and cloud-ready applications.
 
-Note the transports stdio and SSE that you were shown in the previous chapters and how streamable HTTP is the transport covered in this chapter.
+The standard transports are stdio and Streamable HTTP. HTTP+SSE appears in
+older examples only.
 
 ## Streaming: Concepts and Motivation
 
@@ -229,13 +239,95 @@ In MCP, streaming is not about sending the main response in chunks, but about se
 
 The main result is still sent as a single response. However, notifications can be sent as separate messages during processing and thereby update the client in real time. The client must be able to handle and display these notifications.
 
+### Optional exercise: connect to a hosted MCP server
+
+You can also use Streamable HTTP without running a local server. This example
+connects to [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp),
+discovers its tools, and searches for public MCP documentation using the same
+Python SDK as the [local client](../../../../03-GettingStarted/06-http-streaming/solution/python/client.py).
+
+Parallel's anonymous endpoint requires no account or API key. Free access is
+rate limited. Running this script sends the search queries, objective, and a
+random session identifier to Parallel. The service also offers `web_fetch`,
+which sends requested URLs and any supplied context to Parallel. Use public
+information for this exercise; see its [terms](https://parallel.ai/customer-terms)
+and [privacy policy](https://parallel.ai/privacy-policy).
+
+With Python 3.10 or newer and a virtual environment activated, install the SDK:
+
+```sh
+python -m pip install "mcp>=1.10,<2"
+```
+
+Save this as `hosted_search.py` and run `python hosted_search.py`:
+
+```python
+import asyncio
+from uuid import uuid4
+
+from mcp import ClientSession
+from mcp.client.streamable_http import streamablehttp_client
+
+
+async def main() -> None:
+    session_id = str(uuid4())
+    async with streamablehttp_client("https://search.parallel.ai/mcp") as (
+        read_stream,
+        write_stream,
+        _,
+    ):
+        async with ClientSession(read_stream, write_stream) as session:
+            await session.initialize()
+            tools = await session.list_tools()
+            print("Available tools:", [tool.name for tool in tools.tools])
+
+            result = await session.call_tool(
+                "web_search",
+                {
+                    "objective": "Find the official MCP Streamable HTTP documentation",
+                    "search_queries": ["MCP Streamable HTTP documentation"],
+                    "session_id": session_id,
+                },
+            )
+            if result.isError:
+                raise RuntimeError(f"Search tool failed: {result.content}")
+            for block in result.content:
+                if block.type == "text":
+                    print(block.text)
+
+
+async def run() -> None:
+    await asyncio.wait_for(main(), timeout=60)
+
+
+if __name__ == "__main__":
+    asyncio.run(run())
+```
+
+Expect discovery to include `web_search` and `web_fetch`, followed by a search
+response containing source URLs and excerpts. Results can vary or be empty.
+The script checks `isError` because a tool can fail even when the HTTP request
+succeeds. If access is rate limited, wait before trying again. Reuse the same
+`session_id` if you extend the script with related search or fetch calls.
+
+Streamable HTTP permits both JSON and SSE responses; this server can return a
+complete JSON result without progress notifications. The SDK handles the
+transport. Continue with the local example below to learn about notifications.
+This optional script makes one explicit search and closes its connection when
+it finishes. If you later expose these tools to an agent, the agent may invoke
+them during its work; treat retrieved web text as untrusted data.
+
 ## What is a Notification?
 
 We said "Notification", what does that mean in the context of MCP?
 
-A notification is a message sent from the server to the client to inform about progress, status, or other events during a long-running operation. Notifications improve transparency and user experience.
+A notification is a JSON-RPC message that does not have an `id` and does not
+receive a response. MCP uses notifications for progress, cancellation, and
+other one-way events.
 
-For example, a client is supposed to send a notification once the initial handshake with the server has been made.
+In MCP `2025-11-25`, a client sends `notifications/initialized` after the
+initialization handshake. MCP `2026-07-28` has no initialization handshake, so
+this notification is legacy behavior.
 
 A notification looks like so as a JSON message:
 
@@ -249,11 +341,16 @@ A notification looks like so as a JSON message:
 }
 ```
 
-Notifications belongs to a topic in MCP referred to as ["Logging"](https://modelcontextprotocol.io/specification/draft/server/utilities/logging).
+Logging is one feature that uses notifications; notifications themselves are a
+general JSON-RPC message type.
 
-> **Deprecation notice:** the `2026-07-28` MCP specification release candidate marks the Logging primitive as deprecated in favor of `stderr` for stdio transports and OpenTelemetry for structured observability. Logging continues to work in `2025-11-25` and for at least a year after any formal deprecation. See [What's Changing in MCP: The 2026-07-28 Release Candidate](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> **Deprecated in MCP `2026-07-28`:** the Logging feature remains available
+> for compatibility but is eligible for removal in the first specification
+> revision released on or after July 28, 2027. New implementations should use
+> `stderr` with stdio or OpenTelemetry for structured observability.
 
-To get logging to work, the server needs to enable it as feature/capability like so:
+For a legacy `2025-11-25` implementation, the server enables the Logging
+capability as follows:
 
 ```json
 {
@@ -387,6 +484,7 @@ await client.InitializeAsync();
 // Now the client will process notifications through the MessageHandler
 ```
 
+
 In this .NET example, the `MessageHandler` function checks if the incoming message is a notification. If it is, it prints the notification; otherwise, it processes it as a regular server message. The `ClientSession` is initialized with the message handler via the `ClientSessionOptions`.
 
 To enable notifications, ensure your server uses a streaming transport (like `streamable-http`) and your client implements a message handler to process notifications.
@@ -424,7 +522,6 @@ Here's how you can implement progress notifications in MCP:
 - **On the client:** Implement a message handler that listens for and displays notifications as they arrive. This handler distinguishes between notifications and the final result.
 
 **Server Example:**
-
 
 #### Python
 

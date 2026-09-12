@@ -1,15 +1,15 @@
 # Paginering en Grote Resultaatsets in MCP
 
-Wanneer je MCP-server grote datasets verwerkt - of het nu duizenden bestanden, databasegegevens, of zoekresultaten zijn - heb je paginering nodig om het geheugen efficiënt te beheren en responsieve gebruikerservaringen te bieden. Deze gids behandelt hoe je paginering implementeert en gebruikt in MCP.
+Wanneer je MCP-server grote datasets verwerkt - of het nu gaat om duizenden bestanden, database records of zoekresultaten - heb je paginering nodig om het geheugen efficiënt te beheren en responsieve gebruikerservaringen te bieden. Deze gids behandelt hoe je paginering in MCP implementeert en gebruikt.
 
 ## Waarom Paginering Belangrijk Is
 
-Zonder paginering kunnen grote reacties leiden tot:
+Zonder paginering kunnen grote antwoorden leiden tot:
 
-- **Geheugenuitputting** - Het tegelijk laden van miljoenen records
+- **Geheugentekort** - Miljoenen records tegelijk laden
 - **Trage responstijden** - Gebruikers wachten terwijl alle data wordt geladen
-- **Timeoutfouten** - Verzoeken overschrijden de time-out limieten
-- **Slechte AI-prestaties** - LLM's hebben moeite met enorme contexten
+- **Timeout fouten** - Verzoeken overschrijden timeout limieten
+- **Slechte AI-prestaties** - LLM's worstelen met enorme contexten
 
 MCP gebruikt **cursor-gebaseerde paginering** voor betrouwbare, consistente navigatie door resultaatsets.
 
@@ -17,9 +17,9 @@ MCP gebruikt **cursor-gebaseerde paginering** voor betrouwbare, consistente navi
 
 ## Hoe MCP Paginering Werkt
 
-### Het Cursor Concept
+### Het Cursorconcept
 
-Een **cursor** is een ondoorzichtig tekenreeks dat je positie in een resultaatset markeert. Zie het als een bladwijzer in een lang boek.
+Een **cursor** is een ondoorzichtige string die je positie in een resultaatset markeert. Zie het als een bladwijzer in een lang boek.
 
 ```mermaid
 sequenceDiagram
@@ -27,24 +27,25 @@ sequenceDiagram
     participant Server
     
     Client->>Server: tools/list (geen cursor)
-    Server-->>Client: tools [1-10], nextCursor: "abc123"
+    Server-->>Client: tools [1-10], volgendeCursor: "abc123"
     
     Client->>Server: tools/list (cursor: "abc123")
-    Server-->>Client: tools [11-20], nextCursor: "def456"
+    Server-->>Client: tools [11-20], volgendeCursor: "def456"
     
     Client->>Server: tools/list (cursor: "def456")
-    Server-->>Client: tools [21-25], nextCursor: null (einde)
+    Server-->>Client: tools [21-25], volgendeCursor: null (einde)
 ```
-### Paginering in MCP Methodes
 
-Deze MCP-methodes ondersteunen paginering:
+### Paginering in MCP Methoden
 
-| Methode | Retourneert | Cursor Ondersteuning |
-|---------|-------------|---------------------|
+Deze MCP-methoden ondersteunen paginering:
+
+| Methode | Retourneert | Cursorondersteuning |
+|--------|------------|---------------------|
 | `tools/list` | Tooldefinities | ✅ |
-| `resources/list` | Resource-definities | ✅ |
-| `prompts/list` | Prompt-definities | ✅ |
-| `resources/templates/list` | Resource-templates | ✅ |
+| `resources/list` | Resourcedefinities | ✅ |
+| `prompts/list` | Promptdefinities | ✅ |
+| `resources/templates/list` | Resourcetemplates | ✅ |
 
 ---
 
@@ -71,7 +72,7 @@ PAGE_SIZE = 10
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     """List tools with pagination support."""
     
-    # Decodeer cursor om startindex te krijgen
+    # Decodeer de cursor om de startindex te krijgen
     start_index = 0
     if cursor:
         try:
@@ -79,11 +80,11 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
         except ValueError:
             start_index = 0
     
-    # Haal pagina met resultaten op
+    # Haal een pagina met resultaten op
     end_index = min(start_index + PAGE_SIZE, len(ALL_TOOLS))
     page_tools = ALL_TOOLS[start_index:end_index]
     
-    # Bereken volgende cursor
+    # Bereken de volgende cursor
     next_cursor = None
     if end_index < len(ALL_TOOLS):
         next_cursor = str(end_index)
@@ -121,7 +122,7 @@ server.setRequestHandler(ListToolsResultSchema, async (request) => {
     startIndex = parseInt(request.params.cursor, 10) || 0;
   }
   
-  // Haal pagina resultaten op
+  // Verkrijg pagina met resultaten
   const endIndex = Math.min(startIndex + PAGE_SIZE, ALL_TOOLS.length);
   const pageTools = ALL_TOOLS.slice(startIndex, endIndex);
   
@@ -243,15 +244,15 @@ class PaginatedToolIterator:
         self.exhausted = False
     
     async def __anext__(self):
-        # Terugkeren uit buffer indien beschikbaar
+        # Retourneer uit buffer indien beschikbaar
         if self.buffer:
             return self.buffer.pop(0)
         
-        # Controleren of we alle pagina's hebben uitgeput
+        # Controleer of we alle pagina's hebben doorlopen
         if self.exhausted:
             raise StopAsyncIteration
         
-        # Volgende pagina ophalen
+        # Haal volgende pagina op
         result = await self.session.list_tools(cursor=self.cursor)
         self.buffer = list(result.tools)
         self.cursor = result.nextCursor
@@ -267,7 +268,7 @@ class PaginatedToolIterator:
     def __aiter__(self):
         return self
 
-# Gebruik - geheugen-efficiënt voor grote datasets
+# Gebruik - geheugenefficiënt voor grote datasets
 async for tool in PaginatedToolIterator(session):
     process_tool(tool)
 ```
@@ -292,12 +293,12 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
     directory = "/data/files"
     all_files = sorted(os.listdir(directory))
     
-    # Decodeer cursor (bestandsindex)
+    # Decodeer cursor (bestand index)
     start_index = int(cursor) if cursor else 0
     page_size = 20
     end_index = min(start_index + page_size, len(all_files))
     
-    # Maak een lijst met bronnen voor deze pagina
+    # Maak resource lijst voor deze pagina
     resources = []
     for filename in all_files[start_index:end_index]:
         filepath = os.path.join(directory, filename)
@@ -307,7 +308,7 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
             mimeType="application/octet-stream"
         ))
     
-    # Bereken de volgende cursor
+    # Bereken volgende cursor
     next_cursor = str(end_index) if end_index < len(all_files) else None
     
     return ListResourcesResult(
@@ -318,29 +319,29 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ---
 
-## Strategieën voor Cursorontwerp
+## Cursorontwerpstrategieën
 
-### Strategie 1: Index-Gebaseerd (Eenvoudig)
+### Strategie 1: Index-gebaseerd (Eenvoudig)
 
 ```python
 # Cursor is gewoon de index
 cursor = "50"  # Begin bij item 50
 ```
 
-**Voordelen:** Eenvoudig, stateloos  
+**Voordelen:** Eenvoudig, stateless
 **Nadelen:** Resultaten kunnen verschuiven als items worden toegevoegd/verwijderd
 
-### Strategie 2: ID-Gebaseerd (Stabiel)
+### Strategie 2: ID-gebaseerd (Stabiel)
 
 ```python
-# Cursus is de laatst geziene ID
+# Cursor is de laatst geziene ID
 cursor = "item_abc123"  # Begin na dit item
 ```
 
-**Voordelen:** Stabiel zelfs als items veranderen  
-**Nadelen:** Vereist geordende ID's
+**Voordelen:** Stabiel, ook als items veranderen
+**Nadelen:** Vereist geordende IDs
 
-### Strategie 3: Geëncodeerde Staat (Complex)
+### Strategie 3: Geëncodeerde Status (Complex)
 
 ```python
 import base64
@@ -360,12 +361,12 @@ cursor = encode_cursor({
 })
 ```
 
-**Voordelen:** Kan complexe staat coderen  
-**Nadelen:** Complexer, grotere cursor-strings
+**Voordelen:** Kan complexe staten coderen
+**Nadelen:** Complexer, grotere cursorstrings
 
 ---
 
-## Beste Praktijken
+## Best Practices
 
 ### 1. Kies Passende Paginagroottes
 
@@ -376,7 +377,7 @@ PAGE_SIZE_MEDIUM_ITEMS = 20   # Rijkere objecten
 PAGE_SIZE_LARGE_ITEMS = 5     # Complexe inhoud
 ```
 
-### 2. Ga Sluw om met Ongeldige Cursors
+### 2. Ga Om met Ongeldige Cursors op een Vriendelijke Manier
 
 ```python
 @app.list_tools()
@@ -390,13 +391,13 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
     # ...
 ```
 
-### 3. Voeg Totaaltelling toe (Optioneel)
+### 3. Voeg Totaal Aantal Toe (Optioneel)
 
 ```python
 return ListToolsResult(
     tools=page_tools,
     nextCursor=next_cursor,
-    # Sommige implementaties bevatten totaal voor UI-voortgang
+    # Sommige implementaties bevatten totaal voor voortgang in de gebruikersinterface
     _meta={"total": len(ALL_TOOLS)}
 )
 ```
@@ -405,7 +406,7 @@ return ListToolsResult(
 
 ```python
 async def test_pagination():
-    # Lege resultaatset
+    # Lege resultaatsset
     result = await session.list_tools()
     assert result.tools == []
     assert result.nextCursor is None
@@ -416,24 +417,24 @@ async def test_pagination():
     
     # Ongeldige cursor
     result = await session.list_tools(cursor="invalid")
-    assert result.tools  # Zou de eerste pagina moeten retourneren
+    assert result.tools  # Moet eerste pagina retourneren
 ```
 
 ---
 
-## Veelvoorkomende Valkuilen
+## Veel Voorkomende Valkuilen
 
-### ❌ Alle Resultaten Teruggeven en Daarna Pagineren aan de Clientzijde
+### ❌ Alle Resultaten Terugdraaien en Dan Client-Side Pagineren
 
 ```python
 # SLECHT: Laadt alles in het geheugen
 @app.list_tools()
 async def list_tools() -> ListToolsResult:
-    all_tools = load_all_tools()  # 1 miljoen gereedschappen!
+    all_tools = load_all_tools()  # 1 miljoen tools!
     return ListToolsResult(tools=all_tools)
 ```
 
-### ✅ Pagineer bij de Datasource
+### ✅ Pagineer aan de Databron
 
 ```python
 # GOED: Laadt alleen wat nodig is
@@ -449,20 +450,20 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 ## Wat Nu?
 
 - [Module 5.14 - Context Engineering](../../05-AdvancedTopics/mcp-contextengineering/README.md)
-- [Module 8 - Beste Praktijken](../../08-BestPractices/README.md)
+- [Module 8 - Best Practices](../../08-BestPractices/README.md)
 - [3.8 - Testen van Je MCP Server](../../03-GettingStarted/08-testing/README.md)
 
 ---
 
 ## Aanvullende Bronnen
 
-- [MCP Specificatie - Paginering](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [Cursor-gebaseerde Paginering Uitgelegd](https://slack.engineering/evolving-api-pagination-at-slack/)
-- [Python SDK pagineringstests](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+- [MCP Specificatie - Paginering](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [Cursor-Gebaseerde Paginering Uitgelegd](https://slack.engineering/evolving-api-pagination-at-slack/)
+- [Python SDK paginering tests](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Disclaimer**:
-Dit document is vertaald met behulp van de AI-vertalingsservice [Co-op Translator](https://github.com/Azure/co-op-translator). Hoewel we streven naar nauwkeurigheid, kan het voorkomen dat automatische vertalingen fouten of onjuistheden bevatten. Het oorspronkelijke document in de oorspronkelijke taal geldt als de gezaghebbende bron. Voor cruciale informatie wordt professionele menselijke vertaling aanbevolen. Wij zijn niet aansprakelijk voor eventuele misverstanden of verkeerde interpretaties die voortkomen uit het gebruik van deze vertaling.
+Dit document is vertaald met behulp van de AI vertaaldienst [Co-op Translator](https://github.com/Azure/co-op-translator). Hoewel we streven naar nauwkeurigheid, dient u er rekening mee te houden dat geautomatiseerde vertalingen fouten of onnauwkeurigheden kunnen bevatten. Het originele document in de oorspronkelijke taal moet worden beschouwd als de gezaghebbende bron. Voor kritieke informatie wordt professionele menselijke vertaling aanbevolen. Wij zijn niet aansprakelijk voor eventuele misverstanden of verkeerde interpretaties die voortvloeien uit het gebruik van deze vertaling.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

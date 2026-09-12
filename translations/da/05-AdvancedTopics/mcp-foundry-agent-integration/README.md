@@ -1,41 +1,41 @@
 # Model Context Protocol (MCP) Integration med Microsoft Foundry
 
-Denne guide viser, hvordan du integrerer Model Context Protocol (MCP) servere med Microsoft Foundry agenter, hvilket muliggør kraftfuld værktøjsorkestrering og virksomheders AI-funktionaliteter.
+Denne vejledning viser, hvordan du integrerer Model Context Protocol (MCP)-servere med Microsoft Foundry-agenter, hvilket muliggør kraftfuld værktøjsorkestrering og virksomheders AI-muligheder.
 
 ## Introduktion
 
-Model Context Protocol (MCP) er en åben standard, der gør det muligt for AI-applikationer sikkert at forbinde til eksterne datakilder og værktøjer. Når det integreres med Microsoft Foundry, tillader MCP agenter at få adgang til og interagere med forskellige eksterne tjenester, API'er og datakilder på en standardiseret måde.
+Model Context Protocol (MCP) er en åben standard, som gør det muligt for AI-applikationer sikkert at forbinde til eksterne datakilder og værktøjer. Når det integreres med Microsoft Foundry, giver MCP agenter adgang til og mulighed for at interagere med forskellige eksterne tjenester, API'er og datakilder på en standardiseret måde.
 
-Denne integration kombinerer fleksibiliteten i MCP's værktøjsøkosystem med Microsoft Foundrys robuste agentrammeværk, hvilket giver virksomhedens AI-løsninger med omfattende tilpasningsmuligheder.
+Denne integration kombinerer fleksibiliteten i MCP's værktøjsøkosystem med Microsoft Foundrys robuste agentrammeværk og leverer AI-løsninger på virksomhedsniveau med omfattende tilpasningsmuligheder.
 
-**Bemærk:** Hvis du ønsker at bruge MCP i Microsoft Foundry Agent Service, understøttes p.t. kun følgende regioner: westus, westus2, uaenorth, southindia og switzerlandnorth
+**Bemærk:** Hvis du ønsker at bruge MCP i Microsoft Foundry Agent Service, understøttes i øjeblikket kun følgende regioner: westus, westus2, uaenorth, southindia og switzerlandnorth
 
 ## Læringsmål
 
-Når du er færdig med denne guide, vil du kunne:
+Når du er færdig med denne vejledning, vil du kunne:
 
 - Forstå Model Context Protocol og dets fordele
-- Sætte MCP servere op til brug med Microsoft Foundry agenter
-- Oprette og konfigurere agenter med MCP værktøjsintegration
-- Implementere praktiske eksempler ved brug af rigtige MCP servere
-- Håndtere værktøjsresponser og kildehenvisninger i agent-samtaler
+- Opsætte MCP-servere til brug med Microsoft Foundry-agenter
+- Oprette og konfigurere agenter med MCP-værktøjsintegration
+- Implementere praktiske eksempler med rigtige MCP-servere
+- Håndtere værktøjssvar og citater i agent-samtaler
 
 ## Forudsætninger
 
-Inden du begynder, skal du sikre dig, at du har:
+Før du går i gang, skal du sikre dig, at du har:
 
 - Et Azure-abonnement med adgang til Microsoft Foundry
 - Python 3.10+ eller .NET 8.0+
 - Azure CLI installeret og konfigureret
-- De nødvendige tilladelser til at oprette AI-ressourcer
+- Passende tilladelser til at oprette AI-ressourcer
 
 ## Hvad er Model Context Protocol (MCP)?
 
-Model Context Protocol er en standardiseret måde for AI-applikationer at forbinde til eksterne datakilder og værktøjer. Centrale fordele inkluderer:
+Model Context Protocol er en standardiseret metode til, at AI-applikationer kan forbinde til eksterne datakilder og værktøjer. Vigtige fordele inkluderer:
 
-- **Standardiseret Integration**: Ensartet grænseflade på tværs af forskellige værktøjer og tjenester
-- **Sikkerhed**: Sikre autentifikations- og autorisationsmekanismer
-- **Fleksibilitet**: Understøttelse af forskellige datakilder, API’er og brugerdefinerede værktøjer
+- **Standardiseret integration**: Konsistent grænseflade på tværs af forskellige værktøjer og tjenester
+- **Sikkerhed**: Sikker autentificering og autorisationsmekanismer
+- **Fleksibilitet**: Understøttelse af forskellige datakilder, API'er og brugerdefinerede værktøjer
 - **Udvidelsesmuligheder**: Let at tilføje nye funktioner og integrationer
 
 ## Opsætning af MCP med Microsoft Foundry
@@ -103,7 +103,7 @@ mcp_tool = McpTool(
 with project_client:
     agents_client = project_client.agents
 
-    # Opret en ny agent med MCP-værktøjer
+    # Opret en ny agent med MCP værktøjer
     agent = agents_client.create_agent(
         model="Your AOAI Model Deployment",
         name="my-mcp-agent",
@@ -125,7 +125,7 @@ with project_client:
     )
     print(f"Created message, ID: {message.id}")
 
-    # Håndter værktøjsgodkendelser og kør agent
+    # Håndter godkendelse af værktøjer og kør agent
     mcp_tool.update_headers("SuperSecret", "123456")
     run = agents_client.runs.create(thread_id=thread.id, agent_id=agent.id, tool_resources=mcp_tool.resources)
     print(f"Created run, ID: {run.id}")
@@ -320,9 +320,9 @@ MCPToolDefinition mcpTool = new(
 );
 ```
 
-## Godkendelse og Headers
+## Autentificering og headers
 
-Begge implementeringer understøtter brugerdefinerede headers til godkendelse:
+Begge implementeringer understøtter brugerdefinerede headers til autentificering:
 
 ### Python
 ```python
@@ -338,40 +338,40 @@ mcpToolResource.UpdateHeader("SuperSecret", "123456");
 ## Fejlfinding af almindelige problemer
 
 ### 1. Forbindelsesproblemer
-- Bekræft at MCP server-URL er tilgængelig
-- Tjek autentifikationsoplysninger
+- Bekræft, at MCP-serverens URL er tilgængelig
+- Kontroller autentificeringsoplysninger
 - Sørg for netværksforbindelse
 
-### 2. Fejl ved værktøjsopkald
+### 2. Fejl ved kald af værktøj
 - Gennemgå værktøjsargumenter og formatering
-- Tjek serverspecifikke krav
+- Tjek server-specifikke krav
 - Implementer korrekt fejlhåndtering
 
-### 3. Ydeevneproblemer
-- Optimer kaldhastigheden til værktøjer
-- Implementer caching hvor relevant
-- Overvåg svartider på serveren
+### 3. Ydelsesproblemer
+- Optimer kaldfrekvens for værktøjer
+- Implementer caching, hvor det er relevant
+- Overvåg serverens svartider
 
 ## Næste skridt
 
-For at forbedre din MCP-integration yderligere:
+For yderligere at forbedre din MCP-integration:
 
 1. **Udforsk brugerdefinerede MCP-servere**: Byg dine egne MCP-servere til proprietære datakilder
-2. **Implementer avanceret sikkerhed**: Tilføj OAuth2 eller brugerdefinerede autentifikationsmekanismer
-3. **Overvågning og analyse**: Implementer logning og overvågning af værktøjsbrug
-4. **Skaler din løsning**: Overvej belastningsbalancering og distribuerede MCP-serverarkitekturer
+2. **Implementer avanceret sikkerhed**: Tilføj OAuth2 eller brugerdefinerede autentificeringsmekanismer
+3. **Overvågning og analysemuligheder**: Implementer logning og overvågning af værktøjsbrug
+4. **Skaler din løsning**: Overvej load balancing og distribuerede MCP-serverarkitekturer
 
 ## Yderligere ressourcer
 
-- [Microsoft Foundry Dokumentation](https://learn.microsoft.com/azure/ai-foundry/)
+- [Microsoft Foundry-dokumentation](https://learn.microsoft.com/azure/ai-foundry/)
 - [Model Context Protocol-eksempler](https://learn.microsoft.com/azure/ai-foundry/agents/how-to/tools/model-context-protocol-samples)
-- [Microsoft Foundry Agents Oversigt](https://learn.microsoft.com/azure/ai-foundry/agents/)
-- [MCP-specifikation](https://spec.modelcontextprotocol.io/)
+- [Microsoft Foundry-agenter oversigt](https://learn.microsoft.com/azure/ai-foundry/agents/)
+- [MCP-specifikation](https://modelcontextprotocol.io/specification/2026-07-28/)
 
 ## Support
 
 For yderligere support og spørgsmål:
-- Gennemgå [Microsoft Foundry dokumentationen](https://learn.microsoft.com/azure/ai-foundry/)
+- Gennemgå [Microsoft Foundry-dokumentationen](https://learn.microsoft.com/azure/ai-foundry/)
 - Tjek [MCP fællesskabsressourcer](https://modelcontextprotocol.io/)
 
 ## Hvad er det næste

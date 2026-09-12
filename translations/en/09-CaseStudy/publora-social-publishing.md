@@ -64,15 +64,23 @@ The lessons below are the transferable part of this case study.
 
 ### Open discovery, authenticated execution
 
-`tools/list` is served without credentials; every `tools/call` requires a token and otherwise returns `401` with a `WWW-Authenticate` header pointing at the protected-resource metadata. (The server also answers an unauthenticated `initialize`, which matters only for clients on protocol versions before `2026-07-28`; that revision removed the handshake entirely.)
+`tools/list` is served without credentials; every `tools/call` requires a token
+and otherwise returns `401` with a `WWW-Authenticate` header pointing at the
+protected-resource metadata. The server's legacy endpoint also answers an
+unauthenticated `initialize` for clients on protocol versions before
+`2026-07-28`; current clients do not use that handshake.
 
-This split matters in practice. Registries, catalogues and clients can introspect the tool surface — names, schemas, annotations — without holding a secret, while nothing can be *executed* anonymously. A server that demands a token for `initialize` is effectively invisible to tooling; a server that allows anonymous `tools/call` is a liability.
+This server-specific split lets registries, catalogues, and clients inspect tool
+names, schemas, and annotations without a secret while preventing anonymous
+execution. Open discovery is a deployment choice, not an MCP requirement; a
+protected deployment may also require authorization for `tools/list`.
 
 ### Registration: dynamic client registration, and what replaces it
 
 The server advertises `/.well-known/oauth-protected-resource` and `/.well-known/oauth-authorization-server`, and supports the authorization-code flow with PKCE (`S256`), refresh tokens, and **dynamic client registration**.
 
-Dynamic registration removes the manual step: without it every client needs a pre-issued `client_id`, which means an out-of-band request to the vendor for each new client.
+Dynamic registration removed the manual step for legacy clients: without it,
+each client needed a pre-issued `client_id` from the vendor.
 
 Treat this as compatibility behaviour rather than as the design to copy. The `2026-07-28` revision of the specification deprecates dynamic client registration in favour of Client ID Metadata Documents, where the client hosts a metadata document at a stable HTTPS URL and that URL *is* the `client_id`. DCR keeps working for now, but a server being built today should plan for CIMD and keep DCR only for older clients.
 
@@ -108,7 +116,9 @@ This turned out to be one of the most useful details of the whole surface. Revie
 
 - The publishing step moved from a browser to the same conversation where the content is written, and a draft-first habit keeps a human in the loop. Be precise about what that is: a draft is a convention, not a boundary. The same credential can schedule or publish, so anyone who needs a real approval gate has to enforce it outside the tool surface — separate credentials, or a policy layer in front of the server.
 - Per-network differences — media requirements, threading, reply controls — are handled once in the server instead of in every agent that talks to it.
-- The same server backs several MCP clients without per-client work, because discovery is open and registration is dynamic.
+- The same server backs several MCP clients without pre-issued credentials.
+    Current clients can use Client ID Metadata Documents; DCR remains a fallback
+    for older clients.
 - The design constraints above were shaped by connector-directory reviews as much as by users: annotations, OAuth and a safe test target were each required by at least one of them.
 
 ## References
@@ -116,7 +126,7 @@ This turned out to be one of the most useful details of the whole surface. Revie
 - [Publora MCP Server (source)](https://github.com/publora/mcp-server)
 - [Publora API and MCP documentation](https://docs.publora.com)
 - [MCP Registry entry: `com.publora/mcp-server`](https://registry.modelcontextprotocol.io/v0/servers?search=com.publora/mcp-server)
-- [MCP specification — Authorization](https://modelcontextprotocol.io/specification/draft/basic/authorization)
+- [MCP specification — Authorization](https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization)
 - [MCP specification — Tool annotations](https://modelcontextprotocol.io/docs/concepts/tools)
 
 ## What's Next

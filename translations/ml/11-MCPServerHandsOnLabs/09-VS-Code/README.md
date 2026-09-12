@@ -1,29 +1,35 @@
-# VS Code ഇന്റഗ്രേഷൻ
+# VS കോഡ് ഇന്റഗ്രേഷൻ
 
-## 🎯 ഈ ലാബ് ഉൾക്കൊള്ളുന്നത്
+> [!NOTE]
+> ഈ ലാബിലെ `initializationOptions` ക്രമീകരണങ്ങൾ സാംപിൾ MCP `2025-11-25` ഹാൻഡ്‌ഷേക്ക് ലക്ഷ്യമിടുന്നു. MCP `2026-07-28` ആരംഭ ഹാൻഡ്‌ഷേക്ക് നീക്കം ചെയുന്നു;
+> ഈ സാംപിൾ മാറ്റുമ്പോൾ പർ-റിക്വസ്റ്റ് മെറ്റാഡേറ്റയും `server/discover` സപ്പോർട്ട് ചെയ്യുന്ന ഹോസ്റ്റ്, SDK ഉപയോഗിക്കുക.
+> 
+> 
 
-ഈ ലാബ് നിങ്ങളുടെ MCP സെർവറെ VS Code-യുമായി ഇന്റഗ്രേറ്റ് ചെയ്ത് AI ചാറ്റ് വഴി സ്വാഭാവിക ഭാഷാ ക്വെറിയുകൾ സാധ്യമാക്കുന്നതിന് സമഗ്ര മാർഗ്ഗനിർദ്ദേശം നൽകുന്നു. MCP ഉപയോഗത്തിന് അനുയോജ്യമായ രീതിയിൽ VS Code ക്രമീകരിക്കുന്നതും, സെർവർ കണക്ഷനുകൾ ഡീബഗ് ചെയ്യുന്നതും, AI സഹായത്തോടെ ഡാറ്റാബേസ് ഇടപാടുകളുടെ പൂർണ്ണശക്തി പ്രയോജനപ്പെടുത്തുന്നതും നിങ്ങൾക്ക് പഠിക്കാം.
+## 🎯 ഈ ലാബിൽ എന്താണ് ഉൾക്കൊള്ളുന്നത്
+
+നിങ്ങളുടെ MCP സർവർ VS കോഡുമായി ഇന്റഗ്രേറ്റ് ചെയ്ത് AI ചാറ്റിലൂടെ സ്വാഭാവിക ഭാഷാ ചോദിച്ചെങ്കിൽ സംവിധാനം പ്രാപ്തമാക്കുന്നതിന് ഈ ലാബ് സമഗ്ര മാർഗനിർദേശം നൽകുന്നു. MCP ഉപയോഗത്തിന് ഏറ്റവും ഉത്തമമായ രീതിയിൽ VS കോഡ് ക്രമീകരിക്കൽ, സർവർ കണക്ഷൻ ഡീബഗ് ചെയ്യൽ, AI സഹായത്തോടെ ഡാറ്റാബേസ് אינറാക്ഷനുകൾ സമ്പൂർണ്ണമായി ഉപയോഗിക്കുന്നത് പഠിക്കും.
 
 ## അവലോകനം
 
-VS Code-യുടെ MCP ഇന്റഗ്രേഷൻ ഡെവലപ്പർമാർ ഡാറ്റാബേസുകളുമായി, API-കളുമായി സ്വാഭാവിക ഭാഷയിലൂടെ ഇടപഴകുന്ന രീതിയിൽ വിപ്ലവം സൃഷ്ടിക്കുന്നു. നിങ്ങളുടെ റീട്ടെയിൽ MCP സെർവറെ VS Code ചാറ്റുമായി ബന്ധിപ്പിച്ച്, conversational AI ഉപയോഗിച്ച് വിൽപ്പന ഡാറ്റ, ഉൽപ്പന്ന കാറ്റലോഗുകൾ, ബിസിനസ് അനലിറ്റിക്സ് എന്നിവയുടെ ബുദ്ധിമുട്ടില്ലാത്ത ക്വെറിയിംഗ് സാധ്യമാക്കുന്നു.
+VS കോഡിന്റെ MCP ഇന്റഗ്രേഷൻ, ഡെവലപ്പർമാർ സ്വാഭാവിക ഭാഷയിലൂടെ ഡാറ്റാബേസുകളും API കളും സാധാരണ ഉപയോഗിക്കാനുള്ള രീതിയെ മാറ്റിമറിക്കുന്നു. നിങ്ങളുടെ റീട്ടെയിൽ MCP സർവർ VS കോഡ് ചാറ്റുമായി ബന്ധിപ്പിച്ചതുവഴി വിറ്റുന്നപ്പോൾ ഡാറ്റ, ഉൽപ്പന്ന പട്ടികകൾ, ബിസിനസ് അനലിറ്റിക്സ് എന്നിവ ചാറ്റ്ബോട്ടിലൂടെ ബുദ്ധിമുട്ടില്ലാതെ ചോദിക്കാനാകും.
 
-ഈ ഇന്റഗ്രേഷൻ ഡെവലപ്പർമാർക്ക് "ഈ മാസം ഏറ്റവും കൂടുതൽ വിൽപ്പനയുള്ള ഉൽപ്പന്നങ്ങൾ കാണിക്കൂ" അല്ലെങ്കിൽ "90 ദിവസമായി വാങ്ങാത്ത ഉപഭോക്താക്കളെ കണ്ടെത്തൂ" പോലുള്ള ചോദ്യങ്ങൾ ചോദിച്ച് SQL ക്വെറികൾ എഴുതാതെ ഘടനാപരമായ ഡാറ്റാ പ്രതികരണങ്ങൾ ലഭിക്കാനാകും.
+"ഈ മാസം ഏറ്റവും കൂടുതൽ വിറ്റുവന്ന ഉൽപ്പന്നങ്ങൾ കാണിക്കൂ" അല്ലെങ്കിൽ "90 ദിവസംക്കുള്ളിൽ വാങ്ങാത്ത ഉപഭോക്താക്കളെ കണ്ടെത്തൂ" പോലുള്ള ചോദനകൾക്കുള്ള കഥകൾ സ്‌ട്രക്ചർ ചെയ്ത ഡാറ്റ ലഭിക്കും, SQL എഴുതാതെ തന്നെ.
 
 ## പഠന ലക്ഷ്യങ്ങൾ
 
-ഈ ലാബ് പൂർത്തിയാക്കിയാൽ, നിങ്ങൾക്ക് കഴിയും:
+ഈ ലാബ് പൂർത്തിയാക്കിയപ്പോൾ നിങ്ങൾക്ക് സാധിക്കും:
 
-- **കൺഫിഗർ ചെയ്യുക** നിങ്ങളുടെ റീട്ടെയിൽ സെർവറിനായി VS Code MCP ക്രമീകരണങ്ങൾ
-- **ഇന്റഗ്രേറ്റ് ചെയ്യുക** MCP സെർവറുകൾ VS Code AI ചാറ്റ് ഫംഗ്ഷണാലിറ്റിയുമായി
-- **ഡീബഗ് ചെയ്യുക** MCP സെർവർ കണക്ഷനുകൾ, പ്രശ്നങ്ങൾ പരിഹരിക്കുക
-- **ഓപ്റ്റിമൈസ് ചെയ്യുക** സ്വാഭാവിക ഭാഷാ ക്വെറി പാറ്റേണുകൾ മികച്ച ഫലങ്ങൾക്ക്
-- **കസ്റ്റമൈസ് ചെയ്യുക** MCP ഡെവലപ്പ്മെന്റിനായി VS Code വർക്ക്സ്പേസ്
-- **ഡിപ്ലോയ് ചെയ്യുക** സങ്കീർണ്ണ സാഹചര്യങ്ങൾക്ക് മൾട്ടി-സെർവർ കോൺഫിഗറേഷനുകൾ
+- നിങ്ങളുടെ റീട്ടെയിൽ സർവറിനായി VS കോഡ് MCP ക്രമീകരിക്കുന്നതിൽ **സജ്ജമാക്കുക**
+- MCP സർവറുകളെ VS കോഡ് AI ചാറ്റ് പ്രവർത്തനത്തോടൊത്ത് **ഇന്റഗ്രേറ്റ് ചെയ്യുക**
+- MCP സർവർ കണക്ഷനുകൾ ഡീബഗ് ചെയ്ത് പ്രശ്നങ്ങൾ **പരിശോധിക്കുക**
+- മികച്ച ഫലങ്ങൾക്ക് സ്വാഭാവിക ഭാഷാ ചോദിക്കലുകൾ **ഓപ്റ്റിമൈസ് ചെയ്യുക**
+- MCP വികസനത്തിനായി VS കോഡ് വർക്ക്സ്പേസ് **കസ്റ്റമൈസ് ചെയ്യുക**
+- സങ്കീർണ സാഹചര്യങ്ങൾക്ക് മൾട്ടി-സർവർ കോൺഫിഗറേഷൻ **ഡിപ്ലോയ് ചെയ്യുക**
 
-## 🔧 VS Code MCP ക്രമീകരണം
+## 🔧 VS കോഡ് MCP ക്രമീകരണം
 
-### പ്രാഥമിക സെറ്റപ്പ് & ഇൻസ്റ്റലേഷൻ
+### ആരംഭികയും ഇൻസ്റ്റലേഷനും
 
 ```json
 // .vscode/settings.json
@@ -72,16 +78,16 @@ POSTGRES_DB=retail_db
 POSTGRES_USER=mcp_user
 POSTGRES_PASSWORD=your_secure_password
 
-# അസ്യൂർ കോൺഫിഗറേഷൻ
+# അസ്യൂർ ക്രമീകരണം
 PROJECT_ENDPOINT=https://your-project.openai.azure.com
 AZURE_CLIENT_ID=your-client-id
 AZURE_CLIENT_SECRET=your-client-secret
 AZURE_TENANT_ID=your-tenant-id
 
-# ഐച്ഛികം: അസ്യൂർ കീ വാൾട്ട്
+# ഐച്ഛികം: അസ്യൂർ കീ വോൾട്ട്
 AZURE_KEY_VAULT_URL=https://your-keyvault.vault.azure.net/
 
-# സെർവർ കോൺഫിഗറേഷൻ
+# സെർവർ ക്രമീകരണം
 MCP_SERVER_PORT=8000
 MCP_SERVER_HOST=127.0.0.1
 LOG_LEVEL=INFO
@@ -126,7 +132,7 @@ LOG_LEVEL=INFO
 }
 ```
 
-### ടാസ്‌ക് ക്രമീകരണം
+### ടാസ്‌ക്ക് ക്രമീകരണം
 
 ```json
 // .vscode/tasks.json
@@ -220,10 +226,10 @@ LOG_LEVEL=INFO
 
 ## 💬 AI ചാറ്റ് ഇന്റഗ്രേഷൻ
 
-### സ്വാഭാവിക ഭാഷാ ക്വെറി പാറ്റേണുകൾ
+### സ്വാഭാവിക ഭാഷാ ചോദിക്കൽ പാറ്റേണുകൾ
 
 ```typescript
-// VS കോഡ് ചാറ്റിനുള്ള ഉദാഹരണ ക്വറി പാറ്റേണുകൾ
+// VS കോഡ് ചാറ്റിന് ഉദാഹരണ ക്വറി പാറ്റേണുകൾ
 interface QueryPattern {
     intent: string;
     examples: string[];
@@ -341,7 +347,7 @@ const retailQueryPatterns: QueryPattern[] = [
 - Result: KPI dashboard with revenue, customer metrics, top categories, and growth trends
 ```
 
-### ചാറ്റ് പ്രതികരണ ഫോർമാറ്റിംഗ്
+### ചാറ്റ് പ്രതികരണ രൂപരേഖ
 
 ```python
 # mcp_server/chat/response_formatter.py
@@ -475,7 +481,7 @@ class ChatResponseFormatter:
             response += f"- **Revenue per Customer**: ${float(pi.get('revenue_per_customer', 0)):,.2f}\n"
             response += f"- **Items per Transaction**: {float(pi.get('items_per_transaction', 0)):.1f}\n\n"
         
-        # മുകളിൽ വരുന്ന വിഭാഗം
+        # ഉയർന്ന വിഭാഗം
         if data.get('top_category'):
             response += f"### Top Performing Category\n\n"
             response += f"**{data['top_category']}** - ${float(data.get('top_category_revenue', 0)):,.2f} revenue\n\n"
@@ -498,9 +504,9 @@ class ChatResponseFormatter:
         return response
 ```
 
-## 🔍 ഡീബഗ്ഗിംഗ് & പ്രശ്നപരിഹാരം
+## 🔍 ഡീബഗ്ഗിംഗ് & പ്രശ്‌നം പരിഹാരങ്ങൾ
 
-### VS Code ഡീബഗ് ക്രമീകരണം
+### VS കോഡ് ഡീബഗ് ക്രമീകരണം
 
 ```python
 # mcp_server/debug/vscode_debug.py
@@ -522,12 +528,12 @@ class VSCodeDebugLogger:
     def setup_vscode_logging(self):
         """Configure logging for VS Code debugging."""
         
-        # VS കോഡ് പ്രത്യേക ഫോർമാറ്റർ സൃഷ്ടിക്കുക
+        # VS കോഡ് പ്രത്യേക ഫോർമാറ്റർ സൃഷ്ടിക്കുക
         formatter = logging.Formatter(
             '[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s'
         )
         
-        # VS കോഡ് ടെർമിനലിനുള്ള കൺസോൾ ഹാൻഡ്ലർ
+        # VS കോഡ് ടെർമിനലിന് കോൺസോൾ ഹാൻഡ്ലർ
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(formatter)
         console_handler.setLevel(logging.DEBUG)
@@ -566,11 +572,11 @@ class VSCodeDebugLogger:
         else:
             return f"Data type: {type(data).__name__}"
 
-# ആഗോള ഡീബഗ് ലോഗർ
+# ഗ്ലോബൽ ഡീബഗ് ലോഗർ
 vscode_debug_logger = VSCodeDebugLogger()
 ```
 
-### കണക്ഷൻ പ്രശ്നപരിഹാരം
+### കണക്ഷൻ പ്രശ്‌ന പരിഹാരം
 
 ```python
 # scripts/debug_mcp_connection.py
@@ -604,7 +610,7 @@ async def test_database_connection() -> Dict[str, Any]:
         # അടിസ്ഥാന ക്വറി പരിശോധിക്കുക
         result = await conn.fetchval("SELECT version()")
         
-        # സ്കീമ ആക്‌സസ് പരിശോധിക്കുക
+        # സ്‌കീമ ആക്‌സസ്സ് പരിശോധിക്കുക
         tables = await conn.fetch("""
             SELECT table_name FROM information_schema.tables 
             WHERE table_schema = 'retail'
@@ -648,7 +654,7 @@ async def test_azure_openai_connection() -> Dict[str, Any]:
             credential=credential
         )
         
-        # എംബെഡിംഗ് ജനറേഷൻ പരിശോധിക്കുക
+        # എംബെഡ്ഡിംഗ് സൃഷ്ടി പരിശോധിക്കുക
         response = await client.embeddings.create(
             model="text-embedding-3-small",
             input="test connection"
@@ -685,14 +691,14 @@ async def test_mcp_tools() -> Dict[str, Any]:
         config = Config()
         db_provider = DatabaseProvider(config.database.connection_string)
         
-        # സെർവർ ആരംഭിക്കുക
+        # സെർവർ ഇൻഷ്യലൈസ് ചെയ്യുക
         server = MCPServer(config, db_provider)
         await server.initialize()
         
-        # ലഭ്യമായ ഉപകരണങ്ങൾ നേടുക
+        # ലഭ്യമായ ടൂളുകൾ നേടുക
         tools = server.get_available_tools()
         
-        # ഒരു ലളിതമായ ഉപകരണം പരിശോധിക്കുക
+        # ഒരു ലളിതമായ ടൂൾ പരിശോധിക്കുക
         test_result = await server.execute_tool(
             'get_current_utc_date',
             {'format': 'iso'}
@@ -732,7 +738,7 @@ async def main():
         print("❌ Database connection failed")
         print(f"   Error: {db_result['error']}")
     
-    # ആസ്യൂർ ഓപ്പൺഎഐ കണക്ഷൻ പരിശോധിക്കുക
+    # ആസ്യൂർ ഒപൺഎഐ കണക്ഷൻ പരിശോധിക്കുക
     print("\n🤖 Testing Azure OpenAI Connection...")
     azure_result = await test_azure_openai_connection()
     
@@ -744,7 +750,7 @@ async def main():
         print("❌ Azure OpenAI connection failed")
         print(f"   Error: {azure_result['error']}")
     
-    # MCP ഉപകരണങ്ങൾ പരിശോധിക്കുക
+    # MCP ടൂളുകൾ പരിശോധിക്കുക
     print("\n🛠️  Testing MCP Tools...")
     tools_result = await test_mcp_tools()
     
@@ -781,9 +787,9 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-## 🚀 ആഡ്വാൻസ്ഡ് ക്രമീകരണം
+## 🚀 ഉയർന്ന ക്രമീകരണം
 
-### മൾട്ടി-സെർവർ സെറ്റപ്പ്
+### മൾട്ടി-സർവർ ക്രമീകരണം
 
 ```json
 // .vscode/settings.json - Multiple MCP servers
@@ -840,15 +846,15 @@ if __name__ == "__main__":
 }
 ```
 
-### കസ്റ്റം VS Code എക്സ്റ്റൻഷൻ
+### കസ്റ്റം VS കോഡ് എക്സ്റ്റെൻഷൻ
 
 ```typescript
-// src/extension.ts - കസ്റ്റം MCP റീട്ടെയിൽ എക്സ്റ്റൻഷൻ
+// src/extension.ts - കസ്റ്റം MCP റീട്ടയിൽ എക്സ്റ്റൻഷൻ
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
     
-    // MCP റീട്ടെയിൽ കമാൻഡുകൾ രജിസ്റ്റർ ചെയ്യുക
+    // MCP റീട്ടയിൽ കമാൻഡുകൾ രജിസ്റ്റർ ചെയ്യുക
     const disposable = vscode.commands.registerCommand(
         'mcp-retail.quickQuery', 
         async () => {
@@ -889,7 +895,7 @@ export function activate(context: vscode.ExtensionContext) {
     
     context.subscriptions.push(disposable);
     
-    // സ്റ്റോർ സ്വിച്ച് രജിസ്റ്റർ ചെയ്യുക
+    // സ്റ്റോർ സ്വിച്ചർ രജിസ്റ്റർ ചെയ്യുക
     const storeSwitcher = vscode.commands.registerCommand(
         'mcp-retail.switchStore',
         async () => {
@@ -914,7 +920,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 async function executeQuickQuery(queryType: string) {
-    // VS കോഡ് ചാറ്റിൽ മുൻകൂട്ടി നിർവചിച്ച ക്വെറികൾ പ്രവർത്തിപ്പിക്കുക
+    // VS Code Chat-ൽ മുൻനിശ്ചിത ക്വറി നിർവഹിക്കുക
     const chatCommands = {
         '📊 Daily Sales': '@retail Show me daily sales for the last 30 days',
         '🏆 Top Products': '@retail What are the top 10 selling products this month?',
@@ -933,7 +939,7 @@ async function executeQuickQuery(queryType: string) {
 export function deactivate() {}
 ```
 
-### എക്സ്റ്റൻഷൻ പാക്കേജ് ക്രമീകരണം
+### എക്സ്റ്റെൻഷൻ പാക്കേജ് ക്രമീകരണം
 
 ```json
 // package.json for VS Code extension
@@ -1005,51 +1011,51 @@ export function deactivate() {}
 }
 ```
 
-## 🎯 പ്രധാന പഠനങ്ങൾ
+## 🎯 പ്രധാന പഠിപ്പുകൾ
 
-ഈ ലാബ് പൂർത്തിയാക്കിയ ശേഷം, നിങ്ങൾക്ക് ഉണ്ടാകണം:
+ഈ ലാബ് പൂർത്തിയാക്കിയ ശേഷം നിങ്ങൾക്കുണ്ടാകുന്നത്:
 
-✅ **VS Code MCP ക്രമീകരണം**: MCP ഇന്റഗ്രേഷനിനായി പൂർണ്ണ സെറ്റപ്പ്  
-✅ **AI ചാറ്റ് ഇന്റഗ്രേഷൻ**: VS Code-യിൽ സ്വാഭാവിക ഭാഷാ ക്വെറിയിംഗ് കഴിവുകൾ  
-✅ **ഡീബഗ്ഗിംഗ് ടൂളുകൾ**: സമഗ്രമായ പ്രശ്നപരിഹാരവും കണക്ഷൻ ഡയഗ്നോസ്റ്റിക്സും  
-✅ **മൾട്ടി-സെർവർ സെറ്റപ്പ്**: നിരവധി MCP സെർവർ ഇൻസ്റ്റൻസുകൾക്കുള്ള ക്രമീകരണം  
-✅ **കസ്റ്റം എക്സ്റ്റൻഷനുകൾ**: റീട്ടെയിൽ-സ്പെസിഫിക് ഫീച്ചറുകളോടെ മെച്ചപ്പെട്ട VS Code അനുഭവം  
-✅ **പ്രൊഡക്ഷൻ റെഡിനസ്**: എന്റർപ്രൈസ്-തയ്യാറായ VS Code ഡെവലപ്പ്മെന്റ് പരിസ്ഥിതി  
+✅ **VS കോഡ് MCP ക്രമീകരണം**: MCP ഇന്റഗ്രേഷന് ഉത്തമമായ സജ്ജീകരണം  
+✅ **AI ചാറ്റ് ഇന്റഗ്രേഷൻ**: VS കോഡിൽ സ്വാഭാവിക ഭാഷയിൽ ചോദിക്കാനുള്ള കഴിവുകൾ  
+✅ **ഡീബഗ്ഗിംഗ് ഉപകരണങ്ങൾ**: സമഗ്രമായ പ്രശ്‌നം പരിഹാരങ്ങളും കണക്ഷൻ പരിശോധനകളും  
+✅ **മൾട്ടി-സർവർ ക്രമീകരണം**: പല MCP സർവർ ഇൻസ്റ്റൻസുകൾക്കും ക്രമീകരണം  
+✅ **കസ്റ്റം എക്സ്റ്റെൻഷനുകൾ**: റീട്ടെയിൽ-വിശിഷ്ട ഫീച്ചറുകളോടെ മെച്ചപ്പെട്ട VS കോഡ് അനുഭവം  
+✅ **ഉല്പാദനത്തിന് തയ്യാറുള്ള**: എന്റർപ്രൈസ്-സജ്ജമായ VS കോഡ് വികസന പരിസ്ഥിതി  
 
 ## 🚀 അടുത്തത് എന്താണ്
 
-**[Lab 10: Deployment Strategies](../10-Deployment/README.md)**-നൊപ്പം തുടരണം:
+**[ലാബ് 10: ഡിപ്ലോയ്‌മെന്റ് തന്ത്രങ്ങൾ](../10-Deployment/README.md)** തുടരെ ചെയ്യുക:
 
-- MCP സെർവറുകൾ പ്രൊഡക്ഷൻ പരിസ്ഥിതികളിലേക്ക് ഡിപ്ലോയ് ചെയ്യുക  
-- സ്കെയിലബിലിറ്റിക്ക് ക്ലൗഡ് ഇൻഫ്രാസ്ട്രക്ചർ ക്രമീകരിക്കുക  
-- ഓട്ടോമേറ്റഡ് ഡിപ്ലോയ്മെന്റിനായി CI/CD പൈപ്പ്ലൈനുകൾ നടപ്പിലാക്കുക  
-- പ്രൊഡക്ഷൻ MCP സെർവർ പ്രകടനം നിരീക്ഷിക്കുക  
+- MCP സർവർ ഉല്പാദന പരിസരങ്ങളിലേക്ക് ഡിപ്ലോയ് ചെയ്യുക  
+- സ്കെയിലബിലിറ്റിക്കായി ക്ലൗഡ് അടിസ്ഥാന സജ്ജീകരണം  
+- ഓട്ടോമേറ്റഡ് ഡിപ്ലോയ്‌മെന്റിന് CI/CD പൈപ്പ്‌ലൈൻകൾ നടപ്പിലാക്കുക  
+- ഉല്പാദന MCP സർവർ പ്രകടനം നിരീക്ഷിക്കുക  
 
 ## 📚 അധിക സ്രോതസുകൾ
 
-### VS Code ഡെവലപ്പ്മെന്റ്
-- [VS Code Extension API](https://code.visualstudio.com/api) - ഔദ്യോഗിക എക്സ്റ്റൻഷൻ ഡെവലപ്പ്മെന്റ് ഗൈഡ്  
-- [VS Code MCP Documentation](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - MCP ഇന്റഗ്രേഷൻ ഡോക്യുമെന്റേഷൻ  
-- [TypeScript for VS Code](https://code.visualstudio.com/docs/languages/typescript) - VS Code-യിൽ TypeScript ഡെവലപ്പ്മെന്റ്  
+### VS കോഡ് വികസനം
+- [VS കോഡ് എക്സ്റ്റെൻഷൻ API](https://code.visualstudio.com/api) - ഔദ്യോഗിക എക്സ്റ്റെൻഷൻ വികസന ഗൈഡ്  
+- [VS കോഡ് MCP ഡോക്യുമെന്റേഷൻ](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - MCP ഇന്റഗ്രേഷൻ ഡോക്യുമെന്റേഷൻ  
+- [VS കോഡിൽ ടൈപ്‌സ്‌ക്രിപ്റ്റ്](https://code.visualstudio.com/docs/languages/typescript) - ടൈപ്‌സ്‌ക്രിപ്റ്റ് വികസനം  
 
 ### MCP പ്രോട്ടോക്കോൾ
-- [Model Context Protocol Specification](https://modelcontextprotocol.io/specification) - ഔദ്യോഗിക MCP സ്പെസിഫിക്കേഷൻ  
-- [MCP Best Practices](https://modelcontextprotocol.io/docs/best-practices) - നടപ്പാക്കൽ മികച്ച രീതികൾ  
-- [FastMCP Framework](https://github.com/jlowin/fastmcp) - Python MCP നടപ്പാക്കൽ  
+- [മോഡൽ കോൺടෙක්സ്റ്റ് പ്രോട്ടോക്കോൾ സ്പെസിഫിക്കേഷൻ](https://modelcontextprotocol.io/specification) - ഔദ്യോഗിക MCP സ്പെസിഫിക്കേഷൻ  
+- [MCP മികച്ച പ്രാക്റ്റീസുകൾ](https://modelcontextprotocol.io/docs/best-practices) - നടപ്പിലാക്കൽ മാർഗങ്ങൾ  
+- [ഫാസ്റ്റ് MCP ഫ്രെയിംവർക്ക്](https://github.com/jlowin/fastmcp) - Python MCP നടപ്പിലാക്കൽ  
 
-### ഡെവലപ്പ്മെന്റ് ടൂളുകൾ
-- [Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Python ഡെവലപ്പ്മെന്റ് സെറ്റപ്പ്  
-- [Debugging in VS Code](https://code.visualstudio.com/docs/editor/debugging) - ആഡ്വാൻസ്ഡ് ഡീബഗ്ഗിംഗ് സാങ്കേതികവിദ്യകൾ  
-- [VS Code Tasks](https://code.visualstudio.com/docs/editor/tasks) - ടാസ്‌ക് ഓട്ടോമേഷൻ & ക്രമീകരണം  
+### വികസന ഉപകരണങ്ങൾ
+- [VS കോഡിൽ Python](https://code.visualstudio.com/docs/python/python-tutorial) - Python വികസന സജ്ജീകരണം  
+- [VS കോഡ് ഡീബഗ്ഗിംഗ്](https://code.visualstudio.com/docs/editor/debugging) - പുരോഗമിത ഡീബഗ്ഗിംഗ് സാങ്കേതികവിദ്യകൾ  
+- [VS കോഡ് ടാസ്‌കുകൾ](https://code.visualstudio.com/docs/editor/tasks) - ടാസ്‌ക് ഓട്ടോമേഷൻ, ക്രമീകരണം  
 
 ---
 
-**മുൻപ്**: [Lab 08: Testing and Debugging](../08-Testing/README.md)  
-**അടുത്തത്**: [Lab 10: Deployment Strategies](../10-Deployment/README.md)
+**മുന്നത്തെ**: [ലാബ് 08: ടെസ്റ്റിംഗ് & ഡീബഗ്ഗിംഗ്](../08-Testing/README.md)  
+**അടുത്തത്**: [ലാബ് 10: ഡിപ്ലോയ്‌മെന്റ് തന്ത്രങ്ങൾ](../10-Deployment/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**അസൂയാ**:  
-ഈ രേഖ AI വിവർത്തന സേവനം [Co-op Translator](https://github.com/Azure/co-op-translator) ഉപയോഗിച്ച് വിവർത്തനം ചെയ്തതാണ്. നാം കൃത്യതയ്ക്ക് ശ്രമിച്ചിട്ടുണ്ടെങ്കിലും, സ്വയം പ്രവർത്തിക്കുന്ന വിവർത്തനങ്ങളിൽ പിശകുകൾ അല്ലെങ്കിൽ തെറ്റുകൾ ഉണ്ടാകാമെന്ന് ദയവായി ശ്രദ്ധിക്കുക. അതിന്റെ മാതൃഭാഷയിലുള്ള യഥാർത്ഥ രേഖ അധികാരപരമായ ഉറവിടമായി കണക്കാക്കണം. നിർണായകമായ വിവരങ്ങൾക്ക്, പ്രൊഫഷണൽ മനുഷ്യ വിവർത്തനം ശുപാർശ ചെയ്യപ്പെടുന്നു. ഈ വിവർത്തനം ഉപയോഗിക്കുന്നതിൽ നിന്നുണ്ടാകുന്ന ഏതെങ്കിലും തെറ്റിദ്ധാരണകൾക്കോ തെറ്റായ വ്യാഖ്യാനങ്ങൾക്കോ ഞങ്ങൾ ഉത്തരവാദികളല്ല.
+**അറിയിപ്പ്**:
+ഈ രേഖ AI പരിഭാഷാ സേവനം [Co-op Translator](https://github.com/Azure/co-op-translator) ഉപയോഗിച്ച് പരിഭാഷപ്പെടുത്തിയതാണ്. ഞങ്ങൾ കൃത്യതയ്ക്കായി ശ്രമിക്കുന്നുവെങ്കിലും, ഓട്ടോമേറ്റഡ് പരിഭാഷകളിൽ പിഴവുകൾ അല്ലെങ്കിൽ തെറ്റായ വിവരങ്ങൾ ഉണ്ടാകാൻ സാധ്യതയുണ്ട്. അതിന്റെ സ്വാഭാവിക ഭാഷയിലുള്ള അസൽ രേഖയാണ് പ്രാമാണികമായ ഉറവിടമായി പരിഗണിക്കേണ്ടത്. നിർണായകമായ വിവരങ്ങൾക്ക്, പ്രൊഫഷണൽ മനുഷ്യ പരിഭാഷ ശുപാർശ ചെയ്യുന്നു. ഈ പരിഭാഷ ഉപയോഗിച്ച് ഉണ്ടാകുന്ന തെറ്റിദ്ധാരണകൾ അല്ലെങ്കിൽ തെറ്റായ വ്യാഖ്യാനങ്ങൾക്കായി ഞങ്ങൾ ഉത്തരവാദികളല്ല.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

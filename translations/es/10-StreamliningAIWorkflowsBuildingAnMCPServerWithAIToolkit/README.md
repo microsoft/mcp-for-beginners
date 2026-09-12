@@ -1,223 +1,229 @@
-# Optimización de Flujos de Trabajo con IA: Construyendo un Servidor MCP con Microsoft Foundry Toolkit
+# Simplificando los flujos de trabajo de IA: Construcción de un servidor MCP con Microsoft Foundry Toolkit
 
-[![Especificación MCP](https://img.shields.io/badge/MCP%20Spec-2025--11--25-blue.svg)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+[![MCP Spec](https://img.shields.io/badge/MCP%20Spec-2025--11--25-blue.svg)](https://modelcontextprotocol.io/specification/2025-11-25/)
 [![Python](https://img.shields.io/badge/Python-3.10+-green.svg)](https://python.org)
 [![VS Code](https://img.shields.io/badge/VS%20Code-Latest-orange.svg)](https://code.visualstudio.com/)
 
 ![logo](../../../translated_images/es/logo.ec93918ec338dadd.webp)
 
-## 🎯  Resumen
+## 🎯  Visión general
 
-[![Construye Agentes de IA en VS Code: 4 Laboratorios Prácticos con MCP y Microsoft Foundry Toolkit](../../../translated_images/es/11.0f6db6a0fb606885.webp)](https://youtu.be/r34Csn3rkeQ)
+[![Build AI Agents in VS Code: 4 Hands-On Labs with MCP and Microsoft Foundry Toolkit](../../../translated_images/es/11.0f6db6a0fb606885.webp)](https://youtu.be/r34Csn3rkeQ)
 
 _(Haz clic en la imagen de arriba para ver el video de esta lección)_
 
-¡Bienvenido al **Taller de Model Context Protocol (MCP)**! Este taller práctico y completo combina dos tecnologías punteras para revolucionar el desarrollo de aplicaciones de IA:
+¡Bienvenido al **Taller del Protocolo de Contexto de Modelos (MCP)**! Este completo taller práctico combina dos tecnologías innovadoras para revolucionar el desarrollo de aplicaciones de IA:
 
-- **🔗 Model Context Protocol (MCP)**: Un estándar abierto para la integración fluida con herramientas de IA
-- **🛠️ Microsoft Foundry Toolkit Extension para VS Code**: La potente extensión de desarrollo IA de Microsoft
+> **Nota de compatibilidad:** el código del taller fue construido y probado con MCP
+> `2025-11-25`, como se muestra en la insignia arriba. Use la
+> [especificación actual `2026-07-28`](https://modelcontextprotocol.io/specification/2026-07-28/)
+> para nuevas implementaciones del protocolo y revise las notas de la versión del SDK antes de
+> migrar los laboratorios.
 
-### 🎓 Qué Aprenderás
+- **🔗 Protocolo de Contexto de Modelos (MCP)**: Un estándar abierto para integración fluida de herramientas de IA
+- **🛠️ Extensión Microsoft Foundry Toolkit para VS Code**: La poderosa extensión de desarrollo de IA de Microsoft
 
-Al finalizar este taller, dominarás el arte de construir aplicaciones inteligentes que conectan modelos de IA con herramientas y servicios del mundo real. Desde pruebas automatizadas hasta integraciones API personalizadas, adquirirás habilidades prácticas para resolver desafíos empresariales complejos.
+### 🎓 Lo que aprenderás
 
-## 🏗️ Tecnología Usada
+Al final de este taller, dominarás el arte de construir aplicaciones inteligentes que conectan modelos de IA con herramientas y servicios del mundo real. Desde pruebas automáticas hasta integraciones personalizadas de API, adquirirás habilidades prácticas para resolver desafíos empresariales complejos.
 
-### 🔌 Model Context Protocol (MCP)
+## 🏗️ Pila tecnológica
 
-MCP es el **"USB-C para IA"**: un estándar universal que conecta modelos de IA con herramientas y fuentes de datos externas.
+### 🔌 Protocolo de Contexto de Modelos (MCP)
 
-**✨ Características Clave:**
+MCP es el **"USB-C para IA"**: un estándar universal que conecta modelos de IA con herramientas externas y fuentes de datos.
 
-- 🔄 **Integración Estandarizada**: Interfaz universal para conexiones con herramientas IA
-- 🏛️ **Arquitectura Flexible**: Servidores locales y remotos mediante transporte stdio/SSE
-- 🧰 **Ecosistema Rico**: Herramientas, prompts y recursos en un solo protocolo
-- 🔒 **Listo para Empresas**: Seguridad y fiabilidad integradas
+**✨ Características clave:**
 
-**🎯 Importancia de MCP:**
-Al igual que USB-C eliminó el caos de cables, MCP elimina la complejidad de las integraciones IA. Un protocolo, infinitas posibilidades.
+- 🔄 **Integración estandarizada**: Interfaz universal para conexiones de herramientas de IA
+- 🏛️ **Arquitectura flexible**: Servidores locales y remotos vía transporte stdio/SSE
+- 🧰 **Ecosistema rico**: Herramientas, prompts y recursos en un solo protocolo
+- 🔒 **Listo para empresa**: Seguridad y confiabilidad integradas
+
+**🎯 Por qué MCP importa:**
+Al igual que USB-C eliminó el caos de cables, MCP elimina la complejidad de las integraciones de IA. Un protocolo, posibilidades infinitas.
 
 ### 🤖 Microsoft Foundry Toolkit Extension para VS Code
 
-La extensión insignia de Microsoft para desarrollo IA que convierte VS Code en una potencia IA.
+La extensión principal de desarrollo de IA de Microsoft que transforma VS Code en una potencia de IA.
 
-**🚀 Capacidades Principales:**
+**🚀 Capacidades principales:**
 
-- 📦 **Catálogo de Modelos**: Acceso a modelos de Azure AI, GitHub, Hugging Face, Ollama
-- ⚡ **Inferencia Local**: Ejecución optimizada ONNX en CPU/GPU/NPU
-- 🏗️ **Constructor de Agentes**: Desarrollo visual de agentes IA con integración MCP
-- 🎭 **Multi-Modal**: Soporte para texto, visión y salidas estructuradas
+- 📦 **Catálogo de modelos**: Acceso a modelos de Azure AI, GitHub, Hugging Face, Ollama
+- ⚡ **Inferencia local**: Ejecución optimizada ONNX en CPU/GPU/NPU
+- 🏗️ **Constructor de agentes**: Desarrollo visual de agentes de IA con integración MCP
+- 🎭 **Multimodal**: Soporte para texto, visión y salida estructurada
 
-**💡 Beneficios para Desarrollo:**
+**💡 Beneficios de desarrollo:**
 
 - Despliegue de modelos sin configuración
 - Ingeniería visual de prompts
 - Zona de pruebas en tiempo real
-- Integración fluida con servidores MCP
+- Integración fluida de servidores MCP
 
-## 📚 Trayectoria de Aprendizaje
+## 📚 Trayectoria de aprendizaje
 
 ### [🚀 Módulo 1: Fundamentos de Microsoft Foundry Toolkit](./lab1/README.md)
 
 **Duración**: 15 minutos
 
-- 🛠️ Instala y configura Microsoft Foundry Toolkit para VS Code
-- 🗂️ Explora el Catálogo de Modelos (más de 100 modelos de GitHub, ONNX, OpenAI, Anthropic, Google)
-- 🎮 Domina el Playground Interactivo para pruebas en tiempo real
-- 🤖 Construye tu primer agente IA con Agent Builder
-- 📊 Evalúa rendimiento de modelos con métricas integradas (F1, relevancia, similitud, coherencia)
-- ⚡ Aprende procesamiento por lotes y capacidades multimodales
+- 🛠️ Instalar y configurar Microsoft Foundry Toolkit para VS Code
+- 🗂️ Explorar el Catálogo de Modelos (más de 100 modelos de GitHub, ONNX, OpenAI, Anthropic, Google)
+- 🎮 Dominar el Playground Interactivo para pruebas en tiempo real de modelos
+- 🤖 Construir tu primer agente de IA con Agent Builder
+- 📊 Evaluar el rendimiento de modelos con métricas integradas (F1, relevancia, similitud, coherencia)
+- ⚡ Aprender procesamiento por lotes y capacidades multimodales
 
-**🎯 Resultado de Aprendizaje**: Crear un agente IA funcional con comprensión integral de las capacidades de Microsoft Foundry Toolkit
+**🎯 Resultado de aprendizaje**: Crear un agente de IA funcional con comprensión completa de las capacidades de Microsoft Foundry Toolkit
 
-### [🌐 Módulo 2: MCP con Microsoft Foundry Toolkit Fundamentos](./lab2/README.md)
-
-**Duración**: 20 minutos
-
-- 🧠 Domina arquitectura y conceptos de Model Context Protocol (MCP)
-- 🌐 Explora el ecosistema de servidores MCP de Microsoft
-- 🤖 Construye un agente de automatización web usando Playwright MCP server
-- 🔧 Integra servidores MCP con Microsoft Foundry Toolkit Agent Builder
-- 📊 Configura y prueba herramientas MCP dentro de tus agentes
-- 🚀 Exporta y despliega agentes potenciados con MCP para producción
-
-**🎯 Resultado de Aprendizaje**: Desplegar un agente IA supercargado con herramientas externas mediante MCP
-
-### [🔧 Módulo 3: Desarrollo Avanzado MCP con Microsoft Foundry Toolkit](./lab3/README.md)
+### [🌐 Módulo 2: MCP con Fundamentos de Microsoft Foundry Toolkit](./lab2/README.md)
 
 **Duración**: 20 minutos
 
-- 💻 Crea servidores MCP personalizados usando Microsoft Foundry Toolkit
-- 🐍 Configura y utiliza el último SDK MCP Python (v1.9.3)
-- 🔍 Configura y utiliza MCP Inspector para depuración
-- 🛠️ Construye un Servidor MCP de Clima con flujos profesionales de depuración
-- 🧪 Depura servidores MCP tanto en Agent Builder como en Inspector
+- 🧠 Dominar la arquitectura y conceptos del Protocolo de Contexto de Modelos (MCP)
+- 🌐 Explorar el ecosistema de servidores MCP de Microsoft
+- 🤖 Construir un agente de automatización de navegador usando el servidor MCP Playwright
+- 🔧 Integrar servidores MCP con Microsoft Foundry Toolkit Agent Builder
+- 📊 Configurar y probar herramientas MCP dentro de tus agentes
+- 🚀 Exportar y desplegar agentes potenciados con MCP para producción
 
-**🎯 Resultado de Aprendizaje**: Desarrollar y depurar servidores MCP personalizados con herramientas modernas
+**🎯 Resultado de aprendizaje**: Desplegar un agente de IA supercargado con herramientas externas a través de MCP
 
-### [🐙 Módulo 4: Desarrollo Práctico MCP - Servidor Clon GitHub Personalizado](./lab4/README.md)
+### [🔧 Módulo 3: Desarrollo avanzado MCP con Microsoft Foundry Toolkit](./lab3/README.md)
+
+**Duración**: 20 minutos
+
+- 💻 Crear servidores MCP personalizados usando Microsoft Foundry Toolkit
+- 🐍 Configurar y usar el SDK Python MCP más reciente (v1.9.3)
+- 🔍 Configurar y utilizar MCP Inspector para depuración
+- 🛠️ Construir un servidor MCP Clima con flujos de trabajo profesionales de depuración
+- 🧪 Depurar servidores MCP en entornos Agent Builder e Inspector
+
+**🎯 Resultado de aprendizaje**: Desarrollar y depurar servidores MCP personalizados con herramientas modernas
+
+### [🐙 Módulo 4: Desarrollo práctico MCP - Servidor personalizado de clonación GitHub](./lab4/README.md)
 
 **Duración**: 30 minutos
 
-- 🏗️ Construye un servidor MCP Clon GitHub real para flujos de desarrollo
-- 🔄 Implementa clonado inteligente de repositorios con validación y manejo de errores
-- 📁 Crea gestión inteligente de directorios e integración con VS Code
-- 🤖 Usa GitHub Copilot Agent Mode con herramientas MCP personalizadas
-- 🛡️ Aplica fiabilidad lista para producción y compatibilidad multiplataforma
+- 🏗️ Construir un servidor MCP Clonación GitHub para flujos de trabajo de desarrollo reales
+- 🔄 Implementar clonación inteligente de repositorios con validación y manejo de errores
+- 📁 Crear gestión inteligente de directorios e integración con VS Code
+- 🤖 Usar GitHub Copilot Agent Mode con herramientas MCP personalizadas
+- 🛡️ Aplicar confiabilidad lista para producción y compatibilidad multiplataforma
 
-**🎯 Resultado de Aprendizaje**: Desplegar un servidor MCP listo para producción que optimiza flujos de desarrollo reales
+**🎯 Resultado de aprendizaje**: Desplegar un servidor MCP listo para producción que agilice flujos de trabajo reales de desarrollo
 
-## 💡 Aplicaciones Reales e Impacto
+## 💡 Aplicaciones e impacto en el mundo real
 
-### 🏢 Casos de Uso Empresariales
+### 🏢 Casos de uso empresariales
 
 #### 🔄 Automatización DevOps
 
-Transforma tu flujo de desarrollo con automatización inteligente:
+Transforma tu flujo de trabajo de desarrollo con automatización inteligente:
 
-- **Gestión Inteligente de Repositorios**: Revisión de código y decisiones de merge impulsadas por IA
-- **CI/CD Inteligente**: Optimización automática de pipelines basada en cambios de código
-- **Priorización de Incidencias**: Clasificación y asignación automática de bugs
+- **Gestión inteligente de repositorios**: Revisión de código y decisiones de merge impulsadas por IA
+- **CI/CD inteligente**: Optimización automática de pipelines basada en cambios de código
+- **Triaje de incidencias**: Clasificación automática de bugs y asignación
 
-#### 🧪 Revolución en Aseguramiento de Calidad
+#### 🧪 Revolución en aseguramiento de calidad
 
 Eleva las pruebas con automatización potenciada por IA:
 
-- **Generación Inteligente de Pruebas**: Creación automática de suites de prueba completas
-- **Pruebas de Regresión Visual**: Detección IA de cambios en UI
-- **Monitoreo de Rendimiento**: Identificación y resolución proactiva de problemas
+- **Generación inteligente de pruebas**: Crear suites de prueba completas automáticamente
+- **Pruebas de regresión visual**: Detección de cambios UI potenciada por IA
+- **Monitoreo de rendimiento**: Identificación y resolución proactiva de problemas
 
-#### 📊 Inteligencia en Pipelines de Datos
+#### 📊 Inteligencia en pipelines de datos
 
 Construye flujos de procesamiento de datos más inteligentes:
 
-- **Procesos ETL Adaptativos**: Transformaciones de datos auto-optimizadas
-- **Detección de Anomalías**: Monitoreo de calidad de datos en tiempo real
-- **Enrutamiento Inteligente**: Gestión inteligente del flujo de datos
+- **Procesos ETL adaptativos**: Transformaciones de datos auto-optimizadas
+- **Detección de anomalías**: Monitoreo en tiempo real de calidad de datos
+- **Ruteo inteligente**: Gestión inteligente del flujo de datos
 
-#### 🎧 Mejora de la Experiencia del Cliente
+#### 🎧 Mejora de la experiencia del cliente
 
-Crea interacciones excepcionales con los clientes:
+Crea interacciones excepcionales con clientes:
 
-- **Soporte Contextual**: Agentes IA con acceso al historial del cliente
-- **Resolución Proactiva de Problemas**: Servicio predictivo al cliente
-- **Integración Multi-Canal**: Experiencia IA unificada en múltiples plataformas
+- **Soporte con contexto**: Agentes de IA con acceso al historial del cliente
+- **Resolución proactiva de problemas**: Servicio predictivo al cliente
+- **Integración multicanal**: Experiencia unificada de IA en todas las plataformas
 
-## 🛠️ Requisitos y Configuración
+## 🛠️ Prerrequisitos y configuración
 
-### 💻 Requisitos del Sistema
+### 💻 Requisitos del sistema
 
 | Componente | Requisito | Notas |
 |-----------|-------------|-------|
-| **Sistema Operativo** | Windows 10+, macOS 10.15+, Linux | Cualquier sistema operativo moderno |
+| **Sistema operativo** | Windows 10+, macOS 10.15+, Linux | Cualquier SO moderno |
 | **Visual Studio Code** | Última versión estable | Requerido para Microsoft Foundry Toolkit |
-| **Node.js** | v18.0+ y npm | Para desarrollo de servidor MCP |
+| **Node.js** | v18.0+ y npm | Para desarrollo de servidores MCP |
 | **Python** | 3.10+ | Opcional para servidores MCP en Python |
-| **Memoria** | 8GB RAM mínimo | 16GB recomendado para modelos locales |
+| **Memoria** | Mínimo 8GB RAM | Recomendado 16GB para modelos locales |
 
-### 🔧 Entorno de Desarrollo
+### 🔧 Entorno de desarrollo
 
-#### Extensiones VS Code Recomendadas
+#### Extensiones recomendadas para VS Code
 
 - **Microsoft Foundry Toolkit** (ms-windows-ai-studio.windows-ai-studio)
 - **Python** (ms-python.python)
-- **Depurador Python** (ms-python.debugpy)
+- **Python Debugger** (ms-python.debugpy)
 - **GitHub Copilot** (GitHub.copilot) - Opcional pero útil
 
-#### Herramientas Opcionales
+#### Herramientas opcionales
 
-- **uv**: Gestor moderno de paquetes Python
+- **uv**: Gestor moderno de paquetes para Python
 - **MCP Inspector**: Herramienta visual de depuración para servidores MCP
 - **Playwright**: Para ejemplos de automatización web
 
-## 🎖️ Resultados del Aprendizaje y Ruta de Certificación
+## 🎖️ Resultados de aprendizaje y ruta de certificación
 
-### 🏆 Lista de Dominio de Habilidades
+### 🏆 Lista de dominio de habilidades
 
 Al completar este taller, lograrás dominio en:
 
-#### 🎯 Competencias Clave
+#### 🎯 Competencias núcleo
 
-- [ ] **Dominio del Protocolo MCP**: Comprensión profunda de arquitectura y patrones de implementación
-- [ ] **Competencia en Microsoft Foundry Toolkit**: Uso experto para desarrollo rápido
-- [ ] **Desarrollo de Servidores Personalizados**: Construir, desplegar y mantener servidores MCP en producción
-- [ ] **Excelencia en Integración de Herramientas**: Conexión fluida de IA con flujos de trabajo existentes
-- [ ] **Aplicación en Resolución de Problemas**: Aplicar habilidades para retos empresariales reales
+- [ ] **Dominio del Protocolo MCP**: Profundo entendimiento de arquitectura y patrones de implementación
+- [ ] **Competencia en Microsoft Foundry Toolkit**: Uso experto de Microsoft Foundry Toolkit para desarrollo rápido
+- [ ] **Desarrollo de servidores personalizados**: Construir, desplegar y mantener servidores MCP en producción
+- [ ] **Excelencia en integración de herramientas**: Conectar IA con flujos de trabajo de desarrollo existentes sin problemas
+- [ ] **Aplicación en resolución de problemas**: Aplicar habilidades aprendidas a desafíos empresariales reales
 
-#### 🔧 Habilidades Técnicas
+#### 🔧 Habilidades técnicas
 
-- [ ] Configurar y usar Microsoft Foundry Toolkit en VS Code
+- [ ] Configurar Microsoft Foundry Toolkit en VS Code
 - [ ] Diseñar e implementar servidores MCP personalizados
-- [ ] Integrar Modelos GitHub con arquitectura MCP
-- [ ] Construir flujos de pruebas automatizadas con Playwright
-- [ ] Desplegar agentes IA para producción
-- [ ] Depurar y optimizar desempeño de servidores MCP
+- [ ] Integrar modelos GitHub con arquitectura MCP
+- [ ] Construir flujos de trabajo de pruebas automáticas con Playwright
+- [ ] Desplegar agentes de IA para uso en producción
+- [ ] Depurar y optimizar rendimiento de servidores MCP
 
-#### 🚀 Capacidades Avanzadas
+#### 🚀 Capacidades avanzadas
 
-- [ ] Arquitecturar integraciones IA a escala empresarial
-- [ ] Implementar mejores prácticas de seguridad para aplicaciones IA
-- [ ] Diseñar arquitecturas escalables de servidores MCP
+- [ ] Arquitectura de integraciones IA a escala empresarial
+- [ ] Implementar las mejores prácticas de seguridad para aplicaciones IA
+- [ ] Diseñar arquitecturas escalables para servidores MCP
 - [ ] Crear cadenas de herramientas personalizadas para dominios específicos
-- [ ] Mentorizar a otros en desarrollo nativo IA
+- [ ] Mentoría en desarrollo nativo IA
 
-## 📖 Recursos Adicionales
+## 📖 Recursos adicionales
 
-- [Especificación MCP (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [Repositorio Microsoft Foundry Toolkit en GitHub](https://github.com/microsoft/vscode-ai-toolkit)
-- [Colección de Servidores MCP de Ejemplo](https://github.com/modelcontextprotocol/servers)
-- [Guía de Mejores Prácticas](https://modelcontextprotocol.io/docs/best-practices)
+- [Especificación MCP (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [Repositorio GitHub Microsoft Foundry Toolkit](https://github.com/microsoft/vscode-ai-toolkit)
+- [Colección de servidores MCP de ejemplo](https://github.com/modelcontextprotocol/servers)
+- [Guía de mejores prácticas](https://modelcontextprotocol.io/docs/best-practices)
 - [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - Mejores prácticas de seguridad
 
 ---
 
-**🚀 ¿Listo para revolucionar tu flujo de desarrollo IA?**
+**🚀 ¿Listo para revolucionar tu flujo de trabajo de desarrollo en IA?**
 
-Construyamos juntos el futuro de las aplicaciones inteligentes con MCP y Microsoft Foundry Toolkit!
+¡Construyamos juntos el futuro de las aplicaciones inteligentes con MCP y Microsoft Foundry Toolkit!
 
-## Qué Sigue
+## Qué sigue
 
-Continúa con: [Módulo 11: Laboratorios Prácticos de Servidor MCP](../11-MCPServerHandsOnLabs/README.md)
+Continúa a: [Módulo 11: Laboratorios prácticos de servidor MCP](../11-MCPServerHandsOnLabs/README.md)
 
 ---
 

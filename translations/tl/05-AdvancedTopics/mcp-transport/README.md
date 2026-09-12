@@ -1,66 +1,82 @@
-# MCP Custom Transports - Advanced Implementation Guide
+# MCP Custom Transports - Gabay sa Advanced na Pagpapatupad
 
-Nagbibigay ang Model Context Protocol (MCP) ng kakayahang magamit ang iba't ibang mekanismo ng transport, na nagpapahintulot sa mga pasadyang implementasyon para sa mga espesyalisadong kapaligiran ng enterprise. Tinutuklas ng advanced na gabay na ito ang mga pasadyang implementasyon ng transport gamit ang Azure Event Grid at Azure Event Hubs bilang mga praktikal na halimbawa para sa pagbuo ng mga scalable, cloud-native na solusyon sa MCP.
+Pinapayagan ng Model Context Protocol (MCP) ang mga custom na implementasyon ng transport para sa
+mga espesyalisadong kapaligiran. Ang advanced na gabay na ito ay sumusuri sa Azure Event Grid at
+Azure Event Hubs bilang mga pattern ng arkitektura. Hindi sila mga karaniwang MCP transports
+at nangangailangan ng parehas na pagsang-ayon ng mga endpoint sa custom na mapping.
 
-> **Tumingin sa hinaharap:** ang gabay na ito ay isinulat batay sa **MCP Specification 2025-11-25**, kung saan ang pagkakasunod-sunod ng session ay dapat mapanatili bawat session (tingnan ang Message Protocol sa ibaba). Tinatanggal ng `2026-07-28` release candidate ang session na nasa antas ng protocol nang buo at nangangailangan ng mga header na `Mcp-Method`/`Mcp-Name` upang ang mga gateway at pasadyang transport ay makapag-route bawat request sa halip na bawat session. Tingnan ang [What's Changing in MCP: The 2026-07-28 Release Candidate](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> **Saklaw ng MCP `2026-07-28`:** ang kasalukuyang protocol ay walang protocol-level
+> sessions, kaya ang mga custom transports ay hindi dapat umasa sa session affinity o
+> pagkakaayos sa bawat session. Ang `Mcp-Method` at conditional na `Mcp-Name` headers ay
+> mga kinakailangan ng standard na Streamable HTTP transport; ang non-HTTP transport
+> ay nangangailangan ng katumbas, hayagang napagkasunduang mapping kung ang mga intermediary
+> ay kailangang mag-route nang hindi dinidecode ang JSON-RPC body. Tingnan
+> [Ano ang Nagbago sa MCP: Ang 2026-07-28 Specification](../../01-CoreConcepts/mcp-2026-07-28.md).
 
 ## Panimula
 
-Bagaman ang mga standard na transport ng MCP (stdio at HTTP streaming) ay nagsisilbi sa karamihan ng mga kaso, madalas kailangan ng mga kapaligiran ng enterprise ang mga espesyalisadong mekanismo ng transport para sa pinahusay na scalability, pagiging maaasahan, at integrasyon sa umiiral na cloud infrastructure. Pinapayagan ng mga pasadyang transport ang MCP na gamitin ang mga cloud-native na serbisyo ng messaging para sa asynchronous na komunikasyon, arkitekturang driven ng event, at distributed na pagproseso.
+Ang mga karaniwang transports ng MCP ay stdio at Streamable HTTP. Ang ilang mga enterprise
+na kapaligiran ay gumagamit ng custom na mapping upang maisama sa umiiral na messaging
+infrastructure, ngunit maaaring magpababa ito ng interoperability sa pagitan ng MCP hosts at
+mga SDK na nagpapatupad lamang ng mga standard transports.
 
-Tinutuklas ng araling ito ang mga advanced na implementasyon ng transport batay sa pinakabagong MCP specification (2025-11-25), mga serbisyo ng messaging ng Azure, at mga establisadong pattern ng enterprise integration.
+Ang araling ito ay inilapat ang mga stateless na kinakailangan ng MCP Specification
+`2026-07-28` sa mga Azure messaging services at mga kilalang enterprise integration
+pattern.
 
 ### **Arkitektura ng MCP Transport**
 
-**Mula sa MCP Specification (2025-11-25):**
+**Mula sa MCP Specification `2026-07-28`:**
 
-- **Standard Transports**: stdio (inirerekomenda), HTTP streaming (para sa remote na mga senaryo)
-- **Custom Transports**: Anumang transport na nagpapatupad ng MCP message exchange protocol
-- **Message Format**: JSON-RPC 2.0 na may mga extension na espesipiko sa MCP
-- **Bidirectional Communication**: Kinakailangan ang full duplex communication para sa mga notification at tugon
+- **Mga Karaniwang Transport**: stdio at Streamable HTTP
+- **Mga Custom na Transport**: Opsyonal, mga implementation-specific na mapping na pinagkasunduan ng
+    parehong endpoints
+- **Format ng Mensahe**: JSON-RPC 2.0 na may MCP-specific na mga extension
+- **Mga Sariling-request na Buo**: Walang protocol session o handshake na magagamit
+    para magdala ng state sa pagitan ng mga request
 
 ## Mga Layunin sa Pagkatuto
 
 Sa pagtatapos ng advanced na araling ito, magagawa mong:
 
-- **Maunawaan ang mga Pangangailangan ng Custom Transport**: Ipatupad ang MCP protocol sa anumang transport layer habang pinananatili ang pagsunod
-- **Bumuo ng Azure Event Grid Transport**: Lumikha ng event-driven MCP servers gamit ang Azure Event Grid para sa serverless scalability
-- **Ipatupad ang Azure Event Hubs Transport**: Disenyuhan ang high-throughput MCP na mga solusyon gamit ang Azure Event Hubs para sa real-time streaming
-- **Ilapat ang Mga Pattern ng Enterprise**: Isama ang mga pasadyang transport sa umiiral na Azure infrastructure at mga modelo ng seguridad
-- **Pangasiwaan ang Transport Reliability**: Ipatupad ang message durability, pagkakasunod-sunod, at paghawak ng error para sa mga senaryo ng enterprise
-- **I-optimize ang Performance**: Disenyuhan ang mga solusyon sa transport para sa mga pangangailangan sa scale, latency, at throughput
+- **Maunawaan ang Mga Kinakailangan sa Custom Transport**: Ipatupad ang MCP protocol sa anumang layer ng transport habang pinananatili ang pagsunod
+- **Bumuo ng Azure Event Grid Transport**: Gumawa ng event-driven na MCP servers gamit ang Azure Event Grid para sa serverless scalability
+- **Ipatupad ang Azure Event Hubs Transport**: Disenyo ng mga MCP solution na may mataas na throughput gamit ang Azure Event Hubs para sa real-time streaming
+- **Ilapat ang Mga Enterprise Pattern**: Isama ang mga custom transports sa umiiral na Azure infrastructure at mga security model
+- **Pangasiwaan ang Katatagan ng Transport**: Ipatupad ang message durability, ordering, at error handling para sa mga enterprise na senaryo
+- **I-optimize ang Performance**: Disenyo ng mga transport solution ayon sa mga kinakailangan sa scale, latency, at throughput
 
-## **Mga Pangangailangan sa Transport**
+## **Mga Kinakailangan sa Transport**
 
-### **Pangunahing Mga Pangangailangan mula sa MCP Specification (2025-11-25):**
+### **Pangunahing Kinakailangan para sa MCP `2026-07-28`**
 
 ```yaml
 Message Protocol:
   format: "JSON-RPC 2.0 with MCP extensions"
-  bidirectional: "Full duplex communication required"
-  ordering: "Message ordering must be preserved per session"
+    correlation: "Match responses to requests by JSON-RPC id"
+    state: "Each request must be self-contained"
   
 Transport Layer:
   reliability: "Transport MUST handle connection failures gracefully"
   security: "Transport MUST support secure communication"
-  identification: "Each session MUST have unique identifier"
+    identification: "Carry protocol version, capabilities, and identity per request"
   
 Custom Transport:
-  compliance: "MUST implement complete MCP message exchange"
+    compliance: "Map the selected MCP revision without adding session assumptions"
   extensibility: "MAY add transport-specific features"
-  interoperability: "MUST maintain protocol compatibility"
+    interoperability: "Both endpoints MUST agree on the custom mapping"
 ```
 
 ## **Implementasyon ng Azure Event Grid Transport**
 
-Nagbibigay ang Azure Event Grid ng serverless na serbisyo ng event routing na perpekto para sa event-driven na mga arkitektura ng MCP. Ipinapakita ng implementasyong ito kung paano bumuo ng scalable, loosely-coupled na mga sistema ng MCP.
+Nagbibigay ang Azure Event Grid ng serverless na serbisyo sa pag-route ng event na mainam para sa event-driven na mga MCP na arkitektura. Ipinapakita ng implementasyong ito kung paano bumuo ng scalable at loosely-coupled na MCP system.
 
 ### **Pangkalahatang Arkitektura**
 
 ```mermaid
 graph TB
     Client[Kliyente ng MCP] --> EG[Azure Event Grid]
-    EG --> Server[Function ng MCP Server]
+    EG --> Server[Function ng Server ng MCP]
     Server --> EG
     EG --> Client
     
@@ -178,9 +194,9 @@ export class EventGridMcpTransport implements McpTransport {
         await this.publisher.sendEvents([event]);
     }
     
-    // Pagtanggap na pinapagana ng kaganapan gamit ang Azure Functions
+    // Pagtanggap na naka-event-driven sa pamamagitan ng Azure Functions
     onMessage(handler: (message: McpMessage) => Promise<void>): void {
-        // Ang implementasyon ay gagamit ng Azure Functions Event Grid trigger
+        // Gagamitin ang implementasyon ng Azure Functions Event Grid trigger
         // Ito ay isang konseptwal na interface para sa tagatanggap ng webhook
     }
 }
@@ -193,10 +209,10 @@ app.eventGrid("mcpEventGridHandler", {
         try {
             const mcpMessage = event.data as McpMessage;
             
-            // Proseso ng mensahe ng MCP
+            // Proseso ng MCP na mensahe
             const response = await mcpServer.processMessage(mcpMessage);
             
-            // Magpadala ng tugon gamit ang Event Grid
+            // Magpadala ng tugon sa pamamagitan ng Event Grid
             await transport.sendMessage(response);
             
         } catch (error) {
@@ -242,21 +258,21 @@ class EventGridMcpTransport:
         """Register message handler for incoming events"""
         self.message_handler = handler
 
-# Pagpapatupad ng Azure Functions
+# Implementasyon ng Azure Functions
 import azure.functions as func
 import logging
 
 def main(event: func.EventGridEvent) -> None:
     """Azure Functions Event Grid trigger for MCP messages"""
     try:
-        # I-parse ang MCP mensahe mula sa Event Grid event
+        # I-parse ang mensahe ng MCP mula sa Event Grid na event
         mcp_message = json.loads(event.get_body().decode('utf-8'))
         
-        # Iproseso ang MCP mensahe
+        # Iproseso ang mensahe ng MCP
         response = process_mcp_message(mcp_message)
         
         # Ipadala ang tugon pabalik sa pamamagitan ng Event Grid
-        # (Ang pagpapatupad ay gagawa ng bagong Event Grid client)
+        # (Ang implementasyon ay lilikha ng bagong Event Grid client)
         
     except Exception as e:
         logging.error(f"Error processing MCP Event Grid message: {e}")
@@ -265,21 +281,21 @@ def main(event: func.EventGridEvent) -> None:
 
 ## **Implementasyon ng Azure Event Hubs Transport**
 
-Nagbibigay ang Azure Event Hubs ng mataas na throughput, real-time streaming na kakayahan para sa mga senaryo ng MCP na nangangailangan ng mababang latency at mataas na volume ng mensahe.
+Nagbibigay ang Azure Event Hubs ng mataas na throughput at real-time streaming na kakayahan para sa mga senaryo ng MCP na nangangailangan ng mababang latency at mataas na volume ng mensahe.
 
 ### **Pangkalahatang Arkitektura**
 
 ```mermaid
 graph TB
-    Client[Kliyenteng MCP] --> EH[Azure Event Hubs]
+    Client[Kliyente ng MCP] --> EH[Azure Event Hubs]
     EH --> Server[Server ng MCP]
     Server --> EH
     EH --> Client
     
     subgraph "Mga Tampok ng Event Hubs"
-        Partition[Pagpartition]
-        Retention[Pag-iingat ng Mensahe]
-        Scaling[Auto Scaling]
+        Partition[Pagpangkat-pangkat]
+        Retention[Pagpapanatili ng Mensahe]
+        Scaling[Awtomatikong Sukat]
     end
     
     EH --> Partition
@@ -420,7 +436,7 @@ export class EventHubsMcpTransport implements McpTransport {
                         
                         await messageHandler(mcpMessage);
                         
-                        // I-update ang checkpoint para sa hindi bababa sa isang beses na paghahatid
+                        // I-update ang tsekpoint para sa paghahatid na hindi bababa sa isang beses
                         await context.updateCheckpoint(event);
                     } catch (error) {
                         console.error("Error processing Event Hubs message:", error);
@@ -473,7 +489,7 @@ class EventHubsMcpTransport:
         """Send MCP message via Event Hubs"""
         event_data = EventData(json.dumps(message))
         
-        # Magdagdag ng mga katangiang espesipiko sa MCP
+        # Magdagdag ng mga katangian na partikular sa MCP
         event_data.properties = {
             "messageType": message.get("method", "response"),
             "messageId": message.get("id"),
@@ -505,14 +521,14 @@ class EventHubsMcpTransport:
         """Internal event handler wrapper"""
         async def handle_event(partition_context, event):
             try:
-                # I-parse ang mensahe ng MCP mula sa event ng Event Hubs
+                # I-parse ang mensahe ng MCP mula sa kaganapan ng Event Hubs
                 message_body = event.body_as_str(encoding='UTF-8')
                 mcp_message = json.loads(message_body)
                 
                 # Iproseso ang mensahe ng MCP
                 await handler(mcp_message)
                 
-                # I-update ang checkpoint para sa kahit minsang paghahatid
+                # I-update ang checkpoint para sa pag-deliver nang hindi bababa sa isang beses
                 await partition_context.update_checkpoint(event)
                 
             except Exception as e:
@@ -527,9 +543,9 @@ class EventHubsMcpTransport:
         await self.consumer.close()
 ```
 
-## **Advanced Transport Patterns**
+## **Mga Advanced na Pattern sa Transport**
 
-### **Message Durability at Reliability**
+### **Message Durability at Katatagan**
 
 ```csharp
 // Implementing message durability with retry logic
@@ -556,7 +572,7 @@ public class ReliableTransportWrapper : IMcpTransport
 }
 ```
 
-### **Integrasyon ng Seguridad sa Transport**
+### **Integrasyon sa Seguridad ng Transport**
 
 ```csharp
 // Integrating Azure Key Vault for transport security
@@ -578,7 +594,7 @@ public class SecureTransportFactory
 }
 ```
 
-### **Pagmamanman at Observability ng Transport**
+### **Pagmamanman at Obserbabilidad ng Transport**
 
 ```csharp
 // Adding telemetry to custom transports
@@ -617,11 +633,11 @@ public class ObservableTransport : IMcpTransport
 }
 ```
 
-## **Mga Senaryo ng Enterprise Integration**
+## **Mga Senaryo sa Enterprise Integration**
 
 ### **Senaryo 1: Distributed MCP Processing**
 
-Paggamit ng Azure Event Grid para sa pamamahagi ng mga request ng MCP sa maraming processing nodes:
+Paggamit ng Azure Event Grid para ipamahagi ang mga MCP request sa maraming processing node:
 
 ```yaml
 Architecture:
@@ -637,7 +653,7 @@ Benefits:
 
 ### **Senaryo 2: Real-time MCP Streaming**
 
-Paggamit ng Azure Event Hubs para sa mataas na dalas ng interaksyon sa MCP:
+Paggamit ng Azure Event Hubs para sa mataas na dalas ng MCP interaksyon:
 
 ```yaml
 Architecture:
@@ -653,7 +669,7 @@ Benefits:
 
 ### **Senaryo 3: Hybrid Transport Architecture**
 
-Pagsasama-sama ng maraming transport para sa iba't ibang gamit:
+Pagsasama ng maraming transport para sa iba't ibang gamit:
 
 ```csharp
 public class HybridMcpTransport : IMcpTransport
@@ -677,9 +693,9 @@ public class HybridMcpTransport : IMcpTransport
 }
 ```
 
-## **Pag-optimize ng Performance**
+## **Pag-optimize sa Performance**
 
-### **Pag-batch ng Mensahe para sa Event Grid**
+### **Message Batching para sa Event Grid**
 
 ```csharp
 public class BatchingEventGridTransport : IMcpTransport
@@ -719,7 +735,7 @@ public class BatchingEventGridTransport : IMcpTransport
 }
 ```
 
-### **Strategiya ng Pag-partition para sa Event Hubs**
+### **Partitioning Strategy para sa Event Hubs**
 
 ```csharp
 public class PartitionedEventHubsTransport : IMcpTransport
@@ -801,33 +817,33 @@ public async Task EventHubsTransport_IntegrationTest()
 }
 ```
 
-## **Mga Pinakamahusay na Praktis at Mga Patnubay**
+## **Pinakamahuhusay na Gawi at Mga Panuntunan**
 
 ### **Mga Prinsipyo sa Disenyo ng Transport**
 
-1. **Idempotency**: Siguraduhing ang pagproseso ng mensahe ay idempotent upang mahawakan ang mga duplicate
-2. **Paghawak ng Error**: Ipatupad ang komprehensibong paghawak ng error at dead letter queues
-3. **Pagmamanman**: Magdagdag ng detalyadong telemetry at mga health check
+1. **Idempotency**: Siguraduhing idempotent ang pagproseso ng mensahe para mahawakan ang mga duplicate
+2. **Pag-handle ng Error**: Magpatupad ng komprehensibong error handling at dead letter queues
+3. **Pagmamanman**: Magdagdag ng detalyadong telemetry at health checks
 4. **Seguridad**: Gumamit ng managed identities at least privilege access
-5. **Performance**: Magdisenyo para sa iyong partikular na mga pangangailangan sa latency at throughput
+5. **Performance**: Magdisenyo para sa iyong mga partikular na latency at throughput na pangangailangan
 
-### **Mga Rekomendasyong Espesipiko sa Azure**
+### **Mga Rekomendasyon sa Azure**
 
-1. **Gamitin ang Managed Identity**: Iwasan ang mga connection string sa production
-2. **Ipatupad ang Circuit Breakers**: Protektahan laban sa mga outage ng serbisyo ng Azure
-3. **Pagmamanman ng Gastos**: Subaybayan ang volume ng mensahe at gastos sa pagproseso
-4. **Magplano para sa Scale**: Disenyuhin ang partitioning at scaling na mga strategiya nang maaga
-5. **Subukan nang Mabuti**: Gamitin ang Azure DevTest Labs para sa komprehensibong pagsusuri
+1. **Gamitin ang Managed Identity**: Iwasan ang connection strings sa produksyon
+2. **Ipatupad ang Circuit Breakers**: Protektahan laban sa outages ng Azure service
+3. **Subaybayan ang Gastos**: Subaybayan ang volume ng mensahe at gastos sa pagproseso
+4. **Magplano para sa Scale**: Disenyo ng mga partitioning at scaling strategy nang maaga
+5. **Masusing Pagsusuri**: Gumamit ng Azure DevTest Labs para sa komprehensibong pagsusuri
 
 ## **Konklusyon**
 
-Pinapayagan ng mga pasadyang MCP transport ang malalakas na senaryo sa enterprise gamit ang mga serbisyo ng messaging ng Azure. Sa pamamagitan ng pagpapatupad ng Event Grid o Event Hubs na mga transport, maaari kang makabuo ng scalable, maaasahang mga solusyon sa MCP na seamless na nakikipag-ugnayan sa umiiral na Azure infrastructure.
+Pinapayagan ng custom MCP transports ang makapangyarihang mga senaryo sa enterprise gamit ang mga messaging service ng Azure. Sa pamamagitan ng pagpapatupad ng Event Grid o Event Hubs transports, makakabuo ka ng scalable at maaasahang mga MCP solution na malapitang nakikipag-integrate sa kasalukuyang Azure infrastructure.
 
-Ipinapakita ng mga halimbawa ang mga pattern na handa na para sa produksyon sa pagpapatupad ng mga pasadyang transport habang pinananatili ang pagsunod sa protocol ng MCP at mga pinakamahusay na praktis ng Azure.
+Ipinapakita ng mga halimbawa ang mga handang-gamitin sa produksyon na mga pattern para sa pagpapatupad ng custom transports habang pinananatili ang pagsunod sa MCP protocol at pinakamahusay na gawi sa Azure.
 
-## **Karagdagang Mga Mapagkukunan**
+## **Mga Karagdagang Resources**
 
-- [MCP Specification 2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Specification 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [Azure Event Grid Documentation](https://docs.microsoft.com/azure/event-grid/)
 - [Azure Event Hubs Documentation](https://docs.microsoft.com/azure/event-hubs/)
 - [Azure Functions Event Grid Trigger](https://docs.microsoft.com/azure/azure-functions/functions-bindings-event-grid)
@@ -837,12 +853,13 @@ Ipinapakita ng mga halimbawa ang mga pattern na handa na para sa produksyon sa p
 
 ---
 
-> *Nakatuon ang gabay na ito sa mga praktikal na pattern ng implementasyon para sa production MCP systems. Palaging beripikahin ang mga implementasyon ng transport laban sa iyong mga partikular na pangangailangan at mga limitasyon ng serbisyo ng Azure.*
-> **Kasalukuyang Standard**: Ipinapakita ng gabay na ito ang [MCP Specification 2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25/) mga pangangailangan sa transport at mga advanced na pattern ng transport para sa mga kapaligiran ng enterprise.
+> *Ang gabay na ito ay nakatuon sa mga custom na pattern ng arkitektura. Patunayan ang pag-uugali ng protocol laban sa [MCP Specification 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/),
+> at patunayan ang paggamit ng Azure ayon sa iyong mga pangangailangan at limitasyon ng serbisyo.*
 
 
-## Ano ang Susunod
-- [6. Community Contributions](../../06-CommunityContributions/README.md)
+
+## Ano Ang Susunod
+- [6. Mga Ambag ng Komunidad](../../06-CommunityContributions/README.md)
 
 ---
 

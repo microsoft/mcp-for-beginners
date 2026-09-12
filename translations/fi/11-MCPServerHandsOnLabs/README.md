@@ -1,163 +1,164 @@
-# 🚀 MCP-palvelin PostgreSQL:llä – Kattava oppimisopas
+# 🚀 MCP-palvelin PostgreSQL:llä - Täydellinen oppaallinen opas
 
 ## 🧠 Yleiskatsaus MCP-tietokantaintegraation oppimispolkuun
 
-Tämä kattava oppimisopas opettaa, kuinka rakennat tuotantovalmiita **Model Context Protocol (MCP)** -palvelimia, jotka integroituvat tietokantoihin käytännön vähittäiskaupan analytiikkatoteutuksen kautta. Opit yrityskäyttöön soveltuvia malleja, mukaan lukien **Row Level Security (RLS)**, **semanttinen haku**, **Azure AI -integraatio** ja **monivuokrattujen tietojen käyttöoikeudet**.
+Tämä kattava oppimisopas opettaa, miten rakennetaan tuotantovalmiita **Model Context Protocol (MCP) -palvelimia**, jotka integroituvat tietokantoihin käytännön vähittäiskaupan analytiikan käyttötapauksen kautta. Opit yritystason malleja, mukaan lukien **rivitasoturvallisuus (Row Level Security, RLS)**, **semanttinen haku**, **Azure AI -integraatio** ja **monivuokraajainen tietojen käyttöoikeus**.
 
-Oletpa sitten backend-kehittäjä, tekoälyinsinööri tai data-arkkitehti, tämä opas tarjoaa strukturoitua oppimista todellisten esimerkkien ja käytännön harjoitusten avulla, jotka ohjaavat sinut seuraavan MCP-palvelinprojektin läpi https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail.
+Olitpa sitten backend-kehittäjä, AI-insinööri tai data-arkkitehti, tämä opas tarjoaa rakenteellisen oppimisen todellisilla esimerkeillä ja käytännön harjoituksilla, jotka johdattavat sinut MCP-palvelimeen osoitteessa https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail.
 
 ## 🔗 Viralliset MCP-resurssit
 
-- 📘 [MCP-dokumentaatio](https://modelcontextprotocol.io/) – Yksityiskohtaiset opetusohjelmat ja käyttäjäoppaat
-- 📜 [MCP-määritys (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/) – Protokollan arkkitehtuuri ja tekniset viitteet
-- 🧑‍💻 [MCP GitHub-repositorio](https://github.com/modelcontextprotocol) – Avoimen lähdekoodin SDK:t, työkalut ja koodiesimerkit
-- 🌐 [MCP-yhteisö](https://github.com/orgs/modelcontextprotocol/discussions) – Osallistu keskusteluihin ja yhteisön kehitykseen
+- 📘 [MCP-dokumentaatio](https://modelcontextprotocol.io/) – Yksityiskohtaiset opetusohjelmat ja käyttöohjeet
+- 📜 [MCP-spesifikaatio (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/) – Protokollan arkkitehtuuri ja tekniset viitteet
+- 🧑‍💻 [MCP GitHub -varasto](https://github.com/modelcontextprotocol) – Avoimen lähdekoodin SDK:t, työkalut ja koodiesimerkit
+- 🌐 [MCP-yhteisö](https://github.com/orgs/modelcontextprotocol/discussions) – Osallistu keskusteluihin ja tue yhteisöä
 - 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Turvallisuuden parhaat käytännöt ja riskienhallinta
+
 
 ## 🧭 MCP-tietokantaintegraation oppimispolku
 
-### 📚 Kattava oppimisrakenne https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail
+### 📚 Kokonaisvaltainen oppimisrakenne https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail -projektia varten
 
-| Laboraatio | Aihe | Kuvaus | Linkki |
+| Lab | Aihe | Kuvaus | Linkki |
 |--------|-------|-------------|------|
-| **Lab 1-3: Perusteet** | | | |
-| 00 | [Johdanto MCP-tietokantaintegraatioon](./00-Introduction/README.md) | Yleiskatsaus MCP:hen tietokantaintegraation ja vähittäiskaupan analytiikan käyttöesimerkin kautta | [Aloita täältä](./00-Introduction/README.md) |
-| 01 | [Perusarkkitehtuurin käsitteet](./01-Architecture/README.md) | MCP-palvelimen arkkitehtuurin, tietokantakerrosten ja turvallisuusmallien ymmärtäminen | [Opiskele](./01-Architecture/README.md) |
-| 02 | [Turvallisuus ja monivuokrattavuus](./02-Security/README.md) | Row Level Security, todennus ja monivuokrattujen tietojen käyttöoikeudet | [Opiskele](./02-Security/README.md) |
-| 03 | [Ympäristön pystytys](./03-Setup/README.md) | Kehitysympäristön, Dockerin ja Azuren resurssien perustaminen | [Pystytä](./03-Setup/README.md) |
+| **Lab 1-3: Perustukset** | | | |
+| 00 | [Johdatus MCP-tietokantaintegraatioon](./00-Introduction/README.md) | Yleiskatsaus MCP:stä tietokantaintegraation ja vähittäiskaupan analytiikan käyttötapauksen kanssa | [Aloita tästä](./00-Introduction/README.md) |
+| 01 | [Ydinarkkitehtuurin käsitteet](./01-Architecture/README.md) | MCP-palvelimen arkkitehtuurin, tietokantakerrosten ja turvallisuusmallien ymmärtäminen | [Lue](./01-Architecture/README.md) |
+| 02 | [Turvallisuus ja monivuokraajaisuus](./02-Security/README.md) | Rivitasoturvallisuus, tunnistautuminen ja monivuokraajainen tietojen käyttöoikeus | [Lue](./02-Security/README.md) |
+| 03 | [Ympäristön asennus](./03-Setup/README.md) | Kehitysympäristön, Dockerin ja Azure-resurssien perustaminen | [Asenna](./03-Setup/README.md) |
 | **Lab 4-6: MCP-palvelimen rakentaminen** | | | |
-| 04 | [Tietokannan suunnittelu ja skeema](./04-Database/README.md) | PostgreSQL-pystytys, vähittäiskaupan skeeman suunnittelu ja esimerkkidata | [Rakenna](./04-Database/README.md) |
+| 04 | [Tietokannan suunnittelu ja skeema](./04-Database/README.md) | PostgreSQL:n asennus, vähittäiskaupan skeeman suunnittelu ja esimerkkidata | [Rakenna](./04-Database/README.md) |
 | 05 | [MCP-palvelimen toteutus](./05-MCP-Server/README.md) | FastMCP-palvelimen rakentaminen tietokantaintegraatiolla | [Rakenna](./05-MCP-Server/README.md) |
-| 06 | [Työkalujen kehitys](./06-Tools/README.md) | Tietokantakyselytyökalujen ja skeeman introspektio-ominaisuuksien luominen | [Rakenna](./06-Tools/README.md) |
+| 06 | [Työkalujen kehitys](./06-Tools/README.md) | Tietokantakyselytyökalujen ja skeeman introspektion luominen | [Rakenna](./06-Tools/README.md) |
 | **Lab 7-9: Edistyneet ominaisuudet** | | | |
-| 07 | [Semanttisen haun integraatio](./07-Semantic-Search/README.md) | Vektoriesitysten toteutus Azure OpenAI:lla ja pgvectorilla | [Kehitä](./07-Semantic-Search/README.md) |
+| 07 | [Semanttisen haun integraatio](./07-Semantic-Search/README.md) | Vektoriesitysten toteutus Azure OpenAI:n ja pgvectorin avulla | [Laajenna](./07-Semantic-Search/README.md) |
 | 08 | [Testaus ja virheenkorjaus](./08-Testing/README.md) | Testausstrategiat, virheenkorjaustyökalut ja validointimenetelmät | [Testaa](./08-Testing/README.md) |
-| 09 | [VS Code -integraatio](./09-VS-Code/README.md) | VS Code MCP-integraation ja tekoälychatin konfigurointi | [Integroi](./09-VS-Code/README.md) |
+| 09 | [VS Code -integraatio](./09-VS-Code/README.md) | VS Code MCP -integraation ja AI-chatin käyttöönotto | [Integroi](./09-VS-Code/README.md) |
 | **Lab 10-12: Tuotanto ja parhaat käytännöt** | | | |
-| 10 | [Julkaisustrategiat](./10-Deployment/README.md) | Dockerin julkaisu, Azure Container Apps ja skaalausnäkökohdat | [Julkaise](./10-Deployment/README.md) |
-| 11 | [Valvonta ja havaittavuus](./11-Monitoring/README.md) | Application Insights, lokitus, suorituskyvyn valvonta | [Valvo](./11-Monitoring/README.md) |
-| 12 | [Parhaat käytännöt ja optimointi](./12-Best-Practices/README.md) | Suorituskyvyn optimointi, tietoturvan vahvistaminen ja tuotantovinkit | [Optimoi](./12-Best-Practices/README.md) |
+| 10 | [Julkaisustrategiat](./10-Deployment/README.md) | Docker-julkaisu, Azure Container Apps ja skaalausnäkökohdat | [Julkaise](./10-Deployment/README.md) |
+| 11 | [Seuranta ja havaittavuus](./11-Monitoring/README.md) | Application Insights, lokitus ja suorituskyvyn seuranta | [Seuraa](./11-Monitoring/README.md) |
+| 12 | [Parhaat käytännöt ja optimointi](./12-Best-Practices/README.md) | Suorituskyvyn optimointi, turvallisuuden vahvistaminen ja tuotantovinkit | [Optimoi](./12-Best-Practices/README.md) |
 
 ### 💻 Mitä rakennat
 
-Oppimispolun lopussa olet rakentanut täydellisen **Zava Retail Analytics MCP -palvelimen**, joka sisältää:
+Tämän oppimispolun lopussa olet rakentanut kokonaisen **Zava Retail Analytics MCP -palvelimen**, joka sisältää:
 
-- **Monitauluisen vähittäiskaupan tietokannan** asiakastilauksineen, tuotteineen ja varastotietoineen
-- **Row Level Security** myymäläkohtaiseen tiedon eristämiseen
-- **Semanttinen tuotteen haku** Azure OpenAI -upotuksilla
-- **VS Code AI Chat -integraation** luonnollisen kielen kyselyjä varten
-- **Tuotantovalmiin julkaisun** Dockerilla ja Azurella
-- **Kattavan valvonnan** Application Insightsilla
+- **Monitaulukkoinen vähittäiskaupan tietokanta** asiakkaiden tilauksille, tuotteille ja varastolle
+- **Rivitasoturvallisuuden** myymäläkohtaiselle datan eristämiselle
+- **Semanttisen tuotteen haun** Azure OpenAI -upotuksilla
+- **VS Code AI Chat -integraation** luonnollisen kielen kyselyille
+- **Tuotantovalmiin käyttöönoton** Dockerilla ja Azurella
+- **Laajan seurannan** Application Insights -työkalulla
 
 ## 🎯 Oppimisen edellytykset
 
-Jotta saat parhaan hyödyn tästä oppimispolusta, sinulla tulisi olla:
+Saadaksesi parhaan hyödyn tästä oppimispolusta sinun tulisi hallita:
 
 - **Ohjelmointikokemus**: Tuntemus Pythonista (suositeltu) tai vastaavista kielistä
 - **Tietokantatieto**: Peruskäsitys SQL:stä ja relaatiotietokannoista
-- **API-käsitteet**: REST API:en ja HTTP:n ymmärrys
+- **API-käsitteet**: REST API:en ja HTTP:n ymmärtäminen
 - **Kehitystyökalut**: Kokemusta komentorivistä, Gitistä ja koodieditoreista
-- **Pilvipalveluiden perusteet**: (Valinnainen) Perustiedot Azuresta tai vastaavista pilvialustoista
-- **Docker-tuntemus**: (Valinnainen) Säilötekniikan perustietämys
+- **Pilvipohjatiedot**: (Valinnainen) Perustieto Azuresta tai muista pilvialustoista
+- **Docker-tuntemus**: (Valinnainen) Ymmärrys konttiteknologiasta
 
-### Tarvittavat työkalut
+### Vaatimukset työkaluille
 
-- **Docker Desktop** – PostgreSQL:n ja MCP-palvelimen ajamiseen
-- **Azure CLI** – Pilviresurssien julkaisua varten
-- **VS Code** – Kehitykseen ja MCP-integraatioon
-- **Git** – Versionhallintaan
-- **Python 3.8+** – MCP-palvelimen kehittämiseen
+- **Docker Desktop** - PostgreSQL:n ja MCP-palvelimen ajamiseen
+- **Azure CLI** - Pilviresurssien käyttöönottoon
+- **VS Code** - Kehitykseen ja MCP-integraatioon
+- **Git** - Versiohallintaan
+- **Python 3.8+** - MCP-palvelimen kehittämiseen
 
 ## 📚 Opas ja resurssit
 
-Tähän oppimispolkuun sisältyy kattavia resursseja, jotka auttavat sinua etenemään tehokkaasti:
+Tämä oppimispolku sisältää kattavat resurssit sujuvaan etenemiseen:
 
 ### Opas
 
-Jokainen laboraatio sisältää:
-- **Selkeät oppimistavoitteet** – Mitä saavutetaan
-- **Askeltaiset ohjeet** – Yksityiskohtaiset toteutusoppaat
-- **Koodiesimerkit** – Toimivia näytteitä selityksineen
-- **Harjoitukset** – Käytännön harjoittelumahdollisuudet
-- **Vianetsintäoppaat** – Yleisimmät ongelmat ja ratkaisut
-- **Lisäresurssit** – Jatko-opiskelu ja laajempaan tutustumiseen
+Jokainen lab sisältää:
+- **Selkeät oppimistavoitteet** - Mitä saavutetaan
+- **Vaiheittaiset ohjeet** - Yksityiskohtaiset toteutusoppaat
+- **Koodiesimerkit** - Toimivat näytteet selityksillä
+- **Harjoitukset** - Käytännön harjoituksia
+- **Vianetsintäoppaat** - Yleiset ongelmat ja ratkaisut
+- **Lisäresurssit** - Syventävää lukemista ja tutkimista
 
-### Edellytysten tarkastelu
+### Edellytysten tarkistus
 
-Ennen jokaisen laboratorion aloittamista löydät:
-- **Tarvittavat tiedot** – Mitä tulisi osata ennakkoon
-- **Ympäristön vahvistus** – Kuinka varmistaa ympäristön toimivuus
-- **Aika-arviot** – Arvioitu suorituskausi
-- **Oppimistulokset** – Mitä osaat koulutuksen jälkeen
+Ennen jokaista labia löydät:
+- **Vaadittava tieto** - Mitä tulisi osata ennakolta
+- **Ympäristön validointi** - Miten varmistaa ympäristösi toimivuus
+- **Aikatauluarviot** - Odotettu suoritusajankohta
+- **Oppimistulokset** - Mitä opit suorittamisen jälkeen
 
 ### Suositellut oppimispolut
 
-Valitse polkusi kokemustasosi mukaan:
+Valitse polkusi kokemuksesi perusteella:
 
-#### 🟢 **Aloittelijan polku** (Uusi MCP:llä)
-1. Varmista, että olet suorittanut aiemmin 0-10 kohdan [MCP for Beginners](https://aka.ms/mcp-for-beginners)
-2. Suorita labit 00-03 kertaaksesi perusteet
-3. Seuraa labit 04-06 käytännön rakentamista varten
-4. Kokeile labit 07-09 käytännön käyttöä varten
+#### 🟢 **Aloittelijan polku** (Uusi MCP:hen)
+1. Varmista, että olet suorittanut jaksot 0-10 [MCP for Beginners](https://aka.ms/mcp-for-beginners) -materialista ensin
+2. Suorita labit 00-03 vahvistaaksesi perusteet
+3. Seuraa labit 04-06 käytännön rakentamiseksi
+4. Kokeile labit 07-09 käytännön käyttöön
 
-#### 🟡 **Keskitaso** (Jonkin verran MCP-kokemusta)
-1. Kertaa labit 00-01 tietokantakäsitteitä varten
-2. Keskitä huomiosi labien 02-06 toteutukseen
-3. Sukella syvemmälle labien 07-12 edistyneisiin ominaisuuksiin
+#### 🟡 **Keskitasoinen polku** (Jonkin verran MCP-kokemusta)
+1. Tarkastele labit 00-01 tietokantakohtaisiin käsitteisiin
+2. Keskity labiin 02-06 toteutuksen osalta
+3. Syvenny laboreihin 07-12 edistyneisiin ominaisuuksiin
 
-#### 🔴 **Edistynyt** (Kokenut MCP:n käyttäjä)
-1. Lue nopeasti labit 00-03 kontekstia varten
-2. Keskity labien 04-09 tietokantaintegraatioon
-3. Paneudu labien 10-12 tuotantojulkaisuun
+#### 🔴 **Edistynyt polku** (Kokenut MCP:n kanssa)
+1. Silmäile labit 00-03 kontekstin vuoksi
+2. Tarkenna labien 04-09 tietokantaintegraatioon
+3. Keskity labien 10-12 tuotantoon ja käyttöönottoon
 
-## 🛠️ Näin hyödynnät oppimispolkua tehokkaasti
+## 🛠️ Miten käyttää tätä oppimispolkua tehokkaasti
 
-### Sarjallinen oppiminen (suositeltu)
+### Peräkkäinen oppiminen (Suositus)
 
-Työskentele labien läpi järjestyksessä kattavan ymmärryksen saavuttamiseksi:
+Käy labit järjestyksessä kattavan ymmärryksen saamiseksi:
 
-1. **Lue yleiskatsaus** – Ymmärrä, mitä opit
-2. **Tarkista edellytykset** – Varmista, että tiedot ovat hallussa
-3. **Seuraa askel askeleelta opastusta** – Toteuta oppiessasi
-4. **Suorita harjoitukset** – Vahvista oppimista
-5. **Kertaa pääkohdat** – Vahvista oppimistuloksia
+1. **Lue yleiskatsaus** - Ymmärrä mitä opit
+2. **Tarkista edellytykset** - Varmista, että hallitset tarvittavan tiedon
+3. **Seuraa vaiheittaisia ohjeita** - Toteuta samalla kun opit
+4. **Suorita harjoitukset** - Vahvista oppimistasi
+5. **Kertaa tärkeimmät opit** - Vahvista oppimistulokset
 
 ### Kohdennettu oppiminen
 
-Jos tarvitset tiettyjä taitoja:
+Tarvittaessa tiettyjä taitoja:
 
-- **Tietokantaintegraatio**: Keskity labihin 04-06
-- **Turvallisuuden toteutus**: Paneudu labiin 02, 08, 12
-- **AI/Semanttinen haku**: Syvenny labiin 07
-- **Tuotantojulkaisu**: Opiskele labit 10-12
+- **Tietokantaintegraatio**: Keskity laboreihin 04-06
+- **Turvallisuuden toteutus**: Keskity laboreihin 02, 08, 12
+- **AI/Semanttinen haku**: Syvenny labi 07
+- **Tuotantokäyttöönotto**: Tutki labourit 10-12
 
-### Käytännön harjoittelu
+### Käytännön harjoitus
 
 Jokainen lab sisältää:
-- **Toimivia koodiesimerkkejä** – Kopioi, muokkaa ja kokeile
-- **Todellisia tilanteita** – Käytännön vähittäiskaupan analytiikkatapauksia
-- **Vähittäinen vaikeusaste** – Rakenna yksinkertaisesta edistyneeseen
-- **Validointivaiheet** – Varmista, että toteutus toimii
+- **Toimivat koodiesimerkit** - Kopioi, muokkaa ja kokeile
+- **Todelliset skenaariot** - Käytännön vähittäiskaupan analytiikan käyttötapaukset
+- **Kehittyvä monimutkaisuus** - Rakentaminen yksinkertaisesta edistyneeseen
+- **Validointivaiheet** - Varmista, että toteutus toimii
 
 ## 🌟 Yhteisö ja tuki
 
 ### Hanki apua
 
 - **Azure AI Discord**: [Liity asiantuntijatukeen](https://discord.com/invite/ByRwuEEgH4)
-- **GitHub-repo ja toteutusesimerkki**: [Julkaisu- ja resurssinäyte](https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail/)
-- **MCP-yhteisö**: [Liity laajempaan MCP-keskusteluun](https://github.com/orgs/modelcontextprotocol/discussions)
+- **GitHub-varasto ja toteutusnäyte**: [Käyttöönottomalli ja resurssit](https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail/)
+- **MCP-yhteisö**: [Liity laajempiin MCP-keskusteluihin](https://github.com/orgs/modelcontextprotocol/discussions)
 
 ## 🚀 Valmis aloittamaan?
 
-Aloita matkasi **[Lab 00: Johdanto MCP-tietokantaintegraatioon](./00-Introduction/README.md)**
+Aloita matkasi **[Lab 00: Johdatus MCP-tietokantaintegraatioon](./00-Introduction/README.md)**
 
 ---
 
-*Hallinnoi tuotantovalmiiden MCP-palvelimien rakentamista tietokantaintegraation avulla tämän kattavan, käytännönläheisen oppimiskokemuksen myötä.*
+*Hallinnoi tuotantovalmiiden MCP-palvelimien rakentamista tietokantaintegraatiolla tämän kattavan ja käytännönläheisen oppimiskokemuksen avulla.*
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, on hyvä huomioida, että automaattikäännöksissä saattaa olla virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen omalla kielellä on aina ensisijainen ja virallinen lähde. Tärkeissä asioissa suositellaan ammattilaisten tekemää ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
+**Vastuuvapauslauseke**:
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, otathan huomioon, että automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäiskielellä on virallinen lähde. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

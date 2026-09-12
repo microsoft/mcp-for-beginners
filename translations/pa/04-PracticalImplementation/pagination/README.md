@@ -1,54 +1,55 @@
-# MCP ਵਿੱਚ ਪੇਜੀਨੇਸ਼ਨ ਅਤੇ ਵੱਡੇ ਨਤੀਜਾ ਸੈੱਟ
+# MCP ਵਿੱਚ ਪੇਜਿਨੇਸ਼ਨ ਅਤੇ ਵੱਡੇ ਨਤੀਜੇ ਸੈੱਟ
 
-ਜਦੋਂ ਤੁਹਾਡਾ MCP ਸਰਵਰ ਵੱਡੇ ਡੇਟਾਸੇਟਸ ਨੂੰ ਹੈਂਡਲ ਕਰਦਾ ਹੈ - ਚਾਹੇ ਹਜ਼ਾਰਾਂ ਫਾਈਲਾਂ, ਡੇਟਾਬੇਸ ਰਿਕਾਰਡ, ਜਾਂ ਖੋਜ ਨਤੀਜੇ - ਤੁਹਾਨੂੰ ਮੈਮੋਰੀ ਨੂੰ ਪ੍ਰਭਾਵਸ਼ਾਲੀ ਢੰਗ ਨਾਲ ਪ੍ਰਬੰਧਿਤ ਕਰਨ ਅਤੇ ਤੇਜ਼ ਉਪਭੋਗੀ ਅਨੁਭਵ ਪ੍ਰਦਾਨ ਕਰਨ ਲਈ ਪੇਜਿਨੇਸ਼ਨ ਦੀ ਲੋੜ ਹੁੰਦੀ ਹੈ। ਇਹ ਮਾਰਗਦਰਸ਼ਕ ਇਹ ਦੱਸਦਾ ਹੈ ਕਿ MCP ਵਿੱਚ ਪੇਜੀਨੇਸ਼ਨ ਕਿਵੇਂ ਲਾਗੂ ਅਤੇ ਵਰਤੀ ਜਾ ਸਕਦੀ ਹੈ।
+ਜਦੋਂ ਤੁਹਾਡਾ MCP ਸਰਵਰ ਵੱਡੇ ਡੇਟਾ ਸੈੱਟਾਂ ਨੂੰ ਸੰਭਾਲਦਾ ਹੈ - ਚਾਹੇ ਉਹ ਹਜ਼ਾਰਾਂ ਫਾਇਲਾਂ ਦੀ ਲਿਸਟਿੰਗ ਹੋਵੇ, ਡੇਟਾਬੇਸ ਰਿਕਾਰਡ ਹੋਣ ਜਾਂ ਖੋਜ ਨਤੀਜੇ - ਤੁਹਾਨੂੰ ਸਮਰਥਤ ਮੈਮੋਰੀ ਪ੍ਰਬੰਧਨ ਅਤੇ ਤੁਰੰਤ ਯੂਜ਼ਰ ਅਨੁਭਵ ਪ੍ਰਦਾਨ ਕਰਨ ਲਈ ਪੇਜਿਨੇਸ਼ਨ ਦੀ ਲੋੜ ਹੁੰਦੀ ਹੈ। ਇਹ ਗਾਈਡ MCP ਵਿੱਚ ਪੇਜਿਨੇਸ਼ਨ ਦੇ ਕਿਸੇ ਤਰੀਕੇ ਨੂੰ ਲਾਗੂ ਕਰਨ ਅਤੇ ਇਸ ਦਾ ਉਪਯੋਗ ਕਰਨ ਬਾਰੇ ਹੈ।
 
-## ਪੇਜੀਨੇਸ਼ਨ ਕਿਉਂ ਮਹੱਤਵਪੂਰਨ ਹੈ
+## ਪੇਜਿਨੇਸ਼ਨ ਦਾ ਮਹੱਤਵ ਕਿਉਂ ਹੈ
 
-ਪੇਜੀਨੇਸ਼ਨ ਬਿਨਾਂ, ਵੱਡੀਆਂ ਪ੍ਰਤੀਕਿਰਿਆਵਾਂ ਇਹ ਕਾਰਨ ਬਣ ਸਕਦੀਆਂ ਹਨ:
+ਪੇਜਿਨੇਸ਼ਨ ਦੇ ਬਿਨਾਂ ਵੱਡੇ ਜਵਾਬ ਕਾਰਨ ਹੋ ਸਕਦੇ ਹਨ:
 
-- **ਮੈਮੋਰੀ ਖ਼ਤਮ ਹੋ ਜਾਣਾ** - ਇੱਕ ਵਾਰ ਵਿੱਚ ਲੱਖਾਂ ਰਿਕਾਰਡ ਲੋਡ ਹੋਣ
-- **ਧੀਮੇ ਜਵਾਬ ਦੇਣ ਦਾ ਸਮਾਂ** - ਯੂਜ਼ਰ ਸਾਰੀ ਡੇਟਾ ਲੋਡ ਹੋਣ ਲਈ ਉਡੀਕਦੇ ਹਨ
-- **ਟਾਈਮਆਊਟ ਗਲਤੀਆਂ** - ਬੇਨਤੀਆਂ ਟਾਈਮਆਊਟ ਸੀਮਾਵਾਂ ਤੋਂ ਵੱਧ ਜਾਂਦੀਆਂ ਹਨ
-- **ਖ਼ਰਾਬ AI ਪ੍ਰਦਰਸ਼ਨ** - LLMs ਵੱਡੇ ਸੰਦੇਸ਼ ਸੰਦਰਭ ਨਾਲ ਸੰਘਰਸ਼ ਕਰਦੇ ਹਨ
+- **ਮੇਮੋਰੀ ਖਤਮ ਹੋ ਜਾਣਾ** - ਇੱਕ ਵਾਰੀ ਵਿੱਚ ਮਿਲੀਅਨ ਰਿਕਾਰਡਾਂ ਨੂੰ ਲੋਡ ਕਰਨਾ
+- **ਧੀਮੀ ਪ੍ਰਤੀਕਿਰਿਆ ਸਮਾਂ** - ਸਾਰੇ ਡੇਟਾ ਲੋਡ ਹੋਣ ਤੱਕ ਉਪਭੋਗਤਾ ਉਡੀਕ ਕਰਦੇ ਹਨ
+- **ਟਾਈਮਆਉਟ ਗਲਤੀਆਂ** - ਬੇਨਤੀਆਂ ਟਾਈਮਆਉਟ ਸੀਮਾਵਾਂ ਤੋਂ ਵੱਧ ਚੱਲਦੀਆਂ ਹਨ
+- **ਖਰਾਬ AI ਕਾਰਗੁਜ਼ਾਰੀ** - LLM ਵੱਡੇ ਸੰਦਰਭ ਨਾਲ ਸੰਘਰਸ਼ ਕਰਦੇ ਹਨ
 
-MCP ਭਰੋਸੇਯੋਗ ਅਤੇ ਸਥਿਰ ਪੇਜਿੰਗ ਲਈ **ਕਰਸਰ-ਅਧਾਰਿਤ ਪੇਜੀਨੇਸ਼ਨ** ਵਰਤਦਾ ਹੈ।
+MCP ਵਿਸ਼ਵਾਸਯੋਗ ਅਤੇ ਸਥਿਰ ਨਤੀਜੇ ਸੈੱਟਾਂ ਵਿੱਚ ਪੇਜਿੰਗ ਲਈ **ਕਰਸਰ-ਆਧਾਰਿਤ ਪੇਜਿਨੇਸ਼ਨ** ਵਰਤਦਾ ਹੈ।
 
 ---
 
-## MCP ਪੇਜੀਨੇਸ਼ਨ ਕਿਵੇਂ ਕੰਮ ਕਰਦਾ ਹੈ
+## MCP ਪੇਜਿਨੇਸ਼ਨ ਕਿਵੇਂ ਕੰਮ ਕਰਦਾ ਹੈ
 
 ### ਕਰਸਰ ਸੰਕਲਪ
 
-ਇੱਕ **ਕਰਸਰ** ਇੱਕ ਅਜਾਣ ਸਤਰ ਹੈ ਜੋ ਨਤੀਜਾ ਸੈੱਟ ਵਿੱਚ ਤੁਹਾਡੇ ਸਥਾਨ ਨੂੰ ਚਿੰਨ੍ਹਿਤ ਕਰਦਾ ਹੈ। ਇਸਨੂੰ ਲੰਮੀ ਕਿਤਾਬ ਵਿੱਚ ਇੱਕ पुस्तਕ ਚਿੰਨ੍ਹ ਵਜੋਂ ਸੋਚੋ।
+ਇੱਕ **ਕਰਸਰ** ਇੱਕ ਅਪਾਰਦਰਸ਼ੀ ਸਤਰ ਹੈ ਜੋ ਨਤੀਜੇ ਸੈੱਟ ਵਿੱਚ ਤੁਹਾਡੇ ਸਥਾਨ ਨੂੰ ਦਰਸਾਉਂਦਾ ਹੈ। ਇਸਨੂੰ ਤੁਸੀਂ ਇੱਕ ਲੰਬੀ ਕਿਤਾਬ ਵਿੱਚ ਬੁੱਕਮਾਰਕ ਵਾਂਗ ਸੋਚੋ।
 
 ```mermaid
 sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: tools/list (ਕੋਈ ਕ੍ਰਸਰ ਨਹੀਂ)
-    Server-->>Client: tools [1-10], nextCursor: "abc123"
+    Client->>Server: ਉਪਕਰਣ/ਸੂਚੀ (ਕਰਸਰ ਨਹੀਂ)
+    Server-->>Client: ਉਪਕਰਣ [1-10], ਅਗਲਾ ਕੁਰਸਰ: "abc123"
     
-    Client->>Server: tools/list (ਕ੍ਰਸਰ: "abc123")
-    Server-->>Client: tools [11-20], nextCursor: "def456"
+    Client->>Server: ਉਪਕਰਣ/ਸੂਚੀ (ਕਰਸਰ: "abc123")
+    Server-->>Client: ਉਪਕਰਣ [11-20], ਅਗਲਾ ਕੁਰਸਰ: "def456"
     
-    Client->>Server: tools/list (ਕ੍ਰਸਰ: "def456")
-    Server-->>Client: tools [21-25], nextCursor: null (ਅੰਤ)
+    Client->>Server: ਉਪਕਰਣ/ਸੂਚੀ (ਕਰਸਰ: "def456")
+    Server-->>Client: ਉਪਕਰਣ [21-25], ਅਗਲਾ ਕੁਰਸਰ: null (ਅੰਤ)
 ```
-### MCP ਵਿਧੀਆਂ ਵਿੱਚ ਪੇਜੀਨੇਸ਼ਨ
 
-ਇਹ MCP ਵਿਧੀਆਂ ਪੇਜੀਨੇਸ਼ਨ ਦਾ ਸਮਰਥਨ ਕਰਦੀਆਂ ਹਨ:
+### MCP ਵਿਧੀਆਂ ਵਿੱਚ ਪੇਜਿਨੇਸ਼ਨ
 
-| ਵਿਧੀ | ਰਿਟਰਨ ਕਰਦਾ ਹੈ | ਕਰਸਰ ਸਮਰਥਨ |
+ਇਹ MCP ਵਿਧੀਆਂ ਪੇਜਿਨੇਸ਼ਨ ਦਾ ਸਮਰਥਨ ਕਰਦੀਆਂ ਹਨ:
+
+| ਵਿਧੀ | ਵਾਪਸੀ | ਕਰਸਰ ਸਮਰਥਨ |
 |--------|---------|----------------|
-| `tools/list` | ਟੂਲ ਪਰਿਭਾਸ਼ਾ | ✅ |
-| `resources/list` | ਸਰੋਤ ਪਰਿਭਾਸ਼ਾ | ✅ |
-| `prompts/list` | ਪ੍ਰਾਂਪਟ ਪਰਿਭਾਸ਼ਾ | ✅ |
-| `resources/templates/list` | ਸਰੋਤ ਟੈਮਪਲੇਟ | ✅ |
+| `tools/list` | ਟੂਲ ਪਰਿਭਾਸ਼ਾਵਾਂ | ✅ |
+| `resources/list` | ਸਰੋਤ ਪਰਿਭਾਸ਼ਾਵਾਂ | ✅ |
+| `prompts/list` | ਪ੍ਰੋਮਪਟ ਪਰਿਭਾਸ਼ਾਵਾਂ | ✅ |
+| `resources/templates/list` | ਸਰੋਤ ਟੈਂਪਲੇਟ | ✅ |
 
 ---
 
-## ਸਰਵਰ ਲਾਗੂ ਕਰਨ
+## ਸਰਵਰ ਲਾਗੂਕਰਨ
 
 ### ਪਾਇਥਨ (FastMCP)
 
@@ -59,7 +60,7 @@ import math
 
 app = Server("paginated-server")
 
-# ਨਕਲੀ ਵੱਡਾ ਡਾਟਾ ਸੈੱਟ
+# ਨਕਲ ਕੀਤਾ ਵੱਡਾ ਡੇਟਾਸੈੱਟ
 ALL_TOOLS = [
     Tool(name=f"tool_{i}", description=f"Tool number {i}", inputSchema={})
     for i in range(100)
@@ -71,7 +72,7 @@ PAGE_SIZE = 10
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     """List tools with pagination support."""
     
-    # ਸ਼ੁਰੂਆਤੀ ਇੰਡੈਕਸ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ ਕਰਸਰ ਡੀਕੋਡ ਕਰੋ
+    # ਸ਼ੁਰੂਆਤੀ ਸੂਚਕ ਨੂੰ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ ਕਰਸਰ ਡਿਕੋਡ ਕਰੋ
     start_index = 0
     if cursor:
         try:
@@ -79,7 +80,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
         except ValueError:
             start_index = 0
     
-    # ਨਤੀਜਿਆਂ ਦਾ ਪੰਨਾ ਪ੍ਰਾਪਤ ਕਰੋ
+    # ਨਤੀਜਿਆਂ ਦਾ ਸਫ਼ਾ ਪ੍ਰਾਪਤ ਕਰੋ
     end_index = min(start_index + PAGE_SIZE, len(ALL_TOOLS))
     page_tools = ALL_TOOLS[start_index:end_index]
     
@@ -105,7 +106,7 @@ const server = new Server({
   version: "1.0.0"
 });
 
-// ਨਕਲਿਤ ਵੱਡਾ ਡੇਟਾਸੈੱਟ
+// ਸਿਮ्युਲੇਟ ਕੀਤੀ ਵੱਡੀ ਡੇਟਾਸੈੱਟ
 const ALL_TOOLS = Array.from({ length: 100 }, (_, i) => ({
   name: `tool_${i}`,
   description: `Tool number ${i}`,
@@ -115,17 +116,17 @@ const ALL_TOOLS = Array.from({ length: 100 }, (_, i) => ({
 const PAGE_SIZE = 10;
 
 server.setRequestHandler(ListToolsResultSchema, async (request) => {
-  // ਕਰਸਰ ਡੀਕੋਡ ਕਰੋ
+  // ਕਰਸਰ ਨੂੰ ਡੀਕੋਡ ਕਰੋ
   let startIndex = 0;
   if (request.params?.cursor) {
     startIndex = parseInt(request.params.cursor, 10) || 0;
   }
   
-  // ਨਤੀਜਿਆਂ ਦਾ ਪੰਨਾ ਲਓ
+  // ਨਤੀਜਿਆਂ ਦਾ ਪੰਨਾ ਪ੍ਰਾਪਤ ਕਰੋ
   const endIndex = Math.min(startIndex + PAGE_SIZE, ALL_TOOLS.length);
   const pageTools = ALL_TOOLS.slice(startIndex, endIndex);
   
-  // ਅਗਲਾ ਕਰਸਰ ਗਿਣਤੀ ਕਰੋ
+  // ਅਗਲਾ ਕਰਸਰ ਗਣਨਾ ਕਰੋ
   const nextCursor = endIndex < ALL_TOOLS.length ? String(endIndex) : undefined;
   
   return {
@@ -145,7 +146,7 @@ public class PaginatedToolService {
     private final List<Tool> allTools;
     
     public PaginatedToolService() {
-        // ਵੱਡੇ ਡਾਟਾਸੈੱਟ ਨੂੰ ਸ਼ੁਰੂ ਕਰੋ
+        // ਵੱਡੇ ਡੇਟਾਸੈੱਟ ਨੂੰ ਸ਼ੁਰੂ ਕਰੋ
         this.allTools = IntStream.range(0, 100)
             .mapToObj(i -> new Tool("tool_" + i, "Tool number " + i, Map.of()))
             .collect(Collectors.toList());
@@ -177,7 +178,7 @@ public class PaginatedToolService {
 
 ---
 
-## ਕਲਾਇੰਟ ਲਾਗੂ ਕਰਨ
+## ਕਲਾਇੰਟ ਲਾਗੂਕਰਨ
 
 ### ਪਾਇਥਨ ਕਲਾਇੰਟ
 
@@ -228,9 +229,9 @@ const tools = await getAllTools(client);
 console.log(`Found ${tools.length} tools`);
 ```
 
-### ਆਲਸੀ ਲੋਡਿੰਗ ਪੈਟਰਨ
+### ਲੇਜ਼ੀ ਲੋਡਿੰਗ ਡਿਜ਼ਾਈਨ
 
-ਬਹੁਤ ਵੱਡੇ ਡੇਟਾਸੇਟ ਲਈ, ਡਿਮਾਂਡ ਤੇ ਪੰਨਿਆਂ ਨੂੰ ਲੋਡ ਕਰੋ:
+ਬਹੁਤ ਵੱਡੇ ਡੇਟਾ ਸੈੱਟਾਂ ਲਈ, ਪੰਨਿਆਂ ਨੂੰ ਮੰਗ ਅਨੁਸਾਰ ਲੋਡ ਕਰੋ:
 
 ```python
 class PaginatedToolIterator:
@@ -243,15 +244,15 @@ class PaginatedToolIterator:
         self.exhausted = False
     
     async def __anext__(self):
-        # ਜੇ ਉਪਲਬਧ ਹੋਵੇ ਤਾਂ ਬਫਰ ਤੋਂ ਵਾਪਸ ਕਰੋ
+        # ਬਫਰ ਤੋਂ ਉਪਲਬਧ ਹੋਣ ’ਤੇ ਵਾਪਸ ਕਰਨਾ
         if self.buffer:
             return self.buffer.pop(0)
         
-        # ਜਾਂਚ ਕਰੋ ਕਿ ਸਾਰੇ ਪੰਨੇ ਖਤਮ ਹੋ ਗਏ ਹਨ
+        # ਜਾਂਚੋ ਕਿ ਅਸੀਂ ਸਾਰੇ ਪੰਨੇ ਖਤਮ ਕਰ ਲਈਤੇ ਨੇ
         if self.exhausted:
             raise StopAsyncIteration
         
-        # ਅਗਲਾ ਪੰਨਾ ਲਵੋ
+        # ਅਗਲਾ ਪੰਨਾ ਲਿਆਓ
         result = await self.session.list_tools(cursor=self.cursor)
         self.buffer = list(result.tools)
         self.cursor = result.nextCursor
@@ -267,16 +268,16 @@ class PaginatedToolIterator:
     def __aiter__(self):
         return self
 
-# ਵਰਤੋਂ - ਵੱਡੇ ਡੇਟਾ ਸੈੱਟਾਂ ਲਈ ਮੈਮੋਰੀ ਕਾਫ਼ੀ ਹੈ
+# ਵਰਤੋਂ - ਵੱਡੇ ਡੇਟਾਸੇਟਾਂ ਲਈ ਸੰਜੀਵਨੀ ਯਾਦਗਾਰ
 async for tool in PaginatedToolIterator(session):
     process_tool(tool)
 ```
 
 ---
 
-## ਸਰੋਤਾਂ ਲਈ ਪੇਜੀਨੇਸ਼ਨ
+## ਸਰੋਤਾਂ ਲਈ ਪੇਜਿਨੇਸ਼ਨ
 
-ਸਰੋਤਾਂ ਨੂੰ ਅਕਸਰ ਡਾਇਰੈਕਟਰੀਜ਼ ਜਾਂ ਵੱਡੇ ਡੇਟਾਸੇਟ ਲਈ ਪੇਜੀਨੇਸ਼ਨ ਦੀ ਲੋੜ ਹੁੰਦੀ ਹੈ:
+ਡਾਇਰੈਕਟਰੀਆਂ ਜਾਂ ਵੱਡੇ ਡੇਟਾ ਸੈੱਟਾਂ ਲਈ ਅਕਸਰ ਸਰੋਤਾਂ ਨੂੰ ਪੇਜਿਨੇਸ਼ਨ ਦੀ ਜ਼ਰੂਰਤ ਹੁੰਦੀ ਹੈ:
 
 ```python
 from mcp.server import Server
@@ -292,12 +293,12 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
     directory = "/data/files"
     all_files = sorted(os.listdir(directory))
     
-    # ਕ੍ਰਸਰ ਨੂੰ ਡੀਕੋਡ ਕਰੋ (ਫਾਈਲ ਇੰਡੈਕਸ)
+    # ਕਰਸਰ ਨੂੰ ਡੀਕੋਡ ਕਰੋ (ਫਾਈਲ ਸੂਚਕਾਂਕ)
     start_index = int(cursor) if cursor else 0
     page_size = 20
     end_index = min(start_index + page_size, len(all_files))
     
-    # ਇਸ ਪੰਨੇ ਲਈ ਸਰੋਤ ਸੂਚੀ ਬਣਾਓ
+    # ਇਸ ਪੰਨੇ ਲਈ ਸੋਧ ਸੂਚੀ ਬਣਾਓ
     resources = []
     for filename in all_files[start_index:end_index]:
         filepath = os.path.join(directory, filename)
@@ -307,7 +308,7 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
             mimeType="application/octet-stream"
         ))
     
-    # ਅਗਲਾ ਕ੍ਰਸਰ ਗਣਨਾ ਕਰੋ
+    # ਅਗਲਾ ਕਰਸਰ ਲਗਾਓ
     next_cursor = str(end_index) if end_index < len(all_files) else None
     
     return ListResourcesResult(
@@ -320,27 +321,27 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ## ਕਰਸਰ ਡਿਜ਼ਾਈਨ ਰਣਨੀਤੀਆਂ
 
-### ਰਣਨੀਤੀ 1: ਇੰਡੈਕਸ-ਅਧਾਰਿਤ (ਸਰਲ)
+### ਰਣਨੀਤੀ 1: ਇੰਡੈਕਸ-ਆਧਾਰਿਤ (ਸਰਲ)
 
 ```python
 # ਕਰਸਰ ਸਿਰਫ਼ ਇੰਡੈਕਸ ਹੈ
 cursor = "50"  # ਆਈਟਮ 50 ਤੋਂ ਸ਼ੁਰੂ ਕਰੋ
 ```
 
-**ਲਾਭ:** ਸਰਲ, ਬਿਨਾਂ ਸੂਚਕ ਅਵਸਥਾ ਵਾਲਾ  
-**ਨੁਕਸਾਨ:** ਜੇ ਆਈਟਮ ਸ਼ਾਮਲ ਜਾਂ ਹਟਾਏ ਜਾਂਦੇ ਹਨ ਤਾਂ ਨਤੀਜੇ ਹਿੱਲ ਸਕਦੇ ਹਨ
+**ਫਾਇਦੇ:** ਸਧਾਰਨ, ਬਿਨਾਂ ਸਥਿਤੀ ਵਾਲਾ
+**ਨੁਕਸਾਨ:** ਜੇ ਆਈਟਮ ਜੋੜੇ ਜਾਂ ਹਟਾਏ ਜਾਣ ਤਾਂ ਨਤੀਜੇ ਬਦਲ ਸਕਦੇ ਹਨ
 
-### ਰਣਨੀਤੀ 2: ID-ਅਧਾਰਿਤ (ਸਥਿਰ)
+### ਰਣਨੀਤੀ 2: ID-ਆਧਾਰਿਤ (ਸਥਿਰ)
 
 ```python
 # ਕਰਸਰ ਆਖਰੀ ਵੇਖੀ ਗਈ ID ਹੈ
 cursor = "item_abc123"  # ਇਸ ਆਈਟਮ ਤੋਂ ਬਾਅਦ ਸ਼ੁਰੂ ਕਰੋ
 ```
 
-**ਲਾਭ:** ਜੇ ਆਈਟਮ ਬਦਲਦੇ ਹਨ ਵੀ ਸਥਿਰ ਰਹਿੰਦਾ ਹੈ  
-**ਨੁਕਸਾਨ:** ਆਰਡਰ ਵਾਲੇ ID ਦੀ ਲੋੜ ਹੁੰਦੀ ਹੈ
+**ਫਾਇਦੇ:** ਜੇ ਆਈਟਮ ਬਦਲਦੇ ਵੀ ਸਥਿਰ ਰਹਿੰਦਾ ਹੈ
+**ਨੁਕਸਾਨ:** ਕ੍ਰਮਬੱਧ ID ਲੋੜੀਂਦੇ
 
-### ਰਣਨੀਤੀ 3: ਕੋਡਿਟ ਸਥਿਤੀ (ਜਟਿਲ)
+### ਰਣਨੀਤੀ 3: ਐਨਕੋਡਿਡ ਸਥਿਤੀ (ਜਟਿਲ)
 
 ```python
 import base64
@@ -360,23 +361,23 @@ cursor = encode_cursor({
 })
 ```
 
-**ਲਾਭ:** ਜਟਿਲ ਸਥਿਤੀ ਨੂੰ ਕੋਡ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ  
-**ਨੁਕਸਾਨ:** ਵੱਧ ਜਟਿਲ, ਵੱਡੇ ਕਰਸਰ ਸਤਰ
+**ਫਾਇਦੇ:** ਜਟਿਲ ਸਥਿਤੀ ਨੂੰ ਐਨਕੋਡ ਕਰ ਸਕਦਾ ਹੈ
+**ਨੁਕਸਾਨ:** ਵੱਧ ਜਟਿਲ, ਵੱਡੇ ਕਰਸਰ ਸਤਰਾਂ
 
 ---
 
-## ਸਭ ਤੋਂ ਵਧੀਆ ਅਭਿਆਸ
+## ਵਧੀਆ ਅਭਿਆਸ
 
-### 1. ਉਚਿਤ ਪੰਨਾ ਆਕਾਰ ਚੁਣੋ
+### 1. ਉਚਿਤ ਪੰਨਾ ਅਕਾਰ ਚੁਣੋ
 
 ```python
-# ਡਾਟਾ ਆਕਾਰ ਤੇ ਵਿਚਾਰ ਕਰੋ
-PAGE_SIZE_SMALL_ITEMS = 100   # ਸਧਾਰਣ ਮੈਟਾਡੇਟਾ
-PAGE_SIZE_MEDIUM_ITEMS = 20   # ਵਧੀਆ ਵਿਸਥਾਰ ਵਾਲੇ ਔਬਜੈਕਟ
+# ਡੇਟਾ ਆਕਾਰ ਨੂੰ ਧਿਆਨ ਵਿੱਚ ਰੱਖੋ
+PAGE_SIZE_SMALL_ITEMS = 100   # ਸਾਦਾ ਮੈਟਾਡੇਟਾ
+PAGE_SIZE_MEDIUM_ITEMS = 20   # ਵਧੇਰੇ ਧਨਾਢ ਓਬਜੈਕਟ
 PAGE_SIZE_LARGE_ITEMS = 5     # ਜਟਿਲ ਸਮੱਗਰੀ
 ```
 
-### 2. ਗਲਤ ਕਰਸਰਾਂ ਦਾ ਸੌਖਾ ਹੱਲ ਕਰੋ
+### 2. ਗਲਤ ਕਰਸਰਾਂ ਨੂੰ ਨਰਮਾਈ ਨਾਲ ਹਲ ਕਰੋ
 
 ```python
 @app.list_tools()
@@ -384,28 +385,28 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
     try:
         start_index = int(cursor) if cursor else 0
         if start_index < 0 or start_index >= len(ALL_TOOLS):
-            start_index = 0  # ਸ਼ੁਰੂ ਵਿੱਚ ਰੀਸੈੱਟ ਕਰੋ
+            start_index = 0  # ਸ਼ੁਰੂ ਤੋਂ ਰੀਸੈਟ ਕਰੋ
     except (ValueError, TypeError):
-        start_index = 0  # ਗਲਤ ਕਰਸਰ, ਨਵਾਂ ਅਰੰਭ ਕਰੋ
+        start_index = 0  # ਅਵੈਧ ਕ੍ਰਸਰ, ਨਵਾਂ ਅਰੰਭ ਕਰੋ
     # ...
 ```
 
-### 3. ਕੁੱਲ ਗਿਣਤੀ ਸ਼ਾਮਿਲ ਕਰੋ (ਚੋਣਾਤਮਕ)
+### 3. ਕੁੱਲ ਗਿਣਤੀ ਸ਼ਾਮਲ ਕਰੋ (ਇੱਛਾਕਰ)
 
 ```python
 return ListToolsResult(
     tools=page_tools,
     nextCursor=next_cursor,
-    # ਕੁਝ ਅਮਲਾਂ ਵਿੱਚ UI ਪ੍ਰਗਤੀ ਲਈ ਕੁੱਲ ਸ਼ਾਮਲ ਹੁੰਦਾ ਹੈ
+    # ਕੁਝ ਇੰਪਲੀਮੈਂਟੇਸ਼ਨਾਂ ਵਿੱਚ UI ਪ੍ਰਗਤੀ ਲਈ ਕੁੱਲ ਸ਼ਾਮਲ ਹੁੰਦਾ ਹੈ
     _meta={"total": len(ALL_TOOLS)}
 )
 ```
 
-### 4. ਕਿਨਾਰੀ ਮਾਮਲਿਆਂ ਦੀ ਜਾਂਚ ਕਰੋ
+### 4. ਕਿਨਾਰੀ ਕੇਸਾਂ ਦੀ ਜਾਂਚ ਕਰੋ
 
 ```python
 async def test_pagination():
-    # ਖਾਲੀ ਨਤੀਜੇ ਸੈੱਟ
+    # ਖਾਲੀ ਨਤੀਜਾ ਸੈੱਟ
     result = await session.list_tools()
     assert result.tools == []
     assert result.nextCursor is None
@@ -414,29 +415,29 @@ async def test_pagination():
     result = await session.list_tools()
     assert len(result.tools) <= PAGE_SIZE
     
-    # ਗਲਤ ਕ੍ਰਸਰ
+    # ਗਲਤ ਕਰਸਰ
     result = await session.list_tools(cursor="invalid")
     assert result.tools  # ਪਹਿਲਾ ਪੰਨਾ ਵਾਪਸ ਕਰਨਾ ਚਾਹੀਦਾ ਹੈ
 ```
 
 ---
 
-## ਆਮ ਗਲਤੀਆਂ
+## ਆਮ ਫੈਲ
 
-### ❌ ਸਾਰੇ ਨਤੀਜੇ ਵਾਪਸ ਕਰਕੇ ਫਿਰ ਕਲਾਇੰਟ-ਸਾਈਡ ਤੇ ਪੇਜੀਨੇਸ਼ਨ ਕਰਨਾ
+### ❌ ਸਾਰੇ ਨਤੀਜੇ ਵਾਪਸ ਕਰਨਾ ਫਿਰ ਕਲਾਇੰਟ-ਸਾਈਡ ਤੇ ਪੇਜਿਨੇਟ ਕਰਨਾ
 
 ```python
-# ਬੁਰਾ: ਸਾਰਾ ਡਾਟਾ ਮੈਮੋਰੀ ਵਿੱਚ ਲੋਡ ਕਰਦਾ ਹੈ
+# ਖਰਾਬ: ਸਾਰਾ ਕੁਝ ਯਾਦاشت ਵਿੱਚ ਲੋਡ ਕਰਦਾ ਹੈ
 @app.list_tools()
 async def list_tools() -> ListToolsResult:
-    all_tools = load_all_tools()  # 1 ਮਿਲੀਅਨ ਟੂਲ!
+    all_tools = load_all_tools()  # 1 ਮਿਲੀਅਨ ਟੂਲਜ਼!
     return ListToolsResult(tools=all_tools)
 ```
 
-### ✅ ਡੇਟਾ ਸਰੋਤ ਤੇ ਪੇਜੀਨੇਸ਼ਨ ਕਰੋ
+### ✅ ਡੇਟਾ ਸਰੋਤ 'ਤੇ ਪੇਜਿਨੇਟ ਕਰੋ
 
 ```python
-# ਚੰਗਾ: ਸਿਰਫ ਉਹੀ ਚੀਜ਼ ਲੋਡ ਕਰਦਾ ਹੈ ਜੋ ਲੋੜੀਂਦੀ ਹੈ
+# ਚੰਗਾ: ਸਿਰਫ਼ ਜ਼ਰੂਰੀ ਚੀਜ਼ਾਂ ਹੀ ਲੋਡ ਕਰਦਾ ਹੈ
 @app.list_tools()
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     offset = int(cursor) if cursor else 0
@@ -446,23 +447,23 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ---
 
-## ਅੱਗੇ ਕੀ ਹੈ
+## ਅਗਲਾ ਕੀ ਹੈ
 
-- [Module 5.14 - Context Engineering](../../05-AdvancedTopics/mcp-contextengineering/README.md)
-- [Module 8 - Best Practices](../../08-BestPractices/README.md)
-- [3.8 - Your MCP ਸਰਵਰ ਦੀ ਪੁਸ਼ਟੀ](../../03-GettingStarted/08-testing/README.md)
+- [ਮੌਡੀਊਲ 5.14 - ਸੰਦਰਭ ਇੰਜੀਨੀਅਰਿੰਗ](../../05-AdvancedTopics/mcp-contextengineering/README.md)
+- [ਮੌਡੀਊਲ 8 - ਵਧੀਆ ਅਭਿਆਸ](../../08-BestPractices/README.md)
+- [3.8 - ਆਪਣੇ MCP ਸਰਵਰ ਦੀ ਜਾਂਚ ਕਰਨਾ](../../03-GettingStarted/08-testing/README.md)
 
 ---
 
-## ਵਾਧੂ ਸਾਧਨ
+## ਵਾਧੂ ਸਰੋਤ
 
-- [MCP Specification - Pagination](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [ਕਰਸਰ ਅਧਾਰਿਤ ਪੇਜੀਨੇਸ਼ਨ ਦੀ ਵਿਆਖਿਆ](https://slack.engineering/evolving-api-pagination-at-slack/)
-- [ਪਾਇਥਨ SDK ਪੇਜੀਨੇਸ਼ਨ ਟੈਸਟ](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+- [MCP ਵਿਸ਼ੇਸ਼ਤਾ - ਪੇਜਿਨੇਸ਼ਨ](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [ਕਰਸਰ-ਆਧਾਰਿਤ ਪੇਜਿਨੇਸ਼ਨ ਵਿਆਖਿਆ](https://slack.engineering/evolving-api-pagination-at-slack/)
+- [ਪਾਇਥਨ SDK ਪੇਜਿਨੇਸ਼ਨ ਟੈਸਟ](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**ਅਸਵੀਕਾਰੋक्ति**:
-ਇਹ ਦਸਤਾਵੇਜ਼ AI ਅਨੁਵਾਦ ਸੇਵਾ [Co-op Translator](https://github.com/Azure/co-op-translator) ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਅਨੁਵਾਦ ਕੀਤਾ ਗਿਆ ਹੈ। ਜਦੋਂ ਕਿ ਅਸੀਂ ਸਹੀ ਤਰਤੀਬ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰਦੇ ਹਾਂ, ਕਿਰਪਾ ਕਰਕੇ ਧਿਆਨ ਵਿੱਚ ਰੱਖੋ ਕਿ ਸਵਚਾਲਿਤ ਅਨੁਵਾਦ ਵਿੱਚ ਗਲਤੀਆਂ ਜਾਂ ਅਸਪੱਸ਼ਟਤਾਵਾਂ ਹੋ ਸਕਦੀਆਂ ਹਨ। ਇਸ ਦੀ ਮੂਲ ਭਾਸ਼ਾ ਵਿੱਚ ਦਸਤਾਵੇਜ਼ ਹੀ ਪ੍ਰਮੁੱਖ ਸਰੋਤ ਮੰਨਿਆ ਜਾਣਾ ਚਾਹੀਦਾ ਹੈ। ਜਰੂਰੀ ਜਾਣਕਾਰੀ ਲਈ, ਪੇਸ਼ੇਵਰ ਮਨੁੱਖੀ ਅਨੁਵਾਦ ਦੀ ਸਿਫ਼ਾਰਸ਼ ਕੀਤੀ ਜਾਂਦੀ ਹੈ। ਅਸੀਂ ਇਸ ਅਨੁਵਾਦ ਦੇ ਇਸਤੇਮਾਲ ਤੋਂ ਉਤਪੰਨ ਕਿਸੇ ਵੀ ਗਲਤਫਹਿਮੀ ਜਾਂ ਤੁਹਮ ਲਈ ਜ਼ਿੰਮੇਵਾਰ ਨਹੀਂ ਹਾਂ।
+**ਅਸਵੀਕਾਰੋਪਣ**:
+ਇਸ ਦਸਤਾਵੇਜ਼ ਦਾ ਅਨੁਵਾਦ ਏਆਈ ਅਨੁਵਾਦ ਸੇਵਾ [Co-op Translator](https://github.com/Azure/co-op-translator) ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਕੀਤਾ ਗਿਆ ਹੈ। ਜਦੋਂ ਕਿ ਅਸੀਂ ਸਹੀਤਾਵਾਂ ਲਈ ਯਤਨਸ਼ੀਲ ਹਾਂ, ਕਿਰਪਾ ਕਰਕੇ ਧਿਆਨ ਰੱਖੋ ਕਿ ਸਵੈਚਾਲਿਤ ਅਨੁਵਾਦਾਂ ਵਿੱਚ ਗਲਤੀਆਂ ਜਾਂ ਅਸਮੱਤਿਆਵਾਂ ਹੋ ਸਕਦੀਆਂ ਹਨ। ਮੂਲ ਦਸਤਾਵੇਜ਼ ਆਪਣੀ ਮੂਲ ਭਾਸ਼ਾ ਵਿੱਚ ਅਧਿਕਾਰਕ ਸਰੋਤ ਮੰਨਿਆ ਜਾਣਾ ਚਾਹੀਦਾ ਹੈ। ਜਰੂਰੀ ਜਾਣਕਾਰੀ ਲਈ, ਪੇਸ਼ੇਵਰ ਮਨੁੱਖੀ ਅਨੁਵਾਦ ਦੀ ਸਿਫ਼ਾਰਸ਼ ਕੀਤੀ ਜਾਂਦੀ ਹੈ। ਅਸੀਂ ਇਸ ਅਨੁਵਾਦ ਦੇ ਉਪਯੋਗ ਤੋਂ ਪੈਦਾ ਹੋਣ ਵਾਲੀਆਂ ਕਿਸੇ ਵੀ ਗਲਤਫਹਿਮੀਆਂ ਜਾਂ ਗਲਤ ਵਿਆਖਿਆਵਾਂ ਲਈ ਜਵਾਬਦੇਹ ਨਹੀਂ ਹਾਂ।
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,25 +1,31 @@
 # Basic Calculator MCP Service
 
-Dis service dey provide basic calculator operations wit Model Context Protocol (MCP) wey dey use Spring Boot wit WebFlux transport. E dey designed as simple example for people wey dey learn MCP implementations.
+> [!NOTE]
+> Dis Java solution dey use di old HTTP+SSE transport and e dey target SDK
+> wey go fit work wit MCP `2025-11-25`. E still dey for match course code;
+> new remote servers suppose use `2026-07-28` Streamable HTTP support.
 
-For more info, check [MCP Server Boot Starter](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html) reference documentation.
+Dis service dey provide basic calculator operations through di Model Context Protocol (MCP) wit Spring Boot plus WebFlux transport. E design as simple example for beginners wey dey learn about MCP implementations.
 
-## How to Use Dis Service
+For more info, check di [MCP Server Boot Starter](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html) reference documentation.
 
-Dis service dey show dis API endpoints through MCP protocol:
 
-- `add(a, b)`: Add two numbers together
-- `subtract(a, b)`: Remove di second number from di first one
+## How To Use Di Service
+
+Di service dey show di following API endpoints through di MCP protocol:
+
+- `add(a, b)`: Add two number dem together
+- `subtract(a, b)`: Take di second number comot for di first one
 - `multiply(a, b)`: Multiply two numbers
-- `divide(a, b)`: Divide di first number by di second one (wit zero check)
-- `power(base, exponent)`: Calculate di power of one number
-- `squareRoot(number)`: Calculate di square root (wit negative number check)
-- `modulus(a, b)`: Calculate di remainder when you divide
+- `divide(a, b)`: Divide di first number by di second one (check if na zero)
+- `power(base, exponent)`: Calculate power of one number
+- `squareRoot(number)`: Find di square root (check if number no be negative)
+- `modulus(a, b)`: Find di remainder when you divide
 - `absolute(number)`: Calculate di absolute value
 
 ## Dependencies
 
-Di project need dis key dependencies:
+Di project need these main dependencies:
 
 ```xml
 <dependency>
@@ -28,46 +34,46 @@ Di project need dis key dependencies:
 </dependency>
 ```
 
-## How to Build Di Project
+## How To Build Di Project
 
-Use Maven to build di project:
+Build di project using Maven:
 ```bash
 ./mvnw clean install -DskipTests
 ```
 
-## How to Run Di Server
+## How To Run Di Server
 
-### Use Java
+### Using Java
 
 ```bash
 java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
 ```
 
-### Use MCP Inspector
+### Using MCP Inspector
 
-MCP Inspector na good tool to interact wit MCP services. To use am wit dis calculator service:
+MCP Inspector na beta tool for to interact with MCP services. To use am with dis calculator service:
 
 1. **Install and run MCP Inspector** for new terminal window:
    ```bash
    npx @modelcontextprotocol/inspector
    ```
 
-2. **Open di web UI** by clicking di URL wey di app show (normally http://localhost:6274)
+2. **Open di web UI** by clicking di URL wey di app show you (usually http://localhost:6274)
 
-3. **Set di connection**:
-   - Choose transport type as "SSE"
-   - Put di URL of di server wey dey run SSE endpoint: `http://localhost:8080/sse`
+3. **Configure di connection**:
+   - Set di transport type to "SSE"
+   - Put di URL for your running server SSE endpoint: `http://localhost:8080/sse`
    - Click "Connect"
 
 4. **Use di tools**:
-   - Click "List Tools" to see di calculator operations wey dey available
-   - Choose one tool and click "Run Tool" to do di operation
+   - Click "List Tools" to see calculator operations wey dey
+   - Select one tool then click "Run Tool" to run di operation
 
 ![MCP Inspector Screenshot](../../../../../../translated_images/pcm/tool.40e180a7b0d0fe20.webp)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Disclaimer**:  
-Dis dokyument don use AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator) do di translation. Even as we dey try make am correct, abeg make you sabi say machine translation fit get mistake or no dey accurate well. Di original dokyument wey dey for im native language na di main source wey you go trust. For important information, e good make professional human translation dey use. We no go fit take blame for any misunderstanding or wrong interpretation wey fit happen because you use dis translation.
+**Disclaimer**:
+Dis document don translate wit AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). Even tho we dey try make am correct, abeg make you know say automated translation fit get errors or mistakes. Di original document for dia own language na im be di correct source. For important info, make person wey sabi human translation do am. We no go responsible for any misunderstanding or wrong understanding wey fit happen because of dis translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

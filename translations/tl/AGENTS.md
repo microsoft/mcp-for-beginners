@@ -1,35 +1,35 @@
 # AGENTS.md
 
-## Pangkalahatang-ideya ng Proyekto
+## Pangkalahatang Pagtingin ng Proyekto
 
-**MCP para sa mga Nagsisimula** ay isang open-source na edukasyonal na kurikulum para sa pag-aaral ng Model Context Protocol (MCP) - isang standardized na balangkas para sa mga interaksyon sa pagitan ng mga AI model at mga client application. Ang imbakan na ito ay nagbibigay ng komprehensibong mga materyales sa pag-aaral na may mga praktikal na halimbawa ng kodigo sa iba't ibang mga programming language.
+**MCP para sa Mga Baguhan** ay isang open-source na pang-edukasyong kurikulum para matutunan ang Model Context Protocol (MCP) - isang pinagsanib na balangkas para sa mga interaksyon sa pagitan ng mga AI model at mga kliyenteng aplikasyon. Ang repository na ito ay nagbibigay ng malawak na materyales sa pag-aaral kasama ang mga halimbawa ng kodigo sa maraming programming languages.
 
 ### Mga Pangunahing Teknolohiya
 
-- **Mga Programming Language**: C#, Java, JavaScript, TypeScript, Python, Rust
-- **Mga Framework at SDK**: 
+- **Mga Programming Languages**: C#, Java, JavaScript, TypeScript, Python, Rust
+- **Mga Framework at SDKs**: 
   - MCP SDK (`@modelcontextprotocol/sdk`)
   - Spring Boot (Java)
   - FastMCP (Python)
   - LangChain4j (Java)
 - **Mga Database**: PostgreSQL na may pgvector extension
-- **Mga Cloud Platform**: Azure (Container Apps, OpenAI, Content Safety, Application Insights)
-- **Mga Build Tool**: npm, Maven, pip, Cargo
-- **Dokumentasyon**: Markdown na may awtomatikong multi-language na pagsasalin (48+ na mga wika)
+- **Mga Cloud Platforms**: Azure (Container Apps, OpenAI, Content Safety, Application Insights)
+- **Mga Build Tools**: npm, Maven, pip, Cargo
+- **Dokumentasyon**: Markdown na may awtomatikong pagsasalin sa maraming wika (48+ na mga wika)
 
 ### Arkitektura
 
-- **11 Core Modules (00-11)**: Sunud-sunod na landas ng pag-aaral mula sa mga pangunahing kaalaman hanggang sa mga advanced na paksa
-- **Hands-on Labs**: Praktikal na mga pagsasanay na may kumpletong solusyong kodigo sa iba't ibang wika
-- **Mga Halimbawang Proyekto**: Gumagawang implementasyon ng MCP server at client
-- **Sistema ng Pagsasalin**: Awtomatikong workflow ng GitHub Actions para sa suporta sa maraming wika
-- **Mga Larawan**: Sentralisadong direktoryo ng mga imahe na may mga isinalin na bersyon
+- **11 Core Modules (00-11)**: Sunod-sunod na landas sa pag-aaral mula sa mga pundamental hanggang sa mga advanced na paksa
+- **Hands-on Labs**: Praktikal na mga pagsasanay na may kumpletong solution code sa maraming wika
+- **Mga Halimbawang Proyekto**: Gumaganang MCP server at client implementations
+- **Sistemang Pagsasalin**: Awtomatikong GitHub Actions workflow para sa suporta sa maraming wika
+- **Mga Larawan**: Sentralisadong direktoryo ng mga larawan na may mga salin na bersyon
 
-## Mga Utos sa Setup
+## Mga Utos para sa Setup
 
-Ito ay isang repositoryo na nakatuon sa dokumentasyon. Karamihan sa setup ay nangyayari sa loob ng mga indibidwal na halimbawang proyekto at mga lab.
+Ito ay isang dokumentasyong nakatuon na repository. Karamihan sa setup ay ginagawa sa mga indibidwal na halimbawang proyekto at mga labs.
 
-### Setup ng Repositoryo
+### Setup ng Repository
 
 ```bash
 # Kopyahin ang repositoryo
@@ -37,24 +37,24 @@ git clone https://github.com/microsoft/mcp-for-beginners.git
 cd mcp-for-beginners
 ```
 
-### Pagtatrabaho sa Mga Halimbawang Proyekto
+### Paggawa sa mga Halimbawang Proyekto
 
 Ang mga halimbawang proyekto ay matatagpuan sa:
 - `03-GettingStarted/samples/` - Mga halimbawa ayon sa wika
 - `03-GettingStarted/01-first-server/solution/` - Mga unang implementasyon ng server
 - `03-GettingStarted/02-client/solution/` - Mga implementasyon ng client
-- `11-MCPServerHandsOnLabs/` - Komprehensibong mga lab ng integrasyon sa database
+- `11-MCPServerHandsOnLabs/` - Komprehensibong pagsasanay sa integrasyon ng database
 
-Ang bawat halimbawang proyekto ay may sariling mga tagubilin sa setup:
+Bawat halimbawang proyekto ay may sariling mga tagubilin sa setup:
 
-#### Mga Proyekto ng TypeScript/JavaScript
+#### Mga Proyekto sa TypeScript/JavaScript
 ```bash
 cd <project-directory>
 npm install
 npm start
 ```
 
-#### Mga Proyekto ng Python
+#### Mga Proyekto sa Python
 ```bash
 cd <project-directory>
 pip install -r requirements.txt
@@ -63,7 +63,7 @@ pip install -e .
 python main.py
 ```
 
-#### Mga Proyekto ng Java
+#### Mga Proyekto sa Java
 ```bash
 cd <project-directory>
 mvn clean install
@@ -72,46 +72,47 @@ mvn spring-boot:run
 
 ## Daloy ng Pag-unlad
 
-### Kahandaan para sa MCP 7-28
+### Kahandaan sa MCP 7-28
 
 #### Checklist para sa kahandaan ng repo
 
-- [x] **Kalakhihan para sa bagong contributor**: Itinatakda ng file na ito ang layunin ng repositoryo,
-  istruktura, mga patakaran sa kontribusyon, at mga path sa setup ng sample.
-- [x] **Mga utos sa build/test/lint na may eksaktong flag**:
-  - Linisin ang dokumentasyon ng repositoryo:
+- [x] **Kalidad para sa mga bagong kontribyutor**: Ang file na ito ay naglalarawan ng layunin ng repositoryo,
+  istruktura, mga alituntunin sa kontribusyon, at mga landas para sa halimbawang setup.
+- [x] **Mga utos para sa build/test/lint na may eksaktong mga flag**:
+  - Lint sa dokumentasyon ng repositoryo:
     `npx --yes markdownlint-cli2 "**/*.md" "#node_modules" "#translations" "#translated_images"`
-  - Audit ng pattern ng mga link sa dokumentasyon ng repositoryo:
+  - Audit ng pattern ng link sa dokumentasyon ng repositoryo:
     `find . -name "*.md" -not -path "*/node_modules/*" -not -path "./translations/*" -not -path "./translated_images/*" -print0 | xargs -0 grep -En "\[.*\]\(.*\)"`
-  - Pagbalidate ng sample sa TypeScript:
+  - Validation ng sample sa TypeScript:
     `cd 03-GettingStarted/samples/typescript && npm ci && npm test && npm run build`
-  - Pagbalidate ng sample sa Python:
+  - Validation ng sample sa Python:
     `cd 10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp && python -m pip install -e . && pytest -q`
-  - Pagbalidate ng sample sa Java:
+  - Validation ng sample sa Java:
     `cd 03-GettingStarted/samples/java/calculator && mvn -B -ntp test verify`
-- [x] **Isang makatotohanang daloy ng trabaho na maaaring maging MCP tool**:
-  `validate_curriculum_change`
-- [x] **Ang mga input/output ay tahasan** (tingnan ang espesipikasyon sa ibaba).
-- [x] **Naipabatid ang mga permiso at mga mode ng pagkabigo** (tingnan ang espesipikasyon sa ibaba).
-- [x] **Tahasan ang testability sa CI** (mga deterministic na utos, tahasang
-  exit code, at mga output na nababasa ng makina).
 
-#### Halimbawang daloy ng MCP tool: `validate_curriculum_change`
+- [x] **Isang realistiko na workflow na maaaring maging MCP tool**:
+  `validate_curriculum_change`
+- [x] **Malinaw ang mga inputs/outputs** (tingnan ang espesipikasyon sa ibaba).
+- [x] **Naitala ang mga permiso at failure modes** (tingnan ang espesipikasyon sa ibaba).
+- [x] **Malinaw ang CI testability** (deterministic na mga utos, malinaw na
+  exit codes, at machine-readable na mga outputs).
+
+#### Kandidato na workflow para sa MCP tool: `validate_curriculum_change`
 
 ##### Layunin
 
-Suriin ang mga pagbabago sa dokumentasyon ng kurikulum at ang kalusugan ng kinatawang sample code bago ang pagsasama.
+Suriin ang mga pagbabago sa dokumentasyon ng kurikulum at kalagayan ng representative sample code
+bago i-merge.
 
+##### Mga Inputs
 
-##### Mga Input
-
-- `changed_paths: string[]` (kailangan) - mga relative na path na binago sa PR.
+- `changed_paths: string[]` (kinakailangan) - mga relative na path na binago sa PR.
 - `run_docs_lint: boolean` (default `true`)
 - `run_links_audit: boolean` (default `true`)
 - `run_samples: { typescript?: boolean, python?: boolean, java?: boolean }`
-  (default lahat `false`)
+  (default lahat ay `false`)
 
-##### Mga Output
+##### Mga Outputs
 
 - `status: "ok" | "failed"`
 - `checks: Array<{ name: string, command: string, exit_code: number,
@@ -119,94 +120,94 @@ Suriin ang mga pagbabago sa dokumentasyon ng kurikulum at ang kalusugan ng kinat
 - `artifacts: Array<{ type: "log" | "report", path: string }>`
 - `failed_checks: string[]`
 
-##### Mga Pahintulot
+##### Mga Permiso
 
-- Basahin lamang ang mga file sa workspace at isulat ang mga artifact na ginawa ng tool (hal., lint
-  reports, test logs); walang pagsulat sa `translations/` o
+- Basahin ang mga file sa workspace at isulat lang ang mga tool-generated na artifacts (hal. lint
+  reports, test logs); walang pagsusulat sa `translations/` o
   `translated_images/`.
-- Patakbuhin ang mga lokal na utos ng shell.
-- Opsyonal na access sa network para lamang sa package restore (`npm ci`,
+- Patakbuhin ang mga lokal na shell commands.
+- Opsiyonal na access sa network para lang sa package restore (`npm ci`,
   `python -m pip install`, `mvn` dependency resolution).
-- Walang pahintulot na mag-push, mag-merge, o magbago ng `translations/` o
+- Walang permiso na mag-push, mag-merge, o mag-modify ng `translations/` o
   `translated_images/`.
 
-##### Mga Mode ng Pagkabigo
+##### Mga Failure modes
 
 - `E_NO_INPUT_PATHS`: walang laman ang `changed_paths`.
-- `E_INVALID_PATH`: ang input path ay lumalagpas sa ugat ng repositoryo.
-- `E_LINT_FAILED`: ang markdown lint ay nag-exit ng di-zero.
-- `E_LINK_AUDIT_FAILED`: ang audit ng link ay nag-exit ng di-zero.
-- `E_SAMPLE_TEST_FAILED`: ang sample na test/build ay nag-exit ng di-zero.
-- `E_TIMEOUT`: ang utos ay lumampas sa itinakdang timeout.
+- `E_INVALID_PATH`: ang input path ay lumalabas sa root ng repository.
+- `E_LINT_FAILED`: nag-exit ng non-zero ang markdown lint.
+- `E_LINK_AUDIT_FAILED`: nag-exit ng non-zero ang link audit command.
+- `E_SAMPLE_TEST_FAILED`: nag-exit ng non-zero ang sample test/build.
+- `E_TIMEOUT`: lumampas sa nakatakdang timeout ang utos.
 
-##### Inirekomendang kontrata sa CI
+##### Inirekomendang CI contract
 
-Para sa awtomatikong pag-validate, i-configure ang isang CI na trabaho na:
+Para i-automate ang validation, i-configure ang isang CI job na:
 
-- Nagsisimula sa mga pull request na tumutukoy sa `*.md`, sample code, o sa file na ito.
-- Pinapatakbo ang eksaktong mga utos na nakalista sa itaas.
-- Pinananatili ang mga log bilang mga artifact.
-- Pinapabagsak ang trabaho kapag may anumang non-zero exit code.
+- Magti-trigger sa mga pull request na tumatama sa `*.md`, sample code, o file na ito.
+- Patakbuhin ang eksaktong mga utos na nakalista sa itaas.
+- I-save bilang artifacts ang mga logs.
+- I-fail ang job kapag mayroong non-zero exit code.
 
-#### Kung magpapadala ka ng MCP server mula sa repositoryong ito
+#### Kung maghahain ka ng MCP server mula sa repo na ito
 
-- [ ] Basahin ang draft changelog para sa MCP 7-28:
-  <https://modelcontextprotocol.io/specification/draft/changelog>
-- [ ] Patakbuhin ang iyong server laban sa mga SDK beta:
-  <https://blog.modelcontextprotocol.io/posts/sdk-betas-2026-07-28/>
-- [ ] Alisin ang mga palagay ng session at handshake; tratuhin ang bawat kahilingan bilang
+- [ ] Basahin ang pangwakas na MCP `2026-07-28` changelog:
+  <https://modelcontextprotocol.io/specification/2026-07-28/changelog>
+- [ ] Siguraduhing sinusuportahan ng napiling SDK release ang MCP `2026-07-28`:
+  <https://modelcontextprotocol.io/docs/sdk>
+- [ ] I-alis ang mga assumptions tungkol sa session at handshake; ituring ang bawat request bilang
   self-contained:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#a-stateless-protocol>
-- [ ] Magpadala ng `Mcp-Method` at `Mcp-Name` na mga header para sa raw HTTP requests:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#routable-cacheable-traceable>
-- [ ] I-audit ang hardcoded na mga error code (`missing resource` inilipat mula sa `-32002` patungong `-32602`).
+  <https://modelcontextprotocol.io/specification/2026-07-28/basic/lifecycle>
+- [ ] Ipadala ang mga header na `Mcp-Method` at `Mcp-Name` para sa raw na HTTP requests:
+  <https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http>
+- [ ] Suriin ang mga hardcoded na error codes (`missing resource` inilipat mula `-32002` papuntang `-32602`).
 
-- [ ] I-flag at planuhin ang migrasyon para sa mga deprecated na root, sampling, at
-  logging:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#roots-sampling-and-logging-are-deprecated>
-- [ ] Lumipat mula sa experimental na `2025-11-25` Tasks API:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#tasks-graduates-to-an-extension>
-- [ ] Suriin ang awtorisasyon para sa pagpapatibay ng OAuth at OpenID Connect:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#authorization-hardening>
+- [ ] Ilipat ang deprecated na Roots, Sampling, Logging, at Dynamic Client
+  Registration:
+  <https://modelcontextprotocol.io/specification/2026-07-28/deprecated>
+- [ ] Ilipat mula sa experimental na `2025-11-25` Tasks API:
+  <https://modelcontextprotocol.io/extensions/tasks>
+- [ ] Suriin ang awtorisasyon para sa OAuth at OpenID Connect hardening:
+  <https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization>
 
-### Istruktura ng Dokumentasyon
+### Estruktura ng Dokumentasyon
 
-- **Modules 00-11**: Pangunahing nilalaman ng kurikulum sa sunud-sunod na ayos
-- **translations/**: Mga bersyon ng wika (auto-generated, huwag direktang i-edit)
-- **translated_images/**: Lokalisadong bersyon ng mga imahe (auto-generated)
-- **images/**: Mga pinagmulan ng mga imahe at diagram
+- **Mga Module 00-11**: Pangunahing nilalaman ng kurikulum ayon sa pagkakasunod-sunod
+- **translations/**: Mga bersyon sa partikular na wika (auto-generated, huwag direktang baguhin)
+- **translated_images/**: Lokal na bersyon ng mga imahe (auto-generated)
+- **images/**: Pinagmulan ng mga imahe at diagram
 
 ### Paggawa ng Mga Pagbabago sa Dokumentasyon
 
-1. I-edit lamang ang mga English na markdown file sa root module directories (00-11)
-2. I-update ang mga imahe sa direktoryong `images/` kung kinakailangan
-3. Ang co-op-translator GitHub Action ay awtomatikong gagawa ng mga pagsasalin
-4. Mulit na ginagawa ang mga pagsasalin kapag may push sa main branch
+1. I-edit lamang ang mga English markdown files sa root module directories (00-11)
+2. I-update ang mga imahe sa `images/` directory kung kinakailangan
+3. Awtomatikong gagawa ng mga pagsasalin ang co-op-translator GitHub Action
+4. Muling nililikha ang mga pagsasalin kapag may push sa main branch
 
-### Paggamit ng Mga Pagsasalin
+### Paggamit sa Mga Pagsasalin
 
-- **Awtomatikong Pagsasalin**: Ang workflow ng GitHub Actions ang humahawak sa lahat ng pagsasalin
-- **Huwag MANUAL na i-edit** ang mga file sa direktoryong `translations/`
-- Nakapaloob sa bawat isinalin na file ang metadata ng pagsasalin
-- Suportadong mga wika: 48+ na wika kabilang ang Arabic, Chinese, French, German, Hindi, Japanese, Korean, Portuguese, Russian, Spanish, at marami pa
+- **Awtomatikong Pagsasalin**: Isang workflow ng GitHub Actions ang humahawak sa lahat ng pagsasalin
+- **Huwag mano-manong mag-edit** ng mga file sa `translations/` directory
+- Nakapaloob ang metadata ng pagsasalin sa bawat isinaling file
+- Suportadong mga wika: 48+ na wika kabilang ang Arabic, Chinese, French, German, Hindi, Japanese, Korean, Portuguese, Russian, Spanish, at iba pa
 
 ## Mga Tagubilin sa Pagsubok
 
 ### Pag-validate ng Dokumentasyon
 
-Dahil ito ay pangunahing isang dokumentasyon na repositoryo, nakatuon ang pagsubok sa:
+Dahil ito ay pangunahing isang repositoryong dokumentasyon, ang pagsubok ay nakatuon sa:
 
-1. **Audit ng Pattern ng Link**: Maglista ng mga Markdown link para sa pagrepaso
+1. **Audit ng Pattern ng Link**: Ilahad ang mga Markdown link para suriin
 
    ```bash
-   # Ilista ang mga link ng Markdown (audit ng pattern)
+   # Ilista ang mga Markdown na link (pattern audit)
    find . -name "*.md" -not -path "*/node_modules/*" -not -path "./translations/*" -not -path "./translated_images/*" -print0 | xargs -0 grep -En "\[.*\]\(.*\)"
    ```
 
-2. **Pag-validate ng Halimbawang Code**: Subukang mag-compile/run ng mga halimbawa ng code
+2. **Pag-validate ng Code Sample**: Subukang mag-compile/patakbuhin ang mga halimbawa ng code
 
    ```bash
-   # Mag-navigate sa partikular na sample at patakbuhin ang mga pagsusuri nito
+   # Mag-navigate sa tiyak na sample at patakbuhin ang mga pagsusuri nito
    cd 03-GettingStarted/samples/typescript
    npm install && npm test
    ```
@@ -218,9 +219,9 @@ Dahil ito ay pangunahing isang dokumentasyon na repositoryo, nakatuon ang pagsub
    npx --yes markdownlint-cli2 "**/*.md" "#node_modules" "#translations" "#translated_images"
    ```
 
-### Pagsubok sa Halimbawang Proyekto
+### Pagsubok sa Sample na Proyekto
 
-Kasama sa bawat wika ang sarili nitong paraan ng pagsubok:
+Ang bawat halimbawa sa partikular na wika ay may sariling paraan ng pagsusuri:
 
 #### TypeScript/JavaScript
 ```bash
@@ -240,37 +241,37 @@ mvn test
 mvn verify
 ```
 
-## Mga Alituntunin sa Estilo ng Code
+## Mga Patnubay sa Estilo ng Code
 
 ### Estilo ng Dokumentasyon
 
-- Gumamit ng malinaw, madaling maintindihang wika para sa mga baguhan
-- Isama ang mga halimbawa ng code sa iba't ibang mga wika kung naaangkop
-- Sundin ang mga pinakamahusay na kasanayan sa markdown:
-  - Gumamit ng mga ATX-style header (`#` na sintaks)
-  - Gumamit ng fenced code blocks na may mga language identifier
-  - Isama ang naglalarawang alt text para sa mga imahe
-  - Panatilihing makatwiran ang haba ng mga linya (walang mahigpit na limitasyon, ngunit maging makatwiran)
+- Gumamit ng malinaw, pangkaraniwang wikang madaling maintindihan
+- Isama ang mga halimbawa ng code sa maraming wika kung naaangkop
+- Sundan ang mga pinakamahusay na kasanayan sa markdown:
+  - Gumamit ng ATX-style headers (`#` syntax)
+  - Gumamit ng fenced code blocks na may mga tag ng wika
+  - Isama ang deskriptibong alt na teksto para sa mga larawan
+  - Panatilihin ang makatwirang haba ng mga linya (walang mahigpit na limitasyon, ngunit maging maingat)
 
-### Estilo ng Halimbawang Code
+### Estilo ng Sample na Code
 
 #### TypeScript/JavaScript
 - Gumamit ng ES modules (`import`/`export`)
-- Sundin ang mga kumbensyon ng TypeScript strict mode
-- Isama ang mga type annotation
-- Target ang ES2022
+- Sundan ang TypeScript strict mode conventions
+- Isama ang mga type annotations
+- Target ES2022
 
 #### Python
-- Sundin ang mga patnubay sa estilo ng PEP 8
-- Gumamit ng type hints kung naaangkop
-- Isama ang mga docstring para sa mga function at klase
+- Sundan ang mga Patnubay sa istilo ng PEP 8
+- Gumamit ng mga type hints kung naaangkop
+- Isama ang mga docstrings para sa mga function at klase
 - Gumamit ng mga modernong tampok ng Python (3.8+)
 
 #### Java
-- Sundin ang mga kumbensyon ng Spring Boot
+- Sundan ang mga Spring Boot conventions
 - Gumamit ng mga tampok ng Java 21
-- Sundin ang karaniwang istruktura ng Maven project
-- Isama ang mga komentaryo sa Javadoc
+- Sundan ang karaniwang istruktura ng Maven project
+- Isama ang mga komento ng Javadoc
 
 ### Organisasyon ng File
 
@@ -286,115 +287,116 @@ mvn verify
     └── <language>/
 ```
 
-## Pagbuo at Deployment
+## Build at Deployment
 
 ### Deployment ng Dokumentasyon
 
-Ang repositoryo ay gumagamit ng GitHub Pages o katulad para sa pagtanggap ng dokumentasyon (kung naaangkop). Ang mga pagbabago sa main branch ay nagpapasimula ng:
+Ang repositoryo ay gumagamit ng GitHub Pages o katulad para sa pagho-host ng dokumentasyon (kung naaangkop). Ang mga pagbabago sa main branch ay nagpapasimula ng:
 
 1. Workflow ng pagsasalin (`.github/workflows/co-op-translator.yml`)
-2. Awtomatikong pagsasalin ng lahat ng English na markdown file
-3. Lokalisasyon ng mga imahe kung kinakailangan
+2. Awtomatikong pagsasalin ng lahat ng English markdown files
+3. Lokal na pagsalin ng mga imahe kung kinakailangan
 
-### Walang Kailangan na Proseso ng Build
+### Walang Kinakailangang Build Process
 
-Ang repositoryo na ito ay pangunahing naglalaman ng dokumentasyong markdown. Walang kinakailangang compilation o build step para sa pangunahing nilalaman ng kurikulum.
+Ang repositoryong ito ay pangunahing naglalaman ng markdown dokumentasyon. Walang kinakailangang compilation o build step para sa pangunahing kurikulum na nilalaman.
 
-### Deployment ng Halimbawang Proyekto
+### Deployment ng Sample na Proyekto
 
-Maaaring may mga tagubilin sa deployment ang bawat indibidwal na halimbawang proyekto:
-- Tingnan ang `03-GettingStarted/09-deployment/` para sa gabay sa deployment ng MCP server
-- Mga halimbawa ng deployment para sa Azure Container Apps sa `11-MCPServerHandsOnLabs/`
+Ang bawat indibidwal na sample proyekto ay maaaring may mga tagubilin sa deployment:
+- Tingnan ang `03-GettingStarted/09-deployment/` para sa gabay sa MCP server deployment
+- Mga halimbawa ng Azure Container Apps deployment sa `11-MCPServerHandsOnLabs/`
 
-## Mga Alituntunin sa Pagsusumite
+## Mga Patnubay sa Pag-ambag
 
 ### Proseso ng Pull Request
 
-1. **Fork at Clone**: I-fork ang repositoryo at i-clone ang iyong fork nang lokal
-2. **Gumawa ng Branch**: Gumamit ng mga nakalarawang pangalan ng branch (hal. `fix/typo-module-3`, `add/python-example`)
-3. **Gumawa ng Mga Pagbabago**: I-edit lamang ang mga English markdown file (huwag ang mga pagsasalin)
-4. **Subukan Nang Lokal**: Siguraduhing maayos ang pag-render ng markdown
+1. **Fork at Clone**: I-fork ang repositoryo at i-clone ang iyong fork sa lokal
+2. **Gumawa ng Branch**: Gumamit ng mga mapanuring pangalan ng branch (hal., `fix/typo-module-3`, `add/python-example`)
+3. **Gumawa ng Mga Pagbabago**: I-edit lamang ang mga English markdown files (huwag ang mga pagsasalin)
+4. **Subukan Lokal**: Suriin na tama ang pag-render ng markdown
 5. **Isumite ang PR**: Gumamit ng malinaw na mga pamagat at paglalarawan ng PR
-6. **CLA**: Pirmahan ang Microsoft Contributor License Agreement kapag hinihiling
+6. **CLA**: Lagdaan ang Microsoft Contributor License Agreement kapag hiniling
 
-### Format ng PR Title
+### Format ng Pamagat ng PR
 
-Gumamit ng malinaw, nakalarawang mga pamagat:
-- `[Module XX] Maikling paglalarawan` para sa mga pagbabago sa partikular na module
+Gumamit ng malinaw at mapanuring mga pamagat:
+- `[Module XX] Maikling paglalarawan` para sa mga pagbabago sa module na partikular
 - `[Samples] Paglalarawan` para sa mga pagbabago sa sample code
-- `[Docs] Paglalarawan` para sa pangkalahatang mga update sa dokumentasyon
+- `[Docs] Paglalarawan` para sa pangkalahatang update sa dokumentasyon
 
-### Ano ang Maibibigay
+### Ano ang Iaambag
 
-- Mga pag-ayos ng bug sa dokumentasyon o mga halimbawang code
-- Mga bagong halimbawa ng code sa karagdagang mga wika
-- Mga paglilinaw at mga pagpapabuti sa umiiral na nilalaman
-- Mga bagong case study o praktikal na halimbawa
-- Mga ulat ng isyu para sa mga hindi malinaw o maling nilalaman
+- Mga pag-ayos ng bug sa dokumentasyon o mga halimbawa ng code
+- Mga bagong halimbawa ng code sa dagdag na mga wika
+- Mga paglilinaw at pagpapabuti sa umiiral na nilalaman
+- Mga bagong case studies o praktikal na halimbawa
+- Mga ulat ng isyu para sa hindi malinaw o maling nilalaman
 
-### Ano ang HINDI Dapat Gawin
+### Ano ang Huwag Gawin
 
-- Huwag direktang i-edit ang mga file sa direktoryong `translations/`
-- Huwag i-edit ang direktoryong `translated_images/`
-- Huwag magdagdag ng malalaking binary file nang walang talakayan
+- Huwag direktang i-edit ang mga file sa `translations/` directory
+- Huwag i-edit ang `translated_images/` directory
+- Huwag magdagdag ng malalaking binary files nang walang pag-uusap
 - Huwag baguhin ang mga workflow file ng pagsasalin nang walang koordinasyon
 
 ## Karagdagang Tala
 
-### Pangangalaga sa Repositoryo
+### Pangangalaga ng Repositoryo
 
-- **Changelog**: Dokumentado ang lahat ng mahahalagang pagbabago sa `changelog.md`
-- **Study Guide**: Gamitin ang `study_guide.md` para sa overview ng pag-navigate ng kurikulum
-- **Issue Templates**: Gamitin ang mga template ng GitHub issue para sa pag-uulat ng bug at feature request
-- **Code of Conduct**: Kailangang sundin ng lahat ng contributor ang Microsoft Open Source Code of Conduct
+- **Changelog**: Lahat ng mahahalagang pagbabago ay dokumentado sa `changelog.md`
+- **Study Guide**: Gamitin ang `study_guide.md` para sa pangkalahatang overview ng pag-navigate sa kurikulum
+- **Issue Templates**: Gamitin ang mga template ng isyu ng GitHub para sa ulat ng bug at kahilingan para sa feature
+- **Code of Conduct**: Lahat ng contributor ay dapat sumunod sa Microsoft Open Source Code of Conduct
 
-### Landas ng Pagkatuto
+### Learning Path
 
-Sundan ang mga module nang sunud-sunod (00-11) para sa pinakamainam na pagkatuto:
-1. **00-02**: Pangunahing kaalaman (Panimula, Mga Pangunahing Konsepto, Seguridad)
-2. **03**: Pagsisimula sa hands-on na implementasyon
+Sundan ang mga module ayon sa pagkakasunod-sunod (00-11) para sa pinakamainam na pagkatuto:
+1. **00-02**: Mga Pangunahing Kaalaman (Introduksyon, Pangunahing Konsepto, Seguridad)
+2. **03**: Pagsisimula na may praktikal na implementasyon
 3. **04-05**: Praktikal na implementasyon at mga advanced na paksa
-4. **06-10**: Komunidad, mga pinakamahusay na kasanayan, at mga aplikasyon sa totoong buhay
-5. **11**: Komprehensibong mga laboratoryo sa integrasyon ng database (13 sunod-sunod na laboratorio)
+4. **06-10**: Komunidad, pinakamahusay na mga praktis, at mga totoong aplikasyon
+5. **11**: Komprehensibong mga lab sa pagsasama ng database (13 magkakasunod na lab)
 
-### Mga Suporta at Mapagkukunan
+### Mga Suportang Mapagkukunan
 
 - **Dokumentasyon**: https://modelcontextprotocol.io/
-- **Espesipikasyon**: https://spec.modelcontextprotocol.io/
+- **Spezipikasyon**: https://modelcontextprotocol.io/specification/2026-07-28/
 - **Komunidad**: https://github.com/orgs/modelcontextprotocol/discussions
 - **Discord**: Microsoft Foundry Discord server
-- **Mga Kaugnay na Kurso**: Tingnan ang README.md para sa iba pang mga landas ng pagkatuto ng Microsoft
+- **Mga Kaugnay na Kurso**: Tingnan ang README.md para sa iba pang mga landas sa pag-aaral ng Microsoft
 
-### Karaniwang Pagsasaayos ng Problema
+### Karaniwang Pag-aayos ng Problema
 
-**Q: Ang aking PR ay pumapalya sa translation check**
-A: Siguraduhing English markdown files lamang ang na-edit mo sa root module directories, hindi ang mga isinalin na bersyon.
+**Q: Ang aking PR ay bumabagsak sa translation check**
+A: Siguraduhing English markdown files lamang sa root module directories ang na-edit, hindi ang mga isinalin na bersyon.
 
 **Q: Paano ako magdadagdag ng bagong wika?**
-A: Pinamamahalaan ang suporta sa wika sa pamamagitan ng co-op-translator workflow. Magbukas ng isyu para talakayin ang pagdaragdag ng mga bagong wika.
+A: Ang suporta sa wika ay pinamamahalaan sa pamamagitan ng co-op-translator workflow. Magbukas ng isyu upang pag-usapan ang pagdagdag ng mga bagong wika.
 
-**Q: Hindi gumagana ang mga halimbawang code**
+**Q: Hindi gumagana ang mga halimbawa ng code**
+A: Siguraduhing nasundan mo ang mga tagubilin sa setup sa README ng partikular na sample. Tingnan kung tama ang mga bersyon ng dependencies na naka-install.
 
-A: Tiyakin na nasunod mo ang mga tagubilin sa setup sa README ng partikular na sample. Suriin na mayroon kang tamang mga bersyon ng mga dependency na naka-install.
 
 **Q: Hindi lumalabas ang mga larawan**
-A: Siguraduhin na ang mga landas ng larawan ay relative at gumagamit ng forward slash. Ang mga larawan ay dapat nasa `images/` na direktoryo o `translated_images/` para sa mga lokal na bersyon.
+
+A: Tiyakin na ang mga landas ng larawan ay relative at gumagamit ng forward slashes. Ang mga larawan ay dapat nasa `images/` na direktoryo o `translated_images/` para sa mga lokal na bersyon.
 
 ### Mga Pagsasaalang-alang sa Pagganap
 
-- Maaaring tumagal ng ilang minuto ang workflow ng pagsasalin upang matapos
-- Dapat i-optimize muna ang malalaking larawan bago mag-commit
+- Maaaring tumagal ng ilang minuto ang workflow ng pagsasalin upang makumpleto
+- Ang mga malalaking larawan ay dapat ma-optimize bago i-commit
 - Panatilihing nakatuon at makatwiran ang laki ng mga indibidwal na markdown file
-- Gumamit ng mga relative na link para sa mas mahusay na portability
+- Gumamit ng relative links para sa mas mahusay na portability
 
 ### Pamamahala ng Proyekto
 
-Sinusunod ng proyektong ito ang mga open source na praktis ng Microsoft:
+Sinusunod ng proyektong ito ang mga open source na gawain ng Microsoft:
 - MIT License para sa code at dokumentasyon
 - Microsoft Open Source Code of Conduct
-- Kinakailangan ang CLA para sa mga kontribusyon
-- Mga isyu sa seguridad: Sundin ang mga patnubay sa SECURITY.md
-- Suporta: Tingnan ang SUPPORT.md para sa mga tulong na mapagkukunan
+- Kinakailangang CLA para sa mga kontribusyon
+- Mga isyu sa seguridad: Sundin ang mga patnubay ng SECURITY.md
+- Suporta: Tingnan ang SUPPORT.md para sa mga mapagkukunan ng tulong
 
 ---
 

@@ -1,90 +1,99 @@
-# Edistyneet aiheet MCP:ssä
+# Edistyneet aihealueet MCP:ssä
 
-[![Edistynyt MCP: Turvalliset, skaalautuvat ja multimodaaliset tekoälyagentit](../../../translated_images/fi/06.42259eaf91fccfc6.webp)](https://youtu.be/4yjmGvJzYdY)
+[![Edistynyt MCP: Turvalliset, skaalautuvat ja monimuotoiset tekoälyagentit](../../../translated_images/fi/06.42259eaf91fccfc6.webp)](https://youtu.be/4yjmGvJzYdY)
 
-_(Napsauta yllä olevaa kuvaa nähdäksesi tämän oppitunnin videon)_
+_(Klikkaa yllä olevaa kuvaa nähdäksesi videon tästä oppitunnista)_
 
-Tämä luku käsittelee joukon edistyneitä aiheita Model Context Protocolin (MCP) toteutuksessa, mukaan lukien multimodaalinen integraatio, skaalautuvuus, turvallisuuden parhaat käytännöt ja yritysintegraatio. Nämä aiheet ovat ratkaisevia vahvojen ja tuotantovalmiiden MCP-sovellusten rakentamisessa, jotka voivat vastata nykyaikaisten tekoälyjärjestelmien vaatimuksiin.
+Tämä luku käsittelee sarjaa edistyneitä aiheita Model Context Protocol (MCP) -toteutuksessa, mukaan lukien monimuotoinen integrointi, skaalautuvuus, turvallisuuden parhaat käytännöt ja yritysin­tegrointi. Nämä aiheet ovat ratkaisevia, jotta voidaan rakentaa vahvoja ja tuotantovalmiita MCP-sovelluksia, jotka vastaavat nykyaikaisten tekoälyjärjestelmien tarpeisiin.
 
 ## Yleiskatsaus
 
-Tässä oppitunnissa tutkitaan edistyneitä käsitteitä Model Context Protocolin toteutuksessa, keskittyen multimodaaliseen integraatioon, skaalautuvuuteen, turvallisuuden parhaisiin käytäntöihin ja yritysintegraatioon. Nämä aiheet ovat välttämättömiä tuotantotason MCP-sovellusten rakentamisessa, jotka pystyvät käsittelemään monimutkaisia vaatimuksia yritysympäristöissä.
+Tämä oppitunti tutkii edistyneitä käsitteitä Model Context Protocol -toteutuksessa, keskittyen monimuotoiseen integrointiin, skaalautuvuuteen, turvallisuuden parhaisiin käytäntöihin ja yritysin­tegrointiin. Nämä aiheet ovat välttämättömiä tuotantoluokkaisten MCP-sovellusten rakentamiseen, jotka pystyvät käsittelemään monimutkaisia vaatimuksia yritysympäristöissä.
 
-> **Katse eteenpäin:** useampaan alla olevaan aiheeseen vaikuttaa `2026-07-28` MCP-spesifikaation julkaisuehdokas — Juurikontekstit (5.4) ja Otannat (5.6) perustuvat perustoimintoihin, jotka julkaisuehdokas merkitsee vanhentuneiksi, ja kokeellinen Tehtävät-ominaisuus, johon viitataan Protokoilin ominaisuudet (5.16) -osassa, siirtyy omaksi Tehtävät-laajennuksekseen. Lisätietoja löytyy kohdasta [What's Changing in MCP: The 2026-07-28 Release Candidate](../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> **Nykyinen määritelmämuistutus:** MCP `2026-07-28` poistaa käytöstä Roots- ja
+> Sampling-perusteet, jotka käsitellään oppitunneissa 5.4 ja 5.6. Se myös siirtää
+> kokeellisen Tasks-ominaisuuden, joka mainitaan Protocol Features (5.16):ssa,
+> erilliseksi Tasks-laajennukseksi. Nämä oppitunnit säilytetään legacy-
+> `2025-11-25` -toteutuksia varten ja sisältävät siirtymisen ohjeistuksen. Katso
+> [Mitä MCP:ssä on muuttunut: 2026-07-28 määritelmä](../01-CoreConcepts/mcp-2026-07-28.md).
 
 ## Oppimistavoitteet
 
-Tämän oppitunnin jälkeen osaat:
+Oppitunnin lopuksi osaat:
 
-- Toteuttaa multimodaalisia ominaisuuksia MCP-kehyksissä
-- Suunnitella skaalautuvia MCP-arkkitehtuureja korkeiden kuormitusvaatimusten tilanteisiin
-- Soveltaa turvallisuuden parhaita käytäntöjä MCP:n turvaperiaatteiden mukaisesti
-- Integroituja MCP yritysten tekoälyjärjestelmiin ja kehyksiin
+- Toteuttaa monimuotoiset ominaisuudet MCP-kehyksissä
+- Suunnitella skaalautuvia MCP-arkkitehtuureja korkean kysynnän skenaarioihin
+- Soveltaa MCP:n turvallisuusperiaatteita vastaavia parhaimpia turvallisuuskäytäntöjä
+- Integroitu MCP yritysten tekoälyjärjestelmiin ja kehyksiin
 - Optimoida suorituskykyä ja luotettavuutta tuotantoympäristöissä
 
 ## Oppitunnit ja esimerkkiprojektit
 
 | Linkki | Otsikko | Kuvaus |
 |------|-------|-------------|
-| [5.1 Integraatio Azureen](./mcp-integration/README.md) | Integrointi Azureen | Opi miten integroida MCP-palvelimesi Azureen |
-| [5.2 Multimodaalinen esimerkki](./mcp-multi-modality/README.md) | MCP multimodaaliset esimerkit | Esimerkkejä ääni-, kuva- ja multimodaalisista vastauksista |
-| [5.3 MCP OAuth2 esimerkki](../../../05-AdvancedTopics/mcp-oauth2-demo) | MCP OAuth2 Demo | Minimipään Spring Boot-sovellus, joka näyttää OAuth2:n MCP:n kanssa sekä valtuutus- että resurssipalvelimena. Esittelee turvallisen tunnuksen myöntämisen, suojatut päätepisteet, Azure Container Apps -käytön ja API-hallinnan integraation. |
-| [5.4 Juurikontekstit](./mcp-root-contexts/README.md) | Juurikontekstit | Opi lisää juurikontekstista ja sen toteuttamisesta (vanhentunut `2026-07-28` julkaisuehdokkaassa; edelleen voimassa `2025-11-25`) |
-| [5.5 Reititys](./mcp-routing/README.md) | Reititys | Opi eri reititystyypeistä |
-| [5.6 Otanta](./mcp-sampling/README.md) | Otanta | Opi miten työskennellä otannan kanssa (vanhentunut `2026-07-28` julkaisuehdokkaassa; edelleen voimassa `2025-11-25`) |
-| [5.7 Skaalaus](./mcp-scaling/README.md) | Skaalaus | Opi skaalauksesta |
+| [5.1 Integrointi Azureen](./mcp-integration/README.md) | Integrointi Azureen | Opi integroimaan MCP-palvelimesi Azureen |
+| [5.2 Monimuotoinen esimerkki](./mcp-multi-modality/README.md) | MCP monimuotoiset esimerkit | Esimerkkejä ääni-, kuva- ja monimuotoisesta vastauksesta |
+| [5.3 MCP OAuth2 esimerkki](../../../05-AdvancedTopics/mcp-oauth2-demo) | MCP OAuth2 Demo | Minimipohjainen Spring Boot -sovellus, joka näyttää OAuth2:n MCP:n kanssa sekä valtuutus- että resurssipalvelimena. Esittelee turvallisen tokenin myöntämisen, suojatut päätepisteet, Azure Container Apps -käyttöönoton ja API Management -integroinnin. |
+| [5.4 Root Contexts](./mcp-root-contexts/README.md) | Root contextit | Opi legacy `2025-11-25` Roots-peruste ja nykyiset siirtymäskenaariot (poistettu käytöstä `2026-07-28`) |
+| [5.5 Reititys](./mcp-routing/README.md) | Reititys | Opi eri reititystyypit |
+| [5.6 Otanta](./mcp-sampling/README.md) | Otanta | Opi legacy `2025-11-25` Sampling-peruste ja nykyiset siirtymäskenaariot (poistettu käytöstä `2026-07-28`) |
+| [5.7 Skaalaus](./mcp-scaling/README.md) | Skaalaus | Opi skaalaamisesta |
 | [5.8 Turvallisuus](./mcp-security/README.md) | Turvallisuus | Turvaa MCP-palvelimesi |
-| [5.9 Web-hakuesimerkki](./web-search-mcp/README.md) | Web-haku MCP:llä | Python MCP-palvelin ja -asiakas, jotka integroivat SerpAPI:n reaaliaikaiseen verkko-, uutis-, tuotehakuun ja kysymys-vastaus -toimintoihin. Esittelee monityökalujen yhteistoimintaa, ulkoista API-integraatiota ja vankkaa virheenkäsittelyä. |
-| [5.10 Reaaliaikainen suoratoisto](./mcp-realtimestreaming/README.md) | Suoratoisto | Reaaliaikainen datavirtaus on nykymaailmassa olennainen, missä yritykset ja sovellukset tarvitsevat välittömän tiedonsaannin tehdä päätöksiä oikea-aikaisesti.|
-| [5.11 Reaaliaikainen web-haku](./mcp-realtimesearch/README.md) | Web-haku | Kuinka MCP muuttaa reaaliaikaista web-hakua tarjoamalla standardoidun lähestymistavan kontekstinhallintaan tekoälymallien, hakukoneiden ja sovellusten välillä.| 
-| [5.12 Entra ID -todennus Model Context Protocol -palvelimille](./mcp-security-entra/README.md) | Entra ID -todennus | Microsoft Entra ID tarjoaa vahvan pilvipohjaisen identiteetin ja pääsynhallinnan ratkaisun, joka varmistaa, että vain valtuutetut käyttäjät ja sovellukset voivat olla vuorovaikutuksessa MCP-palvelimesi kanssa.|
-| [5.13 Microsoft Foundry Agent -integraatio](./mcp-foundry-agent-integration/README.md) | Microsoft Foundry -integraatio | Opi miten integroida Model Context Protocol -palvelimet Microsoft Foundry -agenttien kanssa, mahdollistaen tehokas työkalujen orkestrointi ja yritystason tekoälyominaisuudet standardoitujen ulkoisten tietolähteiden liitäntöjen avulla.|
-| [5.14 Konteksti-insinöörityö](./mcp-contextengineering/README.md) | Konteksti-insinöörityö | Tulevaisuuden mahdollisuudet konteksti-insinöörityötekniikoissa MCP-palvelimille, mukaan lukien kontekstin optimointi, dynaaminen kontekstinhallinta ja tehokkaat prompttien suunnittelustrategiat MCP-kehyksissä.|
-| [5.15 MCP mukautettu siirto](./mcp-transport/README.md) | Mukautettu siirto | Opi toteuttamaan mukautettuja siirtomekanismeja erikoistuneisiin MCP-viestintätilanteisiin.|
-| [5.16 Protokoilin ominaisuudet perusteellisesti](./mcp-protocol-features/README.md) | Protokoilin ominaisuudet | Hallitse edistyneitä protokollaominaisuuksia kuten etenemishälytykset, pyyntöjen peruutukset, resurssimallit ja virheenkäsittelymallit.|
-| [5.17 Vastakkainasetteluun perustuva monitahoajakeskustelu](./mcp-adversarial-agents/README.md) | Vastakkaiset agentit | Käytä kahta vastakkaista agenttia, jotka jakavat yhden MCP-työkalujoukon, havaitsemaan harhoja, nostaen esiin reunatapauksia ja tuottamaan paremmin kalibroitua tulosta rakenteellisen väittelyn avulla.|
+| [5.9 Verkkohaku-esimerkki](./web-search-mcp/README.md) | Verkkohaku MCP | Python MCP-palvelin ja asiakas, jotka integroituvat SerpAPI:in reaaliaikaisiin verkko-, uutis-, tuotehakuihin ja kysymys-vastaus -toimintoihin. Esittelee monityökaluisen orkestraation, ulkoisen API-integroinnin ja vankan virheenkäsittelyn. |
+| [5.10 Reaaliaikainen suoratoisto](./mcp-realtimestreaming/README.md) | Suoratoisto | Reaaliaikainen datan suoratoisto on nykypäivän datalähtöisessä maailmassa välttämätöntä, kun liiketoiminnat ja sovellukset tarvitsevat välitöntä pääsyä tietoihin tehdäkseen oikea-aikaisia päätöksiä. |
+| [5.11 Reaaliaikainen verkkohaku](./mcp-realtimesearch/README.md) | Verkkohaku | Reaaliaikainen verkkohaku - miten MCP muuttaa reaaliaikaista verkkohakua tarjoamalla standardoidun lähestymistavan kontekstinhallintaan tekoälymallien, hakukoneiden ja sovellusten välillä. |
+| [5.12 Entra ID -todennus Model Context Protocol -palvelimille](./mcp-security-entra/README.md) | Entra ID -todennus | Microsoft Entra ID tarjoaa vakaan pilvipohjaisen identiteetin ja pääsynhallinnan ratkaisun, joka auttaa varmistamaan, että vain valtuutetut käyttäjät ja sovellukset voivat käyttää MCP-palvelintasi. |
+| [5.13 Microsoft Foundry Agent -integraatio](./mcp-foundry-agent-integration/README.md) | Microsoft Foundry -integraatio | Opi integroimaan Model Context Protocol -palvelimet Microsoft Foundry -agenttien kanssa, mahdollistaen tehokkaan työkalujen orkestroinnin ja yritystason tekoälyominaisuudet standardoiduilla ulkoisten tietolähteiden yhteyksillä. |
+| [5.14 Kontekstisuunnittelu](./mcp-contextengineering/README.md) | Kontekstisuunnittelu | Konteksti-insinööritaitojen tulevaisuuden mahdollisuudet MCP-palvelimille, mukaan lukien kontekstin optimointi, dynaaminen kontekstinhallinta ja strategiat tehokkaaseen kehotteiden suunnitteluun MCP-kehyksissä. |
+| [5.15 MCP mukautettu tiedonsiirto](./mcp-transport/README.md) | Mukautettu tiedonsiirto | Opi toteuttamaan mukautettuja tiedonsiirtomekanismeja erikoistuneisiin MCP-viestintätilanteisiin. |
+| [5.16 Syväsukellus protokollaominaisuuksiin](./mcp-protocol-features/README.md) | Protokollaominaisuudet | Hallitse edistyneet protokollaominaisuudet, mukaan lukien etenemisilmoitukset, pyyntöjen peruutus, resurssimallit ja virheenkäsittelykaavat. |
+| [5.17 Vastakkaisten monitoimijaisten päätelmämenetelmien käyttö](./mcp-adversarial-agents/README.md) | Vasta-agentsit | Käytä kahta erimielistä agenttia, jotka jakavat saman MCP-työkalupaketin, havaitsemaan harhoja, altistamaan reunatapauksia ja tuottamaan paremmin kalibroitua outputtia rakenteellisen väittelyn avulla. |
 
-> **Uutta MCP-spesifikaatiossa 2025-11-25**: Spesifikaatio sisältää nyt kokeellisen tuen **Tehtäville** (pitkäkestoiset operaatiot etenemisen seurannalla), **Työkalujen merkinnöille** (työkalun käyttäytymisen metatiedot turvallisuutta varten), **URL-tilan kyselylle** (asiakkailta pyydetty tietty URL-sisältö) ja parannetuille **Juurille** (työpajakontekstinhallintaan). Katso täydelliset tiedot [MCP Spesifikaatio muutosloki](https://spec.modelcontextprotocol.io/).
+> **Historiallinen `2025-11-25` muistutus:** kyseinen versio sisälsi kokeelliset
+> Tasks-ominaisuudet ja laajensi useita protokollaominaisuuksia. Versiossa `2026-07-28`
+> Tasks siirtyi viralliseksi laajennukseksi ja Roots poistui käytöstä. Älä käytä
+> `2025-11-25` ominaisuustilaa nykyisenä ohjeistuksena; katso
+> [2026-07-28 muutosloki](https://modelcontextprotocol.io/specification/2026-07-28/changelog).
 
-## Lisäviitteet
+## Lisäviitteitä
 
-Ajantasaisimman tiedon edistyneistä MCP-aiheista löydät seuraavista:
-- [MCP Dokumentaatio](https://modelcontextprotocol.io/)
-- [MCP Spesifikaatio (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [GitHub Repositorio](https://github.com/modelcontextprotocol)
-- [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - Turvariskit ja niiden vähentäminen
-- [MCP Security Summit työpaja (Sherpa)](https://azure-samples.github.io/sherpa/) - Käytännön turvallisuuskoulutus
+Ajantasaisimman tiedon saamiseksi edistyneistä MCP-aiheista, katso:
+- [MCP-dokumentaatio](https://modelcontextprotocol.io/)
+- [MCP-määrittely (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [GitHub-repositorio](https://github.com/modelcontextprotocol)
+- [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - Turvallisuusriskit ja niiden hallinta
+- [MCP Security Summit Workshop (Sherpa)](https://azure-samples.github.io/sherpa/) - Käytännön turvallisuuskoulutus
 
-## Tärkeimmät opit
+## Keskeiset opit
 
-- Multimodaaliset MCP-toteutukset laajentavat tekoälykyvykkyyksiä tekstinkäsittelyn ulkopuolelle
-- Skaalautuvuus on oleellista yrityskäyttöönotossa ja sen voi saavuttaa vaakasuoran ja pystysuoran skaalaamisen kautta
+- Monimuotoiset MCP-toteutukset laajentavat tekoälyn kyvykkyyksiä tekstinkäsittelyn ulkopuolelle
+- Skaalautuvuus on välttämätöntä yritysympäristöjen käyttöönotossa, ja se voidaan ratkaista horisontaalisella ja vertikaalisella skaalaamisella
 - Kattavat turvallisuustoimenpiteet suojaavat dataa ja varmistavat asianmukaisen pääsynvalvonnan
-- Yritysintegraatio alustoihin kuten Azure OpenAI ja Microsoft AI Foundry parantaa MCP:n kyvykkyyksiä
+- Yritysin­tegrointi alustoihin kuten Azure OpenAI ja Microsoft AI Foundry parantaa MCP:n kyvykkyyksiä
 - Edistyneet MCP-toteutukset hyötyvät optimoiduista arkkitehtuureista ja huolellisesta resurssien hallinnasta
 
 ## Harjoitus
 
-Suunnittele yritystason MCP-toteutus tietylle käyttötarkoitukselle:
+Suunnittele yritysluokan MCP-toteutus tiettyä käyttötarkoitusta varten:
 
-1. Määrittele multimodaaliset vaatimukset käyttötapauksellesi
-2. Laadi turvallisuusvalvontatoimenpiteet arkaluontoisen datan suojaamiseksi
+1. Määrittele monimuotoiset vaatimukset käyttötarkoituksellesi
+2. Laadi suojausmekanismit arkaluontoisen datan suojaamiseksi
 3. Suunnittele skaalautuva arkkitehtuuri, joka pystyy käsittelemään vaihtelevaa kuormitusta
 4. Suunnittele integraatiopisteet yritysten tekoälyjärjestelmiin
-5. Dokumentoi mahdolliset suorituskyvyn pullonkaulat ja lieventämisstrategiat
+5. Dokumentoi mahdolliset suorituskyvyn pullonkaulat ja niiden hallintastrategiat
 
 ## Lisäresurssit
 
-- [Azure OpenAI Dokumentaatio](https://learn.microsoft.com/en-us/azure/ai-services/openai/)
-- [Microsoft AI Foundry Dokumentaatio](https://learn.microsoft.com/en-us/ai-services/)
+- [Azure OpenAI -dokumentaatio](https://learn.microsoft.com/en-us/azure/ai-services/openai/)
+- [Microsoft AI Foundry -dokumentaatio](https://learn.microsoft.com/en-us/ai-services/)
 
 ---
 
 ## Mitä seuraavaksi
 
-Tutustu tämän moduulin oppitunteihin aloittaen: [5.1 MCP Integraatio](./mcp-integration/README.md)
+Tutustu tämän moduulin oppitunteihin alkaen: [5.1 MCP-integrointi](./mcp-integration/README.md)
 
-Kun olet suorittanut tämän moduulin, jatka: [Moduuli 6: Yhteisöpanokset](../06-CommunityContributions/README.md)
+Kun olet suorittanut tämän moduulin, jatka: [Moduuli 6: Yhteisön panokset](../06-CommunityContributions/README.md)
 
 ---
 

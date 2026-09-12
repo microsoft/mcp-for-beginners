@@ -2,51 +2,51 @@
 
 ## Visão Geral
 
-A pesquisa web em tempo real tornou-se essencial no ambiente atual orientado pela informação, onde as aplicações necessitam de acesso imediato a informações atualizadas na internet para fornecer respostas relevantes e oportunas. O Protocolo de Contexto de Modelo (MCP) representa um avanço significativo na otimização destes processos de pesquisa em tempo real, melhorando a eficiência da pesquisa, mantendo a integridade contextual e aprimorando o desempenho geral do sistema.
+A pesquisa web em tempo real tornou-se essencial no ambiente atual orientado à informação, onde as aplicações precisam de acesso imediato a informações atualizadas na internet para fornecer respostas relevantes e oportunas. O Protocolo de Contexto de Modelo (MCP) representa um avanço significativo na otimização destes processos de pesquisa em tempo real, melhorando a eficiência da pesquisa, mantendo a integridade contextual e aperfeiçoando o desempenho geral do sistema.
 
-Este módulo explora como o MCP transforma a pesquisa web em tempo real ao fornecer uma abordagem padronizada para a gestão de contexto entre modelos de IA, motores de busca e aplicações.
+Este módulo explora como o MCP transforma a pesquisa web em tempo real, fornecendo uma abordagem padronizada para a gestão de contexto entre modelos de IA, motores de pesquisa e aplicações.
 
-### O Que Vai Aprender
+### O que Vai Aprender
 
 Neste guia abrangente, vai descobrir:
 
-- Como o MCP cria uma ponte fluída entre modelos de IA e capacidades de pesquisa web em tempo real
-- Padrões arquiteturais para implementar soluções de pesquisa eficientes e escaláveis com MCP
-- Técnicas para preservar o contexto de pesquisa através de múltiplas consultas e interações
+- Como o MCP cria uma ponte contínua entre modelos de IA e capacidades de pesquisa web em tempo real
+- Padrões arquitetónicos para implementar soluções de pesquisa eficientes e escaláveis com MCP
+- Técnicas para preservar o contexto da pesquisa ao longo de múltiplas consultas e interações
 - Implementações práticas de código em Python e JavaScript para vários cenários de pesquisa
-- Métodos para equilibrar relevância, atualidade e desempenho em sistemas de pesquisa alimentados por MCP
+- Métodos para equilibrar relevância, atualidade e desempenho em sistemas de pesquisa potenciados por MCP
 
 ## Introdução à Pesquisa Web em Tempo Real
 
-A pesquisa web em tempo real é uma abordagem tecnológica que permite consultas contínuas, processamento e análise de informações baseadas na web à medida que são publicadas ou atualizadas, permitindo que os sistemas forneçam informações frescas e relevantes com latência mínima. Ao contrário dos sistemas tradicionais de pesquisa que operam sobre dados indexados que podem estar desatualizados por horas ou dias, a pesquisa em tempo real processa dados em direto da web, oferecendo insights e informações que refletem o estado atual do conteúdo online.
+A pesquisa web em tempo real é uma abordagem tecnológica que permite consultas contínuas, processamento e análise de informações baseadas na web à medida que são publicadas ou atualizadas, permitindo aos sistemas fornecer informações frescas e relevantes com latência mínima. Ao contrário dos sistemas tradicionais de pesquisa que operam sobre dados indexados que podem ter horas ou dias de antiguidade, a pesquisa em tempo real processa dados vivos da web, entregando informações e insights que refletem o estado atual do conteúdo online.
 
 ### Conceitos Fundamentais da Pesquisa Web em Tempo Real:
 
-- **Processamento Contínuo de Consultas**: As consultas de pesquisa são processadas contra fontes de dados em constante atualização
-- **Priorização da Atualidade**: Os sistemas são projetados para priorizar informações recentes
+- **Processamento Contínuo de Consultas**: As consultas de pesquisa são processadas contra fontes de dados que se atualizam constantemente
+- **Priorização da Atualidade**: Sistemas desenhados para priorizar informações recentes
 - **Equilíbrio da Relevância**: Manter um equilíbrio entre relevância e atualidade
-- **Arquitetura Escalável**: Os sistemas devem lidar com cargas variáveis de consultas e volumes de dados
-- **Compreensão Contextual**: Manter o contexto do utilizador através das iterações de pesquisa é crucial para resultados significativos
-- **Reformulações Dinâmicas de Consulta**: Modificar adaptativamente as consultas com base no contexto e resultados anteriores
-- **Integração Multi-Fonte**: Combinar resultados de múltiplos fornecedores de pesquisa e fontes web
-- **Compreensão Semântica**: Processar consultas e conteúdo com base no significado e não apenas em palavras-chave
-- **Classificação em Tempo Real**: Ajustar continuamente as classificações dos resultados à medida que novas informações ficam disponíveis
+- **Arquitetura Escalável**: Sistemas devem lidar com cargas variáveis de consultas e volumes de dados
+- **Compreensão Contextual**: Manter o contexto do utilizador ao longo das iterações de pesquisa é crucial para resultados significativos
+- **Reformulação Dinâmica de Consultas**: Modificar as consultas de forma adaptativa com base no contexto e resultados anteriores
+- **Integração Multifuente**: Combinar resultados de múltiplos provedores de pesquisa e fontes web
+- **Compreensão Semântica**: Processar consultas e conteúdos com base no significado, e não apenas nas palavras-chave
+- **Classificação em Tempo Real**: Ajustar continuamente as classificações dos resultados conforme novas informações ficam disponíveis
 
 ### O Protocolo de Contexto de Modelo e a Pesquisa Web em Tempo Real
 
-O Protocolo de Contexto de Modelo (MCP) enfrenta vários desafios críticos nos ambientes de pesquisa web em tempo real:
+O Protocolo de Contexto de Modelo (MCP) aborda vários desafios críticos em ambientes de pesquisa web em tempo real:
 
-1. **Preservação do Contexto de Pesquisa**: O MCP padroniza a forma como o contexto é mantido entre componentes distribuídos de pesquisa, garantindo que os modelos de IA e os nós de processamento tenham acesso ao histórico relevante das consultas e preferências do utilizador.
+1. **Preservação do Contexto de Pesquisa**: O MCP padroniza como o contexto é mantido através de componentes de pesquisa distribuídos, garantindo que modelos de IA e nós de processamento tenham acesso ao histórico relevante da consulta e preferências dos utilizadores.
 
-2. **Gestão Eficiente de Consultas**: Ao fornecer mecanismos estruturados para a transmissão do contexto, o MCP reduz a sobrecarga de repetir o contexto em cada iteração de pesquisa.
+2. **Gestão Eficiente de Consultas**: Ao fornecer mecanismos estruturados para a transmissão de contexto, o MCP reduz a sobrecarga de repetir o contexto em cada iteração de pesquisa.
 
-3. **Interoperabilidade**: O MCP cria uma linguagem comum para compartilhamento de contexto entre tecnologias de pesquisa diversas e modelos de IA, permitindo arquiteturas mais flexíveis e extensíveis.
+3. **Interoperabilidade**: O MCP cria uma linguagem comum para partilha de contexto entre diversas tecnologias de pesquisa e modelos de IA, permitindo arquiteturas mais flexíveis e extensíveis.
 
-4. **Contexto Otimizado para Pesquisa**: As implementações do MCP podem priorizar quais elementos do contexto são mais relevantes para uma pesquisa eficaz, otimizando tanto o desempenho quanto a precisão.
+4. **Contexto Otimizado para Pesquisa**: Implementações do MCP podem priorizar quais elementos do contexto são mais relevantes para uma pesquisa eficaz, otimizando tanto o desempenho quanto a precisão.
 
-5. **Processamento Adaptativo da Pesquisa**: Com uma gestão adequada do contexto através do MCP, os sistemas de pesquisa podem ajustar dinamicamente o processamento com base nas necessidades do utilizador e nos cenários de informação em evolução.
+5. **Processamento Adaptativo de Pesquisa**: Com a gestão adequada de contexto através do MCP, os sistemas de pesquisa podem ajustar dinamicamente o processamento com base nas necessidades em evolução dos utilizadores e nos panoramas informativos.
 
-Em aplicações modernas que vão desde a agregação de notícias a assistentes de investigação, a integração do MCP com tecnologias de pesquisa web permite pesquisas mais inteligentes e conscientes do contexto que podem fornecer resultados progressivamente mais relevantes à medida que as interações com o utilizador continuam.
+Em aplicações modernas que vão desde agregação de notícias a assistentes de pesquisa, a integração do MCP com tecnologias de pesquisa web permite uma pesquisa mais inteligente, consciente do contexto, capaz de fornecer resultados cada vez mais relevantes à medida que as interações do utilizador prosseguem.
 
 ## Objetivos de Aprendizagem
 
@@ -56,55 +56,55 @@ No final desta lição, será capaz de:
 - Explicar como o Protocolo de Contexto de Modelo (MCP) melhora as capacidades de pesquisa web em tempo real
 - Implementar soluções de pesquisa baseadas em MCP utilizando frameworks e APIs populares
 - Projetar e implementar arquiteturas de pesquisa escaláveis e de alto desempenho com MCP
-- Aplicar conceitos MCP a diversos casos de uso, incluindo pesquisa semântica, assistência à pesquisa e navegação aumentada por IA
-- Avaliar tendências emergentes e inovações futuras em tecnologias de pesquisa baseadas em MCP
-- Desenvolver sistemas de pesquisa conscientes do contexto que aprendem com as interações do utilizador
+- Aplicar conceitos do MCP em vários casos de uso incluindo pesquisa semântica, assistência em investigação e navegação aumentada por IA
+- Avaliar tendências emergentes e futuras inovações em tecnologias de pesquisa baseadas em MCP
+- Desenvolver sistemas de pesquisa conscientes do contexto que aprendam com as interações do utilizador
 - Integrar capacidades de pesquisa web em assistentes de IA usando protocolos MCP padronizados
-- Criar pipelines de pesquisa em múltiplas etapas que refinam progressivamente os resultados com base no contexto
-- Otimizar o desempenho da pesquisa enquanto mantém uma consciência abrangente do contexto
+- Criar pipelines de pesquisa em múltiplas etapas que refinem progressivamente os resultados com base no contexto
+- Otimizar o desempenho da pesquisa mantendo ampla consciência contextual
 
-### Definição e Importância
+### Definição e Significado
 
-A pesquisa web em tempo real envolve a consulta contínua, recuperação e entrega de informação baseada na web com latência mínima. Ao contrário dos motores de busca tradicionais que rastreiam e indexam a web periodicamente, a pesquisa em tempo real visa revelar informação assim que esta se torna disponível, permitindo acesso imediato ao conteúdo mais atual.
+A pesquisa web em tempo real envolve a consulta, recuperação e entrega contínua de informações baseadas na web com latência mínima. Ao contrário dos motores de pesquisa tradicionais que rastreiam e indexam a web periodicamente, a pesquisa em tempo real pretende mostrar a informação assim que esta fica disponível, permitindo acesso imediato ao conteúdo mais atual.
 
-Características chave da pesquisa web em tempo real incluem:
+As características principais da pesquisa web em tempo real incluem:
 
-- **Atualidade**: Priorização do conteúdo e atualizações recentes
+- **Atualidade**: Priorização de conteúdo e atualizações recentes
 - **Processamento Contínuo**: Monitorização constante para novas informações
-- **Adaptação de Consulta**: Refinamento das consultas de pesquisa baseado no contexto e no feedback
-- **Entrega Imediata**: Fornecimento dos resultados de pesquisa com atraso mínimo
-- **Retenção de Contexto**: Construção sobre consultas anteriores para melhor relevância
+- **Adaptação de Consultas**: Refinamento das consultas de pesquisa com base no contexto e feedback
+- **Entrega Imediata**: Fornecimento de resultados de pesquisa com atraso mínimo
+- **Retenção de Contexto**: Construção baseada em consultas anteriores para melhorar a relevância
 
 ### Desafios na Pesquisa Web Tradicional
 
 As abordagens tradicionais de pesquisa web enfrentam várias limitações quando aplicadas a cenários em tempo real:
 
-1. **Fragmentação do Contexto**: Dificuldade em manter o contexto da pesquisa através de múltiplas consultas
-2. **Atualidade da Informação**: Desafios em aceder e priorizar a informação mais recente
+1. **Fragmentação do Contexto**: Dificuldade em manter o contexto da pesquisa ao longo de múltiplas consultas
+2. **Atualidade da Informação**: Desafios no acesso e priorização da informação mais recente
 3. **Complexidade de Integração**: Problemas de interoperabilidade entre sistemas de pesquisa e aplicações
-4. **Problemas de Latência**: Equilibrar pesquisa abrangente com requisitos de tempo de resposta
+4. **Problemas de Latência**: Equilíbrio entre pesquisa abrangente e requisitos de tempo de resposta
 5. **Ajuste de Relevância**: Garantir precisão e relevância enquanto se prioriza a atualidade
 
 ## Compreendendo o Protocolo de Contexto de Modelo (MCP) para Pesquisa
 
-### O Que é o MCP em Contextos de Pesquisa?
+### O que é o MCP em Contextos de Pesquisa?
 
-O Protocolo de Contexto de Modelo (MCP) é um protocolo de comunicação padronizado projetado para facilitar a interação eficiente entre modelos de IA e aplicações. No contexto da pesquisa web em tempo real, o MCP fornece um quadro para:
+O Protocolo de Contexto de Modelo (MCP) é um protocolo de comunicação padronizado concebido para facilitar a interação eficiente entre modelos de IA e aplicações. No contexto da pesquisa web em tempo real, o MCP oferece uma estrutura para:
 
 - Preservar o contexto da pesquisa ao longo das sequências de consultas
-- Padronizar os formatos de consulta e de resultados de pesquisa
-- Otimizar a transmissão dos parâmetros e resultados de pesquisa
-- Melhorar a comunicação entre modelos e motores de busca
+- Padronizar os formatos de consulta e resultados de pesquisa
+- Otimizar a transmissão de parâmetros e resultados de pesquisa
+- Melhorar a comunicação entre modelos e motores de pesquisa
 
-### Componentes Centrais e Arquitetura
+### Componentes e Arquitetura Principais
 
-A arquitetura do MCP para pesquisa web em tempo real consiste em vários componentes-chave:
+A arquitetura MCP para pesquisa web em tempo real é composta por vários componentes chave:
 
-1. **Gestores de Contexto de Consulta**: Gerem e mantêm o contexto da pesquisa em múltiplas consultas
+1. **Controladores de Contexto de Consulta**: Gerem e mantêm o contexto da pesquisa ao longo de múltiplas consultas
 2. **Processadores de Pesquisa**: Processam pedidos de pesquisa recebidos usando técnicas conscientes do contexto
-3. **Adaptadores de Protocolo**: Convertem entre diferentes APIs de pesquisa preservando o contexto
-4. **Armazenamento de Contexto**: Armazenam e recuperam eficientemente o histórico de pesquisa e preferências
-5. **Conectores de Pesquisa**: Ligações a vários motores de busca e APIs web
+3. **Adaptadores de Protocolo**: Convertem entre diferentes APIs de pesquisa mantendo o contexto
+4. **Armazenamento de Contexto**: Guarda e recupera eficazmente histórico de pesquisa e preferências
+5. **Conectores de Pesquisa**: Ligam a vários motores de pesquisa e APIs web
 
 ```mermaid
 graph TD
@@ -125,9 +125,9 @@ graph TD
 
     subgraph "Processamento & Análise"
         RE[Motor de Relevância]
-        ML[Modelos de ML]
-        NLP[Processamento NLP]
-        Rank[Sistema de Classificação]
+        ML[Modelos de IA]
+        NLP[Processamento PNL]
+        Rank[Sistema de Ranking]
     end
 
     subgraph "Aplicações & Serviços"
@@ -147,20 +147,20 @@ graph TD
     CH <-->|Operações de Contexto| CS
     CH -->|Resultados Enriquecidos com Contexto| SP
     SP -->|Resultados Processados| RE
-    SP -->|Características| ML
+    SP -->|Funcionalidades| ML
     SP -->|Texto| NLP
     
-    RE -->|Resultados Classificados| Rank
+    RE -->|Resultados Ordenados| Rank
     ML -->|Previsões| Rank
     NLP -->|Entidades & Relações| Rank
     
     Rank -->|Resultados Finais| RA
-    ML -->|Insights| Alerts
+    ML -->|Perceções| Alerts
     NLP -->|Dados Estruturados| KB
     
     RA -->|Investigação| Users((Users))
     Alerts -->|Notificações| Users
-    KB <-->|Acesso ao Conhecimento| API
+    KB <-->|Acesso a Conhecimento| API
 
     classDef sources fill:#f9f,stroke:#333,stroke-width:2px,color:#4a004a
     classDef mcp fill:#bbf,stroke:#333,stroke-width:2px,color:#00004a
@@ -175,37 +175,37 @@ graph TD
 
 ### Como o MCP Melhora a Pesquisa Web em Tempo Real
 
-O MCP resolve desafios tradicionais da pesquisa web através de:
+O MCP aborda desafios tradicionais da pesquisa web através de:
 
-- **Continuidade Contextual**: Mantendo relações entre consultas ao longo de toda a sessão de pesquisa
-- **Transmissão Otimizada**: Reduzindo redundâncias nos parâmetros de pesquisa através da gestão inteligente do contexto
-- **Interfaces Padronizadas**: Proporcionando APIs consistentes para os componentes de pesquisa
-- **Latência Reduzida**: Minimizando a sobrecarga de processamento via gestão eficiente do contexto
-- **Relevância Aprimorada**: Melhorando a relevância da pesquisa ao preservar a intenção do utilizador em múltiplas consultas
+- **Continuidade Contextual**: Mantém as relações entre consultas ao longo de toda a sessão de pesquisa
+- **Transmissão Otimizada**: Reduz a redundância nos parâmetros de pesquisa através de gestão inteligente do contexto
+- **Interfaces Padronizadas**: Fornece APIs consistentes para componentes de pesquisa
+- **Latência Reduzida**: Minimiza sobrecarga de processamento através de manipulação eficiente do contexto
+- **Relevância Aprimorada**: Melhora a relevância da pesquisa preservando a intenção do utilizador ao longo de múltiplas consultas
 
 ## Integração e Implementação
 
-Os sistemas de pesquisa web em tempo real exigem um design arquitetural cuidadoso e implementação para manter tanto o desempenho quanto a integridade do contexto. O Protocolo de Contexto de Modelo oferece uma abordagem padronizada para integrar modelos de IA e tecnologias de pesquisa, permitindo pipelines de pesquisa mais sofisticados e conscientes do contexto.
+Sistemas de pesquisa web em tempo real requerem um desenho arquitetónico cuidadoso e implementação para manter tanto o desempenho quanto a integridade contextual. O Protocolo de Contexto de Modelo oferece uma abordagem padronizada para integrar modelos de IA e tecnologias de pesquisa, permitindo pipelines de pesquisa mais sofisticados e conscientes do contexto.
 
 ### Visão Geral da Integração MCP em Arquiteturas de Pesquisa
 
-Implementar MCP em ambientes de pesquisa web em tempo real envolve várias considerações-chave:
+Implementar o MCP em ambientes de pesquisa web em tempo real envolve várias considerações importantes:
 
-1. **Serialização do Contexto de Pesquisa**: O MCP fornece mecanismos eficazes para codificar a informação contextual dentro dos pedidos de pesquisa, garantindo que o contexto essencial acompanha a consulta ao longo do pipeline de processamento. Isto inclui formatos de serialização padronizados otimizados para metadados relacionados à pesquisa.
+1. **Serialização do Contexto de Pesquisa**: O MCP oferece mecanismos eficientes para codificar informação contextual dentro dos pedidos de pesquisa, garantindo que o contexto essencial acompanha a consulta ao longo do pipeline de processamento. Isto inclui formatos padronizados de serialização otimizados para metadados relacionados à pesquisa.
 
-2. **Processamento de Pesquisa com Estado**: O MCP possibilita um processamento mais inteligente baseado em estado ao manter uma representação consistente do contexto em várias iterações de pesquisa. Isto é particularmente valioso em pipelines de pesquisa em múltiplas etapas onde o refinamento do contexto melhora os resultados.
+2. **Processamento de Pesquisa com Estado**: O MCP permite um processamento com estado mais inteligente ao manter representações consistentes de contexto ao longo das iterações de pesquisa. Isto é particularmente valioso em pipelines de pesquisa em múltiplas etapas, onde o refinamento do contexto melhora os resultados.
 
-3. **Expansão e Refinamento de Consulta**: As implementações do MCP em sistemas de pesquisa podem facilitar uma expansão e refinamento sofisticados das consultas com base no contexto acumulado, permitindo resultados cada vez mais relevantes à medida que a sessão de pesquisa avança.
+3. **Expansão e Refinamento de Consultas**: Implementações do MCP em sistemas de pesquisa podem facilitar a expansão e o refinamento sofisticado de consultas com base no contexto acumulado, permitindo resultados progressivamente mais relevantes à medida que a sessão de pesquisa avança.
 
-4. **Cache e Priorização de Resultados**: Ao padronizar o manuseamento do contexto, o MCP ajuda a gerir cache de resultados e priorizações, permitindo que os componentes se adaptem com base no contexto de pesquisa em evolução.
+4. **Cache e Priorização de Resultados**: Ao padronizar a gestão do contexto, o MCP ajuda a gerir cache e priorização de resultados, permitindo que os componentes se adaptem com base no contexto de pesquisa em evolução.
 
-5. **Federação e Agregação de Pesquisa**: O MCP facilita uma federação mais sofisticada da pesquisa através de múltiplos backends ao fornecer representações estruturadas do contexto da pesquisa, permitindo uma agregação mais significativa dos resultados de fontes diversas.
+5. **Federação e Agregação de Pesquisa**: O MCP facilita uma federação mais sofisticada da pesquisa através de múltiplos backends, fornecendo representações estruturadas do contexto de pesquisa, permitindo uma agregação mais significativa de resultados de fontes diversas.
 
-A implementação do MCP em várias tecnologias de pesquisa cria uma abordagem unificada para a gestão de contexto, reduzindo a necessidade de código de integração personalizado ao mesmo tempo que aprimora a capacidade do sistema para manter contexto significativo à medida que as consultas evoluem.
+A implementação do MCP em várias tecnologias de pesquisa cria uma abordagem unificada para a gestão de contexto, reduzindo a necessidade de código de integração personalizado enquanto melhora a capacidade do sistema em manter um contexto significativo conforme as consultas de pesquisa evoluem.
 
-### MCP em Várias Implementações de Pesquisa Web
+### MCP em Diversas Implementações de Pesquisa Web
 
-Estes exemplos seguem a especificação atual do MCP que se foca num protocolo baseado em JSON-RPC com distintos mecanismos de transporte. O código demonstra como pode implementar integrações personalizadas de pesquisa enquanto mantém plena compatibilidade com o protocolo MCP.
+Estes exemplos seguem a especificação atual do MCP que foca num protocolo baseado em JSON-RPC com mecanismos de transporte distintos. O código demonstra como pode implementar integrações personalizadas de pesquisa mantendo total compatibilidade com o protocolo MCP.
 
 
 <details>
@@ -219,7 +219,7 @@ from typing import Dict, Any, Optional, List
 from contextlib import asynccontextmanager
 from collections.abc import AsyncIterator
 
-# Importar bibliotecas standard MCP
+# Importar bibliotecas MCP padrão
 from mcp.client.session import ClientSession
 from mcp.client.streamable_http import streamablehttp_client
 from mcp.types import TextContent, CreateMessageRequestParams, CreateMessageResult
@@ -276,7 +276,7 @@ class WebSearchHandler:
                 
                 search_data = await response.json()
                 
-                # Transformar a resposta específica da API para um formato standard
+                # Transformar a resposta específica da API para um formato padrão
                 results = []
                 for item in search_data.get("results", []):
                     results.append({
@@ -347,12 +347,12 @@ async def web_search(query: str, max_results: int = 5,
     
     return results
 
-# Exemplo de utilização do cliente
+# Exemplo de uso do cliente
 async def client_example():
     # Ligar ao servidor de pesquisa usando transporte HTTP Streamable
     async with streamablehttp_client("http://localhost:8000/mcp") as (read, write, _):
         async with ClientSession(read, write) as session:
-            # Inicializar a ligação
+            # Inicializar a conexão
             await session.initialize()
             
             # Chamar a ferramenta web_search
@@ -376,7 +376,7 @@ if __name__ == "__main__":
 </details> 
 
 <details>
-<summary>Implementação em JavaScript com Pesquisa Baseada em Navegador</summary>
+<summary>Implementação em JavaScript com Pesquisa Baseada em Browser</summary>
 
 
 ```javascript
@@ -391,7 +391,7 @@ const searchServer = new McpServer({
     description: "A server that provides web search capabilities"
 });
 
-// Classe do serviço de pesquisa
+// Classe de serviço de pesquisa
 class SearchService {
     constructor(searchApiUrl, apiKey) {
         this.searchApiUrl = searchApiUrl;
@@ -512,12 +512,12 @@ searchServer.tool({
     }
 });
 
-// Código de exemplo do cliente para conectar ao servidor de pesquisa
+// Código de exemplo do cliente para ligar ao servidor de pesquisa
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 
 async function connectToSearchServer() {
-    // Conectar ao servidor de pesquisa
+    // Ligar ao servidor de pesquisa
     const transport = new StreamableHTTPClientTransport(
         new URL('http://localhost:8000/mcp')
     );
@@ -542,7 +542,7 @@ async function connectToSearchServer() {
     
     console.log('Search results:', searchResults);
     
-    // Limpar
+    // Limpeza
     await client.disconnect();
 }
 
@@ -551,7 +551,7 @@ const transport = new StreamableHTTPServerTransport();
 await searchServer.connect(transport);
 console.log('Search server running at http://localhost:8000/mcp');
 
-// Numa processo separado ou após o servidor ser iniciado
+// Num processo separado ou depois de o servidor estar iniciado
 // connectToSearchServer().catch(console.error);
 ```
 </details> 
@@ -559,37 +559,39 @@ console.log('Search server running at http://localhost:8000/mcp');
 
 
 
-## Aviso sobre Exemplos de Código
+## Aviso Sobre Exemplos de Código
 
-> **Nota Importante**: Os exemplos de código abaixo demonstram a integração do Protocolo de Contexto de Modelo (MCP) com a funcionalidade de pesquisa web. Embora sigam os padrões e estruturas dos SDKs oficiais do MCP, foram simplificados para fins educativos.
+> **Nota Importante**: Os exemplos de código abaixo demonstram a integração do Protocolo de Contexto de Modelo (MCP) com funcionalidade de pesquisa web. Embora sigam os padrões e estruturas dos SDKs MCP oficiais, foram simplificados para fins educacionais.
 > 
-> Estes exemplos ilustram:
+> Estes exemplos apresentam:
 > 
-> 1. **Implementação em Python**: Uma implementação do servidor FastMCP que fornece uma ferramenta de pesquisa web e se conecta a uma API externa de pesquisa. Este exemplo demonstra o correto gerenciamento de ciclo de vida, manuseamento de contexto e implementação de ferramentas seguindo os padrões do [SDK Python oficial MCP](https://github.com/modelcontextprotocol/python-sdk). O servidor utiliza o transporte HTTP Streamable recomendado, que substituiu o antigo transporte SSE para implementações em produção.
+> 1. **Implementação em Python**: Uma implementação do servidor FastMCP que fornece uma ferramenta de pesquisa web e liga-se a uma API de pesquisa externa. Este exemplo demonstra a gestão adequada do ciclo de vida, manipulação de contexto e implementação da ferramenta seguindo os padrões do [SDK MCP Python oficial](https://github.com/modelcontextprotocol/python-sdk). O servidor utiliza o transporte HTTP Streamable recomendado, que substituiu o transporte SSE antigo para implementações em produção.
 > 
-> 2. **Implementação em JavaScript**: Uma implementação em TypeScript/JavaScript usando o padrão FastMCP do [SDK TypeScript oficial MCP](https://github.com/modelcontextprotocol/typescript-sdk) para criar um servidor de pesquisa com definições adequadas de ferramentas e conexões de clientes. Segue os padrões mais recentes recomendados para gestão de sessão e preservação de contexto.
+> 2. **Implementação em JavaScript**: Uma implementação em TypeScript/JavaScript usando o padrão FastMCP do [SDK MCP TypeScript oficial](https://github.com/modelcontextprotocol/typescript-sdk) para criar um servidor de pesquisa com definições apropriadas de ferramentas e ligações cliente. Segue os padrões mais recentes recomendados para gestão de sessões e preservação de contexto.
 > 
-> Estes exemplos exigiriam tratamento adicional de erros, autenticação e código específico de integração de API para uso em produção. Os endpoints da API de pesquisa mostrados (`https://api.search-service.example/search`) são espaços reservados que precisariam ser substituídos por endpoints reais de serviços de pesquisa.
+> Estes exemplos requereriam tratamento extra de erros, autenticação e código específico de integração de API para uso em produção. Os endpoints da API de pesquisa mostrados (`https://api.search-service.example/search`) são espaços reservados e teriam de ser substituídos por endpoints reais de serviços de pesquisa.
 > 
-> Para detalhes completos de implementação e as abordagens mais atuais, por favor consulte a [especificação oficial MCP](https://spec.modelcontextprotocol.io/) e documentação dos SDKs.
+> Para detalhes completos de implementação e abordagens mais atualizadas,
+> consulte a [especificação oficial do MCP](https://modelcontextprotocol.io/specification/2026-07-28/)
+> e documentação do SDK.
 
 ## Conceitos Fundamentais
 
-### O Quadro do Protocolo de Contexto de Modelo (MCP)
+### A Estrutura do Protocolo de Contexto de Modelo (MCP)
 
-Na sua base, o Protocolo de Contexto de Modelo fornece uma forma padronizada para que modelos de IA, aplicações e serviços troquem contexto. Na pesquisa web em tempo real, este quadro é essencial para criar experiências de pesquisa coerentes e multi-turno. Os principais componentes incluem:
+Na sua base, o Protocolo de Contexto de Modelo proporciona uma forma padronizada para modelos de IA, aplicações e serviços trocarem contexto. Na pesquisa web em tempo real, esta estrutura é essencial para criar experiências de pesquisa coerentes e multi-turno. Componentes chave incluem:
 
-1. **Arquitetura Cliente-Servidor**: O MCP estabelece uma clara separação entre clientes de pesquisa (solicitantes) e servidores de pesquisa (fornecedores), permitindo modelos de implantação flexíveis.
+1. **Arquitetura Cliente-Servidor**: O MCP estabelece uma separação clara entre clientes de pesquisa (solicitantes) e servidores de pesquisa (fornecedores), permitindo modelos de implementação flexíveis.
 
-2. **Comunicação JSON-RPC**: O protocolo usa JSON-RPC para troca de mensagens, tornando-o compatível com tecnologias web e fácil de implementar em diferentes plataformas.
+2. **Comunicação JSON-RPC**: O protocolo usa JSON-RPC para troca de mensagens, tornando-o compatível com tecnologias web e fácil de implementar em diversas plataformas.
 
-3. **Gestão de Contexto**: O MCP define métodos estruturados para manter, atualizar e aproveitar o contexto de pesquisa ao longo de múltiplas interações.
+3. **Gestão de Contexto**: O MCP define métodos estruturados para manter, atualizar e aproveitar o contexto da pesquisa ao longo de múltiplas interações.
 
-4. **Definições de Ferramentas**: As capacidades de pesquisa são expostas como ferramentas padronizadas com parâmetros e valores de retorno bem definidos.
+4. **Definições de Ferramentas**: Capacidades de pesquisa expostas como ferramentas padronizadas com parâmetros e valores de retorno bem definidos.
 
-5. **Suporte a Streaming**: O protocolo suporta resultados em streaming, essencial para a pesquisa em tempo real onde resultados podem chegar progressivamente.
+5. **Suporte a Streaming**: O protocolo suporta transmissão de resultados em streaming, essencial para pesquisa em tempo real onde os resultados podem chegar progressivamente.
 
-### Padrões de Integração na Pesquisa Web
+### Padrões de Integração de Pesquisa Web
 
 Ao integrar o MCP com a pesquisa web, surgem vários padrões:
 
@@ -610,39 +612,39 @@ Neste padrão, o servidor MCP interage diretamente com uma ou mais APIs de pesqu
 ```mermaid
 graph LR
     Client[Cliente MCP] --> |Pedido MCP| Federation[Camada de Federação MCP]
-    Federation --> |Pedido MCP 1| Search1[Provedor de Pesquisa 1]
-    Federation --> |Pedido MCP 2| Search2[Provedor de Pesquisa 2]
-    Federation --> |Pedido MCP 3| Search3[Provedor de Pesquisa 3]
+    Federation --> |Pedido MCP 1| Search1[Fornecedor de Pesquisa 1]
+    Federation --> |Pedido MCP 2| Search2[Fornecedor de Pesquisa 2]
+    Federation --> |Pedido MCP 3| Search3[Fornecedor de Pesquisa 3]
     Search1 --> |Resposta MCP 1| Federation
     Search2 --> |Resposta MCP 2| Federation
     Search3 --> |Resposta MCP 3| Federation
     Federation --> |Resposta MCP Agregada| Client
 ```
 
-Este padrão distribui consultas de pesquisa entre múltiplos fornecedores compatíveis com MCP, cada um potencialmente especializado em diferentes tipos de conteúdo ou capacidades de pesquisa, mantendo um contexto unificado.
+Este padrão distribui consultas de pesquisa através de múltiplos provedores de pesquisa compatíveis com MCP, cada um potencialmente especializado em diferentes tipos de conteúdo ou capacidades de pesquisa, mantendo um contexto unificado.
 
-#### 3. Cadeia de Pesquisa com Contexto Aprimorado
+#### 3. Cadeia de Pesquisa com Contexto Reforçado
 
 ```mermaid
 graph LR
-    Client[Cliente MCP] --> |Consulta + Contexto| Server[Servidor MCP]
-    Server --> |1. Análise da Consulta| NLP[Serviço de PLN]
-    NLP --> |Consulta Melhorada| Server
+    Client[Client MCP] --> |Consulta + Contexto| Server[Servidor MCP]
+    Server --> |1. Análise da Consulta| NLP[Serviço PLN]
+    NLP --> |Consulta Aprimorada| Server
     Server --> |2. Execução da Pesquisa| Search[Motor de Pesquisa]
     Search --> |Resultados Brutos| Server
-    Server --> |3. Processamento de Resultados| Enhancement[Melhoria de Resultados]
-    Enhancement --> |Resultados Melhorados| Server
+    Server --> |3. Processamento de Resultados| Enhancement[Aprimoramento de Resultados]
+    Enhancement --> |Resultados Aprimorados| Server
     Server --> |Resultados Finais + Contexto Atualizado| Client
 ```
 
-Neste padrão, o processo de pesquisa é dividido em múltiplas etapas, com o contexto sendo enriquecido em cada fase, resultando em resultados progressivamente mais relevantes.
+Neste padrão, o processo de pesquisa é dividido em múltiplas etapas, com o contexto sendo enriquecido a cada passo, resultando em resultados progressivamente mais relevantes.
 
 ### Componentes do Contexto de Pesquisa
 
 Na pesquisa web baseada em MCP, o contexto normalmente inclui:
 
 - **Histórico de Consultas**: Consultas de pesquisa anteriores na sessão
-- **Preferências do Utilizador**: Idioma, região, configurações de pesquisa segura
+- **Preferências do Utilizador**: Língua, região, configurações de pesquisa segura
 - **Histórico de Interação**: Quais resultados foram clicados, tempo passado nos resultados
 - **Parâmetros de Pesquisa**: Filtros, ordens de classificação e outros modificadores de pesquisa
 - **Conhecimento de Domínio**: Contexto específico do assunto relevante para a pesquisa
@@ -653,120 +655,121 @@ Na pesquisa web baseada em MCP, o contexto normalmente inclui:
 
 ### Investigação e Recolha de Informação
 
-O MCP aprimora os fluxos de trabalho de pesquisa por:
+O MCP melhora fluxos de trabalho de investigação ao:
 
-- Preservar o contexto da investigação através das sessões de pesquisa
+- Preservar o contexto de investigação ao longo de sessões de pesquisa
 - Permitir consultas mais sofisticadas e contextualmente relevantes
-- Suportar federação de pesquisa multi-fonte
-- Facilitar extração de conhecimento dos resultados de pesquisa
+- Apoiar federação de pesquisa multifuente
+- Facilitar a extração de conhecimento a partir dos resultados de pesquisa
 
 ### Monitorização de Notícias e Tendências em Tempo Real
 
-A pesquisa alimentada por MCP oferece vantagens para monitorização de notícias:
+A pesquisa potenciadda pelo MCP oferece vantagens para monitorização de notícias:
 
 - Descoberta quase em tempo real de notícias emergentes
 - Filtragem contextual de informação relevante
-- Rastreio de temas e entidades através de múltiplas fontes
-- Alertas personalizados de notícias com base no contexto do utilizador
+- Acompanhamento de tópicos e entidades através de múltiplas fontes
+- Alertas de notícias personalizados baseados no contexto do utilizador
 
-### Navegação e Pesquisa Aumentadas por IA
+### Navegação e Investigação Aumentadas por IA
 
 O MCP cria novas possibilidades para navegação aumentada por IA:
 
 - Sugestões de pesquisa contextuais baseadas na atividade atual do navegador
-- Integração fluída da pesquisa web com assistentes potenciados por LLM
-- Refinamento de pesquisa multi-turno com manutenção do contexto
-- Verificação de factos e verificação de informação aprimoradas
+- Integração contínua da pesquisa web com assistentes potenciados por LLM
+- Refinamento de pesquisa multi-turno com contexto mantido
+- Verificação melhorada de factos e validação de informação
 
 ## Tendências e Inovações Futuras
 
 ### Evolução do MCP na Pesquisa Web
 
-Olhando para o futuro, antecipamos que o MCP evolua para responder a:
+Olhando para o futuro, prevemos que o MCP evolua para abordar:
 
 
-- **Pesquisa Multimodal**: Integração da pesquisa de texto, imagem, áudio e vídeo com contexto preservado
+- **Pesquisa Multimodal**: Integração de pesquisa de texto, imagem, áudio e vídeo com preservação do contexto
 - **Pesquisa Descentralizada**: Suporte a ecossistemas de pesquisa distribuída e federada
-- **Privacidade na Pesquisa**: Mecanismos de pesquisa preservadores de privacidade com consciência de contexto
-- **Compreensão da Consulta**: Análise semântica profunda de consultas de pesquisa em linguagem natural
+- **Privacidade da Pesquisa**: Mecanismos de pesquisa preservadores de privacidade conscientes do contexto
+- **Compreensão de Consultas**: Análise semântica profunda de consultas de pesquisa em linguagem natural
 
-### Avanços Potenciais na Tecnologia
+### Potenciais Avanços na Tecnologia
 
-Tecnologias emergentes que vão moldar o futuro da pesquisa MCP:
+Tecnologias emergentes que irão moldar o futuro da pesquisa MCP:
 
-1. **Arquiteturas Neurais de Pesquisa**: Sistemas de pesquisa baseados em embeddings otimizados para MCP
-2. **Contexto de Pesquisa Personalizado**: Aprendizagem dos padrões de pesquisa individuais dos utilizadores ao longo do tempo
+1. **Arquiteturas de Pesquisa Neural**: Sistemas de pesquisa baseados em embeddings otimizados para MCP
+2. **Contexto de Pesquisa Personalizado**: Aprendizagem dos padrões de pesquisa individual dos utilizadores ao longo do tempo
 3. **Integração de Grafos de Conhecimento**: Pesquisa contextual melhorada por grafos de conhecimento específicos de domínio
-4. **Contexto Cross-Modal**: Manutenção do contexto através das diferentes modalidades de pesquisa
+4. **Contexto Cross-Modal**: Manutenção do contexto através de diferentes modalidades de pesquisa
 
 ## Exercícios Práticos
 
-### Exercício 1: Configurar um Pipeline de Pesquisa MCP Básico
+### Exercício 1: Configuração de um Pipeline Básico de Pesquisa MCP
 
 Neste exercício, irá aprender a:
 - Configurar um ambiente básico de pesquisa MCP
 - Implementar manipuladores de contexto para pesquisa web
-- Testar e validar a preservação do contexto ao longo das iterações de pesquisa
+- Testar e validar a preservação do contexto através de iterações de pesquisa
 
-### Exercício 2: Construir um Assistente de Pesquisa com MCP
+### Exercício 2: Construir um Assistente de Pesquisa com Pesquisa MCP
 
-Criar uma aplicação completa que:
-- Processa questões de pesquisa em linguagem natural
-- Realiza pesquisas web com consciência do contexto
-- Sintetiza informação de múltiplas fontes
-- Apresenta resultados de investigação organizados
+Crie uma aplicação completa que:
+- Processa perguntas de pesquisa em linguagem natural
+- Executa pesquisas web conscientes do contexto
+- Sintetiza informações de múltiplas fontes
+- Apresenta resultados de pesquisa organizados
 
-### Exercício 3: Implementar Federação de Pesquisa Multi-Fonte com MCP
+### Exercício 3: Implementação de Federação de Pesquisa Multi-Fonte com MCP
 
 Exercício avançado que cobre:
-- Despacho de consultas consciente do contexto a múltiplos motores de pesquisa
-- Ordenação e agregação de resultados
-- Deduplificação contextual dos resultados de pesquisa
+- Despacho de consultas conscientes do contexto para múltiplos motores de pesquisa
+- Ranking e agregação de resultados
+- Deduplicação contextual de resultados de pesquisa
 - Gestão de metadados específicos da fonte
 
 ## Recursos Adicionais
 
-- [Especificação do Protocolo Model Context](https://spec.modelcontextprotocol.io/) - Especificação oficial do MCP e documentação detalhada do protocolo
-- [Documentação do Protocolo Model Context](https://modelcontextprotocol.io/) - Tutoriais detalhados e guias de implementação
-- [SDK MCP para Python](https://github.com/modelcontextprotocol/python-sdk) - Implementação oficial em Python do protocolo MCP
-- [SDK MCP para TypeScript](https://github.com/modelcontextprotocol/typescript-sdk) - Implementação oficial em TypeScript do protocolo MCP
-- [Servidores de Referência MCP](https://github.com/modelcontextprotocol/servers) - Implementações de referência dos servidores MCP
-- [Documentação da API de Pesquisa Web Bing](https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/overview) - API de pesquisa web da Microsoft
-- [API JSON da Google Custom Search](https://developers.google.com/custom-search/v1/overview) - Motor de pesquisa programável da Google
-- [Documentação SerpAPI](https://serpapi.com/search-api) - API para páginas de resultados de motores de pesquisa
-- [Documentação Meilisearch](https://www.meilisearch.com/docs) - Motor de pesquisa open-source
-- [Documentação Elasticsearch](https://www.elastic.co/guide/index.html) - Motor distribuído de pesquisa e análise
-- [Documentação LangChain](https://python.langchain.com/docs/get_started/introduction) - Construção de aplicações com LLMs
+- [Model Context Protocol Specification](https://modelcontextprotocol.io/specification/2026-07-28/) - Especificação oficial MCP e documentação detalhada do protocolo
+- [Model Context Protocol Documentation](https://modelcontextprotocol.io/) - Tutoriais detalhados e guias de implementação
+- [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Implementação oficial em Python do protocolo MCP
+- [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Implementação oficial em TypeScript do protocolo MCP
+- [MCP Reference Servers](https://github.com/modelcontextprotocol/servers) - Implementações de referência de servidores MCP
+- [Bing Web Search API Documentation](https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/overview) - API de pesquisa web da Microsoft
+- [Google Custom Search JSON API](https://developers.google.com/custom-search/v1/overview) - Motor de pesquisa programável da Google
+- [SerpAPI Documentation](https://serpapi.com/search-api) - API de página de resultados de motores de pesquisa
+- [Meilisearch Documentation](https://www.meilisearch.com/docs) - Motor de pesquisa open-source
+- [Elasticsearch Documentation](https://www.elastic.co/guide/index.html) - Motor de pesquisa e análise distribuído
+- [LangChain Documentation](https://python.langchain.com/docs/get_started/introduction) - Construção de aplicações com LLMs
 
 ## Resultados de Aprendizagem
 
-Ao concluir este módulo, será capaz de:
+Ao completar este módulo, será capaz de:
 
 - Compreender os fundamentos da pesquisa web em tempo real e os seus desafios
-- Explicar como o Protocolo Model Context (MCP) melhora as capacidades da pesquisa web em tempo real
+- Explicar como o Model Context Protocol (MCP) melhora as capacidades de pesquisa web em tempo real
 - Implementar soluções de pesquisa baseadas em MCP usando frameworks e APIs populares
-- Projetar e implementar arquiteturas de pesquisa escaláveis e de alto desempenho com MCP
-- Aplicar conceitos MCP a variados casos de uso incluindo pesquisa semântica, assistência à pesquisa e navegação aumentada por IA
-- Avaliar tendências emergentes e futuras inovações em tecnologias de pesquisa baseadas em MCP
+- Projetar e implantar arquiteturas de pesquisa escaláveis e de alta performance com MCP
+- Aplicar conceitos MCP a vários casos de uso, incluindo pesquisa semântica, assistência de pesquisa, e navegação aumentada por IA
+- Avaliar tendências emergentes e inovações futuras em tecnologias de pesquisa baseadas em MCP
 
 
 ### Considerações de Confiança e Segurança
 
-Quando implementar soluções de pesquisa web baseadas em MCP, tenha em mente estes princípios importantes da especificação MCP:
+Ao implementar soluções de pesquisa web baseadas em MCP, lembre-se destes princípios importantes da especificação MCP:
 
-1. **Consentimento e Controlo do Utilizador**: Os utilizadores devem consentir explicitamente e compreender todas as operações e acessos a dados. Isto é particularmente importante para implementações de pesquisa web que possam aceder a fontes de dados externas.
+1. **Consentimento e Controlo do Utilizador**: Os utilizadores devem consentir explicitamente e compreender todos os acessos e operações de dados. Isto é especialmente importante para implementações de pesquisa web que possam aceder a fontes externas de dados.
 
-2. **Privacidade dos Dados**: Assegure um tratamento apropriado das consultas e resultados de pesquisa, especialmente quando possam conter informação sensível. Implemente controlos de acesso adequados para proteger os dados dos utilizadores.
+2. **Privacidade dos Dados**: Assegurar a gestão adequada de consultas e resultados de pesquisa, especialmente quando possam conter informação sensível. Implementar controlos de acesso adequados para proteger os dados do utilizador.
 
-3. **Segurança das Ferramentas**: Implemente autorização e validação corretas para as ferramentas de pesquisa, pois elas representam potenciais riscos de segurança através da execução arbitrária de código. As descrições do comportamento das ferramentas devem ser consideradas não confiáveis a menos que obtidas de um servidor confiável.
+3. **Segurança das Ferramentas**: Implementar autorização e validação apropriadas para ferramentas de pesquisa, pois representam riscos de segurança potenciais por meio da execução arbitrária de código. As descrições do comportamento das ferramentas devem ser consideradas não confiáveis, a menos que obtidas de um servidor confiável.
 
-4. **Documentação Clara**: Forneça documentação clara acerca das capacidades, limitações e considerações de segurança da sua implementação de pesquisa baseada em MCP, seguindo as diretivas da especificação MCP.
+4. **Documentação Clara**: Fornecer documentação clara acerca das capacidades, limitações e considerações de segurança da sua implementação de pesquisa baseada em MCP, seguindo as diretrizes de implementação da especificação MCP.
 
-5. **Fluxos Robustos de Consentimento**: Construa fluxos robustos de consentimento e autorização que expliquem claramente o que cada ferramenta faz antes de autorizar o seu uso, especialmente para ferramentas que interagem com recursos web externos.
+5. **Fluxos de Consentimento Robustos**: Construir fluxos robustos de consentimento e autorização que expliquem claramente o que cada ferramenta faz antes de autorizar o seu uso, especialmente para ferramentas que interagem com recursos web externos.
 
-Para detalhes completos sobre segurança e considerações de confiança em MCP, consulte a [documentação oficial](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).
+Para detalhes completos sobre segurança e considerações de confiança no MCP, consulte a
+[documentação oficial](https://modelcontextprotocol.io/specification/2026-07-28/basic/security_best_practices).
 
-## O que vem a seguir 
+## E o que vem a seguir
 
 - [5.12 Autenticação Entra ID para Servidores Model Context Protocol](../mcp-security-entra/README.md)
 

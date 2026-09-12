@@ -2,34 +2,34 @@
 
 [![How to Contribute to MCP: Tools, Docs, Code and More](../../../translated_images/pcm/07.1179f6de46ff196e.webp)](https://youtu.be/v1pvCYAWpRE)
 
-_(Click di piksha wey dey up for see video about dis lesson)_
+_(Click the image above to view video of this lesson)_
 
 ## Overview
 
-Dis lesson dey focus on how to join di MCP community, contribute to di MCP ecosystem, and follow beta beta ways for waka development together. To sabi how to join for open-source MCP projects na important tin for people wey wan help shape di future of dis technology.
+Dis lekshọn de tok about how you fit take join hand wit MCP community, how you fit put hand for MCP ecosystem, an how you go follow correct paraan dem for to develop togéda. To sabi how you go participate for open-source MCP projek dem na correct tin for pesin wey wan shape the future of dis technology.
 
 ## Learning Objectives
 
-By di time dis lesson don finish, you go fit:
+By di time you finish dis lekshọn, you go fit:
 
-- Understand how MCP community and ecosystem dem take arrange
-- Join well well for MCP community forums and talkings
+- Understand the structure of the MCP community and ecosystem
+- Participate effectively in MCP community forums and discussions
 - Contribute to MCP open-source repositories
-- Create and share your own MCP tools and servers
-- Follow the beta beta ways for MCP development and teamwork
-- Find community resources and frameworks for MCP development
+- Create and share custom MCP tools and servers
+- Follow best practices for MCP development and collaboration
+- Discover community resources and frameworks for MCP development
 
 ## The MCP Community Ecosystem
 
-MCP ecosystem get many parts and people wey dey work together make di protocol waka well.
+The MCP ecosystem get plenti parts and people wey dey work together to make protocol beta.
 
 ### Key Community Components
 
-1. **Core Protocol Maintainers**: Na di official [Model Context Protocol GitHub organization](https://github.com/modelcontextprotocol) dey maintain di core MCP specifications and reference implementations
-2. **Tool Developers**: People and teams wey dey create MCP tools and servers
-3. **Integration Providers**: Companies wey dey join MCP inside their products and services
-4. **End Users**: Developers and organizations wey dey use MCP for their applications
-5. **Contributors**: Community members wey dey contribute code, documentation, or other resources
+1. **Core Protocol Maintainers**: The official [Model Context Protocol GitHub organization](https://github.com/modelcontextprotocol) dey maintain di core MCP specifications an reference implementations
+2. **Tool Developers**: People and teams wey dey create MCP tools an servers
+3. **Integration Providers**: Companies wey dey put MCP inside their products an services
+4. **End Users**: Developers an organizations wey dey use MCP inside their applications
+5. **Contributors**: Community people wey dey contribute code, documentation, or oda resources
 
 ### Community Resources
 
@@ -37,7 +37,7 @@ MCP ecosystem get many parts and people wey dey work together make di protocol w
 
 - [MCP GitHub Organization](https://github.com/modelcontextprotocol)
 - [MCP Documentation](https://modelcontextprotocol.io/)
-- [MCP Specification](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Specification](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [GitHub Discussions](https://github.com/orgs/modelcontextprotocol/discussions)
 - [MCP Examples & Servers Repository](https://github.com/modelcontextprotocol/servers)
 
@@ -46,9 +46,9 @@ MCP ecosystem get many parts and people wey dey work together make di protocol w
 - [MCP Clients](https://modelcontextprotocol.io/clients) - List of clients wey support MCP integrations
 - [Community MCP Servers](https://github.com/modelcontextprotocol/servers?tab=readme-ov-file#-community-servers) - Growing list of community-developed MCP servers
 - [Awesome MCP Servers](https://github.com/wong2/awesome-mcp-servers) - Curated list of MCP servers
-- [PulseMCP](https://www.pulsemcp.com/) - Community hub & newsletter for finding MCP resources
+- [PulseMCP](https://www.pulsemcp.com/) - Community hub & newsletter for discovering MCP resources
 - [Remote OpenClaw](https://www.remoteopenclaw.com/) - Free searchable directory of MCP servers, agent skills, and plugins
-- [Discord Server](https://discord.gg/jHEGxQu2a5) - Connect with MCP developers
+- [Discord Server](https://discord.gg/jHEGxQu2a5) - Connect wit MCP developers
 - Language-specific SDK implementations
 - Blog posts and tutorials
 
@@ -56,58 +56,58 @@ MCP ecosystem get many parts and people wey dey work together make di protocol w
 
 ### Types of Contributions
 
-MCP ecosystem dey welcome different kinds of contributions:
+Di MCP ecosystem dey welcome different kain contributions:
 
 1. **Code Contributions**:
-   - Core protocol improvements
+   - Core protocol enhancements
    - Bug fixes
-   - Tool and server builds
+   - Tool an server implementations
    - Client/server libraries for different languages
 
 2. **Documentation**:
-   - Improve documentation wey dey already
-   - Create tutorials and guides
+   - Improve di existing documentation
+   - Create tutorials an guides
    - Translate documentation
-   - Create examples and sample applications
+   - Create examples an sample applications
 
 3. **Community Support**:
-   - Answer questions for forums and discussions
-   - Test and report wahala
-   - Arrange community events
+   - Answer questions on forums an discussions
+   - Test an report issues
+   - Organize community events
    - Mentor new contributors
 
 ### Contribution Process: Core Protocol
 
-To contribute to di core MCP protocol or official builds, follow dis rules from [official contributing guidelines](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/CONTRIBUTING.md):
+To contribute to di core MCP protocol or official implementations, follow dis principles from di [official contributing guidelines](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/CONTRIBUTING.md):
 
-1. **Simplicity and Minimalism**: MCP specification get high standard for adding new tins. E simple to add tins for specification pass to remove dem.
+1. **Simplicity and Minimalism**: The MCP specification get high standard to add new concepts. E easier to add tins to specification pass to remove dem.
 
-2. **Concrete Approach**: Specification changes suppose based on real implementation wahala, no be just theory.
+2. **Concrete Approach**: Specification changes suppose dey based on real implementation challenges, no be speculation.
 
 3. **Stages of a Proposal**:
-   - Define: Check di problem, make sure other MCP users dey also face am
-   - Prototype: Build example solution and show how e fit work well
+   - Define: Explore di problem area, check say oda MCP users get di same problem
+   - Prototype: Build example solution an show how e dey work well
    - Write: Based on prototype, write specification proposal
 
 ### Development Environment Setup
 
 ```bash
-# Make copy of di repository
+# Make fork for di repo
 git clone https://github.com/YOUR-USERNAME/modelcontextprotocol.git
 cd modelcontextprotocol
 
-# Install all di tins wey di project need
+# Install the tins wey e need
 npm install
 
-# If you change schema, make sure sey e correct and generate schema.json:
+# If you dey change schema, check am well and create schema.json:
 npm run check:schema:ts
 npm run generate:schema
 
-# If you change documentation
+# If na for documentation you dey change
 npm run check:docs
 npm run format
 
-# Check di documentation for your own machine (if you want):
+# Make you fit see documentation for your machine (if you want):
 npm run serve:docs
 ```
 
@@ -120,7 +120,7 @@ export function validateResource(resource: unknown): resource is MCPResource {
     return false;
   }
   
-  // Bug: No dey validate property
+  // Bug: Property validation no dey
   // How e dey work now:
   const hasName = 'name' in resource;
   const hasSchema = 'schema' in resource;
@@ -128,13 +128,13 @@ export function validateResource(resource: unknown): resource is MCPResource {
   return hasName && hasSchema;
 }
 
-// The fixed way wey dem put for contribution
+// How dem fix am for contribution
 export function validateResource(resource: unknown): resource is MCPResource {
   if (!resource || typeof resource !== 'object') {
     return false;
   }
   
-  // Better validation
+  // Validation improve pass before
   const hasName = 'name' in resource && typeof (resource as MCPResource).name === 'string';
   const hasSchema = 'schema' in resource && typeof (resource as MCPResource).schema === 'object';
   const hasDescription = !('description' in resource) || typeof (resource as MCPResource).description === 'string';
@@ -146,7 +146,7 @@ export function validateResource(resource: unknown): resource is MCPResource {
 ### Example: Contributing a New Tool to the Standard Library
 
 ```python
-# Example contribution: Na tool wey dey process CSV data for MCP standard library
+# Example contribution: Wan tool wey dey process CSV data for MCP standard library
 
 from mcp_tools import Tool, ToolRequest, ToolResponse, ToolExecutionException
 import pandas as pd
@@ -208,14 +208,14 @@ class CsvProcessingTool(Tool):
     
     async def execute_async(self, request: ToolRequest) -> ToolResponse:
         try:
-            # Chop parameters
+            # Comot parameters
             operation = request.parameters.get("operation")
             output_format = request.parameters.get("outputFormat", "json")
             
-            # Collect CSV data from direct data or URL
+            # Collect CSV data from either direct data or URL
             df = await self._get_dataframe(request)
             
-            # Work on am based on di operation wey dem request
+            # Process am based on di operation wey dem request
             result = {}
             
             if operation == "summary":
@@ -276,7 +276,7 @@ class CsvProcessingTool(Tool):
     
     def _transform_data(self, df: pd.DataFrame, params: Dict[str, Any]) -> Dict[str, Any]:
         """Transforms the data based on parameters"""
-        # Di implementation go include plenty transformations
+        # Di implementation go include different kain transformations
         return {
             "status": "success",
             "message": "Transformation applied"
@@ -305,13 +305,13 @@ class CsvProcessingTool(Tool):
 
 ### Contribution Guidelines
 
-To make beta beta contribution to MCP projects:
+To make successful contribution to MCP projects:
 
 1. **Start Small**: Begin with documentation, bug fixes, or small improvements
-2. **Follow the Style Guide**: Follow the coding style and project conventions
-3. **Write Tests**: Put unit tests for your code contributions
+2. **Follow the Style Guide**: Follow di coding style an conventions of di project
+3. **Write Tests**: Include unit tests for your code contributions
 4. **Document Your Work**: Add clear documentation for new features or changes
-5. **Submit Targeted PRs**: Make pull requests wey focus on one issue or feature
+5. **Submit Targeted PRs**: Keep pull requests focused on one issue or feature
 6. **Engage with Feedback**: Reply well to feedback on your contributions
 
 ### Example Contribution Workflow
@@ -321,34 +321,36 @@ To make beta beta contribution to MCP projects:
 git clone https://github.com/modelcontextprotocol/typescript-sdk.git
 cd typescript-sdk
 
-# Make new branch for your contribution
+# Make new branch for your work
 git checkout -b feature/my-contribution
 
 # Do your changes
 # ...
 
-# Run test make sure say your changes no spoil di existing work
+# Run test to make sure sey your changes no spoil how e dey work before
 npm test
 
-# Commit your changes wit beta message
+# Commit your changes wit clear message
 git commit -am "Fix validation in resource handler"
 
 # Push your branch go your fork
 git push origin feature/my-contribution
 
 # Create pull request from your branch go di main repository
-# Den dey follow up with feedback and improve your PR as e need be
+# Den reason wit feedback and change your PR as e need be
 ```
 
 ## Creating and Sharing MCP Servers
 
-One of di best ways to contribute MCP ecosystem na to create and share custom MCP servers. Community don build hundreds of servers for different services and use cases.
+One of di most valuable ways to contribute to di MCP ecosystem na by creating and sharing custom MCP servers. Di community don already develop plenty servers for plenti services and use cases.
 
 ### MCP Server Development Frameworks
 
-Some frameworks dey wey fit make MCP server development easy:
+Several frameworks dey available to make MCP server development easier:
 
-1. **Official SDKs** (wey follow [MCP Specification 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)):
+1. **Official SDKs** (check di
+    [SDK documentation](https://modelcontextprotocol.io/docs/sdk) for each
+    SDK's supported protocol revisions):
    - [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)
    - [Python SDK](https://github.com/modelcontextprotocol/python-sdk)
    - [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk)
@@ -359,8 +361,8 @@ Some frameworks dey wey fit make MCP server development easy:
    - [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk)
 
 2. **Community Frameworks**:
-   - [MCP-Framework](https://mcp-framework.com/) - Build MCP servers sharp sharp and fine for TypeScript
-   - [MCP Declarative Java SDK](https://github.com/codeboyzhou/mcp-declarative-java-sdk) - Annotation-driven MCP servers with Java
+   - [MCP-Framework](https://mcp-framework.com/) - Build MCP servers quick an fine wit TypeScript
+   - [MCP Declarative Java SDK](https://github.com/codeboyzhou/mcp-declarative-java-sdk) - Annotation-driven MCP servers wit Java
    - [Quarkus MCP Server SDK](https://github.com/quarkiverse/quarkus-mcp-server) - Java framework for MCP servers
    - [Next.js MCP Server Template](https://github.com/vercel-labs/mcp-for-next.js) - Starter Next.js project for MCP servers
 
@@ -475,7 +477,7 @@ namespace McpFinanceTools
 #### Java Example: Creating a Maven Package for Tools
 
 ```java
-// pom.xml konfigureshon for sharabulu MCP tool paket
+// pom.xml configuration for a shareable MCP tool package
 <!-- 
 <project>
     <groupId>com.example</groupId>
@@ -536,7 +538,7 @@ public class WeatherForecastTool implements Tool {
     @Override
     public Object getSchema() {
         Map<String, Object> schema = new HashMap<>();
-        // Schema defineshon...
+        // Schema definition...
         return schema;
     }
     
@@ -560,15 +562,15 @@ public class WeatherForecastTool implements Tool {
     }
     
     private Map<String, Object> getForecast(String location, int days) {
-        // Implementation go call weather API
-        // Simple example
+        // Implementation would call weather API
+        // Simplified example
         Map<String, Object> result = new HashMap<>();
         // Add forecast data...
         return result;
     }
 }
 
-// Build an publish wit Maven
+// Build and publish using Maven
 // mvn clean package
 // mvn deploy
 ```
@@ -576,7 +578,7 @@ public class WeatherForecastTool implements Tool {
 #### Python Example: Publishing a PyPI Package
 
 ```python
-# Directory structure for one PyPI package:
+# Directory structure for PyPI package:
 # mcp_nlp_tools/
 # ├── LICENSE
 # ├── README.md
@@ -651,14 +653,14 @@ class SentimentAnalysisTool(Tool):
     
     async def execute_async(self, request: ToolRequest) -> ToolResponse:
         try:
-            # Extract parameters
+            # Extract di parameters
             text = request.parameters.get("text")
             include_score = request.parameters.get("includeScore", True)
             
-            # Make una reason di sentiment
+            # Analyze di sentiment
             sentiment_result = self.sentiment_analyzer(text)[0]
             
-            # Arrange di result
+            # Format di result
             result = {
                 "sentiment": sentiment_result["label"],
                 "text": text
@@ -680,36 +682,36 @@ class SentimentAnalysisTool(Tool):
 
 ### Sharing Best Practices
 
-When you dey share MCP tools with community:
+When you dey share MCP tools wit di community:
 
 1. **Complete Documentation**:
-   - Document wetin e dey do, how to use am, and examples
-   - Explain parameters and how e dey return data
-   - Document any external things wey e depend on
+   - Document di purpose, how to use am, an examples
+   - Explain parameters an wetin e return
+   - Document any external dependencies
 
 2. **Error Handling**:
-   - Make error handling strong
-   - Give correct error messages
-   - Handle edge cases well well
+   - Put better error handling
+   - Provide useful error messages
+   - Handle difficult cases well
 
 3. **Performance Considerations**:
-   - Make am fast and use resource well
+   - Optimize for speed an resource use
    - Use caching when e make sense
-   - Think about how e fit scale
+   - Think about scalability
 
 4. **Security**:
-   - Use correct API keys and authentication
-   - Check and clean input parts
-   - Put rate limiting for external API calls
+   - Use secure API keys an authentication
+   - Check an clean input data
+   - Add rate limiting for external API calls
 
 5. **Testing**:
-   - Include thorough test coverage
-   - Test with different input types and edge cases
-   - Document test process
+   - Include full test coverage
+   - Test wit different input types an edge cases
+   - Document test procedures
 
 ## Community Collaboration and Best Practices
 
-Better collaboration na key for successful MCP ecosystem.
+Good collaboration na key to a strong MCP ecosystem.
 
 ### Communication Channels
 
@@ -722,20 +724,20 @@ Better collaboration na key for successful MCP ecosystem.
 
 When you dey review MCP contributions:
 
-1. **Clarity**: Is di code clear and well documented?
+1. **Clarity**: Di code clear an well documented?
 2. **Correctness**: E dey work as e suppose?
-3. **Consistency**: E follow project rules?
-4. **Completeness**: Tests and documentation dey?
-5. **Security**: Any security wahala?
+3. **Consistency**: E follow project conventions?
+4. **Completeness**: Di tests and documentation dey included?
+5. **Security**: Any security wahala dey?
 
 ### Version Compatibility
 
-When you dey build for MCP:
+When you dey develop for MCP:
 
-1. **Protocol Versioning**: Follow MCP protocol version wey your tool support
-2. **Client Compatibility**: Check backward compatibility
-3. **Server Compatibility**: Follow server implementation guide
-4. **Breaking Changes**: Document clearly any breaking changes
+1. **Protocol Versioning**: Follow di MCP protocol version wey your tool support
+2. **Client Compatibility**: Consider backward compatibility
+3. **Server Compatibility**: Follow server implementation guidelines
+4. **Breaking Changes**: Document any breaking changes well well
 
 ## Example Community Project: MCP Tool Registry
 
@@ -750,7 +752,7 @@ from typing import List, Optional
 import datetime
 import uuid
 
-# Models for tool registry
+# Models dem for the tool registry
 class ToolSchema(BaseModel):
     """JSON Schema for a tool"""
     type: str
@@ -779,7 +781,7 @@ class Tool(ToolRegistration):
     rating: float = Field(default=0.0)
     ratings_count: int = Field(default=0)
 
-# FastAPI application for registry
+# FastAPI app for the registry
 app = FastAPI(title="MCP Tool Registry")
 
 # In-memory database for dis example
@@ -820,19 +822,19 @@ async def delete_tool(tool_name: str):
 
 ## Key Takeaways
 
-- MCP community get many people and dey welcome different types of contributions
-- To contribute MCP fit range from core protocol improvements to custom tools
-- To follow contribution guidelines go increase chance say your PR go get accept
-- To create and share MCP tools na beta way to make ecosystem better
-- Community collaboration na important for MCP growth and improvement
+- The MCP community dey diverse an dey welcome different types of contributions
+- Contributing to MCP fit range from core protocol improvements to custom tools
+- Following contribution guidelines go improve your chance say dem go accept your PR
+- Creating and sharing MCP tools na important way to help beta di ecosystem
+- Community collaboration na key for di growth an improvement of MCP
 
 ## Exercise
 
-1. Find one place for MCP ecosystem wey you fit contribute based on your skills and interest
-2. Fork MCP repository and set up local development environment
-3. Create small improvement, bug fix, or tool wey fit help community
-4. Document your contribution with proper tests and documentation
-5. Submit pull request to correct repository
+1. Identify area for di MCP ecosystem wey you fit fit contribute based on your skills an interest dem
+2. Fork di MCP repository an set up local development environment
+3. Create small enhancement, bug fix, or tool wey go benefit di community
+4. Document your contribution wit correct tests an documentation
+5. Submit pull request to di right repository
 
 ## Additional Resources
 

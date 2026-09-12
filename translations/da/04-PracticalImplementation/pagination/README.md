@@ -1,50 +1,51 @@
-# Paginering og Store Resultatsæt i MCP
+# Pagination og Store Resultatsæt i MCP
 
-Når din MCP-server håndterer store datasæt - hvad enten det er tusindvis af filer, databaseposter eller søgeresultater - har du brug for paginering for effektivt at administrere hukommelsen og levere hurtige brugeroplevelser. Denne vejledning dækker, hvordan du implementerer og bruger paginering i MCP.
+Når din MCP-server håndterer store datasæt - uanset om det er lister med tusindvis af filer, databaseposter eller søgeresultater - har du brug for pagination for effektivt at håndtere hukommelsen og levere responsive brugeroplevelser. Denne guide beskriver, hvordan man implementerer og bruger pagination i MCP.
 
-## Hvorfor Paginering Er Vigtigt
+## Hvorfor Pagination Er Vigtigt
 
-Uden paginering kan store svar medføre:
+Uden pagination kan store svar medføre:
 
-- **Hukommelsesudtømning** - Indlæsning af millioner af poster på én gang  
-- **Langsomme svartider** - Brugere venter mens alle data indlæses  
-- **Timeout-fejl** - Anmodninger overskrider timeout-grænser  
-- **Dårlig AI-præstation** - LLM’er har svært ved massiv kontekst  
+- **Hukommelsesudtømning** - Indlæsning af millioner af poster på én gang
+- **Langsomme svartider** - Brugere venter, mens alle data indlæses
+- **Timeout-fejl** - Forespørgsler overskrider timeout-grænser
+- **Dårlig AI-ydeevne** - LLM’er har svært ved massivt kontekst
 
-MCP bruger **cursor-baseret paginering** for pålidelig og konsistent navigation gennem resultatsæt.
+MCP bruger **cursor-baseret pagination** for pålidelig og konsistent navigation gennem resultatsæt.
 
 ---
 
-## Hvordan MCP Paginering Fungerer
+## Hvordan MCP Pagination Fungerer
 
 ### Cursor-konceptet
 
-En **cursor** er en uigennemsigtig streng, der markerer din position i et resultatsæt. Tænk på den som et bogmærke i en lang bog.
+En **cursor** er en opak streng, der markerer din position i et resultatsæt. Tænk på det som et bogmærke i en lang bog.
 
 ```mermaid
 sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: værktøjer/liste (ingen cursor)
-    Server-->>Client: værktøjer [1-10], næsteCursor: "abc123"
+    Client->>Server: værktøjer/liste (ingen markør)
+    Server-->>Client: værktøjer [1-10], næsteMarkør: "abc123"
     
-    Client->>Server: værktøjer/liste (cursor: "abc123")
-    Server-->>Client: værktøjer [11-20], næsteCursor: "def456"
+    Client->>Server: værktøjer/liste (markør: "abc123")
+    Server-->>Client: værktøjer [11-20], næsteMarkør: "def456"
     
-    Client->>Server: værktøjer/liste (cursor: "def456")
-    Server-->>Client: værktøjer [21-25], næsteCursor: null (slut)
+    Client->>Server: værktøjer/liste (markør: "def456")
+    Server-->>Client: værktøjer [21-25], næsteMarkør: null (slut)
 ```
-### Paginering i MCP-metoder
 
-Disse MCP-metoder understøtter paginering:
+### Pagination i MCP-metoder
 
-| Metode | Returnerer | Cursor-understøttelse |
-|--------|------------|-----------------------|
+Disse MCP-metoder understøtter pagination:
+
+| Metode | Returnerer | Cursor Support |
+|--------|---------|----------------|
 | `tools/list` | Værktøjsdefinitioner | ✅ |
 | `resources/list` | Ressourcedefinitioner | ✅ |
 | `prompts/list` | Promptdefinitioner | ✅ |
-| `resources/templates/list` | Ressemplar skabeloner | ✅ |
+| `resources/templates/list` | Resourcemal | ✅ |
 
 ---
 
@@ -199,7 +200,7 @@ async def get_all_tools(session: ClientSession) -> list:
     
     return all_tools
 
-# Anvendelse
+# Brug
 async with client_session as session:
     tools = await get_all_tools(session)
     print(f"Found {len(tools)} tools")
@@ -228,9 +229,9 @@ const tools = await getAllTools(client);
 console.log(`Found ${tools.length} tools`);
 ```
 
-### Lazy loading-mønster
+### Lazy Loading-mønster
 
-For meget store datasæt kan du indlæse sider efter behov:
+For meget store datasæt, indlæs sider efter behov:
 
 ```python
 class PaginatedToolIterator:
@@ -243,7 +244,7 @@ class PaginatedToolIterator:
         self.exhausted = False
     
     async def __anext__(self):
-        # Returner fra buffer hvis tilgængelig
+        # Returner fra buffer, hvis tilgængelig
         if self.buffer:
             return self.buffer.pop(0)
         
@@ -267,16 +268,16 @@ class PaginatedToolIterator:
     def __aiter__(self):
         return self
 
-# Brug - hukommelseseffektiv til store datasæt
+# Brug - hukommelseseffektiv for store datasæt
 async for tool in PaginatedToolIterator(session):
     process_tool(tool)
 ```
 
 ---
 
-## Paginering for Ressourcer
+## Pagination for Ressourcer
 
-Ressourcer har ofte brug for paginering til mapper eller store datasæt:
+Ressourcer har ofte brug for pagination for mapper eller store datasæt:
 
 ```python
 from mcp.server import Server
@@ -297,7 +298,7 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
     page_size = 20
     end_index = min(start_index + page_size, len(all_files))
     
-    # Opret ressource liste for denne side
+    # Opret ressource liste til denne side
     resources = []
     for filename in all_files[start_index:end_index]:
         filepath = os.path.join(directory, filename)
@@ -318,29 +319,29 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ---
 
-## Cursor Designstrategier
+## Cursor-designstrategier
 
 ### Strategi 1: Indeksbaseret (Simpel)
 
 ```python
-# Cursor er bare indekset
+# Cursor er kun indekset
 cursor = "50"  # Start ved element 50
 ```
 
-**Fordele:** Simpel, tilstandsløs  
-**Ulemper:** Resultater kan flytte sig, hvis elementer tilføjes/fjernes  
+**Fordele:** Enkel, statsløs
+**Ulemper:** Resultater kan forskydes, hvis elementer tilføjes/fjernes
 
 ### Strategi 2: ID-baseret (Stabil)
 
 ```python
-# Cursor er det sidst sete ID
+# Cursor er den sidst sete ID
 cursor = "item_abc123"  # Start efter dette element
 ```
 
-**Fordele:** Stabil selvom elementer ændres  
-**Ulemper:** Kræver ordnede IDs  
+**Fordele:** Stabil selvom elementer ændres
+**Ulemper:** Kræver ordnede ID’er
 
-### Strategi 3: Encoded State (Kompleks)
+### Strategi 3: Kodet Tilstand (Kompleks)
 
 ```python
 import base64
@@ -352,7 +353,7 @@ def encode_cursor(state: dict) -> str:
 def decode_cursor(cursor: str) -> dict:
     return json.loads(base64.b64decode(cursor).decode())
 
-# Markøren indeholder flere tilstandsfelter
+# Cursor indeholder flere tilstandsfelter
 cursor = encode_cursor({
     "offset": 50,
     "filter": "active",
@@ -360,23 +361,23 @@ cursor = encode_cursor({
 })
 ```
 
-**Fordele:** Kan kode kompleks tilstand  
-**Ulemper:** Mere kompleks, større cursor-strenge  
+**Fordele:** Kan kode kompleks tilstand
+**Ulemper:** Mere kompleks, større cursor-strenge
 
 ---
 
 ## Bedste Praksis
 
-### 1. Vælg passende sidestørrelser
+### 1. Vælg Passende Sidestørrelser
 
 ```python
 # Overvej datastørrelsen
-PAGE_SIZE_SMALL_ITEMS = 100   # Enkel metadata
+PAGE_SIZE_SMALL_ITEMS = 100   # Simpel metadata
 PAGE_SIZE_MEDIUM_ITEMS = 20   # Rigere objekter
-PAGE_SIZE_LARGE_ITEMS = 5     # Kompleks indhold
+PAGE_SIZE_LARGE_ITEMS = 5     # Komplekst indhold
 ```
 
-### 2. Håndter ugyldige cursors yndefuldt
+### 2. Håndter Ugyldige Cursorer Yndefuldt
 
 ```python
 @app.list_tools()
@@ -390,27 +391,27 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
     # ...
 ```
 
-### 3. Inkluder total antal (valgfrit)
+### 3. Medtag Total Tælling (Valgfrit)
 
 ```python
 return ListToolsResult(
     tools=page_tools,
     nextCursor=next_cursor,
-    # Nogle implementeringer inkluderer total for UI-fremdrift
+    # Nogle implementeringer inkluderer total for UI fremskridt
     _meta={"total": len(ALL_TOOLS)}
 )
 ```
 
-### 4. Test kanttilfælde
+### 4. Test Kanttilfælde
 
 ```python
 async def test_pagination():
-    # Tomt resultatsæt
+    # Tomt resultat sæt
     result = await session.list_tools()
     assert result.tools == []
     assert result.nextCursor is None
     
-    # Enkeltside
+    # Enkelt side
     result = await session.list_tools()
     assert len(result.tools) <= PAGE_SIZE
     
@@ -423,7 +424,7 @@ async def test_pagination():
 
 ## Almindelige Faldgruber
 
-### ❌ Returner alle resultater og paginer på klientsiden
+### ❌ Returner Alle Resultater Og Paginer Derefter På Klientsiden
 
 ```python
 # DÅRLIGT: Indlæser alt i hukommelsen
@@ -433,7 +434,7 @@ async def list_tools() -> ListToolsResult:
     return ListToolsResult(tools=all_tools)
 ```
 
-### ✅ Paginér ved datakilden
+### ✅ Pagination Ved Datakilden
 
 ```python
 # GODT: Indlæser kun det, der er nødvendigt
@@ -446,23 +447,23 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ---
 
-## Hvad Kommer Nu
+## Hvad Er Det Næste
 
-- [Modul 5.14 - Context Engineering](../../05-AdvancedTopics/mcp-contextengineering/README.md)  
-- [Modul 8 - Bedste praksis](../../08-BestPractices/README.md)  
-- [3.8 - Test af din MCP-server](../../03-GettingStarted/08-testing/README.md)  
+- [Modul 5.14 - Context Engineering](../../05-AdvancedTopics/mcp-contextengineering/README.md)
+- [Modul 8 - Bedste Praksis](../../08-BestPractices/README.md)
+- [3.8 - Test Din MCP-Server](../../03-GettingStarted/08-testing/README.md)
 
 ---
 
 ## Yderligere Ressourcer
 
-- [MCP-specifikation - Paginering](https://spec.modelcontextprotocol.io/specification/2025-11-25/)  
-- [Cursor-baseret paginering forklaret](https://slack.engineering/evolving-api-pagination-at-slack/)  
-- [Python SDK paginerings-tests](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+- [MCP-specifikation - Pagination](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [Cursor-baseret Pagination Forklaret](https://slack.engineering/evolving-api-pagination-at-slack/)
+- [Python SDK pagination tests](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Ansvarsfraskrivelse**:
-Dette dokument er oversat ved hjælp af AI-oversættelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selvom vi stræber efter nøjagtighed, opfordres du til at være opmærksom på, at automatiserede oversættelser kan indeholde fejl eller unøjagtigheder. Det oprindelige dokument på originalsproget bør betragtes som den autoritative kilde. For vigtig information anbefales professionel menneskelig oversættelse. Vi påtager os intet ansvar for eventuelle misforståelser eller fejltolkninger, der opstår som følge af brugen af denne oversættelse.
+Dette dokument er blevet oversat ved hjælp af AI-oversættelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selvom vi bestræber os på nøjagtighed, skal du være opmærksom på, at automatiserede oversættelser kan indeholde fejl eller unøjagtigheder. Det originale dokument på dets oprindelige sprog bør betragtes som den autoritative kilde. For kritisk information anbefales professionel menneskelig oversættelse. Vi påtager os intet ansvar for misforståelser eller fejltolkninger, der opstår som følge af brugen af denne oversættelse.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

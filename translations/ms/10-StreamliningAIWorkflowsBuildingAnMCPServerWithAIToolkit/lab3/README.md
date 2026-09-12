@@ -1,5 +1,10 @@
 # 🔧 Modul 3: Pembangunan MCP Lanjutan dengan Microsoft Foundry Toolkit
 
+> [!NOTE]
+> URL Inspector dalam makmal ini menggunakan titik akhir `/sse` warisan dan menyasarkan
+> SDK MCP `1.9.3` yang dipin dan Inspector `0.14.0` dependencies. Mereka bukan
+> contoh HTTP Streamable terkini `2026-07-28`.
+
 ![Duration](https://img.shields.io/badge/Duration-20_minutes-blue?style=flat-square)
 ![Microsoft Foundry Toolkit](https://img.shields.io/badge/Microsoft_Foundry_Toolkit-Required-orange?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10+-green?style=flat-square)
@@ -8,39 +13,39 @@
 
 ## 🎯 Objektif Pembelajaran
 
-Menjelang akhir makmal ini, anda akan dapat:
+Pada akhir makmal ini, anda akan dapat:
 
-- ✅ Mewujudkan pelayan MCP tersuai menggunakan Microsoft Foundry Toolkit
+- ✅ Membuat pelayan MCP tersuai menggunakan Microsoft Foundry Toolkit
 - ✅ Mengkonfigurasi dan menggunakan SDK Python MCP terkini (v1.9.3)
-- ✅ Menyediakan dan menggunakan MCP Inspector untuk penyahpepijatan
-- ✅ Menyahpepijat pelayan MCP dalam persekitaran Agent Builder dan Inspector
+- ✅ Menyediakan dan menggunakan MCP Inspector untuk pengujian ralat
+- ✅ Menguji ralat pelayan MCP dalam persekitaran Agent Builder dan Inspector
 - ✅ Memahami aliran kerja pembangunan pelayan MCP lanjutan
 
 ## 📋 Prasyarat
 
 - Menyelesaikan Makmal 2 (Asas MCP)
-- VS Code dengan sambungan Microsoft Foundry Toolkit dipasang
+- VS Code dengan sambungan Microsoft Foundry Toolkit terpasang
 - Persekitaran Python 3.10+
 - Node.js dan npm untuk penyediaan Inspector
 
 ## 🏗️ Apa yang Anda Akan Bina
 
-Dalam makmal ini, anda akan mencipta **Pelayan MCP Cuaca** yang menunjukkan:
+Dalam makmal ini, anda akan membuat **Pelayan MCP Cuaca** yang menunjukkan:
 - Pelaksanaan pelayan MCP tersuai
 - Integrasi dengan Microsoft Foundry Toolkit Agent Builder
-- Aliran kerja penyahpepijatan profesional
-- Pola penggunaan SDK MCP moden
+- Aliran kerja pengujian ralat profesional
+- Corak penggunaan MCP SDK moden
 
 ---
 
 ## 🔧 Gambaran Keseluruhan Komponen Teras
 
 ### 🐍 SDK Python MCP
-Model Context Protocol Python SDK menyediakan asas untuk membina pelayan MCP tersuai. Anda akan menggunakan versi 1.9.3 dengan keupayaan penyahpepijatan yang dipertingkatkan.
+Model Context Protocol Python SDK menyediakan asas untuk membina pelayan MCP tersuai. Anda akan menggunakan versi 1.9.3 dengan keupayaan pengujian ralat yang dipertingkatkan.
 
 ### 🔍 MCP Inspector
-Alat penyahpepijatan berkuasa yang menyediakan:
-- Pemantauan pelayan masa nyata
+Alat pengujian ralat yang kuat yang menyediakan:
+- Pemantauan pelayan masa sebenar
 - Visualisasi pelaksanaan alat
 - Pemeriksaan permintaan/respon rangkaian
 - Persekitaran ujian interaktif
@@ -49,18 +54,18 @@ Alat penyahpepijatan berkuasa yang menyediakan:
 
 ## 📖 Pelaksanaan Langkah demi Langkah
 
-### Langkah 1: Cipta WeatherAgent dalam Agent Builder
+### Langkah 1: Buat WeatherAgent dalam Agent Builder
 
-1. **Lancarkan Agent Builder** di VS Code melalui sambungan Microsoft Foundry Toolkit
-2. **Cipta ejen baru** dengan konfigurasi berikut:
-   - Nama Ejen: `WeatherAgent`
+1. **Lancarkan Agent Builder** dalam VS Code melalui sambungan Microsoft Foundry Toolkit
+2. **Cipta agen baru** dengan konfigurasi berikut:
+   - Nama Agen: `WeatherAgent`
 
 ![Agent Creation](../../../../translated_images/ms/Agent.c9c33f6a412b4cde.webp)
 
-### Langkah 2: Mulakan Projek Pelayan MCP
+### Langkah 2: Inisialisasi Projek Pelayan MCP
 
-1. **Navigasi ke Tools** → **Add Tool** dalam Agent Builder
-2. **Pilih "MCP Server"** dari pilihan yang tersedia
+1. **Pergi ke Tools** → **Add Tool** dalam Agent Builder
+2. **Pilih "MCP Server"** daripada pilihan yang tersedia
 3. **Pilih "Create A new MCP Server"**
 4. **Pilih templat `python-weather`**
 5. **Namakan pelayan anda:** `weather_mcp`
@@ -69,7 +74,7 @@ Alat penyahpepijatan berkuasa yang menyediakan:
 
 ### Langkah 3: Buka dan Periksa Projek
 
-1. **Buka projek yang dijanakan** di VS Code
+1. **Buka projek yang dijana** dalam VS Code
 2. **Semak struktur projek:**
    ```
    weather_mcp/
@@ -86,35 +91,35 @@ Alat penyahpepijatan berkuasa yang menyediakan:
    └── README.md
    ```
 
-### Langkah 4: Tingkatkan kepada SDK MCP Terkini
+### Langkah 4: Kemas Kini ke MCP SDK Terkini
 
-> **🔍 Mengapa Tingkatkan?** Kami mahu menggunakan SDK MCP terkini (v1.9.3) dan perkhidmatan Inspector (0.14.0) untuk ciri dipertingkatkan dan keupayaan penyahpepijatan yang lebih baik.
+> **🔍 Kenapa Kemas Kini?** Kami mahu menggunakan MCP SDK terkini (v1.9.3) dan perkhidmatan Inspector (0.14.0) untuk ciri dipertingkat dan keupayaan pengujian ralat yang lebih baik.
 
-#### 4a. Kemas Kini Kebergantungan Python
+#### 4a. Kemas Kini Pergantungan Python
 
-**Edit `pyproject.toml`:** kemas kini [./code/weather_mcp/pyproject.toml](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/pyproject.toml)
+**Sunting `pyproject.toml`:** kemas kini [./code/weather_mcp/pyproject.toml](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/pyproject.toml)
 
 
 #### 4b. Kemas Kini Konfigurasi Inspector
 
-**Edit `inspector/package.json`:** kemas kini [./code/weather_mcp/inspector/package.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package.json)
+**Sunting `inspector/package.json`:** kemas kini [./code/weather_mcp/inspector/package.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package.json)
 
-#### 4c. Kemas Kini Kebergantungan Inspector
+#### 4c. Kemas Kini Pergantungan Inspector
 
-**Edit `inspector/package-lock.json`:** kemas kini [./code/weather_mcp/inspector/package-lock.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package-lock.json)
+**Sunting `inspector/package-lock.json`:** kemas kini [./code/weather_mcp/inspector/package-lock.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package-lock.json)
 
-> **📝 Nota:** Fail ini mengandungi definisi kebergantungan yang luas. Di bawah adalah struktur penting - kandungan penuh memastikan penyelesaian kebergantungan yang betul.
+> **📝 Nota:** Fail ini mengandungi definisi pergantungan yang meluas. Di bawah ialah struktur penting - kandungan penuh memastikan penyelesaian pergantungan yang betul.
 
 
-> **⚡ Kunci Pakej Penuh:** package-lock.json lengkap mengandungi ~3000 baris definisi kebergantungan. Di atas menunjukkan struktur utama - gunakan fail yang disediakan untuk penyelesaian kebergantungan penuh.
+> **⚡ Kandungan Penuh Package Lock:** package-lock.json penuh mengandungi ~3000 baris definisi pergantungan. Di atas menunjukkan struktur utama - gunakan fail yang disediakan untuk penyelesaian pergantungan lengkap.
 
-### Langkah 5: Konfigurasi Penyahpepijatan VS Code
+### Langkah 5: Konfigurasi Debugging VS Code
 
-*Nota: Sila salin fail dalam laluan yang dinyatakan untuk menggantikan fail tempatan yang sepadan*
+*Nota: Sila salin fail di laluan yang ditetapkan untuk menggantikan fail tempatan yang sepadan*
 
 #### 5a. Kemas Kini Konfigurasi Pelancaran
 
-**Edit `.vscode/launch.json`:**
+**Sunting `.vscode/launch.json`:**
 
 ```json
 {
@@ -191,7 +196,7 @@ Alat penyahpepijatan berkuasa yang menyediakan:
 }
 ```
 
-**Edit `.vscode/tasks.json`:**
+**Sunting `.vscode/tasks.json`:**
 
 ```
 {
@@ -298,25 +303,25 @@ Alat penyahpepijatan berkuasa yang menyediakan:
 
 ## 🚀 Menjalankan dan Menguji Pelayan MCP Anda
 
-### Langkah 6: Pasang Kebergantungan
+### Langkah 6: Pasang Pergantungan
 
 Selepas membuat perubahan konfigurasi, jalankan arahan berikut:
 
-**Pasang kebergantungan Python:**
+**Pasang pergantungan Python:**
 ```bash
 uv sync
 ```
 
-**Pasang kebergantungan Inspector:**
+**Pasang pergantungan Inspector:**
 ```bash
 cd inspector
 npm install
 ```
 
-### Langkah 7: Nyahpepijat dengan Agent Builder
+### Langkah 7: Debug dengan Agent Builder
 
 1. **Tekan F5** atau gunakan konfigurasi **"Debug in Agent Builder"**
-2. **Pilih konfigurasi gabungan** dari panel nyahpepijat
+2. **Pilih konfigurasi kompaun** dari panel debug
 3. **Tunggu pelayan bermula** dan Agent Builder dibuka
 4. **Uji pelayan MCP cuaca anda** dengan pertanyaan bahasa semula jadi
 
@@ -336,15 +341,15 @@ How's the weather like in Seattle
 
 ![Agent Builder Debug Result](../../../../translated_images/ms/Result.6ac570f7d2b1d538.webp)
 
-### Langkah 8: Nyahpepijat dengan MCP Inspector
+### Langkah 8: Debug dengan MCP Inspector
 
 1. **Gunakan konfigurasi "Debug in Inspector"** (Edge atau Chrome)
 2. **Buka antara muka Inspector** di `http://localhost:6274`
 3. **Terokai persekitaran ujian interaktif:**
-   - Lihat alat yang tersedia
+   - Lihat alat tersedia
    - Uji pelaksanaan alat
    - Pantau permintaan rangkaian
-   - Nyahpepijat tindak balas pelayan
+   - Debug respon pelayan
 
 ![MCP Inspector Interface](../../../../translated_images/ms/Inspector.5672415cd02fe873.webp)
 
@@ -355,38 +360,38 @@ How's the weather like in Seattle
 Dengan menyelesaikan makmal ini, anda telah:
 
 - [x] **Mencipta pelayan MCP tersuai** menggunakan templat Microsoft Foundry Toolkit
-- [x] **Meningkatkan ke SDK MCP terkini** (v1.9.3) untuk fungsi dipertingkatkan
-- [x] **Mengkonfigurasi aliran kerja penyahpepijatan profesional** untuk Agent Builder dan Inspector
+- [x] **Kemas kini ke SDK MCP terkini** (v1.9.3) untuk fungsi dipertingkat
+- [x] **Mengkonfigurasi aliran kerja pengujian ralat profesional** untuk Agent Builder dan Inspector
 - [x] **Menyediakan MCP Inspector** untuk ujian pelayan interaktif
-- [x] **Menguasai konfigurasi penyahpepijatan VS Code** untuk pembangunan MCP
+- [x] **Menguasai konfigurasi debugging VS Code** untuk pembangunan MCP
 
 ## 🔧 Ciri Lanjutan yang Diterokai
 
 | Ciri | Penerangan | Kes Penggunaan |
 |---------|-------------|----------|
 | **SDK Python MCP v1.9.3** | Pelaksanaan protokol terkini | Pembangunan pelayan moden |
-| **MCP Inspector 0.14.0** | Alat penyahpepijatan interaktif | Ujian pelayan masa nyata |
-| **Penyahpepijatan VS Code** | Persekitaran pembangunan bersepadu | Aliran kerja penyahpepijatan profesional |
-| **Integrasi Agent Builder** | Sambungan terus Microsoft Foundry Toolkit | Ujian ejen hujung-ke-hujung |
+| **MCP Inspector 0.14.0** | Alat pengujian ralat interaktif | Ujian pelayan masa sebenar |
+| **Debugging VS Code** | Persekitaran pembangunan bersepadu | Aliran kerja pengujian profesional |
+| **Integrasi Agent Builder** | Sambungan langsung Microsoft Foundry Toolkit | Ujian agen hujung-ke-hujung |
 
 ## 📚 Sumber Tambahan
 
 - [Dokumentasi SDK Python MCP](https://modelcontextprotocol.io/docs/sdk/python)
 - [Panduan Sambungan Microsoft Foundry Toolkit](https://code.visualstudio.com/docs/ai/ai-toolkit)
-- [Dokumentasi Penyahpepijatan VS Code](https://code.visualstudio.com/docs/editor/debugging)
+- [Dokumentasi Debugging VS Code](https://code.visualstudio.com/docs/editor/debugging)
 - [Spesifikasi Model Context Protocol](https://modelcontextprotocol.io/docs/concepts/architecture)
 
 ---
 
-**🎉 Tahniah!** Anda telah berjaya menyelesaikan Makmal 3 dan kini boleh mencipta, menyahpepijat, dan melaksanakan pelayan MCP tersuai menggunakan aliran kerja pembangunan profesional.
+**🎉 Tahniah!** Anda telah berjaya menyelesaikan Makmal 3 dan kini boleh mencipta, menguji ralat, dan melancarkan pelayan MCP tersuai menggunakan aliran kerja pembangunan profesional.
 
 ### 🔜 Teruskan ke Modul Seterusnya
 
-Bersedia untuk menggunakan kemahiran MCP anda dalam aliran kerja pembangunan dunia sebenar? Teruskan ke **[Modul 4: Pembangunan MCP Praktikal - Pelayan Klon GitHub Tersuai](../lab4/README.md)** di mana anda akan:
-- Membina pelayan MCP sedia untuk penerbitan yang mengautomasi operasi repositori GitHub
-- Melaksanakan fungsi klon repositori GitHub melalui MCP
-- Mengintegrasikan pelayan MCP tersuai dengan VS Code dan Mod Ejen GitHub Copilot
-- Menguji dan melaksanakan pelayan MCP tersuai dalam persekitaran pengeluaran
+Sedia untuk menerapkan kemahiran MCP anda ke dalam aliran kerja pembangunan dunia sebenar? Teruskan ke **[Modul 4: Pembangunan MCP Praktikal - Pelayan Klon GitHub Tersuai](../lab4/README.md)** di mana anda akan:
+- Membina pelayan MCP siap produksi yang mengautomasikan operasi repositori GitHub
+- Melaksanakan fungsi kloning repositori GitHub melalui MCP
+- Mengintegrasikan pelayan MCP tersuai dengan VS Code dan GitHub Copilot Agent Mode
+- Menguji dan melancarkan pelayan MCP tersuai dalam persekitaran produksi
 - Mempelajari automasi aliran kerja praktikal untuk pembangun
 
 ---

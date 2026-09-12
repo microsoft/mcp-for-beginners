@@ -1,48 +1,53 @@
 # Crearea unui client cu LLM
 
-Până acum, ai văzut cum să creezi un server și un client. Clientul a putut apela serverul în mod explicit pentru a lista uneltele, resursele și prompturile sale. Totuși, aceasta nu este o abordare foarte practică. Utilizatorii tăi trăiesc în era agentică și se așteaptă să folosească prompturi și să comunice cu un LLM în schimb. Nu le pasă dacă folosești MCP pentru a stoca capacitățile tale; se așteaptă pur și simplu să interacționeze folosind limbaj natural. Deci, cum rezolvăm asta? Soluția este să adăugăm un LLM la client.
+> [!NOTE]
+> Exemplele de client Java se conectează prin transportul legacy HTTP+SSE și
+> vizează API-urile SDK MCP `2025-11-25`. Folosește un SDK compatibil `2026-07-28` și
+> Streamable HTTP pentru noii clienți remote.
+
+Până acum, ai văzut cum să creezi un server și un client. Clientul a putut apela serverul în mod explicit pentru a lista uneltele, resursele și prompturile sale. Totuși, aceasta nu este o abordare foarte practică. Utilizatorii tăi trăiesc în era agentică și se așteaptă să utilizeze prompturi și să comunice cu un LLM în schimb. Nu le pasă dacă folosești MCP pentru a stoca capabilitățile tale; ei se așteaptă pur și simplu să interacționeze folosind limbaj natural. Deci, cum rezolvăm asta? Soluția este să adăugăm un LLM la client.
 
 ## Prezentare generală
 
-În această lecție ne concentrăm pe adăugarea unui LLM pentru clientul tău și arătăm cum aceasta oferă o experiență mult mai bună pentru utilizatorul tău.
+În această lecție ne concentrăm pe adăugarea unui LLM pentru clientul tău și arătăm cum acest lucru oferă o experiență mult mai bună pentru utilizatorul tău.
 
 ## Obiective de învățare
 
 La finalul acestei lecții, vei fi capabil să:
 
 - Creezi un client cu un LLM.
-- Interacționezi perfect cu un server MCP folosind un LLM.
+- Interacționezi fără întreruperi cu un server MCP folosind un LLM.
 - Oferi o experiență mai bună utilizatorului final pe partea clientului.
 
 ## Abordare
 
-Să încercăm să înțelegem ce abordare trebuie să adoptăm. Adăugarea unui LLM sună simplu, dar chiar o vom face?
+Să încercăm să înțelegem abordarea pe care trebuie să o luăm. Adăugarea unui LLM pare simplă, dar chiar o vom face?
 
-Iată cum va interacționa clientul cu serverul:
+Iată cum clientul va interacționa cu serverul:
 
-1. Se stabilește conexiunea cu serverul.
+1. Stabilește conexiunea cu serverul.
 
-1. Se listează capabilitățile, prompturile, resursele și uneltele și se salvează schema lor.
+1. Listează capabilitățile, prompturile, resursele și uneltele, și salvează schema lor.
 
-1. Se adaugă un LLM și se transmit capabilitățile salvate și schema lor într-un format pe care LLM îl înțelege.
+1. Adaugă un LLM și transmite capabilitățile și schema salvată într-un format înțeles de LLM.
 
-1. Se gestionează un prompt de utilizator trimițându-l LLM împreună cu uneltele listate de client.
+1. Gestionează un prompt al utilizatorului, trecându-l la LLM împreună cu uneltele listate de client.
 
-Grozav, acum că înțelegem cum putem face asta la nivel înalt, să încercăm exercițiul de mai jos.
+Grozav, acum că am înțeles cum putem face asta la nivel înalt, să încercăm în exercițiul de mai jos.
 
 ## Exercițiu: Crearea unui client cu un LLM
 
 În acest exercițiu, vom învăța să adăugăm un LLM clientului nostru.
 
-### Autentificare folosind Tokenul de Acces Personal GitHub
+### Autentificare folosind token personal GitHub
 
 Crearea unui token GitHub este un proces simplu. Iată cum poți face asta:
 
-- Mergi la Setările GitHub – Fă clic pe poza ta de profil din colțul din dreapta sus și selectează Setări.
-- Navighează la Setările Dezvoltatorului – Derulează în jos și fă clic pe Setările Dezvoltatorului.
-- Selectează Tokenuri de Acces Personal – Fă clic pe Tokenuri fine-grained apoi pe Generare token nou.
-- Configurează-ți Tokenul – Adaugă o notă pentru referință, setează o dată de expirare și selectează domeniile necesare (permisiuni). În acest caz, asigură-te că adaugi permisiunea Models.
-- Generează și copiază tokenul – Fă clic pe Generează token, și asigură-te că îl copiezi imediat, deoarece nu vei putea să îl mai vezi din nou.
+- Mergi la GitHub Settings – Dă click pe poza ta de profil din colțul din dreapta sus și selectează Settings.
+- Navighează la Developer Settings – Derulează în jos și dă click pe Developer Settings.
+- Selectează Personal Access Tokens – Dă click pe Fine-grained tokens și apoi Generate new token.
+- Configurează token-ul – Adaugă o notă pentru referință, setează o dată de expirare și selectează permisiunile necesare (scopes). În acest caz, asigură-te că adaugi permisiunea Models.
+- Generează și copiază token-ul – Dă click pe Generate token și asigură-te că îl copiezi imediat, deoarece nu vei mai putea să îl vezi din nou.
 
 ### -1- Conectarea la server
 
@@ -55,7 +60,7 @@ import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 import { Transport } from "@modelcontextprotocol/sdk/shared/transport.js";
 import OpenAI from "openai";
-import { z } from "zod"; // Importă zod pentru validarea schemei
+import { z } from "zod"; // Importă zod pentru validarea schemelor
 
 class MCPClient {
     private openai: OpenAI;
@@ -85,9 +90,9 @@ class MCPClient {
 
 În codul precedent am:
 
-- Importat bibliotecile necesare
-- Creat o clasă cu doi membri, `client` și `openai` care ne vor ajuta să gestionăm un client și să interacționăm cu un LLM, respectiv.
-- Configurat instanța LLM să folosească GitHub Models setând `baseUrl` să indice spre API-ul de inferență.
+- Importat librăriile necesare
+- Creat o clasă cu doi membri, `client` și `openai`, care ne vor ajuta să gestionăm un client și să interacționăm cu un LLM, respectiv.
+- Configurat instanța noastră de LLM să folosească modelele GitHub setând `baseUrl` să indice către API-ul de inferență.
 
 #### Python
 
@@ -121,7 +126,7 @@ if __name__ == "__main__":
 
 În codul precedent am:
 
-- Importat bibliotecile necesare pentru MCP
+- Importat librăriile necesare pentru MCP
 - Creat un client
 
 #### .NET
@@ -146,7 +151,7 @@ await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 
 #### Java
 
-Mai întâi, trebuie să adaugi dependențele LangChain4j în fișierul tău `pom.xml`. Adaugă aceste dependențe pentru a activa integrarea MCP și API-ul MiniMax compatibil cu OpenAI:
+Mai întâi, va trebui să adaugi dependențele LangChain4j în fișierul tău `pom.xml`. Adaugă aceste dependențe pentru a activa integrarea MCP și API-ul MiniMax compatibil OpenAI:
 
 ```xml
 <properties>
@@ -176,7 +181,7 @@ Mai întâi, trebuie să adaugi dependențele LangChain4j în fișierul tău `po
 </dependencies>
 ```
 
-Configurează cheia API MiniMax și, opțional, endpoint-ul și modelul.
+Setează cheia ta API MiniMax și, opțional, endpoint-ul și modelul.
 `MINIMAX_MODEL_ID` suportă `MiniMax-M3` și `MiniMax-M2.7`. Dacă
 `OPENAI_BASE_URL` nu este setat, `MINIMAX_REGION` suportă `global_en` și `cn_zh`.
 
@@ -193,7 +198,7 @@ unset OPENAI_BASE_URL
 export MINIMAX_REGION=cn_zh
 ```
 
-Apoi creează-ți clasa client Java:
+Apoi creează clasa ta Java client:
 
 ```java
 import dev.langchain4j.mcp.McpToolProvider;
@@ -286,18 +291,18 @@ public class LangChain4jClient {
 
 În codul precedent am:
 
-- **Adăugat dependențele LangChain4j**: Necesare pentru integrarea MCP și API-ul MiniMax compatibil cu OpenAI
-- **Importat bibliotecile LangChain4j**: Pentru integrarea MCP și funcționalitatea modelului chat OpenAI
-- **Creat un `ChatLanguageModel`**: Configurat să folosească MiniMax cu cheia API MiniMax, endpoint-ul și ID-ul modelului suportat
-- **Configurat transport HTTP**: Folosind Server-Sent Events (SSE) pentru a se conecta la serverul MCP
-- **Creat un client MCP**: Care se va ocupa de comunicarea cu serverul
-- **Folosit suportul MCP încorporat LangChain4j**: Care simplifică integrarea între LLM-uri și serverele MCP
+- **Adăugat dependențele LangChain4j**: Necesare pentru integrarea MCP și API-ul MiniMax compatibil OpenAI
+- **Importat librăriile LangChain4j**: Pentru integrarea MCP și funcționalitatea modelului chat OpenAI
+- **Creat un `ChatLanguageModel`**: Configurat să folosească MiniMax cu cheia ta API MiniMax, endpoint-ul și ID-ul modelului suportat
+- **Setat transportul HTTP**: Folosind Server-Sent Events (SSE) pentru conectarea la serverul MCP
+- **Creat un client MCP**: Care va gestiona comunicarea cu serverul
+- **Folosit suportul încorporat LangChain4j pentru MCP**: Care simplifică integrarea între LLM și serverele MCP
 
 #### Rust
 
-Acest exemplu presupune că ai un server MCP bazat pe Rust care rulează. Dacă nu ai unul, consultă din nou lecția [01-first-server](../01-first-server/README.md) pentru a crea serverul.
+Acest exemplu presupune că ai un server MCP bazat pe Rust în funcțiune. Dacă nu ai unul, consultă lecția [01-first-server](../01-first-server/README.md) pentru a crea serverul.
 
-Odată ce ai serverul MCP Rust, deschide un terminal și navighează în același director cu serverul. Apoi rulează următoarea comandă pentru a crea un nou proiect client LLM:
+După ce ai serverul Rust MCP, deschide un terminal și navighează în același director cu serverul. Apoi rulează următoarea comandă pentru a crea un nou proiect client LLM:
 
 ```bash
 mkdir calculator-llmclient
@@ -316,9 +321,9 @@ tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 ```
 
 > [!NOTE]
-> Nu există o bibliotecă oficială Rust pentru OpenAI, totuși, crate-ul `async-openai` este o [bibliotecă întreținută de comunitate](https://platform.openai.com/docs/libraries/rust#rust) care este folosită frecvent.
+> Nu există o bibliotecă Rust oficială pentru OpenAI, însă crate-ul `async-openai` este o [bibliotecă întreținută de comunitate](https://platform.openai.com/docs/libraries/rust#rust) care este folosită frecvent.
 
-Deschide fișierul `src/main.rs` și înlocuiește conținutul său cu următorul cod:
+Deschide fișierul `src/main.rs` și înlocuiește-i conținutul cu următorul cod:
 
 ```rust
 use async_openai::{Client, config::OpenAIConfig};
@@ -360,24 +365,24 @@ async fn main() -> Result<(), Box<dyn Error>> {
         )
         .await?;
 
-    // TODO: Obține lista de unelte MCP
+    // TODO: Obțineți lista de unelte MCP
 
-    // TODO: Conversație LLM cu apeluri de unelte
+    // TODO: Conversație LLM cu apeluri la unelte
 
     Ok(())
 }
 ```
 
-Acest cod setează o aplicație Rust de bază care se va conecta la un server MCP și GitHub Models pentru interacțiuni LLM.
+Acest cod configurează o aplicație Rust de bază care se va conecta la un server MCP și modelele GitHub pentru interacțiuni LLM.
 
 > [!IMPORTANT]
-> Asigură-te că setezi variabila de mediu `OPENAI_API_KEY` cu tokenul tău GitHub înainte de a rula aplicația.
+> Asigură-te că setezi variabila de mediu `OPENAI_API_KEY` cu token-ul tău GitHub înainte de a rula aplicația.
 
-Grozav, pentru pasul următor, să listăm capabilitățile serverului.
+Grozav, pentru următorul pas, să listăm capabilitățile serverului.
 
-### -2- Listarea capabilităților serverului
+### -2- Listează capabilitățile serverului
 
-Acum ne vom conecta la server și îi vom cere capabilitățile:
+Acum ne vom conecta la server și vom cere capabilitățile sale:
 
 #### Typescript
 
@@ -401,7 +406,7 @@ async run() {
 În codul precedent am:
 
 - Adăugat cod pentru conectarea la server, `connectToServer`.
-- Creat o metodă `run` responsabilă de gestionarea fluxului aplicației noastre. Deocamdată doar listează uneltele dar vom adăuga mai multe curând.
+- Creat o metodă `run` responsabilă pentru gestionarea fluxului aplicației noastre. Până acum listează doar uneltele, dar vom mai adăuga curând.
 
 #### Python
 
@@ -422,7 +427,7 @@ for tool in tools.tools:
 
 Iată ce am adăugat:
 
-- Listarea resurselor și uneltelor și le-am afișat. Pentru unelte am listat și `inputSchema` pe care îl folosim ulterior.
+- Listarea resurselor și uneltelor și afișarea lor. Pentru unelte am listat și `inputSchema` pe care îl vom folosi mai târziu.
 
 #### .NET
 
@@ -450,7 +455,7 @@ async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
 În codul precedent am:
 
 - Listat uneltele disponibile pe serverul MCP
-- Pentru fiecare unealtă, listat numele, descrierea și schema sa. Aceasta din urmă este ceva ce vom folosi pentru a apela uneltele în curând.
+- Pentru fiecare unealtă, listat numele, descrierea și schema ei. Ultima este ceva ce vom folosi pentru a apela uneltele în curând.
 
 #### Java
 
@@ -462,28 +467,28 @@ ToolProvider toolProvider = McpToolProvider.builder()
 
 // Furnizorul de unelte MCP gestionează automat:
 // - Listarea uneltelor disponibile de pe serverul MCP
-// - Conversia schemelor uneltelor MCP în format LangChain4j
-// - Gestionarea execuției uneltelor și a răspunsurilor
+// - Convertirea schemelor uneltelor MCP în format LangChain4j
+// - Gestionarea executării uneltelor și a răspunsurilor
 ```
 
 În codul precedent am:
 
 - Creat un `McpToolProvider` care descoperă și înregistrează automat toate uneltele de pe serverul MCP
-- Providerul de unelte gestionează conversia între schemele uneltelor MCP și formatul uneltelor LangChain4j intern
-- Această abordare abstractizează listarea și conversia manuală a uneltelor
+- Furnizorul de unelte gestionează conversia între schemele uneltelor MCP și formatul LangChain4j intern
+- Această abordare abstractizează procesul manual de listare și conversie al uneltelor
 
 #### Rust
 
-Retragerea uneltelor de pe serverul MCP se face folosind metoda `list_tools`. În funcția `main`, după configurarea clientului MCP, adaugă următorul cod:
+Obținerea uneltelor de pe serverul MCP se face prin metoda `list_tools`. În funcția ta `main`, după configurarea clientului MCP, adaugă următorul cod:
 
 ```rust
-// Obțineți lista de unelte MCP
+// Obține lista de unelte MCP
 let tools = mcp_client.list_tools(Default::default()).await?;
 ```
 
 ### -3- Convertirea capabilităților serverului în unelte LLM
 
-Următorul pas după listarea capabilităților serverului este să le convertim într-un format pe care LLM îl înțelege. Odată făcut asta, putem oferi aceste capabilități ca unelte LLM-ului nostru.
+Pasul următor după listarea capabilităților serverului este să le convertim într-un format înțeles de LLM. Odată ce facem asta, putem oferi aceste capabilități ca unelte LLM.
 
 #### TypeScript
 
@@ -495,11 +500,11 @@ Următorul pas după listarea capabilităților serverului este să le convertim
         description?: string;
         input_schema: any;
         }) {
-        // Creează un schemă zod bazată pe input_schema
+        // Creează un schema zod bazat pe input_schema
         const schema = z.object(tool.input_schema);
     
         return {
-            type: "function" as const, // Setează explicit tipul ca "function"
+            type: "function" as const, // Setează explicit tipul la "funcție"
             function: {
             name: tool.name,
             description: tool.description,
@@ -514,9 +519,9 @@ Următorul pas după listarea capabilităților serverului este să le convertim
 
     ```
 
-    Codul de mai sus ia un răspuns de la serverul MCP și îl convertește într-un format de definiție unealtă pe care LLM îl poate înțelege.
+    Codul de mai sus ia un răspuns de la serverul MCP și îl convertește într-un format de definiție a unei unelte pe care LLM o poate înțelege.
 
-2. Acum să actualizăm metoda `run` pentru a lista capabilitățile serverului:
+2. Să actualizăm acum metoda `run` pentru a lista capabilitățile serverului:
 
     ```typescript
     async run() {
@@ -532,11 +537,11 @@ Următorul pas după listarea capabilităților serverului este să le convertim
     }
     ```
 
-    În codul precedent, am actualizat metoda `run` pentru a parcurge rezultatul și pentru fiecare intrare apelează `openAiToolAdapter`.
+    În codul precedent, am actualizat metoda `run` să parcurgă rezultatul și pentru fiecare intrare să apeleze `openAiToolAdapter`.
 
 #### Python
 
-1. Mai întâi, să creăm următoarea funcție convertitoare
+1. Mai întâi, să creăm funcția convertor de mai jos
 
     ```python
     def convert_to_llm_tool(tool):
@@ -556,9 +561,9 @@ Următorul pas după listarea capabilităților serverului este să le convertim
         return tool_schema
     ```
 
-    În funcția de mai sus `convert_to_llm_tools` luăm un răspuns al unei unelte MCP și îl convertim într-un format pe care LLM îl poate înțelege.
+    În funcția de mai sus `convert_to_llm_tools` luăm un răspuns de unealtă MCP și îl convertim într-un format pe care LLM îl poate înțelege.
 
-2. Apoi, să actualizăm codul clientului pentru a folosi această funcție astfel:
+2. Apoi, să actualizăm codul clientului pentru a folosi această funcție așa:
 
     ```python
     functions = []
@@ -568,11 +573,11 @@ Următorul pas după listarea capabilităților serverului este să le convertim
         functions.append(convert_to_llm_tool(tool))
     ```
 
-    Aici, adăugăm un apel către `convert_to_llm_tool` pentru a converti răspunsul uneltei MCP în ceva ce putem trimite LLM-ului mai târziu.
+    Aici, adăugăm un apel către `convert_to_llm_tool` pentru a converti răspunsul uneltei MCP într-un format pe care îl putem transmite LLM-ului ulterior.
 
 #### .NET
 
-1. Să adăugăm cod pentru a converti răspunsul uneltei MCP în ceva ce LLM-ul poate înțelege
+1. Să adăugăm cod pentru a converti răspunsul uneltei MCP într-un format înțeles de LLM:
 
 ```csharp
 ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonElement jsonElement)
@@ -597,10 +602,10 @@ ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonE
 
 În codul precedent am:
 
-- Creat o funcție `ConvertFrom` care primește numele, descrierea și schema de input.
-- Definind funcționalitate care creează un FunctionDefinition care este transmis unui ChatCompletionsDefinition. Acesta din urmă este ceva ce LLM-ul poate înțelege.
+- Creat o funcție `ConvertFrom` care ia numele, descrierea și schema de input.
+- Definit o funcționalitate care creează o FunctionDefinition ce este transmisă unui ChatCompletionsDefinition. Aceasta din urmă este ceva ce LLM-ul poate înțelege.
 
-2. Hai să vedem cum putem actualiza un cod existent pentru a folosi această funcție:
+2. Să vedem cum putem actualiza codul existent pentru a folosi această funcție:
 
     ```csharp
     async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
@@ -646,7 +651,7 @@ ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonE
 #### Java
 
 ```java
-// Creează o interfață Bot pentru interacțiunea în limbaj natural
+// Creează o interfață Bot pentru interacțiune în limbaj natural
 public interface Bot {
     String chat(String prompt);
 }
@@ -660,14 +665,14 @@ Bot bot = AiServices.builder(Bot.class)
 
 În codul precedent am:
 
-- Definind o interfață simplă `Bot` pentru interacțiuni în limbaj natural
-- Folosit `AiServices` din LangChain4j pentru a lega automat LLM-ul cu providerul de unelte MCP
-- Frameworkul gestionează automat conversia schemei uneltelor și apelarea funcțiilor în fundal
-- Această abordare elimină conversia manuală a uneltelor – LangChain4j se ocupă de toată complexitatea conversiei uneltelor MCP în format compatibil cu LLM
+- Definit o interfață simplă `Bot` pentru interacțiuni în limbaj natural
+- Folosit `AiServices` din LangChain4j pentru a lega automat LLM-ul cu furnizorul de unelte MCP
+- Framework-ul gestionează automat conversia schemelor uneltelor și apelarea funcțiilor în fundal
+- Această abordare elimină conversia manuală a uneltelor - LangChain4j se ocupă de toată complexitatea convertirii uneltelor MCP în format compatibil LLM
 
 #### Rust
 
-Pentru a converti răspunsul uneltei MCP într-un format pe care LLM îl poate înțelege, vom adăuga o funcție helper care formatează lista uneltelor. Adaugă următorul cod în fișierul tău `main.rs` sub funcția `main`. Acesta va fi apelat când se fac cereri către LLM:
+Pentru a converti răspunsul uneltei MCP într-un format pe care LLM îl poate înțelege, vom adăuga o funcție auxiliară care formatează lista uneltelor. Adaugă următorul cod în fișierul tău `main.rs` sub funcția `main`. Acesta va fi apelat când faci cereri către LLM:
 
 ```rust
 async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Error>> {
@@ -702,11 +707,11 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 }
 ```
 
-Grozav, acum suntem pregătiți să gestionăm orice cereri ale utilizatorului, așa că să abordăm acest aspect următor.
+Grozav, suntem pregătiți să gestionăm orice cerere a utilizatorului, așa că să trecem la asta.
 
-### -4- Gestionarea cererii de prompt a utilizatorului
+### -4- Gestionarea cererilor de prompt ale utilizatorului
 
-În această parte a codului vom gestiona cererile utilizatorului.
+În această parte a codului vom gestiona cererile utilizatorilor.
 
 #### TypeScript
 
@@ -724,7 +729,7 @@ Grozav, acum suntem pregătiți să gestionăm orice cereri ale utilizatorului, 
         console.log(`Calling tool ${toolName} with args ${JSON.stringify(args)}`);
 
 
-        // 2. Apelați instrumentul serverului
+        // 2. Apelează instrumentul serverului
         const toolResult = await this.client.callTool({
             name: toolName,
             arguments: JSON.parse(args),
@@ -732,7 +737,7 @@ Grozav, acum suntem pregătiți să gestionăm orice cereri ale utilizatorului, 
 
         console.log("Tool result: ", toolResult);
 
-        // 3. Faceți ceva cu rezultatul
+        // 3. Fă ceva cu rezultatul
         // DE FACUT
 
         }
@@ -742,7 +747,7 @@ Grozav, acum suntem pregătiți să gestionăm orice cereri ale utilizatorului, 
     În codul precedent am:
 
     - Adăugat o metodă `callTools`.
-    - Metoda primește un răspuns LLM și verifică ce unelte au fost apelate, dacă este cazul:
+    - Metoda primește un răspuns LLM și verifică ce unelte au fost apelate, dacă există:
 
         ```typescript
         for (const tool_call of tool_calls) {
@@ -751,11 +756,11 @@ Grozav, acum suntem pregătiți să gestionăm orice cereri ale utilizatorului, 
 
         console.log(`Calling tool ${toolName} with args ${JSON.stringify(args)}`);
 
-        // apelează instrumentul
+        // apelare unealtă
         }
         ```
 
-    - Apelează o unealtă, dacă LLM indică că trebuie apelată:
+    - Apelează o unealtă, dacă LLM indică că ar trebui apelată:
 
         ```typescript
         // 2. Apelează instrumentul serverului
@@ -770,7 +775,7 @@ Grozav, acum suntem pregătiți să gestionăm orice cereri ale utilizatorului, 
         // DE FACUT
         ```
 
-2. Actualizează metoda `run` pentru a include apelurile către LLM și apelarea `callTools`:
+2. Actualizează metoda `run` să includă apeluri la LLM și apelarea lui `callTools`:
 
     ```typescript
 
@@ -786,7 +791,7 @@ Grozav, acum suntem pregătiți să gestionăm orice cereri ale utilizatorului, 
 
     console.log("Querying LLM: ", messages[0].content);
 
-    // 2. Apelează LLM-ul
+    // 2. Apelarea LLM
     let response = this.openai.chat.completions.create({
         model: "gpt-4.1-mini",
         max_tokens: 1000,
@@ -796,7 +801,7 @@ Grozav, acum suntem pregătiți să gestionăm orice cereri ale utilizatorului, 
 
     let results: any[] = [];
 
-    // 3. Parcurge răspunsul LLM-ului, pentru fiecare opțiune, verifică dacă are apeluri către unelte
+    // 3. Parcurge răspunsul LLM, pentru fiecare opțiune, verifică dacă are apeluri de unelte
     (await response).choices.map(async (choice: { message: any; }) => {
         const message = choice.message;
         if (message.tool_calls) {
@@ -806,7 +811,7 @@ Grozav, acum suntem pregătiți să gestionăm orice cereri ale utilizatorului, 
     });
     ```
 
-Grozav, să prezentăm codul integral:
+Grozav, iată codul complet:
 
 ```typescript
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
@@ -820,7 +825,7 @@ class MyClient {
     private client: Client;
     constructor(){
         this.openai = new OpenAI({
-            baseURL: "https://models.inference.ai.azure.com", // ar putea fi necesar să schimbați URL-ul în viitor: https://models.github.ai/inference
+            baseURL: "https://models.inference.ai.azure.com", // poate va trebui să schimbăm la acest URL în viitor: https://models.github.ai/inference
             apiKey: process.env.GITHUB_TOKEN,
         });
 
@@ -878,7 +883,7 @@ class MyClient {
           console.log(`Calling tool ${toolName} with args ${JSON.stringify(args)}`);
     
     
-          // 2. Apelează unealta serverului
+          // 2. Apelează instrumentul serverului
           const toolResult = await this.client.callTool({
             name: toolName,
             arguments: JSON.parse(args),
@@ -887,7 +892,7 @@ class MyClient {
           console.log("Tool result: ", toolResult);
     
           // 3. Fă ceva cu rezultatul
-          // TODO
+          // DE FACUT
     
          }
     }
@@ -922,7 +927,7 @@ class MyClient {
 
         let results: any[] = [];
     
-        // 3. Parcurge răspunsul LLM, pentru fiecare alegere, verifică dacă are apeluri la unelte
+        // 3. Parcurge răspunsul LLM, pentru fiecare opțiune, verifică dacă are apeluri către instrumente
         (await response).choices.map(async (choice: { message: any; }) => {
           const message = choice.message;
           if (message.tool_calls) {
@@ -945,7 +950,7 @@ client.connectToServer(transport);
 
 #### Python
 
-1. Hai să adăugăm câteva importuri necesare pentru a apela un LLM
+1. Să adăugăm importurile necesare pentru a apela un LLM
 
     ```python
     # llm
@@ -956,7 +961,7 @@ client.connectToServer(transport);
     import json
     ```
 
-2. Următorul pas este să adăugăm funcția ce va apela LLM-ul:
+2. Apoi, să adăugăm funcția care va apela LLM-ul:
 
     ```python
     # llm
@@ -1009,8 +1014,8 @@ client.connectToServer(transport);
     În codul precedent am:
 
     - Transmis funcțiile noastre, pe care le-am găsit pe serverul MCP și le-am convertit, către LLM.
-    - Apoi am apelat LLM-ul cu acele funcții.
-    - Apoi inspectăm rezultatul pentru a vedea ce funcții ar trebui să apelăm, dacă există.
+    - Apoi am apelat LLM-ul cu aceste funcții.
+    - După aceea inspectăm rezultatul să vedem ce funcții trebuie apelate, dacă există.
     - În final, transmitem un array de funcții de apelat.
 
 3. Pasul final, să actualizăm codul nostru principal:
@@ -1018,7 +1023,7 @@ client.connectToServer(transport);
     ```python
     prompt = "Add 2 to 20"
 
-    # întreabă LLM ce unelte să folosească, dacă există
+    # întreabă LLM ce instrumente să folosească, dacă este cazul
     functions_to_call = call_llm(prompt, functions)
 
     # apelează funcțiile sugerate
@@ -1027,14 +1032,14 @@ client.connectToServer(transport);
         print("TOOLS result: ", result.content)
     ```
 
-    Ei bine, acesta a fost pasul final, în codul de mai sus noi:
+    Asta a fost pasul final, în codul de mai sus:
 
-    - Apelăm o unealtă MCP prin `call_tool` folosind o funcție pe care LLM a considerat că ar trebui să o apelăm bazat pe promptul nostru.
-    - Tipărim rezultatul apelului uneltei către serverul MCP.
+    - Apelăm o unealtă MCP prin `call_tool` folosind o funcție pe care LLM-ul a considerat că ar trebui să o apelăm pe baza promptului nostru.
+    - Afișăm rezultatul apelului uneltei la serverul MCP.
 
 #### .NET
 
-1. Hai să arătăm un cod pentru a face o solicitare de prompt către LLM:
+1. Să arătăm cod pentru a face o cerere prompt LLM:
 
     ```csharp
     var tools = await GetMcpTools();
@@ -1071,11 +1076,11 @@ client.connectToServer(transport);
     În codul precedent am:
 
     - Preluat uneltele de pe serverul MCP, `var tools = await GetMcpTools()`.
-    - Definit un prompt de utilizator `userMessage`.
-    - Creat un obiect opțiuni specificând modelul și uneltele.
+    - Definit un prompt utilizator `userMessage`.
+    - Constructor un obiect options specificând modelul și uneltele.
     - Făcut o cerere către LLM.
 
-2. Un ultim pas, să vedem dacă LLM crede că ar trebui să apelăm o funcție:
+2. Un ultim pas, să vedem dacă LLM consideră că ar trebui să apelăm o funcție:
 
     ```csharp
     // 4. Check if the response contains a function call
@@ -1100,10 +1105,10 @@ client.connectToServer(transport);
 
     În codul precedent am:
 
-    - Iterat printr-o listă de apeluri de funcții.
-    - Pentru fiecare apel unealtă, am extras numele și argumentele și am apelat unealta pe serverul MCP folosind clientul MCP. În final, am afișat rezultatele.
+    - Iterat printr-o listă de apeluri funcții.
+    - Pentru fiecare apel unealtă, extragem numele și argumentele și apelăm unealta pe serverul MCP folosind clientul MCP. În final, afișăm rezultatele.
 
-Iată codul integral:
+Iată codul complet:
 
 ```csharp
 using Azure;
@@ -1233,7 +1238,7 @@ Console.WriteLine($"Assistant response: {content}");
 
 ```java
 try {
-    // Execută cereri în limbaj natural care utilizează automat instrumentele MCP
+    // Execută cereri în limbaj natural care utilizează automat uneltele MCP
     String response = bot.chat("Calculate the sum of 24.5 and 17.3 using the calculator service");
     System.out.println(response);
 
@@ -1250,12 +1255,12 @@ try {
 În codul precedent am:
 
 - Folosit prompturi simple în limbaj natural pentru a interacționa cu uneltele serverului MCP
-- Frameworkul LangChain4j gestionează automat:
-  - Conversia prompturilor utilizatorului în apeluri de unelte când este necesar
-  - Apelarea uneltelor MCP adecvate bazat pe decizia LLM
-  - Gestionarea fluxului conversației între LLM și serverul MCP
+- Framework-ul LangChain4j gestionează automat:
+  - Conversia prompturilor utilizatorului în apeluri unelte când e necesar
+  - Apelarea uneltelor MCP adecvate pe baza deciziei LLM
+  - Gestionarea fluxului conversațional între LLM și serverul MCP
 - Metoda `bot.chat()` returnează răspunsuri în limbaj natural care pot include rezultate din execuția uneltelor MCP
-- Această abordare oferă o experiență fără întreruperi pentru utilizator, unde utilizatorii nu trebuie să cunoască detaliile implementării MCP
+- Această abordare oferă o experiență fluidă utilizatorului, care nu trebuie să cunoască implementarea MCP din spate
 
 Exemplu complet de cod:
 
@@ -1370,10 +1375,10 @@ public class LangChain4jClient {
 
 #### Rust
 
-Aici se întâmplă majoritatea muncii. Vom apela LLM-ul cu promptul inițial al utilizatorului, apoi vom procesa răspunsul pentru a vedea dacă trebuie să apelăm unelte. Dacă da, vom apela aceste unelte și vom continua conversația cu LLM-ul până când nu mai sunt apeluri de unelte necesare și avem un răspuns final.
 
+Aici se întâmplă majoritatea muncii. Vom apela LLM cu promptul inițial al utilizatorului, apoi vom procesa răspunsul pentru a vedea dacă este necesar să apelăm vreun instrument. Dacă da, vom apela acele instrumente și vom continua conversația cu LLM până când nu mai sunt necesare apeluri de instrumente și avem un răspuns final.
 
-Vom face mai multe apeluri către LLM, așa că să definim o funcție care să se ocupe de apelul către LLM. Adaugă următoarea funcție în fișierul tău `main.rs`:
+Vom face mai multe apeluri către LLM, așa că să definim o funcție care să gestioneze apelul către LLM. Adaugă următoarea funcție în fișierul tău `main.rs`:
 
 ```rust
 async fn call_llm(
@@ -1393,9 +1398,9 @@ async fn call_llm(
 }
 ```
 
-Această funcție primește clientul LLM, o listă de mesaje (inclusiv promptul utilizatorului), unelte de la serverul MCP și trimite o cerere către LLM, returnând răspunsul.
+Această funcție primește clientul LLM, o listă de mesaje (inclusiv promptul utilizatorului), instrumentele de pe serverul MCP și trimite o cerere către LLM, returnând răspunsul.
 
-Răspunsul de la LLM va conține un array de `choices`. Va trebui să procesăm rezultatul pentru a vedea dacă există `tool_calls`. Acest lucru ne indică faptul că LLM solicită apelarea unui instrument specific cu argumente. Adaugă următorul cod la finalul fișierului tău `main.rs` pentru a defini o funcție care să gestioneze răspunsul LLM:
+Răspunsul de la LLM va conține un tablou de `choices`. Va trebui să procesăm rezultatul pentru a vedea dacă sunt prezente `tool_calls`. Acest lucru ne spune că LLM solicită să fie apelat un anumit instrument cu argumente. Adaugă următorul cod la finalul fișierului tău `main.rs` pentru a defini o funcție care să gestioneze răspunsul LLM:
 
 ```rust
 async fn process_llm_response(
@@ -1419,11 +1424,11 @@ async fn process_llm_response(
         println!("🤖 {}", content);
     }
 
-    // Gestionează apelurile către unelte
+    // Gestionează apelurile către instrumente
     if let Some(tool_calls) = message.get("tool_calls").and_then(|tc| tc.as_array()) {
         messages.push(message.clone()); // Adaugă mesajul asistentului
 
-        // Execută fiecare apel către unelte
+        // Execută fiecare apel către instrument
         for tool_call in tool_calls {
             let (tool_id, name, args) = extract_tool_call_info(tool_call)?;
             println!("⚡ Calling tool: {}", name);
@@ -1435,7 +1440,7 @@ async fn process_llm_response(
                 })
                 .await?;
 
-            // Adaugă rezultatul uneltei la mesaje
+            // Adaugă rezultatul instrumentului în mesaje
             messages.push(json!({
                 "role": "tool",
                 "tool_call_id": tool_id,
@@ -1443,7 +1448,7 @@ async fn process_llm_response(
             }));
         }
 
-        // Continuă conversația cu rezultatele uneltelor
+        // Continuă conversația cu rezultatele instrumentelor
         let response = call_llm(openai_client, messages, mcp_tools).await?;
         Box::pin(process_llm_response(
             &response,
@@ -1458,9 +1463,9 @@ async fn process_llm_response(
 }
 ```
 
-Dacă există `tool_calls`, se extrage informația despre unealtă, se apelează serverul MCP cu cererea pentru unealtă și se adaugă rezultatele în mesajele conversației. Apoi continuă conversația cu LLM iar mesajele sunt actualizate cu răspunsul asistentului și rezultatele apelului unealtei.
+Dacă există `tool_calls`, extrage informațiile despre instrument, apelează serverul MCP cu cererea pentru instrument și adaugă rezultatele în mesajele conversației. Apoi continuă conversația cu LLM, iar mesajele sunt actualizate cu răspunsul asistentului și rezultatele apelului instrumentului.
 
-Pentru a extrage informațiile apelului unealtei pe care LLM le returnează pentru apelurile MCP, vom adăuga o altă funcție ajutătoare pentru a extrage tot ce este nevoie pentru a face apelul. Adaugă următorul cod la finalul fișierului tău `main.rs`:
+Pentru a extrage informațiile apelului instrumentului pe care LLM le returnează pentru apelurile MCP, vom adăuga o altă funcție ajutătoare pentru a extrage tot ce este necesar pentru a face apelul. Adaugă următorul cod la finalul fișierului tău `main.rs`:
 
 ```rust
 fn extract_tool_call_info(tool_call: &Value) -> Result<(String, String, String), Box<dyn Error>> {
@@ -1484,10 +1489,10 @@ fn extract_tool_call_info(tool_call: &Value) -> Result<(String, String, String),
 }
 ```
 
-Cu toate părțile la locul lor, acum putem gestiona promptul inițial al utilizatorului și să apelăm LLM. Actualizează funcția ta `main` pentru a include următorul cod:
+Cu toate componentele la locul lor, acum putem gestiona promptul inițial al utilizatorului și apela LLM. Actualizează funcția ta `main` pentru a include următorul cod:
 
 ```rust
-// Conversație LLM cu apeluri ale instrumentelor
+// Conversație LLM cu apeluri către unelte
 let response = call_llm(&openai_client, &messages, &tools).await?;
 process_llm_response(
     &response,
@@ -1499,22 +1504,22 @@ process_llm_response(
 .await?;
 ```
 
-Acest cod va interoga LLM cu promptul inițial al utilizatorului cerând suma a două numere și va procesa răspunsul pentru a gestiona dinamic apelurile la unelte.
+Acest cod va interoga LLM cu promptul inițial al utilizatorului cerând suma a două numere și va procesa răspunsul pentru a gestiona dinamic apelurile instrumentelor.
 
-Grozav, ai reușit!
+Minunat, ai reușit!
 
 ## Tema
 
-Ia codul din exercițiu și extinde serverul cu mai multe unelte. Apoi creează un client cu un LLM, ca în exercițiu, și testează-l cu diferite prompturi pentru a te asigura că toate uneltele serverului sunt apelate dinamic. Acest mod de a construi un client înseamnă că utilizatorul final va avea o experiență excelentă, putând folosi prompturi, în loc de comenzi exacte ale clientului, fără să știe că se apelează vreun server MCP.
+Ia codul din exercițiu și dezvoltă serverul cu mai multe instrumente. Apoi creează un client cu un LLM, ca în exercițiu, și testează-l cu prompturi diferite pentru a te asigura că toate instrumentele serverului tău sunt apelate dinamic. Acest mod de a construi un client înseamnă că utilizatorul final va avea o experiență excelentă deoarece poate folosi prompturi, în loc de comenzi exacte ale clientului, și nu va observa apelarea vreunui server MCP.
 
 ## Soluție
 
 [Soluție](./solution/README.md)
 
-## Puncte cheie
+## Aspecte importante de reținut
 
-- Adăugarea unui LLM la clientul tău oferă un mod mai bun pentru utilizatori de a interacționa cu serverele MCP.
-- Este nevoie să convertești răspunsul serverului MCP în ceva ce LLM-ul poate înțelege.
+- Adăugarea unui LLM în clientul tău oferă o modalitate mai bună pentru utilizatori de a interacționa cu serverele MCP.
+- Trebuie să convertești răspunsul serverului MCP într-un format pe care LLM îl poate înțelege.
 
 ## Exemple
 
@@ -1529,7 +1534,7 @@ Ia codul din exercițiu și extinde serverul cu mai multe unelte. Apoi creează 
 
 ## Ce urmează
 
-- Următorul: [Consumarea unui server folosind Visual Studio Code](../04-vscode/README.md)
+- Următorul pas: [Consumul unui server folosind Visual Studio Code](../04-vscode/README.md)
 
 ---
 

@@ -1,23 +1,39 @@
 # MCP Custom Transports - Advanced Implementation Guide
 
-The Model Context Protocol (MCP) provides flexibility in transport mechanisms, allowing custom implementations for specialized enterprise environments. This advanced guide explores custom transport implementations using Azure Event Grid and Azure Event Hubs as practical examples for building scalable, cloud-native MCP solutions.
+The Model Context Protocol (MCP) permits custom transport implementations for
+specialized environments. This advanced guide explores Azure Event Grid and
+Azure Event Hubs as architecture patterns. They are not standard MCP transports
+and require both endpoints to agree on the custom mapping.
 
-> **Looking ahead:** this guide is written against **MCP Specification 2025-11-25**, where session ordering must be preserved per session (see Message Protocol below). The `2026-07-28` release candidate removes the protocol-level session entirely and requires `Mcp-Method`/`Mcp-Name` headers so gateways and custom transports can route per-request instead of per-session. See [What's Changing in MCP: The 2026-07-28 Release Candidate](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> **MCP `2026-07-28` scope:** the current protocol has no protocol-level
+> sessions, so custom transports must not depend on session affinity or
+> per-session ordering. The `Mcp-Method` and conditional `Mcp-Name` headers are
+> requirements of the standard Streamable HTTP transport; a non-HTTP transport
+> needs an equivalent, explicitly agreed mapping if intermediaries must route
+> without decoding the JSON-RPC body. See
+> [What's Changed in MCP: The 2026-07-28 Specification](../../01-CoreConcepts/mcp-2026-07-28.md).
 
 ## Introduction
 
-While MCP's standard transports (stdio and HTTP streaming) serve most use cases, enterprise environments often require specialized transport mechanisms for improved scalability, reliability, and integration with existing cloud infrastructure. Custom transports enable MCP to leverage cloud-native messaging services for asynchronous communication, event-driven architectures, and distributed processing.
+MCP's standard transports are stdio and Streamable HTTP. Some enterprise
+environments use a custom mapping to integrate with existing messaging
+infrastructure, but doing so can reduce interoperability with MCP hosts and
+SDKs that implement only the standard transports.
 
-This lesson explores advanced transport implementations based on the latest MCP specification (2025-11-25), Azure messaging services, and established enterprise integration patterns.
+This lesson applies the stateless requirements of MCP Specification
+`2026-07-28` to Azure messaging services and established enterprise integration
+patterns.
 
 ### **MCP Transport Architecture**
 
-**From MCP Specification (2025-11-25):**
+**From MCP Specification `2026-07-28`:**
 
-- **Standard Transports**: stdio (recommended), HTTP streaming (for remote scenarios)
-- **Custom Transports**: Any transport that implements the MCP message exchange protocol
+- **Standard Transports**: stdio and Streamable HTTP
+- **Custom Transports**: Optional, implementation-specific mappings agreed by
+    both endpoints
 - **Message Format**: JSON-RPC 2.0 with MCP-specific extensions
-- **Bidirectional Communication**: Full duplex communication required for notifications and responses
+- **Self-contained Requests**: No protocol session or handshake is available
+    to carry state between requests
 
 ## Learning Objectives
 
@@ -32,23 +48,23 @@ By the end of this advanced lesson, you will be able to:
 
 ## **Transport Requirements**
 
-### **Core Requirements from MCP Specification (2025-11-25):**
+### **Core Requirements for MCP `2026-07-28`**
 
 ```yaml
 Message Protocol:
   format: "JSON-RPC 2.0 with MCP extensions"
-  bidirectional: "Full duplex communication required"
-  ordering: "Message ordering must be preserved per session"
+    correlation: "Match responses to requests by JSON-RPC id"
+    state: "Each request must be self-contained"
   
 Transport Layer:
   reliability: "Transport MUST handle connection failures gracefully"
   security: "Transport MUST support secure communication"
-  identification: "Each session MUST have unique identifier"
+    identification: "Carry protocol version, capabilities, and identity per request"
   
 Custom Transport:
-  compliance: "MUST implement complete MCP message exchange"
+    compliance: "Map the selected MCP revision without adding session assumptions"
   extensibility: "MAY add transport-specific features"
-  interoperability: "MUST maintain protocol compatibility"
+    interoperability: "Both endpoints MUST agree on the custom mapping"
 ```
 
 ## **Azure Event Grid Transport Implementation**
@@ -827,7 +843,7 @@ The examples provided demonstrate production-ready patterns for implementing cus
 
 ## **Additional Resources**
 
-- [MCP Specification 2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Specification 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [Azure Event Grid Documentation](https://docs.microsoft.com/azure/event-grid/)
 - [Azure Event Hubs Documentation](https://docs.microsoft.com/azure/event-hubs/)
 - [Azure Functions Event Grid Trigger](https://docs.microsoft.com/azure/azure-functions/functions-bindings-event-grid)
@@ -837,8 +853,9 @@ The examples provided demonstrate production-ready patterns for implementing cus
 
 ---
 
-> *This guide focuses on practical implementation patterns for production MCP systems. Always validate transport implementations against your specific requirements and Azure service limits.*
-> **Current Standard**: This guide reflects [MCP Specification 2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25/) transport requirements and advanced transport patterns for enterprise environments.
+> *This guide focuses on custom architecture patterns. Validate protocol
+> behavior against [MCP Specification 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/),
+> and validate Azure usage against your requirements and service limits.*
 
 
 ## What's Next

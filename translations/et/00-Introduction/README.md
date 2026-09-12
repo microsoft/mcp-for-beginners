@@ -1,86 +1,93 @@
-# Tutvustus Mudeli konteksti protokollile (MCP): Miks see on oluline skaleeritavate AI rakenduste jaoks
+# Mudeli konteksti protokolli (MCP) sissejuhatus: miks see skaleeritavate AI rakenduste jaoks oluline on
 
-[![Tutvustus Mudeli konteksti protokollile](../../../translated_images/et/01.a467036d886b5fb5.webp)](https://youtu.be/agBbdiOPLQA)
+[![Mudeli konteksti protokolli sissejuhatus](../../../translated_images/et/01.a467036d886b5fb5.webp)](https://youtu.be/agBbdiOPLQA)
 
-_(Klõpsa ülalolevale pildile, et vaadata selle õppetunni videot)_
+_(Klõpsa ülal olevale pildile, et vaadata selle lõigu videot)_
 
-Generatiivsed AI rakendused on suur samm edasi, kuna need võimaldavad kasutajal sageli suhelda rakendusega loomuliku keele käskude abil. Kuid kuna sellistesse rakendustesse investeeritakse rohkem aega ja ressursse, soovid veenduda, et saad funktsionaalsusi ja ressursse hõlpsasti integreerida nii, et neid oleks lihtne laiendada, et sinu rakendus suudaks teenindada rohkem kui ühte mudelit ja käsitleda erinevaid mudelite spetsiifikasid. Lühidalt, Generatiivsete AI rakenduste loomine on alguses lihtne, kuid kui need kasvavad ja muutuvad keerukamaks, tuleb hakata määratlema arhitektuuri ning tõenäoliselt tugineda standardile, et tagada rakenduste ehitamine ühtsel viisil. Siin tuleb mängu MCP, mis organiseerib asju ja pakub standardi.
-
----
-
-## **🔍 Mis on Mudelikonteksti protokoll (MCP)?**
-
-**Mudelikonteksti protokoll (MCP)** on **avatud, standardiseeritud liides**, mis võimaldab suurtele keelemudelitele (LLM) sujuvalt suhelda välistööriistade, API-de ja andmeallikatega. See pakub ühtset arhitektuuri, et täiustada AI mudeli funktsionaalsust kaugemale nende treeningandmetest, võimaldades targemaid, skaleeritavaid ja reageerivamaid AI süsteeme.
+Generatiivsed AI rakendused on suur samm edasi, kuna need lubavad kasutajal rakendusega suhelda loomulikus keeles esitatud käskude kaudu. Kuid kui sellesse rakendustesse investeeritakse rohkem aega ja ressursse, tahad veenduda, et funktsionaalsused ja ressursid on kerge integreerida viisil, mis võimaldab rakendust lihtsalt laiendada, toetab mitme mudeli samaaegset kasutamist ning suudab käsitleda erinevaid mudelite nüansse. Lühidalt, generatiivsete AI rakenduste loomine on alguses lihtne, kuid kui need kasvavad ja muutuvad keerukamaks, tuleb hakata määratlema arhitektuuri ning tõenäoliselt sõltuda standardist, mis tagab rakenduste järjepideva ehituse. Siin tulebki mängu MCP, mis aitab asju organiseerida ja pakub standardit.
 
 ---
 
-## **🎯 Miks on AI standardiseerimine oluline**
+## **🔍 Mis on mudeli konteksti protokoll (MCP)?**
 
-Kuna generatiivsed AI rakendused muutuvad keerukamaks, on oluline võtta kasutusele standardid, mis tagavad **skaleeritavuse, laiendatavuse, hooldatavuse** ja **tarnijast sõltumatuse vältimise**. MCP vastab nendele vajadustele, pakkudes:
+**Mudeli konteksti protokoll (MCP)** on **avatud, standardiseeritud liides**, mis võimaldab suurte keelemudelite (LLM-id) sujuvalt suhelda väliste tööriistade, API-de ja andmeallikatega. See pakub ühtset arhitektuuri, mis laiendab AI mudelite funktsionaalsust väljaspool nende koolitusandmeid, võimaldades targemaid, skaleeritavamaid ja reageerimisvõimelisemaid AI süsteeme.
 
-- Mudeli-tööriista integratsioonide ühtlustamist
-- Ühekordsete ja haprate kohandatud lahenduste vähendamist
-- Võimalust, et erinevate tarnijate mitmed mudelid saavad samas ökosüsteemis koos eksisteerida
+---
 
-**Märkus:** Kuigi MCP tutvustab end avanädala standardina, puuduvad plaanid MCP standardiseerimiseks läbi olemasolevate standardiorganisatsioonide nagu IEEE, IETF, W3C, ISO või muu taolise keha.
+## **🎯 Miks AI valdkonnas standardiseerimine oluline on**
+
+Kuna generatiivsed AI rakendused muutuvad keerukamaks, on oluline rakendada standardeid, mis tagavad **skaleeritavuse, laiendatavuse, hooldatavuse** ja **tõrjuvad sõltuvuse konkreetsetest tarnijatest**. MCP vastab neile vajadustele:
+
+- Mudeli ja tööriista integratsioonide ühtlustamisega
+- Ühekordsete, haprate kohandatud lahenduste vähendamisega
+- Võimaldades ühes ökosüsteemis eksisteerida mitmel tarnija mudelil
+
+**Märkus:** Kuigi MCP end esitleb avatud standardina, ei ole plaanis MCP standardiseerida ühegi olemasoleva standardiorgani nagu IEEE, IETF, W3C, ISO või muu standardiasutus kaudu.
 
 ---
 
 ## **📚 Õpieesmärgid**
 
-Selle artikli lõpuks oskad:
+Selle artikli lõpuks suudad:
 
-- Määratleda **Mudelikonteksti protokolli (MCP)** ja selle kasutusjuhtumeid
-- Mõista, kuidas MCP standardiseerib mudeli ja tööriista vahelise kommunikatsiooni
+- Määratleda **mudeli konteksti protokolli (MCP)** ja selle kasutusjuhtumeid
+- Mõista, kuidas MCP standardiseerib mudeli ja tööriista vahelist kommunikatsiooni
 - Tuvastada MCP arhitektuuri põhikomponente
-- Uurida MCP praktilisi rakendusi ettevõtte- ja arenduskontekstis
+- Uurida MCP kasutusvõimalusi ettevõtte ja arenduse kontekstis
 
 ---
 
-## **💡 Miks on Mudelikonteksti protokoll (MCP) mängumuutja**
+## **💡 Miks on mudeli konteksti protokoll (MCP) läbimurre**
 
 ### **🔗 MCP lahendab AI interaktsioonide killustatuse**
 
-Enne MCP-d nõudis mudelite integreerimine tööriistadega:
+Enne MCP-d nõudis mudelite ühendamine tööriistadega:
 
 - Kohandatud koodi iga tööriista-mudeli paari jaoks
-- Ei-standardseid API-sid iga tarnija jaoks
-- Sageli katkestusi uuenduste tõttu
-- Kehva skaleeritavust tööriistade arvu kasvades
+- Mittestandardseid API-sid iga tarnija puhul
+- Sageli katkestasid uuendused ühendusi
+- Halb skaleeritavus tööriistade arvu kasvu korral
 
 ### **✅ MCP standardiseerimise eelised**
 
-| **Eelis**               | **Kirjeldus**                                                                  |
-|------------------------|--------------------------------------------------------------------------------|
-| Ühilduvus              | LLM-id töötavad sujuvalt tööriistadega eri tarnijatelt                         |
-| Järjepidevus           | Ühtsed käitumismustrid platvormidel ja tööriistadel                           |
-| Taaskasutatavus        | Üks kord loodud tööriistu saab kasutada mitmes projektis ja süsteemis         |
-| Kiirendatud arendus    | Vähenda arendust aega, kasutades standardiseeritud ja plug-and-play liideseid  |
+| **Eelis**                 | **Kirjeldus**                                                                  |
+|--------------------------|--------------------------------------------------------------------------------|
+| Ühilduvus                | LLM-id töötavad sujuvalt eri tarnijate tööriistadega                           |
+| Järjepidevus             | Ühtne käitumine platvormide ja tööriistade vahel                              |
+| Taaskasutatavus          | Kord ehitatud tööriistu saab kasutada eri projektides ja süsteemides           |
+| Arenduse kiirendus       | Vähem arendusaega, kasutades standardiseeritud, plug-and-play liideseid       |
 
 ---
 
-## **🧱 Üldine MCP arhitektuuri ülevaade**
+## **🧱 MCP arhitektuuri ülevaade suurelt tasemelt**
 
-MCP järgib **kliendi-serveri mudelit**, kus:
+MCP järgib **kliendi- ja serveri mudelit**, kus:
 
-- **MCP Hostid** haldavad AI mudeleid
-- **MCP Kliendid** algatavad päringuid
-- **MCP Serverid** pakuvad konteksti, tööriistu ja võimekusi
+- **MCP Hostid** jooksutavad AI mudeleid
+- **MCP kliendid** algatavad päringuid
+- **MCP serverid** pakuvad konteksti, tööriistu ja võimekusi
 
-### **Olulised komponendid:**
+### **Põhikomponendid:**
 
 - **Ressursid** – staatilised või dünaamilised andmed mudelitele  
-- **Põhjalikes juhistes** – eelmääratletud töövood juhitud generaatoritele  
+- **Päringud** – eelmääratletud töövood juhitud genereerimiseks  
 - **Tööriistad** – täidetavad funktsioonid nagu otsing, arvutused  
-- **Valik** – agentne käitumine rekursiivsete interaktsioonide kaudu (vabandatud `2026-07-28` versiooni kandidaadis)
-- **Eeldamine** – serveri algatatud kasutajasisendi päringud
-- **Juurte piirid** – failisüsteemi piirid serveri juurdepääsukontrolliks (vabandatud `2026-07-28` versiooni kandidaadis)
+- **Valikprotsess** – agentide käitumine rekursiivsete interaktsioonide kaudu (kehtetu alates
+    MCP `2026-07-28`; uued rakendused peaksid integreeruma otse LLM
+    pakkujaga)
+- **Andmekorje** – serveri algatatud kasutajasisendi päringud
+- **Juurdepääsupunktid** – informatiivsed failisüsteemi asukohad, mis on serverile olulised
+    (kehtetu alates MCP `2026-07-28`; eelistada tööriista parameetreid, ressursside URI-sid või
+    serveri konfiguratsiooni)
 
 ### **Protokolli arhitektuur:**
 
 MCP kasutab kahekihilist arhitektuuri:
-- **Andmekiht**: JSON-RPC 2.0-põhine kommunikatsioon elutsüklijuhtimise ja primitiividega
-- **Transpordikiht**: STDIO (kohalik) ja voogedastusega HTTP koos SSE-ga (kaug) kommunikatsioonikanalid
+- **Andmekiht**: JSON-RPC 2.0 sõnumid, päringu metainfo, avastamine ja
+    protokolli primitiivid
+- **Transportkiht**: stdio kohalikele alamprotsessidele ja Streamable HTTP kaugetele serveritele.
+    Streamable HTTP kasutab voogesitamiseks SSE raamimist, kuid vanem
+    HTTP+SSE transport on aegunud.
 
 ---
 
@@ -88,23 +95,23 @@ MCP kasutab kahekihilist arhitektuuri:
 
 MCP serverid töötavad järgmiselt:
 
-- **Päringu voog**:
+- **Päringute voog**:
     1. Päringu algatab lõppkasutaja või tema nimel tegutsev tarkvara.
-    2. **MCP klient** saadab päringu **MCP hostile**, kes haldab AI mudeli tööaega.
-    3. **AI mudel** saab kasutaja päringu ning võib taotleda juurdepääsu välistööriistadele või andmetele ühe või mitme tööriistakõne kaudu.
-    4. **MCP host**, mitte mudel otseselt, suhtleb sobiva(te) **MCP serveri(de)**ga, kasutades standardiseeritud protokolli.
+    2. **MCP klient** saadab päringu **MCP hostile**, kes haldab AI mudeli tööaja keskkonda.
+    3. **AI mudel** võtab kasutaja päringu vastu ja võib teha vastava tööriista kutse, et pääseda ligi välistele tööriistadele või andmetele.
+    4. **MCP host**, mitte mudel ise, suhtleb vastava standardiseeritud protokolli abil õige **MCP serveriga/servertega**.
 - **MCP hosti funktsioonid**:
-    - **Tööriistade register**: Hoiab nimekirja saadaolevatest tööriistadest ja nende võimetest.
-    - **Autentimine**: Kontrollib tööriistadele juurdepääsu õigusi.
-    - **Päringute töötleja**: Töötleb mudelilt tulevaid tööriista päringuid.
-    - **Vastusevormindaja**: Strukturiseerib tööriista väljundid mudeli jaoks arusaadavasse vormi.
+    - **Tööriistade registri haldus**: hoiab kataloogi olemasolevatest tööriistadest ja nende võimekusest.
+    - **Autentimine**: kontrollib õigusi tööriistadele ligipääsuks.
+    - **Päringute haldur**: töötleb mudelilt tulevaid tööriistade päringuid.
+    - **Vastuse vormindaja**: struktureerib tööriistade väljundid mudelile mõistetavas vormis.
 - **MCP serveri täitmine**:
-    - **MCP host** suunab tööriistakõned ühe või mitme **MCP serveri** poole, mis pakuvad spetsialiseeritud funktsioone (nt otsing, arvutused, andmebaasi päringud).
-    - **MCP serverid** täidavad oma toimingud ja tagastavad tulemused **MCP hostile** ühtses vormingus.
+    - **MCP host** suunab tööriistade kutsed ühele või mitmele **MCP serverile**, mis pakuvad spetsialiseerunud funktsioone (nt otsing, arvutused, andmebaasi päringud).
+    - **MCP serverid** teostavad vastavad toimingud ja tagastavad tulemused **MCP hostile** ühtses vormingus.
     - **MCP host** vormindab ja edastab need tulemused edasi **AI mudelile**.
-- **Vastuse lõpetamine**:
-    - **AI mudel** kaasab tööriista väljundid lõplikku vastusesse.
-    - **MCP host** saadab selle vastuse tagasi **MCP kliendile**, kes edastab selle lõppkasutajale või päringut algatanud tarkvarale.
+- **Vastuse lõpuleviimine**:
+    - **AI mudel** lisab tööriista väljundid lõplikku vastusesse.
+    - **MCP host** saadab selle vastuse tagasi **MCP kliendile**, kes edastab selle lõppkasutajale või kutsuvale tarkvarale.
     
 
 ```mermaid
@@ -113,20 +120,20 @@ title: MCP Architecture and Component Interactions
 description: A diagram showing the flows of the components in MCP.
 ---
 graph TD
-    Client[MCP klient/rakendus] -->|Saadab taotluse| H[MCP host]
-    H -->|Kutsus esile| A[tehisintellekti mudel]
-    A -->|Tööriista kutse taotlus| H
-    H -->|MCP Protocol| T1[MCP Server Tool 01: Veebipõhine otsing
-    H -->|MCP Protocol| T2[MCP Server Tool 02: Kalkulaatori tööriist
-    H -->|MCP Protocol| T3[MCP Server Tool 03: Andmebaasi ligipääsu tööriist
-    H -->|MCP Protocol| T4[MCP Server Tool 04: Failisüsteemi tööriist
-    H -->|Saadab vastuse| Client
+    Client[MCP klient/rakendus] -->|Saada päring| H[MCP host]
+    H -->|Käivitab| A[tehisintellekti mudel]
+    A -->|Tööriista kõne päring| H
+    H -->|MCP Protocol| T1[MCP Server Tool 01: Veebotsing]
+    H -->|MCP Protocol| T2[MCP Server Tool 02: Kalkulaatori tööriist]
+    H -->|MCP Protocol| T3[MCP Server Tool 03: Andmebaasi juurdepääsu tööriist]
+    H -->|MCP Protocol| T4[MCP Server Tool 04: Failisüsteemi tööriist]
+    H -->|Saada vastus| Client
 
-    subgraph "MCP Host komponendid"
+    subgraph "MCP hosti komponendid"
         H
-        G[Tööriistade register]
+        G[Tööriistaregister]
         I[Autentimine]
-        J[Taotluste töötleja]
+        J[Päringute käitleja]
         K[Vastuse vormindaja]
     end
 
@@ -148,11 +155,11 @@ graph TD
     style T4 fill:#c2f0c2,stroke:#333,stroke-width:1px
 ```
 
-## 👨‍💻 Kuidas ehitada MCP serverit (näidetega)
+## 👨‍💻 Kuidas ehitada MCP serverit (näidete abil)
 
-MCP serverid võimaldavad laiendada LLM võimeid, pakkudes andmeid ja funktsionaalsust. 
+MCP serverid võimaldavad laiendada LLMide võimekusi, pakkudes andmeid ja funktsioone. 
 
-Kas oled valmis proovima? Siin on keele- ja lähenemispõhised SDK-d näidetega, kuidas luua lihtsaid MCP servereid mitmes keeles/lähenemises:
+Kas oled valmis proovima? Siin on keele- ja tehnoloogiapõhised SDK-d koos näidetega lihtsate MCP serverite loomise kohta erinevates keeltes/tehnoloogiate komplektides:
 
 - **Python SDK**: https://github.com/modelcontextprotocol/python-sdk
 
@@ -163,33 +170,33 @@ Kas oled valmis proovima? Siin on keele- ja lähenemispõhised SDK-d näidetega,
 - **C#/.NET SDK**: https://github.com/modelcontextprotocol/csharp-sdk
 
 
-## 🌍 MCP praktilised kasutusviisid
+## 🌍 MCP reaalse maailma kasutusjuhtumid
 
-MCP võimaldab laia valikut rakendusi, laiendades AI võimeid:
+MCP võimaldab laia valikut rakendusi AI võimekuse laiendamiseks:
 
-| **Rakendus**                 | **Kirjeldus**                                                                |
-|-----------------------------|--------------------------------------------------------------------------------|
-| Ettevõtteandmete integratsioon | Ühenda LLM-id andmebaaside, CRM-ide või sisetööriistadega                       |
-| Agentne AI süsteemid         | Võimalda autonoomsetel agentidel tööriistade ligipääs ja otsustuskäigud        |
-| Mitmemodaalsed rakendused    | Ühenda tekst-, pilt- ja helitööriistad ühes ühtses AI rakenduses               |
-| Reaalajas andmete integreerimine | Too AI interaktsioonidesse otseülekande andmeid täpsemate ja ajakohaste väljundite jaoks |
+| **Rakendus**                | **Kirjeldus**                                                                 |
+|----------------------------|--------------------------------------------------------------------------------|
+| Ettevõtte andmeintegratsioon | Ühenda LLM-id andmebaaside, CRM-ide või sisemiste tööriistadega                 |
+| Agentitaolised AI süsteemid | Võimalda autonoomsetel agentidel tööriistadele ligipääs ja otsustusvõimega töövood  |
+| Mitme meedia rakendused      | Ühenda tekst, pildid ja heli üheks ühtseks AI rakenduseks                       |
+| Reaalaegne andmeintegratsioon| Too AI interaktsioonidesse reaalajas andmeid täpsemate ja aktuaalsete vastuste jaoks |
 
 
 ### 🧠 MCP = universaalne AI interaktsioonide standard
 
-Mudelikonteksti protokoll (MCP) toimib AI interaktsioonide universaalse standardina, sarnaselt USB-C-le, mis standardiseeris seadmete füüsilisi ühendusi. AI maailmas pakub MCP ühtset liidest, mis võimaldab mudelitel (kliendid) sujuvalt integreeruda välistööriistade ja andmepakkujatega (serverid). See elimineerib vajaduse iga API või andmeallika puhul erinevate kohandatud protokollide järele.
+Mudeli konteksti protokoll (MCP) toimib AI interaktsioonide universaalse standardina, sarnaselt USB-C-le, mis standardiseeris füüsilisi ühendusi seadmete vahel. AI maailmas pakub MCP ühtset liidest, mis võimaldab mudelitel (klientidel) integreeruda sujuvalt väliste tööriistade ja andmepakkujate (serverite) kaudu. See elimineerib vajaduse eraldi ja kohandatud protokollide järele iga API või andmeallika jaoks.
 
-MCP-s järgib MCP-ühilduv tööriist (tuntud kui MCP server) ühtset standardit. Need serverid võivad loetleda pakutavad tööriistad või toimingud ja täita neid AI agendi nõudmisel. MCP-t toetavad AI agentide platvormid suudavad avastada serverite tööriistu ja neid selle standardprotokolli kaudu käivitada.
+MCP-sõbralik tööriist (nn MCP server) järgib ühtset standardit. Need serverid saavad üles lugeda pakutavad tööriistad või tegevused ning täita neid AI agendi tellimisel. MCP-t toetavad AI agentide platvormid suudavad avastada serverite tööriistu ja kutsuda neid selle standardprotokolli kaudu.
 
-### 💡 Lihtsustab ligipääsu teadmistele
+### 💡 Lihtsustab juurdepääsu teadmistele
 
-Lisaks tööriistade pakkumisele lihtsustab MCP ka ligipääsu teadmistele. See võimaldab rakendustel pakkuda suurtele keelemudelitele (LLM) konteksti, ühendades neid erinevate andmeallikatega. Näiteks võib MCP server esindada ettevõtte dokumentide hoidlat, võimaldades agentidel vajadusel asjakohast teavet otsida. Teine server võib hallata spetsiifilisi toiminguid, näiteks e-kirjade saatmist või andmete uuendamist. Agendi vaatekohast on need lihtsalt tööriistad – mõned pakuvad teadmiste konteksti, teised täidavad toiminguid. MCP haldab mõlemaid tõhusalt.
+Lisaks tööriistade pakkumisele hõlbustab MCP juurdepääsu teadmistele. See võimaldab rakendustel anda suurtele keelemudelitele konteksti, ühendades neid eri andmeallikatega. Näiteks MCP server võib esindada ettevõtte dokumentide hoidlat, võimaldades agentidel pärida vajalikke andmeid nõudmisel. Teine server võiks hallata spetsiifilisi toiminguid nagu meilide saatmine või kirjetemuudatused. Agendi vaatenurgast on need lihtsalt kasutatavad tööriistad – mõned tagastavad andmeid (teadmuslik kontekst), teised täidavad tegevusi. MCP haldab mõlemaid tõhusalt.
 
-Agenid, mis ühenduvad MCP serveriga, õpivad automaatselt serveri saadaval olevaid võimeid ja ligipääsetavaid andmeid standardse vormingu kaudu. See standardiseerimine võimaldab tööriistade dünaamilist kättesaadavust. Näiteks uue MCP serveri lisamine agendi süsteemi muudab selle funktsioonid koheselt kasutatavaks ilma agendi juhiste täiendava kohandamiseta.
+Agent, kes ühendub MCP serveriga, õpib automaatselt tundma serveri võimekusi ja ligipääsetavaid andmeid standardiseeritud vormingus. See standardimine võimaldab dünaamilist tööriistade kättesaadavust. Näiteks uue MCP serveri lisamine agendi süsteemi muudab selle funktsioonid kohe kasutatavaks ilma agendi juhiste edasise kohandamiseta.
 
-See sujuv integratsioon vastab alloleval diagrammil kujutatud voole, kus serverid pakuvad nii tööriistu kui teadmisi, tagades süsteemide vahelise katkematu koostöö. 
+See sujuv integreeritus vastab järgmisel diagrammil kujutatud voolule, kus serverid pakuvad nii tööriistu kui teadmisi, tagades süsteemide vahelise sujuva koostöö.
 
-### 👉 Näide: Skaleeritav agenidirakendus
+### 👉 Näide: skaleeritav agentlahendus
 
 ```mermaid
 ---
@@ -197,7 +204,7 @@ title: Scalable Agent Solution with MCP
 description: A diagram illustrating how a user interacts with an LLM that connects to multiple MCP servers, with each server providing both knowledge and tools, creating a scalable AI system architecture
 ---
 graph TD
-    User -->|Päring| LLM
+    User -->|Käsk| LLM
     LLM -->|Vastus| User
     LLM -->|MCP| ServerA
     LLM -->|MCP| ServerB
@@ -217,14 +224,14 @@ graph TD
         ToolsB[Tööriistad]
     end
 ```
-Universaalne Ühendaja võimaldab MCP serveritel omavahel suhelda ja jagada võimeid, võimaldades ServerA-l delegeerida ülesandeid ServerB-le või kasutada selle tööriistu ja teadmisi. See loob tööriistade ja andmete föderatsiooni serverite vahel, toetades skaleeritavaid ja modulaarseid agenidi arhitektuure. Kuna MCP standardiseerib tööriistade eksponeerimise, saavad agenid dünaamiliselt avastada ja suunata päringuid serverite vahel ilma rangete eelprogrammeeritud integratsioonideta.
+Universaalne ühendaja võimaldab MCP serveritel omavahel suhelda ja jagada võimekusi, lubades ServerA-l delegeerida ülesandeid ServerB-le või kasutada selle tööriistu ja teadmisi. See federatsiooni formaat võimaldab tööriistade ja andmete jagamist serverite vahel, toetades skaleeritavaid ja modulaarseid agentide arhitektuure. MCP standardiseerib tööriistade kättesaadavuse, võimaldades agentidel dünaamiliselt avastada ja suunata päringuid serverite vahel ilma fikseeritud integratsioonideta.
 
 
-Tööriistade ja teadmiste föderatsioon: tööriistu ja andmeid saab serverite vahel kasutada, võimaldades skaleeritavat ja modulaarset agentset arhitektuuri.
+Tööriistade ja teadmiste föderatsioon: tööriistadele ja andmetele saab ligipääsu serverite vahel, võimaldades skaleeritavamaid ja modulaarsemaid agenti arhitektuure.
 
-### 🔄 Täiustatud MCP stsenaariumid kliendipoolse LLM integratsiooniga
+### 🔄 Täiustatud MCP stsenaariumid kliendi-poolse LLM integratsiooniga
 
-Põhilise MCP arhitektuuri kõrval eksisteerivad täiustatud stsenaariumid, kus nii klient kui server sisaldavad LLM-e, võimaldades keerukamaid interaktsioone. Järgmises diagrammis võib **Kliendirakendus** olla IDE, kus on kasutajale LLM poolt kättesaadavad mitmed MCP tööriistad:
+Põhi-MCP arhitektuuri kõrval on täiustatud stsenaariumid, kus nii klient kui server sisaldavad LLM-e, võimaldades keerukamaid interaktsioone. Järgmisel diagrammil võiks **kliendirakendus** olla IDE, kus on LLMi kasutamiseks kättesaadavad mitmed MCP tööriistad:
 
 ```mermaid
 ---
@@ -236,54 +243,54 @@ sequenceDiagram
     actor User as 👤 Kasutaja
     participant ClientApp as 🖥️ Kliendi rakendus
     participant ClientLLM as 🧠 Kliendi LLM
-    participant Server1 as 🔧 MCP server 1
-    participant Server2 as 📚 MCP server 2
+    participant Server1 as 🔧 MCP Server 1
+    participant Server2 as 📚 MCP Server 2
     participant ServerLLM as 🤖 Serveri LLM
     
-    %% Avastusetapp
+    %% Avastamisfaas
     rect rgb(220, 240, 255)
-        Note over ClientApp, Server2: TÖÖRIISTA AVASTAMISE ETAPP
-        ClientApp->>+Server1: Taotle saadaolevaid tööriistu/resursse
+        Note over ClientApp, Server2: TÖÖRIISTA AVASTAMISE FAAS
+        ClientApp->>+Server1: Päringu saadaolevad tööriistad/resursid
         Server1-->>-ClientApp: Tagasta tööriistade nimekiri (JSON)
-        ClientApp->>+Server2: Taotle saadaolevaid tööriistu/resursse
+        ClientApp->>+Server2: Päringu saadaolevad tööriistad/resursid
         Server2-->>-ClientApp: Tagasta tööriistade nimekiri (JSON)
-        Note right of ClientApp: Salvesta ühendatud tööriistade<br/>kataloog lokaalselt
+        Note right of ClientApp: Salvesta kombineeritud tööriistade<br/>kataloog kohapeal
     end
     
     %% Kasutaja interaktsioon
     rect rgb(255, 240, 220)
-        Note over User, ClientLLM: KASUTAJA INTERAKTSIOONI ETAPP
-        User->>+ClientApp: Sisesta loomuliku keele päring
+        Note over User, ClientLLM: KASUTAJA INTERAKTSIOONI FAAS
+        User->>+ClientApp: Sisesta loomulikukeeleline päring
         ClientApp->>+ClientLLM: Edasta päring + tööriistade kataloog
-        ClientLLM->>-ClientLLM: Analüüsi päringut ja vali tööriistad
+        ClientLLM->>-ClientLLM: Analüüsi päring ja vali tööriistad
     end
     
-    %% Stsenaarium A: Otsekõne tööriistale
-    alt Otsekõne tööriistale
+    %% Stsenaarium A: Otsene tööriista kutsumine
+    alt Otsene tööriista kutsumine
         rect rgb(220, 255, 220)
-            Note over ClientApp, Server1: STSENAARIUM A: OTSEKÕNE TÖÖRIISTALE
-            ClientLLM->>+ClientApp: Taotle tööriista käivitamist
-            ClientApp->>+Server1: Käivita konkreetne tööriist
+            Note over ClientApp, Server1: STSENAARIUM A: OTSELINE TÖÖRIISTA KUTSUMINE
+            ClientLLM->>+ClientApp: Päringu tööriista täitmiseks
+            ClientApp->>+Server1: Täida kindlat tööriista
             Server1-->>-ClientApp: Tagasta tulemused
-            ClientApp->>+ClientLLM: Töötle tulemusi
+            ClientApp->>+ClientLLM: Töötle tulemused
             ClientLLM-->>-ClientApp: Genereeri vastus
-            ClientApp-->>-User: Kuvada lõplik vastus
+            ClientApp-->>-User: Kuva lõplik vastus
         end
     
-    %% Stsenaarium B: Funktsioonide läbirääkimine (VS Code stiil)
-    else Funktsioonide läbirääkimine (VS Code stiil)
+    %% Stsenaarium B: Funktsionaalsuse läbirääkimine (VS Code stiilis)
+    else Funktsionaalsuse läbirääkimine (VS Code stiilis)
         rect rgb(255, 220, 220)
-            Note over ClientApp, ServerLLM: STSENAARIUM B: FUNKTSIOONIDE LÄBIRÄÄKIMINE
-            ClientLLM->>+ClientApp: Määratle vajalikud võimalused
-            ClientApp->>+Server2: Läbiräägi funktsioonide/võimaluste üle
-            Server2->>+ServerLLM: Taotle täiendavat konteksti
-            ServerLLM-->>-Server2: Paku konteksti
+            Note over ClientApp, ServerLLM: STSENAARIUM B: FUNKTSIONAALSUSE LÄBIRÄÄKIMINE
+            ClientLLM->>+ClientApp: Määra vajalikud võimekused
+            ClientApp->>+Server2: Läbirääkimised funktsioonide/võimekuste üle
+            Server2->>+ServerLLM: Päringu täiendav kontekst
+            ServerLLM-->>-Server2: Esita kontekst
             Server2-->>-ClientApp: Tagasta saadaolevad funktsioonid
-            ClientApp->>+Server2: Kutsu läbiräägitud tööriistu
+            ClientApp->>+Server2: Kutsu läbiräägitud tööriistad
             Server2-->>-ClientApp: Tagasta tulemused
-            ClientApp->>+ClientLLM: Töötle tulemusi
+            ClientApp->>+ClientLLM: Töötle tulemused
             ClientLLM-->>-ClientApp: Genereeri vastus
-            ClientApp-->>-User: Kuvada lõplik vastus
+            ClientApp-->>-User: Kuva lõplik vastus
         end
     end
 ```
@@ -292,10 +299,10 @@ sequenceDiagram
 
 Siin on MCP kasutamise praktilised eelised:
 
-- **Uudsus**: Mudelid pääsevad ligi ajakohasele infole väljaspool oma treeningandmeid
-- **Võimekuslaiendus**: Mudelid saavad kasutada spetsialiseeritud tööriistu ülesanneteks, milleks neid pole treenitud
-- **Hallutsinatsioonide vähendamine**: Välised andmeallikad pakuvad faktilist alust
-- **Privaatsus**: Sensitiivne info võib jääda turvalisse keskkonda, mitte sisestatud juhistesse
+- **Uuenduslikkus**: mudelid pääsevad juurde ajakohasele infole väljaspool koolitusandmeid
+- **Võimekuste laiendus**: mudelid saavad kasutada spetsialiseeritud tööriistu ülesannetel, milleks neid ei koolitatud
+- **Hallutsinatsioonide vähendamine**: välised andmeallikad pakuvad faktipõhist alust
+- **Privaatsus**: tundlikud andmed võivad jääda turvalisse keskkonda, mitte sisalduks päringutes
 
 ## 📌 Peamised järeldused
 
@@ -303,24 +310,24 @@ Järgnevad on MCP kasutamise peamised järeldused:
 
 - **MCP** standardiseerib, kuidas AI mudelid suhtlevad tööriistade ja andmetega
 - Edendab **laiendatavust, järjepidevust ja ühilduvust**
-- MCP aitab **vähendada arendusaega, parandada usaldusväärsust ja laiendada mudeli võimeid**
-- Kliendi-serveri arhitektuur **võimaldab paindlikke, laiendatavaid AI rakendusi**
+- MCP aitab **vähendada arendusperioodi, parandada usaldusväärsust ja laiendada mudelite võimeid**
+- Kliendi-server arhitektuur **võimaldab paindlikke ja laiendatavaid AI rakendusi**
 
 ## 🧠 Harjutus
 
-Mõtle AI rakendusele, mida soovid ehitada.
+Mõtle AI rakendusele, mida sa sooviksid luua.
 
-- Millised **välised tööriistad või andmed** võiksid selle võimeid täiendada?
-- Kuidas võiks MCP teha integratsiooni **lihtsamaks ja usaldusväärsemaks?**
+- Millised **välised tööriistad või andmed** võiksid selle võimeid parandada?
+- Kuidas võiks MCP muuta integreerumise **lihtsamaks ja usaldusväärsemaks?**
 
-## Lisamaterjalid
+## Täiendavad ressursid
 
 - [MCP GitHubi hoidla](https://github.com/modelcontextprotocol)
 
 
-## Järgmine samm
+## Mis järgmiseks
 
-Järgmine: [1. peatükk: Põhimõisted](../01-CoreConcepts/README.md)
+Järgmine: [Peatükk 1: Põhikontseptsioonid](../01-CoreConcepts/README.md)
 
 ---
 

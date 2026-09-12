@@ -1,84 +1,95 @@
-# MCP OAuth2 Demo
+# Demo MCP OAuth2
+
+> [!WARNING]
+> Acesta este un exemplu local de învățare, nu un serviciu de autorizare pentru producție. El
+> folosește un client în memorie și generează o nouă cheie de semnare la pornire. Nu
+> îl distribuiți niciodată cu un secret de client partajat, implicit sau controlat prin sursă.
 
 ## Introducere
 
-OAuth2 este protocolul standard din industrie pentru autorizare, permițând accesul securizat la resurse fără a partaja acreditările. În implementările MCP (Model Context Protocol), OAuth2 oferă o modalitate robustă de a autentifica și autoriza clienții (cum ar fi agenții AI) să acceseze serverele MCP și uneltele acestora.
+OAuth2 este protocolul standard din industrie pentru autorizare, permițând acces securizat la resurse fără a partaja acreditările. În implementările MCP (Model Context Protocol), OAuth2 oferă o modalitate robustă de a autentifica și autoriza clienții (cum ar fi agenții AI) să acceseze serverele MCP și uneltele lor.
 
-Această lecție demonstrează cum să implementezi autentificarea OAuth2 pentru serverele MCP folosind Spring Boot, un tipar comun pentru implementările enterprise și de producție.
+Această lecție demonstrează cum să implementați autentificarea OAuth2 pentru serverele MCP folosind Spring Boot, un model comun pentru implementări enterprise și de producție.
 
 ## Obiective de învățare
 
 La finalul acestei lecții, vei:
 - Înțelege cum se integrează OAuth2 cu serverele MCP
-- Implementa un Server de Autorizare Spring pentru emiterea de tokenuri
-- Proteja endpoint-urile MCP cu autentificare bazată pe JWT
-- Configura fluxul client_credentials pentru comunicare machine-to-machine
+- Implementa un Server de Autorizare Spring pentru emiterea token-urilor
+- Proteja endpoint-urile MCP prin autentificare bazată pe JWT
+- Configura flow-ul client credentials pentru comunicare între mașini
 
-## Cerințe prealabile
+## Cerințe preliminare
 
-- Cunoștințe de bază despre Java și Spring Boot
+- Înțelegere de bază a Java și Spring Boot
 - Familiaritate cu conceptele MCP din modulele anterioare
 - Maven sau Gradle instalat
 
 ---
 
-## Prezentare generală a proiectului
+## Prezentarea proiectului
 
 Acest proiect este o **aplicație minimală Spring Boot** care acționează ca:
 
-* un **Server de Autorizare Spring** (emitând tokenuri JWT de acces prin fluxul `client_credentials`), și  
-* un **Server de Resurse** (protejând propriul endpoint `/hello`).
+* un **Spring Authorization Server** (emitând token-uri de acces JWT prin flow-ul `client_credentials`), și  
+* un **Resource Server** (protejând propriul endpoint `/hello`).
 
-Reprezintă o oglindă a setărilor prezentate în [articolul de blog Spring (2 apr 2025)](https://spring.io/blog/2025/04/02/mcp-server-oauth2).
+Reflectă configurația prezentată în [postarea de blog Spring (2 Apr 2025)](https://spring.io/blog/2025/04/02/mcp-server-oauth2).
 
 ---
 
-## Start rapid (local)
+## Pornire rapidă (local)
 
 ```bash
-# construiește și rulează
-./mvnw spring-boot:run
+# Folosiți o valoare locală unică și păstrați-o în afara istoricului shell-ului unde este posibil.
+export OAUTH_CLIENT_SECRET="replace-with-a-random-local-secret"
+mvn spring-boot:run
 
-# obține un token
-curl -u mcp-client:secret -d grant_type=client_credentials \
+# obțineți un token
+curl -u "mcp-client:${OAUTH_CLIENT_SECRET}" -d grant_type=client_credentials \
      http://localhost:8081/oauth2/token | jq -r .access_token > token.txt
 
-# apelează endpoint-ul protejat
+# apelați punctul final protejat
 curl -H "Authorization: Bearer $(cat token.txt)" http://localhost:8081/hello
 ```
 
 ---
 
-## Testarea configurației OAuth2
+## Testarea Configurației OAuth2
 
-Poți testa configurația de securitate OAuth2 urmând pașii:
+Poți testa configurația de securitate OAuth2 urmând pașii de mai jos:
 
 ### 1. Verifică dacă serverul rulează și este securizat
 
 ```bash
-# Acesta ar trebui să returneze 401 Unauthorized, confirmând că securitatea OAuth2 este activă
+# Aceasta ar trebui să returneze 401 Neautorizat, confirmând că securitatea OAuth2 este activă
 curl -v http://localhost:8081/
 ```
 
-### 2. Obține un token de acces folosind acreditările clientului
+### 2. Obține un token de acces folosind client credentials
 
 ```bash
 # Obțineți și extrageți răspunsul complet al tokenului
 curl -v -X POST http://localhost:8081/oauth2/token \
   -H "Content-Type: application/x-www-form-urlencoded" \
-  -H "Authorization: Basic bWNwLWNsaWVudDpzZWNyZXQ=" \
+  -u "mcp-client:${OAUTH_CLIENT_SECRET}" \
   -d "grant_type=client_credentials&scope=mcp.access"
 
 # Sau pentru a extrage doar tokenul (necesită jq)
 curl -s -X POST http://localhost:8081/oauth2/token \
   -H "Content-Type: application/x-www-form-urlencoded" \
-  -H "Authorization: Basic bWNwLWNsaWVudDpzZWNyZXQ=" \
+  -u "mcp-client:${OAUTH_CLIENT_SECRET}" \
   -d "grant_type=client_credentials&scope=mcp.access" | jq -r .access_token > token.txt
 ```
 
-Notă: Antetul Basic Authentication (`bWNwLWNsaWVudDpzZWNyZXQ=`) este codificarea Base64 a `mcp-client:secret`.
+Pe PowerShell, setează secretul local înainte de a rula Maven:
 
-### 3. Accesează endpoint-ul protejat folosind tokenul
+```powershell
+$env:OAUTH_CLIENT_SECRET = "replace-with-a-random-local-secret"
+mvn spring-boot:run
+```
+
+### 3. Accesează endpoint-ul protejat folosind token-ul
 
 ```bash
 # Folosind tokenul salvat
@@ -88,7 +99,7 @@ curl -H "Authorization: Bearer $(cat token.txt)" http://localhost:8081/hello
 curl -H "Authorization: Bearer eyJra...token_value...xyz" http://localhost:8081/hello
 ```
 
-Un răspuns cu succes și mesajul "Hello from MCP OAuth2 Demo!" confirmă că configurația OAuth2 funcționează corect.
+Un răspuns de succes cu „Hello from MCP OAuth2 Demo!” confirmă că configurația OAuth2 funcționează corect.
 
 ---
 
@@ -96,12 +107,26 @@ Un răspuns cu succes și mesajul "Hello from MCP OAuth2 Demo!" confirmă că co
 
 ```bash
 docker build -t mcp-oauth2-demo .
-docker run -p 8081:8081 mcp-oauth2-demo
+docker run --rm -p 8081:8081 \
+  -e OAUTH_CLIENT_SECRET="$OAUTH_CLIENT_SECRET" \
+  mcp-oauth2-demo
 ```
+
+## Securitate pentru producție
+
+Pentru un mediu de producție, folosește un furnizor de identitate dedicat în locul
+acestui server de autorizare demo în proces. Stochează acreditările într-un depozit
+securizat gestionat, rotește-le, folosește chei persistente pentru semnare, restricționează domeniile de acces,
+și setează un emițător explicit. Nu introduce niciodată un secret de client în codul sursă,
+imaginile containerelor, manifestele de implementare sau output-ul comenzilor.
+
+Pentru Azure Container Apps, stochează valoarea ca un secret în Container Apps susținut de
+Key Vault unde este posibil, apoi expune doar o referință de secret prin
+variabila de mediu `OAUTH_CLIENT_SECRET`.
 
 ---
 
-## Deploy pe **Azure Container Apps**
+## Implementare în **Azure Container Apps**
 
 ```bash
 az containerapp up -n mcp-oauth2 \
@@ -110,14 +135,14 @@ az containerapp up -n mcp-oauth2 \
   --ingress external --target-port 8081
 ```
 
-FQDN-ul ingress devine **issuer-ul** tău (`https://<fqdn>`).  
-Azure oferă automat un certificat TLS de încredere pentru domeniul `*.azurecontainerapps.io`.
+Numele complet calitativ FQDN de acces devine **emițătorul** tău (`https://<fqdn>`).  
+Azure furnizează automat un certificat TLS de încredere pentru `*.azurecontainerapps.io`.
 
 ---
 
-## Integrare cu **Azure API Management**
+## Integrare în **Azure API Management**
 
-Adaugă această politică inbound în API-ul tău:
+Adaugă această politică de intrare în API-ul tău:
 
 ```xml
 <inbound>
@@ -131,7 +156,7 @@ Adaugă această politică inbound în API-ul tău:
 </inbound>
 ```
 
-APIM va prelua JWKS-ul și va valida fiecare cerere.
+APIM va prelua JWKS și va valida fiecare cerere.
 
 ---
 
@@ -142,6 +167,6 @@ APIM va prelua JWKS-ul și va valida fiecare cerere.
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Declinare a responsabilității**:  
-Acest document a fost tradus folosind serviciul de traducere AI [Co-op Translator](https://github.com/Azure/co-op-translator). Deși ne străduim pentru acuratețe, vă rugăm să aveți în vedere că traducerile automate pot conține erori sau inexactități. Documentul original în limba sa nativă trebuie considerat sursa autoritară. Pentru informații critice, se recomandă traducerea profesională realizată de un specialist uman. Nu ne asumăm responsabilitatea pentru eventualele neînțelegeri sau interpretări greșite rezultate din utilizarea acestei traduceri.
+**Declinare a responsabilității**:
+Acest document a fost tradus folosind serviciul de traducere AI [Co-op Translator](https://github.com/Azure/co-op-translator). În timp ce ne străduim pentru acuratețe, vă rugăm să rețineți că traducerile automate pot conține erori sau inexactități. Documentul original în limba sa nativă trebuie considerat sursa autorizată. Pentru informații critice, se recomandă traducerea profesională realizată de un om. Nu ne asumăm responsabilitatea pentru eventualele neînțelegeri sau interpretări greșite care decurg din utilizarea acestei traduceri.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,48 +1,48 @@
-# ਮਾਡਲ ਸੰਦਰਭ ਪ੍ਰੋਟੋਕਾਲ (MCP) ਦਾ Microsoft Foundry ਨਾਲ ਏਕੀਕਰਨ
+# ਮਾਡਲ ਸੰਦੇਸ਼ ਪ੍ਰੋਟੋਕਾਲ (MCP) ਦਾ Microsoft Foundry ਨਾਲ ਇੰਟੀਗ੍ਰੇਸ਼ਨ
 
-ਇਹ ਗਾਈਡ ਦਿਖਾਉਂਦੀ ਹੈ ਕਿ ਕਿਵੇਂ ਮਾਡਲ ਸੰਦਰਭ ਪ੍ਰੋਟੋਕਾਲ (MCP) ਸਰਵਰਾਂ ਨੂੰ Microsoft Foundry ਏਜੰਟਾਂ ਨਾਲ ਜੋੜਿਆ ਜਾ ਸਕਦਾ ਹੈ, ਇਸ ਨਾਲ ਸ਼ਕਤੀਸ਼ਾਲੀ ਟੂਲ ਆਰਕੀਸਟਰੈਸ਼ਨ ਅਤੇ ਉਦਯੋਗ AI ਸਮਰਥਾਵਾਂ ਮੁਹੱਈਆ ਹੁੰਦੀਆਂ ਹਨ।
+ਇਹ ਗਾਈਡ ਦਰਸਾਉਂਦੀ ਹੈ ਕਿ ਕਿਵੇਂ ਮਾਡਲ ਸੰਦੇਸ਼ ਪ੍ਰੋਟੋਕਾਲ (MCP) ਸਰਵਰਾਂ ਨੂੰ Microsoft Foundry ਏਜੰਟਾਂ ਨਾਲ ਇੰਟੀਗ੍ਰੇਟ ਕਰਨਾ ਹੈ, ਜੋ ਸ਼ਕਤੀਸ਼ਾਲੀ ਟੂਲ ਆਰਕੇਸਟਰੈਸ਼ਨ ਅਤੇ ਉਦਯੋਗਿਕ AI ਸਮਰੱਥਾਵਾਂ ਨੂੰ ਯੋਗ ਬਣਾਉਂਦਾ ਹੈ।
 
 ## ਪਰਿਚਯ
 
-ਮਾਡਲ ਸੰਦਰਭ ਪ੍ਰੋਟੋਕਾਲ (MCP) ਇੱਕ ਖੁਲਾ ਮਿਆਰ ਹੈ ਜੋ AI ਐਪਲੀਕੇਸ਼ਨਾਂ ਨੂੰ ਬਾਹਰੀ ਡਾਟਾ ਸਰੋਤਾਂ ਅਤੇ ਟੂਲਾਂ ਨਾਲ ਸੁਰੱਖਿਅਤ ਤਰੀਕੇ ਨਾਲ ਜੁੜਨ ਦੇ ਯੋਗ ਬਣਾਉਂਦਾ ਹੈ। ਜਦੋਂ Microsoft Foundry ਨਾਲ ਐਕਠੇ ਕੀਤਾ ਜਾਂਦਾ ਹੈ, MCP ਏਜੰਟਾਂ ਨੂੰ ਵੱਖ-ਵੱਖ ਬਾਹਰੀ ਸਰਵਿਸਾਂ, APIs ਅਤੇ ਡਾਟਾ ਸਰੋਤਾਂ ਤੱਕ ਸਧਾਰਨ ਤਰੀਕੇ ਨਾਲ ਪਹੁੰਚ ਅਤੇ ਇੰਟਰੈਕਟ ਕਰਨ ਦੇ ਯੋਗ ਬਣਾਉਂਦਾ ਹੈ।
+ਮਾਡਲ ਸੰਦੇਸ਼ ਪ੍ਰੋਟੋਕਾਲ (MCP) ਇੱਕ ਖੁੱਲ੍ਹਾ ਮਾਪਦੰਡ ਹੈ ਜੋ AI ਐਪਲੀਕੇਸ਼ਨਾਂ ਨੂੰ ਬਾਹਰੀ ਡਾਟਾ ਸਰੋਤਾਂ ਅਤੇ ਟੂਲਾਂ ਨਾਲ ਸੁਰੱਖਿਅਤ ਤਰੀਕੇ ਨਾਲ ਜੁੜਨ ਦੇਣ ਦਾ ਸਮਰਥਨ ਕਰਦਾ ਹੈ। ਜਦੋਂ Microsoft Foundry ਨਾਲ ਇੰਟੀਗ੍ਰੇਟ ਕੀਤਾ ਜਾਂਦਾ ਹੈ, ਤਾਂ MCP ਏਜੰਟਾਂ ਨੂੰ ਵੱਖ-ਵੱਖ ਬਾਹਰੀ ਸੇਵਾਵਾਂ, API ਅਤੇ ਡਾਟਾ ਸਰੋਤਾਂ ਤੱਕ ਪਹੁੰਚ ਅਤੇ ਪਰਸਪਰਕਿਰਿਆ ਕਰਨ ਦੀ ਸਹੂਲਤ ਪ੍ਰਦਾਨ ਕਰਦਾ ਹੈ।
 
-ਇਹ ਏਕੀਕਰਨ MCP ਦੇ ਟੂਲ ਪਰਿਆਵਰਣ ਦੀ ਲਚਕੀਲਾਪਣਤਾ ਨੂੰ Microsoft Foundry ਦੇ ਮਜ਼ਬੂਤ ਏਜੰਟ ਫਰੇਮਵਰਕ ਨਾਲ ਜੋੜਦਾ ਹੈ, ਜਿਸ ਨਾਲ ਉਦਯੋਗ-ਗ੍ਰੇਡ AI ਹੱਲਾਂ ਵਿਆਪਕ ਕਸਟਮਾਈਜੇਸ਼ਨ ਸਮਰਥਾਵਾਂ ਨਾਲ ਮੁਹੱਈਆ ਹੁੰਦੇ ਹਨ।
+ਇਹ ਇੰਟੀਗ੍ਰੇਸ਼ਨ MCP ਦੇ ਟੂਲ ਇੱਕੋਸਿਸਟਮ ਦੀ ਲਚਕੀਲਾਪਣ ਨੂੰ Microsoft Foundry ਦੇ ਮਜ਼ਬੂਤ ਏਜੰਟ ਫਰੇਮਵਰਕ ਨਾਲ ਜੋੜਦਾ ਹੈ, ਜਿਸ ਨਾਲ ਉਦਯੋਗ-ਗਰੇਡ AI ਹੱਲ ਅਤੇ ਵਿਸ਼ਤ੍ਰਿਤ ਕਸਟਮਾਈਜ਼ੇਸ਼ਨ ਸਮਰੱਥਾਵਾਂ ਮਿਲਦੀਆਂ ਹਨ।
 
-**ਨੋਟ:** ਜੇ ਤੁਸੀਂ MCP ਨੂੰ Microsoft Foundry Agent Service ਵਿੱਚ ਵਰਤਣਾ ਚਾਹੁੰਦੇ ਹੋ, ਤਾਂ ਇਸ ਸਮੇਂ ਸਿਰਫ ਹੇਠਾਂ ਦਿੱਤੇ ਖੇਤਰ ਸਮਰਥਿਤ ਹਨ: westus, westus2, uaenorth, southindia ਅਤੇ switzerlandnorth
+**ਨੋਟ:** ਜੇ ਤੁਸੀਂ Microsoft Foundry ਏਜੰਟ ਸਰਵਿਸ ਵਿੱਚ MCP ਵਰਤਣਾ ਚਾਹੁੰਦੇ ਹੋ, ਤਾਂ ਹਾਲੇ ਸਿਰਫ਼ ਇਹਨਾਂ ਖੇਤਰਾਂ ਨੂੰ ਸਮਰਥਨ ਮਿਲਦਾ ਹੈ: westus, westus2, uaenorth, southindia ਅਤੇ switzerlandnorth
 
 ## ਸਿੱਖਣ ਦੇ ਉਦੇਸ਼
 
-ਇਸ ਗਾਈਡ ਦੇ ਅੰਤ ਤਕ, ਤੁਸੀਂ ਸਮਰੱਥ ਹੋਵੋਗੇ:
+ਇਸ ਗਾਈਡ ਦੇ ਅੰਤ ਤੱਕ, ਤੁਸੀਂ ਸਮਰੱਥ ਹੋਵੋਗੇ:
 
-- ਮਾਡਲ ਸੰਦਰਭ ਪ੍ਰੋਟੋਕਾਲ ਅਤੇ ਇਸਦੇ ਲਾਭਾਂ ਨੂੰ ਸਮਝਣਾ
-- Microsoft Foundry ਏਜੰਟਾਂ ਨਾਲ ਵਰਤੋਂ ਲਈ MCP ਸਰਵਰ ਸੈੱਟਅਪ ਕਰਨਾ
-- MCP ਟੂਲ ਏਕੀਕਰਨ ਨਾਲ ਏਜੰਟ ਬਣਾਉਣਾ ਅਤੇ ਸੰਰਚਿਤ ਕਰਨਾ
-- ਅਸਲੀ MCP ਸਰਵਰਾਂ ਦੀ ਵਰਤੋਂ ਕਰਦਿਆਂ ਪ੍ਰായੋਗਿਕ ਉਦਾਹਰਣ ਲਾਗੂ ਕਰਨਾ
-- ਏਜੰਟ ਗੱਲਬਾਤਾਂ ਵਿੱਚ ਟੂਲ ਜਵਾਬਾਂ ਅਤੇ ਹਵਾਲਿਆਂ ਨੂੰ ਸੰਭਾਲਣਾ
+- ਮਾਡਲ ਸੰਦੇਸ਼ ਪ੍ਰੋਟੋਕਾਲ ਅਤੇ ਇਸਦੇ ਫਾਇਦਿਆਂ ਨੂੰ ਸਮਝਣਾ
+- Microsoft Foundry ਏਜੰਟਾਂ ਲਈ MCP ਸਰਵਰ ਸੈਟ ਅੱਪ ਕਰਨਾ
+- MCP ਟੂਲ ਇੰਟੀਗ੍ਰੇਸ਼ਨ ਨਾਲ ਏਜੰਟ ਬਣਾਉਣਾ ਅਤੇ ਸੰਰਚਨਾ ਕਰਨਾ
+- ਅਸਲੀ MCP ਸਰਵਰਾਂ ਦਾ ਉਪਯੋਗ ਕਰਕੇ ਵਿਆਵਹਾਰਿਕ ਉਦਾਹਰਨਾਂ ਲਾਗੂ ਕਰਨਾ
+- ਏਜੰਟ ਗੱਲਬਾਤਾਂ ਵਿੱਚ ਟੂਲ ਜਵਾਬ ਅਤੇ ਸਰੋਤ ਹਵਾਲਿਆਂ ਨਾਲ ਨਿਪਟਣਾ
 
-## ਪਹਿਲਾਂ ਜ਼ਰੂਰੀਆਂ ਸ਼ਰਤਾਂ
+## ਲੋੜੀਂਦੇ ਪੂਰਵ-ਸ਼ਰਤਾਂ
 
 ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਇਹ ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਤੁਹਾਡੇ ਕੋਲ ਹੈ:
 
-- Microsoft Foundry ਐਕਸੈਸ ਵਾਲੀ ਇੱਕ Azure ਸਬਸਕ੍ਰਿਪਸ਼ਨ
+- ਇੱਕ Azure ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਜਿਸ ਵਿੱਚ Microsoft Foundry ਦੀ ਪਹੁੰਚ ਹੈ
 - Python 3.10+ ਜਾਂ .NET 8.0+
-- Azure CLI ਇੰਸਟਾਲ ਅਤੇ ਸੰਰਚਿਤ
-- AI ਸਰੋਤ ਬਣਾਉਣ ਲਈ ਯੋਗ ਅਧਿਕਾਰ
+- Azure CLI ਇੰਸਟਾਲ ਅਤੇ ਕੰਫਿਗਰ ਕੀਤੀ ਹੋਈ ਹੈ
+- AI ਸਰੋਤ ਬਣਾਉਣ ਲਈ ਉਚਿਤ ਅਧਿਕਾਰ
 
-## ਮਾਡਲ ਸੰਦਰਭ ਪ੍ਰੋਟੋਕਾਲ (MCP) ਕੀ ਹੈ?
+## ਮਾਡਲ ਸੰਦੇਸ਼ ਪ੍ਰੋਟੋਕਾਲ (MCP) ਕੀ ਹੈ?
 
-ਮਾਡਲ ਸੰਦਰਭ ਪ੍ਰੋਟੋਕਾਲ ਇੱਕ ਮਿਆਰੀ ਤਰੀਕਾ ਹੈ ਜੋ AI ਐਪਲੀਕੇਸ਼ਨਾਂ ਨੂੰ ਬਾਹਰੀ ਡਾਟਾ ਸਰੋਤਾਂ ਅਤੇ ਟੂਲਾਂ ਨਾਲ ਜੁੜਨ ਲਈ ਯੋਗ ਬਣਾਉਂਦਾ ਹੈ। ਮੁੱਖ ਲਾਭ ਇਸ ਪ੍ਰਕਾਰ ਹਨ:
+ਮਾਡਲ ਸੰਦੇਸ਼ ਪ੍ਰੋਟੋਕਾਲ AI ਐਪਲੀਕੇਸ਼ਨਾਂ ਲਈ ਬਾਹਰੀ ਡਾਟਾ ਸਰੋਤਾਂ ਅਤੇ ਟੂਲਾਂ ਨਾਲ ਜੁੜਨ ਦਾ ਇੱਕ ਮਾਪਦੰਡ ਤਰੀਕਾ ਹੈ। ਮੁੱਖ ਫਾਇਦੇ ਇਹ ਹਨ:
 
-- **ਮਿਆਰੀਕ੍ਰਿਤ ਏਕੀਕਰਨ**: ਵੱਖ-ਵੱਖ ਟੂਲਾਂ ਅਤੇ ਸੇਵਾਵਾਂ ਲਈ ਇੱਕਸਾਰ ਇੰਟਰਫੇਸ
-- **ਸੁਰੱਖਿਆ**: ਸੁਰੱਖਿਅਤ ਪ੍ਰਮਾਣਿਕਤਾ ਅਤੇ ਅਧਿਕਾਰ ਪ੍ਰਣਾਲੀਆਂ
-- **ਲਚਕੀਲਾਪਣਤਾ**: ਵੱਖ-ਵੱਖ ਡਾਟਾ ਸਰੋਤਾਂ, APIs ਅਤੇ ਕਸਟਮ ਟੂਲਾਂ ਲਈ ਸਮਰਥਨ
-- **ਵਿਸਤਾਰਯੋਗਤਾ**: ਨਵੀਆਂ ਸਮਰਥਾਵਾਂ ਅਤੇ ਏਕੀਕਰਨੇ ਜੋੜਣਾ ਆਸਾਨ
+- **ਮਿਆਰੀਕ੍ਰਿਤ ਇੰਟੀਗ੍ਰੇਸ਼ਨ**: ਵੱਖ-ਵੱਖ ਟੂਲਾਂ ਅਤੇ ਸੇਵਾਵਾਂ ਲਈ ਸਥਿਰ ਇੰਟਰਫੇਸ
+- **ਸੁਰੱਖਿਆ**: ਸੁਰੱਖਿਅਤ ਪ੍ਰਮਾਣੀਕਰਨ ਅਤੇ ਅਧਿਕਾਰਣ ਪ੍ਰਣਾਲੀਆਂ
+- **ਲਚਕੀਲਾਪਣ**: ਵੱਖ-ਵੱਖ ਡਾਟਾ ਸਰੋਤਾਂ, API ਅਤੇ ਕਸਟਮ ਟੂਲਾਂ ਲਈ ਸਹਿਯੋਗ
+- **ਵਧਾਉਣਯੋਗਤਾ**: ਨਵੀਆਂ ਸਮਰੱਥਾਵਾਂ ਅਤੇ ਇੰਟੀਗ੍ਰੇਸ਼ਨਾਂ ਨੂੰ ਆਸਾਨੀ ਨਾਲ ਜੋੜਨਾ
 
-## Microsoft Foundry ਨਾਲ MCP ਸੈੱਟਅਪ ਕਰਨਾ
+## Microsoft Foundry ਨਾਲ MCP ਸੈਟਅੱਪ ਕਰਨਾ
 
-### ਵਾਤਾਵਰਨ ਸੰਰਚਨਾ
+### ਮਹੌਲ ਸੰਰਚਨਾ
 
-ਆਪਣੇ ਮਨਪਸੰਦ ਡਿਵੈਲਪਮੈਂਟ ਵਾਤਾਵਰਨ ਦੀ ਚੋਣ ਕਰੋ:
+ਆਪਣੀ ਮਨਪਸੰਦ ਵਿਕਾਸ ਮਹੌਲ ਦੀ ਚੋਣ ਕਰੋ:
 
 - [Python Implementation](#python-implementation)
 - [.NET Implementation](#codeblock5)
@@ -53,7 +53,7 @@
 
 ***ਨੋਟ*** ਤੁਸੀਂ ਇਹ [ਨੋਟਬੁੱਕ](./mcp_support_python.ipynb) ਚਲਾ ਸਕਦੇ ਹੋ
 
-### 1. ਲੋੜੀਂਦੇ ਪੈਕੇਜ ਇੰਸਟਾਲ ਕਰੋ
+### 1. ਜ਼ਰੂਰੀ ਪੈਕੇਜ ਇੰਸਟਾਲ ਕਰੋ
 
 ```bash
 pip install azure-ai-projects -U
@@ -62,7 +62,7 @@ pip install azure-identity -U
 pip install mcp==1.11.0 -U
 ```
 
-### 2. ਡਿਪੈਂਡੈਂਸੀਜ਼ ਇੰਪੋਰਟ ਕਰੋ
+### 2. ਡਿਪੈਂਡੰਸੀਆਂ ਆਮਦਨ ਕਰੋ
 
 ```python
 import os, time
@@ -71,14 +71,14 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.agents.models import McpTool, RequiredMcpToolCall, SubmitToolApprovalAction, ToolApproval
 ```
 
-### 3. MCP ਸੈਟਿੰਗਸ ਸੰਰਚਿਤ ਕਰੋ
+### 3. MCP ਸੈਟਿੰਗਜ਼ ਕੰਫਿਗਰ ਕਰੋ
 
 ```python
 mcp_server_url = os.environ.get("MCP_SERVER_URL", "https://learn.microsoft.com/api/mcp")
 mcp_server_label = os.environ.get("MCP_SERVER_LABEL", "mslearn")
 ```
 
-### 4. ਪ੍ਰੋਜੈਕਟ ਕਲਾਇੰਟ ਸ਼ੁਰੂਆਤ ਕਰੋ
+### 4. ਪ੍ਰੋਜੈਕਟ ਕਲਾਇੰਟ ਸ਼ੁਰੂ ਕਰੋ
 
 ```python
 project_client = AIProjectClient(
@@ -93,17 +93,17 @@ project_client = AIProjectClient(
 mcp_tool = McpTool(
     server_label=mcp_server_label,
     server_url=mcp_server_url,
-    allowed_tools=[],  # ਵਿਕਲਪਿਕ: ਆਗਿਆਯਤ ਸੰਦਾਂ ਨੂੰ ਦਰਸਾਓ
+    allowed_tools=[],  # ਵਿਕਲਪੀ: ਮਨਜ਼ੂਰਸ਼ੁਦਾ ਤਕਨੀਕਾਂ ਦਰਜ ਕਰੋ
 )
 ```
 
-### 6. ਪੂਰਾ Python ਉਦਾਹਰਣ
+### 6. ਪੂਰਾ Python ਉਦਾਹਰਨ
 
 ```python
 with project_client:
     agents_client = project_client.agents
 
-    # MCP ਟੂਲਜ਼ ਨਾਲ ਨਵਾਂ ਏਜੰਟ ਬਣਾਓ
+    # MCP ਟੂਲਾਂ ਨਾਲ ਨਵਾਂ ਏਜੰਟ ਬਣਾਓ
     agent = agents_client.create_agent(
         model="Your AOAI Model Deployment",
         name="my-mcp-agent",
@@ -113,11 +113,11 @@ with project_client:
     print(f"Created agent, ID: {agent.id}")
     print(f"MCP Server: {mcp_tool.server_label} at {mcp_tool.server_url}")
 
-    # ਸੰਚਾਰ ਲਈ ਧਾਗਾ ਬਣਾਓ
+    # ਸੰਚਾਰ ਲਈ ਤਾਰ ਬਣਾਓ
     thread = agents_client.threads.create()
     print(f"Created thread, ID: {thread.id}")
 
-    # ਧਾਗੇ ਲਈ ਸੁਨੇਹਾ ਬਣਾਓ
+    # ਤਾਰ ਲਈ ਸੁਨੇਹਾ ਬਣਾਓ
     message = agents_client.messages.create(
         thread_id=thread.id,
         role="user",
@@ -125,7 +125,7 @@ with project_client:
     )
     print(f"Created message, ID: {message.id}")
 
-    # ਟੂਲ ਮਨਜ਼ੂਰੀਆਂ ਸੰਭਾਲੋ ਅਤੇ ਏਜੰਟ ਚਲਾਓ
+    # ਟੂਲ ਮਨਜ਼ੂਰੀਆਂ ਨੂੰ ਸੰਭਾਲੋ ਅਤੇ ਏਜੰਟ ਚਲਾਓ
     mcp_tool.update_headers("SuperSecret", "123456")
     run = agents_client.runs.create(thread_id=thread.id, agent_id=agent.id, tool_resources=mcp_tool.resources)
     print(f"Created run, ID: {run.id}")
@@ -182,21 +182,21 @@ with project_client:
 
 ***ਨੋਟ*** ਤੁਸੀਂ ਇਹ [ਨੋਟਬੁੱਕ](./mcp_support_dotnet.ipynb) ਚਲਾ ਸਕਦੇ ਹੋ
 
-### 1. ਲੋੜੀਂਦੇ ਪੈਕੇਜ ਇੰਸਟਾਲ ਕਰੋ
+### 1. ਜ਼ਰੂਰੀ ਪੈਕੇਜ ਇੰਸਟਾਲ ਕਰੋ
 
 ```csharp
 #r "nuget: Azure.AI.Agents.Persistent, 1.1.0-beta.4"
 #r "nuget: Azure.Identity, 1.14.2"
 ```
 
-### 2. ਡਿਪੈਂਡੈਂਸੀਜ਼ ਇੰਪੋਰਟ ਕਰੋ
+### 2. ਡਿਪੈਂਡੰਸੀਆਂ ਆਮਦਨ ਕਰੋ
 
 ```csharp
 using Azure.AI.Agents.Persistent;
 using Azure.Identity;
 ```
 
-### 3. ਸੈਟਿੰਗਸ ਸੰਰਚਿਤ ਕਰੋ
+### 3. ਸੈਟਿੰਗਜ਼ ਕੰਫਿਗਰ ਕਰੋ
 
 ```csharp
 var projectEndpoint = "https://your-project-endpoint.services.ai.azure.com/api/projects/your-project";
@@ -223,7 +223,7 @@ PersistentAgent agent = await agentClient.Administration.CreateAgentAsync(
    );
 ```
 
-### 6. ਪੂਰਾ .NET ਉਦਾਹਰਣ
+### 6. ਪੂਰਾ .NET ਉਦਾਹਰਨ
 
 ```csharp
 // Create thread and message
@@ -299,15 +299,15 @@ await foreach (PersistentThreadMessage threadMessage in messages)
 
 ## MCP ਟੂਲ ਸੰਰਚਨਾ ਵਿਕਲਪ
 
-ਜਦੋਂ ਤੁਸੀਂ ਆਪਣੇ ਏਜੰਟ ਲਈ MCP ਟੂਲ ਸੰਰਚਿਤ ਕਰ ਰਹੇ ਹੋ, ਤੁਸੀਂ ਕਈ ਮਹੱਤਵਪੂਰਨ ਪੈਰਾਮੀਟਰ ਨਿਰਧਾਰਤ ਕਰ ਸਕਦੇ ਹੋ:
+ਜਦੋਂ ਤੁਸੀਂ ਆਪਣੇ ਏਜੰਟ ਲਈ MCP ਟੂਲਾਂ ਨੂੰ ਸੰਰਚਿਤ ਕਰ ਰਹੇ ਹੋ, ਤਾਂ ਤੁਸੀਂ ਕਈ ਮਹੱਤਵਪੂਰਨ ਪੈਰਾਮੀਟਰ ਨਿਰਧਾਰਤ ਕਰ ਸਕਦੇ ਹੋ:
 
 ### Python ਸੰਰਚਨਾ
 
 ```python
 mcp_tool = McpTool(
-    server_label="unique_server_name",      # MCP ਸਰਵਰ ਲਈ ਪਹਚਾਣਕ
-    server_url="https://api.example.com/mcp", # MCP ਸਰਵਰ ਐਂਡਪੌਇੰਟ
-    allowed_tools=[],                       # ਵਿਕਲਪਿਕ: ਮਨਜ਼ੂਰਸ਼ੁਦਾ ਸਾਧਨਾਂ ਨੂੰ ਦਰਸਾਓ
+    server_label="unique_server_name",      # MCP ਸਰਵਰ ਲਈ ਪਹਚਾਣਿਕਤਾ
+    server_url="https://api.example.com/mcp", # MCP ਸਰਵਰ ਐਂਡਪਾਇੰਟ
+    allowed_tools=[],                       # ਵਿਕਲਪਕ: ਇਜਾਜ਼ਤ ਦੱਤੇ ਗਏ ਟੂਲ ਹਦਾਇਤ ਕਰੋ
 )
 ```
 
@@ -320,9 +320,9 @@ MCPToolDefinition mcpTool = new(
 );
 ```
 
-## ਪ੍ਰਮਾਣਿਕਤਾ ਅਤੇ ਹੈਡਰਜ਼
+## ਪ੍ਰਮਾਣੀਕਰਨ ਅਤੇ ਹੈਡਰਜ਼
 
-ਦੋਹਾਂ ਇਮਪਲਿਮੈਂਟੇਸ਼ਨਾਂ ਵਿੱਚ ਪ੍ਰਮਾਣਿਕਤਾ ਲਈ ਕਸਟਮ ਹੈਡਰਜ਼ ਦਾ ਸਮਰਥਨ ਹੈ:
+ਦੋਹਾਂ ਇੰਪਲੀਮੈਂਟੇਸ਼ਨਾਂ ਵਿੱਚ ਪ੍ਰਮਾਣੀਕਰਨ ਲਈ ਕਸਟਮ ਹੈਡਰਜ਼ ਦਾ ਸਮਰਥਨ ਹੈ:
 
 ### Python
 ```python
@@ -335,46 +335,46 @@ MCPToolResource mcpToolResource = new(mcpServerLabel);
 mcpToolResource.UpdateHeader("SuperSecret", "123456");
 ```
 
-## ਆਮ ਸਮੱਸਿਆਵਾਂ ਦਾ ਨਿਵਾਰਣ
+## ਆਮ ਸਮੱਸਿਆਵਾਂ ਲਈ ਟ੍ਰਬਲਸ਼ੂਟਿੰਗ
 
 ### 1. ਕਨੈਕਸ਼ਨ ਸਮੱਸਿਆਵਾਂ
-- MCP ਸਰਵਰ URL ਦੀ ਪਹੁੰਚ ਯਕੀਨੀ ਬਣਾਓ
-- ਪ੍ਰਮਾਣਿਕਤਾ ਦੀਆਂ ਸਹੀ ਜਾਣਕਾਰੀਆਂ ਦੀ ਜਾਂਚ ਕਰੋ
-- ਨੈੱਟਵਰਕ ਕਨੈਕਟਿਵਿਟੀ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ
+- MCP ਸਰਵਰ URL ਦੀ ਪਹੁੰਚਯੋਗਤਾ ਦੀ ਜਾਂਚ ਕਰੋ
+- ਪ੍ਰਮਾਣੀਕਰਨ ਪ੍ਰਮਾਣਪੱਤਰ ਚੈੱਕ ਕਰੋ
+- ਨੈੱਟਵਰਕ ਕੁਨੈਕਟਿਵਿਟੀ ਯਕੀਨੀ ਬਣਾਓ
 
-### 2. ਟੂਲ ਕਾਲ ਫੇਲ੍ਹ
-- ਟੂਲ ਆਰਗਯੂਮੈਂਟਸ ਅਤੇ ਫਾਰਮੈਟਿੰਗ ਦੀ ਸਮੀਖਿਆ ਕਰੋ
-- ਸਰਵਰ-ਵਿਸ਼ੇਸ਼ ਲੋੜਾਂ ਦੀ ਜਾਂਚ ਕਰੋ
-- ਠੀਕ ਤਰੀਕੇ ਨਾਲ ਗਲਤੀ ਹੈਂਡਲਿੰਗ ਲਾਗੂ ਕਰੋ
+### 2. ਟੂਲ ਕਾਲ ਫੇਲਯੁਰਜ਼
+- ਟੂਲ ਆਰਗੁਮੈਂਟ ਅਤੇ ਫਾਰਮੈਟਿੰਗ ਦੀ ਸਮੀਖਿਆ ਕਰੋ
+- ਸਰਵਰ-ਖ਼ਾਸ ਲੋੜਾਂ ਦੀ ਜਾਂਚ ਕਰੋ
+- ਢੰਗ ਨਾਲ ਗਲਤੀ ਸੰਭਾਲ ਲਾਗੂ ਕਰੋ
 
-### 3. ਪ੍ਰਦਰਸ਼ਨ ਸੰਬੰਧੀ ਸਮੱਸਿਆਵਾਂ
-- ਟੂਲ ਕਾਲ ਦੀ ਆਵ੍ਰਤੀ ਸੁਧਾਰੋ
-- ਜਿੱਥੇ ਲੋੜ ਹੋਵੇ ਕੈਸ਼ਿੰਗ ਲਾਗੂ ਕਰੋ
+### 3. ਕਾਰਗੁਜ਼ਾਰੀ ਦੀਆਂ ਸਮੱਸਿਆਵਾਂ
+- ਟੂਲ ਕਾਲ ਦੀ ਆਵ੍ਰਿਤੀ ਨੂੰ ਅਨੁਕੂਲ ਕਰੋ
+- ਜਿੱਥੇ ਠੀਕ ਹੋਵੇ ਕੈਸ਼ਿੰਗ ਲਾਗੂ ਕਰੋ
 - ਸਰਵਰ ਜਵਾਬ ਸਮਿਆਂ ਦੀ ਨਿਗਰਾਨੀ ਕਰੋ
 
 ## ਅੱਗੇ ਦੇ ਕਦਮ
 
-ਆਪਣੇ MCP ਏਕੀਕਰਨ ਨੂੰ ਹੋਰ ਵਧੀਆ ਬਣਾਉਣ ਲਈ:
+ਆਪਣੀ MCP ਇੰਟੀਗ੍ਰੇਸ਼ਨ ਨੂੰ ਹੋਰ ਬਿਹਤਰ ਬਣਾਉਣ ਲਈ:
 
-1. **ਕਸਟਮ MCP ਸਰਵਰਾਂ ਦੀ ਖੋਜ ਕਰੋ**: ਆਪਣੇ ਖਾਸ ਡਾਟਾ ਸਰੋਤਾਂ ਲਈ ਆਪਣਾ MCP ਸਰਵਰ ਬਣਾਓ
-2. **ਉੱਚ ਸੁਰੱਖਿਆ ਲਾਗੂ ਕਰੋ**: OAuth2 ਜਾਂ ਕਸਟਮ ਪ੍ਰਮਾਣਿਕਤਾ ਤंत्र ਸ਼ਾਮਲ ਕਰੋ
-3. **ਨਿਗਰਾਨੀ ਅਤੇ ਵਿਸ਼ਲੇਸ਼ਣ**: ਟੂਲ ਦੀ ਵਰਤੋਂ ਲਈ ਲੌਗਿੰਗ ਅਤੇ ਨਿਗਰਾਨੀ ਲਾਗੂ ਕਰੋ
-4. **ਆਪਣੇ ਹੱਲ ਨੂੰ ਪੈਮਾਨੇ ‘ਤੇ ਲਿਆਓ**: ਲੋਡ ਬੈਲੈਂਸਿੰਗ ਅਤੇ ਵਿਤਰਿਤ MCP ਸਰਵਰ ਆਰਕੀਟੈਕਚਰਾਂ ਬਾਰੇ ਸੋਚੋ
+1. **ਕਸਟਮ MCP ਸਰਵਰ ਖੋਜੋ**: ਆਪਣੀ ਖਾਸ ਡਾਟਾ ਸਰੋਤਾਂ ਲਈ MCP ਸਰਵਰ ਬਣਾਓ
+2. **ਉੱਚ ਸੁਰੱਖਿਆ ਲਾਗੂ ਕਰੋ**: OAuth2 ਜਾਂ ਕਸਟਮ ਪ੍ਰਮਾਣੀਕਰਨ ਮਕੈਨਿਜ਼ਮ ਸ਼ਾਮਲ ਕਰੋ
+3. **ਮਾਨੀਟਰਿੰਗ ਅਤੇ ਵਿਸ਼ਲੇਸ਼ਣ**: ਟੂਲ ਵਰਤੋਂ ਲਈ ਲੋਗਿੰਗ ਅਤੇ ਮਾਨੀਟਰਿੰਗ ਲਾਗੂ ਕਰੋ
+4. **ਆਪਣੇ ਹੱਲ ਨੂੰ ਵੱਡਾ ਕਰੋ**: ਲੋਡ ਬੈਲੈਂਸਿੰਗ ਅਤੇ ਵੰਡੇ MCP ਸਰਵਰ ਆਰਕੀਟੈਕਚਰਾਂ ਬਾਰੇ ਸੋਚੋ
 
 ## ਵਾਧੂ ਸਰੋਤ
 
 - [Microsoft Foundry ਦਸਤਾਵੇਜ਼ੀकरण](https://learn.microsoft.com/azure/ai-foundry/)
-- [ਮਾਡਲ ਸੰਦਰਭ ਪ੍ਰੋਟੋਕਾਲ ਨਮੂਨੇ](https://learn.microsoft.com/azure/ai-foundry/agents/how-to/tools/model-context-protocol-samples)
-- [Microsoft Foundry ਏਜੰਟਸ ਦਾ ਓਵਰਵਿਊ](https://learn.microsoft.com/azure/ai-foundry/agents/)
-- [MCP ਵਿਸ਼ੇਸ਼ਤਾ](https://spec.modelcontextprotocol.io/)
+- [ਮਾਡਲ ਸੰਦੇਸ਼ ਪ੍ਰੋਟੋਕਾਲ ਨਮੂਨੇ](https://learn.microsoft.com/azure/ai-foundry/agents/how-to/tools/model-context-protocol-samples)
+- [Microsoft Foundry ਏਜੰਟ ਪੂਰਵ-ਦ੍ਰਿਸ਼ਟੀ](https://learn.microsoft.com/azure/ai-foundry/agents/)
+- [MCP ਸਪੈਸੀਫਿਕੇਸ਼ਨ](https://modelcontextprotocol.io/specification/2026-07-28/)
 
 ## ਸਹਾਇਤਾ
 
 ਵਾਧੂ ਸਹਾਇਤਾ ਅਤੇ ਸਵਾਲਾਂ ਲਈ:
-- [Microsoft Foundry ਦਸਤਾਵੇਜ਼ੀकरण](https://learn.microsoft.com/azure/ai-foundry/) ਵੇਖੋ
-- [MCP ਕਮਿਊਨਿਟੀ ਸਰੋਤ](https://modelcontextprotocol.io/) ਚੈੱਕ ਕਰੋ
+- [Microsoft Foundry ਦਸਤਾਵੇਜ਼ੀ』ਖੋ](https://learn.microsoft.com/azure/ai-foundry/)
+- [MCP ਸਮੁਦਾਇ ਸਰੋਤਾਂ ਦਾ ਜਾਇਜ਼ਾ ਲਓ](https://modelcontextprotocol.io/)
 
-## ਅੱਗੇ ਕੀ
+## ਅਗਲਾ ਕੀ ਹੈ
 
 - [5.14 MCP Context Engineering](../mcp-contextengineering/README.md)
 

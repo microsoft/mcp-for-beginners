@@ -1,39 +1,41 @@
-# MCP 服务器的 stdio 传输
+# 使用 stdio 传输的 MCP 服务器
 
-> **⚠️ 重要更新**：自 MCP 规格 2025-06-18 起，独立的 SSE（服务器发送事件）传输已被<strong>弃用</strong>，并由“可流式 HTTP”传输取代。当前 MCP 规格定义了两种主要传输机制：
+> **⚠️ 重要更新**：自 MCP 规范 2025-06-18 起，独立的 SSE（Server-Sent Events）传输已被<strong>弃用</strong>，并由“可流式 HTTP”传输取代。当前 MCP 规范定义了两种主要的传输机制：
 > 1. **stdio** - 标准输入/输出（推荐用于本地服务器）
 > 2. **可流式 HTTP** - 用于可能在内部使用 SSE 的远程服务器
 >
-> 本课程已更新为重点介绍<strong>stdio 传输</strong>，这是大多数 MCP 服务器实现的推荐方法。
+> 本课程已更新，重点讲解<strong>stdio 传输</strong>，这是大多数 MCP 服务器实现的推荐方式。
 
-stdio 传输允许 MCP 服务器通过标准输入和输出流与客户端通信。这是当前 MCP 规格中最常用且推荐的传输机制，提供了一种简单高效的方式构建 MCP 服务器，方便与各种客户端应用集成。
+stdio 传输允许 MCP 服务器通过标准输入和输出流与客户端通信。这是当前 MCP 规范中最常用且推荐的传输机制，提供了一种简单高效的方式来构建易于与各种客户端应用程序集成的 MCP 服务器。
 
-## 概述
+## 概览
 
-本课程讲解如何使用 stdio 传输构建和使用 MCP 服务器。
+本课程介绍如何使用 stdio 传输构建和使用 MCP 服务器。
 
 ## 学习目标
 
-完成本课程后，您将能够：
+课程结束后，您将能够：
 
 - 使用 stdio 传输构建 MCP 服务器。
 - 使用 Inspector 调试 MCP 服务器。
-- 使用 Visual Studio Code 使用 MCP 服务器。
-- 理解当前 MCP 传输机制及 stdio 推荐的原因。
+- 在 Visual Studio Code 中使用 MCP 服务器。
+- 理解当前 MCP 传输机制及为何推荐使用 stdio。
+
 
 ## stdio 传输 - 工作原理
 
-stdio 传输是当前 MCP 规格（2025-11-25）支持的两种传输类型之一。其工作方式如下：
+stdio 传输是 MCP 规范
+`2026-07-28` 中的两种标准传输之一。其工作方式如下：
 
-- <strong>简单通信</strong>：服务器从标准输入 (`stdin`) 读取 JSON-RPC 消息，向标准输出 (`stdout`) 发送消息。
+- <strong>简单通信</strong>：服务器从标准输入（`stdin`）读取 JSON-RPC 消息，并向标准输出（`stdout`）发送消息。
 - <strong>基于进程</strong>：客户端将 MCP 服务器作为子进程启动。
-- <strong>消息格式</strong>：消息为单独的 JSON-RPC 请求、通知或响应，以换行符分隔。
-- <strong>日志记录</strong>：服务器可向标准错误 (`stderr`) 写入 UTF-8 字符串用于日志。
+- <strong>消息格式</strong>：消息是单独的 JSON-RPC 请求、通知或响应，以换行符分隔。
+- <strong>日志记录</strong>：服务器可向标准错误（`stderr`）写入 UTF-8 字符串以进行日志记录。
 
-### 关键要求：
-- 消息必须以换行符分隔，且消息内部不得包含嵌入的换行符
-- 服务器不得向 `stdout` 写入非有效 MCP 消息的内容
-- 客户端不得向服务器的 `stdin` 写入非有效 MCP 消息的内容
+### 主要要求：
+- 消息必须由换行符分隔，且不得包含嵌入的换行符
+- 服务器不得向 `stdout` 写入非有效 MCP 消息内容
+- 客户端不得向服务器的 `stdin` 写入非有效 MCP 消息内容
 
 ### TypeScript
 
@@ -61,11 +63,11 @@ async function runServer() {
 runServer().catch(console.error);
 ```
 
-在上述代码中：
+上述代码中：
 
-- 我们从 MCP SDK 导入了 `Server` 类和 `StdioServerTransport`
+- 我们从 MCP SDK 中导入了 `Server` 类和 `StdioServerTransport`
 - 创建了一个具有基本配置和功能的服务器实例
-- 创建了一个 `StdioServerTransport` 实例并将服务器连接至其，实现了基于 stdin/stdout 的通信
+- 创建了 `StdioServerTransport` 实例并将服务器连接到它，实现通过 stdin/stdout 通信
 
 ### Python
 
@@ -95,11 +97,11 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-上述代码中：
+以上代码中我们：
 
 - 使用 MCP SDK 创建服务器实例
-- 通过装饰器定义工具
-- 使用 stdio_server 上下文管理传输
+- 用装饰器定义工具
+- 使用 stdio_server 上下文管理器处理传输
 
 ### .NET
 
@@ -122,29 +124,29 @@ var app = builder.Build();
 await app.RunAsync();
 ```
 
-与 SSE 的主要区别在于，stdio 服务器：
+与 SSE 的主要区别在于 stdio 服务器：
 
-- 不需要搭建 Web 服务器或 HTTP 端点
+- 不需要 Web 服务器设置或 HTTP 端点
 - 由客户端作为子进程启动
 - 通过 stdin/stdout 流通信
 - 实现和调试更简单
 
 ## 练习：创建 stdio 服务器
 
-创建服务器时需牢记两点：
+创建服务器时，我们需要记住两点：
 
-- 需要使用 Web 服务器暴露连接和消息端点。
-## 实验：创建简单的 MCP stdio 服务器
+- 我们需要使用 Web 服务器来暴露连接和消息端点。
+## 实验：创建一个简单的 MCP stdio 服务器
 
-本实验将使用推荐的 stdio 传输创建简单的 MCP 服务器。该服务器将暴露客户端可以调用的工具，遵循标准的模型上下文协议。
+本实验中，我们将使用推荐的 stdio 传输创建一个简单的 MCP 服务器。该服务器将暴露供客户端使用标准 Model Context Protocol 调用的工具。
 
-### 前提条件
+### 先决条件
 
-- Python 3.8 或以上版本
+- Python 3.8 或更高版本
 - MCP Python SDK：`pip install mcp`
-- 异步编程基础
+- 对异步编程有基本了解
 
-我们先创建首个 MCP stdio 服务器：
+让我们开始创建第一个 MCP stdio 服务器：
 
 ```python
 import asyncio
@@ -171,7 +173,7 @@ def get_greeting(name: str) -> str:
     return f"Hello, {name}! Welcome to MCP stdio server."
 
 async def main():
-    # 使用标准输入输出传输
+    # 使用 stdio 传输
     async with stdio_server(server) as (read_stream, write_stream):
         await server.run(
             read_stream,
@@ -183,32 +185,32 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-## 与已弃用 SSE 方式的关键区别
+## 与弃用的 SSE 方法的关键区别
 
 **Stdio 传输（当前标准）：**
-- 简单的子进程模型 — 客户端启动服务器作为子进程
+- 简单的子进程模型 - 客户端启动服务器作为子进程
 - 通过 stdin/stdout 使用 JSON-RPC 消息通信
-- 无需 HTTP 服务器搭建
+- 无需设置 HTTP 服务器
 - 性能和安全性更佳
-- 调试和开发更便利
+- 更易于调试和开发
 
 **SSE 传输（自 MCP 2025-06-18 起弃用）：**
-- 需要 HTTP 服务器以及 SSE 端点
-- 需要 Web 服务器基础设施，设置复杂
-- HTTP 端点需要额外安全考虑
-- 现被可流式 HTTP 取代用于基于 Web 的场景
+- 需要带有 SSE 端点的 HTTP 服务器
+- 需要更复杂的 Web 服务器基础设施
+- HTTP 端点有额外的安全考量
+- 已被用于 Web 场景的可流式 HTTP 取代
 
 ### 使用 stdio 传输创建服务器
 
-创建 stdio 服务器需要：
+创建 stdio 服务器，我们需要：
 
-1. <strong>导入所需库</strong> — MCP 服务器组件及 stdio 传输
-2. <strong>创建服务器实例</strong> — 定义服务器功能
-3. <strong>定义工具</strong> — 添加希望暴露的功能
-4. <strong>设置传输</strong> — 配置 stdio 通信
-5. <strong>运行服务器</strong> — 启动服务器并处理消息
+1. <strong>导入所需库</strong> - 需要 MCP 服务器组件和 stdio 传输
+2. <strong>创建服务器实例</strong> - 定义服务器及其能力
+3. <strong>定义工具</strong> - 添加要暴露的功能
+4. <strong>设置传输</strong> - 配置 stdio 通信
+5. <strong>运行服务器</strong> - 启动服务器并处理消息
 
-我们逐步构建：
+让我们一步步构建：
 
 ### 第 1 步：创建基础 stdio 服务器
 
@@ -268,7 +270,7 @@ def get_server_info() -> dict:
 
 ### 第 3 步：运行服务器
 
-将代码保存为 `server.py`，并从命令行运行：
+将代码保存为 `server.py`，然后从命令行运行：
 
 ```bash
 python server.py
@@ -278,11 +280,11 @@ python server.py
 
 ### 第 4 步：使用 Inspector 测试
 
-你可以用 MCP Inspector 测试服务器：
+您可以使用 MCP Inspector 测试您的服务器：
 
 1. 安装 Inspector：`npx @modelcontextprotocol/inspector`
-2. 运行 Inspector 并指向你的服务器
-3. 测试你创建的工具
+2. 运行 Inspector 并指向您的服务器
+3. 测试您创建的工具
 
 ### .NET
 
@@ -291,11 +293,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddMcpServer();
  ```
-## 调试你的 stdio 服务器
+## 调试您的 stdio 服务器
 
 ### 使用 MCP Inspector
 
-MCP Inspector 是调试和测试 MCP 服务器的有力工具。使用 stdio 服务器时的使用方法如下：
+MCP Inspector 是调试和测试 MCP 服务器的有价值工具。以下是如何与您的 stdio 服务器一起使用它：
 
 1. **安装 Inspector**：
    ```bash
@@ -307,17 +309,17 @@ MCP Inspector 是调试和测试 MCP 服务器的有力工具。使用 stdio 服
    npx @modelcontextprotocol/inspector python server.py
    ```
 
-3. <strong>测试服务器</strong>：Inspector 提供了网页界面，允许你：
+3. <strong>测试服务器</strong>：Inspector 提供一个 Web 界面，您可以在其中：
    - 查看服务器能力
-   - 测试工具及不同参数
-   - 监控 JSON-RPC 消息
+   - 使用不同参数测试工具
+   - 监视 JSON-RPC 消息
    - 调试连接问题
 
 ### 使用 VS Code
 
-你也可以在 VS Code 中直接调试 MCP 服务器：
+您也可以直接在 VS Code 中调试 MCP 服务器：
 
-1. 在 `.vscode/launch.json` 创建启动配置：
+1. 在 `.vscode/launch.json` 中创建启动配置：
    ```json
    {
      "version": "0.2.0",
@@ -333,19 +335,19 @@ MCP Inspector 是调试和测试 MCP 服务器的有力工具。使用 stdio 服
    }
    ```
 
-2. 在服务器代码设置断点
-3. 启动调试器并配合 Inspector 测试
+2. 在服务器代码中设置断点
+3. 运行调试器并使用 Inspector 测试
 
-### 常见调试提示
+### 常见调试技巧
 
-- 通过 `stderr` 记录日志 — 不要写入 `stdout`，这是保留给 MCP 消息的
-- 确保所有 JSON-RPC 消息以换行符分隔
-- 先用简单工具测试，再加入复杂功能
+- 使用 `stderr` 进行日志记录 - 永远不要向 `stdout` 写入内容，因为它保留给 MCP 消息
+- 确保所有 JSON-RPC 消息均以换行符分隔
+- 先用简单工具测试，再添加复杂功能
 - 使用 Inspector 验证消息格式
 
-## 在 VS Code 中使用你的 stdio 服务器
+## 在 VS Code 中使用您的 stdio 服务器
 
-构建完 MCP stdio 服务器后，可以将其集成到 VS Code 以供 Claude 或其他兼容 MCP 的客户端使用。
+构建完 MCP stdio 服务器后，您可以将其集成到 VS Code 中，用于 Claude 或其他兼容 MCP 的客户端。
 
 ### 配置
 
@@ -362,16 +364,16 @@ MCP Inspector 是调试和测试 MCP 服务器的有力工具。使用 stdio 服
    }
    ```
 
-2. **重启 Claude**：关闭并重新打开 Claude 以加载新配置。
+2. **重启 Claude**：关闭并重新打开 Claude 以加载新的服务器配置。
 
-3. <strong>测试连接</strong>：与 Claude 开启会话并尝试使用服务器工具：
-   - “你能用问候工具向我打招呼吗？”
+3. <strong>测试连接</strong>：开始与 Claude 对话并尝试使用服务器的工具：
+   - “你能用问候工具向我打个招呼吗？”
    - “计算 15 和 27 的和”
    - “服务器信息是什么？”
 
 ### TypeScript stdio 服务器示例
 
-以下为完整的 TypeScript 示例供参考：
+以下是完整的 TypeScript 示例，供参考：
 
 ```typescript
 #!/usr/bin/env node
@@ -474,19 +476,20 @@ public class Tools
 
 ## 总结
 
-在更新后的课程中，你学到了：
+在本更新课程中，您学会了：
 
-- 使用当前的 **stdio 传输** 构建 MCP 服务器（推荐方法）
-- 理解为何 SSE 传输被 stdio 和可流式 HTTP 取代
-- 创建可被 MCP 客户端调用的工具
+- 使用当前推荐的<strong>stdio 传输</strong>构建 MCP 服务器
+- 理解为何 SSE 传输被弃用，转而推荐 stdio 和可流式 HTTP
+- 创建 MCP 客户端可以调用的工具
 - 使用 MCP Inspector 调试服务器
-- 将 stdio 服务器集成到 VS Code 和 Claude
+- 将 stdio 服务器与 VS Code 和 Claude 集成
 
-相较于已弃用的 SSE 方式，stdio 传输提供了更简单、更安全且性能更优的 MCP 服务器构建方式。根据 2025-06-18 规格，它是大多数 MCP 服务器实现的推荐传输。
+stdio 传输相比弃用的 SSE 方法，提供了更简洁、更安全且性能更佳的 MCP 服务器构建方式。自 2025-06-18 规范起，它是大多数 MCP 服务器实现的推荐传输。
+
 
 ### .NET
 
-1. 先创建一些工具，为此我们创建一个名为 *Tools.cs* 的文件，内容如下：
+1. 我们先创建一些工具，为此将在文件 *Tools.cs* 中写入以下内容：
 
   ```csharp
   using System.ComponentModel;
@@ -494,77 +497,76 @@ public class Tools
   using ModelContextProtocol.Server;
   ```
 
-## 练习：测试你的 stdio 服务器
+## 练习：测试您的 stdio 服务器
 
-完成 stdio 服务器构建后，我们来测试其功能以确保正确。
+现在您已经构建了 stdio 服务器，接下来测试它以确保正常运行。
 
-### 前提条件
+### 先决条件
 
 1. 确保已安装 MCP Inspector：
    ```bash
    npm install -g @modelcontextprotocol/inspector
    ```
 
-2. 已保存服务器代码（如保存为 `server.py`）
+2. 您的服务器代码应已保存（例如 `server.py`）
 
-### 通过 Inspector 测试
+### 使用 Inspector 测试
 
-1. **启动带服务器的 Inspector**：
+1. **使用您的服务器启动 Inspector**：
    ```bash
    npx @modelcontextprotocol/inspector python server.py
    ```
 
-2. <strong>打开网页界面</strong>：Inspector 会打开浏览器窗口，显示服务器能力。
+2. <strong>打开网页界面</strong>：Inspector 会打开浏览器窗口，显示您的服务器能力。
 
-3. <strong>测试工具</strong>：
-   - 试用 `get_greeting` 工具，传入不同名称参数
-   - 测试 `calculate_sum` 工具，传入各种数字
+3. <strong>测试工具</strong>： 
+   - 用不同名称尝试 `get_greeting` 工具
+   - 用各种数字测试 `calculate_sum` 工具
    - 调用 `get_server_info` 工具查看服务器元数据
 
-4. <strong>监控通信</strong>：Inspector 会展示客户端和服务器间交换的 JSON-RPC 消息。
+4. <strong>监控通信</strong>：Inspector 展示客户端与服务器之间交换的 JSON-RPC 消息。
 
-### 你应该看到的内容
+### 您应该看到的内容
 
-当服务器正常启动时，你应看到：
-- Inspector 中列出的服务器功能
-- 可供测试的工具列表
+服务器正确启动时，您将看到：
+- Inspector 中列出的服务器能力
+- 可用于测试的工具
 - 成功的 JSON-RPC 消息交换
-- 工具响应显示在界面上
+- 工具响应在界面中显示
 
 ### 常见问题及解决方案
 
 **服务器无法启动：**
-- 检查依赖是否安装：`pip install mcp`
+- 检查是否安装所有依赖项：`pip install mcp`
 - 验证 Python 语法和缩进
-- 查看控制台错误信息
+- 查找控制台错误信息
 
-**工具未出现：**
+**工具未显示：**
 - 确保存在 `@server.tool()` 装饰器
-- 工具函数定义应在 `main()` 函数之前
-- 确认服务器正确配置
+- 确认工具函数定义在 `main()` 前
+- 确认服务器配置正确
 
 **连接问题：**
 - 确保服务器正确使用 stdio 传输
 - 检查是否有其他进程干扰
-- 验证 Inspector 命令语法正确
+- 验证 Inspector 命令语法
 
 ## 作业
 
-尝试为服务器添加更多功能。参见[此页](https://api.chucknorris.io/)，例如添加调用 API 的工具。服务器的样子由你决定。祝你玩得开心 :)
-
+尝试为服务器添加更多功能。请访问 [此页面](https://api.chucknorris.io/) 以添加调用 API 的工具。服务器长什么样，由你决定。玩得开心 :)
 ## 解决方案
 
-[解决方案](./solution/README.md) 这里有一个可用的解决方案与工作代码。
+[解决方案](./solution/README.md) 这里有一份带有可运行代码的可能解决方案。
 
-## 关键收获
+## 关键要点
 
-本章关键点包括：
+本章关键要点如下：
 
-- stdio 传输是本地 MCP 服务器推荐的通信机制。
+- stdio 传输是本地 MCP 服务器的推荐机制。
 - stdio 传输允许 MCP 服务器和客户端通过标准输入输出流无缝通信。
-- 你可以使用 Inspector 和 Visual Studio Code 直接消费 stdio 服务器，方便调试和集成。
+- 您可以直接使用 Inspector 和 Visual Studio Code 消费 stdio 服务器，使调试和集成更简单。
 
-## 示例
+## 示例 
 
 - [Java 计算器](../samples/java/calculator/README.md)
 - [.Net 计算器](../../../../03-GettingStarted/samples/csharp)
@@ -580,17 +582,17 @@ public class Tools
 
 ## 后续步骤
 
-既然你已学会使用 stdio 传输构建 MCP 服务器，可以继续探索更高级主题：
+既然您已经学习了如何使用 stdio 传输构建 MCP 服务器，可以探索更高级的主题：
 
-- <strong>下一步</strong>：[MCP 的 HTTP 流（可流式 HTTP）](../06-http-streaming/README.md) - 了解远程服务器支持的另一种传输机制
-- <strong>进阶</strong>：[MCP 安全最佳实践](../../02-Security/README.md) - 在 MCP 服务器中实现安全
-- <strong>生产环境</strong>：[部署策略](../09-deployment/README.md) - 为生产环境部署服务器
+- <strong>下一步</strong>：[MCP HTTP 流（可流式 HTTP）](../06-http-streaming/README.md) - 了解远程服务器使用的另一种支持传输机制
+- <strong>高级</strong>：[MCP 安全最佳实践](../../02-Security/README.md) - 在您的 MCP 服务器中实施安全措施
+- <strong>生产</strong>：[部署策略](../09-deployment/README.md) - 部署您的服务器以供生产使用
 
 ## 额外资源
 
-- [MCP 规格 2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25/) - 官方规格
+- [MCP 规范 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/) - 当前规范
 - [MCP SDK 文档](https://github.com/modelcontextprotocol/sdk) - 各语言 SDK 参考
-- [社区示例](../../06-CommunityContributions/README.md) - 来自社区的更多服务器示例
+- [社区示例](../../06-CommunityContributions/README.md) - 社区提供的更多服务器示例
 
 ---
 

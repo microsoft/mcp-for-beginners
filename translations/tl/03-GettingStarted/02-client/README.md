@@ -1,29 +1,29 @@
 # Paglikha ng isang kliyente
 
-Ang mga kliyente ay mga custom na aplikasyon o mga script na direktang nakikipag-ugnayan sa isang MCP Server upang humiling ng mga mapagkukunan, mga kasangkapan, at mga prompt. Hindi tulad ng paggamit ng inspector tool, na nagbibigay ng grapikal na interface para sa pakikipag-ugnayan sa server, ang pagsulat ng sarili mong kliyente ay nagbibigay-daan sa programmatic at awtomatikong mga interaksyon. Pinapayagan nito ang mga developer na isama ang mga kakayahan ng MCP sa kanilang sariling mga workflow, i-automate ang mga gawain, at bumuo ng mga custom na solusyon na angkop sa partikular na pangangailangan.
+Ang mga kliyente ay mga custom na aplikasyon o script na direktang nakikipag-ugnayan sa isang MCP Server upang humiling ng mga resources, tools, at prompts. Hindi tulad ng paggamit ng inspector tool, na nagbibigay ng graphical na interface para makipag-ugnayan sa server, ang pagsulat ng sarili mong kliyente ay nagbibigay-daan sa programmatic at automated na mga interaksiyon. Ito ay nagpapahintulot sa mga developer na isama ang mga kakayahan ng MCP sa kanilang sariling workflows, i-automate ang mga gawain, at bumuo ng mga custom na solusyon na iniakma sa mga partikular na pangangailangan.
 
 ## Pangkalahatang-ideya
 
-Itinatanghal ng leksyon na ito ang konsepto ng mga kliyente sa loob ng Model Context Protocol (MCP) ecosystem. Matututuhan mo kung paano sumulat ng sarili mong kliyente at ipa-konekta ito sa isang MCP Server.
+Ipinapakilala ng araling ito ang konsepto ng mga kliyente sa loob ng ekosistema ng Model Context Protocol (MCP). Matututuhan mo kung paano sumulat ng sarili mong kliyente at kung paano ito kumonekta sa isang MCP Server.
 
-## Mga Layuning Pantuto
+## Mga Layunin sa Pagkatuto
 
-Pagkatapos ng leksyon na ito, magagawa mong:
+Sa pagtatapos ng araling ito, magagawa mong:
 
 - Maunawaan kung ano ang magagawa ng isang kliyente.
-- Magsulat ng sarili mong kliyente.
-- Kumonekta at subukan ang kliyente sa isang MCP server upang matiyak na gumagana ito ayon sa inaasahan.
+- Sumulat ng sarili mong kliyente.
+- Kumonekta at subukan ang kliyente sa isang MCP server upang matiyak na ito ay gumagana gaya ng inaasahan.
 
-## Ano ang kailangang gawin sa pagsulat ng isang kliyente?
+## Ano ang mga kinakailangan sa pagsulat ng isang kliyente?
 
-Upang makasulat ng isang kliyente, kailangan mong gawin ang mga sumusunod:
+Upang sumulat ng isang kliyente, kailangang gawin ang mga sumusunod:
 
-- **I-import ang tamang mga library**. Gagamitin mo ang parehong library tulad ng dati, ngunit iba lang ang mga konstrukto.
-- **Gumawa ng isang kliyente**. Kasama dito ang paglikha ng isang instance ng kliyente at pagkonekta nito sa napiling paraan ng transportasyon.
-- **Pumili kung anong mga resources ang ililista**. Ang iyong MCP server ay may mga resources, tools, at prompts, kailangan mong magpasya kung alin ang ililista.
-- **Isama ang kliyente sa isang host application**. Kapag alam mo na ang mga kakayahan ng server, kailangan mong isama ito sa iyong host application upang kapag may user na nag-type ng prompt o ibang utos, maipatawag ang kaukulang tampok ng server.
+- **Import ang tamang mga library**. Gagamitin mo ang parehong library tulad ng dati, ngunit iba't ibang mga konstrukto.
+- **Gumawa ng isang kliyente**. Kabilang dito ang paglikha ng isang instance ng kliyente at pagkonekta nito sa napiling paraan ng transport.
+- **Pumili kung anong mga resources ang ililista**. Ang iyong MCP server ay may kasamang mga resources, tools, at prompts, kailangan mong pumili kung alin ang ililista.
+- **Isama ang kliyente sa isang host application**. Kapag nasa alam mo na ang mga kakayahan ng server, kailangan mong isama ito sa iyong host application upang kapag ang isang user ay nag-type ng prompt o ibang utos ay ma-trigger ang katugmang tampok ng server.
 
-Ngayon na nauunawaan natin sa mataas na antas kung ano ang gagawin natin, tingnan natin ang isang halimbawa.
+Ngayon na naiintindihan natin sa mataas na antas kung ano ang gagawin natin, tingnan natin ang isang halimbawa.
 
 ### Isang halimbawa ng kliyente
 
@@ -49,10 +49,10 @@ const client = new Client(
 
 await client.connect(transport);
 
-// Ilista ang mga prompt
+// Ilan sa mga prompt
 const prompts = await client.listPrompts();
 
-// Kumuha ng isang prompt
+// Kunin ang isang prompt
 const prompt = await client.getPrompt({
   name: "example-prompt",
   arguments: {
@@ -60,15 +60,15 @@ const prompt = await client.getPrompt({
   }
 });
 
-// Ilista ang mga mapagkukunan
+// Ilan sa mga resources
 const resources = await client.listResources();
 
-// Basahin ang isang mapagkukunan
+// Basahin ang isang resource
 const resource = await client.readResource({
   uri: "file:///example.txt"
 });
 
-// Tawagan ang isang kasangkapan
+// Tawagan ang isang tool
 const result = await client.callTool({
   name: "example-tool",
   arguments: {
@@ -80,20 +80,20 @@ const result = await client.callTool({
 Sa naunang code ay:
 
 - Inimport ang mga library
-- Nilikha ang isang instance ng kliyente at kinonekta ito gamit ang stdio bilang transport.
-- Nilista ang prompts, resources, at tools at pinatakbo ang lahat.
+- Gumawa ng isang instance ng kliyente at ikinonekta ito gamit ang stdio para sa transport.
+- Nilista ang mga prompts, resources, at tools at tinawag silang lahat.
 
-Narito na, isang kliyenteng maaaring makipag-usap sa isang MCP Server.
+Ayan, isang kliyente na kayang makipag-usap sa isang MCP Server.
 
-Maglalaan tayo ng oras sa susunod na seksyon ng pagsasanay upang hatiin ang bawat bahagi ng code at ipaliwanag kung ano ang nangyayari.
+Maglalaan tayo ng oras sa susunod na bahagi ng ehersisyo upang himayin ang bawat snippet ng code at ipaliwanag ang nangyayari.
 
-## Pagsasanay: Pagsulat ng isang kliyente
+## Ehersisyo: Pagsusulat ng isang kliyente
 
-Tulad ng nasabi sa itaas, maglaan tayo ng oras sa pagpapaliwanag ng code, at malayang mag-code kasabay kung nais mo.
+Tulad ng nabanggit, maglalaan tayo ng oras sa pagpapaliwanag ng code, at malaya mong sundan ito habang nagko-code.
 
 ### -1- Pag-import ng mga library
 
-I-import natin ang mga kinakailangang library, kakailanganin natin ang mga reperensya sa isang kliyente at sa napiling transport protocol, stdio. Ang stdio ay isang protocol para sa mga bagay na tatakbo sa iyong lokal na makina. Ang SSE ay isa pang transport protocol na ipapakita natin sa mga susunod na kabanata ngunit iyon ang isa pang opsyon mo. Sa ngayon, magpatuloy tayo gamit ang stdio.
+I-import natin ang mga library na kailangan, kakailanganin natin ng mga reference sa isang kliyente at sa napili nating transport protocol, stdio. Ang stdio ay isang protocol para sa mga bagay na tatakbo sa iyong lokal na makina. Ang SSE ay isa pang transport protocol na ipapakita natin sa mga susunod na kabanata bilang ibang opsyon. Sa ngayon, itutuloy muna natin gamit ang stdio.
 
 #### TypeScript
 
@@ -120,7 +120,7 @@ using ModelContextProtocol.Client;
 
 #### Java
 
-Para sa Java, gagawa ka ng kliyente na nakakonekta sa MCP server mula sa nakaraang pagsasanay. Gamit ang parehong istruktura ng Java Spring Boot project mula sa [Getting Started with MCP Server](../../../../03-GettingStarted/01-first-server/solution/java), gumawa ng bagong Java class na tinatawag na `SDKClient` sa folder na `src/main/java/com/microsoft/mcp/sample/client/` at idagdag ang mga sumusunod na import:
+Para sa Java, gagawa ka ng kliyente na kumokonekta sa MCP server mula sa naunang ehersisyo. Gamit ang parehong Java Spring Boot project structure mula sa [Getting Started with MCP Server](../../../../03-GettingStarted/01-first-server/solution/java), gumawa ng bagong Java class na tinatawag na `SDKClient` sa folder na `src/main/java/com/microsoft/mcp/sample/client/` at idagdag ang mga sumusunod na imports:
 
 ```java
 import java.util.Map;
@@ -135,7 +135,7 @@ import io.modelcontextprotocol.spec.McpSchema.ListToolsResult;
 
 #### Rust
 
-Kailangan mong idagdag ang mga sumusunod na dependencies sa iyong file na `Cargo.toml`.
+Kailangan mong idagdag ang mga sumusunod na dependencies sa iyong `Cargo.toml` file.
 
 ```toml
 [package]
@@ -149,7 +149,7 @@ serde_json = "1.0.141"
 tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 ```
 
-Mula doon, maaari mong i-import ang mga kinakailangang library sa iyong code ng kliyente.
+Mula doon, maaari mong i-import ang mga kinakailangang library sa iyong client code.
 
 ```rust
 use rmcp::{
@@ -161,9 +161,9 @@ use rmcp::{
 use tokio::process::Command;
 ```
 
-Tumingin tayo sa pag-iinstansya.
+Tayo na sa paggawa ng instantiation.
 
-### -2- Pag-iinstansya ng kliyente at transport
+### -2- Paggawa ng instance ng client at transport
 
 Kailangan nating gumawa ng instance ng transport at ng ating kliyente:
 
@@ -187,7 +187,7 @@ await client.connect(transport);
 
 Sa naunang code ay:
 
-- Nilikha ang isang stdio transport instance. Tingnan kung paano nito tinutukoy ang command at args para hanapin at paandarin ang server dahil ito ang gagawin natin bilang bahagi ng paggawa ng kliyente.
+- Gumawa ng stdio transport instance. Mapapansin dito ang pag-specify ng command at args kung paano maghanap at magsimulang patakbuhin ang server na kailangan nating gawin habang ginagawa ang kliyente.
 
     ```typescript
     const transport = new StdioClientTransport({
@@ -196,7 +196,7 @@ Sa naunang code ay:
     });
     ```
 
-- Ininstansya ang isang kliyente sa pamamagitan ng pagbibigay nito ng pangalan at bersyon.
+- Nag-instantiate ng kliyente sa pamamagitan ng pagbibigay ng pangalan at bersyon.
 
     ```typescript
     const client = new Client(
@@ -206,7 +206,7 @@ Sa naunang code ay:
     });
     ```
 
-- Kinonekta ang kliyente sa napiling transport.
+- Ikinonekta ang kliyente sa napiling transport.
 
     ```typescript
     await client.connect(transport);
@@ -218,10 +218,10 @@ Sa naunang code ay:
 from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
 
-# Lumikha ng mga parametro ng server para sa koneksyon ng stdio
+# Lumikha ng mga parameter ng server para sa stdio na koneksyon
 server_params = StdioServerParameters(
-    command="mcp",  # Magagamit
-    args=["run", "server.py"],  # Opsyonal na mga argumento sa command line
+    command="mcp",  # Natawag na programa
+    args=["run", "server.py"],  # Opsyonal na mga argumento ng linya ng utos
     env=None,  # Opsyonal na mga variable ng kapaligiran
 )
 
@@ -244,9 +244,9 @@ if __name__ == "__main__":
 Sa naunang code ay:
 
 - Inimport ang mga kinakailangang library
-- Ininstansya ang isang server parameters object dahil gagamitin natin ito sa pagpapatakbo ng server para makapag-connect ang kliyente natin.
-- Tinukoy ang isang method na `run` na siyang tumatawag sa `stdio_client` na nagsisimula ng session ng kliyente.
-- Nilikha ang isang entry point kung saan ibinibigay natin ang method na `run` sa `asyncio.run`.
+- Nag-instantiate ng server parameters na gagamitin para patakbuhin ang server para makakonekta tayo dito gamit ang kliyente.
+- Nagdeklara ng method na `run` na tumatawag sa `stdio_client` upang magsimula ng session ng kliyente.
+- Nilikha ang entry point kung saan ibinibigay natin ang `run` method sa `asyncio.run`.
 
 #### .NET
 
@@ -277,9 +277,9 @@ await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 Sa naunang code ay:
 
 - Inimport ang mga kinakailangang library.
-- Gumawa ng stdio transport at ng isang kliyenteng `mcpClient`. Ito ang gagamitin natin upang ilista at tawagin ang mga tampok ng MCP Server.
+- Gumawa ng stdio transport at gumawa ng kliyente na tinawag na `mcpClient`. Ito ang gagamitin natin para maglista at tumawag ng mga feature sa MCP Server.
 
-Paalala, sa "Arguments", maaari kang tumukoy sa *.csproj* o sa executable.
+Tandaan, sa "Arguments", maaari kang tumukoy sa *.csproj* o sa executable.
 
 #### Java
 
@@ -301,25 +301,25 @@ public class SDKClient {
         var client = McpClient.sync(this.transport).build();
         client.initialize();
         
-        // Ang lohika ng iyong kliyente ay dito ginagawa
+        // Dito ilalagay ang iyong lohika ng kliyente
     }
 }
 ```
 
 Sa naunang code ay:
 
-- Nilikha ang main method na nagse-set up ng SSE transport na nakaturo sa `http://localhost:8080` kung saan tatakbo ang ating MCP server.
-- Nilikha ang isang client class na tumatanggap ng transport bilang constructor parameter.
-- Sa `run` method, gumagawa tayo ng synchronous MCP client gamit ang transport at initialize ang koneksyon.
-- Ginamit ang SSE (Server-Sent Events) transport na angkop para sa HTTP-based na komunikasyon sa mga Java Spring Boot MCP servers.
+- Gumawa ng main method na nag-set up ng SSE transport na tumuturo sa `http://localhost:8080` kung saan tatakbo ang MCP server.
+- Gumawa ng client class na tumatanggap ng transport bilang constructor parameter.
+- Sa `run` method, gumawa tayo ng synchronous MCP client gamit ang transport at inisyalisa ang koneksyon.
+- Ginamit ang SSE (Server-Sent Events) transport na angkop para sa HTTP-based na komunikasyon sa Java Spring Boot MCP servers.
 
 #### Rust
 
-Pansinin na ang Rust client na ito ay nagpapalagay na ang server ay isang katabing proyekto na may pangalang "calculator-server" sa parehong directory. Ang code sa ibaba ay magpapaandar ng server at magkokonekta dito.
+Tandaan na ang Rust client na ito ay inaasahang ang server ay isang sibling project na pinangalanang "calculator-server" sa parehong direktoryo. Ang code sa ibaba ay sisimulan ang server at kokonekta rito.
 
 ```rust
 async fn main() -> Result<(), RmcpError> {
-    // Ipagpalagay na ang server ay isang kapatid na proyekto na pinangalanang "calculator-server" sa parehong direktoryo
+    // Ipinalalagay na ang server ay isang kapatid na proyekto na pinangalanang "calculator-server" sa parehong direktoryo
     let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .expect("failed to locate workspace root")
@@ -334,11 +334,11 @@ async fn main() -> Result<(), RmcpError> {
         )
         .await?;
 
-    // TODO: I-initialize
+    // GAGAWIN: I-initialize
 
-    // TODO: Ilahad ang mga kasangkapan
+    // GAGAWIN: Ilahad ang mga kagamitan
 
-    // TODO: Tawagin ang add tool na may mga argumento = {"a": 3, "b": 2}
+    // GAGAWIN: Tawagin ang add tool gamit ang mga argumento = {"a": 3, "b": 2}
 
     client.cancel().await?;
     Ok(())
@@ -347,38 +347,38 @@ async fn main() -> Result<(), RmcpError> {
 
 ### -3- Paglilista ng mga tampok ng server
 
-Ngayon, mayroon na tayong kliyente na maaaring kumonekta kapag pinatakbo ang programa. Ngunit hindi nito inililista ang mga tampok nito kaya gawin natin iyon ngayon:
+Ngayon, mayroon na tayong kliyente na maaaring kumonekta kapag pinatakbo ang programa. Ngunit hindi nito aktwal na nililista ang mga tampok nito kaya't gawin natin iyon:
 
 #### TypeScript
 
 ```typescript
-// Ilahad ang mga prompt
+// Listahan ng mga prompt
 const prompts = await client.listPrompts();
 
-// Ilahad ang mga mapagkukunan
+// Listahan ng mga pinagkukunan
 const resources = await client.listResources();
 
-// ilahad ang mga kasangkapan
+// listahan ng mga kasangkapan
 const tools = await client.listTools();
 ```
 
 #### Python
 
 ```python
-# Ilista ang mga magagamit na pinagkukunan
+# Ilahad ang mga magagamit na mapagkukunan
 resources = await session.list_resources()
 print("LISTING RESOURCES")
 for resource in resources:
     print("Resource: ", resource)
 
-# Ilista ang mga magagamit na kagamitan
+# Ilahad ang mga magagamit na kasangkapan
 tools = await session.list_tools()
 print("LISTING TOOLS")
 for tool in tools.tools:
     print("Tool: ", tool.name)
 ```
 
-Dito inililista natin ang mga available na resources, `list_resources()` at tools, `list_tools` at inilalathala ang mga ito.
+Dito ay nililista natin ang mga available na resources, `list_resources()` at tools, `list_tools` at ipiniprint ang mga ito.
 
 #### .NET
 
@@ -389,12 +389,12 @@ foreach (var tool in await client.ListToolsAsync())
 }
 ```
 
-Sa itaas ay isang halimbawa kung paano natin maililista ang mga tools sa server. Para sa bawat tool, inilalathala natin ang pangalan nito.
+Nasa itaas ang halimbawa kung paano tayo makakapaglista ng mga tools sa server. Para sa bawat tool, pini-print natin ang pangalan nito.
 
 #### Java
 
 ```java
-// Ilista at ipakita ang mga kasangkapan
+// Ilahad at ipakita ang mga kasangkapan
 ListToolsResult toolsList = client.listTools();
 System.out.println("Available Tools = " + toolsList);
 
@@ -404,11 +404,11 @@ client.ping();
 
 Sa naunang code ay:
 
-- Tinawag ang `listTools()` upang makuha lahat ng available na tools mula sa MCP server.
-- Ginamit ang `ping()` upang beripikahin na gumagana ang koneksyon sa server.
-- Ang `ListToolsResult` ay naglalaman ng impormasyon tungkol sa lahat ng tools kabilang ang kanilang mga pangalan, paglalarawan, at input schemas.
+- Tinawag ang `listTools()` upang makuha ang lahat ng available na tools mula sa MCP server.
+- Ginamit ang `ping()` upang tiyakin na gumagana ang koneksyon sa server.
+- Ang `ListToolsResult` ay naglalaman ng impormasyon tungkol sa lahat ng mga tool kabilang ang kanilang mga pangalan, paglalarawan, at input schemas.
 
-Magaling, ngayon ay nakalista na natin lahat ng tampok. Ngayon, kailan natin ito gagamitin? Ang kliyenteng ito ay simple lang, nangangahulugan na kailangan natin tawagin nang tahasan ang mga tampok kapag gusto natin silang gamitin. Sa susunod na kabanata, gagawa tayo ng mas advanced na kliyente na may access sa sarili nitong malaking language model, LLM. Sa ngayon, tingnan natin kung paano tawagin ang mga tampok sa server:
+Mahusay, ngayon ay nakuha na natin ang lahat ng mga tampok. Ngayon ang tanong ay kailan natin gagamitin ang mga ito? Ang kliyenteng ito ay medyo simple, ibig sabihin kailangan nating tawagin ang mga tampok nang hayagan kapag gusto natin ito. Sa susunod na kabanata, gagawa tayo ng isang mas advance na kliyente na may access sa sarili nitong malaking language model, LLM. Sa ngayon, tingnan muna natin kung paano tawagin ang mga tampok sa server:
 
 #### Rust
 
@@ -419,25 +419,25 @@ Sa main function, pagkatapos i-initialize ang kliyente, maaari nating i-initiali
 let server_info = client.peer_info();
 println!("Server info: {:?}", server_info);
 
-// Itala ang mga kasangkapan
+// Ilahad ang mga kasangkapan
 let tools = client.list_tools(Default::default()).await?;
 println!("Available tools: {:?}", tools);
 ```
 
-### -4- Pagtawag ng mga tampok
+### -4- Pagtawag sa mga tampok
 
-Upang tawagin ang mga tampok kailangan nating siguraduhin na tinutukoy natin ang tamang mga argumento at sa ilang kaso ang pangalan ng tinatawag natin.
+Upang tawagin ang mga tampok, kailangan nating tiyakin na tama ang mga argumento at sa ilang kaso ang pangalan ng tinatawagan.
 
 #### TypeScript
 
 ```typescript
 
-// Basahin ang isang resource
+// Basahin ang isang yaman
 const resource = await client.readResource({
   uri: "file:///example.txt"
 });
 
-// Tawagan ang isang tool
+// Tawagan ang isang kasangkapan
 const result = await client.callTool({
   name: "example-tool",
   arguments: {
@@ -456,7 +456,7 @@ const promptResult = await client.getPrompt({
 
 Sa naunang code ay:
 
-- Binasa ang isang resource, tinawag ang resource sa pamamagitan ng pagtawag sa `readResource()` na may tinukoy na `uri`. Ganito ang hitsura nito sa server side:
+- Nagbasa ng resource, tinawag ang resource gamit ang `readResource()` na naglalaman ng `uri`. Ganito ito kadalas tignan sa server side:
 
     ```typescript
     server.resource(
@@ -471,9 +471,9 @@ Sa naunang code ay:
     );
     ```
 
-    Ang ating `uri` na halaga na `file://example.txt` ay tumutugma sa `file://{name}` sa server. Ang `example.txt` ay imap-map sa `name`.
+    Ang `uri` na value na `file://example.txt` ay tumutugma sa `file://{name}` sa server. Ang `example.txt` ay ipa-map sa `name`.
 
-- Tinawag ang isang tool, tinawag ito sa pamamagitan ng pagtukoy ng `name` at mga `arguments` tulad nito:
+- Tumawag ng tool, tinawag ito sa pamamagitan ng pagtukoy ng `name` at `arguments` tulad nito:
 
     ```typescript
     const result = await client.callTool({
@@ -484,7 +484,7 @@ Sa naunang code ay:
     });
     ```
 
-- Kumuha ng prompt, upang makakuha ng prompt, tinawag ang `getPrompt()` na may `name` at `arguments`. Ganito ang hitsura ng server code:
+- Kumuha ng prompt, para makuha ang prompt, tinatawag mo ang `getPrompt()` gamit ang `name` at `arguments`. Ganito ang hitsura ng server code:
 
     ```typescript
     server.prompt(
@@ -502,7 +502,7 @@ Sa naunang code ay:
     );
     ```
 
-    at ang iyong kliyenteng code bilang resulta ay ganito upang tumugma sa deklarasyon sa server:
+    kaya ang resulta ng iyong client code ay ganito upang tumugma sa declare sa server:
 
     ```typescript
     const promptResult = await client.getPrompt({
@@ -516,7 +516,7 @@ Sa naunang code ay:
 #### Python
 
 ```python
-# Basahin ang isang pinagkukunan
+# Basahin ang isang mapagkukunan
 print("READING RESOURCE")
 content, mime_type = await session.read_resource("greeting://hello")
 
@@ -528,12 +528,12 @@ print(result.content)
 
 Sa naunang code ay:
 
-- Tinawag ang isang resource na tinatawag na `greeting` gamit ang `read_resource`.
-- Tinawag ang isang tool na tinatawag na `add` gamit ang `call_tool`.
+- Tinawag ang resource na `greeting` gamit ang `read_resource`.
+- Tinawag ang tool na `add` gamit ang `call_tool`.
 
 #### .NET
 
-1. Magdagdag tayo ng code upang tawagan ang isang tool:
+1. Magdagdag tayo ng code upang tumawag sa isang tool:
 
   ```csharp
   var result = await mcpClient.CallToolAsync(
@@ -542,7 +542,7 @@ Sa naunang code ay:
       cancellationToken:CancellationToken.None);
   ```
 
-1. Upang iprint ang resulta, heto ang code para hawakan iyon:
+1. Para iprint ang resulta, ito ang code para gawin iyon:
 
   ```csharp
   Console.WriteLine(result.Content.First(c => c.Type == "text").Text);
@@ -552,7 +552,7 @@ Sa naunang code ay:
 #### Java
 
 ```java
-// Tawagan ang iba't ibang mga tool ng kalkuladora
+// Tawagin ang iba't ibang mga tool sa calculator
 CallToolResult resultAdd = client.callTool(new CallToolRequest("add", Map.of("a", 5.0, "b", 3.0)));
 System.out.println("Add Result = " + resultAdd);
 
@@ -571,15 +571,15 @@ System.out.println("Help = " + resultHelp);
 
 Sa naunang code ay:
 
-- Tinawag ang maraming calculator tools gamit ang `callTool()` method na may mga `CallToolRequest` objects.
-- Bawat tawag sa tool ay nagtutukoy ng pangalan ng tool at isang `Map` ng mga argumentong kailangan ng tool.
-- Inaasahan ng mga tools sa server ang mga tiyak na pangalan ng parameter (tulad ng "a", "b" para sa mga operasyong matematika).
-- Ang mga resulta ay ibinabalik bilang mga `CallToolResult` objects na naglalaman ng tugon mula sa server.
+- Tinawag ang maraming calculator tool gamit ang `callTool()` method na may `CallToolRequest` objects.
+- Bawat tawag sa tool ay nagsasaad ng pangalan ng tool at isang `Map` ng mga argument na kailangan ng tool.
+- Ang mga tool sa server ay inaasahan ang mga tiyak na pangalan ng parameter (tulad ng "a", "b" para sa mga mathematical operation).
+- Ang resulta ay ibinalik bilang mga `CallToolResult` object na naglalaman ng tugon mula sa server.
 
 #### Rust
 
 ```rust
-// Tawagin ang add tool na may mga argumento = {"a": 3, "b": 2}
+// Tawagan ang add tool na may mga argumento = {"a": 3, "b": 2}
 let a = 3;
 let b = 2;
 let tool_result = client
@@ -593,11 +593,11 @@ println!("Result of {:?} + {:?}: {:?}", a, b, tool_result);
 
 ### -5- Patakbuhin ang kliyente
 
-Upang patakbuhin ang kliyente, i-type ang sumusunod na utos sa terminal:
+Upang patakbuhin ang kliyente, i-type ang sumusunod na command sa terminal:
 
 #### TypeScript
 
-Idagdag ang sumusunod na entry sa seksyon ng "scripts" sa iyong *package.json*:
+Idagdag ang sumusunod na entry sa seksyong "scripts" sa *package.json*:
 
 ```json
 "client": "tsc && node build/client.js"
@@ -609,7 +609,7 @@ npm run client
 
 #### Python
 
-Patakbuhin ang kliyente gamit ang sumusunod na utos:
+Tawagin ang kliyente gamit ang sumusunod na command:
 
 ```sh
 python client.py
@@ -623,17 +623,17 @@ dotnet run
 
 #### Java
 
-Siguruhing tumatakbo ang iyong MCP server sa `http://localhost:8080`. Pagkatapos patakbuhin ang kliyente:
+Siguraduhing ang MCP server ay tumatakbo sa `http://localhost:8080`. Pagkatapos patakbuhin ang kliyente:
 
 ```bash
-# Ibuo ang iyong proyekto
+# Itayo ang iyong proyekto
 ./mvnw clean compile
 
 # Patakbuhin ang kliyente
 ./mvnw exec:java -Dexec.mainClass="com.microsoft.mcp.sample.client.SDKClient"
 ```
 
-Bilang alternatibo, maaari mong patakbuhin ang kumpletong client project na ibinigay sa solution folder na `03-GettingStarted\02-client\solution\java`:
+Bilang alternatibo, maaari mong patakbuhin ang kumpletong proyekto ng kliyente na nasa solusyon folder `03-GettingStarted\02-client\solution\java`:
 
 ```bash
 # Mag-navigate sa direktoryo ng solusyon
@@ -651,11 +651,11 @@ cargo fmt
 cargo run
 ```
 
-## Takdang-Aralin
+## Takdang Aralin
 
-Sa takdang-aralin na ito, gagamitin mo ang iyong natutunan sa paggawa ng kliyente ngunit gagawa ka ng sarili mong kliyente.
+Sa takdang araling ito, gagamitin mo ang mga natutunan mo sa paglikha ng isang kliyente ngunit gagawa ka ng sarili mong kliyente.
 
-Narito ang isang server na maaari mong gamitin na kailangang tawagan gamit ang iyong kliyenteng code, tingnan kung maaari kang magdagdag ng mas maraming feature sa server upang maging mas kawili-wili ito.
+Narito ang isang server na maaari mong gamitin na kailangang tawagin sa pamamagitan ng iyong client code, tingnan kung makakapagdagdag ka ng mas maraming feature sa server upang maging mas kawili-wili.
 
 ### TypeScript
 
@@ -664,13 +664,13 @@ import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mc
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 
-// Gumawa ng isang MCP server
+// Lumikha ng isang MCP server
 const server = new McpServer({
   name: "Demo",
   version: "1.0.0"
 });
 
-// Magdagdag ng isang addition tool
+// Magdagdag ng isang karagdagang tool
 server.tool("add",
   { a: z.number(), b: z.number() },
   async ({ a, b }) => ({
@@ -690,7 +690,7 @@ server.resource(
   })
 );
 
-// Simulan ang pagtanggap ng mga mensahe sa stdin at pagpapadala ng mga mensahe sa stdout
+// Simulang tumanggap ng mga mensahe sa stdin at magpadala ng mga mensahe sa stdout
 
 async function main() {
   const transport = new StdioServerTransport();
@@ -710,18 +710,18 @@ main().catch((error) => {
 # server.py
 from mcp.server.fastmcp import FastMCP
 
-# Lumikha ng isang MCP server
+# Gumawa ng MCP server
 mcp = FastMCP("Demo")
 
 
-# Magdagdag ng isang karagdagang tool
+# Magdagdag ng karagdagang tool
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
     return a + b
 
 
-# Magdagdag ng isang dynamic na pagbati na mapagkukunan
+# Magdagdag ng dynamic na pagbati na resource
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
@@ -759,19 +759,19 @@ public static class CalculatorTool
 }
 ```
 
-Tingnan ang proyektong ito upang makita kung paano ka makakapagdagdag ng [prompts at resources](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs).
+Tingnan ang proyekto na ito para makita kung paano ka makakapagdagdag ng [prompts at resources](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs).
 
-Gayundin, tingnan ang link na ito para sa kung paano tawagin ang [prompts at resources](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/).
+Tingnan din ang link na ito para sa kung paano tumawag ng [prompts at resources](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/).
 
 ### Rust
 
-Sa [nakaunang seksyon](../../../../03-GettingStarted/01-first-server), natutunan mo kung paano gumawa ng simpleng MCP server gamit ang Rust. Maaari kang magpatuloy na bumuo doon o tingnan ang link na ito para sa iba pang mga Rust-based na halimbawa ng MCP server: [MCP Server Examples](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
+Sa [nakaraang seksyon](../../../../03-GettingStarted/01-first-server), natutunan mo kung paano gumawa ng isang simpleng MCP server gamit ang Rust. Maaari kang magpatuloy na bumuo dito o tingnan ang link na ito para sa iba pang mga Rust-based MCP server examples: [MCP Server Examples](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
 
 ## Solusyon
 
-Ang **solution folder** ay naglalaman ng kumpletong, handa nang patakbuhin na mga implementasyon ng kliyente na nagpapakita ng lahat ng mga konseptong natalakay sa tutorial na ito. Bawat solusyon ay naglalaman ng parehong client at server code na nakaayos sa hiwalay at kumpletong mga proyekto.
+Ang **solution folder** ay naglalaman ng kumpleto, handa nang patakbuhin na mga implementasyon ng kliyente na nagpapakita ng lahat ng mga konseptong tinalakay sa tutorial na ito. Bawat solusyon ay may kliyente at server code na inayos sa magkahiwalay, self-contained na mga proyekto.
 
-### 📁 Istruktura ng Solusyon
+### 📁 Estruktura ng Solusyon
 
 Ang direktoryo ng solusyon ay inayos ayon sa programming language:
 
@@ -805,17 +805,17 @@ solution/
 
 ### 🚀 Ano ang Nilalaman ng Bawat Solusyon
 
-Bawat solusyon na nakatuon sa wika ay nagbibigay ng:
+Ang bawat solusyon ayon sa wika ay nagbibigay ng:
 
-- **Kumpletong implementasyon ng kliyente** na may lahat ng mga tampok mula sa tutorial
-- **Gumaganang istruktura ng proyekto** na may tamang mga dependency at configuration
-- **Mga script para sa pag-build at pag-run** para sa madaling pag-setup at pagpapatakbo
-- **Detalyadong README** na may mga tagubilin para sa partikular na wika
-- **Pag-handle ng error** at mga halimbawa ng pagproseso ng resulta
+- **Kumpletong implementasyon ng kliyente** na may lahat ng tampok mula sa tutorial
+- **Gumaganang istruktura ng proyekto** na may tamang dependencies at configuration
+- **Mga build at run script** para sa madaling setup at pagpapatupad
+- **Detalyadong README** na may mga tagubilin ayon sa wika
+- **Halimbawa ng paghawak ng error** at pagproseso ng resulta
 
 ### 📖 Paggamit ng mga Solusyon
 
-1. **Pumunta sa folder ng nais mong programming language**:
+1. **Pumunta sa folder ng nais mong wika**:
 
    ```bash
    cd solution/typescript/    # Para sa TypeScript
@@ -824,12 +824,12 @@ Bawat solusyon na nakatuon sa wika ay nagbibigay ng:
    cd solution/dotnet/        # Para sa .NET
    ```
 
-2. **Sundin ang mga tagubilin sa README sa bawat folder para sa:**
-   - Pag-install ng mga dependency
-   - Pagbuo ng proyekto
+2. **Sundin ang mga tagubilin sa README** sa bawat folder para sa:
+   - Pag-install ng dependencies
+   - Pag-build ng proyekto
    - Pagpapatakbo ng kliyente
 
-3. **Halimbawa ng output** na dapat mong makita:
+3. **Halimbawa ng output** na makikita mo:
 
    ```text
    Prompt: Please review this code: console.log("hello");
@@ -837,78 +837,80 @@ Bawat solusyon na nakatuon sa wika ay nagbibigay ng:
    Tool result: { content: [ { type: 'text', text: '9' } ] }
    ```
 
-Para sa kumpletong dokumentasyon at mga hakbang-hakbang na tagubilin, tingnan ang: **[📖 Solution Documentation](./solution/README.md)**
+Para sa kumpletong dokumentasyon at sunud-sunod na mga tagubilin, tingnan: **[📖 Solusyon Dokumentasyon](./solution/README.md)**
 
 ## 🎯 Kumpletong Mga Halimbawa
 
-Nagbigay kami ng kumpleto at gumaganang mga implementasyon ng kliyente para sa lahat ng programming languages na natalakay sa tutorial na ito. Ipinapakita ng mga halimbawang ito ang buong functionality na inilarawan sa itaas at maaaring magamit bilang mga reference implementation o panimulang punto para sa iyong sariling mga proyekto.
+Nagbigay kami ng kumpleto, gumaganang mga implementasyon ng kliyente para sa lahat ng mga programming language na tinalakay sa tutorial na ito. Ipinapakita ng mga halimbawang ito ang buong functionality na inilarawan sa itaas at maaaring gamitin bilang mga reference implementation o panimulang punto para sa iyong sariling mga proyekto.
 
 ### Mga Available na Kumpletong Halimbawa
 
-| Wika     | File                          | Paglalarawan                                                    |
-|----------|-------------------------------|----------------------------------------------------------------|
-| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java)       | Kumpletong Java client gamit ang SSE transport na may komprehensibong pag-handle ng error |
-| **C#**   | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs)       | Kumpletong C# client gamit ang stdio transport na may awtomatikong pagsisimula ng server  |
-| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | Kumpletong TypeScript client na may buong suporta sa MCP protocol |
-| **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py)     | Kumpletong Python client gamit ang async/await na pattern       |
-| **Rust** | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs)           | Kumpletong Rust client gamit ang Tokio para sa asynchronous na operasyon |
+| Wika | File | Paglalarawan |
+|----------|------|-------------|
+| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | Kumpletong Java kliyente gamit ang SSE transport na may komprehensibong paghawak ng error |
+| **C#** | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | Kumpletong C# kliyente gamit ang stdio transport na may awtomatikong pagsisimula ng server |
+| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | Kumpletong TypeScript kliyente na may buong suporta sa MCP protocol |
+| **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | Kumpletong Python kliyente gamit ang async/await nga pattern |
+| **Rust** | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs) | Kumpletong Rust kliyente gamit ang Tokio para sa async na operasyon |
 
-Bawat kumpletong halimbawa ay naglalaman ng:
-- ✅ **Pagkakatatag ng koneksyon** at paghawak ng error
-- ✅ **Pagdiskubre ng server** (mga kasangkapan, mapagkukunan, prompt kung naaangkop)
-- ✅ **Mga operasyon ng calculator** (dagdag, bawas, multiplikasyon, hati, tulong)
-- ✅ **Pagproseso ng resulta** at pormat na output
+Bawat kumpletong halimbawa ay nagsasama ng:
+
+- ✅ **Pag-establish ng koneksyon** at paghawak ng error
+- ✅ **Pag-diskubre ng server** (tools, resources, prompts kung saan naaangkop)
+- ✅ **Mga operasyon ng calculator** (add, subtract, multiply, divide, help)
+- ✅ **Pagproseso ng resulta** at naka-format na output
 - ✅ **Komprehensibong paghawak ng error**
-- ✅ **Malinis, dokumentadong code** na may mga komento hakbang-hakbang
 
-### Pagsisimula gamit ang Kumpletong mga Halimbawa
+- ✅ **Malinis, dokumentadong code** na may hakbang-hakbang na mga komento
 
-1. **Pumili ng iyong paboritong wika** mula sa talaan sa itaas
-2. **Suriin ang kumpletong halimbawa** upang maunawaan ang buong implementasyon
-3. **Patakbuhin ang halimbawa** ayon sa mga tagubilin sa [`complete_examples.md`](./complete_examples.md)
+### Pagsisimula Gamit ang Kumpletong Mga Halimbawa
+
+1. **Piliin ang iyong nais na wika** mula sa talahanayan sa itaas
+2. **Suriin ang kumpletong halimbawa ng file** upang maunawaan ang buong implementasyon
+3. **Patakbuhin ang halimbawa** sundin ang mga tagubilin sa [`complete_examples.md`](./complete_examples.md)
 4. **Baguhin at palawakin** ang halimbawa para sa iyong partikular na gamit
 
-Para sa detalyadong dokumentasyon tungkol sa pagpapatakbo at pagpapasadya ng mga halimbawang ito, tingnan: **[📖 Kumpletong Dokumentasyon ng mga Halimbawa](./complete_examples.md)**
+Para sa detalyadong dokumentasyon tungkol sa pagpapatakbo at pag-customize ng mga halimbawang ito, tingnan: **[📖 Kumpletong Dokumentasyon ng Mga Halimbawa](./complete_examples.md)**
 
-### 💡 Solusyon kumpara sa Kumpletong mga Halimbawa
+### 💡 Solusyon vs. Kumpletong Mga Halimbawa
 
 | **Folder ng Solusyon** | **Kumpletong Mga Halimbawa** |
-|-----------------------|-----------------------------|
-| Buong estruktura ng proyekto kasama ang mga build file | Mga single-file na implementasyon |
-| Handa nang patakbuhin kasama ang mga dependency | Mga naka-pokus na halimbawa ng code |
-| Setup na parang production | Pang-edukasyong sanggunian |
-| Tooling na para sa partikular na wika | Paghahambing ng maraming wika |
+|--------------------|--------------------- |
+| Buong estruktura ng proyekto na may mga build file | Mga implementasyon sa isang file |
+| Handang patakbuhin kasama ang mga dependencies | Nakatuon na mga halimbawa ng code |
+| Setup na parang production | Pang-edukasyon na sanggunian |
+| Tooling na partikular sa wika | Paghahambing ng iba't ibang wika |
 
-Parehong mahalaga ang dalawang pamamaraan - gamitin ang **folder ng solusyon** para sa kumpletong mga proyekto at ang **kumpletong mga halimbawa** para sa pag-aaral at sanggunian.
+Mahalaga ang parehong mga pamamaraan - gamitin ang **folder ng solusyon** para sa kumpletong mga proyekto at ang **kumpletong mga halimbawa** para sa pag-aaral at sanggunian.
 
-## Pangunahing Mga Natutunan
+## Pangunahing Mga Punto
 
-Ang pangunahing mga natutunan para sa kabanatang ito tungkol sa mga kliyente:
+Ang mga pangunahing punto para sa kabanatang ito tungkol sa mga kliyente ay ang mga sumusunod:
 
-- Maaaring gamitin upang parehong madiskubre at ma-invoke ang mga tampok sa server.
-- Maaaring magsimula ng server habang nagsisimula rin ito mismo (gaya sa kabanatang ito) ngunit maaaring kumonekta ang mga kliyente sa mga tumatakbong server.
-- Isang mahusay na paraan upang subukan ang mga kakayahan ng server kasabay ng mga alternatibo tulad ng Inspector na inilalarawan sa nakaraang kabanata.
+- Maaaring gamitin upang tuklasin at tawagan ang mga tampok sa server.
+- Maaaring magsimula ng server habang nagsisimula rin ito mismo (tulad sa kabanatang ito) ngunit maaaring kumonekta ang mga kliyente sa mga tumatakbong server.
+- Isang mahusay na paraan upang subukan ang kakayahan ng server kasabay ng mga alternatibo tulad ng Inspector na inilarawan sa nakaraang kabanata.
 
-## Karagdagang Mga Mapagkukunan
+## Karagdagang Mga Sanggunian
 
 - [Pagbuo ng mga kliyente sa MCP](https://modelcontextprotocol.io/quickstart/client)
 
-## Mga Sample
+## Mga Halimbawa
 
 - [Java Calculator](../samples/java/calculator/README.md)
-- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
+- [.NET Calculator](../../../../03-GettingStarted/samples/csharp)
 - [JavaScript Calculator](../samples/javascript/README.md)
 - [TypeScript Calculator](../samples/typescript/README.md)
 - [Python Calculator](../../../../03-GettingStarted/samples/python)
 - [Rust Calculator](../../../../03-GettingStarted/samples/rust)
 
-## Ano ang Susunod
+## Ano ang Sunod
 
-- Susunod: [Paglikha ng kliyente gamit ang LLM](../03-llm-client/README.md)
+- Sunod: [Paglikha ng isang kliyente gamit ang LLM](../03-llm-client/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Paalala**:  
-Ang dokumentong ito ay isinalin gamit ang AI translation service na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagama't aming pinagsisikapan ang katumpakan, pakatandaan na ang mga awtomatikong pagsasalin ay maaaring may mga pagkakamali o di-pagsinop. Ang orihinal na dokumento sa orihinal nitong wika ang dapat ituring na pinagmulan ng katotohanan. Para sa mahahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang hindi pagkakaunawaan o maling interpretasyon na nagmula sa paggamit ng pagsasaling ito.
+**Pagtatanggi**:
+Ang dokumentong ito ay isinalin gamit ang serbisyo ng AI translation na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagama't nagsusumikap kami para sa katumpakan, pakatandaan na ang awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o hindi pagkakatugma. Ang orihinal na dokumento sa orihinal nitong wika ang dapat ituring na pangunahing sanggunian. Para sa mahahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang maling pagkakaintindi o maling interpretasyon na nagmula sa paggamit ng pagsasaling ito.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

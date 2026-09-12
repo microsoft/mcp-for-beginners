@@ -1,31 +1,33 @@
 # 🚀 MCP ਟੂਲਿੰਗ
 
-## 🧠 MCP ਡੇਟਾਬੇਸ ਇੰਟੀਗ੍ਰੇਸ਼ਨ ਲਰਨਿੰਗ ਪਾਥ ਦਾ ਸਰਵੇਖਣ
+## 🧠 MCP ਡੇਟਾਬੇਸ ਇੰਟੀਗ੍ਰੇਸ਼ਨ ਲਰਨਿੰਗ ਪਾਥ ਦਾ ਜਾਇਜ਼ਾ
 
-ਇੱਥੇ ਤੁਸੀਂ ਉਹ ਟੂਲ ਸਿੱਖੋਗੇ ਜੋ MCP ਵਰਤਦੇ ਹਨ। ਜਿਵੇਂ-ਜਿਵੇਂ ਤੁਸੀਂ MCP ਸਰਵਰਾਂ ਨੂੰ ਇਨਾਂ ਨਾਲ ਜੁੜਦੇ ਹੋ, ਤੁਹਾਡਾ ਇਸਨਾਂ ਟੂਲਾਂ ਨੂੰ ਵਰਤਣ ਦਾ ਤਜਰਬਾ ਹੋਰ ਬਿਹਤਰ ਹੋਵੇਗਾ।
+ਇੱਥੇ ਤੁਸੀਂ ਉਹ ਟੂਲ ਸਿੱਖੋਗੇ ਜੋ MCP ਦੀ ਵਰਤੋਂ ਕਰਦੇ ਹਨ। ਜਦੋਂ ਤੁਸੀਂ MCP ਸਰਵਰਾਂ ਨੂੰ ਇਨ੍ਹਾਂ ਟੂਲਾਂ ਨਾਲ ਜੁੜਦੇ ਹੋ, ਤਾਂ ਤੁਹਾਡਾ ਅਨੁਭਵ ਬਿਹਤਰ ਹੋ ਜਾਵੇਗਾ।
 
 ## 🔗 ਅਧਿਕਾਰਿਕ MCP ਸਰੋਤ
 
-- 📘 [MCP ਦਸਤਾਵੇਜ਼](https://modelcontextprotocol.io/) – ਵਿਸਥਾਰਵਾਰ ਟਿਊਟੋਰਿਯਲ ਅਤੇ ਯੂਜ਼ਰ ਗਾਈਡ
-- 📜 [MCP ਵਿਸ਼ੇਸ਼ਤਾ (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/) – ਪ੍ਰੋਟੋਕੌਲ ਦਾ ਸੰਰਚਨਾ ਅਤੇ ਤਕਨੀਕੀ ਸੰਦਰਭ
-- 🧑‍💻 [MCP GitHub ਰਿਪੋਜ਼ਟਰੀ](https://github.com/modelcontextprotocol) – ਖੁੱਲ੍ਹਾ ਸਰੋਤ SDKs, ਟੂਲਜ਼ ਅਤੇ ਕੋਡ ਨਮੂਨੇ
-- 🌐 [MCP ਭਾਈਚਾਰਾ](https://github.com/orgs/modelcontextprotocol/discussions) – ਚਰਚਾਵਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਵੋ ਅਤੇ ਭਾਈਚਾਰੇ ਵਿੱਚ ਯੋਗਦਾਨ ਪਾਓ
-- 🔒 [OWASP MCP ਟਾਪ 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – ਸੁਰੱਖਿਆ ਦੇ ਸਭ ਤੋਂ ਵਧੀਆ ਤਰੀਕੇ ਅਤੇ ਜੋਖਮ ਘਟਾਓ
+- 📘 [MCP ਦਸਤਾਵੇਜ਼](https://modelcontextprotocol.io/) – ਵਿਸਥਾਰਪੂਰਵਕ ਟਿਊਟੋਰਿਆਲ ਅਤੇ ਉਪਭੋਗਤਾ ਮਾਰਗਦਰਸ਼ਿਕਾ
+- 📜 [MCP ਵਿਸ਼ੇਸ਼ਤਾ (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/) – ਪ੍ਰੋਟੋਕੋਲ ਆਰਕੀਟੈਕਚਰ ਅਤੇ ਤਕਨੀਕੀ ਸੰਦਰਭ
+- 🧑‍💻 [MCP GitHub ਰਿਪੋਜ਼ਟਰੀ](https://github.com/modelcontextprotocol) – ਖੁੱਲ੍ਹਾ ਸਰੋਤ SDKs, ਟੂਲਜ਼, ਅਤੇ ਕੋਡ ਨਮੂਨੇ
+- 🌐 [MCP ਸਮੂਹ](https://github.com/orgs/modelcontextprotocol/discussions) – ਚਰਚਾਵਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਵੋ ਅਤੇ ਸਮੂਹ ਵਿੱਚ ਯੋਗਦਾਨ ਪਾਓ
+- 🔒 [OWASP MCP ਟੌਪ 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – ਸੁਰੱਖਿਆ ਦੀਆਂ ਵਧੀਆ ਪ੍ਰਥਾਵਾਂ ਅਤੇਖਤਰਿਆਂ ਦੀ ਰੋਕਥਾਮ
 
-## 🌟 ਭਾਈਚਾਰਾ ਅਤੇ ਸਹਾਇਤਾ
+
+
+## 🌟 ਸਮੂਹ ਅਤੇ ਸਹਾਇਤਾ
 
 ### ਮਦਦ ਪ੍ਰਾਪਤ ਕਰੋ
 
-- **Azure AI Discord**: [ਮਾਹਿਰ ਸਹਾਇਤਾ ਲਈ ਜੁੜੋ](https://discord.com/invite/ByRwuEEgH4)
-- **MCP ਭਾਈਚਾਰਾ**: [ਵਿਆਪਕ MCP ਚਰਚਾਵਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਵੋ](https://github.com/orgs/modelcontextprotocol/discussions)
+- **Azure AI Discord**: [ਮਾਹਿਰ ਸਹਾਇਤਾ ਲਈ ਸ਼ਾਮਲ ਹੋਵੋ](https://discord.com/invite/ByRwuEEgH4)
+- **MCP ਸਮੂਹ**: [ਵਿਸ਼ਾਲ MCP ਚਰਚਾਵਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਵੋ](https://github.com/orgs/modelcontextprotocol/discussions)
 
 ## 🚀 ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਤਿਆਰ?
 
-ਆਪਣੀ ਯਾਤਰਾ ਸ਼ੁਰੂ ਕਰੋ **[GitHub Copilot ਐਪ](./01-copilot-app/README.md)** ਨਾਲ
+ਆਪਣਾ ਸਫਰ ਸ਼ੁਰੂ ਕਰੋ **[GitHub Copilot ਐਪ](./01-copilot-app/README.md)** ਨਾਲ
 
 ---
 
-*ਇਨਾਂ ਟੂਲਾਂ ਨਾਲ MCP ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਉਤਪਾਦਕਤਾ ਅਤੇ ਬਿਨਾਂ ਰੁਕਾਵਟ ਦੇ ਇੰਟੀਗ੍ਰੇਸ਼ਨ ਲਈ ਮਾਹਰ ਬਣੋ।*
+*ਇਹਨਾਂ ਟੂਲਾਂ ਨਾਲ MCP ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਮਹਿਰਤ ਪ੍ਰਾਪਤ ਕਰੋ ਅਤੇ ਬੇਹਤਰ ਸਮਾਧਾਨ ਲਈ ਇੰਟੀਗ੍ਰੇਸ਼ਨ ਸਧਾਰੋ।*
 
 ---
 

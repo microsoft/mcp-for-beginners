@@ -1,31 +1,33 @@
-# 🚀 Instrumente MCP
+# 🚀 Unelete MCP
 
 ## 🧠 Prezentare generală a Căii de Învățare pentru Integrarea Bazei de Date MCP
 
-Aici vei învăța cum să folosești uneltele care utilizează MCP. Experiența ta folosind aceste unelte se va îmbunătăți pe măsură ce conectezi serverele MCP la ele.
+Aici vei învăța cum să folosești unelte care utilizează MCP. Experiența ta cu aceste unelte se va îmbunătăți pe măsură ce conectezi serverele MCP la ele.
 
-## 🔗 Resurse Oficiale MCP
+## 🔗 Resurse oficiale MCP
 
 - 📘 [Documentația MCP](https://modelcontextprotocol.io/) – Tutoriale detaliate și ghiduri pentru utilizatori
-- 📜 [Specificația MCP (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/) – Arhitectura protocolului și referințe tehnice
-- 🧑‍💻 [Repository GitHub MCP](https://github.com/modelcontextprotocol) – SDK-uri open-source, unelte și exemple de cod
-- 🌐 [Comunitatea MCP](https://github.com/orgs/modelcontextprotocol/discussions) – Participă la discuții și contribuie la comunitate
-- 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Practici de securitate recomandate și atenuarea riscurilor
+- 📜 [Specificația MCP (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/) – Arhitectura protocolului și referințe tehnice
+- 🧑‍💻 [Depozitul GitHub MCP](https://github.com/modelcontextprotocol) – SDK-uri open-source, unelte și exemple de cod
+- 🌐 [Comunitatea MCP](https://github.com/orgs/modelcontextprotocol/discussions) – Alătură-te discuțiilor și contribuie la comunitate
+- 🔒 [Top 10 OWASP MCP](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Cele mai bune practici de securitate și atenuări de risc
+
+
 
 ## 🌟 Comunitate și Suport
 
-### Obține Ajutor
+### Obține ajutor
 
-- **Azure AI Discord**: [Alătură-te pentru suport de specialitate](https://discord.com/invite/ByRwuEEgH4)
-- **Comunitatea MCP**: [Participă la discuții mai largi MCP](https://github.com/orgs/modelcontextprotocol/discussions)
+- **Discord Azure AI**: [Alătură-te pentru suport de la experți](https://discord.com/invite/ByRwuEEgH4)
+- **Comunitatea MCP**: [Alătură-te discuțiilor mai largi despre MCP](https://github.com/orgs/modelcontextprotocol/discussions)
 
 ## 🚀 Ești gata să începi?
 
-Începe-ți călătoria cu **[aplicația GitHub Copilot](./01-copilot-app/README.md)**
+Începe călătoria cu **[aplicația GitHub Copilot](./01-copilot-app/README.md)**
 
 ---
 
-*Stăpânește aceste unelte folosind MCP pentru productivitate îmbunătățită și integrare fără întreruperi.*
+*Stăpânește-le folosind MCP cu aceste unelte pentru productivitate sporită și integrare fără cusur.*
 
 ---
 

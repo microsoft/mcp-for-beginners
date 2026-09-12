@@ -1,62 +1,70 @@
-> [DAPATKAN DARI PENGGUNAAN: KANDIDAT RILIS 2026-07-28](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#roots-sampling-and-logging-are-deprecated)
+> [!WARNING]
+> Sampling tidak lagi digunakan (deprecated) di MCP `2026-07-28`. Pelajaran ini dipertahankan untuk
+> implementasi legacy. Server baru harus terintegrasi langsung dengan API penyedia LLM.
 
-# Pengambilan Sampel dalam Protokol Konteks Model
 
-> **Pemberitahuan penghentian:** kandidat rilis spesifikasi MCP `2026-07-28` menandai Pengambilan Sampel sebagai deprecated (tidak disarankan) demi integrasi langsung dengan API penyedia LLM. Pengambilan sampel tetap berfungsi pada versi `2025-11-25` dan setidaknya selama satu tahun setelah penghentian resmi, jadi semua yang ada dalam pelajaran ini tetap berlaku - tetapi desain server baru harus mengevaluasi pola penggantinya. Lihat [Apa yang Berubah di MCP: Kandidat Rilis 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+# Sampling dalam Model Context Protocol
 
-Pengambilan sampel adalah fitur kuat MCP yang memungkinkan server untuk meminta penyelesaian LLM melalui klien, memfasilitasi perilaku agen yang canggih sambil menjaga keamanan dan privasi. Konfigurasi pengambilan sampel yang tepat dapat secara dramatis meningkatkan kualitas dan performa respons. MCP menyediakan cara standar untuk mengontrol bagaimana model menghasilkan teks dengan parameter khusus yang mempengaruhi tingkat keacakannya, kreativitas, dan koherensi.
+> Sampling tetap ada di spesifikasi `2026-07-28` untuk kompatibilitas dan
+> berpotensi dihapus dalam revisi pertama yang dirilis pada atau setelah 28 Juli,
+> 2027. Contoh dalam pelajaran ini mungkin menggunakan API SDK yang mengimplementasikan `2025-11-25`.
+> Lihat [Apa yang Berubah dalam MCP: Spesifikasi 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28.md).
+
+Dalam implementasi MCP legacy, Sampling memungkinkan server meminta penyelesaian dari LLM
+melalui klien. Pelajaran ini menjelaskan alur protokol yang sudah tidak digunakan tersebut
+untuk kompatibilitas dan pekerjaan migrasi.
 
 ## Pendahuluan
 
-Dalam pelajaran ini, kita akan mengeksplorasi cara mengonfigurasi parameter pengambilan sampel dalam permintaan MCP dan memahami mekanisme protokol dasar pengambilan sampel.
+Dalam pelajaran ini, kita akan menjelajahi bagaimana mengonfigurasi parameter sampling dalam permintaan MCP dan memahami mekanisme protokol sampling yang mendasarinya.
 
 ## Tujuan Pembelajaran
 
 Pada akhir pelajaran ini, Anda akan dapat:
 
-- Memahami parameter pengambilan sampel utama yang tersedia di MCP.
-- Mengonfigurasi parameter pengambilan sampel untuk berbagai kasus penggunaan.
-- Menerapkan pengambilan sampel deterministik untuk hasil yang dapat direproduksi.
-- Menyesuaikan parameter pengambilan sampel secara dinamis berdasarkan konteks dan preferensi pengguna.
-- Menerapkan strategi pengambilan sampel untuk meningkatkan performa model dalam berbagai skenario.
-- Memahami bagaimana pengambilan sampel bekerja dalam alur klien-server MCP.
+- Memahami parameter sampling utama yang tersedia di MCP.
+- Mengonfigurasi parameter sampling untuk berbagai kasus penggunaan.
+- Mengimplementasikan sampling deterministik untuk hasil yang dapat direproduksi.
+- Menyesuaikan parameter sampling secara dinamis berdasarkan konteks dan preferensi pengguna.
+- Menerapkan strategi sampling untuk meningkatkan kinerja model dalam berbagai skenario.
+- Memahami cara kerja sampling dalam alur klien-server MCP.
 
-## Cara Kerja Pengambilan Sampel di MCP
+## Cara Kerja Sampling di MCP
 
-Alur pengambilan sampel dalam MCP mengikuti langkah-langkah berikut:
+Alur sampling di MCP mengikuti langkah-langkah berikut:
 
-1. Server mengirim permintaan `sampling/createMessage` ke klien
+1. Server mengirimkan permintaan `sampling/createMessage` ke klien
 2. Klien meninjau permintaan dan dapat memodifikasinya
 3. Klien melakukan sampling dari LLM
 4. Klien meninjau hasil penyelesaian
 5. Klien mengembalikan hasil ke server
 
-Desain human-in-the-loop ini memastikan pengguna terus mengontrol apa yang dilihat dan dihasilkan oleh LLM.
+Desain human-in-the-loop ini memastikan pengguna mempertahankan kontrol atas apa yang dilihat dan dihasilkan oleh LLM.
 
-## Ikhtisar Parameter Pengambilan Sampel
+## Ikhtisar Parameter Sampling
 
-MCP mendefinisikan parameter pengambilan sampel berikut yang dapat dikonfigurasi dalam permintaan klien:
+MCP mendefinisikan parameter sampling berikut yang dapat dikonfigurasi dalam permintaan klien:
 
 | Parameter | Deskripsi | Rentang Umum |
-|-----------|-----------|--------------|
-| `temperature` | Mengontrol keacakan dalam pemilihan token | 0.0 - 1.0 |
-| `maxTokens` | Jumlah maksimum token yang dihasilkan | Nilai Integer |
+|-----------|-------------|---------------|
+| `temperature` | Mengontrol randomness dalam pemilihan token | 0.0 - 1.0 |
+| `maxTokens` | Jumlah maksimum token yang dihasilkan | Nilai integer |
 | `stopSequences` | Urutan khusus yang menghentikan generasi saat ditemui | Array string |
 | `metadata` | Parameter tambahan spesifik penyedia | Objek JSON |
 
-Banyak penyedia LLM mendukung parameter tambahan melalui bidang `metadata`, yang mungkin mencakup:
+Banyak penyedia LLM mendukung parameter tambahan melalui bidang `metadata`, yang mungkin meliputi:
 
 | Parameter Ekstensi Umum | Deskripsi | Rentang Umum |
-|-----------|-----------|--------------|
+|-----------|-------------|---------------|
 | `top_p` | Nucleus sampling - membatasi token ke probabilitas kumulatif teratas | 0.0 - 1.0 |
-| `top_k` | Membatasi pemilihan token ke pilihan K teratas | 1 - 100 |
-| `presence_penalty` | Menghukum token berdasarkan keberadaannya di teks sebelumnya | -2.0 - 2.0 |
-| `frequency_penalty` | Menghukum token berdasarkan frekuensinya di teks sebelumnya | -2.0 - 2.0 |
-| `seed` | Benih acak tertentu untuk hasil dapat direproduksi | Nilai Integer |
+| `top_k` | Membatasi pemilihan token ke opsi K teratas | 1 - 100 |
+| `presence_penalty` | Memberi penalti pada token berdasarkan kemunculannya dalam teks sejauh ini | -2.0 - 2.0 |
+| `frequency_penalty` | Memberi penalti pada token berdasarkan frekuensinya dalam teks sejauh ini | -2.0 - 2.0 |
+| `seed` | Benih acak spesifik untuk hasil yang dapat direproduksi | Nilai integer |
 
 ## Contoh Format Permintaan
 
-Berikut contoh permintaan sampling dari klien di MCP:
+Berikut adalah contoh permintaan sampling dari klien di MCP:
 
 ```json
 {
@@ -79,7 +87,7 @@ Berikut contoh permintaan sampling dari klien di MCP:
 }
 ```
 
-## Format Respons
+## Format Respon
 
 Klien mengembalikan hasil penyelesaian:
 
@@ -97,38 +105,38 @@ Klien mengembalikan hasil penyelesaian:
 
 ## Kontrol Human in the Loop
 
-Pengambilan sampel MCP dirancang dengan pengawasan manusia:
+Sampling MCP dirancang dengan pengawasan manusia dalam pikiran:
 
 - **Untuk prompt**:
   - Klien harus menampilkan prompt yang diusulkan kepada pengguna
   - Pengguna harus dapat memodifikasi atau menolak prompt
-  - Prompt sistem dapat difilter atau dimodifikasi
-  - Inklusi konteks dikendalikan oleh klien
+  - Prompt sistem dapat disaring atau dimodifikasi
+  - Penyertaan konteks dikendalikan oleh klien
 
 - **Untuk penyelesaian**:
   - Klien harus menampilkan penyelesaian kepada pengguna
   - Pengguna harus dapat memodifikasi atau menolak penyelesaian
-  - Klien dapat memfilter atau memodifikasi penyelesaian
-  - Pengguna mengendalikan model yang digunakan
+  - Klien dapat menyaring atau memodifikasi penyelesaian
+  - Pengguna mengontrol model mana yang digunakan
 
-Dengan prinsip ini, mari kita lihat cara mengimplementasikan pengambilan sampel dalam berbagai bahasa pemrograman, fokus pada parameter yang umum didukung oleh penyedia LLM.
+Dengan prinsip-prinsip ini, mari kita lihat bagaimana mengimplementasikan sampling dalam berbagai bahasa pemrograman, fokus pada parameter yang umum didukung di penyedia LLM.
 
 ## Pertimbangan Keamanan
 
-Saat mengimplementasikan pengambilan sampel di MCP, perhatikan praktik terbaik keamanan berikut:
+Saat mengimplementasikan sampling di MCP, pertimbangkan praktik terbaik keamanan berikut:
 
-- **Validasi semua konten pesan** sebelum dikirim ke klien
+- **Validasi semua isi pesan** sebelum mengirim ke klien
 - **Sanitasi informasi sensitif** dari prompt dan penyelesaian
-- **Terapkan batas laju** untuk mencegah penyalahgunaan
+- **Terapkan batas laju (rate limits)** untuk mencegah penyalahgunaan
 - **Pantau penggunaan sampling** untuk pola yang tidak biasa
-- **Enkripsi data dalam transit** menggunakan protokol aman
-- **Tangani privasi data pengguna** sesuai regulasi terkait
+- **Enkripsi data saat transit** menggunakan protokol aman
+- **Tangani privasi data pengguna** sesuai regulasi yang relevan
 - **Audit permintaan sampling** untuk kepatuhan dan keamanan
-- **Kontrol eksposur biaya** dengan batas yang tepat
-- **Terapkan batas waktu** untuk permintaan sampling
-- **Tangani kesalahan model dengan baik** menggunakan fallback yang sesuai
+- **Kontrol eksposur biaya** dengan batasan yang sesuai
+- **Terapkan batas waktu (timeouts)** untuk permintaan sampling
+- **Tangani kesalahan model dengan cara yang baik** menggunakan fallback yang tepat
 
-Parameter pengambilan sampel memungkinkan penyesuaian perilaku model bahasa untuk mencapai keseimbangan yang diinginkan antara keluaran deterministik dan kreatif.
+Parameter sampling memungkinkan penyesuaian perilaku model bahasa untuk mencapai keseimbangan yang diinginkan antara keluaran deterministik dan kreatif.
 
 Mari kita lihat cara mengonfigurasi parameter ini dalam berbagai bahasa pemrograman.
 
@@ -170,21 +178,21 @@ public class SamplingExample
 
 Dalam kode sebelumnya kita telah:
 
-- Membuat klien MCP dengan URL server spesifik.
-- Mengonfigurasi permintaan dengan parameter pengambilan sampel seperti `temperature`, `top_p`, dan `top_k`.
+- Membuat klien MCP dengan URL server tertentu.
+- Mengonfigurasi permintaan dengan parameter sampling seperti `temperature`, `top_p`, dan `top_k`.
 - Mengirim permintaan dan mencetak teks yang dihasilkan.
 - Menggunakan:
-    - `allowedTools` untuk menentukan alat yang model dapat gunakan selama generasi. Dalam kasus ini, kami mengizinkan alat `ideaGenerator` dan `marketAnalyzer` untuk membantu menghasilkan ide aplikasi kreatif.
-    - `frequencyPenalty` dan `presencePenalty` untuk mengontrol pengulangan dan keberagaman keluaran.
-    - `temperature` untuk mengontrol keacakan keluaran, dimana nilai lebih tinggi menghasilkan respons yang lebih kreatif.
-    - `top_p` untuk membatasi pemilihan token ke yang menyumbang probabilitas kumulatif teratas, meningkatkan kualitas teks yang dihasilkan.
-    - `top_k` untuk membatasi model pada K token paling mungkin, membantu menghasilkan respons lebih koheren.
-    - `frequencyPenalty` dan `presencePenalty` untuk mengurangi pengulangan dan mendorong keberagaman dalam teks yang dihasilkan.
+    - `allowedTools` untuk menentukan alat mana yang dapat digunakan model selama generasi. Dalam kasus ini, kami mengizinkan alat `ideaGenerator` dan `marketAnalyzer` untuk membantu menghasilkan ide aplikasi kreatif.
+    - `frequencyPenalty` dan `presencePenalty` untuk mengontrol pengulangan dan keberagaman dalam keluaran.
+    - `temperature` untuk mengontrol randomness output, di mana nilai lebih tinggi menghasilkan respons yang lebih kreatif.
+    - `top_p` untuk membatasi pemilihan token hanya pada token yang menyumbang massa probabilitas kumulatif teratas, meningkatkan kualitas teks yang dihasilkan.
+    - `top_k` untuk membatasi model pada token K teratas yang paling mungkin, yang dapat membantu menghasilkan respons yang lebih koheren.
+    - `frequencyPenalty` dan `presencePenalty` untuk mengurangi pengulangan dan mendorong keberagaman teks yang dihasilkan.
 
 # [JavaScript](#tab/javascript)
 
 ```javascript
-// Contoh JavaScript: Konfigurasi suhu dan sampling Top-P
+// Contoh JavaScript: Konfigurasi Suhu dan Pengambilan Sampel Top-P
 const { McpClient } = require('@mcp/client');
 
 async function demonstrateSampling() {
@@ -194,23 +202,23 @@ async function demonstrateSampling() {
     apiKey: process.env.MCP_API_KEY
   });
   
-  // Konfigurasi permintaan dengan parameter sampling yang berbeda
+  // Konfigurasikan permintaan dengan parameter sampling berbeda
   const creativeSampling = {
     temperature: 0.9,    // Suhu lebih tinggi = lebih banyak randomness/kreativitas
-    topP: 0.92,          // Pertimbangkan token dengan massa probabilitas 92% teratas
+    topP: 0.92,          // Pertimbangkan token dengan massa probabilitas top 92%
     frequencyPenalty: 0.6, // Kurangi pengulangan urutan token
     presencePenalty: 0.4   // Beri penalti pada token yang sudah muncul dalam teks sejauh ini
   };
   
   const factualSampling = {
     temperature: 0.2,    // Suhu lebih rendah = lebih deterministik/faktual
-    topP: 0.85,          // Pemilihan token yang sedikit lebih terfokus
+    topP: 0.85,          // Pemilihan token yang sedikit lebih fokus
     frequencyPenalty: 0.2, // Penalti pengulangan minimal
     presencePenalty: 0.1   // Penalti kehadiran minimal
   };
   
   try {
-    // Kirim dua permintaan dengan konfigurasi sampling yang berbeda
+    // Kirim dua permintaan dengan konfigurasi sampling berbeda
     const creativeResponse = await client.sendPrompt(
       "Generate innovative ideas for sustainable urban transportation",
       {
@@ -244,40 +252,40 @@ demonstrateSampling();
 Dalam kode sebelumnya kita telah:
 
 - Menginisialisasi klien MCP dengan URL server dan kunci API.
-- Mengonfigurasi dua set parameter pengambilan sampel: satu untuk tugas kreatif dan satu untuk tugas faktual.
-- Mengirim permintaan dengan konfigurasi ini, memungkinkan model menggunakan alat tertentu untuk setiap tugas.
-- Mencetak respons yang dihasilkan untuk menunjukkan efek dari berbagai parameter pengambilan sampel.
-- Menggunakan `allowedTools` untuk menentukan alat yang model dapat gunakan selama generasi. Dalam kasus ini, kami mengizinkan `ideaGenerator` dan `environmentalImpactTool` untuk tugas kreatif, serta `factChecker` dan `dataAnalysisTool` untuk tugas faktual.
-- Menggunakan `temperature` untuk mengontrol keacakan keluaran, dimana nilai lebih tinggi menghasilkan respons lebih kreatif.
-- Menggunakan `top_p` untuk membatasi pemilihan token ke yang menyumbang probabilitas kumulatif teratas, meningkatkan kualitas teks yang dihasilkan.
-- Menggunakan `frequencyPenalty` dan `presencePenalty` untuk mengurangi pengulangan dan mendorong keberagaman dalam keluaran.
-- Menggunakan `top_k` untuk membatasi model pada K token paling mungkin, membantu menghasilkan respons yang lebih koheren.
+- Mengonfigurasi dua set parameter sampling: satu untuk tugas kreatif dan satu lagi untuk tugas faktual.
+- Mengirim permintaan dengan konfigurasi ini, memungkinkan model menggunakan alat spesifik untuk setiap tugas.
+- Mencetak respons yang dihasilkan untuk menunjukkan efek parameter sampling yang berbeda.
+- Menggunakan `allowedTools` untuk menentukan alat mana yang dapat digunakan model selama generasi. Dalam kasus ini, kami mengizinkan `ideaGenerator` dan `environmentalImpactTool` untuk tugas kreatif, dan `factChecker` dan `dataAnalysisTool` untuk tugas faktual.
+- Menggunakan `temperature` untuk mengontrol randomness output, di mana nilai lebih tinggi menghasilkan respons yang lebih kreatif.
+- Menggunakan `top_p` untuk membatasi pemilihan token hanya pada token yang menyumbang massa probabilitas kumulatif teratas, meningkatkan kualitas teks yang dihasilkan.
+- Menggunakan `frequencyPenalty` dan `presencePenalty` untuk mengurangi pengulangan dan mendorong keberagaman dalam output.
+- Menggunakan `top_k` untuk membatasi model pada token K teratas yang paling mungkin, yang dapat membantu menghasilkan respons yang lebih koheren.
 
 ---
 
-## Pengambilan Sampel Deterministik
+## Sampling Deterministik
 
-Untuk aplikasi yang memerlukan keluaran yang konsisten, pengambilan sampel deterministik memastikan hasil yang dapat direproduksi. Cara kerjanya adalah dengan menggunakan seed acak tetap dan mengatur temperatur ke nol.
+Untuk aplikasi yang membutuhkan keluaran konsisten, sampling deterministik memastikan hasil yang dapat direproduksi. Cara kerjanya adalah dengan menggunakan benih acak tetap dan mengatur temperature menjadi nol.
 
-Mari kita lihat contoh implementasi di bawah ini untuk mendemonstrasikan pengambilan sampel deterministik dalam berbagai bahasa pemrograman.
+Mari lihat contoh implementasi di bawah untuk mendemonstrasikan sampling deterministik dalam berbagai bahasa pemrograman.
 
 # [Java](#tab/java)
 
 ```java
-// Contoh Java: Respon deterministik dengan seed tetap
+// Contoh Java: Respons deterministik dengan seed tetap
 public class DeterministicSamplingExample {
     public void demonstrateDeterministicResponses() {
         McpClient client = new McpClient.Builder()
             .setServerUrl("https://mcp-server-example.com")
             .build();
             
-        long fixedSeed = 12345; // Menggunakan seed tetap untuk hasil deterministik
+        long fixedSeed = 12345; // Menggunakan seed tetap untuk hasil yang deterministik
         
         // Permintaan pertama dengan seed tetap
         McpRequest request1 = new McpRequest.Builder()
             .setPrompt("Generate a random number between 1 and 100")
             .setSeed(fixedSeed)
-            .setTemperature(0.0) // Suhu nol untuk determinisme maksimum
+            .setTemperature(0.0) // Suhu nol untuk determinisme maksimal
             .build();
             
         // Permintaan kedua dengan seed yang sama
@@ -291,7 +299,7 @@ public class DeterministicSamplingExample {
         McpResponse response1 = client.sendRequest(request1);
         McpResponse response2 = client.sendRequest(request2);
         
-        // Respon harus identik karena seed dan suhu=0 sama
+        // Respons harus identik karena seed yang sama dan suhu=0
         System.out.println("Response 1: " + response1.getGeneratedText());
         System.out.println("Response 2: " + response2.getGeneratedText());
         System.out.println("Are responses identical: " + 
@@ -302,17 +310,17 @@ public class DeterministicSamplingExample {
 
 Dalam kode sebelumnya kita telah:
 
-- Membuat klien MCP dengan URL server yang ditentukan.
-- Mengonfigurasi dua permintaan dengan prompt yang sama, seed tetap, dan temperatur nol.
+- Membuat klien MCP dengan URL server tertentu.
+- Mengonfigurasi dua permintaan dengan prompt yang sama, benih tetap, dan temperature nol.
 - Mengirim kedua permintaan dan mencetak teks yang dihasilkan.
-- Mendemonstrasikan bahwa respons identik karena sifat deterministik konfigurasi sampling (seed dan temperatur sama).
-- Menggunakan `setSeed` untuk menentukan seed acak tetap, memastikan model menghasilkan keluaran yang sama untuk input yang sama setiap saat.
-- Mengatur `temperature` ke nol untuk memastikan determinisme maksimal, berarti model selalu memilih token berikutnya yang paling mungkin tanpa keacakan.
+- Menunjukkan bahwa respons identik karena sifat deterministik konfigurasi sampling (benih dan temperature sama).
+- Menggunakan `setSeed` untuk menentukan benih acak tetap, memastikan model menghasilkan keluaran yang sama untuk input yang sama setiap saat.
+- Mengatur `temperature` ke nol agar determinisme maksimal, berarti model selalu memilih token berikutnya yang paling mungkin tanpa randomness.
 
 # [JavaScript](#tab/javascript-deterministic)
 
 ```javascript
-// Contoh JavaScript: Respons deterministik dengan kontrol seed
+// Contoh JavaScript: Respon deterministik dengan kontrol seed
 const { McpClient } = require('@mcp/client');
 
 async function deterministicSampling() {
@@ -327,7 +335,7 @@ async function deterministicSampling() {
     // Permintaan pertama dengan seed tetap
     const response1 = await client.sendPrompt(prompt, {
       seed: fixedSeed,
-      temperature: 0.0  // Suhu nol untuk determinisme maksimal
+      temperature: 0.0  // Suhu nol untuk determinisme maksimum
     });
     
     // Permintaan kedua dengan seed dan suhu yang sama
@@ -336,7 +344,7 @@ async function deterministicSampling() {
       temperature: 0.0
     });
     
-    // Permintaan ketiga dengan seed berbeda tetapi suhu sama
+    // Permintaan ketiga dengan seed berbeda tetapi suhu yang sama
     const response3 = await client.sendPrompt(prompt, {
       seed: 67890,
       temperature: 0.0
@@ -359,25 +367,25 @@ deterministicSampling();
 Dalam kode sebelumnya kita telah:
 
 - Menginisialisasi klien MCP dengan URL server.
-- Mengonfigurasi dua permintaan dengan prompt yang sama, seed tetap, dan temperatur nol.
+- Mengonfigurasi dua permintaan dengan prompt yang sama, benih tetap, dan temperature nol.
 - Mengirim kedua permintaan dan mencetak teks yang dihasilkan.
-- Mendemonstrasikan bahwa respons identik karena sifat deterministik konfigurasi sampling (seed dan temperatur sama).
-- Menggunakan `seed` untuk menentukan seed acak tetap, memastikan model menghasilkan keluaran yang sama untuk input yang sama setiap saat.
-- Mengatur `temperature` ke nol untuk memastikan determinisme maksimal, berarti model selalu memilih token berikutnya yang paling mungkin tanpa keacakan.
-- Menggunakan seed berbeda untuk permintaan ketiga untuk menunjukkan bahwa mengubah seed menghasilkan keluaran berbeda, meskipun prompt dan temperatur sama.
+- Menunjukkan bahwa respons identik karena sifat deterministik konfigurasi sampling (benih dan temperature sama).
+- Menggunakan `seed` untuk menentukan benih acak tetap, memastikan model menghasilkan keluaran yang sama untuk input yang sama setiap saat.
+- Mengatur `temperature` ke nol agar determinisme maksimal, berarti model selalu memilih token berikutnya yang paling mungkin tanpa randomness.
+- Menggunakan benih berbeda untuk permintaan ketiga untuk menunjukkan bahwa mengganti benih menghasilkan keluaran berbeda, meskipun prompt dan temperature sama.
 
 ---
 
-## Konfigurasi Pengambilan Sampel Dinamis
+## Konfigurasi Sampling Dinamis
 
-Pengambilan sampel yang cerdas menyesuaikan parameter berdasarkan konteks dan kebutuhan setiap permintaan. Ini berarti penyesuaian dinamis pada parameter seperti temperature, top_p, dan penalti berdasarkan tipe tugas, preferensi pengguna, atau performa historis.
+Sampling cerdas menyesuaikan parameter berdasarkan konteks dan kebutuhan setiap permintaan. Ini berarti menyesuaikan parameter seperti temperature, top_p, dan penalti berdasarkan jenis tugas, preferensi pengguna, atau performa historis.
 
-Mari kita lihat cara mengimplementasikan pengambilan sampel dinamis dalam berbagai bahasa pemrograman.
+Mari lihat bagaimana mengimplementasikan sampling dinamis dalam berbagai bahasa pemrograman.
 
 # [Python](#tab/python)
 
 ```python
-# Contoh Python: Pengambilan sampel dinamis berdasarkan konteks permintaan
+# Contoh Python: Sampling dinamis berdasarkan konteks permintaan
 class DynamicSamplingService:
     def __init__(self, mcp_client):
         self.client = mcp_client
@@ -385,7 +393,7 @@ class DynamicSamplingService:
     async def generate_with_adaptive_sampling(self, prompt, task_type, user_preferences=None):
         """Uses different sampling strategies based on task type and user preferences"""
         
-        # Definisikan preset pengambilan sampel untuk berbagai jenis tugas
+        # Definisikan preset sampling untuk berbagai jenis tugas
         sampling_presets = {
             "creative": {"temperature": 0.9, "top_p": 0.95, "frequency_penalty": 0.7},
             "factual": {"temperature": 0.2, "top_p": 0.85, "frequency_penalty": 0.2},
@@ -396,7 +404,7 @@ class DynamicSamplingService:
         # Pilih preset dasar
         sampling_params = sampling_presets.get(task_type, sampling_presets["factual"])
         
-        # Sesuaikan berdasarkan preferensi pengguna jika tersedia
+        # Sesuaikan berdasarkan preferensi pengguna jika diberikan
         if user_preferences:
             if "creativity_level" in user_preferences:
                 # Skala temperatur berdasarkan preferensi kreativitas (1-10)
@@ -404,11 +412,11 @@ class DynamicSamplingService:
                 sampling_params["temperature"] = 0.1 + (0.9 * creativity)
             
             if "diversity" in user_preferences:
-                # Sesuaikan top_p berdasarkan keragaman respons yang diinginkan
+                # Sesuaikan top_p berdasarkan keberagaman respons yang diinginkan
                 diversity = min(max(user_preferences["diversity"], 1), 10) / 10
                 sampling_params["top_p"] = 0.6 + (0.39 * diversity)
         
-        # Buat dan kirim permintaan dengan parameter pengambilan sampel kustom
+        # Buat dan kirim permintaan dengan parameter sampling kustom
         response = await self.client.send_request(
             prompt=prompt,
             temperature=sampling_params["temperature"],
@@ -416,7 +424,7 @@ class DynamicSamplingService:
             frequency_penalty=sampling_params["frequency_penalty"]
         )
         
-        # Kembalikan respons dengan metadata pengambilan sampel untuk transparansi
+        # Kembalikan respons dengan metadata sampling untuk transparansi
         return {
             "text": response.generated_text,
             "applied_sampling": sampling_params,
@@ -426,30 +434,30 @@ class DynamicSamplingService:
 
 Dalam kode sebelumnya kita telah:
 
-- Membuat kelas `DynamicSamplingService` yang mengelola pengambilan sampel adaptif.
-- Mendefinisikan preset pengambilan sampel untuk berbagai tipe tugas (kreatif, faktual, kode, analitis).
-- Memilih preset pengambilan sampel dasar berdasarkan tipe tugas.
-- Menyesuaikan parameter pengambilan sampel berdasarkan preferensi pengguna, seperti tingkat kreativitas dan keberagaman.
-- Mengirim permintaan dengan parameter pengambilan sampel yang dikonfigurasi secara dinamis.
-- Mengembalikan teks yang dihasilkan bersama parameter sampling dan tipe tugas yang diterapkan untuk transparansi.
-- Menggunakan `temperature` untuk mengontrol keacakan keluaran, dimana nilai lebih tinggi menghasilkan respons yang lebih kreatif.
-- Menggunakan `top_p` untuk membatasi pemilihan token ke yang menyumbang probabilitas kumulatif teratas, meningkatkan kualitas teks yang dihasilkan.
-- Menggunakan `frequency_penalty` untuk mengurangi pengulangan dan mendorong keberagaman dalam keluaran.
-- Menggunakan `user_preferences` untuk memungkinkan kustomisasi parameter sampling berdasarkan tingkat kreativitas dan keberagaman yang ditentukan pengguna.
+- Membuat kelas `DynamicSamplingService` yang mengelola sampling adaptif.
+- Mendefinisikan preset sampling untuk berbagai jenis tugas (kreatif, faktual, kode, analitis).
+- Memilih preset sampling dasar berdasarkan jenis tugas.
+- Menyesuaikan parameter sampling berdasarkan preferensi pengguna, seperti tingkat kreativitas dan keberagaman.
+- Mengirim permintaan dengan parameter sampling yang dikonfigurasi secara dinamis.
+- Mengembalikan teks yang dihasilkan bersama parameter sampling dan jenis tugas untuk transparansi.
+- Menggunakan `temperature` untuk mengontrol randomness output, di mana nilai lebih tinggi menghasilkan respons yang lebih kreatif.
+- Menggunakan `top_p` untuk membatasi pemilihan token pada token yang ikut menyumbang massa probabilitas kumulatif teratas, meningkatkan kualitas teks yang dihasilkan.
+- Menggunakan `frequency_penalty` untuk mengurangi pengulangan dan mendorong keberagaman dalam output.
+- Menggunakan `user_preferences` untuk mengizinkan kustomisasi parameter sampling berdasarkan tingkat kreativitas dan keberagaman yang ditentukan pengguna.
 - Menggunakan `task_type` untuk menentukan strategi sampling yang tepat untuk permintaan, memungkinkan respons yang lebih disesuaikan berdasarkan sifat tugas.
-- Menggunakan metode `send_request` untuk mengirim prompt dengan parameter sampling yang dikonfigurasi, memastikan model menghasilkan teks sesuai kebutuhan yang spesifik.
-- Menggunakan `generated_text` untuk mengambil respons model, yang kemudian dikembalikan bersama parameter sampling dan tipe tugas untuk analisis atau tampilan lebih lanjut.
-- Menggunakan fungsi `min` dan `max` untuk memastikan preferensi pengguna dibatasi dalam rentang yang valid, mencegah konfigurasi sampling yang tidak sah.
+- Menggunakan metode `send_request` untuk mengirim prompt dengan parameter sampling terkonfigurasi, memastikan model menghasilkan teks sesuai kebutuhan yang ditentukan.
+- Menggunakan `generated_text` untuk mendapatkan respons model, yang kemudian dikembalikan bersama parameter sampling dan jenis tugas untuk analisis atau tampilan lebih lanjut.
+- Menggunakan fungsi `min` dan `max` untuk memastikan preferensi pengguna dibatasi dalam rentang valid, mencegah konfigurasi sampling tidak valid.
 
 # [JavaScript Dinamis](#tab/javascript-dynamic)
 
 ```javascript
-// Contoh JavaScript: Konfigurasi sampling dinamis berdasarkan konteks pengguna
+// Contoh JavaScript: Konfigurasi pengambilan sampel dinamis berdasarkan konteks pengguna
 class AdaptiveSamplingManager {
   constructor(mcpClient) {
     this.client = mcpClient;
     
-    // Definisikan profil sampling dasar
+    // Mendefinisikan profil pengambilan sampel dasar
     this.samplingProfiles = {
       creative: { temperature: 0.85, topP: 0.94, frequencyPenalty: 0.7, presencePenalty: 0.5 },
       factual: { temperature: 0.2, topP: 0.85, frequencyPenalty: 0.3, presencePenalty: 0.1 },
@@ -457,11 +465,11 @@ class AdaptiveSamplingManager {
       conversational: { temperature: 0.7, topP: 0.9, frequencyPenalty: 0.6, presencePenalty: 0.4 }
     };
     
-    // Lacak kinerja historis
+    // Melacak performa historis
     this.performanceHistory = [];
   }
   
-  // Deteksi jenis tugas dari prompt
+  // Mendeteksi jenis tugas dari prompt
   detectTaskType(prompt, context = {}) {
     const promptLower = prompt.toLowerCase();
     
@@ -486,29 +494,29 @@ class AdaptiveSamplingManager {
       return 'creative';
     }
     
-    // Default ke percakapan jika tidak ada jenis yang jelas terdeteksi
+    // Default ke percakapan jika tipe tidak jelas terdeteksi
     return 'conversational';
   }
   
-  // Hitung parameter sampling berdasarkan konteks dan preferensi pengguna
+  // Menghitung parameter pengambilan sampel berdasarkan konteks dan preferensi pengguna
   getSamplingParameters(prompt, context = {}) {
-    // Deteksi jenis tugas
+    // Mendeteksi jenis tugas
     const taskType = this.detectTaskType(prompt, context);
     
-    // Dapatkan profil dasar
+    // Mendapatkan profil dasar
     let params = {...this.samplingProfiles[taskType]};
     
-    // Sesuaikan berdasarkan preferensi pengguna
+    // Menyesuaikan berdasarkan preferensi pengguna
     if (context.userPreferences) {
       const { creativity, precision, consistency } = context.userPreferences;
       
       if (creativity !== undefined) {
-        // Skala dari 1-10 ke rentang temperatur yang sesuai
+        // Mengubah skala dari 1-10 ke rentang suhu yang sesuai
         params.temperature = 0.1 + (creativity * 0.09); // 0.1-1.0
       }
       
       if (precision !== undefined) {
-        // Presisi lebih tinggi berarti topP lebih rendah (seleksi lebih fokus)
+        // Presisi lebih tinggi berarti topP lebih rendah (pemilihan lebih fokus)
         params.topP = 1.0 - (precision * 0.05); // 0.5-1.0
       }
       
@@ -518,7 +526,7 @@ class AdaptiveSamplingManager {
       }
     }
     
-    // Terapkan penyesuaian yang dipelajari dari riwayat kinerja
+    // Menerapkan penyesuaian yang dipelajari dari riwayat performa
     this.applyLearnedAdjustments(params, taskType);
     
     return params;
@@ -528,15 +536,15 @@ class AdaptiveSamplingManager {
     // Logika adaptif sederhana - bisa ditingkatkan dengan algoritma yang lebih canggih
     const relevantHistory = this.performanceHistory
       .filter(entry => entry.taskType === taskType)
-      .slice(-5); // Hanya pertimbangkan riwayat terbaru
+      .slice(-5); // Hanya mempertimbangkan riwayat terbaru
     
     if (relevantHistory.length > 0) {
-      // Hitung skor kinerja rata-rata
+      // Menghitung skor performa rata-rata
       const avgScore = relevantHistory.reduce((sum, entry) => sum + entry.score, 0) / relevantHistory.length;
       
-      // Jika kinerja di bawah ambang batas, sesuaikan parameter
+      // Jika performa di bawah ambang, sesuaikan parameter
       if (avgScore < 0.7) {
-        // Penyesuaian kecil menuju nilai yang lebih aman
+        // Penyesuaian ringan menuju nilai yang lebih aman
         params.temperature = Math.max(params.temperature * 0.9, 0.1);
         params.topP = Math.max(params.topP * 0.95, 0.5);
       }
@@ -544,26 +552,26 @@ class AdaptiveSamplingManager {
   }
   
   recordPerformance(prompt, samplingParams, response, score) {
-    // Catat kinerja untuk penyesuaian di masa depan
+    // Mencatat performa untuk penyesuaian di masa depan
     this.performanceHistory.push({
       timestamp: Date.now(),
       taskType: this.detectTaskType(prompt),
       samplingParams,
       responseLength: response.generatedText.length,
-      score // Penilaian 0-1 dari kualitas respons
+      score // Peringkat 0-1 dari kualitas respons
     });
     
-    // Batasi ukuran riwayat
+    // Membatasi ukuran riwayat
     if (this.performanceHistory.length > 100) {
       this.performanceHistory.shift();
     }
   }
   
   async generateResponse(prompt, context = {}) {
-    // Dapatkan parameter sampling yang dioptimalkan
+    // Mendapatkan parameter pengambilan sampel yang dioptimalkan
     const samplingParams = this.getSamplingParameters(prompt, context);
     
-    // Kirim permintaan dengan parameter yang dioptimalkan
+    // Mengirim permintaan dengan parameter yang dioptimalkan
     const response = await this.client.sendPrompt(prompt, {
       ...samplingParams,
       allowedTools: context.allowedTools || []
@@ -591,7 +599,7 @@ async function demonstrateAdaptiveSampling() {
   const samplingManager = new AdaptiveSamplingManager(client);
   
   try {
-    // Tugas kreatif dengan preferensi pengguna khusus
+    // Tugas kreatif dengan preferensi pengguna kustom
     const creativeResult = await samplingManager.generateResponse(
       "Write a short poem about artificial intelligence",
       {
@@ -634,31 +642,31 @@ demonstrateAdaptiveSampling();
 
 Dalam kode sebelumnya kita telah:
 
-- Membuat kelas `AdaptiveSamplingManager` yang mengelola pengambilan sampel dinamis berdasarkan tipe tugas dan preferensi pengguna.
-- Mendefinisikan profil pengambilan sampel untuk berbagai tipe tugas (kreatif, faktual, kode, percakapan).
-- Menerapkan metode untuk mendeteksi tipe tugas dari prompt menggunakan heuristik sederhana.
-- Menghitung parameter sampling berdasarkan tipe tugas yang terdeteksi dan preferensi pengguna.
+- Membuat kelas `AdaptiveSamplingManager` yang mengelola sampling dinamis berdasarkan jenis tugas dan preferensi pengguna.
+- Mendefinisikan profil sampling untuk berbagai jenis tugas (kreatif, faktual, kode, percakapan).
+- Mengimplementasikan metode untuk mendeteksi jenis tugas dari prompt menggunakan heuristik sederhana.
+- Menghitung parameter sampling berdasarkan jenis tugas yang terdeteksi dan preferensi pengguna.
 - Menerapkan penyesuaian yang dipelajari berdasarkan performa historis untuk mengoptimalkan parameter sampling.
 - Mencatat performa untuk penyesuaian di masa depan, memungkinkan sistem belajar dari interaksi sebelumnya.
-- Mengirim permintaan dengan parameter sampling yang dikonfigurasi secara dinamis dan mengembalikan teks yang dihasilkan bersama parameter yang diterapkan dan tipe tugas yang terdeteksi.
+- Mengirim permintaan dengan parameter sampling terkonfigurasi secara dinamis dan mengembalikan teks yang dihasilkan beserta parameter yang diterapkan dan jenis tugas yang terdeteksi.
 - Menggunakan:
-    - `userPreferences` untuk memungkinkan kustomisasi parameter sampling berdasarkan tingkat kreativitas, presisi, dan konsistensi yang ditetapkan pengguna.
+    - `userPreferences` untuk mengizinkan kustomisasi parameter sampling berdasarkan tingkat kreativitas, presisi, dan konsistensi yang ditentukan pengguna.
     - `detectTaskType` untuk menentukan sifat tugas berdasarkan prompt, memungkinkan respons yang lebih disesuaikan.
-    - `recordPerformance` untuk mencatat performa respons yang dihasilkan, memungkinkan sistem beradaptasi dan meningkat dari waktu ke waktu.
-    - `applyLearnedAdjustments` untuk memodifikasi parameter sampling berdasarkan performa historis, meningkatkan kemampuan model dalam menghasilkan respons berkualitas tinggi.
-    - `generateResponse` untuk mengenkapsulasi keseluruhan proses menghasilkan respons dengan sampling adaptif, membuatnya mudah dipanggil dengan berbagai prompt dan konteks.
-    - `allowedTools` untuk menentukan alat yang model dapat gunakan selama generasi, memungkinkan respons yang lebih sadar konteks.
-    - `feedbackScore` untuk memungkinkan pengguna memberikan umpan balik pada kualitas respons yang dihasilkan, yang dapat digunakan untuk lebih menyempurnakan performa model dari waktu ke waktu.
-    - `performanceHistory` untuk menyimpan catatan interaksi masa lalu, memungkinkan sistem belajar dari keberhasilan dan kegagalan sebelumnya.
-    - `getSamplingParameters` untuk menyesuaikan parameter sampling secara dinamis berdasarkan konteks permintaan, memungkinkan perilaku model yang lebih fleksibel dan responsif.
-    - `detectTaskType` untuk mengklasifikasikan tugas berdasarkan prompt, memungkinkan sistem menerapkan strategi sampling yang sesuai untuk berbagai jenis permintaan.
+    - `recordPerformance` untuk mencatat performa respons yang dihasilkan, memungkinkan sistem beradaptasi dan berkembang seiring waktu.
+    - `applyLearnedAdjustments` untuk memodifikasi parameter sampling berdasarkan performa historis, meningkatkan kemampuan model menghasilkan respons berkualitas.
+    - `generateResponse` untuk mengenkapsulasi seluruh proses menghasilkan respons dengan sampling adaptif, memudahkan pemanggilan dengan berbagai prompt dan konteks.
+    - `allowedTools` untuk menentukan alat mana yang dapat digunakan model selama generasi, memungkinkan respons yang lebih peka konteks.
+    - `feedbackScore` untuk mengizinkan pengguna memberikan umpan balik tentang kualitas respons yang dihasilkan, yang dapat digunakan untuk menyempurnakan performa model dari waktu ke waktu.
+    - `performanceHistory` untuk memelihara catatan interaksi masa lalu, memungkinkan sistem belajar dari keberhasilan dan kegagalan sebelumnya.
+    - `getSamplingParameters` untuk menyesuaikan paramater sampling secara dinamis berdasarkan konteks permintaan, memungkinkan perilaku model yang lebih fleksibel dan responsif.
+    - `detectTaskType` untuk mengklasifikasikan tugas berdasarkan prompt, memungkinkan sistem menerapkan strategi sampling yang sesuai untuk tipe permintaan yang berbeda.
     - `samplingProfiles` untuk mendefinisikan konfigurasi sampling dasar untuk berbagai tipe tugas, memungkinkan penyesuaian cepat berdasarkan sifat permintaan.
 
 ---
 
-## Apa Selanjutnya
+## Selanjutnya
 
-- [5.7 Skalabilitas](../mcp-scaling/README.md)
+- [5.7 Scaling](../mcp-scaling/README.md)
 
 ---
 

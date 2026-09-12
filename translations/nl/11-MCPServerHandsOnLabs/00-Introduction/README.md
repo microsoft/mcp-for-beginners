@@ -1,78 +1,83 @@
-# Introductie tot MCP Database Integratie
+# Introductie tot MCP Database-integratie
+
+> [!NOTE]
+> Diagrammen of code in dit leertraject die HTTP/SSE of initialisatie
+> opties gebruiken, weerspiegelen de MCP `2025-11-25` afhankelijkheden van het voorbeeld. Voor nieuwe
+> implementaties, gebruik `2026-07-28` stateless verzoeken en Streamable HTTP.
 
 ## 🎯 Wat Deze Lab Behandelt
 
-Deze introductielab biedt een uitgebreid overzicht van het bouwen van Model Context Protocol (MCP) servers met database-integratie. Je krijgt inzicht in de business case, technische architectuur en toepassingen uit de praktijk via de Zava Retail analytics use case op https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail.
+Deze introductielab biedt een uitgebreid overzicht van het bouwen van Model Context Protocol (MCP) servers met database-integratie. Je krijgt inzicht in de businesscase, technische architectuur en praktijkvoorbeelden via de Zava Retail analytics use-case op https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail.
 
 ## Overzicht
 
-**Model Context Protocol (MCP)** stelt AI-assistenten in staat om op een veilige manier realtime toegang te krijgen tot en te communiceren met externe databronnen. In combinatie met database-integratie ontsluit MCP krachtige mogelijkheden voor datagedreven AI-toepassingen.
+**Model Context Protocol (MCP)** maakt het AI-assistenten mogelijk om veilig toegang te krijgen tot en te interacteren met externe databronnen in realtime. In combinatie met database-integratie ontsluit MCP krachtige mogelijkheden voor datagedreven AI-toepassingen.
 
-Dit leerpad leert je productieklare MCP-servers te bouwen die AI-assistenten verbinden met retail verkoopdata via PostgreSQL, waarbij enterprise-patronen zoals Row Level Security, semantisch zoeken en multi-tenant data toegang worden toegepast.
+Dit leertraject leert je productieklaar MCP-servers bouwen die AI-assistenten verbinden met retailverkoopdata via PostgreSQL, met implementatie van enterprisepatronen zoals Row Level Security, semantische zoekopdrachten en multi-tenant data toegang.
 
 ## Leerdoelen
 
 Aan het einde van deze lab kun je:
 
-- **Definiëren** wat Model Context Protocol is en de kernvoordelen voor database-integratie
-- **Identificeren** van sleutelcomponenten van een MCP serverarchitectuur met databases
-- **Begrijpen** van de Zava Retail use case en de zakelijke vereisten
-- **Herkennen** van enterprise-patronen voor veilige, schaalbare database toegang
-- **Opsommen** welke tools en technologieën in dit leerpad worden gebruikt
+- **Definiëren** van Model Context Protocol en de kernvoordelen voor database-integratie
+- **Identificeren** van sleutelcomponenten van een MCP-serverarchitectuur met databases
+- **Begrijpen** van de Zava Retail use-case en de zakelijke vereisten
+- **Herkennen** van enterprisepatronen voor veilige, schaalbare database toegang
+- **Opsommen** van de gebruikte tools en technologieën door dit leertraject
 
-## 🧭 De Uitdaging: AI Ontmoet Data uit de Praktijk
+## 🧭 De Uitdaging: AI Ontmoet Reële Data
 
-### Traditionele AI Beperkingen
+### Traditionele AI-beperkingen
 
-Moderne AI-assistenten zijn zeer krachtig maar stuiten op aanzienlijke beperkingen bij het werken met zakelijke data uit de praktijk:
+Moderne AI-assistenten zijn ongelooflijk krachtig maar hebben aanzienlijke beperkingen bij het werken met reële bedrijfsdata:
 
 | **Uitdaging** | **Beschrijving** | **Zakelijke Impact** |
-|---------------|-----------------|---------------------|
-| **Statische Kennis** | AI-modellen getraind op vaste datasets hebben geen toegang tot actuele zakelijke data | Verouderde inzichten, gemiste kansen |
-| **Data Silos** | Informatie opgesloten in databases, API’s en systemen die AI niet kan bereiken | Onvolledige analyses, gefragmenteerde workflows |
-| **Beveiligingsbeperkingen** | Directe database toegang roept beveiligings- en compliancevragen op | Beperkte implementatie, handmatige datapreparatie |
-| **Complexe Queries** | Zakelijke gebruikers hebben technische kennis nodig om data-inzichten te extraheren | Verminderde adoptie, inefficiënte processen |
+|---------------|-----------------|-------------------|
+| **Statische Kennis** | AI-modellen getraind op vaste datasets hebben geen toegang tot actuele bedrijfsdata | Verouderde inzichten, gemiste kansen |
+| **Data Silos** | Informatie opgeslagen in databases, API's en systemen die AI niet kan bereiken | Onvolledige analyse, gefragmenteerde workflows |
+| **Beveiligingsbeperkingen** | Directe database toegang brengt beveiligings- en compliancezorgen met zich mee | Beperkte uitrol, handmatige datapreparatie |
+| **Complexe Query's** | Zakelijke gebruikers hebben technische kennis nodig om data-inzichten te verkrijgen | Minder adoptie, inefficiënte processen |
 
 ### De MCP Oplossing
 
 Model Context Protocol pakt deze uitdagingen aan door:
 
-- **Realtime Data Toegang**: AI-assistenten stellen live queries aan databases en API's
+- **Realtime Data Toegang**: AI-assistenten kunnen live databases en API's bevragen
 - **Veilige Integratie**: Gecontroleerde toegang met authenticatie en permissies
-- **Natuurlijke Taal Interface**: Zakelijke gebruikers stellen vragen in gewone taal
-- **Gestandaardiseerd Protocol**: Werkt over verschillende AI-platformen en tools heen
+- **Natuurlijke Taalinterface**: Zakelijke gebruikers stellen vragen in gewone taal
+- **Gestandaardiseerd Protocol**: Werkt met verschillende AI-platforms en tools
 
-## 🏪 Maak Kennis met Zava Retail: Onze Leercase https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail
+## 🏪 Maak kennis met Zava Retail: Onze Leer-casestudy https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail
 
-Gedurende dit leerpad bouwen we een MCP-server voor **Zava Retail**, een fictieve doe-het-zelf retailketen met meerdere winkelvestigingen. Dit realistische scenario toont een enterprise-grade MCP-implementatie.
+In dit leertraject bouwen we een MCP-server voor **Zava Retail**, een fictieve doe-het-zelf-retailketen met meerdere winkels. Dit realistische scenario demonstreert een MCP-implementatie op enterprise-niveau.
 
 ### Zakelijke Context
 
 **Zava Retail** exploiteert:
 - **8 fysieke winkels** verspreid over de staat Washington (Seattle, Bellevue, Tacoma, Spokane, Everett, Redmond, Kirkland)
 - **1 online winkel** voor e-commerce verkoop
-- **Divers productassortiment** inclusief gereedschap, hardware, tuinbenodigdheden en bouwmaterialen
-- **Meerlagig management** met winkelmanagers, regiomanagers en executives
+- **Divers productcatalogus** met gereedschap, bouwmaterialen, tuinartikelen en meer
+- **Meervoudig managementniveau** met winkelmanagers, regiomanagers en executives
 
 ### Zakelijke Vereisten
 
-Winkelmanagers en executives hebben AI-gedreven analyses nodig om:
+Winkelmanagers en executives hebben AI-aangedreven analytics nodig om:
 
-1. **Verkoopprestaties te analyseren** over winkels en tijdsperioden
-2. **Voorraadniveaus bij te houden** en aanvulbehoeften te herkennen
-3. **Klanten gedrag te begrijpen** en aankooppatronen te ontdekken
-4. **Productinzichten te genereren** via semantisch zoeken
-5. **Rapporten te maken** met natuurlijke taal queries
-6. **Databeveiliging te waarborgen** met rolgebaseerde toegangscontrole
+1. **Verkoopprestaties analyseren** over winkels en periodes
+2. **Voorraden bijhouden** en aanvulbehoeften identificeren
+3. **Klanteninzicht verkrijgen** en koopgedrag analyseren
+4. **Productinzichten ontdekken** via semantische zoekfunctie
+5. **Rapporten genereren** met natuurlijke taalqueries
+6. **Data beveiliging behouden** via rolgebaseerde toegangscontrole
 
 ### Technische Vereisten
 
 De MCP-server moet bieden:
 
-- **Multi-tenant data toegang** waarbij winkelmanagers alleen hun eigen winkeldata zien
-- **Flexibele query-mogelijkheden** die complexe SQL-operaties ondersteunen
-- **Semantisch zoeken** voor productontdekking en aanbevelingen
-- **Realtime data** die de actuele bedrijfsstatus reflecteert
+- **Multi-tenant data toegang** waarbij winkelmanagers alleen de data van hun eigen winkel zien
+- **Flexibele querymogelijkheden** met ondersteuning voor complexe SQL-operaties
+- **Semantische zoekfunctie** voor productontdekking en aanbevelingen
+- **Realtime data** die de actuele bedrijfstoestand weerspiegelt
 - **Veilige authenticatie** met row-level security
 - **Schaalbare architectuur** die meerdere gelijktijdige gebruikers ondersteunt
 
@@ -120,117 +125,117 @@ Onze MCP-server implementeert een gelaagde architectuur geoptimaliseerd voor dat
 
 ### Belangrijke Componenten
 
-#### **1. MCP Server Laag**
-- **FastMCP Framework**: Moderne Python MCP-serverimplementatie
-- **Tool Registratie**: Declaratieve tooldefinities met typeveiligheid
+#### **1. MCP Serverlaag**
+- **FastMCP Framework**: Moderne Python MCP serverimplementatie
+- **Toolregistratie**: Declaratieve tooldefinities met typeveiligheid
 - **Request Context**: Gebruikersidentiteit en sessiebeheer
-- **Foutafhandeling**: Robuust foutbeheer en logging
+- **Foutafhandeling**: Robuust foutenbeheer en logging
 
-#### **2. Database Integratie Laag**
-- **Connection Pooling**: Efficiënt asyncpg verbindingenbeheer
-- **Schema Provider**: Dynamische ontdekking van tabelschema’s
+#### **2. Database Integratielaag**
+- **Connection Pooling**: Efficiënt beheer van asyncpg-verbindingen
+- **Schema Provider**: Dynamische ontdekking van tabelschema's
 - **Query Executor**: Veilige SQL-uitvoering met RLS-context
-- **Transactiebeheer**: ACID-compliance en rollback afhandeling
+- **Transactiebeheer**: ACID-compliance en rollback-afhandeling
 
 #### **3. Beveiligingslaag**
-- **Row Level Security**: PostgreSQL RLS voor multi-tenant data isolatie
+- **Row Level Security**: PostgreSQL RLS voor isolatie van multi-tenant data
 - **Gebruikersidentiteit**: Authenticatie en autorisatie van winkelmanagers
-- **Toegangscontrole**: Fijnmazige permissies en audit trails
-- **Inputvalidatie**: SQL injectie preventie en query validatie
+- **Toegangscontrole**: Fijngranulaire permissies en audit trails
+- **Invoervalidatie**: Preventie van SQL-injectie en queryvalidatie
 
 #### **4. AI Versterkingslaag**
-- **Semantisch Zoeken**: Vector embeddings voor productontdekking
-- **Azure OpenAI Integratie**: Tekst embedding generatie
-- **Gelijkenisalgoritmes**: pgvector cosine similarity search
-- **Zoekoptimalisatie**: Indexering en performance tuning
+- **Semantische Zoekfunctie**: Vector embeddings voor productontdekking
+- **Azure OpenAI Integratie**: Generatie van tekstembeddings
+- **Similariteitsalgoritmen**: pgvector cosine similarity search
+- **Zoekoptimalisatie**: Indexering en prestatie-afstemming
 
 ## 🔧 Technologie Stack
 
-### Kern Technologieën
+### Kerntechnologieën
 
 | **Component** | **Technologie** | **Doel** |
-|---------------|-----------------|----------|
+|---------------|----------------|-------------|
 | **MCP Framework** | FastMCP (Python) | Moderne MCP serverimplementatie |
-| **Database** | PostgreSQL 17 + pgvector | Relationele data met vector search |
-| **AI Diensten** | Azure OpenAI | Tekst embeddings en taalmodellen |
+| **Database** | PostgreSQL 17 + pgvector | Relationale data met vectorzoekfunctie |
+| **AI Services** | Azure OpenAI | Tekstembeddings en taalmodellen |
 | **Containerisatie** | Docker + Docker Compose | Ontwikkelomgeving |
-| **Cloud Platform** | Microsoft Azure | Productiedepoyment |
+| **Cloudplatform** | Microsoft Azure | Productie-implementatie |
 | **IDE Integratie** | VS Code | AI Chat en ontwikkelworkflow |
 
-### Ontwikkeltools
+### Ontwikkelingstools
 
 | **Tool** | **Doel** |
-|----------|----------|
-| **asyncpg** | High-performance PostgreSQL driver |
-| **Pydantic** | Data validatie en serialisatie |
-| **Azure SDK** | Cloud service integratie |
+|----------|-------------|
+| **asyncpg** | Hoogwaardige PostgreSQL-driver |
+| **Pydantic** | Datenvalidatie en serialisatie |
+| **Azure SDK** | Integratie met cloudservices |
 | **pytest** | Testframework |
-| **Docker** | Containerisatie en deployment |
+| **Docker** | Containerisatie en uitrol |
 
-### Productiestack
+### Productie-stack
 
 | **Service** | **Azure Resource** | **Doel** |
-|-------------|--------------------|----------|
-| **Database** | Azure Database for PostgreSQL | Beheerde databaseservice |
-| **Container** | Azure Container Apps | Serverless containerhosting |
-| **AI Diensten** | Microsoft Foundry | OpenAI modellen en endpoints |
-| **Monitoring** | Application Insights | Observability en diagnostiek |
-| **Beveiliging** | Azure Key Vault | Secrets en configuratiemanagement |
+|-------------|-------------------|-------------|
+| **Database** | Azure Database for PostgreSQL | Beheerde database-service |
+| **Container** | Azure Container Apps | Serverless container-hosting |
+| **AI Services** | Microsoft Foundry | OpenAI-modellen en endpoints |
+| **Monitoring** | Application Insights | Observeerbaarheid en diagnostiek |
+| **Beveiliging** | Azure Key Vault | Beheer van geheimen en configuratie |
 
-## 🎬 Toepassingsscenario's uit de Praktijk
+## 🎬 Praktijkvoorbeelden
 
-Laten we verkennen hoe verschillende gebruikers met onze MCP-server interacteren:
+Laten we verkennen hoe verschillende gebruikers interactie hebben met onze MCP-server:
 
 ### Scenario 1: Prestatiebeoordeling Winkelmanager
 
-**Gebruiker**: Sarah, winkelmanager Seattle  
-**Doel**: Analyse van verkoopprestaties vorig kwartaal
+**Gebruiker**: Sarah, Winkelmanager Seattle  
+**Doel**: Verkoopprestaties van afgelopen kwartaal analyseren
 
 **Natuurlijke Taal Query**:
-> "Toon de top 10 producten op basis van omzet voor mijn winkel in Q4 2024"
+> "Laat me de top 10 producten zien op omzet voor mijn winkel in Q4 2024"
 
 **Wat Gebeurt Er**:
-1. VS Code AI Chat stuurt query naar MCP server
-2. MCP server identificeert Sarah's winkelcontext (Seattle)
+1. VS Code AI Chat stuurt query naar MCP-server
+2. MCP-server identificeert Sarah's winkelcontext (Seattle)
 3. RLS-beleid filtert data naar alleen Seattle winkel
 4. SQL-query wordt gegenereerd en uitgevoerd
-5. Resultaten worden geformatteerd en teruggegeven aan AI Chat
-6. AI levert analyse en inzichten
+5. Resultaten worden geformatteerd en teruggestuurd naar AI Chat
+6. AI biedt analyse en inzichten
 
-### Scenario 2: Productontdekking met Semantisch Zoeken
+### Scenario 2: Productontdekking met Semantische Zoekfunctie
 
-**Gebruiker**: Mike, Inventory Manager  
-**Doel**: Producten vinden die lijken op een klantvraag
+**Gebruiker**: Mike, Voorraadbeheerder  
+**Doel**: Producten vinden die lijken op een klantverzoek
 
 **Natuurlijke Taal Query**:
-> "Welke producten verkopen we die lijken op ‘waterdichte elektrische connectoren voor buitengebruik’?"
+> "Welke producten verkopen we die lijken op 'waterdichte elektrische connectors voor buitengebruik'?"
 
 **Wat Gebeurt Er**:
-1. Query verwerkt door semantische zoektool
-2. Azure OpenAI genereert embedding vector
-3. pgvector voert gelijkeniszoek uit
-4. Gerelateerde producten gerangschikt op relevantie
+1. Query wordt verwerkt door semantische zoektool
+2. Azure OpenAI genereert embeddingvector
+3. pgvector voert similariteitszoekopdracht uit
+4. Gerelateerde producten worden gerangschikt op relevantie
 5. Resultaten bevatten productdetails en beschikbaarheid
-6. AI stelt alternatieven en bundelkansen voor
+6. AI doet suggesties voor alternatieven en bundelopties
 
 ### Scenario 3: Cross-Store Analytics
 
-**Gebruiker**: Jennifer, regiomanager  
+**Gebruiker**: Jennifer, Regiomanager  
 **Doel**: Prestaties vergelijken over alle winkels
 
 **Natuurlijke Taal Query**:
 > "Vergelijk verkoop per categorie voor alle winkels in de afgelopen 6 maanden"
 
 **Wat Gebeurt Er**:
-1. RLS-context ingesteld voor toegang via regiomanager
+1. RLS-context ingesteld voor regiomanager toegang
 2. Complexe multi-store query gegenereerd
 3. Data geaggregeerd over winkel locaties
-4. Resultaten tonen trends en vergelijkingen
+4. Resultaten bevatten trends en vergelijkingen
 5. AI identificeert inzichten en aanbevelingen
 
-## 🔒 Beveiliging en Multi-Tenancy Verdieping
+## 🔒 Beveiliging en Multi-Tenancy Diepteanalyse
 
-Onze implementatie stelt enterprise-grade beveiliging voorop:
+Onze implementatie geeft prioriteit aan beveiliging op bedrijfsniveau:
 
 ### Row Level Security (RLS)
 
@@ -251,58 +256,58 @@ CREATE POLICY regional_manager_policy ON retail.orders
 ### Gebruikersidentiteitsbeheer
 
 Elke MCP-verbinding bevat:
-- **Winkelmanager ID**: Unieke identifier voor RLS-context
+- **Winkelmanager-ID**: Unieke identifier voor RLS-context
 - **Roltoewijzing**: Permissies en toegangslevels
 - **Sessiebeheer**: Veilige authenticatietokens
-- **Audit Logging**: Volledige toegangsgeschiedenis
+- **Audit Logging**: Volledige toegangslog
 
-### Databescherming
+### Databeveiliging
 
 Meerdere beveiligingslagen:
-- **Verbindingsversleuteling**: TLS voor alle databaseverbindingen
-- **SQL Injectie Preventie**: Alleen geparametriseerde queries
-- **Inputvalidatie**: Uitgebreide verzoekvalidatie
+- **Verbindingsencryptie**: TLS voor alle databaseverbindingen
+- **SQL-injectiepreventie**: Alleen geparametriseerde queries
+- **Invoervalidatie**: Uitgebreide validatie van verzoeken
 - **Foutafhandeling**: Geen gevoelige data in foutmeldingen
 
 ## 🎯 Belangrijkste Leerpunten
 
-Na deze introductie begrijp je:
+Na afronding van deze introductie begrijp je:
 
-✅ **MCP Waardepropositie**: Hoe MCP AI-assistenten en praktijkdata verbindt  
+✅ **MCP Waardepropositie**: Hoe MCP AI-assistenten en reële data verbindt  
 ✅ **Zakelijke Context**: Vereisten en uitdagingen van Zava Retail  
-✅ **Architectuuroverzicht**: Sleutelcomponenten en hun interacties  
-✅ **Technologiestack**: Gebruikte tools en frameworks  
+✅ **Architectuuroverzicht**: Belangrijke componenten en hun interacties  
+✅ **Technologiestack**: Tools en frameworks gebruikt gedurende de cursus  
 ✅ **Beveiligingsmodel**: Multi-tenant data toegang en bescherming  
-✅ **Gebruikspatronen**: Reële queryscenario’s en workflows  
+✅ **Gebruikspatronen**: Praktijksituaties met query’s en workflows  
 
 ## 🚀 Wat Nu?
 
 Klaar om dieper te duiken? Ga verder met:
 
-**[Lab 01: Core Architecture Concepts](../01-Architecture/README.md)**
+**[Lab 01: Kernarchitectuurconcepten](../01-Architecture/README.md)**
 
-Leer over MCP serverarchitectuurpatronen, database-ontwerpprincipes en de gedetailleerde technische implementatie die onze retail analytics oplossing aandrijft.
+Leer over MCP-serverarchitectuurpatronen, databaseontwerpprincipes en de gedetailleerde technische implementatie achter onze retail analytics-oplossing.
 
 ## 📚 Aanvullende Bronnen
 
 ### MCP Documentatie
 - [MCP Specificatie](https://modelcontextprotocol.io/docs/) - Officiële protocoldocumentatie
 - [MCP voor Beginners](https://aka.ms/mcp-for-beginners) - Uitgebreide MCP leerhandleiding
-- [FastMCP Documentatie](https://github.com/modelcontextprotocol/python-sdk) - Python SDK documentatie
+- [FastMCP Documentatie](https://github.com/modelcontextprotocol/python-sdk) - Python SDK-documentatie
 
-### Database Integratie
+### Database-integratie
 - [PostgreSQL Documentatie](https://www.postgresql.org/docs/) - Complete PostgreSQL referentie
-- [pgvector Gids](https://github.com/pgvector/pgvector) - Vector extensiedocumentatie
-- [Row Level Security](https://www.postgresql.org/docs/current/ddl-rowsecurity.html) - PostgreSQL RLS gids
+- [pgvector Gids](https://github.com/pgvector/pgvector) - Documentatie vector-extensie
+- [Row Level Security](https://www.postgresql.org/docs/current/ddl-rowsecurity.html) - PostgreSQL RLS handleiding
 
-### Azure Diensten
-- [Azure OpenAI Documentatie](https://docs.microsoft.com/azure/cognitive-services/openai/) - AI service integratie
-- [Azure Database for PostgreSQL](https://docs.microsoft.com/azure/postgresql/) - Beheerde databaseservice
+### Azure Services
+- [Azure OpenAI Documentatie](https://docs.microsoft.com/azure/cognitive-services/openai/) - Integratie AI-services
+- [Azure Database for PostgreSQL](https://docs.microsoft.com/azure/postgresql/) - Beheerde database-service
 - [Azure Container Apps](https://docs.microsoft.com/azure/container-apps/) - Serverless containers
 
 ---
 
-**Disclaimer**: Dit is een leeractie met fictieve retaildata. Volg altijd het databeheer en beveiligingsbeleid van jouw organisatie bij het implementeren van soortgelijke oplossingen in productieomgevingen.
+**Disclaimer**: Dit is een oefening met fictieve retaildata. Volg altijd het data governance- en beveiligingsbeleid van je organisatie bij het implementeren van vergelijkbare oplossingen in productiesystemen.
 
 ---
 

@@ -1,18 +1,26 @@
-> [VEROUDERD: 2026-07-28 RELEASEKANDIDAAT](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#roots-sampling-and-logging-are-deprecated)
+> [!WARNING]
+> Sampling is afgeschaft in MCP `2026-07-28`. Deze les wordt bewaard voor
+> legacy-implementaties. Nieuwe servers zouden direct met een LLM
+> provider-API moeten integreren.
 
 # Sampling in Model Context Protocol
 
-> **Melding van veroudering:** de `2026-07-28` MCP specificatie releasekandidaat markeert Sampling als verouderd ten gunste van directe integratie met LLM provider API's. Sampling blijft werken in `2025-11-25` en voor ten minste een jaar na een formele veroudering, dus alles in deze les blijft geldig - maar nieuwe serverontwerpen moeten het vervangende patroon evalueren. Zie [Wat verandert er in MCP: De 2026-07-28 Releasekandidaat](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> Sampling blijft opgenomen in de specificatie van `2026-07-28` voor compatibiliteit en komt
+> in aanmerking voor verwijdering in de eerste revisie die wordt uitgebracht op of na 28 juli
+> 2027. Voorbeelden in deze les gebruiken mogelijk SDK-API's die `2025-11-25` implementeren.
+> Zie [Wat is veranderd in MCP: De specificatie van 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28.md).
 
-Sampling is een krachtige MCP-functie die servers in staat stelt LLM-afrondingen via de client op te vragen, waardoor geavanceerd agent-gedrag mogelijk is terwijl veiligheid en privacy worden gewaarborgd. De juiste samplingconfiguratie kan de kwaliteit en prestaties van de respons aanzienlijk verbeteren. MCP biedt een gestandaardiseerde manier om te bepalen hoe modellen tekst genereren met specifieke parameters die de willekeur, creativiteit en samenhang beïnvloeden.
+In legacy MCP-implementaties maakt Sampling het mogelijk dat servers LLM
+voltooiingen via de client opvragen. Deze les legt die verouderde protocol
+flow uit voor compatibiliteit en migratiewerk.
 
-## Inleiding
+## Introductie
 
-In deze les gaan we onderzoeken hoe samplingparameters geconfigureerd kunnen worden in MCP-verzoeken en begrijpen we de onderliggende protocolmechanica van sampling.
+In deze les verkennen we hoe samplingparameters in MCP-verzoeken geconfigureerd kunnen worden en begrijpen we de onderliggende protocolmechanismen van sampling.
 
 ## Leerdoelen
 
-Aan het eind van deze les kun je:
+Aan het einde van deze les kun je:
 
 - De belangrijkste samplingparameters in MCP begrijpen.
 - Samplingparameters configureren voor verschillende gebruikssituaties.
@@ -23,40 +31,40 @@ Aan het eind van deze les kun je:
 
 ## Hoe Sampling Werkt in MCP
 
-De samplingstroom in MCP volgt deze stappen:
+De samplingflow in MCP volgt deze stappen:
 
 1. Server stuurt een `sampling/createMessage` verzoek naar de client
 2. Client bekijkt het verzoek en kan het aanpassen
-3. Client samplet uit een LLM
-4. Client beoordeelt de afronding
+3. Client sampelt van een LLM
+4. Client beoordeelt de voltooiing
 5. Client retourneert het resultaat aan de server
 
 Dit ontwerp met mens-in-de-lus zorgt ervoor dat gebruikers controle houden over wat de LLM ziet en genereert.
 
 ## Overzicht Samplingparameters
 
-MCP definieert de volgende samplingparameters die geconfigureerd kunnen worden in clientverzoeken:
+MCP definieert de volgende samplingparameters die in clientverzoeken geconfigureerd kunnen worden:
 
 | Parameter | Beschrijving | Typisch bereik |
 |-----------|-------------|---------------|
-| `temperature` | Stuurt de willekeurigheid bij tokenselectie | 0.0 - 1.0 |
-| `maxTokens` | Maximale aantal tokens om te genereren | Geheel getal |
-| `stopSequences` | Aangepaste sequenties die generatie stoppen als ze worden tegengekomen | Array van strings |
-| `metadata` | Extra provider-specifieke parameters | JSON-object |
+| `temperature` | Bepaalt de willekeur bij tokenselectie | 0.0 - 1.0 |
+| `maxTokens` | Maximaal aantal tokens om te genereren | Integer waarde |
+| `stopSequences` | Aangepaste reeksen die generatie stoppen bij tegenkomen | Array van strings |
+| `metadata` | Aanvullende provider-specifieke parameters | JSON-object |
 
-Veel LLM-providers ondersteunen extra parameters via het `metadata` veld, dat kan bevatten:
+Veel LLM-providers ondersteunen extra parameters via het veld `metadata`, waaronder:
 
 | Veelvoorkomende Extensieparameter | Beschrijving | Typisch bereik |
 |-----------|-------------|---------------|
 | `top_p` | Nucleus sampling - beperkt tokens tot top cumulatieve waarschijnlijkheid | 0.0 - 1.0 |
 | `top_k` | Beperkt tokenselectie tot top K opties | 1 - 100 |
-| `presence_penalty` | Straf tokens op basis van hun aanwezigheid in de tekst tot nu toe | -2.0 - 2.0 |
-| `frequency_penalty` | Straf tokens op basis van hun frequentie in de tekst tot nu toe | -2.0 - 2.0 |
-| `seed` | Specifieke willekeurige seed voor reproduceerbare resultaten | Geheel getal |
+| `presence_penalty` | Straft tokens op basis van hun aanwezigheid tot nu toe | -2.0 - 2.0 |
+| `frequency_penalty` | Straft tokens op basis van hun frequentie tot nu toe | -2.0 - 2.0 |
+| `seed` | Specifieke random seed voor reproduceerbare resultaten | Integer waarde |
 
-## Voorbeeld Verzoek Formaat
+## Voorbeeld Verzoekformaat
 
-Hier een voorbeeld van het opvragen van sampling van een client in MCP:
+Hier is een voorbeeld van een samplingsverzoek van een client in MCP:
 
 ```json
 {
@@ -79,7 +87,7 @@ Hier een voorbeeld van het opvragen van sampling van een client in MCP:
 }
 ```
 
-## Respons Formaat
+## Antwoordformaat
 
 De client retourneert een voltooiingsresultaat:
 
@@ -95,42 +103,42 @@ De client retourneert een voltooiingsresultaat:
 }
 ```
 
-## Mens in de Lus Controle
+## Mens in de Lus Bedieningselementen
 
-MCP sampling is ontworpen met menselijke controle in gedachten:
+MCP sampling is ontworpen met menselijke toezicht in gedachten:
 
 - **Voor prompts**:
   - Clients moeten gebruikers de voorgestelde prompt tonen
-  - Gebruikers moeten prompts kunnen aanpassen of weigeren
-  - Systeem prompts kunnen gefilterd of aangepast worden
-  - Context-inclusie wordt door de client geregeld
+  - Gebruikers moeten prompts kunnen aanpassen of afwijzen
+  - System prompts kunnen worden gefilterd of aangepast
+  - Contextinclusie wordt geregeld door de client
 
-- **Voor afrondingen**:
-  - Clients moeten gebruikers de afronding tonen
-  - Gebruikers moeten afrondingen kunnen aanpassen of weigeren
-  - Clients kunnen afrondingen filteren of aanpassen
-  - Gebruikers bepalen welk model wordt gebruikt
+- **Voor voltooiingen**:
+  - Clients moeten gebruikers de voltooiing tonen
+  - Gebruikers moeten voltooiingen kunnen aanpassen of afwijzen
+  - Clients kunnen voltooiingen filteren of aanpassen
+  - Gebruikers bepalen welke model wordt gebruikt
 
-Met deze principes in gedachten kijken we hoe sampling geïmplementeerd wordt in verschillende programmeertalen, met focus op de parameters die algemeen ondersteund worden door LLM-providers.
+Met deze principes in gedachten, bekijken we hoe sampling in verschillende programmeertalen geïmplementeerd kan worden, met focus op de parameters die algemeen worden ondersteund door LLM-providers.
 
 ## Beveiligingsoverwegingen
 
-Bij het implementeren van sampling in MCP, houd rekening met deze beste beveiligingspraktijken:
+Bij het implementeren van sampling in MCP, overweeg de volgende beveiligingspraktijken:
 
-- **Valideer alle message-inhoud** voordat deze naar de client wordt gestuurd
-- **Reinig gevoelige informatie** uit prompts en afrondingen
+- **Valideer alle berichtinhoud** voordat het naar de client wordt gestuurd
+- **Saniteer gevoelige informatie** uit prompts en voltooiingen
 - **Implementeer snelheidslimieten** om misbruik te voorkomen
-- **Monitor samplinggebruik** voor ongebruikelijke patronen
-- **Versleutel gegevens tijdens overdracht** met veilige protocollen
-- **Behandel privacy van gebruikersgegevens** volgens relevante regelgeving
-- **Auditeer samplingverzoeken** voor naleving en beveiliging
+- **Monitor samplinggebruik** voor ongewone patronen
+- **Versleutel data tijdens overdracht** met veilige protocollen
+- **Behandel gebruikersprivacy** volgens relevante regelgeving
+- **Controleer samplingverzoeken** op naleving en veiligheid
 - **Beperk kostenblootstelling** met passende limieten
-- **Implementeer time-outs** voor samplingverzoeken
-- **Ga gracieus om met model fouten** met passende fallbacks
+- **Implementeer timeouts** voor samplingverzoeken
+- **Behandel model fouten netjes** met gepaste noodoplossingen
 
-Samplingparameters maken het mogelijk het gedrag van taalmodellen fijn af te stellen om de gewenste balans te bereiken tussen deterministische en creatieve output.
+Samplingparameters maken het mogelijk het gedrag van taalmodellen fijn af te stemmen om de gewenste balans tussen deterministisch en creatief output te bereiken.
 
-Laten we kijken hoe deze parameters geconfigureerd kunnen worden in verschillende programmeertalen.
+Laten we bekijken hoe we deze parameters in verschillende programmeertalen kunnen configureren.
 
 # [.NET](#tab-dotnet)
 
@@ -170,16 +178,16 @@ public class SamplingExample
 
 In bovenstaande code hebben we:
 
-- Een MCP-client aangemaakt met een specifieke server-URL.
-- Een verzoek geconfigureerd met samplingparameters zoals `temperature`, `top_p` en `top_k`.
+- Een MCP-client gemaakt met een specifieke server-URL.
+- Een verzoek geconfigureerd met samplingparameters zoals `temperature`, `top_p`, en `top_k`.
 - Het verzoek verzonden en de gegenereerde tekst afgedrukt.
 - Gebruikt:
-    - `allowedTools` om te specificeren welke tools het model mag gebruiken tijdens generatie. In dit geval gaven we toestemming aan de `ideaGenerator` en `marketAnalyzer` tools om te helpen bij het genereren van creatieve app ideeën.
-    - `frequencyPenalty` en `presencePenalty` om herhaling tegen te gaan en diversiteit in de output te stimuleren.
-    - `temperature` om de willekeurigheid van de output te beheersen, waarbij hogere waarden leiden tot creatievere reacties.
-    - `top_p` om de selectie van tokens te beperken tot die bijdragen aan de top cumulatieve waarschijnlijkheidsmassa, wat de kwaliteit van gegenereerde tekst verbetert.
-    - `top_k` om het model te beperken tot de top K meest waarschijnlijke tokens, wat kan helpen bij het genereren van meer coherente reacties.
-    - `frequencyPenalty` en `presencePenalty` om herhaling te verminderen en diversiteit in de gegenereerde tekst te bevorderen.
+    - `allowedTools` om te specificeren welke tools het model mag gebruiken tijdens generatie. In dit geval hebben we de `ideaGenerator` en `marketAnalyzer` tools toegestaan om te helpen bij het genereren van creatieve app-ideeën.
+    - `frequencyPenalty` en `presencePenalty` om herhaling en diversiteit in de output te regelen.
+    - `temperature` om de willekeur van de output te beheersen, waarbij hogere waarden leiden tot creatievere antwoorden.
+    - `top_p` om de selectie van tokens te beperken tot die bijdragen aan de top cumulatieve waarschijnlijkheidsmassa, wat de kwaliteit van de gegenereerde tekst verbetert.
+    - `top_k` om het model te beperken tot de top K meest waarschijnlijke tokens, wat kan helpen bij het genereren van coherente antwoorden.
+    - `frequencyPenalty` en `presencePenalty` om herhaling te verminderen en diversiteit in de gegenereerde tekst aan te moedigen.
 
 # [JavaScript](#tab/javascript)
 
@@ -194,10 +202,10 @@ async function demonstrateSampling() {
     apiKey: process.env.MCP_API_KEY
   });
   
-  // Stel verzoek in met verschillende samplingparameters
+  // Configureer verzoek met verschillende samplingparameters
   const creativeSampling = {
     temperature: 0.9,    // Hogere temperatuur = meer willekeur/creativiteit
-    topP: 0.92,          // Beschouw tokens met een top 92% waarschijnlijkheidsmassa
+    topP: 0.92,          // Beschouw tokens met top 92% waarschijnlijkheidsmassa
     frequencyPenalty: 0.6, // Verminder herhaling van tokenreeksen
     presencePenalty: 0.4   // Straf tokens die tot nu toe in de tekst zijn verschenen
   };
@@ -206,11 +214,11 @@ async function demonstrateSampling() {
     temperature: 0.2,    // Lagere temperatuur = meer deterministisch/factueel
     topP: 0.85,          // Iets meer gerichte tokenselectie
     frequencyPenalty: 0.2, // Minimale herhalingsstraf
-    presencePenalty: 0.1   // Minimale aanwezigheidstraf
+    presencePenalty: 0.1   // Minimale aanwezigheidsstraf
   };
   
   try {
-    // Verzend twee verzoeken met verschillende samplingconfiguraties
+    // Verstuur twee verzoeken met verschillende samplingconfiguraties
     const creativeResponse = await client.sendPrompt(
       "Generate innovative ideas for sustainable urban transportation",
       {
@@ -244,54 +252,54 @@ demonstrateSampling();
 In bovenstaande code hebben we:
 
 - Een MCP-client geïnitialiseerd met een server-URL en API-sleutel.
-- Twee sets samplingparameters geconfigureerd: één voor creatieve taken en een andere voor feitelijke taken.
-- Verzoeken verzonden met deze configuraties, waarmee het model specifieke tools mag gebruiken voor elke taak.
-- De gegenereerde antwoorden afgedrukt om de effecten van verschillende samplingparameters te demonstreren.
-- `allowedTools` gebruikt om te specificeren welke tools het model tijdens generatie mag gebruiken. In dit geval gaven we toestemming aan de `ideaGenerator` en `environmentalImpactTool` voor creatieve taken, en `factChecker` en `dataAnalysisTool` voor feitelijke taken.
-- `temperature` gebruikt om de willekeurigheid van de output te beheersen, waarbij hogere waarden leiden tot creatievere reacties.
-- `top_p` gebruikt om de selectie van tokens te beperken tot die bijdragen aan de top cumulatieve waarschijnlijkheidsmassa, wat de kwaliteit van gegenereerde tekst verbetert.
-- `frequencyPenalty` en `presencePenalty` gebruikt om herhaling te verminderen en diversiteit in de output te stimuleren.
-- `top_k` gebruikt om het model te beperken tot de top K meest waarschijnlijke tokens, wat kan helpen bij het genereren van meer coherente reacties.
+- Twee sets samplingparameters geconfigureerd: één voor creatieve taken en één voor feitelijke taken.
+- Verzoeken verzonden met deze configuraties, waarbij het model specifieke tools voor elke taak mocht gebruiken.
+- De gegenereerde antwoorden afgedrukt om de effecten van verschillende samplingparameters te tonen.
+- `allowedTools` gebruikt om te specificeren welke tools het model mag gebruiken tijdens generatie. In dit geval hebben we de `ideaGenerator` en `environmentalImpactTool` voor creatieve taken toegestaan, en `factChecker` en `dataAnalysisTool` voor feitelijke taken.
+- `temperature` gebruikt om de willekeur van de output te beheersen, waarbij hogere waarden leiden tot creatievere antwoorden.
+- `top_p` gebruikt om de selectie van tokens te beperken tot die bijdragen aan de top cumulatieve waarschijnlijkheidsmassa, wat de kwaliteit van de gegenereerde tekst verbetert.
+- `frequencyPenalty` en `presencePenalty` gebruikt om herhaling te verminderen en diversiteit aan te moedigen in de output.
+- `top_k` gebruikt om het model te beperken tot de top K meest waarschijnlijke tokens, wat kan helpen bij het genereren van coherente antwoorden.
 
 ---
 
 ## Deterministische Sampling
 
-Voor toepassingen die consistente output vereisen, zorgt deterministische sampling voor reproduceerbare resultaten. Dat gebeurt door een vaste willekeurige seed te gebruiken en de temperature op nul te zetten.
+Voor toepassingen die consistente output vereisen, zorgt deterministische sampling voor reproduceerbare resultaten. Dit wordt bereikt door een vaste random seed te gebruiken en de temperatuur op nul te zetten.
 
-Laten we hieronder een voorbeeldimplementatie bekijken die deterministische sampling laat zien in verschillende programmeertalen.
+Hieronder zien we een voorbeeldimplementatie die deterministische sampling in verschillende programmeertalen demonstreert.
 
 # [Java](#tab/java)
 
 ```java
-// Java Voorbeeld: Deterministische antwoorden met vaste seed
+// Java Voorbeeld: Deterministische reacties met vaste zaadwaarde
 public class DeterministicSamplingExample {
     public void demonstrateDeterministicResponses() {
         McpClient client = new McpClient.Builder()
             .setServerUrl("https://mcp-server-example.com")
             .build();
             
-        long fixedSeed = 12345; // Gebruik van een vaste seed voor deterministische resultaten
+        long fixedSeed = 12345; // Gebruik van een vaste zaadwaarde voor deterministische resultaten
         
-        // Eerste verzoek met vaste seed
+        // Eerste verzoek met vaste zaadwaarde
         McpRequest request1 = new McpRequest.Builder()
             .setPrompt("Generate a random number between 1 and 100")
             .setSeed(fixedSeed)
             .setTemperature(0.0) // Nul temperatuur voor maximale determinisme
             .build();
             
-        // Tweede verzoek met dezelfde seed
+        // Tweede verzoek met dezelfde zaadwaarde
         McpRequest request2 = new McpRequest.Builder()
             .setPrompt("Generate a random number between 1 and 100")
             .setSeed(fixedSeed)
             .setTemperature(0.0)
             .build();
         
-        // Beide verzoeken uitvoeren
+        // Voer beide verzoeken uit
         McpResponse response1 = client.sendRequest(request1);
         McpResponse response2 = client.sendRequest(request2);
         
-        // Antwoorden zouden identiek moeten zijn vanwege dezelfde seed en temperatuur=0
+        // Reacties zouden identiek moeten zijn vanwege dezelfde zaadwaarde en temperatuur=0
         System.out.println("Response 1: " + response1.getGeneratedText());
         System.out.println("Response 2: " + response2.getGeneratedText());
         System.out.println("Are responses identical: " + 
@@ -302,17 +310,17 @@ public class DeterministicSamplingExample {
 
 In bovenstaande code hebben we:
 
-- Een MCP-client aangemaakt met een opgegeven server-URL.
-- Twee verzoeken geconfigureerd met dezelfde prompt, vaste seed en nul temperature.
+- Een MCP-client gemaakt met een opgegeven server-URL.
+- Twee verzoeken geconfigureerd met dezelfde prompt, vaste seed en nul temperatuur.
 - Beide verzoeken verzonden en de gegenereerde tekst afgedrukt.
-- Aangetoond dat de antwoorden identiek zijn vanwege het deterministische karakter van de samplingconfiguratie (zelfde seed en temperature).
-- `setSeed` gebruikt om een vaste willekeurige seed op te geven, wat garandeert dat het model elke keer dezelfde output genereert voor dezelfde input.
-- `temperature` op nul gezet om maximale determinisme te verzekeren, wat betekent dat het model altijd de meest waarschijnlijke volgende token selecteert zonder willekeur.
+- Aangetoond dat de reacties identiek zijn vanwege de deterministische aard van de samplingconfiguratie (zelfde seed en temperatuur).
+- `setSeed` gebruikt om een vaste random seed te specificeren, waardoor het model bij dezelfde invoer steeds dezelfde output genereert.
+- `temperature` op nul gezet om maximale determinisme te garanderen, wat betekent dat het model altijd de meest waarschijnlijke volgende token kiest zonder willekeur.
 
 # [JavaScript](#tab/javascript-deterministic)
 
 ```javascript
-// JavaScript Voorbeeld: Deterministische reacties met zaadcontrole
+// JavaScript Voorbeeld: Deterministische antwoorden met zaadcontrole
 const { McpClient } = require('@mcp/client');
 
 async function deterministicSampling() {
@@ -324,19 +332,19 @@ async function deterministicSampling() {
   const prompt = "Generate a random password with 8 characters";
   
   try {
-    // Eerste verzoek met vaste zaad
+    // Eerste verzoek met vaste zaadwaarde
     const response1 = await client.sendPrompt(prompt, {
       seed: fixedSeed,
-      temperature: 0.0  // Nultemperatuur voor maximale determinisme
+      temperature: 0.0  // Nul temperatuur voor maximale determinisme
     });
     
-    // Tweede verzoek met dezelfde zaad en temperatuur
+    // Tweede verzoek met dezelfde zaadwaarde en temperatuur
     const response2 = await client.sendPrompt(prompt, {
       seed: fixedSeed,
       temperature: 0.0
     });
     
-    // Derde verzoek met andere zaad maar dezelfde temperatuur
+    // Derde verzoek met andere zaadwaarde maar dezelfde temperatuur
     const response3 = await client.sendPrompt(prompt, {
       seed: 67890,
       temperature: 0.0
@@ -359,25 +367,25 @@ deterministicSampling();
 In bovenstaande code hebben we:
 
 - Een MCP-client geïnitialiseerd met een server-URL.
-- Twee verzoeken geconfigureerd met dezelfde prompt, vaste seed en nul temperature.
+- Twee verzoeken geconfigureerd met dezelfde prompt, vaste seed en nul temperatuur.
 - Beide verzoeken verzonden en de gegenereerde tekst afgedrukt.
-- Aangetoond dat de antwoorden identiek zijn vanwege het deterministische karakter van de samplingconfiguratie (zelfde seed en temperature).
-- `seed` gebruikt om een vaste willekeurige seed op te geven, wat garandeert dat het model elke keer dezelfde output genereert voor dezelfde input.
-- `temperature` op nul gezet om maximale determinisme te verzekeren, wat betekent dat het model altijd de meest waarschijnlijke volgende token selecteert zonder willekeur.
-- Voor het derde verzoek een andere seed gebruikt om te laten zien dat het veranderen van de seed leidt tot verschillende outputs, zelfs met dezelfde prompt en temperature.
+- Aangetoond dat de reacties identiek zijn vanwege de deterministische aard van de samplingconfiguratie (zelfde seed en temperatuur).
+- `seed` gebruikt om een vaste random seed te specificeren, waardoor het model bij dezelfde invoer steeds dezelfde output genereert.
+- `temperature` op nul gezet om maximale determinisme te garanderen, wat betekent dat het model altijd de meest waarschijnlijke volgende token kiest zonder willekeur.
+- Voor het derde verzoek een andere seed gebruikt om te laten zien dat het wijzigen van de seed resulteert in verschillende outputs, zelfs met dezelfde prompt en temperatuur.
 
 ---
 
 ## Dynamische Samplingconfiguratie
 
-Intelligente sampling past parameters aan op basis van de context en vereisten van elk verzoek. Dat betekent dat parameters zoals temperature, top_p en straffen dynamisch worden aangepast op basis van het type taak, gebruikersvoorkeuren of historische prestaties.
+Intelligente sampling past parameters aan op basis van de context en vereisten van elk verzoek. Dat betekent het dynamisch aanpassen van parameters zoals temperatuur, top_p en straffen, op basis van het type taak, gebruikersvoorkeuren of historische prestaties.
 
-Laten we kijken hoe dynamische sampling geïmplementeerd wordt in verschillende programmeertalen.
+Laten we bekijken hoe dynamische sampling in verschillende programmeertalen geïmplementeerd kan worden.
 
 # [Python](#tab/python)
 
 ```python
-# Python Voorbeeld: Dynamische sampling gebaseerd op aanvraagcontext
+# Python voorbeeld: Dynamische sampling gebaseerd op de context van het verzoek
 class DynamicSamplingService:
     def __init__(self, mcp_client):
         self.client = mcp_client
@@ -393,7 +401,7 @@ class DynamicSamplingService:
             "analytical": {"temperature": 0.4, "top_p": 0.92, "frequency_penalty": 0.3}
         }
         
-        # Selecteer basisinstelling
+        # Selecteer basisvoorinstelling
         sampling_params = sampling_presets.get(task_type, sampling_presets["factual"])
         
         # Pas aan op basis van gebruikersvoorkeuren indien opgegeven
@@ -408,7 +416,7 @@ class DynamicSamplingService:
                 diversity = min(max(user_preferences["diversity"], 1), 10) / 10
                 sampling_params["top_p"] = 0.6 + (0.39 * diversity)
         
-        # Maak aanvraag aan en verzend met aangepaste sampleerparameters
+        # Maak en verstuur verzoek met aangepaste sampleerparameters
         response = await self.client.send_request(
             prompt=prompt,
             temperature=sampling_params["temperature"],
@@ -416,7 +424,7 @@ class DynamicSamplingService:
             frequency_penalty=sampling_params["frequency_penalty"]
         )
         
-        # Retourneer respons met sampleermetagegevens voor transparantie
+        # Retourneer respons met sampleermetadata voor transparantie
         return {
             "text": response.generated_text,
             "applied_sampling": sampling_params,
@@ -428,20 +436,20 @@ In bovenstaande code hebben we:
 
 - Een `DynamicSamplingService` klasse gemaakt die adaptieve sampling beheert.
 - Samplingpresets gedefinieerd voor verschillende taaktypes (creatief, feitelijk, code, analytisch).
-- Een basale samplingpreset geselecteerd op basis van het taaktype.
-- Samplingparameters aangepast op basis van gebruikersvoorkeuren, zoals creativiteitsniveau en diversiteit.
-- Het verzoek verzonden met dynamisch geconfigureerde samplingparameters.
-- De gegenereerde tekst teruggegeven samen met de toegepaste samplingparameters en het type taak voor transparantie.
-- `temperature` gebruikt om de willekeurigheid van de output te sturen, waarbij hogere waarden leiden tot creatievere reacties.
-- `top_p` gebruikt om de selectie van tokens te beperken tot die die bijdragen aan de top cumulatieve waarschijnlijkheidsmassa, wat de kwaliteit van gegenereerde tekst verbetert.
-- `frequency_penalty` gebruikt om herhaling te verminderen en diversiteit in de output te stimuleren.
-- `user_preferences` gebruikt om aanpassing van samplingparameters mogelijk te maken op basis van door gebruikers gedefinieerde creativiteits- en diversiteitsniveaus.
-- `task_type` gebruikt om de juiste samplingstrategie voor het verzoek te bepalen, waardoor meer op maat gemaakte antwoorden mogelijk zijn afhankelijk van het soort taak.
-- `send_request` methode gebruikt om de prompt met geconfigureerde samplingparameters te verzenden, waarmee wordt verzekerd dat het model tekst genereert volgens de opgegeven vereisten.
-- `generated_text` gebruikt om de reactie van het model op te halen, die vervolgens samen met de samplingparameters en het taaktype wordt geretourneerd voor verdere analyse of weergave.
-- `min` en `max` functies gebruikt om te garanderen dat gebruikersvoorkeuren binnen geldige grenzen blijven, zodat ongeldige samplingconfiguraties worden voorkomen.
+- Een basis samplingpreset geselecteerd op basis van het taaktype.
+- De samplingparameters aangepast op basis van gebruikersvoorkeuren, zoals mate van creativiteit en diversiteit.
+- Het verzoek verstuurd met de dynamisch geconfigureerde samplingparameters.
+- De gegenereerde tekst plus toegepaste samplingparameters en taaktype teruggegeven voor transparantie.
+- `temperature` gebruikt om de willekeur van de output te beheersen, waarbij hogere waarden leiden tot creatievere antwoorden.
+- `top_p` gebruikt om de selectie van tokens te beperken tot die bijdragen aan de top cumulatieve waarschijnlijkheidsmassa, wat de kwaliteit van gegenereerde tekst verbetert.
+- `frequency_penalty` gebruikt om herhaling te verminderen en diversiteit aan te moedigen in de output.
+- `user_preferences` gebruikt om de samplingparameters aan te passen op basis van door de gebruiker gedefinieerde niveaus van creativiteit en diversiteit.
+- `task_type` gebruikt om de juiste samplingstrategie voor het verzoek te bepalen, waardoor meer op maat gemaakte antwoorden ontstaan gebaseerd op het karakter van de taak.
+- De `send_request` methode gebruikt om de prompt te verzenden met de geconfigureerde samplingparameters, zodat het model tekst genereert volgens de opgegeven eisen.
+- `generated_text` gebruikt om het antwoord van het model te krijgen, dat vervolgens samen met samplingparameters en taaktype wordt teruggegeven voor verdere analyse of weergave.
+- `min` en `max` functies gebruikt om ervoor te zorgen dat gebruikersvoorkeuren binnen geldige grenzen blijven, waardoor ongeldige samplingconfiguraties worden voorkomen.
 
-# [JavaScript Dynamisch](#tab/javascript-dynamic)
+# [JavaScript Dynamic](#tab/javascript-dynamic)
 
 ```javascript
 // JavaScript Voorbeeld: Dynamische samplingconfiguratie gebaseerd op gebruikerscontext
@@ -449,7 +457,7 @@ class AdaptiveSamplingManager {
   constructor(mcpClient) {
     this.client = mcpClient;
     
-    // Basale samplingprofielen definiëren
+    // Basis samplingprofielen definiëren
     this.samplingProfiles = {
       creative: { temperature: 0.85, topP: 0.94, frequencyPenalty: 0.7, presencePenalty: 0.5 },
       factual: { temperature: 0.2, topP: 0.85, frequencyPenalty: 0.3, presencePenalty: 0.1 },
@@ -461,7 +469,7 @@ class AdaptiveSamplingManager {
     this.performanceHistory = [];
   }
   
-  // Taaktype detecteren vanuit prompt
+  // Taaktype detecteren uit prompt
   detectTaskType(prompt, context = {}) {
     const promptLower = prompt.toLowerCase();
     
@@ -486,7 +494,7 @@ class AdaptiveSamplingManager {
       return 'creative';
     }
     
-    // Standaard naar conversatie als geen duidelijk type wordt gedetecteerd
+    // Standaard naar conversatie als er geen duidelijk type wordt gedetecteerd
     return 'conversational';
   }
   
@@ -495,7 +503,7 @@ class AdaptiveSamplingManager {
     // Het type taak detecteren
     const taskType = this.detectTaskType(prompt, context);
     
-    // Basispofil ophalen
+    // Basisprofiel ophalen
     let params = {...this.samplingProfiles[taskType]};
     
     // Aanpassen op basis van gebruikersvoorkeuren
@@ -508,7 +516,7 @@ class AdaptiveSamplingManager {
       }
       
       if (precision !== undefined) {
-        // Hogere precisie betekent lagere topP (meer gefocuste selectie)
+        // Hogere precisie betekent lagere topP (meer gerichte selectie)
         params.topP = 1.0 - (precision * 0.05); // 0.5-1.0
       }
       
@@ -525,16 +533,16 @@ class AdaptiveSamplingManager {
   }
   
   applyLearnedAdjustments(params, taskType) {
-    // Eenvoudige adaptieve logica - kan worden verbeterd met meer geavanceerde algoritmes
+    // Eenvoudige adaptieve logica - kan worden verbeterd met meer geavanceerde algoritmen
     const relevantHistory = this.performanceHistory
       .filter(entry => entry.taskType === taskType)
-      .slice(-5); // Alleen recente geschiedenis meenemen
+      .slice(-5); // Alleen recente geschiedenis overwegen
     
     if (relevantHistory.length > 0) {
       // Gemiddelde prestatie scores berekenen
       const avgScore = relevantHistory.reduce((sum, entry) => sum + entry.score, 0) / relevantHistory.length;
       
-      // Als prestatie onder drempel ligt, parameters aanpassen
+      // Als prestaties onder drempel liggen, parameters aanpassen
       if (avgScore < 0.7) {
         // Kleine aanpassing richting veiligere waarden
         params.temperature = Math.max(params.temperature * 0.9, 0.1);
@@ -544,13 +552,13 @@ class AdaptiveSamplingManager {
   }
   
   recordPerformance(prompt, samplingParams, response, score) {
-    // Prestatie vastleggen voor toekomstige aanpassingen
+    // Prestaties registreren voor toekomstige aanpassingen
     this.performanceHistory.push({
       timestamp: Date.now(),
       taskType: this.detectTaskType(prompt),
       samplingParams,
       responseLength: response.generatedText.length,
-      score // 0-1 beoordeling van de kwaliteit van de reactie
+      score // 0-1 beoordeling van reactiekwaliteit
     });
     
     // Historiegrootte beperken
@@ -569,7 +577,7 @@ class AdaptiveSamplingManager {
       allowedTools: context.allowedTools || []
     });
     
-    // Als gebruiker feedback geeft, vastleggen voor toekomstige optimalisatie
+    // Als gebruiker feedback geeft, deze opnemen voor toekomstige optimalisatie
     if (context.recordPerformance) {
       this.recordPerformance(prompt, samplingParams, response, context.feedbackScore || 0.5);
     }
@@ -607,7 +615,7 @@ async function demonstrateAdaptiveSampling() {
     console.log('Applied sampling:', creativeResult.appliedSamplingParams);
     console.log(creativeResult.response.generatedText);
     
-    // Codegeneratietaak
+    // Taak code generatie
     const codeResult = await samplingManager.generateResponse(
       "Write a JavaScript function to calculate the Fibonacci sequence",
       {
@@ -636,27 +644,27 @@ In bovenstaande code hebben we:
 
 - Een `AdaptiveSamplingManager` klasse gemaakt die dynamische sampling beheert op basis van taaktype en gebruikersvoorkeuren.
 - Samplingprofielen gedefinieerd voor verschillende taaktypes (creatief, feitelijk, code, conversatie).
-- Een methode geïmplementeerd die het taaktype uit de prompt detecteert via eenvoudige heuristieken.
+- Een methode geïmplementeerd om het taaktype uit de prompt te detecteren met eenvoudige heuristieken.
 - Samplingparameters berekend op basis van het gedetecteerde taaktype en gebruikersvoorkeuren.
-- Toegepaste aanpassingen op basis van geleerde prestaties om samplingparameters te optimaliseren.
+- Aangeleerde aanpassingen toegepast op basis van historische prestaties om samplingparameters te optimaliseren.
 - Prestaties vastgelegd voor toekomstige aanpassingen, zodat het systeem kan leren van eerdere interacties.
-- Verzoeken verzonden met dynamisch geconfigureerde samplingparameters en de gegenereerde tekst geretourneerd met toegepaste parameters en gedetecteerd taaktype.
+- Verzoeken verzonden met dynamisch geconfigureerde samplingparameters en de gegenereerde tekst plus toegepaste parameters en gedetecteerd taaktype teruggegeven.
 - Gebruikt:
-    - `userPreferences` om aanpassing van samplingparameters mogelijk te maken op basis van door de gebruiker gedefinieerde creativiteits-, precisie- en consistentieniveaus.
-    - `detectTaskType` om de aard van de taak op basis van de prompt te bepalen, zodat passende samplingstrategieën toegepast worden voor verschillende soorten verzoeken.
-    - `recordPerformance` om de prestaties van gegenereerde reacties te registreren, zodat het systeem zich in de tijd kan aanpassen en verbeteren.
-    - `applyLearnedAdjustments` om samplingparameters aan te passen op basis van historische prestaties, waardoor het vermogen van het model om kwalitatief hoogstaande reacties te genereren wordt verbeterd.
-    - `generateResponse` voor het encapsuleren van het gehele proces van een antwoord genereren met adaptieve sampling, zodat het eenvoudig kan worden aangeroepen met verschillende prompts en contexten.
-    - `allowedTools` om te specificeren welke tools het model tijdens generatie mag gebruiken, voor meer contextbewuste reacties.
-    - `feedbackScore` om gebruikers feedback te laten geven op de kwaliteit van de gegenereerde reactie, wat gebruikt kan worden om de modelprestaties verder te verfijnen in de tijd.
-    - `performanceHistory` om een geschiedenis van eerdere interacties bij te houden, zodat het systeem kan leren van eerdere successen en mislukkingen.
-    - `getSamplingParameters` om samplingparameters dynamisch aan te passen op basis van de context van het verzoek, waardoor flexibelere en responsievere modelgedrag mogelijk wordt.
-    - `detectTaskType` om de taak te classificeren op basis van de prompt, waardoor passend samplingstrategieën toegepast kunnen worden voor verschillende soorten verzoeken.
-    - `samplingProfiles` om basis samplingconfiguraties te definiëren voor verschillende taaktypes, wat snelle aanpassingen mogelijk maakt afhankelijk van de aard van het verzoek.
+    - `userPreferences` om de samplingparameters aan te passen op basis van door de gebruiker gedefinieerde niveaus van creativiteit, precisie en consistentie.
+    - `detectTaskType` om de aard van de taak te bepalen op basis van de prompt, waardoor meer op maat gemaakte antwoorden mogelijk zijn.
+    - `recordPerformance` om de prestatie van gegenereerde antwoorden vast te leggen, zodat het systeem zich kan aanpassen en verbeteren in de loop der tijd.
+    - `applyLearnedAdjustments` om samplingparameters aan te passen op basis van historische prestaties, waardoor het model beter in staat is kwalitatief hoogwaardige antwoorden te genereren.
+    - `generateResponse` om het volledige proces van antwoorden genereren met adaptieve sampling te encapsuleren, zodat het eenvoudig is aan te roepen met verschillende prompts en contexten.
+    - `allowedTools` om te specificeren welke tools het model mag gebruiken tijdens generatie, wat contextbewustere antwoorden mogelijk maakt.
+    - `feedbackScore` om gebruikers feedback op de kwaliteit van het gegenereerde antwoord te laten geven, die gebruikt kan worden om de prestaties van het model verder te verfijnen.
+    - `performanceHistory` om een record bij te houden van eerdere interacties, waardoor het systeem kan leren van successen en fouten uit het verleden.
+    - `getSamplingParameters` om samplingparameters dynamisch aan te passen op basis van de context van het verzoek, wat meer flexibele en responsieve modelgedragingen mogelijk maakt.
+    - `detectTaskType` om de taak te classificeren op basis van de prompt, zodat het systeem geschikte samplingstrategieën op verschillende typen verzoeken kan toepassen.
+    - `samplingProfiles` om basis-samplingconfiguraties te definiëren voor verschillende taaktypes, waardoor snelle aanpassingen mogelijk zijn afhankelijk van het karakter van het verzoek.
 
 ---
 
-## Wat nu
+## Wat volgt
 
 - [5.7 Schalen](../mcp-scaling/README.md)
 

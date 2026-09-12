@@ -1,54 +1,55 @@
-# Leheküljed ja suured tulemite kogumid MCP-s
+# Leheküljendus ja suured tulemuste hulgad MCP-s
 
-Kui teie MCP server käsitleb suuri andmekogumeid – olgu selleks tuhandeid faile, andmebaasi kirjeid või otsingutulemusi – vajate mäluhalduse tõhusaks korraldamiseks ja reageerimisvõimelise kasutajaliidese tagamiseks lehekülgede jagamist. See juhend käsitleb, kuidas MCP-s lehekülgede jagamist rakendada ja kasutada.
+Kui teie MCP server töötleb suuri andmekogumeid - olgu see siis tuhandete failide, andmebaasi kirjetega või otsingutulemustega - vajate mäluefektiivseks haldamiseks ja reageerimisvõimelise kasutajakogemuse tagamiseks leheküljendust. See juhend hõlmab kuidas MCP-s leheküljendust rakendada ja kasutada.
 
-## Miks lehekülgede jagamine on oluline
+## Miks leheküljendus on oluline
 
-Ilma lehekülgede jagamiseta võivad suured vastused põhjustada:
+Ilma leheküljenduseta võivad suured vastused põhjustada:
 
-- **Mälu ammendumine** – miljonite kirjetega korraga laadimine
-- **Aeglad vastamisajad** – kasutajad ootavad, kuni kogu andmestik laetakse
-- **Aegumise vead** – päringud ületavad lubatud ooteaja
-- **Aeglane tehisintellekti jõudlus** – LLM-idel on raskusi tohutu kontekstiga
+- **Mälu ammendumine** - miljonite kirjete ühekordne laadimine 
+- **Aeglane vastus** - kasutajad ootavad kogu andmete laadimist
+- **Ajalõpu vead** - päringud ületavad ajalõpu piirid
+- **Halb tehisintellekti jõudlus** - LLM-idel on raske massiivse kontekstiga toime tulla
 
-MCP kasutab usaldusväärseks ja järjepidevaks juhtimiseks **kursori-põhist lehekülgede jagamist**.
+MCP kasutab tulemuste komplektide usaldusväärseks ja järjepidevaks leheküljendamiseks **kursoripõhist leheküljendust**.
 
 ---
 
-## Kuidas MCP lehekülgede jagamine töötab
+## Kuidas MCP leheküljendus töötab
 
 ### Kursori mõiste
 
-**Kursor** on läbipaistev string, mis märgib teie asukohta tulemikogumis. Mõelge sellele nagu järjehoidjale pika raamatu sees.
+**Kursor** on läbipaistev string, mis märgib teie positsiooni tulemuste komplektis. Mõelge sellele nagu järjehoidjale pikast raamatust.
 
 ```mermaid
 sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: tools/list (ilma kursori)
-    Server-->>Client: tools [1-10], nextCursor: "abc123"
+    Client->>Server: tööriistad/nimekiri (ilma kursorita)
+    Server-->>Client: tööriistad [1-10], järgmineKursor: "abc123"
     
-    Client->>Server: tools/list (kursor: "abc123")
-    Server-->>Client: tools [11-20], nextCursor: "def456"
+    Client->>Server: tööriistad/nimekiri (kursor: "abc123")
+    Server-->>Client: tööriistad [11-20], järgmineKursor: "def456"
     
-    Client->>Server: tools/list (kursor: "def456")
-    Server-->>Client: tools [21-25], nextCursor: null (lõpp)
+    Client->>Server: tööriistad/nimekiri (kursor: "def456")
+    Server-->>Client: tööriistad [21-25], järgmineKursor: null (lõpp)
 ```
-### Lehekülgede jagamine MCP meetodites
 
-Need MCP meetodid toetavad lehekülgede jagamist:
+### Leheküljendus MCP meetodites
+
+Järgnevad MCP meetodid toetavad leheküljendust:
 
 | Meetod | Tagastab | Kursori tugi |
-|--------|----------|--------------|
+|--------|---------|----------------|
 | `tools/list` | Tööriistade definitsioonid | ✅ |
 | `resources/list` | Ressursside definitsioonid | ✅ |
-| `prompts/list` | Käskluste definitsioonid | ✅ |
+| `prompts/list` | Käsureate definitsioonid | ✅ |
 | `resources/templates/list` | Ressursside mallid | ✅ |
 
 ---
 
-## Serveri rakendus
+## Serveri teostus
 
 ### Python (FastMCP)
 
@@ -59,7 +60,7 @@ import math
 
 app = Server("paginated-server")
 
-# Simuleeritud suur andmekogum
+# Simuleeritud suur andmekogu
 ALL_TOOLS = [
     Tool(name=f"tool_{i}", description=f"Tool number {i}", inputSchema={})
     for i in range(100)
@@ -71,7 +72,7 @@ PAGE_SIZE = 10
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     """List tools with pagination support."""
     
-    # Dekodeeri kursori väärtus, et saada algusindeks
+    # Dekodeeri kursor algindeksi saamiseks
     start_index = 0
     if cursor:
         try:
@@ -79,7 +80,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
         except ValueError:
             start_index = 0
     
-    # Hangi tulemuste leht
+    # Hangi tulemuste lehekülg
     end_index = min(start_index + PAGE_SIZE, len(ALL_TOOLS))
     page_tools = ALL_TOOLS[start_index:end_index]
     
@@ -115,7 +116,7 @@ const ALL_TOOLS = Array.from({ length: 100 }, (_, i) => ({
 const PAGE_SIZE = 10;
 
 server.setRequestHandler(ListToolsResultSchema, async (request) => {
-  // Dekodeeri kursor
+  // Dekodeeri kursori
   let startIndex = 0;
   if (request.params?.cursor) {
     startIndex = parseInt(request.params.cursor, 10) || 0;
@@ -145,7 +146,7 @@ public class PaginatedToolService {
     private final List<Tool> allTools;
     
     public PaginatedToolService() {
-        // Initsialiseeri suur andmekogum
+        // Initsialiseeri suur andmekogu
         this.allTools = IntStream.range(0, 100)
             .mapToObj(i -> new Tool("tool_" + i, "Tool number " + i, Map.of()))
             .collect(Collectors.toList());
@@ -163,7 +164,7 @@ public class PaginatedToolService {
             }
         }
         
-        // Hangi tulemuste leht
+        // Hangi tulemuste lehekülg
         int endIndex = Math.min(startIndex + PAGE_SIZE, allTools.size());
         List<Tool> pageTools = allTools.subList(startIndex, endIndex);
         
@@ -177,7 +178,7 @@ public class PaginatedToolService {
 
 ---
 
-## Kliendi rakendus
+## Kliendi teostus
 
 ### Python klient
 
@@ -228,9 +229,9 @@ const tools = await getAllTools(client);
 console.log(`Found ${tools.length} tools`);
 ```
 
-### Laisk laadimise muster
+### Udune laadimisstrateegia
 
-Väga suurte andmekogumite puhul laadige leheküljed nõudmisel:
+Väga suurte andmekogumite puhul laadige lehed vajadusel:
 
 ```python
 class PaginatedToolIterator:
@@ -243,11 +244,11 @@ class PaginatedToolIterator:
         self.exhausted = False
     
     async def __anext__(self):
-        # Tagasta puhvrist, kui saadaval
+        # Tagasta vahemälust, kui see on saadaval
         if self.buffer:
             return self.buffer.pop(0)
         
-        # Kontrolli, kas oleme kõik lehed läbi saanud
+        # Kontrolli, kas oleme kõik lehed läbi käinud
         if self.exhausted:
             raise StopAsyncIteration
         
@@ -267,16 +268,16 @@ class PaginatedToolIterator:
     def __aiter__(self):
         return self
 
-# Kasutus - mälu tõhus suurte andmekogude puhul
+# Kasutus - mälusäästlik suurte andmekogumite puhul
 async for tool in PaginatedToolIterator(session):
     process_tool(tool)
 ```
 
 ---
 
-## Lehekülgede jagamine ressursside puhul
+## Leheküljendus ressursside jaoks
 
-Ressurssid vajavad sageli lehekülgede jagamist kaustade või suurte andmekogumite jaoks:
+Ressurssid vajavad sageli leheküljendust kataloogide või suurte andmekogumite puhul:
 
 ```python
 from mcp.server import Server
@@ -297,7 +298,7 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
     page_size = 20
     end_index = min(start_index + page_size, len(all_files))
     
-    # Loo selle lehe jaoks ressursside nimekiri
+    # Loo selle lehe jaoks ressursinimekiri
     resources = []
     for filename in all_files[start_index:end_index]:
         filepath = os.path.join(directory, filename)
@@ -320,15 +321,15 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ## Kursori disaini strateegiad
 
-### Strateegia 1: Indeksi-põhine (lihtne)
+### Strateegia 1: Indeksipõhine (lihtne)
 
 ```python
 # Kursor on lihtsalt indeks
-cursor = "50"  # Alusta kirjest 50
+cursor = "50"  # Alusta elemendist 50
 ```
 
-**Eelised:** Lihtne, staatust mittehoidev  
-**Puudused:** Tulemused võivad nihkuda, kui elemente lisatakse või eemaldatakse
+**Eelised:** Lihtne, olekuta
+**Puudused:** Tulemused võivad nihkuda, kui esemeid lisatakse või eemaldatakse
 
 ### Strateegia 2: ID-põhine (stabiilne)
 
@@ -337,7 +338,7 @@ cursor = "50"  # Alusta kirjest 50
 cursor = "item_abc123"  # Alusta pärast seda elementi
 ```
 
-**Eelised:** Stabiilne, isegi kui elemendid muutuvad  
+**Eelised:** Stabiilne ka muutuvate elementide korral
 **Puudused:** Nõuab järjestatud ID-sid
 
 ### Strateegia 3: Kodeeritud olek (keeruline)
@@ -352,7 +353,7 @@ def encode_cursor(state: dict) -> str:
 def decode_cursor(cursor: str) -> dict:
     return json.loads(base64.b64decode(cursor).decode())
 
-# Kursor sisaldab mitu olekuvälja
+# Kursor sisaldab mitut olekuvälja
 cursor = encode_cursor({
     "offset": 50,
     "filter": "active",
@@ -360,23 +361,23 @@ cursor = encode_cursor({
 })
 ```
 
-**Eelised:** Võib kodeerida keerulisi olekuid  
-**Puudused:** Keerulisem, suuremad kursori stringid
+**Eelised:** Võimaldab kodeerida keerulisi olekuid
+**Puudused:** Keerulisem, suuremad kursorite stringid
 
 ---
 
 ## Parimad tavad
 
-### 1. Valige sobivad lehekülgede suurused
+### 1. Valige sobivad lehekülje suurused
 
 ```python
 # Arvesta andmete suurusega
 PAGE_SIZE_SMALL_ITEMS = 100   # Lihtne metaandmed
-PAGE_SIZE_MEDIUM_ITEMS = 20   # Rikkalikumad objektid
-PAGE_SIZE_LARGE_ITEMS = 5     # Kompleksne sisu
+PAGE_SIZE_MEDIUM_ITEMS = 20   # Rikkalikud objektid
+PAGE_SIZE_LARGE_ITEMS = 5     # Keeruline sisu
 ```
 
-### 2. Töötlege vigaseid kursoreid elegantse vigadega
+### 2. Käidelge vigased kursoreid sujuvalt
 
 ```python
 @app.list_tools()
@@ -386,7 +387,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
         if start_index < 0 or start_index >= len(ALL_TOOLS):
             start_index = 0  # Lähtesta algusesse
     except (ValueError, TypeError):
-        start_index = 0  # Sobimatu kursor, alusta uuesti
+        start_index = 0  # Sobimatu kursor, alusta värskelt
     # ...
 ```
 
@@ -396,16 +397,16 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 return ListToolsResult(
     tools=page_tools,
     nextCursor=next_cursor,
-    # Mõned teostused sisaldavad kasutajaliidese edenemise kogusummat
+    # Mõned rakendused sisaldavad UI edenemise kogusummat
     _meta={"total": len(ALL_TOOLS)}
 )
 ```
 
-### 4. Testige äärejuhtumeid
+### 4. Testige äärmusjuhtumeid
 
 ```python
 async def test_pagination():
-    # Tühi tulemuste kogum
+    # Tühi tulemuste hulk
     result = await session.list_tools()
     assert result.tools == []
     assert result.nextCursor is None
@@ -414,16 +415,16 @@ async def test_pagination():
     result = await session.list_tools()
     assert len(result.tools) <= PAGE_SIZE
     
-    # Sobimatu kursor
+    # Vigane kursor
     result = await session.list_tools(cursor="invalid")
-    assert result.tools  # Peaks tagastama esimese lehekülje
+    assert result.tools  # Tuleks tagastada esimene lehekülg
 ```
 
 ---
 
-## Levinumad lõksud
+## Levinud lõkse
 
-### ❌ Kõik tulemused korraga tagastamine ja seejärel kliendis lehekülgede jagamine
+### ❌ Kõigi tulemuste tagastamine ja seejärel kliendipoolne leheküljendus
 
 ```python
 # HALB: Laadib kõik mällu
@@ -433,10 +434,10 @@ async def list_tools() -> ListToolsResult:
     return ListToolsResult(tools=all_tools)
 ```
 
-### ✅ Lehekülgede jagamine andmeallikast
+### ✅ Leheküljendamine andmeallikal
 
 ```python
-# HEA: Laadib ainult vajamineva
+# HEA: Laadib ainult vajaliku
 @app.list_tools()
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     offset = int(cursor) if cursor else 0
@@ -446,9 +447,9 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ---
 
-## Mis järgmiseks
+## Järgmised sammud
 
-- [Moodul 5.14 - Konteksti inseneritöö](../../05-AdvancedTopics/mcp-contextengineering/README.md)
+- [Moodul 5.14 - Konteksti inseneriteadus](../../05-AdvancedTopics/mcp-contextengineering/README.md)
 - [Moodul 8 - Parimad tavad](../../08-BestPractices/README.md)
 - [3.8 - Testi oma MCP serverit](../../03-GettingStarted/08-testing/README.md)
 
@@ -456,13 +457,13 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ## Täiendavad ressursid
 
-- [MCP spetsifikatsioon – lehekülgede jagamine](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [Kursori-põhise lehekülgede jagamise selgitus](https://slack.engineering/evolving-api-pagination-at-slack/)
-- [Python SDK lehekülgede jagamise testid](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+- [MCP spetsifikatsioon - Leheküljendus](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [Kursoripõhine leheküljendus selgitatud](https://slack.engineering/evolving-api-pagination-at-slack/)
+- [Python SDK leheküljenduse testid](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Vastutusest vabastamine**:  
-See dokument on tõlgitud kasutades tehisintellekti tõlketeenust [Co-op Translator](https://github.com/Azure/co-op-translator). Kuigi me püüame täpsust, palun pange tähele, et automatiseeritud tõlked võivad sisaldada vigu või ebatäpsusi. Originaaldokument selle algses keeles tuleks pidada autoriteetseks allikaks. Olulise info puhul soovitatakse kasutada professionaalset inimtõlget. Me ei vastuta selle tõlkega seotud arusaamatuste ega valesti mõistmiste eest.
+**Lahtiütlus**:
+See dokument on tõlgitud kasutades AI tõlketeenust [Co-op Translator](https://github.com/Azure/co-op-translator). Kuigi me püüdleme täpsuse poole, palun pange tähele, et automatiseeritud tõlgetes võib esineda vigu või ebatäpsusi. Originaaldokument selle emakeeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitatakse kasutada professionaalset inimtõlget. Me ei vastuta selle tõlkega seotud eksimustest või valesti mõistmistest.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

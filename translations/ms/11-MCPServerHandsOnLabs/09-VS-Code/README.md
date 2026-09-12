@@ -1,29 +1,35 @@
 # Integrasi VS Code
 
-## 🎯 Apa Yang Diliputi Dalam Makmal Ini
+> [!NOTE]
+> Tetapan `initializationOptions` dalam makmal ini mensasarkan MCP contoh
+> `2025-11-25` tutul tangan. MCP `2026-07-28` menghapuskan tutul tangan inisialisasi;
+> gunakan hos dan SDK yang menyokong metadata setiap permintaan dan `server/discover`
+> apabila memigrasi contoh ini.
 
-Makmal ini menyediakan panduan lengkap untuk mengintegrasikan pelayan MCP anda dengan VS Code bagi membolehkan pertanyaan bahasa semula jadi melalui AI Chat. Anda akan belajar cara mengkonfigurasi VS Code untuk penggunaan MCP yang optimum, menyelesaikan masalah sambungan pelayan, dan memanfaatkan sepenuhnya interaksi pangkalan data yang dibantu AI.
+## 🎯 Apa Yang Diliputi Oleh Makmal Ini
 
-## Gambaran Keseluruhan
+Makmal ini menyediakan panduan menyeluruh mengenai integrasi pelayan MCP anda dengan VS Code untuk membolehkan pertanyaan bahasa semulajadi melalui AI Chat. Anda akan belajar bagaimana untuk mengkonfigurasi VS Code untuk penggunaan MCP yang optimum, membaiki sambungan pelayan, dan menggunakan sepenuhnya kuasa interaksi pangkalan data yang dibantu AI.
 
-Integrasi MCP dengan VS Code mengubah cara pemaju berinteraksi dengan pangkalan data dan API melalui bahasa semula jadi. Dengan menyambungkan pelayan MCP runcit anda ke VS Code Chat, anda boleh membuat pertanyaan pintar mengenai data jualan, katalog produk, dan analitik perniagaan menggunakan AI perbualan.
+## Tinjauan
 
-Integrasi ini membolehkan pemaju bertanya soalan seperti "Tunjukkan produk terlaris bulan ini" atau "Cari pelanggan yang belum membuat pembelian dalam 90 hari" dan mendapatkan respons data berstruktur tanpa perlu menulis pertanyaan SQL.
+Integrasi MCP VS Code mengubah cara pembangun berinteraksi dengan pangkalan data dan API melalui bahasa semulajadi. Dengan menyambungkan pelayan MCP runcit anda ke VS Code Chat, anda membolehkan pertanyaan pintar mengenai data jualan, katalog produk, dan analitik perniagaan menggunakan AI perbualan.
+
+Integrasi ini membolehkan pembangun bertanya soalan seperti "Tunjukkan produk terlaris bulan ini" atau "Cari pelanggan yang tidak membeli dalam 90 hari" dan mendapatkan jawapan data berstruktur tanpa menulis pertanyaan SQL.
 
 ## Objektif Pembelajaran
 
-Menjelang akhir makmal ini, anda akan dapat:
+Pada akhir makmal ini, anda akan mampu untuk:
 
 - **Mengkonfigurasi** tetapan MCP VS Code untuk pelayan runcit anda
-- **Mengintegrasikan** pelayan MCP dengan fungsi AI Chat VS Code
-- **Menyelesaikan masalah** sambungan pelayan MCP dan mengatasi isu
-- **Mengoptimumkan** corak pertanyaan bahasa semula jadi untuk hasil yang lebih baik
-- **Menyesuaikan** ruang kerja VS Code untuk pembangunan MCP
+- **Mengintegrasi** pelayan MCP dengan fungsi AI Chat di VS Code
+- **Membaiki** sambungan pelayan MCP dan menyelesaikan isu
+- **Mengoptimumkan** corak pertanyaan bahasa semulajadi untuk hasil yang lebih baik
+- **Mengubahsuai** ruang kerja VS Code untuk pembangunan MCP
 - **Menyebarkan** konfigurasi pelbagai pelayan untuk senario kompleks
 
 ## 🔧 Konfigurasi MCP VS Code
 
-### Persediaan Awal dan Pemasangan
+### Penetapan dan Pemasangan Awal
 
 ```json
 // .vscode/settings.json
@@ -65,23 +71,23 @@ Menjelang akhir makmal ini, anda akan dapat:
 ### Konfigurasi Persekitaran
 
 ```bash
-# .env file for development
+# Fail .env untuk pembangunan
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_DB=retail_db
 POSTGRES_USER=mcp_user
 POSTGRES_PASSWORD=your_secure_password
 
-# Azure Configuration
+# Konfigurasi Azure
 PROJECT_ENDPOINT=https://your-project.openai.azure.com
 AZURE_CLIENT_ID=your-client-id
 AZURE_CLIENT_SECRET=your-client-secret
 AZURE_TENANT_ID=your-tenant-id
 
-# Optional: Azure Key Vault
+# Pilihan: Azure Key Vault
 AZURE_KEY_VAULT_URL=https://your-keyvault.vault.azure.net/
 
-# Server Configuration
+# Konfigurasi Pelayan
 MCP_SERVER_PORT=8000
 MCP_SERVER_HOST=127.0.0.1
 LOG_LEVEL=INFO
@@ -220,10 +226,10 @@ LOG_LEVEL=INFO
 
 ## 💬 Integrasi AI Chat
 
-### Corak Pertanyaan Bahasa Semula Jadi
+### Corak Pertanyaan Bahasa Semulajadi
 
 ```typescript
-// Example query patterns for VS Code Chat
+// Contoh corak pertanyaan untuk VS Code Chat
 interface QueryPattern {
     intent: string;
     examples: string[];
@@ -341,7 +347,7 @@ const retailQueryPatterns: QueryPattern[] = [
 - Result: KPI dashboard with revenue, customer metrics, top categories, and growth trends
 ```
 
-### Pemformatan Respons Chat
+### Format Respons Chat
 
 ```python
 # mcp_server/chat/response_formatter.py
@@ -459,7 +465,7 @@ class ChatResponseFormatter:
         
         response = "## Business Intelligence Summary\n\n"
         
-        # Key metrics
+        # Metri utama
         response += "### Key Performance Indicators\n\n"
         response += f"- **Total Revenue**: ${float(data.get('total_revenue', 0)):,.2f}\n"
         response += f"- **Total Transactions**: {int(data.get('total_transactions', 0)):,}\n"
@@ -467,7 +473,7 @@ class ChatResponseFormatter:
         response += f"- **Average Order Value**: ${float(data.get('avg_transaction_value', 0)):.2f}\n"
         response += f"- **Products Sold**: {int(data.get('products_sold', 0)):,} items\n\n"
         
-        # Performance indicators
+        # Penunjuk prestasi
         if 'insights' in data and 'performance_indicators' in data['insights']:
             pi = data['insights']['performance_indicators']
             response += "### Performance Indicators\n\n"
@@ -475,7 +481,7 @@ class ChatResponseFormatter:
             response += f"- **Revenue per Customer**: ${float(pi.get('revenue_per_customer', 0)):,.2f}\n"
             response += f"- **Items per Transaction**: {float(pi.get('items_per_transaction', 0)):.1f}\n\n"
         
-        # Top category
+        # Kategori teratas
         if data.get('top_category'):
             response += f"### Top Performing Category\n\n"
             response += f"**{data['top_category']}** - ${float(data.get('top_category_revenue', 0)):,.2f} revenue\n\n"
@@ -498,9 +504,9 @@ class ChatResponseFormatter:
         return response
 ```
 
-## 🔍 Penyelesaian Masalah dan Debugging
+## 🔍 Penyahpepijatan dan Penyelesaian Masalah
 
-### Konfigurasi Debug VS Code
+### Konfigurasi Penyahpepijatan VS Code
 
 ```python
 # mcp_server/debug/vscode_debug.py
@@ -522,12 +528,12 @@ class VSCodeDebugLogger:
     def setup_vscode_logging(self):
         """Configure logging for VS Code debugging."""
         
-        # Create VS Code specific formatter
+        # Cipta pemformat khusus VS Code
         formatter = logging.Formatter(
             '[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s'
         )
         
-        # Console handler for VS Code terminal
+        # Pengendali konsol untuk terminal VS Code
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(formatter)
         console_handler.setLevel(logging.DEBUG)
@@ -566,7 +572,7 @@ class VSCodeDebugLogger:
         else:
             return f"Data type: {type(data).__name__}"
 
-# Global debug logger
+# Logger debug global
 vscode_debug_logger = VSCodeDebugLogger()
 ```
 
@@ -587,7 +593,7 @@ async def test_database_connection() -> Dict[str, Any]:
     """Test database connectivity."""
     
     try:
-        # Get connection parameters from environment
+        # Dapatkan parameter sambungan dari persekitaran
         connection_params = {
             'host': os.getenv('POSTGRES_HOST', 'localhost'),
             'port': int(os.getenv('POSTGRES_PORT', '5432')),
@@ -598,13 +604,13 @@ async def test_database_connection() -> Dict[str, Any]:
         
         print(f"Testing connection to {connection_params['host']}:{connection_params['port']}")
         
-        # Test connection
+        # Uji sambungan
         conn = await asyncpg.connect(**connection_params)
         
-        # Test basic query
+        # Uji pertanyaan asas
         result = await conn.fetchval("SELECT version()")
         
-        # Test schema access
+        # Uji akses skema
         tables = await conn.fetch("""
             SELECT table_name FROM information_schema.tables 
             WHERE table_schema = 'retail'
@@ -648,7 +654,7 @@ async def test_azure_openai_connection() -> Dict[str, Any]:
             credential=credential
         )
         
-        # Test embedding generation
+        # Uji penjanaan embedding
         response = await client.embeddings.create(
             model="text-embedding-3-small",
             input="test connection"
@@ -674,25 +680,25 @@ async def test_mcp_tools() -> Dict[str, Any]:
     """Test MCP tool availability."""
     
     try:
-        # Import MCP server components
+        # Import komponen pelayan MCP
         sys.path.append(os.path.dirname(os.path.dirname(__file__)))
         
         from mcp_server.server import MCPServer
         from mcp_server.database import DatabaseProvider
         from mcp_server.config import Config
         
-        # Create test configuration
+        # Buat konfigurasi ujian
         config = Config()
         db_provider = DatabaseProvider(config.database.connection_string)
         
-        # Initialize server
+        # Inisialisasi pelayan
         server = MCPServer(config, db_provider)
         await server.initialize()
         
-        # Get available tools
+        # Dapatkan alat yang tersedia
         tools = server.get_available_tools()
         
-        # Test a simple tool
+        # Uji alat mudah
         test_result = await server.execute_tool(
             'get_current_utc_date',
             {'format': 'iso'}
@@ -719,7 +725,7 @@ async def main():
     print("🔍 MCP Server Connection Diagnostics")
     print("=" * 50)
     
-    # Test database connection
+    # Uji sambungan pangkalan data
     print("\n📊 Testing Database Connection...")
     db_result = await test_database_connection()
     
@@ -732,7 +738,7 @@ async def main():
         print("❌ Database connection failed")
         print(f"   Error: {db_result['error']}")
     
-    # Test Azure OpenAI connection
+    # Uji sambungan Azure OpenAI
     print("\n🤖 Testing Azure OpenAI Connection...")
     azure_result = await test_azure_openai_connection()
     
@@ -744,7 +750,7 @@ async def main():
         print("❌ Azure OpenAI connection failed")
         print(f"   Error: {azure_result['error']}")
     
-    # Test MCP tools
+    # Uji alat MCP
     print("\n🛠️  Testing MCP Tools...")
     tools_result = await test_mcp_tools()
     
@@ -757,7 +763,7 @@ async def main():
         print("❌ MCP tools loading failed")
         print(f"   Error: {tools_result['error']}")
     
-    # Overall status
+    # Status keseluruhan
     print("\n📋 Overall Status")
     print("=" * 50)
     
@@ -783,7 +789,7 @@ if __name__ == "__main__":
 
 ## 🚀 Konfigurasi Lanjutan
 
-### Persediaan Pelbagai Pelayan
+### Penetapan Multi-Pelayan
 
 ```json
 // .vscode/settings.json - Multiple MCP servers
@@ -840,15 +846,15 @@ if __name__ == "__main__":
 }
 ```
 
-### Sambungan VS Code Tersuai
+### Sambungan Tersuai VS Code
 
 ```typescript
-// src/extension.ts - Custom MCP retail extension
+// src/extension.ts - Sambungan runcit MCP tersuai
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
     
-    // Register MCP retail commands
+    // Daftar arahan runcit MCP
     const disposable = vscode.commands.registerCommand(
         'mcp-retail.quickQuery', 
         async () => {
@@ -889,7 +895,7 @@ export function activate(context: vscode.ExtensionContext) {
     
     context.subscriptions.push(disposable);
     
-    // Register store switcher
+    // Daftar penukar kedai
     const storeSwitcher = vscode.commands.registerCommand(
         'mcp-retail.switchStore',
         async () => {
@@ -899,7 +905,7 @@ export function activate(context: vscode.ExtensionContext) {
             });
             
             if (selected) {
-                // Update configuration
+                // Kemas kini konfigurasi
                 const config = vscode.workspace.getConfiguration('mcp');
                 await config.update('defaultStore', selected, true);
                 
@@ -914,7 +920,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 async function executeQuickQuery(queryType: string) {
-    // Execute predefined queries in VS Code Chat
+    // Laksanakan pertanyaan yang telah ditetapkan dalam VS Code Chat
     const chatCommands = {
         '📊 Daily Sales': '@retail Show me daily sales for the last 30 days',
         '🏆 Top Products': '@retail What are the top 10 selling products this month?',
@@ -933,7 +939,7 @@ async function executeQuickQuery(queryType: string) {
 export function deactivate() {}
 ```
 
-### Konfigurasi Pakej Sambungan
+### Konfigurasi Pek Sambungan
 
 ```json
 // package.json for VS Code extension
@@ -1005,49 +1011,51 @@ export function deactivate() {}
 }
 ```
 
-## 🎯 Poin Penting
+## 🎯 Pengajaran Utama
 
-Selepas menyelesaikan makmal ini, anda seharusnya mempunyai:
+Selepas menyelesaikan makmal ini, anda sepatutnya mempunyai:
 
-✅ **Konfigurasi MCP VS Code**: Persediaan lengkap untuk integrasi MCP yang optimum  
-✅ **Integrasi AI Chat**: Keupayaan pertanyaan bahasa semula jadi dalam VS Code  
-✅ **Alat Debugging**: Penyelesaian masalah dan diagnostik sambungan yang komprehensif  
-✅ **Persediaan Pelbagai Pelayan**: Konfigurasi untuk pelbagai instans pelayan MCP  
-✅ **Sambungan Tersuai**: Pengalaman VS Code yang dipertingkatkan dengan ciri khusus runcit  
-✅ **Kesediaan Pengeluaran**: Persekitaran pembangunan VS Code yang sedia untuk perusahaan  
+✅ **Konfigurasi MCP VS Code**: Penetapan lengkap untuk integrasi MCP yang optimum  
+✅ **Integrasi AI Chat**: Keupayaan pertanyaan bahasa semulajadi dalam VS Code  
+✅ **Alat Penyahpepijatan**: Penyelesaian masalah dan diagnosis sambungan yang menyeluruh  
+✅ **Penetapan Multi-Pelayan**: Konfigurasi untuk pelbagai contoh pelayan MCP  
+✅ **Sambungan Tersuai**: Pengalaman VS Code yang dipertingkat dengan ciri khusus runcit  
+✅ **Kesediaan Pengeluaran**: Persekitaran pembangunan VS Code untuk perusahaan  
 
-## 🚀 Langkah Seterusnya
+## 🚀 Apa Seterusnya
 
 Teruskan dengan **[Makmal 10: Strategi Penyebaran](../10-Deployment/README.md)** untuk:
 
 - Menyebarkan pelayan MCP ke persekitaran pengeluaran
-- Mengkonfigurasi infrastruktur awan untuk skalabiliti
+- Mengkonfigurasi infrastruktur awan untuk kebolehan skala
 - Melaksanakan saluran CI/CD untuk penyebaran automatik
 - Memantau prestasi pelayan MCP pengeluaran
 
 ## 📚 Sumber Tambahan
 
 ### Pembangunan VS Code
-- [VS Code Extension API](https://code.visualstudio.com/api) - Panduan rasmi pembangunan sambungan
+- [API Sambungan VS Code](https://code.visualstudio.com/api) - Panduan rasmi pembangunan sambungan
 - [Dokumentasi MCP VS Code](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - Dokumentasi integrasi MCP
-- [TypeScript untuk VS Code](https://code.visualstudio.com/docs/languages/typescript) - Pembangunan TypeScript dalam VS Code
+- [TypeScript untuk VS Code](https://code.visualstudio.com/docs/languages/typescript) - Pembangunan TypeScript di VS Code
 
 ### Protokol MCP
-- [Spesifikasi Protokol Model Context](https://modelcontextprotocol.io/specification) - Spesifikasi MCP rasmi
+- [Spesifikasi Model Context Protocol](https://modelcontextprotocol.io/specification) - Spesifikasi rasmi MCP
 - [Amalan Terbaik MCP](https://modelcontextprotocol.io/docs/best-practices) - Amalan terbaik pelaksanaan
-- [Kerangka FastMCP](https://github.com/jlowin/fastmcp) - Pelaksanaan MCP Python
+- [Rangka Kerja FastMCP](https://github.com/jlowin/fastmcp) - Pelaksanaan MCP Python
 
 ### Alat Pembangunan
-- [Python dalam VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Persediaan pembangunan Python
-- [Debugging dalam VS Code](https://code.visualstudio.com/docs/editor/debugging) - Teknik debugging lanjutan
+- [Python dalam VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Penetapan pembangunan Python
+- [Penyahpepijatan dalam VS Code](https://code.visualstudio.com/docs/editor/debugging) - Teknik penyahpepijatan lanjutan
 - [Tugas VS Code](https://code.visualstudio.com/docs/editor/tasks) - Automasi dan konfigurasi tugas
 
 ---
 
-**Sebelumnya**: [Makmal 08: Ujian dan Debugging](../08-Testing/README.md)  
+**Sebelumnya**: [Makmal 08: Pengujian dan Penyahpepijatan](../08-Testing/README.md)  
 **Seterusnya**: [Makmal 10: Strategi Penyebaran](../10-Deployment/README.md)
 
 ---
 
-**Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk memastikan ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat yang kritikal, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Penafian**:
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk ketepatan, sila ambil maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang sahih. Untuk maklumat penting, terjemahan oleh manusia profesional adalah disyorkan. Kami tidak bertanggungjawab terhadap sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

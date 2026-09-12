@@ -1,27 +1,33 @@
 # Integrasi VS Code
 
-## 🎯 Apa yang Dibahas dalam Lab Ini
+> [!NOTE]
+> Pengaturan `initializationOptions` dalam lab ini ditujukan untuk handshake MCP contoh `2025-11-25`.
+> MCP `2026-07-28` menghapus handshake inisialisasi;
+> gunakan host dan SDK yang mendukung metadata per-permintaan dan `server/discover`
+> saat memigrasikan contoh ini.
 
-Lab ini memberikan panduan lengkap tentang cara mengintegrasikan server MCP Anda dengan VS Code untuk memungkinkan kueri bahasa alami melalui AI Chat. Anda akan belajar mengonfigurasi VS Code untuk penggunaan MCP yang optimal, memecahkan masalah koneksi server, dan memanfaatkan sepenuhnya interaksi database yang dibantu AI.
+## 🎯 Apa yang Dibahas di Lab Ini
+
+Lab ini memberikan panduan lengkap dalam mengintegrasikan server MCP Anda dengan VS Code untuk memungkinkan kueri bahasa alami melalui AI Chat. Anda akan belajar cara mengonfigurasi VS Code untuk penggunaan MCP optimal, debug koneksi server, dan memanfaatkan kekuatan penuh interaksi database yang dibantu AI.
 
 ## Ikhtisar
 
-Integrasi MCP dengan VS Code mengubah cara pengembang berinteraksi dengan database dan API melalui bahasa alami. Dengan menghubungkan server MCP ritel Anda ke VS Code Chat, Anda dapat melakukan kueri cerdas terhadap data penjualan, katalog produk, dan analitik bisnis menggunakan AI percakapan.
+Integrasi MCP VS Code mengubah cara pengembang berinteraksi dengan database dan API melalui bahasa alami. Dengan menghubungkan server MCP ritel Anda ke VS Code Chat, Anda mengaktifkan kueri cerdas data penjualan, katalog produk, dan analitik bisnis menggunakan AI percakapan.
 
-Integrasi ini memungkinkan pengembang untuk mengajukan pertanyaan seperti "Tunjukkan produk terlaris bulan ini" atau "Temukan pelanggan yang belum membeli dalam 90 hari" dan mendapatkan respons data terstruktur tanpa harus menulis kueri SQL.
+Integrasi ini memungkinkan pengembang untuk mengajukan pertanyaan seperti "Tunjukkan produk terlaris bulan ini" atau "Temukan pelanggan yang belum membeli dalam 90 hari" dan mendapatkan respons data terstruktur tanpa menulis kueri SQL.
 
 ## Tujuan Pembelajaran
 
 Pada akhir lab ini, Anda akan dapat:
 
-- **Mengonfigurasi** pengaturan MCP di VS Code untuk server ritel Anda
-- **Mengintegrasikan** server MCP dengan fungsi AI Chat di VS Code
-- **Memecahkan masalah** koneksi server MCP dan mengatasi kendala
+- **Mengonfigurasi** pengaturan MCP VS Code untuk server ritel Anda
+- **Mengintegrasikan** server MCP dengan fungsi AI Chat VS Code
+- **Mendebug** koneksi server MCP dan memecahkan masalah
 - **Mengoptimalkan** pola kueri bahasa alami untuk hasil yang lebih baik
-- **Menyesuaikan** ruang kerja VS Code untuk pengembangan MCP
-- **Menerapkan** konfigurasi multi-server untuk skenario kompleks
+- **Menyesuaikan** workspace VS Code untuk pengembangan MCP
+- **Mendeploy** konfigurasi multi-server untuk skenario kompleks
 
-## 🔧 Konfigurasi MCP di VS Code
+## 🔧 Konfigurasi MCP VS Code
 
 ### Pengaturan Awal dan Instalasi
 
@@ -65,29 +71,29 @@ Pada akhir lab ini, Anda akan dapat:
 ### Konfigurasi Lingkungan
 
 ```bash
-# .env file for development
+# File .env untuk pengembangan
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_DB=retail_db
 POSTGRES_USER=mcp_user
 POSTGRES_PASSWORD=your_secure_password
 
-# Azure Configuration
+# Konfigurasi Azure
 PROJECT_ENDPOINT=https://your-project.openai.azure.com
 AZURE_CLIENT_ID=your-client-id
 AZURE_CLIENT_SECRET=your-client-secret
 AZURE_TENANT_ID=your-tenant-id
 
-# Optional: Azure Key Vault
+# Opsional: Azure Key Vault
 AZURE_KEY_VAULT_URL=https://your-keyvault.vault.azure.net/
 
-# Server Configuration
+# Konfigurasi Server
 MCP_SERVER_PORT=8000
 MCP_SERVER_HOST=127.0.0.1
 LOG_LEVEL=INFO
 ```
 
-### Konfigurasi Ruang Kerja
+### Konfigurasi Workspace
 
 ```json
 // .vscode/launch.json
@@ -223,7 +229,7 @@ LOG_LEVEL=INFO
 ### Pola Kueri Bahasa Alami
 
 ```typescript
-// Example query patterns for VS Code Chat
+// Contoh pola kueri untuk VS Code Chat
 interface QueryPattern {
     intent: string;
     examples: string[];
@@ -459,7 +465,7 @@ class ChatResponseFormatter:
         
         response = "## Business Intelligence Summary\n\n"
         
-        # Key metrics
+        # Metrik utama
         response += "### Key Performance Indicators\n\n"
         response += f"- **Total Revenue**: ${float(data.get('total_revenue', 0)):,.2f}\n"
         response += f"- **Total Transactions**: {int(data.get('total_transactions', 0)):,}\n"
@@ -467,7 +473,7 @@ class ChatResponseFormatter:
         response += f"- **Average Order Value**: ${float(data.get('avg_transaction_value', 0)):.2f}\n"
         response += f"- **Products Sold**: {int(data.get('products_sold', 0)):,} items\n\n"
         
-        # Performance indicators
+        # Indikator kinerja
         if 'insights' in data and 'performance_indicators' in data['insights']:
             pi = data['insights']['performance_indicators']
             response += "### Performance Indicators\n\n"
@@ -475,7 +481,7 @@ class ChatResponseFormatter:
             response += f"- **Revenue per Customer**: ${float(pi.get('revenue_per_customer', 0)):,.2f}\n"
             response += f"- **Items per Transaction**: {float(pi.get('items_per_transaction', 0)):.1f}\n\n"
         
-        # Top category
+        # Kategori teratas
         if data.get('top_category'):
             response += f"### Top Performing Category\n\n"
             response += f"**{data['top_category']}** - ${float(data.get('top_category_revenue', 0)):,.2f} revenue\n\n"
@@ -500,7 +506,7 @@ class ChatResponseFormatter:
 
 ## 🔍 Debugging dan Pemecahan Masalah
 
-### Konfigurasi Debug di VS Code
+### Konfigurasi Debug VS Code
 
 ```python
 # mcp_server/debug/vscode_debug.py
@@ -522,12 +528,12 @@ class VSCodeDebugLogger:
     def setup_vscode_logging(self):
         """Configure logging for VS Code debugging."""
         
-        # Create VS Code specific formatter
+        # Buat pemformat khusus VS Code
         formatter = logging.Formatter(
             '[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s'
         )
         
-        # Console handler for VS Code terminal
+        # Penangan konsol untuk terminal VS Code
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(formatter)
         console_handler.setLevel(logging.DEBUG)
@@ -566,7 +572,7 @@ class VSCodeDebugLogger:
         else:
             return f"Data type: {type(data).__name__}"
 
-# Global debug logger
+# Logger debug global
 vscode_debug_logger = VSCodeDebugLogger()
 ```
 
@@ -587,7 +593,7 @@ async def test_database_connection() -> Dict[str, Any]:
     """Test database connectivity."""
     
     try:
-        # Get connection parameters from environment
+        # Dapatkan parameter koneksi dari lingkungan
         connection_params = {
             'host': os.getenv('POSTGRES_HOST', 'localhost'),
             'port': int(os.getenv('POSTGRES_PORT', '5432')),
@@ -598,13 +604,13 @@ async def test_database_connection() -> Dict[str, Any]:
         
         print(f"Testing connection to {connection_params['host']}:{connection_params['port']}")
         
-        # Test connection
+        # Uji koneksi
         conn = await asyncpg.connect(**connection_params)
         
-        # Test basic query
+        # Uji kueri dasar
         result = await conn.fetchval("SELECT version()")
         
-        # Test schema access
+        # Uji akses skema
         tables = await conn.fetch("""
             SELECT table_name FROM information_schema.tables 
             WHERE table_schema = 'retail'
@@ -648,7 +654,7 @@ async def test_azure_openai_connection() -> Dict[str, Any]:
             credential=credential
         )
         
-        # Test embedding generation
+        # Uji pembuatan embedding
         response = await client.embeddings.create(
             model="text-embedding-3-small",
             input="test connection"
@@ -674,25 +680,25 @@ async def test_mcp_tools() -> Dict[str, Any]:
     """Test MCP tool availability."""
     
     try:
-        # Import MCP server components
+        # Impor komponen server MCP
         sys.path.append(os.path.dirname(os.path.dirname(__file__)))
         
         from mcp_server.server import MCPServer
         from mcp_server.database import DatabaseProvider
         from mcp_server.config import Config
         
-        # Create test configuration
+        # Buat konfigurasi pengujian
         config = Config()
         db_provider = DatabaseProvider(config.database.connection_string)
         
-        # Initialize server
+        # Inisialisasi server
         server = MCPServer(config, db_provider)
         await server.initialize()
         
-        # Get available tools
+        # Dapatkan alat yang tersedia
         tools = server.get_available_tools()
         
-        # Test a simple tool
+        # Uji alat sederhana
         test_result = await server.execute_tool(
             'get_current_utc_date',
             {'format': 'iso'}
@@ -719,7 +725,7 @@ async def main():
     print("🔍 MCP Server Connection Diagnostics")
     print("=" * 50)
     
-    # Test database connection
+    # Uji koneksi database
     print("\n📊 Testing Database Connection...")
     db_result = await test_database_connection()
     
@@ -732,7 +738,7 @@ async def main():
         print("❌ Database connection failed")
         print(f"   Error: {db_result['error']}")
     
-    # Test Azure OpenAI connection
+    # Uji koneksi Azure OpenAI
     print("\n🤖 Testing Azure OpenAI Connection...")
     azure_result = await test_azure_openai_connection()
     
@@ -744,7 +750,7 @@ async def main():
         print("❌ Azure OpenAI connection failed")
         print(f"   Error: {azure_result['error']}")
     
-    # Test MCP tools
+    # Uji alat MCP
     print("\n🛠️  Testing MCP Tools...")
     tools_result = await test_mcp_tools()
     
@@ -757,7 +763,7 @@ async def main():
         print("❌ MCP tools loading failed")
         print(f"   Error: {tools_result['error']}")
     
-    # Overall status
+    # Status keseluruhan
     print("\n📋 Overall Status")
     print("=" * 50)
     
@@ -840,15 +846,15 @@ if __name__ == "__main__":
 }
 ```
 
-### Ekstensi Kustom VS Code
+### Ekstensi VS Code Kustom
 
 ```typescript
-// src/extension.ts - Custom MCP retail extension
+// src/extension.ts - Ekstensi eceran MCP kustom
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
     
-    // Register MCP retail commands
+    // Daftarkan perintah eceran MCP
     const disposable = vscode.commands.registerCommand(
         'mcp-retail.quickQuery', 
         async () => {
@@ -889,7 +895,7 @@ export function activate(context: vscode.ExtensionContext) {
     
     context.subscriptions.push(disposable);
     
-    // Register store switcher
+    // Daftarkan pengalih toko
     const storeSwitcher = vscode.commands.registerCommand(
         'mcp-retail.switchStore',
         async () => {
@@ -899,7 +905,7 @@ export function activate(context: vscode.ExtensionContext) {
             });
             
             if (selected) {
-                // Update configuration
+                // Perbarui konfigurasi
                 const config = vscode.workspace.getConfiguration('mcp');
                 await config.update('defaultStore', selected, true);
                 
@@ -914,7 +920,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 async function executeQuickQuery(queryType: string) {
-    // Execute predefined queries in VS Code Chat
+    // Eksekusi kueri yang telah ditentukan di VS Code Chat
     const chatCommands = {
         '📊 Daily Sales': '@retail Show me daily sales for the last 30 days',
         '🏆 Top Products': '@retail What are the top 10 selling products this month?',
@@ -1009,45 +1015,47 @@ export function deactivate() {}
 
 Setelah menyelesaikan lab ini, Anda seharusnya memiliki:
 
-✅ **Konfigurasi MCP di VS Code**: Pengaturan lengkap untuk integrasi MCP yang optimal  
+✅ **Konfigurasi MCP VS Code**: Pengaturan lengkap untuk integrasi MCP optimal  
 ✅ **Integrasi AI Chat**: Kemampuan kueri bahasa alami di VS Code  
-✅ **Alat Debugging**: Pemecahan masalah dan diagnostik koneksi yang komprehensif  
+✅ **Alat Debugging**: Pemecahan masalah dan diagnostik koneksi menyeluruh  
 ✅ **Pengaturan Multi-Server**: Konfigurasi untuk beberapa instance server MCP  
 ✅ **Ekstensi Kustom**: Pengalaman VS Code yang ditingkatkan dengan fitur khusus ritel  
-✅ **Kesiapan Produksi**: Lingkungan pengembangan VS Code yang siap untuk perusahaan  
+✅ **Kesiapan Produksi**: Lingkungan pengembangan VS Code siap enterprise  
 
-## 🚀 Langkah Selanjutnya
+## 🚀 Selanjutnya
 
-Lanjutkan ke **[Lab 10: Strategi Penerapan](../10-Deployment/README.md)** untuk:
+Lanjutkan dengan **[Lab 10: Strategi Deployment](../10-Deployment/README.md)** untuk:
 
-- Menerapkan server MCP ke lingkungan produksi
-- Mengonfigurasi infrastruktur cloud untuk skalabilitas
-- Mengimplementasikan pipeline CI/CD untuk penerapan otomatis
-- Memantau kinerja server MCP di produksi
+- Mendeploy server MCP ke lingkungan produksi
+- Mengonfigurasi infrastruktur cloud untuk skala
+- Mengimplementasikan pipeline CI/CD untuk deployment otomatis
+- Memantau performa server MCP produksi
 
 ## 📚 Sumber Daya Tambahan
 
 ### Pengembangan VS Code
-- [VS Code Extension API](https://code.visualstudio.com/api) - Panduan resmi pengembangan ekstensi
-- [Dokumentasi MCP di VS Code](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - Dokumentasi integrasi MCP
+- [API Ekstensi VS Code](https://code.visualstudio.com/api) - Panduan pengembangan ekstensi resmi
+- [Dokumentasi MCP VS Code](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - Dokumentasi integrasi MCP
 - [TypeScript untuk VS Code](https://code.visualstudio.com/docs/languages/typescript) - Pengembangan TypeScript di VS Code
 
 ### Protokol MCP
 - [Spesifikasi Model Context Protocol](https://modelcontextprotocol.io/specification) - Spesifikasi resmi MCP
-- [Praktik Terbaik MCP](https://modelcontextprotocol.io/docs/best-practices) - Panduan praktik terbaik implementasi
-- [Kerangka FastMCP](https://github.com/jlowin/fastmcp) - Implementasi MCP dengan Python
+- [Praktik Terbaik MCP](https://modelcontextprotocol.io/docs/best-practices) - Praktik terbaik implementasi
+- [FastMCP Framework](https://github.com/jlowin/fastmcp) - Implementasi MCP Python
 
 ### Alat Pengembangan
 - [Python di VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Pengaturan pengembangan Python
 - [Debugging di VS Code](https://code.visualstudio.com/docs/editor/debugging) - Teknik debugging lanjutan
-- [Tugas di VS Code](https://code.visualstudio.com/docs/editor/tasks) - Otomasi dan konfigurasi tugas
+- [Tugas VS Code](https://code.visualstudio.com/docs/editor/tasks) - Otomatisasi tugas dan konfigurasi
 
 ---
 
 **Sebelumnya**: [Lab 08: Pengujian dan Debugging](../08-Testing/README.md)  
-**Selanjutnya**: [Lab 10: Strategi Penerapan](../10-Deployment/README.md)
+**Berikutnya**: [Lab 10: Strategi Deployment](../10-Deployment/README.md)
 
 ---
 
-**Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan layanan penerjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Meskipun kami berupaya untuk memberikan hasil yang akurat, harap diketahui bahwa terjemahan otomatis mungkin mengandung kesalahan atau ketidakakuratan. Dokumen asli dalam bahasa aslinya harus dianggap sebagai sumber yang otoritatif. Untuk informasi yang bersifat kritis, disarankan menggunakan jasa penerjemahan manusia profesional. Kami tidak bertanggung jawab atas kesalahpahaman atau penafsiran yang keliru yang timbul dari penggunaan terjemahan ini.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Penafian**:
+Dokumen ini telah diterjemahkan menggunakan layanan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Meskipun kami berupaya untuk mencapai akurasi, harap diketahui bahwa terjemahan otomatis mungkin mengandung kesalahan atau ketidakakuratan. Dokumen asli dalam bahasa aslinya harus dianggap sebagai sumber yang sah. Untuk informasi penting, disarankan menggunakan terjemahan profesional oleh manusia. Kami tidak bertanggung jawab atas kesalahpahaman atau penafsiran yang keliru yang timbul dari penggunaan terjemahan ini.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

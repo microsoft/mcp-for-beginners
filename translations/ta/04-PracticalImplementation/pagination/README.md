@@ -1,25 +1,25 @@
-# MCP-இல் பக்கம் மற்றும் பெரிய முடிவுகள் குழுக்கள்
+# MCP இல் பக்கமுறை மற்றும் பெரிய முடிவு தொகுதிகள்
 
-உங்கள் MCP சர்வர் பெரிய தரவுத் தொகுதிகளை கையாளும்போது - ஆயிரக்கணக்கான கோப்புகள், தரவுத்தள பதிவுகள் அல்லது தேடல் முடிவுகள் பட்டியலிடுதல் - நினைவகத்தை திறம்பட நிர்வகிக்கவும் பதிலளிக்கும் kullanıcı அனுபவங்களை வழங்கவும் பக்கம் தேவைப்படுகிறது. இக்கையேடு MCP-ல் பக்கவழிச் செயல்பாட்டை எவ்வாறு அமல்படுத்தி பயன்படுத்துவது என்பதைக் கवर செய்கிறது.
+உங்கள் MCP சேவையகம் பெரிய தரவு தொகுதிகளை கையாளும் போது - ஆயிரக்கணக்கான கோப்புகள், தரவுத்தள பதிவுகள் அல்லது தேடல் முடிவுகளைப் பட்டியலிடுகையில் - நினைவகத்தை திறமையாக நிர்வகித்து, உடனடி பயனர் அனுபவங்களை வழங்க பக்கமுறை அவசியமாகிறது. இந்த வழிகாட்டி MCP இல் பக்கமுறையை எவ்வாறு செயல்படுத்தவும் பயன்படுத்தவும் என்பது குறித்து விளக்குகிறது.
 
-## ஏன் பக்கம் முக்கியம்?
+## ஏன் பக்கமுறை முக்கியம்
 
-பக்கம் இல்லாமல், பெரிய பதில்கள் ஆகும்:
+பக்கமுறை இல்லாமல், பெரிய பதில்கள் ஏற்படுத்தக்கூடியவை:
 
-- **நினைவக எழுமை** - ஒரே நாளில் ஒரு மில்லியன் பதிவுகளை ஏற்றுதல்
-- **மெல்லிய பதிலளிப்பு நேரம்** - அனைத்து தரவுகளை ஏற்றும் வரை பயனர்கள் காத்திருக்கின்றனர்
-- **காலாவதி (timeout) பிழைகள்** - கோரிக்கைகள் காலாவதி வரம்புகளை மீறுகின்றன
-- **சிறிய செயற்கை நுண்ணறிவு செயல்திறன்** - LLMகள் பெரும் சூழலை கையாள முடியாது
+- **நினைவக மூச்சுத்திணறல்** - ஒரே நேரத்தில் மில்லியன் பதிவுகளை ஏற்றுதல்
+- **மெதுவாக பதில் நேரங்கள்** - அனைத்து தரவும் ஏற்றப்படும் வரை பயனர்கள் காத்திருப்பது
+- **காலவரம்பு பிழைகள்** - கோரிக்கைகள் காலவரம்பை மீறுவது
+- **மோசமான AI செயல்திறன்** - LLMகள் அதிக பெரிய சூழலை கையாள முடியாதல்
 
-கருத்துப்படுத்தல் மற்றும் உறுதிப்பத்திரத்திற்காக MCP **கெர்சர் அடிப்படையிலான பக்கம்** முறையைப் பயன்படுத்துகிறது.
+MCP **கர்சர் அடிப்படையிலான பக்கமுறையை** பயன் படுத்துகிறது, இது முடிவு தொகுதிகளில் நம்பகமான மற்றும் நிலையான பக்கமுறையை வழங்குகிறது.
 
 ---
 
-## MCP பக்க எப்பொழுது வேலை செய்கிறது
+## MCP பக்கமுறை எப்படி செயல்படுகிறது
 
-### கெர்சர் கருத்து
+### கர்சர் கருத்து
 
-ஒரு **கெர்சர்** என்பது உங்கள் முடிவுகள் தொகுதியில் உங்கள் இடத்தை குறிக்கும் ஒரு கடைசியாகக் காணப்படும் சரம். நீண்ட புத்தகத்திற்குள் வைத்த புத்தாண்டு பொறிகையைப் போலவே எண்ணுங்கள்.
+**கர்சர்** என்பது முடிவு தொகுதியில் உங்கள் இடத்தைக் குறிக்கும் ஒரு மறைமுக சரம். நீண்ட புத்தகத்தில் ஒரு புத்தக குறியீட்டைப் போன்றது என்று நினைத்துக்கொள்ளவும்.
 
 ```mermaid
 sequenceDiagram
@@ -27,30 +27,31 @@ sequenceDiagram
     participant Server
     
     Client->>Server: கருவிகள்/பட்டியல் (கர்சர் இல்லை)
-    Server-->>Client: கருவிகள் [1-10], அடுத்தகர்சர்: "abc123"
+    Server-->>Client: கருவிகள் [1-10], அடுத்த கர்சர்: "abc123"
     
     Client->>Server: கருவிகள்/பட்டியல் (கர்சர்: "abc123")
-    Server-->>Client: கருவிகள் [11-20], அடுத்தகர்சர்: "def456"
+    Server-->>Client: கருவிகள் [11-20], அடுத்த கர்சர்: "def456"
     
     Client->>Server: கருவிகள்/பட்டியல் (கர்சர்: "def456")
-    Server-->>Client: கருவிகள் [21-25], அடுத்தகர்சர்: null (முடிவு)
+    Server-->>Client: கருவிகள் [21-25], அடுத்த கர்சர்: null (முடிவு)
 ```
-### MCP முறைகளில் பக்கம்
 
-இந்த MCP முறைகள் பக்கம் ஆதரிக்கின்றன:
+### MCP முறைகளில் பக்கமுறை
 
-| முறை | திருப்புகிறது | கெர்சர் ஆதரவு |
+இந்த MCP முறைகள் பக்கமுறையை ஆதரிக்கின்றன:
+
+| முறை | திருப்புதல் | கர்சர் ஆதரவு |
 |--------|---------|----------------|
-| `tools/list` | கருவி வரையறைகள் | ✅ |
-| `resources/list` | வள வரையறைகள் | ✅ |
-| `prompts/list` | தூண்டுகோள் வரையறைகள் | ✅ |
-| `resources/templates/list` | வள மாதிரிகள் | ✅ |
+| `tools/list` | கருவி விவரங்கள் | ✅ |
+| `resources/list` | வள விவரங்கள் | ✅ |
+| `prompts/list` | முன்மொழி விவரங்கள் | ✅ |
+| `resources/templates/list` | வள வார்ப்புருக்கள் | ✅ |
 
 ---
 
-## சர்வர் அமலாக்கம்
+## சேவையக செயல்படுத்தல்
 
-### Python (FastMCP)
+### பைதான் (FastMCP)
 
 ```python
 from mcp.server import Server
@@ -59,7 +60,7 @@ import math
 
 app = Server("paginated-server")
 
-# போலி பெரிய தரவுத்தளம்
+# நகல் பெரிய தரவுத்தொகை
 ALL_TOOLS = [
     Tool(name=f"tool_{i}", description=f"Tool number {i}", inputSchema={})
     for i in range(100)
@@ -71,7 +72,7 @@ PAGE_SIZE = 10
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     """List tools with pagination support."""
     
-    # தொடக்க குறியீட்டை பெற கர்சரை பிழையிறக்கவும்
+    # துவக்க குறியீட்டை பெற கர்சரை டிகோட் செய்க
     start_index = 0
     if cursor:
         try:
@@ -83,7 +84,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
     end_index = min(start_index + PAGE_SIZE, len(ALL_TOOLS))
     page_tools = ALL_TOOLS[start_index:end_index]
     
-    # அடுத்த கர்சரை கணக்கிடவும்
+    # அடுத்த கர்சரை கணக்கிடுக
     next_cursor = None
     if end_index < len(ALL_TOOLS):
         next_cursor = str(end_index)
@@ -94,7 +95,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
     )
 ```
 
-### TypeScript
+### டைப் ஸ்கிரிப்ட்
 
 ```typescript
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
@@ -105,7 +106,7 @@ const server = new Server({
   version: "1.0.0"
 });
 
-// மாதிரியாக்கப்பட்ட பெரிய தரவுத்தொகுப்பு
+// முன்னெடுக்கப்பட்ட பெரிய தரவுத்தொகை
 const ALL_TOOLS = Array.from({ length: 100 }, (_, i) => ({
   name: `tool_${i}`,
   description: `Tool number ${i}`,
@@ -115,17 +116,17 @@ const ALL_TOOLS = Array.from({ length: 100 }, (_, i) => ({
 const PAGE_SIZE = 10;
 
 server.setRequestHandler(ListToolsResultSchema, async (request) => {
-  // கர்சரை பிழையிழுக்கவும்
+  // குறிசுயரை குறியாக்குக
   let startIndex = 0;
   if (request.params?.cursor) {
     startIndex = parseInt(request.params.cursor, 10) || 0;
   }
   
-  // முடிவுகளின் பக்கத்தை பெறுக
+  // முடிவுகளின் பக்கம் பெறுக
   const endIndex = Math.min(startIndex + PAGE_SIZE, ALL_TOOLS.length);
   const pageTools = ALL_TOOLS.slice(startIndex, endIndex);
   
-  // அடுத்த கர்சரை கணக்கிடுக
+  // அடுத்த குறிசுயரை கணக்கிடுக
   const nextCursor = endIndex < ALL_TOOLS.length ? String(endIndex) : undefined;
   
   return {
@@ -135,7 +136,7 @@ server.setRequestHandler(ListToolsResultSchema, async (request) => {
 });
 ```
 
-### Java (Spring MCP)
+### ஜாவா (Spring MCP)
 
 ```java
 @Service
@@ -145,7 +146,7 @@ public class PaginatedToolService {
     private final List<Tool> allTools;
     
     public PaginatedToolService() {
-        // பெரிய தரவுத்தொகுப்பை துவக்கு
+        // பெரிய தரவுத்தொகுதியை துவக்கம் செய்க
         this.allTools = IntStream.range(0, 100)
             .mapToObj(i -> new Tool("tool_" + i, "Tool number " + i, Map.of()))
             .collect(Collectors.toList());
@@ -153,7 +154,7 @@ public class PaginatedToolService {
     
     @McpMethod("tools/list")
     public ListToolsResult listTools(@Param("cursor") String cursor) {
-        // கர்சரை குறியாக்கம் செய்
+        // குறியுறையை பிழையில்லாமல் எடுத்துரைக்கவும்
         int startIndex = 0;
         if (cursor != null && !cursor.isEmpty()) {
             try {
@@ -163,11 +164,11 @@ public class PaginatedToolService {
             }
         }
         
-        // முடிவுகளின் பக்கத்தை பெறு
+        // முடிவுகளின் பக்கத்தை பெறுக
         int endIndex = Math.min(startIndex + PAGE_SIZE, allTools.size());
         List<Tool> pageTools = allTools.subList(startIndex, endIndex);
         
-        // அடுத்த கர்சரை கணக்கிடுக
+        // அடுத்த குறியுறையை கணக்கிடுக
         String nextCursor = endIndex < allTools.size() ? String.valueOf(endIndex) : null;
         
         return new ListToolsResult(pageTools, nextCursor);
@@ -177,9 +178,9 @@ public class PaginatedToolService {
 
 ---
 
-## கிளைண்ட் அமலாக்கம்
+## கிளையன்ட் செயல்படுத்தல்
 
-### Python கிளைண்ட்
+### பைதான் கிளையன்ட்
 
 ```python
 from mcp import ClientSession
@@ -205,7 +206,7 @@ async with client_session as session:
     print(f"Found {len(tools)} tools")
 ```
 
-### TypeScript கிளைண்ட்
+### டைப் ஸ்கிரிப்ட் கிளையன்ட்
 
 ```typescript
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
@@ -228,9 +229,9 @@ const tools = await getAllTools(client);
 console.log(`Found ${tools.length} tools`);
 ```
 
-### மந்தமான ஏற்றும் முறை
+### சோம்பல் ஏற்றுதல் முறை
 
-மிகப்பெரிய தரவுத்தொகுதிகளுக்கு, பக்கங்களை தேவைக்கேற்ப ஏற்று கொள்ளவும்:
+மிகவும் பெரிய தரவு தொகுதிகளுக்கு, தேவைக்கேற்ப பக்கங்களை ஏற்றவும்:
 
 ```python
 class PaginatedToolIterator:
@@ -243,15 +244,15 @@ class PaginatedToolIterator:
         self.exhausted = False
     
     async def __anext__(self):
-        # கிடைத்தால் பஃபரில் இருந்து திரும்பவும்
+        # கிடைத்தால் பஃபரிலிருந்து திரும்பு
         if self.buffer:
             return self.buffer.pop(0)
         
-        # நாங்கள் அனைத்து பக்கங்களையும் கடந்து விட்டோமாகும் என்பதை சரிபார்க்கவும்
+        # நாம் அனைத்து பக்கங்களையும் Exhaust செய்தோமா என்று சரிபார்
         if self.exhausted:
             raise StopAsyncIteration
         
-        # அடுத்த பக்கத்தை எடு
+        # அடுத்த பக்கத்தை பெறு
         result = await self.session.list_tools(cursor=self.cursor)
         self.buffer = list(result.tools)
         self.cursor = result.nextCursor
@@ -267,16 +268,16 @@ class PaginatedToolIterator:
     def __aiter__(self):
         return self
 
-# பயன்பாடு - பெரிய தரவுத்தொகைகளுக்கான நினைவக திறம்படையானது
+# பயன்பாடு - பெரும் தரவுத்தொகைகளுக்கு நினைவக சேமிப்பு முறை
 async for tool in PaginatedToolIterator(session):
     process_tool(tool)
 ```
 
 ---
 
-## வளங்களுக்கு பக்கம்
+## வளங்களுக்கான பக்கமுறை
 
-விளைவுகளுக்கு அடிக்கடி அடைக்கalப்படுத்தல்கள் அல்லது பெரிய தரவுத்தொகுதிகள் பக்கத்துடன் தேவைபடுகிறது:
+அடைவு அல்லது பெரிய தரவு தொகுதிகளுக்காக வளங்களுக்கு பெரும்பாலும் பக்கமுறை தேவைப்படுகிறது:
 
 ```python
 from mcp.server import Server
@@ -292,12 +293,12 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
     directory = "/data/files"
     all_files = sorted(os.listdir(directory))
     
-    # குறிச்சொல் (கோப்பு வரிசை) குறியாக்கம் செய்க
+    # குறி (கோப்பு குறிப்பு) உடைக்கவும்
     start_index = int(cursor) if cursor else 0
     page_size = 20
     end_index = min(start_index + page_size, len(all_files))
     
-    # இந்த பக்கத்திற்கான வள பட்டியலை உருவாக்குக
+    # இந்த பக்கத்துக்கான வள பட்டியலை உருவாக்கவும்
     resources = []
     for filename in all_files[start_index:end_index]:
         filepath = os.path.join(directory, filename)
@@ -307,7 +308,7 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
             mimeType="application/octet-stream"
         ))
     
-    # அடுத்த குறிச்சொல்லை கணக்கிடுக
+    # அடுத்த குறியை கணக்கிடு
     next_cursor = str(end_index) if end_index < len(all_files) else None
     
     return ListResourcesResult(
@@ -318,29 +319,29 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ---
 
-## கெர்சர் வடிவமைப்பு உத்திகள்
+## கர்சர் வடிவமைப்பு நுட்பங்கள்
 
-### உத்தி 1: குறியீட்டு அடிப்படையிலானது (எளிதானது)
+### நுட்பம் 1: குறியீடு அடிப்படையில் (எளிது)
 
 ```python
-# குற்சர் என்பது மட்டும் குறியீடு
-cursor = "50"  # 50ஆம் பொருளில் தொடங்கு
+# கர்சர் என்பது வெறும் குறியீட்டாகும்
+cursor = "50"  # பொருள் 50 இல் தொடங்கு
 ```
 
-**நன்மைகள்:** எளிதானது, நிலைத்தன்மையற்றது  
-**குறை:** பதிவுகள் சேர்க்கப்பட்டால்/muattaippinu kavalai ulla
+**நன்மைகள்:** எளிதானது, நிலைமையற்றது
+**தவறுகள்:** பொருட்கள் சேர்க்க அல்லது அகற்றப்படும்போது முடிவுகள் இடம் மாறக்கூடும்
 
-### உத்தி 2: ID அடிப்படையிலானது (நிலையானது)
+### நுட்பம் 2: ஐடி அடிப்படையிலானது (நிலையானது)
 
 ```python
-# வழிக் குறி கடைசியாக பார்க்கப்பட்ட ஐடி
+# கர்சர் கடைசியாக பார்த்த ID ஆகும்
 cursor = "item_abc123"  # இந்த பொருளுக்கு பிறகு தொடங்கு
 ```
 
-**நன்மைகள்:** பொருட்கள் மாறினாலும் நிலைத்தது  
-**குறை:** வரிசைப்படுத்தப்பட்ட IDகள் தேவை
+**நன்மைகள்:** பொருட்கள் மாறினாலும் நிலையானது
+**தவறுகள்:** வரிசைப்படுத்தப்பட்ட ஐடியை தேவைப்படுத்துகிறது
 
-### உத்தி 3: குறியாக்கத் நிலை (சிக்கலானது)
+### நுட்பம் 3: குறியாக்கப்பட்ட நிலை (சிக்கலானது)
 
 ```python
 import base64
@@ -352,7 +353,7 @@ def encode_cursor(state: dict) -> str:
 def decode_cursor(cursor: str) -> dict:
     return json.loads(base64.b64decode(cursor).decode())
 
-# கர்சர் பல நிலை களங்களை கொண்டுள்ளது
+# குற்சர் பல நிலை புலங்களை கொண்டுள்ளது
 cursor = encode_cursor({
     "offset": 50,
     "filter": "active",
@@ -360,23 +361,23 @@ cursor = encode_cursor({
 })
 ```
 
-**நன்மைகள்:** சிக்கலான நிலையைக் குறியாக்கம் செய்ய முடியும்  
-**குறை:** மொத்தமாக சிக்கலானது, பெரிய கெர்சர் சரங்கள்
+**நன்மைகள்:** சிக்கலான நிலையையும் குறியாக்க முடியும்
+**தவறுகள்:** சிக்கலானது, பெரிய கர்சர் சரங்கள்
 
 ---
 
 ## சிறந்த நடைமுறைகள்
 
-### 1. உரிய பக்க அளவுகளை தேர்வு செய்க
+### 1. ஏற்றமான பக்கம் அளவுகளை தேர்ந்தெடுக்கவும்
 
 ```python
-# தரவு அளவு பரிசீலிக்கவும்
-PAGE_SIZE_SMALL_ITEMS = 100   # எளிய மெட்டாடேட்டா
-PAGE_SIZE_MEDIUM_ITEMS = 20   # செழுமையான பொருட்கள்
+# தரவு அளவையை கருத்தில் கொள்ளவும்
+PAGE_SIZE_SMALL_ITEMS = 100   # எளிய நிலைத் தகவல்
+PAGE_SIZE_MEDIUM_ITEMS = 20   # மேலும் வளமான பொருட்கள்
 PAGE_SIZE_LARGE_ITEMS = 5     # சிக்கலான உள்ளடக்கம்
 ```
 
-### 2. தவறான கெர்சர்கள் மென்மையாக கையாளுக
+### 2. தவறான கர்சர்களை நன்கு கையாளவும்
 
 ```python
 @app.list_tools()
@@ -386,57 +387,57 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
         if start_index < 0 or start_index >= len(ALL_TOOLS):
             start_index = 0  # துவக்கத்திற்கு மீட்டமைக்கவும்
     except (ValueError, TypeError):
-        start_index = 0  # தவறான வரைபுள்ளி, புதிதாக துவங்கவும்
+        start_index = 0  # தவறான குறியீடு, புதியதாக துவங்கவும்
     # ...
 ```
 
-### 3. மொத்த எண்ணிக்கையையும் சேர் (விருப்பம்)
+### 3. மொத்த எண்ணிக்கையை சேர்க்கவும் (விருப்பமானது)
 
 ```python
 return ListToolsResult(
     tools=page_tools,
     nextCursor=next_cursor,
-    # சில செயல்பாடுகள் UI முன்னேற்றத்திற்கான மொத்தத்தைச் சேர்க்கின்றன
+    # சில அமல்படுத்தல்களில் UI முன்னேற்றத்திற்கு மொத்தம் உள்ளது
     _meta={"total": len(ALL_TOOLS)}
 )
 ```
 
-### 4. எல்லை நிலைகளில் சோதனை செய்யவும்
+### 4. முன் வேலைகளைச் சோதிக்கவும்
 
 ```python
 async def test_pagination():
-    # வெறுச்செயல்பாட்டு செட்
+    # காலியான முடிவுகள் தொகுதி
     result = await session.list_tools()
     assert result.tools == []
     assert result.nextCursor is None
     
-    # தனி பக்கம்
+    # ஒரே பக்கம்
     result = await session.list_tools()
     assert len(result.tools) <= PAGE_SIZE
     
     # தவறான கர்சர்
     result = await session.list_tools(cursor="invalid")
-    assert result.tools  # முதல் பக்கத்தை திருப்ப வேண்டும்
+    assert result.tools  # முதல் பக்கத்தை 반환 செய்ய வேண்டும்
 ```
 
 ---
 
-## பொதுவான தவறுகள்
+## பொதுவான சிக்கல்கள்
 
-### ❌ எல்லா முடிவுகளையும் திருப்பி, பின்னர் கிளைண்ட் பக்கவழி
+### ❌ அனைத்து முடிவுகளையும் திருப்பி வைத்து பிறகு கிளையன்ட் பக்கமுறை செய்வது
 
 ```python
-# மோசம்: எல்லாவற்றையும் நினைவகத்தில் ஏற்றுகிறது
+# மோசம்: அனைத்தையும் நினைவகத்தில் ஏற்றுகிறது
 @app.list_tools()
 async def list_tools() -> ListToolsResult:
     all_tools = load_all_tools()  # 1 மில்லியன் கருவிகள்!
     return ListToolsResult(tools=all_tools)
 ```
 
-### ✅ தரவு மூலதனத்தில் பக்கம் செயல்படுத்தவும்
+### ✅ தரவு மூலத்தில் பக்கமுறை செய்வது
 
 ```python
-# நல்லது: தேவையானவற்றையே மட்டுமே ஏற்றுகிறது
+# சிறந்தது: தேவையானவை மட்டும் ஏற்றுகிறது
 @app.list_tools()
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     offset = int(cursor) if cursor else 0
@@ -446,23 +447,23 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ---
 
-## அடுத்தது என்ன?
+## அடுத்தது என்ன
 
 - [Module 5.14 - Context Engineering](../../05-AdvancedTopics/mcp-contextengineering/README.md)
-- [Module 8 - சிறந்த நடைமுறைகள்](../../08-BestPractices/README.md)
-- [3.8 - உங்கள் MCP சர்வரை சோதனை செய்யவும்](../../03-GettingStarted/08-testing/README.md)
+- [Module 8 - Best Practices](../../08-BestPractices/README.md)
+- [3.8 - உங்கள் MCP சேவையகத்தை சோதனை செய்தல்](../../03-GettingStarted/08-testing/README.md)
 
 ---
 
 ## கூடுதல் வளங்கள்
 
-- [MCP விவரிப்பு - பக்கம்](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [கெர்சர் அடிப்படையிலான பக்கவழிச் செயல்முறை விளக்கம்](https://slack.engineering/evolving-api-pagination-at-slack/)
-- [Python SDK பக்கவழி சோதனைகள்](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+- [MCP குறிப்புகள் - பக்கமுறை](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [கர்சர் அடிப்படையிலான பக்கமுறை விளக்கம்](https://slack.engineering/evolving-api-pagination-at-slack/)
+- [Python SDK பக்கமுறை சோதனைகள்](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**அறிவிப்பு**:  
-இந்த ஆவணம் AI மொழி பெயர்ப்பு சேவை [Co-op Translator](https://github.com/Azure/co-op-translator) பயன்படுத்தி மொழிபெயர்க்கப்பட்டுள்ளது. நாங்கள் துல்லியத்திற்காக முயன்றாலும், தானியங்கி மொழி பெயர்ப்பில் பிழைகள் அல்லது தவறுகள் இருக்கக்கூடும் என்பதை தயவுசெய்து கவனிக்கவும். அசல் ஆவணம் அதன் இயல்புநிலை மொழியில் அதிகாரபூர்வ மூலமாக கருதப்பட வேண்டும். முக்கியமான தகவல்களுக்கான பணிப்புரவேறு மனித மொழிபெயர்ப்பை பரிந்துரைக்கிறோம். இந்த மொழிபெயர்ப்பின் பயன்பாட்டின் காரணமாக ஏற்படும் தவறான புரிதல்களுக்கும் தவறான விளக்கங்களுக்கும் நாம் பொறுப்பல்ல.
+**மறுப்பு**:
+இந்த ஆவணம் AI மொழிபெயர்ப்பு சேவை [Co-op Translator](https://github.com/Azure/co-op-translator) பயன்படுத்தி மொழிபெயர்க்கப்பட்டுள்ளது. நாங்கள் துல்லியத்திற்காக முயற்சி செய்துள்ளோம், ஆனால் தானாக செய்யப்படும் மொழிபெயர்ப்புகளில் பிழைகள் அல்லது தவறுகள் இருக்கலாம் என்பதை கவனத்தில் கொள்ளவும். அசல் ஆவணம் அதன் தாய்மொழியில் அதிகாரப்பூர்வ ஆதாரமாக கருதப்பட வேண்டும். முக்கியமான தகவல்களுக்கு, தொழில்நுட்பமான மனித மொழிபெயர்ப்பு பரிந்துரைக்கப்படுகிறது. இந்த மொழிபெயர்ப்பைப் பயன்படுத்துவதால் ஏற்படும் எந்த தவறான புரிதல்கள் அல்லது தவறான விளக்கத்திற்கும் நாங்கள் பொறுப்பில்வில்லை.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

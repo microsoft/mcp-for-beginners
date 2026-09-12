@@ -1,45 +1,50 @@
-# Menyebarkan Server MCP
+# Menerapkan Server MCP
 
-Menyebarkan server MCP Anda memungkinkan orang lain mengakses alat dan sumber dayanya di luar lingkungan lokal Anda. Ada beberapa strategi penyebaran yang perlu dipertimbangkan, tergantung pada kebutuhan Anda untuk skalabilitas, keandalan, dan kemudahan pengelolaan. Di bawah ini Anda akan menemukan panduan untuk menyebarkan server MCP secara lokal, di dalam kontainer, dan ke cloud.
+> [!NOTE]
+> Contoh konfigurasi yang menggunakan endpoint `/sse` menargetkan transport HTTP+SSE warisan.
+> Server jarak jauh MCP `2026-07-28` menggunakan HTTP Streamable, biasanya pada
+> endpoint yang ditentukan server seperti `/mcp`.
+
+Menerapkan server MCP Anda memungkinkan orang lain mengakses alat dan sumber dayanya di luar lingkungan lokal Anda. Ada beberapa strategi penerapan yang perlu dipertimbangkan, tergantung pada kebutuhan Anda untuk skalabilitas, keandalan, dan kemudahan pengelolaan. Di bawah ini Anda akan menemukan panduan untuk menerapkan server MCP secara lokal, dalam kontainer, dan ke cloud.
 
 ## Ikhtisar
 
-Pelajaran ini membahas cara menyebarkan aplikasi Server MCP Anda.
+Pelajaran ini membahas cara menerapkan aplikasi Server MCP Anda.
 
 ## Tujuan Pembelajaran
 
 Pada akhir pelajaran ini, Anda akan dapat:
 
-- Mengevaluasi berbagai pendekatan penyebaran.
-- Menyebarkan aplikasi Anda.
+- Mengevaluasi berbagai pendekatan penerapan.
+- Menerapkan aplikasi Anda.
 
-## Pengembangan dan Penyebaran Lokal
+## Pengembangan dan penerapan lokal
 
-Jika server Anda dimaksudkan untuk dijalankan di mesin pengguna, Anda dapat mengikuti langkah-langkah berikut:
+Jika server Anda dimaksudkan untuk digunakan dengan menjalankannya di mesin pengguna, Anda dapat mengikuti langkah-langkah berikut:
 
-1. **Unduh server**. Jika Anda tidak menulis servernya, maka unduh terlebih dahulu ke mesin Anda. 
-1. **Mulai proses server**: Jalankan aplikasi server MCP Anda 
+1. **Unduh server**. Jika Anda tidak menulis server, maka unduh dulu ke mesin Anda.
+1. **Mulai proses server**: Jalankan aplikasi server MCP Anda
 
 Untuk SSE (tidak diperlukan untuk server tipe stdio)
 
-1. **Konfigurasikan jaringan**: Pastikan server dapat diakses pada port yang diharapkan 
+1. **Konfigurasi jaringan**: Pastikan server dapat diakses pada port yang diharapkan
 1. **Hubungkan klien**: Gunakan URL koneksi lokal seperti `http://localhost:3000`
 
-## Penyebaran Cloud
+## Penerapan Cloud
 
-Server MCP dapat disebarkan ke berbagai platform cloud:
+Server MCP dapat diterapkan ke berbagai platform cloud:
 
-- **Fungsi tanpa server**: Sebarkan server MCP ringan sebagai fungsi tanpa server
+- **Fungsi Serverless**: Terapkan server MCP ringan sebagai fungsi serverless
 - **Layanan Kontainer**: Gunakan layanan seperti Azure Container Apps, AWS ECS, atau Google Cloud Run
-- **Kubernetes**: Sebarkan dan kelola server MCP dalam klaster Kubernetes untuk ketersediaan tinggi
+- **Kubernetes**: Terapkan dan kelola server MCP dalam klaster Kubernetes untuk ketersediaan tinggi
 
 ### Contoh: Azure Container Apps
 
-Azure Container Apps mendukung penyebaran Server MCP. Ini masih dalam pengembangan dan saat ini mendukung server SSE.
+Azure Container Apps mendukung penerapan Server MCP. Ini masih dalam pengerjaan dan saat ini mendukung server SSE.
 
-Berikut cara melakukannya:
+Berikut cara Anda melakukannya:
 
-1. Clone repositori:
+1. Kloning repositori:
 
   ```sh
   git clone https://github.com/anthonychu/azure-container-apps-mcp-sample.git
@@ -59,7 +64,7 @@ Berikut cara melakukannya:
   uv run fastapi dev main.py
   ```
 
-1. Untuk mencoba secara lokal, buat berkas *mcp.json* dalam direktori *.vscode* dan tambahkan isi berikut:
+1. Untuk mencoba secara lokal, buat file *mcp.json* di direktori *.vscode* dan tambahkan konten berikut:
 
   ```json
   {
@@ -83,21 +88,22 @@ Berikut cara melakukannya:
   }
   ```
 
-  Setelah server SSE dimulai, Anda dapat mengklik ikon play pada berkas JSON, Anda sekarang seharusnya melihat alat pada server yang terdeteksi oleh GitHub Copilot, lihat ikon Tool.
+Setelah server SSE dijalankan, Anda dapat mengklik ikon putar di file JSON, Anda sekarang harus melihat alat di server yang diambil oleh GitHub Copilot, lihat ikon Alat.
 
-1. Untuk menyebarkan, jalankan perintah berikut:
+1. Untuk menerapkan, jalankan perintah berikut:
 
   ```sh
   az containerapp up -g <RESOURCE_GROUP_NAME> -n weather-mcp --environment mcp -l westus --env-vars API_KEYS=<AN_API_KEY> --source .
   ```
 
-Itu dia, sebarkan secara lokal, sebarkan ke Azure melalui langkah-langkah ini.
+Begitulah, terapkan secara lokal, terapkan ke Azure melalui langkah-langkah ini.
 
 ## Sumber Daya Tambahan
 
 - [Azure Functions + MCP](https://learn.microsoft.com/en-us/samples/azure-samples/remote-mcp-functions-dotnet/remote-mcp-functions-dotnet/)
 - [Artikel Azure Container Apps](https://techcommunity.microsoft.com/blog/appsonazureblog/host-remote-mcp-servers-in-azure-container-apps/4403550)
 - [Repositori Azure Container Apps MCP](https://github.com/anthonychu/azure-container-apps-mcp-sample)
+
 
 ## Selanjutnya
 
@@ -107,5 +113,5 @@ Itu dia, sebarkan secara lokal, sebarkan ke Azure melalui langkah-langkah ini.
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Penafian**:
-Dokumen ini telah diterjemahkan menggunakan layanan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Meskipun kami berusaha untuk akurasi, harap diketahui bahwa terjemahan otomatis mungkin mengandung kesalahan atau ketidakakuratan. Dokumen asli dalam bahasa aslinya harus dianggap sebagai sumber yang sah. Untuk informasi penting, disarankan menggunakan terjemahan profesional oleh manusia. Kami tidak bertanggung jawab atas kesalahpahaman atau interpretasi yang salah yang timbul dari penggunaan terjemahan ini.
+Dokumen ini telah diterjemahkan menggunakan layanan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Meskipun kami berupaya untuk mencapai akurasi, harap diketahui bahwa terjemahan otomatis mungkin mengandung kesalahan atau ketidakakuratan. Dokumen asli dalam bahasa aslinya harus dianggap sebagai sumber yang sah. Untuk informasi penting, disarankan menggunakan terjemahan profesional oleh manusia. Kami tidak bertanggung jawab atas kesalahpahaman atau penafsiran yang keliru yang timbul dari penggunaan terjemahan ini.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

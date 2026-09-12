@@ -1,23 +1,28 @@
-# Terokai Mendalam Ciri Protokol MCP
+# Perincian Ciri Protokol MCP
 
-Panduan ini meneroka ciri protokol MCP yang maju yang melangkaui pengendalian alat dan sumber asas. Memahami ciri-ciri ini membantu anda membina pelayan MCP yang lebih teguh, mesra pengguna, dan sedia untuk pengeluaran.
+Panduan ini meneroka ciri protokol MCP yang maju yang melangkaui pengendalian alat dan sumber asas. Memahami ciri-ciri ini membantu anda membina pelayan MCP yang lebih kukuh, mesra pengguna, dan sedia untuk produksi.
 
-> **Melihat ke hadapan:** calon keluaran `2026-07-28` menangguhkan primitif Logging (mengutamakan `stderr` untuk stdio dan OpenTelemetry untuk pemerhatian berstruktur), membuang model `initialize`/sesi yang disebut dalam Peristiwa Kitaran Hayat Pelayan di bawah, dan memindahkan ciri Eksperimen Tasks ke sambungan Tasks khusus dengan kitaran hidup baru `tasks/get`/`tasks/update`/`tasks/cancel`. Lihat [Apa yang Berubah dalam MCP: Calon Keluaran 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> **Skop MCP `2026-07-28`:** permulaan dan penutupan proses pelayan kekal
+> sebagai kebimbangan aplikasi, tetapi jabat tangan `initialize` MCP dan sesi peringkat protokol
+> dialih keluar. Bahagian Logging di bawah dikekalkan untuk
+> pelaksanaan warisan; pelayan baru harus menggunakan `stderr` atau OpenTelemetry. Tugas kini adalah
+> peluasan versi berasingan. Lihat
+> [Apa Yang Berubah dalam MCP: Spesifikasi 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28.md).
 
-## Ciri-ciri Yang Diliputi
+## Ciri-Ciri Yang Dibahas
 
-1. **Notifikasi Kemajuan** - Melaporkan kemajuan untuk operasi jangka panjang
-2. **Pembatalan Permintaan** - Benarkan klien membatalkan permintaan yang sedang berjalan
+1. **Pemberitahuan Kemajuan** - Melaporkan kemajuan bagi operasi yang berjalan lama
+2. **Pembatalan Permintaan** - Membenarkan klien membatalkan permintaan yang sedang diproses
 3. **Templat Sumber** - URI sumber dinamik dengan parameter
-4. **Peristiwa Kitaran Hayat Pelayan** - Inisialisasi dan penutupan yang betul
-5. **Kawalan Logging** - Konfigurasi logging sisi pelayan
-6. **Corak Pengendalian Ralat** - Respons ralat yang konsisten
+4. **Kitaran Hayat Aplikasi** - Permulaan dan penutupan proses pelayan
+5. **Kawalan Logging (Warisan)** - Pengaturan logging MCP yang telah usang
+6. **Pola Pengendalian Ralat** - Respons ralat yang konsisten
 
 ---
 
-## 1. Notifikasi Kemajuan
+## 1. Pemberitahuan Kemajuan
 
-Untuk operasi yang mengambil masa (pemprosesan data, muat turun fail, panggilan API), notifikasi kemajuan memastikan pengguna sentiasa dimaklumkan.
+Untuk operasi yang mengambil masa (pemprosesan data, muat turun fail, panggilan API), pemberitahuan kemajuan memastikan pengguna dimaklumkan.
 
 ### Cara Ia Berfungsi
 
@@ -27,10 +32,10 @@ sequenceDiagram
     participant Server
     
     Client->>Server: tools/call (operasi panjang)
-    Server-->>Client: pemberitahuan: kemajuan 10%
-    Server-->>Client: pemberitahuan: kemajuan 50%
-    Server-->>Client: pemberitahuan: kemajuan 90%
-    Server->>Client: keputusan (lengkap)
+    Server-->>Client: notifikasi: kemajuan 10%
+    Server-->>Client: notifikasi: kemajuan 50%
+    Server-->>Client: notifikasi: kemajuan 90%
+    Server->>Client: hasil (lengkap)
 ```
 
 ### Pelaksanaan Python
@@ -52,7 +57,7 @@ async def process_large_file(file_path: str, ctx) -> str:
     
     with open(file_path, 'rb') as f:
         while chunk := f.read(8192):
-            # Proses bahagian
+            # Proses pek
             await process_chunk(chunk)
             processed += len(chunk)
             
@@ -137,7 +142,7 @@ async def handle_progress(notification):
 # Daftar pengendali
 session.on_notification("notifications/progress", handle_progress)
 
-# Panggil alat (kemas kini kemajuan akan diterima melalui pengendali)
+# Panggil alat (kemas kini kemajuan akan tiba melalui pengendali)
 result = await session.call_tool("process_large_file", {"file_path": "/data/large.csv"})
 ```
 
@@ -145,7 +150,7 @@ result = await session.call_tool("process_large_file", {"file_path": "/data/larg
 
 ## 2. Pembatalan Permintaan
 
-Benarkan klien membatalkan permintaan yang tidak lagi diperlukan atau mengambil masa terlalu lama.
+Membenarkan klien membatalkan permintaan yang tidak lagi diperlukan atau mengambil masa terlalu lama.
 
 ### Pelaksanaan Python
 
@@ -164,19 +169,19 @@ async def long_running_search(query: str, ctx) -> str:
     
     try:
         for page in range(100):  # Cari melalui banyak halaman
-            # Semak jika pembatalan diminta
+            # Periksa jika pembatalan diminta
             if ctx.is_cancelled:
                 raise CancelledError("Search cancelled by user")
             
-            # Menyimulasikan carian halaman
+            # Mensimulasikan carian halaman
             page_results = await search_page(query, page)
             results.extend(page_results)
             
-            # Kelewatan kecil membenarkan pemeriksaan pembatalan
+            # Lewat kecil membolehkan pemeriksaan pembatalan
             await asyncio.sleep(0.1)
             
     except CancelledError:
-        # Pulangkan keputusan separa
+        # Kembalikan keputusan separa
         return f"Cancelled. Found {len(results)} results before cancellation."
     
     return f"Found {len(results)} total results"
@@ -237,7 +242,7 @@ class CancellableContext:
             pass  # Tamat masa biasa, teruskan
 ```
 
-### Pembatalan di Pihak Klien
+### Pembatalan Pihak Klien
 
 ```python
 import asyncio
@@ -265,7 +270,7 @@ async def search_with_timeout(session, query, timeout=30):
 
 ## 3. Templat Sumber
 
-Templat sumber membolehkan pembinaan URI dinamik dengan parameter, berguna untuk API dan pangkalan data.
+Templat sumber membenarkan pembinaan URI dinamik dengan parameter, berguna untuk API dan pangkalan data.
 
 ### Mendefinisikan Templat
 
@@ -303,7 +308,7 @@ async def list_templates() -> list[ResourceTemplate]:
 async def read_resource(uri: str) -> str:
     """Read resource, expanding template parameters."""
     
-    # Mengurai URI untuk mengekstrak parameter
+    # Analisis URI untuk mendapatkan parameter
     if uri.startswith("db://users/"):
         user_id = uri.split("/")[-1]
         return await fetch_user(user_id)
@@ -345,7 +350,7 @@ server.setRequestHandler(ListResourceTemplatesSchema, async () => {
 server.setRequestHandler(ReadResourceSchema, async (request) => {
   const uri = request.params.uri;
   
-  // Tafsir URI isu GitHub
+  // Mengurai URI isu GitHub
   const githubMatch = uri.match(/^github:\/\/repos\/([^/]+)\/([^/]+)\/issues\/(\d+)$/);
   if (githubMatch) {
     const [_, owner, repo, issueNumber] = githubMatch;
@@ -365,9 +370,11 @@ server.setRequestHandler(ReadResourceSchema, async (request) => {
 
 ---
 
-## 4. Peristiwa Kitaran Hayat Pelayan
+## 4. Kitaran Hayat Aplikasi
 
-Pengendalian inisialisasi dan penutupan yang betul memastikan pengurusan sumber yang bersih.
+Bahagian ini membahas permulaan dan penutupan proses aplikasi, bukan jabat tangan
+MCP `initialize` yang telah dialih keluar. Pengendalian kitaran hayat yang betul memastikan pengurusan sumber yang bersih.
+
 
 ### Pengurusan Kitaran Hayat Python
 
@@ -377,7 +384,7 @@ from contextlib import asynccontextmanager
 
 app = Server("lifecycle-server")
 
-# Negeri kongsi
+# Keadaan dikongsi
 db_connection = None
 cache = None
 
@@ -428,7 +435,7 @@ class ManagedServer {
   }
   
   async start() {
-    // Mulakan sumber
+    // Inisialisasi sumber
     console.log("🚀 Server starting...");
     this.dbConnection = await createDatabaseConnection();
     console.log("✅ Database connected");
@@ -468,9 +475,15 @@ await server.start();
 
 ---
 
-## 5. Kawalan Logging
+## 5. Kawalan Logging (Warisan)
 
-MCP menyokong tahap logging sisi pelayan yang boleh dikawal oleh klien.
+> [!WARNING]
+> Logging MCP sudah usang dalam `2026-07-28` dan layak untuk dikeluarkan dalam
+> semakan spesifikasi pertama yang dikeluarkan pada atau selepas 28 Julai 2027. Contoh-contoh
+> di bawah adalah untuk keserasian dengan pelaksanaan lebih lama. Gunakan `stderr` dengan
+> stdio dan OpenTelemetry untuk pemerhatian struktur dalam pelayan baru.
+
+Versi MCP warisan menyokong tahap logging sisi pelayan yang boleh dikawal oleh klien.
 
 ### Melaksanakan Tahap Logging
 
@@ -481,7 +494,7 @@ import logging
 
 app = Server("logging-server")
 
-# Pemetaan tahap MCP ke tahap log Python
+# Peta tahap MCP kepada tahap log Python
 LEVEL_MAP = {
     LoggingLevel.DEBUG: logging.DEBUG,
     LoggingLevel.INFO: logging.INFO,
@@ -538,9 +551,9 @@ async def complex_operation(input: str, ctx) -> str:
 
 ---
 
-## 6. Corak Pengendalian Ralat
+## 6. Pola Pengendalian Ralat
 
-Pengendalian ralat yang konsisten meningkatkan proses debugging dan pengalaman pengguna.
+Pengendalian ralat yang konsisten meningkatkan pembaikan dan pengalaman pengguna.
 
 ### Kod Ralat MCP
 
@@ -604,7 +617,7 @@ async def safe_operation(input: str) -> str:
     except TimeoutError as e:
         raise InternalError(f"Operation timed out: {e}")
     except Exception as e:
-        # Log ralat yang tidak dijangka
+        # Log ralat tidak dijangka
         logger.exception(f"Unexpected error in safe_operation")
         raise InternalError(f"Unexpected error: {type(e).__name__}")
 ```
@@ -621,7 +634,7 @@ function validateInput(data: unknown): asserts data is ValidInput {
       "Input must be an object"
     );
   }
-  // Lebih banyak pengesahan...
+  // Lebih pengesahan...
 }
 
 server.setRequestHandler(CallToolSchema, async (request) => {
@@ -636,7 +649,7 @@ server.setRequestHandler(CallToolSchema, async (request) => {
     
   } catch (error) {
     if (error instanceof McpError) {
-      throw error;  // Sudah ralat MCP
+      throw error;  // Sudah menjadi ralat MCP
     }
     
     // Tukar ralat lain
@@ -656,51 +669,21 @@ server.setRequestHandler(CallToolSchema, async (request) => {
 
 ---
 
-## Ciri Eksperimen (MCP 2025-11-25)
+## Ciri Sensitif Versi
 
-Ciri-ciri ini ditandakan sebagai eksperimen dalam spesifikasi:
+### Peluasan Tugas
 
-### Tasks (Operasi Jangka Panjang)
-
-```python
-# Tugasan membenarkan penjejakan operasi jangka panjang dengan keadaan
-@app.task()
-async def training_task(model_id: str, data_path: str, ctx) -> str:
-    """Long-running ML training task."""
-    
-    # Lapor tugasan bermula
-    await ctx.report_status("running", "Initializing training...")
-    
-    # Gelung latihan
-    for epoch in range(100):
-        await train_epoch(model_id, data_path, epoch)
-        await ctx.report_status(
-            "running",
-            f"Training epoch {epoch + 1}/100",
-            progress=epoch + 1,
-            total=100
-        )
-    
-    await ctx.report_status("completed", "Training finished")
-    return f"Model {model_id} trained successfully"
-```
+Tugas adalah peluasan rasmi yang versi berasingan dalam MCP `2026-07-28`. Sebuah
+pelayan mungkin mengembalikan pemegang tugas dari panggilan alat, dan klien mengendalikan tugas
+dengan `tasks/get`, `tasks/update`, dan `tasks/cancel`. API Tugas eksperimental
+`2025-11-25` tidak serasi ke belakang, dan `tasks/list` tidak lagi
+wujud.
 
 ### Anotasi Alat
 
-```python
-# Anotasi menyediakan metadata mengenai tingkah laku alat
-@app.tool(
-    annotations={
-        "destructive": False,      # Tidak mengubah data
-        "idempotent": True,        # Selamat untuk cuba semula
-        "timeout_seconds": 30,     # Jangka masa maksimum yang dijangka
-        "requires_approval": False # Tiada kelulusan pengguna diperlukan
-    }
-)
-async def safe_query(query: str) -> str:
-    """A read-only database query tool."""
-    return await execute_read_query(query)
-```
+Anotasi alat menerangkan tingkah laku seperti baca sahaja, destruktif, idempoten,
+atau operasi dunia terbuka. Ia adalah petunjuk dan tidak harus dianggap sebagai jaminan
+keselamatan atau kebenaran yang dipercayai kecuali ia datang dari pelayan yang dipercayai.
 
 ---
 
@@ -708,13 +691,13 @@ async def safe_query(query: str) -> str:
 
 - [Modul 8 - Amalan Terbaik](../../08-BestPractices/README.md)
 - [5.14 - Kejuruteraan Konteks](../mcp-contextengineering/README.md)
-- [Log Perubahan Spesifikasi MCP](https://spec.modelcontextprotocol.io/)
+- [Perubahan Spesifikasi MCP](https://modelcontextprotocol.io/specification/2026-07-28/changelog)
 
 ---
 
 ## Sumber Tambahan
 
-- [Spesifikasi MCP 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [Spesifikasi MCP 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [Kod Ralat JSON-RPC 2.0](https://www.jsonrpc.org/specification#error_object)
 - [Contoh SDK Python](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples)
 - [Contoh SDK TypeScript](https://github.com/modelcontextprotocol/typescript-sdk/tree/main/examples)

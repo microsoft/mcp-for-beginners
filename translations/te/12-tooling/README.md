@@ -2,30 +2,32 @@
 
 ## 🧠 MCP డేటాబేస్ ఇంటిగ్రేషన్ లెర్నింగ్ పాత్ అవలోకనం
 
-ఇక్కడ మీరు MCP ఉపయోగించే టూల్స్ ఎలా ఉపయోగించాలో నేర్చుకుంటారు. మీరు ఈ టూల్స్‌ను ఉపయోగించిన అనుభవం MCP సర్వర్లకు వాటిని కనెక్ట్ చేయడం ద్వారా మెరుగవుతుంది.
+ఇక్కడ మీరు MCP ఉపయోగించే టూల్స్ ఎలా ఉపయోగించాలో నేర్చుకుంటారు. మీరు ఈ టూల్స్ ఉపయోగించే అనుభవం MCP సర్వర్లు వాటితో కనెక్ట్ చేయడంతో మెరుగవుతుంది.
 
 ## 🔗 అధికారిక MCP వనరులు
 
-- 📘 [MCP డాక్యుమెంటేషన్](https://modelcontextprotocol.io/) – విపులమైన ట్యూటోరియల్స్ మరియు వినియోగదార గైడ్స్
-- 📜 [MCP స్పెసిఫికేషన్ (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/) – ప్రోటోకాల్ నిర్మాణం మరియు సాంకేతిక సూచనాలు
-- 🧑‍💻 [MCP GitHub రిపోజిటరీ](https://github.com/modelcontextprotocol) – ఓపెన్-సోర్స్ SDKలు, టూల్స్, మరియు కోడ్ నమూనాలు
-- 🌐 [MCP కమ్యునిటీ](https://github.com/orgs/modelcontextprotocol/discussions) – చర్చల్లో పాల్గొని కమ్యూనిటీకి సహకరించండి
-- 🔒 [OWASP MCP టాప్ 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – భద్రతా ఉత్తమ పద్ధతులు మరియు ప్రమాద నివారణలు
+- 📘 [MCP డాక్యుమెంటేషన్](https://modelcontextprotocol.io/) – విపులమైన ట్యుటోరియల్స్ మరియు వినియోగదారుల గైడ్‌లు
+- 📜 [MCP స్పెసిఫికేషన్ (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/) – ప్రోటోకాల్ నిర్మాణం మరియు సాంకేతిక సూచనలు
+- 🧑‍💻 [MCP గిట్‌హబ్ రెపోజిటరీ](https://github.com/modelcontextprotocol) – ఓపెన్ సోర్స్ SDKల, టూల్స్, మరియు కోడ్ నమూనాలు
+- 🌐 [MCP కమ్యూనిటీ](https://github.com/orgs/modelcontextprotocol/discussions) – చర్చలకు చేరండి మరియు కమ్యూనిటీకి సహకరించండి
+- 🔒 [OWASP MCP టాప్ 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – భద్రత ఉత్తమ విధానాలు మరియు ప్రమాద నివారణాలు
+
+
 
 ## 🌟 కమ్యూనిటీ మరియు మద్దతు
 
 ### సహాయం పొందండి
 
-- **Azure AI Discord**: [నిపుణుల మద్దతు కోసం చేరండి](https://discord.com/invite/ByRwuEEgH4)
-- **MCP కమ్యునిటీ**: [విస్తృత MCP చర్చల్లో పాల్గొనండి](https://github.com/orgs/modelcontextprotocol/discussions)
+- **ఆజ్యూర్ AI డిస్కోర్డ్**: [నిపుణుల మద్దతు కోసం చేరండి](https://discord.com/invite/ByRwuEEgH4)
+- **MCP కమ్యూనిటీ**: [విస్తృత MCP చర్చలకు చేరండి](https://github.com/orgs/modelcontextprotocol/discussions)
 
-## 🚀 ప్రారంభిస్తూ ఉన్నారా?
+## 🚀 ప్రారంభించడానికి సిద్ధమా?
 
-మీ ప్రయాణాన్ని ప్రారంభించండి **[GitHub Copilot app](./01-copilot-app/README.md)** తో
+మీ ప్రయాణం ప్రారంభించండి **[GitHub Copilot app](./01-copilot-app/README.md)** తో
 
 ---
 
-*MCPని ఉపయోగించి ఈ టూల్స్ సహాయంతో మీ उत्पादनక్రీతిని మరియు సమగ్ర ఇంటిగ్రేషన్‌ను మెరుగుపరుచుకోండి.*
+*ప్రముఖ ఉత్పాదకత మరియు సాఫీ ఇంటిగ్రేషన్ కోసం ఈ టూల్స్ తో MCP ఉపయోగించడం సాధించండి.*
 
 ---
 

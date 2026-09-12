@@ -10,7 +10,12 @@ This chapter covers a series of advanced topics in Model Context Protocol (MCP) 
 
 This lesson explores advanced concepts in Model Context Protocol implementation, focusing on multi-modal integration, scalability, security best practices, and enterprise integration. These topics are essential for building production-grade MCP applications that can handle complex requirements in enterprise environments.
 
-> **Looking ahead:** several topics below are affected by the `2026-07-28` MCP specification release candidate — Root Contexts (5.4) and Sampling (5.6) build on primitives that the release candidate marks as deprecated, and the experimental Tasks feature referenced in Protocol Features (5.16) moves to a dedicated Tasks extension. See [What's Changing in MCP: The 2026-07-28 Release Candidate](../01-CoreConcepts/mcp-2026-07-28-release-candidate.md) for details.
+> **Current specification note:** MCP `2026-07-28` deprecates the Roots and
+> Sampling primitives covered in lessons 5.4 and 5.6. It also moves the
+> experimental Tasks feature referenced in Protocol Features (5.16) to a
+> dedicated Tasks extension. Those lessons are retained for legacy
+> `2025-11-25` implementations and include migration guidance. See
+> [What's Changed in MCP: The 2026-07-28 Specification](../01-CoreConcepts/mcp-2026-07-28.md).
 
 ## Learning Objectives
 
@@ -29,9 +34,9 @@ By the end of this lesson, you will be able to:
 | [5.1 Integration with Azure](./mcp-integration/README.md) | Integrate with Azure | Learn how to integrate your MCP Server on Azure |
 | [5.2 Multi modal sample](./mcp-multi-modality/README.md) | MCP Multi modal samples  | Samples for audio, image and multi modal response |
 | [5.3 MCP OAuth2 sample](../../../05-AdvancedTopics/mcp-oauth2-demo) | MCP OAuth2 Demo | Minimal Spring Boot app showing OAuth2 with MCP, both as Authorization and Resource Server. Demonstrates secure token issuance, protected endpoints, Azure Container Apps deployment, and API Management integration. |
-| [5.4 Root Contexts](./mcp-root-contexts/README.md) | Root contexts  | Learn more about root context and how to implement them (deprecated in `2026-07-28` release candidate; still valid for `2025-11-25`) |
+| [5.4 Root Contexts](./mcp-root-contexts/README.md) | Root contexts  | Learn the legacy `2025-11-25` Roots primitive and current migration options (deprecated in `2026-07-28`) |
 | [5.5 Routing](./mcp-routing/README.md) | Routing | Learn different types of routing |
-| [5.6 Sampling](./mcp-sampling/README.md) | Sampling | Learn how to work with sampling (deprecated in `2026-07-28` release candidate; still valid for `2025-11-25`) |
+| [5.6 Sampling](./mcp-sampling/README.md) | Sampling | Learn the legacy `2025-11-25` Sampling primitive and current migration options (deprecated in `2026-07-28`) |
 | [5.7 Scaling](./mcp-scaling/README.md) | Scaling  | Learn about scaling |
 | [5.8 Security](./mcp-security/README.md) | Security  | Secure your MCP Server |
 | [5.9 Web Search sample](./web-search-mcp/README.md) | Web Search MCP | Python MCP server and client integrating with SerpAPI for real-time web, news, product search, and Q&A. Demonstrates multi-tool orchestration, external API integration, and robust error handling. |
@@ -44,13 +49,17 @@ By the end of this lesson, you will be able to:
 | [5.16 Protocol Features Deep Dive](./mcp-protocol-features/README.md) | Protocol Features | Master advanced protocol features including progress notifications, request cancellation, resource templates, and error handling patterns.|
 | [5.17 Adversarial Multi-Agent Reasoning](./mcp-adversarial-agents/README.md) | Adversarial Agents | Use two agents with opposing positions, sharing a single MCP tool set, to catch hallucinations, surface edge cases, and produce better-calibrated outputs through structured debate.|
 
-> **New in MCP Specification 2025-11-25**: The specification now includes experimental support for **Tasks** (long-running operations with progress tracking), **Tool Annotations** (metadata about tool behavior for safety), **URL Mode Elicitation** (requesting specific URL content from clients), and enhanced **Roots** (for workspace context management). See the [MCP Specification changelog](https://spec.modelcontextprotocol.io/) for full details.
+> **Historical `2025-11-25` note:** that revision introduced experimental
+> Tasks and expanded several protocol features. In `2026-07-28`, Tasks moved to
+> an official extension and Roots became deprecated. Do not use the
+> `2025-11-25` feature status as current guidance; see the
+> [2026-07-28 changelog](https://modelcontextprotocol.io/specification/2026-07-28/changelog).
 
 ## Additional References
 
 For the most up-to-date information on advanced MCP topics, refer to:
 - [MCP Documentation](https://modelcontextprotocol.io/)
-- [MCP Specification (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Specification (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [GitHub Repository](https://github.com/modelcontextprotocol)
 - [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - Security risks and mitigations
 - [MCP Security Summit Workshop (Sherpa)](https://azure-samples.github.io/sherpa/) - Hands-on security training

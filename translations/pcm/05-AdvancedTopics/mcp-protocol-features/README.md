@@ -1,17 +1,22 @@
 # MCP Protocol Features Deep Dive
 
-Dis guide go explore advanced MCP protocol features wey dey pass basic tool and resource handling. To sabi dis features go help you build more robust, user-friendly, and production-ready MCP servers.
+Dis guide dey explore advanced MCP protocol features wey pass just basic tool and resource handling. To sabi dis features go help you build better, easy-to-use, and production-ready MCP servers.
 
-> **Look ahead:** di `2026-07-28` release candidate go stop to use di Logging primitive (go prefer `stderr` for stdio and OpenTelemetry for structured observability), e go remove di `initialize`/session model wey e refer for Server Lifecycle Events below, and e go move di experimental Tasks feature enter one dedicated Tasks extension with new `tasks/get`/`tasks/update`/`tasks/cancel` lifecycle. See [Wetin Don Change for MCP: The 2026-07-28 Release Candidate](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> **MCP `2026-07-28` scope:** server process startup and shutdown still dey
+> application matter, but MCP `initialize` handshake and protocol-level
+> sessions don comot. The Logging section wey dey below still dey for old
+> implementations; new servers suppose use `stderr` or OpenTelemetry. Tasks na
+> now separately versioned extension. See
+> [What's Changed in MCP: The 2026-07-28 Specification](../../01-CoreConcepts/mcp-2026-07-28.md).
 
 ## Features Covered
 
-1. **Progress Notifications** - Make you fit report progress for operations wey dey take long
-2. **Request Cancellation** - Make clients fit cancel requests wey dem don start
-3. **Resource Templates** - Dynamic resource URIs wey get parameters
-4. **Server Lifecycle Events** - Proper initialization and shutdown
-5. **Logging Control** - Server-side logging configuration
-6. **Error Handling Patterns** - Make error responses dey consistent
+1. **Progress Notifications** - Report progress for long-running operations
+2. **Request Cancellation** - Allow clients to cancel in-flight requests
+3. **Resource Templates** - Dynamic resource URIs with parameters
+4. **Application Lifecycle** - Server process startup and shutdown
+5. **Logging Control (Legacy)** - Deprecated MCP logging configuration
+6. **Error Handling Patterns** - Consistent error responses
 
 ---
 
@@ -19,18 +24,18 @@ Dis guide go explore advanced MCP protocol features wey dey pass basic tool and 
 
 For operations wey dey take time (data processing, file downloads, API calls), progress notifications dey keep users informed.
 
-### How E Dey Work
+### How It Works
 
 ```mermaid
 sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: tools/call (long operation)
+    Client->>Server: tools/call (long wahala)
     Server-->>Client: notification: progress 10%
     Server-->>Client: notification: progress 50%
     Server-->>Client: notification: progress 90%
-    Server->>Client: result (complete)
+    Server->>Client: result (don finish)
 ```
 
 ### Python Implementation
@@ -46,17 +51,17 @@ app = Server("progress-server")
 async def process_large_file(file_path: str, ctx) -> str:
     """Process a large file with progress updates."""
     
-    # Grab file size for progress calculation
+    # Comot file size make we fit calculate progress
     file_size = os.path.getsize(file_path)
     processed = 0
     
     with open(file_path, 'rb') as f:
         while chunk := f.read(8192):
-            # Process small part
+            # Process the chunk
             await process_chunk(chunk)
             processed += len(chunk)
             
-            # Send progress notice
+            # Send progress notification
             progress = (processed / file_size) * 100
             await ctx.send_notification(
                 ProgressNotification(
@@ -80,7 +85,7 @@ async def batch_operation(items: list[str], ctx) -> str:
         result = await process_item(item)
         results.append(result)
         
-        # Tell progress after every item
+        # Tell progress after every item finish
         await ctx.send_notification(
             ProgressNotification(
                 progressToken=ctx.request_id,
@@ -109,7 +114,7 @@ server.setRequestHandler(CallToolSchema, async (request, extra) => {
       const result = await processItem(items[i]);
       results.push(result);
       
-      // Send progress notifikeishon
+      // Send progress notification
       await extra.sendNotification({
         method: "notifications/progress",
         params: {
@@ -137,7 +142,7 @@ async def handle_progress(notification):
 # Register handler
 session.on_notification("notifications/progress", handle_progress)
 
-# Call tool (progress updates go come via handler)
+# Call tool (progress updates go reach you via handler)
 result = await session.call_tool("process_large_file", {"file_path": "/data/large.csv"})
 ```
 
@@ -145,7 +150,7 @@ result = await session.call_tool("process_large_file", {"file_path": "/data/larg
 
 ## 2. Request Cancellation
 
-Make clients fit cancel requests wey dem no need again or wey dey take too long.
+Allow clients to cancel requests wey dem no need again or wey dey take too long.
 
 ### Python Implementation
 
@@ -163,20 +168,20 @@ async def long_running_search(query: str, ctx) -> str:
     results = []
     
     try:
-        for page in range(100):  # Search tru plenty pages
-            # Check if dem bin ask make e cancel
+        for page in range(100):  # Search tru plenti pages
+            # Check if person bin beg make e stop
             if ctx.is_cancelled:
                 raise CancelledError("Search cancelled by user")
             
-            # Make e look like say e dey search page
+            # Make e be like say e dey search page
             page_results = await search_page(query, page)
             results.extend(page_results)
             
-            # Small delay dey allow make e check if e suppose cancel
+            # Small delay dey make e fit check if e for stop
             await asyncio.sleep(0.1)
             
     except CancelledError:
-        # Return partial result dem
+        # Return part of di results
         return f"Cancelled. Found {len(results)} results before cancellation."
     
     return f"Found {len(results)} total results"
@@ -253,7 +258,7 @@ async def search_with_timeout(session, query, timeout=30):
         result = await asyncio.wait_for(task, timeout=timeout)
         return result
     except asyncio.TimeoutError:
-        # Make dem cancel di request
+        # Ask mek dem comot am
         await session.send_notification({
             "method": "notifications/cancelled",
             "params": {"requestId": task.request_id, "reason": "Timeout"}
@@ -265,9 +270,9 @@ async def search_with_timeout(session, query, timeout=30):
 
 ## 3. Resource Templates
 
-Resource templates dey allow dynamic URI construction with parameters, e good for APIs and databases.
+Resource templates allow dynamic URI construction with parameters, wey dey useful for APIs and databases.
 
-### How To Define Templates
+### Defining Templates
 
 ```python
 from mcp.server import Server
@@ -303,7 +308,7 @@ async def list_templates() -> list[ResourceTemplate]:
 async def read_resource(uri: str) -> str:
     """Read resource, expanding template parameters."""
     
-    # Make we break down the URI to find di parameters inside
+    # Parse di URI to comot parameters
     if uri.startswith("db://users/"):
         user_id = uri.split("/")[-1]
         return await fetch_user(user_id)
@@ -345,7 +350,7 @@ server.setRequestHandler(ListResourceTemplatesSchema, async () => {
 server.setRequestHandler(ReadResourceSchema, async (request) => {
   const uri = request.params.uri;
   
-  // Parse GitHub issue URI
+  // Make sense GitHub palava URI
   const githubMatch = uri.match(/^github:\/\/repos\/([^/]+)\/([^/]+)\/issues\/(\d+)$/);
   if (githubMatch) {
     const [_, owner, repo, issueNumber] = githubMatch;
@@ -365,9 +370,11 @@ server.setRequestHandler(ReadResourceSchema, async (request) => {
 
 ---
 
-## 4. Server Lifecycle Events
+## 4. Application Lifecycle
 
-Proper initialization and shutdown handling dey make resource management clean.
+Dis section cover application process startup and shutdown, no be the removed
+MCP `initialize` handshake. Proper lifecycle handling dey make resource
+management pure.
 
 ### Python Lifecycle Management
 
@@ -377,7 +384,7 @@ from contextlib import asynccontextmanager
 
 app = Server("lifecycle-server")
 
-# State wey everybody dey use together
+# Shere di state
 db_connection = None
 cache = None
 
@@ -386,15 +393,15 @@ async def lifespan(server: Server):
     """Manage server lifecycle."""
     global db_connection, cache
     
-    # Di tin wey dey start
+    # Start di tin
     print("🚀 Server starting...")
     db_connection = await create_database_connection()
     cache = await create_cache_client()
     print("✅ Resources initialized")
     
-    yield  # Server dey run for here
+    yield  # Server dey run for dis side
     
-    # When e go stop
+    # Close am down
     print("🛑 Server shutting down...")
     await db_connection.close()
     await cache.close()
@@ -428,17 +435,17 @@ class ManagedServer {
   }
   
   async start() {
-    // Comot resources
+    // Kam start wetin you need
     console.log("🚀 Server starting...");
     this.dbConnection = await createDatabaseConnection();
     console.log("✅ Database connected");
     
-    // Begin server
+    // Make you start di server
     await this.server.connect(transport);
   }
   
   async stop() {
-    // Clean up resources
+    // Clean up di resources dem
     console.log("🛑 Server shutting down...");
     if (this.dbConnection) {
       await this.dbConnection.close();
@@ -449,13 +456,13 @@ class ManagedServer {
   
   private setupHandlers() {
     this.server.setRequestHandler(CallToolSchema, async (request) => {
-      // Use this.dbConnection well well
+      // Use dis.dbConnection well well
       // ...
     });
   }
 }
 
-// How to take use am wit soft shutdown
+// How to take use am wit better shutdown
 const server = new ManagedServer();
 
 process.on('SIGINT', async () => {
@@ -468,11 +475,17 @@ await server.start();
 
 ---
 
-## 5. Logging Control
+## 5. Logging Control (Legacy)
 
-MCP dey support server-side logging levels wey clients fit control.
+> [!WARNING]
+> MCP Logging don dey deprecated for `2026-07-28` and e fit comot for
+> the first specification revision wey go show on or after July 28, 2027. The examples
+> wey dey below na for compatibility with old implementations. Use `stderr` with
+> stdio and OpenTelemetry for structured observability for new servers.
 
-### How To Implement Logging Levels
+Old MCP versions support server-side logging levels wey clients fit control.
+
+### Implementing Logging Levels
 
 ```python
 from mcp.server import Server
@@ -481,7 +494,7 @@ import logging
 
 app = Server("logging-server")
 
-# Map MCP levels go Python logging levels
+# Map MCP levels to Python logging levels
 LEVEL_MAP = {
     LoggingLevel.DEBUG: logging.DEBUG,
     LoggingLevel.INFO: logging.INFO,
@@ -512,7 +525,7 @@ async def debug_operation(data: str) -> str:
         raise
 ```
 
-### How To Send Log Messages To Client
+### Sending Log Messages to Client
 
 ```python
 @app.tool()
@@ -525,7 +538,7 @@ async def complex_operation(input: str, ctx) -> str:
         message=f"Starting complex operation with input: {input}"
     )
     
-    # Doin work...
+    # Dey do work...
     result = await do_work(input)
     
     await ctx.send_log(
@@ -579,7 +592,7 @@ class InternalError(ToolError):
 async def safe_operation(input: str) -> str:
     """Tool with comprehensive error handling."""
     
-    # Make sure say the input correct
+    # Check say di input correct
     if not input:
         raise ValidationError("Input cannot be empty")
     
@@ -591,7 +604,7 @@ async def safe_operation(input: str) -> str:
         if not await check_permission(input):
             raise PermissionError(f"read {input}")
         
-        # Do the work
+        # Do di operation
         result = await perform_operation(input)
         
         if result is None:
@@ -609,7 +622,7 @@ async def safe_operation(input: str) -> str:
         raise InternalError(f"Unexpected error: {type(e).__name__}")
 ```
 
-### Error Handling for TypeScript
+### Error Handling in TypeScript
 
 ```typescript
 import { McpError, ErrorCode } from "@modelcontextprotocol/sdk/types.js";
@@ -621,7 +634,7 @@ function validateInput(data: unknown): asserts data is ValidInput {
       "Input must be an object"
     );
   }
-  // More validation dem...
+  // Mo validation...
 }
 
 server.setRequestHandler(CallToolSchema, async (request) => {
@@ -636,7 +649,7 @@ server.setRequestHandler(CallToolSchema, async (request) => {
     
   } catch (error) {
     if (error instanceof McpError) {
-      throw error;  // E don be MCP error already
+      throw error;  // Na MCP error already
     }
     
     // Change oda errors
@@ -656,65 +669,35 @@ server.setRequestHandler(CallToolSchema, async (request) => {
 
 ---
 
-## Experimental Features (MCP 2025-11-25)
+## Version-Sensitive Features
 
-Dis features dey mark as experimental inside di specification:
+### Tasks Extension
 
-### Tasks (Long-Running Operations)
-
-```python
-# Task dem dey make am possible to track long-time operations wey get state
-@app.task()
-async def training_task(model_id: str, data_path: str, ctx) -> str:
-    """Long-running ML training task."""
-    
-    # Report say task don start
-    await ctx.report_status("running", "Initializing training...")
-    
-    # Training loop
-    for epoch in range(100):
-        await train_epoch(model_id, data_path, epoch)
-        await ctx.report_status(
-            "running",
-            f"Training epoch {epoch + 1}/100",
-            progress=epoch + 1,
-            total=100
-        )
-    
-    await ctx.report_status("completed", "Training finished")
-    return f"Model {model_id} trained successfully"
-```
+Tasks na official, separately versioned extension for MCP `2026-07-28`. One
+server fit return task handle from tool call, and client dey drive the task
+with `tasks/get`, `tasks/update`, and `tasks/cancel`. The experimental
+`2025-11-25` Tasks API no backward compatible, and `tasks/list` no dey
+again.
 
 ### Tool Annotations
 
-```python
-# Annotations dey give metadata about how tool go behave
-@app.tool(
-    annotations={
-        "destructive": False,      # E no go change data
-        "idempotent": True,        # E safe to try again
-        "timeout_seconds": 30,     # Wetin we dey expect as max time
-        "requires_approval": False # No need make user approve am
-    }
-)
-async def safe_query(query: str) -> str:
-    """A read-only database query tool."""
-    return await execute_read_query(query)
-```
+Tool annotations dey describe behavior like read-only, destructive, idempotent,
+or open-world operation. Dem be hints and no suppose to be trusted
+authorization or safety guarantees unless dem come from trusted server.
 
 ---
 
-## Wetin Dey Next
+## What's Next
 
 - [Module 8 - Best Practices](../../08-BestPractices/README.md)
 - [5.14 - Context Engineering](../mcp-contextengineering/README.md)
-- [MCP Specification Changelog](https://spec.modelcontextprotocol.io/)
+- [MCP Specification Changelog](https://modelcontextprotocol.io/specification/2026-07-28/changelog)
 
 ---
 
 ## Additional Resources
 
-- [MCP Specification 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Specification 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [JSON-RPC 2.0 Error Codes](https://www.jsonrpc.org/specification#error_object)
 - [Python SDK Examples](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples)
 - [TypeScript SDK Examples](https://github.com/modelcontextprotocol/typescript-sdk/tree/main/examples)

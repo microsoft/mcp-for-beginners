@@ -1,25 +1,25 @@
-# MCPలో పేజినేషన్ మరియు పెద్ద ఫలితాలు
+# MCPలో పేజినేషన్ మరియు పెద్ద ఫలితం సెట్‌లు
 
-మీ MCP సర్వర్ పెద్ద డేటాసెట్‌లను నిర్వహించినప్పుడు - వేల్ల సంఖ్యలో ఫైళ్ళు, డేటాబేస్ రికార్డులు లేదా శోధన ఫలితాలు జాబితా చేసే సందర్భాల్లో - మీమెరీని సమర్థవంతంగా నిర్వహించడానికి మరియు స్పందనాత్మక వినియోగదారు అనుభవాలను అందించడానికి పేజినేషన్ అవసరం. ఈ గైడ్ MCPలో పేజినేషన్‌ను ఎలా అమలు చేయాలి మరియు ఉపయోగించాలో వివరిస్తుంది.
+మీ MCP సర్వర్ పెద్ద డేటాసెట్లను నిర్వహించినప్పుడు - వేలాది ఫైళ్ళు, డేటాబేస్ రికార్డులు లేదా శోధన ఫలితాలను జాబితా చేయాలనుకుంటే - మీరు మెమోరీని సమర్థవంతంగా నిర్వహించడానికి మరియు స్పందనాత్మక యూజర్ అనుభవాలను అందించడానికి పేజినేషన్ అవసరం. ఈ గైడ్ MCPలో పేజినేషన్‌ను ఎలా అమలు చేయాలని మరియు ఉపయోగించాలో వివరిస్తుంది.
 
-## పేజినేషన్ ఎందుకు ముఖ్యము
+## పేజినేషన్ ఎందుకు ముఖ్యమైంది
 
-పేజినేషన్ లేకుండా, పెద్ద ప్రతిస్పందనల కారణంగా సంభవించగలవి:
+పేజినేషన్ లేకపోతే, పెద్ద సమాధానాలు ఈ సమస్యలు కలగజేస్తాయి:
 
-- **స్మృతి తక్కువవడం** - ఒకేసారి మిలయన్ల రికార్డులను లోడ్ చేయడం  
-- **మందగతి ప్రతిస్పందనలు** - డేటా మొత్తం లోడ్ అయ్యేవరకు వినియోగదారులు వేచి ఉండాలి  
-- **టైమ్ అవుట్ పొరపాట్లు** - అభ్యర్థనలు టైమ్ అవుట్ పరిమితులు దాటి పోతాయి  
-- **దుర్బల AI పనితీరు** - LLMలు భారీ కాంటెక్స్టుతో సగటు వేగంగా పనిచేయలేవు  
+- **మెమొరీ కల్లోనం** - ఒకేసారి లక్షల సంఖ్యలో రికార్డులు లోడ్ చేస్తే
+- **స్పందన సమయాలు నెమ్మదవడం** - అన్ని డేటా లోడ్ అయ్యేవరకు యూజర్లు వేచి ఉండాలి
+- **టైమవుట్ లోపాలు** - అభ్యర్థనలు టైమవుట్ పరిమితులను మించి పోతాయి
+- **తప్పు AI పనితీరు** - పెద్ద పరిసరంతో LLMలు ఇబ్బంది పడతాయి
 
-MCP ఫలిత సెట్‌లలో నమ్మకమున్న, స్థిరమైన పేజింగ్ కోసం **కర్సర్-ఆధారిత పేజినేషన్** ఉపయోగిస్తుంది.
+MCP ఫలితాల సెట్‌లను నమ్మకదాయకంగా, నిరంతరంగా పేజింగ్ చేయడానికి **కర్సర్ ఆధారిత పేజినేషన్** ఉపయోగిస్తుంది.
 
 ---
 
-## MCP పేజినేషన్ ఎలా పనిచేస్తుంది
+## MCPలో పేజినేషన్ ఎలా పనిచేస్తుంది
 
-### కర్సర్ భావన
+### కర్సర్ కాన్సెప్ట్
 
-**కర్సర్** అనేది ఫలిత సెట్‌లో మీ స్థానం సూచించే ఒక అపారదర్శక స్ట్రింగ్. దీన్ని పొడటి పుస్తకంలో బుక్‌మార్క్ లాగా పరిగణించండి.
+ఒక **కర్సర్** అనేది ఫలితాల సెట్‌లో మీ స్థానాన్ని గుర్తించే అన్య రహస్యమైన స్ట్రింగ్. దీన్ని పొడవైన పుస్తకం లో ఒక బుక్‌మార్క్ లాగా గమనించండి.
 
 ```mermaid
 sequenceDiagram
@@ -35,14 +35,15 @@ sequenceDiagram
     Client->>Server: tools/list (కర్సర్: "def456")
     Server-->>Client: tools [21-25], nextCursor: null (ముగింపు)
 ```
-### MCP పద్ధతులలో పేజినేషన్
 
-ఈ MCP పద్ధతులు పేజినేషన్‌ను మద్దతు ఇస్తాయి:
+### MCP మెథడ్లలో పేజినేషన్
 
-| పద్ధతి | తిరిగి ఇస్తుంది | కర్సర్ మద్దతు |
-|--------|----------------|---------------|
-| `tools/list` | సాధన నిర్వచనాలు | ✅ |
-| `resources/list` | వనరుల నిర్వచనాలు | ✅ |
+ఈ MCP మెథడ్లు పేజినేషన్‌కు మద్దతు ఇస్తాయి:
+
+| మెథడ్ | ఫలితాలు | కర్సర్ మద్దతు |
+|--------|---------|----------------|
+| `tools/list` | టూల్ నిర్వచనాలు | ✅ |
+| `resources/list` | వనరు నిర్వచనాలు | ✅ |
 | `prompts/list` | ప్రాంప్ట్ నిర్వచనాలు | ✅ |
 | `resources/templates/list` | వనరు టెంప్లేట్లు | ✅ |
 
@@ -50,7 +51,7 @@ sequenceDiagram
 
 ## సర్వర్ అమలు
 
-### Python (FastMCP)
+### పైథాన్ (FastMCP)
 
 ```python
 from mcp.server import Server
@@ -59,7 +60,7 @@ import math
 
 app = Server("paginated-server")
 
-# అనుకరించబడిన పెద్ద డేటాసెట్
+# అనుకరించిన భారీ డేటాసెట్
 ALL_TOOLS = [
     Tool(name=f"tool_{i}", description=f"Tool number {i}", inputSchema={})
     for i in range(100)
@@ -79,11 +80,11 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
         except ValueError:
             start_index = 0
     
-    # ఫలితాల పేజీ పొందండి
+    # ఫలితాల పేజీని పొందండి
     end_index = min(start_index + PAGE_SIZE, len(ALL_TOOLS))
     page_tools = ALL_TOOLS[start_index:end_index]
     
-    # తదుపరి కర్సర్ లెక్కించండి
+    # తదుపరి కర్సర్ ను లెక్కించండి
     next_cursor = None
     if end_index < len(ALL_TOOLS):
         next_cursor = str(end_index)
@@ -94,7 +95,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
     )
 ```
 
-### TypeScript
+### టైప్‌స్క్రిప్ట్
 
 ```typescript
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
@@ -105,7 +106,7 @@ const server = new Server({
   version: "1.0.0"
 });
 
-// అనుకరించిన పెద్ద డేటాసెట్
+// అనుకరణ పెద్ద డేటాసెట్
 const ALL_TOOLS = Array.from({ length: 100 }, (_, i) => ({
   name: `tool_${i}`,
   description: `Tool number ${i}`,
@@ -115,7 +116,7 @@ const ALL_TOOLS = Array.from({ length: 100 }, (_, i) => ({
 const PAGE_SIZE = 10;
 
 server.setRequestHandler(ListToolsResultSchema, async (request) => {
-  // కర్సర్‌ని డీకోడు చేయండి
+  // కర్సర్ డీకోడ్ చేయండి
   let startIndex = 0;
   if (request.params?.cursor) {
     startIndex = parseInt(request.params.cursor, 10) || 0;
@@ -125,7 +126,7 @@ server.setRequestHandler(ListToolsResultSchema, async (request) => {
   const endIndex = Math.min(startIndex + PAGE_SIZE, ALL_TOOLS.length);
   const pageTools = ALL_TOOLS.slice(startIndex, endIndex);
   
-  // తదుపరి కర్సర్‌ని లెక్కించండి
+  // తదుపరి కర్సర్ లెక్కించండి
   const nextCursor = endIndex < ALL_TOOLS.length ? String(endIndex) : undefined;
   
   return {
@@ -135,7 +136,7 @@ server.setRequestHandler(ListToolsResultSchema, async (request) => {
 });
 ```
 
-### Java (Spring MCP)
+### జావా (Spring MCP)
 
 ```java
 @Service
@@ -145,7 +146,7 @@ public class PaginatedToolService {
     private final List<Tool> allTools;
     
     public PaginatedToolService() {
-        // పెద్ద డేటాను ప్రారంభించండి
+        // పెద్ద డేటాసెట్‌ను ప్రారంభించండి
         this.allTools = IntStream.range(0, 100)
             .mapToObj(i -> new Tool("tool_" + i, "Tool number " + i, Map.of()))
             .collect(Collectors.toList());
@@ -153,7 +154,7 @@ public class PaginatedToolService {
     
     @McpMethod("tools/list")
     public ListToolsResult listTools(@Param("cursor") String cursor) {
-        // కర్సర్ డీకోడ్ చెయ్యండి
+        // కర్సర్‌ను డీకోడ్ చేయండి
         int startIndex = 0;
         if (cursor != null && !cursor.isEmpty()) {
             try {
@@ -167,7 +168,7 @@ public class PaginatedToolService {
         int endIndex = Math.min(startIndex + PAGE_SIZE, allTools.size());
         List<Tool> pageTools = allTools.subList(startIndex, endIndex);
         
-        // తదుపరి కర్సర్ లెక్కించండి
+        // తదుపరి కర్సర్‌ని లెక్కించండి
         String nextCursor = endIndex < allTools.size() ? String.valueOf(endIndex) : null;
         
         return new ListToolsResult(pageTools, nextCursor);
@@ -177,9 +178,9 @@ public class PaginatedToolService {
 
 ---
 
-## కస్టమర్ అమలు
+## క్లయింట్ అమలు
 
-### Python క్లయింట్
+### పైథాన్ క్లయింట్
 
 ```python
 from mcp import ClientSession
@@ -205,7 +206,7 @@ async with client_session as session:
     print(f"Found {len(tools)} tools")
 ```
 
-### TypeScript క్లయింట్
+### టైప్‌స్క్రిప్ట్ క్లయింట్
 
 ```typescript
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
@@ -228,9 +229,9 @@ const tools = await getAllTools(client);
 console.log(`Found ${tools.length} tools`);
 ```
 
-### ఆలస్య లోడింగ్ నమూనా
+### లేజీ లోడింగ్ నమూనా
 
-చాలా పెద్ద డేటాసెట్‌ల కోసం, పేజీలను అవసరానుసారం లోడ్ చేయండి:
+చాలా పెద్ద డేటాసెట్ల కోసం, అవసరం పడినప్పుడు పేజీలను లోడ్ చేయండి:
 
 ```python
 class PaginatedToolIterator:
@@ -243,11 +244,11 @@ class PaginatedToolIterator:
         self.exhausted = False
     
     async def __anext__(self):
-        # అందుబాటులో ఉంటే బఫర్ నుండి తిరిగి వస్తుంది
+        # బ్యుఫర్ అందుబాటులో ఉన్నట్లయితే తిరిగి పంపండి
         if self.buffer:
             return self.buffer.pop(0)
         
-        # మనం అన్ని పేజీలను ముగించామో లేదో తనిఖీ చేయండి
+        # మేము అన్ని పేజీలను పూర్తిగా ఉపయోగించామో లేదో తనిఖీ చేయండి
         if self.exhausted:
             raise StopAsyncIteration
         
@@ -267,7 +268,7 @@ class PaginatedToolIterator:
     def __aiter__(self):
         return self
 
-# ఉపయోగం - పెద్ద డేటాసెట్స్‌ కోసం మెమరీ సామర్థ్యవంతమైనది
+# ఉపయోగం - పెద్ద డేటాసెట్‌ల కోసం మెమరీ ప్రయోజనకరమైనది
 async for tool in PaginatedToolIterator(session):
     process_tool(tool)
 ```
@@ -276,7 +277,7 @@ async for tool in PaginatedToolIterator(session):
 
 ## వనరులకు పేజినేషన్
 
-డైరెక్టరీలు లేదా పెద్ద డేటాసెట్‌ల కోసం వనరులకు తరచుగా పేజినేషన్ అవసరం:
+డైరెక్టరీలు లేదా పెద్ద డేటాసెట్లకు వనరులు సాధారణంగా పేజినేషన్ అవసరం:
 
 ```python
 from mcp.server import Server
@@ -292,12 +293,12 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
     directory = "/data/files"
     all_files = sorted(os.listdir(directory))
     
-    # కర్సర్‌ను డీకోడ్ చేయండి (ఫైల్ సూచిక)
+    # కర్సర్ డీకోడ్ చేయండి (ఫైల్ సూచిక)
     start_index = int(cursor) if cursor else 0
     page_size = 20
     end_index = min(start_index + page_size, len(all_files))
     
-    # ఈ పేజీ కోసం వనరుల జాబితా సృష్టించండి
+    # ఈ పేజీకి వనరు జాబితాను సృష్టించండి
     resources = []
     for filename in all_files[start_index:end_index]:
         filepath = os.path.join(directory, filename)
@@ -307,7 +308,7 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
             mimeType="application/octet-stream"
         ))
     
-    # తదుపరి కర్సర్‌ను లెక్కించండి
+    # తదుపరి కర్సర్ లెక్కించండి
     next_cursor = str(end_index) if end_index < len(all_files) else None
     
     return ListResourcesResult(
@@ -320,27 +321,27 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ## కర్సర్ డిజైన్ వ్యూహాలు
 
-### వ్యూహం 1: సూచిక ఆధారిత (సాధారణ)
+### వ్యూహం 1: సూచ్యకం ఆధారిత (సాధారణ)
 
 ```python
 # కర్సర్ కేవలం సూచిక మాత్రమే
-cursor = "50"  # ఐటమ్ 50 నుండి మొదలు పెట్టండి
+cursor = "50"  # అంశం 50 నుండి ప్రారంభించండి
 ```
 
-**పోర్స్:** సరళమైనది, స్టేట్‌లెస్  
-**కాన్స:** అంశాలు జతచేయబడితే/తీసివేయబడితే ఫలితాలు మారవచ్చు  
+**ప్రోస్:** సింపుల్, స్టేట్‌లెస్
+**కౌన్స్:** ఐటెమ్స్ చేర్చడం/తీసివేత వల్ల ఫలితాలు మారుతాయి
 
-### వ్యూహం 2: ID ఆధారిత (స్థిరమైనది)
+### వ్యూహం 2: ID ఆధారిత (స్థిరమైన)
 
 ```python
-# కర్సర్ చివరిసారిగా చూడబడిన ID
-cursor = "item_abc123"  # ఈ అంశం తర్వాత ప్రారంభించండి
+# కర్సర్ అనేది చివరిగా చూసిన ID
+cursor = "item_abc123"  # ఈ అంశం తరువాత ప్రారంభించండి
 ```
 
-**పోర్స్:** అంశాలు మారినా స్థిరంగా ఉంటుంది  
-**కాన్స:** క్రమబద్ధీకరించిన IDs అవసరం  
+**ప్రోస్:** ఐటెమ్స్ మారినా స్థిరంగా ఉంటుంది
+**కౌన్స్:** ఆర్డర్ చేసిన IDs అవసరం
 
-### వ్యూహం 3: సంక్లిష్ట స్థితి కోడ్ (సంక్లిష్టమైనది)
+### వ్యూహం 3: సంకేతీకృత పరిస్థితి (సంక్లిష్టమైన)
 
 ```python
 import base64
@@ -352,7 +353,7 @@ def encode_cursor(state: dict) -> str:
 def decode_cursor(cursor: str) -> dict:
     return json.loads(base64.b64decode(cursor).decode())
 
-# కర్సర్‌లో అనేక స్థితి ఫీల్డ్లు ఉన్నాయి
+# కర్సర్‌లో అనేక స్థితి ఫీల్డులు ఉంటాయి
 cursor = encode_cursor({
     "offset": 50,
     "filter": "active",
@@ -360,23 +361,23 @@ cursor = encode_cursor({
 })
 ```
 
-**పోర్స్:** సంక్లిష్ట స్థితిని కోడ్ చేయవచ్చు  
-**కాన్స:** మరింత సంక్లిష్టం, పెద్ద కర్సర్ స్ట్రింగులు  
+**ప్రోస్:** సంక్లిష్ట పరిస్థితిని సంకేతీకరించవచ్చు
+**కౌన్స్:** ఎక్కువ సంక్లిష్టత, పెద్ద కర్సర్ స్ట్రింగులు
 
 ---
 
-## ఉత్తమ సాధనాలు
+## ఉత్తమ ఆచారాలు
 
-### 1. సరైన పేజీ పరిమాణాలను ఎంచుకోండి
+### 1. సరైన పేజీ పరిమాణాలు ఎంచుకోండి
 
 ```python
-# డేటా పరిమాణాన్ని పరిగణనలోకి తీసుకోండి
-PAGE_SIZE_SMALL_ITEMS = 100   # సాదా మెటాడేటా
-PAGE_SIZE_MEDIUM_ITEMS = 20   # సంపన్నమైన ఆబ్జెక్టులు
-PAGE_SIZE_LARGE_ITEMS = 5     # సంక్లిష్టమైన కంటెంట్
+# డేటా పరిమాణాన్ని పరిగణించండి
+PAGE_SIZE_SMALL_ITEMS = 100   # సులభమైన మెటాడేటా
+PAGE_SIZE_MEDIUM_ITEMS = 20   # సమృద్ధి చెందిన వస్తువులు
+PAGE_SIZE_LARGE_ITEMS = 5     # సంక్లిష్ట కంటెంట్
 ```
 
-### 2. తిరగబడని కర్సర్‌లను శ్రద్ధగా హ్యాండిల్ చేయండి
+### 2. చెల్లని కర్సర్లను శ్రద్ధగా నిర్వహించండి
 
 ```python
 @app.list_tools()
@@ -386,31 +387,31 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
         if start_index < 0 or start_index >= len(ALL_TOOLS):
             start_index = 0  # ప్రారంభానికి రీసెట్ చేయండి
     except (ValueError, TypeError):
-        start_index = 0  # చెల్లని కర్సర్, కొత్తదిగా ప్రారంభించండి
+        start_index = 0  # చెల్లని కర్సర్, కొత్తగా మొదలు చేయండి
     # ...
 ```
 
-### 3. మొత్తం సంఖ్యను చేర్చండి (ఐచ్చికం)
+### 3. మొత్తం లెక్కను చేర్చండి (వైకల్పికం)
 
 ```python
 return ListToolsResult(
     tools=page_tools,
     nextCursor=next_cursor,
-    # కొంత అమలు UI ప్రగతి కోసం మొత్తం కలిగి ఉంటాయి
+    # కొంత అమలు UI పురోగతికి మొత్తం ను కలిగి ఉంటాయి
     _meta={"total": len(ALL_TOOLS)}
 )
 ```
 
-### 4. ఎడ్జ్ కేస్‌లను పరీక్షించండి
+### 4. ఎడ్జ్ కేసులను పరీక్షించండి
 
 ```python
 async def test_pagination():
-    # ఖాళీ ఫలిత సెట్
+    # ఖాళీ ఫలితం సెట్
     result = await session.list_tools()
     assert result.tools == []
     assert result.nextCursor is None
     
-    # ఒకే పేజీ
+    # ఏకైక పేజీ
     result = await session.list_tools()
     assert len(result.tools) <= PAGE_SIZE
     
@@ -423,20 +424,20 @@ async def test_pagination():
 
 ## సాధారణ తప్పిదాలు
 
-### ❌ అన్ని ఫలితాలను తిరిగి ఇచ్చి క్లయింట్-సైడ్‌లో పేజినేట్ చేయడం
+### ❌ అన్నీ ఫలితాలను తిరిగి ఇచ్చి తరువాత క్లయింట్-సైడ్‌లో పేజినేట్ చేయడం
 
 ```python
-# చెడు: ప్రతీది మెమరీలో లోడ్ చేస్తుంది
+# చెడు: అన్ని 데이터를 జ్ఞాపకంలో లోడ్ చేస్తుంది
 @app.list_tools()
 async def list_tools() -> ListToolsResult:
-    all_tools = load_all_tools()  # 1 మిలియన్ టూల్స్!
+    all_tools = load_all_tools()  # 1 మిలియన్ పరికరాలు!
     return ListToolsResult(tools=all_tools)
 ```
 
-### ✅ డేటా మూలంలోనే పేజినేట్ చేయడం
+### ✅ డేటా మూలంలోనే పేజినేట్ చేయండి
 
 ```python
-# మంచిది: అవసరమైన వాటిని మాత్రమే లోడ్ చేస్తుంది
+# మంచి: అవసరమైనది మాత్రమే లోడ్ అవుతుంది
 @app.list_tools()
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     offset = int(cursor) if cursor else 0
@@ -446,23 +447,23 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ---
 
-## తర్వాత ఏమి ఉంది
+## తరువాత ఏమిటి
 
-- [మాడ్యూల్ 5.14 - కాంటెక్స్ట్ ఇంజనీరింగ్](../../05-AdvancedTopics/mcp-contextengineering/README.md)
-- [మాడ్యూల్ 8 - ఉత్తమ సాధనాలు](../../08-BestPractices/README.md)
-- [3.8 - మీ MCP సర్వర్‌ని పరీక్షించడం](../../03-GettingStarted/08-testing/README.md)
+- [Module 5.14 - Context Engineering](../../05-AdvancedTopics/mcp-contextengineering/README.md)
+- [Module 8 - Best Practices](../../08-BestPractices/README.md)
+- [3.8 - Testing Your MCP Server](../../03-GettingStarted/08-testing/README.md)
 
 ---
 
 ## అదనపు వనరులు
 
-- [MCP ప్రత్యేకణ - పేజినేషన్](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [కర్సర్-ఆధారిత పేజినేషన్ వివరాలు](https://slack.engineering/evolving-api-pagination-at-slack/)
-- [Python SDK pagination tests](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+- [MCP స్పెసిఫికేషన్ - పేజినేషన్](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [కర్సర్-ఆధారిత పేజినేషన్ వివరణ](https://slack.engineering/evolving-api-pagination-at-slack/)
+- [Python SDK పేజినేషన్ పరీక్షలు](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**వ్యాఖ్యానము**:  
-ఈ డాక్యుమెంట్‌ను AI అనువాద సర్వీస్ [Co-op Translator](https://github.com/Azure/co-op-translator) ఉపయోగించి అనువదించబడింది. మేము ఖచ్చితత్వానికి ప్రయత్నిస్తున్నప్పటికీ, ఆటోమేటెడ్ అనువాదాలలో పొరపాట్లు లేదా లోపాలు ఉండవచ్చు. ఆ బాషలో ఉన్న అసలు డాక్యుమెంట్‌ను అధికారిక మూలం గా పరిగణించాలి. ముఖ్యమైన సమాచారం కోసం, ప్రొఫెషనల్ మానవ అనువాదం సిఫార్సు చేయబడుతుంది. ఈ అనువాదం వలన కలిగే ఏవైనా అపార్థాలు లేదా తప్పుదోవ పట్టే పరిస్థితులకు మేము బాధ్యులను కాదు.
+**అస్వీకరణ**:
+ఈ పత్రం AI అనువాద సేవ [Co-op Translator](https://github.com/Azure/co-op-translator) ఉపయోగించి అనువదించబడింది. మేము ఖచ్చితత్వానికి ప్రయత్నిస్తున్నప్పటికీ, ఆటోమేటెడ్ అనువాదాలు తప్పులు లేదా అసమగ్రతలను కలిగి ఉండవచ్చు. దాని స్వదేశ భాషలో ఉన్న అసలు పత్రాన్ని అధికారం కలిగిన మూలంగా పరిగణించాలి. కీలకమైన సమాచారం కోసం, ప్రొఫెషనల్ మానవ అనువాదాన్ని సిఫారసు చేస్తాము. ఈ అనువాదం ఉపయోగం వల్ల కలిగే ఏవైనా అపార్థాలు లేదా తప్పుదారులు కోసం మేము బాధ్యత వహించము.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

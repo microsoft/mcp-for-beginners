@@ -1,21 +1,26 @@
-# Calculator LLM Client
+# Calculator LLM-klient
 
-En Java-applikation, der demonstrerer, hvordan man bruger LangChain4j til at oprette forbindelse til en MCP (Model Context Protocol) kalkulatortjeneste gennem MiniMax OpenAI-kompatibel API.
+> [!NOTE]
+> Denne løsning forbinder til kursets ældre HTTP+SSE calculator-service og
+> retter sig mod MCP `2025-11-25` SDK API'er. Det er ikke et `2026-07-28` Streamable HTTP
+> eksempel.
+
+En Java-applikation, der demonstrerer, hvordan man bruger LangChain4j til at forbinde til en MCP (Model Context Protocol) calculator-service gennem MiniMax OpenAI-kompatibel API.
 
 ## Forudsætninger
 
-- Java 21 eller nyere
+- Java 21 eller højere
 - Maven 3.6+ (eller brug den medfølgende Maven-wrapper)
 - En MiniMax API-nøgle
-- En MCP kalkulatortjeneste, der kører på `http://localhost:8080`
+- En MCP calculator-service, der kører på `http://localhost:8080`
 
 ## Sådan får du API-nøglen
 
 Denne applikation bruger MiniMax OpenAI-kompatibel API. Følg disse trin for at få din nøgle og endpoint:
 
 ### 1. Vælg en endpoint
-1. Brug `https://api.minimax.io/v1` for global endpoint
-2. Brug `https://api.minimaxi.com/v1` for China endpoint
+1. Brug `https://api.minimax.io/v1` for den globale endpoint
+2. Brug `https://api.minimaxi.com/v1` for Kina-endpoint
 
 ### 2. Opret en API-nøgle
 1. Opret en MiniMax API-nøgle fra din MiniMax-konto
@@ -23,7 +28,7 @@ Denne applikation bruger MiniMax OpenAI-kompatibel API. Følg disse trin for at 
 
 ### 3. Indstil miljøvariablerne
 
-#### På Windows (Command Prompt):
+#### På Windows (Kommandoprompt):
 ```cmd
 set OPENAI_API_KEY=your_minimax_api_key_here
 set OPENAI_BASE_URL=https://api.minimax.io/v1
@@ -46,7 +51,7 @@ export MINIMAX_MODEL_ID=MiniMax-M3
 
 ## Opsætning og installation
 
-1. **Klon eller naviger til projektmappen**
+1. **Klon eller gå til projektmappen**
 
 2. **Installer afhængigheder**:
    ```cmd
@@ -57,10 +62,10 @@ export MINIMAX_MODEL_ID=MiniMax-M3
    mvn clean install
    ```
 
-3. **Opsæt miljøvariablerne** (se afsnittet "Sådan får du API-nøglen" ovenfor)
+3. **Opsæt miljøvariablerne** (se "Sådan får du API-nøglen" ovenfor)
 
-4. **Start MCP kalkulatortjenesten**:
-   Sørg for, at du har kapitel 1's MCP kalkulatortjeneste kørende på `http://localhost:8080/sse`. Denne skal være kørende inden du starter klienten.
+4. **Start MCP Calculator-servicen**:
+   Sørg for, at du har chapter 1's MCP calculator-service kørende på `http://localhost:8080/sse`. Den skal være i gang, før du starter klienten.
 
 ## Kørsel af applikationen
 
@@ -71,15 +76,15 @@ java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 
 ## Hvad applikationen gør
 
-Applikationen demonstrerer tre hovedinteraktioner med kalkulatortjenesten:
+Applikationen demonstrerer tre hovedinteraktioner med calculator-servicen:
 
 1. **Addition**: Beregner summen af 24.5 og 17.3
 2. **Kvadratrod**: Beregner kvadratroden af 144
-3. **Hjælp**: Viser tilgængelige kalkulatorfunktioner
+3. **Hjælp**: Viser tilgængelige calculator-funktioner
 
 ## Forventet output
 
-Ved succesfuld kørsel bør du se output lignende:
+Når programmet kører korrekt, bør du se output lignende:
 
 ```
 The sum of 24.5 and 17.3 is 41.8.
@@ -92,24 +97,24 @@ The calculator service provides the following functions: add, subtract, multiply
 ### Almindelige problemer
 
 1. **"OPENAI_API_KEY miljøvariablen er ikke sat"**
-   - Sørg for, at du har sat miljøvariablen `OPENAI_API_KEY`
-   - Genstart dit terminal-/kommandoprompt efter at have sat variablen
+   - Sørg for, at du har sat `OPENAI_API_KEY` miljøvariablen
+   - Genstart dit terminal-/kommandoprompt-vindue efter indstilling
 
 2. **"Forbindelse nægtet til localhost:8080"**
-   - Sikr, at MCP kalkulatortjenesten kører på port 8080
+   - Sørg for at MCP calculator-servicen kører på port 8080
    - Tjek om en anden tjeneste bruger port 8080
 
-3. **"Autentificering mislykkedes"**
-   - Bekræft, at din API-nøgle er gyldig
-   - Kontroller at `OPENAI_BASE_URL` matcher den endpoint, du havde tænkt at bruge
+3. **"Godkendelse mislykkedes"**
+   - Bekræft at din API-nøgle er gyldig
+   - Kontroller at `OPENAI_BASE_URL` matcher den endpoint, du ønskede at bruge
 
-4. **Maven build fejl**
-   - Sørg for at du bruger Java 21 eller nyere: `java -version`
-   - Prøv at rense bygningen: `mvnw clean`
+4. **Maven build-fejl**
+   - Sørg for, at du bruger Java 21 eller højere: `java -version`
+   - Prøv at rense build: `mvnw clean`
 
 ### Debugging
 
-For at aktivere debug logging, tilføj følgende JVM-argument ved kørsel:
+For at aktivere debug-logging, tilføj følgende JVM-argument ved kørsel:
 ```cmd
 java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
@@ -117,22 +122,22 @@ java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0
 ## Konfiguration
 
 Applikationen er konfigureret til:
-- Som standard at bruge MiniMax-M3; sæt `MINIMAX_MODEL_ID` for at vælge enten `MiniMax-M3` eller `MiniMax-M2.7`
-- At forbinde til `OPENAI_BASE_URL`, når den er sat; ellers bruger den `https://api.minimaxi.com/v1` når `MINIMAX_REGION=cn_zh`, eller `https://api.minimax.io/v1` som standard
-- At forbinde til MCP tjenesten på `http://localhost:8080/sse`
-- At bruge en timeout på 60 sekunder for forespørgsler
+- At bruge MiniMax-M3 som standard; sæt `MINIMAX_MODEL_ID` for at vælge enten `MiniMax-M3` eller `MiniMax-M2.7`
+- At forbinde til `OPENAI_BASE_URL`, når den er sat; ellers brug `https://api.minimaxi.com/v1` når `MINIMAX_REGION=cn_zh`, eller `https://api.minimax.io/v1` som standard
+- At forbinde til MCP service på `http://localhost:8080/sse`
+- At bruge en 60 sekunders timeout for forespørgsler
 
 ## Afhængigheder
 
-Vigtige afhængigheder brugt i dette projekt:
-- **LangChain4j**: Til AI integration og værktøjsstyring
-- **LangChain4j MCP**: Til Model Context Protocol support
-- **LangChain4j OpenAI officiel**: Til MiniMax OpenAI-kompatibel API integration
+Nøgleafhængigheder brugt i dette projekt:
+- **LangChain4j**: Til AI-integration og værktøjsstyring
+- **LangChain4j MCP**: Til Model Context Protocol-support
+- **LangChain4j OpenAI official**: Til MiniMax OpenAI-kompatibel API-integration
 - **Spring Boot**: Til applikationsframework og afhængighedsinjektion
 
 ## Licens
 
-Dette projekt er licenseret under Apache License 2.0 - se filen [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) for detaljer.
+Dette projekt er licenseret under Apache License 2.0 - se [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) filen for detaljer.
 
 ---
 

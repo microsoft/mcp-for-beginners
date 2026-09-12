@@ -1,27 +1,29 @@
 # 🚀 Ferramentas MCP
 
-## 🧠 Visão Geral do Caminho de Aprendizagem da Integração do Banco de Dados MCP
+## 🧠 Visão geral do Caminho de Aprendizagem da Integração com Banco de Dados MCP
 
-Aqui você aprenderá a usar ferramentas que utilizam MCP. Sua experiência ao usar essas ferramentas melhorará à medida que conectar servidores MCP a elas.
+Aqui você aprenderá como usar ferramentas que utilizam MCP. Sua experiência ao usar essas ferramentas melhorará à medida que você conectar servidores MCP a elas.
 
 ## 🔗 Recursos Oficiais MCP
 
 - 📘 [Documentação MCP](https://modelcontextprotocol.io/) – Tutoriais detalhados e guias do usuário
-- 📜 [Especificação MCP (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/) – Arquitetura do protocolo e referências técnicas
+- 📜 [Especificação MCP (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/) – Arquitetura do protocolo e referências técnicas
 - 🧑‍💻 [Repositório MCP no GitHub](https://github.com/modelcontextprotocol) – SDKs open-source, ferramentas e exemplos de código
-- 🌐 [Comunidade MCP](https://github.com/orgs/modelcontextprotocol/discussions) – Participe de discussões e contribua com a comunidade
+- 🌐 [Comunidade MCP](https://github.com/orgs/modelcontextprotocol/discussions) – Participe de discussões e contribua para a comunidade
 - 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Melhores práticas de segurança e mitigação de riscos
+
+
 
 ## 🌟 Comunidade e Suporte
 
 ### Obtenha Ajuda
 
 - **Azure AI Discord**: [Participe para suporte especializado](https://discord.com/invite/ByRwuEEgH4)
-- **Comunidade MCP**: [Participe das discussões mais amplas sobre MCP](https://github.com/orgs/modelcontextprotocol/discussions)
+- **Comunidade MCP**: [Participe das discussões mais amplas do MCP](https://github.com/orgs/modelcontextprotocol/discussions)
 
 ## 🚀 Pronto para Começar?
 
-Inicie sua jornada com o **[app GitHub Copilot](./01-copilot-app/README.md)**
+Comece sua jornada com **[aplicativo GitHub Copilot](./01-copilot-app/README.md)**
 
 ---
 
