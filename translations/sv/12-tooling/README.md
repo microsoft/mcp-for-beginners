@@ -1,31 +1,33 @@
-# 🚀 MCP-verktyg
+# 🚀 MCP Verktyg
 
-## 🧠 Översikt av inlärningsvägen för MCP-databasintegration
+## 🧠 Översikt av MCP Databasintegrationslärväg
 
-Här kommer du att lära dig hur du använder verktyg som använder MCP. Din erfarenhet av att använda dessa verktyg kommer att förbättras när du kopplar MCP-servrar till dem.
+Här kommer du att lära dig hur du använder verktyg som använder MCP. Din erfarenhet av att använda dessa verktyg kommer att förbättras när du ansluter MCP-servrar till dem.
 
-## 🔗 Officiella MCP-resurser
+## 🔗 Officiella MCP Resurser
 
-- 📘 [MCP-dokumentation](https://modelcontextprotocol.io/) – Detaljerade handledningar och användarguider  
-- 📜 [MCP-specifikation (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/) – Protokollarkitektur och tekniska referenser  
-- 🧑‍💻 [MCP GitHub-förråd](https://github.com/modelcontextprotocol) – Öppen källkod SDK:er, verktyg och kodexempel  
-- 🌐 [MCP-community](https://github.com/orgs/modelcontextprotocol/discussions) – Delta i diskussioner och bidra till communityn  
-- 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Säkerhetsbästa praxis och riskhantering  
+- 📘 [MCP Dokumentation](https://modelcontextprotocol.io/) – Detaljerade guider och användarhandledningar
+- 📜 [MCP Specifikation (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/) – Protokollarkitektur och tekniska referenser
+- 🧑‍💻 [MCP GitHub Repository](https://github.com/modelcontextprotocol) – Open-source SDKs, verktyg och kodexempel
+- 🌐 [MCP Community](https://github.com/orgs/modelcontextprotocol/discussions) – Delta i diskussioner och bidra till communityn
+- 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Säkerhetsbästa praxis och riskhantering
 
-## 🌟 Community och support
 
-### Få hjälp
 
-- **Azure AI Discord**: [Gå med för expertstöd](https://discord.com/invite/ByRwuEEgH4)  
-- **MCP-community**: [Gå med i bredare MCP-diskussioner](https://github.com/orgs/modelcontextprotocol/discussions)  
+## 🌟 Community och Support
+
+### Få Hjälp
+
+- **Azure AI Discord**: [Gå med för expertstöd](https://discord.com/invite/ByRwuEEgH4)
+- **MCP Community**: [Delta i bredare MCP-diskussioner](https://github.com/orgs/modelcontextprotocol/discussions)
 
 ## 🚀 Redo att börja?
 
-Börja din resa med **[GitHub Copilot-app](./01-copilot-app/README.md)**
+Börja din resa med **[GitHub Copilot app](./01-copilot-app/README.md)**
 
 ---
 
-*Bemästra dessa med MCP med hjälp av dessa verktyg för ökad produktivitet och sömlös integration.*
+*Bemästra dessa med MCP med dessa verktyg för ökad produktivitet och sömlös integration.*
 
 ---
 

@@ -1,14 +1,19 @@
 # Felsökning med MCP Inspector
 
-**MCP Inspector** är ett viktigt felsökningsverktyg som låter dig interaktivt testa och felsöka dina MCP-servrar utan att behöva en fullständig AI-värdapplikation. Tänk på det som "Postman för MCP" - det ger ett visuellt gränssnitt för att skicka förfrågningar, visa svar och förstå hur din server beter sig.
+> [!NOTE]
+> Kommandon som använder `--sse` och URL:er som slutar på `/sse` testar den äldre HTTP+SSE
+> transporten. För en ny MCP `2026-07-28` server, använd en Inspector-version som
+> stöder Streamable HTTP och välj den transporten istället.
+
+**MCP Inspector** är ett oumbärligt felsökningsverktyg som låter dig interaktivt testa och felsöka dina MCP-servrar utan att behöva en fullständig AI-värdsapplikation. Tänk på det som "Postman för MCP" - det ger ett visuellt gränssnitt för att skicka förfrågningar, visa svar och förstå hur din server beter sig.
 
 ## Varför använda MCP Inspector?
 
 När du bygger MCP-servrar stöter du ofta på dessa utmaningar:
 
-- **"Kör min server överhuvudtaget?"** - Inspector visar anslutningsstatus
-- **"Är mina verktyg registrerade korrekt?"** - Inspector listar alla tillgängliga verktyg
-- **"Vad är svarsformatet?"** - Inspector visar fullständiga JSON-svar
+- **"Kör min server ens?"** - Inspector visar anslutningsstatus
+- **"Är mina verktyg korrekt registrerade?"** - Inspector listar alla tillgängliga verktyg
+- **"Vad är svarformatet?"** - Inspector visar fullständiga JSON-svar
 - **"Varför fungerar inte detta verktyg?"** - Inspector visar detaljerade felmeddelanden
 
 ## Förutsättningar
@@ -52,9 +57,9 @@ Lägg till i `package.json`:
 
 ## Ansluta till din server
 
-### stdio-servrar (lokal process)
+### stdio-servrar (lokalt process)
 
-För servrar som kommunicerar via standard in/ut:
+För servrar som kommunicerar via standardinput/output:
 
 ```bash
 # Python-server
@@ -71,7 +76,7 @@ OPENAI_API_KEY=xxx npx @modelcontextprotocol/inspector python server.py
 
 För servrar som körs som HTTP-tjänster:
 
-1. Starta servern först:
+1. Starta din server först:
    ```bash
    python server.py  # Servern körs på http://localhost:8080
    ```
@@ -83,7 +88,7 @@ För servrar som körs som HTTP-tjänster:
 
 ---
 
-## Inspector-gränssnittets översikt
+## Översikt av Inspector-gränssnittet
 
 När Inspector startar ser du ett webbgränssnitt (vanligtvis på `http://localhost:5173`):
 
@@ -111,7 +116,7 @@ När Inspector startar ser du ett webbgränssnitt (vanligtvis på `http://localh
 
 ---
 
-## Testa verktyg
+## Test av verktyg
 
 ### Lista tillgängliga verktyg
 
@@ -120,16 +125,16 @@ När Inspector startar ser du ett webbgränssnitt (vanligtvis på `http://localh
 3. Du ser alla registrerade verktyg med:
    - Verktygsnamn
    - Beskrivning
-   - Indataschema (parametrar)
+   - Inmatningsschema (parametrar)
 
 ### Anropa ett verktyg
 
 1. Välj ett verktyg från listan
 2. Fyll i de obligatoriska parametrarna i formuläret
 3. Klicka på **Run Tool**
-4. Se svaret i resultatpanelen
+4. Se svaret i resultatspanelen
 
-**Exempel: Testa ett kalkylatorverktyg**
+**Exempel: Testa ett kalkylatörverktyg**
 
 ```
 Tool: add
@@ -164,12 +169,12 @@ Error Response:
 
 Vanliga felkoder:
 | Kod | Betydelse |
-|------|------------|
-| -32700 | Parsfel (ogiltig JSON) |
+|------|---------|
+| -32700 | Parse-fel (ogiltig JSON) |
 | -32600 | Ogiltig förfrågan |
-| -32601 | Metod hittades inte |
+| -32601 | Metod ej funnen |
 | -32602 | Ogiltiga parametrar |
-| -32603 | Intern fel |
+| -32603 | Internt fel |
 
 ---
 
@@ -180,7 +185,7 @@ Vanliga felkoder:
 1. Klicka på fliken **Resources**
 2. Inspector anropar `resources/list`
 3. Du ser:
-   - Resursens URI:er
+   - Resurs-URIer
    - Namn och beskrivningar
    - MIME-typer
 
@@ -188,7 +193,7 @@ Vanliga felkoder:
 
 1. Välj en resurs
 2. Klicka på **Read Resource**
-3. Se det returnerade innehållet
+3. Se innehållet som returneras
 
 **Exempelutdata:**
 
@@ -223,9 +228,12 @@ Content-Type: application/json
 
 ---
 
-## Analys av meddelandeloggen
+## Analys av meddelandelogg
 
-Meddelandeloggen visar alla MCP-protokollmeddelanden:
+Meddelandeloggen visar alla MCP-protokollmeddelanden. Transkriptionen nedan är från en
+äldre `2025-11-25` server och inkluderar den borttagna `initialize` handskakningen. En
+`2026-07-28` server använder självständig förfrågningsmetadata och `server/discover`
+istället.
 
 ```
 14:32:01 → {"jsonrpc":"2.0","id":1,"method":"initialize",...}
@@ -236,12 +244,12 @@ Meddelandeloggen visar alla MCP-protokollmeddelanden:
 14:32:05 ← {"jsonrpc":"2.0","id":3,"result":{"content":[...]}}
 ```
 
-### Vad du ska leta efter
+### Vad man ska leta efter
 
-- **Förfrågan/svar-par**: Varje `→` bör ha en matchande `←`
+- **Förfrågnings-/svarspar**: Varje `→` ska ha ett motsvarande `←`
 - **Felmeddelanden**: Leta efter `"error"` i svaren
-- **Tidsintervaller**: Stora luckor kan indikera prestandaproblem
-- **Protokollversion**: Säkerställ att server och klient är överens om version
+- **Timing**: Stora luckor kan tyda på prestandaproblem
+- **Protokollversion**: Säkerställ att server och klient är överens om versionen
 
 ---
 
@@ -314,12 +322,12 @@ Lägg till i `.vscode/tasks.json`:
 
 ### Scenario 1: Servern ansluter inte
 
-**Symptom:** Inspector visar "Disconnected" eller hänger vid "Connecting..."
+**Symptom:** Inspector visar "Disconnected" eller fastnar på "Connecting..."
 
 **Checklista:**
 1. ✅ Är serverkommandot korrekt?
 2. ✅ Är alla beroenden installerade?
-3. ✅ Är serverns sökväg absolut eller relativ till aktuell katalog?
+3. ✅ Är serverns sökväg absolut eller relativ till nuvarande katalog?
 4. ✅ Är nödvändiga miljövariabler satta?
 
 **Felsökningssteg:**
@@ -327,7 +335,7 @@ Lägg till i `.vscode/tasks.json`:
 # Testa servern manuellt först
 python -c "import your_server_module; print('OK')"
 
-# Kontrollera importfel
+# Kontrollera efter importfel
 python -m your_server_module 2>&1 | head -20
 
 # Verifiera att MCP SDK är installerat
@@ -336,27 +344,27 @@ pip show mcp
 
 ### Scenario 2: Verktyg visas inte
 
-**Symptom:** Fliken Tools visar en tom lista
+**Symptom:** Verktygsfliken visar en tom lista
 
 **Möjliga orsaker:**
-1. Verktyg registrerades inte vid serverinitiering
-2. Servern kraschade efter start
-3. `tools/list`-hanteraren returnerar en tom array
+1. Verktygen registreras inte under serverstart
+2. Servern kraschade efter uppstart
+3. `tools/list` hanteraren returnerar en tom array
 
 **Felsökningssteg:**
-1. Kontrollera meddelandeloggen för svar på `tools/list`
-2. Lägg till loggning i din verktygsregistrering
-3. Verifiera att `@mcp.tool()`-dekorationer finns (Python)
+1. Kontrollera meddelandeloggen för `tools/list` svar
+2. Lägg till loggning i din verktygsregistreringskod
+3. Verifiera att `@mcp.tool()` dekoratörer finns (Python)
 
-### Scenario 3: Verktyget returnerar fel
+### Scenario 3: Verktyg returnerar fel
 
-**Symptom:** Verktygsanrop returnerar ett fel
+**Symptom:** Verktygsanrop returnerar felaktigt svar
 
-**Felsökningsstrategi:**
+**Felsökningsmetod:**
 1. Läs felmeddelandet noggrant
 2. Kontrollera att parametertyper matchar schemat
 3. Lägg till try/catch med detaljerade felmeddelanden
-4. Kontrollera serverloggar för stacktraces
+4. Kontrollera serverloggar för stackspårningar
 
 **Exempel på förbättrad felhantering:**
 
@@ -373,14 +381,14 @@ async def my_tool(param1: str, param2: int) -> str:
         raise McpError(f"Tool failed: {type(e).__name__}: {e}")
 ```
 
-### Scenario 4: Resursinnehållet är tomt
+### Scenario 4: Resursinnehåll tomt
 
 **Symptom:** Resurs returneras men innehållet är tomt eller null
 
 **Checklista:**
-1. ✅ Är filvägen eller URI korrekt?
-2. ✅ Har servern behörighet att läsa resursen?
-3. ✅ Returneras resursinnehållet korrekt?
+1. ✅ Filväg eller URI är korrekt
+2. ✅ Servern har behörighet att läsa resursen
+3. ✅ Resursinnehållet returneras korrekt
 
 ---
 
@@ -394,15 +402,15 @@ npx @modelcontextprotocol/inspector \
   --header "Authorization: Bearer your-token"
 ```
 
-### Detaljerad loggning
+### Utförlig loggning
 
 ```bash
 DEBUG=mcp* npx @modelcontextprotocol/inspector python server.py
 ```
 
-### Spela in sessioner
+### Inspelning av sessioner
 
-Inspector kan exportera meddelandelogg för senare analys:
+Inspector kan exportera meddelandeloggar för senare analys:
 1. Klicka på **Export Log** i meddelandepanelen
 2. Spara JSON-filen
 3. Dela med teammedlemmar för felsökning
@@ -411,15 +419,15 @@ Inspector kan exportera meddelandelogg för senare analys:
 
 ## Bästa praxis
 
-1. **Testa tidigt och ofta** - Använd Inspector under utveckling, inte bara när något går fel
-2. **Börja enkelt** - Testa grundläggande anslutning innan komplexa verktygsanrop
-3. **Kontrollera schemat** - Många fel beror på fel i parametrars typer
-4. **Läs felmeddelanden** - MCP-fel är oftast beskrivande
-5. **Håll Inspector öppen** - Det hjälper dig fånga problem medan du utvecklar
+1. **Testa tidigt och ofta** - Använd Inspector under utveckling, inte bara när det går fel
+2. **Börja enkelt** - Testa grundläggande anslutning innan mer komplexa verktygsanrop
+3. **Kontrollera schemat** - Många fel beror på typavvikelser i parametrar
+4. **Läs felmeddelanden** - MCP-fel är vanligtvis beskrivande
+5. **Ha Inspector öppen** - Det hjälper dig fånga problem under utveckling
 
 ---
 
-## Vad är nästa steg
+## Vad händer härnäst
 
 Du har slutfört Modul 3: Kom igång! Fortsätt din lärande:
 
@@ -430,12 +438,12 @@ Du har slutfört Modul 3: Kom igång! Fortsätt din lärande:
 ## Ytterligare resurser
 
 - [MCP Inspector GitHub Repository](https://github.com/modelcontextprotocol/inspector)
-- [MCP-specifikation - Protokollmeddelanden](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP-specifikation - protokollmeddelanden](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [JSON-RPC 2.0-specifikation](https://www.jsonrpc.org/specification)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Ansvarsfriskrivning**:
-Detta dokument har översatts med hjälp av AI-översättningstjänsten [Co-op Translator](https://github.com/Azure/co-op-translator). Även om vi strävar efter noggrannhet bör du vara medveten om att automatiska översättningar kan innehålla fel eller brister. Det ursprungliga dokumentet på dess modersmål ska betraktas som den auktoritativa källan. För kritisk information rekommenderas professionell mänsklig översättning. Vi ansvarar inte för några missförstånd eller felaktiga tolkningar som uppstår från användningen av denna översättning.
+Detta dokument har översatts med hjälp av AI-översättningstjänsten [Co-op Translator](https://github.com/Azure/co-op-translator). Även om vi strävar efter noggrannhet, var vänlig notera att automatiska översättningar kan innehålla fel eller brister. Det ursprungliga dokumentet på dess modersmål bör betraktas som den auktoritativa källan. För kritisk information rekommenderas professionell mänsklig översättning. Vi ansvarar inte för några missförstånd eller feltolkningar som uppstår till följd av användningen av denna översättning.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

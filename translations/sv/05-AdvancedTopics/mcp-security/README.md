@@ -1,40 +1,54 @@
-# MCP Säkerhetsbästa metoder - Avancerad implementeringsguide
+# MCP Säkerhetsbästa Praxis - Avancerad Implementeringsguide
 
-> **Nuvarande standard**: Denna guide speglar [MCP Specification 2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25/) säkerhetskrav och officiella [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).
+> **Nuvarande standard:** Denna guide speglar
+> [MCP Specifikation 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/)
+> och den officiella
+> [MCP Säkerhetsbästa Praxis](https://modelcontextprotocol.io/specification/2026-07-28/basic/security_best_practices).
 
-> **Framåtblick:** releasekandidaten `2026-07-28` stärker auktorisering ytterligare — klienter måste validera `iss`-parametern på auktoriseringssvar (RFC 9207), deklarera en OpenID Connect `application_type` under Dynamisk Klientregistrering, och binda registrerade referenser till den utfärdande auktoriseringsservern. Den förbjuder också formellt sessioner för autentisering, i enlighet med regeln "MÅSTE INTE använda sessioner för autentisering" som redan anges nedan. Se [What’s Changing in MCP: The 2026-07-28 Release Candidate](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md) för hela listan av auktoriserings-SEP:er.
+> **Uppdatering av auktorisation:** MCP `2026-07-28` kräver att klienter verifierar
+> `iss` parametern i auktorisationssvar (RFC 9207) och binder credentials till
+> den utgivande auktorisationsservern. Dynamisk klientregistrering är avvecklad;
+> nya implementationer bör använda Client ID Metadata-dokument. Protokollsessions
+> får inte användas för autentisering. Se
+> [Vad som förändrats i MCP: Specifikationen 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28.md).
 
-Säkerhet är avgörande för MCP-implementationer, särskilt i företagsmiljöer. Denna avancerade guide utforskar omfattande säkerhetspraxis för produktionssatta MCP-distributioner, som hanterar både traditionella säkerhetsfrågor och AI-specifika hot unika för Model Context Protocol.
+Säkerhet är kritiskt för MCP-implementationer, särskilt i företagsmiljöer. Denna avancerade guide utforskar omfattande säkerhetspraxis för produktionsdistributioner av MCP, med fokus på både traditionella säkerhetsaspekter och AI-specifika hot unika för Model Context Protocol.
 
 ## Introduktion
 
-Model Context Protocol (MCP) medför unika säkerhetsutmaningar som sträcker sig bortom traditionell mjukvarusäkerhet. När AI-system får tillgång till verktyg, data och externa tjänster uppstår nya attackvektorer såsom promptinjektion, verktygsförgiftning, sessionkapning, confused deputy-problem och sårbarheter vid token-passthrough.
+Model Context Protocol (MCP) introducerar unika säkerhetsutmaningar som
+går bortom traditionell mjukvarusäkerhet. Allt eftersom AI-system får tillgång till verktyg,
+data och externa tjänster, uppstår nya attackvektorer inklusive prompt-
+injektion, förgiftning av verktyg, hijacking av applikationssessioner, problem med
+förväxlade ombud och sårbarheter för token-passthrough.
 
-Denna lektion utforskar avancerade säkerhetsimplementeringar baserade på senaste MCP-specifikationen (2025-11-25), Microsofts säkerhetslösningar och etablerade företags-säkerhetsmönster.
+Denna lektion utforskar avancerade säkerhetsimplementationer baserade på MCP
+Specifikation `2026-07-28`, Microsofts säkerhetslösningar och etablerade
+företagsmönster för säkerhet.
 
 ### **Kärnprinciper för säkerhet**
 
-**Från MCP Specification (2025-11-25):**
+**Från MCP Specifikation `2026-07-28`:**
 
-- **Tydliga förbud**: MCP-servrar **FÅR INTE** acceptera token som inte är utfärdade för dem, och **FÅR INTE** använda sessioner för autentisering
-- **Obligatorisk verifiering**: Alla inkommande förfrågningar **MÅSTE** verifieras, och användarens samtycke **MÅSTE** inhämtas för proxyoperationer
-- **Säkra standardvärden**: Implementera fail-safe säkerhetskontroller med försvar-i-djupet-metoder
-- **Användarkontroll**: Användare måste ge uttryckligt samtycke innan någon datatillgång eller verktygskörning sker
+- **Expressa förbud**: MCP-servrar **FÅR INTE** acceptera tokens som inte är utfärdade för dem, och **FÅR INTE** använda sessioner för autentisering
+- **Obligatorisk verifiering**: Alla inkommande förfrågningar **MÅSTE** verifieras, och användarsamtycke **MÅSTE** erhållas för proxyoperationer
+- **Säkra standardinställningar**: Implementera felsäkra säkerhetskontroller med försvars-djup-metoder
+- **Användarkontroll**: Användare måste ge uttryckligt samtycke innan någon dataåtkomst eller verktygsexekvering
 
 ## Lärandemål
 
-I slutet av denna avancerade lektion kommer du att kunna:
+Vid slutet av denna avancerade lektion kommer du att kunna:
 
-- **Implementera avancerad autentisering**: Distribuera extern identitetsleverantörsintegration med Microsoft Entra ID och OAuth 2.1 säkerhetsmönster
-- **Förebygga AI-specifika attacker**: Skydda mot promptinjektion, verktygsförgiftning och sessionkapning med Microsoft Prompt Shields och Azure Content Safety
-- **Tillämpa företagsäkerhet**: Implementera omfattande loggning, övervakning och incidenthantering för produktionssatta MCP-distributioner  
-- **Säkra verktskörning**: Designa sandboxade körmiljöer med korrekt isolering och resurskontroller
-- **Hantera MCP-sårbarheter**: Identifiera och mildra confused deputy-problem, token-passthrough-sårbarheter och leverantörskedjerisker
-- **Integrera Microsoft-säkerhet**: Utnyttja Azure-säkerhetstjänster och GitHub Advanced Security för omfattande skydd
+- **Implementera avancerad autentisering**: Distribuera integration med extern identitetsleverantör med Microsoft Entra ID och OAuth 2.1 säkerhetsmönster
+- **Förebygga AI-specifika attacker**: Skydda mot prompt-injektion, verktygsförgiftning och session hijacking med Microsoft Prompt Shields och Azure Content Safety
+- **Tillämpa företagsäkerhet**: Implementera omfattande loggning, övervakning och insatsreaktion för produktionsdistributioner av MCP  
+- **Säker verktygsexekvering**: Designa sandboxade exekveringsmiljöer med korrekt isolering och resurskontroller
+- **Hantera MCP-sårbarheter**: Identifiera och mildra problem med förväxlade ombud, token passthrough-sårbarheter och leveranskedjerisker
+- **Integrera Microsofts säkerhet**: Utnyttja Azure säkerhetstjänster och GitHub Advanced Security för omfattande skydd
 
-## **OBLIGATORISKA säkerhetskrav**
+## **OBLIGATORISKA Säkerhetskrav**
 
-### **Kritiska krav från MCP Specification (2025-11-25):**
+### **Kritiska krav från MCP Specifikation `2026-07-28`**
 
 ```yaml
 Authentication & Authorization:
@@ -43,7 +57,8 @@ Authentication & Authorization:
   request_verification: "MUST verify ALL inbound requests"
   
 Proxy Operations:  
-  user_consent: "MUST obtain consent for dynamic client registration"
+    user_consent: "MUST obtain consent before authorization and sensitive actions"
+    client_registration: "Use Client ID Metadata Documents; DCR is deprecated"
   oauth_security: "MUST implement OAuth 2.1 with PKCE"
   redirect_validation: "MUST validate redirect URIs strictly"
   
@@ -53,20 +68,21 @@ Session Management:
   transport_security: "MUST use HTTPS for all communications"
 ```
 
-## Avancerad autentisering och auktorisering
+## Avancerad autentisering och auktorisation
 
-Moderna MCP-implementationer drar nytta av specifikationens utveckling mot delegation till externa identitetsleverantörer, vilket avsevärt förbättrar säkerhetsläget jämfört med anpassade autentiseringslösningar.
+Moderna MCP-implementationer drar nytta av specifikationens utveckling mot delegation till externa identitetsleverantörer, vilket avsevärt förbättrar säkerhetsnivån jämfört med anpassade autentiseringsimplementationer.
 
 ### **Microsoft Entra ID-integration**
 
-Den aktuella MCP-specifikationen (2025-11-25) tillåter delegation till externa identitetsleverantörer som Microsoft Entra ID, vilket ger säkerhetsfunktioner på företagsnivå:
+MCP Specifikation `2026-07-28` tillåter delegation till externa identitetsleverantörer
+som Microsoft Entra ID med företagsklassade säkerhetsfunktioner:
 
 **Säkerhetsfördelar:**
 - Företagsklassad multifaktorautentisering (MFA)
-- Villkorliga åtkomstprinciper baserade på riskbedömning
-- Centraliserad identitetshantering genom livscykeln
-- Avancerat skydd mot hot och anomalidetektion
-- Efterlevnad av företags-säkerhetsstandarder
+- Villkorade åtkomstpolicyer baserade på riskbedömning
+- Centraliserad hantering av identitetslivscykel
+- Avancerat skydd mot hot och avvikelsedetektion
+- Efterlevnad av företags säkerhetsstandarder
 
 ### .NET-implementation med Entra ID
 
@@ -262,7 +278,7 @@ public class AuditLoggingService
 
 ### Java Spring Security med OAuth 2.1-integration
 
-Förbättrad Spring Security-implementation enligt OAuth 2.1 säkerhetsmönster som krävs av MCP-specifikationen:
+Förbättrad Spring Security-implementation som följer OAuth 2.1-säkerhetsmönster enligt MCP-specifikation:
 
 ```java
 @Configuration
@@ -308,7 +324,7 @@ public class AdvancedMcpSecurityConfig {
             .cache(Duration.ofMinutes(5))
             .build();
             
-        // OBLIGATORISKT: Konfigurera validering av målgrupp
+        // OBLIGATORISKT: Konfigurera publikvalidering
         jwtDecoder.setJwtValidator(jwtValidator());
         return jwtDecoder;
     }
@@ -317,17 +333,17 @@ public class AdvancedMcpSecurityConfig {
     public Jwt validator jwtValidator() {
         List<OAuth2TokenValidator<Jwt>> validators = new ArrayList<>();
         
-        // Validera att utfärdaren är Microsoft Entra ID
+        // Validera att utgivaren är Microsoft Entra ID
         validators.add(new JwtIssuerValidator(
             String.format("https://login.microsoftonline.com/%s/v2.0", tenantId)));
         
-        // OBLIGATORISKT: Validera att målgruppen matchar MCP-servern
+        // OBLIGATORISKT: Validera att publiken matchar MCP-servern
         validators.add(new JwtAudienceValidator(expectedAudience));
         
-        // Validera tidsstämplar i token
+        // Validera token-tidsstämplar
         validators.add(new JwtTimestampValidator());
         
-        // Anpassad validerare för MCP-specifika påståenden
+        // Anpassad validator för MCP-specifika påståenden
         validators.add(new McpTokenValidator());
         
         return new DelegatingOAuth2TokenValidator<>(validators);
@@ -346,7 +362,7 @@ public class AdvancedMcpSecurityConfig {
     }
 }
 
-// Anpassad MCP-tokenvaliderare
+// Anpassad MCP-token-validator
 public class McpTokenValidator implements OAuth2TokenValidator<Jwt> {
     
     private static final Logger logger = LoggerFactory.getLogger(McpTokenValidator.class);
@@ -361,13 +377,13 @@ public class McpTokenValidator implements OAuth2TokenValidator<Jwt> {
                 "Token missing required MCP scopes", null));
         }
         
-        // Kontrollera högriskindikatorer
+        // Kontrollera efter högriskindikatorer
         if (hasRiskIndicators(jwt)) {
             errors.add(new OAuth2Error("high_risk_token", 
                 "Token indicates high-risk authentication", null));
         }
         
-        // Validera tokenbindning om den finns
+        // Validera token-binder om det finns
         if (!validateTokenBinding(jwt)) {
             errors.add(new OAuth2Error("invalid_binding", 
                 "Token binding validation failed", null));
@@ -389,13 +405,13 @@ public class McpTokenValidator implements OAuth2TokenValidator<Jwt> {
     }
     
     private boolean hasRiskIndicators(Jwt jwt) {
-        // Kontrollera riskindikatorer för Entra ID
+        // Kontrollera efter riskindikatorer i Entra ID
         String riskLevel = jwt.getClaimAsString("riskLevel");
         return "high".equalsIgnoreCase(riskLevel) || "medium".equalsIgnoreCase(riskLevel);
     }
     
     private boolean validateTokenBinding(Jwt jwt) {
-        // Implementera validering av tokenbindning om bundna tokens används
+        // Implementera token-bindningsvalidering om bundna tokens används
         return true; // Förenklat för exempel
     }
 }
@@ -416,17 +432,17 @@ public class AdvancedMcpSecurityInterceptor implements ToolExecutionInterceptor 
         String userId = authentication.getName();
         
         try {
-            // 1. Validera tokenmålgrupp (OBLIGATORISKT)
+            // 1. Validera token-publik (OBLIGATORISKT)
             validateTokenAudience(authentication);
             
-            // 2. Kontrollera försök till promptinjektion
+            // 2. Kontrollera försök till prompt-injektion
             if (promptDetector.detectInjection(request.getParameters())) {
                 auditService.logSecurityEvent(SecurityEventType.PROMPT_INJECTION_ATTEMPT, 
                     userId, toolName, request.getParameters());
                 throw new SecurityException("Potential prompt injection detected");
             }
             
-            // 3. Innehållssäkerhetsscreening med Azure Content Safety
+            // 3. Säkerhetsgranskning av innehåll med Azure Content Safety
             ContentSafetyResult safetyResult = contentSafetyClient.analyzeText(
                 request.getParameters().toString());
                 
@@ -436,10 +452,10 @@ public class AdvancedMcpSecurityInterceptor implements ToolExecutionInterceptor 
                 throw new SecurityException("Content safety violation detected");
             }
             
-            // 4. Verifieringar specifika för verktyg
+            // 4. Verktygsspecifika auktoriseringskontroller
             validateToolSpecificPermissions(toolName, authentication, request);
             
-            // 5. Hastighetsbegränsning och reglering
+            // 5. Rate limiting och throttling
             if (!rateLimitService.allowExecution(userId, toolName)) {
                 throw new SecurityException("Rate limit exceeded");
             }
@@ -505,7 +521,7 @@ public class AdvancedMcpSecurityInterceptor implements ToolExecutionInterceptor 
     }
     
     private boolean hasResourceAccess(String userId, String resourceId) {
-        // Implementeringen skulle kontrollera detaljerade resursbehörigheter
+        // Implementering skulle kontrollera detaljerade resursbehörigheter
         return resourceAccessService.hasAccess(userId, resourceId);
     }
 }
@@ -513,9 +529,9 @@ public class AdvancedMcpSecurityInterceptor implements ToolExecutionInterceptor 
 
 ## AI-specifika säkerhetskontroller & Microsoft-lösningar
 
-### **Försvar mot promptinjektion med Microsoft Prompt Shields**
+### **Försvar mot prompt-injektion med Microsoft Prompt Shields**
 
-Moderna MCP-implementationer utsätts för sofistikerade AI-specifika attacker som kräver specialiserade försvar:
+Moderna MCP-implementationer står inför sofistikerade AI-specifika attacker som kräver specialiserade försvar:
 
 ```python
 from mcp_server import McpServer
@@ -551,7 +567,7 @@ class MicrosoftPromptShieldsIntegration:
                     "JailbreakAttempt", 
                     "IndirectPromptInjection"
                 ],
-                output_type="FourSeverityLevels"  # Säker, låg, medel, hög
+                output_type="FourSeverityLevels"  # Säker, Låg, Medium, Hög
             )
             
             return {
@@ -562,7 +578,7 @@ class MicrosoftPromptShieldsIntegration:
             }
         except Exception as e:
             self.logger.error(f"Prompt injection analysis failed: {e}")
-            # Säker felsäkring: behandla analysfel som potentiell injektion
+            # Felsäkert: behandla analysfel som potentiell injektion
             return {"is_injection": True, "severity": 2, "reason": "Analysis failure"}
 
     async def apply_spotlighting(self, text: str, trusted_instructions: str) -> str:
@@ -604,7 +620,7 @@ class AdvancedPiiDetector:
         """Advanced PII detection with context awareness"""
         detected_pii = []
         
-        # Standard regex-baserad detektering
+        # Standard detektion baserad på regex
         for pii_type, pattern in self.pii_patterns.items():
             import re
             matches = re.findall(pattern, text, re.IGNORECASE)
@@ -616,7 +632,7 @@ class AdvancedPiiDetector:
                     "method": "regex"
                 })
         
-        # Microsoft Purview-integration för företagsdata-klassificering
+        # Microsoft Purview-integration för företagsdataklassificering
         if self.purview_endpoint:
             purview_results = await self.analyze_with_purview(text)
             detected_pii.extend(purview_results)
@@ -631,7 +647,7 @@ class AdvancedPiiDetector:
         """Use Microsoft Purview for enterprise data classification"""
         try:
             # Integration med Microsoft Purview för dataklassificering
-            # Detta skulle använda Purview-API:t för att identifiera känsliga datatyper
+            # Detta skulle använda Purview API för att identifiera känsliga datatyper
             # definierade i din organisations datakarta
             
             # Platshållare för faktisk Purview-integration
@@ -679,7 +695,7 @@ class EnterpriseEncryptionService:
             return secret.value.encode('utf-8')
         except Exception as e:
             self.logger.error(f"Failed to retrieve encryption key: {e}")
-            # Generera temporär nyckel som reserv (rekommenderas inte för produktion)
+            # Generera temporär nyckel som reservlösning (rekommenderas ej i produktion)
             return Fernet.generate_key()
     
     async def encrypt_sensitive_data(self, data: str, key_name: str) -> str:
@@ -704,7 +720,7 @@ class EnterpriseEncryptionService:
             self.logger.error(f"Decryption failed: {e}")
             raise SecurityException("Failed to decrypt sensitive data")
 
-# Förbättrad säkerhetsdekoration med Microsoft AI-säkerhetsintegration
+# Förbättrad säkerhetsdekoratör med Microsoft AI-säkerhetsintegration
 def enterprise_secure_tool(
     require_mfa: bool = False,
     content_safety_level: str = "medium",
@@ -742,7 +758,7 @@ def enterprise_secure_tool(
                 if require_mfa and not validate_mfa_token(request.context.get('token')):
                     raise SecurityException("Multi-factor authentication required")
                 
-                # 2. Detektering av promptinjektion
+                # 2. Promptinjektionsdetektion
                 combined_text = json.dumps(request.parameters, default=str)
                 injection_result = await prompt_shields.analyze_prompt_injection(combined_text)
                 
@@ -817,7 +833,7 @@ def enterprise_secure_tool(
                 raise
                 
             finally:
-                # Omfattande audit-loggning
+                # Omfattande revisionsloggning
                 if log_detailed:
                     await log_security_event({
                         'tool_name': self.get_name(),
@@ -837,7 +853,7 @@ def enterprise_secure_tool(
     
     return decorator
 
-# Exempelimplementering med förbättrad säkerhet
+# Exempel på implementation med förbättrad säkerhet
 @enterprise_secure_tool(
     require_mfa=True,
     content_safety_level="high", 
@@ -864,8 +880,8 @@ class EnterpriseCustomerDataTool(Tool):
         }
     
     async def execute_async(self, request: ToolRequest):
-        # Implementering skulle komma åt kunddata
-        # Alla säkerhetskontroller tillämpas via dekoratorn
+        # Implementeringen skulle få åtkomst till kunddata
+        # Alla säkerhetskontroller tillämpas via dekoratören
         customer_id = request.parameters.get('customer_id')
         data_type = request.parameters.get('data_type')
         
@@ -880,30 +896,30 @@ class EnterpriseCustomerDataTool(Tool):
 
 async def validate_mfa_token(token: str) -> bool:
     """Validate multi-factor authentication token"""
-    # Implementering skulle validera MFA-token med Entra ID
+    # Implementeringen skulle validera MFA-token med Entra ID
     return True  # Förenklad för exempel
 
 async def analyze_content_safety(text: str, level: str) -> Dict:
     """Analyze content safety using Azure Content Safety"""
-    # Implementering skulle anropa Azure Content Safety API
+    # Implementeringen skulle anropa Azure Content Safety API
     return {"risk_score": 25}  # Förenklad för exempel
 
 async def analyze_output_safety(content: str) -> Dict:
     """Analyze output content for safety violations"""
-    # Implementering skulle skanna utdata efter känslig data, skadligt innehåll
+    # Implementeringen skulle skanna utdata efter känslig data, skadligt innehåll
     return {"risk_score": 15}  # Förenklad för exempel
 
 async def log_security_event(event_data: Dict):
     """Log security events to Azure Monitor/Application Insights"""
-    # Implementering skulle skicka strukturerade loggar till Azure-övervakning
+    # Implementeringen skulle skicka strukturerade loggar till Azure-övervakning
     logging.info(f"MCP Security Event: {json.dumps(event_data, default=str)}")
 ```
 
-## Avancerad MCP-säkerhetshotborttagning
+## Avancerad MCP säkerhetshot-mitigering
 
-### **1. Förebyggande av Confused Deputy-attack**
+### **1. Förebyggande av förväxlat ombud-attack**
 
-**Förbättrad implementation enligt MCP Specification (2025-11-25):**
+**Förbättrad implementation enligt MCP Specifikation `2026-07-28`:**
 
 ```python
 import asyncio
@@ -923,7 +939,7 @@ class AdvancedConfusedDeputyProtection:
         self.secret_client = SecretClient(vault_url=key_vault_url, credential=self.credential)
         self.logger = logging.getLogger(__name__)
         
-        # Cache för validerade klienter (med utgång)
+        # Cachning för validerade klienter (med utgångstid)
         self.validated_clients = {}
         
     async def validate_dynamic_client_registration(
@@ -938,7 +954,7 @@ class AdvancedConfusedDeputyProtection:
         per MCP specification requirement
         """
         try:
-            # 1. OBLIGATORISKT: Skaffa uttryckligt användarsamtycke
+            # 1. OBLIGATORISKT: Få uttryckligt användarsamtycke
             consent_validated = await self.validate_user_consent(
                 user_consent_token, client_id, redirect_uri
             )
@@ -947,7 +963,7 @@ class AdvancedConfusedDeputyProtection:
                 self.logger.warning(f"User consent validation failed for client {client_id}")
                 return False
             
-            # 2. Strikt validering av redirect URI
+            # 2. Strikt validering av omdirigerings-URI
             if not await self.validate_redirect_uri(redirect_uri, client_id):
                 self.logger.warning(f"Invalid redirect URI for client {client_id}: {redirect_uri}")
                 return False
@@ -962,7 +978,7 @@ class AdvancedConfusedDeputyProtection:
                 self.logger.warning(f"Invalid static client relationship: {static_client_id} -> {client_id}")
                 return False
             
-            # Cache framgångsrik validering
+            # Cachning av lyckad validering
             self.validated_clients[client_id] = {
                 'validated_at': datetime.utcnow(),
                 'redirect_uri': redirect_uri,
@@ -990,7 +1006,7 @@ class AdvancedConfusedDeputyProtection:
             if not consent_data:
                 return False
             
-            # Verifiera samtyckesspecificitet
+            # Verifiera samtyckesspecifikhet
             expected_consent = {
                 'client_id': client_id,
                 'redirect_uri': redirect_uri,
@@ -1058,7 +1074,7 @@ class AdvancedConfusedDeputyProtection:
                 return code_challenge == expected_challenge
             
             elif code_challenge_method == "plain":
-                # Inte rekommenderat, men stöds
+                # Ej rekommenderat, men stöds
                 return code_challenge == code_verifier
             
             else:
@@ -1071,7 +1087,7 @@ class AdvancedConfusedDeputyProtection:
     
     async def validate_domain_ownership(self, domain: str, client_id: str) -> bool:
         """Validate domain ownership for the registered client"""
-        # Implementeringen skulle verifiera domänägande genom DNS-poster,
+        # Implementeringen skulle verifiera domänägarskap genom DNS-poster,
         # certifikatvalidering eller förregistrerade domänlistor
         return True  # Förenklat för exempel
     
@@ -1102,7 +1118,7 @@ async def secure_oauth_proxy_flow():
         tenant_id="your-tenant-id"
     )
     
-    # Exempelflöde
+    # Exempel på flöde
     async def handle_dynamic_client_registration(request):
         client_id = request.json.get('client_id')
         redirect_uri = request.json.get('redirect_uri') 
@@ -1134,11 +1150,11 @@ async def secure_oauth_proxy_flow():
         ):
             return {"error": "PKCE validation failed"}, 400
         
-        # Byt auktoriseringskod mot tokens
+        # Byt auktoriseringskod mot token
         return await exchange_code_for_tokens(authorization_code, code_verifier)
 ```
 
-### **2. Förebyggande av Token Passthrough**
+### **2. Förebyggande av token passthrough**
 
 **Omfattande implementation:**
 
@@ -1159,12 +1175,12 @@ class TokenPassthroughPrevention:
             import jwt
             from jwt.exceptions import InvalidTokenError
             
-            # Dekoda utan verifiering först för att kontrollera påståenden
+            # Avkoda utan verifiering först för att kontrollera påståenden
             unverified_payload = jwt.decode(
                 token, options={"verify_signature": False}
             )
             
-            # 1. OBLIGATORISKT: Validera audience-claim
+            # 1. OBLIGATORISKT: Validera mottagarpåståendet
             audience = unverified_payload.get('aud')
             if isinstance(audience, list):
                 if self.expected_audience not in audience:
@@ -1181,7 +1197,7 @@ class TokenPassthroughPrevention:
                 self.logger.error(f"Untrusted issuer: {issuer}")
                 return {"valid": False, "reason": "Untrusted token issuer"}
             
-            # 3. Validera token omfattning/syfte
+            # 3. Validera tokenomfång/syfte
             scope = unverified_payload.get('scp', '').split()
             if 'mcp.server.access' not in scope:
                 self.logger.error("Token missing required MCP server scope")
@@ -1210,7 +1226,7 @@ class TokenPassthroughPrevention:
         Prevent token passthrough by issuing new tokens for downstream services
         """
         try:
-            # Passa aldrig igenom den ursprungliga token
+            # Skicka aldrig igenom den ursprungliga token
             # Utfärda istället en ny token specifikt för den nedströms tjänsten
             
             original_token = downstream_request.get('authorization_token')
@@ -1229,7 +1245,7 @@ class TokenPassthroughPrevention:
                 requested_scopes=downstream_request.get('scopes', [])
             )
             
-            # Uppdatera förfrågan med ny token
+            # Uppdatera begäran med ny token
             secure_request = downstream_request.copy()
             secure_request['authorization_token'] = new_token
             secure_request['_original_token_validated'] = True
@@ -1249,11 +1265,11 @@ class TokenPassthroughPrevention:
     ) -> str:
         """Issue new tokens specifically for downstream services"""
         
-        # Token-payload för nedströms tjänst
+        # Tokendata för nedströms tjänst
         token_payload = {
             'iss': 'mcp-server',  # Denna MCP-server som utfärdare
             'aud': f'downstream.{downstream_service}',  # Specifik för nedströms tjänst
-            'sub': user_context.get('sub'),  # Ursprungsanvändarens subjekt
+            'sub': user_context.get('sub'),  # Ursprungsanvändarämne
             'scp': ' '.join(self.filter_downstream_scopes(requested_scopes)),
             'iat': int(datetime.utcnow().timestamp()),
             'exp': int((datetime.utcnow() + timedelta(hours=1)).timestamp()),
@@ -1265,7 +1281,7 @@ class TokenPassthroughPrevention:
         return await self.sign_downstream_token(token_payload)
 ```
 
-### **3. Förebyggande av sessionkapning**
+### **3. Förebyggande av session hijacking**
 
 **Avancerad sessionssäkerhet:**
 
@@ -1291,7 +1307,7 @@ class AdvancedSessionSecurity:
         # Generera kryptografiskt säker slumpmässig komponent
         random_component = secrets.token_urlsafe(32)  # 256 bitar av entropi
         
-        # Skapa användarspecifik bindning enligt MCP-specifikationen
+        # Skapa användarspecifik bindning enligt MCP-specifikation
         user_binding = hashlib.sha256(f"{user_id}:{random_component}".encode()).hexdigest()
         
         # Lägg till tidsstämpel och ytterligare kontext
@@ -1305,7 +1321,7 @@ class AdvancedSessionSecurity:
         # Format: <user_id>:<timestamp>:<random>:<context>
         session_id = f"{user_id}:{timestamp}:{random_component}:{context_hash}"
         
-        # Kryptera sessionens ID för ökad säkerhet
+        # Kryptera session-ID för extra säkerhet
         encrypted_session_id = self.cipher.encrypt(session_id.encode()).decode()
         
         return encrypted_session_id
@@ -1320,7 +1336,7 @@ class AdvancedSessionSecurity:
         Validate session ID is bound to specific user per MCP requirements
         """
         try:
-            # Dekryptera sessionens ID
+            # Dekryptera session-ID
             decrypted_session = self.cipher.decrypt(session_id.encode()).decode()
             
             # Analysera sessionskomponenter
@@ -1336,7 +1352,7 @@ class AdvancedSessionSecurity:
                 self.logger.warning(f"Session user mismatch: {session_user_id} != {expected_user_id}")
                 return False
             
-            # Validera sessionens ålder
+            # Validera sessionsålder
             session_time = datetime.fromtimestamp(int(timestamp))
             max_age = timedelta(hours=24)  # Konfigurerbar
             
@@ -1372,13 +1388,13 @@ class AdvancedSessionSecurity:
         if not await self.validate_session_binding(session_id, user_id, request.get('context', {})):
             raise SecurityException("Session validation failed")
         
-        # 2. Kontrollera indikationer på sessionkapning
+        # 2. Kontrollera tecken på sessionkapning
         hijack_indicators = await self.detect_session_hijacking(session_id, request)
         if hijack_indicators['risk_score'] > 0.7:
             await self.invalidate_session(session_id)
             raise SecurityException("Session hijacking detected")
         
-        # 3. Validera begärans ursprung och transportssäkerhet
+        # 3. Validera begärans ursprung och transport säkerhet
         if not self.validate_transport_security(request):
             raise SecurityException("Insecure transport detected")
         
@@ -1407,7 +1423,7 @@ class AdvancedSessionSecurity:
                 risk_indicators.append('ip_change')
                 risk_score += 0.3
             
-            # Ändringar av webbläsaragent
+            # User agent-ändringar
             current_ua = request.get('user_agent')
             if current_ua != session_history.get('last_user_agent'):
                 risk_indicators.append('user_agent_change')
@@ -1422,7 +1438,7 @@ class AdvancedSessionSecurity:
             last_activity = session_history.get('last_activity')
             if last_activity:
                 time_gap = datetime.utcnow() - datetime.fromisoformat(last_activity)
-                if time_gap > timedelta(hours=8):  # Lång paus kan indikera kompromettering
+                if time_gap > timedelta(hours=8):  # Långt avbrott kan indikera kompromiss
                     risk_indicators.append('long_inactivity')
                     risk_score += 0.1
         
@@ -1433,7 +1449,7 @@ class AdvancedSessionSecurity:
         }
 ```
 
-## Företagssäkerhetsintegrering & övervakning
+## Företagsintegrering av säkerhet & övervakning
 
 ### **Omfattande loggning med Azure Application Insights**
 
@@ -1449,7 +1465,7 @@ class EnterpriseSecurityMonitoring:
     """Enterprise-grade security monitoring with Azure integration"""
     
     def __init__(self, app_insights_key: str, log_analytics_workspace: str):
-        # Konfigurera Azure Monitor-integration
+        # Konfigurera integration med Azure Monitor
         configure_azure_monitor(connection_string=f"InstrumentationKey={app_insights_key}")
         
         self.tracer = trace.get_tracer(__name__)
@@ -1479,7 +1495,7 @@ class EnterpriseSecurityMonitoring:
                 }
             })
             
-            # Skapa också anpassad telemetri för högriskhändelser
+            # Skapa även anpassad telemetri för högriskhändelser
             if event_data.get('risk_score', 0) > 0.7:
                 await self.create_security_alert(event_data)
     
@@ -1534,7 +1550,7 @@ class EnterpriseSecurityMonitoring:
         
         return analysis
 
-### **Avancerad pipeline för hotdetektion**
+### **Avancerad hotdetekteringspipeline**
 
 class MCPThreatDetectionPipeline:
     """Advanced threat detection pipeline for MCP servers"""
@@ -1557,7 +1573,7 @@ class MCPThreatDetectionPipeline:
             "recommended_action": "allow"
         }
         
-        # 1. Upptäckt av prompt-injektion
+        # 1. Upptäckt av promptinjektion
         injection_analysis = await self.detect_prompt_injection_advanced(request)
         if injection_analysis['detected']:
             threat_analysis["threat_indicators"].append({
@@ -1577,7 +1593,7 @@ class MCPThreatDetectionPipeline:
             })
             threat_analysis["risk_score"] += poisoning_analysis['risk_score']
         
-        # 3. Upptäckt av beteendeavvikelser
+        # 3. Upptäckt av beteendeavvikelse
         behavioral_analysis = await self.detect_behavioral_anomalies(request)
         if behavioral_analysis['anomalous']:
             threat_analysis["threat_indicators"].append({
@@ -1597,7 +1613,7 @@ class MCPThreatDetectionPipeline:
             })
             threat_analysis["risk_score"] += exfiltration_analysis['risk_score']
         
-        # 5. Beräkna slutgiltig riskpoäng och rekommendation
+        # 5. Beräkna slutligt riskpoäng och rekommendation
         threat_analysis["risk_score"] = min(threat_analysis["risk_score"], 1.0)
         
         if threat_analysis["risk_score"] > 0.8:
@@ -1639,7 +1655,7 @@ class MCPThreatDetectionPipeline:
                 })
                 detection_results["confidence"] = max(detection_results["confidence"], result['confidence'])
         
-        # Agregera resultat
+        # Sammanställ resultat
         if detection_results["techniques"]:
             detection_results["detected"] = True
             detection_results["severity"] = max(t.get('severity', 1) for _, r in techniques for t in [r] if r['detected'])
@@ -1648,7 +1664,7 @@ class MCPThreatDetectionPipeline:
         return detection_results
 ```
 
-### **Integrering av leverantörskedjesäkerhet**
+### **Integrering av säkerhet i leveranskedjan**
 
 ```python
 class MCPSupplyChainSecurity:
@@ -1693,11 +1709,11 @@ class MCPSupplyChainSecurity:
             signature_valid = await self.verify_component_signature(component)
             validation_results["signature_verified"] = signature_valid
             
-            # 5. Ryktesanalys
+            # 5. Rykteanalys
             reputation_score = await self.analyze_component_reputation(component)
             validation_results["reputation_score"] = reputation_score
             
-            # Slutgiltigt val av validering
+            # Slutgiltigt valideringsbeslut
             critical_vulns = [v for v in validation_results["vulnerabilities"] if v['severity'] == 'CRITICAL']
             
             validation_results["security_validated"] = (
@@ -1717,67 +1733,69 @@ class MCPSupplyChainSecurity:
         return validation_results
 ```
 
-## Sammanfattning av bästa praxis & företagsriktlinjer
+## Sammanfattning av bästa praxis & riktlinjer för företag
 
-### **Kritisk implementationschecklista**
+### **Kritisk checklista för implementation**
 
-Autentisering & auktorisering:
+Autentisering & auktorisation:
   Integration med extern identitetsleverantör (Microsoft Entra ID)
-  Validering av tokenpublik (OBLIGATORISKT)
-  Ingen sessionbaserad autentisering
+  Validering av token-publik (OBLIGATORISKT)
+  Ingen sessionsbaserad autentisering
   Omfattande verifiering av förfrågningar
   
 AI-säkerhetskontroller:
-  Integration med Microsoft Prompt Shields
+  Integration av Microsoft Prompt Shields
   Granskning med Azure Content Safety  
-  Detektion av verktygsförgiftning
+  Detektering av verktygsförgiftning
   Validering av utdata-innehåll
   
 Sessionssäkerhet:
   Kryptografiskt säkra sessions-ID:n
-  Sessionsbindning per användare
-  Detektion av sessionkapning
-  Tvingad HTTPS-transport
+  Användarspecifik sessionsbindning
+  Detektering av session hijacking
+  Tvingande användning av HTTPS-transport
   
 OAuth & proxy-säkerhet:
-  PKCE-implementering (OAuth 2.1)
+  Implementering av PKCE (OAuth 2.1)
   Uttryckligt användarsamtycke för dynamiska klienter
-  Strikt validering av redirect-URI
-  Ingen token-passthrough (OBLIGATORISKT)
+  Strikt validering av redirect URI
+  Ingen token passthrough (OBLIGATORISKT)
 
 Företagsintegration:
   Azure Key Vault för hantering av hemligheter
   Application Insights för säkerhetsövervakning
-  GitHub Advanced Security för leverantörskedja
-  Microsoft Defender för DevOps-integration
+  GitHub Advanced Security för leveranskedjans säkerhet
+  Integration med Microsoft Defender för DevOps
 
 Övervakning & respons:
   Omfattande loggning av säkerhetshändelser
   Realtidsdetektion av hot
-  Automatisk incidenthantering
-  Varningssystem baserat på risknivå
+  Automatiserad insatsrespons
+  Riskbaserade larm
 
-### **Fördelar med Microsoft säkerhetsekosystem**
+### **Fördelar med Microsofts säkerhetsekosystem**
 
-- **Integrerad säkerhetsställning**: Enad säkerhet över identitet, infrastruktur och applikationer
-- **Avancerat AI-skydd**: Syftebyggda försvar mot AI-specifika hot  
-- **Företagskompatibilitet**: Inbyggt stöd för regulatoriska krav och branschstandarder
-- **Hotintelligens**: Global integration av hotintelligens för proaktivt skydd
-- **Skalbar arkitektur**: Företagsklassad skalning med bibehållna säkerhetskontroller
+- **Integrerad säkerhetsställning**: Enhetlig säkerhet över identitet, infrastruktur och applikationer
+- **Avancerat AI-skydd**: Specifikt utvecklade försvar mot AI-specifika hot  
+- **Företagsöverensstämmelse**: Inbyggt stöd för regulatoriska krav och branschstandarder
+- **Hotintelligens**: Global integrering av hotintelligens för proaktivt skydd
+- **Skalbar arkitektur**: Företagsnivå skalning med bibehållna säkerhetskontroller
 
 ### **Referenser & resurser**
 
-- **[MCP Specification (2025-11-25)](https://modelcontextprotocol.io/specification/2025-11-25/)**
-- **[MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices)**  
-- **[MCP Authorization Specification](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)**
+- **[MCP Specifikation (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/)**
+- **[MCP Säkerhetsbästa Praxis](https://modelcontextprotocol.io/specification/2026-07-28/basic/security_best_practices)**
+- **[MCP Auktorisationsspecifikation](https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization)**
 - **[Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)**
 - **[Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)**
-- **[OAuth 2.0 Security Best Practices (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)**
-- **[OWASP Top 10 for Large Language Models](https://genai.owasp.org/)**
+- **[OAuth 2.0 Säkerhetsbästa Praxis (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)**
+- **[OWASP Top 10 för stora språkmodeller](https://genai.owasp.org/)**
 
 ---
 
-> **Säkerhetsmeddelande**: Denna avancerade implementeringsguide speglar aktuella krav i MCP-specifikationen (2025-11-25). Verifiera alltid mot den senaste officiella dokumentationen och överväg dina specifika säkerhetskrav och hotmodell vid implementering av dessa kontroller.
+> **Säkerhetsmeddelande:** Denna avancerade implementationsguide speglar MCP
+> Specifikation `2026-07-28`. Verifiera alltid mot den senaste officiella
+> dokumentationen och tillämpa kontroller lämpliga för din hotmodell.
 
 ## Vad händer härnäst
 

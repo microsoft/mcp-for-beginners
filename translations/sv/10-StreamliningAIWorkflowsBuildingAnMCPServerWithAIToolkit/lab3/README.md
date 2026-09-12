@@ -1,31 +1,36 @@
 # 🔧 Modul 3: Avancerad MCP-utveckling med Microsoft Foundry Toolkit
 
+> [!NOTE]
+> Inspektör-URL:er i detta laboratorium använder den äldre `/sse`-ändpunkten och riktar sig mot
+> fastställda MCP SDK `1.9.3` och Inspektör `0.14.0` beroenden. De är inte
+> aktuella `2026-07-28` Streamable HTTP-exempel.
+
 ![Duration](https://img.shields.io/badge/Duration-20_minutes-blue?style=flat-square)
 ![Microsoft Foundry Toolkit](https://img.shields.io/badge/Microsoft_Foundry_Toolkit-Required-orange?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10+-green?style=flat-square)
 ![MCP SDK](https://img.shields.io/badge/MCP_SDK-1.9.3-purple?style=flat-square)
 ![Inspector](https://img.shields.io/badge/MCP_Inspector-0.14.0-blue?style=flat-square)
 
-## 🎯 Läromål
+## 🎯 Lärandemål
 
-I slutet av denna labb kommer du att kunna:
+I slutet av detta laboratorium kommer du att kunna:
 
 - ✅ Skapa anpassade MCP-servrar med Microsoft Foundry Toolkit
 - ✅ Konfigurera och använda den senaste MCP Python SDK (v1.9.3)
-- ✅ Ställa in och använda MCP Inspector för felsökning
-- ✅ Felsöka MCP-servrar i både Agent Builder och Inspector-miljöer
+- ✅ Sätta upp och använda MCP Inspektör för felsökning
+- ✅ Felsöka MCP-servrar i både Agent Builder och Inspektör-miljöer
 - ✅ Förstå avancerade arbetsflöden för MCP-serverutveckling
 
 ## 📋 Förkunskaper
 
-- Slutfört Lab 2 (MCP Fundamentals)
+- Avslutat Laboratorium 2 (MCP Grundläggande)
 - VS Code med Microsoft Foundry Toolkit-tillägg installerat
 - Python 3.10+ miljö
-- Node.js och npm för Inspector-installation
+- Node.js och npm för inspektörssetup
 
 ## 🏗️ Vad du kommer att bygga
 
-I denna labb kommer du att skapa en **Weather MCP Server** som demonstrerar:
+I detta labb kommer du att skapa en **Weather MCP Server** som demonstrerar:
 - Anpassad MCP-serverimplementation
 - Integration med Microsoft Foundry Toolkit Agent Builder
 - Professionella felsökningsarbetsflöden
@@ -36,12 +41,12 @@ I denna labb kommer du att skapa en **Weather MCP Server** som demonstrerar:
 ## 🔧 Översikt av kärnkomponenter
 
 ### 🐍 MCP Python SDK
-Model Context Protocol Python SDK tillhandahåller grunden för att bygga anpassade MCP-servrar. Du använder version 1.9.3 med utökade felsökningsmöjligheter.
+Model Context Protocol Python SDK utgör grunden för att bygga anpassade MCP-servrar. Du kommer att använda version 1.9.3 med förbättrade felsökningsmöjligheter.
 
-### 🔍 MCP Inspector
+### 🔍 MCP Inspektör
 Ett kraftfullt felsökningsverktyg som erbjuder:
-- Realtidsövervakning av servern
-- Visualisering av verktygskörningar
+- Realtidsövervakning av server
+- Visualisering av verktygsexekvering
 - Inspektion av nätverksförfrågningar/svar
 - Interaktiv testmiljö
 
@@ -57,13 +62,13 @@ Ett kraftfullt felsökningsverktyg som erbjuder:
 
 ![Agent Creation](../../../../translated_images/sv/Agent.c9c33f6a412b4cde.webp)
 
-### Steg 2: Initiera MCP Server-projekt
+### Steg 2: Initiera MCP Server-projektet
 
-1. **Navigera till Tools** → **Add Tool** i Agent Builder
-2. **Välj "MCP Server"** bland alternativen
-3. **Välj "Create A new MCP Server"**
-4. **Välj templaten `python-weather`**
-5. **Döp din server:** `weather_mcp`
+1. **Navigera till Verktyg** → **Lägg till verktyg** i Agent Builder
+2. **Välj "MCP Server"** från de tillgängliga alternativen
+3. **Välj "Skapa en ny MCP Server"**
+4. **Välj mallen `python-weather`**
+5. **Namnge din server:** `weather_mcp`
 
 ![Python Template Selection](../../../../translated_images/sv/Pythontemplate.9d0a2913c6491500.webp)
 
@@ -88,31 +93,31 @@ Ett kraftfullt felsökningsverktyg som erbjuder:
 
 ### Steg 4: Uppgradera till senaste MCP SDK
 
-> **🔍 Varför uppgradera?** Vi vill använda senaste MCP SDK (v1.9.3) och Inspector-tjänsten (0.14.0) för förbättrade funktioner och bättre felsökningsmöjligheter.
+> **🔍 Varför uppgradera?** Vi vill använda den senaste MCP SDK (v1.9.3) och Inspektör-tjänsten (0.14.0) för förbättrade funktioner och bättre felsökningsmöjligheter.
 
 #### 4a. Uppdatera Python-beroenden
 
 **Redigera `pyproject.toml`:** uppdatera [./code/weather_mcp/pyproject.toml](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/pyproject.toml)
 
 
-#### 4b. Uppdatera Inspector-konfiguration
+#### 4b. Uppdatera Inspektör-konfiguration
 
 **Redigera `inspector/package.json`:** uppdatera [./code/weather_mcp/inspector/package.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package.json)
 
-#### 4c. Uppdatera Inspector-beroenden
+#### 4c. Uppdatera Inspektör-beroenden
 
 **Redigera `inspector/package-lock.json`:** uppdatera [./code/weather_mcp/inspector/package-lock.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package-lock.json)
 
-> **📝 Observera:** Denna fil innehåller omfattande beroendedefinitioner. Nedan visas den viktiga strukturen - hela innehållet säkerställer korrekt beroendehantering.
+> **📝 Notera:** Denna fil innehåller omfattande beroendedefinitioner. Nedan är den väsentliga strukturen – det fulla innehållet säkerställer korrekt beroendelösning.
 
 
-> **⚡ Full Package Lock:** Den kompletta package-lock.json innehåller ~3000 rader med beroendedefinitioner. Ovan visas huvudsaklig struktur - använd den tillhandahållna filen för fullständig beroendehantering.
+> **⚡ Komplett Package Lock:** Den fullständiga package-lock.json innehåller ~3000 rader med beroendedefinitioner. Ovan visas nyckelstrukturen – använd den medföljande filen för komplett beroendelösning.
 
-### Steg 5: Konfigurera felsökning i VS Code
+### Steg 5: Konfigurera VS Code-felsökning
 
-*Obs: Vänligen kopiera filen till angiven sökväg för att ersätta motsvarande lokala fil*
+*Notera: Vänligen kopiera filen i angiven sökväg för att ersätta motsvarande lokala fil*
 
-#### 5a. Uppdatera lanseringskonfiguration
+#### 5a. Uppdatera startkonfiguration
 
 **Redigera `.vscode/launch.json`:**
 
@@ -300,14 +305,14 @@ Ett kraftfullt felsökningsverktyg som erbjuder:
 
 ### Steg 6: Installera beroenden
 
-Efter konfigurationsändringarna, kör följande kommandon:
+Efter att ha gjort konfigurationsändringarna, kör följande kommandon:
 
 **Installera Python-beroenden:**
 ```bash
 uv sync
 ```
 
-**Installera Inspector-beroenden:**
+**Installera Inspektör-beroenden:**
 ```bash
 cd inspector
 npm install
@@ -315,12 +320,12 @@ npm install
 
 ### Steg 7: Felsök med Agent Builder
 
-1. **Tryck på F5** eller använd konfigurationen **"Debug in Agent Builder"**
+1. **Tryck på F5** eller använd **"Felsök i Agent Builder"**-konfigurationen
 2. **Välj sammansatt konfiguration** från felsökningspanelen
 3. **Vänta på att servern startar** och att Agent Builder öppnas
-4. **Testa din väder-MCP-server** med naturliga språkfrågor
+4. **Testa din weather MCP-server** med naturliga språkfrågor
 
-Skriv in en prompt som denna
+Skriv in prompten så här
 
 SYSTEM_PROMPT
 
@@ -336,15 +341,15 @@ How's the weather like in Seattle
 
 ![Agent Builder Debug Result](../../../../translated_images/sv/Result.6ac570f7d2b1d538.webp)
 
-### Steg 8: Felsök med MCP Inspector
+### Steg 8: Felsök med MCP Inspektör
 
-1. **Använd konfigurationen "Debug in Inspector"** (Edge eller Chrome)
-2. **Öppna Inspector-gränssnittet** på `http://localhost:6274`
+1. **Använd "Felsök i Inspektör"**-konfigurationen (Edge eller Chrome)
+2. **Öppna Inspektör-gränssnittet** på `http://localhost:6274`
 3. **Utforska den interaktiva testmiljön:**
    - Visa tillgängliga verktyg
-   - Testa körning av verktyg
+   - Testa verktygsexekvering
    - Övervaka nätverksförfrågningar
-   - Felsök serversvar
+   - Felsök serverrespons
 
 ![MCP Inspector Interface](../../../../translated_images/sv/Inspector.5672415cd02fe873.webp)
 
@@ -352,40 +357,40 @@ How's the weather like in Seattle
 
 ## 🎯 Viktiga lärandemål
 
-Genom att slutföra denna labb har du:
+Genom att ha genomfört detta laboratorium har du:
 
-- [x] **Skapat en anpassad MCP-server** med Microsoft Foundry Toolkit-templates
+- [x] **Skapat en anpassad MCP-server** med Microsoft Foundry Toolkit-mallar
 - [x] **Uppgraderat till senaste MCP SDK** (v1.9.3) för förbättrad funktionalitet
-- [x] **Konfigurerat professionella felsökningsarbetsflöden** för både Agent Builder och Inspector
-- [x] **Ställt in MCP Inspector** för interaktiv servertestning
-- [x] **Behärskat VS Code felsökningskonfigurationer** för MCP-utveckling
+- [x] **Konfigurerat professionella felsökningsarbetsflöden** för både Agent Builder och Inspektör
+- [x] **Satt upp MCP Inspektör** för interaktiv servertestning
+- [x] **Behärskat VS Code-felsökningskonfigurationer** för MCP-utveckling
 
 ## 🔧 Avancerade funktioner som utforskats
 
 | Funktion | Beskrivning | Användningsfall |
 |---------|-------------|----------|
 | **MCP Python SDK v1.9.3** | Senaste protokollimplementationen | Modern serverutveckling |
-| **MCP Inspector 0.14.0** | Interaktivt felsökningsverktyg | Realtidstestning av server |
-| **VS Code Debugging** | Integrerad utvecklingsmiljö | Professionellt felsökningsflöde |
-| **Agent Builder Integration** | Direkt Microsoft Foundry Toolkit-anslutning | End-to-end agenttestning |
+| **MCP Inspektör 0.14.0** | Interaktivt felsökningsverktyg | Realtids servertestning |
+| **VS Code Felsökning** | Integrerad utvecklingsmiljö | Professionellt felsökningsarbetsflöde |
+| **Agent Builder Integration** | Direkt Microsoft Foundry Toolkit-anslutning | Helhets-Test av agent |
 
 ## 📚 Ytterligare resurser
 
 - [MCP Python SDK Dokumentation](https://modelcontextprotocol.io/docs/sdk/python)
-- [Microsoft Foundry Toolkit Extension Guide](https://code.visualstudio.com/docs/ai/ai-toolkit)
-- [VS Code Debugging Dokumentation](https://code.visualstudio.com/docs/editor/debugging)
+- [Microsoft Foundry Toolkit Tilläggsguide](https://code.visualstudio.com/docs/ai/ai-toolkit)
+- [VS Code Felsökningsdokumentation](https://code.visualstudio.com/docs/editor/debugging)
 - [Model Context Protocol Specifikation](https://modelcontextprotocol.io/docs/concepts/architecture)
 
 ---
 
-**🎉 Grattis!** Du har framgångsrikt slutfört Lab 3 och kan nu skapa, felsöka och distribuera anpassade MCP-servrar med professionella utvecklingsarbetsflöden.
+**🎉 Grattis!** Du har framgångsrikt genomfört Laboratorium 3 och kan nu skapa, felsöka och distribuera anpassade MCP-servrar med professionella utvecklingsarbetsflöden.
 
 ### 🔜 Fortsätt till nästa modul
 
-Redo att tillämpa dina MCP-kunskaper i ett verkligt utvecklingsflöde? Fortsätt till **[Modul 4: Praktisk MCP-utveckling - Anpassad GitHub Clone-server](../lab4/README.md)** där du kommer att:
-- Bygga en produktionsredo MCP-server som automatiserar GitHub-repositorieoperationer
-- Implementera funktionalitet för att klona GitHub-repositorier via MCP
-- Integrera anpassade MCP-servrar med VS Code och GitHub Copilot Agent Mode
+Redo att tillämpa dina MCP-kunskaper i ett verkligt utvecklingsarbetsflöde? Fortsätt till **[Modul 4: Praktisk MCP-utveckling - Anpassad GitHub-klonserver](../lab4/README.md)** där du kommer att:
+- Bygga en produktionsklar MCP-server som automatiserar GitHub-repositorieoperationer
+- Implementera GitHub-repositoriekloning via MCP
+- Integrera anpassade MCP-servrar med VS Code och GitHub Copilot Agent-läge
 - Testa och distribuera anpassade MCP-servrar i produktionsmiljöer
 - Lära dig praktisk arbetsflödesautomation för utvecklare
 
