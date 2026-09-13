@@ -1,55 +1,55 @@
 # Integrace Model Context Protocol (MCP) s Microsoft Foundry
 
-Tento průvodce ukazuje, jak integrovat servery Model Context Protocol (MCP) s agenty Microsoft Foundry, což umožňuje výkonnou orchestraci nástrojů a schopnosti podnikové AI.
+Tento průvodce ukazuje, jak integrovat servery Model Context Protocol (MCP) s agenty Microsoft Foundry, což umožňuje výkonnou orchestraci nástrojů a podnikové AI schopnosti.
 
 ## Úvod
 
-Model Context Protocol (MCP) je otevřený standard, který umožňuje AI aplikacím bezpečně se připojit k externím zdrojům dat a nástrojům. Po integraci s Microsoft Foundry umožňuje MCP agentům přístup k různým externím službám, API a zdrojům dat a interakci s nimi standardizovaným způsobem.
+Model Context Protocol (MCP) je otevřený standard, který umožňuje AI aplikacím bezpečně se připojit k externím datovým zdrojům a nástrojům. Když je integrován s Microsoft Foundry, MCP umožňuje agentům přístup k různým externím službám, API a datovým zdrojům a komunikaci s nimi standardizovaným způsobem.
 
-Tato integrace spojuje flexibilitu ekosystému nástrojů MCP s robustním frameworkem agentů Microsoft Foundry, poskytuje podniková řešení AI s rozsáhlými možnostmi přizpůsobení.
+Tato integrace kombinuje flexibilitu ekosystému nástrojů MCP s robustním rámcem agentů Microsoft Foundry, což poskytuje podnikové AI řešení s rozsáhlými možnostmi přizpůsobení.
 
-**Poznámka:** Pokud chcete používat MCP v Microsoft Foundry Agent Service, jsou aktuálně podporovány pouze následující oblasti: westus, westus2, uaenorth, southindia a switzerlandnorth
+**Poznámka:** Pokud chcete používat MCP v Microsoft Foundry Agent Service, aktuálně jsou podporovány pouze následující regiony: westus, westus2, uaenorth, southindia a switzerlandnorth
 
 ## Cíle učení
 
 Na konci tohoto průvodce budete schopni:
 
-- Pochopit Model Context Protocol a jeho výhody
+- Porozumět Model Context Protocol a jeho přínosům
 - Nastavit servery MCP pro použití s agenty Microsoft Foundry
 - Vytvořit a nakonfigurovat agenty s integrací nástrojů MCP
-- Implementovat praktické příklady s reálnými servery MCP
+- Implementovat praktické příklady využívající skutečné servery MCP
 - Zpracovávat odpovědi nástrojů a citace v konverzacích agentů
 
-## Požadavky
+## Předpoklady
 
-Než začnete, ujistěte se, že máte:
+Před zahájením se ujistěte, že máte:
 
 - Předplatné Azure s přístupem k Microsoft Foundry
 - Python 3.10+ nebo .NET 8.0+
 - Nainstalovaný a nakonfigurovaný Azure CLI
-- Odpovídající oprávnění k vytváření AI zdrojů
+- Odpovídající oprávnění pro vytváření AI zdrojů
 
 ## Co je Model Context Protocol (MCP)?
 
-Model Context Protocol je standardizovaný způsob, jak se AI aplikace připojují k externím zdrojům dat a nástrojům. Klíčové výhody zahrnují:
+Model Context Protocol je standardizovaný způsob, jak může AI aplikace přistupovat k externím datovým zdrojům a nástrojům. Klíčové výhody zahrnují:
 
 - **Standardizovaná integrace**: Konzistentní rozhraní napříč různými nástroji a službami
 - **Bezpečnost**: Bezpečné mechanismy ověřování a autorizace
-- **Flexibilita**: Podpora různých zdrojů dat, API a vlastních nástrojů
-- **Rozšiřitelnost**: Snadné přidání nových funkcí a integrací
+- **Flexibilita**: Podpora různých datových zdrojů, API a vlastních nástrojů
+- **Rozšiřitelnost**: Jednoduché přidávání nových schopností a integrací
 
 ## Nastavení MCP s Microsoft Foundry
 
 ### Konfigurace prostředí
 
-Vyberte požadované vývojové prostředí:
+Vyberte preferované vývojové prostředí:
 
-- [Implementace v Pythonu](#implementace-v-pythonu)
-- [Implementace v .NET](#codeblock5)
+- [Python implementace](#python-implementace)
+- [.NET implementace](#codeblock5)
 
 ---
 
-## Implementace v Pythonu
+## Python implementace
 
 ***Poznámka*** Tento [notebook](./mcp_support_python.ipynb) můžete spustit
 
@@ -87,13 +87,13 @@ project_client = AIProjectClient(
 )
 ```
 
-### 5. Vytvoření nástroje MCP
+### 5. Vytvoření MCP nástroje
 
 ```python
 mcp_tool = McpTool(
     server_label=mcp_server_label,
     server_url=mcp_server_url,
-    allowed_tools=[],  # Nepovinné: určete povolené nástroje
+    allowed_tools=[],  # Volitelné: specifikujte povolené nástroje
 )
 ```
 
@@ -103,7 +103,7 @@ mcp_tool = McpTool(
 with project_client:
     agents_client = project_client.agents
 
-    # Vytvořte nového agenta s nástroji MCP
+    # Vytvořit nového agenta s nástroji MCP
     agent = agents_client.create_agent(
         model="Your AOAI Model Deployment",
         name="my-mcp-agent",
@@ -113,11 +113,11 @@ with project_client:
     print(f"Created agent, ID: {agent.id}")
     print(f"MCP Server: {mcp_tool.server_label} at {mcp_tool.server_url}")
 
-    # Vytvořte vlákno pro komunikaci
+    # Vytvořit vlákno pro komunikaci
     thread = agents_client.threads.create()
     print(f"Created thread, ID: {thread.id}")
 
-    # Vytvořte zprávu pro vlákno
+    # Vytvořit zprávu pro vlákno
     message = agents_client.messages.create(
         thread_id=thread.id,
         role="user",
@@ -125,7 +125,7 @@ with project_client:
     )
     print(f"Created message, ID: {message.id}")
 
-    # Řešte schválení nástrojů a spusťte agenta
+    # Zpracovat schválení nástrojů a spustit agenta
     mcp_tool.update_headers("SuperSecret", "123456")
     run = agents_client.runs.create(thread_id=thread.id, agent_id=agent.id, tool_resources=mcp_tool.resources)
     print(f"Created run, ID: {run.id}")
@@ -165,7 +165,7 @@ with project_client:
 
     print(f"Run completed with status: {run.status}")
 
-    # Zobrazte konverzaci
+    # Zobrazit konverzaci
     messages = agents_client.messages.list(thread_id=thread.id)
     print("\nConversation:")
     print("-" * 50)
@@ -178,7 +178,7 @@ with project_client:
 
 ---
 
-## Implementace v .NET
+## .NET implementace
 
 ***Poznámka*** Tento [notebook](./mcp_support_dotnet.ipynb) můžete spustit
 
@@ -206,13 +206,13 @@ var mcpServerLabel = "mslearn";
 PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCredential());
 ```
 
-### 4. Vytvoření definice nástroje MCP
+### 4. Vytvoření definice MCP nástroje
 
 ```csharp
 MCPToolDefinition mcpTool = new(mcpServerLabel, mcpServerUrl);
 ```
 
-### 5. Vytvoření agenta s nástroji MCP
+### 5. Vytvoření agenta s MCP nástroji
 
 ```csharp
 PersistentAgent agent = await agentClient.Administration.CreateAgentAsync(
@@ -297,16 +297,16 @@ await foreach (PersistentThreadMessage threadMessage in messages)
 
 ---
 
-## Možnosti konfigurace nástroje MCP
+## Možnosti konfigurace MCP nástrojů
 
-Při konfiguraci nástrojů MCP pro svého agenta můžete specifikovat několik důležitých parametrů:
+Při konfiguraci MCP nástrojů pro vaše agenty můžete určit několik důležitých parametrů:
 
 ### Konfigurace v Pythonu
 
 ```python
 mcp_tool = McpTool(
-    server_label="unique_server_name",      # Identifikátor pro MCP server
-    server_url="https://api.example.com/mcp", # Koncový bod MCP serveru
+    server_label="unique_server_name",      # Identifikátor serveru MCP
+    server_url="https://api.example.com/mcp", # Konec bodu serveru MCP
     allowed_tools=[],                       # Volitelné: specifikujte povolené nástroje
 )
 ```
@@ -320,9 +320,9 @@ MCPToolDefinition mcpTool = new(
 );
 ```
 
-## Autentizace a hlavičky
+## Ověřování a hlavičky
 
-Obě implementace podporují vlastní hlavičky pro autentizaci:
+Obě implementace podporují vlastní hlavičky pro ověřování:
 
 ### Python
 ```python
@@ -338,35 +338,35 @@ mcpToolResource.UpdateHeader("SuperSecret", "123456");
 ## Řešení běžných problémů
 
 ### 1. Problémy s připojením
-- Ověřte, že je URL serveru MCP přístupná
-- Zkontrolujte autentizační údaje
-- Zajistěte síťové připojení
+- Ověřte, že je URL serveru MCP přístupné
+- Zkontrolujte přihlašovací údaje
+- Ujistěte se o síťové konektivitě
 
-### 2. Chyby při volání nástrojů
-- Zkontrolujte argumenty nástroje a jejich formátování
-- Prověřte specifické požadavky serveru
-- Implementujte správné zpracování chyb
+### 2. Selhání zavolání nástrojů
+- Zkontrolujte argumenty a formátování nástroje
+- Dodržujte specifické požadavky serveru
+- Implementujte správné zacházení s chybami
 
 ### 3. Výkonnostní problémy
 - Optimalizujte frekvenci volání nástrojů
-- Použijte cache tam, kde je vhodné
-- Monitorujte dobu odezvy serveru
+- Použijte cachování tam, kde je vhodné
+- Sledujte časy odezvy serveru
 
 ## Další kroky
 
 Pro další vylepšení vaší integrace MCP:
 
-1. **Prozkoumejte vlastní servery MCP**: Vybudujte si vlastní servery MCP pro proprietární zdroje dat
+1. **Prozkoumejte vlastní MCP servery**: Vytvořte své vlastní MCP servery pro proprietární datové zdroje
 2. **Implementujte pokročilou bezpečnost**: Přidejte OAuth2 nebo vlastní autentizační mechanismy
-3. **Monitorování a analytika**: Implementujte logování a dohled nad využitím nástrojů
-4. **Škalování řešení**: Zvažte load balancing a distribuované architektury MCP serverů
+3. **Monitorování a analytika**: Implementujte logování a sledování využití nástrojů
+4. **Škálování řešení**: Zvažte vyvažování zátěže a distribuované architektury MCP serverů
 
 ## Další zdroje
 
 - [Dokumentace Microsoft Foundry](https://learn.microsoft.com/azure/ai-foundry/)
-- [Model Context Protocol vzory](https://learn.microsoft.com/azure/ai-foundry/agents/how-to/tools/model-context-protocol-samples)
+- [Ukázky Model Context Protocol](https://learn.microsoft.com/azure/ai-foundry/agents/how-to/tools/model-context-protocol-samples)
 - [Přehled agentů Microsoft Foundry](https://learn.microsoft.com/azure/ai-foundry/agents/)
-- [Specifikace MCP](https://spec.modelcontextprotocol.io/)
+- [Specifikace MCP](https://modelcontextprotocol.io/specification/2026-07-28/)
 
 ## Podpora
 

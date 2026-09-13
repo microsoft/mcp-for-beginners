@@ -1,131 +1,137 @@
-# AI munkafolyamatok biztonságossá tétele: Entra ID hitelesítés Model Context Protocol szerverekhez
+# AI Munkafolyamatok Biztonságának Megerősítése: Entra ID Hitelesítés a Model Context Protocol Szerverekhez
+
+> [!NOTE]
+> A távoli szerverkód ebben a leckében védi a régi `/sse` és `/message`
+> végpontokat, valamint az MCP `2025-11-25` verziót célozza. Tartsa meg annak
+> hitelesítési azonosító- és tokenellenőrzési gyakorlatát, de az új
+> implementációkhoz használjon `2026-07-28`-kompatibilis Streamable HTTP transportot.
 
 ## Bevezetés
-Az MCP (Model Context Protocol) szerver védelme ugyanolyan fontos, mint az otthoni bejárati ajtó bezárása. Ha nyitva hagyod az MCP szerveredet, az jogosulatlan hozzáférésekhez vezethet, ami biztonsági kockázatot jelent. A Microsoft Entra ID egy megbízható, felhőalapú identitás- és hozzáférés-kezelési megoldás, amely biztosítja, hogy csak jogosult felhasználók és alkalmazások férhessenek hozzá az MCP szerveredhez. Ebben a szakaszban megtanulod, hogyan védd meg AI munkafolyamataidat Entra ID hitelesítéssel.
+A Model Context Protocol (MCP) szerver biztonságossá tétele ugyanolyan fontos, mint az otthona bejárati ajtajának bezárása. Ha MCP szervere nyitva marad, eszközei és adatai jogosulatlan hozzáférésnek lehetnek kitéve, ami biztonsági résekhez vezethet. A Microsoft Entra ID egy robusztus, felhőalapú identitás- és hozzáféréskezelő megoldás, amely segít biztosítani, hogy csak az arra jogosult felhasználók és alkalmazások férjenek hozzá MCP szerveréhez. Ebben a részben megtanulja, hogyan védheti meg AI munkafolyamatait Entra ID hitelesítéssel.
 
-## Tanulási célok
-A szakasz végére képes leszel:
+## Tanulási Célok
+Ennek a résznek a végére képes lesz:
 
-- Megérteni az MCP szerverek biztonságának fontosságát.
+- Megérteni az MCP szerverek biztonságossá tételének fontosságát.
 - Elmagyarázni a Microsoft Entra ID és az OAuth 2.0 hitelesítés alapjait.
-- Felismerni a nyilvános és titkosított (confidential) kliens közötti különbséget.
-- Megvalósítani az Entra ID hitelesítést helyi (nyilvános kliens) és távoli (titkosított kliens) MCP szerver helyzetekben.
-- Alkalmazni a biztonsági legjobb gyakorlatokat AI munkafolyamatok fejlesztése során.
+- Felismerni a nyilvános és bizalmas ügyfelek közti különbséget.
+- Megvalósítani az Entra ID hitelesítést helyi (nyilvános kliens) és távoli (bizalmas kliens) MCP szerver esetekben.
+- Alkalmazni a biztonsági legjobb gyakorlatokat AI munkafolyamatok fejlesztésekor.
 
 ## Biztonság és MCP
 
-Ahogy az otthoni bejárati ajtót sem hagynád nyitva, úgy az MCP szervert sem szabad bárki számára elérhetővé tenni. AI munkafolyamataid biztonságossá tétele alapvető ahhoz, hogy megbízható, stabil és biztonságos alkalmazásokat építs. Ebben a fejezetben megismered, hogyan használhatod a Microsoft Entra ID-t az MCP szerverek védelmére, biztosítva, hogy csak jogosult felhasználók és alkalmazások férhessenek hozzá az eszközeidhez és adataidhoz.
+Ahogy nem hagyná nyitva az otthona bejárati ajtaját, úgy az MCP szerverét sem szabad bárki előtt nyitva hagyni. Az AI munkafolyamatok biztonságossá tétele elengedhetetlen az erős, megbízható és biztonságos alkalmazások létrehozásához. Ez a fejezet bemutatja, hogyan használhatja a Microsoft Entra ID-t MCP szerverei védelmére, biztosítva, hogy csak az arra jogosult felhasználók és alkalmazások férhessenek hozzá eszközeihez és adataihoz.
 
-## Miért fontos a biztonság az MCP szerverek esetében
+## Miért Fontos a Biztonság az MCP Szerverek Számára
 
-Képzeld el, hogy az MCP szerverednek van egy eszköze, amely képes e-maileket küldeni vagy egy ügyféladatbázishoz hozzáférni. Ha a szerver nincs védve, bárki használhatná ezt az eszközt, ami jogosulatlan adathozzáféréshez, spam küldéséhez vagy egyéb rosszindulatú tevékenységekhez vezethet.
+Tegye fel a képzeletbeli MCP szerverén van egy eszköz, amely képes e-maileket küldeni vagy elérni egy ügyféladatbázist. Egy nem biztonságos szerver azt jelentené, hogy bárki használhatja ezt az eszközt, ami jogosulatlan adathozzáféréshez, spamekhez vagy más rosszindulatú tevékenységekhez vezethet.
 
-A hitelesítés alkalmazásával biztosítod, hogy minden szerverhez intézett kérés ellenőrizve legyen, megerősítve a kérés küldőjének személyazonosságát. Ez az első és legfontosabb lépés AI munkafolyamataid biztonságossá tételében.
+A hitelesítés bevezetésével biztosítja, hogy minden kérés a szerver felé ellenőrizve legyen, igazolva a kérés indítójának felhasználói vagy alkalmazási identitását. Ez az első és legfontosabb lépés AI munkafolyamatai biztonságossá tételéhez.
 
 ## Bevezetés a Microsoft Entra ID-be
 
-A [**Microsoft Entra ID**](https://adoption.microsoft.com/microsoft-security/entra/) egy felhőalapú identitás- és hozzáférés-kezelő szolgáltatás. Úgy képzeld el, mint az alkalmazásaid univerzális biztonsági őrét. Kezeli a bonyolult folyamatokat, mint a felhasználók személyazonosságának ellenőrzése (hitelesítés) és a jogosultságok meghatározása (engedélyezés).
+[**Microsoft Entra ID**](https://adoption.microsoft.com/microsoft-security/entra/) egy felhőalapú identitás- és hozzáféréskezelő szolgáltatás. Úgy gondolhat rá, mint az univerzális biztonsági őrre alkalmazásai számára. Kezeli a felhasználói azonosítás (hitelesítés) és a jogosultsághozatal (engedélyezés) bonyolult folyamatát.
 
-Az Entra ID használatával:
+Az Entra ID használatával képes lesz:
 
-- Biztonságos bejelentkezést biztosíthatsz a felhasználóknak.
-- Védeni tudod az API-kat és szolgáltatásokat.
-- Központilag kezelheted a hozzáférési szabályzatokat.
+- Biztonságos bejelentkezést biztosítani a felhasználók számára.
+- Védeni az API-kat és szolgáltatásokat.
+- Központi helyről kezelni a hozzáférési szabályzatokat.
 
-Az MCP szerverek esetében az Entra ID egy megbízható, széles körben elfogadott megoldást nyújt a hozzáférés kezelésére.
+Az MCP szerverek számára az Entra ID megbízható, széles körben elfogadott megoldást kínál arra, hogy ki férhet hozzá a szerver képességeihez.
 
 ---
 
-## A varázslat megértése: hogyan működik az Entra ID hitelesítés
+## A Varázslat Megértése: Hogyan Működik az Entra ID Hitelesítés
 
-Az Entra ID nyílt szabványokat használ, például az **OAuth 2.0**-t a hitelesítéshez. Bár a részletek bonyolultak lehetnek, az alapötlet egyszerű, és analógiával könnyen megérthető.
+Az Entra ID nyílt szabványokat, például a **OAuth 2.0**-t használja a hitelesítés kezelésére. Bár a részletek bonyolultak lehetnek, az alapvető koncepció egyszerű, és analógiával könnyen megérthető.
 
-### Egy könnyed bevezető az OAuth 2.0-ba: a valeting kulcs
+### Kíméletes Bevezetés az OAuth 2.0-ba: A Parkolókulcs
 
-Gondolj az OAuth 2.0-ra úgy, mint egy autóvalétáló szolgáltatásra. Amikor megérkezel egy étterembe, nem adod át a kulcsaid mesterkulcsát a valetnak. Helyette egy **valet kulcsot** adsz neki, amely korlátozott jogosultságokkal rendelkezik: be tudja indítani az autót és bezárja az ajtókat, de nem tudja kinyitni a csomagtartót vagy az kesztyűtartót.
+Az OAuth 2.0-t úgy képzelje el, mint egy parkolószolgálatot az autójához. Amikor egy étteremhez érkezik, nem adja át a parkolósnak a főkulcsát. Ehelyett ad egy **parkolókulcsot**, amely korlátozott jogosultságokkal rendelkezik – tudja indítani az autót és bezárni az ajtókat, de nem tudja kinyitni a csomagtartót vagy az ülések alatti rekeszt.
 
 Ebben az analógiában:
 
-- **Te** vagy a **Felhasználó**.
-- **Az autód** az **MCP szerver**, amely értékes eszközöket és adatokat tartalmaz.
-- A **Valet** a **Microsoft Entra ID**.
-- A **Parkolófiú** az **MCP kliens** (az alkalmazás, amely a szerverhez próbál hozzáférni).
-- A **Valet kulcs** az **Hozzáférési token**.
+- **Ön** a **Felhasználó**.
+- **Az autója** az **MCP Szerver**, az értékes eszközökkel és adatokkal.
+- A **Parkolós** a **Microsoft Entra ID**.
+- A **Parkolófelügyelő** az **MCP Kliens** (az alkalmazás, amely hozzáférni próbál a szerverhez).
+- A **Parkolókulcs** az **Hozzáférési Token**.
 
-A hozzáférési token egy biztonságos szövegkarakterlánc, amelyet az MCP kliens kap az Entra ID-től a bejelentkezést követően. Ezután a kliens minden kérésnél ezt a tokent küldi el az MCP szervernek. A szerver ellenőrizni tudja a tokent annak érdekében, hogy megerősítse a kérés jogosultságát, és hogy a kliensnek megvan a szükséges engedélye, méghozzá anélkül, hogy valaha is kezelnie kellene a tényleges hitelesítő adataidat (például a jelszavadat).
+A hozzáférési token egy biztonságos szöveges karakterlánc, amelyet az MCP kliens kap az Entra ID-től a bejelentkezés után. Ezután a kliens minden kéréshez bemutatja ezt a tokent az MCP szervernek. A szerver ellenőrizheti a tokent, hogy biztos legyen abban, hogy a kérés jogos és a kliens rendelkezik a szükséges jogosultságokkal, mindezt anélkül, hogy valaha is kezelnie kellene az Ön tényleges bizalmas adatait (például jelszavát).
 
-### A hitelesítési folyamat
+### A Hitelesítési Folyamat
 
-A folyamat a következőképpen működik a gyakorlatban:
+Így működik a gyakorlatban:
 
 ```mermaid
 sequenceDiagram
     actor User as 👤 Felhasználó
-    participant Client as 🖥️ MCP Kliens
+    participant Client as 🖥️ MCP kliens
     participant Entra as 🔐 Microsoft Entra ID
-    participant Server as 🔧 MCP Szerver
+    participant Server as 🔧 MCP szerver
 
     Client->>+User: Kérjük, jelentkezzen be a folytatáshoz.
     User->>+Entra: Beírja a hitelesítő adatokat (felhasználónév/jelszó).
     Entra-->>Client: Íme a hozzáférési tokened.
-    User-->>-Client: (Visszatér az alkalmazáshoz)
+    User-->>-Client: (Visszatérés az alkalmazáshoz)
 
-    Client->>+Server: Használni szeretnék egy eszközt. Íme a hozzáférési tokenem.
+    Client->>+Server: Eszközt kell használnom. Íme a hozzáférési tokenem.
     Server->>+Entra: Érvényes ez a hozzáférési token?
-    Entra-->>-Server: Igen, az.
+    Entra-->>-Server: Igen, érvényes.
     Server-->>-Client: A token érvényes. Íme az eszköz eredménye.
 ```
 
-### Bemutatkozik a Microsoft Authentication Library (MSAL)
+### A Microsoft Authentication Library (MSAL) Bemutatása
 
-Mielőtt belevágnánk a kódba, fontos bemutatni egy kulcskomponenst, amelyet a példákban látni fogsz: a **Microsoft Authentication Library (MSAL)**-t.
+Mielőtt belemerülnénk a kódba, fontos bemutatni egy kulcsfontosságú összetevőt, amelyet a példákban látni fog: a **Microsoft Authentication Library (MSAL)**-t.
 
-Az MSAL egy Microsoft által fejlesztett könyvtár, amely megkönnyíti a fejlesztők számára a hitelesítés kezelését. Ehelyett, hogy neked kellene megírnod a bonyolult kódot a biztonsági tokenek kezelésére, a bejelentkezésekre és a munkamenetek frissítésére, az MSAL végzi el a nehéz munkát.
+Az MSAL egy Microsoft által fejlesztett könyvtár, amely megkönnyíti a fejlesztők számára a hitelesítés kezelését. Ahelyett, hogy Önnek kellene minden bonyolult kódot megírnia a biztonsági tokenek kezelésére, a bejelentkezésekre és a munkamenetek frissítésére, az MSAL leveszi Önről ezt a terhet.
 
-Egy MSAL-hoz hasonló könyvtár használata erősen ajánlott, mert:
+Az MSAL könyvtár használata erősen ajánlott, mert:
 
-- **Biztonságos:** Iparági szabvány protokollokat és biztonsági legjobb gyakorlatokat valósít meg, csökkentve a sebezhetőségek kockázatát a kódodban.
-- **Egyszerűsíti a fejlesztést:** Elrejti az OAuth 2.0 és az OpenID Connect protokollok komplexitását, így néhány sor kóddal megbízható hitelesítést adhatsz az alkalmazásodhoz.
-- **Fenntartott:** A Microsoft aktívan karbantartja és frissíti az MSAL-t, hogy kezelje az új biztonsági fenyegetéseket és platformváltozásokat.
+- **Biztonságos:** Iparági szabványokat, protokollokat és biztonsági legjobb gyakorlatokat valósít meg, csökkentve a kód sebezhetőségeit.
+- **Egyszerűsíti a Fejlesztést:** Elvonja az OAuth 2.0 és OpenID Connect protokollok bonyolultságát, így csupán néhány sor kóddal erős hitelesítést adhat alkalmazásához.
+- **Fenntartott:** A Microsoft aktívan karbantartja és frissíti az MSAL-t, hogy új biztonsági fenyegetések és platformváltozások esetén is megfeleljen.
 
-Az MSAL támogatja a .NET-et, JavaScript/TypeScript-et, Pythont, Javat, Go-t és mobilplatformokat (iOS, Android), így az egész technológiai halmazodban egységes hitelesítési mintákat használhatsz.
+Az MSAL számos nyelvet és alkalmazáskeretrendszert támogat, többek között .NET-et, JavaScript/TypeScript-et, Pythont, Javat, Gót, illetve mobileszközökön iOS-t és Androidot. Ez azt jelenti, hogy az egész technológiai környezetében ugyanazokat a hitelesítési mintákat használhatja.
 
-További információkért olvasd el a hivatalos [MSAL áttekintő dokumentációt](https://learn.microsoft.com/entra/identity-platform/msal-overview).
+További információért tekintse meg a hivatalos [MSAL áttekintő dokumentációt](https://learn.microsoft.com/entra/identity-platform/msal-overview).
 
 ---
 
-## Az MCP szervered védelme Entra ID-vel: lépésről lépésre
+## MCP Szerverének Biztonságossá Tétele Entra ID-vel: Lépésről Lépésre Útmutató
 
-Most nézzük meg, hogyan védhetsz egy helyi MCP szervert (amely `stdio` kommunikációt használ) Entra ID segítségével. Ez a példa egy **nyilvános klienst** használ, amely alkalmas olyan alkalmazásokhoz, amelyek egy felhasználó gépén futnak, mint például egy asztali alkalmazás vagy helyi fejlesztői szerver.
+Most végigmegyünk azon, hogyan lehet helyi MCP szervert (amely `stdio`-n keresztül kommunikál) biztonságossá tenni Entra ID segítségével. Ez a példa egy **nyilvános klienset** használ, amely alkalmas felhasználói gépeken futó alkalmazásokhoz, például asztali szoftverhez vagy helyi fejlesztői szerverhez.
 
-### 1. Forgatókönyv: Helyi MCP szerver védelme (nyilvános klienssel)
+### 1. Forgatókönyv: Helyi MCP Szerver Biztonságossá Tétele (Nyilvános Klienssel)
 
-Ebben a helyzetben egy helyben futó, `stdio`-n keresztül kommunikáló MCP szervert vizsgálunk, amely az Entra ID segítségével hitelesíti a felhasználót, mielőtt hozzáférést ad az eszközeihez. A szervernek lesz egyetlen eszköze, amely lekéri a felhasználó profiladatait a Microsoft Graph API-ból.
+Ebben a forgatókönyvben egy olyan helyi MCP szervert vizsgálunk, amely `stdio`-n kommunikál, és Entra ID-t használ a felhasználó hitelesítésére, mielőtt hozzáférést enged az eszközeihez. A szerver egyetlen eszközzel rendelkezik, amely lekéri a felhasználó profiladatait a Microsoft Graph API-ról.
 
-#### 1. Az alkalmazás regisztrálása az Entra ID-ben
+#### 1. Alkalmazás Beállítása az Entra ID-ben
 
-Mielőtt bármilyen kódot írnál, regisztrálnod kell az alkalmazásodat a Microsoft Entra ID-ben. Ez jelzi az Entra ID-nek, hogy az alkalmazás engedélyt kap az autentikációs szolgáltatás használatára.
+A kód írása előtt regisztrálnia kell alkalmazását a Microsoft Entra ID-ben. Ez tájékoztatja az Entrát az alkalmazásról, és engedélyt ad a hitelesítési szolgáltatás használatára.
 
-1. Navigálj a **[Microsoft Entra portálra](https://entra.microsoft.com/)**.
-2. Menj az **App registrations** (Alkalmazásregisztrációk) részhez, majd kattints az **Új regisztráció** gombra.
-3. Adj egy nevet az alkalmazásodnak (például "My Local MCP Server").
-4. A **Supported account types** (Támogatott fióktípusok) alatt válaszd ki a **Csak ebben a szervezeti címtárban lévő fiókok** opciót.
-5. A **Redirect URI** mezőt hagyhatod üresen ebben a példában.
-6. Kattints a **Regisztráció** gombra.
+1. Lépjen be a **[Microsoft Entra portálra](https://entra.microsoft.com/)**.
+2. Menjen az **App registrations** részhez, majd kattintson az **Új regisztráció** gombra.
+3. Adjon nevet az alkalmazásának (például "My Local MCP Server").
+4. A **Támogatott fióktípusok** közül válassza az **Csak az ebben a szervezeti könyvtárban lévő fiókok** opciót.
+5. A **Redirect URI** mezőt ebben a példában üresen hagyhatja.
+6. Kattintson a **Regisztráció** gombra.
 
-A regisztráció után jegyezd fel az **Alkalmazás (kliens) azonosító** és a **Címtár (bérlő) azonosító** értékeket, mert szükséged lesz rájuk a kódban.
+A regisztráció után jegyezze fel az **Alkalmazás (ügyfél) azonosítóját** és a **Könyvtár (bérlő) azonosítóját**. Ezekre szüksége lesz a kódjában.
 
-#### 2. A kód: egyszerűsített áttekintés
+#### 2. A Kód: Részletes Áttekintés
 
-Nézzük meg a kód kulcsfontosságú részeit, amelyek a hitelesítést kezelik. A teljes kód elérhető az [Entra ID - Local - WAM](https://github.com/Azure-Samples/mcp-auth-servers/tree/main/src/entra-id-local-wam) mappában a [mcp-auth-servers GitHub tárolóban](https://github.com/Azure-Samples/mcp-auth-servers).
+Tekintse át a hitelesítést kezelő kódrészleteket. A teljes kód elérhető az [Entra ID - Local - WAM](https://github.com/Azure-Samples/mcp-auth-servers/tree/main/src/entra-id-local-wam) mappában a [mcp-auth-servers GitHub tárházban](https://github.com/Azure-Samples/mcp-auth-servers).
 
 **`AuthenticationService.cs`**
 
-Ez az osztály kezeli az Entra ID-vel való kommunikációt.
+Ez az osztály felelős az Entra ID-vel való interakció kezeléséért.
 
-- **`CreateAsync`**: Ez a metódus inicializálja a MSAL `PublicClientApplication` példányt az alkalmazás `clientId` és `tenantId` értékeivel.
-- **`WithBroker`**: Engedélyezi a broker (például a Windows Web Account Manager) használatát, amely biztonságosabb és zökkenőmentes egyetlen bejelentkezést biztosít.
-- **`AcquireTokenAsync`**: Ez a fő metódus. Először megpróbálja halkban (interakció nélkül) megszerezni a tokent, így a felhasználónak nem kell újra bejelentkeznie, ha már van érvényes munkamenete. Ha ez nem sikerül, interaktív bejelentkezést kér.
+- **`CreateAsync`**: Ez a metódus inicializálja az MSAL (Microsoft Authentication Library) `PublicClientApplication`-jét. Beállítja az alkalmazás `clientId` és `tenantId` értékeivel.
+- **`WithBroker`**: Ez engedélyezi egy broker (például Windows Web Account Manager) használatát, amely biztonságosabb és zökkenőmentesebb egyszólamú bejelentkezést biztosít.
+- **`AcquireTokenAsync`**: Ez a fő metódus. Először megpróbál csendesen tokenhez jutni (így a felhasználónak nem kell újra bejelentkeznie, ha már érvényes munkamenete van). Ha a csendes token megszerzése sikertelen, interaktív bejelentkezést kér.
 
 ```csharp
 // Simplified for clarity
@@ -175,10 +181,10 @@ public async Task<string> AcquireTokenAsync()
 
 **`Program.cs`**
 
-Itt állítják be az MCP szervert és integrálják a hitelesítési szolgáltatást.
+Itt állítják be az MCP szervert, és integrálják a hitelesítési szolgáltatást.
 
-- **`AddSingleton<AuthenticationService>`**: Regisztrálja az `AuthenticationService`-t a függőséginjektáló tárolóba, hogy más részek (például az eszköz) használhassák.
-- **`GetUserDetailsFromGraph` eszköz**: Ehhez az eszközhöz szükséges az `AuthenticationService` egy példánya. Mielőtt bármit tenne, meghívja az `authService.AcquireTokenAsync()`-t, hogy érvényes hozzáférési tokent szerezzen. Ha a hitelesítés sikeres, a tokent használja a Microsoft Graph API hívásához, hogy lekérje a felhasználó adatait.
+- **`AddSingleton<AuthenticationService>`**: Regisztrálja az `AuthenticationService`-t a függőség-injektáló konténerben, hogy más alkalmazásrészekben (például az eszköznél) is használható legyen.
+- **`GetUserDetailsFromGraph` eszköz**: Ez az eszköz igényli az `AuthenticationService` példányát. Mielőtt bármit tenne, meghívja az `authService.AcquireTokenAsync()` metódust egy érvényes hozzáférési token beszerzésére. Ha a hitelesítés sikeres, a tokennel hívja meg a Microsoft Graph API-t, hogy lekérje a felhasználó adatait.
 
 ```csharp
 // Simplified for clarity
@@ -206,56 +212,56 @@ public static async Task<string> GetUserDetailsFromGraph(
 }
 ```
 
-#### 3. Hogyan működik mindez együtt
+#### 3. Hogyan Működik Együtt Minden
 
-1. Amikor az MCP kliens megpróbálja használni a `GetUserDetailsFromGraph` eszközt, az eszköz először meghívja az `AcquireTokenAsync`-t.
-2. Az `AcquireTokenAsync` elindítja az MSAL könyvtárat, hogy ellenőrizze az érvényes tokent.
-3. Ha nincs token, az MSAL a brokeren keresztül interaktív bejelentkezést kér az Entra ID fiókkal.
-4. A bejelentkezést követően az Entra ID kibocsát egy hozzáférési tokent.
-5. Az eszköz megkapja a tokent, és használja azt egy biztonságos Microsoft Graph API híváshoz.
-6. A felhasználó adatait visszaküldik az MCP kliensnek.
+1. Amikor az MCP kliens megpróbálja használni a `GetUserDetailsFromGraph` eszközt, az először az `AcquireTokenAsync`-t hívja meg.
+2. Az `AcquireTokenAsync` aktiválja az MSAL könyvtárat, hogy érvényes tokent keressen.
+3. Ha nincs található token, az MSAL a broker-en keresztül az Entra ID bejelentkező oldalára irányítja felhasználót.
+4. A bejelentkezés után az Entra ID kiállítja a hozzáférési tokent.
+5. Az eszköz megkapja a tokent, amelyet használva biztonságos hívást tesz a Microsoft Graph API-hoz.
+6. A felhasználó adatai visszakerülnek az MCP klienshez.
 
-Ez a folyamat biztosítja, hogy csak hitelesített felhasználók használhassák az eszközt, ezáltal hatékonyan védve a helyi MCP szerveredet.
+Ez a folyamat biztosítja, hogy csak hitelesített felhasználók használhatják az eszközt, hatékonyan védve helyi MCP szerverét.
 
-### 2. forgatókönyv: Távoli MCP szerver védelme (titkosított klienssel)
+### 2. Forgatókönyv: Távoli MCP Szerver Biztonságossá Tétele (Bizalmas Klienssel)
 
-Amikor az MCP szerver egy távoli gépen fut (például egy felhőszerveren), és olyan protokollon kommunikál, mint a HTTP Streaming, a biztonsági követelmények eltérőek. Ebben az esetben **titkosított klienst** és az **Authorization Code Flow**-t kell használnod. Ez biztonságosabb, mert az alkalmazás titkai soha nem kerülnek ki a böngészőhöz.
+Amikor az MCP szervere egy távoli gépen fut (például egy felhőszerveren), és olyan protokollon kommunikál, mint az HTTP Streaming, a biztonsági követelmények eltérőek. Ilyenkor **bizalmas klienset** és **Engedélyezési kód folyamatot** (Authorization Code Flow) kell használni. Ez biztonságosabb módszer, mert az alkalmazás titkai soha nem kerülnek nyilvánosságra a böngészőben.
 
-Ez a példa egy TypeScript-alapú MCP szervert mutat be, amely Express.js-t használ HTTP-kérések kezelésére.
+Ez a példa egy TypeScript alapú MCP szervert mutat be, amely az Express.js-t használja HTTP kérések kezeléséhez.
 
-#### 1. Az alkalmazás regisztrálása az Entra ID-ben
+#### 1. Alkalmazás Beállítása az Entra ID-ben
 
-Az Entra ID-ben történő beállítás hasonló a nyilvános klienshez, de egy lényeges különbség van: létre kell hozni egy **kliens titkot**.
+Az Entra ID-ben a beállítás hasonló a nyilvános klienshez, de egy kulcsfontosságú különbséggel: létre kell hozni egy **ügyfél titkot** (client secret).
 
-1. Navigálj a **[Microsoft Entra portálra](https://entra.microsoft.com/)**.
-2. Az alkalmazásod regisztrációjában menj a **Tanúsítványok és titkok** fülre.
-3. Kattints az **Új kliensi titok** gombra, adj neki leírást, majd kattints a **Hozzáadás** gombra.
-4. **Fontos:** Azonnal másold ki a titok értékét, mert később nem fogod tudni újra megtekinteni.
-5. Konfigurálnod kell a **Redirect URI**-t is. Lépj az **Hitelesítés** fülre, kattints a **Platform hozzáadása**, válaszd a **Web**-et, és add meg az alkalmazásod átirányítási URI-ját (például `http://localhost:3001/auth/callback`).
+1. Lépjen be a **[Microsoft Entra portálra](https://entra.microsoft.com/)**.
+2. Az alkalmazás regisztrációjánál menjen a **Certificates & secrets** fülre.
+3. Kattintson az **Új ügyfél titok** gombra, adjon neki leírást, majd kattintson a **Hozzáadás** gombra.
+4. **Fontos:** Azonnal másolja ki a titok értékét. Többé nem fogja látni.
+5. Konfigurálnia kell egy **Redirect URI**-t is. Menjen az **Authentication** fülre, kattintson a **Platform hozzáadása** gombra, válassza a **Web** opciót, és adja meg az alkalmazásának átirányítási URI-ját (pl. `http://localhost:3001/auth/callback`).
 
-> **⚠️ Fontos biztonsági megjegyzés:** Éles környezetben a Microsoft erősen ajánlja a **titok nélküli hitelesítés** módszereit, mint például a **Managed Identity** vagy a **Workload Identity Federation** használatát a kliens titkok helyett. A kliens titkok biztonsági kockázatot jelentenek, mert ki lehet őket szivárogtatni vagy kompromittálni. A Managed Identity sokkal biztonságosabb, mert kiküszöböli a hitelesítő adatok kódba vagy konfigurációba történő tárolásának szükségességét.
+> **⚠️ Fontos Biztonsági Megjegyzés:** Termelési környezetben a Microsoft erősen ajánlja a **titok nélküli hitelesítési** módszerek, például a **Managed Identity** vagy a **Workload Identity Federation** használatát ügyfél titkok helyett. Az ügyfél titkok biztonsági kockázatot jelentenek, mert kiszivároghatnak vagy kompromittálódhatnak. A kezelt identitások biztonságosabb megközelítést kínálnak azáltal, hogy nincs szükség hitelesítő adatok tárolására a kódban vagy konfigurációban.
 >
-> További információkért a kezelt identitásokról és használatukról lásd a [Managed identities for Azure resources áttekintést](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview).
+> További információkért a kezelt identitásokról és azok bevezetéséről tekintse meg a [Azure erőforrásokhoz tartozó kezelt identitások áttekintése](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview) dokumentációt.
 
-#### 2. A kód: egyszerűsített áttekintés
+#### 2. A Kód: Részletes Áttekintés
 
-Ez a példa egy munkamenet-alapú megközelítést használ. Amikor a felhasználó hitelesít, a szerver eltárolja a hozzáférési tokent és a frissítési tokent a munkamenetben, és átad egy munkamenet tokent a felhasználónak. Ezt a munkamenet tokent használják a további kérésekhez. A teljes kód elérhető az [Entra ID - Confidential client](https://github.com/Azure-Samples/mcp-auth-servers/tree/main/src/entra-id-cca-session) mappában a [mcp-auth-servers GitHub tárolóban](https://github.com/Azure-Samples/mcp-auth-servers).
+Ez a példa munkamenet-alapú megközelítést használ. Amikor a felhasználó hitelesít, a szerver eltárolja a hozzáférési és a frissítő tokent egy munkamenetben, és ad a felhasználónak egy munkamenet tokent. Ezt a munkamenet tokent használják a későbbi kérések. A teljes kód elérhető az [Entra ID - Bizalmas kliens](https://github.com/Azure-Samples/mcp-auth-servers/tree/main/src/entra-id-cca-session) mappában a [mcp-auth-servers GitHub tárházban](https://github.com/Azure-Samples/mcp-auth-servers).
 
 **`Server.ts`**
 
-Ez a fájl állítja be az Express szervert és az MCP átviteli réteget.
+Ez a fájl állítja be az Express szervert és az MCP transport réteget.
 
-- **`requireBearerAuth`**: Ez egy köztes réteg (middleware), amely védi a `/sse` és `/message` végpontokat. Ellenőrzi, hogy van-e érvényes bearer token az `Authorization` fejlécben.
-- **`EntraIdServerAuthProvider`**: Ez egy egyedi osztály, amely megvalósítja a `McpServerAuthorizationProvider` interfészt. Felelős az OAuth 2.0 folyamat kezeléséért.
-- **`/auth/callback`**: Ez a végpont kezeli az Entra ID-ből érkező visszairányítást, amikor a felhasználó hitelesítve lett. Az authorization code-ot hozzáférési és frissítési tokenekre váltja.
+- **`requireBearerAuth`**: Ez egy köztes réteg (middleware), amely védi a `/sse` és `/message` végpontokat. Érvényes "bearer" tokent keres a kérés `Authorization` fejlécében.
+- **`EntraIdServerAuthProvider`**: Egy egyedi osztály, amely megvalósítja a `McpServerAuthorizationProvider` interfészt. Az OAuth 2.0 folyamat kezeléséért felel.
+- **`/auth/callback`**: Ez a végpont kezeli az Entra ID-ből érkező átirányítást a felhasználó hitelesítése után. Az engedélyezési kódot cseréli hozzáférési és frissítő tokenre.
 
 ```typescript
-// Egyszerűsítve az áttekinthetőség érdekében
+// Egyszerűsítve a világosság kedvéért
 const app = express();
 const { server } = createServer();
 const provider = new EntraIdServerAuthProvider();
 
-// Védd az SSE végpontot
+// Védje az SSE végpontot
 app.get("/sse", requireBearerAuth({
   provider,
   requiredScopes: ["User.Read"]
@@ -263,29 +269,29 @@ app.get("/sse", requireBearerAuth({
   // ... csatlakozás a szállításhoz ...
 });
 
-// Védd az üzenet végpontot
+// Védje az üzenet végpontot
 app.post("/message", requireBearerAuth({
   provider,
   requiredScopes: ["User.Read"]
 }), async (req, res) => {
-  // ... kezeld az üzenetet ...
+  // ... kezelje az üzenetet ...
 });
 
-// Kezeld az OAuth 2.0 visszahívást
+// Kezelje az OAuth 2.0 visszahívást
 app.get("/auth/callback", (req, res) => {
   provider.handleCallback(req.query.code, req.query.state)
     .then(result => {
-      // ... kezeld a sikert vagy a hibát ...
+      // ... kezelje a sikert vagy kudarcot ...
     });
 });
 ```
 
 **`Tools.ts`**
 
-Ez a fájl definiálja az MCP szerver által biztosított eszközöket. A `getUserDetails` eszköz hasonló az előző példához, de a hozzáférési tokent a munkamenetből szerzi meg.
+Ez a fájl definiálja az MCP szerver által nyújtott eszközöket. A `getUserDetails` eszköz hasonló az előző példában bemutatotthoz, de a hozzáférési tokent a munkamenetből szerzi be.
 
 ```typescript
-// Egyszerűsítve az érthetőség érdekében
+// Egyszerűsítve az érthetőség kedvéért
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   const { name } = request.params;
   const context = request.params?.context as { token?: string } | undefined;
@@ -296,7 +302,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       throw new AuthenticationError("Authentication token is missing or invalid. Ensure the token is provided in the request context.");
     }
 
-    // Szerezd meg az Entra ID tokent a munkamenet tárolóból
+    // Szerezze be az Entra azonosító tokent a munkamenet tárolóból
     const tokenData = tokenStore.getToken(sessionToken);
     const entraIdToken = tokenData.accessToken;
 
@@ -308,7 +314,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
     const user = await graphClient.api('/me').get();
 
-    // ... adja vissza a felhasználói részleteket ...
+    // ... visszaadja a felhasználói adatokat ...
   }
 });
 ```
@@ -317,104 +323,105 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
 Ez az osztály kezeli:
 
-- A felhasználó átirányítását az Entra ID bejelentkezési oldalára.
-- Az authorization code cseréjét hozzáférési tokenre.
+- A felhasználó átirányítását az Entra ID bejelentkező oldalára.
+- Az engedélyezési kód cseréjét hozzáférési tokenre.
 - A tokenek tárolását a `tokenStore`-ban.
-- A hozzáférési token frissítését, amikor az lejár.
+- A hozzáférési token frissítését lejáratkor.
 
-#### 3. Hogyan működik mindez együtt
 
-1. Amikor a felhasználó először próbál kapcsolódni az MCP szerverhez, a `requireBearerAuth` middleware észleli, hogy nincs érvényes munkamenete, ezért átirányítja őt az Entra ID bejelentkezési oldalára.
+#### 3. Hogyan működik ez az egész együtt
+
+1. Amikor egy felhasználó először próbál csatlakozni az MCP szerverhez, a `requireBearerAuth` middleware észleli, hogy nincs érvényes munkamenete, és átirányítja őt az Entra ID bejelentkezési oldalára.
 2. A felhasználó bejelentkezik az Entra ID fiókjával.
-3. Az Entra ID visszairányítja a felhasználót a `/auth/callback` végponthoz egy engedélyezési kóddal.
-4. A szerver a kódot hozzáférési tokenre és frissítési tokenre váltja, elmenti őket, és létrehoz egy munkamenet-tokenet, amelyet elküld a kliensnek.
-5. A kliens mostantól használhatja ezt a munkamenet-tokenet az `Authorization` fejlécben az MCP szerverhez küldött összes jövőbeni kérésnél.
-6. Amikor a `getUserDetails` eszközt hívják, az a munkamenet-token segítségével lekéri az Entra ID hozzáférési tokent, majd azzal hívja meg a Microsoft Graph API-t.
+3. Az Entra ID visszairányítja a felhasználót az `/auth/callback` végpontra egy engedélyezési kóddal.
+4. A szerver kicseréli a kódot egy hozzáférési tokenre és egy frissítő tokenre, eltárolja őket, és létrehoz egy munkamenet tokent, amelyet elküld az ügyfélnek.
+5. Az ügyfél most már használhatja ezt a munkamenet tokent az `Authorization` fejlécben minden további kérése során az MCP szerverhez.
+6. Amikor a `getUserDetails` eszközt meghívják, az a munkamenet tokent használja az Entra ID hozzáférési token lekéréséhez, majd azt használja a Microsoft Graph API hívásához.
 
-Ez a folyamat bonyolultabb, mint a nyilvános kliens folyamata, de internetes végpontok esetén szükséges. Mivel a távoli MCP szerverek nyilvános interneten érhetők el, erősebb biztonsági intézkedésekre van szükség a jogosulatlan hozzáférés és a potenciális támadások elleni védelem érdekében.
+Ez a folyamat összetettebb, mint a nyilvános kliens folyamata, de szükséges az internet felé nyíló végpontokhoz. Mivel a távoli MCP szerverek elérhetőek a nyilvános interneten keresztül, erősebb biztonsági intézkedésekre van szükségük az illetéktelen hozzáférés és a lehetséges támadások ellen.
 
 
 ## Biztonsági legjobb gyakorlatok
 
-- **Mindig használj HTTPS-t**: Titkosítsd a kommunikációt a kliens és a szerver között, hogy megvédd a tokeneket a lehallgatástól.
-- **Alkalmazz szerepalapú hozzáférés-vezérlést (RBAC)**: Ne csak azt ellenőrizd, *hogy* a felhasználó hitelesített-e; ellenőrizd, *mit* jogosult tenni. Definiálhatsz szerepeket az Entra ID-ben, és azokat ellenőrizheted az MCP szerveredben.
-- **Figyelj és auditálj**: Naplózz minden hitelesítési eseményt, hogy észlelhesd és reagálhass gyanús tevékenységre.
-- **Kezeld a sebességkorlátozást és a sávszélesség korlátozást**: A Microsoft Graph és más API-k sebességkorlátot alkalmaznak a visszaélések megelőzése érdekében. Az MCP szerveredben implementálj exponenciális visszalépést és újrapróbálkozási logikát az HTTP 429 (Túl sok kérés) válaszok megfelelő kezelésére. Gondolj arra, hogy gyakran használt adatokat cache-elj az API-hívások csökkentése érdekében.
-- **Biztonságos token tárolás**: Tárold biztonságosan a hozzáférési és frissítési tokeneket. Helyi alkalmazások esetén használd a rendszer biztonságos tárolási mechanizmusait. Szerver alkalmazásoknál fontold meg a titkosított tárolást vagy biztonságos kulcskezelő szolgáltatások, mint az Azure Key Vault használatát.
-- **Token lejárat kezelése**: A hozzáférési tokenek élettartama korlátozott. Implementálj automatikus token frissítést a frissítési tokenek segítségével, hogy a felhasználói élmény megszakítás nélkül működjön újra-hitelesítést igénylése nélkül.
-- **Fontold meg az Azure API Management használatát**: Bár a biztonság közvetlen implementálása az MCP szerverben részletes irányítást ad, API átjárók, mint az Azure API Management automatikusan kezelhetik sok biztonsági kérdést, beleértve a hitelesítést, jogosultságkezelést, sebességkorlátozást és monitorozást. Központosított biztonsági réteget biztosítanak, amely a kliensek és az MCP szerverek között helyezkedik el. További részletek az API átjárók MCP-vel való használatáról: [Azure API Management Your Auth Gateway For MCP Servers](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690).
+- **Mindig használj HTTPS-t**: Titkosítsd a kommunikációt az ügyfél és a szerver között, hogy megvédd a tokeneket az elfogástól.
+- **Implementálj szerepalapú hozzáférés-vezérlést (RBAC)**: Ne csak ellenőrizd, *ha* a felhasználó hitelesített; ellenőrizd, *mit* jogosult tenni. Meghatározhatod a szerepeket az Entra ID-ben, és ellenőrizheted őket az MCP szerveredben.
+- **Figyelj és auditálj**: Naplózd az összes hitelesítési eseményt, hogy észlelni és reagálni tudj gyanús tevékenységekre.
+- **Kezeld a sebességkorlátozást és a kéréskorlátozást**: A Microsoft Graph és más API-k sebességkorlátozást alkalmaznak az visszaélések megakadályozására. Implementálj exponenciális visszavonást és újrapróbálkozási logikát az MCP szerveredben az HTTP 429 (Túl sok kérés) válaszok szép kezelésére. Fontold meg a gyakran elérhető adatok gyorsítótárazását az API hívások csökkentése érdekében.
+- **Biztonságos token tárolás**: Tárold biztonságosan a hozzáférési és frissítő tokeneket. Helyi alkalmazásoknál használd a rendszer biztonságos tároló mechanizmusait. Szerveralkalmazásoknál fontolj meg titkosított tárolást vagy biztonságos kulcskezelő szolgáltatásokat, például az Azure Key Vault-ot.
+- **A token lejáratkezelése**: A hozzáférési tokeneknek korlátozott élettartamuk van. Implementálj automatikus token frissítést frissítő tokenek használatával a zökkenőmentes felhasználói élmény fenntartásához újra-hitelesítés nélkül.
+- **Fontold meg az Azure API Management használatát**: Bár a biztonság közvetlen implementálása az MCP szerveredben finomhangolt irányítást biztosít, az API átjárók, mint az Azure API Management automatikusan kezelhetik ezeknek a biztonsági kérdéseknek sok aspektusát, beleértve a hitelesítést, engedélyezést, sebességkorlátozást és figyelést. Egy központosított biztonsági réteget biztosítanak, amely az ügyfeleid és az MCP szervereid között helyezkedik el. További részletek az API átjárók használatáról MCP-vel az [Azure API Management Your Auth Gateway For MCP Servers](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690) linken.
 
 
 ## Főbb tanulságok
 
-- Az MCP szerver biztonságossá tétele kulcsfontosságú az adatok és eszközök védelme érdekében.
-- A Microsoft Entra ID robusztus és skálázható megoldást nyújt hitelesítéshez és jogosultságkezeléshez.
-- Használj **nyilvános klienst** helyi alkalmazásokhoz, és **titkos klienst** távoli szerverekhez.
-- Az **Engedélyezési kód folyamat** a legbiztonságosabb opció webalkalmazások számára.
+- Az MCP szervered biztonságosítása kulcsfontosságú az adatok és eszközök védelméhez.
+- A Microsoft Entra ID robusztus és skálázható megoldást kínál a hitelesítéshez és engedélyezéshez.
+- Használj **nyilvános klienst** helyi alkalmazásokhoz és **titkosított klienst** távoli szerverekhez.
+- Az **Authorization Code Flow** a legbiztonságosabb opció webalkalmazások számára.
 
 
 ## Gyakorlat
 
-1. Gondolj egy MCP szerverre, amit esetleg építenél. Helyi szerver lenne, vagy távoli szerver?
-2. Válaszod alapján nyilvános vagy titkos klienst használnál?
-3. Milyen engedélyeket kérne az MCP szervered a Microsoft Graph ellen végzett műveletekhez?
+1. Gondolkodj el egy MCP szerveren, amit építhetnél. Az helyi vagy távoli szerver lenne?
+2. A válaszod alapján nyilvános vagy titkosított klienst használnál?
+3. Milyen jogosultságot kérne az MCP szervered a Microsoft Graph ellen végzett műveletekhez?
 
 
 ## Gyakorlati feladatok
 
-### 1. gyakorlat: Alkalmazás regisztrálása az Entra ID-ben
-Lépj be a Microsoft Entra portálra.
-Regisztrálj egy új alkalmazást az MCP szerveredhez.
-Jegyezd fel az Alkalmazás (kliens) azonosítóját és a Katalógus (bérlő) azonosítóját.
+### 1. gyakorlat: Regisztrálj egy alkalmazást az Entra ID-ben
+Navigálj a Microsoft Entra portálra.
+Regisztrálj egy új alkalmazást az MCP szervered számára.
+Jegyezd fel az Alkalmazás (kliens) azonosítóját és a Könyvtár (bérlő) azonosítót.
 
-### 2. gyakorlat: Helyi MCP szerver biztonságossá tétele (Nyilvános kliens)
-- Kövesd a kódpéldát az MSAL (Microsoft Authentication Library) integrálásához a felhasználói hitelesítéshez.
-- Teszteld a hitelesítési folyamatot az MCP eszköz hívásával, amely lekéri a felhasználói adatokat a Microsoft Graphból.
+### 2. gyakorlat: Biztosíts egy helyi MCP szervert (Nyilvános kliens)
+- Kövesd a kódpéldát a MSAL (Microsoft Authentication Library) felhasználói hitelesítés integrálásához.
+- Teszteld a hitelesítési folyamatot az MCP eszköz meghívásával, amely lekéri a felhasználói adatokat a Microsoft Graphból.
 
-### 3. gyakorlat: Távoli MCP szerver biztonságossá tétele (Titkos kliens)
-- Regisztrálj egy titkos klienst az Entra ID-ben és hozz létre egy kliens titkot.
-- Konfiguráld az Express.js alapú MCP szervered az Engedélyezési kód folyamat használatára.
-- Teszteld a védett végpontokat és erősítsd meg a token alapú hozzáférést.
+### 3. gyakorlat: Biztosíts egy távoli MCP szervert (Titkos kliens)
+- Regisztrálj egy titkos klienset az Entra ID-ben és hozz létre egy kliens titkot.
+- Állítsd be az Express.js MCP szerveredet az Authorization Code Flow használatára.
+- Teszteld a védett végpontokat, és erősítsd meg a token alapú hozzáférést.
 
-### 4. gyakorlat: Biztonsági legjobb gyakorlatok alkalmazása
-- Engedélyezd a HTTPS-t helyi vagy távoli szervereden.
-- Implementálj szerepalapú hozzáférés-vezérlést (RBAC) a szerver logikájában.
-- Adj hozzá token lejárat kezelést és biztonságos token tárolást.
+### 4. gyakorlat: Alkalmazd a biztonsági legjobb gyakorlatokat
+- Engedélyezd a HTTPS-t a helyi vagy távoli szervereden.
+- Valósítsd meg a szerepalapú hozzáférés-vezérlést (RBAC) a szerver logikádban.
+- Adj hozzá token lejáratkezelést és biztonságos token tárolást.
 
-## Források
+## Erőforrások
 
 1. **MSAL áttekintő dokumentáció**  
-   Ismerd meg, hogyan teszi lehetővé a Microsoft Authentication Library (MSAL) a biztonságos token beszerzést különböző platformokon:  
-   [MSAL áttekintő a Microsoft Learn-en](https://learn.microsoft.com/en-gb/entra/msal/overview)
+   Ismerd meg, hogyan teszi lehetővé a Microsoft Authentication Library (MSAL) a biztonságos token beszerzést több platformon:  
+   [MSAL áttekintő a Microsoft Learn oldalán](https://learn.microsoft.com/en-gb/entra/msal/overview)
 
-2. **Azure-Samples/mcp-auth-servers GitHub tároló**  
-   Referenciaimplementációk MCP szerverekhez, amelyek hitelesítési folyamatokat demonstrálnak:  
-   [Azure-Samples/mcp-auth-servers GitHubon](https://github.com/Azure-Samples/mcp-auth-servers)
+2. **Azure-Samples/mcp-auth-servers GitHub tárház**  
+   Példamegoldások MCP szerverekhez, amelyek hitelesítési folyamatokat demonstrálnak:  
+   [Azure-Samples/mcp-auth-servers a GitHubon](https://github.com/Azure-Samples/mcp-auth-servers)
 
-3. **Managed Identities for Azure Resources áttekintő**  
-   Olyan módszerek megértése, amelyek eltüntetik a titkokat rendszer- vagy felhasználóhoz rendelt kezelt identitások használatával:  
-   [Managed Identities áttekintő a Microsoft Learn-en](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/)
+3. **Managed Identities for Azure Resources áttekintés**  
+   Értsd meg, hogyan szüntetheted meg a titkok használatát rendszer- vagy felhasználó által hozzárendelt felügyelt identitásokkal:  
+   [Managed Identities áttekintő a Microsoft Learn oldalán](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/)
 
-4. **Azure API Management: Az MCP szerverek hitelesítési átjárója**  
-   Mélyebb bemutató az APIM használatáról biztonságos OAuth2 átjáróként MCP szerverekhez:  
-   [Azure API Management Your Auth Gateway For MCP Servers](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
+4. **Azure API Management: Az Auth átjáród MCP szerverekhez**  
+   Mélyebb betekintés az APIM biztonságos OAuth2 átjáróként való használatába MCP szerverekhez:  
+   [Azure API Management Az Auth átjáród MCP szerverekhez](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
 
-5. **Microsoft Graph engedélyek referencia**  
-   Átfogó lista a delegált és alkalmazás engedélyekről a Microsoft Graphhoz:  
-   [Microsoft Graph Permissions Reference](https://learn.microsoft.com/zh-tw/graph/permissions-reference)
+5. **Microsoft Graph jogosultságok referencia**  
+   Teljes körű lista a delegált és alkalmazási jogosultságokról a Microsoft Graphhoz:  
+   [Microsoft Graph jogosultságok referencia](https://learn.microsoft.com/zh-tw/graph/permissions-reference)
 
 
 
 ## Tanulási eredmények
-A szekció elvégzése után képes leszel:
+Ennek a szakasznak a végére képes leszel:
 
-- Megfogalmazni, miért kritikus a hitelesítés az MCP szerverek és AI munkafolyamatok számára.
-- Beállítani és konfigurálni az Entra ID hitelesítést helyi és távoli MCP szerver forgatókönyvekhez.
-- Kiválasztani a megfelelő kliens típust (nyilvános vagy titkos) a szervered telepítése alapján.
-- Biztonságos kódolási gyakorlatok implementálása, beleértve a token tárolását és a szerepalapú jogosultságkezelést.
-- Magabiztosan megvédeni az MCP szerveredet és eszközeit a jogosulatlan hozzáféréstől.
+- Megfogalmazni, hogy miért kritikus a hitelesítés az MCP szerverek és AI munkafolyamatok számára.
+- Beállítani és konfigurálni az Entra ID hitelesítést mind helyi, mind távoli MCP szerver forgatókönyvekhez.
+- Megfelelő kliens típust választani (nyilvános vagy titkosított) a szervered telepítése alapján.
+- Biztonságos kódolási gyakorlatokat alkalmazni, beleértve a token tárolást és szerepalapú engedélyezést.
+- Magabiztosan védeni az MCP szerveredet és eszközeit az illetéktelen hozzáféréssel szemben.
 
-## Mi következik ezután
+## Mi következik
 
 - [5.13 Model Context Protocol (MCP) integráció a Microsoft Foundry-val](../mcp-foundry-agent-integration/README.md)
 
